@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Parse-Pidl/Makefile,v 1.1 2010/10/23 11:38:18 laffer1 Exp $
 
 PORTNAME=		Parse-Pidl
-PORTVERSION?=		0.02
+PORTVERSION=		${SAMBA4_VERSION}
 PORTREVISION=		0
 PORTEPOCH=		0
 CATEGORIES=		devel perl5
@@ -9,27 +9,29 @@ PKGNAMEPREFIX=		p5-
 PKGNAMESUFFIX=
 
 COMMENT=		IDL compiler written in Perl
-LICENSE=		perl
+LICENSE=		gpl3
 
-RUN_DEPENDS=		${SITE_PERL}/Parse/Yapp.pm:${PORTSDIR}/devel/p5-Parse-Yapp
+BUILD_DEPENDS=		p5-Parse-Yapp>=0:${PORTSDIR}/devel/p5-Parse-Yapp
+RUN_DEPENDS:=		${BUILD_DEPENDS}
 
 CONFLICTS=
 
-SAMBA_PORT?=		samba4-devel
-SAMBA_SUBPORT=		yes
+SAMBA4_PORT?=		samba4
+SAMBA4_SUBPORT=		yes
 
-MASTERDIR=		${.CURDIR}/../../net/${SAMBA_PORT}
+MASTERDIR=		${.CURDIR}/../../net/${SAMBA4_PORT}
 PKGDIR=			${.CURDIR}
 
 PERL_CONFIGURE=		yes
+PATCH_WRKSRC=		${WRKDIR}/${DISTNAME}
 WRKSRC=			${WRKDIR}/${DISTNAME}/pidl
 
 MAN1=			pidl.1
-MAN3=			Parse::Pidl::Dump.3 Parse::Pidl::Util.3 \
-			Parse::Pidl::Wireshark::Conformance.3 \
-			Parse::Pidl::Wireshark::NDR.3 Parse::Pidl::NDR.3
+MAN3=			Parse::Pidl::Dump.3 Parse::Pidl::NDR.3 \
+			Parse::Pidl::Util.3 Parse::Pidl::Wireshark::Conformance.3 \
+			Parse::Pidl::Wireshark::NDR.3
 
 post-extract:
-		@${RM} -rf ${WRKSRC}/lib/Parse/Yapp
+			@${RM} -rf ${WRKSRC}/lib/Parse/Yapp ${WRKSRC}/lib/wscript_build
 
 .include "${MASTERDIR}/Makefile"
