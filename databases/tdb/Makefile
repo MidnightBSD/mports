@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.5 2011/06/01 01:28:12 laffer1 Exp $
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.6 2011/08/13 14:31:28 laffer1 Exp $
 
 PORTNAME=		tdb
 PORTVERSION=		1.2.1
@@ -14,7 +14,7 @@ LICENSE=		gpl3
 
 CONFLICTS=		samba3[0-4]-3.*
 
-USE_PYTHON=		yes
+USE_PYTHON_BUILD=	-2.7
 USE_GMAKE=		yes
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
