@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.6 2013/05/04 20:37:59 laffer1 Exp $
 
 PORTNAME=	Module-Build
-PORTVERSION=	0.4004
+PORTVERSION=	0.4005
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
