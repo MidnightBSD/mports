@@ -1,46 +1,22 @@
-# New ports collection makefile for:	Module::Build
-# Date created:				29 June 2003
-# Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.4 2008/10/11 06:36:31 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-Module-Build/Makefile,v 1.43 2006/12/26 02:22:21 clsung Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	Module-Build
-PORTVERSION=	0.28.08
+PORTVERSION=	0.4004
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Module/KWILLIAMS
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:C/\.(..)$/\1/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build and install Perl modules
 LICENSE=	perl
 
-RUN_DEPENDS=	\
-		${SITE_PERL}/ExtUtils/ParseXS.pm:${PORTSDIR}/devel/p5-ExtUtils-ParseXS \
-		${SITE_PERL}/YAML.pm:${PORTSDIR}/textproc/p5-YAML
-BUILD_DEPENDS=	${RUN_DEPENDS}
+OPTIONS_DEFINE=	DOCS
 
 PERL_MODBUILD=	yes
 
-.if !defined(NOPORTDOCS)
-PORTDOCS=	Changes INSTALL README
-
-post-install:
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
-	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
-
-MAN3=		Module::Build.3 \
+MAN3=		inc::latest.3 \
+		Module::Build.3 \
+  		Module::Build::Bundling.3 \
 		Module::Build::API.3 \
 		Module::Build::Authoring.3 \
 		Module::Build::Base.3 \
@@ -64,17 +40,37 @@ MAN3=		Module::Build.3 \
 		Module::Build::Platform::cygwin.3 \
 		Module::Build::Platform::darwin.3 \
 		Module::Build::Platform::os2.3 \
+		Module::Build::Version.3 \
 		Module::Build::YAML.3
-MAN1=		config_data.1
+PORTDOCS=	Changes INSTALL README
 
-.if ${PERL_LEVEL} < 500805
-RUN_DEPENDS+=	${SITE_PERL}/Pod/Man.pm:${PORTSDIR}/textproc/p5-podlators
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 501400
+BUILD_DEPENDS+=	p5-CPAN-Meta>=2.110420:${PORTSDIR}/devel/p5-CPAN-Meta \
+		p5-CPAN-Meta-YAML>=0.003:${PORTSDIR}/devel/p5-CPAN-Meta-YAML \
+		p5-Module-Metadata>=1.000002:${PORTSDIR}/devel/p5-Module-Metadata \
+		p5-Parse-CPAN-Meta>=1.44.01:${PORTSDIR}/devel/p5-Parse-CPAN-Meta \
+		p5-Perl-OSType>=1:${PORTSDIR}/devel/p5-Perl-OSType \
+		p5-version>=0.87:${PORTSDIR}/devel/p5-version
+RUN_DEPENDS+=	p5-CPAN-Meta>=2.110420:${PORTSDIR}/devel/p5-CPAN-Meta \
+		p5-CPAN-Meta-YAML>=0.003:${PORTSDIR}/devel/p5-CPAN-Meta-YAML \
+		p5-Module-Metadata>=1.000002:${PORTSDIR}/devel/p5-Module-Metadata \
+		p5-Parse-CPAN-Meta>=1.44.01:${PORTSDIR}/devel/p5-Parse-CPAN-Meta \
+		p5-Perl-OSType>=1:${PORTSDIR}/devel/p5-Perl-OSType \
+		p5-version>=0.87:${PORTSDIR}/devel/p5-version
 .endif
 
-.if ${PERL_LEVEL} < 501000
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/Archive/Tar.pm:${PORTSDIR}/archivers/p5-Archive-Tar \
-		${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
+post-patch:
+	@${RM} -f ${WRKSRC}/bin/config_data
+	@${REINPLACE_CMD} -e '/script_files/d' ${WRKSRC}/Build.PL
+	@${REINPLACE_CMD} -e '/^bin\/config_data/d' ${WRKSRC}/MANIFEST
+
+post-install:
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}/
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}/
+	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
 .include <bsd.port.post.mk>
