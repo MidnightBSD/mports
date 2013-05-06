@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.17 2011/12/15 00:57:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.18 2012/03/11 01:33:22 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.7.4-4
@@ -186,7 +186,7 @@ PLIST_SUB+=		JPEG="@comment "
 .endif
 
 .if !defined(WITHOUT_IMAGEMAGICK_PNG)
-LIB_DEPENDS+=		png:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		png15:${PORTSDIR}/graphics/png
 PLIST_SUB+=		PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
