@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.43 2013/02/22 13:12:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.44 2013/02/23 03:02:03 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -126,11 +126,14 @@ MASTER_SITE_CENKES+= \
 .if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
 MASTER_SITE_CHEESESHOP+= \
 	http://pypi.python.org/packages/%SUBDIR%/ \
+	http://a.pypi.python.org/packages/%SUBDIR%/ \
 	http://b.pypi.python.org/packages/%SUBDIR%/ \
 	http://c.pypi.python.org/packages/%SUBDIR%/ \
 	http://d.pypi.python.org/packages/%SUBDIR%/ \
 	http://e.pypi.python.org/packages/%SUBDIR%/ \
 	http://f.pypi.python.org/packages/%SUBDIR%/ \
+	http://g.pypi.python.org/packages/%SUBDIR%/ \
+	http://pypi.crate.io/packages/%SUBDIR%/ \
 	http://pypi.inqbus.de/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.it.uwosh.edu/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.python.jp/${DISTNAME:S/${DISTVERSION}//:S/-//}/
@@ -538,7 +541,7 @@ MASTER_SITE_GENTOO+= \
 # GH_COMMIT     - first 7 digits of the commit that generated GH_TAGNAME
 #                 (man git-describe(1))
 #                 default: not set, mandatory
-#            
+#
 .if defined(USE_GITHUB)
 MASTER_SITE_GITHUB+=		https://nodeload.github.com/%SUBDIR% \
 				http://nodeload.github.com/%SUBDIR%
@@ -548,6 +551,7 @@ MASTER_SITES+=	GH GHC
 .endif
 GH_PROJECT?=	${PORTNAME}
 GH_TAGNAME?=	${DISTVERSION}
+FETCH_ARGS=	-Fpr
 .endif
 .endif
 #
@@ -651,7 +655,7 @@ MASTER_SITE_IDSOFTWARE+= \
 	ftp://ftp.gamers.org/pub/idgames/idstuff/%SUBDIR%/ \
 	http://ftp.iinet.net.au/games/idstuff/%SUBDIR%/ \
 	ftp://ftp.mirror.nl/disk2/idsoftware/idstuff/%SUBDIR%/ \
-	ftp://ftp.nsu.ru/mirrors/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
+	ftp://freebsd.nsu.ru/mirrors/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/vendors/idgames/idstuff/%SUBDIR%/ \
 	ftp://ftp.omen.net.au/games/idstuff/%SUBDIR%/ \
 	ftp://ftp.idsoftware.com/idstuff/%SUBDIR%/
@@ -1146,8 +1150,8 @@ MASTER_SITE_RINGSERVER+= \
 
 .if !defined(IGNORE_MASTER_SITE_RUBY)
 MASTER_SITE_RUBY+= \
-	ftp://ftp.SpringDaemons.com/pub/ruby/ruby/%SUBDIR%/ \
 	ftp://ftp.ruby-lang.org/pub/ruby/%SUBDIR%/ \
+	ftp://ftp.SpringDaemons.com/pub/ruby/ruby/%SUBDIR%/ \
 	http://www.ibiblio.org/pub/languages/ruby/%SUBDIR%/ \
 	ftp://xyz.lcs.mit.edu/pub/ruby/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,lang/ruby/&,} \
@@ -1194,11 +1198,11 @@ MASTER_SITE_SAVANNAH+= \
 .endif
 
 # List:		http://sourceforge.net/apps/trac/sourceforge/wiki/Mirrors
-# Updated:	2012-10-31
+# Updated:	2013-03-25
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
-.for mirror in heanet sunet iweb switch freefr garr aarnet jaist osdn \
-	nchc ncu internode waix hivelocity superb-dca3 ufpr tenet space \
-	netcologne ignum
+.for mirror in heanet sunet iweb switch freefr garr aarnet jaist master \
+	nchc ncu internode waix hivelocity superb-dca3 ufpr tenet \
+	netcologne ignum kent kaz
 MASTER_SITE_SOURCEFORGE+= \
 	http://${mirror}.dl.sourceforge.net/project/%SUBDIR%/
 .endfor
@@ -1473,17 +1477,27 @@ MASTER_SITE_XFCE+= \
 
 .if !defined(IGNORE_MASTER_SITE_XORG)
 MASTER_SITE_XORG+= \
-	ftp://ftp.cs.cuhk.edu.hk/pub/X11/%SUBDIR%/ \
-	ftp://ftp.unicamp.br/pub/X11/releases/%SUBDIR%/ \
-	ftp://ftp.ntua.gr/pub/X11/X.org/%SUBDIR%/ \
-	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/opengroup/&/,} \
-	ftp://ftp.task.gda.pl/mirror/ftp.x.org/pub/%SUBDIR%/ \
-	ftp://ftp.sunet.se/pub/X11/ftp.x.org/%SUBDIR%/ \
-	ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/%SUBDIR%/ \
-	ftp://sunsite.uio.no/pub/X11/%SUBDIR%/ \
-	http://xorg.freedesktop.org/%SUBDIR%/ \
 	http://xorg.freedesktop.org/releases/%SUBDIR%/ \
-	ftp://ftp.x.org/pub/%SUBDIR%/
+	http://xorg.mirrors.pair.com/%SUBDIR%/ \
+	http://mirror.us.leaseweb.net/xorg/%SUBDIR%/ \
+	http://mirror.csclub.uwaterloo.ca/x.org/%SUBDIR%/ \
+	http://artfiles.org/x.org/pub/%SUBDIR%/ \
+	http://ftp.gwdg.de/pub/x11/x.org/pub/%SUBDIR%/ \
+	http://gd.tuwien.ac.at/X11/%SUBDIR%/ \
+	http://mi.mirror.garr.it/mirrors/x.org/%SUBDIR%/ \
+	http://mirror.switch.ch/ftp/mirror/X11/pub/%SUBDIR%/ \
+	http://mirrors.ircam.fr/pub/x.org/%SUBDIR%/ \
+	http://www.mirrorservice.org/sites/ftp.x.org/pub/%SUBDIR%/ \
+	http://www.portal-to-web.de/pub/mirrors/x.org/%SUBDIR%/ \
+	http://x.cybermirror.org/%SUBDIR%/ \
+	http://x.europnews.de/pub/%SUBDIR%/ \
+	http://xorg.mirror.solnet.ch/pub/%SUBDIR%/ \
+	http://mirror.nl.leaseweb.net/xorg/%SUBDIR%/ \
+	http://mirror.de.leaseweb.net/xorg/%SUBDIR%/ \
+	http://mirrors.go-part.com/xorg/%SUBDIR%/ \
+	http://ftp.yz.yamagata-u.ac.jp/pub/X11/x.org/%SUBDIR%/ \
+	http://ftp.kaist.ac.kr/x.org/%SUBDIR%/ \
+	http://x.cs.pu.edu.tw/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
