@@ -1,24 +1,27 @@
-# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.5 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	kBuild
-PORTVERSION=	0.1.5
-PORTREVISION=	1
+DISTVERSION=	${KBUILD_VERSION}
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.netlabs.org/pub/kbuild/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-p1-src
+MASTER_SITES=	ftp://ftp.netlabs.org/pub/kbuild/ \
+		http://tmp.chruetertee.ch/ \
+		http://disasterarea.chruetertee.ch/
+DISTNAME=	${PORTNAME}-${DISTVERSION}r2662-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Makefile framework
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	gsed:${PORTSDIR}/textproc/gsed
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
 USE_AUTOTOOLS=	automake autoconf
 USE_GMAKE=	yes
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-p1
+CONFLICTS_INSTALL=	kBuild-devel-[0-9]*
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
+
+KBUILD_VERSION=	0.1.9998
 KBUILD_ARCH=	${MACHINE_ARCH:S/i386/x86/}
 KBUILD_ENV=	ACLOCAL=${ACLOCAL} \
 		AUTOMAKE=${AUTOMAKE} \
@@ -32,9 +35,11 @@ KBUILD_BINS=	kDepIDB kDepPre kObjCache kmk kmk_append kmk_ash kmk_cat \
 PORTDOCS=	QuickReference-kmk.html \
 		QuickReference-kmk.txt
 
+.SHELL:		path="/bin/sh" unsetenv=true
+
 post-patch:
 	${REINPLACE_CMD} -e '11269d;11274d' ${WRKSRC}/src/sed/configure
-	${REINPLACE_CMD} -e '11268,11273s|sed|gsed|' ${WRKSRC}/src/sed/configure
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/Config.kmk
 
 # Override autotools
 run-autotools:
@@ -48,14 +53,14 @@ do-build:
 
 do-install:
 .for bin in ${KBUILD_BINS}
-	${INSTALL_PROGRAM} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/bin/${bin} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/bin/${bin} ${PREFIX}/bin
 .endfor
-	${MKDIR) ${DATADIR}
-	(cd ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${DATADIR})
+	${MKDIR} ${DATADIR}
+	(cd ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${DATADIR})
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}/${doc} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release/stage${TRUE_PREFIX}/share/doc/${PORTNAME}-${KBUILD_VERSION}/${doc} ${DOCSDIR}
 .endfor
 .endif
 
