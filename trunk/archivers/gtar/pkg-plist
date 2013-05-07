@@ -1,7 +1,7 @@
-@comment $MidnightBSD: mports/archivers/gtar/pkg-plist,v 1.4 2008/02/22 04:25:23 laffer1 Exp $
 bin/gtar
 libexec/grmt
 %%NLS%%share/locale/bg/LC_MESSAGES/tar.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/tar.mo
 %%NLS%%share/locale/cs/LC_MESSAGES/tar.mo
 %%NLS%%share/locale/da/LC_MESSAGES/tar.mo
 %%NLS%%share/locale/de/LC_MESSAGES/tar.mo
@@ -35,7 +35,6 @@ libexec/grmt
 %%NLS%%share/locale/uk/LC_MESSAGES/tar.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/tar.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/tar.mo
-%%NLS%%@dirrmtry share/locale/rw/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/rw
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/tar.mo
 %%NLS%%@dirrmtry share/locale/ky/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/ky
