@@ -3,8 +3,9 @@ ISO-9660 filesystems, verify their integrity, and write them to
 disc.
 
 This package contains the following programs:
-- cdda2wav (an digital CD audio extraction program)
-- cdrecord (a CD-R[W] recording program)
+- btcflash (a firmware flash utility for BTC DRW1008 DVD+/-RW recorder)
+- cdda2wav (a digital CD audio extraction program)
+- cdrecord (a CD/DVD/BluRay recording program)
 - devdump (dump a device or file in hex)
 - isodebug (show debug info contained in an ISO-9660 image)
 - isodump (dump a device or file based on ISO-9660)
@@ -14,7 +15,7 @@ This package contains the following programs:
 - mkhybrid (an ISO-9660/HFS filesystem image creator)
   Link to mkisofs.
 - readcd (a data CD reading and recording program)
-  May be used to to write to DVD-RAM and to copy Solaris boot CD's.
+  May be used to write to DVD-RAM and to copy Solaris boot CD's.
 - scgcheck (checks and validates the ABI of libscg)
 - rscsi (daemon providing access to local SCSI-devices over the network)
 
