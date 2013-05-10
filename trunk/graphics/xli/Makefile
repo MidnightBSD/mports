@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/xli/Makefile,v 1.10 2012/09/09 04:34:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xli/Makefile,v 1.11 2013/02/22 00:07:35 laffer1 Exp $
 
 PORTNAME=	xli
 PORTVERSION=	1.17.0
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_DEBIAN}
 MASTER_SITE_SUBDIR=	pool/main/x/${PORTNAME}
@@ -16,7 +16,7 @@ LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 
 FAKE_MAKEARGS+=	DESTDIR=${FAKE_DESTDIR}
 USE_XORG=	xi
-USE_GCC=	4.2+
+USE_GCC=	any
 USE_IMAKE=	yes
 WRKSRC=		${WRKDIR}/xli-${XLI_SNAPVER}
 
