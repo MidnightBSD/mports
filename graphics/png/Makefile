@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.25 2012/09/08 18:35:34 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.26 2013/03/02 16:00:33 laffer1 Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.5.14
+PORTVERSION=	1.5.15
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}15/${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
@@ -26,25 +26,27 @@ SOSUFFIX=	.${PORTVERSION:E}
 MAN3=		libpng.3 libpngpf.3
 MAN5=		png.5
 
-OPTIONS=	APNG "Animated PNG support" On
+OPTIONS_DEFINE=APNG
+OPTIONS_DEFAULT=APNG
+APNG_DESC=Enable Animated PNG support
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
 BROKEN=		Please remove WITH_DEBUG for this port
 .endif
 
-.if !defined(WITHOUT_APNG) || make(makesum) || defined(FETCH_ALL)
-MASTER_SITES+=	SF/lib${PORTNAME}-apng/libpng15/${PORTVERSION}:apng 
+.if ${PORT_OPTIONS:MAPNG} || make(makesum) || defined(FETCH_ALL)
+MASTER_SITES+=	SF/apng/libpng/libpng15/:apng
 DISTFILES+=	${DISTNAME}-apng.patch.gz:apng
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 .endif
-.if !defined(WITHOUT_APNG)
+.if ${PORT_OPTIONS:MAPNG}
 EXTRA_PATCHES=	${WRKSRC}/${DISTNAME}-apng.patch
 .endif
 
 post-extract:
-.if !defined(WITHOUT_APNG)
+.if ${PORT_OPTIONS:MAPNG}
 	@${LN} -sf ${WRKSRC} ${WRKSRC}/
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}-apng.patch.gz ${WRKSRC}/
 	${GZIP_CMD} -d ${WRKSRC}/${DISTNAME}-apng.patch.gz
@@ -79,4 +81,4 @@ post-install:
 	${RM} ${PREFIX}/lib/libpng15.so.15
 	${MV} ${PREFIX}/lib/libpng15.so.15${SOSUFFIX} ${PREFIX}/lib/libpng15.so.15
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
