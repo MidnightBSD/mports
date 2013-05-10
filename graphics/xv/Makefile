@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.8 2012/03/01 00:07:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.9 2012/09/09 04:25:11 laffer1 Exp $
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -19,10 +19,10 @@ COMMENT?=	An X11 program that displays images of various formats
 LICENSE=	restricted
 # non commericial use only
 
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		tiff.4:${PORTSDIR}/graphics/tiff \
+LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
+		tiff:${PORTSDIR}/graphics/tiff \
 		png15:${PORTSDIR}/graphics/png \
-		jasper.4:${PORTSDIR}/graphics/jasper
+		jasper:${PORTSDIR}/graphics/jasper
 
 USE_IMAKE=	yes
 USE_XORG=	xext x11 xt
