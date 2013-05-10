@@ -1,6 +1,4 @@
-#
-# $MidnightBSD: mports/x11/qimageblitz/Makefile,v 1.1 2008/12/11 17:54:20 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/qimageblitz/Makefile,v 1.2 2010/12/29 02:01:21 laffer1 Exp $
 
 PORTNAME=	qimageblitz
 PORTVERSION=	0.0.6
@@ -9,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	KDE 4 integrated X11 desktop
+COMMENT=	Graphical effects and filters library for KDE4
 LICENSE=	bsd2
 
 USE_BZIP2=	yes
