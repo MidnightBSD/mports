@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.10 2013/04/11 12:21:50 laffer1 Exp $
+# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.11 2013/04/11 12:24:39 laffer1 Exp $
 
 PORTNAME=	bochs
 PORTVERSION=	2.6.1
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	emulators
 MASTER_SITES=	SF
@@ -19,7 +20,7 @@ OPTIONS_DEFINE=	A20_PIN ALIGN_CHECK ASSERT_CHECK \
 		MWAIT NE2000 OPTIMIZATIONS PCI PLUGINS PNIC \
 		RAW_SERIAL READLINE REPEAT_SPEED RFB \
 		SB16 SDL SHOW_IPS SMP SVGA SVM TERM USB USB_OHCI USB_XHCI \
-		VMX WX X11 X86_64 XPM
+		VMX VOODOO WXGTK X11 X86_64 XPM
 OPTIONS_RADIO=	DEBUG
 OPTIONS_RADIO_DEBUG=	DEBUGGER GDB_STUB
 OPTIONS_DEFAULT=A20_PIN ALIGN_CHECK CDROM CONF_MSRS DISASM FPU LOGGING \
@@ -48,7 +49,6 @@ IODEBUG_DESC=	Enable I/O interface to debugger
 LARGE_RAMFILE_DESC=	Enable large ramfile support
 LOGGING_DESC=	Enable logging
 LONG_PHY_ADDR_DESC=	Enable support for physical address >= 32bit
-MISALIGNEDSSE_DESC=	Enable misaligned SSE support
 MWAIT_DESC=	Enable experimental MONITOR/MWAIT support
 NE2000_DESC=	Enable limited ne2000 support
 OPTIMIZATIONS_DESC=	Enable all safe speed optimizations
@@ -70,7 +70,7 @@ USB_DESC=	Enable limited USB UHCI support
 USB_OHCI_DESC=	Enable limited USB OHCI support
 USB_XHCI_DESC=	Enable limited USB xHCI support
 VMX_DESC=	Enable Virtialization extensions
-WX_DESC=	Use WxWidgets display interface
+VOODOO_DESC=	Enable 3dfx Voodoo Graphics emulation
 X86_64_DESC=	Enable AMD x86-64 support
 XPM_DESC=	Enable XPM library support
 
@@ -92,7 +92,7 @@ SUB_FILES=	pkg-message
 
 .include <bsd.mport.options.mk>
 
-.if empty(PORT_OPTIONS:MTERM) && empty(PORT_OPTIONS:MWX) && empty(PORT_OPTIONS:MX11)
+.if empty(PORT_OPTIONS:MTERM) && empty(PORT_OPTIONS:MWXGTK) && empty(PORT_OPTIONS:MX11)
 CONFIGURE_ARGS+=--with-nogui
 .endif
 
@@ -184,6 +184,7 @@ CONFIGURE_ARGS+=--disable-fast-function-calls
 CONFIGURE_ARGS+=--enable-fpu
 .else
 CONFIGURE_ARGS+=--disable-fpu
+WITH_CPU_LEVEL=	3
 .endif
 
 .if ${PORT_OPTIONS:MGAMEPORT}
@@ -353,9 +354,14 @@ WITH_CPU_LEVEL=	6
 CONFIGURE_ARGS+=--disable-vmx
 .endif
 
-.if ${PORT_OPTIONS:MWX}
+.if ${PORT_OPTIONS:MVOODOO}
+CONFIGURE_ARGS+=--enable-voodoo
+.else
+CONFIGURE_ARGS+=--disable-voodoo
+.endif
+
+.if ${PORT_OPTIONS:MWXGTK}
 USE_WX=		2.4+
-CONFIGURE_ENV=	WX_CONFIG="${WX_CONFIG}"
 CONFIGURE_ARGS+=--with-wx
 .else
 CONFIGURE_ARGS+=--disable-debugger-gui
@@ -368,6 +374,7 @@ CONFIGURE_ARGS+=--with-x11
 
 .if ${PORT_OPTIONS:MX86_64}
 CONFIGURE_ARGS+=--enable-x86-64
+WITH_CPU_LEVEL=	6
 .else
 CONFIGURE_ARGS+=--disable-x86-64
 .endif
@@ -393,6 +400,10 @@ CONFIGURE_ENV+=	SOUND_LINK_OPTS="-L${LOCALBASE}/lib"
 
 .if ${PORT_OPTIONS:MGDB_STUB} && ${PORT_OPTIONS:MSMP}
 IGNORE=		GDB_STUB is incompatible with multiprocessor
+.endif
+
+.if empty(PORT_OPTIONS:MPCI) && ${PORT_OPTIONS:MVOODOO}
+IGNORE=		3dfx Voodoo Graphics emulation requires PCI support
 .endif
 
 pre-everything::
