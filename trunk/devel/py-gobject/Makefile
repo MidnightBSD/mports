@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/py-gobject/Makefile,v 1.7 2011/11/11 00:46:59 laffer1 Exp $
-# $FreeBSD: ports/devel/py-gobject/Makefile,v 1.5 2006/11/18 20:38:02 marcus Exp $
+# $MidnightBSD: mports/devel/py-gobject/Makefile,v 1.8 2012/02/29 03:02:43 laffer1 Exp $
 
 PORTNAME=	gobject
 PORTVERSION=	2.28.6
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,13 +19,14 @@ BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
 RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
 		${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 
-USE_BZIP2=	yes
+USE_XZ=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_PYTHON=	2.5+
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-docs --enable-ffi
+USE_PKGCONFIG=	build
+CONFIGURE_ARGS=	--disable-docs --disable-introspection --with-ffi
 PLIST_SUB=	PYTHON_VER="${PYTHON_VER}"
 
 CONFLICTS=	py*-gtk-0*
