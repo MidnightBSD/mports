@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.37 2012/09/26 19:34:39 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.38 2013/02/23 23:35:52 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.5.7
+DISTVERSION=	4.0.1
 CATEGORIES=	databases www
-MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${DISTVERSION}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,100 +15,90 @@ NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
 USE_PHP=	ctype session filter mbstring json
 .endif
-USE_MYSQL=	yes
 
-SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
-		"PKGNAME=${PKGNAME}"
-SUB_FILES=	pkg-message
+# Note: default settings will pull in X11 client support.  If you don't
+# want this, either turn off GD in the config dialog, or else turn off
+# FONTCONFIG in the graphics/gd port options.
 
-WANT_PHP_WEB=	yes
+PHP_MODULE_OPTIONS=	APC BZ2 GD MCRYPT OPENSSL PDF XML ZIP ZLIB
+OPTIONS_DEFINE=		${PHP_MODULE_OPTIONS}
+OPTIONS_DEFAULT=	APC BZ2 GD MCRYPT MYSQLI OPENSSL PDF XML ZIP ZLIB
 
-# Copy the way lang/php5-extensions deals with its OPTIONS -- avoids
-# problems with include of bsd.port.pre.mk
+OPTIONS_MULTI=		DB_connect
+OPTIONS_MULTI_DB_connect=	MYSQL MYSQLI
 
-OPTIONS=	BZ2	 "bzip2 library support" on \
-		GD	 "GD library support" on \
-		MCRYPT   "MCrypt library support" on \
-		MYSQL    "MySQL support via mysql client" off \
-		MYSQLI	 "Improved MySQL support" on \
-		OPENSSL	 "OpenSSL support" on \
-		PDF	 "PDFlib support (implies GD)" on \
-		ZLIB	 "ZLIB support" on \
-		ZIP	 "ZIP support" on
+APC_DESC=	PHP APC (animated progress bar) support
+BZ2_DESC=	PHP bzip2 library support
+GD_DESC=	PHP GD library support (requires X11)
+MCRYPT_DESC=	PHP MCrypt library support
+MYSQLI_DESC=	PHP Improved MySQL client support
+MYSQL_DESC=	PHP MySQL support via mysql client
+OPENSSL_DESC=	PHP OpenSSL support
+PDF_DESC=	PHP PDFlib support
+XML_DESC=	PHP XML support (Export to OpenDoc)
+ZIP_DESC=	PHP Zip compression support
+ZLIB_DESC=	PHP ZLIB support
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITH_MYSQL) && !defined(WITH_MYSQLI)
-BROKEN=	${PKGNAME} needs at least one of WITH_MYSQL or WITH_MYSQLI in order to work
-.endif 
+WANT_PHP_WEB=	yes
 
-PORT_DBDIR?=	${DESTDIR}/var/db/ports
-LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
-OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
-
-.if exists(${OPTIONSFILE})
-.include "${OPTIONSFILE}"
-.endif
-
-.if !defined(WITHOUT_PHP_DEPENDS)
-# Options that default to on:
-.for opt in BZ2 GD OPENSSL PDF ZLIB MCRYPT MBSTRING ZIP
-.    if !defined(WITHOUT_${opt}) || defined(WITH_${opt})
-USE_PHP+=	${opt:L}
-.    endif
-.endfor
-
-# Options that default to off:
-.for opt in MYSQLI
-.    if defined(WITH_${opt}) && !defined(WITHOUT_${opt})
-USE_PHP+=	${opt:L}
-.    endif
-.endfor
-.endif
-
-MYADMDIR?=	www/phpMyAdmin
-MYADMGRP?=	${WWWGRP}
+GROUPS?=	${WWWGRP}
 CFGFILE=	config.inc.php
 
 PLIST=		${WRKDIR}/plist
-PLIST_SUB+=	MYADMDIR=${MYADMDIR} MYADMGRP=${MYADMGRP}
+PLIST_SUB+=	PMA_GRP=${GROUPS}
+
+SUB_LIST+=	PKGNAME=${PKGNAME}
+SUB_FILES+=	pkg-message
+
+LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
+
+.if !defined(WITHOUT_PHP_DEPENDS)
+
+.for opt in ${PHP_MODULE_OPTIONS} ${OPTIONS_MULTI_DB_connect}
+.    if ${PORT_OPTIONS:M${opt}}
+USE_PHP+=	${opt:L}
+.    endif
+.endfor
+
+.endif
 
 .SILENT:
 
 # When creating a package, empty directories will not be generated
-# from the pkg tarball.  Therefore make sure no directories are empty.
+# from the pkg tarball.	 Therefore make sure no directories are empty.
 
 post-patch:
 	cd ${WRKSRC} ; \
 	for emptydir in $$( ${FIND} . -type d -empty -print ) ; do \
 	    ${TOUCH} $${emptydir}/.keep-me ; \
-	done
-	${CP} ${FILESDIR}/${CFGFILE}.sample ${WRKSRC}/${CFGFILE}.sample
-	cd ${WRKSRC} ; \
-	${FIND} . ! -type d ! -name ${CFGFILE}.sample ! -name '*.bak' | ${SORT} | \
-	    ${SED} -e "s,^\.,%%MYADMDIR%%,"           >${PLIST} ; \
-	${CAT} ${PKGDIR}/pkg-plist-chunk             >>${PLIST} ; \
+	done ; \
+	${CP} ${FILESDIR}/${CFGFILE}.sample ${WRKSRC}/${CFGFILE}.sample ; \
+	${FIND} . ! -type d ! -name ${CFGFILE}.sample ! -name '*.bak' | \
+	    ${SORT} | ${SED} -e "s,^\.,%%WWWDIR%%,"   >${PLIST} ; \
+	${CAT} ${PKGDIR}/pkg-plist-chunk	     >>${PLIST} ; \
 	${FIND} . -type d | ${SORT} -r | ${SED} \
-	     -e "s,^\.$$,@dirrmtry %%MYADMDIR%%," \
-	     -e "s,^\.,@dirrm %%MYADMDIR%%,"         >>${PLIST}
+	    -e "s,^\.$$,@dirrmtry %%WWWDIR%%," \
+	    -e "s,^\.,@dirrm %%WWWDIR%%,"	     >>${PLIST}
 
 do-install: install-app install-conf
 
 install-app:
 	cd ${WRKSRC} ; \
-	for src in $$( ${FIND} . ! -name .cvsignore ! -name '*.bak') ; do \
-	    dst=${TARGETDIR}/${MYADMDIR}$${src#.} ; \
-	    if ${TEST} -d $$src ; then \
-	        ${MKDIR} $$dst ; \
+	for src in $$( ${FIND} . ! -name .cvsignore ! -name '*.bak' ) ; do \
+	    dst=${WWWDIR}$${src#.} ; \
+	    if ${TEST} -d "$$src" ; then \
+		${MKDIR} "$$dst" ; \
 	    else \
-	        ${INSTALL_DATA} $$src $$dst ; \
+		${INSTALL_DATA} "$$src" "$$dst" ; \
 	    fi \
 	done
 
 install-conf: install-app
-	cd ${TARGETDIR}/${MYADMDIR} ; \
+	cd ${WWWDIR} ; \
 	${CHMOD} 0640 ${CFGFILE}.sample ; \
-	${CHGRP} ${MYADMGRP} ${CFGFILE}.sample ; \
+	${CHGRP} ${WWWGRP} ${CFGFILE}.sample ; \
 	if ${TEST} ! -f ${CFGFILE} ; then \
 	    ${CP} -p ${CFGFILE}.sample ${CFGFILE} ; \
 	fi
