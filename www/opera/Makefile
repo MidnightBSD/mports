@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.39 2013/01/17 04:24:33 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.40 2013/03/20 23:20:27 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -23,8 +23,8 @@ LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-OPERA_VER?=	12.14
-OPERA_BUILD?=	1738
+OPERA_VER?=	12.15
+OPERA_BUILD?=	1748
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
 USE_XZ=		yes
@@ -36,27 +36,40 @@ MAN1=		opera.1
 MANCOMPRESSED=	yes
 
 NO_BUILD=	yes
+EXPLICIT_PACKAGE_DEPENDS=	yes
 
-OPTIONS=	CUPS	"Enable support for printing (requires CUPS)"		on \
-		VIDEO	"Enable support for HTML5 video (requires GStreamer)"	on \
-		GTK	"Use GTK backend"	off \
-		KDE4	"Use KDE4 backend"	off
+OPTIONS_DEFINE=	CUPS VIDEO GTK2 KDE4
+OPTIONS_DEFAULT=	CUPS VIDEO
+
+CUPS_DESC=	support for printing (requires CUPS)
+VIDEO_DESC=	support for HTML5 video (requires GStreamer)
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
+.if defined(FETCH_ALL)
+# distfiles for both arch
+.if ${ARCH} == i386
+DISTFILES=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.amd64.freebsd${EXTRACT_SUFX} \
+		${DISTNAME}${EXTRACT_SUFX}
+.else
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.i386.freebsd${EXTRACT_SUFX}
+.endif
 .endif
 
-.if !defined(WITHOUT_VIDEO)
+.if ${PORT_OPTIONS:MCUPS}
+LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
+.endif
+
+.if ${PORT_OPTIONS:MVIDEO}
 USE_GSTREAMER+=	vorbis ogg theora good
 .endif
 
-.if defined(WITH_GTK)
+.if ${PORT_OPTIONS:MGTK2}
 USE_GNOME+=	gtk20
 .endif
 
-.if defined(WITH_KDE4)
+.if ${PORT_OPTIONS:MKDE4}
 USE_KDE4+=	kdelibs
 .endif
 
