@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/dojo/Makefile,v 1.10 2012/05/22 00:46:52 laffer1 Exp $
+# $MidnightBSD: mports/www/dojo/Makefile,v 1.11 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	dojo
-PORTVERSION=	1.8.1
+PORTVERSION=	1.8.3
 CATEGORIES=	www
 MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/ \
 		FREEBSD_LOCAL/glarkin
@@ -13,29 +13,33 @@ LICENSE=	bsd3
 
 NO_BUILD=	yes
 
-OPTIONS=	APACHE  "Configure for Apache-2.x" off
+OPTIONS_DEFINE=		APACHE
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-PLIST_SUB+=	WWWDIR=www/${PORTNAME}
+.if ${PORT_OPTIONS:MAPACHE}
+USE_APACHE_RUN=		2.2+
+CONFDIR=		${PREFIX}/${CONFDIR_REL}
+CONFDIR_REL=		${APACHEETCDIR}/Includes
+PLIST_SUB+=		NOAPACHE="" CONFDIR=${CONFDIR_REL}
 
-.if defined(WITH_APACHE)
-USE_APACHE=	2.0+
-CONFDIR=	${PREFIX}/${CONFDIR_REL}
-CONFDIR_REL=	${APACHEETCDIR}/Includes
-PLIST_SUB+=	NOAPACHE="" CONFDIR=${CONFDIR_REL}
-CONF=		dojo.conf
-SUB_FILES+=	pkg-message ${CONF}
+CONF=			dojo.conf
+SUB_FILES+=		pkg-message ${CONF}
 .else
-PLIST_SUB+=	NOAPACHE="@comment "
+PLIST_SUB+=		NOAPACHE="@comment "
 .endif
 
 do-install:
-	@${MKDIR} ${PREFIX}/www/${PORTNAME}
-	(cd ${WRKSRC} && pax -rw . ${PREFIX}/www/${PORTNAME})
-	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${PREFIX}/www/${PORTNAME}
-	@${FIND} ${PREFIX}/www/${PORTNAME} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
-	@${FIND} ${PREFIX}/www/${PORTNAME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR}
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${WWWDIR}
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} \
+		${WWWDIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
+	@${FIND} ${WWWDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
+	@${ECHO_CMD} '@exec ${FIND} ${WWWDIR} -type f -print0 | \
+		${XARGS} -0 ${CHMOD} 644' >> ${TMPPLIST}
+	@${FIND} ${WWWDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${ECHO_CMD} '@exec ${FIND} ${WWWDIR} -type d -print0 | \
+		${XARGS} -0 ${CHMOD} 755' >> ${TMPPLIST}
 
 .if defined(WITH_APACHE)
 post-install:
@@ -51,4 +55,4 @@ post-install:
 	fi
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
