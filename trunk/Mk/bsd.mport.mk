@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.204 2013/03/10 01:43:44 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.205 2013/03/30 03:35:50 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -4033,8 +4033,8 @@ install-rc-script:
 			@${ECHO_MSG} "===> Installing rc.d startup script(s)"
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 			@for i in ${USE_RC_SUBR}; do \
-				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}.sh; \
-				${ECHO_CMD} "etc/rc.d/$${i%.sh}.sh" >> ${TMPPLIST}; \
+				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}; \
+				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 			done
 .		endif
 .	else
