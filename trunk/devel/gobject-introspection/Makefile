@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.8 2013/01/17 05:04:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.9 2013/02/24 15:24:18 laffer1 Exp $
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	0.10.8
-PORTREVISION=	4
+PORTVERSION=	1.34.2
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,9 +12,11 @@ COMMENT=	Generate interface introspection data for GObject libraries
 LICENSE=	gpl2
 # well it could be agg, but gpl2 is worst case
 
+# we need cairo otherwise the generated Cairo gir is broken
+BUILD_DEPENDS=	cairo-trace:${PORTSDIR}/graphics/cairo
 LIB_DEPENDS=	ffi:${PORTSDIR}/devel/libffi
 
-USE_BZIP2=	yes
+USE_XZ=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20 ltverhack
@@ -32,10 +34,5 @@ CONFIGURE_ARGS=	--disable-tests
 MAKE_ENV=	HOME=${WRKDIR}
 
 MAN1=		g-ir-compiler.1 g-ir-generate.1 g-ir-scanner.1
-
-
-post-patch:
-	@${REINPLACE_CMD} -e "s|'cc'|'${CC:Q:C/[[:space:]]+/', '/g}'|g" \
-		${WRKSRC}/giscanner/sourcescanner.py
 
 .include <bsd.port.mk>
