@@ -1,16 +1,10 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.26 2013/01/17 04:59:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.27 2013/03/24 16:53:03 laffer1 Exp $
 
 PORTNAME=	glib
 PORTVERSION=	2.34.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
-		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
-		ftp://ftp.gimp.org/pub/%SUBDIR%/ \
-		ftp://ftp.cs.umn.edu/pub/gimp/%SUBDIR%/ \
-		http://www.ameth.org/gimp/%SUBDIR%/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/gimp/%SUBDIR%,}
-MASTER_SITE_SUBDIR=	gtk/v${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,12 +20,14 @@ USE_XZ=	yes
 LIB_DEPENDS+=	pcre.3:${PORTSDIR}/devel/pcre
 
 USE_GETTEXT=	yes
+USE_ICONV=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack pkgconfig ltverhack
+USE_PKGCONFIG=	build
+USE_GNOME=	gnomehack ltverhack
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
-USE_PYTHON=	yes
+USE_PYTHON=	2.5+
 USE_PERL5=	yes
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
@@ -39,12 +35,11 @@ CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-dtrace \
 		--with-pcre=system \
 		--disable-fam
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
-OPTIONS=	COLLATION_FIX "fix string collation" off
+OPTIONS_DEFINE=	COLLATION_FIX DEBUG
+COLLATION_FIX_DESC=	fix string collation
 
 .include <bsd.port.pre.mk>
 
@@ -56,9 +51,9 @@ GLIB_ARCH=	x86_64
 .else
 GLIB_ARCH=	${ARCH}
 .endif
-CONFIGURE_TARGET=	${GLIB_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=${GLIB_ARCH}-portbld-freebsd9.1
 
-.if defined(WITH_COLLATION_FIX)
+.if ${PORT_OPTIONS:MCOLLATION_FIX}
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 		${FILESDIR}/extra-patch-glib_gunicollate.c
@@ -66,8 +61,11 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 #CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
 .endif
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug=yes
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=	--enable-debug=yes \
+			--disable-silent-rules
+.else
+CONFIGURE_ARGS+=	--disable-modular-tests
 .endif
 
 post-patch:
