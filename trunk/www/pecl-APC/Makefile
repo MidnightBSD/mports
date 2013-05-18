@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/www/pecl-APC/Makefile,v 1.4 2011/08/31 03:08:57 laffer1 Exp $
-# $FreeBSD: ports/www/pecl-APC/Makefile,v 1.33 2010/12/05 13:55:56 mnag Exp $
+# $MidnightBSD: mports/www/pecl-APC/Makefile,v 1.5 2012/02/10 14:18:24 laffer1 Exp $
 
 PORTNAME=	APC
-DISTVERSION=	3.1.9
+PORTVERSION=	3.1.14
 CATEGORIES=	www
-MASTER_SITES=	http://pecl.php.net/get/
+#MASTER_SITES=	http://pecl.php.net/get/
+MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 PKGNAMEPREFIX=	pecl-
+DISTNAME=	${PORTNAME}-3.1.13
 EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
@@ -13,48 +14,46 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alternative PHP Cache
 LICENSE=	php
 
+OPTIONS_DEFINE=	DOCS FILEHITS IPC SEMAPHORES SPINLOCKS
+FILEHITS_DESC=	Per request cache info
+IPC_DESC=	IPC shm memory support (default: mmap)
+SEMAPHORES_DESC=System V IPC semaphores (default: fcntl)
+SPINLOCKS_DESC=	Spinlocks (experimental)
+
+CFLAGS+=	-I${LOCALBASE}/include
+CONFIGURE_ARGS=	--enable-apc
+IGNORE_WITH_PHP=4
+PHP_MODNAME=	${PORTNAME:L}
+PKGMESSAGE=	${WRKDIR}/pkg-message
+SUB_FILES=	pkg-message
 USE_PHP=	yes
 USE_PHPEXT=	yes
-PHP_MODNAME=	apc
+WRKSRC=		${WRKDIR}/${PORTNAME}-3.1.13
 
-SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
+PORTDOCS=	CHANGELOG INSTALL NOTICE apc.php
 
-CONFIGURE_ARGS=	--enable-apc
-CFLAGS=		-I${LOCALBASE}/include
+.include <bsd.mport.options.mk>
 
-OPTIONS=	IPC		"Enable IPC shm memory support (default: mmap)"	off \
-		SEMAPHORES	"Enable sysv IPC semaphores (default: fcntl())"	off \
-		SPINLOCKS	"Enable spinlocks (experimental)"		off \
-		FILEHITS	"Enable per request cache info"			off
-
-PORTDOCS=	*
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_IPC)
-CONFIGURE_ARGS+=	--disable-apc-mmap
+.if ${PORT_OPTIONS:MFILEHITS}
+CONFIGURE_ARGS+=--enable-apc-filehits
 .endif
 
-.if defined(WITH_SEMAPHORES)
-CONFIGURE_ARGS+=	--enable-apc-sem
+.if ${PORT_OPTIONS:MIPC}
+CONFIGURE_ARGS+=--disable-apc-mmap
 .endif
 
-.if defined(WITH_SPINLOCKS)
-CONFIGURE_ARGS+=	--enable-apc-spinlocks
+.if ${PORT_OPTIONS:MSEMAPHORES}
+CONFIGURE_ARGS+=--enable-apc-sem
 .endif
 
-.if defined(WITH_FILEHITS)
-CONFIGURE_ARGS+=	--enable-apc-filehits
+.if ${PORT_OPTIONS:MSPINLOCKS}
+CONFIGURE_ARGS+=--enable-apc-spinlocks
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/NOTICE ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/apc.php ${DOCSDIR}
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
