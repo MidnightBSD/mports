@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.205 2013/03/30 03:35:50 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.206 2013/05/18 15:37:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1817,11 +1817,17 @@ DATADIR?=	${PREFIX}/share/${PORTNAME}
 WWWDIR?=	${PREFIX}/www/${PORTNAME}
 ETCDIR?=	${PREFIX}/etc/${PORTNAME}
 
-PLIST_SUB+=	DOCSDIR="${DOCSDIR:S,^${PREFIX}/,,}" \
-		EXAMPLESDIR="${EXAMPLESDIR:S,^${PREFIX}/,,}" \
-		DATADIR="${DATADIR:S,^${PREFIX}/,,}" \
-		WWWDIR="${WWWDIR:S,^${PREFIX}/,,}" \
-		ETCDIR="${ETCDIR:S,^${PREFIX}/,,}"
+DOCSDIR_REL?=	${DOCSDIR:S,^${PREFIX}/,,}
+EXAMPLESDIR_REL?=	${EXAMPLESDIR:S,^${PREFIX}/,,}
+DATADIR_REL?=	${DATADIR:S,^${PREFIX}/,,}
+WWWDIR_REL?=	${WWWDIR:S,^${PREFIX}/,,}
+ETCDIR_REL?=	${ETCDIR:S,^${PREFIX}/,,}
+
+PLIST_SUB+=	DOCSDIR="${DOCSDIR_REL}" \
+		EXAMPLESDIR="${EXAMPLESDIR_REL}" \
+		DATADIR="${DATADIR_REL}" \
+		WWWDIR="${WWWDIR_REL}" \
+		ETCDIR="${ETCDIR_REL}"
 
 DESKTOPDIR?=		${PREFIX}/share/applications
 _DESKTOPDIR_REL=	${DESKTOPDIR:S,^${PREFIX}/,,}/
