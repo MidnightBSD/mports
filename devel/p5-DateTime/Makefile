@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.7 2013/03/02 21:37:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.8 2013/03/26 02:50:13 laffer1 Exp $
 
 PORTNAME=	DateTime
 PORTVERSION=	0.78
@@ -8,7 +8,7 @@ MASTER_SITE_SUBDIR=	CPAN:DROLSKY
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A date and time object
+COMMENT=	Date and time object
 LICENSE=	perl
 
 RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
