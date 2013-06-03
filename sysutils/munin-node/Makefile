@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.7 2013/03/26 01:05:13 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.8 2013/03/26 23:48:04 laffer1 Exp $
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
+PORTREVISION=	1
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	${MUNIN_SITES}
 PKGNAMESUFFIX=	-node
@@ -21,6 +22,7 @@ RUN_DEPENDS=	p5-Cache-Cache>=0:${PORTSDIR}/devel/p5-Cache-Cache \
 		munin-common>=0:${PORTSDIR}/sysutils/munin-common \
 		p5-Net-Server>=0:${PORTSDIR}/net/p5-Net-Server \
 		p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP \
+		p5-Net-CIDR>=0:${PORTSDIR}/net-mgmt/p5-Net-CIDR \
 		bash:${PORTSDIR}/shells/bash
 
 DISTINFO_FILE=	${MUNIN_DISTINFO}
@@ -72,6 +74,7 @@ post-patch:
 		${WRKSRC}/node/sbin/munin-node-configure \
 		${WRKSRC}/node/sbin/munin-run
 	@${FIND} ${WRKSRC}/node/sbin -type f -name "*.orig" -delete
+	${CP} -r ${WRKSRC}/plugins/node.d.freebsd ${WRKSRC}/plugins/node.d.midnightbsd
 
 post-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/munin-node \
