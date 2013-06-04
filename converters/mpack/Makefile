@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/converters/mpack/Makefile,v 1.2 2011/05/13 13:15:03 laffer1 Exp $
-# $FreeBSD: ports/converters/mpack/Makefile,v 1.20 2006/10/31 15:52:49 dinoex Exp $
+# $MidnightBSD: mports/converters/mpack/Makefile,v 1.3 2013/02/09 03:19:48 laffer1 Exp $
 
 PORTNAME=	mpack
 PORTVERSION=	1.6
