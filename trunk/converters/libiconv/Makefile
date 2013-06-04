@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.11 2011/12/15 00:47:00 laffer1 Exp $
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.12 2013/01/21 01:39:30 laffer1 Exp $
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
+PORTREVISION=	1
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
@@ -24,8 +25,10 @@ MAKE_JOBS_UNSAFE=	yes
 MAN1=		iconv.1
 MAN3=		iconv.3 iconv_open.3 iconv_open_into.3 iconv_close.3 iconvctl.3
 
-OPTIONS=	EXTRA_ENCODINGS	"Include extra character sets" on \
-		EXTRA_PATCHES	"Apply patches to fix CP932, add EUCJP-MS" off
+OPTIONS_DEFINE=	ENCODINGS PATCHES
+OPTIONS_DEFAULT=ENCODINGS
+ENCODINGS_DESC=	Include extra character sets
+PATCHES_DESC=	Apply patches to fix CP932, add EUCJP-MS
 
 .ifdef USE_ICONV
 .error USE_ICONV is defined as an environment variable, or in the arguments \
@@ -34,11 +37,11 @@ OPTIONS=	EXTRA_ENCODINGS	"Include extra character sets" on \
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_EXTRA_ENCODINGS)
+.if ${PORT_OPTIONS:MENCODINGS}
 CONFIGURE_ARGS+=	--enable-extra-encodings
 .endif
 
-.if defined(WITH_EXTRA_PATCHES)
+.if ${PORT_OPTIONS:MPATCHES}
 PATCH_SITES+=	http://apolloron.org/software/libiconv-1.14-ja/
 PATCH_SITES+=	${MASTER_SITE_LOCAL}
 PATCH_SITE_SUBDIR+=	kwm
@@ -48,5 +51,9 @@ PATCH_DIST_STRIP+=	-p1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's:ei_ksc5601:ei_euc_kr:g' ${WRKSRC}/lib/aliases.h
+	@${REINPLACE_CMD} -e 's:gawk:awk:g' ${WRKSRC}/configure \
+		${WRKSRC}/libcharset/configure \
+		${WRKSRC}/preload/configure
+
 
 .include <bsd.port.mk>
