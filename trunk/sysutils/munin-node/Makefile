@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.8 2013/03/26 23:48:04 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.9 2013/06/03 23:49:45 laffer1 Exp $
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	${MUNIN_SITES}
 PKGNAMESUFFIX=	-node
