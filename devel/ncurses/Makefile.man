@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/devel/ncurses/Makefile.man,v 1.2 2009/11/25 02:59:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile.man,v 1.3 2012/06/09 21:00:50 laffer1 Exp $
 
 MANCOMPRESSED=	yes
 
 MLINKS=
 
 MAN1=	\
-	adacurses-config.1 \
+	adacursesw-config.1 \
 	captoinfo.1m \
 	clear.1 \
 	infocmp.1m \
@@ -17,6 +17,8 @@ MAN1=	\
 	tput.1 \
 	tset.1
 MLINKS+=\
+	adacursesw-config.1 adacurses-config.1 \
+	adacursesw-config.1 adacurses.1 \
 	tset.1 reset.1
 
 .if !defined(WITHOUT_WIDEC)
