@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/upsd/Makefile,v 1.1 2008/08/24 22:00:56 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/upsd/Makefile,v 1.2 2013/02/26 04:52:51 laffer1 Exp $
 
 PORTNAME=	upsd
 PORTVERSION=	2.0.1.6
@@ -17,6 +17,7 @@ PLIST_FILES=	sbin/upsd etc/upsd.conf etc/rc.d/upsd.sh
 pre-build:
 	@${MV} ${WRKSRC}/config.h ${WRKSRC}/conf.h.orig
 	@${SED} -e "s!@prefix@!${PREFIX}!g" ${WRKSRC}/conf.h.orig > ${WRKSRC}/conf.h
+	@${REINPLACE_CMD} -e 's/NOMAN/NO_MAN/g' ${WRKSRC}/Makefile
 
 post-install:
 	@if [ ! -f ${PREFIX}/etc/rc.d/upsd.sh ]; then \
