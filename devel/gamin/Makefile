@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.8 2010/09/07 02:06:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.9 2011/02/02 20:17:32 laffer1 Exp $
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	devel
 MASTER_SITES=	http://people.gnome.org/~veillard/gamin/sources/
 
@@ -17,38 +17,49 @@ USE_GNOME?=	gnomehack _glib20
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -DHAVE_LINUX" \
-		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-DHAVE_LINUX -I${LOCALBASE}/include
 
 CONFLICTS=	fam-[0-9]*
 
 GNU_CONFIGURE=	yes
 
 .if !defined(GAMIN_SLAVE)
-OPTIONS=	GAM_POLLER "Use gamin's poller instead of kqueue's" off
+OPTIONS_DEFINE=	GAM_POLLER LIBINOTIFY RUN_AS_EUID
+OPTIONS_DEFAULT=RUN_AS_EUID
+GAM_POLLER_DESC=Use gamin's poller instead of kqueue's
+LIBINOTIFY_DESC=Use libinotify as the FAM backend
+RUN_AS_EUID_DESC=Drop privileges to effective user
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(GAMIN_SLAVE)
-.if defined(WITH_GAM_POLLER)
+.if ${PORT_OPTIONS:MGAM_POLLER}
 CPPFLAGS+=	-DUSE_GAMIN_POLLER=1
 .endif
+
+.if ${PORT_OPTIONS:MLIBINOTIFY}
+CONFIGURE_ARGS+=--enable-inotify
+LDFLAGS+=	-L${LOCALBASE}/lib -linotify
+LIB_DEPENDS+=	inotify:${PORTSDIR}/devel/libinotify
+.else
+CONFIGURE_ARGS+=--disable-inotify
+.endif
+.endif
+
+.if ${PORT_OPTIONS:MRUN_AS_EUID}
+CPPFLAGS+=	-DRUN_AS_EUID=1
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} "s|/etc|${PREFIX}/etc|g" ${WRKSRC}/server/gam_conf.c
-
-post-install:
-	${INSTALL} ${WRKSRC}/server/gam_server ${PREFIX}/libexec/
 
 .if !defined(GAMIN_SLAVE)
 regression-test: build
 	@${ECHO_MSG} "===> Running gamin regression tests"
 	@(cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
 		Makefile ${MAKE_ARGS} tests)
-
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
