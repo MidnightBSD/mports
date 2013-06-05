@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.143 2013/02/26 03:49:48 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.144 2013/03/26 23:40:44 laffer1 Exp $
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 
@@ -153,6 +153,7 @@ SUBDIR += qt4-xmlpatterns-tool
 SUBDIR += raptor
 SUBDIR += raptor2
 SUBDIR += rarian
+SUBDIR += rasqal
 SUBDIR += redland
 SUBDIR += ruby-deplate
 SUBDIR += scr2txt
