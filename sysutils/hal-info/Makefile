@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/hal-info/Makefile,v 1.4 2011/12/15 00:57:54 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal-info/Makefile,v 1.5 2012/03/10 21:26:16 laffer1 Exp $
 
 PORTNAME=	hal-info
 PORTVERSION=	20091130
@@ -17,7 +17,7 @@ RUN_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
