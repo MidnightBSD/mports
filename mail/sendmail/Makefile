@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.13 2013/02/28 00:30:17 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.14 2013/03/02 20:47:09 laffer1 Exp $
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.6
-PORTREVISION=	1
+PORTVERSION=	8.14.7
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -31,7 +30,7 @@ SENDMAIL=	${PREFIX}/sbin/sendmail
 BASEMAIL=	/usr/libexec/sendmail/sendmail
 PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==}
 PKGMESSAGE=	${WRKSRC}/pkg-message
-MILTER_SOVER?=	4
+MILTER_SOVER?=	6
 
 # Options to define Features:
 # SENDMAIL_WITHOUT_IPV6=yes
