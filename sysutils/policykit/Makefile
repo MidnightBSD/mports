@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.8 2011/06/04 14:06:02 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.9 2012/03/10 23:50:22 laffer1 Exp $
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
@@ -11,8 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
 LICENSE=	x11
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-    		expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
+    		expat:${PORTSDIR}/textproc/expat2
 
 USERS=		polkit
 GROUPS=		polkit
