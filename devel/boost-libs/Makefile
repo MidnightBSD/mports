@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.3 2012/10/02 02:35:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.4 2013/02/23 02:37:17 laffer1 Exp $
 
 PORTNAME=	boost-libs
-PORTVERSION=	1.52.0
+PORTVERSION=	1.48.0
 PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
 CATEGORIES=	devel
 MASTER_SITES=	SF/boost/boost/${PORTVERSION}
