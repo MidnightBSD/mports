@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.4 2012/03/10 21:17:01 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.5 2013/02/26 04:51:12 laffer1 Exp $
 
 PORTNAME=	smartmontools
-PORTVERSION=	6.0
+PORTVERSION=	6.1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -23,7 +23,9 @@ MAN8=		smartd.8 smartctl.8
 
 PORTDOCS=	*
 
-.if defined(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ! ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=	--without-docdir --without-exampledir
 .else
 CONFIGURE_ARGS+=	--with-docdir=${DOCSDIR}
@@ -37,5 +39,7 @@ post-patch:
 post-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${WRKDIR}/smart ${PREFIX}/etc/periodic/daily/smart
+
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
