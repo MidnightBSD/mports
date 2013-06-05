@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.7 2010/01/09 17:52:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.8 2013/03/31 17:37:57 laffer1 Exp $
 
 PORTNAME=	aspell
 PORTVERSION=	0.60.6.1
@@ -8,9 +8,7 @@ MASTER_SITE_SUBDIR=	aspell
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better suggestion logic than ispell
-LICENSE=	lgpl
-
-LICENSE=	LGPL21
+LICENSE=	lgpl2.1
 
 OPTIONS_DEFINE=	NLS DOCS ISPELL
 
