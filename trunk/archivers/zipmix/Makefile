@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/archivers/zipmix/Makefile,v 1.1 2009/03/01 02:01:22 laffer1 Exp $
+# $MidnightBSD: mports/archivers/zipmix/Makefile,v 1.2 2009/12/25 17:58:27 laffer1 Exp $
 
 PORTNAME=	zipmix
 DISTVERSION=	20070221
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.advsys.net/ken/util/
 DISTNAME=	${PORTNAME}_src
