@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.14 2013/03/02 20:03:25 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.15 2013/03/31 15:39:58 laffer1 Exp $
 
 PORTNAME=	libxml2
 PORTVERSION=	2.8.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
 		ftp://gd.tuwien.ac.at/pub/libxml/
@@ -25,6 +25,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-iconv=${LOCALBASE} \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-html-subdir=${PORTNAME} \
+		--with-lzma=/usr \
 		--without-python
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
