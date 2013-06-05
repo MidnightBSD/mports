@@ -1,30 +1,31 @@
-# $MidnightBSD: mports/sysutils/less/Makefile,v 1.4 2011/05/28 06:54:42 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/less/Makefile,v 1.5 2013/02/22 00:29:48 laffer1 Exp $
 
 PORTNAME=	less
-PORTVERSION=	451
+PORTVERSION=	458
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.greenwoodsoftware.com/%SUBDIR%/
-#		${MASTER_SITE_GNU}
+MASTER_SITES=	http://www.greenwoodsoftware.com/%SUBDIR%/ \
+		${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	less
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A better pager utility
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-MAKE_JOBS_SAFE=	yes
+OPTIONS_DEFINE=	COLOR_LESS
+COLOR_LESS_DESC=Enables color support via escape sequence
 
 PLIST_FILES=	bin/less bin/lesskey bin/lessecho
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 GNU_CONFIGURE=	yes
 MAN1=		less.1 lesskey.1 lessecho.1
 
-.if defined(COLOUR_LESS) || defined(COLOR_LESS)
-MAKE_ENV+=	CPPFLAGS="-DCOLOR_LESS"
+.if ${PORT_OPTIONS:MCOLOUR_LESS}
+CPPFLAGS+=	-DCOLOR_LESS
 
 pre-fetch:
 	@${ECHO_MSG} "Making a color version of less."
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
