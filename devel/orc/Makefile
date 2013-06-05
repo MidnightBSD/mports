@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/orc/Makefile,v 1.4 2011/09/18 01:40:12 laffer1 Exp $
-# $FreeBSD: ports/devel/orc/Makefile,v 1.6 2010/09/05 08:02:21 mm Exp $
+# $MidnightBSD: mports/devel/orc/Makefile,v 1.5 2012/02/28 03:54:03 laffer1 Exp $
 
 PORTNAME=	orc
 PORTVERSION=	0.4.16
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://code.entropywave.com/download/orc/
 
@@ -23,18 +23,18 @@ EXAMPLES_DATA=	example1orc.orc example2orc.orc example3orc.orc \
 		mt19937arorc.orc
 EXAMPLES_EXEC=	example1 example2 example3 mt19937ar volscale
 
-OPTIONS=	DOCS "Include gtk-doc documentation" off \
-		EXAMPLES "Install example files" off
+OPTIONS_DEFINE=	DOCS EXAMPLES
+DOCS_DESC=	Include gtk-doc documentation
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_DOCS) && !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 SUBDIRS+=	doc
 .else
 NOPORTDOCS=	yes
 .endif
 
-.if defined(WITH_EXAMPLES) && !defined(NOPORTEXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
 SUBDIRS+=	examples
 .else
 NOPORTEXAMPLES=	yes
@@ -49,7 +49,7 @@ post-patch:
 		${WRKSRC}/configure 
 
 post-install:
-.if defined(WITH_EXAMPLES) && !defined(NOPORTEXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
 	@${MKDIR} ${EXAMPLESDIR}
 .for FILE in ${EXAMPLES_DATA}
 	@${INSTALL_DATA} ${WRKSRC}/examples/${FILE} ${EXAMPLESDIR}/${FILE}
@@ -59,4 +59,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
