@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/mime-construct/Makefile,v 1.1 2010/12/04 15:16:26 laffer1 Exp $
 
 PORTNAME=	mime-construct
 PORTVERSION=	1.11
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
 		p5-MIME-Types>=0:${PORTSDIR}/mail/p5-MIME-Types \
 		p5-Proc-WaitStat>=0:${PORTSDIR}/devel/p5-Proc-WaitStat
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
