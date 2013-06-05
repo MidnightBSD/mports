@@ -1,5 +1,4 @@
 libexec/milter-greylist
-etc/rc.d/milter-greylist.sh 
 etc/mail/greylist.conf.sample
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/greylist.conf
