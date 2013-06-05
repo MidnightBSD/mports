@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.8 2011/09/10 22:24:19 laffer1 Exp $
+# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.9 2013/03/09 23:05:56 laffer1 Exp $
 
 PORTNAME=	intltool
-PORTVERSION=	0.41.1
-PORTREVISION=	1
+PORTVERSION=	0.50.2
 CATEGORIES=	textproc gnome
-MASTER_SITES=	http://launchpadlibrarian.net/41841194/
+MASTER_SITES=	http://launchpadlibrarian.net/94524169/
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
