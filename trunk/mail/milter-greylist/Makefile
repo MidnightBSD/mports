@@ -1,23 +1,22 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.13 2011/12/15 00:57:48 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.14 2012/02/03 03:11:42 laffer1 Exp $
 
 PORTNAME=	milter-greylist
-PORTVERSION=	4.2.7
+PORTVERSION=	4.4.3
 PORTREVISION=	0
 CATEGORIES=	mail
-MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
-DISTNAME=	milter-greylist-${PORTVERSION}
+MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/ \
+		http://fossies.org/unix/privat/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use greylist milter for sendmail and postfix
 LICENSE=	bsd4
 
-OPTIONS=	LIBSPF2	 "Enable SPF checks" off \
-		GEOIP	 "Enable GEOIP"  off \
-		CURL	 "Enable CURL for URL checks" off \
-		OPENLDAP "Include OpenLDAP support" off \
-		P0F "Include P0F support" off \
-		POSTFIX  "Use Postfix instead of Sendmail" off
+
+CONFLICTS=	milter-greylist-devel-[1-9]*.*
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+MAKE_JOBS_UNSAFE=	yes
 
 ##
 # Use the following quirks to choose which sendmail to use (ports or system):
@@ -30,92 +29,98 @@ OPTIONS=	LIBSPF2	 "Enable SPF checks" off \
 # installed port preference over it.
 ##
 
+OPTIONS_DEFINE=		MANPAGES SPF GEOIP CURL LDAP P0F POSTFIX
+OPTIONS_DEFAULT=	MANPAGES
+SPF_DESC=		SPF support
+CURL_DESC=		curl support
+P0F_DESC=		P0F support
+POSTFIX_DESC=		Use Postfix instead of Sendmail
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MMANPAGES}
 MAN5=		greylist.conf.5
 MAN8=		milter-greylist.8
-
-SUB_FILES=	pkg-message
-
-.include <bsd.port.pre.mk>
-
-.if !defined(WITH_SENDMAIL_BASE) && \
-    !defined(WITH_SENDMAIL_PORT) && \
-    !exists(${LOCALBASE}/lib/libmilter.a)
-WITH_SENDMAIL_BASE=yes
 .endif
-
-.if defined(WITH_SENDMAIL_BASE)
-.if exists(/usr/lib/libmilter.a)
-MILTERBASE=	/usr
-.else
-BROKEN=		"Base system sendmail not found or too old, rebuild with WITH_SENDMAIL_PORT=yes"
+.if ${PORT_OPTIONS:MSPF}
+BUILD_DEPENDS+=	libspf2>=1.2.5:${PORTSDIR}/mail/libspf2
+CONFIGURE_ARGS+=	--with-libspf2=${LOCALBASE}
 .endif
-.else
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
-MILTERBASE?=	${LOCALBASE}
+.if ${PORT_OPTIONS:MGEOIP}
+BUILD_DEPENDS+=	GeoIP>=1.4.4:${PORTSDIR}/net/GeoIP
+CONFIGURE_ARGS+=	--with-libGeoIP=${LOCALBASE}
 .endif
-
-.if defined(WITH_LIBSPF2)
-LIB_DEPENDS+=	spf2.3:${PORTSDIR}/mail/libspf2
-CONFIGURE_ARGS+=--with-libspf2=${LOCALBASE}
+.if ${PORT_OPTIONS:MCURL}
+BUILD_DEPENDS+=	curl>=7.18:${PORTSDIR}/ftp/curl
+CONFIGURE_ARGS+=	--with-libcurl=${LOCALBASE}
 .endif
-
-.if defined(WITH_GEOIP)
-LIB_DEPENDS+=	GeoIP.5:${PORTSDIR}/net/GeoIP
-CONFIGURE_ARGS+=--with-libGeoIP=${LOCALBASE}
-.endif
-
-.if defined(WITH_CURL)
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
-CONFIGURE_ARGS+=--with-curl=${LOCALBASE}
-.endif
-
-.if defined(WITH_OPENLDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=yes
-CONFIGURE_ARGS+=--with-openldap
+CONFIGURE_ARGS+=	--with-openldap
 .endif
-
-.if defined(WITH_P0F)
+.if ${PORT_OPTIONS:MP0F}
 RUN_DEPENDS+=	p0f:${PORTSDIR}/net-mgmt/p0f
-CONFIGURE_ARGS+=	--enable-p0f
+CONFIGURE_ARGS+=	--enable-p0f306
 .endif
-
-.if defined(WITH_POSTFIX)
-CONFIGURE_ARGS+=--enable-postfix
+.if ${PORT_OPTIONS:MPOSTFIX}
+CONFIGURE_ARGS+=	--enable-postfix
 .else
 LDFLAGS+=	${SENDMAIL_LDFLAGS}
 LIBS+=		${SENDMAIL_LDADD}
 .endif
+RUN_DEPENDS+=	${BUILD_DEPENDS}
 
 CFLAGS+=	${PTHREAD_CFLAGS}
 LIBS+=		${PTHREAD_LIBS}
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
-CONFIGURE_ARGS+=	--with-user=mailnull --with-libmilter=${MILTERBASE}
-CONFIGURE_ARGS+=	--enable-dnsrbl --with-thread-safe-resolver
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LIBS="${LIBS} "
+CONFIGURE_ARGS+=	--with-user=mailnull --with-libmilter=${MILTERBASE} \
+			--enable-dnsrbl --with-thread-safe-resolver \
+			--with-dumpfile=/var/milter-greylist/greylist.db
+CONFIGURE_ENV+=	LIBS="${LIBS}"
 
 ALL_TARGET=	milter-greylist
+SUB_FILES+=	pkg-message
 
 USE_RC_SUBR=	milter-greylist
-RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
 
 do-install:
 	@${MKDIR} ${PREFIX}/etc/mail
-	@${INSTALL_PROGRAM} ${WRKSRC}/milter-greylist ${PREFIX}/libexec
+.if ${PORT_OPTIONS:MMANPAGES}
 	@${INSTALL_MAN} ${WRKSRC}/greylist.conf.5 ${PREFIX}/man/man5
 	@${INSTALL_MAN} ${WRKSRC}/milter-greylist.8 ${PREFIX}/man/man8
+.endif
+	@${INSTALL_PROGRAM} ${WRKSRC}/milter-greylist ${PREFIX}/libexec
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf \
 			${PREFIX}/etc/mail/greylist.conf.sample
 
 post-install:
 	@${MKDIR} /var/milter-greylist
 	@${CHOWN} -R mailnull:mailnull /var/milter-greylist
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
-	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+.endif
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf ${EXAMPLESDIR}
 .endif
+	@${TEST} -f /var/db/milter-greylist/greylist.db && ( \
+		${ECHO} "************************************************************"; \
+		${ECHO} "************************************************************"; \
+		${ECHO} "**                                                        **"; \
+		${ECHO} "**                        WARNING                         **"; \
+		${ECHO} "**                                                        **"; \
+		${ECHO} "** The default dump file location has changed.            **"; \
+		${ECHO} "** Please move greylist.db from /var/db/milter-greylist/  **"; \
+		${ECHO} "** to /var/milter-greylist/ and update your greylist.conf **"; \
+		${ECHO} "** accordingly.                                           **"; \
+		${ECHO} "**                                                        **"; \
+		${ECHO} "************************************************************"; \
+		${ECHO} "************************************************************"; \
+	) || ${TRUE}
+	@${CAT} ${PKGMESSAGE}
 
-.include <bsd.port.post.mk>
+.include "${PORTSDIR}/mail/sendmail/bsd.milter.mk"
+
+.include <bsd.port.mk>
