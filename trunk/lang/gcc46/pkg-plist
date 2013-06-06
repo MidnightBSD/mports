@@ -9,7 +9,7 @@ bin/g++%%SUFFIX%%
 bin/gcc%%SUFFIX%%
 bin/gcov%%SUFFIX%%
 bin/gfortran%%SUFFIX%%
-info/gcc%%SUFFIX%%/dir
+@comment info/gcc%%SUFFIX%%/dir
 %%JAVA%%share/gcc-%%GCC_VERSION%%/python/libjava/aotcompile.py
 %%JAVA%%share/gcc-%%GCC_VERSION%%/python/libjava/classfile.py
 %%JAVA%%@dirrm share/gcc-%%GCC_VERSION%%/python/libjava
