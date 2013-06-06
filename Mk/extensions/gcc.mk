@@ -35,7 +35,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.8 2011/12/22 01:19:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.9 2013/02/24 01:54:00 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -134,36 +134,25 @@ _GCC_ORLATER:=	true
 
 . endif # ${USE_GCC} == any
 
-# Check if USE_GCC points to a valid version.
+# Initialize _GCC_FOUND${v}.  In parallel, check if USE_GCC points to a
+# valid version to begin with.
 .for v in ${GCCVERSIONS}
-. for j in ${GCCVERSION_${v}}
-.  if ${_USE_GCC}==${j}
-_GCCVERSION_OKAY=	true;
+. if exists(${LOCALBASE}/bin/gcc${_GCCVERSION_${v}_V:S/.//})
+_GCC_FOUND${v}=	port
+. elif ${OSVERSION} >= ${_GCCVERSION_${v}_L} && ${OSVERSION} < ${_GCCVERSION_${v}_R}
+.  if exists(/usr/bin/gcc)
+_GCC_FOUND${v}=	base
 .  endif
-. endfor
+. endif
+. if ${_USE_GCC}==${_GCCVERSION_${v}_V}
+_GCCVERSION_OKAY=	true
+. endif
 .endfor
 
 .if !defined(_GCCVERSION_OKAY)
 IGNORE=	Unknown version of GCC specified (USE_GCC=${USE_GCC})
 .endif
 
-#
-# Determine current GCCVERSION
-#
-.for v in ${GCCVERSIONS}
-. if exists(${LOCALBASE}/bin/gcc${_GCCVERSION_${v}_V:S/.//})
-_GCC_FOUND${v}=	port
-. endif
-. if ${OSVERSION} >= ${_GCCVERSION_${v}_L} && ${OSVERSION} < ${_GCCVERSION_${v}_R}
-_GCCVERSION:=		${v}
-_GCC_FOUND${v}:=	base
-. endif
-.endfor
-.if !defined(_GCCVERSION)
-IGNORE=		Couldn't find your current GCCVERSION (OSVERSION=${OSVERSION})
-.endif
-
-#
 # If the GCC package defined in USE_GCC does not exist, but a later
 # version is allowed (for example 4.2+), see if there is a later.
 # First check if the base installed version is good enough, otherwise
@@ -203,7 +192,7 @@ _USE_GCC:=	${GCC_DEFAULT_VERSION}
 # dependencies, CC, CXX, CPP, and flags.
 .for v in ${GCCVERSIONS}
 . if ${_USE_GCC} == ${_GCCVERSION_${v}_V}
-.  if ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R}
+.  if ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R} || !exists(/usr/bin/gcc)
 V:=			${_GCCVERSION_${v}_V:S/.//}
 _GCC_PORT_DEPENDS:=	gcc${V}
 .   if ${_USE_GCC} == ${GCC_DEFAULT_VERSION}
@@ -228,7 +217,7 @@ FFLAGS+=		-Wl,-rpath=${_GCC_RUNTIME}
 # ever telling us; to be fixed.
 _GCC_BUILD_DEPENDS:=	${_GCC_PORT_DEPENDS}
 .   endif # ${_USE_GCC} != 3.4
-.  else # ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R}
+.  else # Use GCC in base.
 CC:=			gcc
 CXX:=			g++
 .   if exists(/usr/bin/gcpp)
@@ -236,7 +225,7 @@ CPP:=			gcpp
 .   else
 CPP:=			cpp
 .   endif
-.  endif # ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R}
+.  endif # Use GCC in base.
 . endif # ${_USE_GCC} == ${_GCCVERSION_${v}_V}
 .endfor
 .undef V
@@ -258,6 +247,9 @@ USE_BINUTILS=	yes
 test-gcc:
 	@echo USE_GCC=${USE_GCC}
 	@echo USE_FORTRAN=${USE_FORTRAN}
+.if defined(IGNORE)
+	@echo "IGNORE: ${IGNORE}"
+.else
 .if defined(USE_GCC)
 .if defined(_GCC_ORLATER)
 	@echo Port can use later versions.
