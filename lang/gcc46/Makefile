@@ -1,11 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc46/Makefile,v 1.1 2013/02/24 01:55:25 laffer1 Exp $
 
 PORTNAME=	gcc
-PORTVERSION=	4.6.4.20130215
+PORTVERSION=	4.6.4
+PORTEPOCH=	1
 CATEGORIES=	lang java
 MASTER_SITES=	${MASTER_SITE_GCC}
-MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
-DISTNAME=	gcc-${VERSIONSTRING}
+MASTER_SITE_SUBDIR=	releases/gcc-${VERSIONSTRING}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.6
@@ -23,7 +23,7 @@ BUILD_DEPENDS+=	runtest:${PORTSDIR}/misc/dejagnu
 
 # VERSIONSTRING relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.
-VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
+VERSIONSTRING=	${PORTVERSION}
 GCC_VERSION=	${PORTVERSION:C/(.+)\.[0-9]{8}/\1/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
@@ -47,9 +47,9 @@ OPTIONS_DEFAULT_amd64=	JAVA
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran
@@ -69,7 +69,7 @@ CONFIGURE_ARGS+=--disable-bootstrap \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--with-ld=${LOCALBASE}/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
-		--with-pkgversion="FreeBSD Ports Collection" \
+		--with-pkgversion="MidnightBSD Ports Collection" \
 		--with-system-zlib
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
@@ -81,16 +81,6 @@ MAN1=		cpp${SUFFIX}.1 \
 		gcc${SUFFIX}.1 \
 		gcov${SUFFIX}.1 \
 		gfortran${SUFFIX}.1
-INFO=		gcc${SUFFIX}/cpp \
-		gcc${SUFFIX}/cppinternals \
-		gcc${SUFFIX}/gcc \
-		gcc${SUFFIX}/gccinstall \
-		gcc${SUFFIX}/gccint \
-		gcc${SUFFIX}/gfortran \
-		gcc${SUFFIX}/libgomp
-.if ${ARCH} != "ia64" && ${ARCH} != "powerpc" && ${ARCH} != "sparc64"
-INFO+=		gcc${SUFFIX}/libquadmath
-.endif
 
 .if ${PORT_OPTIONS:MJAVA}
 ECJ_JAR=	${LOCALBASE}/share/java/ecj-4.5.jar
@@ -125,8 +115,6 @@ MAN1+=		aot-compile${SUFFIX}.1 \
 MAN3=		ffi${SUFFIX}.3 \
 		ffi_call${SUFFIX}.3 \
 		ffi_prep_cif${SUFFIX}.3
-INFO+=		gcc${SUFFIX}/cp-tools \
-		gcc${SUFFIX}/gcj
 PLIST_SUB+=	JAVA=""
 .else
 CONFIGURE_ARGS+=--disable-libgcj
