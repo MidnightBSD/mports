@@ -8,7 +8,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.12 2013/03/24 19:44:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.13 2013/06/06 01:43:18 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -104,7 +104,7 @@ INSTALLS_TTF?=	no
 .  endif
 
 .  if ${PORTNAME:M*font-util*}x != x
-USE_GNOME+=	gnomehack
+USE_PATHFIX=
 NEED_MKFONTFOO=	no
 .  elif ${INSTALLS_TTF} == "yes"
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/fontconfig.pc:${PORTSDIR}/x11-fonts/fontconfig
@@ -142,19 +142,19 @@ post-install:
 . endif
 
 . if ${XORG_CAT} == "lib"
-USE_GNOME+=	gnomehack
+USE_PATHFIX=
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 . endif
 
 . if ${XORG_CAT} == "proto"
-USE_GNOME+=	gnomehack
+USE_PATHFIX=
 . endif
 
 . if ${XORG_CAT} == "xserver"
 DISTFILES?=	xorg-server-${PORTVERSION}.tar.bz2
 WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
-USE_GNOME+=	gnomehack
+USE_PATHFIX=
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb
 
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
