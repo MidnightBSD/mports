@@ -194,12 +194,12 @@ PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 
 .if !defined(GNUSTEP_WITH_GCC34) && !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC46) && !defined(GNUSTEP_WITH_BASE_GCC)
 .if defined(PACKAGE_BUILDING)
-.if ${OSVERSION} > 900035
-GNUSTEP_WITH_GCC42=yes
+.if ${OSVERSION} > 4015
+GNUSTEP_WITH_GCC46=yes
 .endif
 .endif
 .if !exists(${DESTDIR}/usr/lib/libobjc.so)
-GNUSTEP_WITH_GCC42=yes
+GNUSTEP_WITH_GCC46=yes
 .endif
 .endif
 
@@ -481,6 +481,7 @@ RUN_DEPENDS+=	${GNUSTEP_LOCAL_SERVICES}/${_GNUSTEP_DEP:C/:.*//}.service/${_GNUST
 # source GNUstep.sh
 #
 .if defined(USE_GNUSTEP_CONFIGURE)
+NO_CCACHE=	Overrides PATH set from GNUstep.sh
 run-autotools::
 	@${DO_NADA}
 
@@ -505,6 +506,7 @@ do-configure:
 # source GNUstep.sh
 #
 .if defined(USE_GNUSTEP_BUILD)
+NO_CCACHE=	Overrides PATH set from GNUstep.sh
 do-build:
 .if defined(USE_GNUSTEP_MAKE_DIRS)
 .for i in ${USE_GNUSTEP_MAKE_DIRS}
@@ -539,7 +541,7 @@ do-install:
 .endif
 
 .if !defined(GNUSTEP_WITH_BASE_GCC)
-TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_GCC_PORT} && make -V TARGLIB)
+TARGLIB!=	${MAKE} -C ${PORTSDIR}/${GNUSTEP_GCC_PORT} -V TARGLIB
 .endif
 
 .endif
