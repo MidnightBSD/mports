@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/compat7x/Makefile,v 1.1 2013/02/22 02:53:48 laffer1 Exp $
 
 PORTNAME=	compat7x
 PORTVERSION=	7.3.703000.201008
@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A convenience package to install the FreeBSD compat7x libraries
+COMMENT=	Convenience package to install the FreeBSD compat7x libraries
 LICENSE=	agg
 
 USE_BZIP2=	yes
