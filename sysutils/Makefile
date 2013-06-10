@@ -1,10 +1,14 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.116 2013/03/26 00:40:04 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.117 2013/06/10 22:19:45 laffer1 Exp $
 
 COMMENT = System utilities
 
 SUBDIR += 915resolution
 SUBDIR += LPRng
 SUBDIR += apachetop
+SUBDIR += bacula-client
+SUBDIR += bacula-client-static
+SUBDIR += bacula-docs
+SUBDIR += bacula-server
 SUBDIR += batmon
 SUBDIR += battmond
 SUBDIR += brasero
