@@ -1,16 +1,17 @@
-# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.5 2013/02/17 15:25:12 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.6 2013/04/04 01:51:14 laffer1 Exp $
 
 PORTNAME=	perl
 PORTVERSION=	5.14.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	../../src
+MASTER_SITES=	CPAN
 LATEST_LINK=	perl
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 LICENSE=	perl
+
+CONFLICTS=	perl-5.16.* perl-threaded-5.16.*
 
 PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
