@@ -1,81 +1,86 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.19 2011/09/10 22:10:14 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.20 2012/02/11 04:13:30 laffer1 Exp $
 
 PORTNAME=	gnutls
-PORTVERSION=	2.10.2
-PORTREVISION=	0
+PORTVERSION=	2.12.23
+PORTREVISION=	2
 CATEGORIES=	security net
-MASTER_SITES=	${MASTER_SITE_GNU} \
-		${MASTER_SITE_GNUPG}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v${PORTVERSION:C/.[0-9]+$//}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt \
-		gpg-error.0:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	nettle:${PORTSDIR}/security/nettle \
+		gpg-error:${PORTSDIR}/security/libgpg-error \
+		p11-kit:${PORTSDIR}/security/p11-kit
 
 CONFLICTS=	gnutls-devel-[0-9]*
 
+USE_PATHFIX=	yes
 USE_BZIP2=	yes
 USE_ICONV=	yes
-USE_GNOME=	pkgconfig ltverhack
+USE_PKGCONFIG=	build
+USE_GNOME=	ltverhack gnomehack
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
+LIBTOOLFILES=	configure lib/configure libextra/configure
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"
+CPPFLAGS+=	-fPIC
 CONFIGURE_ARGS+=	--disable-guile
 MANCOMPRESSED=	no
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	LIBTASN1 CXX LZO NLS
 
-.if (defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.4)) && !defined(WITHOUT_LIBTASN1)
-LIB_DEPENDS+=	tasn1.4:${PORTSDIR}/security/libtasn1
+LIBTASN1_DESC=	Use system libtasn1 instead of local one
+CXX_DESC=	Install C++ library
+LZO_DESC=	LZO compression
+
+OPTIONS_DEFAULT=	LIBTASN1 CXX
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MLIBTASN1}
+LIB_DEPENDS+=	tasn1:${PORTSDIR}/security/libtasn1
 .else
 CONFIGURE_ARGS+=	--with-included-libtasn1
 .endif
 
-.if (defined(WITH_LZO) || exists(${LOCALBASE}/lib/liblzo2.so)) && !defined(WITHOUT_LZO)
+.if ${PORT_OPTIONS:MLZO}
 LIB_DEPENDS+=		lzo2:${PORTSDIR}/archivers/lzo2
 CONFIGURE_ARGS+=	--with-lzo
-.else
-CONFIGURE_ARGS+=	--with-lzo=no
 .endif
 
-.if defined(WITHOUT_CXX)
+.if ${PORT_OPTIONS:MCXX}
 CONFIGURE_ARGS+=	--disable-cxx
 PLIST_SUB+=		CXX="@comment "
 .else
 PLIST_SUB+=		CXX=""
 .endif
 
-.if defined(WITHOUT_NLS)
+.if ${PORT_OPTIONS:MNLS}
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=		NLS="@comment "
 .else
-USE_GETTEXT=		yes
+USES+=		gettext
 PLIST_SUB+=		NLS=""
 .endif
 
-.if defined(WITH_CAMELLIA)
-CONFIGURE_ARGS+=	--enable-camellia
-.endif
-
-.if !defined(NOPORTDOCS)
 PORTDOCS=		AUTHORS NEWS README THANKS
-.endif
-EXAMPLES=	doc/examples/*.c
+PORTEXAMPLES=		*.c
 
-pre-configure:
-	@${REINPLACE_CMD} -e 's,(libdir)/pkgconfig,(prefix)/libdata/pkgconfig,' \
-		${WRKSRC}/lib/Makefile.in ${WRKSRC}/libextra/Makefile.in
+post-patch:
+	@${FIND} ${WRKSRC} -name "Makefile.in" -type f | ${XARGS} ${REINPLACE_CMD} \
+		-e 's|[$$][(]LTLIBPTHREAD[)]||g'
 
 post-install:
+.if !defined (NOPORTEXAMPLES)
 	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTEXAMPLES:C,^,doc/examples/,} \
+		${EXAMPLESDIR}
+.endif
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
@@ -84,4 +89,4 @@ post-install:
 .endif
 
 .include "Makefile.man"
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
