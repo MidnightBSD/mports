@@ -35,7 +35,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.9 2013/02/24 01:54:00 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.10 2013/06/06 00:50:07 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -271,4 +271,6 @@ test-gcc:
 	@echo LDFLAGS=\"${LDFLAGS}\"
 	@echo "BUILD_DEPENDS=${BUILD_DEPENDS}"
 	@echo "RUN_DEPENDS=${RUN_DEPENDS}"
+.endif
+
 .endif
