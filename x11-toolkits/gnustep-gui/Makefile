@@ -1,9 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.13 2012/01/28 04:27:33 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.14 2012/09/09 02:00:53 laffer1 Exp $
 
 PORTNAME=	gnustep-gui
-PORTVERSION=	0.17.1
-PORTREVISION=	2
+PORTVERSION=	0.22.0
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -12,24 +10,26 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI library
 LICENSE=	gpl3
 
+.if !defined(NOPORTDOCS)
+BUILD_DEPENDS+=	texi2html:${PORTSDIR}/textproc/texi2html
+BUILD_DEPENDS+=	texi2pdf:${PORTSDIR}/print/texinfo
+.endif
 LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=	gif.5:${PORTSDIR}/graphics/giflib
-LIB_DEPENDS+=	audiofile:${PORTSDIR}/audio/libaudiofile
+LIB_DEPENDS+=	sndfile:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS+=	ao.4:${PORTSDIR}/audio/libao
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libflite.a:${PORTSDIR}/audio/flite
 
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	"-I/usr/local/include"
-LDFLAGS+=	"-L/usr/local/lib"
-CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-tiff-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-jpeg-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-x
 CONFIGURE_ARGS+=	--with-x-include=${LOCALBASE}/include
-CONFIGURE_ARGS+=	--with-x-include=${LCOALBASE}/lib
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+CONFIGURE_ARGS+=	--with-x-include=${LOCALBASE}/lib
 USE_GNUSTEP=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
@@ -37,13 +37,16 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 USE_XORG=	x11 xt
+NOPORTDOCS=	dvi2pdf broken
 
-EXTRA_PATCHES+=		${FILESDIR}/GNUmakefile.patch
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.patch
+EXTRA_PATCHES+=	${FILESDIR}/AudioOutputSink.m.patch
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 BREAKS_IF_PEDANTIC=	yes
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
+
+ADDITIONAL_INCLUDE_DIRS+=	-I${LOCALBASE}/include/libpng15
 
 .if defined(WITHOUT_GNUSTEP_FAKEMAIN)
 .if !exists(/proc/curproc)
@@ -65,6 +68,9 @@ PLIST_SUB+=	WITH_ASPELL=""
 .else
 PLIST_SUB+=	WITH_ASPELL="@comment "
 .endif
+
+post-patch:
+	${REINPLACE_CMD} -e "s|libpng/png.h|png.h|" ${WRKSRC}/configure
 
 pre-configure:
 .for file in config.guess config.sub install-sh
