@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.15 2012/02/13 16:25:10 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.16 2013/02/24 15:10:27 laffer1 Exp $
 
 PORTNAME=	gnustep-base
-PORTVERSION=	1.19.3
+PORTVERSION=	1.24.0
 PORTREVISION=	1
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
@@ -11,15 +11,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2 \
-		xslt.2:${PORTSDIR}/textproc/libxslt \
-		gmp.10:${PORTSDIR}/math/gmp \
-		gnutls.42:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
+LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
+#LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/mDNSResponder
+LIB_DEPENDS+=	gnutls-openssl.27:${PORTSDIR}/security/gnutls
 
 USE_PKGCONFIG=	build
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
-#CFLAGS+=      -rpath=/usr/local/lib:/usr/lib
 CONFIGURE_ARGS=	--disable-procfs --disable-openssl --enable-tls \
 		--with-tls-prefix=${LOCALBASE} TLS_CONFIG="pkg-config -gnutls"
 USE_GNUSTEP=	yes
@@ -32,11 +33,8 @@ USE_ICONV=	yes
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 CFLAGS+=	-I${LOCALBASE}/include/libxml2/libxml -DHAVE_DLADDR=1
-.if defined(GNUSTEP_WITH_LIBOBJC2)
-CFLAGS+=	-I${GNUSTEP_SYSTEM_ROOT}/Library/Headers -DOBJC2RUNTIME=1
-.endif
 
-#BREAKS_IF_PEDANTIC=	yes
+BREAKS_IF_PEDANTIC=	yes
 PLIST_SUB+=	LOCALBASE=${LOCALBASE}
 ETCDIR=		${LOCALBASE}/etc
 
@@ -47,6 +45,25 @@ CONFIGURE_ARGS+=	--enable-fake-main
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
 
 .include <bsd.port.pre.mk>
+
+.if !defined(GNUSTEP_WITH_CLANG)
+.if defined(GNUSTEP_WITH_BASE_GCC)
+.if ${OSVERSION} < 4000
+IGNORE=               does not build on 0.3
+.endif
+.if ${OSVERSION} >= 4016
+IGNORE=               needs an objective C compiler
+.endif
+.endif
+.endif
+
+.if defined(GNUSTEP_WITH_LIBOBJC2) || defined(GNUSTEP_WITH_CLANG)
+LIB_DEPENDS+=	objc:${PORTSDIR}/${PKGCATEGORY}/libobjc2
+CFLAGS+=	-I${LOCALBASE}/include -DOBJC2RUNTIME=1
+PLIST_SUB+=	WITH_LIB1="@comment "
+.else
+PLIST_SUB+=	WITH_LIB1=""
+.endif
 
 PATH:=	${PREFIX}/System/Tools:${PATH}
 
