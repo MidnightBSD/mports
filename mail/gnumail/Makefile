@@ -1,21 +1,17 @@
-# New ports collection makefile for:    GNUMail
-#
-# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.8 2008/10/12 16:00:01 laffer1 Exp $
-# $FreeBSD: ports/mail/gnumail/Makefile,v 1.30 2006/09/10 20:08:45 dinoex Exp $
-#
+# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.9 2011/09/10 21:20:19 laffer1 Exp $
 
 PORTNAME=	gnumail
 PORTVERSION=	1.2.0
 PORTREVISION=	3
 CATEGORIES=	mail gnustep
 MASTER_SITES=	http://www.collaboration-world.com/gnumail.data/releases/Stable/
-DISTNAME=	GNUMail-${PORTVERSION}pre3
+DISTNAME=	GNUMail-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep mail client
 LICENSE=	gpl2
 
-WRKSRC=		${WRKDIR}/GNUMail
+#WRKSRC=		${WRKDIR}/GNUMail
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
