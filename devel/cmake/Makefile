@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.13 2013/04/27 20:58:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.14 2013/06/02 23:22:32 laffer1 Exp $
 
 PORTNAME=	cmake
 PORTVERSION=	2.8.10.2
@@ -6,7 +6,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v2.8/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A cross-platform Makefile generator
+COMMENT?=	Cross-platform Makefile generator
 LICENSE=	other
 # bsd variant
 
