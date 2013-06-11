@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.10 2008/10/12 19:33:21 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.11 2009/11/09 01:06:29 laffer1 Exp $
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
-PORTREVISION=	4446
+PORTREVISION=	4447
 CATEGORIES=	lang gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -12,13 +12,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep interface to the GUILE scheme interpreter
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	guile.20:${PORTSDIR}/lang/guile
+LIB_DEPENDS+=	guile.21:${PORTSDIR}/lang/guile
 
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=
-CONFIGURE_ARGS+=	--build=i386-portbld-freebsd6.0
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
