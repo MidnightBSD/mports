@@ -1,9 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/libproxy/Makefile,v 1.6 2011/08/23 18:29:53 kwm Exp $
+# $MidnightBSD: mports/net/libproxy/Makefile,v 1.3 2011/09/10 22:20:49 laffer1 Exp $
 
 PORTNAME=	libproxy
 PORTVERSION=	0.4.6
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	net devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
@@ -66,5 +65,7 @@ CMAKE_ARGS+=	-DWITH_MOZJS:BOOL=OFF
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/libproxy/${PORTVERSION}/modules/
+	(cd ${PREFIX}/lib/ && ln -s libproxy.so libproxy.so.1)
+	(cd ${PREFIX}/lib/ && ln -s libmodman.so libmodman.so.1)
 
 .include <bsd.port.mk>
