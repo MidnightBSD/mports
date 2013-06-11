@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.14 2013/01/26 16:48:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.15 2013/02/19 13:05:18 laffer1 Exp $
 
 PORTNAME=	gnustep-make
 PORTVERSION=	2.6.2
+PORTREVISION=	1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -14,15 +15,14 @@ USE_GNUSTEP=	yes
 GNU_CONFIGURE=	yes
 
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
-CFLAGS+=	${PTHREAD_CFLAGS}
 CONFIGURE_ENV+=	INSTALL_PROGRAM="${INSTALL} -c" INSTALL_DATA="${INSTALL} -c"
-CONFIGURE_ARGS+=	--with-thread-lib="${PTHREAD_LIBS}"
+CONFIGURE_ARGS+=	--with-thread-lib=-pthread
 CONFIGURE_ARGS+=	--with-config-file=${GNUSTEP_PREFIX}/GNUstep.conf
 CONFIGURE_ARGS+=	--with-layout=gnustep
 .if defined(GNUSTEP_WITH_LIBOBJC2) || defined(GNUSTEP_WITH_CLANG)
 CONFIGURE_ARGS+=	--with-objc-lib-flag=-l:libobjc.so.16
-.endif
 LDFLAGS+=	-L${LOCALBASE}/lib
+.endif
 GNU_CONFIGURE_PREFIX=	${GNUSTEP_PREFIX}
 
 post-patch:
