@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.8 2011/05/07 02:35:37 laffer1 Exp $
+# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.9 2011/09/04 00:59:20 laffer1 Exp $
 
 PORTNAME=	terminal.app
-PORTVERSION=	0.9.7
-DISTVERSIONSUFFIX=	+cvs20051125.orig
+PORTVERSION=	0.9.8
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
