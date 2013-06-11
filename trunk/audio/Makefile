@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.95 2013/01/16 01:19:09 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.96 2013/02/19 11:58:37 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -24,6 +24,7 @@ SUBDIR += etoile-volumecontrolmenulet
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += flac
+SUBDIR += flite
 SUBDIR += freealut
 SUBDIR += freedesktop-sound-theme
 SUBDIR += gnome-audio
