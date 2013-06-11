@@ -1,31 +1,24 @@
-# New ports collection makefile for:    textedit.app
-# Date created:         28 Aug 2006
-# Whom:                 gurkan@linuks.mine.nu
-#
-# $MidnightBSD: mports/editors/textedit.app/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $ 
-# $FreeBSD: ports/editors/textedit.app/Makefile,v 1.1 2006/09/06 17:12:46 ehaupt Exp $
-#
+# $MidnightBSD: mports/editors/textedit.app/Makefile,v 1.3 2008/10/21 14:38:28 laffer1 Exp $ 
 
 PORTNAME=	textedit.app
 PORTVERSION=	4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors gnustep
-MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
-DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
+MASTER_SITES=	http://git.savannah.gnu.org/cgit/backbone.git/snapshot/
+DISTNAME=	backbone-6343263e17c5cd771770dabc2559ac07ffedcf29
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic text editor for GNUstep
 LICENSE=	other
 
-WRKSRC=		${WRKDIR}/textedit-${PORTVERSION}
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=	GNUmakefile
 
-.include <bsd.port.pre.mk>
+USE_GNUSTEP_MAKE_DIRS=	System/Applications/TextEdit
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
