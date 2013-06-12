@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.27 2013/04/11 01:09:09 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.28 2013/06/05 00:03:29 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	292
+PORTVERSION=	293
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
 		CRITICAL:src1 CRITICAL:src2
@@ -18,6 +18,7 @@ CONFLICTS=	x11iraf-[0-9]*
 USE_XORG=	xaw xft
 WANT_GNOME=	desktopfileutils
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
