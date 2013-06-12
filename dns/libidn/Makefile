@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.9 2012/09/08 21:38:07 laffer1 Exp $
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.10 2013/02/23 01:22:47 laffer1 Exp $
 
 PORTNAME=	libidn
 PORTVERSION=	1.26
@@ -20,7 +20,9 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 
 INFO=	libidn
 
-.if !defined(WITHOUT_NLS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
 USE_GETTEXT=	yes
 PLIST_SUB+=	NLS=""
 .else
@@ -34,13 +36,13 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|$$(AUTOMAKE)|${TRUE}|' \
 			-e 's|imagesdir = $$(infodir)|imagesdir = $$(docdir)|' \
 		${WRKSRC}/doc/Makefile.in
-.if defined(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e 's|install-data-am: install-imagesDATA install-info-am install-man|install-data-am: install-info-am install-man|' \
 		${WRKSRC}/doc/Makefile.in
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 .for i in FAQ NEWS README
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
