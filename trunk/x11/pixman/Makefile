@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.11 2011/09/17 01:48:11 laffer1 Exp $
+# $MidnightBSD: mports/x11/pixman/Makefile,v 1.12 2012/02/29 03:12:07 laffer1 Exp $
 
 PORTNAME=	pixman
-PORTVERSION=	0.24.2
+PORTVERSION=	0.28.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,14 +11,14 @@ LICENSE=	x11
 XORG_CAT=	lib
 USE_AUTOTOOLS=	libtool
 USE_PERL5_BUILD=yes
-USE_GNOME=	ltverhack
+USE_GNOME=	ltverhack:9
 CONFIGURE_ARGS=	--disable-gtk
 
-OPTIONS=	SIMD "Enable SIMD features autodetection (MMX, SSE2, VMX)" off
+OPTIONS_DEFINE=	SIMD
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_SIMD)
+.if ! {PORT_OPTIONS:MSIMD}
 CONFIGURE_ARGS=	--disable-vmx --disable-arm-simd
 . if ! ${MACHINE_CPU:Mmmx}
 CONFIGURE_ARGS+=	--disable-mmx
@@ -28,4 +28,4 @@ CONFIGURE_ARGS+=	--disable-sse2
 . endif
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
