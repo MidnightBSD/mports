@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.10 2012/09/08 22:54:13 laffer1 Exp $
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.11 2013/02/23 01:43:05 laffer1 Exp $
 
 PORTNAME=	c-ares
-PORTVERSION=	1.9.1
+PORTVERSION=	1.10.0
 CATEGORIES=	dns
 MASTER_SITES=	http://c-ares.haxx.se/download/ \
 		http://obsd.isc.org/pub/OpenBSD/distfiles/ \
@@ -43,7 +43,7 @@ CONFIGURE_ARGS+=	--disable-optimize
 .endif
 
 USE_LDCONFIG=	yes
-SHLIB_VER=	2
+SHLIB_VER=	3
 
 MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
