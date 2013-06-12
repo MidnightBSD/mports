@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/innerspace/Makefile,v 1.1 2010/01/21 01:17:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/innerspace/Makefile,v 1.2 2012/03/02 02:55:19 laffer1 Exp $
 
 PORTNAME=	innerspace
 PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
