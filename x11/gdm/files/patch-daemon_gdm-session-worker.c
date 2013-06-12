@@ -1,5 +1,5 @@
---- daemon/gdm-session-worker.c.orig	2010-08-11 19:40:07.000000000 +0200
-+++ daemon/gdm-session-worker.c	2011-03-29 10:37:37.000000000 +0200
+--- daemon/gdm-session-worker.c.orig	2011-06-02 09:50:17.000000000 -0500
++++ daemon/gdm-session-worker.c	2011-06-24 17:59:50.000000000 -0500
 @@ -31,6 +31,9 @@
  #include <errno.h>
  #include <grp.h>
@@ -10,59 +10,16 @@
  
  #ifdef  HAVE_LOGINDEVPERM
  #include <libdevinfo.h>
-@@ -341,7 +344,7 @@ gdm_session_execute (const char *file,
+@@ -341,7 +344,7 @@
                           * what to search if PATH is unset. POSIX may, dunno.
                           */
  
 -                        path = "/bin:/usr/bin:.";
-+                        path = "/bin:/usr/bin:/usr/local/bin:.";
++                        path = "/bin:/usr/bin:%%LOCALBASE%%/bin:.";
                  }
  
                  len = strlen (file) + 1;
-@@ -1035,17 +1038,6 @@ gdm_cache_copy_file (GdmSessionWorker *w
-                                    error->message);
-                         g_error_free (error);
-                  } else {
--                         int res;
--
--                         res = chown (cachefilename,
--                                      worker->priv->uid,
--                                      worker->priv->gid);
--                         if (res == -1) {
--                                 g_warning ("GdmSessionWorker: Error setting owner of cache file: %s",
--                                            g_strerror (errno));
--                         }
--
--                        g_chmod (cachefilename, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-                         g_debug ("Copy successful");
-                 }
- 
-@@ -1183,7 +1175,23 @@ gdm_session_worker_uninitialize_pam (Gdm
-                 return;
- 
-         if (worker->priv->state >= GDM_SESSION_WORKER_STATE_SESSION_OPENED) {
--                gdm_session_worker_cache_userfiles (worker);
-+                pid_t pid;
-+
-+                pid = fork ();
-+
-+                if (pid == 0) {
-+                        if (setuid (worker->priv->uid) < 0) {
-+                                g_debug ("GdmSessionWorker: could not reset uid: %s", g_strerror (errno));
-+                                _exit (1);
-+                        }
-+
-+                        gdm_session_worker_cache_userfiles (worker);
-+                        _exit (0);
-+                }
-+
-+                if (pid > 0) {
-+                        gdm_wait_on_pid (pid);
-+                }
-                 pam_close_session (worker->priv->pam_handle, 0);
-                 gdm_session_auditor_report_logout (worker->priv->auditor);
- 
-@@ -2027,15 +2035,16 @@ gdm_session_worker_start_user_session (G
+@@ -2032,15 +2035,16 @@
                  char  *cachedirname;
                  char  *home_dir;
                  int    fd;
@@ -83,16 +40,13 @@
  
                  if (setsid () < 0) {
                          g_debug ("GdmSessionWorker: could not set pid '%u' as leader of new session and process group - %s",
-@@ -2043,6 +2052,28 @@ gdm_session_worker_start_user_session (G
+@@ -2048,6 +2052,25 @@
                          _exit (2);
                  }
  
 +#ifdef HAVE_LOGINCAP
 +                if (setusercontext (NULL, pwent, pwent->pw_uid,
-+                            LOGIN_SETLOGIN | LOGIN_SETPATH |
-+                            LOGIN_SETPRIORITY | LOGIN_SETRESOURCES |
-+                            LOGIN_SETUMASK | LOGIN_SETUSER |
-+                            LOGIN_SETENV) < 0) {
++                            LOGIN_SETALL & ~LOGIN_SETGROUP) < 0) {
 +                        g_debug ("%s: setusercontext () failed for %s. "
 +                                  "Aborting.", "gdm_session_worker_start_user_session",
 +                                login ? login : "(null)");
