@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXi/Makefile,v 1.4 2011/05/03 00:19:03 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXi/Makefile,v 1.5 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXi
-PORTVERSION=	1.4.3
+PORTVERSION=	1.7.1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -10,9 +10,14 @@ COMMENT=	X Input extension library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	xproto x11 xext xextproto inputproto:both
+USE_XORG=	xproto x11 xext xextproto xfixes inputproto:both
 
-CONFIGURE_ARGS+=--disable-specs --without-xmlto
+CONFIGURE_ARGS+=--disable-docs \
+		--disable-specs \
+	       	--without-xmlto \
+		--without-fop \
+		--without-asciidoc \
+		--without-xsltproc
 
 MAN3=		XAllowDeviceEvents.3 \
 		XChangeDeviceControl.3 \
@@ -41,6 +46,8 @@ MAN3=		XAllowDeviceEvents.3 \
 		XGrabDevice.3\
 		XGrabDeviceButton.3\
 		XGrabDeviceKey.3\
+		XIBarrierReleasePointer.3\
+		XIBarrierReleasePointers.3\
 		XIChangeHierarchy.3\
 		XIChangeProperty.3\
 		XIDefineCursor.3\
@@ -55,6 +62,7 @@ MAN3=		XAllowDeviceEvents.3 \
 		XIGrabEnter.3\
 		XIGrabFocusIn.3\
 		XIGrabKeycode.3\
+		XIGrabTouchBegin.3 \
 		XIListProperties.3\
 		XIQueryDevice.3\
 		XIQueryPointer.3\
@@ -68,6 +76,7 @@ MAN3=		XAllowDeviceEvents.3 \
 		XIUngrabEnter.3 \
 		XIUngrabFocusIn.3 \
 		XIUngrabKeycode.3 \
+		XIUngrabTouchBegin.3 \
 		XIWarpPointer.3 \
 		XListDeviceProperties.3 \
 		XListInputDevices.3 \
