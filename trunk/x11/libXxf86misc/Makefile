@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/libXxf86misc/Makefile,v 1.1 2007/05/19 20:26:58 flz Exp $
-# $MidnightBSD: mports/x11/libXxf86misc/Makefile,v 1.2 2011/05/03 13:39:38 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXxf86misc/Makefile,v 1.3 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXxf86misc
 PORTVERSION=	1.0.3
