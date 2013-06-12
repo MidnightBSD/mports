@@ -1,14 +1,8 @@
-# New ports collection makefile for:	docker
-# Date created:				March 15, 2003
-# Whom:					Samy Al Bahra <samy@kerneled.org>
-#
-# $MidnightBSD: mports/x11/docker/Makefile,v 1.3 2008/10/08 04:03:18 laffer1 Exp $
-# $FreeBSD: ports/x11/docker/Makefile,v 1.9 2006/04/15 22:21:14 cperciva Exp $
-#
+# $MidnightBSD: mports/x11/docker/Makefile,v 1.4 2012/03/02 02:30:02 laffer1 Exp $
 
 PORTNAME=	docker
 PORTVERSION=	1.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	http://offload2.icculus.org:9090/openbox/2/docker/ \
 		http://offload1.icculus.org:9090/openbox/2/docker/
