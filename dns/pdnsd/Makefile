@@ -2,7 +2,7 @@
 # Date Created:				27 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.3 2010/09/18 18:12:32 laffer1 Exp $
+# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.4 2012/09/08 21:23:11 laffer1 Exp $
 # $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
 #
 
@@ -24,7 +24,7 @@ CONFIGURE_ARGS=	--with-cachedir=${PDNSDB} \
 		--disable-src-addr-disc \
 		--with-target=BSD
 
-OPTIONS=	IPV6	"Enable IPv6 support"	on
+OPTIONS_DEFINE=	IPV6 DOCS
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
@@ -36,22 +36,20 @@ DOCSRCDIR=	${WRKSRC}/doc
 DOC_FILES=	html/dl.html html/doc.html html/faq.html html/index.html
 DOC_FILES+=	txt/faq.txt txt/intro.txt txt/manual.txt
 
-CFLAGS+=	${PTHREAD_LIBS}
+CFLAGS+=	-pthread
 
-OPTIONS=	IPV6	"IPv6 support"	on
+.include <bsd.mport.options.mk>
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${DOC_FILES:S@^@${DOCSRCDIR}/@} ${DOCSDIR}
 .endif
 	@[ -f ${PREFIX}/etc/pdnsd.conf ] || \
 		${INSTALL_DATA} ${PREFIX}/etc/pdnsd.conf.sample ${PREFIX}/etc/pdnsd.conf
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
