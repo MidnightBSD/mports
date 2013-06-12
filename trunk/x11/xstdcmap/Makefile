@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xstdcmap/Makefile,v 1.1 2007/05/19 20:28:16 flz Exp $
-# $MidnightBSD: mports/x11/xstdcmap/Makefile,v 1.2 2011/09/20 23:56:19 laffer1 Exp $
+# $MidnightBSD: mports/x11/xstdcmap/Makefile,v 1.3 2012/03/03 01:52:57 laffer1 Exp $
 
 PORTNAME=	xstdcmap
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
