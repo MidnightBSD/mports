@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.6 2012/03/02 01:44:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.7 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXtst
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
