@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXxf86vm/Makefile,v 1.3 2011/05/03 13:40:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXxf86vm/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXxf86vm
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
