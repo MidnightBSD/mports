@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/dri2proto/Makefile,v 1.4 2012/03/02 02:55:18 laffer1 Exp $
+# $MidnightBSD: mports/x11/dri2proto/Makefile,v 1.5 2013/02/22 00:55:02 laffer1 Exp $
 
 PORTNAME=	dri2proto
-PORTVERSION=	2.6
+PORTVERSION=	2.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
