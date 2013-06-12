@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.5 2011/02/02 21:35:02 laffer1 Exp $
-# $FreeBSD: ports/x11/libgnomemm/Makefile,v 1.18 2007/05/19 20:27:01 flz Exp $
+# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.6 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	libgnomemm
 PORTVERSION=	2.0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	SF/gtkmm/OldFiles
 DIST_SUBDIR=	gnome2
