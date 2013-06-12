@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.13 2011/05/17 03:33:51 laffer1 Exp $
-# $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.14 2012/03/02 02:27:35 laffer1 Exp $
 
 PORTNAME=	dmenu
 PORTVERSION=	4.5
@@ -15,8 +14,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 menu application designed for the dwm window manager
 LICENSE=	mit
 
-OPTIONS=	XINERAMA	"Enable Xinerama support"	On \
-		XFT		"Enable Xft support"		Off
+OPTIONS_DEFINE=	XINERAMA XFT
+OPTIONS_DEFAULT=	XINERAMA
 
 USE_XORG=	x11
 
@@ -25,11 +24,11 @@ PLIST_FILES=	bin/dmenu bin/dmenu_run bin/stest
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_XINERAMA)
+.if ${PORT_OPTIONS:MXINERAMA}
 USE_XORG+=	xinerama
 .endif
 
-.if defined(WITH_XFT)
+.if ${PORT_OPTIONS:MXFT}
 USE_XORG+=	xft
 PATCHFILES+=	${PORTNAME}-${PORTVERSION}-xft.diff
 .endif
@@ -39,7 +38,7 @@ post-patch:
 	         -e "s,%%PREFIX%%,${PREFIX},g" \
 	         -e "s,%%LOCALBASE%%,${LOCALBASE},g" \
 	         -e "s,%%MANPREFIX%%,${MANPREFIX},g"
-.if defined(WITHOUT_XINERAMA)
+.if ! ${PORT_OPTIONS:MXINERAMA}
 	@${REINPLACE_CMD} -e 's,$${XINERAMALIBS},,g' \
 	         -e 's,$${XINERAMAFLAGS},,g' ${WRKSRC}/config.mk
 .endif
