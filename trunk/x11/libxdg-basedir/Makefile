@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11/libxdg-basedir/Makefile,v 1.2 2011/05/07 00:29:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxdg-basedir/Makefile,v 1.3 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libxdg-basedir
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.0
 CATEGORIES=	x11
-MASTER_SITES=	http://n.ethz.ch/student/nevillm/download/libxdg-basedir/
+MASTER_SITES=	http://nevill.ch/libxdg-basedir/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of the XDG Base Directory specification
+COMMENT=	Implementation of the XDG Base Directory specification
 LICENSE=	mit
 
 USE_GMAKE=	yes
