@@ -1,13 +1,12 @@
-# $FreeBSD: ports/x11/appres/Makefile,v 1.1 2007/05/19 20:25:49 flz Exp $
-# $MidnightBSD: mports/x11/appres/Makefile,v 1.1 2007/10/03 20:43:39 ctriv Exp $
+# $MidnightBSD: mports/x11/appres/Makefile,v 1.2 2011/05/01 19:26:08 laffer1 Exp $
 
 PORTNAME=	appres
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to list application's resources
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xt
