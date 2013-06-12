@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/libXxf86dga/Makefile,v 1.2 2007/09/13 19:45:00 flz Exp $
-# $MidnightBSD: mports/x11/libXxf86dga/Makefile,v 1.2 2011/05/03 13:38:35 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXxf86dga/Makefile,v 1.3 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXxf86dga
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
