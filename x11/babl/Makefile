@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/babl/Makefile,v 1.6 2011/05/01 19:26:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/babl/Makefile,v 1.7 2012/03/02 02:25:04 laffer1 Exp $
 
 PORTNAME=	babl
-PORTVERSION=	0.1.6
+PORTVERSION=	0.1.10
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
@@ -16,22 +16,27 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic pixel format conversion library
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	pkgconfig gnomehack ltverhack
+USE_GNOME=	ltverhack
+USE_PKGCONFIG=	build
+USE_PATHFIX=	yes
 USE_GMAKE=	yes
+CONFIGURE_ARGS=	--disable-introspection
 
-OPTIONS=	SIMD "Use cpu-specific optimizations if available" off
+OPTIONS_DEFINE=	SIMD
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_SIMD)
+.if ${PORT_OPTIONS:MSIMD}
 CONFIGURE_ARGS+=--disable-mmx \
 		--disable-sse \
 		--disable-altivec
 .endif
 
-.include <bsd.port.post.mk>
+post-patch:
+	@${REINPLACE_CMD} -e 's|x86_64|amd64|g' \
+		${WRKSRC}/configure
+
+.include <bsd.port.mk>
