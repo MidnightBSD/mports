@@ -1,16 +1,15 @@
-# $FreeBSD: ports/x11/libdmx/Makefile,v 1.2 2007/06/04 18:07:59 lesi Exp $
-# $MidnightBSD: mports/x11/libdmx/Makefile,v 1.1 2007/10/05 19:56:19 ctriv Exp $
+# $MidnightBSD: mports/x11/libdmx/Makefile,v 1.2 2011/05/03 13:41:30 laffer1 Exp $
 
 PORTNAME=	libdmx
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DMX extension library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto dmxproto
+USE_XORG=	x11 xext xextproto dmxproto:both
 
 MAN3=		DMX.3 \
 		DMXAddInput.3 \
