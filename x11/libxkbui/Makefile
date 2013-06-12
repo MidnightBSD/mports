@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/libxkbui/Makefile,v 1.2 2007/06/04 18:22:27 lesi Exp $
-# $MidnightBSD: mports/x11/libxkbui/Makefile,v 1.2 2011/05/07 00:32:42 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxkbui/Makefile,v 1.3 2012/03/03 01:52:54 laffer1 Exp $
 
 PORTNAME=	libxkbui
 PORTVERSION=	1.0.2
