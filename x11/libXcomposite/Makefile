@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/libXcomposite/Makefile,v 1.15 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.2 2011/05/03 00:06:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.3 2012/03/03 01:52:52 laffer1 Exp $
 
 PORTNAME=	libXcomposite
-PORTVERSION=	0.4.3
+PORTVERSION=	0.4.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
