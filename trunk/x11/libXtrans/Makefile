@@ -1,10 +1,4 @@
-# New ports collection makefile for:   libXtrans
-# Date Created:			28 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/libXtrans/Makefile,v 1.2 2008/10/08 04:01:22 laffer1 Exp $
-# $FreeBSD: ports/x11/libXtrans/Makefile,v 1.8 2005/07/11 17:34:25 lesi Exp $
-#
+# $MidnightBSD: mports/x11/libXtrans/Makefile,v 1.3 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXtrans
 PORTVERSION=	0.1
@@ -18,8 +12,7 @@ LICENSE=	mit
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack
+USE_PATHFIX=	yes
 
 .include <bsd.port.mk>
