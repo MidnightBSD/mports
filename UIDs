@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/UIDs,v 1.1 2012/02/29 22:00:19 laffer1 Exp $
+# $MidnightBSD: mports/UIDs,v 1.2 2013/01/18 04:02:04 laffer1 Exp $
 # Please keep this file sorted by UID!
 operator:*:2:5::0:0:System &:/:/usr/sbin/nologin
 smmsp:*:25:25::0:0:Sendmail Submission User:/var/spool/clientmqueue:/usr/sbin/nologin
@@ -21,6 +21,7 @@ ircservices:*:73:73::0:0:IRC services:/nonexistent:/nonexistent
 simscan:*:74:74::0:0:Simscan User:/nonexistent:/usr/sbin/nologin
 ifmail:*:75:66::0:0:Ifmail user:/nonexistent:/nonexistent
 hybserv:*:76:76::0:0:HybServ Daemon:/nonexistent:/usr/sbin/nologin
+auditdistd:*:78:77::0:0:Auditdistd unprivileged user:/var/empty:/usr/sbin/nologin
 virtuoso:*:79:79::0:0:Virtuoso Universal Server:/usr/local/virtuoso:/bin/sh
 www:*:80:80::0:0:World Wide Web Owner:/nonexistent:/usr/sbin/nologin
 alias:*:81:81::0:0:QMail user:/var/qmail/alias:/nonexistent
@@ -77,7 +78,7 @@ freeradius:*:133:133::0:0:FreeRADIUS Daemon:/nonexistent:/usr/sbin/nologin
 undernet:*:134:134::0:0:Undernet ircu Daemon:/nonexistent:/usr/sbin/nologin
 rabbitmq:*:135:135::0:0:RabbitMQ:/var/db/rabbitmq:/usr/sbin/nologin
 dhcpd:*:136:136::0:0:ISC DHCP daemon:/nonexistent:/usr/sbin/nologin
-mpd:*:137:137::0:0:MusicPD pseudo-user:/usr/local/var/mpd:/usr/sbin/nologin
+mpd:*:137:137::0:0:MusicPD pseudo-user:/var/mpd:/usr/sbin/nologin
 wolfpack:*:138:138::0:0:Wolfpack Empire Server:/usr/local/share/wolfpack:/usr/sbin/nologin
 shellinabox:*:139:139::0:0:Shell In A Box:/nonexistent:/usr/sbin/nologin
 amanda:*:140:140::0:0:Amanda Daemon:/var/db/amanda:/usr/sbin/nologin
@@ -89,6 +90,7 @@ webcamd:*:145:145::0:0:Webcamd user:/var/empty:/usr/sbin/nologin
 ventrilo:*:146:146::0:0:& server:/usr/local/ventrilo-server:/usr/sbin/nologin
 kdm:*:147:147::0:0:KDE Display Manager:/nonexistent:/usr/sbin/nologin
 ipv6mon:*:148:148::0:0:IPv6 Address Monitoring Daemon:/nonexistent:/usr/sbin/nologin
+avenger:*:149:149::0:0:Mail Avenger:/var/spool/avenger:/usr/sbin/nologin
 rbldns:*:153:153::0:0:rbldnsd pseudo-user:/nonexistent:/usr/sbin/nologin
 trircd:*:154:154::0:0:& user:/usr/local/etc/tr-ircd:/usr/sbin/nologin
 sfs:*:171:171::0:0:Self-Certifying File System:/nonexistent:/usr/sbin/nologin
@@ -117,6 +119,7 @@ hg:*:212:212::0:0:mercurial-server user:/usr/local/hg:/bin/sh
 drizzle:*:213:213::0:0:Drizzle daemon:/var/db/drizzle:/usr/sbin/nologin
 opendnssec:*:215:215::0:0:Opendnssec Pseudo User:/nonexistent:/usr/sbin/nologin
 bs:*:220:220::0:0:Big Sister:/usr/local/bigsister:/bin/sh
+rtpproxy:*:222:222::0:0:& user:/nonexistent:/sbin/nologin
 postgrey:*:225:225::0:0:Postgrey Owner:/nonexistent:/usr/sbin/nologin
 sqlgrey:*:226:226::0:0:SQLgrey Owner:/nonexistent:/usr/sbin/nologin
 aprsd:*:240:240::0:0:aprsd:/nonexistent:/bin/sh
@@ -126,6 +129,8 @@ fcron:*:247:247::0:0:fcron pseudo-user:/nonexistent:/usr/sbin/nologin
 _adsuck:*:253:253::0:0:Adsuck ad blocking user:/nonexistent:/usr/sbin/nologin
 _tor:*:256:256::0:0:Tor anonymizing router:/var/db/tor:/usr/sbin/nologin
 _smtpd:*:257:257::0:0:OpenSMTPD:/var/empty:/usr/sbin/nologin
+_smtpq:*:258:257::0:0:OpenSMTPD queue user:/var/empty:/usr/sbin/nologin
+_smtpf:*:259:257::0:0:OpenSMTPD filter user:/var/empty:/usr/sbin/nologin
 meta1s:*:260:260::0:0:MeTA1 SMTPS:/nonexistent:/usr/sbin/nologin
 meta1q:*:261:261::0:0:MeTA1 QMGR:/nonexistent:/usr/sbin/nologin
 meta1c:*:262:262::0:0:MeTA1 SMTPC:/nonexistent:/usr/sbin/nologin
@@ -137,6 +142,7 @@ mrtg:*:279:279::0:0:MRTG daemon:/nonexistent:/usr/sbin/nologin
 xymon:*:280:280::0:0:Xymon Monitor:/nonexistent:/usr/sbin/nologin
 prelude:*:281:281::0:0:Prelude user:/nonexistent:/usr/sbin/nologin
 spread:*:282:282::0:0:Spread user:/nonexistent:/usr/sbin/nologin
+devmon:*:283:283::0:0:devmon monitor:/nonexistent:/usr/sbin/nologin
 backuppc:*:300:300::0:0:BackupPC pseudo-user:/nonexistent:/usr/sbin/nologin
 _sphinx:*:312:312::0:0:Sphinxsearch Owner:/nonexistent:/usr/sbin/nologin
 dkfilter:*:325:325::0:0:DK Filter Owner:/nonexistent:/usr/sbin/nologin
@@ -156,7 +162,7 @@ drweb:*:426:426::0:0:Dr.Web Mail Scanner:/nonexistent:/usr/sbin/nologin
 quasselcore:*:442:442::0:0:Quassel IRC User:/nonexistent:/usr/sbin/nologin
 callweaver:*:444:444::0:0:Callweaver account:/var/lib/callweaver:/usr/sbin/nologin
 courier:*:465:465::0:0:Courier Mail Server:/nonexistent:/usr/sbin/nologin
-condor:*:466:466::0:0:& user:/var/db/condor:/usr/sbin/nologin
+condor:*:466:466::0:0:& user:/home/condor:/usr/sbin/nologin
 netmon:*:467:467::0:0:Network monitor account:/var/netmon:/usr/sbin/nologin
 _bbstored:*:505:505::0:0:Box Backup Store Daemon:/nonexistent:/usr/sbin/nologin
 radmind:*:506:506::0:0:radmind User:/var/radmind:/usr/sbin/nologin
@@ -207,7 +213,7 @@ nefu:*:918:918::0:0:Nefu daemon:/var/db/nefu:/usr/sbin/nologin
 couchdb:*:919:919::0:0:CouchDB Account:/var/empty:/usr/sbin/nologin
 vboxusers:*:920:920::0:0:Virtualbox user:/nonexistent:/usr/sbin/nologin
 transmission:*:921:921::0:0:Transmission Daemon User:/usr/local/etc/transmission/home:/usr/sbin/nologin
-mongodb:*:922:922::0:0:MongoDB pseudo-user:/var/db/mongodb:/bin/sh
+mongodb:*:922:922::0:0:MongoDB pseudo-user:/var/db/mongodb:/usr/sbin/nologin
 liquidsoap:*:923:923::0:0:Liquidsoap User:/nonexistent:/usr/sbin/nologin
 postpals:*:924:924::0:0:postpals user:/nonexistent:/usr/sbin/nologin
 mfs:*:925:925::0:0:MooseFS User:/nonexistent:/usr/sbin/nologin
@@ -249,4 +255,10 @@ zookeeper:*:962:962::0:0:zookeeper user:/nonexistent:/usr/sbin/nologin
 fluentd:*:963:963::0:0:fluentd user:/nonexistent:/usr/sbin/nologin
 git_daemon:*:964:964::0:0:git daemon:/nonexistent:/usr/sbin/nologin
 elasticsearch:*:965:965::0:0:elasticsearch user:/nonexistent:/usr/sbin/nologin
+ossec:*:966:966::0:0:OSSEC user:/usr/local/ossec-hids:/usr/sbin/nologin
+ossecm:*:967:966::0:0:OSSEC mail user:/usr/local/ossec-hids:/usr/sbin/nologin
+ossecr:*:968:966::0:0:OSSEC rem user:/usr/local/ossec-hids:/usr/sbin/nologin
+kippo:*:969:969::0:0:kippo user:/nonexistent:/usr/sbin/nologin
+colord:*:970:970::0:0:colord color management daemon:/nonexistent:/usr/sbin/nologin
+shibd:*:971:971::0:0:Shibboleth SAML daemon:/nonexistent:/usr/sbin/nologin
 nobody:*:65534:65534::0:0:Unprivileged user:/nonexistent:/usr/sbin/nologin
