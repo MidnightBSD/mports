@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11/libXrender/Makefile,v 1.3 2011/05/03 00:23:48 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXrender/Makefile,v 1.4 2012/03/02 01:48:36 laffer1 Exp $
 
 PORTNAME=	libXrender
-PORTVERSION=	0.9.6
+PORTVERSION=	0.9.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Render extension library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 renderproto:both xproto:both
