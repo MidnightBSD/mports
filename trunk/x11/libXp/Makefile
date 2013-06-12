@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/libXp/Makefile,v 1.10 2007/05/19 20:26:52 flz Exp $
-# $MidnightBSD: mports/x11/libXp/Makefile,v 1.3 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXp/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXp
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto xau printproto:both
 USE_AUTOTOOLS=	libtool
-
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 
 MAN3=	XpCancelDoc.3 \
 	XpCancelJob.3 \
