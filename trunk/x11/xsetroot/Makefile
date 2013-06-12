@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xsetroot/Makefile,v 1.3 2011/05/07 20:39:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/xsetroot/Makefile,v 1.4 2012/03/03 01:52:57 laffer1 Exp $
 
 PORTNAME=	xsetroot
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
