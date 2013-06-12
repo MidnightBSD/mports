@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/glproto/Makefile,v 1.3 2011/05/02 23:34:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/glproto/Makefile,v 1.4 2013/03/23 16:37:27 laffer1 Exp $
 
 PORTNAME=	glproto
-PORTVERSION=	1.4.15
+PORTVERSION=	1.4.16
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
