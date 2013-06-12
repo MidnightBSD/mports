@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/compositeproto/Makefile,v 1.2 2007/09/13 19:44:57 flz Exp $
-# $MidnightBSD: mports/x11/compositeproto/Makefile,v 1.1 2007/10/05 17:20:56 ctriv Exp $
+# $MidnightBSD: mports/x11/compositeproto/Makefile,v 1.2 2011/05/02 13:36:54 laffer1 Exp $
 
 PORTNAME=	compositeproto
 PORTVERSION=	0.4.2
@@ -7,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Composite extension headers
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	proto
 
