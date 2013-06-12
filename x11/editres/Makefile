@@ -1,13 +1,12 @@
-# $FreeBSD: ports/x11/editres/Makefile,v 1.1 2007/05/19 20:26:09 flz Exp $
-# $MidnightBSD: mports/x11/editres/Makefile,v 1.1 2007/10/03 20:55:56 ctriv Exp $
+# $MidnightBSD: mports/x11/editres/Makefile,v 1.2 2011/05/02 23:18:00 laffer1 Exp $
 
 PORTNAME=	editres
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic resource editor for X Toolkit Applications
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xt xmu xaw
