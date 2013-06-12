@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xscreensaver-gnome-hacks/Makefile,v 1.1 2010/03/02 01:10:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver-gnome-hacks/Makefile,v 1.2 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	xscreensaver-gnome-hacks
-PORTREVISION=	0
+PORTREVISION=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Screensaver modules for use with xscreensaver and gnome-screensaver
@@ -13,7 +13,8 @@ PLIST=		${.CURDIR}/pkg-plist
 
 CONFLICTS=	xscreensaver-[0-9]* xscreensaver-gnome-[0-9]*
 
-OPTIONS=	ALL_FORTUNES "Enable support for all fortunes" off
+OPTIONS_DEFINE=	ALL_FORTUNES
+ALL_FORTUNES_DESC=	Enable support for all fortunes
 
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-nodriver
 
