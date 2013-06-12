@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.21 2013/03/24 19:35:35 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.22 2013/06/12 22:56:08 laffer1 Exp $
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.21
@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Save your screen while you entertain your cat
-LICENSE=	x11
+LICENSE=	mit
 
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
