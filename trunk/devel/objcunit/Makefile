@@ -1,15 +1,15 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.9 2013/03/06 03:08:48 laffer1 Exp $
 
 PORTNAME=	objcunit
 PORTVERSION=	1.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel gnustep
 MASTER_SITES=	http://xanthippe.dyndns.org/Zipper/
 PKGNAMEPREFIX=	gnustep-
 DISTNAME=	ObjcUnit-${PORTVERSION}-GNUstep
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	ObjcUnit frammework for GNUstep
+COMMENT=	ObjcUnit framework for GNUstep
 LICENSE=	ibm
 
 USE_GNUSTEP=		yes
