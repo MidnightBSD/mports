@@ -1,6 +1,6 @@
 #!/bin/sh
-# $FreeBSD: ports/x11/gdm/files/gdm.in,v 1.20 2010/07/25 19:35:05 kwm Exp $
-#    $MCom: ports-stable/x11/gdm/files/gdm.in,v 1.5 2010/07/21 13:50:46 kwm Exp $
+# $FreeBSD$
+#    $MCom: ports/x11/gdm/files/gdm.in,v 1.50 2012/01/15 18:18:36 kwm Exp $
 
 # PROVIDE: gdm
 # REQUIRE: LOGIN cleanvar moused syscons dbus
@@ -20,7 +20,7 @@ gdm_lang=${gdm_lang-${LANG}}
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:%%LOCALBASE%%/bin:%%LOCALBASE%%/sbin
 
 name="gdm"
-rcvar=`set_rcvar`
+rcvar=gdm_enable
 command="%%PREFIX%%/sbin/${name}"
 pidfile="/var/run/${name}.pid"
 procname="%%PREFIX%%/sbin/gdm-binary"
