@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXv/Makefile,v 1.3 2011/05/03 13:36:04 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXv/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXv
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
