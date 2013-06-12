@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/listres/Makefile,v 1.3 2013/02/22 00:58:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/listres/Makefile,v 1.4 2013/04/11 00:59:35 laffer1 Exp $
 
 PORTNAME=	listres
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,7 @@ COMMENT=	List resources in widgets
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xproto xt xmu xaw xorg-macros
+USE_XORG=	xproto xt xmu xaw
 
 PLIST_FILES=	bin/listres
 
