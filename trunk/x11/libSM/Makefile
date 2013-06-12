@@ -1,15 +1,13 @@
-# $MidnightBSD: mports/x11/libSM/Makefile,v 1.7 2011/05/02 23:52:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/libSM/Makefile,v 1.8 2012/03/02 01:47:10 laffer1 Exp $
 
 PORTNAME=	libSM
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session Management library for X11
-LICENSE=	x11
-
-BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/xorg-macros.m4:${PORTSDIR}/devel/xorg-macros
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	ice xproto:both xtrans
