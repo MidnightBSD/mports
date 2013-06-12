@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.12 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.13 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libgnome
 PORTVERSION=	2.32.0
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -21,9 +21,10 @@ RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack esound libbonobo \
+USE_GNOME=	gnomeprefix intlhack esound libbonobo \
 		gnomevfs2 ltverhack referencehack
 USE_BISON=	build
+USE_PATHFIX=	yes
 USE_XORG=	xpm
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
@@ -57,6 +58,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/libgnome/libgnome-2.0.pc.in
 	@${REINPLACE_CMD} -e '/^$$/d' ${WRKSRC}/po/POTFILES.in
+	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/libgnome/Makefile.in
 
 .include <bsd.port.mk>
 
