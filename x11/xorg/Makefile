@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.9 2011/05/07 16:17:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.10 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xorg
-PORTVERSION=	7.5.1
+PORTVERSION=	7.7
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -19,8 +19,10 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \
 		${LOCALBASE}/lib/X11/icons/handhelds/cursors/X_cursor:${PORTSDIR}/x11-themes/xcursor-themes
 
+.include <bsd.mport.options.mk>
+
 # doc
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:${PORTSDIR}/x11/xorg-docs
 .endif
 
