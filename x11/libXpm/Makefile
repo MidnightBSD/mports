@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/libXpm/Makefile,v 1.19 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXpm/Makefile,v 1.1 2007/10/03 20:31:51 ctriv Exp $
+# $MidnightBSD: mports/x11/libXpm/Makefile,v 1.2 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXpm
-PORTVERSION=	3.5.9
+PORTVERSION=	3.5.10
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
