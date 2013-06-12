@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/randrproto/Makefile,v 1.3 2011/05/07 02:14:06 laffer1 Exp $
+# $MidnightBSD: mports/x11/randrproto/Makefile,v 1.4 2012/03/03 01:52:54 laffer1 Exp $
 
 PORTNAME=	randrproto
-PORTVERSION=	1.3.2
+PORTVERSION=	1.4.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
