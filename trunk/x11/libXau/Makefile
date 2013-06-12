@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXau/Makefile,v 1.4 2011/05/03 00:05:18 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXau/Makefile,v 1.5 2012/03/03 01:52:52 laffer1 Exp $
 
 PORTNAME=	libXau
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
