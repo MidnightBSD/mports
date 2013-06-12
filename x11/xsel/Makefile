@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11/xsel/Makefile,v 1.1 2011/06/08 12:17:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/xsel/Makefile,v 1.2 2013/02/09 14:50:26 laffer1 Exp $
 # $FreeBSD: ports/x11/xsel/Makefile,v 1.9 2009/01/23 16:28:24 flz Exp $
 #
 
 PORTNAME=	xsel
 PORTVERSION=	0.04.1
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	CENKES
 #http://www.niksula.cs.hut.fi/~vherva/xsel/xsel.{c,man}
@@ -21,13 +22,15 @@ MAN1=		${PORTNAME}.1
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	${PORTNAME}.html
 
+.include <bsd.mport.options.mk>
+
 do-build:
 	@cd ${WRKSRC} && ${CC} ${CFLAGS} xsel.c -o xsel ${LDFLAGS}
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
 	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.man ${MAN1PREFIX}/man/man1/${PORTNAME}.1
-.ifndef NOPORTDOCS
+.if ${PORT_OPTIONS:MDOCS}
 	@${INSTALL} -d ${DOCSDIR}/
 	@cd ${WRKSRC}/&&${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
 .endif
