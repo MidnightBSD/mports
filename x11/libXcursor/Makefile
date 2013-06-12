@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/libXcursor/Makefile,v 1.22 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.3 2011/09/20 23:30:11 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
 
 PORTNAME=	libXcursor
-PORTVERSION=	1.1.12
+PORTVERSION=	1.1.14
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
