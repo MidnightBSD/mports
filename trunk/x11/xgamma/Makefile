@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xgamma/Makefile,v 1.2 2007/09/13 19:45:03 flz Exp $
-# $MidnightBSD: mports/x11/xgamma/Makefile,v 1.2 2011/05/07 15:11:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/xgamma/Makefile,v 1.3 2012/03/03 01:52:55 laffer1 Exp $
 
 PORTNAME=	xgamma
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
