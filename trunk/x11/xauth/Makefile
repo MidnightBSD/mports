@@ -1,17 +1,15 @@
-# $MidnightBSD: mports/x11/xauth/Makefile,v 1.4 2011/07/16 15:58:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/xauth/Makefile,v 1.5 2012/03/02 02:55:19 laffer1 Exp $
 
 PORTNAME=	xauth
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X authority file utility
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xau xext xmuu
-
-CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd7.0
 
 PLIST_FILES=	bin/xauth
 
