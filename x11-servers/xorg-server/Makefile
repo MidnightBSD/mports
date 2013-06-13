@@ -1,41 +1,42 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.18 2013/02/23 00:28:16 laffer1 Exp $
 
 PORTNAME?=	xorg-server
 PORTVERSION=	${XORG_VERSION}
 PORTREVISION?=	${XORG_REVISION}
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
-MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/
-DISTFILES=	xorg-server-${PORTVERSION}.tar.bz2
+MASTER_SITES=	XORG
+MASTER_SITE_SUBDIR=	individual/xserver
+DISTNAME=	xorg-server-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	X.Org X server and related programs
 LICENSE?=	mit
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
-
-RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard-config \
+RUN_DEPENDS=	xkeyboard-config>=2.5:${PORTSDIR}/x11/xkeyboard-config \
 		xkbcomp:${PORTSDIR}/x11/xkbcomp
 
 XORG_CAT=	xserver
 SLAVE_PORT?=	no
 
 .if defined(WITH_NEW_XORG)
-XORG_VERSION=	1.10.6
-XORG_REVISION=	2
+XORG_VERSION=	1.12.4
+XORG_REVISION=	0
 PLIST_SUB+=	OLD="@comment " NEW=""
-EXTRA_PATCHES+=	${FILESDIR}/extra-hw_dmx_glxProxy_compsize.h \
-		${FILESDIR}/extra-hw_dmx_glxProxy_glxcmds.h \
-		${FILESDIR}/extra-clang
+EXTRA_PATCHES+=	${FILESDIR}/extra-clang
 .else
 XORG_VERSION=	1.7.7
 XORG_REVISION=	6
 PLIST_SUB+=	OLD="" NEW="@comment "
-EXTRA_PATCHES+=	${FILESDIR}/extra-dix_events.c
-EXTRA_PATCHES+=	${FILESDIR}/extra-include_eventstr.h
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-os-utils.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-include_eventstr.h \
+		${FILESDIR}/extra-os-utils.c \
+		${FILESDIR}/extra-Xserver-hw-xfree86-os-support-bsd-sparc64_video.c \
+		${FILESDIR}/extra-Xserver-os-xprintf.c \
+		${FILESDIR}/extra-servermd.h
 .endif
 
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GL=		gl
 USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
@@ -73,9 +74,13 @@ MAN5+=		xorg.conf.d.5
 PLIST=		${.CURDIR}/pkg-plist
 .endif
 
-OPTIONS=	AIGLX	"Compile with Accelerated Indirect GLX support" On \
-		SUID	"Install the Xorg server with setuid bit set" On \
-		HAL	"Compile with HAL config support" On
+OPTIONS_DEFINE=	AIGLX SUID HAL
+AIGLX_DESC=	Compile with Accelerated Indirect GLX support
+SUID_DESC=	Install the Xorg server with setuid bit set
+HAL_DESC=	Compile with HAL config support
+OPTIONS_DEFAULT=	AIGLX SUID HAL
+
+OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.port.pre.mk>
 
@@ -86,27 +91,45 @@ OPTIONS=	AIGLX	"Compile with Accelerated Indirect GLX support" On \
 CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 .endif
 
-.if defined(WITH_HAL)
-LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
+.if ${PORT_OPTIONS:MHAL}
+LIB_DEPENDS+=	hal:${PORTSDIR}/sysutils/hal
 CONFIGURE_ARGS+=	--enable-config-hal=yes
 .else
 CONFIGURE_ARGS+=	--enable-config-hal=no
 .endif
 
-.if defined(WITH_AIGLX)
+.if ${PORT_OPTIONS:MAIGLX}
 CONFIGURE_ARGS+=	--enable-aiglx=yes
 .else
 CONFIGURE_ARGS+=	--enable-aiglx=no
 .endif
 
-.if defined(WITH_SUID)
+.if ${PORT_OPTIONS:MSUID}
 CONFIGURE_ARGS+=--enable-install-setuid=yes
 .else
 CONFIGURE_ARGS+=--enable-install-setuid=no
 .endif
 
 .if ${ARCH} == i386
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-i386
+.if defined(WITH_NEW_XORG)
+EXTRA_PATCHES+=	${FILESDIR}/extra-new-arch-i386
+.else
+EXTRA_PATCHES+=	${FILESDIR}/extra-old-arch-i386
+.endif
+.endif
+
+.if ${ARCH} == ia64
+PLIST_SUB+=	IA64_NA="@comment "
+EXTRA_PATCHES=	${.CURDIR}/files/extra-arch-ia64
+.else
+PLIST_SUB+=	IA64_NA=""
+.endif
+
+.if ${ARCH} == powerpc || ${ARCH} == powerpc64
+PLIST_SUB+=	PPC_NA="@comment "
+EXTRA_PATCHES=	${.CURDIR}/files/extra-arch-powerpc
+.else
+PLIST_SUB+=	PPC_NA=""
 .endif
 
 .if ${ARCH} == sparc64
@@ -123,7 +146,7 @@ PLIST_SUB+=	AMD64_I386_SPARC64=""
 PLIST_SUB+=	AMD64_I386_SPARC64="@comment "
 .endif
 
-.if defined(WITH_SUID)
+.if ${PORT_OPTIONS:MSUID}
 pre-everything::
 	@${ECHO_MSG} "By default, the X Server installs as a set-user-id root binary. When run by"
 	@${ECHO_MSG} "a normal user, it checks arguments and environment as done in the x11/wrapper"
