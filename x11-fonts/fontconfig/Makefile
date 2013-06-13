@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.12 2011/05/08 17:37:10 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.13 2013/01/19 04:23:09 laffer1 Exp $
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.9.0
@@ -12,8 +12,8 @@ LICENSE=	x11
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
-		expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
+		expat:${PORTSDIR}/textproc/expat2
 
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
