@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11-fonts/font-misc-ethiopic/Makefile,v 1.1 2007/05/19 20:29:16 flz Exp $
-# $MidnightBSD: mports/x11-fonts/font-misc-ethiopic/Makefile,v 1.2 2011/05/08 17:37:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/font-misc-ethiopic/Makefile,v 1.3 2012/03/03 23:17:18 laffer1 Exp $
 
 PORTNAME=	font-misc-ethiopic
 PORTVERSION=	1.0.3
