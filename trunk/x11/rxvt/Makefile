@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.7 2011/05/07 02:22:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.8 2011/05/17 03:40:21 laffer1 Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -7,7 +7,7 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES+=	x11
 MASTER_SITES=	SF
 
@@ -18,79 +18,82 @@ LICENSE=	gpl2
 USE_XORG=	xpm
 GNU_CONFIGURE=	yes
 
-OPTIONS=	BIG5		"Build with BIG5 support" off \
-		GB		"Build with GB support" off \
-		GREEK 		"Build with greek keyboard support" off \
-		HALF_SHADOW	"Build with half shadows support" off \
-		KANJI		"Build with Kanji support" off \
-		MENUBAR		"Build with menubar support" off \
-		NEXT		"Build with NeXT scrollbar" off \
-		TRANSPARENCY	"Build with transparency support" off \
-		XGETDEFAULT	"Build with XGetDefault() support" off \
-		XIM		"Build with XIM support" off \
-		XTERM		"Build with Xterm scrollbar" off
+OPTIONS_DEFINE =	BIG5 GB GREEK HALF_SHADOW KANJI MENUBAR NEXT \
+			TRANSPARENCY XGETDEFAULT XIM XTERM
+BIG5_DESC=		Build with BIG5 support
+GB_DESC=		Build with GB support
+GREEK_DESC=		Build with greek keyboard support
+HALF_SHADOW_DESC=	Build with half shadows support
+KANJI_DESC=		Build with Kanji support
+MENUBAR_DESC=		Build with menubar support
+NEXT_DESC=		Build with NeXT scrollbar
+TRANSPARENCY_DESC=	Build with transparency support
+XGETDEFAULT_DESC=	Build with XGetDefault() support
+XIM_DESC=		Build with XIM support
+XTERM_DESC=		Build with Xterm scrollbar
 
-CONFIGURE_ARGS=	--enable-utmp --enable-wtmp --enable-ttygid \
+CONFIGURE_ARGS=	--enable-ttygid \
 		--with-xpm --enable-xpm-background \
 		--with-xpm-includes=${LOCALBASE}/include/X11 \
 		--with-xpm-library=${LOCALBASE}/lib
 MAN1=		rxvt.1
 PLIST_FILES=	bin/rxvt
 
+MAKE_JOBS_SAFE=	yes
+
 .include <bsd.port.pre.mk>
 
-# enable big5 support
-.if defined(WITH_BIG5)
+# fails to build with new utmpx
+.if ${OSVERSION} > 4015
+CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp
+.else
+CONFIGURE_ARGS+=	--enable-utmp --enable-wtmp
+.endif
+
+.if ${PORT_OPTIONS:MBIG5}
 CONFIGURE_ARGS+=	--enable-big5
 .endif
 
-# enable gb support
-.if defined(WITH_GB)
+.if ${PORT_OPTIONS:MGB}
 CONFIGURE_ARGS+=	--enable-gb
 .endif
 
-# enable greek keyboard support
-.if defined(WITH_GREEK)
+.if ${PORT_OPTIONS:MGREEK}
 CONFIGURE_ARGS+=	--enable-greek
 .endif
 
 # enable half width/height shadows scrollbar
-.if defined(WITH_HALF_SHADOW)
+.if ${PORT_OPTIONS:MHALF_SHADOW}
 CONFIGURE_ARGS+=	--enable-half-shadow
 .endif
 
-# enable kanji support
-.if defined(WITH_KANJI)
+.if ${PORT_OPTIONS:MKANJI}
 CONFIGURE_ARGS+=	--enable-kanji
 .endif
 
-# enable menubar
-.if defined(WITH_MENUBAR)
+.if ${PORT_OPTIONS:MMENUBAR}
 CONFIGURE_ARGS+=	--enable-menubar
 .endif
 
-# enable NeXT style scrollbar
-.if defined(WITH_NEXT)
+.if ${PORT_OPTIONS:MNEXT}
 CONFIGURE_ARGS+=	--enable-next-scroll
 .endif
 
-# enable transparency support
-.if defined(WITH_TRANSPARENCY)
+.if ${PORT_OPTIONS:MTRANSPARENCY}
 CONFIGURE_ARGS+=	--enable-transparency
 .endif
 
 # make resources checking via XGetDefault()
-.if defined(WITH_XGETDEFAULT)
+.if ${PORT_OPTIONS:MXGETDEFAULT}
 CONFIGURE_ARGS+=	--enable-xgetdefault
 .endif
 
 # XIM (X Input Method) protocol support
-.if defined(WITH_XIM)
+.if ${PORT_OPTIONS:MXIM}
 CONFIGURE_ARGS+=	--enable-xim
 .endif
 
-# enable Xterm style scrollbar
-.if defined(WITH_XTERM)
+.if ${PORT_OPTIONS:MXTERM}
 CONFIGURE_ARGS+=	--enable-xterm-scroll
 .endif
 
