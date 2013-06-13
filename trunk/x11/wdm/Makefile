@@ -1,10 +1,4 @@
-# New ports collection makefile for:	wdm
-# Date created:		August 31, 1998
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.5 2008/08/20 20:33:13 laffer1 Exp $
-# $FreeBSD: ports/x11/wdm/Makefile,v 1.73 2006/07/16 16:17:04 pav Exp $
-#
+# $MidnightBSD: mports/x11/wdm/Makefile,v 1.6 2009/09/26 04:27:07 laffer1 Exp $
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
@@ -31,7 +25,6 @@ NOT_FOR_ARCHS=	sparc64
 USE_BZIP2=	yes
 USE_XORG=	x11 xmu
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
 		DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
 CONFIGURE_ARGS=	--with-logdir=/var/log \
