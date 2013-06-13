@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xkbcomp/Makefile,v 1.1 2007/05/19 20:27:55 flz Exp $
-# $MidnightBSD: mports/x11/xkbcomp/Makefile,v 1.2 2011/05/07 15:29:45 laffer1 Exp $
+# $MidnightBSD: mports/x11/xkbcomp/Makefile,v 1.3 2012/03/03 01:52:55 laffer1 Exp $
 
 PORTNAME=	xkbcomp
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,8 +10,10 @@ LICENSE=	sgi
 
 XORG_CAT=	app
 USE_XORG=	x11 xkbfile
+USE_PATHFIX=	yes
 
-PLIST_FILES=	bin/xkbcomp
+PLIST_FILES=	bin/xkbcomp \
+		libdata/pkgconfig/xkbcomp.pc
 
 MAN1=		xkbcomp.1
 
