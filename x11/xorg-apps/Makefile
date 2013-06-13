@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xorg-apps/Makefile,v 1.6 2011/05/13 14:35:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-apps/Makefile,v 1.7 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xorg-apps
-PORTVERSION=	7.5.1
+PORTVERSION=	7.7
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -9,13 +9,15 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org apps meta-port
-LICENSE=	x11
+LICENSE=	mit
+
+.MAKE.FreeBSD_UL=	yes
 
 COMPONENTS=	appres bitmap xf86dga:dga iceauth luit \
 		x11-fonts/mkfontdir:mkfontdir \
 		x11-fonts/mkfontscale:mkfontscale sessreg \
 		setxkbmap smproxy x11perf xauth xbacklight xcalc \
-		xcmsdb xcursorgen xdpyinfo xdriinfo xev xgamma xgc \
+		xcmsdb xconsole xcursorgen xdpyinfo xdriinfo xev xgamma xgc \
 		xhost xinput xkbcomp xkbevd xkbutils:xkbvleds xkill \
 		xlsatoms xlsclients xmodmap xpr xprop xrandr xrdb \
 		xrefresh xset xsetmode xsetroot xvinfo xwd xwininfo \
@@ -31,14 +33,16 @@ do-install:
 		${TOUCH} ${PREFIX}/libdata/xorg/apps
 
 .for comp in ${COMPONENTS}
-OPTIONS+=	${comp:C/:.*//:C/.*\///:U} "Install ${comp:C/:.*//:C/.*\///} application" on
+OPTIONS_DEFINE+=	${comp:C/:.*//:C/.*\///:U}
+OPTIONS_DEFAULT+=	${comp:C/:.*//:C/.*\///:U}
+${comp:C/:.*//:C/.*\///:U}_DESC=	Install ${comp:C/:.*//:C/.*\///} application
 .endfor
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .for comp in ${COMPONENTS}
-. if !defined(WITHOUT_${comp:C/:.*//:C/.*\///:U})
-.  if ${comp:M:}==""
+. if ${PORT_OPTIONS:M${comp:C/:.*//:C/.*\///:U}}
+.  if ${comp:M*\:*}==""
 port=${comp}
 check=${comp:C/.*\///} # doesn't work
 .  else
@@ -52,4 +56,4 @@ RUN_DEPENDS:=	${RUN_DEPENDS} ${check}:${PORTSDIR}/${port}
 . endif
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
