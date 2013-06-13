@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xditview/Makefile,v 1.1 2007/05/19 20:27:45 flz Exp $
-# $MidnightBSD: mports/x11/xditview/Makefile,v 1.3 2011/09/20 23:43:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/xditview/Makefile,v 1.4 2012/03/03 01:52:54 laffer1 Exp $
 
 PORTNAME=	xditview
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
