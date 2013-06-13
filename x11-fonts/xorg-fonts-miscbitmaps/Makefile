@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.5 2009/04/04 15:30:19 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.6 2011/05/08 01:24:40 laffer1 Exp $
 
 PORTNAME=	xorg-fonts-miscbitmaps
-PORTVERSION=	7.5.1
+PORTVERSION=	7.7
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -23,6 +23,8 @@ RUN_DEPENDS=	${FONTDIR}/misc/arabic24.pcf.gz:${PORTSDIR}/x11-fonts/font-arabic-m
 		${FONTDIR}/misc/12x24.pcf.gz:${PORTSDIR}/x11-fonts/font-sony-misc \
 		${FONTDIR}/misc/olcursor.pcf.gz:${PORTSDIR}/x11-fonts/font-sun-misc \
 		${FONTDIR}/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings
+
+CONFLICTS=	XFree86-fontDefaultBitmaps-*
 
 NO_BUILD=	# none
 FONTDIR=	${LOCALBASE}/lib/X11/fonts
