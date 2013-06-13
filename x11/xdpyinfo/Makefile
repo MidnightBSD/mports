@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xdpyinfo/Makefile,v 1.4 2011/09/20 23:44:41 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdpyinfo/Makefile,v 1.5 2012/03/03 01:52:54 laffer1 Exp $
 
 PORTNAME=	xdpyinfo
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,9 +9,8 @@ COMMENT=	Display information utility for X
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xext x11 xtst xxf86vm xxf86dga xi xrender \
-		xinerama dmxproto xp
-CONFIGURE_ARGS=	--without-xf86misc
+USE_XORG=	dmx x11 xcb xcomposite xext xinerama xproto xrender \
+		xtst xxf86dga xxf86misc xxf86vm
 
 PLIST_FILES=	bin/xdpyinfo
 
