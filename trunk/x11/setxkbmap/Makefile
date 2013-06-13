@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/setxkbmap/Makefile,v 1.2 2007/09/13 19:45:01 flz Exp $
-# $MidnightBSD: mports/x11/setxkbmap/Makefile,v 1.2 2008/06/11 03:14:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/setxkbmap/Makefile,v 1.3 2011/05/07 02:25:56 laffer1 Exp $
 
 PORTNAME=	setxkbmap
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
