@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xdm/Makefile,v 1.5 2011/05/17 13:42:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.6 2012/03/03 00:28:20 laffer1 Exp $
 
 PORTNAME=	xdm
 PORTVERSION=	1.1.11
@@ -18,11 +18,12 @@ MAN1=		xdm.1
 CFFILES=	GiveConsole TakeConsole Xaccess Xreset Xresources \
 		Xservers Xsession Xsetup_0 Xstartup Xwilling xdm-config
 
-OPTIONS=	XDMSHELL "Install xdmshell" off
+OPTIONS_DEFINE=	XDMSHELL
+XDMSHELL_DESC=	Install xdmshell
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_XDMSHELL)
+.if ${PORT_OPTIONS:MXDMSHELL}
 CONFIGURE_ARGS+=--enable-xdmshell
 MAN1+=		xdmshell.1
 PLIST_SUB+=	XDMSHELL=""
@@ -32,6 +33,8 @@ PLIST_SUB+=	XDMSHELL="@comment "
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' \
+		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s|XDMCONFIGDIR/|${PREFIX}/lib/X11/xdm/|" \
 		-e "s|XDMSCRIPTDIR/|${PREFIX}/lib/X11/xdm/|" \
 			${WRKSRC}/config/xdm-config.cpp \
@@ -45,7 +48,7 @@ post-configure:
 
 post-install:
 .for f in ${CFFILES}
-	${CP} -n ${EXAMPLESDIR}/$f ${PREFIX}/lib/X11/xdm/$f
+	${CP} -n ${EXAMPLESDIR}/$f ${PREFIX}/lib/X11/xdm/$f || ${TRUE}
 .endfor
 	(cd ${PREFIX}/lib/X11/xdm && ${LN} -sf /var/lib/xdm/authdir authdir)
 
