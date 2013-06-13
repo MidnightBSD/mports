@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/xkill/Makefile,v 1.1 2007/05/19 20:27:58 flz Exp $
-# $MidnightBSD: mports/x11/xkill/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/xkill/Makefile,v 1.3 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xkill
 PORTVERSION=	1.0.3
