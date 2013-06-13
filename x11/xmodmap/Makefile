@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xmodmap/Makefile,v 1.2 2007/09/13 19:45:04 flz Exp $
-# $MidnightBSD: mports/x11/xmodmap/Makefile,v 1.2 2011/05/07 16:17:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/xmodmap/Makefile,v 1.3 2011/09/20 23:54:51 laffer1 Exp $
 
 PORTNAME=	xmodmap
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
