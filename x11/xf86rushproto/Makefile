@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/xf86rushproto/Makefile,v 1.1 2007/05/19 20:27:51 flz Exp $
-# $MidnightBSD: mports/x11/xf86rushproto/Makefile,v 1.1 2007/10/07 16:31:37 ctriv Exp $
+# $MidnightBSD: mports/x11/xf86rushproto/Makefile,v 1.2 2012/03/03 01:52:55 laffer1 Exp $
 #
 
 PORTNAME=	xf86rushproto

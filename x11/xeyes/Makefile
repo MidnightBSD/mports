@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/xeyes/Makefile,v 1.1 2007/05/19 20:27:49 flz Exp $
-# $MidnightBSD: mports/x11/xeyes/Makefile,v 1.2 2011/05/07 03:01:03 laffer1 Exp $
+# $MidnightBSD: mports/x11/xeyes/Makefile,v 1.3 2012/03/03 01:52:55 laffer1 Exp $
 
 PORTNAME=	xeyes
 PORTVERSION=	1.1.1
