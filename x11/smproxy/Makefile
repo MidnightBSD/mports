@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/smproxy/Makefile,v 1.1 2007/05/19 20:27:20 flz Exp $
-# $MidnightBSD: mports/x11/smproxy/Makefile,v 1.2 2011/05/07 02:33:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/smproxy/Makefile,v 1.3 2011/09/20 23:33:25 laffer1 Exp $
 
 PORTNAME=	smproxy
 PORTVERSION=	1.0.5
@@ -7,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session Manager Proxy
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xt xmu
