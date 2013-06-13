@@ -1,32 +1,32 @@
-# $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.10 2012/02/29 02:46:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.11 2012/09/09 01:45:13 laffer1 Exp $
 
 PORTNAME=	open-motif
-PORTVERSION=	2.3.3
-PORTREVISION=	1
+PORTVERSION=	2.3.4
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	ftp://ftp.ics.com/openmotif/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/${PORTVERSION}/
-DISTNAME=	openmotif-${PORTVERSION}
-DIST_SUBDIR=	openmotif
+# MASTER_SITES=	SF/${PORTNAME}/Motif%202.3.4%20Source%20Code/
+MASTER_SITES=	SF/motif/Motif%202.3.4%20Source%20Code/
+DISTNAME=	motif-${PORTVERSION}-src
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
-LICENSE=	other
+LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+		jpeg:${PORTSDIR}/graphics/jpeg
 
 MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	lesstif-[0-9]*
+WRKSRC=		${WRKDIR}/motif-${PORTVERSION}
 
-USE_AUTOTOOLS=	libtool
 USE_ICONV=	yes
+USE_AUTOTOOLS=	libtool autoconf:env automake:env
 USE_GMAKE=	yes
 USE_XORG=	xaw xbitmaps xft
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_ENV=	LANG=C
-CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI
+CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include
 USE_CSTD=	gnu89
 
 DEMOS_SRC=	${WRKSRC}/demos/programs
@@ -83,9 +83,10 @@ post-patch:
 	@${FIND} ${WRKSRC}/doc/man/man5 -name '*.5' -maxdepth 1 | \
 		${XARGS} ${REINPLACE_CMD} -e 's|special file|5| ; \
 		 s|file formats|5|'
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		-e '/-dumpversion/{ s/==/=/; s/gcc/$$CC/; }' \
-		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/configure.ac
+
+pre-configure:
+	cd ${WRKSRC} && ./autogen.sh
 
 post-install:
 .if defined(WITH_OPENMOTIF_DEMOS)
@@ -168,7 +169,7 @@ post-install:
 .endif
 .if !defined(WITHOUT_OPENMOTIF_MANUALS)
 	@${MKDIR} ${DOCSDIR}
-.for i in BUGREPORT COPYRIGHT.MOTIF README RELNOTES
+.for i in BUGREPORT README RELNOTES
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
