@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-type1inst
-# Date created:		7 Jan 1998
-# Whom:			giffunip@asme.org
-#
-# $FreeBSD: ports/x11-fonts/p5-type1inst/Makefile,v 1.17 2004/07/25 15:10:24 hrs Exp $
-# $MidnightBSD: mports/x11-fonts/p5-type1inst/Makefile,v 1.2 2007/05/20 21:58:58 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-fonts/p5-type1inst/Makefile,v 1.3 2008/08/20 19:13:43 laffer1 Exp $
 
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
@@ -15,7 +9,7 @@ MASTER_SITE_SUBDIR=X11/xutils
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A script that helps install Postscript fonts in X Window System
+COMMENT=	Script that helps install Postscript fonts in X Window System
 LICENSE=	gpl2
 
 .if !defined(WITHOUT_X11)
