@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/rgb/Makefile,v 1.1 2007/05/19 20:27:14 flz Exp $
-# $MidnightBSD: mports/x11/rgb/Makefile,v 1.2 2011/05/07 02:18:39 laffer1 Exp $
+# $MidnightBSD: mports/x11/rgb/Makefile,v 1.3 2012/03/03 01:52:54 laffer1 Exp $
 
 PORTNAME=	rgb
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
