@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.11 2012/03/03 23:21:14 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.12 2013/03/24 19:37:16 laffer1 Exp $
 
 PORTNAME=	xorg-dmx
 PORTREVISION=	0
@@ -18,7 +18,7 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		xxf86misc xxf86vm xaw7 xmu xpm xext xrender xfixes xi dmxproto \
 		xau dmx xtst xres pixman xtrans
 
-CONFIGURE_ARGS=	--disable-xvfb --disable-xorg --disable-xnest \
+CONFIGURE_ARGS=	--disable-xvfb --disable-xnest \
 		--without-xmlto	--disable-docs --disable-devel-docs \
 		--enable-dmx --localstatedir=/var --without-dtrace
 

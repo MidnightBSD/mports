@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.9 2011/05/01 19:27:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.10 2013/02/23 00:28:16 laffer1 Exp $
 
 PORTNAME=	xorg-vfbserver
 PORTREVISION=	1
@@ -17,8 +17,8 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		xineramaproto xinerama evieproto xkbfile xfont fontenc \
 		xkbui xxf86misc xxf86vm xaw7 xmu xpm xext pixman xtrans
 
-CONFIGURE_ARGS=	--disable-dmx --disable-xnest --disable-xorg \
-		--without-xmlto --disable-docs --disable-devel-docs \
+CONFIGURE_ARGS=	--disable-dmx --disable-xnest \
+		--without-xmlto --disable-docs --disable-devel1-docs \
 		--localstatedir=/var --without-dtrace
 
 SLAVE_PORT=	yes

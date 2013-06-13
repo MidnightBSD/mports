@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xephyr/Makefile,v 1.4 2013/02/23 00:28:16 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xephyr/Makefile,v 1.5 2013/06/13 00:10:28 laffer1 Exp $
 
 PORTNAME=	xephyr
 PORTREVISION=	0
@@ -18,7 +18,7 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 
 CONFIGURE_ARGS=	--enable-kdrive --enable-xephyr	--disable-dmx --disable-xvfb \
 		--without-xmlto --disable-docs --disable-devel-docs \
-		--disable-xorg --disable-xnest \
+		--disable-xnest \
 		--localstatedir=/var --without-dtrace
 
 SLAVE_PORT=	yes
