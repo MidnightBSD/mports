@@ -1,11 +1,11 @@
-@comment $FreeBSD: ports/x11/xcb-util-wm/pkg-plist,v 1.1 2012/01/15 12:46:11 garga Exp $
+@comment $FreeBSD$
 include/xcb/xcb_icccm.h
 include/xcb/xcb_ewmh.h
 lib/libxcb-icccm.so.4
 lib/libxcb-icccm.so
 lib/libxcb-icccm.la
 lib/libxcb-icccm.a
-lib/libxcb-ewmh.so.1
+lib/libxcb-ewmh.so.2
 lib/libxcb-ewmh.so
 lib/libxcb-ewmh.la
 lib/libxcb-ewmh.a
