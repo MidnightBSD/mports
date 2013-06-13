@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xrandr/Makefile,v 1.4 2011/05/07 20:32:06 laffer1 Exp $
+# $MidnightBSD: mports/x11/xrandr/Makefile,v 1.5 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xrandr
-PORTVERSION=	1.3.5
+PORTVERSION=	1.4.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
