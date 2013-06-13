@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xephyr/Makefile,v 1.4 2013/02/23 00:28:16 laffer1 Exp $
 
 PORTNAME=	xephyr
 PORTREVISION=	0
 
-COMMENT=	A kdrive based X server from X.Org
+COMMENT=	kdrive based X server from X.Org
 LICENSE=	mit
 
 MASTERDIR=	${.CURDIR}/../xorg-server
