@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/scripts/Makefile,v 1.1 2007/05/19 20:27:17 flz Exp $
-# $MidnightBSD: mports/x11/scripts/Makefile,v 1.1 2007/10/04 05:45:04 ctriv Exp $
+# $MidnightBSD: mports/x11/scripts/Makefile,v 1.2 2011/07/16 14:41:01 laffer1 Exp $
 
 PORTNAME=	scripts
 PORTVERSION=	1.0.1
