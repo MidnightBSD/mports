@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.10 2011/05/28 06:23:35 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/vte/Makefile,v 1.58 2006/05/31 22:18:51 mezz Exp $
+# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.11 2013/03/30 12:29:35 laffer1 Exp $
 
 PORTNAME=	vte
 PORTVERSION=	0.26.2
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -13,6 +12,7 @@ COMMENT?=	Terminal widget with improved accessibility and I18N support
 LICENSE?=	lgpl
 
 USE_BZIP2=	yes
+USE_PATHFIX=	yes
 
 .if !defined(REFERENCE_PORT)
 
