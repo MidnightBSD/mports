@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xgc/Makefile,v 1.1 2007/05/19 20:27:54 flz Exp $
-# $MidnightBSD: mports/x11/xgc/Makefile,v 1.3 2011/09/20 23:46:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/xgc/Makefile,v 1.4 2012/03/03 01:52:55 laffer1 Exp $
 
 PORTNAME=	xgc
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
