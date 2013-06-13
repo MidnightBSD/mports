@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11-fonts/bdftopcf/Makefile,v 1.2 2007/07/02 17:25:42 lesi Exp $
-# $MidnightBSD: mports/x11-fonts/bdftopcf/Makefile,v 1.2 2011/05/08 01:30:25 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/bdftopcf/Makefile,v 1.3 2012/03/03 23:17:17 laffer1 Exp $
 
 PORTNAME=	bdftopcf
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
