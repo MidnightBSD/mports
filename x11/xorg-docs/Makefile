@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xorg-docs/Makefile,v 1.2 2007/09/13 19:45:05 flz Exp $
-# $MidnightBSD: mports/x11/xorg-docs/Makefile,v 1.2 2011/05/07 16:17:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-docs/Makefile,v 1.3 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xorg-docs
-PORTVERSION=	1.6
+PORTVERSION=	1.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
