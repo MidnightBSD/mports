@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11-fonts/mkfontdir/Makefile,v 1.2 2007/07/02 17:27:23 lesi Exp $
-# $MidnightBSD: mports/x11-fonts/mkfontdir/Makefile,v 1.2 2010/05/30 22:01:06 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/mkfontdir/Makefile,v 1.3 2011/05/10 13:51:06 laffer1 Exp $
 
 PORTNAME=	mkfontdir
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
