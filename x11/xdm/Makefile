@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/xdm/Makefile,v 1.7 2013/06/13 00:46:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.8 2013/06/13 00:47:11 laffer1 Exp $
 
 PORTNAME=	xdm
 PORTVERSION=	1.1.11
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
