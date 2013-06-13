@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/libXmu/Makefile,v 1.3 2011/05/15 16:57:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libXmu/Makefile,v 1.4 2012/03/11 18:41:52 laffer1 Exp $
 
 PORTNAME=	libXmu
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
