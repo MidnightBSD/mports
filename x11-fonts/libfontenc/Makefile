@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/libfontenc/Makefile,v 1.3 2011/05/10 13:45:01 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/libfontenc/Makefile,v 1.4 2012/03/03 23:17:19 laffer1 Exp $
 
 PORTNAME=	libfontenc
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.2
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
