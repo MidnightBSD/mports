@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/xload/Makefile,v 1.2 2007/07/02 17:20:56 lesi Exp $
-# $MidnightBSD: mports/x11/xload/Makefile,v 1.2 2011/09/20 23:51:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/xload/Makefile,v 1.3 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xload
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
