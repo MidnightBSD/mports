@@ -1,22 +1,55 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.9 2011/05/07 15:20:38 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.10 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xlockmore
-PORTVERSION=	5.34
-CATEGORIES=	x11
-MASTER_SITES=	ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
-		http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
+PORTVERSION=	5.42
+CATEGORIES?=	x11
+MASTER_SITES=	http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
+		ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
 		CRITICAL
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Like XLock session locker/screen saver, but just more
-LICENSE=	x11
+LICENSE=	mit
+
+FAKE_OPTS=	prefixhack
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-gl --without-motif --without-sx --without-ttf \
-		--without-editres --without-dtsaver --without-rplay \
-		--without-nas --without-gtk --without-esound
-.if defined(MAKE_KERBEROS4)
+CONFIGURE_ARGS=	--without-motif --without-ttf --without-editres \
+		--without-dtsaver --without-rplay --without-nas \
+		--without-gtk --without-esound
+
+USE_GNOME=	#
+USE_XORG=	x11 xaw ice
+
+LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2
+
+MAN1=		xlock.1
+PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock
+
+OPTIONS_DEFINE=	MESAGL MB SYSLOG DISABLE_ALLOW_ROOT NICE_ONLY BLANK_ONLY \
+		KERBEROS4 BAD_PAM GTK2 TIME_BOMB CUSTOMIZATION MAGICK
+
+MESAGL_DESC=	Mesa 3D (for GL modes)
+MB_DESC=	Xmb function series
+SYSLOG_DESC=	Syslog logging
+DISABLE_ALLOW_ROOT_DESC=	Allows users to turn off allowroot
+NICE_ONLY_DESC=	Only low cpu modes
+BLANK_ONLY_DESC=	Blank mode only (boring)
+BAD_PAM_DESC=	Xlock will ask PAM with root rights
+GTK2_DESC=	Build Gtk2 graphical shell
+XLOCK_GROUP_DESC=	Allow xlock group to logout
+TIME_BOMB_DESC=	Allow autologout
+CUSTOMIZATION_DESC=	Allow tune through resource file
+
+OPTIONS_RADIO=	ONE
+OPTIONS_RADIO_ONE=	PAM XLOCK_GROUP
+
+NO_OPTIONS_SORT=yes
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MKERBEROS4}
 CONFIGURE_ARGS+=--enable-kerberos4
 KRB4LIB=	-lcom_err -lcrypto
 .endif
@@ -25,33 +58,8 @@ CONFIGURE_ARGS+=--enable-kerberos5
 CFLAGS+=	-I${KRB5_HOME}/include
 KRB5LIB=	-L${KRB5_HOME}/lib
 .endif
-USE_GNOME=	#
-USE_XORG=	x11 xaw ice
 
-MAN1=		xlock.1
-PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock
-
-OPTIONS=MESAGL			"Enable Mesa 3D (for GL modes)"		off \
-	MB			"Enable Xmb function series"		off \
-	SYSLOG			"Enable syslog logging"			off \
-	DISABLE_ALLOW_ROOT	"Allows users to turn off allowroot"	off \
-	NICE_ONLY		"Enable only low cpu modes"		off \
-	BLANK_ONLY		"Enable blank mode only (boring)"	off \
-	PAM			"Enable PAM authentication support"	off \
-	BAD_PAM			"Xlock will ask PAM with root rights"	off \
-	GTK2			"Build Gtk2 graphical shell"		off \
-	XLOCK_GROUP		"Allow xlock group to logout"		off \
-	TIME_BOMB		"Allow autologout"			off \
-	CUSTOMIZATION		"Allow tune through resource file"	off
-
-FAKE_OPTS=	prefixhack
-
-.include <bsd.port.pre.mk>
-
-FAKE_MAKEARGS+=	xapploaddir=${FAKE_DESTDIR}${LOCALBASE}/lib/X11/app-defaults \
-		mandir=${FAKE_DESTDIR}${MANPREFIX}/man/man1
-
-.if defined(WITH_MESAGL)
+.if ${PORT_OPTIONS:MMESAGL}
 CONFIGURE_ARGS+=	--with-mesa
 MESALIB=${PTHREAD_LIBS}
 USE_GL=	yes
@@ -60,42 +68,39 @@ CFLAGS+=	-I${LOCALBASE}/include/FTGL
 CONFIGURE_ARGS+=	--without-mesa --without-opengl
 .endif
 
-.if defined(WITH_NICE_ONLY)
+.if ${PORT_OPTIONS:MNICE_ONLY}
 CONFIGURE_ARGS+=	--enable-nice-only
 .endif
 
-.if defined(WITH_BAD_PAM)
+.if ${PORT_OPTIONS:MBAD_PAM}
 CONFIGURE_ARGS+=	--enable-bad-pam
 .endif
 
-.if defined(WITH_PAM)
+.if ${PORT_OPTIONS:MPAM}
 CONFIGURE_ARGS+=	--enable-pam
-.if defined(WITH_XLOCK_GROUP)
-BROKEN=			PAM and xlock group simultaneously breaks the build
-.endif
 .endif
 
-.if defined(WITH_NICE_ONLY)
+.if ${PORT_OPTIONS:MNICE_ONLY}
 CONFIGURE_ARGS+=	--enable-nice-only
 .endif
 
-.if defined(WITH_BLANK_ONLY)
+.if ${PORT_OPTIONS:MBLANK_ONLY}
 CONFIGURE_ARGS+=	--enable-blank-only
 .endif
 
-.if defined(WITH_MB)
+.if ${PORT_OPTIONS:MMB}
 CONFIGURE_ARGS+=	--enable-use-mb
 .endif
 
-.if defined(XLOCKMORE_LANG)
+.if ${PORT_OPTIONS:MXLOCKMORE_LANG}
 CONFIGURE_ARGS+=	--with-lang=${XLOCKMORE_LANG}
 .endif
 
-.if defined(WITH_SYSLOG)
+.if ${PORT_OPTIONS:MSYSLOG}
 CONFIGURE_ARGS+=	--enable-syslog
 .endif
 
-.if defined(WITH_GTK2)
+.if ${PORT_OPTIONS:MGTK2}
 CONFIGURE_ARGS+=	--with-gtk2
 USE_GNOME+=	gtk20
 PLIST_FILES+=	bin/xglock share/xlock/xglockrc
@@ -104,30 +109,33 @@ PLIST_DIRS+=	share/xlock
 CONFIGURE_ARGS+=	--without-gtk2
 .endif
 
-.if defined(WITH_XLOCK_GROUP)
+.if ${PORT_OPTIONS:MXLOCK_GROUP}
 CONFIGURE_ARGS+=	--enable-xlock-group
-.if defined(WITH_PAM)
-BROKEN=			PAM and xlock group simultaneously breaks the build
-.endif
 .endif
 
-.if defined(WITH_TIME_BOMB)
+.if ${PORT_OPTIONS:MTIME_BOMB}
 CONFIGURE_ARGS+=	--enable-bomb
 .else
 CONFIGURE_ARGS+=	--disable-bomb
 .endif
 
-.if defined(WITH_CUSTOMIZATION)
+.if ${PORT_OPTIONS:MCUSTOMIZATION}
 CONFIGURE_ARGS+=	--enable-customization
+.endif
+
+.if ${PORT_OPTIONS:MMAGICK}
+LIB_DEPENDS+=	MagickCore:${PORTSDIR}/graphics/ImageMagick
+.else
+CONFIGURE_ARGS+=	--without-magick
 .endif
 
 CONFIGURE_ENV+=		XLOCKLIBS="${KRB5LIB} ${KRB4LIB} ${MESALIB}"
 
-.if defined(WITH_DISABLE_ALLOW_ROOT)
+.if ${PORT_OPTIONS:MDISABLE_ALLOW_ROOT}
 CONFIGURE_ARGS+=	--disable-allow-root
 .endif
 
-.if defined(WITH_PAM) && !defined (WITH_BAD_PAM)
+.if ${PORT_OPTIONS:MPAM} && empty(PORT_OPTIONS:MBAD_PAM)
 pre-extract:
 	@${ECHO}
 	@${ECHO} "You have enabled PAM support. If you want to authenticate against"
@@ -142,7 +150,4 @@ post-patch:
 post-configure:
 	${REINPLACE_CMD} -e 's/-lXdpms//g' ${WRKSRC}/modes/Makefile
 
-post-install:
-	-${CP} ${PREFIX}/man/xlock.1 ${PREFIX}/man/man1/
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
