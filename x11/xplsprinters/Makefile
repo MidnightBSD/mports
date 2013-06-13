@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xplsprinters
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xplsprinters/Makefile,v 1.1 2007/05/19 20:28:08 flz Exp $
-# $MidnightBSD: mports/x11/xplsprinters/Makefile,v 1.1 2007/10/08 15:30:45 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/xplsprinters/Makefile,v 1.2 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xplsprinters
 PORTVERSION=	1.0.1

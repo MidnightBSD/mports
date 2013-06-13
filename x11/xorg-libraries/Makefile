@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.7 2009/03/15 20:22:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.8 2011/05/07 16:17:51 laffer1 Exp $
 
 PORTNAME=	xorg-libraries
-PORTVERSION=	7.5.1
+PORTVERSION=	7.7
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -9,20 +9,18 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org libraries meta-port
-LICENSE=	x11
+LICENSE=	mit
 
 NO_BUILD=	yes
 
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dmx.pc:${PORTSDIR}/x11/libdmx \
 		${LOCALBASE}/libdata/pkgconfig/fontenc.pc:${PORTSDIR}/x11-fonts/libfontenc \
-		${LOCALBASE}/libdata/pkgconfig/x11.pc:${PORTSDIR}/x11/libX11 \
-		${LOCALBASE}/libdata/pkgconfig/xfont.pc:${PORTSDIR}/x11-fonts/libXfont \
-		${LOCALBASE}/libdata/pkgconfig/xfontcache.pc:${PORTSDIR}/x11-fonts/libXfontcache \
 		${LOCALBASE}/libdata/pkgconfig/ice.pc:${PORTSDIR}/x11/libICE \
 		${LOCALBASE}/libdata/pkgconfig/libfs.pc:${PORTSDIR}/x11-fonts/libFS \
 		${LOCALBASE}/libdata/pkgconfig/oldx.pc:${PORTSDIR}/x11/liboldX \
 		${LOCALBASE}/libdata/pkgconfig/pixman-1.pc:${PORTSDIR}/x11/pixman \
 		${LOCALBASE}/libdata/pkgconfig/sm.pc:${PORTSDIR}/x11/libSM \
+		${LOCALBASE}/libdata/pkgconfig/x11.pc:${PORTSDIR}/x11/libX11 \
 		${LOCALBASE}/libdata/pkgconfig/xau.pc:${PORTSDIR}/x11/libXau \
 		${LOCALBASE}/libdata/pkgconfig/xaw7.pc:${PORTSDIR}/x11-toolkits/libXaw \
 		${LOCALBASE}/libdata/pkgconfig/xcomposite.pc:${PORTSDIR}/x11/libXcomposite \
@@ -32,6 +30,9 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dmx.pc:${PORTSDIR}/x11/libdmx \
 		${LOCALBASE}/libdata/pkgconfig/xevie.pc:${PORTSDIR}/x11/libXevie \
 		${LOCALBASE}/libdata/pkgconfig/xext.pc:${PORTSDIR}/x11/libXext \
 		${LOCALBASE}/libdata/pkgconfig/xfixes.pc:${PORTSDIR}/x11/libXfixes \
+		${LOCALBASE}/libdata/pkgconfig/xfont.pc:${PORTSDIR}/x11-fonts/libXfont \
+		${LOCALBASE}/libdata/pkgconfig/xfont.pc:${PORTSDIR}/x11-fonts/libXfont \
+		${LOCALBASE}/libdata/pkgconfig/xfontcache.pc:${PORTSDIR}/x11-fonts/libXfontcache \
 		${LOCALBASE}/libdata/pkgconfig/xft.pc:${PORTSDIR}/x11-fonts/libXft \
 		${LOCALBASE}/libdata/pkgconfig/xi.pc:${PORTSDIR}/x11/libXi \
 		${LOCALBASE}/libdata/pkgconfig/xinerama.pc:${PORTSDIR}/x11/libXinerama \

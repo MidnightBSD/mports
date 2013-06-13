@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xorg-cf-files/Makefile,v 1.6 2011/05/07 16:17:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-cf-files/Makefile,v 1.7 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xorg-cf-files
 PORTVERSION=	1.0.4
@@ -10,8 +10,16 @@ LICENSE=	mit
 
 XORG_CAT=	util
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 		@${REINPLACE_CMD} 's|\(define ExtraXaw[^ ]*\) [$$].*|\1 /**/|' \
 			${WRKSRC}/X11.tmpl
+.if defined(CC) && ${CC:T:M*clang*} == "clang"
+		${REINPLACE_CMD} -e 's|/usr/bin/cpp|${LOCALBASE}/bin/ucpp|' \
+			-e 's|-traditional|-s|' \
+			-e 's|__FreeBSD_version|__MidnightBSD_version|g' \
+			${WRKSRC}/FreeBSD.cf
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
