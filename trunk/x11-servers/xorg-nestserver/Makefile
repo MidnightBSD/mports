@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.9 2012/03/03 23:21:14 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.10 2013/02/23 00:28:16 laffer1 Exp $
 
 PORTNAME=	xorg-nestserver
 PORTREVISION=	1
@@ -17,7 +17,7 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		xineramaproto xinerama evieproto xkbfile xfont fontenc xkbui \
 		xxf86misc xxf86vm xaw7 xmu xpm xext pixman xtrans
 
-CONFIGURE_ARGS=	--disable-dmx --disable-xvfb --disable-xorg \
+CONFIGURE_ARGS=	--disable-dmx --disable-xvfb \
 		--without-xmlto --disable-docs --disable-devel-docs \
 		--localstatedir=/var --without-dtrace
 
