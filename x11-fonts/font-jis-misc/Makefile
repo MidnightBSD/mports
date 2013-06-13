@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11-fonts/font-jis-misc/Makefile,v 1.1 2007/05/19 20:29:15 flz Exp $
-# $MidnightBSD: mports/x11-fonts/font-jis-misc/Makefile,v 1.1 2007/10/11 18:34:16 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/font-jis-misc/Makefile,v 1.2 2011/05/08 17:37:29 laffer1 Exp $
 
 PORTNAME=	font-jis-misc
 PORTVERSION=	1.0.3
