@@ -1,9 +1,7 @@
-# $FreeBSD: ports/x11/xcursorgen/Makefile,v 1.2 2007/09/13 19:45:02 flz Exp $
-# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.6 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.7 2012/09/09 01:15:54 laffer1 Exp $
 
 PORTNAME=	xcursorgen
-PORTVERSION=	1.0.4
-PORTREVISION=	1
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,9 +16,5 @@ USE_XORG=	x11 xcursor xextproto
 PLIST_FILES=	bin/xcursorgen
 
 MAN1=		xcursorgen.1
-
-post-patch:
-	${REINPLACE_CMD} -e 's|libpng12|libpng14|g' \
-		${WRKSRC}/configure
 
 .include <bsd.port.mk>
