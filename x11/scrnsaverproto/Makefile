@@ -1,8 +1,7 @@
-# $FreeBSD: ports/x11/scrnsaverproto/Makefile,v 1.1 2007/05/19 20:27:18 flz Exp $
-# $MidnightBSD: mports/x11/scrnsaverproto/Makefile,v 1.3 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/scrnsaverproto/Makefile,v 1.4 2012/03/04 18:47:10 laffer1 Exp $
 
 PORTNAME=	scrnsaverproto
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
