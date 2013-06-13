@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-75dpi/Makefile,v 1.5 2009/04/04 15:32:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-75dpi/Makefile,v 1.6 2011/05/08 01:24:37 laffer1 Exp $
 
 PORTNAME=	xorg-fonts-75dpi
-PORTVERSION=	7.5.1
+PORTVERSION=	7.7
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
