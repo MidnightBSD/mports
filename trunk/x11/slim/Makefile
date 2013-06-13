@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.19 2013/02/24 15:23:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.20 2013/02/24 15:27:14 laffer1 Exp $
 
 PORTNAME=	slim
-PORTVERSION=	1.3.4
+PORTVERSION=	1.3.5
 CATEGORIES=	x11
-MASTER_SITES=	http://slim.berlios.de/releases/
+MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
+		SF/slim.berlios
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
@@ -16,7 +17,6 @@ LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
 		freetype:${PORTSDIR}/print/freetype2 \
 		ck-connector:${PORTSDIR}/sysutils/consolekit \
 		expat:${PORTSDIR}/textproc/expat2 \
-		xcb:${PORTSDIR}/x11/libxcb \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 
 USE_CMAKE=	yes
@@ -29,11 +29,11 @@ CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes
 
 MAN1=		slim.1
 
-OPTIONS=	PAM "Use pam" off
+OPTIONS_DEFINE=	PAM
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_PAM)
+.if ${PORT_OPTIONS:MPAM}
 CMAKE_ARGS+=	-DUSE_PAM=yes
 PLIST_SUB+=	PAM=""
 .else
@@ -42,26 +42,21 @@ PLIST_SUB+=	PAM="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/${PORTNAME}.conf
-	@${REINPLACE_CMD} -e 's|"/etc"|"${PREFIX}/etc"|' \
-	    -e 's|slim.conf|slim.conf.sample|' \
-	    -e 's|set(MANDIR "$${CMAKE_INSTALL_PREFIX}/share/man")|set(MANDIR "${PREFIX}/man")|' \
-	    ${WRKSRC}/CMakeLists.txt
-	@${MV} ${WRKSRC}/slim.conf ${WRKSRC}/slim.conf.sample
-	@${REINPLACE_CMD} -e 's|std::snprintf|snprintf|' ${WRKSRC}/Ck.cpp
-
-# Fix a previous bad install - Ok to remove at version 1.3.5 or later
-pre-install:
-	@${RM} -f ${LOCALBASE}/share/man/man1/slim.1
-	@${RMDIR} ${LOCALBASE}/share/man/man1 2>/dev/null || true
-	@${RMDIR} ${LOCALBASE}/share/man 2>/dev/null || true
+	@${CP} ${WRKSRC}/slim.conf ${WRKSRC}/slim.conf.sample
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/slim.conf.sample
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' \
+		-e 's|/etc|${PREFIX}/etc|' \
+		-e 's|share/man|man|' \
+		-e 's|slim.conf|slim.conf.sample|' \
+		-e '/systemd/d' \
+		${WRKSRC}/CMakeLists.txt
 
 post-install:
-	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MAN1PREFIX}/man/man1
 	@if [ ! -f ${PREFIX}/etc/slim.conf ]; then \
 		${CP} ${PREFIX}/etc/slim.conf.sample ${PREFIX}/etc/slim.conf ; \
 	fi
-.	if defined(WITH_PAM)
+.	if ${PORT_OPTIONS:MPAM}
 	@${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/slim.default
 	@if [ ! -f ${PREFIX}/etc/pam.d/slim ]; then \
 		${CP} ${PREFIX}/etc/pam.d/slim.default ${PREFIX}/etc/pam.d/slim ; \
@@ -69,4 +64,4 @@ post-install:
 .	endif
 	@${CAT} ${PKGMESSAGE}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
