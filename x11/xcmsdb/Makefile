@@ -1,13 +1,12 @@
-# $FreeBSD: ports/x11/xcmsdb/Makefile,v 1.1 2007/05/19 20:27:41 flz Exp $
-# $MidnightBSD: mports/x11/xcmsdb/Makefile,v 1.2 2011/05/07 02:48:44 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcmsdb/Makefile,v 1.3 2011/09/20 23:39:36 laffer1 Exp $
 
 PORTNAME=	xcmsdb
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Device Color Characterization utility for X
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11
