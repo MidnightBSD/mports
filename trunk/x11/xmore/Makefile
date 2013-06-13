@@ -1,5 +1,4 @@
-# $FreeBSD: ports/x11/xmore/Makefile,v 1.1 2007/05/19 20:28:02 flz Exp $
-# $MidnightBSD: mports/x11/xmore/Makefile,v 1.1 2007/10/08 15:22:29 ctriv Exp $
+# $MidnightBSD: mports/x11/xmore/Makefile,v 1.2 2011/05/07 16:17:51 laffer1 Exp $
 
 PORTNAME=	xmore
 PORTVERSION=	1.0.2
@@ -7,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plain text display program for X
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xt xaw xp xprintutil
