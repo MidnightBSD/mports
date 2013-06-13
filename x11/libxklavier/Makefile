@@ -2,13 +2,14 @@
 # Date created:				31 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.5 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.6 2012/03/03 01:52:54 laffer1 Exp $
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
 #   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
 #
 
 PORTNAME=	libxklavier
 PORTVERSION=	5.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
@@ -21,10 +22,11 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-
 RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
     		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
-USE_XORG=	x11 xkbfile
+USE_PATHFIX=	yes
+USE_XORG=	x11 xi xkbfile
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack libxml2 glib20 ltverhack:12
+USE_GNOME=	libxml2 glib20 ltverhack:12
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CPPFLAGS+=	-I${LOCALBASE}/include
