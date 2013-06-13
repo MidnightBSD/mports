@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/x11/xcmiscproto/Makefile,v 1.3 2011/05/07 02:48:07 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcmiscproto/Makefile,v 1.4 2012/03/03 01:52:54 laffer1 Exp $
 #
 
 PORTNAME=	xcmiscproto
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XCMisc extension headers
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	proto
 
