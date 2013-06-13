@@ -1,4 +1,5 @@
-@comment $FreeBSD: ports/x11/xcb-util-image/pkg-plist,v 1.1 2012/01/15 12:46:10 garga Exp $
+@comment $FreeBSD$
+include/xcb/xcb_bitops.h
 include/xcb/xcb_image.h
 include/xcb/xcb_pixel.h
 lib/libxcb-image.so.0
