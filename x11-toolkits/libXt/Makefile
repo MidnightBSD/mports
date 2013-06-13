@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/libXt/Makefile,v 1.3 2011/05/15 19:12:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libXt/Makefile,v 1.4 2013/02/22 03:08:30 laffer1 Exp $
 
 PORTNAME=	libXt
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.4
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	x11 sm xproto:both kbproto
+CONFIGURE_ARGS=	--disable-specs
 
 MAN3=	MenuPopdown.3 \
 	MenuPopup.3 \
