@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xdm/Makefile,v 1.6 2012/03/03 00:28:20 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.7 2013/06/13 00:46:56 laffer1 Exp $
 
 PORTNAME=	xdm
 PORTVERSION=	1.1.11
@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X display manager
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xmu x11 xau xinerama xpm xdmcp xt xext xaw
