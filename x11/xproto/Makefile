@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xproto/Makefile,v 1.5 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/xproto/Makefile,v 1.6 2013/06/13 01:19:18 laffer1 Exp $
 
 PORTNAME=	xproto
 PORTVERSION=	7.0.24
@@ -9,7 +9,6 @@ COMMENT=	X11 protocol headers
 LICENSE=	mit
 
 XORG_CAT=	proto
-USE_PKGCONFIG=	yes
 
 CONFIGURE_ARGS+=--disable-specs --without-fop --without-xmlto --without-xsltproc
 
