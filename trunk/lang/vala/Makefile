@@ -1,28 +1,24 @@
-# New ports collection makefile for:	vala
-# Date created:		2007-07-09
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/lang/vala/Makefile,v 1.2 2012/03/10 03:09:27 laffer1 Exp $
-# $FreeBSD: ports/lang/vala/Makefile,v 1.26 2011/07/30 09:20:19 kwm Exp $
-#   $MCom: ports/lang/vala/Makefile,v 1.55 2011/06/02 12:10:13 kwm Exp $
-#
+# $MidnightBSD: mports/lang/vala/Makefile,v 1.3 2013/03/30 13:19:14 laffer1 Exp $
 
 PORTNAME=	vala
 PORTVERSION=	0.18.1
+PORTREVISION=	1
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programming language and compiler that converts Vala code into C code
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
+USE_PATHFIX=	yes
 USE_XZ=		yes
 USE_GNOME=	glib20 gnomeprefix libxslt
 USE_GMAKE=	yes
 USE_PKGCONFIG=	build
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}" LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_BISON=	build
 USE_LDCONFIG=	yes
 
