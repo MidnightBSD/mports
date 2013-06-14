@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/linux-f10-libglade/Makefile,v 1.20 2011/03/07 15:08:17 ehaupt Exp $
+# $MidnightBSD: mports/devel/linux-f10-libglade/Makefile,v 1.2 2011/06/18 15:18:47 laffer1 Exp $
 
 PORTNAME=	libglade
 PORTVERSION=	0.17
