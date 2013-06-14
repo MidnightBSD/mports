@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.7 2013/03/03 17:38:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.8 2013/03/24 19:47:31 laffer1 Exp $
 
 PORTNAME=	gnustep-app
-PORTVERSION=	1.18.0
-PORTREVISION=	4
+PORTVERSION=	1.19.0
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -128,7 +127,6 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	Gridlock:games/gridlock \
 	PRICE:graphics/price \
 	EdenMath:math/edenmath \
-	Stepulator:math/stepulator \
 	TalkSoup:irc/talksoup \
 	Zipper:archivers/zipper \
 	Ladder:games/gnustep-ladder \
