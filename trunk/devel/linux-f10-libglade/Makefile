@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/linux-f10-libglade/Makefile,v 1.2 2011/06/18 15:18:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/linux-f10-libglade/Makefile,v 1.3 2013/06/14 01:23:11 laffer1 Exp $
 
 PORTNAME=	libglade
 PORTVERSION=	0.17
@@ -22,6 +22,5 @@ PLIST_FILES=	usr/lib/libglade-gnome.so.0 usr/lib/libglade-gnome.so.0.4.2 \
 		usr/lib/libglade.so.0 usr/lib/libglade.so.0.4.2
 DOCSDIR=	usr/share/doc/${PORTNAME}-${PORTVERSION}
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 .include <bsd.port.mk>
