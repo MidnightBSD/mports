@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.90 2013/06/06 02:00:24 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.91 2013/06/06 02:45:35 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -67,6 +67,7 @@ SUBDIR += tcl84
 SUBDIR += tcl85
 SUBDIR += tcl86
 SUBDIR += vala
+SUBDIR += vala-vapigen
 SUBDIR += yabasic
 
 .include <bsd.port.subdir.mk>
