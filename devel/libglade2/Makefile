@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libglade2
-# Date created:				18 August 1999
-# Whom:					Ade Lovett <ade@lovett.com>
-#
-# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.8 2011/05/28 23:49:32 laffer1 Exp $
-# $FreeBSD: ports/devel/libglade2/Makefile,v 1.71 2006/07/12 17:58:28 ahze Exp $
-#    $MCom: ports/devel/libglade2/Makefile,v 1.20 2006/07/12 17:23:04 ahze Exp $
+# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.9 2013/03/24 19:25:37 laffer1 Exp $
 
 PORTNAME=	libglade2
 PORTVERSION=	2.6.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/..$//}
@@ -27,7 +21,8 @@ RUN_DEPENDS=	xmlcatmgr:${PORTSDIR}/textproc/xmlcatmgr
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack libxml2 gtk20 referencehack
+USE_PATHFIX=	yes
+USE_GNOME=	libxml2 gtk20 referencehack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc \
@@ -38,12 +33,12 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	XMLCATALOG="${LOCALBASE}/bin/xmlcatalog" \
 		CATALOG_PORTS_XML="${LOCALBASE}/share/xml/catalog.ports"
 
-OPTIONS=	PYTHON  "Use Python"    on
+OPTIONS_DEFINE=	PYTHON
+OPTIONS_DEFAULT=PYTHON
 
 .include <bsd.mport.options.mk>
 
-
-.if !defined(WITHOUT_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 BUILD_DEPENDS+=	${PYEXPAT}
 RUN_DEPENDS+=	${PYEXPAT}
 
