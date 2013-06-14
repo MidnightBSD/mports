@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.9 2013/02/22 13:18:01 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.10 2013/03/02 19:59:09 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -247,7 +247,7 @@ _USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba \
 # version specific components
 _USE_PHP_VER5=	${_USE_PHP_ALL} dbase dom filter mysqli oci8 pdo \
 		pdo_mysql pdo_pgsql pdo_sqlite \
-		simplexml soap spl sqlite \
+		simplexml soap spl sqlite3 \
 		tidy xmlreader xmlwriter xsl
 
 apc_DEPENDS=	www/pecl-APC
@@ -315,7 +315,7 @@ snmp_DEPENDS=	net-mgmt/php${PHP_VER}-snmp
 soap_DEPENDS=	net/php${PHP_VER}-soap
 sockets_DEPENDS=net/php${PHP_VER}-sockets
 spl_DEPENDS=	devel/php${PHP_VER}-spl
-sqlite_DEPENDS=	databases/php${PHP_VER}-sqlite
+sqlite3_DEPENDS=	databases/php${PHP_VER}-sqlite3
 sybase_ct_DEPENDS=	databases/php${PHP_VER}-sybase_ct
 sysvmsg_DEPENDS=devel/php${PHP_VER}-sysvmsg
 sysvsem_DEPENDS=devel/php${PHP_VER}-sysvsem
