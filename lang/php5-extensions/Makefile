@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.9 2010/12/31 13:55:30 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.10 2013/02/23 02:05:31 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	1.4.1
@@ -77,7 +77,7 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		SNMP            "SNMP support" off \
 		SOAP            "SOAP support" off \
 		SOCKETS         "sockets support" off \
-		SQLITE          "sqlite support" on \
+		SQLITE3          "sqlite support" on \
 		SYBASE_CT       "Sybase database support" off \
 		SYSVMSG         "System V message support" off \
 		SYSVSEM         "System V semaphore support" off \
