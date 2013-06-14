@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/pathfix.mk,v 1.1 2013/06/06 01:57:25 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/pathfix.mk,v 1.2 2013/06/14 02:13:54 laffer1 Exp $
 #
 # Lookup in Makefile.in and configure for common incorrect paths and set them
 # to respect BSD hier
@@ -11,7 +11,6 @@ PATHFIX_MAKEFILEIN?=	Makefile.in
 pre-patch: pathfix-pre-patch
 
 pathfix-pre-patch:
-	echo "Running pathfix"
 	@${FIND} ${WRKSRC} -name "${PATHFIX_MAKEFILEIN}" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[(]libdir[)]/locale|(prefix)/share/locale|g ; \
 		s|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g ; \
