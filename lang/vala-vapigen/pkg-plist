@@ -1,0 +1,12 @@
+bin/vala-gen-introspect
+bin/vala-gen-introspect-%%VERSION%%
+bin/vapicheck
+bin/vapicheck-%%VERSION%%
+bin/vapigen
+bin/vapigen-%%VERSION%%
+lib/vala-%%VERSION%%/gen-introspect-%%VERSION%%
+libdata/pkgconfig/vapigen-%%VERSION%%.pc
+libdata/pkgconfig/vapigen.pc
+share/aclocal/vapigen.m4
+%%DATADIR%%/Makefile.vapigen
+@dirrm lib/vala-%%VERSION%%
