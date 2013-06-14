@@ -1,13 +1,8 @@
-# New ports collection makefile for:	Ruby-BDB1
-# Date created:		16 January 2002
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD: mports/databases/ruby-bdb1/Makefile,v 1.1 2007/03/21 01:02:58 laffer1 Exp $
-# $FreeBSD: ports/databases/ruby-bdb1/Makefile,v 1.18 2006/11/19 15:50:36 miwi Exp $
-#
+# $MidnightBSD: mports/databases/ruby-bdb1/Makefile,v 1.2 2008/06/26 19:44:45 laffer1 Exp $
 
 PORTNAME=	bdb1
 PORTVERSION=	0.2.3
+PORTREVISION=	1
 CATEGORIES=	databases ruby
 MASTER_SITES=	ftp://moulon.inra.fr/pub/ruby/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
