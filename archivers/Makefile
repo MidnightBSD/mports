@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.52 2012/09/15 18:41:37 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.53 2012/11/27 02:21:22 laffer1 Exp $
 
 COMMENT = Archivers
 
@@ -56,7 +56,6 @@ SUBDIR += upx
 SUBDIR += xar
 SUBDIR += xz
 SUBDIR += zip
-SUBDIR += zipmix
 SUBDIR += zipper
 SUBDIR += zlib
 SUBDIR += zoo
