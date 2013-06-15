@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/lang/python27/Makefile,v 1.4 2013/02/09 02:49:47 laffer1 Exp $
+# $MidnightBSD: mports/lang/python27/Makefile,v 1.5 2013/02/23 15:35:44 laffer1 Exp $
 
 PORTNAME=	python27
 PORTVERSION=	2.7.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang python ipv6
-MASTER_SITES=	${PYTHON_MASTER_SITES}
+MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
 DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	An interpreted object-oriented programming language
+COMMENT=	Interpreted object-oriented programming language
 LICENSE=	python
 
 DIST_SUBDIR=	python
@@ -263,12 +263,12 @@ post-install:
 .if !defined(NOPORTDATA)
 	@${MKDIR} ${DATADIR}
 	@cd ${PYTHON_WRKSRC}; ${TAR} -cf - Tools | \
-		(cd ${DATADIR}; ${TAR} -xf -)
+		(cd ${DATADIR}; ${TAR} --no-same-owner -xf -)
 .endif
 .if !defined(NOPORTEXAMPLES)
 	@${MKDIR} ${EXAMPLESDIR}
 	@cd ${PYTHON_WRKSRC}/Demo; ${TAR} -cf - * | \
-		(cd ${EXAMPLESDIR}; ${TAR} -xf -)
+		(cd ${EXAMPLESDIR}; ${TAR} --no-same-owner -xf -)
 .endif
 
 .include <bsd.port.post.mk>
