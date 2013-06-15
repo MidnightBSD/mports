@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.11 2012/02/29 22:20:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.12 2013/01/21 01:22:07 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 
 PORTNAME=	gettext
@@ -27,7 +27,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp \
 		--with-included-gettext --with-included-glib \
 		--with-included-libcroco --with-included-libxml \
-		--without-git
+		--without-git \
+		--build=${ARCH}-portbld-freebsd9.0
 USE_LDCONFIG=	yes
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
