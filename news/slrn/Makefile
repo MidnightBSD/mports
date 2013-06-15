@@ -1,54 +1,57 @@
-# $MidnightBSD: mports/news/slrn/Makefile,v 1.1 2006/11/02 22:27:23 wintellect Exp $
+# $MidnightBSD: mports/news/slrn/Makefile,v 1.2 2009/06/28 00:17:24 laffer1 Exp $
 
 PORTNAME=	slrn
-PORTVERSION=	0.9.9p1
+PORTVERSION=	1.0.1
 CATEGORIES=	news ipv6
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
-		ftp://angel.sovam.com/pub/tools/net/news/ \
-		ftp://ftp.fu-berlin.de/pub/unix/news/slrn/ \
-		ftp://ftp.ntua.gr/pub/lang/slang/slrn/ \
-		ftp://ftp.plig.org/pub/slrn/
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME} \
+		http://www.jedsoft.org/slrn/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SLang-based newsreader
 LICENSE=	gpl2
 
-LIB_DEPENDS=	slang.2:${PORTSDIR}/devel/libslang2
+LIB_DEPENDS=	slang:${PORTSDIR}/devel/libslang2
+
+CONFLICTS_INSTALL=	ja-slrn-[0-9]*
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
-
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.endif
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-ipv6 --disable-inews --with-slrnpull \
 			--with-libiconv-prefix=${LOCALBASE}
 
-.if !defined(WITHOUT_SSL)
+ALL_TARGET=	all
+
+MAN1=		slrn.1 slrnpull.1
+
+OPTIONS_DEFINE=	SSL DEVIEW
+OPTIONS_DEFAULT=SSL
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MSSL}
 USE_OPENSSL=	YES
 CONFIGURE_ARGS+=	--with-ssl
 .endif
 
-.if defined(WITH_DEVIEW)
-LIB_DEPENDS+=	uu.3:${PORTSDIR}/converters/uulib
+.if ${PORT_OPTIONS:MDEVIEW}
+LIB_DEPENDS+=	uu:${PORTSDIR}/converters/uulib
 CONFIGURE_ARGS+=	--with-uulib
 .endif
 
-.if defined(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 # Use dummy target rather than rewriting makefile
 CONFIGURE_ARGS+=	--with-docdir=${WRKSRC}/dummy
 .endif
-
-ALL_TARGET=	all
-
-MAN1=		slrn.1 slrnpull.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/lib/sendmail,/usr/sbin/sendmail,' \
