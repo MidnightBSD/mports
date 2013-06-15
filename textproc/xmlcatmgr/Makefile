@@ -1,16 +1,9 @@
-# Ports collection makefile for:  xmlcatmgr
-# Date created:			  Sat May 24, 2003
-# Whom:				  Hiroki Sato <hrs@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.3 2007/05/06 23:27:38 ctriv Exp $
-# $FreeBSD: ports/textproc/xmlcatmgr/Makefile,v 1.11 2005/01/01 00:49:22 hrs Exp $
-#
+# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.4 2008/06/13 02:18:31 laffer1 Exp $
 
 PORTNAME=	xmlcatmgr
 PORTVERSION=	2.2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SGML and XML catalog manager
