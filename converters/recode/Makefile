@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.6 2009/09/20 03:57:34 laffer1 Exp $
+# $MidnightBSD: mports/converters/recode/Makefile,v 1.7 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=	recode
 PORTVERSION=	3.6
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	recode
@@ -12,12 +12,13 @@ COMMENT=	Converts files between character sets and usages
 LICENSE=	gpl2
 
 USE_GETTEXT=	yes
+USE_ICONV=	yes
 USE_AUTOTOOLS=	libtool
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-included-gettext
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-fPIC
 
 MAN1=		recode.1
