@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/freedesktop-sound-theme/Makefile,v 1.1 2010/07/30 05:45:25 laffer1 Exp $
 
 PORTNAME=	freedesktop-sound-theme
 PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	FREEBSD_LOCAL
 MASTER_SITE_SUBDIR=	kwm
