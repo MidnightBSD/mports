@@ -4,7 +4,7 @@
  #include "config.h"
  
  #include <unistd.h>
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +#include <sys/types.h>
 +#include <sys/event.h>
 +#include <sys/time.h>
@@ -18,7 +18,7 @@
    gint fd;
    GSource *_source;
    _GPosixSignalSource *source;
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  struct kevent ev;
 +#endif
  
@@ -28,7 +28,7 @@
    if (sigprocmask (SIG_BLOCK, &sigset, NULL) == -1)
      g_assert_not_reached ();
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  fd = kqueue ();
 +  EV_SET (&ev, signum, EVFILT_SIGNAL, EV_ADD, 0, 0, NULL);
 +  kevent (fd, &ev, 1, NULL, 0, NULL);
