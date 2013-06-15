@@ -1,16 +1,10 @@
-# New ports collection makefile for:	PicMonger
-# Date created:			23 July 2000
-# Whom:				Donald Burr <dburr@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/news/PicMonger/Makefile,v 1.21 2008/03/25 22:44:45 miwi Exp $
-#
+# $MidnightBSD: mports/news/PicMonger/Makefile,v 1.1 2008/05/31 16:05:45 laffer1 Exp $
 
 PORTNAME=	PicMonger
 PORTVERSION=	0.9.6
 PORTREVISION=	0
 CATEGORIES=	news graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=picmonger
 
 MAINTAINER=	ports@MidnightBSD.org
