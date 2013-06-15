@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.2 2008/07/19 08:52:51 crash Exp $
+# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.3 2013/03/06 13:15:47 laffer1 Exp $
 
 PORTNAME=	libmicro
 PORTVERSION=	0.4.1
 CATEGORIES=	benchmarks
-MASTER_SITES=	http://hub.opensolaris.org/bin/download/Project+libmicro/Source+Archives/
+MASTER_SITES=	http://hub.opensolaris.org/bin/download/Project+libmicro/Source+Archives/ \
+		FREEBSD_LOCAL/bdrewery/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of utilities to benchmark productivity of system calls
