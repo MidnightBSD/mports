@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.9 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.10 2013/06/05 02:44:17 laffer1 Exp $
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
-PORTREVISION?=	2
+PORTREVISION?=	333
 CATEGORIES?=	devel
 MASTER_SITES=	http://people.gnome.org/~veillard/gamin/sources/
 
@@ -14,6 +14,7 @@ USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GNOME?=	gnomehack _glib20
+USE_PKGCONFIG=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
