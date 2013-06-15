@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/unix2dos/Makefile,v 1.2 2007/05/25 19:04:15 ctriv Exp $
+# $MidnightBSD: mports/converters/unix2dos/Makefile,v 1.3 2013/03/06 03:13:56 laffer1 Exp $
 
 PORTNAME=	unix2dos
 PORTVERSION=	1.3
@@ -6,7 +6,7 @@ CATEGORIES=	converters
 MASTER_SITES=	CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Convert ASCII files from DOS (cr/lf) to UNIX (lf)
+COMMENT=	Convert ASCII newlines between cr/lf to lf
 LICENSE=	unknown
 
 MAN1=		unix2dos.1 dos2unix.1
