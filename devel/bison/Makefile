@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.10 2013/02/24 01:40:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.11 2013/06/03 12:52:11 laffer1 Exp $
 
 PORTNAME=	bison
 PORTVERSION=	2.7.1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
@@ -14,6 +15,7 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_XZ=		yes
+USE_CHARSETFIX=	yes
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
