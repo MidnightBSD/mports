@@ -1,9 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/news/lusernet/Makefile,v 1.1 2010/01/21 01:51:04 laffer1 Exp $
 
 PORTNAME=	lusernet
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	news gnustep
-MASTER_SITES=	http://web.telia.com/~u42308495/alex/LuserNET/
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	dinoex
 DISTNAME=	LuserNET-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +13,6 @@ COMMENT=	GNUstep news reader
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
