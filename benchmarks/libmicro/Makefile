@@ -1,14 +1,13 @@
-# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.3 2013/03/06 13:15:47 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.4 2013/06/15 20:12:10 laffer1 Exp $
 
 PORTNAME=	libmicro
 PORTVERSION=	0.4.1
 CATEGORIES=	benchmarks
-MASTER_SITES=	http://hub.opensolaris.org/bin/download/Project+libmicro/Source+Archives/ \
+MASTER_SITES=	http://people.midnightbsd.org/~laffer1/ \
 		FREEBSD_LOCAL/bdrewery/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of utilities to benchmark productivity of system calls
-
 LICENSE=	cddl
 
 WRKSRC=		${WRKDIR}/libMicro-${PORTVERSION}
