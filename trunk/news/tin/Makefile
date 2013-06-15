@@ -1,18 +1,27 @@
-# $MidnightBSD: mports/news/tin/Makefile,v 1.5 2012/02/05 03:45:06 laffer1 Exp $
+# $MidnightBSD: mports/news/tin/Makefile,v 1.6 2013/06/15 20:17:33 laffer1 Exp $
 
 PORTNAME=	tin
-PORTVERSION=	1.8.3
-PORTREVISION=	2
+PORTVERSION=	2.0.1
+PORTREVISION?=	3
 CATEGORIES+=	news ipv6
-MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/ \
-		ftp://ftp.stikman.com/pub/tin/stable/ \
-		ftp://ftp.sunet.se/pub/news/readers/tin/stable/
+MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.sunet.se/pub/news/readers/tin/v${PORTVERSION:R}/ \
+		ftp://sunsite.icm.edu.pl/pub/unix/news/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.ka.nu/pub/news/clients/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.tau.ac.il/pub/unix/news/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.cuhk.edu.hk/pub/packages/news/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.funet.fi/pub/unix/news/tin-unoff/ \
+		ftp://ftp.lip6.fr/pub/unix/news/readers/tin-unoff/ \
+		ftp://ftp.karlsruhe.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.akk.uni-karlsruhe.de/pub/news/clients/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.cs.tu-berlin.de/pub/net/news/tin/v${PORTVERSION:R}/ \
+		ftp://ftp.informatik.uni-hamburg.de/pub/soft/news/tin/v${PORTVERSION:R}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use threaded newsreader with NOV/NNTP support
 LICENSE=	bsd3
 
-LIB_DEPENDS=	uu.3:${PORTSDIR}/converters/uulib \
+LIB_DEPENDS=	uu:${PORTSDIR}/converters/uulib \
 		pcre:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 
@@ -21,7 +30,15 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
-WITH_TIN_EDITOR?=	/usr/bin/ee
+TIN_EDITOR?=	/usr/bin/ee
+TIN_SCREEN?=	ncursesw
+
+OPTIONS_DEFINE=	GNUPG ISPELL METAMAIL CANLOCK NNTP_ONLY
+OPTIONS_DEFAULT=GNUPG ISPELL METAMAIL
+CANLOCK_DESC=	Enable Cancel-Lock key support via libcanlock
+NNTP_ONLY=	Only read news via NNTP (no spool dir support)
+
+.include <bsd.mport.options.mk>
 
 # --with-mime-default-charset=US-ASCII needed to build tin in the non-ascii
 # national environment.
@@ -29,80 +46,79 @@ CONFIGURE_ARGS+=--with-nntp-default-server=news \
 		--with-spooldir=/var/news \
 		--with-libdir=${PREFIX}/news/lib \
 		--with-defaults-dir=${PREFIX}/etc \
-		--with-editor=${WITH_TIN_EDITOR} \
-		--enable-nls \
+		--with-editor=${TIN_EDITOR} \
 		--with-pcre=yes \
-		--with-screen=ncurses \
+		--with-screen=${TIN_SCREEN} \
 		--enable-break-long-lines \
 		--with-libiconv-prefix=${LOCALBASE} \
-		--with-mime-default-charset=US-ASCII
-CONFIGURE_ENV=	CFLAGS='${CFLAGS} -DNNTP_SERVER_FILE="\"${PREFIX}/etc/nntpserver\""' \
-		CPPFLAGS='${CPPFLAGS} -I${LOCALBASE}/include' \
-		LDFLAGS='${LDFLAGS} -L${LOCALBASE}/lib'
+		--with-mime-default-charset=US-ASCII \
+		--enable-ipv6
+MAKE_ARGS+=	MAKE=${GMAKE}
+CFLAGS+=	-DNNTP_SERVER_FILE=\\\"${PREFIX}/etc/nntpserver\\\"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 ALL_TARGET=	build
-MAN1=		tin.1 w2r.pl.1 opt-case.pl.1 tinews.pl.1
-MAN5=		tin.5 mbox.5 mmdf.5
+MAN1=		tin.1 w2r.pl.1 opt-case.pl.1 tinews.pl.1 tinurl_handler.pl.1
+MAN5=		tin.5 tin_mbox.5 tin_mmdf.5
 MLINKS=		tin.1 rtin.1
 
-.if defined(WITH_TIN_NNTP_ONLY)
+.if ${PORT_OPTIONS:MNNTP_ONLY}
 CONFIGURE_ARGS+=	--enable-nntp-only
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITHOUT_TIN_PGP_GPG)
-CONFIGURE_ARGS+=	--disable-pgp-gpg
-.elif defined(WITH_TIN_GPG) || \
-    (exists(${LOCALBASE}/bin/gpg) && !defined(WITH_TIN_PGP))
-RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg
+.if ${PORT_OPTIONS:MGNUPG}
+RUN_DEPENDS+=		gpg:${PORTSDIR}/security/gnupg
 CONFIGURE_ARGS+=	--with-gpg=${PREFIX}/bin/gpg \
-		 --without-pgp --without-pgpk
-.elif defined(WITH_TIN_PGP) || exists(${LOCALBASE}/bin/pgp)
-RUN_DEPENDS+=	pgp:${PORTSDIR}/security/pgp6
-CONFIGURE_ARGS+=	--with-pgp=${PREFIX}/bin/pgp \
-		 --without-pgpk --without-gpg
-.elif defined(WITH_TIN_PGP5) || exists(${LOCALBASE}/bin/pgpk)
-RUN_DEPENDS+=	pgpk:${PORTSDIR}/security/pgp5
-CONFIGURE_ARGS+=	--with-pgpk=${PREFIX}/bin/pgpk \
-		 --without-pgp --without-gpg
+		 	--without-pgp --without-pgpk
 .else
 CONFIGURE_ARGS+=	--disable-pgp-gpg
 .endif
 
-.if defined(WITH_TIN_ISPELL) || \
-    (exists(${LOCALBASE}/bin/ispell) && !defined(WITHOUT_TIN_ISPELL))
-RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
+.if ${PORT_OPTIONS:MISPELL}
+RUN_DEPENDS+=		ispell:${PORTSDIR}/textproc/ispell
 CONFIGURE_ARGS+=	--with-ispell=${PREFIX}/bin/ispell
 .endif
 
-.if defined(WITH_TIN_METAMAIL) || \
-    (exists(${LOCALBASE}/bin/metamail) && !defined(WITHOUT_TIN_METAMAIL))
-RUN_DEPENDS+=	metamail:${PORTSDIR}/mail/metamail
+.if ${PORT_OPTIONS:MMETAMAIL}
+RUN_DEPENDS+=		metamail:${PORTSDIR}/mail/metamail
 CONFIGURE_ARGS+=	--with-metamail=${PREFIX}/bin/metamail
 .endif
 
+.if ${PORT_OPTIONS:MCANLOCK}
+CONFIGURE_ARGS+=	--enable-cancel-locks
+.endif
+
+.if ${PORT_OPTIONS:MNLS}
+CONFIGURE_ARGS+=	--enable-nls
+USES+=		gettext
+PLIST_SUB+=		NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=		NLS="@comment "
+.endif
+
 post-patch:
-	${REINPLACE_CMD} -e 's:/var/spool/news:/var/news:' \
-		-e 's:/etc/nntpserver:${PREFIX}/etc/nntpserver:' \
-		-e 's:/usr/lib/news:${PREFIX}/news/lib:' \
-		-e 's:/etc/mime\.types:${PREFIX}/etc/mime.types:' \
+	${REINPLACE_CMD} -Ee 's:5/(mmdf|mbox):5/tin_\1:g' \
+		${WRKSRC}/src/Makefile.in
+	${REINPLACE_CMD} -e 's:/var/spool/news:/var/news:g' \
+		-e 's:/etc/nntpserver:${PREFIX}/etc/nntpserver:g' \
+		-e 's:/usr/lib/news:${PREFIX}/news/lib:g' \
+		-e 's:/etc/mime\.types:${PREFIX}/etc/mime.types:g' \
+		-e 's:url_handler\.pl:tinurl_handler.pl:g' \
 		${WRKSRC}/doc/tin.1 ${WRKSRC}/doc/tin.5
 	${REINPLACE_CMD} \
-		-e 's:/etc/mime\.types:${PREFIX}/etc/mime.types:' \
+		-e 's:/etc/mime\.types:${PREFIX}/etc/mime.types:g' \
 		${WRKSRC}/src/mimetypes.c
-
-.if defined(WITH_TIN_CANLOCK)
-MAKE_ARGS+=	CANLIB='-L../libcanlock -lcanlock' \
-		CANLOCK=-DUSE_CANLOCK
-.endif
-
-pre-build:
-.if defined(WITH_TIN_CANLOCK)
-	cd ${WRKSRC}/src; ${GMAKE} canlock
-.endif
+	${REINPLACE_CMD} \
+		-e 's:url_handler\.pl:tinurl_handler.pl:g' \
+		${WRKSRC}/src/Makefile.in ${WRKSRC}/include/tin.h
+	${MV}   ${WRKSRC}/tools/url_handler.pl \
+		${WRKSRC}/tools/tinurl_handler.pl
 
 post-build:
+.if ${PORT_OPTIONS:MNLS}
 	cd ${WRKSRC}/po; ${GMAKE}
+.endif
 
 post-install:
 	cd ${WRKSRC}/doc; ${INSTALL_DATA} tin.defaults ${PREFIX}/etc/tin.defaults.dist
@@ -110,4 +126,4 @@ post-install:
 		${CP} ${PREFIX}/etc/tin.defaults.dist ${PREFIX}/etc/tin.defaults; \
 	fi
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
