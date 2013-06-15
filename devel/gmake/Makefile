@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.9 2013/01/19 05:12:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.10 2013/02/24 01:41:44 laffer1 Exp $
 
 PORTNAME=	gmake
 PORTVERSION=	3.82
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	make
@@ -15,7 +15,10 @@ LICENSE=	gpl3
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--program-prefix=g
-.if !defined(WITHOUT_NLS)
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
 USE_GETTEXT=	yes
 CONFIGURE_ARGS+=--with-libiconv-prefix=${LOCALBASE} \
 		--with-libintl-prefix=${LOCALBASE}
