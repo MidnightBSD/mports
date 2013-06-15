@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libvolume_id/Makefile,v 1.4 2008/10/08 19:47:10 ctriv Exp $
-# $FreeBSD: ports/devel/libvolume_id/Makefile,v 1.6 2008/03/24 03:49:41 marcus Exp $
+# $MidnightBSD: mports/devel/libvolume_id/Makefile,v 1.5 2011/09/22 23:05:23 laffer1 Exp $
 
 PORTNAME=	libvolume_id
 PORTVERSION=	0.81.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.marcuscom.com/downloads/
 
@@ -12,10 +12,10 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
+USE_PKGCONFIG=	yes
 MAKE_ENV=	E=${ECHO_MSG} RANLIB=${RANLIB} AR=${AR} Q=@ \
-		CC=${CC} prefix=${PREFIX}
+		prefix=${PREFIX}
 
 PLIST_FILES=	include/libvolume_id.h \
 		lib/libvolume_id.a \
