@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.12 2013/01/21 01:22:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.13 2013/06/15 02:38:49 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -45,7 +45,9 @@ INFO=		autosprintf gettext
 	to "make".  Please unset it and restart the build.
 .endif
 
-.if defined (NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ! ${PORT_OPTIONS:MDOCS}
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-nodocs
 .endif
 
@@ -60,8 +62,8 @@ pre-extract:
 
 post-patch:
 	@${FIND} ${WRKSRC} -name configure -print | ${XARGS} \
-	    ${REINPLACE_CMD} -e 's|mkdir gmkdir|mkdir|'
-.if defined (NOPORTDOCS)
+	    ${REINPLACE_CMD} -e 's|mkdir gmkdir|mkdir|; s|gawk|awk|'
+.if ! ${PORT_OPTIONS:MDOCS}
 .for dir in runtime tools
 	@${REINPLACE_CMD} -e 's|^SUBDIRS = doc|SUBDIRS =|' \
 		${WRKSRC}/gettext-${dir}/Makefile.in
