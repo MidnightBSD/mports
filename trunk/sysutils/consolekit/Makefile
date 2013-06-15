@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.3 2011/06/04 21:52:16 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.4 2012/03/10 06:10:53 laffer1 Exp $
 
 PORTNAME=	consolekit
 PORTVERSION=	0.4.3
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/ConsoleKit/dist/
 DISTFILES=	ConsoleKit-${PORTVERSION}${EXTRACT_SUFX}
@@ -17,7 +18,7 @@ WRKSRC=		${WRKDIR}/ConsoleKit-${PORTVERSION}
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XORG=	x11
-USE_GNOME=	gnomehack
+USE_PATHFIX=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
