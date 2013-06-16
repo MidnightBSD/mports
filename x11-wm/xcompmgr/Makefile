@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xcompmgr/Makefile,v 1.2 2012/03/06 00:20:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xcompmgr/Makefile,v 1.3 2013/02/22 03:22:32 laffer1 Exp $
 
 PORTNAME=	xcompmgr
 PORTVERSION=	1.1.6
@@ -10,8 +10,6 @@ LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xcomposite xfixes xdamage xrender
-
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
 
 PLIST_FILES=	bin/${PORTNAME}
 
