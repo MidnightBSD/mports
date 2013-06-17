@@ -1,17 +1,11 @@
-# ports collection makefile for:	Berkeley DB v4
-# Date created:				16 August 2000
-# Whom:					Sergey Osokin aka oZZ <ozz@FreeBSD.org.ru>
-#
-# $FreeBSD: ports/databases/db4/Makefile,v 1.56 2006/05/04 21:39:54 edwin Exp $
-# $MidnightBSD: mports/databases/db4/Makefile,v 1.2 2007/05/04 20:20:15 ctriv Exp $
-#
+# $MidnightBSD: mports/databases/db4/Makefile,v 1.3 2007/11/10 23:35:01 laffer1 Exp $
 
 PORTNAME=	db4
 PORTVERSION=	4.0.14
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	http://downloads.sleepycat.com/
+MASTER_SITES=	http://download.oracle.com/berkeley-db/ 
 DISTNAME=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
@@ -23,7 +17,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 \
 		--enable-cxx --enable-dynamic \
 		--includedir=${PREFIX}/include/db4
