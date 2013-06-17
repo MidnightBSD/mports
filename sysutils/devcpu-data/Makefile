@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/devcpu-data/Makefile,v 1.1 2009/03/20 18:24:47 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/devcpu-data/Makefile,v 1.2 2012/03/01 13:54:19 laffer1 Exp $
 
 PORTNAME=	data
 PORTVERSION=	0.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
 PKGNAMEPREFIX=	devcpu-
