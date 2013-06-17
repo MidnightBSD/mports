@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.10 2013/02/23 02:05:31 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.11 2013/06/14 01:47:32 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	1.4.1
@@ -90,7 +90,6 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		XMLRPC          "XMLRPC-EPI support" off \
 		XMLWRITER       "XMLWriter support" on \
 		XSL             "XSL support (Implies DOM)" off \
-		YAZ             "YAZ support (ANSI/NISO Z39.50)" off \
 		ZIP             "ZIP support" off \
 		ZLIB            "ZLIB support" off
 
@@ -110,7 +109,7 @@ ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
 		SOCKETS SQLITE SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
 		TIDY TOKENIZER WDDX XML XMLREADER XMLRPC XMLWRITER XSL \
-		YAZ ZIP ZLIB
+		ZIP ZLIB
 
 SEL_OPTIONS=	yes
 .for opt in ${ALL_OPTIONS}
