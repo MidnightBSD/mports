@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.3 2013/02/19 12:25:37 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.4 2013/02/24 00:58:31 laffer1 Exp $
 
 PORTNAME=	garcon
-PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTVERSION=	0.2.1
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -15,14 +14,14 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack glib20 intltool intlhack
+USE_GNOME=	glib20 intltool intlhack
 USE_XFCE=	configenv libutil
 USE_PKGCONFIG=	build
+USE_PATHFIX=	yes
 
 CONFIGURE_ARGS+=--disable-gtk-doc-html
 
-OPTIONS=	NLS	"Enable Native Language Support"	on \
-		DOCS	"Install api documentation"		on
+OPTIONS_DEFINE=	DOCS NLS
 
 .include <bsd.mport.options.mk>
 
