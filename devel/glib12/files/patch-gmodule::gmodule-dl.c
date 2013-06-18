@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/glib12/files/patch-gmodule::gmodule-dl.c,v 1.1 2001/12/12 04:51:10 sobomax Exp $
+$FreeBSD$
 
 --- gmodule/gmodule-dl.c	2001/12/12 04:39:42	1.1
 +++ gmodule/gmodule-dl.c	2001/12/12 04:41:05
