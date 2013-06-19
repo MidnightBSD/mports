@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.48 2013/02/22 13:17:47 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.49 2013/03/02 18:55:37 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.4.12
+PORTVERSION=	5.4.16
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
 MASTER_SITE_SUBDIR=	distributions
 DISTNAME=	php-${PORTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
@@ -17,6 +16,7 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USE_BZIP2=	yes
 MAKE_JOBS_SAFE=	yes
+NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
@@ -28,51 +28,47 @@ CONFIGURE_ARGS=	\
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--enable-libxml \
-		--with-pcre-regex=${LOCALBASE} \
 		--enable-mysqlnd \
 		--with-libxml-dir=${LOCALBASE} \
+		--with-pcre-regex=${LOCALBASE} \
 		--with-zlib-dir=/usr \
 		--program-prefix=""
 
 DESTDIRNAME=	INSTALL_ROOT
 USE_GNOME=	libxml2
 
-OPTIONS=	CLI "Build CLI version" on \
-		CGI "Build CGI version" on \
-		FPM "Build FPM version (experimental)" off \
-		APACHE "Build Apache module" off \
-		AP2FILTER " Use Apache 2.x filter interface (experimental)" off \
-		DEBUG "Enable debug" off \
-		EMBED "Enable Embeded PHP" off \
-		MULTIBYTE "Enable zend multibyte support" off \
-		IPV6 "Enable ipv6 support" on \
-		MAILHEAD "Enable mail header patch" off \
-		LINKTHR "Link thread lib (for threaded extensions)" off
+OPTIONS_DEFINE=	CLI CGI FPM APACHE AP2FILTER EMBED DEBUG DTRACE IPV6 MAILHEAD LINKTHR
+OPTIONS_DEFAULT=CLI CGI IPV6 LINKTHR
 
-CONFLICTS=	php4-4* php5-pcre-* php5-spl-*
+CLI_DESC=	Build CLI version
+CGI_DESC=	Build CGI version
+FPM_DESC=	Build FPM version
+APACHE_DESC=	Build Apache module
+AP2FILTER_DESC=	Use Apache 2.x filter interface (experimental)
+EMBED_DESC=	Build embedded library
+DEBUG_DESC=	Enable debug
+DTRACE_DESC=	Enable DTrace support
+IPV6_DESC=	Enable ipv6 support
+MAILHEAD_DESC=	Enable mail header patch
+LINKTHR_DESC=	Link thread lib (for threaded extensions)
+
+CONFLICTS=	php52-5* php53-5*
 
 MAN1=		php-config.1 phpize.1
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
-PATCH_SITES+= ${MASTER_SITE_FREEBSD_LOCAL}
-PATCH_SITE_SUBDIR=    ale
+PATCH_DIST_STRIP=	-p1
 
-# broken
-#.if !defined(WITHOUT_SUHOSIN)
-#PATCHFILES+=	suhosin-patch-5.3.10-0.9.10.patch.gz
-#PATCH_SITES+=	http://download.suhosin.org/:suhosin
-#PLIST_SUB+=	SUHOSIN=""
-#.else
-PLIST_SUB+=	SUHOSIN="@comment "
-#.endif
+PATCH_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
+PATCH_SITE_SUBDIR=	ale
 
-.if defined(WITH_MAILHEAD)
+.if ${PORT_OPTIONS:MMAILHEAD}
 PATCHFILES+=	php-5.4.x-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
-.if !defined(WITHOUT_CLI)
+.if ${PORT_OPTIONS:MCLI}
 PHP_SAPI+=	cli
 PLIST_SUB+=	CLI=""
 MAN1+=		php.1
@@ -81,7 +77,7 @@ PLIST_SUB+=	CLI="@comment "
 CONFIGURE_ARGS+=--disable-cli
 .endif
 
-.if !defined(WITHOUT_CGI)
+.if ${PORT_OPTIONS:MCGI}
 PHP_SAPI+=	cgi
 PLIST_SUB+=	CGI=""
 .else
@@ -89,7 +85,7 @@ PLIST_SUB+=	CGI="@comment "
 CONFIGURE_ARGS+=--disable-cgi
 .endif
 
-.if defined(WITH_FPM)
+.if ${PORT_OPTIONS:MFPM}
 PHP_SAPI+=	fpm
 MAN8+=		php-fpm.8
 USE_RC_SUBR+=	php-fpm
@@ -101,10 +97,19 @@ PLIST_SUB+=	FPM=""
 PLIST_SUB+=	FPM="@comment "
 .endif
 
-.if defined(WITH_APACHE)
+.if ${PORT_OPTIONS:MAPACHE} && ${PORT_OPTIONS:MEMBED}
+IGNORE=		cannot be built with multiple SAPI (apache and embedded)
+.endif
+
+.if ${PORT_OPTIONS:MAPACHE}
 PHP_SAPI+=	mod
 USE_APACHE=	2.2+
+EXTENSIONS+=	apache
+.if ${PORT_OPTIONS:MAP2FILTER}
+CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
+.else
 CONFIGURE_ARGS+=--with-apxs2=${APXS}
+.endif
 PKGMESSAGE=	${PKGDIR}/pkg-message.mod
 MODULENAME=	lib${PORTNAME}
 SHORTMODNAME=	${PORTNAME}
@@ -113,7 +118,7 @@ PLIST_SUB+=	APACHE=""
 PLIST_SUB+=	APACHE="@comment "
 .endif
 
-.if defined(WITH_EMBED)
+.if ${PORT_OPTIONS:MEMBED}
 PHP_SAPI+=	embed
 CONFIGURE_ARGS+=--enable-embed
 PLIST_SUB+=	EMBED=""
@@ -138,38 +143,31 @@ CONFIGURE_ARGS+=--with-zend-vm=GOTO
 CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 		ac_cv_pthreads_cflags="" \
 		pthreads_working="yes" \
-		lt_cv_path_SED="sed" \
-		PHP_MYSQLND_ENABLED="yes"
+		lt_cv_path_SED="sed"
 
-.if defined(WITH_LINKTHR)
+.if ${PORT_OPTIONS:MLINKTHR}
 CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}"
 .endif
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=--enable-debug
 .endif
 
-.if defined(WITH_DTRACE)
+.if ${PORT_OPTIONS:MDTRACE}
 .if ${OSVERSION} < 4016
-IGNORE=               cannot be built with DTrace support on MidnightBSD < 0.4
+IGNORE=		cannot be built with DTrace support on MidnightBSD < 0.4
 .endif
 CONFIGURE_ARGS+=--enable-dtrace
 .endif
 
-.if defined(WITH_MULTIBYTE)
-CONFIGURE_ARGS+=--enable-zend-multibyte
-.endif
-
-.if defined(WITHOUT_IPV6)
+.if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
 .endif
-
-.include <bsd.port.pre.mk>
 
 post-patch:
 	@${TOUCH} ${WRKSRC}/ext/php_config.h
 	@${REINPLACE_CMD} "s|^\(extension_dir\)|; \1|" ${WRKSRC}/php.ini-*
-.if defined(WITH_FPM)
+.if ${PORT_OPTIONS:MFPM}
 	@${REINPLACE_CMD} -e "s|^;\(pid\)|\1|;s|^;\(pm\.[a-z_]*_servers\)|\1|" \
 		${WRKSRC}/sapi/fpm/php-fpm.conf.in
 .endif
@@ -199,8 +197,8 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/php.ini-production ${PREFIX}/etc
 	@${INSTALL_DATA} ${WRKDIR}/php.conf ${PREFIX}/etc
 	@${TOUCH} ${PREFIX}/include/php/ext/php_config.h
-.if defined(WITH_FPM)
-	@${CP} -n ${PREFIX}/etc/php-fpm.conf.default ${PREFIX}/etc/php-fpm.conf
+.if ${PORT_OPTIONS:MFPM}
+	@${CP} -n ${PREFIX}/etc/php-fpm.conf.default ${PREFIX}/etc/php-fpm.conf || ${TRUE}
 .endif
 
 .else
