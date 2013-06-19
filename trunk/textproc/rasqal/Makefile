@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/rasqal/Makefile,v 1.1 2013/06/05 12:39:39 laffer1 Exp $
 
 PORTNAME=	rasqal
 PORTVERSION=	0.9.30
@@ -16,7 +16,7 @@ LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
 USE_GNOME=	gnomehack lthack
 USE_OPENSSL=	yes
 USE_PERL5_BUILD=yes
-USES=		pkgconfig
+USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
