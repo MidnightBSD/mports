@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/mail/nmh/Makefile,v 1.1 2011/05/07 15:28:54 laffer1 Exp $
-# $FreeBSD: ports/mail/nmh/Makefile,v 1.51 2010/12/09 20:15:13 erwin Exp $
+# $MidnightBSD: mports/mail/nmh/Makefile,v 1.2 2012/02/24 18:25:44 laffer1 Exp $
 #
 # Makefile variables of interest:
 #
@@ -49,7 +48,7 @@
 #
 
 PORTNAME=	nmh
-PORTVERSION=	1.3
+PORTVERSION=	1.5
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	nmh
@@ -60,7 +59,6 @@ LICENSE=	bsd3
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf
 CONFIGURE_ARGS=	--libdir=${PREFIX}/libexec/nmh \
 		--sysconfdir=${PREFIX}/etc/nmh
 .ifdef NMH_EDITOR
@@ -93,23 +91,28 @@ CONFIGURE_ARGS+=	${NMH_EXTRA_CONFIGURE_ARGS}
 MAKE_JOBS_UNSAFE=	yes
 
 CFLAGS+=	-D${NMH_LOCKING} -O
-OPTIONS=	SASL2 "Cyrus SASL2" OFF
 
-.include <bsd.port.pre.mk>
+CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 
-.if defined(WITH_SASL2)
-LIB_DEPENDS+=		sasl2.2:${PORTSDIR}/security/cyrus-sasl2
-CONFIGURE_ARGS+=	--with-cyrus-sasl=${PREFIX}
+OPTIONS_DEFINE=	SASL2
+SASL2_DESC=	Cyrus SASL2 support
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MSASL2}
+LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
+CONFIGURE_ARGS+=	--with-cyrus-sasl
+CONFIGURE_ENV+=		LDFLAGS=-L"${PREFIX}"/lib CPPFLAGS=" -I${PREFIX}/include"
 .endif
 
-MAN1=	ali.1 anno.1 burst.1 comp.1 dist.1 flist.1 flists.1 \
-	folder.1 folders.1 forw.1 inc.1 install-mh.1 mark.1 \
+MAN1=	ali.1 anno.1 burst.1 comp.1 dist.1 flist.1 flists.1 fnext.1 \
+	folder.1 folders.1 forw.1 fprev.1 inc.1 install-mh.1 mark.1 \
 	mh-chart.1 mhbuild.1 mhl.1 mhlist.1 mhmail.1 mhn.1 \
 	mhparam.1 mhpath.1 mhshow.1 mhstore.1 msgchk.1 msh.1 \
-	next.1 nmh.1 packf.1 pick.1 prev.1 prompter.1 rcvdist.1 \
+	next.1 new.1 nmh.1 packf.1 pick.1 prev.1 prompter.1 rcvdist.1 \
 	rcvpack.1 rcvstore.1 rcvtty.1 refile.1 repl.1 rmf.1 rmm.1 \
 	scan.1 send.1 sendfiles.1 show.1 slocal.1 \
-	sortm.1 whatnow.1 whom.1
+	sortm.1 unseen.1 whatnow.1 whom.1
 
 MAN5=	mh-alias.5 mh-draft.5 mh-format.5 mh-mail.5 mh-profile.5 \
 	mh-sequence.5 mh-tailor.5 mts.conf.5
@@ -123,4 +126,4 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|autoconf|${AUTOCONF}|;\
 		s|autoheader|${AUTOHEADER}|" ${WRKSRC}/Makefile.in
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
