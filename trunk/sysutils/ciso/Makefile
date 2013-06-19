@@ -1,10 +1,8 @@
-# New ports collection makefile for:	ciso
-#
-# $MidnightBSD: mports/sysutils/ciso/Makefile,v 1.1 2008/08/24 21:41:39 laffer1 Exp $
-# $FreeBSD: ports/sysutils/ciso/Makefile,v 1.1 2007/12/15 21:18:18 miwi Exp $
+# $MidnightBSD: mports/sysutils/ciso/Makefile,v 1.2 2012/03/10 06:10:53 laffer1 Exp $
 
 PORTNAME=	ciso
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ciso.tenshu.fr/
 
@@ -13,7 +11,7 @@ COMMENT=	A tool to compress ISO images to CSO format
 LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
-USE_DOS2UNIX=	yes
+#USE_DOS2UNIX=	yes
 
 PLIST_FILES=	bin/ciso
 
