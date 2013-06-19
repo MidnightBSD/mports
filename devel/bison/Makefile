@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.11 2013/06/03 12:52:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.12 2013/06/15 20:01:29 laffer1 Exp $
 
 PORTNAME=	bison
 PORTVERSION=	2.7.1
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
@@ -29,7 +29,7 @@ INFO=		bison
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
+USE_GETTEXT=	yes
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
