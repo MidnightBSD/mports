@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.11 2013/06/14 01:47:32 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.12 2013/06/17 03:20:17 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	1.4.1
+PORTVERSION=	1.7
 CATEGORIES=	lang
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
@@ -18,106 +18,109 @@ USE_PHP_BUILD=	yes
 
 NO_BUILD=	yes
 
-WITH_CTYPE=	yes
-WITH_DOM=	yes
-WITH_FILTER=	yes
-WITH_HASH=	yes
-WITH_ICONV=	yes
-WITH_JSON=	yes
-WITH_PDO=	yes
-WITH_PDO_SQLITE=yes
-WITH_POSIX=	yes
-WITH_SESSION=	yes
-WITH_SIMPLEXML=	yes
-WITH_SQLITE=	yes
-WITH_TOKENIZER=	yes
-WITH_XML=	yes
-WITH_XMLREADER=	yes
-WITH_XMLWRITER=	yes
-
-OPTIONS=	BCMATH          "bc style precision math functions" off \
-		BZ2             "bzip2 library support" off \
-		CALENDAR        "calendar conversion support" off \
-		CTYPE           "ctype functions" on \
-		CURL            "CURL support" off \
-		DBA             "dba support" off \
-		DOM             "DOM support" on \
-		EXIF            "EXIF support" off \
-		FILEINFO        "fileinfo support" off \
-		FILTER          "input filter support" on \
-		FRIBIDI         "FriBidi support" off \
-		FTP             "FTP support" off \
-		GD              "GD library support" off \
-		GETTEXT         "gettext library support" off \
-		GMP             "GNU MP support" off \
-		HASH            "HASH Message Digest Framework" on \
-		ICONV           "iconv support" on \
-		IMAP            "IMAP support" off \
-		JSON            "JavaScript Object Serialization support" on \
-		LDAP            "OpenLDAP support" off \
-		MBSTRING        "multibyte string support" off \
-		MCRYPT          "Encryption support" off \
-		MSSQL           "MS-SQL database support" off \
-		MYSQL           "MySQL database support" off \
-		MYSQLI          "MySQLi database support" off \
-		ODBC            "unixODBC support" off \
-		OPENSSL         "OpenSSL support" off \
-		PCNTL           "pcntl support (CLI only)" off \
-		PDF             "PDFlib support (implies GD)" off \
-		PDO             "PHP Data Objects Interface (PDO)" on \
-		PDO_SQLITE      "PDO sqlite driver" on \
-		PGSQL           "PostgreSQL database support" off \
-		POSIX           "POSIX-like functions" on \
-		PSPELL          "pspell support" off \
-		READLINE        "readline support (CLI only)" off \
-		RECODE          "recode support" off \
-		SESSION         "session support" on \
-		SHMOP           "shmop support" off \
-		SIMPLEXML       "simplexml support" on \
-		SNMP            "SNMP support" off \
-		SOAP            "SOAP support" off \
-		SOCKETS         "sockets support" off \
-		SQLITE3          "sqlite support" on \
-		SYBASE_CT       "Sybase database support" off \
-		SYSVMSG         "System V message support" off \
-		SYSVSEM         "System V semaphore support" off \
-		SYSVSHM         "System V shared memory support" off \
-		TIDY            "TIDY support" off \
-		TOKENIZER       "tokenizer support" on \
-		WDDX            "WDDX support (implies XML)" off \
-		XML             "XML support" on \
-		XMLREADER       "XMLReader support" on \
-		XMLRPC          "XMLRPC-EPI support" off \
-		XMLWRITER       "XMLWriter support" on \
-		XSL             "XSL support (Implies DOM)" off \
-		ZIP             "ZIP support" off \
-		ZLIB            "ZLIB support" off
-
-PORT_DBDIR?=	/var/db/ports
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
 OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 
-.if exists(${OPTIONSFILE})
-.include "${OPTIONSFILE}"
-.endif
-
-ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
-		DOM EXIF FILEINFO FILTER FRIBIDI FTP GD GETTEXT \
-		GMP HASH ICONV IMAP JSON LDAP MBSTRING MCRYPT \
+OPTIONS_DEFINE=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
+		DOM EXIF FILEINFO FILTER FTP GD GETTEXT \
+		GMP HASH ICONV IMAP INTERBASE JSON LDAP MBSTRING MCRYPT \
 		MSSQL MYSQL MYSQLI \
-		ODBC OPENSSL PCNTL PDF PDO PDO_SQLITE PGSQL POSIX \
+		ODBC OPENSSL PCNTL PDF PDO PDO_DBLIB PDO_FIREBIRD \
+		PDO_MYSQL PDO_ODBC PDO_PGSQL PDO_SQLITE PGSQL PHAR POSIX \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
-		SOCKETS SQLITE SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
+		SOCKETS SQLITE3 SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
 		TIDY TOKENIZER WDDX XML XMLREADER XMLRPC XMLWRITER XSL \
 		ZIP ZLIB
 
-SEL_OPTIONS=	yes
-.for opt in ${ALL_OPTIONS}
-.	if defined(WITH_${opt}) && !defined(WITHOUT_${opt})
-SEL_OPTIONS+=	${opt:L}
+BCMATH_DESC=		bc style precision math functions
+BZ2_DESC=		bzip2 library support
+CALENDAR_DESC=		calendar conversion support
+CTYPE_DESC=		ctype functions
+CURL_DESC=		CURL support
+DBA_DESC=		dba support
+DOM_DESC=		DOM support
+EXIF_DESC=		EXIF support
+FILEINFO_DESC=		fileinfo support
+FILTER_DESC=		input filter support
+FTP_DESC=		FTP support
+GD_DESC=		GD library support
+GETTEXT_DESC=		gettext library support
+GMP_DESC=		GNU MP support
+HASH_DESC=		HASH Message Digest Framework
+ICONV_DESC=		iconv support
+IMAP_DESC=		IMAP support
+INTERBASE_DESC=		Interbase 6 database support (Firebird)
+JSON_DESC=		JavaScript Object Serialization support
+LDAP_DESC=		OpenLDAP support
+MBSTRING_DESC=		multibyte string support
+MCRYPT_DESC=		Encryption support
+MSSQL_DESC=		MS-SQL database support
+MYSQL_DESC=		MySQL database support
+MYSQLI_DESC=		MySQLi database support
+ODBC_DESC=		ODBC support
+OPENSSL_DESC=		OpenSSL support
+PCNTL_DESC=		pcntl support (CLI only)
+PDF_DESC=		PDFlib support (implies GD)
+PDO_DESC=		PHP Data Objects Interface (PDO)
+PDO_DBLIB_DESC=		PDO DBLIB-DB driver
+PDO_FIREBIRD_DESC=	PDO Firebird driver
+PDO_MYSQL_DESC=		PDO MySQL driver
+PDO_ODBC_DESC=		PDO ODBC driver
+PDO_PGSQL_DESC=		PDO PostgreSQL driver
+PDO_SQLITE_DESC=	PDO sqlite driver
+PGSQL_DESC=		PostgreSQL database support
+PHAR_DESC=		phar support
+POSIX_DESC=		POSIX-like functions
+PSPELL_DESC=		pspell support
+READLINE_DESC=		readline support (CLI only)
+RECODE_DESC=		recode support
+SESSION_DESC=		session support
+SHMOP_DESC=		shmop support
+SIMPLEXML_DESC=		simplexml support
+SNMP_DESC=		SNMP support
+SOAP_DESC=		SOAP support
+SOCKETS_DESC=		sockets support
+SQLITE3_DESC=		sqlite3 support
+SYBASE_CT_DESC=		Sybase database support
+SYSVMSG_DESC=		System V message support
+SYSVSEM_DESC=		System V semaphore support
+SYSVSHM_DESC=		System V shared memory support
+TIDY_DESC=		TIDY support
+TOKENIZER_DESC=		tokenizer support
+WDDX_DESC=		WDDX support (implies XML)
+XML_DESC=		XML support
+XMLREADER_DESC=		XMLReader support
+XMLRPC_DESC=		XMLRPC-EPI support
+XMLWRITER_DESC=		XMLWriter support
+XSL_DESC=		XSL support (Implies DOM)
+ZIP_DESC=		ZIP support
+ZLIB_DESC=		ZLIB support
+
+OPTIONS_DEFAULT=	CTYPE \
+			DOM \
+			FILTER \
+			HASH \
+			ICONV \
+			JSON \
+			PDO \
+			PDO_SQLITE \
+			PHAR \
+			POSIX \
+			SESSION \
+			SIMPLEXML \
+			SQLITE3 \
+			TOKENIZER \
+			XML \
+			XMLREADER \
+			XMLWRITER
+
+.include <bsd.mport.options.mk>
+
+.for opt in ${OPTIONS_DEFINE}
+.	if ${PORT_OPTIONS:M${opt}}
+USE_PHP+=	${opt:L}
 .	endif
 .endfor
-USE_PHP=	${SEL_OPTIONS}
 
 do-install: build
 	@${DO_NADA}
