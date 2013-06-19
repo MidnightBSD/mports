@@ -2,12 +2,11 @@
 # Date created:                         6 January 2007
 # Whom:                                 Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/retsina/Makefile,v 1.5 2007/11/09 16:27:18 laffer1 Exp $
-#
+# $MidnightBSD: mports/www/retsina/Makefile,v 1.6 2012/02/05 03:47:55 laffer1 Exp $
 
 PORTNAME=	retsina
 PORTVERSION=	1.0.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 
@@ -16,7 +15,7 @@ COMMENT=	A fast redirector and access controller for squid
 LICENSE=	bsd3
 
 RUN_DEPENDS=	${LOCALBASE}/sbin/squid:${PORTSDIR}/www/squid
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 FAKE_OPTS+=	prefixhack
 
@@ -28,8 +27,7 @@ LDFLAGS=	-L/usr/lib -L${LOCALBASE}/lib
 OPTIONS=	MYSQL_DB_SUPPORT "Enable MySQL database support" off \
 		PGSQL_DB_SUPPORT "Enable PostgreSQL database support" off
 
-#needed for OPTIONS framework
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # Check options
 .if defined(WITH_MYSQL_DB_SUPPORT)
@@ -45,5 +43,4 @@ CONFIGURE_ARGS+=	--enable-pgsql
 
 MAN1=		retsina.1
 
-# changed include due to OPTIONS framework
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
