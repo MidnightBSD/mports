@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/gdb/Makefile,v 1.1 2011/09/03 02:00:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/gdb/Makefile,v 1.2 2013/03/03 16:49:52 laffer1 Exp $
 
 PORTNAME=	gdb
-PORTVERSION=	7.5.1
+PORTVERSION=	7.6
 CATEGORIES=	devel
 MASTER_SITES=   GNU
 
