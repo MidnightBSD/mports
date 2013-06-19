@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.10 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.11 2013/06/13 01:06:32 laffer1 Exp $
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.42
@@ -47,7 +47,7 @@ OPTIONS_RADIO_ONE=	PAM XLOCK_GROUP
 
 NO_OPTIONS_SORT=yes
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MKERBEROS4}
 CONFIGURE_ARGS+=--enable-kerberos4
