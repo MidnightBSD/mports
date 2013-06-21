@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.10 2013/02/10 20:53:52 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.11 2013/02/21 02:34:58 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -171,7 +171,7 @@ _JAVA_PORT_LINUX_SUN_JDK_1_7_INFO=			PORT=java/linux-sun-jdk17		HOME=${LOCALBASE
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
 _JAVA_VENDOR_openjdk=		"OpenJDK BSD Porting Team"
-_JAVA_VENDOR_sun=		Sun
+_JAVA_VENDOR_sun=			Sun
 
 # Verbose description for each OS
 _JAVA_OS_native=	Native
@@ -222,34 +222,47 @@ check-makevars::
 .		endfor
 
 # Error checking: JAVA_VERSION
-_JAVA_VERSION_LIST_REGEXP!=		${ECHO_CMD} "${_JAVA_VERSION_LIST}" | ${SED} "s/ /\\\|/g"
-_ERROR_CHECKING_JAVA_VERSION!=	${ECHO_CMD} "${JAVA_VERSION}" | ${TR} " " "\n" \
-								| ${GREP} -v "${_JAVA_VERSION_LIST_REGEXP}" || true
-.		if (${_ERROR_CHECKING_JAVA_VERSION} != "")
-check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VERSION}\" is not a valid value for JAVA_VERSION. It should be one or more of: ${__JAVA_VERSION_LIST} (with an optional \"+\" suffix.)";
-	@${FALSE}
+.if !defined(_JAVA_VERSION_LIST_REGEXP)
+.	for v in ${_JAVA_VERSION_LIST}
+.		if defined(_JAVA_VERSION_LIST_REGEXP)
+_JAVA_VERSION_LIST_REGEXP:=		${_JAVA_VERSION_LIST_REGEXP}\|
 .		endif
+_JAVA_VERSION_LIST_REGEXP:=		${_JAVA_VERSION_LIST_REGEXP}$v
+.	endfor
+.endif
+
+
+check-makevars::
+	@test ! -z "${JAVA_VERSION}" && ( ${ECHO_CMD} "${JAVA_VERSION}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_VERSION_LIST_REGEXP}" || \
+	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VERSION}\" is not a valid value for JAVA_VERSION. It should be one or more of: ${__JAVA_VERSION_LIST} (with an optional \"+\" suffix.)"; ${FALSE})) || true
 
 # Error checking: JAVA_VENDOR
-_JAVA_VENDOR_LIST_REGEXP!=		${ECHO_CMD} "${_JAVA_VENDOR_LIST}" | ${SED} "s/ /\\\|/g"
-_ERROR_CHECKING_JAVA_VENDOR!=	${ECHO_CMD} "${JAVA_VENDOR}" | ${TR} " " "\n" \
-								| ${GREP} -v "${_JAVA_VENDOR_LIST_REGEXP}" || true
-.		if (${_ERROR_CHECKING_JAVA_VENDOR} != "")
-check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VENDOR}\" is not a valid value for JAVA_VENDOR. It should be one or more of: ${_JAVA_VENDOR_LIST}";
-	@${FALSE}
+.if !defined(_JAVA_VENDOR_LIST_REGEXP)
+.	for v in ${_JAVA_VENDOR_LIST}
+.		if defined(_JAVA_VENDOR_LIST_REGEXP)
+_JAVA_VENDOR_LIST_REGEXP:=		${_JAVA_VENDOR_LIST_REGEXP}\|
 .		endif
+_JAVA_VENDOR_LIST_REGEXP:=		${_JAVA_VENDOR_LIST_REGEXP}$v
+.	endfor
+.endif
+check-makevars::
+	@test ! -z "${JAVA_VENDOR}" && ( ${ECHO_CMD} "${JAVA_VENDOR}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_VENDOR_LIST_REGEXP}" || \
+	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VENDOR}\" is not a valid value for JAVA_VENDOR. It should be one or more of: ${_JAVA_VENDOR_LIST}"; \
+	${FALSE})) || true
 
 # Error checking: JAVA_OS
-_JAVA_OS_LIST_REGEXP!=		${ECHO_CMD} "${_JAVA_OS_LIST}" | ${SED} "s/ /\\\|/g"
-_ERROR_CHECKING_JAVA_OS!=	${ECHO_CMD} "${JAVA_OS}" | ${TR} " " "\n" \
-							| ${GREP} -v "${_JAVA_OS_LIST_REGEXP}" || true
-.		if (${_ERROR_CHECKING_JAVA_OS} != "")
-check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_OS}\" is not a valid value for JAVA_OS. It should be one or more of: ${_JAVA_OS_LIST}";
-	@${FALSE}
+.if !defined(_JAVA_OS_LIST_REGEXP)
+.	for v in ${_JAVA_OS_LIST}
+.		if defined(_JAVA_OS_LIST_REGEXP)
+_JAVA_OS_LIST_REGEXP:=		${_JAVA_OS_LIST_REGEXP}\|
 .		endif
+_JAVA_OS_LIST_REGEXP:=		${_JAVA_OS_LIST_REGEXP}$v
+.	endfor
+.endif
+check-makevars::
+	@test ! -z "${JAVA_OS}" && ( ${ECHO_CMD} "${JAVA_OS}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_OS_LIST_REGEXP}" || \
+	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_OS}\" is not a valid value for JAVA_OS. It should be one or more of: ${_JAVA_OS_LIST}"; \
+	${FALSE})) || true
 
 # Set default values for JAVA_BUILD and JAVA_RUN
 # When nothing is set, assume JAVA_BUILD=jdk and JAVA_RUN=jre
@@ -286,18 +299,28 @@ A_JAVA_PORT_HOME=			${A_JAVA_PORT_INFO:MHOME=*:S,HOME=,,}
 A_JAVA_PORT_VERSION=		${A_JAVA_PORT_INFO:MVERSION=*:C/VERSION=([0-9])\.([0-9])(.*)/\1.\2/}
 A_JAVA_PORT_OS=				${A_JAVA_PORT_INFO:MOS=*:S,OS=,,}
 A_JAVA_PORT_VENDOR=			${A_JAVA_PORT_INFO:MVENDOR=*:S,VENDOR=,,}
-A_JAVA_PORT_INSTALLED!=		${TEST} -x "${A_JAVA_PORT_HOME}/${_JDK_FILE}" \
-							&& ${ECHO_CMD} "${A_JAVA_PORT}" \
-							|| ${TRUE}
-__JAVA_PORTS_INSTALLED!=	${ECHO_CMD} "${__JAVA_PORTS_INSTALLED} ${A_JAVA_PORT_INSTALLED}"
-A_JAVA_PORT_POSSIBLE!=		${ECHO_CMD} "${_JAVA_VERSION}" | ${GREP} -q "${A_JAVA_PORT_VERSION}" \
-							&& ${ECHO_CMD} "${_JAVA_OS}" | ${GREP} -q "${A_JAVA_PORT_OS}" \
-							&& ${ECHO_CMD} "${_JAVA_VENDOR}" | ${GREP} -q "${A_JAVA_PORT_VENDOR}" \
-							&& ${ECHO_CMD} "${A_JAVA_PORT}" \
-							|| ${TRUE}
-__JAVA_PORTS_POSSIBLE!=		${ECHO_CMD} "${__JAVA_PORTS_POSSIBLE} ${A_JAVA_PORT_POSSIBLE}"
+.if !defined(_JAVA_PORTS_INSTALLED) && exists(${A_JAVA_PORT_HOME}/${_JDK_FILE})
+__JAVA_PORTS_INSTALLED+=	${A_JAVA_PORT}
+.endif
+
+# Because variables inside for loops are special (directly replaced as strings),
+# we are allowed to use them inside modifiers, where normally ${FOO:M${BAR}} is
+# not allowed.
+#
+.for ver in ${A_JAVA_PORT_VERSION}
+.for os in ${A_JAVA_PORT_OS}
+.for vendor in ${A_JAVA_PORT_VENDOR}
+.if ${_JAVA_VERSION:M${ver}} && ${_JAVA_OS:M${os}} && ${_JAVA_VENDOR:M${vendor}}
+__JAVA_PORTS_POSSIBLE+=		${A_JAVA_PORT}
+.endif
+.endfor
+.endfor
+.endfor
+
 .		endfor
+.if !defined(_JAVA_PORTS_INSTALLED)
 _JAVA_PORTS_INSTALLED=		${__JAVA_PORTS_INSTALLED:C/ [ ]+/ /g}
+.endif
 _JAVA_PORTS_POSSIBLE=		${__JAVA_PORTS_POSSIBLE:C/ [ ]+/ /g}
 
 
@@ -310,20 +333,25 @@ _JAVA_PORTS_POSSIBLE=		${__JAVA_PORTS_POSSIBLE:C/ [ ]+/ /g}
 .		undef _JAVA_PORTS_INSTALLED_POSSIBLE
 
 .		for A_JAVA_PORT in ${_JAVA_PORTS_POSSIBLE}
-A_JAVA_PORT_INSTALLED_POSSIBLE!=	${ECHO_CMD} "${_JAVA_PORTS_INSTALLED}" | ${GREP} -q "${A_JAVA_PORT}" \
-									&& ${ECHO_CMD} "${A_JAVA_PORT}" || ${TRUE}
-__JAVA_PORTS_INSTALLED_POSSIBLE!=	${ECHO_CMD} "${__JAVA_PORTS_INSTALLED_POSSIBLE} ${A_JAVA_PORT_INSTALLED_POSSIBLE}"
+__JAVA_PORTS_INSTALLED_POSSIBLE+=	${_JAVA_PORTS_INSTALLED:M${A_JAVA_PORT}}
 .		endfor
-_JAVA_PORTS_INSTALLED_POSSIBLE=		${__JAVA_PORTS_INSTALLED_POSSIBLE:C/ [ ]+/ /g}
+_JAVA_PORTS_INSTALLED_POSSIBLE=		${__JAVA_PORTS_INSTALLED_POSSIBLE:C/[ ]+//g}
 
-.		if !defined(PACKAGE_BUILDING) && ${_JAVA_PORTS_INSTALLED_POSSIBLE} != ""
-_JAVA_PORT!=	${ECHO_CMD} "${_JAVA_PORTS_INSTALLED_POSSIBLE}" \
-				| ${AWK} '{ print $$1 }'
-
+.		if ${_JAVA_PORTS_INSTALLED_POSSIBLE} != ""
+.                 for i in ${_JAVA_PORTS_INSTALLED_POSSIBLE}
+.                   if !defined(_JAVA_PORTS_INSTALLED_POSSIBLE_shortcircuit)
+_JAVA_PORT=	$i
+_JAVA_PORTS_INSTALLED_POSSIBLE_shortcircuit=	1
+.                   endif
+.                 endfor
 # If no installed JDK port fits, then pick one from the list of possible ones
 .		else
-_JAVA_PORT!=	${ECHO_CMD} "${_JAVA_PORTS_POSSIBLE}" \
-				| ${AWK} '{ print $$1 }'
+.                 for i in ${_JAVA_PORTS_POSSIBLE}
+.                   if !defined(_JAVA_PORTS_POSSIBLE_shortcircuit)
+_JAVA_PORT=	$i
+_JAVA_PORTS_POSSIBLE_shortcircuit=	1
+.                   endif
+.                 endfor
 .		endif
 
 _JAVA_PORT_INFO:=		${_JAVA_PORT:S/^/\${_/:S/$/_INFO}/}
