@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/linux-sun-jre17/Makefile,v 1.1 2013/03/05 13:16:14 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${JRE_UPDATE_VERSION}
@@ -28,7 +28,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 JRE_VERSION=		7
 JRE_INTERNAL_VERSION=	1.7.0
-JRE_UPDATE_VERSION=	17
+JRE_UPDATE_VERSION=	21
 DL_JRE_VERSION=		${JRE_INTERNAL_VERSION}_${JRE_UPDATE_VERSION}
 DOWNLOAD_URL=		http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
