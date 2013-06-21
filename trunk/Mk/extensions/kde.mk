@@ -1,7 +1,7 @@
-#-*- mode: Makefile; tab-width: 4; -*-
+#-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.4 2010/06/04 22:44:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.5 2012/02/29 20:53:52 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -62,9 +62,7 @@ CATEGORIES+=ipv6
 
 ##  XXX - This really belongs into bsd.port.mk
 .if !defined(_NO_KDE_CONFTARGET_HACK)
-CONFIGURE_TARGET=
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd7.0 \
-		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
+CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--disable-as-needed
 .endif
 
@@ -99,8 +97,9 @@ QTCPPFLAGS+=		-D_GETOPT_H		# added to work around broken getopt.h #inc
 .if !defined (QT_NONSTANDARD)
 CONFIGURE_ARGS+=--with-extra-libs="${LOCALBASE}/lib" \
 				--with-extra-includes="${LOCALBASE}/include"
-CONFIGURE_ENV+=	MOC="${MOC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}" \
+CONFIGURE_ENV+=	MOC="${MOC}" LIBS="${QTCFGLIBS}" \
 				QTDIR="${QT_CVS_PREFIX}" KDEDIR="${KDE_CVS_PREFIX}"
+CPPFLAGS+=		${QTCPPFLAGS}
 .endif
 
 .elif ${USE_QT_VER} == 3
@@ -124,20 +123,17 @@ QTCPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include \
 				-I${QT_PREFIX}/include -D_GETOPT_H
 QTCFGLIBS+=		-Wl,-export-dynamic -L${LOCALBASE}/lib -ljpeg \
 				-L${QT_PREFIX}/lib
-.if defined(PACKAGE_BUILDING)
-TMPDIR?=	/tmp
-MAKE_ENV+=	TMPDIR="${TMPDIR}"
-CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
-.endif
 
 .if !defined(QT_NONSTANDARD)
 CONFIGURE_ARGS+=--with-qt-includes=${QT_PREFIX}/include \
 				--with-qt-libraries=${QT_PREFIX}/lib \
 				--with-extra-libs=${LOCALBASE}/lib \
 				--with-extra-includes=${LOCALBASE}/include
-CONFIGURE_ENV+=	MOC="${MOC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}" \
-		QTDIR="${QT_PREFIX}" KDEDIR="${KDE_PREFIX}"
+CONFIGURE_ENV+=	MOC="${MOC}" LIBS="${QTCFGLIBS}" \
+				QTDIR="${QT_PREFIX}" KDEDIR="${KDE_PREFIX}"
+CPPFLAGS+=		${QTCPPFLAGS}
 .endif # !defined(QT_NONSTANDARD)
+
 .else
 IGNORE=			cannot install: unsupported value of USE_QT_VER
 .endif # defined(USE_QT_VER)
