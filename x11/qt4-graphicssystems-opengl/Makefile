@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/qt4-graphicssystems-opengl/Makefile,v 1.1 2011/07/23 22:48:31 laffer1 Exp $
 # $FreeBSD: ports/x11/qt4-graphicssystems-opengl/Makefile,v 1.1 2010/12/02 19:47:16 makc Exp $
 
 PORTNAME=	graphicssystems
@@ -11,8 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL rendering engine (experimental)
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build opengl
+USE_QT4=	qmake_build opengl
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -33,7 +32,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
