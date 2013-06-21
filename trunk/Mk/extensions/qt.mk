@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.7 2012/02/29 20:52:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.8 2013/06/21 01:43:42 laffer1 Exp $
 #
 # Variables:
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
@@ -12,8 +12,8 @@
 #				- Qt style that renders using GTK (QGTKSTYLE).
 
 .if !defined(_POSTMKINCLUDED) && !defined(Qt_Pre_Include)
-Qt_Include_MAINTAINER=	kde@FreeBSD.org
-Qt_Pre_Include=		bsd.qt.mk
+Qt_Include_MAINTAINER=	ports@MidnightBSD.org
+Qt_Pre_Include=		qt.mk
 
 .if !defined(QT_NONSTANDARD)
 CONFIGURE_ARGS+=--with-qt-includes=${QT_INCDIR} \
@@ -119,7 +119,7 @@ QTCGFLIBS?=
 QT4_VERSION?=		4.8.4
 
 _USE_QT4_ALL=	accessible assistant assistant-adp assistantclient \
-			clucene codecs-cn codecs-jp codecs-kr codecs-tw corelib \
+			clucene corelib \
 			dbus declarative demo designer doc \
 			graphicssystems-opengl gui help help-tools \
 			iconengines imageformats inputmethods \
@@ -144,18 +144,6 @@ assistantclient_DEPENDS=	${QT_LIBDIR}/libQtAssistantClient.so
 
 clucene_PORT=		textproc/qt4-clucene
 clucene_DEPENDS=	${QT_LIBDIR}/libQtCLucene.so
-
-codecs-cn_PORT=		chinese/qt4-codecs-cn
-codecs-cn_DEPENDS=	${QT_PLUGINDIR}/codecs/libqcncodecs.so
-
-codecs-jp_PORT=		japanese/qt4-codecs-jp
-codecs-jp_DEPENDS=	${QT_PLUGINDIR}/codecs/libqjpcodecs.so
-
-codecs-kr_PORT=		korean/qt4-codecs-kr
-codecs-kr_DEPENDS=	${QT_PLUGINDIR}/codecs/libqkrcodecs.so
-
-codecs-tw_PORT=		chinese/qt4-codecs-tw
-codecs-tw_DEPENDS=	${QT_PLUGINDIR}/codecs/libqtwcodecs.so
 
 corelib_PORT=		devel/qt4-corelib
 corelib_DEPENDS=	${QT_LIBDIR}/libQtCore.so
@@ -305,7 +293,7 @@ xmlpatterns-tool_PORT=		textproc/qt4-xmlpatterns-tool
 xmlpatterns-tool_DEPENDS=	${QT_PREFIX}/bin/xmlpatterns
 
 .if defined(_POSTMKINCLUDED) && !defined(Qt_Post_Include)
-Qt_Post_Include= bsd.qt.mk
+Qt_Post_Include= qt.mk
 
 #
 # Translate `c++` to its real name and select the appropriate mkspec.
