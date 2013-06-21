@@ -1,21 +1,21 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile.update,v 1.1 2013/02/23 03:15:20 laffer1 Exp $
 
 JDK_NAME?=	openjdk
 JDK_PORT?=	openjdk6
 JDK_ROOT?=	bootstrap-${JDK_NAME}
-TARGET_OS?=	7
+TARGET_OS?=	8
 
 .if !defined(PORTSDIR)
 .if exists(${.CURDIR}/../${JDK_PORT}/Makefile)
 PORTSDIR=	${.CURDIR}/../..
 .else
-PORTSDIR=	/usr/ports
+PORTSDIR=	/usr/mports
 .endif
 .endif
 
 LOCALBASE?=	/usr/local
 
-.include "${PORTSDIR}/Mk/bsd.commands.mk"
+.include "${PORTSDIR}/Mk/components/commands.mk"
 
 JDK_PORTDIR!=	${REALPATH} ${PORTSDIR}/java/${JDK_PORT}
 JDK_IMAGEDIR?=	${JDK_PORTDIR}/work/build/bsd-${ARCH:S/i386/i586/}/j2sdk-image
@@ -47,7 +47,7 @@ all:
 	@${ECHO} "=============================================================="
 	@${ECHO} ""
 .if ${BUILD_OS} > ${TARGET_OS}
-	@${ECHO} "We need FreeBSD ${TARGET_OS} but you seem to have ${BUILD_OS}."
+	@${ECHO} "We need MidnightBSD ${TARGET_OS} but you seem to have ${BUILD_OS}."
 	@${ECHO} ""
 	@${ECHO} "=============================================================="
 	@${ECHO} ""

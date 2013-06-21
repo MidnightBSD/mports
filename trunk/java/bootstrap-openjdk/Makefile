@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.1 2013/02/23 03:15:20 laffer1 Exp $
 
 PORTNAME=	${JDK_NAME}
 PORTVERSION=	${DISTVERSION_${ARCH}}
@@ -35,7 +35,7 @@ INSTALLDIR=	${PREFIX}/${JDK_ROOT}
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 4015
-RUN_DEPENDS+=	${LOCALBASE}/lib/compat/libz.so.4:${PORTSDIR}/misc/compat7x
+RUN_DEPENDS+=	${LOCALBASE}/lib/compat/libz.so.5:${PORTSDIR}/misc/compat8x
 .endif
 
 .if ${ARCH} == "i386"
