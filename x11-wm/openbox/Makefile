@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.10 2012/12/19 03:14:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.11 2013/06/17 02:36:47 laffer1 Exp $
 
 PORTNAME=	openbox
 PORTVERSION=	3.5.0
@@ -10,11 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, fast, standards compliant, extensible window manager
 LICENSE=        gpl2
 
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 gnomehack ltverhack
 USE_XORG=	xft
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CFLAGS+="-I${LOCALBASE}/include" \
 		LDFLAGS+="-L${LOCALBASE}/lib"
@@ -23,8 +23,10 @@ MAN1=		openbox.1 openbox-session.1 obxprop.1 \
 
 PLIST_SUB=	VERSION=${PORTVERSION:C/.[0-9]+\$//}
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=	--disable-nls
