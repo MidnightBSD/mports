@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.10 2013/03/05 00:42:29 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.11 2013/03/05 13:13:31 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${DL_JDK_VERSION:S/_/./g}
@@ -18,7 +18,9 @@ IS_INTERACTIVE=	yes
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
-OPTIONS=	DEMO "Install demos and samples" on
+OPTIONS_DEFINE=	DEMO
+DEMO_DESC=	Install demos and samples
+OPTIONS_DEFAULT=DEMO
 
 NO_CDROM=	License does not allow distribution with fee
 RESTRICTED=	Redistribution of repackaged binaries not permitted
@@ -32,7 +34,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	43
+JDK_REVISION=	45
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -48,7 +50,7 @@ IGNORE?=You must manually fetch the J2SE SDK self-extracting file for the Linux 
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_DEMO)
+.if ${PORT_OPTIONS:MDEMO}
 DEMO_UPDATE_VERSION=  ${JDK_REVISION}
 .if ${DEMO_UPDATE_VERSION} != ${JDK_REVISION}
 DEMO_DISTNAME= jdk-6u${DEMO_UPDATE_VERSION}-linux-i586-demos
@@ -72,17 +74,17 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +189 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +146 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
 	&& ${WRKDIR}/install.sfx -o > /dev/null
 .for i in ${PACKED_JARS}
 	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
 .endfor
-.if defined(WITH_DEMO)
+.if ${PORT_OPTIONS:MDEMO}
 	@${TAR} -x -f ${DISTDIR}/${DEMO_DISTNAME}.tar.gz -C ${WRKDIR}
 .endif
 
-.if defined(WITH_DEMO) && ${DEMO_WRKSRC} != ${WRKSRC}
+.if ${PORT_OPTIONS:MDEMO} && ${DEMO_WRKSRC} != ${WRKSRC}
 post-extract:
 	@${MV} ${DEMO_WRKSRC}/demo ${WRKSRC}/
 	@${MV} ${DEMO_WRKSRC}/sample ${WRKSRC}/
