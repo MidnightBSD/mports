@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.16 2012/02/02 08:55:14 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.17 2013/02/09 02:48:04 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -16,7 +16,7 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 # is defined in the ports' makefile. Define PYTHON_VERSION to override the
 # defaults that USE_PYTHON would give you. If your port requires only some
 # set of Python versions, you can define USE_PYTHON as [min]-[max] or
-# min+. (eg. 2.1-2.3, 2.0+ or -2.2)
+# min+. (eg. 3.1-3.2, 2.7+ or -3.2)
 #
 # The variables:
 #
@@ -87,6 +87,15 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #					  the format "python2.7". Set this in your /etc/make.conf
 #					  in case you want to use an older version as a default.
 #					  default: python2.7
+#
+# PYTHON3_DEFAULT_VERSION
+#					- Version of the default python binary in your ${PATH}, in
+#					  the format "python3.2". Set this in your /etc/make.conf
+#					  in case you want to use an older version as a default.
+#					  default: python3.3
+#
+# PYTHON_MAJOR_VER	- Python version major number. 2 for python-2.x,
+#					  3 for python-3.x and so on.
 #
 # PYTHON_WRKSRC		- The ${WRKSRC} for your python version. Needed for
 #					  extensions like Tkinter, py-gdbm and py-expat, which
@@ -202,7 +211,7 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 
 _PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 2.6 3.1	# preferred first
+_PYTHON_ALLBRANCHES=	2.7 2.6 3.3 3.2 3.1	# preferred first
 _ZOPE_PORTBRANCH=		2.13
 _ZOPE_ALLBRANCHES=		2.13
 
@@ -260,10 +269,6 @@ PYTHON_VERSION=	python2.7
 .endif	# defined(USE_ZOPE)
 
 
-.if defined(PACKAGE_BUILDING)
-PYTHON_DEFAULT_VERSION=		python${_PYTHON_PORTBRANCH}
-.endif
-
 # Determine version number of Python to use
 .if !defined(PYTHON_DEFAULT_VERSION)
 . if exists(${LOCALBASE}/bin/python)
@@ -274,6 +279,12 @@ _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
 _PYTHON_DEFAULT_VERSION=	${_PYTHON_PORTBRANCH}
 . endif
 PYTHON_DEFAULT_VERSION=		python${_PYTHON_DEFAULT_VERSION}
+.endif
+
+.if ${PYTHON_DEFAULT_VERSION:R} == "python3"
+PYTHON3_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
+.else
+PYTHON3_DEFAULT_VERSION=	python3.3
 .endif
 
 .if defined(PYTHON_VERSION)
@@ -349,8 +360,10 @@ DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 # should point to some other version we have installed, according to the port USE_PYTHON
 # specification
 .if !defined(PYTHON_DEFAULT_PORTVERSION) || (${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION})
+.if exists(${PYTHON_CMD})
 _PYTHON_PORTVERSION!=	(${PYTHON_CMD} -c 'import sys; \
 							print(sys.version.split()[0].replace("b",".b"))' 2> /dev/null) | ${TAIL} -1
+.endif
 .if !defined(PYTHON_NO_DEPENDS) && !empty(_PYTHON_PORTVERSION)
 PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 .endif
@@ -361,40 +374,51 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 # Propagate the chosen python version to submakes.
 .MAKEFLAGS:	PYTHON_VERSION=python${_PYTHON_VERSION}
 
+# Python-3.3
+.if ${PYTHON_VERSION} == "python3.3"
+PYTHON_PORTVERSION?=	3.3.2
+PYTHON_PORTSDIR=	${PORTSDIR}/lang/python33
+PYTHON_REL=		332
+PYTHON_SUFFIX=		33
+PYTHON_VER=		3.3
+.if exists(${PYTHON_CMD}-config)
+PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
+.endif
+
 # Python-3.2
-.if ${PYTHON_VERSION} == "python3.2"
-PYTHON_PORTVERSION?=3.2.3
+.elif ${PYTHON_VERSION} == "python3.2"
+PYTHON_PORTVERSION?=	3.2.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python32
-PYTHON_REL=			323
+PYTHON_REL=		325
 PYTHON_SUFFIX=		32
-PYTHON_VER=			3.2
+PYTHON_VER=		3.2
 .if exists(${PYTHON_CMD}-config)
 PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
 .endif
 
 # Python-3.1
 .elif ${PYTHON_VERSION} == "python3.1"
-PYTHON_PORTVERSION?=3.1.5
+PYTHON_PORTVERSION?=	3.1.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python31
-PYTHON_REL=			315
+PYTHON_REL=		315
 PYTHON_SUFFIX=		31
-PYTHON_VER=			3.1
+PYTHON_VER=		3.1
 
 # Python-2.7
 .elif ${PYTHON_VERSION} == "python2.7"
-PYTHON_PORTVERSION?=2.7.3
+PYTHON_PORTVERSION?=	2.7.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python27
-PYTHON_REL=			273
+PYTHON_REL=		275
 PYTHON_SUFFIX=		27
-PYTHON_VER=			2.7
+PYTHON_VER=		2.7
 
 # Python-2.6
 .elif ${PYTHON_VERSION} == "python2.6"
-PYTHON_PORTVERSION?=2.6.8
+PYTHON_PORTVERSION?=	2.6.8
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python26
-PYTHON_REL=			268
+PYTHON_REL=		268
 PYTHON_SUFFIX=		26
-PYTHON_VER=			2.6
+PYTHON_VER=		2.6
 
 # Python versions in development
 .elif defined(FORCE_PYTHON_VERSION)
@@ -414,8 +438,11 @@ check-makevars::
 	@${ECHO} "  python2.7 (default)"
 	@${ECHO} "  python3.1"
 	@${ECHO} "  python3.2"
+	@${ECHO} "  python3.3"
 	@${FALSE}
 .endif
+
+PYTHON_MAJOR_VER=	${PYTHON_VER:R}
 
 PYTHON_MASTER_SITES=		${MASTER_SITE_PYTHON}
 PYTHON_MASTER_SITE_SUBDIR=	ftp/python/${PYTHON_PORTVERSION:C/rc[0-9]//}
@@ -436,13 +463,8 @@ PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${PREFIX};}
 
 # setuptools support
 .if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
-.if ${PYTHON_SUFFIX} < 30
-BUILD_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-setuptools
-RUN_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-setuptools
-.else
 BUILD_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
 RUN_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
-.endif
 
 PYDISTUTILS_BUILD_TARGET?=		bdist_egg
 PYDISTUTILS_INSTALL_TARGET?=	easy_install
@@ -529,7 +551,7 @@ ZOPEPRODUCTDIR?=		Products
 .endif
 
 # Python 3rd-party modules
-PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
+PYGAME=			${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
 PYNUMERIC=		${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
 PYNUMPY=		${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
 PYXML=			${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
@@ -650,10 +672,9 @@ RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twis
 # This in turn might cause it to link against version X while using the
 # includes of version Y, leading to a broken port.
 # Enforce a certain Python version by using PYTHON_VER for cmake.
-.if defined(USE_CMAKE)
+
 CMAKE_ARGS+=	-DPythonLibs_FIND_VERSION:STRING="${PYTHON_VER}" \
 		-DPythonInterp_FIND_VERSION:STRING="${PYTHON_VER}"
-.endif
 
 .endif		# !defined(_POSTMKINCLUDED) && !defined(Python_Pre_Include)
 
