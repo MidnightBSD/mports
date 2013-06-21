@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.44 2013/02/23 03:02:03 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.45 2013/05/07 19:40:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -29,7 +29,6 @@
 MASTER_SITE_LOCAL+= \
 	ftp://mirrors.isc.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	http//mirrors.secution.com/midnightbsd/mports/distfiles/%SUBDIR%/ \
-	ftp://ftp.se.midnightbsd.org/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
 
