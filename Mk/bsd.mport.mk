@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.208 2013/06/14 02:13:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.209 2013/06/15 13:13:12 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -46,7 +46,6 @@ TARGETDIR:=		${DESTDIR}${PREFIX}
 
 MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
-
 
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
@@ -324,6 +323,17 @@ _LOAD_KDE4_EXT=		yes
 
 .for EXT in ${EXTENSIONS}
 _LOAD_${EXT:U}_EXT=	yes
+.endfor
+
+# Loading features
+.for f in ${USES}
+_f=${f:C/\:.*//g}
+USE_${_f}=	yes
+.if ${_f} != ${f}
+${_f}_ARGS:=	${f:C/^[^\:]*\://g}
+USE_${_f}=	${_f}_ARGS}
+.endif
+#.include "${USESDIR}/${_f}.mk"
 .endfor
 
 # This is the order that we used before the extensions where refactored. 
