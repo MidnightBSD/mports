@@ -19,6 +19,7 @@ include/dbus-%%VERSION%%/dbus/dbus-protocol.h
 include/dbus-%%VERSION%%/dbus/dbus-server.h
 include/dbus-%%VERSION%%/dbus/dbus-shared.h
 include/dbus-%%VERSION%%/dbus/dbus-signature.h
+include/dbus-%%VERSION%%/dbus/dbus-syntax.h
 include/dbus-%%VERSION%%/dbus/dbus-threads.h
 include/dbus-%%VERSION%%/dbus/dbus-types.h
 include/dbus-%%VERSION%%/dbus/dbus.h
@@ -29,7 +30,6 @@ lib/libdbus-1.so
 lib/libdbus-1.so.3
 libdata/pkgconfig/dbus-1.pc
 libexec/dbus-daemon-launch-helper
-@exec mkdir -p %D/libexec/dbus-1
 @exec mkdir -p %D/etc/dbus-1/system.d
 @exec mkdir -p %D/share/dbus-1/interfaces
 @exec mkdir -p %D/share/dbus-1/services
@@ -39,7 +39,6 @@ libexec/dbus-daemon-launch-helper
 @dirrmtry share/dbus-1/services
 @dirrmtry share/dbus-1/interfaces
 @dirrmtry share/dbus-1
-@dirrmtry libexec/dbus-1
 @dirrm include/dbus-%%VERSION%%/include/dbus
 @dirrm include/dbus-%%VERSION%%/include
 @dirrm include/dbus-%%VERSION%%/dbus
@@ -47,8 +46,3 @@ libexec/dbus-daemon-launch-helper
 @dirrm etc/dbus-1/system.d
 @dirrm etc/dbus-1/session.d
 @dirrm etc/dbus-1
-@unexec rm -f /var/run/dbus/dbus.pid
-@unexec rm -f /var/run/dbus/dbus.pipe
-@unexec rmdir /var/run/dbus 2>/dev/null || true
-@unexec rm -f /var/db/dbus/machine-id
-@unexec rmdir /var/db/dbus 2>/dev/null || true
