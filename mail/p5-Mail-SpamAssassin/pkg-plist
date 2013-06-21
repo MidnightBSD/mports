@@ -130,6 +130,7 @@ lib/libspamc.so.0
 %%DATADIR%%/languages
 %%DATADIR%%/sa-update-pubkey.txt
 %%DATADIR%%/user_prefs.template
+@unexec rm -rf /var/spool/spamd
 @unexec rm -rf /var/lib/spamassassin/2* || true
 @unexec rmdir /var/lib/spamassassin 2>/dev/null  || true
 @unexec rmdir /var/lib 2>/dev/null || true
