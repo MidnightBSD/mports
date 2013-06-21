@@ -7,6 +7,7 @@
 
 PORTNAME=	assistant
 PORTVERSION=	4.6.3
+PORTREVISION=	1
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
@@ -17,8 +18,7 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt documentation browser, adp compat version
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib \
+USE_QT4=	qmake_build moc_build rcc_build uic_build corelib \
 		gui network xml doc dbus
 MAKE_JOBS_SAFE=	yes
 
