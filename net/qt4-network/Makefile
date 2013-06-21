@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/qt4-network/Makefile,v 1.4 2011/07/23 23:01:28 laffer1 Exp $
 # $FreeBSD: ports/net/qt4-network/Makefile,v 1.18 2011/03/29 07:24:55 avilla Exp $
 
 PORTNAME=	network
@@ -13,8 +13,7 @@ LICENSE=	gpl3
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib
+USE_QT4=	qmake_build moc_build rcc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -36,7 +35,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
