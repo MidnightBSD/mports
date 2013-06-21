@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.4 2012/03/10 21:17:42 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.5 2013/02/26 04:53:52 laffer1 Exp $
 
 PORTNAME=	upower
 PORTVERSION=	0.9.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://upower.freedesktop.org/releases/
 
@@ -15,7 +15,7 @@ LIB_DEPENDS=	polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit \
     		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 RUN_DEPENDS=	${LOCALBASE}/lib/girepository-1.0/GObject-2.0.typelib:${PORTSDIR}/devel/gobject-introspection
 
-USE_GETTEXT=	yes
+USES=	gettext
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack ltverhack glib20
