@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.6 2011/12/15 00:57:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.7 2012/12/19 03:29:50 laffer1 Exp $
 
 PORTNAME=	obconf
 PORTVERSION=	2.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://openbox.org/dist/obconf/
 
@@ -25,16 +25,18 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTDOCS=	ABOUT-NLS AUTHORS README TODO
 
-.if defined(WITHOUT_NLS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+PLIST_SUB+=		NLS=""
+.else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=		NLS="@comment "
-.else
-USE_GETTEXT=		yes
-PLIST_SUB+=		NLS=""
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for file in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
