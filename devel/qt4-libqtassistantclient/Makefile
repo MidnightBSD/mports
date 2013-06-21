@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-libqtassistantclient/Makefile,v 1.3 2011/07/17 15:22:02 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-libqtassistantclient/Makefile,v 1.18 2010/12/02 19:47:08 makc Exp $
 
 PORTNAME=	libQtAssistantClient
@@ -13,8 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt documentation browser integration library
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui network
+USE_QT4=	qmake_build moc_build rcc_build corelib gui network
 MAKE_JOBS_SAFE=	yes
 
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}

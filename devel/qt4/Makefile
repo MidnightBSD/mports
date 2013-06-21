@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/qt4/Makefile,v 1.26 2010/12/02 19:47:06 makc Exp $
+# $MidnightBSD: mports/devel/qt4/Makefile,v 1.4 2011/07/17 15:22:01 laffer1 Exp $
 
 PORTNAME=	qt4
 DISTVERSION=	${QT4_VERSION}
@@ -12,50 +11,56 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiplatform C++ application framework (metaport)
 LICENSE=	gpl3
 
-OPTIONS=	CODECS "Enable support for CN, JP, KR, TW" off \
-		SQL_PLUGINS "Database connectivity plugins for QtSql" off \
-		TOOLS "Install Qt tools (qmake, moc, etc.)" off \
-		DEMO "Install demonstration and example programs" off
-
-USE_QT_VER=	4
-QT_COMPONENTS=	accessible assistant clucene corelib \
-		dbus declarative designer doc \
-		graphicssystems-opengl gui help \
-		iconengines imageformats inputmethods \
-		multimedia network opengl phonon phonon-gst \
-		qdbusviewer qt3support qtconfig qtestlib qvfb \
-		script scripttools sql svg webkit \
-		xml xmlpatterns xmlpatterns-tool
+USE_QT4=	accessible clucene corelib dbus declarative designer \
+		graphicssystems-opengl gui help iconengines \
+		imageformats inputmethods multimedia network opengl \
+		phonon phonon-gst qt3support qtestlib script \
+		scripttools sql svg webkit xml xmlpatterns
 
 NO_BUILD=	yes
 
+OPTIONS_DEFINE=	CODECS DOCS EXAMPLES NLS SQL_PLUGINS TOOLS
+OPTIONS_DEFAULT=${OPTIONS_DEFINE}
+
+CODECS_DESC=	CN, JP, KR, TW codecs support
+SQL_PLUGINS_DESC=	Install database plugins for QtSql
+TOOLS_DESC=	Install Qt tools (qmake, moc, etc.)
+
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_NLS)
-QT_COMPONENTS+=	l10n
+.if ${PORT_OPTIONS:MCODECS}
+USE_QT4+=	codecs-cn codecs-jp codecs-kr codecs-tw
 .endif
 
-.if defined(WITH_TOOLS)
-QT_COMPONENTS+=	help-tools linguist makeqpf moc pixeltool \
-		porting qmake rcc uic uic3 qdoc3
+.if ${PORT_OPTIONS:MDOCS}
+USE_QT4+=	doc
 .endif
 
-.if defined(WITH_CODECS)
-QT_COMPONENTS+=	codecs-cn codecs-jp codecs-kr codecs-tw
+.if ${PORT_OPTIONS:MEXAMPLES}
+USE_QT4+=	demo
 .endif
 
-.if defined(WITH_SQL_PLUGINS)
-QT_COMPONENTS+=	sql-mysql sql-odbc sql-pgsql sql-sqlite2 sql-sqlite3
+.if ${PORT_OPTIONS:MNLS}
+USE_QT4+=	l10n
 .endif
 
-.if defined(WITH_DEMO)
-QT_COMPONENTS+=	demo
+.if ${PORT_OPTIONS:MSQL_PLUGINS}
+USE_QT4+=	sql-ibase sql-mysql sql-odbc sql-pgsql sql-sqlite2 \
+		sql-sqlite3
 .endif
 
-do-patch:	#empty
-	${DO_NADA}
+.if ${PORT_OPTIONS:MTOOLS}
+USE_QT4+=	assistant help-tools linguist makeqpf moc pixeltool \
+		porting qdbusviewer qdoc3 qmake qmlviewer qtconfig \
+		qvfb rcc uic uic3 xmlpatterns-tool
+.endif
 
-do-install:	#empty
-	${DO_NADA}
+USE_QT4:=	${USE_QT4:C/$/_run/}
+
+do-patch:
+	@${DO_NADA}
+
+do-install:
+	@${DO_NADA}
 
 .include <bsd.port.mk>
