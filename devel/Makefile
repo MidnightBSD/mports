@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.425 2013/06/21 02:24:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.426 2013/06/21 02:35:34 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -250,6 +250,7 @@ SUBDIR += p5-Devel-Symdump
 SUBDIR += p5-Dist-CheckConflicts
 SUBDIR += p5-Exception-Class
 SUBDIR += p5-ExtUtils-CBuilder
+SUBDIR += p5-ExtUtils-MakeMaker
 SUBDIR += p5-ExtUtils-ParseXS
 SUBDIR += p5-File-Copy-Recursive
 SUBDIR += p5-File-HomeDir
