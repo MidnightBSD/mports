@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-makeqpf/Makefile,v 1.3 2011/07/17 15:22:02 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-makeqpf/Makefile,v 1.12 2010/12/02 19:47:09 makc Exp $
 
 PORTNAME=	makeqpf
@@ -10,8 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt qtopia font creator
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib gui
+USE_QT4=	qmake_build moc_build rcc_build uic_build corelib gui
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -31,7 +30,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
@@ -40,6 +38,16 @@ BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
+
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 4000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch__tools__makeqpf__qpf2.cpp
+.endif
+
+.if ${ARCH} == "sparc64"
+BROKEN=		does not compile on sparc64
+.endif
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|^TARGET[[:blank:]]*=[[:blank:]]*|TARGET=${PORTNAME}-qt4|g' \
@@ -50,4 +58,4 @@ pre-configure:
 	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
 	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

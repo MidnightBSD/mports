@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.7 2011/07/17 15:22:01 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.25 2011/03/25 09:54:15 avilla Exp $
 
 PORTNAME=	corelib
 DISTVERSION=	${QT4_VERSION}
+PORTREVISION=	2
 CATEGORIES?=	devel
 PKGNAMEPREFIX=	qt4-
 
@@ -10,10 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt core library
 LICENSE=	gpl3
 
-LIB_DEPENDS=	glib-2.0:${PORTSDIR}/devel/glib20
+LIB_DEPENDS=	icui18n:${PORTSDIR}/devel/icu
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build
+USES=		pkgconfig
+USE_GNOME=	_glib20
+USE_QT4=	qmake_build moc_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -34,7 +36,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/xmlpatterns src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
@@ -45,6 +46,18 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
+
+.if empty(QT4_OPTIONS:MCUPS)
+CONFIGURE_ARGS+=	-no-cups
+.endif
+
+.if empty(QT4_OPTIONS:MNAS)
+CONFIGURE_ARGS+=	-no-nas-sound
+.endif
+
+.if empty(QT4_OPTIONS:MQGTKSTYLE)
+CONFIGURE_ARGS+=	-no-gtkstyle
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e '${QT4_OPTIONS_REPLACE}' ${WRKSRC}/configure
