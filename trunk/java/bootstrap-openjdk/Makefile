@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.1 2013/02/23 03:15:20 laffer1 Exp $
+# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.2 2013/06/21 02:39:28 laffer1 Exp $
 
 PORTNAME=	${JDK_NAME}
 PORTVERSION=	${DISTVERSION_${ARCH}}
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
-		http://people.freebsd.org/~jkim/
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	jkim
 PKGNAMEPREFIX=	bootstrap-
 DISTNAME=	${JDK_PORT}-${ARCH}-${PORTVERSION}
@@ -18,8 +17,8 @@ RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 ONLY_FOR_ARCH=	amd64 i386
 
 DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
-DISTVERSION_amd64=	r306764
-DISTVERSION_i386=	r306764
+DISTVERSION_amd64=	r316538
+DISTVERSION_i386=	r316538
 
 JDK_NAME=	openjdk
 JDK_PORT=	openjdk6
