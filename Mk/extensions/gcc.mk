@@ -35,9 +35,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.10 2013/06/06 00:50:07 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
-# 
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.11 2013/06/11 02:41:00 laffer1 Exp $
 
 .if defined(_POSTMKINCLUDED) && !defined(Gcc_Post_Include)
 
@@ -196,7 +194,7 @@ _USE_GCC:=	${GCC_DEFAULT_VERSION}
 V:=			${_GCCVERSION_${v}_V:S/.//}
 _GCC_PORT_DEPENDS:=	gcc${V}
 .   if ${_USE_GCC} == ${GCC_DEFAULT_VERSION}
-_GCC_PORT:=		gcc
+_GCC_PORT:=		gcc46
 .   else
 _GCC_PORT:=		gcc${V}
 .   endif
