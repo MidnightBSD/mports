@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# $MidnightBSD: mports/security/clamav/files/clamav-freshclam.in,v 1.2 2007/12/28 02:58:14 laffer1 Exp $
+# $MidnightBSD$
+#
 
 # PROVIDE: freshclam
 # REQUIRE: LOGIN clamd
@@ -10,15 +11,16 @@
 #
 # Add the following lines to /etc/rc.conf to enable the freshclam daemon:
 #
-#clamav_freshclam_enable="YES"
+# clamav_freshclam_enable="YES"
+# clamav_freshclam_flags="<set as needed>"
 #
 # See freshclam(1) for flags
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name=clamav_freshclam
-rcvar=`set_rcvar`
+rcvar=clamav_freshclam_enable
 
 command=%%PREFIX%%/bin/freshclam
 pidfile=%%RUNDIR%%/freshclam.pid
@@ -29,6 +31,5 @@ required_files=%%PREFIX%%/etc/freshclam.conf
 # read settings, set default values
 load_rc_config "$name"
 : ${clamav_freshclam_enable="NO"}
-: ${clamav_freshclam_flags=""}
 
 run_rc_command "$1"

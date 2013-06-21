@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/security/clamav/files/clamav-milter.in,v 1.12 2010/01/22 11:13:08 garga Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: clamav-milter
 # REQUIRE: LOGIN clamd
@@ -16,10 +15,10 @@
 # See clamav-milter(1) for flags
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name=clamav_milter
-rcvar=`set_rcvar`
+rcvar=clamav_milter_enable
 
 conf_file=%%PREFIX%%/etc/clamav-milter.conf
 command=%%PREFIX%%/sbin/clamav-milter
