@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.6 2011/08/16 22:49:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.7 2012/02/29 20:52:48 laffer1 Exp $
 #
+# Variables:
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
 # QT_DIST		- Package being built is part of the Qt distribution.
 #
 # Global switches (add this to /etc/make.conf):
-# WITH_QT_PHONON	- If set, Qt phonon will be used instead of standalone.
-#				Qt phonon doesn't work with KDE 4.4.
 # QT4_OPTIONS		- A list of options, can be CUPS, NAS and/or QGTKSTYLE.
 #				If set, Qt will be built with support for:
 #				- Common UNIX Printing System (CUPS);
@@ -21,8 +20,9 @@ CONFIGURE_ARGS+=--with-qt-includes=${QT_INCDIR} \
 		--with-qt-libraries=${QT_LIBDIR} \
 		--with-extra-libs=${LOCALBASE}/lib \
 		--with-extra-includes=${LOCALBASE}/include
-CONFIGURE_ENV+=	MOC="${MOC}" UIC="${UIC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}" \
+CONFIGURE_ENV+=	MOC="${MOC}" UIC="${UIC}" LIBS="${QTCFGLIBS}" \
 		QMAKE="${QMAKE}" QMAKESPEC="${QMAKESPEC}" QTDIR="${QT_PREFIX}"
+CPPFLAGS+=	${QTCPPFLAGS}
 MAKE_ENV+=	QMAKESPEC="${QMAKESPEC}"
 .endif # !defined(QT_NONSTANDARD)
 
@@ -33,14 +33,15 @@ DISTNAME=	qt-everywhere-opensource-src-${QT4_VERSION}
 DIST_SUBDIR=	KDE
 #CONFLICTS+=	Currently there are no conflicts \o/
 
+CONFLICTS_BUILD=	qt-3.* qt-copy-3.*
+
 # Let configure handle its well known compilers defined in the mkspecs
 # (i.e. `cc` and `c++` are not supported by configure tests).
 CONFIGURE_ENV+=	CC="" CXX=""
 
 # Keep in sync with devel/qmake4/files/qconfig.cpp
 CONFIGURE_ARGS+=-fast -platform ${QMAKESPEC} \
-		-L${PREFIX}/${QT_LIBDIR_REL} \
-		-qt-gif -system-libjpeg -system-libpng \
+		-system-libjpeg -system-libpng \
 		-system-libmng -system-libtiff -system-zlib \
 		-opensource -confirm-license \
 		-no-pch \
@@ -56,16 +57,16 @@ CONFIGURE_ARGS+=-fast -platform ${QMAKESPEC} \
 		-sysconfdir ${PREFIX}/etc/xdg \
 		-examplesdir ${PREFIX}/share/examples/qt4/examples \
 		-demosdir ${PREFIX}/share/examples/qt4/demos \
-		-phonon \
-		-no-phonon-backend
+		-phonon -no-phonon-backend
 
 PLIST_SUB+=	SHLIB_VER=${QT4_VERSION:C/-.*//} \
 		SHLIB_SHVER=${QT4_VERSION:R}
 
-.if defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=-no-mmx -no-3dnow -no-sse -no-sse2 -no-sse3 \
-		-no-ssse3 -no-sse4.1 -no-sse4.2
-.endif #defined(PACKAGE_BUILDING)
+# SIMD support is detected on runtime, no need to disable on build.
+#.if defined(PACKAGE_BUILDING)
+#CONFIGURE_ARGS+=-no-mmx -no-3dnow -no-sse -no-sse2 -no-sse3 \
+#		-no-ssse3 -no-sse4.1 -no-sse4.2
+#.endif #defined(PACKAGE_BUILDING)
 
 # .if defined(PORTNAME) && ${PORTNAME} != "xmlpatterns"
 # CONFIGURE_ARGS+=-no-exceptions
@@ -107,34 +108,6 @@ QMAKEFLAGS+=	QMAKE_CC="${CC}" QMAKE_CXX="${CXX}" \
 		QMAKE_CFLAGS_THREAD="${PTHREAD_CFLAGS}" \
 		QMAKE_LFLAGS_THREAD="${PTHREAD_LIBS}"
 
-#
-# Translate `c++` to its real name and select the appropriate mkspec.
-#
-QMAKE_BASE_COMPILER!=	cc --version 2> /dev/null | ${AWK} 'NR == 1 { gsub(/[()]/, "", $$2); print $$2 }'
-.if ${QMAKE_BASE_COMPILER:L} == "gcc"
-QMAKE_BASE_COMPILER=	g++
-.endif
-.if ${CXX} == "c++"
-# Why CXX instead of CXX:T? Because if you're setting the full path of
-# `c++` you probably want to define QMAKESPEC by hand too.
-QMAKE_COMPILER=	${QMAKE_BASE_COMPILER}
-.elif ${CXX:T} == "clang++"
-QMAKE_COMPILER=	clang
-.elif ${CXX:C/c\+\+/g++/:T} == "llvm-g++"
-QMAKE_COMPILER=	llvm
-.elif ${CXX:T} == "icpc"
-QMAKE_COMPILER=	icc
-.else
-# Handle all the other cases (mainly g++*).
-QMAKE_COMPILER=	${CXX:C/c\+\+/g++/:T}
-.endif
-.if exists(${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_COMPILER})
-QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_COMPILER}
-.else
-# If something went wrong, default to the base configuration.
-QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_BASE_COMPILER}
-.endif
-
 QTCPPFLAGS?=
 QTCGFLIBS?=
 
@@ -143,16 +116,16 @@ QTCGFLIBS?=
 #
 # QT4 version
 #
-QT4_VERSION?=		4.7.4
+QT4_VERSION?=		4.8.4
 
-_QT_COMPONENTS_ALL=	accessible assistant assistant-adp assistantclient \
+_USE_QT4_ALL=	accessible assistant assistant-adp assistantclient \
 			clucene codecs-cn codecs-jp codecs-kr codecs-tw corelib \
 			dbus declarative demo designer doc \
 			graphicssystems-opengl gui help help-tools \
 			iconengines imageformats inputmethods \
 			linguist l10n makeqpf moc multimedia network opengl \
 			pixeltool porting phonon phonon-gst \
-			qdbusviewer qdoc3 qmake qt3support qtconfig qtestlib \
+			qdbusviewer qmlviewer qdoc3 qmake qt3support qtconfig qtestlib \
 			qvfb rcc script scripttools sql sql-ibase sql-mysql \
 			sql-odbc sql-pgsql sql-sqlite2 sql-sqlite3 svg uic uic3 \
 			webkit xml xmlpatterns xmlpatterns-tool
@@ -247,18 +220,10 @@ opengl_DEPENDS=	${QT_LIBDIR}/libQtOpenGL.so
 pixeltool_PORT=		graphics/qt4-pixeltool
 pixeltool_DEPENDS=	${QT_PREFIX}/bin/pixeltool
 
-.if !defined(WITH_QT_PHONON)
 phonon_PORT=	multimedia/phonon
-.else
-phonon_PORT=	multimedia/qt4-phonon
-.endif
 phonon_DEPENDS=	${QT_LIBDIR}/libphonon.so
 
-.if !defined(WITH_QT_PHONON)
 phonon-gst_PORT=	multimedia/phonon-gstreamer
-.else
-phonon-gst_PORT=	multimedia/qt4-phonon-gst
-.endif
 phonon-gst_DEPENDS=	${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
 
 porting_PORT=		devel/qt4-porting
@@ -266,6 +231,9 @@ porting_DEPENDS=	${QT_PREFIX}/bin/qt3to4
 
 qdbusviewer_PORT=	devel/qt4-qdbusviewer
 qdbusviewer_DEPENDS=	${QT_PREFIX}/bin/qdbusviewer
+
+qmlviewer_PORT=		devel/qt4-qmlviewer
+qmlviewer_DEPENDS=	${QT_PREFIX}/bin/qmlviewer
 
 qdoc3_PORT=	devel/qt4-qdoc3
 qdoc3_DEPENDS=	${QT_PREFIX}/bin/qdoc3
@@ -339,28 +307,51 @@ xmlpatterns-tool_DEPENDS=	${QT_PREFIX}/bin/xmlpatterns
 .if defined(_POSTMKINCLUDED) && !defined(Qt_Post_Include)
 Qt_Post_Include= bsd.qt.mk
 
-.for component in ${_QT_COMPONENTS_ALL}
+#
+# Translate `c++` to its real name and select the appropriate mkspec.
+#
+QMAKE_BASE_COMPILER!=	(cc --version 2> /dev/null | ${AWK} 'NR == 1 { gsub(/[()]/, "", $$2); print $$2 }') || ${ECHO_CMD} "gcc"
+.if ${QMAKE_BASE_COMPILER:L} == "gcc"
+QMAKE_BASE_COMPILER=	g++
+.endif
+.if ${CXX} == "c++"
+# Why CXX instead of CXX:T? Because if you're setting the full path of
+# `c++` you probably want to define QMAKESPEC by hand too.
+QMAKE_COMPILER=	${QMAKE_BASE_COMPILER}
+.elif ${CXX:T} == "clang++"
+QMAKE_COMPILER=	clang
+.elif ${CXX:C/c\+\+/g++/:T} == "llvm-g++"
+QMAKE_COMPILER=	llvm
+.elif ${CXX:T} == "icpc"
+QMAKE_COMPILER=	icc
+.else
+# Handle all the other cases (mainly g++*).
+QMAKE_COMPILER=	${CXX:C/c\+\+/g++/:T}
+.endif
+.if exists(${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_COMPILER})
+QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_COMPILER}
+.else
+# If something went wrong, default to the base configuration.
+QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_BASE_COMPILER}
+.endif
+
+.for component in ${_USE_QT4_ALL}
 ${component}_BUILD_DEPENDS?=	${${component}_DEPENDS}:${PORTSDIR}/${${component}_PORT}
 ${component}_RUN_DEPENDS?=	${${component}_DEPENDS}:${PORTSDIR}/${${component}_PORT}
 
 ${component}_build_BUILD_DEPENDS?=	${${component}_BUILD_DEPENDS}
 ${component}_run_RUN_DEPENDS?=		${${component}_RUN_DEPENDS}
 
-_QT_COMPONENTS_ALL_SUFFIXED+=	${component} ${component}_build ${component}_run
+_USE_QT4_ALL_SUFFIXED+=	${component} ${component}_build ${component}_run
 .endfor
 
-.if defined(QT_COMPONENTS)
-.     if ${QT_COMPONENTS:Mqmake*} != ""
- # we're using qmake.  Set up DESTDIRNAME so fake works correctly.
-DESTDIRNAME= INSTALL_ROOT
-.     endif
-
-. for component in ${QT_COMPONENTS:O:u}
-.  if ${_QT_COMPONENTS_ALL_SUFFIXED:M${component}}!= ""
+.if defined(USE_QT4)
+. for component in ${USE_QT4:O:u}
+.  if ${_USE_QT4_ALL_SUFFIXED:M${component}}!= ""
 BUILD_DEPENDS+=	${${component}_BUILD_DEPENDS}
 RUN_DEPENDS+=	${${component}_RUN_DEPENDS}
 .  else
-IGNORE=	can't be installed: unknown Qt 4 component '${component}'
+IGNORE=	can't be installed: unknown USE_QT4 component '${component}'
 .  endif
 . endfor
 .endif

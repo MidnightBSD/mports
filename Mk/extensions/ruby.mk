@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.5 2012/09/30 22:13:37 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.6 2013/04/12 00:21:22 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -133,7 +133,7 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # RUBY_ELISPDIR		- Installation path for emacs lisp files.
 #
 
-RUBY_DEFAULT_VER?=	1.8
+RUBY_DEFAULT_VER?=	1.9
 
 RUBY_VER?=		${RUBY_DEFAULT_VER}
 
@@ -189,20 +189,23 @@ RUBY_WRKSRC=		${WRKDIR}/ruby-${RUBY_DISTVERSION}
 #
 RUBY18=			""
 RUBY19=			"@comment "
+RUBY20=			"@comment "
 
 . elif ${RUBY_VER} == 1.9
 #
 # Ruby 1.9
 #
-RUBY_RELVERSION=	1.9.1
+RUBY_RELVERSION=	1.9.3
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	430
+RUBY_PATCHLEVEL=	429
 
 RUBY_VERSION?=		${RUBY_RELVERSION}.${RUBY_PATCHLEVEL}
 RUBY_DISTVERSION?=	${RUBY_RELVERSION}-p${RUBY_PATCHLEVEL}
 
 RUBY_WRKSRC=		${WRKDIR}/ruby-${RUBY_DISTVERSION}
+
+GEM_ENV?=		LC_CTYPE=UTF-8
 
 RUBY_CONFIGURE_ARGS+=	--with-rubyhdrdir="${PREFIX}/include/ruby-1.9/" \
 			--with-rubylibprefix="${PREFIX}/lib/ruby" \
@@ -214,12 +217,42 @@ RUBY_CONFIGURE_ARGS+=	--with-rubyhdrdir="${PREFIX}/include/ruby-1.9/" \
 #
 RUBY18=			"@comment "
 RUBY19=			""
+RUBY20=			"@comment "
+
+. elif ${RUBY_VER} == 2.0
+#
+# Ruby 2.0
+#
+RUBY_RELVERSION=	2.0.0
+RUBY_PORTREVISION=	1
+RUBY_PORTEPOCH=		1
+RUBY_PATCHLEVEL=	195
+
+RUBY_VERSION?=		${RUBY_RELVERSION}.${RUBY_PATCHLEVEL}
+RUBY_DISTVERSION?=	${RUBY_RELVERSION}-p${RUBY_PATCHLEVEL}
+
+RUBY_WRKSRC=		${WRKDIR}/ruby-${RUBY_DISTVERSION}
+
+GEM_ENV?=		LC_CTYPE=UTF-8
+
+RUBY_CONFIGURE_ARGS+=	--with-rubyhdrdir="${PREFIX}/include/ruby-2.0/" \
+			--with-rubylibprefix="${PREFIX}/lib/ruby" \
+			--docdir="${RUBY_DOCDIR}" \
+			--with-soname=ruby20
+
+#
+# PLIST_SUB helpers
+#
+RUBY18=			"@comment "
+RUBY19=			"@comment "
+RUBY20=			""
+
 
 . else
 #
 # Other versions
 #
-IGNORE=	Only ruby 1.8 and 1.9 are supported
+IGNORE=	Only ruby 1.8, 1.9 and 2.0 are supported
 . endif
 .endif # defined(RUBY_VER)
 
@@ -317,7 +350,8 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_NAME="${RUBY_NAME}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
 			RUBY18=${RUBY18} \
-			RUBY19=${RUBY19}
+			RUBY19=${RUBY19} \
+			RUBY20=${RUBY20} \
 
 .if defined(USE_RUBY_RDOC)
 MAKE_ENV+=	RUBY_RDOC=${RUBY_RDOC}
@@ -371,7 +405,7 @@ ruby-shebang-patch:
 	done
 .endif
 
-.if defined(DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 RUBY_FLAGS+=	-d
 .endif
 
@@ -388,8 +422,7 @@ EXTRACT_SUFX=	.gem
 EXTRACT_ONLY=
 DIST_SUBDIR=	rubygem
 
-NO_BUILD=	yes
-
+EXTRACT_DEPENDS+=	${RUBYGEMBIN}:${PORTSDIR}/devel/ruby-gems
 GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
 GEMS_DIR=	${GEMS_BASE_DIR}/gems
 DOC_DIR=	${GEMS_BASE_DIR}/doc
@@ -429,10 +462,21 @@ RUBYGEM_ARGS=-l --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gem
 RUBYGEM_ARGS+=	--no-rdoc
 .endif
 
+do-extract:
+	@${SETENV} ${GEM_ENV} ${RUBYGEMBIN} unpack --target=${WRKDIR} ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES}
+	@${TAR} -xOzf ${DISTDIR}/${DIST_SUBDIR}/${GEMFILES} metadata.gz | ${GZCAT} > ${BUILD_WRKSRC}/${GEMFILES}spec
+
+do-build:
+	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} build --force ${GEMFILES}spec ; then \
+		if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
+			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
+			(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+			fi; \
+		${FALSE}; \
+		fi)
+
 do-install:
-.for _D in ${GEMFILES}
-	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
-.endfor
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} -- --build-args ${CONFIGURE_ARGS})
 
 . if defined(RUBYGEM_AUTOPLIST)
 .  if !target(post-install-script)
@@ -535,8 +579,10 @@ RUN_DEPENDS+=		${DEPEND_RUBY}
 
 _use=	${USE_RUBY_FEATURES:Miconv}
 .if !empty(_use)
+.if (${RUBY_VER} == 1.8) || (${RUBY_VER} == 1.9)
 BUILD_DEPENDS+=		${DEPEND_RUBY_ICONV}
 RUN_DEPENDS+=		${DEPEND_RUBY_ICONV}
+.endif
 .endif
 
 .undef _use

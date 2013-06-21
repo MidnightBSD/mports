@@ -3,12 +3,12 @@
 #
 # bsd.xorg.mk - Support for X.Org ports and dependencies
 #
-# Created by: Florent Thoumie <xxx>
+# Created by: Florent Thoumie <flz@FreeBSD.org>
 #
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.13 2013/06/06 01:43:18 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.14 2013/06/06 01:57:25 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -25,14 +25,14 @@ XORG_COMPLETE=1
 
 # Some notes:
 #
-# app - requires pkgconfig, don't install shared libraries (I guess)
-# data - nothing I could factorize
+# app - Installs applications, no shared libraries.
+# data - Installs only data.
 # doc - no particular notes
 # driver - input depends on inputproto/randrproto at least
 #          video depends on randrproto/renderproto at least
 # font - don't install .pc file
-# lib - various dependencies, install .pc file
-# proto - install .pc file, no dependencies, needed only at build time for most of them
+# lib - various dependencies, install .pc file, needs pathfix
+# proto - install .pc file, needs pathfix, most only needed at build time.
 # xserver - there's only one atm, I guess everything can fit into the port itself
 
 .if defined(XORG_CAT)
@@ -47,16 +47,17 @@ DIST_SUBDIR=	xorg/${XORG_CAT}
 MASTER_SITES?=	${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR?=	individual/${XORG_CAT}
 
-# All xorg ports need pkgconfig to build
-USE_PKGCONFIG=	build
+# All xorg ports needs pkgconfig to build, but some ports look for pkgconfig and
+# then continues the build.
+USES+=		pkgconfig
 
 # All xorg ports needs xorg-macros.
 . if ${PORTNAME} != xorg-macros
-USE_XORG+=    xorg-macros
+USE_XORG+=      xorg-macros
 . endif
 
 . if ${XORG_CAT} == "app"
-# Nothing at the moment.
+# Nothing at the moment
 . endif
 
 . if ${XORG_CAT} == "data"
@@ -77,10 +78,7 @@ USE_XORG+=	inputproto videoproto fontsproto renderproto xextproto \
 .  elif ${PORTNAME:M*video*}x != x
 USE_XORG+=	videoproto fontsproto renderproto xextproto dri2proto
 .  else
-IGNORE=		doesn't contain either "driver" or "input"
-.  endif
-.  if ${PORTNAME:M*-sun*}x != x && ${ARCH} != sparc64
-IGNORE=		is for sparc64 only
+IGNORE=		doesn't contain either "video" or "input"
 .  endif
 . endif
 
@@ -104,7 +102,7 @@ INSTALLS_TTF?=	no
 .  endif
 
 .  if ${PORTNAME:M*font-util*}x != x
-USE_PATHFIX=
+USES+=	pathfix
 NEED_MKFONTFOO=	no
 .  elif ${INSTALLS_TTF} == "yes"
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/fontconfig.pc:${PORTSDIR}/x11-fonts/fontconfig
@@ -142,19 +140,19 @@ post-install:
 . endif
 
 . if ${XORG_CAT} == "lib"
-USE_PATHFIX=
+USES+=	pathfix
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 . endif
 
 . if ${XORG_CAT} == "proto"
-USE_PATHFIX=
+USES+=	pathfix
 . endif
 
 . if ${XORG_CAT} == "xserver"
 DISTFILES?=	xorg-server-${PORTVERSION}.tar.bz2
 WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
-USE_PATHFIX=
+USES+=	pathfix
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb
 
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri

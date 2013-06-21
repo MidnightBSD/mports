@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.4 2010/01/01 17:12:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.5 2013/02/21 03:26:03 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.11 2009/07/07 07:34:31 mm Exp $
 #
 
@@ -13,8 +13,8 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 # USE_TCL		- Add library dependency on Tcl. If no version is given by the maintainer
 #			  via the port or by the user via defined variable try to find the highest
 #			  stable installed version.
-#			  Available values: yes 86+ 85+ 84+ 83+ 85 84 83
-#			  NOTE: - default value 85 is used in case of USE_TCL=yes
+#			  Available values: yes 86+ 85+ 84+ 85 84
+#			  NOTE: - default value 86 is used in case of USE_TCL=yes
 #
 # USE_TCL_BUILD		- Add buildtime dependency on Tcl (tclsh).
 #			  Available values: see USE_TCL
@@ -29,12 +29,12 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 #			  a specific tclsh version may use this.
 #			  The tclsh wrapper script installs into ${LOCALBASE}/bin/tclsh
 #			  NOTE: - USE_TCL_WRAPPER and USE_TCL can be used together
-#			        - ports using the wrapper should support default Tcl (8.5)
+#			        - ports using the wrapper should support default Tcl (8.6)
 ##
 # INVALID_TCL_VER	- This variable contains a list of Tcl versions not supported by the port.
-#			  This setting is effective only when USE_TCL is set to a range (e.g. 83+)
+#			  This setting is effective only when USE_TCL is set to a range (e.g. 85+)
 # WITH_TCL_VER		- User defined global variable to set Tcl version
-#			  This variable is effective only if USE_TCL is set to a range (e.g. 83+)
+#			  This variable is effective only if USE_TCL is set to a range (e.g. 85+)
 #			  and WITH_TCL_VER points inside that range.
 #			  NOTE: INVALID_TCL_VER takes precedence
 # <UNIQUENAME>_WITH_TCL_VER	- User defined port specific variable to set Tcl version
@@ -45,9 +45,9 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 # USE_TK		- Add library dependency on Tk. If no version is given by the maintainer
 #			  via the port or by the user via defined variable try to find the highest
 #			  stable installed version.
-#			  Avaliable values: yes 86+ 85+ 84+ 83+ 85 84 83
+#			  Avaliable values: yes 86+ 85+ 84+ 85 84
 #			  NOTE: - overrides USE_TCL
-#			        - default value 85 is used in case of USE_TK=yes
+#			        - default value 86 is used in case of USE_TK=yes
 #
 # USE_TK_BUILD		- Add buildtime dependency on Tk (wish).
 #			  Available values: see USE_TK
@@ -62,12 +62,12 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 #			  a specific wish version may use this.
 #			  The wish wrapper script installs into ${LOCALBASE}/bin/wish
 #			  NOTE: - USE_TK_WRAPPER and USE_TK can be used together.
-#			        - ports using the wrapper should support default Tk (8.5)
+#			        - ports using the wrapper should support default Tk (8.6)
 ##
 # INVALID_TK_VER	- This variable contains a list of Tk versions not supported by the port
-#			  This setting is effective only when USE_TK is set to a range (e.g. 83+)
+#			  This setting is effective only when USE_TK is set to a range (e.g. 85+)
 # WITH_TK_VER		- User defined global variable to set Tk version.
-#			  This variable is effective only if USE_TK is set to a range (e.g. 83+)
+#			  This variable is effective only if USE_TK is set to a range (e.g. 85+)
 #			  and WITH_TK_VER points inside that range.
 #			  NOTE: overrides WITH_TCL_VER.
 # <UNIQUENAME>_WITH_TK_VER	- User defined port specific variable to set Tk version
@@ -158,12 +158,11 @@ INVALID_TCL_VER:=	${INVALID_TK_VER}
 #
 . if defined(USE_TCL)
 
-_TCL_DEFAULT_VERSION=		85
-_TCL_VERSIONS=			86 85 84 83
-_TCL_RANGE_VERSIONS= 		86+ 85+ 84+ 83+
+_TCL_DEFAULT_VERSION=		86
+_TCL_VERSIONS=			86 85 84
+_TCL_RANGE_VERSIONS= 		86+ 85+ 84+
 
 # For specifying [85, 84, ..]+
-_TCL_83P=	83 84 85 86
 _TCL_84P=	84 85 86
 _TCL_85P=	85 86
 _TCL_86P=	86
@@ -202,7 +201,7 @@ USE_TCL=	${_TCL_VER}
 .   endfor
 .  endif
 
-# Check for highest installed Tcl (if e.g. 83+ is specified)
+# Check for highest installed Tcl (if e.g. 84+ is specified)
 # The default version of Tcl counts as the highest
 .  if ${_TCL_VER} == "no"
 .   for ver in ${_TCL_RANGE_VERSIONS}

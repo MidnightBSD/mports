@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.18 2013/03/24 19:04:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.19 2013/06/15 02:32:12 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -70,13 +70,13 @@ _USE_GNOME_ALL+= atk atspi cairo desktopfileutils eel2 evolutiondataserver gal2 
 		gtksharp20 gtksourceview gtksourceview2 gvfs libartlgpl2 libbonobo \
 		libbonoboui libgailgnome libgda2 libgda3 libgda4 libglade2 libgnome \
 		libgnomecanvas libgnomedb libgnomekbd libgnomeprint libgnomeprintui \
-		libgnomeui libgsf libgsf_gnome libgtkhtml libidl librsvg2 libwnck \
+		libgnomeui libgsf libgtkhtml libidl librsvg2 libwnck \
 		libxml2 libxslt libzvt linc metacity nautilus2 nautiluscdburner \
 		orbit2 pango pygnome2 pygnomedesktop pygnomeextras pygobject pygtk2 \
 		pygtksourceview vte
 
 # GNOME 3 components
-_USE_GNOME_ALL+= dconf gtk30 gtksourceview3
+_USE_GNOME_ALL+= dconf gtk30 gtksourceview3 pygobject3
 
 # C++ bindings
 _USE_GNOME_ALL+=atkmm cairomm gconfmm gconfmm26 glibmm gtkmm20 gtkmm24 \
@@ -507,18 +507,19 @@ pkgconfig_DETECT=		${LOCALBASE}/bin/pkgconf
 pkgconfig_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 pkgconfig_RUN_DEPENDS=		pkgconf:${PORTSDIR}/devel/pkgconf
 
-libgsf_LIB_DEPENDS=			gsf-1.114:${PORTSDIR}/devel/libgsf
+libgsf_LIB_DEPENDS=		gsf-1.114:${PORTSDIR}/devel/libgsf
 libgsf_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgsf-1.pc
 libgsf_USE_GNOME_IMPL=		glib20 libxml2
-
-libgsf_gnome_LIB_DEPENDS=	gsf-gnome-1.114:${PORTSDIR}/devel/libgsf-gnome
-libgsf_gnome_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgsf-gnome-1.pc
-libgsf_gnome_USE_GNOME_IMPL=	gconf2 libgsf gnomevfs2
 
 pygobject_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygobject-2.0.pc
 pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
 pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
 pygobject_USE_GNOME_IMPL=	glib20
+
+pygobject3_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc
+pygobject3_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORTSDIR}/devel/py-gobject3
+pygobject3_RUN_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORTSDIR}/devel/py-gobject3
+pygobject3_USE_GNOME_IMPL=	glib20
 
 pygtk2_DETECT=			${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc
 pygtk2_BUILD_DEPENDS=	${pygtk2_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk2

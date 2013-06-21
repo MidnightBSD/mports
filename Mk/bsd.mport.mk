@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.209 2013/06/15 13:13:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.210 2013/06/21 01:11:38 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -328,7 +328,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # Loading features
 .for f in ${USES}
 _f=${f:C/\:.*//g}
-USE_${_f}=	yes
+USE_${_f:U}=	yes
 .if ${_f} != ${f}
 ${_f}_ARGS:=	${f:C/^[^\:]*\://g}
 USE_${_f}=	${_f}_ARGS}
@@ -343,7 +343,7 @@ _ALL_EXT=	charsetfix pathfix linux_rpm linux_apps xorg fortran \
 		gcc local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
 		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-		pgsql bdb sqlite gecko scons ocaml efl
+		pgsql bdb sqlite gecko scons ocaml efl gettext iconv
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -604,18 +604,6 @@ BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
 CONFIGURE_ENV+=		MAKE=${GMAKE}
 _MAKE_CMD=		${GMAKE}
 .endif
-.if defined(USE_PKGCONFIG)
-.if ${USE_PKGCONFIG:L} == yes || ${USE_PKGCONFIG:L} == build
-BUILD_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
-CONFIGURE_ENV+=	PKG_CONFIG=pkgconf
-.elif ${USE_PKGCONFIG:L} == both
-RUN_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
-BUILD_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
-CONFIGURE_ENV+=	PKG_CONFIG=pkgconf
-.elif ${USE_PKGCONFIG:L} == run
-RUN_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
-.endif
-.endif
 
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
@@ -788,22 +776,6 @@ USE_LDCONFIG=	${PREFIX}/lib
 
 .if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
 IGNORE=		has USE_LDCONFIG32 set to yes, which is not correct
-.endif
-
-.if defined(USE_ICONV)
-LIB_DEPENDS+=	iconv.3:${PORTSDIR}/converters/libiconv
-.endif
-
-.if defined(USE_GETTEXT)
-.	if ${USE_GETTEXT:L} == "build"
-BUILD_DEPENDS+=	xgettext:${PORTSDIR}/devel/gettext
-.	elif ${USE_GETTEXT:L} == "run"
-RUN_DEPENDS+=	xgettext:${PORTSDIR}/devel/gettext
-.	elif ${USE_GETTEXT:L} == "yes"
-LIB_DEPENDS+=	intl:${PORTSDIR}/devel/gettext
-.	else
-IGNORE=	USE_GETTEXT can be only one of build, run, or yes
-.	endif
 .endif
 
 .if defined(USE_LINUX_PREFIX) && defined(USE_LDCONFIG)
