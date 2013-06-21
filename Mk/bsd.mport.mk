@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.210 2013/06/21 01:11:38 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.211 2013/06/21 01:43:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -305,7 +305,7 @@ _LOAD_APACHE_EXT=	yes
 _LOAD_KDE_EXT=		yes
 .endif
 
-.if defined (USE_QT_VER) && ${USE_QT_VER:L} == 4
+.if (defined (USE_QT_VER) && ${USE_QT_VER:L} == 4) || defined(USE_QT4)
 _LOAD_QT_EXT=		yes
 .endif
 
