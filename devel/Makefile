@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.423 2013/06/21 02:18:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.424 2013/06/21 02:21:24 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -247,6 +247,7 @@ SUBDIR += p5-DateTime-TimeZone
 SUBDIR += p5-Devel-ArgNames
 SUBDIR += p5-Devel-StackTrace
 SUBDIR += p5-Devel-Symdump
+SUBDIR += p5-Dist-CheckConflicts
 SUBDIR += p5-Exception-Class
 SUBDIR += p5-ExtUtils-CBuilder
 SUBDIR += p5-ExtUtils-ParseXS
