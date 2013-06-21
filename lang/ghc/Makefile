@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/ghc/Makefile,v 1.7 2013/03/30 13:40:55 laffer1 Exp $
 
 PORTNAME=	ghc
-PORTVERSION=	7.4.2
+PORTVERSION=	7.6.3
 CATEGORIES=	lang haskell
 MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		${MASTER_SITE_LOCAL:S/$/:boot/}
@@ -21,7 +21,7 @@ HSCOLOUR_VERSION=	1.20.2
 DATADIR=	${PREFIX}/share/ghc-${GHC_VERSION}
 EXAMPLESDIR=	${PREFIX}/share/examples/ghc-${GHC_VERSION}
 
-CONFLICTS=	ghc-6.8.* ghc-6.10.* ghc-6.12.* ghc-7.0.* ghc-7.2.*
+CONFLICTS=	ghc-6.8.* ghc-6.10.* ghc-6.12.* ghc-7.0.* ghc-7.2.* ghc-7.4.*
 
 USE_BZIP2=	yes
 LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
@@ -29,10 +29,9 @@ LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 USE_AUTOTOOLS=		autoconf autoheader
 USE_PERL5_BUILD=	yes
 USE_GMAKE=		yes
-USE_ICONV=		yes
+USES=			iconv ncurses
 USE_BINUTILS=		yes
 USE_GCC=		4.6+
-USE_NCURSES=		yes
 
 LICENSE=	BSD
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -80,7 +79,9 @@ EXTRA_PATCHES=		${PATCHDIR}/nopatch-.._ghc-${BOOT_GHC_VERSION}-boot_rts_package.
 
 .if ${OSVERSION} >= 4016
 DISTFILES+=	ghc-${BOOT_GHC_VERSION}-i386-freebsd9-boot${EXTRACT_SUFX}:boot
-.elif ${OSVERSION} >= 3000
+.elif ${OSVERSION} >= 800000
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-i386-freebsd8-boot${EXTRACT_SUFX}:boot
+.elif ${OSVERSION} >= 700000
 DISTFILES+=	ghc-${BOOT_GHC_VERSION}-i386-freebsd7-boot${EXTRACT_SUFX}:boot
 .else
 IGNORE=		unsupported
@@ -88,9 +89,11 @@ IGNORE=		unsupported
 
 .elif ${ARCH} == "amd64"
 
-.if ${OSVERSION} >= 4016
+.if ${OSVERSION} >= 900000
 DISTFILES+=	ghc-${BOOT_GHC_VERSION}-amd64-freebsd9-boot${EXTRACT_SUFX}:boot
-.elif ${OSVERSION} >= 3000
+.elif ${OSVERSION} >= 800000
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-amd64-freebsd8-boot${EXTRACT_SUFX}:boot
+.elif ${OSVERSION} >= 700000
 DISTFILES+=	ghc-${BOOT_GHC_VERSION}-amd64-freebsd7-boot${EXTRACT_SUFX}:boot
 .else
 IGNORE=		unsupported
@@ -305,10 +308,10 @@ pre-configure:
 
 post-install:
 	# cabalised hs-foo-ghc ports
-	@${MKDIR} ${GHC_LIBDIR}/cabal
-	@${MKDIR} ${DOCSDIR}/cabal
-	@${MKDIR} ${EXAMPLESDIR}/cabal
-	@${MKDIR} ${DATADIR}/cabal
+	@${MKDIR} ${PREFIX}/lib/cabal/ghc-${GHC_VERSION}
+	@${MKDIR} ${PREFIX}/share/cabal/ghc-${GHC_VERSION}
+	@${MKDIR} ${PREFIX}/share/doc/cabal/ghc-${GHC_VERSION}
+	@${MKDIR} ${PREFIX}/share/examples/cabal/ghc-${GHC_VERSION}
 .if ${PORT_OPTIONS:MDOCS}
 	cd ${DOCSDIR}/html/libraries && ./gen_contents_index
 .endif
@@ -316,6 +319,5 @@ post-install:
 .if ${PORT_OPTIONS:MDOCS}
 	@${LN} -sf ${PREFIX}/bin/haddock-ghc-${GHC_VERSION} ${PREFIX}/bin/haddock
 .endif
-	@${RM} -f ${PREFIX}/lib/ghc-${GHC_VERSION}/package.conf.old
 
 .include <bsd.port.mk>

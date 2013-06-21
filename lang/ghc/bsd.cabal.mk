@@ -1,14 +1,3 @@
-#
-# $FreeBSD$
-#
-# bsd.cabal.mk -- Support for ports based on Haskell Cabal.
-#
-# Created by: Gabor Pali <pgj@FreeBSD.org>,
-# Based on works of Giuseppe Pilichi and Ashish Shukla.
-#
-# Maintained by: haskell@FreeBSD.org
-#
-
 .if !defined(METAPORT)
 MASTER_SITES?=	http://hackage.haskell.org/packages/archive/${PORTNAME}/${PORTVERSION}/
 .else
