@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.418 2013/06/05 01:40:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.419 2013/06/14 01:59:50 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -365,6 +365,7 @@ SUBDIR += projectmanager
 SUBDIR += pth
 SUBDIR += pth-hard
 SUBDIR += py-dbus
+SUBDIR += py-distribute
 SUBDIR += py-elementtree
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
