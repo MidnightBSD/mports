@@ -1,32 +1,36 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.28 2012/10/27 04:39:51 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.29 2013/03/01 01:14:14 laffer1 Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.97.6
+PORTVERSION=	0.97.8
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
-LICENSE=	agg
+LICENSE=	gpl2
 
-OPTIONS=	ARC "Enable arch archives support" On \
-		ARJ "Enable arj archives support" On \
-		LHA "Enable lha archives support" On \
-		UNZOO "Enable zoo archives support" On \
-		UNRAR "Enable rar archives support" On \
-		MILTER "Compile the milter interface" Off \
-		LDAP "libmilter was built with LDAP" Off \
-		ICONV "Enable ICONV support" Off \
-		STDERR "Print logs to stderr instead of stdout" Off \
-		EXPERIMENTAL "Build experimental code" Off
+OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR LLVM TESTS MILTER LDAP ICONV STDERR \
+		EXPERIMENTAL DOCS
 
-USE_PYTHON_BUILD=	yes
-USE_GMAKE=	yes
+ARC_DESC=		Enable arch archives support
+ARJ_DESC=		Enable arj archives support
+LHA_DESC=		Enable lha archives support
+UNZOO_DESC=		Enable zoo archives support
+UNRAR_DESC=		Enable rar archives support
+LLVM_DESC=		Enable JIT Bytecode compiler (bundled LLVM)
+TESTS_DESC=		Run compile-time tests (req. python)
+MILTER_DESC=		Compile the milter interface
+STDERR_DESC=		Print logs to stderr instead of stdout
+EXPERIMENTAL_DESC=	Build experimental code
+
+OPTIONS_DEFAULT=	ARC ARJ LHA UNZOO UNRAR LLVM DOCS
+
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
+USE_GCC=	any
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
-CONF_FILES=	clamd freshclam
+CLAM_CONF_FILES=	clamd freshclam
 
 PORTDOCS=	*
 
@@ -34,9 +38,9 @@ DBDIR=		/var/db/clamav
 LOGDIR=		/var/log/clamav
 RUNDIR=		/var/run/clamav
 PLIST_SUB+=	DBDIR=${DBDIR} LOGDIR=${LOGDIR} RUNDIR=${RUNDIR}
+PY_NO_THREAD=	${WRKDIR}/.python-has-no-threads
+USE_AUTOTOOLS=	libltdl
 
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--with-dbdir=${DBDIR} \
 		--with-zlib=/usr \
@@ -44,9 +48,9 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--disable-clamav \
 		--enable-bigstack \
 		--enable-readdir_r \
+		--enable-gethostbyname_r \
 		--disable-dependency-tracking \
-		--enable-clamdtop \
-		--enable-llvm
+		--enable-clamdtop
 CPPFLAGS+=	-I${LOCALBASE}/include \
 		${PTHREAD_CFLAGS}
 LDFLAGS+=	-L${LOCALBASE}/lib \
@@ -63,12 +67,13 @@ MAN1=		clambc.1 \
 		sigtool.1 \
 		clamdscan.1 \
 		clamdtop.1
-MAN5=		clamd.conf.5 \
+MAN5=		clamav-milter.conf.5 \
+		clamd.conf.5 \
 		freshclam.conf.5
 MAN8=		clamd.8 \
 		clamav-milter.8
 
-CONFLICTS=	clamav-devel-[0-9]*
+CONFLICTS?=	clamav-devel-[0-9]* clamav-milter-[0-9]*
 
 CLAMAVUSER?=	clamav
 CLAMAVGROUP?=	clamav
@@ -104,77 +109,82 @@ SED_CONF=	-E -e 's|^\#?(Example)$$|\#\1|' \
 PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if (${OSVERSION} > 2999)
-CONFIGURE_ARGS+=	--enable-gethostbyname_r
-.else
-CONFIGURE_ARGS+=	--disable-gethostbyname_r
-.endif
-
-.if ${ARCH} == "i386"
-CFLAGS+=	-march=i486
-.endif
-
-.if ${OSVERSION} >= 3000
-BUILD_DEPENDS+=		${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
-CONFIGURE_ARGS+=	--enable-check
-.else
-CONFIGURE_ARGS+=	--disable-check
-.endif
-
-.if defined(WITH_ARC)
+.if ${PORT_OPTIONS:MARC}
 RUN_DEPENDS+=	arc:${PORTSDIR}/archivers/arc
 .endif
-.if defined(WITH_ARJ)
+.if ${PORT_OPTIONS:MARJ}
 RUN_DEPENDS+=	arj:${PORTSDIR}/archivers/arj
 .endif
-.if defined(WITH_LHA)
+.if ${PORT_OPTIONS:MLHA}
 RUN_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
 .endif
-.if defined(WITH_UNZOO)
+.if ${PORT_OPTIONS:MUNZOO}
 RUN_DEPENDS+=	unzoo:${PORTSDIR}/archivers/unzoo
 .endif
-.if defined(WITH_UNRAR)
+.if ${PORT_OPTIONS:MUNRAR}
 PLIST_SUB+=	UNRAR=""
 .else
 PLIST_SUB+=	UNRAR="@comment "
-CONFIGURE_ARGS+=	--disable-unrar
+CONFIGURE_ARGS+=--disable-unrar
 .endif
-.if defined(WITH_ICONV)
+.if ${PORT_OPTIONS:MICONV}
 CONFIGURE_ARGS+=--with-iconv
-USE_ICONV=	yes
+USES+=		iconv
 .else
 CONFIGURE_ARGS+=--without-iconv
 .endif
 
-.if defined(WITH_MILTER)
+.if ${PORT_OPTIONS:MLLVM} && ( ${ARCH} == "i386" || ${ARCH} == "amd64" )
+CONFIGURE_ARGS+=--enable-llvm
+. if defined(WITH_TESTS)
+USE_PYTHON_BUILD=	yes
+. endif
+.else
+CONFIGURE_ARGS+=--disable-llvm
+.endif
+
+.if ${PORT_OPTIONS:MMILTER}
 USE_RC_SUBR+=	clamav-milter
-CONF_FILES+=	clamav-milter
-. if defined(WITH_LDAP) && exists(${LOCALBASE}/lib/libldap.so)
+CLAM_CONF_FILES+=	clamav-milter
+. if ${PORT_OPTIONS:MLDAP} && exists(${LOCALBASE}/lib/libldap.so)
 USE_OPENLDAP=	yes
 LDFLAGS+=	-lldap
 . endif
 
 . if !exists(/usr/lib/libmilter.a) || exists(${LOCALBASE}/lib/libmilter.a)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
-CONFIGURE_ARGS+=	--with-sendmail=${LOCALBASE}/sbin/sendmail
+CONFIGURE_ARGS+=--with-sendmail=${LOCALBASE}/sbin/sendmail
 . else
-CONFIGURE_ARGS+=	--with-sendmail=/usr/sbin/sendmail
+CONFIGURE_ARGS+=--with-sendmail=/usr/sbin/sendmail
 . endif
 
-CONFIGURE_ARGS+=	--enable-milter
+CONFIGURE_ARGS+=--enable-milter
 PLIST_SUB+=	CLAMAV-MILTER=""
 .else
 PLIST_SUB+=	CLAMAV-MILTER="@comment "
 .endif
 
-.if defined(WITH_STDERR)
+.if ${PORT_OPTIONS:MSTDERR}
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-shared_output.c
 .endif
 
-.if defined(WITH_EXPERIMENTAL)
-CONFIGURE_ARGS+=	--enable-experimental
+.if ${PORT_OPTIONS:MEXPERIMENTAL}
+CONFIGURE_ARGS+=--enable-experimental
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "i386"
+CFLAGS+=	-march=i486
+.endif
+
+.if ${PORT_OPTIONS:MTESTS} && ${OSVERSION} >= 3000
+BUILD_DEPENDS+=	${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
+CONFIGURE_ARGS+=--enable-check
+.else
+CONFIGURE_ARGS+=--disable-check
 .endif
 
 post-patch:
@@ -189,25 +199,36 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
 		${WRKSRC}/libclamunrar/unrar.c
 
-.if ${OSVERSION} >= 3000
-post-build:
-	@${MAKE} -C ${WRKSRC} check
+.if ${PORT_OPTIONS:MLLVM} && ${PORT_OPTIONS:MTESTS}
+pre-configure:
+	@if ! ${PYTHON_CMD} -c "import thread" >/dev/null 2>&1; then \
+		${ECHO_MSG} ""; \
+		${ECHO_MSG} "==========================================================================="; \
+		${ECHO_MSG} "= Unit tests REQUIRES python built with thread support, and yours is not. ="; \
+		${ECHO_MSG} "= It will not be called during this build                                 ="; \
+		${ECHO_MSG} "==========================================================================="; \
+		${ECHO_MSG} ""; \
+		${TOUCH} ${PY_NO_THREAD}; \
+	fi
 .endif
 
-pre-su-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+.if ${PORT_OPTIONS:MTESTS} && ${OSVERSION} >= 3000
+post-build:
+	@if [ ! -f "${PY_NO_THREAD}" ]; then \
+		${MAKE} -C ${WRKSRC} check; \
+	fi
+.endif
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
-.for c in ${CONF_FILES}
+.for c in ${CLAM_CONF_FILES}
 	@[ -f ${PREFIX}/etc/${c}.conf ] || \
 		${CP} -v ${PREFIX}/etc/${c}.conf.default ${PREFIX}/etc/${c}.conf
 .endfor
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}/html
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 .endif
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
