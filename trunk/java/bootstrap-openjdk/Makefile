@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.2 2013/06/21 02:39:28 laffer1 Exp $
+# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.3 2013/06/21 02:40:33 laffer1 Exp $
 
 PORTNAME=	${JDK_NAME}
 PORTVERSION=	${DISTVERSION_${ARCH}}
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	jkim
@@ -47,6 +48,7 @@ do-install:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${INSTALLDIR}
 	@${CHOWN} ${BINOWN}:${BINGRP} ${INSTALLDIR}/bin/* ${INSTALLDIR}/jre/bin/*
 	@${CHMOD} ${BINMODE} ${INSTALLDIR}/bin/* ${INSTALLDIR}/jre/bin/*
+	(cd ${INSTALLDIR}/include && ln -s freebsd midnightbsd)
 
 update:
 	@${MAKE} -f ${.CURDIR}/Makefile.update \

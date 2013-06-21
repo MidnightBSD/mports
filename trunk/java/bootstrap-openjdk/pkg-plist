@@ -51,6 +51,7 @@
 %%JDK_ROOT%%/jre/lib/zi
 %%JDK_ROOT%%/lib/ct.sym
 %%JDK_ROOT%%/lib/tools.jar
+%%JDK_ROOT%%/include/midnightbsd
 @dirrm %%JDK_ROOT%%/lib
 @dirrm %%JDK_ROOT%%/jre/lib/security
 @dirrm %%JDK_ROOT%%/jre/lib/ext
