@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/qt4-opengl/Makefile,v 1.3 2011/07/23 22:43:29 laffer1 Exp $
 # $FreeBSD: ports/x11/qt4-opengl/Makefile,v 1.24 2010/12/02 19:47:16 makc Exp $
 #
 
@@ -11,15 +11,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt OpenGL library
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build corelib gui
+USE_QT4=	qmake_build moc_build corelib gui
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
-USE_GL=		glu
+USE_GL=		gl
 USE_XORG=	x11
 
 ALL_TARGET=	first
@@ -35,7 +34,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
