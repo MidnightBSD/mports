@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.426 2013/06/21 02:35:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.427 2013/06/21 03:07:54 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -209,6 +209,7 @@ SUBDIR += p5-AppConfig
 SUBDIR += p5-B-Hooks-EndOfScope
 SUBDIR += p5-B-Keywords
 SUBDIR += p5-BSD-Resource
+SUBDIR += p5-CPAN-Meta
 SUBDIR += p5-Cache
 SUBDIR += p5-Cache-Cache
 SUBDIR += p5-Carp-Clan
