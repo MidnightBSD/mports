@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-qmlviewer/Makefile,v 1.1 2013/06/22 00:53:06 laffer1 Exp $
 
 PORTNAME=	qmlviewer
 DISTVERSION=	${QT4_VERSION}
@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 QML viewer
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build rcc_build uic_build declarative script \
 		svg xmlpatterns sql opengl network corelib
