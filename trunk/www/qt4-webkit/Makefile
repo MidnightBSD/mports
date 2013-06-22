@@ -1,6 +1,4 @@
-# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.3 2011/07/23 22:38:24 laffer1 Exp $
-# $FreeBSD: ports/www/qt4-webkit/Makefile,v 1.10 2010/12/02 19:47:15 makc Exp $
-#
+# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.4 2012/03/01 00:11:14 laffer1 Exp $
 
 PORTNAME=	webkit
 DISTVERSION=	${QT4_VERSION}
@@ -11,8 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 WebKit engine
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib declarative gui network phonon \
+USES=		pkgconfig
+USE_QT4=	corelib declarative gui network \
 		qmake_build moc_build rcc_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
@@ -33,23 +31,43 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/testlib src/tools src/winmain src/3rdparty/clucene \
 		src/3rdparty/freetype src/3rdparty/libjpeg src/3rdparty/libmng \
 		src/3rdparty/libpng src/3rdparty/libtiff
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-BUILD_WRKSRC=	${WRKSRC}/src/3rdparty/${PORTNAME}
+BUILD_WRKSRC=	${WRKSRC}/src/3rdparty/${PORTNAME}/Source
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 CONFIGURE_ARGS+=	-I../../../../include/Qt -I../../../../include
 
 EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
+OPTIONS_DEFINE=	GSTREAMER
+OPTIONS_DEFAULT=	GSTREAMER
+
+GSTREAMER_DESC=	HTML5 audio and video via GStreamer
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MGSTREAMER}
+USE_GSTREAMER=	yes
+.endif
+
+.include <bsd.port.pre.mk>
+
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
 	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
+	${REINPLACE_CMD} -e 's|linux-\*|unix|g' \
+		${BUILD_WRKSRC}/WebCore/features.pri \
+		${BUILD_WRKSRC}/JavaScriptCore/wtf/wtf.pri
+.if ! ${PORT_OPTIONS:MGSTREAMER}
+	${REINPLACE_CMD} -e 's|.*exists.*gstreamer.*|false {|' \
+		${BUILD_WRKSRC}/WebCore/features.pri
+.endif
+# Avoid building and installing several tests. Should this be made an option?
 	${REINPLACE_CMD} -e '/WebKit\/qt\/tests/ d' \
 		${BUILD_WRKSRC}/WebKit.pro
 
@@ -59,13 +77,17 @@ post-configure:
 		-e 's|.*$$(QMAKE).*||g' \
 		-e '/^CFLAGS/ s|-I${LOCALBASE}/include ||g' \
 		-e '/^CXXFLAGS/ s|-I${LOCALBASE}/include ||g' \
-		${BUILD_WRKSRC}/WebCore/Makefile
+		${BUILD_WRKSRC}/Makefile \
+		${BUILD_WRKSRC}/WebCore/Makefile \
+		${BUILD_WRKSRC}/WebKit/qt/Makefile
+	${CP} ${BUILD_WRKSRC}/WebKit/qt/Makefile \
+		${BUILD_WRKSRC}/WebKit/qt/Makefile.QtWebKit
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 		${WRKSRC}/lib/pkgconfig/QtWebKit.pc
 # QtWebKit is statically linked with jscore, remove the latest.
-	${REINPLACE_CMD} -e 's|-L../JavaScriptCore/release||;s|-ljscore||' \
+	${REINPLACE_CMD} -e 's|-L../JavaScriptCore/release||; s|-ljscore||' \
 		${WRKSRC}/lib/pkgconfig/QtWebKit.pc \
 		${WRKSRC}/lib/libQtWebKit.la
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
