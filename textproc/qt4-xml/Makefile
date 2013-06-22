@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/qt4-xml/Makefile,v 1.4 2011/07/23 21:41:31 laffer1 Exp $
 # $FreeBSD: ports/textproc/qt4-xml/Makefile,v 1.17 2010/12/02 19:47:14 makc Exp $
 
 PORTNAME=	xml
@@ -10,8 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt XML library
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build corelib
+USE_QT4=	qmake_build moc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -32,7 +31,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
