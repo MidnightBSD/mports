@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/multimedia/phonon-gstreamer/Makefile,v 1.2 2011/07/24 00:30:38 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/phonon-gstreamer/Makefile,v 1.3 2012/03/01 05:05:06 laffer1 Exp $
 # $FreeBSD: ports/multimedia/phonon-gstreamer/Makefile,v 1.13 2011/03/25 10:14:53 avilla Exp $
 
 PORTNAME=	phonon
-PORTVERSION=	4.5.1
-CATEGORIES=	multimedia kde ipv6
+PORTVERSION=	4.6.3
+CATEGORIES=	multimedia kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${PHONON_BRANCH}/${PORTNAME}/${PORTNAME}-backend${PKGNAMESUFFIX}/${PORTVERSION}/src
 PKGNAMESUFFIX=	-gstreamer
@@ -14,40 +14,39 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GStreamer backend for Phonon
 LICENSE=	lgpl
 
+# Required in order to avoid conflicts with multimedia/phonon's OPTIONS.
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
 
 CONFLICTS=	qt4-phonon-gst-4*
 
 PHONON_BRANCH=	stable
 
+USE_GL=		gl
 USE_GNOME=	glib20 libxml2
 USE_GSTREAMER=	yes
 USE_KDE4=	kdehier kdeprefix automoc4
-USE_QT_VER=	4
-QT_COMPONENTS=	gui opengl phonon xml \
+USE_QT4=	gui phonon xml \
 		qmake_build moc_build rcc_build uic_build
 USE_XORG=	x11
-USE_BZIP2=	yes
-USE_CMAKE=	yes
+USE_XZ=		yes
+USES=		cmake
 MAKE_JOBS_SAFE=	yes
 
 PLIST_SUB+=	QT_PREFIX=${QT_PREFIX}
-
-# FIXME: Remove this in the next release; phonon-gstreamer does not
-# depend on ALSA anymore.
-# Explicitly disable ALSA, see for details:
-# http://mail.kde.org/pipermail/kde-freebsd/2010-March/008015.html
-CMAKE_ARGS+=	-DWITH_Alsa:BOOL=OFF
 
 .if defined(WITH_QT_PHONON)
 IGNORE=		conflicts with Qt 4 Phonon. Please, deinstall qt4-phonon-gst and unset WITH_QT_PHONON to continue
 .endif
 
-OPTIONS=	PLUGINS "Install GStreamer plugins" off
+OPTIONS_DEFINE=	GST_PLUGINS
+
+GST_PLUGINS_DESC=	Install GStreamer plugins
+
+OPTIONS_DEFAULT=
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_PLUGINS)
+.if ${PORT_OPTIONS:MGST_PLUGINS}
 RUN_DEPENDS+=	gstreamer-plugins-all>=0:${PORTSDIR}/multimedia/gstreamer-plugins-all
 .else
 SUB_FILES=	pkg-message
@@ -57,6 +56,10 @@ pre-install:
 	@${MKDIR} ${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend
 
 post-install:
-	@cd ${PREFIX}/lib && ${LN} -sf kde4/plugins/phonon_backend/phonon_gstreamer.so qt4/plugins/phonon_backend/libphonon_gstreamer.so
+	${LN} -sf ${PREFIX}/lib/kde4/plugins/phonon_backend/phonon_gstreamer.so \
+		${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
+.if ! ${PORT_OPTIONS:MGST_PLUGINS}
+	@${CAT} ${PKGMESSAGE}
+.endif
 
 .include <bsd.port.mk>
