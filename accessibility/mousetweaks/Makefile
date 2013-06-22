@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.2 2011/05/29 01:13:11 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.3 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	mousetweaks
 PORTVERSION=	2.32.1
@@ -15,7 +15,7 @@ USE_XORG=	x11 xfixes xcursor xtst
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix gnomepanel intlhack
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

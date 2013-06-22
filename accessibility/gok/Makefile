@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.7 2011/05/29 00:57:56 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.8 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	gok
 PORTVERSION=	2.30.1
@@ -16,7 +16,7 @@ LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
     		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 INSTALLS_OMF=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack libgnomeui atspi libwnck \
 		gnomespeech libxml2
