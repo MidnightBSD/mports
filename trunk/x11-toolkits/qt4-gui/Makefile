@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.9 2012/01/28 04:29:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.10 2012/09/09 01:43:41 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/qt4-gui/Makefile,v 1.35 2011/03/25 09:54:14 avilla Exp $
 
 PORTNAME=	gui
@@ -14,13 +14,13 @@ LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib
+USE_QT4=	qmake_build moc_build rcc_build uic_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
+USES=		pkgconfig
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 USE_XORG=	xrender xrandr xinerama inputproto xfixes \
 		sm xcursor xext x11 ice xi xt
@@ -38,7 +38,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
@@ -96,5 +95,10 @@ post-configure:
 		-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 		-E -e 's|(.*location=).*uic|\1${PREFIX}/bin/uic-qt4|g' \
 		${WRKSRC}/lib/pkgconfig/QtGui.pc
+
+post-install:
+	${INSTALL_DATA} ${BUILD_WRKSRC}/dialogs/images/qtlogo-64.png \
+		${PREFIX}/share/pixmaps/qtlogo.png
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
