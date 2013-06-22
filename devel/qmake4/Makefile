@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.12 2012/02/29 22:26:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.13 2013/03/03 17:05:45 laffer1 Exp $
 
 PORTNAME=	qmake
 DISTVERSION=	${QT4_VERSION}
-PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
@@ -23,55 +22,34 @@ FAKE_OPTS=	trueprefix
 MAKE_JOBS_SAFE=	yes
 TODAY_CMD=	/bin/date +%Y-%m-%d
 
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
-	'${DISTNAME}/mkspecs' \
-	'${DISTNAME}/include/*/*' \
-	'${DISTNAME}/src/*/*.h' \
-	'${DISTNAME}/qmake' \
-	'${DISTNAME}/src/corelib/tools' \
-	'${DISTNAME}/src/corelib/io' \
-	'${DISTNAME}/src/corelib/global' \
-	'${DISTNAME}/src/corelib/plugin' \
-	'${DISTNAME}/src/corelib/kernel' \
-	'${DISTNAME}/src/corelib/codecs' \
-	'${DISTNAME}/src/corelib/xml' \
-	'${DISTNAME}/src/3rdparty/md4' \
-	'${DISTNAME}/src/3rdparty/md5' \
-	'${DISTNAME}/src/3rdparty/sha1' \
-	'${DISTNAME}/tools/shared/symbian' \
-	'${DISTNAME}/tools/shared/windows'
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2|${CXXFLAGS}|' \
 		-e 's|/usr/local|${LOCALBASE}|' \
 		-e 's|/usr/X11R6|${LOCALBASE}|' \
 		-e 's|release|release thread|' \
-		-e 's|-pthread -D_THREAD_SAFE|${PTHREAD_CFLAGS}|' \
-		-e 's|-pthread|${PTHREAD_LIBS}|' \
 		-e 's|uic|uic-qt4|' \
 		-e 's|moc|moc-qt4|' \
 		${WRKSRC}/../mkspecs/freebsd-*/qmake.conf
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
-	# Add mkspecs for all the available compilers.
-	@${CP} ${WRKSRC}/../mkspecs/common/g++.conf ${WRKSRC}/../mkspecs/common/clang.conf
-	@${REINPLACE_CMD} -e 's|gcc|clang|g' -e 's|g++|clang++|g' \
-		${WRKSRC}/../mkspecs/common/clang.conf
 
-	# FIXME: This is ugly
+# FIXME: This is ugly
 	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++/*.orig
-	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++40/*.orig
+	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++46/*.orig
 
-.for c in clang llvm
-	@${CP} -PpR ${WRKSRC}/../mkspecs/freebsd-g++ ${WRKSRC}/../mkspecs/freebsd-${c}
-	@${REINPLACE_CMD} -e 's|g++|${c}|g' \
-		${WRKSRC}/../mkspecs/freebsd-${c}/qmake.conf
-.endfor
-.for v in 42 43 44 45 46
-	@${CP} -PpR ${WRKSRC}/../mkspecs/freebsd-g++40 ${WRKSRC}/../mkspecs/freebsd-g++${v}
-	@${REINPLACE_CMD} -e 's|40|${v}|g' \
+# Add mkspec for clang
+	@${CP} -PpR ${WRKSRC}/../mkspecs/freebsd-g++46 ${WRKSRC}/../mkspecs/freebsd-clang
+	@${REINPLACE_CMD} -e 's|g++-unix.conf|clang.conf|g' \
+		-e 's|freebsd-g++46|freebsd-clang|g' \
+		-e 's|gcc46|clang|g' \
+		-e 's|g++46|clang++|g' \
+		${WRKSRC}/../mkspecs/freebsd-clang/qmake.conf
+
+# Add mkspecs for the different GCC versions in the ports tree
+.for v in 42 44 47 48
+	@${CP} -PpR ${WRKSRC}/../mkspecs/freebsd-g++46 ${WRKSRC}/../mkspecs/freebsd-g++${v}
+	@${REINPLACE_CMD} -e 's|46|${v}|g' \
 		${WRKSRC}/../mkspecs/freebsd-g++${v}/qmake.conf
 .endfor
-	@${RM} -r ${WRKSRC}/../mkspecs/freebsd-g++40
 
 do-configure:
 	${SED} -e 's|/usr/local|${PREFIX}|g' \
@@ -79,11 +57,10 @@ do-configure:
 		< ${FILESDIR}/qconfig.cpp \
 		> ${WRKSRC:H}/src/corelib/global/qconfig.cpp
 	${ECHO} '/* empty */' > ${WRKSRC}/qconfig.h
-#	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/../include/QtCore/qconfig.h
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/../src/corelib/global/qconfig.h
-	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/qt4
 
 post-install:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/qt4/mkspecs
 	${LN} -sf ${PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_BASE_COMPILER} ${PREFIX}/share/qt4/mkspecs/default
 
 .include <bsd.port.mk>
