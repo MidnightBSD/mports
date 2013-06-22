@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/qt4-qtdemo/Makefile,v 1.21 2010/12/02 19:47:13 makc Exp $
+# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.5 2011/07/23 23:46:58 laffer1 Exp $
 
 PORTNAME=	qtdemo
 DISTVERSION=	${QT4_VERSION}
@@ -10,8 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt demonstration and example programs
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib designer \
+USE_QT4=	qmake_build moc_build rcc_build uic_build corelib designer \
 		gui network opengl sql svg qtestlib xml imageformats_run dbus \
 		script webkit phonon help assistant_run phonon-gst scripttools \
 		xmlpatterns multimedia
@@ -26,12 +24,16 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
+# qtlogo.png is installed by qt4-gui
+DESKTOP_ENTRIES="Qt Examples and Demos" "${COMMENT}" \
+		"${LOCALBASE}/share/pixmaps/qtlogo.png" \
+		"${PREFIX}/bin/qtdemo" "Development;Qt;" true
+
 DO_NOT_EXTRACT=	doc mkspecs qmake translations \
 		src/activeqt src/openvg src/s60installs src/s60main src/tools \
 		src/winmain src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
