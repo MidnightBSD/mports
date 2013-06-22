@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.8 2011/05/11 13:43:51 laffer1 Exp $
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.9 2013/03/20 12:46:56 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	GOOGLE_CODE
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	fftw3:${PORTSDIR}/math/fftw3 \
 PROJECTHOST=	musicip-libofa
 USE_DOS2UNIX=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack
+USE_PATHFIX=	yes
 USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

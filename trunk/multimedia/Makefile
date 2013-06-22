@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.68 2012/03/04 05:32:33 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.69 2012/03/04 05:35:02 laffer1 Exp $
 
 COMMENT = Multimedia software
 
@@ -56,8 +56,6 @@ SUBDIR += phonon
 SUBDIR += phonon-gstreamer
 SUBDIR += poe
 SUBDIR += qt4-multimedia
-SUBDIR += qt4-phonon
-SUBDIR += qt4-phonon-gst
 SUBDIR += schroedinger
 SUBDIR += smpeg
 SUBDIR += totem

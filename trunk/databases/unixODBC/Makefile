@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.7 2012/02/24 01:07:16 laffer1 Exp $
-# $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.8 2012/09/29 21:49:21 laffer1 Exp $
 
 PORTNAME=	unixODBC
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
 
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 
 CONFLICTS=	libiodbc-[0-9]* virtuoso-*
 
-USE_ICONV=	yes
+USES=		iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --enable-shared \
 		--with-libiconv-prefix=${LOCALBASE}
