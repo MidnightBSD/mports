@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/qt4-accessible/Makefile,v 1.4 2011/08/16 22:49:30 laffer1 Exp $
 # $FreeBSD: ports/accessibility/qt4-accessible/Makefile,v 1.20 2010/12/02 19:47:01 makc Exp $
 
 PORTNAME=	accessible
@@ -10,8 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt accessibility widgets
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build qt3support corelib gui network sql xml
+USE_QT4=	qmake_build moc_build qt3support corelib gui network sql xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -31,7 +30,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/freetype src/3rdparty/libjpeg src/3rdparty/libmng \
 		src/3rdparty/libpng src/3rdparty/libtiff src/3rdparty/phonon \
 		src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
