@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.17 2013/02/17 23:25:15 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.18 2013/03/02 19:42:17 laffer1 Exp $
 
 PORTNAME=	DBD-mysql
-PORTVERSION=	4.022
-PORTREVISION=	1
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/00$//}
+PORTVERSION=	4.023
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/00$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	MySQL driver for the Perl5 Database Interface (DBI)
@@ -23,11 +22,11 @@ PERL_CONFIGURE=	yes
 
 MAN3=	Bundle::DBD::mysql.3 DBD::mysql.3 DBD::mysql::INSTALL.3
 
-OPTIONS=	SSL	"build with OpenSSL support" off
+OPTIONS_DEFINE=	SSL
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MSSL}
 CONFIGURE_ARGS+=	--ssl
 RUN_DEPENDS+=		p5-Crypt-SSLeay>=0:${PORTSDIR}/security/p5-Crypt-SSLeay
 .endif
