@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4/Makefile,v 1.4 2011/07/17 15:22:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4/Makefile,v 1.5 2013/06/21 23:29:49 laffer1 Exp $
 
 PORTNAME=	qt4
 DISTVERSION=	${QT4_VERSION}
@@ -22,15 +22,10 @@ NO_BUILD=	yes
 OPTIONS_DEFINE=	CODECS DOCS EXAMPLES NLS SQL_PLUGINS TOOLS
 OPTIONS_DEFAULT=${OPTIONS_DEFINE}
 
-CODECS_DESC=	CN, JP, KR, TW codecs support
 SQL_PLUGINS_DESC=	Install database plugins for QtSql
 TOOLS_DESC=	Install Qt tools (qmake, moc, etc.)
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MCODECS}
-USE_QT4+=	codecs-cn codecs-jp codecs-kr codecs-tw
-.endif
 
 .if ${PORT_OPTIONS:MDOCS}
 USE_QT4+=	doc
