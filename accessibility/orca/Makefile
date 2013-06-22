@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.8 2011/05/29 01:14:36 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.9 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	orca
 PORTVERSION=	2.32.1
@@ -22,7 +22,7 @@ RUN_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
 LATEST_LINK=	gnome-orca
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_PYTHON=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack libgnomeui gnomespeech pygnome2 \
