@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.7 2013/05/04 20:50:04 laffer1 Exp $
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.8 2013/05/04 23:26:49 laffer1 Exp $
 PORTNAME=		tdb
 PORTVERSION=		1.2.11
 CATEGORIES=		databases
@@ -16,7 +16,7 @@ USE_LDCONFIG=		yes
 HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
 CONFIGURE_SCRIPT=	${WAF_TOOL} configure
-USE_PKGCONFIG=		yes
+USES=			pkgconfig
 
 MAKE_JOBS_SAFE=		yes
 
@@ -85,9 +85,9 @@ pre-configure:
 			fi
 
 pre-build:
-	${MKDIR} ${BUILD_WRKSRC}/bin/default/manpages
 .for man in ${MAN8}
-	${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/manpages
+			@${MKDIR} ${BUILD_WRKSRC}/bin/default/manpages
+			@${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/manpages
 .endfor
 
 do-build:
