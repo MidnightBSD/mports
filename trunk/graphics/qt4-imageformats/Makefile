@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.4 2011/07/24 16:40:23 laffer1 Exp $
+# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.5 2012/09/09 04:57:31 laffer1 Exp $
 # $FreeBSD: ports/graphics/qt4-imageformats/Makefile,v 1.22 2010/12/02 19:47:11 makc Exp $
 
 PORTNAME=	imageformats
@@ -15,8 +15,7 @@ LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		png15:${PORTSDIR}/graphics/png \
 		tiff:${PORTSDIR}/graphics/tiff
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui svg xml
+USE_QT4=	qmake_build moc_build rcc_build corelib gui svg xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	true
@@ -36,7 +35,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
