@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/qt4-qtconfig/Makefile,v 1.18 2010/12/02 19:47:12 makc Exp $
+# $MidnightBSD: mports/misc/qt4-qtconfig/Makefile,v 1.2 2011/07/23 23:44:25 laffer1 Exp $
 
 PORTNAME=	qtconfig
 DISTVERSION=	${QT4_VERSION}
@@ -10,13 +9,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt graphical configuration utility
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build qt3support corelib \
-		gui sql xml phonon phonon-gst
+OPTIONS_DEFINE=	PHONON
+OPTIONS_DEFAULT=PHONON
+
+PHONON_DESC=	Multimedia via Phonon (implies GStreamer)
+
+USE_QT4=	qmake_build moc_build rcc_build uic_build \
+		dbus gui xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
-USE_GSTREAMER=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -25,6 +26,10 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
+DESKTOP_ENTRIES="Qt Configuration" "${COMMENT}" \
+		"${PREFIX}/share/pixmaps/qtconfig-qt4.png" \
+		"${PREFIX}/bin/qtconfig-qt4" "Settings;Qt;" true
+
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/network src/opengl \
 		src/openvg src/s60installs src/s60main src/script \
@@ -32,10 +37,18 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/winmain src/xml src/xmlpatterns src/3rdparty/clucene \
 		src/3rdparty/freetype src/3rdparty/libjpeg src/3rdparty/libmng \
 		src/3rdparty/libpng src/3rdparty/libtiff src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MPHONON}
+USE_QT4+=	phonon phonon-gst
+USE_GSTREAMER=	yes
+.else
+CONFIGURE_ARGS+=-no-phonon -no-gstreamer
+.endif
 
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
@@ -51,5 +64,9 @@ pre-configure:
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
 	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
 	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
+
+post-install:
+	${INSTALL_DATA} ${BUILD_WRKSRC}/images/appicon.png \
+		${PREFIX}/share/pixmaps/qtconfig-qt4.png
 
 .include <bsd.port.mk>

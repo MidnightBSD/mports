@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/graphics/qt4-pixeltool/Makefile,v 1.2 2010/01/09 23:16:31 laffer1 Exp $
+# $MidnightBSD: mports/graphics/qt4-pixeltool/Makefile,v 1.3 2011/09/15 03:33:22 laffer1 Exp $
 # $FreeBSD: ports/graphics/qt4-pixeltool/Makefile,v 1.11 2008/08/04 23:30:36 miwi Exp $
 #
 
@@ -15,18 +15,22 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt screen magnification utility
 LICENSE=	gpl2
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build corelib gui network
+USE_QT4=	qmake_build moc_build corelib gui network
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
+
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
+		PATH=${WRKSRC}/bin:$$PATH
+
+# qtlogo.png is installed by qt4-gui
+DESKTOP_ENTRIES="Qt PixelTool" "${COMMENT}" \
+		"${LOCALBASE}/share/pixmaps/qtlogo.png" \
+		"${PREFIX}/bin/pixeltool" "Graphics;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/network src/opengl \
@@ -36,7 +40,6 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/3rdparty/clucene src/3rdparty/freetype \
 		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
 		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
