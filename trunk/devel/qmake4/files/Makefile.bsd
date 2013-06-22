@@ -1,4 +1,4 @@
-# $FreeBSD: ports/devel/qmake4/files/Makefile.bsd,v 1.11 2010/06/09 19:41:19 makc Exp $
+# $FreeBSD$
 
 _OBJS!=	${MAKE} -f Makefile.unix -V OBJS -V QOBJS
 # We'd like to avoid using qconfig.cpp, but can't -- see the comment
@@ -23,7 +23,7 @@ CXXFLAGS+=-I${.CURDIR:H}/mkspecs/freebsd-g++
 CXXFLAGS+=-I${.CURDIR:H}/$s
 .endfor
 
-.for g in /. /unix /win32 /mac /symbian
+.for g in /. /unix /win32 /mac /symbian /integrity
 .PATH:	${.CURDIR}/generators$g
 CXXFLAGS+=-I${.CURDIR}/generators$g
 .endfor
@@ -48,7 +48,7 @@ SHAREDIR=${PREFIX}/share/qt4
 ${DESTDIR}${SHAREDIR}:
 	mkdir -p "$@"
 
-beforeinstall:  ${DESTDIR}${SHAREDIR}
-	cp -Rp ${.CURDIR:H}/mkspecs  ${DESTDIR}${SHAREDIR}
+beforeinstall: ${DESTDIR}${SHAREDIR}
+	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}
 
 .include <bsd.prog.mk>
