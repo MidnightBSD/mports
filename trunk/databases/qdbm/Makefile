@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.4 2012/02/24 01:09:34 laffer1 Exp $
+# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.5 2013/03/02 19:45:35 laffer1 Exp $
 
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://fallabs.com/qdbm/
 
@@ -13,7 +14,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 .if !defined(SLAVEPORT)
-USE_ICONV=	yes
+USES+=		iconv
 CONFIGURE_ARGS=	--enable-zlib \
 		--enable-iconv \
 		--enable-pthread
