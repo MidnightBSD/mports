@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.11 2012/06/17 20:30:00 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.12 2013/02/10 20:34:40 laffer1 Exp $
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.22
+PORTVERSION=	5.1.25
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-J
@@ -25,20 +25,20 @@ EXTRADOCS=	CHANGES docs/connector-j.html docs/connector-j.pdf
 JARFILE=	${DISTNAME}-bin.jar
 JDCLASSPATH=	${SRCDIR}:${CLASSPATH}
 
-PLIST_FILES=	\
-		%%JAVAJARDIR%%/${DESTJARFILE}
+PLIST_FILES=	%%JAVAJARDIR%%/${DESTJARFILE}
 
-.if !defined(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
 .endif
 
 do-build:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${JAVADOCDIR} && (cd ${SRCDIR}; \
-	    ${JAVADOC} -quiet -breakiterator      \
-		-d ${JAVADOCDIR} -package         \
-	        -classpath  ${JDCLASSPATH}        \
-	         com.mysql.jdbc org.gjt.mm.mysql)
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${JAVADOCDIR} && (cd ${SRCDIR};               \
+	    ${JAVADOC} -quiet -breakiterator -encoding utf8     \
+	    -d ${JAVADOCDIR} -package -classpath ${JDCLASSPATH}	\
+	    com.mysql.jdbc org.gjt.mm.mysql)
 .endif
 
 do-install: do-install-jar do-install-apidocs
@@ -49,7 +49,7 @@ do-install-jar:
 	@${ECHO_MSG} " [ DONE ]"
 
 do-install-apidocs:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
 	@${MKDIR} ${APIDOCSDIR}
 	@cd ${JAVADOCDIR} && for src in $$( ${FIND} . ) ; do \
