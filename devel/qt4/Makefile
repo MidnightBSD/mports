@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4/Makefile,v 1.5 2013/06/21 23:29:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4/Makefile,v 1.6 2013/06/22 02:31:09 laffer1 Exp $
 
 PORTNAME=	qt4
 DISTVERSION=	${QT4_VERSION}
@@ -40,8 +40,7 @@ USE_QT4+=	l10n
 .endif
 
 .if ${PORT_OPTIONS:MSQL_PLUGINS}
-USE_QT4+=	sql-ibase sql-mysql sql-odbc sql-pgsql sql-sqlite2 \
-		sql-sqlite3
+USE_QT4+=	sql-mysql sql-odbc sql-pgsql sql-sqlite3
 .endif
 
 .if ${PORT_OPTIONS:MTOOLS}
