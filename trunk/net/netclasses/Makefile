@@ -1,16 +1,16 @@
-# $MidnightBSD: mports/net/netclasses/Makefile,v 1.4 2008/02/27 20:52:57 laffer1 Exp $
+# $MidnightBSD: mports/net/netclasses/Makefile,v 1.5 2009/10/03 03:07:17 laffer1 Exp $
 
 PORTNAME=	netclasses
 PORTVERSION=	1.06
+PORTREVISION=	1
 CATEGORIES=	net gnustep
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Objective-C framework for socket programming with GNUstep
-LICENSE=	gpl2
+LICENSE=	lgpl2.1
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
