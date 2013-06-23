@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/irc/talksoup/Makefile,v 1.1 2010/01/23 19:17:58 laffer1 Exp $
+# $MidnightBSD: mports/irc/talksoup/Makefile,v 1.2 2012/02/24 15:09:42 laffer1 Exp $
 
 PORTNAME=	talksoup
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	irc gnustep
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}alpha
 DISTNAME=	TalkSoup-${PORTVERSION}alpha
