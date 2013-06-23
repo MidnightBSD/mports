@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.20 2013/03/01 02:13:38 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.21 2013/03/20 01:55:00 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -74,7 +74,11 @@ PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
 PERL_ARCH?=		${ARCH}-midnightbsd
 .endif
 .else
+.if (${ARCH} == "i386" && ${OSVERSION} > 4015)
+PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi-64int
+.else
 PERL_ARCH?=		${ARCH}-midnightbsd-64int
+.endif
 .endif
 
 PERL5=			${PERL}${PERL_VERSION}
