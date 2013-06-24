@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.17 2013/02/09 02:48:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.18 2013/06/21 01:43:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -271,7 +271,7 @@ PYTHON_VERSION=	python2.7
 
 # Determine version number of Python to use
 .if !defined(PYTHON_DEFAULT_VERSION)
-. if exists(${LOCALBASE}/bin/python)
+. if exists(${LOCALBASE}/bin/python) && !defined(PACKAGE_BUILDING)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
 							'import sys; print(sys.version[:3])' 2> /dev/null \
 							|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
