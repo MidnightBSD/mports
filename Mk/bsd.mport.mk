@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.213 2013/06/24 12:28:07 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.214 2013/06/24 12:29:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -333,7 +333,7 @@ USE_${_f:U}=	yes
 ${_f}_ARGS:=	${f:C/^[^\:]*\://g}
 USE_${_f}=	${_f}_ARGS
 .endif
-#.include "${USESDIR}/${_f}.mk"
+.include "${MPORTEXTENSIONS}/${_f}.mk"
 .endfor
 
 # This is the order that we used before the extensions where refactored. 
