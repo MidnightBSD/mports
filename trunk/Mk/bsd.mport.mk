@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.214 2013/06/24 12:29:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.215 2013/06/24 12:34:02 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2322,8 +2322,8 @@ patch-dos2unix:
 .if defined(USE_DOS2UNIX)
 .if ${USE_DOS2UNIX:U}=="YES"
 	@${ECHO_MSG} "===>   Converting DOS text files to UNIX text files"
-	@${FIND} -E ${WRKSRC} -type f -iregex '${DOS2UNIX_REGEX}' -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/^M$$//'
+	${FIND} -E ${WRKSRC} -type f -iregex '${DOS2UNIX_REGEX}' -print0 | \
+			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/$$//'
 .else
 	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
 .if ${USE_DOS2UNIX:M*/*}
