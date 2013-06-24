@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.4 2012/02/28 01:07:33 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.5 2013/06/21 01:43:42 laffer1 Exp $
 #
 # wx.mk - Support for WxWidgets based ports.
 #
@@ -111,7 +111,7 @@
 #	USE_WX_NOT=	2.4
 #
 
-WX_Include_MAINTAINER=	alepulver@FreeBSD.org
+WX_Include_MAINTAINER=	ports@MidnightBSD.org
 
 #
 # Global definitions.
