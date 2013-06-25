@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-Term-ANSIColor/Makefile,v 1.2 2010/11/14 19:54:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Term-ANSIColor/Makefile,v 1.3 2013/02/19 15:04:59 laffer1 Exp $
 
 PORTNAME=	Term-ANSIColor
-PORTVERSION=	3.02
+PORTVERSION=	4.02
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
