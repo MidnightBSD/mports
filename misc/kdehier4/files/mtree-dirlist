@@ -1,8 +1,9 @@
 @comment BSD.local.dist mtree replacement (used only if KDE4_PREFIX != LOCALBASE)
 bin
 etc
-etc/pam.d
-etc/rc.d
+@comment the following commented dirs will be linked from the corresponding LOCALBASE dirs
+@comment-dir etc/pam.d
+@comment-dir etc/rc.d
 include
 include/X11
 info
@@ -13,9 +14,9 @@ lib/X11/fonts
 lib/X11/fonts/local
 libdata
 @comment the following commented dirs will be linked from the corresponding LOCALBASE dirs
-@comment libdata/ldconfig
-@comment libdata/ldconfig32
-@comment libdata/pkgconfig
+@comment-dir libdata/ldconfig
+@comment-dir libdata/ldconfig32
+@comment-dir libdata/pkgconfig
 libexec
 man
 man/cat1
@@ -126,6 +127,12 @@ man/ru.KOI8-R/manl
 man/ru.KOI8-R/mann
 sbin
 share
+@comment ---------------------------------------------------------------------
+@comment -- polkit-1 does not support files in different prefixes,
+@comment -- share/polkit-1/actions will be linked from LOCALBASE
+share/polkit-1
+@comment-dir share/polkit-1/actions
+@comment ---------------------------------------------------------------------
 share/aclocal
 share/dict
 share/doc
