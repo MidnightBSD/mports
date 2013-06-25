@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/devel/ncurses/Makefile.man,v 1.3 2012/06/09 21:00:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile.man,v 1.4 2013/06/05 02:41:11 laffer1 Exp $
 
 MANCOMPRESSED=	yes
 
 MLINKS=
 
-MAN1=	\
-	adacursesw-config.1 \
-	captoinfo.1m \
+MAN1=	captoinfo.1m \
 	clear.1 \
 	infocmp.1m \
 	infotocap.1m \
