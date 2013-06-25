@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.215 2013/06/24 12:34:02 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.216 2013/06/24 23:35:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -343,7 +343,8 @@ _ALL_EXT=	charsetfix pathfix linux_rpm linux_apps xorg fortran \
 		gcc local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
 		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-		pgsql bdb sqlite gecko scons ocaml efl gettext iconv pkgconfig
+		pgsql bdb sqlite gecko scons ocaml efl gettext \
+		iconv ncurses pkgconfig
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
