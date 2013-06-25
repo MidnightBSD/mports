@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.6 2011/05/14 03:33:27 laffer1 Exp $
-# $FreeBSD: ports/misc/mime-support/Makefile,v 1.12 2006/07/20 15:03:43 oliver Exp $
+# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.7 2013/02/18 02:21:16 laffer1 Exp $
 
 PORTNAME=	mime-support
-PORTVERSION=	3.52.2
+PORTVERSION=	3.54
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION:C/([0-9]*\.[0-9]*)\.(.*)/\1-\2/}
