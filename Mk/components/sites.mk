@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.48 2013/06/25 12:21:45 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.49 2013/06/25 12:22:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -542,6 +542,11 @@ MASTER_SITE_GENTOO+= \
 #                 default: not set, mandatory
 #
 .if defined(USE_GITHUB)
+.if defined(GH_TAGNAME) && ${GH_TAGNAME} == master
+IGNORE?=	Using master as GH_TAGNAME is invalid. \
+		Must use a tag or commit hash so the upstream does\
+		not "reroll" as soon as the branch is updated
+.endif
 MASTER_SITE_GITHUB+=		https://nodeload.github.com/%SUBDIR% \
 				http://nodeload.github.com/%SUBDIR%
 MASTER_SITE_GITHUB_CLOUD+=	http://cloud.github.com/downloads/%SUBDIR%
