@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.6 2013/04/04 01:51:14 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.7 2013/06/10 22:35:34 laffer1 Exp $
 
 PORTNAME=	perl
-PORTVERSION=	5.14.3
-PORTREVISION=	1
+PORTVERSION=	5.14.4
+PORTREVISION=	0
 CATEGORIES=	lang devel perl5
-MASTER_SITES=	CPAN
+MASTER_SITES=	CPAN \
+		http://www.cpan.org/src/5.0/
 LATEST_LINK=	perl
 
 MAINTAINER=	ctriv@MidnightBSD.org
