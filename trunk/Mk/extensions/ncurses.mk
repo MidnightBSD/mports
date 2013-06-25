@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/extensions/ncurses.mk,v 1.1 2013/06/25 01:49:24 laffer1 Exp $
 #
 # handle dependency on the ncurses port
 #
@@ -37,7 +37,7 @@ NCURSESINC=	${NCURSESBASE}/include
 
 .  if exists(${LOCALBASE}/lib/libncurses.so)
 check-depends::
-	@${ECHO_CMD} "Dependency error: this port wants the ncurses library from the FreeBSD"
+	@${ECHO_CMD} "Dependency error: this port wants the ncurses library from the MidnightBSD"
 	@${ECHO_CMD} "base system. You can't build against it, while a newer"
 	@${ECHO_CMD} "version is installed by a port."
 	@${ECHO_CMD} "Please deinstall the port or undefine WITH_NCURSES_BASE."
@@ -55,6 +55,7 @@ NCURSESINC=	${LOCALBASE}/include/ncurses
 NCURSES_PORT!=		grep "^@comment ORIGIN:" "${NCURSES_INSTALLED}" | ${CUT} -d : -f 2
 NCURSES_SHLIBFILE!=	grep -m 1 "^lib/libncurses.so." "${NCURSES_INSTALLED}"
 NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
+.  endif
 
 NCURSES_PORT?=		devel/ncurses
 NCURSES_SHLIBVER?=	5
