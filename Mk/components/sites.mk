@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.46 2013/06/21 02:58:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.47 2013/06/25 12:20:51 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1105,10 +1105,16 @@ MASTER_SITE_QMAIL+= \
 
 .if !defined(IGNORE_MASTER_SITE_QT)
 MASTER_SITE_QT+= \
-	http://releases.qt-project.org/qt4/source/%SUBDIR%/ \
-	ftp://ftp.heanet.ie/mirrors/trolltech/pub/qt/source/%SUBDIR%/ \
-	http://download.qt.nokia.com/qt/source/%SUBDIR%/ \
-	ftp://ftp.trolltech.com/qt/source/%SUBDIR%/
+	http://download.qt-project.org/%SUBDIR%/ \
+	http://master.qt-project.org/%SUBDIR%/ \
+	http://www.mirrorservice.org/sites/download.qt-project.org/%SUBDIR%/ \
+	http://www.nic.funet.fi/pub/mirrors/download.qt-project.org/%SUBDIR%/ \
+	http://qtmirror.ics.com/pub/qtproject/%SUBDIR%/ \
+	http://anychimirror101.mirrors.tds.net/pub/Qt/%SUBDIR%/ \
+	http://www.las.ic.unicamp.br/pub/qtproject/%SUBDIR%/ \
+	http://linorg.usp.br/Qt/%SUBDIR%/ \
+	http://ftp.jaist.ac.jp/pub/qtproject/%SUBDIR%/ \
+	http://mirrors.neusoft.edu.cn/qt/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_REDHAT_LINUX)
