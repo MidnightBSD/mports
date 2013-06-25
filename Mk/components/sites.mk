@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.47 2013/06/25 12:20:51 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.48 2013/06/25 12:21:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1508,7 +1508,7 @@ MASTER_SITE_XORG+= \
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
 MASTER_SITE_KERNEL_ORG+= \
 	https://kernel.org/pub/%SUBDIR%/ \
-	http://ftp.ntu.edu.tw/%SUBDIR%/ \
+	ftp://ftp.ntu.edu.tw/%SUBDIR%/ \
 	http://ftp.sunet.se/pub/Linux/kernel.org/%SUBDIR%/ \
 	http://ftp.yandex.ru/pub/%SUBDIR%/ \
 	http://ftp.heanet.ie/pub/%SUBDIR%/ \
