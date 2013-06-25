@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/misc/getopt/Makefile,v 1.2 2008/09/21 20:29:23 laffer1 Exp $
-# $FreeBSD: ports/misc/getopt/Makefile,v 1.6 2005/11/21 13:15:48 sergei Exp $
+# $MidnightBSD: mports/misc/getopt/Makefile,v 1.3 2012/03/02 01:14:42 laffer1 Exp $
 
 PORTNAME=	getopt
-PORTVERSION=	1.1.4
+PORTVERSION=	1.1.5
 PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://software.frodo.looijaard.name/getopt/files/
