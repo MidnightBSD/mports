@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.14 2013/06/15 02:48:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.15 2013/06/21 02:18:37 laffer1 Exp $
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -28,7 +28,8 @@ CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp \
 		--with-included-gettext --with-included-glib \
 		--with-included-libcroco --with-included-libxml \
 		--without-git \
-		--build=${ARCH}-portbld-freebsd9.0
+		--build=${ARCH}-portbld-freebsd9.1 \
+		--host=${ARCH}-portbld-freebsd9.1
 USE_LDCONFIG=	yes
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
