@@ -1,6 +1,26 @@
---- gettext-tools/configure.orig	Mon Nov 27 09:34:40 2006
-+++ gettext-tools/configure	Sun Dec  3 17:54:35 2006
-@@ -3962,7 +3962,3 @@
+--- gettext-tools/configure.orig	2010-06-06 16:12:20.000000000 -0400
++++ gettext-tools/configure	2013-06-26 19:14:34.000000000 -0400
+@@ -4087,7 +4087,7 @@
+ do
+   IFS=$as_save_IFS
+   test -z "$as_dir" && as_dir=.
+-    for ac_prog in mkdir gmkdir; do
++    for ac_prog in mkdir; do
+ 	 for ac_exec_ext in '' $ac_executable_extensions; do
+ 	   { test -f "$as_dir/$ac_prog$ac_exec_ext" && $as_test_x "$as_dir/$ac_prog$ac_exec_ext"; } || continue
+ 	   case `"$as_dir/$ac_prog$ac_exec_ext" --version 2>&1` in #(
+@@ -4125,7 +4125,7 @@
+   */*) mkdir_p="\$(top_builddir)/$mkdir_p" ;;
+ esac
+ 
+-for ac_prog in gawk mawk nawk awk
++for ac_prog in awk mawk nawk awk
+ do
+   # Extract the first word of "$ac_prog", so it can be a program name with args.
+ set dummy $ac_prog; ac_word=$2
+@@ -5489,11 +5489,7 @@
+ 
+ 
  
 -if test -n "$HAVE_GCJ" && test "$JAVA_CHOICE" = yes; then
 -  BUILDJAVAEXE=yes
@@ -8,7 +28,11 @@
    BUILDJAVAEXE=no
 -fi
  
-@@ -5110,13 +5106,5 @@
+ 
+ 
+@@ -6586,17 +6582,9 @@
+ fi
+ 
  
 -if test -n "$HAVE_JAVACOMP" && test -n "$JAR" && test "$JAVA_CHOICE" != no; then
 -  BUILDJAVA=yes
@@ -22,9 +46,65 @@
    TESTJAVA=no
 -fi
  
-@@ -50083,2 +50071,13 @@
+ 
+ 
+@@ -9285,13 +9273,13 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+       # Not sure whether the presence of OpenBSD here was a mistake.
+       # Let's accept both of them until this is cleared up.
+-      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
++      lt_cv_deplibs_check_method='file_magic (MidnightBSD|FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
+       lt_cv_file_magic_cmd=/usr/bin/file
+       lt_cv_file_magic_test_file=`echo /usr/lib/libc.so.*`
+       ;;
+@@ -12819,7 +12807,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++    freebsd* | dragonfly* | midnightbsd*)
+       archive_cmds='$CC -shared -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -30228,7 +30216,7 @@
+          *-gnu*)               gl_cv_func_snprintf_retval_c99="guessing yes";;
+                                # Guess yes on FreeBSD >= 5.
+          freebsd[1-4]*)        gl_cv_func_snprintf_retval_c99="guessing no";;
+-         freebsd* | kfreebsd*) gl_cv_func_snprintf_retval_c99="guessing yes";;
++         freebsd* | midnightbsd* | kfreebsd*) gl_cv_func_snprintf_retval_c99="guessing yes";;
+                                # Guess yes on MacOS X >= 10.3.
+          darwin[1-6].*)        gl_cv_func_snprintf_retval_c99="guessing no";;
+          darwin*)              gl_cv_func_snprintf_retval_c99="guessing yes";;
+@@ -31296,7 +31284,7 @@
+            linux*) # On linux between 2008-07-27 and 2009-05-11, dup2 of a
+                    # closed fd may yield -EBADF instead of -1 / errno=EBADF.
+              gl_cv_func_dup2_works=no;;
+-           freebsd*) # on FreeBSD 6.1, dup2(1,1000000) gives EMFILE, not EBADF.
++           freebsd* | midnightbsd*) # on FreeBSD 6.1, dup2(1,1000000) gives EMFILE, not EBADF.
+              gl_cv_func_dup2_works=no;;
+            *) gl_cv_func_dup2_works=yes;;
+          esac
+@@ -46646,7 +46634,7 @@
+               return 1;
+ 
+             /* The following example is derived from a problem report
+-               against gawk from Jorge Stolfi <stolfi@ic.unicamp.br>.  */
++               against awk from Jorge Stolfi <stolfi@ic.unicamp.br>.  */
+             memset (&regex, 0, sizeof regex);
+             s = re_compile_pattern ("[an\371]*n", 7, &regex);
+             if (s)
+@@ -53720,6 +53708,17 @@
+ 
+ 
  case "$host_os" in
-+  freebsd[5-9]*)
++  freebsd[5-9]* | midnightbsd[0]*)
 +
 +cat >>confdefs.h <<\_ACEOF
 +#define HAVE_BSDXML 1
@@ -36,3 +116,5 @@
 +
 +    ;;
    linux*)
+ 
+ $as_echo "#define DYNLOAD_LIBEXPAT 1" >>confdefs.h
