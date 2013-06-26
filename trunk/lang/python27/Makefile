@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/python27/Makefile,v 1.5 2013/02/23 15:35:44 laffer1 Exp $
+# $MidnightBSD: mports/lang/python27/Makefile,v 1.6 2013/06/15 03:23:18 laffer1 Exp $
 
 PORTNAME=	python27
-PORTVERSION=	2.7.3
-PORTREVISION=	2
+PORTVERSION=	2.7.5
+PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -35,7 +35,10 @@ SHARED_WRKSRC=	${PYTHON_WRKSRC}/portbld.shared
 PLIST=		${WRKDIR}/PLIST
 PLIST_TEMPLATE?=${PKGDIR}/pkg-plist
 PLIST_SUB=	PYVER=${PYTHON_VERSION:S/python//} \
-		PYVER_WITHPAT=${PORTVERSION:S/.c/c/}
+		PYMAJOR=${PYTHON_MAJOR_VER} \
+		PYVER_WITHPAT=${PORTVERSION:S/.c/c/} \
+		PORTVERSION=${PORTVERSION}
+
 EXAMPLESDIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
 DATADIR=	${PREFIX}/share/${PYTHON_VERSION}
 
@@ -65,7 +68,7 @@ PLIST_SUB+=	CTYPE="@comment "
 .else
 CONFIGURE_ARGS+=	--with-system-ffi
 .if ${ARCH} != i386
-LIB_DEPENDS+=	ffi.6:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
 .endif
 PLIST_SUB+=	CTYPE=""
 .endif
