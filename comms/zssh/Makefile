@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/zssh/Makefile,v 1.1 2009/09/19 22:15:26 laffer1 Exp $
 
 PORTNAME=	zssh
 PORTVERSION=	1.5c
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	comms security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.5
 EXTRACT_SUFX=	.tgz
