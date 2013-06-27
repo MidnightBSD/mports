@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/graphics/kdegraphics4/Makefile,v 1.1 2009/01/04 03:20:37 ctriv Exp $
+# $MidnightBSD: mports/graphics/kdegraphics4/Makefile,v 1.2 2012/03/06 02:27:04 laffer1 Exp $
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE4_VERSION}
@@ -21,51 +21,55 @@ LATEST_LINK=	${PORTNAME}4
 USE_KDE4=	kdeprefix
 NO_BUILD=	yes
 
-OPTIONS=	GPHOTO2 "Digital camera manager" on \
-		GWENVIEW "Image viewer and browser" on \
-		KCOLORCHOOSER "Utility for colors selection" on \
-		KGAMMA "Monitor calibration tool" on \
-		KRULER "Screen ruler" on \
-		KOLOURPAINT "Paint application" on \
-		KSNAPSHOT "Screen capture program" on \
-		OKULAR "Universal document viewer" on \
-		SANE "Plugin for scanning on KDE" on
+OPTIONS_DEFINE=	GPHOTO GWENVIEW KCOLORCHOOSER KGAMMA KRULER \
+		KOLOURPAINT KSNAPSHOT OKULAR SANE
+OPTIONS_DEFAULT=${OPTIONS_DEFINE}
+
+GPHOTO_DESC=		Digital camera manager
+GWENVIEW_DESC=		Image viewer and browser
+KCOLORCHOOSER_DESC=	Utility for colors selection
+KGAMMA_DESC=		Monitor calibration tool
+KRULER_DESC=		Screen ruler
+KOLOURPAINT_DESC=	Paint application
+KSNAPSHOT_DESC=		Screen capture program
+OKULAR_DESC=		Universal document viewer
+SANE_DESC=		Plugin for scanning on KDE
 
 .include <bsd.mport.options.mk>
 
-.ifndef(WITHOUT_GPHOTO2)
+.if ${PORT_OPTIONS:MGPHOTO}
 RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/kio_kamera.so:${PORTSDIR}/graphics/kamera-kde4
 .endif
 
-.ifndef(WITHOUT_GWENVIEW)
+.if ${PORT_OPTIONS:MGWENVIEW}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/gwenview:${PORTSDIR}/graphics/gwenview-kde4
 .endif
 
-.ifndef(WITHOUT_KCOLORCHOOSER)
+.if ${PORT_OPTIONS:MKCOLORCHOOSER}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kcolorchooser:${PORTSDIR}/graphics/kcolorchooser
 .endif
 
-.ifndef(WITHOUT_KGAMMA)
+.if ${PORT_OPTIONS:MKGAMMA}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/xf86gammacfg:${PORTSDIR}/x11/kgamma
 .endif
 
-.ifndef(WITHOUT_KRULER)
+.if ${PORT_OPTIONS:MKRULER}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kruler:${PORTSDIR}/deskutils/kruler
 .endif
 
-.ifndef(WITHOUT_KOLOURPAINT)
+.if ${PORT_OPTIONS:MKOLOURPAINT}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kolourpaint:${PORTSDIR}/graphics/kolourpaint
 .endif
 
-.ifndef(WITHOUT_KSNAPSHOT)
+.if ${PORT_OPTIONS:MKSNAPSHOT}
 RUN_DEPENDS+=	${KDE4_PREFIX}/bin/ksnapshot:${PORTSDIR}/graphics/ksnapshot
 .endif
 
-.ifndef(WITHOUT_OKULAR)
-RUN_DEPENDS+=	${KDE4_PREFIX}/bin/okular:${PORTSDIR}/graphics/okular
+.if ${PORT_OPTIONS:MOKULAR}
+USE_KDE4+=	okular_run
 .endif
 
-.ifndef(WITHOUT_SANE)
+.if ${PORT_OPTIONS:MSANE}
 RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/ksaneplugin.so:${PORTSDIR}/graphics/ksaneplugin
 .endif
 
