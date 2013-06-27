@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.4 2009/08/21 17:34:30 laffer1 Exp $
+# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.5 2011/05/12 13:38:38 laffer1 Exp $
 
 PORTNAME=	ncftpd
 PORTVERSION=	2.8.7
+PORTREVISION=	1
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftpd/${PORTVERSION}/ \
 		ftp://ftp.nl.uu.net/pub/unix/ftp/ncftpd/${PORTVERSION}/ \
@@ -9,7 +10,7 @@ MASTER_SITES=	ftp://ftp.ncftp.com/ncftpd/${PORTVERSION}/ \
 DISTNAME=	${PORTNAME}-${PORTVERSION}-freebsd${BINVER}-${DIST_ARCH}-export
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A well known commercial FTP daemon with a 30-day evaluation license
+COMMENT=	Commercial FTP daemon with a 30-day evaluation license
 LICENSE=	restricted
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -17,21 +18,16 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	YES
 RESTRICTED=	30 day evaluation license
-USE_RC_SUBR=	ncftpd.sh
+USE_RC_SUBR=	ncftpd
 SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 3000
-BINVER=		7.0
-.else
-BINVER=		6.0
+.if ${OSVERSION} >= 4000
+BINVER=		8.0
 .endif
 .if ${ARCH} == amd64
 DIST_ARCH=	x86_64
-.if ${BINVER} == "6.0"
-BINVER=		6.2
-.endif
 .else
 DIST_ARCH=	i386
 .endif

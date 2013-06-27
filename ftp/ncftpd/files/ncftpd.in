@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# $FreeBSD$
+#
 # PROVIDE: ncftpd
 # REQUIRE: DAEMON
 #
@@ -9,12 +11,11 @@
 # ncftpd_enable="YES"
 # ncftpd_flags="-dq"	# Not required
 # ncftpd_config="/path/to/general.cf /path/to/domain.cf" # Not required
-#
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="ncftpd"
-rcvar=`set_rcvar`
+rcvar=ncftpd_enable
 
 load_rc_config $name
 : ${ncftpd_enable:="NO"}
