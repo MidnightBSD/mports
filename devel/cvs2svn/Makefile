@@ -1,16 +1,16 @@
-# New ports collection makefile for:	cvs2svn
-# Date created:		1 May 2004
-# Whom:			Hye-Shik Chang
-#
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.6 2010/11/17 13:57:58 laffer1 Exp $
-# $FreeBSD: ports/devel/cvs2svn/Makefile,v 1.15 2008/03/16 23:05:51 araujo Exp $
+# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.7 2012/02/28 01:47:15 laffer1 Exp $
 
 PORTNAME=	cvs2svn
-PORTVERSION=	2.3.0
-PORTREVISION=	3
+PORTVERSION=	2.4.0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.sourcehosting.net/freebsd/distfiles/ \
-		FREEBSD_LOCAL/glarkin
+MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49237/ \
+		FREEBSD_LOCAL/ohauer
+
+# 2.4.0 -> svn r5392
+PATCH_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+PATCH_SITE_SUBDIR=	ohauer
+PATCHREV=	5406
+PATCHFILES=	${PORTNAME}-${PORTVERSION}-r${PATCHREV}.diff.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CVS to Subversion Repository Converter
