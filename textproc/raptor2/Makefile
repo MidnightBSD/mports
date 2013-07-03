@@ -1,9 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/raptor2/Makefile,v 1.56 2012/01/29 20:00:59 rakuco Exp $
-#
+# $MidnightBSD: mports/textproc/raptor2/Makefile,v 1.1 2012/03/01 13:19:05 laffer1 Exp $
 
 PORTNAME=	raptor2
-PORTVERSION=	2.0.6
+PORTVERSION=	2.0.7
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/ \
 		SF/librdf/${PORTNAME}/${PORTVERSION}
