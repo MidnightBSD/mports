@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.9 2010/11/10 14:26:05 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.10 2013/04/11 12:33:47 laffer1 Exp $
 
 PORTNAME=	dosbox
 PORTVERSION=	0.74
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
@@ -21,11 +21,15 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 CPPFLAGS+=		-I${LOCALBASE}/include
 CONFIGURE_ARGS+=	--enable-core-inline
 
+DESKTOP_ENTRIES="DOSBox" "${COMMENT}" \
+		"" "dosbox" \
+		"System;Emulator;" "true"
+
+.include <bsd.mport.options.mk>
+
 post-patch:
 	@${REINPLACE_CMD} -e 's#\/usr\/share\/doc\/dosbox#${DOCSDIR}#g' \
 		${WRKSRC}/docs/dosbox.1
-	@${SED} 's#%%DOCSDIR%%#${DOCSDIR}#' ${PKGDIR}/pkg-message > \
-		${WRKDIR}/pkg-message
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/dosbox ${PREFIX}/bin/dosbox
