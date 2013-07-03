@@ -1,14 +1,8 @@
-# New ports collection makefile for:    dvipsk-tetex
-# Date created:         5 May 2004
-# Whom:                 hrs
-#
-# $FreeBSD: ports/print/dvipsk-tetex/Makefile,v 1.7 2005/04/19 13:32:02 hrs Exp $
-# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.2 2007/11/02 03:26:29 ctriv Exp $
-#
+# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.3 2010/05/05 23:59:24 laffer1 Exp $
 
 PORTNAME=	dvipsk-tetex
 PORTVERSION=	5.95a
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -26,7 +20,7 @@ BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		mktexlsr:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		wwwcore.1:${PORTSDIR}/www/libwww \
 		t1.5:${PORTSDIR}/devel/t1lib
 
