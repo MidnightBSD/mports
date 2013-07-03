@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.5 2010/07/29 23:58:09 laffer1 Exp $
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	amarok
 PORTVERSION=	1.4.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src
@@ -11,100 +11,108 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media player for KDE
 LICENSE=	gpl2
 
-LIB_DEPENDS=	tag.6:${PORTSDIR}/audio/taglib \
-		tunepimp.5:${PORTSDIR}/audio/libtunepimp \
+LIB_DEPENDS=	tag:${PORTSDIR}/audio/taglib \
 		mp4v2:${PORTSDIR}/multimedia/mpeg4ip-libmp4v2 \
-		xine.1:${PORTSDIR}/multimedia/libxine
+		xine:${PORTSDIR}/multimedia/libxine
 
 USE_BZIP2=	yes
 USE_KDEBASE_VER=3
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
-USE_GETTEXT=	yes
+USES=		gettext
 USE_SDL=	sdl
 USE_RUBY=	yes
 USE_LDCONFIG=	yes
-INSTALLS_ICONS=	yes
 
-OPTIONS=	GPOD "iPod support" on \
-		NJB "Creative Nomad and Dell support" on \
-		MTP "MTP device support" on \
-		LIBVISUAL "libvisual support" off \
-		OPENGL "OpenGL support" on \
-		AMAZON "Amazon cover fetching support" on \
-		MYSQL "Use MySQL as collection backend" off \
-		POSTGRESQL "Use PostgreSQL as collection backend" off \
-		HIDEMENUBAR "Revert the 'Hide Menubar' feature" off
+OPTIONS_DEFINE=	GPOD NJB MTP LIBVISUAL OPENGL AMAZON MYSQL PGSQL HIDEMENUBAR
+OPTIONS_DEFAULT=	GPOD NJB MTP OPENGL AMAZON
+GPOD_DESC=		Enable Ipod support
+NJB_DESC=		Enable Creative Nomad and Dell support
+LIBVISUAL_DESC=		Enable libvisual support
+AMAZON_DESC=		Enable Amazon cover fetching support
+HIDEMENUBAR_DESC=	Revert the 'Hide Menubar' feature
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 CONFIGURE_ARGS+=--without-exscalibar \
+		--without-musicbrainz \
 		--with-mp4v2 \
 		--with-mp4v2-dir=${PREFIX}
 
-.if !defined(WITH_GPOD)
-PLIST_SUB+=	GPOD="@comment "
-CONFIGURE_ARGS+=--without-libgpod
-.else
-LIB_DEPENDS+=	gpod.5:${PORTSDIR}/audio/libgpod
+CFLAGS+=	-I${LOCALBASE}/include/ruby-${RUBY_VER} -I${LOCALBASE}/include/ruby-${RUBY_VER}/${RUBY_ARCH}
+
+.if ${PORT_OPTIONS:MGPOD}
+LIB_DEPENDS+=	gpod.7:${PORTSDIR}/audio/libgpod
 CONFIGURE_ARGS+=--with-libgpod
 PLIST_SUB+=	GPOD=""
+.else
+PLIST_SUB+=	GPOD="@comment "
+CONFIGURE_ARGS+=--without-libgpod
 .endif
 
-.if !defined(WITH_NJB)
-PLIST_SUB+=	NJB="@comment "
-.else
+.if ${PORT_OPTIONS:MNJB}
 LIB_DEPENDS+=	njb.6:${PORTSDIR}/audio/libnjb
 CONFIGURE_ARGS+=--with-libnjb
 PLIST_SUB+=	NJB=""
+.else
+PLIST_SUB+=	NJB="@comment "
 .endif
 
-.if !defined(WITH_MTP)
-PLIST_SUB+=	MTP="@comment "
-.else
-LIB_DEPENDS+=	mtp.8:${PORTSDIR}/audio/libmtp
+.if ${PORT_OPTIONS:MMTP}
+LIB_DEPENDS+=	mtp:${PORTSDIR}/audio/libmtp
 CONFIGURE_ARGS+=--with-libmtp
 PLIST_SUB+=	MTP=""
-.endif
-
-.if defined(WITHOUT_LIBVISUAL)
-CONFIGURE_ARGS+=--without-libvisual
 .else
-LIB_DEPENDS+=	visual-0.4:${PORTSDIR}/graphics/libvisual04
+PLIST_SUB+=	MTP="@comment "
 .endif
 
-.if defined(WITHOUT_OPENGL)
+.if ${PORT_OPTIONS:MLIBVISUAL}
+LIB_DEPENDS+=	visual-0.4:${PORTSDIR}/graphics/libvisual04
+.else
+CONFIGURE_ARGS+=--without-libvisual
+.endif
+
+.if empty(PORT_OPTIONS:MOPENGL)
 CONFIGURE_ARGS+=--without-opengl
 .endif
 
-.if defined(WITHOUT_AMAZON)
+.if empty(PORT_OPTIONS:MAMAZON)
 CONFIGURE_ARGS+=--disable-amazon
 .endif
 
-.if defined(WITH_MYSQL)
+.if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	yes
 CONFIGURE_ARGS+=--enable-mysql
 .endif
 
-.if defined(WITH_POSTGRESQL)
+.if ${PORT_OPTIONS:MPGSQL}
 USE_PGSQL=	yes
 CONFIGURE_ARGS+=--enable-postgresql
 .endif
 
-.if defined(WITH_HIDEMENUBAR)
+.if ${PORT_OPTIONS:MHIDEMENUBAR}
 EXTRA_PATCHES=	${PATCHDIR}/hide-main-menu-bar-feature.patch
 .endif
 
-.if defined(DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=--enable-debug=full
 STRIP=		# none
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-O2||g'	${WRKSRC}/${CONFIGURE_SCRIPT}
-	@${REINPLACE_CMD} -e 's|LIBS="-ltunepimp  $$LIBS"|LIBS="-ltunepimp -liconv $$LIBS"|g' \
+	@${REINPLACE_CMD} -e 's|-O2||g;	\
+		s|LIBS="-ltunepimp  $$LIBS"|LIBS="-ltunepimp -liconv $$LIBS"|g; \
+		s|mp4\.h|mp4v2/mp4v2.h|g' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|xx||g' ${WRKSRC}/po/Makefile.in
+	@${REINPLACE_CMD} -e 's|<mp4\.h>|<mp4v2/mp4v2.h>|g' \
+		${WRKSRC}/amarok/src/metadata/mp4/mp4properties.h \
+		${WRKSRC}/amarok/src/metadata/mp4/mp4tag.h
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${TOUCH}
 
-.include <bsd.port.post.mk>
+post-install:
+.if !empty(PORT_OPTIONS:MMTP) || !empty(PORT_OPTIONS:MNJB) || !empty(PORT_OPTIONS:MGPOD)
+	@${CAT} ${PKGMESSAGE}
+.endif
+
+.include <bsd.port.mk>
