@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.19 2013/06/05 02:27:59 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.20 2013/06/15 01:34:49 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -16,9 +16,8 @@ LIB_DEPENDS=	polkit.2:${PORTSDIR}/sysutils/policykit \
 		ck-connector:${PORTSDIR}/sysutils/consolekit
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
 
-USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_PATHFIX=	yes
+USES=		pathfix gettext
 USE_GNOME=	intlhack ltverhack
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
