@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/hal-info/Makefile,v 1.5 2012/03/10 21:26:16 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal-info/Makefile,v 1.6 2013/06/05 02:36:49 laffer1 Exp $
 
 PORTNAME=	hal-info
 PORTVERSION=	20091130
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -15,7 +16,7 @@ BUILD_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
 RUN_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
 
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack 
+USES=	pathfix
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
