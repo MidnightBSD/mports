@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.5 2012/03/10 21:23:50 laffer1 Exp $
-# $FreeBSD: ports/sysutils/lsof/Makefile,v 1.158 2008/01/26 22:28:53 wxs Exp $
+# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.6 2012/12/20 13:24:03 laffer1 Exp $
 
 PORTNAME=	lsof
-PORTVERSION=	4.87A
+PORTVERSION=	4.88D
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
