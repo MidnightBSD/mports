@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.8 2011/05/28 06:23:34 laffer1 Exp $
-# $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.9 2012/03/02 02:55:19 laffer1 Exp $
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -18,6 +17,7 @@ USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
+USES+=		pkgconfig
 USE_AUTOTOOLS=	libtool
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
