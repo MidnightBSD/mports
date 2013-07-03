@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.117 2013/06/10 22:19:45 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.118 2013/06/10 23:00:36 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -60,6 +60,7 @@ SUBDIR += ksysguardd
 SUBDIR += less
 SUBDIR += libcdio
 SUBDIR += libchk
+SUBDIR += libsunacl
 SUBDIR += libutempter
 SUBDIR += lmmon
 SUBDIR += lsof
