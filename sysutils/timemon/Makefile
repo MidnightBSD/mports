@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.4 2008/10/12 19:43:46 laffer1 Exp $
-# $FreeBSD: ports/sysutils/timemon/Makefile,v 1.1 2006/09/07 05:38:19 dinoex Exp $
+# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.5 2012/03/10 06:09:11 laffer1 Exp $
 
 PORTNAME=	timemon
 PORTVERSION=	4.1
+PORTREVISION=	1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
@@ -15,7 +15,6 @@ LICENSE=	restricted
 NO_CDROM=	distribute without fee
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
