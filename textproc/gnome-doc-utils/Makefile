@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.6 2010/10/23 12:03:45 laffer1 Exp $
-# $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.7 2011/05/28 06:27:09 laffer1 Exp $
 
 PORTNAME=	gnome-doc-utils
 PORTVERSION=	0.20.3
@@ -24,6 +23,7 @@ USE_GMAKE=	yes
 MAKE_JOBS_UNSAFE=yes
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehier gnomehack libxslt intlhack
+USES+=		pathfix pkgconfig
 USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
