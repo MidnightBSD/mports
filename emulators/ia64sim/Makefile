@@ -2,11 +2,12 @@
 # Date created:			  May 2, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/ia64sim/Makefile,v 1.1 2008/05/02 21:03:00 laffer1 Exp $
 #
 
 PORTNAME=	ia64sim
 PORTVERSION=	0.5
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.boo.net/~jasonp/
 DISTNAME=	${PORTNAME}
@@ -31,9 +32,11 @@ pre-build:
 	${RM} -f ${WRKSRC}/obj/*.o
 	${RM} -f ${WRKSRC}/ia64sim
 
+.include <bsd.mport.options.mk>
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ia64sim ${PREFIX}/bin
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/ia64user.txt ${WRKSRC}/readme ${DOCSDIR}
 .endif
