@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/audio/amarok/files/patch-configure,v 1.4 2009/08/02 19:32:11 mezz Exp $
+$FreeBSD$
 
 --- configure.orig
 +++ configure
@@ -32,3 +32,12 @@ $FreeBSD: ports/audio/amarok/files/patch-configure,v 1.4 2009/08/02 19:32:11 mez
  
  
    succeeded=no
+@@ -40872,7 +40872,7 @@
+ 
+ 
+ OLDCFLAGS="$CFLAGS"
+-CFLAGS="-I$ruby_includes -Wall"
++CFLAGS+="-I$ruby_includes -Wall"
+ OLDCPPFLAGS="$CPPFLAGS"
+ CPPFLAGS="-I$ruby_includes" #no I don't know why CPPFLAGS is used
+ 
