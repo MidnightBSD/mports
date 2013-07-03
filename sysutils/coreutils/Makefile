@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.7 2012/03/06 01:36:33 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.8 2013/02/26 04:34:10 laffer1 Exp $
 
 PORTNAME=	coreutils
 PORTVERSION=	8.20
+PORTREVISION=	1
 CATEGORIES=	sysutils textproc
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -52,12 +53,12 @@ OPTIONS=	GMP "Build with GNU Multiple Precision Arithmetic Library" off
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .else
-USE_GETTEXT=	yes
+USES+=	gettext
 PLIST_SUB+=	NLS=""
 .endif
 
 .if defined(WITH_GMP)
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	gmp:${PORTSDIR}/math/gmp
 .else
 CONFIGURE_ARGS+=--without-gmp
 .endif
