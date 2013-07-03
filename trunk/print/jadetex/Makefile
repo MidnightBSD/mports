@@ -1,14 +1,8 @@
-# New ports collection makefile for:    jadetex
-# Date created:         5 December 1998
-# Whom:                 Sean Kelly <kelly@ad1440.net>
-#
-# $FreeBSD: ports/print/jadetex/Makefile,v 1.30 2006/04/15 06:46:10 linimon Exp $
-# $MidnightBSD: mports/print/jadetex/Makefile,v 1.3 2007/11/09 21:28:30 laffer1 Exp $
-#
+# $MidnightBSD: mports/print/jadetex/Makefile,v 1.4 2010/05/05 23:58:31 laffer1 Exp $
 
 PORTNAME=		jadetex
 PORTVERSION=		3.13
-PORTREVISION=		3
+PORTREVISION=		4
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	jadetex
@@ -18,7 +12,7 @@ COMMENT=		A TeX backend for Jade, for typesetting SGML documents
 LICENSE=		unknown
 
 BUILD_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS+=		png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		png15:${PORTSDIR}/graphics/png
 RUN_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
 
 TEXMFMAIN=              ${PREFIX}/share/texmf
