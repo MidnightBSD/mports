@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/sysutils/mbmon/files/mbmon.sh.in,v 1.3 2009/07/15 16:56:06 dougb Exp $
+# $MidnightBSD$
 #
 
 # PROVIDE: mbmon
@@ -16,10 +16,10 @@
 # See mbmon(1) for mbmon_flags
 # Set mbmon_port to the TCP port to listen to, default is 12999
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="mbmon"
-rcvar=`set_rcvar`
+rcvar=mbmon_enable
 
 # read configuration and set defaults
 load_rc_config "$name"

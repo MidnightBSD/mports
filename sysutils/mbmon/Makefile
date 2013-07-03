@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/sysutils/mbmon/Makefile,v 1.1 2007/02/23 20:54:40 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/mbmon/Makefile,v 1.2 2009/12/28 23:05:26 laffer1 Exp $
 
 PORTNAME?=	mbmon
 PORTVERSION=	205
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.nt.phys.kyushu-u.ac.jp/shimizu/download/xmbmon/
 DISTNAME=	xmbmon${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	A tty motherboard monitor for LM78/79, W8378x, AS99127F, VT82C686 and ADM9240
+COMMENT?=	tty motherboard monitor for LM78/79, W8378x, AS99127F, VT82C686 and ADM9240
 LICENSE=	bsd2
 
 ONLY_FOR_ARCHS=	i386 amd64
@@ -20,17 +20,24 @@ PLIST_FILES+=	bin/${PORTNAME}
 MAN1?=		mbmon.1
 PORTDOCS=	ChangeLog ChangeLog.jp ReadMe ReadMe.jp ReadMe.tech
 
-OPTIONS=	SMB "enable smb(4) support" on
+OPTIONS_DEFINE=	ASUS SMB
+OPTIONS_DEFAULT=SMB
+ASUS_DESC=	"Enable A7N8X-VM support"
+SMB_DESC=	"Enable smb(4) support"
 
 .if ${PORTNAME} == "mbmon"
-USE_RC_SUBR=	mbmon.sh
+USE_RC_SUBR=	mbmon
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MASUS}
+PATCHFILES+=	xmbmon${PORTVERSION}_A7N8X-VM.patch
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's+/usr/share/doc/mbmon+${DOCSDIR}+' ${WRKSRC}/mbmon.1
-.if !defined(WITHOUT_SMB)
+.if ${PORT_OPTIONS:MSMB}
 	@${REINPLACE_CMD} -e 's/^DEFS=/&-DSMBUS_IOCTL /' ${WRKSRC}/Makefile.in
 .endif
 
@@ -43,4 +50,4 @@ do-install:
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
