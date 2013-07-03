@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.31 2012/02/29 04:04:08 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.32 2012/09/08 16:59:19 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups
@@ -90,10 +90,10 @@ USE_LDCONFIG=	yes
 PKGMESSAGE=	${NONEXISTENT}
 DESCR=		${MASTERDIR}/pkg-descr.client
 .elif defined(CUPS_IMAGE)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/${PKGCATEGORY}/cups-client \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=	cups:${PORTSDIR}/${PKGCATEGORY}/cups-client \
+		jpeg:${PORTSDIR}/graphics/jpeg \
+		png15:${PORTSDIR}/graphics/png \
+		tiff:${PORTSDIR}/graphics/tiff
 # force build if old cups is installed.
 BUILD_DEPENDS+=	cups-client${PKGNAMESUFFIX2}>=${PORTVERSION}:${PORTSDIR}/${PKGCATEGORY}/cups-client
 COMMENT2=	Library cupsimage
