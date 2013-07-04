@@ -3,7 +3,7 @@
 #
 # Created by: Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.11 2013/06/14 01:46:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.12 2013/07/04 19:29:45 laffer1 Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
 # If the port requires a predefined set of PHP extensions, they can be
@@ -242,7 +242,7 @@ _USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba \
 _USE_PHP_VER5=	${_USE_PHP_ALL} dbase dom filter mysqli oci8 pdo \
 		pdo_mysql pdo_pgsql pdo_sqlite \
 		simplexml soap spl sqlite3 \
-		tidy xmlreader xmlwriter xsl
+		tidy xmlreader xmlwriter xsl phar
 
 apc_DEPENDS=	www/pecl-APC
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
@@ -297,6 +297,7 @@ pdo_pgsql_DEPENDS=	databases/php${PHP_VER}-pdo_pgsql
 pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pfpro_DEPENDS=	finance/php${PHP_VER}-pfpro
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
+phar_DEPENDS=	archivers/php${PHP_VER}-phar
 posix_DEPENDS=	sysutils/php${PHP_VER}-posix
 pspell_DEPENDS=	textproc/php${PHP_VER}-pspell
 radius_DEPENDS=	net/pecl-radius
