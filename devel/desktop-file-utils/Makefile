@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.7 2011/05/28 07:15:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.8 2012/02/24 18:17:33 laffer1 Exp $
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 
 PORTNAME=	desktop-file-utils
-PORTVERSION=	0.18
-PORTREVISION=	0
+PORTVERSION=	0.21
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/releases/
 
@@ -11,18 +10,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A couple of command line utilities for working with desktop entries
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
+USES=		pkgconfig gettext
 USE_GNOME=	glib20
-WANT_GNOME=	yes
+USE_XZ=		yes
+USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-lispdir
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" EMACS="no"
+CONFIGURE_ENV=	EMACS="no" LIBS="-lintl"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		desktop-file-install.1 desktop-file-validate.1 \
-		update-desktop-database.1
+MAN1=		desktop-file-edit.1 desktop-file-install.1 \
+		desktop-file-validate.1 update-desktop-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
