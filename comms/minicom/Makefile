@@ -1,44 +1,48 @@
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.7 2011/06/01 01:23:26 laffer1 Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.8 2013/03/09 14:05:42 laffer1 Exp $
 
 PORTNAME=	minicom
 PORTVERSION=	2.6.2
+PORTREVISION=	1
 CATEGORIES=	comms
-MASTER_SITES=	http://alioth.debian.org/frs/download.php/3869/
+MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/3869/ \
+		http://alioth.debian.org/frs/download.php/file/3869/ \
+		http://fossies.org/linux/misc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
 LICENSE=	gpl2
 
-RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz
+OPTIONS_DEFINE=	DOCS NLS LRZSZ
+OPTIONS_DEFAULT=LRZSZ
+LRZSZ_DESC=	Install X/Y/ZMODEM protocol handlers
 
-MAKE_JOBS_SAFE=	yes
-
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.else
+USES=		iconv
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.endif
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-dfl-baud=57600 \
 			--sysconfdir=${PREFIX}/etc/minicom \
 			--enable-lock-dir=/var/spool/lock \
-			--enable-dfl-port=${MINICOM_DEFAULT_PORT} \
-			CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+			--enable-dfl-port=/dev/cuau0
+MAKE_ARGS+=	LIBS+="-liconv -lcurses"
 
 MAN1=		minicom.1 runscript.1 ascii-xfr.1 xminicom.1
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if ${OSVERSION} < 4016
-MINICOM_DEFAULT_PORT?=	/dev/cuad0
-.else
-MINICOM_DEFAULT_PORT?=	/dev/cuau0
+.if ${PORT_OPTIONS:MLRZSZ}
+RUN_DEPENDS+=	lrz:${PORTSDIR}/comms/lrzsz
 .endif
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	${REINPLACE_CMD} -e "s@/usr/local/bin/@${LOCALBASE}/bin/@; \
@@ -52,7 +56,7 @@ post-install:
 	${CHMOD} 4511 ${PREFIX}/bin/minicom
 	${INSTALL} -d -o root -g wheel -m 0755 ${PREFIX}/etc/minicom
 	${CHOWN} uucp ${PREFIX}/etc/minicom
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${INSTALL} -d -o root -g wheel -m 0755 ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}/
