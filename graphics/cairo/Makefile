@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.26 2013/03/27 22:35:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.27 2013/06/16 00:02:05 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	9
+PORTREVISION=	10
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -13,39 +13,38 @@ LICENSE=	lgpl
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 		png15:${PORTSDIR}/graphics/png \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
-		pixman-1:${PORTSDIR}/x11/pixman
+		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-directfb \
 		--enable-tee
-USE_GNOME=	gnomehack ltverhack referencehack
+USES=		pathfix pkgconfig
+USE_XORG=	pixman
+USE_GNOME=	ltverhack referencehack
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 CPPFLAGS+=	${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS}
 
-OPTIONS+=	OPENGL	"Enable OpenGL Support"	Off \
-		XCB	"Enable XCB (X C-language Binding) Support"	On \
-		GLIB	"Enable GObject Functions Feature"	On \
-		X11	"Enable X11 Support"	On
+OPTIONS_DEFINE=	OPENGL XCB GLIB X11
+OPTIONS_DEFAULT=	XCB GLIB X11
+XCB_DESC=	Enable XCB (X C-language Binding) Support
+GLIB_DESC=	Enable GObject Functions Feature
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_X11)
+.if ${PORT_OPTIONS:MX11}
 USE_XORG+=	xrender
 PLIST_SUB+=	X11=""
-CONFIGURE_ARGS+=--enable-xlib
 .else
-	echo 'disabled'
 CONFIGURE_ARGS+=--disable-xlib
 PLIST_SUB+=	X11="@comment "
 .endif
 
-.if defined(WITH_OPENGL)
+.if ${PORT_OPTIONS:MOPENGL}
 USE_GL=		gl
 USE_XORG+=	glproto:both dri2proto:both
 CONFIGURE_ARGS+=	--enable-gl
@@ -55,7 +54,7 @@ CONFIGURE_ARGS+=	--disable-gl
 PLIST_SUB+=	GL="@comment "
 .endif
 
-.if defined(WITH_XCB)
+.if ${PORT_OPTIONS:MXCB}
 BUILD_DEPENDS+= 	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
 RUN_DEPENDS+=		${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
 CONFIGURE_ARGS+=	--enable-xcb
@@ -66,10 +65,9 @@ CONFIGURE_ARGS+=	--disable-xcb
 PLIST_SUB+=		XCB="@comment "
 .endif
 
-.if defined(WITH_GLIB)
+.if ${PORT_OPTIONS:MGLIB}
 USE_GNOME+=	glib20
 PLIST_SUB+=	GLIB=""
-CONFIGURE_ARGS+=	--enable-gobject
 .else
 CONFIGURE_ARGS+=	--enable-gobject=no
 PLIST_SUB+=	GLIB="@comment "
@@ -83,7 +81,7 @@ post-patch:
 		${WRKSRC}/src/*.pc.in
 	@${REINPLACE_CMD} -e '/@CAIRO_HAS_PNG_FUNCTIONS_TRUE@.*=/d' \
 		${WRKSRC}/Makefile.in
-.if defined(WITH_OPENGL)
+.if ${PORT_OPTIONS:MOPENGL}
 	@${REINPLACE_CMD} 's|@CAIRO_CFLAGS@|-I$$(top_srcdir)/src/glew &|' \
 		${WRKSRC}/src/Makefile.in
 .endif
