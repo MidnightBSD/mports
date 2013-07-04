@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.15 2012/01/28 05:07:46 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.16 2013/07/03 23:54:10 laffer1 Exp $
 
 PORTNAME=	wine
 DISTVERSION=	1.4.1
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -46,7 +46,7 @@ MAN1=		msiexec.1 notepad.1 regedit.1 regsvr32.1 widl.1 wine.1 \
 MLINKS=		winegcc.1 winecpp.1 \
 		winegcc.1 wineg++.1
 ONLY_FOR_ARCHS=	i386
-USE_BISON=	yes
+USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GL=		glu
