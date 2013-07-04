@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.29 2013/05/10 02:13:10 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.30 2013/07/03 22:56:06 laffer1 Exp $
 
 COMMENT = Emulators for other operating systems
 
@@ -12,7 +12,6 @@ SUBDIR += extract-xiso
 SUBDIR += ia64sim
 SUBDIR += kqemu-kmod
 SUBDIR += kqemu-kmod-devel
-SUBDIR += linux_base-f8
 SUBDIR += linux_base-f10
 SUBDIR += linux_base-fc4
 SUBDIR += mtools
