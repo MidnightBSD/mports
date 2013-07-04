@@ -1,14 +1,9 @@
 #
-# bsd.php.mk - Support for PHP-based ports.
+# php.mk - Support for PHP-based ports.
 #
 # Created by: Alex Dupre <ale@FreeBSD.org>
 #
-# For MidnightBSD committers:
-# Please send all suggested changes to the maintainer instead of committing
-# them to CVS yourself.
-#
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.10 2013/03/02 19:59:09 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.11 2013/06/14 01:46:58 laffer1 Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
 # If the port requires a predefined set of PHP extensions, they can be
@@ -33,9 +28,8 @@
 # Don't specify any WANT_PHP_* knob if your port will work with every PHP SAPI.
 #
 
-.if !defined(_POSTMKINCLUDED) && !defined(Php_Pre_Include)
+.if !defined(_POSTMKINCLUDED)
 
-Php_Pre_Include=		php.mk
 Php_Include_MAINTAINER=	ports@MidnightBSD.org
 
 PHPBASE?=	${LOCALBASE}
@@ -354,4 +348,4 @@ check-makevars::
 .endif
 
 
-.endif # !defined(_POSTMKINCLUDED) && !defined(Php_Pre_Include)
+.endif # !defined(_POSTMKINCLUDED)
