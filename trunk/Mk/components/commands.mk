@@ -3,7 +3,7 @@
 #
 # commands.mk - Common commands used within the ports infrastructure
 #
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.7 2013/02/06 03:29:10 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.8 2013/03/30 12:22:03 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -52,6 +52,7 @@ ID?=		/usr/bin/id
 IDENT?=		/usr/bin/ident
 JOT?=		/usr/bin/jot
 LDCONFIG?=	/sbin/ldconfig
+LHA_CMD?=	${LOCALBASE}/bin/lha
 LN?=		/bin/ln
 LS?=		/bin/ls
 MKDIR?=		/bin/mkdir -p
@@ -65,6 +66,7 @@ OBJDUMP?=	/usr/bin/objdump
 PASTE?=		/usr/bin/paste
 PAX?=		/bin/pax
 PRINTF?=	/usr/bin/printf
+PS_CMD?=	/bin/ps
 PW?=		/usr/sbin/pw
 REALPATH?=	/bin/realpath
 RM?=		/bin/rm
