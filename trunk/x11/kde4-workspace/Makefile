@@ -1,43 +1,31 @@
-# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.3 2012/09/09 01:40:43 laffer1 Exp $
+# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.4 2013/03/24 19:47:05 laffer1 Exp $
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	3
 CATEGORIES=	x11 kde
-MASTER_SITES=	${MASTER_SITE_KDE_kde} \
-		${MASTER_SITE_FREEBSD_LOCAL} \
-		http://people.FreeBSD.org/~avilla/distfiles/
-MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src/:kde \
-			avilla/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:kde \
-		stripes-freebsd-1.0${EXTRACT_SUFX}
-DIST_SUBDIR=	KDE
+MASTER_SITES=	${MASTER_SITE_KDE}
+MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
+DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Basic applications for the KDE system
-LICENSE=	agg
+COMMENT=	KDE Plasma Desktop
 
-LIB_DEPENDS=	qimageblitz.4:${PORTSDIR}/x11/qimageblitz \
-		dbus-1.3:${PORTSDIR}/devel/dbus \
-		ck-connector.0:${PORTSDIR}/sysutils/consolekit \
-		pci.3:${PORTSDIR}/devel/libpci \
-		hal.1:${PORTSDIR}/sysutils/hal \
-		qalculate.5:${PORTSDIR}/math/libqalculate \
-		prison.0:${PORTSDIR}/graphics/prison \
-		searchclient.0:${PORTSDIR}/deskutils/strigi \
-		soprano.4:${PORTSDIR}/textproc/soprano \
-		boost_thread.4:${PORTSDIR}/devel/boost-libs \
-		dbusmenu-qt.2:${PORTSDIR}/devel/libdbusmenu-qt \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
-		freetype.9:${PORTSDIR}/print/freetype2 \
+LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
+		ck-connector:${PORTSDIR}/sysutils/consolekit \
+		pci:${PORTSDIR}/devel/libpci \
+		hal:${PORTSDIR}/sysutils/hal \
+		qalculate:${PORTSDIR}/math/libqalculate \
+		prison:${PORTSDIR}/graphics/prison \
+		boost_thread:${PORTSDIR}/devel/boost-libs \
+		dbusmenu-qt:${PORTSDIR}/devel/libdbusmenu-qt \
+		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
+		freetype:${PORTSDIR}/print/freetype2 \
 		png15:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
-
-BUILD_DEPENDS=	${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
-		xrdb:${PORTSDIR}/x11/xrdb
-
+		jpeg:${PORTSDIR}/graphics/jpeg \
+		xcb-render-util:${PORTSDIR}/x11/xcb-util-renderutil \
+		xcb-image:${PORTSDIR}/x11/xcb-util-image
+BUILD_DEPENDS=	xrdb:${PORTSDIR}/x11/xrdb
 RUN_DEPENDS=	${KDE4_PREFIX}/env/xdg-env.sh:${PORTSDIR}/misc/kde4-xdg-env \
-		${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		xprop:${PORTSDIR}/x11/xprop \
 		xsetroot:${PORTSDIR}/x11/xsetroot \
@@ -48,55 +36,60 @@ RUN_DEPENDS=	${KDE4_PREFIX}/env/xdg-env.sh:${PORTSDIR}/misc/kde4-xdg-env \
 		setxkbmap:${PORTSDIR}/x11/setxkbmap \
 		${KDE4_PREFIX}/bin/ksysguardd:${PORTSDIR}/sysutils/ksysguardd \
 		${KDE4_PREFIX}/lib/kde4/libexec/polkit-kde-authentication-agent-1:${PORTSDIR}/sysutils/polkit-kde \
-		${LOCALBASE}/etc/pam.d/kde:${PORTSDIR}/security/pam_kde
+		${KDE4_PREFIX}/lib/kde4/libexec/polkitkde1helper:${PORTSDIR}/sysutils/kcm-polkit-kde \
+		${LOCALBASE}/etc/pam.d/kde:${PORTSDIR}/security/pam_kde \
+		${KDE4_PREFIX}/share/apps/ksplash/Themes/Default/Theme.rc:${PORTSDIR}/x11-themes/kde4-base-artwork
 
 CONFLICTS=	kdeaccessibility-4.[0-6].* kdebase-workspace-4.[0-6].*
 
-SUB_FILES=	pkg-message
-USE_RC_SUBR=	kdm4
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USE_GL=		glu
 USE_GNOME=	glib20
-USE_ICONV=	yes
-USE_KDE4=	akonadi automoc4 kdehier kdelibs kdeprefix oxygen pimlibs
-KDE4_BUILDENV=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	dbus declarative gui network opengl phonon \
-		qt3support qtestlib script sql webkit xml \
+USE_KDE4=	kactivities kdehier kdelibs kdeprefix oxygen pimlibs \
+		akonadi automoc4 ontologies qimageblitz soprano strigi
+USES=		cmake:outsource pkgconfig gettext iconv
+USE_QT4=	corelib dbus declarative designer_build gui network \
+		opengl phonon qtestlib script sql webkit xml \
 		moc_build qmake_build rcc_build uic_build
 USE_XORG=	kbproto x11 xau xcomposite xcursor xdamage xdmcp xfixes \
 		xft xi xinerama xkbfile xrandr xrender xres xscrnsaver xtst
+USE_XZ=		yes
 USE_GMAKE=	yes
+USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
+
+# Xmms and Googlegadgets could be enabled.
+CMAKE_ARGS=	-DCMAKE_REQUIRED_FLAGS:STRING="-L${LOCALBASE}/lib" \
+		-DBUILD_python:BOOL=OFF \
+		-DBUILD_ruby:BOOL=OFF \
+		-DWITH_NetworkManager:BOOL=OFF \
+		-DWITH_Xmms:BOOL=OFF \
+		-DWITH_Googlegadgets:BOOL=OFF
+
+SUB_FILES=	pkg-message
+USE_RC_SUBR=	kdm4
 
 USERS=		kdm
 GROUPS=		kdm
 
-MAN1=		plasmaengineexplorer.1 plasmapkg.1 plasmoidviewer.1
+OPTIONS_DEFINE=	GPS KACTIVITY UPOWER WALLPAPERS
+OPTIONS_GROUP=	PHONON PLASMA
+OPTIONS_GROUP_PHONON=	GSTREAMER VLC
+OPTIONS_GROUP_PLASMA=	PYTHON RUBY
+OPTIONS_DEFAULT=GPS GSTREAMER KACTIVITY UPOWER WALLPAPERS
 
-# PyKDE4, Xmms and Googlegadgets could be enabled.
-CMAKE_ARGS+=	-DCMAKE_REQUIRED_FLAGS:STRING="-L${LOCALBASE}/lib" \
-		-DBUILD_python:BOOL=OFF \
-		-DBUILD_ruby:BOOL=OFF \
-		-DWITH_BlueZ:BOOL=OFF \
-		-DWITH_Sensors:BOOL=OFF \
-		-DWITH_NetworkManager:BOOL=OFF \
-		-DWITH_Xmms:BOOL=OFF \
-		-DWITH_Googlegadgets:BOOL=OFF \
-		-DWITH_PyKDE4:BOOL=OFF
-
-OPTIONS=	GPS "Support for GPS geolocation dataengine" on \
-		PHONON_GSTREAMER "GStreamer backend for Phonon (recommended)" on \
-		PHONON_VLC "VLC backend for Phonon" off \
-		PLASMA_PYTHON "Support for plasmoids written in Python" off \
-		PLASMA_RUBY "Support for plasmoids written in Ruby" off \
-		UPOWER "Support for power management" on \
-		WALLPAPERS "Official KDE wallpapers" on
+GPS_DESC=	GPS geolocation via gpsd
+GSTREAMER_DESC=	Multimedia via Phonon-GStreamer
+KACTIVITY_DESC=	Activity Manager daemon
+PYTHON_DESC=	Python plasmoids support
+RUBY_DESC=	Ruby plasmoids support
+UPOWER_DESC=	Power management via UPower
+VLC_DESC=	Multimedia via Phonon-VLC
+WALLPAPERS_DESC=Install official KDE wallpapers
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_GPS)
-LIB_DEPENDS+=	gps.20:${PORTSDIR}/astro/gpsd
+.if ${PORT_OPTIONS:MGPS}
+LIB_DEPENDS+=	gps:${PORTSDIR}/astro/gpsd
 CMAKE_ARGS+=	-DWITH_libgps:BOOL=ON
 PLIST_SUB+=	GPS=""
 .else
@@ -104,35 +97,43 @@ CMAKE_ARGS+=	-DWITH_libgps:BOOL=OFF
 PLIST_SUB+=	GPS="@comment "
 .endif
 
-.if !defined(WITHOUT_PHONON_GSTREAMER)
+.if ${PORT_OPTIONS:MGSTREAMER}
 USE_GSTREAMER+=	core
-QT_COMPONENTS+=	phonon-gst_run
+USE_QT4+=	phonon-gst_run
 .endif
 
-.if defined(WITH_PHONON_VLC)
-RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/plugins/phonon_backend/phonon_vlc.so:${PORTSDIR}/multimedia/phonon-vlc
+.if ${PORT_OPTIONS:MKACTIVITY}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kactivitymanagerd:${PORTSDIR}/x11/kactivitymanagerd
 .endif
 
-.if defined(WITH_PLASMA_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 RUN_DEPENDS+=	${KDE4_PREFIX}/share/apps/plasma_scriptengine_python/plasma_importer.py:${PORTSDIR}/x11/plasma-scriptengine-python
 .endif
 
-.if defined(WITH_PLASMA_RUBY)
+.if ${PORT_OPTIONS:MRUBY}
 RUN_DEPENDS+=	${KDE4_PREFIX}/share/apps/plasma_scriptengine_ruby/applet.rb:${PORTSDIR}/x11/plasma-scriptengine-ruby
 .endif
 
-.if !defined(WITHOUT_UPOWER)
+.if ${PORT_OPTIONS:MUPOWER}
 RUN_DEPENDS+=	${LOCALBASE}/libexec/upowerd:${PORTSDIR}/sysutils/upower
 .endif
 
-.if !defined(WITHOUT_WALLPAPERS)
-RUN_DEPENDS+=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers
+.if ${PORT_OPTIONS:MVLC}
+RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/plugins/phonon_backend/phonon_vlc.so:${PORTSDIR}/multimedia/phonon-vlc
+.endif
+
+.if ${PORT_OPTIONS:MWALLPAPERS}
+RUN_DEPENDS+=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers \
+		${KDE4_PREFIX}/share/wallpapers/stripes-freebsd-blue/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers-freebsd
 .endif
 
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 4016
-LIB_DEPENDS+= usb-0.1:${PORTSDIR}/devel/libusb
+LIB_DEPENDS+=	usb-0.1:${PORTSDIR}/devel/libusb
+.endif
+
+.if ${OSVERSION} < 4016
 LIB_DEPENDS+=	utempter:${PORTSDIR}/sysutils/libutempter
 .endif
 
@@ -145,6 +146,8 @@ post-patch:
 		${PATCH_WRKSRC}/kdm/backend/client.c \
 		${PATCH_WRKSRC}/kdm/kfrontend/genkdmconf.c \
 		${PATCH_WRKSRC}/CMakeLists.txt
+	${RM} ${WRKSRC}/plasma/generic/applets/batterymonitor/contents/code/logic.js.orig
+	${RM} ${WRKSRC}/plasma/generic/applets/batterymonitor/contents/ui/batterymonitor.qml.orig
 
 pre-configure:
 	${REINPLACE_CMD} -e '/ksysguardd/ d' \
@@ -157,11 +160,8 @@ pre-configure:
 
 post-install:
 	${LN} -sf ${PREFIX}/bin/startkde ${PREFIX}/bin/startkde4
-	${INSTALL_DATA} ${FILESDIR}/05-freebsdWallpaper.js ${PREFIX}/share/apps/plasma-desktop/init
-	cd ${WRKDIR}/stripes-freebsd-1.0 && \
-		${COPYTREE_SHARE} . ${PREFIX}/share/wallpapers
-.if defined(WITHOUT_PHONON_GSTREAMER)
-	@${CAT} ${FILESDIR}/pkg-message-phonon-gstreamer >> ${PKGMESSAGE}
+.if ! ${PORT_OPTIONS:MGSTREAMER}
+	@${CAT} ${FILESDIR}/pkg-message.gstreamer >> ${PKGMESSAGE}
 .endif
 	@${HEAD} -1 ${PKGMESSAGE} >> ${PKGMESSAGE}
 
