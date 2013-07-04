@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/linux-f10-flashplugin11/Makefile,v 1.2 2013/01/16 01:02:57 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-f10-flashplugin11/Makefile,v 1.3 2013/03/20 02:32:25 laffer1 Exp $
 
 PORTNAME=	flashplugin
-PORTVERSION=	11.2r202.275
+PORTVERSION=	11.2r202.291
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/pdc/${PORTVERSION:C/r/\./}/:plugin \
 		FREEBSD_LOCAL/nox:suplib
@@ -30,16 +30,16 @@ NPAPI_FILES=	libflashplayer.so
 
 CONFLICTS=	linux-flashplugin-9* linux-f8-flashplugin10* linux-f10-flashplugin10*
 
-OPTIONS=	GNOME "include gnome support for .desktop file" Off
+OPTIONS_DEFINE=	GNOME
+GNOME_DESC=	include gnome support for .desktop file
 
-.include <bsd.port.pre.mk>
+OPTIONS_SUB=	yes
+GNOME_USES=	desktop-file-utils
 
-.ifndef(WITHOUT_GNOME)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MGNOME}
 INSTALLS_ICONS=	yes
-USE_GNOME=	desktopfileutils
-PLIST_SUB+=	GNOME=""
-.else
-PLIST_SUB+=	GNOME="@comment "
 .endif
 
 post-patch:
@@ -53,5 +53,6 @@ post-install:
 	@(cd ${WRKDIR}/usr/share/icons && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons)
 	-@update-desktop-database
 
+.include <bsd.port.pre.mk>
 .include "${PORTSDIR}/www/linux-mplayer-plugin/Makefile.npapi"
 .include <bsd.port.post.mk>
