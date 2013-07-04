@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.27 2013/03/24 16:53:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.28 2013/05/18 13:12:51 laffer1 Exp $
 
 PORTNAME=	glib
 PORTVERSION=	2.34.3
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +17,7 @@ USE_XZ=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS+=	pcre.3:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 
 USE_GETTEXT=	yes
 USE_ICONV=	yes
