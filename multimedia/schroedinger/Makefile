@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/multimedia/schroedinger/Makefile,v 1.2 2011/09/05 16:09:08 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/schroedinger/Makefile,v 1.3 2012/03/01 04:28:12 laffer1 Exp $
 
 PORTNAME=	schroedinger
 PORTVERSION=	1.0.11
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://diracvideo.org/download/schroedinger/
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,9 +18,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 
-.include <bsd.port.pre.mk>
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|^pkgconfigdir=.*|pkgconfigdir="\\$$(prefix)/libdata/pkgconfig"|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|^pkgconfigdir=.*|pkgconfigdir="\\$${prefix}/libdata/pkgconfig"|' \
+		-e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
