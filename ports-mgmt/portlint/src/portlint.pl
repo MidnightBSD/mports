@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.10 2008/12/26 12:29:55 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.11 2013/01/18 03:56:21 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -48,12 +48,12 @@ $contblank = 1;
 $portdir = '.';
 
 @ALLOWED_FULL_PATHS = qw(/boot/loader.conf /compat/ /dev/null /etc/inetd.conf);
-@MASTERSITES_WHITELIST = qw(googlecode.com);
+@MASTERSITES_WHITELIST = qw(googlecode.com nodeload.github.com);
 
 # version variables
 my $major = 2;
-my $minor = 13;
-my $micro = 13;
+my $minor = 14;
+my $micro = 3;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -193,12 +193,12 @@ chdir "$portdir" || die "$portdir: $!";
 my @varlist =  qw(
 	PORTNAME PORTVERSION PORTREVISION PORTEPOCH PKGNAME PKGNAMEPREFIX
 	PKGNAMESUFFIX DISTVERSIONPREFIX DISTVERSION DISTVERSIONSUFFIX
-	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER LICENSE MASTER_SITES
+	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER MASTER_SITES LICENSE
 	WRKDIR WRKSRC NO_WRKSUBDIR SCRIPTDIR FILESDIR
 	PKGDIR COMMENT DESCR PLIST PKGCATEGORY PKGINSTALL PKGDEINSTALL
 	PKGREQ PKGMESSAGE DISTINFO_FILE .CURDIR USE_LDCONFIG USE_AUTOTOOLS
-	INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
-	PLIST_FILES OPTIONS INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
+	USE_GNOME INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
+	PLIST_FILES OPTIONS OPTIONS_DEFINE INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
 	DIST_SUBDIR ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS
 	GNU_CONFIGURE CONFIGURE_ARGS MASTER_SITE_SUBDIR
 );
@@ -369,6 +369,8 @@ if ($committer) {
 		} elsif ($_ eq '.svn' && -d) {
 			&perror("FATAL", $fullname, -1, "for safety, be sure to cleanup ".
 				"Subversion files before committing the port.");
+
+			$File::Find::prune = 1;
 		} elsif ($_ eq 'CVS' && -d) {
 			if ($newport) {
 				&perror("FATAL", $fullname, -1, "for safety, be sure to cleanup ".
@@ -518,8 +520,7 @@ if ($committer) {
 		}
 	}
 
-	checksubdir('.')
-		unless $newport;
+	find(\&find_proc, '.');
 
 	# Check for ports that may break INDEX
 	my $indexerr = `env LOCALBASE=/nonexistentlocal make $makeenv describe 2>&1 >/dev/null`;
@@ -608,7 +609,7 @@ sub checkdistinfo {
 			$n++ if exists($records{$path}{$alg});
 		}
 		if ($n == 0) {
-			&perror("FATAL", $file -1, "no checksum record for $path.");
+			&perror("FATAL", $file, -1, "no checksum record for $path.");
 		}
 		if ($n < scalar(keys %algorithms)) {
 			&perror("WARN", $file, -1, "no checksum records for all ".
@@ -640,8 +641,12 @@ sub checkdescr {
 				"returns.  Strip all carriage returns (e.g. run dos2unix) ".
 				"in $file.");
 		}
-		if (/^WWW:\s+(\S*)/) {
-			my $wwwurl = $1;
+		if (/^WWW:(\s+)(\S*)/) {
+			my $wwwurl = $2;
+			if ($1 ne ' ') {
+				&perror("WARN", $file, -1, "use WWW: with a single space, ".
+					"then $wwwurl");
+			}
 			if ($wwwurl !~ m|^https?://|) {
 				&perror("WARN", $file, -1, "WWW URL, $wwwurl should begin ".
 					"with \"http://\" or \"https://\".");
@@ -745,6 +750,11 @@ sub checkplist {
 		# make it easier to handle.
 		$_ =~ s/\s+$//;
 		$_ =~ s/\n$//;
+
+		if ($_ =~ /\.DS_Store/) {
+			&perror("WARN", $file, $., ".DS_Store meta data files must not ".
+				"be installed.");
+		}
 
 		if ($osname eq 'NetBSD' && $_ =~ /<\$ARCH>/) {
 			&perror("WARN", $file, $., "use of <\$ARCH> deprecated, ".
@@ -1330,7 +1340,7 @@ sub check_depends_syntax {
 				&perror("FATAL", $file, -1, "do not depend on any apache ".
 					"port in *_DEPENDS directly.  ".
 					"Instead use USE_APACHE=VERSION, where VERSION can be ".
-					"found in \${PORTSDIR}/Mk/extensions/apache.mk.");
+					"found in \${PORTSDIR}/Mk/bsd.apache.mk.");
 			}
 
 			# Check for over-specific shared library dependencies
@@ -1378,6 +1388,7 @@ sub checkmakefile {
 	my($realwrksrc, $wrksrc, $nowrksubdir) = ('', '', '');
 	my(@mman, @pman);
 	my(@mopt, @oopt);
+	my(@nmopt, @noopt);
 	my($pkg_version, $versiondir, $versionfile) = ('', '', '');
 	my $useindex = 0;
 	my %deprecated = ();
@@ -1387,6 +1398,7 @@ sub checkmakefile {
 	my $options_mk_line = 0;
 	my $docsused = 0;
 	my $nlsused = 0;
+	my $newoptused = 0;
 
 	open(IN, "< $file") || return 0;
 	$rawwhole = '';
@@ -1459,6 +1471,26 @@ sub checkmakefile {
 	}
 
 	#
+	# whole file: header
+	#
+	my @lines = split("\n", $whole);
+	print "OK: checking header in $file.\n" if ($verbose);
+	if ($lines[1] =~ /^# (?:New )?[Pp]orts collection [mM]akefile/) {
+		&perror("FATAL", $file, 1, "old style headers found.");
+	} elsif ($lines[1] =~ /^# Created by: \S/) {
+		if ($lines[2] !~ /^# \$$rcsidstr[:\$]/) {
+			&perror("FATAL", $file, 2, "header should be ".
+				"followed by \$$rcsidstr\$.");
+		} elsif ($lines[3] !~ /^$/) {
+		#&perror("FATAL", $file, 3, "do not add extra ".
+		#		"empty comments after header.");
+		}
+	} elsif ($lines[1] !~ /^# \$$rcsidstr[:\$]/ or $lines[2] !~ /^$/) {
+		&perror("FATAL", $file, 1, "incorrect header; ".
+			"use Created by: with a single space, then \$$rcsidstr\$.");
+	}
+
+	#
 	# whole file: $(VARIABLE)
 	#
 	if ($parenwarn) {
@@ -1467,6 +1499,18 @@ sub checkmakefile {
 			my $lineno = &linenumber($`);
 			&perror("WARN", $file, $lineno, "use \${VARIABLE}, instead of ".
 				"\$(VARIABLE).");
+		}
+	}
+
+	#
+	# whole file: empty(${VARIABLE})
+	#
+	if ($parenwarn) {
+		print "OK: checking for empty(\${VARIABLE}).\n" if ($verbose);
+		if ($whole =~ /empty\(\${[\w\d]+/) {
+			my $lineno = &linenumber($`);
+			&perror("WARN", $file, $lineno, "use empty(VARIABLE), instead of ".
+				"empty(\${VARIABLE}).");
 		}
 	}
 
@@ -1526,8 +1570,19 @@ sub checkmakefile {
 	}
 
 	#
-	# whole file: USE_* used too late
+	# whole file: USE_* and others variables used too late
 	#
+	my @options_early = qw(
+		OPTIONS
+		OPTIONS_DEFAULT
+		OPTIONS_DEFINE
+		OPTIONS_EXCLUDE
+		OPTIONS_GROUP.*?
+		OPTIONS_MULTI.*?
+		OPTIONS_RADIO.*?
+		OPTIONS_SINGLE.*?
+	);
+
 	pos($whole) = 0;
 	if ($whole =~ /^\.include\s+<bsd\.port\.pre\.mk>$/gm) {
 		# Remember position
@@ -1550,11 +1605,10 @@ sub checkmakefile {
 
 		my @other_early = qw(
 			EMACS_PORT_NAME
-			OPTIONS
 		);
 
 		my $earlypattern = join('|', 'USE_(?:'.join('|', @use_early).')',
-			@other_early);
+			@other_early, @options_early);
 
 		while ($whole =~ /^($earlypattern)[+?:!]?=/gmo) {
 			my $lineno = &linenumber($`);
@@ -1563,18 +1617,41 @@ sub checkmakefile {
 		}
 	}
 
+	#
+	# whole file: check OPTIONS
+	#
+	print "OK: checking OPTIONS.\n" if ($verbose);
 	pos($whole) = 0;
-	if ($whole =~ /^\.include\s+<bsd\.mport\.options\.mk>$/gm) {
+	if ($whole =~ /^\.include\s+<bsd\.port\.options\.mk>$/gm) {
 		# Remember position
 		$options_mk_line = &linenumber($`) + 1;
 	}
 
-	#
-	# whole file: check OPTIONS
-	#
 	pos($whole) = 0;
-	print "OK: checking OPTIONS.\n" if ($verbose);
+	if ($whole =~ /^\.include\s+<bsd\.port\.options\.mk>$/gm) {
+		my $earlypattern = join('|', @options_early);
+		while ($whole =~ /^($earlypattern)[+?]?=/gmo) {
+			my $lineno = &linenumber($`);
+			&perror("FATAL", $file, $lineno, "$1 is set after ".
+				"including bsd.port.options.mk.");
+		}
+	}
+
+	pos($whole) = 0;
+	if ($whole =~ /\nOPTIONS_DEFINE[+?]?=/) {
+		$newoptused++;
+	}
 	@oopt = ($makevar{OPTIONS} =~ /(\w+)\s+\".*?\"\s+\w+/sg);
+	@noopt = split(/\s+/, $makevar{OPTIONS_DEFINE});
+	if (scalar(@oopt) && $newoptused) {
+		&perror("FATAL", $file, -1, "Both old and new OPTIONS are found. ".
+			"Remove one or another.");
+	}
+	if (scalar(@oopt)) {
+		&perror("WARN", $file, -1, "Use of OPTIONS is obsolete. Use the ".
+			"new options framework.");
+	}
+	pos($whole) = 0;
 	while ($whole =~ /\(?\s*WITH(?:OUT)?_(\w+)\s*\)?/mg) {
 		push @mopt, $1;
 		my $lineno = &linenumber($`) + 1;
@@ -1587,6 +1664,23 @@ sub checkmakefile {
 		if (!grep(/^$i$/, @mopt)) {
 			&perror("WARN", $file, -1, "$i is listed in OPTIONS, ".
 				"but neither WITH_$i nor WITHOUT_$i appears.");
+		}
+	}
+	if ($newoptused) {
+		pos($whole) = 0;
+		while ($whole =~ /PORT_OPTIONS:M(\w+)/mg) {
+			push @nmopt, $1;
+			my $lineno = &linenumber($`) + 1;
+			&perror("FATAL", $file, $lineno, "option $1 is used before ".
+				"including bsd.port.pre.mk or bsd.port.options.mk.")
+				if ($newoptused && $lineno < $pre_mk_line &&
+					$lineno < $options_mk_line);
+		}
+		foreach my $i (@noopt) {
+			if (!grep(/^$i$/, @nmopt)) {
+				&perror("WARN", $file, -1, "$i is listed in OPTIONS_DEFINE, ".
+					"but no PORT_OPTIONS:M$i appears.");
+			}
 		}
 	}
 	foreach my $i (@mopt) {
@@ -1724,6 +1818,15 @@ sub checkmakefile {
 	}
 
 	#
+	# whole file: USE_GNOME=pkgconfig
+	#
+	print "OK: checking for USE_GNOME=pkgconfig.\n" if ($verbose);
+	if ($makevar{USE_GNOME} =~ /pkgconfig/) {
+		&perror("WARN", $file, -1, "USE_GNOME=pkgconfig is now obsolete. ".
+			"Use USE_PKGCONFIG instead.");
+	}
+
+	#
 	# whole file: EXPIRATION_DATE
 	#
 	print "OK: checking for valid EXPIRATION_DATE.\n" if ($verbose);
@@ -1765,15 +1868,22 @@ sub checkmakefile {
 	if ($sharedocused && $whole !~ /defined\s*\(?NOPORTDOCS\)?/
 		&& $whole !~ /def\s*\(?NOPORTDOCS\)?/) {
 		if ($docsused == 0 && $whole !~ m#(\$[\{\(]PREFIX[\}\)]|$localbase)/share/doc#) {
-			&perror("WARN", $file, -1, "use \".if !defined(NOPORTDOCS)\" to wrap ".
+			&perror("WARN", $file, -1, "use \".if \${PORT_OPTIONS:MDOCS}\" to wrap ".
 				"installation of files into $localbase/share/doc.");
 		}
 	} else {
 		$docsused++;
 	}
 	if ($docsused > 1) {
-		&perror("FATAL", $file, -1, "Both NOPORTDOCS and PORT_OPTIONS:MDOCS are found ".
+		&perror("FATAL", $file, -1, "Both NOPORTDOCS and PORT_OPTIONS:MDOCS are found. ".
 			"Remove one or another.");
+	}
+
+	print "OK: checking for use of NOPORTDOCS.\n" if ($verbose);
+	if ($whole =~ /NOPORTDOCS/) {
+		my $lineno = &linenumber($`);
+		&perror("WARN", $file, $lineno, "NOPORTDOCS found.  Consider ".
+			"using PORT_OPTIONS:MDOCS");
 	}
 
 	#
@@ -1793,7 +1903,7 @@ sub checkmakefile {
 		$nlsused++;
 	}
 	if ($nlsused > 1) {
-		&perror("FATAL", $file, -1, "Both WITHOUT_NLS and PORT_OPTIONS:MNLS are found ".
+		&perror("FATAL", $file, -1, "Both WITHOUT_NLS and PORT_OPTIONS:MNLS are found. ".
 			"Remove one or another.");
 	}
 
@@ -1881,11 +1991,9 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $curline !~ /^IGNORE(.)?=[^\n]+$i/m
 				&& $curline !~ /^BROKEN(.)?=[^\n]+$i/m
 				&& $curline !~ /^RESTRICTED(.)?=[^\n]+$i/m
-				&& $curline !~ /^LICENSE(.)?=[^\n]+$i/m
 				&& $curline !~ /^NO_PACKAGE(.)?=[^\n]+$i/m
 				&& $curline !~ /^NO_CDROM(.)?=[^\n]+$i/m
 				&& $curline !~ /^MAINTAINER(.)?=[^\n]+$i/m
-				&& $curline !~ /^LICENSE(.)?=[^\n]+$i/m
 				&& $curline !~ /^CATEGORIES(.)?=[^\n]+$i/m
 				&& $curline !~ /^WX_COMPS(.)?=[^\n]+$i/m
 				&& $curline !~ /^\s*#.+$/m
@@ -1909,7 +2017,6 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $lm !~ /^IGNORE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^BROKEN(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^RESTRICTED(.)?=[^\n]+($i\d*)/m
-				&& $lm !~ /^LICENSE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^NO_PACKAGE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^NO_CDROM(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^MAINTAINER(.)?=[^\n]+($i\d*)/m
@@ -2039,7 +2146,9 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	if ($whole =~ /^USE_GCC[?:]?=\s*(.*)$/m) {
 		my $lineno = &linenumber($`);
 		my $gcc_val = $1;
-		if ($gcc_val =~ /3\.[234]\+/) {
+		if ($gcc_val eq 'any' || $gcc_val eq 'yes') {
+			# Just accept these two.
+		} elsif ($gcc_val =~ /3\.[234]\+/) {
 			&perror("WARN", $file, $lineno, "USE_GCC=3.2+, USE_GCC=3.3+, ".
 				"and USE_GCC=3.4+ are noops on all currently (and future) ".
 				"supported versions of FreeBSD.  Do not use them.");
@@ -2094,7 +2203,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	#
 	if ($whole =~ /^USE_APACHE[?:]?=\s*(yes)$/m) {
 		&perror("FATAL", $file, -1, "Use USE_APACHE=VERSION ".
-			"(where version can be found in \${PORTSDIR}/Mk/extensions/apache.mk) ".
+			"(where version can be found in \${PORTSDIR}/Mk/bsd.apache.mk) ".
 			"instead of yes");
 	}
 
@@ -2337,7 +2446,7 @@ EOF
 				    ($newport ? 'for new port, '
 					      : 'is it a new port? if so, ').
 				    "make \$$rcsidstr\$ tag in comment ".
-				    "section empty, to make CVS happy.");
+				    "section empty, to make SVN happy.");
 			}
 		}
 	}
@@ -2518,6 +2627,7 @@ DIST_SUBDIR EXTRACT_ONLY
 		print "OK: seen MASTER_SITES, sanity checking URLs.\n"
 			if ($verbose);
 		my @sites = split(/\s+/, $1 // '');
+		my $ftphttp = 0;
 		my $skipnext = 0;
 		foreach my $i (@sites) {
 			if ($skipnext) {
@@ -2530,12 +2640,16 @@ DIST_SUBDIR EXTRACT_ONLY
 				unless (&is_predefined($i, $file)) {
 					print "OK: URL \"$i\" ok.\n"
 						if ($verbose);
+					$ftphttp++ if ($i =~ /^(ftp|http):/);
 				}
 			} else {
 				print "OK: non-URL \"$i\" ok.\n"
 					if ($verbose);
+				$ftphttp++;
 			}
 		}
+		&perror("WARN", $file, -1, "no ftp/http mirror in MASTER_SITES.  ".
+			"This may break fetch through proxies.") unless ($ftphttp);
 	} else {
 		&perror("WARN", $file, -1, "no MASTER_SITES found. is it ok?");
 	}
@@ -2812,7 +2926,7 @@ PATCH_SITES PATCHFILES PATCH_DIST_STRIP
 
 	&checkearlier($file, $tmp, @varnames);
 	&checkorder('MAINTAINER', $tmp, $file, qw(
-MAINTAINER COMMENT LICENSE
+MAINTAINER COMMENT
 	));
 
 	$tmp = "\n" . $tmp;
@@ -2833,7 +2947,7 @@ MAINTAINER COMMENT LICENSE
 		}
 		if ($newport && $addr =~ /ports\@freebsd.org/i) {
 			&perror("WARN", $file, -1, "new ports should not be maintained by ".
-				"ports\@MidnightBSD.org.");
+				"ports\@FreeBSD.org.");
 		}
 		$tmp =~ s/\nMAINTAINER\??=[^\n]+//;
 	} elsif ($whole !~ /\nMAINTAINER[?]?=/) {
@@ -2864,10 +2978,45 @@ MAINTAINER COMMENT LICENSE
 	$idx++;
 
 	push(@varnames, qw(
-MAINTAINER COMMENT LICENSE
+MAINTAINER COMMENT
 	));
 
-	# XXX section 5 is disabled
+	#
+	# section 5: LICENSE
+	#
+	print "OK: checking fourth section of $file (LICENSE).\n"
+		if ($verbose);
+	$tmp = $sections[$idx];
+
+	if ($makevar{LICENSE}) {
+		&checkorder('LICENSE', $tmp, $file, qw(
+			LICENSE LICENSE_COMB LICENSE_GROUPS(_\w+)? LICENSE_NAME(_\w+)?
+			LICENSE_TEXT(_\w+)? LICENSE_FILE(_\w+)? LICENSE_PERMS(_\w+)?
+			LICENSE_DISTFILES(_\w+)?
+		));
+
+		# check LICENSE
+		if ($makevar{LICENSE} && $makevar{LICENSE} ne '') {
+			my $comb = $makevar{LICENSE_COMB} // 'single';
+
+			my @tokens = split(/ /, $makevar{LICENSE});
+			if ($comb eq 'single' && scalar(@tokens) > 1) {
+				&perror("FATAL", $file, -1, "LICENSE contains multiple licenses but LICENSE_COMB is not set to 'dual' or 'multi'");
+			}
+		}
+
+		# check value of LICENSE_COMB
+		if ($makevar{LICENSE_COMB} && $makevar{LICENSE_COMB} !~ /^(single|dual|multi$)/) {
+			&perror("FATAL", $file, -1, "LICENSE_COMB contains invalid value '$1' - must be one of 'single', 'dual', 'multi'");
+		}
+
+		$idx++;
+
+		push(@varnames, qw(
+			LICENSE LICENSE_COMB LICENSE_GROUPS LICENSE_NAME
+			LICENSE_TEXT LICENSE_FILE LICENSE_PERMS
+		));
+	}
 
 	#
 	# section 6: *_DEPENDS (may not be there)
