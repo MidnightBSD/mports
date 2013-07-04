@@ -1,15 +1,16 @@
-# $MidnightBSD: mports/ports-mgmt/portlint/Makefile,v 1.11 2008/12/26 12:29:54 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/Makefile,v 1.12 2013/01/18 03:56:21 laffer1 Exp $
 #
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.13.13
+PORTVERSION=	2.14.3
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A verifier for mports directory
+
 LICENSE=	unknown
 
 NO_BUILD=	yes
@@ -19,6 +20,12 @@ USE_PERL5_RUN=	yes
 SRC=		${.CURDIR}/src
 
 MAN1=		portlint.1
+PLIST_FILES=	bin/portlint
+
+.if !defined(NOPORTEXAMPLES)
+PLIST_FILES+=	%%EXAMPLESDIR%%/portlintgrep
+PLIST_DIRS=	%%EXAMPLESDIR%%
+.endif
 
 do-fetch:
 	@${DO_NADA}
@@ -34,7 +41,9 @@ post-patch:
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/portlint.pl ${TARGETDIR}/bin/portlint
 	${INSTALL_MAN} ${WRKSRC}/portlint.1 ${MAN1PREFIX}/man/man1
-	${MKDIR} ${EXAMPLESDIR}
+.if !defined(NOPORTEXAMPLES)
+	${INSTALL} -o ${SHAREOWN} -g ${SHAREGRP} -m ${BINMODE} -d ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/portlintgrep.pl ${EXAMPLESDIR}/portlintgrep
+.endif
 
 .include <bsd.port.mk>
