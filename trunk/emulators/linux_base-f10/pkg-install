@@ -20,6 +20,9 @@ PRE-INSTALL)
 			exit 1
 		fi
 	fi
+	if [ -d /compat/linux ]; then
+		mkdir -p /compat/linux
+	fi
 	;;
 POST-INSTALL)
 	if [ -z "`grep ^linproc /etc/fstab`" ]; then
