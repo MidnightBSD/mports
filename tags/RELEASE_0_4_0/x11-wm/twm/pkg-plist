@@ -1,0 +1,5 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $
+bin/twm
+share/X11/twm/system.twmrc
+@dirrm share/X11/twm
+@dirrmtry share/X11

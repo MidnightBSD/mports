@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# $MidnightBSD: mports/shells/mksh/pkg-install,v 1.2 2007/03/20 17:37:51 laffer1 Exp $
+#
+
+MKSH="${PKG_PREFIX-/usr/local}/bin/mksh"
+SHELLS="${PKG_DESTDIR-}/etc/shells"
+
+case $2 in
+POST-INSTALL)
+  if [ -d "${SHELLS%/*}" ] && ! grep -qs "^$MKSH\$" "$SHELLS"; then
+    if [ `id -u` -eq 0 ]; then
+      echo "$MKSH" >> "$SHELLS"
+    else
+      echo "Not root, please add $MKSH to $SHELLS manually"
+    fi
+  fi
+  ;;
+esac

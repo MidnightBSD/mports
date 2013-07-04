@@ -1,0 +1,17 @@
+--- configure.orig	2009-12-25 20:21:00.000000000 +0100
++++ configure	2009-12-25 20:21:01.000000000 +0100
+@@ -15968,6 +15968,14 @@
+ _ACEOF
+ 
+ 	;;
++*freebsd*)
++	os_win32=no
++	NO_UNDEFINED=''
++	SOCKET_LIBS=''
++	DL_LIB=''
++	SOFTOKN3_LIB='-lsoftokn3'
++	LIBEXECDIR_IN_SERVER_FILE="$libexecdir"
++	;;
+ *)
+ 	os_win32=no
+ 	NO_UNDEFINED=''

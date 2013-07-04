@@ -1,0 +1,87 @@
+--- Makefile.orig	Thu Mar 24 18:50:09 2005
++++ Makefile	Fri Apr 27 20:22:17 2007
+@@ -79,22 +79,22 @@
+ # Destinations for installation. $(PRESERVEDIR) is used for recovery files.
+ # It will get mode 1777.
+ #
+-PREFIX		= /usr/local
++PREFIX=		/usr/local
+ BINDIR		= $(PREFIX)/bin
+ LIBEXECDIR	= $(PREFIX)/libexec
+-MANDIR		= $(PREFIX)/share/man
+-PRESERVEDIR	= /var/preserve
++MANDIR		= $(PREFIX)/man
++PRESERVEDIR	= /var/preserve/2bsd-vi
+ 
+ #
+ # DESTDIR is prepended to the installation paths. It is mostly useful
+ # for package building and should be left empty otherwise.
+ #
+-DESTDIR		=
++DESTDIR		= 
+ 
+ #
+ # A BSD-like install program. GNU install will fit well here, too.
+ #
+-INSTALL		= /usr/ucb/install
++INSTALL		= /usr/bin/install
+ 
+ #
+ # Compiler and linker flags.
+@@ -183,14 +183,14 @@
+ #      hacks in Unix history. Do not define VFORK unless you have a
+ #      special good reason for that.
+ #
+-OSTYPE	= -DVMUNIX
++OSTYPE	= -DVFORK
+ 
+ #
+ # On VMUNIX systems, ex can normally edit files up to 32 MB of size. LARGEF
+ # raises this limit to around 1 GB, but ex will consume much more of core
+ # and temp file space then.
+ #
+-#LARGEF	= -DLARGEF
++LARGEF	= -DLARGEF
+ 
+ # 
+ # The next setting is a crucial one since it determines the way ex
+@@ -205,13 +205,13 @@
+ #
+ # You may also get terminfo access by using the ncurses library.
+ #
+-#TERMLIB	= ncurses
++TERMLIB	= ncurses
+ #
+ # The preferred choice for ex on Linux distributions, other systems that
+ # provide a good termcap file, or when setting the TERMCAP environment
+ # variable is deemed sufficient, is the included 2.11BSD termcap library.
+ #
+-TERMLIB	= termlib
++#TERMLIB	= termlib
+ 
+ #
+ # Since ex uses sbrk() internally, a conflict with the libc's version of
+@@ -294,20 +294,12 @@
+ 	-rm -f log
+ 
+ # install in standard place
+-
+ install-man:
+-	test -d $(DESTDIR)$(PREFIX) || mkdir -p $(DESTDIR)$(PREFIX)
+-	test -d $(DESTDIR)$(MANDIR) || mkdir -p $(DESTDIR)$(MANDIR)
+-	test -d $(DESTDIR)$(MANDIR)/man1 || mkdir -p $(DESTDIR)$(MANDIR)/man1
+-	rm -f $(DESTDIR)$(MANDIR)/man1/ex.1 $(DESTDIR)$(MANDIR)/man1/edit.1 \
+-		$(DESTDIR)$(MANDIR)/man1/vedit.1 \
+-		$(DESTDIR)$(MANDIR)/man1/vi.1 \
+-		$(DESTDIR)$(MANDIR)/man1/view.1
+ 	$(INSTALL) -c -m 644 ex.1 $(DESTDIR)$(MANDIR)/man1/ex.1
+ 	$(INSTALL) -c -m 644 vi.1 $(DESTDIR)$(MANDIR)/man1/vi.1
+-	ln -s ex.1 $(DESTDIR)$(MANDIR)/man1/edit.1
+-	ln -s vi.1 $(DESTDIR)$(MANDIR)/man1/vedit.1
+-	ln -s vi.1 $(DESTDIR)$(MANDIR)/man1/view.1
++#       ln -s ex.1 $(DESTDIR)$(MANDIR)/man1/edit.1
++#       ln -s vi.1 $(DESTDIR)$(MANDIR)/man1/vedit.1
++#       ln -s vi.1 $(DESTDIR)$(MANDIR)/man1/view.1
+ 
+ install: all install-man
+ 	rm -f $(DESTDIR)$(BINDIR)/ex $(DESTDIR)$(BINDIR)/edit \

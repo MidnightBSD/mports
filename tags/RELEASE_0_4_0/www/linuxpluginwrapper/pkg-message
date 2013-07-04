@@ -1,0 +1,16 @@
+** PLEASE NOTE Macromedia Flash7 SUPPORT IS ALPHA+ VERSION. **
+
+Flash7 support is unstable.  I know well that there are often
+crashes or freezes with flash7.
+
+I don't set the default to use flash7.  Please set-up your
+enviroment(ln -s, apply patch to rtld,...).
+
+** PLEASE CONFIRM YOUR /etc/libmap.conf ***
+
+Setup your /etc/libmap.conf.  Please SEE ALSO following file.
+==> %%LIBMAPCONF%%
+
+Now start browser and go to 'about:plugins' and the new plugins
+are enabled!
+

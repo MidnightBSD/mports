@@ -1,0 +1,9 @@
+bin/agrep
+bin/buildcast
+bin/cast
+bin/glimpse
+bin/glimpseindex
+bin/glimpseserver
+bin/tbuild
+bin/uncast
+bin/wgconvert

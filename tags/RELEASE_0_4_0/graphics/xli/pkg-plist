@@ -1,0 +1,8 @@
+@comment $MidnightBSD$
+bin/xli
+bin/xlito
+bin/xview
+bin/xsetbg
+lib/X11/app-defaults/Xli
+@dirrmtry lib/X11/app-defaults
+@dirrmtry lib/X11

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export HELIX_LIBS="/usr/local/lib/HelixPlayer"
+exec "$HELIX_LIBS/hxplay.bin" "$@"

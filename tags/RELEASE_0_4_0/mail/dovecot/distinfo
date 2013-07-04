@@ -1,0 +1,6 @@
+SHA256 (dovecot-1.2.17.tar.gz) = 6f39f86a06ddbaa8e264d03046c2fc8870f97ea27c1e52eb5bc96c3b754f0bed
+RMD160 (dovecot-1.2.17.tar.gz) = 59f619dba2aadef3cccd6ceb045a2e75a11700a2
+SIZE (dovecot-1.2.17.tar.gz) = 2983431
+SHA256 (dovecot-1.2.14-managesieve-0.11.11.diff.gz) = 5bf1a8c983f78c2b49d9068bb57f52001126fcd1e7ab1c5daf9f3a558c08e696
+RMD160 (dovecot-1.2.14-managesieve-0.11.11.diff.gz) = 41684ecd3667feac71a325786afbef22d0a5119d
+SIZE (dovecot-1.2.14-managesieve-0.11.11.diff.gz) = 6459

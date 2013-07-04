@@ -1,0 +1,38 @@
+# $MidnightBSD$
+
+PORTNAME=	eggdbus
+PORTVERSION=	0.6
+CATEGORIES=	devel
+MASTER_SITES=	http://hal.freedesktop.org/releases/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	D-Bus bindings for GObject
+LICENSE=	lgpl
+
+LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+
+USE_GNOME=	pkgconfig glib20 gnomehack
+USE_GETTEXT=	yes
+USE_GMAKE=	yes
+MAKE_JOBS_UNSAFE=yes
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--localstatedir=/var
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
+
+.if defined(NO_INSTALL_MANPAGES)
+CONFIGURE_ARGS+=--disable-man-pages
+.else
+BUILD_DEPENDS+=	${LOCALBASE}/share/sgml/docbook/4.1/dtd/catalog:${PORTSDIR}/textproc/docbook-410 \
+    		xsltproc:${PORTSDIR}/textproc/libxslt \
+		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+
+MAN1=	eggdbus-binding-tool.1
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-Wl,--as-needed||' \
+	    	${WRKSRC}/configure
+
+.include <bsd.port.mk>

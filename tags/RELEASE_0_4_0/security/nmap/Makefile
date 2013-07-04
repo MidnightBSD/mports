@@ -1,0 +1,101 @@
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.9 2012/10/26 18:28:18 laffer1 Exp $
+
+PORTNAME=	nmap
+DISTVERSION=	6.25
+CATEGORIES=	security ipv6
+MASTER_SITES=	http://nmap.org/dist/ \
+		FREEBSD_LOCAL/ohauer
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Port scanning utility for large networks
+LICENSE=	gpl2
+
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+
+USE_LUA=	5.1
+LUA_COMPS=	lua
+USE_BZIP2=	yes
+USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--without-localdirs \
+		--without-zenmap \
+		--without-ndiff \
+		--with-libpcre=${LOCALBASE} \
+		--with-liblua=${LOCALBASE} \
+		--without-nmap-update
+CONFIGURE_ENV=	LUA_INCDIR="${LUA_INCDIR}" LUA_LIBDIR="${LUA_LIBDIR}"
+
+# fix for gcc from ports
+.if ${CC} != "cc" && ${CC} !="clang"
+GCCLIBDIR_CMDS=	${CC} -print-file-name=libstdc++.so | ${SED} -e 's/libstdc++.so//'
+CONFIGURE_ARGS+=LDFLAGS="-L$$(${GCCLIBDIR_CMDS})"
+NDCC=	true
+.endif
+
+MANLANG=	"" de es fr hr hu it jp pl pt_BR pt_PT ro ru sk zh
+MAN1=		nmap.1
+MAN1_EN=	ncat.1 nping.1
+
+.ifndef WITHOUT_SSL
+USE_OPENSSL=	yes
+CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
+CFLAGS+=		-I${OPENSSLINC}
+PLIST_SUB+=		WITHSSL=""
+.else
+PKGNAMESUFFIX=		-nossl
+CONFIGURE_ARGS+=	--without-openssl
+PLIST_SUB+=		WITHSSL="@comment "
+.endif
+
+# XXX: Workaround if OS is build with WITHOUT_INET6
+#
+# Note: If this option is specified in src.conf it has to
+#  be defined as param -DWITHOUT_INET6 during build time
+#  since the port system has no access to src.conf
+.if defined(WITHOUT_INET6)
+LIB_DEPENDS+=		pcap:${PORTSDIR}/net/libpcap
+CONFIGURE_ARGS+=	--with-libpcap=${LOCALBASE}
+.endif
+
+PORTDOCS=	CHANGELOG HACKING
+EXAMPLES=	docs/sample-script.nse
+PORTEXAMPLES=	${EXAMPLES:T}
+
+# XXX limit results if we do a grep in the sources!
+post-extract:
+	@${RM} -rf ${WRKSRC}/mswin32
+
+# reflect new mailing addreses
+pre-patch:
+	@for f in $$(${GREP} -Rl "nmap-dev@insecure.org" ${WRKSRC}); do\
+		${SED} -i '' -e 's|nmap-dev@insecure.org|dev@nmap.org|g' $${f} ;\
+	done
+	@for f in $$(${GREP} -Rl "http://cgi.insecure.org/mailman" ${WRKSRC}); do\
+		${SED} -i '' -e 's|http://cgi.insecure.org/mailman/listinfo/nmap-dev|http://nmap.org/mailman/listinfo/dev|g' $${f} ;\
+	done
+
+post-patch:
+# fix from r30346
+	@${REINPLACE_CMD} -e 's|~0L;|0xffffffffL;|' ${WRKSRC}/nbase/nbase_misc.c
+
+post-configure:
+	@${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|" ${WRKSRC}/Makefile
+
+post-install:
+.ifndef NOPORTDOCS
+	@${MKDIR} ${DOCSDIR}
+.	for i in ${PORTDOCS}
+		@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
+.	endfor
+.endif
+.ifndef NOPORTEXAMPLES
+	@${MKDIR} ${EXAMPLESDIR}
+.	for i in ${EXAMPLES}
+		@${INSTALL_DATA} ${WRKSRC}/${i} ${EXAMPLESDIR}
+.	endfor
+.endif
+.if defined(NDCC)
+	@${ECHO_MSG} do not forget to adjust libnmap.conf
+.endif
+
+.include <bsd.port.mk>

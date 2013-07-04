@@ -1,0 +1,459 @@
+@exec mkdir -p %D/etc/apache24/extra 2> /dev/null
+@exec mkdir -p %D/etc/apache24/Includes 2> /dev/null || true
+@exec mkdir -p %D/etc/apache24/envvars.d 2> /dev/null || true
+@unexec if cmp %D/etc/apache24/httpd.conf %D/%%EXAMPLESDIR%%/httpd.conf; then rm -f %D/etc/apache24/httpd.conf; fi
+%%EXAMPLESDIR%%/httpd.conf
+@exec [ -f %D/etc/apache24/httpd.conf ] || cp %D/%%EXAMPLESDIR%%/httpd.conf %D/etc/apache24/httpd.conf
+@unexec if cmp -s %D/etc/apache24/magic %D/%%EXAMPLESDIR%%/magic; then rm -f %D/etc/apache24/magic; fi
+%%EXAMPLESDIR%%/magic
+@exec [ -f %D/etc/apache24/magic ] || cp %D/%%EXAMPLESDIR%%/magic %D/etc/apache24/magic
+@unexec if cmp -s %D/etc/apache24/mime.types %D/%%EXAMPLESDIR%%/mime.types; then rm -f %D/etc/apache24/mime.types; fi
+%%EXAMPLESDIR%%/mime.types
+@exec [ -f %D/etc/apache24/mime.types ] || cp %D/%%EXAMPLESDIR%%/mime.types %D/etc/apache24/mime.types
+@unexec if cmp -s %D/etc/apache24/extra/httpd-autoindex.conf %D/%%EXAMPLESDIR%%/extra/httpd-autoindex.conf; then rm -f %D/etc/apache24/extra/httpd-autoindex.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-autoindex.conf
+@exec [ -f %D/etc/apache24/extra/httpd-autoindex.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-autoindex.conf %D/etc/apache24/extra/httpd-autoindex.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-dav.conf %D/%%EXAMPLESDIR%%/extra/httpd-dav.conf; then rm -f %D/etc/apache24/extra/httpd-dav.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-dav.conf
+@exec [ -f %D/etc/apache24/extra/httpd-dav.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-dav.conf %D/etc/apache24/extra/httpd-dav.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-default.conf %D/%%EXAMPLESDIR%%/extra/httpd-default.conf; then rm -f %D/etc/apache24/extra/httpd-default.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-default.conf
+@exec [ -f %D/etc/apache24/extra/httpd-default.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-default.conf %D/etc/apache24/extra/httpd-default.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-info.conf %D/%%EXAMPLESDIR%%/extra/httpd-info.conf; then rm -f %D/etc/apache24/extra/httpd-info.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-info.conf
+@exec [ -f %D/etc/apache24/extra/httpd-info.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-info.conf %D/etc/apache24/extra/httpd-info.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-languages.conf %D/%%EXAMPLESDIR%%/extra/httpd-languages.conf; then rm -f %D/etc/apache24/extra/httpd-languages.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-languages.conf
+@exec [ -f %D/etc/apache24/extra/httpd-languages.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-languages.conf %D/etc/apache24/extra/httpd-languages.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-manual.conf %D/%%EXAMPLESDIR%%/extra/httpd-manual.conf; then rm -f %D/etc/apache24/extra/httpd-manual.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-manual.conf
+@exec [ -f %D/etc/apache24/extra/httpd-manual.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-manual.conf %D/etc/apache24/extra/httpd-manual.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-mpm.conf %D/%%EXAMPLESDIR%%/extra/httpd-mpm.conf; then rm -f %D/etc/apache24/extra/httpd-mpm.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-mpm.conf
+@exec [ -f %D/etc/apache24/extra/httpd-mpm.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-mpm.conf %D/etc/apache24/extra/httpd-mpm.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-multilang-errordoc.conf %D/%%EXAMPLESDIR%%/extra/httpd-multilang-errordoc.conf; then rm -f %D/etc/apache24/extra/httpd-multilang-errordoc.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-multilang-errordoc.conf
+@exec [ -f %D/etc/apache24/extra/httpd-multilang-errordoc.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-multilang-errordoc.conf %D/etc/apache24/extra/httpd-multilang-errordoc.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-ssl.conf %D/%%EXAMPLESDIR%%/extra/httpd-ssl.conf; then rm -f %D/etc/apache24/extra/httpd-ssl.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-ssl.conf
+@exec [ -f %D/etc/apache24/extra/httpd-ssl.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-ssl.conf %D/etc/apache24/extra/httpd-ssl.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-userdir.conf %D/%%EXAMPLESDIR%%/extra/httpd-userdir.conf; then rm -f %D/etc/apache24/extra/httpd-userdir.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-userdir.conf
+@exec [ -f %D/etc/apache24/extra/httpd-userdir.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-userdir.conf %D/etc/apache24/extra/httpd-userdir.conf
+@unexec if cmp -s %D/etc/apache24/extra/httpd-vhosts.conf %D/%%EXAMPLESDIR%%/extra/httpd-vhosts.conf; then rm -f %D/etc/apache24/extra/httpd-vhosts.conf; fi
+%%EXAMPLESDIR%%/extra/httpd-vhosts.conf
+@exec [ -f %D/etc/apache24/extra/httpd-vhosts.conf ] || cp %D/%%EXAMPLESDIR%%/extra/httpd-vhosts.conf %D/etc/apache24/extra/httpd-vhosts.conf
+etc/apache24/Includes/no-accf.conf
+bin/ab
+bin/apxs
+bin/dbmmanage
+bin/htdbm
+bin/htdigest
+bin/htpasswd
+bin/httxt2dbm
+bin/logresolve
+include/apache24/ap_compat.h
+include/apache24/ap_config.h
+include/apache24/ap_config_auto.h
+include/apache24/ap_config_layout.h
+include/apache24/ap_listen.h
+include/apache24/ap_mmn.h
+include/apache24/ap_mpm.h
+include/apache24/ap_provider.h
+include/apache24/ap_regex.h
+include/apache24/ap_regkey.h
+include/apache24/ap_release.h
+%%EVENT%%include/apache24/pod.h
+%%EVENT%%include/apache24/fdqueue.h
+%%WORKER%%include/apache24/fdqueue.h
+include/apache24/http_config.h
+include/apache24/http_connection.h
+include/apache24/http_core.h
+include/apache24/http_log.h
+include/apache24/http_main.h
+include/apache24/http_protocol.h
+include/apache24/http_request.h
+include/apache24/http_vhost.h
+include/apache24/httpd.h
+include/apache24/mod_auth.h
+include/apache24/mod_cgi.h
+include/apache24/mod_core.h
+include/apache24/mod_dav.h
+include/apache24/mod_dbd.h
+include/apache24/mod_include.h
+include/apache24/mod_log_config.h
+include/apache24/mod_proxy.h
+include/apache24/mod_rewrite.h
+include/apache24/mod_ssl.h
+include/apache24/mod_status.h
+include/apache24/mpm_common.h
+include/apache24/os.h
+%%WORKER%%include/apache24/pod.h
+include/apache24/scoreboard.h
+include/apache24/unixd.h
+include/apache24/util_cfgtree.h
+include/apache24/util_charset.h
+include/apache24/util_ebcdic.h
+include/apache24/util_filter.h
+include/apache24/util_ldap.h
+include/apache24/util_md5.h
+include/apache24/util_script.h
+include/apache24/util_time.h
+include/apache24/util_xml.h
+libexec/apache24/httpd.exp
+libexec/apache24/mod_access_compat.so
+%%MOD_ACTIONS%%libexec/apache24/mod_actions.so
+%%MOD_ALIAS%%libexec/apache24/mod_alias.so
+%%MOD_ASIS%%libexec/apache24/mod_asis.so
+%%MOD_AUTH_BASIC%%libexec/apache24/mod_auth_basic.so
+%%MOD_AUTH_DIGEST%%libexec/apache24/mod_auth_digest.so
+%%MOD_AUTHN_ANON%%libexec/apache24/mod_authn_anon.so
+libexec/apache24/mod_authn_core.so
+%%MOD_AUTHN_DBD%%libexec/apache24/mod_authn_dbd.so
+%%MOD_AUTHN_DBM%%libexec/apache24/mod_authn_dbm.so
+%%MOD_AUTHN_FILE%%libexec/apache24/mod_authn_file.so
+%%MOD_AUTHNZ_LDAP%%libexec/apache24/mod_authnz_ldap.so
+%%MOD_AUTHZ_DBM%%libexec/apache24/mod_authz_dbm.so
+libexec/apache24/mod_authz_core.so
+%%MOD_AUTHZ_GROUPFILE%%libexec/apache24/mod_authz_groupfile.so
+%%MOD_AUTHZ_HOST%%libexec/apache24/mod_authz_host.so
+%%MOD_AUTHZ_OWNER%%libexec/apache24/mod_authz_owner.so
+%%MOD_AUTHZ_USER%%libexec/apache24/mod_authz_user.so
+%%MOD_AUTOINDEX%%libexec/apache24/mod_autoindex.so
+%%MOD_BUCKETEER%%libexec/apache24/mod_bucketeer.so
+%%MOD_CACHE%%libexec/apache24/mod_cache.so
+%%MOD_CASE_FILTER%%libexec/apache24/mod_case_filter.so
+%%MOD_CASE_FILTER_IN%%libexec/apache24/mod_case_filter_in.so
+%%MOD_CERN_META%%libexec/apache24/mod_cern_meta.so
+%%MOD_CGI%%libexec/apache24/mod_cgi.so
+%%MOD_CGID%%libexec/apache24/mod_cgid.so
+%%MOD_CHARSET_LITE%%libexec/apache24/mod_charset_lite.so
+%%MOD_DAV%%libexec/apache24/mod_dav.so
+%%MOD_DAV_FS%%libexec/apache24/mod_dav_fs.so
+%%MOD_DBD%%libexec/apache24/mod_dbd.so
+%%MOD_DEFLATE%%libexec/apache24/mod_deflate.so
+%%MOD_DIR%%libexec/apache24/mod_dir.so
+%%MOD_DUMPIO%%libexec/apache24/mod_dumpio.so
+%%MOD_ENV%%libexec/apache24/mod_env.so
+%%MOD_EXPIRES%%libexec/apache24/mod_expires.so
+%%MOD_EXT_FILTER%%libexec/apache24/mod_ext_filter.so
+%%MOD_FILE_CACHE%%libexec/apache24/mod_file_cache.so
+%%MOD_FILTER%%libexec/apache24/mod_filter.so
+%%MOD_HEADERS%%libexec/apache24/mod_headers.so
+%%MOD_IMAGEMAP%%libexec/apache24/mod_imagemap.so
+%%MOD_INCLUDE%%libexec/apache24/mod_include.so
+%%MOD_INFO%%libexec/apache24/mod_info.so
+%%MOD_LDAP%%libexec/apache24/mod_ldap.so
+%%MOD_LOG_CONFIG%%libexec/apache24/mod_log_config.so
+%%MOD_LOG_FORENSIC%%libexec/apache24/mod_log_forensic.so
+%%MOD_LOGIO%%libexec/apache24/mod_logio.so
+%%MOD_MEM_CACHE%%libexec/apache24/mod_mem_cache.so
+%%MOD_MIME%%libexec/apache24/mod_mime.so
+%%MOD_MIME_MAGIC%%libexec/apache24/mod_mime_magic.so
+%%MOD_NEGOTIATION%%libexec/apache24/mod_negotiation.so
+%%MOD_OPTIONAL_HOOK_EXPORT%%libexec/apache24/mod_optional_hook_export.so
+%%MOD_OPTIONAL_HOOK_IMPORT%%libexec/apache24/mod_optional_hook_import.so
+%%MOD_OPTIONAL_FN_IMPORT%%libexec/apache24/mod_optional_fn_import.so
+%%MOD_OPTIONAL_FN_EXPORT%%libexec/apache24/mod_optional_fn_export.so
+%%MOD_PROXY%%libexec/apache24/mod_proxy.so
+%%MOD_PROXY_AJP%%libexec/apache24/mod_proxy_ajp.so
+%%MOD_PROXY_BALANCER%%libexec/apache24/mod_proxy_balancer.so
+%%MOD_PROXY_CONNECT%%libexec/apache24/mod_proxy_connect.so
+%%MOD_PROXY_FTP%%libexec/apache24/mod_proxy_ftp.so
+%%MOD_PROXY_HTTP%%libexec/apache24/mod_proxy_http.so
+%%MOD_PROXY_SCGI%%libexec/apache24/mod_proxy_scgi.so
+%%MOD_REWRITE%%libexec/apache24/mod_rewrite.so
+%%MOD_REQTIMEOUT%%libexec/apache24/mod_reqtimeout.so
+%%MOD_SETENVIF%%libexec/apache24/mod_setenvif.so
+%%MOD_SPELING%%libexec/apache24/mod_speling.so
+%%MOD_SSL%%libexec/apache24/mod_ssl.so
+%%MOD_STATUS%%libexec/apache24/mod_status.so
+%%MOD_SUEXEC%%libexec/apache24/mod_suexec.so
+%%MOD_SUBSTITUTE%%libexec/apache24/mod_substitute.so
+%%MOD_UNIQUE_ID%%libexec/apache24/mod_unique_id.so
+libexec/apache24/mod_unixd.so
+%%MOD_USERDIR%%libexec/apache24/mod_userdir.so
+%%MOD_USERTRACK%%libexec/apache24/mod_usertrack.so
+%%MOD_VERSION%%libexec/apache24/mod_version.so
+%%MOD_VHOST_ALIAS%%libexec/apache24/mod_vhost_alias.so
+sbin/apachectl
+sbin/checkgid
+%%MOD_LOG_FORENSIC%%sbin/check_forensic
+sbin/envvars
+sbin/htcacheclean
+sbin/httpd
+sbin/rotatelogs
+%%MOD_SUEXEC%%sbin/suexec
+share/apache24/build/config_vars.mk
+share/apache24/build/config.nice
+share/apache24/build/instdso.sh
+share/apache24/build/library.mk
+share/apache24/build/ltlib.mk
+share/apache24/build/mkdir.sh
+share/apache24/build/program.mk
+share/apache24/build/rules.mk
+share/apache24/build/special.mk
+www/apache24/cgi-bin/printenv
+www/apache24/cgi-bin/test-cgi
+@unexec if cmp -s %D/www/apache24/data/index.html %D/%%EXAMPLESDIR%%/index.html; then rm -f %D/www/apache24/data/index.html; fi
+%%EXAMPLESDIR%%/index.html
+@exec [ -d %D/www/apache24/data ] || mkdir -p %D/www/apache24/data
+@exec [ -f %D/www/apache24/data/index.html ] || cp %D/%%EXAMPLESDIR%%/index.html %D/www/apache24/data/index.html
+www/apache24/error/HTTP_BAD_GATEWAY.html.var
+www/apache24/error/HTTP_BAD_REQUEST.html.var
+www/apache24/error/HTTP_FORBIDDEN.html.var
+www/apache24/error/HTTP_GONE.html.var
+www/apache24/error/HTTP_INTERNAL_SERVER_ERROR.html.var
+www/apache24/error/HTTP_LENGTH_REQUIRED.html.var
+www/apache24/error/HTTP_METHOD_NOT_ALLOWED.html.var
+www/apache24/error/HTTP_NOT_FOUND.html.var
+www/apache24/error/HTTP_NOT_IMPLEMENTED.html.var
+www/apache24/error/HTTP_PRECONDITION_FAILED.html.var
+www/apache24/error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
+www/apache24/error/HTTP_REQUEST_TIME_OUT.html.var
+www/apache24/error/HTTP_REQUEST_URI_TOO_LARGE.html.var
+www/apache24/error/HTTP_SERVICE_UNAVAILABLE.html.var
+www/apache24/error/HTTP_UNAUTHORIZED.html.var
+www/apache24/error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
+www/apache24/error/HTTP_VARIANT_ALSO_VARIES.html.var
+www/apache24/error/README
+www/apache24/error/contact.html.var
+www/apache24/error/include/bottom.html
+www/apache24/error/include/spacer.html
+www/apache24/error/include/top.html
+www/apache24/icons/README
+www/apache24/icons/README.html
+www/apache24/icons/a.gif
+www/apache24/icons/a.png
+www/apache24/icons/alert.black.gif
+www/apache24/icons/alert.black.png
+www/apache24/icons/alert.red.gif
+www/apache24/icons/alert.red.png
+www/apache24/icons/apache_pb.gif
+www/apache24/icons/apache_pb.png
+www/apache24/icons/apache_pb2.gif
+www/apache24/icons/apache_pb2.png
+www/apache24/icons/apache_pb2_ani.gif
+www/apache24/icons/back.gif
+www/apache24/icons/back.png
+www/apache24/icons/ball.gray.gif
+www/apache24/icons/ball.gray.png
+www/apache24/icons/ball.red.gif
+www/apache24/icons/ball.red.png
+www/apache24/icons/binary.gif
+www/apache24/icons/binary.png
+www/apache24/icons/binhex.gif
+www/apache24/icons/binhex.png
+www/apache24/icons/blank.gif
+www/apache24/icons/blank.png
+www/apache24/icons/bomb.gif
+www/apache24/icons/bomb.png
+www/apache24/icons/box1.gif
+www/apache24/icons/box1.png
+www/apache24/icons/box2.gif
+www/apache24/icons/box2.png
+www/apache24/icons/broken.gif
+www/apache24/icons/broken.png
+www/apache24/icons/burst.gif
+www/apache24/icons/burst.png
+www/apache24/icons/c.gif
+www/apache24/icons/c.png
+www/apache24/icons/comp.blue.gif
+www/apache24/icons/comp.blue.png
+www/apache24/icons/comp.gray.gif
+www/apache24/icons/comp.gray.png
+www/apache24/icons/compressed.gif
+www/apache24/icons/compressed.png
+www/apache24/icons/continued.gif
+www/apache24/icons/continued.png
+www/apache24/icons/dir.gif
+www/apache24/icons/dir.png
+www/apache24/icons/diskimg.gif
+www/apache24/icons/diskimg.png
+www/apache24/icons/down.gif
+www/apache24/icons/down.png
+www/apache24/icons/dvi.gif
+www/apache24/icons/dvi.png
+www/apache24/icons/f.gif
+www/apache24/icons/f.png
+www/apache24/icons/folder.gif
+www/apache24/icons/folder.open.gif
+www/apache24/icons/folder.open.png
+www/apache24/icons/folder.png
+www/apache24/icons/folder.sec.gif
+www/apache24/icons/folder.sec.png
+www/apache24/icons/forward.gif
+www/apache24/icons/forward.png
+www/apache24/icons/generic.gif
+www/apache24/icons/generic.png
+www/apache24/icons/generic.red.gif
+www/apache24/icons/generic.red.png
+www/apache24/icons/generic.sec.gif
+www/apache24/icons/generic.sec.png
+www/apache24/icons/hand.right.gif
+www/apache24/icons/hand.right.png
+www/apache24/icons/hand.up.gif
+www/apache24/icons/hand.up.png
+www/apache24/icons/icon.sheet.gif
+www/apache24/icons/icon.sheet.png
+www/apache24/icons/image1.gif
+www/apache24/icons/image1.png
+www/apache24/icons/image2.gif
+www/apache24/icons/image2.png
+www/apache24/icons/image3.gif
+www/apache24/icons/image3.png
+www/apache24/icons/index.gif
+www/apache24/icons/index.png
+www/apache24/icons/layout.gif
+www/apache24/icons/layout.png
+www/apache24/icons/left.gif
+www/apache24/icons/left.png
+www/apache24/icons/link.gif
+www/apache24/icons/link.png
+www/apache24/icons/movie.gif
+www/apache24/icons/movie.png
+www/apache24/icons/p.gif
+www/apache24/icons/p.png
+www/apache24/icons/patch.gif
+www/apache24/icons/patch.png
+www/apache24/icons/pdf.gif
+www/apache24/icons/pdf.png
+www/apache24/icons/pie0.gif
+www/apache24/icons/pie0.png
+www/apache24/icons/pie1.gif
+www/apache24/icons/pie1.png
+www/apache24/icons/pie2.gif
+www/apache24/icons/pie2.png
+www/apache24/icons/pie3.gif
+www/apache24/icons/pie3.png
+www/apache24/icons/pie4.gif
+www/apache24/icons/pie4.png
+www/apache24/icons/pie5.gif
+www/apache24/icons/pie5.png
+www/apache24/icons/pie6.gif
+www/apache24/icons/pie6.png
+www/apache24/icons/pie7.gif
+www/apache24/icons/pie7.png
+www/apache24/icons/pie8.gif
+www/apache24/icons/pie8.png
+www/apache24/icons/portal.gif
+www/apache24/icons/portal.png
+www/apache24/icons/ps.gif
+www/apache24/icons/ps.png
+www/apache24/icons/quill.gif
+www/apache24/icons/quill.png
+www/apache24/icons/right.gif
+www/apache24/icons/right.png
+www/apache24/icons/screw1.gif
+www/apache24/icons/screw1.png
+www/apache24/icons/screw2.gif
+www/apache24/icons/screw2.png
+www/apache24/icons/script.gif
+www/apache24/icons/script.png
+www/apache24/icons/small/back.gif
+www/apache24/icons/small/back.png
+www/apache24/icons/small/binary.gif
+www/apache24/icons/small/binary.png
+www/apache24/icons/small/binhex.gif
+www/apache24/icons/small/binhex.png
+www/apache24/icons/small/blank.gif
+www/apache24/icons/small/blank.png
+www/apache24/icons/small/broken.gif
+www/apache24/icons/small/broken.png
+www/apache24/icons/small/burst.gif
+www/apache24/icons/small/burst.png
+www/apache24/icons/small/comp1.gif
+www/apache24/icons/small/comp1.png
+www/apache24/icons/small/comp2.gif
+www/apache24/icons/small/comp2.png
+www/apache24/icons/small/compressed.gif
+www/apache24/icons/small/compressed.png
+www/apache24/icons/small/continued.gif
+www/apache24/icons/small/continued.png
+www/apache24/icons/small/doc.gif
+www/apache24/icons/small/doc.png
+www/apache24/icons/small/forward.gif
+www/apache24/icons/small/forward.png
+www/apache24/icons/small/generic.gif
+www/apache24/icons/small/generic.png
+www/apache24/icons/small/generic2.gif
+www/apache24/icons/small/generic2.png
+www/apache24/icons/small/generic3.gif
+www/apache24/icons/small/generic3.png
+www/apache24/icons/small/image.gif
+www/apache24/icons/small/image.png
+www/apache24/icons/small/image2.gif
+www/apache24/icons/small/image2.png
+www/apache24/icons/small/index.gif
+www/apache24/icons/small/index.png
+www/apache24/icons/small/key.gif
+www/apache24/icons/small/key.png
+www/apache24/icons/small/movie.gif
+www/apache24/icons/small/movie.png
+www/apache24/icons/small/patch.gif
+www/apache24/icons/small/patch.png
+www/apache24/icons/small/ps.gif
+www/apache24/icons/small/ps.png
+www/apache24/icons/small/rainbow.gif
+www/apache24/icons/small/rainbow.png
+www/apache24/icons/small/sound.gif
+www/apache24/icons/small/sound.png
+www/apache24/icons/small/sound2.gif
+www/apache24/icons/small/sound2.png
+www/apache24/icons/small/tar.gif
+www/apache24/icons/small/tar.png
+www/apache24/icons/small/text.gif
+www/apache24/icons/small/text.png
+www/apache24/icons/small/transfer.gif
+www/apache24/icons/small/transfer.png
+www/apache24/icons/small/unknown.gif
+www/apache24/icons/small/unknown.png
+www/apache24/icons/small/uu.gif
+www/apache24/icons/small/uu.png
+www/apache24/icons/sound1.gif
+www/apache24/icons/sound1.png
+www/apache24/icons/sound2.gif
+www/apache24/icons/sound2.png
+www/apache24/icons/sphere1.gif
+www/apache24/icons/sphere1.png
+www/apache24/icons/sphere2.gif
+www/apache24/icons/sphere2.png
+www/apache24/icons/tar.gif
+www/apache24/icons/tar.png
+www/apache24/icons/tex.gif
+www/apache24/icons/tex.png
+www/apache24/icons/text.gif
+www/apache24/icons/text.png
+www/apache24/icons/transfer.gif
+www/apache24/icons/transfer.png
+www/apache24/icons/unknown.gif
+www/apache24/icons/unknown.png
+www/apache24/icons/up.gif
+www/apache24/icons/up.png
+www/apache24/icons/uu.gif
+www/apache24/icons/uu.png
+www/apache24/icons/uuencoded.gif
+www/apache24/icons/uuencoded.png
+www/apache24/icons/world1.gif
+www/apache24/icons/world1.png
+www/apache24/icons/world2.gif
+www/apache24/icons/world2.png
+@dirrm www/apache24/icons/small
+@dirrm www/apache24/icons
+@dirrm www/apache24/error/include
+@dirrm www/apache24/error
+@dirrmtry www/apache24/data
+@dirrmtry www/apache24/cgi-bin
+@dirrm %%EXAMPLESDIR%%/extra
+@dirrm %%EXAMPLESDIR%%
+@dirrmtry %%DOCSDIR%%
+@dirrm share/apache24/build
+@dirrm share/apache24
+@dirrmtry libexec/apache24
+@dirrmtry include/apache24
+@dirrmtry www/apache24
+@dirrmtry etc/apache24/Includes
+@unexec rm -f %D/etc/apache24/httpd.conf.bak 2> /dev/null || true
+@dirrmtry etc/apache24/envvars.d
+@dirrmtry etc/apache24/extra
+@dirrmtry etc/apache24

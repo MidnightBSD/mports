@@ -1,0 +1,90 @@
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.11 2011/09/23 02:02:29 laffer1 Exp $
+
+PORTNAME=	abiword
+PORTVERSION=	2.8.4
+PORTREVISION=	2
+CATEGORIES=	editors
+MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
+MASTER_SITE_SUBDIR=	abiword
+DIST_SUBDIR=	AbiWord
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	An open-source, cross-platform WYSIWYG word processor
+LICENSE=	gpl2
+
+LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
+		png15:${PORTSDIR}/graphics/png \
+		wv-1.2:${PORTSDIR}/textproc/wv \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
+		fribidi.3:${PORTSDIR}/converters/fribidi \
+		psiconv.10:${PORTSDIR}/converters/psiconv \
+		goffice-0.8.8:${PORTSDIR}/devel/goffice
+RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
+
+USE_GMAKE=	yes
+USE_ICONV=	yes
+USE_GETTEXT=	yes
+USE_GNOME=	gnomehack libxml2 gtk20 desktopfileutils librsvg2
+WANT_GNOME=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--without-gnomevfs --disable-collab-backend-xmpp \
+		--disable-collab-backend-sugar
+USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
+
+ABIVERSION=	2.8
+PLIST_SUB+=	ABIVERSION=${ABIVERSION}
+
+MAN1=		abiword.1
+
+OPTIONS=	DEBUG "Enable debug" off \
+		BOOST "Build with boost" on \
+		SPELLCHECK "Enable spell checking support" on \
+		CLIPART "Install clipart" on \
+		TEMPLATES "Install additional templates" on
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug --enable-symbols
+.endif
+
+.if defined(WITH_BOOST)
+CONFIGURE_ARGS+=	--with-boost
+LIB_DEPENDS+=		boost_system:${PORTSDIR}/devel/boost-libs
+.else
+CONFIGURE_ARGS+=	--without-boost
+.endif
+
+.if defined(WITH_SPELLCHECK)
+LIB_DEPENDS+=		enchant.1:${PORTSDIR}/textproc/enchant
+CONFIGURE_ARGS+=	--enable-spell
+PLIST_SUB+=		DICT=""
+.else
+CONFIGURE_ARGS+=	--disable-spell
+PLIST_SUB+=		DICT="@comment "
+.endif
+
+.if defined(WITH_TEMPLATES)
+CONFIGURE_ARGS+=	--enable-templates
+PLIST_SUB+=		TEMPLATES=""
+.else
+CONFIGURE_ARGS+=	--disable-templates
+PLIST_SUB+=		TEMPLATES="@comment "
+.endif
+
+.if defined(WITH_CLIPART)
+CONFIGURE_ARGS+=	--enable-clipart
+PLIST_SUB+=		CLIPART=""
+.else
+CONFIGURE_ARGS+=	--disable-clipart
+PLIST_SUB+=		CLIPART="@comment "
+.endif
+
+post-install:
+	@${MKDIR} ${PREFIX}/lib/${PORTNAME}-${ABIVERSION}/plugins
+	@-update-desktop-database
+
+.include <bsd.port.post.mk>

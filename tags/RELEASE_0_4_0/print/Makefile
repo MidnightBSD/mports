@@ -1,0 +1,63 @@
+# $MidnightBSD: mports/print/Makefile,v 1.51 2012/03/04 16:31:16 laffer1 Exp $
+
+COMMENT = Desktop publishing
+
+SUBDIR += a2ps-a4
+SUBDIR += a2ps-letter
+SUBDIR += acroread8
+SUBDIR += acroread8-de
+SUBDIR += acroread9
+SUBDIR += acroreadwrapper
+SUBDIR += adobe-cmaps
+SUBDIR += amspsfnt
+SUBDIR += cm-super
+SUBDIR += cmpsfont
+SUBDIR += cups
+SUBDIR += cups-base
+SUBDIR += cups-client
+SUBDIR += cups-image
+SUBDIR += cups-pstoraster
+SUBDIR += dvipdfmx
+SUBDIR += dvipsk-tetex
+SUBDIR += enscript-a4
+SUBDIR += enscript-letter
+SUBDIR += fontforge
+SUBDIR += foomatic-db
+SUBDIR += foomatic-db-engine
+SUBDIR += foomatic-db-hpijs
+SUBDIR += freetype
+SUBDIR += freetype-tools
+SUBDIR += freetype2
+SUBDIR += ghostscript8
+SUBDIR += ghostscript8-nox11
+SUBDIR += gimp-gutenprint
+SUBDIR += gsfonts
+SUBDIR += gspdf
+SUBDIR += gutenprint-base
+SUBDIR += gv
+SUBDIR += hs-hscolour
+SUBDIR += hs-hscolour-docs
+SUBDIR += jadetex
+SUBDIR += libgnomecups
+SUBDIR += libgnomeprint
+SUBDIR += libgnomeprint-reference
+SUBDIR += libgnomeprintmm
+SUBDIR += libijs
+SUBDIR += libotf
+SUBDIR += libpaper
+SUBDIR += libspectre
+SUBDIR += mp-letter
+SUBDIR += pdflib
+SUBDIR += pecl-pdflib
+SUBDIR += t1utils
+SUBDIR += teTeX
+SUBDIR += teTeX-base
+SUBDIR += teTeX-texmf
+SUBDIR += tex-texmflocal
+SUBDIR += texinfo
+SUBDIR += ttf2pt1
+SUBDIR += wmlpq
+SUBDIR += xdvik
+SUBDIR += xfce4-print
+
+.include <bsd.port.subdir.mk>

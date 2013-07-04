@@ -1,0 +1,8 @@
+%%SITE_PERL%%/Email/MIME.pm
+%%SITE_PERL%%/Email/MIME/Creator.pm
+%%SITE_PERL%%/Email/MIME/Header.pm
+%%SITE_PERL%%/Email/MIME/Modifier.pm
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email/MIME
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email
+@dirrmtry %%SITE_PERL%%/Email/MIME
+@dirrmtry %%SITE_PERL%%/Email

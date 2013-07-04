@@ -1,0 +1,145 @@
+# $FreeBSD: ports/www/apache22/Makefile.modules,v 1.33 2009/08/02 19:35:56 mezz Exp $
+# $MidnightBSD: mports/www/apache22/Makefile.modules,v 1.6 2011/05/27 02:42:04 laffer1 Exp $
+
+.if !defined(Module_inc)
+Module_inc=		done
+
+AUTH_MODULES=		auth_basic auth_digest
+AUTHN_MODULES=		authn_file authn_dbd authn_dbm authn_anon authn_default \
+			authn_alias
+AUTHZ_MODULES=		authz_host authz_groupfile authz_user authz_dbm \
+			authz_owner authz_default
+CACHE_MODULES=		cache disk_cache file_cache mem_cache
+DAV_MODULES=		dav dav_fs
+EXPERIMENTAL_MODULES=	bucketeer case_filter case_filter_in ext_filter \
+			log_forensic optional_hook_export optional_hook_import \
+			optional_fn_import optional_fn_export 
+LDAP_MODULES=		ldap authnz_ldap
+MISC_MODULES+=		actions alias asis autoindex cern_meta \
+			cgi charset_lite dbd deflate dir dumpio env expires \
+			headers imagemap include info log_config logio mime \
+			mime_magic negotiation rewrite setenvif speling status substitute \
+			unique_id userdir usertrack vhost_alias filter version reqtimeout
+PROXY_MODULES=		proxy proxy_connect proxy_ftp proxy_http proxy_ajp proxy_balancer proxy_scgi
+SSL_MODULES=		ssl
+SUEXEC_MODULES=		suexec
+THREADS_MODULES=	cgid
+
+DEFAULT_MODULES_CATEGORIES= \
+			AUTH AUTHN AUTHZ DAV CACHE MISC
+
+ALL_MODULES_CATEGORIES=	AUTH AUTHN AUTHZ CACHE DAV EXPERIMENTAL LDAP \
+			MISC PROXY SSL SUEXEC THREADS
+
+.endif
+
+.if defined(_PREMKINCLUDED)
+# MPM section:
+# << TO BE WRITTEN >>
+.if defined (SLAVE_PORT_MPM)
+PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
+PKGNAMESUFFIX=	-${SLAVE_PORT_MPM}
+.else
+.   if ${WITH_MPM} != "prefork"
+PKGNAMESUFFIX=		-${WITH_MPM:L}
+.   if ${WITH_MPM} != "itk"
+WITH_THREADS=		yes
+WITH_THREADS_MODULES=	yes
+WITHOUT_MODULES+=	cgi
+.   endif
+.      if ${WITH_MPM:L} == "worker"
+PLIST_SUB+=	PREFORK="@comment " WORKER="" EVENT="@comment "
+.      elif  ${WITH_MPM:L} == "event"
+PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT=""
+.      elif  ${WITH_MPM:L} == "itk"
+PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
+EXTRA_PATCHES+=	${PATCHDIR}/mpm-itk-${MPM_ITK_VERSION}
+.   if defined (WITH_ITK_PERDIR_REGEX)
+EXTRA_PATCHES+= ${PATCHDIR}/mpm-itk-perdir-regex
+.   endif
+.      else
+IGNORE=		"Unknown MPM: ${WITH_MPM}"
+.      endif
+.   else
+PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " THREADPOOL="@comment " EVENT="@comment "
+.   endif
+.else
+PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
+.endif
+
+# xDBM section
+#
+.if !defined(WITH_DBM)
+.   if defined(WITH_BDB) || defined(WITH_BDB_BASE) || defined(WITH_BERKELEYDB)
+WITH_DBM=bdb
+PLIST_SUB+=	BDB=""
+.   else
+PLIST_SUB+=	BDB="@comment "
+.   endif
+.endif
+
+.if defined(WITH_BERKELEYDB) && !defined(WITH_BDB_VER)
+.   if ${WITH_BERKELEYDB} == "FreeBSD"
+       WITH_BDB_BASE=YES
+.   else
+      WITH_BDB_VER=${WITH_BERKELEYDB:S/db//} 
+.   endif
+.endif
+
+.if defined(WITH_DBM)
+.   if ${WITH_DBM:L} == "sdbm"
+CONFIGURE_ARGS+=	--with-dbm=sdbm
+.   elif ${WITH_DBM:L} == "gdbm"
+LIB_DEPENDS+=		gdbm.3:${PORTSDIR}/databases/gdbm
+CONFIGURE_ARGS+=	--with-gdbm=${LOCALBASE}
+.   elif ${WITH_DBM:L} == "db" || ${WITH_DBM:L} == "bdb"
+.	if defined(WITH_BDB_BASE)
+CONFIGURE_ARGS+=	--with-dbm=db185 \
+			--with-berkeley-db=/usr
+.	else
+USE_BDB=		yes
+CONFIGURE_ARGS+=	--with-dbm=db${BDB_VER:S/40/4/} \
+			--with-berkeley-db=${LOCALBASE}
+.       endif
+.   else
+IGNORE=		"Unknown DBM"
+.   endif
+.else
+CONFIGURE_ARGS+=	--with-dbm=sdbm
+.endif
+
+.if defined(WITH_MYSQL)
+USE_MYSQL=	YES
+WITH_THREADS=	YES
+.endif
+
+.if defined(WITH_PGSQL)
+USE_PGSQL=	YES
+.endif
+
+.if defined(WITH_SQLITE)
+USE_SQLITE=	YES
+.endif
+
+.if !defined(WITHOUT_SSL)
+WITH_SSL_MODULES=	yes
+CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
+.endif
+
+.if !defined(WITH_THREADS)
+WITHOUT_MODULES+=	mem_cache
+.if !defined(WITHOUT_APACHE_OPTIONS) && defined(WITH_MEM_CACHE)
+IGNORE+=	mod_mem_cache requires WITH_THREADS
+.endif
+.else
+CFLAGS+=	${PTHREAD_CFLAGS}
+LDFLAGS+=	${PTHREAD_LIBS}
+.endif
+
+.if !defined(WITH_MYSQL) && !defined(WITH_PGSQL) && !defined(WITH_SQLITE)
+WITHOUT_MODULES+=	authn_dbd dbd
+.if !defined(WITHOUT_APACHE_OPTIONS) && (defined(WITH_DBD) || defined(WITH_AUTHN_DBD))
+IGNORE+=	You need to enable at least one DBD backend
+.endif
+.endif
+.endif

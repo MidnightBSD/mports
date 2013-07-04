@@ -1,0 +1,24 @@
+#!/bin/sh
+# $MidnightBSD: mports/security/clamav/files/pkg-deinstall.in,v 1.3 2007/12/28 02:58:14 laffer1 Exp $
+
+if [ "$2" != "POST-DEINSTALL" ]; then
+	exit 0
+fi
+
+CLAMAVUSER=%%CLAMAVUSER%%
+
+echo
+echo
+echo "If you want remove clamav permanently from you system"
+echo "execute following commands:"
+echo
+echo " # rm -rf %%LOGDIR%%"
+echo " # rm -rf %%RUNDIR%%"
+echo " # rm -rf %%DBDIR%%"
+if pw usershow "${CLAMAVUSER}" 2>/dev/null 1>&2; then
+	echo " # pw userdel ${CLAMAVUSER}"
+fi
+echo
+echo
+
+exit 0

@@ -1,0 +1,12 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+%%SITE_PERL%%/Exception/Class/Base.pm
+%%SITE_PERL%%/Exception/Class.pm
+@dirrm %%SITE_PERL%%/Exception/Class
+@dirrm %%SITE_PERL%%/Exception
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Exception/Class
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Exception
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%
+@dirrm %%SITE_PERL%%
+@dirrm lib/perl5/site_perl
+@dirrm lib/perl5

@@ -1,0 +1,118 @@
+@comment $MidnightBSD: mports/games/pvpgn/pkg-plist,v 1.2 2009/10/03 01:03:08 smultron Exp $
+bin/bnchat
+bin/bnpass
+bin/bnftp
+bin/bnbot
+bin/bnstat
+bin/bnilist
+bin/bni2tga
+bin/bniextract
+bin/bnibuild
+bin/tgainfo
+bin/bncdb
+etc/rc.d/bnetd%%RC_SUFX%%
+%%ETCDIR%%/bnetd.conf-sample
+%%ETCDIR%%/ad.conf-sample
+%%ETCDIR%%/channel.conf-sample
+%%ETCDIR%%/realm.conf-sample
+%%ETCDIR%%/autoupdate.conf-sample
+%%ETCDIR%%/bnetd_default_user.plain-sample
+%%ETCDIR%%/bnetd_default_user.cdb-sample
+%%ETCDIR%%/versioncheck.conf-sample
+%%ETCDIR%%/bnmotd.txt-sample
+%%ETCDIR%%/bnissue.txt-sample
+%%ETCDIR%%/bnmaps.conf-sample
+%%ETCDIR%%/bnxplevel.conf-sample
+%%ETCDIR%%/bnxpcalc.conf-sample
+%%ETCDIR%%/news.txt-sample
+%%ETCDIR%%/command_groups.conf-sample
+%%ETCDIR%%/bnban.conf-sample
+%%ETCDIR%%/bnhelp.conf-sample
+%%ETCDIR%%/bnalias.conf-sample
+%%ETCDIR%%/anongame_infos.conf-sample
+%%ETCDIR%%/tournament.conf-sample
+%%ETCDIR%%/topics.conf-sample
+%%ETCDIR%%/sql_DB_layout.conf-sample
+%%ETCDIR%%/sql_DB_layout2.conf-sample
+%%ETCDIR%%/address_translation.conf-sample
+%%ETCDIR%%/supportfile.conf-sample
+sbin/bnetd
+sbin/bntrackd
+%%DOCSDIR%%/INSTALL.unix
+%%DOCSDIR%%/PORTS
+%%DOCSDIR%%/README.fdwatch
+%%DOCSDIR%%/README.storage
+%%DOCSDIR%%/bnmotd.txt
+%%DATADIR%%/files/ad000001.smk
+%%DATADIR%%/files/ad000001.mng
+%%DATADIR%%/files/ad000004.mng
+%%DATADIR%%/files/tos.txt
+%%DATADIR%%/files/newbie.save
+%%DATADIR%%/files/termsofservice-default.txt
+%%DATADIR%%/files/termsofservice-enUS.txt
+%%DATADIR%%/files/chathelp-war3-default.txt
+%%DATADIR%%/files/chathelp-war3-enUS.txt
+%%DATADIR%%/files/chathelp-war3-frFR.txt
+%%DATADIR%%/files/chathelp-war3-zhCN.txt
+%%DATADIR%%/files/chathelp-war3-ruRU.txt
+%%DATADIR%%/files/newaccount-default.txt
+%%DATADIR%%/files/newaccount-enUS.txt
+%%DATADIR%%/files/tos_RUS.txt
+%%DATADIR%%/files/tos-unicode_RUS.txt
+%%DATADIR%%/files/tos_POL.txt
+%%DATADIR%%/files/tos_CHI.txt
+%%DATADIR%%/files/tos-unicode_POL.txt
+%%DATADIR%%/files/tos-unicode_CHI.txt
+%%DATADIR%%/files/tos_SIN.txt
+%%DATADIR%%/files/tos-unicode_SIN.txt
+%%DATADIR%%/files/tos_HAN.txt
+%%DATADIR%%/files/tos-unicode_HAN.txt
+%%DATADIR%%/files/tos_KOR.txt
+%%DATADIR%%/files/tos-unicode_KOR.txt
+%%DATADIR%%/files/tos_JPN.txt
+%%DATADIR%%/files/tos-unicode_JPN.txt
+%%DATADIR%%/files/tos_ITA.txt
+%%DATADIR%%/files/tos-unicode_ITA.txt
+%%DATADIR%%/files/tos_BRA.txt
+%%DATADIR%%/files/tos-unicode_BRA.txt
+%%DATADIR%%/files/tos_POR.txt
+%%DATADIR%%/files/tos-unicode_POR.txt
+%%DATADIR%%/files/tos_FRA.txt
+%%DATADIR%%/files/tos-unicode_FRA.txt
+%%DATADIR%%/files/tos_DEU.txt
+%%DATADIR%%/files/tos-unicode_DEU.txt
+%%DATADIR%%/files/tos_ESP.txt
+%%DATADIR%%/files/tos-unicode_ESP.txt
+%%DATADIR%%/files/tos_USA.txt
+%%DATADIR%%/files/tos-unicode_USA.txt
+%%DATADIR%%/files/tos_ENU.txt
+%%DATADIR%%/files/tos-unicode_ENU.txt
+%%DATADIR%%/files/IX86ver1.mpq
+%%DATADIR%%/files/PMACver1.mpq
+%%DATADIR%%/files/XMACver1.mpq
+%%DATADIR%%/files/bnserver-D2DV.ini
+%%DATADIR%%/files/bnserver-D2XP.ini
+%%DATADIR%%/files/bnserver-WAR3.ini
+%%DATADIR%%/files/bnserver.ini
+%%DATADIR%%/files/icons-WAR3.bni
+%%DATADIR%%/files/icons.bni
+%%DATADIR%%/files/icons_STAR.bni
+%%DATADIR%%/files/ver-ix86-1.mpq
+@dirrm %%ETCDIR%%
+@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%/files
+@dirrm %%DATADIR%%/users
+@dirrm %%DATADIR%%/userscdb
+@dirrm %%DATADIR%%/bnmail
+@dirrm %%DATADIR%%/reports
+@dirrm %%DATADIR%%/chanlogs
+@dirrm %%DATADIR%%/charinfo
+@dirrm %%DATADIR%%/charsave
+@dirrm %%DATADIR%%/bak/charsave
+@dirrm %%DATADIR%%/bak/charinfo
+@dirrm %%DATADIR%%/bak
+@dirrm %%DATADIR%%/ladders
+@dirrm %%DATADIR%%/status
+@dirrm %%DATADIR%%/clans
+@dirrm %%DATADIR%%/teams
+@dirrm %%DATADIR%%

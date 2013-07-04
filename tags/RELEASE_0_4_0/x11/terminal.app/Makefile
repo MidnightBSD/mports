@@ -1,0 +1,21 @@
+# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.9 2011/09/04 00:59:20 laffer1 Exp $
+
+PORTNAME=	terminal.app
+PORTVERSION=	0.9.8
+CATEGORIES=	x11 gnustep
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
+DISTNAME=	Terminal-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Terminal Emulator for GNUstep
+LICENSE=	gpl2
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+
+.include <bsd.port.mk>

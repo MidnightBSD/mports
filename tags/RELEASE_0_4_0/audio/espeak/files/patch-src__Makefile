@@ -1,0 +1,67 @@
+--- ./src/Makefile.orig	2011-04-07 15:05:41.000000000 +0200
++++ ./src/Makefile	2011-04-07 15:08:06.000000000 +0200
+@@ -1,8 +1,8 @@
+ # remove -fno-exceptions  if it causes problems with stdio library on some platforms (ARM)
+ 
+-DATADIR=/usr/share/espeak-data
++DATADIR=%%DATADIR%%/espeak-data
+ 
+-PREFIX=/usr
++PREFIX?=/usr
+ BINDIR=$(PREFIX)/bin
+ INCDIR=$(PREFIX)/include/espeak
+ LIBDIR=$(PREFIX)/lib
+@@ -36,7 +36,7 @@
+ else
+ ifeq ($(AUDIO),portaudio)
+ WAVE=wave.cpp
+-LIB_AUDIO=-lportaudio
++LIB_AUDIO=-L$(LOCALBASE)/lib -lportaudio
+ USE_AUDIO=-DUSE_PORTAUDIO
+ else
+ ifeq ($(AUDIO),sada)
+@@ -61,23 +61,23 @@
+ 
+ SRCS1=$(speak_SOURCES)
+ OBJS1=$(patsubst %.cpp,%.o,$(SRCS1))
+-LIBS1=-lstdc++ $(LIB_AUDIO) -lpthread $(EXTRA_LIBS)
++LIBS1=-lstdc++ $(LIB_AUDIO) $(PTHREAD_LIBS) $(EXTRA_LIBS)
+ 
+ SRCS2=$(libespeak_SOURCES)
+ OBJS2=$(patsubst %.cpp,x_%.o,$(SRCS2))
+-LIBS2=-lstdc++ $(LIB_AUDIO) -lpthread
++LIBS2=-lstdc++ $(LIB_AUDIO) $(PTHREAD_LIBS)
+ 
+ SRCS3 = espeak.cpp
+ OBJS3=$(patsubst %.cpp,%.o,$(SRCS3))
+-LIBS3=-lstdc++ -L . -lespeak
++LIBS3=-lstdc++ -L . -lespeak $(PTHREAD_LIBS)
+ 
+-CXXFLAGS=-O2
++CXXFLAGS?=-O2
+ 
+ 
+ all: $(BIN_NAME) $(LIB_NAME) $(STATIC_LIB_NAME) $(BIN2_NAME)
+ 
+ .cpp.o:
+-	$(CXX) $(CXXFLAGS) $(USE_AUDIO) -D PATH_ESPEAK_DATA=\"$(DATADIR)\" -Wall -pedantic -I. -c -fno-exceptions  $<
++	$(CXX) $(CXXFLAGS) $(PTHREAD_CFLAGS) $(USE_AUDIO) -D PATH_ESPEAK_DATA=\"$(DATADIR)\" -Wall -pedantic -I. -c -fno-exceptions  $<
+ 
+ $(BIN_NAME): $(OBJS1)
+ 	$(CXX) $(LDFLAGS) -o $@ $(OBJS1) $(LIBS1)
+@@ -111,7 +111,7 @@
+ 
+ install: all
+ 	# Create directories
+-	rm -rf $(DESTDIR)$(DATADIR)
++	#rm -rf $(DESTDIR)$(DATADIR)
+ 	$(MKDIR) $(DESTDIR)$(BINDIR)
+ 	$(MKDIR) $(DESTDIR)$(LIBDIR)
+ 	$(MKDIR) $(DESTDIR)$(INCDIR)
+@@ -127,5 +127,5 @@
+ 	# Install development headers
+ 	$(INSTALL) -pm 644 speak_lib.h $(DESTDIR)$(INCDIR)
+ 	# Install data files
+-	cp -prf ../espeak-data/* $(DESTDIR)$(DATADIR)
++	cp -pRf ../espeak-data/* $(DESTDIR)$(DATADIR)
+ 

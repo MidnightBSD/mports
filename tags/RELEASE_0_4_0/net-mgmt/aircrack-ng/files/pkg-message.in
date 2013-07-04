@@ -1,0 +1,5 @@
+In contrast to Linux it is not necessary to use airmon-ng to enable the monitor
+mode of your wireless card. So do not care about what the manpages say about
+airmon-ng. airodump-ng sets monitor mode automatically.
+To return from monitor mode use:
+ifconfig ${INTERFACE} -mediaopt monitor

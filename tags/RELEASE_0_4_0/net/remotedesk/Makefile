@@ -1,0 +1,26 @@
+# $MidnightBSD$
+
+PORTNAME=	remotedesk
+PORTVERSION=	0.1
+CATEGORIES=	net gnustep
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
+DISTNAME=	RemoteDesk-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Graphical interface to rdesktop
+LICENSE=	gpl2
+
+RUN_DEPENDS=	rdesktop:${PORTSDIR}/net/rdesktop
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_PREFIX=	yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+
+post-patch:
+	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DIR|#GNUSTEP_INSTALLATION_DIR|' \
+		${WRKSRC}/GNUmakefile
+
+.include <bsd.port.mk>

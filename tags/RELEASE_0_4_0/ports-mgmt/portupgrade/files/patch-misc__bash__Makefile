@@ -1,0 +1,11 @@
+--- ./misc/bash/Makefile.orig	Fri Apr 20 14:09:37 2007
++++ ./misc/bash/Makefile	Fri Apr 20 14:09:46 2007
+@@ -5,7 +5,7 @@
+ FILESDIR?=	${EXAMPLESDIR}/bash
+ 
+ beforeinstall:
+-	mkdir -p ${FILESDIR}
++	mkdir -p ${DESTDIR}${FILESDIR}
+ 
+ .include <bsd.prog.mk>
+ 

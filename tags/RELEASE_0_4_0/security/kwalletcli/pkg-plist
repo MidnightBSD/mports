@@ -1,0 +1,5 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+bin/kwalletcli
+bin/kwalletaskpass
+bin/kwalletcli_getpin
+bin/pinentry-kwallet

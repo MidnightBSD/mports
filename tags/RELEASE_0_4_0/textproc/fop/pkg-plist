@@ -1,0 +1,53 @@
+bin/fop
+%%DATADIR%%/fop
+%%DATADIR%%/status.xml
+%%DATADIR%%/build/fop.jar
+%%DATADIR%%/build/fop.war
+%%DATADIR%%/build/fop-hyph.jar
+%%DATADIR%%/build/fop-sandbox.jar
+%%DATADIR%%/build/fop-transcoder.jar
+%%DATADIR%%/build/fop-transcoder-allinone.jar
+%%DATADIR%%/conf/fop.xconf
+%%DATADIR%%/hyph/cs.xml
+%%DATADIR%%/hyph/da.xml
+%%DATADIR%%/hyph/de.xml
+%%DATADIR%%/hyph/de_DR.xml
+%%DATADIR%%/hyph/el.xml
+%%DATADIR%%/hyph/en.xml
+%%DATADIR%%/hyph/en_GB.xml
+%%DATADIR%%/hyph/en_US.xml
+%%DATADIR%%/hyph/es.xml
+%%DATADIR%%/hyph/fi.xml
+%%DATADIR%%/hyph/fr.xml
+%%DATADIR%%/hyph/hu.xml
+%%DATADIR%%/hyph/hyphenation.dtd
+%%DATADIR%%/hyph/it.xml
+%%DATADIR%%/hyph/nl.xml
+%%DATADIR%%/hyph/no.xml
+%%DATADIR%%/hyph/pl.xml
+%%DATADIR%%/hyph/pt.xml
+%%DATADIR%%/hyph/readme
+%%DATADIR%%/hyph/ru.xml
+%%DATADIR%%/hyph/sk.xml
+%%DATADIR%%/lib/README.txt
+%%DATADIR%%/lib/avalon-framework-4.2.0.jar
+%%DATADIR%%/lib/batik-all-1.7.jar
+%%DATADIR%%/lib/commons-io-1.3.1.jar
+%%DATADIR%%/lib/commons-logging-1.0.4.jar
+%%DATADIR%%/lib/serializer-2.7.0.jar
+%%DATADIR%%/lib/servlet-2.2.jar
+%%DATADIR%%/lib/xalan-2.7.0.jar
+%%DATADIR%%/lib/xercesImpl-2.7.1.jar
+%%DATADIR%%/lib/xml-apis-1.3.04.jar
+%%DATADIR%%/lib/xml-apis-ext-1.3.04.jar
+%%DATADIR%%/lib/xmlgraphics-commons-1.4.jar
+%%PORTDOCS%%%%DOCSDIR%%/KEYS
+%%PORTDOCS%%%%DOCSDIR%%/LICENSE
+%%PORTDOCS%%%%DOCSDIR%%/NOTICE
+%%PORTDOCS%%%%DOCSDIR%%/README
+@dirrm %%DATADIR%%/lib
+@dirrm %%DATADIR%%/hyph
+@dirrm %%DATADIR%%/conf
+@dirrm %%DATADIR%%/build
+@dirrm %%DATADIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

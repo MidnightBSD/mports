@@ -1,0 +1,14 @@
+%%SITE_PERL%%/Heap.pm
+%%SITE_PERL%%/Heap/Binary.pm
+%%SITE_PERL%%/Heap/Binomial.pm
+%%SITE_PERL%%/Heap/Elem.pm
+%%SITE_PERL%%/Heap/Elem/Num.pm
+%%SITE_PERL%%/Heap/Elem/NumRev.pm
+%%SITE_PERL%%/Heap/Elem/Ref.pm
+%%SITE_PERL%%/Heap/Elem/RefRev.pm
+%%SITE_PERL%%/Heap/Elem/Str.pm
+%%SITE_PERL%%/Heap/Elem/StrRev.pm
+%%SITE_PERL%%/Heap/Fibonacci.pm
+@dirrm %%SITE_PERL%%/Heap/Elem
+@dirrmtry %%SITE_PERL%%/Heap
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Heap

@@ -1,0 +1,8 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+bin/classpath
+bin/javavm
+bin/registervm
+bin/unregistervm
+bin/checkvms
+bin/manvm
+etc/javavm_opts.conf.dist

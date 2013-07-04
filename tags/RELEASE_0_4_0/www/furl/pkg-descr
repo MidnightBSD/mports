@@ -1,0 +1,4 @@
+A small utility designed to display the HTTP headers returned by web-servers
+in response to client requests.
+
+WWW: http://www.gumbynet.org.uk/software/furl.html

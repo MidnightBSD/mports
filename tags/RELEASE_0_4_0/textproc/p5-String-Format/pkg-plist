@@ -1,0 +1,4 @@
+%%SITE_PERL%%/String/Format.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/String/Format
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/String
+@dirrmtry %%SITE_PERL%%/String

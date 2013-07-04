@@ -1,0 +1,11 @@
+@stopdaemon smartd
+etc/periodic/daily/smart
+etc/smartd.conf.sample
+etc/smartd_warning.sh
+sbin/smartctl
+sbin/smartd
+sbin/update-smart-drivedb
+%%DATADIR%%/drivedb.h
+@dirrm %%DATADIR%%
+@dirrmtry etc/periodic/daily
+@dirrmtry etc/periodic

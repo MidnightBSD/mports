@@ -1,0 +1,6 @@
+SHA256 (git-1.8.3.1.tar.gz) = ea2dde231b3f659da92dd0afc092a16720d63f1206cdcb271920e88f328bda83
+SIZE (git-1.8.3.1.tar.gz) = 4470932
+SHA256 (git-manpages-1.8.3.1.tar.gz) = ab574826814b9469c91cdb99ecf5ad66228d0e30197e54881a4fe8ce0a17caba
+SIZE (git-manpages-1.8.3.1.tar.gz) = 542717
+SHA256 (git-htmldocs-1.8.3.1.tar.gz) = 0be04c5efc831bbc7b1d80707d953bf7e9d500037eb202f6fd042c0fff0538ea
+SIZE (git-htmldocs-1.8.3.1.tar.gz) = 2114248

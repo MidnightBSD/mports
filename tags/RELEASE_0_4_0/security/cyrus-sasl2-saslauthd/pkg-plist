@@ -1,0 +1,18 @@
+sbin/saslauthd
+sbin/saslcache
+sbin/testsaslauthd
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/LDAP_SASLAUTHD
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/saslauthd/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/saslauthd
+%%RUNPATH%%@mode ug=rwx,o=
+%%RUNPATH%%@exec mkdir -p /var/run/saslauthd
+%%RUNPATH%%@exec chown -R cyrus:mail /var/run/saslauthd
+%%RUNPATH%%@exec chmod -R ug=rwx,o= /var/run/saslauthd
+%%RUNPATH%%@comment This file gets created by the run/saslauthd program
+%%RUNPATH%%@unexec rm -fr /var/run/saslauthd
+@cwd %%PREFIX%%

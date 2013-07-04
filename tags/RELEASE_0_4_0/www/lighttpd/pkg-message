@@ -1,0 +1,8 @@
+lighttpd has been installed.
+
+Upon uninstallation, check /var/log for 
+lighttpd.access.log and lighttpd.error.log
+
+The latter is useful in debugging.  If the
+daemon will not start, be sure to check the
+log files.

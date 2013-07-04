@@ -1,0 +1,5 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.118 2008/09/30 23:33:50 laffer1 Exp $
+bin/zip
+bin/zipcloak
+bin/zipnote
+bin/zipsplit

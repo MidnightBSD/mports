@@ -1,0 +1,13 @@
+bin/Xdmx
+%%OLD%%bin/xdmx
+bin/dmxaddinput
+bin/dmxaddscreen
+%%NEW%%bin/dmxinfo
+bin/dmxreconfig
+bin/dmxresize
+bin/dmxrminput
+bin/dmxrmscreen
+bin/dmxtodmx
+bin/dmxwininfo
+bin/vdltodmx
+bin/xdmxconfig

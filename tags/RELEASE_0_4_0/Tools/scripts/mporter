@@ -1,0 +1,333 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use File::Temp qw(tempfile);
+use File::Copy qw(move);
+use Cwd;
+
+my %operations = (
+	licenseit => \&add_license,
+	add	  => \&checkin_port,
+	freecp    => \&copy_from_freebsd,
+	mportify  => \&convert_from_freebsd_style,
+	syncdir   => \&update_directory_makefile,
+);
+
+
+my $cmd = shift || usage();
+
+my $op = $operations{$cmd} || usage();
+
+$op->(@ARGV);
+
+
+sub add_license {
+	my ($cvs) = @_;
+	
+	if ($cvs && $cvs eq '-c') {
+		$cvs = 1;
+	} else {
+		$cvs = 0;
+	}
+	
+	my $linenum = 0;
+	open(my $mk, '<', 'Makefile') || die "Couldn't open Makefile ($!).  Did you cd to the port?\n";
+	while (<$mk>) {
+		$linenum++;
+		if (m/COMMENT/) {
+			last;
+		}
+	}
+	close($mk) || die "Couldn't close Makefile: $!\n";
+	
+	# bump once more to get to the next line
+	$linenum++;
+	my $wrksrc = makevar('WRKSRC');
+	
+	runq("make BATCH=1 extract");
+	runq("cd $wrksrc && ls && $ENV{SHELL}");
+	
+	runq("$ENV{EDITOR} +$linenum Makefile");
+	
+	if ($cvs) {
+		run("make FATAL_LICENSE_CHECK=1 check-license"); # this dies if bad
+		cvs_ci("added license", "Makefile"); 
+	}
+}
+			
+
+sub copy_from_freebsd {
+	my ($port) = @_;
+	
+	unless ($port) {
+		($port = getcwd()) =~ s:^/usr/mports::;
+	}
+	
+	$port =~ m:\w+/\w+: || die "Invalid port name: $port\n";
+	
+	unless (-d "/usr/mports/$port") {
+		mkdir("/usr/mports/$port") || die "Couldn't mkdir /usr/mports/$port: $!\n";
+	}
+	
+	run("cd /usr/mports/$port && cvs -d anoncvs\@anoncvs1.freebsd.org:/home/ncvs export -DNOW ports/$port");
+	runq("mv /usr/mports/$port/ports/$port/* /usr/mports/$port/");
+	runq("rm -r /usr/mports/$port/ports");
+}
+
+
+sub convert_from_freebsd_style {
+	my ($tmp, $tmpname) = tempfile();
+	
+	open(my $in, '<', 'Makefile') || die "Couldn't open makefile ($!), did you cd to the port?\n";
+	while (<$in>) {
+		next if m/^#.*for:/ || m/^#.*created:/ || m/^#.*Whom:/;
+		
+		if (m/\$FreeBSD/) {
+			s/\$FreeBSD/\$MidnightBSD/;
+		}
+		
+		if (m/MAINTAINER=(\s*)(\S+)/) {
+			$_ = "MAINTAINER=$1ports\@MidnightBSD.org\n";
+		}
+		
+		print $tmp $_;
+	}
+	
+	close($in) || die "Couldn't close makefile: $!\n";
+	close($tmp) || die "Couldn't close $tmpname: $!\n";
+
+	move($tmpname, 'Makefile') || die "Couldn't mv $tmpname Makefile: $!\n";
+}
+
+
+sub checkin_port {
+	my $name = makevar('PKGNAME');
+	my $orig = getcwd();
+	my $upDirMakefile = 0;
+	
+	unless (-d 'CVS') {
+		chdir('..') || die "Couldn't chdir '..': $!\n";
+		(my $dir = $orig) =~ s:.*/::;
+
+		run("cvs add $dir");
+		$upDirMakefile = 1;
+		chdir($orig) || die "Couldn't chdir $orig: $!\n";
+	}
+	
+	system("cvs add Makefile distinfo pkg-*");
+	
+	if (-d 'files') {
+		run("cvs add files");
+		system("cd files && cvs add *"); # we don't care if this returns non-zero.
+		
+	}
+	
+	cvs_ci("Added $name");
+	
+	if ($upDirMakefile) {
+		chdir('..') || die "Couldn't chidr to '..': $!\n";
+		update_directory_makefile();
+	}
+		
+}	
+
+
+sub update_directory_makefile {
+	# XXX check that we're really in a directory 
+	my @ports = list_directories();
+	my $make  = DirMakefile->new('Makefile');
+	
+	$make->subdirs(\@ports);
+	
+	$make->write;
+	
+	cvs_ci($make->message, 'Makefile');
+}
+
+
+sub list_directories {
+	my $dh;
+	
+	opendir($dh, '.') || die "Couldn't open .: $!\n";
+	
+	my @dirs = grep { -d  && $_ ne '.' && $_ ne '..' && $_ ne 'CVS' } readdir($dh);
+	
+	closedir($dh) || die "Couldn't close .: $!\n";
+	
+	return @dirs;
+}
+	
+
+=head2 cvs_ci(@files)
+
+Check in files to cvs, but first display the diff and let the user review 
+the changes
+
+=cut
+
+sub cvs_ci {
+	my ($msg, @files) = @_;
+	
+	runq("cvs diff -u @files | $ENV{PAGER}");
+	
+	print STDERR qq/Check in changes with message: "$msg" [yes]: /;
+	chomp(my $ans = <>);
+	
+	if (!$ans || $ans =~ m/y(es)?/i) {
+		run("cvs ci -m '$msg' @files");
+	}
+}
+	
+
+sub run {
+	my ($cmd) = @_;
+	
+	print $cmd, "\n";
+	runq($cmd);
+}
+	
+	
+sub runq {
+	my ($cmd) = @_;
+	system($cmd) == 0 || die "$cmd returned non-zero: " . ($? >> 8) . "\n";
+}	
+
+
+sub makevar {
+	my ($var) = @_;
+	
+	my $val = `make -V $var`;
+	chomp($val);
+	
+	return $val;
+}
+
+sub usage {
+	my $self = $0;
+	$self =~ s:.*/::;
+	
+	die "Usage: $self <@{[ sort keys %operations ]}>\n";
+}
+
+
+=head1 DirMakefile
+
+This class represents a directory makefile.  It can parse such a file, change the list of
+subdirs, and then update the file on disk.
+
+=cut
+
+{
+	package DirMakefile;
+
+	use strict;
+	use warnings;	
+	
+	sub new {
+		my ($class, $file) = @_;
+		
+		my $self = bless { file => $file }, $class;
+		
+		$self->_parse_file;
+		
+		return $self;
+	}
+	
+	
+	sub _parse_file {
+		my ($self) = @_;
+		
+		local $_;
+		$self->{header}  = '';
+		$self->{footer}  = '';
+		$self->{subdirs} = [];
+		
+		open(my $fh, '<', $self->{file}) || die "Couldn't open $self->{file}: $!\n";
+		
+		while (<$fh>) {
+			last if m/SUBDIR/;
+			
+			$self->{header} .= $_;
+		}
+		
+		
+		my $linere = qr/SUBDIR\s*\+?=\s*(\S+)/;
+		
+		if (m/$linere/) {
+			push(@{$self->{subdirs}}, $1);
+		} else {
+			die "Couldn't match first subdir.";
+		}
+		
+		while (<$fh>) {
+			last unless m/$linere/;
+			push(@{$self->{subdirs}}, $1);
+		}
+		
+		$self->{footer} .= $_;
+		$self->{footer} .= $_ for <$fh>;
+		
+		close($fh) || die "Couldn't close $self->{file}: $!";
+	}
+	
+	
+	sub subdirs {
+		my $self = shift;
+		
+		if (@_) {
+			my $new = shift;
+			$new = [ sort @$new ];
+			
+			$self->{msg}     = _build_diff_msg($self->{subdirs}, $new);
+			$self->{subdirs} = $new;
+		} 
+		
+		return $self->{subdirs};
+	}
+	
+	
+	sub _build_diff_msg {
+		my ($old, $new) = @_;
+		
+		my %old = map { $_ => 1 } @$old;
+		my %new = map { $_ => 1 } @$new;
+		
+		my @added   = grep { !$old{$_} } @$new;
+		my @removed = grep { !$new{$_} } @$old;
+		
+		my $msg = '';
+		
+		if (@added) {
+			$msg .= "added: " . join(', ' => @added) . '. ';
+		}
+		
+		if (@removed) {
+			$msg .= "removed: " . join(',' => @removed) . '. ';
+		}
+		
+		return $msg;
+	}
+	
+	
+	sub write {
+		my ($self) = @_;
+		
+		my ($tmp, $tmpname) = File::Temp::tempfile();
+		
+		print $tmp $self->{header};
+		
+		for (@{$self->{subdirs}}) {
+			print $tmp "    SUBDIR += $_\n";
+		}
+		
+		print $tmp $self->{footer};
+		
+		close($tmp) || die "Couldn't close tmpfile: $!\n";
+		
+		File::Copy::move($tmpname, $self->{file});
+	}	
+	
+	sub message { return $_[0]->{msg}; }	
+}
+		

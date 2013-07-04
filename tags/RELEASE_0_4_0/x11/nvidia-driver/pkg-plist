@@ -1,0 +1,41 @@
+lib/.nvidia/libGL.so
+lib/.nvidia/libGL.so.1
+@dirrm lib/.nvidia
+lib/libnvidia-tls.so.1
+lib/libnvidia-tls.so
+lib/libnvidia-cfg.so.1
+lib/libnvidia-cfg.so
+lib/libGLcore.so.1
+lib/libGLcore.so
+lib/vdpau/libvdpau_nvidia.so.1
+@comment lib/libvdpau_nvidia.so
+lib/libXvMCNVIDIA.so.1
+lib/libXvMCNVIDIA.so
+lib/libXvMCNVIDIA.a
+lib/libXvMCNVIDIA_dynamic.so.1
+@dirrmtry lib/vdpau
+%%MODULESDIR%%/libnvidia-wfb.so.1
+%%MODULESDIR%%/drivers/nvidia_drv.so
+%%MODULESDIR%%/extensions/.nvidia/libglx.so
+%%MODULESDIR%%/extensions/.nvidia/libglx.so.1
+@dirrm %%MODULESDIR%%/extensions/.nvidia
+@dirrmtry %%MODULESDIR%%/drivers
+@cwd /boot/kernel
+nvidia.ko
+@unexec kldxref %D
+%%LINUX%%@cwd %%LINUXBASE%%
+%%LINUX%%usr/lib/libGL.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libGL.so.1
+%%LINUX%%usr/lib/libGLcore.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libGLcore.so.1
+%%LINUX%%usr/lib/libcuda.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libcuda.so.1
+%%LINUX%%usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libnvidia-tls.so.1
+%%LINUX%%usr/lib/vdpau/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/vdpau/libvdpau_nvidia.so.1
+%%LINUX%%usr/lib/vdpau/libvdpau_trace.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/vdpau/libvdpau_trace.so.1
+%%LINUX%%@dirrm usr/lib/vdpau
+%%LINUX%%@exec %%LINUXBASE%%/sbin/ldconfig -r %D
+%%LINUX%%@unexec %%LINUXBASE%%/sbin/ldconfig -r %D

@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/www/thttpd/files/thttpd.sh.in,v 1.3 2006/07/13 07:38:49 obrien Exp $
+#
+
+# PROVIDE: thttpd
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+
+#
+# Add the following line to /etc/rc.conf to enable thttpd:
+#
+# thttpd_enable="YES"
+#
+
+. %%RC_SUBR%%
+
+name=thttpd
+rcvar=`set_rcvar`
+
+command=%%PREFIX%%/sbin/thttpd
+required_files=%%PREFIX%%/etc/thttpd.conf
+
+thttpd_enable=${thttpd_enable:-"NO"}
+thttpd_flags=${thttpd_flags:-"-C %%PREFIX%%/etc/thttpd.conf"}
+
+load_rc_config $name
+run_rc_command "$1"

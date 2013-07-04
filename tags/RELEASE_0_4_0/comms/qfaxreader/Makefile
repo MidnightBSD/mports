@@ -1,0 +1,34 @@
+# $MidnightBSD: mports/comms/qfaxreader/Makefile,v 1.2 2009/12/31 23:25:06 laffer1 Exp $
+
+PORTNAME=	qfaxreader
+DISTVERSION=	0.3.1
+PORTREVISION=	1
+CATEGORIES=	comms graphics print
+MASTER_SITES=	SF
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Mono/color multipage tiff/fax files visualisation/printing utility
+LICENSE=	gpl2
+
+LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff
+
+USE_BZIP2=	yes
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
+USE_QT_VER=	3
+CONFIGURE_ENV=	PTHREAD_LIBS=${PTHREAD_LIBS}
+CONFIGURE_ARGS=	--with-docdir=${DOCSDIR}
+MAKE_JOBS_UNSAFE=	yes
+
+MAN1=		qfaxreader.1
+MANCOMPRESSED=	yes
+
+OPTIONS=	GDBM "For sender-id look-up (recomended)" on
+
+.include <bsd.port.pre.mk>
+
+.if !defined(WITHOUT_GDBM) || exists(${LOCALBASE}/include/gdbm.h)
+LIB_DEPENDS+=	gdbm.4:${PORTSDIR}/databases/gdbm
+.endif
+
+.include  <bsd.port.post.mk>

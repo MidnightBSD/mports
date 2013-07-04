@@ -1,0 +1,4 @@
+Please consider to install backends for phonon:
+multimedia/phonon-gstreamer	Gstreamer backend
+multimedia/phonon-vlc		VLC backend
+multimedia/phonon-xine		Xine backend

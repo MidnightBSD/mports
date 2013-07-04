@@ -1,0 +1,40 @@
+# $MidnightBSD: mports/graphics/agg/Makefile,v 1.1 2009/10/25 17:21:40 laffer1 Exp $
+
+PORTNAME=	agg
+PORTVERSION=	2.5
+PORTREVISION=	0
+CATEGORIES=	graphics
+MASTER_SITES=	http://www.antigrain.com/ \
+		http://freebsd.unixfreunde.de/sources/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A High Quality Rendering Engine for C++
+LICENSE=	gpl2
+
+LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
+
+GNU_CONFIGURE=	yes
+USE_SDL=	sdl
+USE_XORG=	x11
+USE_GNOME=	pkgconfig gnomehack
+USE_GMAKE=	yes
+USE_LDCONFIG=	yes
+ACLOCAL_ARGS+=	-I ${LOCALBASE}/share/aclocal
+USE_AUTOTOOLS=	autoconf:env automake:env libtool:env
+MAKE_ENV=	C="${CC}" AGGCXXFLAGS="${CXXFLAGS}"
+CXXFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -I../include -L./
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
+	${WRKSRC}/Makefile.am
+
+pre-configure:
+	@cd ${WRKSRC} && ${SETENV} ${AUTOTOOLS_ENV} ACLOCAL_ARGS="${ACLOCAL_ARGS}" ${SH} autogen.sh
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not compile
+.endif
+
+.include <bsd.port.post.mk>

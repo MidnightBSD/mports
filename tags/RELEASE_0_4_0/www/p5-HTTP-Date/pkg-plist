@@ -1,0 +1,4 @@
+%%SITE_PERL%%/HTTP/Date.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTTP/Date
+@dirrmtry %%SITE_PERL%%/HTTP
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTTP

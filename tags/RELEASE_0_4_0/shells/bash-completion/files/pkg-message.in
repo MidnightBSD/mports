@@ -1,0 +1,15 @@
+
+=====================================================================
+
+You must enable the bash programmable completion library yourself!
+
+	* source %%PREFIX%%/etc/bash_completion from your .bashrc file
+
+		if [ -f %%PREFIX%%/etc/bash_completion ]; then
+			. %%PREFIX%%/etc/bash_completion
+		fi
+	
+	* or, run %%PREFIX%%/bin/bash_completion.sh from your .bashrc
+
+=====================================================================
+

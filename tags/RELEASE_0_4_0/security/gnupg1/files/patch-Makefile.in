@@ -1,0 +1,34 @@
+--- Makefile.in.orig	Wed Mar 26 13:30:48 2008
++++ Makefile.in	Sun May  4 02:32:04 2008
+@@ -88,19 +88,18 @@
+ CONFIG_CLEAN_FILES = intl/Makefile zlib.h zconf.h
+ SOURCES =
+ DIST_SOURCES =
+-RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
++RECURSIVE_TARGETS = all-recursive dvi-recursive \
+ 	html-recursive info-recursive install-data-recursive \
+ 	install-dvi-recursive install-exec-recursive \
+ 	install-html-recursive install-info-recursive \
+ 	install-pdf-recursive install-ps-recursive install-recursive \
+-	installcheck-recursive installdirs-recursive pdf-recursive \
++	installdirs-recursive pdf-recursive \
+ 	ps-recursive uninstall-recursive
+ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
+   distclean-recursive maintainer-clean-recursive
+ ETAGS = etags
+ CTAGS = ctags
+-DIST_SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc \
+-	checks
++DIST_SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -290,8 +289,6 @@
+                             --enable-camellia --enable-mailto
+ 
+ AUTOMAKE_OPTIONS = dist-bzip2 filename-length-max=99
+-@CROSS_COMPILING_FALSE@checks = checks
+-@CROSS_COMPILING_TRUE@checks = 
+ SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc ${checks}
+ EXTRA_DIST = scripts/config.rpath  PROJECTS BUGS config.h.in autogen.sh
+ DISTCLEANFILES = 

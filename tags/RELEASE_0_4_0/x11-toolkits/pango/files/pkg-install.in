@@ -1,0 +1,14 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:%%LOCALBASE%%/bin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating module list... "
+    %%PREFIX%%/bin/pango-querymodules > %%PREFIX%%/etc/pango/pango.modules
+    echo "done."
+    echo "Running fc-cache to build fontconfig cache..."
+    fc-cache -f -v
+    ;;
+esac

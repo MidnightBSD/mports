@@ -1,0 +1,5 @@
+#!/bin/sh
+# $FreeBSD: ports/print/acroread9/files/ln.in,v 1.1 2009/03/28 18:11:43 hrs Exp $
+#
+# always do nothing
+#

@@ -1,0 +1,38 @@
+@comment $MidnightBSD: mports/editors/vim/pkg-plist,v 1.3 2008/10/07 14:09:55 laffer1 Exp $
+bin/vim
+bin/vimtutor
+bin/xxd
+@comment bin/ex
+@comment bin/gex
+bin/eview
+bin/evim
+bin/gview
+bin/gvim
+%%LITETIME%%bin/gvimtutor
+bin/rgview
+bin/rgvim
+bin/rview
+bin/rvim
+bin/vimdiff
+bin/gvimdiff
+share/icons/hicolor/48x48/apps/gvim.png
+@comment bin/view
+@exec mkdir -p %D/share/vim/%%VIM_VER%%/lang
+@comment Insert PLIST.share-vim here
+@comment -=[ begin PLIST.share-vim ]=-
+@comment -=[ end PLIST.share-vim ]=-
+@dirrmtry man/fr.ISO8859-1/man1
+@dirrmtry man/fr.ISO8859-1
+@dirrmtry man/fr.UTF-8/man1
+@dirrmtry man/fr.UTF-8
+@dirrmtry man/it.ISO8859-1/man1
+@dirrmtry man/it.ISO8859-1
+@dirrmtry man/it.UTF-8/man1
+@dirrmtry man/it.UTF-8
+@dirrmtry man/pl.ISO8859-2/man1
+@dirrmtry man/pl.ISO8859-2
+@dirrmtry man/pl.UTF-8/man1
+@dirrmtry man/pl.UTF-8
+@dirrmtry man/ru.UTF-8/man1
+@dirrmtry man/ru.UTF-8
+@dirrm share/vim

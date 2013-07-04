@@ -1,0 +1,21 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating pixbuf loaders list... "
+    %%PREFIX%%/bin/gdk-pixbuf-query-loaders > %%PREFIX%%/etc/gtk-2.0/gdk-pixbuf.loaders
+    echo "done."
+    
+    echo -n "Creating module list... "
+    %%PREFIX%%/bin/gtk-query-immodules-2.0 > %%PREFIX%%/etc/gtk-2.0/gtk.immodules
+    echo "done."
+    
+    echo -n "Updating icon caches... "
+    /usr/bin/find %%PREFIX%%/share/icons -type d -depth 1 -exec \
+            %%PREFIX%%/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
+    echo "done."
+    ;;
+esac

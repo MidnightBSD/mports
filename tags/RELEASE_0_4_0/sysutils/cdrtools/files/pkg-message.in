@@ -1,0 +1,9 @@
+Note: The location of the cdrtools `defaults' files has been set to
+
+	%%PREFIX%%/etc
+
+This is the mports standard config file location, NOT the cdrtools
+standard location, which is /etc/default.
+
+The reason for this is that MidnightBSD mports and packages should not use
+configuration files outside of %%PREFIX%%.

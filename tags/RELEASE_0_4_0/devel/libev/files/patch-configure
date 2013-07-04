@@ -1,0 +1,16 @@
+--- ./configure.orig	2011-02-16 09:03:29.000000000 +0100
++++ ./configure	2011-08-19 16:59:46.000000000 +0200
+@@ -10433,13 +10433,6 @@
+ 
+ # Only expand once:
+ 
+-
+-
+-if test "x$GCC" = xyes ; then
+-  CFLAGS="-O3 $CFLAGS"
+-fi
+-
+-
+ for ac_header in sys/inotify.h sys/epoll.h sys/event.h port.h poll.h sys/select.h sys/eventfd.h sys/signalfd.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`

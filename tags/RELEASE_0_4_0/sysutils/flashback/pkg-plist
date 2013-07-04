@@ -1,0 +1,26 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.114 2008/06/29 18:30:42 laffer1 Exp $
+etc/rc.d/flashback
+sbin/flashback
+share/flashback/www/buttons.css
+share/flashback/www/cross.png
+share/flashback/www/cross24.png
+share/flashback/www/current-.png
+share/flashback/www/current32.png
+share/flashback/www/flashback.png
+share/flashback/www/forms.css
+share/flashback/www/help-.png
+share/flashback/www/help.html
+share/flashback/www/help32.png
+share/flashback/www/index.html
+share/flashback/www/main.css
+share/flashback/www/restore-.png
+share/flashback/www/restore32.png
+share/flashback/www/schedule-.png
+share/flashback/www/schedule32.png
+share/flashback/www/settings-.png
+share/flashback/www/settings32.png
+share/flashback/www/tick.png
+share/flashback/www/tick24.png
+share/flashback/README
+@dirrm share/flashback/www
+@dirrm share/flashback

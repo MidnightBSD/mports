@@ -1,0 +1,9 @@
+@comment $FreeBSD: ports/graphics/p5-Image-Magick-Iterator/pkg-plist,v 1.1 2006/12/09 02:37:26 clsung Exp $
+%%SITE_PERL%%/Image/Magick/Iterator.pm
+%%SITE_PERL%%/Image/Magick/Iterator/PPM.pm
+@dirrmtry %%SITE_PERL%%/Image/Magick/Iterator
+@dirrmtry %%SITE_PERL%%/Image/Magick
+@dirrmtry %%SITE_PERL%%/Image
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/Iterator
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image

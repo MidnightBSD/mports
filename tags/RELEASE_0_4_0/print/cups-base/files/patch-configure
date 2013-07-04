@@ -1,0 +1,36 @@
+--- configure.orig	2011-07-25 22:19:20.000000000 +0200
++++ configure	2011-08-25 06:04:32.000000000 +0200
+@@ -6259,6 +6259,7 @@
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+ $ac_includes_default
++#include <sys/param.h>
+ #include <sys/ucred.h>
+ _ACEOF
+ rm -f conftest.$ac_objext
+@@ -8689,7 +8690,7 @@
+ 		CFLAGS="$CFLAGS `$PKGCONFIG --cflags dbus-1` -DDBUS_API_SUBJECT_TO_CHANGE"
+ 		CUPSDLIBS="$CUPSDLIBS `$PKGCONFIG --libs dbus-1`"
+ 		DBUS_NOTIFIER="dbus"
+-		DBUS_NOTIFIERLIBS="`$PKGCONFIG --libs dbus-1`"
++		DBUS_NOTIFIERLIBS="`$PKGCONFIG --libs dbus-1` -pthread"
+ 		SAVELIBS="$LIBS"
+ 		LIBS="$LIBS $DBUS_NOTIFIERLIBS"
+ 		{ echo "$as_me:$LINENO: checking for dbus_message_iter_init_append" >&5
+@@ -13524,6 +13525,7 @@
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+ $ac_includes_default
++#include <netinet/in.h>
+ #include <resolv.h>
+ _ACEOF
+ rm -f conftest.$ac_objext
+@@ -17447,7 +17449,7 @@
+ 
+ 
+ 	if test x$ac_cv_header_pthread_h = xyes; then
+-				for flag in -lpthreads -lpthread -pthread; do
++				for flag in -pthread; do
+         		{ echo "$as_me:$LINENO: checking for pthread_create using $flag" >&5
+ echo $ECHO_N "checking for pthread_create using $flag... $ECHO_C" >&6; }
+ 			SAVELIBS="$LIBS"

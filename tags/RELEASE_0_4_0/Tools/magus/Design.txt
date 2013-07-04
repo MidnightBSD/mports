@@ -1,0 +1,50 @@
+$MidnightBSD$
+
+This is just some rough notes on the design on magus.  It is in cvs for
+backing up and so that other interested contributers can see what I am
+thinking.  
+
+Tests ports, /and/ makes packages.
+
+
+Master machine.
+
+No NFS mount - we have a distributed build cluster.
+Mysql used to track locks, the priority queue, and tested ports.
+Some how needs to track when ports are updated.  cvs of course.  Push or
+pull?
+
+
+Slaves:
+LOCK TABLE test_queue WRITE
+LOCK TABLE locks WRITE
+SELECT * FROM test_queue WHERE arch=$my_arch ORDER BY priority LIMIT 1;
+DELETE FROM test_queue WHERE id=$last_select;
+INSERT INTO locks (port,arch) VALUES ($port->name, $my_arch)
+UNLOCK TABLE test_queue
+UNLOCK TABLE locks
+
+setup_chroot();
+test_port($port);
+clear_chroot();
+
+LOCK TABLE locks WRITE
+DELETE FROM locks WHERE port=$port AND arch=$my_arch
+UNLOCK TABLE locks;
+
+sub test_port {
+
+	for $depend ($port->all_depends) {
+		if (master_has_package($depend, $my_arch)) {
+			install_package_from_master($depend, $my_arch))
+		} else {
+			test_port($depend);
+		}
+	}
+
+	chroot_and_install($port);
+	upload_pkg_to_master($port);
+	report_results($port)
+}
+	
+	

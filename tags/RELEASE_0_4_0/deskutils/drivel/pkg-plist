@@ -1,0 +1,77 @@
+bin/drivel
+share/application-registry/drivel.applications
+share/applications/gnome-drivel.desktop
+share/drivel/glade/drivel.glade
+share/drivel/languages/livejournal.lang
+share/gnome/help/drivel/C/drivel.xml
+share/gnome/help/drivel/C/legal.xml
+share/mime-info/drivel.keys
+share/mime-info/drivel.mime
+share/omf/drivel/drivel-C.omf
+share/pixmaps/drivel-48.png
+share/pixmaps/drivel/advogato.png
+share/pixmaps/drivel/atom.png
+share/pixmaps/drivel/blogger.png
+share/pixmaps/drivel/checkbutton.xpm
+share/pixmaps/drivel/combobox.xpm
+share/pixmaps/drivel/community.png
+share/pixmaps/drivel/doublearrow.png
+share/pixmaps/drivel/drivel_splash.png
+share/pixmaps/drivel/drivel-24.png
+share/pixmaps/drivel/entry.xpm
+share/pixmaps/drivel/feed.png
+share/pixmaps/drivel/hscale.xpm
+share/pixmaps/drivel/insert_image.png
+share/pixmaps/drivel/insert_object.png
+share/pixmaps/drivel/leftarrow.png
+share/pixmaps/drivel/livejournal.png
+share/pixmaps/drivel/mt.png
+share/pixmaps/drivel/private.png
+share/pixmaps/drivel/protected.png
+share/pixmaps/drivel/public.png
+share/pixmaps/drivel/radiobutton.xpm
+share/pixmaps/drivel/rightarrow.png
+share/pixmaps/drivel/user.png
+share/pixmaps/drivel/tray_livejournal.png
+share/pixmaps/drivel/xmms.xpm
+share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-drivel.png
+share/locale/bg/LC_MESSAGES/drivel.mo
+share/locale/cs/LC_MESSAGES/drivel.mo
+share/locale/de/LC_MESSAGES/drivel.mo
+share/locale/el/LC_MESSAGES/drivel.mo
+share/locale/en_CA/LC_MESSAGES/drivel.mo
+share/locale/en_GB/LC_MESSAGES/drivel.mo
+share/locale/es/LC_MESSAGES/drivel.mo
+share/locale/ja/LC_MESSAGES/drivel.mo
+share/locale/nb/LC_MESSAGES/drivel.mo
+share/locale/nl/LC_MESSAGES/drivel.mo
+share/locale/no/LC_MESSAGES/drivel.mo
+share/locale/pa/LC_MESSAGES/drivel.mo
+share/locale/pl/LC_MESSAGES/drivel.mo
+share/locale/pt/LC_MESSAGES/drivel.mo
+share/locale/pt_BR/LC_MESSAGES/drivel.mo
+share/locale/rw/LC_MESSAGES/drivel.mo
+share/locale/sq/LC_MESSAGES/drivel.mo
+share/locale/sr/LC_MESSAGES/drivel.mo
+share/locale/sr@Latn/LC_MESSAGES/drivel.mo
+share/locale/sv/LC_MESSAGES/drivel.mo
+share/locale/zh_CN/LC_MESSAGES/drivel.mo
+share/locale/zh_TW/LC_MESSAGES/drivel.mo
+@comment share/mime/application/x-drivel.xml
+share/mime/packages/drivel.xml
+@unexec /bin/rmdir %D/share/locale/rw/LC_MESSAGES 2>/dev/null || /usr/bin/true
+@unexec /bin/rmdir %D/share/locale/rw 2>/dev/null || /usr/bin/true
+@dirrmtry share/icons/gnome/48x48/mimetypes
+@dirrmtry share/icons/gnome/48x48
+@dirrm share/pixmaps/drivel
+@dirrm share/omf/drivel
+@dirrm share/gnome/help/drivel/C
+@dirrm share/gnome/help/drivel
+@dirrm share/drivel/languages
+@dirrm share/drivel/glade
+@dirrm share/drivel
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@dirrmtry share/locale/rw/LC_MESSAGES
+@dirrmtry share/locale/rw
+@dirrmtry share/applications

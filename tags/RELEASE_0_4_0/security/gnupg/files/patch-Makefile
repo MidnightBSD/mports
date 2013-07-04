@@ -1,0 +1,71 @@
+--- Makefile.in.orig	2009-06-04 11:51:46 -0400
++++ Makefile.in	2009-06-04 11:53:44 -0400
+@@ -96,7 +96,7 @@
+ 	install-dvi-recursive install-exec-recursive \
+ 	install-html-recursive install-info-recursive \
+ 	install-pdf-recursive install-ps-recursive install-recursive \
+-	installcheck-recursive installdirs-recursive pdf-recursive \
++	installdirs-recursive pdf-recursive \
+ 	ps-recursive uninstall-recursive
+ am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+ am__vpath_adj = case $$p in \
+@@ -112,7 +112,7 @@
+ ETAGS = etags
+ CTAGS = ctags
+ DIST_SUBDIRS = m4 gl include jnlib common kbx g10 keyserver sm agent \
+-	scd tools po doc tests
++	scd tools po doc
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -342,7 +342,7 @@
+ @HAVE_W32_SYSTEM_FALSE@tests = tests
+ @HAVE_W32_SYSTEM_TRUE@tests = 
+ SUBDIRS = m4 gl include jnlib common ${kbx} \
+- ${gpg} ${keyserver} ${sm} ${agent} ${scd} ${tools} po ${doc} ${tests}
++ ${gpg} ${keyserver} ${sm} ${agent} ${scd} ${tools} po ${doc}
+ 
+ dist_doc_DATA = README
+ all: config.h
+@@ -659,7 +659,6 @@
+ 	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+ 	  && $(MAKE) $(AM_MAKEFLAGS) check \
+ 	  && $(MAKE) $(AM_MAKEFLAGS) install \
+-	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+ 	  && $(MAKE) $(AM_MAKEFLAGS) uninstall \
+ 	  && $(MAKE) $(AM_MAKEFLAGS) distuninstallcheck_dir="$$dc_install_base" \
+ 	        distuninstallcheck \
+@@ -698,7 +697,6 @@
+ 	       $(distcleancheck_listfiles) ; \
+ 	       exit 1; } >&2
+ check-am: all-am
+-check: check-recursive
+ all-am: Makefile $(DATA) config.h
+ installdirs: installdirs-recursive
+ installdirs-am:
+@@ -713,7 +711,6 @@
+ install-am: all-am
+ 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+ 
+-installcheck: installcheck-recursive
+ install-strip:
+ 	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+ 	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
+@@ -765,8 +762,6 @@
+ 
+ install-ps: install-ps-recursive
+ 
+-installcheck-am:
+-
+ maintainer-clean: maintainer-clean-recursive
+ 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+ 	-rm -rf $(top_srcdir)/autom4te.cache
+@@ -801,7 +796,7 @@
+ 	install-dvi-am install-exec install-exec-am install-html \
+ 	install-html-am install-info install-info-am install-man \
+ 	install-pdf install-pdf-am install-ps install-ps-am \
+-	install-strip installcheck installcheck-am installdirs \
++	install-strip installdirs \
+ 	installdirs-am maintainer-clean maintainer-clean-generic \
+ 	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
+ 	tags-recursive uninstall uninstall-am uninstall-dist_docDATA

@@ -1,0 +1,28 @@
+--- ./Makefile.in.orig	Sat Feb 25 13:57:20 2006
++++ ./Makefile.in	Thu Apr 19 17:50:46 2007
+@@ -22,7 +22,7 @@
+ LDFLAGS_SW = @LDFLAGS@ -L. -lirman_sw
+ LIBS = @LIBS@
+ INSTALL = @INSTALL@
+-prefix = @prefix@
++prefix = ${DESTDIR}@prefix@
+ exec_prefix = @exec_prefix@
+ bindir = @bindir@
+ sbindir = @sbindir@
+@@ -103,7 +103,6 @@
+ 
+ 
+ install: @NORMAL@ install-dirs install-normal @INSTALL_SWTEST@
+-	@echo notice: the test programs are only installed in the current directory \(`pwd`\)
+ 
+ install-dirs:
+ 	$(top_srcdir)/mkinstalldirs $(libdir)
+@@ -115,7 +114,7 @@
+ install-normal:
+ 	$(INSTALL) -m 755 workmanir $(bindir)/workmanir
+ 	$(INSTALL) -m 755 libirman.a $(libdir)/libirman.a
+-	$(INSTALL) -m 644 irman.conf $(sysconfdir)/irman.conf
++	$(INSTALL) -m 644 irman.conf $(sysconfdir)/irman.conf.sample
+ 	$(INSTALL) -m 644 irman.h $(includedir)/irman.h
+ 
+ install-swtest:

@@ -1,0 +1,25 @@
+# $MidnightBSD$
+# $FreeBSD: ports/graphics/libdmtx/Makefile,v 1.10 2011/10/11 07:17:43 mm Exp $
+
+PORTNAME=	libdmtx
+PORTVERSION=	0.7.4
+CATEGORIES=	graphics
+MASTER_SITES=	SF
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Library for reading and writing Data Matrix barcodes
+LICENSE=	other
+
+LIB_DEPENDS=	MagickWand.5:${PORTSDIR}/graphics/ImageMagick
+
+MAN3=		libdmtx.3
+
+USE_BZIP2=	yes
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+
+post-patch:
+	${REINPLACE_CMD} -e '/^pkgconfigdir /s:(libdir):{prefix}/libdata:' \
+		${WRKSRC}/Makefile.in
+
+.include <bsd.port.mk>

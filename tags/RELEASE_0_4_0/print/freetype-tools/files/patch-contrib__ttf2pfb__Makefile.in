@@ -1,0 +1,20 @@
+--- ./contrib/ttf2pfb/Makefile.in.orig	Sat Nov 10 12:37:06 2007
++++ ./contrib/ttf2pfb/Makefile.in	Sat Nov 10 12:38:30 2007
+@@ -32,7 +32,7 @@
+ 
+ SRC = t1asm.c ttf2pfb.c
+ 
+-PROGRAMS = t1asm ttf2pfb
++PROGRAMS = ttf2pfb
+ 
+ default all: $(PROGRAMS)
+ 
+@@ -62,7 +62,7 @@
+ 	for P in $(PROGRAMS) ; do \
+ 	  $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) $$P $(bindir)/$$P ; \
+ 	done
+-	$(INSTALL_PROGRAM) $(srcdir)/getafm $(bindir)/getafm
++	$(BSD_INSTALL_SCRIPT) $(srcdir)/getafm $(bindir)/getafm
+ 
+ uninstall:
+ 	-for P in $(PROGRAMS) ; do \

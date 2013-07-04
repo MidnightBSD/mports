@@ -1,0 +1,9 @@
+bin/fam
+etc/fam.conf
+include/fam.h
+lib/libfam.a
+lib/libfam.la
+lib/libfam.so
+lib/libfam.so.0
+@comment For non-standard prefixes
+@rmtry libdata/ldconfig/fam
