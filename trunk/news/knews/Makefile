@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/news/knews/Makefile,v 1.4 2010/05/08 17:25:21 laffer1 Exp $
+# $MidnightBSD: mports/news/knews/Makefile,v 1.5 2013/06/15 20:29:44 laffer1 Exp $
 
 PORTNAME=	knews
 PORTVERSION=	1.0b.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=dinoex
