@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.4 2011/09/05 16:35:48 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.5 2013/02/23 23:47:48 laffer1 Exp $
 
 PORTNAME=	xvid
 PORTVERSION=	1.3.2
@@ -29,7 +29,7 @@ OPTIONS=	OPTIMIZED_CFLAGS "Use XviD's default optimizations" off
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .endif
 .if ${ARCH} == "amd64" || ${ARCH} == "i386"
 BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
