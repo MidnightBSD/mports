@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.69 2012/03/04 05:35:02 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.70 2013/06/22 02:21:44 laffer1 Exp $
 
 COMMENT = Multimedia software
 
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += dirac
+SUBDIR += dragon
 SUBDIR += etoile-babbler
 SUBDIR += etoile-mediakit
 SUBDIR += etoile-multimediakit
@@ -28,6 +29,7 @@ SUBDIR += gstreamer-plugins-xvid
 SUBDIR += gstreamer-qt4
 SUBDIR += kaffeine
 SUBDIR += kdemultimedia4
+SUBDIR += kdemultimedia4-ffmpegthumbs
 SUBDIR += libdca
 SUBDIR += libdv
 SUBDIR += libdvdcss
