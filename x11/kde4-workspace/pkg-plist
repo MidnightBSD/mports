@@ -19,6 +19,7 @@ bin/krandrtray
 bin/krdb
 bin/krunner
 bin/ksmserver
+bin/ksplashqml
 bin/ksplashsimple
 bin/ksplashx
 bin/ksplashx_scale
@@ -33,10 +34,6 @@ bin/plasma-desktop
 bin/plasma-netbook
 bin/plasma-overlay
 bin/plasma-windowed
-bin/plasmaengineexplorer
-bin/plasmawallpaperviewer
-bin/plasmoidviewer
-bin/remote-widgets-browser
 bin/solid-action-desktop-gen
 bin/startkde
 bin/startkde4
@@ -53,6 +50,7 @@ include/kdecorationbridge.h
 include/kdecorationfactory.h
 include/kgreeterplugin.h
 include/kscreensaver.h
+include/kscreensaver_export.h
 include/kscreensaver_vroot.h
 include/ksgrd/SensorAgent.h
 include/ksgrd/SensorClient.h
@@ -67,19 +65,19 @@ include/ksysguard/ksysguardprocesslist.h
 include/ksysguard/lsof.h
 include/ksysguard/process.h
 include/ksysguard/processes.h
+include/kwinanimationeffect.h
 include/kwinconfig.h
 include/kwineffects.h
 include/kwinglobals.h
 include/kwinglplatform.h
+include/kwingltexture.h
 include/kwinglutils.h
 include/kwinglutils_funcs.h
 include/kwinxrenderutils.h
-include/kworkspace/kactivityconsumer.h
-include/kworkspace/kactivitycontroller.h
-include/kworkspace/kactivityinfo.h
 include/kworkspace/kdisplaymanager.h
 include/kworkspace/kwindowlistmenu.h
 include/kworkspace/kworkspace.h
+include/kworkspace/kworkspace_export.h
 include/plasma/geolocation/geolocation_export.h
 include/plasma/geolocation/geolocationprovider.h
 include/plasma/weather/ion.h
@@ -154,16 +152,28 @@ lib/cmake/KDE4Workspace/KDE4WorkspaceConfig.cmake
 lib/cmake/KDE4Workspace/KDE4WorkspaceConfigVersion.cmake
 lib/cmake/KDE4Workspace/KDE4WorkspaceLibraryTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/KDE4Workspace/KDE4WorkspaceLibraryTargets.cmake
+lib/kconf_update_bin/force_krunner_lock_shortcut_unreg
 lib/kconf_update_bin/krdb_clearlibrarypath
 lib/kconf_update_bin/kwin_update_default_rules
+lib/kconf_update_bin/kwin_update_settings_410
+lib/kconf_update_bin/kwin_update_settings_49
+lib/kconf_update_bin/kwin_update_tabbox_qml_settings
 lib/kconf_update_bin/kwin_update_tabbox_settings
-lib/kconf_update_bin/kwin_update_window_settings
+lib/kconf_update_bin/notifications-to-orgkdenotifications
 lib/kconf_update_bin/plasma-add-shortcut-to-menu
 lib/kconf_update_bin/plasma-to-plasma-desktop
 lib/kde4/classic_mode.so
 lib/kde4/devinfo.so
 lib/kde4/fontthumbnail.so
 lib/kde4/icon_mode.so
+lib/kde4/imports/org/kde/kwin/decoration/ButtonGroup.qml
+lib/kde4/imports/org/kde/kwin/decoration/Decoration.qml
+lib/kde4/imports/org/kde/kwin/decoration/DecorationButton.qml
+lib/kde4/imports/org/kde/kwin/decoration/MenuButton.qml
+lib/kde4/imports/org/kde/kwin/decoration/libdecorationplugin.so
+lib/kde4/imports/org/kde/kwin/decoration/qmldir
+lib/kde4/imports/org/kde/kwin/decorations/plastik/libplastikplugin.so
+lib/kde4/imports/org/kde/kwin/decorations/plastik/qmldir
 lib/kde4/ion_bbcukmet.so
 lib/kde4/ion_debianweather.so
 lib/kde4/ion_envcan.so
@@ -190,6 +200,7 @@ lib/kde4/kcm_keys.so
 lib/kde4/kcm_krunner_kill.so
 lib/kde4/kcm_ksplashthemes.so
 lib/kde4/kcm_kwin4_effect_builtins.so
+lib/kde4/kcm_kwin_scripts.so
 lib/kde4/kcm_kwincompositing.so
 lib/kde4/kcm_kwindecoration.so
 lib/kde4/kcm_kwindesktop.so
@@ -202,6 +213,7 @@ lib/kde4/kcm_memory.so
 lib/kde4/kcm_nic.so
 lib/kde4/kcm_opengl.so
 lib/kde4/kcm_pci.so
+lib/kde4/kcm_powerdevilactivitiesconfig.so
 lib/kde4/kcm_powerdevilglobalconfig.so
 lib/kde4/kcm_powerdevilprofilesconfig.so
 lib/kde4/kcm_randr.so
@@ -214,11 +226,12 @@ lib/kde4/kcm_standard_actions.so
 lib/kde4/kcm_style.so
 lib/kde4/kcm_usb.so
 lib/kde4/kcm_workspaceoptions.so
-lib/kde4/kcm_xinerama.so
+lib/kde4/kded_appmenu.so
 lib/kde4/kded_freespacenotifier.so
 lib/kde4/kded_kephal.so
 lib/kde4/kded_keyboard.so
 lib/kde4/kded_khotkeys.so
+lib/kde4/kded_ktouchpadenabler.so
 lib/kde4/kded_kwrited.so
 lib/kde4/kded_powerdevil.so
 lib/kde4/kded_randrmonitor.so
@@ -251,13 +264,9 @@ lib/kde4/kwin3_aurorae.so
 lib/kde4/kwin3_b2.so
 lib/kde4/kwin3_laptop.so
 lib/kde4/kwin3_oxygen.so
-lib/kde4/kwin3_plastik.so
-lib/kde4/kwin3_tabstrip.so
 lib/kde4/kwin4_effect_builtins.so
 lib/kde4/kwin_b2_config.so
 lib/kde4/kwin_oxygen_config.so
-lib/kde4/kwin_plastik_config.so
-lib/kde4/kwin_tabstrip_config.so
 lib/kde4/libexec/backlighthelper
 lib/kde4/libexec/fontinst
 lib/kde4/libexec/fontinst_helper
@@ -269,35 +278,30 @@ lib/kde4/libexec/kdm_config
 lib/kde4/libexec/kdm_greet
 lib/kde4/libexec/kfontprint
 lib/kde4/libexec/krootimage
-lib/kde4/libexec/kscreenlocker
+lib/kde4/libexec/kscreenlocker_greet
 lib/kde4/libexec/ksysguardprocesslist_helper
 lib/kde4/libexec/kwin_killer_helper
 lib/kde4/libexec/kwin_opengl_test
 lib/kde4/libexec/kwin_rules_dialog
-lib/kde4/libexec/test_kcm_xinerama
 %%GPS%%lib/kde4/plasma-geolocation-gps.so
 lib/kde4/plasma-geolocation-ip.so
 lib/kde4/plasma_animator_default.so
 lib/kde4/plasma_applet_activitybar.so
-lib/kde4/plasma_applet_battery.so
 lib/kde4/plasma_applet_calendar.so
 lib/kde4/plasma_applet_clock.so
 lib/kde4/plasma_applet_currentappcontrol.so
-lib/kde4/plasma_applet_devicenotifier.so
 lib/kde4/plasma_applet_dig_clock.so
 lib/kde4/plasma_applet_icon.so
 lib/kde4/plasma_applet_keyboard.so
 lib/kde4/plasma_applet_launcher.so
-lib/kde4/plasma_applet_lockout.so
-lib/kde4/plasma_applet_notifications.so
 lib/kde4/plasma_applet_pager.so
 lib/kde4/plasma_applet_panelspacer_internal.so
 lib/kde4/plasma_applet_quicklaunch.so
 lib/kde4/plasma_applet_searchbox.so
-lib/kde4/plasma_applet_showActivityManager.so
 lib/kde4/plasma_applet_simplelauncher.so
 lib/kde4/plasma_applet_sm_cpu.so
 lib/kde4/plasma_applet_sm_hdd.so
+lib/kde4/plasma_applet_sm_hdd_activity.so
 lib/kde4/plasma_applet_sm_hwinfo.so
 lib/kde4/plasma_applet_sm_net.so
 lib/kde4/plasma_applet_sm_ram.so
@@ -337,6 +341,7 @@ lib/kde4/plasma_engine_hotplug.so
 lib/kde4/plasma_engine_keystate.so
 lib/kde4/plasma_engine_metadata.so
 lib/kde4/plasma_engine_mouse.so
+lib/kde4/plasma_engine_mpris2.so
 lib/kde4/plasma_engine_network.so
 lib/kde4/plasma_engine_notifications.so
 lib/kde4/plasma_engine_nowplaying.so
@@ -366,7 +371,6 @@ lib/kde4/plugins/gui_platform/libkde.so
 lib/kde4/plugins/styles/oxygen.so
 lib/kde4/powerdevilbrightnesscontrolaction_config.so
 lib/kde4/powerdevildimdisplayaction_config.so
-lib/kde4/powerdevildisabledesktopeffectsaction_config.so
 lib/kde4/powerdevildpmsaction.so
 lib/kde4/powerdevildpmsaction_config.so
 lib/kde4/powerdevilhandlebuttoneventsaction_config.so
@@ -414,6 +418,9 @@ lib/libksignalplotter.so.5.0.1
 lib/libkwineffects.so
 lib/libkwineffects.so.1
 lib/libkwineffects.so.1.0.0
+lib/libkwinglutils.so
+lib/libkwinglutils.so.1
+lib/libkwinglutils.so.1.0.0
 lib/libkwinnvidiahack.so.5
 lib/libkwinnvidiahack.so.5.0.1
 lib/libkworkspace.so
@@ -425,6 +432,9 @@ lib/liblsofui.so.5.0.1
 lib/liboxygenstyle.so
 lib/liboxygenstyle.so.5
 lib/liboxygenstyle.so.5.0.1
+lib/liboxygenstyleconfig.so
+lib/liboxygenstyleconfig.so.5
+lib/liboxygenstyleconfig.so.5.0.1
 lib/libplasma-geolocation-interface.so
 lib/libplasma-geolocation-interface.so.5
 lib/libplasma-geolocation-interface.so.5.0.1
@@ -437,10 +447,15 @@ lib/libplasmaclock.so.5.0.1
 lib/libplasmagenericshell.so
 lib/libplasmagenericshell.so.5
 lib/libplasmagenericshell.so.5.0.1
+lib/libpowerdevilconfigcommonprivate.so
+lib/libpowerdevilconfigcommonprivate.so.5
+lib/libpowerdevilconfigcommonprivate.so.5.0.1
 lib/libpowerdevilcore.so
 lib/libpowerdevilcore.so.0
 lib/libpowerdevilcore.so.0.1.0
 lib/libpowerdevilui.so
+lib/libpowerdevilui.so.5
+lib/libpowerdevilui.so.5.0.1
 lib/libprocesscore.so
 lib/libprocesscore.so.5
 lib/libprocesscore.so.5.0.1
@@ -462,6 +477,7 @@ lib/libweather_ion.so
 lib/libweather_ion.so.6
 lib/libweather_ion.so.6.0.0
 lib/strigi/strigita_font.so
+share/applications/kde4/kdesystemsettings.desktop
 share/applications/kde4/kfontview.desktop
 share/applications/kde4/kinfocenter.desktop
 share/applications/kde4/klipper.desktop
@@ -515,37 +531,24 @@ share/apps/kcmkeys/win3.kksrc
 share/apps/kcmkeys/win4.kksrc
 share/apps/kcmkeys/wm3.kksrc
 share/apps/kcmsolidactions/solid-action-template.desktop
+share/apps/kcmstyle/kcmstyle.notifyrc
 share/apps/kcmusb/usb.ids
-share/apps/kconf_update/convertShortcuts.pl
-share/apps/kconf_update/kaccel.upd
-share/apps/kconf_update/kcmdisplayrc.upd
 share/apps/kconf_update/klipper-kconfigxt.upd
 share/apps/kconf_update/krdb_libpathwipe.upd
-share/apps/kconf_update/ksmserver.upd
+share/apps/kconf_update/kscreenlocker_locksession-shortcut.upd
 share/apps/kconf_update/ksmserver_shortcuts.upd
-share/apps/kconf_update/kwin.upd
-share/apps/kconf_update/kwin3_plugin.pl
-share/apps/kconf_update/kwin3_plugin.upd
-share/apps/kconf_update/kwin_focus1.sh
-share/apps/kconf_update/kwin_focus1.upd
-share/apps/kconf_update/kwin_focus2.sh
-share/apps/kconf_update/kwin_focus2.upd
 share/apps/kconf_update/kwin_fsp_workarounds_1.upd
-share/apps/kconf_update/kwin_on_off.upd
+share/apps/kconf_update/kwin_remove_delay_focus.sh
+share/apps/kconf_update/kwin_remove_delay_focus.upd
 share/apps/kconf_update/kwin_remove_effects.upd
+share/apps/kconf_update/kwin_update_410.upd
+share/apps/kconf_update/kwin_update_49.upd
+share/apps/kconf_update/kwin_update_tabbox_qml_settings.upd
 share/apps/kconf_update/kwin_update_tabbox_settings.upd
-share/apps/kconf_update/kwin_window_shortcuts.sh
-share/apps/kconf_update/kwin_window_shortcuts.upd
-share/apps/kconf_update/kwiniconify.upd
-share/apps/kconf_update/kwinsticky.upd
-share/apps/kconf_update/kwinupdatewindowsettings.upd
-share/apps/kconf_update/mouse_cursor_theme.upd
-share/apps/kconf_update/move_session_config.sh
-share/apps/kconf_update/on-off_to_true-false.sh
+share/apps/kconf_update/notifications-to-orgkdenotifications.upd
 share/apps/kconf_update/plasma-add-shortcut-to-menu.upd
 share/apps/kconf_update/plasma-to-plasmadesktop-shortcuts.upd
 share/apps/kconf_update/plasmarc-to-plasmadesktoprc.upd
-share/apps/kconf_update/pluginlibFix.pl
 share/apps/kcontrol/pics/anchor.png
 share/apps/kcontrol/pics/logo.png
 share/apps/kcontrol/pics/mini-world.png
@@ -641,6 +644,20 @@ share/apps/kdm/sessions/wm2.desktop
 share/apps/kdm/sessions/wmaker.desktop
 share/apps/kdm/sessions/xfce.desktop
 share/apps/kdm/sessions/xfce4.desktop
+share/apps/kdm/themes/ariya/KdmGreeterTheme.desktop
+share/apps/kdm/themes/ariya/ariya.xml
+share/apps/kdm/themes/ariya/lineedit_active.png
+share/apps/kdm/themes/ariya/lineedit_normal.png
+share/apps/kdm/themes/ariya/lock.png
+share/apps/kdm/themes/ariya/login_active.png
+share/apps/kdm/themes/ariya/login_normal.png
+share/apps/kdm/themes/ariya/pw_icon.png
+share/apps/kdm/themes/ariya/rectangle.png
+share/apps/kdm/themes/ariya/rectangle_overlay.png
+share/apps/kdm/themes/ariya/screenshot.png
+share/apps/kdm/themes/ariya/session_normal.png
+share/apps/kdm/themes/ariya/system_normal.png
+share/apps/kdm/themes/ariya/user_icon.png
 share/apps/kdm/themes/circles/KdmGreeterTheme.desktop
 share/apps/kdm/themes/circles/background.svg
 share/apps/kdm/themes/circles/circles.xml
@@ -648,6 +665,20 @@ share/apps/kdm/themes/circles/flower.png
 share/apps/kdm/themes/circles/help.png
 share/apps/kdm/themes/circles/options.png
 share/apps/kdm/themes/circles/screenshot.png
+share/apps/kdm/themes/elarun/KdmGreeterTheme.desktop
+share/apps/kdm/themes/elarun/elarun.xml
+share/apps/kdm/themes/elarun/lineedit_active.png
+share/apps/kdm/themes/elarun/lineedit_normal.png
+share/apps/kdm/themes/elarun/lock.png
+share/apps/kdm/themes/elarun/login_active.png
+share/apps/kdm/themes/elarun/login_normal.png
+share/apps/kdm/themes/elarun/pw_icon.png
+share/apps/kdm/themes/elarun/rectangle.png
+share/apps/kdm/themes/elarun/rectangle_overlay.png
+share/apps/kdm/themes/elarun/screenshot.png
+share/apps/kdm/themes/elarun/session_normal.png
+share/apps/kdm/themes/elarun/system_normal.png
+share/apps/kdm/themes/elarun/user_icon.png
 share/apps/kdm/themes/horos/KdmGreeterTheme.desktop
 share/apps/kdm/themes/horos/horos.xml
 share/apps/kdm/themes/horos/lineedit_active.png
@@ -702,34 +733,37 @@ share/apps/khotkeys/kde32b1.khotkeys
 share/apps/khotkeys/konqueror_gestures_kde321.khotkeys
 share/apps/khotkeys/printscreen.khotkeys
 share/apps/kinfocenter/kinfocenterui.rc
-share/apps/kmenuedit/icons/oxygen/22x22/actions/menu_new.png
-share/apps/kmenuedit/icons/oxygen/22x22/actions/menu_new_sep.png
-share/apps/kmenuedit/icons/oxygen/32x32/actions/menu_new.png
-share/apps/kmenuedit/icons/oxygen/32x32/actions/menu_new_sep.png
+share/apps/kmenuedit/icons/hicolor/22x22/actions/menu_new.png
+share/apps/kmenuedit/icons/hicolor/22x22/actions/menu_new_sep.png
+share/apps/kmenuedit/icons/hicolor/32x32/actions/menu_new.png
+share/apps/kmenuedit/icons/hicolor/32x32/actions/menu_new_sep.png
 share/apps/kmenuedit/kmenueditui.rc
 share/apps/konqsidebartng/virtual_folders/services/fonts.desktop
-share/apps/kscreenlocker/kscreenlocker.notifyrc
-share/apps/ksplash/Themes/Default/1024x768/background.png
-share/apps/ksplash/Themes/Default/1280x1024/background.png
-share/apps/ksplash/Themes/Default/1600x1200/background.png
-share/apps/ksplash/Themes/Default/1600x1200/description.txt
-share/apps/ksplash/Themes/Default/1600x1200/icon1.png
-share/apps/ksplash/Themes/Default/1600x1200/icon1_anim.png
-share/apps/ksplash/Themes/Default/1600x1200/icon2.png
-share/apps/ksplash/Themes/Default/1600x1200/icon2_anim.png
-share/apps/ksplash/Themes/Default/1600x1200/icon3.png
-share/apps/ksplash/Themes/Default/1600x1200/icon3_anim.png
-share/apps/ksplash/Themes/Default/1600x1200/icon4.png
-share/apps/ksplash/Themes/Default/1600x1200/icon4_anim.png
-share/apps/ksplash/Themes/Default/1600x1200/icon5.png
-share/apps/ksplash/Themes/Default/1600x1200/icon5_anim.png
-share/apps/ksplash/Themes/Default/1600x1200/rectangle.png
-share/apps/ksplash/Themes/Default/1920x1080/background.png
-share/apps/ksplash/Themes/Default/1920x1200/background.png
-share/apps/ksplash/Themes/Default/600x400/background.png
-share/apps/ksplash/Themes/Default/800x600/background.png
-share/apps/ksplash/Themes/Default/Preview.png
-share/apps/ksplash/Themes/Default/Theme.rc
+share/apps/ksmserver/ksmserver.notifyrc
+share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents/ui/AccelButton.qml
+share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents/ui/Greeter.qml
+share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents/ui/SessionSwitching.qml
+share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents/ui/main.qml
+share/apps/ksmserver/screenlocker/org.kde.passworddialog/metadata.desktop
+share/apps/ksmserver/themes/contour/ContourButton.qml
+share/apps/ksmserver/themes/contour/main.qml
+share/apps/ksmserver/themes/contour/metadata.desktop
+share/apps/ksmserver/themes/contour/screenshot.png
+share/apps/ksmserver/themes/default/ContextMenu.qml
+share/apps/ksmserver/themes/default/KSMButton.qml
+share/apps/ksmserver/themes/default/MenuItem.qml
+share/apps/ksmserver/themes/default/helper.js
+share/apps/ksmserver/themes/default/main.qml
+share/apps/ksmserver/themes/default/metadata.desktop
+share/apps/ksmserver/themes/default/screenshot.png
+share/apps/ksplash/Themes/Minimalistic/Preview.png
+share/apps/ksplash/Themes/Minimalistic/Theme.rc
+share/apps/ksplash/Themes/Minimalistic/images/kdegear.png
+share/apps/ksplash/Themes/Minimalistic/images/kdeletter.png
+share/apps/ksplash/Themes/Minimalistic/images/kdelogo-contrast.png
+share/apps/ksplash/Themes/Minimalistic/images/kdelogo.png
+share/apps/ksplash/Themes/Minimalistic/images/kdemask.png
+share/apps/ksplash/Themes/Minimalistic/main.qml
 share/apps/ksplash/Themes/None/Theme.rc
 share/apps/ksplash/Themes/Simple/Preview.png
 share/apps/ksplash/Themes/Simple/Theme.rc
@@ -777,37 +811,98 @@ share/apps/kthememanager/themes/YellowOnBlue-big/YellowOnBlue-big.preview.png
 share/apps/kthememanager/themes/YellowOnBlue-big/YellowOnBlue-big.xml
 share/apps/kthememanager/themes/YellowOnBlue/YellowOnBlue.preview.png
 share/apps/kthememanager/themes/YellowOnBlue/YellowOnBlue.xml
-share/apps/kwin/DefaultTabBoxLayouts.xml
 share/apps/kwin/aurorae.desktop
+share/apps/kwin/aurorae/AuroraeButton.qml
+share/apps/kwin/aurorae/AuroraeButtonGroup.qml
+share/apps/kwin/aurorae/AuroraeMaximizeButton.qml
+share/apps/kwin/aurorae/Decoration.qml
+share/apps/kwin/aurorae/DecorationButton.qml
+share/apps/kwin/aurorae/MenuButton.qml
+share/apps/kwin/aurorae/aurorae.qml
 share/apps/kwin/b2.desktop
 share/apps/kwin/blinking-startup-fragment.glsl
-share/apps/kwin/circle-edgy.png
-share/apps/kwin/circle.png
 share/apps/kwin/coverswitch-reflection.glsl
 share/apps/kwin/cube-cap.glsl
 share/apps/kwin/cube-reflection.glsl
 share/apps/kwin/cubecap.png
 share/apps/kwin/cylinder.frag
 share/apps/kwin/cylinder.vert
+share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/config/main.xml
+share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/PlastikButton.qml
+share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/config.ui
+share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/main.qml
+share/apps/kwin/decorations/kwin4_decoration_qml_plastik/metadata.desktop
 share/apps/kwin/default_rules/fsp_workarounds_1.kwinrules
 share/apps/kwin/default_rules/plasma_desktop_containment.kwinrules
+share/apps/kwin/effects/kwin4_effect_fade/contents/code/main.js
+share/apps/kwin/effects/kwin4_effect_fade/contents/config/main.xml
+share/apps/kwin/effects/kwin4_effect_fade/metadata.desktop
+share/apps/kwin/effects/kwin4_effect_fadedesktop/contents/code/main.js
+share/apps/kwin/effects/kwin4_effect_fadedesktop/metadata.desktop
+share/apps/kwin/effects/kwin4_effect_maximize/contents/code/maximize.js
+share/apps/kwin/effects/kwin4_effect_maximize/metadata.desktop
 share/apps/kwin/explosion-end.png
 share/apps/kwin/explosion-start.png
 share/apps/kwin/explosion.frag
 share/apps/kwin/invert.frag
+share/apps/kwin/kcm_kwindecoration/AuroraeDecoration.qml
+share/apps/kwin/kcm_kwindecoration/AuroraePreview.qml
+share/apps/kwin/kcm_kwindecoration/DecorationPreview.qml
+share/apps/kwin/kcm_kwindecoration/main.qml
+share/apps/kwin/kcm_kwintabbox/dolphin.png
+share/apps/kwin/kcm_kwintabbox/kmail.png
+share/apps/kwin/kcm_kwintabbox/konqueror.png
+share/apps/kwin/kcm_kwintabbox/main.qml
+share/apps/kwin/kcm_kwintabbox/systemsettings.png
 share/apps/kwin/kwin.notifyrc
 share/apps/kwin/laptop.desktop
+share/apps/kwin/logout-blur.frag
 share/apps/kwin/lookingglass.frag
 share/apps/kwin/oxygenclient.desktop
-share/apps/kwin/plastik.desktop
+share/apps/kwin/scripts/desktopchangeosd/contents/ui/main.qml
+share/apps/kwin/scripts/desktopchangeosd/metadata.desktop
+share/apps/kwin/scripts/synchronizeskipswitcher/contents/code/main.js
+share/apps/kwin/scripts/synchronizeskipswitcher/metadata.desktop
+share/apps/kwin/scripts/videowall/contents/code/main.js
+share/apps/kwin/scripts/videowall/metadata.desktop
 share/apps/kwin/sphere.vert
-share/apps/kwin/tabstrip.desktop
-share/apps/kwin/trackmouse.png
+share/apps/kwin/stripTitle.js
+share/apps/kwin/tabbox/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/big_icons/contents/ui/IconTabBox.qml
+share/apps/kwin/tabbox/big_icons/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/big_icons/contents/ui/main.qml
+share/apps/kwin/tabbox/big_icons/metadata.desktop
+share/apps/kwin/tabbox/compact/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/compact/contents/ui/main.qml
+share/apps/kwin/tabbox/compact/metadata.desktop
+share/apps/kwin/tabbox/desktop.qml
+share/apps/kwin/tabbox/informative/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/informative/contents/ui/main.qml
+share/apps/kwin/tabbox/informative/metadata.desktop
+share/apps/kwin/tabbox/present_windows/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/present_windows/contents/ui/main.qml
+share/apps/kwin/tabbox/present_windows/metadata.desktop
+share/apps/kwin/tabbox/small_icons/contents/ui/IconTabBox.qml
+share/apps/kwin/tabbox/small_icons/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/small_icons/contents/ui/main.qml
+share/apps/kwin/tabbox/small_icons/metadata.desktop
+share/apps/kwin/tabbox/tabbox.qml
+share/apps/kwin/tabbox/text/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/text/contents/ui/main.qml
+share/apps/kwin/tabbox/text/metadata.desktop
+share/apps/kwin/tabbox/thumbnails/contents/ui/ShadowedSvgItem.qml
+share/apps/kwin/tabbox/thumbnails/contents/ui/main.qml
+share/apps/kwin/tabbox/thumbnails/metadata.desktop
+share/apps/kwin/tabbox/window_strip/contents/ui/main.qml
+share/apps/kwin/tabbox/window_strip/metadata.desktop
+share/apps/kwin/tm_inner.png
+share/apps/kwin/tm_outer.png
+share/apps/kwin/vignetting.frag
 share/apps/kwrited/kwrited.notifyrc
 share/apps/plasma-desktop/init/00-defaultLayout.js
-share/apps/plasma-desktop/init/05-freebsdWallpaper.js
 share/apps/plasma-desktop/plasma-desktop.notifyrc
 share/apps/plasma-desktop/updates/addShowActivitiesManagerPlasmoid.js
+share/apps/plasma-desktop/updates/set-hidden-single-vd-pager.js
 share/apps/plasma-desktop/updates/systray-to-notifications-widget.js
 share/apps/plasma-netbook/init/00-defaultLayout.js
 share/apps/plasma/dashboard/AppleClasses/AppleAnimator.js
@@ -833,15 +928,78 @@ share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultPanel/contents/
 share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultPanel/metadata.desktop
 share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultSal/contents/layout.js
 share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultSal/metadata.desktop
+share/apps/plasma/packages/org.kde.desktop.activitymanager/contents/ui/.directory
+share/apps/plasma/packages/org.kde.desktop.activitymanager/contents/ui/ActivityDelegate.qml
+share/apps/plasma/packages/org.kde.desktop.activitymanager/contents/ui/main.qml
+share/apps/plasma/packages/org.kde.desktop.activitymanager/metadata.desktop
+share/apps/plasma/packages/org.kde.desktop.widgetexplorer/Messages.sh
+share/apps/plasma/packages/org.kde.desktop.widgetexplorer/contents/ui/AppletDelegate.qml
+share/apps/plasma/packages/org.kde.desktop.widgetexplorer/contents/ui/Tooltip.qml
+share/apps/plasma/packages/org.kde.desktop.widgetexplorer/contents/ui/main.qml
+share/apps/plasma/packages/org.kde.desktop.widgetexplorer/metadata.desktop
+share/apps/plasma/packages/org.kde.pager/contents/ui/main.qml
+share/apps/plasma/packages/org.kde.pager/contents/ui/utils.js
+share/apps/plasma/packages/org.kde.pager/metadata.desktop
+share/apps/plasma/packages/org.kde.systemtray/contents/code/IconsList.js
+share/apps/plasma/packages/org.kde.systemtray/contents/code/TasksSet.js
+share/apps/plasma/packages/org.kde.systemtray/contents/code/main.js
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/ArrowArea.qml
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/IconsGrid.qml
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/IconsList.qml
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/StatusNotifierItem.qml
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/TrayIcon.qml
+share/apps/plasma/packages/org.kde.systemtray/contents/ui/main.qml
+share/apps/plasma/plasmoids/battery/contents/code/logic.js
+share/apps/plasma/plasmoids/battery/contents/code/platform.js
+share/apps/plasma/plasmoids/battery/contents/config/main.xml
+share/apps/plasma/plasmoids/battery/contents/ui/BatteryIcon.qml
+share/apps/plasma/plasmoids/battery/contents/ui/PopupDialog.qml
+share/apps/plasma/plasmoids/battery/contents/ui/batterymonitor.qml
+share/apps/plasma/plasmoids/battery/contents/ui/config.ui
+share/apps/plasma/plasmoids/battery/metadata.desktop
+share/apps/plasma/plasmoids/lockout/contents/config/main.xml
+share/apps/plasma/plasmoids/lockout/contents/ui/config.ui
+share/apps/plasma/plasmoids/lockout/contents/ui/data.js
+share/apps/plasma/plasmoids/lockout/contents/ui/lockout.qml
+share/apps/plasma/plasmoids/lockout/metadata.desktop
+share/apps/plasma/plasmoids/notifier/contents/config/main.xml
+share/apps/plasma/plasmoids/notifier/contents/ui/ActionItem.qml
+share/apps/plasma/plasmoids/notifier/contents/ui/DeviceItem.qml
+share/apps/plasma/plasmoids/notifier/contents/ui/StatusBar.qml
+share/apps/plasma/plasmoids/notifier/contents/ui/config.ui
+share/apps/plasma/plasmoids/notifier/contents/ui/devicenotifier.qml
+share/apps/plasma/plasmoids/notifier/metadata.desktop
+share/apps/plasma/plasmoids/org.kde.notifications/contents/config/main.xml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/JobDelegate.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/Jobs.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/LastNotificationPopup.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/NotificationDelegate/NotificationDelegate.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/NotificationDelegate/qmldir
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/NotificationIcon.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/Notifications.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/Title.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/config.ui
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/main.qml
+share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/uiproperties.js
+share/apps/plasma/plasmoids/org.kde.notifications/metadata.desktop
+share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch/ui/NotificationDelegate/NotificationDelegate.qml
+share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch/ui/NotificationDelegate/qmldir
+share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch/ui/uiproperties.js
+share/apps/plasma/plasmoids/org.kde.showActivityManager/contents/ui/main.qml
+share/apps/plasma/plasmoids/org.kde.showActivityManager/metadata.desktop
 share/apps/plasma/services/activities.operations
 share/apps/plasma/services/applicationjobs.operations
 share/apps/plasma/services/apps.operations
+share/apps/plasma/services/hotplug.operations
 share/apps/plasma/services/modifierkeystate.operations
+share/apps/plasma/services/mpris2.operations
 share/apps/plasma/services/notifications.operations
 share/apps/plasma/services/nowplaying.operations
 share/apps/plasma/services/org.kde.places.operations
+share/apps/plasma/services/powermanagementservice.operations
 share/apps/plasma/services/searchlaunch.operations
 share/apps/plasma/services/share.operations
+share/apps/plasma/services/soliddevice.operations
 share/apps/plasma/services/statusnotifieritem.operations
 share/apps/plasma/services/tasks.operations
 share/apps/plasma/shareprovider/imgsusepasteorg/contents/code/main.js
@@ -895,7 +1053,6 @@ share/autostart/plasma-desktop.desktop
 share/autostart/plasma.desktop
 share/config.kcfg/freespacenotifier.kcfg
 share/config.kcfg/klaunch.kcfg
-share/config.kcfg/kscreensaversettings.kcfg
 share/config.kcfg/kwin.kcfg
 share/config.kcfg/plasma-shell-desktop.kcfg
 share/config/activities.knsrc
@@ -903,18 +1060,22 @@ share/config/aurorae.knsrc
 share/config/background.knsrc
 share/config/colorschemes.knsrc
 share/config/kdm.knsrc
+share/config/kfontinst.knsrc
 share/config/ksplash.knsrc
 share/config/ksysguard.knsrc
+share/config/kwineffect.knsrc
+share/config/kwinscripts.knsrc
+share/config/kwinswitcher.knsrc
 share/config/plasma-overlayrc
 share/config/plasma-themes.knsrc
 share/config/wallpaper.knsrc
 share/config/xcursor.knsrc
-share/dbus-1/interfaces/org.freedesktop.ScreenSaver.xml
+share/dbus-1/interfaces/com.canonical.AppMenu.Registrar.xml
 share/dbus-1/interfaces/org.kde.KSMServerInterface.xml
 share/dbus-1/interfaces/org.kde.KWin.xml
+share/dbus-1/interfaces/org.kde.kded.appmenu.xml
 share/dbus-1/interfaces/org.kde.khotkeys.xml
 share/dbus-1/interfaces/org.kde.krunner.App.xml
-share/dbus-1/interfaces/org.kde.screensaver.xml
 share/dbus-1/services/org.kde.fontinst.service
 share/dbus-1/services/org.kde.krunner.service
 share/dbus-1/system-services/org.kde.fontinst.service
@@ -974,6 +1135,17 @@ share/doc/HTML/en/kcontrol/keyboard/index.docbook
 share/doc/HTML/en/kcontrol/keys/common
 share/doc/HTML/en/kcontrol/keys/index.cache.bz2
 share/doc/HTML/en/kcontrol/keys/index.docbook
+share/doc/HTML/en/kcontrol/khotkeys/common
+share/doc/HTML/en/kcontrol/khotkeys/groups-comment.png
+share/doc/HTML/en/kcontrol/khotkeys/index.cache.bz2
+share/doc/HTML/en/kcontrol/khotkeys/index.docbook
+share/doc/HTML/en/kcontrol/khotkeys/manage-export.png
+share/doc/HTML/en/kcontrol/khotkeys/oxygen-22x22-edit-clear-locationbar-rtl.png
+share/doc/HTML/en/kcontrol/khotkeys/settings.png
+share/doc/HTML/en/kcontrol/khotkeys/shortcuts-action-command.png
+share/doc/HTML/en/kcontrol/khotkeys/shortcuts-action-keyboard.png
+share/doc/HTML/en/kcontrol/khotkeys/shortcuts-trigger-keyboard.png
+share/doc/HTML/en/kcontrol/khotkeys/shortcuts-trigger-mouse.png
 share/doc/HTML/en/kcontrol/kwincompositing/common
 share/doc/HTML/en/kcontrol/kwincompositing/index.cache.bz2
 share/doc/HTML/en/kcontrol/kwincompositing/index.docbook
@@ -1019,9 +1191,47 @@ share/doc/HTML/en/kcontrol/splashscreen/splash-main.png
 share/doc/HTML/en/kcontrol/windowbehaviour/common
 share/doc/HTML/en/kcontrol/windowbehaviour/index.cache.bz2
 share/doc/HTML/en/kcontrol/windowbehaviour/index.docbook
+share/doc/HTML/en/kcontrol/windowspecific/Face-smile.png
+share/doc/HTML/en/kcontrol/windowspecific/akgregator-info.png
+share/doc/HTML/en/kcontrol/windowspecific/akregator-attributes.png
+share/doc/HTML/en/kcontrol/windowspecific/akregator-fav.png
 share/doc/HTML/en/kcontrol/windowspecific/common
+share/doc/HTML/en/kcontrol/windowspecific/config-win-behavior.png
+share/doc/HTML/en/kcontrol/windowspecific/emacs-attribute.png
+share/doc/HTML/en/kcontrol/windowspecific/emacs-info.png
+share/doc/HTML/en/kcontrol/windowspecific/focus-stealing-pop2top-attribute.png
 share/doc/HTML/en/kcontrol/windowspecific/index.cache.bz2
 share/doc/HTML/en/kcontrol/windowspecific/index.docbook
+share/doc/HTML/en/kcontrol/windowspecific/knotes-attribute.png
+share/doc/HTML/en/kcontrol/windowspecific/knotes-info.png
+share/doc/HTML/en/kcontrol/windowspecific/kopete-attribute-2.png
+share/doc/HTML/en/kcontrol/windowspecific/kopete-chat-attribute.png
+share/doc/HTML/en/kcontrol/windowspecific/kopete-chat-info.png
+share/doc/HTML/en/kcontrol/windowspecific/kopete-info.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-detect-window.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-kopete-rules.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-rule-editor.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-rules-main-n-akregator.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-rules-main.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-rules-ordering.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-window-attributes.png
+share/doc/HTML/en/kcontrol/windowspecific/kwin-window-matching.png
+share/doc/HTML/en/kcontrol/windowspecific/pager-4-desktops.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-compose-attribute.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-compose-info.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-main-attribute.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-main-info.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-reminder-attribute-2.png
+share/doc/HTML/en/kcontrol/windowspecific/tbird-reminder-info.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-emacs.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-init.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-knotes.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-kopete-chat.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-kopete.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-ready-akregator.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-tbird-compose.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-tbird-main.png
+share/doc/HTML/en/kcontrol/windowspecific/window-matching-tbird-reminder.png
 share/doc/HTML/en/kcontrol/workspaceoptions/common
 share/doc/HTML/en/kcontrol/workspaceoptions/index.cache.bz2
 share/doc/HTML/en/kcontrol/workspaceoptions/index.docbook
@@ -1060,6 +1270,8 @@ share/doc/HTML/en/ksysguard/index.docbook
 share/doc/HTML/en/plasma-desktop/add-widgets.png
 share/doc/HTML/en/plasma-desktop/common
 share/doc/HTML/en/plasma-desktop/desktop-settings.png
+share/doc/HTML/en/plasma-desktop/device_notifier_widget.png
+share/doc/HTML/en/plasma-desktop/device_notifier_widget_actions.png
 share/doc/HTML/en/plasma-desktop/index.cache.bz2
 share/doc/HTML/en/plasma-desktop/index.docbook
 share/doc/HTML/en/plasma-desktop/panel-settings.png
@@ -1144,81 +1356,6 @@ share/icons/Oxygen_Black/cursors/watch
 share/icons/Oxygen_Black/cursors/whats_this
 share/icons/Oxygen_Black/cursors/xterm
 share/icons/Oxygen_Black/index.theme
-share/icons/Oxygen_Black_Big/cursors/00000000000000020006000e7e9ffc3f
-share/icons/Oxygen_Black_Big/cursors/00008160000006810000408080010102
-share/icons/Oxygen_Black_Big/cursors/03b6e0fcb3499374a867c041f52298f0
-share/icons/Oxygen_Black_Big/cursors/08e8e1c95fe2fc01f976f1e063a24ccd
-share/icons/Oxygen_Black_Big/cursors/1081e37283d90000800003c07f3ef6bf
-share/icons/Oxygen_Black_Big/cursors/3085a0e285430894940527032f8b26df
-share/icons/Oxygen_Black_Big/cursors/3ecb610c1bf2410f44200f48c40d3599
-share/icons/Oxygen_Black_Big/cursors/4498f0e0c1937ffe01fd06f973665830
-share/icons/Oxygen_Black_Big/cursors/5c6cd98b3f3ebcb1f9c7f1c204630408
-share/icons/Oxygen_Black_Big/cursors/6407b0e94181790501fd1e167b474872
-share/icons/Oxygen_Black_Big/cursors/640fb0e74195791501fd1ed57b41487f
-share/icons/Oxygen_Black_Big/cursors/9081237383d90e509aa00f00170e968f
-share/icons/Oxygen_Black_Big/cursors/9d800788f1b08800ae810202380a0822
-share/icons/Oxygen_Black_Big/cursors/X_cursor
-share/icons/Oxygen_Black_Big/cursors/a2a266d0498c3104214a47bd64ab0fc8
-share/icons/Oxygen_Black_Big/cursors/alias
-share/icons/Oxygen_Black_Big/cursors/all-scroll
-share/icons/Oxygen_Black_Big/cursors/b66166c04f8c3109214a4fbd64a50fc8
-share/icons/Oxygen_Black_Big/cursors/circle
-share/icons/Oxygen_Black_Big/cursors/closedhand
-share/icons/Oxygen_Black_Big/cursors/col-resize
-share/icons/Oxygen_Black_Big/cursors/color-picker
-share/icons/Oxygen_Black_Big/cursors/copy
-share/icons/Oxygen_Black_Big/cursors/cross
-share/icons/Oxygen_Black_Big/cursors/crossed_circle
-share/icons/Oxygen_Black_Big/cursors/d9ce0ab605698f320427677b458ad60b
-share/icons/Oxygen_Black_Big/cursors/dnd-copy
-share/icons/Oxygen_Black_Big/cursors/dnd-link
-share/icons/Oxygen_Black_Big/cursors/dnd-move
-share/icons/Oxygen_Black_Big/cursors/dnd-no-drop
-share/icons/Oxygen_Black_Big/cursors/dnd-none
-share/icons/Oxygen_Black_Big/cursors/e-resize
-share/icons/Oxygen_Black_Big/cursors/e29285e634086352946a0e7090d73106
-share/icons/Oxygen_Black_Big/cursors/fcf21c00b30f7e3f83fe0dfd12e71cff
-share/icons/Oxygen_Black_Big/cursors/fleur
-share/icons/Oxygen_Black_Big/cursors/forbidden
-share/icons/Oxygen_Black_Big/cursors/half-busy
-share/icons/Oxygen_Black_Big/cursors/hand1
-share/icons/Oxygen_Black_Big/cursors/hand2
-share/icons/Oxygen_Black_Big/cursors/help
-share/icons/Oxygen_Black_Big/cursors/ibeam
-share/icons/Oxygen_Black_Big/cursors/left_ptr
-share/icons/Oxygen_Black_Big/cursors/left_ptr_watch
-share/icons/Oxygen_Black_Big/cursors/link
-share/icons/Oxygen_Black_Big/cursors/move
-share/icons/Oxygen_Black_Big/cursors/n-resize
-share/icons/Oxygen_Black_Big/cursors/not-allowed
-share/icons/Oxygen_Black_Big/cursors/openhand
-share/icons/Oxygen_Black_Big/cursors/pencil
-share/icons/Oxygen_Black_Big/cursors/pirate
-share/icons/Oxygen_Black_Big/cursors/plus
-share/icons/Oxygen_Black_Big/cursors/pointer
-share/icons/Oxygen_Black_Big/cursors/pointing_hand
-share/icons/Oxygen_Black_Big/cursors/progress
-share/icons/Oxygen_Black_Big/cursors/question_arrow
-share/icons/Oxygen_Black_Big/cursors/row-resize
-share/icons/Oxygen_Black_Big/cursors/s-resize
-share/icons/Oxygen_Black_Big/cursors/sb_h_double_arrow
-share/icons/Oxygen_Black_Big/cursors/sb_v_double_arrow
-share/icons/Oxygen_Black_Big/cursors/size_all
-share/icons/Oxygen_Black_Big/cursors/size_bdiag
-share/icons/Oxygen_Black_Big/cursors/size_fdiag
-share/icons/Oxygen_Black_Big/cursors/size_hor
-share/icons/Oxygen_Black_Big/cursors/size_ver
-share/icons/Oxygen_Black_Big/cursors/split_h
-share/icons/Oxygen_Black_Big/cursors/split_v
-share/icons/Oxygen_Black_Big/cursors/text
-share/icons/Oxygen_Black_Big/cursors/up_arrow
-share/icons/Oxygen_Black_Big/cursors/v_double_arrow
-share/icons/Oxygen_Black_Big/cursors/w-resize
-share/icons/Oxygen_Black_Big/cursors/wait
-share/icons/Oxygen_Black_Big/cursors/watch
-share/icons/Oxygen_Black_Big/cursors/whats_this
-share/icons/Oxygen_Black_Big/cursors/xterm
-share/icons/Oxygen_Black_Big/index.theme
 share/icons/Oxygen_Blue/cursors/00000000000000020006000e7e9ffc3f
 share/icons/Oxygen_Blue/cursors/00008160000006810000408080010102
 share/icons/Oxygen_Blue/cursors/03b6e0fcb3499374a867c041f52298f0
@@ -1294,81 +1431,6 @@ share/icons/Oxygen_Blue/cursors/watch
 share/icons/Oxygen_Blue/cursors/whats_this
 share/icons/Oxygen_Blue/cursors/xterm
 share/icons/Oxygen_Blue/index.theme
-share/icons/Oxygen_Blue_Big/cursors/00000000000000020006000e7e9ffc3f
-share/icons/Oxygen_Blue_Big/cursors/00008160000006810000408080010102
-share/icons/Oxygen_Blue_Big/cursors/03b6e0fcb3499374a867c041f52298f0
-share/icons/Oxygen_Blue_Big/cursors/08e8e1c95fe2fc01f976f1e063a24ccd
-share/icons/Oxygen_Blue_Big/cursors/1081e37283d90000800003c07f3ef6bf
-share/icons/Oxygen_Blue_Big/cursors/3085a0e285430894940527032f8b26df
-share/icons/Oxygen_Blue_Big/cursors/3ecb610c1bf2410f44200f48c40d3599
-share/icons/Oxygen_Blue_Big/cursors/4498f0e0c1937ffe01fd06f973665830
-share/icons/Oxygen_Blue_Big/cursors/5c6cd98b3f3ebcb1f9c7f1c204630408
-share/icons/Oxygen_Blue_Big/cursors/6407b0e94181790501fd1e167b474872
-share/icons/Oxygen_Blue_Big/cursors/640fb0e74195791501fd1ed57b41487f
-share/icons/Oxygen_Blue_Big/cursors/9081237383d90e509aa00f00170e968f
-share/icons/Oxygen_Blue_Big/cursors/9d800788f1b08800ae810202380a0822
-share/icons/Oxygen_Blue_Big/cursors/X_cursor
-share/icons/Oxygen_Blue_Big/cursors/a2a266d0498c3104214a47bd64ab0fc8
-share/icons/Oxygen_Blue_Big/cursors/alias
-share/icons/Oxygen_Blue_Big/cursors/all-scroll
-share/icons/Oxygen_Blue_Big/cursors/b66166c04f8c3109214a4fbd64a50fc8
-share/icons/Oxygen_Blue_Big/cursors/circle
-share/icons/Oxygen_Blue_Big/cursors/closedhand
-share/icons/Oxygen_Blue_Big/cursors/col-resize
-share/icons/Oxygen_Blue_Big/cursors/color-picker
-share/icons/Oxygen_Blue_Big/cursors/copy
-share/icons/Oxygen_Blue_Big/cursors/cross
-share/icons/Oxygen_Blue_Big/cursors/crossed_circle
-share/icons/Oxygen_Blue_Big/cursors/d9ce0ab605698f320427677b458ad60b
-share/icons/Oxygen_Blue_Big/cursors/dnd-copy
-share/icons/Oxygen_Blue_Big/cursors/dnd-link
-share/icons/Oxygen_Blue_Big/cursors/dnd-move
-share/icons/Oxygen_Blue_Big/cursors/dnd-no-drop
-share/icons/Oxygen_Blue_Big/cursors/dnd-none
-share/icons/Oxygen_Blue_Big/cursors/e-resize
-share/icons/Oxygen_Blue_Big/cursors/e29285e634086352946a0e7090d73106
-share/icons/Oxygen_Blue_Big/cursors/fcf21c00b30f7e3f83fe0dfd12e71cff
-share/icons/Oxygen_Blue_Big/cursors/fleur
-share/icons/Oxygen_Blue_Big/cursors/forbidden
-share/icons/Oxygen_Blue_Big/cursors/half-busy
-share/icons/Oxygen_Blue_Big/cursors/hand1
-share/icons/Oxygen_Blue_Big/cursors/hand2
-share/icons/Oxygen_Blue_Big/cursors/help
-share/icons/Oxygen_Blue_Big/cursors/ibeam
-share/icons/Oxygen_Blue_Big/cursors/left_ptr
-share/icons/Oxygen_Blue_Big/cursors/left_ptr_watch
-share/icons/Oxygen_Blue_Big/cursors/link
-share/icons/Oxygen_Blue_Big/cursors/move
-share/icons/Oxygen_Blue_Big/cursors/n-resize
-share/icons/Oxygen_Blue_Big/cursors/not-allowed
-share/icons/Oxygen_Blue_Big/cursors/openhand
-share/icons/Oxygen_Blue_Big/cursors/pencil
-share/icons/Oxygen_Blue_Big/cursors/pirate
-share/icons/Oxygen_Blue_Big/cursors/plus
-share/icons/Oxygen_Blue_Big/cursors/pointer
-share/icons/Oxygen_Blue_Big/cursors/pointing_hand
-share/icons/Oxygen_Blue_Big/cursors/progress
-share/icons/Oxygen_Blue_Big/cursors/question_arrow
-share/icons/Oxygen_Blue_Big/cursors/row-resize
-share/icons/Oxygen_Blue_Big/cursors/s-resize
-share/icons/Oxygen_Blue_Big/cursors/sb_h_double_arrow
-share/icons/Oxygen_Blue_Big/cursors/sb_v_double_arrow
-share/icons/Oxygen_Blue_Big/cursors/size_all
-share/icons/Oxygen_Blue_Big/cursors/size_bdiag
-share/icons/Oxygen_Blue_Big/cursors/size_fdiag
-share/icons/Oxygen_Blue_Big/cursors/size_hor
-share/icons/Oxygen_Blue_Big/cursors/size_ver
-share/icons/Oxygen_Blue_Big/cursors/split_h
-share/icons/Oxygen_Blue_Big/cursors/split_v
-share/icons/Oxygen_Blue_Big/cursors/text
-share/icons/Oxygen_Blue_Big/cursors/up_arrow
-share/icons/Oxygen_Blue_Big/cursors/v_double_arrow
-share/icons/Oxygen_Blue_Big/cursors/w-resize
-share/icons/Oxygen_Blue_Big/cursors/wait
-share/icons/Oxygen_Blue_Big/cursors/watch
-share/icons/Oxygen_Blue_Big/cursors/whats_this
-share/icons/Oxygen_Blue_Big/cursors/xterm
-share/icons/Oxygen_Blue_Big/index.theme
 share/icons/Oxygen_White/cursors/00000000000000020006000e7e9ffc3f
 share/icons/Oxygen_White/cursors/00008160000006810000408080010102
 share/icons/Oxygen_White/cursors/03b6e0fcb3499374a867c041f52298f0
@@ -1444,81 +1506,6 @@ share/icons/Oxygen_White/cursors/watch
 share/icons/Oxygen_White/cursors/whats_this
 share/icons/Oxygen_White/cursors/xterm
 share/icons/Oxygen_White/index.theme
-share/icons/Oxygen_White_Big/cursors/00000000000000020006000e7e9ffc3f
-share/icons/Oxygen_White_Big/cursors/00008160000006810000408080010102
-share/icons/Oxygen_White_Big/cursors/03b6e0fcb3499374a867c041f52298f0
-share/icons/Oxygen_White_Big/cursors/08e8e1c95fe2fc01f976f1e063a24ccd
-share/icons/Oxygen_White_Big/cursors/1081e37283d90000800003c07f3ef6bf
-share/icons/Oxygen_White_Big/cursors/3085a0e285430894940527032f8b26df
-share/icons/Oxygen_White_Big/cursors/3ecb610c1bf2410f44200f48c40d3599
-share/icons/Oxygen_White_Big/cursors/4498f0e0c1937ffe01fd06f973665830
-share/icons/Oxygen_White_Big/cursors/5c6cd98b3f3ebcb1f9c7f1c204630408
-share/icons/Oxygen_White_Big/cursors/6407b0e94181790501fd1e167b474872
-share/icons/Oxygen_White_Big/cursors/640fb0e74195791501fd1ed57b41487f
-share/icons/Oxygen_White_Big/cursors/9081237383d90e509aa00f00170e968f
-share/icons/Oxygen_White_Big/cursors/9d800788f1b08800ae810202380a0822
-share/icons/Oxygen_White_Big/cursors/X_cursor
-share/icons/Oxygen_White_Big/cursors/a2a266d0498c3104214a47bd64ab0fc8
-share/icons/Oxygen_White_Big/cursors/alias
-share/icons/Oxygen_White_Big/cursors/all-scroll
-share/icons/Oxygen_White_Big/cursors/b66166c04f8c3109214a4fbd64a50fc8
-share/icons/Oxygen_White_Big/cursors/circle
-share/icons/Oxygen_White_Big/cursors/closedhand
-share/icons/Oxygen_White_Big/cursors/col-resize
-share/icons/Oxygen_White_Big/cursors/color-picker
-share/icons/Oxygen_White_Big/cursors/copy
-share/icons/Oxygen_White_Big/cursors/cross
-share/icons/Oxygen_White_Big/cursors/crossed_circle
-share/icons/Oxygen_White_Big/cursors/d9ce0ab605698f320427677b458ad60b
-share/icons/Oxygen_White_Big/cursors/dnd-copy
-share/icons/Oxygen_White_Big/cursors/dnd-link
-share/icons/Oxygen_White_Big/cursors/dnd-move
-share/icons/Oxygen_White_Big/cursors/dnd-no-drop
-share/icons/Oxygen_White_Big/cursors/dnd-none
-share/icons/Oxygen_White_Big/cursors/e-resize
-share/icons/Oxygen_White_Big/cursors/e29285e634086352946a0e7090d73106
-share/icons/Oxygen_White_Big/cursors/fcf21c00b30f7e3f83fe0dfd12e71cff
-share/icons/Oxygen_White_Big/cursors/fleur
-share/icons/Oxygen_White_Big/cursors/forbidden
-share/icons/Oxygen_White_Big/cursors/half-busy
-share/icons/Oxygen_White_Big/cursors/hand1
-share/icons/Oxygen_White_Big/cursors/hand2
-share/icons/Oxygen_White_Big/cursors/help
-share/icons/Oxygen_White_Big/cursors/ibeam
-share/icons/Oxygen_White_Big/cursors/left_ptr
-share/icons/Oxygen_White_Big/cursors/left_ptr_watch
-share/icons/Oxygen_White_Big/cursors/link
-share/icons/Oxygen_White_Big/cursors/move
-share/icons/Oxygen_White_Big/cursors/n-resize
-share/icons/Oxygen_White_Big/cursors/not-allowed
-share/icons/Oxygen_White_Big/cursors/openhand
-share/icons/Oxygen_White_Big/cursors/pencil
-share/icons/Oxygen_White_Big/cursors/pirate
-share/icons/Oxygen_White_Big/cursors/plus
-share/icons/Oxygen_White_Big/cursors/pointer
-share/icons/Oxygen_White_Big/cursors/pointing_hand
-share/icons/Oxygen_White_Big/cursors/progress
-share/icons/Oxygen_White_Big/cursors/question_arrow
-share/icons/Oxygen_White_Big/cursors/row-resize
-share/icons/Oxygen_White_Big/cursors/s-resize
-share/icons/Oxygen_White_Big/cursors/sb_h_double_arrow
-share/icons/Oxygen_White_Big/cursors/sb_v_double_arrow
-share/icons/Oxygen_White_Big/cursors/size_all
-share/icons/Oxygen_White_Big/cursors/size_bdiag
-share/icons/Oxygen_White_Big/cursors/size_fdiag
-share/icons/Oxygen_White_Big/cursors/size_hor
-share/icons/Oxygen_White_Big/cursors/size_ver
-share/icons/Oxygen_White_Big/cursors/split_h
-share/icons/Oxygen_White_Big/cursors/split_v
-share/icons/Oxygen_White_Big/cursors/text
-share/icons/Oxygen_White_Big/cursors/up_arrow
-share/icons/Oxygen_White_Big/cursors/v_double_arrow
-share/icons/Oxygen_White_Big/cursors/w-resize
-share/icons/Oxygen_White_Big/cursors/wait
-share/icons/Oxygen_White_Big/cursors/watch
-share/icons/Oxygen_White_Big/cursors/whats_this
-share/icons/Oxygen_White_Big/cursors/xterm
-share/icons/Oxygen_White_Big/index.theme
 share/icons/Oxygen_Yellow/cursors/00000000000000020006000e7e9ffc3f
 share/icons/Oxygen_Yellow/cursors/00008160000006810000408080010102
 share/icons/Oxygen_Yellow/cursors/03b6e0fcb3499374a867c041f52298f0
@@ -1594,81 +1581,6 @@ share/icons/Oxygen_Yellow/cursors/watch
 share/icons/Oxygen_Yellow/cursors/whats_this
 share/icons/Oxygen_Yellow/cursors/xterm
 share/icons/Oxygen_Yellow/index.theme
-share/icons/Oxygen_Yellow_Big/cursors/00000000000000020006000e7e9ffc3f
-share/icons/Oxygen_Yellow_Big/cursors/00008160000006810000408080010102
-share/icons/Oxygen_Yellow_Big/cursors/03b6e0fcb3499374a867c041f52298f0
-share/icons/Oxygen_Yellow_Big/cursors/08e8e1c95fe2fc01f976f1e063a24ccd
-share/icons/Oxygen_Yellow_Big/cursors/1081e37283d90000800003c07f3ef6bf
-share/icons/Oxygen_Yellow_Big/cursors/3085a0e285430894940527032f8b26df
-share/icons/Oxygen_Yellow_Big/cursors/3ecb610c1bf2410f44200f48c40d3599
-share/icons/Oxygen_Yellow_Big/cursors/4498f0e0c1937ffe01fd06f973665830
-share/icons/Oxygen_Yellow_Big/cursors/5c6cd98b3f3ebcb1f9c7f1c204630408
-share/icons/Oxygen_Yellow_Big/cursors/6407b0e94181790501fd1e167b474872
-share/icons/Oxygen_Yellow_Big/cursors/640fb0e74195791501fd1ed57b41487f
-share/icons/Oxygen_Yellow_Big/cursors/9081237383d90e509aa00f00170e968f
-share/icons/Oxygen_Yellow_Big/cursors/9d800788f1b08800ae810202380a0822
-share/icons/Oxygen_Yellow_Big/cursors/X_cursor
-share/icons/Oxygen_Yellow_Big/cursors/a2a266d0498c3104214a47bd64ab0fc8
-share/icons/Oxygen_Yellow_Big/cursors/alias
-share/icons/Oxygen_Yellow_Big/cursors/all-scroll
-share/icons/Oxygen_Yellow_Big/cursors/b66166c04f8c3109214a4fbd64a50fc8
-share/icons/Oxygen_Yellow_Big/cursors/circle
-share/icons/Oxygen_Yellow_Big/cursors/closedhand
-share/icons/Oxygen_Yellow_Big/cursors/col-resize
-share/icons/Oxygen_Yellow_Big/cursors/color-picker
-share/icons/Oxygen_Yellow_Big/cursors/copy
-share/icons/Oxygen_Yellow_Big/cursors/cross
-share/icons/Oxygen_Yellow_Big/cursors/crossed_circle
-share/icons/Oxygen_Yellow_Big/cursors/d9ce0ab605698f320427677b458ad60b
-share/icons/Oxygen_Yellow_Big/cursors/dnd-copy
-share/icons/Oxygen_Yellow_Big/cursors/dnd-link
-share/icons/Oxygen_Yellow_Big/cursors/dnd-move
-share/icons/Oxygen_Yellow_Big/cursors/dnd-no-drop
-share/icons/Oxygen_Yellow_Big/cursors/dnd-none
-share/icons/Oxygen_Yellow_Big/cursors/e-resize
-share/icons/Oxygen_Yellow_Big/cursors/e29285e634086352946a0e7090d73106
-share/icons/Oxygen_Yellow_Big/cursors/fcf21c00b30f7e3f83fe0dfd12e71cff
-share/icons/Oxygen_Yellow_Big/cursors/fleur
-share/icons/Oxygen_Yellow_Big/cursors/forbidden
-share/icons/Oxygen_Yellow_Big/cursors/half-busy
-share/icons/Oxygen_Yellow_Big/cursors/hand1
-share/icons/Oxygen_Yellow_Big/cursors/hand2
-share/icons/Oxygen_Yellow_Big/cursors/help
-share/icons/Oxygen_Yellow_Big/cursors/ibeam
-share/icons/Oxygen_Yellow_Big/cursors/left_ptr
-share/icons/Oxygen_Yellow_Big/cursors/left_ptr_watch
-share/icons/Oxygen_Yellow_Big/cursors/link
-share/icons/Oxygen_Yellow_Big/cursors/move
-share/icons/Oxygen_Yellow_Big/cursors/n-resize
-share/icons/Oxygen_Yellow_Big/cursors/not-allowed
-share/icons/Oxygen_Yellow_Big/cursors/openhand
-share/icons/Oxygen_Yellow_Big/cursors/pencil
-share/icons/Oxygen_Yellow_Big/cursors/pirate
-share/icons/Oxygen_Yellow_Big/cursors/plus
-share/icons/Oxygen_Yellow_Big/cursors/pointer
-share/icons/Oxygen_Yellow_Big/cursors/pointing_hand
-share/icons/Oxygen_Yellow_Big/cursors/progress
-share/icons/Oxygen_Yellow_Big/cursors/question_arrow
-share/icons/Oxygen_Yellow_Big/cursors/row-resize
-share/icons/Oxygen_Yellow_Big/cursors/s-resize
-share/icons/Oxygen_Yellow_Big/cursors/sb_h_double_arrow
-share/icons/Oxygen_Yellow_Big/cursors/sb_v_double_arrow
-share/icons/Oxygen_Yellow_Big/cursors/size_all
-share/icons/Oxygen_Yellow_Big/cursors/size_bdiag
-share/icons/Oxygen_Yellow_Big/cursors/size_fdiag
-share/icons/Oxygen_Yellow_Big/cursors/size_hor
-share/icons/Oxygen_Yellow_Big/cursors/size_ver
-share/icons/Oxygen_Yellow_Big/cursors/split_h
-share/icons/Oxygen_Yellow_Big/cursors/split_v
-share/icons/Oxygen_Yellow_Big/cursors/text
-share/icons/Oxygen_Yellow_Big/cursors/up_arrow
-share/icons/Oxygen_Yellow_Big/cursors/v_double_arrow
-share/icons/Oxygen_Yellow_Big/cursors/w-resize
-share/icons/Oxygen_Yellow_Big/cursors/wait
-share/icons/Oxygen_Yellow_Big/cursors/watch
-share/icons/Oxygen_Yellow_Big/cursors/whats_this
-share/icons/Oxygen_Yellow_Big/cursors/xterm
-share/icons/Oxygen_Yellow_Big/index.theme
 share/icons/Oxygen_Zion/cursors/00000000000000020006000e7e9ffc3f
 share/icons/Oxygen_Zion/cursors/00008160000006810000408080010102
 share/icons/Oxygen_Zion/cursors/03b6e0fcb3499374a867c041f52298f0
@@ -1744,81 +1656,6 @@ share/icons/Oxygen_Zion/cursors/watch
 share/icons/Oxygen_Zion/cursors/whats_this
 share/icons/Oxygen_Zion/cursors/xterm
 share/icons/Oxygen_Zion/index.theme
-share/icons/Oxygen_Zion_Big/cursors/00000000000000020006000e7e9ffc3f
-share/icons/Oxygen_Zion_Big/cursors/00008160000006810000408080010102
-share/icons/Oxygen_Zion_Big/cursors/03b6e0fcb3499374a867c041f52298f0
-share/icons/Oxygen_Zion_Big/cursors/08e8e1c95fe2fc01f976f1e063a24ccd
-share/icons/Oxygen_Zion_Big/cursors/1081e37283d90000800003c07f3ef6bf
-share/icons/Oxygen_Zion_Big/cursors/3085a0e285430894940527032f8b26df
-share/icons/Oxygen_Zion_Big/cursors/3ecb610c1bf2410f44200f48c40d3599
-share/icons/Oxygen_Zion_Big/cursors/4498f0e0c1937ffe01fd06f973665830
-share/icons/Oxygen_Zion_Big/cursors/5c6cd98b3f3ebcb1f9c7f1c204630408
-share/icons/Oxygen_Zion_Big/cursors/6407b0e94181790501fd1e167b474872
-share/icons/Oxygen_Zion_Big/cursors/640fb0e74195791501fd1ed57b41487f
-share/icons/Oxygen_Zion_Big/cursors/9081237383d90e509aa00f00170e968f
-share/icons/Oxygen_Zion_Big/cursors/9d800788f1b08800ae810202380a0822
-share/icons/Oxygen_Zion_Big/cursors/X_cursor
-share/icons/Oxygen_Zion_Big/cursors/a2a266d0498c3104214a47bd64ab0fc8
-share/icons/Oxygen_Zion_Big/cursors/alias
-share/icons/Oxygen_Zion_Big/cursors/all-scroll
-share/icons/Oxygen_Zion_Big/cursors/b66166c04f8c3109214a4fbd64a50fc8
-share/icons/Oxygen_Zion_Big/cursors/circle
-share/icons/Oxygen_Zion_Big/cursors/closedhand
-share/icons/Oxygen_Zion_Big/cursors/col-resize
-share/icons/Oxygen_Zion_Big/cursors/color-picker
-share/icons/Oxygen_Zion_Big/cursors/copy
-share/icons/Oxygen_Zion_Big/cursors/cross
-share/icons/Oxygen_Zion_Big/cursors/crossed_circle
-share/icons/Oxygen_Zion_Big/cursors/d9ce0ab605698f320427677b458ad60b
-share/icons/Oxygen_Zion_Big/cursors/dnd-copy
-share/icons/Oxygen_Zion_Big/cursors/dnd-link
-share/icons/Oxygen_Zion_Big/cursors/dnd-move
-share/icons/Oxygen_Zion_Big/cursors/dnd-no-drop
-share/icons/Oxygen_Zion_Big/cursors/dnd-none
-share/icons/Oxygen_Zion_Big/cursors/e-resize
-share/icons/Oxygen_Zion_Big/cursors/e29285e634086352946a0e7090d73106
-share/icons/Oxygen_Zion_Big/cursors/fcf21c00b30f7e3f83fe0dfd12e71cff
-share/icons/Oxygen_Zion_Big/cursors/fleur
-share/icons/Oxygen_Zion_Big/cursors/forbidden
-share/icons/Oxygen_Zion_Big/cursors/half-busy
-share/icons/Oxygen_Zion_Big/cursors/hand1
-share/icons/Oxygen_Zion_Big/cursors/hand2
-share/icons/Oxygen_Zion_Big/cursors/help
-share/icons/Oxygen_Zion_Big/cursors/ibeam
-share/icons/Oxygen_Zion_Big/cursors/left_ptr
-share/icons/Oxygen_Zion_Big/cursors/left_ptr_watch
-share/icons/Oxygen_Zion_Big/cursors/link
-share/icons/Oxygen_Zion_Big/cursors/move
-share/icons/Oxygen_Zion_Big/cursors/n-resize
-share/icons/Oxygen_Zion_Big/cursors/not-allowed
-share/icons/Oxygen_Zion_Big/cursors/openhand
-share/icons/Oxygen_Zion_Big/cursors/pencil
-share/icons/Oxygen_Zion_Big/cursors/pirate
-share/icons/Oxygen_Zion_Big/cursors/plus
-share/icons/Oxygen_Zion_Big/cursors/pointer
-share/icons/Oxygen_Zion_Big/cursors/pointing_hand
-share/icons/Oxygen_Zion_Big/cursors/progress
-share/icons/Oxygen_Zion_Big/cursors/question_arrow
-share/icons/Oxygen_Zion_Big/cursors/row-resize
-share/icons/Oxygen_Zion_Big/cursors/s-resize
-share/icons/Oxygen_Zion_Big/cursors/sb_h_double_arrow
-share/icons/Oxygen_Zion_Big/cursors/sb_v_double_arrow
-share/icons/Oxygen_Zion_Big/cursors/size_all
-share/icons/Oxygen_Zion_Big/cursors/size_bdiag
-share/icons/Oxygen_Zion_Big/cursors/size_fdiag
-share/icons/Oxygen_Zion_Big/cursors/size_hor
-share/icons/Oxygen_Zion_Big/cursors/size_ver
-share/icons/Oxygen_Zion_Big/cursors/split_h
-share/icons/Oxygen_Zion_Big/cursors/split_v
-share/icons/Oxygen_Zion_Big/cursors/text
-share/icons/Oxygen_Zion_Big/cursors/up_arrow
-share/icons/Oxygen_Zion_Big/cursors/v_double_arrow
-share/icons/Oxygen_Zion_Big/cursors/w-resize
-share/icons/Oxygen_Zion_Big/cursors/wait
-share/icons/Oxygen_Zion_Big/cursors/watch
-share/icons/Oxygen_Zion_Big/cursors/whats_this
-share/icons/Oxygen_Zion_Big/cursors/xterm
-share/icons/Oxygen_Zion_Big/index.theme
 share/icons/hicolor/128x128/apps/ksplash.png
 share/icons/hicolor/16x16/apps/kmenuedit.png
 share/icons/hicolor/16x16/apps/ksplash.png
@@ -1846,10 +1683,12 @@ share/icons/oxygen/16x16/apps/waiting.png
 share/icons/oxygen/16x16/mimetypes/fonts-package.png
 share/icons/oxygen/22x22/apps/kcmkwm.png
 share/icons/oxygen/22x22/apps/kfontview.png
+share/icons/oxygen/22x22/apps/networkmanager.png
 share/icons/oxygen/22x22/mimetypes/fonts-package.png
 share/icons/oxygen/32x32/apps/kcmkwm.png
 share/icons/oxygen/32x32/apps/kfontview.png
 share/icons/oxygen/32x32/apps/kwin.png
+share/icons/oxygen/32x32/apps/networkmanager.png
 share/icons/oxygen/32x32/mimetypes/fonts-package.png
 share/icons/oxygen/48x48/apps/kcmkwm.png
 share/icons/oxygen/48x48/apps/kfontview.png
@@ -1857,6 +1696,7 @@ share/icons/oxygen/48x48/apps/kwin.png
 share/icons/oxygen/48x48/mimetypes/fonts-package.png
 share/icons/oxygen/64x64/apps/kcmkwm.png
 share/icons/oxygen/64x64/apps/kfontview.png
+share/icons/oxygen/64x64/apps/networkmanager.png
 share/icons/oxygen/64x64/mimetypes/fonts-package.png
 share/icons/oxygen/scalable/apps/kcmkwm.svgz
 share/icons/oxygen/scalable/apps/kfontview.svgz
@@ -1900,10 +1740,12 @@ share/kde4/services/kcmaccess.desktop
 share/kde4/services/kcmlaunch.desktop
 share/kde4/services/kcmsmserver.desktop
 share/kde4/services/kcmusb.desktop
+share/kde4/services/kded/appmenu.desktop
 share/kde4/services/kded/freespacenotifier.desktop
 share/kde4/services/kded/kephal.desktop
 share/kde4/services/kded/keyboard.desktop
 share/kde4/services/kded/khotkeys.desktop
+share/kde4/services/kded/ktouchpadenabler.desktop
 share/kde4/services/kded/kwrited.desktop
 share/kde4/services/kded/powerdevil.desktop
 share/kde4/services/kded/randrmonitor.desktop
@@ -1913,6 +1755,9 @@ share/kde4/services/keys.desktop
 share/kde4/services/kfontviewpart.desktop
 share/kde4/services/khotkeys.desktop
 share/kde4/services/ksplashthememgr.desktop
+share/kde4/services/kwin-script-desktopchangeosd.desktop
+share/kde4/services/kwin-script-synchronizeskipswitcher.desktop
+share/kde4/services/kwin-script-videowall.desktop
 share/kde4/services/kwin/blur.desktop
 share/kde4/services/kwin/blur_config.desktop
 share/kde4/services/kwin/boxswitch.desktop
@@ -1932,8 +1777,6 @@ share/kde4/services/kwin/diminactive.desktop
 share/kde4/services/kwin/diminactive_config.desktop
 share/kde4/services/kwin/dimscreen.desktop
 share/kde4/services/kwin/explosion.desktop
-share/kde4/services/kwin/fade.desktop
-share/kde4/services/kwin/fadedesktop.desktop
 share/kde4/services/kwin/fallapart.desktop
 share/kde4/services/kwin/flipswitch.desktop
 share/kde4/services/kwin/flipswitch_config.desktop
@@ -1942,7 +1785,20 @@ share/kde4/services/kwin/glide_config.desktop
 share/kde4/services/kwin/highlightwindow.desktop
 share/kde4/services/kwin/invert.desktop
 share/kde4/services/kwin/invert_config.desktop
+share/kde4/services/kwin/kwin4_decoration_qml_plastik.desktop
+share/kde4/services/kwin/kwin4_effect_fade.desktop
+share/kde4/services/kwin/kwin4_effect_fadedesktop.desktop
+share/kde4/services/kwin/kwin4_effect_maximize.desktop
+share/kde4/services/kwin/kwin4_window_switcher_big_icons.desktop
+share/kde4/services/kwin/kwin4_window_switcher_compact.desktop
+share/kde4/services/kwin/kwin4_window_switcher_informative.desktop
+share/kde4/services/kwin/kwin4_window_switcher_present_windows.desktop
+share/kde4/services/kwin/kwin4_window_switcher_small_icons.desktop
+share/kde4/services/kwin/kwin4_window_switcher_text.desktop
+share/kde4/services/kwin/kwin4_window_switcher_thumbnails.desktop
+share/kde4/services/kwin/kwin4_window_switcher_window_strip.desktop
 share/kde4/services/kwin/login.desktop
+share/kde4/services/kwin/login_config.desktop
 share/kde4/services/kwin/logout.desktop
 share/kde4/services/kwin/lookingglass.desktop
 share/kde4/services/kwin/lookingglass_config.desktop
@@ -1951,6 +1807,8 @@ share/kde4/services/kwin/magiclamp_config.desktop
 share/kde4/services/kwin/magnifier.desktop
 share/kde4/services/kwin/magnifier_config.desktop
 share/kde4/services/kwin/minimizeanimation.desktop
+share/kde4/services/kwin/mouseclick.desktop
+share/kde4/services/kwin/mouseclick_config.desktop
 share/kde4/services/kwin/mousemark.desktop
 share/kde4/services/kwin/mousemark_config.desktop
 share/kde4/services/kwin/outline.desktop
@@ -1991,6 +1849,7 @@ share/kde4/services/kwinmoving.desktop
 share/kde4/services/kwinoptions.desktop
 share/kde4/services/kwinrules.desktop
 share/kde4/services/kwinscreenedges.desktop
+share/kde4/services/kwinscripts.desktop
 share/kde4/services/kwintabbox.desktop
 share/kde4/services/lostfoundcategory.desktop
 share/kde4/services/mouse.desktop
@@ -2000,6 +1859,7 @@ share/kde4/services/opengl.desktop
 share/kde4/services/plasma-animator-default.desktop
 share/kde4/services/plasma-applet-activitybar.desktop
 share/kde4/services/plasma-applet-analogclock.desktop
+share/kde4/services/plasma-applet-batterymonitor.desktop
 share/kde4/services/plasma-applet-calendar.desktop
 share/kde4/services/plasma-applet-currentappcontrol.desktop
 share/kde4/services/plasma-applet-devicenotifier.desktop
@@ -2007,7 +1867,7 @@ share/kde4/services/plasma-applet-digitalclock.desktop
 share/kde4/services/plasma-applet-icon.desktop
 share/kde4/services/plasma-applet-launcher.desktop
 share/kde4/services/plasma-applet-lockout.desktop
-share/kde4/services/plasma-applet-notifications.desktop
+share/kde4/services/plasma-applet-org.kde.notifications.desktop
 share/kde4/services/plasma-applet-org.kde.showActivityManager.desktop
 share/kde4/services/plasma-applet-panelspacer-internal.desktop
 share/kde4/services/plasma-applet-quicklaunch.desktop
@@ -2015,6 +1875,7 @@ share/kde4/services/plasma-applet-searchbox.desktop
 share/kde4/services/plasma-applet-simplelauncher.desktop
 share/kde4/services/plasma-applet-sm_cpu.desktop
 share/kde4/services/plasma-applet-sm_hdd.desktop
+share/kde4/services/plasma-applet-sm_hdd_activity.desktop
 share/kde4/services/plasma-applet-sm_hwinfo.desktop
 share/kde4/services/plasma-applet-sm_net.desktop
 share/kde4/services/plasma-applet-sm_ram.desktop
@@ -2024,7 +1885,6 @@ share/kde4/services/plasma-applet-systemtray.desktop
 share/kde4/services/plasma-applet-trash.desktop
 share/kde4/services/plasma-applet-webbrowser.desktop
 share/kde4/services/plasma-applet-windowlist.desktop
-share/kde4/services/plasma-battery-default.desktop
 share/kde4/services/plasma-containment-desktop.desktop
 share/kde4/services/plasma-containment-desktopdashboard.desktop
 share/kde4/services/plasma-containment-netpanel.desktop
@@ -2050,6 +1910,7 @@ share/kde4/services/plasma-dataengine-geolocation.desktop
 share/kde4/services/plasma-dataengine-hotplug.desktop
 share/kde4/services/plasma-dataengine-keystate.desktop
 share/kde4/services/plasma-dataengine-mouse.desktop
+share/kde4/services/plasma-dataengine-mpris2.desktop
 share/kde4/services/plasma-dataengine-network.desktop
 share/kde4/services/plasma-dataengine-notifications.desktop
 share/kde4/services/plasma-dataengine-nowplaying.desktop
@@ -2128,9 +1989,9 @@ share/kde4/services/plasma-wallpaper-color.desktop
 share/kde4/services/plasma-wallpaper-image.desktop
 share/kde4/services/plasma_applet_keyboard.desktop
 share/kde4/services/plasma_engine_statusnotifieritem.desktop
+share/kde4/services/powerdevilactivitiesconfig.desktop
 share/kde4/services/powerdevilbrightnesscontrolaction.desktop
 share/kde4/services/powerdevildimdisplayaction.desktop
-share/kde4/services/powerdevildisabledesktopeffectsaction.desktop
 share/kde4/services/powerdevildpmsaction.desktop
 share/kde4/services/powerdevilglobalconfig.desktop
 share/kde4/services/powerdevilhandlebuttoneventsaction.desktop
@@ -2176,10 +2037,12 @@ share/kde4/services/solidbackends/solid_wicd.desktop
 share/kde4/services/standard_actions.desktop
 share/kde4/services/style.desktop
 share/kde4/services/workspaceoptions.desktop
-share/kde4/services/xinerama.desktop
 share/kde4/services/xserver.desktop
 share/kde4/servicetypes/kinfocentercategory.desktop
+share/kde4/servicetypes/kwindecoration.desktop
 share/kde4/servicetypes/kwineffect.desktop
+share/kde4/servicetypes/kwinscript.desktop
+share/kde4/servicetypes/kwinwindowswitcher.desktop
 share/kde4/servicetypes/plasma-geolocationprovider.desktop
 share/kde4/servicetypes/plasma-layout-template.desktop
 share/kde4/servicetypes/plasma-sal-menu.desktop
@@ -2189,6 +2052,7 @@ share/kde4/servicetypes/screensaver.desktop
 share/kde4/servicetypes/solid-device-type.desktop
 share/kde4/servicetypes/solidmodemmanager.desktop
 share/kde4/servicetypes/solidnetworkmanager.desktop
+share/kde4/servicetypes/solidremotecontrolmanager.desktop
 share/kde4/servicetypes/systemsettingscategory.desktop
 share/kde4/servicetypes/systemsettingsexternalapp.desktop
 share/kde4/servicetypes/systemsettingsview.desktop
@@ -2198,54 +2062,18 @@ share/polkit-1/actions/org.kde.kcontrol.kcmkdm.policy
 share/polkit-1/actions/org.kde.ksysguard.processlisthelper.policy
 share/polkit-1/actions/org.kde.powerdevil.backlighthelper.policy
 share/sounds/pop.wav
-share/wallpapers/stripes-freebsd-blue/contents/images/1024x768.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1280x1024.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1280x800.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1440x900.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1600x1200.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1920x1080.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/1920x1200.jpg
-share/wallpapers/stripes-freebsd-blue/contents/images/800x600.jpg
-share/wallpapers/stripes-freebsd-blue/contents/screenshot.jpg
-share/wallpapers/stripes-freebsd-blue/metadata.desktop
-share/wallpapers/stripes-freebsd-red/contents/images/1024x768.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1280x1024.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1280x800.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1440x900.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1600x1200.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1920x1080.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/1920x1200.jpg
-share/wallpapers/stripes-freebsd-red/contents/images/800x600.jpg
-share/wallpapers/stripes-freebsd-red/contents/screenshot.jpg
-share/wallpapers/stripes-freebsd-red/metadata.desktop
 share/wallpapers/stripes.png
 share/wallpapers/stripes.png.desktop
-@dirrm share/wallpapers/stripes-freebsd-red/contents/images
-@dirrm share/wallpapers/stripes-freebsd-red/contents
-@dirrm share/wallpapers/stripes-freebsd-red
-@dirrm share/wallpapers/stripes-freebsd-blue/contents/images
-@dirrm share/wallpapers/stripes-freebsd-blue/contents
-@dirrm share/wallpapers/stripes-freebsd-blue
 @dirrm share/kde4/services/solidbackends
 @dirrm share/kde4/services/kwin
-@dirrm share/icons/Oxygen_Zion_Big/cursors
-@dirrm share/icons/Oxygen_Zion_Big
 @dirrm share/icons/Oxygen_Zion/cursors
 @dirrm share/icons/Oxygen_Zion
-@dirrm share/icons/Oxygen_Yellow_Big/cursors
-@dirrm share/icons/Oxygen_Yellow_Big
 @dirrm share/icons/Oxygen_Yellow/cursors
 @dirrm share/icons/Oxygen_Yellow
-@dirrm share/icons/Oxygen_White_Big/cursors
-@dirrm share/icons/Oxygen_White_Big
 @dirrm share/icons/Oxygen_White/cursors
 @dirrm share/icons/Oxygen_White
-@dirrm share/icons/Oxygen_Blue_Big/cursors
-@dirrm share/icons/Oxygen_Blue_Big
 @dirrm share/icons/Oxygen_Blue/cursors
 @dirrm share/icons/Oxygen_Blue
-@dirrm share/icons/Oxygen_Black_Big/cursors
-@dirrm share/icons/Oxygen_Black_Big
 @dirrm share/icons/Oxygen_Black/cursors
 @dirrm share/icons/Oxygen_Black
 @dirrm share/doc/HTML/en/systemsettings
@@ -2270,6 +2098,7 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/doc/HTML/en/kcontrol/kwinscreenedges
 @dirrm share/doc/HTML/en/kcontrol/kwindecoration
 @dirrm share/doc/HTML/en/kcontrol/kwincompositing
+@dirrm share/doc/HTML/en/kcontrol/khotkeys
 @dirrm share/doc/HTML/en/kcontrol/keys
 @dirrm share/doc/HTML/en/kcontrol/keyboard
 @dirrm share/doc/HTML/en/kcontrol/kcmstyle
@@ -2321,6 +2150,45 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/apps/plasma/shareprovider/imgsusepasteorg/contents
 @dirrm share/apps/plasma/shareprovider/imgsusepasteorg
 @dirrmtry share/apps/plasma/shareprovider
+@dirrm share/apps/plasma/plasmoids/org.kde.showActivityManager/contents/ui
+@dirrm share/apps/plasma/plasmoids/org.kde.showActivityManager/contents
+@dirrm share/apps/plasma/plasmoids/org.kde.showActivityManager
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch/ui/NotificationDelegate
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch/ui
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/platformcontents/touch
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/platformcontents
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/contents/ui/NotificationDelegate
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/contents/ui
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/contents/config
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications/contents
+@dirrm share/apps/plasma/plasmoids/org.kde.notifications
+@dirrm share/apps/plasma/plasmoids/notifier/contents/ui
+@dirrm share/apps/plasma/plasmoids/notifier/contents/config
+@dirrm share/apps/plasma/plasmoids/notifier/contents
+@dirrm share/apps/plasma/plasmoids/notifier
+@dirrm share/apps/plasma/plasmoids/lockout/contents/ui
+@dirrm share/apps/plasma/plasmoids/lockout/contents/config
+@dirrm share/apps/plasma/plasmoids/lockout/contents
+@dirrm share/apps/plasma/plasmoids/lockout
+@dirrm share/apps/plasma/plasmoids/battery/contents/ui
+@dirrm share/apps/plasma/plasmoids/battery/contents/config
+@dirrm share/apps/plasma/plasmoids/battery/contents/code
+@dirrm share/apps/plasma/plasmoids/battery/contents
+@dirrm share/apps/plasma/plasmoids/battery
+@dirrm share/apps/plasma/packages/org.kde.systemtray/contents/ui
+@dirrm share/apps/plasma/packages/org.kde.systemtray/contents/code
+@dirrm share/apps/plasma/packages/org.kde.systemtray/contents
+@dirrm share/apps/plasma/packages/org.kde.systemtray
+@dirrm share/apps/plasma/packages/org.kde.pager/contents/ui
+@dirrm share/apps/plasma/packages/org.kde.pager/contents
+@dirrm share/apps/plasma/packages/org.kde.pager
+@dirrm share/apps/plasma/packages/org.kde.desktop.widgetexplorer/contents/ui
+@dirrm share/apps/plasma/packages/org.kde.desktop.widgetexplorer/contents
+@dirrm share/apps/plasma/packages/org.kde.desktop.widgetexplorer
+@dirrm share/apps/plasma/packages/org.kde.desktop.activitymanager/contents/ui
+@dirrm share/apps/plasma/packages/org.kde.desktop.activitymanager/contents
+@dirrm share/apps/plasma/packages/org.kde.desktop.activitymanager
+@dirrmtry share/apps/plasma/packages
 @dirrm share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultSal/contents
 @dirrm share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultSal
 @dirrm share/apps/plasma/layout-templates/org.kde.plasma-netbook.defaultPanel/contents
@@ -2347,7 +2215,61 @@ share/wallpapers/stripes.png.desktop
 @dirrmtry share/apps/plasma-desktop/init
 @dirrmtry share/apps/plasma-desktop
 @dirrm share/apps/kwrited
+@dirrm share/apps/kwin/tabbox/window_strip/contents/ui
+@dirrm share/apps/kwin/tabbox/window_strip/contents
+@dirrm share/apps/kwin/tabbox/window_strip
+@dirrm share/apps/kwin/tabbox/thumbnails/contents/ui
+@dirrm share/apps/kwin/tabbox/thumbnails/contents
+@dirrm share/apps/kwin/tabbox/thumbnails
+@dirrm share/apps/kwin/tabbox/text/contents/ui
+@dirrm share/apps/kwin/tabbox/text/contents
+@dirrm share/apps/kwin/tabbox/text
+@dirrm share/apps/kwin/tabbox/small_icons/contents/ui
+@dirrm share/apps/kwin/tabbox/small_icons/contents
+@dirrm share/apps/kwin/tabbox/small_icons
+@dirrm share/apps/kwin/tabbox/present_windows/contents/ui
+@dirrm share/apps/kwin/tabbox/present_windows/contents
+@dirrm share/apps/kwin/tabbox/present_windows
+@dirrm share/apps/kwin/tabbox/informative/contents/ui
+@dirrm share/apps/kwin/tabbox/informative/contents
+@dirrm share/apps/kwin/tabbox/informative
+@dirrm share/apps/kwin/tabbox/compact/contents/ui
+@dirrm share/apps/kwin/tabbox/compact/contents
+@dirrm share/apps/kwin/tabbox/compact
+@dirrm share/apps/kwin/tabbox/big_icons/contents/ui
+@dirrm share/apps/kwin/tabbox/big_icons/contents
+@dirrm share/apps/kwin/tabbox/big_icons
+@dirrm share/apps/kwin/tabbox
+@dirrm share/apps/kwin/scripts/videowall/contents/code
+@dirrm share/apps/kwin/scripts/videowall/contents
+@dirrm share/apps/kwin/scripts/videowall
+@dirrm share/apps/kwin/scripts/synchronizeskipswitcher/contents/code
+@dirrm share/apps/kwin/scripts/synchronizeskipswitcher/contents
+@dirrm share/apps/kwin/scripts/synchronizeskipswitcher
+@dirrm share/apps/kwin/scripts/desktopchangeosd/contents/ui
+@dirrm share/apps/kwin/scripts/desktopchangeosd/contents
+@dirrm share/apps/kwin/scripts/desktopchangeosd
+@dirrm share/apps/kwin/scripts
+@dirrm share/apps/kwin/kcm_kwintabbox
+@dirrm share/apps/kwin/kcm_kwindecoration
+@dirrm share/apps/kwin/effects/kwin4_effect_maximize/contents/code
+@dirrm share/apps/kwin/effects/kwin4_effect_maximize/contents
+@dirrm share/apps/kwin/effects/kwin4_effect_maximize
+@dirrm share/apps/kwin/effects/kwin4_effect_fadedesktop/contents/code
+@dirrm share/apps/kwin/effects/kwin4_effect_fadedesktop/contents
+@dirrm share/apps/kwin/effects/kwin4_effect_fadedesktop
+@dirrm share/apps/kwin/effects/kwin4_effect_fade/contents/config
+@dirrm share/apps/kwin/effects/kwin4_effect_fade/contents/code
+@dirrm share/apps/kwin/effects/kwin4_effect_fade/contents
+@dirrm share/apps/kwin/effects/kwin4_effect_fade
+@dirrm share/apps/kwin/effects
 @dirrm share/apps/kwin/default_rules
+@dirrm share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui
+@dirrm share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents/config
+@dirrm share/apps/kwin/decorations/kwin4_decoration_qml_plastik/contents
+@dirrm share/apps/kwin/decorations/kwin4_decoration_qml_plastik
+@dirrm share/apps/kwin/decorations
+@dirrm share/apps/kwin/aurorae
 @dirrm share/apps/kthememanager/themes/YellowOnBlue-big
 @dirrm share/apps/kthememanager/themes/YellowOnBlue
 @dirrm share/apps/kthememanager/themes/Sunshine
@@ -2368,22 +2290,23 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/apps/ksplash/Themes/SimpleSmall
 @dirrm share/apps/ksplash/Themes/Simple
 @dirrm share/apps/ksplash/Themes/None
-@dirrm share/apps/ksplash/Themes/Default/800x600
-@dirrm share/apps/ksplash/Themes/Default/600x400
-@dirrm share/apps/ksplash/Themes/Default/1920x1200
-@dirrm share/apps/ksplash/Themes/Default/1920x1080
-@dirrm share/apps/ksplash/Themes/Default/1600x1200
-@dirrm share/apps/ksplash/Themes/Default/1280x1024
-@dirrm share/apps/ksplash/Themes/Default/1024x768
-@dirrm share/apps/ksplash/Themes/Default
-@dirrm share/apps/ksplash/Themes
-@dirrm share/apps/ksplash
-@dirrm share/apps/kscreenlocker
-@dirrm share/apps/kmenuedit/icons/oxygen/32x32/actions
-@dirrm share/apps/kmenuedit/icons/oxygen/32x32
-@dirrm share/apps/kmenuedit/icons/oxygen/22x22/actions
-@dirrm share/apps/kmenuedit/icons/oxygen/22x22
-@dirrm share/apps/kmenuedit/icons/oxygen
+@dirrm share/apps/ksplash/Themes/Minimalistic/images
+@dirrm share/apps/ksplash/Themes/Minimalistic
+@dirrmtry share/apps/ksplash/Themes
+@dirrmtry share/apps/ksplash
+@dirrm share/apps/ksmserver/themes/default
+@dirrm share/apps/ksmserver/themes/contour
+@dirrm share/apps/ksmserver/themes
+@dirrm share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents/ui
+@dirrm share/apps/ksmserver/screenlocker/org.kde.passworddialog/contents
+@dirrm share/apps/ksmserver/screenlocker/org.kde.passworddialog
+@dirrm share/apps/ksmserver/screenlocker
+@dirrm share/apps/ksmserver
+@dirrm share/apps/kmenuedit/icons/hicolor/32x32/actions
+@dirrm share/apps/kmenuedit/icons/hicolor/32x32
+@dirrm share/apps/kmenuedit/icons/hicolor/22x22/actions
+@dirrm share/apps/kmenuedit/icons/hicolor/22x22
+@dirrm share/apps/kmenuedit/icons/hicolor
 @dirrm share/apps/kmenuedit/icons
 @dirrm share/apps/kmenuedit
 @dirrm share/apps/kinfocenter
@@ -2401,7 +2324,9 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/apps/kdm/themes/oxygen-air
 @dirrm share/apps/kdm/themes/oxygen
 @dirrm share/apps/kdm/themes/horos
+@dirrm share/apps/kdm/themes/elarun
 @dirrm share/apps/kdm/themes/circles
+@dirrm share/apps/kdm/themes/ariya
 @dirrmtry share/apps/kdm/themes
 @dirrm share/apps/kdm/sessions
 @dirrm share/apps/kdm/programs
@@ -2409,6 +2334,7 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/apps/kdisplay/app-defaults
 @dirrm share/apps/kdisplay
 @dirrm share/apps/kcmusb
+@dirrm share/apps/kcmstyle
 @dirrm share/apps/kcmsolidactions
 @dirrm share/apps/kcmkeys
 @dirrm share/apps/kcmkeyboard/pics
@@ -2424,6 +2350,10 @@ share/wallpapers/stripes.png.desktop
 @dirrm share/apps/desktoptheme/air-netbook/widgets
 @dirrm share/apps/desktoptheme/air-netbook
 @dirrm lib/kde4/plugins/gui_platform
+@dirrm lib/kde4/imports/org/kde/kwin/decorations/plastik
+@dirrm lib/kde4/imports/org/kde/kwin/decorations
+@dirrm lib/kde4/imports/org/kde/kwin/decoration
+@dirrm lib/kde4/imports/org/kde/kwin
 @dirrm lib/cmake/KDE4Workspace
 @dirrmtry lib/cmake
 @dirrm include/taskmanager
