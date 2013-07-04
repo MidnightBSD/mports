@@ -2,12 +2,13 @@
 # Date created:			24 May 2006
 # Whom:				trasz
 #
-# $MidnightBSD: mports/emulators/xhomer/Makefile,v 1.1 2007/05/05 05:31:23 laffer1 Exp $
+# $MidnightBSD: mports/emulators/xhomer/Makefile,v 1.2 2008/10/16 22:11:42 laffer1 Exp $
 # $FreeBSD: ports/emulators/xhomer/Makefile,v 1.3 2007/04/13 13:03:46 trasz Exp $
 #
 
 PORTNAME=	xhomer
 DISTVERSION=	9-16-06
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://xhomer.isani.org/xhomer/
@@ -18,7 +19,7 @@ COMMENT=	Emulator for the DEC Pro 350 computer
 LICENSE=	agg
 
 USE_GMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	xt sm ice xext x11
 ALL_TARGET=	clean xhomer
 INSTALL_TARGET=
 CFLAGS+=	-Wall -ffloat-store
