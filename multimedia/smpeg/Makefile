@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.4 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.5 2011/09/18 00:40:49 laffer1 Exp $
 
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	multimedia
 MASTER_SITES=	ftp://sunsite.auc.dk/pub/os/linux/loki/open-source/smpeg/ \
 		${MASTER_SITE_GENTOO}
@@ -19,8 +19,8 @@ GNU_CONFIGURE=	yes
 USE_SDL=	sdl
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	GLBASE="${LOCALBASE}" \
-		CPPFLAGS="-I${LOCALBASE}/include" \
 		CC="${CXX}" REAL_CC="${CC}"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 #If you want to try the opengl player (which doesn't seem to work)
 #comment out the following line.
