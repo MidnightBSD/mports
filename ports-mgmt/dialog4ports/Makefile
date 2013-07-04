@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/ports-mgmt/dialog4ports/Makefile,v 1.1 2013/03/30 12:05:07 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/dialog4ports/Makefile,v 1.2 2013/06/12 00:29:17 laffer1 Exp $
 
 PORTNAME=	dialog4ports
-PORTVERSION=	0.1.4
+PORTVERSION=	0.1.5
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://m1cro.tk/dialog4ports/ \
 		http://files.etoilebsd.net/dialog4ports/ \
