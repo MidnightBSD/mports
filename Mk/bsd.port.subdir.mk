@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.18 2011/03/17 17:40:29 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.19 2011/09/25 19:44:52 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -29,7 +29,8 @@
 #	clean-for-cdrom, clean-restricted,
 #	clean-for-cdrom-list, clean-restricted-list,
 #	configure, deinstall,
-#	depend, depends, describe, extract, fetch, fetch-list, ignorelist,
+#	depend, depends, describe, extract, fetch, fetch-list,
+#	ignorelist, ignorelist-verbose,
 #	install, maintainer, makesum, package, readmes, realinstall, reinstall,
 #	tags
 #
@@ -40,17 +41,23 @@
 
 .MAIN: all
 
+.include "${PORTSDIR}/Mk/components/commands.mk"
+
 .if !defined(DEBUG_FLAGS)
 STRIP?=	-s
 .endif
 
+# These are variables that are invariant for the lifetime of a recursive port traversal
+# (index build, etc), so it is more efficient to precompute them here and pass them in
+# to child makes explicitly, instead of recomputing them tens of thousands of times.
+
 .if !defined(NOPRECIOUSMAKEVARS)
 .if !defined(ARCH)
-ARCH!=	${DESTDIR}/usr/bin/uname -p
+ARCH!=	${DESTDIR}${UNAME} -p
 .endif
 
 .if !defined(OSVERSION)
-OSVERSION!= /sbin/sysctl -n kern.osreldate
+OSVERSION!= ${SYSCTL} -n kern.osreldate
 .endif
 .if !defined(PORTOBJFORMAT)
 PORTOBJFORMAT?= elf
@@ -58,27 +65,29 @@ PORTOBJFORMAT?= elf
 .endif
 
 .if !defined(_OSRELEASE)
-_OSRELEASE!=	uname -r
+_OSRELEASE!=			uname -r
 .endif
 .if !defined(OSREL)
 OSREL=	${_OSRELEASE:C/[-(].*//}
 .endif
 
 .if !defined(OPSYS)
-OPSYS!=	uname -s
+OPSYS!=	${UNAME} -s
 .endif
 
 .if ${ARCH} == "amd64"
 .if !defined(HAVE_COMPAT_IA32_KERN)
-HAVE_COMPAT_IA32_KERN!= if sysctl -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
+HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi; echo
+.if empty(HAVE_COMPAT_IA32_KERN)
+.undef HAVE_COMPAT_IA32_KERN
+.endif
 .endif
 .endif
 
 .if !defined(CONFIGURE_MAX_CMD_LEN)
-CONFIGURE_MAX_CMD_LEN!= sysctl -n kern.argmax
+CONFIGURE_MAX_CMD_LEN!= ${SYSCTL} -n kern.argmax
 .endif
 
-ID?=	${DESTDIR}/usr/bin/id
 .if !defined(UID)
 UID!=	${ID} -u
 .endif
@@ -109,6 +118,7 @@ TARGETS+=	extract
 TARGETS+=	fetch
 TARGETS+=	fetch-list
 TARGETS+=	ignorelist
+TARGETS+=	ignorelist-verbose
 TARGETS+=	makesum
 TARGETS+=	maintainer
 TARGETS+=	package
@@ -229,11 +239,11 @@ describe: ${SUBDIR:S/^/_/:S/$/.describe/}
 .else
 describe:
 	@for sub in ${SUBDIR}; do \
-	if test -d ${.CURDIR}/$${sub}; then \
+	if ${TEST} -d ${.CURDIR}/$${sub}; then \
 		${ECHO_MSG} "===> ${DIRPRFX}$${sub}"; \
 		cd ${.CURDIR}/$${sub}; \
 		${MAKE} -B describe || \
-			(echo "===> ${DIRPRFX}$${sub} failed" >&2; \
+			(${ECHO_CMD} "===> ${DIRPRFX}$${sub} failed" >&2; \
 			exit 1) ;\
 	else \
 		${ECHO_MSG} "===> ${DIRPRFX}$${sub} non-existent"; \
@@ -277,8 +287,8 @@ readmes: readme
 
 .if !target(readme)
 readme:
-	@rm -f README.html
-	@make README.html
+	@${RM} -f README.html
+	@${MAKE} README.html
 .endif
 
 PORTSDIR ?= /usr/mports
@@ -296,35 +306,31 @@ INDEXFILE?=	INDEX-${OSVERSION:C/([0-9]).*/\1/}
 HTMLIFY=	sed -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 
 package-name:
-	@echo ${.CURDIR} | sed -e 's^.*/^^'
+	@${ECHO_CMD} ${.CURDIR} | ${SED} -e 's^.*/^^'
 
 README.html:
-	@echo "===>  Creating README.html"
+	@${ECHO_CMD} "===>  Creating README.html"
 	@> $@.tmp
 .for entry in ${SUBDIR}
 .if exists(${entry})
 .if defined(PORTSTOP)
-	@echo -n '<a href="'${entry}/README.html'">'"`echo ${entry} | ${HTMLIFY}`"'</a>: ' >> $@.tmp
+	@${ECHO_CMD} -n '<a href="'${entry}/README.html'">'"`${ECHO_CMD} ${entry} | ${HTMLIFY}`"'</a>: ' >> $@.tmp
 .else
-	@echo -n '<a href="'${entry}/README.html'">'"`cd ${entry}; make package-name | ${HTMLIFY}`</a>: " >> $@.tmp
+	@${ECHO_CMD} -n '<a href="'${entry}/README.html'">'"`cd ${entry}; ${MAKE} package-name | ${HTMLIFY}`</a>: " >> $@.tmp
 .endif
-	@echo `cd ${entry}; make -V COMMENT` | ${HTMLIFY} >> $@.tmp
+	@${ECHO_CMD} `cd ${entry}; ${MAKE} -V COMMENT` | ${HTMLIFY} >> $@.tmp
 .endif
 .endfor
-	@sort -t '>' +1 -2 $@.tmp > $@.tmp2
+	@${SORT} -t '>' +1 -2 $@.tmp > $@.tmp2
 .if exists(${DESCR})
 	@${HTMLIFY} ${DESCR} > $@.tmp3
 .else
 	@> $@.tmp3
 .endif
 .if defined(COMMENT)
-	@echo "${COMMENT}" | ${HTMLIFY} > $@.tmp4
-.else
-.if exists(${COMMENTFILE})
-	@${HTMLIFY} ${COMMENTFILE} > $@.tmp4
+	@${ECHO_CMD} "${COMMENT}" | ${HTMLIFY} > $@.tmp4
 .else
 	@> $@.tmp4
-.endif
 .endif
 	@cat ${README} | \
 		sed -e 's/%%CATEGORY%%/'"`basename ${.CURDIR}`"'/g' \
@@ -335,29 +341,38 @@ README.html:
 			-e '/%%SUBDIR%%/r$@.tmp2' \
 			-e '/%%SUBDIR%%/d' \
 		> $@
-	@rm -f $@.tmp $@.tmp2 $@.tmp3 $@.tmp4
+	@${RM} -f $@.tmp $@.tmp2 $@.tmp3 $@.tmp4
 
+# Pass in the cached invariant variables to child makes.
+# XXX Why are we trying to escape these characters using regexps and not using ':Q'?
 .if !defined(NOPRECIOUSMAKEVARS)
 .MAKEFLAGS: \
 	ARCH="${ARCH:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	OPSYS="${OPSYS:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	OSREL="${OSREL:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	OSVERSION="${OSVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	PORTOBJFORMAT="${PORTOBJFORMAT:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	UID="${UID:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	HAVE_COMPAT_IA32_KERN="${HAVE_COMPAT_IA32_KERN}" \
-	CONFIGURE_MAX_CMD_LEN="${CONFIGURE_MAX_CMD_LEN}"
+	CONFIGURE_MAX_CMD_LEN="${CONFIGURE_MAX_CMD_LEN}" \
+	PYTHON_DEFAULT_VERSION="${PYTHON_DEFAULT_VERSION}" \
+	PYTHON_DEFAULT_PORTVERSION="${PYTHON_DEFAULT_PORTVERSION}" \
+	PYTHONBASE="${PYTHONBASE}" \
+	_JAVA_VERSION_LIST_REGEXP="${_JAVA_VERSION_LIST_REGEXP:Q}" \
+	_JAVA_VENDOR_LIST_REGEXP="${_JAVA_VENDOR_LIST_REGEXP:Q}" \
+	_JAVA_OS_LIST_REGEXP="${_JAVA_OS_LIST_REGEXP:Q}" \
+	_JAVA_PORTS_INSTALLED="${_JAVA_PORTS_INSTALLED}"
 .endif
 
 PORTSEARCH_DISPLAY_FIELDS?=name,path,info,maint,index,bdeps,rdeps,www
 PORTSEARCH_KEYLIM?=0
 PORTSEARCH_XKEYLIM?=0
 PORTSEARCH_IGNORECASE?=1
+PORTSEARCH_MOVED?=1
 
 _PORTSEARCH=	\
 	here=${.CURDIR}; \
 	if [ ! -r ${INDEXDIR}/${INDEXFILE} ] ; then \
-		echo "The ${.TARGET} target requires ${INDEXFILE}. Please run make index or make fetchindex."; \
+		${ECHO_MSG} "The ${.TARGET} target requires ${INDEXFILE}. Please run make index or make fetchindex."; \
 	else \
 	cd ${PORTSDIR}; \
 	if [ -z "$$key"   -a -z "$$xkey"   -a \
@@ -370,12 +385,12 @@ _PORTSEARCH=	\
 	     -z "$$rdeps" -a -z "$$xrdeps" -a \
 	     -z "$$www"   -a -z "$$xwww"   ]; \
 	then \
-	  echo "The ${.TARGET} target requires a keyword parameter or name parameter,"; \
-	  echo "e.g.: \"make ${.TARGET} key=somekeyword\""; \
-	  echo "or    \"make ${.TARGET} name=somekeyword\""; \
+	  ${ECHO_MSG} "The ${.TARGET} target requires a keyword parameter or name parameter,"; \
+	  ${ECHO_MSG} "e.g.: \"make ${.TARGET} key=somekeyword\""; \
+	  ${ECHO_MSG} "or    \"make ${.TARGET} name=somekeyword\""; \
 	  exit; \
 	fi; \
-	awk -F\| -v there="$$here/" -v top="$$(pwd -P)" \
+	${AWK} -F\| -v there="$$here/" -v top="$$(pwd -P)" \
 	    -v key="$$key"          -v xkey="$$xkey" \
 	    -v name="$$name"        -v xname="$$xname" \
 	    -v path="$$path"        -v xpath="$$xpath" \
@@ -431,14 +446,14 @@ _PORTSEARCH=	\
 	    split(display, d, /,[ \t]*/); \
 	    split(xdisplay, xd, /,[ \t]*/); \
 	    for (i in d) { \
-            toprint = 1;\
+            toprint = 1; \
 	      for (j in xd) { \
                 if (d[i] == xd[j] ) { \
                        toprint=0; \
-                       break;\
+                       break; \
                  }\
 	      } \
-      	    if (toprint == 1 ) disp[fields[d[i]]] = 1; \
+	    if (toprint == 1 ) disp[fields[d[i]]] = 1; \
 	    } \
 	  } \
 	  { \
@@ -467,7 +482,33 @@ _PORTSEARCH=	\
 	        printf("%s:\t%s\n", names[i], $$i); \
 	    print(""); \
 	  }' ${INDEXDIR}/${INDEXFILE}; \
-	fi
+	  if [ "$$name" -o "$$xname" ] && [ ${PORTSEARCH_MOVED} -gt 0 ]; \
+	  then \
+	    ${AWK} -F\| -v name="$$name"        -v xname="$$xname" \
+	        -v icase="$${icase:-${PORTSEARCH_IGNORECASE}}" \
+	    'BEGIN { \
+	        if (icase) { \
+	    	if (length(name))  name = tolower(name);  if (length(xname))  xname = tolower(xname); \
+	        } \
+	        fields["name"]  = 1;  names[1]  = "Port"; \
+	        fields["destination"]  = 2;  names[2]  = "Moved"; \
+	        fields["date"]  = 3;  names[3]  = "Date"; \
+	        fileds["reason"] = 4;  names[4] = "Reason"; \
+	     } \
+	    { \
+		oldname = $$1;  newname = $$2; \
+		if (oldname ~ /^\#/) next; \
+		sub(".*\/", "", oldname);  newname = sub(".*\/", "", newname); \
+	        if (((icase ? tolower(oldname) : oldname) ~ name) || \
+		  ((icase ? tolower(newname) : newname) ~ name)) { \
+	    	    for (i = 1; i <= 4; i++) { \
+	    		printf("%s:\t%s\n", names[i], $$i); \
+	    	    } \
+	        print(""); \
+	        } \
+	    }' ${MOVEDDIR}/${MOVEDFILE}; \
+	  fi \
+	fi 
 
 search:
 	@${_PORTSEARCH}
