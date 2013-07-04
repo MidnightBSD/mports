@@ -1,41 +1,33 @@
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.10 2012/03/02 02:54:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
-DIST_SUBDIR=	KDE
+DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
-LICENSE=	agg
 
-LIB_DEPENDS=	searchclient.0:${PORTSDIR}/deskutils/strigi \
-		soprano.4:${PORTSDIR}/textproc/soprano \
-		IlmImf.6:${PORTSDIR}/graphics/OpenEXR \
-		aspell.16:${PORTSDIR}/textproc/aspell \
-		jasper.4:${PORTSDIR}/graphics/jasper \
-		pcre.1:${PORTSDIR}/devel/pcre \
-		enchant.1:${PORTSDIR}/textproc/enchant \
-		gif.5:${PORTSDIR}/graphics/giflib \
+LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
+		jasper:${PORTSDIR}/graphics/jasper \
+		pcre:${PORTSDIR}/devel/pcre \
+		avahi-core:${PORTSDIR}/net/avahi-app \
+		enchant:${PORTSDIR}/textproc/enchant \
+		gif:${PORTSDIR}/graphics/giflib \
 		png15:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		hal.1:${PORTSDIR}/sysutils/hal \
-		qca.2:${PORTSDIR}/devel/qca \
-		HUpnp.1:${PORTSDIR}/net/hupnp \
-		attica.0:${PORTSDIR}/x11-toolkits/attica \
-		polkit-qt-core-1.1:${PORTSDIR}/sysutils/polkit-qt \
-		smbclient.0:${PORTSDIR}/net/samba-libsmbclient \
-		dbusmenu-qt.2:${PORTSDIR}/devel/libdbusmenu-qt
+		jpeg:${PORTSDIR}/graphics/jpeg \
+		hal:${PORTSDIR}/sysutils/hal \
+		qca:${PORTSDIR}/devel/qca \
+		HUpnp:${PORTSDIR}/net/hupnp \
+		polkit-qt-core-1:${PORTSDIR}/sysutils/polkit-qt \
+		dbusmenu-qt:${PORTSDIR}/devel/libdbusmenu-qt
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/textproc/hspell \
-		${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
-		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
+BUILD_DEPENDS=	${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
 
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
 		xauth:${PORTSDIR}/x11/xauth \
 		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
@@ -44,34 +36,41 @@ CONFLICTS=	kdebase-runtime-4.5.[0-5]
 
 LATEST_LINK=	${PORTNAME}4
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_FAM=	yes
-USE_GETTEXT=	yes
 USE_GNOME=	libxml2 libxslt
-USE_KDE4=	automoc4 kdehier kdeprefix oxygen sharedmime
-KDE4_BUILDENV=	yes
+USE_KDE4=	kdehier kdeprefix oxygen \
+		attica automoc4 ontologies sharedmime soprano strigi
+USES=		cmake:outsource gettext
 USE_OPENSSL=	yes
 USE_PERL5=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	dbus declarative designer gui imageformats_run \
-		network opengl phonon qdbusviewer_run qt3support \
+USE_QT4=	corelib dbus declarative designer_build gui \
+		network opengl phonon qt3support \
 		qtestlib script sql svg webkit xml \
-		moc_build qmake_build rcc_build uic_build
+		moc_build qmake_build rcc_build uic_build \
+		imageformats_run qdbusviewer_run
 USE_XORG=	sm x11 xcursor xext xfixes xrender xtst
+USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
+MAKE_ENV=	XDG_CONFIG_HOME=/dev/null
 
 CMAKE_ARGS+=	-DWITH_ACL:BOOL=Off \
 		-DWITH_FAM:BOOL=On \
-		-DHUPNP_INCLUDE_PATH:PATH="${LOCALBASE}/include" \
-		-D_KDE_DEFAULT_HOME_POSTFIX:STRING="4"
+		-DWITH_ASPELL:BOOL=Off \
+		-DWITH_HSPELL:BOOL=Off \
+		-DHUPNP_ENABLED:BOOL=On \
+		-DKDE_DISTRIBUTION_TEXT:STRING="${OPSYS}" \
+		-DKDE_DEFAULT_HOME:STRING=".kde4"
 
 MAN1=	checkXML.1 \
+	kconfig_compiler.1 \
 	kde4-config.1 \
 	kdecmake.1 \
 	kjs.1 \
 	kjscmd.1 \
 	kross.1 \
-	makekdewidgets.1
+	makekdewidgets.1 \
+	preparetips.1
 MAN7=	kdeoptions.7 \
 	qtoptions.7
 MAN8=	kbuildsycoca4.8 \
@@ -80,13 +79,23 @@ MAN8=	kbuildsycoca4.8 \
 	kdeinit4.8 \
 	meinproc4.8
 
+OPTIONS_DEFINE=	AVAHI
+AVAHI_DESC=	Use Avahi's mDNSResponder (otherwise Apple's)
+
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 4004
+.if ${OSVERSION} < 4016
 LIB_DEPENDS+=	lzma.5:${PORTSDIR}/archivers/xz
 .endif
 
+.if ${OSVERSION} < 4016
 LIB_DEPENDS+=	utempter:${PORTSDIR}/sysutils/libutempter
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-ConfigureChecks.cmake
+.endif
+
+.if ${PORT_OPTIONS:MAVAHI}
+LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/avahi-libdns
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
@@ -114,8 +123,8 @@ pre-configure:
 		${PATCH_WRKSRC}/cmake/modules/*.cmake \
 		${PATCH_WRKSRC}/ConfigureChecks.cmake \
 		${PATCH_WRKSRC}/doc/api/doxygen.sh
-#	${REINPLACE_CMD} -e 's|/usr/include|${LOCALBASE}/include|g' \
-#		${PATCH_WRKSRC}/cmake/modules/FindDNSSD.cmake
+	${REINPLACE_CMD} -e 's|/usr/include|${LOCALBASE}/include|g' \
+		${PATCH_WRKSRC}/cmake/modules/FindDNSSD.cmake
 	${REINPLACE_CMD} -e 's|soprano/cmake|cmake/Modules|g' \
 		${PATCH_WRKSRC}/cmake/modules/FindSoprano.cmake
 # FindBerkeleyDB.cmake should be rewritten to support multiple version
