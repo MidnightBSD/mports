@@ -1,14 +1,8 @@
-# New ports collection makefile for:    st
-# Date created:         Sun Feb 18 2001
-# Whom:                 tobez@tobez.org
-#
-# $MidnightBSD: mports/devel/st/Makefile,v 1.3 2010/06/04 22:25:54 laffer1 Exp $
-# $FreeBSD: ports/devel/st/Makefile,v 1.9 2005/08/31 11:38:07 tobez Exp $
-#
+# $MidnightBSD: mports/devel/st/Makefile,v 1.4 2013/07/04 16:30:21 laffer1 Exp $
 
 PORTNAME=	st
 PORTVERSION=	1.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}ate-threads/${PORTNAME}ate-threads/${PORTVERSION}
 
