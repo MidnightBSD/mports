@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.49 2013/06/25 12:22:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.50 2013/06/25 12:25:04 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -534,7 +534,9 @@ MASTER_SITE_GENTOO+= \
 # GH_PROJECT    - name of the project on GitHub
 #                 default: ${PORTNAME}
 #
-# GH_TAGNAME    - name of the tag to download (master, 2.0.1, ...)
+# GH_TAGNAME    - name of the tag to download (2.0.1, hash, ...)
+#                 Using the name of a branch here is incorrect. It is
+#                 possible to do GH_TAGNAME=${GH_COMMIT} to do a snapshot
 #                 default: ${DISTVERSION}
 #
 # GH_COMMIT     - first 7 digits of the commit that generated GH_TAGNAME
@@ -751,6 +753,7 @@ MASTER_SITE_KDE+= \
 
 .if !defined(IGNORE_MASTER_SITE_LOGILAB)
 MASTER_SITE_LOGILAB+= \
+	http://download.logilab.org/pub/%SUBDIR%/ \
 	http://ftp.logilab.org/pub/%SUBDIR%/ \
 	ftp://ftp.logilab.org/pub/%SUBDIR%/ \
 	ftp://ftp.logilab.fr/pub/%SUBDIR%/
@@ -1512,7 +1515,7 @@ MASTER_SITE_XORG+= \
 
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
 MASTER_SITE_KERNEL_ORG+= \
-	https://kernel.org/pub/%SUBDIR%/ \
+	https://www.kernel.org/pub/%SUBDIR%/ \
 	ftp://ftp.ntu.edu.tw/%SUBDIR%/ \
 	http://ftp.sunet.se/pub/Linux/kernel.org/%SUBDIR%/ \
 	http://ftp.yandex.ru/pub/%SUBDIR%/ \
