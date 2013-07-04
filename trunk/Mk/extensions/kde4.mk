@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.8 2012/02/29 20:53:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.9 2013/06/21 01:43:42 laffer1 Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 
@@ -72,18 +72,19 @@ Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 #			  ${LOCALBASE}/kde4, but this could change in the future.
 #
 
-KDE4_VERSION?=		4.10.3
+KDE4_VERSION?=		4.10.4
 KDE4_BRANCH?=		stable
 KTP_VERSION?=		0.6.1
 KTP_BRANCH?=		stable
 CALLIGRA_VERSION?=	2.6.2
 CALLIGRA_BRANCH?=	stable
-KDEVELOP_VERSION?=	4.4.1
+KDEVELOP_VERSION?=	4.5.1
 KDEVELOP_BRANCH?=	stable
 
 #
 # KDE4 is installed into its own prefix to avoid conflicting with KDE3.
 #
+
 KDE4_PREFIX?=	${LOCALBASE}/kde4
 
 # Help cmake to find files when testing ports with non-default PREFIX
