@@ -1,8 +1,0 @@
-bin/idesk
-share/idesk/default.lnk.example
-share/idesk/dot.ideskrc.example
-share/idesk/dot.xsession.example
-share/idesk/folder_home.xpm.example
-@dirrm share/idesk
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
