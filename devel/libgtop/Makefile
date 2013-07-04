@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.12 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.13 2012/02/28 02:49:50 laffer1 Exp $
 
 PORTNAME=	libgtop
 PORTVERSION=	2.28.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,6 +15,7 @@ BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS=	lsof:${PORTSDIR}/sysutils/lsof
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
+USES+=		pkgconfig
 USE_BZIP2=	yes
 USE_PERL5_BUILD=yes
 USE_GETTEXT=	yes
