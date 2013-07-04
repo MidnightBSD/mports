@@ -1,3 +1,6 @@
+@comment file listing
+@exec mkdir -p /compat/linux
+bin/[
 bin/arch
 bin/basename
 bin/bash
@@ -12,6 +15,7 @@ bin/dd
 bin/echo
 bin/egrep
 bin/env
+bin/expr
 bin/false
 bin/fgrep
 bin/grep
@@ -32,10 +36,12 @@ bin/sleep
 bin/sort
 bin/stty
 bin/sync
+bin/test
 bin/touch
 bin/true
 bin/uname
 bin/unlink
+bin/uuidgen
 etc/DIR_COLORS
 etc/DIR_COLORS.256color
 etc/DIR_COLORS.xterm
@@ -606,12 +612,16 @@ usr/lib/krb5/plugins/kdb/db2.so
 usr/lib/libdb-4.7.so
 usr/lib/libdes425.so.3
 usr/lib/libdes425.so.3.0
+usr/lib/libfam.so.0
+usr/lib/libfam.so.0.0.0
 usr/lib/libform.so.5
 usr/lib/libform.so.5.6
 usr/lib/libformw.so.5
 usr/lib/libformw.so.5.6
 usr/lib/libfreetype.so.6
 usr/lib/libfreetype.so.6.3.18
+usr/lib/libgamin-1.so.0
+usr/lib/libgamin-1.so.0.1.9
 usr/lib/libgdbm.so.2
 usr/lib/libgdbm.so.2.0.0
 usr/lib/libglib-1.2.so.0
@@ -663,6 +673,7 @@ usr/lib/libstdc++.so.6.0.10
 usr/lib/libtic.so.5
 usr/lib/libtic.so.5.6
 usr/lib/locale/locale-archive.tmpl
+usr/libexec/gam_server
 usr/libexec/getconf/POSIX_V6_ILP32_OFF32
 usr/libexec/getconf/POSIX_V6_ILP32_OFFBIG
 usr/libexec/pt_chown
@@ -879,6 +890,32 @@ usr/share/doc/elfutils-0.142/TODO
 usr/share/doc/fedora-release-10/GPL
 usr/share/doc/freetype-2.3.7/ChangeLog
 usr/share/doc/freetype-2.3.7/README
+usr/share/doc/gamin-0.1.9/AUTHORS
+usr/share/doc/gamin-0.1.9/ChangeLog
+usr/share/doc/gamin-0.1.9/Copyright
+usr/share/doc/gamin-0.1.9/FAQ.html
+usr/share/doc/gamin-0.1.9/NEWS
+usr/share/doc/gamin-0.1.9/README
+usr/share/doc/gamin-0.1.9/TODO
+usr/share/doc/gamin-0.1.9/callbacks.gif
+usr/share/doc/gamin-0.1.9/client_server.gif
+usr/share/doc/gamin-0.1.9/config.html
+usr/share/doc/gamin-0.1.9/contacts.html
+usr/share/doc/gamin-0.1.9/debug.html
+usr/share/doc/gamin-0.1.9/debugging.txt
+usr/share/doc/gamin-0.1.9/devel.html
+usr/share/doc/gamin-0.1.9/differences.html
+usr/share/doc/gamin-0.1.9/downloads.html
+usr/share/doc/gamin-0.1.9/gamin.html
+usr/share/doc/gamin-0.1.9/index.html
+usr/share/doc/gamin-0.1.9/internals.html
+usr/share/doc/gamin-0.1.9/news.html
+usr/share/doc/gamin-0.1.9/overview.html
+usr/share/doc/gamin-0.1.9/python.html
+usr/share/doc/gamin-0.1.9/security.html
+usr/share/doc/gamin-0.1.9/server_structs.gif
+usr/share/doc/gamin-0.1.9/socket.txt
+usr/share/doc/gamin-0.1.9/using.html
 usr/share/doc/gdbm-1.8.0/COPYING
 usr/share/doc/gdbm-1.8.0/NEWS
 usr/share/doc/gdbm-1.8.0/README
@@ -1960,9 +1997,7 @@ usr/share/man/man8/tune2fs.8.gz
 usr/tmp
 var/mail
 var/cache/ldconfig/aux-cache
-@cwd %%LOCALBASE%%
-etc/mtree/bsd.linux-compat.mtree
-@cwd %%TARGETDIR%%
+@comment empty directory listing
 @exec /bin/mkdir -p %D/var/yp
 @exec /bin/mkdir -p %D/var/spool/mail
 @exec /bin/mkdir -p %D/var/spool/lpd
@@ -2570,7 +2605,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/vo/LC_MESSAGES
 @dirrm usr/share/locale/ve/LC_MESSAGES
 @dirrm usr/share/locale/vai/LC_MESSAGES
-@dirrmtry usr/share/locale/uz@cyrillic/LC_MESSAGES
+@dirrm usr/share/locale/uz@cyrillic/LC_MESSAGES
 @dirrm usr/share/locale/uz@Latn/LC_MESSAGES
 @dirrm usr/share/locale/uz/LC_MESSAGES
 @dirrm usr/share/locale/ur/LC_MESSAGES
@@ -2618,7 +2653,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/ss/LC_MESSAGES
 @dirrm usr/share/locale/srr/LC_MESSAGES
 @dirrm usr/share/locale/srn/LC_MESSAGES
-@dirrmtry usr/share/locale/sr@Latn/LC_MESSAGES
+@dirrm usr/share/locale/sr@Latn/LC_MESSAGES
 @dirrm usr/share/locale/sq_AL/LC_MESSAGES
 @dirrm usr/share/locale/son/LC_MESSAGES
 @dirrm usr/share/locale/sog/LC_MESSAGES
@@ -2949,7 +2984,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/cad/LC_MESSAGES
 @dirrm usr/share/locale/ca_ES@valencian/LC_MESSAGES
 @dirrm usr/share/locale/ca_ES/LC_MESSAGES
-@dirrmtry usr/share/locale/ca@valencia/LC_MESSAGES
+@dirrm usr/share/locale/ca@valencia/LC_MESSAGES
 @dirrm usr/share/locale/byn/LC_MESSAGES
 @dirrm usr/share/locale/bug/LC_MESSAGES
 @dirrm usr/share/locale/bua/LC_MESSAGES
@@ -3050,6 +3085,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm etc/blkid
 @dirrm etc/X11/fontpath.d
 @dirrm etc/X11/applnk
+@comment non-empty directory listing in revers order
 @dirrm var/spool
 @dirrm var/lock
 @dirrm var/lib
@@ -3102,7 +3138,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/vi
 @dirrm usr/share/locale/ve
 @dirrm usr/share/locale/vai
-@dirrmtry usr/share/locale/uz@cyrillic
+@dirrm usr/share/locale/uz@cyrillic
 @dirrm usr/share/locale/uz@Latn
 @dirrm usr/share/locale/uz
 @dirrm usr/share/locale/ur
@@ -3173,7 +3209,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/srn
 @dirrm usr/share/locale/sr@latin/LC_MESSAGES
 @dirrm usr/share/locale/sr@latin
-@dirrmtry usr/share/locale/sr@Latn
+@dirrm usr/share/locale/sr@Latn
 @dirrm usr/share/locale/sr@ije/LC_MESSAGES
 @dirrm usr/share/locale/sr@ije
 @dirrm usr/share/locale/sr/LC_MESSAGES
@@ -3657,7 +3693,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/locale/cad
 @dirrm usr/share/locale/ca_ES@valencian
 @dirrm usr/share/locale/ca_ES
-@dirrmtry usr/share/locale/ca@valencia
+@dirrm usr/share/locale/ca@valencia
 @dirrm usr/share/locale/ca/LC_TIME
 @dirrm usr/share/locale/ca/LC_MESSAGES
 @dirrm usr/share/locale/ca
@@ -3770,6 +3806,7 @@ etc/mtree/bsd.linux-compat.mtree
 @dirrm usr/share/doc/glibc-2.9
 @dirrm usr/share/doc/glib2-2.18.4
 @dirrm usr/share/doc/glib-1.2.10
+@dirrm usr/share/doc/gamin-0.1.9
 @dirrm usr/share/doc/gdbm-1.8.0
 @dirrm usr/share/doc/freetype-2.3.7
 @dirrm usr/share/doc/fedora-release-10

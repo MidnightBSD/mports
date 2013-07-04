@@ -1,8 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/emulators/linux_base-f10/Makefile,v 1.60 2011/03/02 10:11:21 ehaupt Exp $
+# $MidnightBSD: mports/emulators/linux_base-f10/Makefile,v 1.1 2011/06/18 00:59:12 laffer1 Exp $
 
 PORTNAME=		f10
 PORTVERSION=		10
+PORTREVISION=		2
 CATEGORIES=		emulators linux
 MASTER_SITES=		CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
 PKGNAMEPREFIX=		linux_base-
@@ -31,6 +31,7 @@ BIN_DISTFILES=	basesystem-10.0-1.noarch.rpm \
 		fedora-release-10-1.noarch.rpm \
 		filesystem-2.4.19-1.fc10.${LINUX_RPM_ARCH}.rpm \
 		freetype-2.3.7-3.fc10.${LINUX_RPM_ARCH}.rpm \
+		gamin-0.1.9-6.fc10.${LINUX_RPM_ARCH}.rpm \
 		gdbm-1.8.0-29.fc10.${LINUX_RPM_ARCH}.rpm \
 		glib-1.2.10-32.fc10.${LINUX_RPM_ARCH}.rpm \
 		glib2-2.18.4-2.fc10.${LINUX_RPM_ARCH}.rpm \
@@ -76,6 +77,7 @@ SRC_DISTFILES+=	acl-2.2.47-3.fc10.src.rpm \
 		fedora-release-10-1.src.rpm \
 		filesystem-2.4.19-1.fc10.src.rpm \
 		freetype-2.3.7-1.fc10.src.rpm \
+		gamin-0.1.9-6.fc10.src.rpm \
 		gcc-4.3.2-7.src.rpm \
 		gdbm-1.8.0-29.fc10.src.rpm \
 		glib-1.2.10-32.fc10.src.rpm \
@@ -101,31 +103,28 @@ ALWAYS_KEEP_DISTFILES=	yes
 .endif
 
 CONFLICTS=		linux_base-gentoo* linux_base-fc4-[0-9]* linux_base-fc6-[0-9]* \
-			linux_base-f7-[0-9]* linux_base-f8-[0-9]* linux_base-f9-[0-9]* linux-glib2-*
+			linux_base-f7-[0-9]* linux_base-f8-[0-9]* linux_base-f9-[0-9]* \
+			linux_base-c* linux-glib2-*
 ONLY_FOR_ARCHS=		i386 amd64
 LINUX_RPM_ARCH=		i386
-USE_GCPIO=		yes
 USE_LINUX_PREFIX=	yes
+NO_WRKSUBDIR=		yes
 DISTINFO_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 PLIST_SUB=		GLIBCVER="2.9"
 
-RPM2CPIO?=		${LOCALBASE}/bin/rpm2cpio
-
-EXTRACT_DEPENDS+=	${RPM2CPIO}:${PORTSDIR}/archivers/rpm
-
 EXTRACT_ONLY=		${BIN_DISTFILES}
-EXTRACT_CMD?=		${RPM2CPIO}
-EXTRACT_BEFORE_ARGS?=	 
-EXTRACT_AFTER_ARGS?=	| ${CPIO} -id --quiet
+EXTRACT_CMD?=		${TAR}
+EXTRACT_BEFORE_ARGS?=	-xf
+EXTRACT_AFTER_ARGS?=
 
 .include <bsd.port.pre.mk>
 
+.if !defined(PACKAGE_BUILDING) || (defined(PACKAGE_BUILDING) && !defined(LINUX_OSRELEASE) )
 LINUX_OSRELEASE!=	${ECHO_CMD} `${SYSCTL} -n compat.linux.osrelease 2>/dev/null`
+.endif
 
 .if ${LINUX_OSRELEASE}x == "x"
 IGNORE=			linuxulator is not (kld)loaded
-.elif ${LINUX_OSRELEASE} == "2.4.2"
-IGNORE=			compat.linux.osrelease: 2.4.2 is not supported, please use 2.6.16
 .endif
 
 REMOVE_DIRS=		boot dev etc/fonts home initrd media root tmp var/log var/run var/tmp \
@@ -133,8 +132,13 @@ REMOVE_DIRS=		boot dev etc/fonts home initrd media root tmp var/log var/run var/
 REMOVE_FILES=		bin/df bin/su etc/exports etc/group etc/localtime \
 			etc/motd etc/passwd etc/printcap etc/services \
 			etc/protocols
+# These are shared directories that some linux packages (e.g. linux-f10-gtk2)
+# use but aren't in any of the distfiles above.
 ADD_DIRS=		usr/X11R6/share usr/X11R6/man usr/X11R6/lib/tls \
-			usr/X11R6/include usr/X11R6/bin
+			usr/X11R6/include usr/X11R6/bin \
+			usr/share/locale/ca@valencia/LC_MESSAGES \
+			usr/share/locale/sr@Latn/LC_MESSAGES \
+			usr/share/locale/uz@cyrillic/LC_MESSAGES
 ADD_FILES=		#empty
 
 .if (${MACHINE_ARCH} == "amd64")
@@ -148,22 +152,6 @@ LATEST_LINK:=		${PKGBASE:C/linux/linux32/}
 ARCH=			i386
 .endif
 
-pre-extract:
-	@${MKDIR} ${WRKSRC}
-
-do-extract:
-	@for file in ${EXTRACT_ONLY}; do \
-		if !(cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${DIST_SUBDIR}/$$file ${EXTRACT_AFTER_ARGS});\
-                then \
-                        exit 1; \
-                fi \
-	done
-	if [ `${ID} -u` = 0 ]; then \
-                ${CHMOD} -R ug-s ${WRKDIR}; \
-                ${CHOWN} -R 0:0 ${WRKDIR}; \
-        fi
-
-
 do-build:
 	@for D in ${REMOVE_DIRS}; do \
 		${RM} -rf ${WRKSRC}/$$D; \
@@ -172,7 +160,7 @@ do-build:
 		${RM} -f ${WRKSRC}/$$F; \
 	done
 	@for F in ${ADD_DIRS}; do \
-		${MKDIR} -p ${WRKSRC}/$$F; \
+		${MKDIR} ${WRKSRC}/$$F; \
 	done
 	@for F in ${ADD_FILES}; do \
 		${TOUCH} ${WRKSRC}/$$F; \
@@ -180,7 +168,6 @@ do-build:
 #
 # Create a good ld.so.conf and touch ld.so.cache
 #
-	@${MKDIR} ${WRKSRC}/etc
 	@${ECHO_CMD} -e '/lib\n/usr/lib\n${X11BASE}/lib' >> \
 		${WRKSRC}/etc/ld.so.conf
 	@${TOUCH} ${WRKSRC}/etc/ld.so.cache
@@ -224,6 +211,10 @@ do-install:
 		| ${CPIO} -pm -R root:wheel ${PREFIX}
 
 	@${LN} -sf /var/tmp ${PREFIX}/usr/tmp
+	@${LN} -sf ../usr/bin/[ ${PREFIX}/bin/[
+	@${LN} -sf ../usr/bin/expr ${PREFIX}/bin/expr
+	@${LN} -sf ../usr/bin/test ${PREFIX}/bin/test
+	@${LN} -sf ../usr/bin/uuidgen ${PREFIX}/bin/uuidgen
 	@${CHOWN} root:wheel ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
 	@${CHMOD} 755 ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
 #
