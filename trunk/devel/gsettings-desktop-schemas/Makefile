@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gsettings-desktop-schemas/Makefile,v 1.1 2011/09/10 21:16:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/gsettings-desktop-schemas/Makefile,v 1.2 2013/06/17 02:59:48 laffer1 Exp $
 
 PORTNAME=	gsettings-desktop-schemas
 PORTVERSION=	3.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -13,8 +13,8 @@ LICENSE=	lgpl2.1
 
 RUN_DEPENDS=	${LOCALBASE}/etc/fonts/conf.avail/31-cantarell.conf:${PORTSDIR}/x11-fonts/cantarell-fonts
 
+USES=		pkgconfig gettext
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
 USE_GNOME=	gnomehack intltool glib20
