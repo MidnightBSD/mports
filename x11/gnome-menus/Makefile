@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.9 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.10 2013/07/03 20:38:26 laffer1 Exp $
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5
@@ -13,11 +13,10 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
-USES+=		pkgconfig
+USES=		pkgconfig gettext
 USE_AUTOTOOLS=	libtool
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
