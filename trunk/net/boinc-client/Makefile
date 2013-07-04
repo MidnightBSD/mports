@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.5 2011/01/15 02:04:09 laffer1 Exp $
-# $FreeBSD: ports/net/boinc-client/Makefile,v 1.35 2008/08/06 08:29:56 pav Exp $
+# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.6 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTNAME=	boinc-client
 PORTVERSION=	6.4.5
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	pav
@@ -44,12 +43,12 @@ OPTIONS=	X11 "Build Boinc Manager GUI" on \
 .if !defined(WITHOUT_X11)
 USE_GL=		glut
 USE_XORG=	x11
-USE_WX=		2.6+
+USE_WX=		2.6
 WX_CONF_ARGS=	absolute
 CPPFLAGS+=		-I${LOCALBASE}/include
 
 USE_ICONV=	yes
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg
 
 PLIST_SUB+=	BOINC_GUI=""
 .else
