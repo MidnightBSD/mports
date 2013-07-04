@@ -1,55 +1,61 @@
-# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.2 2010/02/27 23:18:39 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.3 2010/11/06 14:04:21 laffer1 Exp $
 
 PORTNAME=	kdemultimedia
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	1
-CATEGORIES=	multimedia kde ipv6
-MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
-DIST_SUBDIR=	KDE
+CATEGORIES=	multimedia kde
+MASTER_SITES=	# empty
+DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	KDE Multimedia applications
-LICENSE=	gpl2
-
-OPTIONS=	PULSEAUDIO "KMix control for PulseAudio" off
-
-LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
-		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia \
-		ogg.7:${PORTSDIR}/audio/libogg \
-		tag.6:${PORTSDIR}/audio/taglib \
-		vorbis.4:${PORTSDIR}/audio/libvorbis \
-		musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
-		tunepimp.5:${PORTSDIR}/audio/libtunepimp \
-		xine.1:${PORTSDIR}/multimedia/libxine
-RUN_DEPENDS=	oggenc:${PORTSDIR}/audio/vorbis-tools
-.if !defined(PACKAGE_BUILDING)
-RUN_DEPENDS+=	lame:${PORTSDIR}/audio/lame
-.endif
+COMMENT=	KDE Multimedia applications (meta port)
+LICENSE=	agg
 
 LATEST_LINK=	${PORTNAME}4
 
-USE_BZIP2=	yes
-USE_KDE4=	kdelibs kdeprefix kdehier automoc4 kdeexp
-KDE4_BUILDENV=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib opengl dbus qt3support designer network svg qtestlib \
-		qmake_build moc_build rcc_build uic_build
-USE_OPENLDAP=	yes
-MAKE_JOBS_SAFE=	yes
+NO_BUILD=	yes
+USE_KDE4=	kdeprefix
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=		DRAGON FFMPEG JUK KIO_AUDIOCD KMIX KSCD MPLAYER
+OPTIONS_DEFAULT=	DRAGON FFMPEG JUK KIO_AUDIOCD KMIX KSCD
+DRAGON_DESC=		Simple video player
+FFMPEG_DESC=		FFMPEG-based video thumbnailer
+JUK_DESC=		Audio player
+KIO_AUDIOCD_DESC=	Audio CD IOSlave
+KMIX_DESC=		Audio mixer
+KSCD_DESC=		CD Player
+MPLAYER_DESC=		MPlayer-based video thumbnailer
 
-.if defined(WITH_PULSEAUDIO)
-CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=ON
-LIB_DEPENDS+= pulse.0:${PORTSDIR}/audio/pulseaudio
-.else
-CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=OFF
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDRAGON}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/dragon:${PORTSDIR}/multimedia/dragon
 .endif
 
-CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=OFF
+.if ${PORT_OPTIONS:MFFMPEG}
+RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/ffmpegthumbs.so:${PORTSDIR}/multimedia/kdemultimedia4-ffmpegthumbs
+.endif
 
-post-extract:
-	${MKDIR} ${WRKSRC}
+.if ${PORT_OPTIONS:MJUK}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/juk:${PORTSDIR}/audio/juk
+.endif
 
-.include <bsd.port.post.mk>
+.if ${PORT_OPTIONS:MKIO_AUDIOCD}
+RUN_DEPENDS+=	${KDE4_PREFIX}/lib/libaudiocdplugins.so.5:${PORTSDIR}/audio/kio-audiocd
+.endif
+
+.if ${PORT_OPTIONS:MKMIX}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kmix:${PORTSDIR}/audio/kmix
+.endif
+
+.if ${PORT_OPTIONS:MKSCD}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kscd:${PORTSDIR}/audio/kscd
+.endif
+
+.if ${PORT_OPTIONS:MMPLAYER}
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/mplayerthumbsconfig:${PORTSDIR}/multimedia/kdemultimedia4-mplayerthumbs
+.endif
+
+do-install:
+	${DO_NADA}
+
+.include <bsd.port.mk>
