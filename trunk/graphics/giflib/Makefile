@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.3 2013/03/23 21:50:59 laffer1 Exp $
+# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.4 2013/06/16 01:22:39 laffer1 Exp $
 
 PORTNAME=	giflib
 PORTVERSION=	4.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x
 PKGNAMESUFFIX=	${NOX11SUFFIX}${PKGNAMESUFFIX2}
@@ -18,7 +18,7 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	DOCBOOK
+OPTIONS_DEFINE=	DOCBOOK X11
 DOCBOOK_DESC=	Generate API documentation (requires DOCS)
 
 .include <bsd.port.pre.mk>
@@ -31,14 +31,14 @@ PLIST_SUB+=	WITH_DOCBOOK=''
 PLIST_SUB+=	WITH_DOCBOOK='@comment '
 .endif
 
-.if defined(WITHOUT_X11)
-PLIST_SUB+=	X11='@comment '
-CONFIGURE_ARGS+=	--with-x=no
-NOX11SUFFIX=	-nox11
-.else
+.if ${PORT_OPTIONS:MX11}
 USE_XORG=	sm x11
 PLIST_SUB+=	X11=''
 CPPFLAGS+=	-I${LOCALBASE}/include
+.else
+PLIST_SUB+=	X11='@comment '
+CONFIGURE_ARGS+=	--with-x=no
+NOX11SUFFIX=	-nox11
 .endif
 
 post-patch:
