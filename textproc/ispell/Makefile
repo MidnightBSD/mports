@@ -1,9 +1,11 @@
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.7 2008/10/13 20:59:44 laffer1 Exp $
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.8 2013/02/19 15:29:09 laffer1 Exp $
 
 PORTNAME?=	ispell
 PORTVERSION?=	3.3.02
 CATEGORIES?=	textproc
-MASTER_SITES=	http://www.lasr.cs.ucla.edu/geoff/tars/
+MASTER_SITES=	http://www.lasr.cs.ucla.edu/geoff/tars/ \
+		http://fmg-www.cs.ucla.edu/geoff/tars/ \
+		http://distfiles.opendarwin.org/
 DISTNAME=	ispell-3.3.02		# needed for slave ports / options
 DISTFILES=	ispell-3.3.02.tar.gz    # needed for slave ports / options
 
@@ -86,22 +88,15 @@ EXTRA_DICT+=	${BRDISTFILE}:br
 EXTRACT_ONLY+=	${BRDISTFILE}
 .endif
 .if defined(ISPELL_DENEU)
-DENEUDISTFILE=	igerman98-20001109.tar.bz2
-MASTER_SITES+=	http://j3e.de/ispell/igerman98/dict/:denu
+DENEUDISTFILE=	igerman98-20071211.tar.bz2
+MASTER_SITES+=	http://www.j3e.de/ispell/igerman98/dict/:denu
 EXTRA_DICT+=	${DENEUDISTFILE}:denu
+USE_GMAKE=	yes
 .endif
 .if defined(ISPELL_DEALT)
 DEALTDISTFILE=	hk-deutsch.tar.gz
 MASTER_SITES+=	ftp://ftp.informatik.uni-kiel.de/pub/kiel/dicts/:dealt
 EXTRA_DICT+=	${DEALTDISTFILE}:dealt
-.endif
-.if defined(ISPELL_NO)
-NODISTFILE=	ispell-norsk-2.0.tar.gz
-MASTER_SITES+=	http://folk.uio.no/runekl/:no
-EXTRA_DICT+=	${NODISTFILE}:no
-EXTRACT_ONLY+=	${NODISTFILE}
-MASKBITS?=	64
-USE_GMAKE=	yes
 .endif
 .if defined(ISPELL_NL)
 NLDISTFILE=	ispell-nl-1.0.0.tar.gz
@@ -111,9 +106,9 @@ EXTRA_DICT+=	${NLDISTFILE}:nl
 EXTRACT_ONLY+=	${NLDISTFILE}
 .endif
 .if defined(ISPELL_DA)
-DADISTFILE=	ispell-da-1.4.49.tar.gz
+DADISTFILE=	ispell-da-1.7.31.tar.gz
 MASTER_SITES+=	http://da.speling.org/filer/:da \
-		${MASTER_SITE_LOCAL:S/$/:da/}
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:da/}
 MASTER_SITE_SUBDIR+=	fenner/:da
 EXTRA_DICT+=	${DADISTFILE}:da
 EXTRACT_ONLY+=	${DADISTFILE}
