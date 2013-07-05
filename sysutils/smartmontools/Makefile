@@ -1,12 +1,14 @@
-# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.5 2013/02/26 04:51:12 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.6 2013/06/05 02:34:01 laffer1 Exp $
 
 PORTNAME=	smartmontools
 PORTVERSION=	6.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	S.M.A.R.T. disk monitoring tools
+
 LICENSE=	gpl2
 
 USE_GMAKE=	yes
@@ -39,7 +41,5 @@ post-patch:
 post-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${WRKDIR}/smart ${PREFIX}/etc/periodic/daily/smart
-
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
