@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.11 2013/06/13 01:06:32 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.12 2013/06/19 00:55:20 laffer1 Exp $
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.42
@@ -46,6 +46,9 @@ OPTIONS_RADIO=	ONE
 OPTIONS_RADIO_ONE=	PAM XLOCK_GROUP
 
 NO_OPTIONS_SORT=yes
+
+FAKE_MAKEARGS+=	xapploaddir=${FAKE_DESTDIR}${LOCALBASE}/lib/X11/app-defaults \
+		mandir=${FAKE_DESTDIR}${MANPREFIX}/man/man1
 
 .include <bsd.mport.options.mk>
 
@@ -149,5 +152,8 @@ post-patch:
 
 post-configure:
 	${REINPLACE_CMD} -e 's/-lXdpms//g' ${WRKSRC}/modes/Makefile
+
+post-install:
+	-${CP} ${PREFIX}/man/xlock.1 ${PREFIX}/man/man1/
 
 .include <bsd.port.mk>
