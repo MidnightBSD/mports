@@ -1,8 +1,4 @@
-#-*- tab-width: 4; -*-
-# ex:ts=4
-#
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.219 2013/07/04 16:16:21 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.220 2013/07/04 16:26:49 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -2560,7 +2556,7 @@ install-package:
 .	if defined(DESTDIR) 
 		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
 .	endif
-# $MPORT_INSTALL calls chroot it DESTDIR is set
+# $MPORT_INSTALL calls chroot if DESTDIR is set
 	@${MPORT_INSTALL} ${PKGFILE}	
 .endif
 
