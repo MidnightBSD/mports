@@ -1,29 +1,31 @@
-# $MidnightBSD: mports/x11-toolkits/attica/Makefile,v 1.1 2011/07/24 17:06:14 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/attica/Makefile,v 1.7 2011/03/25 10:17:52 avilla Exp $
+# $MidnightBSD: mports/x11-toolkits/attica/Makefile,v 1.2 2012/03/02 01:19:49 laffer1 Exp $
 
 PORTNAME=	attica
-PORTVERSION=	0.2.9
+PORTVERSION=	0.4.2
 PORTEPOCH=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/${PORTNAME}/
+MASTER_SITE_SUBDIR=	stable/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Collaboration Services API library
+COMMENT=	Open Collaboration Services API library
+
 LICENSE=	lgpl
 
-USE_QT_VER=	4
-QT_COMPONENTS=	dbus network moc_build uic_build rcc_build qmake_build
+USE_QT4=	network qtestlib_build xml \
+		moc_build qmake_build rcc_build uic_build
 USE_BZIP2=	yes
-USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
-USE_CMAKE=	yes
+USES=		cmake
+CMAKE_ARGS=	-DATTICA_ENABLE_TESTS:BOOL=OFF \
+		-DQT4_BUILD:BOOL=ON
 MAKE_JOBS_SAFE=	yes
 
 post-patch:
 	${MKDIR} ${WRKSRC}
-	${REINPLACE_CMD} -e \
-		's,$${LIB_DESTINATION}/pkgconfig,libdata/pkgconfig,' \
+	${REINPLACE_CMD} \
+		-e 's,$${LIB_DESTINATION}/pkgconfig,libdata/pkgconfig,' \
+		-e 's,.$${CMAKE_LIBATTICA_VERSION_MINOR},,' \
 		${WRKSRC}/lib/CMakeLists.txt
 
 .include <bsd.port.mk>
