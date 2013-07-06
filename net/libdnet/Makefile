@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libdnet/Makefile,v 1.6 2013/07/06 22:38:30 laffer1 Exp $
+# $MidnightBSD: mports/net/libdnet/Makefile,v 1.7 2013/07/06 22:39:11 laffer1 Exp $
 
 PORTNAME=	libdnet
 PORTVERSION=	1.11
@@ -8,6 +8,7 @@ MASTER_SITES=	SF/libdnet/libdnet/libdnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple interface to low level networking routines
+
 LICENSE=        bsd3
 
 GNU_CONFIGURE=	yes
