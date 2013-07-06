@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.220 2013/07/04 16:26:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.221 2013/07/05 22:24:49 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -1114,7 +1114,11 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
-.if defined(USE_ZIP)
+.if defined(USE_LHA)
+EXTRACT_CMD?=		${LHA_CMD}
+EXTRACT_BEFORE_ARGS?=	xfqw=${WRKDIR}
+EXTRACT_AFTER_ARGS?=
+.elif defined(USE_ZIP)
 EXTRACT_CMD?=		${UNZIP_CMD}
 EXTRACT_BEFORE_ARGS?=	-qo
 EXTRACT_AFTER_ARGS?=	-d ${WRKDIR}
@@ -1123,18 +1127,12 @@ EXTRACT_CMD?=		${UNMAKESELF_CMD}
 EXTRACT_BEFORE_ARGS?=
 EXTRACT_AFTER_ARGS?=
 .else
-EXTRACT_BEFORE_ARGS?=	-dc
+EXTRACT_CMD?=		${TAR}
+EXTRACT_BEFORE_ARGS?=	-xf
 .if defined(EXTRACT_PRESERVE_OWNERSHIP)
-EXTRACT_AFTER_ARGS?=	| ${TAR} -xf -
+EXTRACT_AFTER_ARGS?=
 .else
-EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner --no-same-permissions
-.endif
-.if defined(USE_BZIP2)
-EXTRACT_CMD?=			${BZIP2_CMD}
-.elif defined(USE_XZ)
-EXTRACT_CMD?=			${XZ_CMD}
-.else
-EXTRACT_CMD?=			${GZIP_CMD}
+EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
 .endif
 .endif
 
