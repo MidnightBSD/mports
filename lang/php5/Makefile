@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.50 2013/06/19 02:01:48 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.51 2013/07/06 01:23:24 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.4.16
@@ -7,6 +7,7 @@ CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
 MASTER_SITE_SUBDIR=	distributions
 DISTNAME=	php-${PORTVERSION}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
@@ -56,7 +57,7 @@ CONFLICTS=	php53-5*
 
 MAN1=		php-config.1 phpize.1
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 PATCH_DIST_STRIP=	-p1
 
@@ -163,6 +164,8 @@ CONFIGURE_ARGS+=--enable-dtrace
 .if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${TOUCH} ${WRKSRC}/ext/php_config.h
