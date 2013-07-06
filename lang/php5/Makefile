@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.49 2013/03/02 18:55:37 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.50 2013/06/19 02:01:48 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.4.16
@@ -52,7 +52,7 @@ IPV6_DESC=	Enable ipv6 support
 MAILHEAD_DESC=	Enable mail header patch
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
 
-CONFLICTS=	php52-5* php53-5*
+CONFLICTS=	php53-5*
 
 MAN1=		php-config.1 phpize.1
 
