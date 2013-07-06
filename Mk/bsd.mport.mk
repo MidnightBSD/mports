@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.221 2013/07/05 22:24:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.222 2013/07/06 22:24:51 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -57,26 +57,35 @@ TRUE_PREFIX?=		${PREFIX}
 .include "${MPORTCOMPONENTS}/commands.mk"
 
 # Figure out where the local mtree file is
-.if !defined(MTREE_FILE) 
+.if !defined(MTREE_FILE)  && !defined(NO_MTREE)
 .if ${PREFIX} == /usr
 MTREE_FILE=	/etc/mtree/BSD.usr.dist
 .elif ${PREFIX} == ${LINUXBASE_REL}
 MTREE_FILE=	${MTREE_LINUX_FILE}
 .else
-MTREE_FILE=	/etc/mtree/BSD.local.dist
+MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
 .endif
+MTREE_FILE_DEFAULT=yes
 .endif
-
-MTREE_CMD?=			/usr/sbin/mtree
+MTREE_CMD?=		/usr/sbin/mtree
 MTREE_LINUX_FILE?=	${LOCALBASE}/etc/mtree/bsd.linux-compat.mtree 
 MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
-
 
 .if !defined(UID)
 UID!=	${ID} -u
 .endif
 
+# Determine whether or not we can use rootly owner/group functions.
+.if ${UID} == 0
+_BINOWNGRP=	-o ${BINOWN} -g ${BINGRP}
+_SHROWNGRP=	-o ${SHAREOWN} -g ${SHAREGRP}
+_MANOWNGRP=	-o ${MANOWN} -g ${MANGRP}
+.else
+_BINOWNGRP=
+_SHROWNGRP=
+_MANOWNGRP=
+.endif
 
 # Start of options section.
 .if defined(INOPTIONSMK) || (!defined(USEOPTIONSMK) && !defined(AFTERPORTMK))
