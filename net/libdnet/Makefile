@@ -2,39 +2,26 @@
 # Date created:				15 April 2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/net/libdnet/Makefile,v 1.4 2008/05/04 09:56:12 crash Exp $
+# $MidnightBSD: mports/net/libdnet/Makefile,v 1.5 2008/05/04 17:59:29 ctriv Exp $
 # $FreeBSD: ports/net/libdnet/Makefile,v 1.21 2006/02/23 10:38:21 ade Exp $
 #
 
 PORTNAME=	libdnet
 PORTVERSION=	1.11
-CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
-.if defined(BUILD_PYTHON_MODULE)
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-.endif
+PORTREVISION?=	3
+CATEGORIES?=	net
+MASTER_SITES=	SF/libdnet/libdnet/libdnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple interface to low level networking routines
 LICENSE=        bsd3
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_GMAKE=	yes
 
-SLAVE_DIRS=	net/py-libdnet
-
-.if defined(BUILD_PYTHON_MODULE)
-USE_PYTHON=	yes
-CONFIGURE_ARGS+=	--with-python
-INSTALL_WRKSRC=	${BUILD_WRKSRC}/python
-PLIST_FILES=	%%PYTHON_SITELIBDIR%%/dnet.so
-PLIST_SUB+=	MASTER="@comment "
-.else
+.if !defined(LIBDNET_SLAVE)
 CONFIGURE_ARGS+=	--without-python
 USE_LDCONFIG=	yes
-PLIST_SUB+=	MASTER=""
 
 MAN3=	dnet.3
 MAN8=	dnet.8
