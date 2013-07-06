@@ -1,24 +1,20 @@
-# New ports collection makefile for:   gnet2
-# Date created:        7 Nov 2007
-# Whom:                Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/net/gnet2/Makefile,v 1.6 2011/02/02 21:14:15 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/gnet2/Makefile,v 1.7 2013/03/30 19:19:49 laffer1 Exp $
 
 PORTNAME=	gnet
 PORTVERSION=	2.0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple network library built upon Glib-2
+
 LICENSE=	lgpl
 
+USES=		pkgconfig
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack glib20
-USE_PKGCONFIG=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
