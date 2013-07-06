@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libdnet
-# Date created:				15 April 2002
-# Whom:			Dominic Marks <dominic.marks@btinternet.com>
-#
-# $MidnightBSD: mports/net/libdnet/Makefile,v 1.5 2008/05/04 17:59:29 ctriv Exp $
-# $FreeBSD: ports/net/libdnet/Makefile,v 1.21 2006/02/23 10:38:21 ade Exp $
-#
+# $MidnightBSD: mports/net/libdnet/Makefile,v 1.6 2013/07/06 22:38:30 laffer1 Exp $
 
 PORTNAME=	libdnet
 PORTVERSION=	1.11
