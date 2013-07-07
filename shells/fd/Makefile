@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/fd/Makefile,v 1.4 2009/12/28 20:18:08 laffer1 Exp $
+# $MidnightBSD: mports/shells/fd/Makefile,v 1.5 2012/09/29 20:25:25 laffer1 Exp $
 
 PORTNAME=	fd
-PORTVERSION=	3.00k
+PORTVERSION=	3.01a
 CATEGORIES=	shells net
 MASTER_SITES=	http://hp.vector.co.jp/authors/VA012337/soft/fd/ \
 		ftp://ftp.unixusers.net/src/fdclone/
