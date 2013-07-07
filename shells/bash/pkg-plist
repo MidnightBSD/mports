@@ -1,32 +1,7 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.137 2009/03/12 04:09:25 ctriv Exp $
+@comment $FreeBSD$
 bin/bash
-bin/bashbug
 bin/rbash
-%%NLS%%share/locale/af/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/bg/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/de/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/eo/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/es/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/et/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/fr/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/hu/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/id/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/ja/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/lt/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/nl/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/pt_BR/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/ru/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/sv/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/tr/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/vi/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/en@quot/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/en@boldquot/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/ca/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/cs/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/pl/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/ro/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/sk/LC_MESSAGES/bash.mo
-%%NLS%%share/locale/zh_TW/LC_MESSAGES/bash.mo
+bin/bashbug
 %%HELP%%%%DATADIR%%/alias
 %%HELP%%%%DATADIR%%/arith
 %%HELP%%%%DATADIR%%/arith_for
@@ -88,8 +63,8 @@ bin/rbash
 %%HELP%%%%DATADIR%%/source
 %%HELP%%%%DATADIR%%/suspend
 %%HELP%%%%DATADIR%%/test
-%%HELP%%%%DATADIR%%/time
 %%HELP%%%%DATADIR%%/test_bracket
+%%HELP%%%%DATADIR%%/time
 %%HELP%%%%DATADIR%%/times
 %%HELP%%%%DATADIR%%/trap
 %%HELP%%%%DATADIR%%/true
@@ -103,21 +78,37 @@ bin/rbash
 %%HELP%%%%DATADIR%%/variable_help
 %%HELP%%%%DATADIR%%/wait
 %%HELP%%%%DATADIR%%/while
-@dirrm share/doc/bash
-%%NLS%%@dirrmtry share/locale/en@quot/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/en@quot
+%%HELP%%@dirrm %%DATADIR%%
+%%NLS%%share/locale/af/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/bg/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/de/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/en@boldquot/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/en@quot/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/eo/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/es/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/et/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/ga/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/id/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/lt/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/ro/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/uk/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/vi/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/bash.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/bash.mo
 %%NLS%%@dirrmtry share/locale/en@boldquot/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/en@boldquot
-%%NLS%%@dirrmtry share/locale/ca/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/ca
-%%NLS%%@dirrmtry share/locale/cs/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/cs
-%%NLS%%@dirrmtry share/locale/pl/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/pl
-%%NLS%%@dirrmtry share/locale/ro/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/ro
-%%NLS%%@dirrmtry share/locale/sk/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/sk
-%%NLS%%@dirrmtry share/locale/zh_TW/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/zh_TW
-%%HELP%%@dirrm %%DATADIR%%
+%%NLS%%@dirrmtry share/locale/en@quot/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/en@quot
