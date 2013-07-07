@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.434 2013/07/03 22:55:18 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.435 2013/07/04 18:59:42 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -414,6 +414,7 @@ SUBDIR += qt4-scripttools
 SUBDIR += qt4-uic
 SUBDIR += qt4-uic3
 SUBDIR += qtcreator
+SUBDIR += rclint
 SUBDIR += re2c
 SUBDIR += readline
 SUBDIR += scons
