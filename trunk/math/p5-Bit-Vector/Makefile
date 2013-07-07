@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/math/p5-Bit-Vector/Makefile,v 1.3 2010/01/30 15:29:47 laffer1 Exp $
+# $MidnightBSD: mports/math/p5-Bit-Vector/Makefile,v 1.4 2013/02/24 02:18:40 laffer1 Exp $
 
 PORTNAME=	Bit-Vector
-PORTVERSION=	7.2
+PORTVERSION=	7.3
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
