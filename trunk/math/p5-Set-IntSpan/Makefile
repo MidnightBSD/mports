@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/math/p5-Set-IntSpan/Makefile,v 1.2 2008/07/19 18:19:35 laffer1 Exp $
+# $MidnightBSD: mports/math/p5-Set-IntSpan/Makefile,v 1.3 2013/02/24 02:14:34 laffer1 Exp $
 
 PORTNAME=	Set-IntSpan
-PORTVERSION=	1.16
+PORTVERSION=	1.19
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
