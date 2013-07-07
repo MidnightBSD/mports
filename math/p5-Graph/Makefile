@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/p5-Graph/Makefile,v 1.1 2010/10/21 19:11:17 laffer1 Exp $
 
 PORTNAME=	Graph
-PORTVERSION=	0.94
+PORTVERSION=	0.96
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
