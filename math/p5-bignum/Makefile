@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/math/p5-bignum/Makefile,v 1.5 2010/01/30 15:31:21 laffer1 Exp $
+# $MidnightBSD: mports/math/p5-bignum/Makefile,v 1.6 2013/02/24 02:13:40 laffer1 Exp $
 
 PORTNAME=	bignum
-PORTVERSION=	0.30
+PORTVERSION=	0.32
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:FLORA
