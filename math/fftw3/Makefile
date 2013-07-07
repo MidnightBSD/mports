@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.5 2010/12/07 00:31:35 laffer1 Exp $
-#
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.6 2011/12/15 00:57:50 laffer1 Exp $
 
 PORTNAME=	fftw3
-PORTVERSION=	3.2.2
-PORTREVISION?=	1
+PORTVERSION=	3.3.3
 CATEGORIES=	math
-MASTER_SITES=	ftp://ftp.fftw.org/pub/fftw/ \
-		ftp://ftp.fftw.org/pub/fftw/old/
+MASTER_SITES=	http://www.fftw.org/ \
+		ftp://ftp.fftw.org/pub/fftw/
 PKGNAMESUFFIX=	${FFTW3_PKGNAMESUFFIX}
 DISTNAME=	fftw-${PORTVERSION}
 
@@ -14,70 +12,94 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Fast C routines to compute the Discrete Fourier Transform
 LICENSE=	gpl2
 
-# current flavors: default, float, and long
+#current flavors: default, float, long, and quad
 FFTW3_FLAVOR?=	default
 FFTW3_SUFX=
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack  pkgconfig
+USES=	pathfix pkgconfig
 USE_PERL5_BUILD=yes
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS=	--enable-shared --enable-threads  --build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPLAGS="${PTHREAD_CFLAGS}" \
-		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CONFIGURE_ARGS =	--enable-shared --enable-threads --disable-fortran
+CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+		PTHREAD_LIBS="${PTHREAD_LIBS}"
 
-.if defined(FFTW3_FLAVOR) && ${FFTW3_FLAVOR}=="default"
+.if ${FFTW3_FLAVOR} == "default"
 MAN1=	fftw-wisdom-to-conf.1 fftw-wisdom.1
 INFO=	fftw3
 .else
+#For non-default flavors, build and install the flavor-dependent components
+#only, so that these flavors may coexist with the default flavor
 MAN1=	fftw${FFTW3_SUFX}-wisdom.1
 INSTALL_TARGET=	install-pkgconfigDATA install-libLTLIBRARIES install-exec
 .endif
 
-OPTIONS=	OPTIMIZED_CFLAGS "Enable optimized CFLAGS" off
+OPTIONS_DEFINE =	G77_WRAPPERS OPENMP OPTIMIZED_CFLAGS
+
+G77_WRAPPERS_DESC=	Alter Fortran wrappers for use with g77
+OPENMP_DESC=		Build OpenMP multithreaded libraries
+
+OPTIONS_DEFAULT=	OPTIMIZED_CFLAGS
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_OPTIMIZED_CFLAGS)
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS:N-O:N-O*} -O2 -ffast-math -fomit-frame-pointer"
-.if ${FFTW3_FLAVOR}=="default" && ${MACHINE_CPU:Msse}
-# !!Detect SSE and not SSE2!!
-CONFIGURE_ARGS+=--enable-sse2
+.if ${PORT_OPTIONS:MOPENMP}
+CONFIGURE_ARGS+=	--enable-openmp
+PLIST_SUB+=	OPENMP=""
+USE_GCC=	any
 .else
-.if ${FFTW3_FLAVOR}=="float" && ${MACHINE_CPU:Msse}
-CONFIGURE_ARGS+=--enable-sse
+CONFIGURE_ARGS+=	--disable-openmp
+PLIST_SUB+=	OPENMP="@comment "
 .endif
-.endif
-.if ${MACHINE_CPU:M3dnow}
-.if ${FFTW3_FLAVOR}!="float"
-CONFIGURE_ARGS+=--enable-k7
-.endif
-CFLAGS_3DNOW=	${CFLAGS:N-O:N-O*} -O3 -fomit-frame-pointer -fno-schedule-insns \
-		-fstrict-aliasing -mpreferred-stack-boundary=4 -ffast-math
-.if ${ARCH} != "amd64"
-CFLAGS_3DNOW+=	-malign-double
-.endif
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS_3DNOW}"
-.endif
-.endif # end WITH_OPTIMIZED_CFLAGS
 
-.if defined(FFTW3_FLAVOR)
-.if ${FFTW3_FLAVOR}=="float"
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
+CFLAGS+=	-O3 -ffast-math -fstrict-aliasing
+.  if !defined(WITH_DEBUG)
+CFLAGS+=	-fomit-frame-pointer
+.  endif
+.  if ${ARCH} == "i386"
+CFLAGS+=	-malign-double
+.  endif
+WITHOUT_NO_STRICT_ALIASING=	yes
+.endif # end OPTIMIZED_CFLAGS
+
+#Users must add altivec and avx to MACHINE_CPU when desired:
+#this is not currently done in bsd.cpu.mk
+.if ${FFTW3_FLAVOR} == "default"
+.  if !empty(MACHINE_CPU:Mavx)
+CONFIGURE_ARGS+=--enable-avx
+.  elif !empty(MACHINE_CPU:Msse2)
+CONFIGURE_ARGS+=--enable-sse2
+.  endif
+.elif ${FFTW3_FLAVOR} == "float"
 FFTW3_SUFX=	f
 FFTW3_PKGNAMESUFFIX=	-float
 CONFIGURE_ARGS+=--enable-float
-.else
-.if ${FFTW3_FLAVOR}=="long"
-LIB_DEPENDS+=	ml.0:${PORTSDIR}/math/ldouble
+.  if !empty(MACHINE_CPU:Mavx)
+CONFIGURE_ARGS+=--enable-avx
+.  elif !empty(MACHINE_CPU:Msse)
+CONFIGURE_ARGS+=--enable-sse
+.  elif !empty(ARCH:Mpowerpc*) && !empty(MACHINE_CPU:Maltivec)
+CONFIGURE_ARGS+=--enable-altivec
+.  endif
+.elif ${FFTW3_FLAVOR} == "long"
+.  if ${OSVERSION} < 4004
+ONLY_FOR_ARCHS =	i386 sparc64
+LIB_DEPENDS+=	ml:${PORTSDIR}/math/ldouble
+.  endif
 FFTW3_SUFX=	l
 FFTW3_PKGNAMESUFFIX=	-long
 CONFIGURE_ARGS+=--enable-long-double
-.endif
-.endif
+.elif ${FFTW3_FLAVOR} == "quad"
+FFTW3_SUFX=	q
+FFTW3_PKGNAMESUFFIX=	-quad
+CONFIGURE_ARGS+=--enable-quad-precision
+ONLY_FOR_ARCHS =	i386 amd64
+USE_GCC=	4.6+
 .endif
 
-.if ${FFTW3_FLAVOR}=="default"
+.if ${FFTW3_FLAVOR} == "default"
 PLIST_SUB+=	DEF=""
 .else
 PLIST_SUB+=	DEF="@comment "
@@ -86,42 +108,54 @@ PLIST_SUB+=	DEF="@comment "
 PLIST_SUB+=	FFTW3_SUFX="${FFTW3_SUFX}"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|@infodir@|${PREFIX}/info|; \
-		s|@mandir@|${PREFIX}/man|' \
-		${WRKSRC}/doc/Makefile.in \
-		${WRKSRC}/tools/Makefile.in
-	@${REINPLACE_CMD} -e \
-		's|/etc/fftw|${PREFIX}/etc/fftw|' \
+	@${REINPLACE_CMD} -e 's|/etc/fftw|${PREFIX}/etc/fftw|' \
 		${WRKSRC}/Makefile.in \
 		${WRKSRC}/api/import-system-wisdom.c \
 		${WRKSRC}/doc/fftw3* \
 		${WRKSRC}/tools/*
-	@${FIND} ${WRKSRC} -name \*.bak -type f -exec ${RM} -f {} \;
-.if defined(FFTW3_FLAVOR) && ${FFTW3_FLAVOR}!="default"
-	@${REINPLACE_CMD} -e \
-		's|EXTRA_DIST = fftw-wisdom-to-conf.in||; \
-		s|fftw-wisdom-to-conf.in||; \
-		s|fftw-wisdom-to-conf: $(top_builddir)/config.status||; \
-		s|bin_SCRIPTS = fftw-wisdom-to-conf||' \
-			${WRKSRC}/tools/Makefile.in
-.if ${FFTW3_FLAVOR}=="long"
-	@${REINPLACE_CMD} -e 's|cosl sinl tanl||' ${WRKSRC}/configure
-	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -E -e \
-		's|@LIBS@|-lml @LIBS@|'
+	@${REINPLACE_CMD} \
+	-e '/libfftw3@PREC_SUFFIX@_threads\.la:/{N; \
+	s/$$(LIBS)/$$(PTHREAD_LIBS) &/;}' \
+		${WRKSRC}/threads/Makefile.in
+.if ${FFTW3_FLAVOR} != "default"
+	@${REINPLACE_CMD} -E \
+	-e '/(DIST_COMMON|bin_SCRIPTS|BUILT_SOURCES|EXTRA_DIST) =/,\
+	/[^\]$$/s/[^[:blank:]]*fftw-wisdom-to-conf[^[:blank:]]*//' \
+		${WRKSRC}/tools/Makefile.in
+.  if ${FFTW3_FLAVOR} == "long" && ${OSVERSION} < 800000
+	@${REINPLACE_CMD} -e 's|-lm |-L${LOCALBASE}/lib -lml &|' \
+		${WRKSRC}/configure
+.  endif
 .endif
-.endif
+
+post-patch-script:
+	@${FIND} ${WRKSRC} -type f \( -name \*.bak -or -name \*.orig \) \
+	-exec ${RM} -f {} \;
 
 post-configure:
-	@echo "#define F77_FUNC(name,NAME) name ## _" >>${WRKSRC}/config.h
-	@echo "#define F77_FUNC_(name,NAME) name ## _" >>${WRKSRC}/config.h
-	@echo "#define F77_FUNC_EQUIV 1" >>${WRKSRC}/config.h
+#After issuing --disable-fortran in order to avoid using a Fortran compiler
+#during configuration, edit config.h to provide Fortran wrappers appropriate for
+#gfortran, with ac_cv_f77_mangling="lower case, underscore, no extra underscore"
+	@${REINPLACE_CMD} -e '/DISABLE_FORTRAN/d' ${WRKSRC}/config.h
+	@${ECHO_CMD} "#define F77_FUNC(name,NAME) name ## _" >> ${WRKSRC}/config.h
+	@${ECHO_CMD} "#define F77_FUNC_(name,NAME) name ## _" >> ${WRKSRC}/config.h
+	@${ECHO_CMD} "#define F77_FUNC_EQUIV 1" >> ${WRKSRC}/config.h
+.if ${PORT_OPTIONS:MG77_WRAPPERS}
+	@${ECHO_CMD} "#define WITH_G77_WRAPPERS 1" >> ${WRKSRC}/config.h
+.endif
 
-.if defined(FFTW3_FLAVOR) && ${FFTW3_FLAVOR}!="default"
+.if ${FFTW3_FLAVOR} != "default"
 post-install:
 	@${INSTALL_MAN} ${WRKSRC}/tools/fftw${FFTW3_SUFX}-wisdom.1 ${PREFIX}/man/man1
 .endif
 
-regression-test: build
-	@cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE} smallcheck
+regression-test test: smallcheck
+
+.for t in bigcheck check exhaustive-check paranoid-check smallcheck
+${t}: build
+	@cd ${WRKSRC}/tests; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} \
+	${MAKE_ARGS} ${t}
+
+.endfor
 
 .include <bsd.port.post.mk>
