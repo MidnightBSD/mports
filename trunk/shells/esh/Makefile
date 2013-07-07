@@ -1,18 +1,27 @@
-# $MidnightBSD: mports/shells/esh/Makefile,v 1.2 2007/05/17 17:29:26 ctriv Exp $
+# $MidnightBSD: mports/shells/esh/Makefile,v 1.3 2009/12/28 19:27:24 laffer1 Exp $
 
 PORTNAME=	esh
 PORTVERSION=	0.8.5
+PORTREVISION=	1
 CATEGORIES=	shells
-MASTER_SITES=	http://gd.tuwien.ac.at/opsys/linux/gentoo/distfiles/ \
-		http://people.FreeBSD.org/~foxfair/distfiles/
+MASTER_SITES=	GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "easy shell", a small shell with Lisp-like syntax
 LICENSE=	gpl2
 
-WRKSRC=		${WRKDIR}/esh
-MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -I/usr/include/readline"
+WRKSRC=		${WRKDIR}/${PORTNAME}
+
+USES=		readline
+MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}"
+MAKE_JOBS_SAFE=	yes
+
 INFO=		esh
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's|<readline.h>|<readline/readline.h>| ; \
+		s|<history.h>|<readline/history.h>|' ${WRKSRC}/read-rl.c
 
 pre-build:
 	@(cd ${WRKSRC} && ${MAKE} clean)
