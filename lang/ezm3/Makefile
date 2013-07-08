@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.8 2010/03/07 22:25:24 laffer1 Exp $
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.9 2013/03/30 13:30:27 laffer1 Exp $
 
 PORTNAME=	ezm3
 PORTVERSION=	1.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	lang
 MASTER_SITES=	ftp://ftp.FreeBSD.org/pub/FreeBSD/development/CVSup/ezm3/:src \
 		http://people.freebsd.org/~peter/ezm3-amd64/:amdb \
@@ -41,8 +41,6 @@ PROGS=		bin/m3build \
 		bin/m3bundle \
 		bin/m3ship \
 		lib/m3/${TARGET}/m3cgc1
-
-ONLY_FOR_ARCHS=	amd64 i386 sparc64
 
 .if ${ARCH} == "amd64"
 PORTVERSION=	1.1
