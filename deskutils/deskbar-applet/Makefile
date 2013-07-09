@@ -1,15 +1,7 @@
-# New ports collection makefile for:	deskbar-applet
-# Date created:		2005-07-13
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/deskutils/deskbar-applet/Makefile,v 1.1 2008/09/21 21:03:44 laffer1 Exp $
-# $FreeBSD: ports/deskutils/deskbar-applet/Makefile,v 1.30 2008/08/03 23:20:49 marcus Exp $
-#   $MCom: ports/deskutils/deskbar-applet/Makefile,v 1.80 2008/03/11 14:26:12 ahze Exp $
-#
+# $MidnightBSD: mports/deskutils/deskbar-applet/Makefile,v 1.2 2010/12/07 00:47:39 laffer1 Exp $
 
 PORTNAME=	deskbar-applet
-PORTVERSION=	2.30.1
-PORTREVISION=	1
+PORTVERSION=	2.32.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -19,30 +11,29 @@ COMMENT=	Omnipresent versatile search interface
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/dbus/__init__.py:${PORTSDIR}/devel/py-dbus
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/dbus/__init__.py:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:${PORTSDIR}/devel/py-simplejson
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/dbus/__init__.py:${PORTSDIR}/devel/py-dbus
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GNOME=	gnomeprefix gnomehack pygnomedesktop intlhack
+USES=		pathfix gettext
+USE_GNOME=	gnomeprefix pygnomedesktop intlhack
 USE_PYTHON=	yes
 USE_GMAKE=	yes
 USE_DISPLAY=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALLS_OMF=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	deskbar-applet.schemas
 
-OPTIONS=	EVO "Enable evolution support" on
+OPTIONS_DEFINE=	EVO
+OPTIONS_DEFAULT=EVO
+EVO_DESC=	Enable evolution support
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-_OSRELEASE!=	${UNAME} -r
-
-.if !defined(WITHOUT_EVO)
+.if ${PORT_OPTIONS:MEVO}
 USE_GNOME+=	evolutiondataserver
 PLIST_SUB+=	EVO=""
 .else
@@ -50,15 +41,12 @@ CONFIGURE_ARGS+=--disable-evolution
 PLIST_SUB+=	EVO="@comment "
 .endif
 
-.if ${PYTHON_REL} < 250
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/elementtree/__init__.py:${PORTSDIR}/devel/py-elementtree
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/elementtree/__init__.py:${PORTSDIR}/devel/py-elementtree
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/deskbar/handlers/mozilla.py \
 		${WRKSRC}/deskbar/core/Utils.py
+	@${REINPLACE_CMD} -e 's|<glib/g.*\.h>|<glib.h>|g' \
+		${WRKSRC}/deskbar/handlers/evolution/evolution.[ch]
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
