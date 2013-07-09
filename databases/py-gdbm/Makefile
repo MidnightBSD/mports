@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/py-gdbm/Makefile,v 1.3 2011/05/27 02:40:14 laffer1 Exp $
+# $MidnightBSD: mports/databases/py-gdbm/Makefile,v 1.4 2013/02/18 13:17:12 laffer1 Exp $
 
 PORTNAME=	gdbm
 PORTVERSION=	${PYTHON_PORTVERSION}
@@ -12,16 +12,21 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings to the GNU dbm library
 LICENSE=	python
 
-LIB_DEPENDS=	gdbm.4:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS=	gdbm:${PORTSDIR}/databases/gdbm
 
-PLIST_FILES=	%%PYTHON_SITELIBDIR%%/gdbm.so
-DIST_SUBDIR=	python
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
 USE_XZ=		yes
-PYDISTUTILS_PKGVERSION=	0.0.0
-WRKSRC=		${PYTHON_WRKSRC}/Modules
+
+DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
+WRKSRC=		${PYTHON_WRKSRC}/Modules
+
+PYDISTUTILS_INSTALLARGS+=	--install-lib ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload
+
+PYDISTUTILS_NOEGGINFO=	yes
+
+PLIST_FILES=	%%PYTHON_LIBDIR%%/lib-dynload/gdbm.so
 
 .include <bsd.port.pre.mk>
 
