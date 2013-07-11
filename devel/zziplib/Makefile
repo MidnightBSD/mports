@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.6 2009/10/27 03:28:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.7 2011/08/20 13:40:58 laffer1 Exp $
 
 PORTNAME=	zziplib
-PORTVERSION=	0.13.58
+PORTVERSION=	0.13.62
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}13/${PORTVERSION}
 
@@ -9,14 +9,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to provide transparent read access to zipped files
 LICENSE=	lgpl
 
-USE_PYTHON_BUILD=	yes
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack pkgconfig
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
-USE_LDCONFIG=	yes
+BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
-PORTSCOUT=	limit:^0\.
+OPTIONS_DEFINE=	SDL
+
+USE_BZIP2=	yes
+USES=	pathfix pkgconfig
+USE_PYTHON_BUILD=	yes
+USE_AUTOTOOLS=	libtool
+CONFIGURE_ENV=	ac_cv_path_XMLTO=":"
+USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 MAN3=		__zzip_fetch_disk_trailer.3 __zzip_parse_root_directory.3 __zzip_try_open.3 \
 		zzip_close.3 zzip_closedir.3 zzip_compr_str.3 zzip_dir_alloc.3 \
@@ -40,8 +43,28 @@ MAN3=		__zzip_fetch_disk_trailer.3 __zzip_parse_root_directory.3 __zzip_try_open
 		zzip_get_default_io.3 zzip_inflate_init.3 zzip_init_io.3 zzip_open.3 \
 		zzip_open_ext_io.3 zzip_open_shared_io.3 zzip_opendir.3 \
 		zzip_opendir_ext_io.3 zzip_read.3 zzip_readdir.3 zzip_realdir.3 \
-		zzip_realfd.3 zzip_rewind.3 zzip_rewinddir.3 zzip_seek.3 zzip_seekdir.3 \
-		zzip_seterror.3 zzip_strerror.3 zzip_strerror_of.3 zzip_tell.3 \
-		zzip_telldir.3
+		zzip_realfd.3 zzip_rewind.3 zzip_rewinddir.3 zzip_seek.3 zzip_seek32.3 zzip_seekdir.3 \
+		zzip_seekdir32.3 zzip_seterror.3 zzip_strerror.3 zzip_strerror_of.3 zzip_tell.3 \
+		zzip_tell32.3 zzip_telldir.3 zzip_telldir32.3
 
-.include <bsd.port.mk>
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MSDL}
+USE_SDL=	sdl
+CONFIGURE_ARGS+=--enable-sdl
+PLIST_SUB+=	SDL=""
+.else
+PLIST_SUB+=	SDL="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
+
+test check:
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
+		${MAKEFILE} ${MAKE_ARGS} check)
+
+.if !defined(WITHOUT_TESTS)
+post-build::	test
+.endif
+
+.include <bsd.port.post.mk>
