@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.98 2013/07/03 22:52:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.99 2013/07/04 19:45:33 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -44,6 +44,7 @@ SUBDIR += gstreamer-plugins-ogg
 SUBDIR += gstreamer-plugins-vorbis
 SUBDIR += jack
 SUBDIR += juk
+SUBDIR += kio-audiocd
 SUBDIR += ladspa
 SUBDIR += lame
 SUBDIR += lash
