@@ -1,14 +1,14 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# bsd.xorg.mk - Support for X.Org ports and dependencies
+# xorg.mk - Support for X.Org ports and dependencies
 #
 # Created by: Florent Thoumie <flz@FreeBSD.org>
 #
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.14 2013/06/06 01:57:25 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.15 2013/06/21 01:43:42 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
