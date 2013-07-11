@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.33 2013/01/24 00:59:36 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.34 2013/03/20 23:14:49 laffer1 Exp $
 
 PORTNAME=	firefox
-DISTVERSION=	17.0.4
+DISTVERSION=	17.0.7
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	firefox/releases/${DISTVERSION}esr/linux-i686/en-US
 DISTNAME=	${PORTNAME}-${DISTVERSION}esr
