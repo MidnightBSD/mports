@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/zthread/Makefile,v 1.3 2008/10/16 21:56:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/zthread/Makefile,v 1.4 2009/10/27 03:29:59 laffer1 Exp $
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/ZThread/${PORTVERSION}
 DISTNAME=	ZThread-${PORTVERSION}
@@ -10,6 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A platform-independent object-oriented C++ threading library
 LICENSE=	mit
 
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-ftime --disable-static
 USE_GMAKE=	yes
@@ -17,9 +19,9 @@ MAKE_ARGS+=	INSTALL_PROGRAM="${INSTALL_SCRIPT}"
 MAKE_ENV+=	SED=sed # req'd for LIBTOOL?!
 USE_LDCONFIG=	yes
 
-PORTDOCS=	AUTHORS ChangeLog NEWS README TODO
+OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.pre.mk>
+PORTDOCS=	AUTHORS ChangeLog NEWS README TODO
 
 post-extract:
 	@${FIND} ${WRKSRC} -name CVS -type d -delete
@@ -27,10 +29,12 @@ post-extract:
 post-patch:
 	@${FIND} ${WRKSRC} \( -name '*.orig' -or -name '*.swp' \) -delete
 
+.include <bsd.mport.options.mk>
+
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+.if ${PORT_OPTIONS:MDOCS}
+	@${INSTALL} -d ${DOCSDIR}
+	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
