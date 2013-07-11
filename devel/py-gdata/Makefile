@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/py-gdata/Makefile,v 1.1 2009/12/29 02:44:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-gdata/Makefile,v 1.2 2009/12/29 02:47:21 laffer1 Exp $
 
 PORTNAME=	gdata
-PORTVERSION=	2.0.4
+PORTVERSION=	2.0.18
 CATEGORIES=	devel python
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	GOOGLE_CODE
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,46 +11,36 @@ COMMENT=	GData Python Client Library
 LICENSE=	apache2
 
 PROJECTHOST=	gdata-python-client
-USE_PYTHON=	yes
+USE_PYTHON=	-2.7
 USE_PYDISTUTILS=	yes
 
+OPTIONS_DEFINE=	GMPY M2CRYPTO PYCRYPTO
+
 # optional modules (see src/gdata/tlslite/utils/cryptomath.py)
-#OPTIONS=	M2CRYPTO "Add cryptography and SSL toolkit for Python" off \
-#	PYCRYPTO "Add cryptography toolkit for Python" off \
-#	GMPY "Add multiprecision arithmetic for Python" off
+GMPY_DESC=	Multiprecision arithmetic
+M2CRYPTO_DESC=	Cryptography and SSL toolkit
+PYCRYPTO_DESC=	Cryptography toolkit
+
+OPTIONSFILE?=	${PORT_DBDIR}/py-${PORTNAME}/options
 
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if ${PYTHON_REL} < 250
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/elementtree/__init__.py:${PORTSDIR}/devel/py-elementtree
+.if ${PORT_OPTIONS:MM2CRYPTO}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}m2crypto>=0.20:${PORTSDIR}/security/py-m2crypto
 .endif
-
-# avoid warning with Python > 2.5
-.if ${PYTHON_REL} > 250
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_atom-mock_service.py \
-		${FILESDIR}/extra-patch-src_gdata_tlslite-mathls.py \
-		${FILESDIR}/extra-patch-src_gdata_tlslite-messages.py \
-		${FILESDIR}/extra-patch-src_gdata_tlslite-TLSRecordLayer.py \
-		${FILESDIR}/extra-patch-src_gdata_tlslite_utils-cryptomath.py \
-		${FILESDIR}/extra-patch-src_gdata_tlslite_utils-jython_compat.py
+.if ${PORT_OPTIONS:MPYCRYPTO}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:${PORTSDIR}/security/py-pycrypto
+.endif
+.if ${PORT_OPTIONS:MGMPY}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gmpy>0:${PORTSDIR}/math/py-gmpy
 .endif
 
-.if defined(WITH_M2CRYPTO)
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/M2Crypto/__init__.py:${PORTSDIR}/security/py-m2crypto
-.endif
-.if defined(WITH_PYCRYPTO)
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/Crypto/__init__.py:${PORTSDIR}/security/py-pycrypto
-.endif
-.if defined(WITH_GMPY)
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/gmpy.so:${PORTSDIR}/math/py-gmpy
-.endif
-
-.if !defined(NOPORTEXAMPLES)
 post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-	${CP} -R ${WRKSRC}/samples/ ${EXAMPLESDIR}
+.if ${PORT_OPTIONS:MEXAMPLES}
+	${MKDIR} ${EXAMPLESDIR}/
+	${CP} -R ${WRKSRC}/samples/ ${EXAMPLESDIR}/
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
