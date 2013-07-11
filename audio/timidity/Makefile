@@ -1,16 +1,16 @@
-# $MidnightBSD: mports/audio/timidity/Makefile,v 1.1 2009/11/01 22:22:30 laffer1 Exp $
+# $MidnightBSD: mports/audio/timidity/Makefile,v 1.2 2009/12/29 17:46:40 laffer1 Exp $
 
 PORTNAME=	timidity
 PORTVERSION=	0.2i
 PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	ftp://ftp.kiarchive.ru/pub/misc/hardware/soundcard/gus/:tiins \
-		http://www.onicos.com/staff/iz/timidity/dist/:timidity
+MASTER_SITES=	http://www.onicos.com/staff/iz/timidity/dist/:timidity	\
+		http://www.anime.net/~goemon/timidity/:tiins
 DISTFILES=	${TIINS}:tiins ${DISTNAME}.tar.gz:timidity
 EXTRACT_ONLY=	${DISTNAME}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	MIDI to WAV renderer and player
+COMMENT=	MIDI to PCM renderer and player
 LICENSE=	restricted
 
 CONFLICTS=	timidity++-2.13.*
