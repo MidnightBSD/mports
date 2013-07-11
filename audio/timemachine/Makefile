@@ -1,8 +1,7 @@
-# $FreeBSD: ports/audio/timemachine/Makefile,v 1.8 2009/07/31 13:49:12 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/timemachine/Makefile,v 1.1 2010/02/27 19:39:16 laffer1 Exp $
 
 PORTNAME=	timemachine
-PORTVERSION=	0.3.2
+PORTVERSION=	0.3.3
 CATEGORIES=	audio
 MASTER_SITES=	http://plugin.org.uk/timemachine/
 
@@ -11,16 +10,28 @@ COMMENT=	JACK audio capture tool
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jack.0:${PORTSDIR}/audio/jack \
+		lo.7:${PORTSDIR}/audio/liblo \
 		sndfile.1:${PORTSDIR}/audio/libsndfile
 
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+OPTIONS_DEFINE=	LASH
+
+USES=        pathfix
 USE_GNOME=	gtk20
+USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if exists(${LOCALBASE}/lib/liblash.so.2)
+.if ${PORT_OPTIONS:MLASH}
 LIB_DEPENDS+=	lash.2:${PORTSDIR}/audio/lash
+.else
+CONFIGURE_ARGS+=--disable-lash
 .endif
 
-.include <bsd.port.post.mk>
+post-patch:
+	@${REINPLACE_CMD} -e \
+		'/^PACKAGE_CFLAGS=/s|-g||; \
+		 /^PACKAGE_LIBS=/s|-g||' ${WRKSRC}/configure
+
+.include <bsd.port.mk>
