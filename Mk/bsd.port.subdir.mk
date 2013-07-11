@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.19 2011/09/25 19:44:52 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.20 2013/07/04 22:38:06 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -354,9 +354,6 @@ README.html:
 	UID="${UID:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	HAVE_COMPAT_IA32_KERN="${HAVE_COMPAT_IA32_KERN}" \
 	CONFIGURE_MAX_CMD_LEN="${CONFIGURE_MAX_CMD_LEN}" \
-	PYTHON_DEFAULT_VERSION="${PYTHON_DEFAULT_VERSION}" \
-	PYTHON_DEFAULT_PORTVERSION="${PYTHON_DEFAULT_PORTVERSION}" \
-	PYTHONBASE="${PYTHONBASE}" \
 	_JAVA_VERSION_LIST_REGEXP="${_JAVA_VERSION_LIST_REGEXP:Q}" \
 	_JAVA_VENDOR_LIST_REGEXP="${_JAVA_VENDOR_LIST_REGEXP:Q}" \
 	_JAVA_OS_LIST_REGEXP="${_JAVA_OS_LIST_REGEXP:Q}" \
