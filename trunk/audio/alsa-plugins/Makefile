@@ -1,72 +1,72 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/alsa-plugins/Makefile,v 1.1 2010/11/06 13:54:01 laffer1 Exp $
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.23
+PORTVERSION=	1.0.26
 CATEGORIES=	audio
-MASTER_SITES=	ftp://ftp.silug.org/pub/alsa/plugins/ \
-		ftp://gd.tuwien.ac.at/opsys/linux/alsa/plugins/ \
-		http://dl.ambiweb.de/mirrors/ftp.alsa-project.org/plugins/ \
-		ftp://ftp.alsa-project.org/pub/plugins/
+MASTER_SITES=	ALSA/plugins \
+		GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library plugins
 LICENSE=	gpl2
 
-LIB_DEPENDS=	asound.2:${PORTSDIR}/audio/alsa-lib
+LIB_DEPENDS=	asound:${PORTSDIR}/audio/alsa-lib
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	pkgconfig
-CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib"
+LDFLAGS+=	-L${LOCALBASE}/lib
+USE_LDCONFIG=	${PREFIX}/lib/alsa-lib
 
-OPTIONS=	JACK		"JACK audio support (requires SAMPLERATE)"	Off \
-		LAVC		"libavcodec support"	Off \
-		SAMPLERATE	"libsamplerate support"	Off \
-		PULSE		"PulseAudio support"	Off \
-		SPEEX		"Speex support"		Off
+OPTIONS_DEFINE=	ARIFF_OSS JACK FFMPEG PULSEAUDIO SAMPLERATE SPEEX
+ARIFF_OSS_DESC=	BSD-specific OSS plugin
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_JACK)
-.if defined(WITHOUT_SAMPLERATE)
+.if ${PORT_OPTIONS:MARIFF_OSS} || ${OSVERSION} < 4000
+EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
+.endif
+
+.if ${PORT_OPTIONS:MJACK}
+.if empty(PORT_OPTIONS:MSAMPLERATE)
 IGNORE=			JACK audio support requires SAMPLERATE
 .endif
-LIB_DEPENDS+=		jack.0:${PORTSDIR}/audio/jack
+LIB_DEPENDS+=		jack:${PORTSDIR}/audio/jack
 PLIST_SUB+=		JACK=""
 .else
 PLIST_SUB+=		JACK="@comment "
 CONFIGURE_ARGS+=	--disable-jack
 .endif
 
-.if defined(WITH_LAVC)
+.if ${PORT_OPTIONS:MFFMPEG}
 CONFIGURE_ARGS+=	--enable-avcodec
-CONFIGURE_ENV+=		CFLAGS=-I${LOCALBASE}/include
-LIB_DEPENDS+=		avcodec.1:${PORTSDIR}/multimedia/ffmpeg
+CFLAGS+=		-I${LOCALBASE}/include
+LIB_DEPENDS+=		avcodec:${PORTSDIR}/multimedia/ffmpeg
 PLIST_SUB+=		LAVC=""
 .else
 CONFIGURE_ARGS+=	--disable-avcodec
 PLIST_SUB+=		LAVC="@comment "
 .endif
 
-.if defined(WITH_PULSE)
-LIB_DEPENDS+=		pulse.0:${PORTSDIR}/audio/pulseaudio
+.if ${PORT_OPTIONS:MPULSEAUDIO}
+LIB_DEPENDS+=		pulse:${PORTSDIR}/audio/pulseaudio
 PLIST_SUB+=		PULSE=""
 .else
 PLIST_SUB+=		PULSE="@comment "
 CONFIGURE_ARGS+=	--disable-pulseaudio
 .endif
 
-.if defined(WITH_SAMPLERATE)
-LIB_DEPENDS+=		samplerate.1:${PORTSDIR}/audio/libsamplerate
+.if ${PORT_OPTIONS:MSAMPLERATE}
+LIB_DEPENDS+=		samplerate:${PORTSDIR}/audio/libsamplerate
 PLIST_SUB+=		SAMPLERATE=""
 .else
 PLIST_SUB+=		SAMPLERATE="@comment "
 CONFIGURE_ARGS+=	--disable-samplerate
 .endif
 
-.if defined(WITH_SPEEX)
+.if ${PORT_OPTIONS:MSPEEX}
 CONFIGURE_ARGS+=	--with-speex=lib
-LIB_DEPENDS+=		speex.1:${PORTSDIR}/audio/speex
+LIB_DEPENDS+=		speex:${PORTSDIR}/audio/speex
 PLIST_SUB+=		SPEEX=""
 .else
 CONFIGURE_ARGS+=	--without-speex
@@ -76,11 +76,6 @@ PLIST_SUB+=		SPEEX="@comment "
 post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/s/-ldl//g' \
 		-e '/lt_cv_dlopen/s/-ldl//g' \
-		-Ee '/ac_config_files/s:(usb_stream|arcam-av)/Makefile::g' \
-		-e '/CONFIG_FILES/ { /usb_stream/d; /arcam-av/d; }' \
 		${WRKSRC}/configure
-	${REINPLACE_CMD} \
-		'/SUBDIRS/ { s/usb_stream//g; s/arcam-av//g; }' \
-		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
