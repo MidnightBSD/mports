@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/java/netbeans/Makefile,v 1.6 2012/02/28 02:04:39 laffer1 Exp $
+# $MidnightBSD: mports/java/netbeans/Makefile,v 1.7 2013/02/09 01:53:37 laffer1 Exp $
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.46 2011/10/27 08:58:07 gahr Exp $
 #
 
 PORTNAME=	netbeans
-PORTVERSION=	7.2.1
+PORTVERSION=	7.3
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.netbeans.org/netbeans/${PORTVERSION}/final/zip/ \
     		http://dlc.sun.com.edgesuite.net/netbeans/${PORTVERSION}/final/zip/
-DISTNAME=	netbeans-${PORTVERSION}-201210100934-ml
+DISTNAME=	netbeans-${PORTVERSION}-201302132200
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-featured integrated environment for Java
@@ -31,10 +31,10 @@ DESKTOP_ENTRIES="NetBeans" \
 		${FALSE}
 
 post-patch:
-	@${REINPLACE_CMD} -i "" -e '19s|#||;19s|/path/to/jdk|${JAVA_HOME}|' \
+	@${REINPLACE_CMD} -i "" -e '57s|#||;57s|/path/to/jdk|${JAVA_HOME}|' \
 	    ${WRKSRC}/etc/netbeans.conf
 	@${REINPLACE_CMD} -i "" -e 's|%%GCONFTOOL2%%|${LOCALBASE}/bin/gconftool-2|g; \
-	    s|%%GREP%%|${GREP}|g;s|%%SED%%|${SED}|g;s|%%FGREP%%|`which fgrep`|g;s|%%AWK%%|${AWK}|g' \
+	    s|%%GREP%%|${GREP}|g;s|%%SED%%|${SED}|g;s|%%AWK%%|${AWK}|g' \
 	    ${WRKSRC}/platform/lib/nbexec
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 
