@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/springframework/Makefile,v 1.1 2013/02/21 03:09:10 laffer1 Exp $
 
 PORTNAME=	springframework
 PORTVERSION=	3.2.1
@@ -16,6 +16,9 @@ NO_BUILD=	yes
 USE_JAVA=	yes
 USE_ZIP=	yes
 JAVA_VERSION=	1.6+
+
+OPTIONS_DEFINE=	DOCS RESRCS
+RESRCS_DESC=	Install resource files
 
 JAR_FILES=	spring-aop.jar \
 		spring-aspects.jar \
@@ -92,6 +95,7 @@ PLIST_FILES +=	%%JAVAJARDIR%%/${FILE}
 
 .include <bsd.mport.options.mk>
 
+.if ${PORT_OPTIONS:MRESRCS}
 RESOURCE_FILES=	spring-aop-2.0.xsd \
 		spring-aop-2.5.xsd \
 		spring-aop-3.0.xsd \
@@ -153,8 +157,11 @@ RESOURCE_FILES=	spring-aop-2.0.xsd \
 .for FILE in ${RESOURCE_FILES}
 PLIST_FILES +=	%%JAVASHAREDIR%%/${FILE}
 .endfor
+.endif
 
+.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
+.endif
 
 do-install:
 .for FILE in ${JAR_FILES}
@@ -169,14 +176,18 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/libs/${FILE:S/-javadoc.jar/-${PORTVERSION}.RELEASE-javadoc.jar/} \
 		${JAVAJARDIR}/${FILE}
 .endfor
+.if ${PORT_OPTIONS:MRESRCS}
 .for FILE in ${RESOURCE_FILES}
 	@${INSTALL_DATA} `${FIND} "${WRKSRC}" -name ${FILE} -print` \
 		${JAVASHAREDIR}/${FILE}
 .endfor
+.endif
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/license.txt ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/notice.txt ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/readme.txt ${DOCSDIR}
 	@cd ${WRKSRC}/docs/ && ${COPYTREE_SHARE} . ${DOCSDIR}
+.endif
 
 .include <bsd.port.mk>
