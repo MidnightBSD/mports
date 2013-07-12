@@ -1,38 +1,38 @@
-# $MidnightBSD: mports/audio/taglib/Makefile,v 1.6 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD: mports/audio/taglib/Makefile,v 1.7 2011/06/16 12:42:06 laffer1 Exp $
 
 PORTNAME=	taglib
-PORTVERSION=	1.7
+PORTVERSION=	1.8
 CATEGORIES=	audio
-MASTER_SITES=	http://developer.kde.org/~wheeler/files/src/ \
-		http://cloud.github.com/downloads/taglib/taglib/ \
-		http://launchpad.net/taglib/trunk/${PORTVERSION}/+download/
+MASTER_SITES=	http://cloud.github.com/downloads/taglib/taglib/ \
+		http://developer.kde.org/~wheeler/files/src/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
-USE_CMAKE=	yes
-USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
+OPTIONS_DEFINE=	RCC
 
+RCC_DESC=	Build with RusXMMS librcc patches (experimental)
+
+USES=		cmake
 CMAKE_ARGS=	-DWITH_ASF:BOOL=ON \
 		-DWITH_MP4:BOOL=ON
-
-OPTIONS=	RCC "Build with RusXMMS librcc patches (experimental)" off
+MAKE_JOBS_SAFE=	yes
+USE_LDCONFIG=	yes
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_RCC)
+.if ${PORT_OPTIONS:MRCC}
 PKGNAMESUFFIX=	-rcc
 EXTRA_PATCHES+=	${FILESDIR}/extrapatch-rcc
-LIB_DEPENDS+=	rcc.2:${PORTSDIR}/devel/librcc
+LIB_DEPENDS+=	rcc:${PORTSDIR}/devel/librcc
 PLIST_SUB+=	RCC=""
 .else
 PLIST_SUB+=	RCC="@comment "
 .endif
 
 post-patch:
-.if defined(WITH_RCC)
+.if ${PORT_OPTIONS:MRCC}
 	@${REINPLACE_CMD} -e 's|-ltag|-ltag -lrcc|g' \
 		${WRKSRC}/taglib.pc.cmake ${WRKSRC}/taglib-config.cmake \
 		${WRKSRC}/bindings/c/taglib_c.pc.cmake
