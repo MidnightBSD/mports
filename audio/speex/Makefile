@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.10 2011/12/15 00:45:52 laffer1 Exp $
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.11 2013/07/11 01:15:25 laffer1 Exp $
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1
@@ -23,8 +23,8 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg-dir=${LOCALBASE} \
 		--build=${ARCH}-portbld-freebsd9.1
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		speexdec.1 speexenc.1
 
