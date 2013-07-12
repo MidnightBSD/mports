@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/avahi-gtk/Makefile,v 1.3 2009/02/28 17:10:54 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-gtk/Makefile,v 1.4 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTREVISION=	0
 CATEGORIES=	net
@@ -22,7 +22,7 @@ AVAHI_PKGCONFIG=avahi-ui.pc
 MAN1+=		bssh.1
 MLINKS+=	bssh.1 bvnc.1 \
 		bssh.1 bshell.1
-USE_GNOME=	gnomehack  ltverhack intltool libglade2
+USE_GNOME=	gnomehack ltverhack intltool libglade2
 
 post-build:
 	@(cd ${WRKSRC}/avahi-discover-standalone; \
