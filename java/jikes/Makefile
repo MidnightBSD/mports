@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jikes/Makefile,v 1.4 2008/12/27 01:46:45 laffer1 Exp $
+# $MidnightBSD: mports/java/jikes/Makefile,v 1.5 2011/12/24 02:34:40 laffer1 Exp $
 
 PORTNAME=	jikes
 PORTVERSION=	1.22
@@ -15,7 +15,7 @@ MAN1=		jikes.1
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		iconv
 USE_BZIP2=	yes
 
 CONFIGURE_ARGS=	CPPFLAGS="-I${LOCALBASE}/include" LIBS="-L${LOCALBASE}/lib"
