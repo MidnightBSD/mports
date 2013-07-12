@@ -1,12 +1,10 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/alsa-lib/Makefile,v 1.1 2010/10/23 17:54:08 laffer1 Exp $
 
 PORTNAME=	alsa-lib
-PORTVERSION=	1.0.23
+PORTVERSION=	1.0.26
 CATEGORIES=	audio
-MASTER_SITES=	ftp://ftp.silug.org/pub/alsa/lib/ \
-		ftp://gd.tuwien.ac.at/opsys/linux/alsa/lib/ \
-		http://dl.ambiweb.de/mirrors/ftp.alsa-project.org/lib/ \
-		ftp://ftp.alsa-project.org/pub/lib/
+MASTER_SITES=	ALSA/lib \
+		GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library
@@ -15,18 +13,17 @@ LICENSE=	lgpl
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+= --disable-aload --disable-python
+CONFIGURE_ARGS+=--disable-aload --disable-python \
+		--with-pkgconfdir="${PREFIX}/libdata/pkgconfig"
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
+		-e '/-D_GNU_SOURCE/d' \
 		-e '/lt_cv_dlopen/s/-ldl//g' ${WRKSRC}/configure
 	${REINPLACE_CMD} '/LIBADD/s/-ldl//g' \
 		${WRKSRC}/modules/mixer/simple/Makefile.in
 	${REINPLACE_CMD} 's|/etc|${PREFIX}&|g' \
 		${WRKSRC}/src/conf/alsa.conf
-	${REINPLACE_CMD} \
-		'/pkgconfigdir/s|$$(libdir)|$$(prefix)/libdata|g' \
-		${WRKSRC}/utils/Makefile.in
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/asound.conf.sample ${PREFIX}/etc
