@@ -1,6 +1,4 @@
-# $MidnightBSD: mports/java/jdom/Makefile,v 1.4 2011/12/24 03:40:58 laffer1 Exp $
-# $FreeBSD: ports/java/jdom/Makefile,v 1.15 2004/12/03 01:01:24 hq Exp $
-#
+# $MidnightBSD: mports/java/jdom/Makefile,v 1.5 2013/02/09 01:51:26 laffer1 Exp $
 
 PORTNAME=	jdom
 PORTVERSION=	1.1.1
@@ -15,7 +13,6 @@ LICENSE=	other
 
 RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:${PORTSDIR}/java/jaxen
 
-USE_GCPIO=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 USE_ANT=	yes
