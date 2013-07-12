@@ -1,14 +1,12 @@
-# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.7 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.8 2012/12/20 13:14:46 laffer1 Exp $
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	-autoipd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPv4LL network address configuration daemon
 LICENSE=	lgpl
-
-BROKEN=		Had problems on MNBSD 0.3+
 
 USERS=		avahi-autoipd
 GROUPS=		${USERS}
