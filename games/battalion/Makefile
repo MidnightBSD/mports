@@ -1,10 +1,4 @@
-# New ports collection makefile for:	battalion
-# Date created:				17 May 1998
-# Whom:					Andrey Zakhvatov
-#
-# $MidnightBSD: mports/games/battalion/Makefile,v 1.4 2009/03/30 22:48:59 laffer1 Exp $
-# $FreeBSD: ports/games/battalion/Makefile,v 1.19 2005/02/20 19:42:57 fjoe Exp $
-#
+# $MidnightBSD: mports/games/battalion/Makefile,v 1.5 2013/03/24 20:10:28 laffer1 Exp $
 
 PORTNAME=	battalion
 PORTVERSION=	1.4b
