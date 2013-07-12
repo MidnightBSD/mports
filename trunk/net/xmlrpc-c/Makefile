@@ -1,20 +1,22 @@
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.15 2013/03/03 13:39:19 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.16 2013/03/03 13:44:22 laffer1 Exp $
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.16.44
+PORTVERSION=	1.25.23
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
+
 LICENSE=	bsd3
 
-OPTIONS=	DEBUG "Compile with debugging information" off \
-		CURL "Compile with curl support" on \
-		LIBWWW "Compile with libwww support" on
+OPTIONS_DEFINE=	DEBUG CURL LIBWWW
+OPTIONS_DEFAULT=CURL LIBWWW
 
-CONFLICTS=	xmlrpc-epi-0.*
+LIBWWW_DESC=	Compile with libwww support
+
+CONFLICTS=	xmlrpc-epi-0.* xmlrpc-c-devel-[0-9]*
 
 USE_PERL5=	yes
 USE_GMAKE=	yes
@@ -28,27 +30,23 @@ USE_LDCONFIG=	yes
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITH_DEBUG)
+.if empty(PORT_OPTIONS:MDEBUG)
 CFLAGS+=	-DNDEBUG
 .endif
 
-.if defined(WITH_CURL)
+.if ${PORT_OPTIONS:MCURL}
 LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=	--enable-curl-client
 .else
 CONFIGURE_ARGS+=	--disable-curl-client
 .endif
 
-.if defined(WITH_LIBWWW)
+.if ${PORT_OPTIONS:MLIBWWW}
 LIB_DEPENDS+=	wwwcore:${PORTSDIR}/www/libwww
 CONFIGURE_ARGS+=	--enable-libwww-client
 .else
 CONFIGURE_ARGS+=	--disable-libwww-client
 .endif
-
-pre-patch:
-	@${ECHO} "Port will not build with older version installed."
-	@sleep 3
 
 post-extract:
 	@${FIND} ${WRKSRC} -type l -name blddir -delete
