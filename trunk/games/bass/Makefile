@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/games/bass/Makefile,v 1.4 2009/03/30 22:55:39 laffer1 Exp $
+# $MidnightBSD: mports/games/bass/Makefile,v 1.5 2009/10/03 00:04:14 laffer1 Exp $
 
 PORTNAME=	bass
 PORTVERSION=	1.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	SF/scummvm/extras/Beneath%20a%20Steel%20Sky
 DISTNAME=	bass-cd-1.2
