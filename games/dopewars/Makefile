@@ -1,16 +1,16 @@
-# $MidnightBSD: mports/games/dopewars/Makefile,v 1.2 2009/03/30 22:50:48 laffer1 Exp $
+# $MidnightBSD: mports/games/dopewars/Makefile,v 1.3 2009/10/02 23:47:28 laffer1 Exp $
 
 PORTNAME=	dopewars
 PORTVERSION=	1.5.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A UNIX rewrite of a game originally based on "Drug Wars"
+COMMENT=	UNIX rewrite of a game originally based on "Drug Wars"
 LICENSE=	gpl2
 
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk12
