@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/java/jaxen/Makefile,v 1.4 2012/02/28 02:06:17 laffer1 Exp $
-# $FreeBSD: ports/java/jaxen/Makefile,v 1.5 2004/09/01 13:41:33 hq Exp $
+# $MidnightBSD: mports/java/jaxen/Makefile,v 1.5 2013/02/09 01:50:01 laffer1 Exp $
 
 PORTNAME=	jaxen
 PORTVERSION=	1.0
@@ -12,7 +11,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java XPath Engine
 LICENSE=	bsd4
 
-USE_GCPIO=	YES
 USE_JAVA=	YES
 JAVA_VERSION=	1.6+
 NO_BUILD=	YES
