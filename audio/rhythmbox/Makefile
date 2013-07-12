@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.9 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.10 2011/09/17 05:07:40 laffer1 Exp $
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.12.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -92,7 +92,7 @@ PLIST_SUB+=		DAAP="@comment "
 .endif
 
 .if !defined(WITHOUT_NOTIFY)
-LIB_DEPENDS+=		notify.1:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=		notify.4:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS+=		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
 .else
 CONFIGURE_ARGS+=	--disable-libnotify
