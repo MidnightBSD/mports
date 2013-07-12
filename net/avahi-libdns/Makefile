@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.3 2008/05/24 06:18:56 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.4 2012/12/20 13:16:21 laffer1 Exp $
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	-libdns
 
