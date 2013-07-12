@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.9 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.10 2012/02/11 03:36:31 laffer1 Exp $
 
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.13
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF/libvncserver/${PORTNAME}/${PORTVERSION}
 
@@ -11,25 +12,36 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		dbus:${PORTSDIR}/devel/dbus \
-		xcb:${PORTSDIR}/x11/libxcb \
-		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
-		avahi-common:${PORTSDIR}/net/avahi-app
+		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs
 
-USE_GNOME=	
-USE_XORG=	x11 xdamage xfixes xrandr xinerama xext xtst xau xrender xdmcp recordproto
+USE_XORG=	x11 xcb xdamage xfixes xrandr xinerama xext xtst xau xrender \
+		xdmcp recordproto
 
 # Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_OPENSSL=	yes
-USE_ICONV=	yes
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-.endif
+USES=		iconv
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 MAN1=		x11vnc.1
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README README.LibVNCServer TODO
+
+OPTIONS_DEFINE=NLS AVAHI
+OPTIONS_DEFAULT=NLS AVAHI
+NO_OPTIONS_SORT=yes
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+.endif
+
+.if ${PORT_OPTIONS:MAVAHI}
+LIB_DEPENDS+=	avahi-common:${PORTSDIR}/net/avahi-app
+.else
+CONFIGURE_ARGS+=	--without-avahi
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
