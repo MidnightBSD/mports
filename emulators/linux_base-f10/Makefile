@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/emulators/linux_base-f10/Makefile,v 1.1 2011/06/18 00:59:12 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_base-f10/Makefile,v 1.2 2013/07/04 16:00:09 laffer1 Exp $
 
 PORTNAME=		f10
 PORTVERSION=		10
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		emulators linux
 MASTER_SITES=		CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
 PKGNAMEPREFIX=		linux_base-
@@ -223,9 +223,6 @@ do-install:
 	@${INSTALL_SCRIPT} ${FILESDIR}/lp ${PREFIX}/usr/bin
 
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
-	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
-
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
