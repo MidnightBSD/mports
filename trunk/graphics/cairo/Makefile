@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.27 2013/06/16 00:02:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.28 2013/07/04 16:40:46 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	10
+PORTREVISION=	11
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
+
 LICENSE=	lgpl
 
 .if !defined(REFERENCE_PORT)
@@ -68,6 +69,7 @@ PLIST_SUB+=		XCB="@comment "
 .if ${PORT_OPTIONS:MGLIB}
 USE_GNOME+=	glib20
 PLIST_SUB+=	GLIB=""
+CONFIGURE_ARGS+=	--enable-gobject
 .else
 CONFIGURE_ARGS+=	--enable-gobject=no
 PLIST_SUB+=	GLIB="@comment "
