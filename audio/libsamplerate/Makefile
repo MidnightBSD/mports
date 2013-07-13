@@ -1,34 +1,62 @@
-# $FreeBSD: ports/audio/libsamplerate/Makefile,v 1.15 2006/06/09 18:00:28 ahze Exp $
-# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.6 2010/12/07 00:34:24 laffer1 Exp $
+# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.7 2011/02/02 20:03:23 laffer1 Exp $
 
 PORTNAME=	libsamplerate
-PORTVERSION=	0.1.7
-PORTREVISION=	1
+PORTVERSION=	0.1.8
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/SRC/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile \
-		fftw3.5:${PORTSDIR}/math/fftw3
-
-USE_GNOME=	gnomehack pkgconfig
+USES=	pathfix pkgconfig
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--disable-gcc-pipe  --build=${MACHINE_ARCH}-portbld-freebsd6.0 \
-		--program-prefix=''
+CONFIGURE_ARGS=	--disable-gcc-pipe --program-prefix=''
 USE_LDCONFIG=	yes
 
-post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.css ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.png ${DOCSDIR}
+OPTIONS_DEFINE=	CPU_CLIP DOCS EXAMPLES
+CPU_CLIP_DESC=	Allow machine-dependent clipping
+
+.include <bsd.mport.options.mk>
+
+MAKE_ARGS+=	htmldocdir=${PREFIX}/share/doc/libsamplerate
+
+.if ${PORT_OPTIONS:MCPU_CLIP}
+MANUAL_PACKAGE_BUILD=	CPU_CLIP may customize the package for the build machine
+.else
+CONFIGURE_ARGS+=	--disable-cpu-clip
+.endif
+
+.if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
+BUILD_DEPENDS +=	${LOCALBASE}/lib/libfftw3.so:${PORTSDIR}/math/fftw3
+.else
+CONFIGURE_ARGS+=	--disable-fftw
+.endif
+
+.if ${PORT_OPTIONS:MEXAMPLES}
+LIB_DEPENDS+=	sndfile.1:${PORTSDIR}/audio/libsndfile
+.elif defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
+BUILD_DEPENDS +=	${LOCALBASE}/lib/libsndfile.so:${PORTSDIR}/audio/libsndfile
+.else
+CONFIGURE_ARGS+=	--disable-sndfile
+.endif
+
+post-patch:
+.if empty(PORT_OPTIONS:MDOCS)
+	@${REINPLACE_CMD} -e '/SUBDIRS =/s/doc //' ${WRKSRC}/Makefile.in
+.endif
+.if empty(PORT_OPTIONS:MEXAMPLES)
+	@${REINPLACE_CMD} -e '/SUBDIRS =/s/examples //' ${WRKSRC}/Makefile.in
+.endif
+
+.if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
+check regression-test test: build
+	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} ${MAKE_ARGS} \
+	check
 .endif
 
 .include <bsd.port.mk>
