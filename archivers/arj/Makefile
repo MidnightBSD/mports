@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/arj/Makefile,v 1.7 2011/02/02 20:03:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/arj/Makefile,v 1.8 2011/08/20 14:03:20 laffer1 Exp $
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22
@@ -8,21 +8,25 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.78_3.10%20build%2022
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source ARJ
+
 LICENSE=	gpl2
+
+OPTIONS_DEFINE=	DOCS
 
 MAKE_JOBS_UNSAFE=	yes
 
 USE_AUTOTOOLS=	autoconf
 USE_GMAKE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_WRKSRC=	${WRKSRC}/gnu
-CONFIGURE_ENV=	CFLAGS="-fPIC"
+CFLAGS+=	-fPIC
 MAKEFILE=	GNUmakefile
 STRIP=
 LANGUAGE?=	en
 MAKE_ENV+=	"LOCALE=${LANGUAGE}"
 
 MAN1=		arj-register.1 arj.1 arjdisp.1 rearj.1
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's!/etc!${LOCALBASE}/etc!' \
@@ -35,7 +39,7 @@ pre-build:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} prepare)
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC}/doc && ${INSTALL_DATA} COPYING debug.txt ${DOCSDIR}
 	cd ${WRKSRC}/resource/en && \
