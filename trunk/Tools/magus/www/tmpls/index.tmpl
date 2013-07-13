@@ -1,9 +1,40 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<div class="right" style="width: 35%">
+<div class="row-fluid">
+
+<section>
+<div class="span6 offset1">
+<h3>Latest Results</h3>
+<table class="result-list">
+        <thead>
+        <tr>
+                <th>Port</th>
+                <th>Version</th>
+                <th>Summary</th>
+                <th>OSVersion</th>
+                <th>Arch</th>
+        </tr>
+        </thead>
+        <tbody>
+        <TMPL_LOOP NAME=results>
+        <tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
+                <td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+                <td><TMPL_VAR NAME=version></td>
+                <td><TMPL_VAR NAME=summary></td>
+                <td><TMPL_VAR NAME=osversion></td>
+                <td><TMPL_VAR NAME=arch></td>
+        </tr>
+        </TMPL_LOOP>
+        </tbody>
+</table>
+</div>
+</section>
+
+<section>
+<div class="span3 offset1">
 <TMPL_IF NAME="locks">
 <h3>Currently Building</h3>
-<table class="locks">
+<table class="table table-striped locks">
 <thead>
 <tr>
 	<th>Port</th>
@@ -16,7 +47,7 @@
 
 <tbody>
 <TMPL_LOOP NAME="locks">
-<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+<tr>
 	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
 	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
 	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
@@ -31,7 +62,7 @@
 
 <TMPL_IF name="runs">
 <h3>Active Runs</h3>
-<table class="locks">
+<table class="table table-striped locks">
 <thead> 
 <tr>
         <th>Run</th>
@@ -43,7 +74,7 @@
 
 <tbody>
 <TMPL_LOOP NAME="runs">
-<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+<tr>
 	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
         <td><TMPL_VAR name="arch"></td>
         <td><TMPL_VAR NAME="osversion"></td>
@@ -65,34 +96,9 @@
 </p>
 </TMPL_IF>
 
-
 </div>
+</section>
 
-<div class="left" style="width: 60%">
-
-<h3>Latest Results</h3>
-<table class="result-list">
-	<thead>
-	<tr>
-		<th>Port</th>
-		<th>Version</th>
-		<th>Summary</th>
-		<th>OSVersion</th>
-		<th>Arch</th>
-	</tr>
-	</thead>
-	<tbody>
-	<TMPL_LOOP NAME=results>
-	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
-		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
-		<td><TMPL_VAR NAME=version></td>
-		<td><TMPL_VAR NAME=summary></td>
-		<td><TMPL_VAR NAME=osversion></td>
-		<td><TMPL_VAR NAME=arch></td>
-	</tr>
-	</TMPL_LOOP>
-	</tbody>
-</table>
 </div>
 
 <TMPL_INCLUDE NAME="footer.tmpl">

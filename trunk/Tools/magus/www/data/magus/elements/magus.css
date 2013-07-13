@@ -1,26 +1,5 @@
-body {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	background: white;
-	color: black;
-	margin: 0;
-	padding: 0;
-}
-
-#content {
-	margin: 12px;
-}
-
-h1 {
-	letter-spacing: .1em;
-	font-size: 2.7em;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
-	margin: 0;
-}
-
 h1 a {
 	color: white;
-	text-decoration: none;
 }
 
 h1 a:visited {
@@ -28,14 +7,10 @@ h1 a:visited {
 }
 
 h2 {
-	font-size: 1.5em;
-	letter-spacing: .05em;
 	color: #555;
 }
 
 h3 { 
-	font-size 1.1em;
-	letter-spacing: .1em;
 	color: #555;
 }
 
@@ -43,38 +18,15 @@ a {
 	color: #204a87;
 }
 
-table {
-	border: solid 1px #555;
-	border-spacing: 0px;
-}
-
-table td {
-	padding: 6px 10px;
-}
-
-table tr {
-	background: transparent;
-}
-
-/* table tr:hover {
-	background: #D0D0DF;
-}*/
-
-
 table th {
 	border-bottom: solid 1px #888;
 	text-align: left;
 	padding-left: 8px;
 }
 
-tr.even {
-	background: #eaeae9;
-}
-
 tr.details {
 	display: none;
 }
-
 
 .fail {
 	color: #a40000;
@@ -108,7 +60,6 @@ tr.details {
 	font-size: .8em;
 }
 
-
 div.right {
 	position: absolute;
 	top: 60px;
@@ -137,8 +88,6 @@ pre.log {
 	overflow: auto;
 }
 
-
-
 ul.depends li {
 	list-style: none;
 }
@@ -150,7 +99,6 @@ ul.depends {
 #tophead {
 	background: #204a87;
 	color: white;
-	// width: 100%;
 	margin: 0;
 	padding: 4px 4px 8px;	
 }

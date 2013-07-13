@@ -1,25 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><TMPL_VAR NAME="title"></title>
-    <script src="/magus/elements/magus.js" type="text/javascript"></script>    
-    <link rel="stylesheet" href="/magus/elements/magus.css" media="screen" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/magus/elements/magus.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/magus/elements/magus.css" media="screen">
 </head>
-<body><div id="tophead">
 
+<body>
+
+<header>
+<div id="tophead" class="row-fluid">
+
+<div class="span6">
 <h1><a href="/magus/">MidnightBSD Magus</a></h1>
+</div>
 
-<form id="topsearch" action="<TMPL_VAR NAME=root>/search" method="get">
-<input type="text" name="q" value="<TMPL_VAR NAME=query>" />
-<input type="submit" value="Search" />
+<div class="span4 offset2">
+<form class="form-search" id="topsearch" action="<TMPL_VAR NAME=root>/search" method="get">
+    <fieldset>
+        <input class="input-medium search-query" placeholder="Search" type="text" name="q" value="<TMPL_VAR NAME=query>">
+        <input class="btn" type="submit" value="Search">
+    </fieldst>
 </form>
+</div>
 
 </div>
-<!-- header: end -->
+</header>
 
-
-<div id="content">
+<div class="content">
 
