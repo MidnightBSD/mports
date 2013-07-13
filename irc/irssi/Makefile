@@ -1,18 +1,17 @@
-# New ports collection makefile for:	irssi
-#
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.12 2012/02/21 18:18:15 laffer1 Exp $
-# $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.13 2012/02/24 14:51:16 laffer1 Exp $
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.15
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A modular IRC client with many features
+
 LICENSE=	gpl2
 
+USES=		pkgconfig ncurses
 USE_BZIP2=	yes
 USE_SSP=	yes
 USE_GNOME=	glib20
@@ -37,7 +36,7 @@ CONFIGURE_ARGS+=	--disable-ssl
 USE_OPENSSL=	yes
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # Process options.
 
@@ -84,4 +83,4 @@ post-configure:
 	@${MV} ${WRKSRC}/irssi.conf ${WRKSRC}/irssi.conf.sample
 
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
