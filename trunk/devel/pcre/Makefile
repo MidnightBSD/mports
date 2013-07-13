@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.18 2013/01/17 04:57:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.19 2013/07/13 01:44:14 laffer1 Exp $
 
 PORTNAME=	pcre
 PORTVERSION=	8.33
@@ -11,10 +11,8 @@ MASTER_SITE_SUBDIR=${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Compatible Regular Expressions library
-LICENSE=	bsd3
 
-LICENSE=	BSD
-LICENSE_FILE=	${WRKSRC}/LICENCE
+LICENSE=	bsd3
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
