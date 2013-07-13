@@ -1,8 +1,78 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h2><TMPL_VAR name="port"></h2>
+<div class="row-fluid">
+  <div class="offset1 span6">
+  <section>
+    <h2><TMPL_VAR name="port"></h2>
+    <p class="lead"><TMPL_VAR NAME="desc"></p>
 
-<div class="right">
+    <table class="table port-results">
+    <thead>
+    <tr>
+        <th>Version</th>
+        <th>Run</th>
+        <th>OSVersion</th>
+        <th>Arch</th>
+        <th>License</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tr class="<TMPL_VAR NAME=status>">
+        <td><TMPL_VAR NAME="version"></td>
+        <td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
+        <td><TMPL_VAR NAME="osversion"></td>
+        <td><TMPL_VAR NAME="arch"></td>
+        <td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
+        <td><TMPL_VAR NAME="status"></td>
+        <td>
+          <TMPL_IF NAME="can_reset">
+            (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>">Reset Port</a>)
+          </TMPL_IF>
+        </td>
+    </tr>
+    </table>
+  </section>
+
+<section>
+<TMPL_IF name="events">
+<h3>Events</h3>
+<table class="table table-striped event-list">
+<thead>
+<tr>
+        <th>Machine</th>
+        <th>Type</th>
+        <th>Time</th>
+        <th>Message</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP name="events">
+<tr class="<TMPL_VAR NAME=type>">
+        <td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+        <td><TMPL_VAR NAME="type"></td>
+        <td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
+        <td><TMPL_VAR NAME="msg"></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+</section>
+
+    <section>
+      <TMPL_IF NAME="log">
+      <h3>Log</h3>
+      <pre class="log"><TMPL_VAR NAME="log"></pre>
+      </TMPL_IF>
+    </section>
+</div>
+
+
+<section>
+<div class="span3 offset1">
 <h3>Links</h3>
 <ul class="depends">
 <li><a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>/" target="_blank">CVSWeb</a></li>
@@ -47,61 +117,7 @@
 </ul>
 
 </div>
-
-<div class="left">
-<p style="margin-bottom: 2em"><TMPL_VAR NAME="desc"></p>
-<table class="port-results">
-<tr>
-	<th>Version</th>
-	<th>Run</th>
-	<th>OSVersion</th>
-	<th>Arch</th>
-	<th>License</th>
-	<th>Status</th>
-	<th></th>
-</tr>
-<tr class="<TMPL_VAR NAME=status>">
-	<td><TMPL_VAR NAME="version"></td>
-	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
-	<td><TMPL_VAR NAME="osversion"></td>
-	<td><TMPL_VAR NAME="arch"></td>
-	<td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
-	<td><TMPL_VAR NAME="status"></td>
-	<td>
-	  <TMPL_IF NAME="can_reset">
-	    (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>">Reset Port</a>)
-	  </TMPL_IF>
-	</td> 
-</tr>
-</table>
-
-
-<TMPL_IF name="events">
-<h3>Events</h3>
-<table class="event-list">
-<tr>
-	<th>Machine</th>
-	<th>Type</th>
-	<th>Time</th>
-	<th>Message</th>
-</tr>
-
-<TMPL_LOOP name="events">
-<tr class="<TMPL_VAR NAME=type><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
-	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
-	<td><TMPL_VAR NAME="type"></td> 
-	<td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
-	<td><TMPL_VAR NAME="msg"></td>
-</tr>
-</TMPL_LOOP>
-</table>
-</TMPL_IF>
-
-<TMPL_IF NAME="log">
-<h3>Log</h3>
-<pre class="log"><TMPL_VAR NAME="log"></pre>
-</TMPL_IF>
-
+</section>
 
 </div>
 

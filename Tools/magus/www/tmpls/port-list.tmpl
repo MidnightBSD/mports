@@ -1,4 +1,5 @@
-<table class="result-list">
+<table class="table table-striped result-list">
+    <thead>
 	<tr>
 		<th>Port</th>
 		<th>Version</th>
@@ -8,8 +9,10 @@
 		<th>Arch</th>
 		<th></th>
 	</tr>
+    </thead>
+
 	<TMPL_LOOP NAME=results>
-	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
+	<tr class="<TMPL_VAR NAME=summary>">
 		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></td>
 		<td><TMPL_VAR NAME=version></td>
 		<td><TMPL_VAR NAME=summary></td>
@@ -24,7 +27,7 @@
 		  </TMPL_IF>
         	</td>
         </tr>
-        <tr class="details<TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>" id="result_<TMPL_VAR NAME=id>_row">
+        <tr class="details" id="result_<TMPL_VAR NAME=id>_row">
         	<td colspan="6" id="result_<TMPL_VAR NAME=id>_details"></td>
         </tr>
                 

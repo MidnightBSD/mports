@@ -9,9 +9,13 @@
 	};
 </script>
 
-<h2>Run <TMPL_VAR name="id"></h2>
+<section>
+  <div class="row-fluid">
+     <div class="span10 offset1">
+       <h2>Run <TMPL_VAR name="id"></h2>
 
-<table class="run-summary">
+       <table class="table table-striped table-bordered run-summary">
+<thead>
 <tr>
 	<th>ID</th>
 	<th>OSVersion</th>
@@ -20,6 +24,8 @@
 	<th>Created</th>
 	<th></th>
 </tr>
+</thead>
+
 <tr>
 	<td><TMPL_VAR NAME="id"></td>
 	<td><TMPL_VAR NAME="osversion"></td>
@@ -39,9 +45,11 @@
 	</td>
 </tr>
 <tr>
-	<td colspan="6" id="ports-display" style="display: none">
-	</td>
+	<td colspan="6" id="ports-display" style="display: none"> </td>
 </tr>
 </table>
+    </div>
+  </div>
+</section>
 
 <TMPL_INCLUDE NAME="footer.tmpl">
