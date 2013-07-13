@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.5 2013/06/18 23:56:10 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.6 2013/07/05 22:01:05 laffer1 Exp $
 
 PORTNAME=	garcon
 PORTVERSION=	0.2.1
@@ -10,6 +10,7 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce 4 essential utilities and scripts
+
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
