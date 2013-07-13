@@ -1,21 +1,19 @@
-# New ports collection makefile for:	libevent
-# Date created:				9 Nov 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/devel/libevent/Makefile,v 1.2 2008/06/13 04:11:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/libevent/Makefile,v 1.3 2011/01/12 14:03:22 laffer1 Exp $
 
 PORTNAME=	libevent
 PORTVERSION=	1.4.14b
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://monkey.org/~provos/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-stable
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides an API to execute callback functions on certain events
+
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
+.if !defined(_BUILDING_LIBEVENT_HIPHOP)
 USE_LDCONFIG=	yes
 
 MAN3=	event.3 \
@@ -84,6 +82,10 @@ MLINKS=	event.3 event_init.3 \
 	- evdns_search_ndots_set.3 \
 	- evdns_set_log_fn.3 \
 	- evdns_config_windows_nameservers.3
+.endif
+
+pre-configure:
+	@${MKDIR} ${WRKSRC}/m4
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,CFLAGS =,CFLAGS +=,' ${WRKSRC}/Makefile.in
