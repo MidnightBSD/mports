@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/mail/courier/files/courier.sh.in,v 1.5 2009/08/08 11:18:45 rafan Exp $
+# $FreeBSD$
 #
 # Adapted for FreeBSD from courier.sysvinit
 #
@@ -11,10 +11,6 @@
 # REQUIRE: LOGIN courier_authdaemond
 # BEFORE:  securelevel
 # KEYWORD: shutdown
-#
-# NOTE for FreeBSD 5.0+:
-# If you want this script to start with the base rc scripts
-# move courier.sh to /etc/rc.d/courier
 
 prefix="%%PREFIX%%"
 exec_prefix="${prefix}"
@@ -33,10 +29,10 @@ datadir="${prefix}/share/courier"
 #
 courier_enable=${courier_enable:-"NO"}	# Run Courier-MTA (YES/NO).
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="courier"
-rcvar=`set_rcvar`
+rcvar=courier_enable
 
 start_precmd="${name}_prestart"
 start_cmd="${name}_start"
@@ -246,19 +242,18 @@ courier_start()
 			;;
 		esac
 	fi
-	echo "."
 
 	LISTS=""
 	if [ -f ${sysconfdir}/webmlmrc ]; then 
 		. ${sysconfdir}/webmlmrc
-		if [ -n "$LISTS" ];then
-			if [ -x ${bindir}/webmlmd \
-			  -a -x ${bindir}/webmlmd.rc ]; then
-				echo -n " webmlmd"
-				${bindir}/webmlmd.rc start ${sysconfdir}/webmlmrc
-			fi
+		if [ -n "$LISTS" \
+		  -a -x ${bindir}/webmlmd \
+		  -a -x ${bindir}/webmlmd.rc ]; then
+			echo -n " webmlmd"
+			${bindir}/webmlmd.rc start ${sysconfdir}/webmlmrc
 		fi
 	fi
+	echo "."
 }
 
 courier_stop()
