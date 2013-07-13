@@ -2,12 +2,13 @@
 # Date created:				12 August 2001
 # Whom:					Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.5 2011/12/15 00:57:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.6 2012/03/03 22:34:52 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/gentoo/Makefile,v 1.52 2006/08/28 12:01:16 miwi Exp $
 #
 
 PORTNAME=	gentoo
-PORTVERSION=	0.19.12
+PORTVERSION=	0.19.13
+PORTREVISION=	0
 CATEGORIES=	x11-fm
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}/ \
 		http://mirror.4bit.ws/
@@ -16,10 +17,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ based, file manager inspired by DirectoryOpus
 LICENSE=	gpl2
 
-OPTIONS=	FAM "File Alteration Monitor Support" off
+OPTIONS_DEFINE=	FAM DOCS
 
 USE_GNOME=	gnomehack gtk20
-USE_GETTEXT=	yes
+USES=		gettext
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
@@ -28,9 +29,9 @@ MAN1=		gentoo.1
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_FAM)
+.if ${PORT_OPTIONS:MFAM}
 USE_FAM=	yes
 .else
 CONFIGURE_ARGS+=	--disable-fam
@@ -47,7 +48,7 @@ post-patch:
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/gentoo.1x ${MANPREFIX}/man/man1/gentoo.1
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for file in BUGS CONFIG-CHANGES CREDITS NEWS README README.NLS README.gtkrc \
 	TODO
@@ -60,4 +61,4 @@ post-install:
 	@${FIND} ${DOCSDIR} -type d | ${XARGS} ${CHMOD} a+x
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
