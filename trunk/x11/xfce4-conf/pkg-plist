@@ -4,7 +4,6 @@ include/xfce4/xfconf-0/xfconf/xfconf-channel.h
 include/xfce4/xfconf-0/xfconf/xfconf-errors.h
 include/xfce4/xfconf-0/xfconf/xfconf-types.h
 include/xfce4/xfconf-0/xfconf/xfconf.h
-lib/libxfconf-0.a
 lib/libxfconf-0.la
 lib/libxfconf-0.so
 lib/libxfconf-0.so.2
@@ -27,7 +26,6 @@ share/dbus-1/services/org.xfce.Xfconf.service
 %%APIDOCS%%share/gtk-doc/html/xfconf/xfconf-xfconf-errors.html
 %%APIDOCS%%share/gtk-doc/html/xfconf/xfconf-xfconf-types.html
 %%APIDOCS%%share/gtk-doc/html/xfconf/xfconf-xfconf.html
-%%APIDOCS%%share/gtk-doc/html/xfconf/xfconf.devhelp
 %%APIDOCS%%share/gtk-doc/html/xfconf/xfconf.devhelp2
 %%NLS%%share/locale/ar/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/ast/LC_MESSAGES/xfconf.mo
@@ -52,10 +50,11 @@ share/dbus-1/services/org.xfce.Xfconf.service
 %%NLS%%share/locale/ja/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/kk/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/xfconf.mo
+%%NLS%%share/locale/lt/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/lv/LC_MESSAGES/xfconf.mo
-%%NLS%%share/locale/ms/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/xfconf.mo
+%%NLS%%share/locale/nn/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/pa/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/xfconf.mo
 %%NLS%%share/locale/pt/LC_MESSAGES/xfconf.mo
