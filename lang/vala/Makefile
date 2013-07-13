@@ -1,25 +1,24 @@
-# $MidnightBSD: mports/lang/vala/Makefile,v 1.3 2013/03/30 13:19:14 laffer1 Exp $
+# $MidnightBSD: mports/lang/vala/Makefile,v 1.4 2013/06/14 01:57:26 laffer1 Exp $
 
 PORTNAME=	vala
 PORTVERSION=	0.18.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programming language and compiler that converts Vala code into C code
+
 LICENSE=	lgpl2.1
 
-USE_PATHFIX=	yes
+USES=		pathfix pkgconfig gettext
+USE_BISON=	build
 USE_XZ=		yes
 USE_GNOME=	glib20 gnomeprefix libxslt
 USE_GMAKE=	yes
-USE_PKGCONFIG=	build
 GNU_CONFIGURE=	yes
-USE_GETTEXT=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-USE_BISON=	build
 USE_LDCONFIG=	yes
 
 MAN1?=		valac.1 valac-${VALA_VER}.1
@@ -55,7 +54,7 @@ pre-build:
 		${GMAKE} gen-introspect
 
 post-install:
-	@cd ${WRKSRC}/gobject-introspection && ${GMAKE} install
+	@cd ${WRKSRC}/gobject-introspection && ${GMAKE} ${FAKE_MAKEARGS} install
 	@${INSTALL_MAN} ${WRKSRC}/doc/vapigen.1 ${WRKSRC}/doc/vala-gen-introspect.1 \
 		 ${PREFIX}/man/man1/
 .else
