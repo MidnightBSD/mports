@@ -1,35 +1,31 @@
-# New ports collection makefile for:    nautilus2
-# Date created:         		28th August 2000
-# Whom:                 		ade, archie
-#
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.9 2011/05/28 06:23:34 laffer1 Exp $
-# $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
-#   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
-#
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.10 2012/03/06 00:54:12 laffer1 Exp $
 
 PORTNAME=	nautilus
 PORTVERSION=	2.32.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-compiler:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
-		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
-		exempi.3:${PORTSDIR}/textproc/exempi
+LIB_DEPENDS=	exif:${PORTSDIR}/graphics/libexif \
+		unique-1.0:${PORTSDIR}/x11-toolkits/unique \
+		exempi:${PORTSDIR}/textproc/exempi
+
+CONFLICTS=	nautilus-3.[0-9]*
 
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext
+USES=		desktop-file-utils shared-mime-info
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop \
-		librsvg2 desktopfileutils ltverhack gvfs ltasneededhack
-GNOME_DESKTOP_VERSION=2
+		librsvg2 ltverhack gvfs ltasneededhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
@@ -43,9 +39,15 @@ GCONF_SCHEMAS=	apps_nautilus_preferences.schemas
 MAN1=		nautilus-connect-server.1 nautilus-file-management-properties.1 \
 		nautilus.1
 
-.include <bsd.port.pre.mk>
+post-patch:
+	@${REINPLACE_CMD} -e 's|G_CONST_RETURN|const|g' \
+		${WRKSRC}/eel/eel-*.[ch] \
+		${WRKSRC}/libnautilus-private/*.[ch] \
+		${WRKSRC}/src/nautilus-zoom-control.c
+	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/configure ${WRKSRC}/eel/Makefile.in
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/nautilus/extensions-2.0
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
