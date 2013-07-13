@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.222 2013/07/06 22:24:51 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.223 2013/07/06 22:34:52 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -68,7 +68,7 @@ MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
 MTREE_FILE_DEFAULT=yes
 .endif
 MTREE_CMD?=		/usr/sbin/mtree
-MTREE_LINUX_FILE?=	${LOCALBASE}/etc/mtree/bsd.linux-compat.mtree 
+MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
 MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
