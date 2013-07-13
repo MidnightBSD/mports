@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/libsunacl/Makefile,v 1.1 2013/07/03 00:23:02 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/libsunacl/Makefile,v 1.2 2013/07/03 00:25:59 laffer1 Exp $
 
 PORTNAME=	libsunacl
 PORTVERSION=	1.0
@@ -8,6 +8,8 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper providing SunOS NFSv4 ACL API
 LICENSE=	bsd2
+
+FAKE_OPTS=	trueprefix
 
 USE_LDCONFIG=	yes
 PLIST_FILES=	include/sunacl.h lib/libsunacl.a lib/libsunacl.so.1 lib/libsunacl.so
