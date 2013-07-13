@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.436 2013/07/07 17:27:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.437 2013/07/12 23:23:33 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -139,6 +139,7 @@ SUBDIR += libgsf
 SUBDIR += libgsf-gnome
 SUBDIR += libgtop
 SUBDIR += libical
+SUBDIR += libinotify
 SUBDIR += libixp
 SUBDIR += libltdl
 SUBDIR += libnotify
