@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.15 2013/06/21 02:18:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.16 2013/06/26 23:57:45 laffer1 Exp $
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -11,8 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU gettext package
 LICENSE=	gpl3
 
-USE_CHARSETFIX=	yes
-USE_ICONV=	both
+USES=		charsetfix iconv
 LIBTOOLFILES=	gettext-runtime/configure \
 		gettext-runtime/libasprintf/configure gettext-tools/configure
 USE_AUTOTOOLS=	libtool
