@@ -1,9 +1,13 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h2>Machine <TMPL_VAR name="name"></h2>
+<section>
+  <div class="row-fluid">
+    <div class="span10 offset1">
+    <h2>Machine <TMPL_VAR name="name"></h2>
 
-<table class="machine-summary">
-<tr>
+    <table class="table machine-summary">
+    <thead>
+    <tr>
 	<th>ID</th>
 	<th>Name</th>
 	<th>Maintainer</th>
@@ -11,8 +15,10 @@
 	<th>OSVersion</th>
 	<th>Run</th>
 	<th></th>
-</tr>
-<tr>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
 	<td><TMPL_VAR NAME="id"></td>
 	<td><TMPL_VAR NAME="name"></td>
 	<td><TMPL_VAR NAME="maintainer"></td>
@@ -27,12 +33,14 @@
 	    </TMPL_LOOP>
 	</select>
 	</td>
-</tr>
-<tr>
-	<td colspan="7" id="events-display" style="display: none">
-	</td>
-</tr>
-
-</table>
+    </tr>
+    <tr>
+	<td colspan="7" id="events-display" style="display: none"> </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+</section>
 
 <TMPL_INCLUDE NAME="footer.tmpl">
