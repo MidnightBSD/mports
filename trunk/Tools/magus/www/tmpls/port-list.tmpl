@@ -11,6 +11,7 @@
 	</tr>
     </thead>
 
+    <tbody>
 	<TMPL_LOOP NAME=results>
 	<tr class="<TMPL_VAR NAME=summary>">
 		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></td>
@@ -32,5 +33,6 @@
         </tr>
                 
 	</TMPL_LOOP>
+    </tbody>
 </table>
 
