@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.3 2009/08/29 16:35:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.4 2012/03/01 02:56:42 laffer1 Exp $
 
 PORTNAME=	jbigkit
 PORTVERSION=	1.6
@@ -8,6 +8,7 @@ MASTER_SITES=	http://www.cl.cam.ac.uk/~mgk25/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lossless compression for bi-level images such as scanned pages, faxes
+
 LICENSE=	gpl2
 
 WRKSRC=	${WRKDIR}/${PORTNAME}
