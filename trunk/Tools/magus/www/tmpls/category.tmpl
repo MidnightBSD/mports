@@ -1,12 +1,15 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<div class="full">
-<h2><TMPL_VAR name="category"></h2>
+<section>
+<div class="row-fluid">
+  <div class="span8 offset1">
+    <h2><TMPL_VAR name="category"></h2>
 
-<ul class="cat-list">
+     <ul class="cat-list">
 <TMPL_LOOP NAME="ports">
 	<li><a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="port">"><TMPL_VAR NAME="port"></a></li>
 </TMPL_LOOP>
-</ul>
-
+     </ul>
+  </div>
 </div>
+</section>
