@@ -1,8 +1,13 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h1>Error</h1>
+<section>
+<div class="row-fluid">
+  <h1>Error</h1>
 
-<p><TMPL_VAR NAME="error">
-
+  <div class="alert alert-error">
+	<p><TMPL_VAR NAME="error"></p>
+  </div>
+</div>
+</section>
 
 <TMPL_INCLUDE NAME="footer.tmpl">
