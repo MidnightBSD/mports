@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.5 2013/02/22 03:19:41 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.6 2013/02/22 03:21:44 laffer1 Exp $
 
 PORTNAME=	ratpoison
 PORTVERSION=	1.4.5
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
 		http://mirror.4bit.ws/
@@ -14,7 +15,8 @@ LICENSE=	gpl2
 USE_XORG=	xext xinerama xtst
 GNU_CONFIGURE=	yes
 
-OPTIONS=	GDM_SUPPORT "Install session data files for GDM" off
+OPTIONS_DEFINE=	GDM_SUPPORT DOCS
+GDM_SUPPORT_DESC=	Install session data files for GDM
 
 SUB_FILES=	ratpoison.desktop
 
@@ -23,7 +25,7 @@ SUB_FILES=	ratpoison.desktop
 post-patch:
 	${REINPLACE_CMD} -e 's|bash|sh|g' ${WRKSRC}/contrib/allwindows.sh
 
-.if defined (WITH_GDM_SUPPORT)
+.if ${PORT_OPTIONS:MGDM_SUPPORT}
 PLIST_SUB+=	WITH_GDM=""
 
 post-install:
@@ -33,11 +35,11 @@ post-install:
 PLIST_SUB+=	WITH_GDM="@comment "
 .endif
 
-.if defined(NOPORTDOCS)
-INSTALL_TARGET=	SUBDIRS=src install-exec
-.else
+.if ${PORT_OPTIONS:MDOCS}
 MAN1=		ratpoison.1
 INFO=		ratpoison
+.else
+INSTALL_TARGET=	SUBDIRS=src install-exec
 .endif
 
 .include <bsd.port.mk>

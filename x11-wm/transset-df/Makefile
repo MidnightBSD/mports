@@ -2,7 +2,7 @@
 # Date created:				June 5, 2011
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/transset-df/Makefile,v 1.1 2011/06/05 16:17:11 laffer1 Exp $
 
 PORTNAME=	transset-df
 PORTVERSION=	6
@@ -11,7 +11,8 @@ MASTER_SITES=	http://forchheimer.se/transset-df/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make your windows transparent
-LICENSE=	x11
+
+LICENSE=	mit
 
 ALL_TARGET=	transset-df
 MAKE_ARGS=	CFLAGS="${CFLAGS}"

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.7 2012/12/19 03:29:50 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.8 2013/06/21 01:44:53 laffer1 Exp $
 
 PORTNAME=	obconf
 PORTVERSION=	2.0.3
@@ -8,6 +8,7 @@ MASTER_SITES=	http://openbox.org/dist/obconf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preferences manager for the Openbox window manager
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \

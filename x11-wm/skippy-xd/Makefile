@@ -1,10 +1,4 @@
-# New ports collection makefile for:	skippy-xd
-# Date created:		2004-05-19
-# Whom:			michael johnson <ahze@ahze.net>
-#
-# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.3 2008/04/14 18:45:20 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/skippy-xd/Makefile,v 1.3 2006/05/13 05:00:43 edwin Exp $
-#
+# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.4 2008/08/19 18:52:34 laffer1 Exp $
 
 PORTNAME=	skippy-xd
 PORTVERSION=	0.5.0
@@ -14,6 +8,7 @@ MASTER_SITES=	http://thegraveyard.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-screen X11 task-switcher like Apple's Expose
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
