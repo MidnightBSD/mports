@@ -1,10 +1,4 @@
-# New ports collection makefile for:	DockApp Library
-# Date created:		17 July 1999
-# Whom:			Jim Mock <jim@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.6 2011/02/02 21:39:27 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/libdockapp/Makefile,v 1.26 2006/05/13 05:00:42 edwin Exp $
-#
+# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.7 2011/12/15 00:57:58 laffer1 Exp $
 
 PORTNAME=	libdockapp
 PORTVERSION=	0.6.2
@@ -15,12 +9,14 @@ MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Standard library for Window Maker dock apps
 LICENSE=	mit
 
+DEPRECATED=	Abandonware, upstream disappeared
+EXPIRATION_DATE=	2013-10-20
+
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_XORG=	xext xpm
 USE_GNOME=	
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--without-font --without-examples
 USE_LDCONFIG=	yes
 
