@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/deskutils/xfce4-tumbler/Makefile,v 1.1 2012/03/04 20:21:30 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/xfce4-tumbler/Makefile,v 1.2 2012/09/20 02:44:58 laffer1 Exp $
 
 PORTNAME=	tumbler
-PORTVERSION=	0.1.25
+PORTVERSION=	0.1.29
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
@@ -13,35 +13,32 @@ COMMENT=	Thumbnail service for Xfce desktop
 LICENSE=	gpl2
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		freetype.9:${PORTSDIR}/print/freetype2 \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+		dbus-glib-1:${PORTSDIR}/devel/dbus-glib
 
+USES=		pathfix pkgconfig
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	glib20 gnomehack intltool intlhack pkgconfig
+USE_GNOME=	glib20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv
 
 CONFIGURE_ARGS=	--enable-xdg-cache \
 		--disable-gtk-doc-html
 
-OPTIONS=	NLS "Enable Native Language Support" on \
-		APIDOCS "Install api documentation" off \
-		PIXBUF "Enable gdk-pixbuf plugin thumbnailer" on \
-		FONTS "Enable fonts plugin thumbnailer" on \
-		JPEG "Enable JPEG and EXIF plugin thumbnailer" on \
-		FFMPEG "Enable FFMPEG plugin thumbnailer" off \
-		POPPLER "Enable PDF/PS plugin thumbnailer" on \
-		GSTREAMER "Enable videos plugin thumbnailer" on \
-		ODF "Enable ODF plugin thumbnailer" on \
-		RAW "Enable RAW plugin thumbnailer" off \
+OPTIONS_DEFINE=	DOCS NLS PIXBUF FONTS JPEG FFMPEG POPPLER \
+	GSTREAMER ODF RAW COVER
+OPTIONS_DEFAULT=	PIXBUF FONTS JPEG POPPLER ODF
+FONTS_DESC=	Fonts thumbnailer plugin
+COVER_DESC=	Open Movie Database thumbnailer plugin
+GSTREAMER_DESC=	GStreamer (1.0) thumbnailer plugin
 
-.include <bsd.port.pre.mk>
+SUB_FILES=	pkg-message
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 CONFIGURE_ARGS+=--enable-nls
 PLIST_SUB+=	NLS=""
 .else
@@ -49,15 +46,15 @@ CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-.if defined(WITHOUT_APIDOCS)
-CONFIGURE_ARGS+=--without-html-dir
-PLIST_SUB+=	APIDOCS="@comment "
-.else
+.if ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=--with-html-dir=${PREFIX}/share/gtk-doc/html
 PLIST_SUB+=	APIDOCS=""
+.else
+CONFIGURE_ARGS+=--without-html-dir
+PLIST_SUB+=	APIDOCS="@comment "
 .endif
 
-.if !defined(WITHOUT_PIXBUF)
+.if ${PORT_OPTIONS:MPIXBUF}
 USE_GNOME+=	gdkpixbuf2
 CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
 PLIST_SUB+=	PIXBUF=""
@@ -66,7 +63,14 @@ CONFIGURE_ARGS+=--disable-pixbuf-thumbnailer
 PLIST_SUB+=	PIXBUF="@comment "
 .endif
 
-.if !defined(WITHOUT_FONTS)
+.if ${PORT_OPTIONS:MFONTS}
+# PIXBUF needs to be set
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2
 CONFIGURE_ARGS+=--enable-font-thumbnailer
 PLIST_SUB+=	FONTS=""
 .else
@@ -74,9 +78,14 @@ CONFIGURE_ARGS+=--disable-font-thumbnailer
 PLIST_SUB+=	FONTS="@comment "
 .endif
 
-.if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		exif.12:${PORTSDIR}/graphics/exif
+.if ${PORT_OPTIONS:MJPEG}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg \
+		exif:${PORTSDIR}/graphics/exif
 CONFIGURE_ARGS+=--enable-jpeg-thumbnailer
 PLIST_SUB+=	JPEG=""
 .else
@@ -84,8 +93,13 @@ CONFIGURE_ARGS+=--disable-jpeg-thumbnailer
 PLIST_SUB+=	JPEG="@comment "
 .endif
 
-.if !defined(WITHOUT_FFMPEG)
-LIB_DEPENDS+=	ffmpegthumbnailer.4:${PORTSDIR}/multimedia/ffmpegthumbnailer
+.if ${PORT_OPTIONS:MFFMPEG}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	ffmpegthumbnailer:${PORTSDIR}/multimedia/ffmpegthumbnailer
 CONFIGURE_ARGS+=--enable-ffmpeg-thumbnailer
 PLIST_SUB+=	FFMPEG=""
 .else
@@ -93,8 +107,13 @@ CONFIGURE_ARGS+=--disable-ffmpeg-thumbnailer
 PLIST_SUB+=	FFMPEG="@comment "
 .endif
 
-.if !defined(WITHOUT_POPPLER)
-LIB_DEPENDS+=	poppler-glib.8:${PORTSDIR}/graphics/poppler-glib
+.if ${PORT_OPTIONS:MPOPPLER}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	poppler-glib:${PORTSDIR}/graphics/poppler-glib
 CONFIGURE_ARGS+=--enable-poppler-thumbnailer
 PLIST_SUB+=	POPPLER=""
 .else
@@ -102,8 +121,13 @@ CONFIGURE_ARGS+=--disable-poppler-thumbnailer
 PLIST_SUB+=	POPPLER="@comment "
 .endif
 
-.if !defined(WITHOUT_GSTREAMER)
-USE_GSTREAMER=	yes
+.if ${PORT_OPTIONS:MGSTREAMER}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+USE_GSTREAMER1=	yes
 CONFIGURE_ARGS+=--enable-gstreamer-thumbnailer
 PLIST_SUB+=	GSTREAMER=""
 .else
@@ -111,7 +135,12 @@ CONFIGURE_ARGS+=--disable-gstreamer-thumbnailer
 PLIST_SUB+=	GSTREAMER="@comment "
 .endif
 
-.if !defined(WITHOUT_ODF)
+.if ${PORT_OPTIONS:MODF}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
 USE_GNOME+=	libgsf
 CONFIGURE_ARGS+=--enable-odf-thumbnailer
 PLIST_SUB+=	ODF=""
@@ -120,8 +149,13 @@ CONFIGURE_ARGS+=--disable-odf-thumbnailer
 PLIST_SUB+=	ODF="@comment "
 .endif
 
-.if defined(WITH_RAW)
-LIB_DEPENDS+=	openraw.6:${PORTSDIR}/graphics/libopenraw
+.if ${PORT_OPTIONS:MRAW}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	openraw:${PORTSDIR}/graphics/libopenraw
 CONFIGURE_ARGS+=--enable-raw-thumbnailer
 PLIST_SUB+=	RAW=""
 .else
@@ -129,4 +163,18 @@ CONFIGURE_ARGS+=--disable-raw-thumbnailer
 PLIST_SUB+=	RAW="@comment "
 .endif
 
-.include <bsd.port.post.mk>
+.if ${PORT_OPTIONS:MCOVER}
+.if ! ${PORT_OPTIONS:MPIXBUF}
+USE_GNOME+=	gdkpixbuf2
+CONFIGURE_ARGS+=--enable-pixbuf-thumbnailer
+PLIST_SUB+=	PIXBUF=""
+.endif
+LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+CONFIGURE_ARGS+=--enable-cover-thumbnailer
+PLIST_SUB+=	COVER=""
+.else
+CONFIGURE_ARGS+=--disable-cover-thumbnailer
+PLIST_SUB+=	COVER="@comment "
+.endif
+
+.include <bsd.port.mk>
