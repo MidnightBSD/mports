@@ -1,7 +1,5 @@
-# $MidnightBSD: mports/devel/libsoup-gnome/Makefile,v 1.1 2011/07/03 17:07:34 laffer1 Exp $
-# $FreeBSD: ports/devel/libsoup-gnome/Makefile,v 1.1 2010/11/20 15:36:36 kwm Exp $
+# $MidnightBSD: mports/devel/libsoup-gnome/Makefile,v 1.2 2012/02/11 00:25:38 laffer1 Exp $
 
-PORTREVISION=	1
 CATEGORIES=	devel gnome
 PKGNAMESUFFIX=	-gnome
 
