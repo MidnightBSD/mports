@@ -1,88 +1,93 @@
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.5 2011/01/28 16:05:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.6 2012/03/06 00:18:02 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
 
 PORTNAME=	xfce
-PORTVERSION=	4.8
+PORTVERSION=	4.10
+PORTREVISION=	0
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The "meta-port" for the XFce 4 desktop environment
-LICENSE=	agg
+COMMENT=	The "meta-port" for the Xfce 4 desktop environment
 
-OPTIONS=	ICONS		"Install a full icon theme"		on  \
-		ORAGE		"Install the Xfce calendar application"	on  \
-		MOUSEPAD	"Install the Xfce text editor"		on  \
-		TERMINAL	"Install the Xfce terminal application"	on  \
-		APPFINDER	"Install the Xfce application finder"	on  \
-		MIXER		"Install the Xfce mixer application"	on  \
-		PRINT		"Install the Xfce printing helper"	on  \
-		SQUEEZE		"Install the Xfce archiver application"	on  \
-		GDM		"Install the login manager gdm"		off
+OPTIONS_DEFINE=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER MIXER PRINT SQUEEZE GDM NOTIFY XPM
+OPTIONS_DEFAULT=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER SQUEEZE NOTIFY
+ORAGE_DESC=	Install the Xfce calendar application
+MOUSEPAD_DESC=	Install the Xfce text editor
+TERMINAL_DESC=	Install the Xfce terminal application
+APPFINDER_DESC=	Install the Xfce application finder
+SQUEEZE_DESC=	Install the Xfce archiver application
+XPM_DESC=	Install the Xfce power manager
 
 RUN_DEPENDS=	xfwm4:${PORTSDIR}/x11-wm/xfce4-wm \
 		xfce4-session:${PORTSDIR}/x11-wm/xfce4-session \
 		xfce4-panel:${PORTSDIR}/x11-wm/xfce4-panel \
 		xfdesktop:${PORTSDIR}/x11-wm/xfce4-desktop \
-		startxfce4:${PORTSDIR}/sysutils/xfce4-utils \
 		${LOCALBASE}/lib/gtk-2.0/2.10.0/engines/libxfce.so:${PORTSDIR}/x11-themes/gtk-xfce-engine \
 		xfsettingsd:${PORTSDIR}/sysutils/xfce4-settings
 
 NO_BUILD=	yes
 LATEST_LINK=	xfce4
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if exists(${LOCALBASE}/sbin/gdm)
 WITH_GDM=	yes
 .endif
 
-.if defined(WITH_GDM)
+.if ${PORT_OPTIONS:MGDM}
 RUN_DEPENDS+=	${LOCALBASE}/sbin/gdm:${PORTSDIR}/x11/gdm
 PLIST_FILES=	etc/gdm/Sessions/XFce4 \
 		etc/dm/Sessions/XFce4.desktop
 PLIST_DIRS=	etc/gdm/Sessions
 .endif
 
-.if !defined(WITHOUT_ICONS)
-RUN_DEPENDS+=	${LOCALBASE}/share/themes/Xfce/xfwm4/themerc:${PORTSDIR}/misc/xfce4-wm-themes \
-		icons-tango-extras>=0.1.0:${PORTSDIR}/x11-themes/icons-tango-extras
+.if ${PORT_OPTIONS:MICONS}
+RUN_DEPENDS+=	icons-tango-extras>=0.1.0:${PORTSDIR}/x11-themes/icons-tango-extras
 .endif
 
-.if !defined(WITHOUT_ORAGE)
+.if ${PORT_OPTIONS:MORAGE}
 RUN_DEPENDS+=	orage:${PORTSDIR}/deskutils/orage
 .endif
 
-.if !defined(WITHOUT_MOUSEPAD)
+.if ${PORT_OPTIONS:MMOUSEPAD}
 RUN_DEPENDS+=	mousepad:${PORTSDIR}/editors/mousepad
 .endif
 
-.if !defined(WITHOUT_TERMINAL)
-RUN_DEPENDS+=	Terminal:${PORTSDIR}/x11/Terminal
+.if ${PORT_OPTIONS:MTERMINAL}
+RUN_DEPENDS+=	xfce4-terminal:${PORTSDIR}/x11/xfce4-terminal
 .endif
 
-.if !defined(WITHOUT_APPFINDER)
+.if ${PORT_OPTIONS:MAPPFINDER}
 RUN_DEPENDS+=	xfce4-appfinder:${PORTSDIR}/misc/xfce4-appfinder
 .endif
 
-.if !defined(WITHOUT_MIXER)
+.if ${PORT_OPTIONS:MMIXER}
 RUN_DEPENDS+=	${LOCALBASE}/bin/xfce4-mixer:${PORTSDIR}/audio/xfce4-mixer
 .endif
 
-.if !defined(WITHOUT_PRINT)
+.if ${PORT_OPTIONS:MPRINT}
 RUN_DEPENDS+=	xfprint4:${PORTSDIR}/print/xfce4-print
 .endif
 
-.if !defined(WITHOUT_SQUEEZE)
+.if ${PORT_OPTIONS:MSQUEEZE}
 RUN_DEPENDS+=   squeeze:${PORTSDIR}/archivers/squeeze
+.endif
+
+.if ${PORT_OPTIONS:MNOTIFY}
+RUN_DEPENDS+=	xfce4-notifyd-config:${PORTSDIR}/deskutils/xfce4-notifyd
+.endif
+
+.if ${PORT_OPTIONS:MXPM}
+RUN_DEPENDS+=	xfce4-power-manager:${PORTSDIR}/sysutils/xfce4-power-manager
 .endif
 
 do-install:	# empty
 
 post-install:
-.if defined(WITH_GDM)
+.if ${PORT_OPTIONS:MGDM}
 	@${TEST} -d ${PREFIX}/etc/gdm/Sessions || \
 		${MKDIR} -p ${PREFIX}/etc/gdm/Sessions
 	@${INSTALL_SCRIPT} ${FILESDIR}/XFce4 ${PREFIX}/etc/gdm/Sessions
@@ -93,7 +98,7 @@ post-install:
 	@${ECHO} "If you want to allow users to restart or shutdown the system,"
 	@${ECHO} "do not forget to add the following lines between the <config>"
 	@${ECHO} "tags in your PolicyKit.conf file."
-	@${ECHO} "  ${PREFIX}/etc/PolicyKit/PolicyKit.conf
+	@${ECHO} "  ${PREFIX}/etc/PolicyKit/PolicyKit.conf"
 	@${ECHO} ""
 	@${ECHO} "<match action=\"org.freedesktop.hal.power-management.shutdown\">"
 	@${ECHO} "    <return result=\"yes\"/>"
@@ -109,4 +114,4 @@ post-install:
 	@${ECHO} "================================================================"
 
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
