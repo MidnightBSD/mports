@@ -66,7 +66,9 @@ sub main {
   } elsif ($path =~ m:^/search:) {
     search($p);
   } elsif ($path =~m:^/browse/(.*):) {
-    browse($p, $1)
+    browse($p, $1);
+  } elsif ($path =~m:^/compare/:) {
+    compare_runs($p);
   } else {
     die "Unknown path: $path\n";
   }
@@ -86,32 +88,48 @@ sub run_index {
 }
 
 sub compare_runs {
-  my ($p, $arch) = @_;
+  my ($p) = @_;
+
+  my $run_id1 = $p->param('run1');
+  my $run_id2 = $p->param('run2');
   
   my $tmpl = template($p, 'compare.tmpl');
 
   # XXX - this isn't quite right, will improve later.
-  my @runs = map {{
-    run => $_->id
-  }} Magus::Run->search(arch => $arch, { order_by => 'id DESC' });
+  my $run1 = Magus::Run->retrieve($run_id1);
+  my $run2 = Magus::Run->retrieve($run_id2);
   
-  
-  $tmpl->param(title => "Compare");
-  #$tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
-  
-  #my $dbh = Magus::Run->db_Main();  
-  
-  #my $sth = $dbh->prepare("SELECT COUNT(*) AS count,status FROM ports WHERE run=? GROUP BY status ORDER BY name");
-  #$sth->execute($run->id);
-  #my $status_stats = $sth->fetchall_arrayref({});
-  #$sth->finish;
+  $tmpl->param(title => "Magus :: Compare $run_id1 - $run_id2");
 
-  #push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
-  
-  #$tmpl->param(status_stats => $status_stats);
-      
+  my @ports1 = Magus::Port->search(run => $run_id1, {order_by => 'name'});
+  my @ports2 = Magus::Port->search(run => $run_id2, {order_by => 'name'});
+  my %results;
+ 
+  $run1->{ports} = @ports1;
+  $run2->{ports} = @ports2;
+
+  foreach my $p (@ports1) {
+    $results{$p->{name}} = { name => $p->{name}, version1 => $p->{version}, status1 => $p->{status}};
+  }
+
+  foreach my $p2 (@ports2) {
+    if ($results{$p2->{name}}) {
+      $results{$p2->{name}}->{version2} = $p2->{version};
+      $results{$p2->{name}}->{status2} = $p2->{status};
+    } else {
+      $results{$p2->{name}} = { name => $p2->{name}, version2 => $p2->{version}, status2 => $p2->{status}};
+    }
+  }
+
+  my @a;
+  foreach my $k (keys %results) {
+    push(@a, $results{$k});
+  }
+
   $tmpl->param(
-    runs       => \@runs,
+    run_id1    => $run_id1,
+    run_id2    => $run_id2,
+    ding    => \@a
   );
     
   print $p->header, $tmpl->output;
