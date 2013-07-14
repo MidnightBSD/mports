@@ -1,7 +1,8 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
+
 use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
@@ -69,6 +70,51 @@ sub main {
   } else {
     die "Unknown path: $path\n";
   }
+}
+
+sub run_index {
+  my ($p) = @_;
+  my $tmpl = template($p, 'runlist.tmpl');
+
+  my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
+
+  $tmpl->param(
+    runs       => \@runs,
+  );
+   
+  print $p->header, $tmpl->output;
+}
+
+sub compare_runs {
+  my ($p, $arch) = @_;
+  
+  my $tmpl = template($p, 'compare.tmpl');
+
+  # XXX - this isn't quite right, will improve later.
+  my @runs = map {{
+    run => $_->id
+  }} Magus::Run->search(arch => $arch, { order_by => 'id DESC' });
+  
+  
+  $tmpl->param(title => "Compare");
+  #$tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
+  
+  #my $dbh = Magus::Run->db_Main();  
+  
+  #my $sth = $dbh->prepare("SELECT COUNT(*) AS count,status FROM ports WHERE run=? GROUP BY status ORDER BY name");
+  #$sth->execute($run->id);
+  #my $status_stats = $sth->fetchall_arrayref({});
+  #$sth->finish;
+
+  #push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
+  
+  #$tmpl->param(status_stats => $status_stats);
+      
+  $tmpl->param(
+    runs       => \@runs,
+  );
+    
+  print $p->header, $tmpl->output;
 }
 
 sub summary_page {
