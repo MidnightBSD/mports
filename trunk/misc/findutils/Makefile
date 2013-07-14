@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/misc/findutils/Makefile,v 1.6 2013/02/18 02:31:22 laffer1 Exp $
+# $MidnightBSD: mports/misc/findutils/Makefile,v 1.7 2013/02/22 03:01:50 laffer1 Exp $
 
 PORTNAME=	findutils
 PORTVERSION=	4.5.11
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA}
 MASTER_SITE_SUBDIR=	findutils
@@ -12,14 +13,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU find utilities
 LICENSE=	gpl3
 
+USES+=		charsetfix
 SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
 USE_GMAKE=	yes
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=	--disable-nls
