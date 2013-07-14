@@ -1,16 +1,15 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.8 2011/12/15 00:57:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.9 2012/03/07 03:48:27 laffer1 Exp $
 
 PORTNAME=	libgphoto2
-PORTVERSION=	2.4.11
+PORTVERSION=	2.4.14
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A universal digital camera picture control tool
+COMMENT=	Universal digital camera picture control tool
 LICENSE=	lgpl
 
-LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb \
-		exif.12:${PORTSDIR}/graphics/libexif \
+LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_BZIP2=	yes
@@ -25,14 +24,18 @@ MAKE_JOBS_SAFE=	yes
 
 MAN3=		libgphoto2.3 libgphoto2_port.3
 
-.if defined(WITHOUT_NLS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+PLIST_SUB+=	NLS=""
+.else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
-USE_ICONV=	yes
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
+USES+=		iconv
 .endif
+
+CONFIGURE_ENV+=	LIBUSB_LIBS="-lusb" LIBUSB_CFLAGS="-I/usr/include"
 
 post-patch:
 .for file in configure libgphoto2_port/configure
@@ -41,11 +44,13 @@ post-patch:
 		 s|-g -O2||g ; \
 		 /grep -i linux/s|; fi ; then|; else false; fi ; then|' ${WRKSRC}/${file}
 .endfor
-.if !defined(WITHOUT_NLS)
+.if ${PORT_OPTIONS:MNLS}
 	@${REINPLACE_CMD} -e 's|(LDFLAGS) -o|(LDFLAGS) -lintl -o|' ${WRKSRC}/libgphoto2_port/libgphoto2_port/Makefile.in
 .endif
 	@${REINPLACE_CMD} -e '/test.*udevscriptdir/d ; s| "$$(DESTDIR)$$(udevscriptdir)"||' ${WRKSRC}/libgphoto2_port/usb/Makefile.in ${WRKSRC}/packaging/generic/Makefile.in
 	@${REINPLACE_CMD} -e 's|linux-hotplug ||' ${WRKSRC}/packaging/Makefile.in
 	@${REINPLACE_CMD} -e 's|@HAVE_DOXYGEN_TRUE@|#| ; s|@HAVE_DOXYGEN_FALSE@||' ${WRKSRC}/doc/Makefile.in
+	@${REINPLACE_CMD} -e '/Requires/d' ${WRKSRC}/libgphoto2_port/libgphoto2_port.pc.in
+	@${REINPLACE_CMD} 's|with_hal=yes|with_hal=no|' ${WRKSRC}/libgphoto2_port/configure
 
 .include <bsd.port.mk>
