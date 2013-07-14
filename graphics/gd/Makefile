@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.13 2012/03/11 01:23:37 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.14 2013/01/07 22:10:06 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
-PORTREVISION?=	8
+PORTREVISION?=	9
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	http://www.libgd.org/releases/ \
@@ -14,9 +14,9 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A graphics library for fast creation of images
 LICENSE=	agg
 
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png15.15:${PORTSDIR}/graphics/png \
-		freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
+		png15:${PORTSDIR}/graphics/png \
+		freetype:${PORTSDIR}/print/freetype2
 
 MAKE_ENV=	WRKSRC="${WRKSRC}" CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 MAKEFILE=	${FILESDIR}/Makefile.bsd
