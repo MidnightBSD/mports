@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xfce4-weather-plugin
-# Date created:		04 April 2004
-# Whom:			Filippo Natali <filippo@widestore.net>
-#
-# $MidnightBSD: mports/misc/xfce4-weather-plugin/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
-# $FreeBSD: ports/misc/xfce4-weather-plugin/Makefile,v 1.27 2008/06/06 13:45:39 edwin Exp $
-#
+# $MidnightBSD: mports/misc/xfce4-weather-plugin/Makefile,v 1.5 2013/07/14 15:58:26 laffer1 Exp $
 
 PORTNAME=	xfce4-weather-plugin
 PORTVERSION=	0.8.3
@@ -16,7 +10,9 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce 4 weather module for xfce4-panel
+
 LICENSE=	gpl2
+
 LIB_DEPENDS=	soup-2:${PORTSDIR}/devel/libsoup
 
 GNU_CONFIGURE=	yes
