@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.6 2012/03/06 00:18:02 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.7 2013/07/14 15:13:57 laffer1 Exp $
 
 PORTNAME=	xfce
 PORTVERSION=	4.10
@@ -11,6 +10,8 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the Xfce 4 desktop environment
+
+LICENSE=	agg
 
 OPTIONS_DEFINE=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER MIXER PRINT SQUEEZE GDM NOTIFY XPM
 OPTIONS_DEFAULT=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER SQUEEZE NOTIFY
