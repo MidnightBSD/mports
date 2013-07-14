@@ -1,24 +1,24 @@
-# $MidnightBSD: mports/audio/xfce4-mpc-plugin/Makefile,v 1.3 2011/02/09 13:38:27 laffer1 Exp $
-# $FreeBSD: ports/audio/xfce4-mpc-plugin/Makefile,v 1.11 2008/06/06 13:07:10 edwin Exp $
+# $MidnightBSD: mports/audio/xfce4-mpc-plugin/Makefile,v 1.4 2011/12/15 00:45:56 laffer1 Exp $
 
 PORTNAME=	xfce4-mpc-plugin
-PORTVERSION=	0.3.5
+PORTVERSION=	0.4.4
 CATEGORIES=	audio xfce
-MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/${PORTNAME}/0.3/
+MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
+DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A mpc plugin for xfce
+COMMENT=	MPC plugin for Xfce
+
 LICENSE=	other
-#openbsd/isc variant license it's not bsd2/3/4
 
-LIB_DEPENDS=	mpd.2:${PORTSDIR}/audio/libmpd
+LIB_DEPENDS=	mpd:${PORTSDIR}/audio/libmpd
 
+USES=		pkgconfig gettext
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	 gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui libutil panel
+USE_GNOME=	gtk20 intltool intlhack
+USE_XFCE=	configenv libexo libmenu panel
 
 .include <bsd.port.mk>
