@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/jags/Makefile,v 1.2 2010/10/19 20:14:31 laffer1 Exp $
 
 PORTNAME=	jags
 PORTVERSION=	0.22.1
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Jags/${PORTNAME}-${PORTVERSION}
 
@@ -11,7 +12,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	smbclient:${PORTSDIR}/${SAMBA_PORT}
 
-SAMBA_PORT?=	net/samba34
+SAMBA_PORT?=	net/samba36
 
 CONFLICTS=	jags-1.*
 
