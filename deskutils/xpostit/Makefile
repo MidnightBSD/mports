@@ -1,14 +1,8 @@
-# New ports collection makefile for:   xpostit
-# Date created:        3 Dec 2007
-# Whom:                laffer1
-#
-# $MidnightBSD: mports/deskutils/xpostit/Makefile,v 1.3 2008/03/23 19:53:25 laffer1 Exp $
-# $FreeBSD: ports/deskutils/xpostit/Makefile,v 1.15 2007/05/19 20:01:57 flz Exp $
-#
+# $MidnightBSD: mports/deskutils/xpostit/Makefile,v 1.4 2013/07/09 00:55:30 laffer1 Exp $
 
 PORTNAME=	xpostit
 PORTVERSION=	3.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	ftp://ftp.x.org/R5contrib/
 DISTNAME=	${PORTNAME}${PORTVERSION}
@@ -16,6 +10,7 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PostIt (R) messages onto your X11 screen
+
 LICENSE=	unknown
 
 USES=		imake
