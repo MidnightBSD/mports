@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.2 2011/05/14 03:37:27 laffer1 Exp $
+# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.3 2013/02/22 03:06:27 laffer1 Exp $
 
 PORTNAME=	patchutils
-PORTVERSION=	0.3.2
+PORTVERSION=	0.3.3
 CATEGORIES=	misc
 MASTER_SITES=	http://cyberelk.net/tim/data/patchutils/stable/
 
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small collection of programs that operate on patch files
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 
