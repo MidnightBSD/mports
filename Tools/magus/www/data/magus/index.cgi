@@ -125,11 +125,12 @@ sub compare_runs {
   foreach my $k (keys %results) {
     push(@a, $results{$k});
   }
+  my @sorted =  sort { $a->{name} cmp $b->{name} } @a;
 
   $tmpl->param(
     run_id1    => $run_id1,
     run_id2    => $run_id2,
-    ding    => \@a
+    ding    => \@sorted
   );
     
   print $p->header, $tmpl->output;
