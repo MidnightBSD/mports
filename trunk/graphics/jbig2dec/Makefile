@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/jbig2dec/Makefile,v 1.1 2012/09/08 21:04:03 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jbig2dec/Makefile,v 1.2 2013/03/02 22:15:34 laffer1 Exp $
 
 PORTNAME=	jbig2dec
 PORTVERSION=	0.11
+PORTREVISION=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	SF \
 		http://ghostscript.com/~giles/jbig2/jbig2dec/
@@ -9,6 +10,7 @@ DISTFILES+=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Decoder implementation of the JBIG2 image compression format
+
 LICENSE=	gpl3
 
 USE_XZ=		yes:src
@@ -16,23 +18,25 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 
-OPTIONS=	PNG "PNG" on \
-		TESTS "Download and use test-images for post-build testing" off
+OPTIONS_DEFINE=	PNG TESTS
+OPTIONS_DEFAULT=	PNG
+
+TESTS_DESC=	Download and use test-images for post-build testing
 
 MAN1=		jbig2dec.1
 
 MAKE_JOBS_SAFE=	yes
-EXTRACT_AFTER_ARGS+=|${TAR} -xpf - --exclude sha1.h --exclude 'getopt*'
+EXTRACT_AFTER_ARGS+=	--exclude sha1.h --exclude 'getopt*'
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_PNG)
+.if ${PORT_OPTIONS:MPNG}
 LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=--with-libpng=${LOCALBASE}
 CFLAGS+=	-I${LOCALBASE}/include/libpng15
 .endif
 
-.if !defined(WITHOUT_TESTS)
+.if ${PORT_OPTIONS:MTESTS}
 MASTER_SITES+=	http://jbig2dec.sourceforge.net/ubc/:tests
 DISTFILES+=	jb2streams.zip:tests
 EXTRACT_ONLY=	${DISTFILES:M*xz}
@@ -48,7 +52,7 @@ EXTRA_PATCHES=	${FILESDIR}/simpler-test-patch
 .endif
 
 post-patch:
-.if defined(WITH_PNG)
+.if ${PORT_OPTIONS:MPNG}
 	@${REINPLACE_CMD} 's/png_check_sig/png_sig_cmp/g' ${WRKSRC}/configure
 .endif
 	${REINPLACE_CMD} -E 's|SHA1_Final\( *([^,]+), *([^\)]+)\)|SHA1_Final(\2, \1)|' \

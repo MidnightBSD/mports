@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.13 2011/10/10 02:39:11 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.14 2013/01/17 14:56:58 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		http://sylvana.net/jpegcrop/:exif
@@ -24,6 +24,7 @@ USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 MAKE_JOBS_SAFE=	yes
+
 ADDITIONAL_HEADER=	jinclude.h jpegint.h
 
 # define J_MAXMEM like "make J_MAXMEM=32" to limit max processing memory to 32Mb
@@ -33,6 +34,8 @@ CONFIGURE_ARGS+=	--enable-maxmem=${J_MAXMEM}
 
 MAN1=		cjpeg.1 djpeg.1 jpegtran.1 rdjpgcom.1 wrjpgcom.1
 
+.include <bsd.mport.options.mk>
+
 post-extract:
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/jpegexiforient.c ${WRKSRC}/
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/exifautotran.txt ${WRKSRC}/exifautotran
@@ -40,8 +43,13 @@ post-extract:
 post-build:
 	@cd ${WRKSRC} && ${CC} ${CFLAGS} -o jpegexiforient jpegexiforient.c
 
+test: build
+	${SETENV} LD_LIBRARY_PATH=${WRKSRC}/.libs ${MAKE} -C ${WRKSRC} test
+
+regression-test:	test
+
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${PREFIX}/share/doc/jpeg
 	@${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/share/doc/jpeg/
 	@${INSTALL_DATA} ${WRKSRC}/*.txt ${PREFIX}/share/doc/jpeg/
