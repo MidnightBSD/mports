@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.9 2012/03/07 03:48:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.10 2013/07/14 23:37:42 laffer1 Exp $
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.4.14
@@ -9,8 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal digital camera picture control tool
 LICENSE=	lgpl
 
-LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	exif:${PORTSDIR}/graphics/libexif \
+		jpeg:${PORTSDIR}/graphics/jpeg
 
 USE_BZIP2=	yes
 USE_GNOME=	pkgconfig ltverhack
