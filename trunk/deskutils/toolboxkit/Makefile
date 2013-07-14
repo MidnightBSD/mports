@@ -2,13 +2,13 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/toolboxkit/Makefile,v 1.3 2008/08/20 19:56:06 crash Exp $
+# $MidnightBSD: mports/deskutils/toolboxkit/Makefile,v 1.4 2009/04/05 19:47:27 laffer1 Exp $
 # $FreeBSD: ports/deskutils/toolboxkit/Makefile,v 1.4 2007/02/25 06:48:26 dinoex Exp $
 #
 
 PORTNAME=	toolbox
 PORTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://ftp.azc.uam.mx/mirrors/gnu/savannah/files/toolbox/Release.pkg/0.8/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -21,7 +21,6 @@ COMMENT=	Toolbox bundle for GNUstep
 LICENSE=        gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
