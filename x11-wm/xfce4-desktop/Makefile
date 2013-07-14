@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xfdesktop
-# Date created:		7 June 2003
-# Whom:			James Earl <jdearl@telus.net>
-#
-# $MidnightBSD: mports/x11-wm/xfce4-desktop/Makefile,v 1.5 2011/12/15 00:57:58 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/xfce4-desktop/Makefile,v 1.46 2008/06/06 14:17:20 edwin Exp $
-#
+# $MidnightBSD: mports/x11-wm/xfce4-desktop/Makefile,v 1.6 2012/03/06 00:18:02 laffer1 Exp $
 
 PORTNAME=	xfce4-desktop
-PORTVERSION=	4.8.3
+PORTVERSION=	4.10.2
+PORTREVISION=	2
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/xfdesktop/${PORTVERSION:R}
@@ -15,42 +10,43 @@ DISTNAME=	xfdesktop-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	XFce 4 desktop background manager and root menu
+COMMENT=	Xfce's desktop manager
+
 LICENSE=	gpl2
 
-DOCSDIR=	${PREFIX}/share/doc/xfdesktop
-
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		wnck-1.22:${PORTSDIR}/x11-toolkits/libwnck \
-		notify.4:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
+		wnck-1:${PORTSDIR}/x11-toolkits/libwnck \
+		notify:${PORTSDIR}/devel/libnotify
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 gnomehack gtk20 intltool intlhack pkgconfig \
-		desktopfileutils
-USE_XFCE=	configenv garcon libmenu libutil xfconf
+USE_GNOME=	glib20 gtk20 intltool intlhack desktopfileutils
+USE_XFCE=	configenv garcon libmenu libutil libexo xfconf
+USES=	pathfix pkgconfig
+USE_XORG=	x11 sm
 
-CONFIGURE_ARGS+=	--enable-gio-unix \
-		--enable-notifications
+CONFIGURE_ARGS+=--enable-gio-unix \
+	--enable-notifications
 
-OPTIONS=	THUNAR	"Enable thunar support"		on \
-		NLS "Enable Native Language Support" on
+OPTIONS_DEFINE=		THUNAR NLS
+OPTIONS_DEFAULT=	THUNAR NLS
+THUNAR_DESC=	Enable thunar support
 
 MAN1=		xfdesktop.1
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_THUNAR)
-CONFIGURE_ARGS+=--enable-thunarx --enable-exo
-USE_XFCE+=	libexo thunar
+.if ${PORT_OPTIONS:MTHUNAR}
+CONFIGURE_ARGS+=--enable-thunarx --with-file-manager-fallback=Thunar
+USE_XFCE+=	thunar
 .else
-CONFIGURE_ARGS+=--disable-thunarx --disable-exo
+CONFIGURE_ARGS+=--disable-thunarx --without-file-manager-fallback
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 CONFIGURE_ARGS+=--enable-nls
 PLIST_SUB+=	NLS=""
 .else
@@ -58,4 +54,9 @@ CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-.include <bsd.port.post.mk>
+post-patch:
+.if !${PORT_OPTIONS:MNLS}
+	@${REINPLACE_CMD} -e 's|po ||' ${WRKSRC}/Makefile.in
+.endif
+
+.include <bsd.port.mk>

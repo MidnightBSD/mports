@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.11 2013/06/17 02:36:47 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.12 2013/06/21 01:46:25 laffer1 Exp $
 
 PORTNAME=	openbox
 PORTVERSION=	3.5.0
@@ -8,6 +8,7 @@ MASTER_SITES=	http://openbox.org/dist/openbox/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, fast, standards compliant, extensible window manager
+
 LICENSE=        gpl2
 
 GNU_CONFIGURE=	yes

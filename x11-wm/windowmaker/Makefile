@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.22 2012/09/09 01:35:46 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.23 2013/01/15 02:18:47 laffer1 Exp $
 
 PORTNAME?=	windowmaker
-PORTVERSION=	0.95.3
+PORTVERSION=	0.95.4
 PORTREVISION?=	0
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	http://windowmaker.org/pub/%SUBDIR%/
@@ -10,6 +10,7 @@ DISTNAME=	WindowMaker-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep-compliant NeXTstep window manager clone
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gif:${PORTSDIR}/graphics/giflib \
@@ -24,11 +25,10 @@ USE_PERL5=	yes
 
 MAKE_JOBS_SAFE=	yes
 
+USES=		pathfix pkgconfig
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack
 USE_XORG=	xft xinerama xmu xpm xrandr
 USE_GETTEXT=	yes
-USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

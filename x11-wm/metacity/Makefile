@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.9 2011/05/28 06:22:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.10 2013/06/17 02:37:19 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 
 PORTNAME=	metacity
@@ -19,7 +19,7 @@ RUN_DEPENDS=	zenity:${PORTSDIR}/x11/zenity
 
 USE_BZIP2=	yes
 USE_XORG=	x11 xcomposite xdamage
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomeprefix intlhack gnomehack gconf2 ltverhack gtk20
