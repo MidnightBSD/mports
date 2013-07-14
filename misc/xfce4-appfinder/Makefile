@@ -1,27 +1,37 @@
-# New ports collection makefile for:	xfce4-appfinder
-# Date created:				12 October 2004
-# Whom:					Oliver Lehmann <oliver@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/xfce4-appfinder/Makefile,v 1.3 2011/02/09 13:30:38 laffer1 Exp $
-# $FreeBSD: ports/misc/xfce4-appfinder/Makefile,v 1.17 2008/06/06 13:45:39 edwin Exp $
-#
+# $MidnightBSD: mports/misc/xfce4-appfinder/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
 
 PORTNAME=	xfce4-appfinder
-PORTVERSION=	${XFCE_VERSION}
+PORTVERSION=	4.10.1
 CATEGORIES=	misc xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find application in the system supporting Desktop entry format
+
 LICENSE=	gpl2
 
+LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
+
 GNU_CONFIGURE=	yes
-INSTALLS_ICONS= yes
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		pathfix pkgconfig
 USE_GMAKE=	yes
-USE_GNOME=	 gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui libmenu libutil thunar xfconf
+USE_GNOME=	gtk20 glib20 intltool intlhack
+USE_XFCE=	configenv garcon libmenu libutil xfconf
+
+OPTIONS_DEFINE=	NLS
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=	gettext
+CONFIGURE_ARGS+=--enable-nls
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
 
 .include <bsd.port.mk>
