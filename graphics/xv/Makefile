@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.9 2012/09/09 04:25:11 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.10 2013/05/10 02:21:55 laffer1 Exp $
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
@@ -15,7 +15,7 @@ PATCH_SITES=	http://www.gregroelofs.com/code/
 PATCHFILES=	xv-3.10a-enhancements.20070520-20081216.diff
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	An X11 program that displays images of various formats
+COMMENT?=	X11 program that displays images of various formats
 LICENSE=	restricted
 # non commericial use only
 
