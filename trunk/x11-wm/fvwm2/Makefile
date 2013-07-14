@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.3 2009/08/15 19:09:41 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.4 2009/08/15 19:10:25 laffer1 Exp $
 
 PORTNAME=	fvwm
-PORTVERSION=	2.4.20
+PORTVERSION=	2.6.5
 CATEGORIES=	x11-wm
 MASTER_SITES=	ftp://ftp.fvwm.org/pub/fvwm/version-2/ \
 		http://www.fvwm.org/generated/icon_download/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} fvwm_icons-20070101.tar.gz
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,79 +15,144 @@ LICENSE=	agg
 
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-.if defined(WITH_STROKE)
-LIB_DEPENDS+=	stroke.0:${PORTSDIR}/devel/libstroke
-.endif
-
 # Other ports this port cannot coexist with
-CONFLICTS?=	fvwm-1.* fvwm-2.5.*
-# Other ports reference this port's Makefile
-.if defined(PKGNAMESUFFIX)
-LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-imlib
-.else
-LATEST_LINK=	${PORTNAME}2
-PKGNAMESUFFIX=	-imlib
-.endif
+CONFLICTS?=	fvwm-1.* fvwm-2.[457].*
+NO_LATEST_LINK=	yes
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	X_CFLAGS=-I${LOCALBASE}/include
+CONFIGURE_ARGS= --mandir=${MANPREFIX}/man
+USE_AUTOTOOLS=	autoconf
 USE_GMAKE=	yes
-USE_XORG=	xpm
+USE_XORG=	xpm xft
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	ICONS ICONV STROKE RPLAY SESSION_MGMT PNG SVG BIDI NLS IMLIB GNOME1
+OPTIONS_DEFAULT=	ICONV ICONV PNG
+STROKE_DESC=		support for mouse gestures
+RPLAY_DESC=		RPlay support in FvwmEvent
+SESSION_MGMT_DESC=	Session Management support
+BIDI_DESC=		Asian bi-directional text support
+IMLIB_DESC=		imlib library (requires gtk12)
+GNOME1_DESC=		GNOME 1 desktop support
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--mandir=${PREFIX}/man
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_STROKE)
-CONFIGURE_ARGS+=	--with-stroke --with-stroke-library=${LOCALBASE}/lib \
-			--with-stroke-includes=${LOCALBASE}/include
+.if ${PORT_OPTIONS:MICONS}
+FVWM_ICONS=	fvwm_icons-20070101
+DISTFILES+=	${FVWM_ICONS}.tar.bz2
 .endif
 
-.if defined(WITHOUT_SESSION_MGMT)
+.if ! ${PORT_OPTIONS:MICONV}
+CONFIGURE_ARGS+=	--disable-iconv
+.else
+USES+=			iconv
+CONFIGURE_ARGS+=	--with-iconv-library=${LOCALBASE}/lib \
+			--with-iconv-includes=${LOCALBASE}/include
+.endif
+
+.if ${PORT_OPTIONS:MSTROKE}
+LIB_DEPENDS+=	stroke.0:${PORTSDIR}/devel/libstroke
+CONFIGURE_ARGS+=	--with-stroke-library=${LOCALBASE}/lib \
+			--with-stroke-includes=${LOCALBASE}/include
+.else
+CONFIGURE_ARGS+=	--without-stroke-library
+.endif
+
+.if ${PORT_OPTIONS:MRPLAY}
+LIB_DEPENDS+=	rplay.1:${PORTSDIR}/audio/rplay
+CONFIGURE_ARGS+=	--with-rplay-library=${LOCALBASE}/lib \
+			--with-rplay-includes=${LOCALBASE}/include
+.else
+CONFIGURE_ARGS+=	--without-rplay-library
+.endif
+
+.if ! ${PORT_OPTIONS:MSESSION_MGMT}
 CONFIGURE_ARGS+=	--disable-sm
 .endif
 
-.if defined(WITHOUT_SHAPE)
-CONFIGURE_ARGS+=	--disable-shape
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+CONFIGURE_ARGS+=	--with-png-includes=${LOCALBASE}/include \
+			--with-png-library=${LOCALBASE}/lib
+.else
+CONFIGURE_ARGS+=	--without-png-library
 .endif
 
-.if defined(WITH_MULTIBYTE)
-CONFIGURE_ARGS+=	--enable-multibyte
+.if ${PORT_OPTIONS:MSVG}
+USE_GNOME+=	librsvg2
+.else
+CONFIGURE_ARGS+=	--disable-rsvg
+.endif
+
+.if ${PORT_OPTIONS:MBIDI}
+LIB_DEPENDS+=	fribidi.3:${PORTSDIR}/converters/fribidi
+CONFIGURE_ARGS+=	--enable-bidi \
+			--with-bidi-bindir=${LOCALBASE}/bin
+.else
+CONFIGURE_ARGS+=	--disable-bidi
 .endif
 
 PLIST_SUB+=	FVWM_VERSION="${PORTVERSION}"
 
-MAN1=	FvwmAnimate.1 FvwmAuto.1 FvwmBacker.1 FvwmBanner.1 FvwmButtons.1 \
+.if ${PORT_OPTIONS:MIMLIB} && !defined(WITHOUT_GTK)
+USE_GNOME+=	imlib
+CONFIGURE_ARGS+=	--enable-gtktest --enable-imlibtest
+PLIST_SUB+=	GTK=""
+MAN1+=		FvwmGtk.1
+.else
+CONFIGURE_ARGS+=	--disable-gtktest --disable-imlibtest \
+			--with-gtk-prefix=/no/dir --with-imlib-prefix=/no/dir
+PLIST_SUB+=	GTK="@comment not installed: "
+WITHOUT_GNOME=	true
+.endif
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+CONFIGURE_ARGS+=	--with-intl-library=${LOCALBASE}/lib \
+			--with-intl-includes=${LOCALBASE}/include
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment not installed: "
+.endif
+
+.if ${PORT_OPTIONS:MGNOME1}
+USE_GNOME+=gnomelibs
+CONFIGURE_ARGS+=	--with-gnome
+.else
+CONFIGURE_ARGS+=	--without-gnome
+.endif
+
+MAN1+=	FvwmAnimate.1 FvwmAuto.1 FvwmBacker.1 FvwmBanner.1 FvwmButtons.1 \
 	FvwmCommand.1 FvwmConsole.1 FvwmConsoleC.pl.1 FvwmCpp.1 FvwmDebug.1 \
 	FvwmDragWell.1 FvwmEvent.1 FvwmForm.1 FvwmIconBox.1 \
 	FvwmIconMan.1 FvwmIdent.1 FvwmM4.1 FvwmPager.1 FvwmRearrange.1 \
 	FvwmSave.1 FvwmSaveDesk.1 FvwmScript.1 FvwmScroll.1 FvwmTaskBar.1 \
 	FvwmTheme.1 FvwmWharf.1 FvwmWinList.1 fvwm-menu-desktop.1 \
 	fvwm-menu-directory.1 fvwm-menu-headlines.1 fvwm-menu-xlock.1 \
-	fvwm2.1 fvwm24_convert.1 fvwmbug.1 fvwmrc_convert.1 xpmroot.1 \
-	fvwm-config.1
+	fvwm.1 fvwm-root.1 fvwm-config.1 fvwm-bug.1 \
+	fvwm-convert-2.4.1 fvwm-convert-2.6.1 \
+	FvwmPerl.1 fvwm-perllib.1 FvwmProxy.1 FvwmTabs.1 FvwmWindowMenu.1 \
+	FvwmGtkDebug.1
 
-.if ${HAVE_GNOME:Mimlib}!=""
-USE_GNOME=	imlib
-CONFIGURE_ARGS+=	--with-gnome --enable-gnome-hints \
-			--enable-gtktest --enable-imlibtest
-PLIST_SUB+=	GTK=""
-MAN1+=	FvwmGtk.1
-.else
-CONFIGURE_ARGS+=	--without-gnome --disable-gnome-hints \
-			--disable-gtktest --disable-imlibtest \
-			--with-gtk-prefix=/no/dir --with-imlib-prefix=/no/dir
-PLIST_SUB+=	GTK="@comment not installed: "
-.endif
+MLINKS=	fvwm.1 fvwm2.1 \
+	fvwm-root.1 xpmroot.1
 
+.if ${PORT_OPTIONS:MICONS}
+PLIST_SUB+=	ICONS=""
 post-extract:
 	@${MKDIR} ${WRKDIR}/icons
-	@${TAR} -xzf ${DISTDIR}/fvwm_icons-20070101.tar.gz -C ${WRKDIR}/icons
+	@${TAR} -xzf ${DISTDIR}/${FVWM_ICONS}.tar.bz2 -C ${WRKDIR}/icons
+.else
+PLIST_SUB+=	ICONS="@comment not installed: "
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' \
-		${WRKSRC}/modules/FvwmM4/FvwmM4.c
+		${WRKSRC}/modules/FvwmM4/FvwmM4.c \
+		${WRKSRC}/configure
 
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/sample.fvwmrc/system.fvwm2rc \
@@ -96,8 +161,11 @@ post-install:
 		${INSTALL_DATA} ${WRKSRC}/sample.fvwmrc/system.fvwm2rc \
 			${PREFIX}/etc/system.fvwm2rc; \
 	fi
-	@${MKDIR} ${PREFIX}/share/fvwm2/pixmaps
-	${INSTALL_DATA} ${WRKDIR}/icons/fvwm_icons-20070101/*.xpm \
-		${PREFIX}/share/fvwm2/pixmaps
 
-.include <bsd.port.post.mk>
+.if ${PORT_OPTIONS:MICONS}
+	@${MKDIR} ${PREFIX}/share/fvwm/pixmaps
+	${INSTALL_DATA} ${WRKDIR}/icons/${FVWM_ICONS}/*.xpm \
+		${PREFIX}/share/fvwm/pixmaps
+.endif
+
+.include <bsd.port.mk>
