@@ -1,33 +1,29 @@
-# New ports collection makefile for:	notification-daemon
-# Date created:				2005-08-06
-# Whom:					Andreas Kohn <andreas@syndrom23.de>
-#
-# $MidnightBSD: mports/deskutils/notification-daemon/Makefile,v 1.4 2008/06/19 22:48:09 laffer1 Exp $
-# $FreeBSD: ports/deskutils/notification-daemon/Makefile,v 1.22 2007/05/19 20:01:48 flz Exp $
-#
+# $MidnightBSD: mports/deskutils/notification-daemon/Makefile,v 1.5 2011/12/15 00:47:48 laffer1 Exp $
 
 PORTNAME=	notification-daemon
-PORTVERSION=	0.3.7
-PORTREVISION=	2
-MASTER_SITES=	http://www.galago-project.org/files/releases/source/notification-daemon/
+PORTVERSION=	0.7.2
 CATEGORIES=	deskutils gnome
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MindightBSD.org
 COMMENT=	Send small notifications to your desktop
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		sexy:${PORTSDIR}/x11-toolkits/libsexy
+LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus \
+		canberra-gtk3.0:${PORTSDIR}/audio/libcanberra-gtk3
 
-USE_GNOME=	gnomehack gnomeprefix  intlhack gconf2 libwnck
+USE_BZIP2=	yes
+USE_GNOME=	gnomehack gnomeprefix intlhack gtk30
 USE_GMAKE=	yes
-USE_XORG=	x11 xt sm ice xext
-USE_GETTEXT=	yes
+USES=		gettext
+USE_XORG=	x11
+INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-dbus-services=${PREFIX}/share/dbus-1/services
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-GCONF_SCHEMAS=	notification-daemon.schemas
+CONFLICTS=	xfce4-notification-daemon-[0-9]* xfce4-notifyd-[0-9]*
 
 .include <bsd.port.mk>
