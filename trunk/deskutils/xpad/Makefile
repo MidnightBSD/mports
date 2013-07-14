@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/deskutils/xpad/Makefile,v 1.4 2009/12/31 23:45:34 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/xpad/Makefile,v 1.5 2013/07/09 00:57:30 laffer1 Exp $
 
 PORTNAME=	xpad
 PORTVERSION=	3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	http://launchpad.net/xpad/stable/${PORTVERSION}/+download/
 
 MAINTAINER=	jgh@FreeBSD.org
 COMMENT=	Virtual note-pad system for your X11 desktop
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 OPTIONS_DEFINE=	NLS
 
