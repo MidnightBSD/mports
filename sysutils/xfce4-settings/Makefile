@@ -1,57 +1,53 @@
-# New ports collection makefile for:	libxfce4util
-# Date created:		7 June 2003
-# Whom:			James Earl <jdearl@telus.net>
-#
-# $FreeBSD: ports/sysutils/xfce4-settings/Makefile,v 1.11 2010/05/31 15:34:47 oliver Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	xfce4-settings
-PORTVERSION=	4.6.5
+PORTVERSION=	4.10.1
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	XFce 4 essential utilities and scripts
+COMMENT=	Xfce 4 settings application
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	wnck-1.22:${PORTSDIR}/x11-toolkits/libwnck \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
 
-OPTIONS=	XKLAVIER	"Keyboard layout settings"		off \
-		XCURSOR		"Enable cursor themes support"		on \
-		XRANDR		"Enable Xrandr support"			on \
-		NOTIFY		"Enable notification support"		on \
-		NLS		"Enable Native Language Support"	on
-
-CONFIGURE_ARGS=	--disable-sound-settings --disable-debug
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	 glib20 gtk20 desktopfileutils intltool intlhack \
-		libglade2 pkgconfig
-USE_XFCE=	configenv libexo libgui libutil xfconf
-USE_XORG=	x11 xi
+USE_GNOME=	glib20 gtk20 intltool intlhack
+USE_XFCE=	configenv garcon libexo libmenu libutil xfconf
+USE_XORG=	inputproto x11 xi
+USES=		pathfix pkgconfig
 
-.include <bsd.port.pre.mk>
+CONFIGURE_ARGS=	--enable-pluggable-dialogs \
+		--enable-gio-unix
 
-.if defined(WITH_XKLAVIER)
-LIB_DEPENDS+=	xklavier.12:${PORTSDIR}/x11/libxklavier
+OPTIONS_DEFINE=		XKLAVIER XCURSOR XRANDR NOTIFY NLS SOUND
+OPTIONS_DEFAULT=	XKLAVIER XCURSOR XRANDR NOTIFY NLS
+SOUND_DESC=		Enable sound control
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MXKLAVIER}
+LIB_DEPENDS+=	xklavier:${PORTSDIR}/x11/libxklavier
 CONFIGURE_ARGS+=--enable-libxklavier
 .else
 CONFIGURE_ARGS+=--disable-libxklavier
 .endif
 
-.if defined(WITH_XCURSOR)
+.if ${PORT_OPTIONS:MXCURSOR}
 USE_XORG+=	xcursor
 CONFIGURE_ARGS+=--enable-xcursor
 .else
 CONFIGURE_ARGS+=--disable-xcursor
 .endif
 
-.if defined(WITH_XRANDR)
+.if ${PORT_OPTIONS:MXRANDR}
 USE_XORG+=	xrandr
 CONFIGURE_ARGS+=--enable-xrandr
 PLIST_SUB+=	XRANDR=""
@@ -60,15 +56,15 @@ CONFIGURE_ARGS+=--disable-xrandr
 PLIST_SUB+=	XRANDR="@comment "
 .endif
 
-.if defined(WITH_NOTIFY)
-LIB_DEPENDS+=	notify.1:${PORTSDIR}/devel/libnotify
+.if ${PORT_OPTIONS:MNOTIFY}
+LIB_DEPENDS+=	notify:${PORTSDIR}/devel/libnotify
 CONFIGURE_ARGS+=--enable-libnotify
 .else
 CONFIGURE_ARGS+=--disable-libnotify
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 CONFIGURE_ARGS+=--enable-nls
 PLIST_SUB+=	NLS=""
 .else
@@ -76,13 +72,22 @@ CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MSOUND}
+LIB_DEPENDS+=	canberra:${PORTSDIR}/audio/libcanberra
+CONFIGURE_ARGS+=--enable-sound-settings
+.else
+CONFIGURE_ARGS+=--disable-sound-settings
+.endif
+
 post-patch:
 	# until xfce4-icon-theme is back we rely on Tango
 	@${REINPLACE_CMD} -e 's|Rodent|Tango|g' \
-		${WRKSRC}/dialogs/appearance-settings/main.c \
+		${WRKSRC}/dialogs/appearance-settings/main.c
+	@${REINPLACE_CMD} -e 's|IconThemeName" type="empty|IconThemeName" type="string" value="Tango|; \
+		s|"ThemeName" type="empty|"ThemeName" type="string" value="Xfce|' \
 		${WRKSRC}/xfsettingsd/xsettings.xml
 	@${REINPLACE_CMD} -e 's|xkl_config_registry_load (settings->priv->xkl_registry)|xkl_config_registry_load (settings->priv->xkl_registry, FALSE)|g; \
 		s|xkl_engine_stop_listen (settings->priv->xkl_engine)|xkl_engine_stop_listen (settings->priv->xkl_engine, FALSE)|g' \
 		${WRKSRC}/dialogs/keyboard-settings/xfce-keyboard-settings.c
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
