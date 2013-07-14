@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.7 2013/07/14 15:13:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.8 2013/07/14 16:41:55 laffer1 Exp $
 
 PORTNAME=	xfce
 PORTVERSION=	4.10
@@ -43,6 +43,9 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/gdm:${PORTSDIR}/x11/gdm
 PLIST_FILES=	etc/gdm/Sessions/XFce4 \
 		etc/dm/Sessions/XFce4.desktop
 PLIST_DIRS=	etc/gdm/Sessions
+PLIST_SUB+=	GDM=""
+.else
+PLIST_SUB+=	GDM="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MICONS}
@@ -89,12 +92,10 @@ do-install:	# empty
 
 post-install:
 .if ${PORT_OPTIONS:MGDM}
-	@${TEST} -d ${PREFIX}/etc/gdm/Sessions || \
-		${MKDIR} -p ${PREFIX}/etc/gdm/Sessions
+	${MKDIR} -p ${PREFIX}/etc/gdm/Sessions
 	@${INSTALL_SCRIPT} ${FILESDIR}/XFce4 ${PREFIX}/etc/gdm/Sessions
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}|' ${FILESDIR}/XFce4.desktop > ${PREFIX}/etc/dm/Sessions/XFce4.desktop
 .endif
-	@${ECHO} "================================================================"
 	@${ECHO}
 	@${ECHO} "If you want to allow users to restart or shutdown the system,"
 	@${ECHO} "do not forget to add the following lines between the <config>"
@@ -111,8 +112,6 @@ post-install:
 	@${ECHO}
 	@${ECHO} "Make also sure, hald_enable, dbus_enable"
 	@${ECHO} "is set to YES in your /etc/rc.conf"
-	@${ECHO}
-	@${ECHO} "================================================================"
 
 
 .include <bsd.port.mk>
