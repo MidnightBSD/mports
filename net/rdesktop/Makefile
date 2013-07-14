@@ -1,20 +1,15 @@
-# New ports collection makefile for:  rdesktop
-# Date created:               13 December 2000
-# Whom:                       mwest@uct.ac.za
-#
-# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.5 2008/09/17 21:17:38 laffer1 Exp $
-# $FreeBSD: ports/net/rdesktop/Makefile,v 1.41 2007/06/19 08:55:10 pav Exp $
-#
+# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.6 2011/01/08 22:34:13 laffer1 Exp $
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.6.0
-PORTREVISION?=	1
+PORTVERSION=	1.7.1
+PORTREVISION?=	0
 CATEGORIES=	net comms ipv6
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDP client for Windows NT/2000/2003 Terminal Server
-LICENSE=	gpl2
+
+LICENSE=	gpl3
 
 USE_XORG=	x11
 USE_GMAKE=	yes
