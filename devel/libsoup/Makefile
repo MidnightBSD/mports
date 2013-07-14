@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.20 2012/02/11 00:25:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.21 2013/07/14 20:24:51 laffer1 Exp $
 
 PORTNAME=	libsoup
 PORTVERSION=	2.40.3
@@ -56,7 +56,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.la ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
-	cd ${WRKSRC}/libsoup && ${GMAKE} install-libsoupgnomeincludeHEADERS
+	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} install-libsoupgnomeincludeHEADERS
 .endif
 
 post-install:
