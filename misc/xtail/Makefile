@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/misc/xtail/Makefile,v 1.2 2009/06/27 22:13:23 laffer1 Exp $
+# $MidnightBSD: mports/misc/xtail/Makefile,v 1.3 2011/05/14 03:39:58 laffer1 Exp $
 
 PORTNAME=	xtail
 PORTVERSION=	2.1
 CATEGORIES=	misc
-MASTER_SITES=	http://utenti.gufi.org/~gmarco/files/distfiles/
+MASTER_SITES=	http://www.unicom.com/sw/xtail/ \
+		http://utenti.gufi.org/~gmarco/files/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Watches the growth of files or directories
