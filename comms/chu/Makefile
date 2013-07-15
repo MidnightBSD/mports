@@ -2,7 +2,7 @@
 # Date created:				September 16 2006
 # Whom:					Diane Bruce <db@db.net>
 #
-# $MidnightBSD: mports/comms/chu/Makefile,v 1.1 2008/08/17 21:45:15 laffer1 Exp $
+# $MidnightBSD: mports/comms/chu/Makefile,v 1.2 2008/08/23 20:48:52 laffer1 Exp $
 # $FreeBSD: ports/comms/chu/Makefile,v 1.2 2007/01/19 18:14:16 db Exp $
 #
 
@@ -24,7 +24,7 @@ do-extract:
 	@${MKDIR} ${WRKDIR}
 	@${MKDIR} ${WRKSRC}
 	@for f in ${EXTRACT_ONLY}; do  \
-		if ! (cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS});\
+		if ! (cd ${WRKSRC} && ${GZIP_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS});\
 		then \
 			exit 1; \
 		fi \
