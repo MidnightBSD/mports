@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.5 2010/12/31 03:51:59 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.6 2012/03/10 06:10:53 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gconf-editor/Makefile,v 1.42 2007/08/27 17:33:13 marcus Exp $
 
 PORTNAME=	gconf-editor
 PORTVERSION=	2.32.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
@@ -13,7 +14,7 @@ COMMENT=	A gconf database editor for the GNOME 2 environment
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
