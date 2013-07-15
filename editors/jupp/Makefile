@@ -1,12 +1,7 @@
-# New ports collection makefile for:	jupp
-# Date created:		May 20 2008
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/editors/jupp/Makefile,v 1.10 2013/01/02 05:21:24 laffer1 Exp $
-#
+# $MidnightBSD: mports/editors/jupp/Makefile,v 1.11 2013/02/21 01:34:20 laffer1 Exp $
 
 PORTNAME=	jupp
-PORTVERSION=	3.1.23
+PORTVERSION=	3.1.24
 CATEGORIES=	editors
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/jupp/ \
 		http://pub.allbsd.org/MirOS/dist/jupp/
@@ -15,23 +10,19 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The editor which sucks less.
+
 LICENSE=	gpl
 
-BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
-RUN_DEPENDS=	${BUILD_DEPENDS}
+CONFLICTS=	joe-[23]*
 
-CONFLICTS=      joe-[0-9]*
-
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-termidx
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_ICONV=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -liconv"
-
 MAN1=		joe.1
+MLINKS=		joe.1 jmacs.1 - jpico.1 - jstar.1 - jupp.1 - rjoe.1
 
-post-extract:
-	${CHMOD} 755 ${WRKSRC}/configure
+pre-configure:
+	@${CHMOD} +x ${WRKSRC}/configure
 
 .include <bsd.port.mk>
