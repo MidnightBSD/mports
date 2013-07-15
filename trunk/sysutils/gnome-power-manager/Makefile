@@ -1,43 +1,38 @@
-# New ports collection makefile for:	gnome-power-manager
-# Date created:				03 May 2006
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/gnome-power-manager/Makefile,v 1.3 2010/12/31 03:57:51 laffer1 Exp $
-# $FreeBSD: ports/sysutils/gnome-power-manager/Makefile,v 1.17 2008/04/19 17:53:39 miwi Exp $
-#   $MCom: ports/sysutils/gnome-power-manager/Makefile,v 1.40 2008/03/10 22:50:08 ahze Exp $
-#
+# $MidnightBSD: mports/sysutils/gnome-power-manager/Makefile,v 1.4 2011/02/02 21:22:47 laffer1 Exp $
 
 PORTNAME=	gnome-power-manager
-PORTVERSION=	2.30.1
-PORTREVISION=	1
+PORTVERSION=	2.32.0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Power management system for the GNOME Desktop
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	hal.1:${PORTSDIR}/sysutils/hal \
-		devkit-power-gobject.1:${PORTSDIR}/sysutils/upower \
+LIB_DEPENDS=	upower-glib.1:${PORTSDIR}/sysutils/upower \
 		canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		notify.1:${PORTSDIR}/devel/libnotify \
+		notify.4:${PORTSDIR}/devel/libnotify \
 		execinfo:${PORTSDIR}/devel/libexecinfo \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
+RUN_DEPENDS=	pkexec:${PORTSDIR}/sysutils/polkit
 
-USE_GETTEXT=	yes
+CONFLICTS=	gnome-power-manager-3.[0-9]*
+
+USES=		gettext
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui libwnck \
+USE_GNOME=	gnomeprefix gnomehack intlhack libwnck \
 		gnomedocutils gnomepanel
 CONFIGURE_ARGS=	--with-doc-dir=${PREFIX}/share/doc \
 		--disable-docbook-docs \
 		--enable-hal
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	gnome-power-manager.schemas
 
