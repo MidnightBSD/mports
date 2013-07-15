@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.18 2012/03/11 01:33:22 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.19 2013/05/06 03:56:50 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.7.4-4
@@ -92,7 +92,7 @@ _IMAGEMAGICK_THREADS_IGNORE_MSG=. Define WITH_THREADS
 .if defined(WITH_IMAGEMAGICK_PERL)
 CONFIGURE_ARGS+=	--with-perl=${PERL5}
 PLIST_SUB+=		WITH_PERL=''
-MAN3=			Image::Magick.3
+#MAN3=			Image::Magick.3
 MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
 # PerlMagick not works with threads, if perl is not threaded, and vice versa
 . if defined(PERL_THREADED)
