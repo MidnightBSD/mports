@@ -1,20 +1,15 @@
-# New ports collection makefile for:	gnomecontrolcenter2
-# Date created:				04 May 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/gnome-control-center/Makefile,v 1.4 2010/12/31 03:53:55 laffer1 Exp $
-# $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.106 2008/04/23 09:11:52 pav Exp $
-#   $MCom: ports/sysutils/gnome-control-center/Makefile,v 1.172 2008/03/10 21:50:24 mezz Exp $
-#
+# $MidnightBSD: mports/sysutils/gnome-control-center/Makefile,v 1.5 2012/03/06 01:08:28 laffer1 Exp $
 
 PORTNAME=	gnome-control-center
 PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Control center for GNOME 2 project
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
@@ -26,7 +21,7 @@ RUN_DEPENDS=	gnome-eject:${PORTSDIR}/sysutils/gnome-mount \
 		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GSTREAMER=	good
@@ -38,8 +33,8 @@ GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	control-center.schemas fontilus.schemas \
 		gnome-control-center.schemas
