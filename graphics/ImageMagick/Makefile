@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.19 2013/05/06 03:56:50 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.20 2013/07/15 02:30:46 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.7.4-4
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		http://image_magick.veidrodis.com/image_magick/ \
@@ -266,7 +267,7 @@ CONFIGURE_ARGS+=	--without-gvc
 
 # LZMA support
 .if !defined(WITHOUT_IMAGEMAGICK_LZMA)
-. if (${OSVERSION} >= 900000 && ${OSVERSION} < 900012) || (${OSVERSION} < 800505)
+. if (${OSVERSION} < 4000)
 LIB_DEPENDS+=		lzma:${PORTSDIR}/archivers/xz
 . endif
 .else
