@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.36 2012/02/16 19:46:12 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.37 2012/03/04 19:01:54 laffer1 Exp $
 
 COMMENT = Editors
 
@@ -15,7 +15,6 @@ SUBDIR += joe
 SUBDIR += jupp
 SUBDIR += kate
 SUBDIR += kile
-SUBDIR += linux-openoffice2
 SUBDIR += linux-openoffice3
 SUBDIR += manedit
 SUBDIR += mg
