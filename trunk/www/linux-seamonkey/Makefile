@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.29 2013/01/16 01:25:30 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.30 2013/01/24 00:54:18 laffer1 Exp $
 
 PORTNAME=	seamonkey
-PORTVERSION=	2.15.1
+PORTVERSION=	2.17.1
 CATEGORIES=	www
 MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${PORTVERSION}/linux-i686/en-US
 
