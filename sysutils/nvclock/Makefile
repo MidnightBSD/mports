@@ -1,58 +1,57 @@
-# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.2 2010/01/02 22:40:51 laffer1 Exp $
-# $FreeBSD: ports/sysutils/nvclock/Makefile,v 1.12 2007/07/15 07:15:42 rafan Exp $
+# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.3 2012/09/08 16:42:43 laffer1 Exp $
 
 PORTNAME=	nvclock
 DISTVERSION=	0.8b4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/0.8%20%28beta4%29
 DISTNAME=	nvclock${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The nVidia graphic card status and overclocking tool
+COMMENT=	nVidia graphic card status and overclocking tool
+
 LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_PKGCONFIG=	yes
-
-CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0 \
-			--prefix=${PREFIX}
-
-.if defined(WITHOUT_GUI)
-PLIST_SUB+=	GTK="@comment "
-CONFIGURE_ARGS+="--enable-gtk=no"
-.else
-USE_GNOME+=	gtk20
-PLIST_SUB+=	GTK=""
-.endif
 
 MAN1=		nvclock.1
-
 PORTDOCS=	ABOUT AUTHORS ChangeLog FAQ README
 
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "************************************************"
-	@${ECHO_MSG} "* You can disable nvclock's GTK user interface *"
-	@${ECHO_MSG} "* by defining WITHOUT_GUI.                     *"
-	@${ECHO_MSG} "************************************************"
-	@${ECHO_MSG} ""
+OPTIONS_DEFINE=	NVCONTROL X11 DOCS
+OPTIONS_DEFAULT=	NVCONTROL X11
+
+NVCONTROL_DESC=	NV-CONTROL support (for OpenGL settings)
+X11_DESC=	Build GUI program (requires GTK+ 2.x)
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNVCONTROL}
+USE_XORG=	xext
+USE_GNOME=	pkgconfig
+.else
+CONFIGURE_ARGS+=	--disable-nvcontrol
+.endif
+
+.if ${PORT_OPTIONS:MX11}
+USE_GNOME=	gtk20
+PLIST_FILES+=	bin/nvclock_gtk
+.else
+CONFIGURE_ARGS+=	--disable-gtk
+.endif
 
 post-patch:
-.for i in src/gtk/Makefile.in src/backend/Makefile.in
-	@${REINPLACE_CMD} -e 's|"CFLAGS="|"CFLAGS+="|g' ${WRKSRC}/${i}
-.endfor
+# Uphold our C[XX]FLAGS except for backend part, it must be compiled with -O0
+	@${REINPLACE_CMD} -E 's|^(C(XX)?FLAGS)=|\1+=|' \
+		${WRKSRC}/src/gtk/Makefile.in \
+		${WRKSRC}/src/qt/Makefile.in \
+		${WRKSRC}/src/nvcontrol/Makefile.in
 
 do-install:
-	@${GMAKE} -C ${WRKSRC}/src install
-	@${GMAKE} -C ${WRKSRC} install-man
-.if !defined(WITHOUT_GUI)
-	@${GMAKE} -C ${WRKSRC}/src/gtk install
-.endif
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${GMAKE} -C ${WRKSRC} install-docs
+	${GMAKE} -C ${WRKSRC}/src install
+	${GMAKE} -C ${WRKSRC} install-man
+.if ${PORT_OPTIONS:MDOCS}
+	${GMAKE} -C ${WRKSRC} install-docs
 .endif
 
 .include <bsd.port.mk>
