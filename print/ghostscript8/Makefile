@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/ghostscript8/Makefile,v 1.1 2012/09/08 21:15:02 laffer1 Exp $
 
 PORTNAME=	ghostscript8
 PORTVERSION=	8.71
@@ -12,11 +12,12 @@ DISTNAME=	${PORTNAME:S,8$,,}-${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:gs_srcs ${EPAG_SRCS}:epag
 DIST_SUBDIR=	${PORTNAME:S,8$,,}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
-EXTRACT_AFTER_ARGS=	| ${TAR} -xpf - ${EXCLUDE_DIRS:S/^/--exclude /}
+EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 8.x PostScript interpreter
-LICENSE=	gpl2
+
+LICENSE=	gpl3
 
 LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
 		jasper:${PORTSDIR}/graphics/jasper \
