@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.3 2011/05/28 06:49:51 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.4 2012/03/06 01:16:58 laffer1 Exp $
 
 PORTNAME=	brasero
 PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils audio multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,20 +11,22 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD mastering tool for the GNOME desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	notify.4:${PORTSDIR}/devel/libnotify \
-		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
-		totem-plparser.17:${PORTSDIR}/multimedia/totem-pl-parser \
-		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
+LIB_DEPENDS=	notify:${PORTSDIR}/devel/libnotify \
+		unique-1.0:${PORTSDIR}/x11-toolkits/unique \
+		totem-plparser:${PORTSDIR}/multimedia/totem-pl-parser \
+		canberra-gtk:${PORTSDIR}/audio/libcanberra
 RUN_DEPENDS=	growisofs:${PORTSDIR}/sysutils/dvd+rw-tools \
-		cdrdao:${PORTSDIR}/sysutils/cdrdao
+		cdrdao:${PORTSDIR}/sysutils/cdrdao \
+		yelp:${PORTSDIR}/x11/yelp
 
-USE_GETTEXT=	yes
+CONFLICTS=	brasero-3.[0-9]*
+
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_XORG=	sm
-USE_GNOME=	intlhack gnomeprefix gnomehack gnomedocutils
-GNOME_DESKTOP_VERSION=2
+USES=		pathfix gettext shared-mime-info
+USE_GNOME=	intlhack gnomeprefix gnomedocutils
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	gconf core
 INSTALLS_OMF=	yes
@@ -37,14 +39,16 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 MAN1=		brasero.1
 GLIB_SCHEMAS=	org.gnome.brasero.gschema.xml
 
-OPTIONS=	NAUTILUS "Enable Nautilus extension" on \
-		LIBBURNIA "Enable libburnia plug-ins" off
+OPTIONS_DEFINE=	NAUTILUS LIBBURNIA
+OPTIONS_DEFAULT=NAUTILUS
+NAUTILUS_DESC=	Nautilus extension
+LIBBURNIA_DESC=	libburnia plug-ins
 
 PLIST_SUB=	FULL_VERSION=${PORTVERSION}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_NAUTILUS)
+.if ${PORT_OPTIONS:MNAUTILUS}
 USE_GNOME+=	nautilus2
 CONFIGURE_ARGS+=--enable-nautilus
 PLIST_SUB+=	NAUTILUS=""
@@ -53,9 +57,9 @@ PLIST_SUB+=	NAUTILUS="@comment "
 CONFIGURE_ARGS+=--enable-nautilus=no
 .endif
 
-.if defined(WITH_LIBBURNIA)
-LIB_DEPENDS+=	burn.4:${PORTSDIR}/devel/libburn \
-    		isofs.6:${PORTSDIR}/devel/libisofs
+.if ${PORT_OPTIONS:MLIBBURNIA}
+LIB_DEPENDS+=	burn:${PORTSDIR}/devel/libburn \
+    		isofs:${PORTSDIR}/devel/libisofs
 CONFIGURE_ARGS+=--enable-libburnia
 PLIST_SUB+=	LIBBURNIA=""
 .else
@@ -69,4 +73,4 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|/proc/self/fd/0|/dev/fd/0|g' ${WRKSRC}/po/*.po
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
