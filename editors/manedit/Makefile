@@ -1,20 +1,19 @@
-# $MidnightBSD: mports/editors/manedit/Makefile,v 1.3 2010/04/26 13:11:18 laffer1 Exp $
+# $MidnightBSD: mports/editors/manedit/Makefile,v 1.4 2013/02/21 01:30:07 laffer1 Exp $
 
 PORTNAME=	manedit
-PORTVERSION=	0.8.1
-PORTREVISION=	2
+PORTVERSION=	1.2.1
 CATEGORIES=	editors
-MASTER_SITES=	http://distro.ibiblio.org/pub/linux/distributions/amigolinux/download/Applications/Editors/manedit-0.8.1/
+MASTER_SITES=	http://wolfsinger.com/~wolfpack/packages/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A UNIX manual page editor and viewer
 LICENSE=        gpl2
 WRKSRC=		${WRKDIR}/${DISTNAME}/${PORTNAME}
 
-USE_BZIP2=	yes
-MAKE_JOBS_SAFE=	yes
-USE_GNOME=	gtk12
 MAKEFILE=	Makefile.FreeBSD
+MAKE_JOBS_SAFE=	yes
+USE_BZIP2=	yes
+USE_GNOME=	gtk12
 
 MAN1=		manedit.1
 
@@ -22,8 +21,9 @@ pre-configure:
 	@${CP} ${FILESDIR}/mntent* ${WRKSRC}
 
 post-patch:
-	@${REINPLACE_CMD} -E 's,(viewerfio.c),\1 mntent_compat.c,; \
-			      s,(viewerfio.h),\1 mntent.h,' \
+	@${REINPLACE_CMD} -e '/-o $$(BIN)/s/(CC)/(CXX)/' ${WRKSRC}/${MAKEFILE}
+	@${REINPLACE_CMD} -e '/^MAN/s/.bz2//' ${WRKSRC}/Makefile.install.FreeBSD
+	@${REINPLACE_CMD} -e '/^SRC_C =/s//& mntent_compat.c/' \
 		${WRKSRC}/Makefile.srclist
 
 .include <bsd.port.mk>
