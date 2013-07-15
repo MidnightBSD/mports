@@ -152,10 +152,12 @@
 %%FONTSDIR%%/z003034l.afm
 %%FONTSDIR%%/z003034l.pfb
 %%FONTSDIR%%/z003034l.pfm
-%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/README.tweaks
-%%PORTDOCS%%%%DOCSDIR%%/TODO
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%FONTSDIR%%/Ryumin-Light
+%%FONTSDIR%%/GothicBBB-Medium
+%%FONTSDIR%%/Ryumin-Light.gs7
+%%FONTSDIR%%/GothicBBB-Medium.gs7
+%%FONTSDIR%%/STHeiti-Regular
+%%FONTSDIR%%/STSong-Light
+%%FONTSDIR%%/MSung-Light
 @dirrm %%FONTSDIR%%
 @dirrmtry share/ghostscript
