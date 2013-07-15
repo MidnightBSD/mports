@@ -1,33 +1,39 @@
-# $MidnightBSD: mports/sysutils/gnome-settings-daemon/Makefile,v 1.3 2010/11/12 00:39:46 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/gnome-settings-daemon/Makefile,v 1.4 2011/09/04 11:46:56 laffer1 Exp $
 
 PORTNAME=	gnome-settings-daemon
 PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 settings daemon
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		notify.1:${PORTSDIR}/devel/libnotify \
-		nss3.1:${PORTSDIR}/security/nss
+LIB_DEPENDS=	canberra-gtk:${PORTSDIR}/audio/libcanberra \
+		notify:${PORTSDIR}/devel/libnotify \
+		gdbm:${PORTSDIR}/databases/gdbm \
+		nss3:${PORTSDIR}/security/nss
 RUN_DEPENDS=	xrdb:${PORTSDIR}/x11/xrdb
+
+CONFLICTS=	gnome-settings-daemon-3.[0-9]*
 
 USE_XORG=	xxf86misc
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gnomedesktop libgnomekbd
-USE_GETTEXT=	yes
+USES=		pathfix gettext
+USE_GNOME=	gnomeprefix intlhack gnomedesktop libgnomekbd
 USE_GSTREAMER=	good
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS=	PULSEAUDIO "Enable Pulseaudio support" On
+OPTIONS_DEFINE=	PULSEAUDIO
+OPTIONS_DEFAULT=PULSEAUDIO
 
 GCONF_SCHEMAS=	apps_gnome_settings_daemon_housekeeping.schemas \
 		apps_gnome_settings_daemon_keybindings.schemas \
@@ -38,15 +44,15 @@ GCONF_SCHEMAS=	apps_gnome_settings_daemon_housekeeping.schemas \
 		desktop_gnome_peripherals_touchpad.schemas \
 		gnome-settings-daemon.schemas
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_PULSEAUDIO)
-CONFIGURE_ARGS+=--disable-pulse
-PLIST_SUB+=	PULSEAUDIO="@comment "
-.else
-LIB_DEPENDS+=	pulse.0:${PORTSDIR}/audio/pulseaudio
+.if ${PORT_OPTIONS:MPULSEAUDIO}
+LIB_DEPENDS+=	pulse:${PORTSDIR}/audio/pulseaudio
 CONFIGURE_ARGS+=--enable-pulse
 PLIST_SUB+=	PULSEAUDIO=""
+.else
+CONFIGURE_ARGS+=--disable-pulse
+PLIST_SUB+=	PULSEAUDIO="@comment "
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
