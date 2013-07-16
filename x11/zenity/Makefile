@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.10 2013/04/11 01:02:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.11 2013/06/12 22:27:01 laffer1 Exp $
 
 PORTNAME=	zenity
 PORTVERSION=	2.32.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,10 +15,9 @@ BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_GMAKE=	yes
-USE_PATHFIX=	yes
-USE_GNOME=	gnomeprefix gnomehack gtk20 gnomedocutils intlhack
+USES=		pathfix gettext
+USE_GNOME=	gnomeprefix gtk20 gnomedocutils intlhack
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
