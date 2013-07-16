@@ -1,38 +1,37 @@
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.14 2012/02/11 00:22:18 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.15 2013/01/19 17:58:17 laffer1 Exp $
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.5.0
-PORTREVISION=	1
+PORTVERSION=	1.5.2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
+BUILD_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
+RUN_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=      --disable-asm
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 USE_LDCONFIG=	yes
 
-DOCS=	AUTHORS COPYING COPYING.LIB ChangeLog INSTALL NEWS README README.SVN \
-	THANKS TODO doc/HACKING doc/README.apichanges
-INFO=	gcrypt
+DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS README \
+		README.GIT THANKS TODO doc/HACKING doc/README.apichanges
+INFO=		gcrypt
+PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
 
-.if (${OSVERSION} < 2999)
-CONFIGURE_ARGS+=	--disable-padlock-support
-.endif
-
+.if ${ARCH} == "i386"
 .if (${OSVERSION} < 4015)
-CONFIGURE_ARGS+=      --disable-aesni-support
+CONFIGURE_ARGS+=	--disable-aesni-support
+.endif
 .endif
 
 post-patch:
@@ -42,10 +41,13 @@ post-patch:
 pre-configure:
 	@${RM} -f ${WRKSRC}/doc/gcrypt.info*
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
+
+regression-test: build
+	cd ${WRKSRC} && ${MAKE} check
 
 .include <bsd.port.post.mk>
