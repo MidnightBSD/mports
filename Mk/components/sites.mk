@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.50 2013/06/25 12:25:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.51 2013/07/04 20:34:26 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -569,9 +569,9 @@ FETCH_ARGS=	-Fpr
 
 .if !defined(IGNORE_MASTER_SITE_GNOME)
 MASTER_SITE_GNOME+= \
+	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
 	ftp://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
 	http://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
-	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
 	http://fr2.rpmfind.net/linux/gnome.org/%SUBDIR%/ \
 	http://www.gtlib.gatech.edu/pub/gnome/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/X/gnome/%SUBDIR%/ \
