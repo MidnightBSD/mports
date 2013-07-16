@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.16 2013/04/14 03:35:07 laffer1 Exp $
 
 PORTNAME=	sudo
-DISTVERSION=	1.8.6p7
+DISTVERSION=	1.8.7
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SUDO}
 
@@ -45,7 +45,7 @@ CONFIGURE_ARGS+=	--with-secure-path="${SUDO_SECURE_PATH}"
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=	yes
+USES+=		gettext
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 CFLAGS+=	-I${LOCALBASE}/include
 PLIST_SUB+=	NLS=""
@@ -92,7 +92,7 @@ CONFIGURE_ARGS+=	--with-opie
 CONFIGURE_ARGS+=	--with-pam
 .endif
 
-MAN5+=		sudoers.5
+MAN5+=		sudoers.5 sudo.conf.5
 MAN8=		sudo.8 visudo.8 sudoreplay.8 sudo_plugin.8
 MLINKS=		sudo.8 sudoedit.8
 
