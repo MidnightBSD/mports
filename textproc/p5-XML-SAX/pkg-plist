@@ -1,9 +1,7 @@
 %%SITE_PERL%%/XML/SAX.pm
-%%SITE_PERL%%/XML/SAX/Base.pm
 %%SITE_PERL%%/XML/SAX/DocumentLocator.pm
-%%SITE_PERL%%/XML/SAX/Exception.pm
 %%SITE_PERL%%/XML/SAX/Intro.pod
-
+%%SITE_PERL%%/XML/SAX/ParserDetails.ini
 %%SITE_PERL%%/XML/SAX/ParserFactory.pm
 %%SITE_PERL%%/XML/SAX/PurePerl.pm
 %%SITE_PERL%%/XML/SAX/PurePerl/DTDDecls.pm
@@ -21,15 +19,10 @@
 %%SITE_PERL%%/XML/SAX/PurePerl/Reader/URI.pm
 %%SITE_PERL%%/XML/SAX/PurePerl/Reader/UnicodeExt.pm
 %%SITE_PERL%%/XML/SAX/PurePerl/XMLDecl.pm
-%%SITE_PERL%%/XML/SAX/placeholder.pl
-@unexec rm %D/%%SITE_PERL%%/XML/SAX/ParserDetails.ini
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX/.packlist
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
 @dirrm %%SITE_PERL%%/XML/SAX/PurePerl/Reader
 @dirrmtry %%SITE_PERL%%/XML/SAX/PurePerl
 @dirrmtry %%SITE_PERL%%/XML/SAX
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX
 @dirrmtry %%SITE_PERL%%/XML
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
-@exec %%PERL%% -MXML::SAX -e "XML::SAX->add_parser(q(XML::SAX::PurePerl))->save_parsers()" >/dev/null 2>&1
-
-
-
