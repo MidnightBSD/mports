@@ -1,42 +1,10 @@
---- ../coreconf/MidnightBSD.mk.orig	Tue Sep 19 19:59:50 2006
-+++ ../coreconf/MidnightBSD.mk	Tue Sep 19 19:59:46 2006
-@@ -0,0 +1,97 @@
+--- /dev/null	2013-07-15 22:04:14.000000000 -0400
++++ ../../security/coreconf/MidnightBSD.mk	2013-07-15 22:06:54.000000000 -0400
+@@ -0,0 +1,66 @@
 +#
-+# ***** BEGIN LICENSE BLOCK *****
-+# Version: MPL 1.1/GPL 2.0/LGPL 2.1
-+#
-+# The contents of this file are subject to the Mozilla Public License Version
-+# 1.1 (the "License"); you may not use this file except in compliance with
-+# the License. You may obtain a copy of the License at
-+# http://www.mozilla.org/MPL/
-+#
-+# Software distributed under the License is distributed on an "AS IS" basis,
-+# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-+# for the specific language governing rights and limitations under the
-+# License.
-+#
-+# The Original Code is the Netscape security libraries.
-+#
-+# The Initial Developer of the Original Code is
-+# Netscape Communications Corporation.
-+# Portions created by the Initial Developer are Copyright (C) 1994-2000
-+# the Initial Developer. All Rights Reserved.
-+#
-+# Contributor(s):
-+#
-+# Alternatively, the contents of this file may be used under the terms of
-+# either the GNU General Public License Version 2 or later (the "GPL"), or
-+# the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
-+# in which case the provisions of the GPL or the LGPL are applicable instead
-+# of those above. If you wish to allow use of your version of this file only
-+# under the terms of either the GPL or the LGPL, and not to allow others to
-+# use your version of this file under the terms of the MPL, indicate your
-+# decision by deleting the provisions above and replace them with the notice
-+# and other provisions required by the GPL or the LGPL. If you do not delete
-+# the provisions above, a recipient may use your version of this file under
-+# the terms of any one of the MPL, the GPL or the LGPL.
-+#
-+# ***** END LICENSE BLOCK *****
++# This Source Code Form is subject to the terms of the Mozilla Public
++# License, v. 2.0. If a copy of the MPL was not distributed with this
++# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 +
 +include $(CORE_DEPTH)/coreconf/UNIX.mk
 +
@@ -45,41 +13,43 @@
 +CCC			= $(CXX)
 +RANLIB			= ranlib
 +
-+ifeq ($(OS_TEST),alpha)
-+CPU_ARCH		= alpha
-+else
++CPU_ARCH		= $(OS_TEST)
++ifeq ($(CPU_ARCH),i386)
 +CPU_ARCH		= x86
 +endif
-+
-+OS_CFLAGS		= $(DSO_CFLAGS) -ansi -Wall -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
-+OS_LIBS			= $(BSD_LDOPTS)
-+OPTIMIZER		=
-+
-+ifeq ($(OS_TEST),sparc64)
-+DSO_CFLAGS		= -fPIC
-+else
-+DSO_CFLAGS		= -fpic
++ifeq ($(CPU_ARCH),pc98)
++CPU_ARCH		= x86
 +endif
++ifeq ($(CPU_ARCH),amd64)
++CPU_ARCH		= x86_64
++endif
++ifneq (,$(filter powerpc%, $(CPU_ARCH)))
++CPU_ARCH		= ppc
++endif
++
++ifneq (,$(filter %64, $(OS_TEST)))
++USE_64			= 1
++endif
++
++OS_CFLAGS		= $(DSO_CFLAGS) -ansi -Wall -Wno-switch -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
++
++DSO_CFLAGS		= -fPIC
 +DSO_LDOPTS		= -shared -Wl,-soname -Wl,$(notdir $@)
 +
 +#
-+# The default implementation strategy for FreeBSD is pthreads.
++# The default implementation strategy for MidnightBSD is pthreads.
 +#
 +ifndef CLASSIC_NSPR
 +USE_PTHREADS		= 1
 +DEFINES			+= -D_THREAD_SAFE -D_REENTRANT
 +OS_LIBS			+= -pthread
-+DSO_LDOPTS		+= $(BSD_LDOPTS)
++DSO_LDOPTS		+= -pthread
 +endif
 +
-+ARCH			= freebsd
++ARCH			= midnightbsd
 +
-+MOZ_OBJFORMAT		:= $(shell test -x /usr/bin/objformat && /usr/bin/objformat || echo aout)
-+
-+ifeq ($(MOZ_OBJFORMAT),elf)
++ifndef MOZILLA_CLIENT
 +DLL_SUFFIX		= so.1
-+else
-+DLL_SUFFIX		= so.1.0
 +endif
 +
 +ifneq (,$(filter alpha ia64,$(OS_TEST)))
@@ -95,6 +65,5 @@
 +
 +G++INCLUDES		= -I/usr/include/g++
 +
-+INCLUDES		+= -I/usr/X11R6/include
 +USE_SYSTEM_ZLIB		= 1
 +ZLIB_LIBS		= -lz
