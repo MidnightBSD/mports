@@ -1,0 +1,8 @@
+%%SITE_PERL%%/XML/SAX/Base.pm
+%%SITE_PERL%%/XML/SAX/BuildSAXBase.pl
+%%SITE_PERL%%/XML/SAX/Exception.pm
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX/Base
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
+@dirrmtry %%SITE_PERL%%/XML/SAX
+@dirrmtry %%SITE_PERL%%/XML
