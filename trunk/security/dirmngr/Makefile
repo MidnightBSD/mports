@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.11 2012/02/29 01:40:48 laffer1 Exp $
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.12 2013/07/16 02:47:18 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
@@ -11,7 +11,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A client for managing and downloading certificate revocation lists
+COMMENT=	Client for managing and downloading certificate revocation lists
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	assuan.0:${PORTSDIR}/security/libassuan \
@@ -21,7 +22,7 @@ LIB_DEPENDS=	assuan.0:${PORTSDIR}/security/libassuan \
 		pth:${PORTSDIR}/devel/pth
 
 USE_BZIP2=	yes
-USE_ICONV=	yes
+USES=		iconv
 USE_OPENLDAP=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
@@ -29,21 +30,21 @@ INFO=		dirmngr
 MAN1=		dirmngr-client.1 dirmngr.1
 
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS=	NLS "National Language Support" off
+OPTIONS_DEFINE=	NLS
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_NLS)
+.if ${PORT_OPTIONS:MNLS}
+USES+=	gettext
+PLIST_SUB+=	NLS=""
+.else
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
 .endif
 
 verify: checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.sig
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
