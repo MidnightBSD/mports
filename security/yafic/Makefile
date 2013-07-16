@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/yafic/Makefile,v 1.2 2009/04/08 21:11:34 laffer1 Exp $
+# $MidnightBSD: mports/security/yafic/Makefile,v 1.3 2011/06/05 17:57:59 laffer1 Exp $
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2
@@ -10,9 +10,8 @@ COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 USE_GMAKE=	yes
-CONFIGURE_ENV=	LDFLAGS="-static"
+LDFLAGS+=	-static
 
 .if defined(WITHOUT_OPENSSL)
 CONFIGURE_ARGS=	--disable-crypto
