@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/qimageblitz/Makefile,v 1.2 2010/12/29 02:01:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/qimageblitz/Makefile,v 1.3 2013/05/10 02:46:26 laffer1 Exp $
 
 PORTNAME=	qimageblitz
 PORTVERSION=	0.0.6
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}
@@ -12,11 +13,8 @@ LICENSE=	bsd2
 
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	gui qmake_build moc_build uic_build rcc_build
-USE_CMAKE=	yes
-CMAKE_DEBUG=	yes
-CMAKE_VERBOSE=	yes
+USE_QT4=	corelib gui qmake_build moc_build uic_build rcc_build
+USES=		cmake
 
 post-patch:
 	${MKDIR} ${WRKSRC}
