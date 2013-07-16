@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.35 2012/09/08 21:15:02 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.36 2013/07/14 15:12:19 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -65,3 +65,4 @@ print/ghostscript-gpl|print/ghostscript8|2012-08-08|use version number
 print/ghostscript-gpl-nox11|print/ghostscript8-nox11|2012-08-08|use version
 print/ghostscript-afpl||2012-08-08|old version, not distributable anyway
 audio/libmusicbrainz||2013-07-13|old version, not maintined
+www/eaccelerator||2013-07-16|not working with newer PHP releases
