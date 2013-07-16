@@ -1,12 +1,13 @@
-# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.8 2012/03/01 13:16:52 laffer1 Exp $
+# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.9 2013/02/26 03:58:01 laffer1 Exp $
 
 PORTNAME=	soprano
-PORTVERSION=	2.9.0
+PORTVERSION=	2.9.2
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/Soprano/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QT4 RDF framework
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
@@ -14,8 +15,7 @@ LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
 		iodbc:${PORTSDIR}/databases/libiodbc
 
 USE_BZIP2=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib dbus qtestlib network \
+USE_QT4=	corelib dbus network qtestlib_build xml \
 		qmake_build moc_build uic_build rcc_build
 USE_PKGCONFIG=	both
 USE_CMAKE=	yes
