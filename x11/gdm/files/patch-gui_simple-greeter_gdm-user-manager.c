@@ -4,7 +4,7 @@
  
  #ifdef __sun
  #define DEFAULT_MINIMAL_UID     100
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +#define DEFAULT_MINIMAL_UID     1000
  #else
  #define DEFAULT_MINIMAL_UID     500
@@ -13,7 +13,7 @@
                                                     NULL,
                                                     g_object_unref);
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	setpwent ();
 +#else
 +
@@ -31,7 +31,7 @@
  
                  g_debug ("GdmUserManager: include_all is TRUE");
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +		for (pwent = getpwent ();
 +		     pwent != NULL;
 +		     pwent = getpwent ()) {
@@ -47,7 +47,7 @@
   out:
          /* Cleanup */
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	endpwent ();
 +#else
          fclose (fp);

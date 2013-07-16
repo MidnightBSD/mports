@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/gdm/Makefile,v 1.7 2012/03/02 02:55:18 laffer1 Exp $
+# $MidnightBSD: mports/x11/gdm/Makefile,v 1.8 2013/06/12 23:15:44 laffer1 Exp $
 
 PORTNAME=	gdm
 PORTVERSION=	2.30.7
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -35,8 +36,7 @@ INSTALLS_ICONS=	yes
 USE_RC_SUBR=	gdm
 USE_GNOME_SUBR=	yes
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_PATHFIX=	yes
+USES=		pathfix gettext
 USE_GNOME=	intlhack gnomehier gconf2 librsvg2 \
 		gnomedocutils gnomeprefix gnomepanel
 GCONF_SCHEMAS=	gdm-simple-greeter.schemas
