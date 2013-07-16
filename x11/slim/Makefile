@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.20 2013/02/24 15:27:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.21 2013/06/13 00:25:51 laffer1 Exp $
 
 PORTNAME=	slim
 PORTVERSION=	1.3.5
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
@@ -20,7 +21,7 @@ LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 
 USE_CMAKE=	yes
-USE_XORG=	ice sm x11 xau xdmcp xext xft xmu xorg-server xrender xt
+USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrender xt
 USE_PKGCONFIG=	build
 USE_RC_SUBR=	slim
 SUB_FILES=	pkg-message
