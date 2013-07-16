@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/libssh/Makefile,v 1.2 2012/03/04 04:33:08 laffer1 Exp $
+# $MidnightBSD: mports/security/libssh/Makefile,v 1.3 2013/03/27 00:58:13 laffer1 Exp $
 
 PORTNAME=	libssh
 PORTVERSION=	0.5.2
+PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.libssh.org/files/0.5/ \
 		FREEBSD_LOCAL/avl
@@ -25,7 +26,7 @@ USE_LDCONFIG=	yes
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_GCRYPT)
-LIB_DEPENDS+=	gcrypt.18:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=	gcrypt:${PORTSDIR}/security/libgcrypt
 CMAKE_ARGS+=	-DWITH_GCRYPT:BOOL=ON
 .else
 USE_OPENSSL=	yes
