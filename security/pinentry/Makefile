@@ -1,21 +1,18 @@
-# New ports collection makefile for:	pinentry
-# Date created:		14 Nov 2007
-# Whom:			ports@MidnightBSD.org
-#
-# $MidnightBSD: mports/security/pinentry/Makefile,v 1.5 2010/08/01 06:19:30 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/pinentry/Makefile,v 1.6 2012/02/29 02:31:43 laffer1 Exp $
 
 PORTNAME=	pinentry
 PORTVERSION=	0.8.1
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	pinentry
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	A collection of simple PIN or passphrase entry dialogs
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt \
 		ksba.19:${PORTSDIR}/security/libksba
 
 CONFLICTS?=	pinentry-[a-z]*-[0.9]*
