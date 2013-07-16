@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/textproc/py-libxml2/Makefile,v 1.3 2011/12/15 00:39:57 laffer1 Exp $
+# $MidnightBSD: mports/textproc/py-libxml2/Makefile,v 1.4 2013/03/23 16:41:40 laffer1 Exp $
 
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,10 +13,10 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
-USE_GNOME=	gnomehack libxml2
-USE_PYTHON=	yes
+USE_GNOME+=	libxml2
+USE_PYTHON=	-2.7
 CPPFLAGS+=	`${PYTHON_VERSION}-config --cflags`
-LDFLAGS+=	`${PYTHON_VERSION}-config --libs`
+LDFLAGS+=	-L${LOCALBASE}/lib `${PYTHON_VERSION}-config --libs`
 CONFIGURE_ARGS=	--with-iconv=${LOCALBASE} \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-html-subdir=${PORTNAME} \
