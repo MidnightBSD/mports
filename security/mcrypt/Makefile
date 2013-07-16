@@ -1,9 +1,9 @@
 # based on the OpenBSD port
-# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.5 2010/11/13 17:17:53 laffer1 Exp $
+# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.6 2011/04/11 23:12:58 laffer1 Exp $
 
 PORTNAME=	mcrypt
 PORTVERSION=	2.6.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/MCrypt/${PORTVERSION} \
 		ftp://argeas.cs-net.gr/pub/unix/mcrypt/attic/ \
@@ -17,11 +17,10 @@ LICENSE=	gpl3
 LIB_DEPENDS=	mcrypt.8:${PORTSDIR}/security/libmcrypt \
 		mhash.2:${PORTSDIR}/security/mhash
 
-USE_GETTEXT=	yes
+USES=		gettext
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lintl"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 CONFIGURE_ARGS=	--enable-static --with-catgets
 
 MAN1=		mcrypt.1
