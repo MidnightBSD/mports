@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/w3m/Makefile,v 1.1 2013/07/16 12:32:55 laffer1 Exp $
 
 PORTNAME=	w3m
 PORTVERSION=	0.5.3
@@ -7,6 +7,8 @@ MASTER_SITES=	SF/w3m/w3m/w3m-${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Pager/text-based WWW browser
+
+LICENSE=	unknown
 
 USE_OPENSSL=	yes
 LIB_DEPENDS=	gc.1:${PORTSDIR}/devel/boehm-gc
@@ -106,8 +108,5 @@ post-install:
 .endif
 .endif
 	@${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${PREFIX}/man/ja/man1
-.if ${PORT_OPTIONS:MINLINE_IMAGE}
-	@${CAT} ${PKGMESSAGE}
-.endif
 
 .include <bsd.port.mk>
