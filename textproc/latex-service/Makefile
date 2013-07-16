@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/latex-service/Makefile,v 1.3 2010/05/30 21:28:51 laffer1 Exp $
+# $MidnightBSD: mports/textproc/latex-service/Makefile,v 1.4 2013/03/31 15:49:45 laffer1 Exp $
 
 PORTNAME=	latex
 PORTVERSION=	0.1
@@ -11,6 +11,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LaTeX service for GNUstep
+
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
