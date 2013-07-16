@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.7 2011/05/28 06:27:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.8 2013/07/03 20:37:26 laffer1 Exp $
 
 PORTNAME=	gnome-doc-utils
 PORTVERSION=	0.20.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME doc utils
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
@@ -21,9 +22,8 @@ RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_UNSAFE=yes
-USE_GETTEXT=	yes
 USE_GNOME=	gnomehier gnomehack libxslt intlhack
-USES+=		pathfix pkgconfig
+USES+=		gettext pathfix pkgconfig
 USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
