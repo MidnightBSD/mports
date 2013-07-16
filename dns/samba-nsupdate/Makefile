@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/samba-nsupdate/Makefile,v 1.1 2013/07/04 19:11:46 laffer1 Exp $
 
 PORTNAME=		nsupdate
 PORTVERSION=		9.8.4.1
@@ -10,7 +10,8 @@ DISTNAME=		bind-${ISCVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		An nsupdate utility with GSS-TSIG support
-LICENSE=		isc
+
+LICENSE=		iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
 ISCVERSION=		9.8.4-P1
