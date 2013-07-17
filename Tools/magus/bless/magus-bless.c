@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.6 2013/03/17 16:41:29 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.7 2013/03/17 17:08:40 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -32,7 +32,7 @@ $MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.6 2013/03/17 16:41:29 l
 #include <err.h>
 
 #include <sys/types.h>
-#include <sha256.h>
+#include <md5.h>
 
 #include "mysql.h"
 #include "sqlite3.h"
@@ -134,7 +134,7 @@ main(int argc, char *argv[])
                {
                    asprintf(&ln, "%s: %s %s %s %s %s", row[0], row[1], row[2], row[3], row[5], row[4]);
                    asprintf(&filePath, "%s/%s", argv[4], row[4]);
-                   fileHash = SHA256_File(filePath, NULL);
+                   fileHash = MD5File(filePath, NULL);
                    if (fileHash == NULL)
                    {
                        fprintf(stderr, "Could not locate file %s\n", filePath);
