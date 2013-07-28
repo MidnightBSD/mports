@@ -1,20 +1,20 @@
-# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.2 2011/02/02 20:18:22 laffer1 Exp $
-# $FreeBSD: ports/dns/idnkit/Makefile,v 1.14 2009/08/02 19:33:39 mezz Exp $
+# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.3 2012/09/08 22:48:13 laffer1 Exp $
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nic.ad.jp/ja/idn/idnkit/download/sources/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to handle internationalized domain names
+
 LICENSE=	other
 #bsd 4 ish
 
 USE_AUTOTOOLS=	libtool
-USE_ICONV=	yes
+USES=		iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
 		--enable-runidn \
