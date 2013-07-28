@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/shells/osh/Makefile,v 1.3 2009/12/28 20:24:04 laffer1 Exp $ 
+# $MidnightBSD: mports/shells/osh/Makefile,v 1.4 2012/09/29 20:41:39 laffer1 Exp $ 
 # $FreeBSD: ports/shells/osh/Makefile,v 1.17 2006/08/07 07:58:26 miwi Exp $
 
 PORTNAME=	osh
-DISTVERSION=	20120102
+DISTVERSION=	20120604
 CATEGORIES=	shells
 MASTER_SITES=	http://v6shell.org/src/
 
