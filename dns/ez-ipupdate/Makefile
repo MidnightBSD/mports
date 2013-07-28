@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/dns/ez-ipupdate/Makefile,v 1.2 2007/11/11 23:08:22 laffer1 Exp $
+# $MidnightBSD: mports/dns/ez-ipupdate/Makefile,v 1.3 2009/08/01 21:10:37 laffer1 Exp $
 
 PORTNAME=	ez-ipupdate
 PORTVERSION=	3.0.11b8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	dns
 MASTER_SITES=	http://dyn.pl/client/UNIX/ez-ipupdate/ \
 		http://www.yi.org/help/software/ \
@@ -10,9 +10,10 @@ MASTER_SITES=	http://dyn.pl/client/UNIX/ez-ipupdate/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update your host name on any dynamic DNS service
+
 LICENSE=	gpl2
 
-USE_RC_SUBR=	ez-ipupdate.sh
+USE_RC_SUBR=	ez-ipupdate
 GNU_CONFIGURE=	yes
 
 post-install:
