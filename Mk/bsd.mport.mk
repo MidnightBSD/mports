@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.223 2013/07/06 22:34:52 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.224 2013/07/13 14:41:13 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -1053,14 +1053,20 @@ CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
 _MAKE_JOBS=		#
+MAKE_JOBS_NUMBER=	1
 .else
-.if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
-MAKE_JOBS_NUMBER?=	`${SYSCTL} -n kern.smp.cpus`
+.if defined(MAKE_JOBS_NUMBER)
+_MAKE_JOBS_NUMBER:=	${MAKE_JOBS_NUMBER}
+.else
+_MAKE_JOBS_NUMBER!=	${SYSCTL} -n kern.smp.cpus
+.endif
+.if defined(MAKE_JOBS_NUMBER_LIMIT) && ( ${MAKE_JOBS_NUMBER_LIMIT} < ${_MAKE_JOBS_NUMBER} )
+MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
+.else
+MAKE_JOBS_NUMBER=	${_MAKE_JOBS_NUMBER}
+.endif
 _MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
-.if defined(FORCE_MAKE_JOBS) && !defined(MAKE_JOBS_SAFE)
-BUILD_FAIL_MESSAGE+=	"You have chosen to use multiple make jobs (parallelization) for all mports.  This port was not tested with this setting.  Please remove FORCE_MAKE_JOBS and retry the build before reporting errors to the maintainer"
-.endif
-.endif
+BUILD_FAIL_MESSAGE+=Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
 .endif
 
 PTHREAD_CFLAGS?=
