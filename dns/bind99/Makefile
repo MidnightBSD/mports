@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/bind99/Makefile,v 1.1 2013/05/04 18:35:39 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind99/Makefile,v 1.2 2013/06/12 01:14:37 laffer1 Exp $
 
 PORTNAME?=	bind99
-PORTVERSION=	9.9.3.1
+PORTVERSION=	9.9.3.2
 PORTREVISION?=	0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
@@ -13,7 +13,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.9.3-P1
+ISCVERSION=	9.9.3-P2
 
 MAKE_JOBS_UNSAFE=	yes
 
