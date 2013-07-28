@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/rc/Makefile,v 1.1 2006/09/18 15:40:47 laffer1 Exp $
+# $MidnightBSD: mports/shells/rc/Makefile,v 1.2 2009/03/21 16:17:17 laffer1 Exp $
 
 PORTNAME=	rc
 PORTVERSION=	1.7.1
@@ -15,14 +15,16 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-history
 MAN1=		history.1 rc.1
 
-OPTIONS=	READLINE "Build readline support" off
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	READLINE
 
-.if !defined(WITHOUT_READLINE)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MREADLINE}
+USES+=		readline
 CONFIGURE_ARGS+=	--with-readline
 .else
 MAKE_ARGS+=	CFLAGS="$(CFLAGS) -static"
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
