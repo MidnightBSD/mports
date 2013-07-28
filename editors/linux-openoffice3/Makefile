@@ -1,13 +1,8 @@
-# New ports collection makefile for: openoffice2-linux
-# Date created:		June 4 2008
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.5 2009/08/24 20:40:25 laffer1 Exp $
-#
+# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.6 2011/09/04 18:52:45 laffer1 Exp $
 
 PORTNAME=	openoffice3
 PORTVERSION=	${OO_RELEASE}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors java linux
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
@@ -16,7 +11,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Integrated office productivity suite (binary pkg)
-LICENSE=	lgpl
+
+LICENSE=	lgpl3
 
 RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
@@ -97,7 +93,7 @@ LINPROCFS!=	/sbin/mount | ${GREP} linprocfs | ${AWK} '{print $1}'
 
 .if defined(WITH_JAVA)
 USE_JAVA=	yes
-JAVA_VERSION=	1.4 1.5 1.6
+JAVA_VERSION=	1.6
 .endif
 
 pre-fetch:
