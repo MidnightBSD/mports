@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/dns/libbind/Makefile,v 1.1 2011/02/23 21:31:05 laffer1 Exp $
+# $MidnightBSD: mports/dns/libbind/Makefile,v 1.2 2013/02/23 01:27:39 laffer1 Exp $
 
 PORTNAME=	libbind
 PORTVERSION=	6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	libbind/${PORTVERSION}
@@ -18,18 +18,18 @@ MAKE_JOBS_UNSAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --with-randomdev=/dev/random
 
-OPTIONS=	IPV6 "Compile with IPv6 support" on \
-		THREADS	"Compile with thread support" on
+OPTIONS_DEFINE=	IPV6 THREADS
+OPTIONS_DEFAULT=	IPV6 THREADS
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--enable-ipv6
 .else
 CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
-.if !defined(WITHOUT_THREADS)
+.if ${PORT_OPTIONS:MTHREADS}
 CONFIGURE_ARGS+=	--enable-threads
 .else
 CONFIGURE_ARGS+=	--disable-threads
