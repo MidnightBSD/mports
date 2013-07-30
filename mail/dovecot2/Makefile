@@ -1,19 +1,20 @@
-# $MidnightBSD: mports/mail/dovecot2/Makefile,v 1.2 2013/02/28 13:36:50 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot2/Makefile,v 1.3 2013/06/05 02:01:41 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.2
+PORTVERSION=	2.2.4
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
+
 LICENSE=	agg
 
 LATEST_LINK=	dovecot2
 CONFLICTS=	dovecot-1.[0-9]*
 
-USE_ICONV=	yes
+USES=		iconv
 USE_RC_SUBR=	dovecot
 MAKE_JOBS_SAFE=	yes
 
@@ -26,37 +27,28 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
 
-.if defined(NOPORTDOCS)
-CONFIGURE_ARGS+=--without-docs
-.else
-DOCS=		AUTHORS COPYING COPYING.LGPL COPYING.MIT INSTALL NEWS TODO README
-PORTDOCS=	*
-.endif
-
-.if !defined(NOPORTEXAMPLES)
-PORTEXAMPLES=	*
-.endif
-
 USERS=		${PORTNAME} dovenull
 GROUPS=		${USERS}
 
 PROTOCOLS=	imap pop3
 
-OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
-		SSL		"SSL support"		on  \
-		GSSAPI		"GSSAPI support"	off \
-		VPOPMAIL	"vpopmail support"	off \
-		LDAP		"OpenLDAP support"	off \
-		LUCENE		"Apache Lucene FTS"	off \
-		PGSQL		"PostgreSQL support"	off \
-		MYSQL		"MySQL support"		off \
-		SOLR		"SOLR FTS"		off \
-		SQLITE		"SQLite support"	off
+# Default requirement for dovecot rc script
+_REQUIRE=	LOGIN
+
+OPTIONS_DEFINE=	KQUEUE SSL GSSAPI VPOPMAIL LDAP LUCENE PGSQL MYSQL SQLITE \
+		SOLR DOCS EXAMPLES LIBWRAP
+OPTIONS_DEFAULT=	KQUEUE SSL
+
+KQUEUE_DESC=	kqueue(2) support
+VPOPMAIL_DESC=	vpopmail support
+LUCENE_DESC=	CLucene FTS support
+SOLR_DESC=	Solr FTS support
 
 .include <bsd.port.pre.mk>
 
-# Default requirement for dovecot rc script
-_REQUIRE=	LOGIN
+.if ${ARCH} == "arm"
+BROKEN=		Does not build on arm
+.endif
 
 # sed script for dovecot.conf
 REINPLACE=	s!%%PROTOCOLS%%!${PROTOCOLS}!g;\
@@ -67,15 +59,28 @@ REINPLACE=	s!%%PROTOCOLS%%!${PROTOCOLS}!g;\
 		s![[:<:]]doc/(dovecot-[^-]+)-example.conf[[:>:]]!${EXAMPLESDIR}/\1.conf!g;\
 		s!\#sendmail_path = /usr/.*!sendmail_path = /usr/sbin/sendmail!g;
 
+.if ${PORT_OPTIONS:MDOCS}
+DOCS=		AUTHORS COPYING COPYING.LGPL COPYING.MIT INSTALL NEWS TODO README
+PORTDOCS=	*
+PLIST_SUB+=	PORT=""
+.else
+CONFIGURE_ARGS+=	--without-docs
+PLIST_SUB+=	PORT="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MEXAMPLES}
+PORTEXAMPLES=	*
+.endif
+
 ## kqueue(2) support
 #
-.if !defined(WITHOUT_KQUEUE)
+.if ${PORT_OPTIONS:MKQUEUE}
 CONFIGURE_ARGS+=--with-ioloop=kqueue
 .endif
 
 ## SSL support
 #
-.if defined(WITH_SSL) && !defined(WITHOUT_SSL)
+.if ${PORT_OPTIONS:MSSL}
 PROTOCOLS+=	imaps pop3s
 .else
 CONFIGURE_ARGS+=--without-ssl
@@ -83,7 +88,7 @@ CONFIGURE_ARGS+=--without-ssl
 
 ## GSSAPI support
 #
-.if defined(WITH_GSSAPI) && !defined(WITHOUT_GSSAPI)
+.if ${PORT_OPTIONS:MGSSAPI}
 CONFIGURE_ARGS+=--with-gssapi
 .else
 CONFIGURE_ARGS+=--without-gssapi
@@ -91,7 +96,7 @@ CONFIGURE_ARGS+=--without-gssapi
 
 ## VPopMail Support
 #
-.if defined(WITH_VPOPMAIL) && !defined(WITHOUT_VPOPMAIL)
+.if ${PORT_OPTIONS:MVPOPMAIL}
 BUILD_DEPENDS+=	${LOCALBASE}/vpopmail/bin/vchkpw:${PORTSDIR}/mail/vpopmail
 CONFIGURE_ARGS+=--with-vpopmail
 .else
@@ -100,7 +105,7 @@ CONFIGURE_ARGS+=--without-vpopmail
 
 ## OpenLDAP Support
 #
-.if defined(WITH_LDAP) && !defined(WITHOUT_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--with-ldap
 PLIST_SUB+=	LDAP=""
@@ -112,7 +117,7 @@ PLIST_SUB+=	LDAP="@comment "
 
 ## CLucene FTS support
 #
-.if defined(WITH_LUCENE)
+.if ${PORT_OPTIONS:MLUCENE}
 CONFIGURE_ARGS+=--with-lucene
 LIB_DEPENDS+=	clucene-core:${PORTSDIR}/textproc/clucene
 PLIST_SUB+=	LUCENE=""
@@ -122,7 +127,7 @@ PLIST_SUB+=	LUCENE="@comment "
 
 ## PostgreSQL Support
 #
-.if defined(WITH_PGSQL) && !defined(WITHOUT_PGSQL)
+.if ${PORT_OPTIONS:MPGSQL}
 USE_PGSQL=	yes
 CONFIGURE_ARGS+=--with-pgsql
 PLIST_SUB+=	SQL=""
@@ -134,7 +139,7 @@ PLIST_SUB+=	SQL="@comment "
 
 ## MySQL Support
 #
-.if defined(WITH_MYSQL) && !defined(WITHOUT_MYSQL)
+.if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	yes
 CONFIGURE_ARGS+=--with-mysql
 PLIST_SUB+=	SQL=""
@@ -146,7 +151,7 @@ PLIST_SUB+=	SQL="@comment "
 
 ## SQLite Support
 #
-.if defined(WITH_SQLITE) && !defined(WITHOUT_SQLITE)
+.if ${PORT_OPTIONS:MSQLITE}
 USE_SQLITE=	3
 CONFIGURE_ARGS+=--with-sqlite
 PLIST_SUB+=	SQL=""
@@ -157,7 +162,7 @@ PLIST_SUB+=	SQL="@comment "
 
 ## SOLR support
 #
-.if defined(WITH_SOLR)
+.if ${PORT_OPTIONS:MSOLR}
 CONFIGURE_ARGS+=--with-solr
 BUILD_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 LIB_DEPENDS+=	expat:${PORTSDIR}/textproc/expat2
@@ -169,7 +174,7 @@ PLIST_SUB+=	SOLR="@comment "
 
 ## libwrap support
 #
-.if defined(WITH_LIBWRAP)
+.if ${PORT_OPTIONS:MLIBWRAP}
 CONFIGURE_ARGS+=--with-libwrap
 PLIST_SUB+=	LIBWRAP=""
 .else
@@ -223,11 +228,11 @@ post-patch:
 		' ${WRKSRC}/*/Makefile.in ${WRKSRC}/Makefile.in
 
 post-install:
-.if !defined(NOPORTEXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
 	@${MKDIR} ${EXAMPLESDIR}
 	cd ${WRKSRC}/doc && ${INSTALL_SCRIPT} dovecot-openssl.cnf mkcert.sh ${EXAMPLESDIR}
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
 
