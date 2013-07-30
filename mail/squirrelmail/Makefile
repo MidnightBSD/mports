@@ -1,14 +1,11 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.16 2011/06/05 05:00:04 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.17 2011/09/10 21:12:27 laffer1 Exp $
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.22
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail www
-MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION:S/.r/-RC/}:squirrelmail \
-		SF/${PORTNAME}/locales/1.4.18-20090526:locales
-DISTNAME=	${PORTNAME}-webmail-${PORTVERSION:S/.r/-RC/}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:squirrelmail \
-		all_locales-1.4.18-20090526${EXTRACT_SUFX}:locales
+MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION}
+DISTNAME=	${PORTNAME}-webmail-${PORTVERSION}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +16,7 @@ USE_PHP=	session gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 
 .ifdef WITH_DATABASE
 RUN_DEPENDS+=	${PREFIX}/share/pear/DB.php:${PORTSDIR}/databases/pear-DB
@@ -74,7 +71,7 @@ post-patch:
 # Rearrange the documentation
 do-build:
 	@${MV} ${WRKSRC}/themes/README.themes ${WRKSRC}/doc/
-	@cd ${WRKSRC} ; for f in `find plugins -name "README*" -or \
+	@cd ${WRKSRC} ; for f in `${FIND} plugins -name "README*" -or \
 		-name INSTALL -or -name CHANGES -or -name HISTORY`; \
 		do \
 		${MKDIR} doc/`dirname $$f` ; \
@@ -85,10 +82,8 @@ do-build:
 	${MV} plugins/squirrelspell/doc/* doc/plugins/squirrelspell ; \
 	${RM} -f doc/plugins/squirrelspell/index.php ; \
 	${RM} -rf plugins/squirrelspell/doc
+	@${FIND} ${WRKSRC} -name '*.orig' -delete
 	@${ECHO} "left_refresh=300" >> ${WRKSRC}/data/default_pref
-	@${CP} -r ${WRKSRC}/../locale ${WRKSRC}
-	@${CP} -r ${WRKSRC}/../images ${WRKSRC}
-	@${CP} -r ${WRKSRC}/../help ${WRKSRC}
 	@${MV} ${WRKSRC}/config/config_local.php ${WRKSRC}/config/config_local.php.sample
 
 pre-install:
@@ -99,15 +94,15 @@ do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
 	${MKDIR} ${SQUIRRELDIR}
-	@${CP} -pv ${WRKSRC}/index.php ${SQUIRRELDIR}
-	@${CP} -pv ${WRKSRC}/configure ${SQUIRRELDIR}
+	${INSTALL_DATA} ${WRKSRC}/index.php ${SQUIRRELDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/configure ${SQUIRRELDIR}
 .for DIR in class config data functions help images include locale plugins po src themes
-	@${CP} -rpv ${WRKSRC}/${DIR} ${SQUIRRELDIR}
+	cd ${WRKSRC} && ${FIND} ${DIR} | ${CPIO} -pdmu --quiet ${SQUIRRELDIR}
 .endfor
 	${CHOWN} -R ${WWWOWN}:${WWWGRP} ${SQUIRRELDIR}/data
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	@${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
+	cd ${WRKSRC}/doc && ${FIND} . | ${CPIO} -pdmu --quiet ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
