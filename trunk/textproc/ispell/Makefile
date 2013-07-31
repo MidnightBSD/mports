@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.8 2013/02/19 15:29:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.9 2013/07/05 12:33:47 laffer1 Exp $
 
 PORTNAME?=	ispell
 PORTVERSION?=	3.3.02
@@ -11,7 +11,10 @@ DISTFILES=	ispell-3.3.02.tar.gz    # needed for slave ports / options
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	An interactive spelling checker for multiple languages
+
 LICENSE=	other
+
+MAKE_JOBS_UNSAFE=yes
 
 ISPELL_FILES= 	ispell-3.3.02.tar.gz
 
