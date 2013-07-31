@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.9 2010/01/17 15:01:02 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.10 2013/01/17 03:34:04 laffer1 Exp $
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.7.2
@@ -10,6 +10,8 @@ DISTNAME=	${PORTNAME}${PORTVERSION:R}rel.${PORTVERSION:E}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
 LICENSE=	gpl2
+
+MAKE_JOBS_UNSAFE=yes
 
 USE_BZIP2=	yes
 USE_OPENSSL=	yes
