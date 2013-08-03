@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.8 2013/03/03 14:32:43 laffer1 Exp $
 
 PORTNAME=	tk
 PORTVERSION=	8.5.13
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
