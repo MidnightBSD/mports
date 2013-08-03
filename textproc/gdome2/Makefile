@@ -1,14 +1,8 @@
-# New ports collection makefile for:	gdome2
-# Date created:		7 July 2001
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.5 2011/02/02 21:23:47 laffer1 Exp $
-# $FreeBSD: ports/textproc/gdome2/Makefile,v 1.28 2007/01/28 09:07:44 kris Exp $
-#
+# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.6 2013/06/19 01:12:28 laffer1 Exp $
 
 PORTNAME=	gdome2
 PORTVERSION=	0.8.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	textproc
 MASTER_SITES=	http://gdome2.cs.unibo.it/tarball/
 
@@ -19,7 +13,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
 
 USE_AUTOTOOLS=	libtool
-USE_PATHFIX=	yes
+USES=		pathfix pkgconfig
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	GLIB_CONFIG="${LOCALBASE}/bin/pkg-config glib-2.0"
