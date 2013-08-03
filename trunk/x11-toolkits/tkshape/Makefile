@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.2 2008/08/20 17:37:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.3 2013/03/23 20:27:24 laffer1 Exp $
 
 PORTNAME=	tkshape
 PORTVERSION=	0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/ \
 		http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
@@ -30,17 +30,17 @@ MANN=		shape.n
 
 WRKSRC=		${WRKDIR}/${PORTNAME:C/^tk//1}${PORTVERSION}
 
-USE_GMAKE=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-tclconf=${LOCALBASE}/lib/tcl${TCL_VER} \
-			--with-tkconf=${LOCALBASE}/lib/tk${TK_VER}
+USE_GMAKE=		yes
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS=		--with-tclconf=${TCL_LIBDIR} \
+			--with-tkconf=${TK_LIBDIR}
 CONFIGURE_WRKSRC=	${WRKSRC}/unix
 BUILD_WRKSRC=	${CONFIGURE_WRKSRC}
 
-WHERE_REPLACE=	${WRKSRC}/demos
-REPLACE_FILES=	${WHERE_REPLACE}/dragger.tcl \
-		${WHERE_REPLACE}/fancytext.tcl \
-		${WHERE_REPLACE}/fingerprint.tcl
+WHERE_REPLACE=		${WRKSRC}/demos
+REPLACE_FILES=		${WHERE_REPLACE}/dragger.tcl \
+			${WHERE_REPLACE}/fancytext.tcl \
+			${WHERE_REPLACE}/fingerprint.tcl
 
 post-patch: .SILENT
 	for FILE in ${REPLACE_FILES}; do \
@@ -50,14 +50,14 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's,(^CFLAGS = )-g,\1${CFLAGS},' \
 		${BUILD_WRKSRC}/Makefile.in
 
-FIND_DIRS=	-type d \! -empty
-FIND_DEMOS=	demos -type f -and -name "*.tcl" -maxdepth 1
-FIND_IMAGES=	demos/images -type f \
-		-and \( -name "*.gif" -or -name "*.xbm" \
-		-or -name "*.cur" \)
+FIND_DIRS=		-type d \! -empty
+FIND_DEMOS=		demos -type f -and -name "*.tcl" -maxdepth 1
+FIND_IMAGES=		demos/images -type f \
+			-and \( -name "*.gif" -or -name "*.xbm" \
+			-or -name "*.cur" \)
 
-TARGET_DIR=	${PREFIX}/lib/${PORTNAME}
-MANPAGES=	${MAN3} ${MANN}
+TARGET_DIR=		${PREFIX}/lib/${PORTNAME}
+MANPAGES=		${MAN3} ${MANN}
 
 do-install:
 # script, library
@@ -79,7 +79,7 @@ do-install:
 	${INSTALL_DATA} unix/pkgIndex.tcl ${TARGET_DIR}/pkgIndex.tcl;
 
 # manpages
-.if defined(WITH_MANPAGES)
+.if ${PORT_OPTIONS:MMANPAGES}
 	cd ${WRKSRC}; \
 	for m in ${MANPAGES} ; do \
 	    s=$${m##*.}; \
