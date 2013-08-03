@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/print/acroread9/pkg-plist,v 1.2 2009/03/29 08:51:48 hrs Exp $
+@comment $FreeBSD$
 %%ACRODIR%%/Adobe/Reader9/Browser/HowTo/ENU/Browser_Plugin_HowTo.txt
 %%LANG_NONENU%%%%ACRODIR%%/Adobe/Reader9/Browser/HowTo/%%ADOBE_LANG%%/Browser_Plugin_HowTo.txt
 %%ACRODIR%%/Adobe/Reader9/Browser/install_browser_plugin
@@ -86,12 +86,12 @@
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libWRServices.so.3.1
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libadobelinguistic.so.3.2.0
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libahclient.so
-%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libauthplay.so.0.0.0
+%%LANG_NONENU%%%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libauthplay.so.0.0.0
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libcrypto.so.0.9.8
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libcurl.so.3.0.0
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libeggtrayicon.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libextendscript.so
-%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libflashsupport.so
+%%LANG_NONENU%%%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libflashsupport.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libicucnv.so.36.0
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libicudata.so.36.0
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libicui18n.so.36.0
@@ -102,7 +102,7 @@
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libACE.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libadobelinguistic.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libAGM.so
-%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libauthplay.so
+%%LANG_NONENU%%%%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libauthplay.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libBIB.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libBIBUtils.so
 %%ACRODIR%%/Adobe/Reader9/Reader/intellinux/lib/libCoolType.so
@@ -504,5 +504,7 @@
 @dirrm %%ACRODIR%%
 @exec /bin/mkdir -p %D/share/desktop-directories
 @dirrmtry share/desktop-directories
+%%LANG_FRA%%@dirrmtry %%MANINSTALLDIR%%/man1
+%%LANG_DEU%%@dirrmtry %%MANINSTALLDIR%%/man1
 @dirrmtry %%ACROBASE%%
 @dirrmtry %%ADOBEBASE%%
