@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.14 2011/12/15 00:57:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.15 2013/07/14 15:44:31 laffer1 Exp $
 
 PORTNAME=	fluxbox
 PORTVERSION=	1.3.5
@@ -10,7 +10,7 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small and fast window manager based on BlackBox
 
-LICENSE=	MIT
+LICENSE=	mit
 
 RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
