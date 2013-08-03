@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.28 2013/06/05 00:03:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.29 2013/06/12 22:30:34 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	293
+PORTVERSION=	296
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
 		CRITICAL:src1 CRITICAL:src2
@@ -11,7 +11,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src1 \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X Window System
-LICENSE=	x11
+
+LICENSE=	mit
 
 CONFLICTS=	x11iraf-[0-9]*
 
