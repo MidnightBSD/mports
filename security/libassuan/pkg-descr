@@ -1,2 +1,3 @@
-This is the IPC library used by GnuPG 1.9, gpgme and the old newpg
-package.
+This is the IPC library used by GnuPG 2 and gpgme
+
+WWW:	http://gnupg.org/related_software/libassuan/index.en.html
