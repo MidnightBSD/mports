@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.24 2012/03/06 00:15:09 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.25 2012/03/11 00:47:40 laffer1 Exp $
 
 COMMENT = X11 themes
 
@@ -20,6 +20,7 @@ SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
 SUBDIR += kdeartwork3
 SUBDIR += kdeartwork4
+SUBDIR += kde4-base-artwork
 SUBDIR += kde4-icons-oxygen
 SUBDIR += kde4-wallpapers
 SUBDIR += linux-f10-hicolor-icon-theme
