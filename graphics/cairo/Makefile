@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.28 2013/07/04 16:40:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.29 2013/07/13 23:01:44 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	11
+PORTREVISION=	12
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -35,7 +35,7 @@ OPTIONS_DEFAULT=	XCB GLIB X11
 XCB_DESC=	Enable XCB (X C-language Binding) Support
 GLIB_DESC=	Enable GObject Functions Feature
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MX11}
 USE_XORG+=	xrender
@@ -74,6 +74,8 @@ CONFIGURE_ARGS+=	--enable-gobject
 CONFIGURE_ARGS+=	--enable-gobject=no
 PLIST_SUB+=	GLIB="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e '/test/s/==/=/g' \
