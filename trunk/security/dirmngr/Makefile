@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.12 2013/07/16 02:47:18 laffer1 Exp $
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.13 2013/07/16 11:57:08 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
 PORTVERSION=	1.1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	dirmngr
