@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.11 2012/01/28 01:21:13 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.12 2013/06/22 01:45:32 laffer1 Exp $
 
 PORTNAME=	poppler
 PORTVERSION=	0.22.2
@@ -8,9 +8,8 @@ MASTER_SITES=	http://poppler.freedesktop.org/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A PDF rendering library
-LICENSE=	gpl2
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
