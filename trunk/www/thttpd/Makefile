@@ -1,14 +1,8 @@
-# New ports collection makefile for: 	thttpd
-# Date created:		24 May 1999
-# Whom:			Anders Nordby <anders@fix.no>
-#
-# $MidnightBSD: mports/www/thttpd/Makefile,v 1.3 2008/10/08 04:30:29 laffer1 Exp $
-# $FreeBSD: ports/www/thttpd/Makefile,v 1.39 2006/02/26 01:12:54 mnag Exp $
-#
+# $MidnightBSD: mports/www/thttpd/Makefile,v 1.4 2009/04/28 01:24:17 laffer1 Exp $
 
 PORTNAME=	thttpd
 PORTVERSION=	2.25b
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.acme.com/software/thttpd/ \
 		http://atreides.freenix.no/~anders/
@@ -18,13 +12,16 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny/turbo/throttling HTTP server
+
 LICENSE=	bsd2
+
+MAKE_JOBS_UNSAFE=	yes
 
 IGNOREFILES=	notes.html
 
 GNU_CONFIGURE=	yes
 
-USE_RC_SUBR=	thttpd.sh
+USE_RC_SUBR=	thttpd
 SUB_FILES=	pkg-message thttpd.conf.sample
 SUB_LIST=	WWWOWN=${WWWOWN}
 PORTDOCS=	notes.html
