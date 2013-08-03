@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler-utils/Makefile,v 1.2 2011/06/08 23:21:13 laffer1 Exp $
-# $FreeBSD: ports/graphics/poppler-utils/Makefile,v 1.3 2007/07/03 11:14:36 ahze Exp $
+# $MidnightBSD: mports/graphics/poppler-utils/Makefile,v 1.3 2012/01/28 01:23:44 laffer1 Exp $
 
 PORTREVISION=	0
 PKGNAMESUFFIX=	-utils
