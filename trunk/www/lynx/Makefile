@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.10 2013/01/17 03:34:04 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.11 2013/07/31 12:42:41 laffer1 Exp $
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.7.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/
 DISTNAME=	${PORTNAME}${PORTVERSION:R}rel.${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A non-graphical, text-based World-Wide Web client
+COMMENT=	Non-graphical, text-based World-Wide Web client
+
 LICENSE=	gpl2
 
 MAKE_JOBS_UNSAFE=yes
@@ -18,50 +19,68 @@ USE_OPENSSL=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}2-8-7
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
-		--enable-nsl-fork --enable-persistent-cookies
+		--enable-nsl-fork --enable-persistent-cookies \
+		--enable-nested-tables --enable-gzip-help \
+		--with-screen=ncursesw
 
 _FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
 TARGET_DIR=	${DESTDIR}${PREFIX}
 
-OPTIONS=	SSL		"SSL Support" on \
-		DEFAULT_COLORS "Colors Support" off \
-		IPV6		"IPv6 Support" off
+OPTIONS_DEFINE=	DEFAULT_COLORS IPV6 NLS SSL
+OPTIONS_DEFAULT=	SSL
+DEFAULT_COLORS_DESC=	Colors support
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if ${OSVERSION} < 3000
-CONFIGURE_ARGS+=	--with-screen=ncurses
+.if empty(PORT_OPTIONS:MNLS)
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS='@comment '
 .else
-CONFIGURE_ARGS+=	--with-screen=ncursesw
+USES+=		gettext iconv
+CONFIGURE_ARGS+=--enable-nls --with-libiconv-prefix="${LOCALBASE}"
+PLIST_SUB+=	NLS=''
 .endif
 
-.if defined(WITH_DEFAULT_COLORS)
-CONFIGURE_ARGS+=--enable-default-colors
+.if ${PORT_OPTIONS:MIPV6} && !defined(NO_INET6)
+CONFIGURE_ARGS+=--enable-ipv6
+.else
+CONFIGURE_ARGS+=--disable-ipv6
 .endif
 
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MSSL}
 CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
 .endif
 
-.if defined(WITH_IPV6) && !defined(NO_INET6)
-CONFIGURE_ARGS+=	--enable-ipv6
+.if ${PORT_OPTIONS:MDEFAULT_COLORS}
+CONFIGURE_ARGS+=--enable-default-colors
 .endif
 
-MAKE_ARGS=	helpdir=${L_HELP} docdir=${DOCSDIR}
-MAKEFILE=	makefile
+.if empty(PORT_OPTIONS:MDOCS)
+CONFIGURE_ARGS+=--disable-local-docs
+INSTALL_TARGET=	install
+DOCSDIR=
+L_HELP=
+.else
 INSTALL_TARGET=	install-full
+L_HELP=		${PREFIX}/share/lynx_help
+MAKE_ARGS=	helpdir=${L_HELP} docdir=${DOCSDIR}
+.endif
+
+MAKEFILE=	makefile
 MAN1=		lynx.1
 
 L_LIB=		${PREFIX}/etc
-L_HELP=		${PREFIX}/share/lynx_help
 
-post-patch:
-	@${RM} -f ${WRKSRC}/CHANGES.orig
+SUB_FILES=	pkg-message
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/samples/lynx.lss ${L_LIB}
+.if empty(PORT_OPTIONS:MDOCS)
+	[ -f ${L_LIB}/lynx.cfg ] || ${INSTALL} ${L_LIB}/lynx.cfg.sample ${L_LIB}/lynx.cfg
+	[ -f ${L_LIB}/lynx.lss ] || ${INSTALL} ${L_LIB}/lynx.lss.sample ${L_LIB}/lynx.lss
+.else
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${L_HELP}
-	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${L_LIB}/lynx.cfg ${L_LIB}/lynx.lss
+.endif
+	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${L_LIB}/lynx.cfg
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
