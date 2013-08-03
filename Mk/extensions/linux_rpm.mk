@@ -1,8 +1,6 @@
-#-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.7 2011/06/18 01:27:14 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.8 2011/06/18 01:37:19 laffer1 Exp $
 #
 
 # Variables:
@@ -34,9 +32,6 @@
 Linux_RPM_Include_MAINTAINER=	ports@MidnightBSD.org
 Linux_RPM_Pre_Include=			linux-rpm.mk
 
-RPM2CPIO?=			${LOCALBASE}/bin/rpm2cpio
-USE_GCPIO?=		yes
-
 EXTRACT_SUFX?=		.${LINUX_RPM_ARCH}.rpm
 SRC_SUFX?=		.src.rpm
 
@@ -58,15 +53,7 @@ LINUX_RPM_ARCH?=	${ARCH}
 Linux_RPM_Post_Include=	linux-rpm.mk
 
 LINUX_DIST?=		fedora
-. if ${OSVERSION} < 4004 || ${LINUX_OSRELEASE} == "2.4.2"
-LINUX_DIST_VER?=	4
-. else
 LINUX_DIST_VER?=	10
-.   if  !defined(OVERRIDE_LINUX_NONBASE_PORTS) && \
-	${LINUX_DIST_VER} != 10
-IGNORE=		linux_rpm.mk test failed: default package building at OSVERSION>=4004 was changed to linux-f10 ports, please define OVERRIDE_LINUX_NONBASE_PORTS to build other linux infrastructure ports
-.   endif
-. endif
 
 # linux Fedora 10 infrastructure ports should be used with compat.linux.osrelease=2.6.16,
 # linux_base-f10 (or greater) port
@@ -132,11 +119,9 @@ MASTER_SITE_SUBDIR+=	${MASTER_SITE_SRC_SUBDIR}
 ALWAYS_KEEP_DISTFILES=	yes
 .  endif
 
-EXTRACT_DEPENDS+=		${RPM2CPIO}:${PORTSDIR}/archivers/rpm
-
-EXTRACT_CMD?=			${RPM2CPIO}
-EXTRACT_BEFORE_ARGS?=
-EXTRACT_AFTER_ARGS?=	| ${CPIO} -id --quiet
+EXTRACT_CMD?=			${TAR}
+EXTRACT_BEFORE_ARGS?=	-xf
+EXTRACT_AFTER_ARGS?=
 
 HASH_FILE?=				${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 
@@ -173,13 +158,11 @@ do-extract:
 
 .  if defined(AUTOMATIC_PLIST)
 
-.    if ${USE_LINUX} == "fc4" || ${USE_LINUX:L} == "yes"
-_LINUX_BASE_SUFFIX=		fc4
-.    elif ${USE_LINUX} == "f10"
+.    if ${USE_LINUX} == "f10" || ${USE_LINUX:L} == "yes"
 _LINUX_BASE_SUFFIX=		f10
 .    else
 # other linux_base ports do not provide a pkg-plist file
-IGNORE=					uses AUTOMATIC_PLIST with an unsupported USE_LINUX, \"${USE_LINUX}\". Supported values are \"yes\", \"fc4\" and \"f10\"
+IGNORE=					uses AUTOMATIC_PLIST with an unsupported USE_LINUX, \"${USE_LINUX}\". Supported values are \"yes\" and \"f10\"
 .    endif
 
 PLIST?=					${WRKDIR}/.PLIST.linux-rpm
