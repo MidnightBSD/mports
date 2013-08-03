@@ -1,26 +1,45 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/qzeitgeist/Makefile,v 1.2 2011/10/17 00:08:52 avilla Exp $
-#
+# $MidnightBSD: mports/sysutils/qzeitgeist/Makefile,v 1.1 2012/03/02 01:34:32 laffer1 Exp $
 
 PORTNAME=	qzeitgeist
-PORTVERSION=	0.7.0
+PORTVERSION=	0.8.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://releases.zeitgeist-project.com/${PORTNAME}/
-DISTNAME=	QtZeitgeist-${PORTVERSION}
+MASTER_SITES=	${MASTER_SITE_KDE:C@$@:kde@} \
+		http://launchpad.net/zeitgeist/${ZEITGEIST_VERSION:R}/${ZEITGEIST_VERSION}/+download/
+MASTER_SITE_SUBDIR=	stable/lib${PORTNAME}/${PORTVERSION}/src/:kde
+DISTNAME=	lib${PORTNAME}-${PORTVERSION}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:kde \
+		zeitgeist-${ZEITGEIST_VERSION}.tar.gz
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 4 wrapper library around the Zeitgeist D-Bus API
-LICENSE=	lgpl
 
-USE_BZIP2=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib dbus qtestlib \
+LICENSE=	lgpl2.1
+
+BUILD_DEPENDS=	rapper:${PORTSDIR}/textproc/raptor2 \
+		${PYTHON_SITELIBDIR}/rdflib/__init__.py:${PORTSDIR}/textproc/py-rdflib
+
+USE_KDE4=	automoc4
+USE_PYTHON_BUILD=	yes
+USE_QT4=	dbus declarative qtestlib \
 		moc_build qmake_build rcc_build uic_build
+USE_BZIP2=	yes
+USES=		cmake
 MAKE_JOBS_SAFE=	yes
-USE_CMAKE=	yes
 USE_LDCONFIG=	yes
 
-WRKSRC=		${WRKDIR}/${DISTNAME}-Source
+# To be kept in sync with sysutils/zeitgeist.
+ZEITGEIST_VERSION=	0.8.2
+
+post-extract:
+	@(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+		${_DISTDIR}/zeitgeist-${ZEITGEIST_VERSION}.tar.gz ${EXTRACT_AFTER_ARGS})
+	cd ${WRKDIR}/zeitgeist-${ZEITGEIST_VERSION} && \
+		${CP} zeitgeist/datamodel.py \
+			extra/ontology/*.trig \
+			extra/rdfxml2py \
+			extra/PythonSerializer.py \
+			${WRKSRC}/scripts
 
 post-patch:
 	${REINPLACE_CMD} -e '/\.pc/ s|pkgconfig|../libdata/pkgconfig|' \
@@ -29,5 +48,18 @@ post-patch:
 		${WRKSRC}/CMakeLists.txt \
 		${WRKSRC}/src/CMakeLists.txt \
 		${WRKSRC}/QZeitgeistConfig.cmake.in
+	${REINPLACE_CMD} -e '/import _config/ d' \
+		-e 's|_config.datadir, "zeitgeist/ontology/zeitgeist.py"|runpath, "zeitgeist.py"|' \
+		${WRKSRC}/scripts/datamodel.py
+	${REINPLACE_CMD} -e 's|zeitgeist.datamodel|datamodel|' \
+		${WRKSRC}/scripts/onto2cpp.py
+	${REINPLACE_CMD} -e 's|/usr/bin/python|${PYTHON_CMD}|g' \
+		${WRKSRC}/scripts/rdfxml2py
+
+pre-build:
+	cd ${WRKSRC}/scripts && \
+		${CAT} *.trig | \
+		${LOCALBASE}/bin/rapper -i trig -o rdfxml -I ZeitgeistNamespace - | \
+		./rdfxml2py >> zeitgeist.py
 
 .include <bsd.port.mk>
