@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.16 2013/02/24 15:10:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.17 2013/06/11 01:24:47 laffer1 Exp $
 
 PORTNAME=	gnustep-base
 PORTVERSION=	1.24.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
+
 LICENSE=	gpl3
 
 LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
@@ -18,7 +19,6 @@ LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 #LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/mDNSResponder
 LIB_DEPENDS+=	gnutls-openssl.27:${PORTSDIR}/security/gnutls
 
-USE_PKGCONFIG=	build
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --disable-openssl --enable-tls \
@@ -28,7 +28,8 @@ USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
-USE_ICONV=	yes
+USES=		pkgconfig iconv
+
 
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
