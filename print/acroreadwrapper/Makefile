@@ -1,11 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.9 2011/09/18 20:47:02 laffer1 Exp $
 # $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.16 2011/06/27 02:52:45 hrs Exp $
 
 PORTNAME=	acroreadwrapper
-PORTVERSION=	0.0.20110529
+PORTVERSION=	0.0.20130208
 CATEGORIES=	print
 MASTER_SITES=	http://people.allbsd.org/~hrs/FreeBSD/
-DISTNAME=	linux_adobe_kmod-${PORTVERSION:S,0.0.,,}
+DISTNAME=	linux_adobe_kmod-${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for Adobe Reader
@@ -17,7 +17,7 @@ ONLY_FOR_ARCHS=	amd64 i386
 PLIST_FILES=	bin/acroread8 bin/acroread9 bin/acroread \
 		${KMODDIR}/linux_adobe.ko
 PLIST_DIRS=	${KMODDIR}
-SUB_FILES=	acroread 
+SUB_FILES=	acroread
 SUB_LIST=	ACROBASE8=${ACROBASE8} \
 		ACROBASE9=${ACROBASE9} \
 		ADOBE_LANG=${ADOBE_LANG:U} \
@@ -26,8 +26,11 @@ SUB_LIST=	ACROBASE8=${ACROBASE8} \
 		LINUXSH=${LINUXBASE}/bin/sh \
 		PLUGINDIR=${PLUGINDIR} \
 		KMODDIR=${KMODDIR}
-USE_RC_SUBR=	linux_adobe.sh
-MAKE_ENV=	KMODDIR=${KMODDIR}
+USE_RC_SUBR=	linux_adobe
+
+.include <bsd.port.pre.mk>
+
+MAKE_ENV=	KMODDIR=${KMODDIR} SYSDIR=${SRC_BASE}/sys DESTDIR=${PREFIX}/
 
 ADOBEBASE=	Adobe
 ACROBASE8=	${ADOBEBASE}/Reader8
@@ -35,7 +38,6 @@ ACROBASE9=	${ADOBEBASE}/Reader9
 PLUGINDIR=	lib/npapi/linux-acroread
 KMODDIR=	libexec/linux_adobe
 
-.include <bsd.port.pre.mk>
 KERNCONF?=	GENERIC
 
 # Use the first component of ${KERNCONF}.
