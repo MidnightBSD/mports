@@ -15,7 +15,7 @@
  	return f;
  }
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +static char *
 +resolve_fuse (const char *special)
 +{
@@ -53,7 +53,7 @@
 +static char *
 +resolve_special (const char *special)
 +{
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	if (strstr(special, "fuse"))
 +		return resolve_fuse (special);
 +#endif

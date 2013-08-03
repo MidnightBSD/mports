@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.20 2013/06/15 01:34:49 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.21 2013/07/03 00:26:57 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hardware Abstraction Layer for simplifying device access
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
