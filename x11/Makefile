@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.106 2013/01/18 13:38:07 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.107 2013/02/24 00:17:01 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -172,6 +172,7 @@ SUBDIR += xf86miscproto
 SUBDIR += xf86rushproto
 SUBDIR += xf86vidmodeproto
 SUBDIR += xfce4-conf
+SUBDIR += xfce4-terminal
 SUBDIR += xfd
 SUBDIR += xfindproxy
 SUBDIR += xfwp
