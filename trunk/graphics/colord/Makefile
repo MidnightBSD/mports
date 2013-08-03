@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/colord/Makefile,v 1.1 2013/03/30 13:16:27 laffer1 Exp $
 
 PORTNAME=	colord
 PORTVERSION=	0.1.20
@@ -7,6 +7,8 @@ MASTER_SITES=	http://www.freedesktop.org/software/colord/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage color profiles to accurately color input/output devices
+
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
 		vala-vapigen>=0.13.0:${PORTSDIR}/lang/vala-vapigen
