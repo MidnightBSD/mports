@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/snort/Makefile,v 1.5 2012/02/05 03:46:01 laffer1 Exp $
+# $MidnightBSD: mports/security/snort/Makefile,v 1.6 2013/07/03 20:17:09 laffer1 Exp $
 
 PORTNAME=	snort
 PORTVERSION=	2.8.2.1
@@ -8,7 +8,11 @@ MASTER_SITES=	http://www.snort.org/dl/current/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight network intrusion detection system
+
 LICENSE=        gpl2
+
+MAKE_JOBS_UNSAFE=	yes
+
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 OPTIONS=	DYNAMIC "Enable dynamic plugin support" on \
