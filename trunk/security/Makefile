@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.112 2013/07/04 19:10:11 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.113 2013/08/03 20:02:53 laffer1 Exp $
 
 COMMENT = Security tools
 
@@ -38,6 +38,7 @@ SUBDIR += libssh
 SUBDIR += libssh2
 SUBDIR += libtasn1
 SUBDIR += linux-f10-cyrus-sasl2
+SUBDIR += linux-f10-libgcrypt
 SUBDIR += linux-f10-libssh2
 SUBDIR += linux-f10-nss
 SUBDIR += linux-f10-openssl
