@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/colord/Makefile,v 1.1 2013/03/30 13:16:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/colord/Makefile,v 1.2 2013/08/03 01:15:02 laffer1 Exp $
 
 PORTNAME=	colord
 PORTVERSION=	0.1.20
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.freedesktop.org/software/colord/releases/
 
@@ -18,9 +19,8 @@ LIB_DEPENDS=	polkit-gobject-1:${PORTSDIR}/sysutils/polkit \
 
 USE_XZ=		yes
 USE_GNOME=	gnomehier glib20 intlhack
-USES=		pathfix
+USES=		pathfix gettext
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
 USE_SQLITE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -30,6 +30,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	USB_CFLAGS="-I/usr/include" \
 		USB_LIBS="-L/usr/lib -lusb"
+MAKE_ENV+=	GI_SCANNER_DISABLE_CACHE=yes
 
 OPTIONS_DEFINE=	SANE MANPAGES
 
