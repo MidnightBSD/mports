@@ -1,14 +1,8 @@
-# New ports collection makefile for:	acroread8
-# Date created:		20 October 2007
-# Whom:			hrs
-#
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.9 2010/04/30 16:23:56 vganji Exp $
-# $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
-#
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.10 2011/07/23 22:16:32 laffer1 Exp $
 
 PORTNAME=	acroread8
 PORTVERSION=	8.1.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/ \
 		ftp://ftp.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/
@@ -22,9 +16,10 @@ LICENSE=	restricted
 RUN_DEPENDS=	acroreadwrapper>=0.0.20100806:${PORTSDIR}/print/acroreadwrapper
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
+
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
-USE_LINUX_APPS=	gtk2 pango
+USE_LINUX_APPS=	cups-libs gtk2 pango libgcrypt libgpg-error
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 #USE_GNOME=	desktopfileutils
