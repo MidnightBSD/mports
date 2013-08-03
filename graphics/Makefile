@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.146 2013/02/22 00:30:03 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.147 2013/03/30 13:16:27 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -103,8 +103,6 @@ SUBDIR += libungif
 SUBDIR += libvisual04
 SUBDIR += libwmf
 SUBDIR += linux-adobesvg
-SUBDIR += linux-cairo
-SUBDIR += linux-dri74
 SUBDIR += linux-f10-cairo
 SUBDIR += linux-f10-dri
 SUBDIR += linux-f10-gdk-pixbuf
@@ -118,17 +116,7 @@ SUBDIR += linux-f10-png10
 SUBDIR += linux-f10-sdl_image
 SUBDIR += linux-f10-tiff
 SUBDIR += linux-f10-ungif
-SUBDIR += linux-gdk-pixbuf
-SUBDIR += linux-imlib
-SUBDIR += linux-jpeg
-SUBDIR += linux-libmng
 SUBDIR += linux-panorama-tools
-SUBDIR += linux-png
-SUBDIR += linux-png10
-SUBDIR += linux-sdl_image
-SUBDIR += linux-tiff
-SUBDIR += linux-ungif
-SUBDIR += linux_dri
 SUBDIR += mesa-demos
 SUBDIR += ming
 SUBDIR += netpbm
