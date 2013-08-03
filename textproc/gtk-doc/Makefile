@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/textproc/gtk-doc/Makefile,v 1.3 2011/06/01 01:49:03 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtk-doc/Makefile,v 1.4 2011/12/15 00:39:52 laffer1 Exp $
 
 PORTNAME=	gtk-doc
 PORTVERSION=	1.15
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Code documentation system, originally for GTK+
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	jade:${PORTSDIR}/textproc/jade \
@@ -29,12 +30,21 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+USES=		pathfix shebangfix
 USE_GNOME=	gnomehack gnomeprefix libxslt gnomedocutils
 INSTALLS_OMF=	yes
 CONFIGURE_ARGS=	--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
 
+SHEBANG_FILES=	tools/docpercentages.pl
+
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
 		CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML} \
 		CATALOG_DIR=${CATALOG_DIR}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|#!/bin/bash|#!/bin/sh|g' \
+		${WRKSRC}/tests/tools.sh.in \
+		${WRKSRC}/tests/fail.sh \
+		${WRKSRC}/tests/sanity.sh
 
 .include <bsd.port.mk>
