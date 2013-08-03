@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.119 2013/07/03 00:23:02 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.120 2013/07/14 15:53:23 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -105,6 +105,5 @@ SUBDIR += upsd
 SUBDIR += upsmon
 SUBDIR += wmbsdbatt
 SUBDIR += xfce4-settings
-SUBDIR += yawho
 
 .include <bsd.port.subdir.mk>
