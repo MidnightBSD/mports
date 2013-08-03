@@ -1,14 +1,7 @@
-# New ports collection makefile for:	gnupg
-# Date created:		Sep 30, 1998
-# Whom:			kuriyama@FreeBSD.org
-#
-# $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.6 2008/05/04 06:42:42 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.7 2011/08/22 18:20:25 laffer1 Exp $
 
 PORTNAME=	gnupg
-PORTVERSION=	1.4.9
-PORTREVISION=	2
+PORTVERSION=	1.4.13
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -17,20 +10,21 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
+
 LICENSE=	gpl2
 
 CONFLICTS=      gnupg-[0-9]*
 
+USES=		charsetfix
 USE_BZIP2=	YES
 USE_GMAKE=	YES
 GNU_CONFIGURE=	YES
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man
 .if ${MACHINE_CPU:Mi586}
 MACHINE_ARCH=	i586
 .endif
 CFLAGS:=	${CFLAGS:S/-pipe//g}
-MAN1=		gpg.1 gpgv.1 gpg.ru.1
+MAN1=		gpg.1 gpgv.1 gpg.ru.1 gpg-zip.1
 MAN7=		gnupg.7
 INFO=		gnupg1
 DOCSDIR=	${PREFIX}/share/doc/gnupg1
@@ -38,29 +32,36 @@ LATEST_LINK=	gnupg1
 
 PORTDOCS=	*
 
-OPTIONS=	LDAP "LDAP keyserver interface" off \
-		LIBICONV "use libiconv" off \
-		LIBUSB "use libusb" off \
-		SUID_GPG "install GPG with suid" off \
-		NLS "Native Language Support" on \
-		CURL "use libcurl for the keyserver interface" on
+OPTIONS_DEFINE=	LDAP LIBICONV LIBUSB SUID_GPG NLS CURL DOCS
+OPTIONS_DEFAULT=	CURL
+LDAP_DESC=	LDAP keyserver interface
+LIBICONV_DESC=	use libiconv
+LIBUSB_DESC=	use libusb
+SUID_GPG_DESC=	install GPG with suid
+CURL_DESC=	use libcurl for the keyserver interface
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_LIBICONV)
-USE_ICONV=	yes
+.if ${CC} == "clang"
+CFLAGS:=	${CFLAGS:S/$/ -std=c89/}
+.if (${ARCH} == "i386")
+CFLAGS:=	${CFLAGS:S/$/ -fheinous-gnu-extensions/}
+.endif
+.endif
+
+.if ${PORT_OPTIONS:MLIBICONV}
+USES+=		iconv
 .else
 CONFIGURE_ARGS+=	--without-libiconv-prefix
 .endif
 
-.if defined(WITH_LIBUSB)
+.if ${PORT_OPTIONS:MLIBUSB}
 CONFIGURE_ARGS+=	--with-libusb=${LOCALBASE}
-LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
 .else
 CONFIGURE_ARGS+=	--without-libusb
 .endif
 
-.if defined(WITH_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=	yes
 PLIST_SUB+=	WITH_LDAP=""
 CONFIGURE_ARGS+=	--with-ldap=${LOCALBASE}
@@ -70,15 +71,15 @@ PLIST_SUB+=	WITH_LDAP="@comment "
 CONFIGURE_ARGS+=	--disable-ldap
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	YES
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-.if !defined(WITHOUT_CURL)
+.if ${PORT_OPTIONS:MCURL}
 LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=--with-libcurl=${LOCALBASE}
 # Work around a GnuPG configure buglet
@@ -88,7 +89,7 @@ CONFIGURE_ARGS+=--without-libcurl
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 .for i in DETAILS FAQ HACKING OpenPGP
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
@@ -98,8 +99,11 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
-.if defined(WITH_SUID_GPG)
+.if ${PORT_OPTIONS:MSUID_GPG}
 	${CHMOD} u+s ${PREFIX}/bin/gpg
 .endif
 
-.include <bsd.port.post.mk>
+check:
+	(cd ${WRKSRC}; ${MAKE} check)
+
+.include <bsd.port.mk>
