@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.111 2013/03/27 00:50:46 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.112 2013/07/04 19:10:11 laffer1 Exp $
 
 COMMENT = Security tools
 
@@ -59,6 +59,7 @@ SUBDIR += openvpn
 SUBDIR += p11-kit
 SUBDIR += p5-Authen-NTLM
 SUBDIR += p5-Authen-SASL
+SUBDIR += p5-Crypt-CBC
 SUBDIR += p5-Crypt-DES
 SUBDIR += p5-Crypt-OpenSSL-Bignum
 SUBDIR += p5-Crypt-OpenSSL-RSA
