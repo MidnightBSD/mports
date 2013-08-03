@@ -34,7 +34,9 @@ include/tk%%TK_VER%%/unix/tkUnixInt.h
 include/tk%%TK_VER%%/unix/tkUnixPort.h
 lib/libtk%%SHORT_TK_VER%%.a
 lib/libtk%%SHORT_TK_VER%%.so
-lib/libtkstub%%TK_VER%%.a
+lib/libtk%%SHORT_TK_VER%%.so.1
+lib/libtkstub%%SHORT_TK_VER%%.a
+lib/tk%%TK_VER%%/pkgIndex.tcl
 lib/tk%%TK_VER%%/bgerror.tcl
 lib/tk%%TK_VER%%/button.tcl
 lib/tk%%TK_VER%%/choosedir.tcl
@@ -73,12 +75,12 @@ lib/tk%%TK_VER%%/console.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/image2.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/earth.gif
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/earthris.gif
-%%DEMOS%%lib/tk%%TK_VER%%/demos/images/face.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/flagdown.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/flagup.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/gray25.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/letters.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/noletter.xbm
+%%DEMOS%%lib/tk%%TK_VER%%/demos/images/ouster.png
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/pattern.xbm
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/tcllogo.gif
 %%DEMOS%%lib/tk%%TK_VER%%/demos/images/teapot.ppm
@@ -105,7 +107,6 @@ lib/tk%%TK_VER%%/console.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/sayings.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/search.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/spin.tcl
-%%DEMOS%%lib/tk%%TK_VER%%/demos/square
 %%DEMOS%%lib/tk%%TK_VER%%/demos/states.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/style.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/tclIndex
@@ -120,6 +121,7 @@ lib/tk%%TK_VER%%/console.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttknote.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttkpane.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttkprogress.tcl
+%%DEMOS%%lib/tk%%TK_VER%%/demos/ttkscale.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/twind.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/unicodeout.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/vscale.tcl
@@ -128,7 +130,11 @@ lib/tk%%TK_VER%%/dialog.tcl
 lib/tk%%TK_VER%%/entry.tcl
 lib/tk%%TK_VER%%/focus.tcl
 lib/tk%%TK_VER%%/fontchooser.tcl
+lib/tk%%TK_VER%%/iconlist.tcl
+lib/tk%%TK_VER%%/icons.tcl
 lib/tk%%TK_VER%%/images/README
+lib/tk%%TK_VER%%/images/lamp.png
+lib/tk%%TK_VER%%/images/lamp.svg
 lib/tk%%TK_VER%%/images/logo.eps
 lib/tk%%TK_VER%%/images/logo100.gif
 lib/tk%%TK_VER%%/images/logo64.gif
@@ -142,6 +148,7 @@ lib/tk%%TK_VER%%/images/pwrdLogo200.gif
 lib/tk%%TK_VER%%/images/pwrdLogo75.gif
 lib/tk%%TK_VER%%/images/tai-ku.gif
 lib/tk%%TK_VER%%/listbox.tcl
+lib/tk%%TK_VER%%/megawidget.tcl
 lib/tk%%TK_VER%%/menu.tcl
 lib/tk%%TK_VER%%/mkpsenc.tcl
 lib/tk%%TK_VER%%/msgbox.tcl
@@ -165,7 +172,6 @@ lib/tk%%TK_VER%%/obsolete.tcl
 lib/tk%%TK_VER%%/optMenu.tcl
 lib/tk%%TK_VER%%/palette.tcl
 lib/tk%%TK_VER%%/panedwindow.tcl
-lib/tk%%TK_VER%%/pkgIndex.tcl
 lib/tk%%TK_VER%%/safetk.tcl
 lib/tk%%TK_VER%%/scale.tcl
 lib/tk%%TK_VER%%/scrlbar.tcl
@@ -203,13 +209,12 @@ lib/tk%%TK_VER%%/ttk/winTheme.tcl
 lib/tk%%TK_VER%%/ttk/xpTheme.tcl
 lib/tk%%TK_VER%%/unsupported.tcl
 lib/tk%%TK_VER%%/xmfbox.tcl
-%%DATADIR%%/man.macros
-@dirrm %%DATADIR%%
-@dirrm lib/tk%%TK_VER%%/ttk
+libdata/pkgconfig/tk.pc
 %%DEMOS%%@dirrm lib/tk%%TK_VER%%/demos/images
 %%DEMOS%%@dirrm lib/tk%%TK_VER%%/demos
-@dirrm lib/tk%%TK_VER%%/images
+@dirrm lib/tk%%TK_VER%%/ttk
 @dirrm lib/tk%%TK_VER%%/msgs
+@dirrm lib/tk%%TK_VER%%/images
 @dirrm lib/tk%%TK_VER%%
 @dirrm include/tk%%TK_VER%%/unix
 @dirrm include/tk%%TK_VER%%/generic
