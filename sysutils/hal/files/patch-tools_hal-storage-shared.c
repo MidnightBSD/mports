@@ -4,7 +4,7 @@
  	char *mount_point_to_unmount;
  	gboolean mounted_by_other_uid;
  	FILE *hal_mtab_new;
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	char *rdevice = NULL;
 +#endif
  
@@ -15,7 +15,7 @@
  	if (option_force)
  		args[na++] = "-f";
 -	args[na++] = (char *) device;
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	dbus_error_init (&error);
 +	if (libhal_device_property_exists (hal_ctx, udi, "volume.freebsd.real_mounted_device", NULL)) {
 +		rdevice = libhal_device_get_property_string (hal_ctx, udi, "volume.freebsd.real_mounted_device", &error);
@@ -36,7 +36,7 @@
  		unknown_error ("Cannot spawn " UMOUNT);
  	}
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	g_free (rdevice);
 +#endif
 +
