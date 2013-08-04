@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/linux-relview/Makefile,v 1.1 2011/06/19 15:50:34 laffer1 Exp $
 # $FreeBSD: ports/math/linux-relview/Makefile,v 1.10 2010/03/08 16:53:01 miwi Exp $
 
 PORTNAME=	relview
 PORTVERSION=	7.0.2
+PORTREVISION=	1
 CATEGORIES=	math linux
 MASTER_SITES=	ftp://ftp.informatik.uni-kiel.de/pub/kiel/relview/RELVIEW_7.0/LINUX/
 PKGNAMEPREFIX=	linux-
@@ -17,6 +18,8 @@ USE_LINUX=	yes
 USE_LINUX_APPS=	gtk xorglibs
 
 NO_WRKSUBDIR=	yes
+EXTRACT_CMD=	${GZIP_CMD}
+EXTRACT_BEFORE_ARGS=	-dc
 EXTRACT_AFTER_ARGS=	> ${DISTNAME}
 
 NO_BUILD=	yes
