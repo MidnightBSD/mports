@@ -1,21 +1,32 @@
-# New ports collection makefile for:    calc
-# Date created:         3 October 1994
-# Whom:                 jmz
-#
-# $MidnightBSD: mports/math/calc/Makefile,v 1.2 2008/06/16 21:24:50 stevan Exp $
-# $FreeBSD: ports/math/calc/Makefile,v 1.23 2007/02/07 15:29:30 jmz Exp $
-#
+# $MidnightBSD: mports/math/calc/Makefile,v 1.3 2010/11/13 17:01:01 laffer1 Exp $
 
 PORTNAME=	calc
-PORTVERSION=	2.12.1.8
+PORTVERSION=	2.12.4.8
 CATEGORIES=	math
-#SF is no longer there
-MASTER_SITES=	http://distfiles.macports.org/calc/
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Arbitrary precision calculator
+
 LICENSE=	lgpl
 
+USE_BZIP2=	yes
+USE_GMAKE=	yes
+USE_LDCONFIG=	yes
+
+MAKE_JOBS_UNSAFE=	yes
+
 MAN1=		calc.1
+
+CALCPAGER?=	more
+MAKE_ENV+=	CALCPAGER="${CALCPAGER}" CAT="${CAT}" CHMOD="${CHMOD}" CP="${CP}" \
+		GMAKE="${GMAKE}" LN="${LN}" MKDIR="${MKDIR}" MV="${MV}" RM="${RM}" \
+		SED="${SED}" TOUCH="${TOUCH}" TRUE="${TRUE}"
+
+PLIST_SUB+=	VERSION=${PORTVERSION}	VER1=${PORTVERSION:R} \
+		VER2=${PORTVERSION:R:R}	VER3=${PORTVERSION:R:R:R}
+
+regression-test: build
+	( cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} check )
 
 .include <bsd.port.mk>
