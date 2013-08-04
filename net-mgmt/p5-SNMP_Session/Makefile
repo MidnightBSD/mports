@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net-mgmt/p5-SNMP_Session/Makefile,v 1.2 2007/06/06 18:35:21 ctriv Exp $
+# $MidnightBSD: mports/net-mgmt/p5-SNMP_Session/Makefile,v 1.3 2013/03/06 03:23:58 laffer1 Exp $
 
 PORTNAME=	SNMP_Session
 PORTVERSION=	1.13
+PORTREVISION=	1
 CATEGORIES=	net-mgmt perl5
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 PROJECTHOST=	snmp-session
@@ -15,11 +16,13 @@ PERL_CONFIGURE=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
 
+.include <bsd.mport.options.mk>
+
 post-patch:
 	${RM} ${WRKSRC}/lib/SNMP_Session.pm.orig
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for file in README README.SNMP_util index.html
 	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
