@@ -1,28 +1,29 @@
-# $MidnightBSD: mports/print/jadetex/Makefile,v 1.4 2010/05/05 23:58:31 laffer1 Exp $
+# $MidnightBSD: mports/print/jadetex/Makefile,v 1.5 2013/07/03 20:40:44 laffer1 Exp $
 
-PORTNAME=		jadetex
-PORTVERSION=		3.13
-PORTREVISION=		4
-CATEGORIES=		print
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	jadetex
+PORTNAME=	jadetex
+PORTVERSION=	3.13
+PORTREVISION=	5
+CATEGORIES=	print
+MASTER_SITES=	SF
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		A TeX backend for Jade, for typesetting SGML documents
-LICENSE=		unknown
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A TeX backend for Jade, for typesetting SGML documents
+LICENSE=	unknown
 
-BUILD_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS+=		png15:${PORTSDIR}/graphics/png
-RUN_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
+BUILD_DEPENDS+=	etex:${PORTSDIR}/print/teTeX-base
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+RUN_DEPENDS+=	etex:${PORTSDIR}/print/teTeX-base
 
-TEXMFMAIN=              ${PREFIX}/share/texmf
+MAKE_JOBS_UNSAFE=	yes
 
-#MAKE_ENV=		TEXMFCNF=${FILESDIR}:${TETMFMAIN}/web2c
+TEXMFMAIN=	${PREFIX}/share/texmf
 
-MESSAGE=		${PKGDIR}/pkg-message
-PKGMESSAGE=		${WRKDIR}/pkg-message
+#MAKE_ENV=	TEXMFCNF=${FILESDIR}:${TETMFMAIN}/web2c
 
-MAN1=			jadetex.1 pdfjadetex.1
+MESSAGE=	${PKGDIR}/pkg-message
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+MAN1=		jadetex.1 pdfjadetex.1
 
 pre-patch:
 	@${SED} -e 's,%%LOCALBASE%%,${PREFIX},' ${MESSAGE} > ${PKGMESSAGE}
