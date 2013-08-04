@@ -1,16 +1,18 @@
-# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.4 2011/01/12 14:05:56 laffer1 Exp $
-# $FreeBSD: ports/net-im/msn-proxy/Makefile,v 1.1 2008/01/21 19:11:20 miwi Exp $
+# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.5 2013/03/09 23:31:08 laffer1 Exp $
 
 PORTNAME=	msn-proxy
 PORTVERSION=	0.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Messenger proxy/control daemon
+
 LICENSE=	other
-#almost mit/bsd ish in nature.
+
+DEPRECATED=	Primary MSN Messenger service terminated 30 APR 2013
+EXPIRATION_DATE=2013-10-31
 
 LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
 
