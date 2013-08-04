@@ -2,13 +2,13 @@
 # Date created:				Sun Jun 24 17:08:15 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.4 2009/04/05 19:33:04 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.5 2010/12/11 18:53:14 laffer1 Exp $
 # $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 
 PORTNAME=	wmScoreBoard
 PORTVERSION=	0.30
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	pat
@@ -21,11 +21,12 @@ RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/src
 USE_GMAKE=	yes
-USE_XLIB=	yes
 USE_XORG=	xpm
 
+.include <bsd.mport.options.mk>
+
 post-install:
-.ifndef(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for docs in BUGS CHANGES HINTS README
 	@${INSTALL_DATA} ${WRKSRC}/../${docs} ${DOCSDIR}
