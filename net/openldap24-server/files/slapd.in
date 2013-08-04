@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/openldap24-server/files/slapd.sh.in,v 1.11 2009/09/07 22:27:13 delphij Exp $
+# $FreeBSD$
 #
 
 # PROVIDE: slapd
@@ -34,10 +34,10 @@
 #slapd_krb5_ktname="/path/to/ldap.keytab"
 #
 
-. "%%RC_SUBR%%"
+. /etc/rc.subr
 
 name="slapd"
-rcvar=`set_rcvar`
+rcvar=slapd_enable
 
 # read settings, set defaults
 load_rc_config ${name}
@@ -50,7 +50,6 @@ fi
 : ${slapd_owner="ldap:ldap"}
 : ${slapd_sockets_mode="666"}
 : ${slapd_cn_config="NO"}
-: ${slapd_krb5_ktname=""}
 
 command="%%PREFIX%%/libexec/slapd"
 pidfile="%%LDAP_RUN_DIR%%/slapd.pid"
@@ -61,7 +60,6 @@ if checkyesno slapd_cn_config; then
   required_files="%%PREFIX%%/etc/openldap/slapd.d/cn=config.ldif"
   DATABASEDIR=`grep olcDbDirectory %%PREFIX%%/etc/openldap/slapd.d/cn=config/olcDatabase=* | awk '{ print $2 }'`
 else
-  required_dirs="%%LDAP_RUN_DIR%%"
   required_files="%%PREFIX%%/etc/openldap/slapd.conf"
   DATABASEDIR=`awk '$1 == "directory" { print $2 }' "%%PREFIX%%/etc/openldap/slapd.conf" 2>&1 /dev/null`
 fi
@@ -74,6 +72,8 @@ start_postcmd=start_postcmd
 start_precmd()
 {
   local slapd_ownername slapd_groupname
+
+  mkdir -p %%LDAP_RUN_DIR%%
 
   case "$slapd_owner" in
   ""|[Nn][Oo][Nn][Ee]|[Dd][Ee][Ff][Aa][Uu][Ll][Tt])
