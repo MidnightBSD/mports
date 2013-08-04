@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/net/hupnp/Makefile,v 1.1 2011/07/31 16:52:56 laffer1 Exp $
+# $MidnightBSD: mports/net/hupnp/Makefile,v 1.2 2012/03/02 01:42:39 laffer1 Exp $
 # $FreeBSD: ports/net/hupnp/Makefile,v 1.1 2011/02/05 16:16:13 fluffy Exp $
 
 PORTNAME=	hupnp
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	net devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 DISTNAME=	herqq-${PORTVERSION}
@@ -13,8 +14,7 @@ LICENSE=	gpl3
 
 USE_ZIP=	yes
 USE_GMAKE=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib network xml dbus gui \
+USE_QT4=	corelib network xml dbus gui \
 		qmake_build moc_build rcc_build uic_build
 QMAKE_ARGS=	PREFIX=${PREFIX} herqq.pro
 
