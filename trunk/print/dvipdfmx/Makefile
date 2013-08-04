@@ -1,13 +1,7 @@
-# New ports collection makefile for:    dvipdfmx
-# Date created:		8 March 2001
-# Whom:			Shen Chuan-Hsing <statue@freebsd.sinica.edu.tw>
-#
-# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.4 2011/02/02 21:18:50 laffer1 Exp $
-# $FreeBSD: ports/print/dvipdfmx/Makefile,v 1.24 2006/07/02 11:29:21 matusita Exp $
-#
+# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.5 2011/09/08 13:10:19 laffer1 Exp $
 
 PORTNAME=	dvipdfmx
-PORTVERSION=	20100328
+PORTVERSION=	20110311
 CATEGORIES=	print
 MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/latest/ \
 		http://project.ktug.or.kr/dvipdfmx/snapshot/archive/
@@ -15,6 +9,7 @@ DIST_SUBDIR=	dvipdfmx
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dvipdfm with Asian languages by CID-keyed font technology support
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PREFIX}/lib/libkpathsea.a:${PORTSDIR}/print/teTeX-base
