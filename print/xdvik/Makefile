@@ -1,20 +1,15 @@
-# New ports collection makefile for:   xdvik
-# Date created:        26 Feb 1998
-# Whom:                Kentaro Inagaki <JBD01226@niftyserve.ne.jp>
-#
-# $FreeBSD: ports/print/xdvik/Makefile,v 1.24 2005/09/13 18:04:35 hrs Exp $
-# $MidnightBSD: mports/print/xdvik/Makefile,v 1.2 2007/11/02 03:59:46 ctriv Exp $
-#
+# $MidnightBSD: mports/print/xdvik/Makefile,v 1.3 2010/12/04 02:50:50 laffer1 Exp $
 
 PORTNAME=	xdvik
 PORTVERSION=	22.84.16
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	-tetex
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DVI Previewer(kpathsearch) for X
+
 LICENSE=	agg
 
 BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
@@ -27,7 +22,7 @@ LIB_DEPENDS=	t1.5:${PORTSDIR}/devel/t1lib
 
 FAKE_OPTS=	prefixhack
 
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 USE_MOTIF=	yes
 GNU_CONFIGURE=	yes
