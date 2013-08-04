@@ -1,89 +1,100 @@
-# New ports collection makefile for:	zebra
-# Date created:		27 Feb 2008
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/net/zebra/Makefile,v 1.2 2008/03/21 18:08:26 ctriv Exp $
-#
+# $MidnightBSD: mports/net/zebra/Makefile,v 1.3 2008/03/21 20:02:41 ctriv Exp $
 
 PORTNAME=	zebra
 PORTVERSION=	0.95a
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net ipv6
-MASTER_SITES=	ftp://ftp.zebra.org/pub/zebra/ \
+MASTER_SITES=	ftp://ftp.pop-pr.rnp.br/pub/GNU/ftp.zebra.org/zebra/ \
 		ftp://ftp.ripe.net/mirrors/sites/ftp.zebra.org/pub/zebra/ \
-		ftp://ftp.sunet.se/pub/network/zebra/ \
-		ftp://6bone.informatik.uni-leipzig.de/pub/ftp.zebra.org/pub/zebra/ \
-		ftp://ftp.pop-pr.rnp.br/pub/GNU/ftp.zebra.org/zebra/
+		http://ftp.sunet.se/pub/network/zebra/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free RIPv1, RIPv2, OSPFv2, BGP4 route software (server/reflector)
+
 LICENSE=	gpl2
 
-CONFLICTS=	openbgpd-[0-9]* quagga-[0-9]*
+CONFLICTS=	openbgpd-[0-9]* quagga-[0-9]* quagga-re-[0-9]* openospfd-[0-9]*
 
-PKGMESSAGE=	${WRKDIR}/pkg-message
-SUB_FILES=	pkg-message
+SUB_FILES=	pkg-message zebractl
+SUB_LIST=	BGPDARGS=${BGPDARGS} \
+		OSPFDARGS=${OSPFDARGS} \
+		OSPF6DARGS=${OSPFDARGS} \
+		RIPDARGS=${RIPDARGS} \
+		RIPNGDARGS=${RIPNGDARGS} \
+		ZEBRAARGS=${ZEBRAARGS}
 USE_SUBMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/etc/zebra
+MAKE_JOBS_SAFE=	yes
+
 SCRIPTS_ENV=	WRKDIRPREFIX=${WRKDIRPREFIX}
 
-OPTIONS=	IPV6 "enable IPv6 support" on \
-		LIBPAM "enable PAM authentication for vtysh" off \
-		OSPFNSSA "turn on undergoing NSSA feature" off \
-		SNMP "enable SNMP support" off \
-		TCPZEBRA "enable TCP/IP socket connection" off \
-		BGPD "enable BGPD" on \
-		OSPF6D "enable OSPF6D" on \
-		OSPFD "enable OSPFD" on \
-		RIPD "enable RIPD" on \
-		RIPNGD "enable RIPNGD" on \
-		VTYSH "enable VTYSH" on
+OPTIONS_DEFINE=	IPV6 PAM OSPFNSSA SNMP TCPZEBRA BGPD OSPF6D OSPFD RIPD RIPNGD VTYSH
+
+PAM_DESC=	PAM authentication for vtysh
+OSPFNSSA_DESC=	undergoing NSSA feature
+TCPZEBRA_DESC=	TCP/IP socket connection
+BGPD_DESC=	BGPD support
+OSPF6D_DESC=	OSPF6D support
+OSPFD_DESC=	OSPFD support
+RIPD_DESC=	RIPD support
+RIPNGD_DESC=	RIPNGD support
+VTYSH_DESC=	VTYSH support
+
+OPTIONS_DEFAULT=	IPV6 BGPD OSPF6D OSPFD RIPD RIPNGD VTYSH
+NO_OPTIONS_SORT=	yes
 
 MAN1=		vtysh.1
 MAN8=		bgpd.8 ospf6d.8 ospfd.8 ripd.8 ripngd.8 zebra.8
 INFO=		zebra
 
-.include <bsd.port.pre.mk>
+BGPDARGS?=	-d
+OSPFDARGS?=	-d
+OSPF6DARGS?=	-d
+RIPDARGS?=	-d
+RIPNGDARGS?=	-d
+ZEBRAARGS?=	-d
 
-.if defined (WITHOUT_IPV6)
+.include <bsd.mport.options.mk>
+
+.if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
 WITHOUT_OSPF6D=	yes
 WITHOUT_RIPNGD=	yes
 .endif
 
-.if defined (WITH_LIBPAM)
+.if ${PORT_OPTIONS:MPAM}
 CONFIGURE_ARGS+=--with-libpam
 .endif
 
-.if defined (WITH_OSPFNSSA)
+.if ${PORT_OPTIONS:MOSPFNSSA}
 CONFIGURE_ARGS+=--enable-nssa
 .endif
 
-.if defined (WITH_SNMP)
+.if ${PORT_OPTIONS:MSNMP}
 CONFIGURE_ARGS+=--enable-snmp
-LIB_DEPENDS+=snmp.4:${PORTSDIR}/net-mgmt/net-snmp4:install
+LIB_DEPENDS+=	snmp:${PORTSDIR}/net-mgmt/net-snmp
 .endif
 
-.if defined (WITH_TCPZEBRA)
+.if ${PORT_OPTIONS:MTCPZEBRA}
 CONFIGURE_ARGS+=--enable-tcp-zebra
 .endif
 
-.if !defined(WITHOUT_BGPD)
+.if ${PORT_OPTIONS:MBGPD}
 PLIST_SUB+=	BGPD=""
 .else
 CONFIGURE_ARGS+=--disable-bgpd
 PLIST_SUB+=	BGPD="@comment "
 .endif
 
-.if !defined(WITHOUT_OSPF6D)
+.if ${PORT_OPTIONS:MOSPF6D}
 PLIST_SUB+=	OSPF6D=""
 .else
 CONFIGURE_ARGS+=--disable-ospf6d
 PLIST_SUB+=	OSPF6D="@comment "
 .endif
 
-.if !defined(WITHOUT_OSPFD)
+.if ${PORT_OPTIONS:MOSPFD}
 PLIST_SUB+=	OSPF6D=""
 PLIST_SUB+=	OSPFD=""
 .else
@@ -91,21 +102,21 @@ CONFIGURE_ARGS+=--disable-ospfd
 PLIST_SUB+=	OSPFD="@comment "
 .endif
 
-.if !defined(WITHOUT_RIPD)
+.if ${PORT_OPTIONS:MRIPD}
 PLIST_SUB+=	RIPD=""
 .else
 CONFIGURE_ARGS+=--disable-ripd
 PLIST_SUB+=	RIPD="@comment "
 .endif
 
-.if !defined(WITHOUT_RIPNGD)
+.if ${PORT_OPTIONS:MRIPNGD}
 PLIST_SUB+=	RIPNGD=""
 .else
 CONFIGURE_ARGS+=--disable-ripngd
 PLIST_SUB+=	RIPNGD="@comment "
 .endif
 
-.if !defined(WITHOUT_VTYSH)
+.if ${PORT_OPTIONS:MVTYSH}
 PLIST_SUB+=	VTYSH=""
 CONFIGURE_ARGS+=--enable-vtysh
 .else
@@ -119,4 +130,4 @@ post-install:
 		> ${PREFIX}/sbin/zebractl
 	@${CHMOD} 555 ${PREFIX}/sbin/zebractl
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
