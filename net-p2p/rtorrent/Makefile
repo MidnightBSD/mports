@@ -1,53 +1,62 @@
-# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.6 2010/03/25 23:20:05 crash Exp $
+# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.7 2010/09/07 23:38:14 laffer1 Exp $
 
 PORTNAME?=	rtorrent
-PORTVERSION?=	0.8.6
-PORTREVISION=	2
+PORTVERSION=	0.9.2
+PORTREVISION=	0
 CATEGORIES=	net-p2p
-MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	flz/rtorrent/
+MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	BitTorrent Client written in C++
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	BitTorrent Client written in C++
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS?=	libtorrent=0.12.6:${PORTSDIR}/net-p2p/libtorrent
-RUN_DEPENDS?=	libtorrent=0.12.6:${PORTSDIR}/net-p2p/libtorrent
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+BUILD_DEPENDS=	libtorrent=0.13.2_1:${PORTSDIR}/net-p2p/libtorrent
+RUN_DEPENDS=	libtorrent=0.13.2_1:${PORTSDIR}/net-p2p/libtorrent
+LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
 
 CONFLICTS=	rtorrent-devel-[0-9]*
 
-MAN1=		rtorrent.1
-
 GNU_CONFIGURE=	yes
+USES=		pkgconfig
+LDFLAGS+=	-pthread
 CONFIGURE_ARGS=	--disable-debug
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 
 SUB_FILES=	pkg-message
 
 PORTDOCS=	README
 
-OPTIONS=	XMLRPC "Compile with xmlrpc-c support" on
+OPTIONS_DEFINE=	XMLRPC IPV6 DOCS
+OPTIONS_DEFAULT=	XMLRPC IPV6
+XMLRPC_DESC=	Compile with xmlrpc-c support
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_XMLRPC)
+.if ${ARCH} == "arm"
+BROKEN=		Does not configure on arm
+.endif
+
+.if ${PORT_OPTIONS:MXMLRPC}
 CONFIGURE_ARGS+=	--with-xmlrpc-c
 LIB_DEPENDS+=	xmlrpc.9:${PORTSDIR}/net/xmlrpc-c
 .else
 CONFIGURE_ARGS+=	--with-xmlrpc-c=no
 .endif
 
+.if ${PORT_OPTIONS:MIPV6}
+CONFIGURE_ARGS+=	--enable-ipv6
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3|${CFLAGS}|' ${WRKSRC}/configure
 
 post-install:
-.if !defined(NOPORTDOCS)
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/rtorrent.rc ${EXAMPLESDIR}/
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}/
 .endif
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/rtorrent.rc ${EXAMPLESDIR}/
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
