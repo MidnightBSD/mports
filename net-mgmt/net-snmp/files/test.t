@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# $FreeBSD: ports/net-mgmt/net-snmp/files/test.t,v 1.1 2005/11/30 05:22:40 kuriyama Exp $
+# $FreeBSD$
 
 use strict;
 use Test::More tests => 1;
