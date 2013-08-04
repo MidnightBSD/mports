@@ -1,16 +1,17 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/linuxigd/Makefile,v 1.20 2011/03/26 23:31:49 pav Exp $
+# $MidnightBSD: mports/net/linuxigd/Makefile,v 1.1 2011/06/19 19:11:53 laffer1 Exp $
 
 PORTNAME=	linuxigd
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	SF/linux-igd/linux-igd/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux UPnP Internet Gateway Device
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	upnp.7:${PORTSDIR}/devel/upnp
+LIB_DEPENDS=	upnp.9:${PORTSDIR}/devel/upnp
 
 USE_RC_SUBR=	linuxigd
 USE_GMAKE=	yes
