@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.3 2011/02/02 21:14:16 laffer1 Exp $
+# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.4 2013/03/30 19:19:49 laffer1 Exp $
 
 PORTNAME=		samba4wins
 PORTVERSION=		1.0.8
+PORTREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://ftp.sernet.de/pub/samba4WINS/debian/pool/
 DISTNAME=		${PORTNAME}_${PORTVERSION}-2
@@ -12,7 +13,8 @@ LICENSE=		gpl2
 
 CONFLICTS=		samba-4.* sharity-light-1.*
 
-USE_ICONV=		yes
+MAKE_JOBS_UNSAFE=	yes
+USES=			iconv
 USE_PERL5=		yes
 GNU_CONFIGURE=		yes
 USE_AUTOTOOLS=		autoconf autoheader
