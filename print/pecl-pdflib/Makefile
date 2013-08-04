@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/print/pecl-pdflib/Makefile,v 1.4 2009/03/14 15:40:25 laffer1 Exp $
+# $MidnightBSD: mports/print/pecl-pdflib/Makefile,v 1.5 2009/07/11 17:59:30 laffer1 Exp $
 
 PORTNAME=	pdflib
-PORTVERSION=	2.1.6
+PORTVERSION=	2.1.10
 CATEGORIES=	print
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -10,9 +10,10 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A PECL extension to create PDF on the fly
+
 LICENSE=	php
 
-LIB_DEPENDS=	pdf.8:${PORTSDIR}/print/pdflib
+LIB_DEPENDS=	pdf.6:${PORTSDIR}/print/pdflib
 
 USE_PHP=	gd
 USE_PHP_BUILD=	yes
