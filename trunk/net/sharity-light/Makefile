@@ -1,19 +1,15 @@
-# New ports collection makefile for:	sharity-light
-# Date created:		May 30, 2008
-# Whom:			Lucas Holt <luke@Midnightbsd.org>
-#
-# $MidnightBSD: mports/net/sharity-light/Makefile,v 1.1 2008/05/30 20:50:05 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/sharity-light/Makefile,v 1.2 2013/02/18 03:44:07 laffer1 Exp $
 
 PORTNAME=	sharity-light
 PORTVERSION=	1.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://www.obdev.at/ftp/pub/Products/Sharity-Light/
 DISTNAME=	Sharity-Light.1.3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An userland smbfs --- SMB to NFS protocols converter
+COMMENT=	Userland smbfs --- SMB to NFS protocols converter
+
 LICENSE=	gpl2
 
 MAN8=		smbmount.8
@@ -21,7 +17,7 @@ MAN8=		smbmount.8
 PLIST_FILES=	sbin/shlight sbin/unshlight
 PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 post-extract:
 	@${MKDIR} ${WRKDIR}/unshlight
@@ -39,11 +35,11 @@ post-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/shlight ${PREFIX}/sbin
 	${INSTALL_PROGRAM} ${WRKDIR}/unshlight/unshlight ${PREFIX}/sbin
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}/README
 	${INSTALL_DATA} ${WRKSRC}/FAQ.txt ${DOCSDIR}/FAQ
 .endif
 	${INSTALL_MAN} ${WRKSRC}/smbmount.8 ${PREFIX}/man/man8
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
