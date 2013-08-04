@@ -1,10 +1,4 @@
-# New ports collection makefile for:	openldap24-server
-# Date created:				19 May 2006
-# Whom:					Xin LI <delphij@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.9 2011/02/02 21:14:15 laffer1 Exp $
-# $FreeBSD: ports/net/openldap24-server/Makefile,v 1.153 2008/05/07 21:20:44 delphij Exp $
-#
+# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.10 2013/08/04 20:13:52 laffer1 Exp $
 
 PORTNAME=		openldap
 DISTVERSION=		2.4.35
@@ -41,12 +35,8 @@ EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Open source LDAP server implementation
-LICENSE=		openldap2.8
 
-LICENSE=		OPENLDAP
-LICENSE_NAME=		OpenLDAP Public License
-LICENSE_FILE=		${WRKSRC}/LICENSE
-LICENSE_PERMS=		dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=		openldap2.8
 
 LATEST_LINK?=		${PKGNAMEPREFIX}openldap24${PKGNAMESUFFIX}
 USE_OPENSSL=		yes
