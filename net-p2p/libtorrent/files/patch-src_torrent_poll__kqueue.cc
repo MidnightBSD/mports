@@ -18,4 +18,3 @@
  }
  
  PollKQueue::PollKQueue(int fd, int maxEvents, int maxOpenSockets) :
-
