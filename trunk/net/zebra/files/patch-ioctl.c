@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/net/zebra/files/patch-ioctl.c,v 1.2 2002/10/07 14:43:54 sobomax Exp $
+$FreeBSD$
 
 --- zebra/ioctl.c.orig	Tue Oct 23 11:31:29 2001
 +++ zebra/ioctl.c	Fri Oct  4 19:45:04 2002
