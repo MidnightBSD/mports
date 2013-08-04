@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba36/Makefile,v 1.1 2013/05/04 18:43:09 laffer1 Exp $
 
 PORTNAME=		${SAMBA_BASENAME}36
-PORTVERSION=		3.6.13
+PORTVERSION=		3.6.16
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -10,6 +10,7 @@ DISTNAME=		${SAMBA_BASENAME}-${PORTVERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alph
 
 MAINTAINER?=		ports@MidnightBSD.org
 COMMENT?=		A free SMB and CIFS client and server for UNIX
+
 LICENSE=		gpl3
 
 CONFLICTS?=		*samba3[2-5]-3.*
@@ -88,6 +89,10 @@ CONFIGURE_ARGS+=	--without-libtdb --enable-external-libtdb
 BUILD_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
 RUN_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
 CONFIGURE_ARGS+=	--without-libtalloc --enable-external-libtalloc
+# tevent
+BUILD_DEPENDS+=		tevent>=0.9.11:${PORTSDIR}/devel/tevent
+RUN_DEPENDS+=		tevent>=0.9.11:${PORTSDIR}/devel/tevent
+CONFIGURE_ARGS+=	--without-libtevent --enable-external-libtevent
 # These options are common for all (sub)ports
 CONFIGURE_ARGS+=	--with-libiconv="${LOCALBASE}" \
 			--disable-as-needed
@@ -473,7 +478,7 @@ post-configure:
 pre-install:
 	-@${FIND} "${SAMBA_MODULEDIR}" -type f -o -type l 2>/dev/null | ${SORT} | ${SED} -E 's|^${PREFIX}/?||;' > ${WRKDIR}/.PLIST.exclude
 	@${CAT} ${PKGDIR}/pkg-plist > ${PLIST}
-.if !defined(WITHOUT_SWAT)
+.if ${PORT_OPTIONS:MSWAT}
 	@${CAT} ${PKGDIR}/pkg-plist.swat >> ${PLIST}
 .endif
 
