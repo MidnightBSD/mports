@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/linc/Makefile,v 1.4 2009/12/14 23:45:50 laffer1 Exp $
+# $MidnightBSD: mports/net/linc/Makefile,v 1.5 2011/02/02 21:14:15 laffer1 Exp $
 
 PORTNAME=	linc
 PORTVERSION=	1.0.3
@@ -15,14 +15,15 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
+USES=		pkgconfig
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include -DGLIB_COMPILATION
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS/ s|docs||' ${WRKSRC}/Makefile.in
