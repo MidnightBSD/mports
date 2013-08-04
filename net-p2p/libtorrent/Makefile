@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.8 2010/03/25 23:17:47 crash Exp $
+# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.9 2011/02/02 21:17:41 laffer1 Exp $
 
-PORTNAME?=	libtorrent
-PORTVERSION?=	0.12.6
-PORTREVISION?=	0
+PORTNAME=	libtorrent
+PORTVERSION=	0.13.2
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -19,27 +19,35 @@ CONFLICTS?=	libtorrent-devel-[0-9]* \
 		rblibtorrent-devel-[0-9]*
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	pkgconfig gnomehack
+USES=	pathfix pkgconfig
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 
-OPTIONS=	KQUEUE "Use kqueue(2) support" on
+OPTIONS_DEFINE=	KQUEUE IPV6
+OPTIONS_DEFAULT=	KQUEUE
+KQUEUE_DESC=	Use kqueue(2) support
 
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_OPENSSL_BASE)
-CONFIGURE_ENV+=	OPENSSL_LIBS="-L/usr/lib -ssl -crypto" OPENSSL_CFLAGS="-I/usr/include"
+# The reason why I use this is cause openssl from base doesn't install a .pc file
+# and configure will fail trying to find it. Setting both of those variables to
+# a *non-empty* value by-passes the pkg-config check.
+CONFIGURE_ENV=	OPENSSL_LIBS="-L/usr/lib -ssl -crypto" OPENSSL_CFLAGS="-I/usr/include"
 .endif
 
-CONFIGURE_ARGS=	--disable-debug --with-openssl=${OPENSSLBASE}
+CONFIGURE_ARGS+=	--disable-debug
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/-O3/${CFLAGS}/' ${WRKSRC}/configure
 
-.if !defined(WITHOUT_KQUEUE)
+.if ${PORT_OPTIONS:MKQUEUE}
 CONFIGURE_ARGS+=	--with-kqueue
+.endif
+
+.if ${PORT_OPTIONS:MIPV6}
+CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
 .include <bsd.port.post.mk>
