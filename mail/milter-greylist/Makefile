@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.14 2012/02/03 03:11:42 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.15 2013/06/05 02:14:42 laffer1 Exp $
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.4.3
@@ -119,7 +119,6 @@ post-install:
 		${ECHO} "************************************************************"; \
 		${ECHO} "************************************************************"; \
 	) || ${TRUE}
-	@${CAT} ${PKGMESSAGE}
 
 .include "${PORTSDIR}/mail/sendmail/bsd.milter.mk"
 
