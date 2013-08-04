@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.65 2013/02/22 02:56:08 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.66 2013/08/04 20:47:10 laffer1 Exp $
 
 COMMENT = Miscellaneous utilities
 
@@ -66,7 +66,6 @@ SUBDIR += unclutter
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
 SUBDIR += wmfirew
-SUBDIR += wminfo
 SUBDIR += wmjulia
 SUBDIR += wmpal
 SUBDIR += wmtunlo
