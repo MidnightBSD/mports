@@ -1,10 +1,13 @@
+bin/agentxtrap
 bin/encode_keychange
 bin/fixproc
 bin/ipf-mod.pl
 bin/mib2c
 bin/mib2c-update
+bin/net-snmp-cert
 bin/net-snmp-config
 bin/net-snmp-create-v3-user
+bin/snmp-bridge-mib
 bin/snmpbulkget
 bin/snmpbulkwalk
 bin/snmpcheck
@@ -26,7 +29,6 @@ bin/snmpvacm
 bin/snmpwalk
 %%WITH_TKMIB%%bin/tkmib
 bin/traptoemail
-@exec mkdir %D/etc/snmp 2>/dev/null || true
 include/net-snmp/agent/agent_callbacks.h
 include/net-snmp/agent/agent_handler.h
 include/net-snmp/agent/agent_index.h
@@ -59,9 +61,11 @@ include/net-snmp/agent/scalar_group.h
 include/net-snmp/agent/serialize.h
 include/net-snmp/agent/set_helper.h
 include/net-snmp/agent/snmp_agent.h
+include/net-snmp/agent/snmp_get_statistic.h
 include/net-snmp/agent/snmp_vars.h
 include/net-snmp/agent/stash_cache.h
 include/net-snmp/agent/stash_to_next.h
+include/net-snmp/agent/struct.h
 include/net-snmp/agent/sysORTable.h
 include/net-snmp/agent/table.h
 include/net-snmp/agent/table_array.h
@@ -71,6 +75,10 @@ include/net-snmp/agent/table_dataset.h
 include/net-snmp/agent/table_iterator.h
 include/net-snmp/agent/table_tdata.h
 include/net-snmp/agent/util_funcs.h
+include/net-snmp/agent/util_funcs/header_generic.h
+include/net-snmp/agent/util_funcs/header_simple_table.h
+include/net-snmp/agent/util_funcs/MIB_STATS_CACHE_TIMEOUT.h
+@dirrmtry include/net-snmp/agent/util_funcs
 include/net-snmp/agent/var_struct.h
 include/net-snmp/agent/watcher.h
 include/net-snmp/config_api.h
@@ -78,8 +86,9 @@ include/net-snmp/definitions.h
 include/net-snmp/library/README
 include/net-snmp/library/asn1.h
 include/net-snmp/library/callback.h
+include/net-snmp/library/cert_util.h
+include/net-snmp/library/oid.h
 include/net-snmp/library/check_varbind.h
-include/net-snmp/library/cmu_compat.h
 include/net-snmp/library/container.h
 include/net-snmp/library/container_binary_array.h
 include/net-snmp/library/container_iterator.h
@@ -127,6 +136,12 @@ include/net-snmp/library/snmp_transport.h
 include/net-snmp/library/snmpusm.h
 include/net-snmp/library/snmpv3-security-includes.h
 include/net-snmp/library/snmpv3.h
+%%WITH_IPV6%%include/net-snmp/library/snmpIPv6BaseDomain.h
+include/net-snmp/library/snmpUDPBaseDomain.h
+include/net-snmp/library/snmpUDPIPv4BaseDomain.h
+include/net-snmp/library/snmpTCPBaseDomain.h
+include/net-snmp/library/snmpSocketBaseDomain.h
+include/net-snmp/library/snmpIPv4BaseDomain.h
 include/net-snmp/library/system.h
 include/net-snmp/library/text_utils.h
 include/net-snmp/library/tools.h
@@ -139,6 +154,7 @@ include/net-snmp/library/winservice.h
 include/net-snmp/machine/generic.h
 include/net-snmp/mib_api.h
 include/net-snmp/net-snmp-config.h
+include/net-snmp/net-snmp-features.h
 include/net-snmp/net-snmp-includes.h
 include/net-snmp/output_api.h
 include/net-snmp/pdu_api.h
@@ -154,6 +170,7 @@ include/net-snmp/system/darwin.h
 include/net-snmp/system/darwin7.h
 include/net-snmp/system/darwin8.h
 include/net-snmp/system/darwin9.h
+include/net-snmp/system/darwin10.h
 include/net-snmp/system/dragonfly.h
 include/net-snmp/system/dynix.h
 include/net-snmp/system/freebsd.h
@@ -165,6 +182,7 @@ include/net-snmp/system/freebsd6.h
 include/net-snmp/system/freebsd7.h
 include/net-snmp/system/freebsd8.h
 include/net-snmp/system/freebsd9.h
+include/net-snmp/system/freebsd10.h
 include/net-snmp/system/generic.h
 include/net-snmp/system/hpux.h
 include/net-snmp/system/irix.h
@@ -173,6 +191,8 @@ include/net-snmp/system/mingw32.h
 include/net-snmp/system/mips.h
 include/net-snmp/system/netbsd.h
 include/net-snmp/system/openbsd.h
+include/net-snmp/system/openbsd4.h
+include/net-snmp/system/openbsd5.h
 include/net-snmp/system/osf5.h
 include/net-snmp/system/solaris.h
 include/net-snmp/system/solaris2.3.h
@@ -292,6 +312,7 @@ sbin/snmptrapd
 %%DATADIR%%/mib2c-data/generic-get-decl.m2i
 %%DATADIR%%/mib2c-data/generic-get-long.m2i
 %%DATADIR%%/mib2c-data/generic-get-oid.m2i
+%%DATADIR%%/mib2c-data/generic-get-U64.m2i
 %%DATADIR%%/mib2c-data/generic-header-bottom.m2i
 %%DATADIR%%/mib2c-data/generic-header-top.m2i
 %%DATADIR%%/mib2c-data/generic-source-includes.m2i
@@ -345,6 +366,7 @@ sbin/snmptrapd
 %%DATADIR%%/mib2c-data/syntax-StorageType-dependencies.m2i
 %%DATADIR%%/mib2c-data/syntax-TestAndIncr-get.m2i
 %%DATADIR%%/mibs/AGENTX-MIB.txt
+%%DATADIR%%/mibs/BRIDGE-MIB.txt
 %%DATADIR%%/mibs/DISMAN-EVENT-MIB.txt
 %%DATADIR%%/mibs/DISMAN-SCHEDULE-MIB.txt
 %%DATADIR%%/mibs/DISMAN-SCRIPT-MIB.txt
@@ -362,11 +384,13 @@ sbin/snmptrapd
 %%DATADIR%%/mibs/IP-FORWARD-MIB.txt
 %%DATADIR%%/mibs/IP-MIB.txt
 %%DATADIR%%/mibs/IPV6-ICMP-MIB.txt
+%%DATADIR%%/mibs/IPV6-FLOW-LABEL-MIB.txt
 %%DATADIR%%/mibs/IPV6-MIB.txt
 %%DATADIR%%/mibs/IPV6-TC.txt
 %%DATADIR%%/mibs/IPV6-TCP-MIB.txt
 %%DATADIR%%/mibs/IPV6-UDP-MIB.txt
 %%DATADIR%%/mibs/MTA-MIB.txt
+%%DATADIR%%/mibs/NETWORK-SERVICES-MIB.txt
 %%DATADIR%%/mibs/NET-SNMP-AGENT-MIB.txt
 %%DATADIR%%/mibs/NET-SNMP-EXAMPLES-MIB.txt
 %%DATADIR%%/mibs/NET-SNMP-EXTEND-MIB.txt
@@ -374,7 +398,6 @@ sbin/snmptrapd
 %%DATADIR%%/mibs/NET-SNMP-PASS-MIB.txt
 %%DATADIR%%/mibs/NET-SNMP-TC.txt
 %%DATADIR%%/mibs/NET-SNMP-VACM-MIB.txt
-%%DATADIR%%/mibs/NETWORK-SERVICES-MIB.txt
 %%DATADIR%%/mibs/NOTIFICATION-LOG-MIB.txt
 %%DATADIR%%/mibs/RFC-1215.txt
 %%DATADIR%%/mibs/RFC1155-SMI.txt
@@ -398,6 +421,7 @@ sbin/snmptrapd
 %%DATADIR%%/mibs/SNMPv2-TC.txt
 %%DATADIR%%/mibs/SNMPv2-TM.txt
 %%DATADIR%%/mibs/TCP-MIB.txt
+%%DATADIR%%/mibs/TUNNEL-MIB.txt
 %%DATADIR%%/mibs/TRANSPORT-ADDRESS-MIB.txt
 %%DATADIR%%/mibs/UCD-DEMO-MIB.txt
 %%DATADIR%%/mibs/UCD-DISKIO-MIB.txt
@@ -447,11 +471,13 @@ sbin/snmptrapd
 %%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/agent
 %%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP
 %%WITH_PERL%%@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Bundle
-@exec mkdir /var/agentx 2>/dev/null || true
+%%WITH_PYTHON%%%%PYINSTALL%%
+%%WITH_PYTHON%%%%PYUNINSTALL%%
+%%WITH_PYTHON%%%%PYTHON_SITELIBDIR%%/netsnmp_python-%%PYDISTUTILS_PKGVERSION%%-py%%PYTHON_VER%%.egg
+@exec mkdir /var/agentx
 @dirrm include/net-snmp/system
 @dirrm include/net-snmp/machine
 @dirrm include/net-snmp/library
 @dirrm include/net-snmp/agent
 @dirrm include/net-snmp
-@dirrmtry etc/snmp
 @unexec rmdir /var/agentx 2>/dev/null || true
