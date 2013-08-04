@@ -1,87 +1,84 @@
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.6 2011/05/14 22:09:31 laffer1 Exp $
-# $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.7 2013/03/03 17:07:13 laffer1 Exp $
 
 PORTNAME=	mc
-PORTVERSION=	4.7.5
+PORTVERSION=	4.8.8
+PORTREVISION=	0
 CATEGORIES=	misc shells
-MASTER_SITES=	http://www.midnight-commander.org/downloads/ \
-		${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=	utils/file/managers/mc
-
-PATCH_SITES=	${MASTER_SITES}
+MASTER_SITES=	http://ftp.osuosl.org/pub/midnightcommander/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
-LICENSE=	gpl2
-EXTRACT_SUFX=	.tar.lzma
+
+LICENSE=	gpl3
+
 CONFLICTS=	mc-light-4*
 
-USE_PKGCONFIG=	yes
+USES=		pkgconfig
 USE_GMAKE=	yes
 USE_GNOME=	glib20
 USE_PERL5=	yes
-USE_XZ=	yes
+USE_XZ=		yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ZIP=${LOCALBASE}/bin/zip UNZIP=${LOCALBASE}/bin/unzip
-USE_AUTOTOOLS=	autoconf automake
+CONFIGURE_ENV=	ZIP=${UNZIP_CMD} UNZIP=${UNZIP_CMD}
+USE_AUTOTOOLS=	libtool
 
-OPTIONS=	SLANG		"Build with SLang library" on \
-		ICONV		"Build with iconv recoding" on \
-		NLS		"Build with NLS support" on \
-		EDIT		"Build with internal editor" on \
-		X11		"Build with X11 library" off \
-		SUBSHELL	"Build with subshell support" on \
-		SAMBA		"Build with Samba support" on
+PORTDATA=	*
+
+OPTIONS_DEFINE=	SLANG ICONV NLS EDIT X11 SUBSHELL SMB
+EDIT_DESC=	Build with internal editor
+SUBSHELL_DESC=	Build with subshell support
+
+OPTIONS_DEFAULT=	SLANG ICONV NLS EDIT X11 SUBSHELL SMB
 
 post-patch:
 	${REINPLACE_CMD} -e 's/SUBDIRS = intl/SUBDIRS =/' ${WRKSRC}/Makefile.in
+	${REINPLACE_CMD} -e 's/saved_CPPFLAGS="-ltermcap/saved_CPPFLAGS="/' ${WRKSRC}/configure
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_SAMBA) || !(defined(WITHOUT_SAMBA) || defined(MINIMAL))
+.if ${PORT_OPTIONS:MSMB} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--enable-vfs-smb --with-configdir=${LOCALBASE}/etc\
 		--with-codepagedir=${LOCALBASE}/etc/codepages
 .endif
 
-.if defined(WITH_ICONV) || !(defined(WITHOUT_ICONV) || defined(MINIMAL))
-USE_ICONV=	yes
-PLIST_SUB=	CHARSETS=""
+.if ${PORT_OPTIONS:MICONV} && !defined(MINIMAL)
+USES+=		iconv
 .else
 CONFIGURE_ARGS+=--disable-charset
-PLIST_SUB=	CHARSETS="@comment "
 .endif
 
-.if !defined(WITH_NLS) && (defined(WITHOUT_NLS) || defined(MINIMAL))
+.if ! ${PORT_OPTIONS:MNLS} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .else
-CONFIGURE_ENV+=	CPPFLAGS=-I${LOCALBASE}/include LDFLAGS=-L${LOCALBASE}/lib
-USE_GETTEXT=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 _MANLANG=	es hu it pl ru sr
 .endif
 
-.if !defined(WITH_X11) || (defined(WITHOUT_X11) || defined(MINIMAL))
+.if ! ${PORT_OPTIONS:MX11} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--without-x
 .else
 USE_XORG=	x11 xext
 .endif
 
-.if !defined(WITH_EDIT) && (defined(WITHOUT_EDIT) || defined(MINIMAL))
+.if ! ${PORT_OPTIONS:MEDIT} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--without-edit
 PLIST_SUB+=	EDITOR="@comment "
 .else
 PLIST_SUB+=	EDITOR=""
 .endif
 
-.if !defined(WITH_SLANG) && (defined(WITHOUT_SLANG) || defined(MINIMAL))
+.if ! ${PORT_OPTIONS:MSLANG} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--with-screen=ncurses
 .else
 LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
 CONFIGURE_ARGS+=--with-screen=slang --with-slang-includes=${LOCALBASE}/include
 .endif
 
-.if !defined(WITH_SUBSHELL) && (defined(WITHOUT_SUBSHELL) || defined(MINIMAL))
+.if ! ${PORT_OPTIONS:MSUBSHELL} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--without-subshell
 .endif
 
@@ -91,4 +88,4 @@ _MAN1=		mc.1
 _MANPAGES+=	${_MAN1:S%^%${MAN1PREFIX}/man/${lang}/man1/%}
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
