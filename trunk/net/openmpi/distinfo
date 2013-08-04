@@ -1,4 +1,2 @@
-MD5 (openmpi-1.2.8.tar.bz2) = 7f2d5af02101c5f01173f4f6de296549
-SHA256 (openmpi-1.2.8.tar.bz2) = 75b286cb3b1bf6528a7e64ee019369e0601b8acb5c3c167a987f755d1e41c95c
-RMD160 (openmpi-1.2.8.tar.bz2) = 59f0d0397d499eb7b3a08ca68ca9778ef2cb61fc
-SIZE (openmpi-1.2.8.tar.bz2) = 3556787
+SHA256 (openmpi-1.6.1.tar.bz2) = 077240dd1ab10f0caf26931e585db73848e9815c7119b993f91d269da5901e3a
+SIZE (openmpi-1.6.1.tar.bz2) = 10194684
