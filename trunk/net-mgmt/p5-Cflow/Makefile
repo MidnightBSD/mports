@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.2 2007/06/06 18:43:16 ctriv Exp $
+# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.3 2013/03/06 03:17:55 laffer1 Exp $
 
 PORTNAME=	Cflow
 PORTVERSION=	1.053
@@ -12,11 +12,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analyze raw flow files written by cflowd (Cisco NetFlow data)
 LICENSE=	gpl2
 
-OPTIONS=	FLOW_TOOLS	"Enable flow-tools support"	off
+OPTIONS_DEFINE=	FLOW_TOOLS
+FLOW_TOOLS_DESC=	Enable flow-tools support
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_FLOW_TOOLS)
+.if ${PORT_OPTIONS:MFLOW_TOOLS}
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libft.a:${PORTSDIR}/net-mgmt/flow-tools
 RUN_DEPENDS+=	${LOCALBASE}/lib/libft.a:${PORTSDIR}/net-mgmt/flow-tools
 
@@ -30,4 +31,4 @@ PERL_CONFIGURE=	YES
 MAN1=		flowdumper.1
 MAN3=		Cflow.3
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
