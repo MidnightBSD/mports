@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.10 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.11 2013/03/06 01:12:21 laffer1 Exp $
 
 PORTNAME=	freeradius
 PORTVERSION=	1.1.8
@@ -12,7 +12,10 @@ MASTER_SITE_SUBDIR=	. old
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free RADIUS server implementation
+
 LICENSE=	gpl2
+
+BROKEN=		failing to build
 
 USE_BZIP2=	yes
 WANT_PERL=	yes
