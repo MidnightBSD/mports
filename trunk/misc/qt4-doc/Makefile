@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/misc/qt4-doc/Makefile,v 1.3 2011/07/23 23:39:22 laffer1 Exp $
-# $FreeBSD: ports/misc/qt4-doc/Makefile,v 1.8 2008/08/04 23:30:36 miwi Exp $
+# $MidnightBSD: mports/misc/qt4-doc/Makefile,v 1.4 2012/03/01 01:37:31 laffer1 Exp $
 
 PORTNAME=	doc
 DISTVERSION=	${QT4_VERSION}
@@ -8,9 +7,10 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiplatform C++ application framework
+
 LICENSE=	gpl3
 
-USE_QT_VER=	4
+USE_QT4=	# empty
 QT_DIST=	yes
 NO_BUILD=	yes
 
@@ -24,7 +24,7 @@ DESTDIRNAME=	INSTALL_ROOT
 EXTENSIONS=		qt
 QT_BUILD_ENV_ONLY=	yes
 
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - '${DISTNAME}/doc'
+EXTRACT_AFTER_ARGS=	 '${DISTNAME}/doc'
 
 DOCSDIR=	${PREFIX}/share/doc/qt4
 
