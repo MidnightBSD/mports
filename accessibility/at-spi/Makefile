@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.9 2011/05/28 23:55:11 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.10 2013/03/24 19:06:59 laffer1 Exp $
 
 PORTNAME=	at-spi
 PORTVERSION=	1.32.0
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +17,7 @@ USE_BZIP2=	yes
 
 RUN_DEPENDS=	at-spi2-atk>2.6.0:${PORTSDIR}/accessibility/at-spi2-atk
 
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomehier intlhack gtk20 gconf2 libbonobo
 USE_XORG=	x11 xtst

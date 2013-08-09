@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/accessibility/dasher/Makefile,v 1.1 2010/07/30 05:35:25 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/dasher/Makefile,v 1.2 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	dasher
 PORTVERSION=	4.10.1
-PORTREVISION=	1
+PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	accessibility editors x11 gnome
 MASTER_SITES=	GNOME
@@ -10,6 +10,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Information efficient text-entry interface
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
@@ -17,7 +18,7 @@ LIB_DEPENDS=	ogg:${PORTSDIR}/audio/libogg
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomehier libgnomeui atspi \
 		libwnck gnomedocutils
@@ -39,9 +40,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||g' ${WRKSRC}/configure
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|-O2||g'
-.if ${OSVERSION} >= 700042
 	@${REINPLACE_CMD} -e 's|__gnu_cxx::lldiv|lldiv|' \
 	    	${WRKSRC}/Src/DasherCore/DasherViewSquare.cpp
-.endif
 
 .include <bsd.port.post.mk>
