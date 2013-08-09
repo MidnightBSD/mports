@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.17 2012/09/09 00:58:29 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.18 2013/03/24 16:58:48 laffer1 Exp $
 
 PORTNAME=	atk
 PORTVERSION=	2.6.0
@@ -17,12 +17,11 @@ USE_XZ=		yes
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USE_GETTEXT=	yes
+USES=		pathfix pkgconfig gettext
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehier gnomehack glib20 ltverhack referencehack
-USE_PKGCONFIG=	build
+USE_GNOME=	gnomehier glib20 ltverhack referencehack
 CONFIGURE_ARGS=	--enable-static \
 		--with-html-dir=${PREFIX}/share/doc
 CPPFLAGS+=	-I${LOCALBASE}/include
