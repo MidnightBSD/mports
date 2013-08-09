@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/atkmm/Makefile,v 1.2 2012/02/29 02:26:15 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atkmm/Makefile,v 1.3 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	atkmm
 PORTVERSION=	2.22.6
@@ -9,12 +9,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for ATK API library
 LICENSE=	lgpl
 
+USES=		pathfix pkgconfig
 USE_XZ=		yes
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
-USE_GNOME=	gnomehack atk glibmm
-USE_PKGCONFIG=	build
+USE_GNOME=	atk glibmm
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

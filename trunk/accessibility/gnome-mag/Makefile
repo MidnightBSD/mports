@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.9 2011/05/29 00:06:09 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.10 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	gnome-mag
 PORTVERSION=	0.16.3
@@ -15,7 +15,7 @@ USE_BZIP2=	yes
 USE_XORG=	xfixes xdamage ice xcomposite sm
 USE_GNOME=	gnomehack gnomeprefix atspi libbonobo intlhack ltverhack
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
