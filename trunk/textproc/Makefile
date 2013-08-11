@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.146 2013/07/16 02:33:57 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.147 2013/08/10 20:09:01 laffer1 Exp $
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 
@@ -76,6 +76,7 @@ SUBDIR += libxml++
 SUBDIR += libxml++26
 SUBDIR += libxml2
 SUBDIR += libxslt
+SUBDIR += libyaml
 SUBDIR += linux-aspell
 SUBDIR += linux-expat
 SUBDIR += linux-f10-aspell
