@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ports-mgmt/dialog4ports/Makefile,v 1.2 2013/06/12 00:29:17 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/dialog4ports/Makefile,v 1.3 2013/07/04 22:09:56 laffer1 Exp $
 
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.5
@@ -13,6 +13,7 @@ MASTER_SITES=	http://m1cro.tk/dialog4ports/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Console Interface to configure ports
+
 LICENSE=	bsd2
 
 # CCACHE has options, so may need d4p, make d4p not ccache friendly
@@ -21,8 +22,6 @@ NO_CCACHE=	yes
 MANCOMPRESSED=	yes
 MAN1=		${PORTNAME}.1
 MAKE_ENV+=	__MAKE_CONF=/dev/null SRCCONF=/dev/null
-
-PLIST_FILES=	bin/dialog4ports
 
 MAKE_JOBS_SAFE=	yes
 
