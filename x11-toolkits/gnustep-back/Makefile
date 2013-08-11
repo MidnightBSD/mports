@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.11 2010/03/26 00:53:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.12 2011/08/18 00:30:13 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 
 PORTNAME=	gnustep-back
-PORTVERSION=	0.17.1
+PORTVERSION=	0.22.0
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -33,6 +33,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=
 MAKE_FLAGS+=		OPTFLAG="${CFLAGS} -I${LOCALBASE}/include"
+MAKE_ENV+=		GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 BACKVERSION=		${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
 BREAKS_IF_PEDANTIC=	yes
 
@@ -75,11 +76,6 @@ CONFLICTS?=		gunstep-back-xdps-0.* gunstep-back-art-0.* gunstep-back-cairo-0.*
 
 .include <bsd.port.pre.mk>
 
-TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_OBJC_PORT} && make -V TARGLIB)
-
-ADDITIONAL_LDFLAGS+=	-L${TARGLIB}
-MAKE_ENV+=		ADDITIONAL_LDFLAGS="${ADDITIONAL_LDFLAGS}" \
-			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 MAKE_FLAGS+=		messages=yes
 PLIST_SUB+=		BACKVERSION=${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
 
