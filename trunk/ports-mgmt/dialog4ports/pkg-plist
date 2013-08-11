@@ -1,0 +1,2 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.3 2013/02/06 02:17:44 laffer1 Exp $
+bin/dialog4ports
