@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.9 2011/12/15 00:34:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.10 2013/04/11 12:44:09 laffer1 Exp $
 
 PORTNAME=	sdl
 PORTVERSION=	1.2.15
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.libsdl.org/release/
@@ -18,11 +19,10 @@ USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack pkgconfig
-USE_ICONV=	yes
+USES=		pathfix pkgconfig iconv
 CONFIGURE_ENV=	ac_cv_header_libusbhid_h=no
 
-CFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS+=--disable-alsa --disable-alsatest
@@ -31,7 +31,8 @@ CONFIGURE_ARGS+=--disable-video-directfb
 EXAMPLES=	test/*.c test/*.bmp test/*.dat test/*.xbm test/*.wav
 DOCS=		BUGS COPYING CREDITS README README-SDL.txt WhatsNew docs.html
 
-OPTIONS_DEFINE=		AALIB ARTS ESOUND GGI NAS OPENGL OSS PULSEAUDIO SVGALIB X11
+OPTIONS_DEFINE=		AALIB ARTS DOCS ESOUND EXAMPLES GGI NAS OPENGL OSS \
+			PULSEAUDIO SVGALIB X11
 OPTIONS_DEFAULT=	AALIB OPENGL OSS X11
 
 .if exists(/usr/lib/libvgl.so)
@@ -121,13 +122,13 @@ CONFIGURE_ARGS+=	--disable-video-x11
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR} &&\
 		${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/ &&\
 	cd ${WRKSRC} &&\
 		${COPYTREE_SHARE} docs ${DOCSDIR}/ "! -regex .*/man3.*"
 .endif
-.if !defined(NOPORTEXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} ${EXAMPLESDIR} &&\
 		${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/,} ${EXAMPLESDIR}/
 .endif
