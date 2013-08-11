@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.3 2013/02/06 02:17:44 laffer1 Exp $
 #
 # maintainer.mk
 #
@@ -37,14 +37,14 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.3 2013/02/06 02:17:44 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
 		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
 		for file in $$new; do \
 			if [ ! -L $$file ] && [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d -or -type l | ${EGREP} -v "man/man[123456789]`; \
+				tree=`${FIND} -d $$file -type f -or -type d -or -type l | ${EGREP} -v "man/man[123456789]"`; \
 				for f in $$tree; do \
 					if [ -d $$f ]; then \
 						directories="$$directories $$f"; \
