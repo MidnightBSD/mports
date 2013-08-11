@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.10 2011/05/14 22:46:11 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/libwnck/Makefile,v 1.53 2007/07/03 16:51:41 mezz Exp $
+# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.11 2013/03/30 12:33:31 laffer1 Exp $
 
 PORTNAME=	libwnck
 PORTVERSION=	2.30.6
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library used for writing pagers and taskslists
+
 LICENSE=	lgpl
 
 USE_BZIP2=	yes
@@ -19,11 +19,10 @@ USE_BZIP2=	yes
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USE_GETTEXT=	yes
 USE_XORG=	xres
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gtk20 ltverhack referencehack intlhack
-USE_BISON=	build
+USES=		bison pathfix gettext
+USE_GNOME=	gtk20 ltverhack referencehack intlhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
