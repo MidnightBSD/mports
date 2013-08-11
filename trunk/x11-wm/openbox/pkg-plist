@@ -32,11 +32,11 @@ etc/xdg/openbox/rc.xml
 lib/libobrender.a
 lib/libobrender.la
 lib/libobrender.so
-lib/libobrender.so.27
+lib/libobrender.so.29
 lib/libobt.a
 lib/libobt.la
 lib/libobt.so
-lib/libobt.so.0
+lib/libobt.so.2
 libdata/pkgconfig/obrender-%%VERSION%%.pc
 libdata/pkgconfig/obt-%%VERSION%%.pc
 libexec/openbox-autostart
