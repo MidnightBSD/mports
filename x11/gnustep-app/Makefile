@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.8 2013/03/24 19:47:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.9 2013/06/14 01:50:54 laffer1 Exp $
 
 PORTNAME=	gnustep-app
-PORTVERSION=	1.19.0
+PORTVERSION=	1.19.1
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -101,7 +101,7 @@ USE_GNUSTEP_LOCAL_ASTS+=	\
 
 USE_GNUSTEP_SYSTEM_APPS+=	\
 	Gorm:devel/gorm \
-	ProjectCenter:devel/projectcenter.app \
+	ProjectCenter:devel/projectcenter \
 	Preferences:deskutils/preferences.app \
 	GWorkspace:deskutils/gworkspace \
 	TextEdit:editors/textedit.app \
