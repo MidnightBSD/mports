@@ -1,17 +1,18 @@
-# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.4 2013/06/16 01:22:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.5 2013/07/04 16:33:25 laffer1 Exp $
 
 PORTNAME=	giflib
 PORTVERSION=	4.2.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x
 PKGNAMESUFFIX=	${NOX11SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with GIF images
+
 LICENSE=	mit
 
-CONFLICTS=	libungif-[0-9]
+CONFLICTS=	libungif-[0-9]*
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
@@ -19,6 +20,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCBOOK X11
+OPTIONS_DEFAULT=	X11
 DOCBOOK_DESC=	Generate API documentation (requires DOCS)
 
 .include <bsd.port.pre.mk>
