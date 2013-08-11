@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.438 2013/07/13 14:21:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.439 2013/08/03 18:05:15 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -372,7 +372,7 @@ SUBDIR += physfs
 SUBDIR += pkgconf
 SUBDIR += pmk
 SUBDIR += popt
-SUBDIR += projectcenter.app
+SUBDIR += projectcenter
 SUBDIR += projectmanager
 SUBDIR += pth
 SUBDIR += pth-hard
