@@ -1,0 +1,109 @@
+--- configure.in.luke	2013-08-11 19:40:06.000000000 -0400
++++ configure.in	2013-08-11 19:41:23.000000000 -0400
+@@ -929,18 +929,8 @@
+   [AS_CASE(["$enableval"],[yes|no],[enable_win95=$enableval],[unset enable_win95])])
+ 
+ AS_CASE(["$target_os"],
+-[freebsd*], [
+-  AC_CACHE_CHECK([whether pthread should be enabled by default],
+-    rb_cv_enable_pthread_default,
+-    [AC_TRY_CPP([
+-#include <osreldate.h>
+-#if __FreeBSD_version < 502102
+-#error pthread should be disabled on this platform
+-#endif
+-      ],
+-      rb_cv_enable_pthread_default=yes,
+-      rb_cv_enable_pthread_default=no)])
+-  enable_pthread=$rb_cv_enable_pthread_default
++[freebsd*|midnightbsd*], [
++  enable_pthread=yes
+   ],
+ [mingw*], [
+   enable_pthread=no
+@@ -1126,7 +1116,7 @@
+ 		AC_DEFINE(BROKEN_SETREUID, 1)
+ 		AC_DEFINE(BROKEN_SETREGID, 1)
+                 ac_cv_sizeof_rlim_t=8],
+-[freebsd*], [	LIBS="-lm $LIBS"
++[freebsd*|midnightbsd*], [	LIBS="-lm $LIBS"
+ 		ac_cv_func_getpeername=no
+ 		ac_cv_func_getsockname=no
+ 		ac_cv_func_shutdown=no
+@@ -1139,11 +1129,11 @@
+ [superux*], [	ac_cv_func_setitimer=no
+ 		],
+ [	LIBS="-lm $LIBS"])
+-AC_CHECK_LIB(crypt, crypt)
+-AC_CHECK_LIB(dl, dlopen)	# Dynamic linking for SunOS/Solaris and SYSV
+-AC_CHECK_LIB(dld, shl_load)	# Dynamic linking for HP-UX
+-AC_CHECK_LIB(socket, socketpair)	# SunOS/Solaris
+-AC_CHECK_LIB(rt, clock_gettime)	# GNU/Linux
++AC_SEARCH_LIBS(crypt, crypt)
++AC_SEARCH_LIBS(dlopen, dl)	# Dynamic linking for SunOS/Solaris and SYSV
++AC_SEARCH_LIBS(shl_load, dld)	# Dynamic linking for HP-UX
++AC_SEARCH_LIBS(socketpair, socket)	# SunOS/Solaris
++AC_SEARCH_LIBS(clock_gettime, rt) # GNU/Linux
+ if test "${enable_win95}" = maybe; then
+     AC_HAVE_LIBRARY(unicows, [enable_win95=yes], [enable_win95=no])
+ fi
+@@ -1345,7 +1335,7 @@
+ 	rb_cv_broken_glibc_ia64_erfc=no)])
+ AS_CASE([$rb_cv_broken_glibc_ia64_erfc],[yes],[ac_cv_func_erf=no])
+ 
+-AS_CASE(["$target_os"],[freebsd*],[
++AS_CASE(["$target_os"],[freebsd*|midnightbsd*],[
+ 	 AC_DEFINE(BROKEN_CLOSE)
+ 	 AC_REPLACE_FUNCS(close)
+ 	 ])
+@@ -1788,7 +1778,7 @@
+ fi
+ 
+ if test x"$enable_pthread" = xyes; then
+-    for pthread_lib in thr pthread pthreads c c_r root; do
++    for pthread_lib in pthread thr pthreads c c_r root; do
+ 	AC_CHECK_LIB($pthread_lib, pthread_kill,
+ 		     rb_with_pthread=yes, rb_with_pthread=no)
+ 	if test "$rb_with_pthread" = "yes"; then break; fi
+@@ -1796,6 +1786,7 @@
+     if test x"$rb_with_pthread" = xyes; then
+ 	AC_DEFINE(_REENTRANT)
+ 	AC_DEFINE(_THREAD_SAFE)
++	[pthread],  [MAINLIBS="-pthread $MAINLIBS"],
+ 	AC_DEFINE(HAVE_LIBPTHREAD)
+ 	AC_CHECK_HEADERS(pthread_np.h, [], [], [@%:@include <pthread.h>])
+ 	AS_CASE([$pthread_lib],
+@@ -1886,7 +1877,7 @@
+ fi
+ 
+ AS_CASE(["$target_os"],
+-[freebsd*], [
++[freebsd*|midnightbsd*], [
+     AC_CHECK_HEADERS([/usr/local/include/execinfo.h])
+     if test "x$ac_cv_header__usr_local_include_execinfo_h" = xyes; then :
+ 	RUBY_APPEND_OPTION(CPPFLAGS, -I/usr/local/include)
+@@ -2036,11 +2027,10 @@
+ 			XLDFLAGS="$XLDFLAGS -Wl,-E"
+ 			LIBPATHFLAG=" -L%1\$-s"
+ 			rb_cv_dlopen=yes],
+-	[freebsd*|dragonfly*], [
++	[freebsd*|dragonfly*|midnightbsd*], [
+ 			: ${LDSHARED='$(CC) -shared'}
+ 			if test "$rb_cv_binary_elf" = yes; then
+ 			    LDFLAGS="$LDFLAGS -rdynamic"
+-			    DLDFLAGS="$DLDFLAGS "'-Wl,-soname,$(.TARGET)'
+ 			else
+ 			  test "$GCC" = yes && test "$rb_cv_prog_gnu_ld" = yes || LDSHARED="ld -Bshareable"
+ 			fi
+@@ -2344,9 +2334,10 @@
+ 	    LIBRUBY_RELATIVE=yes
+ 	fi
+ 	],
+-    [freebsd*|dragonfly*], [
++    [freebsd*|dragonfly*|midnightbsd*], [
+ 	SOLIBS='$(LIBS)'
+ 	LIBRUBY_SO='lib$(RUBY_SO_NAME).so.$(MAJOR)$(MINOR)'
++	LIBRUBY_DLDFLAGS='-Wl,-soname,$(LIBRUBY_SO)'
+ 	if test "$rb_cv_binary_elf" != "yes" ; then
+ 	    LIBRUBY_SO="$LIBRUBY_SO.\$(TEENY)"
+ 	    LIBRUBY_ALIASES=''

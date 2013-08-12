@@ -1,4 +1,2 @@
-MD5 (ruby/ruby-1.9.1-p430.tar.bz2) = f855103aebeb3318dccb409319b547a0
-SHA256 (ruby/ruby-1.9.1-p430.tar.bz2) = 8d5cc11d819e476fb651db783f714cc4100922f47447f7acdce87ed769cf9d97
-RMD160 (ruby/ruby-1.9.1-p430.tar.bz2) = fe2afc89ea23a159536bb70345a60acb9043b930
-SIZE (ruby/ruby-1.9.1-p430.tar.bz2) = 7299829
+SHA256 (ruby/ruby-1.9.3-p448.tar.bz2) = a7372230357bfff8e4525fb8019046da521561fe66b02c25d8efc10c9877bc91
+SIZE (ruby/ruby-1.9.3-p448.tar.bz2) = 10052488
