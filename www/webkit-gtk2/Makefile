@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.18 2011/07/03 16:44:26 laffer1 Exp $
-# $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.40 2011/06/09 10:11:24 kwm Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.19 2012/03/11 18:41:51 laffer1 Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	1.4.2
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/
 PKGNAMESUFFIX=	-gtk2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opensource browser engine
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
@@ -18,7 +19,7 @@ LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant \
 		curl.6:${PORTSDIR}/ftp/curl \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		icutu.46:${PORTSDIR}/devel/icu
+		icutu.50:${PORTSDIR}/devel/icu
 
 USE_GETTEXT=	yes
 WANT_GSTREAMER=	yes
