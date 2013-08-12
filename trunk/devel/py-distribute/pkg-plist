@@ -1,4 +1,3 @@
-@comment $FreeBSD$
 %%IF_DEFAULT%%bin/easy_install
 bin/easy_install-%%PYVER%%
 %%PYTHON_SITELIBDIR%%/distribute-%%VERSION%%-py%%PYVER%%.egg
