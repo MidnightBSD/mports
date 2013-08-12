@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.19 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.20 2013/08/12 01:45:47 laffer1 Exp $
 
 PORTNAME=	webkit
-PORTVERSION=	1.4.2
+PORTVERSION=	1.8.3
 PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://webkitgtk.org/
+MASTER_SITES=	http://webkitgtk.org/releases/
 PKGNAMESUFFIX=	-gtk2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,61 +14,64 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
 		${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
+		gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
 		g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant \
-		curl.6:${PORTSDIR}/ftp/curl \
-		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
-		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		icutu.50:${PORTSDIR}/devel/icu
+LIB_DEPENDS=	enchant:${PORTSDIR}/textproc/enchant \
+		icutu:${PORTSDIR}/devel/icu \
+		curl:${PORTSDIR}/ftp/curl \
+		soup-2.4:${PORTSDIR}/devel/libsoup
 
-USE_GETTEXT=	yes
-WANT_GSTREAMER=	yes
+USE_XZ=		yes
+USE_GSTREAMER=	yes
 MAKE_JOBS_SAFE=	yes
 USE_XORG=	xt
+USES=		pkgconfig gettext
 USE_BISON=	build
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gtk20 libxslt ltverhack
+USE_SQLITE=	yes
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		ac_cv_path_FLEX="${LOCALBASE}/bin/flex" \
+CONFIGURE_ENV=	ac_cv_path_FLEX="${LOCALBASE}/bin/flex" \
+		ZLIB_CFLAGS="-I/usr/include" \
+		ZLIB_LIBS="-L/usr/lib -lz" \
 		ac_cv_path_DOLT_BASH=""
-CONFIGURE_ARGS=	--enable-icon-database \
-		--enable-svg \
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--with-gtk=2.0 \
 		--enable-svg-fonts \
-		--with-gtk=2.0 \
+		--disable-geolocation \
 		--enable-introspection
 MAKEFILE=	GNUmakefile
-GLIB_SCHEMAS=	org.webkitgtk-1.0.gschema.xml
 
 BROWSER_PLUGINS_DIR?=	${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk2
 #_BROWSER_PLUGINS_DIR=	${BROWSER_PLUGINS_DIR:S|^/|"|:S|/|", "|g}",
 
-OPTIONS=	VIDEO "Enable video support" on \
-		DEBUG "Build with debug support" off
+OPTIONS_DEFINE=	WEBGL DEBUG
+OPTIONS_DEFAULT=WEBGL
+WEBGL_DESC=	Enable Web GL support
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_VIDEO)
-USE_GSTREAMER+=	yes
-CONFIGURE_ARGS+=--enable-video
+.if ${PORT_OPTIONS:MWEBGL}
+USE_GL=		gl
+CONFIGURE_ARGS+=--enable-webgl
 .else
-CONFIGURE_ARGS+=--disable-video
+CONFIGURE_ARGS+=--disable-webgl
 .endif
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=--enable-debug
 .else
 CONFIGURE_ARGS+=--disable-debug
 .endif
 
-.if ${OSVERSION} < 3000
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-JavaScriptCore_yarr_RegexJIT.h \
-		${FILESDIR}/extra-patch-JavaScriptCore_assembler_MacroAssemblerCodeRef.h
-BROKEN=		does not compile on 0.3
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == powerpc64
+CFLAGS+=	-mminimal-toc
 .endif
 
 .if ${PERL_LEVEL} >= 501400
