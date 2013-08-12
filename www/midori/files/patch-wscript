@@ -1,27 +1,29 @@
---- ./wscript.orig	2012-09-19 21:17:43.000000000 +0000
-+++ ./wscript	2012-09-20 06:32:04.000000000 +0000
-@@ -106,8 +106,8 @@
-     conf.check_tool ('compiler_cc')
-     conf.check_tool ('vala')
-     conf.check_tool ('glib2')
--    if not check_version (conf.env['VALAC_VERSION'], 0, 14, 0):
--        Utils.pprint ('RED', 'Vala 0.14.0 or later is required.')
-+    if not check_version (conf.env['VALAC_VERSION'], 0, 12, 0):
-+        Utils.pprint ('RED', 'Vala 0.12.0 or later is required.')
-         sys.exit (1)
+Fix PACKAGE_VERSION in gtk_about_dialog widget.
+https://bugs.launchpad.net/midori/+bug/1200903
+
+--- ./wscript.orig	2013-07-15 22:38:28.000000000 +0000
++++ ./wscript	2013-07-21 16:02:48.000000000 +0000
+@@ -29,7 +29,7 @@
  
-     if option_enabled ('nls'):
-@@ -184,11 +184,8 @@
-         return conf.env['HAVE_' + var]
+ APPNAME = 'midori'
+ VERSION = VERSION_FULL = '0.5.4'
+-VERSION_SUFFIX = ' (%s)' % VERSION
++#VERSION_SUFFIX = ' (%s)' % VERSION
  
-     if option_enabled ('gtk3'):
--        gcr_pkg = 'gcr-3'
--    else:
--        gcr_pkg = 'gcr-3-gtk2'
--    check_pkg (gcr_pkg, '2.32', mandatory=False)
--    conf.define ('GCR_VERSION', ['No',conf.check_cfg(modversion=gcr_pkg)][conf.env['HAVE_GCR'] == 1])
-+        check_pkg ('gcr-3', '2.32', mandatory=False)
-+        conf.define ('GCR_VERSION', ['No',conf.check_cfg(modversion='gcr-3')][conf.env['HAVE_GCR'] == 1])
+ try:
+     if os.path.isdir ('.git'):
+@@ -44,8 +44,12 @@
+         folder = os.getcwd ()
+         if VERSION in folder:
+             VERSION_FULL = os.path.basename (folder)
+-    if VERSION in VERSION_FULL:
+-        VERSION_SUFFIX = VERSION_FULL.replace (VERSION, '')
++    if VERSION_FULL.endswith ('_all_'):
++            VERSION_FULL = VERSION_FULL.replace('_all_', '')
++    if APPNAME in VERSION_FULL:
++            VERSION_FULL = VERSION_FULL.replace(APPNAME, '')[1:]
++
++    VERSION_SUFFIX = ' (%s)' % VERSION_FULL
+ except:
+     pass
  
-     if option_enabled ('unique'):
-         if option_enabled('gtk3'): unique_pkg = 'unique-3.0'
