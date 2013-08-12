@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.6 2010/09/06 23:02:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.7 2011/02/02 21:04:17 laffer1 Exp $
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
@@ -17,15 +17,19 @@ CONFLICTS=	GraphicsMagick-1.[23].*
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2	\
 		fpx.[2-9]:${PORTSDIR}/graphics/libfpx	\
 		jbig:${PORTSDIR}/graphics/jbigkit	\
-		wmflite:${PORTSDIR}/graphics/libwmf	\
+		png15:${PORTSDIR}/graphics/png		\
 		xml2:${PORTSDIR}/textproc/libxml2
-OTHERGRAPHICS=	jasper jpeg lcms png tiff
+OTHERGRAPHICS=	jasper jpeg lcms tiff
 LIB_DEPENDS+=	${OTHERGRAPHICS:C|(.+)|\1:${PORTSDIR}/graphics/\1|}
 
-OPTIONS=	Q8BIT "Use 8-bit pixels (speed) instead of 16 (quality)" off \
-		TESTS "Run bundled self-tests after build" on
+OPTIONS_DEFINE=	Q8BIT TESTS X11 DOCS
 
-USE_ICONV=	yes
+Q8BIT_DESC=	Use 8-bit pixels (speed) instead of 16 (quality)
+TESTS_DESC=	Run bundled self-tests after build
+
+OPTIONS_DEFAULT=X11 TESTS DOCS
+
+USES=		iconv
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GHOSTSCRIPT=yes
@@ -52,15 +56,17 @@ USE_LDCONFIG=	yes
 
 ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
 
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include"       \
-	LDFLAGS="-L${LOCALBASE}/lib"
+CFLAGS+=	-DPNG_DEPSTRUCT=
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 test check:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS} == ""
 # Get rid of the Makefile targets that install the documentation
 # and HTML files into DOCSDIR
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Makefile.in
@@ -70,12 +76,15 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Makefile.in
 CONFIGURE_ARGS+=	--with-windows-font-dir="${WINDOWS_FONT_DIR}"
 .endif
 
-.if defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MX11} == ""
 PKGNAMESUFFIX+=	-nox11
 CONFIGURE_ARGS+=--without-x
+LIB_DEPENDS+=	wmflite:${PORTSDIR}/graphics/libwmf-nox11
+.else
+LIB_DEPENDS+=	wmflite:${PORTSDIR}/graphics/libwmf
 .endif
 
-.if defined(WITH_Q8BIT) || defined(WITHOUT_GRAPHICSMAGICK_16BIT_PIXEL)
+.if ${PORT_OPTIONS:MQ8BIT}
 CONFIGURE_ARGS+=	--with-quantum-depth=8
 PLIST_SUB+=		Q=8
 .else
@@ -83,4 +92,14 @@ CONFIGURE_ARGS+=	--with-quantum-depth=16
 PLIST_SUB+=		Q=16
 .endif
 
-.include <bsd.port.post.mk>
+.if ${PORT_OPTIONS:MTESTS}
+post-build::	test
+.else
+post-build::
+	#
+	# You are strongly advised to run ``make test'' now
+	# and report any failures to ${MAINTAINER}.
+	#
+.endif
+
+.include <bsd.port.mk>
