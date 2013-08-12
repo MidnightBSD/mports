@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-distribute/Makefile,v 1.1 2013/06/21 02:01:10 laffer1 Exp $
 
 PORTNAME=	distribute
 PORTVERSION=	0.6.35
@@ -29,6 +29,8 @@ PYFILES=	site.py
 
 .include <bsd.port.pre.mk>
 
+MAKE_ENV+= PYTHONPATH="${FAKE_DESTDIR}${PYTHON_SITELIBDIR}"
+
 .if ${PYTHON_REL} >= 320
 PYCACHE=	__pycache__/%%PYMOD%%.cpython-${PYTHON_VER:S,.,,}
 PLIST_DIRS=	${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}/__pycache__
@@ -54,14 +56,14 @@ post-patch:
 	@${REINPLACE_CMD} -e '/easy_install = / s|".*"||' ${WRKSRC}/setup.py
 .endif
 
-regression-test: build
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/site.py ${SITE_PY}
 	${PYTHON_CMD} -m py_compile ${SITE_PY}
 	${PYTHON_CMD} -OO -m py_compile ${SITE_PY}
-	${CP} ${EASYINSTALL_PTH} ${EASYINSTALL_PTH}.dist
-	${LN} ${EASYINSTALL_PTH}.dist ${PYTHON_SITELIBDIR}/distribute.pth
+	${CP} ${FAKE_DESTDIR}${EASYINSTALL_PTH} ${FAKE_DESTDIR}${EASYINSTALL_PTH}.dist
+#	${LN} ${EASYINSTALL_PTH}.dist ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/distribute.pth
 
 .include <bsd.port.post.mk>
