@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/ftp/tnftpd/Makefile,v 1.2 2011/07/08 02:57:37 laffer1 Exp $
+# $MidnightBSD: mports/ftp/tnftpd/Makefile,v 1.3 2013/02/18 04:08:09 laffer1 Exp $
 
 PORTNAME=	tnftpd
-PORTVERSION=	20100324
-PORTREVISION=	1
+PORTVERSION=	20130325
+PORTREVISION=	0
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enhanced ftp server from NetBSD
+
 LICENSE=	bsd4
 
 USE_AUTOTOOLS=	aclocal automake libtool
