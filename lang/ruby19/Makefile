@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ruby19/Makefile,v 1.1 2008/06/26 20:41:17 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby19/Makefile,v 1.2 2009/08/20 19:22:23 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -14,20 +14,24 @@ FAKE_OPTS+=	trueprefix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An object-oriented interpreted scripting language
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+LIB_DEPENDS=	ffi:${PORTSDIR}/devel/libffi \
+		yaml-0.2:${PORTSDIR}/textproc/libyaml \
+		execinfo.1:${PORTSDIR}/devel/libexecinfo
+
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-shared \
 		--enable-pthread \
-		--with-openssl-include=${OPENSSLINC} \
 		--with-ruby-version=minor \
 		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
 		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby"
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	autoconf
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${RUBY_DISTVERSION}
 
@@ -39,10 +43,13 @@ RUBY_NO_RUN_DEPENDS=	yes
 _RUBY_SYSLIBDIR=	${PREFIX}/lib
 _RUBY_EXTDIR=		${PREFIX}/lib/ruby19
 
+MAKE_JOBS_UNSAFE=	yes
+
 NO_LATEST_LINK=	yes
 
-OPTIONS=	RDOC "Build and install Rdoc indexes" off \
-		DEBUG "Compile-in debug info" off
+OPTIONS_DEFINE=	RDOC DEBUG
+RDOC_DESC=	Build and install Rdoc indexes
+DEBUG_DESC=	Compile-in debug info
 
 .include <bsd.port.pre.mk>
 
@@ -60,19 +67,18 @@ PKGNAMESUFFIX=	#empty
 CFLAGS+=	${PTHREAD_CFLAGS}	# Keep this, else ruby will fail to load
 LDFLAGS+=	${PTHREAD_LIBS}		# libraries dependent op libpthread.
 
-.if defined(WITH_DEBUG)
-CFLAGS+=	-g
-STRIP=		# none
-.endif
-
-.if defined(WITH_RDOC) && !defined(NOPORTDOCS)
+#
+# Disable doc generation if requested or docs disabled at all
+#
+.if ${PORT_OPTIONS:MRDOC} && ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=	--enable-install-doc
 .else
 CONFIGURE_ARGS+=	--disable-install-doc
 .endif
 
-CONFIGURE_ENV=	CFLAGS="${CFLAGS}" \
-		LIBS="${LDFLAGS}"
+CONFIGURE_ENV=	CFLAGS="-I${LOCALBASE}/include ${CFLAGS}" \
+		LIBS="-L${LOCALBASE}/lib ${LDFLAGS}" \
+		debugflags=
 
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 MLINKS=		${RUBY_NAME}.1 ruby.1
@@ -81,28 +87,22 @@ PLIST_SUB+=	IF_DEFAULT=""
 PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
 
-INSTALLED_SCRIPTS=	irb erb rdoc ri ruby testrb rake gem
+INSTALLED_SCRIPTS=	irb erb rdoc ri ruby testrb
 
 EXTSAMPLES=	bigdecimal/sample/*.rb	\
 		curses/hello.rb		\
 		curses/rain.rb		\
 		curses/view.rb		\
-		curses/view2.rb		\
-		pty/expect_sample.rb	\
-		pty/script.rb		\
-		pty/shl.rb
+		curses/view2.rb
 
 EXTDOCS=	bigdecimal/bigdecimal_*.html	\
-		etc/etc.txt*			\
-		pty/README*			\
 		readline/README*		\
 		ripper/README			\
 		stringio/README			\
-		syslog/syslog.txt		\
-		zlib/doc/zlib.rd
+		syslog/syslog.txt
 
 MAN1=		${RUBY_NAME}.1 erb${RUBY_SUFFIX}.1  irb${RUBY_SUFFIX}.1 \
-		rake${RUBY_SUFFIX}.1 ri${RUBY_SUFFIX}.1
+		ri${RUBY_SUFFIX}.1
 
 # Macros to change variables in rbconfig.rb
 RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' --
@@ -115,6 +115,9 @@ post-patch:
 		-e '/^RUBY_VENDOR_LIB_PATH2/s,\.\$$\{TEENY\},,' \
 		${WRKSRC}/configure
 
+	#
+	# Eliminate all leftovers
+	#
 	@${FIND} ${WRKSRC}/ -name "*.orig" -delete
 
 #
@@ -123,6 +126,12 @@ post-patch:
 .for d in win32ole
 	${RM} -rf ${BUILD_WRKSRC}/ext/${d}
 .endfor
+# We get rake from ports.
+.for d in bin/rake doc/rake lib/rake test/rake man/rake.1 lib/rake.rb
+	${RM} -rf ${BUILD_WRKSRC}/${d}
+.endfor
+# We get the gem executable from ports.
+	${RM} ${BUILD_WRKSRC}/bin/gem
 
 #
 # Prepare modules we are wanting to build via external ports
@@ -175,7 +184,7 @@ post-install:
 . endfor
 .endif
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	# Create all dirs required (":u" isn't avaiable in STABLE yet :-()
 	${MKDIR} ${EXTSAMPLES:C,^([^/]+)/.*,\1,:S,^,${RUBY_EXAMPLESDIR}/,}
 	${MKDIR} ${EXTDOCS:C,^([^/]+)/.*,\1,:S,^,${RUBY_DOCDIR}/,}
@@ -204,14 +213,19 @@ post-install:
 	@${FIND} -ds ${RUBY_RIDIR}/ -type d -mindepth 1 | \
 		${SED} -E -e 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
 
+
+#
+# Add generated doxygen files to pkg-plist
+#
 	@${ECHO_CMD} "@unexec rmdir %D/${RUBY_SITERIDIR:S,^${PREFIX}/,,} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/${RUBY_RIDIR:S,^${PREFIX}/,,} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/share/ri/${RUBY_VER} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/share/ri 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${RUBY_DOCDIR:S,^${PREFIX}/,,} 2>/dev/null || true" >> ${TMPPLIST}
 
 	@${CAT} ${PKGMESSAGE}
 
-plist::
+plist:
 	truncate -s0 pkg-plist
 .for FILE in ${INSTALLED_SCRIPTS}
 	@${ECHO_CMD} "bin/${FILE}%%RUBY_SUFFIX%%" >> pkg-plist
@@ -220,6 +234,7 @@ plist::
 	@${ECHO_CMD} "lib/lib%%RUBY_NAME%%-static.a" >> pkg-plist
 	@${ECHO_CMD} "lib/lib%%RUBY_NAME%%.so" >> pkg-plist
 	@${ECHO_CMD} "lib/lib%%RUBY_NAME%%.so.%%RUBY_SHLIBVER%%" >> pkg-plist
+	@${ECHO_CMD} "libdata/pkgconfig/ruby-1.9.pc" >> pkg-plist
 
 #
 # Includes
@@ -232,10 +247,10 @@ plist::
 #
 # Vendor and site libs
 #
-	@${FIND} -ds ${RUBY_DOCDIR}/ ! -type d ! -name .keep_me | \
+	@${FIND} -Eds ${RUBY_DOCDIR}/ ! -type d ! -name .keep_me | \
 		${SED} 's,^${RUBY_DOCDIR},%%PORTDOCS%%%%RUBY_DOCDIR%%,' \
 		 >> pkg-plist
-	@${FIND} -ds ${RUBY_DOCDIR}/ -type d -mindepth 1 | ${SORT} -r | \
+	@${FIND} -Eds ${RUBY_DOCDIR}/ -type d -mindepth 1 | ${SORT} -r | \
 		${SED} -E -e \
 		's,^${RUBY_DOCDIR}(.*),%%PORTDOCS%%@dirrm %%RUBY_DOCDIR%%\1,' \
 		>> pkg-plist
@@ -249,7 +264,7 @@ plist::
 		>> pkg-plist
 
 	@${ECHO_CMD} "%%RUBY_DOCDIR%%/.keep_me" >> pkg-plist
-	@${ECHO_CMD} "@dirrmtry %%RUBY_DOCDIR%%" >> pkg-plist
+#	@${ECHO_CMD} "@dirrmtry %%RUBY_DOCDIR%%" >> pkg-plist
 
 	@${ECHO_CMD} "%%RUBY_EXAMPLESDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_EXAMPLESDIR%%" >> pkg-plist
@@ -269,6 +284,9 @@ plist::
 	@${FIND} -ds ${RUBY_LIBDIR}/ -type d | ${SORT} -r | \
 		${SED} -E -e 's,^${RUBY_LIBDIR}(.*),@dirrm %%RUBY_LIBDIR%%\1,' >> pkg-plist
 
+#
+# Find all gem files/folders
+#
 	@${ECHO_CMD} "%%RUBY_SITEARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITEARCHLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITELIBDIR%%" >> pkg-plist
@@ -278,6 +296,7 @@ plist::
 	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORARCHLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby/vendor_ruby" >> pkg-plist
+	@${ECHO_CMD} "@dirrmtry lib/ruby/gems" >> pkg-plist
 
 	@${ECHO_CMD} "@dirrmtry lib/ruby" >> pkg-plist
 
@@ -285,5 +304,12 @@ plist::
 
 test:
 	@(cd ${WRKSRC}; ${MAKE} test)
+
+validate:
+	@${MKDIR} ${WRKSRC}/rubyspec
+	rm -rf ${WRKSRC}/rubyspec/*
+	(cd ${WRKSRC}/rubyspec && git clone git://github.com/rubyspec/rubyspec.git)
+	(cd ${WRKSRC}/rubyspec && git clone git://github.com/rubyspec/mspec.git)
+	(cd ${WRKSRC}/rubyspec/rubyspec && env PATH=${WRKSRC}/rubyspec/mspec/bin:${PATH} mspec -t ${PREFIX}/bin/ruby${RUBY_SUFFIX})
 
 .include <bsd.port.post.mk>
