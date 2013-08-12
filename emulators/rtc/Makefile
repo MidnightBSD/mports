@@ -1,20 +1,15 @@
-# New ports collection makefile for:	rtc
-# Date created:		28 March 2000
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD: mports/emulators/rtc/Makefile,v 1.1 2007/04/04 21:15:20 laffer1 Exp $
-# $FreeBSD: ports/emulators/rtc/Makefile,v 1.32 2007/01/06 15:02:19 netchild Exp $
-#
+# $MidnightBSD: mports/emulators/rtc/Makefile,v 1.2 2008/10/16 22:09:34 laffer1 Exp $
 
 PORTNAME=	rtc
 PORTVERSION=	2004.02.24.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	emulators linux
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel module which provides /dev/rtc device support
+
 LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}/files
