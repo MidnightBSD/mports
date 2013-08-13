@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.35 2013/03/24 16:33:33 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.36 2013/03/30 13:14:00 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.24.17
-PORTREVISION?=	1
+PORTVERSION=	2.24.19
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -11,6 +11,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
+
 LICENSE=	lgpl
 
 USE_XZ=		yes
