@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.3 2011/05/11 14:37:29 laffer1 Exp $
+# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.4 2013/03/25 22:56:24 laffer1 Exp $
 
 PORTNAME=	mod_perl
-PORTVERSION=	2.0.7
+PORTVERSION=	2.0.8
 PORTEPOCH=	3
 CATEGORIES=	www perl5
 MASTER_SITES=	APACHE/perl
@@ -22,6 +22,8 @@ SUB_LIST=	APACHEMODDIR=${APACHEMODDIR}
 USE_APACHE=	2.2+
 PERL_CONFIGURE=	yes
 GMAKE=		yes
+
+CSTD=	c89
 
 # Using apxs in this way is problematic if apache2 is installed under a
 # different PREFIX than mod_perl2, because the mod_perl2 installation will
