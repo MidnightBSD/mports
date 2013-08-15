@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.17 2011/11/05 14:39:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.18 2013/02/09 02:43:00 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -64,7 +64,7 @@ PLIST_SUB+=	CTYPE="@comment "
 .else
 CONFIGURE_ARGS+=	--with-system-ffi
 .if ${ARCH} != i386
-LIB_DEPENDS+=	ffi.5:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	ffi.6:${PORTSDIR}/devel/libffi
 .endif
 PLIST_SUB+=	CTYPE=""
 .endif
