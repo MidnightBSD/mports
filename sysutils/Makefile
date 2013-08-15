@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.123 2013/08/15 00:50:28 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.124 2013/08/15 01:02:30 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -65,7 +65,6 @@ SUBDIR += libsunacl
 SUBDIR += libutempter
 SUBDIR += lmmon
 SUBDIR += lsof
-SUBDIR += makefs
 SUBDIR += mbmon
 SUBDIR += mdf2iso
 SUBDIR += memtest
