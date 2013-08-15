@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.122 2013/08/03 17:42:11 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.123 2013/08/15 00:50:28 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -32,6 +32,7 @@ SUBDIR += etoile-installer
 SUBDIR += etoile-powermenulet
 SUBDIR += etoile-system
 SUBDIR += extipl
+SUBDIR += ffs2recov
 SUBDIR += flashback
 SUBDIR += flock
 SUBDIR += fusefs-curlftpfs
