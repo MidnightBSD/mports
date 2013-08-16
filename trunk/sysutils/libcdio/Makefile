@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/libcdio/Makefile,v 1.6 2011/09/18 00:38:14 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/libcdio/Makefile,v 1.7 2012/03/01 04:13:13 laffer1 Exp $
 
 PORTNAME=	libcdio
 PORTVERSION=	0.83
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libcdio
@@ -15,11 +16,10 @@ LIB_DEPENDS=	cddb.4:${PORTSDIR}/audio/libcddb \
 		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig gnomehack
 USE_GMAKE=	yes
-USE_ICONV=	yes
 USE_LDCONFIG=	yes
 USE_NCURSES=	yes
+USES=		pathfix pkgconfig iconv
 CONFIGURE_ARGS+=	--with-libpopt-prefix=${LOCALBASE} \
 			--with-libiconv-prefix=${LOCALBASE} \
 USE_PERL5_BUILD=yes
