@@ -1,20 +1,30 @@
-# $MidnightBSD: mports/devel/libffi/Makefile,v 1.7 2013/02/23 15:34:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/libffi/Makefile,v 1.8 2013/03/26 02:51:37 laffer1 Exp $
 
 PORTNAME=	libffi
-PORTVERSION=	3.0.12
-PORTREVISION=	0
+PORTVERSION=	3.0.13
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign Function Interface
+
 LICENSE=	mit
+
+TEST_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
+
+OPTIONS_DEFINE=	TESTS
+TESTS_DESC=	Include tools for test suite
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MTESTS}
+BUILD_DEPENDS:=	${TEST_DEPENDS}
+.endif
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack
-USE_PKGCONFIG=	build
+USES=	pathfix pkgconfig
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 INFO=		libffi
@@ -25,5 +35,7 @@ post-install:
 	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffi.h ${PREFIX}/include/
 	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffitarget.h ${PREFIX}/include/
 
+regression-test: build
+	@cd ${WRKSRC} && ${MAKE} check
 
 .include <bsd.port.mk>
