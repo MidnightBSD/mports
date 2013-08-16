@@ -1,64 +1,87 @@
-# New ports collection makefile for:	libgpod
-# Date created:				Wed Jan 1 00:48:58 EST 2006
-# Whom:					Devon Ryan <dpryan@dpryan.com>
-#
-# $MidnightBSD: mports/audio/libgpod/Makefile,v 1.2 2008/02/28 01:31:33 laffer1 Exp $
-# $FreeBSD: ports/audio/libgpod/Makefile,v 1.16 2007/08/04 11:40:39 gabor Exp $
-#
+# $MidnightBSD: mports/audio/libgpod/Makefile,v 1.3 2009/12/31 21:26:20 laffer1 Exp $
 
 PORTNAME=	libgpod
-PORTVERSION=	0.7.2
+PORTVERSION=	0.8.2
 CATEGORIES=	audio
-MASTER_SITES=	SF/gtkpod/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+MASTER_SITES=	SF/gtkpod/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for direct access of iPod's contents
+MAINTAINER=	avilla@FreeBSD.org
+COMMENT=	Library for direct access to iPod contents
+
 LICENSE=	lgpl
 
-USE_GNOME=	gtk20
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--without-hal --with-html-dir="${PREFIX}/share/doc"
+LIB_DEPENDS=	plist:${PORTSDIR}/devel/libplist \
+		tag:${PORTSDIR}/audio/taglib \
+		sgutils2:${PORTSDIR}/sysutils/sg3_utils
 
-OPTIONS=	PYTHON	"Enable Python bindings"		off \
-		TOOLS	"Build SysInfo detection utility"	off
+USE_GNOME=	gtk20
+USE_SQLITE=	3
+USES=		gettext
+USE_BZIP2=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-udev --without-hal \
+		--with-html-dir="${DOCSDIR:H}"
+USE_GMAKE=	yes
+USE_CSTD=	gnu89
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	IMOBILE MONO PYTHON
+OPTIONS_DEFAULT=IMOBILE
+
+IMOBILE_DESC=	Apple iPhone/iPod Touch support
+
+PORTDOCS=	ChangeLog NEWS README*
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_PYTHON)
+.if ${PORT_OPTIONS:MMONO}
+USE_GNOME+=	gtksharp20
+CONFIGURE_ARGS+=--with-mono
+PLIST_SUB+=	MONO=""
+.else
+CONFIGURE_ARGS+=--without-mono
+PLIST_SUB+=	MONO="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MPYTHON}
+BUILD_DEPENDS+=	swig2.0:${PORTSDIR}/devel/swig20 \
+		${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
+RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
+USE_GNOME+=	pygobject
 USE_PYTHON=	yes
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gtk-2.0/gobject/__init__.py:${PORTSDIR}/devel/py-gobject \
-		${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen \
-		swig:${PORTSDIR}/devel/swig13
-RUN_DEPENDS:=	${BUILD_DEPENDS}
 PLIST_SUB+=	PYTHON=""
 .else
-CONFIGURE_ARGS+=	--without-python
+CONFIGURE_ARGS+=--without-python
 PLIST_SUB+=	PYTHON="@comment "
 .endif
 
-# SysInfo detection utility is required in order to support iPod classic
-# and nano 3G
-.if defined(WITH_TOOLS) || exists(${LOCALBASE}/lib/libsgutils.so)
-LIB_DEPENDS+=	sgutils.1:${PORTSDIR}/sysutils/sg3_utils
-PLIST_FILES+=	bin/ipod-read-sysinfo-extended
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MIMOBILE} && (${OSVERSION} > 4000)
+COMMENT:=	${COMMENT:S,iPod,&/iPhone,}
+LIB_DEPENDS+=	imobiledevice:${PORTSDIR}/comms/libimobiledevice
+CONFIGURE_ENV+=	LIBUSB_CFLAGS=" " LIBUSB_LIBS="-lusb"
+.else
+CONFIGURE_ARGS+=--without-libimobiledevice
 .endif
 
-pre-patch: .SILENT
-# Adjust pkgconfigdir to the FreeBSD world
-	${REINPLACE_CMD} -e \
-		's,libdir)/pkgconfig,prefix)/libdata/pkgconfig,' \
-			${WRKSRC}/Makefile.in
+post-patch:
+	@${REINPLACE_CMD} -e 's,libdir)/pkgconfig,prefix)/libdata/pkgconfig,' \
+		${WRKSRC}/Makefile.in \
+		${WRKSRC}/bindings/mono/libgpod-sharp/Makefile.in
 # Allow to build tools without HAL
-	${REINPLACE_CMD} -e \
-		'/noinst_PROGRAMS =/s,^,@HAVE_HAL_TRUE@,' \
-			${WRKSRC}/tools/Makefile.in
-.if defined(NOPORTDOCS)
-	${REINPLACE_CMD} -e 's, docs,,' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/noinst_PROGRAMS =/ s,^,@HAVE_HAL_TRUE@,' \
+		${WRKSRC}/tools/Makefile.in
+.if ! ${PORT_OPTIONS:MDOCS}
+	@${REINPLACE_CMD} -e 's, docs,,' \
+		${WRKSRC}/Makefile.in
 .endif
 
-.include <bsd.port.mk>
+post-install:
+.if ${PORT_OPTIONS:MDOCS}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+.endif
+
+.include <bsd.port.post.mk>
