@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/validator/Makefile,v 1.5 2009/04/28 01:14:07 laffer1 Exp $
+# $MidnightBSD: mports/www/validator/Makefile,v 1.6 2013/08/15 23:09:45 laffer1 Exp $
 
 PORTNAME=	validator
 PORTVERSION=	1.3
@@ -14,8 +14,6 @@ LICENSE=	other
 
 RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/opensp \
 		p5-Config-General>=0:${PORTSDIR}/devel/p5-Config-General \
-		p5-Encode-HanExtra>=0:${PORTSDIR}/chinese/p5-Encode-HanExtra \
-		p5-Encode-JIS2K>=0:${PORTSDIR}/converters/p5-Encode-JIS2K \
 		p5-HTML-Parser>=0:${PORTSDIR}/www/p5-HTML-Parser \
 		p5-HTML-Encoding>=0:${PORTSDIR}/www/p5-HTML-Encoding \
 		p5-HTML-Template>=0:${PORTSDIR}/www/p5-HTML-Template \
