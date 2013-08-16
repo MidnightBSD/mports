@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.21 2013/05/04 23:41:15 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.22 2013/06/14 01:36:19 laffer1 Exp $
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.7.17.0
+PORTVERSION=	3.7.17
 CATEGORIES=	databases lang
 MASTER_SITES=	http://www.sqlite.org/2013/ \
 		http://www2.sqlite.org/2013/ \
@@ -14,7 +14,7 @@ LICENSE=	publicdom
 
 CONFLICTS=	sqlite34-[0-9]* sqlcipher-[0-9]*
 
-USES=		pkgconfig
+USES=		pathfix pkgconfig
 USE_LDCONFIG=	YES
 GNU_CONFIGURE=	YES
 
@@ -145,9 +145,6 @@ CONFIGURE_ARGS+=	--enable-dynamic-extensions
 .else
 CONFIGURE_ARGS+=	--disable-dynamic-extensions
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} '/^pkgconf/s,$${libdir},$${prefix}/libdata,' ${WRKSRC}/Makefile.in
 
 post-build:
 .if ${ARCH}=="i386"
