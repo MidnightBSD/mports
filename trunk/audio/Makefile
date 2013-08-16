@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.102 2013/07/11 01:13:33 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.103 2013/07/14 15:11:41 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -53,6 +53,7 @@ SUBDIR += libamrwb
 SUBDIR += libao
 SUBDIR += libaudiofile
 SUBDIR += libcanberra
+SUBDIR += libcanberra-gtk3
 SUBDIR += libcdaudio
 SUBDIR += libcddb
 SUBDIR += libdiscid
