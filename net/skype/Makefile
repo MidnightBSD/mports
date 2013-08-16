@@ -1,14 +1,8 @@
-# New ports collection makefile for:	skype
-# Date created:         Jun 21. 2004
-# Whom:                 netchild@FreeBSD.org
-#
-# $MidnightBSD: mports/net/skype/Makefile,v 1.1 2008/04/11 03:20:43 laffer1 Exp $
-# $FreeBSD: ports/net/skype/Makefile,v 1.37 2007/11/01 12:24:53 beech Exp $
-#
+# $MidnightBSD: mports/net/skype/Makefile,v 1.2 2008/05/04 06:25:56 laffer1 Exp $
 
 PORTNAME=	skype
 PORTVERSION=	1.2.0.18
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	NETBSD
@@ -33,7 +27,7 @@ OPTIONS=	NVIDIA_GL "Enable Nvidia Support" off
 .if defined(WITH_NVIDIA_GL)
 RUN_DEPENDS+=	${LINUXBASE}/usr/lib/libGL.so.1:${PORTSDIR}/x11/nvidia-driver
 .else
-RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
+RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux-f10-dri
 .endif
 
 WRKSRC=	${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -44,7 +38,7 @@ do-build:
 do-install:
 	@${INSTALL} -d ${PREFIX}/share/applications
 	@${INSTALL_PROGRAM} ${WRKSRC}/skype ${PREFIX}/bin/skype_bin
-	@${ECHO_CMD} -e "#!/bin/sh\n\nSKYPE_RESOURCES_PATH='${LOCALBASE}/share/skype' skype_bin \"\$$@\" 2>&1 | grep -v 'SOUND_MIXER_WRITE_IGAIN failed'" >${PREFIX}/bin/skype
+	@${ECHO_CMD} -e "#!/bin/sh\n\nSKYPE_RESOURCES_PATH='${LOCALBASE}/share/skype' skype_bin \"\$$@\" 2>&1 | ${GREP} -v 'SOUND_MIXER_WRITE_IGAIN failed'" >${PREFIX}/bin/skype
 	@${CHMOD} a+rx ${PREFIX}/bin/skype
 	@${INSTALL_DATA} ${WRKSRC}/skype.desktop ${PREFIX}/share/applications/
 	${MKDIR} ${PREFIX}/share/pixmaps
