@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.28 2013/05/18 13:12:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.29 2013/07/04 16:34:33 laffer1 Exp $
 
 PORTNAME=	glib
 PORTVERSION=	2.34.3
-PORTREVISION?=	2
+PORTREVISION?=	4
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (current stable version)
+
 LICENSE=	lgpl
 
 LATEST_LINK=	glib20
@@ -17,7 +18,8 @@ USE_XZ=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre \
+		ffi:${PORTSDIR}/devel/libffi
 
 USE_GETTEXT=	yes
 USE_ICONV=	yes
