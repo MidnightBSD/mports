@@ -1,13 +1,15 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/libstreamanalyzer/Makefile,v 1.1 2013/07/16 12:23:59 laffer1 Exp $
 
 PORTNAME=	libstreamanalyzer
 PORTVERSION=	${STRIGI_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	${STRIGI_MASTER_SITES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Strigi desktop search: streamanalyzer library
+
+LICENSE=	gpl2
 
 LIB_DEPENDS=	avcodec${FFMPEG_SUFFIX}:${PORTSDIR}/multimedia/ffmpeg${FFMPEG_SUFFIX} \
 		clucene-core:${PORTSDIR}/textproc/clucene \
@@ -21,7 +23,7 @@ MAKE_JOBS_SAFE=	yes
 
 # supported versions: ffmpeg, ffmpeg1, ffmpeg-devel
 # corresponding FFMPEG_SUFFIX: '', '1', '-devel'
-FFMPEG_SUFFIX?=	1
+FFMPEG_SUFFIX?=	
 CMAKE_ARGS+=	-DFFMPEG_SUFFIX:STRING="${FFMPEG_SUFFIX}"
 
 .if !empty(FFMPEG_SUFFIX)
