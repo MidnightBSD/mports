@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.3 2011/05/12 13:20:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.4 2011/05/15 21:30:08 laffer1 Exp $
 
 PORTNAME=	Params-Validate
-PORTVERSION=	0.95
+PORTVERSION=	1.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,12 +10,12 @@ MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Validate method/function parameters
 LICENSE=	perl
 
-BUILD_DEPENDS=	p5-ExtUtils-CBuilder>=0.2703:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
+BUILD_DEPENDS=	p5-Module-Implementation>=0.04:${PORTSDIR}/devel/p5-Module-Implementation
+RUN_DEPENDS=	p5-Module-Implementation>=0.04:${PORTSDIR}/devel/p5-Module-Implementation
 
 PERL_MODBUILD=	yes
 
-MAN3=		Attribute::Params::Validate.3 Params::ValidateXS.3 \
-		Params::ValidatePP.3 Params::Validate.3
+MAN3=		Attribute::Params::Validate.3 \
+		Params::Validate.3
 
 .include <bsd.port.mk>
-
