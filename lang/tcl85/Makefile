@@ -1,17 +1,19 @@
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.11 2013/02/08 02:56:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.12 2013/03/01 14:00:50 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.5.13
 CATEGORIES=	lang tcl
 MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
+PKGNAMESUFFIX=	85
 DISTNAME=	tcl${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language
+
 LICENSE=	other
 
 OPTIONS=        TCLMAN "Install tcl 8.5 manpages" off \
-                TZDATA "Install tcl timezone data" off \
+		TZDATA "Install tcl timezone data" off \
 		MODULES "TCL common Modules" on \
 		THREADS "TCL Threads support" on
 
@@ -41,7 +43,7 @@ PLIST_SUB=	TCL_VER=${TCL_VER} \
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_TCLMAN)
-INSTALL_TARGET+=	install-doc 
+INSTALL_TARGET+=	install-doc
 .include "${.CURDIR}/Makefile.man"
 .endif
 
