@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/databases/mysql55-client/Makefile,v 1.4 2011/03/12 18:21:17 laffer1 Exp $
-# $FreeBSD: ports/databases/mysql55-client/Makefile,v 1.104 2010/12/28 06:49:38 ale Exp $
+# $MidnightBSD: mports/databases/mysql55-client/Makefile,v 1.5 2011/05/27 01:59:56 laffer1 Exp $
 
 PORTNAME=	mysql
-PKGNAMESUFFIX=	-client
+PKGNAMESUFFIX=	55-client
 PORTREVISION=	0
 
 COMMENT=	Multithreaded SQL database (client)
