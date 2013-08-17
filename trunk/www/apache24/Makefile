@@ -1,19 +1,18 @@
-# $MidnightBSD: mports/www/apache24/Makefile,v 1.1 2012/09/14 03:02:31 laffer1 Exp $
-#
-# For more information, please read Makefile.doc
-#
+# $MidnightBSD: mports/www/apache24/Makefile,v 1.2 2013/03/25 23:03:36 laffer1 Exp $
 
 PORTNAME=	apache
 PORTVERSION=	2.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
+PKGNAMESUFFIX=	24
 DISTNAME=	httpd-${PORTVERSION}
 DISTFILES=	${DISTNAME}.tar.bz2
 DIST_SUBDIR=	apache24
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Version 2.4 of Apache web server with ${WITH_MPM:L} MPM.
+
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
