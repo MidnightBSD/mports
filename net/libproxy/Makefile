@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/libproxy/Makefile,v 1.4 2013/06/11 23:50:48 laffer1 Exp $
+# $MidnightBSD: mports/net/libproxy/Makefile,v 1.5 2013/08/12 00:32:47 laffer1 Exp $
 
 PORTNAME=	libproxy
 PORTVERSION=	0.4.6
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES?=	net devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
