@@ -1,15 +1,16 @@
-# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.13 2012/09/29 16:39:21 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.14 2013/02/12 00:43:47 laffer1 Exp $
 
-PORTNAME?=	mysql
+PORTNAME=	mysql
 PORTVERSION=	5.5.30
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.5
-PKGNAMESUFFIX?=	-server
+PKGNAMESUFFIX?=	55-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql55-client
