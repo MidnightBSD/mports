@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.33 2012/09/29 19:30:24 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.34 2013/02/12 00:57:37 laffer1 Exp $
 
 PORTNAME?=	mysql
 PORTVERSION=	5.1.68
@@ -6,7 +6,7 @@ PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
-PKGNAMESUFFIX?=	-server
+PKGNAMESUFFIX?=	51-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multithreaded SQL database (server)

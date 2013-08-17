@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql51-client/Makefile,v 1.2 2008/04/04 00:34:28 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-client/Makefile,v 1.3 2009/09/24 01:37:42 laffer1 Exp $
 
 PORTNAME=	mysql
-PKGNAMESUFFIX=	-client
+PKGNAMESUFFIX=	51-client
 
 COMMENT=	Multithreaded SQL database (client)
 LICENSE=	gpl2
