@@ -32,7 +32,7 @@ $MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.7 2013/03/17 17:08:40 l
 #include <err.h>
 
 #include <sys/types.h>
-#include <md5.h>
+#include <sha256.h>
 
 #include "mysql.h"
 #include "sqlite3.h"
@@ -134,7 +134,7 @@ main(int argc, char *argv[])
                {
                    asprintf(&ln, "%s: %s %s %s %s %s", row[0], row[1], row[2], row[3], row[5], row[4]);
                    asprintf(&filePath, "%s/%s", argv[4], row[4]);
-                   fileHash = MD5File(filePath, NULL);
+                   fileHash = SHA256_File(filePath, NULL);
                    if (fileHash == NULL)
                    {
                        fprintf(stderr, "Could not locate file %s\n", filePath);
