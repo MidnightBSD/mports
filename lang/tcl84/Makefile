@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.6 2009/12/31 20:47:44 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.7 2013/02/21 03:26:33 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.4.19
@@ -6,6 +6,7 @@ PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	lang tcl
 MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
+PKGNAMESUFFIX=	84
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
