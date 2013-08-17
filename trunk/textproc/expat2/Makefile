@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/expat2/Makefile,v 1.7 2009/12/14 01:19:35 laffer1 Exp $
+# $MidnightBSD: mports/textproc/expat2/Makefile,v 1.8 2013/03/23 16:44:08 laffer1 Exp $
 
 PORTNAME=	expat
 PORTVERSION=	2.0.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
@@ -11,7 +11,6 @@ COMMENT=	XML 1.0 parser written in C
 LICENSE=	other
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 ALL_TARGET=	default
 USE_LDCONFIG=	yes
 MAN1=		xmlwf.1
