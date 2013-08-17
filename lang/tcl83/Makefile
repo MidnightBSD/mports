@@ -1,16 +1,11 @@
-# New ports collection makefile for:	tcl8.3
-# Date created:		19 August 1997
-# Whom:			jkh
-#
-# $FreeBSD: ports/lang/tcl83/Makefile,v 1.70 2006/08/15 00:29:09 clsung Exp $
-# $MidnightBSD: mports/lang/tcl83/Makefile,v 1.4 2008/05/11 16:20:53 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/tcl83/Makefile,v 1.5 2009/12/31 20:48:24 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.3.5
 PORTREVISION=	5
 CATEGORIES=	lang tcl
 MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
+PKGNAMESUFFIX=	83
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
