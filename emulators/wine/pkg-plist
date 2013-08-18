@@ -1834,7 +1834,7 @@ lib/wine/xinput9_1_0.dll.so
 lib/wine/xmllite.dll.so
 lib/wine/xolehlp.dll.so
 lib/wine/xpsprint.dll.so
-share/applications/wine.desktop
+@comment share/applications/wine.desktop
 %%PORTDOCS%%%%DOCSDIR%%/ANNOUNCE
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/README

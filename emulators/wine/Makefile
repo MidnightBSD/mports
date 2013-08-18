@@ -1,15 +1,16 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.16 2013/07/03 23:54:10 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.17 2013/07/04 00:08:30 laffer1 Exp $
 
 PORTNAME=	wine
 DISTVERSION=	1.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
 		http://ibiblio.org/pub/linux/system/emulators/wine/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
+COMMENT=	Microsoft Windows compatibility environment
+
 LICENSE=        lgpl3
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
@@ -62,8 +63,6 @@ LIBXSLT_DESC=	Use libxslt (only used by msxml3.dll)
 WINEMAKER_DESC=	Fully support winemaker (requires Perl)
 
 PORTDATA=	fonts/ generic.ppd l_intl.nls wine.inf
-
-
 
 .include <bsd.port.pre.mk>
 
@@ -135,7 +134,8 @@ post-install:
 	          ${MAN1PREFIX}/man/fr.UTF-8/man1/wineserver.1 \
 	          ${MAN1PREFIX}/man/pl.UTF-8/man1/wine.1
 	@-${RMDIR} -p ${MAN1PREFIX}/man/de.UTF-8/man1 \
-	              ${MAN1PREFIX}/man/fr.UTF-8/man1
+	              ${MAN1PREFIX}/man/fr.UTF-8/man1 \
+	              ${MAN1PREFIX}/man/pl.UTF-8/man1
 	${MV} -f ${PREFIX}/lib/libwine.so.1.0 ${PREFIX}/lib/libwine.so.1
 	${LN} -sf libwine.so.1 ${PREFIX}/lib/libwine.so
 .if !defined(NOPORTDOCS)
@@ -147,7 +147,5 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${DOCSDIR}/README.winedump
 .endif
 	@${MKDIR} ${DESKTOPDIR}
-	${MV} ${DATADIR}/applications/wine.desktop ${DESKTOPDIR}/
-	@${RMDIR} ${DATADIR}/applications
 
 .include <bsd.port.post.mk>
