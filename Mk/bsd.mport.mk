@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.226 2013/08/18 14:34:32 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.227 2013/08/18 22:31:20 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -965,12 +965,7 @@ USE_SUBMAKE=	yes
 # These componenets include targets that may have been overwritten by the 
 # above extentions, so they are loaded here.
 #
-.if (${OSVERSION} > 4003)
 USE_MPORT_TOOLS=	yes
-.endif
-.if !defined(USE_MPORT_TOOLS)
-.include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
-.endif
 .include "${MPORTCOMPONENTS}/fake/targets.mk"
 .include "${MPORTCOMPONENTS}/update.mk"
 
