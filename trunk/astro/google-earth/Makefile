@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.15 2013/03/24 19:58:55 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.16 2013/08/18 16:04:04 laffer1 Exp $
 
 PORTNAME=	google-earth
 PORTVERSION=	6.0.3.2197
@@ -56,7 +56,7 @@ post-patch:
 	@${PERL} -i -pe 's|/lib/ld-lsb.so.3\0\0\0|/lib/ld-linux.so.2\0|' ${WRKSRC}/googleearth-bin
 
 do-build:
-	${SETENV} SETUP_INSTALLPATH=${DATADIR} ${WRKSRC}/postinstall.sh
+	@${SETENV} SETUP_INSTALLPATH=${DATADIR} ${WRKSRC}/postinstall.sh
 	@cd ${WRKSRC} && ${RM} -rf setup.* preuninstall.sh postinstall.sh \
 		bin/googleearth.orig
 
@@ -65,11 +65,11 @@ pre-install:
 
 do-install:
 	@${MKDIR} ${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/googleearth-mimetypes.xml ${PREFIX}/share/mime/packages/
-	${INSTALL_DATA} ${WRKSRC}/Google-googleearth.desktop ${PREFIX}/share/applications/googleearth.desktop
-	${CP} -rp ${WRKSRC}/* ${DATADIR}
-	${RM} -f ${DATADIR}/googleearth-mimetypes.xml ${DATADIR}/googleearth.desktop
-	${INSTALL_SCRIPT} ${FILESDIR}/browserwrapper ${DATADIR}/bin
-	${LN} -sf ${DATADIR}/bin/googleearth ${PREFIX}/bin/
+	@${INSTALL_DATA} ${WRKSRC}/googleearth-mimetypes.xml ${PREFIX}/share/mime/packages/
+	@${INSTALL_DATA} ${WRKSRC}/Google-googleearth.desktop ${PREFIX}/share/applications/googleearth.desktop
+	@${CP} -rp ${WRKSRC}/* ${DATADIR}
+	@${RM} -f ${DATADIR}/googleearth-mimetypes.xml ${DATADIR}/googleearth.desktop
+	@${INSTALL_SCRIPT} ${FILESDIR}/browserwrapper ${DATADIR}/bin
+	@${LN} -sf ${DATADIR}/bin/googleearth ${PREFIX}/bin/
 
 .include <bsd.port.post.mk>
