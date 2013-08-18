@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.11 2008/10/29 19:43:38 ctriv Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.12 2009/06/29 18:41:12 laffer1 Exp $
 
 PORTNAME=	qmake
 PORTVERSION=	3.3.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
+MASTER_SITE_SUBDIR=	archive/qt/${PORTVERSION:R:R}
 DISTNAME=	qt-x11-free-${PORTVERSION}
 DIST_SUBDIR=	KDE
 
@@ -13,17 +14,16 @@ COMMENT=	The build utility of the Qt project
 LICENSE=        gpl2
 FAKE_OPTS=	trueprefix
 
-USE_REINPLACE=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
+MAKE_JOBS_SAFE=	yes
 PLIST_SUB+=	_PREFIX="${PREFIX}"
 MAKE_ENV+=	FILESDIR="${FILESDIR}"
 
 USE_BZIP2=	yes
 
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
+EXTRACT_AFTER_ARGS= \
 	'${DISTNAME}/mkspecs' \
 	'${DISTNAME}/src/*/*.h' '${DISTNAME}/qmake' \
 	'${DISTNAME}/src/tools'
@@ -45,8 +45,6 @@ post-patch:
 		-e 's|/usr/local|${LOCALBASE}|' \
 		-e 's|/usr/X11R6|${LOCALBASE}|' \
 		-e 's|release|release thread|' \
-		-e 's|-pthread -D_THREAD_SAFE|${PTHREAD_CFLAGS}|' \
-		-e 's|-pthread|${PTHREAD_LIBS}|' \
 		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
 
