@@ -1,9 +1,10 @@
 #
-# $MidnightBSD: mports/devel/qgit/Makefile,v 1.1 2009/04/30 19:15:34 ctriv Exp $
+# $MidnightBSD: mports/devel/qgit/Makefile,v 1.2 2011/07/16 15:19:51 laffer1 Exp $
 #
 
 PORTNAME=	qgit
 PORTVERSION=	2.3
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}4/${PORTVERSION}
 PKGNAMESUFFIX=	-qt4
@@ -13,8 +14,7 @@ COMMENT=	A graphical interface to git repositories
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib gui moc_build qmake_build rcc_build uic_build
+USE_QT4=	corelib gui moc_build qmake_build rcc_build uic_build
 MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
