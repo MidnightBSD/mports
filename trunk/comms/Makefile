@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.26 2013/03/09 20:27:42 laffer1 Exp $
+# $MidnightBSD: mports/comms/Makefile,v 1.27 2013/07/03 22:54:31 laffer1 Exp $
 
 COMMENT = Communication utilities
 
 SUBDIR += acfax
 SUBDIR += aldo
-SUBDIR += asmodem
 SUBDIR += atslog
 SUBDIR += bforce
 SUBDIR += bforce-kst
