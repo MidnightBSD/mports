@@ -1,19 +1,21 @@
-# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.7 2009/12/25 16:41:37 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.8 2013/03/24 19:16:49 laffer1 Exp $
 
 PORTNAME=	gnome-speech
 PORTVERSION=	0.4.25
+PORTREVISION=	1
 CATEGORIES=	accessibility audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME text-to-speech API
+
 LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix libbonobo
-USES=		pathfix
+USES=		pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static
