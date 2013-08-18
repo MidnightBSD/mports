@@ -1,42 +1,43 @@
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.14 2011/01/15 02:53:12 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.15 2013/02/18 02:53:04 laffer1 Exp $
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.8
+PORTREVISION=	1
 CATEGORIES=	irc gnome ipv6
 MASTER_SITES=	SF/${PORTNAME}/ \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
+COMMENT=	X11 IRC client using the GTK+ 2 toolkit
+
 LICENSE=	gpl2
 
 CONFLICTS=	xchat-1* xchat-systray-plugin-[0-9]*
 
-LIB_DEPENDS+=	gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
-
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_GNOME=	gnomehack gtk20
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 CONFIGURE_ARGS=	--enable-ipv6
 WANT_PERL=	yes
 
-OPTIONS=	DBUS "Enable DBUS support" on \
-		GTKSPELL "Enable spell check support using gtkspell" on \
-		LIBSEXY "Enable spell check support using libsexy" off \
-		NOTIFY "Depend on libnotify for notifications" off \
-		PERL "Enable Perl support" on \
-		PYTHON "Enable Python support" off \
-		TCL "Enable TCL support" off \
-		SOCKS "Build with socks5 support" off
+OPTIONS_DEFINE=	DBUS NOTIFY PERL PYTHON SOCKS TCL
+OPTIONS_DEFAULT=DBUS GTKSPELL PERL
+OPTIONS_RADIO=	SPELL
+OPTIONS_RADIO_SPELL=	GTKSPELL LIBSEXY
+GTKSPELL_DESC=	Spell check support via gtkspell
+LIBSEXY_DESC=	Spell check support via libsexy
+
+.if defined(WITH_PYTHON)
+.endif
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_DBUS)
-LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+.if ${PORT_OPTIONS:MDBUS}
+LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
 CONFIGURE_ARGS+=--enable-dbus
 USE_GNOME+=	gconf2
 GCONF_SCHEMAS+=	apps_xchat_url_handler.schemas
@@ -46,42 +47,31 @@ CONFIGURE_ARGS+=--disable-dbus
 PLIST_SUB+=	DBUS="@comment "
 .endif
 
-.if defined(WITH_GTKSPELL)
-.if defined(WITH_LIBSEXY)
-BROKEN=		You can select only one of GTKSPELL and LIBSEXY for spell check support
-.endif
-LIB_DEPENDS+=	gtkspell.0:${PORTSDIR}/textproc/gtkspell
+.if ${PORT_OPTIONS:MGTKSPELL}
+LIB_DEPENDS+=	gtkspell:${PORTSDIR}/textproc/gtkspell
 CONFIGURE_ARGS+=--enable-spell=gtkspell
-.endif
-
-.if defined(WITH_LIBSEXY)
-.if defined(WITH_GTKSPELL)
-BROKEN=		You can select only one of GTKSPELL and LIBSEXY for spell check support
-.endif
-LIB_DEPENDS+=	sexy.2:${PORTSDIR}/x11-toolkits/libsexy
+.elif ${PORT_OPTIONS:MLIBSEXY}
+LIB_DEPENDS+=	sexy:${PORTSDIR}/x11-toolkits/libsexy
 CONFIGURE_ARGS+=--enable-spell=libsexy
-.endif
-
-.if !defined(WITH_GTKSPELL) && !defined(WITH_LIBSEXY)
+.else
 CONFIGURE_ARGS+=--enable-spell=none
 .endif
 
-.if defined(WITH_NOTIFY)
+.if ${PORT_OPTIONS:MNOTIFY}
 RUN_DEPENDS+=	notify-send:${PORTSDIR}/devel/libnotify \
 		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
 .endif
 
-.if defined(WITHOUT_PERL)
-CONFIGURE_ARGS+=--disable-perl
-PLIST_SUB+=	PERL="@comment "
-.else
+.if ${PORT_OPTIONS:MPERL}
 USE_PERL5=	yes
 CONFIGURE_ARGS+=--enable-perl
 PLIST_SUB+=	PERL=""
+.else
+CONFIGURE_ARGS+=--disable-perl
+PLIST_SUB+=	PERL="@comment "
 .endif
 
-.if defined(WITH_PYTHON)
-EXTENSIONS+=	python
+.if ${PORT_OPTIONS:MPYTHON}
 USE_PYTHON=	yes
 CONFIGURE_ARGS+=--enable-python
 PLIST_SUB+=	PYTHON=""
@@ -90,35 +80,32 @@ CONFIGURE_ARGS+=--disable-python
 PLIST_SUB+=	PYTHON="@comment "
 .endif
 
-.if defined(WITH_TCL)
-EXTENSIONS+=	tcl
-LIB_DEPENDS+=	tcl84.1:${PORTSDIR}/lang/tcl84
-CONFIGURE_ARGS+=--enable-tcl=${LOCALBASE}/lib/tcl8.4
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
-		-I${LOCALBASE}/include/tcl8.4" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} \
-		-L${LOCALBASE}/lib/tcl8.4"
+.if ${PORT_OPTIONS:MSOCKS}
+LIB_DEPENDS+=	socks:${PORTSDIR}/net/dante
+CONFIGURE_ARGS+=--enable-socks
+.endif
+
+.if ${PORT_OPTIONS:MTCL}
+USE_TCL=	84+
+CONFIGURE_ARGS+=--enable-tcl=${TCL_LIBDIR}
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} \
+		-L${TCL_LIBDIR}"
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
+		-I${TCL_INCLUDEDIR}
 PLIST_SUB+=	TCL=""
 .else
 CONFIGURE_ARGS+=--enable-tcl=no
 PLIST_SUB+=	TCL="@comment "
 .endif
 
-.if defined(WITH_SOCKS)
-ONLY_FOR_ARCHS=	i386
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libsocks5.a:${PORTSDIR}/net/socks5
-CONFIGURE_ARGS+=--enable-socks
-.endif
-
-
-.include <bsd.port.pre.mk>
-
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|PY_LIBS=.*|PY_LIBS="-L\$$PY_EXEC_PREFIX/lib/python\$$PY_VER/config -lpython\$$PY_VER ${PTHREAD_LIBS} -lutil"|' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' \
+		${WRKSRC}/src/common/*.[ch]
 
 # Create plugins directory even when no plugins are installed
 post-install:
 	@${MKDIR} ${PREFIX}/lib/xchat/plugins
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
