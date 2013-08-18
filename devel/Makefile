@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.441 2013/08/12 02:12:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.442 2013/08/12 02:28:48 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -390,6 +390,7 @@ SUBDIR += py-subversion
 SUBDIR += py-xdg
 SUBDIR += qca
 SUBDIR += qgit
+SUBDIR += qjson
 SUBDIR += qmake
 SUBDIR += qmake4
 SUBDIR += qt4
