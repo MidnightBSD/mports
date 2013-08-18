@@ -1,78 +1,79 @@
-# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.5 2012/02/24 15:08:22 laffer1 Exp $
+# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.6 2013/02/18 02:50:54 laffer1 Exp $
 
 PORTNAME=	ngircd
-PORTVERSION=	0.19.2
+PORTVERSION=	20.2
+PORTEPOCH=	1
 CATEGORIES=	irc ipv6
 MASTER_SITES=	ftp://ftp.berlios.de/pub/%SUBDIR%/ \
 		http://arthur.barton.de/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTVERSION=	${PORTVERSION:S/0.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
+
 LICENSE=	gpl2
 
 USE_RC_SUBR=	ngircd
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 MAN5=		ngircd.conf.5
 MAN8=		ngircd.8
 
-OPTIONS=	TCP_WRAPPERS	"Enable TCP wrappers support"	on \
-		SYSLOG		"Enable SYSLOG support"		on \
-		ZLIB		"Enable ZLIB compression"	on \
-		IPV6		"Enable IPV6"			on \
-		OPENSSL		"Enable OpenSSL support"	off \
-		GNUTLS		"Enable GnuTLS support"		off \
-		IRCPLUS		"Enable IRC+ protocol"		on \
-		IDENT		"Enable IDENT (AUTH) protocol support"	off \
-		SNIFFER		"Enable IRC traffic sniffer"	off \
-		DEBUG		"Show additional debug output"	off
+OPTIONS_DEFINE=TCP_WRAPPERS SYSLOG ZLIB IPV6 OPENSSL GNUTLS IRCPLUS IDENT SNIFFER DEBUG
+OPTIONS_DEFAULT=TCP_WRAPPERS SYSLOG ZLIB IPV6 IRCPLUS
+NO_OPTIONS_SORT=yes
+TCP_WRAPPERS_DESC=Enable TCP wrappers support
+SYSLOG_DESC=Enable syslog() support
+ZLIB_DESC=Enable ZLIB compression
+IRCPLUS_DESC=Enable IRC+ protocol
+IDENT_DESC=Enable IDENT (AUTH) protocol support
+SNIFFER_DESC=Enable IRC traffic sniffer
+DEBUG_DESC=Show additional debug output
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if exists(/usr/include/tcpd.h) && !defined(WITHOUT_TCP_WRAPPERS)
 CONFIGURE_ARGS+=	--with-tcp-wrappers
 .endif
 
-.if defined(WITHOUT_SYSLOG)
+.if empty(PORT_OPTIONS:MSYSLOG)
 CONFIGURE_ARGS+=	--without-syslog
 .endif
 
-.if defined(WITHOUT_ZLIB)
+.if empty(PORT_OPTIONS:MZLIB)
 CONFIGURE_ARGS+=	--without-zlib
 .endif
 
-.if defined(WITH_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
-.if defined(WITH_OPENSSL)
+.if ${PORT_OPTIONS:MOPENSSL}
 CONFIGURE_ARGS+=	--with-openssl
-.endif
-
-.if defined(WITH_GNUTLS)
-CONFIGURE_ARGS+=	--with-gnutls
 USE_OPENSSL=yes
 .endif
 
-.if defined(WITHOUT_IRCPLUS)
+.if ${PORT_OPTIONS:MGNUTLS}
+CONFIGURE_ARGS+=	--with-gnutls
+LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
+.endif
+
+.if empty(PORT_OPTIONS:MIRCPLUS)
 CONFIGURE_ARGS+=	--disable-ircplus
 .endif
 
-.if defined(WITH_IDENT)
-LIB_DEPENDS+=		ident.0:${PORTSDIR}/security/libident
+.if ${PORT_OPTIONS:MIDENT}
+LIB_DEPENDS+=		ident:${PORTSDIR}/security/libident
 CONFIGURE_ARGS+=	--with-ident
 .endif
 
-.if defined(WITH_SNIFFER)
+.if ${PORT_OPTIONS:MSNIFFER}
 CONFIGURE_ARGS+=	--enable-sniffer
 .endif
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
@@ -80,4 +81,4 @@ CONFIGURE_ARGS+=	--enable-debug
 MAKE_ARGS+=		NOPORTDOCS=yes
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
