@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.26 2012/02/03 03:35:34 laffer1 Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.27 2013/06/21 12:24:13 laffer1 Exp $
 
 COMMENT = Character code converters
 
@@ -30,7 +30,6 @@ SUBDIR += php5-recode
 SUBDIR += psiconv
 SUBDIR += recode
 SUBDIR += ruby-dump.rb
-SUBDIR += ruby-iconv
 SUBDIR += unix2dos
 SUBDIR += uulib
 
