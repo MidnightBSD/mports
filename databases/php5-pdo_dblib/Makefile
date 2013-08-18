@@ -1,9 +1,4 @@
-# New ports collection makefile for:	php5-pdo_dblib
-# Date created:			12 Oct 2007
-# Whom:				Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/php5-pdo_dblib/Makefile,v 1.1 2007/10/12 17:39:15 laffer1 Exp $
 
 CATEGORIES=	databases
 
