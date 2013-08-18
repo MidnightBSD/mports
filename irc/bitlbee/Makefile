@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.18 2013/02/18 02:47:43 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.19 2013/07/28 03:38:08 laffer1 Exp $
 
 PORTNAME=	bitlbee
 PORTVERSION=	3.2
@@ -10,6 +10,7 @@ MASTER_SITE_SUBDIR=	brix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An IRC to other chat networks gateway
+
 LICENSE=	gpl2
 
 SUB_FILES=	pkg-message
