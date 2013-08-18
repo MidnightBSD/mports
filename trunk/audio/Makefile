@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.104 2013/08/16 02:42:26 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.105 2013/08/18 12:59:28 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -77,7 +77,6 @@ SUBDIR += libogg
 SUBDIR += libsamplerate
 SUBDIR += libsndfile
 SUBDIR += libvorbis
-SUBDIR += linux-esound
 SUBDIR += linux-f10-alsa-lib
 SUBDIR += linux-f10-alsa-plugins-oss
 SUBDIR += linux-f10-arts
@@ -91,9 +90,6 @@ SUBDIR += linux-f10-nas-libs
 SUBDIR += linux-f10-openal
 SUBDIR += linux-f10-openal-soft
 SUBDIR += linux-f10-sdl_mixer
-SUBDIR += linux-libaudiofile
-SUBDIR += linux-libogg
-SUBDIR += linux-libvorbis
 SUBDIR += madplay
 SUBDIR += mikmod
 SUBDIR += mpg123
