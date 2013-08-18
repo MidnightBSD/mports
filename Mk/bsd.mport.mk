@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.225 2013/07/28 03:26:50 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.226 2013/08/18 14:34:32 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -2022,7 +2022,10 @@ DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
 # target or not.
 #
 ################################################################
-.if (!defined(OPTIONS) || defined(CONFIG_DONE) || \
+.if ((!defined(OPTIONS) && !defined(OPTIONS_DEFINE) && \
+	!defined(OPTIONS_SINGLE) && !defined(OPTIONS_MULTI)) \
+	&& !defined(OPTIONS_GROUP) && !defined(OPTIONS_RADIO) \
+	|| defined(CONFIG_DONE) || \
 	defined(PACKAGE_BUILDING) || defined(BATCH) || \
 	exists(${_OPTIONSFILE}) || exists(${_OPTIONSFILE}.local))
 _OPTIONS_OK=yes
