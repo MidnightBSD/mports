@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.125 2013/08/15 22:56:19 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.126 2013/08/18 14:58:01 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -74,6 +74,7 @@ SUBDIR += munin-common
 SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += nautilus-cd-burner
+SUBDIR += nepomuk-core
 SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openupsd
