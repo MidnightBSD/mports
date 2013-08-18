@@ -1,40 +1,40 @@
-# $MidnightBSD: mports/graphics/agg/Makefile,v 1.1 2009/10/25 17:21:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/agg/Makefile,v 1.2 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	agg
 PORTVERSION=	2.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.antigrain.com/ \
 		http://freebsd.unixfreunde.de/sources/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A High Quality Rendering Engine for C++
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2
 
-GNU_CONFIGURE=	yes
-USE_SDL=	sdl
 USE_XORG=	x11
-USE_GNOME=	pkgconfig gnomehack
+USES=	pathfix pkgconfig
+USE_SDL=	sdl
 USE_GMAKE=	yes
-USE_LDCONFIG=	yes
-ACLOCAL_ARGS+=	-I ${LOCALBASE}/share/aclocal
-USE_AUTOTOOLS=	autoconf:env automake:env libtool:env
+USE_AUTOTOOLS=	aclocal autoheader autoconf libtoolize automake
+ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
+AUTOMAKE_ARGS=	--foreign --add-missing --ignore-deps
 MAKE_ENV=	C="${CC}" AGGCXXFLAGS="${CXXFLAGS}"
+USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
+
 CXXFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -I../include -L./
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-	${WRKSRC}/Makefile.am
-
-pre-configure:
-	@cd ${WRKSRC} && ${SETENV} ${AUTOTOOLS_ENV} ACLOCAL_ARGS="${ACLOCAL_ARGS}" ${SH} autogen.sh
 
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "sparc64"
 BROKEN=		Does not compile
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
+	${WRKSRC}/Makefile.am
 
 .include <bsd.port.post.mk>
