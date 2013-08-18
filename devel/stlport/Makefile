@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/stlport/Makefile,v 1.6 2010/12/15 03:03:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.7 2013/02/19 15:05:00 laffer1 Exp $
 
 PORTNAME=	stlport
 PORTVERSION=	5.1.7
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/STLport/STLport%20${PORTVERSION}
 PKGNAMESUFFIX=	-${COMPILER}
@@ -10,6 +10,7 @@ DISTNAME=	STLport-${PORTVERSION:S/.b/-b/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adaptation of SGI Standard Template Library
+
 LICENSE=	other
 
 USE_BZIP2=	yes
@@ -17,11 +18,11 @@ USE_BZIP2=	yes
 WRKSRC=		${WRKDIR}/STLport-${PORTVERSION:S/.b/b/}/build/lib
 PATCH_WRKSRC=	${WRKDIR}/STLport-${PORTVERSION:S/.b/b/}
 USE_GMAKE=	yes
+USE_GCC=	any
 COMPILER?=	gcc
 MAKEFILE=	${COMPILER}.mak
 ALL_TARGET=	install
-MAKE_ARGS+=	INSTALLDIR=${PREFIX} PTHREAD_CFLAGS=${PTHREAD_CFLAGS} 		\
-		PTHREAD_LIBS=${PTHREAD_LIBS}
+MAKE_ARGS+=	INSTALLDIR=${PREFIX}
 PLIST_SUB+=	COMPILER=${COMPILER} VER=${PORTVERSION} V2=${PORTVERSION:R}	\
 		V1=${PORTVERSION:R:R}
 
@@ -30,31 +31,35 @@ CONFIGURE_ARGS=	--with-lib-motif=${COMPILER}
 USE_LDCONFIG=	yes
 PORTDOCS=	*
 
-OPTIONS=	SHORT_STRING_OPTIM "Enable short string optimization." on 	\
-		PTR_SPECIALIZATIONS "Use pointer types specializations." off 	\
-		TEMPLATE_EXPRESSION "Use template expressions for string." off 	\
-		BOOST_SUPPORT "Use Boost type traits." off
+OPTIONS_DEFINE=	SHORT_STRING_OPTIM PTR_SPECIALIZATIONS TEMPLATE_EXPRESSION BOOST DOCS
+OPTIONS_DEFAULT=	SHORT_STRING_OPTIM
+SHORT_STRING_OPTIM_DESC=	Enable short string optimization
+PTR_SPECIALIZATIONS_DESC=	Use pointer types specializations
+TEMPLATE_EXPRESSION_DESC=	Use template expressions for string
+BOOST_DESC=	Use Boost type traits
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_SHORT_STRING_OPTIM)
+.if empty(PORT_OPTIONS:MSHORT_STRING_OPTIM)
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-no-short-string-optim-user_config.h.diff
 .endif
 
-.if defined(WITH_PTR_SPECIALIZATIONS)
+.if ${PORT_OPTIONS:MPTR_SPECIALIZATIONS}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ptr_spec-user_config.h.diff
 .endif
 
-.if defined(WITH_TEMPLATE_EXPRESSION)
+.if ${PORT_OPTIONS:MTEMPLATE_EXPRESSION}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-templ-expr-user_config.h.diff
 .endif
 
-.if defined(WITH_BOOST_SUPPORT)
+.if ${PORT_OPTIONS:MBOOST}
 EXTRA_PATCHES+= ${PATCHDIR}/extra-patch-boost-support-user_config.h.diff
 MAKE_ENV+= STLP_BUILD_BOOST_PATH=${LOCALBASE}/include
-BUILD_DEPENDS+= ${LOCALBASE}/include/boost/config/stdlib/stlport.hpp:${PORTSDIR}/devel/boost
-RUN_DEPENDS+= ${LOCALBASE}/include/boost/config/stdlib/stlport.hpp:${PORTSDIR}/devel/boost
+BUILD_DEPENDS+= ${LOCALBASE}/include/boost/config/stdlib/stlport.hpp:${PORTSDIR}/devel/boost-libs
+RUN_DEPENDS+= ${LOCALBASE}/include/boost/config/stdlib/stlport.hpp:${PORTSDIR}/devel/boost-libs
 .endif
+
+.include <bsd.port.pre.mk>
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|gcc|${COMPILER}|' ${WRKSRC}/gcc.mak      \
@@ -78,7 +83,7 @@ do-install:
 	(cd ${PATCH_WRKSRC}/lib; ${TAR} cf - *) | (cd ${PREFIX}/lib; ${TAR} xf -)
 	${CHOWN} -h ${BINOWN}:${BINGRP} ${PREFIX}/lib/libstlport*
 	${FIND} ${PREFIX}/include/stlport -name \*.orig -delete
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PATCH_WRKSRC}/doc/* ${DOCSDIR}
 .endif
