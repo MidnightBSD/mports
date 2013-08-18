@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.14 2013/01/07 22:10:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.15 2013/07/14 23:46:57 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
-PORTREVISION?=	9
+PORTREVISION?=	10
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	http://www.libgd.org/releases/ \
@@ -11,20 +11,20 @@ MASTER_SITE_SUBDIR=	graphics/gd
 PKGNAMESUFFIX?=	${NOX11_SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	A graphics library for fast creation of images
+COMMENT?=	Graphics library for fast creation of images
+
 LICENSE=	agg
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		png15:${PORTSDIR}/graphics/png \
 		freetype:${PORTSDIR}/print/freetype2
 
-MAKE_ENV=	WRKSRC="${WRKSRC}" CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-MAKEFILE=	${FILESDIR}/Makefile.bsd
-
 CONFLICTS=	bazaar-1.*
 
 USE_BZIP2=	yes
 SCRIPTDIR=	${FILESDIR}
+MAKE_ENV=	WRKSRC="${WRKSRC}"
+MAKEFILE=	${FILESDIR}/Makefile.bsd
 CPPFLAGS+=	-DHAVE_ERRNO_H -DHAVE_FT2BUILD_H -DHAVE_LIBFREETYPE -DHAVE_LIBJPEG -DHAVE_LIBPNG \
 		-DHAVE_LIBZ -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_STDLIB_H
 LDFLAGS+=	-L${WRKSRC}
@@ -34,15 +34,29 @@ USE_LDCONFIG=	yes
 FAKE_OPTS=	trueprefix
 WANT_PERL=	yes
 
-OPTIONS=	X11 "X11 Support" off \
-		XPM "XPM color bitmap loading support (requires X11)" off \
-		FONTCONFIG "fontconfig library support (requires X11)" on \
-		ICONV "iconv support" off
+OPTIONS_DEFINE=	FONTCONFIG ICONV XPM
+OPTIONS_DEFAULT=FONTCONFIG
+NO_OPTIONS_SORT=yes
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
+.if ${PORT_OPTIONS:MFONTCONFIG}
+LIB_DEPENDS+=	fontconfig:${PORTSDIR}/x11-fonts/fontconfig
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_LIBFONTCONFIG -DHAVE_PTHREAD ${PTHREAD_CFLAGS}
+LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib -lfontconfig
+LDFLAGS2+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
+FEATURES+=	GD_FONTCONFIG
+.endif
+
+.if ${PORT_OPTIONS:MICONV}
+USES+=		iconv
+CPPFLAGS+=	-DHAVE_ICONV -DHAVE_ICONV_H -DHAVE_ICONV_T_DEF
+LDFLAGS+=	-L${LOCALBASE}/lib -liconv
+.endif
+
+# honor global WITHOUT_X11
 .if !defined(WITHOUT_X11)
-.if defined(WITH_XPM)
+.if ${PORT_OPTIONS:MXPM}
 USE_XORG=	xpm x11
 CPPFLAGS+=	-I${LOCALBASE}/include/X11 -I${LOCALBASE}/include -DHAVE_LIBXPM
 LDFLAGS+=	-L${LOCALBASE}/lib -lXpm -lX11
@@ -51,26 +65,13 @@ FEATURES+=	GD_XPM
 .endif
 .endif
 
-.if !defined(WITHOUT_FONTCONFIG)
-LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
-CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_LIBFONTCONFIG -DHAVE_PTHREAD ${PTHREAD_CFLAGS}
-LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib -lfontconfig
-LDFLAGS2+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
-FEATURES+=	GD_FONTCONFIG
-.endif
+FONTBASE=	${LOCALBASE}/lib/X11/fonts
 
-.if defined(WITH_ICONV)
-USE_ICONV=	yes
-CPPFLAGS+=	-DHAVE_ICONV -DHAVE_ICONV_H -DHAVE_ICONV_T_DEF
-LDFLAGS+=	-L${LOCALBASE}/lib -liconv
-.endif
-
+# supprt for bitmap fonts
 .if defined(GD_FONTS)
 USE_PERL5_BUILD=	yes
 SCRIPTS_ENV+=	GD_FONTS="${GD_FONTS}"
 .endif
-
-FONTBASE=	${LOCALBASE}/lib/X11/fonts
 
 pre-extract::
 	@${ECHO_MSG} ""
@@ -103,4 +104,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/index.html ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
