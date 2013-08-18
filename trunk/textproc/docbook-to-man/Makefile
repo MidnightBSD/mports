@@ -1,19 +1,15 @@
-# New ports collection makefile for:	gnupg-devel
-# Date created:		5 Oct 2001
-# Whom:			Cyrille Lefevre <clefevre@citeweb.net>
-#
-# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.2 2007/05/18 04:14:09 ctriv Exp $
-# $FreeBSD: ports/textproc/docbook-to-man/Makefile,v 1.11 2006/06/22 19:01:35 linimon Exp $
-#
+# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.3 2008/05/31 18:39:47 laffer1 Exp $
 
 PORTNAME=	docbook-to-man
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.oasis-open.org/docbook/tools/dtm/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A DocBook SGML DTD into nroff/troff -man macros converter
+
 LICENSE=	unknown
 
 FAKE_OPTS=	trueprefix
@@ -34,8 +30,6 @@ RUN_DEPENDS=	nsgmls:${PORTSDIR}/textproc/jade
 RUN_DEPENDS+=	${LOCALBASE}/share/sgml/docbook:${PORTSDIR}/textproc/docbook
 
 USE_IMAKE=	yes
-PREFIX?=	${LOCALBASE}
-USE_XLIB=	yes
 XFREE86_HTML_MAN= no
 
 MAN1=	oinstant.1
