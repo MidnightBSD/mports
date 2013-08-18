@@ -1,12 +1,13 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.8 2013/05/04 23:26:49 laffer1 Exp $
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.9 2013/06/22 02:21:44 laffer1 Exp $
 PORTNAME=		tdb
-PORTVERSION=		1.2.11
+PORTVERSION=		1.2.12
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Trivial Database
+
 LICENSE=		gpl3
 
 CONFLICTS=		samba3[0-4]-3.*
@@ -86,8 +87,8 @@ pre-configure:
 
 pre-build:
 .for man in ${MAN8}
-			@${MKDIR} ${BUILD_WRKSRC}/bin/default/manpages
-			@${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/manpages
+			@${MKDIR} ${BUILD_WRKSRC}/bin/default/man
+			@${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/man
 .endfor
 
 do-build:
