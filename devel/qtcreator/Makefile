@@ -1,55 +1,68 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/qtcreator/Makefile,v 1.6 2010/12/02 19:56:14 makc Exp $
+# $MidnightBSD: mports/devel/qtcreator/Makefile,v 1.1 2012/03/01 02:29:49 laffer1 Exp $
 
 PORTNAME=	qtcreator
-PORTVERSION=	2.0.1
+DISTVERSION=	2.6.1
 CATEGORIES=	devel
-MASTER_SITES=	http://download.qt.nokia.com/qtcreator/
-DISTNAME=	qt-creator-${PORTVERSION}-src
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	${MASTER_SITE_QT:S/$/:qtcreator/} \
+		${MASTER_SITE_QT}
+MASTER_SITE_SUBDIR=	official_releases/qtcreator/${DISTVERSION:R}/${DISTVERSION}/:qtcreator \
+			official_releases/qt/${QT4_VERSION:R}/${QT4_VERSION}
+DISTNAME=	qt-creator-${DISTVERSION}-src
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:qtcreator \
+		${QT_DISTNAME}.tar.gz
+DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt4 IDE
+COMMENT=	C++ and QML IDE for Qt development
+
 LICENSE=	lgpl
 
-LIB_DEPENDS=	Imath.6:${PORTSDIR}/graphics/ilmbase \
-		IlmImf.6:${PORTSDIR}/graphics/OpenEXR \
-		jasper.4:${PORTSDIR}/graphics/jasper \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	Imath:${PORTSDIR}/graphics/ilmbase \
+		IlmImf:${PORTSDIR}/graphics/OpenEXR \
+		jasper:${PORTSDIR}/graphics/jasper \
+		jpeg:${PORTSDIR}/graphics/jpeg
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build \
+USE_QT4=	qmake_build moc_build rcc_build uic_build \
 		linguist_build assistant_run qt3support \
-		dbus designer gui help-tools network script \
-		sql svg xml webkit
+		dbus designer gui help-tools_build network script \
+		sql svg xml webkit qdoc3_build
 HAS_CONFIGURE=	yes
-
-QMAKE_ARGS=	-recursive CONFIG+="configure" ${QMAKE_PRO}
-QMAKE_PRO=	qtcreator.pro
-
-MAKE_JOBS_SAFE=	yes
-
+MAKE_ENV+=	INSTALL_ROOT=${PREFIX}
+MAKE_JOBS_UNSAFE=	yes
+ALL_TARGET=	all docs
+INSTALL_TARGET=	install install_docs
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
 
+QMAKE_ARGS=	-recursive CONFIG+="configure" ${QMAKE_PRO}
+QMAKE_PRO=	${WRKSRC}/${PORTNAME}.pro
+
+# Build Qt Quick Designer (requires update on every Qt update).
+QT_DISTNAME=	qt-everywhere-opensource-src-${QT4_VERSION}
+DO_NOT_EXTRACT=	config.profiles config.tests demos doc examples lib \
+		mkspecs tools translations
+.for dne in ${DO_NOT_EXTRACT}
+EXTRACT_AFTER_ARGS+=	--exclude '${QT_DISTNAME}/${dne}'
+.endfor
+QMAKE_ARGS+=	QT_PRIVATE_HEADERS="${WRKDIR}/${QT_DISTNAME}/include"
+
+CONFIGURE_WRKSRC=	${WRKDIR}/build
+BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
+INSTALL_WRKSRC=		${CONFIGURE_WRKSRC}
+
+DESKTOP_ENTRIES=	"Qt Creator" "${COMMENT}" "QtProject-qtcreator" \
+			"${PREFIX}/bin/${PORTNAME}" "Development;Qt;" true
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|lrelease|lrelease-qt4|' \
+	${REINPLACE_CMD} -e 's|lrelease|lrelease-qt4|' \
 		${WRKSRC}/share/qtcreator/translations/translations.pro
-	@${REINPLACE_CMD} -e 's|lupdate|lupdate-qt4|' \
-	    ${WRKSRC}/share/qtcreator/translations/translations.pro
+	${REINPLACE_CMD} -e 's|lupdate|lupdate-qt4|' \
+		${WRKSRC}/share/qtcreator/translations/translations.pro
+	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+		${WRKSRC}/src/plugins/android/androidsettingswidget.cpp
 
 do-configure:
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
+	${MKDIR} ${CONFIGURE_WRKSRC}
+	cd ${CONFIGURE_WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
 		${QMAKE} ${QMAKEFLAGS} ${QMAKE_ARGS}
-
-do-install:
-	${MKDIR} ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/qtcreator ${PREFIX}/bin/qtcreator
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/qtcreator_process_stub ${PREFIX}/bin/qtcreator_process_stub
-	${MKDIR} ${PREFIX}/lib/
-	cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} qtcreator ${PREFIX}/lib/
-	${MKDIR} ${PREFIX}/share/
-	cd ${WRKSRC}/share && ${COPYTREE_SHARE} qtcreator ${PREFIX}/share/
-	${MKDIR} ${PREFIX}/share/doc
-	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${PREFIX}/share/doc/qtcreator/
 
 .include <bsd.port.mk>
