@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.2 2008/09/01 01:47:09 laffer1 Exp $
+# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.3 2009/05/01 15:16:56 laffer1 Exp $
 
 PORTNAME=	l0phtcrack
 PORTVERSION=	1.5
@@ -10,10 +10,11 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cracks SAMBA or Windows NT passwords
+
 LICENSE=	restricted
 
 DOCDIR=		share/doc/${PORTNAME}
-RESTRICTED=	"uses GNU getopt with BSDish-licensed code from OpenSSL"
+RESTRICTED=	uses GNU getopt with BSDish-licensed code from OpenSSL
 NO_WRKSUBDIR=	yes
 PLIST=		${WRKDIR}/pkg-plist
 USE_PERL5_BUILD=yes
