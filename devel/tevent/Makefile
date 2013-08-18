@@ -1,17 +1,16 @@
-# $MidnightBSD: mports/devel/tevent/Makefile,v 1.1 2010/10/23 11:48:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/tevent/Makefile,v 1.2 2011/02/02 20:17:34 laffer1 Exp $
 
 PORTNAME=		tevent
 PORTVERSION=		0.9.8
 PORTEPOCH=		0
 CATEGORIES=		devel
-MASTER_SITES=		ftp://ftp.samba.org/pub/%SUBDIR%/ \
-			ftp://ca.samba.org/pub/%SUBDIR%/ \
-			ftp://de.samba.org/pub/%SUBDIR%/
+MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Talloc based event loop library
-LICENSE=		lgpl
+
+LICENSE=		lgpl3
 
 LIB_DEPENDS=		talloc.2:${PORTSDIR}/devel/talloc
 
