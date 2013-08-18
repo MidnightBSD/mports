@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.5 2009/10/19 01:34:01 laffer1 Exp $
+# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.6 2013/02/26 03:58:40 laffer1 Exp $
 
 PORTNAME=	sgmlformat
 PORTVERSION=	1.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc print
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates groff and HTML from linuxdoc and docbook SGML documents
+
 LICENSE=	bsd2
 
 FAKE_OPTS=	trueprefix
@@ -28,7 +29,7 @@ RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/openjade
 RUN_DEPENDS=	nsgmls:${PORTSDIR}/textproc/jade
 .endif
 RUN_DEPENDS+=	${PREFIX}/share/sgml/linuxdoc:${PORTSDIR}/textproc/linuxdoc \
-		${PREFIX}/share/sgml/docbook:${PORTSDIR}/textproc/docbook
+		${LOCALBASE}/share/sgml/docbook/4.1/dtd/docbook.dtd:${PORTSDIR}/textproc/docbook-410
 
 USE_PERL5_RUN=	yes
 
