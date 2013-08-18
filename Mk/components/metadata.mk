@@ -2,7 +2,7 @@
 # of metadata, such as `describe` and `describe-yaml`
 #
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/components/metadata.mk,v 1.2 2008/11/13 19:09:54 ctriv Exp $
 #
 
 # This target generates an index entry suitable for aggregation into
@@ -11,9 +11,6 @@
 # distribution-name|port-path|installation-prefix|comment| \
 #  description-file|maintainer|categories|extract-depends| \
 #  patch-depends|fetch-depends|build-depends|run-depends|www site
-#
-# If this ever changes, portmgr should contact the portsnap maintainer
-# first to avoid gratuitous breakage.
 
 .if !target(describe)
 describe:
