@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.124 2013/08/15 01:02:30 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.125 2013/08/15 22:56:19 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -55,6 +55,7 @@ SUBDIR += gnome_subr
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
+SUBDIR += kcm-polkit-kde
 SUBDIR += kdeadmin3
 SUBDIR += kdeadmin4
 SUBDIR += ksysguardd
