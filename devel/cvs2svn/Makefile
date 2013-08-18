@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.7 2012/02/28 01:47:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.8 2013/06/27 11:55:17 laffer1 Exp $
 
 PORTNAME=	cvs2svn
 PORTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49237/ \
 		FREEBSD_LOCAL/ohauer
@@ -14,37 +15,38 @@ PATCHFILES=	${PORTNAME}-${PORTVERSION}-r${PATCHREV}.diff.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CVS to Subversion Repository Converter
+
 LICENSE=	other
 
 LIB_DEPENDS=	aprutil-1.3:${PORTSDIR}/devel/apr-svn
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 MAKE_JOBS_SAFE=	yes
 
 USE_PYTHON=	2.5+
 USE_PYDISTUTILS=	yes
 
-OPTIONS=	SUBVERSION "Build with subversion support" on \
-		GIT "Build with git support" off \
-		BAZAAR "Build with Bazaar support" off
+OPTIONS_MULTI=		SCM
+OPTIONS_MULTI_SCM=	SUBVERSION GIT BAZAAR
+OPTIONS_DEFAULT=	SUBVERSION
 
-.include <bsd.port.pre.mk>
+SUBVERSION_DESC=	Build with subversion support
+GIT_DESC= 		Build with git support
+BAZAAR_DESC= 		Build with Bazaar support
 
-.if defined(WITHOUT_SUBVERSION) && defined(WITHOUT_GIT) && defined(WITHOUT_BAZAAR)
-IGNORE=	choose at least one or more options from subversion, git or bazaar
-.endif
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_SUBVERSION)
+.if ${PORT_OPTIONS:MSUBVERSION}
 RUN_DEPENDS+=	${LOCALBASE}/bin/svn:${PORTSDIR}/devel/py-subversion
 .endif
 
-.if defined(WITH_GIT)
+.if ${PORT_OPTIONS:MGIT}
 RUN_DEPENDS+=	${LOCALBASE}/bin/git:${PORTSDIR}/devel/git
 .endif
 
-.if defined(WITH_BAZAAR)
-RUN_DEPENDS+=	${LOCALBASE}/bin/bzr:${PORTSDIR}/devel/bazaar-ng
+.if ${PORT_OPTIONS:MBAZAAR}
+RUN_DEPENDS+=	${LOCALBASE}/bin/bzr:${PORTSDIR}/devel/bzr
 .endif
 
 MAN1=		cvs2svn.1 \
@@ -76,7 +78,7 @@ post-install:
 	@${INSTALL_MAN} ${WRKSRC}/cvs2svn.1 ${PREFIX}/man/man1/
 	@${INSTALL_MAN} ${WRKSRC}/cvs2git.1 ${PREFIX}/man/man1/
 	@${INSTALL_MAN} ${WRKSRC}/cvs2bzr.1 ${PREFIX}/man/man1/
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/doc/design-notes.txt ${DOCSDIR}/
 	@${INSTALL_DATA} ${WRKSRC}/doc/making-releases.txt ${DOCSDIR}/
@@ -98,4 +100,4 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/cvs2svn-example.options ${EXAMPLESDIR}/
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
