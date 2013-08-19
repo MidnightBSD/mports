@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.52 2013/07/06 01:32:10 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.53 2013/07/06 22:08:23 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.4.17
@@ -7,7 +7,6 @@ CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
 MASTER_SITE_SUBDIR=	distributions
 DISTNAME=	php-${PORTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
@@ -205,6 +204,7 @@ post-install:
 .endif
 
 .else
+.include <bsd.mport.options.mk>
 .include "${MASTERDIR}/Makefile.ext"
 .endif
 .include <bsd.port.post.mk>

@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.91 2013/06/06 02:45:35 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.92 2013/06/14 01:57:46 laffer1 Exp $
 
 COMMENT = Programming languages
 
 SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += clang
+SUBDIR += cython
 SUBDIR += etoile-compiler
 SUBDIR += etoile-io
 SUBDIR += etoile-languagekit
