@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/jupp/Makefile,v 1.11 2013/02/21 01:34:20 laffer1 Exp $
+# $MidnightBSD: mports/editors/jupp/Makefile,v 1.12 2013/07/15 01:46:04 laffer1 Exp $
 
 PORTNAME=	jupp
-PORTVERSION=	3.1.24
+PORTVERSION=	3.1.25
 CATEGORIES=	editors
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/jupp/ \
 		http://pub.allbsd.org/MirOS/dist/jupp/
