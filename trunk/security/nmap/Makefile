@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/security/nmap/Makefile,v 1.9 2012/10/26 18:28:18 laffer1 Exp $
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.10 2013/02/23 02:34:20 laffer1 Exp $
 
 PORTNAME=	nmap
-DISTVERSION=	6.25
+DISTVERSION=	6.40
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://nmap.org/dist/ \
 		FREEBSD_LOCAL/ohauer
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port scanning utility for large networks
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
@@ -32,7 +33,7 @@ CONFIGURE_ARGS+=LDFLAGS="-L$$(${GCCLIBDIR_CMDS})"
 NDCC=	true
 .endif
 
-MANLANG=	"" de es fr hr hu it jp pl pt_BR pt_PT ro ru sk zh
+MANLANG=	"" de es fr hr hu it pl pt_BR pt_PT ro ru sk zh
 MAN1=		nmap.1
 MAN1_EN=	ncat.1 nping.1
 
@@ -58,7 +59,7 @@ CONFIGURE_ARGS+=	--with-libpcap=${LOCALBASE}
 .endif
 
 PORTDOCS=	CHANGELOG HACKING
-EXAMPLES=	docs/sample-script.nse
+#EXAMPLES=	docs/sample-script.nse
 PORTEXAMPLES=	${EXAMPLES:T}
 
 # XXX limit results if we do a grep in the sources!
