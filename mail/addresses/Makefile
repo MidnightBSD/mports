@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/addresses/Makefile,v 1.5 2008/06/23 01:54:41 laffer1 Exp $
+# $MidnightBSD: mports/mail/addresses/Makefile,v 1.6 2013/06/11 02:25:04 laffer1 Exp $
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.7
@@ -10,7 +10,8 @@ DISTNAME=	Addresses-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A versatile addressbook for GNUstep
-LICENSE=	lgpl
+
+LICENSE=	lgpl2.1
 
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
