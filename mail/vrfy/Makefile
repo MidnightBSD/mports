@@ -1,19 +1,15 @@
-# ports collection makefile for:	vrfy
-# Date created:				2000/09/09
-# Whom:					kaz
-#
-# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.3 2008/05/21 04:43:06 laffer1 Exp $
-# $FreeBSD: ports/mail/vrfy/Makefile,v 1.7 2005/10/16 14:24:02 vs Exp $
-#
+# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.4 2008/10/04 16:57:30 laffer1 Exp $
 
 PORTNAME=	vrfy
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://jadawin.tuxaco.net/freebsd/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verify mail address
+
 LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}
