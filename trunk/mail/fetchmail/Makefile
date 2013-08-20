@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.14 2012/02/03 03:20:44 laffer1 Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.15 2013/08/20 01:30:38 laffer1 Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc.
@@ -15,6 +15,7 @@ MASTER_SITES=	SF/${PORTNAME}/branch_6.3/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
