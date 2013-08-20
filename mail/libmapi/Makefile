@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/mail/libmapi/Makefile,v 1.1 2010/10/23 11:51:07 laffer1 Exp $
+# $MidnightBSD: mports/mail/libmapi/Makefile,v 1.2 2013/06/14 01:30:15 laffer1 Exp $
 
 PORTNAME=	libmapi
 PORTVERSION=	0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=openchange/openchange/openchange-${PORTVERSION}%20${CODENAME}/
@@ -10,6 +10,7 @@ DISTNAME=	openchange-${PORTVERSION}-${CODENAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source implementation of Microsoft Exchange protocols
+
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	${HOSTCONFIG}:${PORTSDIR}/net/samba4 \
@@ -17,6 +18,7 @@ BUILD_DEPENDS=	${HOSTCONFIG}:${PORTSDIR}/net/samba4 \
 LIB_DEPENDS=	sqlite3:${PORTSDIR}/databases/sqlite3 \
 		ical:${PORTSDIR}/devel/libical \
 		tdb:${PORTSDIR}/databases/tdb \
+		tevent:${PORTSDIR}/devel/tevent \
 		talloc:${PORTSDIR}/devel/talloc
 RUN_DEPENDS=	${HOSTCONFIG}:${PORTSDIR}/net/samba4
 
@@ -24,7 +26,7 @@ HOSTCONFIG=	${LOCALBASE}/libdata/pkgconfig/samba-hostconfig.pc
 
 CODENAME=	COCHRANE
 USE_GMAKE=	yes
-USE_PKGCONFIG=	yes
+USES=		pkgconfig
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
