@@ -1,19 +1,14 @@
-# New ports collection makefile for:   libspf2
-# Date created:        May 17 2008
-# Whom:                Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.5 2012/01/01 17:09:59 laffer1 Exp $
-#
+# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.6 2013/06/05 02:03:30 laffer1 Exp $
 
 PORTNAME=	libspf2
-PORTVERSION=	1.2.9
-PORTREVISION=	2
+PORTVERSION=	1.2.10
 CATEGORIES=	mail
 MASTER_SITES=	http://www.libspf2.org/spf/ \
 		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sender Rewriting Scheme 2 C Implementation
+
 LICENSE=	bsd2
 # dual license
 
