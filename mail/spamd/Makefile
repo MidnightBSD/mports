@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/mail/spamd/Makefile,v 1.5 2011/11/10 23:03:00 laffer1 Exp $
+# $MidnightBSD: mports/mail/spamd/Makefile,v 1.6 2013/03/02 20:52:25 laffer1 Exp $
 
 PORTNAME=	spamd
 PORTVERSION=	4.9.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=freebsdspamd.berlios
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Traps spammers with a very slow smtp-login and return 4xx error
+
 LICENSE=	bsd2
 
 USE_RC_SUBR?=	obspamd obspamlogd
@@ -18,6 +19,7 @@ GROUPS=		_spamd
 
 MAN5=		spamd.conf.5
 MAN8=		spamd.8 spamd-setup.8 spamdb.8 spamlogd.8
+PORTDOCS=	ipfw-spamd.txt spamdb.txt
 
 PLIST_DIRSTRY=	%%ETCDIR%%
 PLIST_FILES=	%%ETCDIR%%/spamd.conf.sample \
@@ -68,5 +70,15 @@ do-install:
 	@${INSTALL_MAN} ${WRKSRC}/spamlogd/spamlogd.8 ${PREFIX}/man/man8
 	@${INSTALL} -d ${ETCDIR}
 	@${INSTALL_DATA} -m 644 ${WRKSRC}/etc/spamd.conf ${ETCDIR}/spamd.conf.sample
+
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/doc/ipfw-spamd.txt ${DOCSDIR}/
+	@${INSTALL_DATA} ${WRKSRC}/doc/spamdb.txt ${DOCSDIR}/
+.endif
+
+post-install:
+	@${SH} ${PKGINSTALL} ${DISTNAME} POST-INSTALL
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
