@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.5 2009/10/27 04:09:52 laffer1 Exp $
+# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.6 2012/05/23 02:39:09 laffer1 Exp $
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.85
@@ -7,6 +7,7 @@ MASTER_SITES=	SF/razor/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A distributed, collaborative, spam detection and filtering network
+
 LICENSE=	artistic2
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
