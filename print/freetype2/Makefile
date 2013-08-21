@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.20 2011/12/15 00:57:53 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.21 2013/01/26 03:04:29 laffer1 Exp $
 
 PORTNAME=	freetype2
 PORTVERSION=	2.4.9
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype2/ \
@@ -12,7 +13,8 @@ MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION} \
 DISTNAME=	${PORTNAME:S/2//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A free and portable TrueType font rendering engine
+COMMENT=	Free and portable TrueType font rendering engine
+
 LICENSE=	gpl2
 
 MAKE_JOBS_SAFE=	yes
@@ -27,7 +29,6 @@ USE_GNOME=	 pkgconfig ltverhack:9
 LIBTOOLFILES=	builds/unix/configure
 CONFIGURE_ARGS=	--disable-nls
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 .if defined(WITH_LCD_FILTERING)
 CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
