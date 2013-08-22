@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/bind99/Makefile,v 1.2 2013/06/12 01:14:37 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind99/Makefile,v 1.3 2013/07/28 02:56:43 laffer1 Exp $
 
 PORTNAME?=	bind99
 PORTVERSION=	9.9.3.2
@@ -122,7 +122,7 @@ CONFIGURE_ARGS+=	--enable-rpz-nsdname
 .endif
 
 .if ${PORT_OPTIONS:MRPZRRL_PATCH}
-PATCHFILES=		9.9.3-rpz+rl.156.01-P1.patch
+PATCHFILES=		9.9.3-rpz+rl.13208.13-P2.patch
 PATCH_SITES=		http://ss.vix.com/~vjs/
 .endif
 
