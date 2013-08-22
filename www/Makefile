@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.132 2013/08/04 17:20:55 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.133 2013/08/22 23:19:53 laffer1 Exp $
 
 COMMENT = Ports related to the World Wide Web
 
@@ -109,6 +109,7 @@ SUBDIR += tomcat6
 SUBDIR += tomcat7
 SUBDIR += transmission-web
 SUBDIR += validator
+SUBDIR += varnish
 SUBDIR += w3m
 SUBDIR += webkit-gtk2
 SUBDIR += weblint
