@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/archivers/xz/Makefile,v 1.5 2012/02/29 21:13:37 laffer1 Exp $
+# $MidnightBSD: mports/archivers/xz/Makefile,v 1.6 2013/02/18 23:07:43 laffer1 Exp $
 
 PORTNAME=	xz
-PORTVERSION=	5.0.3
-PORTREVISION=	1
+PORTVERSION=	5.0.4
 CATEGORIES=	archivers
 #MASTER_SITES=	http://tukaani.org/xz/
-# tukaani.org doesn't interop with fetch(1) as of 2011-07-27
-MASTER_SITES=	${MASTER_SITE_NETBSD}
+# tukaani.org still doesn't interop with fetch(1) as of 2013-01-06
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	naddy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LZMA compression and decompression tools
@@ -17,18 +17,23 @@ CONFLICTS=	lzma-[0-9]* lzmautils-[0-9]* lzmalib-[0-9]*
 MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack
+USES=	pathfix
 GNU_CONFIGURE=	yes
 
-# As we want to use xz for extraction of port's distfiles,
+DEPRECATED=	Available in base distribution for all supported releases
+
+# As we want to use xz for extraction of port distfiles,
 # it cannot depend on gettext.
 CONFIGURE_ARGS=	--disable-nls
 
 # pick up assembly language optimizations
 CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-freebsd7.0
 
-.if !defined(NOPORTDOCS)
-INSTALL_TARGET=	install install-dist_docDATA install-dist_examplesDATA
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
+INSTALL_TARGET=	install install-dist_docDATA install-dist_examplesDATA \
+		install-dist_examplesoldDATA
 .endif
 
 MAN1=	lzmainfo.1 xz.1 xzdec.1 xzdiff.1 xzgrep.1 xzless.1 xzmore.1
@@ -44,7 +49,7 @@ MLINKS=	xz.1 lzcat.1		xzdiff.1 lzcmp.1 \
 
 PORTDOCS=	AUTHORS COPYING COPYING.GPLv2 NEWS README THANKS TODO \
 		faq.txt history.txt lzma-file-format.txt xz-file-format.txt \
-		examples
+		examples examples_old
 
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
