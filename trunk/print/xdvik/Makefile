@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/print/xdvik/Makefile,v 1.3 2010/12/04 02:50:50 laffer1 Exp $
+# $MidnightBSD: mports/print/xdvik/Makefile,v 1.4 2013/08/04 16:19:43 laffer1 Exp $
 
 PORTNAME=	xdvik
 PORTVERSION=	22.84.16
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	print
-MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF/hoge
+#MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	-tetex
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +22,7 @@ RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 LIB_DEPENDS=	t1.5:${PORTSDIR}/devel/t1lib
 
 FAKE_OPTS=	prefixhack
+MAKE_JOBS_UNSAFE=	yes
 
 USE_XORG=	x11
 USE_GMAKE=	yes
