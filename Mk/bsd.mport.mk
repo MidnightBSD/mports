@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.228 2013/08/18 22:54:16 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.229 2013/08/23 00:34:18 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -334,7 +334,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix pathfix pkgconfig linux_rpm linux_apps xorg fortran \
-		gcc gmake local perl5 openssl \
+		gcc gmake bison local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
 		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
 		pgsql bdb sqlite gecko scons ocaml efl gettext \
@@ -923,22 +923,6 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 .endif
 
 
-
-.if defined(USE_BISON)
-_BISON_DEPENDS+=	bison:${PORTSDIR}/devel/bison
-
-.if ${USE_BISON:L} == "build"
-BUILD_DEPENDS+=	${_BISON_DEPENDS}
-.elif ${USE_BISON:L} == "run"
-RUN_DEPENDS+=	${_BISON_DEPENDS}
-.elif ${USE_BISON:L} == "both"
-BUILD_DEPENDS+=	${_BISON_DEPENDS}
-RUN_DEPENDS+=	${_BISON_DEPENDS}
-.else
-IGNORE=	uses unknown USE_BISON construct
-.endif
-
-.endif
 
 #
 # Here we include again XXX
