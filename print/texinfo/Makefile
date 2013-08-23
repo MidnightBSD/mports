@@ -1,49 +1,50 @@
-# $MidnightBSD$
-# $FreeBSD: ports/print/texinfo/Makefile,v 1.38 2011/09/23 22:25:03 amdmi3 Exp $
+# $MidnightBSD: mports/print/texinfo/Makefile,v 1.1 2012/03/04 16:31:16 laffer1 Exp $
 
 PORTNAME=	texinfo
-PORTVERSION=	4.13.20110529
+PORTVERSION=	5.1.20130809
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_GNU} \
+MASTER_SITES=	GNU \
 		ftp://ftp.stack.nl/pub/users/johans/texinfo/${PORTVERSION:E}/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	${PORTNAME}-${PORTVERSION:R}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} texinfo.tex texi2dvi
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} htmlxref.cnf texinfo.tex texi2dvi
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A typeset documentation system with multiple format output
+
 LICENSE=	gpl3
 
 BUILD_DEPENDS+=	help2man:${PORTSDIR}/misc/help2man
 
+FETCH_ARGS=	-Ap
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USE_XZ=		yes
 INSTALL_TARGET=	install install-tex
 PKGDEINSTALL=	${PKGINSTALL}
-MAKE_JOBS_SAFE=	yes
+USE_GMAKE=	yes
+USE_PERL5=	yes
+USES+=		charsetfix
 
 MAKE_ARGS=	TEXMF=${PREFIX}/${TEXMF}
-CONFIGURE_ARGS=	--without-included-gettext
 CPPFLAGS+=	-I${LOCALBASE}/lib
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
 INFO=		${PORTNAME} info-stnd info
 MAN1=		info.1 infokey.1 install-info.1 makeinfo.1 texi2dvi.1 \
-		texi2pdf.1 pdftexi2dvi.1 texindex.1
+		texi2pdf.1 pdftexi2dvi.1 pod2texi.1 texi2any.1 texindex.1
 MAN5=		info.5 texinfo.5
 
 TEXMF=		share/texmf
 PLIST_SUB=	TEXMF=${TEXMF}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_NLS)
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+PLIST_SUB+=	NLS=""
+.else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
 .endif
 
 post-patch:
@@ -51,4 +52,7 @@ post-patch:
 	${CP} ${DISTDIR}/texinfo.tex ${WRKSRC}/doc/
 	${CP} ${DISTDIR}/texi2dvi ${WRKSRC}/util/
 
-.include <bsd.port.post.mk>
+post-install:
+	@${INSTALL_DATA} ${DISTDIR}/htmlxref.cnf ${DATADIR}/
+
+.include <bsd.port.mk>
