@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.227 2013/08/18 22:31:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.228 2013/08/18 22:54:16 laffer1 Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
@@ -334,7 +334,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix pathfix pkgconfig linux_rpm linux_apps xorg fortran \
-		gcc local perl5 openssl \
+		gcc gmake local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
 		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
 		pgsql bdb sqlite gecko scons ocaml efl gettext \
@@ -605,11 +605,6 @@ EXTRACT_DEPENDS+=	${LOCALBASE}/bin/xz:${PORTSDIR}/archivers/xz
 .endif
 .if defined(USE_MAKESELF)
 EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
-.endif
-.if defined(USE_GMAKE)
-BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
-CONFIGURE_ENV+=		MAKE=${GMAKE}
-_MAKE_CMD=		${GMAKE}
 .endif
 
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
@@ -1014,7 +1009,6 @@ DO_NADA?=		${TRUE}
 NONEXISTENT?=	/nonexistent
 
 # Miscellaneous overridable commands:
-GMAKE?=			gmake
 XMKMF?=			xmkmf -a
 
 CHECKSUM_ALGORITHMS?= sha256
