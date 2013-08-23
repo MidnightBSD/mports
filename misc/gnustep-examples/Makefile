@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/misc/gnustep-examples/Makefile,v 1.4 2008/06/07 21:28:27 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnustep-examples/Makefile,v 1.5 2013/08/23 12:02:45 laffer1 Exp $
 
 PORTNAME=	gnustep-examples
-PORTVERSION=	1.3.0
+PORTVERSION=	1.4.0
 PORTREVISION=	0
 CATEGORIES=	misc gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
-MASTER_SITE_SUBDIR=	core
+MASTER_SITE_SUBDIR=	usr-apps
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep example applications
@@ -19,7 +19,8 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GL=		yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
-USE_GNUSTEP_MAKE_DIRS+=	. gui/Finger gui/GFractal gui/HostAddress gui/MyGL
+USE_GNUSTEP_MAKE_DIRS+=	gui/Finger gui/GFractal gui/HostAddress gui/MyGL \
+			gui/Calculator gui/Ink gui/GSTest
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
 
 post-patch:
