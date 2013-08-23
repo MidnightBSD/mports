@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/autotrust/Makefile,v 1.1 2010/09/18 18:08:27 laffer1 Exp $
+# $MidnightBSD: mports/dns/autotrust/Makefile,v 1.2 2013/02/23 01:40:02 laffer1 Exp $
 
 PORTNAME=	autotrust
 PORTVERSION=	0.3.1
@@ -8,6 +8,7 @@ MASTER_SITES=	http://www.nlnetlabs.nl/downloads/autotrust/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to automatically update DNSSEC trust anchors
+
 LICENSE=	bsd3
 
 LIB_DEPENDS+=	ldns:${PORTSDIR}/dns/ldns \
