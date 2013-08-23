@@ -1,12 +1,14 @@
-# $MidnightBSD: mports/textproc/wv/Makefile,v 1.6 2011/12/15 00:40:02 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.7 2013/03/31 15:15:17 laffer1 Exp $
 
 PORTNAME=	wv
 PORTVERSION=	1.2.9
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.abisource.com/downloads/wv/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library and executables to access Microsoft Word files
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	wmf.2:${PORTSDIR}/graphics/libwmf
@@ -16,7 +18,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" MKDIR_P="${MKDIR}"
+CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 CONFIGURE_ARGS=	--with-png=${LOCALBASE} \
 		--with-libwmf=${LOCALBASE}
 MAKEFILE=	GNUmakefile
