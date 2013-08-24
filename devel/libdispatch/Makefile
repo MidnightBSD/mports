@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.4 2011/09/17 00:29:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.5 2012/02/28 14:13:01 laffer1 Exp $
 
 PORTNAME=	libdispatch
 PORTVERSION=	210
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Grand Central Dispatch API support library
+
 LICENSE=	apache2
 
 USE_AUTOTOOLS=	aclocal autoconf
@@ -18,14 +19,16 @@ USE_LDCONFIG=	yes
 # This is needed because PIC support check in autoconf could fail for clang otherwise.
 CONFIGURE_ENV=	lt_cv_prog_compiler_pic_works=yes
 
-OPTIONS=	CLANG "Build with LLVM/Clang (required for blocks support)" on
+OPTIONS_DEFINE=	CLANG
+OPTIONS_DEFAULT=	CLANG
+CLANG_DESC=	Build with LLVM/Clang (required for blocks support)
 
 MAN3=	dispatch.3 dispatch_after.3 dispatch_api.3 dispatch_apply.3 \
 	dispatch_async.3 dispatch_benchmark.3 dispatch_group_create.3 \
 	dispatch_object.3 dispatch_once.3 dispatch_queue_create.3 \
 	dispatch_semaphore_create.3 dispatch_source_create.3 dispatch_time.3
 
-MLINKS= dispatch_after.3 dispatch_after_f.3 \
+MLINKS=	dispatch_after.3 dispatch_after_f.3 \
 	dispatch_apply.3 dispatch_apply_f.3 \
 	dispatch_async.3 dispatch_sync.3 \
 	dispatch_async.3 dispatch_async_f.3 \
@@ -80,14 +83,24 @@ post-configure:
 IGNORE=	is not supported on this OS version
 .endif
 
-.if !defined(WITHOUT_CLANG)
+.if ${OSVERSION} > 4015
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not link on sparc64
+.endif
+.endif
+
+.if ${PORT_OPTIONS:MCLANG}
+. if ${OSVERSION} < 4015
 BUILD_DEPENDS+=	clang:${PORTSDIR}/lang/clang \
 		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
 RUN_DEPENDS+=	clang:${PORTSDIR}/lang/clang \
 		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
-CONFIGURE_ARGS+=	--with-blocks-runtime=/usr/local/lib
-CONFIGURE_ENV+=	CC="clang"
-MAKE_ENV+=	CC="clang"
+CONFIGURE_ARGS+=	--with-blocks-runtime=${LOCALBASE}/lib
+CONFIGURE_ENV+=	CC="${LOCALBASE}/bin/clang" CPPFLAGS="-I${LOCALBASE}/include"
+. else
+CONFIGURE_ARGS+=	--with-blocks-runtime=/usr/lib
+CONFIGURE_ENV+=	CC="/usr/bin/clang"
+. endif
 .endif
 
 .include <bsd.port.post.mk>
