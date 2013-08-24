@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.4 2012/02/11 00:27:51 laffer1 Exp $
+# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.5 2013/03/30 19:19:49 laffer1 Exp $
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.3.10
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC viewer widget for GTK+
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
@@ -19,7 +20,7 @@ CONFLICTS=	gtk-vnc-0.4.[0-9]*
 
 USE_GNOME=	pygtk2 gnomehack
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext
 USE_LDCONFIG=	yes
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
