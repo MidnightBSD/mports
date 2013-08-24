@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.23 2013/03/28 15:54:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.24 2013/08/24 15:02:28 laffer1 Exp $
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
+
 LICENSE=	apache2
 
 USE_RC_SUBR=	svnserve
@@ -246,13 +247,6 @@ test:
 post-install:	${MKREPOS_TARGET}
 .if ${PORT_OPTIONS:MTOOLS}
 	cd ${WRKSRC} && ${MAKE} ${FAKE_MAKEARGS} install-tools
-.endif
-.if ${PORT_OPTIONS:MMOD_DAV_SVN}
-	${APXS} -e -S LIBEXECDIR=${PREFIX}/${APACHEMODDIR} -a -n dav_svn ${FAKE_DESTDIR}${PREFIX}/${APACHEMODDIR}/mod_dav_svn.so
-	${APXS} -e -S LIBEXECDIR=${PREFIX}/${APACHEMODDIR} -a -n authz_svn ${FAKE_DESTDIR}${PREFIX}/${APACHEMODDIR}/mod_authz_svn.so
-.if ${PORT_OPTIONS:MTOOLS}
-	${APXS} -e -S LIBEXECDIR=${PREFIX}/${APACHEMODDIR} -a -n dontdothat ${FAKE_DESTDIR}${PREFIX}/${APACHEMODDIR}/mod_dontdothat.so
-.endif
 .endif
 	@${MKDIR} ${DATADIR}
 .if ${PORT_OPTIONS:MSTATIC}
