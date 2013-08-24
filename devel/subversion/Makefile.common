@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.19 2013/07/03 21:24:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.20 2013/08/24 15:02:28 laffer1 Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.8.1
@@ -15,8 +15,6 @@ MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_KDE4=	# Used below if KWallet support is enabled
-
-LICENSE=	AL2
 
 CONFLICTS_INSTALL+=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-1.[6|7].[0-9]*
 
