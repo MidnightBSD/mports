@@ -1,19 +1,30 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.19 2013/04/11 23:47:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.20 2013/06/05 01:34:13 laffer1 Exp $
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.20
 CATEGORIES=	devel python
-MASTER_SITES=	http://www.viewvc.org/
+MASTER_SITES=	http://www.viewvc.org/ \
+		FREEBSD_LOCAL/ohauer
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
+
 LICENSE=	bsd2
 
-OPTIONS=\
-		SUBVERSION 	"use svn binding" 						on \
-		APACHE 		"use ${APACHE_PORT} as webserver"		on \
-		LIGHTTPD 	"use Lighttp as webserver" 				off \
-		MYSQL 		"enable experimental MYSQL support" 	off
+NO_OPTIONS_SORT=	yes
+OPTIONS_DEFINE=		WEBSRV APMOD SVN MYSQL
+OPTIONS_DEFAULT=	WEBSRV APACHE SVN
+
+OPTIONS_SINGLE=		WEBSRV APMOD
+OPTIONS_SINGLE_WEBSRV=	APACHE LIGHTTPD
+OPTIONS_SINGLE_APMOD=	MODPYTHON3 MODWSGI3
+
+WEBSRV_DESC=	Enable web server support
+APMOD_DESC=	Enable Apache module OPTIONS
+APMOD_DESC=	depend on optional Apache module
+
+MODWSGI3_DESC=	Enable mod_wsgi3 support
+MODPYTHON3_DESC=Enable mod_python3 support
 
 NO_BUILD=	yes
 USE_PYTHON=	2.5-2.7
@@ -28,38 +39,44 @@ PLIST_SUB=	INSTDIR=${INSTDIR}
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITH_APACHE) && !defined(WITH_LIGHTTPD)
+# standalone script is usefull even if a webserver was choosen.
 USE_RC_SUBR=	viewvc
-.endif
 
 RUN_DEPENDS+=	${LOCALBASE}/bin/pygmentize:${PORTSDIR}/textproc/py-pygments
 
-# viewvc can support CVS or SVN, controlled with the parameter
+# viewvc supports CVS and SVN, controlled with the parameter
 # cvs_roots (for CVS), svn_roots (for Subversion) in viewvc.conf
-.if defined (WITH_SUBVERSION)
+.if ${PORT_OPTIONS:MSVN}
 RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/svn/__init__.py:${PORTSDIR}/devel/py-subversion
 .endif
 
-.if defined (WITH_APACHE)
+.if ${PORT_OPTIONS:MAPACHE}
 USE_APACHE=	2.2+
 .endif
 
-.if defined(WITH_LIGHTTPD)
+.if ${PORT_OPTIONS:MLIGHTTPD}
 RUN_DEPENDS+=	lighttpd:${PORTSDIR}/www/lighttpd
 .endif
 
+.if ${PORT_OPTIONS:MMODPYTHON3}
+RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_python>=3.3:${PORTSDIR}/www/mod_python3
+.endif
+
+.if ${PORT_OPTIONS:MMODWSGI3}
+RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_wsgi>=3.3:${PORTSDIR}/www/mod_wsgi3
+.endif
+
 # This feature is a clone of the Mozilla Project's Bonsai database.
-# It catalogs every commit in the CVS or Subversion repository into a SQL database.
+# It catalogs every commit in the CVS or Subversion repository into a MYSQL database.
 # In fact, the databases are 100% compatible.
-.if defined(WITH_MYSQL)
-RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/_mysql.so:${PORTSDIR}/databases/py-MySQLdb
+.if ${PORT_OPTIONS:MMYSQL}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=0:${PORTSDIR}/databases/py-MySQLdb
 .endif
 
 pre-everything::
-.if defined(WITH_APACHE) && defined(WITH_LIGHTTPD)
-	@${ECHO_CMD} "It doesn't make sense to depend on Apache *and* LighHTTPD choose only one."
-	@${FALSE}
-.endif
+.if ${PORT_OPTIONS:MAPMOD} && empty(PORT_OPTIONS:MAPACHE)
+IGNORE=	apache module needs Apache server, please re-run 'make config' then choose WEBSRV and APACHE
+. endif
 
 do-install:
 #in a perfect world, we could use destdir, but some parts don't honor it
