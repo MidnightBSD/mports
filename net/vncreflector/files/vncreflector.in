@@ -1,6 +1,5 @@
 #!/bin/sh
-# $MidnightBSD$
-# $FreeBSD: ports/net/vncreflector/files/vncreflector.sh.in,v 1.3 2006/02/20 20:47:31 dougb Exp $
+# $MidnightBSD: mports/net/vncreflector/files/vncreflector.sh.in,v 1.1 2008/02/02 01:54:45 laffer1 Exp $
 
 # PROVIDE: vncreflector
 # REQUIRE: DAEMON
@@ -13,7 +12,6 @@ _etcdir="%%PREFIX%%/etc/vncreflector"
 #       /etc/rc.conf
 #       /etc/rc.conf.local
 #       /etc/rc.conf.d/vncreflector
-#
 vncreflector_enable=${vncreflector_enable-"NO"}
 vncreflector_hostinfofile=${vncreflector_hostinfofile-"${_etcdir}/hostinfo"}
 vncreflector_passwdfile=${vncreflector_passwdfile-"${_etcdir}/passwd"}
@@ -26,10 +24,10 @@ vncreflector_activefile=${vncreflector_logfile-"/var/log/vncreflector.log"}
 vncreflector_addr=${vncreflector_addr-""}
 #vncreflector_addr_5999=
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="vncreflector"
-rcvar=`set_rcvar`
+rcvar=vncreflector_enable
 start_cmd="vncreflector_start"
 stop_cmd="vncreflector_stop"
 command="%%PREFIX%%/bin/${name}"
