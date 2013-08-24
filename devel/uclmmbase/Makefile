@@ -1,19 +1,15 @@
-# New ports collection makefile for:	uclmmbase
-# Date created:				Thanksgiving Day, 1999
-# Whom:	      				Garrett Wollman <wollman@lcs.mit.edu>
-#
-# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.3 2008/10/16 21:55:32 laffer1 Exp $
-# $FreeBSD: ports/devel/uclmmbase/Makefile,v 1.12 2005/04/12 17:16:21 mi Exp $
-#
+# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.4 2011/09/22 23:12:23 laffer1 Exp $
 
 PORTNAME=	uclmmbase
 PORTVERSION=	1.2.18
+PORTREVISION=	1
 CATEGORIES=	devel ipv6
 MASTER_SITES=	http://aldan.algebra.com/~mi/port-stuff/
 DISTNAME=	common-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common subroutines for UCL mbone applications
+
 LICENSE=	bsd4
 
 WRKSRC=		${WRKDIR}/common
@@ -26,7 +22,7 @@ FAKE_OPTS=    trueprefix
 CONFIGURE_ARGS=	--enable-ipv6
 .endif
 USE_XZ=		yes
-MAKE_JOBS_SAFE=	yes
+MAKE_ENV=	WITHOUT_PROFILE=yes __MAKE_CONF=/dev/null SRCCONF=/dev/null
 
 post-configure:
 	@for f in ${FILESDIR}/*.bsd ; do \
