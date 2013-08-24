@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.7 2011/08/20 13:40:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.8 2013/07/11 00:39:44 laffer1 Exp $
 
 PORTNAME=	zziplib
 PORTVERSION=	0.13.62
@@ -7,7 +7,8 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}13/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to provide transparent read access to zipped files
-LICENSE=	lgpl
+
+LICENSE=	lgpl2.1
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
@@ -19,7 +20,6 @@ USE_PYTHON_BUILD=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	ac_cv_path_XMLTO=":"
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 MAN3=		__zzip_fetch_disk_trailer.3 __zzip_parse_root_directory.3 __zzip_try_open.3 \
 		zzip_close.3 zzip_closedir.3 zzip_compr_str.3 zzip_dir_alloc.3 \
