@@ -1,14 +1,8 @@
-# New ports collection makefile for:	hinfo
-# Date created:				Mon Mar 31 22:37:48 CST 2003
-# Whom:					Mark Linimon <linimon@lonesome.com>
-#
-# $MidnightBSD: mports/net/hinfo/Makefile,v 1.1 2008/05/30 23:56:11 laffer1 Exp $
-# $FreeBSD: ports/net/hinfo/Makefile,v 1.8 2006/05/11 22:49:10 edwin Exp $
-#
+# $MidnightBSD: mports/net/hinfo/Makefile,v 1.2 2008/05/31 20:03:56 laffer1 Exp $
 
 PORTNAME=	hinfo
 PORTVERSION=	1.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net perl5
 # note: the "true" MASTER_SITE is http://www.blars.org, but
 # due to policies on that site, it is not reachable from the
@@ -17,12 +11,13 @@ MASTER_SITES=	http://www.lonesome.com/FreeBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility primarily designed to find the owner of an IP block
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		wget:${PORTSDIR}/ftp/wget
 
-USE_PERL5_RUN=	yes
+USES=		perl5
 
 DATADIR?=	${PREFIX}/lib/${PORTNAME}
 
