@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/devel/zthread/Makefile,v 1.4 2009/10/27 03:29:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/zthread/Makefile,v 1.5 2013/07/11 00:40:43 laffer1 Exp $
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/ZThread/${PORTVERSION}
 DISTNAME=	ZThread-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A platform-independent object-oriented C++ threading library
+
 LICENSE=	mit
 
 USE_AUTOTOOLS=	libtool
