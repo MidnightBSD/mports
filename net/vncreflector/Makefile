@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.4 2010/03/25 01:34:06 laffer1 Exp $
+# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.5 2010/03/25 01:34:59 laffer1 Exp $
 
 PORTNAME=	vncreflector
 PORTVERSION=	1.2.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF/vnc-reflector/vnc-reflector/${PORTVERSION}
 DISTNAME=	vnc_reflector-${PORTVERSION}
@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
-USE_RC_SUBR=	vncreflector.sh
+USE_RC_SUBR=	vncreflector
 
 ALL_TARGET=	default
 WRKSRC=		${WRKDIR}/vnc_reflector
