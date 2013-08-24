@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.20 2011/11/19 16:58:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.21 2012/09/14 00:43:53 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -8,12 +8,11 @@ MASTER_SITE_SUBDIR=	apr
 DISTFILES=	apr-${APR_VERSION}.tar.gz apr-util-${APU_VERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Apache Portability Library
+COMMENT=	Apache Portability Library
+
 LICENSE=	apache2
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
-
-MAKE_JOBS_SAFE=	yes
+LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
 
 OPTIONS=	THREADS "Enable Threads in apr"					on  \
 			IPV6	"Enable IPV6 Support in apr"			on  \
@@ -27,15 +26,12 @@ OPTIONS=	THREADS "Enable Threads in apr"					on  \
 APR_VERSION=	1.4.5
 APU_VERSION=	1.3.12
 
-USE_ICONV=		yes
+USES=		iconv pathfix
 USE_AUTOTOOLS=	automake autoconf libtool:env
 USE_PERL5_BUILD=	yes
 USE_PYTHON_BUILD=	-2.7
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
-CONIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
-
-CONFIGURE_ENV=	CC="${CC}"
 
 NO_WRKSUBDIR=	yes
 APR_WRKDIR=	${WRKDIR}/apr-${APR_VERSION}
@@ -81,7 +77,7 @@ APU_CONF_ARGS+=	--without-gdbm
 .elif defined(WITH_GDBM)
 PLIST_SUB+=	GDBM=""
 APU_EXTRAS=	yes
-LIB_DEPENDS+=	gdbm.4:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=	gdbm:${PORTSDIR}/databases/gdbm
 APU_CONF_ARGS+=	--with-gdbm=${LOCALBASE}
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-gdbm
