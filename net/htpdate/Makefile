@@ -1,30 +1,35 @@
-# New ports collection makefile for:	htpdate
-# Date created:			9 Jun 2005
-# Whom:				Vsevolod Stakhov <vsevolod@highsecure.ru>
-#
-# $MidnightBSD: mports/net/htpdate/Makefile,v 1.1 2008/05/31 01:07:58 laffer1 Exp $
-# $FreeBSD: ports/net/htpdate/Makefile,v 1.14 2007/03/03 16:29:41 miwi Exp $
-#
+# $MidnightBSD: mports/net/htpdate/Makefile,v 1.2 2011/08/07 04:11:12 laffer1 Exp $
 
 PORTNAME=	htpdate
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	net ipv6
-MASTER_SITES=	http://www.clevervest.com/htp/archive/c/
+MASTER_SITES=	http://www.vervest.org/htp/archive/c/ \
+		http://twekkel.home.xs4all.nl/htp/
 
-MAINTAINER=	farrokhi@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Time synchronization over http utility
+
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
+MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}"
 
-MANCOMPRESSED=	no
-NOMANCOMPRESS=	yes
-MAN8=	htpdate.8.gz
+MANCOMPRESSED=	yes
+MAN8=		${PORTNAME}.8
+PLIST_FILES=	bin/${PORTNAME}
+PORTDOCS=	Changelog README
+USE_RC_SUBR=	${PORTNAME}
 
-PLIST_FILES=	bin/htpdate
+.include <bsd.mport.options.mk>
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/htpdate ${PREFIX}/bin
-	@${INSTALL_MAN} ${WRKSRC}/${MAN8} ${MAN8PREFIX}/man/man8
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8.gz ${MAN8PREFIX}/man/man8
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+.for doc in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
+.endfor
+.endif
 
 .include <bsd.port.mk>
