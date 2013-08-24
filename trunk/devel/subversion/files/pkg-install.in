@@ -7,7 +7,7 @@
 # This script is a workaround for apxs bug: 
 # https://issues.apache.org/bugzilla/show_bug.cgi?id=47397
 #
-# $FreeBSD: ports/devel/subversion/files/pkg-install.in,v 1.2 2012/02/14 16:06:21 lev Exp $
+# $FreeBSD$
 #
 
 if [ "%%MOD_DAV_SVN_INSTALL%%" != "YES" ] ; then
