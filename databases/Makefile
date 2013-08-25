@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.100 2013/03/03 16:52:43 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.101 2013/06/14 01:32:25 laffer1 Exp $
 
 COMMENT = Databases
 
@@ -98,6 +98,7 @@ SUBDIR += postgresql90-server
 SUBDIR += py-MySQLdb
 SUBDIR += py-gdbm
 SUBDIR += py-sqlite3
+SUBDIR += py-sqlite3dbm
 SUBDIR += qdbm
 SUBDIR += qt4-mysql-plugin
 SUBDIR += qt4-odbc-plugin
