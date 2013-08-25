@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/py-sqlite3/Makefile,v 1.2 2011/05/27 02:39:15 laffer1 Exp $
+# $MidnightBSD: mports/databases/py-sqlite3/Makefile,v 1.3 2013/02/18 13:18:57 laffer1 Exp $
 
 PORTNAME=	sqlite3
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -11,13 +11,14 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard Python binding to the SQLite3 library
+
 LICENSE=	python
 
-LIB_DEPENDS=	sqlite3.8:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	sqlite3:${PORTSDIR}/databases/sqlite3
 
 PLIST_FILES=	%%PYTHON_SITELIBDIR%%/_sqlite3.so
 DIST_SUBDIR=	python
-USE_PYTHON=	2.5+
+USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
 USE_XZ=		yes
 WRKSRC=		${PYTHON_WRKSRC}/Modules
