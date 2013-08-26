@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/science/paje/Makefile,v 1.1 2010/01/21 01:44:16 laffer1 Exp $
+# $MidnightBSD: mports/science/paje/Makefile,v 1.2 2013/08/26 22:37:21 laffer1 Exp $
 
 PORTNAME=	paje
 PORTVERSION=	1.97
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science gnustep
 MASTER_SITES=	SF/${PORTNAME}/Releases
 DISTNAME=	Paje_${PORTVERSION}
