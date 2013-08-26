@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/devel/orc/Makefile,v 1.6 2013/06/05 01:43:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/orc/Makefile,v 1.7 2013/06/16 02:20:46 laffer1 Exp $
 
 PORTNAME=	orc
-PORTVERSION=	0.4.16
-PORTREVISION=	2
+PORTVERSION=	0.4.17
 CATEGORIES=	devel
 MASTER_SITES=	http://code.entropywave.com/download/orc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and toolset to operate arrays of data
+
 LICENSE=	bsd3
 
 USE_GNOME=	pkgconfig
