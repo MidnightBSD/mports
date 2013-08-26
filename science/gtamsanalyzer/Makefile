@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/science/gtamsanalyzer/Makefile,v 1.1 2010/01/21 01:45:52 laffer1 Exp $
 
 PORTNAME=	gtamsanalyzer
 PORTVERSION=	0.42
+PORTREVISION=	1
 CATEGORIES=	science gnustep
 MASTER_SITES=	SF/tamsys/gnustep%20tams/GTAMSAnalyzer%2${PORTVERSION}
 DISTNAME=	GTAMSAnalyzer.src.${PORTVERSION}
@@ -11,14 +12,13 @@ COMMENT=	Qualitative Research Software for the Free World for GNUstep
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
 WRKSRC=	${WRKDIR}/${DISTNAME}/Source
 
-post-patch:	
+post-patch:
 	${RM} "${WRKSRC}/obj"
 
 .include <bsd.port.mk>
