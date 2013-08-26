@@ -1,39 +1,72 @@
-# $MidnightBSD: mports/science/openbabel/Makefile,v 1.5 2011/12/15 00:57:53 laffer1 Exp $
+# $MidnightBSD: mports/science/openbabel/Makefile,v 1.6 2013/02/23 03:09:58 laffer1 Exp $
 
 PORTNAME=	openbabel
-PORTVERSION=	2.2.0
-PORTREVISION=	2
+PORTVERSION=	2.3.2
 CATEGORIES=	science
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chemistry file translation program
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
+BUILD_DEPENDS=	${LOCALBASE}/include/eigen3/Eigen/Eigen:${PORTSDIR}/math/eigen3
 
-USE_GNOME=	gnomehack  libxml2
-USE_AUTOTOOLS=	libtool
+CONFLICTS_INSTALL=	babel-*
+
+USE_GNOME=	libxml2
+USES=		cmake:outsource
+CMAKE_ARGS=	-DBUILD_GUI=off
 USE_LDCONFIG=	yes
 
-MAN1=		obchiral.1 obconformer.1 obenergy.1 obfit.1 obgen.1 obgrep.1 \
-		obminimize.1 obprobe.1 obprop.1 obrotamer.1 obrotate.1 \
-		openbabel.1 roundtrip.1
+MAN1=		babel.1 \
+		obabel.1 \
+		obchiral.1 \
+		obconformer.1 \
+		obenergy.1 \
+		obfit.1 \
+		obgen.1 \
+		obgrep.1 \
+		obgui.1 \
+		obminimize.1 \
+		obprobe.1 \
+		obprop.1 \
+		obrotamer.1 \
+		obrotate.1 \
+		obspectrophore.1 \
+		roundtrip.1
 
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	CAIRO PYTHON
+OPTIONS_DEFAULT=	PYTHON
+CAIRO_DESC=	PNG support via cairo library
 
-post-extract:
-	@${LN} -sf babel.1 ${WRKSRC}/doc/openbabel.1
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MCAIRO}
+LIB_DEPENDS+=	cairo:${PORTSDIR}/graphics/cairo
+PLIST_SUB+=	CAIRO=""
+.else
+PLIST_SUB+=	CAIRO="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MPYTHON}
+USE_PYTHON=	yes
+CMAKE_ARGS+=	-DPYTHON_BINDINGS=on
+PLIST_SUB+=	PYTHON=""
+.else
+PLIST_SUB+=	PYTHON="@comment "
+.endif
 
 post-patch:
-	@${REINPLACE_CMD} -e \
-		'/test/s| == | = |g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e \
-		's|= babel|= openbabel|g' ${WRKSRC}/doc/Makefile.in
-	@${REINPLACE_CMD} -e 's| babel| openbabel|g ; \
-		 s|"babel|"openbabel|g' ${WRKSRC}/doc/o*.1
-	@${REINPLACE_CMD} -e 's|babel$$(EXEEXT)|openbabel$$(EXEEXT)|g' ${WRKSRC}/tools/Makefile.in
+.if !${PORT_OPTIONS:MCAIRO}
+	${REINPLACE_CMD} -e '/find_package(Cairo)/d' \
+		${WRKSRC}/CMakeLists.txt
+.endif
+	${REINPLACE_CMD} -e '/pkgconfig/s,$${LIB_INSTALL_DIR},libdata,' \
+		${WRKSRC}/CMakeLists.txt
+	${REINPLACE_CMD} -e 's,share/man,man,' \
+		${WRKSRC}/doc/CMakeLists.txt
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
