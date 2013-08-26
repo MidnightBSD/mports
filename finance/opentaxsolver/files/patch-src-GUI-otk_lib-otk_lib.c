@@ -1,3 +1,4 @@
+$FreeBSD$
 --- src/GUI/otk_lib/otk_lib.c.orig	Fri Mar 31 21:42:34 2006
 +++ src/GUI/otk_lib/otk_lib.c	Sat Apr  8 11:50:21 2006
 @@ -38,6 +38,10 @@
@@ -10,4 +11,4 @@
 +
  #include "otk_lib.h"
  
- int Otk_verbose=0;
+ // #include "scz_compress/scz.h"              /* Optionally, include self-contained decompression library. */
