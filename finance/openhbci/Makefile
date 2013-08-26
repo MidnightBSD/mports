@@ -1,25 +1,20 @@
-# Ports collection makefile for:	openhbci
-# Date created:				Jan 3, 2003
-# Whom:					Heiner Strauss <heiner@bilch.com>
-#
-# $MidnightBSD: mports/finance/openhbci/Makefile,v 1.2 2009/09/20 01:13:02 laffer1 Exp $
-# $FreeBSD: ports/finance/openhbci/Makefile,v 1.14 2007/02/01 02:41:36 kris Exp $
+# $MidnightBSD: mports/finance/openhbci/Makefile,v 1.3 2011/02/02 20:58:25 laffer1 Exp $
 
 PORTNAME=	openhbci
 PORTVERSION=	0.9.17.2
+PORTREVISION=	1
 CATEGORIES=	finance
-MASTER_SITES= 	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES= 	SF/${PORTNAME}/${PORTNAME}/0.9.17
 DISTNAME=	openhbci-0.9.17-2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HBCI is a bank-independent homebanking standard
+
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
 WRKSRC=			${WRKDIR}/${PORTNAME}-0.9.17
 GNU_CONFIGURE=		yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
