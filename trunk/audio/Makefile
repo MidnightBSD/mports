@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.105 2013/08/18 12:59:28 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.106 2013/08/18 13:01:35 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -100,6 +100,7 @@ SUBDIR += opencore-amr
 SUBDIR += portaudio
 SUBDIR += portaudio2
 SUBDIR += pulseaudio
+SUBDIR += py-mutagen
 SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
