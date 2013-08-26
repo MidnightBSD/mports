@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dconf/Makefile,v 1.2 2013/07/12 23:04:39 laffer1 Exp $
 
 PORTNAME?=	dconf
-PORTVERSION=	0.12.1
+PORTVERSION=	0.14.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
@@ -9,14 +9,17 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A configuration database system for GNOME
+
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	vala>=0.15.1:${PORTSDIR}/lang/vala
+BUILD_DEPENDS=	vala>=0.18.1:${PORTSDIR}/lang/vala \
+		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
+
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
 
 USE_XZ=		yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack glib20 gnomehier
+USES=		gettext gmake pathfix pkgconfig
+USE_GNOME=	glib20 gnomehier intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
@@ -32,6 +35,11 @@ GLIB_SCHEMAS=	ca.desrt.dconf-editor.gschema.xml
 LIB_DEPENDS+=	dconf:${PORTSDIR}/devel/dconf
 .else
 CONFIGURE_ARGS+=--disable-editor
+.endif
+
+.if ${DCONF_SLAVE} == "no"
+MAN1=		dconf-editor.1 dconf-service.1 dconf.1
+MAN7=		dconf.7
 .endif
 
 post-patch:
