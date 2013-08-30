@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.4 2013/03/25 22:56:24 laffer1 Exp $
+# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.5 2013/08/15 23:07:09 laffer1 Exp $
 
 PORTNAME=	mod_perl
 PORTVERSION=	2.0.8
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	www perl5
 MASTER_SITES=	APACHE/perl
@@ -10,16 +11,15 @@ PKGNAMESUFFIX=	2
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Embeds a Perl interpreter in the Apache2 server
+
 LICENSE=	apache2
 
 BUILD_DEPENDS=	p5-BSD-Resource>=0:${PORTSDIR}/devel/p5-BSD-Resource
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-MAKE_JOBS_SAFE=	yes
-
 SUB_FILES=	pkg-message
 SUB_LIST=	APACHEMODDIR=${APACHEMODDIR}
-USE_APACHE=	2.2+
+USE_APACHE=	22+
 PERL_CONFIGURE=	yes
 GMAKE=		yes
 
