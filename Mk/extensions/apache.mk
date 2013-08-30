@@ -1,15 +1,14 @@
-#-*- mode: makefile; tab-width: 4; -*-
+#-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.7 2010/01/24 16:03:21 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.8 2012/09/14 03:08:32 laffer1 Exp $
 #
 # apache.mk - Apache related macros.
 # Author: Clement Laforet <clement@FreeBSD.org>
 #
 # Please view me with 4 column tabs!
 
-##########################################################################
+# =========================================================================
 #
 # Variables definition
 # USE_APACHE:	Call this script. Values can be:
@@ -19,14 +18,6 @@
 #
 #
 
-#
-# the apache.mk we inherited from FreeBSD was included twice, but never guarded.  
-# we'll do the same, but this is an odd state of affairs.
-#
-
-.if defined(APACHE_COMPAT)
-USE_APACHE=yes
-.endif
 
 # Print warnings
 _ERROR_MSG=	: Error from apache.mk.
@@ -349,7 +340,7 @@ ap-gen-plist:
 	@${ECHO} "%%APACHEMODDIR%%/%%AP_MODULE%%" >> ${PLIST}
 	@${ECHO} "@exec %D/sbin/apxs -e -A -n %%AP_NAME%% %D/%F" >> ${PLIST}
 	@${ECHO} "@unexec echo \"Don't forget to remove all ${MODULENAME}-related directives in your httpd.conf\"">> ${PLIST}
-.   endif
+.	endif
 .else
 	@${DO_NADA}
 .endif
@@ -365,7 +356,5 @@ do-install:
 	${MKDIR} ${PREFIX}/${APACHEMODDIR}
 	${TRUE_PREFIX}/${APACHEBUILDDIR}/instdso.sh SH_LIBTOOL=${AP_LIBTOOL} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT} ${PREFIX}/${APACHEMODDIR}
 .endif
-
 .endif
-
 .endif
