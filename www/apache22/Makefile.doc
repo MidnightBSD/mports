@@ -1,23 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile.doc,v 1.6 2012/02/02 00:21:08 laffer1 Exp $
-# $FreeBSD: ports/www/apache22/Makefile.doc,v 1.14 2009/08/02 19:35:56 mezz Exp $
-
-## Available knobs:
-##   WITHOUT_APACHE_OPTIONS:      Don't use OPTIONS and will allow you to use
-##                                those knobs directly to select modules.
-##                                Knobs with (*) are working only if 
-##                                WITHOUT_APACHE_OPTIONS is defined.
+# $MidnightBSD$
+#
 ##
 ## By default, modules are compiled as dynamically loadable modules (DSO).
 ##
 ## Modules knobs philosophy:
-## Modules are split in categories, "make show-categories" shows you 
-## which modules they contain. You can enable/disable/customize a category (*):
-## - To enable a category: WITH_<CATEGORY>_MODULES=yes
-##                            [WITH_PROXY_MODULES=yes]
-## - To disable a category: WITHOUT_<CATEGORY>_MODULES=yes 
-##                            [WITHOUT_DAV_MODULES=yes]
-## - To customize a category: WITH_CUSTOM_<CATEGORY>
-##                            [WITH_CUSTOM_PROXY="proxy proxy_http"]
+##  Note: Use this only for special builds, modules should be selected by
+##  #> make config
 ##
 ##   Apache-related
 ##      WITH_MPM:                 prefork (default)
@@ -25,73 +13,59 @@
 ##                                event
 ##                                itk
 ##      WITH_HTTP_PORT:           default: 80
-##      WITH_LDAP:                Enable LDAP support (mod_auth_ldap) (implies WITH_LDAP_MODULES)
-##      WITH_(MYSQL|PGSQL|SQLITE): Enable SQL backend for dbd and apr_dbd.
-##                                 When MySQL is chosen, threads are enabled.
-##      WITHOUT_V4MAPPED
-##      WITH_IPV6_V6ONLY:         Don't allow IPv6 sockets to handle IPv4 
-##                                connections
-##      WITHOUT_SSL:              Disable SSL support
-##      WITH_THREADS:             Enable threads support
-##      WITH_DBM:                 Choose your DBM: bdb (Berkeley DB), gdbm or
-##                                ndbm (default)
-##          WITH_BDB:             Define to select bdb via bsd.database.mk
-##                                desired version may be set with
-##                                WITH_BDB_VER or APACHE22_WITH_BDB_VER
-##          WITH_BDB_BASE:        Define to use bdb from base (1.85)
+##
 ##      WITH_STATIC_SUPPORT:      Build statically linked support binaries
-##      WITH_STATIC_APACHE:       Build a static version of httpd (implies 
+##      WITH_STATIC_APACHE:       Build a static version of httpd (implies
 ##                                WITH_STATIC_MODULES)
 ##      WITH_ALL_STATIC_MODULES:  All modules will be statically linked.
 ##      WITH_STATIC_MODULES (*):  List of modules to build modules statics
-##                                (usefull for slave ports)
+##                                (useful for slave ports)
 ##                                (They must be already enabled (i.e.
 ##                                WITH_MODULES or with default configuration
 ##                                use 'make show-modules', to check if they are
 ##                                enabled)
-##      WITH_MODULES (*):         List of modules you choose
-##      WITHOUT_MODULES (*):      Disable selected modules
-##      WITH_SUEXEC:              Enable suExec support
-##            SUEXEC_DOCROOT:     SuExec root directory
+##      WITH_SUEXEC:              Enable suEXEC support
+##            SUEXEC_DOCROOT:     suEXEC root directory
 ##            SUEXEC_USERDIR:     User subdirectory (default public_html)
 ##            SUEXEC_SAFEPATH:    Set the safepath
-##            SUEXEC_LOGFILE:     Set log file for suexec (default: /var/log/httpd-suexec.log)
+##            SUEXEC_LOGFILE:     Set log file for suEXEC (default: /var/log/httpd-suexec.log)
 ##            SUEXEC_UIDMIN:      Minimal allowed UID (default 1000)
 ##            SUEXEC_GIDMIN:      Minimal allowed GID (default 1000)
-##            SUEXEC_CALLER:      User allowed to call SuExec (default
+##            SUEXEC_CALLER:      User allowed to call suEXEC (default
 ##                                ${WWWOWN} (www))
-##            SUEXEC_UMASK:       Defines umask for suexec'd process(default:
+##            SUEXEC_UMASK:       Defines umask for suEXEC'd process(default:
 ##                                unset)
-##	WITH_DEBUG:               Build a debug versoin of apache (set CFLAGS
+##	WITH_DEBUG:               Build a debug version of Apache (set CFLAGS
 ##                                to "-O0 -g -ggdb3" or ${DEBUG_FLAGS} and
 ##                                defines WITH_EXCEPTION_HOOK too)
 ##      WITH_EXCEPTION_HOOK:      Enable fatal exception hook
 ##
-##  Optional patches:  
-##      WITH_EXPERIMENTAL_PATCHES Add performance patches (generally backported
-##                                from apr/httpd SVN repositories)
+##  Optional patches without option:
 ##	WITH_ITK_PERDIR_REGEX     Add the per-directory setting AssignUserFromPath for mpm-itk
 ##                                as described on http://www.pvv.ntnu.no/~knuta/mpm-itk/
+##	WITH_ITK_LIMITS           Add rlimits based on login class for mpm-itk
 ##
 ## Available make targets:
+##      config:                   open the configure dialog
+##      show config:              prints configured options
 ##      show-options:             prints this message
 ##      show-modules:             prints list of available modules
-##      show-categories:          prints list of modules sorted by category
 ##
 ## Examples (*):
-##      make WITH_STATIC_MODULES="ssl rewrite include" WITH_EXPERIMENTAL_MODULES=yes \
-##           WITH_CUSTOM_AUTH="auth auth_dbm"
-##      make WITHOUT_MODULES="access speling status" WITH_PROXY_MODULES=yes
-##      make WITH_MODULES="include rewrite auth"
+##      make WITH_STATIC_MODULES="SSL REWRITE INCLUDE"
 ##      Note: If you define your custom options in /etc/make.conf, don't forget
 ##            to do not use quotes.
 ##
+## Note about OPTION IPV4_MAPPED
+##  For security reasons this OPTION is disabled.
+##  You can find more information about IP binding and configuration
+##  on the Apache website: http://httpd.apache.org/docs/2.2/bind.html
+##  To find out which binding was used to build httpd use the command
+##   $> httpd -V
 
-DOCSDIR=	${PREFIX}/share/doc/apache22
-EXAMPLESDIR=	${PREFIX}/share/examples/apache22
 MAKE_ENV+=	EXAMPLESDIR=${EXAMPLESDIR}
 
-.if defined(NOPORTDOCS)
+.if empty(PORT_OPTIONS:MDOCS)
 MAKE_ENV+=	NOPORTDOCS=yes
 .endif
 

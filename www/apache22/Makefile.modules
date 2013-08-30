@@ -1,145 +1,146 @@
-# $FreeBSD: ports/www/apache22/Makefile.modules,v 1.33 2009/08/02 19:35:56 mezz Exp $
-# $MidnightBSD: mports/www/apache22/Makefile.modules,v 1.6 2011/05/27 02:42:04 laffer1 Exp $
+# $FreeBSD$
+#
+# Note by Clement Laforet: (to generate PLIST_SUB entries for modules)
+#	gsed 's/^\(.*\)mod\(.*\)\.so/%%\MOD\U\2%%\L\1mod\2\.so/' pkg-plist > tmp
+#	mv tmp pkg-plist
+#
 
-.if !defined(Module_inc)
-Module_inc=		done
-
-AUTH_MODULES=		auth_basic auth_digest
-AUTHN_MODULES=		authn_file authn_dbd authn_dbm authn_anon authn_default \
-			authn_alias
-AUTHZ_MODULES=		authz_host authz_groupfile authz_user authz_dbm \
-			authz_owner authz_default
-CACHE_MODULES=		cache disk_cache file_cache mem_cache
-DAV_MODULES=		dav dav_fs
-EXPERIMENTAL_MODULES=	bucketeer case_filter case_filter_in ext_filter \
-			log_forensic optional_hook_export optional_hook_import \
-			optional_fn_import optional_fn_export 
-LDAP_MODULES=		ldap authnz_ldap
-MISC_MODULES+=		actions alias asis autoindex cern_meta \
-			cgi charset_lite dbd deflate dir dumpio env expires \
-			headers imagemap include info log_config logio mime \
-			mime_magic negotiation rewrite setenvif speling status substitute \
-			unique_id userdir usertrack vhost_alias filter version reqtimeout
-PROXY_MODULES=		proxy proxy_connect proxy_ftp proxy_http proxy_ajp proxy_balancer proxy_scgi
-SSL_MODULES=		ssl
-SUEXEC_MODULES=		suexec
-THREADS_MODULES=	cgid
-
-DEFAULT_MODULES_CATEGORIES= \
-			AUTH AUTHN AUTHZ DAV CACHE MISC
-
-ALL_MODULES_CATEGORIES=	AUTH AUTHN AUTHZ CACHE DAV EXPERIMENTAL LDAP \
-			MISC PROXY SSL SUEXEC THREADS
-
-.endif
+# =============================================
+# Maintainer note for OPTION handling:
+# To set additional option use
+#    PORT_OPTIONS+=
+# To unset an OPTION, even the OPTION is set in OPTIONSFILE use
+#    WITHOUT_MODULES+=
+#  Using OPTIONS_EXCLUDE and OPTIONS_OVERRIDE do not work as expected
+#  if the OPTION is enabled by the user, therefore we calculate
+#  them in bsd.apache.mk with help of WITHOUT_MODULES
+#  The other methode is to set IGNORE's and force the user to adjust OPTIONS
 
 .if defined(_PREMKINCLUDED)
-# MPM section:
-# << TO BE WRITTEN >>
-.if defined (SLAVE_PORT_MPM)
-PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
-PKGNAMESUFFIX=	-${SLAVE_PORT_MPM}
+
+# check if APR was build with thread support
+.if exists(${APR_CONFIG})
+APR_LIBS!=	${SH} ${APR_CONFIG} --libs | ${SED} -e 's/-//g'
+.  if defined(APR_LIBS) && !empty(APR_LIBS)
+_T=pthread
+.    for lib in ${APR_LIBS}
+. 	if ${_T:M${lib}}
+APR_HAS_THREADS=	yes
+.	endif
+.    endfor
+.  endif
+.endif	# exists APR_CONFIG
+
+# check if APR-util module exists
+.if exists(${APU_CONFIG})
+.  if ${PORT_OPTIONS:MLDAP} || ${PORT_OPTIONS:MAUTHNZ_LDAP}
+.    if !exists(${APU_LDAP})
+IGNORE=	LDAP and AUTHNZ_LDAP requires APR-util to have LDAP support built in.\
+	Please rebuild APR with LDAP support
+.    endif
+.  endif
+
+.  if ${PORT_OPTIONS:MDBD} || ${PORT_OPTIONS:MAUTHN_DBD}
+.    if !exists(${APU_DBD_MYSQL}) && !exists(${APU_DBD_PGSQL}) && !exists(${APU_DBD_SQLITE3})
+IGNORE=	AUTHN_DBD and DBD requires APR-util to have DBD support build in.\
+	Please rebuild APR at last with one DBD backend (MYSQL, PGSQL or SQLITE)
+.    endif
+.  endif
+.endif	# exists APU_CONFIG
+
+# =============================================
+# MPM's: prefork worker event itk peruser
+.if ${WITH_MPM} == "prefork"
+PLIST_SUB+=		WORKER="@comment " EVENT="@comment "
+.elif ${WITH_MPM} == "worker"
+PLIST_SUB+=		WORKER=""          EVENT="@comment "
+.elif ${WITH_MPM} == "event"
+PLIST_SUB+=		WORKER="@comment " EVENT=""
+.elif ${WITH_MPM} == "peruser"
+PLIST_SUB+=		WORKER="@comment " EVENT="@comment "
+.elif ${WITH_MPM} == "itk"
+PLIST_SUB+=		WORKER="@comment " EVENT="@comment "
 .else
-.   if ${WITH_MPM} != "prefork"
-PKGNAMESUFFIX=		-${WITH_MPM:L}
-.   if ${WITH_MPM} != "itk"
-WITH_THREADS=		yes
-WITH_THREADS_MODULES=	yes
-WITHOUT_MODULES+=	cgi
-.   endif
-.      if ${WITH_MPM:L} == "worker"
-PLIST_SUB+=	PREFORK="@comment " WORKER="" EVENT="@comment "
-.      elif  ${WITH_MPM:L} == "event"
-PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT=""
-.      elif  ${WITH_MPM:L} == "itk"
-PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
-EXTRA_PATCHES+=	${PATCHDIR}/mpm-itk-${MPM_ITK_VERSION}
-.   if defined (WITH_ITK_PERDIR_REGEX)
-EXTRA_PATCHES+= ${PATCHDIR}/mpm-itk-perdir-regex
-.   endif
-.      else
-IGNORE=		"Unknown MPM: ${WITH_MPM}"
-.      endif
-.   else
-PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " THREADPOOL="@comment " EVENT="@comment "
-.   endif
-.else
-PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
+IGNORE=	Unknown MPM: ${WITH_MPM}
+.endif	# MPM prefork
+
+.if ${WITH_MPM} != "prefork"
+PKGNAMESUFFIX=		-${WITH_MPM}-mpm
+LATEST_LINK=		apache22-${WITH_MPM}-mpm
 .endif
 
-# xDBM section
-#
-.if !defined(WITH_DBM)
-.   if defined(WITH_BDB) || defined(WITH_BDB_BASE) || defined(WITH_BERKELEYDB)
-WITH_DBM=bdb
-PLIST_SUB+=	BDB=""
-.   else
-PLIST_SUB+=	BDB="@comment "
-.   endif
+.if ${WITH_MPM} == "worker" || ${WITH_MPM} == "event"
+PORT_OPTIONS+=		CGID
+.if ${PORT_OPTIONS:MCGI}
+IGNORE=	When using a multi-threaded MPM, the module CGID should be used in place CGI. \
+	Please de-select CGI and select CGID instead. \
+	See http://httpd.apache.org/docs/2.2/mod/mod_cgi.html
+.endif
+.if exists(${APR_CONFIG}) && !defined(APR_HAS_THREADS)
+IGNORE=	requires APR threads. Please rebuild APR with THREAD support
+.  endif
+.endif
+# =============================================
+
+# The next three params are not converted to an option,
+# they should be used only for special builds.
+.if defined(WITH_STATIC_SUPPORT)
+CONFIGURE_ARGS+=	--enable-static-support
 .endif
 
-.if defined(WITH_BERKELEYDB) && !defined(WITH_BDB_VER)
-.   if ${WITH_BERKELEYDB} == "FreeBSD"
-       WITH_BDB_BASE=YES
-.   else
-      WITH_BDB_VER=${WITH_BERKELEYDB:S/db//} 
-.   endif
+# debug overrides CFLAGS
+.if defined(WITH_DEBUG)
+DEBUG_FLAGS?=	-O0 -g -ggdb3
+CFLAGS=		${DEBUG_FLAGS}
+CONFIGURE_ARGS+=	--enable-maintainer-mode
+WITH_EXCEPTION_HOOK=	yes
 .endif
 
-.if defined(WITH_DBM)
-.   if ${WITH_DBM:L} == "sdbm"
-CONFIGURE_ARGS+=	--with-dbm=sdbm
-.   elif ${WITH_DBM:L} == "gdbm"
-LIB_DEPENDS+=		gdbm:${PORTSDIR}/databases/gdbm
-CONFIGURE_ARGS+=	--with-gdbm=${LOCALBASE}
-.   elif ${WITH_DBM:L} == "db" || ${WITH_DBM:L} == "bdb"
-.	if defined(WITH_BDB_BASE)
-CONFIGURE_ARGS+=	--with-dbm=db185 \
-			--with-berkeley-db=/usr
-.	else
-USE_BDB=		yes
-CONFIGURE_ARGS+=	--with-dbm=db${BDB_VER:S/40/4/} \
-			--with-berkeley-db=${LOCALBASE}
-.       endif
-.   else
-IGNORE=		"Unknown DBM"
-.   endif
-.else
-CONFIGURE_ARGS+=	--with-dbm=sdbm
+.if defined(WITH_EXCEPTION_HOOK)
+CONFIGURE_ARGS+=	--enable-exception-hook
 .endif
 
-.if defined(WITH_MYSQL)
-USE_MYSQL=	YES
-WITH_THREADS=	YES
-.endif
-
-.if defined(WITH_PGSQL)
-USE_PGSQL=	YES
-.endif
-
-.if defined(WITH_SQLITE)
-USE_SQLITE=	YES
-.endif
-
-.if !defined(WITHOUT_SSL)
-WITH_SSL_MODULES=	yes
+.if ${PORT_OPTIONS:MSSL}
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
 CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
 .endif
 
-.if !defined(WITH_THREADS)
-WITHOUT_MODULES+=	mem_cache
-.if !defined(WITHOUT_APACHE_OPTIONS) && defined(WITH_MEM_CACHE)
-IGNORE+=	mod_mem_cache requires WITH_THREADS
-.endif
-.else
-CFLAGS+=	${PTHREAD_CFLAGS}
-LDFLAGS+=	${PTHREAD_LIBS}
+.if ${PORT_OPTIONS:MAUTHNZ_LDAP}
+CONFIGURE_ARGS+=	--enable-authnz-ldap
 .endif
 
-.if !defined(WITH_MYSQL) && !defined(WITH_PGSQL) && !defined(WITH_SQLITE)
-WITHOUT_MODULES+=	authn_dbd dbd
-.if !defined(WITHOUT_APACHE_OPTIONS) && (defined(WITH_DBD) || defined(WITH_AUTHN_DBD))
-IGNORE+=	You need to enable at least one DBD backend
+.if ${PORT_OPTIONS:MLDAP}
+CONFIGURE_ARGS+=	--enable-ldap=shared
 .endif
+
+.if ${PORT_OPTIONS:MAUTH_BASIC} || ${PORT_OPTIONS:MAUTH_DIGEST}
+.  if !${APACHE_MODULES:MAUTHN*}
+IGNORE=	AUTH_BASIC and AUTH_DIGEST need at last one AUTHN provider	
+.  endif	
 .endif
+
+.if ${PORT_OPTIONS:MAUTH_BASIC}
+.  if !${APACHE_MODULES:MAUTHZ*}
+IGNORE=	AUTH_BASIC need at last one AUTHZ provider	
+.  endif	
 .endif
+
+.if defined(APR_HAS_THREADS)
+LDFLAGS+=	-pthread
+.else
+.  if exists(${APR_CONFIG}) && ${PORT_OPTIONS:MMEM_CACHE}
+IGNORE=	MEM_CACHE requires APR threads. Please rebuild APR with THREAD support
+.  endif
+.endif
+
+# http://httpd.apache.org/docs/2.2/bind.html
+.if ${PORT_OPTIONS:MIPV4_MAPPED}
+CONFIGURE_ARGS+=	--enable-v4-mapped
+.else
+CONFIGURE_ARGS+=	--disable-v4-mapped
+.endif
+
+CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM}
+
+.endif	# _PREMKINCLUDED
