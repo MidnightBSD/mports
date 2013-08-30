@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/spawn-fcgi/Makefile,v 1.1 2009/10/13 01:27:24 laffer1 Exp $
+# $MidnightBSD: mports/www/spawn-fcgi/Makefile,v 1.2 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	spawn-fcgi
 PORTVERSION=	1.6.3
@@ -7,6 +7,7 @@ MASTER_SITES=	http://www.lighttpd.net/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	spawn-fcgi is used to spawn fastcgi applications
+
 LICENSE=	bsd3
 
 USE_BZIP2=	yes
