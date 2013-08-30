@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.53 2013/07/06 22:08:23 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.54 2013/08/19 02:48:42 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.4.17
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
 MASTER_SITE_SUBDIR=	distributions
@@ -10,12 +10,12 @@ DISTNAME=	php-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP Scripting Language
+
 LICENSE=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USE_BZIP2=	yes
-MAKE_JOBS_SAFE=	yes
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
@@ -37,7 +37,7 @@ CONFIGURE_ARGS=	\
 DESTDIRNAME=	INSTALL_ROOT
 USE_GNOME=	libxml2
 
-OPTIONS_DEFINE=	CLI CGI FPM APACHE AP2FILTER EMBED DEBUG DTRACE IPV6 MAILHEAD LINKTHR
+OPTIONS_DEFINE=	CLI CGI FPM APACHE AP2FILTER EMBED DEBUG DTRACE IPV6 MAILHEAD LINKTHR ZTS
 OPTIONS_DEFAULT=CLI CGI IPV6 LINKTHR
 
 CLI_DESC=	Build CLI version
@@ -51,6 +51,7 @@ DTRACE_DESC=	Enable DTrace support
 IPV6_DESC=	Enable ipv6 support
 MAILHEAD_DESC=	Enable mail header patch
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
+ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 
 CONFLICTS=	php53-5*
 
@@ -147,6 +148,10 @@ CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 
 .if ${PORT_OPTIONS:MLINKTHR}
 CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}"
+.endif
+
+.if ${PORT_OPTIONS:MZTS}
+CONFIGURE_ARGS+=--enable-maintainer-zts
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
