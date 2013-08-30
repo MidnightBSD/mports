@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.101 2013/06/14 01:32:25 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.102 2013/08/25 00:23:34 laffer1 Exp $
 
 COMMENT = Databases
 
@@ -68,6 +68,7 @@ SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
 SUBDIR += pecl-memcache
+SUBDIR += pecl-memcached
 SUBDIR += php5-dba
 SUBDIR += php5-mssql
 SUBDIR += php5-mysql
@@ -96,6 +97,7 @@ SUBDIR += postgresql90-client
 SUBDIR += postgresql90-contrib
 SUBDIR += postgresql90-server
 SUBDIR += py-MySQLdb
+SUBDIR += py-bsddb
 SUBDIR += py-gdbm
 SUBDIR += py-sqlite3
 SUBDIR += py-sqlite3dbm
