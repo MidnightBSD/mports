@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/www/apache24/Makefile,v 1.3 2013/08/17 19:58:14 laffer1 Exp $
+# $MidnightBSD: mports/www/apache24/Makefile,v 1.4 2013/08/30 12:22:46 laffer1 Exp $
 
-PORTNAME=	apache
+PORTNAME=	apache24
 PORTVERSION=	2.4.6
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
-PKGNAMESUFFIX=	24
 DISTNAME=	httpd-${PORTVERSION}
 DIST_SUBDIR=	apache24
 
