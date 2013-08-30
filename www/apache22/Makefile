@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.30 2013/03/02 21:44:38 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.31 2013/03/28 15:09:52 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.24
+PORTVERSION=	2.2.25
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -13,6 +13,7 @@ DIST_SUBDIR=	apache22
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
+
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
