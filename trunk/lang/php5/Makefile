@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.54 2013/08/19 02:48:42 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.55 2013/08/30 22:15:05 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.4.17
@@ -104,7 +104,7 @@ IGNORE=		cannot be built with multiple SAPI (apache and embedded)
 
 .if ${PORT_OPTIONS:MAPACHE}
 PHP_SAPI+=	mod
-USE_APACHE=	2.2+
+USE_APACHE=	22+
 EXTENSIONS+=	apache
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
