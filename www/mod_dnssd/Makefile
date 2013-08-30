@@ -1,26 +1,26 @@
-# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.3 2010/12/13 01:22:52 laffer1 Exp $
+# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.4 2011/09/03 16:33:02 laffer1 Exp $
 
 PORTNAME=	mod_dnssd
 PORTVERSION=	0.6
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://0pointer.de/lennart/projects/mod_dnssd/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Apache module that provides DNS-SD capabilities
+
 LICENSE=	apache2
 
 LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
 
-MAKE_JOBS_SAFE=	yes
-
 USE_GMAKE=	yes
-USE_APACHE=	2.2+
+USE_APACHE=	22
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		APR_CFLAGS="`${LOCALBASE}/bin/apr-1-config --cflags --cppflags --includes`" \
+CONFIGURE_ENV=	APR_CFLAGS="`${LOCALBASE}/bin/apr-1-config --cflags --cppflags --includes`" \
 		APR_LIBS="`${LOCALBASE}/bin/apr-1-config --ldflags`"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-lynx
 CONFIGURE_ARGS+= MP_APXS=${LOCALBASE}/sbin/apxs PREFIX=${PREFIX}
 
