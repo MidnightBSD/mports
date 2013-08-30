@@ -1,79 +1,109 @@
-OPTIONS+= \
-	 AUTH_BASIC "Enable mod_auth_basic" ON \
-	 AUTH_DIGEST "Enable mod_auth_digest" ON \
-	 AUTHN_FILE "Enable mod_authn_file" ON \
-	 AUTHN_DBD "Enable mod_authn_dbd" OFF \
-	 AUTHN_DBM "Enable mod_authn_dbm" ON \
-	 AUTHN_ANON "Enable mod_authn_anon" ON \
-	 AUTHN_DEFAULT "Enable mod_authn_default" ON \
-	 AUTHN_ALIAS "Enable mod_authn_alias" ON \
-	 AUTHZ_HOST "Enable mod_authz_host" ON \
-	 AUTHZ_GROUPFILE "Enable mod_authz_groupfile" ON \
-	 AUTHZ_USER "Enable mod_authz_user" ON \
-	 AUTHZ_DBM "Enable mod_authz_dbm" ON \
-	 AUTHZ_OWNER "Enable mod_authz_owner" ON \
-	 AUTHZ_DEFAULT "Enable mod_authz_default" ON \
-	 CACHE "Enable mod_cache" ON \
-	 DISK_CACHE "Enable mod_disk_cache" ON \
-	 FILE_CACHE "Enable mod_file_cache" ON \
-	 MEM_CACHE "Enable mod_mem_cache" OFF \
-	 DAV "Enable mod_dav" ON \
-	 DAV_FS "Enable mod_dav_fs" ON \
-	 BUCKETEER "Enable mod_bucketeer" OFF \
-	 CASE_FILTER "Enable mod_case_filter" OFF \
-	 CASE_FILTER_IN "Enable mod_case_filter_in" OFF \
-	 EXT_FILTER "Enable mod_ext_filter" OFF \
-	 LOG_FORENSIC "Enable mod_log_forensic" OFF \
-	 OPTIONAL_HOOK_EXPORT "Enable mod_optional_hook_export" OFF \
-	 OPTIONAL_HOOK_IMPORT "Enable mod_optional_hook_import" OFF \
-	 OPTIONAL_FN_IMPORT "Enable mod_optional_fn_import" OFF \
-	 OPTIONAL_FN_EXPORT "Enable mod_optional_fn_export" OFF \
-	 LDAP "Enable mod_ldap" OFF \
-	 AUTHNZ_LDAP "Enable mod_authnz_ldap" OFF \
-	 ACTIONS "Enable mod_actions" ON \
-	 ALIAS "Enable mod_alias" ON \
-	 ASIS "Enable mod_asis" ON \
-	 AUTOINDEX "Enable mod_autoindex" ON \
-	 CERN_META "Enable mod_cern_meta" ON \
-	 CGI "Enable mod_cgi" ON \
-	 CHARSET_LITE "Enable mod_charset_lite" ON \
-	 DBD "Enable mod_dbd" OFF \
-	 DEFLATE "Enable mod_deflate" ON \
-	 DIR "Enable mod_dir" ON \
-	 DUMPIO "Enable mod_dumpio" ON \
-	 ENV "Enable mod_env" ON \
-	 EXPIRES "Enable mod_expires" ON \
-	 HEADERS "Enable mod_headers" ON \
-	 IMAGEMAP "Enable mod_imagemap" ON \
-	 INCLUDE "Enable mod_include" ON \
-	 INFO "Enable mod_info" ON \
-	 LOG_CONFIG "Enable mod_log_config" ON \
-	 LOGIO "Enable mod_logio" ON \
-	 MIME "Enable mod_mime" ON \
-	 MIME_MAGIC "Enable mod_mime_magic" ON \
-	 NEGOTIATION "Enable mod_negotiation" ON \
-	 REWRITE "Enable mod_rewrite" ON \
-	 SETENVIF "Enable mod_setenvif" ON \
-	 SPELING "Enable mod_speling" ON \
-	 STATUS "Enable mod_status" ON \
-	 UNIQUE_ID "Enable mod_unique_id" ON \
-	 USERDIR "Enable mod_userdir" ON \
-	 USERTRACK "Enable mod_usertrack" ON \
-	 VHOST_ALIAS "Enable mod_vhost_alias" ON \
-	 FILTER "Enable mod_filter" ON \
-	 SUBSTITUTE "Enable mod_substitute" OFF \
-	 VERSION "Enable mod_version" ON \
-	 PROXY "Enable mod_proxy" OFF \
-	 PROXY_CONNECT "Enable mod_proxy_connect" OFF \
-	 PATCH_PROXY_CONNECT "Patch proxy_connect SSL support" ON \
-	 PROXY_FTP "Enable mod_proxy_ftp" OFF \
-	 PROXY_HTTP "Enable mod_proxy_http" OFF \
-	 PROXY_AJP "Enable mod_proxy_ajp" OFF \
-	 PROXY_BALANCER "Enable mod_proxy_balancer" OFF \
-	 PROXY_SCGI "Enable mod_proxy_scgi" OFF \
-	 SSL "Enable mod_ssl" ON \
-	 SUEXEC "Enable mod_suexec" OFF \
-	 SUEXEC_RSRCLIMIT "SuEXEC rlimits based on login class" OFF \
-	 REQTIMEOUT "Enable mod_reqtimeout" ON \
-	 CGID "Enable mod_cgid" OFF \
+# $FreeBSD$
+
+# ===========================================================
+# The list of modules are no longer classified in CATEGORIES.
+# We use for enabled/disabled now the resulting modules from
+# configure --enable-modules=most
+#
+# Required modules without OPTION:
+#   UNIXD LOG_CONFIG
+
+
+PROXY_ENABLED_MODULES= \
+	PROXY_AJP PROXY_BALANCER PROXY_CONNECT PROXY_EXPRESS PROXY_FCGI \
+	PROXY_FTP PROXY_HTTP PROXY_SCGI PROXY_WSTUNNEL
+
+PROXY_DISABLED_MODULES= \
+	PROXY_FDPASS PROXY_HTML
+
+# SESSION_CRYPTO need APR build with crypto (EVP support in APR)
+SESSION_ENABLED_MODULES= \
+	SESSION_COOKIE SESSION_CRYPTO
+
+SESSION_DISABLED_MODULES= \
+	SESSION_DBD
+
+HEARTBEAT_MODULES= \
+	HEARTBEAT HEARTMONITOR LBMETHOD_HEARTBEAT
+
+EXAMPLE_MODULES= \
+	CASE_FILTER CASE_FILTER_IN ECHO EXAMPLE_HOOKS EXAMPLE_IPC \
+	OPTIONAL_FN_EXPORT OPTIONAL_FN_IMPORT OPTIONAL_HOOK_EXPORT \
+	OPTIONAL_HOOK_IMPORT
+
+DEV_MODULES=	BUCKETEER
+
+MOST_ENABLED_MODULES= \
+	ACCESS_COMPAT ACTIONS ALIAS ALLOWMETHODS ASIS \
+	AUTHN_ANON AUTHN_CORE AUTHN_DBD AUTHN_DBM AUTHN_FILE AUTHN_SOCACHE \
+	AUTHZ_CORE AUTHZ_DBD AUTHZ_DBM AUTHZ_GROUPFILE AUTHZ_HOST \
+	AUTHZ_OWNER AUTHZ_USER \
+	AUTH_BASIC AUTH_DIGEST AUTH_FORM AUTOINDEX \
+	BUFFER \
+	CACHE CACHE_DISK CACHE_SOCACHE CERN_META CGI CGID \
+	DAV DAV_FS DBD DEFLATE DIR DUMPIO \
+	ENV EXPIRES EXT_FILTER \
+	FILE_CACHE FILTER \
+	HEADERS \
+	IMAGEMAP INCLUDE INFO \
+	LBMETHOD_BYBUSYNESS LBMETHOD_BYREQUESTS LBMETHOD_BYTRAFFIC \
+	LOGIO LOG_DEBUG \
+	MACRO MIME MIME_MAGIC \
+	NEGOTIATION \
+	RATELIMIT REMOTEIP REQTIMEOUT REQUEST REWRITE \
+	SED SETENVIF SOCACHE_DBM SOCACHE_MEMCACHE SOCACHE_SHMCB SPELING \
+	SSL STATUS SUBSTITUTE \
+	UNIQUE_ID USERDIR \
+	VERSION VHOST_ALIAS
+
+MOST_DISABLED_MODULES:= \
+	AUTHNZ_LDAP LDAP CHARSET_LITE DATA DAV_LOCK DIALUP IDENT LOG_FORENSIC \
+	LUA REFLECTOR SLOTMEM_PLAIN SLOTMEM_SHM SOCACHE_DC SUEXEC USERTRACK \
+	XML2ENC WATCHDOG ${HEARTBEAT_MODULES} ${EXAMPLE_MODULES} ${DEV_MODULES}
+
+#MULTI_MODULES:=	${OPTIONS_MULTI}
+
+# XXX PROXY and SESSION are modules but also used to
+#     enable/disable additional PROXY/SESSION modules
+META_MODULES=	PROXY SESSION
+
+ALL_MODULES_CATEGORIES=	\
+	MOST_ENABLED MOST_DISABLED MULTI \
+	PROXY_ENABLED PROXY_DISABLED \
+	SESSION_ENABLED SESSION_DISABLED \
+	META
+
+#STATIC=	STATIC_AB STATIC_CHECKGID STATIC_FCGISTARTER STATIC_HTCACHECLEAN \
+#		STATIC_HTDBM STATIC_HTDIGEST STATIC_HTPASSWD STATIC_HTTXT2DBM \
+#		STATIC_LOGRESOLVE STATIC_ROTATELOGS STATIC_SUPPORT
+
+ADDITIONAL_OPT=	LUAJIT IPV4_MAPPED
+
+# ===================================================================================
+NO_OPTIONS_SORT=	yes
+
+OPTIONS_MULTI=		${META_MODULES}
+OPTIONS_MULTI_PROXY:=	${PROXY_ENABLED_MODULES} ${PROXY_DISABLED_MODULES}
+OPTIONS_MULTI_SESSION:=	${SESSION_ENABLED_MODULES} ${SESSION_DISABLED_MODULES}
+
+OPTIONS_RADIO=			SHARED_MPM
+OPTIONS_RADIO_SHARED_MPM=	MPM_SHARED
+
+OPTIONS_SINGLE=			DEFAULT_MPM
+OPTIONS_SINGLE_DEFAULT_MPM=	MPM_PREFORK MPM_WORKER MPM_EVENT
+
+# ===================================================================================
+
+OPTIONS_DEFINE:=		\
+	${MOST_ENABLED_MODULES}	\
+	${MOST_DISABLED_MODULES}\
+	${ADDITIONAL_OPT}	\
+	${OPTIONS_MULTI}
+
+OPTIONS_DEFAULT:=		\
+	${MOST_ENABLED_MODULES}	\
+	${OPTIONS_MULTI}	\
+	${SESSION_ENABLED_MODULES} \
+	${PROXY_ENABLED_MODULES} \
+	MPM_PREFORK
 
