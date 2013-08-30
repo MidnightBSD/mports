@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/www/dojo/Makefile,v 1.11 2013/02/19 16:10:51 laffer1 Exp $
+# $MidnightBSD: mports/www/dojo/Makefile,v 1.12 2013/05/18 13:36:03 laffer1 Exp $
 
 PORTNAME=	dojo
-PORTVERSION=	1.8.3
+PORTVERSION=	1.9.1
 CATEGORIES=	www
 MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/ \
 		FREEBSD_LOCAL/glarkin
 DISTNAME=	dojo-release-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An open-source DHTML toolkit written in JavaScript
+COMMENT=	Open-source DHTML toolkit written in JavaScript
+
 LICENSE=	bsd3
 
 NO_BUILD=	yes
@@ -18,7 +19,7 @@ OPTIONS_DEFINE=		APACHE
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MAPACHE}
-USE_APACHE_RUN=		2.2+
+USE_APACHE_RUN=		22+
 CONFDIR=		${PREFIX}/${CONFDIR_REL}
 CONFDIR_REL=		${APACHEETCDIR}/Includes
 PLIST_SUB+=		NOAPACHE="" CONFDIR=${CONFDIR_REL}
