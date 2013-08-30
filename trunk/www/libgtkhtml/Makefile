@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.6 2011/02/02 21:31:38 laffer1 Exp $
+# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.7 2013/03/30 20:32:03 laffer1 Exp $
 
 PORTNAME=	libgtkhtml
 PORTVERSION=	2.11.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,7 +12,6 @@ COMMENT=	Lightweight HTML rendering/printing/editing engine
 LICENSE=	lgpl
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack libxslt gnomevfs2 ltverhack
 USE_LDCONFIG=	yes
