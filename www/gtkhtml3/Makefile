@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.7 2011/07/03 16:57:00 laffer1 Exp $
+# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.8 2013/03/30 20:33:02 laffer1 Exp $
 
 PORTNAME=	gtkhtml3
 PORTVERSION=	3.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/3$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -20,7 +20,7 @@ LIB_DEPENDS=	soup-2.4:${PORTSDIR}/devel/libsoup \
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
 		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
 
-USE_GETTEXT=	yes
+USES=		gettext
 USE_BZIP2=	yes
 USE_XORG=	xinerama xi xrandr xcursor xcomposite xdamage
 USE_GMAKE=	yes
@@ -37,6 +37,7 @@ post-patch:
 	    	${WRKSRC}/intltool-merge.in
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g ; \
 		s|-DGTK_DISABLE_DEPRECATED||g ; \
+		s|-DG_DISABLE_DEPRECATED||g ; \
 	    	s|-DGDK_DISABLE_DEPRECATED||g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|gtkhtml-editor-test[$$]|gtkhtml3-editor-test$$|' \
