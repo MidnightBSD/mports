@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache24/Makefile.modules,v 1.1 2012/09/14 03:02:31 laffer1 Exp $
+# $MidnightBSD: mports/www/apache24/Makefile.modules,v 1.2 2013/08/30 12:22:46 laffer1 Exp $
 
 
 # =============================================
@@ -53,19 +53,6 @@ IGNORE=	SESSION_CRYPTO requires APR-util to have crypto openssl support build in
 #.    endif
 #.  endif
 .endif	# exists APU_CONFIG
-
-# =============================================
-# if build with shared MPM the last module will be activated
-# see apache issue 53882
-
-# XXX in case we use OPTIONS for MPM 
-# we do not have a WITH_MPM variable
-.if ${PORT_OPTIONS:MMPM_SHARED}
-PLIST_SUB+=		MPM_SHARED=""
-CONFIGURE_ARGS+=	--enable-mpms-shared=all
-.else
-PLIST_SUB+=		MPM_SHARED="@comment "
-.endif
 
 # XXX LATEST_LINK overwrites OPTIONSFILE ...
 # maybe use NO_LATEST_LINK in future

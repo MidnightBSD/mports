@@ -136,9 +136,6 @@ libexec/apache24/mod_log_config.so
 %%MOD_MACRO%%libexec/apache24/mod_macro.so
 %%MOD_MIME%%libexec/apache24/mod_mime.so
 %%MOD_MIME_MAGIC%%libexec/apache24/mod_mime_magic.so
-%%MPM_SHARED%%libexec/apache24/mod_mpm_event.so
-%%MPM_SHARED%%libexec/apache24/mod_mpm_prefork.so
-%%MPM_SHARED%%libexec/apache24/mod_mpm_worker.so
 %%MOD_NEGOTIATION%%libexec/apache24/mod_negotiation.so
 %%MOD_OPTIONAL_FN_EXPORT%%libexec/apache24/mod_optional_fn_export.so
 %%MOD_OPTIONAL_FN_IMPORT%%libexec/apache24/mod_optional_fn_import.so
