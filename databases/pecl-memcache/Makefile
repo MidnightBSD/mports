@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/pecl-memcache/Makefile,v 1.1 2010/11/11 01:15:00 laffer1 Exp $
+# $MidnightBSD: mports/databases/pecl-memcache/Makefile,v 1.2 2011/05/27 02:41:20 laffer1 Exp $
 
 PORTNAME=	memcache
-PORTVERSION=	3.0.5
+PORTVERSION=	3.0.8
 CATEGORIES=	databases
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -10,6 +10,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Memcached extension
+
 LICENSE=	php
 
 USE_PHP=	zlib session
