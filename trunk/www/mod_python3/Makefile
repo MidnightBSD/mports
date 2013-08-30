@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/mod_python3/Makefile,v 1.1 2013/08/24 19:03:38 laffer1 Exp $
 
 PORTNAME=	mod_python
 PORTVERSION=	3.3.1
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 MASTER_SITE_SUBDIR=	modpython
@@ -13,7 +14,7 @@ COMMENT=	Apache module that embeds the Python interpreter within the server
 
 LICENSE=	apache2
 
-USE_APACHE=	2.2
+USE_APACHE=	22
 USE_PYTHON=	yes
 
 MAKE_ARGS+=	APXS=${APXS}

@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/mod_wsgi3/Makefile,v 1.1 2013/08/24 19:07:09 laffer1 Exp $
 
 PORTNAME=	mod_wsgi
 PORTVERSION=	3.4
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	GOOGLE_CODE
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
@@ -15,7 +16,7 @@ CONFLICTS=	${PKGNAMEPREFIX}mod_wsgi-2.* mod_wsgi-2.*
 
 PROJECTHOST=	modwsgi
 
-USE_APACHE=	2.2+
+USE_APACHE=	22+
 USE_PYTHON=	2.5+
 
 GNU_CONFIGURE=	yes
