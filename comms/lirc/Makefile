@@ -2,14 +2,15 @@
 
 PORTNAME=	lirc
 PORTVERSION=	0.9.0
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	comms
 MASTER_SITES=	SF/${PORTNAME}/LIRC/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/p1/-pre1/}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Linux Infared Remote Control
+COMMENT=	Linux Infrared Remote Control
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	v4l_compat>=1.0.20110603:${PORTSDIR}/multimedia/v4l_compat
@@ -23,7 +24,6 @@ USE_PYTHON=	yes
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=		--enable-sandboxed --with-devdir=/var/run/lirc \
 			--sysconfdir=${PREFIX}/etc
@@ -36,7 +36,7 @@ MINIMAL_DESC=	Build with minmal dependencies
 UARTLIRC_DESC=	Install serial LIRC driver
 
 USE_RC_SUBR=	lircd
-#PORTDOCS=	irxevent.keys lirc.css lirc.hwdb
+PORTDOCS=	html images irxevent.keys lirc.css lirc.hwdb
 PORTEXAMPLES=	remotes
 SUB_FILES=	pkg-message lircd.conf
 
@@ -49,7 +49,7 @@ PLIST_SUB+=	SMODE2=
 PLIST_SUB+=	SMODE2="@comment "
 .endif
 
-.if defined(WITH_MINIMAL)
+.if empty(PORT_OPTIONS:MMINIMAL)
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libirman.a:${PORTSDIR}/comms/libirman
 LIB_DEPENDS+=		ftdi:${PORTSDIR}/devel/libftdi
 CONFIGURE_ARGS+=	--with-driver=userspace
@@ -57,11 +57,11 @@ CONFIGURE_ARGS+=	--with-driver=userspace
 CONFIGURE_ARGS+=	--with-driver=dvico
 .endif
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
-.if defined(WITH_UARTLIRC)
+.if ${PORT_OPTIONS:MUARTLIRC}
 RUN_DEPENDS+=		uartlirc>=0.3:${PORTSDIR}/comms/uartlirc
 .endif
 
@@ -69,13 +69,18 @@ MAN1=		ircat.1 irexec.1 irpty.1 irrecord.1 irsend.1 irw.1 \
 		irxevent.1 lircrcd.1 mode2.1 smode2.1 xmode2.1
 MAN8=		lircd.8 lircmd.8
 
+# XXX: work around an issue with automake-1.13 erroring out on a
+#      non-existent m4 directory before libtoolize creates it
+pre-configure::
+	@${MKDIR} ${WRKSRC}/m4
+
 post-install:
-.if defined(WITH_DOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR}/)
 	@(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} images ${DOCSDIR}/)
 	@(cd ${WRKSRC}/doc && ${INSTALL_DATA} irxevent.keys lirc.css lirc.hwdb ${DOCSDIR}/)
 .endif
-.if defined(WITH_EXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} remotes ${EXAMPLESDIR}/)
 .endif
 	@${INSTALL_DATA} ${WRKDIR}/lircd.conf ${PREFIX}/etc/lircd.conf.sample

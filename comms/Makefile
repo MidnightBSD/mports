@@ -13,6 +13,7 @@ SUBDIR += comserv
 SUBDIR += efax
 SUBDIR += kermit
 SUBDIR += kmobiletools
+SUBDIR += libimobiledevice
 SUBDIR += libirman
 SUBDIR += lirc
 SUBDIR += lrzsz
@@ -24,6 +25,7 @@ SUBDIR += p5-SMS-Send
 SUBDIR += pr
 SUBDIR += qfaxreader
 SUBDIR += tits
+SUBDIR += usbmuxd
 SUBDIR += zssh
 
 .include <bsd.port.subdir.mk>
