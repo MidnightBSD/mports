@@ -2,12 +2,15 @@
 
 PORTNAME=	httperf
 PORTVERSION=	0.9.0
+PORTREVISION=	1
 CATEGORIES=	benchmarks www
 MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool for measuring webserver performance
-LICENSE=        gpl
+
+LICENSE=        gpl2
+
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes

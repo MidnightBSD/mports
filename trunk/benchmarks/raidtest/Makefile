@@ -8,6 +8,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test performance of storage devices
+
 LICENSE=	bsd2
 
 FAKE_OPTS=	trueprefix

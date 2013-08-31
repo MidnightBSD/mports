@@ -9,8 +9,8 @@ MASTER_SITES=	http://freeware.sgi.com/source/nttcp/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A client/server program for testing network performance
+
 LICENSE=	restricted
-# can be distributed but can't make money off it
 
 ALL_TARGET=	nttcp
 MAN1=		nttcp.1

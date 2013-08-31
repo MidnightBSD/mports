@@ -8,7 +8,8 @@ MASTER_SITES=	http://homepages.cwi.nl/~tromp/c4/
 DISTNAME=	Fhourstones
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Fhourstones Benchmark
+COMMENT=	Fhourstones Benchmark
+
 LICENSE=	other
 
 NO_WRKSUBDIR=	yes

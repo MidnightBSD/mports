@@ -7,7 +7,8 @@ MASTER_SITES=	http://www.cc.gatech.edu/fac/Constantinos.Dovrolis/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A measurement tool for capacity estimation of network paths
+COMMENT=	Measurement tool for capacity estimation of network paths
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
