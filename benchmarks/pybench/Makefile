@@ -8,6 +8,7 @@ MASTER_SITES=	http://downloads.egenix.com/python/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extensible benchmark suite for Python
+
 LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/${PORTNAME}

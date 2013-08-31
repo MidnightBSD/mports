@@ -2,12 +2,14 @@
 
 PORTNAME=	scimark2c
 DISTVERSION=	2_1
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://math.nist.gov/scimark2/
 DISTNAME=	${PORTNAME:S/2/${DISTVERSION}/}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An ANSI C version of the SciMark2 benchmark
+COMMENT=	ANSI C version of the SciMark2 benchmark
+
 LICENSE=	unknown
 
 PLIST_FILES=	bin/scimark2
