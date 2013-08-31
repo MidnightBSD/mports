@@ -1,20 +1,15 @@
-# makefile for use of:	OpenSSH
-# Date created:		31 May 2002
-# Whom:			dinoex
 #
 # $MidnightBSD: mports/Mk/extensions/openssl.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $ 
-# $FreeBSD: ports/Mk/bsd.openssl.mk,v 1.31 2006/08/04 12:34:41 erwin Exp $
 #
 # Use of 'USE_OPENSSL=yes' includes this Makefile after bsd.ports.pre.mk
 #
 # the user/port can now set this options in the makefiles.
 #
 # WITH_OPENSSL_BASE=yes	- Use the version in the base system.
-# WITH_OPENSSL_PORT=yes	- Use the port, even if base if up to date
-# WITH_OPENSSL_BETA=yes	- Use a snapshot of recent openssl
-# WITH_OPENSSL_STABLE=yes	- Use an older openssl version
+# WITH_OPENSSL_PORT=yes	- Use the port, even if base is up to date
+# WITH_OPENSSL_HACK7=yes - Use not the version in the base system on 0.3
 #
-# USE_OPENSSL_RPATH=yes	- pass RFLAGS options in CFLAGS,
+# USE_OPENSSL_RPATH=yes	- Pass RFLAGS options in CFLAGS,
 #			  needed for ports who don't use LDFLAGS
 #
 # Overrideable defaults:
@@ -46,19 +41,20 @@ WITH_OPENSSL_BASE=yes
 .if defined(USE_OPENSSL_PORT) && !defined(WITH_OPENSSL_PORT)
 WITH_OPENSSL_PORT=yes
 .endif
-.if defined(WITH_OPENSSL_097) && !defined(WITH_OPENSSL_STABLE)
-WITH_OPENSSL_STABLE=yes
+
+.if defined(WITH_OPENSSL_HACK7)
+.if ${OSVERSION} < 4015
+# the openssl in base of MidnightBSD 0.3 is too old
+WITH_OPENSSL_PORT?=	yes
+.endif
 .endif
 
 #	if no preference was set, check for an installed base version
 #	but give an installed port preference over it.
 .if	!defined(WITH_OPENSSL_BASE) && \
-	!defined(WITH_OPENSSL_BETA) && \
 	!defined(WITH_OPENSSL_PORT) && \
-	!defined(WITH_OPENSSL_STABLE) && \
-	!defined(OPENSSL_OVERWRITE_BASE) && \
-	!exists(${LOCALBASE}/lib/libcrypto.so) && \
-	exists(/usr/include/openssl/opensslv.h)
+	!exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so) && \
+	exists(${DESTDIR}/usr/include/openssl/opensslv.h)
 WITH_OPENSSL_BASE=yes
 .endif
 
@@ -104,16 +100,30 @@ OPENSSLRPATH=		${DESTDIR}/usr/lib:${LOCALBASE}/lib
 .else
 
 OPENSSLBASE=		${LOCALBASE}
-.if defined(WITH_OPENSSL_BETA)
-OPENSSL_PORT?=		security/openssl-beta
-OPENSSL_SHLIBVER?=	5
-.elif defined(WITH_OPENSSL_STABLE)
-OPENSSL_PORT?=		security/openssl-stable
-OPENSSL_SHLIBVER?=	4
-.else
-OPENSSL_PORT?=		security/openssl
-OPENSSL_SHLIBVER?=	5
+.if	!defined(OPENSSL_PORT) && \
+	exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so)
+# find installed port and use it for dependency
+PKG_DBDIR?=		${DESTDIR}/var/db/pkg
+.if !defined(OPENSSL_INSTALLED)
+OPENSSL_INSTALLED!=	find "${PKG_DBDIR}/" -type f -name "+CONTENTS" -print0 | \
+			xargs -0 grep -l "^lib/libssl.so." | \
+			while read contents; do \
+				sslprefix=`grep "^@cwd " "$${contents}" | ${HEAD} -n 1`; \
+				if test "$${sslprefix}" = "@cwd ${LOCALBASE}" ; then \
+					echo "$${contents}"; break; fi; done
 .endif
+.if defined(OPENSSL_INSTALLED) && ${OPENSSL_INSTALLED} != ""
+OPENSSL_PORT!=		grep "^@comment ORIGIN:" "${OPENSSL_INSTALLED}" | ${CUT} -d : -f 2
+OPENSSL_SHLIBFILE!=	grep "^lib/libssl.so." "${OPENSSL_INSTALLED}"
+OPENSSL_SHLIBVER?=	${OPENSSL_SHLIBFILE:E}
+.else
+# PKG_DBDIR was not found, default
+OPENSSL_PORT?=		security/openssl
+OPENSSL_SHLIBVER?=	8
+.endif
+.endif
+OPENSSL_PORT?=		security/openssl
+OPENSSL_SHLIBVER?=	8
 
 OPENSSLDIR=		${OPENSSLBASE}/openssl
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${PORTSDIR}/${OPENSSL_PORT}
@@ -128,16 +138,10 @@ OPENSSLINC=		${OPENSSLBASE}/include
 .if defined(USE_OPENSSL_RPATH)
 CFLAGS+=		-Wl,-rpath,${OPENSSLRPATH}
 .endif
-OPENSSL_LDFLAGS+=	-rpath=${OPENSSLRPATH}
+OPENSSL_LDFLAGS+=	-Wl,-rpath=${OPENSSLRPATH}
 
-.if defined(LDFLAGS)
 LDFLAGS+=${OPENSSL_LDFLAGS}
-.else
-LDFLAGS=${OPENSSL_LDFLAGS}
-.endif
 
-CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
-MAKE_ENV+=		LDFLAGS="${LDFLAGS}"
 MAKE_ENV+=		OPENSSLLIB=${OPENSSLLIB} OPENSSLINC=${OPENSSLINC} \
 			OPENSSLBASE=${OPENSSLBASE} OPENSSLDIR=${OPENSSLDIR}
 
