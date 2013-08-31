@@ -101,6 +101,9 @@ twms:*:175:175::0:0:tWMS pseudo-user:/nonexistent:/usr/sbin/nologin
 nagios:*:181:181::0:0:Nagios pseudo-user:/var/spool/nagios:/usr/sbin/nologin
 noc:*:182:182::0:0:NOC pseudo-user:/usr/local/noc:/bin/sh
 icinga:*:183:183::0:0:Icinga pseudo-user:/var/spool/icinga:/usr/sbin/nologin
+dnscache:*:184:184::0:0:dnscache pseudo-user:/nonexistent:/usr/sbin/nologin
+tinydns:*:185:185::0:0:tinydns pseudo-user:/nonexistent:/usr/sbin/nologin
+dnslog:*:186:186::0:0:dnslog pseudo-user:/nonexistent:/usr/sbin/nologin
 moinmoin:*:192:192::0:0:MoinMoin User:/nonexistent:/usr/sbin/nologin
 cups:*:193:193::0:0:Cups Owner:/nonexistent:/usr/sbin/nologin
 saned:*:194:194::0:0:SANE Scanner Daemon:/nonexistent:/bin/sh
@@ -143,6 +146,7 @@ xymon:*:280:280::0:0:Xymon Monitor:/nonexistent:/usr/sbin/nologin
 prelude:*:281:281::0:0:Prelude user:/nonexistent:/usr/sbin/nologin
 spread:*:282:282::0:0:Spread user:/nonexistent:/usr/sbin/nologin
 devmon:*:283:283::0:0:devmon monitor:/nonexistent:/usr/sbin/nologin
+vnstat:*:284:284::0:0:vnStat Network Monitor:/nonexistent:/usr/sbin/nologin
 backuppc:*:300:300::0:0:BackupPC pseudo-user:/nonexistent:/usr/sbin/nologin
 _sphinx:*:312:312::0:0:Sphinxsearch Owner:/nonexistent:/usr/sbin/nologin
 dkfilter:*:325:325::0:0:DK Filter Owner:/nonexistent:/usr/sbin/nologin
@@ -195,7 +199,7 @@ bnetd:*:700:700::0:0:Bnetd user:/nonexistent:/usr/sbin/nologin
 bopm:*:717:717::0:0:Blitzed Open Proxy Monitor:/nonexistent:/bin/sh
 openxpki:*:777:777::0:0:OpenXPKI Owner:/nonexistent:/usr/sbin/nologin
 puppet:*:814:814::0:0:Puppet Daemon:/nonexistent:/usr/sbin/nologin
-jenkins:*:818:818::0:0:Jenkins CI:/usr/local/jenkins:/usr/sbin/nologin
+jenkins:*:818:818::0:0:Jenkins CI:/usr/local/jenkins:/bin/sh
 openacs:*:820:820::0:0:OpenACS Daemon User:/nonexistent:/usr/sbin/nologin
 dotlrn:*:821:821::0:0:.LRN Daemon User:/nonexistent:/usr/sbin/nologin
 polw:*:825:825::0:0:Policyd-weight Cache Owner:/nonexistent:/sbin/nologin
@@ -261,4 +265,6 @@ ossecr:*:968:966::0:0:OSSEC rem user:/usr/local/ossec-hids:/usr/sbin/nologin
 kippo:*:969:969::0:0:kippo user:/nonexistent:/usr/sbin/nologin
 colord:*:970:970::0:0:colord color management daemon:/nonexistent:/usr/sbin/nologin
 shibd:*:971:971::0:0:Shibboleth SAML daemon:/nonexistent:/usr/sbin/nologin
+plex:*:972:972::0:0:Plex Media Server:/nonexistent:/usr/sbin/nologin
+boinc:*:973:973::0:0:BOINC user:/var/db/boinc:/usr/sbin/nologin
 nobody:*:65534:65534::0:0:Unprivileged user:/nonexistent:/usr/sbin/nologin
