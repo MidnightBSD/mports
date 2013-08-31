@@ -52,7 +52,7 @@ REV="$2"
 # update conf/ and hooks/.
 update-root.sh "$REPO" "$REV"
 
-/usr/local/bin/python /home/svn/repos/mports/hooks/TwitVN/twitvn.py -f "${REPOS}" -r "${REV}" -t "http://svnweb.midnightbsd.org/" -n "mports"
+/usr/local/bin/python /home/svn/repos/mports/hooks/TwitVN/twitvn.py -f "${REPOS}" -r "${REV}"
 
 # commit mail
 mailer.py commit "$REPO" "$REV" /home/svn/repos/mports/conf/mailer.conf
