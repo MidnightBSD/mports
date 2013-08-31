@@ -55,7 +55,7 @@ update-root.sh "$REPO" "$REV"
 /usr/local/bin/python /home/svn/repos/mports/hooks/TwitVN/twitvn.py -f "${REPOS}" -r "${REV}"
 
 # commit mail
-mailer.py commit "$REPO" "$REV" /home/svn/repos/mports/conf/mailer.conf
+/usr/local/bin/python /home/svn/repos/mports/hooks/scripts/mailer.py commit "$REPO" "$REV" /home/svn/repos/mports/conf/mailer.conf
 
 #commit-email.pl "$REPO" "$REV" commit-watchers@example.org
 #log-commit.py --repository "$REPO" --revision "$REV"
