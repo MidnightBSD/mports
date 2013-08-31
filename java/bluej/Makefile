@@ -1,8 +1,7 @@
 # $MidnightBSD: mports/java/bluej/Makefile,v 1.5 2011/12/24 02:36:22 laffer1 Exp $
-# $FreeBSD: ports/java/bluej/Makefile,v 1.18 2006/06/12 23:44:13 hq Exp $
 
 PORTNAME=	bluej
-PORTVERSION=	3.0.7
+PORTVERSION=	3.0.9
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
@@ -12,6 +11,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Java environment designed for introductory teaching
+
 LICENSE=	restricted
 # not for profit  distribution
 
