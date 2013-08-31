@@ -1,10 +1,4 @@
-# New ports collection makefile for:	bforce-kst
-# Date created:		1 May 2002
-# Whom:			Andrew Dolgov <fox@furry.spb.ru>
-#
 # $MidnightBSD: mports/comms/bforce-kst/Makefile,v 1.1 2008/08/17 21:36:33 laffer1 Exp $
-# $FreeBSD: ports/comms/bforce-kst/Makefile,v 1.15 2006/05/03 23:38:34 edwin Exp $
-#
 
 PORTNAME=	bforce
 PORTVERSION=	0.22.8.7
@@ -15,6 +9,7 @@ DISTNAME=	${PORTNAME}-0.22.8.kst7
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple ifcico like Fidonet technology mailer
+
 LICENSE=	gpl2
 
 USE_GMAKE=	yes
@@ -43,8 +38,12 @@ FIXME=		include/bforce.h include/util.h include/logger.h \
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/source
 
+PORTDOCS=	CHANGES CHANGES.kst COPYING README README.kst
+
+OPTIONS_DEFINE=	DOCS
+
 pre-configure:
-	${MKDIR} ${WRKSRC}/bin
+	@${MKDIR} ${WRKSRC}/bin
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/bforce,/etc/fido/bforce,g' ${WRKSRC}/Makefile.in
@@ -52,8 +51,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,log(,bf_log(,g' ${WRKSRC}/${i}
 .endfor
 
+.include <bsd.mport.options.mk>
+
 do-install:
-	${MKDIR} ${PREFIX}/etc/fido/bforce
+	@${MKDIR} ${PREFIX}/etc/fido/bforce
 	${INSTALL_DATA} ${WRKSRC}/../examples/bforce.conf ${PREFIX}/etc/fido/bforce/bforce.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/../examples/bforce.passwd ${PREFIX}/etc/fido/bforce/bforce.passwd.sample
 	${INSTALL_DATA} ${WRKSRC}/../examples/bforce.subst ${PREFIX}/etc/fido/bforce/bforce.subst.sample
@@ -64,11 +65,9 @@ do-install:
 .for i in ${CONTRIBS}
 	${INSTALL_DATA} ${WRKSRC}/../contrib/${i} ${DATADIR}/${i}
 .endfor
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.for i in CHANGES CHANGES.kst COPYING README README.kst
-	${INSTALL_DATA} ${WRKSRC}/../${i} ${DOCSDIR}
-.endfor
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/../,} ${DOCSDIR}
 .endif
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/bforce ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/bfindex ${PREFIX}/bin

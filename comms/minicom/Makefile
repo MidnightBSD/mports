@@ -10,6 +10,7 @@ MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/3869/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
+
 LICENSE=	gpl2
 
 OPTIONS_DEFINE=	DOCS NLS LRZSZ

@@ -1,25 +1,23 @@
-# New ports collection makefile for:    atslog
-# Date created:                         27 November 2006
-# Whom:                                 Alexander Logvinov <ports@logvinov.com>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/comms/atslog/Makefile,v 1.11 2007/05/19 20:00:51 flz Exp $
-#
 
 PORTNAME=	atslog
 PORTVERSION=	2.1.1
+PORTREVISION=	1
 CATEGORIES=	comms
 MASTER_SITES=	BERLIOS
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Software for collecting and analyzing calls from different PBX models
+
 LICENSE=	gpl2
 
-OPTIONS=	LIBWRAP		"Enable TCP wrapper support"			on \
-		MYSQL		"Enable MySQL support"				on \
-		PGSQL		"Enable PostgreSQL support"			off \
-		WWW		"Install web interface"				on \
-		WWWGD		"Graphic reports"				on
+OPTIONS_DEFINE=	LIBWRAP WWW WWWGD DOCS
+OPTIONS_DEFAULT=	LIBWRAP MYSQL WWW WWWGF
+OPTIONS_MULTI=	DB
+OPTIONS_MULTI_DB=	PGSQL MYSQL
+LIBWRAP_DESC=	Enable TCP wrapper support
+WWW_DESC=	Install web interface
+WWWGD_DESC=	Graphic reports
 
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
@@ -31,42 +29,38 @@ MAN8=		${USE_RC_SUBR}.8 ${PORTNAME}master.8
 CONFIGS=	${PORTNAME}.conf.default ${PORTNAME}.conf.default.rus
 CONFIGURE_ARGS+=--localstatedir=/var
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITHOUT_MYSQL) && !defined(WITH_PGSQL)
-IGNORE=	is useless without a database. Please (re)run 'make config' and choose one of PGSQL and MYSQL"
-.endif
-
-.if !defined(WITHOUT_WWW)
+.if ${PORT_OPTIONS:MWWW}
 USE_PHP=	pcre
 WANT_PHP_WEB=	yes
 PLIST_SUB+=	WWW=""
-.if !defined(WITHOUT_WWWGD)
+.if ${PORT_OPTIONS:MWWWGD}
 USE_PHP+=	gd
 .endif
-.if !defined(WITHOUT_MYSQL)
+.if ${PORT_OPTIONS:MMYSQL}
 USE_PHP+=	mysql
 .endif
-.if defined(WITH_PGSQL)
+.if ${PORT_OPTIONS:MPGSQL}
 USE_PHP+=	pgsql
 .endif
 .else
 PLIST_SUB+=	WWW="@comment "
 .endif
 
-.if !defined(WITHOUT_MYSQL)
+.if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	yes
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql
+BUILD_DEPENDS+=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
+RUN_DEPENDS+=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
 .endif
 
-.if defined(WITH_PGSQL)
+.if ${PORT_OPTIONS:MPGSQL}
 USE_PGSQL=	yes
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:${PORTSDIR}/databases/p5-DBD-Pg
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:${PORTSDIR}/databases/p5-DBD-Pg
+BUILD_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
+RUN_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
 .endif
 
-.if defined(WITHOUT_LIBWRAP)
+.if ! ${PORT_OPTIONS:MLIBWRAP}
 CONFIGURE_ARGS+=--disable-libwrap
 .endif
 
@@ -113,7 +107,7 @@ do-install:
 	${FIND} -E . -type f ! -iregex ".*\.(sh|orig)" -exec \
 		${INSTALL_DATA} "{}" "${PREFIX}/libexec/${PORTNAME}/{}" \;
 	${INSTALL_SCRIPT} ${WRKSRC}/libexec/genindex.sh ${PREFIX}/libexec/${PORTNAME}/
-.if !defined(WITHOUT_WWW)
+.if ${PORT_OPTIONS:MWWW}
 	${MKDIR} ${PREFIX}/www/${PORTNAME}
 	cd ${WRKSRC}/www && \
 	${FIND} . -type d ! -empty -exec \
@@ -126,11 +120,11 @@ do-install:
 .endif
 	${CHOWN} -R ${WWWOWN}:${WWWGRP} ${PREFIX}/www/${PORTNAME}
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

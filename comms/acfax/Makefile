@@ -1,19 +1,15 @@
-# New ports collection makefile for:   acfax
-# Date created:        20 February 2002
-#
 # $MidnightBSD: mports/comms/acfax/Makefile,v 1.2 2011/10/01 01:22:12 laffer1 Exp $
-# $FreeBSD: ports/comms/acfax/Makefile,v 1.12 2007/12/19 22:18:20 pav Exp $
-#
 
 PORTNAME=	acfax
 PORTVERSION=	0.981011
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	comms hamradio
 MASTER_SITES=	ftp://ftp.funet.fi/pub/ham/unix/Linux/misc/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/^0.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Receive faxes using sound card and radio
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	Xaw3d:${PORTSDIR}/x11-toolkits/Xaw3d
