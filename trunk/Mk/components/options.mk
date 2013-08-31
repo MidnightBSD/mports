@@ -10,60 +10,45 @@
 OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
 _OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
 
-#ALL_OPTIONS=   DOCS \
-#               NLS
-
-# Set the default values for the global options, as defined by portmgr
+# Set the default values for the global options
 .if !defined(NOPORTDOCS)
-PORT_OPTIONS+=  DOCS
+PORT_OPTIONS+=	DOCS
 .endif
 
 .if !defined(WITHOUT_NLS)
-PORT_OPTIONS+=  NLS
+PORT_OPTIONS+=	NLS
 .endif
 
-# Set the default values for the global options, as defined by portmgr
 .if !defined(NOPORTEXAMPLES)
-PORT_OPTIONS+=  EXAMPLES
+PORT_OPTIONS+=	EXAMPLES
 .endif
 
-# Activate IPV6 by default
-PORT_OPTIONS+=  IPV6
-
-# Exclude per arch options
-.for opt in ${OPTIONS_EXCLUDE_${ARCH}}
-OPTIONS_DEFINE:=        ${OPTIONS_DEFINE:N${opt}}
-OPTIONS_DEFAULT:=       ${OPTIONS_DEFAULT:N${opt}}
-.endfor
+PORT_OPTIONS+=	IPV6
 
 # Add per arch options
 .for opt in ${OPTIONS_DEFINE_${ARCH}}
 .if empty(OPTIONS_DEFINE:M${opt})
-OPTIONS_DEFINE+=        ${opt}
+OPTIONS_DEFINE+=	${opt}
 .endif
 .endfor
 
 # Add per arch defaults
-.for opt in ${OPTIONS_DEFAULT_${ARCH}}
-.if empty(OPTIONS_DEFAULT:M${opt})
-OPTIONS_DEFAULT+=       ${opt}
-.endif
-.endfor
+OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
 # Append options set by the port Makefile
 .for opt in ${OPTIONS_DEFINE}
-ALL_OPTIONS+=   ${opt}
+ALL_OPTIONS+=	${opt}
 .endfor
 
-ALL_OPTIONS:=   ${ALL_OPTIONS:O:u}
+ALL_OPTIONS:=	${ALL_OPTIONS:O:u}
 
 # Remove global options the port maintainer doesn't want
 .for opt in ${OPTIONS_EXCLUDE}
-ALL_OPTIONS:=   ${ALL_OPTIONS:N${opt}}
+ALL_OPTIONS:=	${ALL_OPTIONS:N${opt}}
 .endfor
 
 .if defined(OPTIONS)
-NO_OPTIONS_SORT=        yes
+NO_OPTIONS_SORT=	yes
 .  undef optname
 .  for O in ${OPTIONS:S|\#|\\\#|g}
 opt:=   ${O}
