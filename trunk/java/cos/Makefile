@@ -10,13 +10,14 @@ DISTNAME=	${PORTNAME}-05Nov2002
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The O\'Reilly package of utility classes for servlet developers
+
 LICENSE=	restricted
 
 USE_ZIP=	yes
 NO_WRKSUBDIR=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
-RESTRICTED=	"Special conditions apply for commercial use, see licence"
+RESTRICTED=	Special conditions apply for commercial use, see licence
 DATAFILES=	readme.txt license.txt doc
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 

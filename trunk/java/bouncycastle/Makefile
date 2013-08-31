@@ -11,6 +11,7 @@ DISTNAME=	crypto-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cleanroom build of Java Cryptography Extensions
+
 LICENSE=	mit
 
 BUILD_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf \
