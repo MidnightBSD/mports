@@ -94,6 +94,7 @@ SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie
 SUBDIR += searchmonkey
+SUBDIR += sg3_utils
 SUBDIR += smartmontools
 SUBDIR += synergy
 SUBDIR += system-tools-backends
