@@ -1,37 +1,41 @@
 # $MidnightBSD: mports/java/classpath/Makefile,v 1.5 2011/12/22 02:55:44 laffer1 Exp $
 
 PORTNAME=	classpath
-PORTVERSION=	0.98
-PORTREVISION=	1
+PORTVERSION=	0.99
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_GNU}classpath/:cp \
-		${MASTER_SITE_SAVANNAH}classpath/:cp \
-		http://archive.eclipse.org/eclipse/downloads/drops/R-3.2.2-200702121330/:ecj \
-		http://www.antlr.org/download/:antlr
-DISTFILES=	${DISTNAME}.tar.gz:cp ecj.jar:ecj antlr-3.4-complete.jar:antlr
+MASTER_SITES=	${MASTER_SITE_GNU} \
+		${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	${PORTNAME:S|$|:src|}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNU project to create a free Java class library
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		fastjar:${PORTSDIR}/archivers/fastjar
-
-USE_GCC=	4.7
+GNU_CONFIGURE=	yes
+USES=		pkgconfig iconv
+USE_GMAKE=	yes
+USE_LDCONFIG=	yes
+USE_PERL5_BUILD=yes
 USE_XORG=	x11 ice xtst xaw xproto xext
 WANT_GNOME=	yes
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CXXFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" JAVA=${WRKDIR}/bin/gij PATH="${WRKDIR}/bin:${PATH}"
-MAKE_ENV+=	${CONFIGURE_ENV}
-CONFIGURE_ARGS=	--enable-jni --enable-glibj --disable-alsa --disable-dssi --disable-plugin --enable-examples --enable-tools --with-glibj=zip --with-ecj-jar=${DISTDIR}/ecj.jar --with-antlr-jar=${DISTDIR}/antlr-3.4-complete.jar --enable-java-home
-USE_GMAKE=	yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+CONFIGURE_ARGS=	--enable-jni --disable-alsa --disable-dssi --disable-plugin
+CONFIGURE_ARGS+=--with-jar=${JAR}
+CONFIGURE_ENV=	JAVA="${JAVA}" JAVAC="${JAVAC}"
+CONFIGURE_ENV+=	JAVACFLAGS="${JAVACFLAGS}"
+MAKE_ENV+=	JAVACFLAGS="${JAVACFLAGS}"
 
 MAN1=		gappletviewer.1 \
+		gcjh.1 \
 		gjar.1 \
 		gjarsigner.1 \
 		gjavah.1 \
-		gcjh.1 \
 		gkeytool.1 \
 		gnative2ascii.1 \
 		gorbd.1 \
@@ -42,63 +46,109 @@ MAN1=		gappletviewer.1 \
 
 INFO=		cp-hacking cp-tools cp-vmintegration
 
-#CONFLICTS=	sablevm-classpath-*
+CONFLICTS=	sablevm-classpath-1.13 sablevm-classpath-1.13_[1-9]
 
-OPTIONS=	GCONF "Use GConf based preferences backend" OFF \
-		GTK2 "Enable Gtk+ AWT peer" ON \
-		CAIRO "Use Gtk+ Cairo based Graphics2D" OFF \
-		QT4 "Enable Qt AWT peer" OFF
+OPTIONS_DEFINE=	CAIRO ECJ GCONF GJDOC GMP GTK2 QT4
+OPTIONS_DEFAULT=GMP GJDOC GTK2
+CAIRO_DESC=	Use Gtk+ Cairo based Graphics2D
+ECJ_DESC=	Embed ECJ as com.sun.tools.javac
+GJDOC_DESC=	Build javadoc replacement
+GMP_DESC=	Enable native java.math.BigInteger
+GTK2_DESC=	Enable Gtk+ AWT peer
+QT4_DESC=	Enable Qt AWT peer
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_GCONF)
+.if ${PORT_OPTIONS:MECJ}
+MASTER_SITES+=		${MASTER_SITE_ECLIPSE:S|$|:ecj|}
+MASTER_SITE_SUBDIR+=	R-${ECJ_VERSION}-${ECJ_DROPDATE}/:ecj
+DISTFILES+=		${ECJ_JAR}:ecj
+ECJ_VERSION=		3.8.1
+ECJ_DROPDATE=		201209141540
+ECJ_JAR=		ecj-${ECJ_VERSION}.jar
+CONFIGURE_ARGS+=	--with-ecj-jar=${DISTDIR}/${ECJ_JAR}
+.endif
+
+.if ${PORT_OPTIONS:MEXAMPLES}
+EXAMPLESDIR=		${DATADIR}/examples
+.else
+CONFIGURE_ARGS+=	--disable-examples
+.endif
+
+.if ${PORT_OPTIONS:MGCONF}
 USE_GNOME+=		gconf2
 CONFIGURE_ARGS+=	--enable-default-preferences-peer=gconf
 PLIST_SUB+=		GCONF=""
 .else
-CONFIGURE_ARGS+=	--enable-default-preferences-peer=file --disable-gconf-peer
+CONFIGURE_ARGS+=	--enable-default-preferences-peer=file \
+			--disable-gconf-peer
 PLIST_SUB+=		GCONF="@comment "
 .endif
 
-.if defined(WITHOUT_GTK2)
-CONFIGURE_ARGS+=	--disable-gtk-peer
-PLIST_SUB+=		GTK2="@comment "
-.if defined(WITH_CAIRO)
-IGNORE=you need to enable the Gtk+ AWT peer in order to use Cairo based Graphics2D.
-.endif
+.if ${PORT_OPTIONS:MGJDOC}
+ANTLR_JAR=		antlr-2.7.7.jar
+MASTER_SITES+=		http://www.antlr2.org/download/:antlr
+DISTFILES+=		${ANTLR_JAR}:antlr
+MAN1+=			gjdoc.1
+CONFIGURE_ARGS+=	--with-antlr-jar=${DISTDIR}/${ANTLR_JAR}
+PLIST_SUB+=		GJDOC=""
 .else
+CONFIGURE_ARGS+=	--disable-gjdoc
+PLIST_SUB+=		GJDOC="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MGMP}
+LIB_DEPENDS+=		gmp:${PORTSDIR}/math/gmp
+CONFIGURE_ARGS+=	--with-gmp=${LOCALBASE}
+PLIST_SUB+=		GMP=""
+.else
+CONFIGURE_ARGS+=	--disable-gmp
+PLIST_SUB+=		GMP="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MGTK2}
 USE_GNOME+=		gtk20
 PLIST_SUB+=		GTK2=""
-.if defined(WITH_CAIRO)
+.if ${PORT_OPTIONS:MCAIRO}
 CONFIGURE_ARGS+=	--enable-gtk-cairo
+.endif
+.else
+CONFIGURE_ARGS+=	--disable-gtk-peer
+PLIST_SUB+=		GTK2="@comment "
+.if ${PORT_OPTIONS:MCAIRO}
+IGNORE=you need to enable the Gtk+ AWT peer in order to use Cairo based Graphics2D.
 .endif
 .endif
 
-.if defined(WITH_QT4)
+.if ${PORT_OPTIONS:MQT4}
 CONFIGURE_ARGS+=	--enable-qt-peer
-.if defined(WITHOUT_GTK2)
+.if empty(PORT_OPTIONS:MGTK2)
 CONFIGURE_ARGS+=	--enable-default-toolkit=gnu.java.awt.peer.qt.QtToolkit
 .endif
 CONFIGURE_ENV+=		MOC="${LOCALBASE}/bin/moc-qt4"
-USE_QT_VER=		4
-QT_COMPONENTS=		moc_build corelib gui
+USE_QT4=		moc_build corelib gui
 PLIST_SUB+=		QT4=""
 .else
 PLIST_SUB+=		QT4="@comment "
 .endif
 
-pre-configure:
-	${MKDIR} ${WRKDIR}/bin
-	@${LN} -sf ${LOCALBASE}/bin/${GCJ}  ${WRKDIR}/bin/gcj
-	@${LN} -sf ${LOCALBASE}/bin/${GIJ}  ${WRKDIR}/bin/gij
-	${CP} ${FILESDIR}/ecj ${WRKDIR}/bin/ecj
-	${REINPLACE_CMD} -e 's|%%DISTDIR%%|${DISTDIR}|g' ${WRKDIR}/bin/ecj
+.if !defined(WITH_GCJ) && (${ARCH} == "amd64" || ${ARCH} == "i386")
+BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
+JAR?=			${LOCALBASE}/bootstrap-openjdk/bin/jar
+JAVA?=			${LOCALBASE}/bootstrap-openjdk/bin/java
+JAVAC?=			${LOCALBASE}/bootstrap-openjdk/bin/javac
+.else
+USE_BINUTILS=		yes
+USE_GCC=		yes
+GCC_SUFX=		${_USE_GCC:S/.//}
+JAR?=			${LOCALBASE}/bin/gjar${GCC_SUFX}
+JAVA?=			${LOCALBASE}/bin/gij${GCC_SUFX}
+JAVAC?=			${LOCALBASE}/bin/gcj${GCC_SUFX}
+JAVACFLAGS?=		-C
+.endif
 
-post-install:
-	cd ${PREFIX}/bin && find . -type f -exec  ${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g' {} +
-	cd ${PREFIX}/bin && rm *.bak
-	cd ${PREFIX}/bin && find . -type f -exec ${REINPLACE_CMD} -e 's|/usr/mports/java/classpath/work/bin/gij|${LOCALBASE}/bin/gij47|g' {} +
-	
+post-patch:
+	@${REINPLACE_CMD} -i.bak -e 's|@JAVA@|$${JAVACMD:-java}|g' \
+	    ${WRKSRC}/tools/g*.in
 
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
