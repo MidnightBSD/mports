@@ -25,12 +25,12 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 #
-# $FreeBSD: ports/Tools/scripts/MOVEDlint.awk,v 1.3 2005/01/09 10:21:17 krion Exp $
+# $FreeBSD$
 #
 # MOVEDlint - check MOVED for consistency
 #
 # Usage:
-#  [env PORTSDIR=/usr/ports CVS=yes] /usr/ports/Tools/scripts/MOVEDlint.awk
+#  [env PORTSDIR=/usr/ports] /usr/ports/Tools/scripts/MOVEDlint.awk
 #
 
 BEGIN {
@@ -38,8 +38,6 @@ BEGIN {
     portsdir = ENVIRON["PORTSDIR"] ? ENVIRON["PORTSDIR"] : "/usr/ports"
     if (ARGC == 1) {
         ARGV[ARGC++] = portsdir "/MOVED"
-        if (ENVIRON["CVS"] && !system("test -d " portsdir "/CVS"))
-            annotate = "cd " portsdir "; cvs -R annotate MOVED 2>/dev/null"
     }
     sort = "/usr/bin/sort -n"
     lastdate="1999-12-31"
@@ -84,6 +82,13 @@ $3 !~ /^20[0-3][0-9]-[01][0-9]-[0-3][0-9]$/ {
             missing[$2] = NR
         else
             delete resurrected[$2]
+
+#    Produces too many false positives
+#    if ($4 ~ /^[a-z].*/)
+#       printf "Initial value of 'reason' is lowercase: %5d (%s)\n", NR, $4
+
+    if ($4 ~ /\.$/)
+        printf "Final character is a dot: %5d (%s)\n", NR, $4
 }
 
 END {
