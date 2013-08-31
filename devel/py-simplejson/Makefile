@@ -1,25 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	simplejson
-PORTVERSION=	2.1.1
+PORTVERSION=	3.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Simplejson is a simple, fast, extensible JSON encoder/decoder
-LICENSE=	python
+COMMENT=	Simple, fast, extensible JSON encoder/decoder
 
-USE_PYTHON=	2.4+
-USE_PYDISTUTILS=	easy_install
-PYEASYINSTALL_ARCHDEP=	yes
+LICENSE=	mit
 
-DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
+USE_PYTHON=	yes
+USE_PYDISTUTILS=	yes
 
-.if !defined(NOPORTDOCS)
-post-install:
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/docs/ && ${COPYTREE_SHARE} . ${DOCSDIR})
-.endif
+regression-test: build
+	@(cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test)
 
 .include <bsd.port.mk>
