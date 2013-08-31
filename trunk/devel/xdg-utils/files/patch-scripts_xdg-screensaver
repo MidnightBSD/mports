@@ -6,7 +6,7 @@
  
  # Check if we can use "mv -T" 
 -if mv -T ... ... 2>&1 | grep '\.\.\.' > /dev/null ; then
-+# BSD cannot, so supress scary messages in the terminal
++# MidnightBSD cannot, so supress scary messages in the terminal
 +#if mv -T ... ... 2>&1 | grep '\.\.\.' > /dev/null ; then
 +if false ; then
     # We can securely move files in /tmp with mv -T
