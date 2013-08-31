@@ -6,7 +6,7 @@
 # this stuff is worth it, you can buy me a beer in return.   Anton Berezin
 # ----------------------------------------------------------------------------
 #
-# $FreeBSD: ports/Tools/scripts/splitpatch.pl,v 1.1 2005/04/12 10:56:08 tobez Exp $
+# $FreeBSD$
 use strict;
 
 # good tests:
@@ -57,7 +57,7 @@ sub cstart
 	if (!/^---\s+\d+,\d+\s+/ && /^---\s+(\S+)\s+/) {
 		$state = \&body;
 		$out = $1;
-		$out =~ s|/|_|g;
+		$out =~ s|/|__|g;
 		$out = "patch-$out";
 		if (open OUT, "> $out") {
 			print OUT $fl;
@@ -77,7 +77,7 @@ sub ustart
 	if (/^\+\+\+\s+(\S+)\s+/) {
 		$state = \&body;
 		$out = $1;
-		$out =~ s|/|_|g;
+		$out =~ s|/|__|g;
 		$out = "patch-$out";
 		if (open OUT, "> $out") {
 			print OUT $fl;
