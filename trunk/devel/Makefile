@@ -131,6 +131,7 @@ SUBDIR += libevent
 SUBDIR += libevent2
 SUBDIR += libexecinfo
 SUBDIR += libffi
+SUBDIR += libftdi
 SUBDIR += libgdata
 SUBDIR += libgee
 SUBDIR += libgii
