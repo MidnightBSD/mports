@@ -9,6 +9,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactively transferring files to a remote machine while using ssh
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz

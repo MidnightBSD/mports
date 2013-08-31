@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/comms/atslog/files/atslogd.in,v 1.3 2007/01/28 10:42:02 miwi Exp $
+# $FreeBSD$
 #
 # PROVIDE: atslogd
 # REQUIRE: mysql postgresql
@@ -12,10 +12,10 @@
 # atslogd_enable (bool):	Set to "NO" by default.
 #				Set it to "YES" to enable atslogd.
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="atslogd"
-rcvar=${name}_enable
+rcvar=atslogd_enable
 
 load_rc_config $name
 
