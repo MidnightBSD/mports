@@ -7,7 +7,8 @@ CATEGORIES=	benchmarks ftp
 MASTER_SITES=	http://www.kegel.com/dkftpbench/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A FTP benchmark program
+COMMENT=	FTP benchmark program
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes

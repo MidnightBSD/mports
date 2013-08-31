@@ -8,6 +8,7 @@ MASTER_SITES=	http://download.pureftpd.org/pub/blogbench/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Filesystem I/O
+
 LICENSE=        bsd4
 
 GNU_CONFIGURE=	yes

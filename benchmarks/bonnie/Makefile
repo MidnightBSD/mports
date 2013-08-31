@@ -10,6 +10,7 @@ DISTNAME=	bonnie
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Filesystem I/O
+
 LICENSE=	other
 
 NO_WRKSUBDIR=	yes
