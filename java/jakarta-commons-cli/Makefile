@@ -1,5 +1,4 @@
 # $MidnightBSD: mports/java/jakarta-commons-cli/Makefile,v 1.2 2011/12/24 03:14:05 laffer1 Exp $
-# $FreeBSD: ports/java/jakarta-commons-cli/Makefile,v 1.13 2008/02/27 15:10:52 ehaupt Exp $
 
 PORTNAME=	commons-cli
 PORTVERSION=	1.2
@@ -12,6 +11,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for command line arguments and options
+
 LICENSE=	apache2
 
 USE_JAVA=	yes

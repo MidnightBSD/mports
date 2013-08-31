@@ -1,6 +1,4 @@
 # $MidnightBSD: mports/java/jakarta-struts/Makefile,v 1.2 2012/02/28 02:17:43 laffer1 Exp $
-# $FreeBSD: ports/java/jakarta-struts/Makefile,v 1.7 2008/06/06 13:38:40 edwin Exp $
-#
 
 PORTNAME=	jakarta-struts
 PORTVERSION=	1.2.4
@@ -11,6 +9,7 @@ DIST_SUBDIR=	jakarta
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Struts framework
+
 LICENSE=	apache2
 
 USE_JAVA=	yes

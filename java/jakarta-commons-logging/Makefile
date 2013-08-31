@@ -1,6 +1,4 @@
 # $MidnightBSD: mports/java/jakarta-commons-logging/Makefile,v 1.3 2011/12/24 03:16:40 laffer1 Exp $
-# $FreeBSD: ports/java/jakarta-commons-logging/Makefile,v 1.11 2006/05/16 15:43:15 hq Exp $
-#
 
 PORTNAME=	commons-logging
 PORTVERSION=	1.1.1
@@ -12,6 +10,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic logging wrapper library
+
 LICENSE=	apache2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

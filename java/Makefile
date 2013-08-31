@@ -31,7 +31,6 @@ SUBDIR += jdbcpool
 SUBDIR += jdom
 SUBDIR += jikes
 SUBDIR += junit
-SUBDIR += kaffe
 SUBDIR += linux-sun-jdk16
 SUBDIR += linux-sun-jre16
 SUBDIR += linux-sun-jre17
