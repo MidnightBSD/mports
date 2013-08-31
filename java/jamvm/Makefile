@@ -1,17 +1,14 @@
-# New ports collection makefile for:	jamvm
-# Date created:				31 March 2008
-# Whom:					Bjoern Koenig
-#
 # $MidnightBSD: mports/java/jamvm/Makefile,v 1.1 2008/07/08 02:39:30 laffer1 Exp $
-# $FreeBSD: ports/java/jamvm/Makefile,v 1.1 2008/04/04 13:14:06 pav Exp $
 
 PORTNAME=	jamvm
 PORTVERSION=	1.5.4
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/JamVM%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A compact Java virtual machine
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/classpath/glibj.zip:${PORTSDIR}/java/classpath
@@ -19,19 +16,23 @@ RUN_DEPENDS=	${LOCALBASE}/share/classpath/glibj.zip:${PORTSDIR}/java/classpath
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-classpath-install-dir=${LOCALBASE}
 USE_GMAKE=	yes
+USES=		pkgconfig
 
-OPTIONS=	FFI "use libffi to call native methods" ON \
-		ZIP "turn-on zip support in the bootstrap loader" ON
+OPTIONS_DEFINE=	FFI ZIP
+OPTIONS_DEFAULT=FFI ZIP
+FFI_DESC=	use libffi to call native methods
+ZIP_DESC=	turn-on zip support in the bootstrap loader
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_FFI)
+.if ${PORT_OPTIONS:MFFI}
 LIB_DEPENDS+=		ffi:${PORTSDIR}/devel/libffi
 CONFIGURE_ARGS+=	--enable-ffi
-CONFIGURE_ENV+=		CFLAGS="${CFLAGS} `pkg-config libffi --cflags`" LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+.elif ${ARCH} == "sparc64"
+IGNORE=		for ${ARCH} requires libffi
 .endif
 
-.if defined(WITH_ZIP)
+.if ${PORT_OPTIONS:MZIP}
 BUILD_DEPENDS+=		zip:${PORTSDIR}/archivers/zip
 PLIST_SUB+=		WITH_ZIP="" WITHOUT_ZIP="@comment "
 .else
@@ -39,10 +40,9 @@ CONFIGURE_ARGS+=	--disable-zip
 PLIST_SUB+=		WITH_ZIP="@comment " WITHOUT_ZIP=""
 .endif
 
-post-extract:
-	@${MV} ${WRKSRC}/src/arch/x86_64.h ${WRKSRC}/src/arch/amd64.h
+.include <bsd.port.pre.mk>
 
-post-configure:
-	@${MV} ${WRKSRC}/src/os/bsd/x86_64 ${WRKSRC}/src/os/bsd/amd64
+post-extract:
+	@${REINPLACE_CMD} -e "s,\(^include_HEADERS = .*\)jni.h\(.*\),\1\2," ${WRKSRC}/src/Makefile.in
 
 .include <bsd.port.post.mk>
