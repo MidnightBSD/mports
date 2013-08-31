@@ -97,6 +97,7 @@ SUBDIR += php5-tidy
 SUBDIR += pmwiki
 SUBDIR += polipo
 SUBDIR += privoxy
+SUBDIR += py-httplib2
 SUBDIR += qt4-webkit
 SUBDIR += retsina
 SUBDIR += seamonkey
