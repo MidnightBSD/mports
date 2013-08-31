@@ -94,6 +94,9 @@ rt:*:180:
 nagios:*:181:
 noc:*:182:
 icinga:*:183:
+dnscache:*:184:
+tinydns:*:185:
+dnslog:*:186:
 moinmoin:*:192:
 cups:*:193:
 saned:*:194:
@@ -135,6 +138,7 @@ xymon:*:280:
 prelude:*:281:
 spread:*:282:
 devmon:*:283:
+vnstat:*:284:
 backuppc:*:300:
 _sphinx:*:312:
 dkfilter:*:325:
@@ -254,5 +258,7 @@ ossec:*:966:
 kippo:*:969:
 colord:*:970:
 shibd:*:971:
+plex:*:972:
+boinc:*:973:
 nogroup:*:65533:
 nobody:*:65534:
