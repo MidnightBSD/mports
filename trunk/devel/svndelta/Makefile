@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  svndelta
-# Date created:                   Thu Sep 21, 2006
-# Whom:                           mich@FreeBSD.org
-#
 # $MidnightBSD$
-# $FreeBSD: ports/devel/svndelta/Makefile,v 1.2 2007/03/12 14:35:28 mich Exp $
-#
 
 PORTNAME=	svndelta
 PORTVERSION=	1.0.6
@@ -14,6 +7,7 @@ MASTER_SITES=	http://www.incava.org/pub/svndelta/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Summarizes and manages differences between local files and Subversion
+
 LICENSE=	unknown
 
 RUN_DEPENDS=	${LOCALBASE}/bin/svn:${PORTSDIR}/devel/subversion
