@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libxfce4util
-# Date created:		7 June 2003
-# Whom:			James Earl <jdearl@telus.net>
-#
 # $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.8 2012/03/11 18:41:52 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/libxfce4gui/Makefile,v 1.43 2008/08/30 05:26:23 kan Exp $
-#
 
 PORTNAME=	libxfce4gui
 PORTVERSION=	4.10.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/archive/libxfcegui4/${PORTVERSION:R}
@@ -16,7 +10,8 @@ DISTNAME=	libxfcegui4-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	XFce 4 widget library required by xfce4 and xfwm4
+COMMENT=	Xfce 4 widget library required by Xfce4 and Xfwm4
+
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
