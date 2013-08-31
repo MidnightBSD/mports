@@ -1,0 +1,20 @@
+# $MidnightBSD$
+
+PORTNAME=	oauth2
+PORTVERSION=	1.5.211
+CATEGORIES=	net python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python library for OAuth version 1.0
+
+LICENSE=	mit
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httplib2>0:${PORTSDIR}/www/py-httplib2
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USE_PYTHON=	yes
+USE_PYDISTUTILS=	easy_install
+
+.include <bsd.port.mk>
