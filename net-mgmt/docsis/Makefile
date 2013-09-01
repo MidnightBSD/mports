@@ -2,10 +2,9 @@
 
 PORTNAME=	docsis
 PORTVERSION=	0.9.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DOCSIS(tm) binary configuration file encoder/decoder
@@ -20,8 +19,14 @@ USE_BISON=	build
 
 PLIST_SUB=	MIBS=share/snmp/mibs
 
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+BROKEN=		Produces corrupt files on amd64
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|^htmldocdir =.*|htmldocdir = ${DOCSDIR}|' ${WRKSRC}/doc/Makefile.in
 	@${REINPLACE_CMD} -e 's|^examplesdir =.*|examplesdir = ${EXAMPLESDIR}|' ${WRKSRC}/examples/Makefile.in
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
