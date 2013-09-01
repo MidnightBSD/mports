@@ -7,6 +7,7 @@ MASTER_SITES=	ftp://ftp.riss-telecom.ru/pub/dev/trafd/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The BPF Traffic Collector
+
 LICENSE=	bsd3
 
 USE_RC_SUBR=	trafd

@@ -6,13 +6,13 @@ CATEGORIES=	net-mgmt
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool to replay saved packet capture files
+COMMENT=	Tool to replay saved packet capture files
+
 LICENSE=	bsd3
 
 BUILD_DEPENDS=	pcapnav-config:${PORTSDIR}/net/libpcapnav
 
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	--program-transform-name='s|.*\(tcp.*\)|\1|' \
 		--with-pcapnav-config=${LOCALBASE}/bin/pcapnav-config \

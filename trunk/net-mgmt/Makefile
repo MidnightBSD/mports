@@ -2,7 +2,6 @@
 
 COMMENT = Network management tools
 
-SUBDIR += aircrack
 SUBDIR += aircrack-ng
 SUBDIR += docsis
 SUBDIR += kismet
