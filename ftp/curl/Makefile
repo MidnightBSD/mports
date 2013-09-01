@@ -1,239 +1,288 @@
 # $MidnightBSD: mports/ftp/curl/Makefile,v 1.13 2011/10/28 13:56:05 laffer1 Exp $
 
 PORTNAME=	curl
-PORTVERSION=	7.24.0
+PORTVERSION=	7.31.0
 PORTREVISION=	0
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
-		ftp://ftp.sunet.se/pub/www/utilities/curl/ \
-		ftp://ftp.fu-berlin.de/pub/unix/network/curl/ \
-		ftp://crydee.sai.msu.ru/zeus/unix/WWW/tools/mirror/
-MASTER_SITE_SUBDIR=	curl
+		FREEBSD_LOCAL/sunpoet
 EXTRACT_SUFX=	.tar.lzma
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
+MAINTAINER?=	ports@MidnightBSD.org
+COMMENT?=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
+
 LICENSE=	mit
 
+OPTIONS_DEFINE=	CA_BUNDLE COOKIES CURL_DEBUG DEBUG DOCS EXAMPLES GSSAPI IDN IPV6 LDAP LDAPS LIBSSH2 NTLM PROXY RTMP SPNEGO TLS_SRP
+OPTIONS_RADIO=	RESOLV SSL
+OPTIONS_RADIO_RESOLV=	CARES THREADED_RESOLVER
+OPTIONS_RADIO_SSL=	CYASSL GNUTLS NSS OPENSSL POLARSSL
+OPTIONS_DEFAULT=CA_BUNDLE GSSAPI IPV6 OPENSSL PROXY RESOLV THREADED_RESOLVER SSL TLS_SRP
+CA_BUNDLE_DESC=	Install CA bundle for OpenSSL
+COOKIES_DESC=	Cookies support
+CURL_DEBUG_DESC=cURL debug memory tracking
+LIBSSH2_DESC=	SCP/SFTP support via libssh2
+RESOLV_DESC=	DNS resolving options
+SPNEGO_DESC=	SPNEGO (RFC 4178) support
+THREADED_RESOLVER_DESC=	Threaded DNS resolver
+TLS_SRP_DESC=	TLS-SRP (Secure Remote Password) support
 
-MAN1=		curl.1 curl-config.1
-MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
-		curl_easy_escape.3 curl_easy_getinfo.3 \
-		curl_easy_init.3 curl_easy_pause.3 \
-		curl_easy_perform.3 curl_easy_reset.3 curl_easy_recv.3 \
-		curl_easy_send.3 \
-		curl_easy_setopt.3 curl_easy_strerror.3 curl_easy_unescape.3 \
-		curl_escape.3 \
-		curl_unescape.3 curl_formadd.3 curl_formget.3 curl_formfree.3 curl_free.3 \
-		curl_getdate.3 curl_getenv.3 curl_global_init.3 \
-		curl_global_init_mem.3 curl_global_cleanup.3 curl_mprintf.3 \
-		curl_multi_add_handle.3 curl_multi_assign.3 curl_multi_cleanup.3 \
-		curl_multi_fdset.3 curl_multi_info_read.3 curl_multi_init.3 \
-		curl_multi_perform.3 curl_multi_remove_handle.3 \
-		curl_multi_setopt.3 curl_multi_socket.3 \
-		curl_multi_socket_action.3 \
-		curl_multi_strerror.3 curl_multi_timeout.3 \
-		curl_share_cleanup.3 curl_share_init.3 \
-		curl_share_setopt.3 curl_share_strerror.3 curl_slist_append.3 \
-		curl_slist_free_all.3 curl_strequal.3 curl_version.3 \
-		curl_version_info.3 libcurl.3 libcurl-easy.3 libcurl-errors.3 \
-		libcurl-multi.3 libcurl-share.3 libcurl-tutorial.3
-
-USE_LDCONFIG=	yes
-SHLIB_VER=	6
-
-MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
-PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
-
-USE_PERL5_BUILD=	yes
-USE_GNOME=		gnomehack
-USE_XZ=	yes
+CONFIGURE_ARGS+=--disable-threaded-resolver --disable-werror \
+		--enable-imap --enable-pop3 --enable-rtsp --enable-smtp \
+		--without-axtls
+CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}"
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--enable-pop3 --enable-smtp --enable-imap --enable-rtsp \
-		--disable-threaded-resolver --disable-werror
-MAKE_JOBS_SAFE=	yes
+USE_PERL5=	build
+USE_XZ=		yes
+USES=		pathfix perl5
 
-OPTIONS=	CARES "Asynchronous DNS resolution via c-ares" off \
-		CURL_DEBUG "Enable curl diagnostic output" off \
-		GNUTLS "Use GNU TLS if OPENSSL is OFF" off \
-		IPV6 "IPv6 support" on \
-		KERBEROS4 "Kerberos 4 authentication" off \
-		LDAP "LDAP support" off \
-		LDAPS "LDAPS support (requires LDAP and SSL)" off \
-		LIBIDN "Internationalized Domain Names via libidn" off \
-		LIBSSH2 "SCP/SFTP support via libssh2" off \
-		NTLM "NTLM authentication" off \
-		OPENSSL "OpenSSL support" on \
-		CA_BUNDLE "Install CA bundle for OpenSSL" on \
-		PROXY "Proxy support" on \
-		RTMP "RTMP streams support" off \
-		TRACKMEMORY "Enable curl memory diagnostic output" off
+.if !defined(BUILDING_HIPHOP)
+USE_LDCONFIG=	yes
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_GNUTLS) && defined(WITH_OPENSSL)
-IGNORE=		may only use GNU TLS if OpenSSL support is disabled
+DOCS=		BINDINGS BUGS CONTRIBUTE DISTRO-DILEMMA FAQ FEATURES HISTORY \
+		INSTALL INSTALL.devcpp INTERNALS KNOWN_BUGS LICENSE-MIXING \
+		MANUAL README.netware README.win32 RESOURCES SSLCERTS THANKS \
+		TODO TheArtOfHttpScripting VERSIONS curl-config.html \
+		curl-config.pdf curl.html curl.pdf index.html
+MAN1=		curl.1 curl-config.1 mk-ca-bundle.1
+MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 curl_easy_escape.3 \
+		curl_easy_getinfo.3 curl_easy_init.3 curl_easy_pause.3 \
+		curl_easy_perform.3 curl_easy_recv.3 curl_easy_reset.3 \
+		curl_easy_send.3 curl_easy_setopt.3 curl_easy_strerror.3 \
+		curl_easy_unescape.3 curl_escape.3 curl_formadd.3 \
+		curl_formfree.3 curl_formget.3 curl_free.3 curl_getdate.3 \
+		curl_getenv.3 curl_global_cleanup.3 curl_global_init.3 \
+		curl_global_init_mem.3 curl_mprintf.3 curl_multi_add_handle.3 \
+		curl_multi_assign.3 curl_multi_cleanup.3 curl_multi_fdset.3 \
+		curl_multi_info_read.3 curl_multi_init.3 curl_multi_perform.3 \
+		curl_multi_remove_handle.3 curl_multi_setopt.3 \
+		curl_multi_socket.3 curl_multi_socket_action.3 \
+	 	curl_multi_strerror.3 curl_multi_timeout.3 curl_multi_wait.3 \
+		curl_share_cleanup.3 curl_share_init.3 curl_share_setopt.3 \
+		curl_share_strerror.3 curl_slist_append.3 \
+		curl_slist_free_all.3 curl_strequal.3 curl_unescape.3 \
+		curl_version.3 curl_version_info.3 libcurl.3 libcurl-easy.3 \
+		libcurl-errors.3 libcurl-multi.3 libcurl-share.3 \
+		libcurl-tutorial.3
 .endif
 
-.if defined(WITH_LIBSSH2) && !defined(WITH_OPENSSL)
+SLAVEDIRS=	ftp/curl-hiphop
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MCA_BUNDLE} && !${PORT_OPTIONS:MOPENSSL}
+IGNORE=		only supports CA bundle with OpenSSL
+.endif
+
+.if !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL} && ${PORT_OPTIONS:MTLS_SRP}
+IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
+.endif
+
+.if !${PORT_OPTIONS:MLDAP} && ${PORT_OPTIONS:MLDAPS}
+IGNORE=		only supports LDAPS with LDAP
+.endif
+
+.if ${PORT_OPTIONS:MLDAPS} && !${PORT_OPTIONS:MSSL}
+IGNORE=		only supports LDAPS with SSL
+.endif
+
+.if ${PORT_OPTIONS:MLIBSSH2} && !${PORT_OPTIONS:MOPENSSL}
 IGNORE=		only supports LIBSSH2 with OpenSSL
 .endif
 
-.if defined(WITH_NTLM) && !defined(WITH_OPENSSL)
-IGNORE=		only supports NTLM with OpenSSL
+.if ${PORT_OPTIONS:MNTLM} && !${PORT_OPTIONS:MCYASSL} && !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MNSS} && !${PORT_OPTIONS:MOPENSSL} && !${PORT_OPTIONS:MPOLARSSL}
+IGNORE=		only supports NTLM with SSL
 .endif
 
-.if defined(WITH_LDAPS)
-.if !defined(WITH_LDAP)
-IGNORE=			only supports LDAPS with LDAP
-.else
-.if !defined(WITH_OPENSSL) && !defined(WITH_GNUTLS)
-IGNORE=			only supports LDAPS with SSL (OpenSSL or GNUTLS)
-.endif
-.endif
-.endif
-
-.if !defined(WITHOUT_OPENSSL)
-EXTENSIONS+=	openssl
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
-.if !defined(WITHOUT_CA_BUNDLE)
+.if ${PORT_OPTIONS:MCA_BUNDLE}
 RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-CONFIGURE_ARGS+=	--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
+CONFIGURE_ARGS+=--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
 .else
-CONFIGURE_ARGS+=	--without-ca-bundle
-.endif
-.else
-CONFIGURE_ARGS+=	--without-ssl
-.if defined(WITH_CA_BUNDLE)
-IGNORE=			only supports CA bundle with OpenSSL
-.endif
+CONFIGURE_ARGS+=--without-ca-bundle
 .endif
 
-.if defined(WITH_CARES)
-LIB_DEPENDS+=	cares.2:${PORTSDIR}/dns/c-ares
-CONFIGURE_ARGS+=	--enable-ares=${LOCALBASE}
+.if ${PORT_OPTIONS:MCARES}
+LIB_DEPENDS+=	cares:${PORTSDIR}/dns/c-ares
+CONFIGURE_ARGS+=--enable-ares=${LOCALBASE}
 .else
-CONFIGURE_ARGS+=	--disable-ares
+CONFIGURE_ARGS+=--disable-ares
 .endif
 
-.if defined(WITH_GNUTLS)
+.if ${PORT_OPTIONS:MCOOKIES}
+CONFIGURE_ARGS+=--enable-cookies
+.else
+CONFIGURE_ARGS+=--disable-cookies
+.endif
+
+.if ${PORT_OPTIONS:MCURL_DEBUG}
+CONFIGURE_ARGS+=--enable-curldebug
+.else
+CONFIGURE_ARGS+=--disable-curldebug
+.endif
+
+.if ${PORT_OPTIONS:MCYASSL}
+LIB_DEPENDS+=	cyassl:${PORTSDIR}/security/yassl
+CONFIGURE_ARGS+=--with-cyassl=${LOCALBASE}
+.else
+CONFIGURE_ARGS+=--without-cyassl
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=--enable-debug
+.else
+CONFIGURE_ARGS+=--disable-debug
+.endif
+
+.if ${PORT_OPTIONS:MGNUTLS}
 LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=--with-gnutls=${LOCALBASE}
 .else
 CONFIGURE_ARGS+=--without-gnutls
 .endif
 
-.if defined(WITH_OPENSSL) || defined(WITH_GNUTLS)
-PLIST_SUB+=	SSL=""
+.if ${PORT_OPTIONS:MGSSAPI}
+CONFIGURE_ARGS+=--with-gssapi \
+		--with-gssapi-includes=${INCLUDEDIR} \
+		--with-gssapi-libs=${LIBDIR}
 .else
-PLIST_SUB+=	SSL="@comment "
+CONFIGURE_ARGS+=--without-gssapi
 .endif
 
-.if defined(WITH_IPV6)
-CONFIGURE_ARGS+=	--enable-ipv6
+.if ${PORT_OPTIONS:MIDN}
+LIB_DEPENDS+=	idn:${PORTSDIR}/dns/libidn
+CONFIGURE_ARGS+=--with-libidn=${LOCALBASE}
 .else
-CONFIGURE_ARGS+=	--disable-ipv6
+CONFIGURE_ARGS+=--without-libidn
 .endif
 
-.if exists(/usr/lib/libkrb.a) && defined(WITH_KERBEROS4)
-CONFIGURE_ARGS += --with-krb4=/usr
+.if ${PORT_OPTIONS:MIPV6}
+CONFIGURE_ARGS+=--enable-ipv6
 .else
-CONFIGURE_ARGS += --without-krb4
+CONFIGURE_ARGS+=--disable-ipv6
 .endif
 
-.if defined(WITH_LDAP)
-CONFIGURE_ARGS+=	--enable-ldap
-USE_OPENLDAP=	yes
-CFLAGS+=	-I${LOCALBASE}/include
+.if ${PORT_OPTIONS:MLDAP}
+CONFIGURE_ARGS+=--enable-ldap
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-ADDFLAGS=	true
-.if defined(WITH_LDAPS)
-CONFIGURE_ARGS+=	--enable-ldaps
+USE_OPENLDAP=	yes
 .else
-CONFIGURE_ARGS+=	--disable-ldaps
+CONFIGURE_ARGS+=--disable-ldap
 .endif
+
+.if ${PORT_OPTIONS:MLDAPS}
+CONFIGURE_ARGS+=--enable-ldaps
 .else
-CONFIGURE_ARGS+=	--disable-ldap --disable-ldaps
+CONFIGURE_ARGS+=--disable-ldaps
 .endif
 
-.if defined(WITH_LIBIDN)
-LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
-CONFIGURE_ARGS+=	--with-libidn=${LOCALBASE}
+.if ${PORT_OPTIONS:MLIBSSH2}
+LIB_DEPENDS+=	ssh2:${PORTSDIR}/security/libssh2
+CONFIGURE_ARGS+=--with-libssh2=${LOCALBASE}
 .else
-CONFIGURE_ARGS+=	--without-libidn
+CONFIGURE_ARGS+=--without-libssh2
 .endif
 
-.if defined(WITH_LIBSSH2)
-LIB_DEPENDS+=	ssh2.1:${PORTSDIR}/security/libssh2
-CONFIGURE_ARGS+=	--with-libssh2=${LOCALBASE}
+.if ${PORT_OPTIONS:MNSS}
+LIB_DEPENDS+=	nss3:${PORTSDIR}/security/nss
+CONFIGURE_ARGS+=--with-nss=${LOCALBASE}
 .else
-CONFIGURE_ARGS+=	--without-libssh2
+CONFIGURE_ARGS+=--without-nss
 .endif
 
-.if defined(WITH_CURL_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.if defined(WITH_RTMP)
-LIB_DEPENDS+=	rtmp.0:${PORTSDIR}/multimedia/rtmpdump
-CONFIGURE_ARGS+=	--with-librtmp=${LOCALBASE}
+.if ${PORT_OPTIONS:MNTLM}
+CONFIGURE_ARGS+=--enable-ntlm
 .else
-CONFIGURE_ARGS+=	--without-librtmp
+CONFIGURE_ARGS+=--disable-ntlm
 .endif
 
-.if defined(WITH_TRACKMEMORY)
-CONFIGURE_ARGS+=	--enable-curldebug
+.if ${PORT_OPTIONS:MOPENSSL}
+CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE}
+CPPFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
+USE_OPENSSL=	yes
 .else
-CONFIGURE_ARGS+=	--disable-curldebug
+CONFIGURE_ARGS+=--without-ssl
 .endif
 
-.if defined(WITH_NTLM)
-CONFIGURE_ARGS+=	--enable-ntlm
+.if ${PORT_OPTIONS:MPOLARSSL}
+LIB_DEPENDS+=	polarssl:${PORTSDIR}/security/polarssl
+CONFIGURE_ARGS+=--with-polarssl=${LOCALBASE}
 .else
-CONFIGURE_ARGS+=	--disable-ntlm
+CONFIGURE_ARGS+=--without-polarssl
 .endif
 
-.if !defined(WITHOUT_PROXY)
-CONFIGURE_ARGS+=	--enable-proxy
+.if ${PORT_OPTIONS:MPROXY}
+CONFIGURE_ARGS+=--enable-proxy
 .else
-CONFIGURE_ARGS+=	--disable-proxy
+CONFIGURE_ARGS+=--disable-proxy
 .endif
 
-CONFIGURE_ENV+=	LOCALBASE="${LOCALBASE}"
-.if defined(ADDFLAGS)
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
+.if ${PORT_OPTIONS:MRTMP}
+LIB_DEPENDS+=	rtmp:${PORTSDIR}/multimedia/rtmpdump
+CONFIGURE_ARGS+=--with-librtmp=${LOCALBASE}
+.else
+CONFIGURE_ARGS+=--without-librtmp
 .endif
 
-DOCS=		BINDINGS BUGS CONTRIBUTE DISTRO-DILEMMA FAQ FEATURES \
-		HISTORY INSTALL INSTALL.devcpp INTERNALS KNOWN_BUGS \
-		LICENSE-MIXING MANUAL README.netware README.win32 RESOURCES \
-		SSLCERTS THANKS TODO TheArtOfHttpScripting VERSIONS \
-		curl-config.html curl-config.pdf curl.html curl.pdf \
-		index.html
+.if ${PORT_OPTIONS:MSPNEGO}
+LIB_DEPENDS+=	fbopenssl:${PORTSDIR}/security/fbopenssl
+CPPFLAGS+=	-I${LOCALBASE}/include/fbopenssl
+CONFIGURE_ARGS+=--with-spnego=${LOCALBASE}/lib
+.else
+CONFIGURE_ARGS+=--without-spnego
+.endif
+
+.if ${PORT_OPTIONS:MTHREADED_RESOLVER}
+CONFIGURE_ARGS+=--enable-threaded-resolver
+.else
+CONFIGURE_ARGS+=--disable-threaded-resolver
+.endif
+
+.if ${PORT_OPTIONS:MTLS_SRP}
+CONFIGURE_ARGS+=--enable-tls-srp
+.else
+CONFIGURE_ARGS+=--disable-tls-srp
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|\(flags_dbg_off=\)".*"|\1""|; s|\(flags_opt_off=\)".*"|\1""|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e '/^SUBDIRS = / s|$$| docs|; /^DIST_SUBDIRS = / s| docs||; /cd docs &&/d' ${WRKSRC}/Makefile.in
+
+pre-configure:
+.if ${PORT_OPTIONS:MLDAP}
+	@${ECHO_MSG} "Note:"
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "  Enabling LDAP option is known to fail with unpatched Mk/bsd.ldap.mk."
+	@${ECHO_MSG} "  See PR/177401 for detailed information."
+	@${ECHO_MSG} "  URL: http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/177401"
+	@${ECHO_MSG} ""
+.endif
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S@^@${WRKSRC}/docs/@} ${DOCSDIR}
-	@${MKDIR} ${DOCSDIR}/libcurl
-	(cd ${WRKSRC}/docs/libcurl && exec ${INSTALL_DATA} ABI *.html *.pdf *.m4 ${DOCSDIR}/libcurl/)
+.if !defined(BUILDING_HIPHOP)
+	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal/
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}/ ${DOCSDIR}/libcurl/
+	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}/
+	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.html *.pdf *.m4 ${DOCSDIR}/libcurl/
 .endif
-.if !defined(NOPORTEXAMPLES)
-	@${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/examples/README ${WRKSRC}/docs/examples/Makefile.example ${WRKSRC}/docs/examples/makefile* ${WRKSRC}/docs/examples/*.c ${WRKSRC}/docs/examples/*.cc ${EXAMPLESDIR}/
+.if ${PORT_OPTIONS:MEXAMPLES}
+	${MKDIR} ${EXAMPLESDIR}/
+	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${EXAMPLESDIR}/
+.endif
 .endif
 
 # Setting LC_ALL=C is a kludge; maybe curl/libcurl shouldn't actually use
 # the user's locale when dates are sent to the server.
-test:	build
-.if defined(WITHOUT_PROXY)
+regression-test test: build
+.if !${PORT_OPTIONS:MPROXY}
 	@${ECHO_MSG} "******************************************"
 	@${ECHO_MSG} "* You have disabled curl proxy support.  *"
 	@${ECHO_MSG} "* Some tests SHALL FAIL!                 *"
 	@${ECHO_MSG} "* This is being addressed.               *"
 	@${ECHO_MSG} "******************************************"
 .endif
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} LC_ALL=C ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test
+	cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} LC_ALL=C ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
