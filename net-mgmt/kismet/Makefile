@@ -1,11 +1,14 @@
 # $MidnightBSD: mports/net-mgmt/kismet/Makefile,v 1.3 2009/06/28 00:10:36 laffer1 Exp $
 
 PORTNAME=	kismet
-PORTVERSION=	200805.r1
-PORTREVISION=	1
+DISTVERSION=	2013-03-R1b
+PORTEPOCH=	1
 CATEGORIES=	net-mgmt
-MASTER_SITES=	http://www.kismetwireless.net/code/
-DISTNAME=	kismet-2008-05-R1
+MASTER_SITES=	http://www.kismetwireless.net/code/:1 \
+		http://anonsvn.wireshark.org/wireshark/trunk/:2
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:1
+DIST_SUBDIR=	${PORTNAME}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
@@ -13,92 +16,87 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-CONFIGURE_ARGS+=	--enable-syspcap --mandir=${MANPREFIX}/man
+USE_XZ=		yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS=	CURSES "libcurses interface" on \
-		PANEL "libpanels interface" on \
-		SETUID "Install kismet with setuid" on \
-		GPSMAP "Build gpsmap utility" off \
-		GMAP "Build gpsmap with Google Maps patch *UNOFFICIAL*" off
+MAN1=		kismet.1 kismet_drone.1
+MAN5=		kismet.conf.5 kismet_drone.conf.5
 
-RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
+OPTIONS_DEFINE=		PCRE PLUGINS SETUID
+OPTIONS_DEFAULT=	PCRE PLUGINS SETUID
+SETUID_DESC=		Use privilege separation
 
-.include <bsd.port.pre.mk>
+WRKSRC=	${WRKDIR}/${DISTNAME:S/a$$//}
 
-.ifdef(WITHOUT_CURSES)
-CONFIGURE_ARGS+=--disable-curses
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
+PORTDOCS=	README manuf
+DISTFILES+=	manuf:2
+IGNOREFILES=	manuf
 .endif
 
-.ifdef(WITHOUT_PANEL)
-CONFIGURE_ARGS+=--disable-panel
+.if ${PORT_OPTIONS:MEXAMPLES}
+PORTEXAMPLES=	*
 .endif
 
-.ifdef(WITHOUT_SETUID)
-CONFIGURE_ARGS+=--disable-setuid
-.endif
-
-.ifdef(WITH_GPSMAP)
-PLIST_SUB+=	GPS=""
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp \
-		expat.6:${PORTSDIR}/textproc/expat2 \
-		Magick++.10:${PORTSDIR}/graphics/ImageMagick
-BUILD_DEPENDS+=	wget:${PORTSDIR}/ftp/wget
-MAN1=		gpsmap.1
+.if ${PORT_OPTIONS:MPCRE}
+CONFIGURE_ARGS+=--enable-pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 .else
-CONFIGURE_ARGS+=--disable-gpsmap
-PLIST_SUB+=	GPS="@comment "
+CONFIGURE_ARGS+=--disable-pcre
 .endif
 
-.ifdef(WITH_GMAP) && defined(WITH_GPSMAP)
-PATCH_SITES=	http://www.parknation.com/gmap/files/
-PATCHFILES=	gpsmap-gmap-0.1.tgz
-PLIST_SUB+=	GMAP=""
-.ifndef(NOPORTDOCS)
-SUB_LIST+=	DOCSDIR=${DOCSDIR}
-SUB_FILES+=	pkg-message
-.endif
-GMAP=		gpsmap-gmap
-PORTDOCS=	${GMAP}/README.txt
+.if ${PORT_OPTIONS:MSETUID}
+GROUPS =	kismet
+CONFIGURE_ARGS+=--with-suidgroup=${GROUPS}
+INSTALL_TARGET =	suidinstall
+PLIST_SUB+=	SUID=""
+PKGMESSAGE=	${WRKDIR}/suid_pkg-message
+SUB_FILES+=	suid_pkg-message
 .else
-PLIST_SUB+=	GMAP="@comment "
+INSTALL_TARGET =	install
+CONFIGURE_ARGS+=--without-suidgroup
+PLIST_SUB+=	SUID="@comment "
 .endif
 
-MAN1+=		kismet.1 kismet_drone.1
-MAN5=		kismet.conf.5 kismet_drone.conf.5 kismet_ui.conf.5
-
-PORTDOCS+=	README
-
-post-extract:
-.ifdef(WITH_GMAP) && defined(WITH_GPSMAP)
-	@${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/${DIST_SUBDIR}/${PATCHFILES}
-	@${PATCH} -d ${WRKSRC}/${GMAP}-0.1 --forward --quiet < ${PKGDIR}/files/${GMAP}-0.1.diff.patch
-	@${PATCH} -d ${WRKSRC} --forward --quiet < ${WRKSRC}/${GMAP}-0.1/${GMAP}-0.1.diff
+.if ${PORT_OPTIONS:MPLUGINS}
+ALL_TARGET=	depend all all-plugins
+INSTALL_TARGET+=	all-plugins-install
+PLIST_SUB+=	PLUGINS=""
+.else
+PLIST_SUB+=	PLUGINS="@comment "
 .endif
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
-		${WRKSRC}/configure
+
+post-patch:
+	@${REINPLACE_CMD} -e "/gps=/s/true/false/" \
+		-e "/ouifile=/{/wireshark/d;s|/etc|${DOCSDIR}|;}" \
+			${WRKSRC}/conf/kismet.conf.in \
+			${WRKSRC}/conf/kismet_drone.conf
+	@${REINPLACE_CMD} -e "s/plugin-/plugin-[aps]/" \
+		-e "s/make/${GMAKE}/" \
+		-e "s/\$$(MAKE)/${GMAKE}/" \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e "s/CXXFLAGS/CPPFLAGS/" \
+		${WRKSRC}/plugin-alertsyslog/Makefile
+	@${FIND} ${WRKSRC} -type f -name 'Makefile' -print0 | ${XARGS} -0 \
+		${REINPLACE_CMD} -E \
+		'/C(XX)?FLAGS[[:blank:]]*\+=/s/ -g / /'
 
 post-install:
-.ifndef(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/manuf ${DOCSDIR}
 .endif
-.ifdef(WITH_GMAP) && defined(WITH_GPSMAP)
-	${MKDIR} ${DATADIR}/${GMAP}/mapfiles
-	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/index.html ${DATADIR}/${GMAP}/index.html
-	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/shadow.png ${DATADIR}/${GMAP}/mapfiles/shadow.png
-	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/wep.png ${DATADIR}/${GMAP}/mapfiles/wep.png
-	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/open.png ${DATADIR}/${GMAP}/mapfiles/open.png
-	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/wpa.png ${DATADIR}/${GMAP}/mapfiles/wpa.png
-.ifndef(NOPORTDOCS)
-	@${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/README.txt ${DOCSDIR}/${GMAP}
-	@${CAT} ${PKGMESSAGE}
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${EXAMPLESDIR}
+	@${INSTALL_DATA} ${WRKSRC}/ruby/* ${EXAMPLESDIR}
 .endif
-.endif
-	${INSTALL_SCRIPT} ${WRKSRC}/extra/manuf_update.sh ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/conf/kismet.conf ${PREFIX}/etc/kismet.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/conf/kismet_drone.conf ${PREFIX}/etc/kismet_drone.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/conf/kismet_ui.conf ${PREFIX}/etc/kismet_ui.conf.sample
+	@${INSTALL_DATA} ${WRKSRC}/conf/kismet.conf \
+		${PREFIX}/etc/kismet.conf.sample
+	@${INSTALL_DATA} ${WRKSRC}/conf/kismet_drone.conf \
+		${PREFIX}/etc/kismet_drone.conf.sample
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
