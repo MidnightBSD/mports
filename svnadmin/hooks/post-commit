@@ -54,7 +54,7 @@ update-root.sh "$REPO" "$REV"
 
 /usr/local/bin/python /home/svn/repos/mports/hooks/TwitVN/twitvn.py -f "${REPOS}" -r "${REV}"
 
-/usr/local/bin/svnnotify --repos-path "$1" --revision "$2" --to midnightbsd-cvs@midnightbsd.org --subject-prefix "[MidnightBSD-SVN] " --subject-cx --bugzilla-url "http://bugreport.midnightbsd.org/show_bug.cgi?id=%s" --user-domain midnightbsd.org --with-diff --svnweb-url 'http://svnweb.midnightbsd.org/revision/?rev=%s'
+/usr/local/bin/svnnotify --repos-path "$1" --revision "$2" --to midnightbsd-cvs@midnightbsd.org --subject-prefix "mports " --subject-cx --bugzilla-url "http://bugreport.midnightbsd.org/show_bug.cgi?id=%s" --user-domain midnightbsd.org --with-diff --svnweb-url 'http://svnweb.midnightbsd.org/mports/?rev=%s'
 
 #commit-email.pl "$REPO" "$REV" commit-watchers@example.org
 #log-commit.py --repository "$REPO" --revision "$REV"
