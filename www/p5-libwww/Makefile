@@ -1,9 +1,7 @@
 # $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.9 2011/08/31 03:07:08 laffer1 Exp $
-# $FreeBSD: ports/www/p5-libwww/Makefile,v 1.72 2006/12/03 12:45:59 demon Exp $
 
 PORTNAME=	libwww
-PORTVERSION=	6.02
-PORTREVISION=	1
+PORTVERSION=	6.05
 CATEGORIES=	www perl5 devel
 MASTER_SITES=	CPAN/LWP
 PKGNAMEPREFIX=	p5-
@@ -11,9 +9,10 @@ DISTNAME=	libwww-perl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 library for WWW access
+
 LICENSE=	perl
 
-RUN_DEPENDS=	p5-Authen-NTLM>=1.02:${PORTSDIR}/security/p5-Authen-NTLM \
+BUILD_DEPENDS=	p5-Authen-NTLM>=1.02:${PORTSDIR}/security/p5-Authen-NTLM \
 		p5-Encode-Locale>=0:${PORTSDIR}/converters/p5-Encode-Locale \
 		p5-File-Listing>=6:${PORTSDIR}/sysutils/p5-File-Listing \
 		p5-HTML-Parser>=0:${PORTSDIR}/www/p5-HTML-Parser \
@@ -23,11 +22,12 @@ RUN_DEPENDS=	p5-Authen-NTLM>=1.02:${PORTSDIR}/security/p5-Authen-NTLM \
 		p5-HTTP-Message>=6:${PORTSDIR}/www/p5-HTTP-Message \
 		p5-HTTP-Negotiate>=6:${PORTSDIR}/www/p5-HTTP-Negotiate \
 		p5-LWP-MediaTypes>=6:${PORTSDIR}/www/p5-LWP-MediaTypes \
-		p5-Net-HTTP>=6:${PORTSDIR}/net/p5-Net-HTTP \
+		p5-Net-HTTP>=6.04:${PORTSDIR}/net/p5-Net-HTTP \
 		p5-URI>=1.10:${PORTSDIR}/net/p5-URI \
 		p5-WWW-RobotRules>=6:${PORTSDIR}/www/p5-WWW-RobotRules
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-OPTIONS=	SSL	"Enable https support" off
+OPTIONS_DEFINE=	HTTPS
 
 CONFIGURE_ARGS=	--aliases
 PERL_CONFIGURE=	yes
@@ -53,7 +53,9 @@ MAN3=		LWP.3 \
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MHTTPS}
+BUILD_DEPENDS+=	p5-Crypt-SSLeay>=0:${PORTSDIR}/security/p5-Crypt-SSLeay \
+		p5-LWP-Protocol-https>=0:${PORTSDIR}/www/p5-LWP-Protocol-https
 RUN_DEPENDS+=	p5-Crypt-SSLeay>=0:${PORTSDIR}/security/p5-Crypt-SSLeay \
 		p5-LWP-Protocol-https>=0:${PORTSDIR}/www/p5-LWP-Protocol-https
 .endif
