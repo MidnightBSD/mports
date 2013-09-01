@@ -2,19 +2,20 @@
 
 PORTNAME=	nut
 PORTVERSION=	18.4
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	SF
 PKGNAMEPREFIX=	health-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nutrition software to record what you eat
+
 LICENSE=	gpl2
 
 OPTIONS_DEFINE=	FLTK DOCS
 FLTK_DESC=	Install FLTK GUI
 
 USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
@@ -32,9 +33,8 @@ LIB_DEPENDS+=	pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
 		freetype:${PORTSDIR}/print/freetype2 \
 		expat:${PORTSDIR}/textproc/expat2 \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
-		fltk_images:${PORTSDIR}/x11-toolkits/fltk \
-		xcb:${PORTSDIR}/x11/libxcb
-USE_XORG+=	x11 xau xdmcp xext xft xinerama xrender
+		fltk_images:${PORTSDIR}/x11-toolkits/fltk
+USE_XORG+=	x11 xau xcb xdmcp xext xft xinerama xrender
 MAKE_ENV+=	HAVE_FLTK=1 FLTK_NUT="fltk/Nut"
 PLIST_FILES+=	bin/Nut
 DESKTOP_ENTRIES="Nut" "${COMMENT}" "" "Nut" \
