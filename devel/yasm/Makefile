@@ -17,8 +17,6 @@ CONFIGURE_ARGS+=--disable-python --disable-python-bindings
 CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAKE_JOBS_SAFE=	yes
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
