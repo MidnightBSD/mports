@@ -1,10 +1,4 @@
-# New ports collection makefile for:	e2fsprogs-libuuid
-# Date created:				26 Jan 2006
-# Whom:					Matthias Andree <matthias.andree@gmx.de>
-#
 # $MidnightBSD: mports/misc/e2fsprogs-libuuid/Makefile,v 1.1 2008/05/30 19:40:51 laffer1 Exp $
-# $FreeBSD: ports/misc/e2fsprogs-libuuid/Makefile,v 1.8 2008/05/06 22:29:03 itetcu Exp $
-#
 
 PORTREVISION=	0
 CATEGORIES=	misc devel
@@ -17,6 +11,7 @@ CONFLICTS=	ossp-uuid-[0-9]*
 CONFIGURE_ARGS=	--enable-elf-shlibs
 
 WITHOUT_NLS=	yes
+OPTIONSFILE=	# works around optionsNG trouble
 MASTERDIR=	${.CURDIR}/../../sysutils/e2fsprogs
 MAKE_ARGS=	LIB_SUBDIRS=lib/uuid
 USE_GMAKE=	yes
