@@ -1,25 +1,32 @@
 # $MidnightBSD: mports/net-im/openfire/Makefile,v 1.1 2010/05/29 08:17:14 laffer1 Exp $
 
 PORTNAME=	openfire
-PORTVERSION=	3.8.1
+PORTVERSION=	3.8.2
+PORTREVISION=	1
 CATEGORIES=	net-im java
 MASTER_SITES=	http://download.igniterealtime.org/openfire/
 DISTNAME=	${PORTNAME}_src_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enterprise instant messaging server
+
 LICENSE=	apache2
 
 RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper \
    		${JAVAJARDIR}/slf4j-api.jar:${PORTSDIR}/devel/slf4j
 
-OPTIONS=	PLUGINS	"Install bundled plugins" on
+OPTIONS_DEFINE=	PLUGINS
+OPTIONS_DEFAULT=PLUGINS
+PLUGINS_DESC=	Install bundled plugins
 
 USE_ZIP=	yes
 USE_LDCONFIG=	yes
+USE_DOS2UNIX=	src/java/org/jivesoftware/openfire/server/ServerDialback.java
 USE_ANT=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
+
+CONFLICTS=	wildfire-[0-9]*
 
 ALL_TARGET=	openfire
 USE_RC_SUBR=	openfire
@@ -36,7 +43,7 @@ GROUPS=		${USERS}
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_PLUGINS)
+.if ${PORT_OPTIONS:MPLUGINS}
 ALL_TARGET+=	plugins
 PLIST_SUB+=	PLUGINS=""
 .else
@@ -59,12 +66,16 @@ do-install:
 	(cd ${INSTALL_WRKSRC}/resources && ${FIND} . \! -path ./security\* \
 	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/resources)
 
-.if defined(WITH_PLUGINS)
+#	always install admin interface
+	(cd ${INSTALL_WRKSRC}/plugins/admin && ${FIND} . \
+	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/plugins/admin)
+
+.if ${PORT_OPTIONS:MPLUGINS}
 	(cd ${INSTALL_WRKSRC}/plugins && ${FIND} . \
 	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/plugins)
 .endif
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} \
 	LICENSE.html README.html changelog.html ${DOCSDIR})
