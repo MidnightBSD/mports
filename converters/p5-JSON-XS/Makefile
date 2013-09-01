@@ -1,8 +1,7 @@
-# $FreeBSD: ports/converters/p5-JSON-XS/Makefile,v 1.15 2007/10/17 03:46:25 clsung Exp $
 # $MidnightBSD: mports/converters/p5-JSON-XS/Makefile,v 1.7 2012/02/03 04:11:44 laffer1 Exp $
 
 PORTNAME=	JSON-XS
-PORTVERSION=	2.33
+PORTVERSION=	2.34
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

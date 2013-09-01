@@ -2,18 +2,19 @@
 
 PORTNAME=	fribidi
 PORTVERSION=	0.19.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters
 MASTER_SITES=	http://fribidi.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Free Implementation of the Unicode Bidirectional Algorithm
+
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-glib
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack pkgconfig
+USES=		pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 MAN3=		fribidi_charset_to_unicode.3 fribidi_debug_status.3 \
