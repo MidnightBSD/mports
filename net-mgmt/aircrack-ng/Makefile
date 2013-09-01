@@ -1,51 +1,66 @@
-# New ports collection makefile for:	aircrack-ng
-# Date created:				2006-05-25
-# Whom:					Lars Engels <lars.engels@0x20.net>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/net-mgmt/aircrack-ng/Makefile,v 1.14 2007/07/12 18:51:59 lme Exp $
-#
 
 PORTNAME=	aircrack-ng
-PORTVERSION=	0.9.1
-CATEGORIES=	net-mgmt
+DISTVERSION=	1.1
+CATEGORIES=	net-mgmt security
 MASTER_SITES=	http://download.aircrack-ng.org/ \
 		http://bsd-geek.de/FreeBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Aircrack-ng is the next generation of aircrack with new features
+COMMENT=	An 802.11 WEP and WPA-PSK keys cracking program
+
 LICENSE=	gpl2
 
-ALL_TARGET=	aircrack-ng airdecap-ng packetforge-ng ivstools kstats makeivs \
-		airodump-ng airtun-ng
-PLIST_FILES=	bin/aircrack-ng bin/airdecap-ng bin/packetforge-ng bin/ivstools \
-		bin/kstats bin/makeivs sbin/airodump-ng sbin/airtun-ng
-
+USE_GMAKE=	yes
+MAKE_ARGS+=	UNSTABLE=true			# build some extra tools
+USE_OPENSSL=	yes
 SUB_FILES=	pkg-message
 
-MAN1=		aircrack-ng.1 airdecap-ng.1 packetforge-ng.1 ivstools.1 \
-		makeivs.1 airodump-ng.1 airtun-ng.1 kstats.1
-.include <bsd.port.pre.mk>
+MAN1=		airbase-ng.1 aircrack-ng.1 airdecap-ng.1 airdecloak-ng.1 \
+		aireplay-ng.1 airodump-ng.1 airserv-ng.1 airtun-ng.1 \
+		buddy-ng.1 easside-ng.1 ivstools.1 kstats.1 makeivs-ng.1 \
+		packetforge-ng.1 tkiptun-ng.1 wesside-ng.1
+
+PLIST_FILES=	bin/aircrack-ng bin/airdecap-ng bin/airdecloak-ng \
+		bin/buddy-ng bin/ivstools bin/kstats bin/makeivs-ng \
+		bin/packetforge-ng \
+		sbin/airbase-ng sbin/aireplay-ng sbin/airodump-ng \
+		sbin/airserv-ng sbin/airtun-ng sbin/easside-ng \
+		sbin/tkiptun-ng sbin/wesside-ng
+
+OPTIONS_DEFINE=	SQLITE
+SQLITE_DESC=	Use SQLite for storing pre-computed key tables
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MSQLITE}
+USE_SQLITE=	yes
+MAKE_ARGS+=	SQLITE=true
+MAN1+=		airolib-ng.1
+PLIST_FILES+=	bin/airolib-ng
+.endif
+
+.if ${ARCH} == "sparc64" && ${OSVERSION} > 900000
+BROKEN=		Does not compile on sparc64-9
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e 's|/usr/local|${PREFIX}|g' \
-		-e 's|-lpthread|${PTHREAD_LIBS}|g;' \
-		-e '/^CC/d;' \
+		-e 's|= /usr/local|= ${PREFIX}|' \
+		-e 's|-I/usr/local|-I${LOCALBASE}|' \
+		-e 's|^CC[[:blank:]]*|&?|' \
+		-e 's|^RANLIB[[:blank:]]*|&?|' \
+		-e 's|^AR[[:blank:]]*|&?|' \
+			${WRKSRC}/common.mak
+# Do not install scripts (Linux-specific) and their manpages
+	@${REINPLACE_CMD} \
+		-E '/scripts|@echo/d' \
 			${WRKSRC}/Makefile
+	@${REINPLACE_CMD} \
+		-E 's/air(driver|mon)-ng\.1 //' \
+			${WRKSRC}/manpages/Makefile
+	@${REINPLACE_CMD} \
+		-e 's|-lpthread|${PTHREAD_LIBS}|' \
+			${WRKSRC}/src/Makefile
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/aircrack-ng ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/airdecap-ng ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/packetforge-ng ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/ivstools ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/kstats ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/makeivs ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/airodump-ng ${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/airtun-ng ${PREFIX}/sbin
-
-.for manpage in ${MAN1}
-	${INSTALL_MAN} ${WRKSRC}/manpages/${manpage} ${PREFIX}/man/man1
-.endfor
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
