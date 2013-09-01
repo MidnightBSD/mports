@@ -2,7 +2,7 @@
 
 PORTNAME=	libwww
 PORTVERSION=	5.4.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www devel
 MASTER_SITES=	http://www.w3.org/Library/Distribution/
 DISTNAME=	w3c-${PORTNAME}-${PORTVERSION}
@@ -10,6 +10,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The W3C Reference Library
+
 LICENSE=	other
 
 USE_AUTOTOOLS=	libtool
@@ -18,7 +19,6 @@ USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static --with-zlib 
 #--with-ssl=${OPENSSLBASE}/lib
 USE_PERL5_BUILD=yes
-MAKE_ENV=	objformat=${PORTOBJFORMAT}
 USE_LDCONFIG=	yes
 #USE_OPENSSL=	yes
 
