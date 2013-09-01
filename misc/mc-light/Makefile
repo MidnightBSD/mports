@@ -1,32 +1,27 @@
-# New ports collection makefile for:	mc-light
-# Date created:				31.08.2004
-# Whom:					Roman Y. Bogdanov <sam@brj.pp.ru>
-#
 # $MidnightBSD: mports/misc/mc-light/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
-# $FreeBSD: ports/misc/mc-light/Makefile,v 1.14 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc-light
 PORTVERSION=	4.1.40.p9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc shells
 MASTER_SITES=	http://mc.linuxinside.com/Releases/
 DISTNAME=	mc-${PORTVERSION:S/.p9/-pre9/}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A lightweight Midnight Commander clone
+COMMENT=	Lightweight Midnight Commander clone
+
 LICENSE=	gpl2
 
-RUN_DEPENDS+=	gawk:${PORTSDIR}/lang/gawk
+RUN_DEPENDS=	gawk:${PORTSDIR}/lang/gawk
 
 CONFLICTS=	mc-4.7*
 
-OPTIONS=	\
-		SUBSHELL "Build with subshell support (only for bash!)" off \
-		MC_IN_MC "Allow run mc inside mc (useful for mcedit)" off
+OPTIONS_DEFINE=	NLS SUBSHELL MC_IN_MC
+SUBSHELL_DESC=	Build with subshell support (only for bash!)
+MC_IN_MC_DESC=	Allow run mc inside mc (useful for mcedit)
 
+USES=		pkgconfig iconv
 USE_GMAKE=	yes
-USE_ICONV=	yes
-USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-included-slang \
 		--with-gettext \
@@ -38,18 +33,22 @@ CONFIGURE_ARGS+=--with-included-slang \
 MAN1=		mc.1 mcedit.1
 MAN8=		mcserv.8
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITH_SUBSHELL)
+.if ! ${PORT_OPTIONS:MSUBSHELL}
 CONFIGURE_ARGS+=--without-subshell
 .endif
 
-# Add an NLS option later
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+PLIST_SUB+=	NLS=""
+.else
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
+.endif
 
-.if defined(WITH_MC_IN_MC)
-CONFIGURE_ENV+=	CPPFLAGS=-DMC_IN_MC_ALLOWED
+.if ${PORT_OPTIONS:MMC_IN_MC}
+CPPFLAGS+=	-DMC_IN_MC_ALLOWED
 .endif
 
 post-install:
@@ -57,4 +56,4 @@ post-install:
 	${CHMOD} 755 ${PREFIX}/share/mc/extfs/${i}
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

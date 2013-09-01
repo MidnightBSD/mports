@@ -8,7 +8,7 @@
 
 PORTNAME=	gnome-mime-data
 PORTVERSION=	2.18.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DISTNAME=	gnome-mime-data-${PORTVERSION}
@@ -19,12 +19,12 @@ COMMENT=	A MIME and Application database for GNOME
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext pkgconfig
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack pkgconfig
+USE_GNOME=	gnomeprefix gnomehack intlhack
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -lintl"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -lintl"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|[(]datadir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \

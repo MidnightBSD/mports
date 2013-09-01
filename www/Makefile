@@ -120,5 +120,7 @@ SUBDIR += weblint
 SUBDIR += webserver
 SUBDIR += webservices
 SUBDIR += youtube_dl
+SUBDIR += yuicompressor
+SUBDIR += zend-framework
 
 .include <bsd.port.subdir.mk>

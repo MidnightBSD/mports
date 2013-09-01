@@ -9,6 +9,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 users guide
+
 LICENSE=	other
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian

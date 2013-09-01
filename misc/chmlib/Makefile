@@ -7,6 +7,7 @@ MASTER_SITES=	http://www.jedrea.com/chmlib/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for dealing with Microsoft ITSS/CHM format files
+
 LICENSE=	lgpl
 
 USE_BZIP2=	yes

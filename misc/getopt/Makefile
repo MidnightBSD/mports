@@ -7,7 +7,8 @@ CATEGORIES=	misc
 MASTER_SITES=	http://software.frodo.looijaard.name/getopt/files/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A getopt(1) replacement that supports GNU-style long options
+COMMENT=	getopt(1) replacement that supports GNU-style long options
+
 LICENSE=	gpl2
 
 FAKE_OPTS+=	trueprefix
@@ -17,15 +18,17 @@ USE_GMAKE=		yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
-MAKE_ENV=	LIBCGETOPT=0
+MAKE_ENV+=	LIBCGETOPT=0
 
 MAN1=		getopt.1
 DOCS=		Changelog README
 
+.include <bsd.mport.options.mk>
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|CC=gcc|CC=${CC}|' ${WRKSRC}/Makefile
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}

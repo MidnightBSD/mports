@@ -8,10 +8,9 @@ MASTER_SITES=	http://www.datsi.fi.upm.es/~frosal/sources/ \
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A generic script compiler
-LICENSE=	gpl2
+COMMENT=	Generic script compiler
 
-MAKE_JOBS_SAFE=	yes
+LICENSE=	gpl2
 
 MAN1=		shc.1
 PLIST_FILES=	bin/shc
