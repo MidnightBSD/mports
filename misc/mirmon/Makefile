@@ -1,12 +1,13 @@
 # $MidnightBSD: mports/misc/mirmon/Makefile,v 1.5 2011/05/14 22:26:48 laffer1 Exp $
 
 PORTNAME=	mirmon
-PORTVERSION=	2.6
+PORTVERSION=	2.9
 CATEGORIES=	misc
 MASTER_SITES=	http://www.staff.science.uu.nl/~penni101/mirmon/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monitor the status of mirrors
+
 LICENSE=	other
 #bsdish
 
@@ -21,7 +22,9 @@ SUB_LIST=	PREFIX=${PREFIX}
 PLIST_FILES=	bin/mirmon bin/probe
 MAN1=		mirmon.1
 
-.if !defined(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ! ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
 .endif
 
@@ -41,7 +44,7 @@ do-install:
 	@${FIND} ${DATADIR} -type d | ${SORT} -r | \
 		${SED} 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
 	${INSTALL_MAN} ${WRKSRC}/mirmon.1 ${MANPREFIX}/man/man1
-.if !defined(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${CP} ${WRKSRC}/mirmon.html ${DOCSDIR}
 .endif
