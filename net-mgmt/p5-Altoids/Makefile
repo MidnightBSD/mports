@@ -9,6 +9,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SNMP get/walk functionality with built-in name to OID translation
+
 LICENSE=	gpl2
 
 USE_PERL5=	yes
