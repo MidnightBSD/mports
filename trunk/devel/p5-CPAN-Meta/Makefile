@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	CPAN-Meta
-PORTVERSION=	2.131490
+PORTVERSION=	2.132140
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The distribution metadata for a CPAN dist
+
 LICENSE=	perl
 
 BUILD_DEPENDS=	p5-CPAN-Meta-Requirements>=2.121:${PORTSDIR}/devel/p5-CPAN-Meta-Requirements \

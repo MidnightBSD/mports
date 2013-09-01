@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	swig
-PORTVERSION=	2.0.8
+PORTVERSION=	2.0.9
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -11,6 +11,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
+LATEST_LINK?=	swig2
 USE_AUTOTOOLS=	autoconf:env libtool
 
 MAN1=		ccache-swig${VER}.1
@@ -55,15 +56,19 @@ post-configure:
 	${REINPLACE_CMD} -e 's#null#&|| true#' ${WRKSRC}/Makefile
 
 post-install:
+.if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} ${EXAMPLESDIR}/${PORTVERSION}
 	cd ${WRKSRC}/Examples && ${FIND} . -type d \
 		-exec ${INSTALL} -d ${EXAMPLESDIR}/${PORTVERSION}/{} \;
 	cd ${WRKSRC}/Examples && ${FIND} . -type f \
 		-exec ${INSTALL_DATA} {} ${EXAMPLESDIR}/${PORTVERSION}/{} \;
+.endif
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}/${PORTVERSION}
 	cd ${WRKSRC}/Doc && ${FIND} . -type d \
 		-exec ${INSTALL} -d ${DOCSDIR}/${PORTVERSION}/{} \;
 	cd ${WRKSRC}/Doc && ${FIND} . -type f \
 		-exec ${INSTALL_DATA} {} ${DOCSDIR}/${PORTVERSION}/{} \;
+.endif
 
 .include <bsd.port.post.mk>
