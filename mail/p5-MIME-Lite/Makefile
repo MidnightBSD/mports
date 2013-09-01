@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/mail/p5-MIME-Lite/Makefile,v 1.2 2009/09/24 03:39:20 laffer1 Exp $
 
 PORTNAME=	MIME-Lite
-PORTVERSION=	3.02.8
+PORTVERSION=	3.02.9
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
