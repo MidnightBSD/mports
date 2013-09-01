@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/converters/p5-JSON/Makefile,v 1.7 2012/02/03 04:06:41 laffer1 Exp $
 
 PORTNAME=	JSON
-PORTVERSION=	2.58
+PORTVERSION=	2.59
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
