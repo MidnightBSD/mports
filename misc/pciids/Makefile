@@ -1,12 +1,13 @@
 # $MidnightBSD: mports/misc/pciids/Makefile,v 1.14 2013/06/21 00:58:32 laffer1 Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20130718
+PORTVERSION=	20130823
 CATEGORIES=	misc
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known IDs used in PCI devices
+
 LICENSE=	bsd3
 
 USE_XZ=		yes
