@@ -2,7 +2,7 @@
 
 PORTNAME=	mc
 PORTVERSION=	4.8.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	misc shells
 MASTER_SITES=	http://ftp.osuosl.org/pub/midnightcommander/
 
@@ -10,6 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
 
 LICENSE=	gpl3
+
+LIB_DEPENDS=	ssh2:${PORTSDIR}/security/libssh2
 
 CONFLICTS=	mc-light-4*
 
@@ -74,7 +76,7 @@ PLIST_SUB+=	EDITOR=""
 .if ! ${PORT_OPTIONS:MSLANG} && !defined(MINIMAL)
 CONFIGURE_ARGS+=--with-screen=ncurses
 .else
-LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
+LIB_DEPENDS+=	slang:${PORTSDIR}/devel/libslang2
 CONFIGURE_ARGS+=--with-screen=slang --with-slang-includes=${LOCALBASE}/include
 .endif
 
