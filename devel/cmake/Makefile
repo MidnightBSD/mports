@@ -1,13 +1,13 @@
 # $MidnightBSD: mports/devel/cmake/Makefile,v 1.15 2013/06/11 23:58:07 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.10.2
-PORTREVISION=	1
+PORTVERSION=	2.8.11.2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v2.8/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
+
 LICENSE=	other
 # bsd variant
 
@@ -16,8 +16,8 @@ LICENSE=	other
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
-		--docdir="/${DOCSDIR_REL}"
-MAKE_JOBS_SAFE=	yes
+		--docdir="/${DOCSDIR_REL}" \
+		--init="${PATCHDIR}/InitialCache.cmake"
 
 .if defined(STRIP) && ${STRIP} != ""
 INSTALL_TARGET=	install/strip
@@ -49,7 +49,7 @@ post-patch:
 		${WRKSRC}/Source/cmLocalGenerator.cxx \
 		${WRKSRC}/Source/CPack/cmCPackGenerator.cxx \
 		${WRKSRC}/bootstrap
-	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE},g' \
+	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE}/kde4,g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
 	@${REINPLACE_CMD} -e 's,/usr/include,${LOCALBASE}/include,' \
 	   	${WRKSRC}/Modules/FindDCMTK.cmake
