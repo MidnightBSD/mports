@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/ftp/tnftp/Makefile,v 1.2 2009/12/25 16:00:51 laffer1 Exp $
 
 PORTNAME=	tnftp
-PORTVERSION=	20100108
+PORTVERSION=	20130505
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/ \
 		ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/old/
