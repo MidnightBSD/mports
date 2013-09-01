@@ -8,7 +8,8 @@ DISTFILES=	newer.c
 EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of AT&T Research UNIX V8 newer(1)
+COMMENT=	Implementation of AT&T Research UNIX V8 newer(1)
+
 LICENSE=	publicdom
 
 CONFLICTS=	teTeX-base-[0-9]* tex-[0-9]*

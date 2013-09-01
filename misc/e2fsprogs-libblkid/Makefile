@@ -1,9 +1,4 @@
-# New ports collection makefile for:	e2fsprogs-libblkid
-# Date created:				2007-09-07
-# Whom:					Matthias Andree <matthias.andree@gmx.de>
-#
 # $MidnightBSD: mports/misc/e2fsprogs-libblkid/Makefile,v 1.1 2008/05/30 19:40:51 laffer1 Exp $
-# $FreeBSD: ports/misc/e2fsprogs-libblkid/Makefile,v 1.1 2007/10/02 15:50:56 timur Exp $
 #
 # set PORTREVISION to avoid override by master port
 

@@ -10,7 +10,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU find utilities
+COMMENT=	GNU find utilities
+
 LICENSE=	gpl3
 
 USES+=		charsetfix
@@ -34,7 +35,6 @@ PLIST_SUB+=	NLS="@comment "
 CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR} \
 			--mandir=${PREFIX}/man --infodir=${PREFIX}/info
 MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
-MAKE_JOBS_SAFE=	yes
 
 INFO=		find find-maint
 MAN1=		gfind.1 gxargs.1 glocate.1 gupdatedb.1 goldfind.1
