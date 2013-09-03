@@ -11,7 +11,7 @@ EXTRACT_SUFX=	.tar.gz.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic visualization tool for GNUstep (Gantt chart and more)
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
