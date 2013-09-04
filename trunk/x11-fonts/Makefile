@@ -58,7 +58,6 @@ SUBDIR += libXft
 SUBDIR += liberation-fonts-ttf
 SUBDIR += libfontenc
 SUBDIR += linux-f10-fontconfig
-SUBDIR += linux-fontconfig
 SUBDIR += mkfontdir
 SUBDIR += mkfontscale
 SUBDIR += p5-type1inst
