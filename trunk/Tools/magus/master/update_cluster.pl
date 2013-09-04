@@ -58,12 +58,12 @@ sub insert_new_run {
     die "Usage: $0 new <arch> <osversion>\n";
   }
   
-  update_cvs_dir();
+  update_vcs_dir();
 
   my $run = Magus::Run->create({osversion => $osversion, arch => $arch});
   
   make_tarball($run);
-  Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}", $run);
+  Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}", $run);
   
   $run->status('active');
   $run->update;
@@ -74,7 +74,7 @@ sub insert_new_run {
 # The basic outline of the update is this:
 # 1) Check to see if any runs are finished, if they are marked them as complete.  If no runs
 #    are done we exit, because there is nothing to do.
-# 2) Update the MportsCvs dir.
+# 2) Update the MportsVcs dir.
 # 3) Make a new MportsTarball from 2)
 # 3) create a new run.
 # 4) index the tree and create port entries for the new runs.
@@ -91,14 +91,14 @@ sub refresh_completed_runs {
     return;
   }
     
-  update_cvs_dir();
+  update_vcs_dir();
   
   foreach my $done (@completed) {
     printf "refreshing %s on %s\n", $done->osversion, $done->arch;
     my $run = Magus::Run->create({osversion => $done->osversion, arch => $done->arch});
     make_tarball($run);
 
-    Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}", $run);
+    Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}", $run);
     
     $run->status('active');
     $run->update;
@@ -106,21 +106,20 @@ sub refresh_completed_runs {
 }
 
 
-sub update_cvs_dir {
+sub update_vcs_dir {
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
 
   # let the magus group read and write.
   umask(0002);  
 
-  print "Deleteing $Magus::Config{MportsCvsDir}...";
-  if (-d $Magus::Config{MportsCvsDir}) {
-    rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
+  print "Deleteing $Magus::Config{MportsVcsDir}...";
+  if (-d $Magus::Config{MportsVcsDir}) {
+    rmtree($Magus::Config{MportsVcsDir})    || die "Couldn't rmtree $Magus::Config{'MportsVcsDir'}: $!\n";
   }
   
   print " done.\n";
   
-  my $cmd = "cvs $Magus::Config{CvsFlags} -d $Magus::Config{CvsRoot} co -P $Magus::Config{MportsCvsDir}";
-  
+  my $cmd = "cd $Magus::Config{MportsVcsDir} && svn co $Magus::Config{VcsRoot} mports";
   system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
 
@@ -132,12 +131,12 @@ sub make_tarball {
   
   my $tarball = $run->tarball;
 
-  set_tree_id("$Magus::Config{'MasterDataDir'}/$Magus::Config{'MportsCvsDir'}", $run);
+  set_tree_id("$Magus::Config{'MasterDataDir'}/$Magus::Config{'MportsVcsDir'}", $run);
   
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
   unlink($tarball) || ($! !~ m/no such/i && die "Couldn't unlink $tarball: $!\n");
   
-  my $tar = "/usr/bin/tar cfj $tarball $Magus::Config{MportsCvsDir}";
+  my $tar = "/usr/bin/tar cfj $tarball $Magus::Config{MportsVcsDir}";
   
   system($tar) == 0 || die "$tar returned non-zero: $?\n";
   move($tarball, $Magus::Config{'RunTarballDir'}) || die "Couldn't mv $tarball $Magus::Config{'RunTarballDir'}: $!\n";
