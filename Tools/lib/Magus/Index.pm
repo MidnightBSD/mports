@@ -41,7 +41,7 @@ sub sync {
   my $arch = $run->arch;
   my %visited;
   
-  $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}";
+  $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}";
   
   local $| = 1;
   

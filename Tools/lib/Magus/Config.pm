@@ -48,8 +48,7 @@ sub import {
 sub load_config {
   %Config = (
     # defaults
-    CvsFlags       => '',
-    CvsRoot        => '/home/cvs',
+    VcsRoot        => 'http://svn.midnightbsd.org/svn/',   
     SlaveSrcDir    => '/usr/src',
     SlavePidFile   => '/var/run/magus.pid',
     %{ LoadFile(shift) },
