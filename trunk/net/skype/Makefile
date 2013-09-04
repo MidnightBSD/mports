@@ -2,7 +2,7 @@
 
 PORTNAME=	skype
 PORTVERSION=	1.2.0.18
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	NETBSD
@@ -12,8 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	P2P VoIP software
 LICENSE=	restricted
 
-RUN_DEPENDS=	${LINUXBASE}/usr/lib/libfontconfig.so.1:${PORTSDIR}/x11-fonts/linux-fontconfig \
-		${LINUXBASE}/usr/lib/libexpat.so.0:${PORTSDIR}/textproc/linux-expat
+RUN_DEPENDS=	${LINUXBASE}/usr/lib/libfontconfig.so.1:${PORTSDIR}/x11-fonts/linux-f10-fontconfig \
+		${LINUXBASE}/usr/lib/libexpat.so.0:${PORTSDIR}/textproc/linux-f10-expat
 
 USE_BZIP2=	yes
 USE_LINUX=	yes
