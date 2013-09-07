@@ -2,34 +2,50 @@
 
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF/${PORTNAME}wm/${PORTNAME}wm/Blackbox%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and fast window manager for X11R6
+
 LICENSE=	mit
 
-PORTDOCS=	AUTHORS COMPLIANCE ChangeLog LICENSE README RELNOTES TODO
-MAN1=		blackbox.1
-
-USE_XORG=	x11 xft
-USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
-USE_ICONV=	yes
+USES=		pathfix pkgconfig iconv
+USE_XORG=	x11 xft
+
+MAN1=		bsetbg.1 bsetroot.1
+PORTDOCS=	README.bbtools README.bsetbg
+
+OPTIONS_DEFINE=		TOOLS_ONLY
+TOOLS_ONLY_DESC=	Do not install window manager, only tools
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MTOOLS_ONLY}
+PKGNAMESUFFIX=	-tools
+COMMENT+=	(tools only)
+MAKE_ARGS=	SUBDIRS="doc lib util" bin_PROGRAMS=bsetroot
+INSTALL_TARGET=	-C util install		# XXX dirty hack :(
+.else
+MAN1+=		blackbox.1
+PORTDOCS+=	AUTHORS COMPLIANCE ChangeLog README RELNOTES TODO
+.endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's#-pedantic##' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's# bsetroot.1 bsetbg.1##' ${WRKSRC}/doc/Makefile.in
-	# Fix the build with libX11 > 1.40
+# Fix the build with libX11 > 1.40
 	@${REINPLACE_CMD} -e 's/_XUTIL_H_/_X11&/' ${WRKSRC}/lib/Util.hh
 
 post-install:
+.if ${PORT_OPTIONS:MTOOLS_ONLY}
+	@${REINPLACE_CMD} -E '/[^s]\/blackbox|bstyleconvert|lib|include/d' \
+		${TMPPLIST}
+	${INSTALL_MAN} ${MAN1:S#^#${WRKSRC}/doc/#} ${MANPREFIX}/man/man1
+.endif
 .if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}/
-.endfor
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S#^#${WRKSRC}/#} ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
