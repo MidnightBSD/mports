@@ -1,114 +1,87 @@
-# New ports collection makefile for:	opensc
-# Date created:		10 September 2002
-# Whom:			Bruce M Simpson
-#
 # $MidnightBSD: mports/security/opensc/Makefile,v 1.4 2009/09/20 04:09:53 laffer1 Exp $
-# $FreeBSD: ports/security/opensc/Makefile,v 1.30 2008/04/19 17:53:27 miwi Exp $
-#
 
 PORTNAME=	opensc
-PORTVERSION=	0.11.7
+PORTVERSION=	0.13.0
 CATEGORIES=	security devel
-MASTER_SITES=	http://www.opensc-project.org/files/${PORTNAME}/ \
-		http://www.opensc-project.org/files/${PORTNAME}/testing/
+MASTER_SITES=	SF/${PORTNAME}/OpenSC/${DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries and utilities to access smart cards
-LICENSE=	lgpl
 
-OPTIONS=	OPENCT "Enable direct OpenCT backend support" on \
-		PCSC "Enable PC/SC backend support" off \
-		SIGNER "Enable signer browser plugin" off
+LICENSE=	lgpl2.1
 
-USE_AUTOTOOLS=	libltdl
-USE_ICONV=	yes
+BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt \
+		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+
+OPTIONS_SINGLE=	BACKEND
+OPTIONS_SINGLE_BACKEND=PCSC OPENCT CTAPI
+OPTIONS_DEFINE=	SM DOCS
+OPTIONS_DEFAULT=PCSC
+
+PCSC_DESC=	Use PC/SC backend
+OPENCT_DESC=	Use OpenCT backend
+CTAPI_DESC=	Use CT-API backend
+SM_DESC=	Enable secure messaging support
+
+USES=		pkgconfig
 USE_OPENSSL=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
 
-CONFIGURE_ENV=	LTLIB_CFLAGS="-I${LOCALBASE}/include" \
-		LTLIB_LIBS="-L${LOCALBASE}/lib -lltdl" \
-		ICONV_CFLAGS="-I${LOCALBASE}/include" \
-		ICONV_LIBS="-L${LOCALBASE}/lib -liconv" \
+CONFIGURE_ENV=	\
 		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
-		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl"
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl" \
+		XSLTPROC="${LOCALBASE}/bin/xsltproc"
+
+CONFIGURE_ARGS=	--with-xsl-stylesheetsdir=${LOCALBASE}/share/xsl/docbook
 
 PORTDOCS=	*
 
 MANCOMPRESSED=	no
-MAN1=		cardos-tool.1 cryptoflex-tool.1 netkey-tool.1 \
-		opensc-config.1 opensc-explorer.1 opensc-tool.1 \
-		pkcs11-tool.1 pkcs15-crypt.1 pkcs15-init.1 pkcs15-tool.1
-MAN3=		sc_app_info_t.3 sc_append_record.3 sc_asn1_decode.3 \
-		sc_asn1_encode.3 sc_asn1_entry.3 sc_asn1_find_tag.3 \
-		sc_asn1_print_tags.3 sc_asn1_put_tag.3 sc_asn1_read_tag.3 \
-		sc_asn1_skip_tag.3 sc_asn1_verify_tag.3 sc_base64_decode.3 \
-		sc_base64_encode.3 sc_card_ctl.3 sc_card_t.3 \
-		sc_card_valid.3 sc_check_sw.3 sc_connect_card.3 \
-		sc_copy_asn1_entry.3 sc_create_file.3 sc_delete_file.3 \
-		sc_delete_record.3 sc_der_clear.3 sc_der_copy.3 \
-		sc_detect_card_presence.3 sc_disconnect_card.3 \
-		sc_enum_apps.3 sc_establish_context.3 sc_file_dup.3 \
-		sc_file_free.3 sc_file_new.3 sc_file_t.3 \
-		sc_find_app_by_aid.3 sc_find_pkcs15_app.3 sc_format_apdu.3 \
-		sc_format_asn1_entry.3 sc_free_apps.3 sc_get_cache_dir.3 \
-		sc_get_challenge.3 sc_get_data.3 sc_list_files.3 \
-		sc_lock.3 sc_make_cache_dir.3 sc_put_data.3 \
-		sc_read_binary.3 sc_read_record.3 sc_release_context.3 \
-		sc_select_file.3 sc_set_card_driver.3 sc_strerror.3 \
-		sc_transmit_apdu.3 sc_unlock.3 sc_update_binary.3 \
-		sc_update_dir.3 sc_update_record.3 sc_wait_for_event.3 \
-		sc_write_binary.3 sc_write_record.3
+MAN1=		cardos-tool.1 cryptoflex-tool.1 eidenv.1 iasecc-tool.1 \
+		netkey-tool.1 openpgp-tool.1 \
+		opensc-explorer.1 opensc-tool.1 piv-tool.1 \
+		pkcs11-tool.1 pkcs15-crypt.1 pkcs15-init.1 pkcs15-tool.1 \
+		sc-hsm-tool.1 westcos-tool.1
 MAN5=		pkcs15-profile.5
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_OPENCT)
-LIB_DEPENDS+=	openct.1:${PORTSDIR}/security/openct
+.if ${PORT_OPTIONS:MOPENCT}
+LIB_DEPENDS+=	openct:${PORTSDIR}/security/openct
 CONFIGURE_ARGS+=--enable-openct
 .endif
 
-.if defined(WITH_PCSC)
-LIB_DEPENDS+=	pcsclite.1:${PORTSDIR}/devel/pcsc-lite
-CONFIGURE_ARGS+=--enable-pcsc
-.endif
-
-.if defined(WITH_SIGNER)
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libassuan.a:${PORTSDIR}/security/libassuan
-PINENTRY?=	${LOCALBASE}/bin/pinentry
-RUN_DEPENDS+=	pinentry:${PORTSDIR}/security/pinentry
-USE_XORG=	x11
-CONFIGURE_ARGS+=--enable-nsplugin \
-		--with-libassuan-prefix=${LOCALBASE} \
-		--with-plugindir=${WEBPLUGINS_DIR} \
-		--with-pinentry=${PINENTRY}
-PLIST_SUB+=	SIGNER=""
-
-USE_WEBPLUGINS=	gecko*
-WEBPLUGINS_FILES=opensc-signer.so
-.include "${PORTSDIR}/www/firefox/Makefile.webplugins"
+.if ${PORT_OPTIONS:MPCSC}
+LIB_DEPENDS+=	pcsclite:${PORTSDIR}/devel/pcsc-lite
 .else
-PLIST_SUB+=	SIGNER="@comment "
+CONFIGURE_ARGS+=--disable-pcsc
 .endif
 
-.ifndef(NOPORTDOCS)
+.if ${PORT_OPTIONS:MCTAPI}
+CONFIGURE_ARGS+=--enable-ctapi
+.endif
+
+.if ${PORT_OPTIONS:MSM}
+CONFIGURE_ARGS+=--enable-sm
+PLIST_SUB+=	SM=""
+.else
+PLIST_SUB+=	SM="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=--enable-doc
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
 		${WRKSRC}/configure
-.if !defined(WITH_SIGNER)
-	@${REINPLACE_CMD} 's|install-data-am: install-pluginDATA|install-data-am:|' \
-		${WRKSRC}/src/signer/Makefile.in
-.endif
-.ifdef(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA|install-data-am:|' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA install-dist_htmlDATA|install-data-am:|' \
-		${WRKSRC}/doc/Makefile.in
+	@${REINPLACE_CMD} 's|install-data-am: install-htmlDATA install-man|install-data-am: install-man|' \
+		${WRKSRC}/doc/Makefile.in ${WRKSRC}/doc/tools/Makefile.in
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
