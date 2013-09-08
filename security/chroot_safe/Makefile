@@ -8,7 +8,8 @@ MASTER_SITES=	SF/chrootsafe/${PORTNAME}/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool to chroot softwares easily
+COMMENT=	Tool to chroot softwares easily
+
 LICENSE=	mit
 
 GNU_CONFIGURE=	YES
