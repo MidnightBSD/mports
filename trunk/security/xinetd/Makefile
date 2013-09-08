@@ -1,13 +1,13 @@
 # $MidnightBSD: mports/security/xinetd/Makefile,v 1.2 2007/11/01 21:59:53 ctriv Exp $
 
 PORTNAME=	xinetd
-PORTVERSION=	2.3.14
-PORTREVISION=	2
+PORTVERSION=	2.3.15
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://www.xinetd.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for inetd with better control and logging
+
 LICENSE=	other
 
 FAKE_OPTS=	prefixhack
