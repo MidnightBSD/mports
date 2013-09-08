@@ -2,7 +2,7 @@
 
 PORTNAME=	opencdk
 PORTVERSION=	0.6.6
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	http://josefsson.org/gnutls/releases/opencdk/
@@ -16,7 +16,8 @@ LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
-USE_GNOME=	pkgconfig ltverhack
+USES=		pkgconfig
+USE_GNOME=	ltverhack
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-libgcrypt-prefix=${LOCALBASE}
