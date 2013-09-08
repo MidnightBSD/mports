@@ -1,21 +1,29 @@
 # $MidnightBSD: mports/security/p11-kit/Makefile,v 1.2 2012/02/29 01:23:33 laffer1 Exp $
 
 PORTNAME=	p11-kit
-PORTVERSION=	0.14
+PORTVERSION=	0.16.3
 CATEGORIES=	security devel
 MASTER_SITES=	http://p11-glue.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library for loading and enumurating of PKCS\#11 modules
+COMMENT=	Library for loading and enumerating of PKCS\#11 modules
+
 LICENSE=	bsd3
 
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+BUILD_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+LIB_DEPENDS=	tasn1:${PORTSDIR}/security/libtasn1
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-gtk-doc --disable-nls --enable-debug=no
+CONFIGURE_ARGS=	--disable-nls --enable-debug=no \
+		--with-system-anchors=${LOCALBASE}/share/certs/ca-root-nss.crt
 MAKE_ENV=	exampledir=${EXAMPLESDIR}
 
+USES=		pkgconfig
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack gnomehack
 USE_LDCONFIG=	yes
+USE_GMAKE=	yes
 
 pre-configure:
 	@${REINPLACE_CMD} -e \
