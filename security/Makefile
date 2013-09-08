@@ -22,6 +22,7 @@ SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gsasl
+SUBDIR += ipsec-tools
 SUBDIR += krb5
 SUBDIR += kwalletcli
 SUBDIR += l0phtcrack
