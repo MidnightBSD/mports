@@ -1,7 +1,7 @@
 #
 #                       Policy file for FreeBSD
 #
-# $FreeBSD: ports/security/tripwire/files/twpol.m4,v 1.4 2006/02/16 15:17:31 cy Exp $
+# $FreeBSD$
 
 # This file originally was repocopied from: ports/security/tripwire/files/twpol.txt,v 1.3 2005/08/09 18:24:15 cy Exp
 
