@@ -1,20 +1,15 @@
-# New ports collection makefile for:	tripwire 2.3.1
-# Date created:		Tue Mar  6 06:57:58 PST 2001
-# Whom:			Cy Schubert <Cy.Schubert@uumail.gov.bc.ca>
-#
-# $FreeBSD: ports/security/tripwire/Makefile,v 1.36 2006/06/20 01:47:23 cy Exp $
 # $MidnightBSD: mports/security/tripwire/Makefile,v 1.3 2008/09/16 20:34:55 laffer1 Exp $
-#
 
 PORTNAME=	tripwire
-PORTVERSION=	2.4.1.2
+PORTVERSION=	2.4.2.2
 CATEGORIES=	security
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}-src
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File system security and verification program
-LICENSE=	restricted
+
+LICENSE=	gpl2
 
 LATEST_LINK=	${PORTNAME}
 MAN5=		twfiles.5 twconfig.5 twpolicy.5
