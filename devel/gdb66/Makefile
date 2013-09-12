@@ -2,6 +2,7 @@
 
 PORTNAME=	gdb
 PORTVERSION=	6.6
+PORTREVISION?=	1
 CATEGORIES=	devel
 MASTER_SITES=   ${MASTER_SITE_GNU:S,$,:gdb,}	\
 		http://aldan.algebra.com/~mi/:gdbtk
@@ -14,41 +15,39 @@ LICENSE=	gpl3
 
 LATEST_LINK?=	gdb66
 
-.ifndef(WITH_INSIGHT)
-OPTIONS=	INSIGHT "Build the Tcl/Tk GUI (experimental!)" off
-.endif
+OPTIONS_DEFINE=	INSIGHT
+INSIGHT_DESC=	Tcl/Tk GUI (experimental!)
 
 CONFLICTS?=	gdb-[7-9]*
-MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_GCC=	any
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_ICONV=	yes
+USES=		gettext iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
 		--enable-target=all \
-		--enable-tui --with-libiconv-prefix=${LOCALBASE}
+		--enable-tui ${ICONV_CONFIGURE_ARG}
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
 CFLAGS+=	-DRL_NO_COMPAT
 EXCLUDE=	dejagnu expect readline sim texinfo intl
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - ${EXCLUDE:S/^/--exclude /}
+EXTRACT_AFTER_ARGS=	${EXCLUDE:S/^/--exclude /}
 VER=	${PORTVERSION:S/.//}
 PLIST_SUB=	VER=${VER}
 MAN1=	gdb${VER}.1
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_INSIGHT)
+.if ${PORT_OPTIONS:MINSIGHT}
 PKGNAMESUFFIX=	-insight
-PORTREVISION=	0
 USE_TK=	84+
 LIB_DEPENDS=	itk:${PORTSDIR}/x11-toolkits/itk
 RUN_DEPENDS=	${LOCALBASE}/lib/iwidgets:${PORTSDIR}/x11-toolkits/iwidgets
 DISTFILES+=	gdbtk-6.6${EXTRACT_SUFX}:gdbtk
 PLIST_SUB+=	INSIGHT=''
-EXTRA_PATCHES=	${FILESDIR}/itcl33-patch
+EXTRA_PATCHES=	${FILESDIR}/itcl33-patch \
+		${FILESDIR}/extra-gdb-gdbtk-generic-gdbtk.c \
+		${FILESDIR}/extra-gdb-gdbtk-generic-gdbtk-hooks.c
 CONFIGURE_ARGS+=--enable-gdbtk \
 		--with-tclconfig=${LOCALBASE}/lib/tcl${TCL_VER} \
 		--with-tclinclude=${LOCALBASE}/include/tcl${TCL_VER}/generic \
@@ -76,7 +75,7 @@ CONFLICTS+=	gdb-insight*
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .endif
 
 post-patch:
@@ -84,7 +83,7 @@ post-patch:
 		${WRKSRC}/gdb/version.in
 	@${REINPLACE_CMD} -e 's/^READLINE/#READLINE/' \
 		-e 's/^readline/#readline/' \
-		-e 's,^LIBICONV =.*,LIBICONV=-L${LOCALBASE}/lib -liconv,' \
+		-e 's,^LIBICONV =.*,LIBICONV=-L${LOCALBASE}/lib ${ICONV_LIB},' \
 		${WRKSRC}/gdb/Makefile.in
 	${ECHO} 'READLINE = -lreadline' >> ${WRKSRC}/gdb/Makefile.in
 
@@ -92,7 +91,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/gdb/gdb ${PREFIX}/bin/gdb${VER}
 	${LN} ${PREFIX}/bin/gdb${VER} ${PREFIX}/bin/gdbtui${VER}
 	${INSTALL_MAN} ${WRKSRC}/gdb/gdb.1 ${MAN1PREFIX}/man/man1/gdb${VER}.1
-.if defined(WITH_INSIGHT)
+.if ${PORT_OPTIONS:MINSIGHT}
 	${LN} ${PREFIX}/bin/gdb${VER} ${PREFIX}/bin/insight
 	${MKDIR} ${PREFIX}/share/redhat/gui
 	${CP} -p ${WRKSRC}/libgui/library/*.tcl	\
