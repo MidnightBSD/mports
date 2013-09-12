@@ -2,7 +2,7 @@
 
 PORTNAME=	cvs2svn
 PORTVERSION=	2.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49237/ \
 		FREEBSD_LOCAL/ohauer
@@ -18,11 +18,8 @@ COMMENT=	CVS to Subversion Repository Converter
 
 LICENSE=	other
 
-LIB_DEPENDS=	aprutil-1.3:${PORTSDIR}/devel/apr-svn
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-
-MAKE_JOBS_SAFE=	yes
 
 USE_PYTHON=	2.5+
 USE_PYDISTUTILS=	yes
