@@ -2,33 +2,36 @@
 
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.4.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play, encode, and manage Ogg Vorbis files
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	ao.4:${PORTSDIR}/audio/libao \
-		curl.6:${PORTSDIR}/ftp/curl \
-		FLAC.10:${PORTSDIR}/audio/flac \
-		kate.3:${PORTSDIR}/multimedia/libkate \
+		curl:${PORTSDIR}/ftp/curl \
+		FLAC:${PORTSDIR}/audio/flac \
+		kate.4:${PORTSDIR}/multimedia/libkate \
 		speex.1:${PORTSDIR}/audio/speex \
 		vorbis.4:${PORTSDIR}/audio/libvorbis
 
+USES=		pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
-MAKE_JOBS_SAFE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=    yes
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 PLIST_SUB+=     NLS=""
 .else
-USE_ICONV=	yes
+USES+=		iconv
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=     NLS="@comment "
 .endif
