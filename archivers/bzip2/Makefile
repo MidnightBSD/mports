@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  bzip2
-# Date created:			  19 Nov 1997
-# Whom:				  Thomas Gellekum <tg@FreeBSD.org>
-#
 # $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.5 2008/09/30 23:34:58 laffer1 Exp $
-# $FreeBSD: ports/archivers/bzip2/Makefile,v 1.41 2005/10/20 10:01:04 edwin Exp $
-#
 
 PORTNAME=	bzip2
 PORTVERSION=	1.0.6
@@ -14,7 +7,8 @@ CATEGORIES=	archivers
 MASTER_SITES=	http://www.bzip.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A block-sorting file compressor
+COMMENT=	Block-sorting file compressor
+
 LICENSE=	bzip2
 
 USE_LDCONFIG=	yes
