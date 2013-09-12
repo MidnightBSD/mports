@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/databases/postgresql-jdbc/Makefile,v 1.1 2010/09/23 23:46:39 laffer1 Exp $
 
 PORTNAME=	postgresql
-PORTVERSION=	9.1.901
+PORTVERSION=	9.1.902
 DISTVERSIONSUFFIX=.src
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
@@ -10,24 +10,29 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${DISTVERSION:C/.([0-9][0-9][0-9]*)/-\1/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Java JDBC implementation for PostgreSQL
+
 LICENSE=	bsd3
 
 DIST_SUBDIR=	postgresql
 
 USE_ANT=	yes
 USE_JAVA=	yes
+
+PLIST_FILES=	%%JAVAJARDIR%%/postgresql.jar
 PORTDOCS=	*
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 SUB_FILES=	pkg-message
 
 post-patch:
 	${REINPLACE_CMD} 's,/usr/local/pgsql/share/java,${JAVAJARDIR},' ${WRKSRC}/README
 
+.include <bsd.mport.options.mk>
+
 do-install:
 	@ ${INSTALL_DATA} ${WRKSRC}/jars/postgresql.jar ${JAVAJARDIR}/postgresql.jar
-.if !defined(NOPORTDOCS)
-	@ ${MKDIR} -m 0755 ${DOCSDIR} ;\
-	  ${INSTALL_DATA} ${WRKSRC}/README \
-			  ${DOCSDIR}/README-jdbc
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
