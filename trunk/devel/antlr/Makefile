@@ -16,9 +16,9 @@ CONFLICTS=	pccts-[0-9]*
 
 USE_GMAKE=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 
-OPTIONS=	PYTHON "Include Python runtime support" off
+OPTIONS_DEFINE=	PYTHON DOCS
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" CLASSPATH="${PORT_CLASSPATH}"
@@ -27,7 +27,9 @@ CONFIGURE_ARGS=	--disable-csharp --prefix=${PREFIX}
 PORT_CLASSPATH=	${WRKSRC}/antlrall.jar:.
 
 EXAMPLES=	cpp java
-.if !defined(NOPORTDOCS)
+
+.include <bsd.mport.options.mk>
+.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		csharp-runtime.html err.html glossary.html hidden.stream.gif \
 		index.html inheritance.html j-guru-blue.jpg jguru-logo.gif \
@@ -38,13 +40,8 @@ PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		vocab.html
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 USE_PYTHON=	2.2+
-# we need to manually include this, because USE_PYTHON is defined
-# after including bsd.port.pre.mk
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 PORTDOCS+=	python-runtime.html
 ANTLR_PYTHON=	${WRKSRC}/lib/python
 PLIST_SUB+=	WITH_PYTHON=""
@@ -59,7 +56,7 @@ post-configure:
 	${SED} -e 's|%%JAVAJARDIR%%|${JAVAJARDIR}|' \
 	-e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 	-e 's|%%JAVA_VERSION%%|${JAVA_VERSION}|' ${FILESDIR}/antlr.sh > ${WRKDIR}/antlr.sh
-.if defined(WITH_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 	(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py config)
 .endif
 
@@ -69,7 +66,7 @@ pre-build:
 	(cd ${WRKSRC} && ${JAVA} -classpath "${PORT_CLASSPATH}" antlr.build.Tool jar)
 .endif
 
-.if defined(WITH_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 post-build:
 	(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py build && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${ANTLR_PYTHON})
@@ -86,16 +83,16 @@ do-install:
 	@${ECHO_MSG} ">> Installing native files..."
 	@(cd ${WRKSRC}/lib/cpp && ${GMAKE} install)
 	@${ECHO_MSG} "   [ DONE ]"
-.if defined(WITH_PYTHON)
+.if ${PORT_OPTIONS:MPYTHON}
 	@${ECHO_MSG} -n ">> Installing Python runtime files..."
 	@(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py install)
 	@${ECHO_MSG} "   [ DONE ]"
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
 	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
