@@ -112,6 +112,7 @@ SUBDIR += warden
 SUBDIR += wmbsdbatt
 SUBDIR += xfce4-settings
 SUBDIR += zeitgeist
+SUBDIR += zetaback
 SUBDIR += zfs-stats
 SUBDIR += zfsnap
 SUBDIR += zfstools
