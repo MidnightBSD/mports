@@ -112,5 +112,8 @@ SUBDIR += warden
 SUBDIR += wmbsdbatt
 SUBDIR += xfce4-settings
 SUBDIR += zeitgeist
+SUBDIR += zfs-stats
+SUBDIR += zfsnap
+SUBDIR += zfstools
 
 .include <bsd.port.subdir.mk>
