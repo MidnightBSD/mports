@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/motor/Makefile,v 1.4 2008/10/13 20:59:02 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	motor
 PORTVERSION=	3.4.0

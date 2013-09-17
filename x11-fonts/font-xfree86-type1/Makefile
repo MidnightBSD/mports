@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/font-xfree86-type1/Makefile,v 1.3 2011/05/08 17:37:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-xfree86-type1
 PORTVERSION=	1.0.4

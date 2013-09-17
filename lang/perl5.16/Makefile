@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/perl5.16/Makefile,v 1.7 2013/04/04 01:51:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	perl
 PORTVERSION=	5.16.3

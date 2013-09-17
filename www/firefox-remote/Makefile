@@ -2,7 +2,7 @@
 # Date created:				13 May 2004
 # Whom:					Franz Klammer <klammer@webonaut.com>
 #
-# $MidnightBSD: mports/www/firefox-remote/Makefile,v 1.1 2008/06/18 17:37:14 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/firefox-remote/Makefile,v 1.10 2008/04/19 17:54:06 miwi Exp $
 #
 

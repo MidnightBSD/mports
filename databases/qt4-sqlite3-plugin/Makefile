@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.8 2012/03/01 02:05:36 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.15 2010/12/02 19:47:03 makc Exp $
 
 PORTNAME=	qt4-${DB}-plugin

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libdmx/Makefile,v 1.2 2011/05/03 13:41:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdmx
 PORTVERSION=	1.1.3

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.13 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	12

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xf86miscproto/Makefile,v 1.3 2012/03/03 01:52:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86miscproto
 PORTVERSION=	0.9.3

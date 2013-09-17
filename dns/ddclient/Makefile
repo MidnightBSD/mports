@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.7 2012/09/08 22:50:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ddclient
 PORTVERSION=	3.8.1

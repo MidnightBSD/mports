@@ -2,7 +2,7 @@
 # Date created:				Sun Apr 20 18:28:16 CEST 2003
 # Whom:					king@v2project.com
 #
-# $MidnightBSD: mports/emulators/extract-xiso/Makefile,v 1.2 2008/10/16 22:07:27 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/emulators/extract-xiso/Makefile,v 1.6 2006/03/15 06:16:49 vanilla Exp $
 #
 

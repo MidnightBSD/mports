@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/manedit/Makefile,v 1.4 2013/02/21 01:30:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	manedit
 PORTVERSION=	1.2.1

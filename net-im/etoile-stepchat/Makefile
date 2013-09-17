@@ -2,7 +2,7 @@
 # Date created:         8 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/net-im/etoile-stepchat/Makefile,v 1.2 2007/11/07 20:20:15 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	stepchat

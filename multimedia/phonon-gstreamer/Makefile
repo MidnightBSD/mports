@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/phonon-gstreamer/Makefile,v 1.3 2012/03/01 05:05:06 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/phonon-gstreamer/Makefile,v 1.13 2011/03/25 10:14:53 avilla Exp $
 
 PORTNAME=	phonon

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.10 2013/03/24 19:16:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-mag
 PORTVERSION=	0.16.3

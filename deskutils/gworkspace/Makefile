@@ -2,7 +2,7 @@
 # Date created:         04 Feb 2003
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/gworkspace/Makefile,v 1.6 2008/06/20 16:48:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/gworkspace/Makefile,v 1.27 2006/09/01 17:12:26 dinoex Exp $
 #
 

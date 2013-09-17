@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/sqlclient/Makefile,v 1.4 2008/04/11 21:36:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sqlclient
 PORTVERSION=	1.5.3

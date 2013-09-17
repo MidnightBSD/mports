@@ -2,7 +2,7 @@
 # Date created:			04 June 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/gnome-mount/Makefile,v 1.4 2010/12/31 03:55:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/gnome-mount/Makefile,v 1.9 2007/05/19 20:23:17 flz Exp $
 #   $MCom: ports/sysutils/gnome-mount/Makefile,v 1.13 2007/02/11 06:03:50 marcus Exp $
 #

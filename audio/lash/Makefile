@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/lash/Makefile,v 1.1 2010/02/27 19:44:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lash
 PORTVERSION=	0.5.4

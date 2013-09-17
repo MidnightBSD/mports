@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.8 2010/10/17 00:36:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wx
 PORTVERSION=	2.6.4

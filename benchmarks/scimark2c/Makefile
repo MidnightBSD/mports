@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/scimark2c/Makefile,v 1.2 2008/10/10 19:50:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scimark2c
 DISTVERSION=	2_1

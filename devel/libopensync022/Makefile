@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libopensync022/Makefile,v 1.1 2007/12/31 05:50:16 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libopensync022/Makefile,v 1.18 2007/07/04 10:00:00 lofi Exp $
 
 PORTNAME=	libopensync

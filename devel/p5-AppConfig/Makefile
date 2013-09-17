@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-AppConfig/Makefile,v 1.2 2008/04/29 04:24:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	AppConfig
 PORTVERSION=	1.66

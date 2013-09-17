@@ -2,7 +2,7 @@
 # Date Created:			03 June 2003
 # Whom:				Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/gnome-nettool/Makefile,v 1.1 2008/05/31 00:48:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/gnome-nettool/Makefile,v 1.25 2008/03/24 03:50:01 marcus Exp $
 #   $MCom: ports/net/gnome-nettool/Makefile,v 1.42 2008/03/10 21:33:09 mezz Exp $
 #

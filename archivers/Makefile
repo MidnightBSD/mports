@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.54 2013/06/15 20:04:02 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Archivers
 

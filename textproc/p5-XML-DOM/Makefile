@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-DOM/Makefile,v 1.1 2007/08/14 06:06:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-DOM
 PORTVERSION=	1.44

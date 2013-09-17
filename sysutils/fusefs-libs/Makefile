@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.6 2009/04/03 06:12:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fusefs
 PORTVERSION=	2.7.4

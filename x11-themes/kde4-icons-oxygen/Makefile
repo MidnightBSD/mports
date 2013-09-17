@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/kde4-icons-oxygen/Makefile,v 1.1 2011/07/31 17:08:24 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/kde4-icons-oxygen/Makefile,v 1.6 2010/06/01 21:35:38 makc Exp $
 
 PORTNAME=	oxygen

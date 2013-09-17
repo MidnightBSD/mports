@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql50-client/Makefile,v 1.2 2011/09/25 19:54:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mysql
 PKGNAMESUFFIX=	-client

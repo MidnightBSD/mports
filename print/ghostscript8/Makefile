@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/ghostscript8/Makefile,v 1.1 2012/09/08 21:15:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ghostscript8
 PORTVERSION=	8.71

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.7 2013/03/30 20:32:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgtkhtml
 PORTVERSION=	2.11.1

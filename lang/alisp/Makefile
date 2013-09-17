@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/alisp/Makefile,v 1.2 2007/05/24 16:51:38 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	alisp
 PORTVERSION=	20060917

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.5 2012/03/06 01:15:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	apachetop
 PORTVERSION=	0.12.6

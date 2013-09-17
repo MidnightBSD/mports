@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/libggz/Makefile,v 1.7 2012/02/11 00:26:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}

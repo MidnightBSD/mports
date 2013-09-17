@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-ClassAPI/Makefile,v 1.2 2008/10/16 21:44:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-ClassAPI
 PORTVERSION=	1.06

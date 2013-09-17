@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-omni-bot/Makefile,v 1.3 2008/03/22 16:47:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.12 2008/02/19 13:20:31 alepulver Exp $
 #
 

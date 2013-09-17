@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtksourceview/Makefile,v 1.5 2010/08/14 03:21:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtksourceview
 PORTVERSION=	2.10.1

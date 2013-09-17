@@ -2,7 +2,7 @@
 # Date created:				Sat Jan 12 10:59:45 BRST 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mplayer-skins/Makefile,v 1.5 2008/06/04 18:17:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.44 2007/01/30 01:42:14 rafan Exp $
 #
 

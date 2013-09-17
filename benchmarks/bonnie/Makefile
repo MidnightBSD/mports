@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.3 2011/04/10 20:18:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bonnie
 PORTVERSION=	2.0.6

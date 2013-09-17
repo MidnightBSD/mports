@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/linux-firefox36/Makefile,v 1.16 2011/09/16 17:09:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	firefox
 DISTVERSION=	3.6.28

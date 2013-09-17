@@ -2,7 +2,7 @@
 # Date created:		January 3, 2008
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/deskutils/javajj/Makefile,v 1.1 2009/01/04 08:08:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	javajj
 PORTVERSION=	1.0

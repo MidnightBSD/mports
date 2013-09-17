@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/docker/Makefile,v 1.4 2012/03/02 02:30:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	docker
 PORTVERSION=	1.5

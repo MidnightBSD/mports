@@ -2,7 +2,7 @@
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/pcc/Makefile,v 1.6 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pcc
 PORTVERSION=	1.0.0

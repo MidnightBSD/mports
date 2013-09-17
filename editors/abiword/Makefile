@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.12 2013/02/21 02:51:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.6

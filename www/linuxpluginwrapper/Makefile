@@ -2,7 +2,7 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.6 2008/10/08 03:58:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 

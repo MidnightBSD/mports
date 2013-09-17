@@ -3,7 +3,7 @@
 # Date created:			Mar 4, 2001
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/perltidy/Makefile,v 1.2 2008/10/16 21:49:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/perltidy/Makefile,v 1.33 2008/01/21 23:55:59 leeym Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/battalion/Makefile,v 1.5 2013/03/24 20:10:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	battalion
 PORTVERSION=	1.4b

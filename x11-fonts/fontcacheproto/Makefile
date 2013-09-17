@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/fontcacheproto/Makefile,v 1.1 2007/05/19 20:29:21 flz Exp $
-# $MidnightBSD: mports/x11-fonts/fontcacheproto/Makefile,v 1.1 2007/10/03 15:42:37 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	fontcacheproto
 PORTVERSION=	0.1.3

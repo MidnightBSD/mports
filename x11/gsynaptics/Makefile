@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gsynaptics/Makefile,v 1.3 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gsynaptics
 PORTVERSION=	0.9.16

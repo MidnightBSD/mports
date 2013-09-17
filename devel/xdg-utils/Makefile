@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/xdg-utils/Makefile,v 1.3 2012/09/15 22:59:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xdg-utils
 PORTVERSION=	1.0.2

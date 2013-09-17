@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1999
 # Whom:                 dbaker
 #
-# $MidnightBSD: mports/misc/dnetc/Makefile,v 1.3 2011/05/14 17:20:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/dnetc/Makefile,v 1.58 2007/10/27 17:49:48 tdb Exp $
 #
 

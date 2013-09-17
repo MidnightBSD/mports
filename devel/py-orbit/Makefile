@@ -2,7 +2,7 @@
 # Date created:				04 March 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/py-orbit/Makefile,v 1.2 2008/10/16 21:51:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/py-orbit/Makefile,v 1.20 2007/05/28 23:34:38 mezz Exp $
 #   $MCom: ports/devel/py-orbit2/Makefile,v 1.11 2006/04/13 07:52:34 bland Exp $
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.5 2013/03/30 19:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.3.10

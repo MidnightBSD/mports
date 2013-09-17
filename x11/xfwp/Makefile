@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/xfwp/Makefile,v 1.1 2007/05/19 20:27:53 flz Exp $
-# $MidnightBSD: mports/x11/xfwp/Makefile,v 1.2 2011/05/07 14:39:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfwp
 PORTVERSION=	1.0.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.4 2012/06/09 20:37:16 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/opengrok/Makefile,v 1.5 2011/12/26 17:21:01 jgh Exp $
 
 PORTNAME=	opengrok

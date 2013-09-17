@@ -2,7 +2,7 @@
 # Date created:				12 Oct 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/cracklib/Makefile,v 1.2 2009/05/01 15:15:51 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	cracklib

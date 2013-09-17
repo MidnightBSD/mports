@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Params-Util/Makefile,v 1.2 2008/05/31 00:35:30 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	Params-Util
 PORTVERSION=	1.00

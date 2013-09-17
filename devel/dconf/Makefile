@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dconf/Makefile,v 1.2 2013/07/12 23:04:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	dconf
 PORTVERSION=	0.14.1

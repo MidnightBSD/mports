@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-DateTime-Format-Mail/Makefile,v 1.3 2010/10/19 15:35:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DateTime-Format-Mail
 PORTVERSION=	0.30.01

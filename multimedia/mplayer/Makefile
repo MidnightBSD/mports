@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.9 2009/05/27 21:26:37 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #

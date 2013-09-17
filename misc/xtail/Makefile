@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/xtail/Makefile,v 1.3 2011/05/14 03:39:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xtail
 PORTVERSION=	2.1

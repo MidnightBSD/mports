@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/validator/Makefile,v 1.6 2013/08/15 23:09:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	validator
 PORTVERSION=	1.3

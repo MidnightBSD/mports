@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Altoids/Makefile,v 1.2 2007/06/06 18:40:31 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Altoids
 PORTVERSION=	1.017

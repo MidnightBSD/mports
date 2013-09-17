@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.27 2013/06/21 12:24:13 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Character code converters
 

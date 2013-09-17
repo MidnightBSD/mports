@@ -2,7 +2,7 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/x11-toolkits/tk82/Makefile,v 1.3 2007/11/06 23:59:44 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/tk82/Makefile,v 1.58 2007/03/13 10:31:53 miwi Exp $
 #
 

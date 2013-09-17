@@ -2,7 +2,7 @@
 # Date created:	   31 August 2005
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/devel/p5-Readonly/Makefile,v 1.1 2008/03/21 20:28:09 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Readonly/Makefile,v 1.3 2007/09/08 00:59:03 linimon Exp $
 #
 

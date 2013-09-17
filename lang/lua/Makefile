@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/lua/Makefile,v 1.3 2012/03/08 03:27:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lua
 PORTVERSION=	5.1.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libmtp/Makefile,v 1.1 2008/09/11 05:02:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmtp
 PORTVERSION=	0.3.1

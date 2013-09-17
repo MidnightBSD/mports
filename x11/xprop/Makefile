@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xprop/Makefile,v 1.3 2011/05/07 20:33:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xprop
 PORTVERSION=	1.2.1

@@ -2,7 +2,7 @@
 # Date Created:				26 May 2001
 # Whom:					Pete Fritchman <petef@databits.net>
 #
-# $MidnightBSD: mports/devel/devtodo/Makefile,v 1.1 2006/11/03 12:41:20 wintellect Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/devtodo/Makefile,v 1.18 2006/05/04 21:40:31 edwin Exp $
 #
 

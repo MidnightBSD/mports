@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.106 2013/08/18 13:01:35 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Audio tools
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.6 2010/11/13 19:02:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdvdread
 PORTVERSION=	4.1.4.r1219

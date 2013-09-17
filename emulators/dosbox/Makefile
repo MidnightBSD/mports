@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.10 2013/04/11 12:33:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dosbox
 PORTVERSION=	0.74

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/codeeditor/Makefile,v 1.5 2013/02/21 02:50:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	codeeditor
 PORTVERSION=	0.4.4

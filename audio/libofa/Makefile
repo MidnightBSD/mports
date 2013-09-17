@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.9 2013/03/20 12:46:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3

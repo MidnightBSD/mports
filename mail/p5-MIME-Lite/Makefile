@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-MIME-Lite/Makefile,v 1.2 2009/09/24 03:39:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	MIME-Lite
 PORTVERSION=	3.02.9

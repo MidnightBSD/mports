@@ -2,7 +2,7 @@
 # Date created:			25 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-tce/Makefile,v 1.2 2008/03/21 22:38:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-tce/Makefile,v 1.5 2006/05/31 01:43:26 alepulver Exp $
 #
 

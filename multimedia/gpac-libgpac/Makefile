@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.8 2012/09/09 04:09:51 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gpac-libgpac/Makefile,v 1.13 2006/08/14 23:36:33 ahze Exp $
 
 PORTNAME=	gpac

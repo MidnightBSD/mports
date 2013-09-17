@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libmusicbrainz3/Makefile,v 1.1 2010/02/27 20:54:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmusicbrainz3
 PORTVERSION=	3.0.3

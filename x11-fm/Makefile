@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fm/Makefile,v 1.8 2012/03/06 00:54:12 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 file managers
 

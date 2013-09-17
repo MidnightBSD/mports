@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.12 2012/01/28 04:26:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-Error/Makefile,v 1.5 2009/12/30 16:43:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Error
 PORTVERSION=	0.17019

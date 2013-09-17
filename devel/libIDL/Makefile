@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libIDL/Makefile,v 1.5 2009/04/15 03:11:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libIDL
 PORTVERSION=	0.8.14

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.11 2011/04/17 19:40:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libksba
 PORTVERSION=	1.2.0

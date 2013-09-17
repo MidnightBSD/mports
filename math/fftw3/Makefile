@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.6 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fftw3
 PORTVERSION=	3.3.3

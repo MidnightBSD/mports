@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libffi/Makefile,v 1.8 2013/03/26 02:51:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libffi
 PORTVERSION=	3.0.13

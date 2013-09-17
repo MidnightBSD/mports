@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/linux_base-f10/Makefile,v 1.2 2013/07/04 16:00:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		f10
 PORTVERSION=		10

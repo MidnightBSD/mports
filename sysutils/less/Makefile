@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/less/Makefile,v 1.6 2013/06/05 02:35:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	less
 PORTVERSION=	458

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/tvbrowser/Makefile,v 1.2 2011/05/14 22:34:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tvbrowser
 PORTVERSION=	3.2.1

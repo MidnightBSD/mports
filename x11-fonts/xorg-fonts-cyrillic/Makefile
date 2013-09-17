@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-cyrillic/Makefile,v 1.8 2011/05/08 01:24:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-fonts-cyrillic
 PORTVERSION=	7.7

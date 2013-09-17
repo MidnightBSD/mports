@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/rar/Makefile,v 1.13 2012/11/27 02:26:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rar
 PORTVERSION=	4.2.0

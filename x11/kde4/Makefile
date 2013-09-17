@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/x11/kde4/Makefile,v 1.1 2009/01/05 07:47:33 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME?=	kde4

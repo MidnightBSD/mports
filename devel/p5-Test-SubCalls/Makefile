@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-SubCalls/Makefile,v 1.2 2008/10/16 21:45:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-SubCalls
 PORTVERSION=	1.09

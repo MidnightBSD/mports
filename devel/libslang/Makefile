@@ -2,7 +2,7 @@
 # Date created:         11 July 1996
 # Whom:                 ache
 #
-# $MidnightBSD: mports/devel/libslang/Makefile,v 1.2 2007/05/06 21:22:57 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libslang/Makefile,v 1.41 2006/08/29 15:41:00 garga Exp $
 #
 

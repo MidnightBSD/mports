@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXi/Makefile,v 1.5 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXi
 PORTVERSION=	1.7.1

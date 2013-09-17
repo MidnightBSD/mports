@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/fstobdf/Makefile,v 1.2 2011/05/02 23:33:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fstobdf
 PORTVERSION=	1.0.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/pam_helper/Makefile,v 1.1 2010/03/01 01:59:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pam_helper
 PORTVERSION=	1.0

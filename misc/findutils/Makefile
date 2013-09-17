@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/findutils/Makefile,v 1.7 2013/02/22 03:01:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	findutils
 PORTVERSION=	4.5.11

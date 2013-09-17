@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.17 2013/07/04 00:08:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wine
 DISTVERSION=	1.4.1

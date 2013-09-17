@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.10 2013/01/24 04:39:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	enchant
 PORTVERSION=	1.6.0

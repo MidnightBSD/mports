@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.38 2013/07/24 19:41:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mksh
 DISTVERSION=	R48

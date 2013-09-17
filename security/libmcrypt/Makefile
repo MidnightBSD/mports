@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libmcrypt/Makefile,v 1.5 2010/11/13 18:39:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmcrypt
 PORTVERSION=	2.5.8

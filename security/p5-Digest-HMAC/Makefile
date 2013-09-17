@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.5 2009/05/01 15:58:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Digest-HMAC
 PORTVERSION=	1.02

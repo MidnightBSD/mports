@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.6 2011/03/27 16:46:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	basiliskII
 PORTVERSION=	1.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Text-Iconv/Makefile,v 1.3 2008/01/05 05:53:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Text-Iconv
 PORTVERSION=	1.7

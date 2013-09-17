@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.11 2013/07/12 23:17:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.12.8

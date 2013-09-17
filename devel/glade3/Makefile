@@ -2,7 +2,7 @@
 # Date created:		Sun May 22 17:22:53 CEST 2005
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glade3/Makefile,v 1.7 2011/09/03 15:37:10 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
 #   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libXt/Makefile,v 1.4 2013/02/22 03:08:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXt
 PORTVERSION=	1.1.4

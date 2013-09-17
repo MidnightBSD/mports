@@ -2,7 +2,7 @@
 # Date created:		24 January 2005
 # Whom:			Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
 #
-# $MidnightBSD: mports/archivers/xar/Makefile,v 1.3 2008/03/12 01:59:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/xar/Makefile,v 1.3 2006/12/13 12:41:19 roam Exp $
 #
 

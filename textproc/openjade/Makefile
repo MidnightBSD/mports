@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/openjade/Makefile,v 1.2 2009/11/09 00:42:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openjade
 PORTVERSION=	1.3.3p1

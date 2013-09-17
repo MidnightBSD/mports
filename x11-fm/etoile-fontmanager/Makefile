@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fm/etoile-fontmanager/Makefile,v 1.1 2010/01/21 01:28:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fontmanager
 PORTVERSION=	0.4.1

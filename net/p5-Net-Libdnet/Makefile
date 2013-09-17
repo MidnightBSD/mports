@@ -2,7 +2,7 @@
 # Date created:		May 8 2008
 # Whom:			Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/net/p5-Net-Libdnet/Makefile,v 1.1 2008/05/09 21:30:23 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Net-Libdnet

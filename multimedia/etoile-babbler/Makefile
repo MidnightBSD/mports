@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/etoile-babbler/Makefile,v 1.3 2009/04/05 21:32:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	babbler
 PORTVERSION=	0.1.${SNAPSHOT}

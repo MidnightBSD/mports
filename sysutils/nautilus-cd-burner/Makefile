@@ -2,7 +2,7 @@
 # Date created:				13 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/nautilus-cd-burner/Makefile,v 1.7 2011/02/02 21:22:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/nautilus-cd-burner/Makefile,v 1.42 2007/05/29 04:07:21 mezz Exp $
 #
 

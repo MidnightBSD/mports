@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/toolbox/Makefile,v 1.5 2009/04/05 19:45:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	toolbox
 PORTVERSION=	0.8

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.10 2011/07/23 22:16:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	acroread8
 PORTVERSION=	8.1.7

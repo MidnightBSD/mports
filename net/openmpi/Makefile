@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/openmpi/Makefile,v 1.4 2010/09/06 19:54:53 laffer1 Exp $
+# $MidnightBSD$
 
 # TODO:
 # fix man pages

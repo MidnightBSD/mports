@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/qstat/Makefile,v 1.6 2009/03/30 22:53:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qstat
 PORTVERSION=	2.11

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/dvdbackup/Makefile,v 1.3 2012/03/06 01:42:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dvdbackup
 PORTVERSION=	0.4.2

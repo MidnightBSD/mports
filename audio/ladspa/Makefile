@@ -2,7 +2,7 @@
 # Date created:			11 May 2002
 # Whom:				Tilman Linneweh <arved@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/ladspa/Makefile,v 1.2 2008/02/28 17:42:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/ladspa/Makefile,v 1.11 2006/12/14 19:36:31 arved Exp $
 
 PORTNAME=	ladspa

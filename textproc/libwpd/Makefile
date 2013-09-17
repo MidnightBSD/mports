@@ -3,7 +3,7 @@
 # Whom:                 reed@pugetsoundtechnology.com
 #
 # $FreeBSD: ports/textproc/libwpd/Makefile,v 1.18 2006/02/23 10:39:24 ade Exp $
-# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.6 2010/01/02 20:10:28 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libwpd

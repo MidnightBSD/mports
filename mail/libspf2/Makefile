@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.6 2013/06/05 02:03:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libspf2
 PORTVERSION=	1.2.10

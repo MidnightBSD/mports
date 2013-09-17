@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/aldo/Makefile,v 1.5 2011/10/01 01:24:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aldo
 PORTVERSION=	0.7.5

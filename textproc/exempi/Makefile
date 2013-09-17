@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/exempi/Makefile,v 1.2 2011/02/02 21:23:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	exempi
 PORTVERSION=	2.1.1

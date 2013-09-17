@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ispell-de/Makefile,v 1.1 2008/06/14 04:03:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ispell
 CATEGORIES=	textproc german

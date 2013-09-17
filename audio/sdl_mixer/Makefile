@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/sdl_mixer/Makefile,v 1.5 2010/02/27 21:18:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sdl_mixer
 PORTVERSION=	1.2.8

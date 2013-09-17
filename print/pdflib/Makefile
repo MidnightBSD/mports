@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.12 2011/02/02 21:18:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pdflib
 PORTVERSION=	7.0.5

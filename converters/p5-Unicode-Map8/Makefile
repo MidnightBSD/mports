@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Unicode-Map8/Makefile,v 1.1 2009/05/21 14:54:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Unicode-Map8
 PORTVERSION=	0.13

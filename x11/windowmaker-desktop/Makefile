@@ -2,7 +2,7 @@
 # Date created:	8 March 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.5 2007/11/08 23:34:06 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	windowmaker-desktop

@@ -2,7 +2,7 @@
 # Date created:		4 May 2001
 # Whom:			abgoeree@uwnet.nl
 #
-# $MidnightBSD: mports/databases/adodb/Makefile,v 1.3 2009/10/14 00:24:13 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/adodb/Makefile,v 1.46 2007/04/05 13:19:01 mm Exp $
 #
 

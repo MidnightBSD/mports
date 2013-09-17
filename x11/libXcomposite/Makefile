@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.3 2012/03/03 01:52:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXcomposite
 PORTVERSION=	0.4.4

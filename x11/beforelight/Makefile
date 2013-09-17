@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/beforelight/Makefile,v 1.2 2011/05/02 13:35:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	beforelight
 PORTVERSION=	1.0.5

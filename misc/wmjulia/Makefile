@@ -2,7 +2,7 @@
 # Date created:				16 May 2002
 # Whom:					Alexey Dokuchaev <danfe@regency.nsu.ru>
 #
-# $MidnightBSD: mports/misc/wmjulia/Makefile,v 1.4 2010/12/11 18:57:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/wmjulia/Makefile,v 1.6 2004/02/05 20:37:36 trevor Exp $
 #
 

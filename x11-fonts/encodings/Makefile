@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/encodings/Makefile,v 1.1 2007/05/19 20:29:09 flz Exp $
-# $MidnightBSD: mports/x11-fonts/encodings/Makefile,v 1.2 2011/05/08 13:51:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	encodings
 PORTVERSION=	1.0.4

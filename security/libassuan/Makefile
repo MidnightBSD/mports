@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libassuan/Makefile,v 1.6 2012/02/29 01:34:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libassuan
 PORTVERSION=	2.0.3

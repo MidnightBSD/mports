@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.7 2010/09/04 19:47:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fusefs
 DISTVERSION=	0.3.9-pre1.20080208

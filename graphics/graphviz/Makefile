@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.19 2012/01/28 01:52:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	graphviz
 PORTVERSION=	2.28.0

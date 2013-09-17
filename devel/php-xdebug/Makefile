@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/php-xdebug/Makefile,v 1.3 2013/04/11 12:56:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xdebug
 PORTVERSION=	2.2.1

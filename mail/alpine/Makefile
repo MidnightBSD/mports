@@ -2,7 +2,7 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/alpine/Makefile,v 1.7 2009/06/22 18:04:15 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME?=	alpine

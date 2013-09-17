@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gnome-power-manager/Makefile,v 1.4 2011/02/02 21:22:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-power-manager
 PORTVERSION=	2.32.0

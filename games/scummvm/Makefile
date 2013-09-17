@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/scummvm/Makefile,v 1.5 2012/02/29 18:14:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scummvm
 DISTVERSION=	1.6.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.4 2013/06/15 20:12:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmicro
 PORTVERSION=	0.4.1

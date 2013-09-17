@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/p5-GD-Graph/Makefile,v 1.3 2010/02/05 01:35:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	GD-Graph
 PORTVERSION=	1.44.01

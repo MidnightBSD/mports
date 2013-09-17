@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.12 2012/06/26 00:36:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DBI
 PORTVERSION=	1.623

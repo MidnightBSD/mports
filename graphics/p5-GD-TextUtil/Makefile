@@ -2,7 +2,7 @@
 # Date created:				21 February 2000
 # Whom:	      				Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD: mports/graphics/p5-GD-TextUtil/Makefile,v 1.2 2008/10/13 20:47:39 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/p5-GD-TextUtil/Makefile,v 1.13 2003/10/24 12:02:28 ijliao Exp $
 #
 

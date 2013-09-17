@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/Makefile,v 1.13 2010/01/23 19:17:57 laffer1 Exp $
+# $MidnightBSD$
 #
 
     COMMENT = Internet Relay Chat utilities

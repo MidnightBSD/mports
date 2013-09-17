@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/scons.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.scons.mk,v 1.6 2006/08/04 12:34:41 erwin Exp $
 #
 # bsd.scons.mk - Python-based SCons build system interface.

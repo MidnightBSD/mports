@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automake/Makefile,v 1.4 2013/01/19 05:10:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	automake
 PORTVERSION=	1.12.6

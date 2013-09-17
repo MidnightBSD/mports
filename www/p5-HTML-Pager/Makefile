@@ -3,7 +3,7 @@
 # Whom:					will
 #
 # $FreeBSD: ports/www/p5-HTML-Pager/Makefile,v 1.7 2003/10/24 14:15:29 erwin Exp $
-# $MidnightBSD: mports/www/p5-HTML-Pager/Makefile,v 1.1 2006/11/05 16:05:02 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	HTML-Pager

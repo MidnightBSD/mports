@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/qt4-svg/Makefile,v 1.3 2011/07/24 00:04:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/qt4-svg/Makefile,v 1.21 2010/12/02 19:47:11 makc Exp $
 
 PORTNAME=	svg

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/libgda4/Makefile,v 1.3 2011/09/03 23:06:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgda4
 PORTVERSION?=	4.2.5

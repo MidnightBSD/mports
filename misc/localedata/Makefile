@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/localedata/Makefile,v 1.4 2009/04/05 19:31:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	localedata
 PORTVERSION=	5.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.30 2011/05/31 11:56:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.17

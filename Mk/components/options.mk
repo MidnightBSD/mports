@@ -1,6 +1,6 @@
 #-*- tab-width: 4; -*-
 #
-# $MidnightBSD: mports/Mk/components/options.mk,v 1.4 2013/03/30 03:35:50 laffer1 Exp $
+# $MidnightBSD$
 #
 # options.mk -- The options component
 #

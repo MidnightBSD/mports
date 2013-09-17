@@ -2,7 +2,7 @@
 # Date Created:				Oct 20 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>	
 #
-# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.3 2009/10/03 00:11:23 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
 
 PORTNAME=	doomlegacy

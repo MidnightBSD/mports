@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libungif/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/libungif/Makefile,v 1.34 2006/08/14 23:06:35 clsung Exp $
 
 PORTNAME=	libungif

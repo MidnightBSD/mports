@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/nvidia-xconfig/Makefile,v 1.6 2013/01/15 01:16:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nvidia-xconfig
 PORTVERSION=	310.14

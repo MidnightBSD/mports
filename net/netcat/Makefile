@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/netcat/Makefile,v 1.2 2009/06/27 22:36:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	netcat
 PORTVERSION=	1.10

@@ -2,7 +2,7 @@
 # Date created:				2005-11-25
 # Whom:					Roman Bogorodskiy <novel@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Net-DBus/Makefile,v 1.2 2008/06/08 21:35:08 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Net-DBus/Makefile,v 1.15 2007/09/08 00:57:37 linimon Exp $
 #
 

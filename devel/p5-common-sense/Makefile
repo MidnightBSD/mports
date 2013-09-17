@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-common-sense/Makefile,v 1.3 2011/03/05 16:24:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	common-sense
 PORTVERSION=	3.6

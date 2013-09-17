@@ -2,7 +2,7 @@
 # Date created:         9 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/deskutils/etoile-outerspace/Makefile,v 1.2 2007/10/25 22:54:14 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	outerspace

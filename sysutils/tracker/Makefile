@@ -2,7 +2,7 @@
 # Date created:		2006-12-09
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/tracker/Makefile,v 1.1 2008/04/01 05:17:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/tracker/Makefile,v 1.16 2007/10/24 23:36:41 marcus Exp $
 #   $MCom: ports/sysutils/tracker/Makefile,v 1.8 2007/10/05 16:55:59 mezz Exp $
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-BSD-Resource/Makefile,v 1.2 2011/06/05 22:25:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	BSD-Resource
 PORTVERSION=	1.2904

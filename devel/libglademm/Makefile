@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/devel/libglademm/Makefile,v 1.3 2009/09/20 00:34:59 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libglademm/Makefile,v 1.19 2007/05/19 20:03:07 flz Exp $
 #
 

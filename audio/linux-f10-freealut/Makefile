@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/linux-f10-freealut/Makefile,v 1.1 2011/06/18 14:28:44 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/linux-f10-freealut/Makefile,v 1.10 2011/03/03 09:26:35 ehaupt Exp $
 
 PORTNAME=	freealut

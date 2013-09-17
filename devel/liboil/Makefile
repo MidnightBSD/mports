@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/liboil/Makefile,v 1.7 2011/05/21 21:33:37 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil

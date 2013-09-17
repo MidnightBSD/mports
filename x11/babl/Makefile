@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/babl/Makefile,v 1.7 2012/03/02 02:25:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	babl
 PORTVERSION=	0.1.10

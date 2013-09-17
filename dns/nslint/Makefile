@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/nslint/Makefile,v 1.5 2011/02/23 21:47:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nslint
 PORTVERSION=	3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libpcap/Makefile,v 1.3 2009/06/27 22:21:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libpcap
 PORTVERSION=	1.4.0

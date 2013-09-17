@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/snappy/Makefile,v 1.1 2012/09/15 18:41:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	snappy
 PORTVERSION=	1.1.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/bouml/Makefile,v 1.6 2011/01/25 14:26:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bouml
 PORTVERSION=	4.22.2

@@ -2,7 +2,7 @@
 # Date created:			3 Oct 2004
 # Whom:				Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/gstreamer-plugins-faad/Makefile,v 1.1 2007/12/06 05:05:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/gstreamer-plugins-faad/Makefile,v 1.10 2007/05/19 19:58:54 flz Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xorg-cf-files/Makefile,v 1.7 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-cf-files
 PORTVERSION=	1.0.4

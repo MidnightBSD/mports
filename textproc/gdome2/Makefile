@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.6 2013/06/19 01:12:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdome2
 PORTVERSION=	0.8.1

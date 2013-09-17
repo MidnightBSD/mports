@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.38 2013/06/19 00:11:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	git
 PORTVERSION=	1.8.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/nmh/Makefile,v 1.2 2012/02/24 18:25:44 laffer1 Exp $
+# $MidnightBSD$
 #
 # Makefile variables of interest:
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-IO-Multiplex/Makefile,v 1.2 2008/10/16 21:38:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IO-Multiplex
 PORTVERSION=	1.13

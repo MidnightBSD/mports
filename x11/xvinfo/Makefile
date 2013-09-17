@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xvinfo/Makefile,v 1.5 2013/04/11 01:05:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xvinfo
 PORTVERSION=	1.1.2

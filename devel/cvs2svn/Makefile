@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.8 2013/06/27 11:55:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cvs2svn
 PORTVERSION=	2.4.0

@@ -2,7 +2,7 @@
 # Date created:		28 March 1999
 # Whom:			kuriyama
 #
-# $MidnightBSD: mports/textproc/docbook-xml/Makefile,v 1.3 2008/05/31 17:39:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-xml/Makefile,v 1.24 2004/04/19 09:13:36 kris Exp $
 #
 

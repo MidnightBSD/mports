@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/xpad/Makefile,v 1.5 2013/07/09 00:57:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xpad
 PORTVERSION=	3.1

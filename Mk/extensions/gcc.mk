@@ -35,7 +35,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.11 2013/06/11 02:41:00 laffer1 Exp $
+# $MidnightBSD$
 
 .if defined(_POSTMKINCLUDED) && !defined(Gcc_Post_Include)
 

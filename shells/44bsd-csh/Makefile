@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.3 2009/12/28 19:26:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	44bsd-csh
 PORTVERSION=	20001106

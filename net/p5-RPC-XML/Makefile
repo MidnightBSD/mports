@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-RPC-XML/Makefile,v 1.2 2010/05/26 00:22:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	RPC-XML
 PORTVERSION=	0.77

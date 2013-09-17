@@ -3,7 +3,7 @@
 # Date created:			13, May, 1999
 # Whom:				Ying-Chieh Liao <ijliao@csie.nctu.edu.tw>
 #
-# $MidnightBSD: mports/devel/t1lib/Makefile,v 1.4 2010/06/04 22:57:20 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/t1lib/Makefile,v 1.33 2006/08/14 22:55:17 clsung Exp $
 #
 

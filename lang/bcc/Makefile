@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/bcc/Makefile,v 1.3 2009/08/20 18:49:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bcc
 PORTVERSION=	1995.03.12

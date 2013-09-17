@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.7 2012/03/04 21:04:25 laffer1 Exp $
+# $MidnightBSD$
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)

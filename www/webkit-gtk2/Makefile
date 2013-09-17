@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.20 2013/08/12 01:45:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	webkit
 PORTVERSION=	1.8.3

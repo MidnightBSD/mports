@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/vala/Makefile,v 1.4 2013/06/14 01:57:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vala
 PORTVERSION=	0.18.1

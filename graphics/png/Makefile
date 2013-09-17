@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.27 2013/05/10 02:34:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	png
 PORTVERSION=	1.5.16

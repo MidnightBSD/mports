@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-cirrus/Makefile,v 1.3 2011/05/07 21:17:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-cirrus
 PORTVERSION=	1.3.2

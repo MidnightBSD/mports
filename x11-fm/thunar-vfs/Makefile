@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fm/thunar-vfs/Makefile,v 1.2 2012/09/09 02:07:13 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-fm/thunar-vfs/Makefile,v 1.3 2011/10/23 11:56:49 rene Exp $
 
 PORTNAME=	thunar-vfs

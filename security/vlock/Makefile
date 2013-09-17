@@ -2,7 +2,7 @@
 # Date created:		08 Oct 2000
 # Whom:			George Reid <services@nevernet.net>
 #
-# $MidnightBSD: mports/security/vlock/Makefile,v 1.3 2009/01/02 01:19:13 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/security/vlock/Makefile,v 1.9 2008/06/19 19:35:54 pav Exp $
 
 PORTNAME=	vlock

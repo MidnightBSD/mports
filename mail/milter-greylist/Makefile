@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.15 2013/06/05 02:14:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.4.3

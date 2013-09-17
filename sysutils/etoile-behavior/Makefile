@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/etoile-behavior/Makefile,v 1.3 2007/08/27 20:42:46 seirei Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/etoile-behavior/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 

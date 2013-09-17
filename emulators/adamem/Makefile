@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.5 2009/03/01 17:32:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	adamem
 PORTVERSION=	1.0

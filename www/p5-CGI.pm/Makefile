@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.11 2010/12/10 00:46:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	CGI.pm
 PORTVERSION=	3.63

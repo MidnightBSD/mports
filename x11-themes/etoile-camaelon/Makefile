@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/etoile-camaelon/Makefile,v 1.6 2009/12/13 21:01:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	camaelon
 PORTVERSION=	0.4.1

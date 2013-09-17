@@ -3,7 +3,7 @@
 # Whom:					Manuel Kreutz <mk@nomtec.net>
 #
 # $FreeBSD: ports/net-mgmt/sysmon/Makefile,v 1.5 2005/11/08 13:40:53 mnag Exp $
-# $MidnightBSD: mports/net-mgmt/sysmon/Makefile,v 1.2 2007/06/06 19:32:55 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	sysmon

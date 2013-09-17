@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/courieruserinfo/Makefile,v 1.1 2007/02/18 05:05:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	courieruserinfo
 PORTVERSION=	1.1.2

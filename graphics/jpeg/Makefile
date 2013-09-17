@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.14 2013/01/17 14:56:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jpeg
 PORTVERSION=	8

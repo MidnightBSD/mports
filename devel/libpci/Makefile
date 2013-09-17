@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libpci/Makefile,v 1.4 2012/02/07 22:16:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libpci
 PORTVERSION=	3.2.0

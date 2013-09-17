@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/mpfr/Makefile,v 1.8 2013/02/24 01:51:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mpfr
 PORTVERSION=	3.1.2

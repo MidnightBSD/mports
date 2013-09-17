@@ -2,7 +2,7 @@
 # Date created:				2006-10-18
 # Whom:					Maxim Samsonov <xors@sendmail.ru>
 #
-# $MidnightBSD: mports/devel/dbus-qt3/Makefile,v 1.2 2008/05/31 02:08:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/dbus-qt3/Makefile,v 1.3 2007/05/19 20:02:20 flz Exp $
 #
 

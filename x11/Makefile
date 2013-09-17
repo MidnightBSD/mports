@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.108 2013/08/03 02:15:04 laffer1 Exp $
+# $MidnightBSD$
     
 COMMENT = Ports to support the X window system
 

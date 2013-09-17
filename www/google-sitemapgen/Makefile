@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.4 2010/05/29 06:20:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	google-sitemapgen
 PORTVERSION=	1.5

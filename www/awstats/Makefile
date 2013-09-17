@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/awstats/Makefile,v 1.5 2011/08/31 03:23:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	awstats
 PORTVERSION=	7.1

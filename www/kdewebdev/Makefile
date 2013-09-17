@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.5 2009/09/20 00:19:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdewebdev
 PORTVERSION=	${KDE_VERSION}

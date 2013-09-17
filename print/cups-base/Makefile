@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.32 2012/09/08 16:59:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups

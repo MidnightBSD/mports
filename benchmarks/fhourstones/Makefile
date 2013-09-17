@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/fhourstones/Makefile,v 1.2 2008/06/22 19:25:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fhourstones
 PORTVERSION=	3.1

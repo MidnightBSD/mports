@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/objc/Makefile,v 1.4 2013/02/09 03:07:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	objc
 PORTVERSION=	3.2.11

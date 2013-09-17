@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-IO-INET6/Makefile,v 1.5 2011/05/11 14:14:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IO-Socket-INET6
 PORTVERSION=	2.69

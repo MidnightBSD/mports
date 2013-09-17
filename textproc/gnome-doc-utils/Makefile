@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.8 2013/07/03 20:37:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-doc-utils
 PORTVERSION=	0.20.3

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.11 2011/05/28 06:20:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-themes
 PORTVERSION=	2.32.1

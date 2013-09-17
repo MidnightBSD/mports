@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/mpack/Makefile,v 1.3 2013/02/09 03:19:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mpack
 PORTVERSION=	1.6

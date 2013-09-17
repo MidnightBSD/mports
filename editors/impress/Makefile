@@ -2,7 +2,7 @@
 # Date created:			  23 Aug 2001
 # Whom:				  Kris Kennaway <kris@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/impress/Makefile,v 1.2 2008/05/15 08:14:29 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/editors/impress/Makefile,v 1.9 2007/04/02 22:56:10 pav Exp $
 #
 

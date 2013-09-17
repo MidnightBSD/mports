@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.8 2013/03/31 17:37:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aspell
 PORTVERSION=	0.60.6.1

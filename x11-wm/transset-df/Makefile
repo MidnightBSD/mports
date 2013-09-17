@@ -2,7 +2,7 @@
 # Date created:				June 5, 2011
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11-wm/transset-df/Makefile,v 1.1 2011/06/05 16:17:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	transset-df
 PORTVERSION=	6

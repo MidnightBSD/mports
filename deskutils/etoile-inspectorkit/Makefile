@@ -2,7 +2,7 @@
 # Date created:         9 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/deskutils/etoile-inspectorkit/Makefile,v 1.3 2007/10/25 22:53:41 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	inspectorkit

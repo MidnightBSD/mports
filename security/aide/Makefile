@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/aide/Makefile,v 1.8 2011/02/02 21:20:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aide
 PORTVERSION=	0.15.1

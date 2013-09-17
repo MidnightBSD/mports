@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/localize/Makefile,v 1.2 2011/11/10 21:07:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	localize
 PORTVERSION=	0.0.1

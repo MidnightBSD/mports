@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/gnustep-examples/Makefile,v 1.5 2013/08/23 12:02:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnustep-examples
 PORTVERSION=	1.4.0

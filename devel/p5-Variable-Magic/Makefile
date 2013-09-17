@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Variable-Magic/Makefile,v 1.1 2010/10/22 16:36:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Variable-Magic
 PORTVERSION=	0.52

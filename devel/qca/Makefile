@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qca/Makefile,v 1.3 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qca
 PORTVERSION=	2.0.3

@@ -2,7 +2,7 @@
 # Date created:		16 April 2005
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.4 2008/06/02 17:56:25 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-xml-440/Makefile,v 1.2 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook-xml

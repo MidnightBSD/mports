@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.8 2013/06/21 01:44:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	obconf
 PORTVERSION=	2.0.3

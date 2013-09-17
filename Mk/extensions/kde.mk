@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.5 2012/02/29 20:53:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/matharray/Makefile,v 1.1 2010/01/23 18:58:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	matharray
 PORTVERSION=	1.2

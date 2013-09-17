@@ -2,7 +2,7 @@
 # Date created:				31 December 2006
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/devel/libixp/Makefile,v 1.7 2008/03/05 05:54:44 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libixp

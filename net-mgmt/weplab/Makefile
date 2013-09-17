@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/weplab/Makefile,v 1.2 2007/06/06 21:13:19 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	weplab
 PORTVERSION=	0.1.5

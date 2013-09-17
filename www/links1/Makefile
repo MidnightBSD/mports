@@ -2,7 +2,7 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links1/Makefile,v 1.8 2008/03/19 16:57:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/links1/Makefile,v 1.5 2006/05/14 02:04:43 edwin Exp $
 #
 

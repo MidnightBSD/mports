@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libvpx/Makefile,v 1.1 2012/01/06 01:01:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libvpx
 PORTVERSION=	1.1.0

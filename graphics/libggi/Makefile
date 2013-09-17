@@ -2,7 +2,7 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.3 2011/06/01 01:38:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/libggi/Makefile,v 1.28 2007/05/19 20:09:47 flz Exp $
 #
 

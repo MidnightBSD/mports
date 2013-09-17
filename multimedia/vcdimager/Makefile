@@ -2,7 +2,7 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.7 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager

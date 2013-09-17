@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.9 2013/06/03 23:49:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}

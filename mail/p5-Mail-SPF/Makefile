@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.4 2009/09/24 03:03:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Mail-SPF
 PORTVERSION=	2.9.0

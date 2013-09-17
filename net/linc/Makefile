@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/linc/Makefile,v 1.5 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	linc
 PORTVERSION=	1.0.3

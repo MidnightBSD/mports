@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/t1utils/Makefile,v 1.1 2007/02/25 19:57:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	t1utils
 PORTVERSION=	1.32

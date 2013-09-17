@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gawk/Makefile,v 1.6 2013/03/30 13:20:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gawk
 PORTVERSION=	4.1.0

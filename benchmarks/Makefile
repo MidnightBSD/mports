@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.25 2008/06/18 21:45:17 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Benchmarking tools
 

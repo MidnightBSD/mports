@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.9 2013/01/17 14:56:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0

@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/misc/kde4-xdg-env/Makefile,v 1.7 2008/08/09 16:52:18 miwi Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xdg

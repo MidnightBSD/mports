@@ -2,7 +2,7 @@
 # Date created:         21.03.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/www/bozohttpd/Makefile,v 1.5 2010/05/29 06:00:16 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/bozohttpd/Makefile,v 1.12 2006/07/08 05:16:35 clsung Exp $
 #
 

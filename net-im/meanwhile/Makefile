@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.8 2013/03/09 23:28:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	meanwhile
 PORTVERSION=	1.0.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/etoile-azbackground/Makefile,v 1.6 2009/12/13 21:01:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/etoile-azbackground/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 
 PORTNAME=	azbackground

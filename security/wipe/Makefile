@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/wipe/Makefile,v 1.3 2009/05/01 15:23:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wipe
 PORTVERSION=	2.3.0

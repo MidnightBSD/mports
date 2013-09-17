@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/stlport/Makefile,v 1.7 2013/02/19 15:05:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	stlport
 PORTVERSION=	5.1.7

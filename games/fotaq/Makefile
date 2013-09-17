@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/fotaq/Makefile,v 1.2 2008/03/22 18:26:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fotaq
 PORTVERSION=	1.0

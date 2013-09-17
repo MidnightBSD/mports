@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/sound-juicer/Makefile,v 1.9 2011/06/16 12:42:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sound-juicer
 PORTVERSION=	2.32.0

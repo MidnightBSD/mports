@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.13 2011/10/28 13:56:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	curl
 PORTVERSION=	7.31.0

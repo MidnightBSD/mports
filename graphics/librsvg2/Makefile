@@ -2,7 +2,7 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/librsvg2/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/librsvg2/Makefile,v 1.59 2007/07/27 15:50:29 mezz Exp $
 #   $MCom: ports/graphics/librsvg2/Makefile,v 1.109 2006/10/02 04:52:51 bland Exp $
 #

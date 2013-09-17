@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/sharity-light/Makefile,v 1.2 2013/02/18 03:44:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sharity-light
 PORTVERSION=	1.3

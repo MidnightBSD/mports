@@ -1,6 +1,6 @@
 # New ports collection makefile for:	libdaemon
 #
-# $MidnightBSD: mports/devel/libdaemon/Makefile,v 1.7 2011/12/15 00:34:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libdaemon/Makefile,v 1.5 2006/02/23 10:35:51 ade Exp $
 
 PORTNAME=	libdaemon

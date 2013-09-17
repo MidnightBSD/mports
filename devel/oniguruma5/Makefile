@@ -2,7 +2,7 @@
 # Date created:	18. September 2007
 # Whom:		Stevan Tiefert
 #
-# $MidnightBSD: mports/devel/oniguruma5/Makefile,v 1.6 2011/05/11 14:05:45 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	oniguruma

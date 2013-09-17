@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.4 2011/09/15 03:08:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Time-Local
 PORTVERSION=	1.23.00

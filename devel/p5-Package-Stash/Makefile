@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Package-Stash/Makefile,v 1.1 2010/10/22 16:38:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Package-Stash
 PORTVERSION=	0.33

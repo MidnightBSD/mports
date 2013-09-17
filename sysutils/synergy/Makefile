@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/synergy/Makefile,v 1.7 2010/09/04 15:40:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/synergy/Makefile,v 1.14 2007/07/25 01:25:03 kevlo Exp $
 
 PORTNAME=	synergy

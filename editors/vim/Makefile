@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.25 2012/12/16 02:43:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	vim
 PATCHLEVEL=	669

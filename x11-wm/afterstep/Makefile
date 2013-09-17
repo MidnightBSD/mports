@@ -1,6 +1,6 @@
 # New ports collection makefile for:	afterstep
 #
-# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.9 2011/08/21 20:40:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 #
 

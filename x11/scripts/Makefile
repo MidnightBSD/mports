@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/scripts/Makefile,v 1.2 2011/07/16 14:41:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scripts
 PORTVERSION=	1.0.1

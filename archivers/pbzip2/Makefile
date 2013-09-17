@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.6 2009/01/25 20:03:27 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	pbzip2
 PORTVERSION=	1.0.5

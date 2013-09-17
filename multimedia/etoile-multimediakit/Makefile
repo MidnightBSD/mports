@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.5 2009/04/05 21:35:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	multimediakit
 PORTVERSION=	0.1.${SNAPSHOT}

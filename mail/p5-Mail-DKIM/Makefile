@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-DKIM/Makefile,v 1.5 2009/09/24 03:05:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mail/p5-Mail-DKIM/Makefile,v 1.7 2007/03/16 20:58:23 miwi Exp $
 
 PORTNAME=	Mail-DKIM

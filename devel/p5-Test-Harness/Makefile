@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Harness/Makefile,v 1.4 2009/03/20 21:44:40 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Harness
 PORTVERSION=	3.25

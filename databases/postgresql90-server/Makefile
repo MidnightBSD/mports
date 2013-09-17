@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.7 2012/09/29 19:12:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	postgresql
 DISTVERSION?=	9.0.13

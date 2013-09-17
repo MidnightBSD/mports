@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xconsole/Makefile,v 1.3 2011/05/07 02:49:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xconsole
 PORTVERSION=	1.0.5

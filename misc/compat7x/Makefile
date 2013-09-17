@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/compat7x/Makefile,v 1.1 2013/02/22 02:53:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	compat7x
 PORTVERSION=	7.3.703000.201008

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/etoile-powermenulet/Makefile,v 1.1 2010/01/21 01:39:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	powermenulet
 PORTVERSION=	0.4.1

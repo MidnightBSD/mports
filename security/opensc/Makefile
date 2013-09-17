@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/opensc/Makefile,v 1.4 2009/09/20 04:09:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	opensc
 PORTVERSION=	0.13.0

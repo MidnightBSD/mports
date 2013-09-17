@@ -1,5 +1,5 @@
 # $FreeBSD: ports/graphics/kooka/Makefile,v 1.14 2006/09/12 23:26:18 lofi Exp $
-# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.4 2011/01/01 16:34:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kooka
 PORTVERSION=	${KDE_VERSION}

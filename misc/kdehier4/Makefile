@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/kdehier4/Makefile,v 1.4 2013/06/25 02:25:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdehier4
 PORTVERSION=	1.1.1

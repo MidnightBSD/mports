@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.8 2011/05/13 13:28:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mpg123
 PORTVERSION=	1.13.3

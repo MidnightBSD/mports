@@ -2,7 +2,7 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.5 2010/02/26 23:12:20 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
 

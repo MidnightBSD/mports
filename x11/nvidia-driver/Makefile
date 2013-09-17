@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.13 2013/03/20 01:02:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nvidia-driver
 DISTVERSION?=	310.44

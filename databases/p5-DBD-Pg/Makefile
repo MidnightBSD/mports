@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.6 2011/08/13 14:40:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DBD-Pg
 PORTVERSION=	2.19.3

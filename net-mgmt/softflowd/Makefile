@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/softflowd/Makefile,v 1.2 2007/06/06 19:28:28 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	softflowd
 PORTVERSION=	0.9.8

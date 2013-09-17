@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-art/Makefile,v 1.2 2007/03/13 20:09:12 laffer1 Exp $
+# $MidnightBSD$
 
 CATEGORIES=	x11-toolkits gnustep
 

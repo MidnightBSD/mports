@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-UNIVERSAL-moniker/Makefile,v 1.1 2007/09/02 02:47:08 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	UNIVERSAL-moniker
 PORTVERSION=	0.08

@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/graphics/kdegraphics4/Makefile,v 1.2 2012/03/06 02:27:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE4_VERSION}

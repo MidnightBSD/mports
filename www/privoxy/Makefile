@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/privoxy/Makefile,v 1.6 2012/02/05 03:47:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	privoxy
 PORTVERSION=	3.0.19

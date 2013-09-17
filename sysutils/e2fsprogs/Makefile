@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.8 2013/02/26 04:48:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	e2fsprogs
 PORTVERSION=	1.42.8

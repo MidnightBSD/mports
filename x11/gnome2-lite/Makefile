@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.7 2010/08/14 04:40:30 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTREVISION=	1

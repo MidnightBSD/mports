@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.8 2009/12/25 17:53:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unzoo
 PORTVERSION=	4.4

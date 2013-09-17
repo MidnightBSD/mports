@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mbone/wb/Makefile,v 1.1 2007/04/05 00:41:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wb
 PORTVERSION=	1.59

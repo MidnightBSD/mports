@@ -2,7 +2,7 @@
 # Date created:				12 Jun 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/gcalctool/Makefile,v 1.5 2009/09/20 01:23:46 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/math/gcalctool/Makefile,v 1.63 2007/05/19 20:14:58 flz Exp $
 #   $MCom: ports/math/gcalctool/Makefile,v 1.65 2007/03/12 19:02:22 mezz Exp $
 #

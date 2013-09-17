@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Differences/Makefile,v 1.1 2010/12/08 00:32:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Differences
 PORTVERSION=	0.610

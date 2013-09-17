@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.16 2013/03/03 13:44:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmlrpc-c
 PORTVERSION=	1.25.23

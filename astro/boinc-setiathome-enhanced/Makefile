@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.6 2011/01/15 02:17:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boinc-setiathome-enhanced
 PORTVERSION=	6.08

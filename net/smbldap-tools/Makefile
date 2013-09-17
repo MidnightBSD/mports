@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.3 2012/02/11 01:55:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	smbldap-tools
 PORTVERSION=	0.9.9

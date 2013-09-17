@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-distribute/Makefile,v 1.1 2013/06/21 02:01:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	distribute
 PORTVERSION=	0.6.35

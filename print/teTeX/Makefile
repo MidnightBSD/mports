@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/teTeX/Makefile,v 1.1 2007/01/24 20:59:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	teTeX
 PORTVERSION=	3.0

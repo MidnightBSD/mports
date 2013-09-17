@@ -2,7 +2,7 @@
 # Date created:			3 January 2000
 # Whom:				Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD: mports/www/p5-HTML-Tree/Makefile,v 1.2 2008/07/25 05:50:27 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTML-Tree/Makefile,v 1.19 2006/08/07 06:41:04 clsung Exp $
 #
 

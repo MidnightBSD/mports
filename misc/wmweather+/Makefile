@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.8 2012/09/09 04:11:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmweather+
 PORTVERSION=	2.11

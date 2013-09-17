@@ -2,7 +2,7 @@
 # Date created:				18 September 2004
 # Whom:					Juraj Lutter <otis@sk.freebsd.org>
 #
-# $MidnightBSD: mports/devel/libconfuse/Makefile,v 1.4 2010/11/13 16:32:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libconfuse/Makefile,v 1.7 2008/04/25 12:50:35 garga Exp $
 #
 

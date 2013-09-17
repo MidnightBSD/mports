@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.3 2013/02/24 02:31:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yabasic
 PORTVERSION=	2.763

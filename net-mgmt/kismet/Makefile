@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/kismet/Makefile,v 1.3 2009/06/28 00:10:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kismet
 DISTVERSION=	2013-03-R1b

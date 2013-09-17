@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.9 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdbm
 PORTVERSION=	1.9.1

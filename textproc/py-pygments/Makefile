@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/py-pygments/Makefile,v 1.1 2009/12/31 20:10:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pygments
 PORTVERSION=	1.3.1

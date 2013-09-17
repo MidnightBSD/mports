@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/font-bh-ttf/Makefile,v 1.3 2011/05/08 15:25:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-bh-ttf
 PORTVERSION=	1.0.3

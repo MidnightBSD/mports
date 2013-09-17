@@ -2,7 +2,7 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype/Makefile,v 1.5 2011/02/02 21:18:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/freetype/Makefile,v 1.40 2007/01/26 15:46:46 shaun Exp $
 #
 

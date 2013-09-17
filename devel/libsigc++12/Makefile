@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libsigc++12/Makefile,v 1.4 2011/12/15 00:34:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsigc++
 PORTVERSION=	1.2.7

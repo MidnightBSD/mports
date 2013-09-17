@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.13 2013/06/12 22:26:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pixman
 PORTVERSION=	0.30.0

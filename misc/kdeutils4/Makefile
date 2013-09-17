@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/misc/kdeutils4/Makefile,v 1.1 2009/01/05 03:37:49 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdeutils

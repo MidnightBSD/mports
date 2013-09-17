@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.23 2012/09/08 16:53:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.32

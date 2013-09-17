@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/distcc/Makefile,v 1.3 2011/07/16 15:21:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	distcc
 PORTVERSION=	3.1

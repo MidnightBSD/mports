@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/p5-Image-Size/Makefile,v 1.3 2010/05/30 22:47:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/p5-Image-Size/Makefile,v 1.37 2006/12/03 12:45:57 demon Exp $
 
 PORTNAME=	Image-Size

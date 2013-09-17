@@ -2,7 +2,7 @@
 # Date created:				May 17 2008
 # Whom:	      				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.7 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	GeoIP

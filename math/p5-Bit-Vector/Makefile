@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-Bit-Vector/Makefile,v 1.4 2013/02/24 02:18:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Bit-Vector
 PORTVERSION=	7.3

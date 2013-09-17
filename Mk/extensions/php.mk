@@ -3,7 +3,7 @@
 #
 # Created by: Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.12 2013/07/04 19:29:45 laffer1 Exp $
+# $MidnightBSD$
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
 # If the port requires a predefined set of PHP extensions, they can be

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/irssi-scripts/Makefile,v 1.5 2009/12/25 16:22:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/irc/irssi-scripts/Makefile,v 1.4 2007/02/27 00:04:45 linimon Exp $
 
 PORTNAME=	irssi-scripts

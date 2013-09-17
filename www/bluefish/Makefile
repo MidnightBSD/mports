@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/bluefish/Makefile,v 1.4 2011/08/31 03:28:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bluefish
 PORTVERSION=	2.0.2

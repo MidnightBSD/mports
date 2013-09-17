@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/qt4-sql/Makefile,v 1.6 2011/08/13 15:32:31 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/qt4-sql/Makefile,v 1.18 2010/12/02 19:47:03 makc Exp $
 
 PORTNAME=	sql

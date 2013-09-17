@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.22 2013/03/24 17:23:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pango
 PORTVERSION=	1.30.1

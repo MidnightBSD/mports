@@ -1,6 +1,6 @@
 # Date Created:		20 July 1999
 #
-# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.4 2011/12/15 00:57:45 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	djvulibre

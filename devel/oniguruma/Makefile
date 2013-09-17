@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/oniguruma/Makefile,v 1.2 2009/10/15 01:33:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	oniguruma
 PORTVERSION=	2.5.8

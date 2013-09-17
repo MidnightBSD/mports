@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ports-mgmt/portsearch/Makefile,v 1.5 2013/01/18 03:57:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	portsearch
 PORTVERSION=	1.3.2

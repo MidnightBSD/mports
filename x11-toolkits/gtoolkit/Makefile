@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.8 2011/05/15 16:10:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libopenraw/Makefile,v 1.2 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libopenraw
 PORTVERSION=	0.0.8

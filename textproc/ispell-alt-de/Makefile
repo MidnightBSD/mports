@@ -3,7 +3,7 @@
 # Whom:                                 Alexander Langer <alex@big.endian.de>
 #
 # $FreeBSD: ports/german/ispell-alt/Makefile,v 1.10 2005/10/12 21:27:23 linimon Exp $
-# $MidnightBSD: mports/german/ispell-alt/Makefile,v 1.2 2007/11/11 00:23:13 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	ispell

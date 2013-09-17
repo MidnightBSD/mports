@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.7 2011/12/15 00:39:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libuninameslist
 PORTVERSION=	20091231

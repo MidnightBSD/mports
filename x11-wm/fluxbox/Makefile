@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.15 2013/07/14 15:44:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fluxbox
 PORTVERSION=	1.3.5

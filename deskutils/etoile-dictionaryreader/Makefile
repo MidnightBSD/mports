@@ -2,7 +2,7 @@
 # Date created:         4 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.4 2007/11/07 20:20:10 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-dictionaryreader/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 

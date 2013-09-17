@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/boinc-milkyway/Makefile,v 1.4 2009/12/28 22:52:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boinc-milkyway
 PORTVERSION=	0.18d

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.25 2012/03/11 00:47:40 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 themes
 

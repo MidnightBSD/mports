@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.15 2012/09/09 01:17:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1

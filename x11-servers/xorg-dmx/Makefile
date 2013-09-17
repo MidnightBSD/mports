@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.12 2013/03/24 19:37:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-dmx
 PORTREVISION=	0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.3 2010/11/06 14:04:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdemultimedia
 PORTVERSION=	${KDE4_VERSION}

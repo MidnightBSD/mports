@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.5 2011/12/15 00:39:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.4 2011/06/11 22:12:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/xhtml-basic/Makefile,v 1.3 2006/03/24 05:44:38 linimon Exp $
 
 PORTNAME=	xhtml-basic

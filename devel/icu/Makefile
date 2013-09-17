@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/icu/Makefile,v 1.27 2008/02/18 17:06:32 mi Exp $
-# $MidnightBSD: mports/devel/icu/Makefile,v 1.6 2011/04/19 03:13:43 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	icu

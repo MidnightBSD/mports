@@ -2,7 +2,7 @@
 # Date created:	   03 March 2005
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/math/p5-Math-BigRat/Makefile,v 1.5 2010/01/30 15:28:44 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/math/p5-Math-BigRat/Makefile,v 1.5 2007/05/27 11:34:57 skv Exp $
 #
 

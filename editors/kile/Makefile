@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/kile/Makefile,v 1.5 2011/02/02 20:19:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kile
 PORTVERSION=	2.0.3

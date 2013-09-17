@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/py-numeric/Makefile,v 1.3 2009/05/23 16:37:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	numeric
 PORTVERSION=	24.2

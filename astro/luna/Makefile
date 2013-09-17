@@ -2,7 +2,7 @@
 # Date created:		03 July 1996
 # Whom:			ABURAYER Rewsirow <rewsirow@ff.iij4u.or.jp>
 #
-# $MidnightBSD: mports/astro/luna/Makefile,v 1.4 2008/10/03 18:52:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/astro/luna/Makefile,v 1.15 2006/05/03 05:14:05 edwin Exp $
 #
 

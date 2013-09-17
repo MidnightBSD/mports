@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.9 2011/09/04 00:59:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	terminal.app
 PORTVERSION=	0.9.8

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.14 2013/06/21 00:58:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pciids
 PORTVERSION=	20130823

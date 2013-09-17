@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Writer/Makefile,v 1.1 2007/06/11 02:03:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Writer
 PORTVERSION=	0.602

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.9 2012/03/11 18:41:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libbonoboui
 PORTVERSION=	2.24.4

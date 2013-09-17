@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/ruby-gdbm/Makefile,v 1.1 2008/06/26 19:57:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdbm
 PORTVERSION=	${RUBY_PORTVERSION}

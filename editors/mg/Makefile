@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/mg/Makefile,v 1.5 2010/04/26 13:12:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mg
 PORTVERSION=	20110905

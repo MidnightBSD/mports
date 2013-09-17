@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/blas/Makefile,v 1.4 2010/10/19 19:44:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	blas
 PORTVERSION=	1.0

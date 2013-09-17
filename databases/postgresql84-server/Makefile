@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/postgresql84-server/Makefile,v 1.3 2012/01/29 16:36:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	postgresql
 DISTVERSION?=	8.4.12

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.12 2013/02/24 15:13:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mono
 PORTVERSION=	3.0.3

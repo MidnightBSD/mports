@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ports-mgmt/Makefile,v 1.8 2013/03/30 12:05:07 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Ports for managing, installing and developing MidnightBSD ports and packages
 

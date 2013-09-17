@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.18 2013/03/02 19:42:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DBD-mysql
 PORTVERSION=	4.023

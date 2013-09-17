@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.4 2012/03/01 02:56:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jbigkit
 PORTVERSION=	1.6

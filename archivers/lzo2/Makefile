@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.9 2012/02/24 01:47:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lzo2
 PORTVERSION=	2.06

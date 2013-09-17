@@ -2,7 +2,7 @@
 # Date created:		2004-07-26
 # Whom:			Lars Thegler <lth@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Module-Pluggable/Makefile,v 1.1 2008/03/21 20:31:57 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Module-Pluggable/Makefile,v 1.22 2007/04/08 15:21:39 lth Exp $
 #
 

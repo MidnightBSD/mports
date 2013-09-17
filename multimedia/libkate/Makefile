@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libkate/Makefile,v 1.2 2012/09/09 00:42:48 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/libkate/Makefile,v 1.6 2010/06/06 20:43:57 naddy Exp $
 
 PORTNAME=	libkate

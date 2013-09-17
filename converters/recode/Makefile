@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.8 2013/06/15 02:51:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	recode
 PORTVERSION=	3.6

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/diffutils/Makefile,v 1.2 2011/02/03 04:52:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/diffutils/Makefile,v 1.7 2006/05/13 04:24:43 edwin Exp $
 
 PORTNAME=	diffutils

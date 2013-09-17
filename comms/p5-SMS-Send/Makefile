@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/p5-SMS-Send/Makefile,v 1.1 2008/08/17 22:49:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	SMS-Send
 PORTVERSION=	1.06

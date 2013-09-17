@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/hicolor-icon-theme/Makefile,v 1.8 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hicolor-icon-theme
 PORTVERSION=	0.12

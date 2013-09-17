@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Taint/Makefile,v 1.1 2011/07/17 19:47:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Taint
 PORTVERSION=	1.06

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/cheese/Makefile,v 1.1 2010/03/01 01:57:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cheese
 PORTVERSION=	2.32.0

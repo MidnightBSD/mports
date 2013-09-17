@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.5 2013/02/10 17:41:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-Server
 PORTVERSION=	2.007

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/clang/Makefile,v 1.1 2011/06/14 01:31:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/lang/clang/Makefile,v 1.14 2010/10/14 19:29:22 brooks Exp $
 
 PORTNAME=	clang

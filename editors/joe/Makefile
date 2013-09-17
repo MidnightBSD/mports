@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.11 2011/09/23 02:11:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	joe
 PORTVERSION=	3.7

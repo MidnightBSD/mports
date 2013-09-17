@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.7 2011/02/02 21:04:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15

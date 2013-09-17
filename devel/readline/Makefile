@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/readline/Makefile,v 1.2 2010/06/04 23:12:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	readline
 PORTVERSION=	6.2

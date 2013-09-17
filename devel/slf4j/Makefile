@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/slf4j/Makefile,v 1.1 2013/03/09 23:38:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	slf4j
 PORTVERSION=	1.6.6

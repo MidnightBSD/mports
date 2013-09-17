@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.5 2008/09/30 23:34:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bzip2
 PORTVERSION=	1.0.6

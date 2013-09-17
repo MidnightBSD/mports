@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xsel/Makefile,v 1.2 2013/02/09 14:50:26 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/xsel/Makefile,v 1.9 2009/01/23 16:28:24 flz Exp $
 #
 

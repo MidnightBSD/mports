@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.10 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lirc
 PORTVERSION=	0.9.0

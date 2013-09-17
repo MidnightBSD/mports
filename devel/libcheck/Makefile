@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/libcheck/Makefile,v 1.4 2006/12/25 22:42:18 mikeh Exp $
-# $MidnightBSD: mports/devel/libcheck/Makefile,v 1.2 2011/05/30 15:19:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libcheck
 PORTVERSION=	0.9.8

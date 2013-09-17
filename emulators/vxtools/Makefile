@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/vxtools/Makefile,v 1.2 2008/10/16 22:11:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/emulators/vxtools/Makefile,v 1.4 2004/02/04 05:20:09 marcus Exp $
 #
 

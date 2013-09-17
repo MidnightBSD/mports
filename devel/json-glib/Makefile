@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/json-glib/Makefile,v 1.5 2011/05/11 13:51:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	json-glib
 PORTVERSION=	0.14.2

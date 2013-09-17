@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/postgresql-jdbc/Makefile,v 1.1 2010/09/23 23:46:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	postgresql
 PORTVERSION=	9.1.902

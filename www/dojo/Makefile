@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/dojo/Makefile,v 1.12 2013/05/18 13:36:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dojo
 PORTVERSION=	1.9.1

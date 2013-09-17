@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/gzip/Makefile,v 1.6 2010/09/12 22:42:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gzip
 PORTVERSION=	1.4

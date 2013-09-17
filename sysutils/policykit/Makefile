@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.9 2012/03/10 23:50:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	policykit
 PORTVERSION=	0.9

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.4 2011/01/17 16:57:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Twig
 PORTVERSION=	3.42

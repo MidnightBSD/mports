@@ -2,7 +2,7 @@
 # Date created:                         2003/04/12
 # Whom:                                 Heiner <h.eichmann@gmx.de>
 #
-# $MidnightBSD: mports/deskutils/kbirthday/Makefile,v 1.3 2009/09/20 00:39:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/kbirthday/Makefile,v 1.15 2007/05/19 20:01:40 flz Exp $
 
 PORTNAME=	kbirthday

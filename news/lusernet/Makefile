@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/lusernet/Makefile,v 1.1 2010/01/21 01:51:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lusernet
 PORTVERSION=	0.4.2

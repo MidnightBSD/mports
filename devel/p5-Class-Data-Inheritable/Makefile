@@ -2,7 +2,7 @@
 # Date created:		17 Dec 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/devel/p5-Class-Data-Inheritable/Makefile,v 1.1 2007/10/01 10:19:55 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Class-Data-Inheritable/Makefile,v 1.8 2006/10/02 17:51:05 skv Exp $
 #
 

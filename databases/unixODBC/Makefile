@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.8 2012/09/29 21:49:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unixODBC
 PORTVERSION=	2.3.1

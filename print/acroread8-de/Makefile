@@ -2,7 +2,7 @@
 # Date created:			June 12, 2008
 # Whom:				Lucas Holt
 #
-# $MidnightBSD: mports/german/acroread8/Makefile,v 1.1 2008/06/13 02:35:44 laffer1 Exp $
+# $MidnightBSD$
 #
 
 CATEGORIES=	print linux german

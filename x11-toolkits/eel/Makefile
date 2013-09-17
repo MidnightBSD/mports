@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.10 2011/08/13 18:29:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/eel/Makefile,v 1.33 2007/07/03 17:08:19 mezz Exp $
 #   $MCom: ports/x11-toolkits/eel/Makefile,v 1.51 2007/03/12 15:59:00 ahze Exp $
 

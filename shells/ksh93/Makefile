@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.8 2011/10/06 03:59:31 laffer1 Exp $
+# $MidnightBSD$
 #
 # Make sure that your configuration DOES NOT set AN?Y gcc-related
 # variables.  ksh93 will not compile if you set even the seemingly

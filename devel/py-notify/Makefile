@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-notify/Makefile,v 1.1 2011/06/11 02:33:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/py-notify/Makefile,v 1.8 2010/03/28 06:33:30 dinoex Exp $
 
 PORTNAME=	notify

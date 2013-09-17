@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gtk-xfce-engine/Makefile,v 1.4 2012/03/03 23:31:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk-xfce-engine
 PORTVERSION=	3.0.1

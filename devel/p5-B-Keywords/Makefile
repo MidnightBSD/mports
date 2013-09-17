@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-B-Keywords/Makefile,v 1.3 2010/11/12 14:15:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	B-Keywords
 PORTVERSION=	1.13

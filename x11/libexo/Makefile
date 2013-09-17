@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libexo/Makefile,v 1.6 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libexo
 PORTVERSION=	0.10.2

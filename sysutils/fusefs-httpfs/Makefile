@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-httpfs/Makefile,v 1.3 2009/04/03 06:20:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	httpfs
 PORTVERSION=	2.06.08.26

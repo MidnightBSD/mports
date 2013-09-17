@@ -2,7 +2,7 @@
 # Date created:				June 15th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Devel-Symdump/Makefile,v 1.1 2008/03/21 20:02:16 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Devel-Symdump/Makefile,v 1.24 2008/02/20 19:10:02 erwin Exp $
 #
 

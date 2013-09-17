@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/setxkbmap/Makefile,v 1.3 2011/05/07 02:25:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	setxkbmap
 PORTVERSION=	1.3.0

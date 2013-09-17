@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.10 2013/07/03 20:38:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5

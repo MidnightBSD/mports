@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.9 2011/12/15 00:57:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/libwmf/Makefile,v 1.41 2007/02/01 02:41:41 kris Exp $
 
 PORTNAME=	libwmf

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/popd/Makefile,v 1.3 2007/12/05 22:57:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	popd
 PORTVERSION=	2.2.2a

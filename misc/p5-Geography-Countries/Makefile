@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/p5-Geography-Countries/Makefile,v 1.2 2009/04/16 04:32:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Geography-Countries
 PORTVERSION=	2009041301

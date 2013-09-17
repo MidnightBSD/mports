@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.5 2013/02/23 23:47:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xvid
 PORTVERSION=	1.3.2

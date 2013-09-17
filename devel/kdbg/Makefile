@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kdbg/Makefile,v 1.3 2010/12/18 08:06:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdbg
 PORTVERSION=	2.2.0

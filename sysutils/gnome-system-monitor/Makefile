@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gnome-system-monitor/Makefile,v 1.5 2011/06/08 12:40:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/gnome-system-monitor/Makefile,v 1.78 2007/05/29 02:31:24 mezz Exp $
 
 PORTNAME=	gnome-system-monitor

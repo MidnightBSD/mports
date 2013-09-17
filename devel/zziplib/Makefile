@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.8 2013/07/11 00:39:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zziplib
 PORTVERSION=	0.13.62

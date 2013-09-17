@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xsm/Makefile,v 1.3 2012/03/03 01:52:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xsm
 PORTVERSION=	1.0.3

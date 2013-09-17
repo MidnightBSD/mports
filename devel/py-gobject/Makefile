@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-gobject/Makefile,v 1.8 2012/02/29 03:02:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gobject
 PORTVERSION=	2.28.6

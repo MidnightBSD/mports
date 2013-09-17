@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_wsgi3/Makefile,v 1.1 2013/08/24 19:07:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mod_wsgi
 PORTVERSION=	3.4

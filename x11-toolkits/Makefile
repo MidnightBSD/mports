@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.68 2013/03/03 14:14:28 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 toolkits
     

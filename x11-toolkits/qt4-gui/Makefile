@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.10 2012/09/09 01:43:41 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/qt4-gui/Makefile,v 1.35 2011/03/25 09:54:14 avilla Exp $
 
 PORTNAME=	gui

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/appres/Makefile,v 1.2 2011/05/01 19:26:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	appres
 PORTVERSION=	1.0.4

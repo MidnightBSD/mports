@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.3 2013/03/23 20:27:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tkshape
 PORTVERSION=	0.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.4 2008/10/04 16:57:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vrfy
 PORTVERSION=	1.0

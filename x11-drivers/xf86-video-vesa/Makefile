@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-vesa/Makefile,v 1.5 2012/03/03 22:23:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-vesa
 PORTVERSION=	2.3.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.6 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	courier-authlib
 PORTVERSION=	0.63.0

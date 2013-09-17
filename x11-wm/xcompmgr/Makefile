@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xcompmgr/Makefile,v 1.4 2013/06/16 01:07:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xcompmgr
 PORTVERSION=	1.1.6

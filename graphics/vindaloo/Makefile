@@ -2,7 +2,7 @@
 # Date created:         15 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/graphics/vindaloo/Makefile,v 1.4 2009/12/29 00:30:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/vindaloo/Makefile,v 1.2 2007/01/31 18:18:03 dinoex Exp $
 #
 

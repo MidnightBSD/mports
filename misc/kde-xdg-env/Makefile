@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/misc/kde-xdg-env/Makefile,v 1.3 2006/06/21 03:34:00 lofi Exp $
-# $MidnightBSD: mports/misc/kde-xdg-env/Makefile,v 1.1 2006/11/24 18:35:29 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xdg

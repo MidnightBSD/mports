@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgnome-keyring/Makefile,v 1.6 2013/01/19 18:00:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	2.32.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/cowsay/Makefile,v 1.3 2008/04/04 01:03:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/cowsay/Makefile,v 1.6 2004/12/09 03:01:44 kris Exp $
 
 PORTNAME=	cowsay

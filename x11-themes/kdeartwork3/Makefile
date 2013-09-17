@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.5 2009/09/20 02:53:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdeartwork
 PORTVERSION=	${KDE_VERSION}

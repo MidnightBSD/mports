@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.7 2011/05/27 02:11:44 laffer1 Exp $ 
+# $MidnightBSD$ 
 
 .if defined(_POSTMKINCLUDED) && !defined(Mysql_Post_Include)
 

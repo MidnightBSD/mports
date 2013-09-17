@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/Makefile,v 1.6 2008/04/29 03:41:24 laffer1 Exp $
+# $MidnightBSD$
 #
 
     COMMENT = Monetary, financial and related applications

@@ -1,5 +1,5 @@
 # Created by: Lucas Holt
-# $MidnightBSD: mports/ports-mgmt/magus-utils/Makefile,v 1.8 2011/07/17 19:36:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	magus-utils
 PORTVERSION=	1.4

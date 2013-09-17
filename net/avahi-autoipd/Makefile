@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.8 2012/12/20 13:14:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	1
 CATEGORIES=	net

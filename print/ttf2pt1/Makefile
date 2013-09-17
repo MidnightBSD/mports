@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/ttf2pt1/Makefile,v 1.3 2011/09/18 20:48:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/ttf2pt1/Makefile,v 1.12 2006/12/20 17:40:36 rafan Exp $
 
 PORTNAME=	ttf2pt1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-Switch/Makefile,v 1.1 2011/06/11 02:06:07 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/lang/p5-Switch/Makefile,v 1.20 2010/01/09 23:27:56 pgollucci Exp $
 
 PORTNAME=	Switch

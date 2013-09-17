@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-joystick/Makefile,v 1.5 2011/05/07 21:00:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-input-joystick
 PORTVERSION=	1.5.0

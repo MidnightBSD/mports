@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.12 2013/01/21 01:39:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14

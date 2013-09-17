@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.3 2011/06/01 01:24:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pathrate
 PORTVERSION=	2.4.1

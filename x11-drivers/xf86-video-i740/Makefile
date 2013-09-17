@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-i740/Makefile,v 1.3 2011/05/07 21:21:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-i740
 PORTVERSION=	1.3.2

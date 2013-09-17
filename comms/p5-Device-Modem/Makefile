@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/p5-Device-Modem/Makefile,v 1.2 2010/11/12 13:59:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Device-Modem
 PORTVERSION=	1.56

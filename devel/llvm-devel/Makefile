@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/llvm-devel/Makefile,v 1.3 2011/03/20 02:48:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	llvm
 DISTVERSION=	3.0.r${SVN_REV}

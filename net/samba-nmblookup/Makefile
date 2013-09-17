@@ -3,7 +3,7 @@
 # Whom:					Hirohisa Yamaguchi <umq@ueo.co.jp>
 #
 # $FreeBSD: ports/net/samba-nmblookup/Makefile,v 1.2 2006/12/07 13:55:51 mnag Exp $
-# $MidnightBSD: mports/net/samba-nmblookup/Makefile,v 1.3 2007/11/08 15:47:33 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTREVISION=		0

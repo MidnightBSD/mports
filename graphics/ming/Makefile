@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ming/Makefile,v 1.6 2012/02/29 03:39:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ming
 PORTVERSION=	0.4.4

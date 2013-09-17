@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/tmsnc/Makefile,v 1.4 2013/03/09 21:38:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tmsnc
 PORTVERSION=	0.3.2

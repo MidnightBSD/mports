@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/tryst/Makefile,v 1.1 2010/01/21 01:54:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tryst
 PORTVERSION=	1.0.8

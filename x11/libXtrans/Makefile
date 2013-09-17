@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXtrans/Makefile,v 1.3 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXtrans
 PORTVERSION=	0.1

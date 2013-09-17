@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/notification-daemon/Makefile,v 1.5 2011/12/15 00:47:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	notification-daemon
 PORTVERSION=	0.7.2

@@ -2,7 +2,7 @@
 # Date Created:				16 Oct 2007
 # Whom:					Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/devel/lndir/Makefile,v 1.3 2010/01/10 04:09:43 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	lndir

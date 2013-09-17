@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-XPath/Makefile,v 1.1 2007/03/19 16:22:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-XPath
 PORTVERSION=	1.13

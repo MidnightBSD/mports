@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/docbook-xml-450/Makefile,v 1.1 2008/05/31 17:34:25 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-xml-450/Makefile,v 1.1 2006/10/31 19:43:38 alepulver Exp $
 
 PORTNAME=	docbook-xml

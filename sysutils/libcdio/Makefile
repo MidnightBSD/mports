@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/libcdio/Makefile,v 1.7 2012/03/01 04:13:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libcdio
 PORTVERSION=	0.83

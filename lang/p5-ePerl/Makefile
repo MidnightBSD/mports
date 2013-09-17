@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.6 2009/06/27 22:01:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	eperl
 PORTVERSION=	2.2.14

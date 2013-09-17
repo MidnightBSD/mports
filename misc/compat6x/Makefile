@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/compat6x/Makefile,v 1.2 2011/05/14 17:15:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	compat6x
 PORTVERSION=	6.4.604000.200810

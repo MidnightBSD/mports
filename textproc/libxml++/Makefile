@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxml++/Makefile,v 1.4 2011/12/15 00:39:55 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/libxml++/Makefile,v 1.36 2007/01/28 09:07:45 kris Exp $
 
 PORTNAME=	libxml++

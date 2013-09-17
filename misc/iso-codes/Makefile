@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.18 2013/02/18 02:02:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	iso-codes
 PORTVERSION=	3.43

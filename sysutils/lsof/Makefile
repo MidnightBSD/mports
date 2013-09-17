@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.6 2012/12/20 13:24:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lsof
 PORTVERSION=	4.88D

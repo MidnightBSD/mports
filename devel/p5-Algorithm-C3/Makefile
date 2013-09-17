@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Algorithm-C3/Makefile,v 1.1 2007/09/01 16:55:37 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Algorithm-C3
 PORTVERSION=	0.08

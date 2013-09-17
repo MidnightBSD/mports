@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/hupnp/Makefile,v 1.2 2012/03/02 01:42:39 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/hupnp/Makefile,v 1.1 2011/02/05 16:16:13 fluffy Exp $
 
 PORTNAME=	hupnp

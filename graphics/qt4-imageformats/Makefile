@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.5 2012/09/09 04:57:31 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/qt4-imageformats/Makefile,v 1.22 2010/12/02 19:47:11 makc Exp $
 
 PORTNAME=	imageformats

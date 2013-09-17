@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gnome-system-tools/Makefile,v 1.4 2011/02/02 21:22:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/gnome-system-tools/Makefile,v 1.30 2008/06/06 14:03:06 edwin Exp $
 
 PORTNAME=	gnome-system-tools

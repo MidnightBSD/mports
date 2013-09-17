@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.7 2013/03/06 13:03:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45

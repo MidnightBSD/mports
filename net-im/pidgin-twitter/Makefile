@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.4 2010/05/29 13:53:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pidgin-twitter
 PORTVERSION=	0.9.2

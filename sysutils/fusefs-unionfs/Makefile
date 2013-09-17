@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-unionfs/Makefile,v 1.1 2007/07/30 00:41:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unionfs
 PORTVERSION=	0.20

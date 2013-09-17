@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.19 2013/07/28 03:38:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bitlbee
 PORTVERSION=	3.2

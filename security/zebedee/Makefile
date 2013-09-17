@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/zebedee/Makefile,v 1.2 2010/01/02 22:46:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zebedee
 PORTVERSION=	2.5.3

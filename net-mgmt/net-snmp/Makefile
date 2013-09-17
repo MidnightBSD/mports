@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.8 2011/01/07 01:04:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	snmp
 PORTVERSION=	5.7.2

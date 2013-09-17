@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/pixen/Makefile,v 1.1 2010/05/30 22:36:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pixen
 PORTVERSION=	0.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/bsdgrep/Makefile,v 1.2 2010/08/14 02:55:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	grep
 PORTVERSION=	20111002

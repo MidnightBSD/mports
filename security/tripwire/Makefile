@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/tripwire/Makefile,v 1.3 2008/09/16 20:34:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tripwire
 PORTVERSION=	2.4.2.2

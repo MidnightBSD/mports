@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pth/Makefile,v 1.5 2013/03/01 00:39:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7

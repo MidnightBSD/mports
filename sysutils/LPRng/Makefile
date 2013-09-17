@@ -2,7 +2,7 @@
 # Date created:		January 21, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.4 2012/03/06 01:14:15 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	LPRng

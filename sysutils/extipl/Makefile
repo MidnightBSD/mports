@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/extipl/Makefile,v 1.2 2009/12/28 23:04:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	extipl
 PORTVERSION=	5.04

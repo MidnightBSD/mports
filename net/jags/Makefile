@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/jags/Makefile,v 1.2 2010/10/19 20:14:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jags
 PORTVERSION=	0.22.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.10 2013/03/24 19:06:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	at-spi
 PORTVERSION=	1.32.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Sub-Uplevel/Makefile,v 1.2 2008/10/16 21:43:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Sub-Uplevel/Makefile,v 1.15 2008/02/18 15:48:28 erwin Exp $
 #
 

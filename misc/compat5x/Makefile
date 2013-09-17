@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.8 2010/08/24 19:57:30 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 

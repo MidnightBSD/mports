@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pear/Makefile,v 1.5 2009/04/17 16:44:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pear
 PORTVERSION=	1.7.2

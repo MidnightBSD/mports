@@ -2,7 +2,7 @@
 # Date created:			23 Nov 2007
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/gstreamer-plugins-gconf/Makefile,v 1.1 2007/11/23 23:08:57 laffer1 Exp $
+# $MidnightBSD$
 #
 
 CATEGORIES=	devel

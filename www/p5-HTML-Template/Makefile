@@ -2,7 +2,7 @@
 # Date Created:				26 Oct, 2000
 # Whom:					Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/p5-HTML-Template/Makefile,v 1.3 2008/08/21 16:46:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTML-Template/Makefile,v 1.17 2006/01/30 14:47:01 kuriyama Exp $
 #
 

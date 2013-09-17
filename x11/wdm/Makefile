@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.6 2009/09/26 04:27:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wdm
 PORTVERSION=	1.28

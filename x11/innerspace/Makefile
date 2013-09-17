@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/innerspace/Makefile,v 1.2 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	innerspace
 PORTVERSION=	0.2.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/celt/Makefile,v 1.3 2010/11/06 23:09:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	celt
 PORTVERSION=	0.9.1

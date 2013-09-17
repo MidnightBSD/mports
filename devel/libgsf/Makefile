@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.10 2011/05/12 12:39:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgsf
 PORTVERSION=	1.14.21

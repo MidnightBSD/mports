@@ -2,7 +2,7 @@
 # Date created:				Sun Nov 18 19:42:02 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.8 2010/12/04 19:50:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 #
 

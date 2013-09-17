@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/xfce4-mixer/Makefile,v 1.4 2011/12/15 00:45:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-mixer
 PORTVERSION=	4.10.0

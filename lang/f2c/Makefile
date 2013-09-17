@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/f2c/Makefile,v 1.4 2010/09/07 23:50:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	f2c
 PORTVERSION=	20060810

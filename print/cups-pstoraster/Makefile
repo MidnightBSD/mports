@@ -2,7 +2,7 @@
 # Date created:		Jul 13 2002
 # Whom:			ports@FreeBSD.org
 #
-# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.4 2008/03/21 05:38:34 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
 #
 

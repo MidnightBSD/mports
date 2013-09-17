@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/taglib/Makefile,v 1.7 2011/06/16 12:42:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	taglib
 PORTVERSION=	1.8

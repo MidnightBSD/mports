@@ -2,7 +2,7 @@
 # Date created:				31 Oct 2003
 # Whom:					Foxfair Hu <foxfair@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/p5-HTML-Scrubber/Makefile,v 1.2 2008/10/08 04:40:44 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTML-Scrubber/Makefile,v 1.3 2004/05/28 02:10:57 foxfair Exp $
 #
 

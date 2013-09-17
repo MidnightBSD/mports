@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/science/openbabel/Makefile,v 1.6 2013/02/23 03:09:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openbabel
 PORTVERSION=	2.3.2

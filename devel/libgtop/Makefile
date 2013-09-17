@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.13 2012/02/28 02:49:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgtop
 PORTVERSION=	2.28.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gtk-doc/Makefile,v 1.4 2011/12/15 00:39:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk-doc
 PORTVERSION=	1.15

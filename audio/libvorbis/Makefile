@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.8 2010/11/06 14:01:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libvorbis
 PORTVERSION=	1.3.1

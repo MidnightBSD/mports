@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.14 2011/04/21 22:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtar
 PORTVERSION=	1.26

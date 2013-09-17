@@ -2,7 +2,7 @@
 # Date created:                         Sun Jan 18 18:54:00 CET 2004
 # Whom:                                 benlutz@datacomm.ch
 #
-# $MidnightBSD: mports/games/linux-enemyterritory/Makefile,v 1.2 2007/08/07 18:06:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory/Makefile,v 1.11 2006/06/14 14:29:54 miwi Exp $
 #
 

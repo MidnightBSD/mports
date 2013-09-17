@@ -4,7 +4,7 @@
 # Whom:	      			ijliao
 #
 # $FreeBSD: ports/devel/p5-Exception-Class/Makefile,v 1.25 2006/07/15 08:22:10 erwin Exp $
-# $MidnightBSD: mports/devel/p5-Exception-Class/Makefile,v 1.1 2007/09/12 02:14:20 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Exception-Class

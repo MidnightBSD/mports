@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ksnapshot/Makefile,v 1.1 2012/03/06 02:27:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ksnapshot
 PORTVERSION=	${KDE4_VERSION}

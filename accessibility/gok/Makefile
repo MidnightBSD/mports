@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.8 2013/03/24 19:16:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gok
 PORTVERSION=	2.30.1

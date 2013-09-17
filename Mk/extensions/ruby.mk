@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.7 2013/06/21 01:43:42 laffer1 Exp $ 
+# $MidnightBSD$ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 

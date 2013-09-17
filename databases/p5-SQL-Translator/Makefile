@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-SQL-Translator/Makefile,v 1.2 2010/12/08 00:34:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	SQL-Translator
 PORTVERSION=	0.11006

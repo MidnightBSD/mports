@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/yafic/Makefile,v 1.3 2011/06/05 17:57:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2

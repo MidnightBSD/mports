@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.8 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	silc
 PORTVERSION=	1.1.10

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/lcms2/Makefile,v 1.1 2012/03/11 03:28:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lcms2
 PORTVERSION=	2.4

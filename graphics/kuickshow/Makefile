@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/kuickshow/Makefile,v 1.4 2011/01/01 16:34:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/kuickshow/Makefile,v 1.20 2006/09/12 23:26:18 lofi Exp $
 
 PORTNAME=	kuickshow

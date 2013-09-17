@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.12 2012/02/05 03:42:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	anjuta
 PORTVERSION=	2.32.1.1

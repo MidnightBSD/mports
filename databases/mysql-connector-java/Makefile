@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.12 2013/02/10 20:34:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mysql-connector-java
 PORTVERSION=	5.1.26

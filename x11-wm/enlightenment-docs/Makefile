@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/enlightenment-docs/Makefile,v 1.2 2008/08/19 20:31:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	enlightenment-docs
 PORTVERSION=	0.16.8.0.2

@@ -2,7 +2,7 @@
 # Date created:         6/5/2011
 # Whom:                 Lucas Holt <luke@foolishgames.com>
 #
-# $MidnightBSD: mports/security/kwalletcli/Makefile,v 1.3 2011/06/05 16:19:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kwalletcli
 PORTVERSION=	2.11

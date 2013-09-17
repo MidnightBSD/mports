@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/deskutils/kdeplasma-addons/Makefile,v 1.2 2008/09/03 13:06:08 miwi Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdeplasma-addons

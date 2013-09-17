@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/wmstock/Makefile,v 1.3 2010/12/11 18:37:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmstock
 PORTVERSION=	0.11

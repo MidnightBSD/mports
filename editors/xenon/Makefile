@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xenon/Makefile,v 1.3 2009/06/07 18:56:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xenon
 PORTVERSION=	1.0.0

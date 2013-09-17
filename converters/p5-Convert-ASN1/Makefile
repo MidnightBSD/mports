@@ -2,7 +2,7 @@
 # Date created:				May 30, 2008
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/converters/p5-Convert-ASN1/Makefile,v 1.2 2009/09/20 03:46:37 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Convert-ASN1

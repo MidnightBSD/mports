@@ -2,7 +2,7 @@
 # Date created:				20 September 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/sdl_net/Makefile,v 1.3 2008/02/27 23:02:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/sdl_net/Makefile,v 1.24 2006/09/20 11:21:56 stas Exp $
 #
 

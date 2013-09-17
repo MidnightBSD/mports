@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.3 2007/10/25 22:47:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	portaudio
 PORTVERSION=	18.1

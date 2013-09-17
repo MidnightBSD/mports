@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/wmfirew/Makefile,v 1.4 2010/12/11 18:54:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmfirew
 PORTVERSION=	0.20

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xmodmap/Makefile,v 1.3 2011/09/20 23:54:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmodmap
 PORTVERSION=	1.0.7

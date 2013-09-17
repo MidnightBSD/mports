@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/tevent/Makefile,v 1.2 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		tevent
 PORTVERSION=		0.9.8

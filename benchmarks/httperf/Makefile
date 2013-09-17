@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/httperf/Makefile,v 1.2 2008/07/18 21:15:52 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	httperf
 PORTVERSION=	0.9.0

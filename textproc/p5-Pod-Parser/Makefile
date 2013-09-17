@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Pod-Parser/Makefile,v 1.1 2008/03/21 20:07:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Pod-Parser
 PORTVERSION=	1.38

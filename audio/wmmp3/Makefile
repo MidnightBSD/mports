@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.4 2008/04/10 05:07:54 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/wmmp3/Makefile,v 1.8 2003/12/15 01:17:26 pav Exp $
 
 PORTNAME=	wmmp3

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/lzop/Makefile,v 1.3 2012/11/27 02:37:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lzop
 DISTVERSION=	1.03

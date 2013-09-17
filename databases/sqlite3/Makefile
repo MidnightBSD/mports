@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.22 2013/06/14 01:36:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sqlite3
 PORTVERSION=	3.7.17

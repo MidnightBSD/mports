@@ -2,7 +2,7 @@
 # Date created:		25 December 2000
 # Whom:			KIRIYAMA Kazuhiko <kiri@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.3 2008/05/31 17:19:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/sdocbook-xml/Makefile,v 1.7 2004/02/13 10:31:54 des Exp $
 #
 

@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/iwi-firmware/Makefile,v 1.8 2006/05/08 09:37:17 flz Exp $
-# $MidnightBSD: mports/net/iwi-firmware/Makefile,v 1.2 2007/02/17 21:42:51 archite Exp $
+# $MidnightBSD$
 
 PORTNAME=	iwi-firmware
 RELNAME=	ipw2200

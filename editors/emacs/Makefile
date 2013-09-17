@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.12 2011/09/15 04:08:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}

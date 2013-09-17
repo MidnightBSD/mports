@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-vmmouse/Makefile,v 1.4 2011/05/07 21:11:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-input-vmmouse
 PORTVERSION=	12.6.9

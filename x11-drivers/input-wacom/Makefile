@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/input-wacom/Makefile,v 1.3 2010/06/01 23:08:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	input-wacom
 PORTVERSION=	${KLD_VERSION}.${WACOM_VERSION:C/-/./g}

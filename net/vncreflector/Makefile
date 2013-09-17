@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.5 2010/03/25 01:34:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vncreflector
 PORTVERSION=	1.2.4

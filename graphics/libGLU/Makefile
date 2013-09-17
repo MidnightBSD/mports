@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libGLU/Makefile,v 1.5 2013/02/22 00:30:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libGLU
 PORTVERSION=	${MESAVERSION}

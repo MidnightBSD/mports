@@ -2,7 +2,7 @@
 # Date created:		24 May 2000
 # Whom:			Hajimu UMEMOTO <ume@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/p5-Socket6/Makefile,v 1.2 2008/10/10 20:01:31 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/p5-Socket6/Makefile,v 1.15 2006/06/13 16:17:15 ume Exp $
 #
 

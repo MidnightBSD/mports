@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/py-cairo/Makefile,v 1.4 2010/01/23 19:27:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cairo
 PORTVERSION=	1.8.8

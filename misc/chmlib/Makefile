@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/chmlib/Makefile,v 1.1 2009/01/03 02:23:12 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	chmlib
 PORTVERSION=	0.40

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.7 2011/02/02 21:16:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kopete
 PORTVERSION=	0.12.8

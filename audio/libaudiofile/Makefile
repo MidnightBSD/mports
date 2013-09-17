@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.7 2011/03/18 19:46:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
 
 PORTNAME=	libaudiofile

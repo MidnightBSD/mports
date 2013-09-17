@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.9 2011/01/08 14:48:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ntfs
 PORTVERSION=	2010.3.6

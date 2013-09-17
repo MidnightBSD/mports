@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/p5-chart/Makefile,v 1.2 2009/04/15 00:37:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Chart
 PORTVERSION=	2.4.2

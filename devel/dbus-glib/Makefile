@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.10 2013/01/24 04:48:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dbus-glib
 PORTVERSION=	0.100.2

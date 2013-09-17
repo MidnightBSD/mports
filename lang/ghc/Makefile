@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ghc/Makefile,v 1.7 2013/03/30 13:40:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ghc
 PORTVERSION=	7.6.3

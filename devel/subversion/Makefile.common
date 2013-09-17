@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.20 2013/08/24 15:02:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	subversion
 PORTVERSION=	1.8.3

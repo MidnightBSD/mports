@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferences.app/Makefile,v 1.10 2006/03/19 04:35:43 dinoex Exp $
-# $MidnightBSD: mports/deskutils/preferences.app/Makefile,v 1.6 2009/12/31 23:41:22 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	preferences.app

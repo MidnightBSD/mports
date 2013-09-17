@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-s3/Makefile,v 1.3 2011/05/07 21:41:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-s3
 PORTVERSION=	0.6.3

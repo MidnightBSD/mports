@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/gmm++/Makefile,v 1.2 2012/02/09 14:14:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gmm++
 PORTVERSION=	4.2

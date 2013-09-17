@@ -2,7 +2,7 @@
 # Date created:				Nov 9 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/games/gtkpool/Makefile,v 1.2 2009/10/03 00:21:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/gtkpool/Makefile,v 1.5 2007/05/19 20:06:22 flz Exp $
 #
 

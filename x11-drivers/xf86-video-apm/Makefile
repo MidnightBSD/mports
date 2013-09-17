@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-apm/Makefile,v 1.3 2011/05/07 21:13:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-apm
 PORTVERSION=	1.2.3

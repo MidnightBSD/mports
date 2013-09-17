@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.13 2012/02/28 01:12:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gimp-app
 PORTVERSION=	2.8.6

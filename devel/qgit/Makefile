@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qgit/Makefile,v 1.2 2011/07/16 15:19:51 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	qgit

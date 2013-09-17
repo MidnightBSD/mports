@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/liboldX/Makefile,v 1.5 2012/03/02 02:22:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	liboldX
 PORTVERSION=	1.0.1

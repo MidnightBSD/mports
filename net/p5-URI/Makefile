@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-URI/Makefile,v 1.3 2010/05/26 01:27:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	URI
 PORTVERSION=	1.60

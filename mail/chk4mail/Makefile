@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/chk4mail/Makefile,v 1.1 2008/10/27 22:04:26 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	chk4mail
 PORTVERSION=	2.24

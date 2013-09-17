@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-GSSAPI/Makefile,v 1.3 2009/05/01 16:01:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	GSSAPI
 PORTVERSION=	0.28

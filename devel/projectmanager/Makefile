@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/projectmanager/Makefile,v 1.5 2008/10/23 13:39:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	projectmanager
 PORTVERSION=	0.2

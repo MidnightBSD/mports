@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/popt/Makefile,v 1.5 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	popt
 PORTVERSION=	1.16

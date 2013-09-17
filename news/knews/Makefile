@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/knews/Makefile,v 1.5 2013/06/15 20:29:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	knews
 PORTVERSION=	1.0b.1

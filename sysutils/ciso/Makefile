@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/ciso/Makefile,v 1.2 2012/03/10 06:10:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ciso
 PORTVERSION=	1.0.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.10 2013/06/17 02:37:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 
 PORTNAME=	metacity

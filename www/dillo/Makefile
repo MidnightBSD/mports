@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/dillo/Makefile,v 1.8 2011/12/15 00:57:55 laffer1 Exp $
+# $MidnightBSD$
 #
 # Tunables:
 # WITH_DILLO_SSL: enable experimental SSL support

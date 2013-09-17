@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.9 2010/12/04 02:32:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.16

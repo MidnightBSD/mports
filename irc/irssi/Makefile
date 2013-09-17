@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.14 2013/07/13 13:38:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.15

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Net-IP/Makefile,v 1.2 2007/06/06 19:20:48 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-IP
 PORTVERSION=	1.26

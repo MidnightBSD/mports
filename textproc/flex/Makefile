@@ -2,7 +2,7 @@
 # Date created:		13 August 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/flex/Makefile,v 1.2 2009/11/08 21:32:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/flex/Makefile,v 1.4 2008/02/28 13:24:48 sat Exp $
 #
 

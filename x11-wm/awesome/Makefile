@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.8 2011/05/15 19:15:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	awesome
 PORTVERSION=	3.4.11

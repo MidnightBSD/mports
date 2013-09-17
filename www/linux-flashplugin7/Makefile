@@ -2,7 +2,7 @@
 # Date created:				28 May 2004
 # Whom:					Jamie Jones <jamie@bishopston.net>
 #
-# $MidnightBSD: mports/www/linux-flashplugin7/Makefile,v 1.4 2008/03/22 00:10:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/linux-flashplugin7/Makefile,v 1.23 2007/10/10 03:00:35 edwin Exp $
 #
 

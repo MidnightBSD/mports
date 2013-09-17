@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gscheme/Makefile,v 1.1 2010/01/23 19:03:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gscheme
 PORTVERSION=	0.6

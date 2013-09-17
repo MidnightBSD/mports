@@ -2,7 +2,7 @@
 # Date created:				20 February 1998
 # Whom:	      				Matthew Hunt <mph@pobox.com>
 #
-# $MidnightBSD: mports/devel/p5-ReadLine-Perl/Makefile,v 1.2 2008/10/16 21:42:16 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-ReadLine-Perl/Makefile,v 1.15 2006/07/01 19:12:27 shaun Exp $
 #
 

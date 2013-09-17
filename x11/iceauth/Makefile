@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/iceauth/Makefile,v 1.4 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	iceauth
 PORTVERSION=	1.0.5

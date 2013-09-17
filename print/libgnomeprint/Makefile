@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.8 2011/08/20 13:19:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomeprint
 PORTVERSION=	2.18.8

@@ -3,7 +3,7 @@
 # Whom:				Akinori MUSHA aka knu <knu@idaemons.org>
 #
 # $FreeBSD: ports/palm/jfconv/Makefile,v 1.11 2005/11/11 01:17:46 linimon Exp $
-# $MidnightBSD: mports/palm/jfconv/Makefile,v 1.2 2008/04/10 17:58:21 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	jfconv

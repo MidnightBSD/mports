@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.6 2013/02/22 03:21:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ratpoison
 PORTVERSION=	1.4.5

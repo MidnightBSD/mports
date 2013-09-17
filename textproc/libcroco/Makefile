@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.5 2011/02/02 21:23:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libcroco
 PORTVERSION=	0.6.8

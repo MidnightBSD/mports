@@ -2,7 +2,7 @@
 # Date created:         8 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/deskutils/etoile-addresseskit/Makefile,v 1.3 2007/11/07 20:20:10 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	addresseskit

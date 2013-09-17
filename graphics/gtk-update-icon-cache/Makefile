@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gtk-update-icon-cache/Makefile,v 1.3 2013/03/24 19:01:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk-update-icon-cache
 PORTVERSION=	2.24.19

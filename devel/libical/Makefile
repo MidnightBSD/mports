@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libical/Makefile,v 1.6 2010/08/02 23:10:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libical
 PORTVERSION=	0.44

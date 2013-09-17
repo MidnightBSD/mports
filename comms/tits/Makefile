@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/tits/Makefile,v 1.1 2007/09/01 08:30:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tits
 PORTVERSION=	1.1.2

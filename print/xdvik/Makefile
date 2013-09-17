@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/xdvik/Makefile,v 1.4 2013/08/04 16:19:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xdvik
 PORTVERSION=	22.84.16

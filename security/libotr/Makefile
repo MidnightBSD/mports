@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libotr/Makefile,v 1.8 2012/02/29 01:17:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libotr
 PORTVERSION=	4.0.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.15 2011/07/09 16:51:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yelp
 PORTVERSION=	2.30.2

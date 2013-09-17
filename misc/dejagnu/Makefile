@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/dejagnu/Makefile,v 1.3 2013/02/22 03:00:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dejagnu
 PORTVERSION=	1.5.1

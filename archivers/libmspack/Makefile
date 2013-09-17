@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.7 2011/02/02 20:03:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmspack
 PORTVERSION=	0.2

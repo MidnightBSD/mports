@@ -3,7 +3,7 @@
 # Whom:			hrs
 #
 # $FreeBSD: ports/print/cm-super/Makefile,v 1.1 2006/06/29 18:42:45 hrs Exp $
-# $MidnightBSD: mports/print/cm-super/Makefile,v 1.2 2007/11/02 02:25:42 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	cm-super

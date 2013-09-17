@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/rssh/Makefile,v 1.4 2009/12/28 20:38:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rssh
 PORTVERSION=	2.3.2

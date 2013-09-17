@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python27/Makefile,v 1.6 2013/06/15 03:23:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	python27
 PORTVERSION=	2.7.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/shc/Makefile,v 1.2 2011/05/14 22:32:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	shc
 PORTVERSION=	3.8.9

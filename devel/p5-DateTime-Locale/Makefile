@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-DateTime-Locale/Makefile,v 1.2 2009/10/07 00:46:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DateTime-Locale
 PORTVERSION=	0.45

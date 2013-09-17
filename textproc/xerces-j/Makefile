@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.4 2011/12/22 14:05:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xerces-j
 PORTVERSION=	2.11.0

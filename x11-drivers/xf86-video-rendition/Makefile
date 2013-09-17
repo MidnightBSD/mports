@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-rendition/Makefile,v 1.4 2011/05/07 21:40:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-rendition
 PORTVERSION=	4.2.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXinerama/Makefile,v 1.6 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXinerama
 PORTVERSION=	1.1.3

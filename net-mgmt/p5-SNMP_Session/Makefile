@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-SNMP_Session/Makefile,v 1.3 2013/03/06 03:23:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	SNMP_Session
 PORTVERSION=	1.13

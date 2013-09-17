@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/compositeproto/Makefile,v 1.2 2011/05/02 13:36:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	compositeproto
 PORTVERSION=	0.4.2

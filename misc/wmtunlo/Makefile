@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/wmtunlo/Makefile,v 1.5 2010/11/12 00:32:51 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/wmtunlo/Makefile,v 1.7 2004/05/16 23:45:05 adamw Exp $
 #
 

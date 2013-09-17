@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-declarative/Makefile,v 1.1 2011/07/17 15:22:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-declarative/Makefile,v 1.1 2010/12/02 19:47:07 makc Exp $
 
 PORTNAME=	declarative

@@ -2,7 +2,7 @@
 # Date created:				20 Feb 2004
 # Whom:                			Mathieu Arnold <mat@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-ExtUtils-CBuilder/Makefile,v 1.4 2008/10/11 07:00:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-ExtUtils-CBuilder/Makefile,v 1.16 2006/04/11 14:51:54 mat Exp $
 #
 

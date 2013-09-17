@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.7 2011/01/15 05:57:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-media
 PORTVERSION=	2.32.0

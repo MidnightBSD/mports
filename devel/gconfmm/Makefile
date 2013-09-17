@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gconfmm/Makefile,v 1.3 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gconfmm
 PORTVERSION=	2.0.2

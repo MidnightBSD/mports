@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.6 2012/03/11 18:41:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	at-poke
 PORTVERSION=	0.2.3

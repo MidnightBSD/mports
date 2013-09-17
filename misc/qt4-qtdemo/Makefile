@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.5 2011/07/23 23:46:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qtdemo
 DISTVERSION=	${QT4_VERSION}

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.6 2011/02/02 21:04:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	OpenEXR
 PORTVERSION=	1.6.1

@@ -3,7 +3,7 @@
 # Whom:					mek
 #
 # $FreeBSD: ports/games/pvpgn/Makefile,v 1.12 2008/05/30 15:42:54 miwi Exp $
-# $MidnightBSD: mports/games/pvpgn/Makefile,v 1.1 2008/05/30 20:06:34 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	pvpgn
 PORTVERSION=	1.8.5

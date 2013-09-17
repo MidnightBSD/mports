@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/linux-relview/Makefile,v 1.1 2011/06/19 15:50:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/math/linux-relview/Makefile,v 1.10 2010/03/08 16:53:01 miwi Exp $
 
 PORTNAME=	relview

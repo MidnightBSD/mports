@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mbone/speak_freely/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	speak_freely
 PORTVERSION=	7.6a

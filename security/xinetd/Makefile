@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/xinetd/Makefile,v 1.2 2007/11/01 21:59:53 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	xinetd
 PORTVERSION=	2.3.15

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/neon29/Makefile,v 1.5 2013/03/30 20:35:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	neon29
 PORTVERSION=	0.29.6

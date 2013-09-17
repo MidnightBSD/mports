@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/skype/Makefile,v 1.2 2008/05/04 06:25:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	skype
 PORTVERSION=	1.2.0.18

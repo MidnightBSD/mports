@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/webp/Makefile,v 1.1 2012/03/11 03:31:33 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/webp/Makefile,v 1.10 2011/11/09 15:25:35 miwi Exp $
 
 PORTNAME=	webp

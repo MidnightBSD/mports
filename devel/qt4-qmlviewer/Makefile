@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-qmlviewer/Makefile,v 1.1 2013/06/22 00:53:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qmlviewer
 DISTVERSION=	${QT4_VERSION}

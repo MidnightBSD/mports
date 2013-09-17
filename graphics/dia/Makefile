@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/dia/Makefile,v 1.3 2009/05/09 20:46:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dia
 DISTVERSION=	0.97.1

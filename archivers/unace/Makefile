@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/unace/Makefile,v 1.3 2009/12/25 17:52:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unace
 PORTVERSION=	1.2b

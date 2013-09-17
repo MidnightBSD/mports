@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/44bsd-rdist/Makefile,v 1.2 2009/06/09 20:46:36 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	44bsd-rdist
 PORTVERSION=	20001111

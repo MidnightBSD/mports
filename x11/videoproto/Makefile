@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/videoproto/Makefile,v 1.2 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	videoproto
 PORTVERSION=	2.3.1

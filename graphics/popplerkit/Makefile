@@ -2,7 +2,7 @@
 # Date created:         21 Jan 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/graphics/popplerkit/Makefile,v 1.5 2010/05/30 22:49:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/popplerkit/Makefile,v 1.3 2007/01/31 18:18:02 dinoex Exp $
 #
 

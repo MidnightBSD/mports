@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/nttcp/Makefile,v 1.3 2011/01/22 16:54:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nttcp
 PORTVERSION=	1.47

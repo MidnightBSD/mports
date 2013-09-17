@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/ctorrent/Makefile,v 1.3 2009/07/05 16:20:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ctorrent
 PORTVERSION=    3.3.2

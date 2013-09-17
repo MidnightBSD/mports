@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.20 2013/07/15 02:30:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.7.4-4

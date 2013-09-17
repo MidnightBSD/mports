@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Encode-Detect/Makefile,v 1.4 2008/09/15 18:13:05 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/converters/p5-Encode-Detect/Makefile,v 1.2 2006/11/21 12:12:31 sumikawa Exp $
 
 PORTNAME=	Encode-Detect

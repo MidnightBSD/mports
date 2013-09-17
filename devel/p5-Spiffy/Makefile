@@ -2,7 +2,7 @@
 # Date created:		15 Jul 2004
 # Whom:			Elvis Chiang <elvis@sslab.cs.ccu.edu.tw>
 #
-# $MidnightBSD: mports/devel/p5-Spiffy/Makefile,v 1.1 2007/03/11 05:15:10 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Spiffy/Makefile,v 1.13 2006/01/30 07:29:30 clsung Exp $
 #
 

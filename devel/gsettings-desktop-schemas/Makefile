@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gsettings-desktop-schemas/Makefile,v 1.2 2013/06/17 02:59:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gsettings-desktop-schemas
 PORTVERSION=	3.0.1

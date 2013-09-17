@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.7 2013/02/18 13:34:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libslang2
 PORTVERSION=	2.2.4

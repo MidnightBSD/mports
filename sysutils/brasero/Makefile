@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.4 2012/03/06 01:16:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	brasero
 PORTVERSION=	2.32.1

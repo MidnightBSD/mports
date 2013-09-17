@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/cpuid/Makefile,v 1.3 2007/11/12 01:09:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/cpuid/Makefile,v 1.14 2006/11/14 20:49:38 edwin Exp $
 
 PORTNAME=	cpuid

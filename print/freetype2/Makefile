@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.22 2013/08/21 12:36:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	freetype2
 PORTVERSION=	2.4.12

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.9 2011/03/18 20:09:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	akode
 PORTVERSION=	2.0.2

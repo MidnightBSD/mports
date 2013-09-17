@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.6 2010/08/14 02:33:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9

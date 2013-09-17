@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/py-gdbm/Makefile,v 1.4 2013/02/18 13:17:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdbm
 PORTVERSION=	${PYTHON_PORTVERSION}

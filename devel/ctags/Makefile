@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/ctags/Makefile,v 1.2 2009/04/08 20:44:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ctags
 PORTVERSION=	5.8

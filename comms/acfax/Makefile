@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/acfax/Makefile,v 1.2 2011/10/01 01:22:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	acfax
 PORTVERSION=	0.981011

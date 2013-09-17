@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.21 2013/06/13 00:25:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	slim
 PORTVERSION=	1.3.5

@@ -2,7 +2,7 @@
 # Date created:		September 24, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11-themes/midnightbsd-backgrounds/Makefile,v 1.2 2008/10/24 17:29:18 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	midnightbsd-backgrounds

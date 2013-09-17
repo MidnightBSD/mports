@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/nawk/Makefile,v 1.6 2011/06/01 01:57:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/lang/nawk/Makefile,v 1.33 2005/12/01 11:21:05 flz Exp $
 
 PORTNAME=	nawk

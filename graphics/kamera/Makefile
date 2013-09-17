@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.4 2011/01/01 16:33:37 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/kamera/Makefile,v 1.15 2006/09/12 23:26:17 lofi Exp $
 
 PORTNAME=	kamera

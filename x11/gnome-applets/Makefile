@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.10 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-applets
 PORTVERSION=	2.32.1.1

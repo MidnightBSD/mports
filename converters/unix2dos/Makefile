@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/unix2dos/Makefile,v 1.3 2013/03/06 03:13:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unix2dos
 PORTVERSION=	1.3

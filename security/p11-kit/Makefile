@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p11-kit/Makefile,v 1.2 2012/02/29 01:23:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	p11-kit
 PORTVERSION=	0.16.3

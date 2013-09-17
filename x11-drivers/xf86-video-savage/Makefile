@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-savage/Makefile,v 1.3 2011/05/07 21:42:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-savage
 PORTVERSION=	2.3.2

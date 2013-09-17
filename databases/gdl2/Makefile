@@ -1,6 +1,6 @@
 # New ports collection makefile for:    gdl2
 #
-# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.4 2008/10/23 13:30:12 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	gdl2

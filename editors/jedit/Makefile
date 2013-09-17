@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.9 2011/08/21 18:14:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jedit
 PORTVERSION=	4.5.2

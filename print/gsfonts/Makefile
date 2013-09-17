@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/gsfonts/Makefile,v 1.2 2008/10/13 20:54:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gsfonts
 PORTVERSION=	8.11

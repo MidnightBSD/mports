@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.7 2011/09/22 23:14:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sysconftool
 PORTVERSION=	0.17

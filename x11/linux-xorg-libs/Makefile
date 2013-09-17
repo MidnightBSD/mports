@@ -1,6 +1,6 @@
 # New ports collection makefile for:	linux-xorg-libs
 #
-# $MidnightBSD: mports/x11/linux-xorg-libs/Makefile,v 1.3 2008/10/03 19:25:48 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/linux-xorg-libs/Makefile,v 1.6 2006/06/28 19:25:49 netchild Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/etoile-serialize/Makefile,v 1.1 2010/05/30 23:18:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	serialize
 PORTVERSION=	0.4.1

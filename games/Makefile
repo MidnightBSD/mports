@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.36 2010/09/06 19:39:03 laffer1 Exp $
+# $MidnightBSD$
 #
 
     COMMENT = Games

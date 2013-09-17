@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.8 2011/12/15 00:45:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsndfile
 PORTVERSION=	1.0.25

@@ -2,7 +2,7 @@
 # Date created:		March 27, 2008
 # Whom:			Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/textproc/xhtml-modularization/Makefile,v 1.1 2008/03/27 23:10:57 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xhtml-modularization

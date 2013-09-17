@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/opensp/Makefile,v 1.2 2008/10/13 21:00:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	OpenSP
 PORTVERSION=	1.5.2

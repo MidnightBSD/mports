@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/binutils/Makefile,v 1.4 2011/12/20 03:57:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	binutils
 PORTVERSION=	2.23.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.40 2012/03/04 05:21:40 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Mathematics
 

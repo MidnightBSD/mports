@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/enscript-letter/Makefile,v 1.1 2006/11/25 00:43:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	enscript
 PORTVERSION=	1.6.4

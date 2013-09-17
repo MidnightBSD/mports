@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/looks/Makefile,v 1.2 2008/10/13 20:55:04 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	looks
 PORTVERSION=	2.0.4

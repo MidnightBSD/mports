@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.19 2013/06/15 02:32:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
