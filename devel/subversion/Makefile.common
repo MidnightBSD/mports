@@ -1,7 +1,7 @@
 # $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.20 2013/08/24 15:02:28 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.8.1
+PORTVERSION=	1.8.3
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
@@ -53,7 +53,7 @@ PLIST_SUB+=	BDB="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MMOD_DAV_SVN}
-USE_APACHE=   2.2+
+USE_APACHE=   22+
 CONFIGURE_ARGS+=--with-apxs=${APXS} --with-apache-libexecdir
 PLIST_SUB+=	MOD_DAV_SVN=""
 SUB_LIST+=	MOD_DAV_SVN_INSTALL="YES"
