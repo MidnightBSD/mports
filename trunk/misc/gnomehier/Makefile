@@ -4,6 +4,7 @@
 
 PORTNAME=	gnomehier
 PORTVERSION=	3.0
+PORTREVISION=	1
 CATEGORIES=	misc gnome
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -37,12 +38,10 @@ pre-install:
 	done
 	@${SED} -e 's|%%MTREE_ARGS%%|${GNOME_MTREE_ARGS}|' \
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-	${CHGRP} games ${WRKSRC}/share/games
-	${CHMOD} g=rwXs ${WRKSRC}/share/games
 	cd ${WRKSRC} && \
 		${MTREE_CMD} -U -d -n -i -c -k "uname, gname, mode" | \
 		${SED} -e 's|uname=[A-Za-z0-9_]*|uname=root|' \
-		       -e 's|gname=[A-Za-z0-9_]*|gname=wheel|' \
+			-e 's|gname=[A-Za-z0-9_]*|gname=wheel|' \
 			> ${WRKDIR}/${GNOME_MTREE}
 
 do-install:
