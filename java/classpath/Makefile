@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/classpath/Makefile,v 1.5 2011/12/22 02:55:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	classpath
 PORTVERSION=	0.99

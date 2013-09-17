@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/linux-sun-jre17/Makefile,v 1.2 2013/06/21 02:26:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${JRE_UPDATE_VERSION}

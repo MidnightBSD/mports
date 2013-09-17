@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.4 2011/12/24 03:15:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	commons-lang
 PORTVERSION=	2.6

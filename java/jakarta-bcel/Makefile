@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-bcel/Makefile,v 1.4 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jakarta-bcel/Makefile,v 1.4 2006/05/24 14:00:57 hq Exp $
 
 PORTNAME=	bcel

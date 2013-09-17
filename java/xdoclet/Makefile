@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/xdoclet/Makefile,v 1.3 2011/12/24 04:49:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xdoclet
 PORTVERSION=	1.2.3

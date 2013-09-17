@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/maven2/Makefile,v 1.5 2013/02/21 02:45:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	maven2
 DISTVERSION=	2.2.1

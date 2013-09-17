@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jaxen/Makefile,v 1.5 2013/02/09 01:50:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jaxen
 PORTVERSION=	1.0

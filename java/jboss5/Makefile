@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jboss5/Makefile,v 1.2 2013/02/09 01:50:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jboss
 PORTVERSION=	5.1.0.GA

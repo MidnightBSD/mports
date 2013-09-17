@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jikes/Makefile,v 1.5 2011/12/24 02:34:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jikes
 PORTVERSION=	1.22

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.7 2009/04/04 01:14:32 laffer1 Exp $
+# $MidnightBSD$
 #
 # This port is self contained in the src directory.
 

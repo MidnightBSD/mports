@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/bluej/Makefile,v 1.5 2011/12/24 02:36:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bluej
 PORTVERSION=	3.0.9

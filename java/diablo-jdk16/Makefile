@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.8 2011/12/24 02:57:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}

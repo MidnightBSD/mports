@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.39 2013/03/03 21:59:48 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Java 
 

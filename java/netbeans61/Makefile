@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/netbeans61/Makefile,v 1.6 2013/02/09 01:55:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.29 2008/02/12 11:24:13 olgeni Exp $
 
 PORTNAME=	netbeans61

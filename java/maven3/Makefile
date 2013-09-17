@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/maven3/Makefile,v 1.1 2012/02/28 02:17:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	maven3
 DISTVERSION=	3.0.3
