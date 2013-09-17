@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler-qt4/Makefile,v 1.2 2009/04/08 20:57:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	0
 PKGNAMESUFFIX=	-qt4

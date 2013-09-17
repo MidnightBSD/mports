@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.9 2013/03/24 16:55:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gio-fam-backend
 PORTVERSION=	2.34.3

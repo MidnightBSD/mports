@@ -2,7 +2,7 @@
 # Date created:				27 April 2008
 # Whom:					<smultron@midnightbsd.org>
 #
-# $MidnightBSD: mports/games/vitetris/Makefile,v 1.7 2009/09/24 04:13:21 smultron Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	vitetris

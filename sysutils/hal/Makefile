@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.21 2013/07/03 00:26:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14

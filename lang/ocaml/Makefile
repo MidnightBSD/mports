@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.6 2011/05/15 03:44:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ocaml
 PORTVERSION=	3.12.1

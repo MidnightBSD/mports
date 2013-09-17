@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/doom-data/Makefile,v 1.2 2007/10/31 20:24:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	data
 PORTVERSION=	1.0

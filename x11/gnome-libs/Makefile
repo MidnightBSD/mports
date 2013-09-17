@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.6 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2

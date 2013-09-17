@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/snort/Makefile,v 1.6 2013/07/03 20:17:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	snort
 PORTVERSION=	2.8.2.1

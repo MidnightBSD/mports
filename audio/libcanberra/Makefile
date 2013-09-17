@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.5 2011/09/18 01:54:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libcanberra
 PORTVERSION=	0.28

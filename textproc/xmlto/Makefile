@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.6 2013/03/23 17:02:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmlto
 PORTVERSION=	0.0.25

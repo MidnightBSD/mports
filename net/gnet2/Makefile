@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/gnet2/Makefile,v 1.7 2013/03/30 19:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnet
 PORTVERSION=	2.0.8

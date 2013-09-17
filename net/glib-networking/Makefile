@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/glib-networking/Makefile,v 1.5 2013/03/30 19:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	glib-networking
 PORTVERSION=	2.36.2

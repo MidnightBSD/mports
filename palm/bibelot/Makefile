@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/bibelot/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bibelot
 PORTVERSION=	0.9.4

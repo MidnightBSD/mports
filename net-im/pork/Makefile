@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/pork/Makefile,v 1.4 2010/05/28 22:35:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		pork
 PORTVERSION=		0.99.8.1

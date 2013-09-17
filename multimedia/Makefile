@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.70 2013/06/22 02:21:44 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Multimedia software
 

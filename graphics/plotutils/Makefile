@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.8 2012/09/09 05:01:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	plotutils
 PORTVERSION=	2.6

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xrx/Makefile,v 1.6 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xrx
 PORTVERSION=	1.0.4

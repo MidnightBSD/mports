@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-SAX/Makefile,v 1.3 2013/07/16 01:59:14 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	XML-SAX

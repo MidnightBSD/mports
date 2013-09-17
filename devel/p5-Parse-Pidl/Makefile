@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Parse-Pidl/Makefile,v 1.1 2010/10/23 11:38:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		Parse-Pidl
 PORTVERSION=		${SAMBA4_VERSION}

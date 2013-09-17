@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/fastjar/Makefile,v 1.1 2011/12/21 04:26:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fastjar
 PORTVERSION=	0.93.20060808

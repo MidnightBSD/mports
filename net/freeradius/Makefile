@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.11 2013/03/06 01:12:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	freeradius
 PORTVERSION=	1.1.8

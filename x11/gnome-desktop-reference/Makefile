@@ -2,7 +2,7 @@
 # Date created:				15 Dec 2007
 # Whom:					Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome-desktop-reference/Makefile,v 1.3 2008/09/21 18:59:58 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTREVISION=	1

@@ -2,7 +2,7 @@
 # Date created:		August 26, 2002
 # Whom:			Palle Girgensohn <girgen@pingpong.net>
 #
-# $MidnightBSD: mports/databases/postgresql-docs/Makefile,v 1.3 2008/04/06 19:05:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/postgresql-docs/Makefile,v 1.13 2006/01/23 07:04:09 linimon Exp $
 #
 

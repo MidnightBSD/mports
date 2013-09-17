@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/agrep/Makefile,v 1.2 2009/11/09 00:39:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	agrep
 PORTVERSION=	2.04

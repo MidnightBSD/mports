@@ -3,7 +3,7 @@
 # Whom:					matthias.andree@gmx.de
 #
 # $FreeBSD: ports/databases/db42-nocrypto/Makefile,v 1.2 2004/01/09 09:45:37 pav Exp $
-# $MidnightBSD: mports/databases/db42-nocrypto/Makefile,v 1.3 2011/08/20 13:22:49 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PKGNAMESUFFIX=	-nocrypto

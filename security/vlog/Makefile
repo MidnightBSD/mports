@@ -1,5 +1,5 @@
 # $FreeBSD: ports/security/vlog/Makefile,v 1.13 2006/05/13 04:15:18 edwin Exp $
-# $MidnightBSD: mports/security/vlog/Makefile,v 1.2 2007/10/31 03:31:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vlog
 PORTVERSION=	1.1f

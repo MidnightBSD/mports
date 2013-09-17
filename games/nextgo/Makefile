@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/nextgo/Makefile,v 1.5 2009/04/05 15:43:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0

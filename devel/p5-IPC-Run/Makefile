@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-IPC-Run/Makefile,v 1.8 2006/05/11 08:34:41 tobez Exp $
-# $MidnightBSD: mports/devel/p5-IPC-Run/Makefile,v 1.1 2006/11/25 00:45:05 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	IPC-Run

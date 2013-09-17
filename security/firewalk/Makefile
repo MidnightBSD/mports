@@ -2,7 +2,7 @@
 # Date created:		Sun May 3, 1999
 # Whom:			shipley@dis.org
 #
-# $MidnightBSD: mports/security/firewalk/Makefile,v 1.3 2008/05/04 17:56:40 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/security/firewalk/Makefile,v 1.22 2007/01/31 14:09:53 pav Exp $
 #
 

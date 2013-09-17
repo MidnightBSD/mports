@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.11 2012/09/09 01:41:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	compiz
 PORTVERSION=	0.8.4

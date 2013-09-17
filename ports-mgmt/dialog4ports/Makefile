@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ports-mgmt/dialog4ports/Makefile,v 1.3 2013/07/04 22:09:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.5

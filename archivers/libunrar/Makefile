@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.7 2009/12/25 17:23:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libunrar
 PORTVERSION=	3.9.10

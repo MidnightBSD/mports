@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xclipboard/Makefile,v 1.4 2011/09/20 23:38:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xclipboard
 PORTVERSION=	1.1.2

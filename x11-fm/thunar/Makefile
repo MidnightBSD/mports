@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.9 2012/03/06 00:54:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Thunar
 PORTVERSION=	1.6.3

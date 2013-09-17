@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xf86dgaproto/Makefile,v 1.3 2012/03/03 01:52:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86dgaproto
 PORTVERSION=	2.1

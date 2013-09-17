@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/schroedinger/Makefile,v 1.3 2012/03/01 04:28:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	schroedinger
 PORTVERSION=	1.0.11

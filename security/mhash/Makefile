@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/mhash/Makefile,v 1.2 2008/03/26 01:52:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mhash
 PORTVERSION=	0.9.9.9

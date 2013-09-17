@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/polkit-qt/Makefile,v 1.1 2011/07/31 16:49:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/polkit-qt/Makefile,v 1.4 2011/03/25 10:22:45 avilla Exp $
 
 PORTNAME=	polkit-qt

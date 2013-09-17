@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/qzeitgeist/Makefile,v 1.1 2012/03/02 01:34:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qzeitgeist
 PORTVERSION=	0.8.0

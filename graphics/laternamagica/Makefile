@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/laternamagica/Makefile,v 1.1 2010/05/30 22:41:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	laternamagica
 PORTVERSION=	0.3

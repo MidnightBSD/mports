@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.8 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libtheora
 PORTVERSION=	1.1.1

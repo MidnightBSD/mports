@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.12 2013/03/01 14:00:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tcl
 PORTVERSION=	8.5.13

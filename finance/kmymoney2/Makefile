@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.3 2011/01/14 14:45:51 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/finance/kmymoney2/Makefile,v 1.17 2007/10/04 00:50:27 edwin Exp $
 
 PORTNAME=	kmymoney2

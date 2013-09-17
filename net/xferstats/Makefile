@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/xferstats/Makefile,v 1.1 2008/02/27 02:24:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xferstats
 PORTVERSION=	2.16

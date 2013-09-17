@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gnome-settings-daemon/Makefile,v 1.4 2011/09/04 11:46:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-settings-daemon
 PORTVERSION=	2.32.1

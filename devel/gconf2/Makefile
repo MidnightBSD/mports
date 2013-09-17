@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.11 2012/02/28 14:06:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gconf2
 PORTVERSION=	2.32.0

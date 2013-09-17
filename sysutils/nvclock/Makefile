@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.3 2012/09/08 16:42:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nvclock
 DISTVERSION=	0.8b4

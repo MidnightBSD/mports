@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.5 2013/03/02 19:45:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78

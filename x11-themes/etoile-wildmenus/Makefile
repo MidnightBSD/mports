@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-wildmenus/Makefile,v 1.3 2007/08/27 21:02:41 seirei Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/etoile-wildmenus/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 #
 

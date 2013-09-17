@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/ico/Makefile,v 1.3 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ico
 PORTVERSION=	1.0.4

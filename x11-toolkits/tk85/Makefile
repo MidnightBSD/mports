@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.8 2013/03/03 14:32:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tk
 PORTVERSION=	8.5.13

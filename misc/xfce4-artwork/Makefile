@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/xfce4-artwork/Makefile,v 1.1 2008/09/26 18:12:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-artwork
 PORTVERSION=	0.0.4

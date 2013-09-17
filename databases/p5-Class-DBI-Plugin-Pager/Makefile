@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-Class-DBI-Plugin-Pager/Makefile,v 1.2 2009/10/13 23:31:03 laffer1 Exp $
+# $MidnightBSD$
 
 
 PORTNAME=	Class-DBI-Plugin-Pager

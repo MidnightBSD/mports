@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/mdbconv/Makefile,v 1.2 2009/04/08 21:05:50 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	mdbconv

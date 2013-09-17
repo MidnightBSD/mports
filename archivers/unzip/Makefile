@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.9 2011/01/20 14:09:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unzip
 PORTVERSION=	6.0

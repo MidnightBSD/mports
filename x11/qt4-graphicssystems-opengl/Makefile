@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/qt4-graphicssystems-opengl/Makefile,v 1.1 2011/07/23 22:48:31 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/qt4-graphicssystems-opengl/Makefile,v 1.1 2010/12/02 19:47:16 makc Exp $
 
 PORTNAME=	graphicssystems

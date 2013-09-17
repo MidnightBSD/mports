@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/imgvtopgm/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	imgvtopgm
 PORTVERSION=	2.0

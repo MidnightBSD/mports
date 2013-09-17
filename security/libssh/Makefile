@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libssh/Makefile,v 1.3 2013/03/27 00:58:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libssh
 PORTVERSION=	0.5.2

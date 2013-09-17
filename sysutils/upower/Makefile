@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.6 2013/06/21 01:20:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	upower
 PORTVERSION=	0.9.7

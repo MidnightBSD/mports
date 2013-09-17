@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/recordproto/Makefile,v 1.3 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	recordproto
 PORTVERSION=	1.14.2

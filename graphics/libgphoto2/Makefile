@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.10 2013/07/14 23:37:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.4.14

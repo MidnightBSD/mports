@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/expect/Makefile,v 1.3 2010/12/11 18:49:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	expect
 PORTVERSION=	5.43.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Encode-Locale/Makefile,v 1.1 2012/02/03 03:35:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Encode-Locale
 PORTVERSION=	1.03

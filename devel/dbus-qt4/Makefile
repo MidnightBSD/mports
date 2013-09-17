@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus-qt4/Makefile,v 1.4 2012/02/28 02:20:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/dbus-qt4/Makefile,v 1.23 2010/12/02 19:47:03 makc Exp $
 
 PORTNAME=	dbus

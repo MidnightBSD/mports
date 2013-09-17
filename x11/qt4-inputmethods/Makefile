@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/qt4-inputmethods/Makefile,v 1.3 2011/07/23 22:40:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/qt4-inputmethods/Makefile,v 1.19 2010/12/02 19:47:16 makc Exp $
 
 PORTNAME=	inputmethods

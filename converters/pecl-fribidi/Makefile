@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/pecl-fribidi/Makefile,v 1.6 2010/02/28 21:32:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fribidi
 PORTVERSION=	1.2

@@ -2,7 +2,7 @@
 # Date created:		Mon Mar  1 00:48:58 EST 2004
 # Whom:			Michael Johnson <ahze@ahze.net>
 #
-# $MidnightBSD: mports/audio/libcddb/Makefile,v 1.4 2009/12/31 21:05:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libcddb/Makefile,v 1.16 2006/06/09 18:00:28 ahze Exp $
 #
 

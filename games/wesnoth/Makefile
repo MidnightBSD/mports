@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.10 2012/02/29 21:14:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.8.6

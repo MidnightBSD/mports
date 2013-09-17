@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/squeeze/Makefile,v 1.1 2012/03/06 00:17:21 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/squeeze/Makefile,v 1.6 2011/11/09 15:25:23 miwi Exp $
 
 PORTNAME=	squeeze

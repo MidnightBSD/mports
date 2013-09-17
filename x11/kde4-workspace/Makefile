@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.4 2013/03/24 19:47:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_VERSION}

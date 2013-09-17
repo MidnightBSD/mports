@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-String-Format/Makefile,v 1.4 2009/08/20 16:28:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	String-Format
 PORTVERSION=	1.16

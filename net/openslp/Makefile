@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/openslp/Makefile,v 1.6 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1

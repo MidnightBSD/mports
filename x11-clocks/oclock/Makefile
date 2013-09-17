@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/oclock/Makefile,v 1.1 2007/05/19 20:27:08 flz Exp $
-# $MidnightBSD: mports/x11-clocks/oclock/Makefile,v 1.2 2011/05/17 03:17:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	oclock
 PORTVERSION=	1.0.3

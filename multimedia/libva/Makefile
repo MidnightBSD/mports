@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libva/Makefile,v 1.1 2012/03/04 05:35:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libva
 PORTVERSION=	1.2.1

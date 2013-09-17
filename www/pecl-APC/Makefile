@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/pecl-APC/Makefile,v 1.5 2012/02/10 14:18:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	APC
 PORTVERSION=	3.1.14

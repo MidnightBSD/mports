@@ -2,7 +2,7 @@
 # Date created:        17 January 2002
 # Whom:                des
 #
-# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.4 2008/05/31 17:15:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-xsl/Makefile,v 1.39 2006/07/06 17:28:16 linimon Exp $
 #
 

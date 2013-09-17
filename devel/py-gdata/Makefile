@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-gdata/Makefile,v 1.2 2009/12/29 02:47:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdata
 PORTVERSION=	2.0.18

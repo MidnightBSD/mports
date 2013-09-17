@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/unclutter/Makefile,v 1.3 2009/06/09 20:35:04 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/unclutter/Makefile,v 1.13 2006/08/21 11:28:14 miwi Exp $
 
 PORTNAME=	unclutter

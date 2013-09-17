@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/weblint/Makefile,v 1.2 2009/04/28 00:52:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	weblint
 PORTVERSION=	1.020

@@ -2,7 +2,7 @@
 # Date created:		2001.02.08
 # Whom:                 taoka@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/linux-libglade/Makefile,v 1.1 2006/10/01 17:01:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-libglade/Makefile,v 1.13 2006/07/09 21:01:44 bsam Exp $
 #
 

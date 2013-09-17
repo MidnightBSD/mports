@@ -3,7 +3,7 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.10 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libthai

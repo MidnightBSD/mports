@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/x2x/Makefile,v 1.5 2009/05/26 00:38:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	x2x
 PORTVERSION=	1.27

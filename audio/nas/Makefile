@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.10 2009/12/31 23:16:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nas
 PORTVERSION=	1.9.2

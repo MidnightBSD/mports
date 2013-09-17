@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/evolution-webcal/Makefile,v 1.1 2010/08/14 04:15:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	evolution-webcal
 PORTVERSION=	2.32.0

@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/security/qca-tls/Makefile,v 1.9 2006/08/21 10:08:24 demon Exp $
-# $MidnightBSD: mports/security/qca-tls/Makefile,v 1.2 2007/03/25 01:45:31 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	qca-tls

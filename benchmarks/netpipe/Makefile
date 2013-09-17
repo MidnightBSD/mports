@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/netpipe/Makefile,v 1.2 2008/10/10 19:46:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	NetPIPE
 PORTVERSION=	3.7.1

@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/mkcomposecache/Makefile,v 1.1 2007/05/19 20:27:05 flz Exp $
-# $MidnightBSD: mports/x11/mkcomposecache/Makefile,v 1.3 2011/05/07 00:42:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mkcomposecache
 PORTVERSION=	1.2.1

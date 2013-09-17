@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.9 2011/09/18 20:47:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.16 2011/06/27 02:52:45 hrs Exp $
 
 PORTNAME=	acroreadwrapper

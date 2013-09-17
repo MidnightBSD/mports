@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/timemachine/Makefile,v 1.2 2013/07/11 01:13:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	timemachine
 PORTVERSION=	0.3.3

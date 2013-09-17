@@ -2,7 +2,7 @@
 # Date created:				April 27th 1998
 # Whom:	      				Eivind Eklund <eivind@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/p5-MIME-Tools/Makefile,v 1.2 2008/07/19 18:13:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mail/p5-MIME-Tools/Makefile,v 1.39 2006/03/24 12:01:40 tobez Exp $
 #
 

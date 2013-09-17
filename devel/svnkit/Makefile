@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/svnkit/Makefile,v 1.2 2010/01/02 18:03:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	svnkit
 PORTVERSION=	1.3.0

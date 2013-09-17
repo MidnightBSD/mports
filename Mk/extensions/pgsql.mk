@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.5 2012/01/29 16:18:19 laffer1 Exp $ 
+# $MidnightBSD$ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 
 .if defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)

@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/p5-Scope-Guard/Makefile,v 1.2 2007/02/09 05:32:02 rafan Exp $
-# $MidnightBSD: mports/devel/p5-Scope-Guard/Makefile,v 1.1 2007/09/01 16:50:15 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Scope-Guard

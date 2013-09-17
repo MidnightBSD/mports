@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/p5-Scalar-List-Utils/Makefile,v 1.9 2005/12/04 15:56:04 tobez Exp $
-# $MidnightBSD: mports/lang/p5-Scalar-List-Utils/Makefile,v 1.2 2008/01/04 16:31:24 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Scalar-List-Utils

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/liblo/Makefile,v 1.1 2013/07/11 01:13:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	liblo
 PORTVERSION=	0.26

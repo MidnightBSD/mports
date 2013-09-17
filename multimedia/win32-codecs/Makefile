@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.4 2011/09/05 20:15:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	win32-codecs
 DISTVERSION=	20110131

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm20/Makefile,v 1.7 2009/12/13 22:04:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	20

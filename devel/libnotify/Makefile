@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libnotify/Makefile,v 1.7 2012/12/20 04:19:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libnotify
 PORTVERSION=	0.7.3

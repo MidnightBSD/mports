@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/nspr/Makefile,v 1.10 2011/12/16 01:47:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nspr
 DISTVERSION=	4.10

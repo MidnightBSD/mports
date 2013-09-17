@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/chroot_safe/Makefile,v 1.2 2007/05/13 14:23:51 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	chroot_safe
 PORTVERSION=	1.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-NetAddr-IP/Makefile,v 1.3 2012/02/03 03:18:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	NetAddr-IP
 PORTVERSION=	4.069

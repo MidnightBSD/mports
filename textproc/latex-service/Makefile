@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/latex-service/Makefile,v 1.4 2013/03/31 15:49:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	latex
 PORTVERSION=	0.1

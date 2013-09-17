@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.17 2011/09/10 21:12:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.22

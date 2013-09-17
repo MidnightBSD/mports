@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gnustep-mplayer/Makefile,v 1.3 2009/05/27 21:26:27 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gnustep-mplayer/Makefile,v 1.4 2007/05/19 20:17:15 flz Exp $
 
 PORTNAME=	mplayer

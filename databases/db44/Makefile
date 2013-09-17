@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db44/Makefile,v 1.77 2006/04/14 03:44:08 mnag Exp $
-# $MidnightBSD: mports/databases/db44/Makefile,v 1.2 2007/11/10 23:33:10 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	db44

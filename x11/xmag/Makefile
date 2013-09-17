@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xmag/Makefile,v 1.3 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmag
 PORTVERSION=	1.0.5

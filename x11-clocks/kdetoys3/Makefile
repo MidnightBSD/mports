@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-clocks/kdetoys3/Makefile,v 1.64 2006/09/12 23:26:50 lofi Exp $
-# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.5 2011/01/02 17:53:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdetoys
 PORTVERSION=	${KDE_VERSION}

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.9 2010/11/06 13:58:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	flac
 PORTVERSION=	1.2.1

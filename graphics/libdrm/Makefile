@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libdrm/Makefile,v 1.9 2012/03/07 03:40:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdrm
 PORTVERSION=	${LIBDRM_VERSION}

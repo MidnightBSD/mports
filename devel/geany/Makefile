@@ -2,7 +2,7 @@
 # Date Created:				15 Jan 06
 # Whom:					Remington Lang <MrL0Lz@gmail.com>
 #
-# $MidnightBSD: mports/devel/geany/Makefile,v 1.3 2011/09/04 17:39:36 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/geany/Makefile,v 1.10 2008/06/06 13:21:12 edwin Exp $
 #
 

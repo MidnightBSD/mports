@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libogg/Makefile,v 1.9 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libogg
 PORTVERSION=	1.2.2

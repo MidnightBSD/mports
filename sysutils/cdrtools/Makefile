@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.6 2008/09/02 06:32:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cdrtools
 PORTVERSION=	3.00

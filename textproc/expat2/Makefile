@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/expat2/Makefile,v 1.8 2013/03/23 16:44:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	expat
 PORTVERSION=	2.0.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/nipper/Makefile,v 1.2 2008/05/10 22:37:53 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	nipper
 PORTVERSION=	0.11.10

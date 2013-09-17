@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/grantlee/Makefile,v 1.1 2011/07/31 16:57:46 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/grantlee/Makefile,v 1.1 2011/02/06 15:30:19 fluffy Exp $
 
 PORTNAME=	grantlee

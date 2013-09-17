@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/faac/Makefile,v 1.6 2010/02/27 16:03:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	faac
 PORTVERSION=	1.28

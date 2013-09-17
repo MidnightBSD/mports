@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-Net-XWhois/Makefile,v 1.1 2007/06/11 01:41:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-XWhois
 PORTVERSION=	0.90

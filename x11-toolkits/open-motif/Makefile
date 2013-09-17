@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.11 2012/09/09 01:45:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	open-motif
 PORTVERSION=	2.3.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.7 2013/07/04 19:05:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boinc-client
 PORTVERSION=	7.0.28

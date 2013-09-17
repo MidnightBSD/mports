@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.12 2012/03/06 02:11:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gvfs
 PORTVERSION=	1.12.3

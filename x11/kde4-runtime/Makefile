@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kde4-runtime/Makefile,v 1.1 2012/03/03 01:52:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/kde4-runtime/Makefile,v 1.250 2012/02/16 15:57:30 ashish Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-Try-Tiny/Makefile,v 1.1 2010/11/11 00:25:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Try-Tiny
 PORTVERSION=	0.12

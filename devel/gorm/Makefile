@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gorm/Makefile,v 1.9 2011/09/03 20:26:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gorm
 PORTVERSION=	1.2.16

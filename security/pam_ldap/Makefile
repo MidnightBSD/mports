@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.5 2011/08/21 19:50:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pam_ldap
 PORTVERSION=	1.8.6

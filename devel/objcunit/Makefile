@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.9 2013/03/06 03:08:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	objcunit
 PORTVERSION=	1.2

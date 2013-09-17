@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Exception/Makefile,v 1.2 2008/10/16 21:45:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Exception
 PORTVERSION=	0.31

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.20 2012/02/11 04:13:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnutls
 PORTVERSION=	2.12.23

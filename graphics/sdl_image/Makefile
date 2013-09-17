@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.6 2010/05/05 20:40:21 vganji Exp $
+# $MidnightBSD$
 
 PORTNAME=	sdl_image
 PORTVERSION=	1.2.5

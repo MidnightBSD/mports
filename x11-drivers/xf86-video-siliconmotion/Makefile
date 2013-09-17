@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-siliconmotion/Makefile,v 1.3 2011/05/07 21:43:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-siliconmotion
 PORTVERSION=	1.7.3

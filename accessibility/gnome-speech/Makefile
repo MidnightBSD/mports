@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.8 2013/03/24 19:16:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-speech
 PORTVERSION=	0.4.25

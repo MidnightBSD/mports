@@ -2,7 +2,7 @@
 # Date created:				28th Aug 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.3 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/samba-pdbsql/Makefile,v 1.6 2008/05/01 13:06:37 timur Exp $
 #
 

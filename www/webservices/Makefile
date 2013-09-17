@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/webservices/Makefile,v 1.1 2009/10/13 02:04:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	webservices
 PORTVERSION=	0.5.5

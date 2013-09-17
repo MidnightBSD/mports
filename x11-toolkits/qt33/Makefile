@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.18 2012/09/09 01:44:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8

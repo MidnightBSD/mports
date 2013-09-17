@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/analog/Makefile,v 1.10 2011/10/27 15:14:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	analog
 PORTVERSION=	6.0

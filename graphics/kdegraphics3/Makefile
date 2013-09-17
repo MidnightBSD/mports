@@ -1,5 +1,5 @@
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE_VERSION}

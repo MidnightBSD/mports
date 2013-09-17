@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.6 2012/02/03 03:43:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pantomime
 PORTVERSION=	1.2.0

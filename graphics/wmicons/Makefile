@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/wmicons/Makefile,v 1.3 2009/01/02 01:44:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmicons
 PORTVERSION=	1.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.3 2012/09/08 22:48:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/dri/Makefile,v 1.9 2013/02/22 00:53:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dri
 PORTVERSION=	${MESAVERSION}

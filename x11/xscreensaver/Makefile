@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.22 2013/06/12 22:56:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.21

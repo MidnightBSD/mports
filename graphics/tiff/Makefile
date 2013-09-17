@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.17 2012/09/09 01:40:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tiff
 PORTVERSION=	4.0.3

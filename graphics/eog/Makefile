@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/eog/Makefile,v 1.7 2011/06/08 03:16:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	eog
 PORTVERSION=	2.32.1

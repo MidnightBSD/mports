@@ -2,7 +2,7 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/libmemcache/Makefile,v 1.2 2009/09/20 00:34:51 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libmemcache

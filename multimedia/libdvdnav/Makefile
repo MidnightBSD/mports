@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.7 2011/09/05 20:07:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdvdnav
 PORTVERSION=	4.1.4.r1219

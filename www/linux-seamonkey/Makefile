@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.30 2013/01/24 00:54:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	seamonkey
 PORTVERSION=	2.17.1

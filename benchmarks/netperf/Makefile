@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.4 2010/11/13 16:30:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	netperf
 PORTVERSION=	2.6.0

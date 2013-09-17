@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_fastcgi/Makefile,v 1.3 2010/01/24 16:04:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mod_fastcgi
 PORTVERSION=	2.4.7

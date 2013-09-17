@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/py-sqlite3/Makefile,v 1.3 2013/02/18 13:18:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sqlite3
 PORTVERSION=	${PYTHON_PORTVERSION}

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/php5-gettext/Makefile,v 1.1 2006/12/04 05:04:08 laffer1 Exp $
+# $MidnightBSD$
 
 CATEGORIES=	devel
 

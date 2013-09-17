@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.15 2013/02/18 02:53:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.8

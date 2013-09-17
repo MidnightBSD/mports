@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/inadyn/Makefile,v 1.2 2009/10/14 00:27:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	inadyn
 PORTVERSION=	1.96.2

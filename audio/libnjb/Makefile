@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libnjb/Makefile,v 1.3 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libnjb/Makefile,v 1.7 2008/03/20 13:29:31 gahr Exp $
 
 PORTNAME=	libnjb

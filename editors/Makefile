@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.37 2012/03/04 19:01:54 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Editors
 

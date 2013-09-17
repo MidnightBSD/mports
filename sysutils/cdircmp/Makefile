@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/cdircmp/Makefile,v 1.1 2008/03/11 03:06:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cdircmp
 PORTVERSION=	0.3

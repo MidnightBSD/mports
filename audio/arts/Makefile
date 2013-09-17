@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.7 2010/11/06 14:02:12 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	arts

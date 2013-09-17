@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Class-Accessor-Grouped/Makefile,v 1.1 2007/09/01 17:37:48 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Class-Accessor-Grouped
 PORTVERSION=	0.10010

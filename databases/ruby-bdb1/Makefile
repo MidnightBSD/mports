@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/ruby-bdb1/Makefile,v 1.2 2008/06/26 19:44:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bdb1
 PORTVERSION=	0.2.3

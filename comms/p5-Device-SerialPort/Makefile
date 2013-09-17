@@ -2,7 +2,7 @@
 # Date created:				July 6th 2003
 # Whom:	      				Nick Sayer <nsayer@FreeBSD.org>
 #
-# $MidnightBSD: mports/comms/p5-Device-SerialPort/Makefile,v 1.1 2008/08/18 16:18:09 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/comms/p5-Device-SerialPort/Makefile,v 1.9 2008/04/17 14:24:14 araujo Exp $
 #
 

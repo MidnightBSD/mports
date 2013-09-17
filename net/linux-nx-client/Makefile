@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/linux-nx-client/Makefile,v 1.2 2011/09/27 18:45:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/linux-nx-client/Makefile,v 1.15 2010/03/28 06:41:22 dinoex Exp $
 
 PORTNAME=	linux-nx-client

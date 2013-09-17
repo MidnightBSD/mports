@@ -3,7 +3,7 @@
 # Whom:                Peter Schmiedeskamp
 #
 # $FreeBSD: ports/graphics/libexif/Makefile,v 1.25 2006/03/29 06:54:33 pav Exp $
-# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.4 2010/11/12 14:26:17 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libexif

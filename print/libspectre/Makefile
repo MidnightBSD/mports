@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/print/libspectre/Makefile,v 1.3 2010/09/04 19:52:04 laffer1 Exp $
+# $MidnightBSD$
 #    $MCom: ports/print/libspectre/Makefile,v 1.2 2008/03/13 16:30:50 ahze Exp $
 
 PORTNAME=	libspectre

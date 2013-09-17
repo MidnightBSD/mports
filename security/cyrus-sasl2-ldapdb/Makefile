@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/cyrus-sasl2-ldapdb/Makefile,v 1.2 2009/12/28 17:41:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ldapdb
 PORTVERSION=	2.1.23

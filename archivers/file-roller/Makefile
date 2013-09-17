@@ -2,7 +2,7 @@
 # Date created:				18 May 2002
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.7 2009/12/25 16:52:14 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
 #
 

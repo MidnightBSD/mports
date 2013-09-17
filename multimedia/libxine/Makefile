@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.22 2012/03/04 05:41:18 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.178 2012/02/16 15:57:16 ashish Exp $
 
 PORTNAME=	xine

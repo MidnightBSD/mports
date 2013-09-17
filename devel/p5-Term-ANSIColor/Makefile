@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Term-ANSIColor/Makefile,v 1.3 2013/02/19 15:04:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Term-ANSIColor
 PORTVERSION=	4.02

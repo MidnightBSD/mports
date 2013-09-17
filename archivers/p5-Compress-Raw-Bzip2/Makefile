@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.7 2011/09/18 20:11:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Compress-Raw-Bzip2
 PORTVERSION=	2.060

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/qfaxreader/Makefile,v 1.2 2009/12/31 23:25:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qfaxreader
 DISTVERSION=	0.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/db48/Makefile,v 1.1 2010/01/01 03:46:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	db48
 PORTVERSION=	4.8.30.0

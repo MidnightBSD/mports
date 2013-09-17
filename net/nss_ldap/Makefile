@@ -2,7 +2,7 @@
 # Date created:				10/08/2007
 # Whom:					luke@MidnightBSD.org
 #
-# $MidnightBSD: mports/net/nss_ldap/Makefile,v 1.1 2007/10/07 15:01:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/nss_ldap/Makefile,v 1.22 2007/03/09 10:50:51 anray Exp $
 #
 

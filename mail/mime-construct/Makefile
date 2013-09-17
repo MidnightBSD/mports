@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/mime-construct/Makefile,v 1.1 2010/12/04 15:16:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mime-construct
 PORTVERSION=	1.11

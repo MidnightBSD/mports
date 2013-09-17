@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/gedit-plugins/Makefile,v 1.6 2011/02/02 20:19:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gedit-plugins
 PORTVERSION=	2.32.0

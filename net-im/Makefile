@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/Makefile,v 1.26 2013/03/09 21:50:42 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Instant messaging
 

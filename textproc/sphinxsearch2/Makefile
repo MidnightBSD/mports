@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/sphinxsearch/Makefile,v 1.1 2011/05/28 21:58:51 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/sphinxsearch/Makefile,v 1.15 2011/03/19 13:15:30 ale Exp $
 #
 # Note: the Sphinx Storage Engine MySQL plugin is not supported by

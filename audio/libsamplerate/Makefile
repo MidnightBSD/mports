@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.7 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsamplerate
 PORTVERSION=	0.1.8

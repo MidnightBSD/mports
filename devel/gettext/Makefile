@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.16 2013/06/26 23:57:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1

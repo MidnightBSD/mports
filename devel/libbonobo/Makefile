@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.10 2013/03/26 02:53:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libbonobo
 PORTVERSION=	2.32.0

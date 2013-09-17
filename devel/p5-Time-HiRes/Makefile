@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.3 2008/06/04 18:04:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Time-HiRes
 PORTVERSION=	1.9725

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/linux-pam-docs/Makefile,v 1.4 2008/04/01 05:02:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/security/linux-pam-docs/Makefile,v 1.1 2003/10/10 06:06:13 edwin Exp $
 
 PORTNAME=	linux-pam-docs

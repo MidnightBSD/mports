@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.4 2008/06/07 20:55:30 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.4 2006/05/08 21:41:11 sat Exp $
 
 PORTNAME=	hicolor-icon-theme

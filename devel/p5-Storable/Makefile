@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Storable/Makefile,v 1.4 2012/02/28 03:45:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Storable
 PORTVERSION=	2.39

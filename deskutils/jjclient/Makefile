@@ -2,7 +2,7 @@
 # Date created:				27 Feb 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/deskutils/jjclient/Makefile,v 1.6 2010/05/16 18:14:01 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	jjclient

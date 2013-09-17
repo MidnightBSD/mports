@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.3 2013/03/24 19:16:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mousetweaks
 PORTVERSION=	2.32.1

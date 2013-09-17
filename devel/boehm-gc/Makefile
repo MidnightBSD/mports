@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.4 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boehm-gc
 PORTVERSION=	6.8

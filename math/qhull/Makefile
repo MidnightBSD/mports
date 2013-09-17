@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/qhull/Makefile,v 1.1 2012/03/04 04:48:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qhull
 PORTVERSION=	2012.1

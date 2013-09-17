@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/qt4-odbc-plugin/Makefile,v 1.5 2011/07/23 23:17:42 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/qt4-odbc-plugin/Makefile,v 1.10 2008/08/04 23:30:31 miwi Exp $
 #
 

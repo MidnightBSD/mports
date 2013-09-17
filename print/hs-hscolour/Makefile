@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.4 2010/09/07 23:48:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hscolour
 PORTVERSION=	1.10.1

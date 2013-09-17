@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.6 2011/05/28 06:20:57 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/gnome-backgrounds/Makefile,v 1.17 2007/10/24 23:37:12 marcus Exp $
 
 PORTNAME=	gnome-backgrounds

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/goonies/Makefile,v 1.4 2009/10/03 00:21:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	goonies
 PORTVERSION=	1.0.1

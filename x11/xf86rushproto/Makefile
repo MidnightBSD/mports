@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xf86rushproto/Makefile,v 1.2 2012/03/03 01:52:55 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xf86rushproto

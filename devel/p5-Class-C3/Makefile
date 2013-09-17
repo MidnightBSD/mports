@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Class-C3/Makefile,v 1.1 2007/09/01 16:59:35 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Class-C3
 PORTVERSION=	0.25

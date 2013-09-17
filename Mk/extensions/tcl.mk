@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.5 2013/02/21 03:26:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.11 2009/07/07 07:34:31 mm Exp $
 #
 

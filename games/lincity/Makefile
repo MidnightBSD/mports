@@ -2,7 +2,7 @@
 # Date created:         13 Feb 1997
 # Whom:                 Julian Assange
 #
-# $MidnightBSD: mports/games/lincity/Makefile,v 1.5 2012/02/29 21:14:59 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/lincity/Makefile,v 1.24 2007/05/19 20:06:46 flz Exp $
 #
 

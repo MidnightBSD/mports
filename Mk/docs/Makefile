@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/docs/Makefile,v 1.2 2008/11/12 20:16:25 ctriv Exp $
+# $MidnightBSD$
 #
 
 #

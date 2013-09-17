@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.3 2008/05/31 18:39:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	docbook-to-man
 PORTVERSION=	1.0

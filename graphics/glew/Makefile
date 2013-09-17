@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/glew/Makefile,v 1.1 2010/12/11 04:27:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/glew/Makefile,v 1.26 2010/08/03 11:29:34 mva Exp $
 
 PORTNAME=	glew

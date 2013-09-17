@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.6 2012/05/23 02:39:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.85

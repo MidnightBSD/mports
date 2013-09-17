@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/bass/Makefile,v 1.5 2009/10/03 00:04:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bass
 PORTVERSION=	1.2

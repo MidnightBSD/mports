@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-clocks/wmcalclock/Makefile,v 1.9 2013/02/23 23:42:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmCalClock
 PORTVERSION=	1.26

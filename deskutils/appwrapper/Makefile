@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/appwrapper/Makefile,v 1.3 2009/12/31 23:31:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	appwrapper
 PORTVERSION=	0.1

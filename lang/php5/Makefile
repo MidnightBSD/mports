@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.55 2013/08/30 22:15:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	php5
 PORTVERSION=	5.4.17

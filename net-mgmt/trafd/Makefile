@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.4 2010/10/23 11:58:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	trafd
 PORTVERSION=	3.0.2.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlsclients/Makefile,v 1.4 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xlsclients
 PORTVERSION=	1.1.2

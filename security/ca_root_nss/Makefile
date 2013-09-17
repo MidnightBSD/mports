@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.4 2012/09/02 15:09:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ca_root_nss
 PORTVERSION=	${VERSION_NSS}

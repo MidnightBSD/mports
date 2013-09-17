@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/kexchange/Makefile,v 1.3 2011/02/02 20:58:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kexchange
 PORTVERSION=	1.0

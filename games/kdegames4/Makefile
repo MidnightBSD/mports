@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/games/kdegames4/Makefile,v 1.1 2008/12/14 04:39:39 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdegames

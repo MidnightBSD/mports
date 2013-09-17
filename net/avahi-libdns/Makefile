@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.4 2012/12/20 13:16:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	1
 CATEGORIES=	net

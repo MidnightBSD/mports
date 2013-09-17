@@ -3,7 +3,7 @@
 # Whom:					Dmitry Morozovsky <marck@FreeBSD.org>
 #
 # $FreeBSD: ports/misc/p5-List-Compare/Makefile,v 1.3 2006/05/29 13:45:51 erwin Exp $
-# $MidnightBSD: mports/misc/p5-List-Compare/Makefile,v 1.1 2007/10/12 14:10:15 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=		List-Compare

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-sis/Makefile,v 1.2 2009/03/16 15:36:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-sis
 PORTVERSION=	0.10.2

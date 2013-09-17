@@ -2,7 +2,7 @@
 # Date created:				28 April 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/sshguard-ipfw/Makefile,v 1.1 2008/04/29 15:46:46 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PKGNAMESUFFIX=	-ipfw

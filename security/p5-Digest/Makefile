@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Digest/Makefile,v 1.2 2009/05/01 15:57:51 laffer1 Exp $ 
+# $MidnightBSD$ 
 
 PORTNAME=	Digest
 PORTVERSION=	1.16

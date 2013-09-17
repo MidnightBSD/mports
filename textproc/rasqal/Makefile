@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/rasqal/Makefile,v 1.1 2013/06/05 12:39:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rasqal
 PORTVERSION=	0.9.30

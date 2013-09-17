@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/netclasses/Makefile,v 1.5 2009/10/03 03:07:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	netclasses
 PORTVERSION=	1.06

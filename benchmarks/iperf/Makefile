@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/iperf/Makefile,v 1.3 2009/12/12 22:24:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	iperf
 PORTVERSION=	2.0.5

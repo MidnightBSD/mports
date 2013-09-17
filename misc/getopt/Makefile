@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/getopt/Makefile,v 1.3 2012/03/02 01:14:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	getopt
 PORTVERSION=	1.1.5

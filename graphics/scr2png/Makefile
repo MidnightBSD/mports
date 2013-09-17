@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/scr2png/Makefile,v 1.3 2013/02/22 00:08:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scr2png
 PORTVERSION=	1.2

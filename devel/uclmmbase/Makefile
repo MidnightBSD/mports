@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.4 2011/09/22 23:12:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	uclmmbase
 PORTVERSION=	1.2.18

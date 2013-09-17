@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/p5-Sys-Hostname-Long/Makefile,v 1.1 2007/03/21 01:37:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Sys-Hostname-Long
 PORTVERSION=	1.4

@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+# $MidnightBSD$
 #
 # update.mk
 #

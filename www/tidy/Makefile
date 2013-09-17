@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy/Makefile,v 1.3 2008/06/13 04:21:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tidy4
 PORTVERSION=	20000804

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.33 2013/08/30 03:06:34 laffer1 Exp $
+# $MidnightBSD$
 #
 # For more information, please read Makefile.doc
 #

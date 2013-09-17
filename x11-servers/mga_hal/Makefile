@@ -3,7 +3,7 @@
 # Whom:					anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/mga_hal/Makefile,v 1.4 2006/11/19 12:58:03 pav Exp $
-# $MidnightBSD: mports/x11-servers/mga_hal/Makefile,v 1.1 2006/12/11 05:29:43 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	mga_hal

@@ -2,7 +2,7 @@
 # Date created:		10 August 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.6 2011/05/15 19:30:13 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
 #
 

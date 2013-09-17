@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/openssl.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $ 
+# $MidnightBSD$ 
 #
 # Use of 'USE_OPENSSL=yes' includes this Makefile after bsd.ports.pre.mk
 #

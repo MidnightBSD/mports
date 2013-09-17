@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.6 2010/03/07 22:30:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cvsup
 PORTVERSION?=	16.1h

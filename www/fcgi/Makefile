@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/fcgi/Makefile,v 1.5 2011/02/02 21:31:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fcgi
 PORTVERSION=	2.4.0

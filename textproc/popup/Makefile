@@ -2,7 +2,7 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/textproc/popup/Makefile,v 1.3 2008/10/13 19:58:31 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/popup/Makefile,v 1.2 2007/01/31 18:18:09 dinoex Exp $
 #
 

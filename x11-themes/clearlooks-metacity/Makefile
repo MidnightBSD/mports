@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/clearlooks-metacity/Makefile,v 1.3 2009/12/13 21:01:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	clearlooks-metacity
 PORTVERSION=	2.0

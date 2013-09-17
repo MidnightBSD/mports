@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/Makefile,v 1.14 2011/09/10 21:21:42 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 fonts and font utilities
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-mutouch/Makefile,v 1.5 2011/05/17 03:49:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-input-mutouch
 PORTVERSION=	1.2.1

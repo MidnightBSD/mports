@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.5 2012/02/29 02:36:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pangomm
 PORTVERSION=	2.28.4

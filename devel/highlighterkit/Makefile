@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.5 2008/06/14 16:27:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	highlighterkit
 PORTVERSION=	0.1

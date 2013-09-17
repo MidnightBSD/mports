@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.4 2008/03/22 16:45:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	etpro
 PORTVERSION=	3.2.6

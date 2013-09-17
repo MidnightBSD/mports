@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.7 2011/01/08 03:30:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/xscreensaver-kde/Makefile,v 1.22 2006/12/19 21:19:53 lofi Exp $
 
 PORTNAME=	xscreensaver-kde

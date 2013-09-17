@@ -3,7 +3,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/net-mgmt/whatmask/Makefile,v 1.8 2004/02/23 04:42:12 wollman Exp $
-# $MidnightBSD: mports/net-mgmt/whatmask/Makefile,v 1.1 2006/12/26 01:29:13 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	whatmask

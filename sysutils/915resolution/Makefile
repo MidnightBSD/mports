@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/915resolution/Makefile,v 1.2 2009/08/29 16:14:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	915resolution
 PORTVERSION=	0.5.3

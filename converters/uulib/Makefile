@@ -2,7 +2,7 @@
 # Date Created:		04 Aug 1996
 # Whom:			Tim Vanderhoek <ac199@freenet.hamilton.on.ca>
 #
-# $MidnightBSD: mports/converters/uulib/Makefile,v 1.1 2007/02/19 23:25:48 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/converters/uulib/Makefile,v 1.35 2007/01/30 10:25:23 pav Exp $
 #
 

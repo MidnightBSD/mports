@@ -2,7 +2,7 @@
 # Date Created:				13 Oct 2000
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/p5-HTML-Tagset/Makefile,v 1.1 2007/01/12 13:44:24 wintellect Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTML-Tagset/Makefile,v 1.9 2005/11/09 13:44:24 lth Exp $
 #
 

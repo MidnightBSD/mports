@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-NSNMP/Makefile,v 1.3 2013/03/06 03:20:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	NSNMP
 PORTVERSION=	0.5

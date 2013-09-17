@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.21 2013/07/14 20:24:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsoup
 PORTVERSION=	2.40.3

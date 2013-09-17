@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.29 2013/06/12 22:30:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xterm
 PORTVERSION=	296

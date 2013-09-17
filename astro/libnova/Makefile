@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/libnova/Makefile,v 1.6 2011/12/15 00:41:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libnova
 PORTVERSION=	0.14.0

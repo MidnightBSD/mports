@@ -2,7 +2,7 @@
 # Date created:				2007/06/07
 # Whom:					chinsan
 #
-# $MidnightBSD: mports/textproc/p5-Test-Perl-Critic/Makefile,v 1.1 2008/03/21 20:04:10 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/p5-Test-Perl-Critic/Makefile,v 1.1 2007/07/28 11:47:09 chinsan Exp $
 #
 

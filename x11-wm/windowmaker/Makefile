@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.23 2013/01/15 02:18:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	windowmaker
 PORTVERSION=	0.95.4

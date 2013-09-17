@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/thttpd/Makefile,v 1.4 2009/04/28 01:24:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	thttpd
 PORTVERSION=	2.25b

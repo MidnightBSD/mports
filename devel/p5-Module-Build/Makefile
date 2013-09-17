@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.6 2013/05/04 20:37:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Module-Build
 PORTVERSION=	0.4005

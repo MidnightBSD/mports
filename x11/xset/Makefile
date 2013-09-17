@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xset/Makefile,v 1.4 2012/03/03 01:52:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xset
 PORTVERSION=	1.2.2

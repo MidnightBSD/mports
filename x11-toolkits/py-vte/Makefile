@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-vte/Makefile,v 1.3 2011/05/28 06:23:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	3
 CATEGORIES=	x11-toolkits gnome python

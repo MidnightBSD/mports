@@ -2,7 +2,7 @@
 # Date created:			      3 July 1999
 # Whom:				      O.Hodson@cs.ucl.ac.uk (Orion Hodson)
 #
-# $MidnightBSD: mports/mbone/rat/Makefile,v 1.4 2008/05/22 16:36:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mbone/rat/Makefile,v 1.37 2007/03/03 18:32:58 kris Exp $
 #
 

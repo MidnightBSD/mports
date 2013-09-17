@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/saint/Makefile,v 1.2 2010/01/02 22:53:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	saint
 PORTVERSION=	3.5.8

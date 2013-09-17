@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.11 2010/11/20 04:26:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnuplot
 PORTVERSION=	4.6.3

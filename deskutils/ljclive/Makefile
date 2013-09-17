@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/ljclive/Makefile,v 1.4 2007/10/25 00:38:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ljclive
 PORTVERSION=	0.4.10

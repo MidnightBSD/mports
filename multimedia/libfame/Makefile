@@ -3,7 +3,7 @@
 # Date created:			Mar 23, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.5 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
 #
 

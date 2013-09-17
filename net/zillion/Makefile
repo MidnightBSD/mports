@@ -1,5 +1,5 @@
 # $FreeBSD: ports/net/zillion/Makefile,v 1.1 2006/11/09 20:08:01 dinoex Exp $
-# $MidnightBSD: mports/net/zillion/Makefile,v 1.3 2008/10/21 14:33:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zillion
 PORTVERSION=	0.1

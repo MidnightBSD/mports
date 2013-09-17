@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/opencdk/Makefile,v 1.9 2013/03/06 01:51:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	opencdk
 PORTVERSION=	0.6.6

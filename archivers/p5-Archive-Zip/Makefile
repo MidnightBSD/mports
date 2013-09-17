@@ -2,7 +2,7 @@
 # Date created:				Mon Jan  1 09:33:13 2001
 # Whom:					will
 #
-# $MidnightBSD: mports/archivers/p5-Archive-Zip/Makefile,v 1.5 2009/12/25 17:26:51 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/p5-Archive-Zip/Makefile,v 1.28 2006/12/03 12:45:56 demon Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/system-tools-backends/Makefile,v 1.5 2011/01/14 14:44:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	system-tools-backends
 PORTVERSION=	2.10.1

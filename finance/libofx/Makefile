@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.8 2011/12/15 00:49:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.5

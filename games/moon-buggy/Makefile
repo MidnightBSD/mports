@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/moon-buggy/Makefile,v 1.3 2011/02/02 21:01:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	moon-buggy
 PORTVERSION=	1.0.51

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.12 2009/06/29 18:41:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qmake
 PORTVERSION=	3.3.8

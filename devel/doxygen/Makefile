@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.6 2011/06/05 04:49:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	doxygen
 PORTVERSION=	1.8.2

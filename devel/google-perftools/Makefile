@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.5 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	google-perftools
 PORTVERSION=	1.8.3

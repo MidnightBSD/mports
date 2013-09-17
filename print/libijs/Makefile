@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libijs/Makefile,v 1.5 2011/09/18 20:51:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libijs
 PORTVERSION=	0.35

@@ -3,7 +3,7 @@
 # Whom:					Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/databases/courier-authlib-userdb/Makefile,v 1.16 2005/04/26 19:17:30 oliver Exp $
-# $MidnightBSD: mports/databases/courier-authlib-userdb/Makefile,v 1.1 2007/02/20 00:09:37 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PKGNAMESUFFIX=	-userdb

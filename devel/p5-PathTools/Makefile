@@ -3,7 +3,7 @@
 # Whom:	      				Donald Burr <dburr@FreeBSD.ORG>
 #
 # $FreeBSD: ports/devel/p5-PathTools/Makefile,v 1.27 2006/07/13 11:05:18 leeym Exp $
-# $MidnightBSD: mports/devel/p5-PathTools/Makefile,v 1.2 2008/10/11 07:00:39 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	PathTools

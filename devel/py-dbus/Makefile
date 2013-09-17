@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.5 2011/06/11 02:15:27 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
 
 PORTNAME=	dbus

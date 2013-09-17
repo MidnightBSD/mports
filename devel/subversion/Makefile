@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.24 2013/08/24 15:02:28 laffer1 Exp $
+# $MidnightBSD$
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system

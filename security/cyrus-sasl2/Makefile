@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.7 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.23

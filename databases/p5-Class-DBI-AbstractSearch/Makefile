@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-Class-DBI-AbstractSearch/Makefile,v 1.1 2007/09/06 21:48:46 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Class-DBI-AbstractSearch
 PORTVERSION=	0.07

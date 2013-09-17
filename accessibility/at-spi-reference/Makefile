@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/at-spi-reference/Makefile,v 1.3 2008/06/14 14:33:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	1
 LICENSE=	lgpl

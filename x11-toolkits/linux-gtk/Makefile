@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/linux-gtk/Makefile,v 1.3 2008/06/18 04:52:06 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/linux-gtk/Makefile,v 1.38 2006/07/14 22:08:21 bsam Exp $
 
 PORTNAME=	gtk

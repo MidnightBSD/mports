@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/glabels/Makefile,v 1.7 2011/02/02 20:12:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	glabels
 PORTVERSION=	2.2.8

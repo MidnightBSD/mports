@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.7 2012/12/20 03:01:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pulseaudio
 PORTVERSION=	0.9.23

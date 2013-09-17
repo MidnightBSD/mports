@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/xfce4-wm-themes/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-wm-themes
 PORTVERSION=	4.10.0

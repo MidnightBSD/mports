@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler-utils/Makefile,v 1.3 2012/01/28 01:23:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	0
 PKGNAMESUFFIX=	-utils

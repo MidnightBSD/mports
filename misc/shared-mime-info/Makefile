@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.12 2013/03/20 01:50:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	shared-mime-info
 PORTVERSION=	1.1

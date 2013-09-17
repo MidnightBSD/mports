@@ -2,7 +2,7 @@
 # Date created:         29 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/gnustep-ticker/Makefile,v 1.6 2008/10/08 04:49:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/gnustep-ticker/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.6 2010/11/14 18:44:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	blogbench
 PORTVERSION=	1.1

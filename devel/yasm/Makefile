@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.11 2013/02/19 15:05:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yasm
 PORTVERSION=	1.2.0

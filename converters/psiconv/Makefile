@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/psiconv/Makefile,v 1.3 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	psiconv
 PORTVERSION=	0.9.8

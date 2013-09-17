@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/xz/Makefile,v 1.6 2013/02/18 23:07:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xz
 PORTVERSION=	5.0.4

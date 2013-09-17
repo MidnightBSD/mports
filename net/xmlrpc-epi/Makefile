@@ -2,7 +2,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.5 2011/02/02 21:14:16 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xmlrpc-epi

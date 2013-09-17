@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libevent/Makefile,v 1.3 2011/01/12 14:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libevent
 PORTVERSION=	1.4.14b

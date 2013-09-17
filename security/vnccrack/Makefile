@@ -3,7 +3,7 @@
 # Whom:			Pankov Pavel <pankov_p@mail.ru>
 #
 # $FreeBSD: ports/security/vnccrack/Makefile,v 1.1 2006/08/20 12:09:31 itetcu Exp $
-# $MidnightBSD: mports/security/vnccrack/Makefile,v 1.1 2006/11/09 14:56:44 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	vnccrack

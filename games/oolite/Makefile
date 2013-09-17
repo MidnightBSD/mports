@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/oolite/Makefile,v 1.3 2009/04/05 16:07:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		oolite
 PORTVERSION=		1.65

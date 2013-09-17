@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.9 2013/06/21 01:43:42 laffer1 Exp $
+# $MidnightBSD$
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 

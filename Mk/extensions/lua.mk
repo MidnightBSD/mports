@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/lua.mk,v 1.2 2009/09/20 19:10:55 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.lua.mk,v 1.13 2007/04/11 03:22:34 alepulver Exp $
 #
 # bsd.lua.mk - Support for Lua based ports.

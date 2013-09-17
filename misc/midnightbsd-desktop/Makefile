@@ -2,7 +2,7 @@
 # Date created:		July 4, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.7 2011/08/07 18:22:16 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	midnightbsd-desktop

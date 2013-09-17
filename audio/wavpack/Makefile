@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/wavpack/Makefile,v 1.4 2011/12/15 00:45:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wavpack
 PORTVERSION=	4.60.1

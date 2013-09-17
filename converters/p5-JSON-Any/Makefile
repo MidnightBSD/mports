@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-JSON-Any/Makefile,v 1.1 2011/05/13 13:05:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	JSON-Any
 PORTVERSION=	1.30

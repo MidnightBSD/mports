@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-Math-Base36/Makefile,v 1.1 2010/11/10 19:51:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Math-Base36
 PORTVERSION=	0.10

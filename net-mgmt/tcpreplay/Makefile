@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.6 2011/01/08 15:04:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tcpreplay
 PORTVERSION=	3.4.4

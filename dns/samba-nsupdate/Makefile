@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/samba-nsupdate/Makefile,v 1.1 2013/07/04 19:11:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		nsupdate
 PORTVERSION=		9.8.4.1

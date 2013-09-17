@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/libbind/Makefile,v 1.2 2013/02/23 01:27:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libbind
 PORTVERSION=	6.0

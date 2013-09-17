@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/pathfix.mk,v 1.2 2013/06/14 02:13:54 laffer1 Exp $
+# $MidnightBSD$
 #
 # Lookup in Makefile.in and configure for common incorrect paths and set them
 # to respect BSD hier

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.10 2012/11/27 03:34:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wget
 DISTVERSION=	1.14

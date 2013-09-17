@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/websvn/Makefile,v 1.2 2009/04/08 03:16:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	websvn
 PORTVERSION=	2.3.3

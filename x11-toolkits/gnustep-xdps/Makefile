@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-xdps/Makefile,v 1.2 2007/03/13 20:24:32 laffer1 Exp $
+# $MidnightBSD$
 
 CATEGORIES=	x11-toolkits gnustep
 

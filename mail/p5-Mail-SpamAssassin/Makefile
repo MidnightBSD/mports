@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.13 2012/04/19 19:03:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Mail-SpamAssassin
 PORTVERSION=	3.3.2

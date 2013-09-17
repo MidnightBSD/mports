@@ -2,7 +2,7 @@
 # Date created:				2002/09/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.5 2008/06/06 12:12:51 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/liveMedia/Makefile,v 1.264 2008/01/04 14:54:13 nork Exp $
 #
 

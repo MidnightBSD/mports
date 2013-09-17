@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/addresses/Makefile,v 1.6 2013/06/11 02:25:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.7

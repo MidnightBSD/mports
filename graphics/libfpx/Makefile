@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libfpx/Makefile,v 1.3 2009/03/02 14:48:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libfpx
 DISTVERSION=	1.3.1-1

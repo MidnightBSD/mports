@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.8 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-terminal
 PORTVERSION=	2.32.1

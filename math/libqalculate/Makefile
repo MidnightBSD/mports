@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.7 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libqalculate
 PORTVERSION=	0.9.7

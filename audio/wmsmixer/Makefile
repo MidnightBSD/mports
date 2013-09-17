@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.6 2010/02/27 21:24:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
 #
 

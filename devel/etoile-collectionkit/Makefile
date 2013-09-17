@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/etoile-collectionkit/Makefile,v 1.3 2007/08/27 20:22:35 seirei Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/etoile-collectionkit/Makefile,v 1.4 2007/01/31 18:17:55 dinoex Exp $
 #
 

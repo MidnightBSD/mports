@@ -2,7 +2,7 @@
 # Date created:				Jan 30, 2003
 # Whom:					bremner@unb.ca
 #
-# $MidnightBSD: mports/mail/hashcash/Makefile,v 1.1 2007/05/07 20:07:39 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mail/hashcash/Makefile,v 1.8 2006/05/29 20:55:52 pav Exp $
 #
 

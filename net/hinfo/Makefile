@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/hinfo/Makefile,v 1.2 2008/05/31 20:03:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hinfo
 PORTVERSION=	1.0

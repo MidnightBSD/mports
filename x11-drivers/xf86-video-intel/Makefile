@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-intel/Makefile,v 1.9 2013/02/09 18:28:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-intel
 PORTVERSION=	${INTEL_VERSION}

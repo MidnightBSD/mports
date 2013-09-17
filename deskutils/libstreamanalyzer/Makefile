@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/libstreamanalyzer/Makefile,v 1.1 2013/07/16 12:23:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libstreamanalyzer
 PORTVERSION=	${STRIGI_VERSION}

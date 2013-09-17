@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libchamplain/Makefile,v 1.1 2012/03/06 02:40:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libchamplain
 PORTVERSION=	0.8.1

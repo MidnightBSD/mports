@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/gsl/Makefile,v 1.1 2008/12/20 18:38:51 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	gsl
 PORTVERSION=	1.15

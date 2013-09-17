@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-curlftpfs/Makefile,v 1.2 2009/04/03 06:18:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	curlftpfs
 PORTVERSION=	0.9.2

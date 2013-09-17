@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python/Makefile,v 1.9 2009/05/08 16:11:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	python
 PORTVERSION=	${PYTHON_VER}

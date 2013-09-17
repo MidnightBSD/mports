@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/math/eigen/Makefile,v 1.2 2008/05/27 22:12:04 miwi Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	eigen

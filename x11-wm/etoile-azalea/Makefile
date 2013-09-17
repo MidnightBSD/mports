@@ -2,7 +2,7 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-wm/etoile-azalea/Makefile,v 1.4 2007/11/07 20:20:18 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/etoile-azalea/Makefile,v 1.6 2007/01/31 18:18:12 dinoex Exp $
 #
 

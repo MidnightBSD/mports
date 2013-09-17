@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.10 2013/06/05 02:44:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10

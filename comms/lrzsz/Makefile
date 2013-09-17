@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/lrzsz/Makefile,v 1.2 2007/11/11 00:15:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lrzsz
 PORTVERSION=	0.12.20

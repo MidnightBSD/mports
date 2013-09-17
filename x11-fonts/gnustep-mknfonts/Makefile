@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/gnustep-mknfonts/Makefile,v 1.2 2009/02/09 07:49:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mknfonts
 PORTVERSION=	0.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/etoile-etoilemenus/Makefile,v 1.6 2009/12/13 21:01:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/etoile-etoilemenus/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 
 PORTNAME=	etoilemenus

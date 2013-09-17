@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/gnome-user-docs/Makefile,v 1.6 2011/08/20 14:00:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-user-docs
 PORTVERSION=	2.32.0

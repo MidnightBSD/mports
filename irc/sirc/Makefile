@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/sirc/Makefile,v 1.1 2007/08/10 21:12:20 laffer1 Exp $
+# $MidnightBSD$
 #
 # If you need SOCKS support, define SOCKS_SERVER with
 # the name of your SOCKS proxy and remove the '#'.

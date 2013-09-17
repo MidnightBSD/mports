@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/Makefile,v 1.4 2011/05/28 05:10:42 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Software support for handheld devices (Palm, PocketPC, ...)
 

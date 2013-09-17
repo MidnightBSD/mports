@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.10 2012/03/11 04:36:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xearth
 PORTVERSION=	1.2

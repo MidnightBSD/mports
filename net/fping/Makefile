@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/fping/Makefile,v 1.4 2013/03/06 01:19:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fping
 PORTVERSION=	3.5

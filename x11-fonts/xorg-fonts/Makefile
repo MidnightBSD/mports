@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts/Makefile,v 1.5 2013/02/22 02:22:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-fonts
 PORTVERSION=	7.7

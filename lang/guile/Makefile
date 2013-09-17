@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.13 2013/02/20 13:31:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	guile
 PORTVERSION=	1.8.8

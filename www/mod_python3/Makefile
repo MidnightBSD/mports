@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_python3/Makefile,v 1.1 2013/08/24 19:03:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mod_python
 PORTVERSION=	3.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-IP-Country/Makefile,v 1.3 2008/10/11 20:20:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IP-Country
 PORTVERSION=	2.27

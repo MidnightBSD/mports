@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Tie-IxHash/Makefile,v 1.2 2008/10/16 21:46:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Tie-IxHash
 PORTVERSION=	1.22

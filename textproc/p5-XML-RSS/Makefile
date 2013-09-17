@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.7 2010/07/29 12:32:35 laffer1 Exp $
+# $MidnightBSD$
 # $OpenBSD: Makefile,v 1.14 2003/12/09 18:48:54 jose Exp $
 
 PORTNAME=	XML-RSS

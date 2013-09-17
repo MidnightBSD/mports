@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/ipw-firmware/Makefile,v 1.20 2006/09/17 01:11:23 kris Exp $
-# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.3 2007/08/01 20:46:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	ipw-firmware
 RELNAME?=	ipw2100

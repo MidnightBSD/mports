@@ -2,7 +2,7 @@
 # Date created:		17 September 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/linux-libtheora/Makefile,v 1.1 2008/08/13 18:52:46 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/linux-libtheora/Makefile,v 1.1 2006/09/16 20:23:59 sat Exp $
 #
 

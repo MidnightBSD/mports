@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-IO-Socket-SSL/Makefile,v 1.3 2009/05/01 16:04:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IO-Socket-SSL
 PORTVERSION=	1.53

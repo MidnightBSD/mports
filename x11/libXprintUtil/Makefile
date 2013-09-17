@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXprintUtil/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXprintUtil
 PORTVERSION=	1.0.1

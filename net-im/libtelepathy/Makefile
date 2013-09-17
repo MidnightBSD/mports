@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/libtelepathy/Makefile,v 1.3 2011/02/02 21:16:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libtelepathy
 PORTVERSION=	0.3.3

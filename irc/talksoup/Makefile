@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/talksoup/Makefile,v 1.3 2013/06/23 19:40:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	talksoup
 PORTVERSION=	1.0

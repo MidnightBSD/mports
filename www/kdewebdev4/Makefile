@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/www/kdewebdev4/Makefile,v 1.66 2008/09/03 13:06:21 miwi Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdewebdev

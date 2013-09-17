@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.14 2011/06/07 12:51:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 
 PORTNAME=	gnome-panel

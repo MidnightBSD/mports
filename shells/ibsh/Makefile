@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/ibsh/Makefile,v 1.2 2007/05/17 17:36:06 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	ibsh
 PORTVERSION=	0.3e

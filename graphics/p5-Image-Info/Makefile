@@ -2,7 +2,7 @@
 # Date Created:				25 Aug 2001
 # Whom:					Shell Hung <shell@shellhung.org>
 #
-# $MidnightBSD: mports/graphics/p5-Image-Info/Makefile,v 1.2 2008/10/10 18:23:22 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/p5-Image-Info/Makefile,v 1.13 2006/12/03 12:45:57 demon Exp $
 #
 

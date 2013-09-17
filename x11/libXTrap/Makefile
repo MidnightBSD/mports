@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXTrap/Makefile,v 1.6 2012/03/03 01:52:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXTrap
 PORTVERSION=	1.0.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/kmobiletools/Makefile,v 1.3 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kmobiletools
 PORTVERSION=	0.4.3.3

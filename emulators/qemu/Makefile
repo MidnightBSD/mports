@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.11 2011/03/27 16:38:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qemu
 PORTVERSION=	0.11.1

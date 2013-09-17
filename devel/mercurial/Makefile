@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.14 2013/02/18 03:07:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mercurial
 PORTVERSION=	2.5.2

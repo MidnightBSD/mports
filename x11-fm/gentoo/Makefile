@@ -2,7 +2,7 @@
 # Date created:				12 August 2001
 # Whom:					Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.6 2012/03/03 22:34:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-fm/gentoo/Makefile,v 1.52 2006/08/28 12:01:16 miwi Exp $
 #
 

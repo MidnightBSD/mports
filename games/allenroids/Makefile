@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/allenroids/Makefile,v 1.2 2009/11/26 22:26:45 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	allenroids

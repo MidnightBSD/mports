@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/xorg-macros/Makefile,v 1.5 2012/02/28 02:51:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-macros
 PORTVERSION=	1.17

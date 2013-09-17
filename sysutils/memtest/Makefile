@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/memtest/Makefile,v 1.3 2010/10/23 17:45:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	memtest
 PORTVERSION=	4.2.2

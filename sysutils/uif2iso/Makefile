@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/uif2iso/Makefile,v 1.2 2009/10/03 03:47:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/uif2iso/Makefile,v 1.3 2008/03/31 07:30:00 jadawin Exp $
 
 PORTNAME=	uif2iso

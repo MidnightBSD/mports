@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Pod-Simple/Makefile,v 1.3 2009/06/12 19:31:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Pod-Simple
 PORTVERSION=	3.14

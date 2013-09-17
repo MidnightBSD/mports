@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.7 2010/09/07 23:38:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	rtorrent
 PORTVERSION=	0.9.2

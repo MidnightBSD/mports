@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.9 2011/09/15 02:46:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kompmgr
 PORTVERSION=	${KDE_VERSION}

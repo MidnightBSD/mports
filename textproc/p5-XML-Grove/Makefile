@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Grove/Makefile,v 1.1 2007/10/24 02:45:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Grove
 PORTVERSION=	0.46.a

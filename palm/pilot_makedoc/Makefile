@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/pilot_makedoc/Makefile,v 1.1 2007/01/24 21:16:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pilot_makedoc
 PORTVERSION=	0.7a

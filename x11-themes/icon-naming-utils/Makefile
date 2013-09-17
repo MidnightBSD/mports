@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.6 2012/03/03 23:35:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	icon-naming-utils
 PORTVERSION=	0.8.90

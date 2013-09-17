@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.12 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gpgme
 PORTVERSION=	1.3.2

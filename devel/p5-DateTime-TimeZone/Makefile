@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-DateTime-TimeZone/Makefile,v 1.4 2010/06/27 16:11:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DateTime-TimeZone
 PORTVERSION=	1.32

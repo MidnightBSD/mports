@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/oracle8-client/Makefile,v 1.1 2009/12/30 19:22:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	oracle8-client
 PORTVERSION=	0.2.0

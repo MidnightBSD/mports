@@ -2,7 +2,7 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD: mports/mail/p5-Email-MIME/Makefile,v 1.3 2009/09/24 04:07:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Email-MIME
 PORTVERSION=	1.907

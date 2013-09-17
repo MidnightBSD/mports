@@ -2,7 +2,7 @@
 # Date created:				09 May 2006
 # Whom:					Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/atk-reference/Makefile,v 1.1 2008/01/01 20:15:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/accessibility/atk-reference/Makefile,v 1.2 2006/05/31 22:18:41 mezz Exp $
 #
 

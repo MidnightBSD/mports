@@ -3,7 +3,7 @@
 # Whom:	      		andrew@scoop.co.nz
 #
 # $FreeBSD: ports/www/p5-HTML-Breadcrumbs/Makefile,v 1.2 2006/05/23 07:08:47 erwin Exp $
-# $MidnightBSD: mports/www/p5-HTML-Breadcrumbs/Makefile,v 1.2 2008/07/25 05:42:26 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	HTML-Breadcrumbs

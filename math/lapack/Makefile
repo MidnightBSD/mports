@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/lapack/Makefile,v 1.3 2013/02/24 02:09:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	lapack
 PORTVERSION=	3.4.2

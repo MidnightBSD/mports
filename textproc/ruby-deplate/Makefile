@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ruby-deplate/Makefile,v 1.3 2010/01/11 00:54:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	deplate
 PORTVERSION=	0.8.5

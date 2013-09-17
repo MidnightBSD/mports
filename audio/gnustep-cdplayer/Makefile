@@ -2,7 +2,7 @@
 # Date created:         17 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.6 2011/09/03 00:04:09 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/gnustep-cdplayer/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 #
 

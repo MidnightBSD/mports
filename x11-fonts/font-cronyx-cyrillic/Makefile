@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/font-cronyx-cyrillic/Makefile,v 1.1 2007/05/19 20:29:14 flz Exp $
-# $MidnightBSD: mports/x11-fonts/font-cronyx-cyrillic/Makefile,v 1.1 2007/10/10 03:33:14 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-cronyx-cyrillic
 PORTVERSION=	1.0.3

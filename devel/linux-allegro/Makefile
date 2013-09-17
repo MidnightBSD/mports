@@ -2,7 +2,7 @@
 # Date created:				18 Nov 2003
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/linux-allegro/Makefile,v 1.1 2006/10/01 17:01:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-allegro/Makefile,v 1.8 2006/05/01 17:28:12 netchild Exp $
 #
 

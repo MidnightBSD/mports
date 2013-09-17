@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/gpsd/Makefile,v 1.2 2013/02/18 23:13:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gpsd
 PORTVERSION=	3.6

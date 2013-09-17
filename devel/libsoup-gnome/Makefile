@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libsoup-gnome/Makefile,v 1.2 2012/02/11 00:25:38 laffer1 Exp $
+# $MidnightBSD$
 
 CATEGORIES=	devel gnome
 PKGNAMESUFFIX=	-gnome

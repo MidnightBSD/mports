@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/9base/Makefile,v 1.2 2008/08/21 17:30:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	9base
 DISTVERSION=	b20100604

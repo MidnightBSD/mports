@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/cmpsfont/Makefile,v 1.2 2009/11/09 00:51:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cmpsfont
 PORTVERSION=	1.0

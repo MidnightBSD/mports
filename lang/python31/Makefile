@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python31/Makefile,v 1.3 2011/12/22 04:09:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	python31
 PORTVERSION=	3.1.5

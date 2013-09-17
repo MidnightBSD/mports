@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/bindgraph/Makefile,v 1.1 2008/06/07 16:35:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bindgraph
 PORTVERSION=	0.2

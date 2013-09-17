@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.5 2009/09/20 01:37:45 smultron Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdebase
 PORTVERSION=	${KDE_VERSION}

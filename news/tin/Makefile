@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/tin/Makefile,v 1.6 2013/06/15 20:17:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tin
 PORTVERSION=	2.0.1

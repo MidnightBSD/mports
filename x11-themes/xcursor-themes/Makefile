@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/xcursor-themes/Makefile,v 1.3 2011/05/28 06:17:06 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xcursor-themes

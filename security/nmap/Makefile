@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/nmap/Makefile,v 1.10 2013/02/23 02:34:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nmap
 DISTVERSION=	6.40

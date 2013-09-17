@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.5 2009/06/07 19:18:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mdnsd
 PORTVERSION=	0.7G

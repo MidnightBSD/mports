@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-Data-JavaScript/Makefile,v 1.1 2006/10/31 19:57:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Data-JavaScript
 PORTVERSION=	1.13

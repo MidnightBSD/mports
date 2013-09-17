@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.4 2011/07/17 20:04:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cvsgraph
 PORTVERSION=	1.7.0

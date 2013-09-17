@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.6 2012/09/09 00:40:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		samba34
 PORTVERSION=		3.4.17

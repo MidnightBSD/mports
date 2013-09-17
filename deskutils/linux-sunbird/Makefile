@@ -3,7 +3,7 @@
 # Whom:			voisine
 #
 # $FreeBSD: ports/deskutils/linux-sunbird/Makefile,v 1.5 2006/08/03 12:41:58 sat Exp $
-# $MidnightBSD: mports/deskutils/linux-sunbird/Makefile,v 1.5 2008/06/19 22:48:09 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	sunbird

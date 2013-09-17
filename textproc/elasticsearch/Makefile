@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/elasticsearch/Makefile,v 1.1 2013/02/26 03:49:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	elasticsearch
 PORTVERSION=	0.90.0

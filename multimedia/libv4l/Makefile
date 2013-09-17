@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libv4l/Makefile,v 1.1 2010/09/06 21:21:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libv4l
 PORTVERSION=	0.8.1

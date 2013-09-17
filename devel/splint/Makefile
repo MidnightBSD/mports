@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/splint/Makefile,v 1.4 2013/02/24 15:32:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	splint
 PORTVERSION=	3.1.2

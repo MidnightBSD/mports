@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler-data/Makefile,v 1.4 2012/01/28 01:11:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	poppler-data
 PORTVERSION=	0.4.6

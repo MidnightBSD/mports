@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/gridlock/Makefile,v 1.1 2010/03/01 02:01:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gridlock
 PORTVERSION=	1.10

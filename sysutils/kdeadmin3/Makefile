@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.4 2009/09/20 02:15:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdeadmin
 PORTVERSION=	${KDE_VERSION}

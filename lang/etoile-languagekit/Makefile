@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/etoile-languagekit/Makefile,v 1.1 2010/01/23 19:12:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	languagekit
 PORTVERSION=	0.4.1

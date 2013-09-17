@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/polkit-gnome/Makefile,v 1.1 2010/12/31 12:19:37 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/polkit-gnome/Makefile,v 1.6 2010/05/31 02:01:06 ade Exp $
 #   $MCom: ports/sysutils/polkit-gnome/Makefile,v 1.10 2010/05/10 04:21:19 marcus Exp $
 #

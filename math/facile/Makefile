@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/math/facile/Makefile,v 1.1 2008/02/09 21:57:03 arved Exp $
+# $MidnightBSD$
 
 PORTNAME=	facile
 PORTVERSION=	1.1

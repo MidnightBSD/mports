@@ -2,7 +2,7 @@
 # Date created:	   11 December 2002
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/devel/p5-Config-Tiny/Makefile,v 1.1 2008/03/21 20:35:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Config-Tiny/Makefile,v 1.15 2007/12/20 09:49:17 gabor Exp $
 #
 

@@ -1,6 +1,6 @@
 # New ports collection makefile for:	bookmarkbridge
 #
-# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.7 2011/08/31 03:29:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/bookmarkbridge/Makefile,v 1.9 2006/02/23 10:39:35 ade Exp $
 #
 

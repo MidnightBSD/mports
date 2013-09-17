@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/e2fsprogs-libblkid/Makefile,v 1.1 2008/05/30 19:40:51 laffer1 Exp $
+# $MidnightBSD$
 #
 # set PORTREVISION to avoid override by master port
 

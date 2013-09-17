@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.14 2013/02/19 11:46:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openssh
 DISTVERSION=	6.2p2

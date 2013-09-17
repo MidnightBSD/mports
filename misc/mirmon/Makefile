@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/mirmon/Makefile,v 1.5 2011/05/14 22:26:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mirmon
 PORTVERSION=	2.9

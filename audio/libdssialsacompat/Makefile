@@ -1,5 +1,5 @@
 # $FreeBSD: ports/audio/libdssialsacompat/Makefile,v 1.5 2009/08/02 19:32:18 mezz Exp $
-# $MidnightBSD: mports/audio/libdssialsacompat/Makefile,v 1.1 2010/02/27 19:44:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdssialsacompat
 PORTVERSION=	1.0.8a

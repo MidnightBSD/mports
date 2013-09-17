@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/makedepend/Makefile,v 1.5 2011/05/28 07:18:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	makedepend
 PORTVERSION=	1.0.3

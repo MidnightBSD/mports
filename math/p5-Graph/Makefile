@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-Graph/Makefile,v 1.1 2010/10/21 19:11:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Graph
 PORTVERSION=	0.96

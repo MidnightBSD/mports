@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/Makefile,v 1.29 2013/05/04 18:35:39 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Domain Name Service tools
 

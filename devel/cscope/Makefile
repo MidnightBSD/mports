@@ -3,7 +3,7 @@
 # Date created:		1998-11-21
 # Whom:			Castor Fu
 #
-# $MidnightBSD: mports/devel/cscope/Makefile,v 1.2 2008/08/21 17:54:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/cscope/Makefile,v 1.27 2006/11/01 11:23:29 miwi Exp $
 #
 

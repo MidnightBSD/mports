@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/dgen-sdl/Makefile,v 1.4 2008/06/13 16:05:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dgen-sdl
 PORTVERSION=	1.32

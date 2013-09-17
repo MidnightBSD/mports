@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.12 2013/03/09 23:30:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3

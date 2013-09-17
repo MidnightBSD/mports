@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.7 2011/06/18 02:44:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 
 PORTNAME=	openal

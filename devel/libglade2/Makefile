@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.9 2013/03/24 19:25:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libglade2
 PORTVERSION=	2.6.4

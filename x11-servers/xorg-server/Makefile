@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.18 2013/02/23 00:28:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	xorg-server
 PORTVERSION=	${XORG_VERSION}

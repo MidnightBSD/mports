@@ -2,7 +2,7 @@
 # Date created:				26 October 2007
 # Whom:					Michael Johnson <ahze@FreeBSD.org
 #
-# $MidnightBSD: mports/net/avahi-qt4/Makefile,v 1.2 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/avahi-qt4/Makefile,v 1.7 2008/07/03 21:53:55 mezz Exp $
 #
 

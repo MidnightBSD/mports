@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.53 2013/07/16 12:23:59 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Things that used to be on the desktop before computers were invented
 

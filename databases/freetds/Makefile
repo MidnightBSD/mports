@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/freetds/Makefile,v 1.6 2010/10/21 19:31:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	freetds
 PORTVERSION=	0.64

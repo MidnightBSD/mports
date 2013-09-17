@@ -2,7 +2,7 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.13 2009/07/07 22:25:22 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	nwcc

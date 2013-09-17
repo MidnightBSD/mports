@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.3 2012/06/09 20:26:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	autoconf
 PORTVERSION=	2.69

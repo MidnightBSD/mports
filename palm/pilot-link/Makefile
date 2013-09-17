@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.5 2013/02/23 02:58:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pilot-link
 PORTVERSION=	0.12.5

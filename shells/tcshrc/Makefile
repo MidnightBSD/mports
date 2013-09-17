@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/tcshrc/Makefile,v 1.3 2009/12/28 22:27:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tcshrc
 PORTVERSION=	1.6.2

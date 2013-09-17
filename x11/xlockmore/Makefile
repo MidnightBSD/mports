@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.12 2013/06/19 00:55:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.42

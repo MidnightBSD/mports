@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/goffice04/Makefile,v 1.5 2011/03/22 22:46:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/goffice04/Makefile,v 1.23 2008/06/06 13:21:16 edwin Exp $
 #   $MCom: ports/devel/goffice/Makefile,v 1.32 2007/09/06 05:01:28 marcus Exp $
 #

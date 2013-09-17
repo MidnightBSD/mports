@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xf86bigfontproto/Makefile,v 1.3 2011/05/10 13:51:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86bigfontproto
 PORTVERSION=	1.2.0

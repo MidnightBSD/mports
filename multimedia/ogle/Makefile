@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.10 2010/03/25 01:31:30 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
 
 PORTNAME=	ogle

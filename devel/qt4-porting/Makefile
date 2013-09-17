@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-porting/Makefile,v 1.3 2011/07/17 15:22:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-porting/Makefile,v 1.13 2010/12/02 19:47:09 makc Exp $
 
 PORTNAME=	porting

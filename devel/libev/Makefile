@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libev/Makefile,v 1.2 2011/07/16 15:30:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libev
 PORTVERSION=	4.04

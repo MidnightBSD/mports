@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXrandr/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXrandr
 PORTVERSION=	1.4.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/kqemu-kmod-devel/Makefile,v 1.1 2009/03/01 16:36:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kqemu
 PORTVERSION=	1.4.0.p1

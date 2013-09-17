@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.8 2011/05/07 16:17:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-libraries
 PORTVERSION=	7.7

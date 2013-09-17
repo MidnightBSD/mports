@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/libirman/Makefile,v 1.2 2007/11/10 23:51:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libirman
 PORTVERSION=	0.4.4

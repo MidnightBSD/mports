@@ -2,7 +2,7 @@
 # Date created:				23 November 2005
 # Whom:					Alejandro Pulver <alejandro@varnet.biz>
 #
-# $MidnightBSD: mports/games/doom-freedoom/Makefile,v 1.2 2009/10/03 00:09:33 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/doom-freedoom/Makefile,v 1.7 2008/03/10 16:05:05 alepulver Exp $
 #
 

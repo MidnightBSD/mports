@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.10 2012/12/20 13:12:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	avahi
 PORTVERSION=	0.6.29

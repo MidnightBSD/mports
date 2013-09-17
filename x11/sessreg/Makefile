@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/sessreg/Makefile,v 1.5 2013/03/24 19:44:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sessreg
 PORTVERSION=	1.0.8

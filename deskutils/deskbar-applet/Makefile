@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/deskbar-applet/Makefile,v 1.2 2010/12/07 00:47:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	deskbar-applet
 PORTVERSION=	2.32.0

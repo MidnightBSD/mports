@@ -2,7 +2,7 @@
 # Date created:			28 September 2006
 # Whom:				wintellect@bsdnexus.com
 #
-# $MidnightBSD: mports/x11-clocks/wmbinclock/Makefile,v 1.4 2009/04/13 16:32:46 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	wmbinclock

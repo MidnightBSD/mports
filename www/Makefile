@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.136 2013/08/24 19:03:38 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Ports related to the World Wide Web
 

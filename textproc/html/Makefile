@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/html/Makefile,v 1.3 2009/06/12 19:43:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	html
 PORTVERSION=	4.01

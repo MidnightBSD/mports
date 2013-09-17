@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/pybench/Makefile,v 1.2 2007/11/07 23:43:49 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	pybench
 PORTVERSION=	2.0

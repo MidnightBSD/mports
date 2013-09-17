@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.12 2013/06/22 01:45:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	poppler
 PORTVERSION=	0.22.2

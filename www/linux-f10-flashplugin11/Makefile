@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/linux-f10-flashplugin11/Makefile,v 1.3 2013/03/20 02:32:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	flashplugin
 PORTVERSION=	11.2r202.291

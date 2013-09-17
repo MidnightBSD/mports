@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/sysutils/kdeadmin4/Makefile,v 1.1 2008/12/13 03:22:35 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdeadmin

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.41 2013/05/18 13:31:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-DateTime-Format-W3CDTF/Makefile,v 1.3 2010/06/27 16:02:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DateTime-Format-W3CDTF
 PORTVERSION=	0.05

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/libobjc2/Makefile,v 1.1 2013/01/26 16:02:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libobjc2
 PORTVERSION=	1.6

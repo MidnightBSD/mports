@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automoc4/Makefile,v 1.6 2010/11/11 01:30:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	automoc4
 PORTVERSION=	0.9.88

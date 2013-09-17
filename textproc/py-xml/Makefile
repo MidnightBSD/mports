@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/py-xml/Makefile,v 1.3 2008/10/13 20:02:47 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	xml
 PORTVERSION=	0.8.4

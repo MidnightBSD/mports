@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.10 2013/04/11 12:44:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sdl
 PORTVERSION=	1.2.15

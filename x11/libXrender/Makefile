@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXrender/Makefile,v 1.4 2012/03/02 01:48:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXrender
 PORTVERSION=	0.9.7

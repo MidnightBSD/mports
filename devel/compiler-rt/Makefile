@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/compiler-rt/Makefile,v 1.1 2010/01/10 22:21:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}

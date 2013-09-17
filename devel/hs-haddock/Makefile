@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/hs-haddock/Makefile,v 1.2 2010/01/06 03:26:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	haddock
 PORTVERSION=	2.1.0

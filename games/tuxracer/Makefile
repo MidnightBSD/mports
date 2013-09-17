@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.9 2012/02/29 21:14:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61

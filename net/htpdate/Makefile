@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/htpdate/Makefile,v 1.2 2011/08/07 04:11:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	htpdate
 PORTVERSION=	1.0.5

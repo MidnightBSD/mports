@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.12 2012/02/11 00:07:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgpg-error
 PORTVERSION=	1.12

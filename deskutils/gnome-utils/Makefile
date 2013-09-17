@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/gnome-utils/Makefile,v 1.6 2011/02/02 20:12:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-utils
 PORTVERSION=	2.32.0

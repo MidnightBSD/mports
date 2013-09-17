@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.27 2013/07/03 22:54:31 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Communication utilities
 

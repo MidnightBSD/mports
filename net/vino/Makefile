@@ -1,5 +1,5 @@
 # $FreeBSD: ports/net/vino/Makefile,v 1.28 2008/05/29 22:04:10 marcus Exp $
-# $MidnightBSD: mports/net/vino/Makefile,v 1.2 2011/09/27 17:24:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vino
 PORTVERSION=	2.32.2

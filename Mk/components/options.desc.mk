@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/components/options.desc.mk,v 1.1 2013/03/30 12:23:27 laffer1 Exp $
+# $MidnightBSD$
 #
 # READ BEFORE EDITING:
 # - Please keep descriptions sorted alphabetically by variable name.

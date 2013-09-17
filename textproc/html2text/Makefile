@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/html2text/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	html2text
 PORTVERSION=	1.3.2a

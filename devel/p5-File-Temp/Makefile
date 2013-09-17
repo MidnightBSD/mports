@@ -2,7 +2,7 @@
 # Date created:		13 March 2001
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
-# $MidnightBSD: mports/devel/p5-File-Temp/Makefile,v 1.2 2007/09/02 02:43:54 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-File-Temp/Makefile,v 1.20 2007/02/01 07:02:02 leeym Exp $
 #
 

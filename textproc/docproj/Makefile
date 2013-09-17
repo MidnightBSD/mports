@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.6 2008/05/22 16:57:31 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 

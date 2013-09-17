@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/prison/Makefile,v 1.1 2012/03/11 01:04:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/prison/Makefile,v 1.1 2011/10/16 22:59:10 avilla Exp $
 
 PORTNAME=	prison

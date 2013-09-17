@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libsexy/Makefile,v 1.7 2013/02/22 03:11:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsexy
 PORTVERSION=	0.1.11

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Net-SSLeay/Makefile,v 1.3 2012/02/03 03:56:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-SSLeay
 PORTVERSION=	1.52

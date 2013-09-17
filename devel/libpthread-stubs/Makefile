@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libpthread-stubs/Makefile,v 1.2 2009/03/15 18:59:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libpthread-stubs
 PORTVERSION=	0.3

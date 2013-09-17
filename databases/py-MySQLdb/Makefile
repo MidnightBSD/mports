@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/py-MySQLdb/Makefile,v 1.2 2009/10/14 00:20:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	MySQLdb
 DISTVERSION=	1.2.3

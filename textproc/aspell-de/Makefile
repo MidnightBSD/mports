@@ -2,7 +2,7 @@
 # Date created:                         1 September 2002
 # Whom:                                 Thierry Thomas <thierry@pompo.net>
 #
-# $MidnightBSD: mports/german/aspell/Makefile,v 1.2 2007/11/11 00:00:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/german/aspell/Makefile,v 1.5 2006/07/15 14:28:27 thierry Exp $
 #
 

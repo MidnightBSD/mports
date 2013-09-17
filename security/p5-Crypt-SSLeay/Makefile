@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Crypt-SSLeay/Makefile,v 1.2 2008/10/11 22:17:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Crypt-SSLeay
 PORTVERSION=	0.57

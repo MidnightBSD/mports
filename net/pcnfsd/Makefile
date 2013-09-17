@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/pcnfsd/Makefile,v 1.2 2011/03/26 17:45:10 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/pcnfsd/Makefile,v 1.18 2005/07/10 19:15:48 kris Exp $
 
 PORTNAME=	pcnfsd

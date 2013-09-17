@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk30/Makefile,v 1.2 2013/03/24 19:19:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk
 PORTVERSION=	3.6.4

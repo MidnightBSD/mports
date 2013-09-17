@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-Tools/Makefile,v 1.3 2009/09/24 02:57:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Mail-Tools
 PORTVERSION=	2.08

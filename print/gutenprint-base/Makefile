@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.3 2011/12/15 00:57:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	gutenprint
 PORTVERSION=	5.2.7

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.9 2012/02/24 18:42:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	imlib2
 PORTVERSION=	1.4.5

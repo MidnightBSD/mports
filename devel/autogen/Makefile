@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/autogen/Makefile,v 1.6 2011/12/15 00:34:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	autogen
 PORTVERSION=	5.12

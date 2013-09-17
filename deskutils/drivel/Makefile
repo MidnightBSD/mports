@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.8 2010/05/09 18:23:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	drivel
 PORTVERSION=	2.0.3

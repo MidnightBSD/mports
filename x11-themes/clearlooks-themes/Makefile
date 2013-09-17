@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/clearlooks-themes/Makefile,v 1.2 2009/04/08 21:24:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	clearlooks
 PKGNAMESUFFIX+=	-themes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-Ima-DBI/Makefile,v 1.1 2007/09/02 02:41:58 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Ima-DBI
 PORTVERSION=	0.35

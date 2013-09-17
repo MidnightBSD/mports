@@ -2,7 +2,7 @@
 # Date Created:		17 June 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-mplayer-plugin/Makefile,v 1.3 2010/05/29 06:30:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/linux-mplayer-plugin/Makefile,v 1.6 2007/02/06 00:19:32 sat Exp $
 #
 

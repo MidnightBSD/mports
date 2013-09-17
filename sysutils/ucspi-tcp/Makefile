@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.4 2009/12/28 23:10:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88

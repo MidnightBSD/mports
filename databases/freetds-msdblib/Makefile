@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/freetds-msdblib/Makefile,v 1.2 2008/05/10 01:57:46 crash Exp $
+# $MidnightBSD$
 
 PKGNAMESUFFIX=	-msdblib
 

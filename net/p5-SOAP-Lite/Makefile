@@ -2,7 +2,7 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD: mports/net/p5-SOAP-Lite/Makefile,v 1.1 2008/10/11 20:19:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	SOAP-Lite
 PORTVERSION=	0.69

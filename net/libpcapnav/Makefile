@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libpcapnav/Makefile,v 1.1 2011/01/08 15:03:20 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/libpcapnav/Makefile,v 1.11 2009/08/22 00:31:30 amdmi3 Exp $
 
 PORTNAME=	libpcapnav

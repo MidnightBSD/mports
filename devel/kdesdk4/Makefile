@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kdesdk4/Makefile,v 1.3 2012/03/07 03:15:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdesdk
 PORTVERSION=	${KDE4_VERSION}

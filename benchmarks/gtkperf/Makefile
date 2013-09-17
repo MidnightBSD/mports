@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/gtkperf/Makefile,v 1.3 2009/12/31 23:21:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		gtkperf
 PORTVERSION=		0.40

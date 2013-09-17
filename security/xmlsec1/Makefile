@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.5 2011/12/15 00:57:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmlsec1
 PORTVERSION=	1.2.18

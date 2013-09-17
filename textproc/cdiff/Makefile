@@ -2,7 +2,7 @@
 # Date created:					September 20th 2000
 # Whom:						eivind
 #
-# $MidnightBSD: mports/textproc/cdiff/Makefile,v 1.2 2010/01/02 19:29:59 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/cdiff/Makefile,v 1.9 2006/09/04 08:17:26 linimon Exp $
 #
 # This port is self contained in the src directory.

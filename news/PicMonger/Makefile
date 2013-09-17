@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/PicMonger/Makefile,v 1.1 2008/05/31 16:05:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	PicMonger
 PORTVERSION=	0.9.6

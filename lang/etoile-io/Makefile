@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/lang/etoile-io/Makefile,v 1.3 2007/01/31 18:18:03 dinoex Exp $
-# $MidnightBSD: mports/lang/etoile-io/Makefile,v 1.5 2007/11/15 18:34:08 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	io

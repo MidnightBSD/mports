@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-void/Makefile,v 1.3 2009/05/08 20:16:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-input-void
 PORTVERSION=	1.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/linuxdoc/Makefile,v 1.2 2007/05/09 15:19:45 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	linuxdoc
 PORTVERSION=	1.1

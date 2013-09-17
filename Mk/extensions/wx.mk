@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.5 2013/06/21 01:43:42 laffer1 Exp $
+# $MidnightBSD$
 #
 # wx.mk - Support for WxWidgets based ports.
 #

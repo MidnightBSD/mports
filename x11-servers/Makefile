@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/Makefile,v 1.8 2007/11/07 16:13:33 ctriv Exp $
+# $MidnightBSD$
 
 COMMENT = X11 servers
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.5 2011/02/02 21:00:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/ftp/kwebget/Makefile,v 1.14 2006/05/07 11:09:19 edwin Exp $
 
 PORTNAME=	kwebget

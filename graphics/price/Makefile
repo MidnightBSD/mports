@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/price/Makefile,v 1.1 2010/05/30 22:28:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	price
 PORTVERSION=	1.1.0

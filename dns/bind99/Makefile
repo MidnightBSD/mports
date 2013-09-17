@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/bind99/Makefile,v 1.3 2013/07/28 02:56:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	bind99
 PORTVERSION=	9.9.3.2

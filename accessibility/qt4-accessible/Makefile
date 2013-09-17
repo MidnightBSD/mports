@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/qt4-accessible/Makefile,v 1.5 2013/06/22 01:09:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	accessible
 DISTVERSION=	${QT4_VERSION}

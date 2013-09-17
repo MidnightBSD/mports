@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.11 2010/12/11 19:47:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmii
 DISTVERSION=	3.6

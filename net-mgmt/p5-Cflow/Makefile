@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.3 2013/03/06 03:17:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Cflow
 PORTVERSION=	1.053

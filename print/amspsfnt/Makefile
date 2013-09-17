@@ -3,7 +3,7 @@
 # Whom:			giffunip
 #
 # $FreeBSD: ports/print/amspsfnt/Makefile,v 1.14 2006/06/29 18:49:03 hrs Exp $
-# $MidnightBSD: mports/print/amspsfnt/Makefile,v 1.1 2007/01/24 17:07:24 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	amspsfnt

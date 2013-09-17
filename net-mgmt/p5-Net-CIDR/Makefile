@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Net-CIDR/Makefile,v 1.2 2007/06/06 19:19:25 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-CIDR
 PORTVERSION=	0.17

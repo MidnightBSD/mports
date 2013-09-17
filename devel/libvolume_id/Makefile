@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libvolume_id/Makefile,v 1.5 2011/09/22 23:05:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libvolume_id
 PORTVERSION=	0.81.1

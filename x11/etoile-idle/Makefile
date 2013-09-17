@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/etoile-idle/Makefile,v 1.1 2010/01/21 01:22:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	idle
 PORTVERSION=	0.4.1

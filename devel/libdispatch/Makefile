@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.5 2012/02/28 14:13:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdispatch
 PORTVERSION=	210

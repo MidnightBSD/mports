@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.9 2011/08/31 03:07:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libwww
 PORTVERSION=	6.05

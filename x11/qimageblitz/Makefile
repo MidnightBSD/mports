@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/qimageblitz/Makefile,v 1.3 2013/05/10 02:46:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qimageblitz
 PORTVERSION=	0.0.6

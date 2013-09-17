@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/webfwlog/Makefile,v 1.3 2010/11/13 19:17:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	webfwlog
 PORTVERSION=	0.94

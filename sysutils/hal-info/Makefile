@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/hal-info/Makefile,v 1.6 2013/06/05 02:36:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hal-info
 PORTVERSION=	20091130

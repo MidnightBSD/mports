@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Filter-BufferText/Makefile,v 1.1 2007/03/19 16:32:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Filter-BufferText
 PORTVERSION=	1.01

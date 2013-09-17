@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/bforce-kst/Makefile,v 1.1 2008/08/17 21:36:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bforce
 PORTVERSION=	0.22.8.7

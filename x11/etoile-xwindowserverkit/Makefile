@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile-xwindowserverkit/Makefile,v 1.7 2008/08/21 16:20:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/etoile-xwindowserverkit/Makefile,v 1.7 2007/01/31 18:18:13 dinoex Exp $
 #
 

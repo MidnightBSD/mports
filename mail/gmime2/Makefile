@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/gmime2/Makefile,v 1.5 2011/04/30 17:53:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gmime
 PORTVERSION=	2.2.24

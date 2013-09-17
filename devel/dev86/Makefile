@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dev86/Makefile,v 1.3 2009/06/04 16:29:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dev86
 PORTVERSION=	0.16.17

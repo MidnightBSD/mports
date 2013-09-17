@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.6 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmpeg2
 PORTVERSION=	0.5.1

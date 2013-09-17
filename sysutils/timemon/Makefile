@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.5 2012/03/10 06:09:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	timemon
 PORTVERSION=	4.1

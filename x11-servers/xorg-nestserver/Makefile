@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.10 2013/02/23 00:28:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-nestserver
 PORTREVISION=	1

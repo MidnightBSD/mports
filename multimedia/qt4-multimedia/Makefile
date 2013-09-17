@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/qt4-multimedia/Makefile,v 1.1 2011/07/17 15:46:17 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/qt4-multimedia/Makefile,v 1.5 2010/12/02 19:47:13 makc Exp $
 
 PORTNAME=	multimedia

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/py-libxml2/Makefile,v 1.4 2013/03/23 16:41:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	3
 CATEGORIES=	textproc gnome python

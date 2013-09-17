@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/glimpse/Makefile,v 1.2 2009/11/08 21:39:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	glimpse
 PORTVERSION=	4.13.1

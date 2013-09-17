@@ -2,7 +2,7 @@
 # Date created:				Jul 29, 2005
 # Whom:					rafan@infor.org
 #
-# $MidnightBSD: mports/print/freetype-tools/Makefile,v 1.3 2009/09/20 01:57:32 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/freetype-tools/Makefile,v 1.8 2006/11/13 13:28:02 rafan Exp $
 #
 

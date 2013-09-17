@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.8 2013/03/09 14:05:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	minicom
 PORTVERSION=	2.6.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.13 2013/01/24 04:23:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19

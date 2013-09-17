@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/xfce4-tumbler/Makefile,v 1.2 2012/09/20 02:44:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tumbler
 PORTVERSION=	0.1.29

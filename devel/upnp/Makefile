@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/upnp/Makefile,v 1.10 2013/03/10 02:50:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	upnp
 PORTVERSION=	1.6.18

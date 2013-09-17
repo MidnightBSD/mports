@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Unicode-String/Makefile,v 1.2 2007/05/25 19:33:21 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/converters/p5-Unicode-String/Makefile,v 1.10 2005/11/15 08:33:28 tobez Exp $
 
 PORTNAME=	Unicode-String

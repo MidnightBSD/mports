@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.6 2011/01/08 22:34:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rdesktop
 PORTVERSION=	1.7.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/p5-Device-Gsm/Makefile,v 1.2 2010/11/14 18:46:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Device-Gsm
 PORTVERSION=	1.60

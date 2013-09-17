@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libmpd/Makefile,v 1.3 2010/02/27 16:23:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmpd
 PORTVERSION=	0.19.0

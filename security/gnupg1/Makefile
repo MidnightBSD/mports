@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.7 2011/08/22 18:20:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnupg
 PORTVERSION=	1.4.13

@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/kdesdk3/Makefile,v 1.57 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.4 2009/09/20 00:29:55 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdesdk

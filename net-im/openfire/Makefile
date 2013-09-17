@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/openfire/Makefile,v 1.1 2010/05/29 08:17:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openfire
 PORTVERSION=	3.8.2

@@ -3,7 +3,7 @@
 # Date created:			  24 Dec 1998
 # Whom:				  Pedro F. Giffuni <giffunip@asme.org>
 #
-# $MidnightBSD: mports/lang/mawk/Makefile,v 1.1 2007/05/03 07:46:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/lang/mawk/Makefile,v 1.20 2005/11/15 16:39:49 vs Exp $
 #
 

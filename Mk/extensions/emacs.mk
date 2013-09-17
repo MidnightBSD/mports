@@ -1,5 +1,5 @@
 #
-# 	$MidnightBSD: mports/Mk/bsd.emacs.mk,v 1.3 2008/09/29 21:15:49 laffer1 Exp $
+# 	$MidnightBSD$
 #	$FreeBSD: ports/Mk/bsd.emacs.mk,v 1.59 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.emacs.mk - 19990829 Shigeyuki Fukushima.

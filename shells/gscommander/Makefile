@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/gscommander/Makefile,v 1.1 2010/01/21 01:42:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gscommander
 PORTVERSION=	0.1

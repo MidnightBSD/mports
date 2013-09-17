@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/orc/Makefile,v 1.7 2013/06/16 02:20:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	orc
 PORTVERSION=	0.4.18

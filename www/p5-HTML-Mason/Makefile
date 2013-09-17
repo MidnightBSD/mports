@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.3 2010/01/17 15:05:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	HTML-Mason
 PORTVERSION=	1.45

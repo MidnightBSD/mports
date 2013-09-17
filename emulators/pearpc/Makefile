@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.9 2011/04/26 04:03:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pearpc
 PORTVERSION=	0.4

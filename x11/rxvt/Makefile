@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.8 2011/05/17 03:40:21 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock

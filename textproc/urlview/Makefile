@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/urlview/Makefile,v 1.2 2007/10/31 01:26:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	urlview
 PORTVERSION=	0.9

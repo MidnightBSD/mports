@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mbone/Makefile,v 1.4 2011/05/28 05:10:33 laffer1 Exp $
+# $MidnightBSD$
 #
 
     COMMENT = MBone applications

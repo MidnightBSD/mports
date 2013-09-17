@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-shrub/Makefile,v 1.3 2008/03/22 16:48:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
 #
 

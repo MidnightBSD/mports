@@ -2,7 +2,7 @@
 # Date created:				Wed May 15 16:29:51 BRT 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/djbfft/Makefile,v 1.3 2008/09/16 19:45:29 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/math/djbfft/Makefile,v 1.16 2006/09/03 17:33:38 kris Exp $
 #
 

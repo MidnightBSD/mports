@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cunit/Makefile,v 1.2 2010/01/23 22:39:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cunit
 DISTVERSION=	2.1-0

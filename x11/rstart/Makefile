@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/rstart/Makefile,v 1.4 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rstart
 PORTVERSION=	1.0.5

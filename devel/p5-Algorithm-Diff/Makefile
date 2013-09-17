@@ -2,7 +2,7 @@
 # Date created:				04 Nov 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/devel/p5-Algorithm-Diff/Makefile,v 1.1 2007/03/11 05:41:47 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Algorithm-Diff/Makefile,v 1.8 2006/09/22 10:08:39 tobez Exp $
 #
 

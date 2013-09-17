@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.5 2011/05/28 06:20:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtk-engines2
 PORTVERSION=	2.20.2

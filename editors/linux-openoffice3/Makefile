@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.6 2011/09/04 18:52:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openoffice3
 PORTVERSION=	${OO_RELEASE}

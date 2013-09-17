@@ -2,7 +2,7 @@
 # Date created:				3 March 2005
 # Whom:					Yen-Ming Lee <leeym@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-File-HomeDir/Makefile,v 1.2 2008/10/16 21:37:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-File-HomeDir/Makefile,v 1.11 2007/01/10 06:27:25 leeym Exp $
 #
 

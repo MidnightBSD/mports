@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.15 2013/06/11 23:58:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cmake
 PORTVERSION=	2.8.11.2

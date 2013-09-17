@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.13 2012/02/11 00:54:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	netatalk
 PORTVERSION=	2.2.4

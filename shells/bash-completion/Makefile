@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.6 2012/09/29 20:19:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bash-completion
 PORTVERSION=	2.1

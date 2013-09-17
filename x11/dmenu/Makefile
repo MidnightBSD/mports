@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.14 2012/03/02 02:27:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dmenu
 PORTVERSION=	4.5

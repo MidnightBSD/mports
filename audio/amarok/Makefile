@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	amarok
 PORTVERSION=	1.4.10

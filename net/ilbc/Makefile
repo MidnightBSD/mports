@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/ilbc/Makefile,v 1.3 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ilbc
 DISTVERSION=	rfc3951

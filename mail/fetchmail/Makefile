@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.15 2013/08/20 01:30:38 laffer1 Exp $
+# $MidnightBSD$
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc.

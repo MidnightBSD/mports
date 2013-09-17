@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/cantarell-fonts/Makefile,v 1.2 2011/09/10 21:23:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cantarell-fonts
 PORTVERSION=	0.0.12

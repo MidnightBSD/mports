@@ -2,7 +2,7 @@
 # Date created:		5 January 1998
 # Whom:			fenner
 #
-# $MidnightBSD: mports/mbone/rtptools/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mbone/rtptools/Makefile,v 1.10 2006/03/16 02:54:18 sobomax Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.4 2011/05/15 21:30:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Params-Validate
 PORTVERSION=	1.08

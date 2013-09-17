@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/gv/Makefile,v 1.5 2010/12/11 19:09:07 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/print/gv/Makefile,v 1.70 2010/08/06 20:55:27 bf Exp $
 
 PORTNAME=	gv

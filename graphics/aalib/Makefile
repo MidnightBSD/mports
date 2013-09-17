@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aalib
 PORTVERSION=	1.4.r5

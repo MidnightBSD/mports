@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/ubuntulooks/Makefile,v 1.1 2008/06/14 02:23:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ubuntulooks
 PORTVERSION=	0.9.12

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.40 2013/07/11 21:07:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	thunderbird
 PORTVERSION=	17.0.7

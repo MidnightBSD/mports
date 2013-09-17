@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xkeyboard-config/Makefile,v 1.4 2012/09/02 00:14:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xkeyboard-config
 PORTVERSION=	2.9

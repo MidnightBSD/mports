@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/font-bh-type1/Makefile,v 1.2 2009/04/04 15:20:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-bh-type1
 PORTVERSION=	1.0.3

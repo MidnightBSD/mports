@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/timidity/Makefile,v 1.2 2009/12/29 17:46:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	timidity
 PORTVERSION=	0.2i

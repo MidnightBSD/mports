@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.9 2013/06/21 23:04:10 laffer1 Exp $
+# $MidnightBSD$
 #
 # Variables:
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.

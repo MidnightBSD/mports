@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.19 2013/07/13 01:44:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pcre
 PORTVERSION=	8.33

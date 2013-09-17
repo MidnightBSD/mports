@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/fontforge/Makefile,v 1.13 2012/09/09 03:52:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fontforge
 DISTVERSION=	20120731-b

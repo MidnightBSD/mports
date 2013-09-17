@@ -2,7 +2,7 @@
 # Date created:				16th March 2001
 # Whom: 				Justin Stanford <jus@security.za.net>
 #
-# $MidnightBSD: mports/devel/p5-File-Remove/Makefile,v 1.2 2008/10/16 21:37:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-File-Remove/Makefile,v 1.13 2008/02/14 07:46:26 ade Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/asciidoc/Makefile,v 1.3 2010/10/17 00:18:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	asciidoc
 PORTVERSION=	8.6.8

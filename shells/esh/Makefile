@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/esh/Makefile,v 1.3 2009/12/28 19:27:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	esh
 PORTVERSION=	0.8.5

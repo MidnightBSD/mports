@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.12 2010/12/31 04:22:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.19

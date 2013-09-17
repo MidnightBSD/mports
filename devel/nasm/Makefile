@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.16 2013/02/18 03:09:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nasm
 PORTVERSION=	2.10.03

@@ -2,7 +2,7 @@
 # Date created:	   02 June 2002
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/www/p5-HTTP-DAV/Makefile,v 1.1 2007/08/14 06:09:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTTP-DAV/Makefile,v 1.5 2006/08/04 12:34:50 erwin Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.10 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomecanvas
 PORTVERSION=	2.30.3

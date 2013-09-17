@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.32 2013/07/04 16:13:46 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Emulators for other operating systems
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/nss/Makefile,v 1.13 2011/06/05 20:37:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nss
 PORTVERSION=	3.14.3

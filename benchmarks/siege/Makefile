@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.4 2009/03/03 23:00:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	siege
 PORTVERSION=	2.70

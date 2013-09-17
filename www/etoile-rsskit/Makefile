@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-rsskit/Makefile,v 1.5 2007/10/27 04:22:27 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/etoile-rsskit/Makefile,v 1.6 2007/01/31 18:18:10 dinoex Exp $
 #
 

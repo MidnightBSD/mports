@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/phppgadmin/Makefile,v 1.5 2011/05/27 02:46:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	phppgadmin
 PORTVERSION=	5.0.4

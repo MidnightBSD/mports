@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.9 2012/02/05 03:44:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	courier
 PORTVERSION=	0.65.3

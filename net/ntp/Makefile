@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.15 2013/06/21 00:32:09 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 
 PORTNAME=	ntp

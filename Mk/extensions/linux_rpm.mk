@@ -1,6 +1,6 @@
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.8 2011/06/18 01:37:19 laffer1 Exp $
+# $MidnightBSD$
 #
 
 # Variables:

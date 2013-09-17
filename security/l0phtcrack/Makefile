@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.3 2009/05/01 15:16:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	l0phtcrack
 PORTVERSION=	1.5

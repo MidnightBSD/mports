@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Email-Date-Format/Makefile,v 1.1 2008/10/11 22:12:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Email-Date-Format
 PORTVERSION=	1.002

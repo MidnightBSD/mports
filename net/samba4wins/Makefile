@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.4 2013/03/30 19:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		samba4wins
 PORTVERSION=		1.0.8

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.11 2012/08/05 15:23:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	memcached
 PORTVERSION=	1.4.15

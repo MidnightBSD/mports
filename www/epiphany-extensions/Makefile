@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/www/epiphany-extensions/Makefile,v 1.52 2008/06/06 14:06:51 edwin Exp $
 #   $MCom: ports/www/epiphany-extensions/Makefile,v 1.105 2008/03/11 17:19:08 mezz Exp $
-# $MidnightBSD: mports/www/epiphany-extensions/Makefile,v 1.6 2011/12/15 00:57:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	epiphany-extensions
 PORTVERSION=	2.22.2

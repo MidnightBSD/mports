@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.6 2011/12/15 00:57:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/Terminal/Makefile,v 1.19 2008/06/06 14:08:50 edwin Exp $
 
 PORTNAME=	Terminal

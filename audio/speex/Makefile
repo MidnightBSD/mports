@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.11 2013/07/11 01:15:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1

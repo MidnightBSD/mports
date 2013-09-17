@@ -2,7 +2,7 @@
 # Date created:		16 March 1998
 # Whom:			Jun Kuriyama <kuriyama@opt.phys.waseda.ac.jp>
 #
-# $MidnightBSD: mports/textproc/dsssl-docbook-modular/Makefile,v 1.3 2008/01/04 21:22:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/dsssl-docbook-modular/Makefile,v 1.58 2005/06/13 20:54:18 glewis Exp $
 #
 

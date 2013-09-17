@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/gnustep-ftp/Makefile,v 1.4 2009/04/05 15:35:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ftp
 PORTVERSION=	0.3

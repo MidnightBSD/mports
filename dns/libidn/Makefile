@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.11 2013/06/12 03:10:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libidn
 PORTVERSION=	1.27

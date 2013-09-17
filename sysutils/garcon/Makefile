@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.6 2013/07/05 22:01:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	garcon
 PORTVERSION=	0.2.1

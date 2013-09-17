@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-synaptics/Makefile,v 1.2 2011/05/07 21:09:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-input-synaptics
 PORTVERSION=	1.2.1

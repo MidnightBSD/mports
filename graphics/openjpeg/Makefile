@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/openjpeg/Makefile,v 1.1 2010/11/06 15:50:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openjpeg
 PORTVERSION=	1.3

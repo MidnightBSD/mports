@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/qt4-network/Makefile,v 1.4 2011/07/23 23:01:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/qt4-network/Makefile,v 1.18 2011/03/29 07:24:55 avilla Exp $
 
 PORTNAME=	network

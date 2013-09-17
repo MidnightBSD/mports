@@ -2,7 +2,7 @@
 # Date created:         18 October 1994
 # Whom:                 jmz
 #
-# $MidnightBSD: mports/archivers/zoo/Makefile,v 1.3 2008/10/02 01:07:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/zoo/Makefile,v 1.13 2006/04/06 07:22:10 jmz Exp $
 #
 

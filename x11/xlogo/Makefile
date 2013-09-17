@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlogo/Makefile,v 1.4 2012/03/03 01:52:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xlogo
 PORTVERSION=	1.0.4

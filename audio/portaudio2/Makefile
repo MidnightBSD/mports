@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/portaudio2/Makefile,v 1.5 2011/08/20 15:15:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	portaudio
 DISTVERSION=	19_20111121

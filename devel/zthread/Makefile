@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/zthread/Makefile,v 1.5 2013/07/11 00:40:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2

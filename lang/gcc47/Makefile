@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc47/Makefile,v 1.1 2011/12/21 00:26:26 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/lang/gcc47/Makefile,v 1.513 2011/11/15 11:46:26 gerald Exp $
 
 PORTNAME=	gcc

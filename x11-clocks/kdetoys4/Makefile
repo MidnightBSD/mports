@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/x11-clocks/kdetoys4/Makefile,v 1.1 2009/01/05 01:40:10 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kdetoys

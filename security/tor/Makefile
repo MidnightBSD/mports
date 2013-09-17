@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/tor/Makefile,v 1.11 2013/04/14 03:57:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tor
 DISTVERSION=	0.2.3.25

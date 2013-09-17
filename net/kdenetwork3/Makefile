@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.5 2009/09/20 01:43:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdenetwork
 PORTVERSION=	${KDE_VERSION}

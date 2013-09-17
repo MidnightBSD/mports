@@ -2,7 +2,7 @@
 # Date created:		22. May 2008
 # Whom:			Stevan Tiefert
 #
-# $MidnightBSD: mports/games/supertux/Makefile,v 1.6 2012/02/29 21:14:59 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	supertux

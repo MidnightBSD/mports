@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.20 2013/06/05 01:34:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.20

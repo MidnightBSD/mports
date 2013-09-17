@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/linux-adobesvg/Makefile,v 1.4 2011/06/19 13:57:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	linux-adobesvg
 DISTVERSION=	3.01x88

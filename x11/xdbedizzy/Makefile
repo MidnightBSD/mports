@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/xdbedizzy/Makefile,v 1.1 2007/05/19 20:27:45 flz Exp $
-# $MidnightBSD: mports/x11/xdbedizzy/Makefile,v 1.1 2007/10/04 21:40:04 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	xdbedizzy
 PORTVERSION=	1.1.0
