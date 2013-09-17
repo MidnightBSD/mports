@@ -2,7 +2,7 @@
 
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://cr.yp.to/ucspi-tcp/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -14,14 +14,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for building TCP client-server applications
 LICENSE=	restricted
 
-OPTIONS=	MAN "Install man(1) pages" on \
-		RSS_DIFF "Patch rblsmtpd for qmail users" off \
-		SSL "Adds support for SSL (Secure Socket Layer)" off \
-		RBL2SMTPD "Don't drop connection, pass envvar to smtpd" off \
-		LIMITS "Implement per-connection and other limits" off \
-		IPV6 "Add IPv6 support" off
+OPTIONS_DEFINE=	MANPAGES RSS_DIFF RBL2SMTPD IPV6 SSL LIMITS
+OPTIONS_DEFAULT=MANPAGES
 
-MAKE_JOBS_SAFE=	yes
+RSS_DIFF_DESC=	Patch rblsmtpd for qmail users
+RBL2SMTPD_DESC=	Don't drop connection, pass envvar to smtpd
+LIMITS_DESC=	Implement per-connection and other limits
+
 
 ALL_TARGET=	prog install instcheck
 
@@ -53,7 +52,7 @@ SCRIPTS=	date@ \
 .include <bsd.port.pre.mk>
 
 # SSL and LIMITS can't coexist
-.if defined(WITH_SSL) && defined(WITH_LIMITS)
+.if ${PORT_OPTIONS:MSSL} && ${PORT_OPTIONS:MLIMITS}
 BROKEN=	SSL and LIMITS options cannot coexist, please choose one of them
 .endif
 
@@ -62,7 +61,7 @@ BROKEN=	SSL and LIMITS options cannot coexist, please choose one of them
 CFLAGS+=	-O
 .endif
 
-.if defined(WITH_MAN)
+.if ${PORT_OPTIONS:MMANPAGES}
 MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:man \
 		${MASTER_SITE_LOCAL:S/$/:man/}
 MASTER_SITE_SUBDIR+=	garga/ucspi-tcp/:man
@@ -73,38 +72,38 @@ MAN1=		addcr.1 argv0.1 date@.1 delcr.1 finger@.1 fixcrio.1 \
 		tcpclient.1 tcprules.1 tcprulescheck.1 tcpserver.1 who@.1
 .endif
 
-.if defined(WITH_RSS_DIFF)
+.if ${PORT_OPTIONS:MRSS_DIFF}
 PATCH_SITES+=	http://www.qmail.org/:rss
 PATCHFILES+=	ucspi-rss.diff:rss
 .endif
 
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MSSL}
 # we can't use USE_OPENSSL=yes after including bsd.port.pre.mk
 .include "${PORTSDIR}/Mk/bsd.openssl.mk"
 PATCH_SITES+=	http://www.nrg4u.com/qmail/:ssl
 PATCHFILES+=	ucspi-tcp-ssl-20050405.patch.gz:ssl
 .endif
 
-.if defined(WITH_RBL2SMTPD)
+.if ${PORT_OPTIONS:MRBL2SMTPD}
 PATCHFILES+=	ucspi-tcp_rbl2smtpd.diff:rbl2smtpd
 .endif
 
-.if defined(WITH_LIMITS)
+.if ${PORT_OPTIONS:MLIMITS}
 PATCH_SITES+=	http://linux.voyager.hr/ucspi-tcp/files/:limits
 PATCHFILES+=	tcpserver-limits-2006-01-26.diff:limits
 .endif
 
+.if ${PORT_OPTIONS:MIPV6}
 # Neither can IPv6 and SSL
-.if defined(WITH_IPV6) && defined(WITH_SSL)
-BROKEN= SSL and IPv6 options cannot coexist, please choose one of them
-.endif
+. if ${PORT_OPTIONS:MSSL}
+BROKEN=	SSL and IPv6 options cannot coexist, please choose one of them
+. endif
 
 # Same for IPv6 and LIMITS
-.if defined(WITH_IPV6) && defined(WITH_LIMITS)
-BROKEN= IPv6 and LIMITS options cannot coexist, please choose one of them
-.endif
+. if ${PORT_OPTIONS:MLIMITS}
+BROKEN=	IPv6 and LIMITS options cannot coexist, please choose one of them
+. endif
 
-.if defined(WITH_IPV6)
 PATCH_SITES+=	http://www.fefe.de/ucspi/:ipv6
 PATCHFILES+=	ucspi-tcp-0.88-ipv6.diff19.bz2:ipv6
 .endif
@@ -113,7 +112,7 @@ PATCH_SITES+=		${MASTER_SITE_LOCAL:S/$/:rss,ssl,rbl2smtpd/}
 PATCH_SITE_SUBDIR+=	garga/ucspi-tcp/:rss,ssl,rbl2smtpd
 
 post-patch:
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MSSL}
 	@${REINPLACE_CMD} -e 's|#INCS=-I/usr/local/include|INCS=-I${OPENSSLBASE}/include|g; \
 			      s|-lcrypto|-L${OPENSSLBASE}/lib |g' \
 		${WRKSRC}/Makefile
@@ -131,7 +130,7 @@ do-install:
 .for file_name in ${SCRIPTS}
 	@${INSTALL_SCRIPT} ${WRKSRC}/${file_name} ${PREFIX}/bin
 .endfor
-.if defined(WITH_MAN)
+.if ${PORT_OPTIONS:MMANPAGES}
 . for file_name in ${MAN1}
 	${INSTALL_MAN} ${WRKSRC}-man/${file_name} ${MAN1PREFIX}/man/man1/
 . endfor

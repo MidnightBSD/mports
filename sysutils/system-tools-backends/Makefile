@@ -2,7 +2,7 @@
 
 PORTNAME=	system-tools-backends
 PORTVERSION=	2.10.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -18,6 +18,7 @@ LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DBus.pm:${PORTSDIR}/devel/p5-Net-DBus
 
 USE_BZIP2=	yes
+USES=		pkgconfig
 USE_GMAKE=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack intlhack glib20
