@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/cos/Makefile,v 1.1 2006/10/06 02:44:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cos
 PORTVERSION=	2002.11.05

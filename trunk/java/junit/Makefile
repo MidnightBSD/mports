@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/junit/Makefile,v 1.3 2011/12/24 02:30:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	junit
 PORTVERSION=	4.10

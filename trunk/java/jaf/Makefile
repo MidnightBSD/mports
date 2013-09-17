@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jaf/Makefile,v 1.1 2012/02/28 01:00:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jaf/Makefile,v 1.19 2012/01/17 01:42:10 jgh Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jai/Makefile,v 1.4 2011/12/24 03:10:45 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jai/Makefile,v 1.7 2008/03/24 05:18:55 glewis Exp $
 
 PORTNAME=	jai

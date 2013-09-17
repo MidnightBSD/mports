@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-oro/Makefile,v 1.4 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jakarta-oro/Makefile,v 1.11 2005/10/10 04:43:52 linimon Exp $
 
 PORTNAME=	jakarta-oro

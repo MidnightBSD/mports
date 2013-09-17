@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/java-zoneinfo/Makefile,v 1.2 2013/06/21 02:57:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zoneinfo
 DISTVERSION=	2013d

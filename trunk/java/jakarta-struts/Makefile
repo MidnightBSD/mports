@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-struts/Makefile,v 1.2 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jakarta-struts
 PORTVERSION=	1.2.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.4 2011/12/24 03:11:59 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jai-imageio/Makefile,v 1.3 2005/02/13 21:28:05 hq Exp $
 
 PORTNAME=	jai-imageio

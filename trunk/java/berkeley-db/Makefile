@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/berkeley-db/Makefile,v 1.3 2011/09/04 19:56:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	je
 PORTVERSION=	3.2.76
