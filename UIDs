@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/UIDs,v 1.4 2013/08/10 21:41:30 laffer1 Exp $
+# $MidnightBSD$
 # Please keep this file sorted by UID!
 operator:*:2:5::0:0:System &:/:/usr/sbin/nologin
 smmsp:*:25:25::0:0:Sendmail Submission User:/var/spool/clientmqueue:/usr/sbin/nologin

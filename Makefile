@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.42 2009/05/01 22:48:33 laffer1 Exp $
+# $MidnightBSD$
 
 SUBDIR += accessibility
 SUBDIR += archivers

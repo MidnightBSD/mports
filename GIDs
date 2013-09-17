@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/GIDs,v 1.4 2013/08/10 21:41:30 laffer1 Exp $
+# $MidnightBSD$
 # Please keep this file sorted by GID!
 operator:*:5:amanda
 mail:*:6:postfix,clamav
