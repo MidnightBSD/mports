@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.36 2013/07/14 15:12:19 laffer1 Exp $
+# $MidnightBSD$
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
