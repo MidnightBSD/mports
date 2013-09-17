@@ -1,16 +1,19 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.7 2012/09/14 03:54:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openjdk6
-PORTVERSION=	b25
+PORTVERSION=	b27
+PORTREVISION?=	0
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk6/promoted/${PORTVERSION}/ \
 		http://download.java.net/jaxp/openjdk/jdk6/:jaxp \
 		http://download.java.net/glassfish/components/jax-ws/openjdk/jdk6/:jaxws \
 		https://java.net/downloads/jax-ws/OpenJDK6/:jaf \
-		http://icedtea.classpath.org/builds/icedtea6/src/ \
 		http://icedtea.classpath.org/download/drops/:jaxp \
 		http://icedtea.classpath.org/download/drops/:jaxws \
 		http://icedtea.classpath.org/download/drops/:jaf \
+		http://icedtea.wildebeest.org/download/drops/:jaxp \
+		http://icedtea.wildebeest.org/download/drops/:jaxws \
+		http://icedtea.wildebeest.org/download/drops/:jaf \
 		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,} \
 		http://download.java.net/openjdk/jtreg/promoted/4.1/${JTREGVERSION}/:jtreg
 DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
@@ -23,23 +26,36 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} ${ANTFILE}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Oracle's Java 6 virtual machine release under the GPL v2
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/zip:${PORTSDIR}/archivers/zip \
 		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip \
 		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
-OPENJDK_BUILDDATE=	01_may_2012
+OPENJDK_BUILDDATE=	26_oct_2012
 
-OPTIONS=	DEBUG "Enable legacy debugging support" off \
-		FASTDEBUG "Include fastdebug build" off \
-		IPV6 "Enable IPv6 support" off \
-		POLICY "Install the Unlimited Strength Policy Files" off \
-		SOUND "Enable sound support" off \
-		TEST "Add support for running regression test" off
+OPTIONS_DEFINE=	ICEDTEA IPV6 POLICY SOUND TZUPDATE
+OPTIONS_DEFAULT=ICEDTEA IPV6 TZUPDATE
+ICEDTEA_DESC=	Apply additional patches from IcedTea
+POLICY_DESC=	Install the Unlimited Strength Policy Files
+SOUND_DESC=	Enable sound support
+TZUPDATE_DESC=	Update the time zone data
+
+.if !defined(BUILD_JRE)
+OPTIONS_DEFINE+=DEBUG FASTDEBUG TEST
+DEBUG_DESC=	Enable legacy debugging support
+FASTDEBUG_DESC=	Include fastdebug build
+TEST_DESC=	Add support for running regression test
+.endif
+
+.include <bsd.mport.options.mk>
+.include "${.CURDIR}/../openjdk6/Makefile.icedtea"
+
+EXTRA_PATCHES=	${ICEDTEA_PATCHES}
 
 # java extracts directly to the cwd
 WRKSRC=		${WRKDIR}
@@ -47,9 +63,8 @@ WRKSRC=		${WRKDIR}
 USE_GMAKE=	yes
 USE_MOTIF=	yes
 USE_XORG=	x11 xext xi xt xtst
-MAKE_JOBS_UNSAFE=	yes
 
-JAXP_BUILD=	144_03
+JAXP_BUILD=	144_05
 JAXPFILE=	jaxp${JAXP_BUILD}.zip
 JAXWS_BUILD=	2_1_6-2011_06_13
 JAXWSFILE=	jdk6-jaxws${JAXWS_BUILD}.zip
@@ -61,17 +76,17 @@ UPDATE_VERSION=	32
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
-ANTVERSION=	1.8.3
+ANTVERSION=	1.8.4
 ANTFILE=	apache-ant-${ANTVERSION}-bin.tar.bz2
-
-# rely on bsdtar ability to extract .gz, .bz2 and .zip archives
-EXTRACT_CMD=	${CAT}
-EXTRACT_BEFORE_ARGS=
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 CATEGORIES+=	ipv6
+.endif
+
+.if ${PORT_OPTIONS:MTZUPDATE}
+RUN_DEPENDS+=  ${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 .endif
 
 # avoid ARCH in MAKEFLAGS, breaks build
@@ -80,8 +95,7 @@ NOPRECIOUSMAKEVARS=	yes
 ONLY_FOR_ARCHS=	amd64 i386
 
 BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk6 \
-		${LOCALBASE}/jdk1.6.0 \
-		${LOCALBASE}/diablo-jdk1.6.0
+		${LOCALBASE}/bootstrap-openjdk
 
 # do we have valid native jdk installed?
 .for CJDK in ${BOOTSTRAP_JDKS}
@@ -92,16 +106,18 @@ BOOTSTRAPJDKDIR=	${CJDK}
 
 # if no valid jdk found, set dependency
 .if !defined(BOOTSTRAPJDKDIR)
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/diablo-jdk1.6.0
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/diablo-jdk16
+BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk
+BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
 .endif
 
-MAKE_ENV=	LANG=C LC_ALL=C \
+FETCH_ARGS=	-Fpr
+MAKE_ENV=	LANG=C LC_ALL=C OS= \
+		OS_NAME=freebsd \
+		OS_VENDOR=FreeBSD \
+		PLATFORM=bsd \
 		ARCH=${ARCH} \
 		ARCH_DATA_MODEL=64 \
 		LIBARCH=${ARCH} \
-		PLATFORM=bsd \
-		OS_NAME=freebsd \
 		ALT_JDK_IMPORT_PATH=${BOOTSTRAPJDKDIR} \
 		ALT_BOOTDIR=${BOOTSTRAPJDKDIR} \
 		ALT_CACERTS_FILE=${FILESDIR}/cacerts \
@@ -113,51 +129,57 @@ MAKE_ENV=	LANG=C LC_ALL=C \
 		ALT_PACKAGE_PATH=${LOCALBASE} \
 		ALT_DROPS_DIR=${DISTDIR} \
 		ANT_HOME=${WRKDIR}/apache-ant-${ANTVERSION} \
+		JAVACMD=${BOOTSTRAPJDKDIR}/bin/java \
 		BUILD_NUMBER=${PORTVERSION} \
 		NO_DOCS=true \
 		MILESTONE=fcs \
 		JDK_UPDATE_VERSION=${UPDATE_VERSION}
 
-.if defined(WITH_DEBUG)
+# HotSpot wants CCC instead of CXX.  Also, HotSpot SA wants GCC.
+MAKE_ENV+=	CCC="${CXX}" GCC="${CC}"
+
+# XXX Turn off -Werror from HotSpot.
+MAKE_ENV+=	WARNINGS_ARE_ERRORS="${WARNINGS_ARE_ERRORS}"
+
+# XXX Turn off parallel build by default.
+_MAKE_JOBS=	#
+MAKE_ENV+=	ALT_PARALLEL_COMPILE_JOBS=${MAKE_JOBS_NUMBER} \
+		HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
+
+.if ${PORT_OPTIONS:MDEBUG}
 ALL_TARGET=	debug_build
 OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}-debug
 .else
 OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}
+WARNINGS_ARE_ERRORS?=	-w
 .endif
 
 # disable FASTDEBUG_BUILD by default to improve compile time.
-.if defined(WITH_FASTDEBUG)
+.if ${PORT_OPTIONS:MFASTDEBUG}
 MAKE_ENV+=	SKIP_FASTDEBUG_BUILD=false
 .else
 MAKE_ENV+=	SKIP_FASTDEBUG_BUILD=true
 .endif
 
-.if !defined(WITH_IPV6)
+.if empty(PORT_OPTIONS:MIPV6)
 MAKE_ENV+=	DONT_ENABLE_IPV6="YES"
 .endif
 
-.if defined(WITH_SOUND)
+.if ${PORT_OPTIONS:MSOUND}
 EXTRA_PATCHES+=	${FILESDIR}/alsa-enable.patch
-LIB_DEPENDS+=	asound.2:${PORTSDIR}/audio/alsa-lib
+LIB_DEPENDS+=	asound:${PORTSDIR}/audio/alsa-lib
 RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
 .else
 EXTRA_PATCHES+=	${FILESDIR}/alsa-disable.patch
 .endif
 
-.if defined(WITH_TEST)
+.if ${PORT_OPTIONS:MTEST}
 DISTFILES+=	${JTREGFILE}:jtreg
 EXTRACT_ONLY+=	${JTREGFILE}
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 USE_DISPLAY=	yes
-.endif
-
-.if !defined(DISABLE_MAKE_JOBS)
-.if defined(MAKE_JOBS_NUMBER)
-BUILD_JOBS_NUMBER=	${MAKE_JOBS_NUMBER}
 .else
-BUILD_JOBS_NUMBER=	`${SYSCTL} -n kern.smp.cpus`
-.endif
-MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${BUILD_JOBS_NUMBER}
+EXTRA_PATCHES+=	${FILESDIR}/test_gamma-disable.patch
 .endif
 
 COPYDIRS=	\
@@ -194,44 +216,57 @@ COPYFILES=	\
 
 post-extract:
 	@for d in ${COPYDIRS}; do \
-		${MKDIR} `echo ${WRKDIR}/$$d | ${SED} 's/linux/bsd/g;'`; \
-		cd ${WRKDIR}/$$d; \
+		${MKDIR} `echo ${WRKSRC}/$$d | ${SED} 's/linux/bsd/g;'`; \
+		cd ${WRKSRC}/$$d; \
 		for f in *; do \
 			if [ -f $$f ]; then \
-				t=`echo ${WRKDIR}/$$d/$$f | ${SED} 's/linux/bsd/g; s/Linux/Bsd/g'`; \
+				t=`echo ${WRKSRC}/$$d/$$f | ${SED} 's/linux/bsd/g; s/Linux/Bsd/g'`; \
 				${SED} 's/linux/bsd/g; s/Linux/Bsd/g; s/LINUX/BSD/g' < $$f > $$t; \
 			fi; \
 		done; \
 	done
 	@for f in ${COPYFILES}; do \
 		t=`echo $$f | ${SED} 's/linux/bsd/g; s/Linux/Bsd/g'`; \
-		${SED} 's/linux/bsd/g; s/Linux/Bsd/g' < ${WRKDIR}/$$f > ${WRKDIR}/$$t; \
+		${SED} 's/linux/bsd/g; s/Linux/Bsd/g' < ${WRKSRC}/$$f > ${WRKSRC}/$$t; \
 	done
 	@${SED} 's/solaris/bsd/g; s/Solaris/Bsd/g' \
-		< ${WRKDIR}/jdk/src/solaris/hpi/native_threads/src/threads_solaris.c \
-		> ${WRKDIR}/jdk/src/solaris/hpi/native_threads/src/threads_bsd.c
+		< ${WRKSRC}/jdk/src/solaris/hpi/native_threads/src/threads_solaris.c \
+		> ${WRKSRC}/jdk/src/solaris/hpi/native_threads/src/threads_bsd.c
 	@${SED} "s|/usr/local|${LOCALBASE}|" < ${FILESDIR}/fontconfig.properties \
-		> ${WRKDIR}/jdk/src/solaris/classes/sun/awt/fontconfigs/bsd.fontconfig.properties
+		> ${WRKSRC}/jdk/src/solaris/classes/sun/awt/fontconfigs/bsd.fontconfig.properties
 	@${SED} "s|%%LOCALBASE%%|${LOCALBASE}|" < ${FILESDIR}/Makefile.test \
-		> ${WRKDIR}/jdk/test/Makefile
-	@${FIND} ${WRKDIR}/jdk/test -type f -name \*.sh -exec ${SED} -i "" -e s/Linux/FreeBSD/g {} \;
+		> ${WRKSRC}/jdk/test/Makefile
+	@${FIND} ${WRKSRC}/jdk/test -type f -name \*.sh -exec ${SED} -i "" -e s/Linux/FreeBSD/g {} \;
 
 post-patch:
 	@${REINPLACE_CMD} "s|/lib:/usr/lib|/lib:/usr/lib:${LOCALBASE}/lib|" \
-		${WRKDIR}/hotspot/src/os/bsd/vm/os_bsd.cpp
-.if defined(WITH_POLICY)
+		${WRKSRC}/hotspot/src/os/bsd/vm/os_bsd.cpp
+.if ${PORT_OPTIONS:MPOLICY}
 	@${REINPLACE_CMD} 's|build-policy install-limited|build-policy install-unlimited|' \
 		${WRKSRC}/jdk/make/javax/crypto/Makefile
 .endif
+.if empty(ICONV_LIB)
+	@${REINPLACE_CMD} 's| -liconv||' \
+		${WRKSRC}/Makefile \
+		${WRKSRC}/jdk/make/sun/splashscreen/Makefile \
+		${WRKSRC}/jdk/make/java/npt/Makefile \
+		${WRKSRC}/jdk/make/java/instrument/Makefile
+.endif
 
 post-build:
-.if defined(WITH_TZUPDATE)
+.if ${PORT_OPTIONS:MTZUPDATE}
 	@# Update time zones
+.if defined(BUILD_JRE)
+	@${RM} -rf ${WRKSRC}/build/${OPENJDK_OSARCH}/j2re-image/lib/zi
+	@${LN} -s -f ${LOCALBASE}/share/java/zi \
+		${WRKSRC}/build/${OPENJDK_OSARCH}/j2re-image/lib
+.else
 	@${RM} -rf ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib/zi
 	@${LN} -s -f ${LOCALBASE}/share/java/zi \
 		${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib
 .endif
-.if defined(WITH_TEST)
+.endif
+.if ${PORT_OPTIONS:MTEST}
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "Run \"make test\" to execute regression test (it could take a few hours to complete)."
 .if defined(DISPLAY)
@@ -254,12 +289,46 @@ test: build-depends build
 .endif
 
 do-install:
+.if defined(BUILD_JRE)
+	@${MKDIR} ${PREFIX}/openjdk6-jre/
+	@cd ${WRKSRC}/build/${OPENJDK_OSARCH}/j2re-image && \
+		${COPYTREE_SHARE} . ${PREFIX}/openjdk6-jre
+	@${CHOWN} ${BINOWN}:${BINGRP} ${PREFIX}/openjdk6-jre/bin/* \
+		${PREFIX}/openjdk6-jre/lib/${ARCH}/jexec
+	@${CHMOD} ${BINMODE} ${PREFIX}/openjdk6-jre/bin/* \
+		${PREFIX}/openjdk6-jre/lib/${ARCH}/jexec
+	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${PREFIX}/openjdk6-jre/bin/java" >> ${TMPPLIST}
+	@${FIND} -s ${PREFIX}/openjdk6-jre -not -type d | \
+		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+	@${ECHO} "@exec mkdir ${PREFIX}/openjdk6-jre/lib/applet" >> ${TMPPLIST}
+	@${FIND} ${PREFIX}/openjdk6-jre -type d | ${SORT} -r | \
+		${SED} 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
+	@${ECHO_MSG} "@exec ${LOCALBASE}/bin/registervm '${PREFIX}/openjdk6-jre/bin/java # OpenJDK6 JRE'" >> ${TMPPLIST}
+.else
 	@${MKDIR} ${PREFIX}/openjdk6/
-	@${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/ ${PREFIX}/openjdk6/
+	@cd ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image && \
+		${COPYTREE_SHARE} . ${PREFIX}/openjdk6
 	@${INSTALL_DATA} ${WRKSRC}/build/${OPENJDK_OSARCH}/btjars/compilefontconfig.jar ${WRKSRC}/build/${OPENJDK_OSARCH}/btjars/javazic.jar ${PREFIX}/openjdk6/jre/lib/
-.if defined(WITH_FASTDEBUG)
+	@for dir in `${FIND} ${PREFIX}/openjdk6 -name bin -type d`; do \
+		${CHOWN} -h -R ${BINOWN}:${BINGRP} $$dir; \
+		${FIND} $$dir -type f -exec ${CHMOD} ${BINMODE} "{}" \; ; \
+	done
+	@${CHOWN} ${BINOWN}:${BINGRP} \
+		${PREFIX}/openjdk6/jre/lib/${ARCH}/jexec
+	@${CHMOD} ${BINMODE} \
+		${PREFIX}/openjdk6/jre/lib/${ARCH}/jexec
+.if ${PORT_OPTIONS:MFASTDEBUG}
 	@${MKDIR} ${PREFIX}/openjdk6-fastdebug/
-	@${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}-fastdebug/j2sdk-image/ ${PREFIX}/openjdk6-fastdebug/
+	@cd ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image && \
+		${COPYTREE_SHARE} . ${PREFIX}/openjdk6-fastdebug
+	@for dir in `${FIND} ${PREFIX}/openjdk6-fastdebug -name bin -type d`; do \
+		${CHOWN} -h -R ${BINOWN}:${BINGRP} $$dir; \
+		${FIND} $$dir -type f -exec ${CHMOD} ${BINMODE} "{}" \; ; \
+	done
+	@${CHOWN} ${BINOWN}:${BINGRP} \
+		${PREFIX}/openjdk6-fastdebug/jre/lib/${ARCH}/jexec
+	@${CHMOD} ${BINMODE} \
+		${PREFIX}/openjdk6-fastdebug/jre/lib/${ARCH}/jexec
 .endif
 	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}/openjdk6/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${PREFIX}/openjdk6 -not -type d | \
@@ -268,7 +337,7 @@ do-install:
 	@${FIND} ${PREFIX}/openjdk6 -type d | ${SORT} -r | \
 		${SED} 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
 	@${ECHO_MSG} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}/openjdk6/bin/java # OpenJDK6'" >> ${TMPPLIST}
-.if defined(WITH_FASTDEBUG)
+.if ${PORT_OPTIONS:MFASTDEBUG}
 	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}/openjdk6-fastdebug/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${PREFIX}/openjdk6-fastdebug -not -type d | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
@@ -280,5 +349,7 @@ do-install:
 
 post-install:
 	(cd ${PREFIX}/openjdk6/include/ && ${LN} -s freebsd midnightbsd)
+
+.endif
 
 .include <bsd.port.post.mk>
