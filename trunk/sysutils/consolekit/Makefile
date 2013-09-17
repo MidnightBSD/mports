@@ -2,13 +2,14 @@
 
 PORTNAME=	consolekit
 PORTVERSION=	0.4.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/ConsoleKit/dist/
 DISTFILES=	ConsoleKit-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for defining and tracking users
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
@@ -17,7 +18,7 @@ LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 WRKSRC=		${WRKDIR}/ConsoleKit-${PORTVERSION}
 USE_BZIP2=	yes
 USE_XORG=	x11
-USES=	pathfix gettext
+USES=	pathfix gettext pkgconfig
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

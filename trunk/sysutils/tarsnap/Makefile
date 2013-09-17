@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tarsnap
-PORTVERSION=	1.0.33
+PORTVERSION=	1.0.35
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
 DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
@@ -9,6 +9,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online encrypted backup service (client)
+
 LICENSE=	restricted
 
 RESTRICTED=	license restricts redistribution of source and binaries
