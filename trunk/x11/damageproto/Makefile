@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/damageproto/Makefile,v 1.2 2011/05/02 13:38:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	damageproto
 PORTVERSION=	1.2.1

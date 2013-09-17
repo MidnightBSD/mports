@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/batmon/Makefile,v 1.4 2012/03/06 01:15:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	batmon
 PORTVERSION=	0.6

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.229 2013/08/23 00:34:18 laffer1 Exp $
+# $MidnightBSD$
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:

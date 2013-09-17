@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.10 2012/03/06 00:54:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nautilus
 PORTVERSION=	2.32.2.1

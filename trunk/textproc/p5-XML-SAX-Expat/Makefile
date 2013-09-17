@@ -2,7 +2,7 @@
 # Date created:		19 Nov 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/textproc/p5-XML-SAX-Expat/Makefile,v 1.1 2007/03/11 04:45:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/p5-XML-SAX-Expat/Makefile,v 1.7 2007/01/28 14:53:50 skv Exp $
 #
 

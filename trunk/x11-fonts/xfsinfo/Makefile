@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xfsinfo/Makefile,v 1.4 2012/03/03 23:17:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfsinfo
 PORTVERSION=	1.0.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.5 2011/09/08 13:10:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dvipdfmx
 PORTVERSION=	20110311

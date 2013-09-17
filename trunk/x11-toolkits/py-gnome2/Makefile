@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.4 2010/08/14 03:17:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome
 PORTVERSION=	2.28.1

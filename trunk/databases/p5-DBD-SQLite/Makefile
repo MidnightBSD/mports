@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.7 2013/02/10 20:28:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DBD-SQLite
 PORTVERSION=	1.39

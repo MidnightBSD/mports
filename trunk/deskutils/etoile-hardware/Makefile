@@ -2,7 +2,7 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-hardware/Makefile,v 1.3 2008/08/20 19:49:24 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-hardware/Makefile,v 1.5 2007/01/31 18:17:52 dinoex Exp $
 #
 

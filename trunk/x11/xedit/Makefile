@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xedit/Makefile,v 1.3 2011/05/07 02:57:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xedit
 PORTVERSION=	1.2.1

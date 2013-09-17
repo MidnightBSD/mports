@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.15 2011/02/02 20:19:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}

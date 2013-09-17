@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.29 2013/07/04 16:34:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	glib
 PORTVERSION=	2.34.3

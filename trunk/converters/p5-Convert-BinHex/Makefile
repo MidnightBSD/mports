@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Convert-BinHex/Makefile,v 1.2 2007/11/11 02:43:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Convert-BinHex
 PORTVERSION=	1.119

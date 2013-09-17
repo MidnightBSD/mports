@@ -2,7 +2,7 @@
 # Date created:        29 November 2004
 # Whom:                Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/libmpcdec/Makefile,v 1.3 2008/02/28 15:35:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libmpcdec/Makefile,v 1.12 2007/02/25 20:03:34 ahze Exp $
 #
 

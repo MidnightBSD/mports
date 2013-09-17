@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/w3m/Makefile,v 1.1 2013/07/16 12:32:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	w3m
 PORTVERSION=	0.5.3

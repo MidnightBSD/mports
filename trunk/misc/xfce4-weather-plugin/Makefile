@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/xfce4-weather-plugin/Makefile,v 1.5 2013/07/14 15:58:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-weather-plugin
 PORTVERSION=	0.8.3

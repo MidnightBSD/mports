@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/texinfo/Makefile,v 1.1 2012/03/04 16:31:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	texinfo
 PORTVERSION=	5.1.20130809

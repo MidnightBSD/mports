@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/p5-type1inst/Makefile,v 1.3 2008/08/20 19:13:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1

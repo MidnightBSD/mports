@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.6 2013/02/26 03:58:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sgmlformat
 PORTVERSION=	1.7

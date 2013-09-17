@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/links/Makefile,v 1.13 2012/09/09 02:09:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	links
 DISTVERSION=	2.7

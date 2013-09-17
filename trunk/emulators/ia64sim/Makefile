@@ -2,7 +2,7 @@
 # Date created:			  May 2, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/emulators/ia64sim/Makefile,v 1.1 2008/05/02 21:03:00 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	ia64sim

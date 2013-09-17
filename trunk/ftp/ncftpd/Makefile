@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.5 2011/05/12 13:38:38 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ncftpd
 PORTVERSION=	2.8.7

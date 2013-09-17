@@ -2,7 +2,7 @@
 # Date created:				10 August 2003
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libexecinfo/Makefile,v 1.3 2009/04/05 19:52:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libexecinfo/Makefile,v 1.7 2006/06/29 13:21:47 itetcu Exp $
 #
 

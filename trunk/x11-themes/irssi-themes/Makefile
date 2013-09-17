@@ -2,7 +2,7 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <Luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11-themes/irssi-themes/Makefile,v 1.1 2008/05/10 01:46:02 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	irssi-themes

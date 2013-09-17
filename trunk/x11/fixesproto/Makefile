@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/fixesproto/Makefile,v 1.3 2012/03/02 01:50:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fixesproto
 PORTVERSION=	5.0

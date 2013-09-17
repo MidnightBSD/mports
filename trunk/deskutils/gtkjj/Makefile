@@ -2,7 +2,7 @@
 # Date created:				27 Feb 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/deskutils/gtkjj/Makefile,v 1.2 2008/07/31 18:47:52 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	gtkjj

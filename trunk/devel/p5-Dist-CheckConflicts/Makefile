@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Dist-CheckConflicts/Makefile,v 1.1 2013/06/21 02:24:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Dist-CheckConflicts
 PORTVERSION=	0.02

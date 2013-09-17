@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pkgconf/Makefile,v 1.2 2013/02/24 00:14:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pkgconf
 PORTVERSION=	0.9.2

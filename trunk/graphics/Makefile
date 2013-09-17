@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.147 2013/03/30 13:16:27 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Graphics tools and libraries
 

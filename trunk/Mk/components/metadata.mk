@@ -2,7 +2,7 @@
 # of metadata, such as `describe` and `describe-yaml`
 #
 #
-# $MidnightBSD: mports/Mk/components/metadata.mk,v 1.2 2008/11/13 19:09:54 ctriv Exp $
+# $MidnightBSD$
 #
 
 # This target generates an index entry suitable for aggregation into

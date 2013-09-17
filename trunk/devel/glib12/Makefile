@@ -2,7 +2,7 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib12/Makefile,v 1.3 2008/03/26 00:02:59 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/glib12/Makefile,v 1.61 2006/05/04 21:40:40 edwin Exp $
 #
 

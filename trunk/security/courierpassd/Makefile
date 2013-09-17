@@ -3,7 +3,7 @@
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
 # $FreeBSD: ports/security/courierpassd/Makefile,v 1.9 2006/08/09 06:10:35 ade Exp $
-# $MidnightBSD: mports/security/courierpassd/Makefile,v 1.1 2007/02/23 20:30:08 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	courierpassd

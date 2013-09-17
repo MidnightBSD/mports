@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.12 2013/06/15 20:01:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bison
 PORTVERSION=	2.7.1

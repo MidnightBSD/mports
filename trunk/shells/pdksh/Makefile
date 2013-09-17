@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/pdksh/Makefile,v 1.3 2009/12/28 20:31:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pdksh
 PORTVERSION=	5.2.14p2

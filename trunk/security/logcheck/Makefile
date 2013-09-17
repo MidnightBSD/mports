@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/logcheck/Makefile,v 1.4 2010/12/08 14:19:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	logcheck
 PORTVERSION=	1.3.14

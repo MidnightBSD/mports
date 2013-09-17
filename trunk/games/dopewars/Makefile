@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/dopewars/Makefile,v 1.3 2009/10/02 23:47:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dopewars
 PORTVERSION=	1.5.12

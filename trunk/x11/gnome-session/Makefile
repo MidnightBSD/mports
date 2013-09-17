@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.8 2010/12/24 21:13:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-session
 PORTVERSION=	2.32.1

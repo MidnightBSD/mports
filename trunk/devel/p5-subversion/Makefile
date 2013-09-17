@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-subversion/Makefile,v 1.2 2010/05/05 23:30:49 laffer1 Exp $
+# $MidnightBSD$
 
 PKGNAMEPREFIX=	p5-
 

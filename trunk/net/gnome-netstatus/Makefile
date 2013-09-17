@@ -2,7 +2,7 @@
 # Date Created:			05 December 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/gnome-netstatus/Makefile,v 1.1 2008/05/31 00:41:57 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/gnome-netstatus/Makefile,v 1.30 2008/04/23 18:22:48 cokane Exp $
 #   $MCom: ports/net/gnome-netstatus/Makefile,v 1.48 2007/07/04 21:42:20 marcus Exp $
 #

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/skipfish/Makefile,v 1.3 2010/03/21 22:09:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	skipfish
 PORTVERSION=	2.10b

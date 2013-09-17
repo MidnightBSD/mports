@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.12 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xine
 PORTVERSION=	0.99.6

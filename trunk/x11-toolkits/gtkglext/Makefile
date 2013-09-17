@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.8 2011/02/02 21:38:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0

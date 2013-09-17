@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.8 2011/09/04 20:23:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libtasn1
 PORTVERSION=	2.13

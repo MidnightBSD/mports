@@ -2,7 +2,7 @@
 # Date created:         4 June 2001
 # Whom:                 Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/graphics/gdchart/Makefile,v 1.2 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/gdchart/Makefile,v 1.18 2007/05/19 20:09:09 flz Exp $
 #
 

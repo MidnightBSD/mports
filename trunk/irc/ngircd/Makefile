@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.6 2013/02/18 02:50:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ngircd
 PORTVERSION=	20.2

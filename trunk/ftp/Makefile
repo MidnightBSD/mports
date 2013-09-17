@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/Makefile,v 1.27 2013/02/18 04:05:03 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = File Transfer Protocol 
 

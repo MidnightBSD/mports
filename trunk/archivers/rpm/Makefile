@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rpm
 PORTVERSION=	3.0.6

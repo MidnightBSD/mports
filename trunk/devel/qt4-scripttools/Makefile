@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-scripttools/Makefile,v 1.2 2011/07/17 15:22:02 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-scripttools/Makefile,v 1.7 2010/12/02 19:47:10 makc Exp $
 
 PORTNAME=	scripttools

@@ -3,7 +3,7 @@
 # Whom:                 wosch
 #
 # $FreeBSD: ports/german/manpages/Makefile,v 1.23 2005/02/16 16:21:28 wosch Exp $
-# $MidnightBSD: mports/misc/manpages-de/Makefile,v 1.1 2008/06/14 03:41:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	manpages-de
 PORTVERSION=	0.4

@@ -2,7 +2,7 @@
 # Date created:		Sun Jul 18 21:51:23 MET DST 1999
 # Whom:			Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/archivers/rpm2cpio/Makefile,v 1.4 2008/03/12 01:57:39 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/rpm2cpio/Makefile,v 1.15 2004/02/06 13:10:42 trevor Exp $
 #
 

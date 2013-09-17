@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.4 2008/08/19 18:52:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	skippy-xd
 PORTVERSION=	0.5.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/at-spi2-atk/Makefile,v 1.2 2011/05/28 23:57:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	at-spi2-atk
 PORTVERSION=	2.6.2

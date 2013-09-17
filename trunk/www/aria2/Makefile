@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/aria2/Makefile,v 1.14 2011/08/31 03:21:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aria2
 PORTVERSION=	1.14.1

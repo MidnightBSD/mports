@@ -2,7 +2,7 @@
 # Date created:				14 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/ftp/ftpcopy/Makefile,v 1.1 2007/11/14 21:00:07 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/ftp/ftpcopy/Makefile,v 1.24 2004/08/13 16:52:19 krion Exp $
 #
 

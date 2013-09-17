@@ -2,7 +2,7 @@
 # Date created:         31.10.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/emulators/yape/Makefile,v 1.2 2008/05/21 21:17:33 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/emulators/yape/Makefile,v 1.11 2006/09/20 11:20:49 stas Exp $
 #
 

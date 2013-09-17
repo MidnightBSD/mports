@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/nologinmsg/Makefile,v 1.2 2007/08/16 18:00:00 ctriv Exp $
+# $MidnightBSD$
 #
 # The port is self contained in the src directory
 

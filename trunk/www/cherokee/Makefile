@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.20 2013/02/19 16:10:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.101

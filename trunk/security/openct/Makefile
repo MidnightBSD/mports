@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openct/Makefile,v 1.3 2009/09/20 04:08:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openct
 PORTVERSION=	0.6.20

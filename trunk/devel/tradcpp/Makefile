@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/tradcpp/Makefile,v 1.1 2013/07/04 18:59:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tradcpp
 PORTVERSION=	0.4

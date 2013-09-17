@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.13 2013/02/23 01:47:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-DNS
 PORTVERSION=	0.72

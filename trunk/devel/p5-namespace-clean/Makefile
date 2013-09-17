@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-namespace-clean/Makefile,v 1.2 2011/08/13 14:46:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	namespace-clean
 PORTVERSION=	0.24

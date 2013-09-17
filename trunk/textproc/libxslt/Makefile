@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.13 2013/03/02 20:02:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.28

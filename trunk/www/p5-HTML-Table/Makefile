@@ -3,7 +3,7 @@
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/www/p5-HTML-Table/Makefile,v 1.16 2006/06/25 16:38:46 clsung Exp $
-# $MidnightBSD: mports/www/p5-HTML-Table/Makefile,v 1.2 2008/07/25 05:47:54 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	HTML-Table

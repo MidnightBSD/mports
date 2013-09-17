@@ -2,7 +2,7 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD: mports/mail/p5-Email-MessageID/Makefile,v 1.1 2008/10/11 20:02:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Email-MessageID
 PORTVERSION=	1.401

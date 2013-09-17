@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/font-micro-misc/Makefile,v 1.1 2007/05/19 20:29:15 flz Exp $
-# $MidnightBSD: mports/x11-fonts/font-micro-misc/Makefile,v 1.1 2007/10/11 18:35:48 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-micro-misc
 PORTVERSION=	1.0.3

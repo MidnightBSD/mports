@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.10 2013/02/24 01:41:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gmake
 PORTVERSION=	3.82

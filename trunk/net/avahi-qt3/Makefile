@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/avahi-qt3/Makefile,v 1.3 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	0
 CATEGORIES=	net

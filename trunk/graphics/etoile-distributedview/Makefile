@@ -2,7 +2,7 @@
 # Date created:         25 Aug 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/graphics/etoile-distributedview/Makefile,v 1.6 2007/11/09 20:08:18 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	distributedview

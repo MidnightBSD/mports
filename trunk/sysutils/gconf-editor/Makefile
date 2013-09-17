@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.6 2012/03/10 06:10:53 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/gconf-editor/Makefile,v 1.42 2007/08/27 17:33:13 marcus Exp $
 
 PORTNAME=	gconf-editor

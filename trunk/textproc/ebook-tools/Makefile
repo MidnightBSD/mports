@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ebook-tools/Makefile,v 1.1 2009/01/04 00:57:04 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	ebook-tools
 PORTVERSION=	0.2.2

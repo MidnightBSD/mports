@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.8 2013/06/21 23:29:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	corelib
 DISTVERSION=	${QT4_VERSION}

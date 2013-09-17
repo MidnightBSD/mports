@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/metalink-tools/Makefile,v 1.4 2013/02/18 02:16:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	metalink
 PORTVERSION=	0.3.6

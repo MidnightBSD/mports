@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-MIME-Base32/Makefile,v 1.2 2007/11/11 02:46:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/converters/p5-MIME-Base32/Makefile,v 1.2 2005/10/29 06:42:43 nork Exp $
 
 PORTNAME=	MIME-Base32

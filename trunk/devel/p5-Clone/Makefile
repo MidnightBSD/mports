@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.3 2009/12/13 18:41:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Clone
 PORTVERSION=	0.34

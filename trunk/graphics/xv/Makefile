@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.10 2013/05/10 02:21:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xv
 PORTVERSION=	3.10a

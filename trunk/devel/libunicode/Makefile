@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libunicode/Makefile,v 1.1 2010/03/18 00:28:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libunicode
 PORTVERSION=	0.4

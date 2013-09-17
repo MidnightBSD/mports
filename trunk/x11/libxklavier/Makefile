@@ -2,7 +2,7 @@
 # Date created:				31 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.6 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
 #   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
 #

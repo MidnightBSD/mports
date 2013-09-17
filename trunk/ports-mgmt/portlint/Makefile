@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ports-mgmt/portlint/Makefile,v 1.12 2013/01/18 03:56:21 laffer1 Exp $
+# $MidnightBSD$
 #
 # This port is self contained in the src directory.
 

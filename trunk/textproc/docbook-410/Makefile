@@ -4,7 +4,7 @@
 #
 # Based on nik's docbook-310 port
 #
-# $MidnightBSD: mports/textproc/docbook-410/Makefile,v 1.3 2007/09/06 13:47:14 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-410/Makefile,v 1.11 2005/06/01 19:54:03 glewis Exp $
 #
 

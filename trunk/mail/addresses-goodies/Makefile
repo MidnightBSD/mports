@@ -2,7 +2,7 @@
 # Date created:         29 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/mail/addresses-goodies/Makefile,v 1.2 2007/11/07 20:20:14 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/mail/addresses-goodies/Makefile,v 1.4 2007/01/31 18:18:04 dinoex Exp $
 #
 

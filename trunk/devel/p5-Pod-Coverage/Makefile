@@ -2,7 +2,7 @@
 # Date created:	   10 octobre 2003
 # Whom:		   mat
 #
-# $MidnightBSD: mports/devel/p5-Pod-Coverage/Makefile,v 1.2 2008/10/16 21:41:41 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Pod-Coverage/Makefile,v 1.13 2007/10/26 21:46:04 mat Exp $
 #
 

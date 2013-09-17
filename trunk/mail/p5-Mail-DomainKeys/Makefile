@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-DomainKeys/Makefile,v 1.3 2008/10/04 16:44:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Mail-DomainKeys
 PORTVERSION=	1.0

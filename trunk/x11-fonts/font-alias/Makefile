@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/font-alias/Makefile,v 1.1 2007/05/19 20:29:11 flz Exp $
-# $MidnightBSD: mports/x11-fonts/font-alias/Makefile,v 1.1 2007/10/10 01:18:47 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-alias
 PORTVERSION=	1.0.3

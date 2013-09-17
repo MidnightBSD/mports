@@ -2,7 +2,7 @@
 # Date created:        26 November 2003
 # Whom:			Sergey Akifyev <asa@gascom.ru>
 #
-# $MidnightBSD: mports/audio/libid3tag/Makefile,v 1.2 2008/02/28 17:16:41 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libid3tag/Makefile,v 1.9 2006/02/23 10:34:33 ade Exp $
 #
 

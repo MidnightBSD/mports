@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.9 2011/05/15 19:18:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomeprintui
 PORTVERSION=	2.18.6

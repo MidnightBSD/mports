@@ -2,7 +2,7 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/tsocks/Makefile,v 1.2 2009/06/27 23:19:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tsocks
 PORTVERSION=	1.8.b5

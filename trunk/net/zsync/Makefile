@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/zsync/Makefile,v 1.3 2010/11/13 19:09:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zsync
 PORTVERSION=	0.6.2

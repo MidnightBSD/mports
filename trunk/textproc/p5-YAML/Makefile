@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-YAML/Makefile,v 1.6 2012/03/18 14:44:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	YAML
 PORTVERSION=	0.84

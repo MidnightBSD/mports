@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libgpod/Makefile,v 1.3 2009/12/31 21:26:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgpod
 PORTVERSION=	0.8.2

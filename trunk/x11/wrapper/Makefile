@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/wrapper/Makefile,v 1.1 2009/05/08 14:13:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wrapper
 PORTVERSION=	1.0

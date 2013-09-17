@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/man2web/Makefile,v 1.3 2010/05/29 06:57:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	man2web
 PORTVERSION=	0.88

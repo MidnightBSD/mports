@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/p5-Image-Magick-Iterator/Makefile,v 1.1 2007/03/20 19:55:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Image-Magick-Iterator
 PORTVERSION=	0.01

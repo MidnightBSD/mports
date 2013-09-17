@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.6 2011/09/18 01:00:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	linux-helixplayer
 DISTVERSION=	11.0.2.1743-20091006

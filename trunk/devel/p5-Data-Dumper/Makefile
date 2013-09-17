@@ -2,7 +2,7 @@
 # Date created:	   23 March 2003
 # Whom:		   mat
 #
-# $MidnightBSD: mports/devel/p5-Data-Dumper/Makefile,v 1.1 2007/03/11 04:21:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Data-Dumper/Makefile,v 1.2 2004/12/01 11:42:51 tobez Exp $
 #
 

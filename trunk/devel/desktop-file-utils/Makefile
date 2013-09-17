@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.8 2012/02/24 18:17:33 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 
 PORTNAME=	desktop-file-utils

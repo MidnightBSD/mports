@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.9 2013/06/22 02:21:44 laffer1 Exp $
+# $MidnightBSD$
 PORTNAME=		tdb
 PORTVERSION=		1.2.12
 CATEGORIES=		databases

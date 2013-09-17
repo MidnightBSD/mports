@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libgweather/Makefile,v 1.5 2010/12/31 14:11:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgweather
 PORTVERSION=	2.30.2

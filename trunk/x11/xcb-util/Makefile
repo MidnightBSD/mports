@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcb-util/Makefile,v 1.7 2013/06/13 00:37:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xcb-util
 PORTVERSION=	0.3.9

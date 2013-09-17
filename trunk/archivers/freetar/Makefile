@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/freetar/Makefile,v 1.5 2008/09/30 23:41:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	freetar
 PORTVERSION=	0.9

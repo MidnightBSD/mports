@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.9 2011/09/10 21:20:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnumail
 PORTVERSION=	1.2.0

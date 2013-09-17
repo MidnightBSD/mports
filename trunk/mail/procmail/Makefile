@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/procmail/Makefile,v 1.5 2011/06/21 01:25:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	procmail
 PORTVERSION=	3.22

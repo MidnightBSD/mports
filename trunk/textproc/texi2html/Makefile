@@ -2,7 +2,7 @@
 # Date created:				5 Nov 1997
 # Whom:					Ian Vaudrey <i.vaudrey@bigfoot.com>
 #
-# $MidnightBSD: mports/textproc/texi2html/Makefile,v 1.3 2010/11/13 16:23:17 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/texi2html/Makefile,v 1.22 2005/02/14 22:05:53 roam Exp $
 #
 

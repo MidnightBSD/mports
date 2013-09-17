@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-elementtree/Makefile,v 1.1 2008/06/14 00:14:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/py-elementtree/Makefile,v 1.3 2007/07/30 09:41:12 alexbl Exp $
 
 PORTNAME=	elementtree

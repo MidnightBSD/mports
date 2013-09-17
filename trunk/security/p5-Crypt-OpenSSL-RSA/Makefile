@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Crypt-OpenSSL-RSA/Makefile,v 1.1 2007/03/21 01:35:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Crypt-OpenSSL-RSA
 PORTVERSION=	0.25

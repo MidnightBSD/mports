@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/feh/Makefile,v 1.3 2009/03/04 00:17:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	feh
 PORTVERSION=	2.3

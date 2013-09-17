@@ -3,7 +3,7 @@
 # Whom:				shipley@dis.org
 #
 # $FreeBSD: ports/net/libnet10/Makefile,v 1.17 2005/11/15 06:50:28 ade Exp $
-# $MidnightBSD: mports/net/libnet10/Makefile,v 1.2 2008/02/27 20:40:36 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libnet

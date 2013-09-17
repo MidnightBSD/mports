@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.6 2011/12/15 00:39:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.21

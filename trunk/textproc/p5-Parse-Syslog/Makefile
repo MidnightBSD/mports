@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Parse-Syslog/Makefile,v 1.1 2007/03/21 01:15:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Parse-Syslog
 PORTVERSION=	1.09

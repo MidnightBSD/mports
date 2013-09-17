@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/liba52/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	liba52
 PORTVERSION=	0.7.4

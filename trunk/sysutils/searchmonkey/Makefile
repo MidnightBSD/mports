@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.5 2011/06/08 03:33:45 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/searchmonkey/Makefile,v 1.7 2006/12/05 15:12:57 sat Exp $
 
 PORTNAME=	searchmonkey

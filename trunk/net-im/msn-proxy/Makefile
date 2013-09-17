@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.5 2013/03/09 23:31:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	msn-proxy
 PORTVERSION=	0.7

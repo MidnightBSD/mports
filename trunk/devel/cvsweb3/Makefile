@@ -2,7 +2,7 @@
 # Date created:		27 Jun 1999
 # Whom:			SADA Kenji <sada@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/cvsweb3/Makefile,v 1.3 2008/08/24 20:38:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/cvsweb3/Makefile,v 1.82 2006/01/23 07:04:09 linimon Exp $
 #
 

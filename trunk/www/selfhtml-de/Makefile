@@ -3,7 +3,7 @@
 # Whom:				Frerich Raabe <frerich.raabe@gmx.de>
 #
 # $FreeBSD: ports/german/selfhtml/Makefile,v 1.6 2006/06/09 21:07:11 linimon Exp $
-# $MidnightBSD: mports/german/selfhtml/Makefile,v 1.2 2007/11/10 23:36:56 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	selfhtml

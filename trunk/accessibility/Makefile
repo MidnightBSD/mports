@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.20 2011/05/15 16:08:52 laffer1 Exp $
+# $MidnightBSD$
     
 COMMENT = Ports to help disabled users
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jbig2dec/Makefile,v 1.2 2013/03/02 22:15:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jbig2dec
 PORTVERSION=	0.11

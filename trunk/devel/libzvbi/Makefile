@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.4 2012/02/07 22:15:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libzvbi
 PORTVERSION=	0.2.33

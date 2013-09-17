@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.9 2011/09/27 17:26:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gsasl
 PORTVERSION=	1.8.0

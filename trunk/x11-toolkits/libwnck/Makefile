@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.11 2013/03/30 12:33:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libwnck
 PORTVERSION=	2.30.6

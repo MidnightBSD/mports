@@ -1,6 +1,6 @@
 # New ports collection makefile for:	gstreamer-plugins-core
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins-core/Makefile,v 1.2 2009/05/27 21:26:31 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gstreamer-plugins-core/Makefile,v 1.15 2007/06/07 14:04:25 ahze Exp $
 
 PORTNAME=	gstreamer-plugins-core

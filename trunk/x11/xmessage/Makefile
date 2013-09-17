@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xmessage/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmessage
 PORTVERSION=	1.0.4

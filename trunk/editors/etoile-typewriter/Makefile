@@ -2,7 +2,7 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/editors/etoile-typewriter/Makefile,v 1.4 2007/11/07 20:20:13 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/editors/etoile-typewriter/Makefile,v 1.5 2007/01/31 18:17:58 dinoex Exp $
 #
 

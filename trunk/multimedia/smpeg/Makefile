@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.5 2011/09/18 00:40:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4

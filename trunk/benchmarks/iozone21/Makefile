@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/iozone21/Makefile,v 1.1 2007/05/20 19:27:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	iozone
 PORTVERSION=	2.01

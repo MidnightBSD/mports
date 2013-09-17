@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libqrencode/Makefile,v 1.1 2012/03/11 01:19:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/libqrencode/Makefile,v 1.23 2011/11/30 14:01:42 vanilla Exp $
 
 PORTNAME=	libqrencode

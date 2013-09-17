@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/foomatic-db-engine/Makefile,v 1.1 2009/09/26 22:22:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	engine
 PORTVERSION=	4.0.1

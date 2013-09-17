@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/dmidecode/Makefile,v 1.2 2007/11/19 20:12:42 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/dmidecode/Makefile,v 1.9 2007/03/25 12:42:25 rafan Exp $
 
 PORTNAME=	dmidecode

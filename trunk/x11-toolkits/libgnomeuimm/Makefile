@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.4 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/libgnomeuimm/Makefile,v 1.17 2007/10/04 06:27:13 edwin Exp $
 #
 

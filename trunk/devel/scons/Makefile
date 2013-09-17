@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/scons/Makefile,v 1.6 2011/12/16 01:50:59 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons

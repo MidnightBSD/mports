@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xstdcmap/Makefile,v 1.3 2012/03/03 01:52:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xstdcmap
 PORTVERSION=	1.0.3

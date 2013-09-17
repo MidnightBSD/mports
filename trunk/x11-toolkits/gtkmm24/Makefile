@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.14 2011/05/15 16:09:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtkmm
 PORTVERSION=	2.22.0

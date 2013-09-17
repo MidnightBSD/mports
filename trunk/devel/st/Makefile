@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/st/Makefile,v 1.4 2013/07/04 16:30:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	st
 PORTVERSION=	1.9

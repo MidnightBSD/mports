@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.9 2012/03/04 00:17:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Tk
 PORTVERSION=	804.030

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xanim/Makefile,v 1.3 2007/11/06 04:52:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xanim
 PORTVERSION=	2.92.0

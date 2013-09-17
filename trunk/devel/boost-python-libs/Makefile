@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boost-python-libs/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boost-python-libs
 PORTVERSION=	1.48.0

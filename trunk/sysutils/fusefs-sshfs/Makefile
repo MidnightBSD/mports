@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.5 2009/04/04 01:34:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sshfs
 PORTVERSION=	2.2

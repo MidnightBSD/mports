@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/xfindproxy/Makefile,v 1.1 2007/05/19 20:27:53 flz Exp $
-# $MidnightBSD: mports/x11/xfindproxy/Makefile,v 1.2 2011/05/07 14:38:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfindproxy
 PORTVERSION=	1.0.2

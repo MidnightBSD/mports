@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/science/paje/Makefile,v 1.2 2013/08/26 22:37:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	paje
 PORTVERSION=	1.97

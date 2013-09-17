@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qtcreator/Makefile,v 1.1 2012/03/01 02:29:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qtcreator
 DISTVERSION=	2.6.1

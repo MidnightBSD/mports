@@ -2,7 +2,7 @@
 # Date created:         4 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/ftp/ncftp2/Makefile,v 1.1 2007/04/02 00:39:06 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/ftp/ncftp2/Makefile,v 1.53 2007/02/09 08:37:01 rafan Exp $
 #
 

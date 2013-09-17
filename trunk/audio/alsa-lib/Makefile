@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/alsa-lib/Makefile,v 1.1 2010/10/23 17:54:08 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	alsa-lib
 PORTVERSION=	1.0.26

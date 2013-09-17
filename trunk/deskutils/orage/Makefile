@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.4 2011/12/15 00:47:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	orage
 PORTVERSION=	4.8.4

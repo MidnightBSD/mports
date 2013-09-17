@@ -2,7 +2,7 @@
 # Date created:			19 Jun 2004
 # Whom:				Jean-Yves lefort
 #
-# $MidnightBSD: mports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.2 2008/06/17 15:30:58 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.14 2008/04/29 05:11:44 linimon Exp $
 #
 

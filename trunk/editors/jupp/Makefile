@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/jupp/Makefile,v 1.12 2013/07/15 01:46:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jupp
 PORTVERSION=	3.1.25

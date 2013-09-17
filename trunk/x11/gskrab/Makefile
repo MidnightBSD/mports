@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gskrab/Makefile,v 1.1 2010/01/21 01:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gskrab
 PORTVERSION=	0.0.1

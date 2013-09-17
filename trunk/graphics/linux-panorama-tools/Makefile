@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/linux-panorama-tools/Makefile,v 1.3 2009/04/15 00:11:40 laffer1 Exp $
+# $MidnightBSD$
 #
 # This port has been made as a running dependence for the hugin port.
 # The hugin port for itself would run with no problem without this port,

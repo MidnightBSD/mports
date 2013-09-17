@@ -3,7 +3,7 @@
 # Date created:				22 June 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/devel/pccts/Makefile,v 1.1 2007/04/07 23:04:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/pccts/Makefile,v 1.28 2006/05/04 21:40:58 edwin Exp $
 #
 

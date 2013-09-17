@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.5 2009/09/20 01:34:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ilmbase
 PORTVERSION=	1.0.1

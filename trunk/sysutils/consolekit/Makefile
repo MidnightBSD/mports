@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.5 2013/06/15 02:33:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	consolekit
 PORTVERSION=	0.4.3

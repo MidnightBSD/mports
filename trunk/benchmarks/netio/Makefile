@@ -2,7 +2,7 @@
 # Date created:					2005-01-09
 # Whom:						arved
 #
-# $MidnightBSD: mports/benchmarks/netio/Makefile,v 1.1 2007/07/15 07:36:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/benchmarks/netio/Makefile,v 1.5 2006/09/02 12:07:20 arved Exp $
 
 PORTNAME=	netio

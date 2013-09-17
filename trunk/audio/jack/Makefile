@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.12 2011/12/15 00:45:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jackit
 PORTVERSION=	0.121.3

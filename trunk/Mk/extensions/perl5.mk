@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.21 2013/03/20 01:55:00 laffer1 Exp $
+# $MidnightBSD$
 #
 # perl.mk - perl specific make directives
 

@@ -2,7 +2,7 @@
 # Date created:				2006
 # Whom:					Adam Karim <archite@midnightbsd.org>
 #
-# $MidnightBSD: mports/audio/libao/Makefile,v 1.8 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libao
 PORTVERSION=	1.1.0

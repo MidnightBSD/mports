@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.13 2013/07/16 11:57:08 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	dirmngr

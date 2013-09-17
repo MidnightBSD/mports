@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.4 2011/09/03 16:33:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mod_dnssd
 PORTVERSION=	0.6

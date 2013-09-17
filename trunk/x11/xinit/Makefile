@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xinit/Makefile,v 1.4 2012/03/02 02:20:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xinit
 PORTVERSION=	1.3.2

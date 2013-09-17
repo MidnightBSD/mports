@@ -2,7 +2,7 @@
 # Date created:	2001-05-18
 # Whom:		Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD: mports/games/gtypist/Makefile,v 1.3 2009/10/03 00:24:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/gtypist/Makefile,v 1.17 2004/07/11 10:55:23 krion Exp $
 
 PORTNAME=	gtypist

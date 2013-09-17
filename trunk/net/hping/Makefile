@@ -2,7 +2,7 @@
 # Date Created:				5 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/net/hping/Makefile,v 1.1 2008/05/31 00:01:21 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/hping/Makefile,v 1.15 2005/11/15 10:30:07 az Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/p5-Term-ShellUI/Makefile,v 1.2 2009/12/28 20:26:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Term-ShellUI
 PORTVERSION=	0.92

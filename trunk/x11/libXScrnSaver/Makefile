@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXScrnSaver/Makefile,v 1.4 2012/03/03 01:52:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXScrnSaver
 PORTVERSION=	1.2.2

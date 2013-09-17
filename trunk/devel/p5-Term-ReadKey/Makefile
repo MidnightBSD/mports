@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Term-ReadKey/Makefile,v 1.1 2008/04/29 03:49:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Term-ReadKey
 PORTVERSION=	2.30

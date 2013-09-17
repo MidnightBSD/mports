@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.12 2013/05/10 02:15:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bochs
 PORTVERSION=	2.6.2

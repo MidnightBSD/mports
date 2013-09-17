@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.8 2010/02/28 21:14:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #

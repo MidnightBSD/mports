@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-RegExp/Makefile,v 1.1 2007/08/14 06:02:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-RegExp
 PORTVERSION=	0.03

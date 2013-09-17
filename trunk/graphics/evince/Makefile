@@ -2,7 +2,7 @@
 # Date created:				09 January 2005
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/evince/Makefile,v 1.5 2012/02/28 01:13:23 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/evince/Makefile,v 1.33 2008/02/26 18:35:39 ahze Exp $
 #   $MCom: ports-stable/graphics/evince/Makefile,v 1.1 2007/12/01 19:16:37 marcus Exp $
 #

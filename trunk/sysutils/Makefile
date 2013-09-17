@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.126 2013/08/18 14:58:01 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = System utilities
 

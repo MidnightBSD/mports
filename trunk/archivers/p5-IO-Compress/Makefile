@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-IO-Compress/Makefile,v 1.1 2011/09/18 20:07:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IO-Compress
 PORTVERSION=	2.060

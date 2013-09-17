@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/llvm/Makefile,v 1.3 2010/06/13 16:58:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	llvm
 PORTVERSION=	2.8

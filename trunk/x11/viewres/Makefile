@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/viewres/Makefile,v 1.3 2011/09/20 23:34:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	viewres
 PORTVERSION=	1.0.4

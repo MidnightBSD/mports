@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.8 2012/02/03 03:25:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	MIME-Types
 PORTVERSION=	1.38

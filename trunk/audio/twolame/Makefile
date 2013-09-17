@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/twolame/Makefile,v 1.6 2011/12/15 00:45:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	twolame
 PORTVERSION=	0.3.13

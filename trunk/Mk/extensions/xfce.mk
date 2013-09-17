@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.9 2013/01/14 23:37:11 laffer1 Exp $
+# $MidnightBSD$
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)

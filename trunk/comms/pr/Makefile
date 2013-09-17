@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/pr/Makefile,v 1.1 2007/05/21 01:35:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pr
 PORTVERSION=	1.1

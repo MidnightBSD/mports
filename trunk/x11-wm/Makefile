@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.40 2012/12/19 04:06:21 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 window managers
 

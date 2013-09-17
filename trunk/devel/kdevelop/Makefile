@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.7 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdevelop
 PORTVERSION=	3.5.4

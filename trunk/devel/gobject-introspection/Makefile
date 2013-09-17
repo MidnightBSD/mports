@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.9 2013/02/24 15:24:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gobject-introspection
 PORTVERSION=	1.34.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/akonadi/Makefile,v 1.2 2010/03/01 01:42:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	akonadi
 PORTVERSION=	1.7.2

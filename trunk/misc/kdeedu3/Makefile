@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.6 2011/02/02 21:10:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdeedu
 PORTVERSION=	${KDE_VERSION}

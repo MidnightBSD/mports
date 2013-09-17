@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xbiff/Makefile,v 1.3 2011/05/07 02:42:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xbiff
 PORTVERSION=	1.0.3

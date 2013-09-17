@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.15 2013/02/23 02:44:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.7

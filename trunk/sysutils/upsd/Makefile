@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/upsd/Makefile,v 1.2 2013/02/26 04:52:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	upsd
 PORTVERSION=	2.0.1.6

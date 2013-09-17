@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.148 2013/08/11 23:31:25 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 

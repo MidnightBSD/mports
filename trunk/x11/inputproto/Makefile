@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/inputproto/Makefile,v 1.2 2007/09/13 19:44:58 flz Exp $
-# $MidnightBSD: mports/x11/inputproto/Makefile,v 1.4 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	inputproto
 PORTVERSION=	2.3

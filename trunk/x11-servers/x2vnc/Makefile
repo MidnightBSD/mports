@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/x2vnc/Makefile,v 1.6 2011/12/15 00:57:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	x2vnc
 PORTVERSION=	1.72

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mbone/imm/Makefile,v 1.2 2008/05/22 16:36:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	imm
 PORTVERSION=	3.5a1

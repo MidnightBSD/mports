@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.66 2013/02/24 02:40:30 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Electronic mail utilities
 

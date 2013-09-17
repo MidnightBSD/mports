@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/vinagre/Makefile,v 1.2 2011/01/22 16:48:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vinagre
 PORTVERSION=	2.30.3

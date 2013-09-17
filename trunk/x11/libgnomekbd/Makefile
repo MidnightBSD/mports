@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.7 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/libgnomekbd/Makefile,v 1.7 2007/05/28 23:22:29 mezz Exp $
 
 PORTNAME=	libgnomekbd

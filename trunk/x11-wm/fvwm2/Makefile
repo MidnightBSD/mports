@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.4 2009/08/15 19:10:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fvwm
 PORTVERSION=	2.6.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/attica/Makefile,v 1.2 2012/03/02 01:19:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	attica
 PORTVERSION=	0.4.2

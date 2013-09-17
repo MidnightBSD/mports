@@ -3,7 +3,7 @@
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
 # $FreeBSD: ports/devel/p5-String-Ediff/Makefile,v 1.4 2005/11/11 21:36:28 mnag Exp $
-# $MidnightBSD: mports/devel/p5-String-Ediff/Makefile,v 1.1 2006/11/25 00:45:05 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	String-Ediff

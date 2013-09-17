@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.8 2011/05/15 19:17:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1

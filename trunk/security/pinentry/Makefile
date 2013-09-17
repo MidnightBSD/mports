@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/pinentry/Makefile,v 1.6 2012/02/29 02:31:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pinentry
 PORTVERSION=	0.8.1

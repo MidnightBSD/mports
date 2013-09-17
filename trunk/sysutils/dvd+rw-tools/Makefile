@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/dvd+rw-tools/Makefile,v 1.3 2008/06/10 22:07:01 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	dvd+rw-tools
 PORTVERSION=	7.1

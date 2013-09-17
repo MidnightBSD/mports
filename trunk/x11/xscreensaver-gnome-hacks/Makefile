@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver-gnome-hacks/Makefile,v 1.2 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xscreensaver-gnome-hacks
 PORTREVISION=	1

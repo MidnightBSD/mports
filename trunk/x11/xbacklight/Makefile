@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xbacklight/Makefile,v 1.4 2011/09/20 23:36:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xbacklight
 PORTVERSION=	1.1.2

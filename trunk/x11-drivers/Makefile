@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.22 2011/05/28 05:10:50 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = X11 drivers
 

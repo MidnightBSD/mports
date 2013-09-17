@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.12 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	startup-notification
 PORTVERSION=	0.12

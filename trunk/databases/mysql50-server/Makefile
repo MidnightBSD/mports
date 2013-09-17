@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.17 2011/02/08 14:35:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	mysql
 PORTVERSION=	5.0.95

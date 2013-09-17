@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.6 2011/12/15 00:57:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cairomm
 PORTVERSION=	1.10.0

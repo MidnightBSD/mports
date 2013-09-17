@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.7 2013/02/26 04:07:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libxml
 PORTVERSION=	1.8.17

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/comserv/Makefile,v 1.1 2008/08/17 21:48:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	comserv
 PORTVERSION=	1.4.3

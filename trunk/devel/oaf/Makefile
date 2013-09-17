@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/oaf/Makefile,v 1.7 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10

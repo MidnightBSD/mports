@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.11 2013/02/23 01:43:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	c-ares
 PORTVERSION=	1.10.0

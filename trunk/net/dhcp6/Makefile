@@ -2,7 +2,7 @@
 # Date created:		Sept 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD: mports/net/dhcp6/Makefile,v 1.2 2010/02/26 02:45:44 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	dhcp6

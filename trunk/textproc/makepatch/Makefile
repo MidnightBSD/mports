@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/makepatch/Makefile,v 1.3 2013/03/23 16:44:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	makepatch
 PORTVERSION=	2.05

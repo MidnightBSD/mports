@@ -2,7 +2,7 @@
 # Date created:				August 8th, 1999
 # Whom:	      				wolman@cs.washington.edu
 #
-# $MidnightBSD: mports/databases/p5-SQL-Statement/Makefile,v 1.1 2007/08/10 17:14:07 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/p5-SQL-Statement/Makefile,v 1.21 2006/03/15 08:51:38 lth Exp $
 #
 

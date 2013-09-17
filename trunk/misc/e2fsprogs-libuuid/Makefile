@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/e2fsprogs-libuuid/Makefile,v 1.1 2008/05/30 19:40:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=	0
 CATEGORIES=	misc devel

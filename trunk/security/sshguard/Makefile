@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.8 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sshguard
 DISTVERSION=	1.5

@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/misc/kde4-shared-mime-info/Makefile,v 1.2 2009/04/11 20:20:01 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	shared-mime-info

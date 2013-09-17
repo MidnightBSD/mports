@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-moc/Makefile,v 1.5 2013/06/21 23:29:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	moc
 DISTVERSION=	${QT4_VERSION}

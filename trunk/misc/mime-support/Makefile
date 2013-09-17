@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.7 2013/02/18 02:21:16 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mime-support
 PORTVERSION=	3.54

@@ -2,7 +2,7 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/performance/Makefile,v 1.6 2008/10/16 21:49:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
 #
 

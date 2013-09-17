@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.30 2013/02/10 20:59:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		bash
 PATCHLEVEL=		45

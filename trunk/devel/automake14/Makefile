@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automake14/Makefile,v 1.7 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	automake
 PKGNAMESUFFIX=	14

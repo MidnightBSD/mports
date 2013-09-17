@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/opencv/Makefile,v 1.2 2012/09/09 05:03:48 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/opencv/Makefile,v 1.36 2012/01/16 09:46:55 martymac Exp $
 
 PORTNAME?=	opencv

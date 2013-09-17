@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcmsdb/Makefile,v 1.3 2011/09/20 23:39:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xcmsdb
 PORTVERSION=	1.0.4

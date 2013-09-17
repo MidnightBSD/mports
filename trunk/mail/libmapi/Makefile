@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/libmapi/Makefile,v 1.2 2013/06/14 01:30:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmapi
 PORTVERSION=	0.9

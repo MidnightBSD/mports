@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/yap/Makefile,v 1.3 2009/02/22 23:55:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yap
 PORTVERSION=	0.2

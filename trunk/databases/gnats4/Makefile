@@ -2,7 +2,7 @@
 # Date created:				22 Aug 2003
 # Whom:					Oliver Eikemeier <eikemeier@fillmore-labs.com>
 #
-# $MidnightBSD: mports/databases/gnats4/Makefile,v 1.1 2006/10/06 03:12:23 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/gnats4/Makefile,v 1.11 2006/01/28 02:11:06 linimon Exp $
 #
 

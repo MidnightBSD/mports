@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-JSON-RPC/Makefile,v 1.1 2011/07/17 19:46:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-JSON-RPC/Makefile,v 1.3 2010/01/28 23:45:30 kuriyama Exp $
 
 PORTNAME=	JSON-RPC

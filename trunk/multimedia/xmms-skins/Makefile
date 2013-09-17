@@ -2,7 +2,7 @@
 # Date created:                19 Aug 2004
 # Whom:                        Filippo Natali <filippo@widestore.net>
 #
-# $MidnightBSD: mports/multimedia/xmms-skins/Makefile,v 1.2 2007/03/25 01:23:35 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/xmms-skins/Makefile,v 1.3 2006/03/07 08:27:01 ade Exp $
 #
 

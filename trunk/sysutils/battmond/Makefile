@@ -1,6 +1,6 @@
 # New ports collection makefile for:	battmond
 #
-# $MidnightBSD: mports/sysutils/battmond/Makefile,v 1.1 2008/01/21 16:23:37 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/battmond/Makefile,v 1.2 2006/09/07 08:16:21 pav Exp $
 
 PORTNAME=	battmond

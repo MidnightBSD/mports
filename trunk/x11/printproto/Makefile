@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/printproto/Makefile,v 1.3 2012/03/02 23:47:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	printproto
 PORTVERSION=	1.0.5

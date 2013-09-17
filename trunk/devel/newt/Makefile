@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/newt/Makefile,v 1.3 2013/04/11 12:49:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	newt
 PORTVERSION=	0.52.15

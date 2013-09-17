@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.8 2012/02/29 03:00:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	py-gtk
 PORTVERSION=	2.24.0

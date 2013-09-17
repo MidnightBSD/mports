@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/autotrust/Makefile,v 1.2 2013/02/23 01:40:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	autotrust
 PORTVERSION=	0.3.1

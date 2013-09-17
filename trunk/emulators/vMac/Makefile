@@ -2,7 +2,7 @@
 # Date created:				Jul 11th 1999
 # Whom:					troll
 #
-# $MidnightBSD: mports/emulators/vMac/Makefile,v 1.3 2008/10/16 22:10:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vMac
 PORTVERSION=	0.1.9.3

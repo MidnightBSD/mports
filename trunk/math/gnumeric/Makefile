@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/gnumeric/Makefile,v 1.2 2009/09/20 01:25:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnumeric
 PORTVERSION=	1.10.17

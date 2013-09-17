@@ -2,7 +2,7 @@
 # Date created:			31 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
-# $MidnightBSD: mports/archivers/unmakeself/Makefile,v 1.2 2008/10/01 00:03:25 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/unmakeself/Makefile,v 1.7 2007/08/04 11:40:38 gabor Exp $
 #
 

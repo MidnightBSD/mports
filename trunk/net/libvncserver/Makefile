@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libvncserver/Makefile,v 1.3 2010/03/25 01:33:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libvncserver
 PORTVERSION=	0.9.7

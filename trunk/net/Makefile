@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.125 2013/05/04 18:43:09 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Networking tools
 

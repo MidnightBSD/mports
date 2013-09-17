@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/es/Makefile,v 1.2 2009/03/21 16:15:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	es
 PORTVERSION=	0.9.b1

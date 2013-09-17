@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/bdb.mk,v 1.2 2010/01/01 03:50:50 laffer1 Exp $ 
+# $MidnightBSD$ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 

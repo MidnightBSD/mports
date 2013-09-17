@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/devcpu-data/Makefile,v 1.2 2012/03/01 13:54:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	data
 PORTVERSION=	0.6

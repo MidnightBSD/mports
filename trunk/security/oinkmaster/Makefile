@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/oinkmaster/Makefile,v 1.2 2011/03/04 15:12:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	oinkmaster
 PORTVERSION=	2.0

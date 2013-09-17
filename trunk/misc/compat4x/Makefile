@@ -2,7 +2,7 @@
 # Date created:		01 Aug 2001
 # Whom:			Scot W. Hetzel
 #
-# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.5 2009/04/05 19:31:56 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/compat4x/Makefile,v 1.33 2006/08/15 00:56:13 clsung Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/ldconfig_compat/Makefile,v 1.3 2007/08/01 20:55:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ldconfig_compat
 PORTVERSION=	1.0

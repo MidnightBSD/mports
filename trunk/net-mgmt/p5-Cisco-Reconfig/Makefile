@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/p5-Cisco-Reconfig/Makefile,v 1.2 2007/06/06 19:04:40 ctriv Exp $ 
+# $MidnightBSD$ 
 
 PORTNAME=	Cisco-Reconfig
 PORTVERSION=	0.91

@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-mollusk/Makefile,v 1.2 2007/11/07 20:20:16 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/etoile-mollusk/Makefile,v 1.2 2007/01/31 18:18:10 dinoex Exp $
 #
 

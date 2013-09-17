@@ -3,7 +3,7 @@
 # Whom:                         Martin Matuska <martin@tradex.sk>
 # Based on:		emulators/linux_base by marcel@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/linux-sdl12/Makefile,v 1.1 2006/10/01 16:33:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-sdl12/Makefile,v 1.15 2006/07/02 13:10:05 bsam Exp $
 #
 

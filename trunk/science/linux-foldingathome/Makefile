@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/biology/linux-foldingathome/Makefile,v 1.3 2008/04/25 03:59:28 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	foldingathome
 PORTVERSION=	5.04

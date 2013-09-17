@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.10 2011/05/14 22:42:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E

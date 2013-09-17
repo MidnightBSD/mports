@@ -2,7 +2,7 @@
 # Date created:         28 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/unrar/Makefile,v 1.8 2011/05/21 20:05:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/unrar/Makefile,v 1.46 2006/08/17 01:46:32 ache Exp $
 #
 

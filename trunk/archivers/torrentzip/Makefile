@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/torrentzip/Makefile,v 1.1 2009/11/01 15:51:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	torrentzip
 PORTVERSION=	0.2

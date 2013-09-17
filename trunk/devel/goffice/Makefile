@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/goffice/Makefile,v 1.6 2012/02/05 03:42:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	goffice
 PORTVERSION=	0.8.17

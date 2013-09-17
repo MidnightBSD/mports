@@ -2,7 +2,7 @@
 # Date created:				25 February 2000
 # Whom:	      				Brad Hendrickse <bradh@uunet.co.za>
 #
-# $MidnightBSD: mports/devel/p5-Date-Calc/Makefile,v 1.2 2008/10/16 21:32:25 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Date-Calc/Makefile,v 1.11 2007/01/27 19:20:17 mat Exp $
 #
 

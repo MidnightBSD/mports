@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-HTML-Tidy/Makefile,v 1.3 2011/05/31 00:21:32 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/p5-HTML-Tidy/Makefile,v 1.7 2007/10/04 18:57:40 tobez Exp $
 
 PORTNAME=	HTML-Tidy

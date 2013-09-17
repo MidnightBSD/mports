@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libburn/Makefile,v 1.2 2010/03/01 01:41:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libburn
 PORTVERSION=	1.1.0

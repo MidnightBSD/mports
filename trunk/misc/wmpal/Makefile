@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/wmpal/Makefile,v 1.5 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wmpal
 PORTVERSION=	0.6.1

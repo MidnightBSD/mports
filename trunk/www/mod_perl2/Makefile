@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.5 2013/08/15 23:07:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mod_perl
 PORTVERSION=	2.0.8

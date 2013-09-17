@@ -2,7 +2,7 @@
 # Date created:         26 September 1994
 # Whom:                 jmz
 #
-# $MidnightBSD: mports/benchmarks/iozone/Makefile,v 1.4 2008/08/22 14:49:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/benchmarks/iozone/Makefile,v 1.48 2007/01/11 21:37:25 erwin Exp $
 #
 

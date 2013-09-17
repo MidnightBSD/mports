@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.8 2010/12/13 17:21:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	youtube_dl
 PORTVERSION=	2011.03.29

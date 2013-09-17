@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/qt4-l10n/Makefile,v 1.2 2011/07/23 23:42:19 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/qt4-l10n/Makefile,v 1.7 2010/12/02 19:47:12 makc Exp $
 
 PORTNAME=	l10n

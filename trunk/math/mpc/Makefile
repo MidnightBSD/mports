@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/mpc/Makefile,v 1.2 2011/08/21 18:03:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mpc
 PORTVERSION=	0.9

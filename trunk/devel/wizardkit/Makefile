@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.4 2008/10/20 19:31:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wizardkit
 PORTVERSION=	0.1

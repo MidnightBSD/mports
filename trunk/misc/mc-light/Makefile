@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mc-light
 PORTVERSION=	4.1.40.p9

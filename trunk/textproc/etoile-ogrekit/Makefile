@@ -2,7 +2,7 @@
 # Date created:         14 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.5 2007/10/27 04:20:24 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/etoile-ogrekit/Makefile,v 1.5 2007/01/31 18:18:09 dinoex Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Text-Diff/Makefile,v 1.1 2007/03/11 05:39:39 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Text-Diff
 PORTVERSION=	0.35

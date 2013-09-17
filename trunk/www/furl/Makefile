@@ -2,7 +2,7 @@
 # Date created:				3 January 2007
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/furl/Makefile,v 1.4 2010/04/28 00:24:29 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	furl

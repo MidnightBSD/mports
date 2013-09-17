@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-Set-IntSpan/Makefile,v 1.3 2013/02/24 02:14:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Set-IntSpan
 PORTVERSION=	1.19

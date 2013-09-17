@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/log4j/Makefile,v 1.3 2009/09/17 00:06:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	log4j
 PORTVERSION=	1.2.16

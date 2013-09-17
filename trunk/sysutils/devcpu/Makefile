@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/devcpu/Makefile,v 1.1 2009/03/20 18:24:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	devcpu
 PORTVERSION=	0.8.3

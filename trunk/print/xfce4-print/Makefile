@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.5 2012/01/28 05:07:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-print
 PORTVERSION=	4.6.1

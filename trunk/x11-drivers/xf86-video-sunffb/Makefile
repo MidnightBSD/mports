@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-sunffb/Makefile,v 1.4 2011/05/07 21:49:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-sunffb
 PORTVERSION=	1.2.1

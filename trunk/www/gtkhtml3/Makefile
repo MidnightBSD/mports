@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.8 2013/03/30 20:33:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtkhtml3
 PORTVERSION=	3.32.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Stream/Makefile,v 1.1 2007/05/02 23:27:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Stream
 PORTVERSION=	1.22

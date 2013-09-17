@@ -2,7 +2,7 @@
 # Date created:				22 January 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnome-mime-data/Makefile,v 1.6 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/gnome-mime-data/Makefile,v 1.37 2007/04/03 20:38:53 marcus Exp $
 #
 

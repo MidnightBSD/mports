@@ -2,7 +2,7 @@
 # Date created:                         6 January 2007
 # Whom:                                 Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/retsina/Makefile,v 1.6 2012/02/05 03:47:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	retsina
 PORTVERSION=	1.0.1

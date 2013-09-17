@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.12 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	glibmm
 PORTVERSION=	2.34.1

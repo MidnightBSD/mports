@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/libsunacl/Makefile,v 1.2 2013/07/03 00:25:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libsunacl
 PORTVERSION=	1.0

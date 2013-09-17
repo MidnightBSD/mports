@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.7 2010/05/04 22:44:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	netpbm
 PORTVERSION=	${NETPBM_PORTVERSION}

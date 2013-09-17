@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.115 2013/08/16 02:39:40 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Security tools
 

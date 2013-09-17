@@ -2,7 +2,7 @@
 # Date Created:				12 April 2007
 # Whom:					wintellect <wintellect@bsdnexus.com>
 #
-# $MidnightBSD: mports/security/secpwgen/Makefile,v 1.1 2007/04/12 14:06:16 wintellect Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	secpwgen

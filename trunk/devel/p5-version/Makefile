@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.10 2013/02/10 17:35:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	version
 PORTVERSION=	0.99.01

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.5 2012/03/03 23:08:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	liberation-fonts-ttf
 PORTVERSION=	2.00.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.14 2012/09/09 02:00:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.22.0

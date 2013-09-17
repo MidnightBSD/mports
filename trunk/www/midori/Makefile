@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/midori/Makefile,v 1.15 2013/02/19 16:11:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	midori
 PORTVERSION=	0.5.4

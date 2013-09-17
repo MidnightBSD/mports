@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/cln/Makefile,v 1.6 2011/12/15 00:57:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cln
 PORTVERSION=	1.3.2

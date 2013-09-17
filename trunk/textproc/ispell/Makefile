@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.9 2013/07/05 12:33:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	ispell
 PORTVERSION?=	3.3.02

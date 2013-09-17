@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.442 2013/08/12 02:28:48 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Development utilities
 

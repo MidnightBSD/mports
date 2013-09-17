@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.18 2013/01/24 04:20:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.10.7

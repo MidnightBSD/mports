@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/ldns/Makefile,v 1.5 2012/09/08 22:45:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ldns
 PORTVERSION=	1.6.16

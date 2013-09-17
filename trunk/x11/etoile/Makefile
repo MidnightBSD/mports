@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.9 2010/03/02 01:10:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	etoile
 PORTVERSION=	0.4.1

@@ -3,7 +3,7 @@
 # Whom:					Lars Balker Rasmussen <lbr@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-MRO-Compat/Makefile,v 1.2 2007/07/20 07:26:00 lbr Exp $
-# $MidnightBSD: mports/devel/p5-MRO-Compat/Makefile,v 1.1 2007/09/01 17:14:45 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	MRO-Compat

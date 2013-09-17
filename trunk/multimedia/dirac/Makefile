@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/dirac/Makefile,v 1.2 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2

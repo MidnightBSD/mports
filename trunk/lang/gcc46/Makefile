@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc46/Makefile,v 1.1 2013/02/24 01:55:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gcc
 PORTVERSION=	4.6.4

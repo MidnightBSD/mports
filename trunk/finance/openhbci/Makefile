@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/openhbci/Makefile,v 1.3 2011/02/02 20:58:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openhbci
 PORTVERSION=	0.9.17.2

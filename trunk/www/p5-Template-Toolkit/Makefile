@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.5 2008/10/11 20:13:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Template-Toolkit
 PORTVERSION=	2.22

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/svgalib/Makefile,v 1.2 2009/04/15 01:04:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	svgalib
 PORTVERSION=	1.4.3

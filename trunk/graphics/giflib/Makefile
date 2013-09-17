@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.5 2013/07/04 16:33:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	giflib
 PORTVERSION=	4.2.1

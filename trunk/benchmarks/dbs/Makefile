@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/dbs/Makefile,v 1.3 2009/04/05 19:34:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dbs
 PORTVERSION=	1.1.5

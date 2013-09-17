@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/ez-ipupdate/Makefile,v 1.3 2009/08/01 21:10:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ez-ipupdate
 PORTVERSION=	3.0.11b8

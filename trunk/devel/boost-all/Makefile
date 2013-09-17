@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boost-all/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boost-all
 PORTVERSION=    1.48.0

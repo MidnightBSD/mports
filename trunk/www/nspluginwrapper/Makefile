@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.10 2013/03/20 13:08:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4

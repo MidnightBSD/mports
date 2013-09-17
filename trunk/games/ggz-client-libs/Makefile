@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: mports/games/ggz-client-libs/Makefile,v 1.3 2011/02/02 21:01:20 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	ggz-client-libs

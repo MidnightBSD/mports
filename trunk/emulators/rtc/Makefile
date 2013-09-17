@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/rtc/Makefile,v 1.2 2008/10/16 22:09:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rtc
 PORTVERSION=	2004.02.24.1

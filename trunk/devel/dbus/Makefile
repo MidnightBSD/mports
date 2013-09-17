@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.16 2013/01/14 23:09:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dbus
 PORTVERSION=	1.6.8

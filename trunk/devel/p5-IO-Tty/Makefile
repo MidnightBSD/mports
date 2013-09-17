@@ -3,7 +3,7 @@
 # Whom:			Will Andrews <andrews@technologist.com>
 #
 # $FreeBSD: ports/devel/p5-IO-Tty/Makefile,v 1.16 2006/07/18 16:31:32 erwin Exp $
-# $MidnightBSD: mports/devel/p5-IO-Tty/Makefile,v 1.1 2006/11/25 00:45:05 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	IO-Tty

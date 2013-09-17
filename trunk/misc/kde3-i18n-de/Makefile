@@ -2,7 +2,7 @@
 # Date created: 5 August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/misc/kde3-i18n-de/Makefile,v 1.2 2008/06/16 22:02:26 stevan Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	kde3-i18n-de

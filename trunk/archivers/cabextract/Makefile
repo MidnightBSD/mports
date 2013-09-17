@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/cabextract/Makefile,v 1.4 2010/09/04 09:01:12 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/cabextract/Makefile,v 1.18 2007/08/07 18:21:25 sobomax Exp $
 
 PORTNAME=	cabextract

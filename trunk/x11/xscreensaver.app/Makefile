@@ -3,7 +3,7 @@
 # Whom:                hemi@puresimplicity.net
 #
 # $FreeBSD: ports/x11/xscreensaver.app/Makefile,v 1.4 2005/11/22 22:15:02 pav Exp $
-# $MidnightBSD: mports/x11/xscreensaver.app/Makefile,v 1.4 2008/08/20 19:52:50 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	XScreenSaver.App

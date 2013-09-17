@@ -2,7 +2,7 @@
 # Date Created:				8 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/p5-FuzzyOcr/Makefile,v 1.1 2007/11/08 16:33:38 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	FuzzyOcr

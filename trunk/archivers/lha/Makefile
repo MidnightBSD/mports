@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/lha/Makefile,v 1.6 2011/08/20 14:20:12 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/lha/Makefile,v 1.32 2004/09/22 06:16:54 dinoex Exp $
 #
 

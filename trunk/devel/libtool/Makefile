@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libtool/Makefile,v 1.2 2011/07/16 15:27:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	libtool
 PORTVERSION=	2.4.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.11 2011/06/01 02:12:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pine-pgp-filters
 PORTVERSION=	1.8

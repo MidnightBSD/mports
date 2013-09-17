@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.8 2013/02/26 04:34:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	coreutils
 PORTVERSION=	8.20

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ruby19/Makefile,v 1.2 2009/08/20 19:22:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}

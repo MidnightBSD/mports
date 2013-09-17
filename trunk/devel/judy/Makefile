@@ -3,7 +3,7 @@
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
 # $FreeBSD: ports/devel/judy/Makefile,v 1.12 2008/05/13 09:36:54 skv Exp $
-# $MidnightBSD: mports/devel/judy/Makefile,v 1.1 2008/05/14 17:44:56 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	Judy
 PORTVERSION=	1.0.5

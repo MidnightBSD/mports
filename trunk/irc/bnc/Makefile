@@ -2,7 +2,7 @@
 # Date created:        January 21, 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/irc/bnc/Makefile,v 1.2 2008/05/10 01:58:53 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	bnc

@@ -2,7 +2,7 @@
 # Date created:				2001-11-24
 # Whom:					trevor
 #
-# $MidnightBSD: mports/www/linux-mozilla/Makefile,v 1.1 2006/09/23 22:41:48 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/linux-mozilla/Makefile,v 1.52 2006/07/30 00:09:54 sat Exp $
 #
 

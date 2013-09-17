@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.13 2013/07/14 15:36:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	openbox
 PORTVERSION=	3.5.1

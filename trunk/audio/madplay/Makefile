@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/madplay/Makefile,v 1.2 2008/04/10 04:54:50 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	madplay
 PORTVERSION=	0.15.2b

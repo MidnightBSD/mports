@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/gnome-control-center/Makefile,v 1.5 2012/03/06 01:08:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-control-center
 PORTVERSION=	2.32.1

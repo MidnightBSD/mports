@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/allegro/Makefile,v 1.1 2011/06/18 15:12:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	allegro
 DISTVERSION=	4.2.2

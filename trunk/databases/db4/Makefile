@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/db4/Makefile,v 1.3 2007/11/10 23:35:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	db4
 PORTVERSION=	4.0.14

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Handler-YAWriter/Makefile,v 1.1 2007/03/19 16:34:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Handler-YAWriter
 PORTVERSION=	0.23

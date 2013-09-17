@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.102 2013/08/25 00:23:34 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Databases
 

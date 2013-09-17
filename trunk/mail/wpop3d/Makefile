@@ -2,7 +2,7 @@
 # Date created:   3 September 2006
 # Whom:           wintellect
 #
-# $MidnightBSD: mports/mail/wpop3d/Makefile,v 1.3 2007/11/08 02:57:52 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	wpop3d

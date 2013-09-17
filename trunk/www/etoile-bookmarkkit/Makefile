@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-bookmarkkit/Makefile,v 1.6 2007/10/27 04:21:24 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/etoile-bookmarkkit/Makefile,v 1.6 2007/01/31 18:18:09 dinoex Exp $
 #
 

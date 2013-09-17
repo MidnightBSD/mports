@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/p5-List-MoreUtils/Makefile,v 1.3 2008/06/26 03:48:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	List-MoreUtils
 DISTVERSION=	0.33

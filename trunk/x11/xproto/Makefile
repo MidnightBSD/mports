@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xproto/Makefile,v 1.7 2013/06/14 02:02:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xproto
 PORTVERSION=	7.0.24

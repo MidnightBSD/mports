@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/qt4-xmlpatterns/Makefile,v 1.3 2011/07/23 21:46:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/qt4-xmlpatterns/Makefile,v 1.7 2010/12/02 19:47:14 makc Exp $
 
 PORTNAME=	xmlpatterns

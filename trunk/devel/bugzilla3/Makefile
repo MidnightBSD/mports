@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.13 2013/03/02 21:53:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bugzilla
 PORTVERSION=	3.6.13

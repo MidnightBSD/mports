@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-assistant/Makefile,v 1.5 2011/08/17 12:27:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-assistant/Makefile,v 1.22 2010/12/02 19:47:07 makc Exp $
 
 PORTNAME=	assistant

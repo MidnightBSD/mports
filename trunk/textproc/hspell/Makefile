@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/hspell/Makefile,v 1.1 2010/01/10 20:04:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	hspell
 PORTVERSION=	1.0

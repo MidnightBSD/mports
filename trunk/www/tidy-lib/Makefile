@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy-lib/Makefile,v 1.1 2006/11/05 15:33:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tidy
 CATEGORIES=	www

@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-fonts/bitstream-vera/Makefile,v 1.16 2007/05/19 20:29:08 flz Exp $
-# $MidnightBSD: mports/x11-fonts/bitstream-vera/Makefile,v 1.3 2007/10/11 19:21:25 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	bitstream-vera
 PORTVERSION=	1.10

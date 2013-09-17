@@ -2,7 +2,7 @@
 # Date created:		August 14, 2002
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-wm/xfce4-wm/Makefile,v 1.5 2012/03/06 00:18:03 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/xfce4-wm/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
 #
 

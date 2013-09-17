@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/zssh/Makefile,v 1.1 2009/09/19 22:15:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zssh
 PORTVERSION=	1.5c

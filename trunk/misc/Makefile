@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.66 2013/08/04 20:47:10 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Miscellaneous utilities
 

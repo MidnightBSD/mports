@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-bignum/Makefile,v 1.6 2013/02/24 02:13:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bignum
 PORTVERSION=	0.32

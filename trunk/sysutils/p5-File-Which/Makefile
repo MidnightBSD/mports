@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/p5-File-Which/Makefile,v 1.1 2007/04/28 03:31:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	File-Which
 PORTVERSION=	1.09

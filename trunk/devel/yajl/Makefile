@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/yajl/Makefile,v 1.2 2013/02/19 15:05:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yajl
 PORTVERSION=	2.0.4

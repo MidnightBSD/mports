@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/shared-desktop-ontologies/Makefile,v 1.2 2012/02/29 02:49:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	shared-desktop-ontologies
 PORTVERSION=	0.10.0

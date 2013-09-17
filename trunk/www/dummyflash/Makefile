@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/dummyflash/Makefile,v 1.4 2013/02/19 16:10:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dummyflash
 PORTVERSION=	1.0

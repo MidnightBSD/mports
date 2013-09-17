@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/linux-f10-gtk2/Makefile,v 1.1 2011/06/20 00:27:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/linux-f10-gtk2/Makefile,v 1.35 2011/03/07 15:08:24 ehaupt Exp $
 
 PORTNAME=	gtk2

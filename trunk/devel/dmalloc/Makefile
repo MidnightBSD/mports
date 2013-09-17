@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
-# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.5 2011/07/16 15:23:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dmalloc
 PORTVERSION=	5.5.2

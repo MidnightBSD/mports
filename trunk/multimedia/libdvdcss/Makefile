@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.5 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdvdcss
 PORTVERSION=	1.2.10

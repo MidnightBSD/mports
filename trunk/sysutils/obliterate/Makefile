@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/obliterate/Makefile,v 1.3 2007/10/25 02:57:51 laffer1 Exp $ 
+# $MidnightBSD$ 
 
 PORTNAME=	obliterate
 PORTVERSION=	0.5

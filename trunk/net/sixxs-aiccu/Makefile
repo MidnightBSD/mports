@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/sixxs-aiccu/Makefile,v 1.4 2012/02/11 04:04:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aiccu
 PORTVERSION=	20070115

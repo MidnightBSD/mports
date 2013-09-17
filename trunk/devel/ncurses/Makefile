@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.9 2012/06/09 21:00:50 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ncurses
 PORTVERSION=	${RELEASE}

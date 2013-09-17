@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.8 2010/08/14 03:39:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-icon-theme
 PORTVERSION=	2.31.0

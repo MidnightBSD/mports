@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-NamespaceSupport/Makefile,v 1.2 2008/08/25 19:13:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-NamespaceSupport
 PORTVERSION=	1.11

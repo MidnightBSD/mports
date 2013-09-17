@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/vorbis-tools/Makefile,v 1.4 2010/08/14 06:18:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.4.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBD-mysql51/Makefile,v 1.2 2009/09/27 20:53:52 laffer1 Exp $
+# $MidnightBSD$
 
 PKGNAMESUFFIX=	51
 

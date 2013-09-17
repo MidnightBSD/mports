@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.8 2011/12/15 00:57:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.1

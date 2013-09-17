@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/poe/Makefile,v 1.1 2010/01/21 01:58:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	poe
 PORTVERSION=	0.5.1

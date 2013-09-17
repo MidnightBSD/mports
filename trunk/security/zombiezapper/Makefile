@@ -1,5 +1,5 @@
 # $FreeBSD: ports/security/zombiezapper/Makefile,v 1.8 2005/11/14 17:07:05 sem Exp $
-# $MidnightBSD: mports/security/zombiezapper/Makefile,v 1.4 2010/01/02 22:43:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zombiezapper
 PORTVERSION=	1.2

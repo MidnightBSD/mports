@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/ncurses.mk,v 1.1 2013/06/25 01:49:24 laffer1 Exp $
+# $MidnightBSD$
 #
 # handle dependency on the ncurses port
 #

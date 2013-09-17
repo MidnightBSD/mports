@@ -2,7 +2,7 @@
 # Date created:				24 Mar 2000
 # Whom:					erikhb@bgnett.no
 #
-# $MidnightBSD: mports/databases/libiodbc/Makefile,v 1.2 2009/12/31 23:28:24 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/libiodbc/Makefile,v 1.28 2007/01/17 17:18:11 itetcu Exp $
 #
 # Note:  The location of ${INIDIR} and the installed name of the "odbctest"

@@ -1,5 +1,5 @@
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.8 2012/02/10 02:07:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mDNSResponder
 PORTVERSION=	333.10

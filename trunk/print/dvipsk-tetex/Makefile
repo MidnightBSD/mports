@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.3 2010/05/05 23:59:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	dvipsk-tetex
 PORTVERSION=	5.95a

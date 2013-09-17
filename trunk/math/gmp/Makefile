@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/gmp/Makefile,v 1.2 2012/01/11 00:05:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gmp
 PORTVERSION=	5.1.1

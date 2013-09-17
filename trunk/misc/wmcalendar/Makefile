@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/wmcalendar/Makefile,v 1.2 2010/01/02 19:10:39 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/misc/wmcalendar/Makefile,v 1.12 2007/01/17 06:37:42 xride Exp $
 
 PORTNAME=	wmcalendar

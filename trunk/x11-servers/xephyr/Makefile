@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xephyr/Makefile,v 1.5 2013/06/13 00:10:28 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xephyr
 PORTREVISION=	0

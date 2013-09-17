@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/graphics/qt4-pixeltool/Makefile,v 1.3 2011/09/15 03:33:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/qt4-pixeltool/Makefile,v 1.11 2008/08/04 23:30:36 miwi Exp $
 #
 

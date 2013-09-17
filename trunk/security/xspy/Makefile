@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/xspy/Makefile,v 1.2 2009/05/01 15:22:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xspy
 PORTVERSION=	1.0c

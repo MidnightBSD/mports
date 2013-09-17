@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins-bad/Makefile,v 1.1 2007/10/23 21:12:14 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gstreamer-plugins-bad/Makefile,v 1.10 2007/06/26 12:37:51 ahze Exp $
 
 CATEGORIES=	multimedia

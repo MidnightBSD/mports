@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.15 2013/02/19 13:05:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnustep-make
 PORTVERSION=	2.6.2

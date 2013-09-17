@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/colord/Makefile,v 1.2 2013/08/03 01:15:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	colord
 PORTVERSION=	0.1.20

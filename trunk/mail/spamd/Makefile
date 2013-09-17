@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/spamd/Makefile,v 1.6 2013/03/02 20:52:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	spamd
 PORTVERSION=	4.9.1

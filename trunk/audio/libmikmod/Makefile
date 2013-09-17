@@ -2,7 +2,7 @@
 # Date created:		Sun Apr 11 13:06:01 PDT 1999
 # Whom:			Michael Haro <mharo@area51.fremont.ca.us>
 #
-# $MidnightBSD: mports/audio/libmikmod/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/libmikmod/Makefile,v 1.42 2006/05/03 05:14:20 edwin Exp $
 #
 

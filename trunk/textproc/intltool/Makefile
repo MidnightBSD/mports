@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.9 2013/03/09 23:05:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	intltool
 PORTVERSION=	0.50.2

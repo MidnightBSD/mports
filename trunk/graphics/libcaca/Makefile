@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.8 2012/03/07 03:38:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libcaca
 DISTVERSION=	0.99.beta18

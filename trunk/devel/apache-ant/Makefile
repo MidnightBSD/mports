@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.5 2011/09/17 04:15:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	apache-ant
 PORTVERSION=	1.8.4

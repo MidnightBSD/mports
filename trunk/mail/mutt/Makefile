@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/mutt/Makefile,v 1.5 2009/09/24 04:11:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mutt
 PORTVERSION=	1.4.2.3

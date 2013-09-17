@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Simple/Makefile,v 1.2 2008/03/28 05:42:01 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Simple
 PORTVERSION=	2.20

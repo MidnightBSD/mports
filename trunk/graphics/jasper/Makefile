@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.9 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1

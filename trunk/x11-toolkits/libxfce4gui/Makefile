@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.8 2012/03/11 18:41:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libxfce4gui
 PORTVERSION=	4.10.0

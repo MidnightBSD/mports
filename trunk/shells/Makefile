@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/Makefile,v 1.9 2012/03/08 02:55:03 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Shells
 

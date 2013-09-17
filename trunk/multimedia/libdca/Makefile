@@ -2,7 +2,7 @@
 # Date created:				12th May 2004
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/libdca/Makefile,v 1.1 2007/10/22 03:03:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/libdca/Makefile,v 1.6 2007/07/23 09:36:13 rafan Exp $
 #
 

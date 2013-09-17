@@ -2,7 +2,7 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.2 2008/10/16 21:36:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.8 2006/12/23 14:07:18 demon Exp $
 #
 

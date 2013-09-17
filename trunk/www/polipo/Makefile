@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/polipo/Makefile,v 1.3 2008/05/01 03:59:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	polipo
 PORTVERSION=	1.0.4.1

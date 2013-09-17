@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/gsm/Makefile,v 1.3 2009/12/29 17:57:14 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/gsm/Makefile,v 1.22 2006/08/11 20:55:54 sobomax Exp $
 
 PORTNAME=	gsm

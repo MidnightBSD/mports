@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/nvi-devel/Makefile,v 1.5 2011/02/02 20:19:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6

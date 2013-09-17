@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/science/Makefile,v 1.7 2010/01/21 01:44:15 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT= Scientific applications
 

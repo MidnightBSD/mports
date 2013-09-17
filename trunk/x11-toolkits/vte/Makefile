@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.11 2013/03/30 12:29:35 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vte
 PORTVERSION=	0.26.2

@@ -2,7 +2,7 @@
 # Date created:		8 September 2003
 # Whom:			roam@FreeBSD.org
 #
-# $MidnightBSD: mports/dns/ares/Makefile,v 1.1 2007/11/11 23:04:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/dns/ares/Makefile,v 1.2 2006/07/14 07:41:48 roam Exp $
 #
 

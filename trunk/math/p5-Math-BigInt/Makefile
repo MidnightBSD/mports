@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/p5-Math-BigInt/Makefile,v 1.6 2010/01/30 15:27:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Math-BigInt
 PORTVERSION=	1.997

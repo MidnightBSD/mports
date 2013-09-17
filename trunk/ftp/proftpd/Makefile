@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.6 2011/02/02 21:00:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	proftpd
 PORTVERSION?=	1.3.4d

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.4 2009/10/14 00:02:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	plruby
 PORTVERSION=	0.5.4

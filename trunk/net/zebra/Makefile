@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/zebra/Makefile,v 1.3 2008/03/21 20:02:41 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	zebra
 PORTVERSION=	0.95a

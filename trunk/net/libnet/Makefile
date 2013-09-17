@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libnet/Makefile,v 1.3 2008/10/14 15:51:00 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/libnet/Makefile,v 1.16 2005/11/14 17:07:01 sem Exp $
 
 PORTNAME=	libnet

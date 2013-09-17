@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/Makefile,v 1.11 2013/08/04 17:15:24 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = peer-to-peer network applications
 

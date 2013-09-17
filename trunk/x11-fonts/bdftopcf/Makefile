@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/bdftopcf/Makefile,v 1.3 2012/03/03 23:17:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bdftopcf
 PORTVERSION=	1.0.4

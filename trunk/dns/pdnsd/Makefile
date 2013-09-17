@@ -2,7 +2,7 @@
 # Date Created:				27 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.4 2012/09/08 21:23:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
 #
 

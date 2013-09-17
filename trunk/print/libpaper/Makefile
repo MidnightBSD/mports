@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libpaper/Makefile,v 1.3 2010/09/04 20:11:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libpaper
 PORTVERSION=	1.1.24

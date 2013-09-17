@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/scrnsaverproto/Makefile,v 1.4 2012/03/04 18:47:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scrnsaverproto
 PORTVERSION=	1.2.2

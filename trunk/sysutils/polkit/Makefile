@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/polkit/Makefile,v 1.3 2013/01/11 00:41:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	polkit
 PORTVERSION=	0.105

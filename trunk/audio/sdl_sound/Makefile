@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/sdl_sound/Makefile,v 1.4 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3

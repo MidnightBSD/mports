@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/accessibility/kdeaccessibility4/Makefile,v 1.1 2008/12/13 02:08:02 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdeaccessibility
 PORTVERSION=	${KDE4_VERSION}

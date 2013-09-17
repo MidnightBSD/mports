@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/chu/Makefile,v 1.3 2013/07/15 12:56:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	chu
 PORTVERSION=	0.1.29

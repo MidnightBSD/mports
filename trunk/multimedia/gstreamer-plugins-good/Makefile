@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins-good/Makefile,v 1.1 2007/10/22 02:58:06 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gstreamer-plugins-good/Makefile,v 1.7 2007/06/19 12:55:04 ahze Exp $
 
 PORTREVISION=	0

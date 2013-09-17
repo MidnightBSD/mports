@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/mkfontdir/Makefile,v 1.3 2011/05/10 13:51:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mkfontdir
 PORTVERSION=	1.0.7

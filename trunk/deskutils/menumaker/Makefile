@@ -2,7 +2,7 @@
 # Date created:				2007-03-21
 # Whom:					alepulver
 # 
-# $MidnightBSD: mports/deskutils/menumaker/Makefile,v 1.1 2008/03/24 21:32:23 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/menumaker/Makefile,v 1.1 2007/03/23 00:31:58 alepulver Exp $
 #
 

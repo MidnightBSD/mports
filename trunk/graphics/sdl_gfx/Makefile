@@ -3,7 +3,7 @@
 # Date created:			Apr 25, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/graphics/sdl_gfx/Makefile,v 1.2 2009/09/20 02:00:08 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/sdl_gfx/Makefile,v 1.34 2007/10/28 12:01:32 shaun Exp $
 #
 

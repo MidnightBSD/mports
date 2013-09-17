@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/renaissance/Makefile,v 1.9 2011/09/15 03:01:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	renaissance
 PORTVERSION=	0.9.0

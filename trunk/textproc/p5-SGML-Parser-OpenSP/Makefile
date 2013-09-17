@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-SGML-Parser-OpenSP/Makefile,v 1.2 2013/02/24 00:55:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	SGML-Parser-OpenSP
 PORTVERSION=	0.994

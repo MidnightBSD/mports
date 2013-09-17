@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/libutempter/Makefile,v 1.1 2009/03/13 03:10:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libutempter
 PORTVERSION=	1.1.5

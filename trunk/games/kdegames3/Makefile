@@ -1,5 +1,5 @@
 # $FreeBSD: ports/games/kdegames3/Makefile,v 1.96 2006/09/12 23:26:16 lofi Exp $
-# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.5 2011/02/02 21:01:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdegames
 PORTVERSION=	${KDE_VERSION}

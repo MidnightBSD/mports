@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.6 2013/03/09 23:24:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	XML-Parser
 PORTVERSION=	2.41

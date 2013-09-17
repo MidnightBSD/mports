@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.11 2013/03/30 20:38:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ZendFramework
 PORTVERSION=	2.2.1

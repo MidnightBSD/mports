@@ -1,6 +1,6 @@
 # New ports collection makefile for:    etoile-servicesbarkit
 #
-# $MidnightBSD: mports/deskutils/etoile-servicesbarkit/Makefile,v 1.7 2011/09/03 00:31:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-servicesbarkit/Makefile,v 1.6 2007/01/31 18:17:53 dinoex Exp $
 #
 

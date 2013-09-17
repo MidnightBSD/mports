@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xprehashprinterlist/Makefile,v 1.2 2011/05/07 20:33:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xprehashprinterlist
 PORTVERSION=	1.0.1

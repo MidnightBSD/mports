@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/linux-quake3/Makefile,v 1.3 2008/05/11 14:34:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c

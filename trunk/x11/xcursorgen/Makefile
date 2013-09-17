@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.7 2012/09/09 01:15:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xcursorgen
 PORTVERSION=	1.0.5

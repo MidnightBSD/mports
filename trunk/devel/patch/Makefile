@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/patch/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	patch
 PORTVERSION=	2.7

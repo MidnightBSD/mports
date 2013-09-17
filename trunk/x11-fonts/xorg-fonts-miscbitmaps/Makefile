@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.6 2011/05/08 01:24:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xorg-fonts-miscbitmaps
 PORTVERSION=	7.7

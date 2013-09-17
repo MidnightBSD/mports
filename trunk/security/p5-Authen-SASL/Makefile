@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/p5-Authen-SASL/Makefile,v 1.5 2010/03/25 01:58:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Authen-SASL
 PORTVERSION=	2.16

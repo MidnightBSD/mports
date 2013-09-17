@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.6 2008/08/20 19:56:06 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-trackerkit/Makefile,v 1.7 2007/01/31 18:17:53 dinoex Exp $
 #
 

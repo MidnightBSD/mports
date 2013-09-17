@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Carp-Clan/Makefile,v 1.2 2008/10/09 21:03:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Carp-Clan
 PORTVERSION=	6.04

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xwininfo/Makefile,v 1.3 2011/05/07 20:45:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xwininfo
 PORTVERSION=	1.1.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.6 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomemm
 PORTVERSION=	2.0.1

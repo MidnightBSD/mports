@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/vpnc/Makefile,v 1.4 2010/08/01 06:20:23 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	vpnc
 PORTVERSION=	0.5.3

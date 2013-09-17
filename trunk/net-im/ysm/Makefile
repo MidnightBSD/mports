@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/ysm/Makefile,v 1.1 2013/03/09 21:50:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ysm
 PORTVERSION=	7.2.9.9.1

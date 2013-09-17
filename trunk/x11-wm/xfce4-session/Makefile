@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.7 2012/03/06 00:18:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-session
 PORTVERSION=	4.10.1

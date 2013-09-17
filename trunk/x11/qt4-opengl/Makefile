@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/qt4-opengl/Makefile,v 1.3 2011/07/23 22:43:29 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/qt4-opengl/Makefile,v 1.24 2010/12/02 19:47:16 makc Exp $
 #
 

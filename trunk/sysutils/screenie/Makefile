@@ -2,7 +2,7 @@
 # Date created:				10 August 2004
 # Whom:					Emanuel Haupt <ehaupt@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/screenie/Makefile,v 1.2 2009/12/28 23:09:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/screenie/Makefile,v 1.1 2007/03/26 21:20:12 ehaupt Exp $
 #
 

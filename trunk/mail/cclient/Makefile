@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/cclient/Makefile,v 1.5 2009/09/24 00:55:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cclient
 PORTVERSION=	2007e

@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-etpub/Makefile,v 1.2 2008/03/22 05:22:32 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-etpub/Makefile,v 1.10 2008/02/19 13:20:30 alepulver Exp $
 #
 

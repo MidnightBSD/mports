@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-Compress-Raw-Zlib/Makefile,v 1.9 2011/09/18 20:13:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Compress-Raw-Zlib
 PORTVERSION=	2.062

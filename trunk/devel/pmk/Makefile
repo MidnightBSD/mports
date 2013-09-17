@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pmk/Makefile,v 1.5 2009/04/08 20:49:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pmk
 PORTVERSION=	0.10.4

@@ -1,7 +1,7 @@
 # -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.18 2013/06/21 01:43:42 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 

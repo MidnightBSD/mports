@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.8 2012/03/03 23:17:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXft
 PORTVERSION=	2.3.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4-qvfb/Makefile,v 1.4 2011/08/17 12:28:33 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-qvfb/Makefile,v 1.21 2010/12/02 19:47:10 makc Exp $
 
 PORTNAME=	qvfb

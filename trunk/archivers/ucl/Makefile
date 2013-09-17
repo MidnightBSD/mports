@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/ucl/Makefile,v 1.1 2011/06/18 02:36:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ucl
 PORTVERSION=	1.03

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/bigreqsproto/Makefile,v 1.2 2011/05/02 13:35:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bigreqsproto
 PORTVERSION=	1.1.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.11 2009/11/09 01:06:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4

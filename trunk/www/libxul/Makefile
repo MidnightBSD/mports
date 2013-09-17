@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/libxul/Makefile,v 1.3 2011/09/18 20:58:17 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/www/libxul/Makefile,v 1.28 2011/04/29 15:44:33 flo Exp $
 
 PORTNAME=	libxul

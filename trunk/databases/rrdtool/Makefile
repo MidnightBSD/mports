@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.11 2013/02/10 20:37:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.4.7

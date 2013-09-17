@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.9 2012/03/11 01:25:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gegl
 PORTVERSION=	0.2.0

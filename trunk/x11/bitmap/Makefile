@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/bitmap/Makefile,v 1.2 2011/05/02 13:35:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bitmap
 PORTVERSION=	1.0.7

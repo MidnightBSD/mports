@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/sendxmpp/Makefile,v 1.3 2009/05/01 22:50:37 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sendxmpp
 PORTVERSION=	0.0.8

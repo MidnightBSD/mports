@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Simple/Makefile,v 1.4 2011/07/17 19:30:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Simple
 PORTVERSION=	0.98

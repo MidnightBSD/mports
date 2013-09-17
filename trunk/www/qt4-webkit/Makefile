@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.4 2012/03/01 00:11:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	webkit
 DISTVERSION=	${QT4_VERSION}

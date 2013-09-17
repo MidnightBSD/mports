@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libSM/Makefile,v 1.8 2012/03/02 01:47:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libSM
 PORTVERSION=	1.2.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.3 2011/05/28 21:13:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/ffcall/Makefile,v 1.22 2006/07/08 05:15:07 dinoex Exp $
 
 PORTNAME=	ffcall

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libgii/Makefile,v 1.3 2012/02/28 02:34:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgii
 PORTVERSION=	1.0.2

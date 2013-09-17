@@ -2,7 +2,7 @@
 # Date created:				15 Apr 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/net/gnome-mud/Makefile,v 1.2 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/net/gnome-mud/Makefile,v 1.33 2008/03/25 22:44:42 miwi Exp $
 #
 

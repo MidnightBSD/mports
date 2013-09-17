@@ -3,7 +3,7 @@
 # Whom:			jasone
 #
 # $FreeBSD: ports/editors/zile/Makefile,v 1.58 2008/05/16 14:10:54 miwi Exp $
-# $MidnightBSD: mports/editors/zile/Makefile,v 1.5 2010/04/27 13:08:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zile
 PORTVERSION=	2.4.9

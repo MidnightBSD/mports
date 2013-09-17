@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/smproxy/Makefile,v 1.3 2011/09/20 23:33:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	smproxy
 PORTVERSION=	1.0.5

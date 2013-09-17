@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.12 2011/09/04 20:49:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jabberd
 PORTVERSION=	2.2.17

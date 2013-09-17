@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/phonon/Makefile,v 1.6 2012/03/02 01:27:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	phonon
 PORTVERSION=	4.6.0

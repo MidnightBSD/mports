@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/yaz/Makefile,v 1.5 2012/02/11 03:25:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yaz
 PORTVERSION=	4.2.65

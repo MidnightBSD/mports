@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/pecl-pdflib/Makefile,v 1.5 2009/07/11 17:59:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	pdflib
 PORTVERSION=	2.1.10

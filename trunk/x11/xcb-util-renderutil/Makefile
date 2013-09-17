@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcb-util-renderutil/Makefile,v 1.1 2012/03/07 14:05:26 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11/xcb-util-renderutil/Makefile,v 1.1 2012/01/15 12:46:10 garga Exp $
 
 PORTNAME=	xcb-util-renderutil

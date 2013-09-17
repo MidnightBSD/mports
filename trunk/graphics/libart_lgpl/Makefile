@@ -2,7 +2,7 @@
 # Date created:		8 July 2001
 # Whom:			Hye-Shik Chang <perky@python.or.kr>
 # 
-# $MidnightBSD: mports/graphics/libart_lgpl/Makefile,v 1.9 2012/03/07 03:41:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libart_lgpl
 PORTVERSION=	2.3.21

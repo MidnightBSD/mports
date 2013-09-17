@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Cache-Cache/Makefile,v 1.2 2013/02/17 23:27:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Cache-Cache
 PORTVERSION=	1.06

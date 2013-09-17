@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/raptor2/Makefile,v 1.1 2012/03/01 13:19:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	raptor2
 PORTVERSION=	2.0.7

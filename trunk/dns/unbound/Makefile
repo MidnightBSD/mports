@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/unbound/Makefile,v 1.5 2013/02/23 01:26:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	unbound
 PORTVERSION=	1.4.20

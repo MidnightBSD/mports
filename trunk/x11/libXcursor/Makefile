@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.4 2012/03/03 01:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXcursor
 PORTVERSION=	1.1.14

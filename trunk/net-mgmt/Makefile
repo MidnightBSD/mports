@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.18 2011/09/05 14:20:16 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Network management tools
 

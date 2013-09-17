@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.7 2012/02/24 18:46:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3

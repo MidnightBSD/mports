@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.52 2012/09/08 21:15:02 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Desktop publishing
 

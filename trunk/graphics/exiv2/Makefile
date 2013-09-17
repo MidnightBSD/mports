@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/graphics/exiv2/Makefile,v 1.25 2008/07/25 14:34:25 pav Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	exiv2

@@ -2,7 +2,7 @@
 # Date created:         30 Jul 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/archivers/gcpio/Makefile,v 1.2 2008/03/12 01:38:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cpio
 PORTVERSION=	2.11

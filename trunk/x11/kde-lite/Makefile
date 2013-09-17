@@ -2,7 +2,7 @@
 # Date created:				Sun Nov  4 11:17:58 EST 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/kde-lite/Makefile,v 1.1 2007/11/04 16:21:01 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PKGNAMESUFFIX=	-lite

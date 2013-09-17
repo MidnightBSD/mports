@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/mbmon/Makefile,v 1.2 2009/12/28 23:05:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	mbmon
 PORTVERSION=	205

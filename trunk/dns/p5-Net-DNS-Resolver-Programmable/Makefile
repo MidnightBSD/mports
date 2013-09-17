@@ -2,7 +2,7 @@
 # Date created:				February 9, 2007
 # Whom:	      				Koen Martens <gmc@sonologic.nl>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.4 2008/06/07 16:44:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
 #
 

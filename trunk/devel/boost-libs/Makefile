@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.4 2013/02/23 02:37:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	boost-libs
 PORTVERSION=	1.48.0

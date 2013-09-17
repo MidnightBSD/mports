@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.15 2012/09/29 21:09:20 laffer1 Exp $
+# $MidnightBSD$
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Test-Pod/Makefile,v 1.3 2010/11/13 16:35:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Test-Pod
 PORTVERSION=	1.45

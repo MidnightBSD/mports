@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.8 2011/01/15 04:20:17 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 

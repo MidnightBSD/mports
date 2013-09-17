@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libamrwb/Makefile,v 1.3 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libamrwb
 PORTVERSION=	10.0.0.0

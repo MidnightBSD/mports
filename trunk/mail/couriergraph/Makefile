@@ -3,7 +3,7 @@
 # Whom:				Xavier Beaudouin (kiwi@oav.net)
 #
 # $FreeBSD: ports/mail/couriergraph/Makefile,v 1.3 2006/08/08 15:11:44 clsung Exp $
-# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.4 2008/06/16 21:38:12 stevan Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	couriergraph

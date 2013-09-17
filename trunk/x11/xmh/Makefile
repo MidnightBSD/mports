@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/xmh/Makefile,v 1.1 2007/05/19 20:28:01 flz Exp $
-# $MidnightBSD: mports/x11/xmh/Makefile,v 1.2 2011/05/07 15:29:21 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmh
 PORTVERSION=	1.0.2

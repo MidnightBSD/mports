@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.8 2013/03/31 15:16:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	wv2
 PORTVERSION=	0.4.2

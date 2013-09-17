@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/fop/Makefile,v 1.2 2010/12/12 21:24:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fop
 PORTVERSION=	1.0

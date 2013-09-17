@@ -1,6 +1,6 @@
 #
 #
-# $MidnightBSD: mports/palm/libmal/Makefile,v 1.1 2009/01/04 23:29:40 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libmal

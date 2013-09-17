@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libdbusmenu-qt/Makefile,v 1.1 2011/07/31 16:55:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdbusmenu-qt
 PORTVERSION=	0.9.2

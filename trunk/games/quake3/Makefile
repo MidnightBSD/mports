@@ -2,7 +2,7 @@
 # Date created:				23 August 2005
 # Whom:					pypt
 #
-# $MidnightBSD: mports/games/quake3/Makefile,v 1.1 2008/05/01 07:04:28 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/games/quake3/Makefile,v 1.18 2007/11/07 00:37:19 pav Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Text-Autoformat/Makefile,v 1.1 2007/03/11 04:28:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Text-Autoformat
 PORTVERSION=	1.13

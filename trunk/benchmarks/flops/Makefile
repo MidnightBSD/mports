@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/flops/Makefile,v 1.2 2008/06/25 15:16:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	flops
 PORTVERSION=	2.0

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-tdfx/Makefile,v 1.3 2011/05/07 21:48:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-tdfx
 PORTVERSION=	1.4.3

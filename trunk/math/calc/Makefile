@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/calc/Makefile,v 1.3 2010/11/13 17:01:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	calc
 PORTVERSION=	2.12.4.8

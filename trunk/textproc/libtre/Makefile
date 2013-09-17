@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libtre/Makefile,v 1.2 2011/12/15 00:39:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libtre
 PORTVERSION=	0.8.0

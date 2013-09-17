@@ -2,7 +2,7 @@
 # Date created:			Mon Sep  1 17:03:41 CEST 1997
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD: mports/devel/p5-TimeDate/Makefile,v 1.2 2008/10/16 21:46:57 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-TimeDate/Makefile,v 1.20 2003/10/24 12:02:16 ijliao Exp $
 #
 

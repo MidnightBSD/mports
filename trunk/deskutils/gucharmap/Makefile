@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.5 2009/10/31 23:48:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gucharmap
 PORTVERSION=	2.32.1

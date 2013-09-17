@@ -3,7 +3,7 @@
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
 # $FreeBSD: ports/www/p5-HTML-Parser/Makefile,v 1.59 2006/07/13 13:10:59 mat Exp $
-# $MidnightBSD: mports/www/p5-HTML-Parser/Makefile,v 1.4 2010/01/17 15:07:47 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	HTML-Parser

@@ -3,7 +3,7 @@
 # Date created:			Sep 14, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/textproc/py-docutils/Makefile,v 1.2 2008/10/13 19:57:42 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/py-docutils/Makefile,v 1.11 2006/02/12 03:21:11 mnag Exp $
 #
 

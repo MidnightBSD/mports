@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.14 2013/03/02 20:47:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.7

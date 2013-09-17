@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.10 2011/05/21 21:46:17 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	p7zip
 PORTVERSION=	9.20.1

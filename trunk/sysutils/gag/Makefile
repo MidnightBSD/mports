@@ -2,7 +2,7 @@
 # Date created:				31 Aug 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/sysutils/gag/Makefile,v 1.1 2007/09/01 05:20:15 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	gag

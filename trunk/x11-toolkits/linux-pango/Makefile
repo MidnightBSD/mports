@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/linux-pango/Makefile,v 1.5 2008/06/18 04:29:41 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/linux-pango/Makefile,v 1.13 2006/07/09 21:01:45 bsam Exp $
 
 PORTNAME=	pango

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/yabause/Makefile,v 1.6 2011/02/02 21:42:14 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yabause
 PORTVERSION=	0.9.11.1

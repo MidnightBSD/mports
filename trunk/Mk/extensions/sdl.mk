@@ -27,7 +27,7 @@
 #	.include <bsd.port.post.mk>
 # Run "make -V USE_SDL" to see which libs are asked for at the end.
 #
-# $MidnightBSD: mports/Mk/extensions/sdl.mk,v 1.2 2010/05/05 23:40:10 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 

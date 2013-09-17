@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/totem-pl-parser/Makefile,v 1.3 2011/09/17 05:08:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	totem-pl-parser
 PORTVERSION=	2.32.3

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/agg/Makefile,v 1.2 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	agg
 PORTVERSION=	2.5

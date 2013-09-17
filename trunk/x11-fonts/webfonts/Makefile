@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.5 2011/08/21 18:07:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30

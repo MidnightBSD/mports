@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.41 2013/07/30 23:44:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	phpMyAdmin
 DISTVERSION=	4.0.5

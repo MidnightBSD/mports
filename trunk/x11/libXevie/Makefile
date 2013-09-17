@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/libXevie/Makefile,v 1.1 2007/05/19 20:26:50 flz Exp $
-# $MidnightBSD: mports/x11/libXevie/Makefile,v 1.1 2007/10/05 17:31:30 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	libXevie
 PORTVERSION=	1.0.3

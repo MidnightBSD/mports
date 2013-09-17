@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.10 2011/09/05 14:43:13 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.35

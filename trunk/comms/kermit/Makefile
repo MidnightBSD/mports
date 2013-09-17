@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/kermit/Makefile,v 1.1 2008/08/17 22:04:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kermit
 PORTVERSION=	9.0.302

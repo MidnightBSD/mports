@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.8 2012/02/24 01:53:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Archive-Tar
 PORTVERSION=	1.90

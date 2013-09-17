@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeui/Makefile,v 1.8 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomeui
 PORTVERSION=	2.24.4

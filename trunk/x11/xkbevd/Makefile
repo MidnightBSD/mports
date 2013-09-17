@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xkbevd/Makefile,v 1.4 2012/03/03 01:52:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xkbevd
 PORTVERSION=	1.1.3

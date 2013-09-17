@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.8 2008/08/20 19:48:43 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 

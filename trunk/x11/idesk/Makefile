@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.8 2012/03/02 02:55:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/xfce4-mpc-plugin/Makefile,v 1.4 2011/12/15 00:45:56 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xfce4-mpc-plugin
 PORTVERSION=	0.4.4

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tomcat7/Makefile,v 1.3 2013/03/02 17:04:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tomcat
 PORTVERSION=	7.0.40

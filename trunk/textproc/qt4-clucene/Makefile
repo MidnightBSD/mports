@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/qt4-clucene/Makefile,v 1.3 2011/07/23 21:40:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/qt4-clucene/Makefile,v 1.6 2010/12/02 19:47:14 makc Exp $
 
 PORTNAME=	clucene

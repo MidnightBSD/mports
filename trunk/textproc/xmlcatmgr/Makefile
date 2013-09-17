@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.4 2008/06/13 02:18:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xmlcatmgr
 PORTVERSION=	2.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/adobe-cmaps/Makefile,v 1.1 2007/02/25 20:08:06 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	adobe-cmaps
 PORTVERSION=	20051217

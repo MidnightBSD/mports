@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD: mports/x11/kde3/Makefile,v 1.6 2012/02/16 19:46:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	kde
 PORTVERSION=	${KDE_VERSION}

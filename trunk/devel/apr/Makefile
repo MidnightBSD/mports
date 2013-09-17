@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.22 2013/08/24 15:28:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}

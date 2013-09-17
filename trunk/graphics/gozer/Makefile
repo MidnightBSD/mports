@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gozer/Makefile,v 1.3 2009/03/04 00:24:29 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gozer
 PORTVERSION=	0.7

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.10 2013/08/04 20:13:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=		openldap
 DISTVERSION=		2.4.35

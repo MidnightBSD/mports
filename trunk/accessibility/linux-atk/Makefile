@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.7 2011/06/18 02:24:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	atk
 PORTVERSION=	1.9.1

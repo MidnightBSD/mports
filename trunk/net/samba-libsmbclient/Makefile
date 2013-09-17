@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba-libsmbclient/Makefile,v 1.6 2011/09/15 02:35:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTREVISION=		0
 PORTEPOCH=		0

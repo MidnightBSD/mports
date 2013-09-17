@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/p5-Class-Inspector/Makefile,v 1.13 2006/05/24 07:03:23 skv Exp $
-# $MidnightBSD: mports/devel/p5-Class-Inspector/Makefile,v 1.1 2007/09/01 17:04:03 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	Class-Inspector
 PORTVERSION=	1.24

@@ -2,7 +2,7 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.11 2010/08/05 03:12:37 laffer1 Exp $ 
+# $MidnightBSD$ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 

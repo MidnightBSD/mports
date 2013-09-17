@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.9 2013/03/24 19:16:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	orca
 PORTVERSION=	2.32.1

@@ -2,7 +2,7 @@
 # Date Created:			20 January 2008
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/policykit-gnome/Makefile,v 1.4 2011/12/15 00:57:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/policykit-gnome/Makefile,v 1.3 2008/05/01 00:57:08 marcus Exp $
 #   $MCom: ports/sysutils/policykit-gnome/Makefile,v 1.4 2008/02/15 16:48:08 mezz Exp $
 #

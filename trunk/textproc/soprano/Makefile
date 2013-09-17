@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.9 2013/02/26 03:58:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	soprano
 PORTVERSION=	2.9.2

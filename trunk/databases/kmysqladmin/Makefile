@@ -2,7 +2,7 @@
 # Date created:				Aug 12, 2005
 # Whom:					Igor Leonenko <bananaz@bk.ru>
 #
-# $MidnightBSD: mports/databases/kmysqladmin/Makefile,v 1.3 2009/09/20 00:33:34 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/kmysqladmin/Makefile,v 1.4 2007/06/17 06:25:04 itetcu Exp $
 #
 

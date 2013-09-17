@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/textedit.app/Makefile,v 1.3 2008/10/21 14:38:28 laffer1 Exp $ 
+# $MidnightBSD$ 
 
 PORTNAME=	textedit.app
 PORTVERSION=	4.0

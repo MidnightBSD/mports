@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openvpn/Makefile,v 1.5 2007/11/14 21:33:29 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/security/openvpn/Makefile,v 1.28 2006/09/14 01:22:01 rafan Exp $
 
 PORTNAME=	openvpn

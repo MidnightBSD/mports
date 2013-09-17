@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mbone/sdr/Makefile,v 1.3 2009/04/16 04:19:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sdr
 PORTVERSION=	3.0

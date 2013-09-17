@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-openchrome/Makefile,v 1.4 2011/05/07 21:33:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-openchrome
 PORTVERSION=	0.2.904

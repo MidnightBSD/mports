@@ -2,7 +2,7 @@
 # Date created:         6 August 1997
 # Whom:                 wosch
 #
-# $MidnightBSD: mports/german/dict/Makefile,v 1.4 2007/11/07 21:01:19 ctriv Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	dict-de

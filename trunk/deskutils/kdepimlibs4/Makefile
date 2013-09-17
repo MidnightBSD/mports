@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/kdepimlibs4/Makefile,v 1.1 2008/12/10 15:44:43 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	kdepimlibs
 PORTVERSION=	${KDE4_VERSION}

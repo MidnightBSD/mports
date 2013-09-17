@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache24/Makefile,v 1.4 2013/08/30 12:22:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.6

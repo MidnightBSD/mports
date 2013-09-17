@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gnome-spell/Makefile,v 1.2 2008/03/04 02:01:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnome-spell
 PORTVERSION=	1.0.8

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.5 2013/03/06 03:29:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	yabm
 PORTVERSION=	0.2.1

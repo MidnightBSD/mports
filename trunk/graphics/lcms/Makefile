@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.6 2011/10/10 02:45:27 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
 
 PORTNAME=	lcms

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/linuxigd/Makefile,v 1.1 2011/06/19 19:11:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	linuxigd
 PORTVERSION=	1.0

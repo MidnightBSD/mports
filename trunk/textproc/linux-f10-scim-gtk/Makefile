@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/linux-f10-scim-gtk/Makefile,v 1.1 2011/06/19 23:42:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	scim-gtk
 PORTVERSION=	1.4.7

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gnustep-slideshowkit/Makefile,v 1.1 2010/05/30 23:17:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	slideshowkit
 PORTVERSION=	0.0.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openssh-askpass/Makefile,v 1.1 2008/06/02 04:33:10 archite Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	OpenSSH-askpass

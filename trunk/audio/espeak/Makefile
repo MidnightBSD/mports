@@ -2,7 +2,7 @@
 # Date created:		2006-03-25
 # Whom:			Nicola Vitale	<nivit@email.it>
 #
-# $MidnightBSD: mports/audio/espeak/Makefile,v 1.2 2009/12/31 21:00:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/audio/espeak/Makefile,v 1.15 2007/08/06 13:33:16 nivit Exp $
 #
 

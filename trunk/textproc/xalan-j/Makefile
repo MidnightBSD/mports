@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xalan-j/Makefile,v 1.3 2011/12/23 00:49:49 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xalan-j
 PORTVERSION=	2.7.1

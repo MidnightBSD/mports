@@ -1,6 +1,6 @@
 # New ports collection makefile for:	gstreamer-plugins-dts
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins-dts/Makefile,v 1.1 2008/01/05 01:03:21 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/gstreamer-plugins-dts/Makefile,v 1.11 2007/08/18 05:57:55 marcus Exp $
 
 PORTREVISION=	0

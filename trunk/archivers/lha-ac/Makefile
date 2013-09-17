@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/lha-ac/Makefile,v 1.2 2008/02/22 04:30:04 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/lha-ac/Makefile,v 1.4 2006/09/05 05:01:47 dinoex Exp $
 #
 

@@ -2,7 +2,7 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.8 2011/12/15 00:40:01 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 

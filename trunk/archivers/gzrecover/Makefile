@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/gzrecover/Makefile,v 1.2 2008/03/12 01:38:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gzrecover
 PORTVERSION=	0.5

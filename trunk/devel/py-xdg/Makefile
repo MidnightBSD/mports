@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-xdg/Makefile,v 1.1 2008/06/14 00:10:15 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/py-xdg/Makefile,v 1.19 2007/10/24 23:35:16 marcus Exp $
 
 PORTNAME=	xdg

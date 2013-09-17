@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.9 2013/03/30 13:30:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ezm3
 PORTVERSION=	1.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/xpostit/Makefile,v 1.4 2013/07/09 00:55:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xpostit
 PORTVERSION=	3.3.1

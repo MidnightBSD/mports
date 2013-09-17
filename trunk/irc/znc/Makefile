@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/znc/Makefile,v 1.8 2012/02/24 15:19:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	znc
 PORTVERSION=	1.0

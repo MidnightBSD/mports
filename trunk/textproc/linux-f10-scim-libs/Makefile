@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/linux-f10-scim-libs/Makefile,v 1.2 2011/11/10 21:06:35 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/linux-f10-scim-libs/Makefile,v 1.11 2011/03/03 09:26:43 ehaupt Exp $
 
 PORTNAME=	scim-libs

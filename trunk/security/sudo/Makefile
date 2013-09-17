@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.16 2013/04/14 03:35:07 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sudo
 DISTVERSION=	1.8.7

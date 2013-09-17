@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.11 2013/07/31 12:42:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.7.2

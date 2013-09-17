@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/arc/Makefile,v 1.3 2009/12/25 16:47:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	arc
 PORTVERSION=	5.21p

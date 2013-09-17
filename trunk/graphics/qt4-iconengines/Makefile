@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/qt4-iconengines/Makefile,v 1.3 2011/07/24 16:39:14 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/qt4-iconengines/Makefile,v 1.21 2010/12/02 19:47:11 makc Exp $
 
 PORTNAME=	iconengines

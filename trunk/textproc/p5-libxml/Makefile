@@ -2,7 +2,7 @@
 # Date created:		13 March 2001
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
-# $MidnightBSD: mports/textproc/p5-libxml/Makefile,v 1.2 2008/08/25 19:12:30 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/p5-libxml/Makefile,v 1.7 2005/01/21 09:27:22 tobez Exp $
 #
 

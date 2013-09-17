@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-drivers/xf86-video-newport/Makefile,v 1.2 2007/09/15 14:04:27 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xf86-video-newport/Makefile,v 1.2 2011/05/07 21:29:40 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-newport
 PORTVERSION=	0.2.3

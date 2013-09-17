@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.6 2011/12/15 00:57:48 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.23

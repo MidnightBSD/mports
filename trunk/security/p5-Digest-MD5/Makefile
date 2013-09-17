@@ -3,7 +3,7 @@
 # Whom:					ache
 #
 # $FreeBSD: ports/security/p5-Digest-MD5/Makefile,v 1.31 2006/04/14 20:45:41 linimon Exp $
-# $MidnightBSD: mports/security/p5-Digest-MD5/Makefile,v 1.2 2008/06/04 17:59:28 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	Digest-MD5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.13 2011/03/06 18:56:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	nano
 PORTVERSION=	2.2.6

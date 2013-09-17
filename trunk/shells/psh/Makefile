@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/psh/Makefile,v 1.1 2009/12/28 20:33:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	psh
 PORTVERSION=	1.8.1

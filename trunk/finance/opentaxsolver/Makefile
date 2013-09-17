@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/opentaxsolver/Makefile,v 1.4 2010/11/20 03:27:36 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	${UPPORTNAME:L}
 PORTVERSION=	10.00

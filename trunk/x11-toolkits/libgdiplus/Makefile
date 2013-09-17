@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.12 2013/02/22 03:27:59 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgdiplus
 PORTVERSION=	2.10

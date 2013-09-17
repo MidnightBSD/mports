@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/luit/Makefile,v 1.4 2012/03/02 23:44:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	luit
 PORTVERSION=	1.1.0

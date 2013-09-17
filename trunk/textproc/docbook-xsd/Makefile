@@ -3,7 +3,7 @@
 # Date created:			Feb 9, 2004
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/textproc/docbook-xsd/Makefile,v 1.2 2008/05/31 17:40:49 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-xsd/Makefile,v 1.1 2004/02/11 03:31:08 ijliao Exp $
 #
 

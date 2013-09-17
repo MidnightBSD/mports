@@ -6,7 +6,7 @@
 # Created by: Lucas Holt <luke@midnightbsd.org>
 # Date:		Nov 23 2007
 #
-# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.5 2011/09/18 00:46:40 laffer1 Exp $
+# $MidnightBSD$
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 

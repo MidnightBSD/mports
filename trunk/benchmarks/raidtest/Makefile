@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/raidtest/Makefile,v 1.2 2007/10/25 00:43:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	raidtest
 PORTVERSION=	1.2

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.13 2013/01/19 04:23:09 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.9.0

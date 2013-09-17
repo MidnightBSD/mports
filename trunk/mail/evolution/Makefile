@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.10 2009/09/26 02:56:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	evolution
 PORTVERSION=	2.26.3

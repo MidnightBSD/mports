@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/editres/Makefile,v 1.2 2011/05/02 23:18:00 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	editres
 PORTVERSION=	1.0.6

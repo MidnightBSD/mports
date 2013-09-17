@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/libFS/Makefile,v 1.6 2012/03/03 23:17:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libFS
 PORTVERSION=	1.0.5

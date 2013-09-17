@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/abook/Makefile,v 1.5 2009/09/24 01:02:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	abook
 PORTVERSION=	0.5.6

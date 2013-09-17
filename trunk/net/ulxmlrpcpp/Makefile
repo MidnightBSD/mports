@@ -2,7 +2,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.5 2011/12/15 00:57:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	ulxmlrpcpp
 PORTVERSION=	1.7.5

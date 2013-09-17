@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libproxy/Makefile,v 1.5 2013/08/12 00:32:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libproxy
 PORTVERSION=	0.4.6

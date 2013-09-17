@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/science/gtamsanalyzer/Makefile,v 1.1 2010/01/21 01:45:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtamsanalyzer
 PORTVERSION=	0.42

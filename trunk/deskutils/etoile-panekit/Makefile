@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.6 2007/10/25 22:50:43 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-panekit/Makefile,v 1.4 2007/01/31 18:17:53 dinoex Exp $
 #
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.3 2010/05/16 16:15:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	setuptools
 PORTVERSION=	0.6c11

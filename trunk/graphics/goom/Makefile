@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/goom/Makefile,v 1.6 2011/06/01 01:34:42 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0

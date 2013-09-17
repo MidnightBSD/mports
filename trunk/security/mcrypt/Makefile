@@ -1,5 +1,5 @@
 # based on the OpenBSD port
-# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.6 2011/04/11 23:12:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	mcrypt
 PORTVERSION=	2.6.8

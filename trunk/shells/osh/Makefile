@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/osh/Makefile,v 1.4 2012/09/29 20:41:39 laffer1 Exp $ 
+# $MidnightBSD$ 
 # $FreeBSD: ports/shells/osh/Makefile,v 1.17 2006/08/07 07:58:26 miwi Exp $
 
 PORTNAME=	osh

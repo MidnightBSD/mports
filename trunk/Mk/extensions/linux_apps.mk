@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/linux_apps.mk,v 1.1 2011/06/18 02:00:53 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.linux-apps.mk,v 1.41 2011/05/06 12:21:44 bsam Exp $
 #
 

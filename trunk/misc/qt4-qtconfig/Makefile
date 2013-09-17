@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/qt4-qtconfig/Makefile,v 1.2 2011/07/23 23:44:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	qtconfig
 DISTVERSION=	${QT4_VERSION}

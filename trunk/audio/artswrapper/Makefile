@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@freebsd.org>
 #
 # $FreeBSD: ports/audio/artswrapper/Makefile,v 1.19 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/artswrapper/Makefile,v 1.1 2006/11/24 18:57:51 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	artswrapper

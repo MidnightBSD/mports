@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/jadetex/Makefile,v 1.5 2013/07/03 20:40:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jadetex
 PORTVERSION=	3.13

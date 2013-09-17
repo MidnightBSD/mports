@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.6 2010/06/04 22:37:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	threads-shared
 PORTVERSION=	1.40

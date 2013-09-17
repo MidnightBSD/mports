@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/p5-Net-HTTP/Makefile,v 1.1 2012/02/03 03:51:22 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Net-HTTP
 PORTVERSION=	6.05

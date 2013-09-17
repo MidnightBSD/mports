@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.11 2013/06/12 22:27:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	zenity
 PORTVERSION=	2.32.1

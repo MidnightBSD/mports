@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/p5-CGI-Ajax/Makefile,v 1.3 2009/06/27 22:03:23 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	CGI-Ajax

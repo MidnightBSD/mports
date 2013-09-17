@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.9 2013/06/14 01:50:54 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.19.1

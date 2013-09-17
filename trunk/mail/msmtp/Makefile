@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.8 2011/05/15 22:02:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	msmtp
 PORTVERSION=	1.4.31

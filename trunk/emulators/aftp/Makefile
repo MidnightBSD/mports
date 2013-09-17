@@ -3,7 +3,7 @@
 # Last updated:		2nd August, 1998
 # Whom:			Joel Sutton <jsutton@bbcon.com.au>
 #
-# $MidnightBSD: mports/emulators/aftp/Makefile,v 1.2 2008/10/16 22:05:40 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/emulators/aftp/Makefile,v 1.11 2004/02/05 20:37:08 trevor Exp $
 #
 

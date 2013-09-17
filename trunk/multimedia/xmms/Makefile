@@ -2,7 +2,7 @@
 # Date created:			3 July 1999
 # Whom:				Espen Skoglund <esk@ira.uka.de>
 #
-# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.6 2010/12/04 15:39:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
 #
 

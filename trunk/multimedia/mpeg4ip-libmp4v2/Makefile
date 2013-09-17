@@ -2,7 +2,7 @@
 # Date created:		28 Sep 2004
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.7 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.15 2007/01/27 07:54:19 kris Exp $
 #
 

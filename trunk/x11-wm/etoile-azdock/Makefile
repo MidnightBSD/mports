@@ -2,7 +2,7 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-wm/etoile-azdock/Makefile,v 1.5 2007/11/15 16:55:52 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/etoile-azdock/Makefile,v 1.5 2007/01/31 18:18:12 dinoex Exp $
 #
 

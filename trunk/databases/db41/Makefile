@@ -2,7 +2,7 @@
 # Date created:				2003-01-04
 #
 # $FreeBSD: ports/databases/db41/Makefile,v 1.60 2006/04/14 03:44:07 mnag Exp $
-# $MidnightBSD: mports/databases/db41/Makefile,v 1.5 2007/10/31 19:49:18 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	db41

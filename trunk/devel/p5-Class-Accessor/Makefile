@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Class-Accessor/Makefile,v 1.3 2010/12/02 01:14:02 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Class-Accessor
 PORTVERSION=	0.34

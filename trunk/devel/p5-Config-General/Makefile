@@ -2,7 +2,7 @@
 # Date created:				August 27 2002
 # Whom:	      				Sheldon Hearn <sheldonh@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Config-General/Makefile,v 1.4 2008/10/11 06:36:26 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Config-General/Makefile,v 1.16 2007/02/25 07:55:16 rafan Exp $
 #
 

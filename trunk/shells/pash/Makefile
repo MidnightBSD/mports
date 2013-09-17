@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/pash/Makefile,v 1.2 2007/05/17 17:57:32 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	pash
 PORTVERSION=	2.2

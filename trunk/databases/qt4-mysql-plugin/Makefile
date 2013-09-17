@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/qt4-mysql-plugin/Makefile,v 1.6 2011/07/23 23:13:45 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/qt4-mysql-plugin/Makefile,v 1.16 2011/03/25 09:54:15 avilla Exp $
 
 PORTNAME=	qt4-${DB}-plugin

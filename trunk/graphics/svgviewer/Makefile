@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.5 2011/09/15 03:35:57 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	svgviewer
 PORTVERSION=	0.2.0

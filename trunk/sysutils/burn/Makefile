@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/burn/Makefile,v 1.1 2010/01/21 01:40:41 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	burn
 PORTVERSION=	0.4.1

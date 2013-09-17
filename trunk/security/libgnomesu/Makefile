@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.4 2009/09/20 02:04:45 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libgnomesu
 PORTVERSION=	1.0.0

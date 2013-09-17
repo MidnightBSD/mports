@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.7 2010/04/25 12:29:12 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10

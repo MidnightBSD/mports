@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.8 2012/03/01 02:34:44 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	lame
 PORTVERSION=	3.99.5

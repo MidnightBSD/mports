@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-clocks/aclock/Makefile,v 1.2 2011/04/17 19:56:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	aclock
 PORTVERSION=	0.4.0

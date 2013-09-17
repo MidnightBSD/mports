@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/font-adobe-utopia-type1/Makefile,v 1.2 2009/04/04 15:19:01 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	font-adobe-utopia-type1
 PORTVERSION=	1.0.4

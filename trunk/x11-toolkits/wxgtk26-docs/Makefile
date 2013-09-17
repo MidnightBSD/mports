@@ -2,7 +2,7 @@
 # Date created:				November, 15th 2005
 # Whom:					Matthias Sund <m.sund@arcor.de>
 #
-# $MidnightBSD: mports/x11-toolkits/wxgtk26-docs/Makefile,v 1.2 2008/08/20 17:34:05 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/x11-toolkits/wxgtk26-docs/Makefile,v 1.4 2006/04/02 11:06:58 fjoe Exp $
 #
 

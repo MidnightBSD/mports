@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Pod-Escapes/Makefile,v 1.1 2008/03/21 20:10:55 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Pod-Escapes
 PORTVERSION=	1.04

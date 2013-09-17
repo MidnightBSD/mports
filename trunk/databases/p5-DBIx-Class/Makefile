@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBIx-Class/Makefile,v 1.3 2010/10/21 19:24:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	DBIx-Class
 PORTVERSION=	0.08127

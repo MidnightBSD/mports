@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcalc/Makefile,v 1.5 2013/02/18 23:04:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xcalc
 PORTVERSION=	1.0.5

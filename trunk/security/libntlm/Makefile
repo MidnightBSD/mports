@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libntlm/Makefile,v 1.7 2013/03/27 00:52:53 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libntlm
 PORTVERSION=	1.3

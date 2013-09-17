@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/etoile-unitkit/Makefile,v 1.3 2007/11/07 20:20:11 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/etoile-unitkit/Makefile,v 1.7 2007/01/31 18:17:56 dinoex Exp $
 #
 

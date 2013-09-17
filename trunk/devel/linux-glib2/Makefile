@@ -2,7 +2,7 @@
 # Date created:				2003-07-05
 # Whom:					trevor
 #
-# $MidnightBSD: mports/devel/linux-glib2/Makefile,v 1.2 2007/09/14 15:31:38 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-glib2/Makefile,v 1.16 2006/07/09 21:01:43 bsam Exp $
 #
 

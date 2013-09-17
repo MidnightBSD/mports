@@ -2,7 +2,7 @@
 # Date created:		16 January 2003
 # Whom:			marcus@FreeBSD.org
 #
-# $MidnightBSD: mports/textproc/docbook-sk/Makefile,v 1.3 2007/05/08 00:29:08 ctriv Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/docbook-sk/Makefile,v 1.27 2005/02/14 08:43:48 pav Exp $
 #
 

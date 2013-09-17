@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Email-Address/Makefile,v 1.3 2009/09/24 04:09:52 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Email-Address
 PORTVERSION=	1.89.2

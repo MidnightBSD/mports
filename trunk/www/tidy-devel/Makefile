@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.10 2011/08/21 15:34:47 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs

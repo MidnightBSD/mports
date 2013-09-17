@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.6 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gtksourceview
 PORTVERSION=	1.8.5

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-Module-Find/Makefile,v 1.2 2010/12/13 00:17:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Module-Find
 PORTVERSION=	0.11

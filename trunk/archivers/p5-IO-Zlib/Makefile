@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-IO-Zlib/Makefile,v 1.8 2009/12/25 17:33:19 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	IO-Zlib
 PORTVERSION=	1.10

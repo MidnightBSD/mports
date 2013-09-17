@@ -2,7 +2,7 @@
 # Date created:		2008-06-23
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD: mports/databases/db47/Makefile,v 1.1 2008/10/20 17:45:45 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/databases/db47/Makefile,v 1.88 2008/06/09 05:59:35 vanilla Exp $
 #
 

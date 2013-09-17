@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/p5-Image-PBMlib/Makefile,v 1.1 2007/03/20 19:54:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	Image-PBMlib
 PORTVERSION=	1.05

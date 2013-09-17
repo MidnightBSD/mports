@@ -3,7 +3,7 @@
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
 # $FreeBSD: ports/devel/p5-IO-String/Makefile,v 1.12 2005/12/07 18:52:49 erwin Exp $
-# $MidnightBSD: mports/devel/p5-IO-String/Makefile,v 1.1 2006/12/26 00:57:01 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	IO-String

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kbproto/Makefile,v 1.2 2011/05/02 23:49:32 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	kbproto
 PORTVERSION=	1.0.6

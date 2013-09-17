@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/Makefile,v 1.5 2010/01/21 01:51:04 laffer1 Exp $
+# $MidnightBSD$
 #
 
     COMMENT = Network news

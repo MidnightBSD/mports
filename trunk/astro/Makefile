@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/Makefile,v 1.7 2011/05/28 04:50:45 laffer1 Exp $
+# $MidnightBSD$
 
 COMMENT = Astronomical ports
 

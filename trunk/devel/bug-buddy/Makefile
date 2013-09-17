@@ -2,7 +2,7 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/bug-buddy/Makefile,v 1.3 2008/07/19 09:07:27 crash Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/devel/bug-buddy/Makefile,v 1.45 2007/10/24 23:35:03 marcus Exp $
 #   $MCom: ports/devel/bug-buddy/Makefile,v 1.55 2007/10/06 22:03:31 mezz Exp $
 #

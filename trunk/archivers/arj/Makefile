@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/arj/Makefile,v 1.8 2011/08/20 14:03:20 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22

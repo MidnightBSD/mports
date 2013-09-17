@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.6 2010/08/14 03:04:03 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gdl
 PORTVERSION=	2.30.1

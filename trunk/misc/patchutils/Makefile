@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.3 2013/02/22 03:06:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	patchutils
 PORTVERSION=	0.3.3

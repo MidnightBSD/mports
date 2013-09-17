@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/py-fileutils/Makefile,v 1.2 2008/10/16 21:51:11 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	fileutils
 PORTVERSION=	0.6

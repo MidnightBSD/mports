@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.16 2011/06/12 05:22:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.19

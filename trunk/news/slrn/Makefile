@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/news/slrn/Makefile,v 1.2 2009/06/28 00:17:24 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	slrn
 PORTVERSION=	1.0.1

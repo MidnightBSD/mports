@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/linux-openssl/Makefile,v 1.4 2008/05/22 21:56:11 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/security/linux-openssl/Makefile,v 1.2 2006/11/08 00:12:10 acm Exp $
 
 PORTNAME=	openssl

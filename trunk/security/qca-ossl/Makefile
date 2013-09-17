@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/security/qca-ossl/Makefile,v 1.1 2009/01/04 03:43:37 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	qca-ossl
 DISTVERSION=	2.0.0-beta3

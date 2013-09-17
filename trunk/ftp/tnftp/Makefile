@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/tnftp/Makefile,v 1.2 2009/12/25 16:00:51 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	tnftp
 PORTVERSION=	20130505

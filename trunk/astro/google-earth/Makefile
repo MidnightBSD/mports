@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.16 2013/08/18 16:04:04 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	google-earth
 PORTVERSION=	6.0.3.2197
