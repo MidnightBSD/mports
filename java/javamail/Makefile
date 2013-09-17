@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/javamail/Makefile,v 1.2 2013/02/09 01:49:34 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	javamail
 PORTVERSION=	1.4.7

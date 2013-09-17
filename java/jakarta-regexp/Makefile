@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.4 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jakarta-regexp
 PORTVERSION=	1.5

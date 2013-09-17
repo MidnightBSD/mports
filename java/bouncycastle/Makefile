@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.5 2011/12/24 02:48:27 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	bouncycastle
 PORTVERSION=	1.45

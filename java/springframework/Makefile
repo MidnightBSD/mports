@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/springframework/Makefile,v 1.1 2013/02/21 03:09:10 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	springframework
 PORTVERSION=	3.2.1

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/bootstrap-openjdk/Makefile,v 1.3 2013/06/21 02:40:33 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	${JDK_NAME}
 PORTVERSION=	${DISTVERSION_${ARCH}}

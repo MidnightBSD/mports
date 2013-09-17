@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/netbeans/Makefile,v 1.7 2013/02/09 01:53:37 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.46 2011/10/27 08:58:07 gahr Exp $
 #
 

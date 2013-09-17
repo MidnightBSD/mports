@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jamvm/Makefile,v 1.1 2008/07/08 02:39:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jamvm
 PORTVERSION=	1.5.4

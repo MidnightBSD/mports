@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jdom/Makefile,v 1.5 2013/02/09 01:51:26 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jdom
 PORTVERSION=	1.1.1

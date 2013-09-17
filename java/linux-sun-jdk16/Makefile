@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.11 2013/03/05 13:13:31 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jdk
 PORTVERSION=	${DL_JDK_VERSION:S/_/./g}

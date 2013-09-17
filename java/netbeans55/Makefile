@@ -2,7 +2,7 @@
 # Date Created:				1 May 2007
 # Whom:				 	Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/netbeans55/Makefile,v 1.2 2008/05/01 02:35:06 laffer1 Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	netbeans55

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jdbcpool/Makefile,v 1.3 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	jdbcpool
 PORTVERSION=	0.99

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-primitives/Makefile,v 1.3 2011/12/24 03:17:54 laffer1 Exp $
+# $MidnightBSD$
 # $FreeBSD: ports/java/jakarta-commons-primitives/Makefile,v 1.4 2004/09/01 13:32:57 hq Exp $
 
 PORTNAME=	commons-primitives

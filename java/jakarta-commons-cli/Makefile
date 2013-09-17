@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-cli/Makefile,v 1.2 2011/12/24 03:14:05 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	commons-cli
 PORTVERSION=	1.2
