@@ -1,0 +1,12 @@
+#
+# List of path prefixes that we relax the ID keyword checks for.
+# By "relax", it means that we won't fail a commit if isn't present.
+# Everything else must still be in order though.
+#
+# These paths are used by verify.py and are in canonical form, after
+# head/, tags/*/ etc is stripped off.
+#
+# These are python style regexps.
+#
+# $MidnightBSD$
+#contrib/[^/]+/
