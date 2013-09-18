@@ -3366,7 +3366,7 @@
  
  SASRCDIR = $(AGENT_DIR)/src/os/$(Platform_os_family)
  
-+ifeq ($(OS_VENDOR), FreeBSD)
++ifeq ($(OS_VENDOR), MidnightBSD)
  SASRCFILES = $(SASRCDIR)/salibelf.c                   \
               $(SASRCDIR)/symtab.c                     \
               $(SASRCDIR)/libproc_impl.c               \
