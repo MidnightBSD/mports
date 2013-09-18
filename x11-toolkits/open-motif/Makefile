@@ -2,6 +2,7 @@
 
 PORTNAME=	open-motif
 PORTVERSION=	2.3.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 # MASTER_SITES=	SF/${PORTNAME}/Motif%202.3.4%20Source%20Code/
 MASTER_SITES=	SF/motif/Motif%202.3.4%20Source%20Code/
@@ -10,6 +11,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
+
 LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
@@ -19,6 +21,7 @@ MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	lesstif-[0-9]*
 WRKSRC=		${WRKDIR}/motif-${PORTVERSION}
 
+USES=		pkgconfig
 USE_ICONV=	yes
 USE_AUTOTOOLS=	libtool autoconf:env automake:env
 USE_GMAKE=	yes
