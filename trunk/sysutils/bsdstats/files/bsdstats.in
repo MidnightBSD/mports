@@ -1,7 +1,6 @@
 #!/bin/sh 
 #
-# $FreeBSD: ports/sysutils/bsdstats/files/bsdstats.in,v 1.4 2012/01/14 08:56:57 dougb Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: bsdstats
 # REQUIRE: LOGIN
