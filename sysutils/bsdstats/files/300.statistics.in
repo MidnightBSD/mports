@@ -2,7 +2,6 @@
 #
 # $FreeBSD: ports/sysutils/bsdstats/files/300.statistics,v 1.38 2006/12/05 13:49:45 scrappy Exp $
 # $MidnightBSD: mports/sysutils/bsdstats/files/300.statistics,v 1.4 2009/09/25 02:23:53 laffer1 Exp $ 
-#
 
 # If there is a global system configuration file, suck it in.
 #
@@ -101,9 +100,9 @@ send_devices () {
 send_ports () {
     case $(uname) in
 	MidnightBSD )
-	    for line in `/usr/sbin/pkg_info | /usr/bin/awk '{print $1}' `
+	    for line in `/usr/sbin/mport list | /usr/bin/awk '{print $1}' `
 	    do
-              category=`grep "@comment ORIGIN" /var/db/pkg/${line}/+CONTENTS | sed -E 's/^\@comment ORIGIN:(.+)\/.+/\1/g'`
+              category=`mport info ${line} | grep "origin:" | sed -E 's/^\origin:(.+)\/.+/\1/g'`
               line=$(uri_escape $line)
               category=$(uri_escape $category)
 	      query_string=$query_string`echo \&port[]=${category}:${line}`
