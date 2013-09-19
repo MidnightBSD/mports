@@ -1,6 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: ports/java/netbeans/Makefile,v 1.46 2011/10/27 08:58:07 gahr Exp $
-#
 
 PORTNAME=	netbeans
 PORTVERSION=	7.3

@@ -53,7 +53,7 @@
      private static final String dfFormat;
      static {
 -        if (name.equals("SunOS") || name.equals("Linux")) {
-+        if (name.equals("FreeBSD") || name.equals("SunOS") || name.equals("Linux")) {
++        if (name.equals("MidnightBSD") || name.equals("SunOS") || name.equals("Linux")) {
              // FileSystem Total Used Available Use% MountedOn
              dfFormat = "([^\\s]+)\\s+(\\d+)\\s+\\d+\\s+(\\d+)\\s+\\d+%\\s+([^\\s]+)";
          } else if (name.startsWith("Windows")) {
@@ -154,7 +154,7 @@
 +go  tr_TR.ISO-8859-9 iso-8859-9
 +go  C                iso-8859-1
  
-+# FreeBSD
++# MidnightBSD
  if [ "$s" = FreeBSD ]; then
 -  go  ja_JP        x-euc-jp-linux
 -  go  ja_JP.eucjp  x-euc-jp-linux
@@ -191,7 +191,7 @@
  
      static final boolean debug = Boolean.getBoolean("MemoryAllocatorTest.Debug");
      static final boolean WINDOWS = System.getProperty("os.name").startsWith("Windows");
-+    static final boolean FREEBSD = System.getProperty("os.name").startsWith("FreeBSD");
++    static final boolean MIDNIGHTBSD = System.getProperty("os.name").startsWith("MidnightBSD");
      static final boolean LINUX = System.getProperty("os.name").startsWith("Linux");
      static final boolean SIXTYFOUR_BIT = System.getProperty("sun.arch.data.model", "32").equals("64");
      static final private int NATIVE_EXPECTED_EXIT_CODE = (WINDOWS) ? -1 : 255;

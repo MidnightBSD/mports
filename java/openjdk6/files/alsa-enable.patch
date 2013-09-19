@@ -22,7 +22,7 @@
  
  void getALSAVersion(char* buffer, int len) {
      if (!hasGottenALSAVersion) {
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +        // XXX We do not use ALSA drivers.  Just copy the library version.
 +        strcpy(ALSAVersionString, SND_LIB_VERSION_STR);
 +#else
