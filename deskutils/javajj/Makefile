@@ -1,23 +1,22 @@
-# New ports collection makefile for:    javajj
-# Date created:		January 3, 2008
 # Whom:			Lucas Holt
-#
 # $MidnightBSD$
 
 PORTNAME=	javajj
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	deskutils java
 MASTER_SITES=	http://www.justjournal.com/software/
 DISTFILES=	justjournal-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Just Journal for Java blogging app
+
 LICENSE=	unknown
 
 MAKE_ARGS=	-quiet -noinput
 USE_BZIP2=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.6+
 USE_ANT=	yes
 
 WRKSRC=		${WRKDIR}/justjournal-${PORTVERSION}/java_jjclient
