@@ -17,6 +17,7 @@ LICENSE=	restricted
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 RESTRICTED=	License does not allow distribution with fee
+DEPRICATED=	Should use openjdk6 now. 
 
 USE_BZIP2=	yes
 USE_XORG+=	xi xp xt xtst
