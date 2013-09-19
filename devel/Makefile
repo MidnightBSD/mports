@@ -196,6 +196,7 @@ SUBDIR += motor
 SUBDIR += nasm
 SUBDIR += ncurses
 SUBDIR += newt
+SUBDIR += ninja
 SUBDIR += nspr
 SUBDIR += oaf
 SUBDIR += objcunit
