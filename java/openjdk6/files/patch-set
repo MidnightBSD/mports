@@ -328,11 +328,11 @@
    MB_OF_MEMORY := $(shell free -m | fgrep Mem: | sed -e 's@\ \ *@ @g' | cut -d' ' -f2)
  endif
  
-+ifeq ($(SYSTEM_UNAME), FreeBSD)
++ifeq ($(SYSTEM_UNAME), MidnightBSD)
 +  PLATFORM = bsd
-+  OS_NAME = freebsd
-+  OS_VENDOR = FreeBSD
-+ REQUIRED_OS_VERSION = 6.0
++  OS_NAME = midnightbsd
++  OS_VENDOR = MidnightBSD
++ REQUIRED_OS_VERSION = 0.4
 +endif
 +
 +ifeq ($(SYSTEM_UNAME), Darwin)
@@ -806,7 +806,7 @@
  }
  
  // add a thread to ps_prochandle
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +thread_info* add_thread_info(struct ps_prochandle* ph, lwpid_t lwp_id) {
 +   thread_info* newthr;
 +   if ( (newthr = (thread_info*) calloc(1, sizeof(thread_info))) == NULL) {
@@ -839,7 +839,7 @@
      return err;
    }
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  print_debug("thread_db : lwp %d\n", ti.ti_lid);
 +
 +  if (ptr->callback(ptr->ph, ti.ti_lid) != true)
@@ -964,7 +964,7 @@
  void print_debug(const char* format,...);
  bool is_debug();
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +typedef bool (*thread_info_callback)(struct ps_prochandle* ph, lwpid_t lwpid);
 +#else
  typedef bool (*thread_info_callback)(struct ps_prochandle* ph, pthread_t pid, lwpid_t lwpid);
@@ -976,7 +976,7 @@
                            uintptr_t base);
  
  // adds a new thread to threads list, returns NULL on failure
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +thread_info* add_thread_info(struct ps_prochandle* ph, lwpid_t lwp_id);
 +#else
  thread_info* add_thread_info(struct ps_prochandle* ph, pthread_t pthread_id, lwpid_t lwp_id);
@@ -1193,7 +1193,7 @@
     prstatus_t* prstat = (prstatus_t*) buf;
     thread_info* newthr;
     print_debug("got integer regset for lwp %d\n", prstat->pr_pid);
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +   if((newthr = add_thread_info(ph, prstat->pr_pid)) == NULL)
 +      return false;
 +#else
@@ -1661,7 +1661,7 @@
 -
 -   return i;
 +// callback for read_thread_info
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +static bool add_new_thread(struct ps_prochandle* ph, lwpid_t lwp_id) {
 +  return add_thread_info(ph, lwp_id) != NULL;
 +}
@@ -1671,7 +1671,7 @@
  }
 +#endif
  
-+#if defined(__FreeBSD__) && __FreeBSD_version < 701000
++#if defined(__MidnightBSD__) && __MidnightBSD_version < 4015
  /*
 - * fgets without storing '\n' at the end of the string
 + * TEXT_START_ADDR from binutils/ld/emulparams/<arch_spec>.sh
@@ -1797,7 +1797,7 @@
 +
 +  return (lmap_addr);
  }
-+#endif // __FreeBSD__ && __FreeBSD_version < 701000
++#endif // __MidnightBSD__ && __MidnightBSD_version < 4015
  
  static bool read_lib_info(struct ps_prochandle* ph) {
 -  char fname[32];
@@ -1809,7 +1809,7 @@
 -  if (fp == NULL) {
 -    print_debug("can't open /proc/%d/maps file\n", ph->pid);
 -    return false;
-+#if defined(__FreeBSD__) && __FreeBSD_version >= 701000
++#if defined(__MidnightBSD__) && __MidnightBSD_version >= 4015
 +  struct kinfo_vmentry *freep, *kve;
 +  int i, cnt;
 +
@@ -2761,7 +2761,7 @@
  
      protected void checkNativeLink(SecurityManager sm, String os) {
 -        if (os.equals("SunOS") || os.equals("Linux")) {
-+        if (os.equals("SunOS") || os.equals("Linux") || os.equals("FreeBSD")) {
++        if (os.equals("SunOS") || os.equals("Linux") || os.equals("MidnightBSD")) {
              // link "saproc" - SA native library on SunOS and Linux?
              sm.checkLink("saproc");
          } else if (os.startsWith("Windows")) {
@@ -2772,7 +2772,7 @@
                  // Whether the caller can perform link against SA native library?
                  checkNativeLink(sm, os);
 -                if (os.equals("SunOS") || os.equals("Linux")) {
-+                if (os.equals("SunOS") || os.equals("Linux") || os.equals("FreeBSD")) {
++                if (os.equals("SunOS") || os.equals("Linux") || os.equals("MidnightBSD")) {
                      // Whether the caller can read /proc/<pid> file?
                      sm.checkRead("/proc/" + pid);
                  }
@@ -2931,7 +2931,7 @@
        return "solaris";
      } else if (os.equals("Linux")) {
        return "linux";
-+    } else if (os.equals("FreeBSD")) {
++    } else if (os.equals("MidnightBSD")) {
 +      return "bsd";
 +    } else if (os.equals("NetBSD")) {
 +      return "bsd";
@@ -4030,7 +4030,7 @@
  
  void OSThread::pd_initialize() {
    assert(this != NULL, "check");
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    _thread_id        = 0;
 -  _pthread_id       = 0;
 +#else
@@ -4046,7 +4046,7 @@
  
   private:
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    // _thread_id is kernel thread id (similar to LWP id on Solaris). Each
    // thread has a unique thread_id (BsdThreads or NPTL). It can be used
    // to access /proc.
@@ -4067,7 +4067,7 @@
    sigset_t  caller_sigmask() const       { return _caller_sigmask; }
    void    set_caller_sigmask(sigset_t sigmask)  { _caller_sigmask = sigmask; }
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    pid_t thread_id() const {
      return _thread_id;
    }
@@ -4078,7 +4078,7 @@
 +#endif
  #ifndef PRODUCT
    // Used for debugging, return a unique integer for each thread.
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    int thread_identifier() const   { return _thread_id; }
 +#else
 +  intptr_t thread_identifier() const   { return (intptr_t)_pthread_id; }
@@ -4090,7 +4090,7 @@
      return false;
    }
  #endif // ASSERT
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    void set_thread_id(pid_t id) {
      _thread_id = id;
    }
@@ -4137,14 +4137,14 @@
  # include <inttypes.h>
  # include <sys/ioctl.h>
  
-+#ifdef __FreeBSD__
-+#if __FreeBSD_version > 700109
++#ifdef __MidnightBSD__
++#if __MidnightBSD_version > 4000
 +#include <bitset>
 +#include <sys/cpuset.h>
 +#endif
 +#include <vm/swap_pager.h>
 +#include <vm/vm_param.h>
-+#if __FreeBSD_version > 900030
++#if __MidnightBSD_version > 4014
 +#include <pthread_np.h>
 +#else
 +extern "C" int thr_self(long *); // XXX #include <sys/thr.h>
@@ -4155,7 +4155,7 @@
 +# include <link.h>
 +#endif
 +
-+#if defined(__FreeBSD__) || defined(__NetBSD__)
++#if defined(__MidnightBSD__) || defined(__NetBSD__)
 +# include <elf.h>
 +#endif
 +
@@ -4211,7 +4211,7 @@
  
  julong os::Bsd::available_memory() {
 +#ifdef _ALLBSD_SOURCE
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  static const char *vm_stats[] = {
 +    "vm.stats.vm.v_free_count",
 +    "vm.stats.vm.v_cache_count",
@@ -4268,7 +4268,7 @@
 -// (Note that getpid() on BsdThreads returns kernel thread id too; but
 -// on NPTL, it returns the same pid for all threads, as required by POSIX.)
 -//
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
  pid_t os::Bsd::gettid() {
 -  int rslt = syscall(SYS_gettid);
 -  if (rslt == -1) {
@@ -4277,7 +4277,7 @@
 -  } else {
 -     return (pid_t)rslt;
 -  }
-+#if __FreeBSD_version > 900030
++#if __MidnightBSD_version > 4015
 +  return pthread_getthreadid_np();
 +#else
 +  long tid;
@@ -4287,7 +4287,7 @@
 +}
 +#endif
 +
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +void os::Bsd::initialize_system_info() {
 +  int cpu_val = sysconf(_SC_NPROCESSORS_CONF);
 +  if (cpu_val >= 1)
@@ -4435,7 +4435,7 @@
      return NULL;
    }
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    // thread_id is kernel thread id (similar to Solaris LWP id)
    osthread->set_thread_id(os::Bsd::gettid());
 +#else
@@ -4503,7 +4503,7 @@
    }
  
    // Store pthread info into the OSThread
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    osthread->set_thread_id(os::Bsd::gettid());
 +#else
 +  osthread->set_thread_id(::pthread_self());
@@ -4848,7 +4848,7 @@
    st->print(" %dk page", os::vm_page_size()>>10);
  
 +#ifdef _ALLBSD_SOURCE
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  struct xswdev xsw;
 +  size_t mibsize, size;
 +  int mib[16], n, total = 0, used = 0;
@@ -4876,7 +4876,7 @@
    st->print("(" UINT64_FORMAT "k free)",
              os::available_memory() >> 10);
 +#ifdef _ALLBSD_SOURCE
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  st->print(", swap " UINT64_FORMAT "k",
 +            ((jlong)total * os::vm_page_size()) >> 10);
 +  st->print("(" UINT64_FORMAT "k free)",
@@ -5226,7 +5226,7 @@
 +#ifdef __OpenBSD__
 +  // OpenBSD pthread_setprio starves low priority threads
 +  return OS_OK;
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +  int ret = pthread_setprio(thread->osthread()->pthread_id(), newpri);
 +#elif defined(__APPLE__) || defined(__NetBSD__)
 +  struct sched_param sp;
@@ -5252,7 +5252,7 @@
    }
  
    errno = 0;
-+#if defined(__OpenBSD__) || defined(__FreeBSD__)
++#if defined(__OpenBSD__) || defined(__MidnightBSD__)
 +  *priority_ptr = pthread_getprio(thread->osthread()->pthread_id());
 +#elif defined(__APPLE__) || defined(__NetBSD__)
 +  int policy;
@@ -5346,7 +5346,7 @@
 +  // XXXDARWIN
 +  // Work around the unaligned VM callbacks in hotspot's
 +  // sharedRuntime. The callbacks don't use SSE2 instructions, and work on
-+  // Linux, Solaris, and FreeBSD. On Mac OS X, dyld (rightly so) enforces
++  // Linux, Solaris, and MidnightBSD. On Mac OS X, dyld (rightly so) enforces
 +  // alignment when doing symbol lookup. To work around this, we force early
 +  // binding of all symbols now, thus binding when alignment is known-good.
 +  _dyld_bind_fully_image_containing_address((const void *) &os::init);
@@ -5411,9 +5411,9 @@
  
  int os::active_processor_count() {
 +#ifdef _ALLBSD_SOURCE
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +  int online_cpus = 0;
-+#if __FreeBSD_version > 700109
++#if __MidnightBSD_version > 4000
 +  std::bitset<CPU_SETSIZE> mask;
 +  assert(sizeof(mask) == sizeof(cpuset_t), "Invalid bitset for cpuset_t");
 +  if (cpuset_getaffinity(CPU_LEVEL_WHICH, CPU_WHICH_PID, -1, sizeof(mask),
@@ -5799,7 +5799,7 @@
 +#endif
    static pthread_t main_thread(void)                                { return _main_thread; }
 +
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
    // returns kernel thread id (similar to LWP id on Solaris), which can be
    // used to access /proc
    static pid_t gettid();
@@ -5877,7 +5877,7 @@
  
  inline bool os::allocate_stack_guard_pages() {
    assert(uses_stack_guard_pages(), "sanity check");
-+#if !defined(__FreeBSD__) || __FreeBSD__ < 5
++#if !defined(__MidnightBSD__) || __FreeBSD__ < 5
 +  // Since FreeBSD 4 uses malloc() for allocating the thread stack
 +  // there is no need to do anything extra to allocate the guard pages
 +  return false;
@@ -5913,7 +5913,7 @@
  #include <unistd.h>
  #include <signal.h>
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +#define	GDB_LAUNCHER	"gdb /proc/%d/file %d"
 +#else
 +#define	GDB_LAUNCHER	"gdb /proc/%d/exe %d"
@@ -6062,7 +6062,7 @@
 -#elif defined(__linux__)
 +#elif defined(__linux__) || defined(_ALLBSD_SOURCE)
      {
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +        const char* self = "/proc/curproc/file";
 +#else
          const char* self = "/proc/self/exe";
@@ -6725,7 +6725,7 @@
  #define SPELL_REG_FP "ebp"
  #endif // AMD64
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +# define context_trapno uc_mcontext.mc_trapno
 +# ifdef AMD64
 +#  define context_pc uc_mcontext.mc_rip
@@ -7346,7 +7346,7 @@
  // constants required by the Serviceability Agent. This file is
  // referenced by vmStructs.cpp.
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
  #define VM_STRUCTS_OS_CPU(nonstatic_field, static_field, unchecked_nonstatic_field, volatile_nonstatic_field, nonproduct_nonstatic_field, c2_nonstatic_field, unchecked_c1_static_field, unchecked_c2_static_field, last_entry) \
                                                                                                                                       \
    /******************************/                                                                                                   \
@@ -8689,7 +8689,7 @@
  #define NOT_WINDOWS(code) code
  #endif
  
-+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
++#if defined(__MidnightBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
 +#define BSD_ONLY(code) code
 +#define NOT_BSD(code)
 +#else
@@ -9088,7 +9088,7 @@
  # DPS (Displayable PostScript) is available on Solaris machines
  HAVE_DPS = no
  
-+ifeq ($(OS_VENDOR), FreeBSD)
++ifeq ($(OS_VENDOR), MidnightBSD)
 +  SYSTEM_ZLIB = true
 +endif
 +
@@ -9177,7 +9177,7 @@
 +    LDFLAGS += -Wl,--whole-archive
 +    LDFLAGS += $(OUTPUTDIR)/tmp/java/jli/$(OBJDIRNAME)/static/libjli.a
 +    LDFLAGS += -Wl,--no-whole-archive
-+# Work-around an dlsym(RTLD_DEFAULT) bug in at least FreeBSD & OpenBSD
++# Work-around an dlsym(RTLD_DEFAULT) bug in at least MidnightBSD & OpenBSD
 +    LDFLAGS += -Wl,--export-dynamic
 +  endif
 +  ifeq ($(SYSTEM_ZLIB),true)
@@ -9445,11 +9445,11 @@
    MB_OF_MEMORY := $(shell free -m | fgrep Mem: | sed -e 's@\ \ *@ @g' | cut -d' ' -f2)
  endif
  
-+ifeq ($(SYSTEM_UNAME), FreeBSD)
++ifeq ($(SYSTEM_UNAME), MidnightBSD)
 +  PLATFORM = bsd
-+  OS_NAME = freebsd
-+  OS_VENDOR = FreeBSD
-+  REQUIRED_OS_VERSION = 6.0
++  OS_NAME = midnightbsd
++  OS_VENDOR = MidnightBSD
++  REQUIRED_OS_VERSION = 0.4
 +endif
 +
 +ifeq ($(SYSTEM_UNAME), Darwin)
@@ -9851,7 +9851,7 @@
      FILES_c += linux_close.c
  endif
  
-+ifeq ($(OS_VENDOR), FreeBSD)
++ifeq ($(OS_VENDOR), MidnightBSD)
 +    FILES_c += bsd_close.c
 +endif
 +
@@ -10838,7 +10838,7 @@
 -                                Boolean.valueOf(("Linux".equals(osName) || "SunOS".equals(osName)) &&
 +                                Boolean.valueOf(("Linux".equals(osName) ||
 +                                                "SunOS".equals(osName) ||
-+                                                "FreeBSD".equals(osName) ||
++                                                "MidnightBSD".equals(osName) ||
 +                                                "NetBSD".equals(osName) ||
 +                                                "OpenBSD".equals(osName) ||
 +                                                "Darwin".equals(osName)) &&
@@ -11013,7 +11013,7 @@
                  if ("Linux".equals(osName)) {
 -                    isLinux = true;
 +                    isLinuxOrBSD = true;
-+                } else if ("FreeBSD".equals(osName)) {
++                } else if ("MidnightBSD".equals(osName)) {
 +                    isLinuxOrBSD = true;
 +                } else if ("Darwin".equals(osName)) {
 +                    isLinuxOrBSD = true;
@@ -11064,7 +11064,7 @@
 -       if (System.getProperty("os.name").equals("Linux")) {
 +
 +       String osname = System.getProperty("os.name");
-+       if (osname.equals("Linux") || osname.equals("FreeBSD") || osname.equals("NetBSD") || osname.equals("OpenBSD") || osname.equals("Darwin")) {
++       if (osname.equals("Linux") || osname.equals("MidnightBSD") || osname.equals("NetBSD") || osname.equals("OpenBSD") || osname.equals("Darwin")) {
              execCmd = new String[ncomps];
              execCmd[n++] = "/usr/bin/lpr";
              if ((pFlags & PRINTER) != 0) {
@@ -11078,7 +11078,7 @@
 -                                osname.startsWith("Linux")) {
 +                            if (osname.startsWith("SunOS")
 +                                    || osname.startsWith("Linux")
-+                                    || osname.startsWith("FreeBSD")
++                                    || osname.startsWith("MidnightBSD")
 +                                    || osname.startsWith("NetBSD")
 +                                    || osname.startsWith("OpenBSD")
 +                                    || osname.startsWith("Darwin")) {
@@ -11093,7 +11093,7 @@
                                  gssLib = "libgss.so";
 -                            } else if (osname.startsWith("Linux")) {
 +                            } else if (osname.startsWith("Linux")
-+                                    || osname.startsWith("FreeBSD")
++                                    || osname.startsWith("MidnightBSD")
 +                                    || osname.startsWith("NetBSD")
 +                                    || osname.startsWith("OpenBSD")
 +                                    || osname.startsWith("Darwin")) {
@@ -11108,7 +11108,7 @@
                      name =  "/etc/krb5/krb5.conf";
 -                } else if (osname.startsWith("Linux")) {
 +                } else if (osname.startsWith("Linux")
-+                        || osname.startsWith("FreeBSD")
++                        || osname.startsWith("MidnightBSD")
 +                        || osname.startsWith("NetBSD")
 +                        || osname.startsWith("OpenBSD")
 +                        || osname.startsWith("Darwin")) {
@@ -11125,7 +11125,7 @@
 -                (osname.startsWith("Linux"))) {
 +            if (osname.startsWith("SunOS")
 +                    || osname.startsWith("Linux")
-+                    || osname.startsWith("FreeBSD")
++                    || osname.startsWith("MidnightBSD")
 +                    || osname.startsWith("NetBSD")
 +                    || osname.startsWith("OpenBSD")
 +                    || osname.startsWith("Darwin")) {
@@ -13917,7 +13917,7 @@
     */
    return (void *) malloc(size);
 -#else /* _MSC_VER */
-+#elif defined(__FreeBSD__) && (__FreeBSD_version >= 700013)
++#elif defined(__MidnightBSD__) && (__MidnightBSD_version >= 3000)
 +  void *ret;
 +  return posix_memalign(&ret, 8, size) ? NULL : ret;
 +#elif defined(_ALLBSD_SOURCE)
@@ -14251,7 +14251,7 @@
   */
 -#ifdef __linux__
 -static const char *system_dir   = "/usr/java";
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +static const char *system_dir	= "/usr/local/openjdk6";
 +static const char *user_dir	= "/java";
 +#elif defined(__NetBSD__)
@@ -14338,7 +14338,7 @@
 -#elif defined(__linux__)
 +#elif defined(__linux__) || defined(_ALLBSD_SOURCE)
      {
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +        const char* self = "/proc/curproc/file";
 +#else
          const char* self = "/proc/self/exe";
@@ -14479,7 +14479,7 @@
 +int64_t
 +CounterGet()
 +{
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +	struct timespec tp;
 +	clock_gettime(CLOCK_MONOTONIC, &tp);
 +	return (uint64_t)tp.tv_sec * 1000000 + tp.tv_nsec / 1000;
@@ -14602,7 +14602,7 @@
      public static SelectorProvider create() {
          String osname = AccessController.doPrivileged(
              new GetPropertyAction("os.name"));
-+	if ("FreeBSD".equals(osname)) {
++	if ("MidnightBSD".equals(osname)) {
 +            return new sun.nio.ch.KqueueSelectorProvider();
 +        }
 +
@@ -14860,7 +14860,7 @@
 +
 +
 +/**
-+ * An implementation of Selector for FreeBSD.
++ * An implementation of Selector for MidnightBSD.
 + */
 +class KqueueSelectorImpl
 +    extends SelectorImpl
@@ -15059,7 +15059,7 @@
      static boolean isBSD() {
 -        return osname.equals("Linux");
 +	return (osname.equals("Linux") ||
-+		osname.equals("FreeBSD") ||
++		osname.equals("MidnightBSD") ||
 +		osname.equals("Darwin") ||
 +		osname.equals("NetBSD") ||
 +		osname.equals("OpenBSD"));
@@ -15225,7 +15225,7 @@
   *                      are numbered from 0 to (N_INTERRUPTS - 1).
   */
 -#ifdef __linux__
-+#if defined(__linux__) || defined(__FreeBSD__)
++#if defined(__linux__) || defined(__MidnightBSD__)
  #define       N_INTERRUPTS    NSIG    /* 0 to NSIG - 1*/
  #else
  #define N_INTERRUPTS    32      /* 0 to 31 */
@@ -15233,7 +15233,7 @@
  #error signal.h has not been included?
  #endif
  
-+#if defined(__FreeBSD__) && !defined(SA_SIGINFO)
++#if defined(__MidnightBSD__) && !defined(SA_SIGINFO)
 +#error signal.h has not been included?
 +#endif
 +
@@ -15419,7 +15419,7 @@
 +#include <sys/sysctl.h>
 +
 +#include <pthread.h>
-+#if defined(__FreeBSD__) || defined(__OpenBSD__)
++#if defined(__MidnightBSD__) || defined(__OpenBSD__)
 +#include <pthread_np.h>
 +#endif
 +#ifdef __NetBSD__
@@ -15943,7 +15943,7 @@
  /*
 + * BSDNOTE: Looking to linux implementation -- the only important register
 + * to set up is tid->sp (stack pointer) now.  But it may change when
-+ * FreeBSD and JVM will switch to KSEs.  In this case we'll also need to
++ * MidnightBSD and JVM will switch to KSEs.  In this case we'll also need to
 + * care about ucontext I think.
 + *
 + * --phantom
@@ -16445,15 +16445,15 @@
  #endif
  static size_t memGrainSize;     /* A page for Linux */
 +#elif defined(_ALLBSD_SOURCE)
-+static size_t memGrainSize;	/* A page for FreeBSD */
-+#if defined(__FreeBSD__) && (__FreeBSD_version >= 700013)
++static size_t memGrainSize;	/* A page for MidnightBSD */
++#if defined(__MidnightBSD__) && (__MidnightBSD_version >= 3000)
 +static inline void *
 +memalign(size_t alignment, size_t size)
 +{
 +    void *ret;
 +    return posix_memalign(&ret, alignment, size) ? NULL : ret;
 +}
-+#else /* ! __FreeBSD_version >= 700013 */
++#else /* ! __MidnightBSD_version >= 3000 */
 +#define memalign(a, b)	valloc(b)
 +#endif
  #else
@@ -16639,7 +16639,7 @@
  #include <limits.h>
  #include <stdlib.h>
  #include <unistd.h>
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +#include <vm/vm_param.h>
 +#endif
  
@@ -16678,7 +16678,7 @@
      avail = (jlong)si.freeswap * si.mem_unit;
  
      return available ? avail : total;
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +    struct xswdev xsw;
 +    size_t mibsize, size;
 +    jlong npages;
@@ -16716,7 +16716,7 @@
  
      fclose(fp);
      return (jlong)vsize;
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +    FILE *fp;
 +    unsigned long end, start;
 +    jlong total = 0;
@@ -16750,7 +16750,7 @@
  
 -#ifdef __solaris__
 +    /*
-+     * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
++     * BSDNOTE: MidnightBSD implements _SC_CLK_TCK since MidnightBSD 0, so
 +     *          add a magic to handle it
 +     */
 +#if defined(__solaris__) || defined(_SC_CLK_TCK)
@@ -16764,7 +16764,7 @@
  Java_com_sun_management_UnixOperatingSystem_getFreePhysicalMemorySize
    (JNIEnv *env, jobject mbean)
  {
-+#if defined (__FreeBSD__)
++#if defined (__MidnightBSD__)
 +    static const char *vm_stats[] = {
 +	"vm.stats.vm.v_free_count",
 +	"vm.stats.vm.v_cache_count",
@@ -16815,7 +16815,7 @@
  Java_com_sun_management_UnixOperatingSystem_getOpenFileDescriptorCount
    (JNIEnv *env, jobject mbean)
  {
-+#if defined(_ALLBSD_SOURCE) && !defined(__FreeBSD__)
++#if defined(_ALLBSD_SOURCE) && !defined(__MidnightBSD__)
 +    // throw_internal_error(env, "Unimplemented in BSD");
 +    return (100);
 +#else /* solaris/linux */
@@ -16824,7 +16824,7 @@
      struct dirent* dentp;
      jlong fds = 0;
  
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +    dirp = opendir("/dev/fd");
 +    if (dirp == NULL) {
 +        throw_internal_error(env, "Unable to open directory /dev/fd");
@@ -16988,7 +16988,7 @@
  #include <fcntl.h>
  #include <limits.h>
  
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +#include <dlfcn.h>
 +#include <pthread.h>
 +#include <pthread_np.h>
@@ -17006,7 +17006,7 @@
      }
  }
  
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +
 +extern pid_t   __sys_fork(void);
 +
@@ -17056,7 +17056,7 @@
 +
 +    return resultPid;
 +}
-+#endif /* __FreeBSD__ */
++#endif /* __MidnightBSD__ */
 +
 +#if defined(__OpenBSD__)
 +/*
@@ -17131,7 +17131,7 @@
      }
  }
  
-+#if defined(__FreeBSD__)
++#if defined(__MidnightBSD__)
 +#undef fork1
 +#define fork1() jdk_fork_wrapper()
 +#else
@@ -17326,7 +17326,7 @@
  
  #include "java_net_Inet4AddressImpl.h"
  
-+#if defined(__GLIBC__) || (defined(__FreeBSD__) && (__FreeBSD_version >= 601104))
++#if defined(__GLIBC__) || (defined(__MidnightBSD__) && (__MidnightBSD_version >= 2000))
 +#define HAS_GLIBC_GETHOSTBY_R	1
 +#endif
 +
@@ -17695,11 +17695,11 @@
 -#ifdef __linux__
 -        /* On Linux gethostname() says "host.domain.sun.com".  On
 +#if defined(__linux__) && defined(_ALLBSD_SOURCE)
-+	/* On Linux/FreeBSD gethostname() says "host.domain.sun.com".  On
++	/* On Linux/MidnightBSD gethostname() says "host.domain.sun.com".  On
           * Solaris gethostname() says "host", so extra work is needed.
           */
 +        /*
-+         * XXXBSD: Though on FreeBSD it's possible case then hostname does
++         * XXXBSD: Though on MidnightBSD it's possible case then hostname does
 +         * not contain '.' (depends on previous sethostname() call).  Maybe
 +         * we need to proceed with Solaris way, but using getnameinfo()
 +         * in conjunction with gethostby*() breaks thread-safeness, so
@@ -17743,7 +17743,7 @@
 +#if defined(_ALLBSD_SOURCE)
 +#include <sys/param.h>
 +#include <sys/ioctl.h>
-+#if defined(__FreeBSD__) || defined(__APPLE__)
++#if defined(__MidnightBSD__) || defined(__APPLE__)
 +#include <net/ethernet.h>
 +#include <net/if_var.h>
 +#elif defined(__OpenBSD__)
@@ -17865,7 +17865,7 @@
 +}
 +
 +/*
-+ * Enumerates and returns all IPv6 interfaces on FreeBSD
++ * Enumerates and returns all IPv6 interfaces on MidnightBSD
 + *
 + * BSDNOTE: it's done in same as IPv4 enumeration and should be carefully
 + *          reviewed with each JDK update (according to Solaris/Linux version)
@@ -18037,7 +18037,7 @@
  #ifdef AF_INET6
          if (ipv6_available()) {
              struct sockaddr_in6 *him6 = (struct sockaddr_in6 *)&addr;
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +            him6->sin6_family = AF_INET6;
 +#else
              him6->sin6_family = AF_UNSPEC;
@@ -18047,7 +18047,7 @@
  #endif
          {
              struct sockaddr_in *him4 = (struct sockaddr_in*)&addr;
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +            him4->sin_family = AF_INET;
 +#else
              him4->sin_family = AF_UNSPEC;
@@ -18420,7 +18420,7 @@
  
 +#if defined(_ALLBSD_SOURCE)
 +    /*
-+     * SOL_SOCKET/{SO_SNDBUF,SO_RCVBUF} - On FreeBSD need to
++     * SOL_SOCKET/{SO_SNDBUF,SO_RCVBUF} - On MidnightBSD need to
 +     * ensure that value is <= kern.ipc.maxsockbuf as otherwise we get
 +     * an ENOBUFS error.
 +     */
@@ -18506,7 +18506,7 @@
  
  
 -#ifdef __linux__
-+#if defined(__linux__) || defined(__FreeBSD__)
++#if defined(__linux__) || defined(__MidnightBSD__)
  extern int NET_Timeout(int s, long timeout);
  extern int NET_Read(int s, void* buf, size_t len);
  extern int NET_RecvFrom(int s, void *buf, int len, unsigned int flags,
@@ -19963,12 +19963,12 @@
 +#ifdef __APPLE__
 +typedef int sendfile_func(int fd, int s, off_t offset, off_t *len,
 +                          struct sf_hdtr *hdtr, int flags);
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +typedef int sendfile_func(int fd, int s, off_t offset, size_t nbytes,
 +                          struct sf_hdtr *hdtr, off_t *sbytes, int flags);
 +#endif
 +
-+#if defined(__APPLE__) || defined(__FreeBSD__)
++#if defined(__APPLE__) || defined(__MidnightBSD__)
 +sendfile_func* my_sendfile_func = NULL;
 +#endif
  #endif
@@ -19988,7 +19988,7 @@
      my_sendfile64_func = (sendfile64_func*) dlsym(RTLD_DEFAULT, "sendfile64");
  #endif
  
-+#if defined(__APPLE__) || defined(__FreeBSD__)
++#if defined(__APPLE__) || defined(__MidnightBSD__)
 +    my_sendfile_func = (sendfile_func*) dlsym(RTLD_DEFAULT, "sendfile");
 +#endif
 +
@@ -20001,7 +20001,7 @@
  #endif
 +
 +#ifdef _ALLBSD_SOURCE
-+#if defined(__APPLE__) || defined(__FreeBSD__)
++#if defined(__APPLE__) || defined(__MidnightBSD__)
 +    if (my_sendfile_func == NULL)
 +        return IOS_UNSUPPORTED;
 +
@@ -20013,7 +20013,7 @@
 +#ifdef __APPLE__
 +    result = (*my_sendfile_func)(srcFD, dstFD, position,
 +                                     &numBytes, NULL, 0);
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +    result = (*my_sendfile_func)(srcFD, dstFD, position,
 +                                     count, NULL, &numBytes, 0);
 +#else
@@ -20048,7 +20048,7 @@
      fl.l_start = (off64_t)pos;
      fl.l_type = F_UNLCK;
      lockResult = fcntl(fd, cmd, &fl);
-+#if defined(__FreeBSD__) || defined(__OpenBSD__)
++#if defined(__MidnightBSD__) || defined(__OpenBSD__)
 +    /* XXXFREEBSD:  While doing of preClose0() we're closing actual fd which
 +       was locked, so here we'll get an error which need to be ignored to
 +       satisfy TCK FileLock test */
@@ -20947,10 +20947,10 @@
              os = "win32";
          } else if (os.indexOf("Linux") >= 0) {
              os = "Linux";
-+	} else if (os.indexOf("FreeBSD") >= 0) {
-+	    os = "FreeBSD";
 +	} else if (os.indexOf("MidnightBSD") >= 0) {
-+	    os = "FreeBSD";
++	    os = "MidnightBSD";
++	} else if (os.indexOf("MidnightBSD") >= 0) {
++	    os = "MidnightBSD";
 +	} else if (os.indexOf("NetBSD") >= 0) {
 +	    os = "NetBSD";
 +	} else if (os.indexOf("OpenBSD") >= 0) {
