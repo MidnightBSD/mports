@@ -1,18 +1,15 @@
-# New ports collection makefile for: midnightbsd-desktop
-# Date created:		July 4, 2008
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-#
+# Created By:	Lucas Holt <luke@midnightbsd.org>
 # $MidnightBSD$
-#
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	1.6
+PORTVERSION=	1.7
 CATEGORIES=	misc
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        MidnightBSD desktop environment
+
 LICENSE=	agg
 
 # needs firefox ?
@@ -21,7 +18,7 @@ LICENSE=	agg
 
 RUN_DEPENDS=	startkde:${PORTSDIR}/x11/kde-lite \
 		bash:${PORTSDIR}/shells/bash \
-		smbd:${PORTSDIR}/net/samba34 \
+		smbd:${PORTSDIR}/net/samba36 \
 		cupsd:${PORTSDIR}/print/cups-base \
 		pidgin:${PORTSDIR}/net-im/pidgin \
 		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats \
