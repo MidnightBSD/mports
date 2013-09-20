@@ -3,6 +3,7 @@
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -62,7 +63,7 @@ LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
 .endif
 
 .if ${PORT_OPTIONS:MVIDEO}
-USE_GSTREAMER+=	vorbis ogg theora good
+USE_GSTREAMER+=	vorbis ogg theora vp8 good
 .endif
 
 .if ${PORT_OPTIONS:MGTK2}
