@@ -9,10 +9,8 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Lets you build groups of accessors
-LICENSE=	perl
 
-LICENSE=	ART10 GPLv1
-LICENSE_COMB=	dual
+LICENSE=	perl
 
 BUILD_DEPENDS=	p5-Module-Runtime>=0.012:${PORTSDIR}/devel/p5-Module-Runtime \
 		p5-Class-XSAccessor>=1.15:${PORTSDIR}/devel/p5-Class-XSAccessor \
