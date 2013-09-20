@@ -234,6 +234,7 @@ SUBDIR += p5-Class-Load
 SUBDIR += p5-Class-MakeMethods
 SUBDIR += p5-Class-Singleton
 SUBDIR += p5-Class-Trigger
+SUBDIR += p5-Class-XSAccessor
 SUBDIR += p5-Clone
 SUBDIR += p5-Config-General
 SUBDIR += p5-Config-Tiny
