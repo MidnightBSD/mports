@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/print/cups-base/files/ulpt-cupsd.sh.in,v 1.1 2011/01/07 21:24:58 dinoex Exp $
+# $FreeBSD$
 
 usage() {
 	echo "$0: usage:" >&2
