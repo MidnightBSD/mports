@@ -2,7 +2,7 @@
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.10.7
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -53,7 +53,6 @@ GNUTLS_DESC=	Use GNUTLS for encryption support
 NSS_DESC=	Use Mozilla NSS for encryption support
 SASL_DESC=	Cyrus SASL support (for jabberd)
 GSTREAMER_DESC=	Use GStreamer for playing sounds
-VV_DESC=	Video and voice support
 SAMETIME_DESC=	The Lotus Sametime chat protocol
 SILC_DESC=	The Secure Internet Live Conferencing protocol
 GG_DESC=	The Gadu-Gadu chat protocol
@@ -116,13 +115,8 @@ USE_GSTREAMER+=	core good
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
-.if ${PORT_OPTIONS:MVV} && ${PORT_OPTIONS:MGSTREAMER}
-LIB_DEPENDS+=	gstfarsight-0.10.0:${PORTSDIR}/net-im/farsight2
-PLIST_SUB+=	VV=""
-.else
 CONFIGURE_ARGS+=--disable-vv
 PLIST_SUB+=	VV="@comment "
-.endif
 
 .if ${PORT_OPTIONS:MIDN}
 LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
