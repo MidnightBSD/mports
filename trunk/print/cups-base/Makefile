@@ -1,9 +1,8 @@
 # $MidnightBSD$
-# $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups
-PORTVERSION=	1.5.0
-PORTREVISION=	1
+PORTVERSION=	1.5.4
+PORTREVISION=	0
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -12,6 +11,7 @@ UNIQUENAME=	${PORTNAME}${PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System: ${COMMENT2}
+
 LICENSE=	gpl2
 
 CONFLICTS=	LPRng-[0-9]*
@@ -40,23 +40,11 @@ CONFIGURE_ARGS+=	--localstatedir=/var			\
 			--with-pam-module="unix"		\
 			--enable-ssl
 
-OPTIONS?=	GNUTLS		"Build with GNUTLS instead of OpenSSL" on \
-		PHP		"Build PHP support" off \
-		PYTHON		"Build PYTHON support" off \
-		LIBPAPER	"Build with libpaper support" off \
-		DNSSD		"Build with DNS_SD (avahi) support" off \
-		PAM		"Build with PAM support" off \
-		LDAP		"Build with LDAP support" off \
-		DBUS		"Build with DBUS support" off \
-		LIBUSB		"Build with USB support" off \
-		GHOSTSCRIPT	"Build pdftops with GHOSTSCRIPT" on \
-		XPDF		"Build pdftops with XPDF" off \
-		XDG_OPEN	"Build with XDG_OPEN as browser" off
-
 CUPS_ETCDIR=	${PREFIX}/etc/cups
 CUPS_CACHEDIR?=	/var/db/cups
 CUPS_SPOOLDIR=	/var/spool/cups
 CUPS_SOCKET?=	/var/run/cups.sock
+CUPS_PDFTOPS?=	${LOCALBASE}/libexec/xpdf/pdftops
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 # file, dir ownership
@@ -69,23 +57,36 @@ CUPSSYSGRP=	wheel
 
 # UNIQUENAME must be set before bsd.port.pre.mk so OPTIONSFILE can be included
 .if defined(CUPS_CLIENT)
-LICENSE=	lgpl
+PORTREVISION=	0
+LICENSE=	lgpl2.1
 CUPS_SUFFIX=	-client
+OPTIONS_DEFINE=	GNUTLS
 .elif defined(CUPS_IMAGE)
+PORTREVISION=	0
 CUPS_SUFFIX=	-image
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
+OPTIONS_DEFINE=	GNUTLS
 .else
+INSTALLS_ICONS=	yes
 PORTREVISION=	0
 CUPS_SUFFIX=	-base
-CONFLICTS+=	cupsddk-*
+OPTIONS_DEFINE=	GNUTLS LIBPAPER PHP PYTHON PAM LDAP DBUS LIBUSB XDG_OPEN GHOSTSCRIPT XPDF AVAHI MDNSRESPONDER
+OPTIONS_DEFAULT=	LIBPAPER GHOSTSCRIPT
+NO_OPTIONS_SORT=	yes
 .endif
 
-.include <bsd.port.pre.mk>
+LIBUSB_DESC=		USB support
+GHOSTSCRIPT_DESC=	Build pdftops with GHOSTSCRIPT
+XPDF_DESC=		Build pdftops with XPDF
+XDG_OPEN_DESC=		Build with XDG_OPEN as browser
+
+.include <bsd.mport.options.mk>
 
 .if defined(CUPS_CLIENT)
 COMMENT2=	Library cups
 INSTALL_WRKSRC=	${WRKSRC}/cups
 PLIST=		${MASTERDIR}/pkg-plist.client
+USES+=		iconv
 USE_LDCONFIG=	yes
 PKGMESSAGE=	${NONEXISTENT}
 DESCR=		${MASTERDIR}/pkg-descr.client
@@ -104,8 +105,8 @@ USE_LDCONFIG=	yes
 PKGMESSAGE=	${NONEXISTENT}
 DESCR=		${MASTERDIR}/pkg-descr.image
 .else
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/${PKGCATEGORY}/cups-client
-LIB_DEPENDS+=	cupsimage.2:${PORTSDIR}/${PKGCATEGORY}/cups-image
+LIB_DEPENDS+=	cups:${PORTSDIR}/${PKGCATEGORY}/cups-client
+LIB_DEPENDS+=	cupsimage:${PORTSDIR}/${PKGCATEGORY}/cups-image
 # force build if old cups is installed.
 BUILD_DEPENDS+=	cups-client${PKGNAMESUFFIX2}>=${PORTVERSION}:${PORTSDIR}/${PKGCATEGORY}/cups-client
 BUILD_DEPENDS+=	cups-image${PKGNAMESUFFIX2}>=${PORTVERSION}:${PORTSDIR}/${PKGCATEGORY}/cups-image
@@ -122,17 +123,17 @@ PLIST_SUB+=		OVERWRITE="@comment "
 CONFIGURE_ARGS+=	--with-printcap=${PREFIX}/etc/printcap
 .endif
 
-.if defined(WITH_GNUTLS)
+.if ${PORT_OPTIONS:MGNUTLS}
 CONFIGURE_ARGS+=	--disable-openssl --enable-gnutls
-LIB_DEPENDS+=		gcrypt.18:${PORTSDIR}/security/libgcrypt
-LIB_DEPENDS+=		gnutls.42:${PORTSDIR}/security/gnutls
-USE_PKGCONFIG=	yes
+LIB_DEPENDS+=		gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
+USES+=		pkgconfig
 .else
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
 EXTENSIONS+=	openssl
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_PHP)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MPHP}
 CONFIGURE_ARGS+=	--with-php
 USE_PHP=		yes
 USE_PHP_BUILD=		yes
@@ -142,44 +143,51 @@ CONFIGURE_ARGS+=	--without-php
 PLIST_SUB+=		PHP="@comment "
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && !defined(WITHOUT_GHOSTSCRIPT)
-.if defined(WITH_XPDF)
-IGNORE=			pick ghostscript or xpdf, not both
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MGHOSTSCRIPT}
+.if ${PORT_OPTIONS:MXPDF}
+IGNORE=			You must select one and only one option to build pdftops
 .endif
 USE_GHOSTSCRIPT=	yes
 CONFIGURE_ARGS+=	--enable-pdftops --with-pdftops=${LOCALBASE}/bin/gs
 PLIST_SUB+=		WITH_PDFTOPS=""
-.elif !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_XPDF)
-BUILD_DEPENDS+=		pdftops:${PORTSDIR}/graphics/xpdf
-RUN_DEPENDS+=		pdftops:${PORTSDIR}/graphics/xpdf
-CONFIGURE_ARGS+=	--enable-pdftops --with-pdftops=${LOCALBASE}/bin/pdftops
+.elif !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MXPDF}
+BUILD_DEPENDS+=		${CUPS_PDFTOPS}:${PORTSDIR}/graphics/xpdf
+RUN_DEPENDS+=		${CUPS_PDFTOPS}:${PORTSDIR}/graphics/xpdf
+CONFIGURE_ARGS+=	--enable-pdftops --with-pdftops=${CUPS_PDFTOPS}
 PLIST_SUB+=		WITH_PDFTOPS=""
 .else
 PLIST_SUB+=		WITH_PDFTOPS="@comment "
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_PYTHON)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MPYTHON}
 CONFIGURE_ARGS+=	--with-python
 USE_PYTHON=		yes
 EXTENSIONS+=		python
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_LIBPAPER)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MLIBPAPER}
 CONFIGURE_ARGS+=	--enable-libpaper
-LIB_DEPENDS+=		paper.2:${PORTSDIR}/print/libpaper
+LIB_DEPENDS+=		paper:${PORTSDIR}/print/libpaper
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_DNSSD)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MMDNSRESPONDER}
+.if ${PORT_OPTIONS:MAVAHI}
+IGNORE=			You must select one and only one option to build for Zeroconf
+.endif
+CONFIGURE_ARGS+=	--with-dnssd-includes=/usr/include
+PLIST_SUB+=		WITH_MDNSRESPONDER=""
+.elif !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MAVAHI}
 CONFIGURE_ARGS+=	--enable-dnssd \
-			--with-dnssd-libs=${LOCALBASE}/lib/ \
-			--with-dnssd-includes=${LOCALBASE}/include/avahi-compat-libdns_sd/
+			--with-dnssd-libs=${LOCALBASE}/lib/
 LIB_DEPENDS+=		dns_sd:${PORTSDIR}/net/avahi-libdns
+CONFIGURE_ARGS+=	--with-dnssd-includes=${LOCALBASE}/include/avahi-compat-libdns_sd/
 BROKEN=			missing function, see http://www.avahi.org/ticket/303
 .else
 CONFIGURE_ARGS+=	--disable-dnssd
+PLIST_SUB+=		WITH_MDNSRESPONDER="@comment "
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_PAM)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MPAM}
 CONFIGURE_ARGS+=	--enable-pam
 PLIST_SUB+=		WITH_PAMD=""
 .else
@@ -187,15 +195,15 @@ CONFIGURE_ARGS+=	--disable-pam
 PLIST_SUB+=		WITH_PAMD="@comment "
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_LDAP)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=		yes
 CONFIGURE_ARGS+=	--enable-ldap
 .else
 CONFIGURE_ARGS+=	--disable-ldap
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_DBUS)
-LIB_DEPENDS+=		dbus-1.3:${PORTSDIR}/devel/dbus
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MDBUS}
+LIB_DEPENDS+=		dbus-1:${PORTSDIR}/devel/dbus
 CONFIGURE_ARGS+=	--enable-dbus
 PLIST_SUB+=		WITH_DBUS=""
 .else
@@ -203,21 +211,23 @@ CONFIGURE_ARGS+=	--disable-dbus
 PLIST_SUB+=		WITH_DBUS="@comment "
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_XDG_OPEN)
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MXDG_OPEN}
 RUN_DEPENDS+=		xdg-open:${PORTSDIR}/devel/xdg-utils
 .endif
 
-.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && defined(WITH_LIBUSB)
-LIB_DEPENDS+=		usb:${PORTSDIR}/devel/libusb
+.if !defined(CUPS_CLIENT) && !defined(CUPS_IMAGE) && ${PORT_OPTIONS:MLIBUSB}
+CPPFLAGS+=		-I/usr/include
+LDFLAGS+=		-L/usr/lib
 .else
 CONFIGURE_ARGS+=	--disable-libusb
 .endif
+CONFIGURE_ARGS+=	LIBS="-lssp_nonshared"
 
 .if defined(CUPS_CLIENT)
 MAN1=	cups-config.1
 .elif defined(CUPS_IMAGE)
 .else
-MAN1=	cancel.1 \
+MAN1+=	cancel.1 \
 	cupstestdsc.1 \
 	cupstestppd.1 \
 	ipptool.1 \
@@ -271,8 +281,14 @@ SUB_FILES+=	ulpt-cupsd.conf ulpt-cupsd.sh
 .endif
 
 post-patch:
+.if ${ARCH} == "amd64"
 	@${REINPLACE_CMD} -e 's|@PIEFLAGS@||' ${WRKSRC}/Makedefs.in
-.if defined(WITH_XDG_OPEN)
+.endif
+.if ${PORT_OPTIONS:MMDNSRESPONDER}
+	@${REINPLACE_CMD} -e 's|Darwin|FreeBSD|' \
+		${WRKSRC}/backend/Makefile
+.endif
+.if  ${PORT_OPTIONS:MXDG_OPEN}
 	@${REINPLACE_CMD} -e 's|htmlview|xdg-open|' ${WRKSRC}/desktop/cups.desktop.in
 .endif
 	@${REINPLACE_CMD} -e '/SILENT/d' ${WRKSRC}/Makedefs.in
@@ -364,17 +380,17 @@ post-install:
 .elif defined(CUPS_IMAGE)
 	${INSTALL_DATA} ${WRKSRC}/cups/raster.h ${PREFIX}/include/cups/
 .else
-.if !defined(WITHOUT_GHOSTSCRIPT) || defined(WITH_XPDF)
+.if  ${PORT_OPTIONS:MGHOSTSCRIPT} || ${PORT_OPTIONS:MXPDF}
 	${INSTALL_PROGRAM} ${WRKSRC}/filter/pdftops ${PREFIX}/libexec/cups/filter/
 .endif
-	${LN} -s ${PREFIX}/bin/lpr ${PREFIX}/bin/lpr-cups
+	${LN} -sf ${PREFIX}/bin/lpr ${PREFIX}/bin/lpr-cups
 	${INSTALL} -d ${CUPS_ETCDIR}/
 	${CP} -p ${WRKSRC}/conf/snmp.conf ${WRKSRC}/conf/snmp.conf.N
 .for f in cupsd.conf mime.convs mime.types snmp.conf
 	${INSTALL_DATA} ${WRKSRC}/conf/${f} ${CUPS_ETCDIR}/${f}.N
 	cd ${CUPS_ETCDIR}/; if test ! -f ${f}; then ${CP} -p ${f}.N ${f}; fi
 .endfor
-.if defined(WITH_PAM)
+.if  ${PORT_OPTIONS:MPAM}
 	@if [ ! -f ${PREFIX}/etc/pam.d/cups ]; then \
 		${CP} -p ${PREFIX}/etc/pam.d/cups.default \
 		${PREFIX}/etc/pam.d/cups ; \
@@ -389,4 +405,4 @@ post-install:
 	${INSTALL} -d -m 775 -g ${CUPSGRP} ${CUPS_CACHEDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
