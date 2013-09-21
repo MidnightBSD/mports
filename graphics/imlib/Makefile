@@ -2,13 +2,14 @@
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A graphic library for enlightenment package
+COMMENT=	Graphic library for enlightenment package
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
