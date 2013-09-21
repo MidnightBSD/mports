@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/print/cups-base/files/cupsd.in,v 1.2 2010/03/27 00:14:32 dougb Exp $
+# $FreeBSD$
 #
 # PROVIDE: cupsd
 # REQUIRE: DAEMON
@@ -13,13 +13,13 @@
 
 . /etc/rc.subr
 
-name=cupsd
-rcvar=`set_rcvar`
+name="cupsd"
+rcvar="cupsd_enable"
 
-start_precmd=${name}_prestart
+start_precmd="${name}_prestart"
 
-command=%%PREFIX%%/sbin/cupsd
-extra_commands=reload
+command="%%PREFIX%%/sbin/cupsd"
+extra_commands="reload"
 
 cupsd_prestart()
 {
