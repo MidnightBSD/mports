@@ -2,25 +2,26 @@
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	16
+PORTREVISION=	17
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Libraries for GNOME, a GNU desktop environment
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
+MAKE_JOBS_UNSAFE=yes
+USES=		charsetfix gettext gmake pathfix
 USE_BZIP2=	yes
 USE_XORG=	xpm ice x11
 USE_PERL5=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix esound gtk12 imlib libxml orbit
-USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-test-gnome
