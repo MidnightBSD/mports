@@ -2,7 +2,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -10,9 +10,10 @@ DISTNAME=	gst-ffmpeg-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
+
 LICENSE=        gpl2
 
-LIB_DEPENDS=	orc-0.4.16:${PORTSDIR}/devel/orc
+LIB_DEPENDS=	orc-0.4.0:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
