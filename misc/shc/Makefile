@@ -15,6 +15,9 @@ LICENSE=	gpl2
 MAN1=		shc.1
 PLIST_FILES=	bin/shc
 
+post-extract:
+	@${RM} ${WRKSRC}/shc
+
 do-build:
 	${CC} ${CFLAGS} -o ${WRKSRC}/shc ${WRKSRC}/${PORTNAME}-${PORTVERSION}.c
 

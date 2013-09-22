@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Single UNIX Specification Version 2
 LICENSE=	restricted
 
-RESTRICTED=	"Redistribution of the documents is not permitted"
+RESTRICTED=	Redistribution of the documents is not permitted
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
