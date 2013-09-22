@@ -1,9 +1,6 @@
 @comment BSD.local.dist mtree replacement (used only if KDE4_PREFIX != LOCALBASE)
 bin
 etc
-@comment the following commented dirs will be linked from the corresponding LOCALBASE dirs
-@comment-dir etc/pam.d
-@comment-dir etc/rc.d
 include
 include/X11
 info
@@ -13,10 +10,6 @@ lib/X11/app-defaults
 lib/X11/fonts
 lib/X11/fonts/local
 libdata
-@comment the following commented dirs will be linked from the corresponding LOCALBASE dirs
-@comment-dir libdata/ldconfig
-@comment-dir libdata/ldconfig32
-@comment-dir libdata/pkgconfig
 libexec
 man
 man/cat1
