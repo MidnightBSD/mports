@@ -2,7 +2,7 @@
 
 PORTNAME?=	rtorrent
 PORTVERSION=	0.9.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/
 
@@ -32,13 +32,9 @@ XMLRPC_DESC=	Compile with xmlrpc-c support
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "arm"
-BROKEN=		Does not configure on arm
-.endif
-
 .if ${PORT_OPTIONS:MXMLRPC}
 CONFIGURE_ARGS+=	--with-xmlrpc-c
-LIB_DEPENDS+=	xmlrpc.9:${PORTSDIR}/net/xmlrpc-c
+LIB_DEPENDS+=	xmlrpc:${PORTSDIR}/net/xmlrpc-c
 .else
 CONFIGURE_ARGS+=	--with-xmlrpc-c=no
 .endif
@@ -57,6 +53,5 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}/
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
