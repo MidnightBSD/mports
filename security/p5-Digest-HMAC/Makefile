@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	Digest-HMAC
-PORTVERSION=	1.02
+PORTVERSION=	1.03
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to HMAC Message-Digest Algorithms
+
 LICENSE=        perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1
