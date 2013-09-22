@@ -15,8 +15,7 @@ LIB_DEPENDS=	ssh2:${PORTSDIR}/security/libssh2
 
 CONFLICTS=	mc-light-4*
 
-USES=		pkgconfig
-USE_GMAKE=	yes
+USES=		gmake pkgconfig 
 USE_GNOME=	glib20
 USE_PERL5=	yes
 USE_XZ=		yes
