@@ -11,15 +11,15 @@ OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
 _OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
 
 # Set the default values for the global options
-.if !defined(NOPORTDOCS)
+.if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	DOCS
 .endif
 
-.if !defined(WITHOUT_NLS)
+.if !defined(WITHOUT_NLS) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	NLS
 .endif
 
-.if !defined(NOPORTEXAMPLES)
+.if !defined(NOPORTEXAMPLES) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	EXAMPLES
 .endif
 
