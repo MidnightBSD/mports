@@ -1,13 +1,14 @@
 # $MidnightBSD$ 
 
 PORTNAME=	Digest
-PORTVERSION=	1.16
+PORTVERSION=	1.17
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modules that calculate message digests
+
 LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
