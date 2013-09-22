@@ -6,7 +6,7 @@ CATEGORIES=	misc
 MASTER_SITES=	http://pkg-isocodes.alioth.debian.org/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Lists of the country, language and currency iso names
+COMMENT=	Lists of the country, language, and currency iso names
 
 LICENSE=	lgpl2.1
 
