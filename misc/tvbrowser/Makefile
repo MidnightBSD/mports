@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	tvbrowser
-PORTVERSION=	3.2.1
+PORTVERSION=	3.3.2
 CATEGORIES=	misc java
 MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28Java%206%20and%20higher%29/${PORTVERSION}/
 DISTNAME=	${PORTNAME}_${PORTVERSION}_bin
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A digital TV guide
+COMMENT=	Digital TV and radio guide
+
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
