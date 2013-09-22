@@ -5,15 +5,6 @@
 %%MTREE%%@dirrmtry etc/dbus-1
 %%MTREE%%@exec mkdir -p %%KDE4_PREFIX%%
 %%MTREE%%@cwd %%KDE4_PREFIX%%
-%%MTREE%%etc/pam.d
-%%MTREE%%etc/polkit-1
-%%MTREE%%etc/rc.d
-%%MTREE%%%%LDCONFIG_DIR%%
-%%MTREE%%%%LDCONFIG32_DIR%%
-%%MTREE%%libdata/pkgconfig
-%%MTREE%%share/dbus-1/services
-%%MTREE%%share/dbus-1/system-services
-%%MTREE%%share/polkit-1/actions
 %%MTREE%%@exec mkdir -p %%KDE4_PREFIX%%/bin
 %%MTREE%%@exec mkdir -p %%KDE4_PREFIX%%/etc
 %%MTREE%%@exec mkdir -p %%KDE4_PREFIX%%/include
@@ -1162,6 +1153,24 @@
 @exec mkdir -p %%KDE4_PREFIX%%/share/templates
 @exec mkdir -p %%KDE4_PREFIX%%/share/templates/.source
 @exec mkdir -p %%KDE4_PREFIX%%/share/wallpapers
+@exec ln -sf /usr/local/etc/pam.d %%KDE4_PREFIX%%/etc/
+@exec ln -sf /usr/local/etc/polkit-1 %%KDE4_PREFIX%%/etc/
+@exec ln -sf /usr/local/etc/rc.d %%KDE4_PREFIX%%/etc/
+@exec ln -sf /usr/local/libdata/ldconfig32 %%KDE4_PREFIX%%/libdata/
+@exec ln -sf /usr/local/libdata/ldconfig %%KDE4_PREFIX%%/libdata/
+@exec ln -sf /usr/local/libdata/pkgconfig %%KDE4_PREFIX%%/libdata/
+@exec ln -sf /usr/local/share/dbus-1/services %%KDE4_PREFIX%%/share/dbus-1/
+@exec ln -sf /usr/local/share/dbus-1/system-services %%KDE4_PREFIX%%/share/dbus-1/
+@exec ln -sf /usr/local/share/polkit-1/actions %%KDE4_PREFIX%%/share/polkit-1/
+@unexec unlink %%KDE4_PREFIX%%/etc/pam.d
+@unexec unlink %%KDE4_PREFIX%%/etc/polkit-1
+@unexec unlink %%KDE4_PREFIX%%/etc/rc.d
+@unexec unlink %%KDE4_PREFIX%%/libdata/ldconfig32
+@unexec unlink %%KDE4_PREFIX%%/libdata/ldconfig
+@unexec unlink %%KDE4_PREFIX%%/libdata/pkgconfig
+@unexec unlink %%KDE4_PREFIX%%/share/dbus-1/services
+@unexec unlink %%KDE4_PREFIX%%/share/dbus-1/system-services
+@unexec unlink %%KDE4_PREFIX%%/share/polkit-1/actions
 @dirrmtry share/wallpapers
 @dirrmtry share/templates/.source
 @dirrmtry share/templates
