@@ -9,13 +9,15 @@ DISTFILES=	bible.data.tar.bz2 bible.tar.bz2
 DIST_SUBDIR=	brs
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An interactive King James Bible
+COMMENT=	Interactive King James Bible
+
 LICENSE=	restricted
 # it's marked as do not distribute
 
 USE_BZIP2=	yes
 NO_WRKSUBDIR=	yes
 ALL_TARGET=
+CFLAGS+=	-Wno-error=return-type
 MAN1=		bible.1
 
 .include <bsd.port.pre.mk>
