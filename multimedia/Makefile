@@ -25,6 +25,7 @@ SUBDIR += gstreamer-plugins-mpeg2dec
 SUBDIR += gstreamer-plugins-theora
 SUBDIR += gstreamer-plugins-ugly
 SUBDIR += gstreamer-plugins-v4l2
+SUBDIR += gstreamer-plugins-vp8
 SUBDIR += gstreamer-plugins-xvid
 SUBDIR += gstreamer-qt4
 SUBDIR += kaffeine
