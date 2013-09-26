@@ -147,6 +147,7 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .  include "${OPTIONSFILE}.local"
 .  endif
 
+.if !defined(PACKAGE_BUILDING)
 ### convert WITH and WITHOUT found in make.conf or reloaded from old optionsfile
 .for opt in ${ALL_OPTIONS}
 .if defined(WITH_${opt})
@@ -171,6 +172,7 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .endfor
 .undef opt
 
+.endif
 .endif
 
 ## Cmdline always win over the rest
