@@ -512,8 +512,8 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 #
 
 
-.include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
+.include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
 
 
