@@ -2,16 +2,18 @@
 
 PORTNAME=	raptor2
 PORTVERSION=	2.0.7
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/ \
 		SF/librdf/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
-		yajl.2:${PORTSDIR}/devel/yajl
+LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl \
+		yajl:${PORTSDIR}/devel/yajl
 
 CONFLICTS=	raptor-1.4.1[0-9]* raptor-1.4.21
 
