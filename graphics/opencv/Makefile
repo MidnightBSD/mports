@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Computer Vision library from Intel
 LICENSE=	bsd3
 
-USE_GNOME=	pkgconfig
+USESE=		pkgconfig
 WANT_GSTREAMER=	yes
 MAKE_JOBS_UNSAFE=	yes
 USE_BZIP2=	yes
