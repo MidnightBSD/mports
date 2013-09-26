@@ -2,6 +2,7 @@
 
 PORTNAME=	help2man
 PORTVERSION=	1.43.3
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	GNU/${PORTNAME}
 
@@ -9,8 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically generating simple manual pages from program output
 
 LICENSE=	gpl3
-
-OPTIONS_DEFINE=	NLS
 
 CFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
@@ -23,7 +22,6 @@ PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MNLS}
 BUILD_DEPENDS+=	p5-Locale-gettext>=0:${PORTSDIR}/devel/p5-Locale-gettext
 RUN_DEPENDS+=	p5-Locale-gettext>=0:${PORTSDIR}/devel/p5-Locale-gettext
 
@@ -41,9 +39,6 @@ PLIST_FILES+=	share/locale/${lang}/LC_MESSAGES/${PORTNAME}.mo
 .for lang in ${LANGS}
 PLIST_DIRSTRY+=	man/${lang}/man1 man/${lang}
 .endfor
-.else
-CONFIGURE_ARGS=	--disable-nls
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^pkglibdir/ s|/${PORTNAME}$$||' ${WRKSRC}/Makefile.in
