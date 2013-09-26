@@ -63,7 +63,6 @@ SUBDIR += spidermonkey
 SUBDIR += steptalk
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
-SUBDIR += tcl83
 SUBDIR += tcl84
 SUBDIR += tcl85
 SUBDIR += tcl86
