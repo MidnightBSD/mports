@@ -2,56 +2,87 @@
 # $FreeBSD: ports/multimedia/libkate/Makefile,v 1.6 2010/06/06 20:43:57 naddy Exp $
 
 PORTNAME=	libkate
-PORTVERSION=	0.3.7
+PORTVERSION=	0.4.1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Codec for karaoke and text encapsulation for Ogg
+
 LICENSE=	bsd3
 
-LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg \
+LIB_DEPENDS=	ogg:${PORTSDIR}/audio/libogg \
 		png15:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
+USES=		pkgconfig
 USE_GMAKE=	yes
-USE_PKGCONFIG=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--program-prefix=''
 
 CFLAGS+=	"-I${LOCALBASE}/include"
 
-MAN1=	kateenc.1 katedec.1
+MAN1=		katalyzer.1 kateenc.1 katedec.1
 
-OPTIONS=	DOXYGEN "Build docs with doxygen (requires TeX, QT, etc.)" off \
-		HTMLDOCS "Install bundled html documentation" off
+OPTIONS_DEFINE=		DOXYGEN HTMLDOCS KATEDJ
+
+HTMLDOCS_DESC=	Install bundled html documentation
+KATEDJ_DESC=	Install KateDJ (Huge dependencies list)
 
 PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.ifdef(WITH_DOXYGEN)
+.if ${PORT_OPTIONS:MDOXYGEN} && ${PORT_OPTIONS:MDOCS}
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 .else
 CONFIGURE_ARGS+=	--disable-doc
 .endif
 
+.if ${PORT_OPTIONS:MKATEDJ}
+RUN_DEPENDS=	${LOCALBASE}/bin/oggz:${PORTSDIR}/audio/liboggz
+USE_PYTHON=	yes
+EXTENSIONS+=	python
+USE_WX=		2.8
+WX_COMPS=	wx contrib python:lib
+MAN1+=		KateDJ.1
+PLIST_SUB+=	KATEDJ=""
+.else
+PLIST_SUB+=	KATEDJ="@comment "
+.endif
+
 post-patch:
-	@${REINPLACE_CMD} -E -e "s|^(katepcdir =).*|\1 ${LOCALBASE}/libdata/pkgconfig|" \
-	${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -E -e \
+		"s|^(katepcdir =).*|\1 ${LOCALBASE}/libdata/pkgconfig|" \
+		${WRKSRC}/Makefile.in
+
+.if ! ${PORT_OPTIONS:MKATEDJ}
+	@${REINPLACE_CMD} -e \
+		"s|  HAVE_PYTHON_TRUE=$$|  HAVE_PYTHON_TRUE='#'|; \
+			s|  HAVE_PYTHON_FALSE=\'#\'$$|  HAVE_PYTHON_FALSE=|" \
+		${WRKSRC}/configure
+.endif
+
+	@${REINPLACE_CMD} -E -e \
+		"s|^(install-data-am: ).*|\1|" \
+		${WRKSRC}/doc/Makefile.in
+
+.if ! ${PORT_OPTIONS:MDOXYGEN} || ! ${PORT_OPTIONS:MDOCS}
+	@${TOUCH} ${WRKSRC}/doc/.doc-dummy-target
+.endif
 
 post-install:
 .for f in ${MAN1}
-	${INSTALL_MAN}  ${WRKSRC}/doc/man/${f}  ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/man/${f} ${PREFIX}/man/man1
 .endfor
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 . for FILE in README AUTHORS COPYING THANKS ChangeLog
 	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
 . endfor
-. if defined(WITH_HTMLDOCS)
-	${CP} -RPpn ${WRKSRC}/doc/html ${DOCSDIR}/html
+. if ${PORT_OPTIONS:MHTMLDOCS} || ${PORT_OPTIONS:MDOXYGEN}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR})
 . endif
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
