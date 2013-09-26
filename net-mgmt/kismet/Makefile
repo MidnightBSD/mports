@@ -12,6 +12,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
