@@ -4,53 +4,57 @@
 PORTNAME=	x264
 PORTVERSION=	0.${X264_BUILD}.${X264_REV}
 CATEGORIES=	multimedia
-MASTER_SITES=	http://downloads.videolan.org/pub/videolan/x264/snapshots/ \
+MASTER_SITES=	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/ \
 		http://samples.mplayerhq.hu/yuv4mpeg2/:pgo
-DISTNAME=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245
-DISTFILES=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245${EXTRACT_SUFX}
+MASTER_SITE_SUBDIR=	mm/x264
+DISTNAME=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245-stable
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	x264
-EXTRACT_ONLY=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Library and tool for encoding H.264/AVC video streams
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	yasm>=0.6.0:${PORTSDIR}/devel/yasm
+BUILD_DEPENDS=	yasm>=0.6.0:${PORTSDIR}/devel/yasm \
+		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
-X264_BUILD=	110
-X264_REV=	1804
-X264_SNAPSHOT=	20101128
+X264_BUILD=	125
+X264_REV=	2201
+X264_COMMIT=	37be55213a39db40cf159ada319bd482a1b00680
+X264_GITVER=	${X264_COMMIT:C/^(.......).*$/\1/g}
+X264_SNAPSHOT=	20120721
 
 USE_BZIP2=	yes
-EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --exclude .svn
+USE_GCC=	any
 WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 HAS_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 
-OPTIONS=	ASM "Assembly optimizations (devel/binutils)" On \
-		DEBUG "Enable Debugging" Off \
-		PGO "Enable Profile-Guided Optimization" Off \
-		GCC44 "Use gcc 4.4+ (implies WITH_ASM)" Off \
-		GPAC "Enable MPEG-4 Output" On \
-		X11_OUTPUT "Enable X11 Output" Off
+OPTIONS_DEFINE=	ASM DEBUG PGO GCC44 GPAC X11_OUTPUT
+OPTIONS_DEFAULT=	ASM PGO GPAC
+ASM_DESC=		Assembly optimizations (devel/binutils)
+GCC44_DESC=		Use current GCC (implies WITH_ASM)
+GPAC_DESC=		Enable MPEG-4 Output
+X11_OUTPUT_DESC=	Enable X11 Output
 
 CONFIGURE_ARGS+=	--extra-cflags="${CPPFLAGS} ${CFLAGS} -fPIC -I${LOCALBASE}/include" \
 			--extra-ldflags="${LDFLAGS} -L${LOCALBASE}/lib" \
-			--enable-shared \
-			--host=${ARCH}-portbld-freebsd7.0 \
-			--build=${ARCH}-portbld-freebsd7.0
+			--enable-static --enable-shared
 
 PLIST_SUB+=	X264_BUILD=${X264_BUILD}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_GCC44)
-USE_GCC?=	4.4+
+.if ${PORT_OPTIONS:MGCC44}
+USE_GCC?=	yes
 .endif
 
-.if !defined(WITHOUT_ASM) || defined(WITH_GCC44)
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MASM} || ${PORT_OPTIONS:MGCC44}
 BUILD_DEPENDS+=		${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 CONFIGURE_ENV+=		COMPILER_PATH=${LOCALBASE}/bin
 MAKE_ENV+=		COMPILER_PATH=${LOCALBASE}/bin
@@ -70,11 +74,11 @@ CONFIGURE_ENV+=	ARCH= \
 MAKE_ENV+=	ARCH= \
 		TARGET_ARCH=
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
-.if defined(WITH_PGO) && ${SLAVE_PORT:L}!="yes"
+.if ${PORT_OPTIONS:MPGO} && ${SLAVE_PORT:L}!="yes"
 # y4m sample video
 Y4M_VIDEO=example.y4m
 Y4M_VIDEO_DISTFILE=example.y4m.bz2
@@ -87,34 +91,34 @@ RESTRICTED=	${Y4M_VIDEO_DISTFILE} file may not be mirrored
 RESTRICTED_FILES=	${Y4M_VIDEO_DISTFILE}
 .endif
 
-.if !defined(WITHOUT_GPAC)
+.if ${PORT_OPTIONS:MGPAC}
 BUILD_DEPENDS+=		gpac-libgpac>=0.4.5,1:${PORTSDIR}/multimedia/gpac-libgpac
 LIB_DEPENDS+=		gpac.1:${PORTSDIR}/multimedia/gpac-libgpac
 .else
 CONFIGURE_ARGS+=	--disable-gpac
 .endif
 
-.if defined(WITH_X11_OUTPUT)
+.if ${PORT_OPTIONS:MX11_OUTPUT}
 CONFIGURE_ARGS+=	--enable-visualize
 USE_XORG=	x11
 .endif
 
 post-extract:
-.if defined(WITH_PGO) && ${SLAVE_PORT:L}!="yes"
+.if ${PORT_OPTIONS:MPGO} && ${SLAVE_PORT:L}!="yes"
 	@( cd ${WRKDIR} && ${BZIP2_CMD} -dc ${DISTDIR}/${DIST_SUBDIR}/${Y4M_VIDEO_DISTFILE} > ${Y4M_VIDEO} )
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|; \
 		s|-lpthread|${PTHREAD_LIBS}|g; \
-		s|bash|sh|; \
+		s|/bin/bash|${LOCALBASE}/bin/bash|; \
 		s|gpac_static|gpac|g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|bash|sh|' ${WRKSRC}/version.sh
 	@${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${PREFIX}/libdata/pkgconfig|; \
 		s|$${libdir}/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/Makefile
-.if !defined(WITH_GCC44)
+.if ${PORT_OPTIONS:MGCC44}
 	@${REINPLACE_CMD} -e 's|$$(CC) -shared -o|COMPILER_PATH= $$(CC) -shared -o|g' \
 		-e 's|$$(CC) -o|COMPILER_PATH= $$(CC) -o|g' \
 		${WRKSRC}/Makefile
