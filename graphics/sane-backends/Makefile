@@ -2,7 +2,7 @@
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.23
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://alioth.debian.org/frs/download.php/3752/:3752 \
 		http://alioth.debian.org/frs/download.php/3753/:3753 \
@@ -15,6 +15,7 @@ EXTRACT_ONLY=	# need to concatenate before extraction
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for access to scanners, digitals camera, frame grabbers etc
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
@@ -27,7 +28,7 @@ USB_DESC=	USB support
 GPHOTO2_DESC=	gPhoto2 support
 IEEE1284_DESC=	libieee1284 support
 
-USE_GNOME=	
+USES=	pathfix pkgconfig
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-docdir=${WRKDIR}/tmproot \
@@ -35,7 +36,6 @@ CONFIGURE_ARGS=	--with-docdir=${WRKDIR}/tmproot \
 		--disable-locking \
 		--enable-pthread
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 USE_RC_SUBR=	saned
 SUB_FILES+=	pkg-message
@@ -102,7 +102,7 @@ CONFIGURE_ENV+=		ac_cv_header_cups_cups_h=no
 
 post-extract:
 	@((cd ${DISTDIR} && ${CAT} ${DISTFILES:C/:[^:]+$//}) | (cd ${WRKDIR} \
-		&& ${EXTRACT_CMD} ${EXTRACT_BEFOR_ARGS} ${EXTRACT_AFTER_ARGS}))
+		&& ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} - ${EXTRACT_AFTER_ARGS}))
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^for ac_header in/s|libc.h|cups/cups.h| ; \
