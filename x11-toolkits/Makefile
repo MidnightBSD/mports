@@ -53,6 +53,7 @@ SUBDIR += py-gnome-desktop
 SUBDIR += py-gnome2
 SUBDIR += py-gtk2
 SUBDIR += py-gtksourceview
+SUBDIR += py-tkinter
 SUBDIR += py-vte
 SUBDIR += qt33
 SUBDIR += qt4-gui
