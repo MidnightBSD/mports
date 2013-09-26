@@ -2,6 +2,7 @@
 
 PORTNAME=	gtk-update-icon-cache
 PORTVERSION=	2.24.19
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -10,6 +11,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	gtk-update-icon-cache utility from the Gtk+ toolkit.
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
@@ -23,7 +25,7 @@ MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack
-USES=		gettext
+USES=		gettext pkgconfig
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 PATCHDIR=	${.CURDIR}/../../x11-toolkits/gtk20/files
@@ -37,12 +39,6 @@ PLIST_FILES=	bin/gtk-update-icon-cache
 MAN1=		gtk-update-icon-cache.1
 
 .include <bsd.port.pre.mk>
-
-pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
-	@${FALSE}
-.endif
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/gtk/gtk-update-icon-cache \
