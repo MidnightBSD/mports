@@ -2,11 +2,13 @@
 
 PORTNAME=	qmake
 DISTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
+
 LICENSE=	gpl3
 
 EXTENSIONS=	qt
@@ -19,8 +21,25 @@ MAKE_ENV+=	FILESDIR="${FILESDIR}"
 
 FAKE_OPTS=	trueprefix
 
-MAKE_JOBS_SAFE=	yes
 TODAY_CMD=	/bin/date +%Y-%m-%d
+
+EXTRACT_AFTER_ARGS= \
+	'${DISTNAME}/mkspecs' \
+	'${DISTNAME}/include/*/*' \
+	'${DISTNAME}/src/*/*.h' \
+	'${DISTNAME}/qmake' \
+	'${DISTNAME}/src/corelib/tools' \
+	'${DISTNAME}/src/corelib/io' \
+	'${DISTNAME}/src/corelib/global' \
+	'${DISTNAME}/src/corelib/plugin' \
+	'${DISTNAME}/src/corelib/kernel' \
+	'${DISTNAME}/src/corelib/codecs' \
+	'${DISTNAME}/src/corelib/xml' \
+	'${DISTNAME}/src/3rdparty/md4' \
+	'${DISTNAME}/src/3rdparty/md5' \
+	'${DISTNAME}/src/3rdparty/sha1' \
+	'${DISTNAME}/tools/shared/symbian' \
+	'${DISTNAME}/tools/shared/windows'
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2|${CXXFLAGS}|' \
@@ -33,6 +52,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
 
 # FIXME: This is ugly
+	@${RM} ${WRKSRC}/../mkspecs/features/unix/*.orig
 	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++/*.orig
 	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++46/*.orig
 
