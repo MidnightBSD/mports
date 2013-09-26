@@ -7,7 +7,7 @@ CATEGORIES=	archivers
 MASTER_SITES=	ftp://ftp.42.org/pub/OLD/b/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A block-sorting file compressor
+COMMENT=	Block-sorting file compressor
 
 LICENSE=	restricted
 # its gpl2 but patent issues
