@@ -8,15 +8,16 @@ MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
 PKGNAMEPREFIX=	kde4-icons-
 DISTNAME=	${PORTNAME}-icons-${PORTVERSION}
-DIST_SUBDIR=	KDE
+DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Oxygen icon theme for KDE
 LICENSE=	lgpl3
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_KDE4=	kdeprefix kdehier
 USE_CMAKE=	yes
 INSTALL_TARGET=	install
+EXTRACT_AFTER_ARGS=	--exclude '${DISTNAME}/scalable'
 
 .include <bsd.port.mk>
