@@ -8,13 +8,13 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt3 compatibility library
+
 LICENSE=	gpl3
 
 USES=		pkgconfig
 USE_QT4=	qmake_build moc_build corelib gui network sql xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
