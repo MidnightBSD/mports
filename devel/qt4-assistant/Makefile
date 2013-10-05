@@ -22,9 +22,9 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
-#DESKTOP_ENTRIES="Qt Assistant" "${COMMENT}" \
-#		"${PREFIX}/share/pixmaps/assistant-qt4.png" \
-#		"${PREFIX}/bin/assistant-qt4" "Development;Qt;" true
+DESKTOP_ENTRIES="Qt Assistant" "${COMMENT}" \
+		"${PREFIX}/share/pixmaps/assistant-qt4.png" \
+		"${PREFIX}/bin/assistant-qt4" "Development;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/opengl src/openvg \
