@@ -25,7 +25,6 @@ USE_QT4=	dbus declarative qtestlib \
 		moc_build qmake_build rcc_build uic_build
 USE_BZIP2=	yes
 USES=		cmake
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 # To be kept in sync with sysutils/zeitgeist.
@@ -52,6 +51,8 @@ post-patch:
 		-e 's|_config.datadir, "zeitgeist/ontology/zeitgeist.py"|runpath, "zeitgeist.py"|' \
 		${WRKSRC}/scripts/datamodel.py
 	${REINPLACE_CMD} -e 's|zeitgeist.datamodel|datamodel|' \
+		${WRKSRC}/scripts/onto2cpp.py
+	${REINPLACE_CMD} -e 's|env python|env ${PYTHON_CMD}|g' \
 		${WRKSRC}/scripts/onto2cpp.py
 	${REINPLACE_CMD} -e 's|/usr/bin/python|${PYTHON_CMD}|g' \
 		${WRKSRC}/scripts/rdfxml2py
