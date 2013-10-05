@@ -385,6 +385,7 @@ SUBDIR += py-elementtree
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
+SUBDIR += py-isodate
 SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-setuptools
