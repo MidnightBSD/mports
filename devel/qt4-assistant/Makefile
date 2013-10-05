@@ -14,7 +14,6 @@ USE_QT4=	qmake_build moc_build rcc_build uic_build \
 		doc_run sql-sqlite3_run
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -23,9 +22,9 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
-DESKTOP_ENTRIES="Qt Assistant" "${COMMENT}" \
-		"${PREFIX}/share/pixmaps/assistant-qt4.png" \
-		"${PREFIX}/bin/assistant-qt4" "Development;Qt;" true
+#DESKTOP_ENTRIES="Qt Assistant" "${COMMENT}" \
+#		"${PREFIX}/share/pixmaps/assistant-qt4.png" \
+#		"${PREFIX}/bin/assistant-qt4" "Development;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/opengl src/openvg \
