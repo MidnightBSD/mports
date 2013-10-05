@@ -146,6 +146,7 @@ SUBDIR += popup
 SUBDIR += py-docutils
 SUBDIR += py-libxml2
 SUBDIR += py-pygments
+SUBDIR += py-rdflib
 SUBDIR += py-xml
 SUBDIR += qt4-clucene
 SUBDIR += qt4-xml
