@@ -36,6 +36,9 @@ DIST_SUBDIR=	KDE
 
 CONFLICTS_BUILD=	qt-3.* qt-copy-3.*
 
+MAKE_ENV+=	INSTALL_ROOT=${FAKE_DESTDIR}
+FAKE_MAKEENV+=	INSTALL_ROOT=${FAKE_DESTDIR}
+
 # Let configure handle its well known compilers defined in the mkspecs
 # (i.e. `cc` and `c++` are not supported by configure tests).
 CONFIGURE_ENV+=	CC="" CXX=""
