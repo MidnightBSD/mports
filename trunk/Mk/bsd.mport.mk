@@ -4313,6 +4313,11 @@ check-desktop-entries:
 			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 1 (Name) is empty"; \
 			exit 1; \
 		fi; \
+		if ${ECHO_CMD} "$$3" | ${GREP} -iq '.\(png\|svg\|xpm\)$$'; then \
+			if ! ${ECHO_CMD} "$$3" | ${GREP} -iq '^/'; then \
+				${ECHO_MSG} "${PKGNAME}: Makefile warning: in desktop entry $$entry: field 3 (Icon) should be either absolute path or icon name without extension if installed icons follow Icon Theme Specification"; \
+			 fi; \
+                fi; \
 		if [ -z "$$4" ]; then \
 			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 4 (Exec) is empty"; \
 			exit 1; \
@@ -4320,10 +4325,12 @@ check-desktop-entries:
 		if [ -n "$$5" ]; then \
 			for c in `${ECHO_CMD} "$$5" | ${TR} ';' ' '`; do \
 				if ! ${ECHO_CMD} ${VALID_DESKTOP_CATEGORIES} | ${GREP} -wq $$c; then \
-					${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: category $$c is not a valid desktop category"; \
-					exit 1; \
+					${ECHO_CMD} "${PKGNAME}: Makefile warning: in desktop entry $$entry: category $$c is not a valid desktop category"; \
 				fi; \
 			done; \
+			if ! ${ECHO_CMD} "$$5" | ${GREP} -q "`${ECHO_CMD} ${DESKTOP_CATEGORIES_MAIN} | ${SED} -E 's,[[:blank:]]+,\\\|,g'`"; then \
+				${ECHO_CMD} "${PKGNAME}: Makefile warning: in desktop entry $$entry: field 5 (Categories) must contain at least one main desktop category (make -VDESKTOP_CATEGORIES_MAIN)"; \
+			fi; \
 			if ! ${ECHO_CMD} "$$5" | ${GREP} -q ';$$'; then \
 				${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) does not end with a semicolon"; \
 				exit 1; \
@@ -4359,7 +4366,7 @@ install-desktop-entries:
 		${ECHO_CMD} "@cwd ${DESKTOPDIR}" >> ${TMPPLIST}; \
 	fi; \
 	while [ $$# -gt 6 ]; do \
-		filename="$$4.desktop"; \
+		filename="`${ECHO_CMD} "$$4" | ${SED} -e 's,^/,,g;s,[/ ],_,g;s,[^_[:alnum:]],,g'`.desktop"; \
 		pathname="${FAKE_DESTDIR}${DESKTOPDIR}/$$filename"; \
 		categories="$$5"; \
 		if [ -z "$$categories" ]; then \
@@ -4368,18 +4375,22 @@ install-desktop-entries:
 		${ECHO_CMD} "${_DESKTOPDIR_REL}$$filename" >> ${TMPPLIST}; \
 		${ECHO_CMD} "[Desktop Entry]" > $$pathname; \
 		${ECHO_CMD} "Type=Application" >> $$pathname; \
-		${ECHO_CMD} "Version=0.9.4" >> $$pathname; \
-		${ECHO_CMD} "Encoding=UTF-8" >> $$pathname; \
+		${ECHO_CMD} "Version=1.0" >> $$pathname; \
 		${ECHO_CMD} "Name=$$1" >> $$pathname; \
-		if [ -n "$$2" ]; then \
-			${ECHO_CMD} "Comment=$$2" >> $$pathname; \
+		comment="$$2"; \
+		if [ -z "$$2" ]; then \
+			comment="`cd ${.CURDIR} && ${MAKE} -VCOMMENT`"; \
 		fi; \
+		${ECHO_CMD} "GenericName=$$comment" >> $$pathname; \
+		${ECHO_CMD} "Comment=$$comment" >> $$pathname; \
 		if [ -n "$$3" ]; then \
 			${ECHO_CMD} "Icon=$$3" >> $$pathname; \
 		fi; \
 		${ECHO_CMD} "Exec=$$4" >> $$pathname; \
 		${ECHO_CMD} "Categories=$$categories" >> $$pathname; \
-		${ECHO_CMD} "StartupNotify=$$6" >> $$pathname; \
+		if [ -n "$$6" ]; then \
+			${ECHO_CMD} "StartupNotify=$$6" >> $$pathname; \
+		fi; \
 		shift 6; \
 	done; \
 	${ECHO_CMD} "@unexec rmdir ${DESKTOPDIR} 2>/dev/null || true" >> ${TMPPLIST}; \
