@@ -10,10 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt ui editor
 LICENSE=	gpl3
 
-USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build assistant_run \
+USE_QT4=	qmake_build moc_build rcc_build uic_build assistant_run \
 		qt3support corelib declarative gui network script sql xml \
-		webkit
+		webkit phonon
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -27,13 +26,17 @@ ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
+
+DESKTOP_ENTRIES="Qt Designer" "${COMMENT}" \
+		"${PREFIX}/share/pixmaps/designer-qt4.png" \
+		"${PREFIX}/bin/designer-qt4" "Development;Qt;" true
+
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/opengl src/openvg \
 		src/s60installs src/s60main src/scripttools src/sql src/svg \
 		src/testlib src/winmain src/xmlpatterns src/3rdparty/clucene \
 		src/3rdparty/freetype src/3rdparty/libjpeg src/3rdparty/libmng \
 		src/3rdparty/libpng src/3rdparty/libtiff
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
@@ -66,6 +69,9 @@ pre-fake:
 		${BUILD_WRKSRC}/src/lib/Makefile \
 		${BUILD_WRKSRC}/src/uitools/Makefile \
 		${BUILD_WRKSRC}/src/components/lib/Makefile
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
+
+post-install:
+	${INSTALL_DATA} ${BUILD_WRKSRC}/src/designer/images/designer.png \
+		${PREFIX}/share/pixmaps/designer-qt4.png
 
 .include <bsd.port.mk>

@@ -104,9 +104,10 @@ lib/qt4/libQtUiTools.prl
 %%DEBUG%%%%QT_PLUGINDIR_REL%%/designer/libqt3supportwidgets.so.debug
 %%QT_PLUGINDIR_REL%%/designer/libqwebview.so
 %%DEBUG%%%%QT_PLUGINDIR_REL%%/designer/libqwebview.so.debug
-libdata/pkgconfig/QtUiTools.pc
 libdata/pkgconfig/QtDesigner.pc
 libdata/pkgconfig/QtDesignerComponents.pc
+libdata/pkgconfig/QtUiTools.pc
+share/pixmaps/designer-qt4.png
 @dirrmtry %%QT_PLUGINDIR_REL%%/designer
 @dirrmtry %%QT_PLUGINDIR_REL%%
 @dirrmtry lib/qt4
