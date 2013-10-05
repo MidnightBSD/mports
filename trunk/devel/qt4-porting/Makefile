@@ -8,12 +8,12 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt utility to assist with porting Qt3 applications to Qt4
+
 LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build rcc_build corelib xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
