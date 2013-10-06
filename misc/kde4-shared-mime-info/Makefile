@@ -1,9 +1,7 @@
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 PORTREVISION=	0
 CATEGORIES=	misc kde
 MASTER_SITES=	# none
@@ -36,8 +34,8 @@ PLIST_SUB+=	HACK="@comment "
 do-install:
 .if ${KDE4_PREFIX} != ${LOCALBASE}
 .for dir in ${MIMESUBDIRS}
-	${MKDIR} ${KDE4_PREFIX}/share/mime/${dir}
-	${TOUCH} ${KDE4_PREFIX}/share/mime/${dir}/.keep_me
+	${MKDIR} ${FAKE_DESTDIR}${KDE4_PREFIX}/share/mime/${dir}
+	${TOUCH} ${FAKE_DESTDIR}${KDE4_PREFIX}/share/mime/${dir}/.keep_me
 .endfor
 .else
 	@${DO_NADA}
