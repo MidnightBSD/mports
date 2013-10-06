@@ -109,6 +109,7 @@ SUBDIR += sharity-light
 SUBDIR += sixxs-aiccu
 SUBDIR += skype
 SUBDIR += smbldap-tools
+SUBDIR += spideroak
 SUBDIR += tryst
 SUBDIR += tryst-examples
 SUBDIR += tsocks
