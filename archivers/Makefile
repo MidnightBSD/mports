@@ -4,7 +4,6 @@ COMMENT = Archivers
 
 SUBDIR += arc
 SUBDIR += arj
-SUBDIR += bzip
 SUBDIR += bzip2
 SUBDIR += cabextract
 SUBDIR += fastjar
