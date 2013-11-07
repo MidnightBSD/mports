@@ -1,14 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	doxygen
-PORTVERSION=	1.8.2
+PORTVERSION=	1.8.3.1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
 EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A documentation system for C, C++ and other languages
+COMMENT=	Documentation system for C, C++ and other languages
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
@@ -26,52 +27,52 @@ CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
 MAKE_JOBS_UNSAFE=	yes
 REINPLACE_ARGS=	-i ''
 
-EXTRACT_AFTER_ARGS=|${TAR} -xpf - \
-		--exclude '*/libmd5'	\
-		--exclude '*/libpng'	\
-		--exclude '*/tmake'
+EXTRACT_AFTER_ARGS=	--exclude '*/libmd5'	\
+			--exclude '*/libpng'	\
+			--exclude '*/tmake'
 
 PLIST=		${WRKDIR}/plist
 TMPDOCDEST=	${WRKDIR}/tmpdocdest
 
 PLIST_FILES=	bin/doxygen
 
-OPTIONS=	DOXYWIZARD "Enable doxywizard" on \
-		LATEX "Enable LaTeX support" on
+OPTIONS_DEFINE=	HTMLDOCS QT4 PDFDOCS
+QT4_DESC=	Install Doxywizard GUI
+HTMLDOCS_DESC=	Install documentation in HTML format
+PDFDOCS_DESC=	Install documentation in PDF format
 
 .include <bsd.mport.options.mk>
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MHTMLDOCS}
 ALL_TARGET+=	docs
 USE_PYTHON_BUILD=	yes
 BUILD_DEPENDS+=	dot:${PORTSDIR}/graphics/graphviz
 
-.if !defined(WITHOUT_LATEX)
+.if ${PORT_OPTIONS:MPDFDOCS}
 ALL_TARGET+=	pdf
 BUILD_DEPENDS+=	dvips:${PORTSDIR}/print/dvipsk-tetex \
 		latex:${PORTSDIR}/print/teTeX
 USE_GHOSTSCRIPT_BUILD=	yes
-MAKE_ARGS+=	HAVE_LATEX=yes
-.endif # !defined(WITHOUT_LATEX)
-.endif # !defined(NOPORTDOCS)
+MAKE_ARGS+=	HAVE_PDFDOCS=yes
+.endif # PDFDOCS
+.endif # HTMLDOCS
 
-.if !defined(WITHOUT_DOXYWIZARD)
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib gui xml qmake_build moc_build rcc_build
+.if ${PORT_OPTIONS:MQT4}
+USE_QT4=	corelib gui xml qmake_build moc_build rcc_build
 
 # Need this in env for build
 QTDIR?=		${QT_PREFIX}
 CONFIGURE_ENV=	QTDIR="${QTDIR}"
 CONFIGURE_ARGS+=--with-doxywizard
-.endif # !defined(WITHOUT_DOXYWIZARD)
+.endif # QT4
 
 .if ${MACHINE_ARCH:L} == alpha
 CONFIGURE_ARGS+=	--enable-langs no
 .endif
 
-.if !defined(WITHOUT_DOXYWIZARD)
+.if ${PORT_OPTIONS:MQT4}
 PLIST_FILES+=	bin/doxywizard
-.endif # !defined(WITHOUT_DOXYWIZARD)
+.endif # QT4
 
 pre-configure:
 	@cd ${WRKSRC};for pro in src/*.pro.in addon/doxywizard/doxywizard.pro.in;do \
@@ -92,7 +93,7 @@ post-build:
 pre-install:
 	${RM} -rf ${TMPDOCDEST} ${PLIST}
 	${TOUCH} ${PLIST}
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MHTMLDOCS}
 	${MKDIR} ${TMPDOCDEST}/doxygen
 	${RM} -f ${WRKSRC}/examples/diagrams/html/*.md5 \
 		 ${WRKSRC}/examples/diagrams/html/*.map
@@ -101,31 +102,27 @@ pre-install:
 	${TAR} -C ${WRKSRC} --exclude '*/Makefile*' --exclude '*.dot' \
 		-cf - examples \
 		| ${TAR} -C ${TMPDOCDEST}/doxygen --unlink -xf -
-.if !defined(WITHOUT_LATEX)
-	${INSTALL_DATA} ${WRKSRC}/latex/doxygen_manual.dvi \
-			${WRKSRC}/latex/doxygen_manual.pdf \
-			${WRKSRC}/latex/doxygen_manual.ps \
+.if ${PORT_OPTIONS:MPDFDOCS}
+	${INSTALL_DATA} ${WRKSRC}/latex/doxygen_manual.pdf \
 			${WRKSRC}/latex/archoverview.eps \
-			${WRKSRC}/latex/doxygen_logo.eps \
 			${TMPDOCDEST}/doxygen
-.endif # !defined(WITHOUT_LATEX)
+.endif # PDFDOCS
 	@cd ${TMPDOCDEST} \
 	&& ${FIND} -s * -type f -o -type l \
-		| ${SED} -e 's|^|share/doc/|'>> ${PLIST} \
+		| ${SED} -e 's|^|share/doc/|' >> ${PLIST} \
 	&& ${FIND} -d * -type d \
 		| ${SED} -e 's|^|@dirrm share/doc/|' >> ${PLIST}
-.endif # !defined(NOPORTDOCS)
+.endif # HTMLDOCS
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxygen ${PREFIX}/bin/
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxytag ${PREFIX}/bin/
-.if !defined(WITHOUT_DOXYWIZARD)
+.if ${PORT_OPTIONS:MQT4}
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxywizard ${PREFIX}/bin/
-.endif # !defined(WITHOUT_DOXYWIZARD)
-.if !defined(NOPORTDOCS)
+.endif # QT4
+.if ${PORT_OPTIONS:MHTMLDOCS}
 	${MKDIR} ${PREFIX}/share/doc/doxygen
 	${TAR} -C ${TMPDOCDEST} -cf - doxygen \
 		| ${TAR} -C ${PREFIX}/share/doc --unlink -xf -
-.endif # !defined(NOPORTDOCS)
+.endif # HTMLDOCS
 
 .include <bsd.port.mk>
