@@ -2,7 +2,7 @@
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -11,6 +11,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
+
 LICENSE=	agg
 
 BUILD_DEPENDS=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
@@ -22,7 +23,7 @@ LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		aspell:${PORTSDIR}/textproc/aspell \
 		idn:${PORTSDIR}/dns/libidn \
 		jasper:${PORTSDIR}/graphics/jasper \
-		pcre.1:${PORTSDIR}/devel/pcre \
+		pcre:${PORTSDIR}/devel/pcre \
 		thai:${PORTSDIR}/devel/libthai \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
@@ -58,7 +59,7 @@ CONFIGURE_TARGET=# empty
 CONFIGURE_ARGS+=--disable-ltdl-install	\
 		--disable-as-needed \
 		--enable-mt \
-		--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
+		--build=${MACHINE_ARCH}-portbld-freebsd9.0 \
 		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--with-libthai=yes \
 		--with-lua=no \
