@@ -2,7 +2,7 @@
 # $FreeBSD: ports/mail/gmime24/Makefile,v 1.11 2011/08/11 19:19:39 kwm Exp $
 
 PORTNAME=	gmime
-PORTVERSION=	2.4.24
+PORTVERSION=	2.4.33
 PORTREVISION?=	0
 CATEGORIES?=	mail
 MASTER_SITES=	GNOME
@@ -17,23 +17,35 @@ CONFLICTS=	gmime-1.0.*
 SLAVEDIRS=	mail/gmime2-sharp
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}24
-USE_ICONV=	yes
-USE_GMAKE=	yes
-USE_GNOME?=	gnomehack glib20
+USE_GNOME?=	glib20
+USES=		gmake pathfix pkgconfig iconv
 USE_LDCONFIG=	yes
+USE_XZ=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
-		--enable-mono=no
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib"
+		--enable-mono=no \
+		--program-transform-name="s/uuencode/gmime-uuencode/;s/uudecode/gmime-uudecode/;"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 
 LATEST_LINK?=	${PORTNAME}24
 
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
+
+
+.include <bsd.mport.options.mk>
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/*/Makefile.in
+
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
 .for i in docs/reference/html/*
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 
