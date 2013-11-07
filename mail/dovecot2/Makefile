@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.4
+PORTVERSION=	2.2.6
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
@@ -16,7 +16,6 @@ CONFLICTS=	dovecot-1.[0-9]*
 
 USES=		iconv
 USE_RC_SUBR=	dovecot
-MAKE_JOBS_SAFE=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
@@ -82,8 +81,10 @@ CONFIGURE_ARGS+=--with-ioloop=kqueue
 #
 .if ${PORT_OPTIONS:MSSL}
 PROTOCOLS+=	imaps pop3s
+PLIST_SUB+=	SSL=""
 .else
 CONFIGURE_ARGS+=--without-ssl
+PLIST_SUB+=	SSL="@comment "
 .endif
 
 ## GSSAPI support
@@ -228,10 +229,8 @@ post-patch:
 		' ${WRKSRC}/*/Makefile.in ${WRKSRC}/Makefile.in
 
 post-install:
-.if ${PORT_OPTIONS:MEXAMPLES}
 	@${MKDIR} ${EXAMPLESDIR}
 	cd ${WRKSRC}/doc && ${INSTALL_SCRIPT} dovecot-openssl.cnf mkcert.sh ${EXAMPLESDIR}
-.endif
 .if ${PORT_OPTIONS:MDOCS}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
