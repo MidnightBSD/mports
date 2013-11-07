@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	17.0.9
+DISTVERSION=	17.0.10
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	firefox/releases/${DISTVERSION}esr/linux-i686/en-US
 DISTNAME=	${PORTNAME}-${DISTVERSION}esr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
+
 LICENSE=	mpl
 
 USE_LDCONFIG=	yes
