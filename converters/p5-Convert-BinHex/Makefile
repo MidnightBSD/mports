@@ -1,17 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	Convert-BinHex
-PORTVERSION=	1.119
+PORTVERSION=	1.123
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to extract data from Macintosh BinHex files
+
 LICENSE=	gpl2
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Convert::BinHex.3
 
 .include <bsd.port.mk>
