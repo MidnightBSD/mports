@@ -10,7 +10,7 @@ lib/libiconv.a
 lib/libiconv.la
 lib/libiconv.so
 lib/libiconv.so.3
-libdata/charset.alias
+lib/charset.alias
 %%DOCSDIR%%/iconv.1.html
 %%DOCSDIR%%/iconv.3.html
 %%DOCSDIR%%/iconv_close.3.html

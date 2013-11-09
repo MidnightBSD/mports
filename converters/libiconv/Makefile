@@ -2,12 +2,13 @@
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A character set conversion library
+
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
@@ -30,11 +31,6 @@ OPTIONS_DEFAULT=ENCODINGS
 ENCODINGS_DESC=	Include extra character sets
 PATCHES_DESC=	Apply patches to fix CP932, add EUCJP-MS
 
-.ifdef USE_ICONV
-.error USE_ICONV is defined as an environment variable, or in the arguments \
-	to "make".  Please unset it and restart the build.
-.endif
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MENCODINGS}
@@ -55,5 +51,11 @@ post-patch:
 		${WRKSRC}/libcharset/configure \
 		${WRKSRC}/preload/configure
 
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if exists(/usr/include/iconv.h)
+IGNORE=		converters/libiconv should not be used with iconv from base. \
+Please fix the port which tries to use it
+.endif
+
+.include <bsd.port.post.mk>
