@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Encode
-PORTVERSION=	2.49
+PORTVERSION=	2.55
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/D/DA/DANKOGAI
@@ -9,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides interfaces between strings and the rest of the system
+
 LICENSE=        perl
 
 PERL_CONFIGURE=	yes
