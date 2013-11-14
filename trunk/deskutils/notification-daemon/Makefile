@@ -2,6 +2,7 @@
 
 PORTNAME=	notification-daemon
 PORTVERSION=	0.7.2
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 
@@ -15,8 +16,7 @@ LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus \
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack gtk30
-USE_GMAKE=	yes
-USES=		gettext
+USES=		gettext gmake pkgconfig
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
