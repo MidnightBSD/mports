@@ -11,6 +11,7 @@ SUBDIR += djbfft
 SUBDIR += edenmath
 SUBDIR += eigen
 SUBDIR += eigen2
+SUBDIR += eigen3
 SUBDIR += facile
 SUBDIR += fftw3
 SUBDIR += fftw3-float
