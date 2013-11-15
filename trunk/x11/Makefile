@@ -45,6 +45,7 @@ SUBDIR += idesk
 SUBDIR += innerspace
 SUBDIR += inputproto
 SUBDIR += kactivities
+SUBDIR += kactivitymanagerd
 SUBDIR += kbproto
 SUBDIR += kde-lite
 SUBDIR += kde3
