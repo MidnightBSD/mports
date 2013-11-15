@@ -13,6 +13,8 @@ LICENSE=	gpl2
 
 BOOTVERSION=	3.2.11
 
+BROKEN=		fails to build
+
 ALL_TARGET=	default
 MAKE_ENV=	PATH=${WRKDIR}/bin:${PATH}
 GNU_CONFIGURE=	yes
