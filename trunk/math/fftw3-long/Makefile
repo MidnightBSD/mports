@@ -1,11 +1,8 @@
-# New ports collection makefile for:	fftw3-long
-# Date created:		2004-09-01
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/math/fftw3-long/Makefile,v 1.8 2006/05/11 15:11:30 ahze Exp $
 
 COMMENT=	Fast Discrete Fourier Transform (Long Double Precision C Routines)
+
+BROKEN=		broken on 0.4
 
 FFTW3_FLAVOR=	long
 MASTERDIR=	${.CURDIR}/../../math/fftw3
