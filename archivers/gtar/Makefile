@@ -2,7 +2,7 @@
 
 PORTNAME=	gtar
 PORTVERSION=	1.26
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -10,6 +10,7 @@ DISTFILES=	tar-${PORTVERSION}.tar.xz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of the traditional tape archiver
+
 LICENSE=	gpl3
 
 WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
@@ -21,9 +22,8 @@ INFO=		tar
 
 USE_AUTOTOOLS=	autoconf:env	# autom4te
 USE_XZ=		yes
-USE_ICONV=	yes
+USES=		iconv
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--disable-silent-rules
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -43,7 +43,7 @@ LDSTATIC=
 .endif
 
 .if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=	yes
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
@@ -54,10 +54,6 @@ regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 4003
-RUN_DEPENDS+=	xz:${PORTSDIR}/archivers/xz
-.endif
 
 # supply result to skip a test that will abort configure if run as root
 .if ${OSVERSION} < 4016
