@@ -1,34 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	gettext
-PORTVERSION=	0.18.1.1
-PORTREVISION=	6
+PORTVERSION=	0.18.3
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU gettext package
+
 LICENSE=	gpl3
 
 USES=		charsetfix iconv
-LIBTOOLFILES=	gettext-runtime/configure \
-		gettext-runtime/libasprintf/configure gettext-tools/configure
-USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
-		AUTOCONF="${TRUE}" \
-		AUTOMAKE="${TRUE}" \
-		AUTOHEADER="${TRUE}" \
-		MAKEINFO="makeinfo --no-split" \
-		EMACS="no"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp \
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-csharp --disable-java \
+		--disable-openmp --disable-threads \
 		--with-included-gettext --with-included-glib \
-		--with-included-libcroco --with-included-libxml \
-		--without-git \
-		--build=${ARCH}-portbld-freebsd9.1 \
-		--host=${ARCH}-portbld-freebsd9.1
+		--with-included-libcroco --with-included-libunistring \
+		--with-included-libxml \
+		--without-emacs --without-git
 USE_LDCONFIG=	yes
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
@@ -40,10 +33,7 @@ MAN3=		bind_textdomain_codeset.3 bindtextdomain.3 dcgettext.3 \
 		textdomain.3
 INFO=		autosprintf gettext
 
-.ifdef USE_GETTEXT
-.error	USE_GETTEXT is defined as an environment variable, or in the arguments \
-	to "make".  Please unset it and restart the build.
-.endif
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
@@ -51,18 +41,7 @@ INFO=		autosprintf gettext
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-nodocs
 .endif
 
-pre-extract:
-.if exists(${PREFIX}/bin/kaffe)
-	@${ECHO_MSG} "Gettext won't build with Kaffe's jar utility.  Doing:"
-	-${MV} ${PREFIX}/bin/jar ${PREFIX}/bin/jar.backup
-	@${ECHO_MSG} "Be sure to mv" ${PREFIX}/bin/jar.backup ${PREFIX}/bin/jar
-	@${ECHO_MSG} "if you abandon your attempt to build gettext."
-	@sleep 5
-.endif
-
 post-patch:
-	@${FIND} ${WRKSRC} -name configure -print | ${XARGS} \
-	    ${REINPLACE_CMD} -e 's|mkdir gmkdir|mkdir|; s|gawk|awk|'
 .if ! ${PORT_OPTIONS:MDOCS}
 .for dir in runtime tools
 	@${REINPLACE_CMD} -e 's|^SUBDIRS = doc|SUBDIRS =|' \
@@ -70,19 +49,7 @@ post-patch:
 .endfor
 .endif
 
-post-build:
-.if exists(${PREFIX}/bin/kaffe)
-	-${MV} ${PREFIX}/bin/jar.backup ${PREFIX}/bin/jar
-	@${ECHO_MSG}
-	@${ECHO_MSG} "Your" ${PREFIX}/bin/jar "has been restored."
-	@sleep 5
-.endif
-
 post-install:
-.for f in po-compat.el po-mode.el
-	@${INSTALL_DATA} ${WRKSRC}/gettext-tools/misc/${f} \
-			 ${PREFIX}/share/emacs/site-lisp
-.endfor
 	@${MKDIR} ${LOCALBASE}/share/locale
 	@cd ${WRKSRC}/gettext-tools/doc && make install-info-am
 
