@@ -7,24 +7,22 @@ CATEGORIES=	sysutils kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src/
 DISTNAME=	kde-workspace-${PORTVERSION}
-DIST_SUBDIR=	KDE
+DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE System Guard Daemon
 LICENSE=	gpl2
 
 DISTINFO_FILE=	${PORTSDIR}/x11/kde4-workspace/distinfo
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_KDE4=	kdeprefix kdehier
-USE_CMAKE=	yes
+USES=		cmake
 CMAKE_ARGS+=	-DBIN_INSTALL_DIR:STRING="${PREFIX}/bin" \
 		-DSYSCONF_INSTALL_DIR:STRING="${PREFIX}/etc"
-MAKE_JOBS_SAFE=	yes
 
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf - \
-		'${DISTNAME}/ksysguard/${PORTNAME}' \
-		'${DISTNAME}/ksysguard/example/${PORTNAME}rc' \
-		'${DISTNAME}/ksysguard/gui/SignalIDs.h'
+EXTRACT_AFTER_ARGS=	'${DISTNAME}/ksysguard/${PORTNAME}' \
+			'${DISTNAME}/ksysguard/example/${PORTNAME}rc' \
+			'${DISTNAME}/ksysguard/gui/SignalIDs.h'
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/ksysguard/${PORTNAME}
 
