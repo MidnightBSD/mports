@@ -16,6 +16,7 @@ SUBDIR += boinc-client
 SUBDIR += cagibi
 SUBDIR += cvsup
 SUBDIR += cvsup-without-gui
+SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
 SUBDIR += fping
