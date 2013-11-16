@@ -10,10 +10,9 @@ COMMENT=	Ubiquitous network traffic capture library
 
 LICENSE=	bsd3
 
-MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_BISON=	build
+USES=		bison
 USE_LDCONFIG=	yes
 
 .if defined(LIBPCAP_OVERWRITE_BASE)
