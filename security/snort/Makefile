@@ -1,164 +1,211 @@
 # $MidnightBSD$
 
 PORTNAME=	snort
-PORTVERSION=	2.8.2.1
-PORTREVISION=	2
+PORTVERSION=	2.9.5.3
 CATEGORIES=	security
-MASTER_SITES=	http://www.snort.org/dl/current/
+MASTER_SITES=	SF/snort/snort \
+		http://mirrors.rit.edu/zi/
+
+PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight network intrusion detection system
 
-LICENSE=        gpl2
+LICENSE=	gpl2
 
-MAKE_JOBS_UNSAFE=	yes
 
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+BUILD_DEPENDS=	daq>=2.0.0:${PORTSDIR}/net/daq \
+		${LOCALBASE}/lib/libnet11/libnet.a:${PORTSDIR}/net/libnet
+RUN_DEPENDS=	daq>=2.0.0:${PORTSDIR}/net/daq \
+		${LOCALBASE}/lib/libnet11/libnet.a:${PORTSDIR}/net/libnet
 
-OPTIONS=	DYNAMIC "Enable dynamic plugin support" on \
-		FLEXRESP "Flexible response to events" off \
-		FLEXRESP2 "Flexible response to events (version 2)" off \
-		MYSQL "Enable MySQL support" off \
-		ODBC "Enable ODBC support" off \
-		POSTGRESQL "Enable PostgreSQL support" off \
-		PRELUDE "Enable Prelude NIDS integration" off \
-		PERPROFILE "Enable Performance Profiling" off
+OPTIONS_DEFINE=	IPV6 MPLS GRE TARGETBASED ZLIB NORMALIZER REACT \
+		PERFPROFILE FLEXRESP3 LRGPCAP SNORTSAM SOURCEFIRE \
+		DBGSNORT BARNYARD PULLEDPORK NONETHER
+OPTIONS_DEFAULT=IPV6 MPLS GRE ZLIB NORMALIZER REACT PERFPROFILE \
+		FLEXRESP3 SOURCEFIRE TARGETBASED PULLEDPORK \
+		BARNYARD
 
-USE_RC_SUBR=	snort.sh
+GRE_DESC=		Enable GRE support
+TARGETBASED_DESC=	Enable targetbased support
+ZLIB_DESC=		Enable GZIP support
+NONETHER_DESC=		Enable non-Ethernet Decoders
+NORMALIZER_DESC=	Enable normalizer
+REACT_DESC=		Enable react
+PERFPROFILE_DESC=	Enable performance profiling
+FLEXRESP3_DESC=		Enable flexible response on events (v3)
+LRGPCAP_DESC=		Enable pcaps larger than 2GB
+SNORTSAM_DESC=		Enable unofficial Snortsam patch
+SOURCEFIRE_DESC=	Enable Sourcefire-specific build options
+DBGSNORT_DESC=		Enable debugging symbols+core dumps
+BARNYARD_DESC=		Depend on Barnyard2
+PULLEDPORK_DESC=	Depend on pulledpork
+
+.include <bsd.mport.options.mk>
+
+USE_RC_SUBR=	snort
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LDFLAGS="${LDFLAGS}"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+MAKE_JOBS_UNSAFE=	yes
 
 CONFIG_DIR?=	${PREFIX}/etc/snort
 CONFIG_FILES=	classification.config gen-msg.map reference.config \
-		sid-msg.map snort.conf threshold.conf unicode.map
+		snort.conf threshold.conf unicode.map
 RULES_DIR=	${PREFIX}/etc/snort/rules
 LOGS_DIR=	/var/log/snort
 
 MAN8=		snort.8
 DOCS=		RELEASE.NOTES doc/AUTHORS doc/BUGS doc/CREDITS \
 		doc/README* doc/USAGE doc/*.pdf
+PREPROC_RULE_DIR=	${RULES_DIR}/../preproc_rules
+PREPROC_RULES=		decoder.rules preprocessor.rules sensitive-data.rules
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_FLEXRESP)
-LIBNET_CONFIG?=		${LOCALBASE}/bin/libnet10-config
-.elif defined(WITH_FLEXRESP2)
+USE_AUTOTOOLS=	libtool
+USE_LDCONFIG=	yes
 LIBNET_CONFIG?=		${LOCALBASE}/bin/libnet11-config
-.endif
-
 .if exists(${LIBNET_CONFIG})
 LIBNET_CFLAGS!=	${LIBNET_CONFIG} --cflags
 LIBNET_LIBS!=	${LIBNET_CONFIG} --libs
+.else
+LIBNET_CFLAGS=	-I${LOCALBASE}/include/libnet11
+LIBNET_LIBS=	-L${LOCALBASE}/lib/libnet11 -lnet
+.endif
 LIBNET_INCDIR=	${LIBNET_CFLAGS:M-I*:S/-I//}
 LIBNET_LIBDIR=	${LIBNET_LIBS:M-L*:S/-L//}
-.endif
 
-.if !defined(WITHOUT_DYNAMIC)
-USE_AUTOTOOLS=	libtool
-USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=	--enable-dynamicplugin
+CFLAGS+=	-fstack-protector
+CONFIGURE_ARGS=	--enable-dynamicplugin --enable-reload \
+		--enable-reload-error-restart \
+		--with-dnet-includes=${LIBNET_INCDIR} \
+		--with-dnet-libraries=${LIBNET_LIBDIR}
+
 PLIST_SUB+=	DYNAMIC=""
+
+.if empty(PORT_OPTIONS:MFLEXRESP3)
+CONFIGURE_ARGS+=--disable-flexresp3 --disable-active-response
+.endif
+
+.if ${PORT_OPTIONS:MLRGPCAP}
+CONFIGURE_ARGS+=--enable-large-pcap
+.endif
+
+.if ${PORT_OPTIONS:MDBGSNORT}
+CONFIGURE_ARGS+=--enable-corefiles --enable-debug
+MAKE_ENV+=	DONTSTRIP="yes"
 .else
-PLIST_SUB+=	DYNAMIC="@comment "
+CONFIGURE_ARGS+=--disable-corefiles
 .endif
 
-.if defined(WITH_FLEXRESP)
-.if defined(WITH_FLEXRESP2)
-IGNORE=			options FLEXRESP and FLEXRESP2 are mutually exclusive
-.endif
-BUILD_DEPENDS+=		${LIBNET_CONFIG}:${PORTSDIR}/net/libnet10
-CONFIGURE_ARGS+=	--enable-flexresp \
-			--with-libnet-includes=${LIBNET_INCDIR} \
-			--with-libnet-libraries=${LIBNET_LIBDIR}
+.if ${PORT_OPTIONS:MSOURCEFIRE}
+CONFIGURE_ARGS+=--enable-sourcefire
 .endif
 
-.if defined(WITH_FLEXRESP2)
-BUILD_DEPENDS+=		${LIBNET_CONFIG}:${PORTSDIR}/net/libnet \
-			libdnet*>=1.10_1:${PORTSDIR}/net/libdnet
-CONFIGURE_ARGS+=	--enable-flexresp2 \
-			--with-libnet-includes=${LIBNET_INCDIR} \
-			--with-libnet-libraries=${LIBNET_LIBDIR}
+.if empty(PORT_OPTIONS:MPERFPROFILE)
+CONFIGURE_ARGS+=--disable-perfprofiling --disable-ppm
 .endif
 
-.if defined(WITH_MYSQL)
-USE_MYSQL=		yes
-CONFIGURE_ARGS+=	--with-mysql=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--with-mysql=no
+.if empty(PORT_OPTIONS:MIPV6)
+CONFIGURE_ARGS+=--disable-ipv6
 .endif
 
-.if defined(WITH_ODBC)
-LIB_DEPENDS+=		odbc.1:${PORTSDIR}/databases/unixODBC
-CONFIGURE_ARGS+=	--with-odbc=${LOCALBASE}
-LDFLAGS+=		${PTHREAD_LIBS}
-.else
-CONFIGURE_ARGS+=	--with-odbc=no
+.if empty(PORT_OPTIONS:MGRE)
+CONFIGURE_ARGS+=--disable-gre
 .endif
 
-.if defined(WITH_POSTGRESQL)
-USE_PGSQL=		yes
-CONFIGURE_ARGS+=	--with-postgresql=${LOCALBASE}
-.if exists(/usr/lib/libssl.a) && exists(/usr/lib/libcrypto.a)
-LDFLAGS+=		-lssl -lcrypto
-.endif
-.else
-CONFIGURE_ARGS+=	--with-postgresql=no
+.if ${PORT_OPTIONS:MNONETHER}
+CONFIGURE_ARGS+=--enable-non-ether-decoders
 .endif
 
-.if defined(WITH_PRELUDE)
-LIB_DEPENDS+=		prelude.14:${PORTSDIR}/security/libprelude
-CONFIGURE_ARGS+=	--enable-prelude
-PLIST_SUB+=		PRELUDE=""
-.else
-CONFIGURE_ARGS+=	--disable-prelude
-PLIST_SUB+=		PRELUDE="@comment "
+.if empty(PORT_OPTIONS:MMPLS)
+CONFIGURE_ARGS+=--disable-mpls
 .endif
 
-.if defined(WITH_PERPROFILE)
-CONFIGURE_ARGS+=	--enable-perfprofiling
+.if empty(PORT_OPTIONS:MTARGETBASED)
+CONFIGURE_ARGS+=--disable-targetbased
+.endif
+
+.if empty(PORT_OPTIONS:MZLIB)
+CONFIGURE_ARGS+=--disable-zlib
+.endif
+
+.if ${PORT_OPTIONS:MNORMALIZER}
+CONFIGURE_ARGS+=--enable-normalizer
+.endif
+
+.if ${PORT_OPTIONS:MREACT}
+CONFIGURE_ARGS+=--enable-react
+.endif
+
+.if ${PORT_OPTIONS:MSNORTSAM}
+BROKEN=		current snortsam patch fails to apply
+USE_AUTOTOOLS+=	automake
+USES+=		pkgconfig
+PATCH_SITES+=	http://www.snortsam.net/files/snort-plugin/:snortsam
+PATCHFILES+=	snortsam-2.9.2.2.diff.gz:snortsam
+.endif
+
+.if ${PORT_OPTIONS:MBARNYARD}
+RUN_DEPENDS+=	barnyard2:${PORTSDIR}/security/barnyard2
+.endif
+
+.if ${PORT_OPTIONS:MPULLEDPORK}
+RUN_DEPENDS+=	pulledpork.pl:${PORTSDIR}/security/pulledpork
 .endif
 
 post-patch:
-	${FIND} ${WRKSRC} -name 'Makefile.in' | ${XARGS} ${REINPLACE_CMD} -e \
-	    's|lib/snort_|lib/snort/|g'
-	${REINPLACE_CMD} "s,/etc/snort.conf,${CONFIG_DIR}/snort.conf," \
-		${WRKSRC}/src/snort.c ${WRKSRC}/snort.8
-	${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g' ${WRKSRC}/etc/snort.conf
-.if defined(WITH_FLEXRESP) || defined(WITH_FLEXRESP2)
-	${REINPLACE_CMD} -e 's|libnet-config|${LIBNET_CONFIG}|g' ${WRKSRC}/configure
+	@${FIND} ${WRKSRC} -name 'Makefile.in' | ${XARGS} ${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g'
+	@${REINPLACE_CMD} "s,/etc/snort.conf,${CONFIG_DIR}/snort.conf," ${WRKSRC}/src/snort.c ${WRKSRC}/snort.8
+	@${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g' ${WRKSRC}/etc/snort.conf
+	@${REINPLACE_CMD} -e 's|^dynamicdetection|#dynamicdetection|' ${WRKSRC}/etc/snort.conf
+	@${REINPLACE_CMD} -e '/var HOME_NET/s/any/[YOU_NEED_TO_SET_HOME_NET_IN_snort.conf]/' ${WRKSRC}/etc/snort.conf
+	@${REINPLACE_CMD} -e 's|libdir)/pkgconfig|prefix)/libdata/pkgconfig|' ${WRKSRC}/Makefile.in \
+		${WRKSRC}/src/dynamic-preprocessors/libs/Makefile.in ${WRKSRC}/src/dynamic-output/libs/Makefile.in
+	@${REINPLACE_CMD} -e 's|libnet-config|${LIBNET_CONFIG}|g' ${WRKSRC}/configure
+.if empty(PORT_OPTIONS:MIPV6)
+	@${REINPLACE_CMD} -e 's|^ipvar |var |' ${WRKSRC}/etc/snort.conf
+	@${REINPLACE_CMD} -e '/normalize_ip6/s/^preprocessor/#preprocessor/'  ${WRKSRC}/etc/snort.conf
+	@${REINPLACE_CMD} -e '/normalize_icmp6/s/^preprocessor/#preprocessor/'  ${WRKSRC}/etc/snort.conf
 .endif
-.if defined(WITHOUT_DYNAMIC)
-	${REINPLACE_CMD} -e "s,-am: install-libLTLIBRARIES,-am:," \
-		${WRKSRC}/src/dynamic-plugins/sf_engine/Makefile.in
+	@${REINPLACE_CMD} -e '/^# include .PREPROC_RULE/s/# include/include/' ${WRKSRC}/etc/snort.conf
+.if empty(PORT_OPTIONS:MDOCS)
+	@${REINPLACE_CMD} '/SUBDIRS = /s/doc//' ${WRKSRC}/Makefile.in ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e '/README.u2boat/d' \
+		-e '/test.*docdir.*MKDIR.*DEST/d' ${WRKSRC}/tools/u2boat/Makefile.*
 .endif
 
 pre-configure:
-.if defined(WITHOUT_DYNAMIC)
-	@${CAT} ${PATCHDIR}/pkg-message-dynamicplugin
-	@sleep 5
+.if ${PORT_OPTIONS:MSNORTSAM}
+	@${FIND} ${WRKSRC} -name 'Makefile.am' | ${XARGS} ${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g'
+	@${REINPLACE_CMD} -e 's|libdir)/pkgconfig|prefix)/libdata/pkgconfig|' ${WRKSRC}/Makefile.am \
+		${WRKSRC}/src/dynamic-preprocessors/libs/Makefile.am \
+		${WRKSRC}/src/dynamic-output/libs/Makefile.am
+	@${ECHO_MSG} "===>   Rebuilding required files for snortsam patches..."
+	@cd ${WRKSRC} && ${SH} ${WRKSRC}/autojunk.sh
+	@${ECHO_MSG} "===>   Done.  Configuring..."
 .endif
 
 post-install:
-.if !defined(WITHOUT_DYNAMIC)
-	@${LIBTOOL} --finish ${LOCALBASE}/snort/dynamicpreprocessor
-.endif
+	#@${LIBTOOL} --finish ${LOCALBASE}/lib/snort/dynamicpreprocessor
 	[ -d ${CONFIG_DIR} ] || ${MKDIR} ${CONFIG_DIR}
-	[ -d ${EXAMPLESDIR} ] || ${MKDIR} ${EXAMPLESDIR}
 	[ -d ${RULES_DIR} ] || ${MKDIR} ${RULES_DIR}
 	[ -d ${LOGS_DIR} ] || ${MKDIR} ${LOGS_DIR}
 .for f in ${CONFIG_FILES}
 	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${CONFIG_DIR}/${f}-sample
-	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${EXAMPLESDIR}/${f}-sample
 	@if [ ! -f ${CONFIG_DIR}/${f} ]; then \
 		${CP} -p ${CONFIG_DIR}/${f}-sample ${CONFIG_DIR}/${f} ; \
 	fi
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/schemas/create* ${EXAMPLESDIR}
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
+	@${MKDIR} ${PREPROC_RULE_DIR}
+.for f in ${PREPROC_RULES}
+	${INSTALL_DATA} ${WRKSRC}/preproc_rules/${f} ${PREPROC_RULE_DIR}/${f}-sample
+	@if [ ! -f ${PREPROC_RULE_DIR}/${f} ]; then \
+		${CP} -p ${PREPROC_RULE_DIR}/${f}-sample ${PREPROC_RULE_DIR}/${f} ; \
+	fi
+.endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
