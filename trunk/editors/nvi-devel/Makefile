@@ -2,23 +2,26 @@
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
-MASTER_SITES=	http://www.kotnet.org/~skimo/nvi/devel/
-                
+MASTER_SITES=	http://garage.linux.student.kuleuven.be/~skimo/nvi/devel/ \
+		http://www.kotnet.org/~skimo/nvi/devel/
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development snapshot of the world-renown nvi editor
 LICENSE=	bsd3
 
 CONFLICTS_INSTALL=	nvi-m17n-[0-9]* xnview-[0-9]*
 
-OPTIONS=	WIDECHAR "Enable wide-character support (UTF-8)" on
+OPTIONS_DEFINE=	WIDECHAR
+OPTIONS_DEFAULT=WIDECHAR
+WIDECHAR_DESC=	Enable wide-character support (UTF-8)
 
 USE_BZIP2=		yes
 WRKSRC=			${WRKDIR}/${DISTNAME}/build.unix
 USE_AUTOTOOLS=		libtool
 USE_LDCONFIG=		yes
-USE_ICONV=		yes
+USES=			iconv pkgconfig
 USE_BDB=		42+
 CONFIGURE_ARGS+=	--with-db-prefix=${LOCALBASE} \
 			--program-prefix=n
@@ -27,7 +30,7 @@ MAN1=			nex.1 nvi.1 nview.1
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_WIDECHAR)
+.if ${PORT_OPTIONS:MWIDECHAR}
 CONFIGURE_ARGS+=	--enable-widechar
 .endif
 
