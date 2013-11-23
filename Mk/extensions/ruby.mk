@@ -7,7 +7,7 @@
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
-.if !defined(_POST_MKINCLUDED) && !defined(Ruby_Pre_Include)
+.if !defined(Ruby_Include)
 
 Ruby_Pre_Include=			ruby.mk
 Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
@@ -70,10 +70,15 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # RUBY_PKGNAMEPREFIX	- Common PKGNAMEPREFIX for ruby ports
 #			  (default: ruby${RUBY_SUFFIX}-)
-# RUBY_VERSION		- Full version of ruby without preview/beta suffix in
+# RUBY_RELVERSION	- Full version of ruby without preview/beta suffix in
 #			  the form of `x.y.z' (see below for current value).
-# RUBY_VERSION_CODE	- Full integer version of ruby without preview/beta
-#			  suffix in the form of `xyz'.
+# RUBY_RELVERSION_CODE	- Integer version of RUBY_RELVERSION in the form of
+#			  `xyz'.
+# RUBY_VERSION		- Composite version of RUBY_RELVERSION and
+#			  RUBY_PATCHLEVEL in the form of `x.y.z.p'.
+#			  (default: ${RUBY_RELVERSION}.${RUBY_PATCHLEVEL})
+# RUBY_VERSION_CODE	- Composite integer version of RUBY_VERSION in the form
+#			  of `xyzp'.
 # RUBY_PORTVERSION	- PORTVERSION for the standard ruby ports (ruby,
 #			  ruby-gdbm, etc.).
 # RUBY_PORTREVISION	- PORTREVISION for the standard ruby ports.
@@ -276,6 +281,7 @@ RUBY_DISTNAME?=		ruby-${RUBY_DISTVERSION}
 
 RUBY_WRKSRC?=		${WRKDIR}/${RUBY_DISTNAME}
 
+RUBY_RELVERSION_CODE?=	${RUBY_RELVERSION:S/.//g}
 RUBY_VERSION_CODE?=	${RUBY_VERSION:S/.//g}
 RUBY_VER=		${RUBY_VERSION:C/([[:digit:]]+\.[[:digit:]]+).*/\1/}
 RUBY_SUFFIX=		${RUBY_VER:S/.//}
@@ -363,7 +369,7 @@ USE_RUBY=		yes
 
 .if exists(${RUBY})
 RUBY_PROVIDED!=		${RUBY} -e '\
-	Ruby = ${RUBY_VERSION_CODE}; \
+	Ruby = ${RUBY_RELVERSION_CODE}; \
 	value = begin; ${RUBY_REQUIRE}; end and puts value'
 .else
 RUBY_PROVIDED=		"should be"	# the latest version is going to be installed
@@ -468,9 +474,9 @@ do-extract:
 
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} build --force ${GEMFILES}spec ; then \
-		if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
+		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
 			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-			(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT} 75 79 ; \
 			fi; \
 		${FALSE}; \
 		fi)
