@@ -17,6 +17,8 @@ LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
 
+DEPRECATED=	No longer supported upstream. Security issues.
+
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} --enable-shared --enable-frame-address
