@@ -2,7 +2,7 @@
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.6
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -24,9 +24,8 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 USE_GMAKE=	yes
-USES=		pathfix gettext iconv
+USES=		pathfix gettext iconv pkgconfig
 USE_GNOME=	libxml2 gtk20 desktopfileutils librsvg2 libxslt
-MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
