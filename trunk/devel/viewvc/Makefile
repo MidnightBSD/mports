@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.20
+PORTVERSION=	1.1.21
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/ \
 		FREEBSD_LOCAL/ohauer
@@ -51,7 +51,7 @@ RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/svn/__init__.py:${PORTSDIR}/devel/p
 .endif
 
 .if ${PORT_OPTIONS:MAPACHE}
-USE_APACHE=	2.2+
+USE_APACHE_RUN=	22+
 .endif
 
 .if ${PORT_OPTIONS:MLIGHTTPD}
