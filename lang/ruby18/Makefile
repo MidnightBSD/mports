@@ -12,17 +12,19 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An object-oriented interpreted scripting language
+
 LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
 
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
-CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} --enable-shared
-CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
+CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} --enable-shared --enable-frame-address
+CONFIGURE_ENV=	CFLAGS="-fwrapv -I${OPENSSLINC} ${CFLAGS}" \
 		LDFLAGS="-L${OPENSSLLIB} ${LDFLAGS}" \
 		LIBS="-L${OPENSSLLIB} ${LDFLAGS}" \
 		CPPFLAGS="-I${OPENSSLINC} ${CPPFLAGS}"
+USE_CSTD=	gnu89
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	aclocal autoconf
@@ -38,9 +40,11 @@ RUBY_NO_BUILD_DEPENDS=	yes
 RUBY_NO_RUN_DEPENDS=	yes
 _RUBY_SYSLIBDIR=	${PREFIX}/lib
 
-OPTIONS=	ONIGURUMA "Build with oniguruma regular expressions lib" off \
-		RDOC "Build and install Rdoc indexes" on \
-		DEBUG "Compile-in debug info" off
+OPTIONS_DEFINE=	ONIGURUMA RDOC DEBUG
+ONIGURUMA_DESC=	Build with oniguruma regular expressions lib
+RDOC_DESC=	Build and install Rdoc indexes
+DEBUG_DESC=	Compile-in debug info
+OPTIONS_DEFAULT=	RDOC
 
 .include <bsd.mport.options.mk>
 
@@ -71,8 +75,7 @@ LDFLAGS+=	${PTHREAD_LIBS}
 CONFIGURE_ARGS+=--enable-pthread
 .endif
 
-.if defined(WITH_ONIGURUMA)
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+oniguruma
+.if ${PORT_OPTIONS:MONIGURUMA}
 BUILD_DEPENDS+=	${NONEXISTENT}:${ONIGURUMA_PORTDIR}:patch
 ONIGURUMA_PORTDIR=${PORTSDIR}/devel/oniguruma
 ONIGURUMA_WRKSRC=`cd ${ONIGURUMA_PORTDIR}; ${MAKE} -V WRKSRC`
@@ -84,7 +87,7 @@ PLIST_SUB+=	ONIGURUMA="@comment "
 #
 # Disable doc generation if requested or docs disabled at all
 #
-.if !defined(WITHOUT_RDOC) && !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MRDOC} && ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=	--enable-install-doc
 .else
 CONFIGURE_ARGS+=	--disable-install-doc
@@ -96,6 +99,7 @@ CONFIGURE_ARGS+=	--disable-install-doc
 MLINKS=		${RUBY_NAME}.1 ruby.1
 PLIST_SUB+=	IF_DEFAULT=""
 .else
+PKGNAMESUFFIX=	${RUBY_VER:C/\.//}
 PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
 
@@ -143,7 +147,7 @@ post-patch:
 .endfor
 
 pre-configure:
-.if defined(WITH_ONIGURUMA)
+.if ${PORT_OPTIONS:MONIGURUMA}
 	cd ${ONIGURUMA_WRKSRC}; ./configure; \
 		${MAKE} -f Makefile ${RUBY_RELVERSION:S/.//g} \
 		RUBYDIR="${WRKSRC}"
@@ -151,7 +155,7 @@ pre-configure:
 	${TOUCH} ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
 post-configure:
-.if defined(WITH_ONIGURUMA)
+.if ${PORT_OPTIONS:MONIGURUMA}
 	cd ${WRKSRC}/ && ${PATCH} -p0 < ${PATCHDIR}/extrapatch-oniguruma-reggnu.c
 .endif
 
@@ -201,7 +205,7 @@ post-install:
 . endfor
 .endif
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	# Create all dirs required (":u" isn't avaiable in STABLE yet :-()
 	${MKDIR} ${EXTSAMPLES:C,^([^/]+)/.*,\1,:S,^,${RUBY_EXAMPLESDIR}/,}
 	${MKDIR} ${EXTDOCS:C,^([^/]+)/.*,\1,:S,^,${RUBY_DOCDIR}/,}
