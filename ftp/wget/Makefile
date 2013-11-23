@@ -8,13 +8,12 @@ MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Retrieve files from the Net via HTTP and FTP
+COMMENT=	Retrieve files from the Net via HTTP(s) and FTP
 
 LICENSE=	gpl3
 
-USES=		charsetfix
+USES=		charsetfix gmake
 USE_XZ=		yes
-USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 
