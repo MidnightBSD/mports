@@ -7,9 +7,8 @@ MASTER_SITES=	http://t3x.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interpreter for purely symbolic LISP
-LICENSE=	bsd2
 
-MAKE_JOBS_SAFE=  yes
+LICENSE=	bsd2
 
 MAN7=		alisp.7
 
