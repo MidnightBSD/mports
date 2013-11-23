@@ -2,18 +2,18 @@
 
 PORTNAME=	orc
 PORTVERSION=	0.4.18
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	http://code.entropywave.com/download/orc/
+MASTER_SITES=	http://gstreamer.freedesktop.org/data/src/orc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and toolset to operate arrays of data
 
 LICENSE=	bsd3
 
-USE_GNOME=	pkgconfig
+USES=		gmake pkgconfig
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 
 CONFIGURE_ARGS+=	--disable-gtk-doc
 
