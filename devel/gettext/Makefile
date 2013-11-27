@@ -21,9 +21,7 @@ CONFIGURE_ARGS=	--disable-csharp --disable-java \
 		--with-included-gettext --with-included-glib \
 		--with-included-libcroco --with-included-libunistring \
 		--with-included-libxml \
-		--without-emacs --without-git \
-		--build=${ARCH}-portbld-freebsd9.1 \
-		--host=${ARCH}-portbld-freebsd9.1
+		--without-emacs --without-git
 USE_LDCONFIG=	yes
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
