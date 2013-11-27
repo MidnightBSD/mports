@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.31.0
+PORTVERSION=	7.33.0
 PORTREVISION=	0
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
@@ -44,7 +44,7 @@ DOCS=		BINDINGS BUGS CONTRIBUTE DISTRO-DILEMMA FAQ FEATURES HISTORY \
 		MANUAL README.netware README.win32 RESOURCES SSLCERTS THANKS \
 		TODO TheArtOfHttpScripting VERSIONS curl-config.html \
 		curl-config.pdf curl.html curl.pdf index.html
-MAN1=		curl.1 curl-config.1 mk-ca-bundle.1
+MAN1=		curl.1 curl-config.1
 MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 curl_easy_escape.3 \
 		curl_easy_getinfo.3 curl_easy_init.3 curl_easy_pause.3 \
 		curl_easy_perform.3 curl_easy_recv.3 curl_easy_reset.3 \
