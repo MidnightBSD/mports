@@ -2,7 +2,7 @@
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.3.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -21,7 +21,9 @@ CONFIGURE_ARGS=	--disable-csharp --disable-java \
 		--with-included-gettext --with-included-glib \
 		--with-included-libcroco --with-included-libunistring \
 		--with-included-libxml \
-		--without-emacs --without-git
+		--without-emacs --without-git \
+		--build=${ARCH}-portbld-freebsd9.1 \
+		--host=${ARCH}-portbld-freebsd9.1
 USE_LDCONFIG=	yes
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
