@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-PORTVERSION=	1.8.3.1
+PORTVERSION=	1.8.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -11,10 +11,10 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed source code management tool
+
 LICENSE=	gpl2
 
 PROJECTHOST=	git-core
-MAKE_JOBS_SAFE=	yes
 
 MAN1=		git.1 \
 		git-add.1 \
@@ -30,6 +30,7 @@ MAN1=		git.1 \
 		git-cat-file.1 \
 		git-check-attr.1 \
 		git-check-ignore.1 \
+		git-check-mailmap.1 \
 		git-check-ref-format.1 \
 		git-checkout-index.1 \
 		git-checkout.1 \
@@ -200,7 +201,7 @@ WANT_PERL=	yes
 CONFIGURE_ARGS=	--enable-pthreads=-pthread
 
 OPTIONS_DEFINE=	GUI SVN GITWEB CONTRIB P4 CVS HTMLDOCS PERL ICONV CURL \
-		ETCSHELLS NLS
+		NLS
 OPTIONS_DEFAULT=	CONTRIB P4 CVS PERL ICONV CURL NLS
 
 GITWEB_DESC=	Install gitweb
@@ -208,7 +209,6 @@ CONTRIB_DESC=	Install contributed scripts
 P4_DESC=	Enable Perforce support
 CVS_DESC=	Enable CVS support
 HTMLDOCS_DESC=	Install additional documentation
-ETCSHELLS_DESC=	Modify /etc/shells
 
 .include <bsd.mport.options.mk>
 
@@ -257,8 +257,8 @@ PLIST_SUB+=	PERLSUB="@comment "
 .if ${PORT_OPTIONS:MICONV}
 USES+=		iconv
 MAKE_ENV+=	NEEDS_LIBICONV=yes \
-		ICONVDIR=${LOCALBASE}
-CONFIGURE_ARGS+=	--with-iconv=${LOCALBASE}
+		ICONVDIR=${ICONV_PREFIX}
+CONFIGURE_ARGS+=	--with-iconv=${ICONV_PREFIX}
 .else
 MAKE_ENV+=	NO_ICONV=1
 .endif
@@ -277,7 +277,7 @@ PLIST_SUB+=	CURL="@comment "
 
 # Always fetch the htmldocs distfile in maintainer mode.
 # Always include it when building distinfo (makesum)
-.if ${PORT_OPTIONS:MHTMLDOCS} || make(makesum) || (defined(PACKAGE_BUILDING)) || (defined(MAINTAINER_MODE) && make(fetch))
+.if ${PORT_OPTIONS:MHTMLDOCS} || make(makesum) || (defined(MAINTAINER_MODE) && make(fetch))
 DISTFILES+=	${PORTNAME}-htmldocs-${PORTVERSION}${EXTRACT_SUFX}
 PLIST_SUB+=	HTMLDOCS=""
 .else
@@ -327,10 +327,10 @@ IGNORE=	using GITWEB support requires PERL support
 
 .if ${PORT_OPTIONS:MCONTRIB}
 PLIST_SUB+=	CONTRIB=""
-BUILD_DEPENDS+= xmlto:${PORTSDIR}/textproc/xmlto \
+BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto \
 		asciidoc:${PORTSDIR}/textproc/asciidoc \
 		${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml-450
-#MAN1+=		git-subtree.1
+MAN1+=		git-subtree.1
 .else
 PLIST_SUB+=	CONTRIB="@comment "
 .endif
@@ -350,13 +350,6 @@ RUN_DEPENDS+=	cvsps:${PORTSDIR}/devel/cvsps
 PLIST_SUB+=	CVS="@comment "
 RMMAN1+=	git-cvsimport.1 git-cvsexportcommit.1 git-cvsserver.1
 RMMAN7+=	gitcvs-migration.7
-.endif
-
-.if ${PORT_OPTIONS:METCSHELLS}
-SHELLS=		/etc/shells
-PLIST_SUB+=	ETCSHELLS=""
-.else
-PLIST_SUB+=	ETCSHELLS="@comment "
 .endif
 
 post-extract:
@@ -418,7 +411,7 @@ post-install:
 	(cd ${WRKDIR}/htmldocs/ && ${COPYTREE_SHARE} \* ${DOCSDIR})
 	${LN} -s ${DOCSDIR}/git.html ${DOCSDIR}/index.html
 .endif
-	-${RM} -f ${PREFIX}/lib/perl5/${PERL_VERSION}/mach/perllocal.pod
+	-${RM} -f ${PREFIX}/lib/perl5/${PERL_VER}/mach/perllocal.pod
 	${MKDIR} ${PREFIX}/share/emacs/site-lisp/git
 	${MKDIR} ${PREFIX}/lib/xemacs/site-lisp/git
 	${INSTALL_DATA} ${WRKSRC}/contrib/emacs/git.el \
