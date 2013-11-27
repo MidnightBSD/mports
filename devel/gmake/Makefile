@@ -2,7 +2,7 @@
 
 PORTNAME=	gmake
 PORTVERSION=	3.82
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	make
@@ -16,11 +16,14 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--program-prefix=g
 
+OPTIONS_DEFINE=	NLS
+
+NO_STAGE=	yes
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=	yes
-CONFIGURE_ARGS+=--with-libiconv-prefix=${LOCALBASE} \
+USES+=		gettext iconv
+CONFIGURE_ARGS+=${ICONV_CONFIGURE_ARG} \
 		--with-libintl-prefix=${LOCALBASE}
 PLIST_SUB=	NLS=""
 .else
@@ -37,6 +40,8 @@ INFO=		make
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e '/no-print-dir/s/@itemx/@item/' \
+		${WRKSRC}/doc/make.texi
 	@${RM} ${WRKSRC}/doc/make.info*
 
 post-install:
