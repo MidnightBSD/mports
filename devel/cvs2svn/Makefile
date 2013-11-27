@@ -2,7 +2,7 @@
 
 PORTNAME=	cvs2svn
 PORTVERSION=	2.4.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49237/ \
 		FREEBSD_LOCAL/ohauer
@@ -18,7 +18,7 @@ COMMENT=	CVS to Subversion Repository Converter
 
 LICENSE=	other
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm
+BUILD_DEPENDS=	${PYTHON_LIBDIR}/lib-dynload/gdbm.so:${PORTSDIR}/databases/py-gdbm
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USE_PYTHON=	2.6+
@@ -35,7 +35,7 @@ BAZAAR_DESC= 		Build with Bazaar support
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSUBVERSION}
-RUN_DEPENDS+=	${LOCALBASE}/bin/svn:${PORTSDIR}/devel/py-subversion
+LIB_DEPENDS+=	svn_swig_py-1.0:${PORTSDIR}/devel/py-subversion
 .endif
 
 .if ${PORT_OPTIONS:MGIT}
