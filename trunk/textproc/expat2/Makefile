@@ -1,25 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	expat
-PORTVERSION=	2.0.1
-PORTREVISION=	4
+PORTVERSION=	2.1.0
+PORTREVISION=	0
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C
+
 LICENSE=	other
 
 GNU_CONFIGURE=	yes
 ALL_TARGET=	default
+USES=		pathfix
 USE_LDCONFIG=	yes
 MAN1=		xmlwf.1
 
+# Increment only when there are incompatible API changes.
 SHLIB_MAJOR=	6
 
-MAKE_ENV=	LIBCURRENT="${SHLIB_MAJOR}" \
-		SHELL="/bin/sh"
 PLIST_SUB=	SHLIB_MAJOR="${SHLIB_MAJOR}"
+
+post-patch:
+	@${REINPLACE_CMD} \
+		-e 's/@LIBCURRENT.*@/${SHLIB_MAJOR}/' \
+		-e '/^DESTDIR =/d' ${WRKSRC}/Makefile.in
 
 list-depend-ports:
 	cd ${PORTSDIR}; \
