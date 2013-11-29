@@ -71,6 +71,7 @@ SUBDIR += etoile-serialize
 SUBDIR += etoile-unitkit
 SUBDIR += fam
 SUBDIR += ffcall
+SUBDIR += fmake
 SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf

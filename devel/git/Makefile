@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-PORTVERSION=	1.8.4.3
+PORTVERSION=	1.8.5
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -15,6 +15,8 @@ COMMENT=	Distributed source code management tool
 LICENSE=	gpl2
 
 PROJECTHOST=	git-core
+
+MAKE_JOBS_UNSAFE=	yes
 
 MAN1=		git.1 \
 		git-add.1 \
@@ -188,7 +190,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 EXTENSIONS+=    python
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -228,7 +230,7 @@ ALL_TARGET=	all strip
 .if ${PORT_OPTIONS:MP4} || ${PORT_OPTIONS:MCONTRIB}
 USE_PYTHON=	yes
 PLIST_SUB+=	PYTHON_VER=${PYTHON_VER} PYTHON=""
-CONFIGURE_ARGS+=	--with-python=${LOCALBASE}/bin/python
+CONFIGURE_ARGS+=	--with-python=${PYTHON_CMD}
 .else
 CONFIGURE_ARGS+=	--without-python
 PLIST_SUB+=	PYTHON="@comment "
