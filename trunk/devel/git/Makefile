@@ -16,8 +16,6 @@ LICENSE=	gpl2
 
 PROJECTHOST=	git-core
 
-MAKE_JOBS_UNSAFE=	yes
-
 MAN1=		git.1 \
 		git-add.1 \
 		git-am.1 \
@@ -190,7 +188,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES+=		gmake
 EXTENSIONS+=    python
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -332,7 +330,6 @@ PLIST_SUB+=	CONTRIB=""
 BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto \
 		asciidoc:${PORTSDIR}/textproc/asciidoc \
 		${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml-450
-MAN1+=		git-subtree.1
 .else
 PLIST_SUB+=	CONTRIB="@comment "
 .endif
