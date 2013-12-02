@@ -48,7 +48,6 @@ SUBDIR += p5-Switch
 SUBDIR += p5-Try-Tiny
 SUBDIR += p5-ePerl
 SUBDIR += pcc
-SUBDIR += perl5.14
 SUBDIR += perl5.16
 SUBDIR += perl5.18
 SUBDIR += php_doc
