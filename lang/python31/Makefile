@@ -2,14 +2,15 @@
 
 PORTNAME=	python31
 PORTVERSION=	3.1.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
 DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An interpreted object-oriented programming language
+COMMENT=	Interpreted object-oriented programming language
+
 LICENSE=	python
 
 DIST_SUBDIR=	python
@@ -104,10 +105,7 @@ CONFIGURE_ARGS+=	--enable-ipv6
 CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
-CONFIGURE_ARGS+=        --with-system-ffi
-.if ${ARCH} != i386
-LIB_DEPENDS+=   ffi.5:${PORTSDIR}/devel/libffi
-.endif
+LIB_DEPENDS+=   ffi:${PORTSDIR}/devel/libffi
 
 .if defined(WITH_FPECTL)
 CONFIGURE_ARGS+=	--with-fpectl
