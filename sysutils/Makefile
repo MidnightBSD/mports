@@ -32,6 +32,7 @@ SUBDIR += etoile-installer
 SUBDIR += etoile-powermenulet
 SUBDIR += etoile-system
 SUBDIR += extipl
+SUBDIR += ezjail
 SUBDIR += ffs2recov
 SUBDIR += flashback
 SUBDIR += flock
