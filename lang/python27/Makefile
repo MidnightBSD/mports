@@ -2,7 +2,7 @@
 
 PORTNAME=	python27
 PORTVERSION=	2.7.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -67,9 +67,7 @@ OPTIONS=	THREADS "Enable thread support" on \
 PLIST_SUB+=	CTYPE="@comment "
 .else
 CONFIGURE_ARGS+=	--with-system-ffi
-.if ${ARCH} != i386
 LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
-.endif
 PLIST_SUB+=	CTYPE=""
 .endif
 
