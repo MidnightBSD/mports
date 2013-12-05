@@ -45,6 +45,7 @@ SUBDIR += gstreamer-plugins-vorbis
 SUBDIR += jack
 SUBDIR += juk
 SUBDIR += kio-audiocd
+SUBDIR += kmix
 SUBDIR += ladspa
 SUBDIR += lame
 SUBDIR += lash
