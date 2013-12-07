@@ -1,5 +1,7 @@
 bin/rrdcached
 bin/rrdcgi
+bin/rrdcreate
+bin/rrdinfo
 bin/rrdtool
 bin/rrdupdate
 include/rrd.h
