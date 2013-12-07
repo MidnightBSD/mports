@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	4.0.5
+DISTVERSION=	4.0.10
 CATEGORIES=	databases www
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${DISTVERSION}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to manage MySQL over the web
+
 LICENSE=	gpl2
 
 USE_XZ=		yes
