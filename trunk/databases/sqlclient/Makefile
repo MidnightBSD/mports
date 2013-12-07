@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlclient
-PORTVERSION=	1.5.3
+PORTVERSION=	1.7.0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -9,7 +9,8 @@ DISTNAME=	SQLClient-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight database abstraction layer
-LICENSE=	lgpl
+
+LICENSE=	lgpl2.1
 
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
