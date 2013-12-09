@@ -1,63 +1,49 @@
-# $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
 # $MidnightBSD$
 
 PORTNAME=	mDNSResponder
-PORTVERSION=	333.10
+PORTVERSION=	541
 CATEGORIES=	net dns
-MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
+MASTER_SITES=	http://opensource.apple.com/tarballs/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Apple's mDNSResponder
+COMMENT=	Bonjour (zero-configuration networking) by Apple
+
 LICENSE=	agg
 #bsd3 and apache 2
 
-MAKE_JOBS_UNSAFE=	yes
+CONFLICTS=	avahi-libdns-[0-9]*
 
-USE_BISON=	build
-USE_LDCONFIG=	YES
-
-USE_GMAKE=	YES
-USE_RC_SUBR=	mdnsd
-MAKE_ARGS+=	os=freebsd LOCALBASE=${FAKE_DESTDIR}${PREFIX} MANPATH=${FAKE_DESTDIR}${MANPREFIX}/man
 BUILD_WRKSRC=	${WRKSRC}/mDNSPosix
 INSTALL_WRKSRC=	${WRKSRC}/mDNSPosix
-EXTRA_PROGS_BIN=mDNSClientPosix \
-		mDNSIdentify \
-		mDNSNetMonitor \
-		mDNSProxyResponderPosix \
-		mDNSResponderPosix
-EXTRA_PROGS_SBIN=dnsextd
+MAKE_ARGS=	LOCALBASE=${PREFIX} MANPATH=${MANPREFIX}/man os=freebsd
+USES=		bison gmake
+USE_LDCONFIG=	yes
+USE_RC_SUBR=	mdnsd mdnsresponder
 
-EXTRAMAN8=	dnsextd.8 mDNSResponderPosix.8
-
-MAN8=		mdnsd.8 ${EXTRAMAN8}
-
-CONFLICTS=	avahi-libdns-[0-9]*
+EXTRA_BIN=	mDNSClientPosix mDNSIdentify mDNSNetMonitor mDNSProxyResponderPosix mDNSResponderPosix
+EXTRA_MAN1=	dns-sd.1
+EXTRA_MAN8=	dnsextd.8 mDNSResponderPosix.8
+EXTRA_SBIN=	dnsextd
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 3011
-IGNORE=	Included in MidnightBSD 0.3+
-.endif
+#.if ${OSVERSION} >= 3011
+#IGNORE=	Included in MidnightBSD 0.3+
+#.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/	cc / s|cc|$${CC}|' ${WRKSRC}/Clients/Makefile
-	@${MV} ${WRKSRC}/mDNSShared/mDNSResponder.8 \
-		${WRKSRC}/mDNSShared/mDNSResponderPosix.8
+	@${REINPLACE_CMD} -e 's|-lpthread|-pthread|g; s|mDNSResponder.8|mDNSResponderPosix.8|g' ${WRKSRC}/mDNSPosix/Makefile
+	@${REINPLACE_CMD} -e 's|\(#define IPV6_2292_PKTINFO \).*|\1IPV6_PKTINFO|; s|\(#define IPV6_2292_HOPLIMIT \).*|\1IPV6_HOPLIMIT|' ${WRKSRC}/mDNSPosix/mDNSUNP.h
+	@${MV} ${WRKSRC}/mDNSShared/mDNSResponder.8 ${WRKSRC}/mDNSShared/mDNSResponderPosix.8
 
-pre-build:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
-		-e 's|mDNSResponder.8|mDNSResponderPosix.8|g' \
-		${WRKSRC}/mDNSPosix/Makefile
+post-build:
+	@${STRIP_CMD} ${WRKSRC}/Clients/build/dns-sd ${WRKSRC}/mDNSPosix/build/prod/mdnsd ${WRKSRC}/mDNSPosix/build/prod/libdns_sd.so
 
 post-install:
-	cd ${INSTALL_WRKSRC}/build/prod && \
-		${INSTALL_PROGRAM} ${EXTRA_PROGS_BIN} ${PREFIX}/bin && \
-		${INSTALL_PROGRAM} ${EXTRA_PROGS_SBIN} ${PREFIX}/sbin
-.	for section in 1 2 3 4 5 6 7 8
-.		for page in ${EXTRAMAN${section}}
-			${INSTALL_MAN} ${WRKSRC}/mDNSShared/${page} ${MAN${section}PREFIX}/man/man${page:E}/
-.		endfor
-.	endfor
+	cd ${WRKSRC}/mDNSPosix/build/prod/ && ${INSTALL_PROGRAM} ${EXTRA_BIN} ${PREFIX}/bin/
+	cd ${WRKSRC}/mDNSShared/ && ${INSTALL_MAN} ${EXTRA_MAN1} ${PREFIX}/man/man1/
+	cd ${WRKSRC}/mDNSShared/ && ${INSTALL_MAN} ${EXTRA_MAN8} ${PREFIX}/man/man8/
+	cd ${WRKSRC}/mDNSPosix/build/prod/ && ${INSTALL_PROGRAM} ${EXTRA_SBIN} ${PREFIX}/sbin/
 
 .include <bsd.port.post.mk>
