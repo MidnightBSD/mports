@@ -229,6 +229,20 @@ WITH_${opt}:=  true
 .endif
 ###
 
+.for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE}
+# PLIST_SUB
+PLIST_SUB?=
+.  if defined(OPTIONS_SUB)
+.    if ! ${PLIST_SUB:M${opt}=*}
+.      if ${PORT_OPTIONS:M${opt}}
+PLIST_SUB:=     ${PLIST_SUB} ${opt}=""
+.      else
+PLIST_SUB:=     ${PLIST_SUB} ${opt}="@comment "
+.      endif
+.    endif
+.  endif
+.endfor
+
 
 .if defined(_POSTMKINCLUDED)
 
