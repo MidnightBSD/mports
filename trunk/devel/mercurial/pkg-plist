@@ -1,4 +1,3 @@
-@comment $FreeBSD$
 bin/hg
 %%PYTHON_SITELIBDIR%%/hgext/__init__.py
 %%PYTHON_SITELIBDIR%%/hgext/__init__.pyc
@@ -6,6 +5,9 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/hgext/acl.py
 %%PYTHON_SITELIBDIR%%/hgext/acl.pyc
 %%PYTHON_SITELIBDIR%%/hgext/acl.pyo
+%%PYTHON_SITELIBDIR%%/hgext/blackbox.py
+%%PYTHON_SITELIBDIR%%/hgext/blackbox.pyc
+%%PYTHON_SITELIBDIR%%/hgext/blackbox.pyo
 %%PYTHON_SITELIBDIR%%/hgext/bugzilla.py
 %%PYTHON_SITELIBDIR%%/hgext/bugzilla.pyc
 %%PYTHON_SITELIBDIR%%/hgext/bugzilla.pyo
@@ -168,6 +170,12 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/hgext/share.py
 %%PYTHON_SITELIBDIR%%/hgext/share.pyc
 %%PYTHON_SITELIBDIR%%/hgext/share.pyo
+%%PYTHON_SITELIBDIR%%/hgext/shelve.py
+%%PYTHON_SITELIBDIR%%/hgext/shelve.pyc
+%%PYTHON_SITELIBDIR%%/hgext/shelve.pyo
+%%PYTHON_SITELIBDIR%%/hgext/strip.py
+%%PYTHON_SITELIBDIR%%/hgext/strip.pyc
+%%PYTHON_SITELIBDIR%%/hgext/strip.pyo
 %%PYTHON_SITELIBDIR%%/hgext/transplant.py
 %%PYTHON_SITELIBDIR%%/hgext/transplant.pyc
 %%PYTHON_SITELIBDIR%%/hgext/transplant.pyo
@@ -242,6 +250,9 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/demandimport.py
 %%PYTHON_SITELIBDIR%%/mercurial/demandimport.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/demandimport.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/dicthelpers.py
+%%PYTHON_SITELIBDIR%%/mercurial/dicthelpers.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/dicthelpers.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/diffhelpers.so
 %%PYTHON_SITELIBDIR%%/mercurial/dirstate.py
 %%PYTHON_SITELIBDIR%%/mercurial/dirstate.pyc
@@ -285,6 +296,7 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/help.py
 %%PYTHON_SITELIBDIR%%/mercurial/help.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/help.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/help/common.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/config.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/dates.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/diffs.txt
@@ -292,7 +304,10 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/help/extensions.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/filesets.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/glossary.txt
+%%PYTHON_SITELIBDIR%%/mercurial/help/hg.1.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/hgignore.txt
+%%PYTHON_SITELIBDIR%%/mercurial/help/hgignore.5.txt
+%%PYTHON_SITELIBDIR%%/mercurial/help/hgrc.5.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/hgweb.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/merge-tools.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/multirevs.txt
@@ -363,18 +378,18 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.py
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.pyo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/da/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/de/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/el/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/fr/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/it/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/ja/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/ro/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/ru/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/sv/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN/LC_MESSAGES/hg.mo
-%%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/da/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/de/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/el/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/fr/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/it/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/ja/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/ro/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/ru/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/sv/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN/LC_MESSAGES/hg.mo
+%%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW/LC_MESSAGES/hg.mo
 %%PYTHON_SITELIBDIR%%/mercurial/localrepo.py
 %%PYTHON_SITELIBDIR%%/mercurial/localrepo.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/localrepo.pyo
@@ -450,9 +465,15 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/revset.py
 %%PYTHON_SITELIBDIR%%/mercurial/revset.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/revset.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/scmposix.py
+%%PYTHON_SITELIBDIR%%/mercurial/scmposix.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/scmposix.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/scmutil.py
 %%PYTHON_SITELIBDIR%%/mercurial/scmutil.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/scmutil.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/scmwindows.py
+%%PYTHON_SITELIBDIR%%/mercurial/scmwindows.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/scmwindows.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/setdiscovery.py
 %%PYTHON_SITELIBDIR%%/mercurial/setdiscovery.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/setdiscovery.pyo
@@ -537,6 +558,7 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/templates/map-cmdline.changelog
 %%PYTHON_SITELIBDIR%%/mercurial/templates/map-cmdline.compact
 %%PYTHON_SITELIBDIR%%/mercurial/templates/map-cmdline.default
+%%PYTHON_SITELIBDIR%%/mercurial/templates/map-cmdline.phases
 %%PYTHON_SITELIBDIR%%/mercurial/templates/map-cmdline.xml
 %%PYTHON_SITELIBDIR%%/mercurial/templates/monoblue/bookmarks.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/monoblue/branches.tmpl
@@ -586,6 +608,7 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/templates/paper/shortlog.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/paper/shortlogentry.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/paper/tags.tmpl
+%%PYTHON_SITELIBDIR%%/mercurial/templates/raw/changelog.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/changeset.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/error.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/fileannotate.tmpl
@@ -594,9 +617,11 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/graphedge.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/graphnode.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/index.tmpl
+%%PYTHON_SITELIBDIR%%/mercurial/templates/raw/logentry.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/manifest.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/map
 %%PYTHON_SITELIBDIR%%/mercurial/templates/raw/notfound.tmpl
+%%PYTHON_SITELIBDIR%%/mercurial/templates/raw/search.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/rss/bookmarkentry.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/rss/bookmarks.tmpl
 %%PYTHON_SITELIBDIR%%/mercurial/templates/rss/branchentry.tmpl
@@ -653,6 +678,9 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/ui.py
 %%PYTHON_SITELIBDIR%%/mercurial/ui.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/ui.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/unionrepo.py
+%%PYTHON_SITELIBDIR%%/mercurial/unionrepo.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/unionrepo.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/url.py
 %%PYTHON_SITELIBDIR%%/mercurial/url.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/url.pyo
@@ -671,52 +699,57 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/wireproto.py
 %%PYTHON_SITELIBDIR%%/mercurial/wireproto.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/wireproto.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/worker.py
+%%PYTHON_SITELIBDIR%%/mercurial/worker.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/worker.pyo
+man/man1/hg.1
+man/man5/hgignore.5
+man/man5/hgrc.5
 %%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTORS
 %%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDATA%%%%DATADIR%%/contrib/bash_completion
-%%PORTDATA%%%%DATADIR%%/contrib/casesmash.py
-%%PORTDATA%%%%DATADIR%%/contrib/check-code.py
-%%PORTDATA%%%%DATADIR%%/contrib/convert-repo
-%%PORTDATA%%%%DATADIR%%/contrib/debugcmdserver.py
-%%PORTDATA%%%%DATADIR%%/contrib/debugshell.py
-%%PORTDATA%%%%DATADIR%%/contrib/dumprevlog
-%%PORTDATA%%%%DATADIR%%/contrib/hg-ssh
-%%PORTDATA%%%%DATADIR%%/contrib/hgfixes/__init__.py
-%%PORTDATA%%%%DATADIR%%/contrib/hgfixes/fix_bytes.py
-%%PORTDATA%%%%DATADIR%%/contrib/hgfixes/fix_bytesmod.py
-%%PORTDATA%%%%DATADIR%%/contrib/hgfixes/fix_leftover_imports.py
-%%PORTDATA%%%%DATADIR%%/contrib/hgk
-%%PORTDATA%%%%DATADIR%%/contrib/hgsh/Makefile
-%%PORTDATA%%%%DATADIR%%/contrib/hgsh/hgsh.c
-%%PORTDATA%%%%DATADIR%%/contrib/mercurial.el
-%%PORTDATA%%%%DATADIR%%/contrib/mergetools.hgrc
-%%PORTDATA%%%%DATADIR%%/contrib/mq.el
-%%PORTDATA%%%%DATADIR%%/contrib/perf.py
-%%PORTDATA%%%%DATADIR%%/contrib/pylintrc
-%%PORTDATA%%%%DATADIR%%/contrib/python-hook-examples.py
-%%PORTDATA%%%%DATADIR%%/contrib/sample.hgrc
-%%PORTDATA%%%%DATADIR%%/contrib/shrink-revlog.py
-%%PORTDATA%%%%DATADIR%%/contrib/simplemerge
-%%PORTDATA%%%%DATADIR%%/contrib/tcsh_completion
-%%PORTDATA%%%%DATADIR%%/contrib/tcsh_completion_build.sh
-%%PORTDATA%%%%DATADIR%%/contrib/tmplrewrite.py
-%%PORTDATA%%%%DATADIR%%/contrib/undumprevlog
-%%PORTDATA%%%%DATADIR%%/contrib/vim/HGAnnotate.vim
-%%PORTDATA%%%%DATADIR%%/contrib/vim/hg-menu.vim
-%%PORTDATA%%%%DATADIR%%/contrib/vim/hgcommand.vim
-%%PORTDATA%%%%DATADIR%%/contrib/vim/hgtest.vim
-%%PORTDATA%%%%DATADIR%%/contrib/vim/patchreview.txt
-%%PORTDATA%%%%DATADIR%%/contrib/vim/patchreview.vim
-%%PORTDATA%%%%DATADIR%%/contrib/zsh_completion
-%%PORTDATA%%%%DATADIR%%/www/hgweb.cgi
-%%PORTDATA%%%%DATADIR%%/www/hgweb.fcgi
-%%PORTDATA%%%%DATADIR%%/www/hgweb.wsgi
-%%PORTDATA%%@dirrm %%DATADIR%%/www
-%%PORTDATA%%@dirrm %%DATADIR%%/contrib/vim
-%%PORTDATA%%@dirrm %%DATADIR%%/contrib/hgsh
-%%PORTDATA%%@dirrm %%DATADIR%%/contrib/hgfixes
-%%PORTDATA%%@dirrm %%DATADIR%%/contrib
-%%PORTDATA%%@dirrm %%DATADIR%%
+%%DATA%%%%DATADIR%%/contrib/bash_completion
+%%DATA%%%%DATADIR%%/contrib/casesmash.py
+%%DATA%%%%DATADIR%%/contrib/check-code.py
+%%DATA%%%%DATADIR%%/contrib/convert-repo
+%%DATA%%%%DATADIR%%/contrib/debugcmdserver.py
+%%DATA%%%%DATADIR%%/contrib/debugshell.py
+%%DATA%%%%DATADIR%%/contrib/dumprevlog
+%%DATA%%%%DATADIR%%/contrib/hg-ssh
+%%DATA%%%%DATADIR%%/contrib/hgfixes/__init__.py
+%%DATA%%%%DATADIR%%/contrib/hgfixes/fix_bytes.py
+%%DATA%%%%DATADIR%%/contrib/hgfixes/fix_bytesmod.py
+%%DATA%%%%DATADIR%%/contrib/hgfixes/fix_leftover_imports.py
+%%DATA%%%%DATADIR%%/contrib/hgk
+%%DATA%%%%DATADIR%%/contrib/hgsh/Makefile
+%%DATA%%%%DATADIR%%/contrib/hgsh/hgsh.c
+%%DATA%%%%DATADIR%%/contrib/mercurial.el
+%%DATA%%%%DATADIR%%/contrib/mergetools.hgrc
+%%DATA%%%%DATADIR%%/contrib/mq.el
+%%DATA%%%%DATADIR%%/contrib/perf.py
+%%DATA%%%%DATADIR%%/contrib/pylintrc
+%%DATA%%%%DATADIR%%/contrib/python-hook-examples.py
+%%DATA%%%%DATADIR%%/contrib/sample.hgrc
+%%DATA%%%%DATADIR%%/contrib/simplemerge
+%%DATA%%%%DATADIR%%/contrib/tcsh_completion
+%%DATA%%%%DATADIR%%/contrib/tcsh_completion_build.sh
+%%DATA%%%%DATADIR%%/contrib/tmplrewrite.py
+%%DATA%%%%DATADIR%%/contrib/undumprevlog
+%%DATA%%%%DATADIR%%/contrib/vim/HGAnnotate.vim
+%%DATA%%%%DATADIR%%/contrib/vim/hg-menu.vim
+%%DATA%%%%DATADIR%%/contrib/vim/hgcommand.vim
+%%DATA%%%%DATADIR%%/contrib/vim/hgtest.vim
+%%DATA%%%%DATADIR%%/contrib/vim/patchreview.txt
+%%DATA%%%%DATADIR%%/contrib/vim/patchreview.vim
+%%DATA%%%%DATADIR%%/contrib/zsh_completion
+%%DATA%%%%DATADIR%%/www/hgweb.cgi
+%%DATA%%%%DATADIR%%/www/hgweb.fcgi
+%%DATA%%%%DATADIR%%/www/hgweb.wsgi
+%%DATA%%@dirrm %%DATADIR%%/www
+%%DATA%%@dirrm %%DATADIR%%/contrib/vim
+%%DATA%%@dirrm %%DATADIR%%/contrib/hgsh
+%%DATA%%@dirrm %%DATADIR%%/contrib/hgfixes
+%%DATA%%@dirrm %%DATADIR%%/contrib
+%%DATA%%@dirrm %%DATADIR%%
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/templates/static
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/templates/spartan
@@ -728,31 +761,31 @@ bin/hg
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/templates/coal
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/templates/atom
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/templates
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/sv/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/sv
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ru/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ru
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ro/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ro
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ja/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ja
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/it/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/it
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/fr/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/fr
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/el/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/el
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/de/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/de
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/da/LC_MESSAGES
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/da
-%%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_CN
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/sv/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/sv
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ru/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ru
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ro/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ro
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/pt_BR
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ja/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/ja
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/it/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/it
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/fr/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/fr
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/el/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/el
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/de/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/de
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/da/LC_MESSAGES
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/da
+@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/httpclient
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/hgweb
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/help
