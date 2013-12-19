@@ -5,6 +5,7 @@ COMMENT = Programming languages
 SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += clang
+SUBDIR += clang33
 SUBDIR += cython
 SUBDIR += etoile-compiler
 SUBDIR += etoile-io
