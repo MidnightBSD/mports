@@ -122,16 +122,10 @@ MASTER_SITE_CENKES+= \
 .if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
 MASTER_SITE_CHEESESHOP+= \
 	http://pypi.python.org/packages/%SUBDIR%/ \
-	http://a.pypi.python.org/packages/%SUBDIR%/ \
-	http://b.pypi.python.org/packages/%SUBDIR%/ \
 	http://c.pypi.python.org/packages/%SUBDIR%/ \
-	http://d.pypi.python.org/packages/%SUBDIR%/ \
 	http://e.pypi.python.org/packages/%SUBDIR%/ \
 	http://f.pypi.python.org/packages/%SUBDIR%/ \
-	http://g.pypi.python.org/packages/%SUBDIR%/ \
 	http://pypi.crate.io/packages/%SUBDIR%/ \
-	http://pypi.inqbus.de/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
-	http://pypi.it.uwosh.edu/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.python.jp/${DISTNAME:S/${DISTVERSION}//:S/-//}/
 .endif
 
@@ -472,7 +466,6 @@ MASTER_SITE_GCC+= \
 	ftp://ftp.iij.ad.jp/pub/gnu/gnu/gcc/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/lang/gcc/%SUBDIR%/ \
 	ftp://ftp.nluug.nl/mirror/languages/gcc/%SUBDIR%/ \
-	ftp://ftp.nctu.edu.tw/computer-languages/C/gcc/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/gnu/gcc/%SUBDIR%/ \
 	ftp://mirror.aarnet.edu.au/pub/gnu/gcc/%SUBDIR%/
@@ -592,7 +585,6 @@ MASTER_SITE_GNU+= \
 
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
 MASTER_SITE_GNUPG+= \
-	http://gnupg.org.favoritelinks.net/%SUBDIR%/ \
 	http://mirror.tje.me.uk/pub/mirrors/ftp.gnupg.org/%SUBDIR%/ \
 	http://dotsrc.org/%SUBDIR%/ \
 	ftp://ftp.freenet.de/pub/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
@@ -748,6 +740,11 @@ MASTER_SITE_LOGILAB+= \
 	http://ftp.logilab.org/pub/%SUBDIR%/ \
 	ftp://ftp.logilab.org/pub/%SUBDIR%/ \
 	ftp://ftp.logilab.fr/pub/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_MATE)
+MASTER_SITE_MATE+= \
+	http://pub.mate-desktop.org/releases/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MOZDEV)
@@ -993,15 +990,12 @@ MASTER_SITE_PERL_CPAN_BY+= \
 	http://www.cpan.dk/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
 	http://ftp.jaist.ac.jp/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
-	ftp://ftp.dti.ad.jp/pub/lang/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.sunet.se/pub/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
-	ftp://mirror.hiwaay.net/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/cpan.perl.org/CPAN/%CPANSORT%/%SUBDIR%/ \
 	http://at.cpan.org/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
 	http://backpan.perl.org/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/languages/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
-	http://cpan.nctu.edu.tw/%CPANSORT%/%SUBDIR%/ \
 	http://ftp.twaren.net/Unix/Lang/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%SUBDIR%/ \
 	http://www.cpan.dk/modules/by-module/%SUBDIR%/
@@ -1213,7 +1207,7 @@ MASTER_SITE_SOURCEFORGE+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE_JP)
-.for mirror in keihanna osdn qgpop
+.for mirror in iij jaist keihanna osdn
 MASTER_SITE_SOURCEFORGE_JP+= \
 	http://${mirror}.dl.sourceforge.jp/%SUBDIR%/
 .endfor
@@ -1540,6 +1534,7 @@ MASTER_SITES_SUBDIRS=	\
 			GNU:${PORTNAME} \
 			HORDE:${PORTNAME} \
 			LOGILAB:${PORTNAME} \
+			MATE:${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/} \
 			MOZDEV:${PORTNAME:L} \
 			NETLIB:${PORTNAME} \
 			PERL_CPAN:${PORTNAME:C/-.*//} \
