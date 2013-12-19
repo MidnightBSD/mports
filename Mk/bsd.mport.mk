@@ -333,7 +333,8 @@ _LOAD_${EXT:U}_EXT=	yes
 # This is the order that we used before the extensions where refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
-_ALL_EXT=	charsetfix pathfix pkgconfig compiler linux_rpm linux_apps xorg fortran \
+_ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod \
+		linux_rpm linux_apps xorg fortran \
 		gcc fmake gmake bison local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
 		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
@@ -540,10 +541,8 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .endif
 .endif
 
-.if defined(USE_SSP) && ${USE_SSP} != "no"
-CFLAGS+=	-fstack-protector
-.else
-CFLAGS+=	-fno-stack-protector
+.if defined(WITH_SSP) || defined(WITH_SSP_PORTS)
+.include "${PORTSDIR}/Mk/components/ssp.mk"
 .endif
 
 .if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
