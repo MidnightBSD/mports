@@ -2,12 +2,14 @@
 
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	brooks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler runtime library with Blocks support
+
 LICENSE=	agg
 
 BUILD_DEPENDS=	cmake:${PORTSDIR}/devel/cmake
@@ -18,13 +20,10 @@ INSTALL_WRKSRC=		${WRKDIR}/build
 
 CMAKE_SOURCE_PATH=	${WRKSRC}
 
-USE_CMAKE=	yes
-USE_GCC=	4.2+
-USE_GMAKE=	yes
+USES=		cmake
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 MAKE_ARGS=	VERBOSE=1
-MAKE_JOBS_SAFE=	yes
 
 LLVM_SVN=	http://llvm.org/svn/llvm-project
 
