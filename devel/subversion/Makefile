@@ -12,16 +12,29 @@ MAN1=		svn.1 svnadmin.1 svnlook.1 svndumpfilter.1 svnrdump.1 \
 MAN5=		svnserve.conf.5
 MAN8=		svnserve.8
 
-TXT_DOCS=	BUGS CHANGES COMMITTERS INSTALL README
+PORTDOCS=	BUGS CHANGES COMMITTERS INSTALL README
 
-OPTIONS_DEFINE=	BDB BOOK DOCS GNOME_KEYRING KDE_KWALLET \
-		MAINTAINER_DEBUG MOD_DAV_SVN NLS P4_STYLE_MARKERS \
-		FREEBSD_TEMPLATE SASL SERF STATIC SVNSERVE_WRAPPER \
-		TEST TOOLS
+OPTIONS_DEFINE=	\
+		BDB		\
+		DOCS		\
+		FREEBSD_TEMPLATE\
+		GNOME_KEYRING	\
+		KDE_KWALLET	\
+		MAINTAINER_DEBUG\
+		MOD_DAV_SVN	\
+		NLS		\
+		P4_STYLE_MARKERS\
+		SASL		\
+		SERF		\
+		STATIC		\
+		SVNSERVE_WRAPPER\
+		TEST		\
+		TOOLS
 
-OPTIONS_DEFAULT=P4_STYLE_MARKERS FREEBSD_TEMPLATE SERF
+OPTIONS_DEFAULT=P4_STYLE_MARKERS \
+		FREEBSD_TEMPLATE \
+		SERF
 
-BOOK_DESC=		Install the Subversion Book
 GNOME_KEYRING_DESC=	Build with GNOME Keyring auth support
 KDE_KWALLET_DESC=	Build with KDE KWallet auth support
 MAINTAINER_DEBUG_DESC=	Build debug version
@@ -44,8 +57,6 @@ SVNFSTYPE?=	fsfs
 SUB_FILES=	pkg-install \
 		pkg-deinstall
 		
-BOOK_VERSION=	4515
-
 .if make(repository)
 WITH_REPOSITORY_CREATION=	yes
 .endif
@@ -81,15 +92,6 @@ PLIST_SUB+=	TOOLS=""
 PLIST_SUB+=	TOOLS="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MDOCS} && ${PORT_OPTIONS:MBOOK}
-BOOK_HTML=	svn-book-html-r${BOOK_VERSION}.tar.bz2
-BOOK_PDF=	svn-book-r${BOOK_VERSION}.pdf
-DISTFILES+=	${BOOK_HTML}:book ${BOOK_PDF}:book
-PLIST_SUB+=	BOOK=""
-.else
-PLIST_SUB+=	BOOK="@comment "
-.endif
-
 # testsuite will fail until PR156076 is committed
 .if ${PORT_OPTIONS:MTEST}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3
@@ -106,13 +108,16 @@ SCRIPTS=
 
 SCRIPTS_DATA=
 
+# until nls is fixed
+PLIST_SUB+=	NLS="@comment "
+
 .if ${PORT_OPTIONS:MSTATIC}
-.if ${PORT_OPTIONS:MNLS}
+.  if ${PORT_OPTIONS:MNLS}
 USES+=		gettext:build
-.endif
-.if ${PORT_OPTIONS:MBDB}
+.  endif
+.  if ${PORT_OPTIONS:MBDB}
 BDB_BUILD_DEPENDS=	yes
-.endif
+.  endif
 OLD_LIB_DEPENDS:=	${LIB_DEPENDS:S!^!${LOCALBASE}/lib/lib!:C!(\.[0-9]+)?:!.a:!}
 BUILD_DEPENDS+=		${OLD_LIB_DEPENDS}
 LIB_DEPENDS=
@@ -178,10 +183,6 @@ pre-everything::
 	@${ECHO_MSG} "* the above subdirectories are writable by this group"
 .endif
 	@${ECHO_MSG} ""
-.if !defined(NOPORTDOCS) && ${PORT_OPTIONS:MBOOK}
-	@${ECHO_MSG} "Subversion Book will be installed."
-	@${ECHO_MSG} ""
-.endif
 #.if ${PORT_OPTIONS:MASVN}
 #	@${ECHO_MSG} "asvn will be installed"
 #	@${ECHO_MSG} ""
@@ -260,13 +261,9 @@ post-install:	${MKREPOS_TARGET}
 	@${CHMOD} -R a-st,o+rX ${DATADIR}
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	for f in ${TXT_DOCS}; do \
+	for f in ${PORTDOCS}; do \
 	  ${INSTALL_MAN} ${WRKSRC}/$$f ${DOCSDIR}; \
 	done
-.if ${PORT_OPTIONS:MBOOK}
-	${TAR} -xof ${DISTDIR}/${DIST_SUBDIR}/${BOOK_HTML} -C ${DOCSDIR}
-	${INSTALL_MAN} ${DISTDIR}/${DIST_SUBDIR}/${BOOK_PDF} ${DOCSDIR}/svn-book.pdf
-.endif
 .endif
 .if ${PORT_OPTIONS:MASVN}
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/client-side/asvn ${PREFIX}/bin
