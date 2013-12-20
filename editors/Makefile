@@ -14,7 +14,6 @@ SUBDIR += jedit
 SUBDIR += joe
 SUBDIR += jupp
 SUBDIR += kate
-SUBDIR += kile
 SUBDIR += linux-openoffice3
 SUBDIR += manedit
 SUBDIR += mg
