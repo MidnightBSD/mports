@@ -1,4 +1,4 @@
 @comment $MidnightBSD$
-etc/dm/Sessions/kde.desktop
 etc/dm/Sessions/etoile.desktop
+etc/dm/Sessions/windowmaker.desktop
 @exec mkdir -p etc/dm/Sessions
