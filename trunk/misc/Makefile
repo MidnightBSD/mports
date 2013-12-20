@@ -42,7 +42,6 @@ SUBDIR += manpages-de
 SUBDIR += mc
 SUBDIR += mc-light
 SUBDIR += metalink-tools
-SUBDIR += midnightbsd-desktop
 SUBDIR += mime-support
 SUBDIR += mirmon
 SUBDIR += newer
