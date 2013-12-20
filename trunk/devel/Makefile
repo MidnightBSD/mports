@@ -1,4 +1,3 @@
-# $MidnightBSD$
 
 COMMENT = Development utilities
 
@@ -73,6 +72,7 @@ SUBDIR += ffcall
 SUBDIR += fmake
 SUBDIR += fpc-fcl-base
 SUBDIR += fpc-fcl-db
+SUBDIR += fpc-pthreads
 SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf
