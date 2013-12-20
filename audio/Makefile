@@ -11,7 +11,6 @@ SUBDIR += akode-plugins-resampler
 SUBDIR += akode-plugins-xiph
 SUBDIR += alsa-lib
 SUBDIR += alsa-plugins
-SUBDIR += amarok
 SUBDIR += arts
 SUBDIR += artswrapper
 SUBDIR += cddb-bundle
