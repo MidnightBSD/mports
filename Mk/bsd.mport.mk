@@ -1674,7 +1674,7 @@ check-categories:
 .else
 
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
-	benchmarks biology cad comms converters databases \
+	benchmarks biology cad comms converters core databases \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	ipv6 irc japanese java kde kld korean lang linux lisp lua \
@@ -4216,6 +4216,7 @@ desktop-categories:
 			benchmarks)		c="System"						;; \
 			biology)		c="Biology Science Education"	;; \
 			cad)			c="Engineering"					;; \
+			core)			c="MidnightBSD Meta"				;; \
 			databases)		c="Database"					;; \
 			deskutils)		c="Utility"						;; \
 			devel)			c="Development"					;; \
