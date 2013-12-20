@@ -1,17 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	subversion
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.5
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
-		${MASTER_SITE_LOCAL:S/$/:book/}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main
 DIST_SUBDIR=	subversion18
-MASTER_SITE_SUBDIR=	subversion/:main \
-			lev/:book
+MASTER_SITE_SUBDIR=	subversion/:main
 
-MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_KDE4=	# Used below if KWallet support is enabled
