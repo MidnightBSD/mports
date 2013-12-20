@@ -7,6 +7,7 @@ SUBDIR += audio
 SUBDIR += benchmarks
 SUBDIR += comms
 SUBDIR += converters
+SUBDIR += core
 SUBDIR += databases
 SUBDIR += deskutils
 SUBDIR += devel
