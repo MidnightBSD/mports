@@ -10,6 +10,7 @@ SUBDIR += etoile-babbler
 SUBDIR += etoile-mediakit
 SUBDIR += etoile-multimediakit
 SUBDIR += ffmpeg
+SUBDIR += ffmpeg0
 SUBDIR += flv2mpeg4
 SUBDIR += gnustep-mplayer
 SUBDIR += gpac-libgpac
