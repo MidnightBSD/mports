@@ -31,7 +31,6 @@ SUBDIR += gnustep-ticker
 SUBDIR += google-sitemapgen
 SUBDIR += gtkhtml3
 SUBDIR += joomla15
-SUBDIR += kdewebdev
 SUBDIR += kdewebdev4
 SUBDIR += kwebkitpart
 SUBDIR += libgtkhtml

@@ -6,7 +6,6 @@ SUBDIR += etoile-stepchat
 SUBDIR += etoile-xmppkit
 SUBDIR += gossip
 SUBDIR += jabberd
-SUBDIR += kopete
 SUBDIR += libnice
 SUBDIR += libpurple
 SUBDIR += libtelepathy

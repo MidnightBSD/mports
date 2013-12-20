@@ -1,7 +1,6 @@
 # $MidnightBSD$
-#
 
-    COMMENT = Games
+COMMENT = Games
 
 SUBDIR += allenroids
 SUBDIR += bass
@@ -20,7 +19,6 @@ SUBDIR += goonies
 SUBDIR += gridlock
 SUBDIR += gtkpool
 SUBDIR += gtypist
-SUBDIR += kdegames3
 SUBDIR += kdegames4
 SUBDIR += libggz
 SUBDIR += lincity
