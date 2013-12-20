@@ -1,10 +1,7 @@
 # $MidnightBSD$
-#
 
-    COMMENT = Monetary, financial and related applications
+COMMENT = Monetary, financial and related applications
 
-SUBDIR += kexchange
-SUBDIR += kmymoney2
 SUBDIR += libofx
 SUBDIR += openhbci
 SUBDIR += opentaxsolver

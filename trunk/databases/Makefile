@@ -24,7 +24,6 @@ SUBDIR += freetds-msdblib
 SUBDIR += gdbm
 SUBDIR += gdl2
 SUBDIR += gnats4
-SUBDIR += kmysqladmin
 SUBDIR += ldb
 SUBDIR += libgda4
 SUBDIR += libiodbc
