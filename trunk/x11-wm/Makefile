@@ -15,7 +15,6 @@ SUBDIR += etoile-login
 SUBDIR += fluxbox
 SUBDIR += fvwm2
 SUBDIR += icewm
-SUBDIR += kompmgr
 SUBDIR += libcompizconfig
 SUBDIR += libdockapp
 SUBDIR += metacity

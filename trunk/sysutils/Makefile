@@ -57,7 +57,6 @@ SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
 SUBDIR += kcm-polkit-kde
-SUBDIR += kdeadmin3
 SUBDIR += kdeadmin4
 SUBDIR += ksysguardd
 SUBDIR += less
