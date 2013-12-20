@@ -8,6 +8,7 @@ SUBDIR += bzip2
 SUBDIR += cabextract
 SUBDIR += fastjar
 SUBDIR += file-roller
+SUBDIR += fpc-paszlib
 SUBDIR += freetar
 SUBDIR += gcpio
 SUBDIR += gtar
