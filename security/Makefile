@@ -17,6 +17,7 @@ SUBDIR += cyrus-sasl2-ldapdb
 SUBDIR += cyrus-sasl2-saslauthd
 SUBDIR += dirmngr
 SUBDIR += firewalk
+SUBDIR += fpc-hash
 SUBDIR += gnome-keyring
 SUBDIR += gnupg
 SUBDIR += gnupg1
