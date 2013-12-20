@@ -13,6 +13,7 @@ EXTRACT_ONLY=	${LLVM_SOURCE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C, Objective-C, and C++ compiler
+
 LICENSE=	agg
 
 CONFLICTS=	clang-devel-[23]* clang31-*
