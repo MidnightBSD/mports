@@ -36,7 +36,6 @@ SUBDIR += ilbc
 SUBDIR += ipw-firmware
 SUBDIR += iwi-firmware
 SUBDIR += jags
-SUBDIR += kdenetwork3
 SUBDIR += kdenetwork4
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff

@@ -18,7 +18,6 @@ SUBDIR += icon-naming-utils
 SUBDIR += icons-tango
 SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
-SUBDIR += kdeartwork3
 SUBDIR += kdeartwork4
 SUBDIR += kde4-base-artwork
 SUBDIR += kde4-icons-oxygen
