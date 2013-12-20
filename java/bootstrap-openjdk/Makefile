@@ -2,7 +2,6 @@
 
 PORTNAME=	${JDK_NAME}
 PORTVERSION=	${DISTVERSION_${ARCH}}
-PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	jkim
@@ -11,6 +10,7 @@ DISTNAME=	${JDK_PORT}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle's Java 6 virtual machine release under the GPL v2
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
@@ -18,8 +18,8 @@ RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 ONLY_FOR_ARCH=	amd64 i386
 
 DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
-DISTVERSION_amd64=	r316538
-DISTVERSION_i386=	r316538
+DISTVERSION_amd64=	r333271
+DISTVERSION_i386=	r333271
 
 JDK_NAME=	openjdk
 JDK_PORT=	openjdk6
