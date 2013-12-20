@@ -34,7 +34,6 @@ SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
-SUBDIR += kbirthday
 SUBDIR += kdepim4
 SUBDIR += kdepimlibs4
 SUBDIR += kdeplasma-addons

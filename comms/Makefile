@@ -12,7 +12,6 @@ SUBDIR += chu
 SUBDIR += comserv
 SUBDIR += efax
 SUBDIR += kermit
-SUBDIR += kmobiletools
 SUBDIR += libimobiledevice
 SUBDIR += libirman
 SUBDIR += lirc

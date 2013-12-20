@@ -6,7 +6,6 @@ SUBDIR += curl
 SUBDIR += ftpcopy
 SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
-SUBDIR += kwebget
 SUBDIR += linux-f10-curl
 SUBDIR += ncftp2
 SUBDIR += ncftp3
