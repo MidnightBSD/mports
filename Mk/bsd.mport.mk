@@ -333,7 +333,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # This is the order that we used before the extensions where refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
-_ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod \
+_ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		emacs gnustep php python java ruby tcl apache kde qt \
