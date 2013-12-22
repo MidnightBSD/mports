@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	310.44
-PORTREVISION?=	1
+DISTVERSION?=	319.32
+PORTREVISION?=	0
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
 ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
@@ -11,6 +11,7 @@ DISTNAME=	NVIDIA-FreeBSD-x86${ARCH_SUFX}-${DISTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
+
 LICENSE=	nvidia
 
 USE_XORG=	xorg-server
@@ -164,6 +165,7 @@ pre-install:
 	@cd ${PREFIX}/${MODULESDIR} && ${MKDIR} drivers extensions
 
 post-install: .SILENT
+	${INSTALL_SCRIPT} ${WRKSRC}/obj/nvidia-bug-report.sh ${PREFIX}/bin
 # pkg-plist is already overbloated, so use these hacks instead of PLIST_SUB's
 .if ${NVVERSION} < 817400
 	${REINPLACE_CMD} -e '/libnvidia-cfg/d' ${TMPPLIST}
