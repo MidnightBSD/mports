@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	upnp
-PORTVERSION=	1.6.18
-PORTREVISION=	1
+PORTVERSION=	1.6.19
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/libUPnP%20${PORTVERSION}
@@ -10,6 +9,7 @@ DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal Plug and Play Software Development Kit
+
 LICENSE=	bsd3
 
 CONFLICTS=	upnp-1.0.*
