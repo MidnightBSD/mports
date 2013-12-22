@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-chips
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org chips display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver
