@@ -2,12 +2,13 @@
 # $MidnightBSD$
 
 PORTNAME=	xfindproxy
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Locate available proxy services
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 ice xt xproxymngproto
