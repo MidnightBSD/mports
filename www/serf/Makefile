@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	serf
-PORTVERSION=	1.2.1
+PORTVERSION=	1.3.2
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	GOOGLE_CODE
-MASTER_SITE_SUBDIR=	db
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serf HTTP client library
@@ -13,27 +13,34 @@ LICENSE=	apache2
 
 LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
 
+USE_SCONS=	yes
 USE_BZIP2=	yes
-USES=		pathfix
-GNU_CONFIGURE=	yes
+USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=	--with-apr=${LOCALBASE}/bin/apr-1-config \
-			--with-apr-util=${LOCALBASE}/bin/apu-1-config
+
+SUB_FILES=	libserf-1.la
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.mport.options.mk>
+SCONS_ENV=	# empty
+SCONS_BUILDENV=	# empty
+SCONS_ARGS=	APR=${LOCALBASE}/bin/apr-1-config
+SCONS_ARGS+=	APU=${LOCALBASE}/bin/apu-1-config
+SCONS_ARGS+=	OPENSSL=${OPENSSLBASE}
+SCONS_ARGS+=	PREFIX=${PREFIX}
+SCONS_ARGS+=	CC=${CC}
+SCONS_ARGS+=	CFLAGS="${CFLAGS}"
+SCONS_INSTALL_TARGET=	install --install-sandbox=${STAGEDIR}
 
 post-patch:
-	@${REINPLACE_CMD} -e '/^Requires.private/d' ${WRKSRC}/serf.pc.in
+	@${REINPLACE_CMD} -e '/^Requires.private/d' ${WRKSRC}/build/serf.pc.in
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/design-guide.txt ${DOCSDIR}
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/design-guide.txt ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${SUB_FILES:S|^|${WRKDIR}/|} ${STAGEDIR}${PREFIX}/lib
 
-regression-test:
-	@(cd ${WRKSRC} && ${MAKE} check)
+regression-test check: build
+	@(cd ${WRKSRC} && ${SCONS_BIN} check)
 
 .include <bsd.port.mk>
