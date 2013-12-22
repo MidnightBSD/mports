@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-r128
-PORTVERSION=	6.8.1
+PORTVERSION=	6.9.2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org r128 display driver
+
 LICENSE=	mit
 
 USE_GL=		gl
