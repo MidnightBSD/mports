@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	freetype2
-PORTVERSION=	2.4.12
+PORTVERSION=	2.5.0.1
 CATEGORIES=	print
-MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION} \
+MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}/ \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype2/ \
 		http://www.funet.fi/pub/mirrors/ftp.freetype.org/freetype2/ \
 		http://ftp.sunet.se/pub/text-processing/freetype/freetype2/ \
@@ -20,17 +20,17 @@ MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake
 MAKE_ENV=	TOP=""
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	 pkgconfig ltverhack:9
+USE_GNOME=	ltverhack:9
 LIBTOOLFILES=	builds/unix/configure
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
 
-OPTIONS_DEFINE=		LCD_FILTERING CFF_HINTING_ADOBE
+OPTIONS_DEFINE=		LCD_FILTERING PNG
 LCD_FILTERING_DESC?=	Sub-pixel rendering (patented)
-CFF_HINTING_ADOBE_DESC=	CFF parsing and hinting engine by Adobe and Google
+PNG_DESC=		Png compressed OpenType embedded bitmaps support
 
 .include <bsd.mport.options.mk>
 
@@ -38,19 +38,22 @@ CFF_HINTING_ADOBE_DESC=	CFF parsing and hinting engine by Adobe and Google
 CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
 .endif
 
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+.else
+CONFIGURE_ARGS+=--without-png
+.endif
+
 pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/builds/unix/install.mk
-.if ${PORT_OPTIONS:MCFF_HINTING_ADOBE}
-	@${REINPLACE_CMD} -e 's|FT_CFF_HINTING_FREETYPE|FT_CFF_HINTING_ADOBE|g' \
-		${WRKSRC}/src/cff/cffobjs.c
-.endif
 
 pre-configure:
 	@${REINPLACE_CMD} -e '/^LIBTOOL/s|LIBTOOL := $$(FT_LIBTOOL_DIR)/libtool|LIBTOOL := ${WRKDIR}/gnome-libtool|' \
 	    	${WRKSRC}/builds/unix/unix-cc.in
 
 post-configure:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} \
+		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
 
 .include <bsd.port.mk>

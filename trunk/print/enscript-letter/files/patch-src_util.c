@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/print/enscript-letter/files/patch-src_util.c,v 1.1 2005/02/11 21:35:40 naddy Exp $
+$FreeBSD$
 
 --- src/util.c.orig
 +++ src/util.c
