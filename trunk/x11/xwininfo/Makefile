@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xwininfo
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window information utility for X
+
 LICENSE=	mit
 
 XORG_CAT=	app
