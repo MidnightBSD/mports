@@ -1,13 +1,12 @@
-# $FreeBSD: ports/x11-drivers/xf86-video-newport/Makefile,v 1.2 2007/09/15 14:04:27 flz Exp $
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-newport
-PORTVERSION=	0.2.3
-PORTREVISION=	1
+PORTVERSION=	0.2.4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org newport display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver
