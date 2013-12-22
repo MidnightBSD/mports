@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-macros
-PORTVERSION=	1.17.1
+PORTVERSION=	1.18.0
 CATEGORIES=	devel x11
 DISTNAME=	util-macros-$(PORTVERSION)
 
