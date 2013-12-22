@@ -19,12 +19,12 @@ MAKE_ENV=	NV_VERBOSE= \
 		INSTALL_MAN="${INSTALL_MAN}" \
 		prefix=${TRUE_PREFIX}
 
-MAN1=		nvidia-xconfig.1
-MANCOMPRESSED=	yes
 PLIST_FILES=	bin/nvidia-xconfig
+MANCOMPRESSED=	yes
+MAN1=		nvidia-xconfig.1
 
-post-patch:   .SILENT
+post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/^prefix/s/=/?&/' \
-		-e '/^MANDIR/s|share/||' ${WRKSRC}/utils.mk
+		 -e '/^MANDIR/s|share/||' ${WRKSRC}/utils.mk
 
 .include <bsd.port.mk>

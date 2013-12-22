@@ -2,13 +2,14 @@
 
 PORTNAME=	qimageblitz
 PORTVERSION=	0.0.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical effects and filters library for KDE4
+
 LICENSE=	bsd2
 
 USE_BZIP2=	yes

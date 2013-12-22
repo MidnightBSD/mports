@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pixman
-PORTVERSION=	0.30.0
+PORTVERSION=	0.32.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ LICENSE=	mit
 XORG_CAT=	lib
 USE_AUTOTOOLS=	libtool
 USE_PERL5_BUILD=yes
-USE_GNOME=	ltverhack:9
+USE_GNOME=	ltverhack:30
 CONFIGURE_ARGS=	--disable-gtk
 
 OPTIONS_DEFINE=	SIMD

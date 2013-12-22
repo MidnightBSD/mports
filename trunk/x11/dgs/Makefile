@@ -17,8 +17,8 @@ LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 
 USE_GHOSTSCRIPT_RUN=	yes
 USE_XORG=	xt sm ice xext x11
-USE_GMAKE=	yes
 USE_GNOME=	glib12
+USES=		gmake
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool

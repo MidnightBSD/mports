@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xtrans
-PORTVERSION=	1.2.7
+PORTVERSION=	1.3.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstract network code for X
+
 LICENSE=	mit
 
 XORG_CAT=	lib
