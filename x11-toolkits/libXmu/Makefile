@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	libXmu
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Miscellaneous Utilities libraries
+
 LICENSE=	mit
 
 XORG_CAT=	lib
