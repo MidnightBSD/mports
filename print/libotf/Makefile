@@ -1,26 +1,22 @@
 # $MidnightBSD$
-# $FreeBSD: ports/print/libotf/Makefile,v 1.22 2011/02/11 12:21:08 sylvio Exp $
 
 PORTNAME=	libotf
-PORTVERSION=	0.9.12
+PORTVERSION=	0.9.13
 CATEGORIES=	print devel
-MASTER_SITES=	http://www.m17n.org/libotf/ \
-		http://anthesphoria.net/FreeBSD/ports/distfiles/
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}:m17n
+MASTER_SITE_SUBDIR=	m17n
 
-MAINTAINER=	nikola.lecic@anthesphoria.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for handling OpenType fonts
+
 LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
+USES=		pathfix pkgconfig
 USE_XORG=	x11 xt xaw xmu
-USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include"
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-		${WRKSRC}/Makefile.in
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 .include <bsd.port.mk>
