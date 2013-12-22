@@ -7,38 +7,42 @@ CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An XML-based font configuration API for X Windows
+COMMENT=	XML-based font configuration API for X Windows
+
 LICENSE=	mit
+
+USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 		expat:${PORTSDIR}/textproc/expat2
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack pkgconfig ltverhack
-CONFIGURE_ARGS=	--with-confdir=${PREFIX}/etc/fonts \
+USES=		gmake pathfix pkgconfig
+USE_GNOME=	ltverhack
+CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
+		--with-templatedir=${PREFIX}/etc/fonts/conf.avail \
+		--with-xmldir=${PREFIX}/etc/fonts \
 		--with-expat-includes=${LOCALBASE}/include \
 		--with-expat-lib=${LOCALBASE}/lib \
 		--with-default-fonts=${PREFIX}/share/fonts \
 		--with-add-fonts=${LOCALBASE}/lib/X11/fonts \
 		--with-cache-dir=/var/db/fontconfig \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--disable-docs
 MAKE_ENV=	LC_ALL=C
-MAKE_JOBS_SAFE=	yes
 PKGINSTALL=	${WRKDIR}/pkg-install
 
 MAN1=		fc-cache.1 fc-cat.1 fc-list.1 fc-match.1 fc-query.1 fc-scan.1
 MAN5=		fonts-conf.5
 PORTDOCS=	fontconfig-user.html fontconfig-user.pdf fontconfig-user.txt
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 post-install:
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
 .endif
@@ -56,6 +60,6 @@ post-install:
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif
