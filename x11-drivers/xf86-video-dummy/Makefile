@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-dummy
-PORTVERSION=	0.3.4
+PORTVERSION=	0.3.7
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org dummy display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver

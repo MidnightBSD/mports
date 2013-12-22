@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-ark
-PORTVERSION=	0.7.3
+PORTVERSION=	0.7.5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org ark display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver

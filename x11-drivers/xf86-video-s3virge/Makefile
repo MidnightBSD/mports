@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-s3virge
-PORTVERSION=	1.10.4
+PORTVERSION=	1.10.6
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org s3virge display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver
