@@ -2,7 +2,7 @@
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	14
+PORTREVISION=	15
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -17,8 +17,6 @@ LICENSE=	lgpl
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 		png15:${PORTSDIR}/graphics/png \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
-BUILD_DEPENDS=  g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-RUN_DEPENDS=    g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-directfb \
