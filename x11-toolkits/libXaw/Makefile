@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	libXaw
-PORTVERSION=	1.0.11
+PORTVERSION=	1.0.12
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Athena Widgets library
+
 LICENSE=	mit
 
 XORG_CAT=	lib
