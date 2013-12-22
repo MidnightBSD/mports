@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xinput
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Very useful utility for configuring and testing XInput devices
+
 LICENSE=	mit
 
 XORG_CAT=	app
