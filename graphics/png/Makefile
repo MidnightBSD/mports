@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	png
-PORTVERSION=	1.5.16
+PORTVERSION=	1.5.17
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}15/${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
@@ -11,9 +11,8 @@ FAKE_OPTS=	trueprefix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating PNG images
-LICENSE=	other
 
-MAKE_JOBS_SAFE=	yes
+LICENSE=	other
 
 USE_XZ=		yes
 GNU_CONFIGURE=	yes
@@ -31,10 +30,6 @@ OPTIONS_DEFAULT=APNG
 APNG_DESC=Enable Animated PNG support
 
 .include <bsd.mport.options.mk>
-
-.if defined(WITH_DEBUG)
-BROKEN=		Please remove WITH_DEBUG for this port
-.endif
 
 .if ${PORT_OPTIONS:MAPNG} || make(makesum) || defined(FETCH_ALL)
 MASTER_SITES+=	SF/apng/libpng/libpng15/:apng
@@ -67,7 +62,7 @@ post-build:
         ${FALSE}; \
         fi)
 
-pre-su-install:
+pre-install:
 	@${MKDIR} ${PREFIX}/include/libpng
 	@${MKDIR} ${PREFIX}/libdata/pkgconfig
 
