@@ -41,8 +41,6 @@ XDMCP_LIBS=	-L${LOCALBASE}/lib -lXdmcp
 XPROTO_CFLAGS=	-I${LOCALBASE}/include
 XPROTO_LIBS=	-L${LOCALBASE}/lib
 
-.include "${.CURDIR}/manpages"
-
 .include <bsd.mport.options.mk>
 
 post-install:
