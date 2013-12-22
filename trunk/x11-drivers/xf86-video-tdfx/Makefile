@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-tdfx
-PORTVERSION=	1.4.3
+PORTVERSION=	1.4.5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org tdfx display driver
+
 LICENSE=	mit
 
 USE_GL=		gl

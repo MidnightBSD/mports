@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-savage
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3.7
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org savage display driver
+
 LICENSE=	mit
 
 USE_GL=		gl
