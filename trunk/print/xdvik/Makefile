@@ -5,7 +5,6 @@ PORTVERSION=	22.84.16
 PORTREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	SF/hoge
-#MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	-tetex
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -57,10 +56,10 @@ DOC_FILES=	BUGS CHANGES INSTALL \
 		README README.CVS README_maintainer TODO
 
 .if defined(WITH_LETTERSIZE)
-FLAVOR+=        letter
-PAPERSIZE=      letter
+FLAVOR+=	letter
+PAPERSIZE=	letter
 .else
-PAPERSIZE=      a4
+PAPERSIZE=	a4
 .endif
 
 PKGINSTALL=	${WRKDIR}/pkg-install.sh
