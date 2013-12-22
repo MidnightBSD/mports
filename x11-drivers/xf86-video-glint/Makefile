@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-glint
-PORTVERSION=	1.2.5
+PORTVERSION=	1.2.8
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org glint display driver
+
 LICENSE=	mit
 
 USE_GL=		gl
