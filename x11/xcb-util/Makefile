@@ -2,7 +2,7 @@
 
 PORTNAME=	xcb-util
 PORTVERSION=	0.3.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -12,7 +12,7 @@ COMMENT=	Module with libxcb/libX11 extension/replacement libraries
 LICENSE=	mit
 
 USE_BZIP2=	yes
-USES=		gmake
+USES=		gmake pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_XORG=	xau xcb xdmcp xorg-macros
 USE_AUTOTOOLS=	libtool
