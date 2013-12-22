@@ -1,13 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-openchrome
-PORTVERSION=	0.2.904
-PORTREVISION=	1
+PORTVERSION=	0.3.3
 CATEGORIES=	x11-drivers
-MASTER_SITES=	http://www.openchrome.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org openChrome display driver
+
 LICENSE=	mit
 
 USE_GL=		gl
