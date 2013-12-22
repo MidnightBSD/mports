@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.34.3
-PORTREVISION?=	4
+PORTVERSION=	2.36.3
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,38 +12,43 @@ COMMENT=	Some useful routines of C programming (current stable version)
 
 LICENSE=	lgpl
 
-LATEST_LINK=	glib20
-
-USE_XZ=	yes
+USE_XZ=		yes
 
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre \
 		ffi:${PORTSDIR}/devel/libffi
 
-USE_GETTEXT=	yes
-USE_ICONV=	yes
+USES=		gettext gmake iconv pathfix pkgconfig shebangfix
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-USE_PKGCONFIG=	build
-USE_GNOME=	gnomehack ltverhack
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
-USE_PYTHON=	2.5+
+USE_GNOME=	ltverhack
+USE_PYTHON=	yes
 USE_PERL5=	yes
-CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
+CONFIGURE_ARGS=	--enable-static \
 		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
 		--disable-dtrace \
 		--with-pcre=system \
 		--disable-fam
+CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+SHEBANG_FILES=	*/*.pl glib/gen-iswide-table.py
 
 OPTIONS_DEFINE=	COLLATION_FIX DEBUG
 COLLATION_FIX_DESC=	fix string collation
 
 .include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=--disable-dtrace
+
+.if empty(ICONV_LIB)
+CONFIGURE_ARGS+=	--with-libiconv=native
+.else
+CONFIGURE_ARGS+=	--with-libiconv=gnu
+.endif
 
 # Let glib use asm code for implementing atomic ops on i386 and amd64.
 .if ${ARCH} == "i386"
@@ -78,6 +83,7 @@ post-patch:
 		${WRKSRC}/gio/gdbusaddress.c ${WRKSRC}/gio/gdbusprivate.c \
 		${WRKSRC}/po/*.po
 	@${REINPLACE_CMD} -e 's|inotify_support=yes|inotify_support=no| ; \
+		s|-Werror|| ; \
 		s|#define HAVE_SYS_INOTIFY_H 1||' ${WRKSRC}/configure
 
 post-install:
