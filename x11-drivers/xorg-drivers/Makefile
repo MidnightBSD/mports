@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org drivers meta-port
 LICENSE=	agg
 
-.MAKE.FreeBSD_UL=    yes
+.MAKE.FreeBSD_UL=	yes
 
 VIDEODIR=	${PREFIX}/lib/xorg/modules/drivers
 INPUTDIR=	${PREFIX}/lib/xorg/modules/input
@@ -35,7 +35,6 @@ VIDEO_DRIVERS=		ati \
 			mach64 \
 			nv \
 			r128 \
-			radeonhd \
 			vesa \
 			apm \
 			ark \
@@ -46,7 +45,6 @@ VIDEO_DRIVERS=		ati \
 			glint \
 			i128 \
 			i740 \
-			imstt \
 			mga \
 			neomagic \
 			newport \
@@ -69,7 +67,6 @@ OPTIONS_DEFAULT=	MOUSE \
 			MACH64 \
 			NV \
 			R128 \
-			RADEONHD \
 			VESA
 
 .for type in input video

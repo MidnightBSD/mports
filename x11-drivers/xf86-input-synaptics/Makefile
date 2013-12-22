@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-synaptics
-PORTVERSION=	1.2.1
+PORTVERSION=	${SYNAPTICS_VERSION}
+PORTREVISION=	${SYNAPTICS_REVISION}
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,17 +11,19 @@ LICENSE=	mit
 
 CONFLICTS=	synaptics-[0-9]*
 
-USE_GNOME=	gnomehack
-USE_XORG=	x11
+USES=		pathfix
+USE_XORG=	x11 xtst
 XORG_CAT=	driver
 
-MAN1=		syndaemon.1 \
-		synclient.1
-MAN4=		synaptics.4x
-
-post-install:
-	${MKDIR} ${PREFIX}/share/hal/fdi/policy/10osvendor
-	${INSTALL_DATA} ${WRKSRC}/fdi/11-x11-synaptics.fdi \
-		${PREFIX}/share/hal/fdi/policy/10osvendor/
+.if defined(WITH_NEW_XORG)
+SYNAPTICS_VERSION=	1.7.2
+SYNAPTICS_REVISION=	0
+PLIST_SUB+=	NEW="" OLD="@comment "
+.else
+SYNAPTICS_VERSION=	1.6.4
+SYNAPTICS_REVISION=	0
+PLIST_SUB+=	NEW="@comment " OLD=""
+EXTRA_PATCHES+=	${PATCHDIR}/extra-Makefile.in
+.endif
 
 .include <bsd.port.mk>

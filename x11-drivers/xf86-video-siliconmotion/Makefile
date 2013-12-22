@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-siliconmotion
-PORTVERSION=	1.7.3
+PORTVERSION=	1.7.7
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org siliconmotion display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver

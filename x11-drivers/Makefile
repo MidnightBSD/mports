@@ -39,7 +39,6 @@ SUBDIR += xf86-video-s3virge
 SUBDIR += xf86-video-savage
 SUBDIR += xf86-video-siliconmotion
 SUBDIR += xf86-video-sis
-SUBDIR += xf86-video-sunffb
 SUBDIR += xf86-video-tdfx
 SUBDIR += xf86-video-tga
 SUBDIR += xf86-video-trident

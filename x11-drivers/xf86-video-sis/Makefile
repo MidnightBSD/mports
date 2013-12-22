@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-sis
-PORTVERSION=	0.10.2
+PORTVERSION=	0.10.7
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org sis display driver
+
 LICENSE=	bsd3
 
 CONFLICTS=	xf86-video-sis-intel-[0-9]*

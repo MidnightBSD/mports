@@ -1,15 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-void
-PORTVERSION=	1.3.1
-PORTREVISION=	0
+PORTVERSION=	${VOID_VERSION}
+PORTREVISION=	${VOID_REVISION}
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org void input driver
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	driver
-MAN4=		void.4x
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_NEW_XORG)
+VOID_VERSION=	1.4.0
+VOID_REVISION=	0
+.else
+VOID_VERSION=	1.3.1
+VOID_REVISION=	0
+.endif
 
 .include <bsd.port.mk>
