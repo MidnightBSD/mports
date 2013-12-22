@@ -2,21 +2,21 @@
 
 PORTNAME=	libbonoboui
 PORTVERSION=	2.24.4
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI frontend to the libbonobo component of GNOME 2
+
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
+USES=		gettext gmake pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomeprefix gnomehack gnomehier intlhack \
 		libgnomecanvas libgnome referencehack
