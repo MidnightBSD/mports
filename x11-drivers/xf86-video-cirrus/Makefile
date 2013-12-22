@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-cirrus
-PORTVERSION=	1.3.2
+PORTVERSION=	1.5.2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org cirrus display driver
+
 LICENSE=	mit
 
 XORG_CAT=	driver
