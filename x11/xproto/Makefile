@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xproto
-PORTVERSION=	7.0.24
+PORTVERSION=	7.0.25
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 protocol headers
+
 LICENSE=	mit
 
 XORG_CAT=	proto
