@@ -6,11 +6,12 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compile XKB keyboard description
-LICENSE=	sgi
+
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xkbfile
-USE_PATHFIX=	yes
+USES=		pathfix
 
 PLIST_FILES=	bin/xkbcomp \
 		libdata/pkgconfig/xkbcomp.pc
