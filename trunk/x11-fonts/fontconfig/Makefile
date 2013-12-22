@@ -1,20 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.9.0
+PORTVERSION=	2.10.95
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An XML-based font configuration API for X Windows
-LICENSE=	x11
+LICENSE=	mit
 
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 		expat:${PORTSDIR}/textproc/expat2
 
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
