@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	xset
-PORTVERSION=	1.2.2
-PORTREVISION=	1
+PORTVERSION=	1.2.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User preference utility for X
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xmuu xproto x11 xext xfontcache

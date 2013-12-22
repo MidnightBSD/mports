@@ -9,23 +9,23 @@
 
 PORTNAME=	libxklavier
 PORTVERSION=	5.0
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An utility library to make XKB stuff easier
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
     		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
-USE_PATHFIX=	yes
+USES=		pathfix gmake pkgconfig
 USE_XORG=	x11 xi xkbfile
 USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	libxml2 glib20 ltverhack:12
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
