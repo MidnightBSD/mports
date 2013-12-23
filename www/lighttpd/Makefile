@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.32
+PORTVERSION=	1.4.33
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A secure, fast, compliant, and very flexible Web Server
+
 LICENSE=	bsd3
 
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
