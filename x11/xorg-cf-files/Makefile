@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-cf-files
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org cf files for use with imake builds
+
 LICENSE=	mit
 
 XORG_CAT=	util
