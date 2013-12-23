@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	links
-DISTVERSION=	2.7
+DISTVERSION=	2.8
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://links.twibright.com/download/ LOCAL/bf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
+
 LICENSE=	gpl2
 
 CONFLICTS=	links-0*
