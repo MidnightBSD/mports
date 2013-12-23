@@ -3,7 +3,7 @@
 
 PORTNAME=	untar
 PORTVERSION=	1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	ftp://ftp.cs.pdx.edu/pub/elvis/
 DISTNAME=	${PORTNAME}
