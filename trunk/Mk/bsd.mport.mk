@@ -1678,7 +1678,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	ipv6 irc japanese java kde kld korean lang linux lisp lua \
-	mail math mbone misc multimedia net net-im net-mgmt net-p2p news \
+	mail math misc multimedia net net-im net-mgmt net-p2p news \
 	palm parallel perl5 picobsd plan9 polish portuguese ports-mgmt print \
 	python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
@@ -4238,7 +4238,6 @@ desktop-categories:
 			lisp)			c="Development"					;; \
 			lua)			c="Development"				;; \
 			mail)			c="Email Office Network"		;; \
-			mbone)			c="Network AudioVideo"			;; \
 			multimedia)		c="AudioVideo"					;; \
 			net)			c="Network"						;; \
 			net-im)			c="InstantMessaging Network"	;; \
