@@ -2,7 +2,7 @@
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
@@ -53,7 +53,7 @@ post-patch:
 
 .include <bsd.port.pre.mk>
 
-.if exists(/usr/include/iconv.h)
+.if exists(/usr/include/iconv.h) && ${OSVERSION} > 6000
 IGNORE=		converters/libiconv should not be used with iconv from base. \
 Please fix the port which tries to use it
 .endif
