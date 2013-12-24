@@ -72,6 +72,7 @@ SUBDIR += ffcall
 SUBDIR += fmake
 SUBDIR += fpc-fcl-base
 SUBDIR += fpc-fcl-db
+SUBDIR += fpc-fcl-image
 SUBDIR += fpc-pthreads
 SUBDIR += gamin
 SUBDIR += gccmakedep
