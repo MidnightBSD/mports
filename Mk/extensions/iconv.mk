@@ -14,7 +14,7 @@ _INCLUDE_USES_ICONV_MK=	yes
 iconv_ARGS=     lib
 .endif
 
-.if !exists(/usr/include/iconv.h)
+.if !exists(/usr/include/iconv.h) || ${OSVERSION} < 6000
 
 ICONV_CMD=	${LOCALBASE}/bin/iconv
 ICONV_LIB=	-liconv
