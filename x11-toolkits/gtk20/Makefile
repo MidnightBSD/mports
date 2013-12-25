@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk
-PORTVERSION=	2.24.19
+PORTVERSION=	2.24.22
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -23,17 +23,15 @@ BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 USE_PYTHON=	2.5-2.7
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
-USE_GETTEXT=	yes
+USE_GNOME=	atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
+USES=		gettext gmake pathfix pkgconfig
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite xau xdmcp xproto
-CONFIGURE_ARGS=	--enable-static --with-xinput=yes
+CONFIGURE_ARGS=	--with-xinput=yes
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
 		-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -77,8 +75,8 @@ pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
-	-@${FIND} ${LOCALBASE}/share/icons -type d -depth 1 -exec \
-		${PREFIX}/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
+#-@${FIND} ${LOCALBASE}/share/icons -type d -depth 1 -exec \
+#		${PREFIX}/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/modules
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/engines
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/loaders
