@@ -1,53 +1,66 @@
---- converter/other/pngtopnm.c.orig	2004-04-04 02:18:34.000000000 +0200
-+++ converter/other/pngtopnm.c	2010-03-28 12:29:26.000000000 +0200
-@@ -494,7 +494,7 @@
-             case PNG_COLOR_TYPE_GRAY:
-                 setXel(&xelrow[col], c, c, c,
-                        ((info_ptr->valid & PNG_INFO_tRNS) &&
--                        (c == gamma_correct(info_ptr->trans_values.gray,
-+                        (c == gamma_correct(info_ptr->trans_color.gray,
-                                             totalgamma))) ?
-                        0 : maxval);
-                 break;
-@@ -511,7 +511,7 @@
-                        info_ptr->palette[c].blue,
-                        (info_ptr->valid & PNG_INFO_tRNS) &&
-                        c < info_ptr->num_trans ?
--                       info_ptr->trans[c] : maxval);
-+                       info_ptr->trans_alpha[c] : maxval);
-                 break;
+--- converter/other/pngtopnm.c.orig	2011-11-25 01:15:46.000000000 +0100
++++ converter/other/pngtopnm.c	2012-04-24 22:15:14.000000000 +0200
+@@ -37,6 +37,7 @@
+ #include <math.h>
+ #include <float.h>
+ #include <png.h>    /* includes zlib.h and setjmp.h */
++#include <pngpriv.h>
+ #define VERSION "2.37.4 (5 December 1999) +netpbm"
  
-             case PNG_COLOR_TYPE_RGB: {
-@@ -519,11 +519,11 @@
-                 png_uint_16 const c3 = get_png_val(png_pixelP);
-                 setXel(&xelrow[col], c, c2, c3,
+ #include "pnm.h"
+@@ -44,7 +45,7 @@
+ #include "nstring.h"
+ #include "shhopt.h"
+ 
+-#if PNG_LIBPNG_VER >= 10400
++#if 0
+ #error Your PNG library (<png.h>) is incompatible with this Netpbm source code.
+ #error You need either an older PNG library (older than 1.4)
+ #error newer Netpbm source code (at least 10.48)
+@@ -489,7 +490,7 @@
+     bool retval;
+ 
+     if (info_ptr->valid & PNG_INFO_tRNS) {
+-        const png_color_16 * const transColorP = &info_ptr->trans_values;
++        const png_color_16 * const transColorP = &info_ptr->trans_color;
+     
+ 
+         /* There seems to be a problem here: you can't compare real
+@@ -582,8 +583,8 @@
+             for (i = 0, foundGray = FALSE;
+                  i < info_ptr->num_trans && !foundGray;
+                  ++i) {
+-                if (info_ptr->trans[i] != 0 &&
+-                    info_ptr->trans[i] != maxval) {
++                if (info_ptr->trans_alpha[i] != 0 &&
++                    info_ptr->trans_alpha[i] != maxval) {
+                     foundGray = TRUE;
+                 }
+             }
+@@ -654,7 +655,7 @@
+                 unsigned int i;
+                 trans_mix = TRUE;
+                 for (i = 0; i < info_ptr->num_trans; ++i)
+-                    if (info_ptr->trans[i] != 0 && info_ptr->trans[i] != 255) {
++                    if (info_ptr->trans_alpha[i] != 0 && info_ptr->trans_alpha[i] != 255) {
+                         trans_mix = FALSE;
+                         break;
+                     }
+@@ -892,7 +893,7 @@
+                 setXel(&xelrow[col], fgColor, bgColor, alpha_handling,
                         ((info_ptr->valid & PNG_INFO_tRNS) &&
--                        (c == gamma_correct(info_ptr->trans_values.red,
-+                        (c == gamma_correct(info_ptr->trans_color.red,
-                                             totalgamma)) &&
--                        (c2 == gamma_correct(info_ptr->trans_values.green,
-+                        (c2 == gamma_correct(info_ptr->trans_color.green,
-                                              totalgamma)) &&
--                        (c3 == gamma_correct(info_ptr->trans_values.blue,
-+                        (c3 == gamma_correct(info_ptr->trans_color.blue,
-                                              totalgamma))) ?
+                         (fgColor.r == 
+-                         gamma_correct(info_ptr->trans_values.gray,
++                         gamma_correct(info_ptr->trans_color.gray,
+                                        totalgamma))) ?
                         0 : maxval);
              }
-@@ -688,7 +688,7 @@
-             (info_ptr->valid & PNG_INFO_tRNS)) {
-           trans_mix = TRUE;
-           for (i = 0 ; i < info_ptr->num_trans ; i++)
--            if (info_ptr->trans[i] != 0 && info_ptr->trans[i] != 255) {
-+            if (info_ptr->trans_alpha[i] != 0 && info_ptr->trans_alpha[i] != 255) {
-               trans_mix = FALSE;
-               break;
+@@ -921,7 +922,7 @@
+                 setXel(&xelrow[col], fgColor, bgColor, alpha_handling,
+                        (info_ptr->valid & PNG_INFO_tRNS) &&
+                        index < info_ptr->num_trans ?
+-                       info_ptr->trans[index] : maxval);
++                       info_ptr->trans_alpha[index] : maxval);
              }
-@@ -841,7 +841,7 @@
-         pnm_type = PBM_TYPE;
-         if (info_ptr->valid & PNG_INFO_tRNS) {
-           for (i = 0 ; i < info_ptr->num_trans ; i++) {
--            if (info_ptr->trans[i] != 0 && info_ptr->trans[i] != maxval) {
-+            if (info_ptr->trans_alpha[i] != 0 && info_ptr->trans_alpha[i] != maxval) {
-               pnm_type = PGM_TYPE;
-               break;
-             }
+             break;
+                 
