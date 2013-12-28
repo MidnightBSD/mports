@@ -3,6 +3,7 @@
 
 PORTNAME=	xorg-libs
 PORTVERSION=	7.4
+PORTREVISION=	1
 CATEGORIES=	x11 linux
 MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
@@ -96,6 +97,7 @@ LINUX_DIST_VER=		10
 USE_LDCONFIG=		yes
 
 post-install:
+	${MKDIR} ${PREFIX}/etc/ld.so.conf.d
 	@${INSTALL_DATA} ${FILESDIR}/xorg-x11-i386.conf ${PREFIX}/etc/ld.so.conf.d
 
 .include <bsd.port.mk>
