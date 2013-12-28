@@ -12,6 +12,7 @@ COMMENT=	X.Org complete distribution metaport
 LICENSE=	agg
 
 NO_BUILD=	yes
+NO_MTREE=	yes
 
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
 
