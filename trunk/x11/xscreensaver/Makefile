@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	xscreensaver
-PORTVERSION=	5.21
-PORTREVISION=	1
+PORTVERSION=	5.26
 CATEGORIES=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Save your screen while you entertain your cat
+
 LICENSE=	mit
 
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
