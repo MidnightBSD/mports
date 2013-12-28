@@ -2,7 +2,7 @@
 
 PORTNAME=	libglade2
 PORTVERSION=	2.6.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/..$//}
@@ -11,6 +11,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME glade library
+
 LICENSE=	lgpl
 
 USE_BZIP2=	yes
@@ -19,9 +20,8 @@ USE_BZIP2=	yes
 
 RUN_DEPENDS=	xmlcatmgr:${PORTSDIR}/textproc/xmlcatmgr
 
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_PATHFIX=	yes
+USES=		pathfix gmake pkgconfig
 USE_GNOME=	libxml2 gtk20 referencehack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
@@ -39,10 +39,8 @@ OPTIONS_DEFAULT=PYTHON
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPYTHON}
-BUILD_DEPENDS+=	${PYEXPAT}
-RUN_DEPENDS+=	${PYEXPAT}
 
-USE_PYTHON=	yes
+USE_PYTHON=	-2.7
 PLIST_SUB+=	PYTHON=""
 .else
 PLIST_SUB+=	PYTHON="@comment "
