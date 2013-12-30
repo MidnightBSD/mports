@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	libtasn1
-PORTVERSION=	2.13
+PORTVERSION=	3.3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libtasn1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
+
 LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
@@ -46,14 +47,10 @@ MAN3=		\
 		asn1_octet_der.3 \
 		asn1_parser2array.3 \
 		asn1_parser2tree.3 \
-		asn1_perror.3 \
 		asn1_print_structure.3 \
 		asn1_read_tag.3 \
 		asn1_read_value.3 \
-		asn1_strerror.3 \
-		asn1_write_value.3 \
-		libtasn1_perror.3 \
-		libtasn1_strerror.3
+		asn1_write_value.3
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,(libdir)/pkgconfig,(prefix)/libdata/pkgconfig,' \
