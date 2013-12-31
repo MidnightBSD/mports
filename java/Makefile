@@ -44,6 +44,7 @@ SUBDIR += netbeans55
 SUBDIR += openjdk6
 SUBDIR += openjdk6-jre
 SUBDIR += openjdk7
+SUBDIR += openjdk7-bin
 SUBDIR += springframework
 SUBDIR += xdoclet
 
