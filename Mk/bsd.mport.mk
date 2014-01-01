@@ -4078,6 +4078,33 @@ compress-man:
 		shift; shift; \
 	done
 .    endif
+# FreeBSD Stage Compatibility - FAKE_DESTDIR = STAGEDIR in their world ~
+	@mdirs= ; \
+	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
+		[ -d $$dir ] && mdirs="$$mdirs $$dir" ;\
+	done ; \
+	for dir in $$mdirs; do \
+		${FIND} $$dir -type f \! -name "*.gz" -links 1 -exec ${GZIP_CMD} {} \; ; \
+		${FIND} $$dir -type f \! -name "*.gz" \! -links 1 -exec ${STAT} -f '%i' {} \; | \
+		${SORT} -u | while read inode ; do \
+			unset ref ; \
+			for f in $$(${FIND} $$dir -type f -inum $${inode} -print); do \
+				if [ -z $$ref ]; then \
+					ref=$${f}.gz ; \
+					${GZIP_CMD} $${f} ; \
+					continue ; \
+				fi ; \
+				${RM} -f $${f} ; \
+				(cd $${f%/*}; ${LN} -f $${ref##*/} $${f##*/}.gz) ; \
+			done ; \
+		done ; \
+		${FIND} $$dir -type l \! -name "*.gz" | while read link ; do \
+			dest=$$(readlink $$link) ; \
+			rm -f $$link ; \
+			(cd $${link%/*} ; ${LN} -sf $${dest##*/}.gz $${link##*/}.gz) ;\
+		done; \
+	done
+# End FreeBSD Stage Compatibility
 .  else
 	@${DO_NADA}
 .endif
