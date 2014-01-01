@@ -336,10 +336,10 @@ _LOAD_${EXT:U}_EXT=	yes
 _ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
-		emacs gnustep php python java ruby tcl apache kde qt \
-		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-		pgsql bdb sqlite gecko scons ocaml efl gettext \
-		fuse iconv imake ncurses
+		apache autotools bdb cmake efl emacs fuse \
+		gecko gettext gnome gnustep gstreamer iconv imake \
+		kde4 ldap lua mysql ncurses ocaml openal \
+		pgsql php python java qt ruby scons sdl sqlite tcl wx xfce
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -438,8 +438,6 @@ CPIO=	${GCPIO}
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
-
-WANT_OPENLDAP_VER?=	24
 
 # Owner and group of the WWW user
 WWWOWN?=	www
@@ -584,11 +582,7 @@ check-makevars::
 .endif
 .endif
 
-.if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-MANCOMPRESSED?=	yes
-.else
 MANCOMPRESSED?=	no
-.endif
 
 .if defined(PATCHFILES)
 .if ${PATCHFILES:M*.zip}x != x
@@ -596,6 +590,9 @@ PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 .endif
 .endif
 
+.if defined(USE_LHA)
+EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
+.endif
 .if defined(USE_ZIP)
 EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 .endif
@@ -612,12 +609,12 @@ BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
 		READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
 . for b in ${BINUTILS}
-${b}= ${LOCALBASE}/bin/${b:C/PP/++/:L}
+${b}=	${LOCALBASE}/bin/${b:C/PP/++/:L}
 .  if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
-CONFIGURE_ENV+=       ${b}="${${b}}"
+CONFIGURE_ENV+=	${b}="${${b}}"
 .  endif
 .  if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
-MAKE_ENV+=    ${b}="${${b}}"
+MAKE_ENV+=	${b}="${${b}}"
 .  endif
 . endfor
 .endif
@@ -626,98 +623,6 @@ MAKE_ENV+=    ${b}="${${b}}"
 USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
 .endif
-
-.if defined(USE_OPENLDAP)
-.if defined(WANT_OPENLDAP_SASL)
-_OPENLDAP_FLAVOUR=	-sasl
-.else
-_OPENLDAP_FLAVOUR=
-.endif
-.if ${WANT_OPENLDAP_VER} == 23
-LIB_DEPENDS+=		ldap-2.3.2:${PORTSDIR}/net/openldap23${_OPENLDAP_FLAVOUR}-client
-.elif ${WANT_OPENLDAP_VER} == 24
-LIB_DEPENDS+=		ldap-2.4.8:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
-.else
-IGNORE=			unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
-.endif
-.endif
-
-.if defined(USE_OPENAL)
-_OPENAL_ALL=	al si soft alut
-_OPENAL_LIBS=	si soft
-# Default choice.
-_DEFAULT_OPENAL=	soft
-
-_OPENAL_SOFT=	openal.1:${PORTSDIR}/audio/openal-soft
-_OPENAL_SI=	openal.0:${PORTSDIR}/audio/openal
-_OPENAL_ALUT=	alut.1:${PORTSDIR}/audio/freealut
-
-.if exists(${LOCALBASE}/lib/libopenal.a)
-_HAVE_OPENAL=	si
-.elif exists(${LOCALBASE}/bin/openal-info)
-_HAVE_OPENAL=	soft
-.endif
-
-.if ${USE_OPENAL} == "yes"
-# Be friendly.
-USE_OPENAL=	${_DEFAULT_OPENAL}
-.endif
-
-__USED_OPENAL=
-_USE_OPENAL=
-.for component in ${USE_OPENAL}
-.if ${__USED_OPENAL:M${component}} == ""
-__USED_OPENAL+=	${component}
-
-.if ${_OPENAL_ALL:M${component}} == ""
-BROKEN= OPENAL mismatch: unknown component ${component}
-.elif ${_OPENAL_ALL:M${component}} == "al"
-
-# Check if the user wish matches the found OpenAL system.
-.if defined(WANT_OPENAL) && defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${WANT_OPENAL}
-BROKEN=		OPENAL mismatch: ${_HAVE_OPENAL} is installed, but ${WANT_OPENAL} desired
-.endif # WANT_OPENAL
-
-.if defined(_HAVE_OPENAL)
-_OPENAL_SYSTEM=	${_HAVE_OPENAL}
-.elif defined(WANT_OPENAL)
-_OPENAL_SYSTEM=	${WANT_OPENAL}
-.else
-_OPENAL_SYSTEM=	${_DEFAULT_OPENAL}
-.endif # _HAVE_OPENAL
-
-_USE_OPENAL+=	${_OPENAL_${_OPENAL_SYSTEM:U}}
-
-.else # ${_OPENAL_ALL:M${component}} == ""
-
-.if ${_OPENAL_LIBS:M${component}} == ${component}
-# Check for the system implementation to use.
-.if defined(WANT_OPENAL) && ${WANT_OPENAL} != ${component}
-BROKEN=	OPENAL mismatch: wants to use ${component}, while you wish to use ${WANT_OPENAL}
-.endif
-.if defined(_OPENAL_SYSTEM)
-BROKEN=	OPENAL mismatch: cannot use ${component} and al together.
-.endif
-.if defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${component}
-BROKEN=	OPENAL mismatch: wants to use ${component}, but ${_HAVE_OPENAL} is installed
-.endif
-
-_OPENAL_SYSTEM=	${component}
-
-.endif # ${_OPENAL_LIBS:M${component}} == ${component}
-
-_USE_OPENAL+=	${_OPENAL_${component:U}}
-
-.endif # ${_OPENAL_ALL:M${component}} == ""
-
-.endif # ${__USED_OPENAL:M${component} == ""
-.endfor # component in ${USE_OPENAL}
-
-.for dep in ${_USE_OPENAL}
-LIB_DEPENDS+=	${dep}
-.endfor
-
-.endif # USE_OPENAL
 
 .if defined(USE_FAM)
 DEFAULT_FAM_SYSTEM=	gamin
@@ -1002,7 +907,7 @@ MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 			LOCALBASE=${LOCALBASE_REL} \
-			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" \
+			LIBDIR="${LIBDIR}" \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" \
@@ -1020,6 +925,18 @@ CFLAGS+=       -fno-strict-aliasing
 
 .if defined(USE_CSTD)
 CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
+.endif
+
+.if defined(CFLAGS_${ARCH})
+CFLAGS+=	${CFLAGS_${ARCH}}
+.endif
+
+.if defined(USE_CXXSTD)
+CXXFLAGS:=	${CXXFLAGS:N-std=*} -std=${USE_CXXSTD}
+.endif
+
+.if defined(CXXFLAGS_${ARCH})
+CXXFLAGS+=	${CXXFLAGS_${ARCH}}
 .endif
 
 # Multiple make jobs support
@@ -1044,17 +961,12 @@ BUILD_FAIL_MESSAGE+=Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
-.if exists(/usr/bin/fetch)
+FETCH_ENV?=	SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-AFpr
 FETCH_REGET?=	1
 .if !defined(DISABLE_SIZE)
 FETCH_BEFORE_ARGS+=	$${CKSIZE:+-S $$CKSIZE}
-.endif
-.else
-FETCH_BINARY?=	/usr/bin/ftp
-FETCH_ARGS?=	-R
-FETCH_REGET?=	0
 .endif
 FETCH_CMD?=		${FETCH_BINARY} ${FETCH_ARGS}
 
@@ -1164,12 +1076,12 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 .if ${UID} == 0
 COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
-					${CHOWN} -R ${BINOWN}:${BINGRP} $$1 && \
+					${CHOWN} -Rh ${BINOWN}:${BINGRP} $$1 && \
 					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
 					${FIND} -d $$0 $$2 -type f -exec chmod ${BINMODE} $$1/{} \;' --
 COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
-					${CHOWN} -R ${SHAREOWN}:${SHAREGRP} $$1 && \
+					${CHOWN} -Rh ${SHAREOWN}:${SHAREGRP} $$1 && \
 					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
 					${FIND} -d $$0 $$2 -type f -exec chmod ${SHAREMODE} $$1/{} \;' --
 .else
@@ -1225,10 +1137,9 @@ MPORT_CREATE_ARGS+=	-C "${CONFLICTS}"
 
 PKG_SUFX?=	.mport
 
-MOTIFLIB?=	-L${LOCALBASE}/lib -lXm -lXp
-
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
+INSTALL_TARGET+=	${LATE_INSTALL_ARGS}
 
 # This is a mid-term solution patch while pkg-comment files are
 # phased out.
@@ -4209,20 +4120,23 @@ desktop-categories:
 	for native_category in ${CATEGORIES}; do \
 		c=""; \
 		case $$native_category in \
-			accessibility)	c="Accessibility Utility"		;; \
-			archivers)		c="Archiving"					;; \
-			astro)			c="Astronomy Science Education"	;; \
-			audio)			c="Audio AudioVideo"			;; \
+			accessibility)	c="Utility Accessibility"		;; \
+			archivers)		c="Utility Archiving"					;; \
+			astro)			c="Education Science Astronomy"	;; \
+			audio)			c="AudioVideo Audio"			;; \
 			benchmarks)		c="System"						;; \
 			biology)		c="Biology Science Education"	;; \
-			cad)			c="Engineering"					;; \
-			core)			c="MidnightBSD Meta"				;; \
-			databases)		c="Database"					;; \
+			cad)			c="Graphics Engineering"					;; \
+			core)			c="System"				;; \
+			comms)			c="Utility"				;; \
+			converters)		c="Utility"				;; \
+			databases)		c="Office Database"					;; \
 			deskutils)		c="Utility"						;; \
 			devel)			c="Development"					;; \
 			dns)			c="Network"						;; \
 			elisp)			c="Development"					;; \
-			emulators)		c="Emulator"					;; \
+			editors)		c="Utility"						;; \
+			emulators)		c="System Emulator"					;; \
 			finance)		c="Finance Office"				;; \
 			ftp)			c="FileTransfer Network"		;; \
 			games)			c="Game"						;; \
@@ -4258,7 +4172,7 @@ desktop-categories:
 			www)			c="Network"						;; \
 			x11-clocks)		c="Clock Utility"				;; \
 			x11-fm)			c="FileManager"					;; \
-			xfce)			c="GTK"							;; \
+			xfce)			c="GTK XFCE"							;; \
 			zope)			c="WebDevelopment Development"	;; \
 		esac; \
 		if [ -n "$$c" ]; then \
@@ -4271,23 +4185,34 @@ desktop-categories:
 		${ECHO_MSG}; \
 	fi
 
-VALID_DESKTOP_CATEGORIES+= Application Core Development Building Debugger IDE \
-	GUIDesigner Profiling RevisionControl Translation Office Calendar \
-	ContactManagement Database Dictionary Chart Email Finance FlowChart PDA \
-	ProjectManagement Presentation Spreadsheet WordProcessor Graphics \
-	2DGraphics VectorGraphics RasterGraphics 3DGraphics Scanning OCR \
-	Photography Viewer Settings DesktopSettings HardwareSettings \
-	PackageManager Network Dialup InstantMessaging IRCClient FileTransfer \
-	HamRadio News P2P RemoteAccess Telephony WebBrowser WebDevelopment \
-	AudioVideo Audio Midi Mixer Sequencer Tuner Video TV AudioVideoEditing \
-	Player Recorder DiscBurning Game ActionGame AdventureGame ArcadeGame \
-	BoardGame BlocksGame CardGame KidsGame LogicGame RolePlaying Simulation \
-	SportsGame StrategyGame Education Art Construction Music Languages \
-	Science Astronomy Biology Chemistry Geology Math MedicalSoftware Physics \
-	Teaching Amusement Applet Archiving Electronics Emulator Engineering \
-	FileManager Shell Screensaver TerminalEmulator TrayIcon System Filesystem \
-	Monitor Security Utility Accessibility Calculator Clock TextEditor KDE \
-	GNOME GTK Qt Motif Java ConsoleOnly AdvancedSettings
+# http://standards.freedesktop.org/menu-spec/menu-spec-latest.html
+DESKTOP_CATEGORIES_MAIN=	AudioVideo Audio Video Development Education \
+	Game Graphics Network Office Science Settings System Utility
+DESKTOP_CATEGORIES_ADDITIONAL=	Building Debugger IDE GUIDesigner Profiling \
+	RevisionControl Translation Calendar ContactManagement Database \
+	Dictionary Chart Email Finance FlowChart PDA ProjectManagement \
+	Presentation Spreadsheet WordProcessor 2DGraphics VectorGraphics \
+	RasterGraphics 3DGraphics Scanning OCR Photography Publishing Viewer \
+	TextTools DesktopSettings HardwareSettings Printing PackageManager \
+	Dialup InstantMessaging Chat IRCClient Feed FileTransfer HamRadio News \
+	P2P RemoteAccess Telephony TelephonyTools VideoConference WebBrowser \
+	WebDevelopment Midi Mixer Sequencer Tuner TV AudioVideoEditing Player \
+	Recorder DiscBurning ActionGame AdventureGame ArcadeGame BoardGame \
+	BlocksGame CardGame KidsGame LogicGame RolePlaying Shooter Simulation \
+	SportsGame StrategyGame Art Construction Music Languages \
+	ArtificialIntelligence Astronomy Biology Chemistry ComputerScience \
+	DataVisualization Economy Electricity Geography Geology Geoscience \
+	History Humanities ImageProcessing Literature Maps Math \
+	NumericalAnalysis MedicalSoftware Physics Robotics Spirituality Sports \
+	ParallelComputing Amusement Archiving Compression Electronics Emulator \
+	Engineering FileTools FileManager TerminalEmulator Filesystem Monitor \
+	Security Accessibility Calculator Clock TextEditor Documentation Adult \
+	Core KDE GNOME MATE XFCE GTK Qt Motif Java ConsoleOnly
+DESKTOP_CATEGORIES_RESERVED=	Screensaver TrayIcon Applet Shell
+
+VALID_DESKTOP_CATEGORIES+=	${DESKTOP_CATEGORIES_MAIN} \
+	${DESKTOP_CATEGORIES_ADDITIONAL} \
+	${DESKTOP_CATEGORIES_RESERVED}
 
 check-desktop-entries:
 .if defined(DESKTOP_ENTRIES)
@@ -4311,7 +4236,7 @@ check-desktop-entries:
 		if ${ECHO_CMD} "$$3" | ${GREP} -iq '.\(png\|svg\|xpm\)$$'; then \
 			if ! ${ECHO_CMD} "$$3" | ${GREP} -iq '^/'; then \
 				${ECHO_MSG} "${PKGNAME}: Makefile warning: in desktop entry $$entry: field 3 (Icon) should be either absolute path or icon name without extension if installed icons follow Icon Theme Specification"; \
-			 fi; \
+			fi; \
                 fi; \
 		if [ -z "$$4" ]; then \
 			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 4 (Exec) is empty"; \
