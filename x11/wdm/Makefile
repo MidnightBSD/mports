@@ -2,7 +2,7 @@
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
@@ -16,17 +16,15 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WINGs Display Manager; an xdm replacement
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	wraster.4:${PORTSDIR}/x11-wm/windowmaker
 
-NOT_FOR_ARCHS=	sparc64
-
 USE_BZIP2=	yes
 USE_XORG=	x11 xmu
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
-		DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
+CONFIGURE_ENV=	DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
 CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-runlockdir=/var/run \
 		--with-wdmdir=${WDMDIR} \
@@ -41,8 +39,8 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 
 MAN1=	wdm.1 wdmLogin.1
 
-CPPFLAGS=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
-LDFLAGS=	-L${LOCALBASE}/lib -lintl
+CPPFLAGS+=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
 DEF_SERVER?=	${LOCALBASE}/bin/X
 XRDB_PATH?=	${LOCALBASE}/bin/xrdb
