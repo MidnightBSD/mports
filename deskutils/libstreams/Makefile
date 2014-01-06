@@ -12,7 +12,6 @@ LICENSE=	gpl2
 
 USES=		iconv
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 post-patch:
 	${REINPLACE_CMD} -e \
