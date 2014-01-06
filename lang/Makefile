@@ -63,6 +63,7 @@ SUBDIR += python27
 SUBDIR += ruby18
 SUBDIR += ruby19
 SUBDIR += spidermonkey
+SUBDIR += spidermonkey185
 SUBDIR += steptalk
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
