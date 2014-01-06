@@ -3,7 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	2.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -20,6 +20,7 @@ BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm \
 
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	config.err
+CONFIGURE_ARGS+=	--host-os=freebsd --target-os=freebsd
 USES=		gmake pkgconfig perl5
 USE_PERL5=	build
 USE_BZIP2=	yes
@@ -296,7 +297,6 @@ CFLAGS+=	-O3 -ffast-math -fno-finite-math-only -fomit-frame-pointer
 # ffserver
 .if ${PORT_OPTIONS:MFFSERVER}
 PLIST_SUB+=	FFSERVER=""
-PLIST_FILES+=	man/man1/ffserver.1.gz
 FFPROGS+=	ffserver
 . if ${PORT_OPTIONS:MDOCS}
 DOC_DOCFILES+=	ffserver.html
@@ -349,6 +349,7 @@ post-patch:
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|-ldl||' \
 		-e 's|opencv opencv/cxcore.h|opencv-core opencv2/core/core_c.h|g' \
+		-e 's|freetype/freetype.h|freetype.h|g' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${PERL5}|g' \
 		${WRKSRC}/doc/texi2pod.pl

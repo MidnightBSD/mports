@@ -130,8 +130,6 @@ libdata/pkgconfig/libavutil.pc
 libdata/pkgconfig/libpostproc.pc
 libdata/pkgconfig/libswresample.pc
 libdata/pkgconfig/libswscale.pc
-man/man1/ffmpeg.1.gz
-man/man1/ffprobe.1.gz
 %%DATADIR%%/examples/Makefile
 %%DATADIR%%/examples/README
 %%DATADIR%%/examples/decoding_encoding.c
