@@ -159,28 +159,25 @@ include/phonon/volumefaderinterface.h
 include/phonon/volumeslider.h
 lib/cmake/phonon/PhononConfig.cmake
 lib/cmake/phonon/PhononConfigVersion.cmake
-lib/cmake/phonon/PhononTargets-release.cmake
+lib/cmake/phonon/PhononTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/phonon/PhononTargets.cmake
 lib/libphonon.so
 lib/libphonon.so.4
-lib/libphonon.so.4.6.0
+lib/libphonon.so.4.7.0
 lib/libphononexperimental.so
 lib/libphononexperimental.so.4
-lib/libphononexperimental.so.4.6.0
+lib/libphononexperimental.so.4.7.0
 libdata/pkgconfig/phonon.pc
 share/dbus-1/interfaces/org.kde.Phonon.AudioOutput.xml
 %%DATADIR%%/buildsystem/COPYING-CMAKE-SCRIPTS
 %%DATADIR%%/buildsystem/FindAutomoc4.cmake
 %%DATADIR%%/buildsystem/FindPackageHandleStandardArgs.cmake
 %%DATADIR%%/buildsystem/FindPhononInternal.cmake
-%%DATADIR%%/buildsystem/FindQt4.cmake
 %%DATADIR%%/buildsystem/MacroEnsureVersion.cmake
 %%DATADIR%%/buildsystem/MacroLogFeature.cmake
 %%DATADIR%%/buildsystem/MacroOptionalFindPackage.cmake
 %%DATADIR%%/buildsystem/MacroPushRequiredVars.cmake
 %%DATADIR%%/buildsystem/PhononMacros.cmake
-%%DATADIR%%/buildsystem/Qt4ConfigDependentSettings.cmake
-%%DATADIR%%/buildsystem/Qt4Macros.cmake
 %%DATADIR%%/buildsystem/cmake_uninstall.cmake.in
 @dirrm %%DATADIR%%/buildsystem
 @dirrm %%DATADIR%%
@@ -191,13 +188,13 @@ share/dbus-1/interfaces/org.kde.Phonon.AudioOutput.xml
 @dirrm include/KDE/Phonon/Experimental
 @dirrm include/KDE/Phonon
 @cwd %%QT_PREFIX%%
-%%QT_INCDIR_REL%%/Phonon
-%%QT_INCDIR_REL%%/phonon
-%%QT_LIBDIR_REL%%/libphonon.so
-%%QT_LIBDIR_REL%%/libphonon.so.4
-%%QT_LIBDIR_REL%%/libphononexperimental.so
-%%QT_LIBDIR_REL%%/libphononexperimental.so.4
+%%QT_INCDIR%%/Phonon
+%%QT_INCDIR%%/phonon
+%%QT_LIBDIR%%/libphonon.so
+%%QT_LIBDIR%%/libphonon.so.4
+%%QT_LIBDIR%%/libphononexperimental.so
+%%QT_LIBDIR%%/libphononexperimental.so.4
 share/qt4/mkspecs/modules/qt_phonon.pri
 @dirrmtry share/qt4/mkspecs/modules
-@dirrmtry %%QT_LIBDIR_REL%%
-@dirrmtry %%QT_INCDIR_REL%%
+@dirrmtry %%QT_LIBDIR%%
+@dirrmtry %%QT_INCDIR%%

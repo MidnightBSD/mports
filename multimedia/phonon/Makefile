@@ -1,16 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	phonon
-PORTVERSION=	4.6.0
-PORTREVISION=	1
+PORTVERSION=	4.7.0
 CATEGORIES=	multimedia kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	${PHONON_BRANCH}/${PORTNAME}/${PORTVERSION}/src/
+MASTER_SITE_SUBDIR=	${PHONON_BRANCH}/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multimedia framework for KDE4
-LICENSE=	lgpl
+
+LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	qzeitgeist:${PORTSDIR}/sysutils/qzeitgeist
 
@@ -19,14 +19,13 @@ CONFLICTS=	qt4-phonon-4*
 PHONON_BRANCH=	stable
 
 USE_KDE4=	kdehier kdeprefix automoc4
-USE_QT4=	dbus gui \
+USE_QT4=	corelib dbus gui \
 		qmake_build moc_build rcc_build uic_build
 USE_XZ=		yes
 USES=		cmake
 CMAKE_ARGS=	-DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=TRUE \
 		-DPHONON_NO_PLATFORMPLUGIN:BOOL=TRUE \
 		-DPHONON_BUILD_DESIGNER_PLUGIN:BOOL=OFF
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	PULSEAUDIO
@@ -56,6 +55,5 @@ post-install:
 	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${QT_LIBDIR}/lib${lib}.so
 	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${QT_LIBDIR}/lib${lib}.so.4
 .endfor
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
