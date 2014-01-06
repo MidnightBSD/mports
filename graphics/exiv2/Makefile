@@ -1,15 +1,13 @@
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	exiv2
-PORTVERSION=	0.16
-PORTREVISION=	1
+PORTVERSION=	0.23
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.exiv2.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Exif and Iptc metadata manipulation library and tools
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
