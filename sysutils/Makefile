@@ -56,6 +56,7 @@ SUBDIR += gnome_subr
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
+SUBDIR += isc-cron
 SUBDIR += kcm-polkit-kde
 SUBDIR += kdeadmin4
 SUBDIR += ksysguardd
