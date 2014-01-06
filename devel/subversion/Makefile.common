@@ -4,14 +4,14 @@ PORTNAME=	subversion
 PORTVERSION=	1.8.5
 PORTREVISION?=	0
 CATEGORIES+=	devel
-MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main
+MASTER_SITES=	${MASTER_SITE_APACHE}
 DIST_SUBDIR=	subversion18
-MASTER_SITE_SUBDIR=	subversion/:main
+MASTER_SITE_SUBDIR=	subversion
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_KDE4=	# Used below if KWallet support is enabled
+USES+=		pkgconfig
 
 CONFLICTS_INSTALL+=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-1.[6|7].[0-9]*
 
@@ -20,7 +20,7 @@ LIB_DEPENDS+=		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 
 CONFIGURE_ARGS+=	--without-swig \
 			--with-sqlite=${LOCALBASE} \
-			--with-expat=/usr/local/include:/usr/local/lib:expat
+			--with-expat=${LOCALBASE}/include:${LOCALBASE}/lib:expat
 
 .if defined(SVN_BUILD_BINDINGS)
 CONFLICTS_BUILD+=	${PORTNAME}-1.[6|7].[0-9]*
