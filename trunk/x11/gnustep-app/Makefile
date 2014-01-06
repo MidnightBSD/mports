@@ -2,6 +2,7 @@
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.19.1
+PORTREVISION=	1
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -9,6 +10,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metaport for GNUstep applications
+
 LICENSE=	agg
 
 NO_BUILD=	yes
@@ -104,7 +106,7 @@ USE_GNUSTEP_SYSTEM_APPS+=	\
 	ProjectCenter:devel/projectcenter \
 	Preferences:deskutils/preferences.app \
 	GWorkspace:deskutils/gworkspace \
-	TextEdit:editors/textedit.app \
+	TextEdit:editors/textedit \
 	Terminal:x11/terminal.app \
 	GSPdf:print/gspdf \
 	Azalea:x11-wm/etoile-azalea \
@@ -186,8 +188,6 @@ USE_GNUSTEP_LOCAL_TOOLS+=	\
 	adtool:mail/addresses-goodies \
 	ioobjc:lang/etoile-io \
 	edlc:lang/etoile-compiler \
-
-#	open:deskutils/openapp \
 
 USE_GNUSTEP_LOCAL_SERVICES+=	\
 	LaTeX:textproc/latex-service \
