@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/mail/mutt/pkg-plist,v 1.37 2005/05/08 08:39:30 oliver Exp $
 bin/mutt
 bin/mutt_dotlock
 bin/pgpewrap
