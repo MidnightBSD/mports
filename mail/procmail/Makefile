@@ -4,18 +4,14 @@ PORTNAME=	procmail
 PORTVERSION=	3.22
 PORTREVISION=	7
 CATEGORIES=	mail
-MASTER_SITES=	ftp://ftp.procmail.net/pub/procmail/ \
-		ftp://ftp.psg.com/pub/unix/procmail/ \
-		ftp://ftp.ucsb.edu/pub/mirrors/procmail/ \
+MASTER_SITES=	ftp://ftp.ucsb.edu/pub/mirrors/procmail/ \
 		ftp://ftp.informatik.rwth-aachen.de/pub/packages/procmail/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/procmail/ \
-		ftp://ftp.net.ohio-state.edu/pub/networking/mail/procmail/ \
 		ftp://ftp.kfki.hu/pub/packages/mail/procmail/ \
-		ftp://giswitch.sggw.waw.pl/pub/unix/procmail/ \
 		http://www.ring.gr.jp/archives/net/mail/procmail/ \
 		ftp://ftp.ring.gr.jp/pub/net/mail/procmail/ \
-		ftp://sunsite.cnlab-switch.ch/mirror/procmail/ \
-		ftp://ftp.mirrorservice.org/sites/ftp.procmail.org/pub/procmail/
+		ftp://ftp.mirrorservice.org/sites/ftp.procmail.org/pub/procmail/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A local mail delivery agent
@@ -39,7 +35,7 @@ IS_INTERACTIVE=	yes
 
 INSTALL_TARGET=	install-suid install.man
 
-MAN1=		procmail.1 formail.1 lockfile.1
+MAN1=		formail.1 lockfile.1 procmail.1
 MAN5=		procmailex.5 procmailrc.5 procmailsc.5
 
 # Local variables
