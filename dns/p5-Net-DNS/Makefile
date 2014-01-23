@@ -1,14 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.72
-PORTREVISION=	1
+PORTVERSION=	0.73
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
+
 LICENSE=	perl
 
 BUILD_DEPENDS=	p5-Digest-HMAC>=0:${PORTSDIR}/security/p5-Digest-HMAC
