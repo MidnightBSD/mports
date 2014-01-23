@@ -1,5 +1,5 @@
 #!/bin/sh
-# $MidnightBSD: mports/security/clamav/files/pkg-install.in,v 1.4 2008/04/18 21:40:47 laffer1 Exp $
+# $MidnightBSD$
 
 PREFIX=${PKG_PREFIX:-%%PREFIX%%}
 
