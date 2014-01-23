@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-MIME-Tools
-# Date created:				April 27th 1998
-# Whom:	      				Eivind Eklund <eivind@FreeBSD.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/mail/p5-MIME-Tools/Makefile,v 1.39 2006/03/24 12:01:40 tobez Exp $
-#
 
 PORTNAME=	MIME-Tools
-PORTVERSION=	5.502
+PORTVERSION=	5.505
 PORTEPOCH=	2
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
@@ -16,7 +10,8 @@ PKGNAMEPREFIX=	p5-
 DISTNAME=	MIME-tools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A set of perl5 modules for MIME
+COMMENT=	Set of perl5 modules for MIME
+
 LICENSE=	perl
 
 RUN_DEPENDS=	p5-Convert-BinHex>=0:${PORTSDIR}/converters/p5-Convert-BinHex \
