@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Mail-Tools
-PORTVERSION=	2.08
+PORTVERSION=	2.12
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,6 +9,7 @@ DISTNAME=	MailTools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules for dealing with Internet e-mail messages
+
 LICENSE=	perl
 
 RUN_DEPENDS=	p5-TimeDate>=0:${PORTSDIR}/devel/p5-TimeDate
