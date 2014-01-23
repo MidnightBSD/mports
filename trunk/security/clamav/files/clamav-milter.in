@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # $MidnightBSD$
+#
 
 # PROVIDE: clamav-milter
 # REQUIRE: LOGIN clamd
