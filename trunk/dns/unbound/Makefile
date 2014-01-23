@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.20
+PORTVERSION=	1.4.21
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A validating, recursive, and caching DNS resolver
+
 LICENSE=	bsd3
 
 USE_GMAKE=	yes
