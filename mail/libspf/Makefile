@@ -10,7 +10,10 @@ MASTER_SITE_SUBDIR=	mnag/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sender Policy Framework (SPF) library and client
+
 LICENSE=	other
+
+MAKE_JOBS_UNSAFE=yes
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
