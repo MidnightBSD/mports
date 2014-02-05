@@ -2,7 +2,7 @@
 
 PORTNAME?=	bind99
 PORTVERSION=	9.9.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
@@ -10,6 +10,7 @@ DISTNAME=	bind-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
+
 LICENSE=	iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
