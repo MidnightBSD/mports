@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.6.14
+PORTVERSION=	5.6.15
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -52,8 +52,6 @@ USE_RC_SUBR=	mysql-server
 
 USERS=		mysql
 GROUPS=		mysql
-
-INFO=		mysql
 
 MAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1 \
 		mysql.server.1 mysql_convert_table_format.1 mysql_fix_extensions.1 \
