@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.8.0.2
+PORTVERSION=	3.8.3.1
 CATEGORIES=	databases
-MASTER_SITES=	http://www.sqlite.org/2013/ http://www2.sqlite.org/2013/ http://www3.sqlite.org/2013/
-DISTNAME=	sqlite-autoconf-3080002
+MASTER_SITES=	http://www.sqlite.org/2014/ http://www2.sqlite.org/2014/ http://www3.sqlite.org/2014/
+DISTNAME=	sqlite-autoconf-3080301
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SQL database engine in a C library
+
 LICENSE=	publicdom
 
 CONFLICTS=	sqlite34-[0-9]* sqlcipher-[0-9]*
