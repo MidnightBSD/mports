@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	DBD-SQLite
-PORTVERSION=	1.39
+PORTVERSION=	1.40
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	Provides access to SQLite3 databases through the DBI
+
 LICENSE=	perl
 
 .if defined(PACKAGE_BUILDING)
