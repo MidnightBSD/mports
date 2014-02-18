@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	unixODBC
-PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTVERSION=	2.3.2
+PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ODBC library suite for Unix
+
 LICENSE=	lgpl
 
 CONFLICTS=	libiodbc-[0-9]* virtuoso-*
