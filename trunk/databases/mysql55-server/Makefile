@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mysql
-PORTVERSION=	5.5.30
+PORTVERSION=	5.5.36
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql55-client
 USE_CMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		cmake shebangfix
 
 OPTIONS=	OPENSSL "Enable SSL support" on \
 		FASTMTX "Replace mutexes with spinlocks" off
