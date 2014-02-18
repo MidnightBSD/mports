@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.68
+PORTVERSION=	5.1.73
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -10,13 +10,13 @@ PKGNAMESUFFIX?=	51-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multithreaded SQL database (server)
+
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
-CONFIGURE_TARGET=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-debug \
 		--without-readline \
