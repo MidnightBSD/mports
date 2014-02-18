@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	DBI
-PORTVERSION=	1.623
+PORTVERSION=	1.631
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
+
 LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
@@ -79,7 +80,7 @@ pre-everything::
 .endif
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	Changes README
+PORTDOCS=	Changes
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
