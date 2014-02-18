@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/databases/mysql51-server/files/mysql-server.sh.in,v 1.10 2010/12/20 08:57:57 ale Exp $
+# $FreeBSD: head/databases/mysql51-server/files/mysql-server.in 340872 2014-01-24 00:14:07Z mat $
 #
 
 # PROVIDE: mysql
@@ -25,7 +25,7 @@
 . /etc/rc.subr
 
 name="mysql"
-rcvar=`set_rcvar`
+rcvar=mysql_enable
 
 load_rc_config $name
 
@@ -35,7 +35,8 @@ load_rc_config $name
 
 mysql_user="mysql"
 mysql_limits_args="-e -U ${mysql_user}"
-pidfile=${mysql_pidfile:-"${mysql_dbdir}/`/bin/hostname`.pid"}
+: ${hostname:=`/bin/hostname`}
+pidfile=${mysql_pidfile:-"${mysql_dbdir}/${hostname}.pid"}
 command="/usr/sbin/daemon"
 command_args="-c -f %%PREFIX%%/bin/mysqld_safe --defaults-extra-file=${mysql_dbdir}/my.cnf --user=${mysql_user} --datadir=${mysql_dbdir} --pid-file=${pidfile} ${mysql_args}"
 procname="%%PREFIX%%/libexec/mysqld"
