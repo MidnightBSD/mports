@@ -1579,8 +1579,8 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	ipv6 irc japanese java kde kld korean lang linux lisp lua \
 	mail mate math misc multimedia net net-im net-mgmt net-p2p news \
-	palm parallel perl5 picobsd plan9 polish portuguese ports-mgmt print \
-	python ruby rubygems russian \
+	palm parallel perl5 plan9 polish portuguese ports-mgmt \
+	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
 	ukrainian vietnamese windowmaker www \
