@@ -40,7 +40,6 @@ SUBDIR += mawk
 SUBDIR += mono
 SUBDIR += nawk
 SUBDIR += nwcc
-SUBDIR += objc
 SUBDIR += ocaml
 SUBDIR += open-cobol
 SUBDIR += p5-Data-JavaScript

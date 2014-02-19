@@ -1,25 +1,17 @@
-# ex:ts=8
-# Ports collection makefile for:  mawk
-# Date created:			  24 Dec 1998
-# Whom:				  Pedro F. Giffuni <giffunip@asme.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/lang/mawk/Makefile,v 1.20 2005/11/15 16:39:49 vs Exp $
-#
 
 PORTNAME=	mawk
-PORTVERSION=	1.3.3
+DISTVERSION=	1.3.4-20131226
 CATEGORIES=	lang
-MASTER_SITES=	ftp://ftp.fu-berlin.de/unix/languages/mawk/ \
-		ftp://ftp.whidbey.net/pub/brennan/
+MASTER_SITES=	ftp://invisible-island.net/${PORTNAME}/
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of new/posix awk
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	MATHLIB="-lm"
-ALL_TARGET=	${PORTNAME}
 
 MAN1=		mawk.1
 PLIST_FILES=	bin/mawk

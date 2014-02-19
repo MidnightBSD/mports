@@ -19,6 +19,8 @@ COMMENT=	The Portable C Compiler
 LICENSE=	bsd4
 #it's a mix of several BSD licenses, and we'll go worst case.
 
+MAKE_JOBS_UNSAFE=yes
+
 ONLY_FOR_ARCHS=	i386 amd64
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

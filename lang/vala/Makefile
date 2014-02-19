@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	vala
-PORTVERSION=	0.18.1
-PORTREVISION=	2
+PORTVERSION=	0.20.1
+PORTREVISION=	0
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
@@ -11,18 +11,16 @@ COMMENT=	Programming language and compiler that converts Vala code into C code
 
 LICENSE=	lgpl2.1
 
-USES=		pathfix pkgconfig gettext
-USE_BISON=	build
+USES=		bison gettext gmake pathfix pkgconfig
 USE_XZ=		yes
 USE_GNOME=	glib20 gnomeprefix libxslt
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 
 MAN1?=		valac.1 valac-${VALA_VER}.1
-VALA_VER=	0.18
+VALA_VER=	${PORTVERSION:R}
 
 PLIST_SUB=	VERSION=${VALA_VER}
 
