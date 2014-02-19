@@ -1399,9 +1399,12 @@ _DISTFILES+=	${_D}
 .endfor
 _G_TEMP=	DEFAULT
 .for _P in ${PATCHFILES}
-_P_TEMP=	${_P:S/^${_P:C/:[^:]+$//}//}
-.	if !empty(_P_TEMP)
-.		for _group in ${_P_TEMP:S/^://:S/,/ /g}
+_P_TEMP=	${_P:C/:[^-:][^:]*$//}
+_P_groups=	${_P:S/^${_P:C/:[^:]+$//}//:S/^://}
+_P_file=	${_P_TEMP:C/:-[^:]+$//}
+_P_strip=	${_P_TEMP:S/^${_P_TEMP:C/:-[^:]*$//}//:S/^://}
+.	if !empty(_P_groups)
+.		for _group in ${_P_groups:S/,/ /g}
 .			if !defined(_PATCH_SITES_${_group})
 _G_TEMP_TEMP=	${_G_TEMP:M/${_group}/}
 .				if empty(_G_TEMP_TEMP)
@@ -1410,11 +1413,15 @@ _PATCH_SITES_ALL+=	${_PATCH_SITES_${_group}}
 .				endif
 .			endif
 .		endfor
-_PATCHFILES+=	${_P:C/:[^:]+$//}
-.	else
-_PATCHFILES+=	${_P}
+.	endif
+_PATCHFILES:=	${_PATCHFILES} ${_P_file}
+.	if !empty(_P_strip)
+_PATCH_DIST_STRIP_CASES:=	${_PATCH_DIST_STRIP_CASES} ("${_P_file}") printf %s "${_P_strip}" ;;
 .	endif
 .endfor
+_P_groups=
+_P_file=
+_P_strip=
 _G_TEMP=
 _G_TEMP_TEMP=
 ALLFILES?=	${_DISTFILES} ${_PATCHFILES}
