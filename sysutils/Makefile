@@ -23,6 +23,7 @@ SUBDIR += consolekit
 SUBDIR += coreutils
 SUBDIR += devcpu
 SUBDIR += devcpu-data
+SUBDIR += dirdiff
 SUBDIR += dmidecode
 SUBDIR += dvd+rw-tools
 SUBDIR += dvdbackup
