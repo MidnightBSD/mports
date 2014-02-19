@@ -87,8 +87,8 @@ _SHROWNGRP=
 _MANOWNGRP=
 .endif
 
-# Start of options section.
-.if defined(INOPTIONSMK) || (!defined(USEOPTIONSMK) && !defined(AFTERPORTMK))
+# Start of options section
+.if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
 
 NOPRECIOUSSOFTMAKEVARS= yes
 
@@ -196,7 +196,7 @@ GID_OFFSET?=	0
 
 # predefined accounts from src/etc/master.passwd
 # alpha numeric sort order
-USERS_BLACKLIST=	_dhcp _pflogd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
+USERS_BLACKLIST=	_dhcp _pflogd auditdistd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
@@ -486,7 +486,6 @@ CONFIGURE_WRKSRC?=	${WRKSRC}
 BUILD_WRKSRC?=	${WRKSRC}
 INSTALL_WRKSRC?=${WRKSRC}
 
-COMMENTFILE?=	${PKGDIR}/pkg-comment
 DESCR?=			${PKGDIR}/pkg-descr
 PLIST?=			${PKGDIR}/pkg-plist
 PKGINSTALL?=	${PKGDIR}/pkg-install
@@ -606,7 +605,7 @@ EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
-		READELF SIZE STRINGS
+	READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
 . for b in ${BINUTILS}
 ${b}=	${LOCALBASE}/bin/${b:C/PP/++/:L}
@@ -681,7 +680,7 @@ USE_LDCONFIG=	${PREFIX}/lib
 .endif
 
 .if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
-IGNORE=		has USE_LDCONFIG32 set to yes, which is not correct
+IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .endif
 
 .if defined(USE_LINUX_PREFIX) && defined(USE_LDCONFIG)
@@ -723,7 +722,7 @@ LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_bas
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-fc4
 .				endif
 .		else
-IGNORE=	There is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_LINUX or OVERRIDE_LINUX_BASE_PORT.
+IGNORE=		cannot be built: there is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_LINUX or OVERRIDE_LINUX_BASE_PORT.
 .		endif
 .	endif
 
@@ -1141,24 +1140,6 @@ ALL_TARGET?=		all
 INSTALL_TARGET?=	install
 INSTALL_TARGET+=	${LATE_INSTALL_ARGS}
 
-# This is a mid-term solution patch while pkg-comment files are
-# phased out.
-# The final simpler patch will come afterwards
-.if !defined(COMMENT)
-check-makevars::
-		@${ECHO_MSG} 'Makefile error: there is no COMMENT variable defined'
-		@${ECHO_MSG} 'for this port. Please, rectify this.'
-		@${FALSE}
-.else
-.if exists(${COMMENTFILE})
-check-makevars::
-		@${ECHO_MSG} 'Makefile error: There is a COMMENTFILE in this port.'
-		@${ECHO_MSG} 'COMMENTFILEs have been deprecated in'
-		@${ECHO_MSG} 'favor of COMMENT variables.'
-		@${ECHO_MSG} 'Please, rectify this.'
-		@${FALSE}
-.endif
-.endif
 
 # Popular master sites
 .include "${PORTSDIR}/Mk/components/sites.mk"
