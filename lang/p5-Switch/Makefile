@@ -10,6 +10,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Switch - A switch statement for Perl
+
 LICENSE=	perl
 
 BUILD_DEPENDS=	p5-Filter>0:${PORTSDIR}/devel/p5-Filter

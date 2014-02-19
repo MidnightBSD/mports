@@ -9,6 +9,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data::JavaScript - Dump perl structures to JavaScript code
+
 LICENSE=	perl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
