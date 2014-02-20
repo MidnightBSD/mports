@@ -1140,6 +1140,10 @@ ALL_TARGET?=		all
 INSTALL_TARGET?=	install
 INSTALL_TARGET+=	${LATE_INSTALL_ARGS}
 
+# Integrate with the license auditing framework
+.if !defined (DISABLE_LICENSES)
+.include "${PORTSDIR}/Mk/components/licenses.mk"
+.endif
 
 # Popular master sites
 .include "${PORTSDIR}/Mk/components/sites.mk"
@@ -1642,8 +1646,8 @@ CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
-INTUIT_LATE_CONFIGURE_ARGS= \
-	_LATE_CONFIGURE_ARGS=""; \
+SET_LATE_CONFIGURE_ARGS= \
+     _LATE_CONFIGURE_ARGS="" ; \
 	_configure_help="`./${CONFIGURE_SCRIPT} --help 2>&1`"; \
 	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null  && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--mandir' >/dev/null); then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
@@ -1769,7 +1773,7 @@ IGNORE=		is only for ${ONLY_FOR_ARCHS},
 .else # defined(NOT_FOR_ARCHS)
 IGNORE=		does not run on ${NOT_FOR_ARCHS},
 .endif
-IGNORE+=	while you are running ${ARCH}.
+IGNORE+=	while you are running ${ARCH}
 
 .if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
 IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON_${ARCH}})
@@ -1799,12 +1803,27 @@ IGNORE=		is restricted: ${RESTRICTED}
 .if !defined(TRYBROKEN)
 IGNORE=		is marked as broken: ${BROKEN}
 .endif
+.elif defined(BROKEN_${ARCH})
+.if !defined(TRYBROKEN)
+IGNORE=		is marked as broken on ${ARCH}: ${BROKEN_${ARCH}}
+.endif
 .elif defined(FORBIDDEN)
 IGNORE=		is forbidden: ${FORBIDDEN}
 .endif
 
+# Define the text to be output to LEGAL
+.if defined(LEGAL_TEXT)
+LEGAL= ${LEGAL_TEXT}
+.elif defined(RESTRICTED)
+LEGAL= ${RESTRICTED}
+.elif defined(NO_CDROM)
+LEGAL= ${NO_CDROM}
+.elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
+LEGAL= ${NO_PACKAGE}
+.endif
+
 .if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
-IGNORE=	has to be built manually: ${MANUAL_PACKAGE_BUILD}
+IGNORE=		has to be built manually: ${MANUAL_PACKAGE_BUILD}
 clean:
 	@${IGNORECMD}
 .endif
@@ -2314,7 +2333,8 @@ run-configure:
 	done
 .endif
 .if defined(HAS_CONFIGURE)
-	@(cd ${CONFIGURE_WRKSRC} && ${INTUIT_LATE_CONFIGURE_ARGS} \
+	@(cd ${CONFIGURE_WRKSRC} && \
+	    ${SET_LATE_CONFIGURE_ARGS} \
 		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
 	    LDFLAGS="${LDFLAGS}" \
