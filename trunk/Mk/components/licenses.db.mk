@@ -91,7 +91,7 @@ _LICENSE_NAME_isc=	Internet Systems Consortium License
 _LICENSE_GROUPS_isc=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_lgpl=	GNU Library General Public License generic depricated
-_LICENSE_GROUP_lgpl=	FSF GPL OSI
+_LICENSE_GROUPS_lgpl=	FSF GPL OSI
 
 _LICENSE_NAME_lgpl20=	GNU Library General Public License version 2.0
 _LICENSE_GROUPS_lgpl20=	FSF GPL OSI
@@ -141,6 +141,9 @@ _LICENSE_GROUPS_OFL10=	FONTS
 
 _LICENSE_NAME_OFL11=	SIL Open Font License version 1.1 (http://scripts.sil.org/OFL)
 _LICENSE_GROUPS_OFL11=	FONTS
+
+_LICENSE_NAME_opera=	Opera License
+_LICENSE_GROUPS_opera=
 
 _LICENSE_NAME_owl=	Open Works License (owl.apotheon.org)
 _LICENSE_GROUPS_owl=	COPYFREE
