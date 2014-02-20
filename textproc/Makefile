@@ -86,6 +86,7 @@ SUBDIR += linux-f10-scim-libs
 SUBDIR += linuxdoc
 SUBDIR += localize
 SUBDIR += makepatch
+SUBDIR += meld
 SUBDIR += openjade
 SUBDIR += opensp
 SUBDIR += p5-HTML-Tidy
