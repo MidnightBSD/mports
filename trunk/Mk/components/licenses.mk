@@ -4,6 +4,12 @@ Licenses_Include_MAINTAINER=         ports@MidnightBSD.org
 
 .if defined(_POSTMKINCLUDED) && !defined(BEFOREPORTMK)
 
+# List of valid licenses
+.if !target(license-list)
+license-list:
+	@${ECHO_MSG} ${_LICENSES}
+.endif
+
 .if defined(LICENSE)
 
 # Include known licenses from database

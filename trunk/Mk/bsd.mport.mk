@@ -1711,20 +1711,6 @@ _DESKTOPDIR_REL=
 
 .MAIN: all
 
-#
-# LICENSE Setup
-#
-_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
-		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
-		bdb bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile \
-		ibm ilm infozip iscl \
-		liberation mit modula3 mpl npl nvidia openldap2.8 opera owl \
-		perl php python ruby sgi subversion x11 zlib \
-		publicdom unknown other agg restricted
-
-
-
-
 ################################################################
 # Many ways to disable a port.
 #
@@ -1979,15 +1965,6 @@ buildanyway-message:
 	@${ECHO_MSG} "Trying build of ${PKGNAME} even though it is marked BROKEN."
 .else
 	@${DO_NADA}
-.endif
-
-
-#
-# List of valid licenses
-#
-.if !target(license-list)
-license-list:
-	@${ECHO_MSG} ${_LICENSES} 
 .endif
 
 
