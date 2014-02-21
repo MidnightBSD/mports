@@ -145,6 +145,9 @@ _LICENSE_GROUPS_OFL11=	FONTS
 _LICENSE_NAME_opera=	Opera License
 _LICENSE_GROUPS_opera=
 
+_LICENSE_NAME_other=	Other License (not yet defined)
+_LICENSE_GROUPS_other=	
+
 _LICENSE_NAME_owl=	Open Works License (owl.apotheon.org)
 _LICENSE_GROUPS_owl=	COPYFREE
 
