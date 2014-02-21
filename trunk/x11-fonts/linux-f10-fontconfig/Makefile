@@ -1,5 +1,4 @@
 # $MidnightBSD$
-# $FreeBSD: ports/x11-fonts/linux-f10-fontconfig/Makefile,v 1.27 2011/03/07 15:08:23 ehaupt Exp $
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.6.0
@@ -9,8 +8,9 @@ PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An XML-based font configuration API for X Windows (Linux Fedora 10)
-LICENSE=	x11
+COMMENT=	XML-based font configuration API for X Windows (Linux Fedora 10)
+
+LICENSE=	mit
 
 CONFLICTS=	linux-fontconfig-[0-9]*
 
