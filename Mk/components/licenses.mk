@@ -182,7 +182,7 @@ _LICENSE_DISTFILES=	${LICENSE_DISTFILES}
 .	for lic in ${_LICENSE}
 # Defaults to empty
 _LICENSE_GROUPS_${lic}?=#
-.		if ${_LICENSE_LIST:M${lic}} != ""
+.		if ${_LICENSES:M${lic}} != ""
 # Case 1: license defined in the framework.
 _LICENSE_TYPE_${lic}=	known
 .			for var in ${_LICENSE_LIST_PORT_VARS}
