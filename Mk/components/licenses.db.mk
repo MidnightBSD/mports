@@ -101,8 +101,8 @@ _LICENSE_GROUPS_lgpl=	FSF GPL OSI
 _LICENSE_NAME_lgpl20=	GNU Library General Public License version 2.0
 _LICENSE_GROUPS_lgpl20=	FSF GPL OSI
 
-_LICENSE_NAME_lgpl21=	GNU Lesser General Public License version 2.1
-_LICENSE_GROUPS_lgpl21=	FSF GPL OSI
+_LICENSE_NAME_lgpl2.1=	GNU Lesser General Public License version 2.1
+_LICENSE_GROUPS_lgpl2.1=	FSF GPL OSI
 
 _LICENSE_NAME_lgpl3=	GNU Lesser General Public License version 3
 _LICENSE_GROUPS_lgpl3=	FSF GPL OSI
