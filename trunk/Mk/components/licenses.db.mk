@@ -48,7 +48,7 @@ _LICENSE_NAME_apache1.1=	Apache License 1.1
 _LICENSE_GROUPS_apache1.1=	FSF OSI
 
 _LICENSE_NAME_apache2=	Apache License 2.0
-_LICENSE_GROUPS_APACHE20=	FSF OSI
+_LICENSE_GROUPS_apache2=	FSF OSI
 
 _LICENSE_NAME_artistic=	Artistic License version 1.0
 _LICENSE_GROUPS_artistic=	OSI
