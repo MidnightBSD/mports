@@ -89,6 +89,9 @@ _LICENSE_GROUPS_gpl2=	FSF GPL OSI
 _LICENSE_NAME_gpl3=	GNU General Public License version 3
 _LICENSE_GROUPS_gpl3=	FSF GPL OSI
 
+_LICENSE_NAME_infozip=	Info-ZIP License
+_LICENSE_GROUPS_infozip=
+
 _LICENSE_NAME_isc=	Internet Systems Consortium License
 _LICENSE_GROUPS_isc=	FSF GPL OSI COPYFREE
 
@@ -137,6 +140,9 @@ _LICENSE_GROUPS_mit=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_mpl=	Mozilla Public License
 _LICENSE_GROUPS_mpl=	FSF OSI
+
+_LICENSE_NAME_nvidia= NVIDIA License
+_LICENSE_GROUPS_nvidia=
 
 _LICENSE_NAME_OFL10=	SIL Open Font License version 1.0 (http://scripts.sil.org/OFL)
 _LICENSE_GROUPS_OFL10=	FONTS
