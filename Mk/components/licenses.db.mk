@@ -3,8 +3,8 @@
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile \
-		ibm ilm infozip iscl \
-		liberation mit modula3 mpl npl nvidia openldap2.8 opera owl \
+		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
+		mit modula3 mpl npl nvidia openldap2.8 opera owl \
 		perl pgsql php python ruby sgi subversion x11 zlib \
 		publicdom unknown other agg restricted
 
@@ -35,15 +35,17 @@ _LICENSE_PERMS_DEFAULT=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 # - General permissions from groups are added to each license, if not defined.
 #
 
+_LICENSE_NAME_agg=	Aggregate (depricated)
+_LICENSE_GROUPS_agg=
 
 _LICENSE_NAME_agpl=	GNU Affero General Public License version 3
 _LICENSE_GROUPS_agpl=	FSF GPL OSI
 
-_LICENSE_NAME_APACHE10=	Apache License 1.0
-_LICENSE_GROUPS_APACHE10=	FSF
+_LICENSE_NAME_apache1=	Apache License 1.0
+_LICENSE_GROUPS_apache1=	FSF
 
-_LICENSE_NAME_APACHE11=	Apache License 1.1
-_LICENSE_GROUPS_APACHE11=	FSF OSI
+_LICENSE_NAME_apache1.1=	Apache License 1.1
+_LICENSE_GROUPS_apache1.1=	FSF OSI
 
 _LICENSE_NAME_apache2=	Apache License 2.0
 _LICENSE_GROUPS_APACHE20=	FSF OSI
@@ -56,6 +58,9 @@ _LICENSE_GROUPS_perl=	OSI
 
 _LICENSE_NAME_artistic2=	Artistic License version 2.0
 _LICENSE_GROUPS_artistic2=	FSF GPL OSI
+
+_LICENSE_NAME_boost=	Boost Software License
+_LICENSE_GROUPS_boost=	FSF OSI COPYFREE
  
 _LICENSE_NAME_bsd2=	BSD 2-clause "Simplified" License
 _LICENSE_GROUPS_bsd2=	FSF OSI COPYFREE
@@ -65,9 +70,6 @@ _LICENSE_GROUPS_bsd3=	FSF OSI COPYFREE
 	
 _LICENSE_NAME_bsd4=	BSD 4-clause "Original" or "Old" License
 _LICENSE_GROUPS_bsd4=	FSF
-
-_LICENSE_NAME_BSL=	Boost Software License
-_LICENSE_GROUPS_BSL=	FSF OSI COPYFREE
 
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
@@ -102,17 +104,17 @@ _LICENSE_GROUPS_lgpl21=	FSF GPL OSI
 _LICENSE_NAME_lgpl3=	GNU Lesser General Public License version 3
 _LICENSE_GROUPS_lgpl3=	FSF GPL OSI
 
-_LICENSE_NAME_LPPL10=	LaTeX Project Public License version 1.0
-_LICENSE_GROUPS_LPPL10=	FSF OSI
-_LICENSE_PERMS_LPPL10=	dist-mirror dist-sell
+_LICENSE_NAME_lppl1=	LaTeX Project Public License version 1.0
+_LICENSE_GROUPS_lppl1=	FSF OSI
+_LICENSE_PERMS_lppl1=	dist-mirror dist-sell
 
-_LICENSE_NAME_LPPL11=	LaTeX Project Public License version 1.1
-_LICENSE_GROUPS_LPPL11=	FSF OSI
-_LICENSE_PERMS_LPPL11= dist-mirror dist-sell
+_LICENSE_NAME_lppl1.1=	LaTeX Project Public License version 1.1
+_LICENSE_GROUPS_lppl1.1=	FSF OSI
+_LICENSE_PERMS_lppl1.1= dist-mirror dist-sell
 
-_LICENSE_NAME_LPPL12=	LaTeX Project Public License version 1.2
-_LICENSE_GROUPS_LPPL12=	FSF OSI
-_LICENSE_PERMS_LPPL12=	dist-mirror dist-sell
+_LICENSE_NAME_lppl1.2=	LaTeX Project Public License version 1.2
+_LICENSE_GROUPS_lppl1.2=	FSF OSI
+_LICENSE_PERMS_lppl1.2=	dist-mirror dist-sell
 
 _LICENSE_NAME_LPPL13=	LaTeX Project Public License version 1.3
 _LICENSE_GROUPS_LPPL13=	FSF OSI
