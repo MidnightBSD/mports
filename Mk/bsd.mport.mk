@@ -3061,16 +3061,14 @@ check-checksum-algorithms:
 	for alg in ${CHECKSUM_ALGORITHMS:U}; do \
 		eval alg_executable=\$$$$alg; \
 		if [ -z "$$alg_executable" ]; then \
-			${ECHO_CMD} "Checksum algorithm $$alg: Couldn't find the executable."; \
-			${ECHO_CMD} "Set $$alg=/path/to/$$alg in /etc/make.conf and try again."; \
+			${ECHO_MSG} "Checksum algorithm $$alg: Couldn't find the executable."; \
+			${ECHO_MSG} "Set $$alg=/path/to/$$alg in /etc/make.conf and try again."; \
 			exit 1; \
 		fi; \
 	done; \
 
 checksum_init=\
-	RMD160=${RMD160}; \
-	SHA256=${SHA256}; \
-	MD5=${MD5};
+	SHA256=${SHA256};
 
 .if !target(makesum)
 makesum: check-checksum-algorithms
@@ -3210,7 +3208,7 @@ checksum: fetch check-checksum-algorithms
 				      OK="true"; \
 				  fi; \
 			fi; \
-		fi ; \
+		fi; \
 		\
 		if [ "$$OK" != "true" -a ${FETCH_REGET} -eq 0 ]; then \
 			${ECHO_MSG} "===>  Giving up on fetching files: $$refetchlist"; \
