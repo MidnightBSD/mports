@@ -2023,8 +2023,8 @@ check-vulnerable:
 do-fetch:
 	@${MKDIR} ${_DISTDIR}
 	@(cd ${_DISTDIR}; \
-	 ${_MASTER_SITES_ENV} ; \
-	 for _file in ${DISTFILES}; do \
+	${_MASTER_SITES_ENV} ; \
+	for _file in ${DISTFILES}; do \
 		file=`${ECHO_CMD} $$_file | ${SED} -E -e 's/:[^:]+$$//'` ; \
 		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
 		force_fetch=false; \
@@ -2672,7 +2672,7 @@ security-check:
 
 _SANITY_SEQ=	pre-everything check-makefile check-categories \
 				check-makevars check-desktop-entries check-depends \
-				check-deprecated check-vulnerable buildanyway-message \
+				check-deprecated check-vulnerable check-license buildanyway-message \
 				options-message
 
 _FETCH_DEP=		check-sanity
@@ -2685,7 +2685,7 @@ _EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
 				post-extract post-extract-script 
 
 _PATCH_DEP=		extract
-_PATCH_SEQ=		patch-message check-license patch-depends patch-dos2unix \
+_PATCH_SEQ=		ask-license patch-message check-license patch-depends patch-dos2unix \
 				pre-patch pre-patch-script do-patch post-patch post-patch-script
 
 _CONFIGURE_DEP=	patch
@@ -2700,7 +2700,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
 				generate-plist fake-pre-su-install create-users-groups do-fake fake-post-install \
-				post-fake compress-man install-rc-script install-ldconfig-file install-desktop-entries \
+				post-fake compress-man install-rc-script install-ldconfig-file install-license install-desktop-entries \
 				fix-fake-symlinks finish-tmpplist fix-plist-sequence
 
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
