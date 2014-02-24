@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.7.1
+PORTVERSION=	1.8.1
 PORTREVISION?=	0
 CATEGORIES=	net comms ipv6
 MASTER_SITES=	SF
@@ -17,6 +17,8 @@ USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 DOCS=		doc/AUTHORS doc/TODO doc/*.txt
 MAN1=		rdesktop.1
+
+CONFIGURE_ARGS+=	--disable-credssp --disable-smartcard
 
 .if !defined(WITHOUT_RDESKTOP_IPV6) && !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--with-ipv6
