@@ -40,7 +40,6 @@ PLIST_SUB+=	DECRYPT="@comment "
 .endif
 
 .if defined(WITH_SSL)
-NO_PACKAGE=	binary linked against OpenSSL must not be redistributed
 CFLAGS+=	-DOPENSSL_GPL_VIOLATION
 LDFLAGS+=	-lcrypto
 .endif
