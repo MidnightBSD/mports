@@ -1,3 +1,4 @@
+bin/pcf2vpnc
 sbin/vpnc
 sbin/vpnc-script
 sbin/vpnc-disconnect
