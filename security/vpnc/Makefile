@@ -2,13 +2,14 @@
 
 PORTNAME=	vpnc
 PORTVERSION=	0.5.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 		CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
@@ -16,11 +17,11 @@ LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 USE_RC_SUBR=	vpnc
-MAKE_JOBS_SAFE=	yes
 
 ALL_TARGET=	all
 
 PORTDOCS=	README TODO
+MAN1=		pcf2vpnc.1
 MAN8=		vpnc.8
 
 OPTIONS+=	DECRYPT       "cisco-decypt password decrypt utility"      on
@@ -59,6 +60,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/cisco-decrypt ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/${MAN1} ${MANPREFIX}/man/man1
 .endif
+	${INSTALL_SCRIPT} ${WRKSRC}/pcf2vpnc ${PREFIX}/bin
 	${INSTALL_SCRIPT} -m 751 ${WRKSRC}/vpnc-script ${PREFIX}/sbin/vpnc-script
 	${INSTALL_SCRIPT} -m 751 ${WRKSRC}/vpnc-disconnect ${PREFIX}/sbin/vpnc-disconnect
 	${INSTALL_DATA} -m 600 ${WRKSRC}/vpnc.conf ${PREFIX}/etc/vpnc.conf.sample
