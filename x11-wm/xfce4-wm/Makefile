@@ -1,10 +1,5 @@
-# New ports collection makefile for:	xfwm4
-# Date created:		August 14, 2002
-# Whom:			James Earl <jdearl@telus.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/x11-wm/xfce4-wm/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
-#
 
 PORTNAME=	xfce4-wm
 PORTVERSION=	4.10.1
@@ -17,6 +12,8 @@ DIST_SUBDIR=	xfce4
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Xfce window manager
 
+LICENSE=	gpl2
+
 LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
 		wnck-1:${PORTSDIR}/x11-toolkits/libwnck
 
@@ -27,8 +24,7 @@ CONFIGURE_ARGS=	--enable-xsync \
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
-USES=		pathfix pkgconfig
-USE_GMAKE=	yes
+USES=		pathfix pkgconfig gmake
 USE_GNOME=	gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libmenu libutil xfconf
