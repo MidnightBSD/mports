@@ -11,9 +11,8 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Squeeze is a modern and advanced archive manager
-LICENSE=	gpl2
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 
 LIB_DEPENDS=	thunar-vfs-1:${PORTSDIR}/x11-fm/thunar-vfs
 
