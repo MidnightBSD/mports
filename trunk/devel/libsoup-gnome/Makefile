@@ -5,6 +5,7 @@ PKGNAMESUFFIX=	-gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNOME wrapper for libsoup
+
 LICENSE=	gpl2
 
 MASTERDIR=	${.CURDIR}/../libsoup
