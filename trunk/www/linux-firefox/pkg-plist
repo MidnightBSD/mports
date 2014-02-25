@@ -37,8 +37,10 @@ lib/%%APP_NAME%%/firefox-bin
 lib/%%APP_NAME%%/icons/updater.png
 lib/%%APP_NAME%%/libfreebl3.chk
 lib/%%APP_NAME%%/libfreebl3.so
-lib/%%APP_NAME%%/libldap60.so
-lib/%%APP_NAME%%/libldif60.so
+%%GTK218%%lib/%%APP_NAME%%/libgdk-x11-2.0.so.0
+%%GTK218%%lib/%%APP_NAME%%/libgio-2.0.so.0
+%%GTK218%%lib/%%APP_NAME%%/libglib-2.0.so.0
+%%GTK218%%lib/%%APP_NAME%%/libgtk-x11-2.0.so.0
 lib/%%APP_NAME%%/libmozalloc.so
 lib/%%APP_NAME%%/libmozsqlite3.so
 lib/%%APP_NAME%%/libnspr4.so
@@ -49,7 +51,6 @@ lib/%%APP_NAME%%/libnssdbm3.so
 lib/%%APP_NAME%%/libnssutil3.so
 lib/%%APP_NAME%%/libplc4.so
 lib/%%APP_NAME%%/libplds4.so
-lib/%%APP_NAME%%/libprldap60.so
 lib/%%APP_NAME%%/libsmime3.so
 lib/%%APP_NAME%%/libsoftokn3.chk
 lib/%%APP_NAME%%/libsoftokn3.so
@@ -81,7 +82,6 @@ lib/%%APP_NAME%%/webapprt/webapprt.ini
 @dirrm lib/%%APP_NAME%%/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
 @dirrm lib/%%APP_NAME%%/browser/extensions
 @dirrm lib/%%APP_NAME%%/browser/icons
-@dirrm lib/%%APP_NAME%%/browser/plugins
 @dirrm lib/%%APP_NAME%%/browser/searchplugins
 @dirrm lib/%%APP_NAME%%/browser
 @dirrm lib/%%APP_NAME%%/components
