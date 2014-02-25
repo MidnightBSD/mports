@@ -1,31 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	24.0
-
-CATEGORIES=	www
-MASTER_SITE_SUBDIR?=	firefox/releases/${DISTVERSION}esr/linux-i686/en-US
-DISTNAME=	${PORTNAME}-${DISTVERSION}esr
+DISTVERSION=	27.0.1
+PORTEPOCH=	1
+CATEGORIES=	www ipv6
+MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
+DISTNAME=	${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-LICENSE=	mpl
+LICENSE=	mpl gpl
+LICENSE_COMB=	dual
 
-USE_LDCONFIG=	yes
 USE_BZIP2=	yes
-REPLACE_GRE=	yes
+WANT_GTK218=	yes
 
 USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
 
 PREFS_FILE=	${WRKSRC}/${APP_SUBDIR}defaults/preferences/browser-prefs.js
 APP_SUBDIR=	browser/ # plugins, extensions
-
-pre-extract:
-	cd ../linux-seamonkey && make extract
-
-pre-clean:
-	cd ../linux-seamonkey && make clean
 
 .include "${.CURDIR}/../linux-seamonkey/Makefile.common"
 .include <bsd.port.mk>
