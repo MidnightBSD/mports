@@ -2,12 +2,13 @@
 # $FreeBSD: ports/graphics/exif/Makefile,v 1.18 2012/02/07 07:24:15 miwi Exp $
 
 PORTNAME=	exif
-PORTVERSION=	0.6.20
+PORTVERSION=	0.6.21
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line utility to read and manipulate EXIF data
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
