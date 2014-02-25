@@ -2,6 +2,7 @@
 
 PORTNAME=	netpbm
 PORTVERSION=	10.35.89
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/netpbm/super_stable/${PORTVERSION} \
 		${MASTER_SITE_FREEBSD_LOCAL:S/$/:man/}
@@ -21,7 +22,6 @@ LIB_DEPENDS=	tiff:${PORTSDIR}/graphics/tiff \
 		jbig:${PORTSDIR}/graphics/jbigkit \
 		jasper:${PORTSDIR}/graphics/jasper \
 		xml2:${PORTSDIR}/textproc/libxml2
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 USES=		gmake perl5
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
