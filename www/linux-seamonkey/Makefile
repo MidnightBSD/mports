@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	seamonkey
-DISTVERSION=	2.21
-CATEGORIES=	www
+DISTVERSION=	2.24
+CATEGORIES=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
