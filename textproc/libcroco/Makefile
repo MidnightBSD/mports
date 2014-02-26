@@ -10,12 +10,10 @@ COMMENT=	CSS2 parsing library
 LICENSE=	lgpl
 
 USE_XZ=		yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack
-USE_PKGCONFIG=	build
+USES=		pkgconfig gettext gmake
 CONFIGURE_ARGS=	--disable-gtk-doc-html
 
 PLIST_SUB=	VERSION="0.6"
