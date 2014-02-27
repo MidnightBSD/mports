@@ -2,13 +2,14 @@
 
 PORTNAME=	gvfs
 PORTVERSION=	1.12.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME virtual file system
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
@@ -16,10 +17,9 @@ LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
 		gcrypt:${PORTSDIR}/security/libgcrypt \
 		gnome-keyring:${PORTSDIR}/security/libgnome-keyring
 
-USES=		gettext
+USES=		gettext gmake pathfix pkgconfig
 USE_XZ=		yes
-USE_GNOME=	glib20 gnomehack gnomeprefix intlhack intltool
-USE_GMAKE=	yes
+USE_GNOME=	glib20 gnomeprefix intlhack intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -88,5 +88,11 @@ PLIST_SUB+=	HAL=""
 CONFIGURE_ARGS+=--disable-hal
 PLIST_SUB+=	HAL="@comment "
 .endif
+
+post-install:
+	@${STRIP_CMD} ${PREFIX}/lib/lib*.so.0
+	@${STRIP_CMD} ${PREFIX}/lib/gio/modules/lib*.so
+	@${MKDIR} ${DATADIR}/remote-volume-monitors
+	${TOUCH} ${DATADIR}/remote-volume-monitors/.keep
 
 .include <bsd.port.mk>
