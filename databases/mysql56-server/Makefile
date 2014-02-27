@@ -2,11 +2,11 @@
 
 PORTNAME?=	mysql
 PORTVERSION=	5.6.16
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.6
-PKGNAMESUFFIX?=	-server
+PKGNAMESUFFIX?=	56-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
@@ -48,9 +48,7 @@ WANT_MYSQL_VER=	56
 
 USE_PERL5_RUN=	yes
 
-LATEST_LINK=	mysql56-server
-
-CONFLICTS_INSTALL=	mysql-server-[34].* mysql-server-5.[0-57-9].* mariadb-server-5.* percona-server-5.*
+CONFLICTS_INSTALL=	mysql5.[0-57-9]-server-* mysql[0-46-9][0-9]-server-* percona[0-9][0-9]-server-* mariadb[0-9][0-9]-server-*
 
 USE_RC_SUBR=	mysql-server
 
@@ -67,11 +65,6 @@ MAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1 
 MAN8=		mysqld.8
 
 CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON"
-
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${CAT} ${PKGMESSAGE}
-.endif
 .endif
 
 post-patch:
