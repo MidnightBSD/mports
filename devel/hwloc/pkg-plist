@@ -3,10 +3,13 @@ bin/hwloc-assembler
 bin/hwloc-assembler-remote
 bin/hwloc-bind
 bin/hwloc-calc
+bin/hwloc-compress-dir
+bin/hwloc-diff
 bin/hwloc-distances
 bin/hwloc-distrib
 bin/hwloc-info
 bin/hwloc-ls
+bin/hwloc-patch
 bin/hwloc-ps
 bin/lstopo
 bin/lstopo-no-graphics
@@ -15,8 +18,11 @@ include/hwloc/autogen/config.h
 include/hwloc/bitmap.h
 include/hwloc/cuda.h
 include/hwloc/cudart.h
+include/hwloc/deprecated.h
+include/hwloc/diff.h
 include/hwloc/gl.h
 include/hwloc/helper.h
+include/hwloc/inlines.h
 include/hwloc/intel-mic.h
 include/hwloc/myriexpress.h
 include/hwloc/nvml.h
@@ -27,7 +33,7 @@ include/hwloc/rename.h
 lib/libhwloc.a
 lib/libhwloc.la
 lib/libhwloc.so
-lib/libhwloc.so.8
+lib/libhwloc.so.9
 libdata/pkgconfig/hwloc.pc
 share/hwloc/hwloc-valgrind.supp
 share/hwloc/hwloc.dtd
