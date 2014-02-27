@@ -1,17 +1,18 @@
 # $MidnightBSD$
+# $FreeBSD: head/devel/hwloc/Makefile 343246 2014-02-07 14:03:38Z decke $
 
 PORTNAME=	hwloc
-PORTVERSION=	1.7.2
+PORTVERSION=	1.8
 CATEGORIES=	devel
-MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION:R}/downloads/ \
-		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION:R}/downloads/
+MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION}/downloads/ \
+		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable Hardware Locality software package
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	libpciaccess.so:${PORTSDIR}/devel/libpciaccess
+LIB_DEPENDS=	pciaccess:${PORTSDIR}/devel/libpciaccess
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-static \
@@ -24,36 +25,15 @@ USE_GNOME=	libxml2
 
 PORTDOCS=	*
 
-ONLY_FOR_ARCHS=		i386 amd64
-ONLY_FOR_ARCHS_REASON=	has not been ported to this architecture
+OPTIONS_DEFINE=	CAIRO
 
-OPTIONS_DEFINE=	DOCS CAIRO
-
-NO_STAGE=	yes
-.include "${.CURDIR}/Makefile.man"
-.include <bsd.mport.options.mk>
-
-.if empty(PORT_OPTIONS:MCAIRO)
-CONFIGURE_ARGS+=	--disable-cairo \
-			--without-x
-.else
-CONFIGURE_ARGS+=	--enable-cairo \
-			--with-x
-LIB_DEPENDS+=		cairo:${PORTSDIR}/graphics/cairo
-USE_XORG=		x11
-.endif
-
-post-patch:
-.if empty(PORT_OPTIONS:MDOCS)
-	@${REINPLACE_CMD} -e \
-	's|^\(install-data-am:\) install-dist_pdfDATA \(install-man\)|\1 \2|g' \
-	${WRKSRC}/doc/Makefile.in
-.endif
+CAIRO_CONFIGURE_OFF=	--disable-cairo --without-x
+CAIRO_CONFIGURE_ON=	--enable-cairo --with-x
+CAIRO_LIB_DEPENDS=		libcairo.so:${PORTSDIR}/graphics/cairo
+CAIRO_USE=	XORG=x11
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}/html
 	${INSTALL_DATA} ${WRKSRC}/doc/doxygen-doc/html/* ${DOCSDIR}/html/.
-.endif
 
 .include <bsd.port.mk>
