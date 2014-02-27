@@ -12,8 +12,10 @@ COMMENT=	ASN.1 structure parser library
 LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
-USE_GNOME=	pkgconfig
+USES=		pkgconfig pathfix gmake
 GNU_CONFIGURE=	yes
+
+OPTIONS_DEFINE=	DOCS
 
 DOCS=		AUTHORS NEWS README THANKS doc/TODO \
 		doc/libtasn1.html doc/libtasn1.pdf doc/libtasn1.ps
