@@ -1,15 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	makedepend
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.5
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A dependency generator for makefiles
+COMMENT=	Dependency generator for makefiles
+
 LICENSE=	mit
 
 XORG_CAT=	util
-USE_GNOME=	pkgconfig
+USES=		pkgconfig
 USE_XORG=	xproto
 
 PLIST_FILES=	bin/makedepend
