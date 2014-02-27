@@ -12,13 +12,11 @@ PKGMESSAGE=	mustnotexist
 PATCHDIR=	${.CURDIR}/files
 PLIST=		${.CURDIR}/pkg-plist
 
-LATEST_LINK=	mysql55-client
+CONFLICTS_INSTALL=	mysql5.[0-46-9]-client-* mysql[0-46-9][0-9]-client-* mariadb[0-9][0-9]-client-* percona[0-9][0-9]-client-*
 
-CONFLICTS=	mysql-client-[4].* mysql-client-5.[0-46-9].*
+CMAKE_ARGS+=	-DWITHOUT_SERVER=1 -DENABLE_DTRACE:BOOL=OFF
 
-CMAKE_ARGS=	-DWITHOUT_SERVER=1 -DENABLE_DTRACE:BOOL=OFF
-
-USE_LDCONFIG=	yes
+USE_LDCONFIG=	${PREFIX}/lib/mysql
 
 MAN1=		comp_err.1 msql2mysql.1 mysql.1 mysql_config.1 mysql_find_rows.1 \
 		mysql_waitpid.1 mysqlaccess.1 mysqladmin.1 mysqlbinlog.1 \
