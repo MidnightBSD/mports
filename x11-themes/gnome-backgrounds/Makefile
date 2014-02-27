@@ -3,19 +3,20 @@
 
 PORTNAME=	gnome-backgrounds
 PORTVERSION=	2.32.0
+PORTREVISION=	1
 CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of backgrounds for GNOME 2
+
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake pathfix
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack
+USE_GNOME=	gnomeprefix intlhack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
