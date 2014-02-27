@@ -2,20 +2,20 @@
 
 PORTNAME=	libcanberra
 PORTVERSION=	0.28
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio devel
 MASTER_SITES=	http://0pointer.de/lennart/projects/libcanberra/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the Freedesktop sound theme spec
-LICENSE=	lgpl
 
-LICENSE=	LGPL21
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/LGPL
 
 LIB_DEPENDS=	vorbisfile:${PORTSDIR}/audio/libvorbis
 
-USE_GMAKE=	yes
+USES=		gmake pkgconfig
+NO_STAGE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 ltverhack gconf2
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool libltdl
