@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTNAME=	mysql
+PORTNAME?=	mysql
 PORTVERSION=	5.5.36
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
@@ -14,17 +14,19 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql55-client
-USE_CMAKE=	yes
 USES=		cmake shebangfix
+NO_OPTIONS_SORT=yes
 
-OPTIONS=	OPENSSL "Enable SSL support" on \
-		FASTMTX "Replace mutexes with spinlocks" off
+OPTIONS_DEFINE=	SSL FASTMTX
+OPTIONS_DEFAULT=SSL
+
+FASTMTX_DESC=	Replace mutexes with spinlocks
 
 CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
 		-DINSTALL_INCLUDEDIR="include/mysql" \
 		-DINSTALL_INFODIR="info" \
-		-DINSTALL_LIBDIR="lib" \
+		-DINSTALL_LIBDIR="lib/mysql" \
 		-DINSTALL_MANDIR="man" \
 		-DINSTALL_MYSQLDATADIR="/var/db/mysql" \
 		-DINSTALL_MYSQLSHAREDIR="share/mysql" \
@@ -35,8 +37,11 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_SHAREDIR="share" \
 		-DINSTALL_SQLBENCHDIR="share/mysql" \
 		-DINSTALL_SUPPORTFILESDIR="share/mysql" \
+		-DWITH_UNIT_TESTS=0 \
 		-DWITH_LIBEDIT=0 \
 		-DWITH_LIBWRAP=1
+
+SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
 .ifdef USE_MYSQL
 .error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
@@ -51,10 +56,10 @@ CMAKE_ARGS+=	-DCMAKE_THREAD_LIBS="" \
 		-DENABLE_DTRACE:BOOL=OFF
 #.endif
 
-.if !defined(WITHOUT_OPENSSL)
+.if ${PORT_OPTIONS:MSSL}
 CMAKE_ARGS+=	-DWITH_SSL=bundled
 .endif
-.if defined(WITH_FASTMTX)
+.if ${PORT_OPTIONS:MFASTMTX}
 CMAKE_ARGS+=	-DWITH_FAST_MUTEXES=1
 .endif
 
@@ -63,9 +68,7 @@ CMAKE_ARGS+=	-DWITH_FAST_MUTEXES=1
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	55
 
-LATEST_LINK=	mysql55-server
-
-CONFLICTS=	mysql-server-[4].* mysql-server-5.[0-46-9].*
+CONFLICTS_INSTALL=	mysql5.[0-46-9]-server-* mysql[0-46-9][0-9]-server-* mariadb[0-9][0-9]-server-* percona[0-9][0-9]-server-*
 
 USE_RC_SUBR=	mysql-server
 
