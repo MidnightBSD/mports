@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.33.0
+PORTVERSION=	7.35.0
 PORTREVISION=	0
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
