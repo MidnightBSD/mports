@@ -1,14 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	YAML
-PORTVERSION=	0.84
+PORTVERSION=	0.87
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	YAML implementation in Perl
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
 
