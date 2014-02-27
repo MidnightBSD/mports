@@ -6,16 +6,15 @@
 #
 
 PORTNAME=	lndir
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create a shadow directory of symbolic links to another directory tree
+
 LICENSE=	unknown
 # The license is not cleary stated.
 
-MAKE_JOBS_SAFE=	yes
 XORG_CAT=	util
 USE_XORG=	xproto
 USE_PKGCONFIG=	yes
