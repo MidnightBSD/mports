@@ -53,18 +53,16 @@ Gnome_Pre_Include=		gnome.mk
 #
 
 # non-version specific components
-_USE_GNOME_ALL= esound intlhack intltool ltasneededhack lthack ltverhack \
-		gnomehack referencehack gnomehier gnomemimedata gnomeprefix \
-		pkgconfig
+_USE_GNOME_ALL= esound intlhack intltool introspection ltasneededhack lthack \
+		ltverhack gnomehack referencehack gnomehier gnomemimedata \
+		gnomeprefix
 
 # GNOME 1 components
-_USE_GNOME_ALL+= bonobo gconf gdkpixbuf glib12 \
-		gnomecanvas gnomedb gnomelibs gnomeprint gnomevfs gtk12 \
-		libgda libghttp libglade libxml imlib oaf orbit
+_USE_GNOME_ALL+= gdkpixbuf glib12 gtk12 imlib
 
 # GNOME 2 components
 _USE_GNOME_ALL+= atk atspi cairo desktopfileutils eel2 evolutiondataserver gal2 \
-		gdkpixbuf2 gconf2 _glib20 glib20 gnomecontrolcenter2 gnomedesktop \
+		gdkpixbuf2 gconf2 glib20 gnomecontrolcenter2 gnomedesktop \
 		gnomedesktopsharp20 gnomedocutils gnomemenus gnomepanel gnomesharp20 \
 		gnomespeech gnomevfs2 gtk-update-icon-cache gtk20 gtkhtml3 gtksharp10 \
 		gtksharp20 gtksourceview gtksourceview2 gvfs libartlgpl2 libbonobo \
@@ -72,16 +70,17 @@ _USE_GNOME_ALL+= atk atspi cairo desktopfileutils eel2 evolutiondataserver gal2 
 		libgnomecanvas libgnomedb libgnomekbd libgnomeprint libgnomeprintui \
 		libgnomeui libgsf libgtkhtml libidl librsvg2 libwnck \
 		libxml2 libxslt libzvt linc metacity nautilus2 nautiluscdburner \
-		orbit2 pango pygnome2 pygnomedesktop pygnomeextras pygobject pygtk2 \
+		orbit2 pango pangox-compat pygnome2 pygnomedesktop pygnomeextras pygobject pygtk2 \
 		pygtksourceview vte
 
 # GNOME 3 components
-_USE_GNOME_ALL+= dconf gtk30 gtksourceview3 pygobject3
+_USE_GNOME_ALL+= dconf gtk30 gtksourceview3 libgda5 libgda5-ui pygobject3 \
+		vte3
 
 # C++ bindings
 _USE_GNOME_ALL+=atkmm cairomm gconfmm gconfmm26 glibmm gtkmm20 gtkmm24 \
-		gtkmm30 gtksourcviewmm3 libgdamm \
-		libgtksourceviewmm libxml++ libxml++26 libsigc++12 libsigc++20 \
+		gtkmm30 gtksourceviewmm3 libgdamm libgdamm5 \
+		libgtksourceviewmm libxml++26 libsigc++12 libsigc++20 \
 		pangomm
 
 GNOME_MAKEFILEIN?=	Makefile.in
@@ -193,9 +192,6 @@ esound_CONFIGURE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
 esound_MAKE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
 esound_DETECT=		${ESD_CONFIG}
 
-libghttp_LIB_DEPENDS=	ghttp.1:${PORTSDIR}/www/libghttp
-libghttp_DETECT=	${LOCALBASE}/etc/ghttpConf.sh
-
 GLIB_CONFIG?=		${LOCALBASE}/bin/glib12-config
 glib12_LIB_DEPENDS=	glib-12.3:${PORTSDIR}/devel/glib12
 glib12_CONFIGURE_ENV=	GLIB_CONFIG="${GLIB_CONFIG}"
@@ -208,20 +204,6 @@ gtk12_CONFIGURE_ENV=	GTK_CONFIG="${GTK_CONFIG}"
 gtk12_MAKE_ENV=		GTK_CONFIG="${GTK_CONFIG}"
 gtk12_DETECT=		${GTK_CONFIG}
 gtk12_USE_GNOME_IMPL=	glib12
-
-XML_CONFIG?=		${LOCALBASE}/bin/xml-config
-libxml_LIB_DEPENDS=	xml.5:${PORTSDIR}/textproc/libxml
-libxml_CONFIGURE_ENV=	XML_CONFIG="${XML_CONFIG}"
-libxml_MAKE_ENV=	XML_CONFIG="${XML_CONFIG}"
-libxml_DETECT=		${XML_CONFIG}
-libxml_USE_GNOME_IMPL=	glib12
-
-ORBIT_CONFIG?=		${LOCALBASE}/bin/orbit-config
-orbit_LIB_DEPENDS=	ORBit.2:${PORTSDIR}/devel/ORBit
-orbit_CONFIGURE_ENV=	ORBIT_CONFIG="${ORBIT_CONFIG}"
-orbit_MAKE_ENV=		ORBIT_CONFIG="${ORBIT_CONFIG}"
-orbit_DETECT=		${ORBIT_CONFIG}
-orbit_USE_GNOME_IMPL=	glib12
 
 GDK_PIXBUF_CONFIG?=	${LOCALBASE}/bin/gdk-pixbuf-config
 gdkpixbuf_LIB_DEPENDS=	gdk_pixbuf.2:${PORTSDIR}/graphics/gdk-pixbuf
@@ -237,79 +219,14 @@ imlib_MAKE_ENV=		IMLIB_CONFIG="${IMLIB_CONFIG}"
 imlib_DETECT=		${IMLIB_CONFIG}
 imlib_USE_GNOME_IMPL=	gtk12
 
-GNOME_CONFIG?=		${LOCALBASE}/bin/gnome-config
-gnomelibs_LIB_DEPENDS=	gnome.5:${PORTSDIR}/x11/gnome-libs
-gnomelibs_CONFIGURE_ENV=GNOME_CONFIG="${GNOME_CONFIG}"
-gnomelibs_MAKE_ENV=	GNOME_CONFIG="${GNOME_CONFIG}"
-gnomelibs_DETECT=	${GNOME_CONFIG}
-gnomelibs_USE_GNOME_IMPL=esound gtk12 imlib libxml orbit
-
-gnomecanvas_LIB_DEPENDS=gnomecanvaspixbuf.1:${PORTSDIR}/graphics/gnomecanvas
-gnomecanvas_DETECT=	${LOCALBASE}/etc/gnomecanvaspixbufConf.sh
-gnomecanvas_USE_GNOME_IMPL=gnomelibs gdkpixbuf
-
-OAF_CONFIG?=		${LOCALBASE}/bin/oaf-config
-oaf_LIB_DEPENDS=	oaf.0:${PORTSDIR}/devel/oaf
-oaf_CONFIGURE_ENV=	OAF_CONFIG="${OAF_CONFIG}"
-oaf_MAKE_ENV=		OAF_CONFIG="${OAF_CONFIG}"
-oaf_DETECT=		${OAF_CONFIG}
-oaf_USE_GNOME_IMPL=	glib12 orbit libxml
-
 gnomemimedata_DETECT=	${LOCALBASE}/libdata/pkgconfig/gnome-mime-data-2.0.pc
 gnomemimedata_BUILD_DEPENDS=${gnomemimedata_DETECT}:${PORTSDIR}/misc/gnome-mime-data
 gnomemimedata_RUN_DEPENDS=${gnomemimedata_DETECT}:${PORTSDIR}/misc/gnome-mime-data
-gnomemimedata_USE_GNOME_IMPL=gnomehier pkgconfig
+gnomemimedata_USE_GNOME_IMPL=gnomehier
 
-GCONF_CONFIG?=		${LOCALBASE}/bin/gconf-config
-gconf_LIB_DEPENDS=	gconf-1.1:${PORTSDIR}/devel/gconf
-gconf_CONFIGURE_ENV=	GCONF_CONFIG="${GCONF_CONFIG}"
-gconf_MAKE_ENV=		GCONF_CONFIG="${GCONF_CONFIG}"
-gconf_DETECT=		${GCONF_CONFIG}
-gconf_USE_GNOME_IMPL=	oaf
-
-GNOME_VFS_CONFIG?=	${LOCALBASE}/bin/gnome-vfs-config
-gnomevfs_LIB_DEPENDS=	gnomevfs.0:${PORTSDIR}/devel/gnome-vfs1
-gnomevfs_CONFIGURE_ENV=	GNOME_VFS_CONFIG="${GNOME_VFS_CONFIG}"
-gnomevfs_MAKE_ENV=	GNOME_VFS_CONFIG="${GNOME_VFS_CONFIG}"
-gnomevfs_DETECT=	${GNOME_VFS_CONFIG}
-gnomevfs_USE_GNOME_IMPL=gnomemimedata gconf gnomelibs
-
-gnomeprint_LIB_DEPENDS=	gnomeprint.16:${PORTSDIR}/print/gnome-print
-gnomeprint_DETECT=	${LOCALBASE}/etc/printConf.sh
-gnomeprint_USE_GNOME_IMPL=gnomelibs gnomecanvas
-
-bonobo_LIB_DEPENDS=	bonobo.2:${PORTSDIR}/devel/bonobo
-bonobo_DETECT=		${LOCALBASE}/etc/bonoboConf.sh
-bonobo_USE_GNOME_IMPL=	oaf gnomeprint
-
-GDA_CONFIG?=		${LOCALBASE}/bin/gda-config
-libgda_LIB_DEPENDS=	gda-client.0:${PORTSDIR}/databases/libgda
-libgda_CONFIGURE_ENV=	GDA_CONFIG="${GDA_CONFIG}"
-libgda_MAKE_ENV=	GDA_CONFIG="${GDA_CONFIG}"
-libgda_DETECT=		${GDA_CONFIG}
-libgda_USE_GNOME_IMPL=	gconf bonobo
-
-GNOMEDB_CONFIG?=	${LOCALBASE}/bin/gnomedb-config
-gnomedb_LIB_DEPENDS=	gnomedb.0:${PORTSDIR}/databases/gnome-db
-gnomedb_CONFIGURE_ENV=	GNOMEDB_CONFIG="${GNOMEDB_CONFIG}"
-gnomedb_MAKE_ENV=	GNOMEDB_CONFIG="${GNOMEDB_CONFIG}"
-gnomedb_DETECT=		${GNOMEDB_CONFIG}
-gnomedb_USE_GNOME_IMPL=	libgda
-
-LIBGLADE_CONFIG?=	${LOCALBASE}/bin/libglade-config
-libglade_LIB_DEPENDS=	glade.4:${PORTSDIR}/devel/libglade
-libglade_CONFIGURE_ENV=	LIBGLADE_CONFIG="${LIBGLADE_CONFIG}"
-libglade_MAKE_ENV=	LIBGLADE_CONFIG="${LIBGLADE_CONFIG}"
-libglade_DETECT=	${LIBGLADE_CONFIG}
-libglade_USE_GNOME_IMPL=gnomedb
-
-_glib20_LIB_DEPENDS=	glib-2.0:${PORTSDIR}/devel/glib20 \
+glib20_LIB_DEPENDS=	glib-2.0:${PORTSDIR}/devel/glib20 \
 			pcre:${PORTSDIR}/devel/pcre
-_glib20_DETECT=		${LOCALBASE}/libdata/pkgconfig/glib-2.0.pc
-
-glib20_RUN_DEPENDS=	${LOCALBASE}/lib/gio/modules/libgiofam.so:${PORTSDIR}/devel/gio-fam-backend
-glib20_DETECT=		${LOCALBASE}/lib/gio/modules/libgiofam.so
-glib20_USE_GNOME_IMPL=	_glib20
+glib20_DETECT=		${LOCALBASE}/libdata/pkgconfig/glib-2.0.pc
 
 atk_LIB_DEPENDS=	atk-1.0.0:${PORTSDIR}/accessibility/atk
 atk_DETECT=		${LOCALBASE}/libdata/pkgconfig/atk.pc
@@ -322,6 +239,10 @@ dconf_USE_GNOME_IMPL=	glib20
 pango_LIB_DEPENDS=	pango-1.0.0:${PORTSDIR}/x11-toolkits/pango
 pango_DETECT=		${LOCALBASE}/libdata/pkgconfig/pango.pc
 pango_USE_GNOME_IMPL=	glib20
+
+pangox-compat_LIB_DEPENDS=	libpangox-1.0.so:${PORTSDIR}/x11-toolkits/pangox-compat
+pangox-compat_DETECT=		${LOCALBASE}/libdata/pkgconfig/pangox.pc
+pangox-compat_USE_GNOME_IMPL=	glib20 pango
 
 gdkpixbuf2_LIB_DEPENDS=	gdk_pixbuf-2.0.0:${PORTSDIR}/graphics/gdk-pixbuf2
 gdkpixbuf2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gdk-pixbuf-2.0.pc
@@ -372,6 +293,13 @@ libxslt_USE_GNOME_IMPL=	libxml2
 libbonobo_LIB_DEPENDS=	bonobo-2.0:${PORTSDIR}/devel/libbonobo
 libbonobo_DETECT=	${LOCALBASE}/libdata/pkgconfig/libbonobo-2.0.pc
 libbonobo_USE_GNOME_IMPL=libxml2 orbit2
+
+introspection_DETECT=		${LOCALBASE}/libdata/pkgconfig/gobject-introspection-1.0.pc
+introspection_BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+introspection_LIB_DEPENDS=	girepository-1.0:${PORTSDIR}/devel/gobject-introspection
+introspection_RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+introspection_USE_GNOME_IMPL=	glib20
+introspection_MAKE_ENV=		GI_SCANNER_DISABLE_CACHE=1
 
 gconf2_LIB_DEPENDS=	gconf-2.4:${PORTSDIR}/devel/gconf2
 gconf2_DETECT=		${LOCALBASE}/libdata/pkgconfig/gconf-2.0.pc
@@ -439,6 +367,10 @@ vte_LIB_DEPENDS=	vte.9:${PORTSDIR}/x11-toolkits/vte
 vte_DETECT=		${LOCALBASE}/libdata/pkgconfig/vte.pc
 vte_USE_GNOME_IMPL=	gtk20
 
+vte3_LIB_DEPENDS=	libvte2_90.so:${PORTSDIR}/x11-toolkits/vte3
+vte3_DETECT=		${LOCALBASE}/libdata/pkgconfig/vte-2.90.pc
+vte3_USE_GNOME_IMPL=	gtk30
+
 libzvt_LIB_DEPENDS=	zvt-2.0.0:${PORTSDIR}/x11-toolkits/libzvt
 libzvt_DETECT=	${LOCALBASE}/libdata/pkgconfig/libzvt-2.0.pc
 libzvt_USE_GNOME_IMPL=	gtk20
@@ -487,6 +419,10 @@ libgda4_LIB_DEPENDS=	gda-4.0.5:${PORTSDIR}/databases/libgda4
 libgda4_DETECT=			 ${LOCALBASE}/libdata/pkgconfig/libgda-4.0.pc
 libgda4_USE_GNOME_IMPL=	glib20 libxslt
 
+libgda5_LIB_DEPENDS=	gda-5.0:${PORTSDIR}/databases/libgda5
+libgda5_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgda-5.0.pc
+libgda5_USE_GNOME_IMPL=	glib20 libxslt
+
 libgnomedb_LIB_DEPENDS=	gnomedb-3.0.4:${PORTSDIR}/databases/libgnomedb
 libgnomedb_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgnomedb.pc
 libgnomedb_USE_GNOME_IMPL=libgnomeui libgda3
@@ -503,13 +439,9 @@ gtksourceview3_LIB_DEPENDS=	gtksourceview-3.0.0:${PORTSDIR}/x11-toolkits/gtksour
 gtksourceview3_DETECT=		${LOCALBASE}/libdata/pkgconfig/gtksoureview-3.0.pc
 gtksourceview3_USE_GNOME_IMPL=	gtk30 libxml2
 
-pkgconfig_DETECT=		${LOCALBASE}/bin/pkgconf
-pkgconfig_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
-pkgconfig_RUN_DEPENDS=		pkgconf:${PORTSDIR}/devel/pkgconf
-
-libgsf_LIB_DEPENDS=		gsf-1.114:${PORTSDIR}/devel/libgsf
-libgsf_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgsf-1.pc
-libgsf_USE_GNOME_IMPL=		glib20 libxml2
+libgsf_LIB_DEPENDS=	gsf-1.114:${PORTSDIR}/devel/libgsf
+libgsf_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgsf-1.pc
+libgsf_USE_GNOME_IMPL=	glib20 libxml2
 
 pygobject_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygobject-2.0.pc
 pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
@@ -521,23 +453,23 @@ pygobject3_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORT
 pygobject3_RUN_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORTSDIR}/devel/py-gobject3
 pygobject3_USE_GNOME_IMPL=	glib20
 
-pygtk2_DETECT=			${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc
+pygtk2_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc
 pygtk2_BUILD_DEPENDS=	${pygtk2_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk2
-pygtk2_RUN_DEPENDS=		${pygtk2_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk2
+pygtk2_RUN_DEPENDS=	${pygtk2_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk2
 pygtk2_USE_GNOME_IMPL=	libglade2 pygobject
 
-pygnome2_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc
+pygnome2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc
 pygnome2_BUILD_DEPENDS=	${pygnome2_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome2
 pygnome2_RUN_DEPENDS=	${pygnome2_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome2
 pygnome2_USE_GNOME_IMPL=libgnomeui pygtk2
 
-intltool_DETECT=		${LOCALBASE}/bin/intltool-extract
+intltool_DETECT=	${LOCALBASE}/bin/intltool-extract
 intltool_BUILD_DEPENDS=	${intltool_DETECT}:${PORTSDIR}/textproc/intltool
 
 intlhack_PRE_PATCH=		${FIND} ${WRKSRC} -name "intltool-merge.in" | ${XARGS} ${REINPLACE_CMD} -e \
 				's|mkdir $$lang or|mkdir $$lang, 0777 or| ; \
 				 s|^push @INC, "/.*|push @INC, "${LOCALBASE}/share/intltool";| ; \
-				 s|/usr/bin/iconv|${LOCALBASE}/bin/iconv|g ; \
+				 s|/usr/bin/iconv|${ICONV_CMD}|g ; \
 				 s|unpack *[(]'"'"'U\*'"'"'|unpack ('"'"'C*'"'"'|'
 intlhack_USE_GNOME_IMPL=intltool
 
@@ -549,7 +481,7 @@ gnomespeech_LIB_DEPENDS=gnomespeech.7:${PORTSDIR}/accessibility/gnome-speech
 gnomespeech_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-speech-1.0.pc
 gnomespeech_USE_GNOME_IMPL=libbonobo
 
-evolutiondataserver_LIB_DEPENDS=edataserverui-1.2.11:${PORTSDIR}/databases/evolution-data-server
+evolutiondataserver_LIB_DEPENDS=edataserverui-1.2:${PORTSDIR}/databases/evolution-data-server
 evolutiondataserver_DETECT=		${LOCALBASE}/libdata/pkgconfig/evolution-data-server-1.2.pc
 evolutiondataserver_USE_GNOME_IMPL=gconf2 libxml2
 evolutiondataserver_GNOME_DESKTOP_VERSION=2
@@ -575,10 +507,10 @@ pygnomeextras_BUILD_DEPENDS=	${pygnomeextras_DETECT}:${PORTSDIR}/x11-toolkits/py
 pygnomeextras_RUN_DEPENDS=	${pygnomeextras_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome-extras
 pygnomeextras_USE_GNOME_IMPL=pygnome2 libgtkhtml
 
-gnomedocutils_DETECT=	${LOCALBASE}/libdata/pkgconfig/gnome-doc-utils.pc
-gnomedocutils_BUILD_DEPENDS=${gnomedocutils_DETECT}:${PORTSDIR}/textproc/gnome-doc-utils
-gnomedocutils_RUN_DEPENDS=${gnomedocutils_DETECT}:${PORTSDIR}/textproc/gnome-doc-utils
-gnomedocutils_USE_GNOME_IMPL=libxslt
+gnomedocutils_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-doc-utils.pc
+gnomedocutils_BUILD_DEPENDS=	${gnomedocutils_DETECT}:${PORTSDIR}/textproc/gnome-doc-utils
+gnomedocutils_RUN_DEPENDS=	${gnomedocutils_DETECT}:${PORTSDIR}/textproc/gnome-doc-utils
+gnomedocutils_USE_GNOME_IMPL=	libxslt
 
 pygnomedesktop_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-python-desktop-2.0.pc
 pygnomedesktop_BUILD_DEPENDS=	${pygnomedesktop_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome-desktop
@@ -586,12 +518,12 @@ pygnomedesktop_RUN_DEPENDS=	${pygnomedesktop_DETECT}:${PORTSDIR}/x11-toolkits/py
 pygnomedesktop_USE_GNOME_IMPL=pygnome2 libgnomeprintui gtksourceview gnomepanel libwnck nautilus2 metacity
 pygnomedesktop_GNOME_DESKTOP_VERSION=2
 
-gtksharp10_DETECT=			${LOCALBASE}/libdata/pkgconfig/gtk-sharp.pc
+gtksharp10_DETECT=		${LOCALBASE}/libdata/pkgconfig/gtk-sharp.pc
 gtksharp10_BUILD_DEPENDS=	${gtksharp10_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp10
 gtksharp10_RUN_DEPENDS=		${gtksharp10_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp10
 gtksharp10_USE_GNOME_IMPL=	gtk20
 
-gtksharp20_DETECT=			${LOCALBASE}/libdata/pkgconfig/gtk-sharp-2.0.pc
+gtksharp20_DETECT=		${LOCALBASE}/libdata/pkgconfig/gtk-sharp-2.0.pc
 gtksharp20_BUILD_DEPENDS=	${gtksharp20_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp20
 gtksharp20_RUN_DEPENDS=		${gtksharp20_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp20
 gtksharp20_USE_GNOME_IMPL=	gtk20
@@ -601,7 +533,7 @@ gnomesharp20_BUILD_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnom
 gnomesharp20_RUN_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnome-sharp20
 gnomesharp20_USE_GNOME_IMPL=	gnomepanel gtkhtml3 gtksharp20 librsvg2 vte
 
-libgnomekbd_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgnomekbd.pc
+libgnomekbd_DETECT=		${LOCALBASE}/lib/libgnomekbd.so.4
 libgnomekbd_LIB_DEPENDS=	gnomekbd.4:${PORTSDIR}/x11/libgnomekbd
 libgnomekbd_USE_GNOME_IMPL=	gconf2
 libgnomekbd_GNOME_DESKTOP_VERSION=2
@@ -611,9 +543,9 @@ pygtksourceview_BUILD_DEPENDS=	${pygtksourceview_DETECT}:${PORTSDIR}/x11-toolkit
 pygtksourceview_RUN_DEPENDS=	${pygtksourceview_DETECT}:${PORTSDIR}/x11-toolkits/py-gtksourceview
 pygtksourceview_USE_GNOME_IMPL=	gtksourceview2 pygtk2
 
-gvfs_DETECT=			${LOCALBASE}/lib/libgvfscommon.so
-gvfs_LIB_DEPENDS=		gvfscommon.0:${PORTSDIR}/devel/gvfs
-gvfs_USE_GNOME_IMPL=		glib20 gconf2
+gvfs_DETECT=		${LOCALBASE}/lib/libgvfscommon.so
+gvfs_LIB_DEPENDS=	gvfscommon.0:${PORTSDIR}/devel/gvfs
+gvfs_USE_GNOME_IMPL=	glib20 gconf2
 
 .if defined(INSTALLS_ICONS)
 USE_GNOME+=	gtk-update-icon-cache
@@ -752,17 +684,18 @@ PLIST_SUB+=			GTK2_VERSION="${GTK2_VERSION}" \
 # included in the post-makefile section).
 .if defined(_AUTOTOOL_libtool)
 lthacks_CONFIGURE_ENV=		ac_cv_path_DOLT_BASH=
-lthacks_PRE_PATCH=		${CP} -pf ${LTMAIN} ${WRKDIR}/gnome-ltmain.sh && \
-						${CP} -pf ${LIBTOOL} ${WRKDIR}/gnome-libtool && \
-						for file in ${LIBTOOLFILES}; do \
-							${REINPLACE_CMD} -e \
-								'/^ltmain=/!s|$$ac_aux_dir/ltmain\.sh|${LIBTOOLFLAGS} ${WRKDIR}/gnome-ltmain.sh|g; \
-								 /^LIBTOOL=/s|$$(top_builddir)/libtool|${WRKDIR}/gnome-libtool|g' \
-								${PATCH_WRKSRC}/$$file; \
-						done;
+lthacks_PRE_PATCH=	\
+	${CP} -pf ${LTMAIN} ${WRKDIR}/gnome-ltmain.sh && \
+	${CP} -pf ${LIBTOOL} ${WRKDIR}/gnome-libtool && \
+	for file in ${LIBTOOLFILES}; do \
+		${REINPLACE_CMD} -e \
+		'/^ltmain=/!s|$$ac_aux_dir/ltmain\.sh|${LIBTOOLFLAGS} ${WRKDIR}/gnome-ltmain.sh|g; \
+		 /^LIBTOOL=/s|$$(top_builddir)/libtool|${WRKDIR}/gnome-libtool|g' \
+		${PATCH_WRKSRC}/$$file; \
+	done;
 .else
-.  if ${USE_GNOME:Mltverhack*}!="" || ${USE_GNOME:Mltasneededhack}!=""
-IGNORE=	cannot install: ${PORTNAME} uses the ltverhack and/or ltasneededhack GNOME components but does not use libtool
+.  if ${USE_GNOME:Mltasneededhack}!=""
+IGNORE=	cannot install: ${PORTNAME} uses the ltasneededhack GNOME component but does not use libtool
 .  endif
 .endif
 
@@ -771,23 +704,35 @@ ltverhack_LIB_VERSION=	major=.`expr $$current - $$age`
 .else
 ltverhack_LIB_VERSION=	major=".${USE_GNOME:Mltverhack\:*:C/^[^:]+:([^:]+).*/\1/}"
 .endif
+
+.if defined(USE_AUTOTOOLS) &&  ${USE_AUTOTOOLS:Mlibtool*}
 ltverhack_PATCH_DEPENDS=${LIBTOOL_DEPENDS}
-ltverhack_PRE_PATCH=	for file in gnome-ltmain.sh gnome-libtool; do \
-							if [ -f ${WRKDIR}/$$file ]; then \
-								${REINPLACE_CMD} -e \
-									'/freebsd-elf)/,/;;/ s|major="\.$$current"|${ltverhack_LIB_VERSION}|; \
-									 /freebsd-elf)/,/;;/ s|versuffix="\.$$current"|versuffix="$$major"|' \
-									${WRKDIR}/$$file; \
-							fi; \
-						done
+ltverhack_PATCH_FILES=	../gnome-ltmain.sh ../gnome-libtool
+.else
+ltverhack_PATCH_FILES?=	ltmain.sh libtool
+.endif
+
+ltverhack_PRE_PATCH=	\
+	for file in ${ltverhack_PATCH_FILES}; do \
+		if [ -f ${WRKSRC}/$$file ]; then \
+			${REINPLACE_CMD} -e \
+			'/freebsd-elf)/,/;;/ s|major="\.$$current"|${ltverhack_LIB_VERSION}|; \
+			 /freebsd-elf)/,/;;/ s|versuffix="\.$$current"|versuffix="$$major"|' \
+			-e \
+			'/freebsd-elf)/,/;;/ s|major=\.$$current|${ltverhack_LIB_VERSION}|; \
+			 /freebsd-elf)/,/;;/ s|versuffix=\.$$current|versuffix="$$major"|' \
+			${WRKSRC}/$$file; \
+		fi; \
+	done
 
 ltasneededhack_PATCH_DEPENDS=${LIBTOOL_DEPENDS}
-ltasneededhack_PRE_PATCH=	if [ -f ${WRKDIR}/gnome-libtool ]; then \
-								${REINPLACE_CMD} -e \
-									'/^archive_cmds=/s/-shared/-shared -Wl,--as-needed/ ; \
-									/^archive_expsym_cmds=/s/-shared/-shared -Wl,--as-needed/' \
-									${WRKDIR}/gnome-libtool; \
-							fi
+ltasneededhack_PRE_PATCH=	\
+	if [ -f ${WRKDIR}/gnome-libtool ]; then \
+		${REINPLACE_CMD} -e \
+		'/^archive_cmds=/s/-shared/-shared -Wl,--as-needed/ ; \
+		 /^archive_expsym_cmds=/s/-shared/-shared -Wl,--as-needed/' \
+		${WRKDIR}/gnome-libtool; \
+	fi
 
 # Set USE_CSTD for all ports that depend on glib12
 .if defined(_USE_GNOME) && !empty(_USE_GNOME:Mglib12)
@@ -797,7 +742,19 @@ USE_CSTD=	gnu89
 # Then traverse through all components, check which of them
 # exist in ${_USE_GNOME} and set variables accordingly
 .ifdef _USE_GNOME
-. if ${USE_GNOME:Mltverhack*}!= "" || ${USE_GNOME:Mltasneededhack}!= ""
+
+. if ${USE_GNOME:Mltasneededhack}!= ""
+_GNOME_NEED_LIBTOOL=1
+. endif
+
+# this is splitted out from the above entry because fmake trows a fit otherwise
+. if defined(USE_AUTOTOOLS) && ${USE_AUTOTOOLS:Mlibtool*}
+.  if ${USE_GNOME:Mltverhack*}!= ""
+_GNOME_NEED_LIBTOOL=1
+.  endif
+. endif
+
+. if defined(_GNOME_NEED_LIBTOOL)
 GNOME_PRE_PATCH+=	${lthacks_PRE_PATCH}
 CONFIGURE_ENV+=		${lthacks_CONFIGURE_ENV}
 . endif
