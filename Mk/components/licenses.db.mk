@@ -168,6 +168,9 @@ _LICENSE_GROUPS_pqgsql=	OSI COPYFREE
 _LICENSE_NAME_php=	PHP License version 3.01
 _LICENSE_GROUPS_php=	FSF OSI
 
+_LICENSE_NAME_publicdom=	Public Domain
+_LICENSE_GROUPS_publicdom=
+
 _LICENSE_NAME_python=	Python Software Foundation License
 _LICENSE_GROUPS_python=	FSF GPL OSI
 
