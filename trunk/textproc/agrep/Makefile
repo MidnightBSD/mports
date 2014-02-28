@@ -12,7 +12,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Approximate grep (fast approximate pattern-matching tool)
 
-LICENSE=	restricted
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 NO_CDROM=	No redistribution for profit
 
