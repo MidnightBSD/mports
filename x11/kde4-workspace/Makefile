@@ -123,8 +123,7 @@ RUN_DEPENDS+=	${KDE4_PREFIX}/lib/kde4/plugins/phonon_backend/phonon_vlc.so:${POR
 .endif
 
 .if ${PORT_OPTIONS:MWALLPAPERS}
-RUN_DEPENDS+=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers \
-		${KDE4_PREFIX}/share/wallpapers/stripes-freebsd-blue/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers-freebsd
+RUN_DEPENDS+=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers 
 .endif
 
 .include <bsd.port.pre.mk>
