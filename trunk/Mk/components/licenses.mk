@@ -39,7 +39,7 @@ _LICENSE_LIST_PORT_VARS=	PERMS NAME GROUPS
 
 _LICENSE_DIR?=		${PREFIX}/share/licenses/${PKGNAME}
 _LICENSE_DIR_REL?=	share/licenses/${PKGNAME}
-_LICENSE_STORE?=	${PORTSDIR}/Templates/Licenses
+_LICENSE_STORE?=	${PORTSDIR}/Licenses
 _LICENSE_CATALOG?=	${_LICENSE_DIR}/catalog.mk
 _LICENSE_CATALOG_TMP?=	${WRKDIR}/.license-catalog.mk
 _LICENSE_REPORT?=	${_LICENSE_DIR}/LICENSE
@@ -120,7 +120,7 @@ _LICENSE_${var}=	${_LICENSE_${var}_${lic}}
 .					if exists(${_LICENSE_STORE}/${lic})
 _LICENSE_FILE=		${_LICENSE_STORE}/${lic}
 .					else
-# No license file in /usr/ports/Templates/Licenses
+# No license file in /usr/mports/Licenses
 _LICENSE_TEXT=		The license: ${_LICENSE} (${_LICENSE_NAME}) is standard, please read from the web.
 _LICENSE_FILE=		${WRKDIR}/${lic}
 .					endif
