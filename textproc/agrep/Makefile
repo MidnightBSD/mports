@@ -11,7 +11,10 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Approximate grep (fast approximate pattern-matching tool)
+
 LICENSE=	restricted
+
+NO_CDROM=	No redistribution for profit
 
 ALL_TARGET=
 MAKE_ARGS=	CFLAGS="${CFLAGS}"
