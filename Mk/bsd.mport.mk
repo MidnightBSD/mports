@@ -336,7 +336,7 @@ _LOAD_${EXT:U}_EXT=	yes
 _ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
-		apache autotools bdb cmake efl emacs fuse \
+		apache autotools bdb cmake display efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
 		kde4 ldap lua mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite tcl wx xfce
