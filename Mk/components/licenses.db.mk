@@ -71,6 +71,9 @@ _LICENSE_GROUPS_bsd3=	FSF OSI COPYFREE
 _LICENSE_NAME_bsd4=	BSD 4-clause "Original" or "Old" License
 _LICENSE_GROUPS_bsd4=	FSF
 
+_LICENSE_NAME_bzip2=	BZIP License
+_LICENSE_GROUPS_bzip2=
+
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
 
