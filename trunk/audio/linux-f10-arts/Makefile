@@ -10,6 +10,7 @@ DISTNAME=		${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Audio system for the KDE integrated X11 desktop (Linux Fedora 10)
+
 LICENSE=		gpl2
 
 CONFLICTS=		linux-arts-[0-9]*
