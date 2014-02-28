@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.10.95
+PORTVERSION=	2.11.0
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
