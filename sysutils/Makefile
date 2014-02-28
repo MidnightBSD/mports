@@ -112,6 +112,7 @@ SUBDIR += upsd
 SUBDIR += upsmon
 SUBDIR += warden
 SUBDIR += wmbsdbatt
+SUBDIR += xfce4-battery-plugin
 SUBDIR += xfce4-settings
 SUBDIR += zeitgeist
 SUBDIR += zetaback
