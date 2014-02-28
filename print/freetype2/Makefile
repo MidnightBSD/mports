@@ -16,9 +16,7 @@ COMMENT=	Free and portable TrueType font rendering engine
 
 LICENSE=	gpl2
 
-MAKE_JOBS_SAFE=	yes
-
-USE_AUTOTOOLS=	libtool
+#USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USES=		gmake
 MAKE_ENV=	TOP=""
@@ -53,7 +51,6 @@ post-configure:
 		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
 
 post-install:
-	@${STRIP_CMD} ${PREFIX}/lib/libfreetype.so.17
-	${MV} ${PREFIX}/lib/libfreetype.so.17 ${PREFIX}/lib/libfreetype.so.9
+	@${STRIP_CMD} ${PREFIX}/lib/libfreetype.so.9
 
 .include <bsd.port.mk>
