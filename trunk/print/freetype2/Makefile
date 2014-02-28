@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	freetype2
-PORTVERSION=	2.5.0.1
+PORTVERSION=	2.5.2
 CATEGORIES=	print
 MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}/ \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype2/ \
@@ -25,7 +25,7 @@ MAKE_ENV=	TOP=""
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	ltverhack:9
-LIBTOOLFILES=	builds/unix/configure
+ltverhack_PATCH_FILES=	builds/unix/ltmain.sh
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
 
 OPTIONS_DEFINE=		LCD_FILTERING PNG
@@ -48,12 +48,12 @@ pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/builds/unix/install.mk
 
-pre-configure:
-	@${REINPLACE_CMD} -e '/^LIBTOOL/s|LIBTOOL := $$(FT_LIBTOOL_DIR)/libtool|LIBTOOL := ${WRKDIR}/gnome-libtool|' \
-	    	${WRKSRC}/builds/unix/unix-cc.in
-
 post-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} \
 		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
+
+post-install:
+	@${STRIP_CMD} ${PREFIX}/lib/libfreetype.so.17
+	${MV} ${PREFIX}/lib/libfreetype.so.17 ${PREFIX}/lib/libfreetype.so.9
 
 .include <bsd.port.mk>
