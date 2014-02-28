@@ -3,11 +3,13 @@
 PORTNAME=	glimpse
 PORTVERSION=	4.13.1
 CATEGORIES=	textproc databases
-MASTER_SITES=	ftp://ftp.polito.it/pub/tools/unix/harvest/
+MASTER_SITES=	FREEBSD_LOCAL/beech
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text search engine
 LICENSE=	restricted
+DEPRECATED=	No more public distfiles
+EXPIRATION_DATE=	2014-03-10
 
 MAKE_JOBS_UNSAFE=	yes
 PORTDOCS=	README COPYRIGHT
