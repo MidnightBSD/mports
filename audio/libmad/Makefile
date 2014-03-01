@@ -1,40 +1,39 @@
-# New ports collection makefile for:  libmad
-# Date created:        26 November 2003
-# Whom:                Sergey Akifyev <asa@gascom.ru>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/audio/libmad/Makefile,v 1.9 2006/02/23 10:34:34 ade Exp $
-#
 
 PORTNAME=	libmad
 PORTVERSION=	0.15.1b
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
-MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION} \
-		ftp://ftp.mars.org/pub/mpeg/
+MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libmad library (part of MAD project)
+
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
+OPTIONS_DEFINE=	SPEED
+SPEED_DESC=	Optimize for speed over accuracy
+
+CONFIGURE_ARGS=	--disable-debugging --enable-sso
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-debugging \
-		--enable-sso
-.if defined(WITH_SPEED)
-CONFIGURE_ARGS+=	--enable-speed
-.else
-CONFIGURE_ARGS+=	--enable-accuracy
-.endif
+USES=		libtool:oldver
+
+SUB_LIST=	VERSION=${PORTVERSION}
+SUB_FILES=	mad.pc
+
+SPEED_CONFIGURE_ON=	--enable-speed
+SPEED_CONFIGURE_OFF=	--enable-accuracy
 
 post-patch:
-	@${SED} -e 's|%PREFIX%|${PREFIX}|g ; s|%VERSION%|${PORTVERSION}|g' \
-		${FILESDIR}/mad.pc.in > ${WRKDIR}/mad.pc
+	@${REINPLACE_CMD} -e 's| -fforce-mem||' ${WRKSRC}/configure
+
+post-build:
+	@${STRIP_CMD} ${WRKSRC}/.libs/libmad.so.2.1
 
 post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${INSTALL_DATA} ${WRKDIR}/mad.pc ${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKDIR}/mad.pc ${PREFIX}/libdata/pkgconfig/
+	@${CP} ${PREFIX}/lib/libmad.so.2.1 ${PREFIX}/lib/libmad.so.2
+	(cd ${PREFIX}/lib && ln -sf libmad.so.2 libmad.so)
 
 .include <bsd.port.mk>
