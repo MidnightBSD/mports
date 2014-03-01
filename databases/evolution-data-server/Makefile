@@ -2,13 +2,14 @@
 
 PORTNAME=	evolution-data-server
 PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The data backends for the Evolution integrated mail/PIM suite
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
@@ -16,7 +17,7 @@ LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		ical.44:${PORTSDIR}/devel/libical \
 		nss3.1:${PORTSDIR}/security/nss \
-		tasn1.4:${PORTSDIR}/security/libtasn1 \
+		tasn1:${PORTSDIR}/security/libtasn1 \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
 
