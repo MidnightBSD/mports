@@ -122,9 +122,7 @@ MASTER_SITE_CENKES+= \
 .if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
 MASTER_SITE_CHEESESHOP+= \
 	http://pypi.python.org/packages/%SUBDIR%/ \
-	http://c.pypi.python.org/packages/%SUBDIR%/ \
 	http://e.pypi.python.org/packages/%SUBDIR%/ \
-	http://f.pypi.python.org/packages/%SUBDIR%/ \
 	http://pypi.crate.io/packages/%SUBDIR%/ \
 	http://pypi.python.jp/${DISTNAME:S/${DISTVERSION}//:S/-//}/
 .endif
@@ -150,6 +148,7 @@ MASTER_SITE_CSME+=	${MASTER_SITE_CENKES}
 
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
 MASTER_SITE_DEBIAN+= \
+	http://cdn.debian.net/debian/%SUBDIR%/ \
 	http://www.gtlib.gatech.edu/pub/debian/%SUBDIR%/ \
 	ftp://ftp.us.debian.org/debian/%SUBDIR%/ \
 	${MASTER_SITE_DEBIAN_NON_US:S,/debian-non-US/,/debian/,}
@@ -198,9 +197,6 @@ MASTER_SITE_DEBIAN_POOL+= \
 
 .if !defined(IGNORE_MASTER_SITE_EASYSW)
 MASTER_SITE_EASYSW+= \
-	http://ftp.easysw.com/pub/%SUBDIR%/ \
-	ftp://ftp.easysw.com/pub/%SUBDIR%/ \
-	ftp://ftp.rz.tu-bs.de/pub/mirror/ftp.easysw.com/ftp/pub/%SUBDIR%/ \
 	http://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/
 .endif
@@ -213,7 +209,7 @@ MASTER_SITE_ECLIPSE+= \
 	ftp://sunsite.cnlab-switch.ch/mirror/eclipse/%SUBDIR%/ \
 	ftp://sunsite.cnlab-switch.ch/mirror/eclipse/eclipse/downloads/drops/%SUBDIR%/ \
 	ftp://sunsite.cnlab-switch.ch/mirror/eclipse/eclipse/downloads/drops4/%SUBDIR%/ \
-	http://eclipse.org/downloads/download.php?mirror_id=96&r=1&file=/%SUBDIR%/
+	http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EXIM)
@@ -455,20 +451,26 @@ MASTER_SITE_FRUGALWARE+= \
 
 .if !defined(IGNORE_MASTER_SITE_GCC)
 MASTER_SITE_GCC+= \
-	${MASTER_SITE_SOURCEWARE:S,%SUBDIR%,gcc/&,} \
+	http://mirrors.kernel.org/sources.redhat.com/gcc/%SUBDIR%/ \
+	http://gcc.parentingamerica.com/%SUBDIR%/ \
+	http://gcc.skazkaforyou.com/%SUBDIR%/ \
+	http://gcc.cybermirror.org/%SUBDIR%/ \
+	http://gcc-uk.internet.bs/%SUBDIR%/ \
+	http://www.netgull.com/gcc/%SUBDIR%/ \
+	http://mirrors.webhostinggeeks.com/gcc/%SUBDIR%/ \
+	http://robotlab.itk.ppke.hu/gcc/%SUBDIR%/ \
+	http://gcc.fyxm.net/%SUBDIR%/ \
+	http://gcc.igor.onlinedirect.bg/%SUBDIR%/ \
+	ftp://ftp.funet.fi/pub/mirrors/sources.redhat.com/pub/gcc/%SUBDIR%/ \
 	ftp://gcc.gnu.org/pub/gcc/%SUBDIR%/ \
-	ftp://mirrors.laffeycomputer.com/pub/gcc.gnu.org/pub/gcc/%SUBDIR%/ \
 	ftp://ftp.lip6.fr/pub/gcc/%SUBDIR%/ \
 	ftp://ftp.irisa.fr/pub/mirrors/gcc.gnu.org/gcc/%SUBDIR%/ \
 	ftp://ftp.uvsq.fr/pub/gcc/%SUBDIR%/ \
 	ftp://ftp.gwdg.de/pub/misc/gcc/%SUBDIR%/ \
 	ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/%SUBDIR%/ \
-	ftp://ftp.iij.ad.jp/pub/gnu/gnu/gcc/%SUBDIR%/ \
-	ftp://ftp.dti.ad.jp/pub/lang/gcc/%SUBDIR%/ \
 	ftp://ftp.nluug.nl/mirror/languages/gcc/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/%SUBDIR%/ \
-	ftp://ftp.ntua.gr/pub/gnu/gcc/%SUBDIR%/ \
-	ftp://mirror.aarnet.edu.au/pub/gnu/gcc/%SUBDIR%/
+	ftp://ftp.ntua.gr/pub/gnu/gcc/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GENTOO)
@@ -541,18 +543,18 @@ MASTER_SITES+=	GH GHC
 .endif
 GH_PROJECT?=	${PORTNAME}
 GH_TAGNAME?=	${DISTVERSION}
-FETCH_ARGS=	-Fpr
 .endif
 .endif
 #
-# GitHub files can also be obtained, without the commit hashes, by doing:
+# GitHub files can also be obtained, without the need for any of the above, by doing:
 #
 # MASTER_SITES=	http://github.com/accountname/${PORTNAME}/archive/${PORTVERSION}.tar.gz?dummy=/
-# FETCH_ARGS=	-Fpr
 #
 
 .if !defined(IGNORE_MASTER_SITE_GNOME)
 MASTER_SITE_GNOME+= \
+	https://download.gnome.org/%SUBDIR%/ \
+	http://download.gnome.org/%SUBDIR%/ \
 	ftp://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
 	http://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
@@ -677,7 +679,7 @@ MASTER_SITE_KENAI+= \
 # Updated:	2012-10-26
 .if !defined(IGNORE_MASTER_SITE_KDE)
 MASTER_SITE_KDE+= \
-	http://mirrors.isc.org/pub/kde/%SUBDIR%/ \
+	http://download.kde.org/%SUBDIR%/ \
 	ftp://ftp.gtlib.gatech.edu/pub/kde/%SUBDIR%/ \
 	ftp://ftp.informatik.hu-berlin.de/pub/Mirrors/ftp.kde.org/%SUBDIR%/ \
 	http://ftp.gtlib.gatech.edu/pub/kde/%SUBDIR%/ \
@@ -713,7 +715,6 @@ MASTER_SITE_KDE+= \
 	http://ftp.heanet.ie/mirrors/ftp.kde.org/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/pub/X11/kde/%SUBDIR%/ \
 	http://ftp.kddlabs.co.jp/pub/X11/kde/%SUBDIR%/ \
-	http://ftp.cs.pu.edu.tw/pub/kde/%SUBDIR%/ \
 	http://kde.mirror.uber.com.au/%SUBDIR%/ \
 	ftp://ftp.ussg.iu.edu/pub/kde/%SUBDIR%/ \
 	http://ftp.ussg.iu.edu/kde/%SUBDIR%/ \
@@ -730,8 +731,7 @@ MASTER_SITE_KDE+= \
 	ftp://ftp-stud.fht-esslingen.de/pub/Mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/kde/&,} \
 	ftp://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
-	http://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/%SUBDIR%/ \
-	http://download.kde.org/%SUBDIR%/
+	http://ftp.funet.fi/pub/mirrors/ftp.kde.org/pub/kde/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_LOGILAB)
@@ -776,7 +776,6 @@ MASTER_SITE_MOZILLA+= \
 	http://kyoto-mz-dl.sinet.ad.jp/pub/mozilla.org/%SUBDIR%/ \
 	http://jp-nii01.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
 	http://jp-nii02.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://mozilla.mtk.nao.ac.jp/pub/mozilla.org/%SUBDIR%/ \
 	http://mirror.internode.on.net/pub/mozilla/%SUBDIR%/ \
 	http://ftp.acc.umu.se/pub/mozilla.org/%SUBDIR%/ \
 	http://mozilla.c3sl.ufpr.br/releases/%SUBDIR%/ \
@@ -786,6 +785,14 @@ MASTER_SITE_MOZILLA+= \
 	ftp://ftp.informatik.rwth-aachen.de/pub/mirror/ftp.mozilla.org/pub/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/mozilla/&,} \
 	http://ftp.twaren.net/Unix/Mozilla/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_BUGZILLA)
+MASTER_SITE_BUGZILLA+= \
+	https://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
+	http://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
+	ftp://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
+	http://mirror.internode.on.net/pub/mozilla/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MOZILLA_EXTENDED)
@@ -893,7 +900,6 @@ MASTER_SITE_OPENBSD+= \
 	http://ftp.chg.ru/pub/OpenBSD/%SUBDIR%/ \
 	http://ftp.arcane-networks.fr/pub/OpenBSD/%SUBDIR%/ \
 	http://ftp.netbsd.se/OpenBSD/%SUBDIR%/ \
-	http://openbsd.cs.pu.edu.tw/%SUBDIR%/ \
 	http://www.mirrorservice.org/pub/OpenBSD/%SUBDIR%/ \
 	http://mirror.switch.ch/ftp/pub/OpenBSD/%SUBDIR%/ \
 	http://ftp.jaist.ac.jp/pub/OpenBSD/%SUBDIR%/ \
@@ -992,7 +998,6 @@ MASTER_SITE_PERL_CPAN_BY+= \
 	http://ftp.jaist.ac.jp/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.sunet.se/pub/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/cpan.perl.org/CPAN/%CPANSORT%/%SUBDIR%/ \
-	http://at.cpan.org/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
 	http://backpan.perl.org/%CPANSORT%/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/languages/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
@@ -1148,6 +1153,7 @@ MASTER_SITE_RINGSERVER+= \
 
 .if !defined(IGNORE_MASTER_SITE_RUBY)
 MASTER_SITE_RUBY+= \
+	http://cache.ruby-lang.org/pub/ruby/%SUBDIR%/ \
 	ftp://ftp.ruby-lang.org/pub/ruby/%SUBDIR%/ \
 	ftp://ftp.SpringDaemons.com/pub/ruby/ruby/%SUBDIR%/ \
 	http://www.ibiblio.org/pub/languages/ruby/%SUBDIR%/ \
@@ -1195,15 +1201,8 @@ MASTER_SITE_SAVANNAH+= \
 	http://download-mirror.savannah.gnu.org/releases/%SUBDIR%/
 .endif
 
-# List:		http://sourceforge.net/apps/trac/sourceforge/wiki/Mirrors
-# Updated:	2013-03-25
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
-.for mirror in heanet sunet iweb switch freefr garr aarnet jaist master \
-	nchc ncu internode waix hivelocity superb-dca3 ufpr tenet \
-	netcologne ignum kent kaz
-MASTER_SITE_SOURCEFORGE+= \
-	http://${mirror}.dl.sourceforge.net/project/%SUBDIR%/
-.endfor
+MASTER_SITE_SOURCEFORGE+= http://downloads.sourceforge.net/project/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE_JP)
@@ -1217,7 +1216,6 @@ MASTER_SITE_SOURCEFORGE_JP+= \
 MASTER_SITE_SOURCEWARE+= \
 	http://mirrors.kernel.org/sources.redhat.com/%SUBDIR%/ \
 	http://gd.tuwien.ac.at/gnu/sourceware/%SUBDIR%/ \
-	http://ftp.cs.pu.edu.tw/Linux/sourceware/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/mirrors/sources.redhat.com/pub/%SUBDIR%/
 .endif
 
@@ -1367,6 +1365,49 @@ MASTER_SITE_THEMES+= \
 	ftp://gd.tuwien.ac.at/opsys/linux/freshmeat/themes/%SUBDIR%/
 .endif
 
+# Derived from: https://www.torproject.org/getinvolved/mirrors.html.en
+.if !defined(IGNORE_MASTER_SITE_TOR)
+MASTER_SITE_TOR+=	\
+		https://www.torproject.org/dist/%SUBDIR%/ \
+		https://archive.torproject.org/tor-package-archive/%SUBDIR%/ \
+		ftp://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
+		http://cyberside.net.ee/tor/%SUBDIR%/ \
+		http://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
+		http://mirror.hessmo.com/tor/dist/%SUBDIR%/ \
+		http://mirror.host4site.co.il/torproject.org/dist/%SUBDIR%/ \
+		http://mirror.open-networx.org/torproject.org/dist/%SUBDIR%/ \
+		http://mirror.tor.hu/dist/%SUBDIR%/ \
+		https://mirror.torland.me/torproject.org/dist/%SUBDIR%/ \
+		http://mirrors.chaos-darmstadt.de/tor-mirror/dist/%SUBDIR%/ \
+		http://theonionrouter.com/dist/%SUBDIR%/ \
+		http://tor.amorphis.eu/dist/%SUBDIR%/ \
+		http://tor.askapache.com/dist/%SUBDIR%/ \
+		http://tor.beme-it.de/dist/%SUBDIR%/ \
+		http://tor.borgmann.tv/dist/%SUBDIR%/ \
+		http://tor.ccc.de/dist/%SUBDIR%/ \
+		http://tor.cyberarmy.at/dist/%SUBDIR%/ \
+		http://tor.dont-know-me.at/dist/%SUBDIR%/ \
+		http://tor.factor.cc/dist/%SUBDIR%/ \
+		http://tor.homosu.net/dist/%SUBDIR%/ \
+		http://tor.idnr.ws/dist/%SUBDIR%/ \
+		http://tor.myrl.net/dist/%SUBDIR%/ \
+		http://tor.kamagurka.org/dist/%SUBDIR%/ \
+		http://tor.spline.de/dist/%SUBDIR%/ \
+		http://tor.vesta.nu/dist/%SUBDIR%/ \
+		http://torproj.xpdm.us/dist/%SUBDIR%/ \
+		https://torproject.antagonism.org/dist/%SUBDIR%/ \
+		https://torproject.crypto.is/dist/%SUBDIR%/ \
+		http://torproject.is/dist/%SUBDIR%/ \
+		http://torproject.nwlinux.us/dist/%SUBDIR%/ \
+		http://torproject.ph3x.at/dist/%SUBDIR%/ \
+		https://www.coevoet.nl/tor/dist/%SUBDIR%/ \
+		http://www.oignon.net/dist/%SUBDIR%/ \
+		http://www.torproject.nl/dist/%SUBDIR%/ \
+		http://www.torproject.org.nyud.net/dist/%SUBDIR%/ \
+		http://www.torproject.us/dist/%SUBDIR%/ \
+		http://www.torservers.net/mirrors/torproject.org/dist/%SUBDIR%/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_TUCOWS)
 .for mirror in ankara blueyonder casemanl chariot clix dataphone dialog epix \
 	fastweb genotec hellasonline iinets inspirenet latvia mclink netvisao \
@@ -1386,7 +1427,7 @@ MASTER_SITE_VIM+= \
 	http://ftp.vim.org/pub/vim/unix/ \
 	http://artfiles.org/vim.org/unix/ \
 	http://ftp.gr.vim.org/pub/vim/unix/ \
-	http://ftp.stut.edu.tw/vim/unix/ \
+	http://ftp.stu.edu.tw/vim/unix/ \
 	http://ftp.tw.vim.org/pub/vim/unix/ \
 	http://ftp.vim.ossmirror.de/pub/vim/unix/ \
 	http://ftp2.jp.vim.org/pub/vim/unix/ \
@@ -1406,8 +1447,8 @@ MASTER_SITE_VIM+= \
 	ftp://ftp.is.vim.org/pub/vim/unix/ \
 	ftp://ftp.jp.vim.org/pub/vim/unix/ \
 	ftp://ftp.pl.vim.org/pub/vim/unix/ \
-	ftp://ftp.stut.edu.tw/pub/vim/unix/ \
 	ftp://ftp.uk.vim.org/pub/vim/unix/ \
+	ftp://ftp.stu.edu.tw/pub/vim/unix/ \
 	ftp://ftp.za.vim.org/mirrors/ftp.vim.org/unix/ \
 	ftp://ftp2.kr.vim.org/pub/vim/unix/ \
 	ftp://ftp2.tw.vim.org/pub/vim/unix/ \
@@ -1496,8 +1537,7 @@ MASTER_SITE_XORG+= \
 	http://mirror.de.leaseweb.net/xorg/%SUBDIR%/ \
 	http://mirrors.go-part.com/xorg/%SUBDIR%/ \
 	http://ftp.yz.yamagata-u.ac.jp/pub/X11/x.org/%SUBDIR%/ \
-	http://ftp.kaist.ac.kr/x.org/%SUBDIR%/ \
-	http://x.cs.pu.edu.tw/%SUBDIR%/
+	http://ftp.kaist.ac.kr/x.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
