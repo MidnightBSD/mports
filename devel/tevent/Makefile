@@ -2,7 +2,6 @@
 
 PORTNAME=		tevent
 PORTVERSION=		0.9.18
-PORTREVISION=		0
 PORTEPOCH=		0
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -13,7 +12,9 @@ COMMENT=		Talloc based event loop library
 
 LICENSE=		lgpl3
 
-USE_PYTHON_BUILD=	-2.7
+CONFLICTS=
+
+USE_PYTHON_BUILD=	2
 USE_LDCONFIG=		yes
 HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
@@ -25,14 +26,13 @@ USES=			pkgconfig
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--destdir=${FAKE_DESTDIR} \
-			--prefix=${PREFIX} \
+CONFIGURE_ARGS+=	--prefix=${PREFIX} \
 			--mandir=${MANPREFIX}/man \
 			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}
-MAKE_ARGS+=		${CONFIGURE_ARGS}
 
 OPTIONS_DEFINE=		PYTHON
 OPTIONS_DEFAULT=	PYTHON
+
 
 .include <bsd.mport.options.mk>
 
@@ -67,6 +67,7 @@ PLIST_DIRSTRY+=		%%PYTHON_SITELIBDIR%% \
 CONFIGURE_ARGS+=	--disable-python
 .endif
 
+MAKE_ARGS+=		--destdir=${FAKE_DESTDIR}
 ALL_TARGET=		build
 INSTALL_TARGET=		install
 
