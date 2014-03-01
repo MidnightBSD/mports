@@ -338,7 +338,7 @@ _ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake display efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
-		kde4 ldap lua mysql ncurses ocaml openal \
+		kde4 ldap libtool lua mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite tcl wx xfce
 
 .for EXT in ${_ALL_EXT:U} 
