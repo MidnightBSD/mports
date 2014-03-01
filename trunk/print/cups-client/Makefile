@@ -4,6 +4,7 @@
 CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.ORG
+
 LICENSE=	gpl2
 
 MASTERDIR?=	${.CURDIR}/../cups-base
