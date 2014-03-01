@@ -2,7 +2,7 @@
 
 PORTNAME=	libstreamanalyzer
 PORTVERSION=	${STRIGI_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils
 MASTER_SITES=	${STRIGI_MASTER_SITES}
 
@@ -22,7 +22,7 @@ USE_LDCONFIG=	yes
 
 # supported versions: ffmpeg, ffmpeg1, ffmpeg-devel
 # corresponding FFMPEG_SUFFIX: '', '1', '-devel'
-FFMPEG_SUFFIX?=	
+FFMPEG_SUFFIX?=
 CMAKE_ARGS+=	-DFFMPEG_SUFFIX:STRING="${FFMPEG_SUFFIX}"
 
 .if !empty(FFMPEG_SUFFIX)
@@ -38,4 +38,10 @@ post-patch:
 		${WRKSRC}/libstreamanalyzer/CMakeLists.txt
 
 .include <${.CURDIR}/../strigi/Makefile.common>
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if empty(ICONV_LIB)
+CMAKE_ARGS+=	-DICONV_LIBRARIES:STRING="/usr/lib/libc.so"
+.endif
+
+.include <bsd.port.post.mk>
