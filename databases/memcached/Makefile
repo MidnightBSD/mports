@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.15
+PORTVERSION=	1.4.17
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
@@ -9,6 +9,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance distributed memory object cache system
+
 LICENSE=	bsd3
 
 LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
