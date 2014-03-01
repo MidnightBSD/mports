@@ -7,11 +7,11 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This library provides weak aliases for pthread functions
-LICENSE=	x11
 
-USE_GMAKE=	yes
+LICENSE=	mit
+
+USES=		pathfix
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack pkgconfig
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
