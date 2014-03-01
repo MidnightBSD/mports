@@ -25,10 +25,9 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-co
 
 USE_XORG=	sm
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake pkgconfig
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 gtksourceview2 \
 		desktopfileutils gnomedocutils ltasneededhack
