@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk-doc
-PORTVERSION=	1.15
-PORTREVISION=	2
+PORTVERSION=	1.18
+PORTREVISION=	0
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
@@ -26,15 +26,14 @@ CATALOG_DIR=		${PREFIX}/share/sgml/${PORTNAME}
 XMLCATMGR=		${LOCALBASE}/bin/xmlcatmgr
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 
-USE_BZIP2=	yes
 USE_PERL5=	yes
-USE_GMAKE=	yes
+USE_PYTHON_RUN=	2
+USE_XZ=		yes
 GNU_CONFIGURE=	yes
-USES=		pathfix shebangfix
-USE_GNOME=	gnomehack gnomeprefix libxslt gnomedocutils
+USES=		gmake pathfix pkgconfig shebangfix
+USE_GNOME=	gnomeprefix libxslt gnomedocutils
 INSTALLS_OMF=	yes
 CONFIGURE_ARGS=	--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
-
 SHEBANG_FILES=	tools/docpercentages.pl
 
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
@@ -42,9 +41,7 @@ PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
 		CATALOG_DIR=${CATALOG_DIR}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|#!/bin/bash|#!/bin/sh|g' \
-		${WRKSRC}/tests/tools.sh.in \
-		${WRKSRC}/tests/fail.sh \
-		${WRKSRC}/tests/sanity.sh
+	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${LOCALBASE}/bin/perl|g' \
+		${WRKSRC}/tests/tools.sh
 
 .include <bsd.port.mk>
