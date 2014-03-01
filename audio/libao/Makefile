@@ -15,7 +15,6 @@ COMMENT=	Portable audio output library
 LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
-WANT_GNOME=	yes
 USES=		pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
