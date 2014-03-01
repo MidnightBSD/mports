@@ -6,7 +6,8 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RenderProto protocol headers
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	proto
 
