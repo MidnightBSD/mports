@@ -2,12 +2,14 @@
 
 PORTNAME=	popt
 PORTVERSION=	1.16
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://rpm5.org/files/popt/
 
 MAINTAINER=	ports@MidnigghtBSD.org
-COMMENT=	A getopt(3) like library with a number of enhancements, from Redhat
-LICENSE=	x11
+COMMENT=	getopt(3) like library with a number of enhancements, from Redhat
+
+LICENSE=	mit
 
 CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE} \
 		--program-prefix=""
@@ -15,8 +17,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack
-USE_ICONV=	yes
+USES=		pathfix iconv
 USE_LDCONFIG=	yes
 
 MAN3=		popt.3
