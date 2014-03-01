@@ -30,6 +30,8 @@ USE_GNOME=	glib20 gnomehier ltverhack referencehack introspection:build
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+SUB_FILES+=	pkg-install
+
 PLIST_SUB=	VERSION="1.8.0"
 
 FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
