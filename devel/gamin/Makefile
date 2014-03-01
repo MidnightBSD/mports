@@ -10,11 +10,9 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A file and directory monitoring system
 LICENSE=	lgpl
 
+USES+=		gettext gmake pathfix pkgconfig
 USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_GNOME?=	gnomehack _glib20
-USE_PKGCONFIG=	yes
+USE_GNOME?=	glib20
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
