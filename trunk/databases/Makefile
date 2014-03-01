@@ -18,6 +18,7 @@ SUBDIR += db45
 SUBDIR += db46
 SUBDIR += db47
 SUBDIR += db48
+SUBDIR += db5
 SUBDIR += evolution-data-server
 SUBDIR += freetds
 SUBDIR += freetds-msdblib
