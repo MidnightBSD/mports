@@ -2,7 +2,7 @@
 # $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
 
 PORTNAME=	libaudiofile
-PORTVERSION=	0.2.7
+PORTVERSION=	0.3.6
 CATEGORIES=	audio
 MASTER_SITES=	http://www.68k.org/~michael/audiofile/ \
 		ftp://oss.sgi.com/projects/audiofile/download/ \
