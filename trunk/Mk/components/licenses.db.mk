@@ -59,6 +59,9 @@ _LICENSE_GROUPS_perl=	OSI
 _LICENSE_NAME_artistic2=	Artistic License version 2.0
 _LICENSE_GROUPS_artistic2=	FSF GPL OSI
 
+_LICENSE_NAME_bdb=	Oracle BDB License
+_LICENSE_GROUPS_bdb=	
+
 _LICENSE_NAME_boost=	Boost Software License
 _LICENSE_GROUPS_boost=	FSF OSI COPYFREE
  
