@@ -1,45 +1,37 @@
 # $MidnightBSD$
 
 PORTNAME=	flac
-PORTVERSION=	1.2.1
-PORTREVISION=	2
+PORTVERSION=	1.3.0
 CATEGORIES=	audio
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}-src
+MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
 
+USES=		pathfix pkgconfig
 USE_AUTOTOOLS=	libtool
+USE_LDCONFIG=	yes
+USE_XZ=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-sse \
 		--with-ogg="${LOCALBASE}" \
+		--disable-silent-rules \
 		--disable-thorough-tests \
 		--disable-xmms-plugin
-CONFIGURE_ENV=	CPPFLAGS="-I${WRKSRC}/include"
-MAKE_JOBS_SAFE=	yes
 
-.if !defined(WITHOUT_ICONV)
-USE_ICONV=	yes
-CONFIGURE_ARGS+=--with-libiconv-prefix="${LOCALBASE}"
-.else
-CONFIGURE_ARGS+=--without-libiconv-prefix
-.endif
+OPTIONS_DEFINE=	DOCS ICONV
+OPTIONS_DEFAULT=ICONV
 
-MAKE_ARGS=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
-MAKE_ENV=	MAKEOBJDIR=/nonexistent		# ignore ${WRKSRC}/obj
-.if defined(NOPORTDOCS)
-MAKE_ENV+=	DOC=""
-.else
-MAKE_ENV+=	DOC=doc
-.endif
+ICONV_USES=	iconv
+ICONV_CPPFLAGS=	-I${ICONV_PREFIX}/include
+ICONV_LDFLAGS=	-L${ICONV_PREFIX}/lib
+ICONV_CONFIGURE_OFF=	am_cv_func_iconv=no
 
-USE_LDCONFIG=	yes
-MAN1=		flac.1 metaflac.1
-
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == "i386"
 BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
@@ -53,6 +45,6 @@ post-build:
 	${REINPLACE_CMD} 's:%%PREFIX%%:${PREFIX}:' ${WRKSRC}/man/flac.1
 
 regression-test: build
-	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} check
+	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
