@@ -11,9 +11,10 @@ DISTNAME=	audiofile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sound library for SGI audio file
-LICENSE=	gpl2
 
-USE_GNOME=	gnomehack  pkgconfig
+LICENSE=	lgpl2.1
+
+USES=		pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
