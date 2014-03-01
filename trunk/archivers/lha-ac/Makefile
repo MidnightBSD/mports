@@ -1,6 +1,5 @@
 # $MidnightBSD$
 # $FreeBSD: ports/archivers/lha-ac/Makefile,v 1.4 2006/09/05 05:01:47 dinoex Exp $
-#
 
 PORTNAME=	lha
 PORTVERSION=	1.14i
@@ -15,7 +14,6 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-ac20050924p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
-LICENSE=	restricted
 
 MAN1=		lha.1
 MANLANG=	ja
