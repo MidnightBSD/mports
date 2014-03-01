@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	libpciaccess
-PORTVERSION=	0.13.1
+PORTVERSION=	0.13.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic PCI access library
-LICENSE=	x11
+
+LICENSE=	mit
 
 BUILD_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
