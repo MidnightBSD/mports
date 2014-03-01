@@ -1,11 +1,10 @@
-bin/audiofile-config
 bin/sfconvert
 bin/sfinfo
 include/af_vfs.h
 include/audiofile.h
 include/aupvlist.h
 lib/libaudiofile.a
+lib/libaudiofile.la
 lib/libaudiofile.so
-lib/libaudiofile.so.0
+lib/libaudiofile.so.1
 libdata/pkgconfig/audiofile.pc
-share/aclocal/audiofile.m4
