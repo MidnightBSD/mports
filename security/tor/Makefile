@@ -1,71 +1,28 @@
 # $MidnightBSD$
 
 PORTNAME=	tor
-DISTVERSION=	0.2.3.25
-PORTREVISION=	1
+DISTVERSION=	0.2.4.20
 CATEGORIES=	security net ipv6
-MASTER_SITES=	https://www.torproject.org/dist/ \
-		ftp://ftp.bit.nl/mirror/tor/ \
-		http://cyberside.net.ee/tor/ \
-		http://ftp.bit.nl/mirror/tor/ \
-		http://mirror.hessmo.com/tor/dist/ \
-		http://mirror.host4site.co.il/torproject.org/dist/ \
-		http://mirror.open-networx.org/torproject.org/dist/ \
-		http://mirror.tor.hu/dist/ \
-		https://mirror.torland.me/torproject.org/dist/ \
-		http://mirrors.chaos-darmstadt.de/tor-mirror/dist/ \
-		http://theonionrouter.com/dist/ \
-		http://tor.amorphis.eu/dist/ \
-		http://tor.askapache.com/dist/ \
-		http://tor.beme-it.de/dist/ \
-		http://tor.blingblingsquad.net/dist/ \
-		http://tor.borgmann.tv/dist/ \
-		http://tor.ccc.de/dist/ \
-		http://tor.cyberarmy.at/dist/ \
-		http://tor.dont-know-me.at/dist/ \
-		http://tor.factor.cc/dist/ \
-		http://tor.homosu.net/dist/ \
-		http://tor.idnr.ws/dist/ \
-		http://tor.myrl.net/dist/ \
-		http://tor.kamagurka.org/dist/ \
-		http://tor.spline.de/dist/ \
-		http://tor.taiga-san.net/dist/ \
-		http://tor.vesta.nu/dist/ \
-		http://tordistua.reactor-xg.kiev.ua/ \
-		http://torproj.xpdm.us/dist/ \
-		https://torproject.antagonism.org/dist/ \
-		https://torproject.crypto.is/dist/ \
-		http://torproject.is/dist/ \
-		http://torproject.jcsh.it/dist/ \
-		http://torproject.nwlinux.us/dist/ \
-		http://torproject.ph3x.at/dist/ \
-		http://torua.reactor-xg.kiev.ua/dist/ \
-		https://www.coevoet.nl/tor/dist/ \
-		http://www.oignon.net/dist/ \
-		http://www.torproject.nl/dist/ \
-		http://www.torproject.org.nyud.net/dist/ \
-		http://www.torproject.us/dist/ \
-		http://www.torservers.net/mirrors/torproject.org/dist/
+MASTER_SITES=	TOR
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	bf@FreeBSD.org
 COMMENT=	An anonymizing overlay network for TCP
+
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-#RUN_DEPENDS=	tsocks:${PORTSDIR}/net/tsocks
-#LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
-
+USES=		gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-openssl-dir="${OPENSSLBASE}" --disable-asciidoc
 CONFIGURE_ENV=	TOR_CPPFLAGS_libevent="-I${LOCALBASE}/include/event2 -I${LOCALBASE}/include" \
 		TOR_LDFLAGS_libevent="-L${LOCALBASE}/lib/event2" \
 		TOR_LIBEVENT_LIBS="${TOR_LIBEVENT_LIBS}"
 
-OPTIONS_DEFINE=	BUFFEREVENTS BUFFREELISTS GMAKE INSTR_DOWNLOADS \
+OPTIONS_DEFINE=	BUFFEREVENTS BUFFREELISTS INSTR_DOWNLOADS \
 		STATIC_TOR TCMALLOC THREADS TOR2WEB TRANSPARENT
 
 BUFFEREVENTS_DESC=	Use libevent's buffered IO
 BUFFREELISTS_DESC=	Freelists for buffer RAM
-GMAKE_DESC=		Parallel build safety via GNU make
 INSTR_DOWNLOADS_DESC=	Instrument downloads for analysis
 STATIC_TOR_DESC=	Build a static tor
 TCMALLOC_DESC=		Use the tcmalloc memory allocation library
@@ -84,18 +41,15 @@ USERS=		_tor
 
 CONFLICTS=	tor-devel-[0-9]*
 
-MANCOMPRESSED=	no
-MAN1=		tor.1 tor-resolve.1 torify.1 tor-gencert.1
-
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MGMAKE}
-USE_GMAKE=		yes
+.if ( (${OSVERSION} < 4015) || \
+(${OSVERSION} >= 4015) ) && !defined(USE_GCC) && empty(CC:T:M*gcc4*) && \
+empty(PORT_OPTIONS:MSTATIC_TOR) && empty(ARCH:Mia64)
+CONFIGURE_ARGS+=	--enable-gcc-hardening
 .else
-MAKE_JOBS_UNSAFE=	yes
-.endif
-
 CONFIGURE_ARGS+=	--disable-gcc-hardening
+.endif
 
 .if ${PORT_OPTIONS:MBUFFEREVENTS}
 CONFIGURE_ARGS+=	--enable-bufferevents
@@ -159,12 +113,6 @@ CONFIGURE_ARGS+=	--disable-transparent
 .endif
 
 post-patch:
-	@${MV} ${WRKSRC}/contrib/tor-tsocks.conf \
-		${WRKSRC}/contrib/tor-tsocks.conf.sample
-	@${REINPLACE_CMD} -e "s|tor-tsocks.conf|tor-tsocks.conf.sample|g" \
-		${WRKSRC}/contrib/Makefile.in
-	@${REINPLACE_CMD} -e '\|^install-data-am:|s|install-docDATA||' \
-		${WRKSRC}/doc/Makefile.in
 	@${REINPLACE_CMD} -E -e "s@-ltcmalloc@${LOCALBASE}/lib/libtcmalloc.so@" \
 		-e "s@(-z) (relro|now)@-Wl,\1,\2@g" \
 		${WRKSRC}/configure
@@ -172,7 +120,13 @@ post-patch:
 post-configure:
 	@${FIND} -X ${WRKSRC} -type f -name Makefile | ${XARGS} ${REINPLACE_CMD} -e \
 		"s|-lpthread|${PTHREAD_LIBS}|g"
-	@${REINPLACE_CMD} -e '\|^nodist_man_MANS =|s|$$|${MAN1}|' \
-		${WRKSRC}/doc/Makefile
+	@${REINPLACE_CMD} -e '\|^nodist_man1_MANS =|s|$$|$$(regular_mans:=.1)|' \
+		${WRKSRC}/Makefile
 
+.if ! ${PORT_OPTIONS:MTOR2WEB}
+check regression-test test: build
+	@cd ${BUILD_WRKSRC} ; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
+	${MAKE_ARGS} check
+
+.endif
 .include <bsd.port.mk>
