@@ -177,6 +177,9 @@ _LICENSE_GROUPS_python=	FSF GPL OSI
 _LICENSE_NAME_ruby=	Ruby License
 _LICENSE_GROUPS_ruby=	FSF
 
+_LICENSE_NAME_sgi=	SGI License
+_LICENSE_GROUPS_sgi=	
+
 _LICENSE_NAME_unknown=	Unknown license
 _LICENSE_GROUPS_unknown=
 
