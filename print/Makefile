@@ -34,6 +34,7 @@ SUBDIR += gsfonts
 SUBDIR += gspdf
 SUBDIR += gutenprint-base
 SUBDIR += gv
+SUBDIR += harfbuzz
 SUBDIR += hs-hscolour
 SUBDIR += hs-hscolour-docs
 SUBDIR += jadetex
