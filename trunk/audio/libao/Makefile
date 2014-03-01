@@ -11,14 +11,14 @@ MASTER_SITES=	http://downloads.xiph.org/releases/ao/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable audio output library
+
 LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack pkgconfig
+USES=		pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 MAN5=		libao.conf.5
 
