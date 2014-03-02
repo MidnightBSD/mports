@@ -1,15 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	coreutils
-PORTVERSION=	8.20
-PORTREVISION=	2
+PORTVERSION=	8.22
+PORTREVISION=	0
 CATEGORIES=	sysutils textproc
-MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Free Software Foundation's core utilities
+
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	id-utils-[0-9]* linux-gid-[0-9]*
 
@@ -22,11 +24,10 @@ CONFIGURE_ARGS=	--program-prefix=g	\
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib" FORCE_UNSAFE_CONFIGURE=1
 CPPFLAGS+=	"-I${LOCALBASE}/include"
 
+USES=		gmake iconv charsetfix
+USE_PERL5_BUILD=	yes # build - required for tests and man page generation
 USE_XZ=		yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_PERL5_BUILD=	yes # Required for tests and man page generation
-#USE_BISON=	yes
 
 INFO=		coreutils
 
@@ -47,24 +48,13 @@ MAN1=	gbasename.1 gcat.1 gchcon.1 gchgrp.1 gchmod.1 gchown.1 gchroot.1 \
 
 OPTIONS_DEFINE=	GMP NLS
 OPTIONS_DEFAULT=NLS
+OPTIONS_SUB=	yes
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=   nls
+GMP_LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp
+GMP_CONFIGURE_WITH=	gmp
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGMP}
-LIB_DEPENDS+=	gmp:${PORTSDIR}/math/gmp
-.else
-CONFIGURE_ARGS+=--without-gmp
-.endif
-
-.include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 4015
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-stty.c
@@ -73,4 +63,11 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-stty.c
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile
 
-.include <bsd.port.post.mk>
+post-install:
+	@${STRIP_CMD} ${PREFIX}/bin/g* \
+		${PREFIX}/libexec/coreutils/glibstdbuf.so
+
+#regression-test: build
+#	(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} check)
+
+.include <bsd.port.mk>
