@@ -2,7 +2,7 @@
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF/corefonts/the%20fonts/final:group1 \
 		ftp://ftp.botik.ru/rented/znamensk/distributions/ftp.vsu.ru/pub/tex/font-packs/mscore/:group1 \
@@ -15,7 +15,8 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TrueType core fonts for the Web
-LICENSE=	restricted
+
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 EXTRACT_DEPENDS=cabextract:${PORTSDIR}/archivers/cabextract
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
