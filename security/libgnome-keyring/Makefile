@@ -2,12 +2,12 @@
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	2.32.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A program that keeps passwords and other secrets
+COMMENT=	Program that keeps passwords and other secrets
 
 LICENSE=	gpl2
 
