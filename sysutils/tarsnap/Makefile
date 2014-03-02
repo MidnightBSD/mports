@@ -10,12 +10,11 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online encrypted backup service (client)
 
-LICENSE=	restricted
-
-RESTRICTED=	license restricts redistribution of source and binaries
+LICENSE_FILE=	COPYING
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 
 MAN1=		tarsnap.1 tarsnap-keygen.1 tarsnap-keymgmt.1	\
 		tarsnap-keyregen.1 tarsnap-recrypt.1
@@ -31,6 +30,12 @@ CONFIGURE_ARGS+=	--enable-sse2
 CFLAGS+=		-msse2
 .else
 CONFIGURE_ARGS+=	--disable-sse2
+.endif
+
+# safety check to ensure that we don't violate the license
+.if exists(${PATCHDIR})
+LICENSE_PERMS=	no-dist-mirror no-pkg-mirror
+RESTRICTED=	license only allows redistribution and use of unmodified source and binaries
 .endif
 
 post-install:
