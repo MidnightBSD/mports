@@ -62,7 +62,8 @@ KEYRING_DESC=	GnomeKeyring/PAM integration
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MKEYRING}
-LIB_DEPENDS+=	gnome-keyring:${PORTSDIR}/security/libgnome-keyring
+LIB_DEPENDS+=	gnome-keyring:${PORTSDIR}/security/libgnome-keyring \
+		pam_gnome_keyring:${PORTSDIR}/security/gnome-keyring
 SUB_LIST+=	PAM_KEYRING=
 .else
 SUB_LIST+=	PAM_KEYRING=\#
