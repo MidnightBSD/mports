@@ -1,23 +1,19 @@
-# New ports collection makefile for:	esound
-# Date created:		19 July 1998
-# Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
-#
 
 PORTNAME=	esound
 PORTVERSION=	0.2.41
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sound library for enlightenment package
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	audiofile.0:${PORTSDIR}/audio/libaudiofile
+LIB_DEPENDS=	audiofile.1:${PORTSDIR}/audio/libaudiofile
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
