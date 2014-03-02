@@ -1,21 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	dbus
-PORTVERSION=	1.6.8
+PORTVERSION=	1.6.18
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A message bus system for inter-application communication
+COMMENT=	Message bus system for inter-application communication
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
 
-
-
-USE_GNOME=	gnomehack libxml2 ltverhack
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USE_GNOME=	libxml2 ltverhack
+USES=		gmake pathfix
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=--localstatedir=/var \
 	        --with-test-socket-dir=${WRKDIR} \
@@ -40,7 +39,7 @@ MAN1=		dbus-cleanup-sockets.1 dbus-daemon.1 dbus-launch.1 \
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=X11
-X11_DESC=	X11 Desktop Environments
+X11_DESC=	Support X11 Desktop Environments
 
 .include <bsd.mport.options.mk>
 
