@@ -12,7 +12,7 @@ COMMENT=	nVidia graphic card status and overclocking tool
 
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+USES=		gmake
 GNU_CONFIGURE=	yes
 
 MAN1=		nvclock.1
@@ -28,7 +28,7 @@ X11_DESC=	Build GUI program (requires GTK+ 2.x)
 
 .if ${PORT_OPTIONS:MNVCONTROL}
 USE_XORG=	xext
-USE_GNOME=	pkgconfig
+USES+=		pkgconfig
 .else
 CONFIGURE_ARGS+=	--disable-nvcontrol
 .endif
