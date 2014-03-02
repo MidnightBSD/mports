@@ -461,7 +461,10 @@ check-makefile::
 
 _POSTMKINCLUDED=	yes
 
-
+# Integrate with the license auditing framework
+.if !defined (DISABLE_LICENSES)
+.include "${MPORTCOMPONENTS}/licenses.mk"
+.endif
 
 # Make sure we have some stuff defined before we pull in the mixins.
 #
@@ -784,18 +787,6 @@ RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-x
 # Add explicit X options to avoid problems with false positives in configure
 .if defined(GNU_CONFIGURE)
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
-.endif
-
-.if defined(USE_DISPLAY) && !defined(DISPLAY)
-BUILD_DEPENDS+=		Xvfb:${X_VFBSERVER_PORT} \
-	${LOCALBASE}/lib/X11/fonts/misc/8x13O.pcf.gz:${X_FONTS_MISC_PORT} \
-	${LOCALBASE}/lib/X11/fonts/misc/fonts.alias:${X_FONTS_ALIAS_PORT} \
-	${LOCALBASE}/share/X11/xkb/rules/base:${PORTSDIR}/x11/xkeyboard-config \
-	xkbcomp:${PORTSDIR}/x11/xkbcomp
-.if !defined(PACKAGE_BUILDING)
-CONFIGURE_ENV+=	DISPLAY="localhost:1001"
-MAKE_ENV+=	DISPLAY="localhost:1001"
 .endif
 .endif
 
@@ -1139,11 +1130,6 @@ PKG_SUFX?=	.mport
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
 INSTALL_TARGET+=	${LATE_INSTALL_ARGS}
-
-# Integrate with the license auditing framework
-.if !defined (DISABLE_LICENSES)
-.include "${PORTSDIR}/Mk/components/licenses.mk"
-.endif
 
 # Popular master sites
 .include "${PORTSDIR}/Mk/components/sites.mk"
@@ -2174,30 +2160,6 @@ _SLEEP=${FALSE}
 .else
 _SLEEP=sleep
 .endif
-
-.if !target(check-license) 
-.if defined(MPORT_MAINTAINER_MODE)
-check-license:
-.if !defined(LICENSE) 
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
-	@${_SLEEP} 5
-.else
-	@if test -z '${LICENSE}'; then \
-		${ECHO_MSG} "${PKGNAME}: Makefile error: empty license."; \
-		${_SLEEP} 5; \
-	elif ! ${ECHO_CMD} ${_LICENSES} | ${GREP} -E " ${LICENSE} |^${LICENSE}|${LICENSE}$$" >/dev/null; then \
-		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
-		${_SLEEP} 5; \
-	else \
-		${DO_NADA}; \
-	fi
-.endif
-.else 
-check-license:
-	@${DO_NADA}
-.endif
-.endif
-
 
 # Patch
 
