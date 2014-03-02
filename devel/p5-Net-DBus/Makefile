@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-Net-DBus
-# Date created:				2005-11-25
-# Whom:					Roman Bogorodskiy <novel@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Net-DBus/Makefile,v 1.15 2007/09/08 00:57:37 linimon Exp $
-#
 
 PORTNAME=	Net-DBus
-PORTVERSION=	0.33.6
+PORTVERSION=	1.0.0
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
@@ -15,6 +10,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for the DBus message system
+
 LICENSE=	perl
 
 LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus
@@ -22,7 +18,7 @@ RUN_DEPENDS=	${SITE_PERL}/XML/Twig.pm:${PORTSDIR}/textproc/p5-XML-Twig \
 		${SITE_PERL}/XML/Grove.pm:${PORTSDIR}/textproc/p5-XML-Grove \
 		${SITE_PERL}/${PERL_ARCH}/Time/HiRes.pm:${PORTSDIR}/devel/p5-Time-HiRes
 
-USE_GNOME=	pkgconfig
+USES=		pkgconfig 
 PERL_CONFIGURE=	yes
 
 MAN3=	Net::DBus::ASyncReply.3 Net::DBus::Annotation.3 Net::DBus::Tutorial.3 \
