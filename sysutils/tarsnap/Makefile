@@ -10,7 +10,9 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online encrypted backup service (client)
 
-LICENSE_FILE=	COPYING
+LICENSE=	tarsnap
+LICENSE_NAME=	The Tarsnap License
+LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
 GNU_CONFIGURE=	yes
