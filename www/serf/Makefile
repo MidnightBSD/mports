@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	serf
-PORTVERSION=	1.3.2
-PORTREVISION=	1
+PORTVERSION=	1.3.4
 CATEGORIES=	www
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	http://serf.googlecode.com/svn/src_releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serf HTTP client library
