@@ -662,7 +662,7 @@ install-license:
 .else	# !LICENSE
 
 check-license:
-.	if defined(LICENSE_VERBOSE)
+.	if defined(LICENSE_VERBOSE) || defined(MPORT_MAINTAINER_MODE)
 	@${ECHO_MSG} "===>  License check disabled, port has not defined LICENSE"
 .	endif
 
