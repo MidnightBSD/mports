@@ -10,11 +10,11 @@ license-list:
 	@${ECHO_MSG} ${_LICENSES}
 .endif
 
-.if defined(LICENSE)
-
 # Include known licenses from database
-
+# Must be done so that license-list target works
 .include "${PORTSDIR}/Mk/components/licenses.db.mk"
+
+.if defined(LICENSE)
 
 # Lists of variables and valid components
 #
@@ -468,6 +468,7 @@ check-license:
 
 # Display, ask and save preference if requested
 
+.if !target(ask-license)
 ask-license: ${_LICENSE_COOKIE}
 
 ${_LICENSE_COOKIE}:
@@ -487,6 +488,9 @@ ${_LICENSE_COOKIE}:
 		(${ECHO_MSG} "===>  Missing license file for ${lic} in ${_LICENSE_FILE_${lic}}"; exit 1)
 .	endfor
 .endif
+
+.endif
+# end !target ask-license
 
 .if ${_LICENSE_STATUS} == "ask"
 .	if !defined(NO_LICENSES_DIALOGS)
