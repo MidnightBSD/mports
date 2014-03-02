@@ -47,6 +47,7 @@ bin/gmv
 bin/gnice
 bin/gnl
 bin/gnohup
+bin/gnumfmt
 bin/gnproc
 bin/god
 bin/gpaste
@@ -137,6 +138,8 @@ libexec/coreutils/glibstdbuf.so
 %%NLS%%share/locale/hr/LC_TIME/coreutils.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/hu/LC_TIME/coreutils.mo
+%%NLS%%share/locale/ia/LC_MESSAGES/coreutils.mo
+%%NLS%%share/locale/ia/LC_TIME/coreutils.mo
 %%NLS%%share/locale/id/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/id/LC_TIME/coreutils.mo
 %%NLS%%share/locale/it/LC_MESSAGES/coreutils.mo
@@ -227,6 +230,9 @@ libexec/coreutils/glibstdbuf.so
 %%NLS%%@dirrmtry share/locale/ja/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/it/LC_TIME
 %%NLS%%@dirrmtry share/locale/it/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/ia/LC_TIME
+%%NLS%%@dirrmtry share/locale/ia/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/ia
 %%NLS%%@dirrmtry share/locale/id/LC_TIME
 %%NLS%%@dirrmtry share/locale/id/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/hu/LC_TIME
