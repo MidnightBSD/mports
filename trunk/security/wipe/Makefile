@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	wipe
-PORTVERSION=	2.3.0
-PORTREVISION=	2
+PORTVERSION=	2.3.1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and block device wiping utility
+
 LICENSE=	gpl2
 
 FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
