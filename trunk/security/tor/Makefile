@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	tor
-DISTVERSION=	0.2.4.20
+DISTVERSION=	0.2.4.21
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
-MAINTAINER=	bf@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An anonymizing overlay network for TCP
 
 LICENSE=	bsd3
