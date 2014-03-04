@@ -2,12 +2,13 @@
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	GNU/${PORTNAME}/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Flash movie player
+
 LICENSE=	gpl3
 
 LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs \
@@ -185,7 +186,7 @@ IGNORE=			can't be built with multiple or without renderers enabled. Please reru
 # Media handler options processing
 #
 .if defined(WITH_FFMPEG) && !defined(WITH_GSTREAMER)
-LIB_DEPENDS+=		avcodec.1:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=		avcodec:${PORTSDIR}/multimedia/ffmpeg
 CONFIGURE_ARGS+=	--enable-media=ffmpeg
 USE_SDL+=		sdl
 .elif !defined(WITH_FFMPEG) && defined(WITH_GSTREAMER)
