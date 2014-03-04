@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	p11-kit
-PORTVERSION=	0.20.1
+PORTVERSION=	0.20.2
 CATEGORIES=	security devel
 MASTER_SITES=	http://p11-glue.freedesktop.org/releases/
 
@@ -18,13 +18,11 @@ LIB_DEPENDS=	tasn1:${PORTSDIR}/security/libtasn1 \
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-debug=no \
 		--with-trust-paths=${LOCALBASE}/share/certs/ca-root-nss.crt
+CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}"
 MAKE_ENV=	exampledir=${EXAMPLESDIR}
 
-USES=		pkgconfig
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack gnomehack
+USES=		gmake pkgconfig pathfix libtool
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 
 pre-configure:
 	@${REINPLACE_CMD} -e \
