@@ -1,4 +1,3 @@
-@comment $FreeBSD$
 bin/certtool
 bin/gnutls-cli
 bin/gnutls-cli-debug
@@ -60,4 +59,8 @@ libdata/pkgconfig/gnutls.pc
 %%NLS%%share/locale/sv/LC_MESSAGES/libgnutls.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/libgnutls.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/libgnutls.mo
+%%NLS%%@dirrmtry share/locale/en@quot/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/en@quot
+%%NLS%%@dirrmtry share/locale/en@boldquot/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/en@boldquot
 @dirrm include/gnutls
