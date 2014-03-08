@@ -58,6 +58,7 @@ SUBDIR += pantomime
 SUBDIR += php5-imap
 SUBDIR += pine-pgp-filters
 SUBDIR += popd
+SUBDIR += postfix
 SUBDIR += procmail
 SUBDIR += razor-agents
 SUBDIR += sendmail
