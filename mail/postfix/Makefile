@@ -34,7 +34,7 @@ USE_PERL5=	build
 SCRIPTS_ENV+=	POSTFIX_DEFAULT_MTA="${POSTFIX_DEFAULT_MTA}"
 
 OPTIONS_DEFINE=	PCRE SASL2 TLS BDB MYSQL PGSQL SQLITE OPENLDAP LDAP_SASL \
-		CDB NIS VDA TEST SPF LMDB
+		CDB NIS VDA TEST SPF
 PCRE_DESC=	Perl Compatible Regular Expressions
 SASL2_DESC=	Cyrus SASLv2 (Simple Auth. and Sec. Layer)
 DOVECOT_DESC=	Dovecot 1.x SASL authentication method
@@ -53,7 +53,6 @@ NIS_DESC=	NIS maps lookups
 VDA_DESC=	VDA (Virtual Delivery Agent 32Bit)
 TEST_DESC=	SMTP/LMTP test server and generator
 SPF_DESC=	SPF support (via libspf2 1.2.x)
-LMDB_DESC=	LMDB maps
 
 OPTIONS_RADIO=	RG1 RG2
 OPTIONS_RADIO_RG1=	DOVECOT DOVECOT2
@@ -250,12 +249,6 @@ PLIST_SUB+=	TEST="@comment "
 
 USE_RC_SUBR=	postfix
 PLIST_SUB+=	BASE="@comment "
-
-.if ${PORT_OPTIONS:MLMDB}
-LIB_DEPENDS+=		lmdb:${PORTSDIR}/databases/lmdb
-POSTFIX_CCARGS+=	-DHAS_LMDB -I${LOCALBASE}/include
-POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -llmdb
-.endif
 
 PLIST_SUB+=	PFETC=${ETCDIR}
 
