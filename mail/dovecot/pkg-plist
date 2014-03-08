@@ -93,6 +93,7 @@ lib/dovecot/lib21_fts_squat_plugin.so
 libexec/dovecot/authtest
 libexec/dovecot/checkpassword-reply
 libexec/dovecot/convert-tool
+libexec/dovecot/deliver
 libexec/dovecot/dict
 libexec/dovecot/dovecot-auth
 libexec/dovecot/expire-tool

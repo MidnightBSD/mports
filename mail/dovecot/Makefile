@@ -2,29 +2,42 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.17
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
-		http://www.rename-it.nl/dovecot/1.2.14/
+		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
+
 LICENSE=	agg
 
-CONFLICTS=	dovecot-2.*
+CONFLICTS=	dovecot2-*
 
 DOVECOTVERSION=	1.2
 
-USE_ICONV=	yes
-USE_RC_SUBR=	dovecot.sh
+######################################################################
+# Anytime PORTVERSION changes please bump PORTREVISIONs of           #
+# mail/dovecot-antispam, mail/dovecot-managesieve and                #
+# mail/dovecot-sieve. Please see ports/135311 and ports/146029 for   #
+# an explanation.                                                    #
+#                                                                    #
+# Please be careful when updating this port as changes to this port  #
+# can break mail/dovecot-sieve and mail/dovecot-managesieve. In      #
+# order to ensure the least amount of breakage possible please       #
+# consult the maintainer of those ports before updating this one.    #
+######################################################################
+
+USES=		iconv
+USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=		--localstatedir=/var \
 			--with-statedir=/var/db/dovecot \
 			--without-shadow
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/lib/dovecot \
 		${PREFIX}/lib/dovecot/imap \
 		${PREFIX}/lib/dovecot/pop3 \
@@ -42,15 +55,11 @@ DOVECOT_GID?=	143
 
 PROTOCOLS=	imap pop3
 
-OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
-		SSL		"SSL support"		on  \
-		MANAGESIEVE	"ManageSieve support"	on  \
-		GSSAPI		"GSSAPI support"	off \
-		BDB		"BerkleyDB support"	off \
-		LDAP		"OpenLDAP support"	off \
-		PGSQL		"PostgreSQL support"	off \
-		MYSQL		"MySQL support"		off \
-		SQLITE		"SQLite support"	off
+OPTIONS_DEFINE=	KQUEUE SSL MANAGESIEVE GSSAPI VPOPMAIL BDB LDAP PGSQL MYSQL SQLITE
+OPTIONS_DEFAULT=	KQUEUE SSL MANAGESIEVE
+KQUEUE_DESC=		kqueue(2) support
+MANAGESIEVE_DESC=	ManageSieve support
+VPOPMAIL_DESC=		VPopMail support
 
 .include <bsd.port.pre.mk>
 
@@ -68,24 +77,24 @@ REINPLACE=	s!%%PROTOCOLS%%!${PROTOCOLS}!g;\
 
 ## kqueue(2) support
 #
-.if !defined(WITHOUT_KQUEUE)
+.if ${PORT_OPTIONS:MKQUEUE}
 CONFIGURE_ARGS+=	--with-ioloop=kqueue
 .endif
 
 ## SSL support
 #
-.if defined(WITH_SSL) && !defined(WITHOUT_SSL)
-PROTOCOLS+=	imaps pop3s
+.if ${PORT_OPTIONS:MSSL}
+PROTOCOLS+=		imaps pop3s
 .else
 CONFIGURE_ARGS+=	--without-ssl
 .endif
 
 ## ManageSieve support
 #
-.if defined(WITH_MANAGESIEVE) && !defined(WITHOUT_MANAGESIEVE)
+.if ${PORT_OPTIONS:MMANAGESIEVE}
 MANAGESIEVEVERSION!=	${MAKE} -C ${.CURDIR}/../dovecot-managesieve -V PORTVERSION
 PATCH_SITES!=		${MAKE} -C ${.CURDIR}/../dovecot-managesieve -V MASTER_SITES
-PATCHFILES+=		dovecot-1.2.14-managesieve-${MANAGESIEVEVERSION}.diff.gz
+PATCHFILES+=		dovecot-${PORTVERSION}-managesieve-${MANAGESIEVEVERSION}.diff.gz
 PATCH_DIST_STRIP=	-p1
 PROTOCOLS+=		managesieve
 DOCS+=			README.managesieve
@@ -93,15 +102,26 @@ DOCS+=			README.managesieve
 
 ## GSSAPI support
 #
-.if defined(WITH_GSSAPI) && !defined(WITHOUT_GSSAPI)
+.if ${PORT_OPTIONS:MGSSAPI}
 CONFIGURE_ARGS+=	--with-gssapi
+LDFLAGS+=		-lgssapi_krb5
 .else
 CONFIGURE_ARGS+=	--without-gssapi
 .endif
 
+## VPopMail Support
+#
+.if ${PORT_OPTIONS:MVPOPMAIL}
+VPOPMAIL=		${LOCALBASE}/vpopmail/bin/vchkpw
+BUILD_DEPENDS+=		${VPOPMAIL}:${PORTSDIR}/mail/vpopmail
+CONFIGURE_ARGS+=	--with-vpopmail
+.else
+CONFIGURE_ARGS+=	--without-vpopmail
+.endif
+
 ## BDB Support
 #
-.if defined(WITH_BDB) && !defined(WITHOUT_BDB)
+.if ${PORT_OPTIONS:MBDB}
 USE_BDB=		42+
 CONFIGURE_ARGS+=	--with-db
 CFLAGS+=		-I${BDB_INCLUDE_DIR} -L${BDB_LIB_DIR}
@@ -113,7 +133,7 @@ PLIST_SUB+=		BDB="@comment "
 
 ## OpenLDAP Support
 #
-.if defined(WITH_LDAP) && !defined(WITHOUT_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=		yes
 CONFIGURE_ARGS+=	--with-ldap
 PLIST_SUB+=		LDAP=""
@@ -125,7 +145,7 @@ PLIST_SUB+=		LDAP="@comment "
 
 ## PostgreSQL Support
 #
-.if defined(WITH_PGSQL) && !defined(WITHOUT_PGSQL)
+.if ${PORT_OPTIONS:MPGSQL}
 USE_PGSQL=		yes
 CONFIGURE_ARGS+=	--with-pgsql
 PLIST_SUB+=		SQL=""
@@ -137,7 +157,7 @@ PLIST_SUB+=		SQL="@comment "
 
 ## MySQL Support
 #
-.if defined(WITH_MYSQL) && !defined(WITHOUT_MYSQL)
+.if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=		yes
 CONFIGURE_ARGS+=	--with-mysql
 PLIST_SUB+=		SQL=""
@@ -149,7 +169,7 @@ PLIST_SUB+=		SQL="@comment "
 
 ## SQLite Support
 #
-.if defined(WITH_SQLITE) && !defined(WITHOUT_SQLITE)
+.if ${PORT_OPTIONS:MSQLITE}
 USE_SQLITE=		3
 CONFIGURE_ARGS+=	--with-sqlite
 PLIST_SUB+=		SQL=""
@@ -168,18 +188,13 @@ post-patch:
 		s!-example\.conf[[:>:]]!.conf!g;\
 		s!^(confdir[[:space:]]+=[[:space:]]+)\$$\(sysconfdir\)!\1${EXAMPLESDIR}!g;\
 		' ${WRKSRC}/*/Makefile.in ${WRKSRC}/Makefile.in
-.if defined(WITH_GSSAPI)
-	@${REINPLACE_CMD} -e '\
-		s!<gssapi/gssapi\.h>!<gssapi.h>!;\
-		' ${WRKSRC}/src/auth/mech-gssapi.c ${WRKSRC}/configure
-.endif
 	@${LN} -f ${WRKSRC}/dovecot-example.conf		${WRKSRC}/dovecot.conf
 	@${LN} -f ${WRKSRC}/doc/dovecot-db-example.conf		${WRKSRC}/doc/dovecot-db.conf
 	@${LN} -f ${WRKSRC}/doc/dovecot-dict-sql-example.conf	${WRKSRC}/doc/dovecot-dict-sql.conf
 	@${LN} -f ${WRKSRC}/doc/dovecot-ldap-example.conf	${WRKSRC}/doc/dovecot-ldap.conf
 	@${LN} -f ${WRKSRC}/doc/dovecot-sql-example.conf	${WRKSRC}/doc/dovecot-sql.conf
 
-pre-install:
+pre-su-install:
 	@${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
@@ -194,11 +209,10 @@ post-install:
 		| ${SED} -e 's:^@exec ::; s:%D:${PREFIX}:g;' \
 		> ${WRKDIR}/.PLIST.exec \
 		&& ${SH} ${WRKDIR}/.PLIST.exec
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 .for f in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 .endif
-	@${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
