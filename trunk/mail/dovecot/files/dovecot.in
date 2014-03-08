@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD: mports/mail/dovecot/files/dovecot.sh.in,v 1.2 2009/11/29 03:41:16 laffer1 Exp $
+# $MidnightBSD$
 
 # PROVIDE: dovecot
 # REQUIRE: %%REQUIRE%%
@@ -11,10 +11,10 @@
 #	/etc/rc.conf.local
 #	/etc/rc.conf.d/dovecot
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name=dovecot
-rcvar=`set_rcvar`
+rcvar=dovecot_enable
 
 # read configuration and set defaults
 load_rc_config ${name}
