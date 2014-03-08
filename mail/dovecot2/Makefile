@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.9
+PORTVERSION=	2.2.10
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
@@ -9,16 +9,16 @@ PKGNAMESUFFIX=	2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
 
-LICENSE=	agg
+LICENSE=	lgpl2.1 mit
+LICENSE_COMB=	dual
 
-LATEST_LINK=	dovecot2
 CONFLICTS=	dovecot-1.[0-9]*
 
 USES=		iconv
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-statedir=/var/db/dovecot \
 		--without-shadow
@@ -61,20 +61,18 @@ REINPLACE=	s!%%PROTOCOLS%%!${PROTOCOLS}!g;\
 .if ${PORT_OPTIONS:MDOCS}
 DOCS=		AUTHORS COPYING COPYING.LGPL COPYING.MIT INSTALL NEWS TODO README
 PORTDOCS=	*
-PLIST_SUB+=	PORT=""
 .else
 CONFIGURE_ARGS+=	--without-docs
-PLIST_SUB+=	PORT="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MEXAMPLES}
 PORTEXAMPLES=	*
-.endif
 
 ## kqueue(2) support
 #
 .if ${PORT_OPTIONS:MKQUEUE}
 CONFIGURE_ARGS+=--with-ioloop=kqueue
+.else
+CONFIGURE_ARGS+=--with-ioloop=poll
 .endif
 
 ## SSL support
@@ -83,8 +81,8 @@ CONFIGURE_ARGS+=--with-ioloop=kqueue
 PROTOCOLS+=	imaps pop3s
 PLIST_SUB+=	SSL=""
 .else
-CONFIGURE_ARGS+=--without-ssl
 PLIST_SUB+=	SSL="@comment "
+CONFIGURE_ARGS+=--without-ssl
 .endif
 
 ## GSSAPI support
