@@ -9,6 +9,7 @@ DISTNAME=	Pantomime-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail/MIME handling library for GNUstep
+
 LICENSE=	lgpl2.1
 
 USE_GMAKE=	yes
