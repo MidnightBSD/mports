@@ -60,6 +60,7 @@ SUBDIR += moinmoin
 SUBDIR += nanoblogger
 SUBDIR += neon29
 SUBDIR += nginx
+SUBDIR += npm
 SUBDIR += node
 SUBDIR += nspluginwrapper
 SUBDIR += opera
