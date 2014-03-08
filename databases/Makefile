@@ -105,6 +105,7 @@ SUBDIR += ruby-gdbm
 SUBDIR += sqlclient
 SUBDIR += sqlite3
 SUBDIR += tdb
+SUBDIR += tinycdb
 SUBDIR += unixODBC
 
 .include <bsd.port.subdir.mk>
