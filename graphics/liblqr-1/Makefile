@@ -3,6 +3,7 @@
 
 PORTNAME=	liblqr-1
 DISTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://liblqr.wdfiles.com/local--files/en:download-page/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -13,38 +14,35 @@ LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	glib20 pkgconfig
-USE_GETTEXT=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gettext gmake pkgconfig
+USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
 # Use GNU89 inline semantics
 USE_CSTD=	gnu89
 
-.if !defined(NOPORTEXAMPLES)
 PORTEXAMPLES=	*
 
+OPTIONS_DEFINE=	EXAMPLES HTMLDOCS
+HTMLDOCS_DESC=	Build and install HTML documentation
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MEXAMPLES}
 SUB_FILES=	pkg-message
 SUB_LIST=	PORTSDIR=${PORTSDIR}
 .endif
 
-OPTIONS=	HTMLDOCS	"Build and install HTML documentation"	off
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_HTMLDOCS) && !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MHTMLDOCS}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt \
 		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-		${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml-450
-
-PORTDOCS=	*
+		${LOCALBASE}/share/xml/docbook/4.5:${PORTSDIR}/textproc/docbook-xml
+PLIST_SUB=	HTMLDOCS=""
+.else
+PLIST_SUB=	HTMLDOCS="@comment "
 .endif
 
 post-patch:
-.if ${OSVERSION} < 3000
-	@${REINPLACE_CMD} -e 's|FVISIBILITY_FLAG=".*"|FVISIBILITY_FLAG=""|' ${WRKSRC}/configure
-.endif
 	@${REINPLACE_CMD} -e '/^lqr_pkgconfigdir/ s|$$(libdir)|$${exec_prefix}/libdata|' \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|/usr.*chunk\.xsl|${LOCALBASE}/share/xsl/docbook/html/chunk.xsl|' \
@@ -52,23 +50,17 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr.*docbookx.dtd|${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd|' \
 		${WRKSRC}/docs/liblqr_manual.docbook
 
+.if ${PORT_OPTIONS:MHTMLDOCS}
 post-build:
-.if defined(WITH_HTMLDOCS) && !defined(NOPORTDOCS)
 	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE} html
 .endif
 
 post-install:
-.if defined(WITH_HTMLDOCS) && !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}
+.if ${PORT_OPTIONS:MHTMLDOCS}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${STAGEDIR}${DOCSDIR}
 .endif
-.if !defined(NOPORTEXAMPLES)
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/* ${EXAMPLESDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
 
-.if !exists(${LOCALBASE}/lib/libpngwriter.a)
-	@${ECHO_CMD}; ${CAT} ${PKGMESSAGE}; ${ECHO_CMD}
-.endif
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
