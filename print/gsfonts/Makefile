@@ -2,16 +2,17 @@
 
 PORTNAME=	gsfonts
 PORTVERSION=	8.11
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	print x11-fonts
 MASTER_SITES=	SF/gs-fonts/gs-fonts/${PORTVERSION}%20%28base%2035%2C%20GPL%29/:std \
 		SF/gs-fonts/gs-fonts/6.0%20%28misc%2C%20GPL%29/:other
 DISTFILES=	ghostscript-fonts-std-${PORTVERSION}${EXTRACT_SUFX}:std \
-		gnu-gs-fonts-other-6.0${EXTRACT_SUFX}:other
+		ghostscript-fonts-other-6.0${EXTRACT_SUFX}:other
 DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Fonts used by GNU Ghostscript (or X)
+COMMENT=	Standard fonts for Ghostscript
+
 LICENSE=	gpl2
 
 NO_WRKSUBDIR=	yes
