@@ -8,7 +8,7 @@
 
 PORTNAME=	mousepad
 PORTVERSION=	0.2.16
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=src/apps/${PORTNAME}/${PORTVERSION:R}
@@ -16,13 +16,14 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple xfce editor
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
+USES=		gmake pkgconfig
 USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gtk20 intltool intlhack pkgconfig desktopfileutils
+USE_GNOME=	gtk20 intltool intlhack desktopfileutils
 USE_XFCE=	configenv libgui
 
 .include <bsd.port.mk>
