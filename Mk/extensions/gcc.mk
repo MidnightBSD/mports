@@ -55,7 +55,7 @@ GCCVERSION_040600=	     0       0 4.6
 GCCVERSION_040700=	     0       0 4.7
 GCCVERSION_040800=	     0       0 4.8
 
-GCC_DEFAULT_VERSION=	4.6
+GCC_DEFAULT_VERSION=	4.8
 GCC_DEFAULT_V=	${GCC_DEFAULT_VERSION:S/.//}
 
 # No configurable parts below this. ####################################
