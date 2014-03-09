@@ -7,8 +7,7 @@
 #
 
 PORTNAME=	mousepad
-PORTVERSION=	0.2.16
-PORTREVISION=	2
+PORTVERSION=	0.3.0
 CATEGORIES=	editors xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=src/apps/${PORTNAME}/${PORTVERSION:R}
@@ -21,9 +20,20 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
-USES=		gmake pkgconfig
-USE_GETTEXT=	yes
-USE_GNOME=	gtk20 intltool intlhack desktopfileutils
-USE_XFCE=	configenv libgui
+USES=	desktop-file-utils gettext gmake pathfix pkgconfig perl5
+USE_GNOME=	glib20 gtk20 intltool intlhack gtksourceview2
+USE_XFCE=	configenv
+
+OPTIONS_DEFINE=	DBUS
+OPTIONS_DEFAULT=	DBUS
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDBUS}
+LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
+CONFIGURE_ARGS+=--enable-dbus
+.else
+CONFIGURE_ARGS+=--disable-dbus
+.endif
 
 .include <bsd.port.mk>
