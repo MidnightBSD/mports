@@ -8,6 +8,7 @@ PKGNAMESUFFIX=	-common
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common components between a munin node and server
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
@@ -37,6 +38,6 @@ post-install:
 	@(cd ${WRKSRC}/common/blib/libdoc && for man in ${MAN3} ; do \
 		${INSTALL_MAN} -C $$man ${PREFIX}/man/man3; \
 	done)
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/perl5/site_perl/5.14.2/Munin/Common/Defaults.pm
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/perl5/site_perl/${PERL_VER}/Munin/Common/Defaults.pm
 
 .include <bsd.port.mk>
