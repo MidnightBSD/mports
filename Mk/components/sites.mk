@@ -51,11 +51,6 @@ MASTER_SITE_AFTERSTEP+= \
 
 .if !defined(IGNORE_MASTER_SITE_ALSA)
 MASTER_SITE_ALSA+= \
-	ftp://ftp.silug.org/pub/alsa/%SUBDIR%/ \
-	ftp://ftp.task.gda.pl/pub/linux/misc/alsa/%SUBDIR%/ \
-	ftp://gd.tuwien.ac.at/opsys/linux/alsa/%SUBDIR%/ \
-	http://dl.ambiweb.de/mirrors/ftp.alsa-project.org/%SUBDIR%/ \
-	http://mirrors.zerg.biz/alsa/%SUBDIR%/ \
 	http://alsa.cybermirror.org/%SUBDIR%/ \
 	ftp://ftp.alsa-project.org/pub/%SUBDIR%/
 .endif
@@ -532,7 +527,7 @@ MASTER_SITE_GENTOO+= \
 .if defined(USE_GITHUB)
 .if defined(GH_TAGNAME) && ${GH_TAGNAME} == master
 IGNORE?=	Using master as GH_TAGNAME is invalid. \
-		Must use a tag or commit hash so the upstream does\
+		Must use a tag or commit hash so the upstream does \
 		not "reroll" as soon as the branch is updated
 .endif
 MASTER_SITE_GITHUB+=		https://codeload.github.com/%SUBDIR% \
@@ -802,7 +797,7 @@ MASTER_SITE_MOZILLA_EXTENDED+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MPLAYERHQ)
-MASTER_SITE_MPLAYERHQ+=	\
+MASTER_SITE_MPLAYERHQ+= \
 	http://www.mplayerhq.hu/MPlayer/%SUBDIR%/ \
 	http://www1.mplayerhq.hu/MPlayer/%SUBDIR%/ \
 	http://www2.mplayerhq.hu/MPlayer/%SUBDIR%/ \
@@ -844,7 +839,7 @@ MASTER_SITE_NETBSD+= \
 	ftp://ftp.netbsd.org/pub/NetBSD/packages/distfiles/%SUBDIR%/ \
 	ftp://ftp.iastate.edu/pub/netbsd/packages/distfiles/%SUBDIR%/ \
 	ftp://ftp.plig.net/pub/NetBSD/packages/distfiles/%SUBDIR%/ \
-	ftp://ftp.proxad.net/mirrors/ftp.netbsd.org/packages/distfiles/%SUBDIR%/\
+	ftp://ftp.proxad.net/mirrors/ftp.netbsd.org/packages/distfiles/%SUBDIR%/ \
 	ftp://ftp.unina.it/pub/Unix/NetBSD/packages/distfiles/%SUBDIR%/ \
 	ftp://ftp.uninett.no/bsd/unix/NetBSD/packages/distfiles/%SUBDIR%/ \
 	ftp://sunsite.uio.no/bsd/unix/NetBSD/packages/distfiles/%SUBDIR%/ \
@@ -1267,7 +1262,7 @@ MASTER_SITE_SUNSITE+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SUSE)
-MASTER_SITE_SUSE+= 	\
+MASTER_SITE_SUSE+= \
 	http://mirrors.usc.edu/pub/linux/distributions/suse/%SUBDIR%/ \
 	http://mirror.usu.edu/mirrors/suse/%SUBDIR%/ \
 	ftp://mirror.mcs.anl.gov/pub/suse/%SUBDIR%/ \
@@ -1367,7 +1362,7 @@ MASTER_SITE_THEMES+= \
 
 # Derived from: https://www.torproject.org/getinvolved/mirrors.html.en
 .if !defined(IGNORE_MASTER_SITE_TOR)
-MASTER_SITE_TOR+=	\
+MASTER_SITE_TOR+= \
 		https://www.torproject.org/dist/%SUBDIR%/ \
 		https://archive.torproject.org/tor-package-archive/%SUBDIR%/ \
 		ftp://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
@@ -1421,40 +1416,26 @@ MASTER_SITE_TUCOWS+= \
 .endif
 
 # List:		http://www.vim.org/mirrors.php
-# Updated:	2013-08-19
+# Updated:	2014-02-28
 .if !defined(IGNORE_MASTER_SITE_VIM)
 MASTER_SITE_VIM+= \
 	http://ftp.vim.org/pub/vim/unix/ \
-	http://artfiles.org/vim.org/unix/ \
-	http://ftp.gr.vim.org/pub/vim/unix/ \
-	http://ftp.stu.edu.tw/vim/unix/ \
+	http://vim.mirrors.hostinginnederland.nl/unix/ \
 	http://ftp.tw.vim.org/pub/vim/unix/ \
+	http://ftp2.tw.vim.org/pub/vim/unix/ \
+	http://artfiles.org/vim.org/unix/ \
+	http://vim.cybermirror.org/unix/ \
 	http://ftp.vim.ossmirror.de/pub/vim/unix/ \
+	http://tweedo.com/mirror/ftp.vim.org/unix/ \
+	http://vim.mirror.fr/unix/ \
+	http://ftp.gr.vim.org/pub/vim/unix/ \
+	http://mirror.netinch.com/pub/vim/unix/ \
+	http://servingzone.com/mirrors/vim/unix/ \
+	http://ftp2.uk.vim.org/pub/vim/unix/ \
 	http://ftp2.jp.vim.org/pub/vim/unix/ \
 	http://ftp2.kr.vim.org/pub/vim/unix/ \
-	http://ftp2.tw.vim.org/pub/vim/unix/ \
-	http://ftp2.uk.vim.org/pub/vim/unix/ \
-	http://servingzone.com/mirrors/vim/unix/ \
-	http://tweedo.com/mirror/ftp.vim.org/unix/ \
-	http://vim.cybermirror.org/unix/ \
-	http://vim.mirror.fr/unix/ \
-	ftp://ftp.home.vim.org/pub/vim/unix/ \
-	ftp://artfiles.org/vim.org/unix/ \
-	ftp://ftp.ar.vim.org/pub/vim/unix/ \
-	ftp://ftp.ca.vim.org/pub/vim/unix/ \
-	ftp://ftp.de.vim.org/unix/ \
-	ftp://ftp.gr.vim.org/pub/vim/unix/ \
-	ftp://ftp.is.vim.org/pub/vim/unix/ \
-	ftp://ftp.jp.vim.org/pub/vim/unix/ \
-	ftp://ftp.pl.vim.org/pub/vim/unix/ \
-	ftp://ftp.uk.vim.org/pub/vim/unix/ \
-	ftp://ftp.stu.edu.tw/pub/vim/unix/ \
-	ftp://ftp.za.vim.org/mirrors/ftp.vim.org/unix/ \
-	ftp://ftp2.kr.vim.org/pub/vim/unix/ \
-	ftp://ftp2.tw.vim.org/pub/vim/unix/ \
-	ftp://ftp2.uk.vim.org/pub/vim/unix/ \
-	ftp://ftp3.de.vim.org/pub/vim/unix/ \
-	ftp://vim.tsu.ru/pub/vim/unix/
+	http://mirrors-usa.go-parts.com/pub/vim/unix/ \
+	ftp://ftp.home.vim.org/pub/vim/unix/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_WINDOWMAKER)
@@ -1560,8 +1541,7 @@ MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN \
 			SFJP:SOURCEFORGE_JP \
 			RG:RUBYGEMS \
 			RF:RUBYFORGE
-MASTER_SITES_SUBDIRS=	\
-			APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
+MASTER_SITES_SUBDIRS=	APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
 			BERLIOS:${PORTNAME:L} \
 			CENKES:myports \
 			CHEESESHOP:source/${DISTNAME:C/(.).*/\1/}/${DISTNAME:C/(.*)-[0-9].*/\1/} \
