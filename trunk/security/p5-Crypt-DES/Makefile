@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	Crypt-DES
-PORTVERSION=	2.05
+PORTVERSION=	2.07
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to DES block cipher
+
 LICENSE=	perl
 
 BUILD_DEPENDS=	p5-Crypt-CBC>=0:${PORTSDIR}/security/p5-Crypt-CBC
