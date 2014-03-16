@@ -8,6 +8,7 @@ PKGNAMESUFFIX=	-master
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collector part of Munin
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
