@@ -1,5 +1,4 @@
 # $MidnightBSD$ 
-# $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 
 .if defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)
 
@@ -25,10 +24,16 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 # PGSQL_VER
 #				- Detected PostgreSQL version.
 
+.if defined(USE_PGSQL)
+VALID_PGSQL_VER=        84 90 91 92 93
+DEFAULT_PGSQL_VER?=     90
+PGSQL83_LIBVER=         5
+PGSQL84_LIBVER=         5
+PGSQL90_LIBVER=         5
+PGSQL91_LIBVER=         5
+PGSQL92_LIBVER=         5
+PGSQL93_LIBVER=         5
 
-DEFAULT_PGSQL_VER?=	84
-PGSQL84_LIBVER=		5
-PGSQL90_LIBVER=		5
 
 # Setting/finding PostgreSQL version we want.
 .if exists(${LOCALBASE}/bin/pg_config) && !defined(PACKAGE_BUILDING)
@@ -75,5 +80,6 @@ CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
+.endif # USE_PGSQL
 
 .endif #defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)
