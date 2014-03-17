@@ -10,6 +10,7 @@ MANPREFIX?=	/usr/share
 MANPREFIX?=	${PREFIX}
 .endif
 
+MANDIRS+=	${MANPREFIX}/man
 .for sect in 1 2 3 4 5 6 7 8 9
 MAN${sect}PREFIX?=	${MANPREFIX}
 .endfor
@@ -95,3 +96,38 @@ _FAKEMAN += ${FAKE_DESTDIR}${m}
 .endfor
 
 .endif
+
+# Compress all manpage not already compressed which are not hardlinks
+# Find all manpages which are not compressed and are hadlinks, and only get the
+# list of inodes concerned, for each of them compress the first one found and recreate the hardlinks for the others
+# Fixes all dead symlinks left by the previous round
+.if !target(fake-compress-man)
+fake-compress-man:
+	@${ECHO_MSG} "====> Compressing man pages (fake-compress-man)"
+	@mdirs= ; \
+	for dir in ${MANDIRS:S/^/${FAKE_DESTDIR}/} ; do \
+		[ -d $$dir ] && mdirs="$$mdirs $$dir" ;\
+	done ; \
+	for dir in $$mdirs; do \
+	${FIND} $$dir -type f \! -name "*.gz" -links 1 -exec ${GZIP_CMD} {} \; ; \
+	${FIND} $$dir -type f \! -name "*.gz" \! -links 1 -exec ${STAT} -f '%i' {} \; | \
+		${SORT} -u | while read inode ; do \
+			unset ref ; \
+			for f in $$(${FIND} $$dir -type f -inum $${inode} -print); do \
+				if [ -z $$ref ]; then \
+					ref=$${f}.gz ; \
+					${GZIP_CMD} $${f} ; \
+					continue ; \
+				fi ; \
+				${RM} -f $${f} ; \
+				(cd $${f%/*}; ${LN} -f $${ref##*/} $${f##*/}.gz) ; \
+				done ; \
+			done ; \
+		${FIND} $$dir -type l \! -name "*.gz" | while read link ; do \
+				dest=$$(readlink $$link) ; \
+				rm -f $$link ; \
+				(cd $${link%/*} ; ${LN} -sf $${dest##*/}.gz $${link##*/}.gz) ;\
+		done; \
+	done
+.endif
+
