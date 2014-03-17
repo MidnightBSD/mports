@@ -2663,7 +2663,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
 				generate-plist fake-pre-su-install create-users-groups do-fake fake-post-install \
-				post-fake compress-man install-rc-script install-ldconfig-file install-license install-desktop-entries \
+				post-fake fake-compress-man compress-man install-rc-script install-ldconfig-file install-license install-desktop-entries \
 				fix-fake-symlinks finish-tmpplist fix-plist-sequence
 
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
