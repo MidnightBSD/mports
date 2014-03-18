@@ -115,6 +115,7 @@ SUBDIR += validator
 SUBDIR += varnish
 SUBDIR += w3m
 SUBDIR += webkit-gtk2
+SUBDIR += webkit-gtk3
 SUBDIR += weblint
 SUBDIR += webserver
 SUBDIR += webservices
