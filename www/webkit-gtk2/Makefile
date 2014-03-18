@@ -2,7 +2,7 @@
 
 PORTNAME=	webkit
 PORTVERSION=	1.8.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
 PKGNAMESUFFIX=	-gtk2
@@ -23,13 +23,10 @@ LIB_DEPENDS=	enchant:${PORTSDIR}/textproc/enchant \
 
 USE_XZ=		yes
 USE_GSTREAMER=	yes
-MAKE_JOBS_SAFE=	yes
 USE_XORG=	xt
-USES=		pkgconfig gettext
-USE_BISON=	build
-USE_GMAKE=	yes
+USES=		bison gmake pkgconfig gettext
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gtk20 libxslt ltverhack
+USE_GNOME=	gtk20 introspection:build libxslt ltverhack
 USE_SQLITE=	yes
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
