@@ -33,6 +33,7 @@ SUBDIR += lmdb
 SUBDIR += memcached
 SUBDIR += memcachedb
 SUBDIR += mysql-connector-java
+SUBDIR += mysql2pgsql
 SUBDIR += mysql51-client
 SUBDIR += mysql51-scripts
 SUBDIR += mysql51-server
