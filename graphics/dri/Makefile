@@ -7,7 +7,7 @@ PORTEPOCH=	2
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL hardware acceleration drivers for the DRI
-LICENSE=	x11
+LICENSE=	mit
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm \
 		expat.6:${PORTSDIR}/textproc/expat2
