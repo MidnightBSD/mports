@@ -59,6 +59,7 @@ SUBDIR += openct
 SUBDIR += opensc
 SUBDIR += openssh-askpass
 SUBDIR += openssh-portable
+SUBDIR += openssl
 SUBDIR += openvpn
 SUBDIR += p11-kit
 SUBDIR += p5-Authen-NTLM
