@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	JSON
-PORTVERSION=	2.61
+PORTVERSION=	2.90
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,15 +9,13 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to convert to JSON (JavaScript Object Notation)
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-CONFLICTS=	p5-JSON-1.*
+CONFLICTS=	p5-JSON-1.* p5-JSON1-*
+
+USE_PERL5_BUILD=	yes
+USE_PERL5_RUN=	yes
 PERL_CONFIGURE=	yes
-
-MAN3=		JSON.3 \
-		JSON::backportPP.3 \
-		JSON::backportPP::Boolean.3 \
-		JSON::backportPP::Compat5005.3 \
-		JSON::backportPP::Compat5006.3
 
 .include <bsd.port.mk>
