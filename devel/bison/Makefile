@@ -2,20 +2,23 @@
 
 PORTNAME=	bison
 PORTVERSION=	2.7.1
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A parser generator from FSF, (mostly) compatible with Yacc
+COMMENT=	Parser generator from FSF, (mostly) compatible with Yacc
+
 LICENSE=	gpl3
+
+OPTIONS_DEFINE=	EXAMPLES NLS
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_XZ=		yes
-USE_CHARSETFIX=	yes
+USES=		charsetfix
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -23,33 +26,21 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS+=--disable-yacc
 
-MAN1=		bison.1
 INFO=		bison
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
+OPTIONS_SUB=	yes
 
 post-extract:
 	@${RM} -f ${WRKSRC}/doc/bison.info*
 	@${REINPLACE_CMD} 's/MANS = yacc.1/MANS =/' ${WRKSRC}/doc/Makefile.in
-.if ! ${PORT_OPTIONS:MNLS}
-	@${REINPLACE_CMD} 's/ install-exec-local//' ${WRKSRC}/lib/Makefile.in
-.endif
 
-.if ${PORT_OPTIONS:MEXAMPLES}
 PORTEXAMPLES=	calc++
 
 post-install:
 	${MKDIR} ${EXAMPLESDIR}/calc++
 	${INSTALL_DATA} ${WRKSRC}/examples/calc++/*.[chly]* \
 		${EXAMPLESDIR}/calc++
-.endif
 
 .include <bsd.port.mk>
