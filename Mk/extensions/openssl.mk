@@ -53,16 +53,16 @@ WITH_OPENSSL_PORT?=	yes
 #	but give an installed port preference over it.
 .if	!defined(WITH_OPENSSL_BASE) && \
 	!defined(WITH_OPENSSL_PORT) && \
-	!exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so) && \
-	exists(${DESTDIR}/usr/include/openssl/opensslv.h)
+	!exists(${LOCALBASE}/lib/libcrypto.so) && \
+	exists(/usr/include/openssl/opensslv.h)
 WITH_OPENSSL_BASE=yes
 .endif
 
 .if defined(WITH_OPENSSL_BASE)
-OPENSSLBASE=		${DESTDIR}/usr
-OPENSSLDIR=		${DESTDIR}/etc/ssl
+OPENSSLBASE=		/usr
+OPENSSLDIR=		/etc/ssl
 
-.if !exists(${DESTDIR}/usr/lib/libcrypto.so)
+.if !exists(/usr/lib/libcrypto.so)
 check-depends::
 	@${ECHO_CMD} "Dependency error: this port requires the OpenSSL library, which is part of"
 	@${ECHO_CMD} "the MidnightBSD crypto distribution but not installed on your"
@@ -71,7 +71,7 @@ check-depends::
 .endif
 .if exists(${LOCALBASE}/lib/libcrypto.so)
 check-depends::
-	@${ECHO_CMD} "Dependency error: this port wants the OpenSSL library from the FreeBSD"
+	@${ECHO_CMD} "Dependency error: this port wants the OpenSSL library from the BSD"
 	@${ECHO_CMD} "base system. You can't build against it, while a newer"
 	@${ECHO_CMD} "version is installed by a port."
 	@${ECHO_CMD} "Please deinstall the port or undefine WITH_OPENSSL_BASE."
@@ -95,33 +95,11 @@ OPENSSL_CFLAGS+=	-DNO_IDEA
 .endif
 MAKE_ARGS+=		OPENSSL_CFLAGS="${OPENSSL_CFLAGS}"
 .endif
-OPENSSLRPATH=		${DESTDIR}/usr/lib:${LOCALBASE}/lib
+OPENSSLRPATH=		/usr/lib:${LOCALBASE}/lib
 
 .else
 
 OPENSSLBASE=		${LOCALBASE}
-.if	!defined(OPENSSL_PORT) && \
-	exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so)
-# find installed port and use it for dependency
-PKG_DBDIR?=		${DESTDIR}/var/db/pkg
-.if !defined(OPENSSL_INSTALLED)
-OPENSSL_INSTALLED!=	find "${PKG_DBDIR}/" -type f -name "+CONTENTS" -print0 | \
-			xargs -0 grep -l "^lib/libssl.so." | \
-			while read contents; do \
-				sslprefix=`grep "^@cwd " "$${contents}" | ${HEAD} -n 1`; \
-				if test "$${sslprefix}" = "@cwd ${LOCALBASE}" ; then \
-					echo "$${contents}"; break; fi; done
-.endif
-.if defined(OPENSSL_INSTALLED) && ${OPENSSL_INSTALLED} != ""
-OPENSSL_PORT!=		grep "^@comment ORIGIN:" "${OPENSSL_INSTALLED}" | ${CUT} -d : -f 2
-OPENSSL_SHLIBFILE!=	grep "^lib/libssl.so." "${OPENSSL_INSTALLED}"
-OPENSSL_SHLIBVER?=	${OPENSSL_SHLIBFILE:E}
-.else
-# PKG_DBDIR was not found, default
-OPENSSL_PORT?=		security/openssl
-OPENSSL_SHLIBVER?=	8
-.endif
-.endif
 OPENSSL_PORT?=		security/openssl
 OPENSSL_SHLIBVER?=	8
 
