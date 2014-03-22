@@ -27,7 +27,7 @@ SSL_DESC=	OpenSSL crypto driver
 NSS_DESC=	NSS crypto driver
 
 APR_VERSION=	1.4.8
-APU_VERSION=	1.5.2
+APU_VERSION=	1.5.3
 
 USES=		iconv pathfix
 USE_LDCONFIG=		yes
