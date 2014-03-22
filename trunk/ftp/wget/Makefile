@@ -2,6 +2,7 @@
 
 PORTNAME=	wget
 DISTVERSION=	1.15
+PORTREVISION=	1
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
@@ -59,6 +60,7 @@ PLIST_SUB=	NLS="@comment "
 .if ${PORT_OPTIONS:MIDN}
 LIB_DEPENDS+=	idn:${PORTSDIR}/dns/libidn
 CONFIGURE_ARGS+=--enable-iri --with-libidn=${LOCALBASE}
+USES+=		iconv
 .else
 CONFIGURE_ARGS+=--disable-iri
 .endif
@@ -72,7 +74,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV+=	ac_cv_header_pcre_h=no
 .endif
 
-MAN1=		wget.1
 INFO=		wget
 
 # eliminate gmakism
