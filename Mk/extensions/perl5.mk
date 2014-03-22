@@ -223,12 +223,14 @@ Perl_Post_Include=	perl.mk
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
 				PERL_ARCH=${PERL_ARCH} \
+				PERL5_MAN3=lib/perl5/${PERL_VER}/man/man3 \
 				SITE_PERL=${SITE_PERL_REL}
 
 SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
 				PERL_ARCH=${PERL_ARCH} \
 				SITE_PERL=${SITE_PERL_REL} \
+				PERL5_MAN3=lib/perl5/${PERL_VER}/man/man3 \
 				PERL=${PERL}
 
 
