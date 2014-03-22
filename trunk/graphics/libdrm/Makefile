@@ -8,7 +8,8 @@ MASTER_SITES=	http://dri.freedesktop.org/libdrm/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace interface to kernel Direct Rendering Module services
-LICENSE=	x11
+
+LICENSE=	mit
 
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/libpthread-stubs
 LIB_DEPENDS=	pciaccess:${PORTSDIR}/devel/libpciaccess \
