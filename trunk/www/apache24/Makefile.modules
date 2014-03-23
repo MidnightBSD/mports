@@ -1,5 +1,10 @@
-# $MidnightBSD: mports/www/apache24/Makefile.modules,v 1.2 2013/08/30 12:22:46 laffer1 Exp $
-
+# $MidnightBSD$
+# $FreeBSD: head/www/apache24/Makefile.modules 331790 2013-10-27 17:54:39Z ohauer $
+#
+# Note by Clement Laforet: (to generate PLIST_SUB entries for modules)
+#	gsed 's/^\(.*\)mod\(.*\)\.so/%%\MOD\U\2%%\L\1mod\2\.so/' pkg-plist > tmp
+#	mv tmp pkg-plist
+#
 
 # =============================================
 # Maintainer note for OPTION handling:
@@ -54,8 +59,19 @@ IGNORE=	SESSION_CRYPTO requires APR-util to have crypto openssl support build in
 #.  endif
 .endif	# exists APU_CONFIG
 
-# XXX LATEST_LINK overwrites OPTIONSFILE ...
-# maybe use NO_LATEST_LINK in future
+# =============================================
+# if build with shared MPM the last module will be activated
+# see apache issue 53882
+
+# XXX in case we use OPTIONS for MPM 
+# we do not have a WITH_MPM variable
+.if ${PORT_OPTIONS:MMPM_SHARED}
+PLIST_SUB+=		MPM_SHARED=""
+CONFIGURE_ARGS+=	--enable-mpms-shared=all
+.else
+PLIST_SUB+=		MPM_SHARED="@comment "
+.endif
+
 .if ${PORT_OPTIONS:MMPM_PREFORK}
 CONFIGURE_ARGS+=	--with-mpm=prefork
 .elif ${PORT_OPTIONS:MMPM_WORKER}
@@ -131,34 +147,10 @@ IGNORE=	AUTH_BASIC need at least one AUTHZ provider
 .  endif
 .endif
 
-.if ${PORT_OPTIONS:MSSL}
-CFLAGS+=	-I${OPENSSLINC}
-LDFLAGS+=	-L${OPENSSLLIB}
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
-.endif
-
-.if ${PORT_OPTIONS:MSOCACHE_DC}
-CONFIGURE_ARGS+=	--with-distcache=${LOCALBASE}
-.endif
-
-.if ${PORT_OPTIONS:MLUA}
-CONFIGURE_ARGS+=	--with-lua=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--without-lua
-.endif
-
 .if ${PORT_OPTIONS:MXML2ENC} || ${PORT_OPTIONS:MPROXY_HTML}
 CONFIGURE_ARGS+=	--with-libxml2=${LOCALBASE}/include/libxml2
 .else
 CONFIGURE_ARGS+=	--without-libxml2
-.endif
-
-.if ${PORT_OPTIONS:MAUTHNZ_LDAP}
-CONFIGURE_ARGS+=	--enable-authnz-ldap
-.endif
-
-.if ${PORT_OPTIONS:MLDAP}
-CONFIGURE_ARGS+=	--enable-ldap=shared
 .endif
 
 .if defined(APR_HAS_THREADS)
@@ -168,13 +160,6 @@ LDFLAGS+=	${PTHREAD_LIBS}
 .  if exists(${APR_CONFIG}) && ${PORT_OPTIONS:MMEM_CACHE}
 IGNORE=	MEM_CACHE requires APR threads. Please rebuild APR with THREAD support
 .  endif
-.endif
-
-# http://httpd.apache.org/docs/2.4/bind.html
-.if ${PORT_OPTIONS:MIPV4_MAPPED}
-CONFIGURE_ARGS+=	--enable-v4-mapped
-.else
-CONFIGURE_ARGS+=	--disable-v4-mapped
 .endif
 
 .endif	# _PREMKINCLUDED
