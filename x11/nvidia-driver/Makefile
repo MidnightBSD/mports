@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	319.32
+DISTVERSION?=	331.49
+# Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
-ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
 # MASTER_SITE_SUBDIR has to be set later because it depends on NVVERSION
 DISTNAME=	NVIDIA-FreeBSD-x86${ARCH_SUFX}-${DISTVERSION}
 
@@ -13,7 +13,10 @@ MAINTAINER=	luke@midnightbsd.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 
 LICENSE=	nvidia
+LICENSE_FILE=	${WRKSRC}/doc/license.txt
 
+ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
+USES=		kmod uidfix
 USE_XORG=	xorg-server
 USE_GL=		gl
 USE_LDCONFIG=	yes
@@ -48,33 +51,54 @@ MASTER_SITE_SUBDIR=	freebsd/${DISTVERSION}
 ONLY_FOR_ARCHS=	i386
 .endif
 
-OPTIONS=	FREEBSD_AGP	"Use FreeBSD AGP GART driver" off \
-		ACPI_PM		"Enable support for ACPI Power Management" off \
-		LINUX		"Build with support for Linux compatibility" on
-.if ${NVVERSION} >= 1952200
-OPTIONS+=	WBINVD		"Enable heavy-weight cache-flush logic" off
+.if ${NVVERSION} <= 1904200
+EXTRA_PATCHES=	${FILESDIR}/legacy-patch-mk-nvidia.lib.mk
+.else
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-mk-nvidia.lib.mk
 .endif
 
-.if ${NVVERSION} <= 1904200
-EXTRA_PATCHES=	${FILESDIR}/legacy-patch-nvidia.lib.mk
+.if ${NVVERSION} >= 3312000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-x11-driver-Makefile
+.else
+EXTRA_PATCHES+=	${FILESDIR}/legacy-patch-x11-driver-Makefile
 .endif
 
 # Fix recent arbitrary memory access vulnerability in legacy drivers
 .if ${NVVERSION} <= 1905300
-. if ${NVVERSION} != 1731435
+.  if ${NVVERSION} != 1731435
 EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-0946
-. endif
+.  endif
 EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-4225
 .endif
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	ACPI_PM LINUX DOCS
+OPTIONS_DEFAULT=	LINUX
+
+ACPI_PM_DESC=		ACPI Power Management support
+LINUX_DESC=		Linux compatibility support
+
+.if ${NVVERSION} < 3101400
+OPTIONS_DEFINE+=	FREEBSD_AGP
+FREEBSD_AGP_DESC=	Use FreeBSD AGP GART driver
+.endif
+
+.if ${NVVERSION} >= 1952200
+OPTIONS_DEFINE+=	WBINVD
+WBINVD_DESC=		Flush CPU caches directly with WBINVD
+.endif
 
 PLIST_SUB+=	LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
 		MODULESDIR=${MODULESDIR}
 
-.if !defined(WITHOUT_LINUX)
-CONFLICTS=	linux-dri-[0-9]* linux-f10-dri-[0-9]* linux-f8-dri-[0-9]* \
-		linux_dri-[0-9]* linux_dri-devel-[0-9]*
+.include <bsd.mport.options.mk>
+
+# FreeBSD src SVN r254138 had broken 71.86.xx legacy series :(
+.if ${OSVERSION} > 1000041 && ${NVVERSION} <= 718615
+BROKEN=		does not compile
+.endif
+
+.if ${PORT_OPTIONS:MLINUX}
+CONFLICTS=	linux[-_]dri-[0-9]* linux-f10-dri-[0-9]*
 USE_LINUX=	yes
 PLIST_SUB+=	LINUX=""
 .else
@@ -104,29 +128,80 @@ post-patch: .SILENT
 		s/int nprot/&, vm_memattr_t *memattr/' \
 			${WRKSRC}/src/nvidia_dev.c
 .endif
+# In the legacy drivers: remove page queue locking and add page locking
+# around vm_page_(un)wire() after FreeBSD src SVN r207410, r207617, and
+# r207644; also remove page queue locking around vm_page_wakeup() after
+# FreeBSD src SVN r163622
+.if ${OSVERSION} > 4014 && ${NVVERSION} < 3046400
+	${REINPLACE_CMD} -E '/vm_page_(un)?lock_queues\(\);/d ; \
+		s/(vm_page_(un)?wire\()([^,]+)(, 0)?(\);)/vm_page_lock(\3); & vm_page_unlock(\3);/' \
+			${WRKSRC}/src/nvidia_subr.c
+.endif
 # Catch up legacy drivers with FreeBSD src SVN r225617
 .if ${OSVERSION} > 4015 && ${NVVERSION} < 1952200
 	${REINPLACE_CMD} -e '/return/s/ioctl/sys_&/' \
 		${WRKSRC}/src/nvidia_linux.c
 .endif
+# Adjust Linux headers #include's after FreeBSD src SVN r246085
+.if ${OSVERSION} > 1000027 && ${NVVERSION} >= 964323
+	${REINPLACE_CMD} -E '/#include "machine\/\.\.\/linux(32)?\/linux.h"/ \
+		{ x ; s/.*/#include "machine\/..\/..\/compat\/linux\/linux_ioctl.h"/ ; H ; x ; }' \
+			${WRKSRC}/src/nvidia_linux.c
+.endif
+# Adjust vm_object locking after FreeBSD src SVN r248084
+.if ${OSVERSION} > 1000029
+	${REINPLACE_CMD} -e '/#include <vm\/vm_object.h>/ \
+		{ x ; s/.*/#include <sys\/rwlock.h>/ ; G ; }' \
+			${WRKSRC}/src/nv-freebsd.h
+	${REINPLACE_CMD} -E 's/(VM_OBJECT_)(UN)?(LOCK)/\1W\2\3/' \
+		${WRKSRC}/src/nvidia_subr.c
+.endif
+# Adjust kmem(9) calls after FreeBSD src SVN r254025
+.if ${OSVERSION} > 1000040
+	${REINPLACE_CMD} -e '/kmem_/s/kernel_map/kernel_arena/' \
+		${WRKSRC}/src/nvidia_subr.c
+.endif
+# Adopt to cap_rights_t type change in FreeBSD src SVN r255219
+.if ${OSVERSION} > 1000052
+	${REINPLACE_CMD} -e 's/u_long cmd;/& cap_rights_t rights;/ ; \
+		s/CAP_IOCTL/cap_rights_init(\&rights, &)/' \
+			${WRKSRC}/src/nvidia_linux.c
+.endif
+# Argument count of vm_map_find() changed in FreeBSD src SVN r255426
+.if ${OSVERSION} > 1000054
+	${REINPLACE_CMD} -e 's/virtual_address, size,/& 0,/' \
+		${WRKSRC}/src/nvidia_subr.c
+.endif
+# Fix stack buffer overflow in nvidia_sysctl_bus_type()
+.if ${NVVERSION} < 3192300
+	${REINPLACE_CMD} -E '/bus_type\[4\]/d ; \
+		s/sprintf\(bus_type, (".+")/return SYSCTL_OUT(req, \1, sizeof(\1)/ ; \
+		/return SYSCTL_OUT\(req, bus_type/d' \
+			${WRKSRC}/src/nvidia_sysctl.c
+.endif
+# Unbreak the build of 173.14.xx legacy series on recent -CURRENT
+.if ${NVVERSION} < 1952200 && ${NVVERSION} >= 1690400
+	${REINPLACE_CMD} -E 's/os_(alloc|free)_contig_pages/NV_API_CALL &/' \
+		${WRKSRC}/src/nv-freebsd.h
+.endif
 # Process OPTIONS
-.if defined(WITH_FREEBSD_AGP)
+.if ${PORT_OPTIONS:MFREEBSD_AGP}
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_OS_AGP)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-.if defined(WITH_ACPI_PM)
+.if ${PORT_OPTIONS:MACPI_PM}
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_ACPI_PM)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-.if defined(WITHOUT_LINUX)
+.if ! ${PORT_OPTIONS:MLINUX}
 	${REINPLACE_CMD} -E 's/define (NV_SUPPORT_LINUX_COMPAT)/undef \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-.if defined(WITH_WBINVD)
+.if ${PORT_OPTIONS:MWBINVD}
 	${REINPLACE_CMD} -E 's/undef (NV_USE_WBINVD)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-	${REINPLACE_CMD} -e '/exists/s/$$/ \&\& !defined(WITHOUT_LINUX)/' \
+	${REINPLACE_CMD} -e 's/exists(\/.*/& \&\& !defined(WITHOUT_LINUX)/' \
 		${WRKSRC}/lib/Makefile
 # Do not install VDPAU libraries which are provided by `multimedia/libvdpau'
 # port for a while now
@@ -143,19 +218,19 @@ post-patch: .SILENT
 .endif
 	${REINPLACE_CMD} -e '/bin/d ; /man/d' ${WRKSRC}/x11/Makefile
 # Conditionally install documentation (but you generally want it)
-.if defined(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -E 's/(x11).*/\1/ ; /doc/d' ${WRKSRC}/Makefile
 .endif
 # Adjust installation paths of some conflicting files (shared also between
-# libGL and xorg-server) to ease package manager work
+# libGL and xorg-server) to ease package manager work, esp. with pkgng
 	${REINPLACE_CMD} -e '/LIBDIR/s:xorg/modules/extensions:&/.nvidia:' \
 		${WRKSRC}/x11/extension/Makefile
 	${REINPLACE_CMD} -e '/LIBDIR/s:lib:&/.nvidia:' \
 		${WRKSRC}/lib/libGL/Makefile
 # Do not execute afterinstall target (prevent automatic module registration
 # and "smart" installation of conflicting files heuristics)
-	${REINPLACE_CMD} -e 's/afterinstall/dontexecute/' ${WRKSRC}/Makefile
-	${REINPLACE_CMD} -e 's/beforeinstall/dontexecute/' \
+	${REINPLACE_CMD} -e 's/afterinstall/&_dontexecute/' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's/beforeinstall/&_dontexecute/' \
 		${WRKSRC}/lib/Makefile ${WRKSRC}/src/Makefile
 
 pre-install:
@@ -185,15 +260,32 @@ post-install: .SILENT
 .endif
 .if ${NVVERSION} >= 3101900
 	${REINPLACE_CMD} -e '/libXvMCNVIDIA/d' ${TMPPLIST}
-.else # some applications need this symlink
-	${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+.else	# some applications need this symlink (see PR ports/72877)
+	${LN} -sf libXvMCNVIDIA.so.1 \
+		${STAGEDIR}${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+.endif
+.if ${NVVERSION} < 3311300 || ${ARCH} == amd64
+	${REINPLACE_CMD} -E '/lib(nvidia-)?(EGL|eglcore|GLESv|glsi)/d' \
+		${TMPPLIST}
 .endif
 .if ${NVVERSION} >= 1952200
-. if ${OSVERSION} > 4014
 	${REINPLACE_CMD} -e '/does not support PAE/,+1d' ${PKGMESSAGE}
-. else	# when sed(1) does not support "addr1,+N" ranges, use line numbers
-	${REINPLACE_CMD} -e '26,27d' ${PKGMESSAGE}
-. endif
 .endif
 
-.include <bsd.port.post.mk>
+# Target below can be used instead of standard `makesum' to correctly
+# update distinfo (i.e., keeping other driver version entries intact)
+.if ${.TARGETS:Mupdate-distinfo}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.new
+JOIN?=		/usr/bin/join
+.endif
+
+update-distinfo: makesum .SILENT
+	${REINPLACE_CMD} -i '' -e '/${DISTNAME:R:R}/s/^/~/' \
+		${MASTERDIR}/distinfo ${DISTINFO_FILE}
+	${SED} -e '/^~/s/(.*//' ${MASTERDIR}/distinfo | ${JOIN} -a 1 \
+		- ${DISTINFO_FILE} | ${SED} -e 's/^~//' \
+		> ${MASTERDIR}/distinfo.tmp
+	${MV} ${MASTERDIR}/distinfo.tmp ${MASTERDIR}/distinfo
+	${RM} ${DISTINFO_FILE}
+
+.include <bsd.port.mk>
