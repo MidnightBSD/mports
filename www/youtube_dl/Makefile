@@ -1,29 +1,52 @@
 # $MidnightBSD$
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2011.03.29
+PORTVERSION=	2014.02.22.1
 CATEGORIES=	www
-MASTER_SITES=	https://github.com/rg3/youtube-dl/raw/${PORTVERSION}/
-DISTNAME=	youtube-dl
-EXTRACT_SUFX=
-DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
-EXTRACT_ONLY=
+MASTER_SITES=	https://yt-dl.org/downloads/${PORTVERSION}/
+DISTNAME=	youtube-dl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A program for downloading videos from YouTube.com
-LICENSE=	publicdom
+COMMENT=	Program for downloading videos from YouTube.com
 
-NO_WRKSUBDIR=	yes
-NO_BUILD=	yes
+LICENSE=	unlicense
+LICENSE_NAME=	The Unlicense
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USE_PYTHON=	2.5+
+BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
-PLIST_FILES=	bin/youtube-dl
+USE_PYTHON_RUN=	2
+ALL_TARGET=	youtube-dl
+
+OPTIONS_DEFINE=	BASH RTMPDUMP FFMPEG
+OPTIONS_DEFAULT=RTMPDUMP
+
+BASH_DESC=	Install programmable completions for Bash
+RTMPDUMP_DESC=	Use RTMPDUMP to download rtmp video streams
+
+PLIST_FILES=	bin/youtube-dl \
+		man/man1/youtube-dl.1.gz
+
+WRKSRC=		${WRKDIR}/youtube-dl
+
+BASH_PLIST_FILES=	etc/bash_completion.d/youtube-dl.sh
+FFMPEG_RUN_DEPENDS=	${LOCALBASE}/bin/ffprobe:${PORTSDIR}/multimedia/ffmpeg
+RTMPDUMP_RUN_DEPENDS=	${LOCALBASE}/bin/rtmpdump:${PORTSDIR}/multimedia/rtmpdump
+
+.include <bsd.mport.options.mk>
 
 post-extract:
-	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME} ${WRKSRC}/youtube-dl
+	@# remove tarball provided version, build our own
+	@${RM} -f ${WRKSRC}/youtube-dl
 
 do-install:
-	@${INSTALL_SCRIPT} ${WRKSRC}/youtube-dl ${PREFIX}/bin/youtube-dl
+	${INSTALL_SCRIPT} ${WRKSRC}/youtube-dl ${STAGEDIR}${PREFIX}/bin/youtube-dl
+	${INSTALL_DATA} ${WRKSRC}/youtube-dl.1 ${STAGEDIR}${PREFIX}/man/man1/
+.if ${PORT_OPTIONS:MBASH}
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/youtube-dl.bash-completion \
+		${STAGEDIR}${PREFIX}/etc/bash_completion.d/youtube-dl.sh
+.endif
 
 .include <bsd.port.mk>
