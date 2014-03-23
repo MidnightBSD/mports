@@ -2,6 +2,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.6.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	lang java
 MASTER_SITES=	${MASTER_SITE_GCC}
@@ -76,11 +77,6 @@ USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
 		SUFFIX=${SUFFIX}
-MAN1=		cpp${SUFFIX}.1 \
-		g++${SUFFIX}.1 \
-		gcc${SUFFIX}.1 \
-		gcov${SUFFIX}.1 \
-		gfortran${SUFFIX}.1
 
 .if ${PORT_OPTIONS:MJAVA}
 ECJ_JAR=	${LOCALBASE}/share/java/ecj-4.5.jar
@@ -90,31 +86,6 @@ RUN_DEPENDS+=	${ECJ_JAR}:${PORTSDIR}/lang/gcc-ecj45
 EXTRA_PATCHES+=	${FILESDIR}/java-patch-hier
 CONFIGURE_ARGS+=--with-ecj-jar=${ECJ_JAR}
 LANGUAGES:=	${LANGUAGES},java
-MAN1+=		aot-compile${SUFFIX}.1 \
-		gappletviewer${SUFFIX}.1 \
-		gc-analyze${SUFFIX}.1 \
-		gcj${SUFFIX}.1 \
-		gcj-dbtool${SUFFIX}.1 \
-		gcjh${SUFFIX}.1 \
-		gij${SUFFIX}.1 \
-		gjar${SUFFIX}.1 \
-		gjarsigner${SUFFIX}.1 \
-		gjavah${SUFFIX}.1 \
-		gjdoc${SUFFIX}.1 \
-		gkeytool${SUFFIX}.1 \
-		gnative2ascii${SUFFIX}.1 \
-		gorbd${SUFFIX}.1 \
-		grmic${SUFFIX}.1 \
-		grmid${SUFFIX}.1 \
-		grmiregistry${SUFFIX}.1 \
-		gserialver${SUFFIX}.1 \
-		gtnameserv${SUFFIX}.1 \
-		jcf-dump${SUFFIX}.1 \
-		jv-convert${SUFFIX}.1 \
-		rebuild-gcj-db${SUFFIX}.1
-MAN3=		ffi${SUFFIX}.3 \
-		ffi_call${SUFFIX}.3 \
-		ffi_prep_cif${SUFFIX}.3
 PLIST_SUB+=	JAVA=""
 .else
 CONFIGURE_ARGS+=--disable-libgcj
