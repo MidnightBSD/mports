@@ -1,38 +1,35 @@
---- content/app/content_main_runner.cc.orig	2012-10-31 21:01:34.000000000 +0200
-+++ content/app/content_main_runner.cc	2012-11-07 17:25:10.000000000 +0200
-@@ -91,7 +91,7 @@
- extern int RendererMain(const content::MainFunctionParams&);
- extern int WorkerMain(const content::MainFunctionParams&);
- extern int UtilityMain(const content::MainFunctionParams&);
--#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID) && !defined(OS_BSD)
- namespace content {
- extern int ZygoteMain(const MainFunctionParams&,
-                       ZygoteForkDelegate* forkdelegate);
-@@ -333,7 +333,7 @@
+--- content/app/content_main_runner.cc.orig	2013-07-15 19:05:22.000000000 +0300
++++ content/app/content_main_runner.cc	2013-07-15 19:11:30.000000000 +0300
+@@ -78,10 +78,10 @@
+ #include "base/posix/global_descriptors.h"
+ #include "content/public/common/content_descriptors.h"
+ 
+-#if !defined(OS_MACOSX)
++#if !defined(OS_MACOSX) && !defined(OS_BSD)
+ #include "content/public/common/zygote_fork_delegate_linux.h"
+ #endif
+-#if !defined(OS_MACOSX) && !defined(OS_ANDROID)
++#if !defined(OS_MACOSX) && !defined(OS_ANDROID) && !defined(OS_BSD)
+ #include "content/zygote/zygote_main.h"
+ #endif
+ 
+@@ -323,7 +323,8 @@
    int (*function)(const MainFunctionParams&);
  };
  
 -#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID) && !defined(OS_BSD)
++#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID) && \
++    !defined(OS_BSD)
  // On platforms that use the zygote, we have a special subset of
  // subprocesses that are launched via the zygote.  This function
  // fills in some process-launching bits around ZygoteMain().
-@@ -438,7 +438,7 @@
+@@ -432,7 +433,8 @@
      }
    }
  
 -#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID)
-+#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID) && !defined(OS_BSD)
++#if defined(OS_POSIX) && !defined(OS_MACOSX) && !defined(OS_ANDROID) && \
++    !defined(OS_BSD)
    // Zygote startup is special -- see RunZygote comments above
    // for why we don't use ZygoteMain directly.
    if (process_type == switches::kZygoteProcess)
-@@ -548,7 +548,7 @@
-                kPrimaryIPCChannel + base::GlobalDescriptors::kBaseDescriptor);
- #endif  // !OS_ANDROID && !OS_IOS
- 
--#if defined(OS_LINUX) || defined(OS_OPENBSD)
-+#if defined(OS_LINUX) || defined(OS_BSD)
-     g_fds->Set(kCrashDumpSignal,
-                kCrashDumpSignal + base::GlobalDescriptors::kBaseDescriptor);
- #endif
