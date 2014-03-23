@@ -2,6 +2,7 @@
 
 PORTNAME=	shared-mime-info
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
@@ -13,14 +14,11 @@ LICENSE=	gpl2
 USE_XZ=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-update-mimedb
-USE_GMAKE=	yes
-USES=		pathfix pkgconfig gettext
+USES=		pathfix pkgconfig gettext gmake
 USE_GNOME=	glib20 libxml2 intltool intlhack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
-
-MAN1=		update-mime-database.1
 
 SUB_FILES=	pkg-install
 SUB_LIST=	MIMEDIRS="${MIMEDIRS:O:u}"
