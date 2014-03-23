@@ -2,7 +2,7 @@
 
 PORTNAME=	tidy4
 PORTVERSION=	20000804
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	http://www.w3.org/People/Raggett/
 DISTNAME=	tidy4aug00
@@ -10,9 +10,9 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fixes and tidies up HTML files
+
 LICENSE=	other
 
-MAN1=		tidy4.1
 ALL_TARGET=	tidy
 DOCFILES=	Overview.html tidy.gif release-notes.html grid.gif
 
