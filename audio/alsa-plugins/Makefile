@@ -1,30 +1,52 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.26
+PORTVERSION=	1.0.27
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/plugins \
 		GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library plugins
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	asound:${PORTSDIR}/audio/alsa-lib
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+USES=		pkgconfig
 LDFLAGS+=	-L${LOCALBASE}/lib
-USE_LDCONFIG=	${PREFIX}/lib/alsa-lib
+EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
 
-OPTIONS_DEFINE=	ARIFF_OSS JACK FFMPEG PULSEAUDIO SAMPLERATE SPEEX
-ARIFF_OSS_DESC=	BSD-specific OSS plugin
+OPTIONS_DEFAULT=BUFSZ_P2 IO_PTR
+OPTIONS_DEFINE=	JACK FFMPEG PULSEAUDIO SAMPLERATE SPEEX
+OPTIONS_SUB=	${OPTIONS_DEFINE}
+
+OPTIONS_GROUP=	OSS
+OPTIONS_GROUP_OSS=IO_PTR BLKCNT_P2 BUFSZ_P2 VERBOSE
+
+IO_PTR_DESC=	Precise playback/recording pointer
+BLKCNT_P2_DESC=	Restrict number of fragments to ^2 aligned
+BUFSZ_P2_DESC=	Restrict buffer size to ^2 aligned (breaks aplay)
+VERBOSE_DESC=	Print debugging messages
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MARIFF_OSS} || ${OSVERSION} < 4000
-EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
+.if ${PORT_OPTIONS:MIO_PTR}
+CFLAGS+=	-DFREEBSD_OSS_USE_IO_PTR
+.endif
+
+.if ${PORT_OPTIONS:MBLKCNT_P2}
+CFLAGS+=	-DFREEBSD_OSS_BLKCNT_P2
+.endif
+
+.if ${PORT_OPTIONS:MBUFSZ_P2}
+CFLAGS+=	-DFREEBSD_OSS_BUFSZ_P2
+.endif
+
+.if ${PORT_OPTIONS:MVERBOSE}
+CFLAGS+=	-DFREEBSD_OSS_DEBUG_VERBOSE
 .endif
 
 .if ${PORT_OPTIONS:MJACK}
