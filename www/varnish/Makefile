@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	3.0.4
+PORTVERSION=	3.0.5
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 
@@ -24,11 +24,6 @@ ACLOCAL_ARGS=	-I m4
 LIBTOOLFLAGS=	--copy --force --disable-static
 AUTOMAKE_ARGS=	--add-missing --copy --foreign
 
-MAN1=		varnishadm.1 varnishd.1 varnishhist.1 varnishlog.1 \
-		varnishncsa.1 varnishreplay.1 varnishsizes.1 \
-		varnishstat.1 varnishtest.1 varnishtop.1
-MAN3=		vmod_std.3
-MAN7=		vcl.7 varnish-cli.7 varnish-counters.7
 USE_RC_SUBR=	varnishd varnishlog varnishncsa
 SUB_FILES=	pkg-message
 .if defined(NO_INET6) || defined(WITHOUT_INET6)
