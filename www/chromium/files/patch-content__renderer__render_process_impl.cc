@@ -1,27 +1,18 @@
---- content/renderer/render_process_impl.cc.orig	2012-01-18 11:11:41.000000000 +0200
-+++ content/renderer/render_process_impl.cc	2012-01-29 17:05:58.000000000 +0200
-@@ -105,7 +105,7 @@
- #if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_OPENBSD)
-   // Windows and Linux create transport DIBs inside the renderer
-   return TransportDIB::Create(size, transport_dib_next_sequence_number_++);
--#elif defined(OS_MACOSX)
-+#elif defined(OS_MACOSX) || defined(OS_FREEBSD)
-   // Mac creates transport DIBs in the browser, so we need to do a sync IPC to
-   // get one.  The TransportDIB is cached in the browser.
-   TransportDIB::Handle handle;
-@@ -122,7 +122,7 @@
-   if (!dib)
-     return;
+--- content/renderer/render_process_impl.cc.orig	2013-08-09 19:07:03.000000000 +0000
++++ content/renderer/render_process_impl.cc	2013-08-12 21:00:44.000000000 +0000
+@@ -89,7 +89,7 @@
  
--#if defined(OS_MACOSX)
-+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
-   // On Mac we need to tell the browser that it can drop a reference to the
-   // shared memory.
-   IPC::Message* msg = new ViewHostMsg_FreeTransportDIB(dib->id());
-@@ -140,7 +140,7 @@
+ bool RenderProcessImpl::InProcessPlugins() {
+   const CommandLine& command_line = *CommandLine::ForCurrentProcess();
+-#if defined(OS_LINUX) || defined(OS_OPENBSD)
++#if defined(OS_LINUX) || defined(OS_BSD)
+   // Plugin processes require a UI message loop, and the Linux message loop
+   // implementation only allows one UI loop per process.
+   if (command_line.HasSwitch(switches::kInProcessPlugins))
+@@ -152,7 +152,7 @@
    int width = rect.width();
    int height = rect.height();
-   const size_t stride = skia::PlatformCanvas::StrideForWidth(rect.width());
+   const size_t stride = skia::PlatformCanvasStrideForWidth(rect.width());
 -#if defined(OS_LINUX) || defined(OS_OPENBSD)
 +#if defined(OS_LINUX) || defined(OS_BSD)
    const size_t max_size = base::SysInfo::MaxSharedMemorySize();
