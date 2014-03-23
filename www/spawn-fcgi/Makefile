@@ -2,6 +2,7 @@
 
 PORTNAME=	spawn-fcgi
 PORTVERSION=	1.6.3
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/
 
@@ -17,9 +18,8 @@ USE_RC_SUBR=	spawn-fcgi
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		spawn-fcgi.1
-
-PLIST_FILES=	bin/spawn-fcgi
+PLIST_FILES=	bin/spawn-fcgi \
+		man/man1/spawn-fcgi.1.gz
 
 .include <bsd.port.pre.mk>
 
