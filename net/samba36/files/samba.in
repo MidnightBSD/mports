@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD$
-#
+# $MidnightBSD$
 
 # PROVIDE: nmbd smbd
 %%WINBIND%%# PROVIDE: winbindd
@@ -162,13 +161,13 @@ samba_config_init() {
     if [ -n "${samba_config}" -a "${samba_config}" != "${samba_config_default}" ]; then
 	pid_extra="-$(basename "${samba_config}")"
     fi
+    # Defaults
+    samba_enable=${samba_enable:=NO}
     # Setup dependent variables
     if [ -n "${rcvar}" ] && checkyesno "${rcvar}"; then
 	nmbd_enable=${nmbd_enable=YES}
 	smbd_enable=${smbd_enable=YES}
     fi
-    # Defaults
-    samba_enable=${samba_enable:=NO}
     nmbd_enable=${nmbd_enable:=NO}
     smbd_enable=${smbd_enable:=NO}
 %%WINBIND%%    # Winbindd
