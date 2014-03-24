@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD$
+# $MidnightBSD$
 #
 # PROVIDE: munin-sched
 # REQUIRE: DAEMON
