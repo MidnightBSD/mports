@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		${SAMBA_BASENAME}36
-PORTVERSION=		3.6.16
+PORTVERSION=		3.6.22
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -28,9 +28,8 @@ IPATHS=			-I${WRKDIR}/${DISTNAME}/source3/m4 -I${WRKDIR}/${DISTNAME}/m4 -I${WRKD
 AUTOHEADER_ARGS=	${IPATHS}
 AUTOCONF_ARGS=		${IPATHS}
 
-USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
-USES=			pkgconfig iconv
+USES=			gmake pkgconfig iconv
 USE_AUTOTOOLS=		autoconf autoheader
 USE_LDCONFIG=		${SAMBA_LIBDIR}
 # pkg-config is used to find talloc
@@ -457,13 +456,6 @@ INSTALL_TARGET=	installservers installbin installscripts installdat \
 
 .if ${PORT_OPTIONS:MSWAT}
 INSTALL_TARGET+=installswat
-.endif
-
-.if defined(OPTIONS)
-pre-fetch:
-	@${ECHO_MSG} "===>  -------------------------------------------"
-	@${ECHO_MSG} "===>  Run 'make config' to (re)configure the port"
-	@${ECHO_MSG} "===>  -------------------------------------------"
 .endif
 
 pre-configure:
