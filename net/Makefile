@@ -58,6 +58,7 @@ SUBDIR += mDNSResponder
 SUBDIR += netatalk
 SUBDIR += netcat
 SUBDIR += netclasses
+SUBDIR += nload
 SUBDIR += nss_ldap
 SUBDIR += ntp
 SUBDIR += openldap23-client
