@@ -2,6 +2,7 @@
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
+PORTREVISION=	1
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	${MUNIN_SITES}
 PKGNAMESUFFIX=	-node
@@ -15,27 +16,37 @@ BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
 		p5-DateTime-HiRes>=0:${PORTSDIR}/devel/p5-DateTime-HiRes \
 		munin-common>=0:${PORTSDIR}/sysutils/munin-common \
 		p5-Net-Server>=0:${PORTSDIR}/net/p5-Net-Server \
-		p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP \
 		bash:${PORTSDIR}/shells/bash
 RUN_DEPENDS=	p5-Cache-Cache>=0:${PORTSDIR}/devel/p5-Cache-Cache \
 		p5-DateTime-HiRes>=0:${PORTSDIR}/devel/p5-DateTime-HiRes \
 		munin-common>=0:${PORTSDIR}/sysutils/munin-common \
 		p5-Net-Server>=0:${PORTSDIR}/net/p5-Net-Server \
-		p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP \
 		p5-Net-CIDR>=0:${PORTSDIR}/net-mgmt/p5-Net-CIDR \
 		bash:${PORTSDIR}/shells/bash
 
 DISTINFO_FILE=	${MUNIN_DISTINFO}
 EXTRA_PATCHES+=	${MUNIN_PATCHES}
 USE_PERL5=	yes
-USE_GMAKE=	yes
+USES=		gmake shebangfix
 PKGMESSAGE=	${WRKDIR}/pkg-message
 REINPLACE_ARGS=	-i ""
+SHEBANG_FILES=	node/sbin/munin-node
 
 .include "${.CURDIR}/../munin-common/munin.mk"
 
 ALL_TARGET=	build-node build-plugins
 INSTALL_TARGET=	install-node-prime install-plugins-prime
+
+OPTIONS_DEFINE=	SNMP
+OPTIONS_DEFAULT=	SNMP
+SNMP_DESC=	Include support for SNMP plugins
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MSNMP}
+BUILD_DEPENDS+=	p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
+RUN_DEPENDS+=	p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
+.endif
 
 MAN1=		munin-node-configure.1 \
 		munin-node.1 \
@@ -73,6 +84,13 @@ post-patch:
 		${WRKSRC}/node/sbin/munin-node \
 		${WRKSRC}/node/sbin/munin-node-configure \
 		${WRKSRC}/node/sbin/munin-run
+	@${REINPLACE_CMD} \
+		-e 's|^\(BASH[[:space:]]*:=\).*|\1 ${bash_CMD}|' \
+		-e 's|^\(JAVARUN[[:space:]]*:=\).*|\1 ${java_CMD}|' \
+		-e 's|^\(PERL[[:space:]]*:=\).*|\1 ${perl_CMD}|' \
+		-e 's|^\(PYTHON[[:space:]]*:=\).*|\1 ${python_CMD}|' \
+		-e 's|^\(RUBY[[:space:]]*:=\).*|\1 ${ruby_CMD}|' \
+		${WRKSRC}/Makefile.config
 	@${FIND} ${WRKSRC}/node/sbin -type f -name "*.orig" -delete
 	${CP} -r ${WRKSRC}/plugins/node.d.freebsd ${WRKSRC}/plugins/node.d.midnightbsd
 
