@@ -2,9 +2,9 @@
 
 DISTVERSION=	71.86.15
 # Explicitly set PORTREVISION as it can be overridden by the master port
-PORTREVISION=	2
+PORTREVISION=	3
 
 MASTERDIR=	${.CURDIR}/../nvidia-driver
-NO_LATEST_LINK=	yes
+PKGNAMESUFFIX=	-71
 
 .include "${MASTERDIR}/Makefile"
