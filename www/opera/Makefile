@@ -3,7 +3,7 @@
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -32,9 +32,6 @@ USE_XZ=		yes
 USE_XORG=	x11 xext sm ice xft xrender
 USE_GNOME=	desktopfileutils
 INSTALLS_ICONS=	yes
-
-MAN1=		opera.1
-MANCOMPRESSED=	yes
 
 NO_BUILD=	yes
 EXPLICIT_PACKAGE_DEPENDS=	yes
