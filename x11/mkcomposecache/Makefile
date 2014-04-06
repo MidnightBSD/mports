@@ -12,8 +12,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11
 
-PLIST_FILES=	sbin/mkcomposecache
-
-MAN8=		mkcomposecache.8
+PLIST_FILES=	sbin/mkcomposecache man/man8/mkcomposecache.8.gz
 
 .include <bsd.port.mk>
