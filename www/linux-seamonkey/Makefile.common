@@ -54,8 +54,9 @@ _Q=	2>/dev/null || true
 .if !target(post-extract)
 post-extract:
 	@${RM} -rf ${WRKSRC}/updates
-	@${MKDIR} ${WRKSRC}/${APP_SUBDIR}plugins
 	@${MKDIR} ${WRKSRC}/${APP_SUBDIR}extensions
+	@${LN} -sf ${LOCALBASE}/lib/browser_plugins/symlinks/${APP_NAME} \
+		${WRKSRC}/${APP_SUBDIR}plugins
 . if defined(WANT_GTK218)
 .  for f in ${GTK218_FILES}
 	@${CP} -p ${WRKDIR}/${f} ${WRKSRC}
@@ -75,7 +76,7 @@ post-patch:
 	@${DO_NADA} >>${PREFS_FILE}
 
 . if (${DISTVERSION:R:R} < 28 && ${PORTNAME} != "seamonkey") || \
- (${PORTNAME} == "seamonkey" && ${DISTVERSION:C/[0-9]*\.//:C/b.*//} < 25)
+ (${PORTNAME} == "seamonkey" && ${DISTVERSION:C/[0-9]*\.//:C/[ab].*//} < 25)
 	# dummy resident-unique for make about:memory's "measure"
 	@${REINPLACE_CMD} -i '' \
 		's,/proc/self/smaps\(.Private\),////////dev/null\1,' \
