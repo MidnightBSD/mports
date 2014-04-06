@@ -7,6 +7,7 @@ lib/opera/opera
 lib/opera/plugins/README
 lib/opera/pluginwrapper/operapluginwrapper
 lib/opera/pluginwrapper/operapluginwrapper-native
+man/man1/opera.1.gz
 share/applications/opera-browser.desktop
 %%DOCSDIR%%/LGPL-2
 %%DOCSDIR%%/LICENSE
@@ -25,7 +26,6 @@ share/icons/hicolor/32x32/mimetypes/opera-extension.png
 share/icons/hicolor/48x48/apps/opera-browser.png
 share/icons/hicolor/48x48/mimetypes/opera-extension.png
 share/icons/hicolor/scalable/mimetypes/opera-extension.svg
-@comment share/mime/application/x-opera-extension.xml
 share/mime/packages/opera-extension.xml
 %%DATADIR%%/cert.pem
 %%DATADIR%%/defaults/bookmarks.adr
