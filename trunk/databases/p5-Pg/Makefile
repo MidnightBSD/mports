@@ -10,12 +10,11 @@ DIST_SUBDIR=	postgresql
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interface for using perl5 to access PostgreSQL databases
+
 LICENSE=	perl
 
 USE_PGSQL=	yes
 PERL_CONFIGURE=	yes
-
-MAN3=		Pg.3
 
 CONFIGURE_ENV=	POSTGRES_INCLUDE=${LOCALBASE}/include POSTGRES_LIB=${LOCALBASE}/lib
 
