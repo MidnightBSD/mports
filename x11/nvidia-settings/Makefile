@@ -14,13 +14,12 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GNOME=	gtk20
-USE_GMAKE=	yes
+USES=		gmake pkgconfig
 USE_GL=		gl
 USE_XORG=	xv xext
 
-PLIST_FILES=	bin/nvidia-settings
-#MANCOMPRESSED=	yes
-MAN1=		nvidia-settings.1
+PLIST_FILES=	bin/nvidia-settings \
+		man/man1/nvidia-settings.1.gz
 
 MAKE_ENV=	NV_VERBOSE= \
 		STRIP_CMD=${TRUE} \
