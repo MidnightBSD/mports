@@ -1,14 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	seamonkey
-DISTVERSION=	2.24
+DISTVERSION=	2.25
 CATEGORIES=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
 
-LICENSE=	mpl
+LICENSE=	mpl gpl2
+LICENSE_COMB=	dual
 
 USE_BZIP2=	yes
 
