@@ -149,7 +149,7 @@ A convience method for setting a port as passed.
 sub set_result_pass {
   my ($self, $msg) = @_;
   
-  $self->_set_result('pass', $msg);
+  $self->_set_result('pass', $msg, 'info');
 }
 
 
@@ -162,7 +162,7 @@ A convience method for setting a port as skipped.
 sub set_result_skip {
   my ($self, $msg) = @_;
   
-  $self->_set_result('skip', $msg);
+  $self->_set_result('skip', $msg, 'skip');
 }
 
 
@@ -175,7 +175,7 @@ A convience method for setting a port as internalled.
 sub set_result_internal {
   my ($self, $msg) = @_;
   
-  $self->_set_result('internal', $msg);
+  $self->_set_result('internal', $msg, 'internal');
 }
 
 
@@ -188,13 +188,13 @@ A convience method for setting a port as failed.
 sub set_result_fail {
   my ($self, $msg) = @_;
   
-  $self->_set_result('fail', $msg);
+  $self->_set_result('fail', $msg, 'fail');
 }
 
 
 
 sub _set_result {
-  my ($self, $status, $msg) = @_;
+  my ($self, $status, $msg, $type) = @_;
   
   $self->status($status);
   $self->update;
@@ -202,6 +202,7 @@ sub _set_result {
   $self->add_to_events({
     machine   => $Magus::Machine,
     msg   => $msg,
+    type  => $type,
   });
 }
 
