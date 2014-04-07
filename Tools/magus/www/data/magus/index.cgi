@@ -205,7 +205,7 @@ sub run_page {
   
   my $dbh = Magus::Run->db_Main();  
   
-  my $sth = $dbh->prepare("SELECT COUNT(*) AS count,status FROM ports WHERE run=? GROUP BY status ORDER BY name");
+  my $sth = $dbh->prepare("SELECT COUNT(*) AS count,status FROM ports WHERE run=? GROUP BY status ORDER BY status");
   $sth->execute($run->id);
   my $status_stats = $sth->fetchall_arrayref({});
   $sth->finish;
