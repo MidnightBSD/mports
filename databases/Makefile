@@ -61,7 +61,6 @@ SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
 SUBDIR += pecl-memcache
-SUBDIR += pecl-memcached
 SUBDIR += php5-dba
 SUBDIR += php5-mssql
 SUBDIR += php5-mysql
