@@ -198,12 +198,8 @@ sub _set_result {
   
   $self->status($status);
   $self->update;
-    
-  $self->add_to_events({
-    machine   => $Magus::Machine,
-    msg   => $msg,
-    type  => $type,
-  });
+   
+  $self->note_event($type, $msg);
 }
 
 =head2 $port->reset();
