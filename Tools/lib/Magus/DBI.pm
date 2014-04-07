@@ -1,5 +1,6 @@
 package Magus::DBI;
 #
+# Copyright (c) 2014 Lucas Holt
 # Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -36,9 +37,10 @@ use base 'Class::DBI';
 
 
 __PACKAGE__->connection(
-  "DBI:mysql:database=$Magus::Config{DBName};host=$Magus::Config{DBHost};mysql_compression=1", 
+  "dbi:Pg:dbname=$Magus::Config{DBName};host=$Magus::Config{DBHost};", 
   $Magus::Config{DBUser},
-  $Magus::Config{DBPass}
+  $Magus::Config{DBPass},
+  {AutoCommit => 1, RaiseError => 1, PrintError => 0}
 );
 
 

@@ -35,7 +35,7 @@ use base qw(Magus::DBI);
 
 
 __PACKAGE__->table('machines');
-__PACKAGE__->columns(Essential => qw/id arch name maintainer run osversion/);
+__PACKAGE__->columns(Essential => qw/id arch name maintainer osversion run/);
 __PACKAGE__->has_a(run => 'Magus::Run');
 
 
