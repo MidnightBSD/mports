@@ -7,39 +7,47 @@
 #
 
 PORTNAME=	ldapdiff
-PORTVERSION=	1.2.3
+PORTVERSION=	1.4.1
+PORTREVISION=	0
 CATEGORIES=	net
-MASTER_SITES=	http://ftp.ale.org/pub/mirrors/openpkg/sources/DST/ldapdiff/ \
-		http://webtomware.rhoen.de/
+MASTER_SITES=	http://launchpadlibrarian.net/20391352/
+DISTNAME=	${PORTNAME}-${PORTVERSION}_src
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A utility for patching LDAP directories using LDIF files
 LICENSE=	gpl2
 
-USE_ICONV=	yes
+USES=		iconv
 USE_OPENLDAP=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${LOCALBASE} \
-		--with-ldap-dir=${LOCALBASE} \
-		--with-iconv-dir=${LOCALBASE}
-SAMPLES=	addentry webtomware_without_jpeg.user.ldif \
+		--with-ldap-dir=${LOCALBASE}
+SAMPLES=	addentry.sh webtomware_without_jpeg.user.ldif \
 		webtomware.init.ldif webtomware.user.ldif
-MAN1=		ldapdiff.1
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+PORTDOCS=	CHANGES ChangeLog README TODO
+
+
+.include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=--with-iconv-dir=${LOCALBASE}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ldapdiff ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${MAN1} ${MAN1PREFIX}/man/man1
-	${INSTALL_DATA} ${WRKSRC}/ldapdiff.conf \
-		${PREFIX}/etc/ldapdiff.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/ldapdiff.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_DATA} ${WRKSRC}/ldapdiff.conf.sample ${PREFIX}/etc/
 	@${MKDIR} ${DATADIR}/samples
-.for i in ${SAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/samples/${i} ${DATADIR}/samples
+.for sample in ${SAMPLES}
+	${INSTALL_DATA} ${WRKSRC}/samples/${sample} ${DATADIR}/samples
 .endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for i in CHANGES README TODO ChangeLog
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
+.for docs in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
 .endfor
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
