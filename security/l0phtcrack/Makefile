@@ -11,7 +11,10 @@ DIST_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cracks SAMBA or Windows NT passwords
 
-LICENSE=	restricted
+LICENSE=	l0pthcrack
+LICENSE_NAME=	l0pthcrack license
+LICENSE_TEXT=	A mix of BSD and GPL code, possibly a violation
+LICENSE_PERMS=	no-pkg-sell no-pkg-mirror
 
 DOCDIR=		share/doc/${PORTNAME}
 RESTRICTED=	uses GNU getopt with BSDish-licensed code from OpenSSL
