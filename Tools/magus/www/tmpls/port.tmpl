@@ -19,7 +19,7 @@
     </tr>
     </thead>
 
-    <tr class="<TMPL_IF NAME=fail>danger</TMPL_IF> <TMPL_IF NAME=pass>success</TMPL_IF> <TMPL_IF NAME=warn>warning</TMPL_IF> <TMPL_VAR NAME=status>">
+    <tr class="<TMPL_VAR NAME=status>">
         <td><TMPL_VAR NAME="version"></td>
         <td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
         <td><TMPL_VAR NAME="osversion"></td>
@@ -50,7 +50,7 @@
 
 <tbody>
 <TMPL_LOOP name="events">
-<tr class="<TMPL_IF NAME=fail>danger</TMPL_IF> <TMPL_IF NAME=pass>success</TMPL_IF> <TMPL_IF NAME=warn>warning</TMPL_IF> <TMPL_VAR NAME=type>">
+<tr class="<TMPL_IF NAME=fail>error</TMPL_IF> <TMPL_IF NAME=pass>success</TMPL_IF> <TMPL_IF NAME=warn>warning</TMPL_IF> <TMPL_VAR NAME=type>">
         <td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
         <td><TMPL_VAR NAME="type"></td>
         <td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
