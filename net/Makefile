@@ -107,7 +107,6 @@ SUBDIR += samba4
 SUBDIR += samba4wins
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
-SUBDIR += sharity-light
 SUBDIR += sixxs-aiccu
 SUBDIR += skype
 SUBDIR += smbldap-tools
