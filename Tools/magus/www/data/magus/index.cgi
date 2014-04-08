@@ -239,6 +239,9 @@ sub port_page {
     status    => $port->status,
     license   => $port->license,
     can_reset => $port->can_reset? 1 : 0,
+    fail      => $port->status eq "fail",
+    pass      => $port->status eq "pass",
+    warn      => $port->status eq "warn"
   );
   
   my @events = map { { 
