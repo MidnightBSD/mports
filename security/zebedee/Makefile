@@ -15,11 +15,13 @@ USE_PERL5_BUILD=YES
 MAKE_ENV+=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS=${PTHREAD_LIBS}
 
-MAN1=		zebedee.1 ftpgw.tcl.1
-
 EXAMPLES=	vncviewer.zbd vncserver.zbd server.key server.id client1.key \
 		client2.key clients.id
 DOCS=		README.txt LICENCE.txt CHANGES.txt zebedee.html ftpgw.tcl.html
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} \
@@ -36,7 +38,8 @@ do-install:
 .for e in ${EXAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/${e} ${EXAMPLESDIR}
 .endfor
-.if !defined(NOPORTDOCS)
+
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for d in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
