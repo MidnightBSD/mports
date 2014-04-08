@@ -38,9 +38,9 @@ CREATE SEQUENCE "events_id_seq" ;
 CREATE TABLE  "events" (
    "id" integer DEFAULT nextval('"events_id_seq"') NOT NULL,
    "port"   int NOT NULL, 
-   "phase"   varchar(16) NOT NULL, 
-   "type"   varchar(32) NOT NULL, 
-   "name"   varchar(128) NOT NULL, 
+   "phase"   varchar(16), 
+   "type"   varchar(32),
+   "name"   varchar(128), 
    "msg"   text, 
    "machine"   int NOT NULL, 
    primary key ("id")
@@ -185,15 +185,39 @@ CREATE TABLE  "runs" (
    "created"   timestamp NOT NULL default CURRENT_TIMESTAMP, 
    primary key ("id")
 )  ;
-/*!50001 DROP VIEW IF EXISTS ready_ports*/;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=root@localhost SQL SECURITY DEFINER */
-/*!50001 VIEW ready_ports AS select ports.id AS id,ports.run AS run,ports.name AS name,ports.pkgname AS pkgname,ports.version AS version,ports.description AS description,ports.license AS license,ports.www AS www,ports.status AS status,ports.updated AS updated,(select count(0) AS COUNT(*) from depends where (depends.dependency = ports.id)) AS priority from ports where ((ports.status = _latin1'untested') and (not(ports.id in (select locks.port AS port from locks where (locks.port = ports.id)))) and ((not(ports.id in (select depends.port AS port from depends where (depends.port = ports.id)))) or (not(ports.id in (select depends.port AS port from depends where (((depends.port = ports.id) and (not(depends.dependency in (select depends.port AS port from ports where ((ports.id = depends.dependency) and ((ports.status = _latin1'pass') or (ports.status = _latin1'warn'))))))) or depends.dependency in (select locks.port AS port from locks where (locks.port = depends.dependency)))))))) order by (select count(0) AS COUNT(*) from depends where (depends.dependency = ports.id)) desc */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+create VIEW ready_ports AS
+    SELECT ports.id AS id,
+           ports.run AS run,
+           ports.name AS name,
+           ports.pkgname AS pkgname,
+           ports.version AS version,
+           ports.description AS description,
+           ports.license AS license,
+           ports.www AS www,
+           ports.status AS status,
+           ports.updated AS updated,
+          (SELECT count(0) AS COUNT
+           FROM depends
+           WHERE depends.dependency = ports.id) AS priority
+    FROM ports
+    LEFT JOIN locks on locks.port = ports.id
+    LEFT JOIN depends on depends.port = ports.id
+    WHERE ports.status = 'untested' and locks.id is null and
+          (depends.port is null or
+             not exists
+                  (SELECT depends.port AS port
+                   FROM depends WHERE ports.id = depends.port and not exists  
+                     (SELECT ports.id as dep_id
+                      FROM ports
+                      WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))
+                      or
+    depends.dependency = locks.port))
+ORDER BY priority desc, ports.name asc;
+
+alter table ports add foreign key (run) references runs(id);
+alter table port_categories add foreign key (category) references categories(id);
+alter table locks add foreign key (port) references ports(id);
+
+
