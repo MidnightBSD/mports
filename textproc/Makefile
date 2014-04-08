@@ -46,7 +46,6 @@ SUBDIR += fixrtf
 SUBDIR += flex
 SUBDIR += fop
 SUBDIR += gdome2
-SUBDIR += glimpse
 SUBDIR += gnome-doc-utils
 SUBDIR += gnome-spell
 SUBDIR += gnugrep
