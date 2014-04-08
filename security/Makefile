@@ -91,7 +91,6 @@ SUBDIR += pinentry
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
 SUBDIR += qca-ossl
-SUBDIR += qca-tls
 SUBDIR += saint
 SUBDIR += secpwgen
 SUBDIR += skipfish
