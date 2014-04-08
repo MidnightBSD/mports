@@ -1,14 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	pciids
-PORTVERSION=	20130823
+PORTVERSION=	20140402
 CATEGORIES=	misc
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known IDs used in PCI devices
 
-LICENSE=	bsd3
+LICENSE=	bsd3 gpl2 gpl3
+LICENSE_COMB=	dual
 
 USE_XZ=		yes
 NO_BUILD=	yes
@@ -19,25 +20,34 @@ do-install:
 	${MKDIR} ${DATADIR}/
 	${INSTALL_DATA} ${WRKSRC}/pci.ids ${DATADIR}/
 
-.include <bsd.port.pre.mk>
+# maintainer section:
 
-# Below only contains code to create a tar file for this beast
-CT_DATE!=	date "+%Y%m%d"
-CT_WRKSRC=	${WRKDIR}/tmp
-CT_DESTDIR=	${PORTNAME}-${CT_DATE}
-CT_TEMPDIR=	${CT_WRKSRC}/${CT_DESTDIR}
-CT_MASTER_SITE=	http://pciids.sourceforge.net/v2.2/
-CT_DISTFILES=	pci.ids
+MS_DIFF=	${MS_WRKSRC}/${PORTNAME}-${MS_VERSION}.diff
+MS_DISTFILES=	pci.ids
+MS_MASTER_SITE=	http://pci-ids.ucw.cz/
+MS_VERSION=	`${CAT} ${MS_VERSIONFILE}`
+MS_VERSIONFILE=	${MS_WRKSRC}/.version
+MS_WRKSRC=	${WRKSRC}/tmp
 
-maketar: extract
-	${MKDIR} ${CT_TEMPDIR}
-.for file in ${CT_DISTFILES}
-	(cd ${CT_TEMPDIR} && ${FETCH_CMD} ${CT_MASTER_SITE}/${file})
-.endfor
-	${DIFF} -u ${WRKSRC}/pci.ids ${CT_TEMPDIR}/pci.ids || ${TRUE}
-	(cd ${CT_WRKSRC} && ${TAR} -jcf ${PORTNAME}-${CT_DATE}.tar.bz2 ${CT_DESTDIR})
-	${SED} -i.bak -e 's|${PORTVERSION}|${CT_DATE}|' ${.CURDIR}/Makefile
-	@(cd ${.CURDIR} && ${CP} -f ${CT_WRKSRC}/${PORTNAME}-${CT_DATE}.tar.bz2 ${DISTDIR} && \
-		${MAKE} makesum)
+maketar: do-clean extract
+	@${MKDIR} ${MS_WRKSRC}/
+	@${FETCH_CMD} -o ${MS_WRKSRC}/${MS_DISTFILES} ${MS_MASTER_SITE}${MS_DISTFILES}
+	@${GREP} '^#	Version: [0-9.]\{10\}$$' ${MS_WRKSRC}/${MS_DISTFILES} \
+		| ${SED} -e 's|^.* \([0-9]*\)\.\([0-9]*\)\.\([0-9]*\)$$|\1\2\3|' \
+			> ${MS_VERSIONFILE}
+	@${MKDIR} ${MS_WRKSRC}/${PORTNAME}-${PORTVERSION}/ ${MS_WRKSRC}/${PORTNAME}-${MS_VERSION}/
+	@${MV} ${MS_WRKSRC}/${MS_DISTFILES} ${MS_WRKSRC}/${PORTNAME}-${MS_VERSION}/
+	@${CP} ${WRKSRC}/${MS_DISTFILES} ${MS_WRKSRC}/${PORTNAME}-${PORTVERSION}/${MS_DISTFILES}
+	@(cd ${MS_WRKSRC}/ && ${DIFF} -u ${PORTNAME}-${PORTVERSION}/${MS_DISTFILES} ${PORTNAME}-${MS_VERSION}/${MS_DISTFILES} > ${MS_DIFF}) || ${TRUE}
+	@if [ -s ${MS_DIFF} ]; then \
+		${CP} -i ${MS_DIFF} ${.CURDIR}/; \
+		cd ${MS_WRKSRC}/ && ${TAR} -Jcf ${PORTNAME}-${MS_VERSION}.tar.xz ${PORTNAME}-${MS_VERSION}/; \
+		sudo ${INSTALL} -m 644 ${MS_WRKSRC}/${PORTNAME}-${MS_VERSION}.tar.xz ${DISTDIR}/; \
+		${SED} -i '' -e '/^PORTVERSION=/ s|${PORTVERSION}|'${MS_VERSION}'|; /^PORTREVISION=/d' ${.CURDIR}/Makefile; \
+		cd ${.CURDIR}/ && ${MAKE_CMD} makesum; \
+		${ECHO_MSG} "*** Update from ${PORTVERSION} to ${MS_VERSION}, diff: ${.CURDIR}/${PORTNAME}-${MS_VERSION}.diff ***"; \
+	else \
+		${ECHO_MSG} "*** ${MS_MASTER_SITE}${MS_DISTFILES} is unchanged (${PORTVERSION}) ***"; \
+	fi
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
