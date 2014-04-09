@@ -13,6 +13,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
 
+USE_ZIP=	yes
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
 USE_DOS2UNIX=	tools/*.pl \
