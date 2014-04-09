@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	awstats
-PORTVERSION=	7.1
+PORTVERSION=	7.3
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free real-time logfile analyzer to get advanced web statistics
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
