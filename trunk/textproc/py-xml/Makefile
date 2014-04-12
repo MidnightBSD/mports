@@ -2,7 +2,7 @@
 
 PORTNAME=	xml
 PORTVERSION=	0.8.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc python
 MASTER_SITES=	SF/py${PORTNAME}/py${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,19 +10,19 @@ DISTNAME=	PyXML-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PyXML: Python XML library enhancements
+
 LICENSE=	other
 
-USE_GCPIO=	yes
-USE_PYTHON=	2.1+
-USE_PYDISTUTILS=yes
-PYDISTUTILS_PKGNAME=PyXML
+USE_PYTHON=		yes
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_PKGNAME=	PyXML
 
 .include <bsd.port.pre.mk>
 
-CPIOARGS=	--quiet -pdum -R
-DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
-EXAMPLESDIR=	${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
-PLIST_SUB+=	PACKAGE_DIR=_xmlplus
+CPIOARGS=		--quiet -pdum -R
+DOCSDIR=		${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
+EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
+PLIST_SUB+=		PACKAGE_DIR=_xmlplus
 
 # PyXML's XPath support for minidom (xml.xpath) is functional and is
 # installed by default, unless WITHOUT_XPATH is defined.
