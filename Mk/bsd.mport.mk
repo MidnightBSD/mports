@@ -38,6 +38,7 @@ SRC_BASE?=		/usr/src
 INDEXDIR?=		${PORTSDIR}
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
+NOTPHONY?=
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
@@ -54,6 +55,11 @@ PREFIX?=	${LOCALBASE_REL}
 
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX} 
+
+# make sure bmake treats -V as expected
+.MAKE.EXPAND_VARIABLES= yes
+# tell bmake we use the old :L :U modifiers
+.MAKE.FreeBSD_UL= yes
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
@@ -72,6 +78,19 @@ MTREE_CMD?=		/usr/sbin/mtree
 MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
 MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
+
+.if defined(USE_DOS2UNIX)
+.if ${USE_DOS2UNIX:U}=="YES"
+DOS2UNIX_REGEX?=        .*
+.else
+.if ${USE_DOS2UNIX:M*/*}
+DOS2UNIX_FILES+=	${USE_DOS2UNIX}
+.else
+DOS2UNIX_GLOB+=		${USE_DOS2UNIX}
+.endif
+.endif
+EXTENSIONS+=	dos2unix
+.endif
 
 .if !defined(UID)
 UID!=	${ID} -u
@@ -208,8 +227,6 @@ UNIQUENAME?=	${LATEST_LINK}
 UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 .endif
 
-DOS2UNIX_REGEX?=	.*
-
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
 .if defined(PACKAGE_BUILDING)
@@ -337,10 +354,11 @@ _LOAD_${EXT:U}_EXT=	yes
 _ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
-		apache autotools bdb cmake display efl emacs fuse \
+		apache autotools bdb cmake display dos2unix efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
-		kde4 ldap libtool lua mysql ncurses ocaml openal \
-		pgsql php python java qt ruby scons sdl sqlite tcl wx xfce
+		kde4 ldap libtool lua makeself mysql ncurses ocaml openal \
+		pgsql php python java qt ruby scons sdl sqlite \
+		tar tcl wx xfce zip
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -367,11 +385,11 @@ EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
 .endif
 
 .if defined(USE_BZIP2)
-EXTRACT_SUFX?=			.tar.bz2
+USES+=tar:bzip2
 .elif defined(USE_ZIP)
-EXTRACT_SUFX?=			.zip
+USES+=zip
 .elif defined(USE_XZ)
-EXTRACT_SUFX?=			.tar.xz
+USES+=tar:xz
 .elif defined(USE_MAKESELF)
 EXTRACT_SUFX?=			.run
 .else
@@ -595,12 +613,6 @@ PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 .if defined(USE_LHA)
 EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
-.endif
-.if defined(USE_ZIP)
-EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
-.endif
-.if defined(USE_XZ) && (${OSVERSION} < 4003)
-EXTRACT_DEPENDS+=	${LOCALBASE}/bin/xz:${PORTSDIR}/archivers/xz
 .endif
 .if defined(USE_MAKESELF)
 EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
@@ -1008,10 +1020,6 @@ TAR?=	/usr/bin/tar
 EXTRACT_CMD?=		${LHA_CMD}
 EXTRACT_BEFORE_ARGS?=	xfqw=${WRKDIR}
 EXTRACT_AFTER_ARGS?=
-.elif defined(USE_ZIP)
-EXTRACT_CMD?=		${UNZIP_CMD}
-EXTRACT_BEFORE_ARGS?=	-qo
-EXTRACT_AFTER_ARGS?=	-d ${WRKDIR}
 .elif defined(USE_MAKESELF)
 EXTRACT_CMD?=		${UNMAKESELF_CMD}
 EXTRACT_BEFORE_ARGS?=
@@ -2163,32 +2171,6 @@ _SLEEP=sleep
 .endif
 
 # Patch
-
-.if !target(patch-dos2unix)
-patch-dos2unix:
-.if defined(USE_DOS2UNIX)
-.if ${USE_DOS2UNIX:U}=="YES"
-	@${ECHO_MSG} "===>   Converting DOS text files to UNIX text files"
-	${FIND} -E ${WRKSRC} -type f -iregex '${DOS2UNIX_REGEX}' -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/$$//'
-.else
-	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
-.if ${USE_DOS2UNIX:M*/*}
-.for f in ${USE_DOS2UNIX}
-	@${REINPLACE_CMD} -i '' -e 's/$$//' ${WRKSRC}/${f}
-.endfor
-.else
-.for f in ${USE_DOS2UNIX}
-	@${FIND} ${WRKSRC} -type f -name '${f}' -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/$$//'
-.endfor
-.endif
-.endif
-.else
-	@${DO_NADA}
-.endif
-.endif
-
 .if !target(do-patch)
 do-patch:
 .if defined(PATCHFILES)
@@ -2633,6 +2615,8 @@ security-check:
 # Please note that the order of the following targets is important, and
 # should not be modified.
 
+_TARGETS_STAGES=SANITY FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE INSTALL UPDATE
+
 _SANITY_SEQ=	pre-everything check-makefile check-categories \
 				check-makevars check-desktop-entries check-depends \
 				check-deprecated check-vulnerable check-license buildanyway-message \
@@ -2648,8 +2632,11 @@ _EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
 				post-extract post-extract-script 
 
 _PATCH_DEP=		extract
-_PATCH_SEQ=		ask-license patch-message check-license patch-depends patch-dos2unix \
-				pre-patch pre-patch-script do-patch post-patch post-patch-script
+_PATCH_SEQ=		ask-license patch-message check-license \
+				patch-depends \
+				pre-patch pre-patch-script \
+				do-patch \
+				post-patch post-patch-script
 
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	build-depends lib-depends misc-depends configure-message \
@@ -2741,16 +2728,25 @@ ${${target:U}_COOKIE}::
 
 # Enforce order for -jN builds
 
-.ORDER: ${_SANITY_SEQ}
-.ORDER: ${_FETCH_DEP} ${_FETCH_SEQ}
-.ORDER: ${_EXTRACT_DEP} ${_EXTRACT_SEQ}
-.ORDER: ${_PATCH_DEP} ${_PATCH_SEQ}
-.ORDER: ${_CONFIGURE_DEP} ${_CONFIGURE_SEQ}
-.ORDER: ${_BUILD_DEP} ${_BUILD_SEQ}
-.ORDER: ${_FAKE_DEP} ${_FAKE_SEQ}
-.ORDER: ${_PACKAGE_DEP} ${_PACKAGE_SEQ}
-.ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
-.ORDER: ${_UPDATE_DEP} ${_UPDATE_SEQ}
+.for _t in ${_TARGETS_STAGES}
+.  for s in ${_${_t}_SEQ}
+.    if target(${s})
+.      if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.      endif
+_${_t}_REAL_SEQ+=       ${s}
+.    endif
+.  endfor
+.  for s in ${_${_t}_SUSEQ}
+.    if target(${s})
+.      if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.       endif
+_${_t}_REAL_SUSEQ+=     ${s}
+.    endif
+.  endfor
+.ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
+.endfor
 
 extract-message:
 	@${ECHO_MSG} -e "\033[1m===>  Extracting for ${PKGNAME}\033[0m"
@@ -4324,6 +4320,8 @@ install-desktop-entries:
 	@${DO_NADA}
 .endif
 .endif
+
+.PHONY: ${_PHONY_TARGETS}
 
 .endif
 
