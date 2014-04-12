@@ -2,7 +2,7 @@
 
 PORTNAME?=	dconf
 PORTVERSION=	0.14.1
-PORTREVISION=	1
+PORTREVISION?=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
@@ -18,8 +18,7 @@ BUILD_DEPENDS=	vala>=0.18.1:${PORTSDIR}/lang/vala \
 
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
 
-USE_XZ=		yes
-USES=		gettext gmake pathfix pkgconfig
+USES=		gettext gmake pathfix pkgconfig tar:xz
 USE_GNOME=	glib20 gnomehier intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -38,15 +37,13 @@ LIB_DEPENDS+=	dconf:${PORTSDIR}/devel/dconf
 CONFIGURE_ARGS+=--disable-editor
 .endif
 
-.if ${DCONF_SLAVE} == "no"
-MAN1=		dconf-editor.1 dconf-service.1 dconf.1
-MAN7=		dconf.7
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/|${PREFIX}/etc/|g' \
 		${WRKSRC}/engine/dconf-engine.c \
-		${WRKSRC}/bin/dconf-update.c
+		${WRKSRC}/engine/dconf-engine-profile.c \
+		${WRKSRC}/engine/dconf-engine-source-system.c \
+		${WRKSRC}/bin/dconf-update.c \
+		${WRKSRC}/tests/engine.c
 	@${REINPLACE_CMD} -e 's|/usr/local/|${LOCALBASE}/|g' \
 		${WRKSRC}/editor/dconf-model.c
 	@${REINPLACE_CMD} -e 's|/usr/share|${LOCALBASE}/share|g' \
@@ -55,10 +52,6 @@ post-patch:
 		${WRKSRC}/bin/Makefile.in \
 		${WRKSRC}/client/Makefile.in \
 		${WRKSRC}/editor/Makefile.in
-
-pre-build:
-#	${GMAKE} -C ${WRKSRC}/client dconf-client.c libdconf.so.0
-#	${GMAKE} -C ${WRKSRC}/dbus-1 dconf-dbus-1.c libdconf-dbus-1.so.0
 
 post-install:
 	-${LOCALBASE}/bin/gio-querymodules ${PREFIX}/lib/gio/modules
