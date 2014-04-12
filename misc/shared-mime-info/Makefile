@@ -11,10 +11,9 @@ COMMENT=	MIME types database from the freedesktop.org project
 
 LICENSE=	gpl2
 
-USE_XZ=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-update-mimedb
-USES=		pathfix pkgconfig gettext gmake
+USES=		pathfix pkgconfig gettext gmake tar:xz
 USE_GNOME=	glib20 libxml2 intltool intlhack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
