@@ -1,22 +1,18 @@
-# -*- tab-width: 4; -*-
-# ex: ts=4
-#
 # $MidnightBSD$
-# $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
-#
 
 .if !defined(_POSTMKINCLUDED) && !defined(Python_Pre_Include)
 
-Python_Pre_Include=			python.mk
+Python_Pre_Include=		python.mk
 Python_Include_MAINTAINER=	ports@MidnightBSD.org
 
 # This file contains some variable definitions that are supposed to
 # make your life easier when dealing with ports related to the Python
-# language. It's automatically included when USE_PYTHON or PYTHON_VERSION
-# is defined in the ports' makefile. Define PYTHON_VERSION to override the
-# defaults that USE_PYTHON would give you. If your port requires only some
-# set of Python versions, you can define USE_PYTHON as [min]-[max] or
-# min+. (eg. 3.1-3.2, 2.7+ or -3.2)
+# language. It's automatically included when USE_PYTHON is defined in
+# the ports' makefile. If your port requires only some set of Python
+# versions, you can define USE_PYTHON as [min]-[max] or min+ or -max
+# or as an explicit version or as a meta port version (eg. 3.1-3.2
+# for [min]-[max], 2.7+ or -3.2 for min+ and -max, 2.7 for an
+# explicit version or 3 for a meta port version).
 #
 # The variables:
 #
@@ -28,7 +24,7 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #					  default: ${PYTHONBASE}/bin/${PYTHON_VERSION}
 #
 # PYTHON_DISTFILE	- The ${DISTFILE} for your python version. Needed for
-#					  extensions like Tkinter, py-gdbm and py-expat, which
+#					  extensions like bsddb, gdbm, sqlite3 and tkinter, which
 #					  are built from sources contained in the Python
 #					  distribution.
 #
@@ -82,17 +78,20 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #					  want to build extensions with an older binary.
 #					  default: depends on the version of your python binary
 #
+# PYTHON_VER		- Version of the python binary in your ${PATH}, in the
+#					  format "2.7".
+#
 # PYTHON_DEFAULT_VERSION
 #					- Version of the default python binary in your ${PATH}, in
-#					  the format "python2.7". Set this in your /etc/make.conf
-#					  in case you want to use an older version as a default.
-#					  default: python2.7
+#					  the format "python2.7".
+#
+# PYTHON2_DEFAULT_VERSION
+#					- Version of the default python2 binary in your ${PATH}, in
+#					  the format "python2.7".
 #
 # PYTHON3_DEFAULT_VERSION
-#					- Version of the default python binary in your ${PATH}, in
-#					  the format "python3.2". Set this in your /etc/make.conf
-#					  in case you want to use an older version as a default.
-#					  default: python3.3
+#					- Version of the default python3 binary in your ${PATH}, in
+#					  the format "python3.2".
 #
 # PYTHON_MAJOR_VER	- Python version major number. 2 for python-2.x,
 #					  3 for python-3.x and so on.
@@ -126,6 +125,18 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYSETUP			- Name of the setup script used by the distutils package.
 #					  default: setup.py
+#
+# PYDISTUTILS_AUTOPLIST
+#					- Automatically generates the packaging list for a port that uses
+#                                         distutils or setuptools (easy_install) when defined.
+#                                         requires: USE_PYDISTUTILS
+#
+# PYTHON_PY3K_PLIST_HACK
+#					- Automatically generates Python 3.x compatible __pycache__ entries
+#                                         from a Python 2.x packaging list when defined. Use this for ports that
+#                                         do *not* use standard Python packaging mechanisms such as distutils
+#                                         or setuptools, and support *both* Python 2.x and 3.x. Not needed when
+#                                         PYDISTUTILS_AUTOPLIST is defined.
 #
 # PYDISTUTILS_PKGNAME
 #					- Internal name in the distutils for egg-info.
@@ -172,119 +183,55 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYEASYINSTALL_OSARCH
 #					- Platform identifier for easy_install.
-#					  default: -${OPSYS:L}-${_OSRELEASE}-${ARCH}
+#					  default: -${OPSYS:L}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
 #							   if PYEASYINSTALL_ARCHDEP is defined.
 #
 # PYEASYINSTALL_CMD - Full file path to easy_install command.
 #					  default: ${LOCALBASE}/bin/easy_install-${PYTHON_VER}
-#
-# PYEASYINSTALL_INSTALLARGS
-#					- Arguments to easy_install command for egg installation.
-#					  default: -q -N -S ${PYTHON_SITELIBDIR} ${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
-#
-# PYEASYINSTALL_UNINSTALLARGS
-#					- Arguments to easy_install command for egg uninstallation.
-#					  default: -q -m -S ${PYTHON_SITELIBDIR} ${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
-#
-# USE_TWISTED		- If this option is just yes then build and run
-#					  the dependence to twistedCore is added. Alternatively
-#					  here can be listed specific components of twisted
-#					  framework, available components are: conch, lore,
-#					  mail, names, news, runner, web, web2 and words.
-#					  Note that core component is required for any of
-#					  this optional components.
-#
-# USE_TWISTED_BUILD	- Same as previous but add only build dependency.
-#
-# USE_TWISTED_RUN	- Same as USE_TWISTED but add only run dependency.
-#
-# USE_ZOPE			- Use Zope - an object-based web application platform, this
-#					  also sets up:
-# SZOPEBASEDIR		- relative base directory of zope server
-# ZOPEBASEDIR		- absolute base directory of zope that is
-#					  ${LOCALBASE}/${SZOPEBASEDIR} by default,
-# ZOPEPRODUCTDIR	- directory, where products for zope can be found
-#
-# ZOPE_VERSION		- Version of zope that will be used in the port. Set this
-#					  in your /etc/make.conf in case you want to use a
-#					  specific version of zope.
-#
 
 _PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 2.6 3.3 3.2 3.1	# preferred first
-_ZOPE_PORTBRANCH=		2.13
-_ZOPE_ALLBRANCHES=		2.13
-
-
-# Determine version number of Zope to use
-.if defined(USE_ZOPE)
-.if defined(ZOPE_VERSION)
-_ZOPE_VERSION:=			${ZOPE_VERSION}
-.else
-_ZOPE_VERSION:=			${_ZOPE_PORTBRANCH}
-.endif
-
-# Validate Zope version whether it meets USE_ZOPE version restriction.
-_ZOPE_VERSION_CHECK:=		${USE_ZOPE:C/^([1-9]\.[0-9]*)$/\1-\1/}
-_ZOPE_VERSION_MINIMUM_TMP:=	${_ZOPE_VERSION_CHECK:C/([1-9]\.[0-9]*)[-+].*/\1/}
-_ZOPE_VERSION_MINIMUM:=		${_ZOPE_VERSION_MINIMUM_TMP:M[1-9].[0-9]}
-_ZOPE_VERSION_MAXIMUM_TMP:=	${_ZOPE_VERSION_CHECK:C/.*-([1-9]\.[0-9]*)/\1/}
-_ZOPE_VERSION_MAXIMUM:=		${_ZOPE_VERSION_MAXIMUM_TMP:M[1-9].[0-9]}
-
-.if !empty(_ZOPE_VERSION_MINIMUM) && ( \
-		${_ZOPE_VERSION} < ${_ZOPE_VERSION_MINIMUM})
-_ZOPE_VERSION_NONSUPPORTED=	${_ZOPE_VERSION_MINIMUM} at least
-.elif !empty(_ZOPE_VERSION_MAXIMUM) && ( \
-		${_ZOPE_VERSION} > ${_ZOPE_VERSION_MAXIMUM})
-_ZOPE_VERSION_NONSUPPORTED=	${_ZOPE_VERSION_MAXIMUM} at most
-.endif
-
-# If we have an unsupported version of Zope, try another.
-.if defined(_ZOPE_VERSION_NONSUPPORTED)
-.if defined(ZOPE_VERSION)
-IGNORE=				needs Zope ${_ZOPE_VERSION_NONSUPPORTED}.\
-					But you specified ${_ZOPE_VERSION}
-.else
-.undef _ZOPE_VERSION
-.for ver in ${_ZOPE_ALLBRANCHES}
-__VER=		${ver}
-.if !defined(_ZOPE_VERSION) && \
-	!(!empty(_ZOPE_VERSION_MINIMUM) && ( \
-		${__VER} < ${_ZOPE_VERSION_MINIMUM})) && \
-	!(!empty(_ZOPE_VERSION_MAXIMUM) && ( \
-		${__VER} > ${_ZOPE_VERSION_MAXIMUM}))
-_ZOPE_VERSION=	${ver}
-.endif
-.endfor
-.if !defined(_ZOPE_VERSION)
-IGNORE=				needs an unsupported version of Zope
-_ZOPE_VERSION=	${_ZOPE_PORTBRANCH} # just to avoid version sanity checking.
-.endif
-.endif	# defined(ZOPE_VERSION)
-.endif	# defined(_ZOPE_VERSION_NONSUPPORTED)
-
-ZOPE_VERSION?=	${_ZOPE_VERSION}
-
-PYTHON_VERSION=	python2.7
-.endif	# defined(USE_ZOPE)
-
+_PYTHON_ALLBRANCHES=	2.7 3.3 3.2 3.1	# preferred first
 
 # Determine version number of Python to use
-.if !defined(PYTHON_DEFAULT_VERSION)
-. if exists(${LOCALBASE}/bin/python) && !defined(PACKAGE_BUILDING)
+.include "${PORTSDIR}/Mk/components/default-versions.mk"
+
+.if defined(PYTHON_DEFAULT_VERSION)
+WARNING+=	"PYTHON_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python=${PYTHON_DEFAULT_VERSION:S/^python//} instead"
+.endif
+.if defined(PYTHON2_DEFAULT_VERSION)
+WARNING+=	"PYTHON2_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python2=${PYTHON2_DEFAULT_VERSION:S/^python//} instead"
+.endif
+.if defined(PYTHON3_DEFAULT_VERSION)
+WARNING+=	"PYTHON3_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python3=${PYTHON3_DEFAULT_VERSION:S/^python//} instead"
+.endif
+
+.if exists(${LOCALBASE}/bin/python)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
 							'import sys; print(sys.version[:3])' 2> /dev/null \
 							|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
-. else
-_PYTHON_DEFAULT_VERSION=	${_PYTHON_PORTBRANCH}
-. endif
+.if defined(PYTHON_DEFAULT) && (${PYTHON_DEFAULT} != ${_PYTHON_DEFAULT_VERSION})
+WARNING+=	"Your requested default python version ${PYTHON_DEFAULT} is different from the installed default python interpreter version ${_PYTHON_DEFAULT_VERSION}"
+.endif
 PYTHON_DEFAULT_VERSION=		python${_PYTHON_DEFAULT_VERSION}
+.else
+PYTHON_DEFAULT_VERSION=		python${PYTHON_DEFAULT}
+.endif # exists(${LOCALBASE}/bin/python)
+
+# Is only a meta-port version defined?
+.if ${PYTHON_DEFAULT_VERSION} == "python2"
+PYTHON2_DEFAULT_VERSION?=	python${PYTHON2_DEFAULT}
+.elif ${PYTHON_DEFAULT_VERSION:R} == "python2"
+PYTHON2_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
+.else
+PYTHON2_DEFAULT_VERSION?=	python${PYTHON2_DEFAULT}
 .endif
 
-.if ${PYTHON_DEFAULT_VERSION:R} == "python3"
-PYTHON3_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
+.if ${PYTHON_DEFAULT_VERSION} == "python3"
+PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
+.elif ${PYTHON_DEFAULT_VERSION:R} == "python3"
+ PYTHON3_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
 .else
-PYTHON3_DEFAULT_VERSION=	python3.3
+PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
 .endif
 
 .if defined(PYTHON_VERSION)
@@ -307,6 +254,14 @@ USE_PYTHON=		yes
 USE_PYTHON_BUILD=	yes
 USE_PYTHON_RUN=		yes
 .endif	# !defined(USE_PYTHON)
+
+.if ${USE_PYTHON} == "2"
+USE_PYTHON=			${PYTHON2_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	2
+.elif ${USE_PYTHON} == "3"
+USE_PYTHON=			${PYTHON3_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	3
+.endif  # ${USE_PYTHON} == "2"
 
 # Validate Python version whether it meets USE_PYTHON version restriction.
 _PYTHON_VERSION_CHECK:=			${USE_PYTHON:C/^([1-9]\.[0-9])$/\1-\1/}
@@ -376,12 +331,12 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 
 # Python-3.3
 .if ${PYTHON_VERSION} == "python3.3"
-PYTHON_PORTVERSION?=	3.3.2
+PYTHON_PORTVERSION?=	3.3.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python33
-PYTHON_REL=		332
+PYTHON_REL=		335
 PYTHON_SUFFIX=		33
 PYTHON_VER=		3.3
-.if exists(${PYTHON_CMD}-config)
+.if exists(${PYTHON_CMD}-config) && defined(PORTNAME) && ${PORTNAME} != python33
 PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
 .endif
 
@@ -392,7 +347,7 @@ PYTHON_PORTSDIR=	${PORTSDIR}/lang/python32
 PYTHON_REL=		325
 PYTHON_SUFFIX=		32
 PYTHON_VER=		3.2
-.if exists(${PYTHON_CMD}-config)
+.if exists(${PYTHON_CMD}-config) && defined(PORTNAME) && ${PORTNAME} != python32
 PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
 .endif
 
@@ -406,19 +361,11 @@ PYTHON_VER=		3.1
 
 # Python-2.7
 .elif ${PYTHON_VERSION} == "python2.7"
-PYTHON_PORTVERSION?=	2.7.5
+PYTHON_PORTVERSION?=	2.7.6
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python27
-PYTHON_REL=		275
+PYTHON_REL=		276
 PYTHON_SUFFIX=		27
 PYTHON_VER=		2.7
-
-# Python-2.6
-.elif ${PYTHON_VERSION} == "python2.6"
-PYTHON_PORTVERSION?=	2.6.8
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python26
-PYTHON_REL=		268
-PYTHON_SUFFIX=		26
-PYTHON_VER=		2.6
 
 # Python versions in development
 .elif defined(FORCE_PYTHON_VERSION)
@@ -434,7 +381,6 @@ PYTHON_VER!=		${PYTHON_CMD} -c 'import sys; print(sys.version[:3])'
 check-makevars::
 	@${ECHO} "Makefile error: bad value for PYTHON_VERSION: ${PYTHON_VERSION}."
 	@${ECHO} "Legal values are:"
-	@${ECHO} "  python2.6"
 	@${ECHO} "  python2.7 (default)"
 	@${ECHO} "  python3.1"
 	@${ECHO} "  python3.2"
@@ -461,10 +407,14 @@ PYTHONPREFIX_INCLUDEDIR=	${PYTHON_INCLUDEDIR:S;${PYTHONBASE};${PREFIX};}
 PYTHONPREFIX_LIBDIR=		${PYTHON_LIBDIR:S;${PYTHONBASE};${PREFIX};}
 PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${PREFIX};}
 
+_CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+.if defined(USE_PYDISTUTILS) && ${_CURRENTPORT:S/${PYTHON_SUFFIX}$//} != ${PYTHON_PKGNAMEPREFIX}setuptools
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools${PYTHON_SUFFIX}>0:${PORTSDIR}/devel/py-setuptools${PYTHON_SUFFIX}
+RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools${PYTHON_SUFFIX}>0:${PORTSDIR}/devel/py-setuptools${PYTHON_SUFFIX}
+.endif
+
 # setuptools support
 .if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
-BUILD_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
-RUN_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
 
 PYDISTUTILS_BUILD_TARGET?=		bdist_egg
 PYDISTUTILS_INSTALL_TARGET?=	easy_install
@@ -472,83 +422,143 @@ PYDISTUTILS_INSTALLARGS?=		-O 1 -N -S ${PYTHON_SITELIBDIR} \
 								-d ${PYEASYINSTALL_SITELIBDIR} \
 								-s ${PYEASYINSTALL_BINDIR} \
 								${WRKSRC}/dist/${PYEASYINSTALL_EGG}
-.if ${PREFIX} != ${LOCALBASE}
+MAKE_ENV+=			PYTHONUSERBASE=${FAKE_DESTDIR}${PYTHONBASE}
+PYDISTUTILS_INSTALLARGS:=	-m -q --user ${PYDISTUTILS_INSTALLARGS}
+
 MAKE_ENV+=						PYTHONPATH=${PYEASYINSTALL_SITELIBDIR}
-.endif
 
 .if defined(PYEASYINSTALL_ARCHDEP)
-.if !defined(_OSRELEASE)
-_OSRELEASE!=					${UNAME} -r
-.endif
-PYEASYINSTALL_OSARCH?=			-${OPSYS:L}-${_OSRELEASE}-${ARCH}
+PYEASYINSTALL_OSARCH?=			-${OPSYS:L}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
+MAKE_ENV+=						_PYTHON_HOST_PLATFORM=${PYEASYINSTALL_OSARCH}
 .endif
 PYEASYINSTALL_EGG?=				${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
 PYEASYINSTALL_CMD?=				${LOCALBASE}/bin/easy_install-${PYTHON_VER}
 PYEASYINSTALL_BINDIR?=			${PREFIX}/bin
 PYEASYINSTALL_SITELIBDIR?=		${PYTHONPREFIX_SITELIBDIR}
-PYEASYINSTALL_INSTALLARGS?=		-q -N -S ${PYTHON_SITELIBDIR} \
-								-d ${PYEASYINSTALL_SITELIBDIR} \
-								-s ${PYEASYINSTALL_BINDIR} \
-								${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
-PYEASYINSTALL_UNINSTALLARGS?=	-q -N -m -S ${PYTHON_SITELIBDIR} \
-								-d ${PYEASYINSTALL_SITELIBDIR} \
-								-s ${PYEASYINSTALL_BINDIR} \
-								${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
 
 PLIST_SUB+=		PYEASYINSTALL_EGG=${PYEASYINSTALL_EGG}
 
 pre-install: pre-install-easyinstall
 pre-install-easyinstall:
-	@${MKDIR} ${PYEASYINSTALL_SITELIBDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${PYEASYINSTALL_SITELIBDIR}
 
 add-plist-post: add-plist-easyinstall
 add-plist-easyinstall:
-	@# @unexec line must be located before any other line while @exec must not.
-	@${CAT} ${TMPPLIST} > ${TMPPLIST}.pei_tmp
-	@${ECHO_CMD} "@unexec ${PYEASYINSTALL_CMD} ${PYEASYINSTALL_UNINSTALLARGS}" \
-		> ${TMPPLIST}
-	@${CAT} ${TMPPLIST}.pei_tmp >> ${TMPPLIST}
-	@${ECHO_CMD} "@exec ${SETENV} PYTHONPATH=${PYEASYINSTALL_SITELIBDIR} \
-		${PYEASYINSTALL_CMD} ${PYEASYINSTALL_INSTALLARGS}" \
+	@# Easiest to fake pyeasyinstall, or it complains about paths
+	@${ECHO_CMD} "@unexec ${REINPLACE_CMD} -i '' \
+			-e '\,^\./${PYEASYINSTALL_EGG}$$,d' \
+			${PYEASYINSTALL_SITELIBDIR}/easy-install.pth" \
 		>> ${TMPPLIST}
+	@${ECHO_CMD} "@exec ${PRINTF} '1a\n./${PYEASYINSTALL_EGG}\n.\nw\nq\n' | \
+			/bin/ed ${PYEASYINSTALL_SITELIBDIR}/easy-install.pth" \
+		>> ${TMPPLIST}
+
+.if !target(stage-python-compileall)
+stage-python-compileall:
+	(cd ${STAGEDIR}${PREFIX} && \
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+.endif
+
+post-install: stage-python-compileall
+
 .endif		# defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
 
 # distutils support
 PYSETUP?=				setup.py
+PYDISTUTILS_SETUP?=	-c "import setuptools; __file__='${PYSETUP}'; exec(compile(open(__file__).read().replace('\\r\\n', '\\n'), __file__, 'exec'))"
 PYDISTUTILS_CONFIGUREARGS?=
 PYDISTUTILS_BUILDARGS?=
 PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${PREFIX}
+.if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} != "easy_install"
+. if !defined(PYDISTUTILS_INSTALLNOSINGLE)
+PYDISTUTILS_INSTALLARGS+=	--single-version-externally-managed
+. endif
+PYDISTUTILS_INSTALLARGS+=	--root=${FAKE_DESTDIR}
+.endif
+_PYTHONPKGLIST=				${WRKDIR}/.PLIST.pymodtmp
+PYDISTUTILS_INSTALLARGS:=	--record ${_PYTHONPKGLIST} \
+		${PYDISTUTILS_INSTALLARGS}
+
 PYDISTUTILS_PKGNAME?=	${PORTNAME}
 PYDISTUTILS_PKGVERSION?=${PORTVERSION}
 PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
-PYDISTUTILS_EGGINFODIR?=${PYTHONPREFIX_SITELIBDIR}
+PYDISTUTILS_EGGINFODIR?=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
+add-plist-egginfo:
 .if !defined(PYDISTUTILS_NOEGGINFO) && \
+	!defined(PYDISTUTILS_AUTOPLIST) && \
 	(defined(INSTALLS_EGGINFO) ||	\
 		(defined(USE_PYDISTUTILS) && \
 		 ${USE_PYDISTUTILS} != "easy_install")) && \
 	 defined(PYTHON_REL)
-. for egg in ${PYDISTUTILS_EGGINFO}
-PLIST_FILES+=	${PYDISTUTILS_EGGINFODIR:S;${PREFIX}/;;}/${egg}
+. for egginfo in ${PYDISTUTILS_EGGINFO}
+	if [ -d "${PYDISTUTILS_EGGINFODIR}/${egginfo}" ]; then \
+		${LS} ${PYDISTUTILS_EGGINFODIR}/${egginfo} | while read f; do \
+			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${STAGEDIR}${PYTHONBASE}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
+		done; \
+		${ECHO_CMD} "@unexec rmdir \"%D/${PYDISTUTILS_EGGINFODIR:S;${STAGEDIR}${PYTHONBASE}/;;}/${egginfo}\" 2>/dev/null || true" >> ${TMPPLIST}; \
+	fi;
 . endfor
+.else
+	@${DO_NADA}
 .endif
+
+.if defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
+_RELSITELIBDIR=	${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
+_RELLIBDIR=		${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}
+
+add-plist-post:	add-plist-pymod
+add-plist-pymod:
+	@{ ${ECHO_CMD} "#mtree"; ${CAT} ${MTREE_FILE}; } | ${TAR} tf - | \
+		${SED} '/^\.$$/d' > ${WRKDIR}/.localmtree
+	@${ECHO_CMD} "${_RELSITELIBDIR}" >> ${WRKDIR}/.localmtree
+	@${ECHO_CMD} "${_RELLIBDIR}" >> ${WRKDIR}/.localmtree
+	@${SED} -e 's|^${STAGEDIR}${PREFIX}/||' \
+		-e 's|^${PREFIX}/||' \
+		-e 's|^\(man/man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2${MANEXT}|' \
+		${_PYTHONPKGLIST} | ${SORT} >> ${TMPPLIST}
+	@${SED} -e 's|^${STAGEDIR}${PREFIX}/\(.*\)/\(.*\)|\1|' \
+		-e 's|^${PREFIX}/\(.*\)/\(.*\)|\1|' ${_PYTHONPKGLIST} | \
+		${AWK} '{ num = split($$0, a, "/"); res=""; \
+					for(i = 1; i <= num; ++i) { \
+						if (i == 1) res = a[i]; \
+						else res = res "/" a[i]; \
+						print res; \
+					} \
+				}' | \
+		while read line; do \
+			${GREP} -qw "^$${line}$$" ${WRKDIR}/.localmtree || { \
+				[ -n "$${line}" ] && \
+				${ECHO_CMD} "@unexec rmdir \"%D/$${line}\" 2>/dev/null || true"; \
+			}; \
+		done | ${SORT} | uniq | ${SORT} -r >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir \"%D/${PYTHON_SITELIBDIR:S;${PYTHONBASE}/;;}\" 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir \"%D/${PYTHON_LIBDIR:S;${PYTHONBASE}/;;}\" 2>/dev/null || true" >> ${TMPPLIST}
+
+.else
+.if ${PYTHON_REL} >= 320 && defined(PYTHON_PY3K_PLIST_HACK)
+# When Python version is 3.2+ we rewrite all the filenames
+# of TMPPLIST that end with .py[co], so that they conform
+# to PEP 3147 (see http://www.python.org/dev/peps/pep-3147/)
+PYMAGICTAG=		${PYTHON_CMD} -c 'import imp; print(imp.get_tag())'
+add-plist-post:
+	@${AWK} '\
+		/\.py[co]$$/ && !($$0 ~ "/" pc "/") {id = match($$0, /\/[^\/]+\.py[co]$$/); if (id != 0) {d = substr($$0, 1, RSTART - 1); dirs[d] = 1}; sub(/\.py[co]$$/,  "." mt "&"); sub(/[^\/]+\.py[co]$$/, pc "/&"); print; next} \
+		/^@dirrm / {d = substr($$0, 8); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
+		{print} \
+		END {if (sp in dirs) {print "@dirrm " sp "/" pc}} \
+		' \
+		pc="__pycache__" mt="$$(${PYMAGICTAG})" sp="${PYTHON_SITELIBDIR:S,${PYTHONBASE}/,,g}" \
+		${TMPPLIST} > ${TMPPLIST}.pyc_tmp
+	@${MV} ${TMPPLIST}.pyc_tmp ${TMPPLIST}
+.endif # ${PYTHON_REL} >= 320 && defined(PYTHON_PY3K_PLIST_HACK)
+.endif # defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
 
 # Fix for programs that build python from a GNU auto* environment
 CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
-
-# Zope-related variables
-.if defined(USE_ZOPE)
-.if ${ZOPE_VERSION} == "2.13"
-ZOPE_DEPENDS=	zope213>0:${PORTSDIR}/www/zope213
-.else
-check-makevars::
-	@${ECHO} "Makefile error: bad value for ZOPE_VERSION: ${ZOPE_VERSION}."
-	@${ECHO} "Legal values are: 2.13 (default)"
-	@${FALSE}
-.endif
-ZOPEBASEDIR?=			${PREFIX}/${SZOPEBASEDIR}
-ZOPEPRODUCTDIR?=		Products
-.endif
 
 # Python 3rd-party modules
 PYGAME=			${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
@@ -562,15 +572,17 @@ PYTHON_NO_DEPENDS?=		NO
 .if ${PYTHON_NO_DEPENDS} == "NO"
 .if defined(USE_PYTHON_BUILD)
 BUILD_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
+.if defined(_WANTS_META_PORT)
+BUILD_DEPENDS+=	python${_WANTS_META_PORT}:${PORTSDIR}/lang/python${_WANTS_META_PORT}
+.endif
 .endif
 .if defined(USE_PYTHON_RUN)
 RUN_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
+.if defined(_WANTS_META_PORT)
+RUN_DEPENDS+=	python${_WANTS_META_PORT}:${PORTSDIR}/lang/python${_WANTS_META_PORT}
+.endif
 .endif
 .endif		# ${PYTHON_NO_DEPENDS} == "NO"
-
-.if defined(USE_ZOPE)
-RUN_DEPENDS+=	${ZOPE_DEPENDS}
-.endif
 
 # set $PREFIX as Python's one
 .if defined(USE_PYTHON_PREFIX)
@@ -586,85 +598,8 @@ PLIST_SUB+=		PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${PREFIX}/;;} \
 				PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
 				PYTHON_VERSION=${PYTHON_VERSION}
 
-# Zope specific substitutions
-.if defined(USE_ZOPE)
-PLIST_SUB+=		ZOPEBASEDIR=${SZOPEBASEDIR} \
-				ZOPEPRODUCTDIR=${SZOPEBASEDIR}/${ZOPEPRODUCTDIR}
-.endif
-
-# Twisted specific routines
-.if defined(USE_TWISTED) || defined(USE_TWISTED_BUILD) || defined(USE_TWISTED_RUN)
-
-.if defined(USE_TWISTED_BUILD) && defined(USE_TWISTED_RUN)
-. if ${USE_TWISTED_BUILD} != ${USE_TWISTED_RUN}
-IGNORE=	: USE_TWISTED_BUILD and USE_TWISTED_RUN must have equal values
-. endif
-.endif
-
-.if defined(USE_TWISTED)
-TWISTED_BUILD_DEP=	yes
-TWISTED_RUN_DEP=	yes
-.else
-. if defined(USE_TWISTED_BUILD)
-TWISTED_BUILD_DEP=	yes
-USE_TWISTED=		${USE_TWISTED_BUILD}
-. endif
-. if defined(USE_TWISTED_RUN)
-TWISTED_RUN_DEP=	yes
-USE_TWISTED=		${USE_TWISTED_RUN}
-. endif
-.endif
-
-.if ${USE_TWISTED} == "20" || ${USE_TWISTED} == "yes"
-USE_TWISTED_VER=	${USE_TWISTED}
-. if defined(TWISTED_BUILD_DEP)
-BUILD_DEPENDS+=		${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twistedCore
-. endif
-. if defined(TWISTED_RUN_DEP)
-RUN_DEPENDS+=		${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twistedCore
-. endif
-.else
-USE_TWISTED_VER=	20
-# Checking for twisted components
-_TWISTED_COMPONENTS?=	conch lore mail names news runner web web2 words
-
-# XXX Should be here other dependencies types?
-conch_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/conch/__init__.py:${PORTSDIR}/security/py-twistedConch
-lore_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/lore/__init__.py:${PORTSDIR}/textproc/py-twistedLore
-mail_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/mail/__init__.py:${PORTSDIR}/mail/py-twistedMail
-names_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/names/__init__.py:${PORTSDIR}/dns/py-twistedNames
-news_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/news/__init__.py:${PORTSDIR}/news/py-twistedNews
-pair_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/pair/__init__.py:${PORTSDIR}/net/py-twistedPair
-runner_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/runner/__init__.py:${PORTSDIR}/devel/py-twistedRunner
-web2_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web2/__init__.py:${PORTSDIR}/www/py-twistedWeb2
-web_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web/__init__.py:${PORTSDIR}/www/py-twistedWeb
-words_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/words/__init__.py:${PORTSDIR}/net-im/py-twistedWords
-
-.for component in ${_TWISTED_COMPONENTS}
-_COMP_TEST=	${USE_TWISTED:M${component}}
-. if ${_COMP_TEST:S/${component}//}!=${_COMP_TEST:S/  / /g}
-.  if defined(TWISTED_BUILD_DEP)
-BUILD_DEPENDS+=	${${component}_DEPENDS}
-.  endif
-.  if defined(TWISTED_RUN_DEP)
-RUN_DEPENDS+=	${${component}_DEPENDS}
-.  endif
-. endif
-.endfor
-
-# Implicit dependency from core
-.if defined(TWISTED_BUILD_DEP)
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twistedCore
-.endif
-.if defined(TWISTED_RUN_DEP)
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twistedCore
-.endif
-
-.endif
-
-.endif # defined(USE_TWISTED)
-
 # XXX Hm, should I export some of the variables above to *_ENV?
+
 
 # If multiple Python versions are installed and cmake is used, it might
 # happen that a cmake-enabled port using find_package(PythonLibs) and
@@ -680,11 +615,7 @@ CMAKE_ARGS+=	-DPythonLibs_FIND_VERSION:STRING="${PYTHON_VER}" \
 
 .if defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
 
-Python_Post_Include=			python.mk
-
-# don't check precompiled python code.
-SKIP_FAKE_CHECK?=.*\.py[co]
-
+Python_Post_Include=			bsd.python.mk
 
 # py-distutils support
 PYDISTUTILS_CONFIGURE_TARGET?=	config
@@ -697,18 +628,20 @@ MAKE_ENV+=	LDSHARED="${LDSHARED}" PYTHONDONTWRITEBYTECODE= PYTHONOPTIMIZE=
 
 .if !target(do-configure) && !defined(HAS_CONFIGURE) && !defined(GNU_CONFIGURE)
 do-configure:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} ${PYDISTUTILS_CONFIGURE_TARGET} ${PYDISTUTILS_CONFIGUREARGS})
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} ${PYDISTUTILS_CONFIGURE_TARGET} ${PYDISTUTILS_CONFIGUREARGS})
 .endif
 
 .if !target(do-build)
 do-build:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} ${PYDISTUTILS_BUILD_TARGET} ${PYDISTUTILS_BUILDARGS})
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} ${PYDISTUTILS_BUILD_TARGET} ${PYDISTUTILS_BUILDARGS})
 .endif
 
 .if !target(do-install)
 do-install:
-	@(cd ${INSTALL_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} ${PYDISTUTILS_INSTALL_TARGET} ${PYDISTUTILS_INSTALLARGS})
+	@(cd ${INSTALL_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} ${PYDISTUTILS_INSTALL_TARGET} ${PYDISTUTILS_INSTALLARGS})
 .endif
+
+add-plist-post: add-plist-egginfo
 
 .if defined(PYEASYINSTALL_ARCHDEP)
 .if !target(easyinstall-setopt)
