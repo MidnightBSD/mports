@@ -96,6 +96,7 @@ SUBDIR += py-bsddb
 SUBDIR += py-bsddb3
 SUBDIR += py-gdbm
 SUBDIR += py-mysql2pgsql
+SUBDIR += py-postgresql
 SUBDIR += py-sqlite3
 SUBDIR += py-sqlite3dbm
 SUBDIR += qdbm
