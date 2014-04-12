@@ -1,43 +1,49 @@
 # $MidnightBSD$
 
 PORTNAME=	setuptools
-PORTVERSION=	0.6c11
-PORTREVISION=	1
+PORTVERSION=	2.0.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Download, build, install, upgrade, and uninstall Python packages
-LICENSE=	unknown
 
-DIST_SUBDIR=	python
-USE_PYTHON=	-2.7
+LICENSE=	python
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}distribute-[0-9]*
+
+PLIST_SUB=	PYVER=${PYTHON_VER} VERSION=${PORTVERSION} \
+		EASYINSTALL_PTH=${PYTHON_SITELIBDIR}/easy-install.pth
+
+USE_PYTHON=	yes
 USE_PYDISTUTILS=	yes
-PYDISTUTILS_NOEGGINFO=	yes # XXX convert easy_install support to python.mk's
-PLIST_SUB=	VERSION=${PORTVERSION} PYVER=${PYTHON_VERSION:S/python//}
+PYDISTUTILS_AUTOPLIST=	yes
+PYDISTUTILS_SETUP=	${PYSETUP}
+
+SUB_LIST=	IF_DEFAULT=${IF_DEFAULT}
 
 .include <bsd.port.pre.mk>
 
-SUB_FILES=	pkg-install
-SUB_LIST=	EASYINSTALL_PTH=${EASYINSTALL_PTH}
+.if ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
+SUB_FILES+=	pkg-message
+.endif
 
-EASYINSTALL_PTH=	${PYTHON_SITELIBDIR}/easy-install.pth
-
-pre-install:
-	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+post-patch:
+.if ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
+	@${REINPLACE_CMD} 's,.*yield "easy_install =.*,,' ${WRKSRC}/setup.py
+.endif
+	@${REINPLACE_CMD} 's,#!python,#!${PYTHON_CMD},' \
+		${WRKSRC}/setuptools/command/easy_install.py
+	@${REINPLACE_CMD} 's,#!/usr/bin/python,#!${PYTHON_CMD},' \
+		${WRKSRC}/setuptools/tests/test_resources.py
+	@${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/site.py ${PYTHON_SITELIBDIR}
-.for opt in -Qold -O
-	${PYTHON_CMD} ${opt} -m compileall -l -x \
-		'^[^s][^i]?[^t]?[^e]?[^.][^p][^y]$$' ${PYTHON_SITELIBDIR}
-.endfor
-	${CP} ${EASYINSTALL_PTH} ${EASYINSTALL_PTH}.dist
+	${INSTALL_DATA} ${FILESDIR}/easy-install.pth.dist ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/
 
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.txt ${DOCSDIR}
-.endif
+regression-test: build
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test
 
 .include <bsd.port.post.mk>

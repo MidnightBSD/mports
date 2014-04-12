@@ -1,6 +1,10 @@
-Setuptools is a collection of enhancements to the Python distutils (for Python
-2.3.5 and up on most platforms; 64-bit platforms require a minimum of Python
-2.4) that allow you to more easily build and distribute Python packages,
-especially ones that have dependencies on other packages.
+Setuptools is a fully-featured, actively-maintained, and stable library
+designed to facilitate packaging Python projects, where packaging includes:
+ - Python package and module definitions
+ - Distribution package metadata
+ - Test hooks
+ - Project installation
+ - Platform-specific details
+ - Python 3 support
 
-WWW: http://peak.telecommunity.com/DevCenter/setuptools
+WWW: https://pypi.python.org/pypi/setuptools
