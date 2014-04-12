@@ -2,6 +2,7 @@
 
 PORTNAME=	gdbm
 PORTVERSION=	${PYTHON_PORTVERSION}
+PORTREVISION=	1
 CATEGORIES=	databases python
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -10,6 +11,7 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings to the GNU dbm library
+
 LICENSE=	python
 
 LIB_DEPENDS=	gdbm:${PORTSDIR}/databases/gdbm
@@ -22,11 +24,8 @@ DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${PYTHON_WRKSRC}/Modules
 
-PYDISTUTILS_INSTALLARGS+=	--install-lib ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload
-
-PYDISTUTILS_NOEGGINFO=	yes
-
-PLIST_FILES=	%%PYTHON_LIBDIR%%/lib-dynload/gdbm.so
+PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
+PYDISTUTILS_AUTOPLIST=	yes
 
 .include <bsd.port.pre.mk>
 
