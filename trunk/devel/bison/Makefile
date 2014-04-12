@@ -17,8 +17,7 @@ OPTIONS_DEFINE=	EXAMPLES NLS
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_XZ=		yes
-USES=		charsetfix
+USES=		charsetfix tar:xz
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
