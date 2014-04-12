@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sphinx
-PORTVERSION=	1.1.3
+PORTVERSION=	1.2.2
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,22 +11,28 @@ DIST_SUBDIR=	python
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python documentation generator
 
-LICENSE=	bsd3
+LICENSE=	bsd2
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=1.2:${PORTSDIR}/textproc/py-pygments \
-		${PYTHON_PKGNAMEPREFIX}Jinja2>=2.3:${PORTSDIR}/devel/py-Jinja2 \
-		${PYTHON_PKGNAMEPREFIX}MarkupSafe>=0.18:${PORTSDIR}/textproc/py-MarkupSafe \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>=2.3:${PORTSDIR}/devel/py-Jinja2 \
 		${PYTHON_PKGNAMEPREFIX}docutils>=0.7:${PORTSDIR}/textproc/py-docutils
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>=2.3:${PORTSDIR}/devel/py-Jinja2 \
+		${PYTHON_PKGNAMEPREFIX}docutils>=0.7:${PORTSDIR}/textproc/py-docutils \
+		${PYTHON_PKGNAMEPREFIX}pygments>=1.2:${PORTSDIR}/textproc/py-pygments
 
 USE_PYTHON=	yes
 USE_PYDISTUTILS=	easy_install
+PYDISTUTILS_AUTOPLIST=	yes
 PYDISTUTILS_PKGNAME=	Sphinx
 
-PLIST_SUB=	PYTHON_VER=${PYTHON_VER}
+post-build:
+	cd ${WRKSRC}/build/lib && \
+	${SETENV} PYTHONPATH=${WRKSRC}/build/lib:${PYTHONPREFIX_SITELIBDIR} \
+	${PYTHON_CMD} -m sphinx.pycode.pgen2.driver -c 'import load_grammar'
 
 post-install:
-	@${SETENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR} \
-	${PYTHON_CMD} -m sphinx.pycode.pgen2.driver -c 'import load_grammar'
+	${INSTALL_DATA} ${WRKSRC}/build/lib/sphinx/pycode/Grammar-py${PYTHON_VER:R}-${PORTNAME}${PORTVERSION:R}.pickle \
+	${FAKE_DESTDIR}/${PYTHONPREFIX_SITELIBDIR}/${PYEASYINSTALL_EGG}/sphinx/pycode/
+
+	@${ECHO_CMD} ${PYTHON_SITELIBDIR:S;${PYTHONBASE}/;;}/${PYEASYINSTALL_EGG}/sphinx/pycode/Grammar-py${PYTHON_VER:R}-${PORTNAME}${PORTVERSION:R}.pickle >> ${TMPPLIST}
 
 .include <bsd.port.mk>
