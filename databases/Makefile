@@ -93,6 +93,7 @@ SUBDIR += postgresql92-contrib
 SUBDIR += postgresql92-server
 SUBDIR += py-MySQLdb
 SUBDIR += py-bsddb
+SUBDIR += py-bsddb3
 SUBDIR += py-gdbm
 SUBDIR += py-mysql2pgsql
 SUBDIR += py-sqlite3
