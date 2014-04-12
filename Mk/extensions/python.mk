@@ -190,7 +190,7 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #					  default: ${LOCALBASE}/bin/easy_install-${PYTHON_VER}
 
 _PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 3.3 3.2 3.1	# preferred first
+_PYTHON_ALLBRANCHES=	2.7 3.3 3.1	# preferred first
 
 # Determine version number of Python to use
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
@@ -403,9 +403,9 @@ PYTHON_PKGNAMESUFFIX=	-py${PYTHON_SUFFIX}
 PYTHON_PLATFORM=		${OPSYS:L}${OSREL:C/\.[0-9.]*//}
 PYTHON_SITELIBDIR=		${PYTHON_LIBDIR}/site-packages
 
-PYTHONPREFIX_INCLUDEDIR=	${PYTHON_INCLUDEDIR:S;${PYTHONBASE};${PREFIX};}
-PYTHONPREFIX_LIBDIR=		${PYTHON_LIBDIR:S;${PYTHONBASE};${PREFIX};}
-PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${PREFIX};}
+PYTHONPREFIX_INCLUDEDIR=	${PYTHON_INCLUDEDIR:S;${PYTHONBASE};${TRUE_PREFIX};}
+PYTHONPREFIX_LIBDIR=		${PYTHON_LIBDIR:S;${PYTHONBASE};${TRUE_PREFIX};}
+PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${TRUE_PREFIX};}
 
 _CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 .if defined(USE_PYDISTUTILS) && ${_CURRENTPORT:S/${PYTHON_SUFFIX}$//} != ${PYTHON_PKGNAMEPREFIX}setuptools
@@ -422,10 +422,14 @@ PYDISTUTILS_INSTALLARGS?=		-O 1 -N -S ${PYTHON_SITELIBDIR} \
 								-d ${PYEASYINSTALL_SITELIBDIR} \
 								-s ${PYEASYINSTALL_BINDIR} \
 								${WRKSRC}/dist/${PYEASYINSTALL_EGG}
+.if !defined(NO_STAGE)
 MAKE_ENV+=			PYTHONUSERBASE=${FAKE_DESTDIR}${PYTHONBASE}
 PYDISTUTILS_INSTALLARGS:=	-m -q --user ${PYDISTUTILS_INSTALLARGS}
+.endif
 
+.if ${TRUE_PREFIX} != ${LOCALBASE} || !defined(NO_STAGE)
 MAKE_ENV+=						PYTHONPATH=${PYEASYINSTALL_SITELIBDIR}
+.endif
 
 .if defined(PYEASYINSTALL_ARCHDEP)
 PYEASYINSTALL_OSARCH?=			-${OPSYS:L}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
@@ -433,14 +437,18 @@ MAKE_ENV+=						_PYTHON_HOST_PLATFORM=${PYEASYINSTALL_OSARCH}
 .endif
 PYEASYINSTALL_EGG?=				${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
 PYEASYINSTALL_CMD?=				${LOCALBASE}/bin/easy_install-${PYTHON_VER}
-PYEASYINSTALL_BINDIR?=			${PREFIX}/bin
+PYEASYINSTALL_BINDIR?=			${TRUE_PREFIX}/bin
 PYEASYINSTALL_SITELIBDIR?=		${PYTHONPREFIX_SITELIBDIR}
 
 PLIST_SUB+=		PYEASYINSTALL_EGG=${PYEASYINSTALL_EGG}
 
 pre-install: pre-install-easyinstall
 pre-install-easyinstall:
+.if defined(NO_STAGE)
+	@${MKDIR} ${PYEASYINSTALL_SITELIBDIR}
+.else
 	@${MKDIR} ${FAKE_DESTDIR}${PYEASYINSTALL_SITELIBDIR}
+.endif
 
 add-plist-post: add-plist-easyinstall
 add-plist-easyinstall:
@@ -453,16 +461,18 @@ add-plist-easyinstall:
 			/bin/ed ${PYEASYINSTALL_SITELIBDIR}/easy-install.pth" \
 		>> ${TMPPLIST}
 
+.if !defined(NO_STAGE)
 .if !target(stage-python-compileall)
 stage-python-compileall:
-	(cd ${STAGEDIR}${PREFIX} && \
+	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && \
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;} && \
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;})
 .endif
 
 post-install: stage-python-compileall
+.endif
 
 .endif		# defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
 
@@ -471,12 +481,14 @@ PYSETUP?=				setup.py
 PYDISTUTILS_SETUP?=	-c "import setuptools; __file__='${PYSETUP}'; exec(compile(open(__file__).read().replace('\\r\\n', '\\n'), __file__, 'exec'))"
 PYDISTUTILS_CONFIGUREARGS?=
 PYDISTUTILS_BUILDARGS?=
-PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${PREFIX}
+PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${TRUE_PREFIX}
 .if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} != "easy_install"
 . if !defined(PYDISTUTILS_INSTALLNOSINGLE)
 PYDISTUTILS_INSTALLARGS+=	--single-version-externally-managed
 . endif
+. if !defined(NO_STAGE)
 PYDISTUTILS_INSTALLARGS+=	--root=${FAKE_DESTDIR}
+. endif
 .endif
 _PYTHONPKGLIST=				${WRKDIR}/.PLIST.pymodtmp
 PYDISTUTILS_INSTALLARGS:=	--record ${_PYTHONPKGLIST} \
@@ -485,7 +497,7 @@ PYDISTUTILS_INSTALLARGS:=	--record ${_PYTHONPKGLIST} \
 PYDISTUTILS_PKGNAME?=	${PORTNAME}
 PYDISTUTILS_PKGVERSION?=${PORTVERSION}
 PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
-PYDISTUTILS_EGGINFODIR?=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+PYDISTUTILS_EGGINFODIR?=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 add-plist-egginfo:
 .if !defined(PYDISTUTILS_NOEGGINFO) && \
@@ -497,9 +509,9 @@ add-plist-egginfo:
 . for egginfo in ${PYDISTUTILS_EGGINFO}
 	if [ -d "${PYDISTUTILS_EGGINFODIR}/${egginfo}" ]; then \
 		${LS} ${PYDISTUTILS_EGGINFODIR}/${egginfo} | while read f; do \
-			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${STAGEDIR}${PYTHONBASE}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
+			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${FAKE_DESTDIR}${PYTHONBASE}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
 		done; \
-		${ECHO_CMD} "@unexec rmdir \"%D/${PYDISTUTILS_EGGINFODIR:S;${STAGEDIR}${PYTHONBASE}/;;}/${egginfo}\" 2>/dev/null || true" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@unexec rmdir \"%D/${PYDISTUTILS_EGGINFODIR:S;${FAKE_DESTDIR}${PYTHONBASE}/;;}/${egginfo}\" 2>/dev/null || true" >> ${TMPPLIST}; \
 	fi;
 . endfor
 .else
@@ -507,8 +519,8 @@ add-plist-egginfo:
 .endif
 
 .if defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
-_RELSITELIBDIR=	${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
-_RELLIBDIR=		${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}
+_RELSITELIBDIR=	${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
+_RELLIBDIR=		${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;}
 
 add-plist-post:	add-plist-pymod
 add-plist-pymod:
@@ -516,12 +528,12 @@ add-plist-pymod:
 		${SED} '/^\.$$/d' > ${WRKDIR}/.localmtree
 	@${ECHO_CMD} "${_RELSITELIBDIR}" >> ${WRKDIR}/.localmtree
 	@${ECHO_CMD} "${_RELLIBDIR}" >> ${WRKDIR}/.localmtree
-	@${SED} -e 's|^${STAGEDIR}${PREFIX}/||' \
-		-e 's|^${PREFIX}/||' \
+	@${SED} -e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
+		-e 's|^${TRUE_PREFIX}/||' \
 		-e 's|^\(man/man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2${MANEXT}|' \
 		${_PYTHONPKGLIST} | ${SORT} >> ${TMPPLIST}
-	@${SED} -e 's|^${STAGEDIR}${PREFIX}/\(.*\)/\(.*\)|\1|' \
-		-e 's|^${PREFIX}/\(.*\)/\(.*\)|\1|' ${_PYTHONPKGLIST} | \
+	@${SED} -e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/\(.*\)/\(.*\)|\1|' \
+		-e 's|^${TRUE_PREFIX}/\(.*\)/\(.*\)|\1|' ${_PYTHONPKGLIST} | \
 		${AWK} '{ num = split($$0, a, "/"); res=""; \
 					for(i = 1; i <= num; ++i) { \
 						if (i == 1) res = a[i]; \
@@ -554,7 +566,7 @@ add-plist-post:
 		pc="__pycache__" mt="$$(${PYMAGICTAG})" sp="${PYTHON_SITELIBDIR:S,${PYTHONBASE}/,,g}" \
 		${TMPPLIST} > ${TMPPLIST}.pyc_tmp
 	@${MV} ${TMPPLIST}.pyc_tmp ${TMPPLIST}
-.endif # ${PYTHON_REL} >= 320 && defined(PYTHON_PY3K_PLIST_HACK)
+.endif # ${PYTHON_REL} >= 330 && defined(PYTHON_PY3K_PLIST_HACK)
 .endif # defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
 
 # Fix for programs that build python from a GNU auto* environment
@@ -592,8 +604,8 @@ PREFIX=			${PYTHONBASE}
 # Substitutions for pkg-plist
 # Use a short form of the PYTHONPREFIX_*DIR variables; we don't need the
 # base directory in the plist file.
-PLIST_SUB+=		PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${PREFIX}/;;} \
-				PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;} \
+PLIST_SUB+=		PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
+				PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;} \
 				PYTHON_PLATFORM=${PYTHON_PLATFORM} \
 				PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
 				PYTHON_VERSION=${PYTHON_VERSION}
