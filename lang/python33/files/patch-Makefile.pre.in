@@ -1,0 +1,71 @@
+--- Makefile.pre.in.orig	2013-05-16 02:32:57.000000000 +1000
++++ Makefile.pre.in	2013-09-05 23:48:22.439871947 +1000
+@@ -70,18 +70,18 @@
+ OPT=		@OPT@
+ BASECFLAGS=	@BASECFLAGS@
+ BASECPPFLAGS=	@BASECPPFLAGS@
+-CONFIGURE_CFLAGS=	@CFLAGS@
+-CONFIGURE_CPPFLAGS=	@CPPFLAGS@
+-CONFIGURE_LDFLAGS=	@LDFLAGS@
++CFLAGS=	@CFLAGS@
++CPPFLAGS=	@CPPFLAGS@
++LDFLAGS=	@LDFLAGS@
+ # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
+ # command line to append to these values without stomping the pre-set
+ # values.
+-PY_CFLAGS=	$(BASECFLAGS) $(OPT) $(CONFIGURE_CFLAGS) $(CFLAGS) $(EXTRA_CFLAGS)
++PY_CFLAGS=	$(BASECFLAGS) $(OPT) $(CFLAGS) $(EXTRA_CFLAGS)
+ # Both CPPFLAGS and LDFLAGS need to contain the shell's value for setup.py to
+ # be able to build extension modules using the directories specified in the
+ # environment variables
+-PY_CPPFLAGS=	$(BASECPPFLAGS) -I. -IInclude -I$(srcdir)/Include $(CONFIGURE_CPPFLAGS) $(CPPFLAGS)
+-PY_LDFLAGS=	$(CONFIGURE_LDFLAGS) $(LDFLAGS)
++PY_CPPFLAGS=	$(BASECPPFLAGS) -I. -IInclude -I$(srcdir)/Include $(CPPFLAGS)
++PY_LDFLAGS=	$(LDFLAGS)
+ NO_AS_NEEDED=	@NO_AS_NEEDED@
+ LDLAST=		@LDLAST@
+ SGI_ABI=	@SGI_ABI@
+@@ -306,21 +306,21 @@
+ 
+ ##########################################################################
+ # AST
+-AST_H_DIR=	Include
++AST_H_DIR=	$(srcdir)/Include
+ AST_H=		$(AST_H_DIR)/Python-ast.h
+-AST_C_DIR=	Python
++AST_C_DIR=	$(srcdir)/Python
+ AST_C=		$(AST_C_DIR)/Python-ast.c
+ AST_ASDL=	$(srcdir)/Parser/Python.asdl
+ 
+ ASDLGEN_FILES=	$(srcdir)/Parser/asdl.py $(srcdir)/Parser/asdl_c.py
+ # XXX Note that a build now requires Python exist before the build starts
+-ASDLGEN=	@ASDLGEN@ $(srcdir)/Parser/asdl_c.py
++ASDLGEN=	@DISABLE_ASDLGEN@ $(srcdir)/Parser/asdl_c.py
+ 
+ ##########################################################################
+ # Python
+ 
+ OPCODETARGETS_H= \
+-		Python/opcode_targets.h
++		$(srcdir)/Python/opcode_targets.h
+ 
+ OPCODETARGETGEN= \
+ 		$(srcdir)/Python/makeopcodetargets.py
+@@ -742,7 +742,7 @@
+ Objects/setobject.o: $(srcdir)/Objects/stringlib/eq.h
+ 
+ $(OPCODETARGETS_H): $(OPCODETARGETGEN_FILES)
+-	$(OPCODETARGETGEN) $(OPCODETARGETS_H)
++#	$(OPCODETARGETGEN) $(OPCODETARGETS_H)
+ 
+ Python/ceval.o: $(OPCODETARGETS_H) $(srcdir)/Python/ceval_gil.h
+ 
+@@ -753,7 +753,7 @@
+ 
+ Objects/typeobject.o: Objects/typeslots.inc
+ Objects/typeslots.inc: $(srcdir)/Include/typeslots.h $(srcdir)/Objects/typeslots.py
+-	$(PYTHON) $(srcdir)/Objects/typeslots.py < $(srcdir)/Include/typeslots.h > Objects/typeslots.inc
++#	$(PYTHON) $(srcdir)/Objects/typeslots.py < $(srcdir)/Include/typeslots.h > Objects/typeslots.inc
+ 
+ ############################################################################
+ # Header files
