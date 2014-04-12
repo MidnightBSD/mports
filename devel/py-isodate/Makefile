@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	isodate
-PORTVERSION=	0.4.9
+PORTVERSION=	0.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,11 +11,8 @@ COMMENT=	ISO 8601 date/time/duration parser and formater
 
 LICENSE=	bsd3
 
-USE_PYTHON=	yes
+PYDISTUTILS_AUTOPLIST=	yes
 USE_PYDISTUTILS=yes
-
-NO_STAGE=	yes
-post-patch:
-	@${REINPLACE_CMD} -e 's|setuptools|do_not_use_&|' ${WRKSRC}/${PYSETUP}
+USE_PYTHON=	yes
 
 .include <bsd.port.mk>
