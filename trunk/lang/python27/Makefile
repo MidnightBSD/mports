@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	python27
-PORTVERSION=	2.7.5
-PORTREVISION=	1
+PORTVERSION=	2.7.6
+PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -10,6 +10,7 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreted object-oriented programming language
+
 LICENSE=	python
 
 DIST_SUBDIR=	python
@@ -17,14 +18,12 @@ WRKSRC=		${PYTHON_WRKSRC}/portbld.static
 PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../configure # must be relative
-CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd"
+CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd" ac_cv_opt_olimit_ok=no
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --host=${ARCH}-portbld-midnightbsd${OSREL}
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 INSTALL_TARGET=	altinstall
-MAN1=		${PYTHON_VERSION}.1
 
 USE_PYTHON=	yes
 USE_XZ=		yes
