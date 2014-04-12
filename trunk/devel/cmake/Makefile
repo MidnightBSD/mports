@@ -27,17 +27,6 @@ INSTALL_TARGET=	install/strip
 HAS_CONFIGURE=	yes
 BUILD_DEPENDS=	${DATADIR}/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
 RUN_DEPENDS=	${DATADIR}/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
-
-MAN1=		ccmake.1 \
-		cmake.1 \
-		cmakecommands.1 \
-		cmakecompat.1 \
-		cmakemodules.1 \
-		cmakepolicies.1	\
-		cmakeprops.1 \
-		cmakevars.1 \
-		cpack.1 \
-		ctest.1
 .endif
 
 post-patch:
