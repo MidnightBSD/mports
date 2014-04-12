@@ -13,8 +13,9 @@ LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
 
-MAN1=		less.1 lesskey.1 lessecho.1
-PLIST_FILES=	bin/less bin/lesskey bin/lessecho
+PLIST_FILES=	bin/less bin/lesskey bin/lessecho \
+		man/man1/less.1.gz man/man1/lesskey.1.gz \
+		man/man1/lessecho.1.gz
 
 OPTIONS_DEFINE=	COLORS
 COLORS_DESC=	Enable colors support via escape sequence
