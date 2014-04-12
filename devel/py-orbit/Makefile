@@ -17,9 +17,8 @@ LICENSE=	lgpl
 
 CONFLICTS=	py*-omniorb-[0-9]*
 
-USES=		pkgconfig
+USES=		pkgconfig gmake
 USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gnomehack orbit2
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
