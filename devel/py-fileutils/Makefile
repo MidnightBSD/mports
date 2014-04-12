@@ -14,6 +14,6 @@ LICENSE=	mit
 USE_BZIP2=		yes
 USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
-PYDISTUTILS_PKGNAME=	FileUtils
+PYDISTUTILS_AUTOPLIST=	yes
 
 .include <bsd.port.mk>
