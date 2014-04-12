@@ -1,4 +1,3 @@
-
 COMMENT = Development utilities
 
 SUBDIR += 9base
@@ -384,8 +383,6 @@ SUBDIR += pth-hard
 SUBDIR += py-Jinja2
 SUBDIR += py-babel
 SUBDIR += py-dbus
-SUBDIR += py-distribute
-SUBDIR += py-elementtree
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
