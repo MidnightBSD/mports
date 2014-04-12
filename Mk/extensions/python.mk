@@ -539,7 +539,7 @@ add-plist-pymod:
 	@${ECHO_CMD} "@unexec rmdir \"%D/${PYTHON_LIBDIR:S;${PYTHONBASE}/;;}\" 2>/dev/null || true" >> ${TMPPLIST}
 
 .else
-.if ${PYTHON_REL} >= 320 && defined(PYTHON_PY3K_PLIST_HACK)
+.if ${PYTHON_REL} >= 330 && defined(PYTHON_PY3K_PLIST_HACK)
 # When Python version is 3.2+ we rewrite all the filenames
 # of TMPPLIST that end with .py[co], so that they conform
 # to PEP 3147 (see http://www.python.org/dev/peps/pep-3147/)
