@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rdflib
-PORTVERSION=	4.0.1
+PORTVERSION=	4.1.1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,13 +11,12 @@ COMMENT=	Python library for RDF manipulation
 
 LICENSE=	bsd3
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}isodate>=0:${PORTSDIR}/devel/py-isodate
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}isodate>=0:${PORTSDIR}/devel/py-isodate \
+	${PYTHON_PKGNAMEPREFIX}parsing>=2.0.1:${PORTSDIR}/devel/py-parsing \
+	${PYTHON_PKGNAMEPREFIX}sparqlwrapper>=1.5.2:${PORTSDIR}/textproc/py-sparqlwrapper
 
-USE_PYTHON=	-2.7
+USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
-
-NO_STAGE=	yes
-post-patch:
-	@${REINPLACE_CMD} -e 's|setuptools|distutils.core|' ${WRKSRC}/${PYSETUP}
+PYDISTUTILS_AUTOPLIST=	yes
 
 .include <bsd.port.mk>
