@@ -14,20 +14,17 @@ COMMENT=	Library for manipulating PNG images
 
 LICENSE=	other
 
-USE_XZ=		yes
+USES=		tar:xz cmake
 GNU_CONFIGURE=	yes
-USE_CMAKE=	yes
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS+=	-DPNG_MAN_DIR:STRING=man
 SOSUFFIX=	.${PORTVERSION:E}
 
-MAN3=		libpng.3 libpngpf.3
-MAN5=		png.5
-
-OPTIONS_DEFINE=APNG
-OPTIONS_DEFAULT=APNG
+OPTIONS_DEFINE=APNG PNGTEST
+OPTIONS_DEFAULT=APNG PNGTEST
 APNG_DESC=Enable Animated PNG support
+PNGTEST_DESC=Enable Regression Test (recommended)
 
 .include <bsd.mport.options.mk>
 
