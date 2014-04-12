@@ -2,8 +2,7 @@
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
 
 PORTNAME=	dbus
-PORTVERSION=	0.83.2
-PORTREVISION=	1
+PORTVERSION=	1.1.1
 CATEGORIES=	devel gnome python
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,21 +14,23 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
-USE_GETTEXT=	yes
-USE_GNOME=	gnomehack
-USE_PYTHON=	yes
-USE_GMAKE=	yes
+USES=		gettext pathfix pkgconfig gmake
+USE_PYTHON=	2
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${PYTHON_INCLUDEDIR}"
+CPPFLAGS+=	-I${PYTHON_INCLUDEDIR}
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} \
 		--disable-api-docs
 
 DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=HTMLDOCS
+HTMLDOCS_DESC=	build html documentation
 
-.if exists(${LOCALBASE}/bin/rst2html) && !defined(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MHTMLDOCS}
+BUILD_DEPENDS+=	rst2html:${PORTSDIR}/textproc/py-docutils
 PLIST_SUB+=	HTML=""
 .else
 CONFIGURE_ARGS+=--disable-html-docs
@@ -37,16 +38,14 @@ PLIST_SUB+=	HTML="@comment "
 .endif
 
 post-patch:
-.if defined(NOPORTDOCS)
+.if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e 's|HEADERS install-dist_docDATA|HEADERS|g ; \
 		s|PYTHON install-nodist_docDATA|PYTHON|g' \
 			${WRKSRC}/Makefile.in
 .endif
 
 post-install:
-.if !defined(NOPORTEXAMPLES)
-	${MKDIR} ${EXAMPLESDIR} && \
-		${INSTALL_DATA} ${WRKSRC}/examples/*.py ${EXAMPLESDIR}
-.endif
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} && \
+		${INSTALL_DATA} ${WRKSRC}/examples/*.py ${STAGEDIR}${EXAMPLESDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
