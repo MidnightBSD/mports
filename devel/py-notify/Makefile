@@ -3,8 +3,8 @@
 
 PORTNAME=	notify
 PORTVERSION=	0.1.1
-PORTREVISION=	1
 DISTVERSIONPREFIX=python-
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.galago-project.org/files/releases/source/notify-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,16 +13,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A python bindings for libnotify
 LICENSE=	lgpl
 
-LIB_DEPENDS=	notify.1:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	notify:${PORTSDIR}/devel/libnotify
 
 USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig
 USE_GNOME=	gnomehack pygtk2
-USE_PYTHON=	yes
+USE_PYTHON=	2
 GNU_CONFIGURE=	yes
 
 DOCS=		AUTHORS COPYING ChangeLog NEWS
 
+NO_STAGE=	yes
 post-extract:
 	@${RM} ${WRKSRC}/src/pynotify.c
 
