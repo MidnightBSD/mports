@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	zfstools
-PORTVERSION=	0.2.2
+PORTVERSION=	0.3.1
 CATEGORIES=	sysutils ruby
 MASTER_SITES=	GH \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/
@@ -13,13 +13,15 @@ LICENSE=	bsd2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bdrewery
-GH_COMMIT=	924b60c
+GH_COMMIT=	24d02f9
 GH_TAGNAME=	v${DISTVERSION}
 
 USE_RUBY=	yes
 NO_BUILD=	yes
 
 SUB_FILES=	pkg-message
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
