@@ -2,26 +2,22 @@
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 
 PORTNAME=	desktop-file-utils
-PORTVERSION=	0.21
+PORTVERSION=	0.22
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A couple of command line utilities for working with desktop entries
+COMMENT=	Couple of command line utilities for working with desktop entries
+
 LICENSE=	gpl2
 
-USES=		pkgconfig gettext
+USES=		gmake pkgconfig gettext tar:xz
 USE_GNOME=	glib20
-USE_XZ=		yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-lispdir
 CONFIGURE_ENV=	EMACS="no" LIBS="-lintl"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=		desktop-file-edit.1 desktop-file-install.1 \
-		desktop-file-validate.1 update-desktop-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
