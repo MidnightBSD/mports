@@ -1,9 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.11.2
+PORTVERSION=	2.8.12.1
+PORTREVISION?=	4
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v2.8/
+MASTER_SITES=	http://downloads.cmake.org/files/v2.8/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
@@ -13,6 +14,8 @@ LICENSE=	other
 
 #EXTENSIONS=cmake
 
+USE_KDE4=	# env
+USE_OPENSSL=	yes
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
@@ -24,6 +27,8 @@ INSTALL_TARGET=	install/strip
 .endif
 
 .if !defined(CMAKE_MODULES)
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 HAS_CONFIGURE=	yes
 BUILD_DEPENDS=	${DATADIR}/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
 RUN_DEPENDS=	${DATADIR}/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
@@ -38,7 +43,7 @@ post-patch:
 		${WRKSRC}/Source/cmLocalGenerator.cxx \
 		${WRKSRC}/Source/CPack/cmCPackGenerator.cxx \
 		${WRKSRC}/bootstrap
-	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE}/kde4,g' \
+	@${REINPLACE_CMD} -e 's,/opt/kde4,${KDE4_PREFIX},g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
 	@${REINPLACE_CMD} -e 's,/usr/include,${LOCALBASE}/include,' \
 	   	${WRKSRC}/Modules/FindDCMTK.cmake
