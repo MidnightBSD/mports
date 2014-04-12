@@ -12,6 +12,10 @@ lib/libdconf-dbus-1.so.0
 libdata/pkgconfig/dconf.pc
 libdata/pkgconfig/dconf-dbus-1.pc
 libexec/dconf-service
+man/man1/dconf-editor.1.gz
+man/man1/dconf-service.1.gz
+man/man1/dconf.1.gz
+man/man7/dconf.7.gz
 share/bash-completion/completions/dconf
 share/dbus-1/services/ca.desrt.dconf.service
 share/gtk-doc/html/dconf/dconf-DConfChangeset.html
