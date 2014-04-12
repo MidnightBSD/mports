@@ -4,6 +4,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl bindings for Version control system
+
 LICENSE=	other
 
 MASTERDIR=	${.CURDIR}/../../devel/subversion
