@@ -12,14 +12,14 @@ COMMENT=	Some useful routines of C programming (current stable version)
 
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre \
 		ffi:${PORTSDIR}/devel/libffi
 
-USES=		gettext gmake iconv pathfix pkgconfig shebangfix
+USES+=		gettext gmake iconv pathfix pkgconfig shebangfix
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	ltverhack
