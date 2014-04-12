@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	flashplugin
-PORTVERSION=	11.2r202.336
+PORTVERSION=	11.2r202.341
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/pdc/${PORTVERSION:C/r/\./}/:plugin \
 		FREEBSD_LOCAL/nox:suplib
@@ -12,7 +12,8 @@ DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Flash Player NPAPI Plugin
-LICENSE=	restricted
+
+LICENSE=	other
 
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
