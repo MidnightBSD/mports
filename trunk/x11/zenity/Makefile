@@ -15,9 +15,8 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
-USES=		pathfix gettext gmake pkgconfig
+USES=		pathfix gettext gmake pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix gtk20 gnomedocutils intlhack
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
