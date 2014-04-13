@@ -11,15 +11,16 @@ MASTER_SITES=	CENKES
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Access X selection from command line
+
 LICENSE=	mit
 
 CONFLICTS=	xsel-conrad-[0-9]*
-USE_BZIP2=	yes
+
+USES=		tar:bzip2
 USE_XORG=	xmu xaw xt xproto xkbfile
 CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lXt -lXaw
-MAN1=		${PORTNAME}.1
-PLIST_FILES=	bin/${PORTNAME}
+LDFLAGS+=	-L${LOCALBASE}/lib -lXt -lXaw -lX11 -lXmu
+PLIST_FILES=	bin/${PORTNAME} man/man1/xsel.1.gz
 PORTDOCS=	${PORTNAME}.html
 
 .include <bsd.mport.options.mk>
