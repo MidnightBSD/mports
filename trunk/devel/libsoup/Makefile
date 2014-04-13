@@ -8,25 +8,24 @@ MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A SOAP (Simple Object Access Protocol) implementation in C
+COMMENT=	SOAP (Simple Object Access Protocol) implementation in C
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 RUN_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
 
-USE_XZ=		yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-USES=		gettext pathfix
-USE_GNOME=	gnomehier glib20 libxml2 ltverhack referencehack intltool
+USES+=		gettext gmake pathfix pkgconfig
+USE_GNOME=	gnomehier glib20 libxml2 referencehack intltool
 USE_SQLITE=	3
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
-USE_PYTHON_BUILD=	-2.7
+USE_PYTHON_BUILD=	2
 CONFIGURE_ARGS=	--disable-more-warnings
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
