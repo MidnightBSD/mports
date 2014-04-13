@@ -20,7 +20,7 @@ HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
 CONFIGURE_SCRIPT=	${WAF_TOOL} configure
 CONFIGURE_LOG=		bin/config.log
-USES=			pkgconfig
+USES=			compiler pkgconfig
 
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
