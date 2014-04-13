@@ -13,8 +13,6 @@ COMMENT=	GNU gettext package
 LICENSE=	gpl3
 
 USES=		charsetfix iconv
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-csharp --disable-java \
 		--disable-openmp --disable-threads \
