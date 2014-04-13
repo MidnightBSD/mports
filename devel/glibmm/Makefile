@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glibmm
-PORTVERSION=	2.34.1
+PORTVERSION=	2.36.2
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -10,9 +10,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ interfaces for glib2
+
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		tar:xz
 
 PLIST_SUB=	VERSION="2.4" API_VERSION="2.4"
 
@@ -20,9 +21,8 @@ PLIST_SUB=	VERSION="2.4" API_VERSION="2.4"
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack glib20 ltverhack libsigc++20
-USES=		pkgconfig gettext
+USE_GNOME=	glib20 libsigc++20
+USES+=		gettext gmake pkgconfig
 USE_PERL5=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
