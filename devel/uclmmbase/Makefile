@@ -2,7 +2,7 @@
 
 PORTNAME=	uclmmbase
 PORTVERSION=	1.2.18
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel ipv6
 MASTER_SITES=	http://aldan.algebra.com/~mi/port-stuff/
 DISTNAME=	common-${PORTVERSION}
@@ -12,17 +12,17 @@ COMMENT=	Common subroutines for UCL mbone applications
 
 LICENSE=	bsd4
 
+OPTIONS_DEFINE=	IPV6
+
 WRKSRC=		${WRKDIR}/common
-USES=		uidfix
+USES=		uidfix tar:xz
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 
+IPV6_CONFIGURE_ENABLE=	ipv6
+
 FAKE_OPTS=    trueprefix
 
-.ifndef (NO_INET6)
-CONFIGURE_ARGS=	--enable-ipv6
-.endif
-USE_XZ=		yes
 MAKE_ENV=	WITHOUT_PROFILE=yes __MAKE_CONF=/dev/null SRCCONF=/dev/null
 
 post-configure:
