@@ -14,12 +14,10 @@ LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gtk20 glib20 intltool intlhack vte libxml2 
 USE_XFCE=	configenv libmenu
 USE_XORG=	x11
-USES=		pathfix pkgconfig
+USES=		gmake pathfix pkgconfig tar:bzip2
 
 CONFIGURE_ARGS=	--without-gnome-default-appsdir
 
