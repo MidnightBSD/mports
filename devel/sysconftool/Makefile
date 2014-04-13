@@ -8,16 +8,13 @@ MASTER_SITES=	SF/courier/${PORTNAME}/${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helps to install application configuration files
 
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_BZIP2=	yes
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
 
 USE_AUTOTOOLS=	automake aclocal autoconf
-
-MAN1=	sysconftool.1 sysconftoolcheck.1
-MAN7=	sysconftool.7
 
 pre-patch:
 	@${CP} ${TEMPLATES}/config.guess ${TEMPLATES}/config.sub ${WRKSRC}
