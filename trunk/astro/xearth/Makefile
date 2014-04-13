@@ -9,8 +9,13 @@ MASTER_SITES=	http://seis.bris.ac.uk/~mexas/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the root window to the image of earth
-LICENSE=	restricted
-#patents?
+
+LICENSE=	mit_restricted
+LICENSE_NAME=	mit with patents
+LICENSE_TEXT=	MIT license with patents
+LICENSE_PERMS=	# perms?
+
+RESTRICTED=	patents?
 
 USES=		tar:xz
 USE_XORG=	x11 xext sm ice xt
