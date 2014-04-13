@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xlockmore
-PORTVERSION=	5.42
+PORTVERSION=	5.43
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
 		ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
@@ -9,11 +9,12 @@ MASTER_SITES=	http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Like XLock session locker/screen saver, but just more
+
 LICENSE=	mit
 
 FAKE_OPTS=	prefixhack
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-motif --without-ttf --without-editres \
 		--without-dtsaver --without-rplay --without-nas \
@@ -24,8 +25,7 @@ USE_XORG=	x11 xaw ice
 
 LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2
 
-MAN1=		xlock.1
-PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock
+PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock man/man1/xlock.1.gz
 
 OPTIONS_DEFINE=	MESAGL MB SYSLOG DISABLE_ALLOW_ROOT NICE_ONLY BLANK_ONLY \
 		KERBEROS4 BAD_PAM GTK2 TIME_BOMB CUSTOMIZATION MAGICK
