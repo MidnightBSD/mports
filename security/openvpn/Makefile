@@ -14,9 +14,9 @@ LICENSE=	agg
 CONFLICTS=	openvpn-devel-[0-9]* openvpn-2.0* openvpn-beta-[0-9]*
 
 GNU_CONFIGURE=	yes
+USES=		tar:xz
 USE_OPENSSL=	yes
-USE_XZ=		yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--with-lzo-lib=${LOCALBASE}/lib \
 		--with-lzo-headers=${LOCALBASE}/include
 INSTALL_TARGET=	install mandir=${MANPREFIX}/man
