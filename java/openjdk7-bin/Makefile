@@ -3,7 +3,7 @@
 PORTNAME=	openjdk7-bin
 PORTVERSION=	7.9.05
 CATEGORIES=	java
-MASTER_SITES=	LOCAL/laffer1
+MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 DISTFILES=	openjdk-${PORTVERSION}_1.tbz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 CONFLICTS=	openjdk7-1.7*
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 ONLY_FOR_ARCH=	amd64
 NO_BUILD=	yes
 
