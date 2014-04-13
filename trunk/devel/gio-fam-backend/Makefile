@@ -15,17 +15,15 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FAM backend for GLib's GIO library
+
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		gmake pkgconfig tar:xz
 BUILD_WRKSRC=	${WRKSRC}/gio/fam
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 GNU_CONFIGURE=	yes
-USE_PKGCONFIG=	build
 USE_GNOME=	gnomehack _glib20
 USE_FAM=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
