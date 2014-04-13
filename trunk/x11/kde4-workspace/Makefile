@@ -46,13 +46,12 @@ USE_GL=		glu
 USE_GNOME=	glib20
 USE_KDE4=	kactivities kdehier kdelibs kdeprefix oxygen pimlibs \
 		akonadi automoc4 ontologies qimageblitz soprano strigi
-USES=		cmake:outsource pkgconfig gettext iconv
+USES=		cmake:outsource pkgconfig gettext iconv tar:xz
 USE_QT4=	corelib dbus declarative designer_build gui network \
 		opengl phonon qtestlib script sql webkit xml \
 		moc_build qmake_build rcc_build uic_build
 USE_XORG=	kbproto x11 xau xcomposite xcursor xdamage xdmcp xfixes \
 		xft xi xinerama xkbfile xrandr xrender xres xscrnsaver xtst
-USE_XZ=		yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
