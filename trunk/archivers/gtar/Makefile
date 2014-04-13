@@ -20,8 +20,7 @@ WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
 INFO=		tar
 
 USE_AUTOTOOLS=	autoconf:env	# autom4te
-USE_XZ=		yes
-USES=		iconv
+USES=		iconv tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--disable-silent-rules
