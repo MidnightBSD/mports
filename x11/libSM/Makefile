@@ -1,15 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	libSM
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 PORTEPOCH=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session Management library for X11
+
 LICENSE=	mit
 
 XORG_CAT=	lib
+USES=		tar:bzip2
 USE_XORG=	ice xproto:both xtrans
 
 CONFIGURE_ARGS+=--disable-docs --without-xmlto
