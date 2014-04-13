@@ -14,10 +14,8 @@ BUILD_DEPENDS=	at-spi2-core>=2.1.4:${PORTSDIR}/accessibility/at-spi2-core
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
 RUN_DEPENDS=	at-spi2-core>=2.1.4:${PORTSDIR}/accessibility/at-spi2-core
 
-USE_XZ=		yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig tar:xz
 USE_GNOME=	gnomehack gnomehier intlhack glib20 atk
-USE_PKGCONFIG=	build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
