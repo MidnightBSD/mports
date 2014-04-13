@@ -13,7 +13,7 @@ LICENSE=	mit
 
 NO_BUILD=	yes
 NO_MANCOMPRESS=	yes
-USE_XZ=		yes
+USES=		tar:xz
 
 MAN1=		npm.1 npm-README.1 npm-adduser.1 npm-bin.1 npm-bugs.1 \
 		npm-build.1 npm-bundle.1 npm-cache.1 npm-completion.1 \
