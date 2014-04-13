@@ -10,6 +10,7 @@ DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE IOSlave for accessing audio CDs
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	FLAC:${PORTSDIR}/audio/flac \
@@ -19,11 +20,10 @@ LIB_DEPENDS=	FLAC:${PORTSDIR}/audio/flac \
 
 CONFLICTS_INSTALL=	kdemultimedia-4.[1-8].*
 
-USES=		cmake:outsource
+USES=		cmake:outsource tar:xz
 USE_KDE4=	kdehier kdelibs kdeprefix libkcddb libkcompactdisc \
 		automoc4
 USE_QT4=	moc_build qmake_build rcc_build uic_build
-USE_XZ=		yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 
