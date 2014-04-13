@@ -13,6 +13,7 @@ COMMENT=	Common subroutines for UCL mbone applications
 LICENSE=	bsd4
 
 WRKSRC=		${WRKDIR}/common
+USES=		uidfix
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 
