@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	1.34.2
+PORTVERSION=	1.36.0
 PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -9,6 +9,7 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate interface introspection data for GObject libraries
+
 LICENSE=	gpl2
 # well it could be agg, but gpl2 is worst case
 
@@ -16,23 +17,22 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	cairo-trace:${PORTSDIR}/graphics/cairo
 LIB_DEPENDS=	ffi:${PORTSDIR}/devel/libffi
 
-USE_XZ=	yes
+USES=		bison gettext gmake pathfix pkgconfig tar:xz
+
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack glib20 ltverhack
-USE_PYTHON=	-2.7
-USE_BISON=	build
-USE_GETTEXT=	yes
+USE_GNOME=	gnomehier glib20 ltverhack
+USE_PYTHON=	2
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--disable-tests
 
 # Force it to put the .cache in ${WRKSRC} instead of ~/.cache.
 MAKE_ENV=	HOME=${WRKDIR}
 
-MAN1=		g-ir-compiler.1 g-ir-generate.1 g-ir-scanner.1
+post-patch:
+	@${REINPLACE_CMD} -e 's|'gcc'|'cc'|g' \
+		${WRKSRC}/giscanner/dumper.py
 
 .include <bsd.port.mk>
