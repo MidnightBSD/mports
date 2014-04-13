@@ -6,13 +6,12 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Session Manager
+
 LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xt xaw
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
-
-MAN1=		xsm.1
 
 .include <bsd.port.mk>
