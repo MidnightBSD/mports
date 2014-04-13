@@ -11,20 +11,19 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 configuration mananger
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-XML-Parser>=2.41:${PORTSDIR}/textproc/p5-XML-Parser
 LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_PERL5_BUILD=	yes
 USE_XFCE=	configenv libutil
 USE_XORG=	x11
-USES=		pathfix pkgconfig
+USES=		gmake pathfix pkgconfig tar:bzip2
 
 OPTIONS_DEFINE=		DOCS PERL NLS
 
