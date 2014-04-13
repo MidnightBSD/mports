@@ -2,6 +2,7 @@
 
 PORTNAME=	xkbcomp
 PORTVERSION=	1.2.4
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,11 +12,10 @@ LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xkbfile
-USES=		pathfix
+USES=		pathfix tar:bzip2
 
 PLIST_FILES=	bin/xkbcomp \
-		libdata/pkgconfig/xkbcomp.pc
-
-MAN1=		xkbcomp.1
+		libdata/pkgconfig/xkbcomp.pc \
+		man/man1/xkbcomp.1.gz
 
 .include <bsd.port.mk>
