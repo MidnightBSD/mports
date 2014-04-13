@@ -9,6 +9,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities of the Tango project
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-XML-Simple>=0:${PORTSDIR}/textproc/p5-XML-Simple
@@ -16,7 +17,6 @@ RUN_DEPENDS=	p5-XML-Simple>=0:${PORTSDIR}/textproc/p5-XML-Simple
 
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USES=		pathfix pkgconfig
+USES=		pathfix pkgconfig gmake
 
 .include <bsd.port.mk>
