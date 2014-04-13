@@ -9,11 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for ATK API library
 LICENSE=	lgpl
 
-USES=		pathfix pkgconfig
-USE_XZ=		yes
+USES=		gmake pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
 USE_GNOME=	atk glibmm
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
