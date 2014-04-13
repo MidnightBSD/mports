@@ -9,16 +9,16 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME accessibility toolkit (ATK)
+
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USES=		pathfix pkgconfig gettext
-USE_GMAKE=	yes
+USES+=		pathfix pkgconfig gettext gmake
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehier glib20 ltverhack referencehack
