@@ -12,10 +12,8 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection
 
-USES=		pkgconfig
-USE_GMAKE=	yes
-USE_XZ=		yes
-USE_GNOME=	glib20 gnomehack gnomeprefix ltverhack
+USES=		pkgconfig tar:xz gmake
+USE_GNOME=	glib20 gnomehack gnomeprefix ltverhack introspection:build
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
