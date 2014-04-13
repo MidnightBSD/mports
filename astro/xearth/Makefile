@@ -12,9 +12,8 @@ COMMENT=	Set the root window to the image of earth
 LICENSE=	restricted
 #patents?
 
+USES=		tar:xz
 USE_XORG=	x11 xext sm ice xt
-USE_XZ=		yes
-MAN1=		xearth.1
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/xearth ${PREFIX}/bin
