@@ -24,9 +24,8 @@ CONFIGURE_ARGS=	--program-prefix=g	\
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib" FORCE_UNSAFE_CONFIGURE=1
 CPPFLAGS+=	"-I${LOCALBASE}/include"
 
-USES=		gmake iconv charsetfix
+USES=		gmake iconv charsetfix tar:xz
 USE_PERL5_BUILD=	yes # build - required for tests and man page generation
-USE_XZ=		yes
 USE_LDCONFIG=	yes
 
 INFO=		coreutils
