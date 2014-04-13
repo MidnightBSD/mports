@@ -13,8 +13,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	sigsegv:${PORTSDIR}/devel/libsigsegv
 
-USES=		charsetfix
-USE_XZ=		yes
+USES=		charsetfix tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
 
