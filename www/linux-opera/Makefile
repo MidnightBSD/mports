@@ -23,7 +23,7 @@ LICENSE=	opera
 
 RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-USE_XZ=		yes
+USES=		tar:xz
 USE_LINUX=	yes
 USE_LINUX_APPS=	naslibs png xorglibs
 ONLY_FOR_ARCHS=	i386 amd64
