@@ -10,10 +10,9 @@ COMMENT?=	Utilities & library to manipulate ext2/3/4 filesystems
 LICENSE=	gpl2
 
 PATCH_STRIP=	-p1
-USE_GMAKE=	yes
+USES=		gmake tar:xz
 USE_CSTD=	gnu99
 USE_LDCONFIG=	yes
-USE_XZ=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-fsck --disable-e2initrd-helper \
 		--with-root-prefix='${PREFIX}'
