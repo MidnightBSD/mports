@@ -32,6 +32,4 @@ do-install:
 
 	${INSTALL_MAN} ${WRKSRC}/svndelta.1 ${PREFIX}/man/man1/
 
-MAN1=		svndelta.1
-
 .include <bsd.port.mk>
