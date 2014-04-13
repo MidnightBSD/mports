@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/libgee/Makefile,v 1.5 2011/02/28 12:01:51 kwm Exp $
 
 PORTNAME=	libgee
-PORTVERSION=	0.8.5
+PORTVERSION=	0.12.0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -10,14 +10,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject collection library
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	gobject-introspection>=0.9.0:${PORTSDIR}/devel/gobject-introspection
+BUILD_DEPENDS=	valac:${PORTSDIR}/lang/vala
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-introspection=yes
-USE_GMAKE=	yes
 USE_XZ=		yes
-USE_GNOME=	glib20 gnomehier gnomehack
-USES=		pkgconfig
+USES=		gmake libtool pathfix pkgconfig
+USE_GNOME=	glib20 gnomehier introspection:build
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
