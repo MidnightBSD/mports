@@ -9,17 +9,16 @@ DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE CDDB library
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	musicbrainz5:${PORTSDIR}/audio/libmusicbrainz5
 
 CONFLICTS_INSTALL=	kdemultimedia-4.[1-8].*
 
-USES=		cmake:outsource
+USES=		cmake:outsource tar:xz
 USE_KDE4=	automoc4 kdehier kdelibs kdeprefix
 USE_QT4=	qtestlib moc_build qmake_build rcc_build uic_build
-USE_XZ=		yes
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 .include <bsd.port.mk>
