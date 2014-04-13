@@ -28,7 +28,7 @@ OPERA_VER?=	12.16
 OPERA_BUILD?=	1860
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
-USE_XZ=		yes
+USES=		tar:xz
 USE_XORG=	x11 xext sm ice xft xrender
 USE_GNOME=	desktopfileutils
 INSTALLS_ICONS=	yes
