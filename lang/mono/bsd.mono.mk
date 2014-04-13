@@ -1,4 +1,12 @@
-# $MidnightBSD: mports/lang/mono/bsd.mono.mk,v 1.1 2007/08/22 06:45:19 laffer1 Exp $
+# New ports collection makefile for:	Mono and it's consumers
+# Date created:				15 October 2005
+# Whom:					Tom McLaughlin <tmclaugh@FreeBSD.org>
+#
+# bsd.mono.mk: accomodate the peculiarities of building C# ports within
+# the FreeBSD ports system.
+#
+# $FreeBSD: head/lang/mono/bsd.mono.mk 340722 2014-01-22 17:00:46Z mat $
+#
 
 # USE_NANT		- If set, the port uses nant.
 # USE_NANT		- If set "contrib", the port uses nantcontrib.
