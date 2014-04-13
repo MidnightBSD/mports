@@ -20,12 +20,10 @@ LIB_DEPENDS=	poppler-qt4:${PORTSDIR}/graphics/poppler-qt4 \
 
 CONFLICTS_INSTALL=	kde-runtime-4.[7-8].*
 
-USE_XZ=		yes
 USE_KDE4=	kdeprefix kdehier automoc4 kdelibs ontologies soprano
-USES=		cmake:outsource
+USES=		cmake:outsource tar:xz
 USE_QT4=	corelib dbus gui qmake_build moc_build rcc_build uic_build
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 MAKE_ENV=	XDG_CONFIG_HOME=/dev/null
 
 SUB_FILES=	nepomuk-env.sh
