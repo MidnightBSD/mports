@@ -301,6 +301,19 @@ DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSI
 
 PKGCOMPATDIR?=	${LOCALBASE}/lib/compat/pkg
 
+# This must come before extension loading or it won't work
+.if defined(USE_BZIP2)
+USES+=tar:bzip2
+.elif defined(USE_ZIP)
+USES+=zip
+.elif defined(USE_XZ)
+USES+=tar:xz
+.elif defined(USE_MAKESELF)
+EXTRACT_SUFX?=	.run
+.else
+EXTRACT_SUFX?=	.tar.gz
+.endif
+
 #
 # Handle the backwards compatibility stuff for extension loading
 #
@@ -384,17 +397,6 @@ USE_${_f}=      ${_f}_ARGS
 EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
 .endif
 
-.if defined(USE_BZIP2)
-USES+=tar:bzip2
-.elif defined(USE_ZIP)
-USES+=zip
-.elif defined(USE_XZ)
-USES+=tar:xz
-.elif defined(USE_MAKESELF)
-EXTRACT_SUFX?=			.run
-.else
-EXTRACT_SUFX?=			.tar.gz
-.endif
 PACKAGES?=		${PORTSDIR}/Packages/${ARCH}
 TEMPLATES?=		${PORTSDIR}/Templates
 
