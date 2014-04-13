@@ -14,9 +14,8 @@ COMMENT=	KDE System Guard Daemon
 LICENSE=	gpl2
 
 DISTINFO_FILE=	${PORTSDIR}/x11/kde4-workspace/distinfo
-USE_XZ=		yes
 USE_KDE4=	kdeprefix kdehier
-USES=		cmake
+USES=		cmake tar:xz
 CMAKE_ARGS+=	-DBIN_INSTALL_DIR:STRING="${PREFIX}/bin" \
 		-DSYSCONF_INSTALL_DIR:STRING="${PREFIX}/etc"
 
