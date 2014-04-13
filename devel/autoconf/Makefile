@@ -33,9 +33,6 @@ GENERIC_TOOLS=	config.guess config.sub	elisp-comp install-sh mdate-sh missing
 GENERIC_LINKS=	autoconf autoheader autom4te autoreconf autoscan autoupdate \
 		ifnames
 
-MAN1_PAGES=	${GENERIC_LINKS} config.guess config.sub
-MAN1=		${MAN1_PAGES:S/$/-${BUILD_VERSION}.1/g}
-
 post-patch:
 	@(cd ${WRKSRC}/man && \
 		for file in *.[1x]; do \
