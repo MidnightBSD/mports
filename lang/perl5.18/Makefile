@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	perl
-PORTVERSION=	5.18.1
+PORTVERSION=	5.18.2
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../src
-LATEST_LINK=	perl
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+DIST_SUBDIR=	perl
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
@@ -18,7 +19,7 @@ PERL_VER=	${PORTVERSION}
 PERL_NO_DEPENDS=	yes
 USE_PERL5=		yes
 
-USE_BZIP2=	yes
+USES=			tar:bzip2
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
