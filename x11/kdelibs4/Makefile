@@ -36,12 +36,11 @@ CONFLICTS=	kdebase-runtime-4.5.[0-5]
 
 LATEST_LINK=	${PORTNAME}4
 
-USE_XZ=		yes
 USE_FAM=	yes
 USE_GNOME=	libxml2 libxslt
 USE_KDE4=	kdehier kdeprefix oxygen \
 		attica automoc4 ontologies sharedmime soprano strigi
-USES=		cmake:outsource gettext
+USES=		cmake:outsource gettext tar:xz
 USE_OPENSSL=	yes
 USE_PERL5=	yes
 USE_QT4=	corelib dbus declarative designer_build gui \
