@@ -9,9 +9,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for GNOME, a GNU desktop environment
+
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
