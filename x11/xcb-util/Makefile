@@ -11,8 +11,7 @@ COMMENT=	Module with libxcb/libX11 extension/replacement libraries
 
 LICENSE=	mit
 
-USE_BZIP2=	yes
-USES=		gmake pathfix pkgconfig
+USES=		gmake pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 USE_XORG=	xau xcb xdmcp xorg-macros
 USE_AUTOTOOLS=	libtool
