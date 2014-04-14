@@ -10,8 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to manipulate X configuration files for the NVidia driver
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USES=		gmake
+USES=		gmake tar:bzip2
 
 MAKE_ENV=	NV_VERBOSE= \
 		STRIP_CMD=${TRUE} \
