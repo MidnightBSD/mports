@@ -10,13 +10,13 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X windowing system
+
 LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 USE_GNOME=	gnomehack gtk20 glib20 intltool intlhack pkgconfig vte \
 		desktopfileutils
 USE_XFCE=	configenv libexo
