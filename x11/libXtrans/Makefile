@@ -8,11 +8,10 @@ MASTER_SITES=	http://xlibs.freedesktop.org/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network API translation layer for X applications and libraries
+
 LICENSE=	mit
 
-USE_BZIP2=	yes
+USES=		gmake pathfix tar:bzip2
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_PATHFIX=	yes
 
 .include <bsd.port.mk>
