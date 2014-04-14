@@ -12,10 +12,9 @@ COMMENT=	Graphical effects and filters library for KDE4
 
 LICENSE=	bsd2
 
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 USE_QT4=	corelib gui qmake_build moc_build uic_build rcc_build
-USES=		cmake
+USES=		cmake tar:bzip2
 
 post-patch:
 	${MKDIR} ${WRKSRC}
