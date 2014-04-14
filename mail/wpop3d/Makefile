@@ -3,22 +3,21 @@
 # Whom:           wintellect
 #
 # $MidnightBSD$
-#
 
 PORTNAME=	wpop3d
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	wintellect@bsdnexus.com
 COMMENT=	A pop3 server for retrieval of remote mail on a UNIX system
+
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=-build=${MACHINE_ARCH}-portbld-freebsd6.0
-MAN1=		wpop3d.1
 
-PLIST_FILES=	sbin/wpop3d
+PLIST_FILES=	sbin/wpop3d man/man1/wpop3d.1
 
 .include <bsd.port.mk>
