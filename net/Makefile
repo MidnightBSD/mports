@@ -108,7 +108,6 @@ SUBDIR += samba4wins
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
 SUBDIR += sixxs-aiccu
-SUBDIR += skype
 SUBDIR += smbldap-tools
 SUBDIR += spideroak
 SUBDIR += tryst
