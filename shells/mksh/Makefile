@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mksh
-DISTVERSION=	R48b
+DISTVERSION=	R49
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
@@ -14,8 +14,7 @@ LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-MAN1=		mksh.1
-PLIST_FILES=	bin/mksh share/examples/mksh/dot.mkshrc
+PLIST_FILES=	bin/mksh share/examples/mksh/dot.mkshrc man/man1/mksh.1.gz
 PLIST_DIRS=	share/examples/mksh
 
 PKGINSTALL=	pkg-install
