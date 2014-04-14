@@ -7,20 +7,17 @@ MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard X key constants and conversion to/from keycodes
+
 LICENSE=	mit
 
 LIB_DEPENDS=	xcb-util:${PORTSDIR}/x11/xcb-util
 #BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 USE_XORG=	xcb xorg-macros
-#USE_XORG=	xau xdmcp
-#USE_AUTOTOOLS=	libtool
 
 GNU_CONFIGURE=	yes
-#CONFIGURE_ENV=	GPERF="${LOCALBASE}/bin/gperf"
 
 post-patch:
 	@${REINPLACE_CMD} -e \
