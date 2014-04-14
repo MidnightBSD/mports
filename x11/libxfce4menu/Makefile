@@ -14,13 +14,11 @@ COMMENT=	XFce 4 library for a freedesktop.org compliant menu implementation
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libutil xfconf
 INSTALLS_ICONS=	yes
-USES=		pathfix pkgconfig
+USES=		gmake pathfix pkgconfig tar:bzip2
 
 CONFIGURE_ARGS=	--with-vendor-info=MidnightBSD
 
