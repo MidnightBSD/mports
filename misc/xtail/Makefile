@@ -12,8 +12,7 @@ LICENSE=	unknown
 
 HAS_CONFIGURE=	yes
 
-MAN1=		xtail.1
-PLIST_FILES=	bin/xtail
+PLIST_FILES=	bin/xtail man/man1/xtail.1.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/xtail ${PREFIX}/bin
