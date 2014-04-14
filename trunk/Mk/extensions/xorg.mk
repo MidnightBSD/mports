@@ -38,7 +38,7 @@ XORG_COMPLETE=1
 .if defined(XORG_CAT)
 # Default variables, common to all new modular xorg ports.
 .if !defined(USE_TGZ)
-USE_BZIP2=    	yes
+USES+=		tar:bzip2
 .endif
 PREFIX?=       	${LOCALBASE}
 GNU_CONFIGURE= 	yes
