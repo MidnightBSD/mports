@@ -12,9 +12,8 @@ LICENSE=	gpl2
 
 #FAKE_OPTS=	prefixhack
 
-USE_BZIP2=	yes
 USE_GNOME=	gtk20
-USES=		gmake pkgconfig
+USES=		gmake pkgconfig tar:bzip2
 USE_GL=		gl
 USE_XORG=	xv xext
 
