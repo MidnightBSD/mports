@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	compat7x
-PORTVERSION=	7.3.703000.201008
+PORTVERSION=	7.4.704000.201310.1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	garga/compat
@@ -12,9 +12,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience package to install the FreeBSD compat7x libraries
 LICENSE=	agg
 
-USE_BZIP2=	yes
+LICENSE=	bsd2
+
+USES=		tar:xz
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	i386 amd64 sparc64
+ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 TARGET_DIR=	${PREFIX}/lib/compat
 TARGET32_DIR=	${PREFIX}/lib32/compat
