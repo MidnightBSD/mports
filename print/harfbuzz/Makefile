@@ -14,9 +14,8 @@ LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 		icudata:${PORTSDIR}/devel/icu \
 		graphite2:${PORTSDIR}/graphics/graphite2
 
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USES=		gmake pathfix pkgconfig
+USES=		gmake pathfix pkgconfig tar:bzip2
 USE_GNOME=	cairo glib20 ltverhack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-graphite2
