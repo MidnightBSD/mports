@@ -1,13 +1,9 @@
-# New ports collection makefile for:	libxfce4util
-# Date created:		7 June 2003
-# Whom:			James Earl <jdearl@telus.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/x11/libxfce4util/Makefile,v 1.35 2008/06/06 14:09:04 edwin Exp $
-#
 
 PORTNAME=	libxfce4util
 PORTVERSION=	4.10.1
+PORTREVISION=	1
 CATEGORIES=	x11 xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
@@ -15,16 +11,15 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 library with non-graphical helper functions
+
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	glib20 intltool intlhack
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv
-USES=		pathfix pkgconfig
+USES=		pathfix pkgconfig gmake tar:bzip2
 
 OPTIONS_DEFINE=		NLS DOCS
 
