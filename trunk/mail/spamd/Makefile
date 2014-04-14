@@ -5,7 +5,7 @@ PORTVERSION=	4.9.1
 PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=freebsdspamd.berlios
+MASTER_SITE_SUBDIR=freebsdspamd/spamd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Traps spammers with a very slow smtp-login and return 4xx error
@@ -17,15 +17,18 @@ USE_RC_SUBR?=	obspamd obspamlogd
 USERS=		_spamd
 GROUPS=		_spamd
 
-MAN5=		spamd.conf.5
-MAN8=		spamd.8 spamd-setup.8 spamdb.8 spamlogd.8
 PORTDOCS=	ipfw-spamd.txt spamdb.txt
 
 PLIST_DIRSTRY=	%%ETCDIR%%
 PLIST_FILES=	%%ETCDIR%%/spamd.conf.sample \
 		libexec/spamlogd \
 		sbin/spamd-setup \
-		sbin/spamdb
+		sbin/spamdb \
+		man/man5/spamd.conf.5.gz \
+		man/man8/spamd-setup.8.gz \
+		man/man8/spamd.8.gz \
+		man/man8/spamdb.8.gz \
+		man/man8/spamlogd.8.gz
 
 PLIST_SUB=	SPAMDUSER=${USERS} \
 		SPAMDGROUP=${GROUPS}
