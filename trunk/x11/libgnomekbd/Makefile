@@ -13,13 +13,11 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	xklavier.12:${PORTSDIR}/x11/libxklavier
 
-USE_BZIP2=	yes
+USES=		gmake gettext tar:bzip2
 USE_GNOME=	gnomeprefix gnomehack ltverhack gconf2
 USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
