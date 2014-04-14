@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	compat8x
-PORTVERSION=	8.4.804000.201309
-PORTREVISION=	1
+PORTVERSION=	8.4.804000.201310
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	garga/compat
@@ -11,9 +11,10 @@ DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A convenience package to install the FreeBSD compat8x libraries
-LICENSE=	agg
 
-USE_XZ=		yes
+LICENSE=	bsd2
+
+USES=		tar:xz
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
