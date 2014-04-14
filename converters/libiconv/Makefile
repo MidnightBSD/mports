@@ -2,7 +2,7 @@
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
@@ -22,9 +22,6 @@ CONFIGURE_ENV=	gl_cv_cc_visibility="no" \
 		am_cv_func_iconv="yes" \
 		am_cv_proto_iconv_arg1="const"
 MAKE_JOBS_UNSAFE=	yes
-
-MAN1=		iconv.1
-MAN3=		iconv.3 iconv_open.3 iconv_open_into.3 iconv_close.3 iconvctl.3
 
 OPTIONS_DEFINE=	ENCODINGS PATCHES
 OPTIONS_DEFAULT=ENCODINGS
