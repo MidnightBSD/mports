@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	iso-codes
-PORTVERSION=	3.46
+PORTVERSION=	3.51
 CATEGORIES=	misc
 MASTER_SITES=	http://pkg-isocodes.alioth.debian.org/downloads/
 
@@ -10,9 +10,7 @@ COMMENT=	Lists of the country, language, and currency iso names
 
 LICENSE=	lgpl2.1
 
-USE_XZ=		yes
-USES=		pathfix gettext
-USE_GMAKE=	yes
+USES=		pathfix gettext gmake tar:xz
 GNU_CONFIGURE=	yes
 
 .include <bsd.port.mk>
