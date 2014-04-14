@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	soprano
-PORTVERSION=	2.9.2
+PORTVERSION=	2.9.4
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/Soprano/${PORTVERSION}
 
@@ -14,14 +14,12 @@ LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
 		rdf:${PORTSDIR}/textproc/redland \
 		iodbc:${PORTSDIR}/databases/libiodbc
 
-USE_BZIP2=	yes
 USE_QT4=	corelib dbus network qtestlib_build xml \
 		qmake_build moc_build uic_build rcc_build
-USE_PKGCONFIG=	both
-USE_CMAKE=	yes
+
+USES=		cmake pkgconfig tar:bzip2
 CMAKE_ARGS+=	-DSOPRANO_DISABLE_CLUCENE_INDEX=yes \
 		-DSOPRANO_DISABLE_SESAME2_BACKEND=yes
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 .include <bsd.port.pre.mk>
