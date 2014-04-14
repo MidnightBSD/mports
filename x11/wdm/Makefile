@@ -21,7 +21,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	wraster.4:${PORTSDIR}/x11-wm/windowmaker
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_XORG=	x11 xmu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
@@ -36,8 +36,6 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-defuserpath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-defsystempath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
-
-MAN1=	wdm.1 wdmLogin.1
 
 CPPFLAGS+=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
