@@ -13,14 +13,12 @@ LICENSE=	gpl2
 
 FAKE_OPTS+=	trueprefix
 
-USE_GETTEXT=		yes
-USE_GMAKE=		yes
+USES=		gettext gmake
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 MAKE_ENV+=	LIBCGETOPT=0
 
-MAN1=		getopt.1
 DOCS=		Changelog README
 
 .include <bsd.mport.options.mk>
