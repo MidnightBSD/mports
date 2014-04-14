@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	redland
-PORTVERSION=	1.0.16
+PORTVERSION=	1.0.17
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-level interface for RDF
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
