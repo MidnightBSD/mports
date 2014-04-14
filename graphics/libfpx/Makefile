@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libfpx
-DISTVERSION=	1.3.1-1
+DISTVERSION=	1.3.1-4
 CATEGORIES=	graphics
 MASTER_SITES=	http://imagemagick.mirrorcatalogs.com/delegates/	\
 		http://www.imagemagick.org/download/delegates/	\
@@ -14,14 +14,13 @@ MASTER_SITES=	http://imagemagick.mirrorcatalogs.com/delegates/	\
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library routines for working with Flashpix images
+
 LICENSE=	other
 
-USE_XZ=	yes
-
+USES=		tar:xz
 USE_LDCONFIG=	yes
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_JOBS_SAFE=	yes
-USE_GCC=	4.2+
+
 post-patch:
 	${SED} -i '' -e '/^#include "fpxlib-config.h"/d'	\
 		${WRKSRC}/basics/filename.cpp	\
