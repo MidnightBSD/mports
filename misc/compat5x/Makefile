@@ -1,10 +1,5 @@
-# New ports collection makefile for:	compat5x libraries
-# Date created:				19 Aug 2005
-# Whom:					hrs, lesi
-#
 # $MidnightBSD$
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
-#
 
 # NOTE: libc.so.5 is built with _PATH_LOCALE defined to
 # "/usr/local/share/compat/locale" in src/include/paths.h so data installed by
@@ -24,7 +19,7 @@ LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LDCONFIG=	yes
