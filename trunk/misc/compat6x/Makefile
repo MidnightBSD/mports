@@ -2,7 +2,7 @@
 
 PORTNAME=	compat6x
 PORTVERSION=	6.4.604000.200810
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.freebsd.org/~${MASTER_SITE_SUBDIR}/
@@ -11,10 +11,10 @@ PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A convenience package to install the FreeBSD 6.x compat libraries
+COMMENT=	Convenience package to install the FreeBSD 6.x compat libraries
 LICENSE=	agg
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
