@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Legacy locale data for FreeBSD 6+
 LICENSE=	unknown
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 
 TARGET_DIR=	${PREFIX}/share/compat
