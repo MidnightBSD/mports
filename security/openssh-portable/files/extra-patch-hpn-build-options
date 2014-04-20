@@ -36,13 +36,13 @@
  
 --- readconf.c.orig	2013-10-11 09:24:10.812126846 -0500
 +++ readconf.c	2013-10-11 09:19:12.295135966 -0500
-@@ -251,12 +251,16 @@ static struct {
- 	{ "kexalgorithms", oKexAlgorithms },
- 	{ "ipqos", oIPQoS },
- 	{ "requesttty", oRequestTTY },
+@@ -268,12 +268,16 @@ static struct {
+ 	{ "canonicalizehostname", oCanonicalizeHostname },
+ 	{ "canonicalizemaxdots", oCanonicalizeMaxDots },
+ 	{ "canonicalizepermittedcnames", oCanonicalizePermittedCNAMEs },
 +#ifdef NONECIPHER
  	{ "noneenabled", oNoneEnabled },
-         { "noneswitch", oNoneSwitch },
+ 	{ "noneswitch", oNoneSwitch },
 +#endif
 +#ifdef HPN
  	{ "tcprcvbufpoll", oTcpRcvBufPoll },
@@ -53,7 +53,7 @@
  	{ "ignoreunknown", oIgnoreUnknown },
  
  	{ NULL, oBadOption }
-@@ -1417,12 +1421,20 @@ fill_default_options(Options * options)
+@@ -1739,12 +1743,20 @@ fill_default_options(Options * options)
  		options->server_alive_interval = 0;
  	if (options->server_alive_count_max == -1)
  		options->server_alive_count_max = 3;
@@ -76,10 +76,10 @@
  	  /* if a user tries to set the size to 0 set it to 1KB */
 --- servconf.c.orig	2013-10-11 09:24:44.734138483 -0500
 +++ servconf.c	2013-10-11 09:25:50.777137928 -0500
-@@ -305,10 +305,16 @@ fill_default_server_options(ServerOption
+@@ -303,10 +303,16 @@
+ 	}
+ 	if (options->permit_tun == -1)
  		options->permit_tun = SSH_TUNMODE_NO;
- 	if (options->zero_knowledge_password_authentication == -1)
- 		options->zero_knowledge_password_authentication = 0;
 +#ifdef NONECIPHER
  	if (options->none_enabled == -1) 
 +#endif
