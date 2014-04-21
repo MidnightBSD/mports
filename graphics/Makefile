@@ -164,6 +164,5 @@ SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += xli
 SUBDIR += xv
-SUBDIR += yap
 
 .include <bsd.port.subdir.mk>
