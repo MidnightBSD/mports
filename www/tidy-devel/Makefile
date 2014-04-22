@@ -2,6 +2,7 @@
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 #MASTER_SITES=	http://tidy.sourceforge.net/src/%SUBDIR%/	\
@@ -15,15 +16,16 @@ COMMENT?=	Utility to clean up and pretty print HTML/XHTML/XML
 LICENSE=	unknown
 # everything says look at tidy.h but there isn't one.
 
-USE_BZIP2=	yes
+BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
+
+USES=		tar:bzip2
 
 SLAVEDIRS=	www/tidy-lib
 WRKSRC=		${WRKDIR}/${PORTNAME}
-
 MAKE_JOBS_UNSAFE=	yes
 
 .if !defined(WITH_SHLIB)
-USE_GMAKE=	yes
+USES+=		gmake
 PLIST_SUB=	SHLIB="@comment " NSHLIB=""
 CONFLICTS=	tidy-lib-[0-9]*
 .else
@@ -39,13 +41,10 @@ DESCR=		${.CURDIR}/pkg-descr
 
 BIN2STRIP=	tidy tab2space
 
-.if !defined(WITH_SHLIB)
-MAN1=		tidy.1
-.endif
+.include <bsd.mport.options.mk>
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 . if !defined(WITH_SHLIB)
-BUILD_DEPENDS+=	xsltproc:${PORTSDIR}/textproc/libxslt
 ALL_TARGET=	all doc
 DOCFILES=	quickref.html
 . endif
@@ -106,7 +105,7 @@ post-install:
 .if defined(WITH_SHLIB)
 	${STRIP_CMD} ${PREFIX}/lib/libtidy-0.99.so.0
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${DOCFILES:S|^|${WRKSRC}/htmldoc/|} ${DOCSDIR}
