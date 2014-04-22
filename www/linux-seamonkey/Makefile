@@ -11,7 +11,7 @@ COMMENT=	The open source, standards compliant web browser
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 
 USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
 
