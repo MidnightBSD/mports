@@ -13,7 +13,7 @@ COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	mpl gpl
 LICENSE_COMB=	dual
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 WANT_GTK218=	yes
 
 USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
