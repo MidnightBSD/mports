@@ -13,7 +13,7 @@ LICENSE=	apache2
 LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
 
 USE_SCONS=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
