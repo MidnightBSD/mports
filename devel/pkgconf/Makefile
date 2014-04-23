@@ -15,7 +15,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/pkgconfig \
 		--with-system-libdir=/usr/lib \
 		--with-system-includedir=/usr/include
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 CONFLICTS_INSTALL=	pkg-config-*
 
