@@ -26,7 +26,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
 
 USE_PYTHON=	yes
-USE_XZ=		yes
+USES=		tar:xz
 PYTHON_VERSION=	python2.7
 PYTHON_NO_DEPENDS=	yes
 
