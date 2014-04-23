@@ -20,10 +20,14 @@ CONFIGURE_ARGS+=--program-prefix=g
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext iconv
-NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG} \
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_NLS)
+USES+=	gettext iconv
+CONFIGURE_ARGS+=	${ICONV_CONFIGURE_ARG} \
 			--with-libintl-prefix=${LOCALBASE}
-NLS_CONFIGURE_ENABLE=	nls
+#NLS_CONFIGURE_ENABLE=	nls
+.endif
 
 CONFIGURE_ENV+=	MAKEINFO="makeinfo --no-split"
 
