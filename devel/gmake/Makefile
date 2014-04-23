@@ -13,7 +13,7 @@ COMMENT=	GNU version of 'make' utility
 
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--program-prefix=g
 
