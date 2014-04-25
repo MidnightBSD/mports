@@ -2,7 +2,7 @@
 
 PORTNAME=	python27
 PORTVERSION=	2.7.6
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -18,7 +18,7 @@ WRKSRC=		${PYTHON_WRKSRC}/portbld.static
 PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../configure # must be relative
-CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd" ac_cv_opt_olimit_ok=no
+CONFIGURE_ENV=	SVNVERSION="echo midnightbsd" ac_cv_opt_olimit_ok=no
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --host=${ARCH}-portbld-midnightbsd${OSREL}
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
@@ -26,7 +26,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
 
 USE_PYTHON=	yes
-USES=		tar:xz
+USES=		readline tar:xz
 PYTHON_VERSION=	python2.7
 PYTHON_NO_DEPENDS=	yes
 
@@ -62,13 +62,8 @@ OPTIONS=	THREADS "Enable thread support" on \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 3000
-PLIST_SUB+=	CTYPE="@comment "
-.else
 CONFIGURE_ARGS+=	--with-system-ffi
 LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
-PLIST_SUB+=	CTYPE=""
-.endif
 
 SEM_MSG=	"@comment "
 
@@ -238,7 +233,7 @@ post-install:
 		${PREFIX}/lib
 	cd ${PREFIX}/lib; ${LN} -sf lib${PYTHON_VERSION}.so.1 \
 		lib${PYTHON_VERSION}.so
-	${LN} -sf ${PREFIX}/lib/lib${PYTHON_VERSION}.so ${PYTHONPREFIX_LIBDIR}/config
+	cd ${PREFIX}/lib; ${LN} -sf lib${PYTHON_VERSION}.so python2.7/config/lib${PYTHON_VERSION}.so
 	${INSTALL_PROGRAM} \
 		${SHARED_WRKSRC}/${PYTHON_VERSION:S/thon/thon-shared/} \
 		${PREFIX}/bin
