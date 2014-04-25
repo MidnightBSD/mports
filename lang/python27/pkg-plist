@@ -976,10 +976,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/pickletools.py
 %%PYTHON_LIBDIR%%/pipes.py
 %%PYTHON_LIBDIR%%/pkgutil.py
-%%PYTHON_LIBDIR%%/plat-freebsd6/IN.py
-%%PYTHON_LIBDIR%%/plat-freebsd6/regen
-%%PYTHON_LIBDIR%%/plat-freebsd7/IN.py
-%%PYTHON_LIBDIR%%/plat-freebsd7/regen
+%%PYTHON_LIBDIR%%/plat-midnightbsd0/regen
 %%PYTHON_LIBDIR%%/platform.py
 %%PYTHON_LIBDIR%%/plistlib.py
 %%PYTHON_LIBDIR%%/popen2.py
@@ -2393,8 +2390,6 @@ man/man1/python2.7.1.gz
 @dirrm %%PYTHON_LIBDIR%%/sqlite3
 @dirrm %%PYTHON_LIBDIR%%/site-packages
 @dirrm %%PYTHON_LIBDIR%%/pydoc_data
-@dirrm %%PYTHON_LIBDIR%%/plat-freebsd7
-@dirrm %%PYTHON_LIBDIR%%/plat-freebsd6
 @dirrm %%PYTHON_LIBDIR%%/plat-midnightbsd0
 @dirrm %%PYTHON_LIBDIR%%/multiprocessing/dummy
 @dirrm %%PYTHON_LIBDIR%%/multiprocessing
