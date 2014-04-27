@@ -13,7 +13,7 @@ COMMENT=	The O\'Reilly package of utility classes for servlet developers
 
 LICENSE=	restricted
 
-USE_ZIP=	yes
+USES=		zip
 NO_WRKSUBDIR=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
