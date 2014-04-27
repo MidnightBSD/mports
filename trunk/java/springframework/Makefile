@@ -8,13 +8,14 @@ DISTNAME=	spring-framework-${PORTVERSION}.RELEASE-dist
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Spring Framework for Java
+
 LICENSE=	apache2
 
 WRKSRC=		${WRKDIR}/spring-framework-${PORTVERSION}.RELEASE
 
 NO_BUILD=	yes
 USE_JAVA=	yes
-USE_ZIP=	yes
+USES=		zip
 JAVA_VERSION=	1.6+
 
 OPTIONS_DEFINE=	DOCS RESRCS
