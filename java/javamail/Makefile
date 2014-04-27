@@ -1,23 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	javamail
-PORTVERSION=	1.4.7
+PORTVERSION=	1.5.1
 CATEGORIES=	java mail
-MASTER_SITES=	https://kenai.com/downloads/javamail/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-src
+MASTER_SITES=	https://java.net/projects/javamail/downloads/download/source/
+DISTNAME=	javaxmail-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Reference Implementation of JSR 919
-LICENSE=	cddl
 
-BUILD_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf
-RUN_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf
+LICENSE=	gpl2 cddl
+LICENSE_COMB=	dual
 
-USE_ZIP=	YES
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+USES=		zip
 USE_JAVA=	YES
 JAVA_VERSION=	1.6+
 USE_ANT=	YES
-MAKE_ENV=	ANT_INCLUDE_SHARED_JARS=YES
 
 WRKSRC=		${WRKDIR}
 
