@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/java/xdoclet/pkg-plist,v 1.5 2005/11/13 17:25:40 hq Exp $
 %%EXAMPLESDIR%%/build-dist.properties
 %%EXAMPLESDIR%%/build.xml
 %%EXAMPLESDIR%%/lib/ejb.jar
