@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JavaBeansTM Activation Framework
 LICENSE=	restricted
 
-USE_ZIP=	YES
+USES=		zip
 USE_JAVA=	YES
 JAVA_VERSION=	1.6+
 
