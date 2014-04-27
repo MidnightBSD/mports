@@ -1,21 +1,22 @@
 # $MidnightBSD$
 
-PORTNAME=	jakarta-struts
-PORTVERSION=	1.2.4
+PORTNAME=	struts
+PORTVERSION=	1.2.9
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=struts/binaries
-DIST_SUBDIR=	jakarta
+PKGNAMEPREFIX=	apache-
+DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Struts framework
+COMMENT=	Apache Struts framework
 
 LICENSE=	apache2
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	YES
-USE_ZIP=	YES
+USES=		zip
 
 JAVASHAREDIR=	share/java
 TDIR=		${JAVASHAREDIR}/${PKGNAME}
