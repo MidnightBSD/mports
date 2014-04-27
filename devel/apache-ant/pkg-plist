@@ -1,4 +1,6 @@
 bin/ant
+man/man1/ant.1.gz
+man/man5/build.xml.5.gz
 %%DATADIR%%/bin/antRun
 %%DATADIR%%/etc/ant-bootstrap.jar
 %%DATADIR%%/etc/changelog.xsl

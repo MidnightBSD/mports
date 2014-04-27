@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	apache-ant
-PORTVERSION=	1.8.4
+PORTVERSION=	1.9.3
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
 		FREEBSD_LOCAL/hq:man
@@ -15,19 +15,22 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper
 
+OPTIONS_DEFINE=	DOCS
+
 ANT_DISTFILE=	${PORTNAME}-${PORTVERSION}-bin.tar.bz2
 MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
 MANPAGE_VERSION=	20030908
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 
 NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 
 READMES=	LICENSE README WHATSNEW
 
-.if !defined(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 DISTFILES+=	${PORTNAME}-${PORTVERSION}-manual.tar.bz2:doc
 MASTER_SITES+=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/manual/:doc,}
 PORTDOCS=	*
@@ -37,9 +40,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 MANPAGE_SUBDIR=	apache-ant-manpage
 MANPAGE_WRKSRC=	${WRKSRC}/${MANPAGE_SUBDIR}
-
-MAN1=		ant.1
-MAN5=		build.xml.5
 
 SUB_FILES=	ant.sh
 
@@ -64,7 +64,7 @@ do-install:
 	@${INSTALL_MAN} ${MANPAGE_WRKSRC}/build.xml.5 ${MAN5PREFIX}/man/man5
 	@${ECHO_MSG} " [ DONE ]"
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 
 	@${ECHO_MSG} -n ">> Installing readme files..."
