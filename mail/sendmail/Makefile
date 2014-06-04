@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.7
+PORTVERSION=	8.14.8
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
-PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BERKELEYDB_SUFFIX}${PKGNAMESUFFIX2}
+PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BDB_SUFFIX}${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,72 +32,54 @@ PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==}
 PKGMESSAGE=	${WRKSRC}/pkg-message
 MILTER_SOVER?=	6
 
-# Options to define Features:
-# SENDMAIL_WITHOUT_IPV6=yes
-# SENDMAIL_WITHOUT_MILTER=yes
-# SENDMAIL_WITHOUT_NIS=yes
-# SENDMAIL_WITHOUT_SHMEM=yes
-# SENDMAIL_WITHOUT_SEM=yes
-# SENDMAIL_WITHOUT_LA=yes
-# SENDMAIL_WITHOUT_MILTER_POOL
-# SENDMAIL_WITH_TLS=yes
-# SENDMAIL_WITH_SMTPS=yes
-# SENDMAIL_WITH_SASL=yes
-# SENDMAIL_WITH_SASL2=yes
-# SENDMAIL_WITH_LDAP=yes
-# SENDMAIL_WITH_BERKELEYDB=yes
-#   Set either WITH_BDB_VER or SENDMAIL_WITH_BDB_VER
-#   to the version of Berkeley DB to use.
-# SENDMAIL_WITH_SOCKETMAP=yes
-# SENDMAIL_WITH_CYRUSLOOKUP=yes
-# SENDMAIL_WITH_PICKY_HELO_CHECK=yes
-# SENDMAIL_WITH_SHARED_MILTER=yes
+OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD LDAP BDB SOCKETMAP CYRUSLOOKUP PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
+OPTIONS_DEFAULT?=	SHMEM SEM LA NIS IPV6 PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
+NO_OPTIONS_SORT=yes
+SHMEM_DESC=		System V shared memory support
+LA_DESC=		load averages support
+TLS_DESC=		SMTP-TLS and SMTPS support
+SASLAUTHD_DESC=		SASLAUTHD support
+BDB_DESC=		Berkeley DB version 4 support
+SOCKETMAP_DESC=		Enable socketmap feature
+CYRUSLOOKUP_DESC=	Enable cyruslookup feature
+PICKY_HELO_CHECK_DESC=	Enable picky HELO check
+MILTER_DESC=		Build libmilter
+MILTER_SHARED_DESC=	Build shared libmilter
+MILTER_POOL_DESC=	Enable milter thread pools
 
-.if defined(SENDMAIL_WITH_SMTPS) && !defined(SENDMAIL_WITH_TLS) && !defined(WITH_TLS)
-SENDMAIL_WITH_TLS=yes
-AUTO_ENABLED_TLS=yes
+BDB_USE=	BDB=yes
+LDAP_USE=	OPENLDAP=yes
+SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+SASLAUTHD_RUN_DEPENDS=	${LOCALBASE}/sbin/saslauthd:${PORTSDIR}/security/cyrus-sasl2-saslauthd
+
+.include <bsd.mport.options.mk>
+.if ${PORT_OPTIONS:MSHMEM} && !defined(BUILDING_INDEX)
+IPCCHECK!=	ipcrm -q 0 2>&1 || true
+.if ${IPCCHECK:Mimplemented}
+IGNORE=		your system does not support sysvipc
 .endif
-.if defined(SENDMAIL_WITH_CYRUSLOOKUP)  && !defined(SENDMAIL_WITH_SOCKETMAP)
-SENDMAIL_WITH_SOCKETMAP=yes
-AUTO_ENABLED_SOCKETMAP=yes
 .endif
 
-.if defined(SENDMAIL_WITH_BERKELEYDB_VER)
-SENDMAIL_WITH_BERKELEYDB=	yes
-OBSOLETE_BDB_VAR=	SENDMAIL_WITH_BERKELEYDB_VER BERKELEYDB_PORT \
-	BERKELEYDB_LIB BERKELEYDB_INCLUDE
-IGNORE=	use SENDMAIL_WITH_BERKELEYDB to select Berkeley DB
-.endif
-
-.if defined(SENDMAIL_WITH_BDB_VER)
-SENDMAIL_WITH_BERKELEYDB=	yes
-.endif
-
-.if defined(SENDMAIL_WITH_BERKELEYDB)
-USE_BDB=	yes
-BERKELEYDB_SUFFIX=	+${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
+.if ${PORT_OPTIONS:MBDB}
+BDB_SUFFIX=	+${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.* sendmail-tls-8.*
 .endif
-.if defined(SENDMAIL_WITH_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 LDAP_SUFFIX?=	+ldap
 CONFLICTS+=	sendmail-sasl-8.* sendmail-sasl2-8.* sendmail-tls-8.*
-USE_OPENLDAP=	yes
 .endif
-.if defined(SENDMAIL_WITH_SASL) && !defined(SENDMAIL_WITH_SASL2)
-SENDMAIL_WITH_SASL2=	yes
-.endif
-.if defined(SENDMAIL_WITH_SASL2)
+.if ${PORT_OPTIONS:MSASL}
 SASL_SUFFIX?=	+sasl2
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-tls-8.*
-LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
-.if !defined(SENDMAIL_WITHOUT_SASLAUTHD)
-RUN_DEPENDS+=	${LOCALBASE}/sbin/saslauthd:${PORTSDIR}/security/cyrus-sasl2-saslauthd
 .endif
-.endif
-.if defined(SENDMAIL_WITH_CYRUSLOOKUP)
+.if ${PORT_OPTIONS:MCYRUSLOOKUP}
+.if ! ${PORT_OPTIONS:MSOCKETMAP}
+IGNORE=		option CYRUSLOOKUP requires option SOCKETMAP
+.else
 EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .endif
-.if defined(SENDMAIL_WITH_TLS) || defined(WITH_TLS)
+.endif
+.if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
 .endif
@@ -105,7 +87,7 @@ CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
 MAKE_PKGNAMES=	for i in "" +tls; do \
 	for j in "" +sasl +sasl1 +sasl2; do \
 	for k in "" +ldap; do \
-	for l in "" +db2 +db3 +db4 +db41 +db42 +db43 +db44; do \
+	for l in "" +db2 +db3 +db4 +db41 +db42 +db43 +db44 +db45 +db46 +db47 +db48 +db49; do \
 	echo "sendmail$${i}$${j}$${k}$${l}-8.*" ;\
 	done done done done
 
