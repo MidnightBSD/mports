@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	331.49
+DISTVERSION?=	331.67
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
@@ -14,6 +14,7 @@ COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 
 LICENSE=	nvidia
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
+LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
 USES=		kmod uidfix
@@ -57,6 +58,12 @@ EXTRA_PATCHES=	${FILESDIR}/legacy-patch-mk-nvidia.lib.mk
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-mk-nvidia.lib.mk
 .endif
 
+.if ${NVVERSION} >= 3048800
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src-Makefile \
+		${FILESDIR}/extra-patch-src-nv-freebsd.h \
+		${FILESDIR}/extra-patch-src-nv-misc.h
+.endif
+
 .if ${NVVERSION} >= 3312000
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-x11-driver-Makefile
 .else
@@ -85,6 +92,11 @@ FREEBSD_AGP_DESC=	Use FreeBSD AGP GART driver
 .if ${NVVERSION} >= 1952200
 OPTIONS_DEFINE+=	WBINVD
 WBINVD_DESC=		Flush CPU caches directly with WBINVD
+.endif
+
+.if ${NVVERSION} >= 3048800
+OPTIONS_DEFINE_i386=	PAE
+PAE_DESC=		Physical Address Extensions Kernel
 .endif
 
 PLIST_SUB+=	LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
@@ -195,6 +207,10 @@ post-patch: .SILENT
 .endif
 .if ! ${PORT_OPTIONS:MLINUX}
 	${REINPLACE_CMD} -E 's/define (NV_SUPPORT_LINUX_COMPAT)/undef \1/' \
+		${WRKSRC}/src/nv-freebsd.h
+.endif
+.if ${PORT_OPTIONS:MPAE}
+	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_PAE)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
 .if ${PORT_OPTIONS:MWBINVD}
