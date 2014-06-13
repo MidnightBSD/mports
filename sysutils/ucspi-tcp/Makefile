@@ -12,15 +12,12 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for building TCP client-server applications
-LICENSE=	restricted
 
-OPTIONS_DEFINE=	MANPAGES RSS_DIFF RBL2SMTPD IPV6 SSL LIMITS
-OPTIONS_DEFAULT=MANPAGES
+OPTIONS_DEFINE=	RSS_DIFF RBL2SMTPD IPV6 SSL LIMITS
 
 RSS_DIFF_DESC=	Patch rblsmtpd for qmail users
 RBL2SMTPD_DESC=	Don't drop connection, pass envvar to smtpd
 LIMITS_DESC=	Implement per-connection and other limits
-
 
 ALL_TARGET=	prog install instcheck
 
@@ -61,15 +58,18 @@ BROKEN=	SSL and LIMITS options cannot coexist, please choose one of them
 CFLAGS+=	-O
 .endif
 
-.if ${PORT_OPTIONS:MMANPAGES}
+.if !defined(NO_INSTALL_MANPAGES)
 MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:man \
 		${MASTER_SITE_LOCAL:S/$/:man/}
 MASTER_SITE_SUBDIR+=	garga/ucspi-tcp/:man
 DISTFILES+=	${DISTNAME}${EXTRACT_SUFX} \
 		${DISTNAME}-man.tar.gz:man
-MAN1=		addcr.1 argv0.1 date@.1 delcr.1 finger@.1 fixcrio.1 \
+MAN_FILES=	addcr.1 argv0.1 date@.1 delcr.1 finger@.1 fixcrio.1 \
 		http@.1 mconnect.1 rblsmtpd.1 recordio.1 tcpcat.1 \
 		tcpclient.1 tcprules.1 tcprulescheck.1 tcpserver.1 who@.1
+PLIST_SUB=	MANPAGES=""
+.else
+PLIST_SUB=	MANPAGES="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MRSS_DIFF}
@@ -130,8 +130,8 @@ do-install:
 .for file_name in ${SCRIPTS}
 	@${INSTALL_SCRIPT} ${WRKSRC}/${file_name} ${PREFIX}/bin
 .endfor
-.if ${PORT_OPTIONS:MMANPAGES}
-. for file_name in ${MAN1}
+.if !defined(NO_INSTALL_MANPAGES)
+. for file_name in ${MAN_FILES}
 	${INSTALL_MAN} ${WRKSRC}-man/${file_name} ${MAN1PREFIX}/man/man1/
 . endfor
 .endif
