@@ -13,21 +13,9 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
 
-USE_ZIP=	yes
+USES=		dos2unix perl5 shebangfix
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
-USE_DOS2UNIX=	tools/*.pl \
-		wwwroot/cgi-bin/awstats.model.conf \
-		wwwroot/cgi-bin/*.pl \
-		wwwroot/cgi-bin/lang/tooltips_f/*.txt \
-		wwwroot/cgi-bin/lang/tooltips_m/*.txt \
-		wwwroot/cgi-bin/lang/tooltips_w/*.txt \
-		wwwroot/cgi-bin/lang/*.txt \
-		wwwroot/cgi-bin/lib/* \
-		wwwroot/cgi-bin/plugins/*.pm \
-		wwwroot/cgi-bin/plugins/example/* \
-		wwwroot/css/* \
-		wwwroot/js/*
 
 SUB_FILES=	pkg-message
 
