@@ -109,7 +109,6 @@ SUBDIR += ufs_copy
 SUBDIR += uif2iso
 SUBDIR += upower
 SUBDIR += upsd
-SUBDIR += upsmon
 SUBDIR += warden
 SUBDIR += wmbsdbatt
 SUBDIR += xfce4-battery-plugin
