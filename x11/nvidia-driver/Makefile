@@ -14,7 +14,6 @@ COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 
 LICENSE=	nvidia
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
-LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
 USES=		kmod uidfix
