@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pciids
-PORTVERSION=	20140402
+PORTVERSION=	20140526
 CATEGORIES=	misc
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
@@ -11,7 +11,7 @@ COMMENT=	Database of all known IDs used in PCI devices
 LICENSE=	bsd3 gpl2 gpl3
 LICENSE_COMB=	dual
 
-USE_XZ=		yes
+USES=		tar:xz
 NO_BUILD=	yes
 PLIST_FILES=	%%DATADIR%%/pci.ids
 PLIST_DIRS=	%%DATADIR%%
