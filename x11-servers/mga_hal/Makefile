@@ -1,10 +1,5 @@
-# New ports collection makefile for:	mga_hal
-# Date created:				12 Jan 2005
-# Whom:					anholt@FreeBSD.org
-#
 # $FreeBSD: ports/x11-servers/mga_hal/Makefile,v 1.4 2006/11/19 12:58:03 pav Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	mga_hal
 PORTVERSION=	4.4.0
@@ -16,7 +11,11 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:${ARCH}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for additional features with X.Org/XFree86 Matrox driver
-LICENSE=	restricted
+
+LICENSE=	matrox
+LICENSE_NAME=	Matrox binary license
+LICENSE_TEXT=	Matrox drivers may not be distributed.
+LICENSE_PERMS=	no-dist-sell no-dist-mirror no-pkg-sell
 
 RESTRICTED=	Matrox drivers may not be distributed.
 
