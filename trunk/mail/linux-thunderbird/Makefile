@@ -1,16 +1,18 @@
 # $MidnightBSD$
 
 PORTNAME=	thunderbird
-DISTVERSION=	24.4.0
+DISTVERSION=	24.5.0
 CATEGORIES=	mail news net-im ipv6
 DISTNAME=	${PORTNAME}-${DISTVERSION}
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird is standalone mail and news that stands above
-LICENSE=	mpl
 
-USE_BZIP2=	yes
+LICENSE=	mpl gpl2
+LICENSE_COMB=	dual
+
+USES+=		tar:bzip2
 WANT_GTK218=	yes
 
 USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
