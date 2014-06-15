@@ -3,6 +3,7 @@
 
 PORTNAME=	scons
 PORTVERSION=	2.3.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -11,18 +12,16 @@ COMMENT=	Build tool alternative to make
 
 LICENSE=	mit
 
-USE_PYTHON=	yes
+USE_PYTHON=		2
 USE_PYDISTUTILS=	yes
-PYDISTUTILS_EGGINFODIR=	${PREFIX}/lib/scons-${PORTVERSION}
+PYDISTUTILS_AUTOPLIST=	yes
 
-PLIST_SUB+=	SCONS_VER=${PORTVERSION} \
-		PYDISTUTILS_EGGINFO=${PYDISTUTILS_EGGINFO}
+PLIST_SUB+=	SCONS_VER=${PORTVERSION}
 
-.include <bsd.port.pre.mk>
+post-patch:
+	@${REINPLACE_CMD} \
+		-e 's,distutils\.command\.install$$,setuptools\.command\.install,' \
+		-e 's,distutils\.command\.install\.,setuptools\.command\.install\.,' \
+		${WRKSRC}/setup.py
 
-.if defined (NO_INSTALL_MANPAGES)
-PYDISTUTILS_INSTALLARGS+=     --no-install-man
-.endif
-
-.include <bsd.port.post.mk>
-
+.include <bsd.port.mk>
