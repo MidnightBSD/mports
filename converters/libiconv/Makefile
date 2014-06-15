@@ -2,28 +2,26 @@
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A character set conversion library
+COMMENT=	Character set conversion library
 
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-LIBTOOLFILES=	configure libcharset/configure preload/configure
 CONFIGURE_ARGS=	--enable-static \
 		--without-libintl-prefix \
 		--docdir=${DOCSDIR}
-USE_LDCONFIG=	yes
-CONFIGURE_ENV=	gl_cv_cc_visibility="no" \
-		am_cv_func_iconv="yes" \
+CONFIGURE_ENV=	am_cv_func_iconv="yes" \
 		am_cv_proto_iconv_arg1="const"
 MAKE_JOBS_UNSAFE=	yes
+USE_CSTD=	gnu89
+USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	ENCODINGS PATCHES
+OPTIONS_DEFINE=	DOCS ENCODINGS PATCHES
 OPTIONS_DEFAULT=ENCODINGS
 ENCODINGS_DESC=	Include extra character sets
 PATCHES_DESC=	Apply patches to fix CP932, add EUCJP-MS
@@ -48,11 +46,4 @@ post-patch:
 		${WRKSRC}/libcharset/configure \
 		${WRKSRC}/preload/configure
 
-.include <bsd.port.pre.mk>
-
-.if exists(/usr/include/iconv.h) && ${OSVERSION} > 6000
-IGNORE=		converters/libiconv should not be used with iconv from base. \
-Please fix the port which tries to use it
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
