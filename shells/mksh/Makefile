@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mksh
-DISTVERSION=	R49
+DISTVERSION=	R50
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
@@ -9,7 +9,8 @@ MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 DISTFILES=	${PORTNAME}-${DISTVERSION}.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A MirBSD enhanced shell based on pdksh
+COMMENT=	MirBSD enhanced shell based on pdksh
+
 LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
