@@ -47,9 +47,9 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
 .endif
-	${INSTALL_MAN} ${MAN5PAGES:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${PREFIX}/man/man5
+	${INSTALL_MAN} ${MAN5PAGES:S|^|${WRKSRC}/doc/|} ${PREFIX}/man/man5
 .for manpage in ${MAN1PAGES}
-	${INSTALL_MAN} ${FILESDIR}/${manpage} ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${FILESDIR}/${manpage} ${PREFIX}/man/man1
 .endfor
 	if [ ! -f ${PREFIX}/etc/fonts/fonts.conf ]; then \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf; \
@@ -60,7 +60,7 @@ post-install:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libfontconfig.so.1
+	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.1
 
 .include <bsd.port.mk>
 
