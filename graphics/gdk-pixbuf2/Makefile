@@ -10,13 +10,12 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphic library for GTK+
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USE_XZ=		yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
+USES=		gettext gmake tar:xz
 USE_XORG=	xt xi x11
 USE_AUTOTOOLS=	libtool
 USE_GNOME+=	gnomehack glib20 ltverhack
