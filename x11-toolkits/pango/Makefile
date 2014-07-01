@@ -11,7 +11,7 @@ COMMENT=	An open-source framework for the layout and rendering of i18n text
 
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	cairo:${PORTSDIR}/graphics/cairo \
 RUN_DEPENDS=	${FONTSCALE}:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
 		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
 
-USES=		gettext gmake pathfix pkgconfig
+USES+=		gettext gmake pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	glib20 gnomehier ltverhack referencehack introspection:build
