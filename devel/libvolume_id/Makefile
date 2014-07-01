@@ -2,18 +2,17 @@
 
 PORTNAME=	libvolume_id
 PORTVERSION=	0.81.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.marcuscom.com/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to provide file system type information
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-USE_PKGCONFIG=	yes
 MAKE_ENV=	E=${ECHO_MSG} RANLIB=${RANLIB} AR=${AR} Q=@ \
 		prefix=${PREFIX}
 
