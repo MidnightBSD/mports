@@ -2,14 +2,15 @@
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
-LICENSE=	x11
+
+LICENSE=	mit
 
 LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
     		expat:${PORTSDIR}/textproc/expat2
@@ -17,8 +18,8 @@ LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
 USERS=		polkit
 GROUPS=		polkit
 
-USE_GNOME=	gnomehack glib20 intlhack
-USE_GMAKE=	yes
+USES=		gmake libtool pathfix pkgconfig
+USE_GNOME=	glib20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
@@ -31,17 +32,20 @@ CONFIGURE_ENV=	GTKDOC="false"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-.if defined(NO_INSTALL_MANPAGES)
-CONFIGURE_ARGS+=--disable-man-pages
-.else
-BUILD_DEPENDS=	${LOCALBASE}/share/sgml/docbook/4.1/dtd/catalog:${PORTSDIR}/textproc/docbook-410 \
-    		xsltproc:${PORTSDIR}/textproc/libxslt \
-		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+OPTIONS_DEFINE=	MANPAGES
+OPTIONS_DEFAULT=MANPAGES
 
-MAN1=		polkit-action.1 polkit-auth.1 polkit-config-file-validate.1 \
-		polkit-policy-file-validate.1
-MAN5=		PolicyKit.conf.5
-MAN8=		PolicyKit.8
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MMANPAGES}
+BUILD_DEPENDS=	${LOCALBASE}/share/sgml/docbook/4.1:${PORTSDIR}/textproc/docbook-sgml \
+		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+USE_GNOME+=	libxslt:build
+
+PLIST_SUB+=	MANPAGES=""
+.else
+CONFIGURE_ARGS+=--disable-man-pages
+PLIST_SUB+=	MANPAGES="@comment "
 .endif
 
 post-install:
@@ -51,9 +55,9 @@ post-install:
 			${PREFIX}/etc/PolicyKit/PolicyKit.conf ; \
 	fi
 	${INSTALL_DATA} ${WRKSRC}/data/PolicyKit.conf \
-	    	${PREFIX}/etc/PolicyKit/PolicyKit.conf.dist
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
+		${PREFIX}/etc/PolicyKit/PolicyKit.conf.dist
+	# this file is used for reloading rules, handle it in the plist.
+	@${RM} ${FAKE_DESTDIR}/var/lib/misc/PolicyKit.reload
+	@${STRIP_CMD} ${PREFIX}/lib/lib*.so.*
 
 .include <bsd.port.mk>
