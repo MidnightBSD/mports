@@ -6,10 +6,11 @@ CATEGORIES=	misc
 MASTER_SITES=	http://cyberelk.net/tim/data/patchutils/stable/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A small collection of programs that operate on patch files
+COMMENT=	Small collection of programs that operate on patch files
+
 LICENSE=	gpl2
 
-USE_XZ=		yes
+USES=		tar:xz
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 
