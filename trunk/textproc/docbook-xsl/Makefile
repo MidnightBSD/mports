@@ -24,7 +24,7 @@ RUN_DEPENDS=	${XMLDIR}/docbook/4.2/catalog.xml:${PORTSDIR}/textproc/docbook-xml 
 DISTFILES+=	${PORTNAME}-doc-${PORTVERSION}${EXTRACT_SUFX}:doc
 .endif
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 NO_BUILD=	yes
 
 XMLDIR=		${LOCALBASE}/share/xml
