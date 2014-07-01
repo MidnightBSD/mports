@@ -11,7 +11,7 @@ COMMENT=	XML-based font configuration API for X Windows
 
 LICENSE=	mit
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
@@ -20,7 +20,7 @@ LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
 
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USES=		gmake pathfix pkgconfig
+USES+=		gmake pathfix pkgconfig
 USE_GNOME=	ltverhack
 CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
 		--with-templatedir=${PREFIX}/etc/fonts/conf.avail \
