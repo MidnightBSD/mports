@@ -2,6 +2,7 @@
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.11.0
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
@@ -35,8 +36,8 @@ CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
 MAKE_ENV=	LC_ALL=C
 PKGINSTALL=	${WRKDIR}/pkg-install
 
-MAN1=		fc-cache.1 fc-cat.1 fc-list.1 fc-match.1 fc-query.1 fc-scan.1
-MAN5=		fonts-conf.5
+MAN1PAGES=	fc-cache.1 fc-cat.1 fc-list.1 fc-match.1 fc-query.1 fc-scan.1
+MAN5PAGES=	fonts-conf.5
 PORTDOCS=	fontconfig-user.html fontconfig-user.pdf fontconfig-user.txt
 
 .include <bsd.mport.options.mk>
@@ -46,9 +47,9 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
 .endif
-	${INSTALL_MAN} ${MAN5:S|^|${WRKSRC}/doc/|} ${PREFIX}/man/man5
-.for manpage in ${MAN1}
-	${INSTALL_MAN} ${FILESDIR}/${manpage} ${PREFIX}/man/man1
+	${INSTALL_MAN} ${MAN5PAGES:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${PREFIX}/man/man5
+.for manpage in ${MAN1PAGES}
+	${INSTALL_MAN} ${FILESDIR}/${manpage} ${STAGEDIR}${PREFIX}/man/man1
 .endfor
 	if [ ! -f ${PREFIX}/etc/fonts/fonts.conf ]; then \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf; \
@@ -59,6 +60,7 @@ post-install:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libfontconfig.so.1
 
 .include <bsd.port.mk>
 
