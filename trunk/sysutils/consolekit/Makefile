@@ -2,7 +2,7 @@
 
 PORTNAME=	consolekit
 PORTVERSION=	0.4.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/ConsoleKit/dist/
 DISTFILES=	ConsoleKit-${PORTVERSION}${EXTRACT_SUFX}
@@ -16,10 +16,8 @@ LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
     		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit
 
 WRKSRC=		${WRKDIR}/ConsoleKit-${PORTVERSION}
-USE_BZIP2=	yes
 USE_XORG=	x11
-USES=	pathfix gettext pkgconfig
-USE_GMAKE=	yes
+USES=	pathfix gettext gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
