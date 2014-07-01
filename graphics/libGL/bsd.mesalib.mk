@@ -39,8 +39,7 @@ BUILD_DEPENDS+=	makedepend:${PORTSDIR}/devel/makedepend \
 
 USE_BISON=	build
 USE_PYTHON_BUILD=yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES+=		gmake tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
