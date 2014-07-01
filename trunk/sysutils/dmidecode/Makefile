@@ -2,21 +2,22 @@
 # $FreeBSD: ports/sysutils/dmidecode/Makefile,v 1.9 2007/03/25 12:42:25 rafan Exp $
 
 PORTNAME=	dmidecode
-PORTVERSION=	2.11
+PORTVERSION=	2.12
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
 		ftp://ftp.nuug.no/pub/anders/distfiles/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool for dumping DMI (SMBIOS) contents in human-readable format
+COMMENT=	Tool for dumping DMI (SMBIOS) contents in human-readable format
+
 LICENSE=	gpl2
 
 FAKE_OPTS=	trueprefix
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GETOPT_LONG=	yes
 MAKE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" DOCSDIR="${DOCSDIR}"
 
