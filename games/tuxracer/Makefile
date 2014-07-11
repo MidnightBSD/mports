@@ -11,15 +11,16 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3D penguin racing game using OpenGL
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	tcl85:${PORTSDIR}/lang/tcl85
 
+USES=		gmake
 USE_SDL=	mixer sdl
 USE_TK=		yes
 USE_GL=		gl
 USE_XORG=	x11 xt xmu xi
-USE_GMAKE=	yes
 USE_AUTOTOOLS=	automake14 autoconf
 AUTOMAKE_ARGS=	-a
 CONFIGURE_ENV=	THREAD_LIB="${PTHREAD_LIBS}"
