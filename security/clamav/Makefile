@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.98
+PORTVERSION=	0.98.4
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -10,8 +10,10 @@ COMMENT=	Command line virus scanner written entirely in C
 
 LICENSE=	gpl2
 
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+
 OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR LLVM TESTS MILTER LDAP ICONV STDERR \
-		EXPERIMENTAL DOCS IPV6
+		EXPERIMENTAL DOCS IPV6 DMG_XAR
 
 ARC_DESC=		Enable arch archives support
 ARJ_DESC=		Enable arj archives support
@@ -23,8 +25,9 @@ TESTS_DESC=		Run compile-time tests (req. python)
 MILTER_DESC=		Compile the milter interface
 STDERR_DESC=		Print logs to stderr instead of stdout
 EXPERIMENTAL_DESC=	Build experimental code
+DMG_XAR_DESC=		Enable DMG and XAR archives support
 
-OPTIONS_DEFAULT=	ARC ARJ LHA UNZOO UNRAR LLVM DOCS IPV6
+OPTIONS_DEFAULT=	ARC ARJ LHA UNZOO UNRAR LLVM DOCS IPV6 DMG_XAR
 
 ARC_RUN_DEPENDS=	arc:${PORTSDIR}/archivers/arc
 ARJ_RUN_DEPENDS=	arj:${PORTSDIR}/archivers/arj
@@ -39,11 +42,13 @@ ICONV_CONFIGURE_OFF=	--without-iconv
 ICONV_USES=		iconv
 EXPERIMENTAL_CONFIGURE_ENABLE=	experimental
 IPV6_CONFIGURE_ENABLE=	ipv6
+DMG_XAR_CONFIGURE_ENABLE=	xml
+DMG_XAR_USE=		GNOME=libxml2
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GCC=	any
-USES=		gmake
+USES=		gmake libtool
+INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
 
 PORTDOCS=	*
@@ -51,7 +56,12 @@ PORTDOCS=	*
 DBDIR=		/var/db/clamav
 LOGDIR=		/var/log/clamav
 RUNDIR=		/var/run/clamav
-PLIST_SUB+=	DBDIR=${DBDIR} LOGDIR=${LOGDIR} RUNDIR=${RUNDIR}
+PLIST_SUB+=	DBDIR=${DBDIR:S/^\///} \
+		LOGDIR=${LOGDIR:S/^\///} \
+		RUNDIR=${RUNDIR:S/^\///} \
+		CLAMAVUSER=${CLAMAVUSER} \
+		CLAMAVGROUP=${CLAMAVGROUP} \
+		RESETPREFIX=${PREFIX}
 PY_NO_THREAD=	${WRKDIR}/.python-has-no-threads
 USE_AUTOTOOLS=	libltdl
 OPTIONS_SUB=	yes
@@ -75,7 +85,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib \
 # force to use -lthr until it's not fixed.
 PTHREAD_LIBS=	-lthr
 
-CONFLICTS?=	clamav-devel-[0-9]* clamav-milter-[0-9]*
+CONFLICTS?=	clamav-milter-[0-9]*
 
 CLAMAVUSER?=	clamav
 CLAMAVGROUP?=	clamav
@@ -83,16 +93,16 @@ CLAMAVGROUP?=	clamav
 CLAMAV_CLAMD_SOCKET?=	${RUNDIR}/clamd.sock
 CLAMAV_MILTER_SOCKET?=	${RUNDIR}/clmilter.sock
 
-SUB_FILES=	pkg-install pkg-deinstall
+SUB_FILES=	pkg-deinstall
 SUB_LIST+=	DBDIR=${DBDIR} \
 		LOGDIR=${LOGDIR} \
 		RUNDIR=${RUNDIR} \
+		CHMOD=${CHMOD} \
+		CHOWN=${CHOWN} \
 		CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP} \
 		CLAMAV_CLAMD_SOCKET=${CLAMAV_CLAMD_SOCKET} \
-		CLAMAV_MILTER_SOCKET=${CLAMAV_MILTER_SOCKET} \
-		CHMOD=${CHMOD} \
-		CHOWN=${CHOWN}
+		CLAMAV_MILTER_SOCKET=${CLAMAV_MILTER_SOCKET}
 
 SED_CONF=	-E -e 's|^\#?(Example)$$|\#\1|' \
 		-e 's|^\#?((Update)?LogFile) .*/([a-z]+\.log)$$|\1 ${LOGDIR}/\3|' \
@@ -113,9 +123,17 @@ PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 
 .include <bsd.mport.options.mk>
 
+.if ${CLAMAVUSER} == "clamav"
+USERS=	clamav
+.endif
+
+.if ${CLAMAVGROUP} == "clamav"
+GROUPS=	clamav mail
+.endif
+
 .if ${PORT_OPTIONS:MLLVM} && ( ${ARCH} == "i386" || ${ARCH} == "amd64" )
 CONFIGURE_ARGS+=--enable-llvm
-. if defined(WITH_TESTS)
+. if ${PORT_OPTIONS:MTESTS}
 USE_PYTHON_BUILD=	yes
 . endif
 .else
@@ -175,13 +193,16 @@ pre-configure:
 .if ${PORT_OPTIONS:MTESTS} && ${OSVERSION} >= 3000
 post-build:
 	@if [ ! -f "${PY_NO_THREAD}" ]; then \
-		${GMAKE} -C ${WRKSRC} check; \
+		${MAKE_CMD} -C ${WRKSRC} check; \
 	fi
 .endif
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
-	@${MKDIR} ${DOCSDIR}/html
+	@${MKDIR} ${DOCSDIR}/html \
+		  ${DBDIR} \
+		  ${LOGDIR} \
+		  ${RUNDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 
