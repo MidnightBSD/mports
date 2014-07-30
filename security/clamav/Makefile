@@ -190,7 +190,7 @@ pre-configure:
 	fi
 .endif
 
-.if ${PORT_OPTIONS:MTESTS} && ${OSVERSION} >= 3000
+.if ${PORT_OPTIONS:MTESTS}
 post-build:
 	@if [ ! -f "${PY_NO_THREAD}" ]; then \
 		${MAKE_CMD} -C ${WRKSRC} check; \

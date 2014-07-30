@@ -1,14 +1,68 @@
---- configure.orig	2014-06-25 04:04:20.000000000 -0300
-+++ configure	2014-06-25 04:04:05.000000000 -0300
-@@ -18682,7 +18682,7 @@
+--- configure.orig	2014-05-22 09:18:22.000000000 -0400
++++ configure	2014-07-30 17:45:23.093837950 -0400
+@@ -5556,7 +5556,7 @@
+     lt_cv_sys_max_cmd_len=8192;
      ;;
- freebsd*)
-     if test "$have_pthreads" = "yes"; then
--	THREAD_LIBS="-lthr"
-+	THREAD_LIBS="%%PTHREAD_LIBS%%"
- 	TH_SAFE="-thread-safe"
-     fi
  
+-  netbsd* | freebsd* | openbsd* | darwin* | dragonfly*)
++  netbsd* | freebsd* | openbsd* | darwin* | dragonfly* | midnightbsd*)
+     # This has been around since 386BSD, at least.  Likely further.
+     if test -x /sbin/sysctl; then
+       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
+@@ -5991,7 +5991,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -9864,7 +9864,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++    freebsd* | dragonfly* | midnightbsd*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -10828,7 +10828,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -10846,7 +10846,7 @@
+       need_version=no
+       need_lib_prefix=no
+       ;;
+-    freebsd-*)
++    freebsd-* | midnightbsd-*)
+       library_names_spec='${libname}${release}${shared_ext}$versuffix $libname${shared_ext}$versuffix'
+       need_version=yes
+       ;;
+@@ -12621,7 +12621,7 @@
+     # If you are looking for one http://www.opendarwin.org/projects/dlcompat
+     lt_cv_sys_dlopen_deplibs=yes
+     ;;
+-  freebsd* | dragonfly*)
++  freebsd* | dragonfly* | midnightbsd*)
+     lt_cv_sys_dlopen_deplibs=yes
+     ;;
+   gnu* | linux* | k*bsd*-gnu | kopensolaris*-gnu)
+@@ -18680,7 +18680,7 @@
+ $as_echo "#define C_BSD 1" >>confdefs.h
+ 
+     ;;
+-freebsd*)
++freebsd* | midnightbsd*)
+     if test "$have_pthreads" = "yes"; then
+ 	THREAD_LIBS="-lthr"
+ 	TH_SAFE="-thread-safe"
 @@ -18858,7 +18858,7 @@
  if test "$have_milter" = "yes"; then
  
@@ -18,3 +72,12 @@
      if test -d /usr/lib/libmilter ; then
  	CLAMAV_MILTER_LIBS="$CLAMAV_MILTER_LIBS -L/usr/lib/libmilter"
      fi
+@@ -21891,7 +21891,7 @@
+ 
+ 
+ case "$host_os" in
+-freebsd*)
++freebsd* | midnightbsd*)
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for kinfo_getvmmap in -lutil" >&5
+ $as_echo_n "checking for kinfo_getvmmap in -lutil... " >&6; }
+ if ${ac_cv_lib_util_kinfo_getvmmap+:} false; then :
