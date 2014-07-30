@@ -235,11 +235,71 @@ PLIST_SUB?=
 .  if defined(OPTIONS_SUB)
 .    if ! ${PLIST_SUB:M${opt}=*}
 .      if ${PORT_OPTIONS:M${opt}}
-PLIST_SUB:=     ${PLIST_SUB} ${opt}=""
+PLIST_SUB:=	${PLIST_SUB} ${opt}="" NO_${opt}="@comment "
 .      else
-PLIST_SUB:=     ${PLIST_SUB} ${opt}="@comment "
+PLIST_SUB:=	${PLIST_SUB} ${opt}="@comment " NO_${opt}=""
 .      endif
 .    endif
+.  endif
+
+.  if ${PORT_OPTIONS:M${opt}}
+.    if defined(${opt}_USE)
+.      for option in ${${opt}_USE}
+_u=             ${option:C/=.*//g}
+USE_${_u:tu}+=  ${option:C/.*=//g:C/,/ /g}
+.      endfor
+.    endif
+.    if defined(${opt}_CONFIGURE_ENABLE)
+.      for iopt in ${${opt}_CONFIGURE_ENABLE}
+CONFIGURE_ARGS+=        --enable-${iopt}
+.      endfor
+.    endif
+.    if defined(${opt}_CONFIGURE_WITH)
+.      for iopt in ${${opt}_CONFIGURE_WITH}
+CONFIGURE_ARGS+=        --with-${iopt}
+.      endfor
+.    endif
+.    for configure in CONFIGURE CMAKE QMAKE
+.      if defined(${opt}_${configure}_ON)
+${configure}_ARGS+=     ${${opt}_${configure}_ON}
+.      endif
+.    endfor
+.    for flags in ${_OPTIONS_FLAGS}
+.      if defined(${opt}_${flags})
+${flags}+=      ${${opt}_${flags}}
+.      endif
+.    endfor
+.    for deptype in ${_OPTIONS_DEPENDS}
+.      if defined(${opt}_${deptype}_DEPENDS)
+${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS}
+.      endif
+.    endfor
+.  else
+.    if defined(${opt}_CONFIGURE_ENABLE)
+.      for iopt in ${${opt}_CONFIGURE_ENABLE}
+CONFIGURE_ARGS+=        --disable-${iopt}
+.      endfor
+.    endif
+.    if defined(${opt}_CONFIGURE_WITH)
+.      for iopt in ${${opt}_CONFIGURE_WITH}
+CONFIGURE_ARGS+=        --without-${iopt:C/=.*//}
+.      endfor
+.    endif
+.    for configure in CONFIGURE CMAKE QMAKE
+.      if defined(${opt}_${configure}_OFF)
+${configure}_ARGS+=     ${${opt}_${configure}_OFF}
+.      endif
+.    endfor
+.    for flags in ${_OPTIONS_FLAGS}
+.      if defined(${opt}_${flags}_OFF)
+${flags}+=      ${${opt}_${flags}_OFF}
+.      endif
+.    endfor
+.    for deptype in ${_OPTIONS_DEPENDS}
+.      if defined(${opt}_${deptype}_DEPENDS_OFF)
+${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS_OFF}
+.      endif
+.    endfor
 .  endif
 .endfor
 
