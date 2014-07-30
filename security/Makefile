@@ -7,6 +7,7 @@ SUBDIR += barnyard2
 SUBDIR += ca_root_nss
 SUBDIR += chroot_safe
 SUBDIR += clamav
+SUBDIR += clamav-milter
 SUBDIR += courier-authlib
 SUBDIR += courier-authlib-base
 SUBDIR += courierpassd
