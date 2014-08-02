@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.5.3
+PORTVERSION=	1.6.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
 RUN_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_AUTOTOOLS=	libtool
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
