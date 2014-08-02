@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	2.0.20
+PORTVERSION=	2.0.25
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -19,10 +19,8 @@ LIB_DEPENDS=	assuan:${PORTSDIR}/security/libassuan \
 		ksba:${PORTSDIR}/security/libksba \
 		pth:${PORTSDIR}/devel/pth
 
-USE_BZIP2=	YES
-USE_GMAKE=	YES
 GNU_CONFIGURE=	YES
-USES=		iconv
+USES=		gmake iconv tar:bzip2
 USE_LDCONFIG=	YES
 CONFIGURE_ARGS+=	--enable-symcryptrun
 
