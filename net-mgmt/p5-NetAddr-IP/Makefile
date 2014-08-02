@@ -13,12 +13,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		NetAddr::IP.3 \
-	NetAddr::IP::InetBase.3 \
-	NetAddr::IP::Lite.3 \
-	NetAddr::IP::Util.3 \
-	NetAddr::IP::UtilPP.3
-
 .include <bsd.port.pre.mk>
 
 post-patch:
