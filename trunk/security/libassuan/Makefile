@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libassuan
-PORTVERSION=	2.0.3
+PORTVERSION=	2.1.1
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=${PORTNAME}
@@ -15,9 +15,9 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	gpg-error:${PORTSDIR}/security/libgpg-error
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+USES=		tar:bzip2
 
 # Silly, but apparently the only way to get the proper shared lib version number
 USE_AUTOTOOLS=	libtool
