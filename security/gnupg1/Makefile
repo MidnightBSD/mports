@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	1.4.13
+PORTVERSION=	1.4.18
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -15,9 +15,7 @@ LICENSE=	gpl2
 
 CONFLICTS=      gnupg-[0-9]*
 
-USES=		charsetfix
-USE_BZIP2=	YES
-USE_GMAKE=	YES
+USES=		charsetfix gmake tar:bzip2
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man
 .if ${MACHINE_CPU:Mi586}
