@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	ldns
-PORTVERSION=	1.6.16
+PORTVERSION=	1.6.17
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
 		CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for programs conforming to DNS RFCs and drafts
+
 LICENSE=	bsd3
 
 USE_AUTOTOOLS=	libtool
