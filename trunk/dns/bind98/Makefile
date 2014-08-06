@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	bind98
-PORTVERSION=	9.8.6
+PORTVERSION=	9.8.7
 PORTREVISION=	0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
@@ -10,10 +10,11 @@ DISTNAME=	bind-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
+
 LICENSE=	iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.8.6
+ISCVERSION=	9.8.7-P1
 
 MAKE_JOBS_UNSAFE=	yes
 
