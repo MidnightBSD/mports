@@ -8,7 +8,8 @@ MASTER_SITES=	http://www.linux.it/~md/software/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A RRDtool frontend for BIND statistics
+COMMENT=	RRDtool frontend for BIND statistics
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/databases/rrdtool	\
@@ -16,6 +17,7 @@ RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/databases/rrdtool	\
 
 NO_BUILD=	yes
 USE_PERL5=	yes
+USES=		tar:tgz
 
 CGIDIR?=	${PREFIX}/www/cgi-bin
 DATADIR?=	/var/db/bindgraph
