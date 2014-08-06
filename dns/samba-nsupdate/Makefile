@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		nsupdate
-PORTVERSION=		9.8.4.1
+PORTVERSION=		9.8.6
 CATEGORIES=		dns net ipv6
 MASTER_SITES=		${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
@@ -14,7 +14,7 @@ COMMENT=		An nsupdate utility with GSS-TSIG support
 LICENSE=		iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=		9.8.4-P1
+ISCVERSION=		9.8.6
 
 MAKE_JOBS_UNSAFE=	yes
 
