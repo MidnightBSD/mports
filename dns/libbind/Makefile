@@ -2,7 +2,7 @@
 
 PORTNAME=	libbind
 PORTVERSION=	6.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	libbind/${PORTVERSION}
@@ -11,6 +11,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standard C resolver library
+
 LICENSE=	mit
 
 MAKE_JOBS_UNSAFE=	yes
@@ -34,11 +35,6 @@ CONFIGURE_ARGS+=	--enable-threads
 .else
 CONFIGURE_ARGS+=	--disable-threads
 .endif
-
-MAN3=	getaddrinfo.3 gethostbyname.3 getipnodebyname.3 getnameinfo.3 \
-	getnetent.3 hesiod.3 inet_cidr.3 resolver.3 tsig.3
-MAN5=	resolver.5 irs.conf.5
-MAN7=	hostname.7
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
