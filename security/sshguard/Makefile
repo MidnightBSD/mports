@@ -14,8 +14,8 @@ CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9
 
 MAN8=		sshguard.8
 MANCOMPRESSED=	no
+USES=		tar:bzip2
 USE_AUTOTOOLS=	autoconf
-USE_BZIP2=	yes
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 USE_RC_SUBR=	sshguard
 HAS_CONFIGURE=	yes
