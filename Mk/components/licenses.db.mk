@@ -98,8 +98,8 @@ _LICENSE_GROUPS_gpl3=	FSF GPL OSI
 _LICENSE_NAME_infozip=	Info-ZIP License
 _LICENSE_GROUPS_infozip=
 
-_LICENSE_NAME_isc=	Internet Systems Consortium License
-_LICENSE_GROUPS_isc=	FSF GPL OSI COPYFREE
+_LICENSE_NAME_iscl=	Internet Systems Consortium License
+_LICENSE_GROUPS_iscl=	FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_lgpl=	GNU Library General Public License generic depricated
 _LICENSE_GROUPS_lgpl=	FSF GPL OSI
