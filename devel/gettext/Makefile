@@ -12,7 +12,7 @@ COMMENT=	GNU gettext package
 
 LICENSE=	gpl3
 
-USES=		charsetfix iconv
+USES=		charsetfix iconv libtool:oldver
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-csharp --disable-java \
 		--disable-openmp --disable-threads \
