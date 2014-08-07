@@ -2,6 +2,7 @@
 
 PORTNAME=	texinfo
 PORTVERSION=	5.1.20130809
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	GNU \
 		ftp://ftp.stack.nl/pub/users/johans/texinfo/${PORTVERSION:E}/
@@ -10,7 +11,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} htmlxref.cnf texinfo.tex texi2dvi
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A typeset documentation system with multiple format output
+COMMENT=	Typeset documentation system with multiple format output
 
 LICENSE=	gpl3
 
@@ -18,12 +19,10 @@ BUILD_DEPENDS+=	help2man:${PORTSDIR}/misc/help2man
 
 FETCH_ARGS=	-Ap
 GNU_CONFIGURE=	yes
-USE_XZ=		yes
 INSTALL_TARGET=	install install-tex
 PKGDEINSTALL=	${PKGINSTALL}
-USE_GMAKE=	yes
 USE_PERL5=	yes
-USES+=		charsetfix
+USES+=		charsetfix gmake:lite tar:xz
 
 MAKE_ARGS=	TEXMF=${PREFIX}/${TEXMF}
 CPPFLAGS+=	-I${LOCALBASE}/lib
