@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	apache-tomcat
-PORTVERSION=	6.0.37
+PORTVERSION=	6.0.41
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	tomcat/tomcat-6/v${PORTVERSION}/bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 6.x branch
+
 LICENSE=	apache2
 
 USE_JAVA=	yes
