@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nginx
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
