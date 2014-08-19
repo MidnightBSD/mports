@@ -20,6 +20,7 @@ SUBDIR += docbook-410
 SUBDIR += docbook-420
 SUBDIR += docbook-430
 SUBDIR += docbook-450
+SUBDIR += docbook-sgml
 SUBDIR += docbook-sk
 SUBDIR += docbook-to-man
 SUBDIR += docbook-utils
