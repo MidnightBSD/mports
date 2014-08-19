@@ -9,9 +9,10 @@ MASTER_SITES=	ALSA/lib \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library
+
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-aload --disable-python \
