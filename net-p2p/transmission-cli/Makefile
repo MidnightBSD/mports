@@ -57,7 +57,7 @@ MAN1?=		transmission-cli.1 transmission-create.1 transmission-edit.1 \
 EXTRA_PATCHES=	${PATCHDIR}/disable-web
 .endif
 
-USE_XZ=		yes
+USES+=		tar:xz
 
 DOCS=		AUTHORS NEWS README
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
