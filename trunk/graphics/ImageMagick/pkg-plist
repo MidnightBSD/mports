@@ -21,7 +21,7 @@ etc/ImageMagick/log.xml
 etc/ImageMagick/magic.xml
 etc/ImageMagick/mime.xml
 etc/ImageMagick/policy.xml
-etc/ImageMagick/sRGB.icc
+etc/ImageMagick/quantization-table.xml
 etc/ImageMagick/thresholds.xml
 etc/ImageMagick/type.xml
 etc/ImageMagick/type-dejavu.xml
@@ -52,6 +52,7 @@ include/ImageMagick/magick/attribute.h
 include/ImageMagick/magick/blob.h
 include/ImageMagick/magick/cache.h
 include/ImageMagick/magick/cache-view.h
+include/ImageMagick/magick/channel.h
 include/ImageMagick/magick/client.h
 include/ImageMagick/magick/cipher.h
 include/ImageMagick/magick/coder.h
@@ -92,6 +93,7 @@ include/ImageMagick/magick/magick-config.h
 include/ImageMagick/magick/magick-type.h
 include/ImageMagick/magick/matrix.h
 include/ImageMagick/magick/memory_.h
+include/ImageMagick/magick/method-attribute.h
 include/ImageMagick/magick/methods.h
 include/ImageMagick/magick/mime.h
 include/ImageMagick/magick/module.h
@@ -101,6 +103,7 @@ include/ImageMagick/magick/morphology.h
 include/ImageMagick/magick/option.h
 include/ImageMagick/magick/paint.h
 include/ImageMagick/magick/pixel.h
+include/ImageMagick/magick/pixel-accessor.h
 include/ImageMagick/magick/policy.h
 include/ImageMagick/magick/prepress.h
 include/ImageMagick/magick/profile.h
@@ -145,6 +148,7 @@ include/ImageMagick/wand/magick-image.h
 include/ImageMagick/wand/magick-property.h
 include/ImageMagick/wand/magick_wand.h
 include/ImageMagick/wand/magick-wand.h
+include/ImageMagick/wand/method-attribute.h
 include/ImageMagick/wand/mogrify.h
 include/ImageMagick/wand/montage.h
 include/ImageMagick/wand/pixel-iterator.h
@@ -152,7 +156,7 @@ include/ImageMagick/wand/pixel-wand.h
 include/ImageMagick/wand/stream.h
 include/ImageMagick/wand/wand-view.h
 lib/ImageMagick-%%PORTVERSION%%/config/configure.xml
-lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/aai.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/aai.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/art.la
@@ -197,6 +201,8 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%TIFF%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/ept.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fax.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fax.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fd.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fd.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fits.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fits.so
 %%FPX%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/fpx.la
@@ -227,6 +233,8 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/ipl.so
 %%JBIG%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jbig.la
 %%JBIG%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jbig.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jnx.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jnx.so
 %%JPEG2000%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jp2.la
 %%JPEG2000%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jp2.so
 %%JPEG%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/jpeg.la
@@ -295,6 +303,8 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%DJVU%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/djvu.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/pnm.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/pnm.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/pango.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/pango.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/preview.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/preview.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/ps.la
@@ -381,21 +391,24 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/ycbcr.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/yuv.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/yuv.so
-lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters/.keep
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters/analyze.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters/analyze.so
+%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters
+%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders
+%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%
 lib/libMagick++.a
 lib/libMagick++.la
 lib/libMagick++.so
-lib/libMagick++.so.5
+lib/libMagick++.so.6
 lib/libMagickCore.a
 lib/libMagickCore.la
 lib/libMagickCore.so
-lib/libMagickCore.so.5
+lib/libMagickCore.so.6
 lib/libMagickWand.a
 lib/libMagickWand.la
 lib/libMagickWand.so
-lib/libMagickWand.so.5
+lib/libMagickWand.so.6
 libdata/pkgconfig/ImageMagick++.pc
 libdata/pkgconfig/Magick++.pc
 libdata/pkgconfig/ImageMagick.pc
@@ -518,6 +531,7 @@ libdata/pkgconfig/Wand.pc
 %%PORTDOCS%%%%DOCSDIR%%/images/white-highlight.png
 %%PORTDOCS%%%%DOCSDIR%%/images/wizard.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/wizard.png
+%%PORTDOCS%%%%DOCSDIR%%/images/ImageMagick.ico
 %%PORTDOCS%%%%DOCSDIR%%/index.html
 %%PORTDOCS%%%%DOCSDIR%%/www/ImageMagickObject.html
 %%PORTDOCS%%%%DOCSDIR%%/www/Magick++/Blob.html
@@ -1279,6 +1293,7 @@ libdata/pkgconfig/Wand.pc
 %%PORTDOCS%%%%DOCSDIR%%/www/api/cache-view.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/cache.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/cipher.html
+%%PORTDOCS%%%%DOCSDIR%%/www/api/channel.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/color.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/colormap.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/colorspace.html
@@ -1331,9 +1346,11 @@ libdata/pkgconfig/Wand.pc
 %%PORTDOCS%%%%DOCSDIR%%/www/api/transform.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/version.html
 %%PORTDOCS%%%%DOCSDIR%%/www/api/wand-view.html
+%%PORTDOCS%%%%DOCSDIR%%/www/api/magick++-classes.html
 %%PORTDOCS%%%%DOCSDIR%%/www/architecture.html
 %%PORTDOCS%%%%DOCSDIR%%/www/binary-releases.html
 %%PORTDOCS%%%%DOCSDIR%%/www/changelog.html
+%%PORTDOCS%%%%DOCSDIR%%/www/channel.html
 %%PORTDOCS%%%%DOCSDIR%%/www/cipher.html
 %%PORTDOCS%%%%DOCSDIR%%/www/color.html
 %%PORTDOCS%%%%DOCSDIR%%/www/command-line-options.html
@@ -1422,11 +1439,8 @@ libdata/pkgconfig/Wand.pc
 %%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick
 %%WITH_PERL%%@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image
 %%WITH_PERL%%@unexec rmdir %D/%%SITE_PERL%%/%%PERL_ARCH%%/Image
-@dirrm lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters
-@dirrm lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders
-@dirrm lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%
-@dirrm lib/ImageMagick-%%PORTVERSION%%/config
-@dirrm lib/ImageMagick-%%PORTVERSION%%
+@dirrmtry lib/ImageMagick-%%PORTVERSION%%/config
+@dirrmtry lib/ImageMagick-%%PORTVERSION%%
 @dirrm include/ImageMagick/wand
 @dirrm include/ImageMagick/magick
 @dirrm include/ImageMagick/Magick++
