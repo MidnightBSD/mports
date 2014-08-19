@@ -2,7 +2,7 @@
 
 PORTNAME=	libtheora
 PORTVERSION=	1.1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 		http://distfiles.master.finkmirrors.net/
@@ -14,13 +14,11 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
-USES=		tar:bzip2
+USES=		libtool:keepla tar:bzip2
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		LIBS="${PTHEAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=--disable-sdltest \
 		--enable-shared \
 		--disable-examples
