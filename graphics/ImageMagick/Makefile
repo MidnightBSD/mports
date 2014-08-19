@@ -1,28 +1,48 @@
 # $MidnightBSD$
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.7.4-4
-PORTREVISION=	1
+DISTVERSION=	6.8.0-7
+PORTREVISION=	5
+PORTEPOCH=	1
 CATEGORIES=	graphics perl5
-MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
+MASTER_SITES=	http://www.imagemagick.org/download/ \
+		http://servingzone.com/mirrors/ImageMagick/ \
+		http://mirror.checkdomain.de/imagemagick/ \
 		http://image_magick.veidrodis.com/image_magick/ \
+		http://imagemagick.spd.co.il/ \
+		http://www.champground.com/imagemagick/ \
+		http://ftp.surfnet.nl/pub/ImageMagick/ \
+		http://mirror.searchdaimon.com/ImageMagick/ \
+		http://mirror.is.co.za/pub/imagemagick/ \
+		http://imagemagick.mirrorcatalogs.com/ \
+		ftp://ftp.imagemagick.org/pub/ImageMagick/ \
+		ftp://mirror.aarnet.edu.au/pub/imagemagick/ \
+		ftp://mirror.checkdomain.de/imagemagick/ \
+		ftp://ftp.kddlabs.co.jp/graphics/ImageMagick/ \
+		ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ \
+		ftp://ftp.nluug.nl/pub/ImageMagick/ \
+		ftp://mirror.searchdaimon.com/ImageMagick/ \
+		ftp://sunsite.icm.edu.pl/packages/ImageMagick/ \
+		ftp://ftp.tpnet.pl/pub/graphics/ImageMagick/ \
 		ftp://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/ \
-		ftp://ftp.nluug.nl/pub/ImageMagick/
+		ftp://ftp.is.co.za/pub/imagemagick/ \
+		ftp://ftp.fifi.org/pub/ImageMagick/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image processing tools
-LICENSE=	other
 
+LICENSE=	apache2
+
+USES=		gmake pkgconfig:both pathfix perl5 shebangfix
+SHEBANG_FILES=	www/source/examples.pl
 USE_XZ=		yes
-USE_PERL5=	yes
-USE_GNOME=	gnomehack pkgconfig
+USE_PERL5=	run build patch
+WANT_GNOME=	yes
 USE_AUTOTOOLS=	libltdl
 # For some reason, using our libtool breaks the build into pieces:
 #USE_AUTOTOOLS+=	libtool
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared --without-dps
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+CONFIGURE_ARGS=	--enable-shared --without-dps --without-lcms
 USE_LDCONFIG=	yes
 
 MAN1=		ImageMagick.1 Magick++-config.1 Magick-config.1 Wand-config.1 \
@@ -35,52 +55,29 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION:R}
 
-OPTIONS=\
-	IMAGEMAGICK_16BIT_PIXEL	"16bit pixel support" on \
-	IMAGEMAGICK_BZLIB	"Bzlib support" on \
-	IMAGEMAGICK_DJVU	"DJVU format support (needs threads)" off \
-	IMAGEMAGICK_DOT		"GraphViz dot graphs support" off \
-	IMAGEMAGICK_FFTW	"Discrete Fourier Transform support" on \
-	IMAGEMAGICK_FONTCONFIG	"Fontconfig support" on \
-	IMAGEMAGICK_FPX		"FPX format support" on \
-	IMAGEMAGICK_GSLIB	"libgs (Postscript SHLIB) support" off \
-	IMAGEMAGICK_JBIG	"JBIG format support" on \
-	IMAGEMAGICK_JPEG	"JPG format support" on \
-	IMAGEMAGICK_JPEG2000	"JPEG2000 format support" on \
-	IMAGEMAGICK_LCMS2	"LCMS version 2 support" on \
-	IMAGEMAGICK_LCMS	"LCMS version 1 support" off \
-	IMAGEMAGICK_LZMA	"LZMA support" on \
-	IMAGEMAGICK_LQR		"Liquid Rescale support" on \
-	IMAGEMAGICK_MODULES	"Modules support" on \
-	IMAGEMAGICK_OPENEXR	"OpenEXR support (needs threads)" off \
-	IMAGEMAGICK_OPENMP	"OpenMP for SMP (needs threads)" off \
-	IMAGEMAGICK_PANGO	"Pango support" off \
-	IMAGEMAGICK_PDF		"PDF format support" on \
-	IMAGEMAGICK_PERL	"Perl support" on \
-	IMAGEMAGICK_PNG		"PNG format support" on \
-	IMAGEMAGICK_SVG		"SVG format support (requires X11)" on \
-	IMAGEMAGICK_TESTS	"Run bundled self-tests after build" off \
-	IMAGEMAGICK_TIFF	"TIFF format support" on \
-	IMAGEMAGICK_TTF		"Freetype support" on \
-	IMAGEMAGICK_WEBP	"WEBP support" on \
-	IMAGEMAGICK_WMF		"WMF format support" on \
-	THREADS			"Threads support" off
+OPTIONS_DEFINE=	16BIT_PIXEL BZIP2 DOCS DJVU FFTW FONTCONFIG FPX FREETYPE \
+		GRAPHVIZ GSLIB HDRI JASPER JBIG JPEG LCMS2 LZMA LQR MODULES \
+		OPENEXR OPENMP PANGO PDF PERL PNG SVG TESTS TIFF WEBP WMF \
+		THREADS
+OPTIONS_DEFAULT=	16BIT_PIXEL BZIP2 FFTW FONTCONFIG FPX FREETYPE \
+		JASPER JBIG JPEG LCMS2 LZMA LQR MODULES PDF PERL PNG SVG \
+		TIFF WEBP WMF
+16BIT_PIXEL_DESC=	16bit pixel support
+DJVU_DESC=		DJVU format support (needs THREADS)
+GSLIB_DESC=		libgs (Postscript SHLIB) support
+HDRI_DESC=		High dynamic range images support
+MODULES_DESC=		Modules support
+TESTS_DESC=		Run bundled self-tests after build
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_IMAGEMAGICK_PDF) && defined(WITH_GHOSTSCRIPT_VER) && ${WITH_GHOSTSCRIPT_VER} == "7"
-IGNORE=		support for the PDF format requires ghostscript 8 and higher
+.if ${PORT_OPTIONS:MHDRI}
+CONFIGURE_ARGS+=	--enable-hdri
+.else
+CONFIGURE_ARGS+=	--disable-hdri
 .endif
 
-#.if defined(WITH_IMAGEMAGICK_HDRI)
-#BROKEN=			hdri support broken, disable in options
-#CONFIGURE_ARGS+=	--enable-hdri
-#_NO_IMAGEMAGICK_TESTS=yes
-#.else
-CONFIGURE_ARGS+=	--disable-hdri
-#.endif
-
-.if defined(WITH_THREADS)
+.if ${PORT_OPTIONS:MTHREADS}
 _IMAGEMAGICK_THREADS=yes
 _IMAGEMAGICK_THREADS_MSG=with threads
 PERL_THREADED!=	${SH} -c 'case `perl --version` in *freebsd-thread*) ${ECHO_CMD} yes ;; esac'
@@ -90,12 +87,11 @@ _IMAGEMAGICK_THREADS_MSG=without threads
 _IMAGEMAGICK_THREADS_IGNORE_MSG=. Define WITH_THREADS
 .endif
 
-.if defined(WITH_IMAGEMAGICK_PERL)
+.if ${PORT_OPTIONS:MPERL}
 CONFIGURE_ARGS+=	--with-perl=${PERL5}
 PLIST_SUB+=		WITH_PERL=''
-#MAN3=			Image::Magick.3
-MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
-# PerlMagick not works with threads, if perl is not threaded, and vice versa
+MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VER}
+# PerlMagick does not work with threads, if perl is not threaded, and vice versa
 . if defined(PERL_THREADED)
 _IMAGEMAGICK_THREADS_PERL_MSG=Perl is threaded
 _IMAGEMAGICK_THREADS=yes
@@ -123,7 +119,7 @@ _IMAGEMAGICK_THREADS=no
 .endif
 
 # OpenMP
-.if defined(WITH_IMAGEMAGICK_OPENMP)
+.if ${PORT_OPTIONS:MOPENMP}
 . if ${_IMAGEMAGICK_THREADS} == "no"
 IGNORE=OpenMP requires threads${_IMAGEMAGICK_THREADS_IGNORE_MSG}
 . else
@@ -133,12 +129,12 @@ CONFIGURE_ARGS+=	--enable-openmp
 CONFIGURE_ARGS+=	--disable-openmp
 .endif
 
+.if ${PORT_OPTIONS:M16BIT_PIXEL}
+PLIST_SUB+=		QBIT='Q16'
+.else
 # Faster, but poor quality
-.if defined(WITHOUT_IMAGEMAGICK_16BIT_PIXEL)
 CONFIGURE_ARGS+=	--with-quantum-depth=8
 PLIST_SUB+=		QBIT='Q8'
-.else
-PLIST_SUB+=		QBIT='Q16'
 .endif
 
 .if defined(WITH_WINDOWS_FONT_DIR)
@@ -147,7 +143,7 @@ CONFIGURE_ARGS+=	--with-windows-font-dir=${WITH_WINDOWS_FONT_DIR}
 
 # Loadable coders, smaller executable, but PerlMagick not really works
 # ('make test' there works)
-.if defined(WITH_IMAGEMAGICK_MODULES)
+.if ${PORT_OPTIONS:MMODULES}
 CONFIGURE_ARGS+=	--with-modules
 PLIST_SUB+=		MODULES=''
 .else
@@ -155,7 +151,7 @@ CONFIGURE_ARGS+=	--without-modules
 PLIST_SUB+=		MODULES='@comment '
 .endif
 
-.if defined(WITH_IMAGEMAGICK_OPENEXR)
+.if ${PORT_OPTIONS:MOPENEXR}
 . if ${_IMAGEMAGICK_THREADS} == "no"
 IGNORE=OpenEXR requires threads. ${_IMAGEMAGICK_THREADS_IGNORE_MSG}
 . else
@@ -167,18 +163,18 @@ CONFIGURE_ARGS+=	--without-openexr
 PLIST_SUB+=		OPENEXR="@comment "
 .endif
 
-.if defined(WITH_IMAGEMAGICK_DJVU)
+.if ${PORT_OPTIONS:MDJVU}
 . if ${_IMAGEMAGICK_THREADS} == "no"
 IGNORE=DjVu requires threads${_IMAGEMAGICK_THREADS_IGNORE_MSG}
 . endif
-LIB_DEPENDS+=		djvulibre:${PORTSDIR}/graphics/djvulibre-nox11
+LIB_DEPENDS+=		djvulibre:${PORTSDIR}/graphics/djvulibre
 PLIST_SUB+=		DJVU=""
 .else
 CONFIGURE_ARGS+=	--without-djvu
 PLIST_SUB+=		DJVU="@comment "
 .endif
 
-.if !defined(WITHOUT_IMAGEMAGICK_JPEG)
+.if ${PORT_OPTIONS:MJPEG}
 LIB_DEPENDS+=		jpeg:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=		JPEG=""
 .else
@@ -186,7 +182,7 @@ CONFIGURE_ARGS+=	--without-jpeg
 PLIST_SUB+=		JPEG="@comment "
 .endif
 
-.if !defined(WITHOUT_IMAGEMAGICK_PNG)
+.if ${PORT_OPTIONS:MPNG}
 LIB_DEPENDS+=		png15:${PORTSDIR}/graphics/png
 PLIST_SUB+=		PNG=""
 .else
@@ -194,7 +190,7 @@ CONFIGURE_ARGS+=	--without-png
 PLIST_SUB+=		PNG="@comment "
 .endif
 
-.if !defined(WITHOUT_IMAGEMAGICK_TIFF)
+.if ${PORT_OPTIONS:MTIFF}
 LIB_DEPENDS+=		tiff:${PORTSDIR}/graphics/tiff
 PLIST_SUB+=		TIFF=""
 .else
@@ -202,21 +198,21 @@ CONFIGURE_ARGS+=	--without-tiff
 PLIST_SUB+=		TIFF="@comment "
 .endif
 
-.if defined(WITH_IMAGEMAGICK_GSLIB)
+.if ${PORT_OPTIONS:MGSLIB}
 CONFIGURE_ARGS+=	--with-gslib
 USE_GHOSTSCRIPT=	yes
 .else
 CONFIGURE_ARGS+=	--without-gslib
 .endif
 
-.if !defined(WITHOUT_IMAGEMAGICK_LQR)
+.if ${PORT_OPTIONS:MLQR}
 CONFIGURE_ARGS+=	--with-lqr
-LIB_DEPENDS+=		lqr-1.3:${PORTSDIR}/graphics/liblqr-1
+LIB_DEPENDS+=		lqr-1:${PORTSDIR}/graphics/liblqr-1
 .else
 CONFIGURE_ARGS+=	--without-lqr
 .endif
 
-.if !defined(WITHOUT_IMAGEMAGICK_FFTW)
+.if ${PORT_OPTIONS:MFFTW}
 CONFIGURE_ARGS+=	--with-fftw
 LIB_DEPENDS+=		fftw3:${PORTSDIR}/math/fftw3
 .else
@@ -224,12 +220,12 @@ CONFIGURE_ARGS+=	--without-fftw
 .endif
 
 # Produce BZip compressed MIFF images
-.if defined(WITHOUT_IMAGEMAGICK_BZLIB)
+.if empty(PORT_OPTIONS:MBZIP2)
 CONFIGURE_ARGS+=	--without-bzlib
 .endif
 
 # FPX (FlashPIX) images
-.if !defined(WITHOUT_IMAGEMAGICK_FPX)
+.if ${PORT_OPTIONS:MFPX}
 LIB_DEPENDS+=		fpx.[2-9]:${PORTSDIR}/graphics/libfpx
 CONFIGURE_ARGS+=	--with-fpx
 PLIST_SUB+=		FPX=""
@@ -239,7 +235,7 @@ PLIST_SUB+=		FPX="@comment "
 .endif
 
 # JBIG images (lossless compression for bi-level images)
-.if !defined(WITHOUT_IMAGEMAGICK_JBIG)
+.if ${PORT_OPTIONS:MJBIG}
 LIB_DEPENDS+=		jbig:${PORTSDIR}/graphics/jbigkit
 PLIST_SUB+=		JBIG=""
 .else
@@ -248,7 +244,7 @@ PLIST_SUB+=		JBIG="@comment "
 .endif
 
 # JPEG2000 images (wavelet-based lossy compression)
-.if !defined(WITHOUT_IMAGEMAGICK_JPEG2000)
+.if ${PORT_OPTIONS:MJASPER}
 LIB_DEPENDS+=		jasper:${PORTSDIR}/graphics/jasper
 PLIST_SUB+=		JPEG2000=""
 .else
@@ -257,7 +253,7 @@ PLIST_SUB+=		JPEG2000="@comment "
 .endif
 
 # GraphViz dot graphs
-.if defined(WITH_IMAGEMAGICK_DOT)
+.if ${PORT_OPTIONS:MGRAPHVIZ}
 LIB_DEPENDS+=		gvc:${PORTSDIR}/graphics/graphviz
 CFLAGS+=		-I${LOCALBASE}/include/graphviz
 LDFLAGS+=		-L${LOCALBASE}/lib/graphviz
@@ -266,29 +262,19 @@ CONFIGURE_ARGS+=	--without-gvc
 .endif
 
 # LZMA support
-.if !defined(WITHOUT_IMAGEMAGICK_LZMA)
-. if (${OSVERSION} < 4000)
-LIB_DEPENDS+=		lzma:${PORTSDIR}/archivers/xz
-. endif
-.else
+.if ! ${PORT_OPTIONS:MLZMA}
 CONFIGURE_ARGS+=	--without-lzma
 .endif
 
 # LCMS (Little CMS) color management version 2 and 1 (mutually exclusive)
-.if !defined(WITHOUT_IMAGEMAGICK_LCMS2)
+.if ${PORT_OPTIONS:MLCMS2}
 LIB_DEPENDS+=		lcms2:${PORTSDIR}/graphics/lcms2
-CONFIGURE_ARGS+=	--without-lcms
 .else
 CONFIGURE_ARGS+=	--without-lcms2
-. if !defined(WITHOUT_IMAGEMAGICK_LCMS)
-LIB_DEPENDS+=		lcms:${PORTSDIR}/graphics/lcms
-. else
-CONFIGURE_ARGS+=	--without-lcms
-. endif
 .endif
 
 # Freetype (TrueType Font) support
-.if !defined(WITHOUT_IMAGEMAGICK_TTF)
+.if ${PORT_OPTIONS:MFREETYPE}
 LIB_DEPENDS+=		freetype:${PORTSDIR}/print/freetype2
 USE_GHOSTSCRIPT=	yes
 CONFIGURE_ARGS+=	--with-freetype
@@ -297,7 +283,7 @@ CONFIGURE_ARGS+=	--without-freetype
 .endif
 
 # Webp support
-.if !defined(WITHOUT_IMAGEMAGICK_WEBP)
+.if ${PORT_OPTIONS:MWEBP}
 LIB_DEPENDS+=		webp:${PORTSDIR}/graphics/webp
 CONFIGURE_ARGS+=	--with-webp
 PLIST_SUB+=		WEBP=""
@@ -307,7 +293,7 @@ PLIST_SUB+=		WEBP="@comment "
 .endif
 
 # Fontconfig support
-.if !defined(WITHOUT_IMAGEMAGICK_FONTCONFIG)
+.if ${PORT_OPTIONS:MFONTCONFIG}
 LIB_DEPENDS+=		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 CONFIGURE_ARGS+=	--with-fontconfig
 CONFIGURE_ENV+=		FONTCONFIG_CFLAGS="-I${LOCALBASE}/include" \
@@ -318,7 +304,7 @@ CONFIGURE_ARGS+=	--without-fontconfig
 .endif
 
 # WMF (Windows Meta File) images
-.if !defined(WITHOUT_IMAGEMAGICK_WMF)
+.if ${PORT_OPTIONS:MWMF}
 . if !defined(WITHOUT_X11)
 LIB_DEPENDS+=		wmf:${PORTSDIR}/graphics/libwmf
 . else
@@ -333,7 +319,7 @@ PLIST_SUB+=		WMF="@comment "
 .endif
 
 # SVG (Scalable Vector Graphics) requires both libxml2 and X11
-.if defined(WITH_IMAGEMAGICK_SVG) && !defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MSVG} && !defined(WITHOUT_X11)
 USE_GNOME+=		libxml2
 LIB_DEPENDS+=		rsvg-2:${PORTSDIR}/graphics/librsvg2
 CONFIGURE_ARGS+=	--with-rsvg --with-xml
@@ -344,22 +330,24 @@ CONFIGURE_ARGS+=	--without-rsvg --without-xml
 .endif
 
 # Pango support
-.if defined(WITH_IMAGEMAGICK_PANGO)
-LIB_DEPENDS+=		pangocairo-1\.0.0:${PORTSDIR}/x11-toolkits/pango
+.if ${PORT_OPTIONS:MPANGO} && !defined(WITHOUT_X11)
+LIB_DEPENDS+=		pangocairo-1\.0:${PORTSDIR}/x11-toolkits/pango
+PLIST_SUB+=		PANGO=""
 .else
 CONFIGURE_ARGS+=	--without-pango
+PLIST_SUB+=		PANGO="@comment "
 .endif
 
 # PDF (Adobe Portable Document Format) support
-.if !defined(WITHOUT_IMAGEMAGICK_PDF)
+.if ${PORT_OPTIONS:MPDF}
 USE_GHOSTSCRIPT=	yes
 .endif
 
 .if defined(WITHOUT_X11)
-PKGNAMESUFFIX+=		-nox11
 CONFIGURE_ARGS+=	--without-x
 CONFLICTS+=		ImageMagick-6*
 PLIST_SUB+=		X11='@comment '
+PKGNAMESUFFIX=		-nox11
 .else
 CONFLICTS+=		ImageMagick-nox11-6*
 CONFLICTS+=		display-[0-9]*
@@ -368,21 +356,16 @@ USE_XORG=		xext xt
 PLIST_SUB+=		X11=''
 .endif
 
-.if defined(NOPORTDOCS)
-INSTALL_TARGET=	install
-.else
+.if ${PORT_OPTIONS:MDOCS}
 INSTALL_TARGET=	install install-docDATA install-data-html
+.else
+INSTALL_TARGET=	install
 .endif
 
 # Test suite, requires installed ghostscript to pass
-.if ${ARCH} == sparc64
-_NO_IMAGEMAGICK_TESTS=yes
-.endif
 
-.if defined(PACKAGE_BUILDING) || defined(WITH_IMAGEMAGICK_TESTS)
-. if !defined(_NO_IMAGEMAGICK_TESTS)
+.if defined(PACKAGE_BUILDING) || ${PORT_OPTIONS:MTESTS}
 USE_GHOSTSCRIPT_BUILD=yes
-. endif
 .endif
 
 post-patch:
@@ -405,7 +388,7 @@ post-patch:
 	@${PERL} -pi -e 's|^(MagickLibSubdir).*$$|\1="ImageMagick"|' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${PERL} -pi -e 's|lcms/lcms.h|lcms.h|g' ${WRKSRC}/magick/transform.c
-	@${PERL} -pi -e 's|<malloc.h>|<stdlib.h>|g' ${WRKSRC}/ltdl/ltdl.c
+#	@${PERL} -pi -e 's|<malloc.h>|<stdlib.h>|g' ${WRKSRC}/ltdl/ltdl.c
 	@${PERL} -pi -e 's|timestamp: %ld|timestamp: %d|g' \
 		${WRKSRC}/magick/xwindow.c
 .if ${_IMAGEMAGICK_THREADS} == "yes"
@@ -418,6 +401,12 @@ post-patch:
 # deprecated gvCleanup
 	@${REINPLACE_CMD} -e "s|gvCleanup|gvFreeContext|g" \
 		${WRKSRC}/coders/dot.c
+# freetype headers are in freetype2/ nowadays
+	@${REINPLACE_CMD} -e "s|freetype/|freetype2/|g" \
+		${WRKSRC}/configure \
+		${WRKSRC}/coders/ttf.c \
+		${WRKSRC}/magick/annotate.c \
+		${WRKSRC}/www/api/MagickCore/annotate_8c.html
 
 pre-configure:
 .if defined(_IMAGEMAGICK_THREADS_PERL_MSG)
@@ -425,37 +414,28 @@ pre-configure:
 	@${ECHO_CMD} NOTICE: ${_IMAGEMAGICK_THREADS_PERL_MSG}. Building ImageMagick ${_IMAGEMAGICK_THREADS_MSG}.
 	@${ECHO_CMD} '###################################################################'
 .endif
-.if !defined(WITHOUT_IMAGEMAGICK_LCMS2) && defined(WITH_IMAGEMAGICK_LCMS)
-	@${ECHO_CMD} '###################################################################'
-	@${ECHO_CMD} 'WARNING: both WITH_IMAGEMAGICK_LCMS and WITH_IMAGEMAGICK LCMS2'
-	@${ECHO_CMD} '         selected, LCMS2 has precedence and will be used'
-	@${ECHO_CMD} '###################################################################'
-.endif
 
-.if defined(WITH_IMAGEMAGICK_SVG) && defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MSVG} && defined(WITHOUT_X11)
 	@${ECHO_CMD} NOTICE: SVG format support disabled, requires X11
 .endif
 
-post-install:
-.if !defined(WITHOUT_IMAGEMAGICK_PERL)
-	@${RM} -f ${PREFIX}/lib/perl5/${PERL_VERSION}/mach/perllocal.pod
+post-install: test
+.if ${PORT_OPTIONS:MPERL}
+	@${RM} -f ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/mach/perllocal.pod
 .endif
-.if defined(WITHOUT_IMAGEMAGICK_16BIT_PIXEL)
-	@${TOUCH} ${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q8/coders/.keep
-	@${TOUCH} ${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q8/filters/.keep
-.else
-	@${TOUCH} ${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q16/coders/.keep
-	@${TOUCH} ${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q16/filters/.keep
+.if ${PORT_OPTIONS:MMODULES}
+. if ${PORT_OPTIONS:M16BIT_PIXEL}
+	@${TOUCH} ${STAGEDIR}${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q16/coders/.keep
+	@${TOUCH} ${STAGEDIR}${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q16/filters/.keep
+. else
+	@${TOUCH} ${STAGEDIR}${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q8/coders/.keep
+	@${TOUCH} ${STAGEDIR}${PREFIX}/lib/ImageMagick-${PORTVERSION:R}/modules-Q8/filters/.keep
+. endif
 .endif
 
 test check:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} limits -m 20m ${MAKE} check
-
-.if !defined(_NO_IMAGEMAGICK_TESTS)
-regression-test:	test
-. if !defined(PACKAGE_BUILDING) && defined(WITH_IMAGEMAGICK_TESTS)
-post-build:	regression-test
-. endif
+.if (${PORT_OPTIONS:MTESTS} || defined(PACKAGE_BUILDING))
+	-cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} limits -m 20m ${MAKE} check
 .endif
 
 .include <bsd.port.post.mk>

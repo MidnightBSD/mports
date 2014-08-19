@@ -2,8 +2,9 @@
 
 PORTNAME=	png
 PORTVERSION=	1.5.18
+PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}15/${PORTVERSION}
+MASTER_SITES=	http://sourceforge.net/projects/libpng/files/libpng15/1.5.18/libpng-1.5.18.tar.xz/download
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
