@@ -1,58 +1,113 @@
 # $MidnightBSD$
 
-PORTNAME=	boehm-gc
-PORTVERSION=	6.8
-PORTREVISION=	1
+PORTNAME=	gc
+PORTVERSION=	7.4.2
 CATEGORIES=	devel
-MASTER_SITES=	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/
-DISTNAME=	gc${PORTVERSION:S/.a/alpha/}
+MASTER_SITES=	http://www.hboehm.info/gc/gc_source/
+PKGNAMEPREFIX=	boehm-
+.ifdef GC_VARIANT
+PKGNAMESUFFIX=	-${GC_VARIANT}
+.endif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Garbage collection and memory leak detection for C and C++
-LICENSE=	other
 
-USE_AUTOTOOLS=	libtool
+LICENSE=	BDWGC
+LICENSE_NAME=	Boehm-Demers-Weiser Garbage Collector License
+LICENSE_TEXT=	License can be found at http://www.hboehm.info/gc/license.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:${PORTSDIR}/devel/libatomic_ops
+
 GNU_CONFIGURE=	yes
+USES=		libtool pathfix pkgconfig
+USE_AUTOTOOLS=	aclocal autoconf libtoolize
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-cplusplus
-OPTIONS=	REDIRECT "Define malloc(3)-family replacements" off \
-		FULLDEBUG "full-debug support (see documentation)" off \
-		THREADING "POSIX thread support" off \
-		PARALLEL_MARK "Parallel-thread marking (faster for SMP)" off
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--enable-cplusplus --disable-static
+MAKE_JOBS_UNSAFE=	yes
+
+WRKSRC=		${WRKDIR}/${DISTNAME:C/[a-z]$//}
+
+OPTIONS_DEFINE=	DEBUG
+
+.ifdef GC_VARIANT
+INSTLIBS=	cord gc gccpp
+PLIST=		${NONEXISTENT}
+PLIST_FILES=	${INSTLIBS:S,^,lib/lib,g:S,$,-${GC_VARIANT}.so.${SOVER},g} \
+		${INSTLIBS:S,^,lib/lib,g:S,$,-${GC_VARIANT}.so,g} \
+		libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
+RUN_DEPENDS+=	${LOCALBASE}/include/gc/gc.h:${PORTSDIR}/devel/boehm-gc
+SOVER=		1
+. if ${GC_VARIANT} == "redirect"
+CONFIGURE_ARGS+=--disable-threads --enable-redirect-malloc
+. endif
+. if ${GC_VARIANT} == "threaded"
+CONFIGURE_ARGS+=--enable-threads=posix --disable-redirect-malloc
+OPTIONS_DEFINE+=PARALLEL_MARK
+PARALLEL_MARK_DESC=	Parallel-thread marking (faster for SMP)
+. endif
+.else
+CONFIGURE_ARGS+=--disable-threads --disable-redirect-malloc
+OPTIONS_DEFINE+=DOCS
+PORTDOCS=	*
+.endif
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_THREADING)
-CONFIGURE_ARGS+=	--enable-threads=posix --enable-thread-local-alloc
-CONFIGURE_ENV=	CFLAGSS="${CFLAGS} ${PTHREAD_CFLAGS}" \
-		LIBS="${LIBS} ${PTHREAD_LIBS:C/-pthread/-lpthread/}"
-.if defined(WITH_PARALLEL_MARK)
-CONFIGURE_ARGS+=	--enable-parallel-mark
-.endif
-PKGNAMESUFFIX=		+threaded
-.else
-CONFIGURE_ARGS+=	--disable-threads
-PKGNAMESUFFIX=		# empty
-.endif
-.if defined(WITH_REDIRECT)
-CONFIGURE_ARGS+=	--enable-redirect-malloc
-PKGNAMESUFFIX:=		${PKGNAMESUFFIX}+redirect
-.endif
-.if defined(WITH_FULLDEBUG)
-CONFIGURE_ARGS+=	--enable-full-debug
-PKGNAMESUFFIX:=		${PKGNAMESUFFIX}+fulldebug
+NOT_FOR_ARCHS=	ia64
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=--enable-gc-debug
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+fulldebug
 .endif
 
-MAN3=		gc.3
-
-.if ${ARCH} == "ia64"
-BROKEN=		"Does not compile on ia64"
+.if defined(GC_VARIANT) && ${GC_VARIANT} == "threaded"
+. if ${PORT_OPTIONS:MPARALLEL_MARK}
+CONFIGURE_ARGS+=--enable-parallel-mark
+. endif
 .endif
+
+.ifdef GC_VARIANT
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's,libgc\.la,libgc-${GC_VARIANT}.la,g ; \
+		s,libgccpp\.la,libgccpp-${GC_VARIANT}.la,g ; \
+		s,libcord\.la,libcord-${GC_VARIANT}.la,g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's,-lgc,-lgc-${GC_VARIANT},' ${WRKSRC}/bdw-gc.pc.in
+
+do-install:
+.for LIB in ${INSTLIBS}
+	${INSTALL_DATA} ${WRKSRC}/.libs/lib${LIB}-${GC_VARIANT}.so.${SOVER} \
+		${STAGEDIR}${PREFIX}/lib/lib${LIB}-${GC_VARIANT}.so.${SOVER}
+	${LN} -sf lib${LIB}-${GC_VARIANT}.so.${SOVER} \
+		${STAGEDIR}${PREFIX}/lib/lib${LIB}-${GC_VARIANT}.so
+.endfor
+	${INSTALL_DATA} ${WRKSRC}/bdw-gc.pc \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/bdw-gc-${GC_VARIANT}.pc
+.else # ! GC_VARIANT
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/doc/gc.man
+	@${REINPLACE_CMD} \
+		-e "s|(datadir)/@PACKAGE@|(datadir)/doc/@PACKAGE@|" \
+		${WRKSRC}/Makefile.in
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${PREFIX}/man/man3/gc.3
+	${INSTALL_MAN} ${WRKSRC}/doc/gc.man ${STAGEDIR}${MAN3PREFIX}/man/man3/gc.3
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+
+.endif
+
+# Get rid of .la and static library files
+#
+post-configure:
+	@${REINPLACE_CMD} -E -e \
+	'/Install the pseudo-library/,/staticlibs=/s,^,#,' ${WRKSRC}/libtool
+
+regression-test: build
+	cd ${WRKSRC} && ${MAKE} check
 
 .include <bsd.port.post.mk>
