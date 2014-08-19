@@ -10,7 +10,7 @@ COMMENT=	GNU m4
 
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
 		--program-prefix=g
