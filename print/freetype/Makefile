@@ -1,14 +1,9 @@
-# New ports collection makefile for:	freetype
-# Date created:		January 24, 1998
-# Whom:			jseger@FreeBSD.org
-#
 # $MidnightBSD$
 # $FreeBSD: ports/print/freetype/Makefile,v 1.40 2007/01/26 15:46:46 shaun Exp $
-#
 
 PORTNAME=	freetype
 PORTVERSION=	1.3.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	SF \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype1/ \
@@ -18,13 +13,18 @@ MASTER_SITES=	SF \
 		ftp://ftp.freetype.org/freetype/freetupe1/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A free and portable TrueType font rendering engine
-LICENSE=	restricted
+COMMENT=	Free and portable TrueType font rendering engine
+
+LICENSE=	freetype
+LICENSE_NAME=	The FreeType Project LICENSE
+LICENSE_FILE=	${WRKSRC}/license.txt
+LICENSE_PERMS=	dist-mirror
 #apple patent whore
 
 FAKE_OPTS+=	prefixhack
 
-USE_AUTOTOOLS=	libtool
+USES=		libtool:oldver
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-static --enable-shared
 
@@ -37,11 +37,9 @@ IGNORE=	cannot be installed: you have the 'USE_FREETYPE' variable defined either
 post-patch:
 	@${REINPLACE_CMD} -e 's|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
 		${WRKSRC}/configure
-	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-		's|LIBTOOL =.*|LIBTOOL = ${LIBTOOL}|'
 
-# Older versions of freetype installed include files in ${PREFIX}/include
-# this is a compatibility hack for now
+post-install:
+	cd ${PREFIX}/lib && ln libttf.so.4.0 libttf.so.4
 
 #post-install:
 #	${LN} -fs ${PREFIX}/include/freetype/*.h ${PREFIX}/include
