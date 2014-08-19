@@ -13,7 +13,7 @@ LICENSE=	mit
 
 CONFLICTS=	boost-python-1* boost-1*
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .include <bsd.port.pre.mk>
 
