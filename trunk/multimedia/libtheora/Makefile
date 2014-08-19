@@ -9,13 +9,13 @@ MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora video codec for the Ogg multimedia streaming system
+
 LICENSE=	bsd3
 
 LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
