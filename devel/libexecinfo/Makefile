@@ -1,23 +1,19 @@
-# New ports collection makefile for:	libexecinfo
-# Date created:				10 August 2003
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/libexecinfo/Makefile,v 1.7 2006/06/29 13:21:47 itetcu Exp $
-#
 
 PORTNAME=	libexecinfo
 PORTVERSION=	1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	itetcu
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for inspecting program's backtrace
+COMMENT=	Library for inspecting program's backtrace
+
 LICENSE=	bsd2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2 uidfix
 USE_LDCONFIG=	yes
 FAKE_MAKEARGS=	LIBDIR=${FAKE_DESTDIR}${PREFIX}/lib \
 		INCLUDEDIR=${FAKE_DESTDIR}${PREFIX}/include
