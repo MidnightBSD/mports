@@ -10,7 +10,7 @@ MASTER_SITE_SUBDIR=	automake
 DISTNAME=	automake-1.4-p6
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU Standards-compliant Makefile generator (1.4)
+COMMENT=	GNU Standards-compliant Makefile generator (legacy 1.4)
 
 LICENSE=	gpl2
 
