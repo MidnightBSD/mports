@@ -2,16 +2,17 @@
 
 PORTNAME=	gnome-audio
 PORTVERSION=	2.22.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sound files for use with GNOME 2
+
 LICENSE=	agg
 # creative commons 2/3 right now
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 USE_GNOME=	gnomehier
 
