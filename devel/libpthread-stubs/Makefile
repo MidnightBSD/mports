@@ -2,7 +2,7 @@
 
 PORTNAME=	libpthread-stubs
 PORTVERSION=	0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -11,8 +11,7 @@ COMMENT=	This library provides weak aliases for pthread functions
 
 LICENSE=	mit
 
-USES=		pathfix
-USE_BZIP2=	yes
+USES=		pathfix tar:bzip2 libtool:keepla
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
