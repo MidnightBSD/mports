@@ -2,19 +2,21 @@
 
 PORTNAME=	pdflib
 PORTVERSION=	7.0.5
+PORTREVISION=	1
 CATEGORIES=	print perl5 java
 MASTER_SITES=	http://www.pdflib.com/binaries/PDFlib/${PORTVERSION:S/.//g}/
 DISTNAME=	PDFlib-Lite-${PORTVERSION}p3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A C library for dynamically generating PDF
-LICENSE=	restricted
+COMMENT=	C library for dynamically generating PDF
 
-RESTRICTED=	many odd restrictions on usage and distribution
+LICENSE=	pdflib
+LICENSE_NAME=	PDFLib Lite License Agreement
+LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_TEXT=	Free for private or research use, and for open source use
 
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
-#USE_AUTOTOOLS=	libtool
+USES=		gmake libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-py=no --with-ruby=no --with-tcl=no \
 		--enable-shared=yes --enable-static=yes
