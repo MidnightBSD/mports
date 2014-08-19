@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gmp
-PORTVERSION=	5.1.1
+PORTVERSION=	5.1.3
 CATEGORIES=	math devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gmp
@@ -14,7 +14,7 @@ CONFLICTS=	libgmp-4.*
 
 OPTIONS=	CPU_OPTS "Enable assembly optimizations for your CPU" off
 
-USE_BZIP2=	yes
+USES=		tar:xz
 HAS_CONFIGURE=	yes
 GNU_CONFIGURE=	no # needed, since the following line would add it
 USE_AUTOTOOLS=	libtool
@@ -24,7 +24,6 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--infodir=${PREFIX}/info \
 		--mandir=${PREFIX}/man \
 		--enable-cxx
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 INFO=		gmp
