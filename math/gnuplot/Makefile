@@ -1,15 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	gnuplot
-PORTVERSION=	4.6.3
+PORTVERSION=	4.6.5
 CATEGORIES=	math graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Command-driven interactive function plotting program
+COMMENT=	Command-line driven interactive function plotting program
 
 LICENSE=	other
 
+USES=		iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-lasergnu \
 		--with-readline=gnu \
@@ -17,7 +18,6 @@ CONFIGURE_ARGS+=--with-lasergnu \
 		--without-lisp-files \
 		--without-tutorial \
 		--with-bitmap-terminals
-MAKE_JOBS_SAFE=	yes
 
 OPTIONS_DEFINE=	CAIRO DOCS EXAMPLES GD GRIDBOX PDF PLOT TEX THINSPLINES WX X11
 GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
