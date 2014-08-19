@@ -7,18 +7,16 @@ MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gmp
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A free library for arbitrary precision arithmetic
-LICENSE=	lgpl
+COMMENT=	Free library for arbitrary precision arithmetic
+
+LICENSE=	lgpl3
 
 CONFLICTS=	libgmp-4.*
 
 OPTIONS=	CPU_OPTS "Enable assembly optimizations for your CPU" off
 
-USES=		tar:xz
-HAS_CONFIGURE=	yes
-GNU_CONFIGURE=	no # needed, since the following line would add it
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack
+USES=		libtool:keepla makeinfo tar:xz
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--infodir=${PREFIX}/info \
@@ -30,7 +28,7 @@ INFO=		gmp
 
 .include <bsd.port.pre.mk>
 
-CONFIGURE_ARGS+=--build=${ARCH}-portbld-freebsd7.0
+CONFIGURE_ARGS+=--build=${ARCH}-portbld-freebsd9.0
 
 .if defined(WITH_CPU_OPTS)
 .if ${ARCH:S/64//} != ${ARCH}
