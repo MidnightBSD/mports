@@ -148,6 +148,7 @@ SUBDIR += py-docutils
 SUBDIR += py-libxml2
 SUBDIR += py-pygments
 SUBDIR += py-rdflib
+SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-xml
 SUBDIR += qt4-clucene
