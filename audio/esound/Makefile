@@ -9,14 +9,14 @@ MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A sound library for enlightenment package
+COMMENT=	Sound library for enlightenment package
 
 LICENSE=	gpl2
 
 LIB_DEPENDS=	audiofile.1:${PORTSDIR}/audio/libaudiofile
 
+USES=		tar:bzip2
 USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
 USE_GNOME=	 gnomehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
