@@ -2,7 +2,7 @@
 
 PORTNAME=	gobject
 PORTVERSION=	2.28.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -20,13 +20,13 @@ LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
 RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
 		${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 
-USES=		gmake pathfix pkgconfig
-USE_XZ=		yes
+USES=		gmake pathfix pkgconfig tar:xz
 USE_GNOME=	glib20
 USE_PYTHON=	2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-docs --disable-introspection --with-ffi
+INSTALL_TARGET=	install-strip
 
 CONFLICTS=	py*-gtk-0*
 PLIST_SUB=	PYTHON_VER="${PYTHON_VER}"
