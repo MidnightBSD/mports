@@ -172,7 +172,6 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	Typewriter:editors/etoile-typewriter \
 	Babbler:multimedia/etoile-babbler \
 	Mollusk:www/etoile-mollusk \
-	Yap:graphics/yap \
 	FontManager:x11-fm/etoile-fontmanager \
 	ScriptServices:deskutils/etoile-scriptservices \
 	Melodie:audio/etoile-melodie \
