@@ -1,10 +1,4 @@
-# New ports collection makefile for:	firefox-remote
-# Date created:				13 May 2004
-# Whom:					Franz Klammer <klammer@webonaut.com>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/www/firefox-remote/Makefile,v 1.10 2008/04/19 17:54:06 miwi Exp $
-#
 
 PORTNAME=	firefox
 PORTVERSION=	20040803
@@ -18,8 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper scripts for firefox web browser
 LICENSE=	unknown
 
-USE_BZIP2=	yes
-
+USES=		tar:bzip2
 UTF8_HACK=	no
 FIREFOX_REMOTE=	${PORTNAME}${PKGNAMESUFFIX}
 THUNDERBIRD_REMOTE=	thunderbird${PKGNAMESUFFIX}
