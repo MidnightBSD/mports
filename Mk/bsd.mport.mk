@@ -1341,7 +1341,7 @@ PATCH_SITES_TMP=
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
 	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/${DIST_SUBDIR}/ \
-	ftp://ftp.freeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
+	http://distcache.freebsd.org/ports-distfiles/${DIST_SUBDIR}/
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
 # Include private dist files that we can't redistribute for Magus.
 .if defined(MAGUS)
