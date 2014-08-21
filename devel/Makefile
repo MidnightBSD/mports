@@ -169,7 +169,6 @@ SUBDIR += libunicode
 SUBDIR += libusb
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
-SUBDIR += linux-allegro
 SUBDIR += linux-f10-allegro
 SUBDIR += linux-f10-dbus-glib
 SUBDIR += linux-f10-dbus-libs
