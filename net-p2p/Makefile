@@ -10,6 +10,5 @@ SUBDIR += transmission-cli
 SUBDIR += transmission-daemon
 SUBDIR += transmission-gtk
 SUBDIR += transmission-qt4
-SUBDIR += transmission-remote-gui
 
 .include <bsd.port.subdir.mk>
