@@ -1,17 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	spawn-fcgi
-PORTVERSION=	1.6.3
+PORTVERSION=	1.6.4
 PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.lighttpd.net/download/
+MASTER_SITES=	http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	spawn-fcgi is used to spawn fastcgi applications
+COMMENT=	Spawns fastcgi applications
 
 LICENSE=	bsd3
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	spawn-fcgi
 
