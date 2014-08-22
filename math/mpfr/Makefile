@@ -2,19 +2,22 @@
 
 PORTNAME=	mpfr
 PORTVERSION=	3.1.2
+PORTREVISION=	1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.mpfr.org/mpfr-current/
 DIST_SUBDIR=	${DISTNAME}
 
+PATCH_SITES=	${MASTER_SITES}
+PATCH_DIST_STRIP=	-p1
+
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for multiple-precision floating-point computations
-LICENSE=	lgpl
+COMMENT=	Library for multiple-precision floating-point computations
 
-LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp
+LICENSE=	lgpl3
 
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack
-USE_XZ=		yes
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
+
+USES=		libtool:keepla tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gmp=${LOCALBASE}
 
@@ -24,21 +27,7 @@ INFO=		mpfr
 
 PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 4015
-CONFIGURE_ARGS+=	--disable-thread-safe
-.endif
-
-.if defined(NOPORTDOCS)
-post-patch:
-	@${REINPLACE_CMD} 's/install-nobase_dist_docDATA$$//' \
-		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} 's/install-data-am: install-dist_docDATA/install-data-am:/' \
-		${WRKSRC}/doc/Makefile.in
-.endif
-
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
