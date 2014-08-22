@@ -10,7 +10,7 @@ COMMENT=	Helps to install application configuration files
 
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
 
