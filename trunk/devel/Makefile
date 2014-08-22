@@ -396,6 +396,7 @@ SUBDIR += py-setuptools27
 SUBDIR += py-setuptools33
 SUBDIR += py-simplejson
 SUBDIR += py-subversion
+SUBDIR += py-termcolor
 SUBDIR += py-xdg
 SUBDIR += qca
 SUBDIR += qgit
