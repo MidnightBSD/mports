@@ -2,17 +2,18 @@
 
 PORTNAME=	mkfontdir
 PORTVERSION=	1.0.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create an index of X font files in a directory
-LICENSE=	unknown
+
+LICENSE=	mit
 
 RUN_DEPENDS=	mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 
 XORG_CAT=	app
 
-PLIST_FILES=	bin/mkfontdir
-MAN1=		mkfontdir.1
+PLIST_FILES=	bin/mkfontdir man/man1/mkfontdir.1.gz
 
 .include <bsd.port.mk>
