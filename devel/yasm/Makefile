@@ -2,16 +2,15 @@
 
 PORTNAME=	yasm
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A complete rewrite of the NASM assembler
+COMMENT=	Complete rewrite of the NASM assembler
 
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	autoconf libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-python --disable-python-bindings
 CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
@@ -26,7 +25,8 @@ CONFIGURE_ARGS+=--disable-nls --without-libiconv-prefix --without-libintl-prefix
 .endif
 
 INSTALL_TARGET=	install install-man
-MAN1=		yasm.1
-MAN7=		yasm_arch.7 yasm_dbgfmts.7 yasm_objfmts.7 yasm_parsers.7
+
+post-patch:
+	 @${REINPLACE_CMD} -e '/echo.*RANLIB/,+1d' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
