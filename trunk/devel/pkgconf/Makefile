@@ -1,15 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	pkgconf
-PORTVERSION=	0.9.3
+PORTVERSION=	0.9.6
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://rabbit.dereferenced.org/~nenolod/distfiles/ \
 		http://files.etoilebsd.net/pkgconf/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	pkg-config compatible utility which does not depend on glib
+COMMENT=	Utility to help to configure compiler and linker flags
 
-LICENSE=	mit
+LICENSE=	iscl
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/pkgconfig \
