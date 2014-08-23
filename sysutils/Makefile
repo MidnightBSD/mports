@@ -73,7 +73,6 @@ SUBDIR += munin-common
 SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += nautilus-cd-burner
-SUBDIR += nepomuk-core
 SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openupsd
