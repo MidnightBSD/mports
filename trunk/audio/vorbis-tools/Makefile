@@ -2,7 +2,7 @@
 
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
 
@@ -35,8 +35,6 @@ USES+=		iconv
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=     NLS="@comment "
 .endif
-
-MAN1=		ogg123.1 oggdec.1 oggenc.1 ogginfo.1 vcut.1 vorbiscomment.1
 
 post-install:
 	${MKDIR} ${PREFIX}/share/examples/vorbis-tools
