@@ -356,7 +356,7 @@ _ALL_EXT=	charsetfix pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake display dos2unix efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
-		kde4 ldap libtool lua makeself mysql ncurses ocaml openal \
+		ldap libtool lua makeself mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl wx xfce zip
 
@@ -1576,7 +1576,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad comms converters core databases \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
-	ipv6 irc japanese java kde kld korean lang linux lisp lua \
+	ipv6 irc japanese java kld korean lang linux lisp lua \
 	mail mate math misc multimedia net net-im net-mgmt net-p2p news \
 	palm parallel perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \
@@ -4146,7 +4146,6 @@ desktop-categories:
 			ipv6)			c="Network"						;; \
 			irc)			c="IRCClient Network"			;; \
 			java)			c="Java Development"			;; \
-			kde)			c="KDE QT"						;; \
 			lang)			c="Development"					;; \
 			lisp)			c="Development"					;; \
 			lua)			c="Development"				;; \
