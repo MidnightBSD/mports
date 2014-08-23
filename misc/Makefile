@@ -42,6 +42,7 @@ SUBDIR += mime-support
 SUBDIR += mirmon
 SUBDIR += newer
 SUBDIR += nut
+SUBDIR += ossp-uuid
 SUBDIR += p5-Geography-Countries
 SUBDIR += p5-List-Compare
 SUBDIR += patchutils
