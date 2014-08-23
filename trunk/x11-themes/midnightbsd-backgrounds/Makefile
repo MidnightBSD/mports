@@ -7,7 +7,7 @@
 
 PORTNAME=	midnightbsd-backgrounds
 PORTVERSION=	1.2
-CATEGORIES=	x11-themes graphics gnome kde
+CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
 MAINTAINER=     luke@MidnightBSD.org
