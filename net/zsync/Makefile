@@ -7,9 +7,10 @@ MASTER_SITES=	http://zsync.moria.org.uk/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A file transfer program
+
 LICENSE=	artistic2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/zsync \
 		bin/zsyncmake
