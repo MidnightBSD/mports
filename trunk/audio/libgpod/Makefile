@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libgpod
-PORTVERSION=	0.8.2
+PORTVERSION=	0.8.3
 CATEGORIES=	audio
 MASTER_SITES=	SF/gtkpod/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 
@@ -16,8 +16,7 @@ LIB_DEPENDS=	plist:${PORTSDIR}/devel/libplist \
 
 USE_GNOME=	gtk20
 USE_SQLITE=	3
-USES=		gettext
-USE_BZIP2=	yes
+USES=		gettext tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-udev --without-hal \
 		--with-html-dir="${DOCSDIR:H}"
