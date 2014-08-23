@@ -1,40 +1,43 @@
 # $MidnightBSD$
 
 PORTNAME=	taglib
-PORTVERSION=	1.8
+PORTVERSION=	1.9.1
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://cloud.github.com/downloads/taglib/taglib/ \
-		http://developer.kde.org/~wheeler/files/src/
+MASTER_SITES=	http://taglib.github.io/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
-LICENSE=	lgpl2.1
 
-OPTIONS_DEFINE=	RCC
-
-RCC_DESC=	Build with RusXMMS librcc patches (experimental)
+LICENSE=	lgpl2.1 mpl
+LICENSE_COMB=	dual
+LICENSE_FILE_MPL=	${WRKSRC}/COPYING.MPL
 
 USES=		cmake
 CMAKE_ARGS=	-DWITH_ASF:BOOL=ON \
 		-DWITH_MP4:BOOL=ON
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
-.include <bsd.mport.options.mk>
+# clang will generate code that just doesn't work with clementine-player
+# if this isn't compiled as though it were C99.
+CFLAGS+=	-std=c99
 
-.if ${PORT_OPTIONS:MRCC}
-PKGNAMESUFFIX=	-rcc
-EXTRA_PATCHES+=	${FILESDIR}/extrapatch-rcc
-LIB_DEPENDS+=	rcc:${PORTSDIR}/devel/librcc
-PLIST_SUB+=	RCC=""
-.else
-PLIST_SUB+=	RCC="@comment "
-.endif
+OPTIONS_DEFINE=	RCC
+OPTIONS_SUB=	yes
+
+RCC_DESC=		Build with RusXMMS librcc patches (experimental)
+RCC_LIB_DEPENDS=	librcc.so:${PORTSDIR}/devel/librcc
+RCC_EXTRA_PATCHES=	${FILESDIR}/extrapatch-rcc
+RCC_CFLAGS=		-I${LOCALBASE}/include
+RCC_LDFLAGS=		-L${LOCALBASE}/lib
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 .if ${PORT_OPTIONS:MRCC}
 	@${REINPLACE_CMD} -e 's|-ltag|-ltag -lrcc|g' \
-		${WRKSRC}/taglib.pc.cmake ${WRKSRC}/taglib-config.cmake \
+		${WRKSRC}/taglib.pc.cmake ${WRKSRC}/taglib-config.cmake
+	@${REINPLACE_CMD} -e 's|-ltag_c|-ltag_c -lrcc|g' \
 		${WRKSRC}/bindings/c/taglib_c.pc.cmake
 .endif
 	${REINPLACE_CMD} -e 's|$${LIB_INSTALL_DIR}/pkgconfig|libdata/pkgconfig|' \
