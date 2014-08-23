@@ -8,7 +8,7 @@ MASTER_SITES=	ftp://rc.quanstro.net/pub/ \
 		ftp://quenix2.dyndns.org/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	UNIX incarnation of the plan9 shell
+COMMENT=	Unix incarnation of the plan9 shell
 
 LICENSE=	other
 
