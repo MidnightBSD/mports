@@ -28,7 +28,6 @@ SUBDIR += gpgme
 SUBDIR += gsasl
 SUBDIR += ipsec-tools
 SUBDIR += krb5
-SUBDIR += kwalletcli
 SUBDIR += l0phtcrack
 SUBDIR += libassuan
 SUBDIR += libgcrypt
