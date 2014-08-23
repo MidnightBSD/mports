@@ -2,7 +2,7 @@
 
 PORTNAME=	ldapdb
 PORTVERSION=	2.1.23
-#PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
@@ -36,6 +36,7 @@ USE_OPENLDAP=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-plugindir=${PREFIX}/lib/sasl2 \
 		--with-dbpath=${PREFIX}/etc/sasldb2 \
+		--with-lib-subdir=lib \
 		--includedir=${PREFIX}/include \
 		--mandir=${MANPREFIX}/man \
 		--enable-static \
@@ -49,7 +50,8 @@ CONFIGURE_ARGS+=--with-dblib=none \
 		--disable-krb4 \
 		--disable-ntlm \
 		--disable-otp \
-		--disable-plain
+		--disable-plain \
+		--disable-scram
 
 CONFIGURE_ARGS+=--enable-ldapdb --with-ldap=${LOCALBASE}
 
