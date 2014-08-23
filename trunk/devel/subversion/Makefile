@@ -7,11 +7,6 @@ LICENSE=	apache2
 
 USE_RC_SUBR=	svnserve
 
-MAN1=		svn.1 svnadmin.1 svnlook.1 svndumpfilter.1 svnrdump.1 \
-		svnsync.1 svnversion.1 svnmucc.1
-MAN5=		svnserve.conf.5
-MAN8=		svnserve.8
-
 PORTDOCS=	BUGS CHANGES COMMITTERS INSTALL README
 
 OPTIONS_DEFINE=	\
@@ -19,7 +14,6 @@ OPTIONS_DEFINE=	\
 		DOCS		\
 		FREEBSD_TEMPLATE\
 		GNOME_KEYRING	\
-		KDE_KWALLET	\
 		MAINTAINER_DEBUG\
 		MOD_DAV_SVN	\
 		NLS		\
@@ -36,7 +30,6 @@ OPTIONS_DEFAULT=P4_STYLE_MARKERS \
 		SERF
 
 GNOME_KEYRING_DESC=	Build with GNOME Keyring auth support
-KDE_KWALLET_DESC=	Build with KDE KWallet auth support
 MAINTAINER_DEBUG_DESC=	Build debug version
 MOD_DAV_SVN_DESC=	mod_dav_svn module for Apache 2.X
 P4_STYLE_MARKERS_DESC=	Perforce-style conflict markers
@@ -204,12 +197,6 @@ pre-everything::
 	@${ECHO_MSG} "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@${ECHO_MSG} "!!! Gnome Keyring and static build are not compatible !!!"
 	@${ECHO_MSG} "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	@${FALSE}
-.endif
-.if ${PORT_OPTIONS:MKDE_WALLET}
-	@${ECHO_MSG} "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	@${ECHO_MSG} "!!! KDE Wallet and static build are not compatible !!!"
-	@${ECHO_MSG} "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@${FALSE}
 .endif
 	@${ECHO_MSG} "Static binaries will be built."
