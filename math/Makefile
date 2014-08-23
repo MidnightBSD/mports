@@ -25,7 +25,6 @@ SUBDIR += gsl
 SUBDIR += lapack
 SUBDIR += ldouble
 SUBDIR += libqalculate
-SUBDIR += linux-relview
 SUBDIR += matharray
 SUBDIR += mpc
 SUBDIR += mpfr
