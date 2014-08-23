@@ -6,7 +6,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	http://www.exit.com/Archives/FreeBSD/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A utility to recover UFS2 filesystems
+COMMENT=	Utility to recover UFS2 filesystems
 
 LICENSE=	bsd2
 
