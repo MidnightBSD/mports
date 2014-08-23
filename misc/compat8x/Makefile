@@ -10,7 +10,7 @@ PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A convenience package to install the FreeBSD compat8x libraries
+COMMENT=	Convenience package to install the FreeBSD compat8x libraries
 
 LICENSE=	bsd2
 
