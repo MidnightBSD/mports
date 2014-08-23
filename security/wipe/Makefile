@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 
 MAN1=		wipe.1
