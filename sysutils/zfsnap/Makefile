@@ -10,6 +10,8 @@ COMMENT=	Simple sh script to make zfs rolling snaphosts with cron
 LICENSE=	other
 #beerware license
 
+BROKEN=               fetching checksum mismatch
+
 NO_BUILD=	yes
 USE_GITHUB=	yes
 GH_PROJECT=	zfSnap
