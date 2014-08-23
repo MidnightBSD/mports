@@ -116,7 +116,6 @@ SUBDIR += jansson
 SUBDIR += json-glib
 SUBDIR += judy
 SUBDIR += kBuild
-SUBDIR += kdesdk4
 SUBDIR += lemon
 SUBDIR += libIDL
 SUBDIR += libbonobo
