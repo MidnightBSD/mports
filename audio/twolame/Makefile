@@ -2,7 +2,7 @@
 
 PORTNAME=	twolame
 PORTVERSION=	0.3.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	SF \
 		http://www.ecs.soton.ac.uk/~njh/twolame/
@@ -12,15 +12,14 @@ COMMENT=	MPEG Audio Layer 2 encoder
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
+		libFLAC.so:${PORTSDIR}/audio/flac \
+		libvorbis.so:${PORTSDIR}/audio/libvorbis \
+		libogg.so:${PORTSDIR}/audio/libogg
 
-USES=		pathfix pkgconfig
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack
+USES=		gmake pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-
-MAN1=		twolame.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| -O3||g' \
