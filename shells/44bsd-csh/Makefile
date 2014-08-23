@@ -2,19 +2,18 @@
 
 PORTNAME=	44bsd-csh
 PORTVERSION=	20001106
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	shells
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	cy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The traditional 4.4BSD /bin/csh C-shell
+
 LICENSE=	bsd4
 
-USE_BZIP2=	yes
-
+USES=		tar:bzip2
 NO_WRKSUBDIR=	yes
-MAN1=		44bsd-csh.1
 PORTDOCS=	paper.ascii.gz
 post-extract:
 	cd ${WRKSRC} ; co RCS/*,v; chmod u+w *
