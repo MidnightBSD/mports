@@ -397,6 +397,7 @@ SUBDIR += py-simplejson
 SUBDIR += py-subversion
 SUBDIR += py-termcolor
 SUBDIR += py-xdg
+SUBDIR += py-yaml
 SUBDIR += qca
 SUBDIR += qgit
 SUBDIR += qjson
