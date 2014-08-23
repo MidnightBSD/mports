@@ -2,12 +2,13 @@
 
 PORTNAME=	rc
 PORTVERSION=	1.7.1
+PORTREVISION=	1
 CATEGORIES=	shells plan9
 MASTER_SITES=	ftp://rc.quanstro.net/pub/ \
 		ftp://quenix2.dyndns.org/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A unix incarnation of the plan9 shell
+COMMENT=	UNIX incarnation of the plan9 shell
 
 LICENSE=	other
 
