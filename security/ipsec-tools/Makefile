@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	ipsec-tools
-PORTVERSION=	0.8.0
+PORTVERSION=	0.8.1
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -14,9 +15,10 @@ CONFLICTS=	racoon-[0-9]*
 
 USE_RC_SUBR=	racoon
 USE_OPENSSL=	yes
-USE_BZIP2=	yes
 
-USE_AUTOTOOLS=	libtool
+INSTALL_TARGET=	install-strip
+
+USES=		libtool tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --sysconfdir=${PREFIX}/etc/racoon \
@@ -44,10 +46,6 @@ IDEA_DESC=	IDEA encryption (patented)
 PAM_DESC=	PAM authentication (Xauth server)
 RADIUS_DESC=	Radius authentication (Xauth server)
 LDAP_DESC=	LDAP authentication (Xauth server)
-
-MAN3=		ipsec_set_policy.3 ipsec_strerror.3
-MAN5=		racoon.conf.5
-MAN8=		racoon.8 racoonctl.8 setkey.8 plainrsa-gen.8
 
 PORTDOCS=	*
 
@@ -155,18 +153,8 @@ CONFIGURE_ARGS+=	--enable-idea
 CONFIGURE_ARGS+=	--disable-idea
 .endif
 
-.if ${OSVERSION} < 4000
-.if ${PORT_OPTIONS:MNATT}
-pre-configure:
-	@${ECHO_MSG} "===> -------------------------------------------------------------------------"
-	@${ECHO_MSG} "===> ATTENTION: You need a kernel patch to enable NAT-Traversal functionality!"
-	@${ECHO_MSG} "===> latest known patch for FreeBSD 7 is available here:"
-	@${ECHO_MSG} "===>     http://people.freebsd.org/~bz/20110123-01-stable7-natt.diff"
-	@${ECHO_MSG} "===> You might possibly have to do some steps manually if it fails to apply."
-	@${ECHO_MSG} "===> -------------------------------------------------------------------------"
-	@sleep 3
-.endif
-.endif
+post-patch:
+	@${REINPLACE_CMD} -e "s/-Werror//g ; s/-R$$libdir/-Wl,-rpath=$$libdir/g" ${WRKSRC}/configure
 
 post-install:
 	@${MKDIR} ${PREFIX}/etc/racoon
@@ -177,9 +165,7 @@ post-install:
 	@${MKDIR} ${EXAMPLESDIR}
 	@${RM} -f ${WRKSRC}/src/racoon/samples/*.in
 	@${CP} -r ${WRKSRC}/src/racoon/samples/* ${EXAMPLESDIR}
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/src/racoon/doc/* ${DOCSDIR}
-.endif
+	${INSTALL_DATA} ${WRKSRC}/src/racoon/doc/* ${DOCSDIR}
 
 .include <bsd.port.post.mk>
