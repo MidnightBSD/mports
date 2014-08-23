@@ -7,6 +7,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encrypted, secure compressed TCP tunnel
+
 LICENSE=	agg
 
 USE_OPENSSL=	YES
@@ -19,7 +20,7 @@ EXAMPLES=	vncviewer.zbd vncserver.zbd server.key server.id client1.key \
 		client2.key clients.id
 DOCS=		README.txt LICENCE.txt CHANGES.txt zebedee.html ftpgw.tcl.html
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.mport.options.mk>
 
@@ -39,11 +40,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/${e} ${EXAMPLESDIR}
 .endfor
 
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 .for d in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
