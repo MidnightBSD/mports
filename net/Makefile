@@ -37,7 +37,6 @@ SUBDIR += ipw-firmware
 SUBDIR += iwi-firmware
 SUBDIR += jags
 SUBDIR += jrdesktop
-SUBDIR += kdenetwork4
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libdnet
