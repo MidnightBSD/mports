@@ -3,7 +3,6 @@
 COMMENT = Databases
 
 SUBDIR += adodb
-SUBDIR += akonadi
 SUBDIR += cassandra
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
