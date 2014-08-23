@@ -13,6 +13,8 @@ PATCH_DIST_STRIP=	-p1
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for building TCP client-server applications
 
+LICENSE=	unknown
+
 OPTIONS_DEFINE=	RSS_DIFF RBL2SMTPD IPV6 SSL LIMITS
 
 RSS_DIFF_DESC=	Patch rblsmtpd for qmail users
