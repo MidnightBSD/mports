@@ -3,6 +3,7 @@
 
 PORTNAME=	diffutils
 PORTVERSION=	3.3
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 
@@ -23,6 +24,14 @@ NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=nls
 
 INFO=		diffutils
+
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=    NLS="@comment "
+.else
+USE_GETTEXT=   yes
+PLIST_SUB+=    NLS=""
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^mkdir/s:@mkdir_p@:${MKDIR}:' \
