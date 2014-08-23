@@ -8,12 +8,12 @@ MASTER_SITES=	ftp://rc.quanstro.net/pub/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A unix incarnation of the plan9 shell
+
 LICENSE=	other
 
-USE_BZIP2=	YES
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-history
-MAN1=		history.1 rc.1
 
 
 OPTIONS_DEFINE=	READLINE
