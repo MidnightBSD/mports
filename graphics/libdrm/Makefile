@@ -16,7 +16,7 @@ LIB_DEPENDS=	pciaccess:${PORTSDIR}/devel/libpciaccess \
 		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/libpthread-stubs
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
