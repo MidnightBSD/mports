@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	portsearch
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.3
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.freebsd.org/~vd/portsearch/
