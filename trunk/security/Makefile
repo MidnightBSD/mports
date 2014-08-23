@@ -83,7 +83,6 @@ SUBDIR += p5-GSSAPI
 SUBDIR += p5-IO-Socket-SSL
 SUBDIR += p5-Net-SSLeay
 SUBDIR += pam_helper
-SUBDIR += pam_kde
 SUBDIR += pam_ldap
 SUBDIR += pecl-gnupg
 SUBDIR += php5-filter
