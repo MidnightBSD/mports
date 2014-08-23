@@ -14,7 +14,7 @@ COMMENT=	Interactive King James Bible
 LICENSE=	restricted
 # it's marked as do not distribute
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_WRKSUBDIR=	yes
 ALL_TARGET=
 CFLAGS+=	-Wno-error=return-type
