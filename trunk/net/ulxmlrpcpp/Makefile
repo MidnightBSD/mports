@@ -11,18 +11,16 @@ MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An ultra lightweight xml-rpc library written in C++
+COMMENT=	Ultra lightweight xml-rpc library written in C++
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack 
-USE_ICONV=	yes
+USES=		tar:bzip2 pathfix iconv libtool
 USE_OPENSSL=	yes
-USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
