@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome print support library
 LICENSE=        gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
