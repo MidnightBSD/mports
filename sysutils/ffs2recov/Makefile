@@ -10,7 +10,7 @@ COMMENT=	Utility to recover UFS2 filesystems
 
 LICENSE=	bsd2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 MAN8=		ffs2recov.8
