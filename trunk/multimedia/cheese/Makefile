@@ -2,7 +2,7 @@
 
 PORTNAME=	cheese
 PORTVERSION=	2.32.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,17 +17,16 @@ LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
 
 USE_XORG=	xxf86vm
 USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack evolutiondataserver librsvg2 \
 		gnomedocutils gnomedesktop
-USE_GETTEXT=	yes
-USE_GSTREAMER=	good v4l2
+USES=		gettext gmake pkgconfig
+USE_GSTREAMER=	gconf good ogg theora v4l2 vorbis
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 DOCS=		AUTHORS COPYING ChangeLog NEWS README
 GCONF_SCHEMAS=	cheese.schemas
