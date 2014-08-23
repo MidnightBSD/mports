@@ -40,7 +40,6 @@ SUBDIR += gstreamer-plugins-mp3
 SUBDIR += gstreamer-plugins-ogg
 SUBDIR += gstreamer-plugins-vorbis
 SUBDIR += jack
-SUBDIR += juk
 SUBDIR += ladspa
 SUBDIR += lame
 SUBDIR += lash
