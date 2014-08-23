@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 DOCS=		doc/AUTHORS doc/TODO doc/*.txt
 MAN1=		rdesktop.1
 
-CONFIGURE_ARGS+=	--disable-credssp --disable-smartcard
+#CONFIGURE_ARGS+=	--disable-credssp --disable-smartcard
 
 .if !defined(WITHOUT_RDESKTOP_IPV6) && !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--with-ipv6
