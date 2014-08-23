@@ -3,7 +3,7 @@
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -17,6 +17,7 @@ DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.${ARCH}.freebsd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blazingly fast, full-featured, standards-compliant browser
+
 LICENSE=	opera
 
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
@@ -36,7 +37,7 @@ INSTALLS_ICONS=	yes
 NO_BUILD=	yes
 EXPLICIT_PACKAGE_DEPENDS=	yes
 
-OPTIONS_DEFINE=	CUPS VIDEO GTK2 KDE4
+OPTIONS_DEFINE=	CUPS VIDEO GTK2
 OPTIONS_DEFAULT=	CUPS VIDEO
 
 CUPS_DESC=	support for printing (requires CUPS)
@@ -65,10 +66,6 @@ USE_GSTREAMER+=	vorbis ogg theora vp8 good
 
 .if ${PORT_OPTIONS:MGTK2}
 USE_GNOME+=	gtk20
-.endif
-
-.if ${PORT_OPTIONS:MKDE4}
-USE_KDE4+=	kdelibs
 .endif
 
 .include <bsd.port.pre.mk>
