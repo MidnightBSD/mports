@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.36.0
+PORTVERSION=	7.37.1
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -33,8 +33,7 @@ CONFIGURE_ENV+=	LOCALBASE=${LOCALBASE}
 GNU_CONFIGURE=	yes
 MAKE_ENV+=	INSTALL_STRIP_FLAG=${STRIP}
 USE_PERL5=	build
-USE_XZ=		yes
-USES=		pathfix perl5
+USES=		libtool:oldver pathfix perl5 tar:lzma
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
