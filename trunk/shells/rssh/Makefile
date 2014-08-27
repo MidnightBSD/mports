@@ -1,32 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	rssh
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3.4
 CATEGORIES=	shells security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Restricted Secure SHell only for sftp or/and scp
 
-LICENSE=	other
-# slightly modified bsd license
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 GNU_CONFIGURE=	yes
 
-OPTIONS=	RDIST "rdist support" off
+USE_CSTD=	gnu89
+OPTIONS_DEFINE=	RDIST RSYNC3
+RDIST_DESC=	rdist support
+RDIST_RUN_DEPENDS=	rdist6:${PORTSDIR}/net/rdist6
+RDIST_CONFIGURE_ON=	--with-rdist=${LOCALBASE}/bin/rdist6
 
-.include <bsd.port.pre.mk>
+RSYNC3_DESC=		rsync3 support (Debian patch)
+RSYNC3_EXTRA_PATCHES=	${FILESDIR}/optional-patch-util.c
 
-.if defined(WITH_RDIST)
-RUN_DEPENDS+=	${LOCALBASE}/bin/rdist6:${PORTSDIR}/net/rdist6
-CONFIGURE_ARGS+=--with-rdist=${LOCALBASE}/bin/rdist6
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -E -e 's,(\$$\(DESTDIR\)\$$\(sysconfdir\)/\$$\$$f),\1.dist,g' \
-		${WRKSRC}/Makefile.in
-
-post-install:
-	${MV} ${PREFIX}/etc/rssh.conf.dist.dist ${PREFIX}/etc/rssh.conf.dist
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

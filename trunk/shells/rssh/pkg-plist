@@ -3,5 +3,5 @@ bin/rssh
 @unexec echo "updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak) >/etc/shells; rm -f /etc/shells.bak
 man/man1/rssh.1.gz
 man/man5/rssh.conf.5.gz
-etc/rssh.conf.dist
+etc/rssh.conf.default.dist
 libexec/rssh_chroot_helper
