@@ -31,7 +31,7 @@ SLAVEDIRS=	editors/vim-lite
 
 CONFLICTS=	vim*-lite
 MAKE_JOBS_UNSAFE= yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 DIST_SUBDIR=	vim
 WRKSRC=		${WRKDIR}/vim${PORTVERSION:C/\.[0-9]*$//:S/.//g}/src
 PATCH_DIST_ARGS= -d ${WRKSRC:S/src$//} --batch --forward --quiet -E ${PATCH_DIST_STRIP}
