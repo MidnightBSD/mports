@@ -14,10 +14,8 @@ LICENSE=	agg
 
 CONFLICTS=	lzma-[0-9]* lzmautils-[0-9]* lzmalib-[0-9]*
 
-MAKE_JOBS_SAFE=	yes
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USES=	pathfix
+USES=		pathfix tar:bzip2
 GNU_CONFIGURE=	yes
 
 DEPRECATED=	Available in base distribution for all supported releases
