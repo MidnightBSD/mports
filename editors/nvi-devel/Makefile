@@ -17,11 +17,10 @@ OPTIONS_DEFINE=	WIDECHAR
 OPTIONS_DEFAULT=WIDECHAR
 WIDECHAR_DESC=	Enable wide-character support (UTF-8)
 
-USE_BZIP2=		yes
 WRKSRC=			${WRKDIR}/${DISTNAME}/build.unix
 USE_AUTOTOOLS=		libtool
 USE_LDCONFIG=		yes
-USES=			iconv pkgconfig
+USES=			iconv pkgconfig tar:bzip2
 USE_BDB=		42+
 CONFIGURE_ARGS+=	--with-db-prefix=${LOCALBASE} \
 			--program-prefix=n
