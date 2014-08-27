@@ -6,14 +6,12 @@ CATEGORIES=	shells security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Restricted Secure SHell only for sftp or/and scp
+COMMENT=	Restricted Secure SHell only for sftp or/and scp
+
 LICENSE=	other
 # slightly modified bsd license
 
 GNU_CONFIGURE=	yes
-
-MAN1=		rssh.1
-MAN5=		rssh.conf.5
 
 OPTIONS=	RDIST "rdist support" off
 
