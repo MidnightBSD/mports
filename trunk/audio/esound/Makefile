@@ -13,7 +13,7 @@ COMMENT=	Sound library for enlightenment package
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	audiofile.1:${PORTSDIR}/audio/libaudiofile
+LIB_DEPENDS=	audiofile:${PORTSDIR}/audio/libaudiofile
 
 USES=		tar:bzip2
 USE_AUTOTOOLS=	libtool
@@ -24,9 +24,6 @@ CONFIGURE_ENV=	JW=false
 
 
 CONFLICTS=	py*-ro-[0-9]*
-
-MAN1=	esd-config.1 esd.1 esdcat.1 esdctl.1 esddsp.1 esdfilt.1 esdloop.1 \
-	esdmon.1 esdplay.1 esdrec.1 esdsample.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|esdconf_DATA = esd.conf|esdconf_DATA = |g' \
