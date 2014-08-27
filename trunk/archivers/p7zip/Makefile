@@ -13,7 +13,7 @@ LICENSE=	agg
 OPTIONS=	MINIMAL	"Support only .7z file format" off \
 		MODULES	"Build modules" on
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 MAKEFILE=	makefile
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
 
