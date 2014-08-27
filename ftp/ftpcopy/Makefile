@@ -13,13 +13,14 @@ MASTER_SITES=	http://www.ohse.de/uwe/ftpcopy/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line ftp tools for listing and mirroring
+
 LICENSE=	gpl2
 
 USE_PERL5_BUILD=	yes
 
-WRKSRC=		${WRKDIR}/web/${DISTNAME}
+MANPAGES=	ftpcopy.1 ftpcp.1 ftpls.1
 
-MAN1=		ftpcopy.1 ftpcp.1 ftpls.1
+WRKSRC=		${WRKDIR}/web/${DISTNAME}
 
 pre-build:
 	${ECHO} "${CC}" >${WRKSRC}/src/conf-cc
@@ -29,7 +30,7 @@ pre-build:
 do-install:
 	cd ${WRKSRC}/compile && \
 		${INSTALL_PROGRAM} ftpcopy ftpls ${PREFIX}/bin && \
-		${INSTALL_MAN} ${MAN1} ${PREFIX}/man/man1 && \
+		${INSTALL_MAN} ${MANPAGES} ${PREFIX}/man/man1 && \
 		${INSTALL_SCRIPT} ftpcp ${PREFIX}/bin
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR} && \
