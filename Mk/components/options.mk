@@ -22,7 +22,7 @@ OPTIONS_WARNINGS_UNSET+=	DOCS
 .if !defined(WITHOUT_NLS) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	NLS
 .else
-WITHOUT+=	NLS
+WITHOUT+=		NLS
 .endif
 
 .if !defined(NOPORTEXAMPLES) || defined(PACKAGE_BUILDING)
@@ -261,33 +261,33 @@ USE_${_u:tu}+=  ${option:C/.*=//g:C/,/ /g}
 .    endif
 .    if defined(${opt}_CONFIGURE_ENABLE)
 .      for iopt in ${${opt}_CONFIGURE_ENABLE}
-CONFIGURE_ARGS+=        --enable-${iopt}
+CONFIGURE_ARGS+=	--enable-${iopt}
 .      endfor
 .    endif
 .    if defined(${opt}_CONFIGURE_WITH)
 .      for iopt in ${${opt}_CONFIGURE_WITH}
-CONFIGURE_ARGS+=        --with-${iopt}
+CONFIGURE_ARGS+=	--with-${iopt}
 .      endfor
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_ON)
-${configure}_ARGS+=     ${${opt}_${configure}_ON}
+${configure}_ARGS+=	${${opt}_${configure}_ON}
 .      endif
 .    endfor
 .    for flags in ${_OPTIONS_FLAGS}
 .      if defined(${opt}_${flags})
-${flags}+=      ${${opt}_${flags}}
+${flags}+=	${${opt}_${flags}}
 .      endif
 .    endfor
 .    for deptype in ${_OPTIONS_DEPENDS}
 .      if defined(${opt}_${deptype}_DEPENDS)
-${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS}
+${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
 .  else
 .    if defined(${opt}_CONFIGURE_ENABLE)
 .      for iopt in ${${opt}_CONFIGURE_ENABLE}
-CONFIGURE_ARGS+=        --disable-${iopt}
+CONFIGURE_ARGS+=	--disable-${iopt}
 .      endfor
 .    endif
 .    if defined(${opt}_CONFIGURE_WITH)
