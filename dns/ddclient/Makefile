@@ -1,16 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	ddclient
-PORTVERSION=	3.8.1
-PORTREVISION=	2
+PORTVERSION=	3.8.2
 CATEGORIES=	dns
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update dynamic DNS entries
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_PERL5_RUN=	yes
 NO_BUILD=	yes
 USE_RC_SUBR=	${PORTNAME}
@@ -21,13 +21,14 @@ OPTIONS_DEFAULT=SSL
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-RUN_DEPENDS+=	p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL
+RUN_DEPENDS+=	ca_root_nss>0:${PORTSDIR}/security/ca_root_nss \
+		p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL
 .endif
 
 SUB_FILES=	pkg-message ddclient_force
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-PORTDOCS=	COPYING COPYRIGHT Changelog README README.cisco README.ssl \
+PORTDOCS=	COPYING COPYRIGHT Changelog README.cisco README.ssl \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
 		sample-etc_dhcpc_dhcpcd-eth0.exe sample-etc_ppp_ip-up.local
 
