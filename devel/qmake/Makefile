@@ -2,7 +2,7 @@
 
 PORTNAME=	qmake
 PORTVERSION=	3.3.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 MASTER_SITE_SUBDIR=	archive/qt/${PORTVERSION:R:R}
@@ -11,7 +11,9 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
+
 LICENSE=        gpl2
+
 FAKE_OPTS=	trueprefix
 
 REINPLACE_ARGS=	-i ""
@@ -21,7 +23,7 @@ MAKE_JOBS_SAFE=	yes
 PLIST_SUB+=	_PREFIX="${PREFIX}"
 MAKE_ENV+=	FILESDIR="${FILESDIR}"
 
-USE_BZIP2=	yes
+USES=		tar:bzip2 uidfix
 
 EXTRACT_AFTER_ARGS= \
 	'${DISTNAME}/mkspecs' \
