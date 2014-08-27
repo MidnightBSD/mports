@@ -10,9 +10,12 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	More functional native binary replacement for /sbin/nologin
+
 LICENSE=	bsd2
 
 FAKE_OPTS=	trueprefix
+
+USES=		uidfix
 
 MAN8=		nologinmsg.8
 MANCOMPRESSED=	yes
