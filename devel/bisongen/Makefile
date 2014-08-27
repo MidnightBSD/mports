@@ -1,7 +1,3 @@
-# New ports collection makefile for:	bisongen
-# Date created:				August 8th 2005
-# Whom:					Frerich Raabe <frerich.raabe@gmx.de>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/bisongen/Makefile,v 1.3 2007/07/30 09:41:08 alexbl Exp $
 #
@@ -14,10 +10,11 @@ DISTNAME=	BisonGen-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A general-purpose parser generator for Python
+
 LICENSE=	other
 #apache 1.1 like
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGNAME=	BisonGen
