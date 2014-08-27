@@ -10,6 +10,7 @@ LATEST_LINK=	perl
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
+
 LICENSE=	perl
 
 PERL_VERSION=	${PORTVERSION}
@@ -18,7 +19,6 @@ PERL_VER=	${PORTVERSION}
 PERL_NO_DEPENDS=	yes
 USE_PERL5=		yes
 
-MAKE_JOBS_SAFE=		yes
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
