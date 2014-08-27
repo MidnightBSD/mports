@@ -8,9 +8,10 @@ MASTER_SITES=	SF/libpng/${PORTNAME}/${PORTVERSION} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Massively Spiffy Yet Delicately Unobtrusive Compression Library
+
 LICENSE=	other
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 CONFIGURE_ARGS=	--prefix=${PREFIX}
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
