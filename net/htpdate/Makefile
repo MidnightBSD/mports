@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	htpdate
-PORTVERSION=	1.0.5
+PORTVERSION=	1.1.0
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.vervest.org/htp/archive/c/ \
 		http://twekkel.home.xs4all.nl/htp/
@@ -11,25 +11,22 @@ COMMENT=	Time synchronization over http utility
 
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=	tar:bzip2
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}"
 
 MANCOMPRESSED=	yes
-MAN8=		${PORTNAME}.8
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} man/man8/${PORTNAME}.8.gz
 PORTDOCS=	Changelog README
 USE_RC_SUBR=	${PORTNAME}
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8.gz ${MAN8PREFIX}/man/man8
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${STAGEDIR}${MAN8PREFIX}/man/man8
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for doc in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
