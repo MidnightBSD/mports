@@ -46,6 +46,7 @@ SUBDIR += libijs
 SUBDIR += libotf
 SUBDIR += libpaper
 SUBDIR += libspectre
+SUBDIR += linux-f10-cups-libs
 SUBDIR += mp-letter
 SUBDIR += pdflib
 SUBDIR += pecl-pdflib
