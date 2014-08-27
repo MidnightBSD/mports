@@ -118,6 +118,7 @@ SUBDIR += judy
 SUBDIR += kBuild
 SUBDIR += lemon
 SUBDIR += libIDL
+SUBDIR += libatomic_ops
 SUBDIR += libbonobo
 SUBDIR += libburn
 SUBDIR += libcheck
