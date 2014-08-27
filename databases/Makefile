@@ -20,6 +20,7 @@ SUBDIR += db5
 SUBDIR += evolution-data-server
 SUBDIR += freetds
 SUBDIR += freetds-msdblib
+SUBDIR += fpc-dblib
 SUBDIR += gdbm
 SUBDIR += gdl2
 SUBDIR += gnats4
