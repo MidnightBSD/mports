@@ -12,8 +12,7 @@ COMMENT=	Retrieve files from the Net via HTTP(s) and FTP
 
 LICENSE=	gpl3
 
-USES=		charsetfix gmake
-USE_XZ=		yes
+USES=		charsetfix gmake tar:xz
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 
