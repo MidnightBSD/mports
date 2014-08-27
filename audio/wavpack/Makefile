@@ -10,9 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio codec for lossless, lossy and hybrid compression
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/license.txt
 
-USE_BZIP2=	yes
-USES=		pathfix pkgconfig iconv
+USES=		pathfix pkgconfig iconv tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
