@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ftp
-PORTVERSION=	0.3
+PORTVERSION=	0.4
 CATEGORIES=	ftp gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
@@ -10,6 +10,7 @@ DISTNAME=	FTP-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact and handy FTP client for GNUstep
+
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
