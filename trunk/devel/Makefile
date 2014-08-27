@@ -179,7 +179,6 @@ SUBDIR += linux-f10-nspr
 SUBDIR += linux-f10-sdl12
 SUBDIR += linux-glib2
 SUBDIR += linux-libglade
-SUBDIR += linux-sdl12
 SUBDIR += llvm
 SUBDIR += llvm33
 SUBDIR += llvm-devel
