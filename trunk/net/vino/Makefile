@@ -3,24 +3,23 @@
 
 PORTNAME=	vino
 PORTVERSION=	2.32.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC server that allows for remote access to your GNOME desktop
+
 LICENSE=        gpl2       
 
 LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
 		telepathy-glib.0:${PORTSDIR}/net-im/telepathy-glib \
  		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix intlhack gnomehack gnomepanel
 USE_XORG=	xtst
-USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
