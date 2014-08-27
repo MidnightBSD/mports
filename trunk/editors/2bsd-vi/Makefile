@@ -7,6 +7,7 @@
 
 PORTNAME=	vi
 PORTVERSION=	050325
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	SF/ex-${PORTNAME}/ex-${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	2bsd-
@@ -14,12 +15,15 @@ DISTNAME=	ex-${PORTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	The original vi editor
+
 LICENSE=	bsd4
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
-MAN1=	ex.1 vi.1
-MLINKS=	ex.1 edit.1  vi.1 vedit.1  vi.1 view.1
+MLINKS=		ex.1 edit.1  vi.1 vedit.1  vi.1 view.1
+
+PRESERVEDIR=	/var/preserve/${UNIQUENAME}
+PLIST_SUB=	PRESERVEDIR="${PRESERVEDIR}"
 
 .include <bsd.port.pre.mk>
 
