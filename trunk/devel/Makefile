@@ -109,6 +109,7 @@ SUBDIR += gstreamer-plugins-gnomevfs
 SUBDIR += gvfs
 SUBDIR += highlighterkit
 SUBDIR += hs-haddock
+SUBDIR += hwloc
 SUBDIR += icu
 SUBDIR += imake
 SUBDIR += jakarta-commons-daemon
