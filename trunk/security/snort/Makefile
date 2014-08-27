@@ -40,7 +40,6 @@ SNORTSAM_DESC=		Enable unofficial Snortsam patch
 SOURCEFIRE_DESC=	Enable Sourcefire-specific build options
 DBGSNORT_DESC=		Enable debugging symbols+core dumps
 BARNYARD_DESC=		Depend on Barnyard2
-PULLEDPORK_DESC=	Depend on pulledpork
 
 .include <bsd.mport.options.mk>
 
@@ -147,10 +146,6 @@ PATCHFILES+=	snortsam-2.9.2.2.diff.gz:snortsam
 
 .if ${PORT_OPTIONS:MBARNYARD}
 RUN_DEPENDS+=	barnyard2:${PORTSDIR}/security/barnyard2
-.endif
-
-.if ${PORT_OPTIONS:MPULLEDPORK}
-RUN_DEPENDS+=	pulledpork.pl:${PORTSDIR}/security/pulledpork
 .endif
 
 post-patch:
