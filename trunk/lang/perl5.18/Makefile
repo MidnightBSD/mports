@@ -11,7 +11,8 @@ DIST_SUBDIR=	perl
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
