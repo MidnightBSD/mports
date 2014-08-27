@@ -16,8 +16,8 @@ COMMENT=	A pop3 server for retrieval of remote mail on a UNIX system
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=-build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=-build=${MACHINE_ARCH}-portbld-freebsd9.0
 
-PLIST_FILES=	sbin/wpop3d man/man1/wpop3d.1
+PLIST_FILES=	sbin/wpop3d man/man1/wpop3d.1.gz
 
 .include <bsd.port.mk>
