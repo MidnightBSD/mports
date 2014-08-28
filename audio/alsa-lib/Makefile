@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-lib
-PORTVERSION=	1.0.27.2
+PORTVERSION=	1.0.28
 PORTREVISION=	0
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/lib \
@@ -12,7 +12,7 @@ COMMENT=	ALSA compatibility library
 
 LICENSE=	lgpl
 
-USES=		tar:bzip2
+USES=		tar:bzip2 libtool:keepla
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-aload --disable-python \
