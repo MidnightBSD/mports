@@ -1,10 +1,4 @@
-# New ports collection makefile for:	fileroller
-# Date created:				18 May 2002
-# Whom:					Anders Nordby <anders@FreeBSD.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
-#
 
 PORTNAME=	file-roller
 PORTVERSION=	2.32.1
@@ -15,6 +9,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An archive manager for zip files, tar, etc
+
 LICENSE=	gpl2
 
 OPTIONS=	NAUTILUS	"Enable Nautilus extension"	on
@@ -23,11 +18,9 @@ RUN_DEPENDS=	${LOCALBASE}/bin/gtar:${PORTSDIR}/archivers/gtar \
     		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 USE_LDCONFIG=	yes
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake tar:bzip2
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack desktopfileutils gnomedocutils \
 		gtk20 gconf2
 GNOME_DESKTOP_VERSION=2
