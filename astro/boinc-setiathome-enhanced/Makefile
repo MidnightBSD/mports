@@ -9,6 +9,7 @@ DISTNAME=	setiathome-svn-412
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setiathome Enhanced for BOINC
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
@@ -17,11 +18,9 @@ BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
 RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	fftw3f:${PORTSDIR}/math/fftw3-float
 
-USE_BZIP2=	yes
+USES=		gmake pkgconfig tar:bzip2
 USE_AUTOTOOLS=	autoconf:env automake:env
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
 
 CFLAGS+=	-O2 -I${LOCALBASE}/include/boinc -I${LOCALBASE}/include -L${LOCALBASE}/lib
 .if defined(CPUTYPE)
