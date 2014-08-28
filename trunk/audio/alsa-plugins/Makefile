@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.27
+PORTVERSION=	1.0.28
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/plugins \
 		GENTOO/distfiles
