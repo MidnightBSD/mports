@@ -6,21 +6,21 @@
 #
 
 PORTNAME=	nwcc
-PORTVERSION=	0.7.9
+PORTVERSION=	0.8.3
 CATEGORIES=	lang
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nils Weller's BSD-licensed C-compiler
+
 LICENSE=	bsd2
 
 HAS_CONFIGURE=	yes
-ALL_TARGET=	nwcc
+CONFIGURE_ARGS=	--installprefix=${PREFIX}
+ALL_TARGET=
 
-.include <bsd.port.pre.mk>
+post-build:
+	cd ${WRKSRC} ; ${MAKE} test
 
-post-install:
-	${CP} -n ${WRKSRC}/nwcc.conf.sample ${PREFIX}/etc/nwcc.conf.sample
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
