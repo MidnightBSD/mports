@@ -12,15 +12,15 @@ MASTER_SITES=	http://www.lua.org/ftp/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
+
 LICENSE=	mit
 
 PATCH_WRKSRC=	${WRKSRC}/src
+USES=		pkgconfig
 USE_LUA=	5.1
 LUA_COMPS=	# only define variables
 ALL_TARGET=	freebsd
-USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 .include <bsd.mport.options.mk>
 
