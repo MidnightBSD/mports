@@ -13,14 +13,13 @@ PKGNAMEPREFIX=	g
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	GNU copy-in/out (cpio)
+
 LICENSE=	gpl3
 
 INFO=	cpio
 
-USE_BZIP2=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gettext tar:bzip2
 GNU_CONFIGURE=	yes
-USE_GETTEXT=	yes
 
 CONFIGURE_ARGS=	--program-prefix="g" \
 		--with-rmt=/etc/rmt \
