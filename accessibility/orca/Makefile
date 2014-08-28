@@ -21,18 +21,14 @@ RUN_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
 
 LATEST_LINK=	gnome-orca
 
-USE_BZIP2=	yes
-USES=		gettext
+USES=		gmake gettext pkgconfig tar:bzip2
 USE_PYTHON=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack libgnomeui gnomespeech pygnome2 \
 		pygnomedesktop
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=		orca.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
