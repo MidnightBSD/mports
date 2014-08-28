@@ -13,9 +13,8 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	asound:${PORTSDIR}/audio/alsa-lib
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USES=		pkgconfig
+USES=		pkgconfig tar:bzip2
 LDFLAGS+=	-L${LOCALBASE}/lib
 EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
 
