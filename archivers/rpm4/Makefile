@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	rpm
-PORTVERSION=	4.10.2
+PORTVERSION=	4.11.2
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The RPM Package Manager
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	popt:${PORTSDIR}/devel/popt \
@@ -17,8 +18,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 OPTIONS=	PYTHON "Build Python rpm module" On
 
 USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 USE_LUA=	5.1+
 USE_BDB=	46+
 INVALID_BDB_VER=51
@@ -44,10 +44,6 @@ PLIST_SUB+=	VERSION=${PORTVERSION}
 
 
 .include <bsd.mport.options.mk>
-
-.if (${OSVERSION} < 4005)
-LIB_DEPENDS+=   lzma.5:${PORTSDIR}/archivers/xz
-.endif
 
 .ifndef	WITHOUT_PYTHON
 CONFIGURE_ARGS+=--enable-python
@@ -85,10 +81,6 @@ PORTDOCS=	*
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 4005
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-rpmio_rpmsq.c
-.endif
 
 .if ${OSVERSION} < 4005
 LIB_DEPENDS+=	lzma:${PORTSDIR}/archivers/xz
