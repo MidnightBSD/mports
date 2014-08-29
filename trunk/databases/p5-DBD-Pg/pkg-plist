@@ -13,5 +13,3 @@
 @dirrm %%SITE_PERL%%
 @dirrm lib/perl5/site_perl
 @dirrm lib/perl5
-@dirrm share/licenses/p5-DBD-Pg-3.0.0
-@dirrm share/licenses
