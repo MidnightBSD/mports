@@ -9,9 +9,10 @@ PKGNAMEPREFIX=	p5-
 DIST_SUBDIR=	postgresql
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An interface for using perl5 to access PostgreSQL databases
+COMMENT=	Interface for using perl5 to access PostgreSQL databases
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENCE_COMB=	dual
 
 USE_PGSQL=	yes
 PERL_CONFIGURE=	yes
