@@ -2,6 +2,7 @@
 
 PORTNAME=	Pg
 PORTVERSION=	2.1.1
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	projects/gborg/pgperl/stable
@@ -12,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface for using perl5 to access PostgreSQL databases
 
 LICENSE=	artistic gpl
-LICENCE_COMB=	dual
+LICENSE_COMB=	dual
 
 USE_PGSQL=	yes
 PERL_CONFIGURE=	yes
