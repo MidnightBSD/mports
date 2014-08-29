@@ -3,13 +3,13 @@
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.14.3
+PORTVERSION=	2.15.4
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A verifier for mports directory
+COMMENT=	Verifier for mports directory
 
 LICENSE=	unknown
 
@@ -19,8 +19,8 @@ USE_PERL5_RUN=	yes
 
 SRC=		${.CURDIR}/src
 
-MAN1=		portlint.1
-PLIST_FILES=	bin/portlint
+PLIST_FILES=	bin/portlint \
+		man/man1/portlint.1.gz
 
 .if !defined(NOPORTEXAMPLES)
 PLIST_FILES+=	%%EXAMPLESDIR%%/portlintgrep

@@ -18,7 +18,6 @@
 #
 # $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.11 2013/01/18 03:56:21 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
-# $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
 
 use strict;
@@ -27,6 +26,7 @@ use warnings;
 use Getopt::Std;
 use File::Find;
 use IPC::Open2;
+use File::Basename;
 use POSIX qw(strftime);
 
 sub perror($$$$);
@@ -48,12 +48,12 @@ $contblank = 1;
 $portdir = '.';
 
 @ALLOWED_FULL_PATHS = qw(/boot/loader.conf /compat/ /dev/null /etc/inetd.conf);
-@MASTERSITES_WHITELIST = qw(googlecode.com nodeload.github.com);
+@MASTERSITES_WHITELIST = qw(googlecode.com nodeload.github.com s3.amazonaws.com);
 
 # version variables
 my $major = 2;
-my $minor = 14;
-my $micro = 3;
+my $minor = 15;
+my $micro = 4;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -141,28 +141,9 @@ $makeenv = $opt_M if $opt_M;
 
 $portdir = $ARGV[0] ? $ARGV[0] : '.';
 
-# OS dependent configs
-# os	portsdir	rcsid		mplist	ldcfg	plist-rcsid mancompresss strict	localbase	newxdef	automan	autoinfo
-my @osdep = split(/\n/, <<EOF);
-FreeBSD	/usr/ports	FreeBSD		0	0	0		1	0	/usr/local	1	1	1
-NetBSD	/usr/pkgsrc	NetBSD		1	1	1		0	1	/usr/pkg	0	0	0
-EOF
-my $osname = `uname -s`;
-$osname =~ s/\n$//;
-foreach my $i (@osdep) {
-	if ($i =~ /^$osname\t(.*)/) {
-		print "OK: found OS config for $osname.\n" if ($verbose);
-		($portsdir, $rcsidstr, $multiplist, $ldconfigwithtrue,
-			$rcsidinplist, $mancompress, $manstrict, $localbase,
-			$newxdef, $automan, $autoinfo)
-				= split(/\t+/, $1);
-		last;
-	}
-}
-
 # The PORTSDIR environment variable overrides our defaults.
 $portsdir = $ENV{PORTSDIR} if ( defined $ENV{'PORTSDIR'} );
-$ENV{'PL_CVS_IGNORE'} //= '';
+$ENV{'PL_SVN_IGNORE'} //= '';
 my $mfile_moved = "${portsdir}/MOVED";
 my $mfile_uids = "${portsdir}/UIDs";
 my $mfile_gids = "${portsdir}/GIDs";
@@ -193,21 +174,23 @@ chdir "$portdir" || die "$portdir: $!";
 my @varlist =  qw(
 	PORTNAME PORTVERSION PORTREVISION PORTEPOCH PKGNAME PKGNAMEPREFIX
 	PKGNAMESUFFIX DISTVERSIONPREFIX DISTVERSION DISTVERSIONSUFFIX
-	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER MASTER_SITES LICENSE
+	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER MASTER_SITES
 	WRKDIR WRKSRC NO_WRKSUBDIR SCRIPTDIR FILESDIR
 	PKGDIR COMMENT DESCR PLIST PKGCATEGORY PKGINSTALL PKGDEINSTALL
 	PKGREQ PKGMESSAGE DISTINFO_FILE .CURDIR USE_LDCONFIG USE_AUTOTOOLS
-	USE_GNOME INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
-	PLIST_FILES OPTIONS OPTIONS_DEFINE INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
-	DIST_SUBDIR ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS
-	GNU_CONFIGURE CONFIGURE_ARGS MASTER_SITE_SUBDIR
+	USE_GNOME USE_PERL5 INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION
+	PKGINSTALLVER PLIST_FILES PLIST_DIRS PORTDOCS PORTEXAMPLES
+	OPTIONS_DEFINE OPTIONS_RADIO OPTIONS_SINGLE OPTIONS_MULTI
+	OPTIONS_GROUP OPTIONS_SUB INSTALLS_OMF USE_RC_SUBR USES DIST_SUBDIR
+	ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS GNU_CONFIGURE
+	CONFIGURE_ARGS MASTER_SITE_SUBDIR LICENSE LICENSE_COMB NO_STAGE
+	DEVELOPER
 );
-
-my $cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", @varlist);
 
 my %makevar;
 my $i = 0;
-for (split(/\n/, `$cmd`)) {
+for (split(/\n/, get_makevar(@varlist))) {
+	$_ =~ s/\0//;
 	print "OK: makevar: $varlist[$i] = $_\n" if ($verbose);
 	$makevar{$varlist[$i]} = $_;
 	$i++;
@@ -223,21 +206,13 @@ my %plistman = ();
 my %manlangs = ();
 
 my %predefined = ();
+
+my @popt = ();
+
 # historical, no longer in FreeBSD's bsd.sites.mk
 foreach my $i (split(/\n/, <<EOF)) {
 GNU 		ftp://prep.ai.mit.edu/pub/gnu/%SUBDIR%/
-GNU			ftp://wuarchive.wustl.edu/systems/gnu/%SUBDIR%/
-GNU			ftp://ftp.ecrc.net/pub/gnu/%SUBDIR%/
-PERL_CPAN	ftp://ftp.cdrom.com/pub/perl/CPAN/modules/by-module/%SUBDIR%/
 SUNSITE		ftp://sunsite.unc.edu/pub/Linux/%SUBDIR%/
-SUNSITE		ftp://ftp.funet.fi/pub/mirrors/sunsite.unc.edu/pub/Linux/%SUBDIR%/
-SUNSITE		ftp://ftp.infomagic.com/pub/mirrors/linux/sunsite/%SUBDIR%/
-TEX_CTAN	ftp://ftp.cdrom.com/pub/tex/ctan/%SUBDIR%/
-TEX_CTAN	ftp://ftp.tex.ac.uk/public/ctan/tex-archive/%SUBDIR%/
-GNOME		ftp://ftp.cybertrails.com/pub/gnome/%SUBDIR%/
-AFTERSTEP	ftp://ftp.alpha1.net/pub/mirrors/ftp.afterstep.org/%SUBDIR%/
-AFTERSTEP	ftp://casper.yz.yamagata-u.ac.jp/pub/X11/apps/afterstep/%SUBDIR%/
-WINDOWMAKER	ftp://ftp.io.com/pub/%SUBDIR%/
 EOF
 	my ($j, $k) = split(/\t+/, $i);
 	$predefined{$k} = $j;
@@ -249,7 +224,7 @@ open(MK, $sites_mk) || die "$sites_mk: $!";
 my @site_groups = grep($_ = /^MASTER_SITE_(\w+)/ && $1, <MK>);
 close(MK);
 
-$cmd = join(' -V MASTER_SITE_', "make $makeenv ", @site_groups);
+my $cmd = join(' -V MASTER_SITE_', "make $makeenv ", @site_groups);
 
 $i = 0;
 
@@ -343,17 +318,18 @@ if ($committer) {
 			$File::Find::prune = 1;
 		} elsif (-l) {
 			&perror("WARN", $fullname, -1, "this is a symlink. ".
-					"CVS will ignore it.");
+					"Please remove it.");
 		} elsif (-z) {
 			&perror("FATAL", $fullname, -1, "empty file and should be removed. ".
 				    "If it still needs to be there, put a dummy comment ".
 					"to state that the file is intentionally left empty.");
 		} elsif (-d && scalar(my @x = <$_/{*,.?*}>) <= 1) {
-			&perror("FATAL", $fullname, -1, "empty directory should be removed.");
+			&perror("FATAL", $fullname, -1, "empty directory should be removed.") unless ($fullname =~ /^\.svn/);
 		} elsif (/^\./) {
 			&perror("WARN", $fullname, -1, "dotfiles are not preferred. ".
 					"If this file is a dotfile to be installed as an example, ".
-					"consider importing it as \"dot$_\".");
+					"consider importing it as \"dot$_\".") unless
+					(-d && $_ eq '.svn');
 		} elsif (/[^-.a-zA-Z0-9_\+]/) {
 			&perror("WARN", $fullname, -1, "only use characters ".
 					"[-_.a-zA-Z0-9+] for patch or script names.");
@@ -378,144 +354,15 @@ if ($committer) {
 			}
 
 			$File::Find::prune = 1;
-		}
-	}
+		} elsif (-f) {
+			my $fullpath = $makevar{'.CURDIR'}.'/'.$fullname;
+			my $result = `type svn >/dev/null 2>&1 && svn -q status $fullpath`;
 
-	find(\&find_proc, '.');
-
-	sub checksubdir {
-		my $dir = shift;
-
-		print "OK: checking CVS status of \"$dir\".\n" if ($verbose);
-		opendir DIR, $dir;
-		my @filenames = readdir DIR;
-		closedir DIR;
-
-		my %entries;
-		if (-f "$dir/CVS/Entries") {
-			open ENTRIES, "<$dir/CVS/Entries";
-			while (<ENTRIES>) {
-				chomp;
-				my @entry = split /\//;
-				if ($entry[0] eq 'D') {
-					$entries{ $entry[1] } = $entry[0]
-						if $entry[1];
-				}
-				elsif ($entry[0] eq '') {
-					if ($entry[2] =~ /^-/) {
-						$entries{ $entry[1] } = 'x';
-					}
-					elsif ($entry[2] eq '0') {
-						$entries{ $entry[1] } = 'n';
-					}
-					else {
-						$entries{ $entry[1] } = 'f';
-					}
-				}
-				else {
-					&perror("WARN", "", -1, "can not parse CVS line $_");
-				}
-			}
-			close ENTRIES;
-		} else {
-			&perror("WARN", "", -1, "no CVS directories. Use -N to check a new port.");
-			return;
-		}
-
-		if (-f "$dir/CVS/Entries.Log") {
-			open ENTRIES, "<$dir/CVS/Entries.Log";
-			while (<ENTRIES>) {
-				chomp;
-				my $cmd;
-				my @entry = split /\//;
-				if (/^(.) (.*)$/) {
-					$cmd = $1;
-					@entry = split /\//, $2;
-				}
-				else {
-					$cmd = 'A';
-					@entry = split /\//;
-				}
-					if ($cmd eq 'A') {
-						if ($entry[0] eq 'D') {
-							$entries{ $entry[1] } = $entry[0]
-								if $entry[1];
-						}
-					elsif ($entry[0] eq '') {
-						if ($entry[2] =~ /^-/) {
-							$entries{ $entry[1] } = 'x';
-						}
-						elsif ($entry[2] eq '0') {
-							$entries{ $entry[1] } = 'n';
-						}
-						else {
-							$entries{ $entry[1] } = 'f';
-						}
-					}
-					else {
-						&perror("WARN", "", -1, "can not parse CVS line $_");
-					}
-				}
-				elsif ($cmd eq 'R') {
-					delete $entries{ $entry[1] }
-						if $entry[1];
-				}
-				# ignore unknown commands
-			}
-			close ENTRIES;
-		}
-
-		foreach (@filenames) {
-			next
-				if /^(?:\.\.?|CVS)$/;
-			my $filename = $dir eq '.' ? $_ : "$dir/$_";
-			if (-d $filename) {
-				if ((!$entries{$_} || $entries{$_} ne 'D') && $filename ne 'work') {
-					&perror("FATAL", "", -1, "directory $filename not in CVS.");
-				}
-				else {
-					delete $entries{$_};
-					checksubdir($filename);
-				}
-			}
-			else {
-				if (!$entries{$_}) {
-					&perror("FATAL", "", -1, "file $filename not in CVS.")
-						unless (eval { /$ENV{'PL_CVS_IGNORE'}/, 1 } &&
-							/$ENV{'PL_CVS_IGNORE'}/);
-				}
-				elsif ($filename =~ /\.core$/ && $entries{$_}) {
-					&perror("FATAL", "", -1, "file $filename ends in ".
-						"\".core\".  This file can be removed by periodic ".
-						"cleanup scripts.  Do not include files that end in ".
-						"\".core\".");
-				}
-				elsif ($entries{$_} eq 'D') {
-					&perror("FATAL", "", -1, "file $filename is a directory in CVS.");
-				}
-				elsif ($entries{$_} eq 'x') {
-					&perror("FATAL", "", -1, "file $filename is deleted in CVS.");
-				}
-				elsif ($entries{$_} eq 'n') {
-					if (!system("egrep", "-q", "\\\$$rcsidstr\[^\$\]+\\\$", $filename)) {
-						&perror("WARN", "", -1, "RCS tag \"\$$rcsidstr\$\" ".
-							"should be empty in new file $filename.");
-					}
-					delete $entries{$_};
-				}
-				else {
-					delete $entries{$_};
-				}
-			}
-		}
-
-		while (my ($file, $type) = each %entries) {
-			next if $type eq 'x';
-			if ($type eq 'D') {
-				&perror("FATAL", "", -1, "CVS directory $dir/$file missing");
-			}
-			else {
-				&perror("FATAL", "", -1, "CVS file $dir/$file missing");
+			chomp $result;
+			if (substr($result, 0, 1) eq '?') {
+				&perror("FATAL", "", -1, "$fullname not under SVN.")
+					unless (eval { /$ENV{'PL_SVN_IGNORE'}/, 1 } &&
+						/$ENV{'PL_SVN_IGNORE'}/);
 			}
 		}
 	}
@@ -528,6 +375,10 @@ if ($committer) {
 	$indexerr =~ tr/\n/ /s;
 	&perror("FATAL", "", -1, "breaks INDEX ($indexerr).")
 		if ($indexerr);
+	# Suggest to set MPORT_MAINTAINER_MODE knob in /etc/make.conf
+	if (!$makevar{MPORT_MAINTAINER_MODE}) {
+		&perror("WARN", "", -1, "Consider to set MPORT_MAINTAINER_MODE=yes in /etc/make.conf");
+	}
 }
 if ($err || $warn) {
 	my($errtext, $warntext) = ("error", "warning");
@@ -653,7 +504,7 @@ sub checkdescr {
 			}
 			if ($wwwurl =~ m|^http://search.cpan.org/~|) {
 				&perror("WARN", $file, -1, "consider changing WWW URL to ".
-					"http://search.cpan.org/dist/$makevar{PORTNAME}");
+					"http://search.cpan.org/dist/$makevar{PORTNAME}/");
 			}
 		}
 		$linecnt++;
@@ -693,7 +544,7 @@ sub checkdescr {
 		}
 
 		if (!$has_url) {
-			&perror("WARN", $file, -1, "add \"WWW: UR:\" for this port if possible");
+			&perror("WARN", $file, -1, "add \"WWW: URL:\" for this port if possible");
 		}
 
 		if ($cpan_url && !$has_endslash) {
@@ -751,24 +602,40 @@ sub checkplist {
 		$_ =~ s/\s+$//;
 		$_ =~ s/\n$//;
 
+		# store possible OPTIONS knobs for OPTIONS_SUB
+		if ($makevar{OPTIONS_SUB}) {
+			while (/\%\%([^%]+)\%\%/g) {
+				if ($1 =~ /PORTDOCS/) {
+					push @popt, "DOCS";
+				} elsif ($1 =~ /PORTEXAMPLES/) {
+					push @popt, "EXAMPLES";
+				} else {
+					push @popt, $1;
+				}
+			}
+		}
+
 		if ($_ =~ /\.DS_Store/) {
 			&perror("WARN", $file, $., ".DS_Store meta data files must not ".
 				"be installed.");
 		}
 
-		if ($osname eq 'NetBSD' && $_ =~ /<\$ARCH>/) {
-			&perror("WARN", $file, $., "use of <\$ARCH> deprecated, ".
-				"use \${MACHINE_ARCH} instead.");
-		}
 		if (m'lib/perl5/site_perl/%%PERL_VER%%') {
 			&perror("WARN", $file, $., "use \%\%SITE_PERL\%\% ".
 					"instead of lib/perl5/site_perl/\%\%PERL_VER\%\%.");
 		}
-		if ($osname ne 'NetBSD' && m'([\w\d]+-portbld-freebsd\d+\.\d+)') {
+
+		if (m'([\w\d]+-portbld-freebsd\d+\.\d+)') {
 			&perror("WARN", $file, $., "possible direct use of the ".
 				"CONFIGURE_TARGET value ($1).  Consider using the plist ".
 				"substitution %%CONFIGURE_TARGET%% instead.");
 		}
+
+		if (m'\@dirrm(try)?\s+libdata/pkgconfig') {
+			&perror("FATAL", $file, $., "libdata/pkgconfig should not be ".
+				"removed.  It is listed in BSD.local.dist.");
+		}
+
 		$seen_special++ if /[\%\@]/;
 		$seen_dirrm_docsdir++ if /^(\%\%PORTDOCS\%\%)?\@dirrm\s+\%\%DOCSDIR\%\%/ || /^(\%\%PORTDOCS\%\%)?\@unexec\s+(\/bin\/)?rmdir\s+\%D\/\%\%DOCSDIR\%\%\s+2\>\s*\/dev\/null\s+\|\|\s+(\/usr\/bin\/)?true/;
 		if ($_ =~ /^\@/) {
@@ -823,7 +690,9 @@ sub checkplist {
 			} elsif ($_ =~ /^\@(comment)/) {
 				$rcsidseen++ if (/\$$rcsidstr[:\$]/);
 			} elsif ($_ =~ /^\@(owner|group|mode)\s/) {
-				&perror("WARN", $file, $., "\@$1 should not be needed");
+				if ($makevar{NO_STAGE}) {
+					&perror("WARN", $file, $., "\@$1 should not be needed");
+				}
 			} elsif ($_ =~ m!^\@(dirrm|dirrmtry)\s+/!) {
 				&perror("WARN", $file, $., "Using \@$1 with absolute path ".
 					"will not work as you expected in most cases.  Use ".
@@ -834,6 +703,13 @@ sub checkplist {
 			} elsif ($_ eq "\@cwd") {
 				; # @cwd by itself means change directory back to the original
 				  # PREFIX.
+		  	} elsif ($_ =~ /^\@sample\s+(\S*)/) {
+				my $sl = $.;
+				if ($1 !~ /\.sample$/) {
+					&perror("WARN", $file, $sl, "\@sample directive references".
+						" file that does not end in ``.sample''.  Sample".
+						" files must end in ``.sample''.");
+				}
 			} else {
 				&perror("WARN", $file, $.,
 					"unknown pkg-plist directive \"$_\"");
@@ -848,7 +724,7 @@ sub checkplist {
 
 		if ($_ =~ /charset\.alias$/ || $_ =~ /locale\.alias$/) {
 			&perror("WARN", $file, $., "installing charset.alias or locale.alias, ".
-				"please add USE_GETTEXT=yes and use libintl from devel/gettext ".
+				"please add USES[+]=gettext and use libintl from devel/gettext ".
 				"instead of from outdated bundled one if possible. ".
 				"See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/71531 ".
 				"for more details.");
@@ -888,9 +764,9 @@ sub checkplist {
 				"for more details)");
 		}
 
-		if ($_ =~ m|\.mo$| && $makevar{USE_GETTEXT} eq '') {
+		if ($_ =~ m|\.mo$| && $makevar{USES} !~ /\bgettext\b/) {
 			&perror("WARN", $file, $., "installing gettext translation files, ".
-				"please define USE_GETTEXT as appropriate");
+				"please define USES[+]=gettext as appropriate");
 		}
 
 		if ($_ =~ m|\.core$| && $_ !~ /^\@/) {
@@ -964,11 +840,11 @@ sub checkplist {
 			}
 		}
 
-		if ($_ =~ m{^%%PORT(\w+)%%(.*?)%%(\w+)DIR%%(.*)$} and $1 ne $3) {
+		if ($_ =~ m{^%%PORT(\w+)%%(.*?)%%(\w+)DIR%%(.*)$} and $1 ne $3 and
+			defined($check_xxxdir_ok{$3})) {
 			&perror("WARN", $file, $., "Do not mix %%PORT$1%% with %%$3DIR%%. ".
 				"Use '%%PORT$check_xxxdir_ok{$3}%%$2%%$3DIR%%$4' instead and update Makefile ".
-				"accordingly.") unless (defined($check_xxxdir_ok{$3}) and
-					$check_xxxdir_ok{$3} eq $1);
+				"accordingly.") unless ($check_xxxdir_ok{$3} eq $1);
 		}
 
 		if ($_ =~ m#man/([^/]+/)?man([$manchapters])/([^\.]+\.[$manchapters])(\.gz)?$#) {
@@ -1001,7 +877,7 @@ sub checkplist {
 				"could you please avoid it?");
 		}
 
-		if ("$curdir/$_" =~ m#^$localbase/share/doc#) {
+		if ("$curdir/$_" =~ m#^$localbase/share/doc/#) {
 			print "OK: $file [$.]: seen installation to share/doc. ".
 				"($curdir/$_)\n" if ($verbose);
 			$sharedocused++;
@@ -1173,16 +1049,17 @@ sub checkpatch {
 		return;
 	}
 
+	my $bfile = basename($file);
+
+	if (length $bfile > 100) {
+		&perror("FATAL", $file, -1, "make sure patch file names contain no ".
+			"more than 100 characters.");
+	}
+
 	open(IN, "< $file") || return 0;
 	$whole = '';
 	while (<IN>) {
 		$whole .= $_;
-	}
-	if ($committer && $whole =~ /\$([A-Z][A-Za-z0-9]+)(:[^\n]+)?\$/) {
-		my $lineno = &linenumber($`);
-		&perror("WARN", $file, $lineno, "includes possible RCS tag \"\$$1\$\". ".
-			"use binary mode (-ko) on commit/import.") unless
-			$1 eq $rcsidstr;
 	}
 
 	if ($committer && $whole =~ /\wjavavm\w/) {
@@ -1195,7 +1072,7 @@ sub checkpatch {
 	if ($whole =~ //) {
 		my $lineno = &linenumber($`);
 		&perror("WARN", $file, $lineno, "patch contains ^M characters. ".
-			"Consider defining USE_DOS2UNIX to remove DOS line endings ".
+			"Consider defining USES=dos2unix to remove DOS line endings ".
 			"from source files.");
 	}
 
@@ -1222,15 +1099,13 @@ sub check_depends_syntax {
 				if ($verbose);
 			next;
 		}
-		print "OK: checking ports listed in $j.\n"
-			if ($verbose);
+		print "OK: checking ports listed in $j.\n" if ($verbose);
 		foreach my $k (split(/\s+/, $i)) {
 			if ($k =~ /^#/) {
 				last;
 			}
 			if ($k =~ /^\$\{(\w+)\}$/) {
-					$k = `make -V $1`;
-					chomp $k;
+				$k = get_makevar($1);
 			}
 			my @l = split(':', $k);
 
@@ -1252,7 +1127,7 @@ sub check_depends_syntax {
 			my %m = ();
 			$m{'dep'} = $l[0];
 			$m{'dir'} = $l[1];
-			$m{'tgt'} = $l[2];
+			$m{'tgt'} = $l[2] // '';
 			print "OK: dep=\"$m{'dep'}\", ".
 				"dir=\"$m{'dir'}\", tgt=\"$m{'tgt'}\"\n"
 				if ($verbose);
@@ -1264,6 +1139,14 @@ sub check_depends_syntax {
 					"USE_PERL5.");
 			}
 
+			# Check for ${SITE_PERL} in depends
+			if ($m{'dep'} =~ m|^(\${SITE_PERL}/.*)$|) {
+				&perror("WARN", $file, -1, "dependency to $1 ".
+					"listed in $j. consider using p5-Example-Package-Name>=0.  See ".
+					"http://www.freebsd.org/doc/en/books/porters-handbook/using-perl.html".
+					" for more details.");
+			}
+
 			# check USE_ICONV
 			if ($m{'dep'} =~ /^(iconv\.\d+)$/) {
 				&perror("WARN", $file, -1, "dependency to $1 ".
@@ -1271,18 +1154,18 @@ sub check_depends_syntax {
 					"USE_ICONV.");
 			}
 
-			# check USE_GETTEXT
+			# check USES=gettext
 			if ($m{'dep'} =~ /^(intl\.\d+)$/) {
 				&perror("WARN", $file, -1, "dependency to $1 ".
 					"listed in $j.  consider using ".
-					"USE_GETTEXT.");
+					"USES[+]=gettext.");
 			}
 
-			# check USE_GMAKE
-			if ($m{'dep'} =~ /^(gmake|\${GMAKE})$/) {
+			# check USES=gmake
+			if ($m{'dep'} =~ /^(gmake|\${MAKE_CMD})$/) {
 				&perror("WARN", $file, -1, "dependency to $1 ".
 					"listed in $j. consider using ".
-					"USE_GMAKE.");
+					"USES[+]=gmake.");
 			}
 
 			# check USE_QT
@@ -1299,13 +1182,6 @@ sub check_depends_syntax {
 					"USE_LIBLTDL.");
 			}
 
-			# check CDRTOOLS
-			if ($m{'dir'} =~ /(cdrtools|cdrtools-cjk)$/) {
-				&perror("WARN", $file, -1, "dependency to $1 ".
-					"listed in $j.  consider using ".
-					"USE_CDRTOOLS.");
-			}
-
 			# check GHOSTSCRIPT
 			if ($m{'dep'} eq "gs") {
 				&perror("WARN", $file, -1, "dependency to gs ".
@@ -1319,13 +1195,6 @@ sub check_depends_syntax {
 					"in BUILD_DEPENDS/RUN_DEPENDS to define ".
 					"dependencies on JAR files installed in ".
 					"\${JAVAJARDIR}");
-			}
-
-			# check backslash in LIB_DEPENDS
-			if ($osname eq 'NetBSD' && $j eq 'LIB_DEPENDS'
-			 && $m{'dep'} =~ /\\\\./) {
-				&perror("WARN", $file, -1, "use of backslashes in ".
-					"$j is deprecated.");
 			}
 
 			# check for PREFIX
@@ -1350,7 +1219,13 @@ sub check_depends_syntax {
 					"really necessary.");
 			}
 
-			# check port dir existence
+			# Check for old-style LIB_DEPENDS
+			if ($j eq 'LIB_DEPENDS' && $m{'dep'} !~ m/^lib.*\.so$/) {
+				&perror("WARN", $file, -1, "$j the new format is ".
+						"libFOO.so (e.g., lib$m{'dep'}.so).");
+			}
+
+			# Check port dir existence
 			$k = $m{'dir'};
 			$k =~ s/\${PORTSDIR}/$ENV{'PORTSDIR'}/;
 			$k =~ s/\$[\({]PORTSDIR[\)}]/$ENV{'PORTSDIR'}/;
@@ -1360,6 +1235,15 @@ sub check_depends_syntax {
 					"listed in $j.");
 			} else {
 				print "OK: port directory $k found.\n"
+					if ($verbose);
+			}
+
+			# Check for relative path
+			if ($k =~ /\/\.\.\//) {
+				&perror("FATAL", $file, -1, "use absolute path".
+					"instead of $k in *_DEPENDS.");
+			} else {
+				print "OK: path for port directory $k is absolute.\n"
 					if ($verbose);
 			}
 		}
@@ -1387,8 +1271,7 @@ sub checkmakefile {
 	my $use_ant = 0;
 	my($realwrksrc, $wrksrc, $nowrksubdir) = ('', '', '');
 	my(@mman, @pman);
-	my(@mopt, @oopt);
-	my(@nmopt, @noopt);
+	my(@aopt, @mopt, @opt);
 	my($pkg_version, $versiondir, $versionfile) = ('', '', '');
 	my $useindex = 0;
 	my %deprecated = ();
@@ -1397,8 +1280,8 @@ sub checkmakefile {
 	my $pre_mk_line = 0;
 	my $options_mk_line = 0;
 	my $docsused = 0;
-	my $nlsused = 0;
-	my $newoptused = 0;
+	my $optused = 0;
+	my $desktop_entries = '';
 
 	open(IN, "< $file") || return 0;
 	$rawwhole = '';
@@ -1423,35 +1306,6 @@ sub checkmakefile {
 				}
 			}
 		}
-#
-# I'm still not very convinced, for using this kind of magical word.
-# 1. This kind of items are not important for Makefile;
-#    portlint should not require any additional rule to Makefile.
-#    portlint should simply implement items that are declared in Handbook.
-# 2. If we have LINTSKIP, we can't stop people using LINTSKIP too much.
-#    IMHO it is better to warn the user and let the user think twice,
-#    than let the user escape from portlint.
-# Uncomment this part if you are willing to use these magical words.
-# Thu Jun 26 11:37:56 JST 1997
-# -- itojun
-#
-#		if ($_ =~ /^# LINTSKIP\n?$/) {
-#			print "OK: skipping from line $. in $file.\n"
-#				if ($verbose);
-#			$tmp = 1;
-#			next;
-#		}
-#		if ($_ =~ /^# LINTAGAIN\n?$/) {
-#			print "OK: check start again from line $. in $file.\n"
-#				if ($verbose);
-#			$tmp = 0;
-#			next;
-#		}
-#		if ($_ =~ /# LINTIGNORE/) {
-#			print "OK: ignoring line $. in $file.\n" if ($verbose);
-#			next;
-#		}
-#		next if ($tmp);
 		$rawwhole .= $_;
 	}
 	close(IN);
@@ -1485,6 +1339,9 @@ sub checkmakefile {
 		#&perror("FATAL", $file, 3, "do not add extra ".
 		#		"empty comments after header.");
 		}
+	# special case for $rcsidsrt\nMCom:
+	} elsif ($lines[1] =~ /^# \$$rcsidstr[:\$]/ and $lines[2] =~ /^#\s+\$MCom[:\$]/ and $lines[3] =~ /^$/) {
+		# DO NOTHING
 	} elsif ($lines[1] !~ /^# \$$rcsidstr[:\$]/ or $lines[2] !~ /^$/) {
 		&perror("FATAL", $file, 1, "incorrect header; ".
 			"use Created by: with a single space, then \$$rcsidstr\$.");
@@ -1573,7 +1430,6 @@ sub checkmakefile {
 	# whole file: USE_* and others variables used too late
 	#
 	my @options_early = qw(
-		OPTIONS
 		OPTIONS_DEFAULT
 		OPTIONS_DEFINE
 		OPTIONS_EXCLUDE
@@ -1638,58 +1494,138 @@ sub checkmakefile {
 	}
 
 	pos($whole) = 0;
-	if ($whole =~ /\nOPTIONS_DEFINE[+?]?=/) {
-		$newoptused++;
+	foreach my $i ("OPTIONS_RADIO","OPTIONS_SINGLE",
+		"OPTIONS_MULTI","OPTIONS_GROUP") {
+		foreach my $j (split(/\s+/, $makevar{$i})) {
+			if ($j) {
+				my @ocount = split(/\s+/, get_makevar("${i}_${j}"));
+				if (!scalar(@ocount)) {
+					&perror("FATAL", $file, -1,
+						"Description for ${i}_${j} does not exist");
+				} else {
+					push @aopt, @ocount;
+				}
+			}
+		}
 	}
-	@oopt = ($makevar{OPTIONS} =~ /(\w+)\s+\".*?\"\s+\w+/sg);
-	@noopt = split(/\s+/, $makevar{OPTIONS_DEFINE});
-	if (scalar(@oopt) && $newoptused) {
-		&perror("FATAL", $file, -1, "Both old and new OPTIONS are found. ".
-			"Remove one or another.");
-	}
-	if (scalar(@oopt)) {
-		&perror("WARN", $file, -1, "Use of OPTIONS is obsolete. Use the ".
-			"new options framework.");
-	}
+
+	@opt = split(/\s+/, $makevar{OPTIONS_DEFINE});
 	pos($whole) = 0;
-	while ($whole =~ /\(?\s*WITH(?:OUT)?_(\w+)\s*\)?/mg) {
+	while ($whole =~ /PORT_OPTIONS:M(\w+)/mg) {
 		push @mopt, $1;
 		my $lineno = &linenumber($`) + 1;
 		&perror("FATAL", $file, $lineno, "option WITH(OUT)_$1 is used before ".
 			"including bsd.port.pre.mk or bsd.port.options.mk.")
-		if (scalar(@oopt) && $lineno < $pre_mk_line &&
-			$lineno < $options_mk_line);
+			if ($optused && $lineno < $pre_mk_line &&
+				$lineno < $options_mk_line);
 	}
-	foreach my $i (@oopt) {
-		if (!grep(/^$i$/, @mopt)) {
-			&perror("WARN", $file, -1, "$i is listed in OPTIONS, ".
-				"but neither WITH_$i nor WITHOUT_$i appears.");
+	my @options_helpers = qw(
+		__DUMMY__
+		ALL_TARGET
+		BUILD_DEPENDS
+		EXTRACT_DEPENDS
+		FETCH_DEPENDS
+		LIB_DEPENDS
+		PKG_DEPENDS
+		RUN_DEPENDS
+		CATEGORIES
+		CFLAGS
+		CMAKE_OFF
+		CMAKE_ON
+		CONFIGURE_ENABLE
+		CONFIGURE_ENV
+		CONFIGURE_OFF
+		CONFIGURE_ON
+		CONFIGURE_WITH
+		CPPFLAGS
+		CXXFLAGS
+		DISTFILES
+		INSTALL_TARGET
+		LDFLAGS
+		MAKE_ARGS
+		MAKE_ENV
+		EXTRA_PATCHES
+		PATCHFILES
+		PATCH_DEPENDS
+		PATCH_SITES
+		PLIST_DIRS
+		PLIST_DIRSTRY
+		PLIST_FILES
+		USE
+		USES
+	);
+
+	my $m = join("|", @options_helpers);
+
+	if ($makevar{OPTIONS_SUB}) {
+		if ($makevar{PLIST_FILES}) {
+			foreach my $i (split(/\s+/, $makevar{PLIST_FILES})) {
+				while ($i =~ /\%\%([^%]+)\%\%/g) {
+					push @popt, $1;
+				}
+			}
 		}
+		if ($makevar{PLIST_DIRS}) {
+			foreach my $i (split(/\s+/, $makevar{PLIST_DIRS})) {
+				while ($i =~ /\%\%([^%]+)\%\%/g) {
+					push @popt, $1;
+				}
+			}
+		}
+		# special cases for PORTDOCS/PORTEXAMPLES
+		push @popt, "DOCS" if $makevar{PORTDOCS};
+		push @popt, "EXAMPLES" if $makevar{PORTEXAMPLES};
+
+		# uniq(@popt)
+		my %seen = ();
+		@popt = grep { !$seen{$_}++ } @popt;
 	}
-	if ($newoptused) {
-		pos($whole) = 0;
-		while ($whole =~ /PORT_OPTIONS:M(\w+)/mg) {
-			push @nmopt, $1;
-			my $lineno = &linenumber($`) + 1;
-			&perror("FATAL", $file, $lineno, "option $1 is used before ".
-				"including bsd.port.pre.mk or bsd.port.options.mk.")
-				if ($newoptused && $lineno < $pre_mk_line &&
-					$lineno < $options_mk_line);
-		}
-		foreach my $i (@noopt) {
-			if (!grep(/^$i$/, @nmopt)) {
-				&perror("WARN", $file, -1, "$i is listed in OPTIONS_DEFINE, ".
-					"but no PORT_OPTIONS:M$i appears.");
+	foreach my $i ((@opt, @aopt)) {
+		# skip global options
+		next if ($i eq 'DOCS' or $i eq 'NLS' or $i eq 'EXAMPLES' or $i eq 'IPV6' or $i eq 'X11');
+		if (!grep(/^$i$/, (@mopt, @popt))) {
+			if ($whole !~ /\n${i}_($m)(.)?=[^\n]+/) {
+				&perror("WARN", $file, -1, "$i is listed in ".
+						"OPTIONS_DEFINE, but no PORT_OPTIONS:M$i appears.");
 			}
 		}
 	}
+
 	foreach my $i (@mopt) {
-		next if ($i eq 'NLS'); # skip WITHOUT_NLS
-		if (!grep(/^$i$/, @oopt)) {
-			# XXX: disable temporarily.
-			# OPTIONS is still "in flux"
-			#&perror("WARN: $file: WITH_$i or WITHOUT_$i appears, ".
-			#	"consider using OPTIONS macro.");
+		if (!grep(/^$i$/, @opt, @aopt)) {
+			# skip global options
+			next if ($i eq 'DOCS' or $i eq 'NLS' or $i eq 'EXAMPLES' or $i eq 'IPV6' or $i eq 'X11');
+			&perror("WARN", $file, -1, "$i appears in PORT_OPTIONS:M, ".
+				"but is not listed in OPTIONS_DEFINE.");
+		}
+	}
+
+	#
+	# whole file: check DESKTOP_ENTRIES for ${TRUE}/${FALSE}
+	#
+	print "OK: checking DESKTOP_ENTRIES for \${TRUE}/\${FALSE}.\n" if ($verbose);
+	$desktop_entries = &get_makevar_raw('DESKTOP_ENTRIES');
+	if ($desktop_entries =~ /\${TRUE}/ or $desktop_entries =~ /\${FALSE}/ or
+	    $desktop_entries =~ /\"true\"/ or $desktop_entries =~ /\"false\"/) {
+		&perror("FATAL", $file, -1, "Use true/false (without quotes) instead of \${TRUE}/\${FALSE} in DESKTOP_ENTRIES.");
+	}
+
+	my @dte_parts = split(/\s+/, $desktop_entries);
+	my $dtc = 0;
+	my $dte_quote = 0;
+	foreach my $dte_part (@dte_parts) {
+		if ($dtc % 5 == 0 && $dte_part eq '""') {
+			&perror("FATAL", $file, -1, "Use true/false (without quotes) instead of \${TRUE}/\${FALSE} in DESKTOP_ENTRIES.");
+		}
+		if ($dte_quote == 1 && $dte_part =~ /"$/) {
+			$dte_quote = 0;
+		}
+		if ($dte_part =~ /^"[^"]+$/) {
+			$dte_quote = 1;
+			next;
+		}
+		if (!$dte_quote) {
+			$dtc++;
 		}
 	}
 
@@ -1784,37 +1720,17 @@ sub checkmakefile {
 	}
 
 	#
-	# whole file: USE_REINPLACE
+	# whole file: MAKE_JOBS_UNSAFE
 	#
-	print "OK: checking for USE_REINPLACE.\n" if ($verbose);
-	if ($whole =~ /\nUSE_REINPLACE.?=/) {
-			my $lineno = &linenumber($`);
-			&perror("WARN", $file, $lineno, "USE_REINPLACE is now obsolete. ".
-				"You can safely use REINPLACE_CMD without it.");
-	}
-
-	#
-	# whole file: MAKE_JOBS_[UN]SAFE
-	#
-	print "OK: checking for MAKE_JOBS_SAFE in combination with NO_BUILD.\n" if ($verbose);
-	if ($whole =~ /\n(MAKE_JOBS_(UN)?SAFE).?=/) {
+	print "OK: checking for MAKE_JOBS_UNSAFE in combination with NO_BUILD.\n" if ($verbose);
+	if ($whole =~ /\nMAKE_JOBS_UNSAFE.?=/) {
 		my $matched = $1;
 		if ($whole =~ /\nNO_BUILD.?=/) {
 			my $lineno = &linenumber($`);
-		    	&perror("WARN", $file, $lineno, "$matched should not ".
+			&perror("WARN", $file, $lineno, "MAKE_JOBS_UNSAFE should not ".
 				"be used in combination with NO_BUILD.  You ".
-				"should remove $matched from your Makefile.");
+				"should remove MAKE_JOBS_UNSAFE from your Makefile.");
 	    	}
-	}
-
-	#
-	# whole file: USE_GETOPT_LONG
-	#
-	print "OK: checking for USE_GETOPT_LONG.\n" if ($verbose);
-	if ($whole =~ /\nUSE_GETOPT_LONG.?=/) {
-		my $lineno = &linenumber($`);
-		&perror("WARN", $file, $lineno, "USE_GETOPT_LONG is now obsolete. ".
-			"You can safely remove this macro from your Makefile.");
 	}
 
 	#
@@ -1823,7 +1739,7 @@ sub checkmakefile {
 	print "OK: checking for USE_GNOME=pkgconfig.\n" if ($verbose);
 	if ($makevar{USE_GNOME} =~ /pkgconfig/) {
 		&perror("WARN", $file, -1, "USE_GNOME=pkgconfig is now obsolete. ".
-			"Use USE_PKGCONFIG instead.");
+			"Use USES[+]=pkgconfig instead.");
 	}
 
 	#
@@ -1833,10 +1749,14 @@ sub checkmakefile {
 	my $edate;
 	if (($edate) = ($whole =~ m/\nEXPIRATION_DATE\??=[ \t]*([^\n]*)\n/)) {
 		my $lineno = &linenumber($`);
-		if ($edate ne strftime("%Y-%m-%d", 0, 0, 0,
-					substr($edate, 8, 2),
-					substr($edate, 5, 2) - 1,
-					substr($edate, 0, 4) - 1900)) {
+		my $ndate = $edate;
+		if ($ndate eq '' || length $ndate < 10) {
+				$ndate = '0000-00-00';
+		}
+		if ($ndate ne strftime("%Y-%m-%d", 0, 0, 0,
+					substr($ndate, 8, 2),
+					substr($ndate, 5, 2) - 1,
+					substr($ndate, 0, 4) - 1900)) {
 			&perror("FATAL", $file, $lineno, "EXPIRATION_DATE ($edate) is ".
 				"either not in YYYY-MM-DD format or it is not a valid ".
 				"date.");
@@ -1867,7 +1787,8 @@ sub checkmakefile {
 	}
 	if ($sharedocused && $whole !~ /defined\s*\(?NOPORTDOCS\)?/
 		&& $whole !~ /def\s*\(?NOPORTDOCS\)?/) {
-		if ($docsused == 0 && $whole !~ m#(\$[\{\(]PREFIX[\}\)]|$localbase)/share/doc#) {
+		if ($makevar{NO_STAGE} && $docsused == 0
+			&& $whole !~ m#(\$[\{\(]PREFIX[\}\)]|$localbase)/share/doc/#) {
 			&perror("WARN", $file, -1, "use \".if \${PORT_OPTIONS:MDOCS}\" to wrap ".
 				"installation of files into $localbase/share/doc.");
 		}
@@ -1878,33 +1799,21 @@ sub checkmakefile {
 		&perror("FATAL", $file, -1, "Both NOPORTDOCS and PORT_OPTIONS:MDOCS are found. ".
 			"Remove one or another.");
 	}
-
 	print "OK: checking for use of NOPORTDOCS.\n" if ($verbose);
 	if ($whole =~ /NOPORTDOCS/) {
 		my $lineno = &linenumber($`);
 		&perror("WARN", $file, $lineno, "NOPORTDOCS found.  Consider ".
-			"using PORT_OPTIONS:MDOCS");
+			"using PORT_OPTIONS:MDOCS.");
 	}
 
 	#
-	# whole file: check for USE_GETTEXT
+	# whole file: check for USES[+]=gettext
 	#
-	print "OK: checking for USE_GETTEXT without PORT_OPTIONS:MNLS.\n" if ($verbose);
-	if ($whole =~ /\nUSE_GETTEXT/ && $whole =~ /PORT_OPTIONS:MNLS/) {
-		$nlsused++;
-	}
-	print "OK: checking for USE_GETTEXT without WITHOUT_NLS.\n" if ($verbose);
-	if ($whole =~ /\nUSE_GETTEXT/ && $whole !~ /def(?:ined)?\s*\(?WITHOUT_NLS\)?/) {
-		if ($nlsused == 0) {
-			&perror("WARN", $file, -1, "Consider adding support for a WITHOUT_NLS ".
-					"knob to conditionally disable gettext support.");
-		}
-	} else {
-		$nlsused++;
-	}
-	if ($nlsused > 1) {
-		&perror("FATAL", $file, -1, "Both WITHOUT_NLS and PORT_OPTIONS:MNLS are found. ".
-			"Remove one or another.");
+	print "OK: checking for USES=gettext without PORT_OPTIONS:MNLS.\n" if ($verbose);
+	if ($makevar{USES} =~ /\bgettext\b/ && $whole !~ /PORT_OPTIONS:MNLS/
+		&& $whole !~ /NLS_USES=.*\bgettext\b/) {
+		&perror("WARN", $file, -1, "Consider adding support for a NLS ".
+			"knob to conditionally disable gettext support.");
 	}
 
 	#
@@ -1913,11 +1822,7 @@ sub checkmakefile {
 	print "OK: checking for deprecated macros.\n" if $verbose;
 
 	%deprecated = (
-			USE_MESA		=> 'USE_GL',
 			USE_RCORDER		=> 'USE_RC_SUBR',
-			INSTALLS_SHLIB  => 'USE_LDCONFIG',
-			APACHE_COMPAT   => 'USE_APACHE',
-			USE_XPM         => 'USE_X11=xpm',
 	);
 
 	@deplist = (\%deprecated);
@@ -1955,7 +1860,7 @@ sub checkmakefile {
 awk basename brandelf cat chmod chown cp cpio dialog dirname egrep expr
 false file find gmake grep gzcat ldconfig ln md5 mkdir mv objcopy paste patch
 pax perl printf rm rmdir pkg_add pkg_delete pkg_info pkg_version
-ruby sed sh sort sysctl touch tr which xargs xmkmf
+ruby sed sdl-config sh sort sysctl touch tr which xargs xmkmf
 	)) {
 		$cmdnames{$i} = "\$\{\U$i\E\}";
 	}
@@ -1965,11 +1870,12 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	$cmdnames{'gzip'} = '${GZIP_CMD}';
 	$cmdnames{'install'} = '${INSTALL_foobaa}';
 	$cmdnames{'python'} = '${PYTHON_CMD}';
+	$cmdnames{'sdl-config'} = '${SDL_CONFIG}';
 	$cmdnames{'strip'} = '${STRIP_CMD}';
 	$cmdnames{'unzip'} = '${UNZIP_CMD}';
 	$cmdnames{'pkg_create'} = '${PKG_CMD}';
-	foreach my $i (qw(aclocal autoconf autoheader automake autoreconf autoupdate autoscan ifnames libtool libtoolize)) {
-		$autocmdnames{$i} = "\$\{" . ( ( $i !~ /auto|aclocal|libtool/ ) ? "AUTO" : "" ) . "\U$i\E\}";
+	foreach my $i (qw(aclocal autoconf autoheader automake autoreconf autoupdate autoscan ifnames libtoolize)) {
+		$autocmdnames{$i} = "\$\{" . ( ( $i !~ /auto|aclocal/ ) ? "AUTO" : "" ) . "\U$i\E\}";
 	}
 	#
 	# ignore parameter string to echo command.
@@ -1983,11 +1889,17 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	foreach my $i (keys %cmdnames) {
 		# XXX This is a hack.  Really, we should break $j up into individual
 		# lines, and go through each one.
-		while ($j =~ /^(.*$i.*)$/gm) {
+		while ($j =~ /^(.*\b$i\b.*)$/gm) {
 			my $curline = $1;
+			my $dte_test = $curline;
+			$dte_test =~ s/^\s+//g;
+			if ($desktop_entries =~ /\Q$dte_test\E$/) {
+				next;
+			}
 			my $lineno = &linenumber($`);
 			if ($curline =~ /(?:^|\s)[\@\-]{0,2}$i(?:$|\s)/
 				&& $curline !~ /^[A-Z]+_TARGET[?+]?=[^\n]+$i/m
+				&& $curline !~ /^[A-Z]+_INSTALL_TARGET[?+]?=[^\n]+$i/m
 				&& $curline !~ /^IGNORE(.)?=[^\n]+$i/m
 				&& $curline !~ /^BROKEN(.)?=[^\n]+$i/m
 				&& $curline !~ /^RESTRICTED(.)?=[^\n]+$i/m
@@ -1995,7 +1907,11 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $curline !~ /^NO_CDROM(.)?=[^\n]+$i/m
 				&& $curline !~ /^MAINTAINER(.)?=[^\n]+$i/m
 				&& $curline !~ /^CATEGORIES(.)?=[^\n]+$i/m
+				&& $curline !~ /^USES(.)?=[^\n]+$i/m
 				&& $curline !~ /^WX_COMPS(.)?=[^\n]+$i/m
+				&& $curline !~ /^ONLY_FOR_ARCHS_REASON(.)?=[^\n]+$i/m
+				&& $curline !~ /^NOT_FOR_ARCHS_REASON(.)?=[^\n]+$i/m
+				&& $curline !~ /^[A-Z0-9_]+_DESC=[^\n]+$i/m
 				&& $curline !~ /^\s*#.+$/m
 				&& $curline !~ /\-\-$i/m
 				&& $curline !~ /^COMMENT(.)?=[^\n]+$i/m) {
@@ -2008,7 +1924,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 
 	foreach my $i (keys %autocmdnames) {
 		# XXX Same hack as above.
-		while ($j =~ /^(.*($i\d*).*)$/gm) {
+		while ($j =~ /^(.*(\b$i\d*).*)$/gm) {
 			my $lm = $1;
 			my $sm = $2;
 			my $lineno = &linenumber($`);
@@ -2021,6 +1937,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $lm !~ /^NO_CDROM(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^MAINTAINER(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^CATEGORIES(.)?=[^\n]+($i\d*)/m
+				&& $lm !~ /^USES(.)?=[^\n]+$i/m
 				&& $lm !~ /^USE_AUTOTOOLS(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^\s*#.+$/m
 				&& $lm !~ /^COMMENT(.)?=[^\n]+($i\d*)/m) {
@@ -2029,6 +1946,11 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 						"instead and set according USE_AUTOTOOLS=<tool> macro");
 			}
 		}
+	}
+
+	if ($makevar{'USE_AUTOTOOLS'} =~ /\blibtool\b/) {
+		&perror("WARN", $file, -1, "USE_AUTOTOOLS=libtool is deprecated.  ".
+			"Use USES=libtool instead.");
 	}
 
 	#
@@ -2070,6 +1992,29 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 		&perror("WARN", $file, $lineno, "possible use of \"\${GZIP_CMD} -$3\" ".
 			"found. \${GZIP_CMD} includes \"-\${GZIP}\" which ".
 			"sets the compression level.");
+	}
+
+	if (!$makevar{NO_STAGE}) {
+		#
+		# whole file: ${CHMOD} used
+		#
+		print "OK: checking for \${CHMOD}.\n"
+			if ($verbose);
+		if ($j =~ /\n\s*\${CHMOD}/) {
+			my $lineno = &linenumber($`);
+			&perror("WARN", $file, $lineno, "possible use of \"\${CHMOD}\" ".
+				"found. Use \@owner/\@group operators in pkg-plist instead.");
+		}
+		#
+		# whole file: ${INSTALL} -o | -g used
+		#
+		print "OK: checking for \${INSTALL} -o | -g.\n"
+			if ($verbose);
+		if ($j =~ /\n\s*\${INSTALL}(.*-\b(o|g)\b.*)/) {
+			my $lineno = &linenumber($`);
+			&perror("WARN", $file, $lineno, "possible use of \"\${INSTALL} -o | -g\" ".
+				"found. Use \@owner/\@group operators in pkg-plist instead.");
+		}
 	}
 
 	#
@@ -2191,11 +2136,11 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	}
 
 	#
-	# whole file: check for USE_ANT and USE_GMAKE both defined
+	# whole file: check for USE_ANT and USE_MAKE_CMD both defined
 	#
-	if ($use_ant && $whole =~ /^USE_GMAKE[?:]?=\s*(.*)$/m) {
+	if ($use_ant && $whole =~ /^USE_MAKE_CMD[?:]?=\s*(.*)$/m) {
 		&perror("WARN", $file, -1, "a port shall not define both USE_ANT ".
-			"and USE_GMAKE");
+			"and USE_MAKE_CMD");
 	}
 
 	#
@@ -2237,8 +2182,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	# whole file: check for --build, --mandir, and --infodir
 	# when GNU_CONFIGURE
 	#
-	if (exists $makevar{GNU_CONFIGURE} &&
-		$makevar{GNU_CONFIGURE} ne '' &&
+	if ($makevar{GNU_CONFIGURE} ne '' &&
 		$makevar{CONFIGURE_ARGS} =~ /--(build|(man|info)dir)/) {
 		&perror("WARN", $file, -1, "--build, --mandir, and --infodir ".
 			"are not needed in CONFIGURE_ARGS as they are already set in ".
@@ -2283,7 +2227,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				"CFLAGS+=... instead");
 		}
 
-		if (defined($cxxflags) && $cflags !~ /\$\{CXXFLAGS/) {
+		if (defined($cxxflags) && $cxxflags !~ /\$\{CXXFLAGS/) {
 			&perror("FATAL", $file, -1, "CXXFLAGS are clobbered in ".
 				"CONFIGURE_ENV.  Alter CXXFLAGS in the Makefile with ".
 				"CXXFLAGS+=... instead");
@@ -2383,9 +2327,9 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	# break the makefile into sections.
 	#
 	$tmp = $rawwhole;
+	$tmp =~ s/\\\n/ /g;
 	# keep comment, blank line, comment in the same section
 	$tmp =~ s/(#.*\n)\n+(#.*)/$1$2/g;
-	$tmp =~ s/\\\n\n/\n/g;
 	@sections = split(/\n\n+/, $tmp);
 	for ($i = 0; $i <= $#sections; $i++) {
 		if ($sections[$i] !~ /\n$/) {
@@ -2402,26 +2346,12 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 Whom
 Date [cC]reated
 EOF
-	if ($osname eq 'NetBSD') {
-		unshift(@linestocheck, '(New )?[pP](ackage|ort)s [cC]ollection [mM]akefile [fF]or');
-	}
+
 	$tmp = $sections[$idx++];
 	$tmp = "\n" . $tmp;	# to make the begin-of-line check easier
 
 	if ($tmp =~ /\n[^#]/) {
 		&perror("FATAL", $file, -1, "non-comment line in comment section.");
-	}
-	if ($osname eq 'NetBSD') {
-		foreach my $i (@linestocheck) {
-			$j = $i;
-			$j =~ s/\(.*\)\?//g;
-			$j =~ s/\[(.)[^\]]*\]/$1/g;
-			if ($tmp !~ /# $i:[ \t]+\S+/) {
-				&perror("FATAL", $file, -1, "no \"$j\" line in comment section.");
-			} else {
-				print "OK: \"$j\" seen in $file.\n" if ($verbose);
-			}
-		}
 	}
 	if ($tmp =~ m/Version [rR]equired/) {
 		&perror("WARN", $file, -1, "Version required is no longer needed in the comment section.");
@@ -2458,7 +2388,6 @@ EOF
 		$sections[$i] = "\n" . $sections[$i];
 		$sections[$i] =~ s/\n#[^\n]*//g;
 		$sections[$i] =~ s/\n\n+/\n/g;
-		$sections[$i] =~ s/\\\n/ /g;
 		$sections[$i] =~ s/^\n//;
 	}
 
@@ -2562,7 +2491,7 @@ DIST_SUBDIR EXTRACT_ONLY
 			"the main category for a port");
 	}
 
-	if ($committer && $makevar{'.CURDIR'} =~ m'${portsdir}/([^/]+)/[^/]+/?$') {
+	if ($committer && $makevar{'.CURDIR'} =~ m/\Q${portsdir}\E\/([^\/]+)\/[^\/]+\/?$/) {
 		if ($cat[0] ne $1 && $makevar{PKGCATEGORY} ne $1 ) {
 			&perror("FATAL", $file, -1, "category \"$1\" must be listed first");
 		}
@@ -2611,45 +2540,33 @@ DIST_SUBDIR EXTRACT_ONLY
 		}
 	}
 
-	# check number of MASTER_SITES
-	if ($makevar{MASTER_SITES} ne '' &&
-		! grep {$makevar{MASTER_SITES} =~ m|$_|} @MASTERSITES_WHITELIST) {
-		my @sites = split(/\s+/, $makevar{MASTER_SITES});
-		if (scalar(@sites) == 1) {
-			&perror("WARN", $file, -1, "only one MASTER_SITE configured.  ".
-				"Consider adding additional mirrors.");
-		}
-	}
-
 	# check the URL
 	if (($tmp =~ /\nMASTER_SITES[+?]?=[ \t]*([^\n]*)\n/
 	 && $1 !~ /^[ \t]*$/) || ($makevar{MASTER_SITES} ne '')) {
 		print "OK: seen MASTER_SITES, sanity checking URLs.\n"
 			if ($verbose);
+		my $urlseen = 0;
 		my @sites = split(/\s+/, $1 // '');
 		my $ftphttp = 0;
-		my $skipnext = 0;
 		foreach my $i (@sites) {
-			if ($skipnext) {
-				$skipnext = 0;
-				next;
-			}
-			$skipnext++ if ($i =~ /^#/);
+			last if ($i =~ /^#/);
 			if ($i =~ m#^\w+://#) {
+				$urlseen = 1;
+				$ftphttp = 1 if ($i =~ /^(ftp|http):/);
 				&urlcheck($i, $file);
 				unless (&is_predefined($i, $file)) {
 					print "OK: URL \"$i\" ok.\n"
 						if ($verbose);
-					$ftphttp++ if ($i =~ /^(ftp|http):/);
 				}
 			} else {
 				print "OK: non-URL \"$i\" ok.\n"
 					if ($verbose);
-				$ftphttp++;
+				# Assume variables contain an ftp/http site.
+				$ftphttp = 1;
 			}
 		}
-		&perror("WARN", $file, -1, "no ftp/http mirror in MASTER_SITES.  ".
-			"This may break fetch through proxies.") unless ($ftphttp);
+		&perror("WARN", $file, -1, "no ftp/http mirror in MASTER_SITES ".
+			"for users behind a proxy.") if ($urlseen && ! $ftphttp);
 	} else {
 		&perror("WARN", $file, -1, "no MASTER_SITES found. is it ok?");
 	}
@@ -2852,13 +2769,6 @@ DIST_SUBDIR EXTRACT_ONLY
 		}
 	}
 
-	# additional checks for committer.
-	if ($committer && $has_lang_cat) {
-		&perror("WARN", $file, -1, "be sure to include language code ".
-			"\"$port_lang-\" ".
-			"in the module alias name.");
-	}
-
 	if ($committer) {
 		if (opendir(DIR, ".")) {
 			my @tgz = grep(/\.tgz$/, readdir(DIR));
@@ -2886,7 +2796,7 @@ DISTFILES EXTRACT_ONLY
 	#
 	print "OK: checking second section of $file (PATCH*: optional).\n"
 		if ($verbose);
-	$tmp = $sections[$idx];
+	$tmp = $sections[$idx] // '';
 
 	if ($tmp =~ /(PATCH_SITES|PATCH_SITE_SUBDIR|PATCHFILES|PATCH_DIST_STRIP)/) {
 		&checkearlier($file, $tmp, @varnames);
@@ -2922,7 +2832,7 @@ PATCH_SITES PATCHFILES PATCH_DIST_STRIP
 	#
 	print "OK: checking third section of $file (MAINTAINER).\n"
 		if ($verbose);
-	$tmp = $sections[$idx];
+	$tmp = $sections[$idx] // '';
 
 	&checkearlier($file, $tmp, @varnames);
 	&checkorder('MAINTAINER', $tmp, $file, qw(
@@ -2970,7 +2880,8 @@ MAINTAINER COMMENT
 	} else { # check for correctness
 		if (($makevar{COMMENT} !~ /^["\[0-9A-Z]/) || ($makevar{COMMENT} =~ m/\.$/)) { #"
 			&perror("WARN", $file, -1, "COMMENT should begin with a capital, and end without a period");
-		} elsif (length($makevar{COMMENT}) > 70) {
+		}
+		if (length($makevar{COMMENT}) > 70) {
 			&perror("WARN", $file, -1, "COMMENT exceeds 70 characters limit.");
 		}
 	}
@@ -3016,6 +2927,8 @@ MAINTAINER COMMENT
 			LICENSE LICENSE_COMB LICENSE_GROUPS LICENSE_NAME
 			LICENSE_TEXT LICENSE_FILE LICENSE_PERMS
 		));
+	} else {
+		&perror("WARN", $file, -1, "Consider defining LICENSE.");
 	}
 
 	#
@@ -3023,7 +2936,7 @@ MAINTAINER COMMENT
 	#
 	print "OK: checking fifth section of $file (*_DEPENDS).\n"
 		if ($verbose);
-	$tmp = $sections[$idx];
+	$tmp = $sections[$idx] // '';
 
 	# Check for direct assignment of BUILD_DEPENDS to RUN_DEPENDS.
 	if ($tmp =~ /\nRUN_DEPENDS=[ \t]*\${BUILD_DEPENDS}/) {
@@ -3138,76 +3051,95 @@ TEST_DEPENDS FETCH_DEPENDS DEPENDS_TARGET
 		&perror("FATAL", $file, -1, "\"$1\" was obsoleted. remove this.");
 	}
 
-	# check MAN[1-9LN]
-	print "OK: checking MAN[0-9LN].\n" if ($verbose);
-	foreach my $i (keys %plistmanall) {
-		print "OK: pkg-plist MAN$i=$plistmanall{$i}\n" if ($verbose);
+	# check NO_STAGE
+	if ($makevar{NO_STAGE}) {
+		&perror("WARN", $file, -1, "Consider adding STAGE support.");
 	}
-	if ($tmp =~ /PERL_CONFIGURE=\s*/
-		&& $tmp =~ /^MAN3PREFIX=\s*\${PREFIX}\/lib\/perl5\/\${PERL_VERSION}/) {
+
+	# various MAN'uals related checks
+	if ($makevar{USE_PERL5} =~ /\b(configure|modbuild|modbuildtiny)\b/
+		&& $tmp =~ /\nMAN3PREFIX=\s*\${PREFIX}\/lib\/perl5\/\${PERL_VER/) {
 		&perror("WARN", $file, -1, "MAN3PREFIX is ".
 			"\"\${PREFIX}/lib/perl5/\${PERL_VERSION}\" ".
-			"when PERL_CONFIGURE is set.  You do not need to specify it.");
+			"when USE_PERL5=configure|modbuild|modbuildtiny is set.  You do not need to specify it.");
 	}
-	foreach my $i (split(//, $manchapters)) {
-		if ($tmp =~ /^MAN\U$i\E=\s*([^\n]*)\n/) {
-			print "OK: Makefile MAN\U$i\E=$1\n" if ($verbose);
+	if ($makevar{NO_STAGE}) {
+		# check MAN[1-9LN]
+		print "OK: checking MAN[0-9LN].\n" if ($verbose);
+		foreach my $i (keys %plistmanall) {
+			print "OK: pkg-plist MAN$i=$plistmanall{$i}\n" if ($verbose);
 		}
-	}
-	foreach my $i (split(//, $manchapters)) {
-		next if ($i eq '');
-		my @mansecs = grep(/^MAN\U$i\E=\s*(.*)/, split(/\n/, $tmp));
-		if (scalar @mansecs > 1) {
-			&perror("FATAL", $file, -1, "duplicate MAN$i macro.  ".
-				"Only the last MAN$i macro will be processed.  Use ".
-				"MAN$i+=... instead to append man pages.");
+		foreach my $i (split(//, $manchapters)) {
+			if ($tmp =~ /\nMAN\U$i\E[+?]=\s*([^\n]*)\n/ &&
+				(!$makevar{NO_STAGE} || $makevar{NO_STAGE} eq '')) {
+				&perror("FATAL", $file, -1, "when STAGE support is enabled ".
+					"you must add your man pages directly to the plist ".
+					"with a .gz extension.");
+			} elsif ($tmp =~ /\nMAN\U$i\E[+?]=\s*([^\n]*)\n/) {
+				print "OK: Makefile MAN\U$i\E=$1\n" if ($verbose);
+			}
 		}
-		if ($tmp =~ /^MAN\U$i\E=\s*([^\n]*)\n/) {
-			@mman = grep($_ !~ /^\s*$/, split(/\s+/, $1));
-			@pman = grep($_ !~ /^\s*$/,
-				split(/\s+/, $plistmanall{$i} // ''));
-			foreach my $j (@mman) {
-				print "OK: checking $j (Makefile)\n"
-					if ($verbose);
-				if ($automan && grep($_ eq $j, @pman)) {
-					&perror("FATAL", $file, -1, "duplicated manpage ".
-						"entry $j: content of ".
-						"MAN\U$i\E will be automatically ".
-						"added to pkg-plist.");
-				} elsif (!$automan && !grep($_ eq $j, @pman)) {
-					&perror("WARN", $file, -1, "manpage $j ".
-						"MAN\U$i\E but not in pkg-plist.");
-				}
+		if ($tmp =~ /\nMANCOMPRESSED=\s*/ &&
+			(!$makevar{NO_STAGE} || $makevar{NO_STAGE} eq '')) {
+			&perror("WARN", $file, -1, "when STAGE support is enable, the ".
+				"MANCOMPRESSED macro is not supported.  The compress-man ".
+				"target is able to only compress when it is needed.");
+		}
+		foreach my $i (split(//, $manchapters)) {
+			next if ($i eq '');
+			my @mansecs = grep(/^MAN\U$i\E=\s*(.*)/, split(/\n/, $tmp));
+			if (scalar @mansecs > 1) {
+				&perror("FATAL", $file, -1, "duplicate MAN$i macro.  ".
+					"Only the last MAN$i macro will be processed.  Use ".
+					"MAN$i+=... instead to append man pages.");
 			}
-			foreach my $j (@pman) {
-				print "OK: checking $j (pkg-plist)\n" if ($verbose);
-				if (!grep($_ eq $j, @mman)) {
-					&perror("WARN", $file, -1, "manpage $j in pkg-plist ".
-						"but not in MAN\U$i\E.");
+			if ($tmp =~ /^MAN\U$i\E=\s*([^\n]*)\n/) {
+				@mman = grep($_ !~ /^\s*$/, split(/\s+/, $1));
+				@pman = grep($_ !~ /^\s*$/,
+					split(/\s+/, $plistmanall{$i} // ''));
+				foreach my $j (@mman) {
+					print "OK: checking $j (Makefile)\n"
+						if ($verbose);
+					if ($automan && grep($_ eq $j, @pman)) {
+						&perror("FATAL", $file, -1, "duplicated manpage ".
+							"entry $j: content of ".
+							"MAN\U$i\E will be automatically ".
+							"added to pkg-plist.");
+					} elsif (!$automan && !grep($_ eq $j, @pman)) {
+						&perror("WARN", $file, -1, "manpage $j ".
+							"MAN\U$i\E but not in pkg-plist.");
+					}
 				}
-			}
-		} else {
-			if ($plistmanall{$i}) {
-				if ($manstrict) {
-					&perror("FATAL", $file, -1, "manpage for chapter ".
-						"$i must be listed in ".
-						"MAN\U$i\E. ");
-				} else {
-					&perror("WARN", $file, -1, "manpage for chapter ".
-						"$i should be listed in ".
-						"MAN\U$i\E, ".
-						"even if compression is ".
-						"not necessary.");
+				foreach my $j (@pman) {
+					print "OK: checking $j (pkg-plist)\n" if ($verbose);
+					if (!grep($_ eq $j, @mman)) {
+						&perror("WARN", $file, -1, "manpage $j in pkg-plist ".
+							"but not in MAN\U$i\E.");
+					}
 				}
-			}
-			if ($mancompress && $plistman{$i}) {
-				&perror("WARN", $file, -1, "MAN\U$i\E will help you ".
-					"compressing manual page in chapter ".
-					"\"$i\".");
-			} elsif (!$mancompress && $plistmangz{$i}) {
-				&perror("WARN", $file, -1, "MAN\U$i\E will help you ".
-					"uncompressing manual page in chapter ".
-					"\"$i\".");
+			} else {
+				if ($plistmanall{$i}) {
+					if ($manstrict) {
+						&perror("FATAL", $file, -1, "manpage for chapter ".
+							"$i must be listed in ".
+							"MAN\U$i\E. ");
+					} else {
+						&perror("WARN", $file, -1, "manpage for chapter ".
+							"$i should be listed in ".
+							"MAN\U$i\E, ".
+							"even if compression is ".
+							"not necessary.");
+					}
+				}
+				if ($mancompress && $plistman{$i}) {
+					&perror("WARN", $file, -1, "MAN\U$i\E will help you ".
+						"compressing manual page in chapter ".
+						"\"$i\".");
+				} elsif (!$mancompress && $plistmangz{$i}) {
+					&perror("WARN", $file, -1, "MAN\U$i\E will help you ".
+						"uncompressing manual page in chapter ".
+						"\"$i\".");
+				}
 			}
 		}
 	}
@@ -3294,7 +3226,7 @@ TEST_DEPENDS FETCH_DEPENDS DEPENDS_TARGET
 				if ($i ne '' && ! -f "files/$i.in") {
 					&perror("FATAL", $file, -1, "$i listed in USE_RC_SUBR, ".
 						"but files/$i.in is missing.");
-				} elsif ($i eq '' && $mvar ne '') {
+				} elsif ($i eq '' && $mvar && $mvar ne '') {
 					&perror("WARN", $file, -1, "possible undefined make variable ".
 						"$mvar used as the value for USE_RC_SUBR.");
 				}
@@ -3363,6 +3295,7 @@ sub checkorder {
 	my(@items, $i, $j, $k, $invalidorder);
 
 	print "OK: checking the order of $section section.\n" if ($verbose);
+	$str //= '';
 
 	@items = ();
 	foreach my $i (split("\n", $str)) {
@@ -3419,6 +3352,8 @@ sub checkorder {
 sub checkearlier {
 	my($file, $str, @varnames) = @_;
 	my($i);
+
+	$str //= '';
 
 	print "OK: checking items that has to appear earlier.\n" if ($verbose);
 	foreach my $i (@varnames) {
@@ -3477,20 +3412,21 @@ sub abspathname {
 		}
 	}
 
-	print "OK: checking direct use of pathnames, phase 1.\n" if ($verbose);
+	foreach my $s (split(/\n+/, $str)) {
+		print "OK: checking direct use of pathnames, phase 1.\n" if ($verbose);
 %cmdnames = split(/\n|\t+/, <<EOF);
 /usr/opt	\${PORTSDIR} instead
 $portsdir	\${PORTSDIR} instead
 $localbase	\${PREFIX} or \${LOCALBASE}, as appropriate
 EOF
-	foreach my $i (keys %cmdnames) {
-		if ($str =~ /$i/) {
-			&perror("WARN", $file, -1, "possible direct use of \"$&\" ".
-				"found. if so, use $cmdnames{$i}.");
+		foreach my $i (keys %cmdnames) {
+			if ($s =~ /^[^#]*$i/) {
+				&perror("WARN", $file, -1, "possible direct use of \"$&\" ".
+					"found. if so, use $cmdnames{$i}.");
+			}
 		}
-	}
 
-	print "OK: checking direct use of pathnames, phase 2.\n" if ($verbose);
+		print "OK: checking direct use of pathnames, phase 2.\n" if ($verbose);
 %cmdnames = split(/\n|\t+/, <<EOF);
 distfiles	\${DISTDIR} instead
 pkg		\${PKGDIR} instead
@@ -3499,22 +3435,38 @@ scripts		\${SCRIPTDIR} instead
 patches		\${PATCHDIR} instead
 work		\${WRKDIR} instead
 EOF
-	foreach my $i (keys %cmdnames) {
-		if ($str =~ /(\.\/|\$[\{\(]\.CURDIR[\}\)]\/|[ \t])(\b$i)\//) {
-			&perror("WARN", $file, -1, "possible direct use of \"$i\" ".
-				"found. if so, use $cmdnames{$i}.");
+		foreach my $i (keys %cmdnames) {
+			# use (?![\w-]) instead of \b to exclude pkg-*
+			if ($s =~ /^[^#]*(\.\/|\$[\{\(]\.CURDIR[\}\)]\/|[ \t])(\b$i)(?![\w-])/) {
+				&perror("WARN", $file, -1, "possible direct use of \"$i\" \"$s\" ".
+					"found. if so, use $cmdnames{$i}.");
+			}
 		}
 	}
 }
 
 sub get_makevar {
-		my($mvar) = @_;
-		my($cmd, $result);
+	my($cmd, $result);
 
-		$cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", $mvar);
-		$result = `$cmd`;
+	$cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", @_);
+	$result = `$cmd`;
+	chomp $result;
 
-		return chomp $result;
+	$result =~ s/\n\n/\n\0\n/g;
+
+	return $result;
+}
+
+sub get_makevar_raw {
+	my($cmd, $result);
+
+	$cmd = join(' -XV ', "make $makeenv MASTER_SITE_BACKUP=''", @_);
+	$result = `$cmd`;
+	chomp $result;
+
+	$result =~ s/\n\n/\n\0\n/g;
+
+	return $result;
 }
 
 sub is_predefined {
@@ -3525,10 +3477,15 @@ sub is_predefined {
 		$site_re = quotemeta $site;
 		$site_re =~ s,$subdir_re,/(.*)/,;
 
-		if ($url =~ /$site_re/) {
-			&perror("WARN", $file, -1, "how about using ".
-				"\"\${MASTER_SITE_$predefined{$site}}\" with ".
-				"\"MASTER_SITE_SUBDIR=$1\", instead of \"$url\"?");
+		if ($url =~ /$site_re/ && $file) {
+			my $pe = "how about using \"\${MASTER_SITE_$predefined{$site}}\" ";
+			if ($1) {
+				$pe .= "with \"MASTER_SITE_SUBDIR=$1\", ";
+			}
+			$pe .= "instead of \"$url\"?";
+			&perror("WARN", $file, -1, $pe);
+			return &TRUE;
+		} elsif ($url =~ /$site_re/ && !$file) {
 			return &TRUE;
 		}
 	}
@@ -3547,11 +3504,6 @@ sub urlcheck {
 	if ($url =~ m#://[^/]*:/#) {
 	&perror("FATAL", $file, -1, "URL \"$url\" contains ".
 				"extra \":\".");
-	}
-	if ($osname eq 'FreeBSD' && $url =~ m#(www\.freebsd\.org)/~.+/#i) {
-		&perror("WARN", $file, -1, "URL \"$url\", ".
-			"$1 should be ".
-			"people.FreeBSD.org");
 	}
 }
 sub TRUE {1;}
