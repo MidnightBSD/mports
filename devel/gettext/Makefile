@@ -2,7 +2,7 @@
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.3.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -41,7 +41,7 @@ post-patch:
 .endif
 
 post-install:
-	@${MKDIR} ${LOCALBASE}/share/locale
-	@cd ${WRKSRC}/gettext-tools/doc && make install-info-am
+	@${SETENV} ${MAKE_ENV} ${MAKE_CMD} -C ${WRKSRC}/gettext-tools/doc \
+		${MAKE_ARGS} install-info-am
 
 .include <bsd.port.mk>
