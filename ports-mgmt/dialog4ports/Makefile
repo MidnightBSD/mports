@@ -2,7 +2,7 @@
 
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://m1cro.me/dialog4ports/ \
 		http://files.etoilebsd.net/dialog4ports/ \
@@ -23,7 +23,6 @@ USES=		uidfix
 # to avoid circular dependency
 NO_CCACHE=	yes
 MANCOMPRESSED=	yes
-MAN1=		${PORTNAME}.1
 MAKE_ENV+=	__MAKE_CONF=/dev/null SRCCONF=/dev/null
 
 .include <bsd.port.pre.mk>
