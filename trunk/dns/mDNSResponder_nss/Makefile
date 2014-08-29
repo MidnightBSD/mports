@@ -1,19 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	mDNSResponder_nss
-PORTVERSION=	541
+PORTVERSION=	544
 CATEGORIES=	dns net
 MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=	${PORTNAME:S/_nss//}-${PORTVERSION}
 
-MAINTAINER=	mazhe@alkumuna.eu
-COMMENT=	Apple\'s mDNS responder - BSD nsswitch module
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Apple mDNS responder - BSD nsswitch module
 
-LICENSE=    	apache2
+LICENSE=    	apache2 bsd3
+LICENSE_COMB=	dual
 
 LIB_DEPENDS=	dns_sd:${PORTSDIR}/net/mDNSResponder
 
-CONFLICTS_INSTALL= dns/nss_mdns
+CONFLICTS_INSTALL= nss_mdns-[0-9]*
 
 WRKSRC=		${WRKDIR}/${PORTNAME:S/_nss//}-${PORTVERSION}
 
