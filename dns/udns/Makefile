@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	udns
-PORTVERSION=	0.2
+PORTVERSION=	0.4
 CATEGORIES=	dns
 MASTER_SITES=	http://www.corpit.ru/mjt/udns/
 
@@ -11,7 +11,6 @@ COMMENT=	DNS resolver library with sync and async queries
 LICENSE=	lgpl2.1
 
 HAS_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	IPV6 DOCS
@@ -21,9 +20,6 @@ ALL_TARGET=	staticlib shared
 PORTDOCS=	*
 
 SHLIB_MAJOR=	0
-
-MAN1=		dnsget.1 rblcheck.1
-MAN3=		udns.3
 
 .include <bsd.mport.options.mk>
 
@@ -45,10 +41,10 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/libudns.a ${PREFIX}/lib/libudns.a
 	${INSTALL_PROGRAM} ${WRKSRC}/dnsget_s ${PREFIX}/bin/dnsget
 	${INSTALL_PROGRAM} ${WRKSRC}/rblcheck_s ${PREFIX}/bin/rblcheck
-.for FILE in ${MAN1}
+.for FILE in dnsget.1 rblcheck.1
 	${INSTALL_MAN} ${WRKSRC}/${FILE} ${MANPREFIX}/man/man1/${FILE}
 .endfor
-.for FILE in ${MAN3}
+.for FILE in udns.3
 	${INSTALL_MAN} ${WRKSRC}/${FILE} ${MANPREFIX}/man/man3/${FILE}
 .endfor
 
