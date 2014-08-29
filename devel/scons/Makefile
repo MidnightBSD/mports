@@ -3,7 +3,7 @@
 
 PORTNAME=	scons
 PORTVERSION=	2.3.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -11,6 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool alternative to make
 
 LICENSE=	mit
+
+RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_PYTHON=		2
 USE_PYDISTUTILS=	yes
@@ -23,5 +25,5 @@ post-patch:
 		-e 's,distutils\.command\.install$$,setuptools\.command\.install,' \
 		-e 's,distutils\.command\.install\.,setuptools\.command\.install\.,' \
 		${WRKSRC}/setup.py
-
+	@${FIND} ${WRKSRC} -name \*.orig -delete
 .include <bsd.port.mk>
