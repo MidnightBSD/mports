@@ -2,12 +2,12 @@
 
 PORTNAME=	autotrust
 PORTVERSION=	0.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/autotrust/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool to automatically update DNSSEC trust anchors
+COMMENT=	Tool to automatically update DNSSEC trust anchors
 
 LICENSE=	bsd3
 
@@ -18,10 +18,9 @@ GNU_CONFIGURE=	yes
 CFLAGS=		-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 
-MAN8=		autotrust.8
-
 PLIST_FILES=	sbin/autotrust \
-		etc/autotrust/autotrust.conf.sample
+		etc/autotrust/autotrust.conf.sample \
+		man/man8/autotrust.8.gz
 PLIST_DIRS=	etc/autotrust
 
 do-patch:
