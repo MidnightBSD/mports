@@ -2,7 +2,7 @@
 
 PORTNAME=	jpeg
 PORTVERSION=	8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		http://sylvana.net/jpegcrop/:exif
@@ -14,6 +14,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IJG's jpeg compression utilities
+
 LICENSE=	other
 
 CONFLICTS=	libjpeg-turbo-[0-9]*
@@ -21,9 +22,9 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
 DISTVERSION2=	8d
 USE_AUTOTOOLS=	libtool
+#USES=		libtool:oldver
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
-MAKE_JOBS_SAFE=	yes
 
 ADDITIONAL_HEADER=	jinclude.h jpegint.h
 
@@ -31,8 +32,6 @@ ADDITIONAL_HEADER=	jinclude.h jpegint.h
 .if defined(J_MAXMEM)
 CONFIGURE_ARGS+=	--enable-maxmem=${J_MAXMEM}
 .endif
-
-MAN1=		cjpeg.1 djpeg.1 jpegtran.1 rdjpgcom.1 wrjpgcom.1
 
 .include <bsd.mport.options.mk>
 
