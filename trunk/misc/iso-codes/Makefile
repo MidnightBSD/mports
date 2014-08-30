@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	iso-codes
-PORTVERSION=	3.51
+PORTVERSION=	3.54
 CATEGORIES=	misc
 MASTER_SITES=	http://pkg-isocodes.alioth.debian.org/downloads/
 
