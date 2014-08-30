@@ -2,7 +2,7 @@
 
 PORTNAME=	getopt
 PORTVERSION=	1.1.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	http://software.frodo.looijaard.name/getopt/files/
 
@@ -13,23 +13,18 @@ LICENSE=	gpl2
 
 FAKE_OPTS+=	trueprefix
 
-USES=		gettext gmake
+OPTIONS_DEFINE=	DOCS
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
-MAKE_ENV+=	LIBCGETOPT=0
+FAKE_MAKEENV+=	LIGCGETOPT=0
+FAKE_MAKEARGS+=	CC=${CC}
+USES=		gettext gmake
 
-DOCS=		Changelog README
+PORTDOCS=	Changelog README
 
-.include <bsd.mport.options.mk>
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|CC=gcc|CC=${CC}|' ${WRKSRC}/Makefile
-
-.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
