@@ -1,10 +1,5 @@
-# New ports collection makefile for:	susv2
-# Date created:		11 April 2002
-# Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/misc/susv2/Makefile,v 1.4 2006/01/14 10:07:33 sem Exp $
-#
 
 PORTNAME=	susv2
 PORTVERSION=	1.0
@@ -14,11 +9,12 @@ DISTNAME=	susv2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Single UNIX Specification Version 2
+
 LICENSE=	restricted
 
 RESTRICTED=	Redistribution of the documents is not permitted
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 PORTDOCS=	*
 
