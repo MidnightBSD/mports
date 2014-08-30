@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xmlto
-PORTVERSION=	0.0.25
-PORTREVISION=	1
+PORTVERSION=	0.0.26
 CATEGORIES=	textproc
 MASTER_SITES=	https://fedorahosted.org/releases/x/m/xmlto/:xmlto \
 		LOCAL/mandree/:xmlto \
@@ -35,7 +34,7 @@ DBLATEX_DESC=		Add dependency on DBlatex (DB for DocBook)
 FOP_DESC=		Add dependency on FOP (requires Java)
 PASSIVETEX_DESC=	Add dependency on XMLTeX/PassiveTeX
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	BASH=${BASH_CMD} GETOPT=${GETOPT_CMD} PDFXMLTEX=${PDFXMLTEX_CMD}
 MAKE_ENV+=	HOME=/dev/null
@@ -45,7 +44,6 @@ GETOPT_CMD=	${LOCALBASE}/bin/getopt
 XSL_DIR=	${LOCALBASE}/share/xsl/docbook
 PDFXMLTEX_CMD=	${LOCALBASE}/bin/pdftex
 
-MAN1=		xmlif.1 xmlto.1
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS THANKS
 # these two documentation files do not convey information useful for
 # the FreeBSD port at this time:
