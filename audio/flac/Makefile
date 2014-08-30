@@ -2,6 +2,7 @@
 
 PORTNAME=	flac
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 
@@ -10,13 +11,13 @@ COMMENT=	Free lossless audio codec
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
-USES=		pathfix pkgconfig tar:xz
-USE_AUTOTOOLS=	libtool
+USES=		libtool:oldver pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-sse \
+CONFIGURE_ARGS=	--enable-static \
+		--enable-sse \
 		--with-ogg="${LOCALBASE}" \
 		--disable-silent-rules \
 		--disable-thorough-tests \
