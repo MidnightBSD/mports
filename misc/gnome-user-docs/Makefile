@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-user-docs
 PORTVERSION=	2.32.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,11 +15,9 @@ LICENSE=	other
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
-USES=		pkgconfig
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pathfix pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
-USE_GNOME=	gnomeprefix gnomehack gnomehier gnomedocutils
+USE_GNOME=	gnomeprefix gnomehier gnomedocutils
 
 .include <bsd.port.mk>
