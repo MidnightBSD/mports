@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	zfstools
-PORTVERSION=	0.3.1
+PORTVERSION=	0.3.2
 CATEGORIES=	sysutils ruby
 MASTER_SITES=	GH \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/
@@ -10,10 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenSolaris-compatible auto snapshotting for ZFS
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bdrewery
-GH_COMMIT=	24d02f9
+GH_COMMIT=	6794ec1
 GH_TAGNAME=	v${DISTVERSION}
 
 USE_RUBY=	yes
