@@ -12,7 +12,7 @@ COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
 
 _COMMANDSMKINCLUDED=     yes
 
-MAKE_CMD=	/usr/bin/make
+MAKE_CMD?=	/usr/bin/make
 
 AWK?=		/usr/bin/awk
 BASENAME?=	/usr/bin/basename
