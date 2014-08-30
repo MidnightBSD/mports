@@ -2,6 +2,7 @@
 
 PORTNAME=	bdb
 PORTVERSION=	0.6.6
+PORTREVISION=	1
 CATEGORIES=	databases ruby
 MASTER_SITES=	ftp://ftp.idaemons.org/pub/distfiles/ruby/ \
 		http://idaemons.org/distfiles/ruby/ \
@@ -11,13 +12,11 @@ PKGNAMESUFFIX=	${WITH_BDB_VER}
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Ruby interface to Oracle's Berkeley DB revision 2 or later
+COMMENT=	Ruby interface to Oracle Berkeley DB revision 2 or later
 
-LICENSE=	gpl2
-# same terms as ruby
+LICENSE=	ruby
 
 USE_BDB=	yes
-USES=		tar:bzip2
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
@@ -36,30 +35,49 @@ EXAMPLESDIR=	${RUBY_MODEXAMPLESDIR}
 PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/bdb.so
 PORTDOCS=	*
 PORTEXAMPLES=	*
+USES=		shebangfix tar:bzip2
+SHEBANG_FILES=	examples/record.rb \
+		examples/recno.rb \
+		examples/zeroc.rb \
+		examples/txn.rb \
+		examples/queue.rb \
+		examples/cats.rb \
+		examples/log.rb \
+		examples/cursor.rb \
+		examples/func.rb \
+		examples/replication/mgr/b.rb \
+		examples/replication/base/op.rb \
+		examples/replication/base/cl.rb \
+		examples/replication/base/b.rb \
+		examples/replication/base/ma.rb \
+		examples/replication/base/mc.rb \
+		examples/join.rb \
+		examples/basic.rb \
+		examples/lock.rb
+
+
 
 .include <bsd.port.pre.mk>
 
 post-patch:
-.if ${RUBY_VER} == 2.0
+.if ${RUBY_VER} >= 2.0
 	@${REINPLACE_CMD} -e '/remove_const/d' ${WRKSRC}/src/features.rb
 .endif
 
+.if ${RUBY_VER} >= 2.1
+	@${REINPLACE_CMD} -e 's|RBASIC(obj)->klass = \(.*\);|RBASIC_SET_CLASS_RAW(obj, \1);|' -e 's|RCLASS(\([[:alnum:]_]*\))->m_tbl|RCLASS_M_TBL(\1)|g' ${WRKSRC}/bdbxml2/bdbxml.h ${WRKSRC}/src/common.c
+.endif
 post-build:
-.if ${PORT_OPTIONS:MDOCS}
 	(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} \
 	${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} rdoc)
-.endif
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}/doc
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR})
-	(cd ${WRKSRC}/docs/doc && ${COPYTREE_SHARE} . ${DOCSDIR}/doc)
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${EXAMPLESDIR}/
-	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${EXAMPLESDIR} "! -empty")
-.endif
+	${STRIP_CMD} ${STAGEDIR}${RUBY_SITEARCHLIBDIR}/bdb.so
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/doc
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC}/docs/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/doc)
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR} "! -empty")
 
 regression-test: build
 	@${MKDIR} ${BUILD_WRKSRC}/tmp
