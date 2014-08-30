@@ -12,11 +12,12 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Oracle's Berkeley DB revision 2 or later
+
 LICENSE=	gpl2
 # same terms as ruby
 
 USE_BDB=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
