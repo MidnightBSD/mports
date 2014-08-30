@@ -10,7 +10,8 @@ MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A utility port that creates the GNOME directory tree
+COMMENT=	Utility port that creates the GNOME directory tree
+
 LICENSE=	unknown
 
 NO_BUILD=	yes
