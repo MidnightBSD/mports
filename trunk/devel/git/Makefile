@@ -1,20 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-PORTVERSION=	1.9.0
+PORTVERSION=	2.0.2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	KERNEL_ORG
+MASTER_SITE_SUBDIR=	software/scm/git
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
+# We manually extract the htmldocs.
 EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Distributed source code management tool
+COMMENT?=	Distributed source code management tool
 
 LICENSE=	gpl2
-
-PROJECTHOST=	git-core
 
 CONFLICTS?=	git-subversion-[0-9]*
 
@@ -29,11 +29,15 @@ USES=		gmake shebangfix
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV+=	V=1
-MAKE_ARGS+=	prefix="${PREFIX}"
 USE_OPENSSL=	yes
 USE_RC_SUBR=	git_daemon
+SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
+		contrib/hooks/update-paranoid \
+		contrib/credential/netrc/git-credential-netrc \
+		contrib/diff-highlight/diff-highlight \
+		contrib/buildsystems/generate contrib/contacts/git-contacts
 
-CONFIGURE_ARGS=	--enable-pthreads=-pthread
+CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
 OPTIONS_DEFINE=	GUI SVN GITWEB CONTRIB P4 CVS HTMLDOCS PERL ICONV CURL \
 		NLS
@@ -74,7 +78,9 @@ USE_PERL5=	yes
 MAKE_ENV+=	PERL_PATH=${PERL}
 BUILD_DEPENDS+=	p5-Error>=0:${PORTSDIR}/lang/p5-Error
 RUN_DEPENDS+=	p5-Error>=0:${PORTSDIR}/lang/p5-Error \
-		p5-Net-SMTP-SSL>=0:${PORTSDIR}/mail/p5-Net-SMTP-SSL
+		p5-Net-SMTP-SSL>=0:${PORTSDIR}/mail/p5-Net-SMTP-SSL \
+		p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
+		p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
 PLIST_SUB+=	PERLSUB=""
 .else
 MAKE_ARGS+=	NO_PERL=1
@@ -91,7 +97,7 @@ MAKE_ARGS+=	NO_ICONV=1
 MAKE_ENV+=	CURLDIR=${LOCALBASE}
 BUILD_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 RUN_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
-LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libexpat.so:${PORTSDIR}/textproc/expat2
 PLIST_SUB+=	CURL=""
 .else
 MAKE_ARGS+=	NO_CURL=1 \
@@ -238,15 +244,18 @@ post-install:
 		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git-blame.el
 .if ${PORT_OPTIONS:MCONTRIB}
 	@${ECHO_MSG} "===> Installing contributed scripts"
-	${MKDIR} ${PREFIX}/share/git-core/contrib
-	${CP} -R ${WRKSRC}/contrib/* ${PREFIX}/share/git-core/contrib
-	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} install install-doc
-	${MKDIR} ${PREFIX}/libexec/git-core
-	${CP} ${FAKE_DESTDIR}${PREFIX}/libexec/git-core/git-subtree ${PREFIX}/libexec/git-core/
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/git-core/contrib
+	${CP} -R ${WRKSRC}/contrib/* ${STAGEDIR}${PREFIX}/share/git-core/contrib
+	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} install install-doc
 .endif
 .if ${PORT_OPTIONS:MP4}
-	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${STAGEDIR}${PREFIX}/bin/
+.endif
+
+post-stage:
+.if ${PORT_OPTIONS:MPERL}
+	${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto -name .packlist -exec ${SED} -i '' 's|^${STAGEDIR}||' '{}' \;
 .endif
 
 .include <bsd.port.mk>
