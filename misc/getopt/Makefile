@@ -11,8 +11,6 @@ COMMENT=	getopt(1) replacement that supports GNU-style long options
 
 LICENSE=	gpl2
 
-FAKE_OPTS+=	trueprefix
-
 OPTIONS_DEFINE=	DOCS
 
 CFLAGS+=	-I${LOCALBASE}/include
@@ -24,7 +22,7 @@ USES=		gettext gmake
 PORTDOCS=	Changelog README
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>
