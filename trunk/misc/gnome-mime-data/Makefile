@@ -1,33 +1,23 @@
-# New ports collection makefile for:	gnomemimedata
-# Date created:				22 January 2002
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/misc/gnome-mime-data/Makefile,v 1.37 2007/04/03 20:38:53 marcus Exp $
 #
 
 PORTNAME=	gnome-mime-data
 PORTVERSION=	2.18.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DISTNAME=	gnome-mime-data-${PORTVERSION}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A MIME and Application database for GNOME
+COMMENT=	MIME and Application database for GNOME
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USES=		gettext pkgconfig
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack
+USES=		gettext gmake pathfix tar:bzip2
+USE_GNOME=	gnomeprefix intlhack
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -lintl"
 CPPFLAGS+=	-I${LOCALBASE}/include
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|[(]datadir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-	    	${WRKSRC}/Makefile.in
+LIBS+=		-L${LOCALBASE}/lib -lintl
 
 .include <bsd.port.mk>
