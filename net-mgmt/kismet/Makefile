@@ -16,15 +16,11 @@ COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_XZ=		yes
+USES=		gmake tar:xz
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		kismet.1 kismet_drone.1
-MAN5=		kismet.conf.5 kismet_drone.conf.5
-
-OPTIONS_DEFINE=		PCRE PLUGINS SETUID
+OPTIONS_DEFINE=		PCRE PLUGINS SETUID DOCS EXAMPLES
 OPTIONS_DEFAULT=	PCRE PLUGINS SETUID
 SETUID_DESC=		Use privilege separation
 
@@ -35,7 +31,6 @@ WRKSRC=	${WRKDIR}/${DISTNAME:S/a$$//}
 .if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	README manuf
 DISTFILES+=	manuf:2
-IGNOREFILES=	manuf
 .endif
 
 .if ${PORT_OPTIONS:MEXAMPLES}
@@ -44,22 +39,22 @@ PORTEXAMPLES=	*
 
 .if ${PORT_OPTIONS:MPCRE}
 CONFIGURE_ARGS+=--enable-pcre
-LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
 .else
 CONFIGURE_ARGS+=--disable-pcre
 .endif
 
 .if ${PORT_OPTIONS:MSETUID}
-GROUPS =	kismet
-CONFIGURE_ARGS+=--with-suidgroup=${GROUPS}
-INSTALL_TARGET =	suidinstall
-PLIST_SUB+=	SUID=""
+GROUPS=		kismet
+CONFIGURE_ARGS+=--with-suidgroup=wheel
+INSTALL_TARGET=		suidinstall
+PLIST_SUB+=	SUID="" SUIDGROUP="${GROUPS}"
 PKGMESSAGE=	${WRKDIR}/suid_pkg-message
 SUB_FILES+=	suid_pkg-message
 .else
-INSTALL_TARGET =	install
+INSTALL_TARGET=		install
 CONFIGURE_ARGS+=--without-suidgroup
-PLIST_SUB+=	SUID="@comment "
+PLIST_SUB+=	SUID="@comment " SUIDGROUP=""
 .endif
 
 .if ${PORT_OPTIONS:MPLUGINS}
@@ -76,14 +71,17 @@ post-patch:
 			${WRKSRC}/conf/kismet.conf.in \
 			${WRKSRC}/conf/kismet_drone.conf
 	@${REINPLACE_CMD} -e "s/plugin-/plugin-[aps]/" \
-		-e "s/make/${GMAKE}/" \
-		-e "s/\$$(MAKE)/${GMAKE}/" \
+		-e "s/make/${MAKE_CMD}/" \
+		-e "s/\$$(MAKE)/${MAKE_CMD}/" \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s/CXXFLAGS/CPPFLAGS/" \
 		${WRKSRC}/plugin-alertsyslog/Makefile
 	@${FIND} ${WRKSRC} -type f -name 'Makefile' -print0 | ${XARGS} -0 \
 		${REINPLACE_CMD} -E \
 		'/C(XX)?FLAGS[[:blank:]]*\+=/s/ -g / /'
+
+post-build:
+	@cd ${WRKSRC}; ${STRIP_CMD} kismet_client kismet_drone kismet_server */*.so
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
