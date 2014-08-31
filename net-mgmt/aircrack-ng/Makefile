@@ -1,34 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	aircrack-ng
-DISTVERSION=	1.1
+DISTVERSION=	1.2-beta3
+PORTREVISION=	1
 CATEGORIES=	net-mgmt security
 MASTER_SITES=	http://download.aircrack-ng.org/ \
 		http://bsd-geek.de/FreeBSD/distfiles/
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An 802.11 WEP and WPA-PSK keys cracking program
+MAINTAINER=	lme@FreeBSD.org
+COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 
-LICENSE=	gpl2
+LICENSE=	gpl2 bsd3 apache2
+LICENSE_COMB=	dual
 
-USE_GMAKE=	yes
-MAKE_ARGS+=	UNSTABLE=true			# build some extra tools
+USES=		gmake dos2unix
+DOS2UNIX_FILES=	src/osdep/byteorder.h
+MAKE_ARGS=	unstable=true libnl=false prefix=${PREFIX}
 USE_OPENSSL=	yes
 SUB_FILES=	pkg-message
 
-MAN1=		airbase-ng.1 aircrack-ng.1 airdecap-ng.1 airdecloak-ng.1 \
-		aireplay-ng.1 airodump-ng.1 airserv-ng.1 airtun-ng.1 \
-		buddy-ng.1 easside-ng.1 ivstools.1 kstats.1 makeivs-ng.1 \
-		packetforge-ng.1 tkiptun-ng.1 wesside-ng.1
-
-PLIST_FILES=	bin/aircrack-ng bin/airdecap-ng bin/airdecloak-ng \
-		bin/buddy-ng bin/ivstools bin/kstats bin/makeivs-ng \
-		bin/packetforge-ng \
-		sbin/airbase-ng sbin/aireplay-ng sbin/airodump-ng \
-		sbin/airserv-ng sbin/airtun-ng sbin/easside-ng \
-		sbin/tkiptun-ng sbin/wesside-ng
+BIN_FILES=	airdecloak-ng buddy-ng aircrack-ng airdecap-ng ivstools \
+		makeivs-ng packetforge-ng wpaclean kstats
+SBIN_FILES=	airtun-ng besside-ng airbase-ng easside-ng airodump-ng \
+		aireplay-ng wesside-ng airserv-ng tkiptun-ng
 
 OPTIONS_DEFINE=	SQLITE
+OPTIONS_SUB=	yes
 SQLITE_DESC=	Use SQLite for storing pre-computed key tables
 
 .include <bsd.mport.options.mk>
@@ -36,20 +33,14 @@ SQLITE_DESC=	Use SQLite for storing pre-computed key tables
 .if ${PORT_OPTIONS:MSQLITE}
 USE_SQLITE=	yes
 MAKE_ARGS+=	SQLITE=true
-MAN1+=		airolib-ng.1
-PLIST_FILES+=	bin/airolib-ng
-.endif
-
-.if ${ARCH} == "sparc64" && ${OSVERSION} > 900000
-BROKEN=		Does not compile on sparc64-9
+BIN_FILES+=	airolib-ng
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e 's|= /usr/local|= ${PREFIX}|' \
 		-e 's|-I/usr/local|-I${LOCALBASE}|' \
+		-e 's|share/\(man/man[1-9]\)|\1|' \
 		-e 's|^CC[[:blank:]]*|&?|' \
-		-e 's|^RANLIB[[:blank:]]*|&?|' \
 		-e 's|^AR[[:blank:]]*|&?|' \
 			${WRKSRC}/common.mak
 # Do not install scripts (Linux-specific) and their manpages
@@ -62,5 +53,9 @@ post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|-lpthread|${PTHREAD_LIBS}|' \
 			${WRKSRC}/src/Makefile
+
+post-install:
+	@${STRIP_CMD} ${BIN_FILES:S,^,${PREFIX}/bin/,} \
+		${SBIN_FILES:S,^,${PREFIX}/sbin/,}
 
 .include <bsd.port.mk>
