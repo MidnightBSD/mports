@@ -184,40 +184,6 @@ PLIST_SUB+=	LIBWRAP="@comment "
 SUB_LIST=	REQUIRE="${_REQUIRE}"
 SUB_FILES=	pkg-deinstall pkg-message
 
-MAN1=		deliver.1 \
-		doveadm-altmove.1 \
-		doveadm-auth.1 \
-		doveadm-config.1 \
-		doveadm-director.1 \
-		doveadm-dump.1 \
-		doveadm-expunge.1 \
-		doveadm-fetch.1 \
-		doveadm-force-resync.1 \
-		doveadm-help.1 \
-		doveadm-import.1 \
-		doveadm-index.1 \
-		doveadm-instance.1 \
-		doveadm-kick.1 \
-		doveadm-log.1 \
-		doveadm-mailbox.1 \
-		doveadm-mount.1 \
-		doveadm-move.1 \
-		doveadm-penalty.1 \
-		doveadm-purge.1 \
-		doveadm-pw.1 \
-		doveadm-quota.1 \
-		doveadm-reload.1 \
-		doveadm-search.1 \
-		doveadm-stop.1 \
-		doveadm-user.1 \
-		doveadm-who.1 \
-		doveadm.1 \
-		doveconf.1 \
-		dovecot-lda.1 \
-		dovecot.1 \
-		dsync.1
-MAN7=		doveadm-search-query.7
-
 post-patch:
 	@${REINPLACE_CMD} -E -e '${REINPLACE}' \
 		${WRKSRC}/doc/example-config/dovecot.conf
