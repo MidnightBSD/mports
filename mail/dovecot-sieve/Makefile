@@ -27,8 +27,6 @@ USE_LDCONFIG=	${PREFIX}/lib/dovecot/lda
 
 SUB_FILES=	pkg-message
 
-MAN1=		sieve-test.1 sievec.1 sieved.1
-
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME:S/-/\//}
 
 .if !defined(NOPORTDOCS)
