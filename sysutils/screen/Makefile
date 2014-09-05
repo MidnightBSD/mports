@@ -16,7 +16,6 @@ LICENSE=	gpl2
 
 OPTIONS=	CJK "Treat CJK ambiguous characters as full width" OFF \
 		INFO "Build and install info documentation" ON \
-		MAN "Build and install man pages" ON \
 		NETHACK "Enable nethack-style messages" ON \
 		XTERM_256 "Enable support for 256 colour xterm" ON \
 		HOSTINLOCKED "Print user@host in locked message" OFF \
@@ -25,10 +24,7 @@ OPTIONS=	CJK "Treat CJK ambiguous characters as full width" OFF \
 .include <bsd.port.pre.mk>
 
 GNU_CONFIGURE=	yes
-.if defined(WITH_MAN)
-MAN1=		screen.1
 MAKE_ARGS+=	-DWITH_MAN
-.endif
 .if defined(WITH_INFO)
 .if !exists(/usr/bin/install-info)
 RUN_DEPENDS+=	install-info:${PORTSDIR}/print/texinfo
