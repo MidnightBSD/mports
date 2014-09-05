@@ -3,7 +3,7 @@
 
 PORTNAME=	bitstream-vera
 PORTVERSION=	1.10
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-fonts
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/ttf-${PORTNAME}/1.10
@@ -17,7 +17,7 @@ LICENSE=	unknown
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_BZIP2=	yes
+USES=	tar:bzip2
 NO_BUILD=	yes
 
 PLIST_SUB=	FONTSDIR="${FONTSDIR:S|${PREFIX}/||}"
@@ -32,16 +32,10 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 FONTNAME=	${PORTNAME}
 FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
 
-.include <bsd.port.pre.mk>
-
-.SILENT:
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	${SED} 's|%%FONTSDIR%%|${FONTSDIR}|g' ${MSG_FILE} > ${PKGMESSAGE}
-
-#
-# Install
-#
 
 do-install: install-fonts install-docs
 
@@ -52,11 +46,8 @@ install-fonts:
 	${INSTALL_DATA} ${WRKSRC}/COPYRIGHT.TXT ${FONTSDIR}
 
 install-docs:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.TXT ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/RELEASENOTES.TXT ${DOCSDIR}
-.endif
 
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
