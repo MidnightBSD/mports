@@ -2,8 +2,8 @@
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	15
-PORTEPOCH?=	1
+PORTREVISION=	16
+PORTEPOCH?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
 
@@ -14,27 +14,30 @@ LICENSE=	lgpl
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		png15:${PORTSDIR}/graphics/png \
-		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-directfb \
-		--enable-tee
-USES=		pathfix pkgconfig
+		--enable-tee \
+		--enable-trace
+USES=		libtool:keepla pathfix pkgconfig
 USE_XORG=	pixman
-USE_GNOME=	ltverhack referencehack
-USE_AUTOTOOLS=	libtool
+USE_GNOME=	referencehack
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS}
 
-OPTIONS_DEFINE=	OPENGL XCB X11
-OPTIONS_DEFAULT=	XCB X11
+OPTIONS_DEFINE=	OPENGL XCB GLIB X11
+OPTIONS_DEFAULT=	XCB GLIB X11
 XCB_DESC=	Enable XCB (X C-language Binding) Support
+GLIB_DESC=	Enable GObject Functions Feature
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MX11}
 USE_XORG+=	xrender
@@ -65,11 +68,13 @@ CONFIGURE_ARGS+=	--disable-xcb
 PLIST_SUB+=		XCB="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MGLIB}
 USE_GNOME+=	glib20
 PLIST_SUB+=	GLIB=""
-CONFIGURE_ARGS+=	--enable-gobject
-
-.include <bsd.port.pre.mk>
+.else
+CONFIGURE_ARGS+=	--enable-gobject=no
+PLIST_SUB+=	GLIB="@comment "
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/test/s/==/=/g' \
