@@ -8,11 +8,11 @@ MASTER_SITE_SUBDIR=	binutils/releases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU binary tools
+
 LICENSE=	gpl3
 
+USES=		gmake tar:bzip2
 USE_BISON=	build
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:${PORTSDIR}/math/gmp \
