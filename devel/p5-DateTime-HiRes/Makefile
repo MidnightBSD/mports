@@ -16,6 +16,4 @@ RUN_DEPENDS=	p5-DateTime>=0:${PORTSDIR}/devel/p5-DateTime \
 
 PERL_MODBUILD=	yes
 
-MAN3=		DateTime::HiRes.3
-
 .include <bsd.port.mk>
