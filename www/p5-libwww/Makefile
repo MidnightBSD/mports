@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libwww
-PORTVERSION=	6.05
+PORTVERSION=	6.08
 CATEGORIES=	www perl5 devel
 MASTER_SITES=	CPAN/LWP
 PKGNAMEPREFIX=	p5-
@@ -31,25 +31,6 @@ OPTIONS_DEFINE=	HTTPS
 
 CONFIGURE_ARGS=	--aliases
 PERL_CONFIGURE=	yes
-
-MAN1=		GET.1 \
-		HEAD.1 \
-		POST.1 \
-		lwp-download.1 \
-		lwp-mirror.1 \
-		lwp-request.1 \
-		lwp-dump.1
-MAN3=		LWP.3 \
-		LWP::Authen::Ntlm.3 \
-		LWP::ConnCache.3 \
-		LWP::Debug.3 \
-		LWP::MemberMixin.3 \
-		LWP::Protocol.3 \
-		LWP::RobotUA.3 \
-		LWP::Simple.3 \
-		LWP::UserAgent.3 \
-		lwpcook.3 \
-		lwptut.3
 
 .include <bsd.mport.options.mk>
 
