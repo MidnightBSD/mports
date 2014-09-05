@@ -15,6 +15,7 @@ DIST_SUBDIR=	alpine-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail and news client descended from Pine
+
 LICENSE=	apache2
 
 OPTIONS+=	THREADS "Compile with thread support" on \
@@ -32,8 +33,7 @@ OPTIONS+=	PICO "Build and install pico, the default editor" on \
 		MAILDIR "Add a patch for maildir support" off
 .endif
 
-USE_BZIP2=	yes
-
+USES=		tar:bzip2
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
