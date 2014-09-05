@@ -2,6 +2,7 @@
 
 PORTNAME=	libgcrypt
 PORTVERSION=	1.6.1
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -9,16 +10,18 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
 
-LICENSE=	gpl2
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
 RUN_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
 
-USES=		tar:bzip2
-USE_AUTOTOOLS=	libtool
+USES=		libtool makeinfo tar:bzip2
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
+CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-${OPSYS:tl}9.1
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
 DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS README \
@@ -26,28 +29,37 @@ DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS README \
 INFO=		gcrypt
 PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	DOCS
 
-.if ${ARCH} == "i386"
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "powerpc"
+CONFIGURE_ARGS+=	--disable-asm
+
+.elif ${ARCH} == "i386"
 .if (${OSVERSION} < 4015)
 CONFIGURE_ARGS+=	--disable-aesni-support
 .endif
+
+.elif ${ARCH} == "amd64"
+.if (${OSVERSION} < 4015)
+USE_GCC=	yes
+.endif
+CONFIGURE_ARGS+=	--disable-drng-support
+
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|" \
-		${WRKSRC}/ltmain.sh
-
-pre-configure:
-	@${RM} -f ${WRKSRC}/doc/gcrypt.info*
+	${RM} -f ${WRKSRC}/doc/gcrypt.info*
+	${REINPLACE_CMD} -e 's|ALIGN (3)|ALIGN (2)|g' ${WRKSRC}/mpi/i386/*.S
 
 .if ${PORT_OPTIONS:MDOCS}
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
 .endif
 
 regression-test: build
-	cd ${WRKSRC} && ${MAKE} check
+	cd ${WRKSRC} && ${MAKE_CMD} check
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
