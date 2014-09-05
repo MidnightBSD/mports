@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	irssi
-PORTVERSION=	0.8.15
-PORTREVISION=	4
+PORTVERSION=	0.8.16
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
@@ -13,14 +12,10 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	glib-2:${PORTSDIR}/devel/glib20
 
-USES=		pkgconfig ncurses
-USE_BZIP2=	yes
+USES=		gmake pkgconfig ncurses tar:bzip2
 USE_SSP=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 WANT_PERL=	yes
-
-MAN1=		irssi.1
 
 OPTIONS_DEFINE=	PERL PROXY SOCKS IPV6 BOT
 SOCKS_DESC=	Socks proxy support
