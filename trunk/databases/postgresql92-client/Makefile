@@ -17,4 +17,6 @@ CLIENT_ONLY=	yes
 COMPONENT=	-client
 USE_LDCONFIG=	yes
 
+USES=		readline
+
 .include "${MASTERDIR}/Makefile"
