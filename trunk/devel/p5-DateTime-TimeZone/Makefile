@@ -1,45 +1,38 @@
 # $MidnightBSD$
 
 PORTNAME=	DateTime-TimeZone
-PORTVERSION=	1.32
+PORTVERSION=	1.73
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Time zone object base class and factory
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-Class-Load>0:${PORTSDIR}/devel/p5-Class-Load \
 		p5-Class-Singleton>=1.03:${PORTSDIR}/devel/p5-Class-Singleton \
+		p5-List-AllUtils>0:${PORTSDIR}/devel/p5-List-AllUtils \
 		p5-Params-Validate>=0.72:${PORTSDIR}/devel/p5-Params-Validate
-BUILD_DEPENDS=	${RUN_DEPENDS}
+BUILD_DEPENDS:=	${RUN_DEPENDS}
+TEST_DEPENDS=	p5-Test-Output>0:${PORTSDIR}/devel/p5-Test-Output
 
 PERL_CONFIGURE=	yes
 
-MAN3=		DateTime::TimeZone.3 DateTime::TimeZone::Floating.3 \
-		DateTime::TimeZone::Local.3 DateTime::TimeZone::Local::Unix.3 \
-   		DateTime::TimeZone::Local::VMS.3 DateTime::TimeZone::Local::Win32.3 \
-	  	DateTime::TimeZone::OffsetOnly.3 DateTime::TimeZone::OlsonDB.3 \
-		DateTime::TimeZone::UTC.3 DateTime::TimeZone::Catalog.3
+PORTDOCS=	Changes
 
-.if !defined(NOPORTDOCS)
-PORTDOCS=	Changes README
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
-	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${ECHO_MSG} "===> Documentation installed in ${STAGEDIR}${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500806
-RUN_DEPENDS+=	p5-PathTools>=3:${PORTSDIR}/devel/p5-PathTools
-.endif
-
-.if ${PERL_LEVEL} < 501000
-RUN_DEPENDS+=	p5-parent>=0.223:${PORTSDIR}/devel/p5-parent
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
