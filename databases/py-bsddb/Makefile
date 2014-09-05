@@ -14,10 +14,10 @@ COMMENT=	Standard Python bindings to the Berkeley DB library
 
 LICENSE=	python
 
+USES=		tar:xz
 USE_BDB=	43+
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
-USE_XZ=		yes
 
 DIST_SUBDIR=	python
 HASH_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
