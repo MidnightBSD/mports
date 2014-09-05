@@ -2,22 +2,25 @@
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.28
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	ftp://gd.tuwien.ac.at/pub/libxml/ \
-		ftp://xmlsoft.org/libxml2/
+MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
+		http://xmlsoft.org/sources/ \
+		ftp://gd.tuwien.ac.at/pub/libxml/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The XSLT C library for GNOME
+
 LICENSE=	mit
 
 .if !defined(REFERENCE_PORT)
 
-USE_GMAKE=	yes
+USES=		gmake libtool:oldver pathfix
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USE_GNOME?=	gnomehack libxml2
+USE_GNOME?=	libxml2
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -26,8 +29,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 .if defined(MASTERDIR)
 _SLAVE_PORT=	yes
 .else
-MAN3=		libexslt.3 libxslt.3
-MAN1=		xsltproc.1
 
 OPTIONS_DEFINE=	MEM_DEBUG CRYPTO
 OPTIONS_DEFAULT=CRYPTO
