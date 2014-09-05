@@ -16,9 +16,9 @@ LICENSE=	python
 
 LIB_DEPENDS=	gdbm:${PORTSDIR}/databases/gdbm
 
+USES=		tar:xz
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
-USE_XZ=		yes
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
