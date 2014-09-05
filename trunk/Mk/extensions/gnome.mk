@@ -18,7 +18,7 @@ Gnome_Pre_Include=		gnome.mk
 
 # Ports can use this as follows:
 #
-# USE_GNOME=	gnomeprint bonobo
+# USE_GNOME=	glib20 introspection:build
 #
 # .include <bsd.port.mk>
 #
