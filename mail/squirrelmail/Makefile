@@ -9,14 +9,14 @@ DISTNAME=	${PORTNAME}-webmail-${PORTVERSION}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A webmail system which accesses mail over IMAP
+COMMENT=	Webmail system which accesses mail over IMAP
+
 LICENSE=	gpl2
 
 USE_PHP=	session gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
-USE_BZIP2=	yes
-USES=		gettext
+USES=		gettext tar:bzip2
 
 .ifdef WITH_DATABASE
 RUN_DEPENDS+=	${PREFIX}/share/pear/DB.php:${PORTSDIR}/databases/pear-DB
