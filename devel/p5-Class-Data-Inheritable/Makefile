@@ -18,6 +18,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::Data::Inheritable.3
-
 .include <bsd.port.mk>
