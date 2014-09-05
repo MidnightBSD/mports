@@ -280,7 +280,7 @@ libglade2_DETECT=	${LOCALBASE}/libdata/pkgconfig/libglade-2.0.pc
 libglade2_USE_GNOME_IMPL=libxml2 gtk20
 
 libxml2_BUILD_DEPENDS=	xml2-config:${PORTSDIR}/textproc/libxml2
-libxml2_LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
+libxml2_LIB_DEPENDS=	xml2.11:${PORTSDIR}/textproc/libxml2
 libxml2_RUN_DEPENDS=	xml2-config:${PORTSDIR}/textproc/libxml2
 libxml2_DETECT=		${LOCALBASE}/libdata/pkgconfig/libxml-2.0.pc
 
