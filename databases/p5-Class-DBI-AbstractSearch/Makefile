@@ -17,6 +17,4 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::DBI::AbstractSearch.3
-
 .include <bsd.port.mk>
