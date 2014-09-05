@@ -354,7 +354,7 @@ _LOAD_${EXT:U}_EXT=	yes
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
-		apache autotools bdb cmake display dos2unix efl emacs fuse \
+		apache autotools bdb cmake cpe display dos2unix efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
 		ldap libtool lua makeself mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
