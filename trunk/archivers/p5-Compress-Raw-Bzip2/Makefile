@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Compress-Raw-Bzip2
-PORTVERSION=	2.060
+PORTVERSION=	2.064
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PMQS
@@ -12,7 +12,5 @@ COMMENT=	Low-Level Interface to bzip2 compression library
 LICENSE=	perl
 
 PERL_CONFIGURE=	YES
-
-MAN3=		Compress::Raw::Bzip2.3
 
 .include <bsd.port.mk>
