@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.8.4.1
+PORTVERSION=	3.8.5
 CATEGORIES=	databases
 MASTER_SITES=	http://www.sqlite.org/2014/ http://www2.sqlite.org/2014/ http://www3.sqlite.org/2014/
-DISTNAME=	sqlite-autoconf-3080401
+DISTNAME=	sqlite-autoconf-3080500
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SQL database engine in a C library
@@ -42,10 +42,6 @@ THREADSAFE_DESC=	Build thread-safe library
 EXTENSION_DESC=		Allow loadable extensions
 
 .include <bsd.mport.options.mk>
-
-.if !defined(NO_INSTALL_MANPAGES)
-MAN1=		sqlite3.1
-.endif
 
 #		NAME83		"Enable use 8.3 filename for temp files" off \
 # Some devices are compelled to use an older file system with 8+3 filename
@@ -156,8 +152,6 @@ post-build:
 .endif
 
 post-install:
-.if !defined(NO_INSTALL_MANPAGES)
 	@${INSTALL_MAN} ${WRKSRC}/sqlite3.1 ${MANPREFIX}/man/man1
-.endif
 
 .include <bsd.port.mk>
