@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	DateTime
-PORTVERSION=	0.78
+PORTVERSION=	1.10
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DROLSKY
@@ -9,7 +9,8 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Date and time object
-LICENSE=	perl
+
+LICENSE=	artistic2
 
 RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
 		p5-DateTime-TimeZone>=1.09:${PORTSDIR}/devel/p5-DateTime-TimeZone \
@@ -17,10 +18,6 @@ RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_MODBUILD=	yes
-
-MAN3=		DateTime.3 DateTime::Duration.3 \
-		DateTime::Infinite.3 \
-		DateTime::LeapSecond.3
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	CREDITS Changes TODO
