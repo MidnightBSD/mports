@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	version
-PORTVERSION=	0.99.01
+PORTVERSION=	0.99.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,10 +9,10 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Version Objects
-LICENSE=	perl
+
+LICENSE=	gpl artistic
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		version.3 version::Internals.3
 
 .include <bsd.port.mk>
