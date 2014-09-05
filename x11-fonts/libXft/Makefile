@@ -15,8 +15,6 @@ RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 XORG_CAT=	lib
 USE_XORG=	xproto:both xrender
 
-MAN3=		Xft.3
-
 post-extract:
 	@${CP} ${FILESDIR}/xft-config.in \
 		${WRKSRC}/xft-config.in
