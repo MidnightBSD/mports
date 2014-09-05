@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	1.90
+PORTVERSION=	2.00
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:BINGOS
@@ -11,40 +11,21 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for creation and manipulation of tar files
 LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
 RUN_DEPENDS=	p5-IO-String>=0:${PORTSDIR}/devel/p5-IO-String
 
-PERL_CONFIGURE=	YES
+PERL_CONFIGURE=	yes
+USE_PERL5=	yes
 
-MAN3=		Archive::Tar.3 Archive::Tar::File.3
+OPTIONS_DEFINE=	TEXTDIFF
+TEXTDIFF_DESC=	Text::Diff support for ptardiff
 
-OPTIONS=	TEXT_DIFF "Text::Diff support for ptardiff" off
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_TEXT_DIFF)
-RUN_DEPENDS+=	${SITE_PERL}/Text/Diff.pm:${PORTSDIR}/textproc/p5-Text-Diff
-.endif
-
-.if ${PERL_LEVEL} < 500904
-RUN_DEPENDS+=	p5-Package-Constants>=0:${PORTSDIR}/devel/p5-Package-Constants
-.endif
-
-.if ${PERL_LEVEL} < 500903
-RUN_DEPENDS+=	p5-IO-Zlib>=1.01:${PORTSDIR}/archivers/p5-IO-Zlib \
-		p5-IO-Compress>=2.017:${PORTSDIR}/archivers/p5-IO-Compress
-.endif
-
-.if ${PERL_LEVEL} >= 501000
-PLIST_SUB+=	EXE_FILES="@comment "
-.else
-PLIST_SUB+=	EXE_FILES=""
-MAN1=		ptardiff.1 ptar.1
-.endif
+TEXTDIFF_RUN_DEPENDS=	p5-Text-Diff>=0:${PORTSDIR}/textproc/p5-Text-Diff
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/5.009/5.666/' ${WRKSRC}/Makefile.PL
-.if ${PERL_LEVEL} >= 501000
 	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
