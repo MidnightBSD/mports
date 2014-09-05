@@ -1,26 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	libksba
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GNUPG}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNUPG/${PORTNAME}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KSBA is an X.509 Library
-LICENSE=	gpl2
 
-LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
+LICENSE=	gpl2 gpl3 lgpl3
+LICENSE_COMB=	dual
 
-USE_BZIP2=	yes
+BUILD_DEPENDS=	libgpg-error>=1.10:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	libgpg-error.so:${PORTSDIR}/security/libgpg-error
+
+CONFIGURE_ARGS=	--enable-static
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=--enable-static
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
-USE_PERL5_BUILD=yes
+USE_PERL5=	build
+USES=		perl5 tar:bzip2 libtool:oldver
 
-INFO=	ksba
+INFO=		ksba
+
+verify: checksum
+	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.sig
 
 .include <bsd.port.mk>
