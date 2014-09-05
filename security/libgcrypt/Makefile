@@ -20,7 +20,7 @@ USES=		libtool makeinfo tar:bzip2
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-${OPSYS:tl}9.1
+CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd9.1
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
