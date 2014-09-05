@@ -18,7 +18,7 @@ LIB_DEPENDS=	sqlite3:${PORTSDIR}/databases/sqlite3
 
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
-USE_XZ=		yes
+USES=		tar:xz
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
