@@ -10,10 +10,9 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl subroutines that would be nice to have in the perl core
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		List::Util.3 Scalar::Util.3 List::Util::XS.3
 
 .include <bsd.port.mk>
