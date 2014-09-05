@@ -1,65 +1,70 @@
 # $MidnightBSD$
 
 PORTNAME=	screen
-PORTVERSION=	4.0.3
-PORTREVISION=	2
+PORTVERSION=	4.2.1
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ftp.uni-erlangen.de/pub/utilities/screen/ \
+MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
+		ftp://ftp.gnu.org/gnu/screen/ \
+		ftp://gnu.mirror.iweb.com/screen/ \
+		http://gnu.mirror.iweb.com/screen/ \
+		http://mirror.sdunix.com/gnu/ \
+		ftp://mirrors.kernel.org/gnu/screen/ \
 		http://komquats.com/distfiles/ \
 		http://people.freebsd.org/~cy/distfiles/ \
-		${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	screen
+		GNU
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A multi-screen window manager
-LICENSE=	gpl2
+MAINTAINER=	cy@FreeBSD.org
+COMMENT=	Multi-screen window manager
 
-OPTIONS=	CJK "Treat CJK ambiguous characters as full width" OFF \
-		INFO "Build and install info documentation" ON \
-		NETHACK "Enable nethack-style messages" ON \
-		XTERM_256 "Enable support for 256 colour xterm" ON \
-		HOSTINLOCKED "Print user@host in locked message" OFF \
-		SHOWENC "Show encoding on the status line" OFF
+LICENSE=	gpl3
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=		INFO MAN NETHACK XTERM_256 SHOWENC
+OPTIONS_DEFAULT=	INFO MAN NETHACK XTERM_256 SOCKETS
+OPTIONS_SINGLE=		IPC
+OPTIONS_SINGLE_IPC=	SOCKETS NAMED_PIPES
+INFO_DESC=		Build and install info documentation
+MAN_DESC=		Build and install man pages
+NETHACK_DESC=		Enable nethack-style messages
+XTERM_256_DESC=		Enable support for 256 colour xterm
+SHOWENC_DESC=		Show encoding on the status line
+SOCKETS_DESC=		Use new (4.2.1+) sockets for IPC (default)
+NAMED_PIPES_DESC=	Use legacy (4.0.3) named pipes for IPC (override)
+
+OPTIONS_SUB=
+
+USES=		gmake
+
+.include <bsd.mport.options.mk>
 
 GNU_CONFIGURE=	yes
-MAKE_ARGS+=	-DWITH_MAN
-.if defined(WITH_INFO)
+.if ${PORT_OPTIONS:MMAN}
+MAKE_ARGS+=	WITH_MAN=1
+PLIST_SUB+=	MAN=""
+.else
+PLIST_SUB+=	MAN="@comment"
+.endif
+.if ${PORT_OPTIONS:MINFO}
 .if !exists(/usr/bin/install-info)
 RUN_DEPENDS+=	install-info:${PORTSDIR}/print/texinfo
 .endif
 INFO=		screen
-MAKE_ARGS+=	-DWITH_INFO
-.endif
-
-.if ${ARCH} == "alpha"
-CFLAGS+=	-O0
+MAKE_ARGS+=	WITH_INFO=1
 .endif
 
 # Enables support for 256 colour xterm.  Note that you may need to
 # set up a custom termcap entry or .screenrc which modifies termcap
 # to contain the following: Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm
 #
-.if defined(WITH_XTERM_256)
+.if ${PORT_OPTIONS:MXTERM_256}
 CFLAGS+=	-DCOLORS256
 .endif
 
-.if !defined(WITH_NETHACK)
+.if ! ${PORT_OPTIONS:MNETHACK}
 CFLAGS+=	-DNONETHACK
 .endif
 
-# treat CJK ambiguous characters as full width via option "cjkwidth"
-.if defined(WITH_CJK)
-EXTRA_PATCHES+=	${FILESDIR}/opt-cjkwidth
-.endif
-
-.if defined(WITH_HOSTINLOCKED)
-EXTRA_PATCHES+= ${FILESDIR}/opt-hostinlocked
-.endif
-
 # show encoding on the status line via option "showenc"
-.if defined(WITH_SHOWENC)
+.if ${PORT_OPTIONS:MSHOWENC}
 EXTRA_PATCHES+=	${FILESDIR}/opt-showencoding
 .endif
 
@@ -67,11 +72,20 @@ post-patch:
 	@${RM} ${WRKSRC}/doc/screen.info*
 	@${REINPLACE_CMD} -e 's|/dev/ptmx|/nonexistent|' ${WRKSRC}/configure
 
-post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-	@${CP} ${WRKSRC}/etc/etcscreenrc ${EXAMPLESDIR}/screenrc
-	@if [ ! -f ${PREFIX}/etc/screenrc ]; then \
-		${CP} ${EXAMPLESDIR}/screenrc ${PREFIX}/etc/screenrc ; \
-	fi
+# Bug 191029:	Users can choose whether to use sockets or named pipes.
+# 		Choose sockets if you don't know what the difference is.
+# 		Choose named pipes if your environment is heterogeneous,
+#		using both screen 4.0.3 and 4.2.1.
+.if ${PORT_OPTIONS:MNAMED_PIPES}
+# Bug 191017
+post-configure:
+	@${ECHO_CMD} '#define NAMEDPIPE 1' >> ${WRKSRC}/config.h
+	@${ECHO_CMD} User selected named pipes override set.
+.endif
 
-.include <bsd.port.post.mk>
+post-install:
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/etc/etcscreenrc \
+		${STAGEDIR}${EXAMPLESDIR}/screenrc
+
+.include <bsd.port.mk>
