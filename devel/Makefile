@@ -280,6 +280,7 @@ SUBDIR += p5-IPC-Run
 SUBDIR += p5-IPC-ShareLite
 SUBDIR += p5-IPC-Signal
 SUBDIR += p5-JSON-RPC
+SUBDIR += p5-List-AllUtils
 SUBDIR += p5-Locale-gettext
 SUBDIR += p5-Log-Any
 SUBDIR += p5-Log-Log4perl
