@@ -10,11 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for OLE document interface
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/IO/Stringy.pm:${PORTSDIR}/devel/p5-IO-stringy
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	p5-IO-stringy>=0:${PORTSDIR}/devel/p5-IO-stringy
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	yes
-
-MAN3=		OLE::Storage_Lite.3
+PERL_CONFIGURE= yes
 
 .include <bsd.port.mk>
