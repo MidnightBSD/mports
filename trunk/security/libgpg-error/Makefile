@@ -2,6 +2,7 @@
 
 PORTNAME=	libgpg-error
 PORTVERSION=	1.13
+PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -11,9 +12,9 @@ COMMENT=	Common error values for all GnuPG components
 
 LICENSE=	gpl2
 
-USES=		tar:bzip2
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack
+OPTIONS_DEFINE=	DOCS NLS
+
+USES=		gmake libtool:keepla tar:bzip2
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
 MAKE_JOBS_UNSAFE=	yes
@@ -22,7 +23,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 .if ${PORT_OPTIONS:MNLS}
 USES+=		gettext iconv
-CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE} \
+CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} \
 		--with-libintl-prefix=${LOCALBASE}
 PLIST_SUB=	NLS=""
 .else
@@ -32,10 +33,8 @@ PLIST_SUB=	NLS="@comment "
 
 DOCS=		AUTHORS ChangeLog NEWS README
 
-.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
