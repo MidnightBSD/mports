@@ -1,3 +1,4 @@
+man/man1/analog.1.gz
 bin/analog
 @unexec [ -f %D/etc/analog.cfg ] && cmp -s %D/etc/analog.cfg %D/etc/analog.cfg-dist && rm -f %D/etc/analog.cfg
 etc/analog.cfg-dist
