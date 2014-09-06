@@ -62,11 +62,11 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/libmilter.so.${MILTER_SOVER}:${PORTSDIR}/mail/${S
 .endif
 
 SENDMAIL_MILTER_PORT?=	sendmail
-MILTER_SOVER?=	4
+MILTER_SOVER?=	6
 MILTERBASE?=	${LOCALBASE}
 MILTERINC=	-I${MILTERBASE}/include
 MILTERRPATH=	${MILTERBASE}/lib
-MILTERLIB=	-L${MILTERBASE}/lib -rpath=${MILTERRPATH}
+MILTERLIB=	-L${MILTERBASE}/lib -Wl,-rpath,${MILTERRPATH}
 
 .if !defined(WITHOUT_MILTER_CFLAGS)
 .if defined(CFLAGS)
@@ -76,8 +76,7 @@ CFLAGS=${MILTERINC}
 .endif
 .endif
 
-
-.if defined(SENDMAIL_WITHOUT_MILTER)
+.if defined(WITHOUT_MILTER)
 pre-everything::
 	@${ECHO_MSG}
 	@${ECHO_MSG} You must unset variable SENDMAIL_WITHOUT_MILTER,
@@ -90,7 +89,7 @@ pre-everything::
 .if defined(WITH_SENDMAIL_BASE)
 MILTERBASE?=	/usr
 MILTERRPATH=	${DESTDIR}/usr/lib:${LOCALBASE}/lib
-MILTERLIB=	-rpath=${MILTERRPATH}
+MILTERLIB=	-Wl,-rpath,${MILTERRPATH}
 .endif
 
 .if !defined(WITHOUT_MILTER_LDFLAGS)
