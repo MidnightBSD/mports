@@ -31,7 +31,7 @@ CONFIGURE_ARGS+=--enable-ctype
 .endif
 
 .if ${PHP_MODNAME} == "curl"
-LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
 
 CONFIGURE_ARGS+=--with-curl=${LOCALBASE}
 .endif
@@ -85,9 +85,9 @@ USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "gd"
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		png15:${PORTSDIR}/graphics/png \
-		jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 CONFIGURE_ARGS+=--with-gd \
 		--with-freetype-dir=${LOCALBASE} \
@@ -114,7 +114,7 @@ USES+=		gettext
 .endif
 
 .if ${PHP_MODNAME} == "gmp"
-LIB_DEPENDS+=	gmp:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
 
 CONFIGURE_ARGS+=--with-gmp=${LOCALBASE}
 .endif
@@ -127,11 +127,11 @@ CONFIGURE_ARGS+=--enable-hash \
 .if ${PHP_MODNAME} == "iconv"
 CONFIGURE_ARGS+=--with-iconv=${LOCALBASE}
 
-USES+=	iconv
+USES+=	iconv:translit
 .endif
 
 .if ${PHP_MODNAME} == "imap"
-LIB_DEPENDS+=	c-client4:${PORTSDIR}/mail/cclient
+LIB_DEPENDS+=	libc-client4.so:${PORTSDIR}/mail/cclient
 
 CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
 		--with-pcre-dir=${LOCALBASE}
@@ -153,7 +153,7 @@ CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
 USE_OPENLDAP=	yes
 
 . ifdef(WANT_OPENLDAP_SASL)
-CONFIGURE_ARGS+=--with-ldap-sasl
+CONFIGURE_ARGS+=--with-ldap-sasl=${LOCALBASE}
 . endif
 .endif
 
@@ -171,7 +171,7 @@ PHP_HEADER_DIRS=libmbfl libmbfl/filters libmbfl/mbfl libmbfl/nls
 .endif
 
 .if ${PHP_MODNAME} == "mcrypt"
-LIB_DEPENDS+=	mcrypt:${PORTSDIR}/security/libmcrypt
+LIB_DEPENDS+=	libmcrypt.so:${PORTSDIR}/security/libmcrypt
 
 CONFIGURE_ARGS+=--with-mcrypt=${LOCALBASE}
 
@@ -179,7 +179,7 @@ USE_AUTOTOOLS=	libltdl
 .endif
 
 .if ${PHP_MODNAME} == "mssql"
-LIB_DEPENDS+=	sybdb:${PORTSDIR}/databases/freetds-msdblib
+LIB_DEPENDS+=	libsybdb.so:${PORTSDIR}/databases/freetds-msdblib
 
 CONFIGURE_ARGS+=--with-mssql=${LOCALBASE}
 .endif
@@ -199,11 +199,10 @@ MYSQLND_DESC=	Use MySQL Native Driver
 .endif
 
 .if ${PHP_MODNAME} == "odbc"
-CONFIGURE_ARGS+=--enable-odbc
+LIB_DEPENDS+=	libodbc.so:${PORTSDIR}/databases/unixODBC
 
-OPTIONS_DEFINE=	IODBC
-
-IODBC_DESC=	Use the iODBC driver instead of unixODBC
+CONFIGURE_ARGS+=--enable-odbc \
+		--with-unixODBC=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "openssl"
@@ -243,9 +242,8 @@ USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_odbc"
-OPTIONS_DEFINE= IODBC
-
-IODBC_DESC=     Use the iODBC driver instead of unixODBC
+LIB_DEPENDS+=	libodbc.so:${PORTSDIR}/databases/unixODBC
+CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
 
 USE_PHP=	pdo
 USE_PHP_BUILD=	yes
@@ -287,7 +285,7 @@ CONFIGURE_ARGS+=--enable-posix
 .endif
 
 .if ${PHP_MODNAME} == "pspell"
-LIB_DEPENDS+=	aspell:${PORTSDIR}/textproc/aspell
+LIB_DEPENDS+=	libaspell.so:${PORTSDIR}/textproc/aspell
 
 CONFIGURE_ARGS+=--with-pspell=${LOCALBASE}
 
@@ -298,10 +296,11 @@ USE_PHP_BUILD=	yes
 
 .if ${PHP_MODNAME} == "readline"
 CONFIGURE_ARGS+=--with-readline=/usr
+USES+=		readline
 .endif
 
 .if ${PHP_MODNAME} == "recode"
-LIB_DEPENDS+=	recode:${PORTSDIR}/converters/recode
+LIB_DEPENDS+=	librecode.so:${PORTSDIR}/converters/recode
 
 CONFIGURE_ARGS+=--with-recode=${LOCALBASE}
 .endif
@@ -316,8 +315,10 @@ CONFIGURE_ARGS+=--enable-shmop
 
 .if ${PHP_MODNAME} == "simplexml"
 CONFIGURE_ARGS+=--enable-simplexml \
+		--with-pcre-dir=${LOCALBASE} \
 		--with-libxml-dir=${LOCALBASE}
 
+USES+=		pkgconfig
 USE_GNOME=	libxml2
 .endif
 
@@ -327,7 +328,7 @@ CONFIGURE_ARGS+=--with-snmp=${LOCALBASE} \
 
 CONFIGURE_ENV+=	ac_cv_buggy_snprint_value="no"
 
-LIB_DEPENDS+=   netsnmp:${PORTSDIR}/net-mgmt/net-snmp
+LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 USE_OPENSSL=	yes
 .endif
@@ -352,7 +353,7 @@ CONFIGURE_ARGS+=--with-sqlite3=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "sybase_ct"
-LIB_DEPENDS+=	ct:${PORTSDIR}/databases/freetds
+LIB_DEPENDS+=	libct.so:${PORTSDIR}/databases/freetds
 
 CONFIGURE_ARGS+=--with-sybase-ct=${LOCALBASE}
 .endif
@@ -372,7 +373,7 @@ CONFIGURE_ARGS+=--enable-sysvshm
 .if ${PHP_MODNAME} == "tidy"
 CONFIGURE_ARGS+=--with-tidy=${LOCALBASE}
 
-LIB_DEPENDS+=	tidy-0.99:${PORTSDIR}/www/tidy-lib
+LIB_DEPENDS+=	libtidy-0.99.so:${PORTSDIR}/www/tidy-lib
 .endif
 
 .if ${PHP_MODNAME} == "tokenizer"
@@ -411,7 +412,7 @@ CONFIGURE_ARGS+=--with-xmlrpc \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-iconv-dir=${LOCALBASE}
 
-USES+=		iconv
+USES+=		iconv:translit
 USE_GNOME=	libxml2
 
 PHP_HEADER_DIRS=libxmlrpc
@@ -458,17 +459,17 @@ USE_BDB=		40+
 WITH_BDB_HIGHEST=	yes
 .	endif
 .	if ${PORT_OPTIONS:MGDBM}
-LIB_DEPENDS+=	gdbm:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=	libgdbm.so:${PORTSDIR}/databases/gdbm
 
 CONFIGURE_ARGS+=--with-gdbm=${LOCALBASE}
 .	endif
 .	if ${PORT_OPTIONS:MQDBM}
-LIB_DEPENDS+=	qdbm:${PORTSDIR}/databases/qdbm
+LIB_DEPENDS+=	libqdbm.so:${PORTSDIR}/databases/qdbm
 
 CONFIGURE_ARGS+=--with-qdbm=${LOCALBASE}
 .	endif
 .	if ${PORT_OPTIONS:MTOKYO}
-LIB_DEPENDS+=	tokyocabinet:${PORTSDIR}/databases/tokyocabinet
+LIB_DEPENDS+=	libtokyocabinet.so:${PORTSDIR}/databases/tokyocabinet
 
 CONFIGURE_ARGS+=--with-tcadb=${LOCALBASE}
 .	endif
@@ -482,7 +483,7 @@ CONFIGURE_ARGS+=--disable-flatfile
 
 .if ${PHP_MODNAME} == "gd"
 .	if ${PORT_OPTIONS:MT1LIB}
-LIB_DEPENDS+=	t1:${PORTSDIR}/devel/t1lib
+LIB_DEPENDS+=	libt1.so:${PORTSDIR}/devel/t1lib
 
 CONFIGURE_ARGS+=--with-t1lib=${LOCALBASE}
 .	endif
@@ -498,7 +499,7 @@ USE_XORG=	xpm
 CONFIGURE_ARGS+=--with-xpm-dir=${LOCALBASE}
 .	endif
 .	if ${PORT_OPTIONS:MVPX}
-LIB_DEPENDS+=	vpx:${PORTSDIR}/multimedia/libvpx
+LIB_DEPENDS+=	libvpx.so:${PORTSDIR}/multimedia/libvpx
 
 CONFIGURE_ARGS+=--with-vpx-dir=${LOCALBASE}
 .	endif
@@ -506,7 +507,7 @@ CONFIGURE_ARGS+=--with-vpx-dir=${LOCALBASE}
 
 .if ${PHP_MODNAME} == "mbstring"
 .	if ${PORT_OPTIONS:MREGEX}
-LIB_DEPENDS+=	onig:${PORTSDIR}/devel/oniguruma4
+LIB_DEPENDS+=	libonig.so:${PORTSDIR}/devel/oniguruma4
 CONFIGURE_ARGS+=--with-onig=${LOCALBASE}
 .	else
 CONFIGURE_ARGS+=--disable-mbregex
@@ -539,35 +540,11 @@ post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
 
-.if ${PHP_MODNAME} == "odbc"
-.	if ${PORT_OPTIONS:MIODBC}
-LIB_DEPENDS+=	iodbc:${PORTSDIR}/databases/libiodbc
-
-CONFIGURE_ARGS+=--with-iodbc=${LOCALBASE}
-.	else
-LIB_DEPENDS+=	odbc:${PORTSDIR}/databases/unixODBC
-
-CONFIGURE_ARGS+=--with-unixODBC=${LOCALBASE}
-.	endif
-.endif
-
 .if ${PHP_MODNAME} == "pdo_dblib"
 .	if ${PORT_OPTIONS:MMSSQL}
-LIB_DEPENDS+=	sybdb:${PORTSDIR}/databases/freetds-msdblib
+LIB_DEPENDS+=	libsybdb.so:${PORTSDIR}/databases/freetds-msdblib
 .	else
-LIB_DEPENDS+=	ct:${PORTSDIR}/databases/freetds
-.	endif
-.endif
-
-.if ${PHP_MODNAME} == "pdo_odbc"
-.	if ${PORT_OPTIONS:MIODBC}
-LIB_DEPENDS+=	iodbc:${PORTSDIR}/databases/libiodbc
-
-CONFIGURE_ARGS+=--with-pdo-odbc=iODBC,${LOCALBASE}
-.	else
-LIB_DEPENDS+=	odbc:${PORTSDIR}/databases/unixODBC
-
-CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
+LIB_DEPENDS+=	libct.so:${PORTSDIR}/databases/freetds
 .	endif
 .endif
 

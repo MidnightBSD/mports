@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.25
+PORTVERSION=	5.4.31
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
@@ -15,15 +15,14 @@ LICENSE=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
-CONFIGURE_ARGS=	\
-		--with-layout=GNU \
+CONFIGURE_ARGS=	--with-layout=GNU \
 		--localstatedir=/var \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
@@ -55,8 +54,6 @@ ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 
 CONFLICTS=	php53-5*
 
-MAN1=		php-config.1 phpize.1
-
 .include <bsd.mport.options.mk>
 
 PATCH_DIST_STRIP=	-p1
@@ -72,7 +69,6 @@ PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .if ${PORT_OPTIONS:MCLI}
 PHP_SAPI+=	cli
 PLIST_SUB+=	CLI=""
-MAN1+=		php.1
 .else
 PLIST_SUB+=	CLI="@comment "
 CONFIGURE_ARGS+=--disable-cli
@@ -88,7 +84,6 @@ CONFIGURE_ARGS+=--disable-cgi
 
 .if ${PORT_OPTIONS:MFPM}
 PHP_SAPI+=	fpm
-MAN8+=		php-fpm.8
 USE_RC_SUBR+=	php-fpm
 CONFIGURE_ARGS+=--enable-fpm \
 		--with-fpm-user=${WWWOWN} \
