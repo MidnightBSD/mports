@@ -2,12 +2,14 @@
 
 PORTNAME=	lzop
 DISTVERSION=	1.03
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.lzop.org/download/ \
 		FREEBSD_LOCAL/mandree
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast file compressor similar to gzip, using the LZO library
+
 LICENSE=	gpl2
 
 # prefer lzo2 if it is already installed or if no lzo is installed.
@@ -22,7 +24,6 @@ CONFIGURE_ARGS=	--program-prefix=""
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		lzop.1
-PLIST_FILES=	bin/lzop
+PLIST_FILES=	bin/lzop man/man1/lzop.1.gz
 
 .include <bsd.port.mk>
