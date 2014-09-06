@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	gtar
-PORTVERSION=	1.27
+PORTVERSION=	1.28
 CATEGORIES=	archivers sysutils
-MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	tar
 DISTFILES=	tar-${PORTVERSION}.tar.xz
 
@@ -20,7 +20,7 @@ WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
 INFO=		tar
 
 USE_AUTOTOOLS=	autoconf:env	# autom4te
-USES=		iconv tar:xz
+USES=		iconv:${STATIC_ARGS} tar:xz charsetfix makeinfo
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--disable-silent-rules
