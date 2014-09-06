@@ -20,8 +20,7 @@ USE_PERL5_RUN=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX=${PREFIX}
 
-PLIST_FILES=	bin/mirmon bin/probe
-MAN1=		mirmon.1
+PLIST_FILES=	bin/mirmon bin/probe man/man1/mirmon.1.gz
 
 .include <bsd.mport.options.mk>
 
