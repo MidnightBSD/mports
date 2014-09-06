@@ -2,7 +2,7 @@
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.4.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/ \
 		http://fossies.org/unix/privat/
@@ -10,6 +10,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use greylist milter for sendmail and postfix
+
 LICENSE=	bsd4
 
 
@@ -29,8 +30,7 @@ MAKE_JOBS_UNSAFE=	yes
 # installed port preference over it.
 ##
 
-OPTIONS_DEFINE=		MANPAGES SPF GEOIP CURL LDAP P0F POSTFIX
-OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_DEFINE=		SPF GEOIP CURL LDAP P0F POSTFIX
 SPF_DESC=		SPF support
 CURL_DESC=		curl support
 P0F_DESC=		P0F support
@@ -38,10 +38,6 @@ POSTFIX_DESC=		Use Postfix instead of Sendmail
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MMANPAGES}
-MAN5=		greylist.conf.5
-MAN8=		milter-greylist.8
-.endif
 .if ${PORT_OPTIONS:MSPF}
 BUILD_DEPENDS+=	libspf2>=1.2.5:${PORTSDIR}/mail/libspf2
 CONFIGURE_ARGS+=	--with-libspf2=${LOCALBASE}
@@ -86,10 +82,8 @@ USE_RC_SUBR=	milter-greylist
 
 do-install:
 	@${MKDIR} ${PREFIX}/etc/mail
-.if ${PORT_OPTIONS:MMANPAGES}
 	@${INSTALL_MAN} ${WRKSRC}/greylist.conf.5 ${PREFIX}/man/man5
 	@${INSTALL_MAN} ${WRKSRC}/milter-greylist.8 ${PREFIX}/man/man8
-.endif
 	@${INSTALL_PROGRAM} ${WRKSRC}/milter-greylist ${PREFIX}/libexec
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf \
 			${PREFIX}/etc/mail/greylist.conf.sample
@@ -105,20 +99,6 @@ post-install:
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf ${EXAMPLESDIR}
 .endif
-	@${TEST} -f /var/db/milter-greylist/greylist.db && ( \
-		${ECHO} "************************************************************"; \
-		${ECHO} "************************************************************"; \
-		${ECHO} "**                                                        **"; \
-		${ECHO} "**                        WARNING                         **"; \
-		${ECHO} "**                                                        **"; \
-		${ECHO} "** The default dump file location has changed.            **"; \
-		${ECHO} "** Please move greylist.db from /var/db/milter-greylist/  **"; \
-		${ECHO} "** to /var/milter-greylist/ and update your greylist.conf **"; \
-		${ECHO} "** accordingly.                                           **"; \
-		${ECHO} "**                                                        **"; \
-		${ECHO} "************************************************************"; \
-		${ECHO} "************************************************************"; \
-	) || ${TRUE}
 
 .include "${PORTSDIR}/mail/sendmail/bsd.milter.mk"
 
