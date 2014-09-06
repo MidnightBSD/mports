@@ -2,6 +2,7 @@
 
 PORTNAME=	mirmon
 PORTVERSION=	2.9
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://www.staff.science.uu.nl/~penni101/mirmon/
 
@@ -23,6 +24,8 @@ PLIST_FILES=	bin/mirmon bin/probe
 MAN1=		mirmon.1
 
 .include <bsd.mport.options.mk>
+
+OPTIONS_DEFINE=	DOCS
 
 .if ! ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
