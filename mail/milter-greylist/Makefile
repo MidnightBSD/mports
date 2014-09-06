@@ -2,7 +2,7 @@
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/ \
 		http://fossies.org/unix/privat/
@@ -30,7 +30,7 @@ MAKE_JOBS_UNSAFE=	yes
 # installed port preference over it.
 ##
 
-OPTIONS_DEFINE=		SPF GEOIP CURL LDAP P0F POSTFIX
+OPTIONS_DEFINE=		SPF GEOIP CURL LDAP P0F POSTFIX DOCS EXAMPLES
 SPF_DESC=		SPF support
 CURL_DESC=		curl support
 P0F_DESC=		P0F support
@@ -79,6 +79,8 @@ ALL_TARGET=	milter-greylist
 SUB_FILES+=	pkg-message
 
 USE_RC_SUBR=	milter-greylist
+PORTDOCS=	README
+PORTEXAMPLES=	greylist.conf
 
 do-install:
 	@${MKDIR} ${PREFIX}/etc/mail
