@@ -63,6 +63,9 @@ Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 # AUTOHEADER_ARGS=...
 #	- Extra arguments passed to autoheader during configure step
 #
+# LIBTOOLIZE_ARGS=...
+#	- Extra arguments passed to libtoolize during configure step
+#
 # LIBTOOLFLAGS=<value>
 #	- Arguments passed to libtool during configure step
 #
@@ -81,18 +84,18 @@ Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 
 # Known autotools components
 _AUTOTOOLS_ALL=	autoconf autoheader autoconf213 autoheader213 \
-				automake aclocal automake14 aclocal14 \
-				libtool libtoolize libltdl
+		automake aclocal automake14 aclocal14 \
+		libtool libtoolize libltdl
 
 # Incompatible autotools mixing
-_AUTOTOOLS_IGN_autoconf=		autoconf213 autoheader213
-_AUTOTOOLS_IGN_autoheader=		autoconf213 autoheader213
-_AUTOTOOLS_IGN_autoconf213=		autoconf autoheader
+_AUTOTOOLS_IGN_autoconf=	autoconf213 autoheader213
+_AUTOTOOLS_IGN_autoheader=	autoconf213 autoheader213
+_AUTOTOOLS_IGN_autoconf213=	autoconf autoheader
 _AUTOTOOLS_IGN_autoheader213=	autoconf autoheader
-_AUTOTOOLS_IGN_automake=		automake14 aclocal14
-_AUTOTOOLS_IGN_aclocal=			automake14 aclocal14
-_AUTOTOOLS_IGN_automake14=		automake aclocal
-_AUTOTOOLS_IGN_aclocal14=		automake aclocal
+_AUTOTOOLS_IGN_automake=	automake14 aclocal14
+_AUTOTOOLS_IGN_aclocal=		automake14 aclocal14
+_AUTOTOOLS_IGN_automake14=	automake aclocal
+_AUTOTOOLS_IGN_aclocal14=	automake aclocal
 
 #---------------------------------------------------------------------------
 # Primary magic to break out the USE_AUTOTOOLS stanza into something
@@ -156,26 +159,26 @@ IGNORE+=	Incompatible autotools: ${_AUTOTOOLS_IGN:O:u}
 #---------------------------------------------------------------------------
 
 .if defined(_AUTOTOOL_aclocal) && ${_AUTOTOOL_aclocal} == "yes"
-_AUTOTOOL_automake?=		env
-_AUTOTOOL_rule_aclocal=		yes
-GNU_CONFIGURE=				yes
+_AUTOTOOL_automake?=	env
+_AUTOTOOL_rule_aclocal=	yes
+GNU_CONFIGURE=		yes
 .endif
 
 .if defined(_AUTOTOOL_automake)
-AUTOMAKE_VERSION=	1.12
-AUTOMAKE_APIVER=	1.12.6
+AUTOMAKE_VERSION=	1.14
+AUTOMAKE_APIVER=	1.14
 AUTOMAKE_PORT=		devel/automake
 
 . if ${_AUTOTOOL_automake} == "yes"
 _AUTOTOOL_rule_automake=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 .endif
 
 .if defined(_AUTOTOOL_aclocal14) && ${_AUTOTOOL_aclocal14} == "yes"
 _AUTOTOOL_automake14?=		env
 _AUTOTOOL_rule_aclocal14=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 .endif
 
 .if defined(_AUTOTOOL_automake14)
@@ -186,26 +189,29 @@ AUTOMAKE_ARGS+=		-i		# backwards compatibility shim
 
 . if ${_AUTOTOOL_automake14} == "yes"
 _AUTOTOOL_rule_automake=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 .endif
 
 .if defined(AUTOMAKE_VERSION)
-AUTOMAKE=			${LOCALBASE}/bin/automake-${AUTOMAKE_VERSION}
+AUTOMAKE=		${LOCALBASE}/bin/automake-${AUTOMAKE_VERSION}
 AUTOMAKE_DIR=		${LOCALBASE}/share/automake-${AUTOMAKE_VERSION}
-ACLOCAL=			${LOCALBASE}/bin/aclocal-${AUTOMAKE_VERSION}
+ACLOCAL=		${LOCALBASE}/bin/aclocal-${AUTOMAKE_VERSION}
 ACLOCAL_DIR=		${LOCALBASE}/share/aclocal-${AUTOMAKE_VERSION}
 
-. if defined(_AUTOTOOL_aclocal) || defined(_AUTOTOOL_aclocal14)
+. if defined(_AUTOTOOL_aclocal)
+ACLOCAL_ARGS?=		--automake-acdir=${ACLOCAL_DIR}
+. endif
+. if defined(_AUTOTOOL_aclocal14)
 ACLOCAL_ARGS?=		--acdir=${ACLOCAL_DIR}
 . endif
 
 AUTOMAKE_VARS=		AUTOMAKE=${AUTOMAKE} \
-					AUTOMAKE_DIR=${AUTOMAKE_DIR} \
-					AUTOMAKE_VERSION=${AUTOMAKE_VERSION} \
-					AUTOMAKE_APIVER=${AUTOMAKE_APIVER} \
-					ACLOCAL=${ACLOCAL} \
-					ACLOCAL_DIR=${ACLOCAL_DIR}
+			AUTOMAKE_DIR=${AUTOMAKE_DIR} \
+			AUTOMAKE_VERSION=${AUTOMAKE_VERSION} \
+			AUTOMAKE_APIVER=${AUTOMAKE_APIVER} \
+			ACLOCAL=${ACLOCAL} \
+			ACLOCAL_DIR=${ACLOCAL_DIR}
 
 AUTOMAKE_DEPENDS=	${AUTOMAKE}:${PORTSDIR}/${AUTOMAKE_PORT}
 BUILD_DEPENDS+=		${AUTOMAKE_DEPENDS}
@@ -216,9 +222,9 @@ BUILD_DEPENDS+=		${AUTOMAKE_DEPENDS}
 #---------------------------------------------------------------------------
 
 .if defined(_AUTOTOOL_autoheader) && ${_AUTOTOOL_autoheader} == "yes"
-_AUTOTOOL_autoconf=			yes
+_AUTOTOOL_autoconf=		yes
 _AUTOTOOL_rule_autoheader=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 .endif
 
 .if defined(_AUTOTOOL_autoconf)
@@ -227,46 +233,46 @@ AUTOCONF_PORT=		devel/autoconf
 
 . if ${_AUTOTOOL_autoconf} == "yes"
 _AUTOTOOL_rule_autoconf=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 .endif
 
 .if defined(_AUTOTOOL_autoheader213) && ${_AUTOTOOL_autoheader213} == "yes"
 _AUTOTOOL_autoconf213=		yes
 _AUTOTOOL_rule_autoheader=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 .endif
 
 .if defined(_AUTOTOOL_autoconf213)
 AUTOCONF_VERSION=	2.13
 AUTOCONF_PORT=		devel/autoconf213
-AUTOM4TE=			${FALSE}	# doesn't exist here
+AUTOM4TE=		${FALSE}	# doesn't exist here
 
 . if ${_AUTOTOOL_autoconf213} == "yes"
 _AUTOTOOL_rule_autoconf=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 .endif
 
 .if defined(AUTOCONF_VERSION)
-AUTOCONF=			${LOCALBASE}/bin/autoconf-${AUTOCONF_VERSION}
+AUTOCONF=		${LOCALBASE}/bin/autoconf-${AUTOCONF_VERSION}
 AUTOCONF_DIR=		${LOCALBASE}/share/autoconf-${AUTOCONF_VERSION}
-AUTOHEADER=			${LOCALBASE}/bin/autoheader-${AUTOCONF_VERSION}
+AUTOHEADER=		${LOCALBASE}/bin/autoheader-${AUTOCONF_VERSION}
 AUTOIFNAMES=		${LOCALBASE}/bin/ifnames-${AUTOCONF_VERSION}
-AUTOM4TE?=			${LOCALBASE}/bin/autom4te-${AUTOCONF_VERSION}
-AUTORECONF=			${LOCALBASE}/bin/autoreconf-${AUTOCONF_VERSION}
-AUTOSCAN=			${LOCALBASE}/bin/autoscan-${AUTOCONF_VERSION}
-AUTOUPDATE=			${LOCALBASE}/bin/autoupdate-${AUTOCONF_VERSION}
+AUTOM4TE?=		${LOCALBASE}/bin/autom4te-${AUTOCONF_VERSION}
+AUTORECONF=		${LOCALBASE}/bin/autoreconf-${AUTOCONF_VERSION}
+AUTOSCAN=		${LOCALBASE}/bin/autoscan-${AUTOCONF_VERSION}
+AUTOUPDATE=		${LOCALBASE}/bin/autoupdate-${AUTOCONF_VERSION}
 
 AUTOCONF_VARS=		AUTOCONF=${AUTOCONF} \
-					AUTOCONF_DIR=${AUTOCONF_DIR} \
-					AUTOHEADER=${AUTOHEADER} \
-					AUTOIFNAMES=${AUTOIFNAMES} \
-					AUTOM4TE=${AUTOM4TE} \
-					AUTORECONF=${AUTORECONF} \
-					AUTOSCAN=${AUTOSCAN} \
-					AUTOUPDATE=${AUTOUPDATE} \
-					AUTOCONF_VERSION=${AUTOCONF_VERSION}
+			AUTOCONF_DIR=${AUTOCONF_DIR} \
+			AUTOHEADER=${AUTOHEADER} \
+			AUTOIFNAMES=${AUTOIFNAMES} \
+			AUTOM4TE=${AUTOM4TE} \
+			AUTORECONF=${AUTORECONF} \
+			AUTOSCAN=${AUTOSCAN} \
+			AUTOUPDATE=${AUTOUPDATE} \
+			AUTOCONF_VERSION=${AUTOCONF_VERSION}
 
 AUTOCONF_DEPENDS=	${AUTOCONF}:${PORTSDIR}/${AUTOCONF_PORT}
 BUILD_DEPENDS+=		${AUTOCONF_DEPENDS}
@@ -277,7 +283,7 @@ BUILD_DEPENDS+=		${AUTOCONF_DEPENDS}
 #---------------------------------------------------------------------------
 
 .if defined(_AUTOTOOL_libltdl)
-LIB_DEPENDS+=		ltdl.7:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS+=		libltdl.so:${PORTSDIR}/devel/libltdl
 .endif
 
 #---------------------------------------------------------------------------
@@ -290,29 +296,29 @@ LIBTOOL_PORT=		devel/libtool
 
 . if defined(_AUTOTOOL_libtool) && ${_AUTOTOOL_libtool} == "yes"
 _AUTOTOOL_rule_libtool=		yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 . if defined(_AUTOTOOL_libtoolize) && ${_AUTOTOOL_libtoolize} == "yes"
 _AUTOTOOL_rule_libtoolize=	yes
-GNU_CONFIGURE?=				yes
+GNU_CONFIGURE?=			yes
 . endif
 
 .endif
 
 .if defined(LIBTOOL_VERSION)
-LIBTOOL=			${LOCALBASE}/bin/libtool
-LIBTOOLIZE=			${LOCALBASE}/bin/libtoolize
+LIBTOOL=		${LOCALBASE}/bin/libtool
+LIBTOOLIZE=		${LOCALBASE}/bin/libtoolize
 LIBTOOL_LIBEXECDIR=	${LOCALBASE}/libexec/libtool
 LIBTOOL_SHAREDIR=	${LOCALBASE}/share/libtool
-LIBTOOL_M4=			${LOCALBASE}/share/aclocal/libtool.m4
-LTMAIN=				${LOCALBASE}/share/libtool/config/ltmain.sh
+LIBTOOL_M4=		${LOCALBASE}/share/aclocal/libtool.m4
+LTMAIN=			${LOCALBASE}/share/libtool/config/ltmain.sh
 
 LIBTOOL_VARS=		LIBTOOL=${LIBTOOL} \
-					LIBTOOLIZE=${LIBTOOLIZE} \
-					LIBTOOL_LIBEXECDIR=${LIBTOOL_LIBEXECDIR} \
-					LIBTOOL_SHAREDIR=${LIBTOOL_SHAREDIR} \
-					LIBTOOL_M4=${LIBTOOL_M4} \
-					LTMAIN=${LTMAIN}
+			LIBTOOLIZE=${LIBTOOLIZE} \
+			LIBTOOL_LIBEXECDIR=${LIBTOOL_LIBEXECDIR} \
+			LIBTOOL_SHAREDIR=${LIBTOOL_SHAREDIR} \
+			LIBTOOL_M4=${LIBTOOL_M4} \
+			LTMAIN=${LTMAIN}
 
 LIBTOOLFLAGS?=		# default to empty
 
@@ -321,6 +327,8 @@ LIBTOOLFILES?=		aclocal.m4
 . elif defined(_AUTOTOOL_rule_libtool)
 LIBTOOLFILES?=		${CONFIGURE_SCRIPT}
 . endif
+
+LIBTOOLIZE_ARGS?=	-i -c -f
 
 LIBTOOL_DEPENDS=	libtool>=2.4:${PORTSDIR}/${LIBTOOL_PORT}
 BUILD_DEPENDS+=		${LIBTOOL_DEPENDS}
@@ -334,7 +342,7 @@ AUTOTOOLS_VARS=		${AUTOMAKE_VARS} ${AUTOCONF_VARS} ${LIBTOOL_VARS}
 
 .if defined(AUTOTOOLS_VARS) && !empty(AUTOTOOLS_VARS)
 . for var in AUTOTOOLS CONFIGURE MAKE SCRIPTS
-${var:U}_ENV+=		${AUTOTOOLS_VARS}
+${var:tu}_ENV+=		${AUTOTOOLS_VARS}
 . endfor
 .endif
 
@@ -343,15 +351,13 @@ ${var:U}_ENV+=		${AUTOTOOLS_VARS}
 #---------------------------------------------------------------------------
 
 .if !target(run-autotools)
-.ORDER:			run-autotools run-autotools-aclocal \
-				patch-autotools-libtool run-autotools-autoheader \
-				run-autotools-libtoolize run-autotools-autoconf \
-				run-autotools-automake
+.ORDER:		run-autotools run-autotools-libtoolize run-autotools-aclocal \
+		patch-autotools-libtool run-autotools-autoconf \
+		run-autotools-autoheader run-autotools-automake
 
-run-autotools:: run-autotools-aclocal \
-				patch-autotools-libtool run-autotools-autoheader \
-				run-autotools-libtoolize run-autotools-autoconf \
-				run-autotools-automake
+run-autotools::	run-autotools-libtoolize run-autotools-aclocal \
+		patch-autotools-libtool run-autotools-autoconf \
+		run-autotools-autoheader run-autotools-automake
 .endif
 
 .if !target(run-autotools-aclocal)
