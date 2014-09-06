@@ -17,8 +17,6 @@ PURE_PERL_DESC=	Build pure Perl version (experimental)
 
 PERL_CONFIGURE=	yes
 
-MAN3=		FCGI.3
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPURE_PERL}
