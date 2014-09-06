@@ -9,7 +9,7 @@ DISTFILES=	# none
 EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A "meta-port" to install PHP extensions
+COMMENT=	"meta-port" to install PHP extensions
 LICENSE=	agg
 
 USE_PHP=	yes
@@ -17,6 +17,7 @@ DEFAULT_PHP_VER=5
 USE_PHP_BUILD=	yes
 
 NO_BUILD=	yes
+NO_MTREE=	yes
 
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
 OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
@@ -118,7 +119,7 @@ OPTIONS_DEFAULT=	CTYPE \
 
 .for opt in ${OPTIONS_DEFINE}
 .	if ${PORT_OPTIONS:M${opt}}
-USE_PHP+=	${opt:L}
+USE_PHP+=	${opt:tl}
 .	endif
 .endfor
 
