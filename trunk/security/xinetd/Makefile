@@ -2,7 +2,7 @@
 
 PORTNAME=	xinetd
 PORTVERSION=	2.3.15
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security ipv6
 MASTER_SITES=	GENTOO/distfiles
 
@@ -13,15 +13,22 @@ LICENSE=	other
 
 FAKE_OPTS=	prefixhack
 
-USES=		gmake
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	xinetd
 ALL_TARGET=	build
-CONFIGURE_ARGS+=	--with-loadavg --with-libwrap --with-ipv6
+CONFIGURE_ARGS+=	--with-loadavg
+
+USES=		shebangfix perl5
+USE_PERL5=	run
+SHEBANG_FILES=	${WRKSRC}/xinetd/xconv.pl
+
+OPTIONS_DEFINE=	IPV6 LIBWRAP
+OPTIONS_DEFAULT=	LIBWRAP
+
+IPV6_CONFIGURE_WITH=	ipv6
+LIBWRAP_CONFIGURE_WITH=	libwrap
 
 post-patch:
-	${FIND} ${WRKSRC}/libs/src -name Makefile.in | ${XARGS} \
-		${REINPLACE_CMD} -e 's!\@INSTALL\@!/bin/cp!; s!-m 640!!'
 	@${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/xinetd/xconfig.h
 
 do-install:
