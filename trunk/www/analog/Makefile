@@ -2,7 +2,7 @@
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	8
+PORTREVISION=	9
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
@@ -18,9 +18,10 @@ MASTER_SITES=	http://www.analog.cx/ \
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	An extremely fast program for analysing WWW logfiles
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png15:${PORTSDIR}/graphics/png
 
@@ -28,7 +29,6 @@ LIMGDIR?=	www/data/images
 IMGDIR=		${PREFIX}/${LIMGDIR}
 PLIST_SUB=	IMGDIR=${LIMGDIR}
 
-MAN1=		analog.1
 ALL_TARGET=	analog
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKSRC}/pkg-message
