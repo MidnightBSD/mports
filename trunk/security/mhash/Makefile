@@ -2,7 +2,7 @@
 
 PORTNAME=	mhash
 PORTVERSION=	0.9.9.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -11,13 +11,12 @@ COMMENT=	Easy-to-use library for strong hashes such as MD5 and SHA1
 
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USES=		tar:bzip2 libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-static \
 			--with-gnu-ld
-
-MAN3=		mhash.3
+NSTALL_TARGET=	install-strip
 
 PORTDOCS=	example.c skid2-authentication
 
