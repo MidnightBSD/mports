@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lynx
-PORTVERSION=	2.8.7.2
-PORTREVISION=	1
+PORTVERSION=	2.8.8.2
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/
 DISTNAME=	${PORTNAME}${PORTVERSION:R}rel.${PORTVERSION:E}
@@ -14,9 +13,9 @@ LICENSE=	gpl2
 
 MAKE_JOBS_UNSAFE=yes
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_OPENSSL=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}2-8-7
+WRKSRC=		${WRKDIR}/${PORTNAME}2-8-8
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies \
