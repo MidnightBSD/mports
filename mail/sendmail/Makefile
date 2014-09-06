@@ -2,7 +2,7 @@
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -85,7 +85,7 @@ EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 TLS_SUFFIX?=	+tls
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
 .if ! ${PORT_OPTIONS:MTLSEXT_PADDING}
-EXTRA_PATCHES+=       ${FILESDIR}/tlsext.patch
+EXTRA_PATCHES+=	${FILESDIR}/tlsext.patch
 .endif
 .endif
 
@@ -139,14 +139,15 @@ PLIST_SUB+=	MILTER_SHARED="@comment "
 .endif
 .endif
 
-SED_SCRIPT=	-e "s;\`-pthread\';\`${PTHREAD_LIBS}\';" \
-		-e "s;\`-O\';\`${CFLAGS}\';"
+SED_SCRIPT=	-e "s|\`-pthread\'|\`${PTHREAD_LIBS}\'|" \
+		-e "s|\`-O\'|\`${CFLAGS}\'|" \
+		-e 's|%%CC%%|${CC}|' -e 's|%%LD%%|${LD}|'
 
-.if defined(SENDMAIL_WITHOUT_NIS)
+.if ! ${PORT_OPTIONS:MNIS}
 SED_SCRIPT+=	-e "s;-DNIS ;;"
 .endif
 
-post-extract:
+post-patch:
 	@${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		-e "s=%%PORTSDIR%%=${PORTSDIR}=g" \
@@ -162,14 +163,6 @@ post-extract:
 		> ${WRKSRC}/libsharedmilter/Makefile.m4
 .endif
 
-pre-configure:
-.if defined(AUTO_ENABLED_TLS)
-	@${ECHO_CMD} "DEPENDENCY NOTE: SENDMAIL_WITH_TLS will be enabled to support SENDMAIL_WITH_SMTPS"
-.endif
-.if defined(AUTO_ENABLED_SOCKETMAP)
-	@${ECHO_CMD} "DEPENDENCY NOTE: SENDMAIL_WITH_SOCKETMAP will be enabled to support SENDMAIL_WITH_CYRUSLOOKUP"
-.endif
-
 do-configure:
 	@${MV} ${WRKSRC}/devtools/OS/FreeBSD ${WRKSRC}/devtools/OS/FreeBSD.sed
 	${SED} ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD.sed \
@@ -177,7 +170,7 @@ do-configure:
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		${SITE} > ${WCONF}/site.config.m4
-.if defined(SENDMAIL_WITH_BERKELEYDB)
+.if ${PORT_OPTIONS:MBDB}
 	${ECHO_CMD} \
 	 'APPENDDEF(`confENVDEF'\'', `-I${BDB_INCLUDE_DIR}'\'')' \
 		>> ${WCONF}/site.config.m4
@@ -190,7 +183,7 @@ do-configure:
 		>> ${WCONF}/site.config.m4
 .endfor
 .endif
-.if defined(SENDMAIL_WITH_SOCKETMAP)
+.if ${PORT_OPTIONS:MSOCKETMAP}
 	${ECHO_CMD} \
 	 'APPENDDEF(`conf_sendmail_ENVDEF'\'', `-DSOCKETMAP'\'')' \
 		>> ${WCONF}/site.config.m4
@@ -200,22 +193,22 @@ do-configure:
 	 'APPENDDEF(`conf_sendmail_ENVDEF'\'', `-DPICKY_HELO_CHECK'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if defined(SENDMAIL_WITHOUT_SHMEM)
+.if ! ${PORT_OPTIONS:MSHMEM}
 	${ECHO_CMD} \
 	 'APPENDDEF(`confENVDEF'\'', `-DSM_CONF_SHM=0'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if defined(SENDMAIL_WITHOUT_SEM)
+.if ! ${PORT_OPTIONS:MSEM}
 	${ECHO_CMD} \
 	'APPENDDEF(`confENVDEF'\'', `-DSM_CONF_SEM=0'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if defined(SENDMAIL_WITHOUT_LA)
+.if ! ${PORT_OPTIONS:MLA}
 	${ECHO_CMD} \
 	'APPENDDEF(`confENVDEF'\'', `-DLA_TYPE=LA_ZERO'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if !defined(SENDMAIL_WITHOUT_MILTER) && !defined(SENDMAIL_WITHOUT_MILTER_POOL)
+.if ${PORT_OPTIONS:MMILTER} && ${PORT_OPTIONS:MMILTER_POOL} 
 	${ECHO_CMD} \
 	 'APPENDDEF(`conf_libmilter_ENVDEF'\'', `-DSM_CONF_POLL=1'\'')' \
 		>> ${WCONF}/site.config.m4
@@ -225,18 +218,18 @@ do-configure:
 .endif
 
 post-build:
-	( cd ${WRKSRC}/doc/op && ${MAKE} op.txt )
-.if !defined(SENDMAIL_WITHOUT_MILTER)
-	@(cd ${BUILD_WRKSRC}/libmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
-.if defined(SENDMAIL_WITH_SHARED_MILTER)
-	@(cd ${BUILD_WRKSRC}/libsharedmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
+	( cd ${WRKSRC}/doc/op && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt )
+.if ${PORT_OPTIONS:MMILTER}
+	(cd ${BUILD_WRKSRC}/libmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
+.if ${PORT_OPTIONS:MMILTER_SHARED}
+	(cd ${BUILD_WRKSRC}/libsharedmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .endif
 .endif
 	${MKDIR} ${WRKDIR}/${FAKE_INSTALLDIR}/etc/mail
 
 pre-install:
 	@${CAT} ${PKGDIR}/pkg-plist >${PLIST}
-.if !defined(SENDMAIL_WITHOUT_MILTER)
+.if ${PORT_OPTIONS:MMILTER}
 	@${CAT} ${FILESDIR}/pkg-milter >>${PLIST}
 .endif
 	if ! pw groupshow smmsp; then pw groupadd smmsp -g 25; fi
@@ -247,12 +240,12 @@ pre-install:
 	@cd ${WRKSRC} && ${FIND} -d cf -type d | \
 	${AWK} '{print "@dirrm share/sendmail/" $$1}' >>${PLIST}
 	@${ECHO_CMD} "@dirrm share/sendmail" >>${PLIST}
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 .for i in ${DOCS}
 	@${ECHO_CMD} `${BASENAME} ${i}` | \
 	${AWK} '{print "%%DOCSDIR%%/" $$1}' >>${PLIST}
 .endfor
-.if defined(SENDMAIL_WITH_CYRUSLOOKUP)
+.if ${PORT_OPTIONS:MCYRUSLOOKUP}
 	@${ECHO_CMD} "share/doc/sendmail/CYRUS_LOOKUP" >>${PLIST}
 .endif
 	@${ECHO_CMD} "@dirrm %%DOCSDIR%%" >>${PLIST}
@@ -261,9 +254,11 @@ pre-install:
 # We want mail.local and rmail for our system.
 # the build install catmans only, we have to fix this.
 post-install:
-	( cd ${WRKSRC}/mail.local && ${MAKE} ${FAKE_MAKEARGS} force-install )
-	( cd ${WRKSRC}/rmail && ${MAKE} ${FAKE_MAKEARGS} force-install )
-.if !defined(SENDMAIL_WITHOUT_MILTER)
+	(cd ${WRKSRC}/mail.local && \
+	 ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} force-install)
+	(cd ${WRKSRC}/rmail && \
+	 ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} force-install)
+.if ${PORT_OPTIONS:MMILTER}
 	${MKDIR} ${PREFIX}/include/libmilter
 	${INSTALL_DATA} ${WRKSRC}/include/libmilter/mfapi.h \
 		${WRKSRC}/include/libmilter/mfdef.h \
@@ -271,7 +266,7 @@ post-install:
 	${INSTALL_DATA} \
 	 ${WRKSRC}/obj.`${WRKSRC}/devtools/bin/Build -A`/libmilter/libmilter.a \
 	 ${PREFIX}/lib/
-.if defined(SENDMAIL_WITH_SHARED_MILTER)
+.if ${PORT_OPTIONS:MMILTER_SHARED}
 	${INSTALL_SCRIPT} \
 	 ${WRKSRC}/obj.`${WRKSRC}/devtools/bin/Build -A`/libsharedmilter/libmilter.so \
 	 ${PREFIX}/lib/libmilter.so.${MILTER_SOVER}
@@ -293,7 +288,7 @@ post-install:
 	${MKDIR} ${PREFIX}/share/sendmail
 	@${TAR} -C ${WRKSRC} -cf - cf | \
 		${TAR} -C ${PREFIX}/share/sendmail -xf -
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/op/op.ps ${DOCSDIR}/op.ps
@@ -302,18 +297,17 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/sendmail/README ${DOCSDIR}/SENDMAIL
 	${INSTALL_DATA} ${WRKSRC}/mail.local/README ${DOCSDIR}/MAIL.LOCAL
 	${INSTALL_DATA} ${WRKSRC}/smrsh/README ${DOCSDIR}/SMRSH
-.if !defined(SENDMAIL_WITHOUT_MILTER)
+.if ${PORT_OPTIONS:MMILTER}
 	${INSTALL_DATA} ${WRKSRC}/libmilter/README ${DOCSDIR}/MILTER
 	${MKDIR} ${DOCSDIR}/libmilter
 	@${TAR} -C ${WRKSRC}/libmilter/docs -cf - . | \
 		${TAR} -C ${DOCSDIR}/libmilter -xf -
 .endif
-.if defined(SENDMAIL_WITH_CYRUSLOOKUP)
+.if ${PORT_OPTIONS:MCYRUSLOOKUP}
 	${INSTALL_DATA} ${FILESDIR}/CYRUS_LOOKUP ${DOCSDIR}/CYRUS_LOOKUP
 .endif
 .endif
 .if exists(${DESTDIR}/etc/mail/mailer.conf)
-	@${CAT} ${PKGMESSAGE}
 
 mailer.base:
 	@${SED} \
@@ -389,7 +383,7 @@ help:
 
 .include <bsd.port.pre.mk>
 
-.if defined(SENDMAIL_WITH_TLS) || defined(WITH_TLS)
+.if ${PORT_OPTIONS:MTLS}
 .if !defined(WITH_OPENSSL_BASE)
 SITE+=	${FILESDIR}/site.config.m4.ssl
 .endif
