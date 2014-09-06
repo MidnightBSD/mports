@@ -107,13 +107,13 @@ SITE+=	${FILESDIR}/site.config.m4
 .if ${PORT_OPTIONS:MIPV6}
 SITE+=	${FILESDIR}/site.config.m4.ipv6
 .endif
-.if defined(SENDMAIL_WITH_SASL2)
+.if ${PORT_OPTIONS:MSASL}
 SITE+=	${FILESDIR}/site.config.m4.sasl2
 .endif
-.if ${PORT_OPTIONS:MSASL}
+.if ${PORT_OPTIONS:MLDAP}
 SITE+=	${FILESDIR}/site.config.m4.ldap
 .endif
-.if !defined(SENDMAIL_WITHOUT_MILTER)
+.if ${PORT_OPTIONS:MMILTER}
 SITE+=	${FILESDIR}/site.config.m4.milter
 .endif
 .if ${PORT_OPTIONS:MTLS}
@@ -129,8 +129,8 @@ PLIST_SUB+=	ETCPORT="@comment "
 PLIST_SUB+=	ETCPORT=""
 .endif
 
-.if !defined(SENDMAIL_WITHOUT_MILTER)
-.if defined(SENDMAIL_WITH_SHARED_MILTER)
+.if ${PORT_OPTIONS:MMILTER}
+.if ${PORT_OPTIONS:MMILTER_SHARED}
 PLIST_SUB+=	MILTER_SHARED=""
 PLIST_SUB+=	MILTER_SOVER=${MILTER_SOVER}
 MAKE_ENV+=	MILTER_SOVER=${MILTER_SOVER}
@@ -151,7 +151,7 @@ post-extract:
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		-e "s=%%PORTSDIR%%=${PORTSDIR}=g" \
 		${PKGDIR}/pkg-message > ${WRKSRC}/pkg-message
-.if !defined(SENDMAIL_WITHOUT_MILTER) && defined(SENDMAIL_WITH_SHARED_MILTER)
+.if ${PORT_OPTIONS:MMILTER} && ${PORT_OPTIONS:MMILTER_SHARED}
 	@${CP} -pR ${WRKSRC}/libmilter ${WRKSRC}/libsharedmilter
 	${CP} ${FILESDIR}/sharedlibrary.m4 \
 		${WRKSRC}/devtools/M4/UNIX/sharedlibrary.m4
