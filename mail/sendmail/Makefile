@@ -2,6 +2,7 @@
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.9
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -22,18 +23,18 @@ SITE=		${FILESDIR}/site.config.m4.pre4
 PLIST=		${WRKDIR}/.PLIST.more
 DOCS=		KNOWNBUGS LICENSE PGPKEYS README RELEASE_NOTES \
 		sendmail/TRACEFLAGS sendmail/SECURITY sendmail/TUNING
-MAN1=		mailq.1 newaliases.1 vacation.1
-MAN5=		aliases.5
-MAN8=		sendmail.8 mailstats.8 makemap.8 praliases.8 smrsh.8 \
+LMAN1=		mailq.1 newaliases.1 vacation.1
+LMAN5=		aliases.5
+LMAN8=		sendmail.8 mailstats.8 makemap.8 praliases.8 smrsh.8 \
 		mail.local.8 rmail.8 editmap.8
 SENDMAIL=	${PREFIX}/sbin/sendmail
 BASEMAIL=	/usr/libexec/sendmail/sendmail
-PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==}
+PLIST_SUB+=	PREFIX=${PREFIX:S=${PREFIX}/==} MANPREFIX=${MANPREFIX:S=$=/=:S=${PREFIX}==:S=^/==}
 PKGMESSAGE=	${WRKSRC}/pkg-message
 MILTER_SOVER?=	6
 
-OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD LDAP BDB SOCKETMAP CYRUSLOOKUP PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
-OPTIONS_DEFAULT?=	SHMEM SEM LA NIS IPV6 PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
+OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD LDAP BDB SOCKETMAP CYRUSLOOKUP PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL TLSEXT_PADDING DOCS
+OPTIONS_DEFAULT?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
 NO_OPTIONS_SORT=yes
 SHMEM_DESC=		System V shared memory support
 LA_DESC=		load averages support
@@ -46,6 +47,7 @@ PICKY_HELO_CHECK_DESC=	Enable picky HELO check
 MILTER_DESC=		Build libmilter
 MILTER_SHARED_DESC=	Build shared libmilter
 MILTER_POOL_DESC=	Enable milter thread pools
+TLSEXT_PADDING_DESC=	Enable TLSEXT padding
 
 BDB_USE=	BDB=yes
 LDAP_USE=	OPENLDAP=yes
@@ -82,6 +84,9 @@ EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
+.if ! ${PORT_OPTIONS:MTLSEXT_PADDING}
+EXTRA_PATCHES+=       ${FILESDIR}/tlsext.patch
+.endif
 .endif
 
 MAKE_PKGNAMES=	for i in "" +tls; do \
@@ -92,26 +97,26 @@ MAKE_PKGNAMES=	for i in "" +tls; do \
 	done done done done
 
 ALL_PKGNAMES!=	${MAKE_PKGNAMES}
-CONFLICTS2!=	${MAKE_PKGNAMES} | grep -v "${PORTNAME}${PKGNAMESUFFIX}-8."
+CONFLICTS2!=	${MAKE_PKGNAMES} | grep -v "${PORTNAME}${PKGNAMESUFFIX:S|${PKGNAMESUFFIX2}||}-8."
 CONFLICTS+=	${CONFLICTS2}
 
 # Build site.config.m4
 .if exists(${DESTDIR}/etc/mail/mailer.conf)
 SITE+=	${FILESDIR}/site.config.m4
 .endif
-.if !defined(SENDMAIL_WITHOUT_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 SITE+=	${FILESDIR}/site.config.m4.ipv6
 .endif
 .if defined(SENDMAIL_WITH_SASL2)
 SITE+=	${FILESDIR}/site.config.m4.sasl2
 .endif
-.if defined(SENDMAIL_WITH_LDAP)
+.if ${PORT_OPTIONS:MSASL}
 SITE+=	${FILESDIR}/site.config.m4.ldap
 .endif
 .if !defined(SENDMAIL_WITHOUT_MILTER)
 SITE+=	${FILESDIR}/site.config.m4.milter
 .endif
-.if defined(SENDMAIL_WITH_TLS) || defined(WITH_TLS)
+.if ${PORT_OPTIONS:MTLS}
 USE_OPENSSL=	yes
 .endif
 
@@ -273,15 +278,15 @@ post-install:
 	${LN} -sf libmilter.so.${MILTER_SOVER} ${PREFIX}/lib/libmilter.so
 .endif
 .endif
-.for i in ${MAN8}
+.for i in ${LMAN8}
 	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz
 	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man8
 .endfor
-.for i in ${MAN5}
+.for i in ${LMAN5}
 	@${RM} -f ${MANPREFIX}/man/cat5/${i} ${MANPREFIX}/man/cat5/${i}.gz
 	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man5
 .endfor
-.for i in ${MAN1}
+.for i in ${LMAN1}
 	@${RM} -f ${MANPREFIX}/man/cat1/${i} ${MANPREFIX}/man/cat1/${i}.gz
 	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man1
 .endfor
