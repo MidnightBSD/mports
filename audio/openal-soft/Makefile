@@ -2,31 +2,33 @@
 # $FreeBSD: ports/audio/openal-soft/Makefile,v 1.13 2011/04/03 07:33:37 mva Exp $
 
 PORTNAME=	openal-soft
-PORTVERSION=	1.13
+PORTVERSION=	1.15.1
 CATEGORIES=	audio
 MASTER_SITES=	http://kcat.strangesoft.net/openal-releases/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A software implementation of the OpenAL specification
+COMMENT=	Software implementation of the OpenAL specification
+
 LICENSE=	lgpl
 
 CONFLICTS=	openal-200[0-9]*
 
-USE_BZIP2=	yes
-USE_CMAKE=	yes
+USES=		tar:bzip2 cmake
 USE_LDCONFIG=	yes
-CMAKE_USE_PTHREAD=	yes
 CMAKE_ARGS+=	-DALSA:BOOL=OFF -DPORTAUDIO:BOOL=OFF -DSOLARIS:BOOL=OFF \
-		-DDSOUND:BOOL=OFF -DALSOFT_CONFIG:BOOL=ON
+		-DDSOUND:BOOL=OFF -DSNDIO:BOOL=OFF -DEXAMPLES:BOOL=OFF \
+		-DMMDEVAPI:BOOL=OFF -DWINMM:BOOL=OFF -DCOREAUDIO:BOOL=OFF \
+		-DOPENSL:BOOL=OFF -DALSOFT_CONFIG:BOOL=ON
 
-OPTIONS=	PULSEAUDIO	"Enable sound streaming using PulseAudio" off
+OPTIONS_DEFINE=		PULSEAUDIO
+PULSEAUDIO_DESC=	Enable sound streaming using PulseAudio
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_PULSEAUDIO)
-LIB_DEPENDS+=	pulse-simple.0:${PORTSDIR}/audio/pulseaudio
+.if ${PORT_OPTIONS:MPULSEAUDIO}
+LIB_DEPENDS+=	libpulse-simple.so:${PORTSDIR}/audio/pulseaudio
 CFLAGS+=	-Iinclude -I${LOCALBASE}/include
-CONFIGURE_ENV+=	LDFLAGS="-L${LOCALBASE}/lib"
+LDFLAGS+=	-L${LOCALBASE}/lib
 CMAKE_ARGS+=	-DPULSEAUDIO:BOOL=ON
 .else
 CMAKE_ARGS+=	-DPULSEAUDIO:BOOL=OFF
@@ -36,7 +38,7 @@ post-patch:
 	@${REINPLACE_CMD} 's|/etc/openal|${ETCDIR}|' \
 		${WRKSRC}/Alc/alcConfig.c \
 		${WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} 's|alsoft.conf|alsoft.conf.sample|' \
+	@${REINPLACE_CMD} 's|share/openal|${ETCDIR}|' \
 		${WRKSRC}/CMakeLists.txt
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
