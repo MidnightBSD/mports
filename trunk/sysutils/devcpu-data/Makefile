@@ -1,41 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	data
-PORTVERSION=	0.6
-PORTREVISION=	2
+PORTVERSION=	1.2
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
+MASTER_SITES=	http://downloadmirror.intel.com/23984/eng/:intel \
+		http://www.amd64.org/microcode/:amd
 PKGNAMEPREFIX=	devcpu-
-DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
+DISTFILES=	microcode-20140624.tgz:intel amd-ucode-latest.tar.bz2:amd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel and AMD CPUs microcode updates
 
 LICENSE=	unknown
 
-USES=		tar:bzip2
-NO_BUILD=	yes
+NO_WRKSUBDIR=	yes
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 4014
 DATADIR=	${PREFIX}/share/cpucontrol
-.else
-DATADIR=	${PREFIX}/share/devcpu
-.endif
 
 USE_RC_SUBR=	microcode_update
 
+post-extract:
+	${CP} -p ${FILESDIR}/Makefile ${FILESDIR}/ucode-tool.c ${WRKSRC}
+
 do-install:
-	${MKDIR} ${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/mcodes/* ${DATADIR}/
-	@${TOUCH} ${DATADIR}/.do_not_delete
+	${MKDIR} ${STAGEDIR}${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/mcodes/* ${STAGEDIR}${DATADIR}/
 
-post-install:
-	@${FIND} -ds ${DATADIR}/ ! -type d | \
-		${SED} 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec rmdir %D/${DATADIR:S,^${PREFIX},,}" >> ${TMPPLIST}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
