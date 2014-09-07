@@ -2,23 +2,23 @@
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.101
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=cherokee/1.2/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Extremely fast and flexible web server
+COMMENT=	Fast and flexible web server
+
 LICENSE=	gpl2
 
+USES=		gettext gmake pkgconfig
 USE_GNOME=	gnomehack
 USE_PKGCONFIG=	build
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-USE_GETTEXT=	yes
 USE_RC_SUBR=	cherokee
 SUB_FILES=	pkg-install pkg-message
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
