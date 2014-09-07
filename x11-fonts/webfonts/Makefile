@@ -16,7 +16,7 @@ DIST_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TrueType core fonts for the Web
 
-LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE=	other
 
 EXTRACT_DEPENDS=cabextract:${PORTSDIR}/archivers/cabextract
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
