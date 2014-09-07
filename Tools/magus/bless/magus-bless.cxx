@@ -158,8 +158,8 @@ main(int argc, char *argv[])
             }
 
 	    printf("Load the mirrors list\n");
-	    nontransaction Q(C);
-	    result R2(Q.exec("SELECT country, url FROM mirrors order by country"));
+	    nontransaction MC(C);
+	    result R2(MC.exec("SELECT country, url FROM mirrors order by country"));
 	    if (!R2.empty())
             {
 		   for (result::const_iterator c = R2.begin(); c != R2.end(); ++c) 
@@ -171,7 +171,9 @@ main(int argc, char *argv[])
                              errx(1, "Could not prepare statement");
                          }
 			string country = c[0].as(string());
+			cout << country << endl;
 			string url = c[1].as(string());
+			cout << url << endl;
                          sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
                          sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
 
