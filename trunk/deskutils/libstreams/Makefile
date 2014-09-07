@@ -11,7 +11,7 @@ COMMENT=	Strigi desktop search: streams library
 
 LICENSE=	gpl2
 
-USES=		iconv
+USES=		iconv tar:bzip2
 USE_LDCONFIG=	yes
 
 post-patch:
