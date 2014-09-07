@@ -1,45 +1,36 @@
-# ex:ts=8
-# ports collection makefile for:	cscope
-# Date created:		1998-11-21
-# Whom:			Castor Fu
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/cscope/Makefile,v 1.27 2006/11/01 11:23:29 miwi Exp $
-#
 
 PORTNAME=	cscope
-PORTVERSION=	15.7a
+PORTVERSION=	15.8a
 CATEGORIES=	devel
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An interactive C program browser
+COMMENT=	Interactive C program browser
+
 LICENSE=	bsd3
 
-OPTIONS=	XCSCOPE "Install (X)Emacs package" off
+OPTIONS_DEFINE=	XCSCOPE
+XCSCOPE_DESC=	Install (X)Emacs package
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 
 EMACSLISPDIR=	${PREFIX}/share/emacs/site-lisp
 XEMACSLISPDIR=	${PREFIX}/lib/xemacs/site-lisp
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_XCSCOPE)
+.if ${PORT_OPTIONS:MXCSCOPE}
 PLIST_SUB+=	XCSCOPE=""
+post-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/xcscope/cscope-indexer ${PREFIX}/bin
+	${MKDIR} ${EMACSLISPDIR}
+	${INSTALL_DATA} ${WRKSRC}/contrib/xcscope/xcscope.el ${EMACSLISPDIR}
+	${MKDIR} ${XEMACSLISPDIR}
+	${LN} -sf ${EMACSLISPDIR}/xcscope.el ${XEMACSLISPDIR}
 .else
 PLIST_SUB+=	XCSCOPE="@comment "
 .endif
 
-MAN1=		cscope.1
-
-.if defined(WITH_XCSCOPE)
-post-install:
-	${MKDIR} ${EMACSLISPDIR}
-	${INSTALL_DATA} ${WRKSRC}/contrib/xcscope/xcscope.el ${EMACSLISPDIR}/
-	${MKDIR} ${XEMACSLISPDIR}
-	${LN} -sf ${EMACSLISPDIR}/xcscope.el ${XEMACSLISPDIR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
