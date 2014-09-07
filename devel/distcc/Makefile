@@ -72,7 +72,6 @@ PLIST_SUB+=		WITH_GNOME=""
 PLIST_SUB+=		WITH_GNOME="@comment "
 .endif
 
-MAN1=		distcc.1 distccd.1 distccmon-text.1
 DOC_FILES=	AUTHORS INSTALL NEWS README \
 		doc/protocol-1.txt doc/status-1.txt \
 		doc/protocol-2.txt doc/reporting-bugs.txt
@@ -99,7 +98,7 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
 .endfor
 .endif
-.for f in ${MAN1}
+.for f in distcc.1 distccd.1 distccmon-text.1
 	@${INSTALL_MAN} ${WRKSRC}/man/${f} ${MANPREFIX}/man/man1
 .endfor
 
