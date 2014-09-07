@@ -2,15 +2,16 @@
 
 PORTNAME=	gdome2
 PORTVERSION=	0.8.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	textproc
 MASTER_SITES=	http://gdome2.cs.unibo.it/tarball/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome DOM Engine
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 USE_AUTOTOOLS=	libtool
 USES=		pathfix pkgconfig
