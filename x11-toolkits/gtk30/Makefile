@@ -1,49 +1,44 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk
-PORTVERSION=	3.6.4
-PORTREVISION?=	1
+PORTVERSION=	3.8.8
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+PKGNAMESUFFIX=	3
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome3
-PKGNAMESUFFIX=	30
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
+
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
-
-BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
-		${LOCALBASE}/libdata/pkgconfig/atk-bridge-2.0.pc:${PORTSDIR}/accessibility/at-spi2-atk
-RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/atk-bridge-2.0.pc:${PORTSDIR}/accessibility/at-spi2-atk
+RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		${LOCALBASE}/libdata/pkgconfig/atk-bridge-2.0.pc:${PORTSDIR}/accessibility/at-spi2-atk
 
-USE_GMAKE=	yes
-USE_PERL5_BUILD=yes
-MAKE_JOBS_UNSAFE=	yes
+USE_PERL5=	build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
-USE_GETTEXT=	yes
+GNU_CONFIGURE=	yes
+USE_GNOME=	atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache \
+		introspection:build
+USES+=		gettext gmake pathfix perl5 pkgconfig
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
-CONFIGURE_ARGS=	--enable-static
-CONFIGURE_ARGS+=--enable-gtk2-dependency --disable-packagekit
+CONFIGURE_ARGS=	--enable-gtk2-dependency --disable-packagekit
 CPPFLAGS+=	-I${LOCALBASE}/include -fno-omit-frame-pointer
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	INTROSPECTION_GIRDIR=`pkg-config --variable=girdir gobject-introspection-1.0` ac_cv_path_SED="${SED}"
+CONFIGURE_ENV=	INTROSPECTION_GIRDIR=`pkg-config --variable=girdir gobject-introspection-1.0`
+ltverhack_PATCH_FILES=build-aux/ltmain.sh
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.ColorChooser.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
-
-MAN1=		gtk-query-immodules-3.0.1
 
 OPTIONS_DEFINE=	CUPS COLORD DEBUG
 OPTIONS_DEFAULT=CUPS COLORD
@@ -52,7 +47,7 @@ COLORD_DESC=	Color profile support
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MCUPS}
-LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
+LIB_DEPENDS+=	libcups.so:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS=""
 .else
@@ -65,7 +60,7 @@ CONFIGURE_ARGS+=	--enable-debug=yes
 .endif
 
 .if ${PORT_OPTIONS:MCOLORD}
-LIB_DEPENDS+=	colord:${PORTSDIR}/graphics/colord
+LIB_DEPENDS+=	libcolord.so:${PORTSDIR}/graphics/colord
 CONFIGURE_ARGS+=--enable-colord
 .else
 CONFIGURE_ARGS+=--disable-colord
@@ -90,13 +85,16 @@ pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
-	-@${FIND} ${LOCALBASE}/share/icons -type d -depth 1 -exec \
-		${PREFIX}/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/modules
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
-	${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/docs/reference/gtk/|} \
-		${PREFIX}/man/man1
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/modules
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
+	${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-query-immodules-3.0.1 \
+		${STAGEDIR}${PREFIX}/man/man1
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgdk-3.so.0
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgtk-3.so.0
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgailutil-3.so.0
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/3.0.0/immodules/im*.so
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/3.0.0/printbackends/libprintbackend-*.so
 
 .include <bsd.port.mk>
 
