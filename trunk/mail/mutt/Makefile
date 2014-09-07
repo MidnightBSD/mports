@@ -2,7 +2,7 @@
 
 PORTNAME=	mutt
 PORTVERSION=	1.4.2.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -30,8 +30,8 @@ CONFLICTS=	mutt-devel-*
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 .if defined(PACKAGE_BUILDING) && !defined (MUTT_LITE)
 WITH_SLANG=	yes
-BUILD_DEPENDS=	ispell:${PORTSDIR}/textproc/ispell
-RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell \
+BUILD_DEPENDS=	ispell:${PORTSDIR}/textproc/aspell-ispell
+RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/aspell-ispell \
 		urlview:${PORTSDIR}/textproc/urlview
 USE_GMAKE=	yes
 .endif
