@@ -2,7 +2,7 @@
 
 PORTNAME=	tin
 PORTVERSION=	2.0.1
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES+=	news ipv6
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
 		ftp://ftp.sunet.se/pub/news/readers/tin/v${PORTVERSION:R}/ \
@@ -33,8 +33,8 @@ GNU_CONFIGURE=	yes
 TIN_EDITOR?=	/usr/bin/ee
 TIN_SCREEN?=	ncursesw
 
-OPTIONS_DEFINE=	GNUPG ISPELL METAMAIL CANLOCK NNTP_ONLY
-OPTIONS_DEFAULT=GNUPG ISPELL METAMAIL
+OPTIONS_DEFINE=	GNUPG METAMAIL CANLOCK NNTP_ONLY
+OPTIONS_DEFAULT=GNUPG METAMAIL
 CANLOCK_DESC=	Enable Cancel-Lock key support via libcanlock
 NNTP_ONLY=	Only read news via NNTP (no spool dir support)
 
@@ -72,11 +72,6 @@ CONFIGURE_ARGS+=	--with-gpg=${PREFIX}/bin/gpg \
 		 	--without-pgp --without-pgpk
 .else
 CONFIGURE_ARGS+=	--disable-pgp-gpg
-.endif
-
-.if ${PORT_OPTIONS:MISPELL}
-RUN_DEPENDS+=		ispell:${PORTSDIR}/textproc/ispell
-CONFIGURE_ARGS+=	--with-ispell=${PREFIX}/bin/ispell
 .endif
 
 .if ${PORT_OPTIONS:MMETAMAIL}
