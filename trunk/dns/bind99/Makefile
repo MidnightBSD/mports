@@ -2,7 +2,7 @@
 
 PORTNAME?=	bind99
 PORTVERSION=	9.9.5
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
@@ -75,7 +75,7 @@ CONFIGURE_ARGS+=	--without-openssl
 
 .if ${PORT_OPTIONS:MXML} && !defined(BIND_TOOLS_SLAVE)
 CONFIGURE_ARGS+=	--with-libxml2=${LOCALBASE}
-LIB_DEPENDS+=		xml2.5:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS+=		xml2:${PORTSDIR}/textproc/libxml2
 .else
 CONFIGURE_ARGS+=	--without-libxml2
 .endif
