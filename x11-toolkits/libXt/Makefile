@@ -2,6 +2,7 @@
 
 PORTNAME=	libXt
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
