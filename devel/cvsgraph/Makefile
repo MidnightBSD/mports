@@ -2,20 +2,18 @@
 
 PORTNAME=	cvsgraph
 PORTVERSION=	1.7.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph the life story of a file under CVS or RCS
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-MAN1=		cvsgraph.1
-MAN5=		cvsgraph.conf.5
 
 DOCDIR=		share/doc/${PORTNAME}
 DOCS=		ChangeLog README
