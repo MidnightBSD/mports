@@ -17,6 +17,7 @@ DIST_SUBDIR=	mplayer-skins
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Skins for MPlayer's Graphical User Interface (GUI)
+
 LICENSE=	unknown
 
 #
@@ -28,7 +29,7 @@ LICENSE=	unknown
 # Then do "make config", select "All Skins" and run "make makesum".
 #
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 
