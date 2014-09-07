@@ -1,14 +1,14 @@
 # $MidnightBSD: mports/Tools/magus/bless/Makefile,v 1.1 2011/02/26 00:35:59 laffer1 Exp $
-CC=cc
-CFLAGS= -Wall -pedantic -std=c99 -O2 -I/usr/local/include -I/usr/local/include/mysql 
-LDFLAGS=-L/usr/local/lib/mysql -L/usr/local/lib/ -lmysqlclient -lsqlite3 -lmd -pthread
+CC=c++
+CFLAGS= -Wall -O2 -I/usr/local/include
+LDFLAGS=-L/usr/local/lib/  -lpqxx -lpq -lsqlite3 -lmd -pthread
 DESTDIR=
 PREFIX=	/usr/local
 
 all: clean magus
 
-magus: magus-bless.c
-	${CC} ${CFLAGS} ${LDFLAGS} -o magus-bless magus-bless.c
+magus: magus-bless.cxx
+	${CC} ${CFLAGS} ${LDFLAGS} -o magus-bless magus-bless.cxx
 
 install: magus
 	install -m 750 -u root -g wheel magus-bless ${DESTDIR}${PREFIX}
