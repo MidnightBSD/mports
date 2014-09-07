@@ -1,33 +1,28 @@
 # $MidnightBSD$
 
 PORTNAME=	db
-PORTVERSION=	20090530
-PORTREVISION=	2
+PORTVERSION=	20140725
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_LOCAL:S,$,acm/foomatic/,} \
-		${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	danilo
+		
 PKGNAMEPREFIX=	foomatic-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${FOOMATICVER}-${PORTVERSION}
-DIST_SUBDIR=	foomatic
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Foomatic database
+MAINTAINER=	danilo@FreeBSD.org
+COMMENT=	Database for integrating printer drivers with common spoolers
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2 \
-		curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2 \
+		libcurl.so:${PORTSDIR}/ftp/curl
 
-PROJECTHOST=	bsdistfiles
-USE_GMAKE=	yes
-USE_PERL5=	yes
+USES=		gmake
 USE_AUTOTOOLS=	automake:env autoconf
-
 GNU_CONFIGURE=	yes
 
 FOOMATICVER=	4.0
 WRKSRC=	${WRKDIR}/${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
-
-pre-configure:
-	@cd ${WRKSRC} && ${ACLOCAL} && ${AUTOCONF}
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
