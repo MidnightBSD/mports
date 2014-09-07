@@ -28,8 +28,7 @@ USE_RC_SUBR=	fetchmail
 FETCHMAILRC=	${PREFIX}/etc/fetchmailrc
 SUB_FILES=	pkg-message
 
-USE_XZ=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:xz
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 CONFIGURE_ARGS=	--enable-opie --enable-RPA --enable-SDPS \
