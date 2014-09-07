@@ -1,62 +1,54 @@
 # $MidnightBSD$
 
 PORTNAME=	aria2
-PORTVERSION=	1.14.1
+PORTVERSION=	1.18.7
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet another download tool
+
 LICENSE=	gpl2
 
-CONFIGURE_ARGS=	--with-libintl-prefix=${LOCALBASE} --with-openssl \
-		--with-libxml2 --without-gnutls --without-libares \
-		--without-libcares --program-transform-name="" \
-		--with-libz --enable-bittorrent --with-sqlite3 \
-		--enable-metalink --disable-epoll --enable-threads=pth
+OPTIONS_DEFINE=	CA_BUNDLE DOCS NLS SQLITE
+OPTIONS_DEFAULT=SQLITE
+OPTIONS_SUB=	yes
+CA_BUNDLE_DESC=	Use CA bundle from Mozilla Project
 
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack libxml2
-USE_GETTEXT=	yes
+CONFIGURE_ARGS=	--disable-epoll --enable-bittorrent --enable-libaria2 \
+		--enable-metalink --enable-shared --enable-static \
+		--enable-threads=posix --with-disk-cache=${ARIA2_DISK_CACHE} \
+		--with-libxml2 --with-libz --with-openssl --without-gnutls \
+		--without-libcares --without-libexpat --without-libgcrypt \
+		--without-libgmp --without-libnettle
+CONFIGURE_ENV=	OPENSSL_CFLAGS=-I${OPENSSLINC} \
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl" \
+		ZLIB_CFLAGS=-I${INCLUDEDIR} \
+		ZLIB_LIBS="-L${LIBDIR} -lz" \
+		ac_cv_path_RST2HTML=no
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
+USE_CXXSTD=	c++11
+USE_GNOME=	libxml2
+USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
+USES=		compiler:c++11-lib libtool pathfix pkgconfig tar:xz
 
-.ifdef WITHOUT_NLS
-CONFIGURE_ARGS+=	--disable-nls
-.else
-LINGUAS=	ar bg ca da de el en@boldquot en@quot es fi fr he hu id it ko ja \
-		nl nn pl pt pt_BR ru sk sr sv th tr uk vi zh_CN zh_TW
-.endif
+PORTDOCS=	*
 
-PLIST_FILES=	bin/aria2c \
-		${LINGUAS:S|^|share/locale/|:S|$|/LC_MESSAGES/aria2.mo|} \
-		share/doc/aria2/bash_completion/README.txt \
-		share/doc/aria2/bash_completion/aria2c \
-		share/doc/aria2/xmlrpc/aria2mon \
-		share/doc/aria2/xmlrpc/aria2rpc \
-		share/doc/aria2/xmlrpc/README.txt \
-		share/doc/aria2/ru/aria2c.1.html \
-		share/doc/aria2/ru/aria2c.1.asciidoc
+CA_BUNDLE_CONFIGURE_OFF=--without-ca-bundle
+CA_BUNDLE_CONFIGURE_ON=	--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
+CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+NLS_CONFIGURE_OFF=	--disable-nls
+NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
+NLS_USES=		gettext
+SQLITE_CONFIGURE_OFF=	--without-sqlite3
+SQLITE_CONFIGURE_ON=	--with-sqlite3=/usr
 
-PLIST_DIRS=	share/doc/aria2/bash_completion \
-		share/doc/aria2/xmlrpc \
-		share/doc/aria2/ru \
-		share/doc/aria2
-
-MANLANG=	"" ru
-MAN1=		aria2c.1
+ARIA2_DISK_CACHE?=	16M
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 3000
-BROKEN=		Does not compile on MidnightBSD 0.2
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^install-data-am:/s|install-dist_docDATA||'\
-		${WRKSRC}/Makefile.in ${WRKSRC}/doc/Makefile.in
-
-post-configure:
-	@${REINPLACE_CMD} -e '/SETMODE/d' ${WRKSRC}/config.h
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaria2.so.0.0.0
 
 .include <bsd.port.post.mk>
