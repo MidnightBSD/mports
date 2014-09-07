@@ -9,11 +9,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CSS2 parsing library
 LICENSE=	lgpl
 
-USE_XZ=		yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack
-USES=		pkgconfig gettext gmake
+USES=		pkgconfig gettext gmake tar:xz
 CONFIGURE_ARGS=	--disable-gtk-doc-html
 
 PLIST_SUB=	VERSION="0.6"
