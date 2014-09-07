@@ -1,24 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	libinotify
-PORTVERSION=	20110829
+PORTVERSION=	20140622
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kevent based inotify compatible library
 
 LICENSE=	mit
 
-GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
+USE_GITHUB=	yes
+GH_ACCOUNT=	dmatveev
+GH_PROJECT=	libinotify-kqueue
+GH_COMMIT=	d775062
+GH_TAGNAME=	${GH_COMMIT}
+
 USE_LDCONFIG=	yes
 
-#
-# Get rid of .la and static library files
-#
-post-configure:
-	@${REINPLACE_CMD} -E -e \
-	'/Install the pseudo-library/,/staticlibs=/s,^,#,' ${WRKSRC}/libtool
+post-patch:
+	@${CP} ${FILESDIR}/Makefile ${WRKSRC}
+	@${TOUCH} ${WRKSRC}/config.h
 
 .include <bsd.port.mk>
