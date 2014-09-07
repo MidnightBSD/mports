@@ -11,46 +11,65 @@ COMMENT=	Userspace interface to kernel Direct Rendering Module services
 
 LICENSE=	mit
 
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/libpthread-stubs
-LIB_DEPENDS=	pciaccess:${PORTSDIR}/devel/libpciaccess \
-		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/libpthread-stubs
+LIB_DEPENDS=	libpciaccess.so:${PORTSDIR}/devel/libpciaccess \
+		libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs
 
-USES=		tar:bzip2
+USES=		pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS=	--enable-nouveau-experimental-api
+OPTIONS_DEFINE=	MANPAGES
 
-MAKE_JOBS_SAFE=	yes
+.if defined(PACKAGE_BUILDING)
+OPTIONS_DEFAULT+=	MANPAGES
+.endif
+
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_NEW_XORG)
 
-OPTIONS=	KMS	"Enable experimental KMS support" Off
+USES+=		gmake
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MKMS}
+# KMS support in the kernel is only build on these archs, disable others
+.if ${ARCH} == "amd64" || ${ARCH} == "i386"
 CONFIGURE_ARGS+=--enable-libkms
 EXTRA_PATCHES+=	${FILESDIR}/extra-xf86drmMode.c
-PLIST_SUB+=	KMS=""
+PLIST_SUB+=	KMS="" NOUVEAU=""
 .else
-PLIST_SUB+=	KMS="@comment "
+CONFIGURE_ARGS+=--disable-libkms
+PLIST_SUB+=	KMS="@comment " NOUVEAU="@comment "
 .endif
 
-LIBDRM_VERSION=	2.4.31
-LIBDRM_REVISION=1
-PLIST_SUB+=	OLD="@comment " NEW=""
+.if ${PORT_OPTIONS:MMANPAGES}
+BUILD_DEPENDS+=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+USE_GNOME+=	libxslt:build
+PLIST_SUB+=	MAN=""
 .else
+CONFIGURE_ARGS+=--disable-manpages
+PLIST_SUB+=	MAN="@comment "
+.endif
+
+LIBDRM_VERSION=	2.4.52
+LIBDRM_REVISION=0
+PLIST_SUB+=	OLD="@comment " NEW=""
+EXTRA_PATCHES+=	${FILESDIR}/extra-configure \
+		${FILESDIR}/extra-tests_modetest_Makefile.in \
+		${FILESDIR}/extra-tests_modetest_modetest.c \
+		${FILESDIR}/extra-tests_modetest_strchrnul.c \
+		${FILESDIR}/extra-tests__radeon__radeon_ttm.c
+CONFIGURE_ARGS+=--disable-vmwgfx
+.else
+CONFIGURE_ARGS=	--enable-nouveau-experimental-api
 LIBDRM_VERSION=	2.4.17
 LIBDRM_REVISION=1
-PLIST_SUB+=	OLD="" NEW="@comment "
+PLIST_SUB+=	OLD="" NEW="@comment " NOUVEAU=""
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "amd64" || ${ARCH} == "i386" || ${ARCH} == "ia64" || ${ARCH} == "powerpc"
+.if ${ARCH} == amd64 || ${ARCH} == i386
 PLIST_SUB+=	INTEL_DRIVER=""
+PLIST_SUB+=	RADEON_DRIVERS=""
+.elif ${ARCH} == ia64 || ${ARCH} == powerpc || ${ARCH} == powerpc64
+PLIST_SUB+=	INTEL_DRIVER="@comment "
 PLIST_SUB+=	RADEON_DRIVERS=""
 .else
 PLIST_SUB+=	INTEL_DRIVER="@comment "
@@ -59,7 +78,10 @@ PLIST_SUB+=	RADEON_DRIVERS="@comment "
 
 pre-patch:
 	@${REINPLACE_CMD} 's|{libdir}/pkgconfig|{prefix}/libdata/pkgconfig|g; \
-			   12661s/x86_/amd/g' \
+			   s,i?86|x86_64),i?86|amd64|x86_64),g' \
 		${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so.*
+
+.include <bsd.port.mk>
