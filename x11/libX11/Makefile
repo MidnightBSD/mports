@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	libX11
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.2
 PORTEPOCH=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 library
+
 LICENSE=	mit
 
 XORG_CAT=	lib
@@ -19,8 +20,6 @@ CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
 			--without-xmlto \
 			--disable-specs
 CONFIGURE_ENV+=	ac_cv_path_PS2PDF=""
-
-.include "${.CURDIR}/manpages"
 
 post-patch:
 	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' \
