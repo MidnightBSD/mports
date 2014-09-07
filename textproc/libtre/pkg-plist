@@ -3,7 +3,6 @@ include/tre/regex.h
 include/tre/tre.h
 include/tre/tre-config.h
 lib/libtre.a
-lib/libtre.la
 lib/libtre.so
 lib/libtre.so.5
 libdata/pkgconfig/tre.pc
