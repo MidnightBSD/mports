@@ -3,6 +3,7 @@
 
 PORTNAME=	gnome-js-common
 PORTVERSION=	0.1.2
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,18 +12,20 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME JavaScript common modules and tests
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
 USE_GNOME=	gnomehack intltool
+USES=		pkgconfig gettext gmake tar:bzip2
 
 PORTDOCS=	AUTHORS COPYING INSTALL NEWS README ChangeLog
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|== x|= x|g' \
 		${WRKSRC}/configure
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e 's|$${prefix}/share/doc/gnome_js_common|${DOCSDIR}|' \
 		${WRKSRC}/Makefile.in
 .else
