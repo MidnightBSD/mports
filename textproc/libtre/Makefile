@@ -2,7 +2,7 @@
 
 PORTNAME=	libtre
 PORTVERSION=	0.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	http://laurikari.net/tre/ \
 		LOCAL/bf
@@ -10,12 +10,11 @@ DISTNAME=	tre-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A lightweight fully POSIX compliant regexp matching library
+
 LICENSE=	bsd2
 
-USE_BZIP2=	yes
+USES=		pkgconfig libtool tar:bzip2
 USE_GNOME=	gnomehack
-USE_PKGCONFIG=	build
-USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS+=	--enable-static
 USE_LDCONFIG=	yes
 
