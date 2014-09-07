@@ -102,8 +102,7 @@ main(int argc, char *argv[])
 
 	    for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
             {
-	   	   string ln = row[0].as(string()) + ": " + row[1].as(string()) +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
-//                   asprintf(&ln, "%s: %s %s %s %s %s", row[0].as(string()).c_str(), row[1].as(string()).c_str(), row[2].as(string()), row[3].as(string()), row[5].as(string()), row[4].as(string()));
+	   	   string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
                    asprintf(&filePath, "%s/%s", argv[4], row[4].as(string()).c_str());
                    fileHash = SHA256_File(filePath, NULL);
                    if (fileHash == NULL)
@@ -158,12 +157,13 @@ main(int argc, char *argv[])
                printf("\n"); 
             }
 
+	    printf("Load the mirrors list\n");
 	    nontransaction Q(C);
             sprintf(query_def, "SELECT * FROM mirrors order by country");
 	    result R2(Q.exec(string(query_def)));
 	    if (!R2.empty())
             {
-		   for (result::const_iterator c = R.begin(); c != R.end(); ++c) 
+		   for (result::const_iterator c = R2.begin(); c != R2.end(); ++c) 
                     {
                          if (sqlite3_prepare_v2(db,
                           "INSERT INTO mirrors (country, mirror) VALUES(?,?)",
