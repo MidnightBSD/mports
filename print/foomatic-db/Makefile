@@ -2,7 +2,7 @@
 
 PORTNAME=	db
 PORTVERSION=	20090530
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_LOCAL:S,$,acm/foomatic/,} \
 		${MASTER_SITE_GOOGLE_CODE}
@@ -14,8 +14,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foomatic database
 LICENSE=	gpl2
 
-LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2 \
-		curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2 \
+		curl:${PORTSDIR}/ftp/curl
 
 PROJECTHOST=	bsdistfiles
 USE_GMAKE=	yes
