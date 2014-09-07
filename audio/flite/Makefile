@@ -28,10 +28,8 @@ CFLAGS:=	${CFLAGS:N-O:N-O[0123456789]} -O0
 post-patch:
 	@${REINPLACE_CMD} -e 's|-pd|-p|g' ${WRKSRC}/main/Makefile
 
-.ifndef NOPORTDOCS
 post-install:
 	@${MKDIR} ${DOCSDIR}/
 	${INSTALL_MAN} ${WRKSRC}/README ${DOCSDIR}/
-.endif
 
 .include <bsd.port.mk>
