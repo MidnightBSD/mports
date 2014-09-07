@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	zebra-server
-PORTVERSION=	2.0.45
-PORTREVISION=	1
+PORTVERSION=	2.0.55
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/zebra/
 DISTNAME=	idzebra-${PORTVERSION}
@@ -12,22 +11,16 @@ COMMENT=	Z39.50/SR server software
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		yaz.4:${PORTSDIR}/net/yaz
+LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
+		yaz:${PORTSDIR}/net/yaz
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-yaz=${LOCALBASE}/bin \
 		--with-tclconfig=${TCL_LIBDIR} \
 		--with-iconv=${LOCALBASE} --with-expat=${LOCALBASE}
 
-USES=		iconv
+USES=		iconv libtool
 USE_LDCONFIG=	yes
 USE_TCL=	yes
-
-MAN1=		idzebra-config-2.0.1 zebraidx-2.0.1
-MAN8=		zebrasrv-2.0.8
-MLINKS=		idzebra-config-2.0.1 idzebra-config.1 \
-		zebraidx-2.0.1 zebraidx.1 \
-		zebrasrv-2.0.8 zebrasrv.8
 
 .include <bsd.port.mk>
