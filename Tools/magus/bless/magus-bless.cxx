@@ -158,8 +158,7 @@ main(int argc, char *argv[])
             }
 
 	    printf("Load the mirrors list\n");
-	    nontransaction MC(C);
-	    result R2(MC.exec("SELECT country, url FROM mirrors order by country"));
+	    result R2(N.exec("SELECT country, url FROM mirrors order by country"));
 	    if (!R2.empty())
             {
 		   for (result::const_iterator c = R2.begin(); c != R2.end(); ++c) 
