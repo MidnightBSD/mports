@@ -2,13 +2,12 @@
 
 PORTNAME=	libsndfile
 PORTVERSION=	1.0.25
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/libsndfile/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF)
-LICENSE=	lgpl
 
 LICENSE=	lgpl2.1
 
