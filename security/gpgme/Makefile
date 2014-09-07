@@ -9,12 +9,12 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library to make access to GnuPG easier
+COMMENT=	Library to make access to GnuPG easier
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	assuan.0:${PORTSDIR}/security/libassuan \
-		gpg-error.0:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	assuan:${PORTSDIR}/security/libassuan \
+		gpg-error:${PORTSDIR}/security/libgpg-error
 
 OPTIONS_DEFINE=		DOCS UISERVER
 OPTIONS_SINGLE=		GNUPG
@@ -25,11 +25,10 @@ GNUPG1_DESC=		Build gpgme library for GnuPG 1.x
 GNUPG2_DESC=		Build gpgme library for GnuPG 2.x
 UISERVER_DESC=		GnuPG UI server support
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/gpgme \
 		--with-g13=no
