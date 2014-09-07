@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libpci
-PORTVERSION=	3.2.0
+PORTVERSION=	3.2.1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci/ \
 		FREEBSD_LOCAL/sunpoet
@@ -9,6 +9,7 @@ DISTNAME=	pciutils-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PCI configuration space I/O made easy
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
