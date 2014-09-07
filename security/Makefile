@@ -42,6 +42,7 @@ SUBDIR += libssh
 SUBDIR += libssh2
 SUBDIR += libtasn1
 SUBDIR += linux-f10-cyrus-sasl2
+SUBDIR += linux-f10-gnutls
 SUBDIR += linux-f10-libgcrypt
 SUBDIR += linux-f10-libgpg-error
 SUBDIR += linux-f10-libssh2
