@@ -1,17 +1,18 @@
-# $MidnightBSD$
+# $MidnightBSD: trunk/lang/perl5.18/Makefile 16286 2014-04-13 14:53:29Z laffer1 $
 
 PORTNAME=	perl
-PORTVERSION=	5.16.3
-PORTREVISION=	1
+PORTVERSION=	5.20.0
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../src
-LATEST_LINK=	perl
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+DIST_SUBDIR=	perl
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
@@ -19,6 +20,7 @@ PERL_VER=	${PORTVERSION}
 PERL_NO_DEPENDS=	yes
 USE_PERL5=		yes
 
+USES=			tar:bzip2
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
@@ -51,7 +53,6 @@ PKGDEINSTALL=${WRKDIR}/pkg-glue
 
 MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}/perl
 
-.include "Makefile.man"
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_DEBUGGING)
@@ -110,12 +111,6 @@ post-install:
 	@${INSTALL_MAN} ${WRKDIR}/perl-after-upgrade.1 ${MAN1PREFIX}/man/man1/perl-after-upgrade.1
 	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/mach/CORE/libperl.so ${PREFIX}/lib/libperl.so
 	@${LN} -sf ${PREFIX}/bin/perl${PERL_VER} ${PREFIX}/bin/perl5
-
-
-rebuild-xs:
-	${LOCALBASE}/sbin/portupgrade -f `(${FIND} ${PKG_DBDIR}/p5*/+CONTENTS | \
-		${XARGS} ${GREP} -El 'site_perl.*\.so' | \
-		${SED} -e 's!/var/db/pkg/!!; s!/+CONTENTS!!;')`
 
 
 .include <bsd.port.post.mk>
