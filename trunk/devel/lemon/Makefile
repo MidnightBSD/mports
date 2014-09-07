@@ -2,15 +2,17 @@
 
 PORTNAME=	lemon
 PORTVERSION=	1.69
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://tx97.net/pub/distfiles/ \
 		http://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An LALR(1) parser generator. Similar in function to yacc and bison
+COMMENT=	LALR(1) parser generator. Similar in function to yacc and bison
+
 LICENSE=	publicdom
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 post-patch:
 	${REINPLACE_CMD} -e 's| = pathsearch(.*| = "${DATADIR}/lempar.c";|' \
