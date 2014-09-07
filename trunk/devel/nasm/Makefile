@@ -12,12 +12,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose multi-platform x86 and x86-64 assembler
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
 DESTDIRNAME=  INSTALLROOT
 INSTALL_TARGET=	install install_rdf
-# Fixes parallel builds
-USE_GMAKE=    yes 
 
 MAN1=		ldrdf.1 nasm.1 ndisasm.1 rdf2bin.1 rdf2com.1 rdf2ihx.1 \
 		rdf2ith.1 rdf2srec.1 rdfdump.1 rdflib.1 rdx.1
