@@ -3,18 +3,18 @@
 
 PORTNAME=	liblqr-1
 DISTVERSION=	0.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://liblqr.wdfiles.com/local--files/en:download-page/ \
 		http://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An easy to use C/C++ seam carving library
+COMMENT=	Easy to use C/C++ seam carving library
+
 LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USES=		gettext gmake pkgconfig
+USES=		tar:bzip2 gettext gmake pkgconfig libtool:oldver
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
