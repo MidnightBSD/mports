@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	jansson
-PORTVERSION=	2.5
+PORTVERSION=	2.6
 CATEGORIES=	devel
 MASTER_SITES=	http://www.digip.org/jansson/releases/
 
@@ -10,8 +10,7 @@ COMMENT=	C library for encoding, decoding, and manipulating JSON data
 
 LICENSE=	mit
 
-USES=		pathfix pkgconfig gmake
-USE_BZIP2=	yes
+USES=		pathfix pkgconfig gmake tar:bzip2 libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
