@@ -11,11 +11,12 @@ DISTNAME=	gcc-${VERSIONSTRING}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.7
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
-		mpfr.4:${PORTSDIR}/math/mpfr \
-		mpc.2:${PORTSDIR}/math/mpc
+LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
+		mpfr:${PORTSDIR}/math/mpfr \
+		mpc:${PORTSDIR}/math/mpc
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
 .if defined(MAINTAINER_MODE)
@@ -26,12 +27,10 @@ VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
 USE_BINUTILS=	yes
+USES=	gmake iconv
 USE_BISON=	build
 USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_ICONV=	yes
 USE_PERL5_BUILD=yes
-MAKE_JOBS_SAFE=	yes
 
 PATCH_WRKSRC=	${SRCDIR}
 CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
@@ -45,9 +44,9 @@ WITHOUT_JAVA=	yes
 .endif
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
