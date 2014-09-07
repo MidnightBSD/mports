@@ -2,7 +2,7 @@
 
 PORTNAME=	ebook-tools
 PORTVERSION=	0.2.2
-CATEGORIES=	textproc kde
+CATEGORIES=	textproc
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
