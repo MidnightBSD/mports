@@ -2,7 +2,7 @@
 
 PORTNAME=	MySQLdb
 DISTVERSION=	1.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	SF/mysql-python/mysql-python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,6 +10,7 @@ DISTNAME=	MySQL-python-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Access a MySQL database through Python
+
 LICENSE=	gpl2
 
 USE_PYTHON=		2
