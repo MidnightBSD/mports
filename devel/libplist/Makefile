@@ -2,7 +2,7 @@
 
 PORTNAME=	libplist
 PORTVERSION=	1.10
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	http://www.libimobiledevice.org/downloads/
 
@@ -12,8 +12,7 @@ LICENSE?=	lgpl2.1
 
 SLAVE_PORT?=	no
 
-USE_BZIP2=	yes
-USES=		cmake pkgconfig
+USES=		cmake pkgconfig tar:bzip2
 
 .if ${SLAVE_PORT} == "no"
 
@@ -24,6 +23,8 @@ MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	${LOCALBASE}/lib
 
 PORTDOCS=	AUTHORS NEWS README
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
@@ -36,10 +37,8 @@ post-patch:
 		${WRKSRC}/CMakeLists.txt
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
-.endif
 
 .endif # ${SLAVE_PORT} == "no"
 
