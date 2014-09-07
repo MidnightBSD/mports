@@ -12,11 +12,10 @@ MASTER_SITES=	http://people.FreeBSD.org/~seanc/libmemcache/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The C library for accessing a memcache cluster
+
 LICENSE=	mit
 
-USE_BZIP2=	yes
-
-USE_AUTOTOOLS=	libtool
+USES=	 	libtool tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
