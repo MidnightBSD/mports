@@ -9,11 +9,12 @@ DISTNAME=	boost_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Documentation for libraries from boost.org
+
 LICENSE=	mit
 
 CONFLICTS=	boost-python-1* boost-1*
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 DOCSDIR=	${PREFIX}/share/doc/boost
 UNIQ=		/usr/bin/uniq
