@@ -2,6 +2,7 @@
 
 PORTNAME=	flite
 PORTVERSION=	1.4
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.speech.cs.cmu.edu/flite/packed/${PORTNAME}-${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-release
@@ -13,8 +14,9 @@ LICENSE=	agg
 
 FAKE_OPTS=	prefixhack
 
-USE_GMAKE=	yes
-USE_BZIP2=	yes
+OPTIONS_DEFINE=	DOCS
+
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared=yes
 USE_LDCONFIG=	yes
