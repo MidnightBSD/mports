@@ -2,14 +2,15 @@
 
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GGZ Gaming Zone - Base Library
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack 
@@ -24,7 +25,7 @@ CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 LDFLAGS=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 
 .if defined(WITH_GNUTLS)
-LIB_DEPENDS+=	gnutls.42:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--with-tls=GnuTLS
 .else
 USE_OPENSSL=	yes
