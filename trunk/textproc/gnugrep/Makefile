@@ -1,25 +1,22 @@
 # $MidnightBSD$
 
 PORTNAME=	grep
-PORTVERSION=	2.7
+PORTVERSION=	2.20
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 PKGNAMEPREFIX=	gnu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU grep
+
 LICENSE=	gpl3
 
 CONFLICTS=	bsd-grep-*
 
-USE_XZ=		yes
+USES=		tar:xz
 
 GNU_CONFIGURE=	yes
 
-MAN1=		egrep.1 \
-		fgrep.1 \
-		grep.1
 INFO=		grep
 
 OPTIONS=	PCRE	"Compile with Perl-compatible regex support"	off
