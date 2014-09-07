@@ -159,8 +159,7 @@ main(int argc, char *argv[])
 
 	    printf("Load the mirrors list\n");
 	    nontransaction Q(C);
-            sprintf(query_def, "SELECT * FROM mirrors order by country");
-	    result R2(Q.exec(string(query_def)));
+	    result R2(Q.exec("SELECT country, url FROM mirrors order by country"));
 	    if (!R2.empty())
             {
 		   for (result::const_iterator c = R2.begin(); c != R2.end(); ++c) 
@@ -171,8 +170,10 @@ main(int argc, char *argv[])
                          {
                              errx(1, "Could not prepare statement");
                          }
-                         sqlite3_bind_text(stmt, 1, c[1].as(string()).c_str(), c[1].as(string()).length(), SQLITE_TRANSIENT);
-                         sqlite3_bind_text(stmt, 2, c[2].as(string()).c_str(), c[2].as(string()).length(), SQLITE_TRANSIENT);
+			string country = c[0].as(string());
+			string url = c[1].as(string());
+                         sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
+                         sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
 
                          if (sqlite3_step(stmt) != SQLITE_DONE)
                              errx(1,"Could not execute query");
