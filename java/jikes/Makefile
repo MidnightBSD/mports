@@ -2,22 +2,20 @@
 
 PORTNAME=	jikes
 PORTVERSION=	1.22
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java
 MASTER_SITES=	SF/${PORTNAME}/Jikes/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A very fast Java source to byte-code compiler made available by IBM
-LICENSE=	other
+COMMENT=	Java source to byte-code compiler made available by IBM
 
-MAN1=		jikes.1
+LICENSE=	other
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USES=		iconv
-USE_BZIP2=	yes
+USES=		iconv gmake tar:bzip2
 
-CONFIGURE_ARGS=	CPPFLAGS="-I${LOCALBASE}/include" LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
