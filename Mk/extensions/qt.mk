@@ -128,7 +128,7 @@ QTCGFLIBS?=
 #
 # QT4 version
 #
-QT4_VERSION?=		4.8.5
+QT4_VERSION?=		4.8.6
 
 _USE_QT4_ALL=	accessible assistant assistant-adp assistantclient \
 			clucene corelib \
