@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xcb-proto
-PORTVERSION=	1.9
+PORTVERSION=	1.10
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -13,6 +13,7 @@ LICENSE=	mit
 BUILD_DEPENDS=	xmllint:${PORTSDIR}/textproc/libxml2
 
 USES=		pathfix tar:bzip2
+XORG_CAT=	proto
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
 
