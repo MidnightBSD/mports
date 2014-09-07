@@ -3,17 +3,20 @@
 
 PORTNAME=	joomla15
 PORTVERSION=	1.5.24
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/15898/68912/ \
 		http://linux3.dti.supsi.ch/downloads/
 DISTNAME=	Joomla_${PORTVERSION}-Stable-Full_Package
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A dynamic web content management system (CMS)
+COMMENT=	Dynamic web content management system (CMS)
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE.php
 
 FETCH_CMD=	fetch -Rr
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 USE_MYSQL=	yes
 USE_PHP=	mysql pcre xml zlib session gd pdf
