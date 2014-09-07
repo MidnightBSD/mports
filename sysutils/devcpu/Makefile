@@ -14,7 +14,7 @@ RUN_DEPENDS=	${STAMPFILE}:${PORTSDIR}/sysutils/devcpu-data
 
 FAKE_OPTS+=	trueprefix
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_RC_SUBR=	devcpu
 USE_RUBY=	yes
 RUBY_NO_BUILD_DEPENDS=	yes
