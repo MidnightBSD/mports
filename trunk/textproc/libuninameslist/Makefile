@@ -2,18 +2,19 @@
 
 PORTNAME=	libuninameslist
 PORTVERSION=	20091231
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20sources/Unicode_5.2-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library of Unicode annotation data
+COMMENT=	Library of Unicode annotation data
+
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=		gmake tar:bzip2 libtool
+GNU_CONFIGURE=	yes
 ALL_TARGET=	both
 USE_LDCONFIG=	yes
 
