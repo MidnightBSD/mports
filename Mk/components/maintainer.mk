@@ -41,10 +41,10 @@ makeplist:
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
+		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^share/licenses|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
 		for file in $$new; do \
 			if [ ! -L $$file ] && [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d -or -type l | ${EGREP} -v "man/man[123456789]"`; \
+				tree=`${FIND} -d $$file -type f -or -type d -or -type l `; \
 				for f in $$tree; do \
 					if [ -d $$f ]; then \
 						directories="$$directories $$f"; \
