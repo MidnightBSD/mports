@@ -10,6 +10,7 @@ MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer)
+
 LICENSE=	bsd4
 
 LATEST_LINK=	${PORTNAME}2
@@ -18,23 +19,6 @@ USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2
-
-MAN3=		sasl.3 sasl_authorize_t.3 sasl_auxprop.3 \
-		sasl_auxprop_getctx.3 sasl_auxprop_request.3 \
-		sasl_callbacks.3 sasl_canon_user_t.3 \
-		sasl_chalprompt_t.3 sasl_checkapop.3 sasl_checkpass.3 \
-		sasl_client_init.3 sasl_client_new.3 sasl_client_start.3 \
-		sasl_client_step.3 sasl_decode.3 sasl_dispose.3 sasl_done.3 \
-		sasl_encode.3 sasl_encodev.3 sasl_errdetail.3 sasl_errors.3 \
-		sasl_errstring.3 sasl_getconfpath_t.3 sasl_getopt_t.3 \
-		sasl_getpath_t.3 sasl_getprop.3 sasl_getrealm_t.3 \
-		sasl_getsecret_t.3 sasl_getsimple_t.3 sasl_global_listmech.3 \
-		sasl_idle.3 sasl_listmech.3 sasl_log_t.3 \
-		sasl_server_init.3 sasl_server_new.3 sasl_server_start.3 \
-		sasl_server_step.3 sasl_server_userdb_checkpass_t.3 \
-		sasl_server_userdb_setpass_t.3 sasl_setpass.3 sasl_setprop.3 \
-		sasl_user_exists.3 sasl_verifyfile_t.3
-MAN8=		pluginviewer.8 sasldblistusers2.8 saslpasswd2.8
 
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
