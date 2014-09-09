@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	saslauthd
-PORTVERSION=	2.1.23
-PORTREVISION=	1
+PORTVERSION=	2.1.26
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
@@ -13,17 +12,16 @@ DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SASL authentication server for cyrus-sasl2
+
 LICENSE=	bsd4
 
-LIB_DEPENDS=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
 CYRUS_SASL2_DIR=${MASTERDIR}/../cyrus-sasl2
-MD5_FILE=	${CYRUS_SASL2_DIR}/distinfo
+HASH_FILE=	${CYRUS_SASL2_DIR}/distinfo
 PATCHDIR=	${CYRUS_SASL2_DIR}/files
 INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/saslauthd
 DOCSDIR=	${PREFIX}/share/doc/cyrus-sasl2
-
-MAN8=		saslauthd.8
 
 USE_RC_SUBR=	saslauthd.sh
 
