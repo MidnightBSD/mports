@@ -1,15 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.9.6
+PORTVERSION=	1.9.7
 PORTREVISION=	0
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Python clone of WikiWiki
+COMMENT=	Python clone of WikiWiki
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/docs/licenses/COPYING
 
 USE_PYTHON=	yes
 USE_PYDISTUTILS=	yes
