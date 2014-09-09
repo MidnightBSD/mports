@@ -14,7 +14,7 @@ LICENSE_COMB=	dual
 
 CONFLICTS=	dovecot-1.[0-9]*
 
-USES=		iconv
+USES=		iconv libtool cpe
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
@@ -25,8 +25,9 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
+INSTALL_TARGET=	install-strip
 
-USERS=		${PORTNAME} dovenull
+USERS=		dovecot dovenull
 GROUPS=		${USERS}
 
 PROTOCOLS=	imap pop3
@@ -44,10 +45,6 @@ LUCENE_DESC=	CLucene FTS support
 SOLR_DESC=	Solr FTS support
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "arm"
-BROKEN=		Does not build on arm
-.endif
 
 # sed script for dovecot.conf
 REINPLACE=	s!%%PROTOCOLS%%!${PROTOCOLS}!g;\
