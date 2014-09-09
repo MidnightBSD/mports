@@ -2,13 +2,13 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	2.2.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Secure and compact IMAP and POP3 servers
+COMMENT=	Secure, fast and powerful IMAP and POP3 server
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
@@ -19,10 +19,17 @@ USES=		iconv libtool cpe
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd9.1 \
+		 --host=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-statedir=/var/db/dovecot \
-		--without-shadow
+		--without-shadow \
+		--with-notify=kqueue \
+		--with-pam \
+		--with-zlib \
+		--with-bzlib \
+		--with-lzma \
+		--with-libiconv-prefix=/usr/local/
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
@@ -39,6 +46,7 @@ _REQUIRE=	LOGIN
 OPTIONS_DEFINE=	KQUEUE SSL GSSAPI VPOPMAIL LDAP LUCENE PGSQL MYSQL SQLITE \
 		SOLR DOCS EXAMPLES LIBWRAP
 OPTIONS_DEFAULT=	KQUEUE SSL
+OPTIONS_SUB=	yes
 
 KQUEUE_DESC=	kqueue(2) support
 VPOPMAIL_DESC=	vpopmail support
@@ -119,6 +127,7 @@ CONFIGURE_ARGS+=--with-lucene
 LIB_DEPENDS+=	clucene-core:${PORTSDIR}/textproc/clucene
 PLIST_SUB+=	LUCENE=""
 .else
+CONFIGURE_ARGS+=--without-lucene
 PLIST_SUB+=	LUCENE="@comment "
 .endif
 
