@@ -66,7 +66,6 @@ MAKE_ARGS=	helpdir=${L_HELP} docdir=${DOCSDIR}
 .endif
 
 MAKEFILE=	makefile
-MAN1=		lynx.1
 
 L_LIB=		${PREFIX}/etc
 
