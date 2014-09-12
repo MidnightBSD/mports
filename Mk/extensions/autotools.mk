@@ -35,21 +35,19 @@ Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 #
 # USE_AUTOTOOLS= tool:version[:env]  ...
 #
-# 'tool' can currently be one of:
-#	libtool, libltdl, autoconf, autoheader, automake, aclocal
+# 'tool' can currently be one of the following:
+#	autoconf, autoheader
+#	autoconf213, autoheader213 (legacy version)
+#	automake, aclocal
+#	automake14, aclocal14 (legacy version)
+#	libtool, libtoolize, libltdl
 #
-# 'version' is tool dependent
-#
-# ':env' is used to pecify that the environment variables are needed,
+# ':env' is used to specify that the environmental variables are needed
 #	but the relevant tool should NOT be run as part of the
-#	run-autotools target
+#	'run-autotools' target
 #
-# XXX: there is currently no sanity checking of the supplied variables
-#	other than to detect actually available versions.  This should
-#	probably be fixed at some point.
-#
-# In addition, the following variables can be set in the port Makefile
-# to be passed to the relevant tools:
+# In addition, these variables can be set in the port Makefile to be
+# passed to the relevant tools:
 #
 # AUTOMAKE_ARGS=...
 #	- Extra arguments passed to automake during configure step
