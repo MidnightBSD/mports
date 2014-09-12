@@ -14,7 +14,6 @@ SUBDIR += dasher
 SUBDIR += gnome-mag
 SUBDIR += gnome-speech
 SUBDIR += gok
-SUBDIR += linux-atk
 SUBDIR += linux-f10-atk
 SUBDIR += mousetweaks
 SUBDIR += orca
