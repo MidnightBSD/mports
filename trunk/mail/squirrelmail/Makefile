@@ -2,7 +2,7 @@
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.22
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION}
 DISTNAME=	${PORTNAME}-webmail-${PORTVERSION}
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 USE_PHP=	session gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
-USES=		gettext tar:bzip2
+USES=		gettext tar:bzip2 cpe
 
 .ifdef WITH_DATABASE
 RUN_DEPENDS+=	${PREFIX}/share/pear/DB.php:${PORTSDIR}/databases/pear-DB
