@@ -2,13 +2,13 @@
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nic.ad.jp/ja/idn/idnkit/download/sources/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library to handle internationalized domain names
+COMMENT=	Library to handle internationalized domain names
 
 LICENSE=	other
 #bsd 4 ish
@@ -21,15 +21,6 @@ CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
 		--enable-extra-ace
 
 USE_LDCONFIG=	yes
-
-MAN1=		idnconv.1 \
-		runidn.1
-MAN3=		libidnkit.3 \
-		libidnkitlite.3
-MAN5=		idn.conf.5 \
-		idnalias.conf.5 \
-		idnrc.5
-MANCOMPRESSED=	no
 
 DOCS_EN=	ChangeLog NEWS README
 DOCS_JA=	README.ja
