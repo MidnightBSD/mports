@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Net
-PORTVERSION=	1.22
-PORTREVISION=	1
+PORTVERSION=	1.27
 PORTEPOCH=	1
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
@@ -11,24 +10,22 @@ DISTNAME=	libnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules to access and use network protocols
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	p5-ExtUtils-MakeMaker>=6.64:${PORTSDIR}/devel/p5-ExtUtils-MakeMaker
+
+OPTIONS_DEFINE=	SASL
+OPTIONS_DEFAULT=SASL
+SASL_DESC=	SASL auth for POP3 and SMTP support
+
+SASL_BUILD_DEPENDS=	p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
+SASL_RUN_DEPENDS=	p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
+
+PORTSCOUT=	skipv:1.0901
+
+USES=		perl5
 PERL_CONFIGURE=	yes
-CONFIGURE_ARGS=	< /dev/null
 
-MAN3=		Net::Cmd.3 \
-		Net::Config.3 \
-		Net::Domain.3 \
-		Net::FTP.3 \
-		Net::NNTP.3 \
-		Net::Netrc.3 \
-		Net::POP3.3 \
-		Net::SMTP.3 \
-		Net::Time.3 \
-		Net::libnetFAQ.3
-
-.include <bsd.port.pre.mk>
-
-RUN_DEPENDS+=	${SITE_PERL}/Authen/SASL.pm:${PORTSDIR}/security/p5-Authen-SASL
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
