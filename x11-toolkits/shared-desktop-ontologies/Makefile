@@ -13,8 +13,7 @@ LICENSE=	agg
 CMAKE_ARGS+=	-DPKGCONFIG_INSTALL_DIR:PATH="libdata/pkgconfig/"
 INSTALL_TARGET=	install
 
-USE_CMAKE=	yes
-USES=	pkgconfig tar:bzip2
+USES=	cmake pkgconfig tar:bzip2
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|share/cmake/SharedDesktopOntologies|lib/cmake/SharedDesktopOntologies|' \
