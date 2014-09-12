@@ -73,6 +73,7 @@ SUBDIR += fpc-fcl-async
 SUBDIR += fpc-fcl-base
 SUBDIR += fpc-fcl-db
 SUBDIR += fpc-fcl-image
+SUBDIR += fpc-fcl-json
 SUBDIR += fpc-fcl-registry
 SUBDIR += fpc-pthreads
 SUBDIR += gamin
