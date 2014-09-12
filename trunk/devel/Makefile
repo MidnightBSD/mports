@@ -156,7 +156,6 @@ SUBDIR += libpci
 SUBDIR += libpciaccess
 SUBDIR += libplist
 SUBDIR += libpthread-stubs
-SUBDIR += libsigc++
 SUBDIR += libsigc++12
 SUBDIR += libsigc++20
 SUBDIR += libsigsegv
