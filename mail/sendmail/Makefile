@@ -2,7 +2,7 @@
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -11,6 +11,7 @@ DISTNAME=	${PORTNAME}.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reliable, highly configurable mail transfer agent with utilities
+
 LICENSE=	agg
 
 CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.* opensmtpd-*
@@ -156,17 +157,12 @@ post-patch:
 	@${CP} -pR ${WRKSRC}/libmilter ${WRKSRC}/libsharedmilter
 	${CP} ${FILESDIR}/sharedlibrary.m4 \
 		${WRKSRC}/devtools/M4/UNIX/sharedlibrary.m4
-	@${MV} ${WRKSRC}/libsharedmilter/Makefile.m4 \
-		${WRKSRC}/libsharedmilter/Makefile.m4.sed
-	@${SED} -e 's=`library=`sharedlibrary=' \
-		${WRKSRC}/libsharedmilter/Makefile.m4.sed \
-		> ${WRKSRC}/libsharedmilter/Makefile.m4
+	${REINPLACE_CMD} -e 's=`library=`sharedlibrary=' \
+		${WRKSRC}/libsharedmilter/Makefile.m4
 .endif
 
 do-configure:
-	@${MV} ${WRKSRC}/devtools/OS/FreeBSD ${WRKSRC}/devtools/OS/FreeBSD.sed
-	${SED} ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD.sed \
-		> ${WRKSRC}/devtools/OS/FreeBSD
+	${REINPLACE_CMD} ${SED_SCRIPT} ${WRKSRC}/devtools/OS/FreeBSD
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		${SITE} > ${WCONF}/site.config.m4
@@ -188,7 +184,7 @@ do-configure:
 	 'APPENDDEF(`conf_sendmail_ENVDEF'\'', `-DSOCKETMAP'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
-.if defined(SENDMAIL_WITH_PICKY_HELO_CHECK)
+.if ${PORT_OPTIONS:MPICKY_HELO_CHECK}
 	${ECHO_CMD} \
 	 'APPENDDEF(`conf_sendmail_ENVDEF'\'', `-DPICKY_HELO_CHECK'\'')' \
 		>> ${WCONF}/site.config.m4
@@ -218,7 +214,7 @@ do-configure:
 .endif
 
 post-build:
-	( cd ${WRKSRC}/doc/op && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt )
+	(cd ${WRKSRC}/doc/op && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} op.txt)
 .if ${PORT_OPTIONS:MMILTER}
 	(cd ${BUILD_WRKSRC}/libmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .if ${PORT_OPTIONS:MMILTER_SHARED}
