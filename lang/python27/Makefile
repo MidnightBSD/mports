@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	python27
-PORTVERSION=	2.7.6
+PORTVERSION=	2.7.8
 PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
@@ -24,9 +24,15 @@ CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
+USE_OPENSSL=	yes
+GNU_CONFIGURE=	yes
+
+CPE_VENDOR=	python
+CPE_PRODUCT=	${CPE_VENDOR}
+CPE_VERSION=	${PORTVERSION}
 
 USE_PYTHON=	yes
-USES=		readline tar:xz
+USES=		cpe ncurses readline tar:xz
 PYTHON_VERSION=	python2.7
 PYTHON_NO_DEPENDS=	yes
 
@@ -142,7 +148,7 @@ CONFIGURE_ARGS+=	--with-fpectl
 .endif
 
 pre-patch:
-	${CP} -r ${PATCH_WRKSRC}/Lib/plat-freebsd7 \
+	${CP} -r ${PATCH_WRKSRC}/Lib/plat-freebsd8 \
 		${PATCH_WRKSRC}/Lib/plat-midnightbsd0
 	${MKDIR} ${WRKSRC} ${SHARED_WRKSRC}/Modules
 	${LN} ${PATCH_WRKSRC}/Lib/smtpd.py ${PATCH_WRKSRC}/Tools/scripts/
