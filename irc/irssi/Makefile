@@ -2,25 +2,27 @@
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.16
+PORTREVISION=	1
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A modular IRC client with many features
+COMMENT=	Modular IRC client with many features
 
 LICENSE=	gpl2
 
 LIB_DEPENDS=	glib-2:${PORTSDIR}/devel/glib20
 
-USES=		gmake pkgconfig ncurses tar:bzip2
+USES=		gmake pkgconfig ncurses tar:bzip2 libtool
 USE_SSP=	yes
 GNU_CONFIGURE=	yes
-WANT_PERL=	yes
 
-OPTIONS_DEFINE=	PERL PROXY SOCKS IPV6 BOT
+CONFIGURE_ARGS=	--with-ncurses=${NCURSESBASE}
+
+OPTIONS_DEFINE=	PERL PROXY SOCKS IPV6 BOT DOCS
 SOCKS_DESC=	Socks proxy support
 BOT_DESC=	Bot support
-OPTIONS_DEFAULT=	PERL IPV6
+OPTIONS_DEFAULT=	PERL IPV6 DOCS
 
 # USE_OPENSSL must be defined before bsd.port.pre.mk so use old schema
 # for WITH_SSL option
@@ -71,6 +73,12 @@ PLIST_SUB+=	WITH_BOT="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' -e 's|/etc|${PREFIX}&|' \
 		${WRKSRC}/docs/irssi.1
+
+.if empty(PORT_OPTIONS:MDOCS)
+	${REINPLACE_CMD} -e \
+		'/^install-data-am:/ s|install-docDATA||' \
+		${WRKSRC}/docs/Makefile.in
+.endif
 
 post-configure:
 	@${MV} ${WRKSRC}/irssi.conf ${WRKSRC}/irssi.conf.sample
