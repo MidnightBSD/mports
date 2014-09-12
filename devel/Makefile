@@ -69,6 +69,7 @@ SUBDIR += etoile-unitkit
 SUBDIR += fam
 SUBDIR += ffcall
 SUBDIR += fmake
+SUBDIR += fpc-fcl-async
 SUBDIR += fpc-fcl-base
 SUBDIR += fpc-fcl-db
 SUBDIR += fpc-fcl-image
