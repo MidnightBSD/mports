@@ -37,7 +37,7 @@ XORG_COMPLETE=1
 
 .if defined(XORG_CAT)
 # Default variables, common to all new modular xorg ports.
-.if !defined(USE_TGZ)
+.if !defined(USE_TGZ) && !defined(USE_XZ)
 USES+=		tar:bzip2
 .endif
 PREFIX?=       	${LOCALBASE}
@@ -74,6 +74,7 @@ USE_XORG+=	xorg-server xproto randrproto xi renderproto xextproto \
 CFLAGS+=	-fno-optimize-sibling-calls
 .  endif
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
+USES+=		libtool
 . endif
 
 . if ${XORG_CAT} == "font"
@@ -134,7 +135,7 @@ post-install:
 . endif
 
 . if ${XORG_CAT} == "lib"
-USES+=	pathfix
+USES+=		pathfix libtool:keepla
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 . endif
