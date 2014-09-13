@@ -7,15 +7,17 @@
 
 PORTNAME=	jjclient
 PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	SF/justjournal/JustJournal%20UNIX%20Client/${PORTVERSION} \
 		http://www.justjournal.com/software/unix/
 
 MAINTAINER=	luke@midnightbsd.org
-COMMENT=	A command line client for posting JustJournal entries
-LICENSE=	bsd2
+COMMENT=	Command line client for posting JustJournal entries
 
-LIB_DEPENDS=	xmlrpc_client.3:${PORTSDIR}/net/xmlrpc-c
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libxmlrpc.so:${PORTSDIR}/net/xmlrpc-c
 
 .include <bsd.port.mk>
