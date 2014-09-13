@@ -79,6 +79,7 @@ SUBDIR += openupsd
 SUBDIR += p5-File-Listing
 SUBDIR += p5-File-Which
 SUBDIR += p5-Sys-Hostname-Long
+SUBDIR += p5-Unix-Processors
 SUBDIR += pbreg
 SUBDIR += php5-fileinfo
 SUBDIR += php5-posix
