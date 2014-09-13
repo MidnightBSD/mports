@@ -20,4 +20,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxmlrpc.so:${PORTSDIR}/net/xmlrpc-c
 
+PORTDOCS=	*
+
+post-install:
+		${CP} ${WRKSRC}/README ${DOCSDIR}
+
 .include <bsd.port.mk>
