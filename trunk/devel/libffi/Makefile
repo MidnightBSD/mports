@@ -2,6 +2,7 @@
 
 PORTNAME=	libffi
 PORTVERSION=	3.0.13
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -24,12 +25,12 @@ BUILD_DEPENDS:=	${TEST_DEPENDS}
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=	pathfix pkgconfig
+INSTALL_TARGET=	install-strip
+USES=		libtool pathfix pkgconfig
+
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 INFO=		libffi
-
-MAN3=		ffi.3 ffi_call.3 ffi_prep_cif.3 ffi_prep_cif_var.3
 
 post-install:
 	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffi.h ${PREFIX}/include/
