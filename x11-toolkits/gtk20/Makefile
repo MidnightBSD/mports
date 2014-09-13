@@ -14,7 +14,6 @@ COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 
 LICENSE=	lgpl
 
-USE_XZ=		yes
 LATEST_LINK=	gtk20
 
 .if !defined(REFERENCE_PORT)
@@ -28,7 +27,7 @@ USE_PYTHON=	2.5-2.7
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
-USES=		gettext gmake pathfix pkgconfig
+USES=		gettext gmake pathfix pkgconfig tar:xz
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite xau xdmcp xproto
 CONFIGURE_ARGS=	--with-xinput=yes
