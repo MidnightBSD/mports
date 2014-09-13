@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	serf
-PORTVERSION=	1.3.4
+PORTVERSION=	1.3.7
 CATEGORIES=	www
 MASTER_SITES=	http://serf.googlecode.com/svn/src_releases/
 
