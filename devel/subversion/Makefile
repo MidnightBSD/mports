@@ -38,7 +38,7 @@ SERF_DESC=		WebDAV/Delta-V (HTTP/HTTPS) repo access module
 STATIC_DESC=		Build static version (no shared libs)
 SVNSERVE_WRAPPER_DESC=	Enable svnserve wrapper (umask setter)
 TEST_DESC=		Run subversion test suite
-TOOLS_DESC=		Install several tools (svnauthz-validate and mod_dontdothat are among them)
+TOOLS_DESC=		Install several tools
 
 .include "Makefile.common"
 
@@ -90,13 +90,6 @@ PLIST_SUB+=	TOOLS="@comment "
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3
 .endif
 
-#.if ${PORT_OPTIONS:MASVN}
-#RUN_DEPENDS+=	${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils
-#PLIST_SUB+=	ASVN=""
-#.else
-PLIST_SUB+=	ASVN="@comment "
-#.endif
-
 SCRIPTS=
 
 SCRIPTS_DATA=
@@ -111,7 +104,7 @@ USES+=		gettext:build
 .  if ${PORT_OPTIONS:MBDB}
 BDB_BUILD_DEPENDS=	yes
 .  endif
-OLD_LIB_DEPENDS:=	${LIB_DEPENDS:S!^!${LOCALBASE}/lib/lib!:C!(\.[0-9]+)?:!.a:!}
+OLD_LIB_DEPENDS:=	${LIB_DEPENDS:S!^!${LOCALBASE}/lib/!:C!(\.so|\.[0-9]+)?:!.a:!}
 BUILD_DEPENDS+=		${OLD_LIB_DEPENDS}
 LIB_DEPENDS=
 .endif
