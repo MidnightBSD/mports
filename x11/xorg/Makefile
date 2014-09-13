@@ -9,6 +9,7 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org complete distribution metaport
+
 LICENSE=	agg
 
 NO_BUILD=	yes
@@ -19,6 +20,8 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
 # data
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \
 		${LOCALBASE}/lib/X11/icons/handhelds/cursors/X_cursor:${PORTSDIR}/x11-themes/xcursor-themes
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
