@@ -1,2 +1,4 @@
 bin/nvclock
 %%GTK%%bin/nvclock_gtk
+bin/smartdimmer
+man/man1/nvclock.1.gz
