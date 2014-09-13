@@ -14,8 +14,6 @@ COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 
 LICENSE=	lgpl
 
-LATEST_LINK=	gtk20
-
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
