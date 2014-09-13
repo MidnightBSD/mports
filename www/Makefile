@@ -52,6 +52,7 @@ SUBDIR += midori
 SUBDIR += mod_dnssd
 SUBDIR += mod_fastcgi
 SUBDIR += mod_perl2
+SUBDIR += mod_php5
 SUBDIR += mod_python3
 SUBDIR += mod_wsgi3
 SUBDIR += moinmoin
