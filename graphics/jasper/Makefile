@@ -2,7 +2,7 @@
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ece.uvic.ca/~mdadams/jasper/software/ \
 		${MASTER_SITE_IMAGEMAGICK}
@@ -19,8 +19,7 @@ USES=		zip libtool:keepla
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--enable-shared --enable-static \
-		--mandir=${FAKE_DESTDIR}${TRUE_PREFIX}/man
+CONFIGURE_ARGS=	--enable-shared --enable-static
 USE_LDCONFIG=	yes
 
 MASTER_SITE_IMAGEMAGICK=	\

@@ -26,7 +26,6 @@ lib/libjasper.a
 lib/libjasper.la
 lib/libjasper.so
 lib/libjasper.so.4
-lib/libjasper.so.4.0.0
 man/man1/imgcmp.1.gz
 man/man1/imginfo.1.gz
 man/man1/jasper.1.gz
