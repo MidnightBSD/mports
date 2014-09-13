@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.31
+PORTVERSION=	5.4.32
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
@@ -15,12 +15,14 @@ LICENSE=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
-USES=		tar:bzip2
+USES=		tar:bzip2 cpe
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
+
+CPE_PRODUCT=	php
 
 CONFIGURE_ARGS=	--with-layout=GNU \
 		--localstatedir=/var \
