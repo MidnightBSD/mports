@@ -9,6 +9,7 @@ COMMENT=	Tool to compress ISO images to CSO format
 
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/license
 
 WRKSRC=		${WRKDIR}/laffer1-ciso-maker-fd80b04
 USE_GITHUB=     yes
