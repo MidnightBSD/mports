@@ -1,20 +1,23 @@
 # $MidnightBSD$
 
-PORTNAME=	subversion
+PORTNAME?=	subversion
 PORTVERSION=	1.8.10
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 DIST_SUBDIR=	subversion18
 MASTER_SITE_SUBDIR=	subversion
 
-USE_AUTOTOOLS=	libtool
-USES+=		pkgconfig tar:bzip2
+GNU_CONFIGURE=	yes
+USES+=		tar:bzip2 pkgconfig libtool cpe
 
 CONFLICTS_INSTALL+=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-1.[6|7].[0-9]*
 
-LIB_DEPENDS+=		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
-			expat:${PORTSDIR}/textproc/expat2
+CPE_VENDOR=	apache
+
+LIB_DEPENDS+=		libapr-1.so:${PORTSDIR}/devel/apr \
+			libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
+			libexpat.so:${PORTSDIR}/textproc/expat2
 
 CONFIGURE_ARGS+=	--without-swig \
 			--with-sqlite=${LOCALBASE} \
@@ -147,7 +150,6 @@ post-patch:
 .endif
 	@${REINPLACE_CMD} "s#^swig_pydir =.*#swig_pydir = ${PYTHON_SITELIBDIR}/libsvn#" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} "s#^swig_pydir_extra =.*#swig_pydir_extra = ${PYTHON_SITELIBDIR}/svn#" ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} "s#^LIBTOOL =.*#LIBTOOL = ${LIBTOOL}#" ${WRKSRC}/Makefile.in
 .if defined(SVN_BUILD_BINDINGS)
 	@${CP} ${FILESDIR}/build-outputs.mk ${WRKSRC}
 .endif
