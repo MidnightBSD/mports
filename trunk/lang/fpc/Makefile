@@ -101,8 +101,8 @@ MAN5=	fpc.cfg.5 fpcmake.5 ptop.cfg.5
 do-extract:
 # unpack binary distribution
 	@${MKDIR} ${WRKDIR}
-	@${TAR} xfz ${_DISTDIR}/${PPNAME}-${PORTVERSION}-${OPSYS:L}${EXTRACT_SUFX} --directory \
-		${WRKDIR} && ${CHMOD} +x ${WRKDIR}/${PPNAME}-${PORTVERSION}-${OPSYS:L}
+	@${TAR} xfz ${_DISTDIR}/${PPNAME}-${PORTVERSION}-freebsd${EXTRACT_SUFX} --directory \
+		${WRKDIR} && ${CHMOD} +x ${WRKDIR}/${PPNAME}-${PORTVERSION}-freebsd
 # unpack man files
 	@${TAR} xfz ${_DISTDIR}/${DISTNAME:S/$/.man/}${EXTRACT_SUFX} --directory \
 		${WRKDIR}
