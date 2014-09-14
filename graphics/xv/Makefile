@@ -16,7 +16,11 @@ PATCHFILES=	xv-3.10a-enhancements.20070520-20081216.diff
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	X11 program that displays images of various formats
-LICENSE=	restricted
+
+LICENSE=	xv
+LICENSE_NAME=	xv shareware license
+LICENSE_FILE=	${WRKSRC}/copyright.h
+LICENSE_PERMS=	
 # non commericial use only
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
@@ -26,9 +30,6 @@ LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 
 USE_IMAKE=	yes
 USE_XORG=	xext x11 xt
-.if !defined(NOMAN)
-MAN1=		bggen.1 vdcomp.1 xcmap.1 xv.1 xvp2p.1
-.endif
 
 XVDIST=		${DISTDIR}/${DIST_SUBDIR}
 CFLAGS+=	-I${LOCALBASE}/include/libpng15
