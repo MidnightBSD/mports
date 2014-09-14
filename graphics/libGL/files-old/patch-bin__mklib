@@ -1,0 +1,11 @@
+--- ./bin/mklib.orig	Mon Oct  1 03:11:55 2007
++++ ./bin/mklib	Mon Oct  1 03:12:02 2007
+@@ -356,7 +356,7 @@
+ 	fi
+ 	;;
+ 
+-    'FreeBSD')
++    'FreeBSD' | 'MidnightBSD')
+ 	# we assume gcc
+ 
+ 	if [ "x$LINK" = "x" ] ; then
