@@ -2,31 +2,32 @@
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
+
 LICENSE=	bsd3
 
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		lcms:${PORTSDIR}/graphics/lcms
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		liblcms.so:${PORTSDIR}/graphics/lcms
 
-OPTIONS=	MNG_OPTIMIZE "Use vendor's new optimization flags" off
+OPTIONS_DEFINE=	MNG_OPTIMIZE
+MNG_OPTIMIZE_DESC=	Use vendor's new optimization flags
 
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_ARGS+=	WITH_MNG_OPTIMIZE=${WITH_MNG_OPTIMIZE}
-MAKE_JOBS_SAFE=	yes
 
+USES=		uidfix
 USE_LDCONFIG=	yes
 
-MAN3=		libmng.3
-MAN5=		mng.5 jng.5
+MNG_OPTIMIZE_MAKE_ARGS=	WITH_MNG_OPTIMIZE=true
+MNG_OPTIMIZE_MAKE_ARGS_OFF=	WITH_MNG_OPTIMIZE=off
 
 post-install:
-	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} ${MAN3} ${PREFIX}/man/man3 \
-		&& ${INSTALL_MAN} ${MAN5} ${PREFIX}/man/man5
+	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} libmng.3 ${PREFIX}/man/man3 \
+		&& ${INSTALL_MAN} mng.5 jng.5 ${PREFIX}/man/man5
 
 .include <bsd.port.mk>
