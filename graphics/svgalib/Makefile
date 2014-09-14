@@ -7,7 +7,8 @@ CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.svgalib.org/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A low level console graphics library
+COMMENT=	Low level console graphics library
+
 LICENSE=	publicdom
 
 ONLY_FOR_ARCHS=	i386 amd64
