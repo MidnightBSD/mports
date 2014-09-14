@@ -2,7 +2,7 @@
 
 PORTNAME=	xvinfo
 PORTVERSION=	1.1.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +13,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xv x11
 
-PLIST_FILES=	bin/xvinfo
-
-MAN1=		xvinfo.1
+PLIST_FILES=	bin/xvinfo man/man1/xvinfo.1.gz
 
 .include <bsd.port.mk>
