@@ -20,7 +20,7 @@ USES=		gmake libtool pathfix pkgconfig
 USE_GNOME=	glib20 libxml2
 INSTALL_TARGET=	install-strip
 
-CONFIGURE_ARGS=	--disable-tcl --program-prefix=""
+CONFIGURE_ARGS=	--disable-tcl --program-prefix="" --disable-silent-rules
 
 PORTEXAMPLES=	4charts.pl bigtops.pl cgi-demo.cgi minmax.pl perftest.pl \
 		piped-demo.pl shared-demo.pl stripes.pl
