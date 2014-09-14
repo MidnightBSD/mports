@@ -1,11 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libidn
-PORTVERSION=	1.27
-PORTREVISION=	1
+PORTVERSION=	1.28
 CATEGORIES=	dns
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
