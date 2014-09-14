@@ -2,6 +2,7 @@
 
 PORTNAME=	docbook
 PORTVERSION=	4.5
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${DBFILES:C,(.*):(.*),http://www.oasis-open.org/docbook/sgml/\1/:\2,:C,:docbook-([0-9]+).([0-9]+),:db\1\2,}
 PKGNAMESUFFIX=	-sgml
@@ -25,7 +26,7 @@ XMLCATMGR=	bin/xmlcatmgr
 SGMLCAT=	share/sgml/catalog.ports
 ISOCAT=		share/sgml/iso8879/catalog
 DBKDIR=		share/sgml/docbook
-DBCAT=	${PREFIX}/${DBKDIR}/catalog
+DBCAT=	${TRUE_PREFIX}/${DBKDIR}/catalog
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR} SGMLCAT=${SGMLCAT} DBKDIR=${DBKDIR}
 
 do-extract:
@@ -38,17 +39,17 @@ do-extract:
 .endfor
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${DBKDIR}
+	@${MKDIR} ${PREFIX}/${DBKDIR}
 	${ECHO_CMD} "CATALOG \"${LOCALBASE}/${ISOCAT}\"" \
-	    > ${STAGEDIR}${DBCAT}
+	    > ${FAKE_DESTDIR}${DBCAT}
 
 .for D in ${DBFILES:C,:.*,,}
 do-install-${D:S/./_/g}:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/sgml/docbook/$D
+	@${MKDIR} ${PREFIX}/share/sgml/docbook/$D
 	cd ${WRKDIR}/${DBFILES:M${D}\:*:C,.*:,,} && \
-	    ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/sgml/docbook/$D
-	${ECHO_CMD} "CATALOG \"${PREFIX}/share/sgml/docbook/$D/docbook.cat\"" \
-	    >> ${STAGEDIR}${DBCAT}
+	    ${COPYTREE_SHARE} . ${PREFIX}/share/sgml/docbook/$D
+	${ECHO_CMD} "CATALOG \"${TRUE_PREFIX}/share/sgml/docbook/$D/docbook.cat\"" \
+	    >> ${FAKE_DESTDIR}${DBCAT}
 do-install: do-install-${D:S/./_/g}
 .endfor
 
