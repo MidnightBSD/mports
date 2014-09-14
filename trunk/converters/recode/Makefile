@@ -26,20 +26,21 @@ LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 
 INFO=		recode
 
-post-extract: copy-po-files remove-info-files
-
-copy-po-files:
+post-extract:
 	@${CP} ${FILESDIR}/ru.po ${WRKSRC}/i18n
-
-remove-info-files:
 	@${RM} -f ${WRKSRC}/doc/${PORTNAME}.info*
 
 post-patch:
-	@${PERL} -pi -e '\
-		if (/Project-Id-Version/) { \
+	@${REINPLACE_CMD} -E \
+		'/Project-Id-Version/ { \
 			s/3\.[45](r|\.[0-9])?/3.6/; \
-			s/: (Free )?recode/: GNU recode/; \
-		} \
-	' ${WRKSRC}/i18n/*.po
+			s/: (Free )?recode/: GNU recode/; }' \
+		${WRKSRC}/i18n/*.po
+	@${REINPLACE_CMD} 's,"iconv\.h","${ICONV_PREFIX}/include/iconv.h",' \
+		${WRKSRC}/src/libiconv.c
+	@${CP} ${WRKSRC}/lib/error.c ${WRKSRC}/src
+
+post-install:
+	cd ${PREFIX}/lib && ln -s librecode.so.3.6 librecode.so
 
 .include <bsd.port.mk>
