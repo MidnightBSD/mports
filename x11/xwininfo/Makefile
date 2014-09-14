@@ -2,6 +2,7 @@
 
 PORTNAME=	xwininfo
 PORTVERSION=	1.1.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,10 +11,9 @@ COMMENT=	Window information utility for X
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xmuu xext x11
+USES=		iconv
+USE_XORG=	x11 xcb xproto xorg-macros
 
-PLIST_FILES=	bin/xwininfo
-
-MAN1=		xwininfo.1
+PLIST_FILES=	bin/xwininfo man/man1/xwininfo.1.gz
 
 .include <bsd.port.mk>
