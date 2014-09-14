@@ -13,7 +13,12 @@ lib/libmetacity-private.a
 lib/libmetacity-private.la
 lib/libmetacity-private.so
 lib/libmetacity-private.so.0
+lib/libmetacity-private.so.0.0.0
 libdata/pkgconfig/libmetacity-private.pc
+man/man1/metacity-message.1.gz
+man/man1/metacity-theme-viewer.1.gz
+man/man1/metacity-window-demo.1.gz
+man/man1/metacity.1.gz
 share/applications/metacity.desktop
 share/gnome-control-center/keybindings/50-metacity-desktop-key.xml
 share/gnome-control-center/keybindings/50-metacity-key.xml
@@ -235,7 +240,6 @@ share/themes/Simple/metacity-1/minimize.png
 @dirrm share/gnome/help/creating-metacity-themes
 @dirrm include/metacity-1/metacity-private
 @dirrm include/metacity-1
-@dirrmtry share/applications
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
 @dirrmtry share/locale/yo/LC_MESSAGES
