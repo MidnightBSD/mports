@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		bash
-PATCHLEVEL=		18
+PATCHLEVEL=		24
 PORTVERSION=		4.3.${PATCHLEVEL:S/^0//g}
 PORTREVISION?=		0
 CATEGORIES=		shells
@@ -29,7 +29,7 @@ IMPLICITCD_DESC=	Use directory name alone to cd into it
 COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
 
-USES=			bison
+USES=			bison makeinfo
 OPTIONS_SUB=		yes
 
 IMPLICITCD_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-implicitcd
