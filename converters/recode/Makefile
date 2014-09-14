@@ -4,8 +4,6 @@ PORTNAME=	recode
 PORTVERSION=	3.6
 PORTREVISION=	10
 CATEGORIES=	converters
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	recode
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts files between character sets and usages
