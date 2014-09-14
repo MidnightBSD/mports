@@ -2,14 +2,14 @@
 
 PORTNAME=	xfce
 PORTVERSION=	4.10
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The "meta-port" for the Xfce 4 desktop environment
+COMMENT=	The "meta-port" for the Xfce Desktop Environment
 
 LICENSE=	agg
 
