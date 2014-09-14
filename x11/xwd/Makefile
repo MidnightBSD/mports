@@ -2,6 +2,7 @@
 
 PORTNAME=	xwd
 PORTVERSION=	1.0.6
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,8 +13,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11 xkbfile
 
-PLIST_FILES=	bin/xwd
-
-MAN1=		xwd.1
+PLIST_FILES=	bin/xwd man/man1/xwd.1.gz
 
 .include <bsd.port.mk>
