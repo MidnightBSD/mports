@@ -1,26 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	libGLw
-PORTVERSION=	${MESAVERSION}
-PORTREVISION=	1
+PORTVERSION=	8.0.0
 CATEGORIES=	graphics
+MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glw/
+DISTNAME=	glw-${PORTVERSION}
+DIST_SUBDIR=	GL
 
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL widgets library
+
 LICENSE=	mit
 
+USES=		motif libtool pathfix pkgconfig tar:bzip2
+USE_LDCONFIG=	yes
 USE_GL=		gl
-USE_MOTIF=	yes
-USE_XORG=	glproto xt x11 xext xxf86vm xdamage xfixes dri2proto
+USE_XORG=	x11 xt xext
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-static --enable-motif
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-do-install:
-	cd ${WRKSRC}/src/glw; ${GMAKE} ${FAKE_MAKEARGS} install
-
-.include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} != "amd64" || ${ARCH} != "i386"
-CONFIGURE_ARGS+=--disable-gallium-intel
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
