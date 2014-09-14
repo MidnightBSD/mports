@@ -3,38 +3,30 @@
 
 PORTNAME=	libexif
 PORTVERSION=	0.6.21
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to read digital camera file meta-data
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
 OPTIONS_DEFINE=	DOCS NLS
 
-USES=		gmake pathfix pkgconfig
-USE_BZIP2=	yes
-USE_GNOME=	ltverhack
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool:keepla pathfix pkgconfig tar:bzip2
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-docs
 USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ENV+=	am_cv_func_iconv=no
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_USES=	gettext
+NLS_CONFIGURE_ENV_OFF=	am_cv_func_iconv=no
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|doc||g ; \
