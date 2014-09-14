@@ -22,6 +22,7 @@ SUBDIR += evince
 SUBDIR += exif
 SUBDIR += exiv2
 SUBDIR += feh
+SUBDIR += fpc-libpng
 SUBDIR += fpc-pasjpeg
 SUBDIR += freeglut
 SUBDIR += frei0r
