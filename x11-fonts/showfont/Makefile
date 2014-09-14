@@ -2,6 +2,7 @@
 
 PORTNAME=	showfont
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,8 +12,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	libfs
 
-PLIST_FILES=	bin/showfont
-
-MAN1=		showfont.1
+PLIST_FILES=	bin/showfont man/man1/showfont.1.gz
 
 .include <bsd.port.mk>
