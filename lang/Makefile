@@ -60,7 +60,6 @@ SUBDIR += python2
 SUBDIR += python3
 SUBDIR += python31
 SUBDIR += python33
-SUBDIR += python26
 SUBDIR += python27
 SUBDIR += ruby18
 SUBDIR += ruby19
