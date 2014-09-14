@@ -42,8 +42,8 @@ SUBDIR += www
 SUBDIR += x11
 SUBDIR += x11-clocks
 SUBDIR += x11-drivers
-SUBDIR += x11-fonts
 SUBDIR += x11-fm
+SUBDIR += x11-fonts
 SUBDIR += x11-servers
 SUBDIR += x11-themes
 SUBDIR += x11-toolkits
@@ -61,24 +61,46 @@ indexbz2: index
 	@rm -f ${INDEXDIR}/${INDEXFILE}.bz2
 	@bzip2 ${INDEXDIR}/${INDEXFILE}
 
-fetchindex: ${INDEXDIR}/{INDEXFILE}.bz2
+fetchindex: ${INDEXDIR}/${INDEXFILE}.bz2
 	@bunzip2 < ${INDEXDIR}/${INDEXFILE}.bz2 > ${INDEXDIR}/${INDEXFILE} && \
-	chmod a+r ${INDEXDIR}/${INDEXFILE}
+	chmod a+r ${INDEXDIR}/${INDEXFILE} && ${RM} -f ${INDEXDIR}/${INDEXFILE}.bz2
 
-${INDEXDIR}/{INDEXFILE}.bz2: .PHONY
+${INDEXDIR}/${INDEXFILE}.bz2: .PHONY
 	@${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.bz2 ${MASTER_SITE_INDEX}${INDEXFILE}.bz2
 
 MASTER_SITE_INDEX?=	http://www.MidnightBSD.org/ports/
 SETENV?=	/usr/bin/env
 FETCHINDEX?=	${SETENV} ${FETCH_ENV} fetch -am -o
-INDEX_JOBS?=	2
+
+.if !defined(INDEX_JOBS)
+INDEX_JOBS!=	${SYSCTL} -n kern.smp.cpus
+.endif
 
 .if !defined(INDEX_VERBOSE)
-INDEX_ECHO_MSG=		echo > /dev/null
+INDEX_ECHO_MSG=		true
 INDEX_ECHO_1ST=		echo -n
 .else
 INDEX_ECHO_MSG=		echo 1>&2
 INDEX_ECHO_1ST=		echo
+.endif
+
+# /rescue/sh is statically linked and much faster to execute than the
+# dynamically linked /bin/sh.  This is significant for targets like
+# make index that execute the shell tens of thousands of times.
+.if exists(/rescue/sh)
+INDEX_SHELL=		/rescue/sh
+.else
+INDEX_SHELL=		/bin/sh
+.endif
+
+.if !defined(INDEX_PORTS)
+INDEX_PORTS=.
+.endif
+
+.if exists(/usr/libexec/make_index)
+MAKE_INDEX=	/usr/libexec/make_index /dev/stdin
+.else
+MAKE_INDEX=	perl ${.CURDIR}/Tools/make_index
 .endif
 
 ${INDEXDIR}/${INDEXFILE}:
@@ -88,8 +110,9 @@ ${INDEXDIR}/${INDEXFILE}:
 	fi; \
 	tmpdir=`/usr/bin/mktemp -d -t index` || exit 1; \
 	trap "rm -rf $${tmpdir}; exit 1" 1 2 3 5 10 13 15; \
-	( cd ${.CURDIR} && make -j${INDEX_JOBS} INDEX_TMPDIR=$${tmpdir} BUILDING_INDEX=1 \
-		ECHO_MSG="${INDEX_ECHO_MSG}" describe ) || \
+	( cd ${.CURDIR}; for i in ${INDEX_PORTS}; do (cd $${i} && ${MAKE} -j${INDEX_JOBS} INDEX_TMPDIR=$${tmpdir} BUILDING_INDEX=1 \
+		__MAKE_SHELL=${INDEX_SHELL} \
+		ECHO_MSG="${INDEX_ECHO_MSG}" describe); done ) || \
 		(rm -rf $${tmpdir} ; \
 		if [ "${INDEX_QUIET}" = "" ]; then \
 			echo; \
@@ -102,13 +125,16 @@ ${INDEXDIR}/${INDEXFILE}:
 			echo; \
 		fi; \
 		exit 1); \
-	cat $${tmpdir}/${INDEXFILE}.desc.* | (cd ${.CURDIR} ; perl ${.CURDIR}/Tools/make_index) | \
+	cat $${tmpdir}/${INDEXFILE}.desc.* | \
+		sed -e 's|${.CURDIR}|${PORTSDIR}|g' | \
+		(cd ${.CURDIR} ; ${MAKE_INDEX}) | \
 		sed -e 's/  */ /g' -e 's/|  */|/g' -e 's/  *|/|/g' -e 's./..g' | \
 		sort -t '|' +1 -2 | \
-		sed -e 's../.g' > ${INDEXDIR}/${INDEXFILE}.tmp; \
+		sed -Ee 's../.g' -e ':a' -e 's|/[^/]+/\.\.||; ta' \
+		-e 's|${PORTSDIR}|/usr/mports|g' \
+		-e 's|${.CURDIR}|/usr/mports|g' > ${INDEXDIR}/${INDEXFILE}.tmp; \
 	if [ "${INDEX_PRISTINE}" != "" ]; then \
-		sed -e "s,$${LOCALBASE},/usr/local," \
-			${INDEXDIR}/${INDEXFILE}.tmp > ${INDEXDIR}/${INDEXFILE}; \
+		sed -e "s,$${LOCALBASE},/usr/local," ${INDEXDIR}/${INDEXFILE}.tmp > ${INDEXDIR}/${INDEXFILE}; \
 	else \
 		mv ${INDEXDIR}/${INDEXFILE}.tmp ${INDEXDIR}/${INDEXFILE}; \
 	fi; \
@@ -118,25 +144,39 @@ ${INDEXDIR}/${INDEXFILE}:
 print-index:	${INDEXDIR}/${INDEXFILE}
 	@awk -F\| '{ printf("Port:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nE-deps:\t%s\nP-deps:\t%s\nF-deps:\t%s\nWWW:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$11, $$12, $$13, $$10); }' < ${INDEXDIR}/${INDEXFILE}
 
-CVS?= cvs
-SUP?= csup
-.if defined(SUPHOST)
-SUPFLAGS+=	-h ${SUPHOST}
-.endif
+GIT?= git
+SVN?= svn
+RSYNC?= rsync
+PORTSNAP?= portsnap
+PORTSNAP_FLAGS?= -p ${.CURDIR}
+.if !target(update)
 update:
-.if defined(SUP_UPDATE) && defined(PORTSSUPFILE)
+.if exists(${.CURDIR}/.svn)
 	@echo "--------------------------------------------------------------"
-	@echo ">>> Running ${SUP}"
+	@echo ">>> Updating ${.CURDIR} using Subversion"
 	@echo "--------------------------------------------------------------"
-	@${SUP} ${SUPFLAGS} ${PORTSSUPFILE}
-.elif defined(CVS_UPDATE)
+	cd ${.CURDIR}; ${SVN} update
+.elif exists(${.CURDIR}/.git)
 	@echo "--------------------------------------------------------------"
-	@echo ">>> Updating ${.CURDIR} from cvs repository" ${CVSROOT}
+	@echo ">>> Updating ${.CURDIR} from git+svn repository"
 	@echo "--------------------------------------------------------------"
-	cd ${.CURDIR}; ${CVS} -R -q update -A -P -d -I!
-.elif defined(SUP_UPDATE) && !defined(PORTSSUPFILE)
-	@${ECHO_MSG} "Error: Please define PORTSSUPFILE before doing make update."
-	@exit 1
+	cd ${.CURDIR}; ${GIT} svn rebase
+.elif defined(RSYNC_UPDATE) && defined(PORTS_RSYNC_SOURCE)
+	@echo "--------------------------------------------------------------"
+	@echo ">>> Updating with ${RSYNC} from ${PORTS_RSYNC_SOURCE}"
+	@echo "--------------------------------------------------------------"
+	@${RSYNC} ${RSYNC_FLAGS} ${PORTS_RSYNC_SOURCE}/ ${.CURDIR}/
 .else
-	@${ECHO_MSG} "Error: Please define either PORTSNAP_UPDATE, SUP_UPDATE, or CVS_UPDATE first."
+	@echo "--------------------------------------------------------------"
+	@echo ">>> Running ${PORTSNAP}"
+	@echo "--------------------------------------------------------------"
+.if !exists(${PORTSDIR}/.portsnap.INDEX)
+	@echo "Error: 'make update' uses portsnap(8) by default and"
+	@echo "needs ${PORTSDIR} to be created by portsnap on its first run."
+	@echo "Please run 'portsnap fetch extract' first."
+.else
+	@${PORTSNAP} ${PORTSNAP_FLAGS} fetch
+	@${PORTSNAP} ${PORTSNAP_FLAGS} update
+.endif
+.endif
 .endif
