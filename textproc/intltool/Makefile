@@ -8,19 +8,16 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to internationalize various kinds of data files
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
 RUN_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
 
-USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		gmake iconv
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir="${PREFIX}/libdata"
-
-MAN8=		intltool-extract.8 intltool-merge.8 intltool-prepare.8 \
-		intltool-update.8 intltoolize.8
 
 CONFLICTS=	xml-i18n-tools-[0-9]*
 
