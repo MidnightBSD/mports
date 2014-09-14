@@ -75,7 +75,6 @@ GSSAPI_CPPFLAGS=	-I${INCLUDEDIR}/gssapi
 IDN_CONFIGURE_OFF=	--without-libidn
 IDN_CONFIGURE_ON=	--with-libidn=${LOCALBASE}
 IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
-IPV6_CATEGORIES=	ipv6
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 IPV6_CONFIGURE_ON=	--enable-ipv6
 LDAP_CONFIGURE_OFF=	--disable-ldap
