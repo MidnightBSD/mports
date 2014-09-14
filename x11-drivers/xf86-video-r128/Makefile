@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-r128
 PORTVERSION=	6.9.2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +14,5 @@ USE_GL=		gl
 
 XORG_CAT=	driver
 USE_XORG=	glproto videoproto xextproto xf86driproto xf86miscproto xineramaproto
-MAN4=		r128.4x
 
 .include <bsd.port.mk>
