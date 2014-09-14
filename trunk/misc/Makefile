@@ -16,6 +16,7 @@ SUBDIR += dnetc
 SUBDIR += e2fsprogs-libblkid
 SUBDIR += e2fsprogs-libuuid
 SUBDIR += findutils
+SUBDIR += fpc-chm
 SUBDIR += getopt
 SUBDIR += gnome-icon-theme
 SUBDIR += gnome-mime-data
