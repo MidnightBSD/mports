@@ -2,26 +2,22 @@
 
 PORTNAME=	XML-Parser
 PORTVERSION=	2.41
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension interface to James Clark's XML parser, expat
-LICENSE=	perl
 
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ARGS=	EXPATLIBPATH=${LOCALBASE}/lib EXPATINCPATH=${LOCALBASE}/include
 
-MAN3=		XML::Parser.3 XML::Parser::Expat.3 \
-		XML::Parser::Style::Debug.3 \
-		XML::Parser::Style::Objects.3 \
-		XML::Parser::Style::Stream.3 \
-		XML::Parser::Style::Subs.3 \
-		XML::Parser::Style::Tree.3
 PLIST_SUB=	EUCJP=${EUCJP} SJIS=${SJIS}
 
 # XMLPARSER_EUCJP=	x-euc-jp-(jisx0221|unicode)
