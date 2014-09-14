@@ -13,6 +13,7 @@ COMMENT=	Perl extension for Version Objects
 LICENSE=	gpl artistic
 LICENSE_COMB=	dual
 
+USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
