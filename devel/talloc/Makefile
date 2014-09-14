@@ -2,7 +2,7 @@
 
 PORTNAME=		talloc
 PORTVERSION=		2.1.0
-PORTREVISION=		0
+PORTREVISION=		1
 PORTEPOCH=		0
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -133,5 +133,10 @@ do-build:
 
 do-install:
 			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${INSTALL_TARGET})
+
+post-install:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${PREFIX}/libdata/pkgconfig/talloc.pc \
+		${PREFIX}/libdata/pkgconfig/pytalloc-util.pc
 
 .include <bsd.port.post.mk>
