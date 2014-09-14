@@ -2,17 +2,17 @@
 
 PORTNAME=	libIDL
 PORTVERSION=	0.8.14
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for creating trees of CORBA IDL files
+COMMENT=	Library for creating trees of CORBA IDL files
+
 LICENSE=        lgpl
 
-USES=		pathfix pkgconfig gettext
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		pathfix pkgconfig libtool:keepla gettext gmake tar:bzip2
 USE_BISON=	build
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
