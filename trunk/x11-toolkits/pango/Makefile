@@ -2,7 +2,7 @@
 
 PORTNAME=	pango
 PORTVERSION=	1.34.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,9 +17,9 @@ USES=		tar:xz
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	fontconfig>=2.10.91:${PORTSDIR}/x11-fonts/fontconfig
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		harfbuzz:${PORTSDIR}/print/harfbuzz \
-		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	${FONTSCALE}:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
 		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
 
@@ -30,7 +30,6 @@ USE_GNOME=	cairo glib20 gnomehier referencehack introspection:build
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--enable-explicit-deps=yes
 
 SUB_FILES+=	pkg-install
 
