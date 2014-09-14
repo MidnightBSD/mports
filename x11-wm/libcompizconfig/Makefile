@@ -9,6 +9,7 @@ MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alternative configuration system for Compiz
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compiz.pc:${PORTSDIR}/x11-wm/compiz
