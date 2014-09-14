@@ -11,13 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive Technology Service Provider Interface
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
-
 .if !defined(REFERENCE_PORT)
 
 RUN_DEPENDS=	at-spi2-atk>2.6.0:${PORTSDIR}/accessibility/at-spi2-atk
 
-USES=		gettext
+USES=		gettext tar:bzip2
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomehier intlhack gtk20 gconf2 libbonobo
 USE_XORG=	x11 xtst
