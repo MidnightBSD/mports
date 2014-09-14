@@ -1,18 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	xmodmap
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility for modifying keymaps and pointer button mappings in X
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11
 
-PLIST_FILES=	bin/xmodmap
-
-MAN1=		xmodmap.1
+PLIST_FILES=	bin/xmodmap man/man1/xmodmap.1.gz
 
 .include <bsd.port.mk>
