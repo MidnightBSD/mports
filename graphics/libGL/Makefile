@@ -2,29 +2,47 @@
 
 PORTNAME=	libGL
 PORTVERSION=	${MESAVERSION}
+PORTREVISION=	${LIBGLREVISION}
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL library that renders using GLX or DRI
+
 LICENSE=	mit
 
-LIB_DEPENDS+=	drm:${PORTSDIR}/graphics/libdrm \
-		expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libdrm.so:${PORTSDIR}/graphics/libdrm \
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
-USE_PKGCONFIG=	build
+USES=		pkgconfig
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto:both
 
 SUB_FILES=	pkg-install pkg-deinstall
 
-do-install:
-	${RM} -f ${WRKSRC}/include/GL/glu*.h
-	cd ${WRKSRC}/src/mesa; ${GMAKE} ${FAKE_MAKEARGS} install-libgl
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_NEW_XORG)
+LIBGLREVISION=	2
+LIB_DEPENDS+=	libglapi.so:${PORTSDIR}/graphics/libglapi
+.else
+LIBGLREVISION=	5
+.endif
 
 .include "${.CURDIR}/bsd.mesalib.mk"
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} != "amd64" || ${ARCH} != "i386"
+.if !(${ARCH} == "amd64" || ${ARCH} == "i386")
 CONFIGURE_ARGS+=--disable-gallium-intel
 .endif
 
-.include <bsd.port.post.mk>
+post-install:
+	${RM} -f ${STAGEDIR}${PREFIX}/libdata/pkgconfig/dri.pc
+	${RM} -rf ${STAGEDIR}${PREFIX}/include/GL/internal
+.if defined(WITH_NEW_XORG)
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/.libGL
+	@${MV} ${STAGEDIR}${PREFIX}/lib/libGL* \
+		${STAGEDIR}${PREFIX}/lib/.libGL/
+	${RM} ${STAGEDIR}${PREFIX}/lib/libglapi*
+.else
+	${RM} ${STAGEDIR}${PREFIX}/include/GL/glu.h
+	${RM} ${STAGEDIR}${PREFIX}/include/GL/glu_mangle.h
+.endif
+
+.include <bsd.port.mk>

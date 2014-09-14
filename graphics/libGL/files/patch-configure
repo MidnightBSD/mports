@@ -1,0 +1,49 @@
+--- configure.orig	2013-08-01 23:22:15.000000000 +0200
++++ configure	2013-08-19 20:05:02.000000000 +0200
+@@ -21046,9 +21046,34 @@
+         DEFINES="$DEFINES -DHAVE_PTHREAD -DUSE_EXTERNAL_DXTN_LIB=1"
+         DEFINES="$DEFINES -DIN_DRI_DRIVER -DHAVE_ALIAS"
+ 
+-        if test "x$DRI_DIRS" = "xyes"; then
+-            DRI_DIRS="i915 i965 nouveau r200 radeon swrast"
+-        fi
++        case "$host_cpu" in
++        x86_64|ia64)
++            # i810 is missing because there is no x86-64 system where it
++            # could *ever* be used.
++            if test "x$DRI_DIRS" = "xyes"; then
++                DRI_DIRS="i915 i965 nouveau r200 radeon swrast"
++            fi
++            ;;
++        i*86)
++            if test "x$DRI_DIRS" = "xyes"; then
++                DRI_DIRS="i915 i965 nouveau r200 radeon swrast"
++            fi
++            ;;
++        powerpc*)
++            # Build only the drivers for cards that exist on PowerPC.
++            # At some point MGA will be added, but not yet.
++            if test "x$DRI_DIRS" = "xyes"; then
++                DRI_DIRS="r200 radeon swrast"
++            fi
++            ;;
++        sparc*)
++            # Build only the drivers for cards that exist on SPARC.
++            if test "x$DRI_DIRS" = "xyes"; then
++                DRI_DIRS="r200 radeon swrast"
++            fi
++            ;;
++        esac
++
+         ;;
+     gnu*)
+         DEFINES="$DEFINES -DUSE_EXTERNAL_DXTN_LIB=1 -DIN_DRI_DRIVER"
+@@ -23396,7 +23421,7 @@
+ radeon_llvm_check() {
+     LLVM_REQUIRED_VERSION_MAJOR="3"
+     LLVM_REQUIRED_VERSION_MINOR="2"
+-    if test "$LLVM_VERSION_INT" -ne "${LLVM_REQUIRED_VERSION_MAJOR}0${LLVM_REQUIRED_VERSION_MINOR}"; then
++    if test "$LLVM_VERSION_INT" -lt "${LLVM_REQUIRED_VERSION_MAJOR}0${LLVM_REQUIRED_VERSION_MINOR}"; then
+         as_fn_error $? "LLVM $LLVM_REQUIRED_VERSION_MAJOR.$LLVM_REQUIRED_VERSION_MINOR with R600 target enabled is required.
+                      To use the r600/radeonsi LLVM backend, you need to fetch the LLVM source from:
+                      git://people.freedesktop.org/~tstellar/llvm master
