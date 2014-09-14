@@ -2,7 +2,8 @@
 
 PORTNAME=	curl
 PORTVERSION=	7.37.1
-CATEGORIES=	ftp ipv6 www
+PORTREVISION=	1
+CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
 EXTRACT_SUFX=	.tar.lzma
