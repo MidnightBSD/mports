@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $FreeBSD$
+# $MidnightBSD$
 
 use strict;
 use warnings;

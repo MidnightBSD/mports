@@ -1,4 +1,4 @@
-$FreeBSD$
+$MidnightBSD$
 
 --- inc/Devel/CheckLib.pm.orig	2013-01-11 11:43:02.293444337 +0900
 +++ inc/Devel/CheckLib.pm	2013-01-11 11:48:47.556449831 +0900
