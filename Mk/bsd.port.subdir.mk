@@ -38,10 +38,21 @@
 #		Search for ports using either 'make search key=<keyword>'
 #		or 'make search name=<keyword>'.
 
-
-.MAIN: all
+PORTSDIR?=		/usr/mports
+TEMPLATES?=		${PORTSDIR}/Templates
+.if defined(PORTSTOP)
+README=			${TEMPLATES}/README.top
+.else
+README=			${TEMPLATES}/README.category
+.endif
+MOVEDDIR?=		${PORTSDIR}
+MOVEDFILE?=		MOVED
+INDEXDIR?=		${PORTSDIR}
+INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 .include "${PORTSDIR}/Mk/components/commands.mk"
+
+.MAIN: all
 
 .if !defined(DEBUG_FLAGS)
 STRIP?=	-s
@@ -57,15 +68,18 @@ ARCH!=	${DESTDIR}${UNAME} -p
 .endif
 
 .if !defined(OSVERSION)
-OSVERSION!= ${SYSCTL} -n kern.osreldate
+.if exists(/usr/include/sys/param.h)
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /usr/include/sys/param.h
+.elif exists(${SRC_BASE}/sys/sys/param.h)
+OSVERSION!=${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
+.else
+OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
-.if !defined(PORTOBJFORMAT)
-PORTOBJFORMAT?= elf
 .endif
 .endif
 
 .if !defined(_OSRELEASE)
-_OSRELEASE!=			uname -r
+_OSRELEASE!=			${UNAME} -r
 .endif
 .if !defined(OSREL)
 OSREL=	${_OSRELEASE:C/[-(].*//}
@@ -91,10 +105,6 @@ CONFIGURE_MAX_CMD_LEN!= ${SYSCTL} -n kern.argmax
 .if !defined(UID)
 UID!=	${ID} -u
 .endif
-LOCALBASE?=	${DESTDIR}${LOCALBASE_REL}
-SED?=		${DESTDIR}/usr/bin/sed
-
-ECHO_MSG?=	echo
 
 # local customization of the ports tree
 .if exists(${.CURDIR}/Makefile.local)
@@ -185,7 +195,7 @@ afterinstall: realinstall
 realinstall: beforeinstall ${SUBDIR:S/^/_/:S/$/.realinstall/}
 .endif
 
-IGNOREDIR=	CVS Mk Packages Templates Tools Distfiles pkg
+IGNOREDIR=	Mk Packages Templates Tools Distfiles pkg
 
 .if !target(checksubdirs)
 .if defined(PORTSTOP)
@@ -207,13 +217,13 @@ checksubdir:
 	      fi; \
 	    done; \
 	    if [ $$found = 0 ]; then \
-	      ${ECHO} "Warning: directory $$d not in SUBDIR"; \
+	      ${ECHO_MSG} "Warning: directory $$d not in SUBDIR"; \
 	    fi; \
 	  fi; \
 	done
 	@for s in ${SUBDIR}; do \
 	  if ! [ -d ${.CURDIR}/$$s ]; then \
-	    ${ECHO} "Warning: directory $$s in SUBDIR does not exist"; \
+	    ${ECHO_MSG} "Warning: directory $$s in SUBDIR does not exist"; \
 	  fi \
 	done
 .endif
@@ -284,26 +294,13 @@ readmes: readme
 .endif
 .endif
 
-
 .if !target(readme)
 readme:
 	@${RM} -f README.html
 	@${MAKE} README.html
 .endif
 
-PORTSDIR ?= /usr/mports
-TEMPLATES ?= ${PORTSDIR}/Templates
-.if defined(PORTSTOP)
-README=	${TEMPLATES}/README.top
-.else
-README=	${TEMPLATES}/README.category
-.endif
-COMMENTFILE?=	${.CURDIR}/pkg/COMMENT
-DESCR?=		${.CURDIR}/pkg-descr
-INDEXDIR?=	${PORTSDIR}
-INDEXFILE?=	INDEX-${OSVERSION:C/([0-9]).*/\1/}
-
-HTMLIFY=	sed -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
+HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 
 package-name:
 	@${ECHO_CMD} ${.CURDIR} | ${SED} -e 's^.*/^^'
@@ -332,8 +329,8 @@ README.html:
 .else
 	@> $@.tmp4
 .endif
-	@cat ${README} | \
-		sed -e 's/%%CATEGORY%%/'"`basename ${.CURDIR}`"'/g' \
+	@${CAT} ${README} | \
+		${SED} -e 's/%%CATEGORY%%/'"`basename ${.CURDIR}`"'/g' \
 			-e '/%%COMMENT%%/r$@.tmp4' \
 			-e '/%%COMMENT%%/d' \
 			-e '/%%DESCR%%/r$@.tmp3' \
@@ -454,8 +451,8 @@ _PORTSEARCH=	\
 	    } \
 	  } \
 	  { \
-            if (match($$2, "^/usr/mports/[^/]*/[^/]*$$") > 0) \
-              sub("^/usr/mports", "${PORTSDIR}", $$2); \
+	    if (match($$2, "^/usr/mports/[^/]*/[^/]*$$") > 0) \
+	      sub("^/usr/mports", "${PORTSDIR}", $$2); \
 	    if (substr($$2, 1, therelen) != there) \
 	      next; \
 	    for (i in parms) \
