@@ -1,9 +1,7 @@
 # $MidnightBSD$
-#
 
 COMMENT = Network news
 
-SUBDIR += PicMonger
 SUBDIR += lusernet
 SUBDIR += newsfetch
 SUBDIR += slrn
