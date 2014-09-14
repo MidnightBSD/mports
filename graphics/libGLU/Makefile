@@ -1,28 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	libGLU
-PORTVERSION=	${MESAVERSION}
-PORTREVISION=	1
+PORTVERSION=	9.0.0
 CATEGORIES=	graphics
+MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glu/
+DISTNAME=	glu-${PORTVERSION}
 
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL utility library
+
 LICENSE=	mit
 
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-static
+INSTALL_TARGET=	install-strip
+USES=		libtool pathfix pkgconfig tar:bzip2
 USE_GL=		gl
-USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
+USE_LDCONFIG=	yes
 
-do-install:
-	@${MKDIR} ${PREFIX}/include/GL/
-	cd ${WRKSRC}/src/glu; ${GMAKE} ${FAKE_MAKEARGS} install
-	${INSTALL_DATA} ${WRKSRC}/include/GL/glu*.h ${PREFIX}/include/GL/
-	cd ${WRKSRC}/src/glu; ${GMAKE} ${FAKE_MAKEARGS} install
-
-.include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} != "amd64" || ${ARCH} != "i386"
-CONFIGURE_ARGS+=--disable-gallium-intel
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
