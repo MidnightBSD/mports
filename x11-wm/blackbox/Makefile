@@ -2,12 +2,12 @@
 
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF/${PORTNAME}wm/${PORTNAME}wm/Blackbox%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A small and fast window manager for X11R6
+COMMENT=	Small and fast window manager for X11R6
 
 LICENSE=	mit
 
@@ -15,7 +15,6 @@ GNU_CONFIGURE=	yes
 USES=		pathfix pkgconfig iconv
 USE_XORG=	x11 xft
 
-MAN1=		bsetbg.1 bsetroot.1
 PORTDOCS=	README.bbtools README.bsetbg
 
 OPTIONS_DEFINE=		TOOLS_ONLY
@@ -29,7 +28,6 @@ COMMENT+=	(tools only)
 MAKE_ARGS=	SUBDIRS="doc lib util" bin_PROGRAMS=bsetroot
 INSTALL_TARGET=	-C util install		# XXX dirty hack :(
 .else
-MAN1+=		blackbox.1
 PORTDOCS+=	AUTHORS COMPLIANCE ChangeLog README RELNOTES TODO
 .endif
 
