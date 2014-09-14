@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	-fcl-db
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Pascal Component Library
 
-USE_FPC=	dblib fcl-async fcl-base fcl-json fcl-xml hash ibase mysql odbc oracle paszlib postgres \
+USE_FPC=	dblib fcl-async fcl-base fcl-json fcl-xml hash mysql odbc oracle paszlib postgres \
 		pthreads pxlib sqlite
 
 MASTERDIR=	${.CURDIR}/../../lang/fpc
