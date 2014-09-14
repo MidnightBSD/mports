@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-nv
 PORTVERSION=	2.1.20
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto
-MAN4=		nv.4x
 
 .include <bsd.port.mk>
