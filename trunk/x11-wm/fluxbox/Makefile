@@ -2,6 +2,7 @@
 
 PORTNAME=	fluxbox
 PORTVERSION=	1.3.5
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
@@ -15,15 +16,11 @@ LICENSE=	mit
 RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
 USE_XORG=	xextproto xft xpm xrandr
-USE_GMAKE=	yes
+USES=		gmake pkgconfig
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 
 PORTDOCS=		AUTHORS ChangeLog NEWS README TODO
-MAN1=		fbrun.1 fbsetbg.1 fbsetroot.1 fluxbox.1 \
-		startfluxbox.1 fluxbox-remote.1
-MAN5=		fluxbox-apps.5 fluxbox-keys.5 fluxbox-menu.5 \
-		fluxbox-style.5
 DOCSVERSION=	20060629
 
 OPTIONS_DEFINE=	DOCS DOCHTML PDFDOCS DEBUG GNOME IMLIB2 XINERAMA \
