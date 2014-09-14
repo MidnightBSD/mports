@@ -60,7 +60,7 @@ BIN_DISTFILES=	basesystem-10.0-1.noarch.rpm \
 		zlib-1.2.3-18.fc9.${LINUX_RPM_ARCH}.rpm
 
 .if defined(PACKAGE_BUILDING)
-
+MASTER_SITES+= FEDORA_LINUX
 MASTER_SITE_SUBDIR+= ../updates/${PORTVERSION}/SRPMS \
 		../releases/${PORTVERSION}/Everything/source/SRPMS/
 
