@@ -1,6 +1,6 @@
-@comment $FreeBSD: ports/x11-wm/libcompizconfig/pkg-plist,v 1.2 2007/10/29 19:22:40 flz Exp $
 include/compizconfig/ccs.h
 include/compizconfig/ccs-backend.h
+lib/libcompizconfig.so.0.0.0
 lib/libcompizconfig.so.0
 lib/libcompizconfig.so
 lib/libcompizconfig.la
@@ -12,10 +12,11 @@ lib/compiz/libccp.so
 lib/compiz/libccp.la
 lib/compiz/libccp.a
 libdata/pkgconfig/libcompizconfig.pc
-share/compizconfig/global.xml
+share/compiz/ccp.xml
 etc/compizconfig/config
 @dirrmtry etc/compizconfig
-@dirrmtry share/compizconfig
+@dirrmtry share/compiz
 @dirrmtry lib/compizconfig/backends
 @dirrmtry lib/compizconfig
 @dirrmtry include/compizconfig
+@dirrmtry lib/compiz
