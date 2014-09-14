@@ -2,6 +2,7 @@
 
 COMMENT = Character code converters
 
+SUBDIR += fpc-iconvenc
 SUBDIR += fribidi
 SUBDIR += libiconv
 SUBDIR += mpack
