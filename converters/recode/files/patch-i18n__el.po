@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/converters/recode/files/patch-i18n::el.po,v 1.1 2002/04/02 22:32:16 naddy Exp $
+$FreeBSD: head/converters/recode/files/patch-i18n__el.po 363362 2014-07-29 17:12:47Z adamw $
 
 --- i18n/el.po.orig	Mon Apr  1 14:02:27 2002
 +++ i18n/el.po	Mon Apr  1 15:09:02 2002
