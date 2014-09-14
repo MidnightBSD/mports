@@ -34,6 +34,7 @@ LOCALBASE:=		${DESTDIR}${LOCALBASE_REL}
 LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
 DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
+SCRIPTSDIR?=		${PORTSDIR}/Mk/scripts
 SRC_BASE?=		/usr/src
 INDEXDIR?=		${PORTSDIR}
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
@@ -356,7 +357,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake cpe display dos2unix efl emacs fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
-		ldap libtool lua makeself mysql ncurses ocaml openal \
+		ldap libtool lua makeself motif mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl wx xfce zip
 
