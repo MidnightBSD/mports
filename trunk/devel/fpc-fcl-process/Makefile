@@ -1,0 +1,16 @@
+# $MidnightBSD$
+
+PORTREVISION=	0
+CATEGORIES=	devel lang
+PKGNAMESUFFIX=	-fcl-process
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Free Pascal unit to start and manipulate other programs
+
+USE_FPC=	yes
+
+MASTERDIR=	${.CURDIR}/../../lang/fpc
+WRKUNITDIR=	${FPCSRCDIR}/packages/${PKGNAMESUFFIX:S/-//}
+EXTRACTUNITDIR=	${WRKUNITDIR}
+
+.include "${MASTERDIR}/Makefile"
