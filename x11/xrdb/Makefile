@@ -1,18 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	xrdb
-PORTVERSION=	1.0.9
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X server resource database utility
-LICENSE=	x11
+
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xmuu x11
 
-PLIST_FILES=	bin/xrdb
-
-MAN1=		xrdb.1
+PLIST_FILES=	bin/xrdb man/man1/xrdb.1.gz
 
 .include <bsd.port.mk>
