@@ -10,7 +10,7 @@ COMMENT=	Lists of the country, language, and currency iso names
 
 LICENSE=	lgpl2.1
 
-USES=		pathfix gettext gmake tar:xz
+USES=		gettext gmake tar:xz
 GNU_CONFIGURE=	yes
 
 .include <bsd.port.mk>
