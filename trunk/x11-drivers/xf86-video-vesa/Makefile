@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-vesa
 PORTVERSION=	2.3.3
+PORTREVISON=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	xextproto videoproto
-MAN4=		vesa.4x
 
 .include <bsd.port.mk>
