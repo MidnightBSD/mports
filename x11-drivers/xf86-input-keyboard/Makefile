@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-input-keyboard
 PORTVERSION=	1.8.0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	kbproto
-MAN4=		kbd.4x
 
 .include <bsd.port.mk>
