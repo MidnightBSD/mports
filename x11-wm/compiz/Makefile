@@ -8,6 +8,7 @@ MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
+
 LICENSE=	agg
 
 LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
@@ -86,7 +87,7 @@ GTK2_USE=	GNOME=glib20,libwnck
 FUSE_CONFIGURE_ENABLE=	fuse
 FUSE_USES=		fuse
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if !empty(PORT_OPTIONS:MMETACITY) && !empty(PORT_OPTIONS:MGNOME) && !empty(PORT_OPTIONS:MGTK2)
 CONFIGURE_ARGS+=	--enable-metacity
