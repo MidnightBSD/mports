@@ -1,50 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	openjpeg
-PORTVERSION=	1.3
+PORTVERSION=	2.1.0
 CATEGORIES=	graphics
-MASTER_SITES=	http://www.openjpeg.org/ \
-		http://openjpeg.googlecode.com/files/
-DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/g}
+MASTER_SITES=	SF/openjpeg.mirror/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An open-source JPEG 2000 codec
+COMMENT=	Open-source JPEG 2000 codec
+
 LICENSE=	bsd2
 
-LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	liblcms2.so:${PORTSDIR}/graphics/lcms2 \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libtiff.so:${PORTSDIR}/graphics/tiff
 
-MAKE_JOBS_UNSAFE=	yes
-
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/OpenJPEG_v1_3
-JPWL_BINS=	JPWL_image_to_j2k JPWL_j2k_to_image
-M2J_BINS=	extract_j2k_from_mj2 frames_to_mj2 mj2_to_frames wrap_j2k_in_mj2
+USES=		cmake cpe pkgconfig
 
-PLIST_FILES=	include/openjpeg.h \
-		lib/libopenjpeg.a \
-		lib/libopenjpeg.so.${SHLIB_VER} \
-		lib/libopenjpeg.so \
-		${JPWL_BINS:S|^|bin/|} \
-		${M2J_BINS:S|^|bin/|}
+PLIST_SUB=	VER=${PORTVERSION:R}
 
-SHLIB_VER=	2
-
-post-extract:
-		${LN} ${WRKSRC}/jp3d/LICENSE.txt ${WRKSRC}/COPYRIGHT
-
-post-patch:	.SILENT
-		${FIND} ${WRKSRC} -type f -name Makefile -exec ${REINPLACE_CMD} 's|gcc|$$(CC)|g' {} +
-
-do-install:
-		${INSTALL_DATA} ${WRKSRC}/libopenjpeg/openjpeg.h ${PREFIX}/include/
-		${INSTALL_DATA} ${WRKSRC}/libopenjpeg.a ${PREFIX}/lib/
-		${INSTALL_DATA} ${WRKSRC}/libopenjpeg-2.1.3.0.so \
-			${PREFIX}/lib/libopenjpeg.so.${SHLIB_VER}
-		cd ${PREFIX}/lib && \
-			${LN} -sf libopenjpeg.so.${SHLIB_VER} libopenjpeg.so
-.for file in ${M2J_BINS:S|^|mj2/|} ${JPWL_BINS:S|^|jpwl/|}
-		${INSTALL_PROGRAM} ${WRKSRC}/${file} ${PREFIX}/bin/
-.endfor
+post-patch:
+	@${REINPLACE_CMD} -e 's|$${OPENJPEG_INSTALL_LIB_DIR}/pkgconfig|libdata/pkgconfig|' ${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
