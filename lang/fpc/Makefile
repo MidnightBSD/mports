@@ -20,6 +20,9 @@ DIST_SUBDIR=	freepascal
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Free Pascal compiler with Turbo and Delphi
 
+LICENSE=	gpl2 lgpl
+LICENSE_COMB=	multi
+
 PROJECTHOST=	bsdistfiles
 USES=		gmake iconv
 ONLY_FOR_ARCHS=	i386 amd64
