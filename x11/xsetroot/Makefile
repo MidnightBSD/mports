@@ -2,7 +2,7 @@
 
 PORTNAME=	xsetroot
 PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,6 @@ LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xmuu x11 xbitmaps xcursor
-MAN1=		xsetroot.1
-PLIST_FILES=	bin/xsetroot
+PLIST_FILES=	bin/xsetroot man/man1/xsetroot.1.gz
 
 .include <bsd.port.mk>
