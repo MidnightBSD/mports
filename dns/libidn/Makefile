@@ -2,6 +2,7 @@
 
 PORTNAME=	libidn
 PORTVERSION=	1.27
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -49,5 +50,4 @@ post-install:
 .endfor
 .endif
 
-.include "Makefile.man"
 .include <bsd.port.mk>
