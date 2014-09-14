@@ -5,7 +5,6 @@ COMMENT = Network management tools
 SUBDIR += aircrack-ng
 SUBDIR += docsis
 SUBDIR += kismet
-SUBDIR += p5-Altoids
 SUBDIR += p5-Cflow
 SUBDIR += p5-Cisco-Reconfig
 SUBDIR += p5-Mon
