@@ -2,7 +2,6 @@
 #
 # $MidnightBSD$
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
-#
 
 PORTNAME=	afterstep
 PORTVERSION=	2.2.11
@@ -14,7 +13,8 @@ DISTNAME=	AfterStep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window manager originally based on the Bowman NeXTstep clone
-LICENSE=	x11
+
+LICENSE=	mit
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
