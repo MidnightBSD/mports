@@ -2,12 +2,14 @@
 
 PORTNAME=	gnome-themes
 PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A collection of themes and icons for GNOME2
+COMMENT=	Collection of themes and icons for GNOME2
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	gtk-engines2>=2.15.0:${PORTSDIR}/x11-themes/gtk-engines2 \
@@ -16,12 +18,12 @@ RUN_DEPENDS=	gtk-engines2>=2.15.0:${PORTSDIR}/x11-themes/gtk-engines2
 
 CONFLICTS=	clearlooks-metacity-0.*
 
-USE_BZIP2=	yes
-USES=		gettext gmake pkgconfig
+USES=		gettext gmake pkgconfig tar:bzip2
 USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
-USE_GNOME=	gnomehack gnomeprefix intlhack metacity gtk20
+USE_GNOME=	gnomeprefix intlhack metacity gtk20
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+GNU_CONFIGURE=	yes
 
 .include <bsd.port.mk>
