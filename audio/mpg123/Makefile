@@ -1,28 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	mpg123
-PORTVERSION=	1.13.3
+PORTVERSION=	1.20.1
 CATEGORIES=	audio ipv6
 MASTER_SITES=	SF \
 		http://www.mpg123.de/download/
 
 MAINTAINER=	ports@midnightbsd.org
-COMMENT=	Command-line player for mpeg layer 1, 2 and 3 audio
-LICENSE=	gpl2
+COMMENT=	Command-line player for MPEG layer 1, 2 and 3 audio
 
-USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool libltdl
-USE_GNOME=	gnomehack ltverhack
+LICENSE=	lgpl2.1
+
+USES=		tar:bzip2 gmake libtool:keepla pathfix
+USE_AUTOTOOLS=	libltdl
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-audio=oss \
+CONFIGURE_ARGS=	--with-optimization=0 \
+		--with-audio=oss \
 		--with-default-audio=oss
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
-CONFIGURE_ENV=	CONFIG_SHELL=${SH} CFLAGS="${CFLAGS} -I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-
-MAN1=		mpg123.1
+CONFIGURE_ENV=	CONFIG_SHELL=${SH}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.pre.mk>
 
@@ -41,7 +40,7 @@ WITH_CPU=	x86-64
 .endif
 
 .if defined(WITH_CPU)
-CONFIGURE_ARGS+=--with-cpu=${WITH_CPU}
+CONFIGURE_ARGS+=	--with-cpu=${WITH_CPU}
 .endif
 
 .include <bsd.port.post.mk>
