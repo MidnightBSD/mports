@@ -8,9 +8,10 @@ MASTER_SITE_SUBDIR=	pav
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley Open Infrastructure for Network Computing client
+
 LICENSE=	gpl2
 
-USE_XZ=		yes
+USES=		tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_DOS2UNIX=	yes
