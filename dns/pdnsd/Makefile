@@ -1,10 +1,5 @@
-# New ports collection makefile for:	pdnsd
-# Date Created:				27 Oct 2000
-# Whom:					Roman Shterenzon <roman@xpert.com>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
-#
 
 PORTNAME=	pdnsd
 PORTVERSION=	1.2.9a
@@ -15,10 +10,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-par
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Caching (permanently, writes to disk on exit) DNS proxy-server
+
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 USE_RC_SUBR=	pdnsd
 CONFIGURE_ARGS=	--with-cachedir=${PDNSDB} \
 		--disable-src-addr-disc \
@@ -28,9 +25,6 @@ OPTIONS_DEFINE=	IPV6 DOCS
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-MAN5=		pdnsd.conf.5
-MAN8=		pdnsd.8 pdnsd-ctl.8
-
 PDNSDB=		/var/db/pdnsd
 DOCSRCDIR=	${WRKSRC}/doc
 DOC_FILES=	html/dl.html html/doc.html html/faq.html html/index.html
@@ -38,11 +32,9 @@ DOC_FILES+=	txt/faq.txt txt/intro.txt txt/manual.txt
 
 CFLAGS+=	-pthread
 
-.include <bsd.mport.options.mk>
+IPV6_CONFIGURE_ENABLE=	ipv6
 
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.endif
+.include <bsd.mport.options.mk>
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
