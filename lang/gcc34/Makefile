@@ -16,12 +16,7 @@ COMMENT=	GNU Compiler Collection 3.4
 LICENSE=	gpl2
 
 SUFFIX=		34
-LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
-USE_BISON=	build
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_ICONV=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		bison gmake iconv tar:bzip2
 USE_PERL5_BUILD=yes
 
 PATCH_WRKSRC=	${SRCDIR}
