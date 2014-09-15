@@ -15,9 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USES=		pathfix pkgconfig
-USE_GMAKE=	yes
+USES=		gmake pathfix pkgconfig tar:bzip2
 USE_GNOME=	gtk20 glib20 intltool intlhack
 USE_XFCE=	configenv garcon libmenu libutil xfconf
 
