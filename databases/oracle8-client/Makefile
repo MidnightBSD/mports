@@ -9,9 +9,10 @@ MASTER_SITE_SUBDIR=	fjoe
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle 8 client
+
 LICENSE=	unknown
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 ONLY_FOR_ARCHS=	i386
 WRKSRC=		${WRKDIR}/${PORTNAME}
 ORACLE_HOME=	${PREFIX}/${PORTNAME}
