@@ -13,6 +13,7 @@ DISTNAME=	30375-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Default KDE audio backend
+
 LICENSE=	gpl2
 
 CONFLICTS=	kdemultimedia-3.[1-3]*
@@ -26,8 +27,7 @@ OPTIONS=	FFMPEG "FFMPEG decoder plugin" off \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
 USE_AUTOTOOLS=  libltdl libtool
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_LDCONFIG=	yes
 PLIST_SUB+=	MACHINE_ARCH=${MACHINE_ARCH}
