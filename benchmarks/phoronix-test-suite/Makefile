@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	phoronix-test-suite
-PORTVERSION=	4.6.1
+PORTVERSION=	5.2.0
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.phoronix-test-suite.com/releases/
 
@@ -15,13 +15,12 @@ USE_PHP_BUILD=	yes
 WANT_PHP_CLI=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/phoronix-test-suite
-MAN1=		phoronix-test-suite.1
 
 PORTDOCS=	*
 DOCFILES1=	CHANGE-LOG AUTHORS
 DOCFILES2=	phoronix-test-suite.html
 
-OPTIONS_DEFINE=	BASH_COMPLETIONS X11
+OPTIONS_DEFINE=	BASH_COMPLETIONS X11 DOCS
 OPTIONS_DEFAULT=	X11
 
 BASH_COMPLETIONS_DESC=	Install bash completions
