@@ -9,6 +9,7 @@ DISTNAME=	apache-maven-${DISTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java project management tool, 2.0 branch
+
 LICENSE=	apache2
 
 RUN_DEPENDS=	mvn:${PORTSDIR}/java/maven-wrapper
