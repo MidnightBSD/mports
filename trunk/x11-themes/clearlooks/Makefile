@@ -2,7 +2,7 @@
 
 PORTNAME?=	clearlooks
 PORTVERSION=	0.6.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-themes
 MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
@@ -10,11 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GTK+ 2.x engine based on Bluecurve
 LICENSE=	unknown
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gtk20
-USES=		pkgconfig
 INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
+USES=		libtool pkgconfig tar:bzip2
+USE_GNOME=	gtk20
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
