@@ -9,7 +9,8 @@ EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Audio System
-LICENSE=	x11
+
+LICENSE=	mit
 
 CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 USE_IMAKE=	yes
