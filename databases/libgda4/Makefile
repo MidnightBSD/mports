@@ -11,9 +11,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Provides uniform access to different kinds of data sources
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 LIBGDA4_SLAVE?=	no
 
 .if !defined(REFERENCE_PORT)
