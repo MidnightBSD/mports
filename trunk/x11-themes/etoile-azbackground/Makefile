@@ -13,7 +13,7 @@ DISTNAME=	etoile-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small GNUstep application to set xwindow background
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
