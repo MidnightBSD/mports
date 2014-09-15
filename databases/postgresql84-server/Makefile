@@ -9,6 +9,7 @@ PKGNAMESUFFIX?=	-server
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
+
 LICENSE=	mit
 
 CONFLICTS?=	${PORTNAME}-client-7.* \
@@ -25,8 +26,7 @@ LATEST_LINK?=	${PKGNAMEPREFIX}${UNIQUENAME}${PKGNAMESUFFIX}
 SUB_FILES+=	dot.cshrc dot.profile
 
 PKGINSTALL?=	${PKGDIR}/pkg-install${PKGNAMESUFFIX}
-USE_BZIP2=	YES
-USE_GMAKE=	YES
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	YES
 .if defined(NO_BUILD)
 .undef USE_GMAKE
