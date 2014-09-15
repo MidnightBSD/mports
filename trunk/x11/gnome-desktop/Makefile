@@ -9,9 +9,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional UI API for GNOME 2
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
