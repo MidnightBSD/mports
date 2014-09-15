@@ -11,12 +11,13 @@ PORTVERSION=	0.1.${SNAPSHOT}
 PORTREVISION=	1
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
-LICENSE=        unknown
 PKGNAMEPREFIX=	etoile-
 DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project WildMenus bundle
+
+LICENSE=	unknown
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
