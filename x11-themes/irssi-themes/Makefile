@@ -14,7 +14,8 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A collection of additional irssi themes
+COMMENT=	Collection of additional irssi themes
+
 LICENSE=	unknown
 
 RUN_DEPENDS=	irssi:${PORTSDIR}/irc/irssi
