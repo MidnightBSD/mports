@@ -1,4 +1,4 @@
-%%GNUSTEP_DEVEL%%$MidnightBSD: mports/Mk/components/maintainer.mk,v %%MAJORVERSION%%.4 20%%MAJORVERSION%%3/08/%%MAJORVERSION%%%%MAJORVERSION%% 00:%%MAJORVERSION%%9:55 laffer%%MAJORVERSION%% Exp $
+%%GNUSTEP_DEVEL%%$MidnightBSD$
 GNUstep/Local/Applications/Finger.app/Finger
 GNUstep/Local/Applications/Finger.app/Resources/Info-gnustep.plist
 GNUstep/Local/Applications/Finger.app/Resources/finger.tiff
