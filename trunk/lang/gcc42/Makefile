@@ -20,13 +20,9 @@ LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
 VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
-USE_BISON=	build
-USE_BZIP2=	yes
+USES=		bison gmake iconv tar:bzip2
 USE_GCC=	any
-USE_GMAKE=	yes
-USE_ICONV=	yes
 USE_PERL5_BUILD=yes
-MAKE_JOBS_SAFE=	yes
 
 PATCH_WRKSRC=	${SRCDIR}
 CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
