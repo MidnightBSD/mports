@@ -1,20 +1,19 @@
 # $MidnightBSD$
 
 PORTNAME?=	gutenprint
-PORTVERSION=	5.2.7
+PORTVERSION=	5.2.10
 CATEGORIES=	print
 MASTER_SITES=	SF/gimp-print/gutenprint-5.2/${PORTVERSION}
 PKGNAMESUFFIX?=	-base
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GutenPrint Printer Driver
+
 LICENSE=	gpl2
 
 CONFLICTS=	gimp-print-[0-9]*
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
+USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	gnomehack gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=--with-gimp=no --with-gimp2=no
@@ -30,7 +29,6 @@ LIB_DEPENDS+=	gutenprintui2.1:${PORTSDIR}/print/gutenprint-base
 PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
 GUTENPRINTUI2_LIBS=`${PKG_CONFIG} --libs gutenprintui2`
 .else
-MAN1+=		escputil.1
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
@@ -50,7 +48,6 @@ RUN_DEPENDS+=	espgs:${PORTSDIR}/print/cups-pstoraster
 CONFIGURE_ARGS+=	--with-cups=${PREFIX} \
 			--enable-cups-ppds \
 			--enable-cups-level3-ppds
-MAN8+=	cups-calibrate.8 cups-genppd.8 cups-genppdupdate.8
 BUILD_WRKSRC=	${WRKSRC}/src/cups
 INSTALL_WRKSRC=	${WRKSRC}/src/cups
 .else
@@ -60,7 +57,6 @@ CONFIGURE_ARGS+=	--without-cups
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="ijs"
 LIB_DEPENDS+=	ijs.1:${PORTSDIR}/print/libijs
 CONFIGURE_ARGS+=--with-ijs=yes
-MAN1+=		ijsgutenprint.1
 BUILD_WRKSRC=	${WRKSRC}/src/ghost
 INSTALL_WRKSRC=	${WRKSRC}/src/ghost
 .else
@@ -76,10 +72,6 @@ BUILD_WRKSRC=	${WRKSRC}/src/foomatic
 INSTALL_WRKSRC=	${WRKSRC}/src/foomatic
 .else
 CONFIGURE_ARGS+=--without-foomatic
-.endif
-
-.if defined(NOPORTDOCS)
-CONFIGURE_ARGS+=	--with-user-guide=no
 .endif
 
 post-patch:
