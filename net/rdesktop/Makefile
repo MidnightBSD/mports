@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.8.1
+PORTVERSION=	1.8.2
 PORTREVISION?=	0
 CATEGORIES=	net comms ipv6
 MASTER_SITES=	SF
@@ -12,24 +12,39 @@ COMMENT=	RDP client for Windows NT/2000/2003 Terminal Server
 LICENSE=	gpl3
 
 USE_XORG=	x11
-USE_GMAKE=	yes
+USES=		gmake iconv
+CONFIGURE_ARGS+=	${ICONV_CONFIGURE_ARG} --disable-credssp
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 DOCS=		doc/AUTHORS doc/TODO doc/*.txt
-MAN1=		rdesktop.1
 
-#CONFIGURE_ARGS+=	--disable-credssp --disable-smartcard
+OPTIONS_DEFINE=	AO DEBUG DOCS IPV6 SAMPLERATE SMARTCARD
+SMARTCARD_DESC=	Enable SmartCard login via PCSC-lite 
 
-.if !defined(WITHOUT_RDESKTOP_IPV6) && !defined(WITHOUT_IPV6)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MAO}
+LIB_DEPENDS+=	libao.so:${PORTSDIR}/audio/libao
+CONFIGURE_ARGS+=	--with-sound=libao
+.else
+CONFIGURE_ARGS+=	--with-sound=oss
+.endif
+
+.if exists(${LOCALBASE}/lib/libsamplerate.so) || ${PORT_OPTIONS:MSAMPLERATE}
+LIB_DEPENDS+=	libsamplerate.so:${PORTSDIR}/audio/libsamplerate
+.endif
+
+.if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--with-ipv6
 .endif
 
-.if defined(WITH_ICONV)
-USE_ICONV=	yes
-CONFIGURE_ARGS+=	--with-libiconv-prefix=${LOCALBASE}
+.if ${PORT_OPTIONS:MSMARTCARD}
+LIB_DEPENDS+=	libpcsclite.so:${PORTSDIR}/devel/pcsc-lite
+.else
+CONFIGURE_ARGS+=	--disable-smartcard
 .endif
 
-.if defined(WITH_RDESKTOP_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--with-debug\
 			--with-debug-kbd\
 			--with-debug-rdp5\
@@ -37,19 +52,20 @@ CONFIGURE_ARGS+=	--with-debug\
 			--with-debug-sound\
 			--with-debug-channel\
 			--with-debug-seamless
+.if ${PORT_OPTIONS:MSMARTCARD}
+CONFIGURE_ARGS+=	--with-debug-smartcard
+.endif
 
 post-configure:
 	${ECHO} "#define WITH_DEBUG_SERIAL 1" >> ${WRKSRC}/rdesktop.h
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/rdesktop ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/rdesktop.1 ${MAN1PREFIX}/man/man1
-	@${MKDIR} ${DATADIR}/keymaps
-	${INSTALL_DATA} ${WRKSRC}/keymaps/* ${DATADIR}/keymaps
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/rdesktop ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/rdesktop.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	@${MKDIR} ${STAGEDIR}${DATADIR}/keymaps
+	${INSTALL_DATA} ${WRKSRC}/keymaps/* ${STAGEDIR}${DATADIR}/keymaps
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
