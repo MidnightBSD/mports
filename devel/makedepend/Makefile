@@ -2,6 +2,7 @@
 
 PORTNAME=	makedepend
 PORTVERSION=	1.0.5
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +14,6 @@ XORG_CAT=	util
 USES=		pkgconfig
 USE_XORG=	xproto
 
-PLIST_FILES=	bin/makedepend
-
-MAN1=		makedepend.1
+PLIST_FILES=	bin/makedepend man/man1/makedepend.1.gz
 
 .include <bsd.port.mk>
