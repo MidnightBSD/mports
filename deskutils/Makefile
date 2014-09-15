@@ -37,7 +37,6 @@ SUBDIR += jlj
 SUBDIR += kruler
 SUBDIR += libstreamanalyzer
 SUBDIR += libstreams
-SUBDIR += linux-sunbird
 SUBDIR += ljclive
 SUBDIR += menumaker
 SUBDIR += notification-daemon
