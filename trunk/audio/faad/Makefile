@@ -10,18 +10,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG-2 and MPEG-4 AAC audio decoder
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		gmake tar:bzip2
 USE_DOS2UNIX=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
 USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
 ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 USE_LDCONFIG=	yes
-
-MAN1=		faad.1
 
 .include <bsd.port.pre.mk>
 
