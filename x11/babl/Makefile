@@ -19,11 +19,9 @@ COMMENT=	Dynamic pixel format conversion library
 LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
-USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack
-USES=		pkgconfig pathfix
-USE_GMAKE=	yes
+USES=		gmake pkgconfig pathfix tar:bzip2
 CONFIGURE_ARGS=	--disable-introspection
 
 OPTIONS_DEFINE=	SIMD
