@@ -1,26 +1,25 @@
 # $MidnightBSD$
 
-PORTNAME=	plruby
+PORTNAME=	postgresql-plruby
 PORTVERSION=	0.5.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases ruby
-MASTER_SITES=	RF/${PORTNAME} \
-		ftp://ftp.iDaemons.org/pub/distfiles/
-PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	ruby
-
-PATCHFILES=	df2c4d39cdda35e1cb842106b22aaa10df2760e6.diff
-PATCH_SITES=	http://github.com/knu/postgresql-plruby/commit/
-PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PL/Ruby procedural language for the PostgreSQL database system
+
 LICENSE=	unknown
 
 BUILD_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
 RUN_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
 
-USE_BZIP2=	yes
+USE_GITHUB=	yes
+GH_ACCOUNT=	CraigCottingham
+GH_TAGNAME=	${GH_COMMIT}
+GH_COMMIT=	f8d9ced
+
+USES+=		uidfix tar:bzip2
 USE_PGSQL=	yes
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
@@ -37,11 +36,15 @@ CONFIGURE_ARGS=		--with-pg-config="${LOCALBASE}/bin/pg_config" \
 #CONFIGURE_ARGS+=	--with-timeout=30
 INSTALL_TARGET=	site-install
 
-DOCS=		Changes README.en plruby.html plruby.rd docs/doc
+DOCS=		Changes plruby.html plruby.rd
+
+OPTIONS_DEFINE=	DOCS
 
 PKGMESSAGE=	${WRKDIR}/createlang.sql
 
-pre-configure:
+.include <bsd.mport.options.mk>
+
+post-fetch:
 	cd ${PGSQL_PORTDIR} && ${MAKE} -DBATCH patch
 
 post-build:
@@ -67,6 +70,5 @@ post-install:
 	@${ECHO_CMD} "@unexec rmdir %D/share/doc/ruby18/ 2>/dev/null || true" \
 		>> ${TMPPLIST}
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
