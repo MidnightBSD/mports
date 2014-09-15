@@ -14,7 +14,7 @@ COMMENT=	Just Journal for Java blogging app
 LICENSE=	unknown
 
 MAKE_ARGS=	-quiet -noinput
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 USE_ANT=	yes
