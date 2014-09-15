@@ -17,9 +17,10 @@ DISTNAME=	Etoile-${SNAPSHOT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project Terminal application
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
