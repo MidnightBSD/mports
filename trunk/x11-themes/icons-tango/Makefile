@@ -10,16 +10,16 @@ MASTER_SITE_SUBDIR=	distfiles
 DISTNAME=	tango-icon-theme-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A basic set of icons for the most common usage
+COMMENT=	Basic set of icons for the most common usage
+
 LICENSE=	other
 
 BUILD_DEPENDS=	${LOCALBASE}/libexec/icon-name-mapping:${PORTSDIR}/x11-themes/icon-naming-utils \
 		Magick-config:${PORTSDIR}/graphics/ImageMagick
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	intlhack gnomehack
+USES=		pathfix gmake pkgconfig tar:bzip2
+USE_GNOME=	intlhack
 INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>
