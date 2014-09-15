@@ -16,11 +16,12 @@ DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project IconKit framework
+
 LICENSE=	bsd2
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
