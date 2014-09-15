@@ -2,22 +2,21 @@
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Place launch icons and background directly on your desktop
+
 LICENSE=	bsd3
 
 BUILD_DEPENDS=	imlib2-config:${PORTSDIR}/graphics/imlib2
 LIB_DEPENDS=	Xft:${PORTSDIR}/x11-fonts/libXft
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	autoconf
-USE_PKGCONFIG=	build
 
 OPTIONS_DEFINE=	SHAPE SN
 SHAPE_DESC=	Support of XShape extension
