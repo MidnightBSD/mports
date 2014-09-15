@@ -14,7 +14,7 @@ COMMENT=	Etoile Project music player
 LIB_DEPENDS=	tag.1:${PORTSDIR}/audio/taglib \
 		mp4v2.0:${PORTSDIR}/multimedia/mpeg4ip-libmp4v2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
