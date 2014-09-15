@@ -2,19 +2,19 @@
 
 PORTNAME=	mawk
 DISTVERSION=	1.3.4-20131226
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	ftp://invisible-island.net/${PORTNAME}/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of new/posix awk
+COMMENT=	Implementation of new/posix awk
 
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 
-MAN1=		mawk.1
-PLIST_FILES=	bin/mawk
+PLIST_FILES=	bin/mawk man/man1/mawk.1.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mawk ${PREFIX}/bin
