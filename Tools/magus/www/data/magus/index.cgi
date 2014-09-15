@@ -411,7 +411,7 @@ sub async_run_port_stats {
   if ($status eq 'ready') {
     @ports = Magus::Port->search_ready_ports($run);
   } else {
-    @ports = Magus::Port->search(run => $run, status => $status);
+    @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'port'});
   }
   
   my @results = map {{
