@@ -21,10 +21,7 @@ LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_BISON=	build
-USE_GETTEXT=	yes
+USES=		bison gettext gmake tar:bzip2
 USE_GNOME=	gnomeprefix gnomehack intlhack ltverhack ltasneededhack gconf2 \
 		libxml2
 USE_OPENLDAP=	yes
