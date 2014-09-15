@@ -2,11 +2,12 @@
 
 PORTNAME=	libXcursor
 PORTVERSION=	1.1.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X client-side cursor loading library
+
 LICENSE=	mit
 
 XORG_CAT=	lib
