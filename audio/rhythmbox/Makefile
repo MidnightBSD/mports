@@ -2,43 +2,43 @@
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.12.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio player for GNOME
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
-LIB_DEPENDS=	musicbrainz3.6:${PORTSDIR}/audio/libmusicbrainz3 \
-		id3tag.0:${PORTSDIR}/audio/libid3tag \
-		totem-plparser.17:${PORTSDIR}/multimedia/totem-pl-parser \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		sexy.2:${PORTSDIR}/x11-toolkits/libsexy \
-		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		gnome-media-profiles.0:${PORTSDIR}/audio/gnome-media \
-		brasero-media.3:${PORTSDIR}/sysutils/brasero
+LIB_DEPENDS=	libmusicbrainz3.so:${PORTSDIR}/audio/libmusicbrainz3 \
+		libid3tag.so:${PORTSDIR}/audio/libid3tag \
+		libtotem-plparser.so:${PORTSDIR}/multimedia/totem-pl-parser \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libsexy.so:${PORTSDIR}/x11-toolkits/libsexy \
+		libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
+		libgnome-media-profiles.so:${PORTSDIR}/audio/gnome-media \
+		libbrasero-media.so:${PORTSDIR}/sysutils/brasero
 
 CONFLICTS=	rhythmbox-2.[0-9]* rhythmbox-3.[0-9]*
 
-USE_BZIP2=	yes
-USES=		gettext
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig tar:bzip2
 INSTALLS_OMF=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack intlhack gnomeprefix gtk20 nautilus2
+USE_GNOME=	intlhack gnomeprefix gtk20 nautilus2
 WANT_GNOME=	yes
 USE_GSTREAMER=	flac mp3 gnomevfs gconf jpeg
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-vala --with-libbrasero-media \
 		--without-libnautilus-burn
 INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	LIBS="-lm"
 
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib -lm
 
 GCONF_SCHEMAS=	rhythmbox.schemas
 
@@ -47,8 +47,6 @@ OPTIONS_DEFAULT=	IPOD NOTIFY VORBIS ITMS_PLUGIN
 DAAP_DESC=		iTunes music sharing
 IPOD_DESC=		iPod support
 ITMS_PLUGIN_DESC=	iTunes browser plugin
-
-MAN1=		rhythmbox-client.1 rhythmbox.1
 
 .include <bsd.mport.options.mk>
 
@@ -63,7 +61,7 @@ USE_GSTREAMER+=		faad
 .endif
 
 .if ${PORT_OPTIONS:MLIRC}
-LIB_DEPENDS+=	lirc_client.2:${PORTSDIR}/comms/lirc
+LIB_DEPENDS+=	liblirc_client.so${PORTSDIR}/comms/lirc
 PLIST_SUB+=	LIRC=""
 CONFIGURE_ARGS+=--enable-lirc
 .else
@@ -72,7 +70,7 @@ PLIST_SUB+=	LIRC="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MMTP}
-LIB_DEPENDS+=		mtp:${PORTSDIR}/audio/libmtp
+LIB_DEPENDS+=		libmtp.so:${PORTSDIR}/multimedia/libmtp
 PLIST_SUB+=		MTP=""
 CONFIGURE_ARGS+=	--with-mtp
 .else
@@ -82,19 +80,19 @@ PLIST_SUB+=		MTP="@comment "
 
 .if ${PORT_OPTIONS:MDAAP}
 CONFIGURE_ARGS+=	--enable-daap  --with-mdns=avahi
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app \
-    			gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
+LIB_DEPENDS+=		libavahi-client.so:${PORTSDIR}/net/avahi-app \
+			libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
 PLIST_SUB+=		DAAP=""
 .else
 .if exists(${LOCALBASE}/lib/libavahi-client.a)
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=		libavahi-client.so:${PORTSDIR}/net/avahi-app
 .endif
 CONFIGURE_ARGS+=	--disable-daap
 PLIST_SUB+=		DAAP="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MNOTIFY}
-LIB_DEPENDS+=		notify.4:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=		libnotify.so:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS+=		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
 .else
 CONFIGURE_ARGS+=	--disable-libnotify
@@ -112,7 +110,7 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MIPOD}
-LIB_DEPENDS+=	gpod.7:${PORTSDIR}/audio/libgpod
+LIB_DEPENDS+=	libgpod.so:${PORTSDIR}/audio/libgpod
 CONFIGURE_ARGS+=--with-ipod
 PLIST_SUB+=	IPOD=""
 .else
@@ -121,12 +119,11 @@ PLIST_SUB+=	IPOD="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MITMS_PLUGIN}
-USE_WEBPLUGINS=	gecko18
-WEBPLUGINS_FILES=librhythmbox-itms-detection-plugin.so
-.include "${PORTSDIR}/www/browser35/Makefile.webplugins"
+USES+=	webplugin:native
+WEBPLUGIN_FILES=librhythmbox-itms-detection-plugin.so
 
 CONFIGURE_ARGS+=--enable-browser-plugin
-CONFIGURE_ENV+=	MOZILLA_PLUGINDIR=${WEBPLUGINS_DIR}
+CONFIGURE_ENV+=	MOZILLA_PLUGINDIR=${WEBPLUGIN_DIR}
 PLIST_SUB+=	ITMS_PLUGIN=""
 .else
 CONFIGURE_ARGS+=--disable-browser-plugin
