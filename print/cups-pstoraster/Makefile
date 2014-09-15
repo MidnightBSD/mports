@@ -1,10 +1,5 @@
-# New ports collection makefile for:	cups-pstoraster
-# Date created:		Jul 13 2002
-# Whom:			ports@FreeBSD.org
-#
 # $MidnightBSD$
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
-#
 
 PORTNAME=	cups-pstoraster
 PORTVERSION=	8.15.4
@@ -16,6 +11,7 @@ DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Postscript interpreter for CUPS printing to non-PS printers
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
@@ -29,8 +25,7 @@ WRKSRC=		${WRKDIR}/espgs-${PORTVERSION}
 
 DATADIR=	${PREFIX}/share/espgs
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 # We just need the ghostscript fonts, nothing more
 USE_GHOSTSCRIPT_RUN=	yes
 GNU_CONFIGURE=		yes
