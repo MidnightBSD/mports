@@ -2,7 +2,7 @@
 
 PORTNAME=	at-spi
 PORTVERSION=	1.32.0
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,20 +11,22 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive Technology Service Provider Interface
 LICENSE=	lgpl
 
+USES+=		tar:bzip2
+
 .if !defined(REFERENCE_PORT)
 
 RUN_DEPENDS=	at-spi2-atk>2.6.0:${PORTSDIR}/accessibility/at-spi2-atk
 
-USES=		gettext tar:bzip2
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnomehier intlhack gtk20 gconf2 libbonobo
+USES+=		gmake gettext libtool:oldver pathfix pkgconfig
+USE_GNOME=	gnomehier intlhack gtk20 gconf2 libbonobo
 USE_XORG=	x11 xtst
-USE_PYTHON=	yes
+USE_PYTHON=	2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 GCONF_SCHEMAS=	at-spi.schemas
 
