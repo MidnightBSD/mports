@@ -11,7 +11,7 @@ DISTNAME=	${RUBY_DISTNAME}
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	An object-oriented interpreted scripting language
+COMMENT?=	Object-oriented interpreted scripting language
 
 LICENSE=	gpl2
 
@@ -36,7 +36,7 @@ AUTOMAKE_ARGS=	--add-missing
 WRKSRC=		${WRKDIR}/${PORTNAME}-${RUBY_DISTVERSION}
 
 RUBY_VER=		1.8
-USE_BZIP2=		yes
+USES=			tar:bzip2
 USE_RUBY=		yes
 RUBY_NO_BUILD_DEPENDS=	yes
 RUBY_NO_RUN_DEPENDS=	yes
