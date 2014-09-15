@@ -1,20 +1,19 @@
 # $MidnightBSD$
 
-PORTNAME=	libgda4
-PORTVERSION?=	4.2.5
-PORTREVISION?=	1
+PORTNAME=	libgda
+PORTVERSION?=	4.2.12
+PORTREVISION?=	0
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/4$//}/${PORTVERSION:R}
-DISTNAME=	libgda-${PORTVERSION}
 DIST_SUBDIR=	gnome2
+PKGNAMESUFFIX=	4
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Provides uniform access to different kinds of data sources
 
 LICENSE=	gpl2
 
-USES=		tar:bzip2
+USES=		tar:xz
 LIBGDA4_SLAVE?=	no
 
 .if !defined(REFERENCE_PORT)
@@ -26,10 +25,8 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		json-glib-1.0.0:${PORTSDIR}/devel/json-glib
 RUN_DEPENDS=	${LOCALBASE}/lib/girepository-1.0/GObject-2.0.typelib:${PORTSDIR}/devel/gobject-introspection
 
-USE_AUTOTOOLS=	libtool
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack glib20 libxslt intlhack referencehack
+USES+=		gettext gmake libtool pathfix pkgconfig
+USE_GNOME=	gnomeprefix glib20 libxslt intlhack referencehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=yes
@@ -49,7 +46,6 @@ INSTALLS_ICONS=	yes
 
 .include <bsd.mport.options.mk>
 
-#VERSION=	${PORTVERSION:R}
 VERSION=	4.0
 PLIST_SUB=	VERSION=${VERSION}
 
