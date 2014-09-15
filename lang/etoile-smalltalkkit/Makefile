@@ -9,11 +9,12 @@ DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project SmalltalkKit framework
+
 LICENSE=	bsd2
 
 BUILD_DEPENDS=	lemon:${PORTSDIR}/devel/lemon
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
