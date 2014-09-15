@@ -1,22 +1,24 @@
 # $MidnightBSD$
 # $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
-#
 
 PORTNAME=	wmsmixer
 PORTVERSION=	0.5.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio windowmaker
-MASTER_SITES=	http://www.dockapps.org/files/63/268/ \
-		http://redundancy.redundancy.org/mirror/
+MASTER_SITES=	http://redundancy.redundancy.org/mirror/
 
 MAINTAINER=	ports@midnightbsd.org
-COMMENT=	An audio mixer for the WindowMaker dock
+COMMENT=	Audio mixer for the WindowMaker dock
+
 LICENSE=	gpl2
+
+OPTIONS_DEFINE=	DOCS
 
 PLIST_FILES=	bin/wmsmixer
 PORTDOCS=	README
+
+USES=		imake
 USE_XORG=	xpm
-USE_IMAKE=	YES
 MAKE_ARGS=	CC="${CXX}" CFLAGS="${CXXFLAGS}"
 
 BUILD_DEPENDS+= ${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep \
