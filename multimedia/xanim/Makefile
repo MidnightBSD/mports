@@ -2,26 +2,33 @@
 
 PORTNAME=	xanim
 PORTVERSION=	2.92.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia graphics
-MASTER_SITES=	ftp://ftp.informatik.uni-hamburg.de/pub/soft/graphics/xanim/:main \
+MASTER_SITES=	ftp://ftp.nstu.ru/pub/mirrors/xanim.va.pubnix.com/ \
 		${MASTER_SITE_FREEBSD_LOCAL} \
-		ftp://ftp.informatik.uni-hamburg.de/pub/soft/graphics/xanim/dlls/
+		ftp://ftp.nstu.ru/pub/mirrors/xanim.va.pubnix.com/dlls/
 MASTER_SITE_SUBDIR=	dinoex
 DISTNAME=	xanim2920
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main ${EXTRA_FILES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play most popular animation formats and show pictures
-LICENSE=	restricted
 
-NO_CDROM=	no distribution without fee on CD.
-USE_IMAKE=	yes
+LICENSE=	xanim
+LICENSE_NAME=	xanim license
+LICENSE_FILE=	${WRKSRC}/docs/Copyright
+LICENSE_PERMS=	dist-mirror pkg-mirror
+
+NO_CDROM=	Must be redistributed without fee
+
+# clang's cpp destroys whitespace, particularly hard tabs in makefiles,
+# which is fatal for imake.
+USES=		imake
+USE_GCC=	any
 USE_XORG=	xext xt sm ice xext x11
-MAN1=		xanim.1
 MAKE_ARGS+=	-j 2 # safe and helps even the single-CPU machines
 DLLDIR=		${PREFIX}/lib/X11/xanim
-PLIST_FILES+=	bin/xanim
+PLIST_FILES+=	bin/xanim man/man1/xanim.1.gz
 
 post-extract:
 	${CP} ${WRKSRC}/docs/xanim.man ${WRKSRC}
