@@ -22,7 +22,6 @@ SUBDIR += p5-Device-Modem
 SUBDIR += p5-Device-SerialPort
 SUBDIR += p5-SMS-Send
 SUBDIR += pr
-SUBDIR += qfaxreader
 SUBDIR += tits
 SUBDIR += usbmuxd
 SUBDIR += zssh
