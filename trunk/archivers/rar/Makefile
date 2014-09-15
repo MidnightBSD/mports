@@ -9,7 +9,11 @@ DISTNAME=	rarbsd-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver (binary port)
-LICENSE=	restricted
+
+LICENSE=	rar
+LICENSE_NAME=	rar license
+LICENSE_PERMS=	dist-mirror
+LICENSE_FILE=	${WRKSRC}/license.txt
 
 CONFLICTS=	rar-devel-*
 
