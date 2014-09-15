@@ -8,6 +8,7 @@ MASTER_SITES=	http://ftpsync.sourceforge.net/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronizes a local and a remote FTP directory trees
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	p5-libwww>=5.805:${PORTSDIR}/www/p5-libwww
