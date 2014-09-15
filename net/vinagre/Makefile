@@ -8,6 +8,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC client for the GNOME Desktop
+
 LICENSE=	gpl3
 
 LIB_DEPENDS=	gtk-vnc-1.0.0:${PORTSDIR}/net/gtk-vnc \
@@ -16,11 +17,9 @@ LIB_DEPENDS=	gtk-vnc-1.0.0:${PORTSDIR}/net/gtk-vnc \
 		gdbm.4:${PORTSDIR}/databases/gdbm \
 		gnome-keyring:${PORTSDIR}/security/libgnome-keyring
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake tar:bzip2
 USE_GNOME=	gnomeprefix intlhack gnomehack vte gconf2 gnomedocutils \
 		gnomepanel
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
