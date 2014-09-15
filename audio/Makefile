@@ -2,13 +2,6 @@
 
 COMMENT = Audio tools
 
-SUBDIR += akode
-SUBDIR += akode-plugins-jack
-SUBDIR += akode-plugins-mpc
-SUBDIR += akode-plugins-mpeg
-SUBDIR += akode-plugins-oss
-SUBDIR += akode-plugins-resampler
-SUBDIR += akode-plugins-xiph
 SUBDIR += alsa-lib
 SUBDIR += alsa-plugins
 SUBDIR += cddb-bundle
@@ -59,7 +52,6 @@ SUBDIR += liblo
 SUBDIR += libmad
 SUBDIR += libmikmod
 SUBDIR += libmodplug
-SUBDIR += libmpcdec
 SUBDIR += libmpd
 SUBDIR += libmtp
 SUBDIR += libmusicbrainz3
