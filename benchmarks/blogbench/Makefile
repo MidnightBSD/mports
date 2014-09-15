@@ -12,9 +12,8 @@ COMMENT=	Performance Test of Filesystem I/O
 LICENSE=        bsd4
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
-MAN8=		blogbench.8
 PORTDOCS=	README
 
 post-install:
