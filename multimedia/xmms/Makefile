@@ -1,39 +1,32 @@
-# New ports collection makefile for:	xmms
-# Date created:			3 July 1999
-# Whom:				Espen Skoglund <esk@ira.uka.de>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
-#
 
 PORTNAME=	xmms
 PORTVERSION=	1.2.11
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES+=	multimedia audio ipv6
 # http://www.xmms.org/files/1.2.x/
-MASTER_SITES=	ftp://ftp.swin.edu.au/slackware/slackware-10.0/source/xap/xmms/
+MASTER_SITES=	ftp://ftp.swin.edu.au/slackware/slackware-10.0/source/xap/xmms/ \
+		http://legacy.xmms2.org/ \
+		FREEBSD_LOCAL/beech
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	X Multimedia System --- An audio player with a Winamp GUI
+COMMENT?=	X Multimedia System --- Audio player with a Winamp GUI
+
 LICENSE=        gpl2
-USE_BZIP2=	yes
+
+USES=		desktop-file-utils gmake iconv libtool pathfix tar:bzip2
 USE_XLIB=	yes
-USE_GNOME=	gtk12 gnomehack
+USE_GNOME=	gtk12
 WANT_GNOME=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_ICONV=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib" \
 		INPUT_PLUGINS="${INPUT_PLUGINS}" \
 		OUTPUT_PLUGINS="${OUTPUT_PLUGINS}" \
 		VISUALIZATION_PLUGINS="${VISUALIZATION_PLUGINS}"
-MAN1=		wmxmms.1 xmms.1
-
-CONFLICTS=	ru-xmms-*
 
 INPUT_PLUGINS=	cdaudio,mpg123,tonegen,wav
 OUTPUT_PLUGINS=	OSS,disk_writer
