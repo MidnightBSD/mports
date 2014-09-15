@@ -2,7 +2,7 @@
 
 PORTNAME=	libijs
 PORTVERSION=	0.35
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.openprinting.org/download/ijs/download/
 DISTNAME=	ijs-${PORTVERSION}
@@ -12,13 +12,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library that supports plugin printer driver for Ghostscript
 LICENSE=	mit
 
-MAKE_JOBS_SAFE=	yes
-USE_BZIP2=	yes
-USE_GNOME=	 lthack pkgconfig
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool:keepla pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 
-MAN1=		ijs-config.1
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-shared
 
 .include <bsd.port.mk>
