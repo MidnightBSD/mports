@@ -34,12 +34,6 @@ USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS NEWS README
 
-MAN1=		idevice_id.1 idevicebackup.1 idevicebackup2.1 idevicedate.1 \
-		idevicedebugserverproxy.1 idevicediagnostics.1 \
-		ideviceenterrecovery.1 ideviceimagemounter.1 ideviceinfo.1 \
-		idevicepair.1 ideviceprovision.1 idevicescreenshot.1 \
-		idevicesyslog.1
-
 .include <bsd.mport.options.mk>
 
 post-patch:
