@@ -13,7 +13,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	p5-libwww>=5.805:${PORTSDIR}/www/p5-libwww
 
 NO_BUILD=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_PERL5=	yes
 PLIST_FILES=	bin/${PORTNAME}.pl
 PORTDOCS=	README
