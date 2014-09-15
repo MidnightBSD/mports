@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with GIF images
 LICENSE=	mit
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
