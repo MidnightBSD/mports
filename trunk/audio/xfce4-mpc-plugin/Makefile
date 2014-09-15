@@ -2,6 +2,7 @@
 
 PORTNAME=	xfce4-mpc-plugin
 PORTVERSION=	0.4.4
+PORTREVISION=	1
 CATEGORIES=	audio xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
@@ -12,12 +13,12 @@ COMMENT=	MPC plugin for Xfce
 
 LICENSE=	other
 
-LIB_DEPENDS=	mpd:${PORTSDIR}/audio/libmpd
+LIB_DEPENDS=	libmpd.so:${PORTSDIR}/audio/libmpd
+RUN_DEPENDS=	musicpd:${PORTSDIR}/audio/musicpd
 
-USES=		pkgconfig gettext
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		gettext gmake libtool pkgconfig tar:bzip2
 USE_GNOME=	gtk20 intltool intlhack
 USE_XFCE=	configenv libexo libmenu panel
 
