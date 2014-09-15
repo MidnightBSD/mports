@@ -2,6 +2,7 @@
 
 PORTNAME=	gdk-pixbuf
 PORTVERSION=	2.26.5
+PORTREVISION=	1
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -9,13 +10,13 @@ DISTNAME=	gdk-pixbuf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A graphic library for GTK+
+COMMENT=	Graphic library for GTK+
 
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
-USES=		gettext gmake tar:xz
+USES=		gettext gmake pkgconfig tar:xz
 USE_XORG=	xt xi x11
 USE_AUTOTOOLS=	libtool
 USE_GNOME+=	gnomehack glib20 ltverhack
