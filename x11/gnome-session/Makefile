@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-session
 PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -13,29 +13,24 @@ COMMENT=	Session component for the GNOME 2 desktop
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring \
-		notify:${PORTSDIR}/devel/libnotify \
-		execinfo:${PORTSDIR}/devel/libexecinfo \
-		upower-glib.1:${PORTSDIR}/sysutils/upower
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
+		libnotify.so:${PORTSDIR}/devel/libnotify \
+		libupower-glib.so:${PORTSDIR}/sysutils/upower
 RUN_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon \
     		${LOCALBASE}/sbin/console-kit-daemon:${PORTSDIR}/sysutils/consolekit \
 		${LOCALBASE}/bin/xdpyinfo:${PORTSDIR}/x11/xdpyinfo
 
 INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
-USE_BZIP2=	yes
+USES=		execinfo gettext gmake pathfix pkgconfig tar:bzip2
 USE_XORG=	ice sm xau xrandr
-USE_GNOME=	gnomeprefix gnomehack intlhack gconf2
+USE_GNOME=	gnomeprefix intlhack gconf2
 GNOME_DESKTOP_VERSION=2
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-docbook-docs
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		gnome-session.1 gnome-wm.1 gnome-session-properties.1 \
-		gnome-session-save.1
 GCONF_SCHEMAS=	gnome-session.schemas
 
 .include <bsd.port.mk>
