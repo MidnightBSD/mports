@@ -15,7 +15,7 @@ BROKEN=		needs llvm 2.6 to build
 
 BUILD_DEPENDS=	llc:${PORTSDIR}/devel/llvm-devel
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
