@@ -13,15 +13,16 @@ COMMENT=	Multimedia applications for the GNOME 2 desktop
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	xml2po:${PORTSDIR}/textproc/gnome-doc-utils
-LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
+LIB_DEPENDS=	libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra \
+		libunique-1.0.so:${PORTSDIR}/x11-toolkits/unique
 
-NO_STAGE=	yes
+CONFLICTS=	gnome-control-center-3.[0-9]* libgnome-media-profiles-3.[0-9]*
+
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		pathfix gettext gmake pkgconfig tar:bzip2
+USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix intlhack gtk20 libxml2 gconf2
 USE_GSTREAMER=	gconf good
 CONFIGURE_ARGS=	--disable-gstmix
@@ -37,7 +38,7 @@ OPTIONS_DEFAULT=PULSEAUDIO
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPULSEAUDIO}
-LIB_DEPENDS+=	pulse:${PORTSDIR}/audio/pulseaudio
+LIB_DEPENDS+=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 CONFIGURE_ARGS+=--enable-pulseaudio
 PLIST_SUB+=	PULSE=""
 .else
