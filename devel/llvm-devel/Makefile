@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	llvm
-DISTVERSION=	3.4.r${SVN_REV}
+DISTVERSION=	3.5.r${SVN_REV}
 CATEGORIES=	devel lang
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	brooks
@@ -18,9 +18,8 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 UNIQUENAME=	${PORTNAME}${LLVM_SUFFIX}
 
-USES=		gmake perl5
+USES=		compiler:c++11-lib gmake perl5 tar:bzip2
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
 GNU_CONFIGURE_PREFIX=	${LLVM_PREFIX}
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 
@@ -33,8 +32,7 @@ MAKE_ARGS+=		REQUIRES_RTTI=1
 LIBNAME=		libLLVM-${DISTVERSION:C/\.r[0-9]*//}svn.so
 
 CONFIGURE_ARGS+=	--enable-bindings=none
-CONFIGURE_ARGS+=	--enable-optimized \
-			--enable-targets=host-only
+CONFIGURE_ARGS+=	--enable-optimized
 
 OPTIONS_DEFINE=	ASSERTS CMAKE DOCS LIT LTOPLUGIN MANPAGES
 
@@ -45,6 +43,16 @@ LTOPLUGIN_DESC=	Build LTO plugin (requires gold)
 
 OPTIONS_DEFAULT=	CMAKE LIT MANPAGES
 OPTIONS_SUB=	yes
+
+ASSERTS_CONFIGURE_ENABLE=	assertions
+CMAKE_BUILD_DEPENDS=		cmake:${PORTSDIR}/devel/cmake
+DOCS_BUILD_DEPENDS=		sphinx-build:${PORTSDIR}/textproc/py-sphinx
+DOCS_CONFIGURE_ENABLE=		docs
+LTOPLUGIN_BUILD_DEPENDS=	ld.gold:${PORTSDIR}/devel/binutils
+LTOPLUGIN_RUN_DEPENDS=		ld.gold:${PORTSDIR}/devel/binutils
+LTOPLUGIN_CONFIGURE_ON=		--with-binutils-include=${LOCALBASE}/include
+LTOPLUGIN_PLIST_FILES=		llvm${LLVM_SUFFIX}/lib/LLVMgold.so
+MANPAGES_BUILD_DEPENDS=		sphinx-build:${PORTSDIR}/textproc/py-sphinx
 
 LLVM_RELEASE=	${PORTVERSION:C/\.r[0-9]*//}
 PLIST_SUB+=	LLVM_RELEASE=${LLVM_RELEASE}
@@ -66,6 +74,7 @@ COMMANDS=	bugpoint \
 		llvm-mcmarkup \
 		llvm-nm \
 		llvm-objdump \
+		llvm-profdata \
 		llvm-ranlib \
 		llvm-readobj \
 		llvm-rtdyld \
@@ -85,26 +94,13 @@ STRIP_LIBS=	BugpointPasses.so \
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MASSERTS}
-CONFIGURE_ARGS+=	--enable-assertions
 RELEASE_TYPE=		Release+Asserts
 .else
-CONFIGURE_ARGS+=	--disable-assertions
 RELEASE_TYPE=		Release
 .endif
 
 .if ${PORT_OPTIONS:MCMAKE}
-BUILD_DEPENDS+=	cmake:${PORTSDIR}/devel/cmake
 PORTDATA+=	cmake
-.endif
-
-.if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MMANPAGES}
-BUILD_DEPENDS+=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=	--enable-docs
-.else
-CONFIGURE_ARGS+=	--disable-docs
 .endif
 
 .if ${PORT_OPTIONS:MLIT}
@@ -115,20 +111,16 @@ LIT_COMMANDS=		lit llvm-lit FileCheck
 USE_PYTHON_BUILD=	yes
 .endif
 
-.if ${PORT_OPTIONS:MLTOPLUGIN}
-BUILD_DEPENDS+=		ld.gold:${PORTSDIR}/devel/binutils
-RUN_DEPENDS+=		ld.gold:${PORTSDIR}/devel/binutils
-CONFIGURE_ARGS+=	--with-binutils-include=${LOCALBASE}/include
-PLIST_FILES+=		llvm${LLVM_SUFFIX}/lib/LLVMgold.so
-.endif
-
 .if ${PORT_OPTIONS:MMANPAGES}
 MAN1SRCS+=	bugpoint.1 llc.1 lli.1 llvm-ar.1 llvm-as.1 \
 		llvm-bcanalyzer.1 llvm-config.1 llvm-cov.1 llvm-diff.1 \
 		llvm-dis.1 llvm-extract.1 llvm-link.1 llvm-nm.1 \
-		llvm-prof.1 llvm-stress.1 opt.1 tblgen.1
-PLIST_FILES+=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1|}
+		llvm-profdata.1 llvm-readobj.1 llvm-stress.1 llvm-symbolizer.1 \
+		opt.1 tblgen.1
+PLIST_FILES+=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
 .endif
+
+NOT_FOR_ARCH=	ia64
 
 .include <bsd.port.pre.mk>
 
@@ -141,10 +133,7 @@ SVN_REV!=	svn info http://llvm.org/svn/llvm-project/ | ${GREP} Revision | cut -d
 .endif
 .endif
 
-# NB: I don't re-test arches I don't use so this may be dated
-BROKEN_sparc64=	YES
-
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 CONFIGURE_ARGS+=	--enable-pic --with-pic
 .endif
 
@@ -180,7 +169,10 @@ post-patch:
 .if ${PORT_OPTIONS:MCMAKE}
 post-configure:
 	${MKDIR} ${WRKDIR}/cmake
-	cd ${WRKDIR}/cmake && cmake -G "Unix Makefiles" ${WRKSRC}
+	cd ${WRKDIR}/cmake && cmake -G "Unix Makefiles" \
+	    -DCMAKE_C_COMPILER:STRING="${CC}" \
+	    -DCMAKE_CXX_COMPILER:STRING="${CXX}" \
+	    ${WRKSRC}
 	${REINPLACE_CMD} -e 's|${WRKDIR}/cmake|${LLVM_PREFIX}|' \
 	    -e 's|${WRKSRC}/cmake/modules|${DATADIR}/cmake|' \
 	    ${WRKDIR}/cmake/share/llvm/cmake/LLVMConfig.cmake
@@ -188,10 +180,10 @@ post-configure:
 
 post-build:
 .if ${PORT_OPTIONS:MMANPAGES}
-	@cd ${WRKSRC}/docs && ${GMAKE} -f Makefile.sphinx man
+	@cd ${WRKSRC}/docs && ${MAKE_CMD} -f Makefile.sphinx man
 .endif
 .if ${PORT_OPTIONS:MDOCS}
-	@cd ${WRKSRC}/docs && ${GMAKE} -f Makefile.sphinx html
+	@cd ${WRKSRC}/docs && ${MAKE_CMD} -f Makefile.sphinx html
 .endif
 
 post-install:
@@ -211,6 +203,9 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/cmake/modules/*.cmake \
 	    ${WRKDIR}/cmake/share/llvm/cmake/*.cmake \
 	    ${STAGEDIR}${DATADIR}/cmake/
+	${REINPLACE_CMD} -e 's|${STAGEDIR}||' \
+	    ${STAGEDIR}${DATADIR}/cmake/LLVMConfig.cmake
+	${RM} -f ${STAGEDIR}${DATADIR}/cmake/LLVMConfig.cmake.bak
 .endif
 .if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/html
@@ -226,9 +221,9 @@ post-install:
 	    ${STAGEDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
 	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
-	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX}
+	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/*.py \
-	    ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_PROGRAM} ${WRKSRC}/${RELEASE_TYPE}/bin/FileCheck \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
@@ -241,7 +236,7 @@ post-install:
 	done
 .endif
 
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${GMAKE} check-local-lit)'
+TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 regression-test: ${BUILD_COOKIE}
 	if [ `${ID} -u` = 0 ]; then \
 		${CHOWN} -R nobody ${WRKSRC}/test; \
