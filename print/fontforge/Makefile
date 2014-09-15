@@ -18,21 +18,45 @@ COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	uninameslist:${PORTSDIR}/textproc/libuninameslist \
-		tiff:${PORTSDIR}/graphics/tiff \
-		jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		gif:${PORTSDIR}/graphics/giflib \
-		xml2:${PORTSDIR}/textproc/libxml2 \
-		spiro:${PORTSDIR}/graphics/libspiro
+LIB_DEPENDS=	libuninameslist.so:${PORTSDIR}/textproc/libuninameslist \
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libgif.so:${PORTSDIR}/graphics/giflib \
+		libxml2.so:${PORTSDIR}/textproc/libxml2 \
+		libspiro.so:${PORTSDIR}/graphics/libspiro
 
-USES=		gettext gmake iconv tar:bzip2
+USES=		gettext gmake iconv tar:bzip2 libtool
 USE_XORG=	x11 xi ice xkbui
 PATCH_STRIP=	-l
 
+CONFIGURE_ARGS=	--enable-devicetables --enable-pasteafter --enable-tilepath
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+
 OPTIONS_DEFINE=	DOCS MULTILAYER FREETYPE PLUGINS PYTHON CAIRO PANGO
-OPTIONS_DEFAULT=	DOCS MULTILAYER PLUGINS
-MULTILAYER_DESC=	type3/SVG multilayer font support
+OPTIONS_SUB=	yes
+OPTIONS_DEFAULT=	MULTILAYER PLUGINS
+MULTILAYER_DESC=	Type3/SVG multilayer font support
+
+FREETYPE_LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
+FREETYPE_CONFIGURE_ENABLE=	freetype
+FREETYPE_CONFIGURE_WITH=	freetype-bytecode
+
+MULTILAYER_CONFIGURE_ENABLE=	type3
+
+PYTHON_USE=	PYTHON=yes
+PYTHON_CONFIGURE_WITH=	python
+PYTHON_LDFLAGS=	-lutil
+
+CAIRO_USE=	GNOME=cairo
+CAIRO_CONFIGURE_WITH=	cairo
+
+PANGO_USE=	GNOME=pango
+PANGO_CONFIGURE_WITH=	pango
 
 .include <bsd.mport.options.mk>
 
@@ -43,63 +67,18 @@ DOCFILES=	${PORTNAME}_htdocs-${DOC_VERSION}.tar.bz2
 DISTFILES+=	${DOCFILES:C/$/:docs/}
 .endif
 
-.if ${PORT_OPTIONS:MMULTILAYER}
-WITH_TYPE3_MULTILAYER=	--enable-type3
-.else
-WITH_TYPE3_MULTILAYER=	--disable-type3
-.endif
-
 .if ${PORT_OPTIONS:MFREETYPE}
-FREETYPE_VERSION=	2.4.11
+FREETYPE_VERSION=	2.5.3
 FREETYPE_SRC=	freetype-${FREETYPE_VERSION}.tar.bz2
 DISTFILES+=	${FREETYPE_SRC:C/$/:freetype/}
-WITH_FREETYPE_SRC=	--enable-freetype --with-freetype-bytecode \
-			--with-freetype-src=${WRKDIR}/freetype-${FREETYPE_VERSION}
-LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2
+CONFIGURE_ARGS+=	--with-freetype-src=${WRKDIR}/freetype-${FREETYPE_VERSION}
 .else
-WITH_FREETYPE_SRC=	--disable-freetype --without-freetype-bytecode \
-			--without-freetype-src
-.endif
-
-CONFIGURE_ARGS=	${WITH_TYPE3_MULTILAYER} --enable-devicetables ${WITH_FREETYPE_SRC} \
-		--enable-pasteafter --enable-tilepath
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
-
-MAN1=		fontforge.1 fontimage.1 fontlint.1 sfddiff.1
-
-.if ${PORT_OPTIONS:MPLUGINS}
-PLIST_SUB+=	NO_PLUGINS=""
-.else
-PLIST_SUB+=	NO_PLUGINS="@comment "
+CONFIGURE_ARGS+=	--without-freetype-src
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	yes
 ONLY_FOR_ARCHS=	i386
 ONLY_FOR_ARCHS_REASON=	Python on non-i386 systems doesn't link with Fontforge (issues with use of Python's .a file)
-CONFIGURE_ARGS+=	--with-python
-LDFLAGS+=	-lutil
-.else
-CONFIGURE_ARGS+=	--without-python
-.endif
-
-.if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=	cairo:${PORTSDIR}/graphics/cairo
-CONFIGURE_ARGS+=	--with-cairo
-.else
-CONFIGURE_ARGS+=	--without-cairo
-.endif
-
-.if ${PORT_OPTIONS:MPANGO}
-USE_GNOME+=	pango
-CONFIGURE_ARGS+=	--with-pango
-.else
-CONFIGURE_ARGS+=	--without-pango
 .endif
 
 pre-everything::
@@ -127,21 +106,23 @@ post-patch:
 
 .if ${PORT_OPTIONS:MPLUGINS}
 post-build:
-	cd ${WRKSRC}/plugins; ${GMAKE}
+	cd ${WRKSRC}/plugins; ${MAKE_CMD}
 .endif
 
 post-install:
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/LICENSE ${STAGEDIR}${DOCSDIR}
 .if ${PORT_OPTIONS:MPLUGINS}
-	${MKDIR} ${PREFIX}/share/fontforge/plugins
-	(cd ${WRKSRC}/plugins; ${INSTALL_DATA} .libs/* ${PREFIX}/share/fontforge/plugins)
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/fontforge/plugins
+	@(cd ${WRKSRC}/plugins/.libs && ${STRIP_CMD} gb12345.o gb12345.so)
+	(cd ${WRKSRC}/plugins; ${INSTALL_DATA} .libs/* \
+		${STAGEDIR}${PREFIX}/share/fontforge/plugins)
 .endif
 .if ${PORT_OPTIONS:MDOCS}
-# Ditto the above note in post-extract for these comments
-#	${MKDIR} ${DOCSDIR}/flags
-	${INSTALL_DATA} ${WRKDIR}/html/*.* ${DOCSDIR}
-#	${INSTALL_DATA} ${WRKDIR}/html/flags/*.* ${DOCSDIR}/flags
+	${INSTALL_DATA} ${WRKDIR}/html/*.* ${STAGEDIR}${DOCSDIR}
 .endif
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@(cd ${STAGEDIR}${PREFIX}/lib && ${STRIP_CMD} libgunicode.so.3 \
+		libgutils.so.1 libgioftp.so.1 libgdraw.so.4 libfontforge.so.1)
 
 .include <bsd.port.mk>
