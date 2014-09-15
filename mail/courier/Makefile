@@ -7,6 +7,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Courier SMTP IMAP POP3 HTTP mail server suite
+
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -57,11 +58,9 @@ MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
 USE_AUTOTOOLS=	libtool aclocal
-USE_BZIP2=	yes
 USE_GCC=	any
 USE_FAM=	yes
-USES=		gettext
-USE_GMAKE=	yes
+USES=		gettext gmake tar:bzip2
 USE_OPENSSL=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
