@@ -12,10 +12,10 @@ DIST_SUBDIR=	ezm3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easier, more portable Modula-3 distribution for building CVSup
+
 LICENSE=	modula3
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 
 .include <bsd.port.pre.mk>
 
