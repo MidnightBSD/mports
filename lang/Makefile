@@ -33,7 +33,6 @@ SUBDIR += guile
 SUBDIR += libobjc2
 SUBDIR += linux-f10-libg2c
 SUBDIR += linux-f10-tcl85
-SUBDIR += linux-libg2c
 SUBDIR += linux-libperl5.8
 SUBDIR += lua
 SUBDIR += mawk
