@@ -23,20 +23,16 @@ EXAMPLESDIR=	${PREFIX}/share/examples/ghc-${GHC_VERSION}
 
 CONFLICTS=	ghc-6.8.* ghc-6.10.* ghc-6.12.* ghc-7.0.* ghc-7.2.* ghc-7.4.*
 
-USE_BZIP2=	yes
 LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=		autoconf autoheader
 USE_PERL5_BUILD=	yes
-USE_GMAKE=		yes
-USES=			iconv ncurses
+USES=			iconv ncurses gmake tar:bzip2
 USE_BINUTILS=		yes
 USE_GCC=		4.6+
 
-LICENSE=	BSD
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-MAKE_JOBS_SAFE=	yes
 MAKE_ENV=	LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # The configure process accepts,filters and canonicalises
