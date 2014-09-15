@@ -2,13 +2,14 @@
 
 PORTNAME=	gnome-screensaver
 PORTVERSION=	2.30.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME screen saver and locker
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	notify:${PORTSDIR}/devel/libnotify
@@ -16,9 +17,7 @@ RUN_DEPENDS=	xscreensaver-gl-helper:${PORTSDIR}/x11/xscreensaver-gnome-hacks
 
 CONFLICTS=	gnome-screensaver-3.[0-9]*
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gmake gettext tar:bzip2
 GNU_CONFIGURE=	yes
 USE_XORG=	xtst xxf86vm
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomemenus libgnomekbd \
@@ -30,8 +29,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	gnome-screensaver.schemas
-MAN1=		gnome-screensaver-command.1 gnome-screensaver-preferences.1 \
-		gnome-screensaver.1
 
 PLIST=	${WRKDIR}/pkg-plist
 SUB_FILES+=	gnome-screensaver.pam
