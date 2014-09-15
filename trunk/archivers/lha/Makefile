@@ -10,11 +10,13 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
 
+LICENSE=	lha
+LICENSE_NAME=	lha license
 LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE_TEXT=	Custom license with advanced notification required for CD distribution.
 
 NO_CDROM=	requires advanced notification for cdrom distribution
 
-MAN1=		lha.1
 MANLANG=	ja
 PLIST_FILES=	bin/lha
 
