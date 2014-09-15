@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	msmtp
-PORTVERSION=	1.4.31
+PORTVERSION=	1.4.32
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF
 
@@ -10,12 +11,10 @@ COMMENT=	SMTP plugin for MUAs
 
 LICENSE=        gpl3
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+USES=		makeinfo pkgconfig tar:bzip2
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAN1=	msmtp.1
 INFO=	msmtp
 
 OPTIONS_DEFINE=	GSASL NLS IDN GNOMEKEYRING MSMTPQ
@@ -29,12 +28,13 @@ MSMTPQ_DESC=	Install offline messaging scripts
 .include       <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--with-ssl=gnutls
 .elif ${PORT_OPTIONS:MOPENSSL}
 USE_OPENSSL=	yes
 CONFIGURE_ARGS+=	--with-ssl=openssl
-CONFIGURE_ENV+=		libssl_CFLAGS="-I${OPENSSLINC}" libssl_LIBS="-L${OPENSSLLIB} -lssl"
+CONFIGURE_ENV+=		libssl_CFLAGS="-I${OPENSSLINC}" \
+			libssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
 .else
 CONFIGURE_ARGS+=	--with-ssl=no
 .endif
@@ -44,14 +44,14 @@ RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_r
 .endif
 
 .if ${PORT_OPTIONS:MGSASL}
-LIB_DEPENDS+=	gsasl:${PORTSDIR}/security/gsasl
+LIB_DEPENDS+=	libgsasl.so:${PORTSDIR}/security/gsasl
 CONFIGURE_ARGS+=	--with-libgsasl
 .else
 CONFIGURE_ARGS+=	--without-libgsasl
 .endif
 
 .if ${PORT_OPTIONS:MIDN}
-LIB_DEPENDS+=	idn:${PORTSDIR}/dns/libidn
+LIB_DEPENDS+=	libidn.so:${PORTSDIR}/dns/libidn
 CONFIGURE_ARGS+=	--with-libidn
 .else
 CONFIGURE_ARGS+=	--without-libidn
@@ -59,7 +59,7 @@ CONFIGURE_ARGS+=	--without-libidn
 
 .if ${PORT_OPTIONS:MGNOMEKEYRING}
 CONFIGURE_ARGS+=	--with-gnome-keyring
-LIB_DEPENDS+=	gnome-keyring:${PORTSDIR}/security/gnome-keyring
+LIB_DEPENDS+=	libgnome-keyring.so:${PORTSDIR}/security/gnome-keyring
 .else
 CONFIGURE_ARGS+=	--without-gnome-keyring
 .endif
