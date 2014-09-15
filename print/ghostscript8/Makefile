@@ -30,8 +30,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME:S,8,,}/fonts/a010013l.pfb:${PORTSDIR}
 CONFLICTS=	gambc-[0-9]* ghostscript[79]-[0-9]* \
 			ghostscript[79]-*-[0-9]*
 
-USE_XZ=		yes
-USE_GMAKE=	yes
+USES=		gmake tar:xz
 WANT_GNOME=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
