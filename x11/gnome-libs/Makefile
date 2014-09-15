@@ -17,8 +17,7 @@ LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 MAKE_JOBS_UNSAFE=yes
-USES=		charsetfix gettext gmake pathfix
-USE_BZIP2=	yes
+USES=		charsetfix gettext gmake pathfix tar:bzip2
 USE_XORG=	xpm ice x11
 USE_PERL5=	yes
 USE_GNOME=	gnomehack gnomeprefix esound gtk12 imlib libxml orbit
