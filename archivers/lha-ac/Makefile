@@ -3,7 +3,7 @@
 
 PORTNAME=	lha
 PORTVERSION=	1.14i
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP} \
 		http://qgpop.dl.sourceforge.jp/%SUBDIR%/ \
@@ -15,7 +15,11 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-ac20050924p1
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
 
-MAN1=		lha.1
+LICENSE=        lha
+LICENSE_NAME=   lha license
+LICENSE_PERMS=  dist-mirror pkg-mirror
+LICENSE_TEXT=   Custom license with advanced notification required for CD distribution.
+
 MANLANG=	ja
 PLIST_FILES=	bin/lha
 #PLIST_DIRS=	man/ja/man1
