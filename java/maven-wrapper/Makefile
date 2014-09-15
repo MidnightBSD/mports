@@ -9,6 +9,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for the various installations of Maven
+
 LICENSE=	bsd2
 
 NO_BUILD=	yes
