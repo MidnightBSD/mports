@@ -2,7 +2,7 @@
 
 PORTNAME=	ocaml
 PORTVERSION=	3.12.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/distrib/${DISTNAME:R}/ \
 		ftp://ftp.inria.fr/INRIA/caml-light/${DISTNAME:R}/ \
@@ -12,10 +12,11 @@ MASTER_SITE_SUBDIR=	distfiles
 PKGNAMESUFFIX=	${SFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	The Objective Caml compiler and programming environment
+COMMENT?=	Objective Caml compiler and programming environment
+
 LICENSE=	other
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
