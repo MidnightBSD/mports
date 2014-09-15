@@ -10,9 +10,8 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel component for the GNOME 2 Desktop
-LICENSE=	gpl2
 
-USE_BZIP2=	yes
+LICENSE=	gpl2
 
 .if !defined(REFERENCE_PORT)
 
@@ -25,7 +24,7 @@ USE_PYTHON=	2
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-USES=		pathfix gettext gmake pkgconfig
+USES=		pathfix gettext gmake pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix intlhack gnomedesktop libwnck gnomemenus \
 		gnomedocutils ltverhack referencehack librsvg2
 USE_AUTOTOOLS=	libtool
