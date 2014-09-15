@@ -1,45 +1,51 @@
 # $MidnightBSD$
 
 PORTNAME=	libamrwb
-PORTVERSION=	10.0.0.0
+PORTVERSION=	11.0.0.0
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://ftp.penguin.cz/pub/users/utx/amr/ \
-		http://www.3gpp.org/ftp/Specs/archive/26_series/26.204/:3GPP
+MASTER_SITES=	http://www.penguin.cz/~utx/ftp/amr/ \
+		http://www.3gpp.org/ftp/Specs/archive/26_series/26.204/:SRC26204
 DISTNAME=	amrwb-${DISTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${SRC3GPP}:3GPP
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${SRC26204}:SRC26204
+DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	3GPP Adaptive Multi-Rate - Wideband (AMR-WB) Speech Codec
 
-LICENSE=	restricted
+LICENSE=	bsd3 3GPP
+LICENSE_COMB=	dual
+LICENSE_NAME_3GPP=	3GPP
+LICENSE_TEXT_3GPP=	${RESTRICTED}
+LICENSE_PERMS_3GPP=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
+LICENSE_DISTFILES_bsd3=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_3GPP=	${SRC26204}
 
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 
-LICENSE_DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-RESTRICTED=	license prohibits redistribution
-RESTRICTED_FILES=	${SRC3GPP}
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+RESTRICTED=	unclear legal status, probably need licenses from 3GPP and more
+
+USES=		gmake tar:bzip2 libtool
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README TODO readme.txt
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	LANG=C
-MAKE_ENV=	LANG=C
+MAKE_ENV+=	LANG=C
 USE_LDCONFIG=	yes
+OPTIONS_DEFINE=	DOCS
 
-SRC3GPP=	26204-a00.zip
+SRC26204=	26204-b00.zip
+
+.include <bsd.mport.options.mk>
 
 post-extract:
-	@${CP} ${DISTDIR}/${SRC3GPP} ${WRKSRC}/
+	@${CP} ${_DISTDIR}/${SRC26204} ${WRKSRC}/
 
 post-install:
-.ifndef(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-. for FILE in ${PORTDOCS}
-		${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
-. endfor
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} {DOCSDIR}
+	@cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
 .endif
 
 .include <bsd.port.mk>
