@@ -13,48 +13,40 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
 
-USE_BZIP2=	yes
-USE_ICONV=	yes
-USE_GNOME=	gnomehack pkgconfig
+USES=		pathfix pkgconfig iconv tar:bzip2
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${WRKSRC}/popt -I${LOCALBASE}/include
-CONFIGURE_ARGS+=--with-libiconv=${LOCALBASE}  --with-included-popt --enable-conduits --enable-xsltproc
+CONFIGURE_ARGS+=${ICONV_CONFIGURE_BASE}  --with-included-popt --enable-conduits --enable-xsltproc
 USE_LDCONFIG=	yes
 
-OPTIONS=	PNG "build with png support" off \
-		THREADS "built-in thread safety" on \
-		USB "Compile with USB via libusb support (READ MANUAL!)" off
+OPTIONS_DEFINE=	PNG THREADS USB
+USB_DESC=	Compile with USB via libusb support (READ MANUAL!)
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_THREADS)
+.if ${PORT_OPTIONS:MTHREADS}
 CONFIGURE_ARGS+=	--enable-threads
 CFLAGS+=		${PTHREAD_LIBS}
 CONFIGURE_ENV+=		PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"
 .endif
 
-.if defined(WITH_USB)
-. if ${OSVERSION} < 4015
-LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
-. endif
+.if ${PORT_OPTIONS:MUSB}
 CONFIGURE_ARGS+=--enable-libusb
 LDFLAGS+=	-L${PREFIX}/lib -lusb
 
-.if defined(WITHOUT_THREADS)
+.if ! ${PORT_OPTIONS:MTHREADS}
 IGNORE=		cannot be built: USB support requires THREADS turned on.  Please reconfigure using 'make config'
 .else
 LDFLAGS+=	${PTHREAD_LIBS}
 .endif
 .endif
 
-.if defined(WITH_PNG)
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--with-libpng=${PREFIX}
 .else
 CONFIGURE_ARGS+=	--disable-png
 .endif
-
-.include "${.CURDIR}/manpages.mk"
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|png_voidp_NULL|NULL|g' \
@@ -63,8 +55,8 @@ post-patch:
 		${WRKSRC}/src/pilot-read-palmpix.c \
 		${WRKSRC}/src/pilot-read-screenshot.c \
 		${WRKSRC}/src/pilot-read-veo.c
-.if !defined(WITHOUT_THREADS)
+.if ${PORT_OPTIONS:MTHREADS}
 	@${REINPLACE_CMD} -e 's|Libs: |Libs: ${PTHREAD_LIBS} |' ${WRKSRC}/pilot-link.pc.in ${WRKSRC}/pilot-link-pp.pc.in
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
