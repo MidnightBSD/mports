@@ -16,13 +16,12 @@ BUILD_DEPENDS=	xml2po:${PORTSDIR}/textproc/gnome-doc-utils
 LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
 
-USE_BZIP2=	yes
 NO_STAGE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		pathfix gettext gmake pkgconfig
+USES=		pathfix gettext gmake pkgconfig tar:bzip2
 USE_GNOME=	gnomeprefix intlhack gtk20 libxml2 gconf2
 USE_GSTREAMER=	gconf good
 CONFIGURE_ARGS=	--disable-gstmix
