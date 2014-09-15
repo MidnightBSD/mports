@@ -1,33 +1,44 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.8.8
+PORTVERSION=	1.10.0
 CATEGORIES=	graphics python
 MASTER_SITES=	http://cairographics.org/releases/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	py${PORTNAME}-${PORTVERSION}
+DISTNAME=	py2${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python bindings for Cairo
-LICENSE=        lgpl
+COMMENT=	Python 2 bindings for Cairo
 
-BUILD_DEPENDS=	${PYNUMERIC}
-LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo
-RUN_DEPENDS=	${PYNUMERIC}
+LICENSE=	lgpl
 
-USE_PYTHON=	2.6+
-USE_GMAKE=	yes
-USE_GNOME=	 gnomehack
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-pygtk --build=${ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include" \
-		LDFLAGS="-L${X11BASE}/lib"
+USE_PYTHON=	2
+USES=		pkgconfig shebangfix tar:bzip2
+USE_GNOME=	cairo
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ENV=	PYTHON=${LOCALBASE}/bin/${PYTHON_CMD} \
+		PREFIX=${PREFIX}
 
-.include <bsd.port.pre.mk>
+python_OLD_CMD?=	/usr/bin/env python
+python_CMD?=		${LOCALBASE}/bin/python2
+SHEBANG_FILES=		examples/*.py examples/*/*.py test/*.py
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${PREFIX}/libdata/pkgconfig|; \
-		s|SUBDIRS = cairo examples test|SUBDIRS = cairo examples|' \
-		${WRKSRC}/Makefile.in
+do-configure:
+	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
+		./waf configure
 
-.include <bsd.port.post.mk>
+do-build:
+	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf
+
+do-install:
+	cd ${WRKSRC} && ${PYTHON_CMD} ./waf install --destdir=${FAKE_DESTDIR}
+
+post-install:
+	cd ${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
+	cd ${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
+
+.include <bsd.port.mk>
