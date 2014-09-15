@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/x11-themes/midnightbsd-backgrounds/pkg-plist,v 1.2 2008/10/24 17:29:18 laffer1 Exp $
+@comment $MidnightBSD$
 share/wallpapers/BSDkeyboard.jpg
 share/wallpapers/BSDkeyboard.jpg.desktop
 share/wallpapers/bsdheart.jpg
