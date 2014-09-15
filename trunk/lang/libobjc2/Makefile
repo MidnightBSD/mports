@@ -8,11 +8,12 @@ MASTER_SITES=	http://download.gna.org/gnustep/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement Objective-C runtime supporting Obj-C 2 features
+
 LICENSE=	mit
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_LDCONFIG=	yes
 MAKE_ENV+=	LD=${LOCALBASE}/bin/ld
 MAKE_ENV+=	SHLIB_VERSION="${SHLIB_VERSION}"
