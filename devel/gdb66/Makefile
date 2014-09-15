@@ -2,7 +2,7 @@
 
 PORTNAME=	gdb
 PORTVERSION=	6.6
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	devel
 MASTER_SITES=   ${MASTER_SITE_GNU:S,$,:gdb,}	\
 		http://aldan.algebra.com/~mi/:gdbtk
@@ -11,18 +11,15 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}:gdb
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GNU GDB of newer version than comes with the system
-LICENSE=	gpl3
 
-LATEST_LINK?=	gdb66
+LICENSE=	gpl3
 
 OPTIONS_DEFINE=	INSIGHT
 INSIGHT_DESC=	Tcl/Tk GUI (experimental!)
 
 CONFLICTS?=	gdb-[7-9]*
-USE_BZIP2=	yes
 USE_GCC=	any
-USE_GMAKE=	yes
-USES=		gettext iconv
+USES=		gettext gmake iconv tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
@@ -34,7 +31,6 @@ EXCLUDE=	dejagnu expect readline sim texinfo intl
 EXTRACT_AFTER_ARGS=	${EXCLUDE:S/^/--exclude /}
 VER=	${PORTVERSION:S/.//}
 PLIST_SUB=	VER=${VER}
-MAN1=	gdb${VER}.1
 
 .include <bsd.mport.options.mk>
 
