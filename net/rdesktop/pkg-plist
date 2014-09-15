@@ -1,5 +1,5 @@
-@comment $FreeBSD: ports/net/rdesktop/pkg-plist,v 1.8 2006/09/19 19:56:24 obrien Exp $
 bin/rdesktop
+man/man1/rdesktop.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/TODO
 %%PORTDOCS%%%%DOCSDIR%%/ipv6.txt
@@ -45,6 +45,7 @@ bin/rdesktop
 %%DATADIR%%/keymaps/pt
 %%DATADIR%%/keymaps/pt-br
 %%DATADIR%%/keymaps/ru
+%%DATADIR%%/keymaps/sk
 %%DATADIR%%/keymaps/sl
 %%DATADIR%%/keymaps/sv
 %%DATADIR%%/keymaps/th
