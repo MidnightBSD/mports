@@ -16,9 +16,10 @@ DISTNAME=	ncftp-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ftp replacement with advanced user interface
-LICENSE=	restricted
 
-USE_BZIP2=	yes
+LICENSE_FILE=	doc/License.txt
+
+USES=		tar:bzip2
 
 .include <bsd.port.pre.mk>
 
