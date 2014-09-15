@@ -38,11 +38,10 @@ BUILD_DEPENDS+=	f2c:${PORTSDIR}/lang/f2c
 
 GNU_CONFIGURE=	yes
 USE_GCC=	4.2+
-USE_GMAKE=	yes
+USES=		gmake
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
-USE_PYTHON=	yes
-MAKE_JOBS_SAFE=	yes
+USE_PYTHON=	-2.9
 
 MAKE_ARGS=	CLANG_TBLGEN=${WRKSRC}/${RELTYPE}/bin/clang-tblgen \
 		LLVMIncDir=${LOCALBASE}/include \
