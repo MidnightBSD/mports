@@ -13,10 +13,9 @@ LICENSE=	gpl3
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 
-USE_BZIP2=	yes
+USES=		gmake tar:bzip2
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
 		courier-imap-pop3d courier-imap-pop3d-ssl
 
