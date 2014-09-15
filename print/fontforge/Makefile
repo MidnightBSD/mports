@@ -15,6 +15,7 @@ DISTFILES=	${PORTNAME}_full-${DISTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
+
 LICENSE=	bsd3
 
 LIB_DEPENDS=	uninameslist:${PORTSDIR}/textproc/libuninameslist \
@@ -25,10 +26,8 @@ LIB_DEPENDS=	uninameslist:${PORTSDIR}/textproc/libuninameslist \
 		xml2:${PORTSDIR}/textproc/libxml2 \
 		spiro:${PORTSDIR}/graphics/libspiro
 
-USE_BZIP2=	yes
-USES=		gettext iconv
+USES=		gettext gmake iconv tar:bzip2
 USE_XORG=	x11 xi ice xkbui
-USE_GMAKE=	yes
 PATCH_STRIP=	-l
 
 OPTIONS_DEFINE=	DOCS MULTILAYER FREETYPE PLUGINS PYTHON CAIRO PANGO
