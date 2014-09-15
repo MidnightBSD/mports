@@ -1,27 +1,32 @@
 # $MidnightBSD$
 
 PORTNAME=	ocaml
-PORTVERSION=	3.12.1
-PORTREVISION=	2
+PORTVERSION=	4.01.0
+PORTREVISION=	0
 CATEGORIES=	lang
-MASTER_SITES=	http://caml.inria.fr/distrib/${DISTNAME:R}/ \
-		ftp://ftp.inria.fr/INRIA/caml-light/${DISTNAME:R}/ \
-		ftp://ftp.kurims.kyoto-u.ac.jp/pub/lang/caml-light/${DISTNAME:R}/ \
+MASTER_SITES=	http://caml.inria.fr/pub/distrib/${DISTNAME:R}/ \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
 PKGNAMESUFFIX=	${SFX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Objective Caml compiler and programming environment
 
-LICENSE=	other
+LICENSE=		QPL10 lgpl
+LICENSE_COMB=		multi
+LICENSE_NAME_QPL10=	Q Public License, Version 1.0
+LICENSE_FILE_QPL10=	${WRKSRC}/LICENSE
+LICENSE_PERMS_QPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		tar:bzip2
+USES=		gmake tar:bzip2
 REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 ALL_TARGET=	world.opt
 STRIP=
+SSP_UNSAFE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 CONFIGURE_ARGS=	-prefix ${PREFIX} -host ${MACHINE_ARCH}-portbld-freebsd6.0
@@ -83,10 +88,6 @@ CONFIGURE_ARGS+=-tkdefs \
 .endif
 
 .include <bsd.port.pre.mk>
-
-MAN1!=	${CAT} ${FILESDIR}/man1
-MANN!=	${CAT} ${FILESDIR}/mann
-MLINKS!=${CAT} ${FILESDIR}/manlinks
 
 .if ${ARCH} == sparc64
 BROKEN=	ocamlc.opt seg-faults on ${ARCH}, please try to fix
