@@ -1,73 +1,66 @@
 # $MidnightBSD$
 
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.26.5
+PORTVERSION=	2.28.2
 PORTREVISION=	1
-CATEGORIES?=	graphics
+CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
-DISTNAME=	gdk-pixbuf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+
 
-LICENSE=	gpl2
+LICENSE=	lgpl
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
-USES=		gettext gmake pkgconfig tar:xz
 USE_XORG=	xt xi x11
-USE_AUTOTOOLS=	libtool
-USE_GNOME+=	gnomehack glib20 ltverhack
+USES=		gmake libtool:keepla pathfix pkgconfig tar:xz
+USE_GNOME+=	gnomehier glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
-CONFIGURE_ARGS+=	--enable-introspection=yes --with-x11
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--enable-introspection=yes --with-x11
 
-MAN1=		gdk-pixbuf-csource.1 gdk-pixbuf-query-loaders.1
-
-OPTIONS=	JP2 "JPEG2000 support"	ON \
-		JPEG "JPEG support"	ON \
-		PNG "PNG support"	ON \
-		TIFF "TIFF support"	ON
+OPTIONS_DEFINE=	JASPER JPEG PNG TIFF
+OPTIONS_DEFAULT=JASPER JPEG PNG TIFF
 
 .include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_NLS)
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-.if !defined(WITHOUT_JP2)
-LIB_DEPENDS+=	jasper:${PORTSDIR}/graphics/jasper
+.if ${PORT_OPTIONS:MJASPER}
+LIB_DEPENDS+=	libjasper.so:${PORTSDIR}/graphics/jasper
 CONFIGURE_ARGS+=--with-libjasper
 PLIST_SUB+=	JP2=""
 .else
 PLIST_SUB+=	JP2="@comment "
 .endif
 
-.if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg
+.if ${PORT_OPTIONS:MJPEG}
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=	JPEG=""
 .else
 CONFIGURE_ARGS+=--without-libjpeg
 PLIST_SUB+=	JPEG="@comment "
 .endif
 
-.if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=--without-libpng
 PLIST_SUB+=	PNG="@comment "
 .endif
 
-.if !defined(WITHOUT_TIFF)
-LIB_DEPENDS+=	tiff:${PORTSDIR}/graphics/tiff
+.if ${PORT_OPTIONS:MTIFF}
+LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
 PLIST_SUB+=	TIFF=""
 .else
 CONFIGURE_ARGS+=--without-libtiff
