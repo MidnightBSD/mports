@@ -2,7 +2,7 @@
 
 PORTNAME=	libgnomeprintmm
 PORTVERSION=	2.5.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,16 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ bindings for the GNOME print support library
 LICENSE=	lgpl
 
-LIB_DEPENDS=	gtkmm-2.4.1:${PORTSDIR}/x11-toolkits/gtkmm24
+LIB_DEPENDS=	libgtkmm-2.4.so:${PORTSDIR}/x11-toolkits/gtkmm24
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack libgnomeprint
+USES=		gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	gnomeprefix libgnomeprint
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static
+INSTALL_TARGET=	install-strip
 
 PLIST_SUB=	VERSION="2.5" API_VERSION="2.6"
 
