@@ -1,7 +1,8 @@
 # $MidnightBSD$ 
 
 PORTNAME=	fpc
-PORTVERSION=	2.6.2
+PORTVERSION=	2.6.4
+PORTREVISION?=	0
 CATEGORIES?=	lang
 MASTER_SITES=	ftp://ftp.freepascal.org/pub/fpc/dist/${PORTVERSION}/source/:source \
 		ftp://planetmirror.com/pub/fpc/dist/${PORTVERSION}/source/:source \
@@ -33,7 +34,6 @@ OPTIONSFILE=	${PORT_DBDIR}/${PORTNAME}${PKGNAMESUFFIX}/options
 OPT?=-CX
 FPCSRCDIR=	${PORTNAME}-${PORTVERSION}
 
-NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
