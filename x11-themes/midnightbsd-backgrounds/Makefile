@@ -12,9 +12,10 @@ MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        MidnightBSD desktop environment
+
 LICENSE=	agg
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
