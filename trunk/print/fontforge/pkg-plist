@@ -63,27 +63,26 @@ include/fontforge/uiinterface.h
 include/fontforge/unicoderange.h
 include/fontforge/ustring.h
 include/fontforge/utype.h
-lib/libfontforge.a
-lib/libfontforge.la
 lib/libfontforge.so
 lib/libfontforge.so.1
-lib/libgdraw.a
-lib/libgdraw.la
+lib/libfontforge.so.1.0.0
 lib/libgdraw.so
 lib/libgdraw.so.4
-lib/libgioftp.a
-lib/libgioftp.la
+lib/libgdraw.so.4.0.10
 lib/libgioftp.so
 lib/libgioftp.so.1
-lib/libgutils.a
-lib/libgutils.la
-lib/libgutils.so
-lib/libgutils.so.1
-lib/libgunicode.a
-lib/libgunicode.la
+lib/libgioftp.so.1.0.0
 lib/libgunicode.so
 lib/libgunicode.so.3
+lib/libgunicode.so.3.0.2
+lib/libgutils.so
+lib/libgutils.so.1
+lib/libgutils.so.1.0.3
 libdata/pkgconfig/fontforge.pc
+man/man1/fontforge.1.gz
+man/man1/fontimage.1.gz
+man/man1/fontlint.1.gz
+man/man1/sfddiff.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/AA-Comparison.html
 %%PORTDOCS%%%%DOCSDIR%%/AddLookup-Liga.png
 %%PORTDOCS%%%%DOCSDIR%%/AmbrosiaFV-bm.png
@@ -1083,12 +1082,11 @@ libdata/pkgconfig/fontforge.pc
 %%DATADIR%%/pixmaps/viewsmallersize.png
 %%DATADIR%%/pixmaps/viewzoomin.png
 %%DATADIR%%/pixmaps/viewzoomout.png
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.a
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.la
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.lai
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.o
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.so
-%%NO_PLUGINS%%%%DATADIR%%/plugins/gb12345.so.0
+%%PLUGINS%%%%DATADIR%%/plugins/gb12345.lai
+%%PLUGINS%%%%DATADIR%%/plugins/gb12345.o
+%%PLUGINS%%%%DATADIR%%/plugins/gb12345.so
+%%PLUGINS%%%%DATADIR%%/plugins/gb12345.so.0
+%%PLUGINS%%%%DATADIR%%/plugins/gb12345.so.0.0.0
 %%DATADIR%%/python/excepthook.py
 share/locale/ca/LC_MESSAGES/FontForge.mo
 share/locale/de/LC_MESSAGES/FontForge.mo
@@ -1106,7 +1104,7 @@ share/locale/vi/LC_MESSAGES/FontForge.mo
 share/locale/zh_CN/LC_MESSAGES/FontForge.mo
 share/locale/zh_TW/LC_MESSAGES/FontForge.mo
 @dirrm %%DATADIR%%/python
-%%NO_PLUGINS%%@dirrm %%DATADIR%%/plugins
+%%PLUGINS%%@dirrm %%DATADIR%%/plugins
 @dirrm %%DATADIR%%/pixmaps
 @dirrm %%DATADIR%%
 @dirrm %%DOCSDIR%%
