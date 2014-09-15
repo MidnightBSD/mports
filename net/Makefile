@@ -20,7 +20,6 @@ SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
 SUBDIR += fping
-SUBDIR += freeradius
 SUBDIR += glib-networking
 SUBDIR += gnet2
 SUBDIR += gnome-mud
