@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	lmdb
-PORTVERSION=	0.9.11
+PORTVERSION=	0.9.13
 CATEGORIES=	databases
-MASTER_SITES=	https://gitorious.org/${GO_ACCOUNT}/${GO_PROJECT}/archive/${GO_TAGNAME}.tar.gz?dummy= \
-		FREEBSD_LOCAL/delphij
+MASTER_SITES=	FREEBSD_LOCAL/delphij
+# https://gitorious.org/${GO_ACCOUNT}/${GO_PROJECT}/archive/${GO_TAGNAME}.tar.gz?dummy= \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenLDAP Lightning Memory-Mapped Database
@@ -22,7 +22,7 @@ USE_LDCONFIG=	yes
 
 GO_ACCOUNT=	mdb
 GO_PROJECT=	mdb
-GO_TAGNAME=	${PORTNAME:U}_${PORTVERSION}
+GO_TAGNAME=	${PORTNAME:tu}_${PORTVERSION}
 FETCH_ARGS?=	-o ${DISTDIR}/${DISTFILES}
 
 do-install:
