@@ -4,7 +4,7 @@
          variant != "64") {
        return false;
      }
-+  } else if (name == "FreeBSD") {
++  } else if (name == "FreeBSD" || name == "MidnightBSD") {
    } else if (name == "ChromeOS") {
      // TODO(rsesek): Figure out what ChromeOS needs.
    } else if (name == "iOS") {
