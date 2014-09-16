@@ -68,6 +68,7 @@ SUBDIR += openldap24-server
 SUBDIR += openmpi
 SUBDIR += openslp
 SUBDIR += ortp
+SUBDIR += p5-Geo-IP
 SUBDIR += p5-IO-INET6
 SUBDIR += p5-IO-Socket-IP
 SUBDIR += p5-IP-Country
