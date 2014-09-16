@@ -6,29 +6,30 @@
 #
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.4.8
+PORTVERSION=	1.6.0
 PORTREVISION=	0
 CATEGORIES=	net geography
 MASTER_SITES=	http://geolite.maxmind.com/download/geoip/api/c/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find the country that any IP address or hostname originates from
-LICENSE=	gpl2
-# lgpl 2.1 but has a few gpl2 files
 
-CONFIGURE_ARGS=	CC="${CC}" PATH="${PATH}" \
-			CFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
 
-USE_AUTOTOOLS=	libtool
+USES=		libtool pathfix
+USE_AUTOTOOLS=	aclocal automake libtoolize autoconf
+AUTOMAKE_ARGS=	--add-missing
+PATHFIX_MAKEFILEIN=	Makefile.am
+
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 
-MAN1=		geoiplookup.1 geoipupdate.1 geoiplookup6.1
-
-run-autotools:
-	@${REINPLACE_CMD} -e '/^LIBTOOL=/s^\$$(top_builddir)/libtool^${LIBTOOL}^g' \
-	${WRKSRC}/aclocal.m4
+SUB_FILES=	geoipupdate.sh pkg-message
 
 post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/geoipupdate.sh ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKDIR}/geoipupdate.sh ${STAGEDIR}${PREFIX}/bin
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libGeoIP.so.*
+	@${MKDIR} ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>
