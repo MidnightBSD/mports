@@ -29,4 +29,7 @@ OPTIONS_DEFINE=	DEBUG
 CONFIGURE_ARGS+=--enable-debug
 .endif
 
+post-install:
+	cd ${PREFIX}/lib && ${LN} -sf libmemcache.so.4.0 libmemcache.so
+
 .include <bsd.port.mk>
