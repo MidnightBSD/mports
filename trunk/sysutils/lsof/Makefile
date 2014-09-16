@@ -34,7 +34,7 @@ SRCBALL_NAME=	${DISTNAME:S/_W$//}_src
 WRKSRC=		${WRKDIR}/${DISTNAME}/${SRCBALL_NAME}
 .endif
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
