@@ -19,8 +19,8 @@ LICENSE=	restricted
 
 RESTRICTED=	Unsure of codec's license
 
+USES=		tar:bzip2
 ONLY_FOR_ARCHS=	i386
-USE_BZIP2=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/w32codec-${DISTVERSION}
 
