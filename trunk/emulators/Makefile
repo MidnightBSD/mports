@@ -17,6 +17,7 @@ SUBDIR += mtools
 SUBDIR += pearpc
 SUBDIR += qemu
 SUBDIR += rtc
+SUBDIR += tpm-emulator
 SUBDIR += vMac
 SUBDIR += virtio-kmod
 SUBDIR += vxtools
