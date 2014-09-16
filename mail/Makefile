@@ -12,6 +12,7 @@ SUBDIR += courier-imap
 SUBDIR += courier-pythonfilter
 SUBDIR += couriergraph
 SUBDIR += chk4mail
+SUBDIR += dcc-dccd
 SUBDIR += dovecot
 SUBDIR += dovecot2
 SUBDIR += evolution
