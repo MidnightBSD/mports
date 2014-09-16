@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lsof
-PORTVERSION=	4.88D
+PORTVERSION=	4.88G
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
@@ -38,7 +38,7 @@ USES=		tar:bzip2
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
-CONFIGURE_ENV=	LSOF_CC="${CC}"  LSOF_VERS=7042 FREEBSD_SYS="${SRC_BASE}/sys" LSOF_VSTR="7.0-RELEASE"
+CONFIGURE_ENV=	LSOF_CC="${CC}"  LSOF_VERS=7042 FREEBSD_SYS="${SRC_BASE}/sys" LSOF_VSTR="9.1-RELEASE"
 PLIST_FILES=	sbin/lsof
 MAN8=		lsof.8
 
