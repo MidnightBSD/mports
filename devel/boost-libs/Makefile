@@ -9,9 +9,10 @@ DISTNAME=	boost_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free portable C++ libraries (without Boost.Python)
+
 LICENSE=	mit
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 BUILD_DEPENDS=	bjam:${PORTSDIR}/devel/boost-jam
 
