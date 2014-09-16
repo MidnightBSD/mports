@@ -7,7 +7,11 @@ MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/3.99
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MP3 encoder kit
-LICENSE=	restricted
+
+LICENSE=	lgpl_patent
+LICENSE_NAME=	LGPL + Patent restrictions.
+LICENSE_TEXT=	Lame is covered under the LGPL, but commercial use requires royalty payments
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 USES=		gmake iconv
 USE_AUTOTOOLS=	libtool
