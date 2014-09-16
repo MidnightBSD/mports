@@ -108,6 +108,7 @@ SUBDIR += sshguard-pf
 SUBDIR += sudo
 SUBDIR += tor
 SUBDIR += tripwire
+SUBDIR += trousers
 SUBDIR += vlock
 SUBDIR += vlog
 SUBDIR += vnccrack
