@@ -1,5 +1,5 @@
---- chrome/browser/media_galleries/fileapi/mtp_device_map_service.cc.orig	2014-01-07 21:01:47.000000000 +0100
-+++ chrome/browser/media_galleries/fileapi/mtp_device_map_service.cc	2014-01-13 17:44:02.000000000 +0100
+--- ./chrome/browser/media_galleries/fileapi/mtp_device_map_service.cc.orig	2014-08-12 21:01:32.000000000 +0200
++++ ./chrome/browser/media_galleries/fileapi/mtp_device_map_service.cc	2014-08-13 09:56:56.000000000 +0200
 @@ -33,9 +33,11 @@
      // Note that this initializes the delegate asynchronously, but since
      // the delegate will only be used from the IO thread, it is guaranteed

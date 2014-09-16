@@ -1,5 +1,5 @@
---- tools/gyp/test/library/src/library.gyp.orig	2010-12-16 02:33:32.000000000 +0100
-+++ tools/gyp/test/library/src/library.gyp	2010-12-20 20:15:08.000000000 +0100
+--- ./tools/gyp/test/library/src/library.gyp.orig	2014-08-12 21:04:03.000000000 +0200
++++ ./tools/gyp/test/library/src/library.gyp	2014-08-13 09:57:00.000000000 +0200
 @@ -48,7 +48,7 @@
      },
    ],

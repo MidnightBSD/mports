@@ -1,11 +1,11 @@
---- base/sys_info_posix.cc.orig	2011-02-07 00:36:57.000000000 +0100
-+++ base/sys_info_posix.cc	2011-02-07 00:21:53.000000000 +0100
-@@ -23,7 +23,7 @@
+--- ./base/sys_info_posix.cc.orig	2014-08-12 21:01:28.000000000 +0200
++++ ./base/sys_info_posix.cc	2014-08-13 09:56:56.000000000 +0200
+@@ -64,7 +64,7 @@
  
  namespace base {
  
 -#if !defined(OS_OPENBSD)
 +#if !defined(OS_OPENBSD) && !defined(OS_FREEBSD)
  int SysInfo::NumberOfProcessors() {
-   // It seems that sysconf returns the number of "logical" processors on both
-   // Mac and Linux.  So we get the number of "online logical" processors.
+   return g_lazy_number_of_processors.Get().value();
+ }
