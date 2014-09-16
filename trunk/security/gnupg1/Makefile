@@ -2,9 +2,11 @@
 
 PORTNAME=	gnupg
 PORTVERSION=	1.4.18
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
+PKGNAMESUFFIX=	1
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -22,12 +24,8 @@ CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man
 MACHINE_ARCH=	i586
 .endif
 CFLAGS:=	${CFLAGS:S/-pipe//g}
-MAN1=		gpg.1 gpgv.1 gpg.ru.1 gpg-zip.1
-MAN7=		gnupg.7
 INFO=		gnupg1
 DOCSDIR=	${PREFIX}/share/doc/gnupg1
-LATEST_LINK=	gnupg1
-
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	LDAP LIBICONV LIBUSB SUID_GPG NLS CURL DOCS
@@ -50,7 +48,7 @@ CFLAGS:=	${CFLAGS:S/$/ -fheinous-gnu-extensions/}
 .if ${PORT_OPTIONS:MLIBICONV}
 USES+=		iconv
 .else
-CONFIGURE_ARGS+=	--without-libiconv-prefix
+CONFIGURE_ARGS+=	--disable-gnupg-iconv
 .endif
 
 .if ${PORT_OPTIONS:MLIBUSB}
@@ -78,7 +76,7 @@ PLIST_SUB+=	NLS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MCURL}
-LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=--with-libcurl=${LOCALBASE}
 # Work around a GnuPG configure buglet
 CONFIGURE_ENV+=	_libcurl_config=${LOCALBASE}/bin/curl-config
@@ -87,7 +85,7 @@ CONFIGURE_ARGS+=--without-libcurl
 .endif
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
+
 	${MKDIR} ${DOCSDIR}
 .for i in DETAILS FAQ HACKING OpenPGP
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
@@ -96,7 +94,6 @@ post-install:
 	README THANKS TODO VERSION
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-.endif
 .if ${PORT_OPTIONS:MSUID_GPG}
 	${CHMOD} u+s ${PREFIX}/bin/gpg
 .endif
