@@ -1,32 +1,29 @@
 # $MidnightBSD$
 
 PORTNAME=	libical
-PORTVERSION=	0.44
+PORTVERSION=	1.0
 CATEGORIES=	devel
 MASTER_SITES=	SF/freeassociation/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of the IETF's Calendaring and Scheduling protocols 
-LICENSE=	lgpl
+COMMENT=	Implementation of the IETF's Calendaring and Scheduling protocols 
 
-USE_GNOME=	gnomehack
-USE_AUTOTOOLS=	libtool
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_PERL5_BUILD=yes
+LICENSE_COMB=	dual
+LICENSE=	mpl lgpl2.1
+
+USES=		cmake gmake pathfix perl5
+USE_PERL5=	build
 USE_LDCONFIG=	yes
-CONFIGURE_ENV+= CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include"
 
-.if !defined(WITHOUT_PYTHON)
-CONFIGURE_ARGS=	--enable-python=yes
-USE_PYTHON=	yes
-.else
-CONFIGURE_ARGS=	--enable-python=no
-.endif
+MAKE_JOBS_UNSAFE= yes
 
 .include <bsd.port.pre.mk>
+
 .if ${ARCH} == "amd64" || ${ARCH} == "ia64"
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS} -fPIC"
+CFLAGS+=	-fPIC
 .endif
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libical*.so.1.0.0
 
 .include <bsd.port.post.mk>
