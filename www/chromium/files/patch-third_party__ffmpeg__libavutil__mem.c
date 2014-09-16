@@ -1,11 +1,11 @@
---- third_party/ffmpeg/libavutil/mem.c.orig	2011-09-11 11:03:30.000000000 +0300
-+++ third_party/ffmpeg/libavutil/mem.c	2011-09-12 23:49:42.000000000 +0300
-@@ -31,7 +31,7 @@
- #include <limits.h>
+--- ./third_party/ffmpeg/libavutil/mem.c.orig	2014-08-12 21:03:23.000000000 +0200
++++ ./third_party/ffmpeg/libavutil/mem.c	2014-08-13 09:56:58.000000000 +0200
+@@ -32,7 +32,7 @@
+ #include <stdint.h>
  #include <stdlib.h>
  #include <string.h>
 -#if HAVE_MALLOC_H
-+#if HAVE_MALLOC_H && !defined(__FreeBSD__) && !defined(__MidnightBSD__)
++#if HAVE_MALLOC_H && !defined(__FreeBSD__)
  #include <malloc.h>
  #endif
  

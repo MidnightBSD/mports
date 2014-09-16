@@ -1,5 +1,5 @@
---- third_party/libjingle/source/talk/base/network.h.orig	2013-05-26 21:44:12.257312749 +0200
-+++ third_party/libjingle/source/talk/base/network.h	2013-05-26 21:45:08.869297313 +0200
+--- ./third_party/libjingle/source/talk/base/network.h.orig	2014-08-12 21:03:39.000000000 +0200
++++ ./third_party/libjingle/source/talk/base/network.h	2014-08-13 09:56:58.000000000 +0200
 @@ -38,6 +38,10 @@
  #include "talk/base/messagehandler.h"
  #include "talk/base/sigslot.h"
