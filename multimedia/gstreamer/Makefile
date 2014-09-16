@@ -2,6 +2,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.36
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/
 
@@ -12,10 +13,9 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
-USES=		bison gettext gmake pathfix pkgconfig
-USE_BZIP2=	yes
-USE_GNOME=	glib20 introspection libxml2 ltverhack ltasneededhack
-USE_AUTOTOOLS=	libtool
+USES=		bison gmake libtool:keepla pathfix pkgconfig tar:bzip2
+USE_GNOME=	glib20 introspection libxml2
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-tests \
 		--disable-examples \
 		--disable-failing-tests \
@@ -25,12 +25,11 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	ac_cv_func_register_printf_function="no"
 PLIST_SUB=	VERSION="${GST_VERSION}"
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 GST_VERSION=	0.10
 
-MAN1=	gst-feedback-${GST_VERSION}.1 gst-inspect-${GST_VERSION}.1 \
-	gst-launch-${GST_VERSION}.1 \
-	gst-typefind-${GST_VERSION}.1 gst-xmlinspect-${GST_VERSION}.1 \
-	gst-xmllaunch-${GST_VERSION}.1
+OPTIONS_DEFINE=	LIBCHECK NLS
+LIBCHECK_DESC=	Unit tests support
 
 .include <bsd.port.pre.mk>
 
@@ -42,15 +41,22 @@ CONFIGURE_ARGS+=--disable-check
 PLIST_SUB+=	CHECK="@comment "
 .endif
 
+# workaround a crash in clang 3.3 crash llvm bug # 15840
+USE_GCC=	any
+
 BUILD_DEPENDS+=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 CONFIGURE_ENV+=	FLEX_PATH="${LOCALBASE}/bin/flex"
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=	gettext
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
-
-post-install:
-	@${STRIP_CMD} ${PREFIX}/lib/libgst*.so*
-	@${STRIP_CMD} ${PREFIX}/lib/gstreamer-0.10/libgst*.so
 
 .include <bsd.port.post.mk>
