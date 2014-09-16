@@ -1,20 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	libev
-PORTVERSION=	4.04
+PORTVERSION=	4.15
 CATEGORIES=	devel
 MASTER_SITES=	http://dist.schmorp.de/libev/ \
 		http://dist.schmorp.de/libev/Attic/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A full-featured and high-performance event loop library
+COMMENT=	Full-featured and high-performance event loop library
+
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		libtool pkgconfig
 USE_LDCONFIG=	yes
-USE_GNOME=	pkgconfig
-
-MAN3=		ev.3
 
 PKGCONFIGDIR?=	${PREFIX}/libdata/pkgconfig
 
