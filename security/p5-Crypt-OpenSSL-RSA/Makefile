@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	Crypt-OpenSSL-RSA
-PORTVERSION=	0.25
+PORTVERSION=	0.28
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module to RSA encode and decode strings using OpenSSL
+
 LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Crypt/OpenSSL/Random.pm:${PORTSDIR}/security/p5-Crypt-OpenSSL-Random \
@@ -15,7 +16,5 @@ RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Crypt/OpenSSL/Random.pm:${PORTSDIR}/secur
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Crypt::OpenSSL::RSA.3
 
 .include <bsd.port.mk>
