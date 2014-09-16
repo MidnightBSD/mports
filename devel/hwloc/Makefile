@@ -3,6 +3,7 @@
 
 PORTNAME=	hwloc
 PORTVERSION=	1.9
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION}/downloads/ \
 		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION}/downloads/
@@ -11,8 +12,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable Hardware Locality software package
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	pciaccess:${PORTSDIR}/devel/libpciaccess
+LIB_DEPENDS=	libpciaccess.so:${PORTSDIR}/devel/libpciaccess
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-static \
@@ -24,7 +26,7 @@ USE_GNOME=	libxml2
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	CAIRO
+OPTIONS_DEFINE=	CAIRO DOCS
 
 CAIRO_CONFIGURE_OFF=	--disable-cairo --without-x
 CAIRO_CONFIGURE_ON=	--enable-cairo --with-x
