@@ -60,6 +60,7 @@ SUBDIR += pine-pgp-filters
 SUBDIR += popd
 SUBDIR += postfix
 SUBDIR += procmail
+SUBDIR += pyzor
 SUBDIR += razor-agents
 SUBDIR += sendmail
 SUBDIR += spamassassin
