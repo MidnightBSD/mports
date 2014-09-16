@@ -1,11 +1,11 @@
---- chrome/chrome_tests.gypi.orig	2011-07-28 11:02:03.000000000 +0300
-+++ chrome/chrome_tests.gypi	2011-09-06 22:02:18.000000000 +0300
-@@ -4266,7 +4266,7 @@
-                 '../courgette/courgette.gyp:courgette_unittests',
-                 'browser_tests',
-                 ]}],
--            ['OS=="linux"', {
-+            ['OS=="linux" or OS=="freebsd"', {
-               'dependencies': [
-                 # Reason for disabling UI tests on non-Linux above.
-                 'ui_tests',
+--- ./chrome/chrome_tests.gypi.orig	2014-08-12 21:02:25.000000000 +0200
++++ ./chrome/chrome_tests.gypi	2014-08-13 09:56:57.000000000 +0200
+@@ -1548,7 +1548,7 @@
+         'test/remoting/remote_desktop_browsertest.h',
+         'test/remoting/waiter.cc',
+         'test/remoting/waiter.h',
+-        'test/security_tests/sandbox_browsertest_linux.cc',
++        #'test/security_tests/sandbox_browsertest_linux.cc',
+         'test/security_tests/sandbox_browsertest_win.cc',
+         # TODO(craig): Rename this and run from base_unittests when the test
+         # is safe to run there. See http://crbug.com/78722 for details.

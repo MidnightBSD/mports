@@ -1,5 +1,5 @@
---- base/sys_info_freebsd.cc.orig	2013-09-28 19:09:58.000000000 +0200
-+++ base/sys_info_freebsd.cc	2013-10-09 17:13:04.000000000 +0200
+--- ./base/sys_info_freebsd.cc.orig	2014-08-12 21:01:28.000000000 +0200
++++ ./base/sys_info_freebsd.cc	2014-08-13 09:56:56.000000000 +0200
 @@ -4,6 +4,7 @@
  
  #include "base/sys_info.h"
