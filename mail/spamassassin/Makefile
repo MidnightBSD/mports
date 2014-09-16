@@ -22,7 +22,7 @@ ALL_DEPENDS=	p5-Encode-Detect>=0:${PORTSDIR}/converters/p5-Encode-Detect \
 		p5-NetAddr-IP>=4.010:${PORTSDIR}/net-mgmt/p5-NetAddr-IP
 BUILD_DEPENDS=	${ALL_DEPENDS}
 RUN_DEPENDS=	${ALL_DEPENDS} \
-		re2c>=.12.0:${PORTSDIR}/devel/re2c
+		re2c>=0.12.0:${PORTSDIR}/devel/re2c
 
 CPE_VENDOR=	apache
 
