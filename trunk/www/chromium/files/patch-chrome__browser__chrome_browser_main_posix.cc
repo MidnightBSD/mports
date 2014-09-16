@@ -4,7 +4,7 @@
      g_pipe_pid = getpid();
      g_shutdown_pipe_read_fd = pipefd[0];
      g_shutdown_pipe_write_fd = pipefd[1];
-+#if defined(OS_FREEBSD)
++#if defined(OS_FREEBSD) || defined(OS_BSD)
 +    // PTHREAD_STACK_MIN causes chromium to crash under FreeBSD,
 +    // we request the default pthread stack size by specifying 0 here.
 +    const size_t kShutdownDetectorThreadStackSize = 0;

@@ -5,7 +5,7 @@
  #include <stdlib.h>
  #include <string.h>
 -#if HAVE_MALLOC_H
-+#if HAVE_MALLOC_H && !defined(__FreeBSD__)
++#if HAVE_MALLOC_H && !defined(__FreeBSD__) && !defined(__MidnightBSD__)
  #include <malloc.h>
  #endif
  

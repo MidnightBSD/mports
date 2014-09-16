@@ -40,7 +40,6 @@ SUBDIR += links1
 SUBDIR += linux-f10-flashplugin11
 SUBDIR += linux-firefox
 SUBDIR += linux-libgtkembedmoz
-SUBDIR += linux-mozilla
 SUBDIR += linux-mplayer-plugin
 SUBDIR += linux-opera
 SUBDIR += linux-seamonkey
