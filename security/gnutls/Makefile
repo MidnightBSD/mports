@@ -1,99 +1,65 @@
 # $MidnightBSD$
 
 PORTNAME=	gnutls
-PORTVERSION=	2.12.23
-PORTREVISION=	3
+PORTVERSION=	3.2.16
+PORTREVISION=	0
 CATEGORIES=	security net
-MASTER_SITES=	\
-	ftp://ftp.gnutls.org/gcrypt/gnutls/v${PORTVERSION:C/.[0-9]+$//}/ \
-	http://www.ring.gr.jp/pub/net/gnupg/gnutls/v${PORTVERSION:C/.[0-9]+$//}/
+MASTER_SITES=	GNUPG/gnutls/v3.2
 
 MAINTAINER=	novel@FreeBSD.org
 COMMENT=	GNU Transport Layer Security library
 
-LICENSE=	gpl3
+LICENSE=	gpl3 lgpl2.1
+LICENSE_COMB=	multi
+LICENSE_FILE_gpl3=	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LESSER
 
-LIB_DEPENDS=	nettle:${PORTSDIR}/security/nettle \
-		gpg-error:${PORTSDIR}/security/libgpg-error \
-		p11-kit:${PORTSDIR}/security/p11-kit
+LIB_DEPENDS=	libnettle.so:${PORTSDIR}/security/nettle \
+		libtasn1.so:${PORTSDIR}/security/libtasn1
 
-CONFLICTS=	gnutls-devel-[0-9]*
-
-USES=		pathfix pkgconfig iconv gmake shebangfix
-USE_PERL5_BUILD=	yes
-USE_BZIP2=	yes
-USE_GNOME=	ltverhack
-GNU_CONFIGURE=	yes
+USES=		gmake iconv libtool makeinfo pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-LIBTOOLFILES=	configure lib/configure libextra/configure
-SHEBANG_FILES=	doc/scripts/gdoc doc/scripts/sort2.pl
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-guile \
+		--disable-silent-rules \
+		--enable-local-libopts
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CPPFLAGS+=	-fPIC
-CONFIGURE_ARGS+=	--disable-guile
+MAKE_ENV=	MAKEINFOFLAGS=--no-split
 
+OPTIONS_DEFINE=		CRYWRAP EXAMPLES LIBDANE NLS P11KIT TPM ZLIB
+OPTIONS_DEFAULT=	CRYWRAP P11KIT TPM ZLIB
+OPTIONS_SUB=		yes
 
-INFO=		gnutls
+CRYWRAP_DESC=			Enable Crywrap TLS proxy service
+CRYWRAP_LIB_DEPENDS=		libidn.so:${PORTSDIR}/dns/libidn
+CRYWRAP_CONFIGURE_ENABLE=	crywrap
 
-OPTIONS_DEFINE=	LIBTASN1 CXX LZO NLS
+LIBDANE_DESC=			DNSSEC support for DANE (danetool --check)
+LIBDANE_LIB_DEPENDS=		libunbound.so:${PORTSDIR}/dns/unbound
+LIBDANE_CONFIGURE_ENABLE=	libdane
 
-LIBTASN1_DESC=	Use system libtasn1 instead of local one
-CXX_DESC=	Install C++ library
-LZO_DESC=	LZO compression
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
-OPTIONS_DEFAULT=	LIBTASN1 CXX
+P11KIT_DESC=		PKCS\#11 and p11-kit support
+P11KIT_CONFIGURE_WITH=	p11-kit
+P11KIT_LIB_DEPENDS=	libp11-kit.so:${PORTSDIR}/security/p11-kit
 
-.include <bsd.mport.options.mk>
+TPM_DESC=		TPM (trousers) support
+TPM_CONFIGURE_WITH=	tpm
+TPM_LIB_DEPENDS=	libtspi.so:${PORTSDIR}/security/trousers
 
-.if ${PORT_OPTIONS:MLIBTASN1}
-LIB_DEPENDS+=		tasn1:${PORTSDIR}/security/libtasn1
-.else
-CONFIGURE_ARGS+=	--with-included-libtasn1
-.endif
+ZLIB_CONFIGURE_WITH=	zlib
 
-.if ${PORT_OPTIONS:MLZO}
-LIB_DEPENDS+=		lzo2:${PORTSDIR}/archivers/lzo2
-CONFIGURE_ARGS+=	--with-lzo
-.else
-CONFIGURE_ARGS+=	--with-lzo=no
-.endif
-
-.if ${PORT_OPTIONS:MCXX}
-PLIST_SUB+=		CXX=""
-.else
-CONFIGURE_ARGS+=	--disable-cxx
-PLIST_SUB+=		CXX="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=			gettext
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
-PORTDOCS=		AUTHORS NEWS README THANKS
-PORTEXAMPLES=		*.c
+INFO=		gnutls gnutls-guile
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" -type f |\
-		${XARGS} ${REINPLACE_CMD} -e 's|[$$][(]LTLIBPTHREAD[)]||g'
-	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${PREFIX}/bin/perl|g' \
-		${WRKSRC}/doc/doxygen/Doxyfile.in
+	@${RM} ${WRKSRC}/doc/*.info*
 
 post-install:
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTEXAMPLES:C,^,doc/examples/,} \
-		${EXAMPLESDIR}
-.endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-.for i in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${STAGEDIR}${EXAMPLESDIR}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgnutls*.so.*
 
 .include <bsd.port.mk>
