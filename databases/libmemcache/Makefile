@@ -6,7 +6,8 @@
 #
 
 PORTNAME=	libmemcache
-PORTVERSION=	1.4.0.rc2
+DISTVERSION=	1.4.0.rc2
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://people.FreeBSD.org/~seanc/libmemcache/
 
@@ -18,13 +19,14 @@ LICENSE=	mit
 USES=	 	libtool tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 
-OPTIONS=	DEBUG	"Build with debugging turned on" off
+OPTIONS_DEFINE=	DEBUG
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_DEBUG)
+.if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=--enable-debug
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
