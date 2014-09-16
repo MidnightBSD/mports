@@ -6,7 +6,7 @@ CATEGORIES?=	misc
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Multiplatform C++ application framework
+COMMENT=	Qt Documentation
 
 LICENSE=	gpl3
 
