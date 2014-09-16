@@ -1,15 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	celt
-PORTVERSION=	0.9.1
+PORTVERSION=	0.11.3
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/celt/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The CELT ultra-low delay audio codec
+
 LICENSE=	bsd3
 
-LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg=${LOCALBASE}
