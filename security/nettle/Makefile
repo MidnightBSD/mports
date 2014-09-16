@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nettle
-PORTVERSION=	2.6
+PORTVERSION=	2.7.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU} \
 		http://www.lysator.liu.se/~nisse/archive/:liu \
@@ -9,12 +9,14 @@ MASTER_SITES=	${MASTER_SITE_GNU} \
 MASTER_SITE_SUBDIR=	${PORTNAME}/:DEFAULT
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A low-level cryptographic library
+COMMENT=	Low-level cryptographic library
+
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
-USE_GMAKE=	yes
+USES=		gmake makeinfo
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	M4="/usr/bin/m4 -g"
@@ -25,10 +27,11 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 
-DOCS=		NEWS README TODO nettle.html nettle.pdf
-EXAMPLES=	examples/*.c examples/*.h
-
+PORTDOCS=	NEWS README TODO nettle.html nettle.pdf
+PORTEXAMPLES=	*.c *.h
 INFO=		nettle
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.port.pre.mk>
 
@@ -37,9 +40,14 @@ CONFIGURE_ENV+=	CCPIC=-fPIC
 .endif
 
 post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/examples && ${INSTALL_DATA} ${PORTEXAMPLES} \
+		${STAGEDIR}${EXAMPLESDIR}
+.endif
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+.endif
 
 .include <bsd.port.post.mk>
