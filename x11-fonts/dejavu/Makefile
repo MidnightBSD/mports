@@ -1,24 +1,21 @@
-# New ports collection makefile for:	dejavu
-# Date created:		Dec 23 2004
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-fonts/dejavu/Makefile,v 1.40 2008/05/27 05:35:26 ahze Exp $
 #    $MCom: ports/x11-fonts/dejavu/Makefile,v 1.1 2006/10/13 23:29:09 ahze Exp $
 # $MidnightBSD$ 
 
 PORTNAME=	dejavu
-DISTVERSION=	2.33
+DISTVERSION=	2.34
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera Fonts clone with a wider range of characters
+
 LICENSE=        other
 
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_XORG=	x11
 NO_BUILD=	yes
 PORTDOCS=	README status.txt unicover.txt langcover.txt
