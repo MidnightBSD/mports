@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.6.16
+PORTVERSION=	5.6.20
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -62,18 +62,12 @@ MAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1 
 		mysqld_multi.1 mysqld_safe.1 mysqldumpslow.1 mysqlhotcopy.1 mysqlman.1 \
 		mysqltest.1 perror.1 replace.1 resolve_stack_dump.1 resolveip.1
 
-MAN8=		mysqld.8
-
 CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON"
+.else
+USES+=		readline
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} 's/*.1/${MAN1}/' ${WRKSRC}/man/CMakeLists.txt
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "arm"
-BROKEN=		Does not compile on arm
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
