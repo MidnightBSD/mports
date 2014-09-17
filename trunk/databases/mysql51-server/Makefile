@@ -2,14 +2,14 @@
 
 PORTNAME?=	mysql
 PORTVERSION=	5.1.73
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
 PKGNAMESUFFIX?=	51-server
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Multithreaded SQL database (server)
+COMMENT?=	Multithreaded SQL database (server)
 
 LICENSE=	gpl2
 
