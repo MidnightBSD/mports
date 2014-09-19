@@ -2,22 +2,23 @@
 
 PORTNAME=	libidn
 PORTVERSION=	1.28
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
 
-LICENSE=	gpl3
+OPTIONS_DEFINE=	DOCS NLS
 
-USES=		iconv pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_PERL5_BUILD=	yes
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
 CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+USE_PERL5=	build
+USES=		iconv makeinfo pathfix perl5 pkgconfig
 
-INFO=	libidn
+INFO=		libidn
 
 .include <bsd.mport.options.mk>
 
@@ -32,20 +33,20 @@ PLIST_SUB+=	NLS="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|@image{components}||g' \
 		${WRKSRC}/doc/libidn.texi
-	@${REINPLACE_CMD} -e 's|$$(AUTOMAKE)|${TRUE}|' \
-			-e 's|imagesdir = $$(infodir)|imagesdir = $$(docdir)|' \
+	@${REINPLACE_CMD} -e 's|$$(AUTOMAKE)|${TRUE}|; /imagesdir = / s|infodir|docdir|' \
 		${WRKSRC}/doc/Makefile.in
 .if ! ${PORT_OPTIONS:MDOCS}
-	@${REINPLACE_CMD} -e 's|install-data-am: install-imagesDATA install-info-am install-man|install-data-am: install-info-am install-man|' \
+	@${REINPLACE_CMD} -e '/^install-data-am: / s| install-imagesDATA||' \
 		${WRKSRC}/doc/Makefile.in
+.endif
+.if ${PORT_OPTIONS:MNLS}
+	@${REINPLACE_CMD} -e 's/-lidn/& -lintl/' ${WRKSRC}/libidn.pc.in
 .endif
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 .for i in FAQ NEWS README
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
