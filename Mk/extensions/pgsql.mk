@@ -26,7 +26,7 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .if defined(USE_PGSQL)
 VALID_PGSQL_VER=        84 90 91 92 93
-DEFAULT_PGSQL_VER?=     90
+DEFAULT_PGSQL_VER?=     92
 PGSQL83_LIBVER=         5
 PGSQL84_LIBVER=         5
 PGSQL90_LIBVER=         5
