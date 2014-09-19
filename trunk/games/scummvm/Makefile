@@ -2,12 +2,13 @@
 
 PORTNAME=	scummvm
 DISTVERSION=	1.7.0
+PORTREVISION=	1
 CATEGORIES=	games emulators
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Graphical Adventure Game Virtual Machine
+COMMENT=	Interpreter for several adventure games
 
 LICENSE=	gpl2
 
@@ -59,8 +60,8 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^mandir=/s/datarootdir/prefix/' ${WRKSRC}/configure
 
 post-install:
-	${MKDIR} ${STAGEDIR}${DESKTOPDIR}
-	${INSTALL_DATA} ${WRKSRC}/dists/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${MKDIR} ${DESKTOPDIR}
+	${INSTALL_DATA} ${WRKSRC}/dists/${PORTNAME}.desktop ${DESKTOPDIR}/
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.post.mk>
