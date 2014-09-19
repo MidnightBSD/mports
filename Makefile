@@ -147,8 +147,6 @@ print-index:	${INDEXDIR}/${INDEXFILE}
 GIT?= git
 SVN?= svn
 RSYNC?= rsync
-PORTSNAP?= portsnap
-PORTSNAP_FLAGS?= -p ${.CURDIR}
 .if !target(update)
 update:
 .if exists(${.CURDIR}/.svn)
@@ -166,17 +164,5 @@ update:
 	@echo ">>> Updating with ${RSYNC} from ${PORTS_RSYNC_SOURCE}"
 	@echo "--------------------------------------------------------------"
 	@${RSYNC} ${RSYNC_FLAGS} ${PORTS_RSYNC_SOURCE}/ ${.CURDIR}/
-.else
-	@echo "--------------------------------------------------------------"
-	@echo ">>> Running ${PORTSNAP}"
-	@echo "--------------------------------------------------------------"
-.if !exists(${PORTSDIR}/.portsnap.INDEX)
-	@echo "Error: 'make update' uses portsnap(8) by default and"
-	@echo "needs ${PORTSDIR} to be created by portsnap on its first run."
-	@echo "Please run 'portsnap fetch extract' first."
-.else
-	@${PORTSNAP} ${PORTSNAP_FLAGS} fetch
-	@${PORTSNAP} ${PORTSNAP_FLAGS} update
-.endif
 .endif
 .endif
