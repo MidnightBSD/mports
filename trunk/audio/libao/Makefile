@@ -5,7 +5,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libao
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/ao/
 
@@ -14,54 +14,25 @@ COMMENT=	Portable audio output library
 
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
-USES=		pathfix pkgconfig
-GNU_CONFIGURE=	yes
+USES=		pathfix pkgconfig libtool:keepla
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-static \
+		--disable-arts
+# do not install
+MAKE_ARGS=	ckport_DATA=""
 
-MAN5=		libao.conf.5
+OPTIONS_DEFINE=	DOCS ESOUND NAS PULSEAUDIO
+OPTIONS_SUB=	yes
 
-OPTIONS_DEFINE=	DOCS ARTS ESOUND NAS PULSEAUDIO
+NAS_LIB_DEPENDS=libaudio.so:${PORTSDIR}/audio/nas
+NAS_CONFIGURE_ENABLE=	nas
 
-.include <bsd.mport.options.mk>
+PULSEAUDIO_LIB_DEPENDS=	libpulse-simple.so:${PORTSDIR}/audio/pulseaudio
+PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 
-.if ${PORT_OPTIONS:MDOCS}
-MAKE_ENV=	DOC=doc
-.else
-MAKE_ENV=	DOC=""
-.endif
-
-.if ${PORT_OPTIONS:MARTS}
-LIB_DEPENDS+=	artsc.0:${PORTSDIR}/audio/arts
-PLIST_SUB+=	ARTS=""
-.else
-CONFIGURE_ARGS+=--disable-arts
-PLIST_SUB+=	ARTS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MESOUND}
-USE_GNOME+=	esound
-PLIST_SUB+=	ESOUND=""
-.else
-CONFIGURE_ARGS+=--disable-esd
-PLIST_SUB+=	ESOUND="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MNAS}
-LIB_DEPENDS+=	audio.2:${PORTSDIR}/audio/nas
-PLIST_SUB+=	NAS=""
-.else
-CONFIGURE_ARGS+=--disable-nas
-PLIST_SUB+=	NAS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MPULSEAUDIO}
-LIB_DEPENDS+=	pulse-simple.0:${PORTSDIR}/audio/pulseaudio
-PLIST_SUB+=	PULSEAUDIO=""
-.else
-CONFIGURE_ARGS+=--disable-pulse
-PLIST_SUB+=	PULSEAUDIO="@comment "
-.endif
+ESOUND_CONFIGURE_ENABLE=esd
+ESOUND_USE=	GNOME=esound
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/libao.conf|${PREFIX}&|' \
