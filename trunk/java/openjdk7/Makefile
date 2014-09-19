@@ -36,12 +36,12 @@ DEBUG_DESC=		Enable extra debugging info
 POLICY_DESC=		Install the Unlimited Strength Policy Files
 TZUPDATE_DESC=		Update the time zone data
 
-PORT_MINOR_VERSION=	25
-PORT_BUILD_NUMBER=	15
+PORT_MINOR_VERSION=	45
+PORT_BUILD_NUMBER=	18
 JDK_MAJOR_VERSION=	7
-JDK_MINOR_VERSION=	6
-JDK_BUILD_NUMBER=	24
-JDK_BUILD_DATE=		09_aug_2012
+JDK_MINOR_VERSION=	40
+JDK_BUILD_NUMBER=	43
+JDK_BUILD_DATE=		26_aug_2013
 JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-b${JDK_BUILD_NUMBER}-${JDK_BUILD_DATE}
 
 # Use our own version of ant to avoid circular dependencies
@@ -94,7 +94,7 @@ MAKE_ENV+=	LANG="C" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}" \
 		MILESTONE="fcs" \
 		JDK_MICRO_VERSION="0_${PORT_MINOR_VERSION}" \
-		BUILD_NUMBER="b${PORT_BUILD_NUMBER}"
+		BUILD_NUMBER="b${PORT_BUILD_NUMBER}" \
 
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
@@ -102,19 +102,7 @@ BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
 		${LOCALBASE}/openjdk6 \
 		${LOCALBASE}/bootstrap-openjdk
 
-SECURITY_ICONS= security-icon-bw16.png \
-		security-icon-bw24.png \
-		security-icon-bw32.png \
-		security-icon-bw48.png \
-		security-icon-interim16.png \
-		security-icon-interim24.png \
-		security-icon-interim32.png \
-		security-icon-interim48.png \
-		security-icon-yellow16.png \
-		security-icon-yellow24.png \
-		security-icon-yellow32.png \
-		security-icon-yellow48.png
-
+NO_STAGE=	yes
 .include <bsd.mport.options.mk>
 
 .if empty(PORT_OPTIONS:MDEBUG)
@@ -142,14 +130,6 @@ BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
 PATCH_DEPENDS+=	gpatch:${PORTSDIR}/devel/patch
 PATCH=		gpatch
 .endif
-
-post-extract:
-	# Move icons to their new home.
-	@${MKDIR} ${WRKSRC}/jdk/src/share/classes/sun/awt/resources
-.for icon in ${SECURITY_ICONS}
-	@${MV} ${WRKSRC}/jdk/src/solaris/classes/sun/awt/X11/${icon} \
-		${WRKSRC}/jdk/src/share/classes/sun/awt/resources/
-.endfor
 
 post-patch:
 	@${REINPLACE_CMD} "s|%%LOCALBASE%%|${LOCALBASE}|" \
