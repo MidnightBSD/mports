@@ -1,51 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	libdvdread
-PORTVERSION=	4.1.4.r1219
+PORTVERSION=	4.9.9
+PORTREVISION=	0
 CATEGORIES=	multimedia
-# Svn repository URL : svn://svn.mplayerhq.hu/dvdnav/trunk/libdvdread
-MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
-		http://www1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		http://www2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		http://www3.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		http://www4.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		http://www5.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		ftp://ftp1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		ftp://ftp2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		FREEBSD_LOCAL/martymac
+MASTER_SITES=	http://dvdnav.mplayerhq.hu/releases/ \
+		http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
+		LOCAL/martymac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPlayer version of the libdvdread project
+
 LICENSE=	gpl2
 
-.if !defined(PACKAGE_BUILDING)
-LIB_DEPENDS=	dvdcss.${DVDCSS_LIBVERSION}:${PORTSDIR}/multimedia/libdvdcss
-.endif
-
-USE_BZIP2=	yes
-CFLAGS+=	"-I${LOCALBASE}/include"
-LDFLAGS+=	"-L${LOCALBASE}/lib"
-HAS_CONFIGURE=	yes
-CONFIGURE_SCRIPT=	configure2
-CONFIGURE_ARGS=	--prefix="${PREFIX}" \
-		--libdir="${PREFIX}/lib" \
-		--libdatadir="${PREFIX}/libdata/pkgconfig" \
-		--shlibdir="${PREFIX}/lib" \
-		--incdir="${PREFIX}/include/dvdread" \
-		--disable-opts \
-		--disable-debug \
-		--extra-cflags="${CFLAGS}" \
-		--extra-ldflags="${LDFLAGS}"
-USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		gmake libtool:oldver pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 
-# DVDCSS version hardcoded in src/dvd_input.c (dlopen'ed)
-DVDCSS_LIBVERSION=	3
+PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README TODO
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|-ldl ||g' \
-		${WRKSRC}/Makefile
-	@${REINPLACE_CMD} -E -e 's|(libdvdcss.so)\.2|\1.${DVDCSS_LIBVERSION}|' \
-		${WRKSRC}/src/dvd_input.c
+OPTIONS_DEFINE=	DVDCSS
+.if !defined(PACKAGE_BUILDING)
+OPTIONS_DEFAULT=	DVDCSS
+.endif
+
+# DVDCSS version hardcoded in src/dvd_input.c (dlopen'ed)
+DVDCSS_LIB_DEPENDS=	libdvdcss.so.2:${PORTSDIR}/multimedia/libdvdcss
 
 .include <bsd.port.mk>
