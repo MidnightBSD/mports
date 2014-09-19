@@ -10,7 +10,7 @@ COMMENT=	Arbitrary precision calculator
 
 LICENSE=	lgpl
 
-USES=		gmake bzip2
+USES=		gmake tar:bzip2
 USE_LDCONFIG=	yes
 
 MAKE_JOBS_UNSAFE=	yes
