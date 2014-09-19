@@ -1,61 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	libdvdcss
-PORTVERSION=	1.2.10
-PORTREVISION=	1
+PORTVERSION=	1.2.13
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable abstraction library for DVD decryption
-LICENSE=	restricted
-#gpl2, but DMCA?
 
-NO_CDROM=	CSS code may violate the DMCA
+LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+RESTRICTED=	CSS code may violate the DMCA
+
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		gmake libtool pathfix tar:bzip2
 USE_LDCONFIG=	yes
 
-.ifndef(WITH_DOXYGEN)
-NOPORTDOCS=	yes
-.endif
+OPTIONS_DEFINE=	DOXYGEN DOCS
 
-.ifndef(NOPORTDOCS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOXYGEN}
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
-
 PORTDOCS=	*
 .endif
 
-pre-everything::
-.if !defined(WITH_DOXYGEN)
-	@${ECHO_MSG} '==> Define WITH_DOXYGEN to build API documentation'
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|' ${WRKSRC}/src/ioctl.c
-	${REINPLACE_CMD} -e '/^pkgconfigdir/s|$$(libdir)|$$(libdir)data|' \
-		${WRKSRC}/src/Makefile.in
-# should we disable doc building?
-.ifdef(NOPORTDOCS)
-	@${REINPLACE_CMD} -E \
-		-e 's|^([[:space:]]*SUBDIRS[[:space:]]*=.*)doc|\1|' \
-		${BUILD_WRKSRC}/Makefile.in
-.else
-# we do not want the latex documents... too many dependencies just
-# to get in ps what we already have in html
-	@${REINPLACE_CMD} -E \
-		-e 's|^([[:space:]]*all:[[:space:]]*.*)stamp-latex|\1|' \
-		${BUILD_WRKSRC}/doc/Makefile.in
-.endif
-
 post-install:
-.ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${INSTALL_WRKSRC}/doc/html/* ${DOCSDIR}
+.if ${PORT_OPTIONS:MDOXYGEN}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/doc/html/* ${STAGEDIR}${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
