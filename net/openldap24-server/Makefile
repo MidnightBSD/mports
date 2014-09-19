@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		openldap
-DISTVERSION=		2.4.35
+DISTVERSION=		2.4.39
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -40,11 +40,13 @@ LICENSE=		openldap2.8
 
 LATEST_LINK?=		${PKGNAMEPREFIX}openldap24${PKGNAMESUFFIX}
 USE_OPENSSL=		yes
-MAKE_JOBS_SAFE=		yes
+USES=                 libtool:keepla
 USE_AUTOTOOLS=		libtool
 .if !defined(CLIENT_ONLY)
 USERS=			ldap
 GROUPS=			ldap
+LDAP_USER?=		ldap
+LDAP_GROUP?=		ldap
 .endif
 
 WANT_OPENLDAP_VER?=	24
@@ -52,29 +54,31 @@ WANT_OPENLDAP_VER?=	24
 BROKEN=			incompatible OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 
-PORTREVISION_CLIENT=	0
-PORTREVISION_SERVER=	0
-OPENLDAP_SHLIB_MAJOR=	8
+PORTREVISION_CLIENT=	1
+PORTREVISION_SERVER=	2
+OPENLDAP_SHLIB_MAJOR=	2
+OPENLDAP_MAJOR=		${DISTVERSION:R}
 
-OPTIONS_DEFINE=	FETCH
+OPTIONS_DEFINE=		FETCH GSSAPI
 
-FETCH_DESC=	Enable fetch(3) support
+FETCH_DESC=		Enable fetch(3) support
+GSSAPI_DESC=		With GSSAPI support (implies SASL support)
 
 .if !defined(CLIENT_ONLY)
-OPTIONS_DEFINE+=	DYNACL ACI BDB DNSSRV MDB PASSWD PERL RELAY SHELL
+OPTIONS_DEFINE+=	DYNACL ACI BDB MDB DNSSRV PASSWD PERL RELAY SHELL
 OPTIONS_DEFINE+=	SOCK ODBC RLOOKUPS SLP SLAPI TCP_WRAPPERS
 OPTIONS_DEFINE+=	ACCESSLOG AUDITLOG COLLECT CONSTRAINT DDS
 OPTIONS_DEFINE+=	DEREF DYNGROUP DYNLIST MEMBEROF PPOLICY PROXYCACHE
 OPTIONS_DEFINE+=	REFINT RETCODE RWM SEQMOD SSSVLV SYNCPROV TRANSLUCENT
 OPTIONS_DEFINE+=	UNIQUE VALSORT SMBPWD SHA2 DYNAMIC_BACKENDS SASL
 
-OPTIONS_DEFAULT=	BDB TCP_WRAPPERS SEQMOD SYNCPROV DYNAMIC_BACKENDS
+OPTIONS_DEFAULT=	BDB MDB SYNCPROV DYNAMIC_BACKENDS
 
 DYNACL_DESC=		Run-time loadable ACL (experimental)
 ACI_DESC=		Per-object ACI (experimental)
-BDB_DESC=		With BerkeleyDB backend
-DNSSRV_DESC=		With Dnssrv backend
+BDB_DESC=		With BerkeleyDB backend (DEPRECATED)
 MDB_DESC=		With Memory-Mapped DB backend
+DNSSRV_DESC=		With Dnssrv backend
 PASSWD_DESC=		With Passwd backend
 PERL_DESC=		With Perl backend
 RELAY_DESC=		With Relay backend
@@ -83,7 +87,7 @@ SOCK_DESC=		With Sock backend
 ODBC_DESC=		With SQL backend
 RLOOKUPS_DESC=		With reverse lookups of client hostnames
 SLP_DESC=		With SLPv2 (RFC 2608) support
-SLAPI_DESC=		With Netscape SLAPI plugin API
+SLAPI_DESC=		With Netscape SLAPI plugin API (experimental)
 TCP_WRAPPERS_DESC=	With tcp wrapper support
 ACCESSLOG_DESC=		With In-Directory Access Logging overlay
 AUDITLOG_DESC=		With Audit Logging overlay
@@ -119,7 +123,7 @@ OPENLDAP_PORTREVISION=	${PORTREVISION_SERVER}
 OPENLDAP_PKGFILESUFX=
 .endif
 
-CONFIGURE_SED=		-e 's,-kthread,${PTHREAD_LIBS},g' -e 's,uuid/uuid.h,xxuuid/uuid.h,g'
+CONFIGURE_SED=		-e 's,uuid/uuid.h,xxuuid/uuid.h,g'
 
 .include <bsd.port.pre.mk>
 
@@ -130,16 +134,23 @@ PORTDOCS=		CHANGES drafts rfc
 PORT_OPTIONS+=	SASL
 .endif
 .if defined(USE_OPENLDAP)
-BROKEN=			You have `USE_OPENLDAP' variable defined either in environment or in make(1) arguments. Please undefine and try again.
+BROKEN=			You have 'USE_OPENLDAP' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 .else
 USE_OPENLDAP=		yes
 WANT_OPENLDAP_VER=	24
 
+.if ${PORT_OPTIONS:MGSSAPI} && empty(PORT_OPTIONS:MSASL)
+PORT_OPTIONS+=	SASL
+.endif
+
 .if ${PORT_OPTIONS:MSASL}
 WANT_OPENLDAP_SASL=	yes
 CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-client-2.*
 PKGNAMESUFFIX=		-sasl-server
+.if ${PORT_OPTIONS:MGSSAPI}
+RUN_DEPENDS+=		cyrus-sasl-gssapi>0:${PORTSDIR}/security/cyrus-sasl2-gssapi
+.endif
 .else
 CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-sasl-client-2.*
 .endif
@@ -158,6 +169,8 @@ LOCALSTATEDIR?=		/var/db
 DATABASEDIR?=		${LOCALSTATEDIR}/openldap-data
 
 SUB_LIST+=		LDAP_RUN_DIR=${LDAP_RUN_DIR} \
+			LDAP_USER=${LDAP_USER} \
+			LDAP_GROUP=${LDAP_GROUP} \
 			DATABASEDIR=${DATABASEDIR} \
 			PKGNAME=${PKGNAME}
 
@@ -174,7 +187,7 @@ CONFIGURE_ARGS+=	--without-fetch
 .endif
 
 .if ${PORT_OPTIONS:MSASL}
-LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=		libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 CONFIGURE_ARGS+=	--with-cyrus-sasl
 .else
 CONFIGURE_ARGS+=	--without-cyrus-sasl
@@ -335,11 +348,10 @@ PLIST_SUB+=		BACK_BDB="@comment " \
 .else
 
 WITH_BDB_VER?=		46
-INVALID_BDB_VER=	42
-USE_BDB=		yes
+USE_BDB=		44+
 
 # XXX Can BDB 5.x use XY instead of X as version?
-.if ${WITH_BDB_VER} >= 43 || ${WITH_BDB_VER} == 5
+.if ${WITH_BDB_VER} >= 43 || ${WITH_BDB_VER} == 5 || ${WITH_BDB_VER} == 6
 CONFIGURE_ARGS+=	--enable-bdb=${BACKEND_ENABLE} \
 			--enable-hdb=${BACKEND_ENABLE}
 PLIST_SUB+=		BACK_BDB=${BACKEND_PLIST} \
@@ -357,6 +369,7 @@ PLIST_SUB+=		BACK_BDB="@comment " \
 .endif
 
 CPPFLAGS+=		-I${BDB_INCLUDE_DIR}
+LDFLAGS+=		-L${BDB_LIB_DIR}
 CONFIGURE_SED+=		-e 's,ol_DB_LIB=$$,&-l${BDB_LIB_NAME:R},' \
 			-e 's,(ol_cv_lib_db=)yes$$,\1-l${BDB_LIB_NAME:R},'
 .endif
@@ -420,14 +433,7 @@ CONFIGURE_ARGS+=	--enable-spasswd
 .if ${PORT_OPTIONS:MODBC}
 CONFIGURE_ARGS+=	--enable-sql=${BACKEND_ENABLE}
 PLIST_SUB+=		BACK_SQL=${BACKEND_PLIST}
-WITH_ODBC_TYPE?=	iODBC
-.if ${WITH_ODBC_TYPE:L} == iodbc
-LIB_DEPENDS+=		iodbc.3:${PORTSDIR}/databases/libiodbc
-.elif ${WITH_ODBC_TYPE:L} == unixodbc
-LIB_DEPENDS+=		odbc.2:${PORTSDIR}/databases/unixODBC
-.else
-BROKEN=			choose either iODBC or unixODBC for WITH_ODBC_TYPE
-.endif
+LIB_DEPENDS+=		libodbc.so:${PORTSDIR}/databases/unixODBC
 .else
 PLIST_SUB+=		BACK_SQL="@comment "
 .endif
@@ -461,11 +467,11 @@ PLIST_SUB+=		SLAPI="@comment "
 
 .if ${PORT_OPTIONS:MSLP}
 CONFIGURE_ARGS+=	--enable-slp
-LIB_DEPENDS+=		slp.1:${PORTSDIR}/net/openslp
+LIB_DEPENDS+=		libslp.so:${PORTSDIR}/net/openslp
 .endif
 
 # Include tcp-wrapper support
-.if !defined(WITHOUT_TCP_WRAPPERS) && exists(/usr/include/tcpd.h)
+.if ${PORT_OPTIONS:MTCP_WRAPPERS}
 CONFIGURE_ARGS+=	--enable-wrappers
 .endif
 
@@ -476,28 +482,27 @@ CONFIGURE_ARGS+=	--enable-wrappers
 CPPFLAGS+=		-DLDAP_CONNECTIONLESS
 .endif
 
-CPPFLAGS+=		${PTHREAD_CFLAGS} \
-			-I${LOCALBASE}/include
-LDFLAGS+=		-L${LOCALBASE}/lib
-#LIBS+=			${PTHREAD_LIBS}
-
-CONFIGURE_ENV+=		LIBS="${LIBS}"
+CPPFLAGS+=		-I${LOCALBASE}/include
+LIBS+=			-L${LOCALBASE}/lib
 
 .if defined(CLIENT_ONLY)
-.include "${FILESDIR}/manpages.client"
 .else
 SUB_LIST+=		RC_DIR=${PREFIX} \
 			LDAP_RUN_DIR=${LDAP_RUN_DIR} \
 			DATABASEDIR=${DATABASEDIR}
-.include "${FILESDIR}/manpages.server"
 .endif
 
 PLIST_SUB+=		${SUB_LIST}
 PLIST_SUB+=		SHLIB_MAJOR=${OPENLDAP_SHLIB_MAJOR}
+PLIST_SUB+=		OPENLDAP_MAJOR=${OPENLDAP_MAJOR}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%LOCALSTATEDIR%/run/,${LDAP_RUN_DIR}/,g' \
 		${SED_MODULES} ${WRKSRC}/servers/slapd/slapd.conf
+	@${REINPLACE_CMD} -e 's,^OPT =.*,OPT = ${CFLAGS},g' \
+		-e 's,^CC =.*,CC = ${CC},g' \
+		${SED_MODULES} ${WRKSRC}/contrib/slapd-modules/*/Makefile \
+		${WRKSRC}/contrib/slapd-modules/*/*/Makefile
 .if defined(CONFIGURE_SED)
 	@${REINPLACE_CMD} -E ${CONFIGURE_SED} \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
@@ -511,18 +516,18 @@ pre-configure:
 
 .if !defined(CLIENT_ONLY)
 test: build
-	@cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} \
-		${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test
+	@(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
 
 post-build:
 	@${DO_NADA}
 .if ${PORT_OPTIONS:MSMBPWD}
-	@cd ${BUILD_WRKSRC}/contrib/slapd-modules/smbk5pwd; ${SETENV} ${MAKE_ENV} \
-		${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} DEFS="-DDO_SAMBA" all
+	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/smbk5pwd && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} DEFS="-DDO_SAMBA" all)
 .endif
 .if ${PORT_OPTIONS:MSHA2}
-	@cd ${BUILD_WRKSRC}/contrib/slapd-modules/passwd/sha2; ${SETENV} ${MAKE_ENV} \
-		${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} all
+	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/passwd/sha2 && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} all)
 .endif
 .endif
 
@@ -533,21 +538,25 @@ pre-su-install:
 .if ${PORT_OPTIONS:MMODULES} || ${PORT_OPTIONS:MDYNAMIC_BACKENDS} || ${PORT_OPTIONS:MSLAPI}
 	@${MKDIR} ${PREFIX}/libexec/openldap
 .endif
+.if !defined(CLIENT_ONLY)
+	@${MKDIR} ${DATABASEDIR}
+.endif
 
 post-install:
 .if defined(CLIENT_ONLY)
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
 	@for dir in drafts rfc; do \
-		${MKDIR} ${DOCSDIR}/$${dir}; \
+		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${dir}; \
 		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${DOCSDIR}/$${dir}; \
 	done
-.endif
+	@for library in lber ldap ldap_r; do \
+		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
+	done
 .else
 	@${MKDIR} ${LDAP_RUN_DIR}
 	@for schema in ${SCHEMATA}; do \
-		${ECHO_CMD} "@unexec if cmp -s %D/etc/openldap/schema/$${schema}.schema" \
+		${ECHO_CMD} "@unexec if cmp -s %D/etc/openldap/schema/$${schema}.schema " \
 			"%D/etc/openldap/schema/$${schema}.schema.default; then" \
 			"rm -f %D/etc/openldap/schema/$${schema}.schema; fi"; \
 		${ECHO_CMD} "etc/openldap/schema/$${schema}.schema.default"; \
@@ -555,6 +564,9 @@ post-install:
 	done >>${TMPPLIST}
 	@${ECHO_CMD} "@unexec ${RMDIR} %D/etc/openldap/schema 2>/dev/null || true" >>${TMPPLIST}
 	@${ECHO_CMD} "@unexec ${RMDIR} %D/etc/openldap 2>/dev/null || true" >>${TMPPLIST}
+.if ${PORT_OPTIONS:MDYNAMIC_BACKENDS}
+	@${STRIP_CMD} ${PREFIX}/libexec/openldap/*.so.${OPENLDAP_SHLIB_MAJOR}
+.endif
 .if ${PORT_OPTIONS:MSMBPWD}
 	@${INSTALL_DATA} ${WRKSRC}/contrib/slapd-modules/smbk5pwd/smbk5pwd.la \
 		${PREFIX}/libexec/openldap/

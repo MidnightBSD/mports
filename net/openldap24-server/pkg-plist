@@ -1,4 +1,3 @@
-@comment $FreeBSD$
 @unexec %%RC_DIR%%/etc/rc.d/slapd stop 2>&1 >/dev/null || true
 etc/openldap/slapd.ldif.default
 etc/openldap/slapd.ldif
@@ -19,67 +18,67 @@ etc/openldap/schema/core.ldif
 etc/openldap/schema/corba.ldif
 etc/openldap/schema/collective.ldif
 etc/openldap/schema/README
-etc/openldap/DB_CONFIG.example
+%%BACK_BDB%%etc/openldap/DB_CONFIG.example
+%%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%SLAPI%%lib/libslapi.a
 %%SLAPI%%lib/libslapi.la
 %%SLAPI%%lib/libslapi.so
-%%SLAPI%%lib/libslapi-2.4.so
-%%SLAPI%%lib/libslapi-2.4.so.%%SHLIB_MAJOR%%
 %%MODULES%%@exec mkdir -p %D/libexec/openldap
-%%BACK_BDB%%libexec/openldap/back_bdb-2.4.so
-%%BACK_BDB%%libexec/openldap/back_bdb-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_BDB%%libexec/openldap/back_bdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_BDB%%libexec/openldap/back_bdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_BDB%%libexec/openldap/back_bdb.la
 %%BACK_BDB%%libexec/openldap/back_bdb.so
-%%BACK_HDB%%libexec/openldap/back_hdb-2.4.so
-%%BACK_HDB%%libexec/openldap/back_hdb-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_HDB%%libexec/openldap/back_hdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_HDB%%libexec/openldap/back_hdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_HDB%%libexec/openldap/back_hdb.la
 %%BACK_HDB%%libexec/openldap/back_hdb.so
-%%BACKEND%%libexec/openldap/back_ldap-2.4.so
-%%BACKEND%%libexec/openldap/back_ldap-2.4.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_ldap-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_ldap-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACKEND%%libexec/openldap/back_ldap.la
 %%BACKEND%%libexec/openldap/back_ldap.so
-%%BACKEND%%libexec/openldap/back_meta-2.4.so
-%%BACKEND%%libexec/openldap/back_meta-2.4.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_meta-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_meta-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACKEND%%libexec/openldap/back_meta.la
 %%BACKEND%%libexec/openldap/back_meta.so
-%%BACKEND%%libexec/openldap/back_monitor-2.4.so
-%%BACKEND%%libexec/openldap/back_monitor-2.4.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_monitor-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_monitor-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACKEND%%libexec/openldap/back_monitor.la
 %%BACKEND%%libexec/openldap/back_monitor.so
-%%BACKEND%%libexec/openldap/back_null-2.4.so
-%%BACKEND%%libexec/openldap/back_null-2.4.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_null-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACKEND%%libexec/openldap/back_null-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACKEND%%libexec/openldap/back_null.la
 %%BACKEND%%libexec/openldap/back_null.so
-%%BACK_DNSSRV%%libexec/openldap/back_dnssrv-2.4.so
-%%BACK_DNSSRV%%libexec/openldap/back_dnssrv-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_DNSSRV%%libexec/openldap/back_dnssrv-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_DNSSRV%%libexec/openldap/back_dnssrv-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_DNSSRV%%libexec/openldap/back_dnssrv.la
 %%BACK_DNSSRV%%libexec/openldap/back_dnssrv.so
-%%BACK_MDB%%libexec/openldap/back_mdb-2.4.so
-%%BACK_MDB%%libexec/openldap/back_mdb-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_MDB%%libexec/openldap/back_mdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_MDB%%libexec/openldap/back_mdb-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_MDB%%libexec/openldap/back_mdb.la
 %%BACK_MDB%%libexec/openldap/back_mdb.so
-%%BACK_PASSWD%%libexec/openldap/back_passwd-2.4.so
-%%BACK_PASSWD%%libexec/openldap/back_passwd-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_PASSWD%%libexec/openldap/back_passwd-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_PASSWD%%libexec/openldap/back_passwd-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_PASSWD%%libexec/openldap/back_passwd.la
 %%BACK_PASSWD%%libexec/openldap/back_passwd.so
-%%BACK_PERL%%libexec/openldap/back_perl-2.4.so
-%%BACK_PERL%%libexec/openldap/back_perl-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_PERL%%libexec/openldap/back_perl-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_PERL%%libexec/openldap/back_perl-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_PERL%%libexec/openldap/back_perl.la
 %%BACK_PERL%%libexec/openldap/back_perl.so
-%%BACK_RELAY%%libexec/openldap/back_relay-2.4.so
-%%BACK_RELAY%%libexec/openldap/back_relay-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_RELAY%%libexec/openldap/back_relay-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_RELAY%%libexec/openldap/back_relay-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_RELAY%%libexec/openldap/back_relay.la
 %%BACK_RELAY%%libexec/openldap/back_relay.so
-%%BACK_SHELL%%libexec/openldap/back_shell-2.4.so
-%%BACK_SHELL%%libexec/openldap/back_shell-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_SHELL%%libexec/openldap/back_shell-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_SHELL%%libexec/openldap/back_shell-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_SHELL%%libexec/openldap/back_shell.la
 %%BACK_SHELL%%libexec/openldap/back_shell.so
-%%BACK_SOCK%%libexec/openldap/back_sock-2.4.so
-%%BACK_SOCK%%libexec/openldap/back_sock-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_SOCK%%libexec/openldap/back_sock-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_SOCK%%libexec/openldap/back_sock-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_SOCK%%libexec/openldap/back_sock.la
 %%BACK_SOCK%%libexec/openldap/back_sock.so
-%%BACK_SQL%%libexec/openldap/back_sql-2.4.so
-%%BACK_SQL%%libexec/openldap/back_sql-2.4.so.%%SHLIB_MAJOR%%
+%%BACK_SQL%%libexec/openldap/back_sql-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
+%%BACK_SQL%%libexec/openldap/back_sql-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.10.2
 %%BACK_SQL%%libexec/openldap/back_sql.la
 %%BACK_SQL%%libexec/openldap/back_sql.so
 %%SHA2%%libexec/openldap/pw-sha2.la
@@ -99,7 +98,67 @@ sbin/slapindex
 sbin/slappasswd
 sbin/slapschema
 sbin/slaptest
+man/man5/slapd-bdb.5.gz
+man/man5/slapd-config.5.gz
+man/man5/slapd-dnssrv.5.gz
+man/man5/slapd-hdb.5.gz
+man/man5/slapd-ldap.5.gz
+man/man5/slapd-ldbm.5.gz
+man/man5/slapd-ldif.5.gz
+man/man5/slapd-mdb.5.gz
+man/man5/slapd-meta.5.gz
+man/man5/slapd-monitor.5.gz
+man/man5/slapd-ndb.5.gz
+man/man5/slapd-null.5.gz
+man/man5/slapd-passwd.5.gz
+man/man5/slapd-perl.5.gz
+man/man5/slapd-relay.5.gz
+man/man5/slapd-shell.5.gz
+man/man5/slapd-sock.5.gz
+man/man5/slapd-sql.5.gz
+man/man5/slapd.access.5.gz
+man/man5/slapd.backends.5.gz
+man/man5/slapd.conf.5.gz
+man/man5/slapd.overlays.5.gz
+man/man5/slapd.plugin.5.gz
+man/man5/slapo-accesslog.5.gz
+man/man5/slapo-auditlog.5.gz
+man/man5/slapo-chain.5.gz
+man/man5/slapo-collect.5.gz
+man/man5/slapo-constraint.5.gz
+man/man5/slapo-dds.5.gz
+man/man5/slapo-dyngroup.5.gz
+man/man5/slapo-dynlist.5.gz
+man/man5/slapo-memberof.5.gz
+man/man5/slapo-pbind.5.gz
+man/man5/slapo-pcache.5.gz
+man/man5/slapo-ppolicy.5.gz
+man/man5/slapo-refint.5.gz
+man/man5/slapo-retcode.5.gz
+man/man5/slapo-rwm.5.gz
+man/man5/slapo-sock.5.gz
+man/man5/slapo-sssvlv.5.gz
+man/man5/slapo-syncprov.5.gz
+man/man5/slapo-translucent.5.gz
+man/man5/slapo-unique.5.gz
+man/man5/slapo-valsort.5.gz
+man/man8/slapacl.8.gz
+man/man8/slapadd.8.gz
+man/man8/slapauth.8.gz
+man/man8/slapcat.8.gz
+man/man8/slapd.8.gz
+man/man8/slapdn.8.gz
+man/man8/slapindex.8.gz
+man/man8/slappasswd.8.gz
+man/man8/slapschema.8.gz
+man/man8/slaptest.8.gz
 @cwd /
-@exec mkdir -p %%LDAP_RUN_DIR%%
+@owner %%LDAP_USER%%
+@group %%LDAP_USER%%
+@exec install -d -o %%LDAP_USER%% -g %%LDAP_GROUP%% %%LDAP_RUN_DIR%%
 @dirrmtry %%LDAP_RUN_DIR%%
+@exec install -d -o %%LDAP_USER%% -g %%LDAP_GROUP%% %%DATABASEDIR%%
+@dirrmtry %%DATABASEDIR%%
+@owner root
+@group wheel
 @cwd %%PREFIX%%
