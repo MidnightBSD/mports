@@ -2,6 +2,7 @@
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.10
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -12,13 +13,11 @@ COMMENT=	Version 2.4.x of Apache web server
 
 LICENSE=	apache2
 
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
-		apr-1:${PORTSDIR}/devel/apr \
-		pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libapr-1.so:${PORTSDIR}/devel/apr \
+		libpcre.so:${PORTSDIR}/devel/pcre
 
-LATEST_LINK=	apache24
-
-CONFLICTS=	apache-2.0.* apache-*-2.0.* apache-*-2.2.*
+CONFLICTS=	apache-*-2.2.* apache22-*
 
 SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_VERSION=${LIBTOOL_VERSION} AUTOCONF=${AUTOCONF} \
@@ -26,12 +25,15 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			AUTOHEADER=${AUTOHEADER}
 
 USE_APACHE=	common24
-USES=		iconv tar:bzip2
+USES=		iconv tar:bzip2 cpe
 USE_AUTOTOOLS=	autoconf libtool
 USE_PERL5=	yes
 USE_PYTHON=	yes
 USE_RC_SUBR=	apache24 htcacheclean
 LIBTOOLFILES=	configure.in
+
+CPE_VENDOR=	apache
+CPE_PRODUCT=	http_server
 
 PORTDOCS=	*
 
@@ -106,8 +108,7 @@ CONFIGURE_ARGS+=--prefix=${PREFIX_RELDEST} \
 		--with-apr=${APR_CONFIG} \
 		--with-apr-util=${APU_CONFIG}
 
-CONFIGURE_ENV=	\
-		CONFIG_SHELL="${SH}" \
+CONFIGURE_ENV=	CONFIG_SHELL="${SH}" \
 		LOCALBASE="${LOCALBASE}"
 
 MAKE_ENV+=	EXPR_COMPAT=yes \
