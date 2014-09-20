@@ -1,23 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	gsettings-desktop-schemas
-PORTVERSION=	3.0.1
-PORTREVISION=	2
+PORTVERSION=	3.6.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of globally shared GSetting schemas
+
 LICENSE=	lgpl2.1
 
 RUN_DEPENDS=	${LOCALBASE}/etc/fonts/conf.avail/31-cantarell.conf:${PORTSDIR}/x11-fonts/cantarell-fonts
 
-USES=		pkgconfig gettext
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_PERL5_BUILD=	yes
-USE_GNOME=	gnomehack intltool glib20
+USES=		gettext gmake pathfix perl5 pkgconfig tar:xz
+USE_PERL5=	build
+USE_GNOME=	intltool glib20 gnomehier introspection:build
 GNU_CONFIGURE=	yes
 
 GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
@@ -27,6 +25,7 @@ GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
 		org.gnome.desktop.background.gschema.xml \
 		org.gnome.desktop.default-applications.gschema.xml \
 		org.gnome.desktop.enums.xml \
+		org.gnome.desktop.input-sources.gschema.xml \
 		org.gnome.desktop.interface.gschema.xml \
 		org.gnome.desktop.lockdown.gschema.xml \
 		org.gnome.desktop.media-handling.gschema.xml \
@@ -35,6 +34,9 @@ GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
 		org.gnome.desktop.sound.gschema.xml \
 		org.gnome.desktop.thumbnailers.gschema.xml \
 		org.gnome.desktop.thumbnail-cache.gschema.xml \
+		org.gnome.desktop.wm.keybindings.gschema.xml \
+		org.gnome.desktop.wm.preferences.gschema.xml \
+		org.gnome.system.locale.gschema.xml \
 		org.gnome.system.proxy.gschema.xml
 
 .include <bsd.port.mk>
