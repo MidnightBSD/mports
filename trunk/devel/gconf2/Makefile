@@ -13,33 +13,32 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A configuration database system for GNOME
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
 
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_GNOME=	gnomehier gnomehack orbit2 gtk20 libxml2 ltverhack \
-		referencehack intlhack dconf
+USES+=		gettext gmake libtool pathfix pkgconfig
+USE_GNOME=	gnomehier orbit2 gtk20 libxml2 \
+		referencehack intlhack dconf introspection:build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
-#		--enable-gconf-source=${PREFIX}/etc/gconf/schemas \
-
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAN1=		gconftool-2.1 gsettings-data-convert.1 \
-		gsettings-schema-convert.1
+INSTALL_TARGET=	install-strip
 
-OPTIONS=	LDAP "Enable LDAP support" off
+OPTIONS_DEFINE=	LDAP
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--with-openldap
 PLIST_SUB+=	LDAP=""
@@ -48,6 +47,6 @@ CONFIGURE_ARGS+=--without-openldap
 PLIST_SUB+=	LDAP="@comment "
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif
