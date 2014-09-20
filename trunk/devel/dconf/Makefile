@@ -2,21 +2,20 @@
 
 PORTNAME?=	dconf
 PORTVERSION=	0.14.1
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A configuration database system for GNOME
+COMMENT=	Configuration database system for GNOME
 
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	vala>=0.18.1:${PORTSDIR}/lang/vala \
 		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
-
-LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
 USES=		gettext gmake pathfix pkgconfig tar:xz
 USE_GNOME=	glib20 gnomehier intltool
@@ -32,7 +31,7 @@ DCONF_SLAVE?=	no
 USE_GNOME+=	gtk30
 INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	ca.desrt.dconf-editor.gschema.xml
-LIB_DEPENDS+=	dconf:${PORTSDIR}/devel/dconf
+LIB_DEPENDS+=	libdconf.so:${PORTSDIR}/devel/dconf
 .else
 CONFIGURE_ARGS+=--disable-editor
 .endif
