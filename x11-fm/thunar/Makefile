@@ -2,33 +2,35 @@
 
 PORTNAME=	Thunar
 PORTVERSION=	1.6.3
+PORTREVISION=	1
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME:L}/${PORTVERSION:R}
+MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME:tl}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 file manager
 
-LICENSE=	gpl2
+LICENSE=	gpl2 lgpl
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING ${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	tumbler-1:${PORTSDIR}/deskutils/xfce4-tumbler
+LIB_DEPENDS=	libtumbler-1.so:${PORTSDIR}/deskutils/xfce4-tumbler \
+	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_PERL5=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gtk20 intltool intlhack gdkpixbuf2
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libexo libmenu libutil
 USE_XORG=	sm x11
-USES=		desktop-file-utils pathfix pkgconfig
+USES=		desktop-file-utils gmake pathfix perl5 libtool pkgconfig \
+	tar:bzip2
 
-OPTIONS_DEFINE=	DBUS DOCS GVFS NLS NOTIFY STARTUP
+OPTIONS_DEFINE=	DOCS GVFS NLS NOTIFY STARTUP
 OPTIONS_GROUP=	PLUGINS
 OPTIONS_GROUP_PLUGINS=	PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
-OPTIONS_DEFAULT=	DBUS GVFS NOTIFY PLUG_APR PLUG_SBR PLUG_UCA PLUG_WALL STARTUP
+OPTIONS_DEFAULT=	GVFS NOTIFY PLUG_APR PLUG_SBR PLUG_UCA PLUG_WALL STARTUP
 
 # Override NOTIFY_DESC
 NOTIFY_DESC=	Display notifications
@@ -40,20 +42,10 @@ PLUG_UCA_DESC=	User Customizable Actions plugin
 PLUG_WALL_DESC=	Wallpaper plugin
 
 CONFIGURE_ARGS+=--enable-gio-unix \
-		--disable-gudev
-
-MAN1=		Thunar.1
+		--disable-gudev \
+		--enable-dbus
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
-CONFIGURE_ARGS+=--enable-dbus
-PLIST_SUB+=	WITH_DBUS=""
-.else
-CONFIGURE_ARGS+=--disable-dbus
-PLIST_SUB+=	WITH_DBUS="@comment "
-.endif
 
 .if ${PORT_OPTIONS:MNLS}
 USES+=		gettext
@@ -65,7 +57,7 @@ PLIST_SUB+=	NLS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MNOTIFY}
-LIB_DEPENDS+=	notify:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=	libnotify.so:${PORTSDIR}/devel/libnotify
 CONFIGURE_ARGS+=--enable-notifications
 .else
 CONFIGURE_ARGS+=--disable-notifications
@@ -80,7 +72,7 @@ PLIST_SUB+=	APIDOCS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPLUG_APR}
-LIB_DEPENDS+=	exif:${PORTSDIR}/graphics/libexif
+LIB_DEPENDS+=	libexif.so:${PORTSDIR}/graphics/libexif
 CONFIGURE_ARGS+=--enable-apr-plugin --enable-exif
 PLIST_SUB+=	PLUGIN_APR=""
 .else
@@ -89,7 +81,7 @@ PLIST_SUB+=	PLUGIN_APR="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPLUG_SBR}
-LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
 CONFIGURE_ARGS+=--enable-sbr-plugin --enable-pcre
 PLIST_SUB+=	PLUGIN_SBR=""
 .else
@@ -123,7 +115,7 @@ PLIST_SUB+=	PLUGIN_WALL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSTARTUP}
-LIB_DEPENDS+=	startup-notification-1:${PORTSDIR}/x11/startup-notification
+LIB_DEPENDS+=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
 CONFIGURE_ARGS+=--enable-startup-notification
 .else
 CONFIGURE_ARGS+=--disable-startup-notification
