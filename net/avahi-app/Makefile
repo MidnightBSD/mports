@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.29
-PORTREVISION=	2
+PORTVERSION=	0.6.31
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
@@ -12,6 +11,9 @@ COMMENT?=	Service discovery on a local network
 
 LICENSE=	lgpl
 
+AVAHI_SLAVE?=	no
+
+.if ${AVAHI_SLAVE} != header
 LIB_DEPENDS?=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libdaemon.so:${PORTSDIR}/devel/libdaemon \
 		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
@@ -20,86 +22,73 @@ LIB_DEPENDS?=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 USERS?=		${PORTNAME}
 GROUPS?=	${USERS}
 
-USE_GNOME+=	glib20 intltool introspection
 USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USE_GNOME+=	glib20 intltool introspection
 USE_GNOME_SUBR=	yes
 USE_LDCONFIG=	yes
-AVAHI_SLAVE?=	no
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--with-distro=freebsd \
 		--with-dbus-system-socket=unix:path=/var/run/dbus/system_bus_socket \
 		--disable-monodoc \
 		--disable-doxygen-doc \
 		--disable-doxygen-dot \
+		--disable-qt3 \
 		--localstatedir=/var \
 		--enable-compat-howl
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
 CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_KQUEUE
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-.if ${AVAHI_SLAVE}=="no"
+.if ${AVAHI_SLAVE} == no
 CONFLICTS=	howl-[0-9]*
-
-MAN1=	avahi-browse.1 avahi-publish.1 avahi-resolve.1 avahi-set-host-name.1
-MAN5=	avahi-daemon.conf.5 avahi.service.5 avahi.hosts.5
-MAN8=	avahi-daemon.8 avahi-dnsconfd.8 avahi-dnsconfd.action.8
-
-MLINKS=	avahi-browse.1 avahi-browse-domains.1 \
-	avahi-publish.1 avahi-publish-address.1 \
-	avahi-publish.1 avahi-publish-service.1 \
-	avahi-resolve.1 avahi-resolve-address.1 \
-	avahi-resolve.1 avahi-resolve-host-name.1
 
 DAEMON_CONFIG_FILES=	hosts avahi-daemon.conf
 .endif
 
 USE_RC_SUBR=yes
+.endif # !avahi-header
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if ${AVAHI_SLAVE}=="autoipd"
+.if ${AVAHI_SLAVE} != header
+.if ${AVAHI_SLAVE} == autoipd
 CONFIGURE_ARGS+=--enable-autoipd
 .else
 CONFIGURE_ARGS+=--disable-autoipd
 .endif
-.if ${AVAHI_SLAVE}=="gtk"
+.if ${AVAHI_SLAVE} == gtk
 CONFIGURE_ARGS+=--enable-gtk
 .else
 CONFIGURE_ARGS+=--disable-gtk
 .endif
-.if ${AVAHI_SLAVE}=="gtk3"
+.if ${AVAHI_SLAVE} == gtk3
 CONFIGURE_ARGS+=--enable-gtk3
 .else
 CONFIGURE_ARGS+=--disable-gtk3
 .endif
-.if ${AVAHI_SLAVE}=="libdns"
+.if ${AVAHI_SLAVE} == libdns
 CONFIGURE_ARGS+=--enable-compat-libdns_sd
 .else
 CONFIGURE_ARGS+=--disable-compat-libdns_sd
 .endif
-.if ${AVAHI_SLAVE}=="python"
+.if ${AVAHI_SLAVE} == python
 CONFIGURE_ARGS+=--enable-python
 .else
 CONFIGURE_ARGS+=--disable-python
 .endif
-.if ${AVAHI_SLAVE}=="qt3"
-CONFIGURE_ARGS+=--enable-qt3
-.else
-CONFIGURE_ARGS+=--disable-qt3
-.endif
-.if ${AVAHI_SLAVE}=="qt4"
+.if ${AVAHI_SLAVE} == qt4
 CONFIGURE_ARGS+=--enable-qt4 \
 		--disable-expat \
 		--disable-gdbm
 .else
 CONFIGURE_ARGS+=--disable-qt4
 .endif
-.if ${AVAHI_SLAVE}=="sharp"
+.if ${AVAHI_SLAVE} == sharp
 CONFIGURE_ARGS+=--enable-mono
 .else
 CONFIGURE_ARGS+=--disable-mono
 .endif
+CONFIGURE_ARGS+=--disable-stack-protector
 
 post-patch: avahi-post-patch
 
@@ -125,12 +114,14 @@ avahi-post-patch:
 		${WRKSRC}/avahi-daemon/dbus-protocol.c
 	@${REINPLACE_CMD} -e 's|^_||g' \
 		${WRKSRC}/avahi-ui/*.desktop.in.in
+	@${REINPLACE_CMD} -e 's|am: install-avahiincludeHEADERS|am:|g' \
+			${WRKSRC}/avahi-ui/Makefile.in
 
 post-build: avahi-post-build
 
 avahi-post-build:
 .for f in ${AVAHI_PKGCONFIG}
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} \
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${f}
 .endfor
 
@@ -145,28 +136,23 @@ avahi-pre-install:
 post-install: avahi-post-install
 
 avahi-post-install:
-.if ${AVAHI_SLAVE}!="no"
-.for f in ${MAN1} ${MAN2} ${MAN3} ${MAN4} ${MAN5} ${MAN6} ${MAN7} ${MAN8} ${MAN9}
-	${INSTALL_DATA} ${WRKSRC}/man/${f} ${PREFIX}/man/man${f:E}/${f}
+.if defined(MANPAGES)
+.for f in ${MANPAGES}
+	${INSTALL_DATA} ${WRKSRC}/man/${f} ${STAGEDIR}${PREFIX}/man/man${f:E}/${f}
 .endfor
 .endif
 .for f in ${AVAHI_PKGCONFIG}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/libdata/pkgconfig
 .endfor
-	${MKDIR} ${PREFIX}/etc/avahi
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/avahi
 .for f in ${DAEMON_CONFIG_FILES}
 	${INSTALL_DATA} ${WRKSRC}/avahi-daemon/${f} \
-		${PREFIX}/etc/avahi/${f}.dist
-	if [ ! -f ${PREFIX}/etc/avahi/${f} ]; then \
-		${INSTALL_DATA} ${WRKSRC}/avahi-daemon/${f} \
-		${PREFIX}/etc/avahi; \
-	fi
+		${STAGEDIR}${PREFIX}/etc/avahi/${f}.dist
 .endfor
-
-.if !defined(PACKAGE_BUILDING) && (${AVAHI_SLAVE}=="no" || ${AVAHI_SLAVE}=="autoipd")
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.if ${AVAHI_SLAVE}==no
 	${INSTALL_DATA} ${FILESDIR}/org.freedesktop.Avahi.service \
-		${LOCALBASE}/share/dbus-1/system-services
+		${STAGEDIR}${PREFIX}/share/dbus-1/system-services
 .endif
+.endif # ! avahi-header
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
