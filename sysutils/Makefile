@@ -60,6 +60,7 @@ SUBDIR += hal-info
 SUBDIR += isc-cron
 SUBDIR += less
 SUBDIR += libcdio
+SUBDIR += libcdio-paranoia
 SUBDIR += libchk
 SUBDIR += libsunacl
 SUBDIR += libutempter
