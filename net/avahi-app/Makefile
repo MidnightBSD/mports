@@ -2,32 +2,30 @@
 
 PORTNAME=	avahi
 PORTVERSION=	0.6.29
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT=	Service discovery on a local network
+COMMENT?=	Service discovery on a local network
+
 LICENSE=	lgpl
 
-BUILD_DEPENDS?=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS?=	expat.6:${PORTSDIR}/textproc/expat2 \
-		daemon.0:${PORTSDIR}/devel/libdaemon \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		gdbm.4:${PORTSDIR}/databases/gdbm
-RUN_DEPENDS?=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+LIB_DEPENDS?=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libdaemon.so:${PORTSDIR}/devel/libdaemon \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libgdbm.so:${PORTSDIR}/databases/gdbm
 
 USERS?=		${PORTNAME}
 GROUPS?=	${USERS}
 
-USE_GNOME?=	gnomehack ltverhack glib20 intltool
-USE_GETTEXT=	yes
+USE_GNOME+=	glib20 intltool introspection
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_GNOME_SUBR=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 AVAHI_SLAVE?=	no
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--with-distro=freebsd \
 		--with-dbus-system-socket=unix:path=/var/run/dbus/system_bus_socket \
 		--disable-monodoc \
