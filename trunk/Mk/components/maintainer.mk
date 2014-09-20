@@ -13,13 +13,16 @@ makepatch:
 	@cd ${.CURDIR} && ${MKDIR} ${FILESDIR}
 	@(cd ${WRKSRC}; \
 		for i in `find . -type f -name '*.orig'`; do \
-			ORG=$$i; \
+			ORIG=$$i; \
 			NEW=$${i%.orig}; \
-			OUT=${FILESDIR}`${ECHO} $${NEW} | \
-				${SED} -e 's|/|__|g' \
-					-e 's|^\.__|/patch-|'`; \
-			${ECHO} ${DIFF} -ud $${ORG} $${NEW} '>' $${OUT}; \
-			${DIFF} -ud $${ORG} $${NEW} > $${OUT} || ${TRUE}; \
+			cmp -s $${ORIG} $${NEW} && continue; \
+			PATCH=`${ECHO} $${NEW} | ${SED} -e 's|/|__|g'`; \
+			OUT=${FILESDIR}/patch-$${PATCH}; \
+			${ECHO} ${DIFF} -ud $${ORIG} $${NEW} '>' $${OUT}; \
+			TZ=UTC ${DIFF} -ud $${ORIG} $${NEW} | ${SED} -e \
+				'/^---/s|\.[0-9]* +0000$$| UTC|' -e \
+				'/^+++/s|\([[:blank]][-0-9:.+]*\)*\)*$$||' \
+				> $${OUT} || ${TRUE}; \
 		done \
 	)
 .endif
