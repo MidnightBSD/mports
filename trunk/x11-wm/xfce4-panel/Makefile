@@ -2,6 +2,7 @@
 
 PORTNAME=	xfce4-panel
 PORTVERSION=	4.10.1
+PORTREVISION=	1
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
@@ -12,15 +13,14 @@ COMMENT=	Xfce's panel
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	wnck-1:${PORTSDIR}/x11-toolkits/libwnck \
-		cairo:${PORTSDIR}/graphics/cairo \
-		dbus-glib-1:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libwnck-1.so:${PORTSDIR}/x11-toolkits/libwnck \
+		libcairo.so:${PORTSDIR}/graphics/cairo \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
-USES=	desktop-file-utils pathfix pkgconfig
+USES=		desktop-file-utils gmake libtool:keepla pathfix perl5 \
+		pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
