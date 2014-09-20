@@ -9,25 +9,20 @@ MASTER_SITES=	SF/lib${PORTNAME}/${PORTNAME}/${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line utility to read and manipulate EXIF data
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
-		popt.0:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	libexif.so:${PORTSDIR}/graphics/libexif \
+		libpopt.so:${PORTSDIR}/devel/popt
 
-USE_GMAKE=	yes
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+CONFIGURE_ENV=	POPT_CFLAGS=-I${LOCALBASE}/include POPT_LIBS="-L${LOCALBASE}/lib -lpopt"
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
-CONFIGURE_ENV+=		POPT_CFLAGS=-I${LOCALBASE}/include POPT_LIBS="-L${LOCALBASE}/lib -lpopt"
+USES=		gmake pkgconfig
 
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-nls --without-libiconv-prefix
-PLIST_SUB+=	NLS="@comment "
-.else
-USE_ICONV=	yes
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.endif
-
-MAN1=		exif.1
+NLS_CONFIGURE_ON=	--enable-nls ${ICONV_CONFIGURE_ARG}
+NLS_CONFIGURE_OFF=	--disable-nls --without-libiconv-prefix
+NLS_USES=		gettext iconv
 
 .include <bsd.port.mk>
