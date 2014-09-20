@@ -54,11 +54,10 @@ do-build:
 	cd ${WRKSRC}/libsoup && ${MAKE_CMD} libsoup-gnome-2.4.la
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.a ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.la ${PREFIX}/lib/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
-	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} install-libsoupgnomeincludeHEADERS
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.6 ${PREFIX}/lib/
+	cd ${WRKSRC}/libsoup && DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} install-libsoupgnomeincludeHEADERS
 .endif
 
 post-install:
