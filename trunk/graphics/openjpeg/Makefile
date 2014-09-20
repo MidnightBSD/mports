@@ -15,7 +15,7 @@ LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
 		libpng15.so:${PORTSDIR}/graphics/png \
 		liblcms2.so:${PORTSDIR}/graphics/lcms2
 
-USES=		cmake pkgconfig
+USES=		cmake cpe pkgconfig
 USE_LDCONFIG=	yes
 
 PLIST_SUB=	VER=${PORTVERSION:R}
