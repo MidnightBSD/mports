@@ -2,7 +2,7 @@
 
 PORTNAME=	xfce4-desktop
 PORTVERSION=	4.10.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/xfdesktop/${PORTVERSION:R}
@@ -14,17 +14,15 @@ COMMENT=	Xfce's desktop manager
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib \
-		wnck-1:${PORTSDIR}/x11-toolkits/libwnck \
-		notify:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libwnck-1.so:${PORTSDIR}/x11-toolkits/libwnck \
+		libnotify.so:${PORTSDIR}/devel/libnotify
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	glib20 gtk20 intltool intlhack desktopfileutils
+USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_XFCE=	configenv garcon libmenu libutil libexo xfconf
-USES=	pathfix pkgconfig
+USES=	pathfix pkgconfig gmake tar:bzip2
 USE_XORG=	x11 sm
 
 CONFIGURE_ARGS+=--enable-gio-unix \
@@ -33,8 +31,6 @@ CONFIGURE_ARGS+=--enable-gio-unix \
 OPTIONS_DEFINE=		THUNAR NLS
 OPTIONS_DEFAULT=	THUNAR NLS
 THUNAR_DESC=	Enable thunar support
-
-MAN1=		xfdesktop.1
 
 .include <bsd.mport.options.mk>
 
