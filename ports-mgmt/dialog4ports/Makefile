@@ -2,7 +2,7 @@
 
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.5
-PORTREVISION=	2
+PORTREVISION?=	3
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://m1cro.me/dialog4ports/ \
 		http://files.etoilebsd.net/dialog4ports/ \
@@ -25,9 +25,15 @@ NO_CCACHE=	yes
 MANCOMPRESSED=	yes
 MAKE_ENV+=	__MAKE_CONF=/dev/null SRCCONF=/dev/null
 
+.if !defined(D4P_SLAVE)
+PLIST_FILES=	bin/dialog4ports man/man1/${PORTNAME}.1.gz
+.endif
+
 .include <bsd.port.pre.mk>
 
+.if defined(DEBUG_FLAGS)
 MAKE_ARGS+=	DEBUG_FLAGS="${DEBUG_FLAGS}"
+.endif
 
 ## This is used by 'make config' via Tools/scripts/dialog4ports.sh
 ## Use caution in changing
@@ -35,7 +41,7 @@ MAKE_ARGS+=	DEBUG_FLAGS="${DEBUG_FLAGS}"
 DIALOG4PORTS=	${WRKSRC}/dialog4ports
 .endif
 
-.if ${OSVERSION} < 4016
+.if ${OSVERSION} < 4016 || defined(D4P_SLAVE)
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		${DIALOGNAME}.tgz:dialog
 DIALOGNAME=	dialog-1.1-20120706
