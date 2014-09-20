@@ -314,6 +314,7 @@ libdata/pkgconfig/gdk-x11-2.0.pc
 libdata/pkgconfig/gtk+-2.0.pc
 libdata/pkgconfig/gtk+-unix-print-2.0.pc
 libdata/pkgconfig/gtk+-x11-2.0.pc
+man/man1/gtk-query-immodules-2.0.1.gz
 share/aclocal/gtk-2.0.m4
 share/gir-1.0/Gdk-2.0.gir
 share/gir-1.0/GdkX11-2.0.gir

@@ -2,7 +2,7 @@
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.22
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -32,8 +32,6 @@ CONFIGURE_ARGS=	--with-xinput=yes
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
 		-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=		gtk-query-immodules-2.0.1
 
 OPTIONS_DEFINE=	CUPS DEBUG
 OPTIONS_DEFAULT=CUPS
