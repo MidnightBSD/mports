@@ -2,24 +2,24 @@
 
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance CORBA ORB with support for the C language
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-USE_GMAKE=	yes
-USES=		gettext pathfix pkgconfig
+GNU_CONFIGURE=	yes
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	libidl ltverhack referencehack
+USE_GNOME=	libidl referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -30,6 +30,8 @@ post-patch:
 		${WRKSRC}/src/orb/orb-core/orbit-typelib.c
 	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
 		${WRKSRC}/configure ${WRKSRC}/linc2/src/Makefile.in
+	@${REINPLACE_CMD} '/DESTDIR.*RANLIB/d' \
+		${WRKSRC}/src/services/name/Makefile.in
 
 post-install:
 	@${ECHO_CMD} "ORBIIOPIPv4=0" > ${PREFIX}/etc/orbit2rc.default
