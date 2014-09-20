@@ -2,7 +2,7 @@
 
 PORTNAME=	garcon
 PORTVERSION=	0.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
@@ -13,33 +13,18 @@ COMMENT=	Xfce 4 essential utilities and scripts
 
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+INSTALL_TARGET=	install-strip
+USES=		gmake libtool pathfix pkgconfig tar:bzip2
 USE_GNOME=	glib20 intltool intlhack
 USE_XFCE=	configenv libutil
-USES=		pathfix pkgconfig
 
-OPTIONS_DEFINE=		DOCS NLS
+OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+DOCS_CONFIGURE_ENABLE=	gtk-doc-html
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=--with-html-dir=${PREFIX}/share/gtk-doc/html
-PLIST_SUB+=	APIDOCS=""
-.else
-CONFIGURE_ARGS+=--without-html-dir
-PLIST_SUB+=	APIDOCS="@comment "
-.endif
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 .include <bsd.port.mk>
