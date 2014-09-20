@@ -2,7 +2,7 @@
 
 PORTNAME=	gconf2
 PORTVERSION=	2.32.0
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -10,8 +10,7 @@ DISTNAME=	GConf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A configuration database system for GNOME
-LICENSE=	lgpl
+COMMENT=	Configuration database system for GNOME
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
