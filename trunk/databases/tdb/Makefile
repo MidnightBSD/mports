@@ -1,6 +1,6 @@
 # $MidnightBSD$
 PORTNAME=		tdb
-PORTVERSION=		1.2.12
+PORTVERSION=		1.2.13
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -10,31 +10,49 @@ COMMENT=		Trivial Database
 
 LICENSE=		gpl3
 
-CONFLICTS=		samba3[0-4]-3.*
+CONFLICTS=		*samba3[0-4]-3.*
 
-USE_PYTHON_BUILD=	-2.7
+USES=			compiler pkgconfig
+USE_PYTHON_BUILD=	2
 USE_LDCONFIG=		yes
-HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
-CONFIGURE_SCRIPT=	${WAF_TOOL} configure
-USES=			pkgconfig
-
-MAKE_JOBS_SAFE=		yes
+CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-OPTIONS_DEFINE=		PYTHON
-OPTIONS_DEFAULT=	PYTHON
+CONFIGURE_ARGS+=	--prefix=${PREFIX} \
+			--mandir=${MANPREFIX}/man \
+			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}
+# Support staging
+DESTDIRNAME=		--destdir
+
+OPTIONS_DEFINE=		MANPAGES
+MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
 .include <bsd.mport.options.mk>
 
-MAN8=			tdbbackup.8 \
-			tdbdump.8 \
-			tdbrestore.8 \
-			tdbtool.8
+.if defined(NO_PYTHON)
+CONFIGURE_ARGS+=	--disable-python
+.else
+USE_PYTHON_RUN=		yes
+PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so
+.endif
 
-PLIST_FILES=		bin/tdbbackup \
+.if defined(NO_PYTHON)
+
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ! ${PORT_OPTIONS:MMANPAGES}
+CONFIGURE_ENV+=		XSLTPROC="true"
+.else
+BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
+			xsltproc:${PORTSDIR}/textproc/libxslt
+.endif
+
+PLIST_FILES+=		bin/tdbbackup \
 			bin/tdbdump \
 			bin/tdbrestore \
 			bin/tdbtool \
@@ -43,32 +61,28 @@ PLIST_FILES=		bin/tdbbackup \
 			lib/libtdb.so.1 \
 			%%PKGCONFIGDIR%%/tdb.pc
 
-CONFIGURE_ENV+=		XSLTPROC="/usr/bin/true"
+# No fancy color error messages
+.if ${COMPILER_TYPE} == "clang"
+CFLAGS+=		-fno-color-diagnostics
+.endif
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man
-
 .if !defined(DISABLE_MAKE_JOBS) && !defined(MAKE_JOBS_UNSAFE)
-.if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
 CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS_NUMBER}
-_MAKE_JOBS=		--jobs=${MAKE_JOBS_NUMBER}
-.endif
-.endif
-
-.if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON_RUN=		yes
-PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so
-PLIST_DIRSTRY+=		%%PYTHON_SITELIBDIR%% \
-			%%PYTHON_LIBDIR%%
-.else
-CONFIGURE_ARGS+=	--disable-python
+_MAKE_JOBS+=		--jobs=${MAKE_JOBS_NUMBER}
 .endif
 
+TDB_MAN8=		man/man8/tdbbackup.8.gz \
+			man/man8/tdbdump.8.gz \
+			man/man8/tdbrestore.8.gz \
+			man/man8/tdbtool.8.gz
+
+PLIST_FILES+=		${TDB_MAN8}
+
+CONFIGURE_TARGET=	configure
 ALL_TARGET=		build
 INSTALL_TARGET=		install
-
-.include <bsd.port.pre.mk>
 
 IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
@@ -85,11 +99,30 @@ pre-configure:
 				${FALSE}; \
 			fi
 
+do-configure:
+			@(cd ${CONFIGURE_WRKSRC} && \
+			    ${SET_LATE_CONFIGURE_ARGS} \
+				if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+					CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+					LDFLAGS="${LDFLAGS}" \
+					INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
+					INSTALL_DATA="${INSTALL_DATA}" \
+					INSTALL_LIB="${INSTALL_LIB}" \
+					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
+					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_TOOL} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
+						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
+						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+						${FALSE}; \
+				fi)
+
 pre-build:
-.for man in ${MAN8}
-			@${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-			@${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/man
-.endfor
+.if ! ${PORT_OPTIONS:MMANPAGES}
+			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
+.	for man in ${TDB_MAN8}
+			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
+.	endfor
+.endif
 
 do-build:
 			@(cd ${BUILD_WRKSRC}; \
@@ -101,23 +134,7 @@ do-build:
 			${FALSE}; \
 			fi)
 
-
-PRG=	tdbbackup tdbdump tdbrestore tdbtool
-LB=	libtdb.so libtdb.so.1
 do-install:
-.for p in ${PRG}
-	@${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/bin/default/${p} ${PREFIX}/bin/
-.endfor
-	@${INSTALL_DATA} ${INSTALL_WRKSRC}/include/tdb.h ${PREFIX}/include/
-	@${INSTALL_LIB} ${INSTALL_WRKSRC}/bin/shared/libtdb.so.1 ${PREFIX}/lib/
-	@cd ${PREFIX}/lib && ${LN} -sf libtdb.so.1 libtdb.so
-	@${INSTALL_DATA} ${INSTALL_WRKSRC}/bin/default/tdb.pc ${PKGCONFIGDIR}/tdb.pc
-.if ${PORT_OPTIONS:MPYTHON}
-	${MKDIR} -p ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-	@${INSTALL_LIB} ${INSTALL_WRKSRC}/bin/python/tdb.so ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-.endif
-.for man in ${MAN8}
-	${INSTALL_MAN} ${FILESDIR}/${man} ${PREFIX}/man/man8
-.endfor
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 
 .include <bsd.port.post.mk>
