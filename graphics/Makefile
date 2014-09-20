@@ -107,6 +107,7 @@ SUBDIR += netpbm
 SUBDIR += opencv
 SUBDIR += opencv-core
 SUBDIR += openjpeg
+SUBDIR += openjpeg15
 SUBDIR += p5-GD
 SUBDIR += p5-GD-Graph
 SUBDIR += p5-GD-TextUtil
