@@ -1,25 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	libnotify
-PORTVERSION=	0.7.3
-PORTREVISION=	2
+PORTVERSION=	0.7.5
+PORTREVISION=	3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for desktop notifications
+COMMENT=	Library for desktop notifications
+
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack intlhack glib20 gtk20 ltverhack
-USES=		gettext
-USE_GMAKE=	yes
+USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:xz
+USE_GNOME=	intlhack glib20 gdkpixbuf2 introspection:build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
