@@ -18,7 +18,6 @@ include/tumbler-1/tumbler/tumbler-util.h
 include/tumbler-1/tumbler/tumbler.h
 lib/libtumbler-1.so
 lib/libtumbler-1.so.0
-lib/libtumbler-1.so.0.0.0
 lib/tumbler-1/plugins/cache/tumbler-cache-plugin.so
 lib/tumbler-1/plugins/cache/tumbler-xdg-cache.so
 %%COVER%%lib/tumbler-1/plugins/tumbler-cover-thumbnailer.so
