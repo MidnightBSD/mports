@@ -5,17 +5,18 @@
 # options.mk -- The options component
 #
 
-.if !defined(AFTERPORTMK)
+.if !defined(OPTIONSMKINCLUDED)
+OPTIONSMKINCLUDED=	options.mk
 
 OPTIONS_NAME?=	${PKGORIGIN:S/\//_/}
 OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
-_OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
+OPTIONS_FILE?=	${PORT_DBDIR}/${OPTIONS_NAME}/options
 
 _OPTIONS_FLAGS=	ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
 		CONFLICTS_BUILD CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES \
 		EXTRA_PATCHES INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV \
 		PATCHFILES PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES \
-		PLIST_SUB USES INFO
+		USES INFO
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN
 
 # Set the default values for the global options
@@ -53,9 +54,16 @@ OPTIONS_DEFINE+=	${opt}
 # Add per arch defaults
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
-# Append options set by the port Makefile
-.for opt in ${OPTIONS_DEFINE}
-ALL_OPTIONS+=	${opt}
+# Remove options the port maintainer doesn't want
+.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE}
+OPTIONS_DEFAULT:=      ${OPTIONS_DEFAULT:N${opt}}
+OPTIONS_DEFINE:=       ${OPTIONS_DEFINE:N${opt}}
+PORT_OPTIONS:=         ${PORT_OPTIONS:N${opt}}
+.  for otype in SINGLE RADIO MULTI GROUP
+.    for m in ${OPTIONS_${otype}}
+OPTIONS_${otype}_${m}:=        ${OPTIONS_${otype}_${m}:N${opt}}
+.    endfor
+.  endfor
 .endfor
 
 ALL_OPTIONS:=	${ALL_OPTIONS:O:u}
