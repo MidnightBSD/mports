@@ -20,7 +20,7 @@ _OPTIONS_FLAGS=	ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN
 
 # Set the default values for the global options
-.if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
+.if !defined(NOPORTDOCS)
 PORT_OPTIONS+=	DOCS
 .else
 OPTIONS_WARNINGS+=		"NOPORTDOCS"
@@ -28,13 +28,13 @@ WITHOUT+=			DOCS
 OPTIONS_WARNINGS_UNSET+=	DOCS
 .endif
 
-.if !defined(WITHOUT_NLS) || defined(PACKAGE_BUILDING)
+.if !defined(WITHOUT_NLS)
 PORT_OPTIONS+=	NLS
 .else
 WITHOUT+=		NLS
 .endif
 
-.if !defined(NOPORTEXAMPLES) || defined(PACKAGE_BUILDING)
+.if !defined(NOPORTEXAMPLES)
 PORT_OPTIONS+=	EXAMPLES
 .else
 OPTIONS_WARNINGS+=		"NOPORTEXAMPLES"
@@ -81,7 +81,7 @@ ALL_OPTIONS:=	${OPTIONS_DEFINE:O:u}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:O:u}
 
 # complete list
-COMPLETE_OPTIONS_LIST= ${ALL_OPTIONS}
+COMPLETE_OPTIONS_LIST=	${ALL_OPTIONS}
 .for otype in SINGLE RADIO MULTI GROUP
 .  for m in ${OPTIONS_${otype}}
 COMPLETE_OPTIONS_LIST+=	${OPTIONS_${otype}_${m}}
@@ -167,7 +167,7 @@ PORT_OPTIONS+=	${opt}
 .if defined(WITHOUT_${opt})
 OPTIONS_WARNINGS+= "WITHOUT_${opt}"
 OPTIONS_WARNINGS_UNSET+=	${opt}
-PORT_OPTIONS:= ${PORT_OPTIONS:N${opt}}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 .endif
 .endfor
 
@@ -290,7 +290,6 @@ WITH_DEBUG=	yes
 ALL_OPTIONS=	${OPTIONS_DEFINE}
 .endif
 
-
 .for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE}
 # PLIST_SUB
 PLIST_SUB?=
@@ -374,7 +373,8 @@ ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS_OFF}
 .endfor
 .endif
 
-.if defined(_POSTMKINCLUDED)
+.if defined(_POSTMKINCLUDED) && !defined(POSTOPTIONSMKINCLUDED)
+POSTOPTIONSMKINCLUDED=	options.mk
 
 .if !target(pre-check-config)
 pre-check-config:
@@ -383,20 +383,20 @@ pre-check-config:
 .    if empty(ALL_OPTIONS:M${single}) || !empty(PORT_OPTIONS:M${single})
 .      if !empty(PORT_OPTIONS:M${opt})
 .        if defined(OPTFOUND)
-OPTIONS_WRONG_SINGLE+=  ${single}
+OPTIONS_WRONG_SINGLE+=	${single}
 .        else
-OPTFOUND=       true
+OPTFOUND=	true
 .        endif
 .      endif
 .    else
 # if conditional and if the condition is unchecked, remove opt from the list of
 # set options
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-OPTNOCHECK=     true
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=	true
 .    endif
 .  endfor
 .  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
-OPTIONS_WRONG_SINGLE+=  ${single}
+OPTIONS_WRONG_SINGLE+=	${single}
 .  endif
 .  undef OPTFOUND
 .  undef OPTNOCHECK
@@ -407,29 +407,30 @@ OPTIONS_WRONG_SINGLE+=  ${single}
 .  for opt in ${OPTIONS_RADIO_${radio}}
 .    if !empty(PORT_OPTIONS:M${opt})
 .      if defined(OPTFOUND)
-OPTIONS_WRONG_RADIO+=   ${radio}
+OPTIONS_WRONG_RADIO+=	${radio}
 .      else
-OPTFOUND=       true
+OPTFOUND=	true
 .      endif
 .    endif
 .  endfor
 .  undef OPTFOUND
 .endfor
+
 .for multi in ${OPTIONS_MULTI}
 .  for opt in ${OPTIONS_MULTI_${multi}}
 .    if empty(ALL_OPTIONS:M${multi}) || !empty(PORT_OPTIONS:M${multi})
 .      if !empty(PORT_OPTIONS:M${opt})
-OPTFOUND=       true
+OPTFOUND=	true
 .      endif
 .    else
 # if conditional and if the condition is unchecked, remove opt from the list of
 # set options
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
-OPTNOCHECK=     true
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+OPTNOCHECK=	true
 .    endif
 .  endfor
 .  if !defined(OPTFOUND) && !defined(OPTNOCHECK)
-OPTIONS_WRONG_MULTI+=   ${multi}
+OPTIONS_WRONG_MULTI+=	${multi}
 .  endif
 .  undef OPTFOUND
 .  undef OPTNOCHECK
@@ -441,7 +442,7 @@ OPTIONS_WRONG_MULTI+=   ${multi}
 .if !target(check-config)
 check-config: _check-config
 .if !empty(_CHECK_CONFIG_ERROR)
-	@exit 1
+	@FALSE
 .endif
 .endif # check-config
 
@@ -457,7 +458,7 @@ _check-config: pre-check-config
 	@${ECHO_MSG} "====> You cannot select multiple options from the ${radio} radio"
 .endfor
 .if !empty(OPTIONS_WRONG_MULTI) || !empty(OPTIONS_WRONG_SINGLE) || !empty(OPTIONS_WRONG_RADIO)
-_CHECK_CONFIG_ERROR=    true
+_CHECK_CONFIG_ERROR=	true
 .endif
 .endif # _check-config
 
@@ -474,7 +475,6 @@ sanity-config: _check-config
 .endif
 .endif # sanity-config
 
-# XXX: is this really the right place for ENV
 .if !target(pre-config)
 pre-config:
 D4P_ENV=	PKGNAME="${PKGNAME}" \
@@ -484,73 +484,63 @@ D4P_ENV=	PKGNAME="${PKGNAME}" \
 		OPTIONS_SINGLE="${OPTIONS_SINGLE}" \
 		OPTIONS_RADIO="${OPTIONS_RADIO}" \
 		OPTIONS_GROUP="${OPTIONS_GROUP}" \
- 		DIALOG4PORTS="${DIALOG4PORTS}" \
+		NEW_OPTIONS="${NEW_OPTIONS}" \
+		DIALOG4PORTS="${DIALOG4PORTS}" \
 		PREFIX="${PREFIX}" \
 		LOCALBASE="${LOCALBASE}" \
-                PORTSDIR="${PORTSDIR}" \
-                MAKE="${MAKE}" \
-                D4PHEIGHT="${D4PHEIGHT}" \
-                D4PWIDTH="${D4PWIDTH}" \
-                D4PFULLSCREEN="${D4PFULLSCREEN}"
+		PORTSDIR="${PORTSDIR}" \
+		MAKE="${MAKE}" \
+		D4PHEIGHT="${D4PHEIGHT}" \
+		D4PWIDTH="${D4PWIDTH}" \
+		D4PFULLSCREEN="${D4PFULLSCREEN}"
 .if exists(${PKGHELP})
 D4P_ENV+=	PKGHELP="${PKGHELP}"
 .endif
 .for opt in ${ALL_OPTIONS}
-D4P_ENV+=        ${opt}_DESC=""${${opt}_DESC:Q}""
+D4P_ENV+=	${opt}_DESC=""${${opt}_DESC:Q}""
 .endfor
-.for multi in ${OPTIONS_MULTI}
-D4P_ENV+=       OPTIONS_MULTI_${multi}="${OPTIONS_MULTI_${multi}}" \
-                ${multi}_DESC=""${${multi}_DESC:Q}""
-.  for opt in ${OPTIONS_MULTI_${multi}}
-D4P_ENV+=        ${opt}_DESC=""${${opt}_DESC:Q}""
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+D4P_ENV+=	OPTIONS_${otype}_${m}="${OPTIONS_${otype}_${m}}" \
+		${m}_DESC=""${${m}_DESC:Q}""
+.    for opt in ${OPTIONS_${otype}_${m}}
+D4P_ENV+=	${opt}_DESC=""${${opt}_DESC:Q}""
+.    endfor
 .  endfor
 .endfor
-.for single in ${OPTIONS_SINGLE}
-D4P_ENV+=       OPTIONS_SINGLE_${single}="${OPTIONS_SINGLE_${single}}" \
-                ${single}_DESC=""${${single}_DESC:Q}""
-.  for opt in ${OPTIONS_SINGLE_${single}}
-D4P_ENV+=        ${opt}_DESC=""${${opt}_DESC:Q}""
-.  endfor
-.endfor
-.for radio in ${OPTIONS_RADIO}
-D4P_ENV+=       OPTIONS_RADIO_${radio}="${OPTIONS_RADIO_${radio}}" \
-                ${radio}_DESC=""${${radio}_DESC:Q}""
-.  for opt in ${OPTIONS_RADIO_${radio}}
-D4P_ENV+=        ${opt}_DESC=""${${opt}_DESC:Q}""
-.  endfor
-.endfor
-.for group in ${OPTIONS_GROUP}
-D4P_ENV+=       OPTIONS_GROUP_${group}="${OPTIONS_GROUP_${group}}" \
-                ${group}_DESC=""${${group}_DESC:Q}""
-.  for opt in ${OPTIONS_GROUP_${group}}
-D4P_ENV+=        ${opt}_DESC=""${${opt}_DESC:Q}""
-.  endfor
-.endfor
-.undef multi
-.undef single
-.undef group
+.undef m
+.undef otype
 .undef opt
 .endif # pre-config
 
 .if !target(do-config)
 do-config:
+	echo "FOO"
 .if empty(ALL_OPTIONS) && empty(OPTIONS_SINGLE) && empty(OPTIONS_MULTI) && empty(OPTIONS_RADIO) && empty(OPTIONS_GROUP)
 	@${ECHO_MSG} "===> No options to configure"
 .else
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@optionsdir=${OPTIONSFILE}; optionsdir=$${optionsdir%/*}; \
+	@optionsdir=${OPTIONS_FILE}; optionsdir=$${optionsdir%/*}; \
+	oldoptionsdir=${OPTIONSFILE}; oldoptionsdir=$${oldoptionsdir%/*}; \
 	${ECHO_MSG} "===>  Switching to root credentials to create $${optionsdir}"; \
-	(${SU_CMD} "${SH} -c \"${MKDIR} $${optionsdir} 2> /dev/null\"") || \
-	(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1); \
+	(${SU_CMD} "${SH} -c \"if [ -d $${oldoptionsdir} -a ! -d $${optionsdir} ]; then ${MV} $${oldoptionsdir} $${optionsdir}; elif [ -d $${oldoptionsdir} -a -d $${optionsdir} ]; then ${RM} -rf $${oldoptionsdir} ; fi ; ${MKDIR} $${optionsd
+ir} 2> /dev/null\"") || \
+		(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1); \
 	${ECHO_MSG} "===>  Returning to user credentials"
 .else
-	@(optionsdir=${OPTIONSFILE}; optionsdir=$${optionsdir%/*}; \
-	${MKDIR} $${optionsdir} 2> /dev/null) || \
+	@optionsdir=${OPTIONS_FILE}; optionsdir=$${optionsdir%/*}; \
+	oldoptionsdir=${OPTIONSFILE}; oldoptionsdir=$${oldoptionsdir%/*}; \
+	if [ -d $${oldoptionsdir} -a ! -d $${optionsdir} ]; then \
+		${MV} $${oldoptionsdir} $${optionsdir}; \
+	elif [ -d $${oldoptionsdir} -a -d $${optionsdir} ]; then \
+		${RM} -rf $${oldoptionsdir} ; \
+	fi ; \
+	${MKDIR} $${optionsdir} 2> /dev/null || \
 	(${ECHO_MSG} "===> Cannot create $${optionsdir}, check permissions"; exit 1)
 .endif
 	@TMPOPTIONSFILE=$$(mktemp -t portoptions); \
 	trap "${RM} -f $${TMPOPTIONSFILE}; exit 1" 1 2 3 5 10 13 15; \
-	${SETENV} ${D4P_ENV} ${SH} ${PORTSDIR}/Tools/scripts/dialog4ports.sh $${TMPOPTIONSFILE} || { \
+	${SETENV} ${D4P_ENV} ${SH} ${SCRIPTSDIR}/dialog4ports.sh $${TMPOPTIONSFILE} || { \
 		${RM} -f $${TMPOPTIONSFILE}; \
 		${ECHO_MSG} "===> Options unchanged"; \
 		exit 0; \
@@ -576,17 +566,16 @@ do-config:
 		fi; \
 	done; \
 	if [ ${UID} != 0 -a "x${INSTALL_AS_USER}" = "x" ]; then \
-		${ECHO_MSG} "===>  Switching to root credentials to write ${OPTIONSFILE}"; \
-		${SU_CMD} "${CAT} $${TMPOPTIONSFILE} > ${OPTIONSFILE}"; \
+		${ECHO_MSG} "===>  Switching to root credentials to write ${OPTIONS_FILE}"; \
+		${SU_CMD} "${CAT} $${TMPOPTIONSFILE} > ${OPTIONS_FILE}"; \
 		${ECHO_MSG} "===>  Returning to user credentials"; \
         else \
-		${CAT} $${TMPOPTIONSFILE} > ${OPTIONSFILE}; \
+		${CAT} $${TMPOPTIONSFILE} > ${OPTIONS_FILE}; \
 	fi; \
 	${RM} -f $${TMPOPTIONSFILE}
 	@cd ${.CURDIR} && ${MAKE} sanity-config
 .endif
 .endif # do-config
-
 
 .if !target(config)
 .if !defined(NO_DIALOG)
@@ -606,101 +595,52 @@ config-recursive:
 .endif # config-recursive
 
 .if !target(config-conditional)
-config-conditional: pre-config
-.if defined(COMPLETE_OPTIONS_LIST) && !defined(NO_DIALOG)
-.  if !defined(_FILE_COMPLETE_OPTIONS_LIST) || ${COMPLETE_OPTIONS_LIST:O} != ${_FILE_COMPLETE_OPTIONS_LIST:O}
-	@cd ${.CURDIR} && ${MAKE} do-config;
-.  endif
+config-conditional:
+.if !empty(NEW_OPTIONS)
+	@cd ${.CURDIR} && ${MAKE} config;
 .endif
 .endif # config-conditional
 
-
 .if !target(showconfig)
 .include "${PORTSDIR}/Mk/components/options.desc.mk"
+MULTI_EOL=	: you have to choose at least one of them
+SINGLE_EOL=	: you have to select exactly one of them
+RADIO_EOL=	: you can only select none or one of them
 showconfig:
-.if !empty(ALL_OPTIONS) || !empty(OPTIONS_SINGLE) || !empty(OPTIONS_MULTI) || !empty(OPTIONS_RADIO) || !empty(OPTIONS_GROUP)
+.if !empty(COMPLETE_OPTIONS_LIST)
 	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME}":
 .for opt in ${ALL_OPTIONS}
-.  if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "     ${opt}=off"
-.  else
-	@${ECHO_MSG} -n "     ${opt}=on"
-.  endif
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="on" ; ${ECHO_MSG} -n "  ${opt}=$${match:-off}"
 .  if !empty(${opt}_DESC)
 	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
 .  endif
 	@${ECHO_MSG} ""
 .endfor
+
 #multi and conditional multis
-.for multi in ${OPTIONS_MULTI}
-	@${ECHO_MSG} "====> Options available for the multi ${multi}: you have to choose at least one of them"
-.  for opt in ${OPTIONS_MULTI_${multi}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "     ${opt}=off"
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+.    if empty(${m}_DESC)
+	@${ECHO_MSG} "====> Options available for the ${otype:tl} ${m}${${otype}_EOL}"
 .    else
-	@${ECHO_MSG} -n "     ${opt}=on"
+	@${ECHO_MSG} "====> ${${m}_DESC}${${otype}_EOL}"
 .    endif
-.    if !empty(${opt}_DESC)
+.    for opt in ${OPTIONS_${otype}_${m}}
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="on" ; ${ECHO_MSG} -n "     ${opt}=$${match:-off}"
+.      if !empty(${opt}_DESC)
 	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
-.    endif
+.      endif
 	@${ECHO_MSG} ""
-.  endfor
-.endfor
-#single and conditional singles
-
-.for single in ${OPTIONS_SINGLE}
-	@${ECHO_MSG} "====> Options available for the single ${single}: you have to select exactly one of them"
-.  for opt in ${OPTIONS_SINGLE_${single}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "     ${opt}=off"
-.    else
-	@${ECHO_MSG} -n "     ${opt}=on"
-.    endif
-.    if !empty(${opt}_DESC)
-	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
-.    endif
-	@${ECHO_MSG} ""
+.    endfor
 .  endfor
 .endfor
 
-.for radio in ${OPTIONS_RADIO}
-	@${ECHO_MSG} "====> Options available for the radio ${radio}: you can only select none or one of them"
-.  for opt in ${OPTIONS_RADIO_${radio}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "     ${opt}=off"
-.    else
-	@${ECHO_MSG} -n "     ${opt}=on"
-.    endif
-.    if !empty(${opt}_DESC)
-	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
-.    endif
-	@${ECHO_MSG} ""
-.  endfor
-.endfor
-
-.for group in ${OPTIONS_GROUP}
-	@${ECHO_MSG} "====> Options available for the group ${group}"
-.  for opt in ${OPTIONS_GROUP_${group}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "     ${opt}=off"
-.    else
-	@${ECHO_MSG} -n "     ${opt}=on"
-.    endif
-.    if !empty(${opt}_DESC)
-	@${ECHO_MSG} -n ": "${${opt}_DESC:Q}
-.    endif
-	@${ECHO_MSG} ""
-.  endfor
-.endfor
-
-.undef multi
-.undef single
-.undef radio
-.undef group
+.undef otype
+.undef m
 .undef opt
 	@${ECHO_MSG} "===> Use 'make config' to modify these settings"
 .endif
-.endif #showconfig
+.endif # showconfig
 
 .if !target(showconfig-recursive)
 showconfig-recursive:
@@ -738,63 +678,29 @@ rmconfig-recursive:
 .endif # rmconfig-recursive
 
 .if !target(pretty-print-config)
+MULTI_START=    [
+MULTI_END=      ]
+GROUP_START=    [
+GROUP_END=      ]
+SINGLE_START=   (
+SINGLE_END=     )
+RADIO_START=    (
+RADIO_END=      )
 pretty-print-config:
 .for opt in ${ALL_OPTIONS}
-.  if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "-${opt} "
-.  else
-	@${ECHO_MSG} -n "+${opt} "
-.  endif
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="+" ; ${ECHO_MSG} -n "$${match:--}${opt} "
 .endfor
-.for multi in ${OPTIONS_MULTI}
-	@${ECHO_MSG} -n "${multi}[ "
-.  for opt in ${OPTIONS_MULTI_${multi}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "-${opt} "
-.    else
-	@${ECHO_MSG} -n "+${opt} "
-.    endif
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+	@${ECHO_MSG} -n "${m}${${otype}_START} "
+.    for opt in ${OPTIONS_${otype}_${m}}
+	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="+" ; ${ECHO_MSG} -n "$${match:--}${opt} "
+.    endfor
+	@${ECHO_MSG} -n "${${otype}_END} "
 .  endfor
-	@${ECHO_MSG} -n "] "
 .endfor
-.for single in ${OPTIONS_SINGLE}
-	@${ECHO_MSG} -n "${single}( "
-.  for opt in ${OPTIONS_SINGLE_${single}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "-${opt} "
-.    else
-	@${ECHO_MSG} -n "+${opt} "
-.    endif
-.  endfor
-	@${ECHO_MSG} -n ") "
-.endfor
-.for radio in ${OPTIONS_RADIO}
-	@${ECHO_MSG} -n "${radio}( "
-.  for opt in ${OPTIONS_RADIO_${radio}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "-${opt} "
-.    else
-	@${ECHO_MSG} -n "+${opt} "
-.    endif
-.  endfor
-	@${ECHO_MSG} -n ") "
-.endfor
-
-.for group in ${OPTIONS_GROUP}
-	@${ECHO_MSG} -n "${group}[ "
-.  for opt in ${OPTIONS_GROUP_${group}}
-.    if empty(PORT_OPTIONS:M${opt})
-	@${ECHO_MSG} -n "-${opt} "
-.    else
-	@${ECHO_MSG} -n "+${opt} "
-.    endif
-.  endfor
-	@${ECHO_MSG} -n "] "
-.endfor
-.undef multi
-.undef single
-.undef radio
-.undef group
+.undef otype
+.undef m
 .undef opt
 	@${ECHO_MSG} ""
 .endif # pretty-print-config
