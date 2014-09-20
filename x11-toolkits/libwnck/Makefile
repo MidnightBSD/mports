@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libwnck
-PORTVERSION=	2.30.6
-PORTREVISION?=	2
+PORTVERSION=	2.30.7
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,35 +12,25 @@ COMMENT=	Library used for writing pagers and taskslists
 
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
-USE_XORG=	xres
-USE_GMAKE=	yes
-USES=		bison pathfix gettext
-USE_GNOME=	gtk20 ltverhack referencehack intlhack
+USE_XORG=	xres x11
+USE_GNOME=	gtk20 referencehack intlhack introspection
+USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	STARTUP
 OPTIONS_DEFAULT=STARTUP
 STARTUP_DESC=	Startup notification support
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MSTARTUP}
-LIB_DEPENDS+=	startup-notification-1:${PORTSDIR}/x11/startup-notification
-CONFIGURE_ARGS+=--enable-startup-notification
-.else
-CONFIGURE_ARGS+=--disable-startup-notification
-.endif
+STARTUP_LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
+STARTUP_CONFIGURE_ENABLE=	startup-notification
 
 .include <bsd.port.mk>
 
