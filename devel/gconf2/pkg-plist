@@ -29,8 +29,7 @@ lib/gio/modules/libgsettingsgconfbackend.a
 lib/gio/modules/libgsettingsgconfbackend.so
 lib/libgconf-2.a
 lib/libgconf-2.so
-lib/libgconf-2.so.4
-lib/libgconf-2.so.4.1.5
+lib/libgconf-2.so.5
 libdata/pkgconfig/gconf-2.0.pc
 libexec/gconf-sanity-check-2
 libexec/gconfd-2
