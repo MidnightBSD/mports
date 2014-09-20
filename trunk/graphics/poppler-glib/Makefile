@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	0
+PORTREVISION=	1
 PKGNAMESUFFIX=	-glib
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -8,11 +8,10 @@ COMMENT=	Glib bindings to poppler
 
 MASTERDIR=	${.CURDIR}/../../graphics/poppler
 SLAVEPORT=	glib
-PLIST=	${.CURDIR}/pkg-plist
-MAKE_ENV+=	GI_SCANNER_DISABLE_CACHE=yes
+PLIST=		${.CURDIR}/pkg-plist
 
 pre-build:
-	@cd ${WRKSRC}/poppler && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
+	@cd ${WRKSRC}/poppler && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
 		Makefile ${MAKE_ARGS} libpoppler-cairo.la
 
 .include "${MASTERDIR}/Makefile"
