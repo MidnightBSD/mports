@@ -4,7 +4,7 @@ CATEGORIES=	devel gnome
 PKGNAMESUFFIX=	-gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A GNOME wrapper for libsoup
+COMMENT=	GNOME wrapper for libsoup
 
 LICENSE=	gpl2
 
