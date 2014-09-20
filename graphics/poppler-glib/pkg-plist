@@ -15,7 +15,7 @@ lib/girepository-1.0/Poppler-0.18.typelib
 lib/libpoppler-glib.a
 lib/libpoppler-glib.la
 lib/libpoppler-glib.so
-lib/libpoppler-glib.so.8
+lib/libpoppler-glib.so.14
 libdata/pkgconfig/poppler-glib.pc
 %%DOCSDIR%%/poppler/PopplerAnnot.html
 %%DOCSDIR%%/poppler/PopplerAttachment.html
