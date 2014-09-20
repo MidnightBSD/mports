@@ -20,8 +20,8 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
-LICENSE=		gpl3
 
+LICENSE=		gpl3
 
 OPTIONS_DEFINE=		IMPLICITCD COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
 OPTIONS_DEFAULT=	IMPLICITCD COLONBREAKSWORDS HELP NLS
@@ -41,7 +41,6 @@ NLS_USES=		gettext iconv
 
 INFO=			bash
 
-MAKE_JOBS_UNSAFE=	yes
 GNU_CONFIGURE=		yes
 
 PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
@@ -53,7 +52,7 @@ CONFIGURE_ARGS+=	--without-bash-malloc \
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:L} != "no")
+.if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
 PKGNAMESUFFIX=		-static
 CONFLICTS+=		bash-[0-9]*
