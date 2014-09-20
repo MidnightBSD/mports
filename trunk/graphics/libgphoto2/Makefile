@@ -2,17 +2,19 @@
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.5.5.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Universal digital camera picture control tool
+COMMENT=	Universal digital camera control library
 
 LICENSE=	lgpl
 
+LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
+
 USES=		gmake iconv libtool pkgconfig tar:bzip2
 USE_CSTD=	gnu89
-USE_AUTOTOOLS=	libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	LTDLINCL="-I${LOCALBASE}/include" \
 		LIBLTDL="-L${LOCALBASE}/lib -lltdl" \
