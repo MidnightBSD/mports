@@ -2,7 +2,7 @@
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	2.32.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
@@ -11,15 +11,14 @@ COMMENT=	Program that keeps passwords and other secrets
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=    tasn1.7:${PORTSDIR}/security/libtasn1 \
-                gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libtasn1.so:${PORTSDIR}/security/libtasn1 \
+		libgcrypt.so:${PORTSDIR}/security/libgcrypt
 
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnomeprefix ltverhack intlhack gconf2
-USE_GMAKE=	yes
-USES=		gettext pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
+USE_GNOME=	gnomeprefix intlhack gconf2
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
