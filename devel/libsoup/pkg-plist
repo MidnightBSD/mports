@@ -49,7 +49,7 @@ lib/girepository-1.0/Soup-%%VERSION%%.typelib
 lib/libsoup-%%VERSION%%.a
 lib/libsoup-%%VERSION%%.la
 lib/libsoup-%%VERSION%%.so
-lib/libsoup-%%VERSION%%.so.1
+lib/libsoup-%%VERSION%%.so.6
 libdata/pkgconfig/libsoup-%%VERSION%%.pc
 share/gir-1.0/Soup-%%VERSION%%.gir
 share/gtk-doc/html/libsoup-%%VERSION%%/SoupAddress.html
