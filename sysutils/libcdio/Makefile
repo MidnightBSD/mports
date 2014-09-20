@@ -1,45 +1,32 @@
 # $MidnightBSD$
 
 PORTNAME=	libcdio
-PORTVERSION=	0.83
-PORTREVISION=	1
+PORTVERSION=	0.92
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libcdio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact Disc Input and Control Library
-LICENSE=	gpl3
 
-LIB_DEPENDS=	cddb.4:${PORTSDIR}/audio/libcddb \
-		popt.0:${PORTSDIR}/devel/popt \
-		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia
+LIB_DEPENDS=	libcddb.so:${PORTSDIR}/audio/libcddb
+
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		pathfix pkgconfig iconv libtool ncurses gmake perl5
 USE_LDCONFIG=	yes
-USE_NCURSES=	yes
-USES=		pathfix pkgconfig iconv
-CONFIGURE_ARGS+=	--with-libpopt-prefix=${LOCALBASE} \
-			--with-libiconv-prefix=${LOCALBASE} \
-USE_PERL5_BUILD=yes
+CONFIGURE_ARGS+=${ICONV_CONFIGURE_ARG}
+USE_PERL5=	build
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -liconv
-MAN1=	cd-drive.1 cd-info.1 iso-read.1 iso-info.1 cd-read.1
+LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 
 INFO=		libcdio
 
 .include <bsd.port.pre.mk>
 
-_MANLANG=	"" ja
-_MAN1=	cd-paranoia.1
-.for lang in ${_MANLANG}
-_MANPAGES+=	${_MAN1:S%^%${MAN1PREFIX}/man/${lang}/man1/%}
-.endfor
-
 post-patch:
-	${REINPLACE_CMD} -e 's|/jp/man1|/ja/man1|' \
-		${WRKSRC}/src/cd-paranoia/doc/ja/Makefile.in
 	${REINPLACE_CMD} -e "s,freebsd5\.\*,freebsd*," ${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
