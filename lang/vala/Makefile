@@ -2,7 +2,7 @@
 
 PORTNAME=	vala
 PORTVERSION=	0.20.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
@@ -11,25 +11,22 @@ COMMENT=	Programming language and compiler that converts Vala code into C code
 
 LICENSE=	lgpl2.1
 
-USES=		bison gettext gmake pathfix pkgconfig
-USE_XZ=		yes
-USE_GNOME=	glib20 gnomeprefix libxslt
+USES=		bison gettext gmake libtool:keepla pathfix pkgconfig tar:xz
+USE_GNOME=	glib20 gnomeprefix libxslt introspection:build
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 
-MAN1?=		valac.1 valac-${VALA_VER}.1
 VALA_VER=	${PORTVERSION:R}
 
 PLIST_SUB=	VERSION=${VALA_VER}
 
 .if defined(VALA_SLAVE)
-LIB_DEPENDS+=	vala-${VALA_VER}.0:${PORTSDIR}/lang/vala
+LIB_DEPENDS+=	libvala-${VALA_VER}.so:${PORTSDIR}/lang/vala
 CONFIGURE_ARGS+=--enable-vapigen
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/XML/LibXML.pm:${PORTSDIR}/textproc/p5-XML-LibXML
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/XML/LibXML.pm:${PORTSDIR}/textproc/p5-XML-LibXML
-MAN1=		vala-gen-introspect.1 vapigen.1
+BUILD_DEPENDS+=	p5-XML-LibXML>=0:${PORTSDIR}/textproc/p5-XML-LibXML
+RUN_DEPENDS+=	p5-XML-LibXML>=0:${PORTSDIR}/textproc/p5-XML-LibXML
 .else
 CONFIGURE_ARGS+=--disable-vapigen
 .endif
@@ -47,9 +44,10 @@ post-patch:
 
 .if defined(VALA_SLAVE)
 pre-build:
-	@cd ${WRKSRC} && ${GMAKE} version.h
-	@cd ${WRKSRC}/gobject-introspection && ${GMAKE} libgidl.la && \
-		${GMAKE} gen-introspect
+	@cd ${WRKSRC} && ${MAKE_CMD} version.h
+	@cd ${WRKSRC}/gobject-introspection && ${MAKE_CMD} libgidl.la && \
+		${MAKE_CMD} gen-introspect
+	@cd ${WRKSRC}/vapigen && ${MAKE_CMD} all
 
 post-install:
 	@cd ${WRKSRC}/gobject-introspection && ${GMAKE} ${FAKE_MAKEARGS} install
@@ -59,6 +57,7 @@ post-install:
 post-install:
 	${LN} -fs ${PREFIX}/libdata/pkgconfig/libvala-${VALA_VER}.pc \
 		${PREFIX}/libdata/pkgconfig/vala-1.0.pc
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so.*
 .endif
 
 .include <bsd.port.mk>
