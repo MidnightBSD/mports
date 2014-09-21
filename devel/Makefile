@@ -74,6 +74,7 @@ SUBDIR += fpc-fcl-base
 SUBDIR += fpc-fcl-db
 SUBDIR += fpc-fcl-image
 SUBDIR += fpc-fcl-net
+SUBDIR += fpc-fcl-passrc
 SUBDIR += fpc-fcl-process
 SUBDIR += fpc-fcl-json
 SUBDIR += fpc-fcl-registry
