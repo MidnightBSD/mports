@@ -3,7 +3,7 @@
 
 PORTNAME=	cdplayer
 PORTVERSION=	0.5.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnustep
 MASTER_SITES=	SF/gsburn/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 PKGNAMEPREFIX=	gnustep-
@@ -27,6 +27,6 @@ WRKSRC=		${WRKDIR}/CDPlayer-${PORTVERSION}
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
 
 CDDB_BUNDLE_PORT?=	audio/cddb-bundle
-PREFERENCES_PORT?=	deskutils/preferences
+PREFERENCES_PORT?=	deskutils/preferences.app
 
 .include <bsd.port.mk>
