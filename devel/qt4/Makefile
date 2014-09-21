@@ -36,7 +36,7 @@ GSTREAMER_USE=	phonon-gst
 NLS_USE=	l10n
 
 SQL_PLUGINS_DESC=	Install database plugins for QtSql
-SQL_PLUGINS_USE=sql-ibase sql-mysql sql-odbc sql-pgsql \
+SQL_PLUGINS_USE=sql-mysql sql-odbc sql-pgsql \
 		sql-sqlite3
 
 TOOLS_DESC=	Install Qt tools (qmake, moc, etc.)
