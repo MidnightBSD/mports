@@ -6,6 +6,7 @@ SUBDIR += Xaw3d
 SUBDIR += attica
 SUBDIR += eel
 SUBDIR += fltk
+SUBDIR += fpc-gtk2
 SUBDIR += gdl
 SUBDIR += gnustep-art
 SUBDIR += gnustep-back
