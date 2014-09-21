@@ -33,6 +33,7 @@ SUBDIR += gdk-pixbuf2
 SUBDIR += gegl
 SUBDIR += giblib
 SUBDIR += giflib
+SUBDIR += gifsicle
 SUBDIR += gimp-app
 SUBDIR += gle
 SUBDIR += glew
