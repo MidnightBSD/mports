@@ -33,6 +33,7 @@ SUBDIR += p5-Graph
 SUBDIR += p5-Math-Base36
 SUBDIR += p5-Math-BigInt
 SUBDIR += p5-Math-BigRat
+SUBDIR += p5-Math-Random-ISAAC
 SUBDIR += p5-Math-Round
 SUBDIR += p5-Set-IntSpan
 SUBDIR += p5-bignum
