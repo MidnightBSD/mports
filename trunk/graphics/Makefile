@@ -105,6 +105,7 @@ SUBDIR += linux-panorama-tools
 SUBDIR += mesa-demos
 SUBDIR += ming
 SUBDIR += netpbm
+SUBDIR += ocrad
 SUBDIR += opencv
 SUBDIR += opencv-core
 SUBDIR += openjpeg
