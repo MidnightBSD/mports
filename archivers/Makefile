@@ -24,6 +24,7 @@ SUBDIR += linux-f10-ucl
 SUBDIR += linux-f10-upx
 SUBDIR += linux-ucl
 SUBDIR += linux-upx
+SUBDIR += lzip
 SUBDIR += lzo2
 SUBDIR += lzop
 SUBDIR += p5-Archive-Tar
