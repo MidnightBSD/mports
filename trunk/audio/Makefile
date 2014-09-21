@@ -78,6 +78,7 @@ SUBDIR += linux-f10-sdl_mixer
 SUBDIR += madplay
 SUBDIR += mikmod
 SUBDIR += mpg123
+SUBDIR += musicpd
 SUBDIR += nas
 SUBDIR += openal
 SUBDIR += openal-soft
