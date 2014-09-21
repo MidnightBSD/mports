@@ -2,6 +2,7 @@
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.22
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/ \
 		FREEBSD_LOCAL/ohauer
@@ -26,8 +27,13 @@ APMOD_DESC=	depend on optional Apache module
 MODWSGI3_DESC=	Enable mod_wsgi3 support
 MODPYTHON3_DESC=Enable mod_python3 support
 
+USES=		cpe
+CPE_VENDOR=	viewvc
+CPE_PRODUCT=	viewvc
+
 NO_BUILD=	yes
-USE_PYTHON=	2.5-2.7
+USE_RC_SUBR=	viewvc
+USE_PYTHON=	2
 SUB_FILES=	pkg-message
 SUB_LIST=	INSTDIR="${PREFIX}/${INSTDIR}" \
 		PYTHON_CMD=${PYTHON_CMD} \
@@ -38,9 +44,6 @@ INSTDIR?=	${PORTNAME}
 PLIST_SUB=	INSTDIR=${INSTDIR}
 
 .include <bsd.mport.options.mk>
-
-# standalone script is usefull even if a webserver was choosen.
-USE_RC_SUBR=	viewvc
 
 RUN_DEPENDS+=	${LOCALBASE}/bin/pygmentize:${PORTSDIR}/textproc/py-pygments
 
