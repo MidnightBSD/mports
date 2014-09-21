@@ -31,7 +31,7 @@ SUBDIR += boost-python-libs
 SUBDIR += bouml
 SUBDIR += bouml-doc
 SUBDIR += bug-buddy
-SUBDIR ++ bugzilla44
+SUBDIR += bugzilla44
 SUBDIR += compiler-rt
 SUBDIR += chrpath
 SUBDIR += cmake
