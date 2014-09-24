@@ -1,106 +1,98 @@
 # $MidnightBSD$
 
 PORTNAME=	znc
-PORTVERSION=	1.0
+PORTVERSION=	1.4
 CATEGORIES=	irc ipv6
 MASTER_SITES=	http://znc.in/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An advanced IRC bouncer
 
-LICENSE=	gpl2
+LICENSE=	apache2
 
-FETCH_ARGS=	-Fpr
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	znc
-USES=		pkgconfig iconv
-USE_GMAKE=	yes
-WANT_PERL=	yes
+USES=		pkgconfig iconv gmake
 
 NO_OPTIONS_SORT=	yes
 
-OPTIONS_DEFINE=	DEBUG IPV6 OPENSSL CYRUS PERL PYTHON TCL
+OPTIONS_DEFINE=	DEBUG IPV6 OPENSSL CYRUS PERL PYTHON TCL DOCS
 OPTIONS_DEFAULT=	OPENSSL PERL
+OPTIONS_SUB=	yes
 
+CYRUS_DESC=	Cyrus SASL module
 DEBUG_DESC=	Debugging support
 PERL_DESC=	Perl scripting module
 PYTHON_DESC=	Python scripting module
 TCL_DESC=	Tcl scripting module
-CYRUS_DESC=	Cyrus SASL module
+
+CYRUS_CONFIGURE_ON=	--enable-cyrus
+CYRUS_LDFLAGS=	-L${LOCALBASE}/lib
+CYRUS_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+DEBUG_CONFIGURE_ON=	--enable-debug
+IPV6_CONFIGURE_OFF=	--disable-ipv6
+PERL_BUILD_DEPENDS=	swig>=2.0.11:${PORTSDIR}/devel/swig20
+PERL_CONFIGURE_ENABLE=	perl
+PERL_CONFIGURE_ON=	--enable-swig
+PERL_USES=	perl5
+PYTHON_BUILD_DEPENDS=	swig>=2.0.11:${PORTSDIR}/devel/swig20
+PYTHON_CONFIGURE_ON=	--enable-python=python-${PYTHON_VER} --enable-swig
+PYTHON_USES=	perl5
+OPENSSL_CONFIGURE_OFF=	--disable-openssl
+TCL_CONFIGURE_ENABLE=	tcl
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.if empty(PORT_OPTIONS:MIPV6)
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
 
 .if ${PORT_OPTIONS:MOPENSSL}
 EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
-PLIST_SUB+=		OPENSSL=""
-.else
-CONFIGURE_ARGS+=	--disable-openssl
-PLIST_SUB+=		OPENSSL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-CONFIGURE_ARGS+=	--enable-perl
-USE_PERL5=		yes
-PLIST_SUB+=		PERL=""
-BUILD_DEPENDS+=		swig>=2.0.4:${PORTSDIR}/devel/swig20
-.else
-PLIST_SUB+=		PERL="@comment "
+USE_PERL5+=		run build
 .endif
 
 .if ${PORT_OPTIONS:MTCL}
-USE_TCL=		84+
-.include "${PORTSDIR}/Mk/bsd.tcl.mk"
-CONFIGURE_ARGS+=	--enable-tcl --with-tcl=${TCL_LIBDIR}
-PLIST_SUB+=		TCL=""
-.else
-CONFIGURE_ARGS+=	--without-tcl
-PLIST_SUB+=		TCL="@comment "
+USES+=			tcl
+CONFIGURE_ARGS+=	--with-tcl=${TCL_LIBDIR}
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	3.1-3.2
-USE_PERL5_BUILD=	yes
-PLIST_SUB+=	PYTHON=""
-CONFIGURE_ARGS+=	--enable-python=python-${PYTHON_VER}
-BUILD_DEPENDS+=		swig>=2.0.4:${PORTSDIR}/devel/swig20
-.else
-PLIST_SUB+=	PYTHON="@comment "
+USE_PYTHON=		3
+USE_PERL5+=		build
 .endif
 
-.if ${PORT_OPTIONS:MCYRUS}
-LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
-CONFIGURE_ARGS+=	--enable-cyrus
-LDFLAGS+=		-L${LOCALBASE}/lib
-PLIST_SUB+=		CYRUS=""
-.else
-PLIST_SUB+=		CYRUS="@comment "
+PORTDOCS=		README.md
+
+pre-configure:
+# No need to cast to char** in AM_ICONV, fixes charset/iconv detection
+# and by extension, successfully builds charset module
+	@${REINPLACE_CMD} -e \
+		's#(char \*\*)##g' \
+		${WRKSRC}/configure
+# Instead of using bundled swig generated files, delete them to force
+# regeneration using swig 2.0.11+ (fixes port compilation using clang)
+.if ${PORT_OPTIONS:MPERL}
+	@${RM} ${WRKSRC}/modules/modperl/ZNC.cpp
 .endif
-
-MANCOMPRESSED=	yes
-MAN1=		znc.1 znc-buildmod.1
-
-PORTDOCS=	README.md
+.if ${PORT_OPTIONS:MPYTHON}
+	@${RM} ${WRKSRC}/modules/modpython/_znc_core.cpp
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e \
 		's#$$(libdir)/pkgconfig#${PREFIX}/libdata/pkgconfig#' \
 		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's#/usr/local#${LOCALBASE}#' ${WRKSRC}/configure
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
 .endfor
+	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}"
 .endif
 
 .include <bsd.port.mk>
