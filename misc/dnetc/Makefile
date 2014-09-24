@@ -19,13 +19,12 @@ DISTNAME=	dnetc${PORTVERSION:E}-freebsd-${ARCH:S/i386/x86/}-elf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed.net distributed computing project client
+
 LICENSE=        unknown
 
 # These are architecture dependent
 WRKSRC=		${WRKDIR}/dnetc${PORTVERSION:E}-freebsd-${ARCH:S/i386/x86/}-elf
 DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
-
-ONLY_FOR_ARCHS=	i386 sparc64 amd64
 
 USE_RC_SUBR=	dnetc
 NO_BUILD=	yes
