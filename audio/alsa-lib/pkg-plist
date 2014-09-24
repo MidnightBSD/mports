@@ -40,6 +40,8 @@ lib/alsa-lib/smixer/smixer-ac97.la
 lib/alsa-lib/smixer/smixer-ac97.so
 lib/alsa-lib/smixer/smixer-hda.la
 lib/alsa-lib/smixer/smixer-hda.so
+%%PYTHON%%lib/alsa-lib/smixer/smixer-python.la
+%%PYTHON%%lib/alsa-lib/smixer/smixer-python.so
 lib/alsa-lib/smixer/smixer-sbase.la
 lib/alsa-lib/smixer/smixer-sbase.so
 lib/libasound.la
@@ -83,6 +85,7 @@ share/alsa/cards/ICE1724.conf
 share/alsa/cards/ICH-MODEM.conf
 share/alsa/cards/ICH.conf
 share/alsa/cards/ICH4.conf
+share/alsa/cards/Loopback.conf
 share/alsa/cards/Maestro3.conf
 share/alsa/cards/NFORCE.conf
 share/alsa/cards/PC-Speaker.conf
@@ -118,6 +121,7 @@ share/alsa/pcm/iec958.conf
 share/alsa/pcm/modem.conf
 share/alsa/pcm/rear.conf
 share/alsa/pcm/side.conf
+share/alsa/pcm/surround21.conf
 share/alsa/pcm/surround40.conf
 share/alsa/pcm/surround41.conf
 share/alsa/pcm/surround50.conf

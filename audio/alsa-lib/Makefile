@@ -2,7 +2,7 @@
 
 PORTNAME=	alsa-lib
 PORTVERSION=	1.0.28
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/lib \
 		GENTOO/distfiles
@@ -10,16 +10,25 @@ MASTER_SITES=	ALSA/lib \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
 USES=		tar:bzip2 libtool:keepla
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-aload --disable-python \
-		--with-pkgconfdir="${PREFIX}/libdata/pkgconfig"
+CONFIGURE_ARGS+=	--with-pkgconfdir="${PREFIX}/libdata/pkgconfig"
+INSTALL_TARGET=	install-strip
+CPPFLAGS+=	-I${FILESDIR}
+
+OPTIONS_DEFINE=	PYTHON
+OPTIONS_SUB=	yes
+
+PYTHON_CONFIGURE_ENABLE=python
+PYTHON_USE=	PYTHON=2
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
+		-e 's/python-config/${PYTHON_CMD:T}-config/g' \
+		-e '/pythonlibs/s/--libs/--ldflags/' \
 		-e '/-D_GNU_SOURCE/d' \
 		-e '/lt_cv_dlopen/s/-ldl//g' ${WRKSRC}/configure
 	${REINPLACE_CMD} '/LIBADD/s/-ldl//g' \
