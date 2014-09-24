@@ -2,7 +2,7 @@
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	irc gnome ipv6
 MASTER_SITES=	SF/${PORTNAME}/ \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
@@ -11,18 +11,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 IRC client using the GTK+ 2 toolkit
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	xchat-1* xchat-systray-plugin-[0-9]*
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USES=		gettext
-USE_GNOME=	gnomehack gtk20
+USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-ipv6
-WANT_PERL=	yes
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DBUS NOTIFY PERL PYTHON SOCKS TCL
 OPTIONS_DEFAULT=DBUS GTKSPELL PERL
@@ -31,13 +30,10 @@ OPTIONS_RADIO_SPELL=	GTKSPELL LIBSEXY
 GTKSPELL_DESC=	Spell check support via gtkspell
 LIBSEXY_DESC=	Spell check support via libsexy
 
-.if defined(WITH_PYTHON)
-.endif
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS+=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 CONFIGURE_ARGS+=--enable-dbus
 USE_GNOME+=	gconf2
 GCONF_SCHEMAS+=	apps_xchat_url_handler.schemas
@@ -48,10 +44,10 @@ PLIST_SUB+=	DBUS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGTKSPELL}
-LIB_DEPENDS+=	gtkspell:${PORTSDIR}/textproc/gtkspell
+LIB_DEPENDS+=	libgtkspell.so:${PORTSDIR}/textproc/gtkspell
 CONFIGURE_ARGS+=--enable-spell=gtkspell
 .elif ${PORT_OPTIONS:MLIBSEXY}
-LIB_DEPENDS+=	sexy:${PORTSDIR}/x11-toolkits/libsexy
+LIB_DEPENDS+=	libsexy.so:${PORTSDIR}/x11-toolkits/libsexy
 CONFIGURE_ARGS+=--enable-spell=libsexy
 .else
 CONFIGURE_ARGS+=--enable-spell=none
@@ -81,17 +77,15 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSOCKS}
-LIB_DEPENDS+=	socks:${PORTSDIR}/net/dante
+LIB_DEPENDS+=	libsocks.so:${PORTSDIR}/net/dante
 CONFIGURE_ARGS+=--enable-socks
 .endif
 
 .if ${PORT_OPTIONS:MTCL}
-USE_TCL=	84+
+USES+=		tcl
 CONFIGURE_ARGS+=--enable-tcl=${TCL_LIBDIR}
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} \
-		-L${TCL_LIBDIR}"
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
-		-I${TCL_INCLUDEDIR}
+CPPFLAGS+=	-I${TCL_INCLUDEDIR}
+LIBS+=		-L${TCL_LIBDIR}
 PLIST_SUB+=	TCL=""
 .else
 CONFIGURE_ARGS+=--enable-tcl=no
@@ -99,13 +93,14 @@ PLIST_SUB+=	TCL="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -E -e 's|PY_LIBS=.*|PY_LIBS="-L\$$PY_EXEC_PREFIX/lib/python\$$PY_VER/config -lpython\$$PY_VER ${PTHREAD_LIBS} -lutil"|' \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' \
 		${WRKSRC}/src/common/*.[ch]
+	@${REINPLACE_CMD} '/_LDADD =/s/$$/ -lgmodule-2.0/' \
+		${WRKSRC}/src/fe-gtk/Makefile.in \
+		${WRKSRC}/src/fe-text/Makefile.in
 
 # Create plugins directory even when no plugins are installed
 post-install:
-	@${MKDIR} ${PREFIX}/lib/xchat/plugins
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xchat/plugins
 
 .include <bsd.port.mk>
