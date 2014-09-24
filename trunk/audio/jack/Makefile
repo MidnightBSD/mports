@@ -2,58 +2,54 @@
 
 PORTNAME=	jackit
 PORTVERSION=	0.121.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A low-latency audio server
+COMMENT=	Low latency audio server
 
-LICENSE=	gpl2
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
 
-LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
-		sndfile.1:${PORTSDIR}/audio/libsndfile \
-		samplerate.1:${PORTSDIR}/audio/libsamplerate
-#		celt.0:${PORTSDIR}/audio/celt
+LIB_DEPENDS=	libportaudio.so:${PORTSDIR}/audio/portaudio \
+		libsndfile.so:${PORTSDIR}/audio/libsndfile \
+		libsamplerate.so:${PORTSDIR}/audio/libsamplerate \
+		libcelt0.so:${PORTSDIR}/audio/celt
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USES=		pathfix
+USES=		gmake pathfix pkgconfig libtool:keepla
 
-CONFIGURE_ENV=	LIBS="-pthread"
 CONFIGURE_ARGS=	--enable-portaudio \
 		--with-default-tmpdir=/tmp
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 LATEST_LINK=	jack
 
-MAN1=		jackd.1 jackstart.1
+OPTIONS_DEFINE=	ALSA DOCS READLINE
+OPTIONS_DEFAULT=READLINE
+OPTIONS_SUB=	yes
 
-OPTIONS_DEFINE=	ALSA DOXYGEN
+ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
+ALSA_CONFIGURE_ENABLE=	alsa
+
+READLINE_LIB_DEPENDS=	libreadline.so:${PORTSDIR}/devel/readline
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MDOXYGEN}
+.if ${PORT_OPTIONS:MDOCS}
 BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-PLIST_SUB+=	DOCS=""
 .else
 CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
-PLIST_SUB+=	DOCS="@comment "
 .endif
 
-.if exists(${LOCALBASE}/lib/libreadline.so)
-LIB_DEPENDS+=	readline:${PORTSDIR}/devel/readline
-.endif
-
-.if ${PORT_OPTIONS:MALSA}
-LIB_DEPENDS+=	asound:${PORTSDIR}/audio/alsa-lib
-PLIST_SUB+=	ALSA=""
-.else
-CONFIGURE_ARGS+=	--disable-alsa
-PLIST_SUB+=	ALSA="@comment "
+.if ! ${PORT_OPTIONS:MREADLINE}
+CONFIGURE_ENV+=	ac_cv_lib_readline_readline=no \
+		ac_cv_header_readline_chardefs_h=no
 .endif
 
 post-patch:
