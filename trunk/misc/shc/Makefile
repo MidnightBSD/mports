@@ -2,6 +2,7 @@
 
 PORTNAME=	shc
 PORTVERSION=	3.8.9
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://www.datsi.fi.upm.es/~frosal/sources/ \
 		CRITICAL
@@ -12,8 +13,7 @@ COMMENT=	Generic script compiler
 
 LICENSE=	gpl2
 
-MAN1=		shc.1
-PLIST_FILES=	bin/shc
+PLIST_FILES=	bin/shc man/man1/shc.1.gz
 
 post-extract:
 	@${RM} ${WRKSRC}/shc
