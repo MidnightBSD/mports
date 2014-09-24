@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.32
+PORTVERSION=	5.4.33
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
@@ -16,15 +16,14 @@ LICENSE=	php
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USES=		tar:bzip2 cpe
+CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
-CPE_PRODUCT=	php
-
-CONFIGURE_ARGS=	--with-layout=GNU \
+CONFIGURE_ARGS+=--with-layout=GNU \
 		--localstatedir=/var \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
@@ -38,14 +37,14 @@ CONFIGURE_ARGS=	--with-layout=GNU \
 DESTDIRNAME=	INSTALL_ROOT
 USE_GNOME=	libxml2
 
-OPTIONS_DEFINE=	CLI CGI FPM APACHE AP2FILTER EMBED DEBUG DTRACE IPV6 MAILHEAD LINKTHR ZTS
-OPTIONS_DEFAULT=CLI CGI IPV6 LINKTHR
+OPTIONS_DEFINE+=CLI CGI FPM FPM_IPV6 EMBED DEBUG DTRACE IPV6 MAILHEAD LINKTHR ZTS
+OPTIONS_DEFAULT=CLI CGI FPM IPV6 LINKTHR
+OPTIONS_SUB=	yes
 
 CLI_DESC=	Build CLI version
 CGI_DESC=	Build CGI version
 FPM_DESC=	Build FPM version
-APACHE_DESC=	Build Apache module
-AP2FILTER_DESC=	Use Apache 2.x filter interface (experimental)
+FPM_IPV6_DESC=	Enable ipv6 patch for FPM
 EMBED_DESC=	Build embedded library
 DEBUG_DESC=	Enable debug
 DTRACE_DESC=	Enable DTrace support
@@ -54,9 +53,11 @@ MAILHEAD_DESC=	Enable mail header patch
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
 ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 
-CONFLICTS=	php53-5*
+CONFLICTS=	php53-5* php55-5* php56-5*
 
-.include <bsd.mport.options.mk>
+DESTDIRNAME=	INSTALL_ROOT
+
+.include <bsd.mport.pre.mk>
 
 PATCH_DIST_STRIP=	-p1
 
@@ -70,17 +71,13 @@ PATCH_SITES+=	http://choon.net/opensource/php/:mail
 
 .if ${PORT_OPTIONS:MCLI}
 PHP_SAPI+=	cli
-PLIST_SUB+=	CLI=""
 .else
-PLIST_SUB+=	CLI="@comment "
 CONFIGURE_ARGS+=--disable-cli
 .endif
 
 .if ${PORT_OPTIONS:MCGI}
 PHP_SAPI+=	cgi
-PLIST_SUB+=	CGI=""
 .else
-PLIST_SUB+=	CGI="@comment "
 CONFIGURE_ARGS+=--disable-cgi
 .endif
 
@@ -90,17 +87,20 @@ USE_RC_SUBR+=	php-fpm
 CONFIGURE_ARGS+=--enable-fpm \
 		--with-fpm-user=${WWWOWN} \
 		--with-fpm-group=${WWWGRP}
-PLIST_SUB+=	FPM=""
-.else
-PLIST_SUB+=	FPM="@comment "
+.if ${PORT_OPTIONS:MIPV6} && ${PORT_OPTIONS:MFPM_IPV6}
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-php-fpm-ipv6:-p1
+.endif
 .endif
 
-.if ${PORT_OPTIONS:MAPACHE} && ${PORT_OPTIONS:MEMBED}
-IGNORE=		cannot be built with multiple SAPI (apache and embedded)
+.if defined(OPTIONS_FILE_SET) && ${OPTIONS_FILE_SET:MAPACHE}
+IGNORE=		doesn't install the Apache module anymore:\
+		update your OPTIONS and build www/mod_php5 port instead
 .endif
 
-.if ${PORT_OPTIONS:MAPACHE}
-PHP_SAPI+=	mod
+.if defined(PKGNAMEPREFIX)
+USE_PHP=	yes
+PHP_DEFAULT=	5.4
+IGNORE_WITH_PHP=53 55
 USE_APACHE=	22+
 EXTENSIONS+=	apache
 .if ${PORT_OPTIONS:MAP2FILTER}
@@ -108,20 +108,22 @@ CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
 .else
 CONFIGURE_ARGS+=--with-apxs2=${APXS}
 .endif
+PLIST=		${PKGDIR}/pkg-plist.mod
 PKGMESSAGE=	${PKGDIR}/pkg-message.mod
-MODULENAME=	lib${PORTNAME}
-SHORTMODNAME=	${PORTNAME}
-PLIST_SUB+=	APACHE=""
-.else
-PLIST_SUB+=	APACHE="@comment "
+MODULENAME=	libphp5
+SHORTMODNAME=	php5
+WARNING=	"!!! If you have a threaded Apache, you must build ${PHP_PORT} with ZTS support to enable thread-safety in extensions !!!"
 .endif
 
 .if ${PORT_OPTIONS:MEMBED}
 PHP_SAPI+=	embed
 CONFIGURE_ARGS+=--enable-embed
-PLIST_SUB+=	EMBED=""
+.endif
+
+.if ${PORT_OPTIONS:MCLI} || ${PORT_OPTIONS:MEMBED}
+PLIST_SUB+=	SAPI_INC=""
 .else
-PLIST_SUB+=	EMBED="@comment "
+PLIST_SUB+=	SAPI_INC="@comment "
 .endif
 
 .if !defined(WITH_REGEX_TYPE) || ${WITH_REGEX_TYPE} == "php"
@@ -140,11 +142,12 @@ CONFIGURE_ARGS+=--with-zend-vm=GOTO
 
 CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 		ac_cv_pthreads_cflags="" \
+		ac_cv_decimal_fp_supported="no" \
 		pthreads_working="yes" \
 		lt_cv_path_SED="sed"
 
 .if ${PORT_OPTIONS:MLINKTHR}
-CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}"
+LIBS+=		${PTHREAD_LIBS}
 .endif
 
 .if ${PORT_OPTIONS:MZTS}
@@ -166,8 +169,6 @@ CONFIGURE_ARGS+=--enable-dtrace
 CONFIGURE_ARGS+=--disable-ipv6
 .endif
 
-.include <bsd.port.pre.mk>
-
 post-patch:
 	@${TOUCH} ${WRKSRC}/ext/php_config.h
 	@${REINPLACE_CMD} "s|^\(extension_dir\)|; \1|" ${WRKSRC}/php.ini-*
@@ -182,11 +183,8 @@ pre-configure:
 		${WRKSRC}/configure.in `${FIND} ${WRKSRC} -name '*.m4'`
 	@${RM} ${WRKSRC}/configure
 	@${CAT} ${WRKSRC}/acinclude.m4 ${WRKSRC}/build/libtool.m4 > ${WRKSRC}/aclocal.m4
-.if defined(WITH_APACHE)
-	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
-	${CP} ${LOCALBASE}/${APACHEETCDIR}/httpd.conf ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
-.endif
 
+.if !defined(PKGNAMEPREFIX)
 post-build:
 	@${ECHO_CMD} "PHP_VER=5" > ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_VERSION=${PORTVERSION}" >> ${WRKDIR}/php.conf
@@ -197,16 +195,16 @@ test: build
 	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/php.ini-development ${PREFIX}/etc
-	@${INSTALL_DATA} ${WRKSRC}/php.ini-production ${PREFIX}/etc
-	@${INSTALL_DATA} ${WRKDIR}/php.conf ${PREFIX}/etc
-	@${TOUCH} ${PREFIX}/include/php/ext/php_config.h
-.if ${PORT_OPTIONS:MFPM}
-	@${CP} -n ${PREFIX}/etc/php-fpm.conf.default ${PREFIX}/etc/php-fpm.conf || ${TRUE}
+	@${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
+		${WRKDIR}/php.conf ${STAGEDIR}/${PREFIX}/etc
+.else
+do-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}
+	${INSTALL_LIB} ${WRKSRC}/libs/${MODULENAME}.so \
+		${STAGEDIR}${PREFIX}/${APACHEMODDIR}
 .endif
 
 .else
-.include <bsd.mport.options.mk>
 .include "${MASTERDIR}/Makefile.ext"
 .endif
 .include <bsd.port.post.mk>
