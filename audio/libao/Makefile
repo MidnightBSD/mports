@@ -14,7 +14,7 @@ COMMENT=	Portable audio output library
 
 LICENSE=	gpl2
 
-USES=		pathfix pkgconfig libtool:keepla
+USES=		pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
