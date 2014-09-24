@@ -3,11 +3,10 @@
 
 PORTNAME=	unclutter
 PORTVERSION=	8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_XCONTRIB}
 MASTER_SITE_SUBDIR=	utilities
-EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Remove idle cursor image from screen
@@ -15,9 +14,9 @@ COMMENT=	Remove idle cursor image from screen
 LICENSE=        publicdom
 
 WRKSRC=		$(WRKDIR)/unclutter
-USES=		imake
+USES=		imake tar:Z
 USE_XORG=	x11 xext
-MAN1=		unclutter.1
-PLIST_FILES=	bin/unclutter
+PLIST_FILES=	bin/unclutter \
+		man/man1/unclutter.1.gz
 
 .include <bsd.port.mk>
