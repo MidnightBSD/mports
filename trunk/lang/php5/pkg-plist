@@ -240,9 +240,6 @@ man/man1/php-config.1.gz
 %%CLI%%man/man1/php.1.gz
 man/man1/phpize.1.gz
 %%FPM%%man/man8/php-fpm.8.gz
-%%APACHE%%%%APACHEMODDIR%%/%%AP_MODULE%%
-%%APACHE%%@exec %D/sbin/apxs -e -a -n %%AP_NAME%% %f
-%%APACHE%%@unexec %D/sbin/apxs -e -A -n %%AP_NAME%% %f
 %%FPM%%share/php/fpm/status.html
 @dirrm include/php/TSRM
 @dirrm include/php/Zend
@@ -258,9 +255,9 @@ man/man1/phpize.1.gz
 @dirrmtry include/php/ext
 @dirrm include/php/main/streams
 @dirrm include/php/main
-@dirrm include/php/sapi/cli
+%%CLI%%@dirrm include/php/sapi/cli
 %%EMBED%%@dirrm include/php/sapi/embed
-@dirrm include/php/sapi
+%%SAPI_INC%%@dirrmtry include/php/sapi
 @dirrmtry include/php
 @dirrm lib/php/build
 @dirrmtry lib/php
