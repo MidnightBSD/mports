@@ -2,24 +2,23 @@
 
 PORTNAME=	libbonobo
 PORTVERSION=	2.32.0
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Component and compound document system for GNOME2
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	popt:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt
 
-USES=		gettext pathfix pkgconfig
-USE_BISON=	build
-USE_GMAKE=	yes
+USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
@@ -29,8 +28,6 @@ CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 MAKE_ENV=	gnomelocaledir=${PREFIX}/share/locale
-
-MAN1=		bonobo-activation-server.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
