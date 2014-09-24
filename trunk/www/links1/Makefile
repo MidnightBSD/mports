@@ -7,14 +7,11 @@
 #
 
 PORTNAME=	links
-PORTVERSION=	1.00pre20
-PORTREVISION=	1
+PORTVERSION=	1.03
 PORTEPOCH=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.jikos.cz/~mikulas/links/download/ \
-		http://links.sourceforge.net/download/ \
-		ftp://ftp.fu-berlin.de/unix/network/www/links/ 
-MASTER_SITE_SUBDIR=	links
+MASTER_SITES=	http://www.jikos.cz/~mikulas/links/download/
+PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
@@ -23,8 +20,6 @@ LICENSE=	gpl2
 GNU_CONFIGURE=	yes
 
 USE_OPENSSL=	yes
-NO_LATEST_LINK=	yes
-
-MAN1=		links.1
+CONFLICTS=	links-2*
 
 .include <bsd.port.mk>
