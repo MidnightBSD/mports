@@ -77,6 +77,7 @@
 
 PORTNAME=	squid
 PORTVERSION=	2.7.${SQUID_STABLE_VER}
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	ftp://ftp.squid-cache.org/pub/%SUBDIR%/ \
 		http://mirrors.ccs.neu.edu/Squid/ \
@@ -112,13 +113,14 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Caching Proxy
+
 LICENSE=	gpl2
 
 SQUID_STABLE_VER=	9
 
 CONFLICTS=	squid-2.[^7]* squid-3.* cacheboy-[0-9]*
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_PERL5=	yes
 USE_RC_SUBR=	squid
 
