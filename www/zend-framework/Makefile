@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	ZendFramework
-PORTVERSION=	2.2.4
+PORTVERSION=	2.3.1
 CATEGORIES=	www
 MASTER_SITES=	https://packages.zendframework.com/releases/${DISTNAME}/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for developing PHP web applications
@@ -14,7 +13,7 @@ LICENSE=	bsd3
 NO_BUILD=	yes
 USE_PHP=	spl
 WANT_PHP_WEB=	yes
-USES=		gettext
+USES=		gettext tar:tgz
 
 SUB_FILES=	pkg-message
 
@@ -44,6 +43,7 @@ USE_PHP+=	sqlite
 .else
 USE_PHP+=	sqlite3
 .endif
+RUN_DEPENDS+=	pecl-memcache>=0:${PORTSDIR}/databases/pecl-memcache
 .endif
 .if ${PORT_OPTIONS:MOPTPHP}
 USE_PHP+=	bcmath bitset json posix
