@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nut
-PORTVERSION=	19.2
+PORTVERSION=	20.1
 CATEGORIES=	misc
 MASTER_SITES=	SF
 PKGNAMEPREFIX=	health-
@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nutrition software to record what you eat
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake
 
