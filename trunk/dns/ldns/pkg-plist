@@ -444,6 +444,7 @@ bin/ldns-config
 %%DOXYGEN%%man/man3/ldns_zone_set_soa.3.gz
 %%DOXYGEN%%man/man3/ldns_zone_soa.3.gz
 %%DOXYGEN%%man/man3/ldns_zone_sort.3.gz
+%%EXAMPLES%%man/man1/ldns-chaos.1.gz
 %%EXAMPLES%%man/man1/ldns-compare-zones.1.gz
 %%EXAMPLES%%man/man1/ldns-dane.1.gz
 %%EXAMPLES%%man/man1/ldns-dpa.1.gz
