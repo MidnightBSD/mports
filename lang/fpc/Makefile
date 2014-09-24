@@ -115,6 +115,7 @@ do-extract:
 			| ${TAR} xf - ${FPCSRCDIR}/compiler ${FPCSRCDIR}/rtl \
 				${FPCSRCDIR}/utils/fpcmkcfg ${FPCSRCDIR}/packages/fcl-base \
 					${FPCSRCDIR}/packages/fcl-process ${FPCSRCDIR}/utils/fpcm
+	${LN} ${WRKDIR}/ppcx64-2.6.4-freebsd ${WRKDIR}/ppcx64-2.6.4-midnightbsd
 
 post-patch:
 .if ${ARCH} == "i386"
