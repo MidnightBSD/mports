@@ -6,110 +6,59 @@
 #
 
 PORTNAME=	LPRng
-PORTVERSION=	3.8.35
-PORTREVISION=	1
+PORTVERSION=	3.8.C
+PORTREVISION=	0
+PORTEPOC=	1
 CATEGORIES=	sysutils print
-MASTER_SITES=	ftp://ftp.lprng.com/pub/%SUBDIR%/ \
-		ftp://ftp.cise.ufl.edu/pub/mirrors/%SUBDIR%/ \
-		ftp://ftp.cs.umn.edu/pub/%SUBDIR%/ \
-		ftp://ftp.informatik.uni-hamburg.de/pub/os/unix/utils/%SUBDIR%/ \
-		ftp://ftp.uni-paderborn.de/pub/unix/printer/%SUBDIR%/
-MASTER_SITE_SUBDIR=	LPRng/LPRng
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}
+DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An Enhanced Printer Spooler
-LICENSE=	perl
+COMMENT=	Enhanced Printer Spooler
 
-LIB_DEPENDS=	gdbm.4:${PORTSDIR}/databases/gdbm
+LICENSE=	artistic gpl2
+LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
+
+USES=		gmake
+USE_OPENSSL=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-config_subdir="" \
+		--with-filterdir=${PREFIX}/libexec/filters \
+		--with-filter_path="${PREFIX}/bin:/bin:/usr/bin:${PREFIX}/sbin:/sbin:/usr/sbin" \
+		--with-printcap_path=/etc/printcap \
+		--with-ld_library_path="${PREFIX}/lib:/lib:/usr/lib:/${LOCALBASE}/lib"
+MAKE_ARGS=	INSTALLCONFIGEXAMPLES=""
+USE_LDCONFIG=	yes
+USE_RC_SUBR=	${PORTNAME:tl}
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+SUB_FILES=	pkg-message
 
 CONFLICTS=	cups-base-1.[2-9]*
 
-GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
+OPTIONS_DEFINE=		LIBWRAP NLS
+OPTIONS_DEFAULT=	LIBWRAP
+OPTIONS_SUB=		yes
 
-USE_RC_SUBR=	${PORTNAME:L}
-
-SUB_FILES=	pkg-message pkg-install
-SUB_LIST=	SYSCONFDIR="${SYSCONFDIR}"
-
-PKGDEINSTALL=	${PKGINSTALL}
-
-CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib" \
-		CPPFLAGS="-I${LOCALBASE}/include"
-CONFIGURE_ARGS=	\
-		--with-sbindir=${PREFIX}/sbin \
-		--with-filterdir=${PREFIX}/libexec/filters \
-		--with-filter_path="${PREFIX}/bin:/bin:/usr/bin:${PREFIX}/sbin:/sbin:/usr/sbin" \
-		--with-lpd_conf_path=${SYSCONFDIR}/lpd.conf \
-		--with-lpd_perms_path=${SYSCONFDIR}/lpd.perms \
-		--with-printcap_path=/etc/printcap \
-		--with-ld_library_path="${PREFIX}/lib:/lib:/usr/lib:/${LOCALBASE}/lib" \
-		--enable-gdbm=${LOCALBASE} \
-		--disable-werror
-
-.if defined(PORT_REPLACES_BASE_LPR)
-PREFIX=		/usr
-SYSCONFDIR=	/etc
-.endif
-
-.if defined(SYSCONFDIR)
-CONFIGURE_ARGS+=	--sysconfdir="${SYSCONFDIR}"
-PLIST_SUB+=	CWD="" SYSCONFDIR="${SYSCONFDIR:S,^/,,}"
-.else
-SYSCONFDIR=	${PREFIX}/etc
-PLIST_SUB+=	CWD="@comment " SYSCONFDIR="${SYSCONFDIR:S,^${PREFIX}/,,}"
-.endif
-
-MAN1=	lpf.1 psbanner.1 lp.1 cancel.1 lprng_certs.1 lprng_index_certs.1 \
-	lpstat.1 lpq.1 lpr.1 lprm.1 monitor.1 pclbanner.1 lpbanner.1
-MAN5=	printcap.5 lpd.conf.5 lpd.perms.5
-MAN8=	lpc.8 checkpc.8 lpd.8
-
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=		yes
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
-pre-everything::
-	@${ECHO_MSG} "If you want to replace the default printing system with LPRng, use:"
-	@${ECHO_MSG} "  make PORT_REPLACES_BASE_LPR=yes clean all install"
-	@${ECHO_MSG} " OR"
-	@${ECHO_MSG} "  make CONFIGURE_SCRIPT=STANDARD_configuration clean all install"
-	@if [ "${PREFIX}" = "/usr" -a ! -d /usr/man ] ; then \
-		${ECHO_MSG} "The man pages will be installed in /usr/man." ; \
-		${ECHO_MSG} "You should make a symbolic link /usr/share/man from /usr/man"; \
-		${ECHO_MSG} "   ln -s /usr/share/man /usr/man"; \
-		${ECHO_MSG} "If you do not, you will retain the old BSD man pages."; \
-		${ECHO_MSG} "See the hier(7) man page for details of the BSD file system"; \
-		${ECHO_MSG} "layout.  Configure is not equipped to determine the location of"; \
-		${ECHO_MSG} 'man pages and defaults to $${PREFIX}/man, which is incorrect for BSD.'; \
-	fi
-
-post-patch:
-	@${ECHO} "#! /bin/sh" > ${WRKSRC}/postinstall.freebsd.sh
-	@${REINPLACE_CMD} -e 's,$${INSTALL} $$$$i $${DATADIR}/$$$$i.sample,true &,' \
-		${WRKSRC}/Makefile.in
+LIBWRAP_CONFIGURE_ENABLE=	tcpwrappers
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+NLS_CONFIGURE_ENV=	gt_cv_func_gnugettext1_libc=yes \
+			ac_cv_func_ngettext=yes
+NLS_LDFLAGS=		-lintl
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/lpd.conf ${SYSCONFDIR}/lpd.conf.sample
-	@${INSTALL_DATA} ${WRKSRC}/lpd.perms ${SYSCONFDIR}/lpd.perms.sample
-	@${INSTALL_DATA} ${WRKSRC}/printcap ${SYSCONFDIR}/printcap.sample
-.if !defined(NOPORTDOCS)
-	@${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} -m 0555 ${DOCSDIR}
-	@${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} -m 0555 ${DOCSDIR}/Reference
-	@${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} -m 0555 ${DOCSDIR}/PrintingCookbook
-.for ext in html pdf ppt ps txt gif jpg png
-	@for i in `${LS} ${WRKSRC}/DOCS | ${GREP} "\.${ext}$$"`; \
-		do ${INSTALL_DATA} ${WRKSRC}/DOCS/$$i ${DOCSDIR}; done
-	@for i in `${LS} ${WRKSRC}/PrintingCookbook/HTML | ${GREP} "\.${ext}$$"`; \
-		do ${INSTALL_DATA} ${WRKSRC}/PrintingCookbook/HTML/$$i ${DOCSDIR}/PrintingCookbook; done;
+.for i in lpd.perms printcap
+	(cd ${WRKSRC}/conf && $ ${INSTALL_DATA} ${i} \
+		${STAGEDIR}/${PREFIX}/etc/${i}.sample)
 .endfor
-.endif
+.for i in lpd.conf
+	(cd ${WRKSRC}/src && $ ${INSTALL_DATA} ${i} \
+		${STAGEDIR}/${PREFIX}/etc/${i}.sample)
+.endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
