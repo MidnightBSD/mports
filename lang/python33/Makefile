@@ -20,8 +20,7 @@ MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 
 INSTALL_TARGET=	altinstall
 
-USE_XZ=		yes
-USES=		gmake readline shebangfix
+USES=		gmake readline shebangfix tar:xz
 USE_LDCONFIG=	yes
 USE_PYTHON=	yes
 
