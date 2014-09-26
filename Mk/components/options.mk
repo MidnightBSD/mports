@@ -53,83 +53,51 @@ OPTIONS_DEFINE+=	${opt}
 # Add per arch defaults
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
-# Append options set by the port Makefile
-.for opt in ${OPTIONS_DEFINE}
-ALL_OPTIONS+=	${opt}
+# Remove options the port maintainer doesn't want
+.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE}
+OPTIONS_DEFAULT:=      ${OPTIONS_DEFAULT:N${opt}}
+OPTIONS_DEFINE:=       ${OPTIONS_DEFINE:N${opt}}
+PORT_OPTIONS:=         ${PORT_OPTIONS:N${opt}}
+.  for otype in SINGLE RADIO MULTI GROUP
+.    for m in ${OPTIONS_${otype}}
+OPTIONS_${otype}_${m}:=        ${OPTIONS_${otype}_${m}:N${opt}}
+.    endfor
+.  endfor
 .endfor
 
-ALL_OPTIONS:=	${ALL_OPTIONS:O:u}
-
-# Remove global options the port maintainer doesn't want
-.for opt in ${OPTIONS_EXCLUDE}
-ALL_OPTIONS:=	${ALL_OPTIONS:N${opt}}
-.endfor
-
-.if defined(OPTIONS)
-NO_OPTIONS_SORT=	yes
-.  undef optname
-.  for O in ${OPTIONS:S|\#|\\\#|g}
-opt:=   ${O}
-.    if !defined(optname)
-optname:=       ${O}
-ALL_OPTIONS+=   ${O}
-.if !defined(OPTIONS_DEFINE) || empty(OPTIONS_DEFINE:M${O})
-OPTIONS_DEFINE+=        ${O}
-.endif
-PORT_OPTIONS+=  ${O}
-.    elif !defined(optdesc)
-optdesc:=       ${opt}
-${optname}_DESC:=       ${opt:S|"||g}
-.    else
-.      if ${opt:tl} == off
-.        if defined(PORT_OPTIONS) && defined(optname)
-NO_OPTIONS+=    ${optname}
-NO_OPTIONS:=    ${NO_OPTIONS:O:u}
-.        else
-.        endif
-.      endif
-.      undef optname
-.      undef optdesc
+# Remove empty SINGLE/GROUP/RADIO/MULTI
+# Can be empty because of exclude/slaves
+.for otype in SINGLE RADIO MULTI GROUP
+.  for m in ${OPTIONS_${otype}}
+.    if empty(OPTIONS_${otype}_${m})
+OPTIONS_${otype}:=     ${OPTIONS_${otype}:N${m}}
 .    endif
 .  endfor
-.  if defined(NO_OPTIONS)
-.    for O in ${NO_OPTIONS}
-PORT_OPTIONS:=   ${PORT_OPTIONS:N${O}}
-.    endfor
-.  endif
-#.  undef NO_OPTIONS
-.endif
-#XXX end of compatibility
+.endfor
 
-ALL_OPTIONS:=   ${ALL_OPTIONS:O:u}
+# Sort options
+ALL_OPTIONS:=		${OPTIONS_DEFINE:O:u}
+OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:O:u}
 
 # complete list
-COMPLETE_OPTIONS_LIST=  ${ALL_OPTIONS}
-.for single in ${OPTIONS_SINGLE}
-COMPLETE_OPTIONS_LIST+= ${OPTIONS_SINGLE_${single}}
-.endfor
-.for radio in ${OPTIONS_RADIO}
-COMPLETE_OPTIONS_LIST+= ${OPTIONS_RADIO_${radio}}
-.endfor
-.for multi in ${OPTIONS_MULTI}
-COMPLETE_OPTIONS_LIST+= ${OPTIONS_MULTI_${multi}}
-.endfor
-.for group in ${OPTIONS_GROUP}
-COMPLETE_OPTIONS_LIST+= ${OPTIONS_GROUP_${group}}
+COMPLETE_OPTIONS_LIST= ${ALL_OPTIONS}
+.for otype in SINGLE RADIO MULTI GROUP
+.  for m in ${OPTIONS_${otype}}
+COMPLETE_OPTIONS_LIST+=        ${OPTIONS_${otype}_${m}}
+.  endfor
 .endfor
 
 ## Now create the list of activated options
 .if defined(OPTIONS_OVERRIDE)
 # Special case $OPTIONS_OVERRIDE; if it is defined forget about anything done
 # before
-PORT_OPTIONS:=  ${OPTIONS_OVERRIDE}
+NEW_OPTIONS=
+PORT_OPTIONS:=	${OPTIONS_OVERRIDE}
 .else
+NEW_OPTIONS=	${COMPLETE_OPTIONS_LIST}
 
 ## Set default options defined by the port maintainer
-.  for opt in ${OPTIONS_DEFAULT}
-PORT_OPTIONS+=  ${opt}
-.  endfor
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
+PORT_OPTIONS+=	${OPTIONS_DEFAULT}
 
 ## Set system-wide defined options (set by user in make.conf)
 .  for opt in ${OPTIONS_SET}
