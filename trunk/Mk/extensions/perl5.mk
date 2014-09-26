@@ -103,7 +103,7 @@ USE_PERL5_BUILD=yes
 .endif
 
 
-.if defined(USE_PERL) && ${USE_PERL5:L} == "yes"
+.if defined(USE_PERL) && ${USE_PERL5:tl} == "yes"
 USE_PERL5= ${PERL_BRANCH}
 .endif
 
@@ -162,7 +162,7 @@ PERL_LEVEL=0
 #
 PERL_NO_DEPENDS?= NO
 
-.if (${PERL_NO_DEPENDS:U} == "NO") && !defined(_CORE_PERL)
+.if (${PERL_NO_DEPENDS:tu} == "NO") && !defined(_CORE_PERL)
 .if defined(USE_PERL5_BUILD)
 EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}

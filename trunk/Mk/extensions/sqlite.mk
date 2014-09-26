@@ -16,7 +16,7 @@ Sqlite_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  sqlite3 is used (if USE_SQLITE= yes).
 # SQLITE_VER		- Detected sqlite version.
 
-.if ${USE_SQLITE:L} == "yes"
+.if ${USE_SQLITE:tl} == "yes"
 _SQLITE_VER=	3
 .else
 _SQLITE_VER=	 ${USE_SQLITE}
