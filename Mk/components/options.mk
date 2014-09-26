@@ -1,5 +1,3 @@
-#-*- tab-width: 4; -*-
-#
 # $MidnightBSD$
 #
 # options.mk -- The options component
@@ -216,6 +214,8 @@ WITH_${opt}:=  true
 .endif
 ###
 
+.if !defined(ONETIMERUNTHROUGH)
+ONETIMERUNTHROUGH=	yes
 .for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE}
 # PLIST_SUB
 PLIST_SUB?=
@@ -289,7 +289,7 @@ ${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS_OFF}
 .    endfor
 .  endif
 .endfor
-
+.endif #onetime run through
 
 .if defined(_POSTMKINCLUDED)
 
