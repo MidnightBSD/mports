@@ -76,8 +76,8 @@ _DB_5P=		5
 
 # Override the global WITH_BDB_VER with the
 # port specific <UNIQUENAME>_WITH_BDB_VER
-.if defined(${UNIQUENAME:U:S,-,_,}_WITH_BDB_VER)
-WITH_BDB_VER=	${${UNIQUENAME:U:S,-,_,}_WITH_BDB_VER}
+.if defined(${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER)
+WITH_BDB_VER=	${${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}
 .endif
 
 .if defined(WITH_BDB_VER)
@@ -90,7 +90,7 @@ USE_BDB=	${WITH_BDB_VER}
 _WANT_BDB_VER=	${USE_BDB}
 
 # Assume the default bdb version as 41
-.if ${USE_BDB:L} == "yes"
+.if ${USE_BDB:tl} == "yes"
 _WANT_BDB_VER=	41+
 .endif
 
@@ -229,7 +229,7 @@ BAD_VAR+=	${var},
 .  endif
 . endfor
 . if defined(BAD_VAR)
-_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use WITH_BDB_VER or ${UNIQUENAME:U:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
+_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use WITH_BDB_VER or ${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
 .  if defined(IGNORE)
 IGNORE+= ${_IGNORE_MSG}
 .  else
