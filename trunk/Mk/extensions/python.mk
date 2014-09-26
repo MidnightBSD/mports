@@ -183,14 +183,14 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYEASYINSTALL_OSARCH
 #					- Platform identifier for easy_install.
-#					  default: -${OPSYS:L}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
+#					  default: -${OPSYS:tl}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
 #							   if PYEASYINSTALL_ARCHDEP is defined.
 #
 # PYEASYINSTALL_CMD - Full file path to easy_install command.
 #					  default: ${LOCALBASE}/bin/easy_install-${PYTHON_VER}
 
 _PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 3.3 3.1	# preferred first
+_PYTHON_ALLBRANCHES=	2.7 3.4 3.3 # preferred first
 
 # Determine version number of Python to use
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
@@ -329,8 +329,19 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 # Propagate the chosen python version to submakes.
 .MAKEFLAGS:	PYTHON_VERSION=python${_PYTHON_VERSION}
 
+# Python-3.4
+.if ${PYTHON_VERSION} == "python3.4"
+PYTHON_PORTVERSION?=    3.4.1
+PYTHON_PORTSDIR=        ${PORTSDIR}/lang/python34
+PYTHON_REL=             341
+PYTHON_SUFFIX=          34
+PYTHON_VER=             3.4
+.if exists(${PYTHON_CMD}-config) && defined(PORTNAME) && ${PORTNAME} != python34
+PYTHON_ABIVER!=         ${PYTHON_CMD}-config --abiflags
+.endif
+
 # Python-3.3
-.if ${PYTHON_VERSION} == "python3.3"
+.elif ${PYTHON_VERSION} == "python3.3"
 PYTHON_PORTVERSION?=	3.3.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python33
 PYTHON_REL=		335
@@ -400,7 +411,7 @@ PYTHON_INCLUDEDIR=		${PYTHONBASE}/include/${PYTHON_VERSION}${PYTHON_ABIVER}
 PYTHON_LIBDIR=			${PYTHONBASE}/lib/${PYTHON_VERSION}
 PYTHON_PKGNAMEPREFIX=	py${PYTHON_SUFFIX}-
 PYTHON_PKGNAMESUFFIX=	-py${PYTHON_SUFFIX}
-PYTHON_PLATFORM=		${OPSYS:L}${OSREL:C/\.[0-9.]*//}
+PYTHON_PLATFORM=		${OPSYS:tl}${OSREL:C/\.[0-9.]*//}
 PYTHON_SITELIBDIR=		${PYTHON_LIBDIR}/site-packages
 
 PYTHONPREFIX_INCLUDEDIR=	${PYTHON_INCLUDEDIR:S;${PYTHONBASE};${TRUE_PREFIX};}
@@ -432,7 +443,7 @@ MAKE_ENV+=						PYTHONPATH=${PYEASYINSTALL_SITELIBDIR}
 .endif
 
 .if defined(PYEASYINSTALL_ARCHDEP)
-PYEASYINSTALL_OSARCH?=			-${OPSYS:L}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
+PYEASYINSTALL_OSARCH?=			-${OPSYS:tl}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
 MAKE_ENV+=						_PYTHON_HOST_PLATFORM=${PYEASYINSTALL_OSARCH}
 .endif
 PYEASYINSTALL_EGG?=				${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
