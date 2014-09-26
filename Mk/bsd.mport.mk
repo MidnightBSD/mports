@@ -117,7 +117,6 @@ _MANOWNGRP=
 # Start of options section
 .if defined(INOPTIONSMK) || ( !defined(USEOPTIONSMK) && !defined(AFTERPORTMK) )
 
-NOPRECIOUSSOFTMAKEVARS= yes
 
 # Get the default maintainer
 MAINTAINER?=	ports@MidnightBSD.org
@@ -234,6 +233,8 @@ UNIQUENAME?=	${LATEST_LINK}
 UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 .endif
 
+.endif  # end of options before pre-makefile starts
+
 # At least KDE needs TMPDIR for the package building,
 # so we're setting it to the known default value.
 .if defined(PACKAGE_BUILDING)
@@ -254,28 +255,12 @@ STRIP=	#none
 
 .include "${MPORTCOMPONENTS}/options.mk"
 
-.endif # end of options
-
+# Start of pre-makefile section
 .if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
+.include "${MPORTCOMPONENTS}/sanity.mk"
 
-.if defined(_PREMKINCLUDED)
-check-makefile::
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.pre].mk twice"
-	@${FALSE}
-.endif
-
-_PREMKINCLUDED=	yes
-
-
-# check for old, crufty, makefile types, part 1:
-.if !defined(PORTNAME) || !( defined(PORTVERSION) || defined (DISTVERSION) ) || defined(PKGNAME)
-check-makefile::
-	@${ECHO_MSG} "Makefile error: you need to define PORTNAME and PORTVERSION instead of PKGNAME."
-	@${ECHO_MSG} "(This port is too old for your bsd.port.mk, please update it to match"
-	@${ECHO_MSG} " your bsd.port.mk.)"
-	@${FALSE}
-.endif
+_PREMKINCLUDED= yes
 
 .if defined(PORTVERSION)
 .	if ${PORTVERSION:M*[-_,]*}x != x
@@ -296,8 +281,6 @@ PORTEPOCH?=		0
 _SUF2=	,${PORTEPOCH}
 .endif
 
-# check for old, crufty, makefile types, part 2.  The "else" case
-# should have been handled in part 1, above.
 PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
 PKGBASE?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGSUBNAME=	${PKGBASE}
@@ -331,10 +314,6 @@ _LOAD_TCL_EXT=		yes
 _LOAD_APACHE_EXT=	yes
 .endif
 
-.if (defined(USE_QT_VER) && ${USE_QT_VER:tl} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
-_LOAD_KDE_EXT=		yes
-.endif
-
 .if (defined (USE_QT_VER) && ${USE_QT_VER:tl} == 4) || defined(USE_QT4)
 _LOAD_QT_EXT=		yes
 .endif
@@ -345,10 +324,6 @@ _LOAD_GNOME_EXT=	yes
 
 .if defined(USE_GSTREAMER80)
 _LOAD_GSTREAMER_EXT=	yes
-.endif
-
-.if defined(KDE4_BUILDENV)
-_LOAD_KDE4_EXT=		yes
 .endif
 
 .for EXT in ${EXTENSIONS}
