@@ -839,7 +839,9 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 . endfor
 .endif
 
-
+.if defined(XORG_CAT)
+EXTENSIONS+=xorg
+.endif
 
 #
 # Here we include again XXX
