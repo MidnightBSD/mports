@@ -277,7 +277,7 @@ IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
 .	endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
 .elif defined(DISTVERSION)
-PORTVERSION=	${DISTVERSION:L:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
+PORTVERSION=	${DISTVERSION:tl:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
 .endif
 
 PORTREVISION?=	0
@@ -325,11 +325,11 @@ _LOAD_TCL_EXT=		yes
 _LOAD_APACHE_EXT=	yes
 .endif
 
-.if (defined(USE_QT_VER) && ${USE_QT_VER:L} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
+.if (defined(USE_QT_VER) && ${USE_QT_VER:tl} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
 _LOAD_KDE_EXT=		yes
 .endif
 
-.if (defined (USE_QT_VER) && ${USE_QT_VER:L} == 4) || defined(USE_QT4)
+.if (defined (USE_QT_VER) && ${USE_QT_VER:tl} == 4) || defined(USE_QT4)
 _LOAD_QT_EXT=		yes
 .endif
 
@@ -346,7 +346,7 @@ _LOAD_KDE4_EXT=		yes
 .endif
 
 .for EXT in ${EXTENSIONS}
-_LOAD_${EXT:U}_EXT=	yes
+_LOAD_${EXT:tu}_EXT=	yes
 .endfor
 
 # This is the order that we used before the extensions where refactored. 
@@ -362,9 +362,9 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl wx xfce zip
 
-.for EXT in ${_ALL_EXT:U} 
+.for EXT in ${_ALL_EXT:tu} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
-.		include "${MPORTEXTENSIONS}/${EXT:L}.mk"
+.		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
 .endfor
 
@@ -372,7 +372,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 # Loading features - USES directive
 .for f in ${USES}
 _f=${f:C/\:.*//g}
-USE_${_f:U}=    yes
+USE_${_f:tu}=    yes
 .if ${_f} != ${f}
 ${_f}_ARGS:=    ${f:C/^[^\:]*\://g}
 USE_${_f}=      ${_f}_ARGS
@@ -626,7 +626,7 @@ BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
 	READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
 . for b in ${BINUTILS}
-${b}=	${LOCALBASE}/bin/${b:C/PP/++/:L}
+${b}=	${LOCALBASE}/bin/${b:C/PP/++/:tl}
 .  if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
 CONFIGURE_ENV+=	${b}="${${b}}"
 .  endif
@@ -674,8 +674,8 @@ BROKEN=	FAM system mismatch: ${_HAVE_FAM_SYSTEM} is installed and desired FAM sy
 .endif
 .endif
 
-.if defined(FAM_SYSTEM_${FAM_SYSTEM:U})
-LIB_DEPENDS+=	${FAM_SYSTEM_${FAM_SYSTEM:U}}
+.if defined(FAM_SYSTEM_${FAM_SYSTEM:tu})
+LIB_DEPENDS+=	${FAM_SYSTEM_${FAM_SYSTEM:tu}}
 .else
 IGNORE=		cannot be built with unknown FAM system: ${FAM_SYSTEM}
 .endif
@@ -685,7 +685,7 @@ IGNORE=		cannot be built with unknown FAM system: ${FAM_SYSTEM}
 .if defined(USE_RC_SUBR) || defined(USE_RCORDER)
 RC_SUBR=	/etc/rc.subr
 SUB_LIST+=	RC_SUBR=${RC_SUBR}
-.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
+.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
 SUB_FILES+=	${USE_RC_SUBR}
 .endif
 .if defined(USE_RCORDER)
@@ -693,11 +693,11 @@ SUB_FILES+=	${USE_RCORDER}
 .endif
 .endif
 
-.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:L} == "yes"
+.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:tl} == "yes"
 USE_LDCONFIG=	${PREFIX}/lib
 .endif
 
-.if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
+.if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:tl} == "yes"
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .endif
 
@@ -722,7 +722,7 @@ STRIP_CMD=	${TRUE}
 
 # Allow the user to specify another linux_base version.
 .	if defined(OVERRIDE_LINUX_BASE_PORT)
-.		if ${USE_LINUX:L} == yes
+.		if ${USE_LINUX:tl} == yes
 USE_LINUX=	${OVERRIDE_LINUX_BASE_PORT}
 .		endif
 .	endif
@@ -733,7 +733,7 @@ USE_LINUX=	${OVERRIDE_LINUX_BASE_PORT}
 .	if exists(${PORTSDIR}/emulators/linux_base-${USE_LINUX})
 LINUX_BASE_PORT=	${LINUXBASE}/bin/sh:${PORTSDIR}/emulators/linux_base-${USE_LINUX}
 .	else
-.		if ${USE_LINUX:L} == "yes"
+.		if ${USE_LINUX:tl} == "yes"
 .				if (${OSVERSION} > 4003)
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-f10
 .				else
@@ -817,7 +817,7 @@ _GL_glut_LIB_DEPENDS=		glut.12:${PORTSDIR}/graphics/freeglut
 _GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
 
 .if defined(USE_GL)
-. if ${USE_GL:L} == "yes"
+. if ${USE_GL:tl} == "yes"
 USE_GL=		glu
 . endif
 . for _component in ${USE_GL}
@@ -836,9 +836,9 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 #
 # Here we include again XXX
 #
-.for EXT in ${_ALL_EXT:U} 
+.for EXT in ${_ALL_EXT:tu} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
-.		include "${PORTSDIR}/Mk/extensions/${EXT:L}.mk"
+.		include "${PORTSDIR}/Mk/extensions/${EXT:tl}.mk"
 .	endif
 .endfor
 
@@ -2686,39 +2686,39 @@ fetch: ${_FETCH_DEP} ${_FETCH_SEQ}
 .for target in extract patch configure build fake package install update
 
 .if !target(${target}) && defined(_OPTIONS_OK)
-${target}: ${${target:U}_COOKIE}
+${target}: ${${target:tu}_COOKIE}
 .elif !target(${target})
 ${target}: config 
-	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE=1 ${__softMAKEFLAGS} ${${target:U}_COOKIE}
+	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE=1 ${__softMAKEFLAGS} ${${target:tu}_COOKIE}
 .elif target(${target}) && defined(IGNORE)
 .endif
 
-.if !exists(${${target:U}_COOKIE})
+.if !exists(${${target:tu}_COOKIE})
 
-.if ${UID} != 0 && defined(_${target:U}_SUSEQ) && !defined(INSTALL_AS_USER)
+.if ${UID} != 0 && defined(_${target:tu}_SUSEQ) && !defined(INSTALL_AS_USER)
 .if defined(USE_SUBMAKE)
-${${target:U}_COOKIE}: ${_${target:U}_DEP}
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${_${target:U}_SEQ}
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
+	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SEQ}
 .else
-${${target:U}_COOKIE}: ${_${target:U}_DEP} ${_${target:U}_SEQ}
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_SEQ}
 .endif 
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
-		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${_${target:U}_SUSEQ}"
+		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SUSEQ}"
 	@${ECHO_MSG} "===>  Returning to user credentials"
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .elif defined(USE_SUBMAKE)
-${${target:U}_COOKIE}: ${_${target:U}_DEP}
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && \
-		${MAKE} ${__softMAKEFLAGS} ${_${target:U}_SEQ} ${_${target:U}_SUSEQ}
+		${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SEQ} ${_${target:tu}_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .else
-${${target:U}_COOKIE}: ${_${target:U}_DEP} ${_${target:U}_SEQ} ${_${target:U}_SUSEQ}
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_SEQ} ${_${target:tu}_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .endif
 
 .else
-${${target:U}_COOKIE}::
+${${target:tu}_COOKIE}::
 	@if [ -e ${.TARGET} ]; then \
 		${DO_NADA}; \
 	else \
@@ -3019,7 +3019,7 @@ check-checksum-algorithms:
 	@ \
 	${checksum_init} \
 	\
-	for alg in ${CHECKSUM_ALGORITHMS:U}; do \
+	for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 		eval alg_executable=\$$$$alg; \
 		if [ -z "$$alg_executable" ]; then \
 			${ECHO_MSG} "Checksum algorithm $$alg: Couldn't find the executable."; \
@@ -3042,7 +3042,7 @@ makesum: check-checksum-algorithms
 		${checksum_init} \
 		\
 		for file in ${_CKSUMFILES}; do \
-			for alg in ${CHECKSUM_ALGORITHMS:U}; do \
+			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 				eval alg_executable=\$$$$alg; \
 				\
 				if [ $$alg_executable != "NO" ]; then \
@@ -3055,7 +3055,7 @@ makesum: check-checksum-algorithms
 		done \
 	)
 	@for file in ${_IGNOREFILES}; do \
-		for alg in ${CHECKSUM_ALGORITHMS:U}; do \
+		for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 			${ECHO_CMD} "$$alg ($$file) = IGNORE" >> ${HASH_FILE}; \
 		done; \
 	done
@@ -3073,7 +3073,7 @@ checksum: fetch check-checksum-algorithms
 			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
 			\
 			ignored="true"; \
-			for alg in ${CHECKSUM_ALGORITHMS:U}; do \
+			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 				ignore="false"; \
 				eval alg_executable=\$$$$alg; \
 				\
@@ -3128,7 +3128,7 @@ checksum: fetch check-checksum-algorithms
 			\
 			ignored="true"; \
 			alreadymatched="false"; \
-			for alg in ${CHECKSUM_ALGORITHMS:U}; do \
+			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 				ignore="false"; \
 				eval alg_executable=\$$$$alg; \
 				\
@@ -3257,8 +3257,8 @@ _INSTALL_DEPENDS=	\
 		fi;
 
 .for deptype in EXTRACT PATCH FETCH BUILD RUN
-.if !target(${deptype:L}-depends)
-${deptype:L}-depends:
+.if !target(${deptype:tl}-depends)
+${deptype:tl}-depends:
 .if defined(${deptype}_DEPENDS)
 .if !defined(NO_DEPENDS)
 	@for i in `${ECHO_CMD} "${${deptype}_DEPENDS}"`; do \
@@ -3730,7 +3730,7 @@ apply-slist:
 .endfor
 .for i in pkg-message pkg-install pkg-deinstall pkg-req
 .if ${SUB_FILES:M${i}*}!=""
-${i:S/-//:U}=	${WRKDIR}/${SUB_FILES:M${i}*}
+${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
 .endif
 .endfor
 .endif
@@ -3773,8 +3773,8 @@ generate-plist:
 		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
 	fi
 .	for reinplace in ${PLIST_REINPLACE}
-.		if defined(PLIST_REINPLACE_${reinplace:U})
-			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:U}}' ${TMPPLIST}
+.		if defined(PLIST_REINPLACE_${reinplace:tu})
+			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:tu}}' ${TMPPLIST}
 .		endif
 .	endfor
  
@@ -3874,7 +3874,7 @@ add-plist-post:
 
 .if !target(install-rc-script)
 install-rc-script:
-.	if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
+.	if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
 .		if defined(USE_RCORDER)
 			@${ECHO_MSG} "===> Installing early rc.d startup script(s)"
 			@${ECHO_CMD} "@cwd /" >> ${TMPPLIST}
@@ -3885,7 +3885,7 @@ install-rc-script:
 			done
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .		endif
-.		if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
+.		if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
 			@${ECHO_MSG} "===> Installing rc.d startup script(s)"
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 			@for i in ${USE_RC_SUBR}; do \
@@ -4032,10 +4032,10 @@ fix-plist-sequence: ${TMPPLIST}
 .if !target(compress-man)
 compress-man:
 .  if defined(_FAKEMAN) || defined(_MLINKS)
-.    if ${MANCOMPRESSED:L} == yes && defined(NOMANCOMPRESS)
+.    if ${MANCOMPRESSED:tl} == yes && defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Uncompressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
-.    elif ${MANCOMPRESSED:L} == no && !defined(NOMANCOMPRESS)
+.    elif ${MANCOMPRESSED:tl} == no && !defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Compressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
 .    endif
