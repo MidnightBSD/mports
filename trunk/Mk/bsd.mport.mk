@@ -89,7 +89,7 @@ MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
 .if defined(USE_DOS2UNIX)
-.if ${USE_DOS2UNIX:U}=="YES"
+.if ${USE_DOS2UNIX:tu}=="YES"
 DOS2UNIX_REGEX?=        .*
 .else
 .if ${USE_DOS2UNIX:M*/*}
