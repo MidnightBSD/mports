@@ -364,7 +364,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake cpe display dos2unix \
-		efl emacs execinfo fuse \
+		efl emacs execinfo fam fuse \
 		gecko gettext gnome gnustep gstreamer iconv imake \
 		ldap libtool lua makeself motif mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
@@ -648,47 +648,6 @@ MAKE_ENV+=	${b}="${${b}}"
 USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
 .endif
-
-.if defined(USE_FAM)
-DEFAULT_FAM_SYSTEM=	gamin
-# Currently supported FAM systems
-FAM_SYSTEM_FAM=		fam.0:${PORTSDIR}/devel/fam
-FAM_SYSTEM_GAMIN=	fam.0:${PORTSDIR}/devel/gamin
-
-.if exists(${LOCALBASE}/libexec/gam_server)
-_HAVE_FAM_SYSTEM=	gamin
-.elif exists(${LOCALBASE}/bin/fam)
-_HAVE_FAM_SYSTEM=	fam
-.endif
-
-.if defined(WANT_FAM_SYSTEM)
-.if defined(WITH_FAM_SYSTEM) && ${WITH_FAM_SYSTEM}!=${WANT_FAM_SYSTEM}
-IGNORE=		wants to use ${WANT_FAM_SYSTEM} as its FAM system, while you wish to use ${WITH_FAM_SYSTEM}
-.endif
-FAM_SYSTEM=	${WANT_FAM_SYSTEM}
-.elif defined(WITH_FAM_SYSTEM)
-FAM_SYSTEM=	${WITH_FAM_SYSTEM}
-.else
-.if defined(_HAVE_FAM_SYSTEM)
-FAM_SYSTEM=	${_HAVE_FAM_SYSTEM}
-.else
-FAM_SYSTEM=	${DEFAULT_FAM_SYSTEM}
-.endif
-.endif # WANT_FAM_SYSTEM
-
-.if defined(_HAVE_FAM_SYSTEM)
-.if ${_HAVE_FAM_SYSTEM}!= ${FAM_SYSTEM}
-BROKEN=	FAM system mismatch: ${_HAVE_FAM_SYSTEM} is installed and desired FAM system is ${FAM_SYSTEM}
-.endif
-.endif
-
-.if defined(FAM_SYSTEM_${FAM_SYSTEM:tu})
-LIB_DEPENDS+=	${FAM_SYSTEM_${FAM_SYSTEM:tu}}
-.else
-IGNORE=		cannot be built with unknown FAM system: ${FAM_SYSTEM}
-.endif
-.endif # USE_FAM
-
 
 .if defined(USE_RC_SUBR) || defined(USE_RCORDER)
 RC_SUBR=	/etc/rc.subr
