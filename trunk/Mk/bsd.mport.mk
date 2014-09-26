@@ -59,8 +59,6 @@ TRUE_PREFIX?=		${PREFIX}
 
 # make sure bmake treats -V as expected
 .MAKE.EXPAND_VARIABLES= yes
-# tell bmake we use the old :L :U modifiers
-.MAKE.FreeBSD_UL= yes
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
