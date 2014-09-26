@@ -550,9 +550,9 @@ java_OPTION=	"Enable JAVA xpcom" off
 logging_OPTION=	"Enable additional log messages" off
 optimized_cflags_OPTION=	"Enable some additional optimizations" off
 
-.for option in ${USE_GECKO_OPTIONS:L}
+.for option in ${USE_GECKO_OPTIONS:tl}
 .if ${_USE_GECKO_OPTIONS_ALL:M${option}}!=""
-OPTIONS+=	${option:U} ${${option}_OPTION}
+OPTIONS+=	${option:tu} ${${option}_OPTION}
 _${option}=	${TRUE}
 .endif
 .endfor
@@ -560,30 +560,30 @@ _${option}=	${TRUE}
 # Standard depends
 _ALL_DEPENDS=	cairo dbm jpeg nspr nss png xft zip
 
-cairo_LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo
+cairo_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
 cairo_MOZ_OPTIONS=	--enable-system-cairo
 cairo_EXTRACT_AFTER_ARGS=	--exclude mozilla/gfx/cairo
 
 dbm_EXTRACT_AFTER_ARGS=		--exclude mozilla/dbm
 
-jpeg_LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg
+jpeg_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 jpeg_MOZ_OPTIONS=	--with-system-jpeg=${LOCALBASE}
 jpeg_EXTRACT_AFTER_ARGS=	--exclude mozilla/jpeg
 
-nspr_LIB_DEPENDS=	nspr4:${PORTSDIR}/devel/nspr
+nspr_LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
 nspr_MOZ_OPTIONS=	--with-system-nspr
 
-nss_LIB_DEPENDS=	nss3:${PORTSDIR}/security/nss
+nss_LIB_DEPENDS=	libnss3.so:${PORTSDIR}/security/nss
 nss_EXTRACT_AFTER_ARGS=	--exclude mozilla/security/nss
 nss_MOZ_OPTIONS=	--with-system-nss
 nss_CPPFLAGS+=		-I${LOCALBASE}/include/nss -I${LOCALBASE}/include/nss/nss
 nss_LDFLAGS+=		-L${LOCALBASE}/lib/nss -Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 
 
-png_LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
+png_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 png_MOZ_OPTIONS=	--with-system-png=${LOCALBASE}
 
-xft_LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
+xft_LIB_DEPENDS=	libXft.so:${PORTSDIR}/x11-fonts/libXft
 zip_DEPENDS=		zip:${PORTSDIR}/archivers/zip
 
 .for use in ${USE_MOZILLA}
