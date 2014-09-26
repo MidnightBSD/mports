@@ -715,56 +715,6 @@ BUILD_DEPENDS+=	${LINUX_BASE_PORT}
 RUN_DEPENDS+=	${LINUX_BASE_PORT}
 .endif
 
-.if defined(USE_MOTIF)
-USE_XORG+=			xpm
-.if defined(WANT_LESSTIF)
-LIB_DEPENDS+=		Xm:${PORTSDIR}/x11-toolkits/lesstif
-NO_OPENMOTIF=		yes
-.endif
-.if !defined(NO_OPENMOTIF)
-LIB_DEPENDS+=		Xm.4:${PORTSDIR}/x11-toolkits/open-motif
-.endif
-.endif
-
-.if defined(USE_FREETYPE)
-LIB_DEPENDS+=			ttf.4:${PORTSDIR}/print/freetype
-.endif
-
-X_IMAKE_PORT=		${PORTSDIR}/devel/imake
-X_LIBRARIES_PORT=	${PORTSDIR}/x11/xorg-libraries
-X_CLIENTS_PORT=		${PORTSDIR}/x11/xorg-apps
-X_SERVER_PORT=		${PORTSDIR}/x11-servers/xorg-server
-X_FONTSERVER_PORT=	${PORTSDIR}/x11-fonts/xfs
-X_PRINTSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-printserver
-X_VFBSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-vfbserver
-X_NESTSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-nestserver
-X_FONTS_ENCODINGS_PORT=	${PORTSDIR}/x11-fonts/encodings
-X_FONTS_MISC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-miscbitmaps
-X_FONTS_100DPI_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-100dpi
-X_FONTS_75DPI_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-75dpi
-X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-cyrillic
-X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-truetype
-X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
-X_FONTS_ALIAS_PORT=	${PORTSDIR}/x11-fonts/font-alias
-
-.if defined(USE_IMAKE)
-CONFIGURE_ENV+=		IMAKECPP="${CPP}"
-MAKE_ENV+=		IMAKECPP="${CPP}"
-MAKE_FLAGS?=		CC="${CC}" CXX="${CXX}"
-# XXX: Drop xorg-cf-files and gccmakedep here?
-BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
-			${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files \
-			${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep
-.endif
-
-
-# Drop when USE_XLIB dropped in USE_LINUX
-.if defined(USE_XLIB)
-.	if defined(USE_LINUX)
-RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-xorg-libs
-.	endif
-.endif
-
 .if defined(USE_XORG)
 # Add explicit X options to avoid problems with false positives in configure
 .if defined(GNU_CONFIGURE)
@@ -772,16 +722,15 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .endif
 .endif
 
-XAWVER=				8
-PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
-PLIST_SUB+=			XAWVER=${XAWVER}
-
-_GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
-_GL_glew_LIB_DEPENDS=		GLEW.1:${PORTSDIR}/graphics/glew
-_GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
-_GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
-_GL_glut_LIB_DEPENDS=		glut.12:${PORTSDIR}/graphics/freeglut
-_GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
+_GL_glesv2_LIB_DEPENDS=		libGLESv2.so:${PORTSDIR}/graphics/libglesv2
+_GL_egl_LIB_DEPENDS=		libEGL.so:${PORTSDIR}/graphics/libEGL
+_GL_gl_LIB_DEPENDS=		libGL.so:${PORTSDIR}/graphics/libGL
+_GL_gl_USE_XORG=		glproto dri2proto
+_GL_glew_LIB_DEPENDS=		libGLEW.so:${PORTSDIR}/graphics/glew
+_GL_glu_LIB_DEPENDS=		libGLU.so:${PORTSDIR}/graphics/libGLU
+_GL_glu_USE_XORG=		glproto dri2proto
+_GL_glw_LIB_DEPENDS=		libGLw.so:${PORTSDIR}/graphics/libGLw
+_GL_glut_LIB_DEPENDS=		libglut.so:${PORTSDIR}/graphics/freeglut
 
 .if defined(USE_GL)
 . if ${USE_GL:tl} == "yes"
@@ -792,6 +741,8 @@ USE_GL=		glu
 		!defined(_GL_${_component}_RUN_DEPENDS)
 IGNORE=		uses unknown GL component
 .   else
+USE_XORG+=	${_GL_${_component}_USE_XORG}
+BUILD_DEPENDS+=	${_GL_${_component}_BUILD_DEPENDS}
 LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
 RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 .  endif
