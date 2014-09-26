@@ -8,6 +8,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	cvs-server only shell
+
 LICENSE=	publicdom
 
 NO_BUILD=	yes
