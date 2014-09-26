@@ -5,7 +5,8 @@
 # options.mk -- The options component
 #
 
-.if !defined(AFTERPORTMK)
+.if !defined(OPTIONSMKINCLUDED) && !defined(AFTERPORTMK)
+OPTIONSMKINCLUDED=	options.mk
 
 OPTIONS_NAME?=	${PKGORIGIN:S/\//_/}
 OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
@@ -242,7 +243,7 @@ CONFIGURE_ARGS+=	--enable-${iopt}
 .    endif
 .    if defined(${opt}_CONFIGURE_WITH)
 .      for iopt in ${${opt}_CONFIGURE_WITH}
-CONFIGURE_ARGS+=	--with-${iopt}
+CONFIGURE_ARGS+=	--with-${iopt:C/=.*//}
 .      endfor
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
