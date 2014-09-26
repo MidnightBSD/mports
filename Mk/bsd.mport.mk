@@ -64,6 +64,14 @@ TRUE_PREFIX?=		${PREFIX}
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
+.if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
+	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
+
+.include ${PORTSDIR}/Mk/components/destdir.mk
+
+.else
+
+
 # Figure out where the local mtree file is
 .if !defined(MTREE_FILE)  && !defined(NO_MTREE)
 .if ${PREFIX} == /usr
@@ -4323,6 +4331,9 @@ install-desktop-entries:
 .endif
 
 .PHONY: ${_PHONY_TARGETS}
+
+.endif
+
 
 .endif
 
