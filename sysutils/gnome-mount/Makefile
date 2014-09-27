@@ -21,6 +21,7 @@ USE_GNOME=	gnomeprefix intlhack gconf2 gtk20
 USES=		gettext gmake pathfix pkgconfig iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nautilus-extension
+MAKE_ENV+=	ICONV=${ICONV_CMD}
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
