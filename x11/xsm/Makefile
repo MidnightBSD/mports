@@ -12,6 +12,4 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xt xaw
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
-
 .include <bsd.port.mk>
