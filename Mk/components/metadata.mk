@@ -94,7 +94,7 @@ describe-yaml:
 			name           => q(${PKGORIGIN}), \
 			version        => q(${PKGVERSION}), \
 			description    => qq(${COMMENT:S/'/\x27/g}), \
-			license        => q(${LICENSE}), \
+			license        => [qw(${LICENSE})], \
 			license_perms  => [qw(${LICENSE_PERMS})], \
 			license_name   => q(${LICENSE_NAME}), \
 			license_text   => q(${LICENSE_TEXT}), \
