@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xfce4-terminal
-PORTVERSION=	0.6.2
+PORTVERSION=	0.6.3
 CATEGORIES=	x11 xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/apps/${PORTNAME}/${PORTVERSION:R}
@@ -11,21 +11,19 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X windowing system
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_AUTOTOOLS=	libtool
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+
 GNU_CONFIGURE=	yes
-USE_GNOME=	gtk20 glib20 intltool intlhack vte libxml2 
+USE_GNOME=	gtk20 glib20 intltool intlhack vte libxml2
 USE_XFCE=	configenv libmenu
 USE_XORG=	x11
-USES=		gmake pathfix pkgconfig tar:bzip2
+USES=		pkgconfig gmake tar:bzip2
 
 CONFIGURE_ARGS=	--without-gnome-default-appsdir
 
 OPTIONS_DEFINE=	NLS
-
-MAN1=		xfce4-terminal.1
-MANLANG=	"" ar ca da de el es fr gl id it ja ko lt \
-	pl pt pt_BR ru sr sv tr ug uk zh_CN
 
 .include  <bsd.mport.options.mk>
 
@@ -39,8 +37,6 @@ PLIST_SUB+=	NLS="@comment "
 .endif
 
 post-patch:
-# Downgrade VTE to 0.26
-	@${REINPLACE_CMD} -e 's|0.28|0.26|g' ${WRKSRC}/configure
 .if ! ${PORT_OPTIONS:MNLS}
 	@${REINPLACE_CMD} -e 's|	terminal||; \
 		s|po \\|terminal|' ${WRKSRC}/Makefile.in
