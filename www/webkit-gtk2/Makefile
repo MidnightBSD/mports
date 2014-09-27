@@ -21,10 +21,9 @@ LIB_DEPENDS=	enchant:${PORTSDIR}/textproc/enchant \
 		curl:${PORTSDIR}/ftp/curl \
 		soup-2.4:${PORTSDIR}/devel/libsoup
 
-USE_XZ=		yes
 USE_GSTREAMER=	yes
 USE_XORG=	xt
-USES=		bison gmake pkgconfig gettext
+USES=		bison gmake pkgconfig gettext tar:xz
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gtk20 introspection:build libxslt ltverhack
 USE_SQLITE=	yes
