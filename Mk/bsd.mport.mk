@@ -1021,8 +1021,12 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-s ${FAKE_DESTDIR} -p ${TMPPLIST} -P ${PREFIX} \
 					-O ${PKGORIGIN} -c "${COMMENT:Q}" -l en \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
-					-t "${CATEGORIES}" \
-					$$_LATE_MPORT_CREATE_ARGS
+					-t "${CATEGORIES}"
+
+.if ${OSVERSION} > 6000
+MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_CPE}
+.endif
+MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
 					
 .if !defined(NO_MTREE)
 MPORT_CREATE_ARGS+=	-M ${MTREE_FILE}
