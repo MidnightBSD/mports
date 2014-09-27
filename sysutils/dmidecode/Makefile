@@ -3,6 +3,7 @@
 
 PORTNAME=	dmidecode
 PORTVERSION=	2.12
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
 		ftp://ftp.nuug.no/pub/anders/distfiles/
@@ -20,8 +21,6 @@ USE_GETOPT_LONG=	yes
 MAKE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" DOCSDIR="${DOCSDIR}"
 
 PORTDOCS=	AUTHORS CHANGELOG README
-
-MAN8=		biosdecode.8 dmidecode.8 ownership.8 vpddecode.8
 
 post-patch:
 .if defined(NOPORTDOCS)

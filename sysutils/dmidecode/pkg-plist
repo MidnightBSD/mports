@@ -1,3 +1,4 @@
+man/man8/dmidecode.8.gz
 sbin/biosdecode
 sbin/dmidecode
 sbin/ownership
