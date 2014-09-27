@@ -41,9 +41,8 @@ DIST?=		good
 SHLIB_VERSION=	1
 VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
-USE_BZIP2=	yes
 USE_GNOME+=	ltverhack ltasneededhack
-USES=		gettext gmake pathfix pkgconfig shebangfix
+USES=		gettext gmake pathfix pkgconfig shebangfix tar:bzip2
 USE_AUTOTOOLS=	libtool
 GST_PLUGIN?=	base
 
