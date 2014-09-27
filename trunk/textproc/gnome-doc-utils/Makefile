@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-doc-utils
-PORTVERSION=	0.20.3
-PORTREVISION=	1
+PORTVERSION=	0.20.10
+PORTREVISION=	2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -12,26 +12,19 @@ COMMENT=	GNOME doc utils
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
-		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2 \
-    		gawk:${PORTSDIR}/lang/gawk
+		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
 		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2 \
-		${LOCALBASE}/share/xml/docbook/4.3/catalog.xml:${PORTSDIR}/textproc/docbook-xml-430 \
-		${LOCALBASE}/share/xml/docbook/4.4/catalog.xml:${PORTSDIR}/textproc/docbook-xml-440
+		${LOCALBASE}/share/xml/docbook/4.3:${PORTSDIR}/textproc/docbook-xml
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_UNSAFE=yes
-USE_GNOME=	gnomehier gnomehack libxslt intlhack
-USES+=		gettext pathfix pkgconfig
-USE_PYTHON=	yes
+USES=		gettext gmake pathfix pkgconfig tar:xz
+USE_GNOME=	gnomehier libxslt intlhack
+USE_PYTHON=	2
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-omf-dir=${PREFIX}/share/omf
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-
-MAN1=		xml2po.1
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-install:
 	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d ${TRUE_PREFIX} -l ${PYTHON_SITELIBDIR}/xml2po
