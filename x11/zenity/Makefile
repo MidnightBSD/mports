@@ -2,7 +2,7 @@
 
 PORTNAME=	zenity
 PORTVERSION=	2.32.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,27 +15,20 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
-USES=		pathfix gettext gmake pkgconfig tar:bzip2
+USES=		pathfix perl5 gettext gmake pkgconfig tar:bzip2
+USE_PERL5=	run
 USE_GNOME=	gnomeprefix gtk20 gnomedocutils intlhack
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
-CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib -lintl
 
 CONFLICTS=	gtkada-1.2.*
 
 OPTIONS_DEFINE=	NOTIFY
 OPTIONS_DEFAULT=NOTIFY
 
-.include <bsd.mport.options.mk>
-
-.if !defined(WITHOUT_NOTIFY)
-LIB_DEPENDS+=		notify:${PORTSDIR}/devel/libnotify
-CONFIGURE_ARGS+=	--enable-libnotify
-.else
-CONFIGURE_ARGS+=	--disable-libnotify
-.endif
+NOTIFY_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
+NOTIFY_CONFIGURE_ENABLE=	libnotify
 
 .include <bsd.port.mk>
