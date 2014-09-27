@@ -2,12 +2,13 @@
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An OMF help system based on the Freedesktop specification
+COMMENT=	OMF help system based on the Freedesktop specification
+
 LICENSE=        gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
@@ -24,17 +25,16 @@ DOCBOOK_VERSION=4.2
 
 CONFLICTS=	scrollkeeper-[0-9]*
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehier gnomehack libxslt
-USE_PYTHON=	yes
-GNU_CONFIGURE=	yes
+USES=		gmake libtool pathfix python tar:bzip2
+USE_GNOME=	gnomehier libxslt
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-convert-dir=${LOCALBASE}/share/omf \
 		--datadir=${PREFIX}/share \
 		--localstatedir=/var
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/rarian|/db/rarian|' \
