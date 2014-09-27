@@ -238,6 +238,7 @@ sub port_page {
     arch      => $port->run->arch,
     status    => $port->status,
     license   => $port->license,
+    restricted => $port->restricted,
     can_reset => $port->can_reset? 1 : 0,
     fail      => $port->status eq "fail",
     pass      => $port->status eq "pass",
