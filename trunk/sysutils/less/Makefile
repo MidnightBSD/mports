@@ -4,11 +4,13 @@ PORTNAME=	less
 PORTVERSION=	458
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.greenwoodsoftware.com/%SUBDIR%/ \
+		http://bitrote.org/distfiles/ \
 		${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	less
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Better pager utility
+
 LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
