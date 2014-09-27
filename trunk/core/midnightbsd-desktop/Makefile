@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	1.8
+PORTVERSION=	1.9
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -24,6 +24,12 @@ RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		browser:${PORTSDIR}/www/browser3 \
 		common-services>=1.0:${PORTSDIR}/core/common-services \
 		${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server \
+		${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
+                ${LOCALBASE}/libdata/xorg/libraries:${PORTSDIR}/x11/xorg-libraries \
+                ${LOCALBASE}/libdata/xorg/fonts:${PORTSDIR}/x11-fonts/xorg-fonts
+ \
+                ${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers
+
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
