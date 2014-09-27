@@ -1,21 +1,15 @@
-# New ports collection makefile for:	libxklavier
-# Date created:				31 May 2002
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
-#   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
-#
 
 PORTNAME=	libxklavier
 PORTVERSION=	5.0
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An utility library to make XKB stuff easier
+COMMENT=	Utility library to make XKB stuff easier
 
 LICENSE=	lgpl
 
@@ -23,7 +17,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-
 RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
     		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
-USES=		libtool pathfix gmake pkgconfig tar:bzip2
+USES=		libtool:keepla pathfix gmake pkgconfig tar:bzip2
 USE_XORG=	x11 xi xkbfile
 USE_GNOME=	libxml2 glib20
 USE_LDCONFIG=	yes
