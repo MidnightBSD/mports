@@ -6,8 +6,8 @@ include/pr29.h
 include/punycode.h
 include/stringprep.h
 include/tld.h
+info/libidn-components.png
 lib/libidn.a
-lib/libidn.la
 lib/libidn.so
 lib/libidn.so.17
 libdata/pkgconfig/libidn.pc
@@ -33,7 +33,6 @@ share/emacs/site-lisp/punycode.el
 %%PORTDOCS%%%%DOCSDIR%%/FAQ
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/libidn-components.png
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 man/man1/idn.1.gz
 man/man3/idn_free.3.gz
