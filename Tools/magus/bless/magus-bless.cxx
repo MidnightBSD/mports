@@ -87,7 +87,7 @@ main(int argc, char *argv[])
     }
 
     sprintf(query_def,
-      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version  from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
+      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
       runid);
 
     nontransaction N(C);
@@ -111,6 +111,13 @@ main(int argc, char *argv[])
                        free(filePath);
                        continue;
                    }
+
+		   if (row[5].as(boolean()))
+		   {
+			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);	
+			unlink(filePath);
+			continue;
+		   }
 
                    if (ln.c_str()) 
                    {
