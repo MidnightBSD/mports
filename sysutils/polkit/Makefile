@@ -2,23 +2,21 @@
 
 PORTNAME=	polkit
 PORTVERSION=	0.105
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/ \
-		http://miwibox.org/distfiles/
+MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
+
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
-RUN_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection \
-		dbus-launch:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+RUN_DEPENDS=	dbus-launch:${PORTSDIR}/devel/dbus
 
-USE_GNOME=	gnomehack glib20 intlhack gnomehier
-USE_GMAKE=	yes
+USE_GNOME=	glib20 intlhack gnomehier introspection
 GNU_CONFIGURE=	yes
-USES=		pkgconfig gettext
+USES=		pkgconfig libtool:keepla gettext gmake
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-authfw=pam \
@@ -30,6 +28,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 CONFIGURE_ENV=	GTKDOC="false"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_DEFINE=	MANPAGES
 
@@ -39,10 +38,9 @@ OPTIONS_DEFINE=	MANPAGES
 BUILD_DEPENDS+=	${LOCALBASE}/share/sgml/docbook/4.1/dtd/catalog:${PORTSDIR}/textproc/docbook-410 \
     		xsltproc:${PORTSDIR}/textproc/libxslt \
 		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
-
-MAN1=		pkaction.1 pkcheck.1 pkexec.1 pkttyagent.1
-MAN8=		pklocalauthority.8 polkit.8 polkitd.8
+PLIST_SUB+=	MANPAGES=""
 .else
+PLIST_SUB+=	MANPAGES="@comment "
 CONFIGURE_ARGS+=--disable-man-pages
 .endif
 
@@ -59,6 +57,9 @@ post-install:
 	fi
 	${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
 		${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf.dist
+	@${STRIP_CMD} ${PREFIX}/lib/lib*.so*
+	@${STRIP_CMD} ${PREFIX}/lib/polkit-1/extensions/lib*.so
+
 .if !defined(PACKAGE_BUILDING)
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .endif
