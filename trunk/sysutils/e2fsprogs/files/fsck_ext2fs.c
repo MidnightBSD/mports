@@ -4,9 +4,9 @@
  * redistributable in accordance with the
  * GNU General Public License v2
  *
- * $FreeBSD$
+ * $FreeBSD: head/sysutils/e2fsprogs/files/fsck_ext2fs.c 340872 2014-01-24 00:14:07Z mat $
  *
- * Upstream: $Id: fsck_ext2fs.c,v 1.2 2013-02-26 04:48:19 laffer1 Exp $
+ * Upstream: $Id: fsck_ext2fs.c,v 1.6 2006/07/02 11:37:49 emma Exp $
  *
  * format: gindent -kr
  */
