@@ -2,7 +2,7 @@
 
 PORTNAME=	polkit
 PORTVERSION=	0.105
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -16,7 +16,7 @@ RUN_DEPENDS=	dbus-launch:${PORTSDIR}/devel/dbus
 
 USE_GNOME=	glib20 intlhack gnomehier introspection
 GNU_CONFIGURE=	yes
-USES=		pkgconfig libtool:keepla gettext gmake
+USES=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-authfw=pam \
@@ -36,8 +36,8 @@ OPTIONS_DEFINE=	MANPAGES
 
 .if ${PORT_OPTIONS:MMANPAGES}
 BUILD_DEPENDS+=	${LOCALBASE}/share/sgml/docbook/4.1/dtd/catalog:${PORTSDIR}/textproc/docbook-410 \
-    		xsltproc:${PORTSDIR}/textproc/libxslt \
 		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+USE_GNOME+=	libxslt:build
 PLIST_SUB+=	MANPAGES=""
 .else
 PLIST_SUB+=	MANPAGES="@comment "
