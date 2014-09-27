@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -58,7 +59,5 @@ pre-everything::
 DEPENDS_TARGET="package"
 .endif
 .endif
-
-RUN_DEPENDS+=	${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server
 
 .include <bsd.port.post.mk>
