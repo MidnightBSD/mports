@@ -85,7 +85,6 @@ PLIST_SUB+=	TOOLS=""
 PLIST_SUB+=	TOOLS="@comment "
 .endif
 
-# testsuite will fail until PR156076 is committed
 .if ${PORT_OPTIONS:MTEST}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3
 .endif

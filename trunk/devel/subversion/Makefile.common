@@ -2,7 +2,7 @@
 
 PORTNAME?=	subversion
 PORTVERSION=	1.8.10
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 DIST_SUBDIR=	subversion18
@@ -16,7 +16,7 @@ CONFLICTS_INSTALL+=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-1.[6|7].[0-9]*
 CPE_VENDOR=	apache
 
 LIB_DEPENDS+=		libapr-1.so:${PORTSDIR}/devel/apr \
-			libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
+			${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
 			libexpat.so:${PORTSDIR}/textproc/expat2
 
 CONFIGURE_ARGS+=	--without-swig \
