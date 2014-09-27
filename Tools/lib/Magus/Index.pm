@@ -67,7 +67,7 @@ sub sync {
       name        => $dump{name}, 
       version     => $dump{version},
       description => $dump{description},
-      license	  => $dump{license},
+      license	  => join(" ", $dump{license}),
       www         => $dump{www},
       pkgname     => $dump{pkgname},
     });     
