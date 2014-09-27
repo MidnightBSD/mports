@@ -289,8 +289,8 @@ lib/gtk-2.0/%%GTK2_VERSION%%/immodules/im-viqr.la
 lib/gtk-2.0/%%GTK2_VERSION%%/immodules/im-viqr.so
 lib/gtk-2.0/%%GTK2_VERSION%%/immodules/im-xim.la
 lib/gtk-2.0/%%GTK2_VERSION%%/immodules/im-xim.so
-%%CUPS:%%lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-cups.la
-%%CUPS:%%lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-cups.so
+%%CUPS%%lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-cups.la
+%%CUPS%%lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-cups.so
 lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-file.la
 lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-file.so
 lib/gtk-2.0/%%GTK2_VERSION%%/printbackends/libprintbackend-lpr.la
@@ -304,10 +304,10 @@ lib/libgailutil.so
 lib/libgailutil.so.18
 lib/libgdk-x11-2.0.la
 lib/libgdk-x11-2.0.so
-lib/libgdk-x11-2.0.so.0
+lib/libgdk-x11-2.0.so.2400
 lib/libgtk-x11-2.0.la
 lib/libgtk-x11-2.0.so
-lib/libgtk-x11-2.0.so.0
+lib/libgtk-x11-2.0.so.2400
 libdata/pkgconfig/gail.pc
 libdata/pkgconfig/gdk-2.0.pc
 libdata/pkgconfig/gdk-x11-2.0.pc
