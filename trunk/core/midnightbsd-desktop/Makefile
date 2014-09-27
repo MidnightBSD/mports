@@ -22,9 +22,9 @@ RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:${PORTSDIR}/x11-themes/midnightbsd-backgrounds \
 		browser:${PORTSDIR}/www/browser3 \
-		common-services>=1.0:${PORTSDIR}/core/common-services
+		common-services>=1.0:${PORTSDIR}/core/common-services \
+		${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server \
 
-USE_XORG=	x11
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
 
