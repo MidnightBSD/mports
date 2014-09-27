@@ -129,9 +129,10 @@ CREATE TABLE  "ports" (
    "pkgname"   varchar(128) NOT NULL, 
    "version"   varchar(32) NOT NULL, 
    "description"   text, 
-   "license"   varchar(64) default NULL, 
+   "license"   varchar(64) default NULL,
+   "restricted" boolean NOT NULL default false,
    "www"   text, 
-   "status"   varchar(32) NOT NULL default 'untested', 
+   "status"   varchar(32) NOT NULL default 'untested',
    "updated"   timestamp NOT NULL default CURRENT_TIMESTAMP , 
    primary key ("id")
 )  ;
