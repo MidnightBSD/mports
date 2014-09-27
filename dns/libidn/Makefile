@@ -12,6 +12,8 @@ COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS+=	automake-1.14:${PORTSDIR}/devel/automake14
+
 OPTIONS_DEFINE=	DOCS NLS
 
 GNU_CONFIGURE=	yes
@@ -19,7 +21,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 USES=		iconv libtool makeinfo pathfix perl5 pkgconfig
-USE_AUTOTOOLS=	automake
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
