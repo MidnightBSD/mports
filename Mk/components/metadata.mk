@@ -95,8 +95,12 @@ describe-yaml:
 			version        => q(${PKGVERSION}), \
 			description    => qq(${COMMENT:S/'/\x27/g}), \
 			license        => q(${LICENSE}), \
+			license_perms  => [qw(${LICENSE_PERMS})], \
+			license_name   => q(${LICENSE_NAME}), \
+			license_text   => q(${LICENSE_TEXT}), \
 			categories     => [qw(${CATEGORIES})], \
 			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
+			restricted     => q(${RESTRICTED}) ? 1 : 0, \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
