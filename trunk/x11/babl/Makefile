@@ -2,7 +2,7 @@
 
 PORTNAME=	babl
 PORTVERSION=	0.1.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
@@ -18,10 +18,9 @@ COMMENT=	Dynamic pixel format conversion library
 
 LICENSE=	gpl3
 
+USES=		gmake libtool:keepla pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack
-USES=		gmake pkgconfig pathfix tar:bzip2
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-introspection
 
 OPTIONS_DEFINE=	SIMD
