@@ -69,6 +69,16 @@ libexec/hald-probe-storage
 %%USB2%%libexec/hald-probe-video4linux
 libexec/hald-probe-volume
 libexec/hald-runner
+man/man1/hal-disable-polling.1.gz
+man/man1/hal-find-by-capability.1.gz
+man/man1/hal-find-by-property.1.gz
+man/man1/hal-get-property.1.gz
+man/man1/hal-is-caller-locked-out.1.gz
+man/man1/hal-is-caller-privileged.1.gz
+man/man1/hal-lock.1.gz
+man/man1/hal-set-property.1.gz
+man/man1/lshal.1.gz
+man/man8/hald.8.gz
 sbin/hald
 %%PORTDOCS%%%%DOCSDIR%%/README.freebsd
 %%PORTDOCS%%%%DOCSDIR%%/README.fuse
@@ -111,7 +121,7 @@ share/PolicyKit/policy/org.freedesktop.hal.wol.policy
 @dirrm %%DATADIR%%/fdi
 @dirrm %%DATADIR%%/dist
 @dirrm %%DATADIR%%
-@dirrm %%DOCSDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrm libexec/hal/scripts/freebsd
 @dirrm libexec/hal/scripts
 @dirrm libexec/hal
@@ -121,11 +131,10 @@ share/PolicyKit/policy/org.freedesktop.hal.wol.policy
 @dirrm etc/hal/fdi/information
 @dirrm etc/hal/fdi
 @dirrm etc/hal
+@unexec rm -f /var/lib/PolicyKit/user-haldaemon.auths 2>/dev/null || true
 @unexec rm -f /var/run/hald/hald.pid 2>/dev/null || true
 @unexec rm -rf /var/run/hald/hald-local 2>/dev/null || true
 @unexec rm -rf /var/run/hald/hald-runner 2>/dev/null || true
 @unexec rmdir /var/run/hald 2>/dev/null || true
 @unexec rmdir /var/cache/hald 2>/dev/null || true
-@unexec rmdir /var/cache 2>/dev/null || true
 @unexec rmdir /var/lib/hal 2>/dev/null || true
-@unexec rmdir /var/lib 2>/dev/null || true
