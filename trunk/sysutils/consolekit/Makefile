@@ -12,8 +12,8 @@ COMMENT=	Framework for defining and tracking users
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-    		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+    		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
 
 WRKSRC=		${WRKDIR}/ConsoleKit-${PORTVERSION}
 USE_XORG=	x11
@@ -24,6 +24,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-pid-file=/var/run/${PORTNAME}.pid \
 		--localstatedir=/var
+INSTALL_TARGET=	install-strip
 
 post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/ck-get-x11-display-device \
