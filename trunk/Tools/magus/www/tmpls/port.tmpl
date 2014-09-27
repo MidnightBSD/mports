@@ -14,6 +14,7 @@
         <th>OSVersion</th>
         <th>Arch</th>
         <th>License</th>
+        <th>Restricted</th>
         <th>Status</th>
         <th></th>
     </tr>
@@ -25,6 +26,7 @@
         <td><TMPL_VAR NAME="osversion"></td>
         <td><TMPL_VAR NAME="arch"></td>
         <td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
+        <td><TMPL_VAR NAME="restricted"></td>
         <td><TMPL_VAR NAME="status"></td>
         <td>
           <TMPL_IF NAME="can_reset">
