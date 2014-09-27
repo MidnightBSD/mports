@@ -31,6 +31,7 @@ SUBDIR += linux-enemyterritory-omni-bot
 SUBDIR += linux-enemyterritory-shrub
 SUBDIR += linux-enemyterritory-tce
 SUBDIR += linux-etqw-demo-server
+SUBDIR += linux-etqw-server
 SUBDIR += linux-quake3
 SUBDIR += linux-quake3-demo
 SUBDIR += moon-buggy
