@@ -25,16 +25,19 @@ USE_PERL5_BUILD=yes
 USE_PYTHON=	2.5-2.7
 USE_LDCONFIG=	yes
 USE_GNOME=	atk pango gdkpixbuf2 gtk-update-icon-cache introspection:build
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake libtool:keepla pathfix perl5 pkgconfig
+GNU_CONFIGURE=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite xau xdmcp xproto
 CONFIGURE_ARGS=	--with-xinput=yes
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
 		-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	CUPS DEBUG
 OPTIONS_DEFAULT=CUPS
+OPTIONS_SUB=	yes
 
 CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
 CUPS_CONFIGURE_ON=	--enable-cups=auto
@@ -49,12 +52,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@LN_S@|${LN} -sf|' ${WRKSRC}/gtk/Makefile.in
 	@${REINPLACE_CMD} -e 's|file,cups|file,cups,lpr|' \
 		${WRKSRC}/gtk/Makefile.in
-
-pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
-	@${FALSE}
-.endif
 
 pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
