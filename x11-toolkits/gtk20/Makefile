@@ -14,18 +14,18 @@ COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 
 LICENSE=	lgpl
 
+USES=		tar:xz
+
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
 USE_PERL5_BUILD=yes
 USE_PYTHON=	2.5-2.7
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
-USES=		gettext gmake pathfix pkgconfig tar:xz
+USE_GNOME=	atk pango gdkpixbuf2 gtk-update-icon-cache introspection:build
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite xau xdmcp xproto
 CONFIGURE_ARGS=	--with-xinput=yes
@@ -36,23 +36,13 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 OPTIONS_DEFINE=	CUPS DEBUG
 OPTIONS_DEFAULT=CUPS
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MCUPS}
-LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
-CONFIGURE_ARGS+=--enable-cups=auto
-PLIST_SUB+=	CUPS:=""
-.else
-CONFIGURE_ARGS+=--disable-cups
-PLIST_SUB+=	CUPS:="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=--enable-debug=yes
-.endif
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
+CUPS_CONFIGURE_ON=	--enable-cups=auto
+CUPS_CONFIGURE_OFF=	--disable-cups
+DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${GREP} -l lgmodule | \
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${GREP} -l lgmodule | \
 		${XARGS} ${REINPLACE_CMD} -e 's|-lgmodule|@GMODULE_LIBS@|g'
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
