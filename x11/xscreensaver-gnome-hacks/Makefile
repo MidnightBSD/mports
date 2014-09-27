@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xscreensaver-gnome-hacks
-PORTREVISION=	1
+PORTREVISION=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Screensaver modules for use with xscreensaver and gnome-screensaver
