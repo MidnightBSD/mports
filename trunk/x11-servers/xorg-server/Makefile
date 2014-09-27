@@ -36,7 +36,7 @@ OPTIONS_EXCLUDE_sparc64=	HAL
 
 .if defined(WITH_NEW_XORG)
 XORG_VERSION=	1.12.4
-XORG_REVISION=	1
+XORG_REVISION=	2
 PLIST_SUB+=	OLD="@comment " NEW=""
 EXTRA_PATCHES+=	${FILESDIR}/extra-clang \
 		${FILESDIR}/extra-configure \
@@ -44,7 +44,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-clang \
 		${FILESDIR}/extra-new-dix_dixfonts.c
 .else
 XORG_VERSION=	1.7.7
-XORG_REVISION=	7
+XORG_REVISION=	8
 PLIST_SUB+=	OLD="" NEW="@comment "
 EXTRA_PATCHES+=	${FILESDIR}/extra-Xext-xace.c \
 		${FILESDIR}/extra-Xserver-os-xprintf.c \
