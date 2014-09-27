@@ -2213,7 +2213,7 @@ do-package: ${TMPPLIST}
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
 	else \
 		${ECHO_MSG} "Unable to create package ${PKGFILE}"; \
-		@cd ${.CURDIR} && rm -f ${PACKAGE_COOKIE} ${INSTALL_COOKIE} \
+		cd ${.CURDIR} && rm -f ${PACKAGE_COOKIE} ${INSTALL_COOKIE}; \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
 		exit 1; \
 	fi
