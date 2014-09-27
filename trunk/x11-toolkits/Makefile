@@ -55,7 +55,6 @@ SUBDIR += py-gtk2
 SUBDIR += py-gtksourceview
 SUBDIR += py-tkinter
 SUBDIR += py-vte
-SUBDIR += qt33
 SUBDIR += qt4-gui
 SUBDIR += renaissance
 SUBDIR += shared-desktop-ontologies
