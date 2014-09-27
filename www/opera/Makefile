@@ -3,7 +3,7 @@
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -20,8 +20,8 @@ COMMENT=	Blazingly fast, full-featured, standards-compliant browser
 
 LICENSE=	opera
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
@@ -29,9 +29,8 @@ OPERA_VER?=	12.16
 OPERA_BUILD?=	1860
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
-USES=		tar:xz
+USES=		tar:xz desktop-file-utils shared-mime-info
 USE_XORG=	x11 xext sm ice xft xrender
-USE_GNOME=	desktopfileutils
 INSTALLS_ICONS=	yes
 
 NO_BUILD=	yes
@@ -69,8 +68,6 @@ USE_GNOME+=	gtk20
 .endif
 
 .include <bsd.port.pre.mk>
-
-ONLY_FOR_ARCHS=	i386 amd64
 
 OPERA_ARCH=	${ARCH:S,i386,intel,}
 
