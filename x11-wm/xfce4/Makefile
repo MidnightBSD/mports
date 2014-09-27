@@ -2,7 +2,7 @@
 
 PORTNAME=	xfce
 PORTVERSION=	4.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -14,7 +14,7 @@ COMMENT=	The "meta-port" for the Xfce Desktop Environment
 LICENSE=	agg
 
 OPTIONS_DEFINE=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER MIXER PRINT SQUEEZE GDM NOTIFY XPM
-OPTIONS_DEFAULT=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER SQUEEZE NOTIFY
+OPTIONS_DEFAULT=	ICONS ORAGE MOUSEPAD TERMINAL APPFINDER NOTIFY
 ORAGE_DESC=	Install the Xfce calendar application
 MOUSEPAD_DESC=	Install the Xfce text editor
 TERMINAL_DESC=	Install the Xfce terminal application
@@ -69,7 +69,7 @@ RUN_DEPENDS+=	xfce4-appfinder:${PORTSDIR}/misc/xfce4-appfinder
 .endif
 
 .if ${PORT_OPTIONS:MMIXER}
-RUN_DEPENDS+=	${LOCALBASE}/bin/xfce4-mixer:${PORTSDIR}/audio/xfce4-mixer
+RUN_DEPENDS+=	xfce4-mixer:${PORTSDIR}/audio/xfce4-mixer
 .endif
 
 .if ${PORT_OPTIONS:MPRINT}
