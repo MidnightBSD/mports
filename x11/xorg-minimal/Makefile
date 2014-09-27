@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg
 PORTVERSION=	7.5.2
+PORTREVISION=	1
 CATEGORIES=	x11 x11-servers
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-minimal
@@ -10,9 +11,13 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org minimal distribution metaport
+
 LICENSE=	agg
 
 NO_BUILD=	yes
+NO_MTREE=	yes
+
+.include <bsd.mport.options.mk>
 
 VIDEO_DRIVER?=	vesa
 
@@ -27,6 +32,10 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/xorg/modules/drivers/nvidia_drv.so:${PORTSDIR}/x1
 RUN_DEPENDS+=	${LOCALBASE}/lib/xorg/modules/drivers/intel_drv.so:${PORTSDIR}/x11-drivers/xf86-video-${VIDEO_DRIVER}
 .else
 RUN_DEPENDS+=	${LOCALBASE}/lib/xorg/modules/drivers/${VIDEO_DRIVER}_drv.so:${PORTSDIR}/x11-drivers/xf86-video-${VIDEO_DRIVER}
+.endif
+
+.if ${VIDEO_DRIVER} == intel && defined(WITH_NEW_XORG)
+RUN_DEPENDS+=	${LOCALBASE}/lib/va/i965_drv_video.so:${PORTSDIR}/multimedia/libva-intel-driver
 .endif
 
 do-install:
