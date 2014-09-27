@@ -1,6 +1,6 @@
---- doc/Makefile.in.orig	2011-08-14 11:28:23.000000000 +0200
-+++ doc/Makefile.in	2011-08-14 11:28:47.000000000 +0200
-@@ -604,8 +604,8 @@ info: info-am
+--- doc/Makefile.in.orig	2014-09-27 08:10:07.000000000 -0400
++++ doc/Makefile.in	2014-09-27 08:14:35.000000000 -0400
+@@ -688,8 +688,8 @@
  
  info-am:
  
@@ -10,4 +10,17 @@
 +	install-man
  
  install-dvi: install-dvi-am
+ 
+@@ -758,10 +758,10 @@
+ 
+ 
+ @DBUS_XML_DOCS_ENABLED_TRUE@%.html: %.xml
+-@DBUS_XML_DOCS_ENABLED_TRUE@	$(XMLTO) html-nochunks $<
++@DBUS_XML_DOCS_ENABLED_TRUE@	$(XMLTO) --skip-validation html-nochunks $<
+ 
+ @DBUS_XML_DOCS_ENABLED_TRUE@%.1: %.1.xml
+-@DBUS_XML_DOCS_ENABLED_TRUE@	$(XMLTO) man $<
++@DBUS_XML_DOCS_ENABLED_TRUE@	$(XMLTO) --skip-validation man $<
+ 
+ @DBUS_DOXYGEN_DOCS_ENABLED_TRUE@all-local:: doxygen.stamp
  
