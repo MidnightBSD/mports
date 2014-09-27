@@ -65,6 +65,13 @@ libdata/pkgconfig/polkit-backend-1.pc
 libdata/pkgconfig/polkit-gobject-1.pc
 libexec/polkit-agent-helper-1
 libexec/polkitd
+%%MANPAGES%%man/man1/pkaction.1.gz
+%%MANPAGES%%man/man1/pkcheck.1.gz
+%%MANPAGES%%man/man1/pkexec.1.gz
+%%MANPAGES%%man/man1/pkttyagent.1.gz
+%%MANPAGES%%man/man8/pklocalauthority.8.gz
+%%MANPAGES%%man/man8/polkit.8.gz
+%%MANPAGES%%man/man8/polkitd.8.gz
 share/dbus-1/system-services/org.freedesktop.PolicyKit1.service
 share/gir-1.0/Polkit-1.0.gir
 share/gir-1.0/PolkitAgent-1.0.gir
