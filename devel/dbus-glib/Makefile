@@ -2,12 +2,13 @@
 
 PORTNAME=	dbus-glib
 PORTVERSION=	0.100.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib bindings for the D-BUS messaging system
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
