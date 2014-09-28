@@ -1,15 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	sash
-PORTVERSION=	3.7
+PORTVERSION=	3.8
 CATEGORIES=	shells
 MASTER_SITES=	http://members.tip.net.au/~dbell/programs/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Stand-Alone shell combining many common utilities
-LICENSE=	publicdom
+COMMENT=	Stand-Alone shell combining many common utilities
 
-MAN1=		sash.1
+LICENSE=	publicdom
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/sash ${PREFIX}/bin/sash
