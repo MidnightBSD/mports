@@ -6,7 +6,8 @@ CATEGORIES=	shells
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A set of configuration scripts for the TCSH shell
+COMMENT=	Set of configuration scripts for the TCSH shell
+
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
