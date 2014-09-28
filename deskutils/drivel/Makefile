@@ -1,56 +1,39 @@
 # $MidnightBSD$
 
 PORTNAME=	drivel
-PORTVERSION=	2.0.3
-PORTREVISION=	1
+PORTVERSION=	3.0.5
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	SF/${PORTNAME}/Drivel%20%28stable%29/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blog editor for GNOME
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup
 
+OPTIONS_DEFINE=	GTKSPELL
+OPTIONS_DEFAULT=	GTKSPELL
+GTKSPELL_DESC=	Enable GtkSpell support
+
+USES=		desktop-file-utils gettext gmake libtool shared-mime-info pkgconfig tar:bzip2
+USE_GNOME=	gconf2 gnomedocutils gnomevfs2 gtksourceview2
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-error-on-warning
 INSTALLS_ICONS=	yes
-USE_XLIB=	yes
-USE_BZIP2=	yes
-USE_GNOME=	gnomeprefix gnomehack libgnomeui intlhack gtksourceview
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 INSTALLS_OMF=	yes
-USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
 
 GCONF_SCHEMAS=	drivel.schemas
 
-.ifndef(WITHOUT_RHYTHMBOX)
-CONFIGURE_ARGS+=	--with-rhythmbox
-BUILD_DEPENDS+=		rhythmbox:${PORTSDIR}/audio/rhythmbox
-RUN_DEPENDS+=		rhythmbox:${PORTSDIR}/audio/rhythmbox
-.else
-CONFIGURE_ARGS+=	--without-rhythmbox
-.endif
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib -lm
 
-.ifndef(WITHOUT_GTKSPELL)
-LIB_DEPENDS+=		gtkspell.0:${PORTSDIR}/textproc/gtkspell
-.else
-CONFIGURE_ARGS+=	--without-gtkspell
-.endif
-
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "Define WITHOUT_RHYTHMBOX=yes to disable rhythmbox backend"
-	@${ECHO_MSG} "Define WITHOUT_GTKSPELL=yes to disable gtkspell"
-	@${ECHO_MSG} ""
+GTKSPELL_LIB_DEPENDS=	libgtkspell.so:${PORTSDIR}/textproc/gtkspell
+GTKSPELL_CONFIGURE_OFF=	--without-gtkspell
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|;;|;|g' \
-		${WRKSRC}/src/journal.c \
-		${WRKSRC}/src/msg_queue.c
-
-pre-fake:
-	${MKDIR} ${FAKE_DESTDIR}/usr/local/share/mime/application
+	@${REINPLACE_CMD} -e '/-g2/s|^|#|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|make -C|$$(MAKE) -C|g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/-ldl/s|^|#|g' ${WRKSRC}/src/Makefile.in
 
 .include <bsd.port.mk>
