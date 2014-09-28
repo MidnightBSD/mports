@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.25.23
+PORTVERSION=	1.25.28
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
@@ -18,34 +17,22 @@ LIBWWW_DESC=	Compile with libwww support
 
 CONFLICTS=	xmlrpc-epi-0.* xmlrpc-c-devel-[0-9]*
 
-USE_PERL5=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:env
+USES=		gmake perl5 tar:tgz
 GNU_CONFIGURE=	yes
 MAKEFILE=	GNUmakefile
-MAKE_ARGS=	LIBTOOL="${LIBTOOL}" \
-		CFLAGS_COMMON="${CFLAGS}"
+MAKE_ARGS=	CFLAGS_COMMON="${CFLAGS}"
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
+
+CURL_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+CURL_CONFIGURE_ENABLE=	curl-client
+LIBWWW_LIB_DEPENDS=	libwwwcore.so:${PORTSDIR}/www/libwww
+LIBWWW_CONFIGURE_ENABLE=libwww-client
 
 .include <bsd.port.pre.mk>
 
 .if empty(PORT_OPTIONS:MDEBUG)
 CFLAGS+=	-DNDEBUG
-.endif
-
-.if ${PORT_OPTIONS:MCURL}
-LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
-CONFIGURE_ARGS+=	--enable-curl-client
-.else
-CONFIGURE_ARGS+=	--disable-curl-client
-.endif
-
-.if ${PORT_OPTIONS:MLIBWWW}
-LIB_DEPENDS+=	wwwcore:${PORTSDIR}/www/libwww
-CONFIGURE_ARGS+=	--enable-libwww-client
-.else
-CONFIGURE_ARGS+=	--disable-libwww-client
 .endif
 
 post-extract:
@@ -61,5 +48,8 @@ post-patch:
 		${WRKSRC}/lib/curl_transport/curltransaction.c \
 		${WRKSRC}/lib/curl_transport/xmlrpc_curl_transport.c \
 		${WRKSRC}/lib/curl_transport/curlmulti.c
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libxmlrpc*.so.[37].25
 
 .include <bsd.port.post.mk>
