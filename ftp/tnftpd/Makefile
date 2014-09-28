@@ -11,7 +11,9 @@ COMMENT=	Enhanced ftp server from NetBSD
 
 LICENSE=	bsd4
 
-USE_AUTOTOOLS=	aclocal automake libtool
+USES=		libtool
+GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	aclocal automake
 AUTOMAKE_ARGS=	--add-missing
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
