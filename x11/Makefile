@@ -2,7 +2,6 @@
     
 COMMENT = Ports to support the X window system
 
-SUBDIR += Terminal
 SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
