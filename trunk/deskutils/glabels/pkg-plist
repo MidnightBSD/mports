@@ -12,10 +12,11 @@ include/libglabels/xml-paper.h
 include/libglabels/xml-template.h
 include/libglabels/xml.h
 lib/libglabels.a
-lib/libglabels.la
 lib/libglabels.so
 lib/libglabels.so.5
+lib/libglabels.so.5.1.2
 libdata/pkgconfig/libglabels.pc
+man/man1/glabels.1.gz
 share/application-registry/glabels.applications
 share/applications/glabels.desktop
 share/doc/libglabels/ch01.html
@@ -174,7 +175,6 @@ share/locale/zh_CN/LC_MESSAGES/glabels.mo
 share/locale/zh_TW/LC_MESSAGES/glabels.mo
 share/mime-info/glabels.keys
 share/mime-info/glabels.mime
-share/mime/application/x-glabels.xml
 share/mime/packages/glabels.xml
 share/omf/glabels/glabels-C.omf
 share/omf/glabels/glabels-cs.omf
@@ -208,7 +208,6 @@ share/pixmaps/glabels/glabels-splash.png
 @dirrm %%DATADIR%%/dtd
 @dirrm %%DATADIR%%
 @dirrm share/doc/libglabels
-@dirrmtry share/applications
 @dirrm include/libglabels
 @exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
 @unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
