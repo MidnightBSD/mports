@@ -2,19 +2,19 @@
 
 PORTNAME=	esh
 PORTVERSION=	0.8.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	shells
 MASTER_SITES=	GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "easy shell", a small shell with Lisp-like syntax
+
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		readline
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}"
-MAKE_JOBS_SAFE=	yes
 
 INFO=		esh
 
