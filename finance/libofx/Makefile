@@ -1,41 +1,41 @@
 # $MidnightBSD$
 
 PORTNAME=	libofx
-PORTVERSION=	0.9.5
+PORTVERSION=	0.9.10
 CATEGORIES=	finance
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenSource implementation of the OFX (Open Financial eXchange)
+
 LICENSE=        gpl2
 
-LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
-		xml\\+\\+-2.6.2:${PORTSDIR}/textproc/libxml++26 \
-		osp.5:${PORTSDIR}/textproc/opensp
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
+		libxml++-2.6.so:${PORTSDIR}/textproc/libxml++26 \
+		libosp.so:${PORTSDIR}/textproc/opensp
 
-USE_GCC=	any
-USE_ICONV=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
-ACLOCAL_ARGS=	-I m4
+USES=		gmake iconv pkgconfig pathfix libtool
 CONFIGURE_ARGS=	--disable-doxygen --disable-dot --disable-gengetopt \
 		--with-opensp-includes=${LOCALBASE}/include/OpenSP \
 		--with-opensp-libs=${LOCALBASE}/lib
-MAKE_JOBS_SAFE=	yes
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
-CPPFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=	DOCS DOXYGEN
+
+.include <bsd.mport.options.mk>
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in AUTHORS ChangeLog INSTALL NEWS README totest.txt
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-	${TAR} -C ${WRKSRC}/doc -cf - html | \
-		${TAR} -C ${DOCSDIR} --unlink -xf -
-	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
+	${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING
+.if ${PORT_OPTIONS:MDOXYGEN}
+	@${FIND} -P ${STAGEDIR}${DOCSDIR}/html -type f 2>/dev/null | \
+		${SED} -ne 's|^${STAGEDIR}${PREFIX}/||p' >> ${TMPPLIST}
+	@${FIND} -P -d ${STAGEDIR}${DOCSDIR}/ -type d 2>/dev/null | \
+		${SED} -ne 's|^${STAGEDIR}${PREFIX}/|@dirrmtry |p' >> ${TMPPLIST}
 .endif
 
 .include <bsd.port.mk>
