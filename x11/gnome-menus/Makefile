@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,15 +11,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the FreeDesktop Desktop Menu Spec
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
-USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
-USES=		pkgconfig gettext gmake tar:bzip2
-USE_AUTOTOOLS=	libtool
-USE_PYTHON=	yes
+USES=		gettext gmake libtool pathfix pkgconfig python tar:bzip2
+USE_GNOME=	gnomeprefix intlhack glib20 introspection:build
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|applications.menu||' \
