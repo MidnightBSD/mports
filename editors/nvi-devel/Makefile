@@ -2,7 +2,7 @@
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	http://garage.linux.student.kuleuven.be/~skimo/nvi/devel/ \
 		http://www.kotnet.org/~skimo/nvi/devel/
@@ -18,14 +18,13 @@ OPTIONS_DEFAULT=WIDECHAR
 WIDECHAR_DESC=	Enable wide-character support (UTF-8)
 
 WRKSRC=			${WRKDIR}/${DISTNAME}/build.unix
-USE_AUTOTOOLS=		libtool
+GNU_CONFIGURE=		yes
 USE_LDCONFIG=		yes
-USES=			iconv pkgconfig tar:bzip2
+USES=			iconv libtool pkgconfig tar:bzip2
 USE_BDB=		42+
 CONFIGURE_ARGS+=	--with-db-prefix=${LOCALBASE} \
 			--program-prefix=n
 CONFIGURE_SCRIPT=	../dist/configure
-MAN1=			nex.1 nvi.1 nview.1
 
 .include <bsd.mport.options.mk>
 
@@ -38,15 +37,10 @@ LDFLAGS+=		-L${BDB_LIB_DIR} -L${LOCALBASE}/lib
 
 # configure is 555, so you can't do a "make configure" as non-root.
 post-patch:
-	${REINPLACE_CMD} -e 's,%%LIBTOOL%%,${LIBTOOL},g ; \
-		s,%%LTMAIN%%,${LTMAIN},g ; \
-		s,-ldb,-l${BDB_LIB_NAME},g' ${WRKSRC}/../dist/configure
+	@${REINPLACE_CMD} -e '/libvi_la_LIBADD =/s,$$, ${ICONV_LIB},' \
+		${WRKSRC}/../dist/Makefile.in
+	@${REINPLACE_CMD} -e 's,-ldb,-l${BDB_LIB_NAME},g' \
+		${WRKSRC}/../dist/configure
 	@${CHMOD} 755 ${WRKSRC}/../dist/configure
-
-post-install:
-.for __p in nex nvi nview
-	@# XXX: Hack the Makefile in the distribution so this isn't necessary.
-	${RM} ${PREFIX}/man/cat1/${__p}.0
-.endfor
 
 .include <bsd.port.mk>
