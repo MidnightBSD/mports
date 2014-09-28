@@ -12,23 +12,17 @@ COMMENT=	Visually-appealing notification daemon for Xfce
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	dbus-glib:${PORTSDIR}/devel/dbus-glib \
-		notify:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libnotify.so:${PORTSDIR}/devel/libnotify
 
-USES=		pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gtk20 intltool intlhack
 USE_XFCE=	configenv libmenu libutil xfconf
 INSTALLS_ICONS=	yes
 USE_XORG=	x11
-MAKE_JOBS_SAFE=	yes
 
 CONFLICTS=	notification-daemon-[0-9]* xfce4-notification-daemon-[0-9]*
-
-MAN1=	xfce4-notifyd-config.1
 
 OPTIONS_DEFINE=	NLS
 
