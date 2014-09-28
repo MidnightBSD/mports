@@ -2,6 +2,7 @@
 
 PORTNAME=	v7sh
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	ftp://minnie.tuhs.org/UnixArchive/PDP-11/Trees/V7/usr/src/cmd/sh/:s \
 		http://minnie.tuhs.org/UnixTree/V7/usr/src/cmd/sh/:s \
@@ -16,7 +17,8 @@ DISTFILES=	args.c:s blok.c:s brkincr.h:s builtin.c:s cmd.c:s \
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of the UNIX 7th Edition shell
+COMMENT=	Implementation of the UNIX 7th Edition shell
+
 LICENSE=	unknown
 
 EXTRACT_CMD=	${CP}
@@ -26,24 +28,15 @@ EXTRACT_AFTER_ARGS=	${WRKDIR}
 FAKE_OPTS=	trueprefix
 
 NO_WRKSUBDIR=	yes
-MAN1=		${PORTNAME}.1
-MANCOMPRESSED=	yes
 
-OPTIONS=	V7SH_SYSIII	"System III enhancements"	on \
-		V7SH_RENO	"4.3BSD-Reno enhancements"	on \
-		V7SH_ULTRIX	"Ultrix 3.1 enhancements"	on
-
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_V7SH_SYSIII)
-CFLAGS+=	-DSYSIII
-.endif
-.if !defined(WITHOUT_V7SH_RENO)
-CFLAGS+=	-DRENO
-.endif
-.if !defined(WITHOUT_V7SH_ULTRIX)
-CFLAGS+=	-DULTRIX
-.endif
+OPTIONS_DEFINE=	SYSIII RENO ULTRIX
+OPTIONS_DEFAULT=	SYSIII RENO ULTRIX
+SYSIII_DESC=	System III enhancements
+RENO_DESC=	4.3BSD-Reno enhancements
+ULTRIX_DESC=	Ultrix 3.1 enhancements
+SYSIII_CFLAGS=	-DSYSIII
+RENO_CFLAGS=	-DRENO
+ULTRIX_CFLAGS=	-DULTRIX
 
 post-extract:
 	@${MV} ${WRKSRC}/sh.1 ${WRKSRC}/${PORTNAME}.1
@@ -51,4 +44,4 @@ post-extract:
 	@${CP} ${FILESDIR}/test.c ${WRKSRC}		# sysIII
 	@${CP} ${FILESDIR}/pathnames.h ${WRKSRC}	# 43reno
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
