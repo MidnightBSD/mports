@@ -3,6 +3,7 @@
 
 PORTNAME=	icons-tango-extras
 PORTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/ \
 		${MASTER_SITE_GENTOO}
@@ -10,7 +11,8 @@ MASTER_SITE_SUBDIR=	distfiles
 DISTNAME=	tango-icon-theme-extras-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A extra set of icons from the Tango project
+COMMENT=	Extra set of icons from the Tango project
+
 LICENSE=	other
 
 BUILD_DEPENDS=	${LOCALBASE}/libexec/icon-name-mapping:${PORTSDIR}/x11-themes/icon-naming-utils \
@@ -19,7 +21,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libexec/icon-name-mapping:${PORTSDIR}/x11-themes/ico
 RUN_DEPENDS=	${LOCALBASE}/share/icons/Tango/16x16/actions/add.png:${PORTSDIR}/x11-themes/icons-tango
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig
 USE_GNOME=	intlhack
 INSTALLS_ICONS=	yes
 
