@@ -2,7 +2,7 @@
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	benchmarks ftp
 MASTER_SITES=	http://www.kegel.com/dkftpbench/
 
@@ -13,6 +13,10 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 
-USE_AUTOTOOLS=	automake14 autoconf
+post-patch:
+	@${REINPLACE_CMD} \
+		-e '/^noinst_PROGRAMS =/s/=.*/=/' \
+		-e '/^lib_LIBRARIES =/s/=.*/=/' \
+		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
