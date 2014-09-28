@@ -1,31 +1,49 @@
 # $MidnightBSD$
 
 PORTNAME=	rpm
-PORTVERSION=	4.11.2
+PORTVERSION=	4.12.0.1
 CATEGORIES=	archivers
-MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R}.x/ \
+MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
+PKGNAMESUFFIX=	4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The RPM Package Manager
 
-LICENSE=	gpl2
+LICENSE=	lgpl gpl2
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	popt:${PORTSDIR}/devel/popt \
-		nss3:${PORTSDIR}/security/nss
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
+		libnss3.so:${PORTSDIR}/security/nss \
+		libdbus-1.so:${PORTSDIR}/devel/dbus
 BUILD_DEPENDS=	${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 
-OPTIONS=	PYTHON "Build Python rpm module" On
+OPTIONS_DEFINE=	PYTHON NLS DOCS
+OPTIONS_DEFAULT=PYTHON NLS
+OPTIONS_SUB=	yes
+PYTHON_CONFIGURE_ENABLE=python
+PYTHON_USES=	python:2.7
+NLS_CONFIGURE_ENABLE=nls
+NLS_USES=	gettext
+NLS_LIBS=	-lintl
+PORTDOCS=	*
 
-USE_AUTOTOOLS=	libtool
-USES=		gmake tar:bzip2
-USE_LUA=	5.1+
+USES=		gmake libtool lua:51 pathfix shebangfix tar:bzip2 pkgconfig
 USE_BDB=	46+
 INVALID_BDB_VER=51
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-LATEST_LINK=	rpm4
-CONFLICTS=	rpm-3.*
+INSTALL_TARGET=	install-strip
+CONFLICTS_INSTALL=	rpm-[35].* rpm5-*
+SHEBANG_FILES=	scripts/brp-python-bytecompile scripts/check-prereqs \
+		scripts/check-rpaths-worker scripts/pythondeps.sh \
+		scripts/mono-find-requires scripts/mono-find-provides \
+		scripts/pkgconfigdeps.sh scripts/fontconfig.prov \
+		scripts/rpmdb_loadcvt \
+		scripts/perl.prov scripts/perl.req scripts/perldeps.pl \
+		scripts/osgideps.pl scripts/tcl.req \
+		python/rpm/transaction.py
 
 CPPFLAGS+=	-I${LOCALBASE}/include \
 		-I${LOCALBASE}/include/nspr -I${LOCALBASE}/include/nss/nss \
@@ -37,70 +55,27 @@ CONFIGURE_ARGS+=--with-external-db \
 		--with-popt-prefix="${LOCALBASE}" \
 		--sysconfdir=${PREFIX}/etc \
 		--localstatedir=/var \
-		--without-javaglue \
-		LUA_CFLAGS=-I${LUA_INCDIR} \
+		--without-javaglue
+CONFIGURE_ENV+=	LUA_CFLAGS=-I${LUA_INCDIR} \
 		LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER} -lm"
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
-
-.include <bsd.mport.options.mk>
-
-.ifndef	WITHOUT_PYTHON
-CONFIGURE_ARGS+=--enable-python
-USE_PYTHON=	2.6+
-PLIST_SUB+=	PYTHON=""
-CPPFLAGS+=	-I${PYTHON_INCLUDEDIR}
-LDFLAGS+=	-L${PYTHON_LIBDIR}
-.else
-CONFIGURE_ARGS+=--disable-python
-PLIST_SUB+=	PYTHON="@comment "
-.endif
-
-.ifdef	WITHOUT_NLS
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-USE_ICONV=	yes
-PLIST_SUB+=	NLS=""
-.endif
-
-MANLANG=	"" ja fr pl ru ko sk
-MAN1_EN=	gendiff.1
-MAN8_EN=	rpm.8 rpm2cpio.8 rpmbuild.8 rpmdeps.8 rpmgraph.8 \
-		rpmdb.8 rpmkeys.8 rpmsign.8 rpmspec.8
-MAN8_JA=	rpm.8 rpm2cpio.8 rpmbuild.8 rpmgraph.8
-MAN8_FR=	rpm.8
-MAN8_PL=	rpm.8 rpm2cpio.8 rpmbuild.8 rpmdeps.8 rpmgraph.8
-MAN8_RU=	rpm.8 rpm2cpio.8
-MAN8_KO=	rpm.8 rpm2cpio.8
-MAN8_SK=	rpm.8
-
-.if !defined(NOPORTDOCS)
-PORTDOCS=	*
-.endif
-
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 4005
-LIB_DEPENDS+=	lzma:${PORTSDIR}/archivers/xz
+.if ${OSVERSION} < 6000
+LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e '/^pkgconfigdir/s:/:data/:' \
-		-e 's:\.\./\.\./bin/::' ${WRKSRC}/Makefile.in
+	${REINPLACE_CMD} -e 's:\.\./\.\./bin/::' ${WRKSRC}/Makefile.in
 	${REINPLACE_CMD} -e 's/(hpux)/& || defined(__FreeBSD__)/' \
 		${WRKSRC}/misc/fts.?
 	${REINPLACE_CMD} -e 's/ __GLIBC__.*/& || defined(__FreeBSD__)/' \
 		${WRKSRC}/system.h
 
 post-install:
-.if !defined(NOPORTDOCS)
 	# Install documentation
-	${MKDIR} ${DOCSDIR}/librpm/html
-	cd ${WRKSRC}/doc/librpm/html && ${FIND} . \
-		| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} \
-			${DOCSDIR}/librpm/html/
-.endif
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} librpm/html ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
