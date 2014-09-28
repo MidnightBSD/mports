@@ -1,27 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	orc
-PORTVERSION=	0.4.18
-PORTREVISION=	1
+PORTVERSION=	0.4.21
 CATEGORIES=	devel
-MASTER_SITES=	http://gstreamer.freedesktop.org/data/src/orc/
+MASTER_SITES= 	http://gstreamer.freedesktop.org/data/src/orc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and toolset to operate arrays of data
 
-LICENSE=	bsd3
+LICENSE=	bsd2 bsd3
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool:keepla pkgconfig tar:xz
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-CONFIGURE_ARGS+=	--disable-gtk-doc
+CONFIGURE_ARGS+=--disable-gtk-doc
+INSTALL_TARGET=	install-strip
 
 SUBDIRS=	orc orc-test tools
 
 EXAMPLES_DATA=	example1orc.orc example2orc.orc example3orc.orc \
 		mt19937arorc.orc
-EXAMPLES_EXEC=	example1 example2 example3 mt19937ar volscale
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 DOCS_DESC=	Include gtk-doc documentation
@@ -30,14 +30,10 @@ DOCS_DESC=	Include gtk-doc documentation
 
 .if ${PORT_OPTIONS:MDOCS}
 SUBDIRS+=	doc
-.else
-NOPORTDOCS=	yes
 .endif
 
 .if ${PORT_OPTIONS:MEXAMPLES}
 SUBDIRS+=	examples
-.else
-NOPORTEXAMPLES=	yes
 .endif
 
 MAKE_ARGS+=	SUBDIRS="${SUBDIRS}"
