@@ -2,7 +2,7 @@
 
 PORTNAME=	gedit-plugins
 PORTVERSION=	2.32.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,30 +16,24 @@ BUILD_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
 RUN_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
 		gucharmap:${PORTSDIR}/deskutils/gucharmap
 
+CONFLICTS=	gedit-plugins-3.[0-9]*
+
 USE_LDCONFIG=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack gnomeprefix intlhack gnomevfs2
-WANT_GNOME=	yes
+GNU_CONFIGURE=	yes
+USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
+USE_GNOME=	gnomeprefix intlhack gnomevfs2
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 GCONF_SCHEMAS=	gedit-show-tabbar-plugin.schemas \
 		gedit-drawspaces.schemas
 
-OPTIONS=	PYTHON "Build plugins that depend on python" off
+OPTIONS_DEFINE=	PYTHON
 
-.if defined(PACKAGE_BUILDING)
-.undef WITHOUT_GNOME
-WITH_GNOME=	yes
-.endif
+.include <bsd.mport.options.mk>
 
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mpygtksourceview}!="" && ${ARCH}!="sparc64" || defined(WITH_PYTHON)
-EXTENSIONS=	python
+.if ${PORT_OPTIONS:MPYTHON}
 USE_PYTHON=	yes
 USE_GNOME+=	pygtksourceview
 BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte \
@@ -59,4 +53,4 @@ post-patch:
 	@${REINPLACE_CMD} -e 's| \\t\\r\\n\\f|[:space:]|g' \
 	    	${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
