@@ -2,7 +2,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	5
+PORTREVISION?=	6
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
@@ -19,8 +19,8 @@ LICENSE?=	gpl2
 BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:${PORTSDIR}/multimedia/v4l_compat \
 		gstreamer>=0.10.36:${PORTSDIR}/multimedia/gstreamer \
 		orc>=0.4.14:${PORTSDIR}/devel/orc
-LIB_DEPENDS+=	gstreamer-0.10:${PORTSDIR}/multimedia/gstreamer \
-		orc-0.4:${PORTSDIR}/devel/orc
+LIB_DEPENDS+=	libgstreamer-0.10.so:${PORTSDIR}/multimedia/gstreamer \
+		liborc-0.4.so:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
@@ -41,10 +41,11 @@ DIST?=		good
 SHLIB_VERSION=	1
 VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
-USE_GNOME+=	ltverhack ltasneededhack
-USES=		gettext gmake pathfix pkgconfig shebangfix tar:bzip2
-USE_AUTOTOOLS=	libtool
+USE_GNOME+=	introspection:build
+USES=		gettext gmake libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
+GNU_CONFIGURE=	yes
 GST_PLUGIN?=	base
+INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--disable-option-checking
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -154,16 +155,11 @@ post-patch:
 		s|DEFAULT_AUDIOSRC="alsasrc"|DEFAULT_AUDIOSRC="${DEFAULT_AUDIOSRC}"|' \
         	-e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
-.if ${GST_PLUGIN} == "flite"
-# Hack to get all the libraries linked to the flite plugin so it is useable.
-	-@${REINPLACE_CMD} -e 's|-Wl,--as-needed||g' \
-		${WRKSRC}/../gnome-libtool
-.endif
 
-post-install:
-.if ${GST_PLUGIN}==base
-	@${STRIP_CMD} ${PREFIX}/lib/libgst*.so.0
+# workaround a crash in clang 3.3 crash llvm bug # 15840
+.if ((${OSVERSION} >= 901504 && ${OSVERSION} < 902502) || \
+     (${OSVERSION} >= 1000037 && ${OSVERSION} < 1000056))
+USE_GCC=	any
 .endif
-	@${STRIP_CMD} ${PREFIX}/lib/gstreamer-0.10/lib*.so
 
 .include <bsd.port.post.mk>
