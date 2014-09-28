@@ -6,7 +6,6 @@ PORTVERSION=	0.${X264_BUILD}.${X264_REV}
 CATEGORIES=	multimedia
 MASTER_SITES=	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/ \
 		http://samples.mplayerhq.hu/yuv4mpeg2/:pgo
-MASTER_SITE_SUBDIR=	mm/x264
 DISTNAME=	${PORTNAME}-snapshot-${X264_SNAPSHOT}-2245-stable
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	x264
@@ -20,46 +19,51 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	yasm>=0.6.0:${PORTSDIR}/devel/yasm \
 		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
-X264_BUILD=	125
-X264_REV=	2201
-X264_COMMIT=	37be55213a39db40cf159ada319bd482a1b00680
+X264_BUILD=	136
+X264_REV=	2358
+X264_COMMIT=	3361d59a0a83dcb8b321cc0eb8e6ba68ca49c7d4
 X264_GITVER=	${X264_COMMIT:C/^(.......).*$/\1/g}
-X264_SNAPSHOT=	20120721
+X264_SNAPSHOT=	20130827
 
-USE_BZIP2=	yes
-USE_GCC=	any
+USES=		gmake tar:bzip2
 WRKSRC=		${WRKDIR}/${DISTNAME}
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 HAS_CONFIGURE=	yes
 
-OPTIONS_DEFINE=	ASM DEBUG PGO GCC44 GPAC X11_OUTPUT
-OPTIONS_DEFAULT=	ASM PGO GPAC
-ASM_DESC=		Assembly optimizations (devel/binutils)
-GCC44_DESC=		Use current GCC (implies WITH_ASM)
+OPTIONS_DEFINE=		ASM DEBUG HI10P PGO GCC GPAC X11_OUTPUT
+OPTIONS_DEFAULT=	ASM GPAC
+ASM_DESC=		Enable Assembly Optimizations
+GCC_DESC=		Use current GCC
+HI10P_DESC=		Enable High 10 Profile 10-bit encoding
 GPAC_DESC=		Enable MPEG-4 Output
 X11_OUTPUT_DESC=	Enable X11 Output
 
-CONFIGURE_ARGS+=	--extra-cflags="${CPPFLAGS} ${CFLAGS} -fPIC -I${LOCALBASE}/include" \
-			--extra-ldflags="${LDFLAGS} -L${LOCALBASE}/lib" \
-			--enable-static --enable-shared
+CONFIGURE_ARGS+=	--extra-cflags="-I${LOCALBASE}/include" \
+			--extra-ldflags="-L${LOCALBASE}/lib" \
+			--enable-static --enable-shared \
+			--disable-opencl \
+			--disable-swscale
 
 PLIST_SUB+=	X264_BUILD=${X264_BUILD}
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MGCC44}
-USE_GCC?=	yes
+.if ${PORT_OPTIONS:MGCC}
+USE_GCC=	yes
+.elif ${PORT_OPTIONS:MPGO}
+USE_GCC=	any
 .endif
 
-.include <bsd.port.pre.mk>
+.if !${PORT_OPTIONS:MASM}
+CONFIGURE_ARGS+=	--disable-asm
+.endif
 
-.if ${PORT_OPTIONS:MASM} || ${PORT_OPTIONS:MGCC44}
-BUILD_DEPENDS+=		${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
-CONFIGURE_ENV+=		COMPILER_PATH=${LOCALBASE}/bin
-MAKE_ENV+=		COMPILER_PATH=${LOCALBASE}/bin
-.else
-CONFIGURE_ARGS+=		--disable-asm
+.if ${PORT_OPTIONS:MHI10P}
+CONFIGURE_ARGS+=	--bit-depth=10
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG} || defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug
 .endif
 
 # Around the time GCC stack protection (aka Propolice) for userland
@@ -69,16 +73,7 @@ CONFIGURE_ARGS+=		--disable-asm
 LDFLAGS+=	-fstack-protector
 .endif
 
-CONFIGURE_ENV+=	ARCH= \
-		TARGET_ARCH=
-MAKE_ENV+=	ARCH= \
-		TARGET_ARCH=
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.if ${PORT_OPTIONS:MPGO} && ${SLAVE_PORT:L}!="yes"
+.if ${PORT_OPTIONS:MPGO}
 # y4m sample video
 Y4M_VIDEO=example.y4m
 Y4M_VIDEO_DISTFILE=example.y4m.bz2
@@ -92,19 +87,18 @@ RESTRICTED_FILES=	${Y4M_VIDEO_DISTFILE}
 .endif
 
 .if ${PORT_OPTIONS:MGPAC}
-BUILD_DEPENDS+=		gpac-libgpac>=0.4.5,1:${PORTSDIR}/multimedia/gpac-libgpac
-LIB_DEPENDS+=		gpac.1:${PORTSDIR}/multimedia/gpac-libgpac
+LIB_DEPENDS+=		libgpac.so:${PORTSDIR}/multimedia/gpac-libgpac
 .else
 CONFIGURE_ARGS+=	--disable-gpac
 .endif
 
 .if ${PORT_OPTIONS:MX11_OUTPUT}
 CONFIGURE_ARGS+=	--enable-visualize
-USE_XORG=	x11
+USE_XORG=		x11
 .endif
 
 post-extract:
-.if ${PORT_OPTIONS:MPGO} && ${SLAVE_PORT:L}!="yes"
+.if ${PORT_OPTIONS:MPGO}
 	@( cd ${WRKDIR} && ${BZIP2_CMD} -dc ${DISTDIR}/${DIST_SUBDIR}/${Y4M_VIDEO_DISTFILE} > ${Y4M_VIDEO} )
 .endif
 
@@ -118,24 +112,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${PREFIX}/libdata/pkgconfig|; \
 		s|$${libdir}/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/Makefile
-.if ${PORT_OPTIONS:MGCC44}
-	@${REINPLACE_CMD} -e 's|$$(CC) -shared -o|COMPILER_PATH= $$(CC) -shared -o|g' \
-		-e 's|$$(CC) -o|COMPILER_PATH= $$(CC) -o|g' \
-		${WRKSRC}/Makefile
-.endif
-
-.if ${SLAVE_PORT:L}=="no"
-.if 0 # BROKEN
-post-build:
-	cd ${WRKSRC}/tools && ${MAKE} avc2avi
-
-pre-install:
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' \
-		${WRKSRC}/x264.pc
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/avc2avi ${PREFIX}/bin
-.endif # BROKEN
-.endif
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/x264
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
