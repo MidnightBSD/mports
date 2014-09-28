@@ -8,13 +8,10 @@ MASTER_SITES=	http://hp.vector.co.jp/authors/VA012337/soft/fd/ \
 DISTNAME=	FD-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A CUI-based file and directory management tool
+COMMENT=	CUI-based file and directory management tool
+
 LICENSE=	other
 
-MAKE_JOBS_SAFE=	yes
-
-MANLANG=	"" ja
-MAN1=		fd.1 fdsh.1
 MAKE_ENV=	LANG=ja
 MAKE_ARGS=	CC="${CC}" CONFDIR="${PREFIX}/etc"
 
