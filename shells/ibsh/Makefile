@@ -7,9 +7,10 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Restricted unix shell
+
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+USES=		gmake
 ALL_TARGET=	ibsh
 INSTALL_TARGET=	ibsh_install
 
