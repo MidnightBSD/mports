@@ -12,6 +12,7 @@ DISTNAME=	GSCommander-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep simple unix command monitor
+
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
