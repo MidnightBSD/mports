@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	vte
-PORTVERSION=	0.26.2
-PORTREVISION?=	3
+PORTVERSION=	0.28.2
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,22 +12,23 @@ COMMENT?=	Terminal widget with improved accessibility and I18N support
 
 LICENSE?=	lgpl
 
-USE_BZIP2=	yes
+USES+=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-USES=		pathfix gettext
-USE_GMAKE=	yes
-USE_BISON=	build
+USES+=		bison gettext gmake pathfix pkgconfig libtool:keepla
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME?=	gnomeprefix gtk20 ltverhack referencehack
+USE_GNOME?=	gnomeprefix gtk20 introspection:build referencehack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-#		BSD_PTHREAD_LIBS="${PTHREAD_LIBS}"
 CONFIGURE_ARGS?=--disable-python \
 		--disable-Bsymbolic \
-		--disable-freetypetest
+		--disable-freetypetest \
+		--disable-static \
+		--with-gtk=2.0 \
+		--enable-introspection \
+		-disable-gnome-pty-helper
+GNU_CONFIGURE=	yes
 
 .if !defined(MASTERDIR)
 OPTIONS_DEFINE=	GLX
