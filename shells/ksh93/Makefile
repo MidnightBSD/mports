@@ -38,8 +38,6 @@ MAKE_ENV=	CCFLAGS="${CFLAGS}"
 MAKE_ENV+=	LDFLAGS=-static
 .endif
 
-MAN1=		ksh93.1
-
 .include <bsd.port.pre.mk>
 
 INSTALLROOT=	${WRKSRC}/arch/midnightbsd.${ARCH}
