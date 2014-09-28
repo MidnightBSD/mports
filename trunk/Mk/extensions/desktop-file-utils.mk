@@ -22,7 +22,7 @@ post-install: desktop-file-post-install
 
 desktop-file-post-install:
 # run for port post-install
-	@-update-desktop-database -g
+	@-update-desktop-database
 # plist entries for packages.
 	@${ECHO_CMD} "@exec ${LOCALBASE}/bin/update-desktop-database > /dev/null || /usr/bin/true" \
 		>> ${TMPPLIST}; \
