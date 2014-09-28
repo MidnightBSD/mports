@@ -17,9 +17,6 @@ FAKE_OPTS=	trueprefix
 
 USES=		uidfix
 
-MAN8=		nologinmsg.8
-MANCOMPRESSED=	yes
-
 do-extract:
 	@${MKDIR} ${WRKSRC}
 .for i in Makefile nologinmsg.c nologinmsg.8 pathnames.h
