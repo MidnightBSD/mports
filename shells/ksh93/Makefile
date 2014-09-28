@@ -9,62 +9,47 @@
 # serves to expose gcc bugs and does nothing to speed up any known
 # program.  If you are really unconvinced, go ahead but do not
 # complain to me about it.
-#
 
 PORTNAME=	ksh93
-PORTVERSION=	${VERSION:S/-//g}
-PORTREVISION=	1
+PORTVERSION=	${KSHVERSION:S/-//g}
+PORTREVISION=	0
 CATEGORIES=	shells
-MASTER_SITES=	http://www.research.att.com/~gsf/download/tgz/
-DISTNAME=	${PORTNAME}-${VERSION}
-DISTFILES=	INIT.${VERSION}.tgz ast-ksh.${VERSION}.tgz
+MASTER_SITES=	http://www2.research.att.com/~astopen/download/tgz/
+DISTFILES=	INIT.${INITVERSION}.tgz ast-ksh.${KSHVERSION}.tgz
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official AT&T release of KornShell 93
-LICENSE=	other
-# common public license
 
-MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
+LICENSE=	epl
 
-VERSION=	2012-02-29
-RESTRICTED=	Source recipient must acknowledge license
+OPTIONS_DEFINE=	EXAMPLES STATIC
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
-FETCH_CMD=	/usr/bin/fetch -Rr		# see bin/76134
-NO_WRKSUBDIR=	yes
+LDFLAGS+=	-lm
 MAKE_ENV=	CCFLAGS="${CFLAGS}"
-.if defined(WANT_STATIC)
-MAKE_ENV+=	LDFLAGS=-static
-.endif
+NO_WRKSUBDIR=	yes
 
-.include <bsd.port.pre.mk>
+INITVERSION=	2013-05-24
+KSHVERSION=	2012-08-01
 
-INSTALLROOT=	${WRKSRC}/arch/midnightbsd.${ARCH}
+STATIC_MAKE_ENV=	LDFLAGS+=-static
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-lpthread|-pthread|' \
+		${WRKSRC}/bin/package ${WRKSRC}/src/cmd/INIT/package.sh
 
 do-build:
-	@cd ${WRKSRC} && ${SETENV} -i ${MAKE_ENV} ${SH} bin/package make
+	@cd ${WRKSRC}/ && ${SETENV} -i ${MAKE_ENV} ${SH} bin/package flat make
 
 do-install:
-	${INSTALL_PROGRAM} ${INSTALLROOT}/bin/ksh ${PREFIX}/bin/ksh93
-	${INSTALL_MAN} ${INSTALLROOT}/man/man1/sh.1 \
-	    ${MANPREFIX}/man/man1/ksh93.1
-	${MKDIR} ${PREFIX}/share/examples/ksh93
-.for fun in dirs popd pushd
-	${INSTALL_SCRIPT} ${INSTALLROOT}/fun/${fun} \
-	    ${PREFIX}/share/examples/ksh93/
-.endfor
-
-post-install:
-	@${ECHO} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/ksh93 /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/ksh93) >/etc/shells
-	@${RM} -f /etc/shells.bak
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh ${STAGEDIR}${PREFIX}/bin/ksh93
+	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/ksh93.1
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${STAGEDIR}${EXAMPLESDIR}/
 
 test: build
-	@cd ${WRKSRC}/src/cmd/ksh93/tests && \
-	    ${SETENV} SHELL=${INSTALLROOT}/bin/ksh \
-		${INSTALLROOT}/bin/ksh shtests
+	@cd ${WRKSRC}/src/cmd/ksh93/tests/ && \
+		${SETENV} SHELL=${WRKSRC}/bin/ksh ${WRKSRC}/bin/ksh shtests
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
