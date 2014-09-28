@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	orage
-PORTVERSION=	4.8.4
+PORTVERSION=	4.10.0
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=src/apps/${PORTNAME}/${PORTVERSION:R}
@@ -12,22 +12,23 @@ COMMENT=	Calendar application to manage your time with Xfce 4
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	popt:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
+	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USES=		pkgconfig gettext gmake pathfix desktop-file-utils tar:bzip2
+USES=		pkgconfig gettext desktop-file-utils gmake tar:bzip2
 USE_GNOME=	gtk20 intltool intlhack
 USE_XFCE=	configenv libmenu panel
 USE_XORG=	xext xrender xinerama xi xrandr xcursor xcomposite xdamage x11 \
 		xfixes
 LDFLAGS+=	-L${LOCALBASE}/lib
-OPTIONS_DEFINE=	BDB ICAL DBUS NOTIFY
-OPTIONS_DEFAULT=	DBUS NOTIFY
+OPTIONS_DEFINE=	BDB ICAL NOTIFY
+OPTIONS_DEFAULT=	NOTIFY
 
-ICAL_DESC=	libical support
+ICAL_DESC=	iCalendar support
 
-MAN1=		globaltime.1 orage.1 tz_convert.1
+CONFIGURE_ARGS=	--enable-dbus
 
 .include <bsd.mport.options.mk>
 
@@ -35,15 +36,13 @@ MAN1=		globaltime.1 orage.1 tz_convert.1
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-configure
 CONFIGURE_ARGS+=--with-bdb4=yes --with-bdb4_dir=${LOCALBASE}
 USE_BDB=	yes
-# Only Berkeley DB 4.x
-INVALIDE_BDB_VER=	5
 .else
 CONFIGURE_ARGS+=--with-bdb4=no
 .endif
 
 .if ${PORT_OPTIONS:MICAL}
 CONFIGURE_ARGS+=--enable-libical
-LIB_DEPENDS+=	ical:${PORTSDIR}/devel/libical
+LIB_DEPENDS+=	libical.so:${PORTSDIR}/devel/libical
 CFLAGS+=	-I${LOCALBASE}/include/libical
 PLIST_SUB+=	WITH_ICAL="@comment "
 .else
@@ -51,17 +50,8 @@ CONFIGURE_ARGS+=--disable-libical
 PLIST_SUB+=	WITH_ICAL=""
 .endif
 
-.if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
-CONFIGURE_ARGS+=--enable-dbus
-PLIST_SUB+=	DBUS=""
-.else
-CONFIGURE_ARGS+=--disable-dbus
-PLIST_SUB+=	DBUS="@comment "
-.endif
-
 .if ${PORT_OPTIONS:MNOTIFY}
-LIB_DEPENDS+=	notify:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=	libnotify.so:${PORTSDIR}/devel/libnotify
 CONFIGURE_ARGS+=--enable-libnotify
 .else
 CONFIGURE_ARGS+=--disable-libnotify
