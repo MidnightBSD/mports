@@ -2,7 +2,7 @@
 
 PORTNAME=	gdm
 PORTVERSION=	2.30.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,12 +14,12 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	zenity:${PORTSDIR}/x11/zenity \
     		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	ck-connector:${PORTSDIR}/sysutils/consolekit \
-		polkit-gtk-1:${PORTSDIR}/sysutils/polkit-gnome \
-    		execinfo:${PORTSDIR}/devel/libexecinfo \
-		upower-glib:${PORTSDIR}/sysutils/upower \
-		xklavier:${PORTSDIR}/x11/libxklavier \
-		canberra-gtk:${PORTSDIR}/audio/libcanberra
+LIB_DEPENDS=	libck-connector.so:${PORTSDIR}/sysutils/consolekit \
+		libpolkit-gtk-1.so:${PORTSDIR}/sysutils/polkit-gnome \
+    		libexecinfo.so:${PORTSDIR}/devel/libexecinfo \
+		libupower-glib.so:${PORTSDIR}/sysutils/upower \
+		libxklavier.so:${PORTSDIR}/x11/libxklavier \
+		libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra
 RUN_DEPENDS=	zenity:${PORTSDIR}/x11/zenity \
 		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon \
 		gnome-session:${PORTSDIR}/x11/gnome-session \
@@ -102,6 +102,5 @@ post-install:
 	${INSTALL_DATA} ${WRKDIR}/gdm.pam ${PREFIX}/etc/pam.d/gdm
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' < ${PKGDIR}/pkg-message \
 		| /usr/bin/fmt 75 79 > ${PKGMESSAGE}
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
