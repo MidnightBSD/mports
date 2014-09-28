@@ -16,9 +16,7 @@ LIB_DEPENDS=	popt:${PORTSDIR}/devel/popt
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USES=		pkgconfig gettext pathfix desktop-file-utils
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		pkgconfig gettext gmake pathfix desktop-file-utils tar:bzip2
 USE_GNOME=	gtk20 intltool intlhack
 USE_XFCE=	configenv libmenu panel
 USE_XORG=	xext xrender xinerama xi xrandr xcursor xcomposite xdamage x11 \
