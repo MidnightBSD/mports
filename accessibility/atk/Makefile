@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	atk
-PORTVERSION=	2.6.0
+PORTVERSION=	2.8.0
 PORTREVISION?=	0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
@@ -16,17 +16,15 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-
-USES+=		pathfix pkgconfig gettext gmake
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehier glib20 ltverhack referencehack
-CONFIGURE_ARGS=	--enable-static \
-		--with-html-dir=${PREFIX}/share/doc
+GNU_CONFIGURE=	yes
+USES+=		gettext gmake libtool pathfix pkgconfig
+USE_GNOME=	glib20 gnomehier introspection:build referencehack
+CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	AUTOCONF=${TRUE} AUTOMAKE=${TRUE}
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e "/^SUBDIRS =/s/tests docs//" \
