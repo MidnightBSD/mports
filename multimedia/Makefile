@@ -53,7 +53,6 @@ SUBDIR += mpeg2codec
 SUBDIR += mpeg4ip-libmp4v2
 SUBDIR += mplayer
 SUBDIR += mplayer-skins
-SUBDIR += ogle
 SUBDIR += phonon
 SUBDIR += phonon-gstreamer
 SUBDIR += poe
