@@ -19,7 +19,6 @@ RUN_DEPENDS=	gtk-engines2>=2.15.0:${PORTSDIR}/x11-themes/gtk-engines2
 CONFLICTS=	clearlooks-metacity-0.*
 
 USES=		gettext gmake pkgconfig tar:bzip2
-USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
 USE_GNOME=	gnomeprefix intlhack metacity gtk20
 CPPFLAGS+=	-I${LOCALBASE}/include
