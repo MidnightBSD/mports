@@ -1,20 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	xinit
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Window System initializer
+
 LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11
-
-PLIST_FILES=	bin/startx bin/xinit lib/X11/xinit/xinitrc
-PLIST_DIRS=	lib/X11/xinit
-
-MAN1=		startx.1 xinit.1
 
 post-patch:
 	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' ${WRKSRC}/configure
