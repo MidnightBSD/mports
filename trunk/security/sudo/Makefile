@@ -10,7 +10,6 @@ COMMENT=	Allow others to run commands as root
 
 LICENSE=	other
 
-MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-lgcc
 LDFLAGS+=	-lssp_nonshared
