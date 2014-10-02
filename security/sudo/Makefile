@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	sudo
-DISTVERSION=	1.8.7
+DISTVERSION=	1.8.10
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SUDO}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
+
 LICENSE=	other
 
 MAKE_JOBS_SAFE=	yes
