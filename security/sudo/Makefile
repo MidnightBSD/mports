@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sudo
-DISTVERSION=	1.8.10
+DISTVERSION=	1.8.10p3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SUDO}
 
@@ -65,7 +65,6 @@ CONFIGURE_ARGS+=	--with-ldap=${PREFIX}
 SUDO_LDAP_CONF?=	ldap.conf
 CONFIGURE_ARGS+=	--with-ldap-conf-file=${PREFIX}/etc/${SUDO_LDAP_CONF}
 PLIST_SUB+=	LDAP=""
-MAN5+=	sudoers.ldap.5
 .else
 PLIST_SUB+=	LDAP="@comment "
 .endif
@@ -91,10 +90,6 @@ CONFIGURE_ARGS+=	--with-opie
 .else
 CONFIGURE_ARGS+=	--with-pam
 .endif
-
-MAN5+=		sudoers.5 sudo.conf.5
-MAN8=		sudo.8 visudo.8 sudoreplay.8 sudo_plugin.8
-MLINKS=		sudo.8 sudoedit.8
 
 post-patch:
 	@${REINPLACE_CMD} -E '/install-(binaries|noexec):/,/^$$/ \
