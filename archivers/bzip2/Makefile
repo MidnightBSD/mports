@@ -14,16 +14,7 @@ LICENSE=	bzip2
 USE_LDCONFIG=	yes
 PATCH_STRIP=	-p3
 
-MAN1=		bzip2.1 bzgrep.1 bzmore.1
-MLINKS=		bzip2.1 bunzip2.1   bzip2.1 bzcat.1   bzip2.1 bz2cat.1 \
-		bzip2.1 bzip2recover.1 \
-		bzgrep.1 bzegrep.1 \
-		bzgrep.1 bzfgrep.1 \
-		bzmore.1 bzless.1
-
-.ifdef USE_BZIP2
-.error You have `USE_BZIP2' variable defined either in environment or in make(1) arguments. Please undefine and try again.
-.endif
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bzip2 ${PREFIX}/bin
@@ -43,11 +34,16 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/bzip2.1 ${PREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/bzgrep.1 ${PREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/bzmore.1 ${PREFIX}/man/man1
-.if !defined(NOPORTDOCS)
+	${LN} -sf bzip2.1 ${STAGEDIR}${PREFIX}/man/man1/bunzip2.1
+	${LN} -sf bzip2.1 ${STAGEDIR}${PREFIX}/man/man1/bzcat.1
+	${LN} -sf bzip2.1 ${STAGEDIR}${PREFIX}/man/man1/bz2cat.1
+	${LN} -sf bzip2.1 ${STAGEDIR}${PREFIX}/man/man1/bzip2recover.1
+	${LN} -sf bzgrep.1 ${STAGEDIR}${PREFIX}/man/man1/bzegrep.1
+	${LN} -sf bzgrep.1 ${STAGEDIR}${PREFIX}/man/man1/bzfgrep.1
+	${LN} -sf bzmore.1 ${STAGEDIR}${PREFIX}/man/man1/bzless.1
 	${MKDIR} ${PREFIX}/share/doc/bzip2
 	${INSTALL_DATA} ${WRKSRC}/manual* ${PREFIX}/share/doc/bzip2
 	${INSTALL_DATA} ${WRKSRC}/bzip2.txt ${PREFIX}/share/doc/bzip2
 	${PREFIX}/bin/bzip2 -f ${PREFIX}/share/doc/bzip2/manual.ps
-.endif
 
 .include <bsd.port.mk>
