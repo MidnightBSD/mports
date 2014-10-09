@@ -120,6 +120,5 @@ SUBDIR += xmlsec1
 SUBDIR += xspy
 SUBDIR += yafic
 SUBDIR += zebedee
-SUBDIR += zombiezapper
 
 .include <bsd.port.subdir.mk>
