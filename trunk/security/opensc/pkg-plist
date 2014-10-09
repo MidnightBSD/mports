@@ -1,5 +1,6 @@
 bin/cardos-tool
 bin/cryptoflex-tool
+bin/dnie-tool
 bin/eidenv
 bin/iasecc-tool
 bin/netkey-tool
@@ -15,17 +16,17 @@ bin/sc-hsm-tool
 bin/westcos-tool
 etc/opensc.conf-sample
 lib/libopensc.a
-lib/libopensc.la
 lib/libopensc.so
 lib/libopensc.so.3
+lib/libopensc.so.3.0.0
 %%SM%%lib/libsmm-local.a
-%%SM%%lib/libsmm-local.la
 %%SM%%lib/libsmm-local.so
 %%SM%%lib/libsmm-local.so.3
-lib/opensc-pkcs11.la
+%%SM%%lib/libsmm-local.so.3.0.0
+lib/onepin-opensc-pkcs11.so
 lib/opensc-pkcs11.so
-lib/pkcs11-spy.la
 lib/pkcs11-spy.so
+lib/pkcs11/onepin-opensc-pkcs11.so
 lib/pkcs11/opensc-pkcs11.so
 lib/pkcs11/pkcs11-spy.so
 %%DATADIR%%/asepcos.profile
@@ -57,5 +58,21 @@ lib/pkcs11/pkcs11-spy.so
 %%DATADIR%%/setcos.profile
 %%DATADIR%%/starcos.profile
 %%DATADIR%%/westcos.profile
+man/man1/cardos-tool.1.gz
+man/man1/cryptoflex-tool.1.gz
+man/man1/eidenv.1.gz
+man/man1/iasecc-tool.1.gz
+man/man1/netkey-tool.1.gz
+man/man1/openpgp-tool.1.gz
+man/man1/opensc-explorer.1.gz
+man/man1/opensc-tool.1.gz
+man/man1/piv-tool.1.gz
+man/man1/pkcs11-tool.1.gz
+man/man1/pkcs15-crypt.1.gz
+man/man1/pkcs15-init.1.gz
+man/man1/pkcs15-tool.1.gz
+man/man1/sc-hsm-tool.1.gz
+man/man1/westcos-tool.1.gz
+man/man5/pkcs15-profile.5.gz
 @dirrm lib/pkcs11
 @dirrm %%DATADIR%%
