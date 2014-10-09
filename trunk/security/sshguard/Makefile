@@ -2,23 +2,23 @@
 
 PORTNAME=	sshguard
 DISTVERSION=	1.5
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF/sshguard/sshguard/sshguard-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Protect hosts from brute force attacks against ssh and other services
+
 LICENSE=	gpl2
 #author says bsdl on site, but can't find it. There seems to be GPL code.
 
 CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9]*
 
-MAN8=		sshguard.8
-MANCOMPRESSED=	no
 USES=		tar:bzip2
 USE_AUTOTOOLS=	autoconf
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 USE_RC_SUBR=	sshguard
-HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
 
 # sublist will be set afterward
 SUB_FILES=	pkg-message
