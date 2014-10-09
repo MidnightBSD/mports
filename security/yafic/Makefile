@@ -2,6 +2,7 @@
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -10,7 +11,7 @@ COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 LDFLAGS+=	-static
 
 .if defined(WITHOUT_OPENSSL)
@@ -20,12 +21,11 @@ PLIST_SUB+=	CRYPTO="@comment "
 PLIST_SUB+=	CRYPTO=""
 .endif
 
-MAN1=		yafic.1
-.if !defined(WITHOUT_OPENSSL)
-MAN1+=		yafic-sign.1
-MLINKS=		yafic-sign.1 yafic-check.1
-.endif
-MAN5=		yafic.conf.5
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+post-patch:
+	@${SED} -e "s;@@PREFIX@@;${PREFIX};g" \
+		${.CURDIR}/pkg-message > ${PKGMESSAGE}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/yafic ${PREFIX}/bin
@@ -36,6 +36,7 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/yafic.1 ${PREFIX}/man/man1
 .if !defined(WITHOUT_OPENSSL)
 	${INSTALL_MAN} ${WRKSRC}/yafic-sign.1 ${PREFIX}/man/man1
+	${LN} -sf yafic-sign.1 ${PREFIX}/man/man1/yafic-check.1
 .endif
 	${INSTALL_MAN} ${WRKSRC}/yafic.conf.5 ${PREFIX}/man/man5
 
