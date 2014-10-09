@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tor
-DISTVERSION=	0.2.4.23
+DISTVERSION=	0.2.4.24
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
