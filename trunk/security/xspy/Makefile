@@ -2,18 +2,18 @@
 
 PORTNAME=	xspy
 PORTVERSION=	1.0c
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://www.acm.vt.edu/~jmaxwell/programs/xspy/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A utility for monitoring keystrokes on remote X servers
+COMMENT=	Utility for monitoring keystrokes on remote X servers
+
 LICENSE=	other
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
-USE_IMAKE=	yes
+USES=		imake:notall
 USE_XORG=	x11
-XMKMF=		xmkmf
 
 ALL_TARGET=	xspy
 
