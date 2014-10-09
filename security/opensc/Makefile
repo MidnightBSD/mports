@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	opensc
-PORTVERSION=	0.13.0
+PORTVERSION=	0.14.0
 CATEGORIES=	security devel
 MASTER_SITES=	SF/${PORTNAME}/OpenSC/${DISTNAME}
 
@@ -16,45 +16,37 @@ BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt \
 OPTIONS_SINGLE=	BACKEND
 OPTIONS_SINGLE_BACKEND=PCSC OPENCT CTAPI
 OPTIONS_DEFINE=	SM DOCS
-OPTIONS_DEFAULT=PCSC
+OPTIONS_DEFAULT=PCSC SM
 
 PCSC_DESC=	Use PC/SC backend
 OPENCT_DESC=	Use OpenCT backend
 CTAPI_DESC=	Use CT-API backend
 SM_DESC=	Enable secure messaging support
 
-USES=		pkgconfig
+USES=		libtool pkgconfig gmake
 USE_OPENSSL=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CONFIGURE_ENV=	\
 		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
-		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl" \
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto" \
 		XSLTPROC="${LOCALBASE}/bin/xsltproc"
 
 CONFIGURE_ARGS=	--with-xsl-stylesheetsdir=${LOCALBASE}/share/xsl/docbook
 
 PORTDOCS=	*
 
-MANCOMPRESSED=	no
-MAN1=		cardos-tool.1 cryptoflex-tool.1 eidenv.1 iasecc-tool.1 \
-		netkey-tool.1 openpgp-tool.1 \
-		opensc-explorer.1 opensc-tool.1 piv-tool.1 \
-		pkcs11-tool.1 pkcs15-crypt.1 pkcs15-init.1 pkcs15-tool.1 \
-		sc-hsm-tool.1 westcos-tool.1
-MAN5=		pkcs15-profile.5
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MOPENCT}
-LIB_DEPENDS+=	openct:${PORTSDIR}/security/openct
+LIB_DEPENDS+=	libopenct.so:${PORTSDIR}/security/openct
 CONFIGURE_ARGS+=--enable-openct
 .endif
 
 .if ${PORT_OPTIONS:MPCSC}
-LIB_DEPENDS+=	pcsclite:${PORTSDIR}/devel/pcsc-lite
+LIB_DEPENDS+=	libpcsclite.so:${PORTSDIR}/devel/pcsc-lite
 .else
 CONFIGURE_ARGS+=--disable-pcsc
 .endif
@@ -64,24 +56,14 @@ CONFIGURE_ARGS+=--enable-ctapi
 .endif
 
 .if ${PORT_OPTIONS:MSM}
-CONFIGURE_ARGS+=--enable-sm
 PLIST_SUB+=	SM=""
 .else
+CONFIGURE_ARGS+=--disable-sm
 PLIST_SUB+=	SM="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=--enable-doc
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
-		${WRKSRC}/configure
-.if ! ${PORT_OPTIONS:MDOCS}
-	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA|install-data-am:|' \
-		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} 's|install-data-am: install-htmlDATA install-man|install-data-am: install-man|' \
-		${WRKSRC}/doc/Makefile.in ${WRKSRC}/doc/tools/Makefile.in
 .endif
 
 .include <bsd.port.mk>
