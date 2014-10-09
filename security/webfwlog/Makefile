@@ -1,90 +1,90 @@
 # $MidnightBSD$
 
 PORTNAME=	webfwlog
-PORTVERSION=	0.94
+PORTVERSION=	1.00
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
-PATCHFILES=	webfwlog-0.94-tcpflags.patch
-PATCH_SITES=	http://devel.webfwlog.net/download/patches/
-
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A web-based firewall log analyzer
+COMMENT=	Web-based firewall log analyzer
+
 LICENSE=	gpl2
 
-OPTIONS=	MYSQL "Include MySQL Support" on \
-		PGSQL "Include PostgreSQL Support" off
+OPTIONS_DEFINE=		MYSQL MYSQLIPV6 PGSQL DOCS
+OPTIONS_DEFAULTS=	MYSQL MYSQLIPV6
+
+MYSQLIPV6_DESC=		Shared library plugin for Mysql IPv6 support
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-html-doc-root=${PREFIX}
-CONFIGURE_ARGS+=	--enable-syslog
+CONFIGURE_ARGS+=	--with-html-doc-root=${WWWDIR} \
+			--enable-syslog \
+			--sysconfdir=${ETCDIR} \
+			--disable-dependency-tracking
 
-USE_PHP=	session pcre
+MYSQL_CONFIGURE_WITH=	mysql
+PGSQL_CONFIGURE_WITH=	pgsql
+MYSQLIPV6_CONFIGURE_ENABLE=	mysql-ipv6
+
+USE_PHP=	session
+WANT_PHP_WEB=	yes
+
+PORTDOCS=	AUTHORS COPYING CREDITS ChangeLog INSTALL \
+		README ReleaseNotes
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MMYSQL}
+USE_PHP+=	mysqli
+USE_MYSQL=	server
+MYSQL_PLUGIN_DIR_REL=	lib/mysql/plugin
+MYSQL_PLUGIN_DIR=	${LOCALBASE}/${MYSQL_PLUGIN_DIR_REL}
+.if ${PORT_OPTIONS:MMYSQLIPV6} && exists (${MYSQL_PLUGIN_DIR})
+USES+=	libtool
+CONFIGURE_ARGS+=	--libdir=${MYSQL_PLUGIN_DIR}
+USE_LDCONFIG=	${MYSQL_PLUGIN_DIR}
+PLIST_FILES+=	${MYSQL_PLUGIN_DIR_REL}/libwebfwlog_udf.so
+PLIST_FILES+=	${MYSQL_PLUGIN_DIR_REL}/libwebfwlog_udf.so.0
+PLIST_FILES+=	${MYSQL_PLUGIN_DIR_REL}/libwebfwlog_udf.so.0.0.0
+.endif
+.endif
+
+.if ${PORT_OPTIONS:MPGSQL}
+USE_PHP+=	pgsql
+USES+=	pgsql
+WANT_PGSQL=	server client
+.endif
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	VERSION=${PORTVERSION}
 
-PORTDOCS=	AUTHORS COPYING CREDITS ChangeLog INSTALL \
-		README ReleaseNotes
-PORTEXAMPLES=	*
-
-.include <bsd.mport.options.mk>
-
-.if defined(WITH_MYSQL)
-USE_PHP+=	mysql
-USE_MYSQL=	yes
-CONFIGURE_ARGS+=	--with-mysql
-.endif
-
-.if defined(WITH_PGSQL)
-USE_PHP+=	pgsql
-USE_PGSQL=	yes
-CONFIGURE_ARGS+=	--with-pgsql
-.endif
-
-BINMODE=	4550
-BINGRP=	${WWWGRP}
+PLIST_SUB+=	WWWGRP=${WWWGRP}
 
 do-install:
-	@${MKDIR} ${WWWDIR}
 	@${MKDIR} ${WWWDIR}/include/
+	@${INSTALL_DATA} ${WRKSRC}/webfwlog/style.css ${WWWDIR}
+	@${INSTALL_DATA} ${WRKSRC}/webfwlog/index.php ${WWWDIR}
 	@(cd ${WRKSRC}/webfwlog/include/ && ${COPYTREE_SHARE} \*.php ${WWWDIR}/include/)
-	${CHMOD} 555 ${WWWDIR}/include
-	${INSTALL_PROGRAM} ${WRKSRC}/syslog/wfwl_syslog ${PREFIX}/bin/
-	${INSTALL_DATA} ${WRKSRC}/webfwlog/style.css ${WWWDIR}
-	${INSTALL_DATA} ${WRKSRC}/webfwlog/index.php ${WWWDIR}
+	@${ECHO} "Installed web files in ${WWWDIR}"
+	@${MKDIR} ${ETCDIR}
+	@${INSTALL_DATA} ${WRKSRC}/webfwlog.conf ${ETCDIR}/webfwlog.conf.sample
+	@${ECHO} "Installed ${ETCDIR}/webfwlog.conf"
+	@${INSTALL_PROGRAM} ${WRKSRC}/src/wfwl_syslog ${PREFIX}/bin/
+	@${ECHO} "Installed ${PREFIX}/bin/wfwl_syslog"
+.if ${PORT_OPTIONS:MMYSQLIPV6} && exists (${MYSQL_PLUGIN_DIR})
+	@${MKDIR} ${MYSQL_PLUGIN_DIR}
+	@(cd ${WRKSRC}/src/mysql && ${MAKE} DESTDIR= install-strip)
+	@${ECHO} "Installed mysql shared library in ${MYSQL_PLUGIN_DIR}"
+.endif
 
 post-install:
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/mysql
 	@${MKDIR} ${DOCSDIR}/pgsql
+	@${MKDIR} ${DOCSDIR}/examples
 	@(cd ${WRKSRC}/mysql/ && ${COPYTREE_SHARE} \* ${DOCSDIR}/mysql/)
 	@(cd ${WRKSRC}/pgsql/ && ${COPYTREE_SHARE} \* ${DOCSDIR}/pgsql/)
+	@(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} \* ${DOCSDIR}/examples/)
 .for docs in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
 .endfor
-.endif
-
-.if !defined(NOPORTEXAMPLES)
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/* ${EXAMPLESDIR}
-.endif
-
-	@if test -f ${PREFIX}/etc/webfwlog.conf; \
-	then \
-		${CHOWN} :${WWWGRP} ${PREFIX}/etc/webfwlog.conf; \
-		${CHMOD} 0640 ${PREFIX}/etc/webfwlog.conf; \
-	fi
-	@${INSTALL_DATA} ${WRKSRC}/webfwlog.conf ${PREFIX}/etc/webfwlog.conf.sample
-	@${CHOWN} :${WWWGRP} ${PREFIX}/etc/webfwlog.conf.sample
-	@${CHMOD} 0640 ${PREFIX}/etc/webfwlog.conf.sample
-	@if test -f ${PREFIX}/etc/webfwlog.conf && \
-		test -f ${PREFIX}/etc/webfwlog.conf.sample && \
-		test "`diff ${PREFIX}/etc/webfwlog.conf ${PREFIX}/etc/webfwlog.conf.sample`" ; \
-	then :; \
-	else \
-		${RM} -f ${PREFIX}/etc/webfwlog.conf; \
-	fi
-	@${RM} -f ${PREFIX}/etc/webfwlog.conf.new
 
 .include <bsd.port.mk>
