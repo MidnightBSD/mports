@@ -3,14 +3,15 @@
 
 PORTNAME=	vlog
 PORTVERSION=	1.1f
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://inc2.com/download/
 DISTNAME=	vlog-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A curses based real-time logfile viewer esp. useful for ipflog
+COMMENT=	Curses based real-time logfile viewer esp. useful for ipflog
+
 LICENSE=	gpl2
 
 ALL_TARGET=	it
@@ -19,9 +20,7 @@ MAKE_ARGS=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}" \
 WRKSRC=		${WRKDIR}/vlog
 USE_PERL5=	yes
 
-MAN1=		vlog.1
-MANCOMPRESSED=	no
-PLIST_FILES=	bin/vlog
+PLIST_FILES=	bin/vlog man/man1/vlog.1.gz
 
 post-patch:
 	${REINPLACE_CMD} -e "s@/usr/local@${DESTDIR}${PREFIX}@g" ${WRKSRC}/Makefile
