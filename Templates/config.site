@@ -4,7 +4,7 @@
 #	- toolchain related
 #	- arch-dependent values
 #	- anything "=no" unless guaranteed to never be
-#	  implemented in FreeBSD
+#	  implemented in MidnightBSD
 #	- also avoid "working" values
 # This file must reflect the oldest supported Release.
 #
