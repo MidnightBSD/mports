@@ -2,7 +2,7 @@
 
 PORTNAME=	gegl
 PORTVERSION=	0.2.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.2/
 
@@ -11,10 +11,11 @@ COMMENT=	Graph based image processing framework
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	babl-0.1:${PORTSDIR}/x11/babl
+LIB_DEPENDS=	libbabl-0.1.so:${PORTSDIR}/x11/babl
 
 OPTIONS_DEFINE=	CAIRO ENSCRIPT EXIV2 FFMPEG PIXBUF GRAPHVIZ JASPER JPEG \
-		LUA OPENEXR OPENRAW SIMD PANGO PNG LIBRSVG2 SDL SPIRO V4L
+		LUA OPENEXR OPENRAW SIMD PANGO PNG LIBRSVG2 SDL SPIRO V4L \
+		DOCS EXAMPLES
 OPTIONS_DEFAULT=CAIRO ENSCRIPT EXIV2 PIXBUF GRAPHVIZ JASPER JPEG LUA \
 		OPENEXR OPENRAW PANGO PNG LIBRSVG2 SDL SPIRO V4L
 
@@ -22,14 +23,14 @@ ENSCRIPT_DESC=	Enscript support
 SPIRO_DESC=	Spiro support
 #UMFPACK_DESC=	UMFpack support
 
+USES=		gettext gmake libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
 USE_GNOME=	glib20 intltool
-USES=		gettext pathfix pkgconfig shebangfix
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/gegl-0.2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	ac_cv_header_execinfo_h=no
-CONFIGURE_ARGS+=--without-vala --disable-docs
+CONFIGURE_ARGS+=	--without-vala --disable-docs
+INSTALL_TARGET=	install-strip
+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
@@ -54,7 +55,7 @@ PLIST_SUB+=	GDK="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=	cairo:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS+=	libcairo.so:${PORTSDIR}/graphics/cairo
 PLIST_SUB+=	CAIRO=""
 .else
 CONFIGURE_ARGS+=--without-cairo
@@ -81,7 +82,7 @@ BUILD_DEPENDS+=	enscript:${PORTSDIR}/print/enscript-a4
 .endif
 
 .if ${PORT_OPTIONS:MFFMPEG}
-LIB_DEPENDS+=	avformat:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=	libavformat.so:${PORTSDIR}/multimedia/ffmpeg
 PLIST_SUB+=	FFMPEG=""
 .else
 CONFIGURE_ARGS+=--without-libavformat
@@ -89,13 +90,13 @@ PLIST_SUB+=	FFMPEG="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGRAPHVIZ}
-LIB_DEPENDS+=	cgraph:${PORTSDIR}/graphics/graphviz
+LIB_DEPENDS+=	libcgraph.so:${PORTSDIR}/graphics/graphviz
 .else
 CONFIGURE_ARGS+=--without-graphviz
 .endif
 
 .if ${PORT_OPTIONS:MJASPER}
-LIB_DEPENDS+=	jasper:${PORTSDIR}/graphics/jasper
+LIB_DEPENDS+=	libjasper.so:${PORTSDIR}/graphics/jasper
 PLIST_SUB+=	JP2=""
 .else
 CONFIGURE_ARGS+=--without-jasper
@@ -103,7 +104,7 @@ PLIST_SUB+=	JP2="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=	JPEG=""
 .else
 CONFIGURE_ARGS+=--without-libjpeg
@@ -111,13 +112,13 @@ PLIST_SUB+=	JPEG="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MLUA}
-USE_LUA=	5.1
+USES+=		lua
 .else
 CONFIGURE_ARGS+=--without-lua
 .endif
 
 .if ${PORT_OPTIONS:MOPENEXR}
-LIB_DEPENDS+=	IlmImf:${PORTSDIR}/graphics/OpenEXR
+LIB_DEPENDS+=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR
 PLIST_SUB+=	OPENEXR=""
 .else
 CONFIGURE_ARGS+=--without-openexr
@@ -125,7 +126,7 @@ PLIST_SUB+=	OPENEXR="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MOPENRAW}
-LIB_DEPENDS+=	openraw:${PORTSDIR}/graphics/libopenraw
+LIB_DEPENDS+=	libopenraw.so:${PORTSDIR}/graphics/libopenraw
 PLIST_SUB+=	OPENRAW=""
 .else
 CONFIGURE_ARGS+=--without-libopenraw
@@ -138,7 +139,7 @@ CONFIGURE_ARGS+=--disable-mmx \
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=--without-libpng
@@ -146,7 +147,7 @@ PLIST_SUB+=	PNG="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MLIBRSVG2}
-LIB_DEPENDS+=	rsvg-2:${PORTSDIR}/graphics/librsvg2
+LIB_DEPENDS+=	librsvg-2.so:${PORTSDIR}/graphics/librsvg2
 PLIST_SUB+=	RSVG=""
 .else
 CONFIGURE_ARGS+=--without-librsvg
@@ -162,7 +163,7 @@ PLIST_SUB+=	SDL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSPIRO}
-LIB_DEPENDS+=	spiro:${PORTSDIR}/graphics/libspiro
+LIB_DEPENDS+=	libspiro.so:${PORTSDIR}/graphics/libspiro
 .else
 CONFIGURE_ARGS+=--without-libspiro
 .endif
@@ -185,7 +186,7 @@ PLIST_SUB+=	UMFPACK="@comment "
 #.endif
 
 .if ${PORT_OPTIONS:MEXIV2}
-LIB_DEPENDS+=	exiv2:${PORTSDIR}/graphics/exiv2
+LIB_DEPENDS+=	libexiv2.so:${PORTSDIR}/graphics/exiv2
 PLIST_SUB+=	EXIV2=""
 .else
 CONFIGURE_ARGS+=--without-exiv2
@@ -203,6 +204,7 @@ CONFIGURE_ARGS+=--disable-docs
 .endif
 
 post-patch:
+	${REINPLACE_CMD} "s/lua >/lua-${LUA_VER} >/g" ${WRKSRC}/configure
 .if ! ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -e 's|tools examples|tools|g' \
 		${WRKSRC}/Makefile.in
@@ -220,8 +222,8 @@ pre-configure:
 
 post-build:
 .if ${PORT_OPTIONS:MDOCS}
-	cd ${WRKSRC}/docs && ${GMAKE} index.html
-	cd ${WRKSRC}/docs/gallery && ${GMAKE} index.html
+	cd ${WRKSRC}/docs && ${MAKE_CMD} index.html
+	cd ${WRKSRC}/docs/gallery && ${MAKE_CMD} index.html
 .endif
 
 post-install:
@@ -241,5 +243,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/${ex}.c ${EXAMPLESDIR}
 .endfor
 .endif
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gegl-0.2/*.so
 
 .include <bsd.port.mk>
