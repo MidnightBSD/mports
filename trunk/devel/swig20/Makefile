@@ -1,45 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	swig
-PORTVERSION=	2.0.9
+PORTVERSION=	2.0.12
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate wrappers for calling C/C++ code from other languages
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
-LATEST_LINK?=	swig2
-USE_AUTOTOOLS=	autoconf:env libtool
-
-MAN1=		ccache-swig${VER}.1
+USES=		gmake lua:51
 
 VER=		${PORTVERSION:R}
-PLIST_SUB+=	PORTVERSION=${PORTVERSION}
+PLIST_SUB+=	PORTVERSION=${PORTVERSION} VER="${VER}"
 
-WRKSRC=		${WRKDIR}/${DISTNAME}
-CFLAGS+=	-fPIC -DPIC
-ALL_TARGET=	swig
-PLIST_SUB+=	VER="${VER}"
-
-WANT_LUA=	yes
-WANT_LUA_VER=	5.0+
+GNU_CONFIGURE=	yes
+ALL_TARGET=	# none
 
 CONFIGURE_ARGS+=--program-suffix=${VER}
 
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_LUA:Mlua-5.*} != ""
-USE_LUA=	yes
-LUA_COMPS=	lua:build
 CONFIGURE_ARGS+=--with-lua=${LUA_BINDIR}/lua \
 		--with-luaincl=${LUA_INCDIR} \
 		--with-lualib=${LUA_LIBDIR}
-.endif
 
 OCTAVE_VER_CMD=	${LOCALBASE}/bin/octave-config -v 2>/dev/null || ${TRUE}
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	${SETENV} OCTAVE_VER=$$(${OCTAVE_VER_CMD}) \
@@ -71,4 +62,7 @@ post-install:
 		-exec ${INSTALL_DATA} {} ${DOCSDIR}/${PORTVERSION}/{} \;
 .endif
 
-.include <bsd.port.post.mk>
+regression-test: build
+	cd ${WRKSRC} && ${MAKE_CMD} check
+
+.include <bsd.port.mk>
