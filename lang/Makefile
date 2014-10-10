@@ -35,6 +35,7 @@ SUBDIR += linux-f10-libg2c
 SUBDIR += linux-f10-tcl85
 SUBDIR += linux-libperl5.8
 SUBDIR += lua51
+SUBDIR += lua52
 SUBDIR += mawk
 SUBDIR += mono
 SUBDIR += nawk
