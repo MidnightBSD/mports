@@ -16,7 +16,7 @@ IGNORE=	Invalid lua version ${LUA_DEFAULT}
 #
 # Parse a ver+ argument
 #
-.if ${lua_ARGS:M*+}
+.if defined(lua_ARGS) && ${lua_ARGS:M*+}
 _LUA_MIN_VERSION:=	${lua_ARGS:M*+:S/+//}
 _LUA_WANTED_VERSION:=	${_LUA_DEFAULT_VERSION}
 .endif
@@ -24,7 +24,7 @@ _LUA_WANTED_VERSION:=	${_LUA_DEFAULT_VERSION}
 #
 # Parse one or more ver arguments
 #
-.if ${lua_ARGS:M5[1-2]}
+.if defined(lua_ARGS) && ${lua_ARGS:M5[1-2]}
 _LUA_WANTED_VERSIONS:=	${lua_ARGS:M5[1-2]}
 .endif
 
@@ -91,9 +91,9 @@ MAKE_ENV+=	LUA_MODLIBDIR=${LUA_MODLIBDIR} \
 		LUA_INCDIR=${LUA_INCDIR} \
 		LUA_LIBDIR=${LUA_LIBDIR}
 
-.if ${lua_ARGS:Mbuild}
+.if defined(lua_ARGS) && ${lua_ARGS:Mbuild}
 BUILD_DEPENDS+=	${LUA_CMD}:${PORTSDIR}/lang/lua${LUA_VER_STR}
-.elfif ${lua_ARGS:Mrun}
+.elfif defined(lua_ARGS) && ${lua_ARGS:Mrun}
 RUN_DEPENDS+=	${LUA_CMD}:${PORTSDIR}/lang/lua${LUA_VER_STR}
 .else
 LIB_DEPENDS+=	liblua-${LUA_VER}.so:${PORTSDIR}/lang/lua${LUA_VER_STR}
