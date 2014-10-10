@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libyaml
-PORTVERSION=	0.1.4
+PORTVERSION=	0.1.6
 CATEGORIES=	textproc
 MASTER_SITES=	http://pyyaml.org/download/libyaml/
 DISTNAME=	yaml-${PORTVERSION}
@@ -13,7 +13,8 @@ COMMENT=	YAML 1.1 parser and emitter written in C
 LICENSE=	mit
 
 GNU_CONFIGURE=	yes
-USES=	pathfix
+INSTALL_TARGET=	install-strip
+USES=		libtool pathfix
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
