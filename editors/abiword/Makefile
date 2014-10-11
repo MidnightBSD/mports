@@ -2,16 +2,17 @@
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.6
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
 DIST_SUBDIR=	AbiWord
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An open-source, cross-platform WYSIWYG word processor
+COMMENT=	Open-source, cross-platform WYSIWYG word processor
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		png15:${PORTSDIR}/graphics/png \
@@ -23,9 +24,8 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		goffice-0.8:${PORTSDIR}/devel/goffice
 RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
 
-USE_GMAKE=	yes
-USES=		pathfix gettext iconv pkgconfig
-USE_GNOME=	libxml2 gtk20 desktopfileutils librsvg2 libxslt
+USES=		desktop-file-utils gmake pathfix gettext iconv libtool pkgconfig
+USE_GNOME=	libxml2 gtk20 librsvg2 libxslt
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -38,8 +38,6 @@ INSTALLS_ICONS=	yes
 
 ABIVERSION=	2.8
 PLIST_SUB+=	ABIVERSION=${ABIVERSION}
-
-MAN1=		abiword.1
 
 OPTIONS_DEFINE=	DEBUG SPELLCHECK CLIPART TEMPLATES MATHVIEW \
 		OTS WP AIKSAURUS GRAMMAR PSION
