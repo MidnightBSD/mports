@@ -1,247 +1,188 @@
 # $MidnightBSD$
 
-PORTNAME?=	vim
-PATCHLEVEL=	669
-PORTVERSION=	7.3.${PATCHLEVEL}
-RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
+PORTNAME=	vim
+PORTVERSION=	7.4.${PATCHLEVEL}
 PORTREVISION?=	0
 CATEGORIES?=	editors
-MASTER_SITES=	${MASTER_SITE_VIM}
-DISTFILES=	${RELEASE}${EXTRACT_SUFX}
+MASTER_SITES=	VIM:source \
+		${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|}:patch \
+		LOCAL/sunpoet/${PORTNAME}:source,patch
+DISTFILES=	${PORTNAME}-${PORTVERSION:R}${EXTRACT_SUFX}:source
+DIST_SUBDIR=	${PORTNAME}
+EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION:R}${EXTRACT_SUFX}
 
-PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}\
-		ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/obrien/:local
-PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
-			${PATCHLEVEL} 1 ${PATCHLEVEL}
-#	bits to remove
-BADPATCHES=	122 225 235 246 247 252 253 336 386 387 400 434 487 491 527 569 578 579 580 581 583 584 603 611 629 640 650 654 655 656 657 658 659 660
-.for p in ${BADPATCHES}
-PATCHFILES:=	${PATCHFILES:N7.3.${p}}
-.endfor
+PATCH_SITES=	${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|} \
+		LOCAL/sunpoet/${PORTNAME}
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Vi "workalike", with many additional features
+COMMENT?=	Improved version of the vi editor
+
 LICENSE=	other
+
+PATCH_DEPENDS=	${LOCALBASE}/bin/gpatch:${PORTSDIR}/devel/patch
+
+OPTIONS_DEFINE=	CSCOPE EXUBERANT_CTAGS LUA NLS PERL PYTHON RUBY TCL XTERM_SAVE
+OPTIONS_SINGLE=	UI
+OPTIONS_SINGLE_UI=	ATHENA CONSOLE GNOME GTK2 MOTIF X11
+OPTIONS_SUB=	yes
+ATHENA_DESC=		Athena GUI toolkit
+CSCOPE_DESC=		cscope support
+CONSOLE_DESC=		Console/terminal mode
+EXUBERANT_CTAGS_DESC=	Use exctags instead of ctags
+UI_DESC=		User interface
+XTERM_SAVE_DESC=	Restore xterm screen after exit
+
+ALL_TARGET=	# empty
+MAKE_ARGS+=	CC="${CC}" CONF_ARGS="--prefix=${PREFIX} ${CSCOPE_ARG}" STRIP="${STRIP_CMD}" CONF_OPT_MULTIBYTE=--enable-multibyte CONF_TERM_LIB=--with-tlib=termlib
+PATCH=		${LOCALBASE}/bin/gpatch
+PATCH_DIST_ARGS=--batch --directory ${WRKSRC} --forward --quiet --remove-empty-files ${PATCH_DIST_STRIP}
+REINPLACE_ARGS=	-i ''
+USES=		cpe iconv pkgconfig shebangfix tar:bzip2
+WANT_GNOME=	yes
+
+PATCHLEVEL=	430
+PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
+#POSTPONED_PATCHES=	064 087 147	# patch files postponed to be applied in post-patch:
+SKIPPED_PATCHES=	208 356		# patch files skipped
+.for p in ${POSTPONED_PATCHES}
+DISTFILES+=	${PORTVERSION:R}.${p}:patch
+.endfor
+.for p in ${POSTPONED_PATCHES} ${SKIPPED_PATCHES}
+PATCHFILES:=	${PATCHFILES:N${p}}
+.endfor
+PATCHFILES:=	${PATCHFILES:C/^/${PORTVERSION:R}./g}
+
+BUILD_WRKSRC=	${WRKDIR}/${VIM_VER}/src
+CONFIGURE_WRKSRC=	${WRKDIR}/${VIM_VER}/src
+INSTALL_WRKSRC=	${WRKDIR}/${VIM_VER}/src
+WRKSRC=		${WRKDIR}/${VIM_VER}
+
+PLIST_SUB=	VIM_VER=${VIM_VER}
+PORTDATA=	*
+
+VIM_VER=	${PORTNAME}${PORTVERSION:R:S/.//g}
+
+CPE_VERSION=	${PORTVERSION:R}
 
 SLAVEDIRS=	editors/vim-lite
 
-.if defined(WITH_OPTIONS) || defined(WITH_VIM_OPTIONS)
-.include "${.CURDIR}/../vim/options"
-.endif
+SHEBANG_FILES=	runtime/tools/efm_perl.pl
 
-CONFLICTS=	vim*-lite
-MAKE_JOBS_UNSAFE= yes
-USES=		tar:bzip2
-DIST_SUBDIR=	vim
-WRKSRC=		${WRKDIR}/vim${PORTVERSION:C/\.[0-9]*$//:S/.//g}/src
-PATCH_DIST_ARGS= -d ${WRKSRC:S/src$//} --batch --forward --quiet -E ${PATCH_DIST_STRIP}
-# consider
-#PATCH_DIST_ARGS=	-t
-REINPLACE_ARGS=		-i ""
-MAKE_ARGS+=	CONF_ARGS="--prefix=${PREFIX} --with-tlib=termlib ${CSCOPE_ARG}"
-ALL_TARGET=	#
-_DATADIR=	${RELEASE:S/-//g:S/.//g}
-DATADIR=	${PREFIX}/share/vim/${_DATADIR}
-PLIST_SUB=	VIM_VER=${_DATADIR}
-MAN1=		evim.1 vim.1 vimdiff.1 vimtutor.1 xxd.1
-MLINKS=		vim.1 rvim.1	vim.1 rview.1
-.if !defined(LITE)
-MLINKS+=	vim.1 gvim.1	vim.1 gview.1	vimdiff.1 gvimdiff.1 \
-		vim.1 rgvim.1	vim.1 rgview.1	evim.1 eview.1
-PLIST_SUB+=	LITETIME=
+.if defined(LITE)
+PKGNAMESUFFIX+=	-lite
+CONFLICTS_INSTALL=	vim-[0-9]*
+OPTIONS_EXCLUDE=ATHENA CSCOPE EXUBERANT_CTAGS GNOME GTK2 LUA MOTIF NLS PERL PYTHON RUBY TCL X11 XTERM_SAVE
+OPTIONS_SLAVE=	CONSOLE
+MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" \
+		CONF_OPT_LUA=--disable-luainterp \
+		CONF_OPT_PERL=--disable-perlinterp \
+		CONF_OPT_PYTHON="--disable-pythoninterp --disable-python3interp" \
+		CONF_OPT_RUBY=--disable-rubyinterp \
+		CONF_OPT_TCL=--disable-tclinterp
+PLIST_SUB+=	NON_LITE="@comment "
 .else
-PLIST_SUB+=	LITETIME="@comment "
-.endif
-MANLANG=	"" ru.KOI8-R ru.UTF-8 pl.ISO8859-2 pl.UTF-8 pl fr.ISO8859-1 \
-		fr.UTF-8 fr it.ISO8859-1 it.UTF-8 it
-
-.if defined(PACKAGE_BUILDING) && !defined(LITE)
-WITH_CSCOPE=	yes
-WITH_EXUBERANT_CTAGS=yes
-WITH_PERL=	yes
-WITH_PYTHON=	yes
-WITH_RUBY=	yes
-WITH_TCL=	yes
+CONFLICTS_INSTALL=	vim-lite-[0-9]*
+OPTIONS_DEFAULT=CSCOPE EXUBERANT_CTAGS GTK2 LUA PERL PYTHON RUBY TCL
+MAKE_ARGS+=	CONF_OPT_FEAT=--with-features=big \
+		CONF_OPT_INPUT=--enable-xim \
+		CONF_OPT_OUTPUT=--enable-fontset
+PLIST_SUB+=	NON_LITE=""
 .endif
 
-.if defined(WITH_PYTHON)
-USE_PYTHON=	yes
-MAKE_ARGS+=	CONF_OPT_PYTHON="--enable-pythoninterp"
+ATHENA_MAKE_ARGS=	CONF_OPT_GUI=--enable-gui=athena
+ATHENA_USE=		XORG=xaw
+CONSOLE_MAKE_ARGS=	CONF_OPT_GUI="--enable-gui=no --without-x"
+CSCOPE_MAKE_ARGS=	CONF_OPT_CSCOPE=--enable-cscope
+CSCOPE_RUN_DEPENDS=	${LOCALBASE}/bin/cscope:${PORTSDIR}/devel/cscope
+EXUBERANT_CTAGS_RUN_DEPENDS=	${LOCALBASE}/bin/exctags:${PORTSDIR}/devel/ctags
+GNOME_MAKE_ARGS=	CONF_OPT_GUI=--enable-gui=gnome2 X_LIBS="$(X_LIBS) -lX11 -lXpm -lXt"
+GNOME_USE=		GNOME=libgnomeui XORG=glproto,xpm,xt
+GTK2_MAKE_ARGS=		CONF_OPT_GUI=--enable-gui=gtk2 X_LIBS="$(X_LIBS) -lX11 -lXpm -lXt"
+GTK2_USE=		GNOME=gtk20 XORG=xpm,xt
+LUA_MAKE_ARGS=		CONF_OPT_LUA=--enable-luainterp=dynamic CONF_OPT_LUA_PREFIX=--with-lua-prefix=${LOCALBASE}
+LUA_USES=		lua
+MOTIF_MAKE_ARGS=	CONF_OPT_GUI='--enable-gui=motif --with-motif-lib="${MOTIFLIB}"' MOTIFHOME=${LOCALBASE}
+MOTIF_USES=		motif
+NLS_MAKE_ARGS=		CONF_OPT_NLS=--enable-nls
+NLS_MAKE_ARGS_OFF=	CONF_OPT_NLS=--disable-nls
+NLS_USES=		gettext
+PERL_MAKE_ARGS=		CONF_OPT_PERL=--enable-perlinterp
+PERL_USES=		perl5
+PYTHON_USES=		python
+RUBY_MAKE_ARGS=		CONF_OPT_RUBY=--enable-rubyinterp
+RUBY_USE=		RUBY=yes
+TCL_MAKE_ARGS=		CONF_OPT_TCL="--enable-tclinterp --with-tclsh=tclsh${TCL_VER}"
+TCL_USES=		tcl:85+
+X11_MAKE_ARGS=		CONF_OPT_GUI="--enable-gui=no --with-x" X_LIBS="$(X_LIBS) -lX11 -lXt"
+X11_USE=		XORG=x11,xt
+
+.include <bsd.mport.options.mk>
+
+.if !${PORT_OPTIONS:MATHENA} && !${PORT_OPTIONS:MCONSOLE} && !${PORT_OPTIONS:MGNOME} && !${PORT_OPTIONS:MGTK2} && !${PORT_OPTIONS:MMOTIF} && !${PORT_OPTIONS:MX11}
+IGNORE=		this port has new UI option (CONSOLE) for users who do not need GUI support. Please run "make config" to modify your setting
 .endif
 
-.if defined(WITH_LUA)
-USE_LUA=	yes
-MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp=dynamic" \
-MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LOCALBASE}"
+.if ${PORT_OPTIONS:MCONSOLE} || ${PORT_OPTIONS:MX11}
+PLIST_SUB+=	GUI="@comment "
+.else
+PLIST_SUB+=	GUI=""
 .endif
 
-.if defined(WITH_RUBY)
-USE_RUBY=	yes
-MAKE_ARGS+=	CONF_OPT_RUBY="--enable-rubyinterp"
-.endif
-
-.if defined(WITH_TCL)
-USE_TCL=	82+
-USE_TCL_NO_THREADS=	yes
-.endif
-
-.if defined(WITH_PERL)
-WANT_PERL=	yes
-.endif
-
-.if !defined(WITHOUT_X11)
-WANT_GNOME=	yes
+.if ${PORT_OPTIONS:MEXUBERANT_CTAGS}
+CTAGS_CMD=	exctags -R .
+.else
+CTAGS_CMD=	${FIND} . -type f \\| ${XARGS} ctags
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if !defined(LITE)
-MAKE_ARGS+=	CONF_OPT_FEAT="--with-features=big"
-I18N=		CONF_OPT_MULTIBYTE="--enable-multibyte --enable-fontset --enable-xim"
-
-.if defined(NO_GUI)
-WITHOUT_X11=	yes
-.endif
-
-.if defined(WITH_CSCOPE)
-RUN_DEPENDS+=	cscope:${PORTSDIR}/devel/cscope
-MAKE_ARGS+=	CONF_OPT_CSCOPE="--enable-cscope"
-.endif
-
-.if defined(WITH_EXUBERANT_CTAGS)
-RUN_DEPENDS+=	exctags:${PORTSDIR}/devel/ctags
-.endif
-
-.if defined(WITH_PERL)
-USE_PERL5=	yes
-MAKE_ARGS+=	CONF_OPT_PERL="--enable-perlinterp"
-.endif
-
-.if defined(WITH_TCL)
-MAKE_ARGS+=	CONF_OPT_TCL="--enable-tclinterp --with-tclsh="${TCLSH:S/${LOCALBASE}\/bin\///g}""
-.endif
-
-.if !defined(WITHOUT_X11)
-#	for now default the GUI to the GTK+ one
-#	will be reviewed when the GTK+ 1.{3,4} behemoth is released
-.if !defined(WITH_ATHENA) && !defined(WITH_MOTIF) && !defined(WITH_GNOME) && !defined(WITH_GTK2)
-USE_GNOME=	gtk12
-.endif
-
-.if defined(WITH_ATHENA)
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=athena" ${I18N}
-.elif defined(WITH_GTK2)
-USE_GNOME=	gtk20
-PKGNAMESUFFIX=	-gtk2
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk2 --with-gtk-prefix=${LOCALBASE}" ${I18N}
-MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
-USE_XORG+=	xt
-.elif defined(WITH_GNOME)
-.if ${WITH_GNOME:Mgnomelibs}!="" || ${WITH_GNOME}=="yes" || \
-	${WITH_GNOME}=="1"
-USE_GNOME=	gnomelibs gnomeprefix
-PKGNAMESUFFIX=	-gnome
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gnome --with-gtk-prefix=${LOCALBASE}" ${I18N}
-MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
-USE_XORG+=	xt
+.if ${PORT_OPTIONS:MPYTHON}
+.if ${PYTHON_REL} < 300
+MAKE_ARGS+=	CONF_OPT_PYTHON="--enable-pythoninterp --disable-python3interp"
 .else
-USE_GNOME=	gtk12
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk --with-gtk-prefix=${LOCALBASE}" ${I18N}
-MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
-USE_XORG+=	xt
+MAKE_ARGS+=	CONF_OPT_PYTHON="--enable-python3interp --disable-pythoninterp"
 .endif
-.elif defined(WITH_MOTIF)
-USE_MOTIF=	yes
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=motif --with-motif-lib=\"${MOTIFLIB}\"" MOTIFHOME=${LOCALBASE} ${I18N}
-.endif
-.else	# WITHOUT_X11
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" ${I18N}
-.endif	# WITHOUT_X11
-
-.else	# LITE
-PKGNAMESUFFIX=	-lite
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x --enable-multibyte"
-MAKE_ARGS+=	CONF_OPT_PERL="--disable-perlinterp --disable-pythoninterp --disable-tclinterp --disable-rubyinterp --disable-luainterp"
-.endif	# LITE
-
-.if exists(${PREFIX}/lib/libiconv.so)
-USE_ICONV=	yes
-.endif
-
-.if defined(WITH_EXUBERANT_CTAGS)
-CTAGS_CMD=	exctags -R .
-.else
-CTAGS_CMD=	${FIND} . -type f \\|${XARGS} ctags
 .endif
 
 post-patch:
-	@(${FIND} ${WRKSRC}/../runtime/ -name menu\*.vim -print0 | ${XARGS} -0 \
-		${REINPLACE_CMD} -e 's,ctags -R \.,${CTAGS_CMD},g')
+	@${REINPLACE_CMD} -e '/^install_normal: / s|install-icons|# &|; /cd $$(DEST_BIN); ln -s/d' ${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g' ${WRKSRC}/src/auto/configure
+	@${FIND} ${WRKSRC}/runtime/ -name menu\*.vim -print0 | ${XARGS} -0 ${REINPLACE_CMD} -e 's,ctags -R \\.,${CTAGS_CMD},g'
+.for p in ${POSTPONED_PATCHES}
+	@${ECHO_MSG} "===>   Applying distribution patch ${p}"
+	@${PATCH} ${PATCH_DIST_ARGS} -i ${_DISTDIR}/${PORTVERSION:R}.${p}
+.endfor
 
 pre-configure:
-	@(cd ${WRKSRC} ; ${MAKE} distclean)
-	@${REINPLACE_CMD} -e ' \
-		s|\$$gtk_config_prefix/bin/gtk-config|\$${GTK_CONFIG}|g; \
-		s|\$$gtk_config_exec_prefix/bin/gtk-config|\$${GTK_CONFIG}|g; \
-		s|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/auto/configure
-.if defined(WITH_XTERM_SAVE)
-	@${REINPLACE_CMD} -e ' \
-		s|/\* #define FEAT_XTERM_SAVE \*/|#define FEAT_XTERM_SAVE|g' \
-		${WRKSRC}/feature.h
+	@${CP} ${WRKSRC}/src/config.mk.dist ${WRKSRC}/src/auto/config.mk
+	@(cd ${WRKSRC}/src/ && ${MAKE_CMD} distclean)
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+		-e 's|\$$gtk_config_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
+		-e 's|\$$gtk_config_exec_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
+		-e 's|set dummy lua;|set dummy ${LUA_CMD};|g' ${WRKSRC}/src/auto/configure
+.if ${PORT_OPTIONS:MXTERM_SAVE}
+	@${REINPLACE_CMD} -e '/FEAT_XTERM_SAVE/ s|.*|#define FEAT_XTERM_SAVE|' ${WRKSRC}/src/feature.h
 .endif
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/icons/hicolor/48x48/apps
 
-#	Clean up junk files to keep them from being installed.
-pre-install:
-	@${FIND} ${WRKSRC:H} -type f -name '*.orig' -delete
+post-configure:
+	@(cd ${WRKSRC}/src/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} scratch config)
+	@${REINPLACE_CMD} -e 's|#define HAVE_SYSINFO 1|/* #undef HAVE_SYSINFO */|' ${WRKSRC}/src/auto/config.h
 
 post-install:
-	[ -e ${PREFIX}/bin/gvim ] || (cd ${PREFIX}/bin ; ${LN} -sf vim gvim)
-	#	below needed for `vim-lite' port
-	${TEST} -e ${PREFIX}/bin/rgvim  || (cd ${PREFIX}/bin ; ${LN} -sf vim rgvim)
-	${TEST} -e ${PREFIX}/bin/gview  || (cd ${PREFIX}/bin ; ${LN} -sf vim gview)
-	${TEST} -e ${PREFIX}/bin/rgview || (cd ${PREFIX}/bin ; ${LN} -sf vim rgview)
-	${TEST} -e ${PREFIX}/bin/evim   || (cd ${PREFIX}/bin ; ${LN} -sf vim evim)
-	${TEST} -e ${PREFIX}/bin/eview  || (cd ${PREFIX}/bin ; ${LN} -sf vim eview)
-	${TEST} -e ${PREFIX}/bin/gvimdiff  \
-		|| (cd ${PREFIX}/bin ; ${LN} -sf vim gvimdiff)
-	${TEST} -e ${PREFIX}/bin/gvimtutor  \
-		|| (cd ${PREFIX}/bin ; ${LN} -sf vimtutor gvimtutor)
-	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${DATADIR}/keymap
-	cd ${PREFIX} ;\
-	    ${FIND} share/vim/${_DATADIR} -type f -o -type l	\
-	    	| ${SORT}					\
-	    	>${WRKDIR}/PLIST.share-vim
-	cd ${PREFIX} ;\
-	    ${FIND} share/vim/${_DATADIR} -type d		\
-	    	| ${SORT} -r | ${SED} -e 's/^/@dirrm /g'	\
-		>>${WRKDIR}/PLIST.share-vim
-	${ECHO_CMD} "r ${TMPPLIST}"			> ${WRKDIR}/ex.script
-	${ECHO_CMD} "/Insert PLIST.share-vim"		>> ${WRKDIR}/ex.script
-	${ECHO_CMD} "d"					>> ${WRKDIR}/ex.script
-	${ECHO_CMD} "r ${WRKDIR}/PLIST.share-vim"	>> ${WRKDIR}/ex.script
-	${ECHO_CMD} "x!"				>> ${WRKDIR}/ex.script
-	${CP} -p ${TMPPLIST} ${TMPPLIST}.pre-share-vim
-	cd ${WRKDIR} ; ex < ex.script
-
-show-options:
-	@${MAKE} -DWITH_OPTIONS showconfig
-
-cklatest:
-	-ncftpls \
-	    ftp://ftp.vim.org/pub/vim/patches/${PORTVERSION:C/\.[0-9a-z]*$//}/ \
-		| fgrep ${PORTVERSION:C/[0-9]*$//} | ${TAIL}
-
-find-bad-patches:
-	@cd ${DISTDIR} ; egrep -l \
-		'(src/if_(ole|mzsch)|src/gui_(w32|w48|mac)|src/os_(riscos|cyg|os2|vms|amiga|win32|mswin))|src(/testdir)?/Make_(dos|cyg|vms|mvc|ming|os2|amiga|mms)'\
-		vim/${PORTVERSION:C/\.[0-9a-z]*$//}*
-
-ckp:
-	${MAKE} -DPATCH_DEBUG clean patch
-
-lang:
-	${MAKE} WITH_LANG=yes
+	${MKDIR} ${STAGEDIR}${DATADIR}/${VIM_VER}/lang/
+.for file in evim rview rvim vimdiff
+	${TEST} -e ${STAGEDIR}${PREFIX}/bin/${file} || ${LN} -fs vim ${STAGEDIR}${PREFIX}/bin/${file}
+.endfor
+.if !${PORT_OPTIONS:MCONSOLE} && !${PORT_OPTIONS:MX11}
+.for file in eview gview gvim gvimdiff rgview rgvim
+	${TEST} -e ${STAGEDIR}${PREFIX}/bin/${file} || ${LN} -fs vim ${STAGEDIR}${PREFIX}/bin/${file}
+.endfor
+.endif
+.if !${PORT_OPTIONS:MNLS}
+	${MKDIR} ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
+	${INSTALL_DATA} ${WRKSRC}/runtime/keymap/* ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
+.endif
+	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
+	${TOUCH} ${STAGEDIR}${DATADIR}/${VIM_VER}/lang/.keepme
 
 .include <bsd.port.post.mk>
