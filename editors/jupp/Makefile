@@ -9,7 +9,7 @@ DISTNAME=	joe-${PORTVERSION:C/([0-9]+\.[0-9]+)\.([0-9]+)/\1${PORTNAME}\2/}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The editor which sucks less.
+COMMENT=	The editor which sucks less
 
 LICENSE=	gpl
 
