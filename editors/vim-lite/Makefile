@@ -5,8 +5,9 @@ LITE=		yes
 
 MASTERDIR=	${.CURDIR}/../vim
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Improved version of the vi editor (lite package)
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Improved version of the vi editor (lite package)
+
 LICENSE=	other
 
 CONFLICTS=	vim-[0-9]*
