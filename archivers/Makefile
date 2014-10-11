@@ -56,7 +56,6 @@ SUBDIR += unzip
 SUBDIR += unzoo
 SUBDIR += upx
 SUBDIR += xar
-SUBDIR += xz
 SUBDIR += zip
 SUBDIR += zipper
 SUBDIR += zlib
