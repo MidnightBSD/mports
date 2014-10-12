@@ -72,7 +72,7 @@ DOCSRCDIR2=	${WRKSRC}/doc
 DOCSDIR2=	${DOCSDIR}/doc
 DOC_FILES2=	FAQ HACKING MAINTAINERS *.txt
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
 CPPFLAGS+=	-I${LOCALBASE}/include
