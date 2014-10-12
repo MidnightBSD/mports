@@ -57,7 +57,7 @@ CONFLICTS=	php53-5* php55-5* php56-5*
 
 DESTDIRNAME=	INSTALL_ROOT
 
-.include <bsd.mport.pre.mk>
+.include <bsd.port.pre.mk>
 
 PATCH_DIST_STRIP=	-p1
 
