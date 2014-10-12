@@ -78,7 +78,6 @@ LIB_DEPENDS=	fftw3:${PORTSDIR}/math/fftw3
 
 .if ${PKGNAMESUFFIX} == "-fpgtk"
 .	if defined(WITH_GTK1)
-.include <${PORTSDIR}/Mk/bsd.gnome.mk>
 USE_GNOME=	gtk12
 .	endif
 .endif
@@ -115,7 +114,7 @@ OPT+=-Fu${WRKDIR}/${WRKUNITDIR}/*
 
 .if ${PKGNAMESUFFIX} == "-gtk2"
 .	if defined(WITH_GTK2)
-.include <${PORTSDIR}/Mk/bsd.gnome.mk>
+EXTENSIONS+=	gnome
 USE_GNOME=	gtk20
 .	endif
 .endif
