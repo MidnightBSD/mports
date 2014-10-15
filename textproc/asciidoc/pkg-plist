@@ -3,6 +3,8 @@ bin/a2x.py
 bin/asciidoc
 bin/asciidoc.py
 %%ETCDIR%%/asciidoc.conf.sample
+@unexec if cmp -s %D/%%ETCDIR%%/asciidoc.conf.sample %D/%%ETCDIR%%/asciidoc.conf; then rm -f %D/%%ETCDIR%%/asciidoc.conf; fi
+@exec if [ ! -f %D/%%ETCDIR%%/asciidoc.conf ] ; then cp -p %D/%F %B/asciidoc.conf; fi
 %%ETCDIR%%/dblatex/asciidoc-dblatex.sty
 %%ETCDIR%%/dblatex/asciidoc-dblatex.xsl
 %%ETCDIR%%/docbook-xsl/chunked.xsl
