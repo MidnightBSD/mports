@@ -2,7 +2,7 @@
 
 PORTNAME?=	windowmaker
 PORTVERSION=	0.95.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	http://windowmaker.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	source/release
@@ -13,10 +13,10 @@ COMMENT=	GNUstep-compliant NeXTstep window manager clone
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gif:${PORTSDIR}/graphics/giflib \
-		png15:${PORTSDIR}/graphics/png \
-		jbig:${PORTSDIR}/graphics/jbigkit \
-		tiff:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libjbig.so:${PORTSDIR}/graphics/jbigkit \
+		libtiff.so:${PORTSDIR}/graphics/tiff
 
 .if !defined(LWR_SLAVE)
 RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
@@ -25,8 +25,7 @@ USE_PERL5=	yes
 
 MAKE_JOBS_SAFE=	yes
 
-USES=		pathfix pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=		gettext libtool pathfix pkgconfig
 USE_XORG=	xft xinerama xmu xpm xrandr
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
