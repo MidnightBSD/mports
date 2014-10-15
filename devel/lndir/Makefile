@@ -7,6 +7,7 @@
 
 PORTNAME=	lndir
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,10 +18,9 @@ LICENSE=	unknown
 
 XORG_CAT=	util
 USE_XORG=	xproto
-USE_PKGCONFIG=	yes
+USES=		pkgconfig
 
-PLIST_FILES=	bin/lndir
-
-MAN1=		lndir.1
+PLIST_FILES=	bin/lndir \
+		man/man1/lndir.1.gz
 
 .include <bsd.port.mk>
