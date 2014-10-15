@@ -1,18 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	rclint
-PORTVERSION=	0.0.6
+PORTVERSION=	0.2.1
 CATEGORIES=	devel textproc python
 MASTER_SITES=	http://www.bayofrum.net/dist/rclint/	\
 		FREEBSD_LOCAL/crees/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Checks rc scripts for style and common errors
+
 LICENSE=	bsd2
 
 NO_BUILD=	yes
-USE_PYTHON=	yes
+
+USES=		python:run
 SUB_FILES=	${PORTNAME}
+SUB_LIST=	PYTHON_CMD=${PYTHON_CMD}
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDATA=	${PORTNAME}.py errors.en
