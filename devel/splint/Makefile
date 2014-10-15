@@ -7,14 +7,13 @@ MASTER_SITES=	http://www.splint.org/downloads/
 EXTRACT_SUFX=	.src.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool for statically checking sourcecode for security vulnerabilities
+COMMENT=	Tool for statically checking sourcecode for security vulnerabilities
+
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+USES=		gmake
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
-
-MAN1=		splint.1
 
 post-patch:
 	@${REINPLACE_CMD} -e \
