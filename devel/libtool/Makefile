@@ -1,32 +1,31 @@
+# Created by: Motoyuki Kasahara <m-kasahr@sra.co.jp>
+# $FreeBSD: head/devel/libtool/Makefile 370099 2014-10-05 18:01:19Z tijl $
 # $MidnightBSD$
 
-PORTNAME?=	libtool
-PORTVERSION=	2.4.2
-PORTREVISION=	1
-CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	libtool
-DISTNAME=	libtool-${PORTVERSION}
+PORTNAME=	libtool
+PORTREVISION=	0
 
-MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic shared library support script
 
+.include "${.CURDIR}/../libtool/Makefile.common"
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS?= --disable-ltdl-install
-CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-INFO?=		libtool
+CONFIGURE_ARGS=	--disable-ltdl-install
+MAKE_ARGS=	MAKEINFOFLAGS=--no-split
+USES+=		makeinfo
 
-post-extract:
-	@${RM} -f ${WRKSRC}/doc/*.info*
+INFO=		libtool
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|sed gsed|sed|g' \
-		-e 's|CC=cc|CC=${CC}|g' \
-		${WRKSRC}/configure ${WRKSRC}/libltdl/configure
-
-post-configure:
-	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
+	@${RM} -f ${WRKSRC}/doc/*.info*
+.for f in build-aux/ltmain.sh configure libtoolize.in m4/libtool.m4
+	@${TOUCH} -mr ${WRKSRC}/${f}.orig ${WRKSRC}/${f}
+.endfor
 
 .include <bsd.port.mk>
