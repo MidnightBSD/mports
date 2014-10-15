@@ -1,7 +1,7 @@
 bin/X
 %%SUID%%@owner root
 %%SUID%%@group wheel
-%%SUID%%@exec /bin/chmod 4555 /usr/local/bin/X
+%%SUID%%@exec /bin/chmod 4555 /usr/local/bin/Xorg
 @comment %%SUID%%@mode 4555
 bin/Xorg
 %%SUID%%@owner root
