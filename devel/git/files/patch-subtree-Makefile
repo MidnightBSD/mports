@@ -1,0 +1,11 @@
+--- contrib/subtree/Makefile.orig	2014-10-14 22:09:29.000000000 -0400
++++ contrib/subtree/Makefile	2014-10-14 22:09:43.000000000 -0400
+@@ -53,7 +53,7 @@
+ 	$(INSTALL) -m 644 $^ $(DESTDIR)$(man1dir)
+ 
+ $(GIT_SUBTREE_DOC): $(GIT_SUBTREE_XML)
+-	$(XMLTO) -m $(MANPAGE_XSL) man $^
++	$(XMLTO) --skip-validation -m $(MANPAGE_XSL) man $^
+ 
+ $(GIT_SUBTREE_XML): $(GIT_SUBTREE_TXT)
+ 	$(ASCIIDOC) -b docbook -d manpage -f $(ASCIIDOC_CONF) \

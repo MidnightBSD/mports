@@ -28,7 +28,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake shebangfix
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV+=	V=1
+MAKE_ENV+=	V=1 XMLTO_EXTRA=--skip-validation 
 USE_OPENSSL=	yes
 USE_RC_SUBR=	git_daemon
 SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
@@ -244,18 +244,13 @@ post-install:
 		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git-blame.el
 .if ${PORT_OPTIONS:MCONTRIB}
 	@${ECHO_MSG} "===> Installing contributed scripts"
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/git-core/contrib
-	${CP} -R ${WRKSRC}/contrib/* ${STAGEDIR}${PREFIX}/share/git-core/contrib
-	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} install install-doc
+	${MKDIR} ${PREFIX}/share/git-core/contrib
+	${CP} -R ${WRKSRC}/contrib/* ${PREFIX}/share/git-core/contrib
+	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} XMLTO=--skip-validation \
+		${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} install install-doc
 .endif
 .if ${PORT_OPTIONS:MP4}
-	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${STAGEDIR}${PREFIX}/bin/
-.endif
-
-post-stage:
-.if ${PORT_OPTIONS:MPERL}
-	${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto -name .packlist -exec ${SED} -i '' 's|^${STAGEDIR}||' '{}' \;
+	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${PREFIX}/bin/
 .endif
 
 .include <bsd.port.mk>
