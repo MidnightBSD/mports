@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	slf4j
-PORTVERSION=	1.6.6
+PORTVERSION=	1.7.7
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.slf4j.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple facade or abstraction for various logging frameworks
+
 LICENSE=	other
 
 USE_JAVA=	1.6+
