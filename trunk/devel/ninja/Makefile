@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ninja
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,19 +12,19 @@ LICENSE=	apache2
 USE_GITHUB=	yes
 GH_ACCOUNT=	martine
 GH_TAGNAME=	v${PORTVERSION}
-GH_COMMIT=	63d5b10
+GH_COMMIT=	85e13c1
 
 CONFLICTS=	irc/ninja-[0-9]*
-USE_PYTHON_BUILD=	yes
+USES=		python:build
 
 PLIST_FILES=	bin/ninja
 PORTDOCS=	COPYING HACKING.md README manual.asciidoc
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS
 
 do-build:
 	@(cd ${WRKSRC} && \
-		CXX=${CXX} CFLAGS="${CXXFLAGS}" ${PYTHON_CMD} bootstrap.py --verbose)
+		CXX="${CXX}" CFLAGS="${CXXFLAGS}" ${PYTHON_CMD} bootstrap.py --verbose)
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ninja ${PREFIX}/bin
