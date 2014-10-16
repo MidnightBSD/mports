@@ -16,8 +16,6 @@ CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9
 
 USES=		tar:bzip2
 
-PLIST_FILES=	sbin/sshguard man/man8/sshguard.8.gz
-
 USE_RC_SUBR=	sshguard
 MAKE_ARGS+=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 GNU_CONFIGURE=	yes
