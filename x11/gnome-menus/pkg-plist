@@ -4,7 +4,7 @@ include/gnome-menus/gmenu-tree.h
 lib/girepository-1.0/GMenu-2.0.typelib
 lib/libgnome-menu.a
 lib/libgnome-menu.so
-lib/libgnome-menu.so.2
+lib/libgnome-menu.so.6
 %%PYTHON_SITELIBDIR%%/gmenu.a
 %%PYTHON_SITELIBDIR%%/gmenu.so
 libdata/pkgconfig/libgnome-menu.pc
