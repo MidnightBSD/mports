@@ -13,49 +13,52 @@ COMMENT=	Asynchronous DNS resolver library
 
 LICENSE=	mit
 
-OPTIONS=	CONFIG_INFO	"Add the ares_config_info patch" ON \
-		DEBUG		"Build with debug information" OFF \
-		HIDE_SYMBOLS	"Hide internal library symbols" ON \
-		OPTIMIZED_CFLAGS	"Build with compiler optimizations" OFF
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-werror
+INSTALL_TARGET=	install-strip
+SSP_UNSAFE=	Refuses -l in LDFLAGS
+USES=		libtool pathfix
+USE_LDCONFIG=	yes
 
-CONFLICTS=	ares-1.*
+PROGRAMS=	acountry adig ahost
+
+OPTIONS_DEFINE=		CONFIG_INFO DEBUG HIDE_SYMBOLS OPTIMIZED_CFLAGS
+OPTIONS_DEFAULT=	CONFIG_INFO HIDE_SYMBOLS
+
+CONFIG_INFO_DESC=	Add the ares_config_info patch
+HIDE_SYMBOLS_DESC=	Hide internal library symbols
+OPTIMIZED_CFLAGS_DESC=	Build with compiler optimizations
+
+CONFLICTS=		ares-1.*
 
 MAKE_JOBS_UNSAFE=	yes
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_CONFIG_INFO)
+.if ${PORT_OPTIONS:MCONFIG_INFO}
 EXTRA_PATCHES+=	${FILESDIR}/ares-config-info.patch
 PKGNAMESUFFIX=	-config
 .endif
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=--enable-debug
 .else
-CONFIGURE_ARGS+=	--disable-debug
-.endif
-.if defined(WITH_HIDE_SYMBOLS)
-CONFIGURE_ARGS+=	--enable-symbol-hiding
-.else
-CONFIGURE_ARGS+=	--disable-symbol-hiding
-.endif
-.if defined(WITH_OPTIMIZED_CFLAGS)
-CONFIGURE_ARGS+=	--enable-optimize
-.else
-CONFIGURE_ARGS+=	--disable-optimize
+CONFIGURE_ARGS+=--disable-debug
 .endif
 
-USE_LDCONFIG=	yes
-SHLIB_VER=	3
+.if ${PORT_OPTIONS:MHIDE_SYMBOLS}
+CONFIGURE_ARGS+=--enable-symbol-hiding
+.else
+CONFIGURE_ARGS+=--disable-symbol-hiding
+.endif
 
-MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
-PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
-
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--enable-shared --disable-werror
-
-PROGRAMS=	acountry adig ahost
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
+CONFIGURE_ARGS+=--enable-optimize
+.else
+CONFIGURE_ARGS+=--disable-optimize
+.endif
 
 post-install:
 	${INSTALL_PROGRAM} ${PROGRAMS:S@^@${WRKSRC}/.libs/@} ${PREFIX}/bin/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
