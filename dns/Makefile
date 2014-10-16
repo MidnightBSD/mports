@@ -4,7 +4,7 @@ COMMENT = Domain Name Service tools
 
 SUBDIR += ares
 SUBDIR += autotrust
-SUBDIR += bind98
+SUBDIR += bind910
 SUBDIR += bind99
 SUBDIR += bindgraph
 SUBDIR += c-ares
