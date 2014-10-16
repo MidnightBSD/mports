@@ -2,7 +2,7 @@
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nic.ad.jp/ja/idn/idnkit/download/sources/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -13,8 +13,7 @@ COMMENT=	Library to handle internationalized domain names
 LICENSE=	other
 #bsd 4 ish
 
-USE_AUTOTOOLS=	libtool
-USES=		iconv
+USES=		iconv libtool:keepla
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
 		--enable-runidn \
@@ -22,23 +21,20 @@ CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
 
 USE_LDCONFIG=	yes
 
-DOCS_EN=	ChangeLog NEWS README
-DOCS_JA=	README.ja
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 		's|mode=link $$(LD)|mode=link $$(CC)|'
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/tools/runidn/libidnkitres.la ${PREFIX}/lib
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}/ja
-.for f in ${DOCS_EN}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
-.endfor
-.for f in ${DOCS_JA}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/ja/
-.endfor
-.endif
+	@${MKDIR} ${DOCSDIR}/ja
+	(cd ${WRKSRC} && ${INSTALL_DATA} ChangeLog NEWS README \
+		${DOCSDIR})
+	${INSTALL_DATA} ${WRKSRC}/README.ja ${DOCSDIR}/ja
+	(cd ${PREFIX}/lib && ln -sf libidnkit.so.1.2 libidnkit.so)
+	(cd ${PREFIX}/lib && ln -sf libidnkitlite.so.1.2 libidnkitlite.so)
+	(cd ${PREFIX}/lib && ln -sf libidnkitres.so.1.1 libidnkitres.so) 
+	${STRIP_CMD} ${PREFIX}/lib/*.so.*
 
 .include <bsd.port.mk>
