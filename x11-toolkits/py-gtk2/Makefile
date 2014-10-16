@@ -1,31 +1,32 @@
 # $MidnightBSD$
 
-PORTNAME=	py-gtk
+PORTNAME=	gtk
 PORTVERSION=	2.24.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	2
 DISTNAME=	pygtk-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A set of Python bindings for GTK+
+COMMENT=	Set of Python bindings for GTK+
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack libglade2 pygobject
-USE_PYTHON=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	libglade2 pygobject
+USE_PYTHON=	2
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-lintl" \
-		PYTHON="${PYTHON_VERSION}"
-CONFIGURE_ARGS=	--disable-docs
+CONFIGURE_ENV=	PYTHON="${PYTHON_VERSION}"
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--disable-docs
 
 DOCSDIR=	${PREFIX}/share/doc/py-gtk
 EG_SRC_DIR=	${WRKSRC}/examples
@@ -33,11 +34,12 @@ EXAMPLESDIR=	${PREFIX}/share/examples/py-gtk
 
 CONFLICTS=	py*-gtk-0*
 
-OPTIONS=	NUMPY "Enable numpy support (pulls in gcc44)" off
+OPTIONS_DEFINE=	NUMPY DOCS EXAMPLES
+NUMPY_DESC=	Numpy support (pulls in lang/gcc)
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_NUMPY)
+.if ${PORT_OPTIONS:MNUMPY}
 BUILD_DEPENDS+=	${PYNUMPY}
 RUN_DEPENDS+=	${PYNUMPY}
 CONFIGURE_ARGS+=--enable-numpy
@@ -52,26 +54,23 @@ CONFIGURE_ARGS+=--disable-numpy
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--enable-thread
 CFLAGS+=		${PTHREAD_CFLAGS}
-CONFIGURE_ENV+=		LDFLAGS="${PTHREAD_LIBS} ${LDFLAGS}"
+LDFLAGS+=		${PTHREAD_LIBS}
 .else
 CONFIGURE_ARGS+=	--disable-thread
-.if defined(LDFLAGS)
-CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
-.endif
 .endif
 
 post-install:
-.if !defined(NOPORTEXAMPLES)
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${RM} ${WRKSRC}/examples/pygtk-demo/pygtk-demo.in
 	${MKDIR} ${EXAMPLESDIR}
-	${TAR} -C ${EG_SRC_DIR} -cf - . | ${TAR} -C ${EXAMPLESDIR} -xf -
-	${CHOWN} -R ${BINOWN}:${BINGRP} ${EXAMPLESDIR}
-	${FIND} ${EXAMPLESDIR} -type d -print | ${XARGS} ${CHMOD} 0555
-	${FIND} ${EXAMPLESDIR} -type f -print | ${XARGS} ${CHMOD} 0444
+	cd ${EG_SRC_DIR} && ${COPYTREE_SHARE} . ${EXAMPLESDIR}
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/MAPPING ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/THREADS ${DOCSDIR}
 .endif
+	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/gtk-2.0/gtk/*.so
+	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/gtk-2.0/*.so
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
