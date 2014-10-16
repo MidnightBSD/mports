@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	sshguard
-DISTVERSION=	1.5
-PORTREVISION=	1
+PORTVERSION=	1.5
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	SF/sshguard/sshguard/sshguard-${PORTVERSION}
 
@@ -15,45 +15,28 @@ LICENSE=	gpl2
 CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9]*
 
 USES=		tar:bzip2
-USE_AUTOTOOLS=	autoconf
-MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
-USE_RC_SUBR=	sshguard
-GNU_CONFIGURE=	yes
 
-# sublist will be set afterward
+PLIST_FILES=	sbin/sshguard man/man8/sshguard.8.gz
+
+USE_RC_SUBR=	sshguard
+MAKE_ARGS+=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--with-firewall=${SSHGUARDFW}
+
+SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}
 SUB_FILES=	pkg-message
 
 # backend type in { hosts, ipfw, pf }
 SSHGUARDFW?=	hosts
 
-.include <bsd.port.pre.mk>
-
-.if defined(PREFIX)
-CONFIGURE_ARGS+=	--prefix=${PREFIX}
-.endif
-
-# set path for manpages
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man
-
 .if ${SSHGUARDFW} == pf
 PKGMSG_FWBLOCK="  To activate or configure PF see http://sshguard.sf.net/doc/setup/blockingpf.html"
 .elif ${SSHGUARDFW} == ipfw
 PKGMSG_FWBLOCK="  Verify that IPFW is active with \"ipfw show\"."
-.elif ${SSHGUARDFW} == ipfilter
-PKGMSG_FWBLOCK="Sshguard will use /etc/ipf.rules as ruleset."
 .elif ${SSHGUARDFW} == hosts
-PKGMSG_FWBLOCK="  Sshguard is going to use /etc/hosts.allow, I have touched it for you."
+PKGMSG_FWBLOCK="  Sshguard is going to use /etc/hosts.allow. Please remember to touch /etc/hosts.allow\!"
+.elif ${SSHGUARDFW} == ipfilter
+PKGMSG_FWBLOCK="  Sshguard will use /etc/ipf.rules as ruleset."
 .endif
 
-# for substitution in subfiles
-SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}  PREFIX=${TRUE_PREFIX}
-
-CONFIGURE_ARGS+=	--with-firewall=${SSHGUARDFW}
-
-#post-install:
-#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-
-#pre-deinstall:
-#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGDEINSTALL} ${PKGNAME} DEINSTALL
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
