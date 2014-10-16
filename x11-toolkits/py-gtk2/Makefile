@@ -70,7 +70,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/MAPPING ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/THREADS ${DOCSDIR}
 .endif
-	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/gtk-2.0/gtk/*.so
-	@${STRIP_CMD} ${PYTHON_SITELIBDIR}/gtk-2.0/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/gtk-2.0/gtk/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/gtk-2.0/*.so
 
 .include <bsd.port.mk>
