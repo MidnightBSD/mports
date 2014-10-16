@@ -2,13 +2,14 @@
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the FreeDesktop Desktop Menu Spec
+
 LICENSE=	gpl2
 
 USES=		gettext gmake libtool pathfix pkgconfig python tar:bzip2
