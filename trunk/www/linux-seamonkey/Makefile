@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	seamonkey
-DISTVERSION=	2.26
+DISTVERSION=	2.29.1
 CATEGORIES=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 
@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 
 USES+=		tar:bzip2
 
-USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
+WANT_GTK218=	yes
 
 .include "${.CURDIR}/Makefile.common"
 .include <bsd.port.mk>
