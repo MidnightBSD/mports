@@ -3,6 +3,7 @@
 
 PORTNAME=	gtk2
 PORTVERSION=	2.14.7
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits linux
 MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
@@ -18,16 +19,17 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}.${LINUX_RPM_ARCH}.rpm \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK+ library, version 2.X (Linux Fedora 10)
+
 LICENSE=	lgpl
 
 CONFLICTS=	linux-gtk2-[0-9]*
 
 ONLY_FOR_ARCHS=	i386 amd64
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 # these libraries are required by gtk-query-immodules-2.0 or
 # gdk-pixbuf-query-loaders
 USE_LINUX_APPS=	atk jpeg pango png tiff xorglibs
-LINUX_DIST_VER=	10
 RPMVERSION=	9.fc10
 BRANDELF_DIRS=	usr/bin
 USE_LDCONFIG=	yes
