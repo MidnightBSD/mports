@@ -43,6 +43,7 @@ libexec/dbus-daemon-launch-helper
 @exec mkdir -p %D/share/dbus-1/services
 @exec mkdir -p %D/share/dbus-1/system-services
 @exec mkdir -p %D/etc/dbus-1/session.d
+@exec ln -sf /var/lib/dbus/machine-id /var/db/dbus/machine-id
 @dirrmtry share/dbus-1/system-services
 @dirrmtry share/dbus-1/services
 @dirrmtry share/dbus-1/interfaces
