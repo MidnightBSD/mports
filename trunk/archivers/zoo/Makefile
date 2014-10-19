@@ -5,7 +5,8 @@ PORTNAME=	zoo
 PORTVERSION=	2.10.1
 PORTREVISION=	3
 CATEGORIES=	archivers
-MASTER_SITES=	ftp://ftp.kiarchive.ru/pub/unix/arcers/
+MASTER_SITES=	ftp://ftp.kiarchive.ru/pub/unix/arcers/ \
+		CRITICAL
 DISTNAME=	zoo-2.10pl1
 
 MAINTAINER=	ports@MidnightBSD.org
