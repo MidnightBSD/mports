@@ -427,7 +427,6 @@ man/man3/CMS_get1_crls.3.gz
 man/man3/CMS_set1_eContentType.3.gz
 man/man3/CMS_set1_signer_certs.3.gz
 man/man3/CMS_sign.3.gz
-man/man3/CMS_sign_add1_signer.3.gz
 man/man3/CMS_sign_receipt.3.gz
 man/man3/CMS_uncompress.3.gz
 man/man3/CMS_verify.3.gz
