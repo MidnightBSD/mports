@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gdbm
-PORTVERSION=	1.10
+PORTVERSION=	1.11
 CATEGORIES=	databases
 MASTER_SITES=	GNU
 
@@ -13,36 +13,24 @@ LICENSE=        gpl3
 FAKE_OPTS+=	prefixhack
 
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
+USES=		libtool:keepla
 DESTDIRNAME=	INSTALL_ROOT
 
 MAKE_JOBS_UNSAFE=	yes
 
 INFO=		gdbm
-MAN3=		gdbm.3
 
 OPTIONS_DEFINE=	COMPAT NLS
+OPTIONS_SUB=	yes
 COMPAT_DESC=	Enable dbm/ndbm compatibility
 
-NO_STAGE=	yes
+COMPAT_CONFIGURE_ENABLE=	libgdbm-compat
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
+
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MCOMPAT}
-CONFIGURE_ARGS=	--enable-libgdbm-compat
-PLIST_SUB+=	GDBM_COMPAT=""
-.else
-PLIST_SUB+=	GDBM_COMPAT="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} "s|prefix = @prefix@|prefix = ${TARGETDIR}|" \
