@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libidn
-PORTVERSION=	1.28
-PORTREVISION=	2
+PORTVERSION=	1.29
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
@@ -12,14 +11,15 @@ COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	automake-1.14:${PORTSDIR}/devel/automake14
-
 OPTIONS_DEFINE=	DOCS NLS
+
+OPTIONS_SUB=yes
 
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
+USE_AUTOTOOLS=	automake
 USES=		iconv libtool makeinfo pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	build
@@ -45,5 +45,6 @@ post-install:
 .for i in FAQ NEWS README
 	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
+	${MV} ${PREFIX}/lib/pkgconfig/libidn.pc ${PREFIX}/libdata/pkgconfig/libidn.pc
 
 .include <bsd.port.mk>
