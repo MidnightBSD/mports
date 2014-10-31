@@ -2,13 +2,14 @@
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	editors
 MASTER_SITES=	http://garage.linux.student.kuleuven.be/~skimo/nvi/devel/ \
 		http://www.kotnet.org/~skimo/nvi/devel/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development snapshot of the world-renown nvi editor
+
 LICENSE=	bsd3
 
 CONFLICTS_INSTALL=	nvi-m17n-[0-9]* xnview-[0-9]*
@@ -21,7 +22,7 @@ WRKSRC=			${WRKDIR}/${DISTNAME}/build.unix
 GNU_CONFIGURE=		yes
 USE_LDCONFIG=		yes
 USES=			iconv libtool pkgconfig tar:bzip2
-USE_BDB=		42+
+USE_BDB=		48+
 CONFIGURE_ARGS+=	--with-db-prefix=${LOCALBASE} \
 			--program-prefix=n
 CONFIGURE_SCRIPT=	../dist/configure
