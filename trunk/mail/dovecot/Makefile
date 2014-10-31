@@ -2,7 +2,7 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.17
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
@@ -122,7 +122,7 @@ CONFIGURE_ARGS+=	--without-vpopmail
 ## BDB Support
 #
 .if ${PORT_OPTIONS:MBDB}
-USE_BDB=		42+
+USE_BDB=		48+
 CONFIGURE_ARGS+=	--with-db
 CFLAGS+=		-I${BDB_INCLUDE_DIR} -L${BDB_LIB_DIR}
 PLIST_SUB+=		BDB=""
