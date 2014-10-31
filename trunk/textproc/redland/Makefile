@@ -89,7 +89,7 @@ PLIST_SUB+=	VIRTUOSO="@comment "
 pre-everything::
 .	if ${PORT_OPTIONS:MBDB}
 	@${ECHO_CMD} "You can choose BDB version by setting WITH_BDB_VER to one off:"
-	@${ECHO_CMD} "3 40 41 42 43 44 3+ 40+ 41+ 42+ 43+ 44+ (current: ${BDB_VER})"
+	@${ECHO_CMD} "48+ 5+ (current: ${BDB_VER})"
 .	endif
 .	if defined(WITH_MYSQL)
 	@${ECHO_CMD} "MySQL version to be used: ${MYSQL_VER}"
