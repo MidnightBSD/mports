@@ -42,8 +42,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
-
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
 
 .if empty(QT4_OPTIONS:MCUPS)
