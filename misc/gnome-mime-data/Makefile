@@ -12,6 +12,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME and Application database for GNOME
+
 LICENSE=	gpl2
 
 USES=		gettext gmake pathfix tar:bzip2
