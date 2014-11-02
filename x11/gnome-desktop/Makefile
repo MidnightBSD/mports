@@ -16,24 +16,19 @@ USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
+LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
 
+USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig python:2
 USE_XORG=	xpm
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomedocutils gconf2 pygtk2 \
-		ltverhack referencehack
-GNOME_DESKTOP_VERSION=2
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_BISON=	build
-USE_PYTHON=	yes
+USE_GNOME=	gnomeprefix intlhack gnomedocutils gconf2 pygtk2 \
+		referencehack
 INSTALLS_OMF=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gnome-distributor="MidnightBSD"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=	gnome-about.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|xsltproc -o| xsltproc --nonet -o|g' \
