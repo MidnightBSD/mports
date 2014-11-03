@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	serf
-PORTVERSION=	1.3.7
+PORTVERSION=	1.3.8
 CATEGORIES=	www
 MASTER_SITES=	http://serf.googlecode.com/svn/src_releases/
 
@@ -13,11 +13,9 @@ LICENSE=	apache2
 LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
 
 USE_SCONS=	yes
-USES=		tar:bzip2
+USES=		tar:bzip2 cpe
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-
-SUB_FILES=	libserf-1.la
 
 OPTIONS_DEFINE=	DOCS GSSAPI
 
@@ -29,7 +27,6 @@ SCONS_ARGS+=	OPENSSL=${OPENSSLBASE}
 SCONS_ARGS+=	PREFIX=${PREFIX}
 SCONS_ARGS+=	CC=${CC}
 SCONS_ARGS+=	CFLAGS="${CFLAGS}"
-SCONS_INSTALL_TARGET=	install --install-sandbox=${STAGEDIR}
 
 .include <bsd.mport.options.mk>
 
@@ -41,9 +38,8 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^Requires.private/d' ${WRKSRC}/build/serf.pc.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/design-guide.txt ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${SUB_FILES:S|^|${WRKDIR}/|} ${STAGEDIR}${PREFIX}/lib
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/design-guide.txt ${DOCSDIR}
 
 regression-test check: build
 	@(cd ${WRKSRC} && ${SCONS_BIN} check)
