@@ -3,16 +3,16 @@
 
 PORTNAME=	diffutils
 PORTVERSION=	3.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU diff utilities
+COMMENT=	GNU diff utilities
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	sigsegv:${PORTSDIR}/devel/libsigsegv
+LIB_DEPENDS=	libsigsegv.so:${PORTSDIR}/devel/libsigsegv
 
 USES=		charsetfix tar:xz
 GNU_CONFIGURE=	yes
