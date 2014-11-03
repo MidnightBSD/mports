@@ -125,6 +125,7 @@ SUBDIR += icu
 SUBDIR += imake
 SUBDIR += jakarta-commons-daemon
 SUBDIR += jansson
+SUBDIR += jenkins
 SUBDIR += json-glib
 SUBDIR += judy
 SUBDIR += kBuild
