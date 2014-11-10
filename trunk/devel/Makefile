@@ -93,7 +93,6 @@ SUBDIR += gdb
 SUBDIR += gdb66
 SUBDIR += geany
 SUBDIR += gettext
-SUBDIR += gio-fam-backend
 SUBDIR += git
 SUBDIR += glade3
 SUBDIR += glib12
