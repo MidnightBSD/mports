@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xkeyboard-config
-PORTVERSION=	2.10.1
+PORTVERSION=	2.13
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Keyboard Configuration Database
+
 LICENSE=	mit
 
 MASTER_SITE_SUBDIR=	individual/${XORG_CAT}/${PORTNAME}
@@ -18,6 +19,7 @@ USE_GNOME=	intlhack libxslt:build
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=yes
+INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--with-xkb-base=${PREFIX}/share/X11/xkb \
 		--with-xkb-rules-symlink=xorg
