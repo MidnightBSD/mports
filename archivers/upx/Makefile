@@ -3,6 +3,7 @@
 
 PORTNAME=	upx
 PORTVERSION=	3.08
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://upx.sourceforge.net/download/\
 		SF/sevenzip/7-Zip/${LZMA_VER}:lzma
@@ -13,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Ultimate Packer for eXecutables
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ucl.1:${PORTSDIR}/archivers/ucl
+LIB_DEPENDS=	libucl.so:${PORTSDIR}/archivers/ucl
 
 LZMA_VER=	4.65
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-src
