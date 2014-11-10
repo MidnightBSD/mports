@@ -2,7 +2,7 @@
 
 PORTNAME=	glib
 PORTVERSION=	2.36.4
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -19,17 +19,16 @@ USES=		tar:xz
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre \
 		ffi:${PORTSDIR}/devel/libffi
 
-USES+=		gettext gmake iconv:wchar_t pathfix pkgconfig shebangfix
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
+USES+=		gettext gmake iconv:wchar_t libtool pathfix pkgconfig shebangfix
 USE_LDCONFIG=	yes
-USE_GNOME=	ltverhack
 USE_PYTHON=	yes
 PYTHON_PY3K_PLIST_HACK=	yes
 USE_PERL5=	yes
-CONFIGURE_ARGS=	--enable-static \
-		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
+CONFIGURE_ARGS= --disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
 		--disable-dtrace \
+		--enable-static \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
