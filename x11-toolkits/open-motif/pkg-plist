@@ -352,8 +352,6 @@ lib/libXm.a
 lib/libXm.la
 lib/libXm.so
 lib/libXm.so.4
-man/manm/exm_in_c.man
-man/manm/simpleDemo.man
 share/Xm/ButtonBox/Imakefile
 share/Xm/ButtonBox/bboxdemo
 share/Xm/ButtonBox/bboxdemo.c

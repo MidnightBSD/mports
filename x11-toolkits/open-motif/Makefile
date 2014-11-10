@@ -2,30 +2,30 @@
 
 PORTNAME=	open-motif
 PORTVERSION=	2.3.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 # MASTER_SITES=	SF/${PORTNAME}/Motif%202.3.4%20Source%20Code/
 MASTER_SITES=	SF/motif/Motif%202.3.4%20Source%20Code/
 DISTNAME=	motif-${PORTVERSION}-src
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	lesstif-[0-9]*
 WRKSRC=		${WRKDIR}/motif-${PORTVERSION}
 
-USES=		pkgconfig
-USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool autoconf:env automake:env
-USE_GMAKE=	yes
-USE_XORG=	xaw xbitmaps xft
+USES=		gmake iconv libtool:keepla pkgconfig tar:tgz
+USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader automake
+ACLOCAL_ARGS=	-I.
+AUTOMAKE_ARGS=	-a -c -f --foreign
+USE_XORG=	x11 xaw xbitmaps xext xft xt
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_ENV=	LANG=C
@@ -67,7 +67,6 @@ PLIST_SUB+=	MOTIF_DEMOS="@comment "
 
 # User config option: Build and install Motif manuals
 .if !defined(WITHOUT_OPENMOTIF_MANUALS)
-.include "${.CURDIR}/Makefile.man"
 PLIST_SUB+=	MANUALS=""
 .else
 PLIST_SUB+=	MANUALS="@comment "
