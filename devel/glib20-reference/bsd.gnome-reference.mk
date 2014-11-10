@@ -22,19 +22,19 @@ DISTNAME:=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 .if defined(MASTER_SITE_SUBDIR)
 MASTER_SITE_SUBDIR:=	${MASTER_SITE_SUBDIR}
 .endif
-PORTNAME:=	${PORTNAME}-reference
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-reference
 .if defined(LATEST_LINK)
 LATEST_LINK:=	${LATEST_LINK}-reference
 .endif
 
 COMMENT=	Programming reference for ${REFERENCE_PORT}
 
-MD5_FILE=	${PARENTDIR}/distinfo
+HASH_FILE=	${PARENTDIR}/distinfo
 
 REFERENCE_SRC?=	${WRKSRC}/docs/reference
 BOOKS?=		.
 
-PORTDOCS=	*
+PORTDOCS?=	*
 
 .if !target(do-build)
 do-build:
@@ -51,14 +51,13 @@ make-descr:
 
 .if !target(do-install)
 do-install:
-.  if !defined(NOPORTDOCS)
 .    for d in ${BOOKS}
-	${MKDIR} ${DOCSDIR}/${d}
-	cd ${REFERENCE_SRC}/${d}/html && \
-	${FIND} * -type d ! -empty -exec ${MKDIR} "${DOCSDIR}/${d}/{}" \; && \
-	${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${DOCSDIR}/${d}/{}" \;
+	if [ -d ${REFERENCE_SRC}/${d}/html ]; then \
+		${MKDIR} ${DOCSDIR}/${d}; \
+		cd ${REFERENCE_SRC}/${d}/html && \
+		${COPYTREE_SHARE} . ${DOCSDIR}/${d}; \
+	fi
 .    endfor
-.  endif
 .endif
 
 .include <bsd.port.mk>
