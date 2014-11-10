@@ -1,8 +1,6 @@
 # $MidnightBSD$
 # $FreeBSD: ports/devel/glib20-reference/bsd.gnome-reference.mk,v 1.6 2006/05/17 20:56:52 ahze Exp $
 
-USES+=	tar:xz
-
 PARENTDIR?=	${.CURDIR:S|-reference$||}
 REFERENCE_PORT=	${PKGORIGIN:S|-reference$||}
 
