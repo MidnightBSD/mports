@@ -17,6 +17,7 @@ SUBDIR += gzrecover
 SUBDIR += lcab
 SUBDIR += lha
 SUBDIR += lha-ac
+SUBDIR += libarchive
 SUBDIR += libmspack
 SUBDIR += libunrar
 SUBDIR += libzip
