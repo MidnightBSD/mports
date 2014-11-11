@@ -2,44 +2,34 @@
 
 PORTNAME=	madplay
 PORTVERSION=	0.15.2b
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION} \
 		ftp://ftp.mars.org/pub/mpeg/
 
 MAINTAINER=	asa@gascom.ru
 COMMENT=	Madplay MP3 player (part of MAD project)
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	mad.2:${PORTSDIR}/audio/libmad \
-		id3tag.0:${PORTSDIR}/audio/libid3tag
-
-MAKE_JOBS_SAFE=	yes
-WANT_GNOME=	yes
+LIB_DEPENDS=	libmad.so:${PORTSDIR}/audio/libmad \
+		libid3tag.so:${PORTSDIR}/audio/libid3tag
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib"
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lz
 ALL_TARGET=	all madtime
 
-MAN1=		abxtest.1 madplay.1
+OPTIONS_DEFINE=	NLS ESOUND
+OPTIONS_DEFAULT=ESOUND
+OPTIONS_SUB=	yes
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=		yes
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mesound} != ""
-USE_GNOME+=	esound
-PKGNAMESUFFIX=	-esound
-.else
-CONFIGURE_ARGS+=	--without-esd
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+ESOUND_USE=		GNOME=esound
+ESOUND_CONFIGURE_WITH=	esd
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/madtime ${PREFIX}/bin
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
