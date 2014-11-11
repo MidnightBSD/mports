@@ -19,7 +19,8 @@ USE_LDCONFIG=	yes
 USE_PYTHON=	2
 USES=		gmake compiler
 
-CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} --without-npm --dest-os=freebsd
+CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} --without-npm --shared-zlib \
+		--dest-os=freebsd
 PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
 REINPLACE_ARGS=	-i ''
 
