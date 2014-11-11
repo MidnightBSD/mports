@@ -2,19 +2,19 @@
 
 PORTNAME=	aldo
 PORTVERSION=	0.7.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	comms hamradio
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Morse code training program
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libao.so:${PORTSDIR}/audio/libao
 
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf automake
 CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 		--libdir="${LOCALBASE}/lib"
 USES=		gmake libtool tar:bzip2
