@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	portaudio
-DISTVERSION=	19_20111121
+DISTVERSION=	19_20140130
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
 DISTNAME=	pa_stable_v${DISTVERSION}
