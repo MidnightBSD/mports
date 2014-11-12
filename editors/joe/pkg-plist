@@ -71,6 +71,8 @@ etc/joe/joerc.dist
 %%DATADIR%%/syntax/jsf.jsf
 %%DATADIR%%/syntax/jsf_check.jsf
 %%DATADIR%%/charmaps/klingon
+man/man1/joe.1.gz
+man/ru/man1/joe.1.gz
 @dirrm etc/joe
 @dirrm %%DOCSDIR%%
 @dirrm %%DATADIR%%/lang
