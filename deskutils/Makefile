@@ -34,7 +34,6 @@ SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
-SUBDIR += kruler
 SUBDIR += libstreamanalyzer
 SUBDIR += libstreams
 SUBDIR += ljclive
