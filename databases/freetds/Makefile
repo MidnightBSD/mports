@@ -1,85 +1,76 @@
 # $MidnightBSD$
+# $FreeBSD: head/databases/freetds/Makefile 369379 2014-09-27 08:31:58Z riggs $
 
 PORTNAME=	freetds
-PORTVERSION=	0.64
+PORTVERSION=	0.91.103
+PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=	ALPHA/freetds/stable
+MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
 
-MAINTAINER?=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
-LICENSE=        gpl2
+
+LICENSE=	gpl2
+
+LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+
 TDS_VER?=	5.0
 
-USE_ICONV=	yes
-USE_GMAKE=	yes
-GNU_GONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:env libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--with-tdsver=${TDS_VER}
+USES=		iconv gmake pkgconfig libtool:keepla
+GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	autoconf:env
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-lgcrypt
+CONFIGURE_ARGS=	--with-tdsver=${TDS_VER} --sysconfdir=${ETCDIR} \
+	       	--enable-sybase-compat --enable-msdblib
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
-MAN1=		datacopy.1 freebcp.1 tsql.1 bsqldb.1 defncopy.1
+PORTDOCS=	*
 
-OPTIONS=	OPENSSL "Use openssl" off       \
-		GNUTLS "Use GNUTLS" off \
-		IODBC   "Use iodbc (Mutually Exclusive)" off    \
-		UNIXODBC "Use unixodbc (Mutually Exclusive)" off        \
-		MSDBLIB "MS SQL Server support (breaks databases/sybtcl)" off
+OPTIONS_DEFINE=		OPENSSL GNUTLS DOCS
+OPTIONS_RADIO=		ODBC
+OPTIONS_RADIO_ODBC=	IODBC UNIXODBC
+OPENSSL_USE=		OPENSSL=yes
+OPENSSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
+GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+GNUTLS_CONFIGURE_ON=	--with-gnutls
+IODBC_LIB_DEPENDS=	libiodbc.so:${PORTSDIR}/databases/libiodbc
+IODBC_CONFIGURE_ON=	--with-iodbc=${LOCALBASE}
+IODBC_CPPFLAGS=		-I${LOCALBASE}/include/libiodbc
+UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
+UNIXODBC_CONFIGURE_ON=	--with-unixodbc=${LOCALBASE}
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_OPENSSL)
-USE_OPENSSL=	yes
-CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
-.endif
-
-.if defined(WITH_GNUTLS)
-LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=--with-gnutls
-.endif
-
-.if defined(WITH_IODBC)
-LIB_DEPENDS+=	iodbc:${PORTSDIR}/databases/libiodbc
-CONFIGURE_ARGS+=	--with-iodbc=${LOCALBASE}
-.endif
-
-.if defined(WITH_UNIXODBC)
-LIB_DEPENDS+=	odbc:${PORTSDIR}/databases/unixODBC
-CONFIGURE_ARGS+=	--with-unixodbc=${LOCALBASE}
-.endif
-
-.if defined(WITH_IODBC) || defined(WITH_UNIXODBC)
+.if ${PORT_OPTIONS:MIODBC} || ${PORT_OPTIONS:MUNIXODBC}
 PLIST_SUB+=	ODBC=""
 .else
 PLIST_SUB+=	ODBC="@comment "
 .endif
 
-# We cannot use msdblib-style by default, because port databases/sybtcl
-# relies on sybase-style dblib
-.if defined(WITH_MSDBLIB)
-CONFIGURE_ARGS+=	--enable-msdblib
-.endif
-
 post-extract:
-	@cd ${WRKSRC} && ${LN} -s freetds.conf freetds.conf.dist
-	@cd ${WRKSRC} && ${LN} -s locales.conf locales.conf.dist
-	@cd ${WRKSRC}/src/pool && ${LN} -s pool.conf pool.conf.dist
+	@cd ${WRKSRC} && ${LN} -s freetds.conf freetds.conf.sample
+	@cd ${WRKSRC} && ${LN} -s locales.conf locales.conf.sample
+	@cd ${WRKSRC}/src/pool && ${LN} -s pool.conf pool.conf.sample
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|<malloc.h>|<stdlib.h>| ; \
-		 s|/freetds.conf|/freetds.conf.dist|g ; \
-		 s|/locales.conf|/locales.conf.dist|g ; \
-		 s|/pool.conf|/pool.conf.dist|g ; \
+		 s|/freetds.conf|/freetds.conf.sample|g ; \
+		 s|/locales.conf|/locales.conf.sample|g ; \
+		 s|/pool.conf|/pool.conf.sample|g ; \
 		 s| common.h||g'
+	@${REINPLACE_CMD} -e 's|$$ODBC_INC/isql.h|$$ODBC_INC/libiodbc/isql.h|g ; \
+		 s|$$ODBC_INC/isqlext.h|$$ODBC_INC/libiodbc/isqlext.h|g' ${WRKSRC}/configure
 
 post-install:
-	@${MKDIR} ${PREFIX}/etc/freetds
-	@${INSTALL_DATA} ${WRKSRC}/interfaces ${PREFIX}/etc/freetds/interfaces.dist
-	@${ECHO_CMD} "Sample configuration files have been installed in ${PREFIX}/etc"
-	@${ECHO_CMD} "You should edit them and remove the .dist-suffix from their names"
+	@${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@(cd ${WRKSRC}/doc/doc/${PORTNAME}-${PORTVERSION} && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
