@@ -4,6 +4,7 @@ PORTNAME=	portaudio
 DISTVERSION=	19_20140130
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
+PKGNAMESUFFIX=	2
 DISTNAME=	pa_stable_v${DISTVERSION}
 EXTRACT_SUFX=	.tgz
 
@@ -12,8 +13,7 @@ COMMENT=	Portable cross-platform Audio API
 
 LICENSE=	mit
 
-LATEST_LINK=	${PORTNAME}19
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME:S/2//}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig \
