@@ -1,7 +1,3 @@
-# New ports collection Makefile for:		netio
-# Date created:					2005-01-09
-# Whom:						arved
-#
 # $MidnightBSD$
 # $FreeBSD: ports/benchmarks/netio/Makefile,v 1.5 2006/09/02 12:07:20 arved Exp $
 
@@ -14,7 +10,11 @@ DISTNAME=	netio126
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network benchmark
-LICENSE=	restricted
+
+LICENSE=	netio
+LICENSE_NAME=	netio license
+LICENSE_FILE=	${WRKSRC}/netio.doc
+LICENSE_PERMS=	dist-mirror pkg-mirror
 #non commercial use only
 
 WRKSRC=		${WRKDIR}
