@@ -18,5 +18,6 @@ SUBDIR += linux-f10-atk
 SUBDIR += mousetweaks
 SUBDIR += orca
 SUBDIR += qt4-accessible
+SUBDIR += speech-dispatcher
 
 .include <bsd.port.subdir.mk>
