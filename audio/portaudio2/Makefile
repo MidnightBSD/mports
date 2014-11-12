@@ -51,8 +51,10 @@ BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 .if ${PORT_OPTIONS:MJACK}
 CONFIGURE_ARGS+=--with-jack
 LIB_DEPENDS+=	jack:${PORTSDIR}/audio/jack
+PLIST_SUB+=	JACK=""
 .else
 CONFIGURE_ARGS+=--without-jack
+PLIST_SUB+= JACK="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPATEST}
@@ -66,7 +68,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|machine/soundcard.h|sys/soundcard.h|' ${WRKSRC}/configure.in \
 		${WRKSRC}/src/hostapi/oss/pa_unix_oss.c ${WRKSRC}/src/SConscript
 	@${REINPLACE_CMD} -e 's|PACKAGE_NAME=|PACKAGE_NAME=portaudio2|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(libdir)/pkgconfig|$$(prefix)/libdata/pkgconfig|g' \
+	@${REINPLACE_CMD} -e 's|$$(DESTDIR)$$(libdir)/pkgconfig|$$(DESTDIR)$$(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/Makefile.in
 
 .if ! ${PORT_OPTIONS:MEXAMPLES}
