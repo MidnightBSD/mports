@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libimobiledevice
-PORTVERSION=	1.1.5
+PORTVERSION=	1.1.6
 PORTREVISION?=	0
 CATEGORIES?=	comms
 MASTER_SITES=	http://www.${PORTNAME}.org/downloads/
@@ -13,19 +13,19 @@ LICENSE?=	lgpl2.1
 
 SLAVE_PORT?=	no
 
-USES=		pkgconfig tar:bzip2
+USES+=		libtool pathfix pkgconfig tar:bzip2
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	openssl_LIBS=-lssl
+CONFIGURE_ARGS+=openssl_CFLAGS="-I${OPENSSLINC}" \
+		openssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-.if ${SLAVE_PORT} == "no"
+.if ${SLAVE_PORT} == no
 
-LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
-		tasn1:${PORTSDIR}/security/libtasn1 \
-		gcrypt:${PORTSDIR}/security/libgcrypt \
-		plist:${PORTSDIR}/devel/libplist \
-		usbmuxd:${PORTSDIR}/comms/usbmuxd
+LIB_DEPENDS=	libplist.so:${PORTSDIR}/devel/libplist \
+		libusbmuxd.so:${PORTSDIR}/comms/libusbmuxd
 
 USE_GNOME=	glib20
 CONFIGURE_ARGS+=--without-cython
@@ -34,7 +34,7 @@ USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS NEWS README
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's, *@ssl_requires@,,' \
@@ -43,11 +43,9 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
-.endif
 
-.endif # ${SLAVE_PORT} == "no"
+.endif # ${SLAVE_PORT} == no
 
 .include <bsd.port.mk>
