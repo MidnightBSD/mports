@@ -11,10 +11,10 @@ COMMENT=	Grand Central Dispatch API support library
 
 LICENSE=	apache2
 
+USES=		tar:bzip2
 USE_AUTOTOOLS=	aclocal autoconf
 ACLOCAL_ARGS=	-Im4
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 # This is needed because PIC support check in autoconf could fail for clang otherwise.
 CONFIGURE_ENV=	lt_cv_prog_compiler_pic_works=yes
