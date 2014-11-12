@@ -2,12 +2,13 @@
 
 PORTNAME=	joe
 PORTVERSION=	3.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
+
 LICENSE=	gpl
 
 BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
@@ -15,17 +16,13 @@ RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 
 CONFLICTS=	jupp-[0-9]*
 
-USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		gmake iconv
 USE_NCURSES=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -liconv"
 
 ALL_TARGET=	${PORTNAME}
-MAN1=		${PORTNAME}.1
-
-MANLANG=	"" ru
 
 .include <bsd.port.pre.mk>
 
