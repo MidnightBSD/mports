@@ -15,7 +15,8 @@ LICENSE=	netio
 LICENSE_NAME=	netio license
 LICENSE_FILE=	${WRKSRC}/netio.doc
 LICENSE_PERMS=	dist-mirror pkg-mirror
-#non commercial use only
+
+RESTRICTED=	No commercial use
 
 WRKSRC=		${WRKDIR}
 USE_ZIP=	yes
