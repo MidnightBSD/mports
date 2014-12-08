@@ -2,7 +2,7 @@
 
 PORTNAME=	gdbm
 PORTVERSION=	${RUBY_PORTVERSION}
-PORTREVISION=	${RUBY_PORTREVISION}
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	databases ruby
 MASTER_SITES=	# none
@@ -14,20 +14,20 @@ COMMENT=	A Ruby extension to GDBM library
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/${RUBY_PORT}:patch
-LIB_DEPENDS=	gdbm:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
 
 PLIST_FILES=	%%RUBY_ARCHLIBDIR%%/gdbm.so
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
-
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-.include <bsd.port.pre.mk>
+MAKE_ARGS=	sitelibdir='$$(rubylibdir)' \
+		INSTALL_PROG="${INSTALL_PROGRAM}" \
+		INSTALL_DATA="${INSTALL_DATA}"
 
-MAKE_ARGS=	sitelibdir='$$(rubylibdir)'
 
 do-extract:
 	${MKDIR} ${WRKDIR}
 	${LN} -sf `cd ${PORTSDIR}/${RUBY_PORT}; ${MAKE} -V WRKDIR`/${PORTNAME} ${WRKDIR}/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
