@@ -23,12 +23,10 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_ZIP=	yes
-USES=		iconv gmake
+USES=		iconv gmake zip
 USE_XORG+=	x11 xext xi xrender xt xtst
-MAKE_ARGS=	CC=${CC} CXX=${CXX} HOST_CC=${CC}
+MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
 MAKE_JOBS_UNSAFE=	yes
-USE_GCC=	any
 
 OPTIONS_DEFINE=		DEBUG POLICY TZUPDATE
 OPTIONS_DEFAULT=	POLICY TZUPDATE
@@ -45,12 +43,13 @@ JDK_BUILD_DATE=		26_aug_2013
 JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-b${JDK_BUILD_NUMBER}-${JDK_BUILD_DATE}
 
 # Use our own version of ant to avoid circular dependencies
-ANT_VERSION=		1.8.4
+ANT_VERSION=		1.9.4
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
 
 LATEST_LINK=		openjdk7
 
 LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2 \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		asound:${PORTSDIR}/audio/alsa-lib
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip \
 		unzip:${PORTSDIR}/archivers/unzip \
@@ -65,9 +64,6 @@ INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}
 
 NOPRECIOUSMAKEVARS=	yes
 
-ONLY_FOR_ARCHS=	i386 amd64
-
-FETCH_ARGS=	-Fpr
 MAKE_ENV+=	LANG="C" \
 		LC_ALL="C" \
 		JAVA_HOME="" \
@@ -94,7 +90,8 @@ MAKE_ENV+=	LANG="C" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}" \
 		MILESTONE="fcs" \
 		JDK_MICRO_VERSION="0_${PORT_MINOR_VERSION}" \
-		BUILD_NUMBER="b${PORT_BUILD_NUMBER}" \
+		COMPILER_WARNINGS_FATAL="false" \
+		BUILD_NUMBER="b${PORT_BUILD_NUMBER}"
 
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
