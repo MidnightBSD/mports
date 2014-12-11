@@ -1,12 +1,13 @@
 # $MidnightBSD$
+# $FreeBSD: head/dns/bind99/Makefile 374305 2014-12-08 17:29:44Z mat $
 
-PORTNAME?=	bind99
-PORTVERSION=	9.9.5
-PORTREVISION?=	3
+PORTNAME=	bind
+PORTVERSION=	${ISCVERSION:S/-P/P/}
+PORTREVISION=	0
 CATEGORIES=	dns net ipv6
-MASTER_SITES=	${MASTER_SITE_ISC}
-MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
-DISTNAME=	bind-${ISCVERSION}
+MASTER_SITES=	ISC/bind9/${ISCVERSION}
+PKGNAMESUFFIX=	99
+DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
@@ -14,11 +15,11 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.9.5-P1
+ISCVERSION=	9.9.6-P1
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		cpe
+USES=	cpe
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
@@ -32,32 +33,38 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 		--disable-symtable \
 		--with-randomdev=/dev/random \
-		--without-python \
 		--with-libxml2=${LOCALBASE}
+ETCDIR=		${PREFIX}/etc/namedb
 
 CONFLICTS=	bind9*-9.[45678].* bind9*-sdb-9.[45678].* bind-tools-9.*
 
-OPTIONS_DEFAULT=	IPV6 SSL LINKS THREADS
-OPTIONS_DEFINE=		SSL IDN REPLACE_BASE LARGE_FILE \
-			FIXED_RRSET SIGCHASE IPV6 THREADS
-.if !defined(BIND_TOOLS_SLAVE)
-OPTIONS_DEFINE+=	LINKS RPZ_NSIP RPZ_NSDNAME RPZRRL_PATCH
+OPTIONS_DEFAULT=	IPV6 SSL THREADS GSSAPI_NONE RRL
+OPTIONS_DEFINE=		SSL IDN REPLACE_BASE LARGE_FILE FIXED_RRSET SIGCHASE \
+			IPV6 THREADS FILTER_AAAA GOST PYTHON \
+			LINKS RPZ_NSIP RPZ_NSDNAME RRL DOCS RPZ_PATCH NEWSTATS
 OPTIONS_GROUP=		DLZ
 OPTIONS_GROUP_DLZ=	DLZ_POSTGRESQL DLZ_MYSQL DLZ_BDB \
 			DLZ_LDAP DLZ_FILESYSTEM DLZ_STUB
-.endif	# BIND_TOOLS_SLAVE
+OPTIONS_SINGLE=		GSSAPI
+OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
+
+OPTIONS_SUB=	yes
 
 SSL_DESC=		Build with OpenSSL (Required for DNSSEC)
-REPLACE_BASE_DESC=	Replace base BIND with this version
+REPLACE_BASE_DESC=	Replace base BIND (FreeBSD 9.x and earlier)
 LARGE_FILE_DESC=	64-bit file support
 FIXED_RRSET_DESC=	Enable fixed rrset ordering
 SIGCHASE_DESC=		dig/host/nslookup will do DNSSEC validation
+FILTER_AAAA_DESC=	Enable filtering of AAAA records
+GOST_DESC=		Enable GOST ciphers, needs SSL (see help)
+PYTHON_DESC=		Build with Python utilities
 
-.if !defined(BIND_TOOLS_SLAVE)
 LINKS_DESC=		Create conf file symlinks in ${PREFIX}
+NEWSTATS_DESC=		Enable alternate xml statistics channel format
 RPZ_NSIP_DESC=		Enable RPZ NSIP trigger rules
 RPZ_NSDNAME_DESC=	Enable RPZ NSDNAME policy records
-RPZRRL_PATCH_DESC=	RPZ improvements + RRL patch (experimental)
+RPZ_PATCH_DESC=		RPZ improvements
+RRL_DESC=		Response Rate Limiting
 DLZ_DESC=		Dynamically Loadable Zones
 DLZ_POSTGRESQL_DESC=	DLZ Postgres driver
 DLZ_MYSQL_DESC=		DLZ MySQL driver (no threading)
@@ -65,193 +72,141 @@ DLZ_BDB_DESC=		DLZ BDB driver
 DLZ_LDAP_DESC=		DLZ LDAP driver
 DLZ_FILESYSTEM_DESC=	DLZ filesystem driver
 DLZ_STUB_DESC=		DLZ stub driver
+GSSAPI_BASE_DESC=	${GSSAPI_DESC} (Heimdal in base)
+GSSAPI_HEIMDAL_DESC=	${GSSAPI_DESC} (security/heimdal)
+GSSAPI_MIT_DESC=	${GSSAPI_DESC} (security/krb5)
+GSSAPI_NONE_DESC=	No ${GSSAPI_DESC}
 
-CONFLICTS+=		bind-tools-9.*
-.endif	# BIND_TOOLS_SLAVE
+SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
+SSL_USE=		openssl=yes
+SSL_CONFIGURE_OFF=	--disable-openssl-version-check --without-openssl
+
+NEWSTATS_CONFIGURE_ENABLE=	newstats
+
+IDN_USES=		iconv
+IDN_CONFIGURE_ON=	--with-idn=${LOCALBASE} ${ICONV_CONFIGURE_BASE}
+IDN_LIB_DEPENDS=	libidnkit.so:${PORTSDIR}/dns/idnkit
+IDN_CONFIGURE_OFF=	--without-idn
+
+LARGE_FILE_CONFIGURE_ENABLE=	largefile
+
+SIGCHASE_CONFIGURE_ON=	STD_CDEFINES="-DDIG_SIGCHASE=1"
+
+IPV6_CONFIGURE_ENABLE=	ipv6
+
+FILTER_AAAA_CONFIGURE_ENABLE=	filter-aaaa
+
+GOST_CONFIGURE_WITH=	gost
+
+PYTHON_CONFIGURE_WITH=	python
+PYTHON_USES=	python
+
+DLZ_POSTGRESQL_CONFIGURE_ON=	--with-dlz-postgres=yes
+DLZ_POSTGRESQL_USES=		pgsql
+
+FIXED_RRSET_CONFIGURE_ENABLE=	fixed-rrset
+
+RPZ_NSIP_CONFIGURE_ENABLE=	rpz-nsip
+
+RPZ_NSDNAME_CONFIGURE_ENABLE=	rpz-nsdname
+
+RPZ_PATCH_PATCHFILES=	9.9.6-P1-rpz2+rl.14038.05.patch:vix
+RPZ_PATCH_PATCH_SITES=	http://ss.vix.su/~vjs/:vix ${MASTER_SITE_LOCAL:S/%SUBDIR%/mat\/bind/:S/$/:vix/}
+
+RRL_CONFIGURE_ENABLE=	rrl
+
+DLZ_MYSQL_CONFIGURE_ON=	--with-dlz-mysql=yes
+DLZ_MYSQL_USE=		mysql=yes
+
+DLZ_BDB_CONFIGURE_ON=	--with-dlz-bdb=yes
+DLZ_BDB_USE=		bdb=yes
+
+DLZ_LDAP_CONFIGURE_ON=	--with-dlz-ldap=yes
+DLZ_LDAP_USE=		openldap=yes
+
+DLZ_FILESYSTEM_CONFIGURE_ON=	--with-dlz-filesystem=yes
+
+DLZ_STUB_CONFIGURE_ON=	--with-dlz-stub=yes
+
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_BASE_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal
+GSSAPI_HEIMDAL_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_MIT_USES=	gssapi:mit
+GSSAPI_MIT_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
 
 .include <bsd.mport.options.mk>
 
-.if (${ARCH} == "amd64")
-ARCH=		x86_64
+.if !${PORT_OPTIONS:MLINKS} || ${PORT_OPTIONS:MREPLACE_BASE}
+PKGINSTALL=${NONEXISTENT}
 .endif
 
-.if ${PORT_OPTIONS:MSSL}
-CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
-USE_OPENSSL=		yes
-.else
-CONFIGURE_ARGS+=	--disable-openssl-version-check
-CONFIGURE_ARGS+=	--without-openssl
-.endif
-
-.if ${PORT_OPTIONS:MIDN}
-CONFIGURE_ARGS+=	--with-idn=${LOCALBASE} --with-libiconv=${LOCALBASE}
-LIB_DEPENDS+=		idnkit.1:${PORTSDIR}/dns/idnkit
-.else
-CONFIGURE_ARGS+=	--without-idn
-.endif
-
-.if ${PORT_OPTIONS:MLINKS} && empty(PORT_OPTIONS:MREPLACE_BASE)
-PLIST_SUB+=	LINKS=""
-.else
-PLIST_SUB+=	LINKS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MLARGE_FILE}
-CONFIGURE_ARGS+=	--enable-largefile
-.endif
-
-.if ${PORT_OPTIONS:MSIGCHASE}
-CONFIGURE_ARGS+=	STD_CDEFINES="-DDIG_SIGCHASE=1"
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_POSTGRESQL}
-CONFIGURE_ARGS+=	--with-dlz-postgres=yes
-USE_PGSQL=		yes
-.endif
-
-.if ${PORT_OPTIONS:MFIXED_RRSET}
-CONFIGURE_ARGS+=	--enable-fixed-rrset
-.endif
-
-.if ${PORT_OPTIONS:MRPZ_NSIP}
-CONFIGURE_ARGS+=	--enable-rpz-nsip
-.endif
-
-.if ${PORT_OPTIONS:MRPZ_NSDNAME}
-CONFIGURE_ARGS+=	--enable-rpz-nsdname
-.endif
-
-.if ${PORT_OPTIONS:MRPZRRL_PATCH}
-PATCHFILES=		9.9.3-rpz+rl.13208.13-P2.patch
-PATCH_SITES=		http://ss.vix.com/~vjs/
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_MYSQL}
-CONFIGURE_ARGS+=	--with-dlz-mysql=yes
-USE_MYSQL=		yes
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_BDB}
-CONFIGURE_ARGS+=	--with-dlz-bdb=yes
-USE_BDB=		yes
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_LDAP}
-CONFIGURE_ARGS+=	--with-dlz-ldap=yes
-USE_OPENLDAP=		yes
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_FILESYSTEM}
-CONFIGURE_ARGS+=	--with-dlz-filesystem=yes
-.endif
-
-.if ${PORT_OPTIONS:MDLZ_STUB}
-CONFIGURE_ARGS+=	--with-dlz-stub=yes
-.endif
-
-.if ${PORT_OPTIONS:MTHREADS} && empty(PORT_OPTIONS:MDLZ_MYSQL)
+.if ${PORT_OPTIONS:MTHREADS} && !${PORT_OPTIONS:MDLZ_MYSQL}
 CONFIGURE_ARGS+=	--enable-threads
 .else
 CONFIGURE_ARGS+=	--disable-threads
 .endif
 
 .if ${PORT_OPTIONS:MREPLACE_BASE}
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
+IGNORE=		REPLACE_BASE option is not supported on this release
+.else # >= 10.0
+# Move to BROKEN after expiration.
+DEPRECATED=		REPLACE_BASE option will be removed.  There is no real need for foot-shooting.
+EXPIRATION_DATE=	2015-01-01
+.endif # >= 10.0
 PKGNAMESUFFIX=	-base
 PREFIX=		/usr
+PLIST_SUB+=	SHARE_MAN="share/"
+NO_MTREE=	yes
 BIND_DESTETC=	/etc/namedb
+.else # REPLACE_BASE
+PLIST_SUB+=	SHARE_MAN=""
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
+BIND_DESTETC=	${PREFIX}/etc/namedb
+PKGINSTALL=	${NONEXISTENT}
+.else # >= 10.0
+BIND_DESTETC=	${PREFIX}/etc
+.endif # >= 10.0
+.endif # REPLACE_BASE
+
+PKGDEINSTALL=	${PKGINSTALL}
+
 CONFIGURE_ARGS+=	--prefix=${PREFIX} \
 			--sysconfdir=${BIND_DESTETC}
-.else
-BIND_DESTETC=	${PREFIX}/etc
-.endif
-
+SUB_LIST+=	BIND_DESTETC="${BIND_DESTETC}"
 PLIST_SUB+=	BIND_DESTETC="${BIND_DESTETC}"
 
-MAN1?=	arpaname.1 dig.1 host.1 isc-config.sh.1 nslookup.1 nsupdate.1
-.if !defined(BIND_TOOLS_SLAVE)
-MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
-	lwres_buffer_back.3 lwres_buffer_clear.3 lwres_buffer_first.3 \
-	lwres_buffer_forward.3 lwres_buffer_getmem.3 lwres_buffer_getuint16.3 \
-	lwres_buffer_getuint32.3 lwres_buffer_getuint8.3 lwres_buffer_init.3 \
-	lwres_buffer_invalidate.3 lwres_buffer_putmem.3 \
-	lwres_buffer_putuint16.3 lwres_buffer_putuint32.3 \
-	lwres_buffer_putuint8.3 lwres_buffer_subtract.3 lwres_conf_clear.3 \
-	lwres_conf_get.3 lwres_conf_init.3 lwres_conf_parse.3 \
-	lwres_conf_print.3 lwres_config.3 lwres_context.3 \
-	lwres_context_allocmem.3 lwres_context_create.3 \
-	lwres_context_destroy.3 lwres_context_freemem.3 \
-	lwres_context_initserial.3 lwres_context_nextserial.3 \
-	lwres_context_sendrecv.3 lwres_endhostent.3 lwres_endhostent_r.3 \
-	lwres_freeaddrinfo.3 lwres_freehostent.3 lwres_gabn.3 \
-	lwres_gabnrequest_free.3 lwres_gabnrequest_parse.3 \
-	lwres_gabnrequest_render.3 lwres_gabnresponse_free.3 \
-	lwres_gabnresponse_parse.3 lwres_gabnresponse_render.3 \
-	lwres_gai_strerror.3 lwres_getaddrinfo.3 lwres_getaddrsbyname.3 \
-	lwres_gethostbyaddr.3 lwres_gethostbyaddr_r.3 lwres_gethostbyname.3 \
-	lwres_gethostbyname2.3 lwres_gethostbyname_r.3 lwres_gethostent.3 \
-	lwres_gethostent_r.3 lwres_getipnode.3 lwres_getipnodebyaddr.3 \
-	lwres_getipnodebyname.3 lwres_getnamebyaddr.3 lwres_getnameinfo.3 \
-	lwres_getrrsetbyname.3 lwres_gnba.3 lwres_gnbarequest_free.3 \
-	lwres_gnbarequest_parse.3 lwres_gnbarequest_render.3 \
-	lwres_gnbaresponse_free.3 lwres_gnbaresponse_parse.3 \
-	lwres_gnbaresponse_render.3 lwres_herror.3 lwres_hstrerror.3 \
-	lwres_inetntop.3 lwres_lwpacket_parseheader.3 \
-	lwres_lwpacket_renderheader.3 lwres_net_ntop.3 lwres_noop.3 \
-	lwres_nooprequest_free.3 lwres_nooprequest_parse.3 \
-	lwres_nooprequest_render.3 lwres_noopresponse_free.3 \
-	lwres_noopresponse_parse.3 lwres_noopresponse_render.3 \
-	lwres_packet.3 lwres_resutil.3 lwres_sethostent.3 \
-	lwres_sethostent_r.3 lwres_string_parse.3
-MAN5=	named.conf.5 rndc.conf.5
-MAN8=	ddns-confgen.8 dnssec-dsfromkey.8 dnssec-keyfromlabel.8 \
-	dnssec-keygen.8 dnssec-revoke.8 dnssec-settime.8 dnssec-signzone.8 \
-	dnssec-verify.8 \
-	genrandom.8 isc-hmac-fixup.8 lwresd.8 named-checkconf.8 \
-	named-checkzone.8 named-journalprint.8 named.8 nsec3hash.8 \
-	rndc-confgen.8 rndc.8
-MLINKS=	named-checkzone.8 named-compilezone.8
-.endif	# BIND_TOOLS_SLVE
+PORTDOCS=	*
 
-.if !defined(BIND_TOOLS_SLAVE)
+PLIST_SUB+=	NOBASE="@comment " BASE=""
+.if ${PORT_OPTIONS:MSSL}
+WITH_OPENSSL_PORT=	yes
+.endif
+
 post-patch:
 .for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.1 \
 	rndc/rndc.8
-	@${MV} ${WRKSRC}/bin/${FILE} ${WRKSRC}/bin/${FILE}.Dist
-	@${SED} -e 's#/etc/named.conf#${BIND_DESTETC}/named.conf#g' \
+	@${REINPLACE_CMD} -e 's#/etc/named.conf#${BIND_DESTETC}/named.conf#g' \
 		-e 's#/etc/rndc.conf#${BIND_DESTETC}/rndc.conf#g' \
 		-e "s#/var\/run\/named\/named.pid#/var/run/named/pid#" \
-		${WRKSRC}/bin/${FILE}.Dist > ${WRKSRC}/bin/${FILE}
+		${WRKSRC}/bin/${FILE}
 .endfor
-	@${MV} ${WRKSRC}/Makefile.in ${WRKSRC}/Makefile.in.Dist
-	@${SED} -e 's#.*bind\.keys.*##' ${WRKSRC}/Makefile.in.Dist > \
-		${WRKSRC}/Makefile.in
-	@${MV} ${WRKSRC}/bin/named/Makefile.in ${WRKSRC}/bin/named/Makefile.in.Dist
-	@${SED} -e 's/$${PERL}/#/' -e 's/bind.keys.h/#/g' -e 's/bind9.xsl.h/#/g' \
-		${WRKSRC}/bin/named/Makefile.in.Dist > \
-		${WRKSRC}/bin/named/Makefile.in
 
-.if ${PORT_OPTIONS:MDOCS}
-PORTDOCS=	*
-.endif
+post-configure:
+	${REINPLACE_CMD} -e '/^SO_LDFLAGS/s/-Wl,-rpath/-rpath /' ${WRKSRC}/bin/tests/system/dlzexternal/Makefile
+
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${BIND_DESTETC}/rndc.conf.sample
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}/arm ${DOCSDIR}/misc
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/misc/[a-z]* ${DOCSDIR}/misc
-	${CP} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
-		${WRKSRC}/HISTORY ${WRKSRC}/README ${DOCSDIR}/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
+		${WRKSRC}/HISTORY ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 .endif
-.if ${PORT_OPTIONS:MLINKS} && empty(PORT_OPTIONS:MREPLACE_BASE)
-	PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
-
-.endif	# BIND_TOOLS_SLAVE
 
 .include <bsd.port.mk>
