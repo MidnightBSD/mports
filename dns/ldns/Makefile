@@ -2,7 +2,7 @@
 
 PORTNAME=	ldns
 PORTVERSION=	1.6.17
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
 		CRITICAL
@@ -13,8 +13,9 @@ COMMENT=	Library for programs conforming to DNS RFCs and drafts
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+GNU_CONFIGURE=	yes
+
 USES=		gmake libtool
-USE_AUTOTOOLS=	libtoolize
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
@@ -107,13 +108,15 @@ CONFIGURE_ARGS+=	--enable-rrtype-ta
 post-configure:
 .if ${PORT_OPTIONS:MEXAMPLES}
 	@(cd ${WRKSRC}/examples; ./configure --prefix=${PREFIX} \
-		--infodir=${PREFIX}/${INFO_PATH} --mandir=${FAKE_DESTDIR}${MANPREFIX}/man \
-		--build=${CONFIGURE_TARGET} ${NO_GOST} ${NO_SHA2})
+		--infodir=${PREFIX}/${INFO_PATH} --mandir=${MANPREFIX}/man \
+		--build=${CONFIGURE_TARGET} ${NO_GOST} ${NO_SHA2} \
+		ac_cv_prog_libtool=../libtool)
 .endif
 .if ${PORT_OPTIONS:MDRILL}
 	@(cd ${WRKSRC}/drill; ./configure --prefix=${PREFIX} \
-		--mandir=${FAKE_DESTDIR}${MANPREFIX}/man \
-		--build=${CONFIGURE_TARGET})
+		--mandir=${MANPREFIX}/man \
+		--build=${CONFIGURE_TARGET} \
+		ac_cv_prog_libtool=../libtool)
 .endif
 
 post-build:
