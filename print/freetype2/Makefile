@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	freetype2
-PORTVERSION=	2.5.3
+PORTVERSION=	2.5.4
 CATEGORIES=	print
 MASTER_SITES=	http://savannah.nongnu.org/download/freetype/ \
 		SF/freetype/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}/ \
@@ -17,30 +17,22 @@ COMMENT=	Free and portable TrueType font rendering engine
 
 LICENSE=	gpl2
 
-USES=		gmake tar:bzip2
+USES=		gmake libtool tar:bzip2
 MAKE_ENV=	TOP=""
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	ltverhack:9
-ltverhack_PATCH_FILES=	builds/unix/ltmain.sh
 CONFIGURE_ARGS=	--without-harfbuzz
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
 
 OPTIONS_DEFINE=		LCD_FILTERING PNG
+OPTIONS_DEFAULT=	LCD_FILTERING
 LCD_FILTERING_DESC?=	Sub-pixel rendering (patented)
 PNG_DESC=		Png compressed OpenType embedded bitmaps support
 
-.include <bsd.mport.options.mk>
+LCD_FILTERING_CFLAGS=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
 
-.if ${PORT_OPTIONS:MLCD_FILTERING}
-CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
-.endif
-
-.if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
-.else
-CONFIGURE_ARGS+=--without-png
-.endif
+PNG_LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_CONFIGURE_OFF=	--without-png
 
 pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
@@ -48,7 +40,7 @@ pre-patch:
 
 post-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} \
-		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/libfreetype.so.*
