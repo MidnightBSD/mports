@@ -25,7 +25,6 @@ SUBDIR += foomatic-db
 SUBDIR += foomatic-db-engine
 SUBDIR += foomatic-db-hpijs
 SUBDIR += freetype
-SUBDIR += freetype-tools
 SUBDIR += freetype2
 SUBDIR += ghostscript8
 SUBDIR += ghostscript8-nox11
