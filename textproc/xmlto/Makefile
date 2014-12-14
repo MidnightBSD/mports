@@ -2,6 +2,7 @@
 
 PORTNAME=	xmlto
 PORTVERSION=	0.0.26
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	https://fedorahosted.org/releases/x/m/xmlto/:xmlto \
 		LOCAL/mandree/:xmlto \
@@ -17,7 +18,7 @@ COMMENT=	Front-end to an XSL toolchain
 LICENSE=        gpl2
 
 BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
-		${GETOPT_CMD}:${PORTSDIR}/misc/getopt \
+		/usr/local/bin/getopt:${PORTSDIR}/misc/getopt \
 		xmllint:${PORTSDIR}/textproc/libxml2 \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
 		${XSL_DIR}:${PORTSDIR}/textproc/docbook-xsl \
@@ -27,6 +28,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 SUB_FILES=	pkg-message
 
+OPTIONS_DEFINE=	DOCS
 OPTIONS_GROUP=		BACKEND
 OPTIONS_GROUP_BACKEND=		DBLATEX FOP PASSIVETEX
 BACKEND_DESC=		Postprocessor backends to enable
@@ -44,10 +46,10 @@ GETOPT_CMD=	${LOCALBASE}/bin/getopt
 XSL_DIR=	${LOCALBASE}/share/xsl/docbook
 PDFXMLTEX_CMD=	${LOCALBASE}/bin/pdftex
 
-PORTDOCS=	AUTHORS COPYING ChangeLog NEWS THANKS
-# these two documentation files do not convey information useful for
-# the FreeBSD port at this time:
-# PORTDOCS+=	FAQ README
+PORTDOCS=	AUTHORS ChangeLog NEWS THANKS
+# these documentation files do not convey information useful for
+# the FreeBSD port at this time, or are provided by the ports framework:
+# PORTDOCS+=	COPYING FAQ README
 
 .include <bsd.port.pre.mk>
 
