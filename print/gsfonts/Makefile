@@ -2,12 +2,12 @@
 
 PORTNAME=	gsfonts
 PORTVERSION=	8.11
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	print x11-fonts
 MASTER_SITES=	SF/gs-fonts/gs-fonts/${PORTVERSION}%20%28base%2035%2C%20GPL%29/:std \
 		SF/gs-fonts/gs-fonts/6.0%20%28misc%2C%20GPL%29/:other
 DISTFILES=	ghostscript-fonts-std-${PORTVERSION}${EXTRACT_SUFX}:std \
-		ghostscript-fonts-other-6.0${EXTRACT_SUFX}:other
+		gnu-gs-fonts-other-6.0${EXTRACT_SUFX}:other
 DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -43,12 +43,10 @@ do-install:
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	ChangeLog README README.tweaks TODO
 
 post-install:
 	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC}/fonts && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
