@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	harfbuzz
-PORTVERSION=	0.9.25
+PORTVERSION=	0.9.36
 CATEGORIES=	print
 MASTER_SITES=	http://www.freedesktop.org/software/harfbuzz/release/
 
@@ -10,21 +10,21 @@ COMMENT=	OpenType text shaping engine
 
 LICENSE=	mit
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		icudata:${PORTSDIR}/devel/icu \
-		graphite2:${PORTSDIR}/graphics/graphite2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libicudata.so:${PORTSDIR}/devel/icu \
+		libgraphite2.so:${PORTSDIR}/graphics/graphite2
 
 USE_LDCONFIG=	yes
-USES=		gmake pathfix pkgconfig tar:bzip2
-USE_GNOME=	cairo glib20 ltverhack
+USES=		gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	cairo glib20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-graphite2
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.pre.mk>
 
 EXTRA_PATCHES=	${PATCHDIR}/extra-src_hb-open-type-private.hh
 
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libharfbuzz*.so.0
+PLIST_SUB+=	LIBVER=0.936.0
 
 .include <bsd.port.post.mk>
