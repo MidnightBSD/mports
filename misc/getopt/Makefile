@@ -1,28 +1,37 @@
 # $MidnightBSD$
 
 PORTNAME=	getopt
-PORTVERSION=	1.1.5
-PORTREVISION=	2
+PORTVERSION=	1.1.6
 CATEGORIES=	misc
-MASTER_SITES=	http://software.frodo.looijaard.name/getopt/files/
+MASTER_SITES=	http://frodo.looijaard.name/system/files/software/getopt/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	getopt(1) replacement that supports GNU-style long options
 
-LICENSE=	gpl2
+LICENSE=	gpl2 gpl3
+LICENSE_COMB=	dual
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 FAKE_MAKEENV+=	LIGCGETOPT=0
 FAKE_MAKEARGS+=	CC=${CC}
-USES=		gettext gmake
+USES=		gmake
 
 PORTDOCS=	Changelog README
 
+NLS_CFLAGS=		-I${LOCALBASE}/include
+NLS_MAKE_ARGS=		WITHOUT_GETTEXT=0
+NLS_MAKE_ARGS_OFF=	WITHOUT_GETTEXT=1
+NLS_LDFLAGS=		-L${LOCALBASE}/lib -lintl
+NLS_USES=		gettext
+
 post-install:
-	${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
+	${STRIP_CMD} ${PREFIX}/bin/getopt
 
 .include <bsd.port.mk>
