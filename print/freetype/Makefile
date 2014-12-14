@@ -3,7 +3,7 @@
 
 PORTNAME=	freetype
 PORTVERSION=	1.3.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	print
 MASTER_SITES=	SF \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype1/ \
@@ -23,7 +23,7 @@ LICENSE_PERMS=	dist-mirror
 
 FAKE_OPTS+=	prefixhack
 
-USES=		libtool:oldver
+USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-static --enable-shared
