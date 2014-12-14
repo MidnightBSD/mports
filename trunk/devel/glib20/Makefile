@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.36.4
-PORTREVISION?=	2
+PORTVERSION=	2.42.1
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,8 +16,8 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre \
-		ffi:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
+		libffi.so:${PORTSDIR}/devel/libffi
 
 GNU_CONFIGURE=	yes
 USES+=		gettext gmake iconv:wchar_t libtool pathfix pkgconfig shebangfix
@@ -34,8 +34,18 @@ CONFIGURE_ARGS= --disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-SHEBANG_FILES=	*/*.pl glib/gen-iswide-table.py
+SHEBANG_FILES=	*/*.pl
+
+LIBVERSION=	4200
+PLIST_SUB+=	LIBVERSION=${LIBVERSION}
+
+glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
+gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 \
+		glib-compile-schemas.1 gapplication.1 \
+		glib-compile-resources.1 gresource.1 gdbus-codegen.1
+gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
 
 OPTIONS_DEFINE=	COLLATION_FIX DEBUG
 COLLATION_FIX_DESC=	fix string collation
@@ -61,7 +71,7 @@ GLIB_ARCH=	${ARCH}
 CONFIGURE_TARGET=${GLIB_ARCH}-portbld-freebsd9.1
 
 .if ${PORT_OPTIONS:MCOLLATION_FIX}
-LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
+LIB_DEPENDS+=	libicui18n.so:${PORTSDIR}/devel/icu
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 		${FILESDIR}/extra-patch-glib_gunicollate.c
 # Disable it until someone can figure why it causes net-im/pidgin crashed.
@@ -71,8 +81,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 .if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--enable-debug=yes \
 			--disable-silent-rules
-.else
-CONFIGURE_ARGS+=	--disable-modular-tests
 .endif
 
 post-patch:
@@ -87,7 +95,12 @@ post-patch:
 		s|#define HAVE_SYS_INOTIFY_H 1||' ${WRKSRC}/configure
 
 post-install:
-	@${MKDIR} ${PREFIX}/share/GConf/gsettings
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/GConf/gsettings
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gio/modules
+.for m in glib gio gobject
+	${INSTALL_MAN} ${${m}_MAN:S|^|${WRKSRC}/docs/reference/${m}/|} \
+		${STAGEDIR}${PREFIX}/man/man1
+.endfor
 
 .include <bsd.port.post.mk>
 
