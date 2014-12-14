@@ -2,7 +2,7 @@
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.11.0
-PORTREVISION?=	1
+PORTREVISION?=	2
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
@@ -16,13 +16,12 @@ USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
-		expat:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USES+=		gmake pathfix pkgconfig
-USE_GNOME=	ltverhack
+USES+=		gmake libtool pathfix pkgconfig
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
 		--with-templatedir=${PREFIX}/etc/fonts/conf.avail \
 		--with-xmldir=${PREFIX}/etc/fonts \
@@ -60,7 +59,7 @@ post-install:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.1
+	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.9
 
 .include <bsd.port.mk>
 
