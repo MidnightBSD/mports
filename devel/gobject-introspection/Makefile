@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	1.36.0
+PORTVERSION=	1.42.0
 PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -15,18 +15,17 @@ LICENSE=	gpl2
 
 # we need cairo otherwise the generated Cairo gir is broken
 BUILD_DEPENDS=	cairo-trace:${PORTSDIR}/graphics/cairo
-LIB_DEPENDS=	ffi:${PORTSDIR}/devel/libffi
+LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
 
-USES=		bison gettext gmake pathfix pkgconfig tar:xz
-
+USES=		bison gettext gmake libtool pathfix pkgconfig \
+		python:2 tar:xz
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehier glib20 ltverhack
-USE_PYTHON=	2
-USE_AUTOTOOLS=	libtool
+USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 # Force it to put the .cache in ${WRKSRC} instead of ~/.cache.
 MAKE_ENV=	HOME=${WRKDIR}
