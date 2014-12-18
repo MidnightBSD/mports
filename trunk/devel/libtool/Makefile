@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libtool
-PORTREVISION=	0
+PORTREVISION=	1
 
 COMMENT=	Generic shared library support script
 
