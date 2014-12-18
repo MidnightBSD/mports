@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.9
-PORTREVISION=	3
+PORTVERSION=	8.15.1
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -85,9 +85,6 @@ EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
-.if ! ${PORT_OPTIONS:MTLSEXT_PADDING}
-EXTRA_PATCHES+=	${FILESDIR}/tlsext.patch
-.endif
 .endif
 
 MAKE_PKGNAMES=	for i in "" +tls; do \
