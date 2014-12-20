@@ -71,6 +71,7 @@ man/man1/git-index-pack.1.gz
 man/man1/git-init-db.1.gz
 man/man1/git-init.1.gz
 man/man1/git-instaweb.1.gz
+man/man1/git-interpret-trailers.1.gz
 man/man1/git-log.1.gz
 man/man1/git-ls-files.1.gz
 man/man1/git-ls-remote.1.gz
@@ -177,6 +178,7 @@ man/man7/gitglossary.7.gz
 man/man7/gittutorial.7.gz
 man/man7/gitcore-tutorial.7.gz
 man/man7/gitdiffcore.7.gz
+man/man7/giteveryday.7.gz
 man/man7/gittutorial-2.7.gz
 man/man7/gitworkflows.7.gz
 man/man7/gitrevisions.7.gz
@@ -251,6 +253,7 @@ libexec/git-core/git-index-pack
 libexec/git-core/git-init
 libexec/git-core/git-init-db
 libexec/git-core/git-instaweb
+libexec/git-core/git-interpret-trailers
 libexec/git-core/git-log
 libexec/git-core/git-ls-files
 libexec/git-core/git-ls-remote
@@ -351,6 +354,7 @@ libexec/git-core/mergetools/diffmerge
 libexec/git-core/mergetools/xxdiff
 libexec/git-core/mergetools/tortoisemerge
 libexec/git-core/mergetools/tkdiff
+libexec/git-core/mergetools/bc
 libexec/git-core/mergetools/bc3
 libexec/git-core/mergetools/kdiff3
 libexec/git-core/mergetools/gvimdiff
@@ -384,6 +388,7 @@ libexec/git-core/mergetools/araxis
 lib/xemacs/site-lisp/git/git.el
 lib/xemacs/site-lisp/git/git-blame.el
 %%NLS%%share/locale/bg/LC_MESSAGES/git.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/git.mo
 %%NLS%%share/locale/de/LC_MESSAGES/git.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/git.mo
 %%NLS%%share/locale/is/LC_MESSAGES/git.mo
@@ -532,6 +537,7 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/git-init-db.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-init.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-instaweb.html
+%%HTMLDOCS%%%%DOCSDIR%%/git-interpret-trailers.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-log.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-ls-files.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-ls-remote.html
@@ -603,6 +609,7 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/git-status.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-stripspace.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-submodule.html
+%%HTMLDOCS%%%%DOCSDIR%%/git-subtree.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-svn.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-symbolic-ref.html
 %%HTMLDOCS%%%%DOCSDIR%%/git-tag.html
@@ -626,6 +633,7 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/gitcore-tutorial.html
 %%HTMLDOCS%%%%DOCSDIR%%/gitcvs-migration.html
 %%HTMLDOCS%%%%DOCSDIR%%/gitdiffcore.html
+%%HTMLDOCS%%%%DOCSDIR%%/giteveryday.html
 %%HTMLDOCS%%%%DOCSDIR%%/gitglossary.html
 %%HTMLDOCS%%%%DOCSDIR%%/githooks.html
 %%HTMLDOCS%%%%DOCSDIR%%/gitignore.html
@@ -661,7 +669,6 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/git-mv.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-blame.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-archimport.txt
-%%HTMLDOCS%%%%DOCSDIR%%/everyday.txt
 %%HTMLDOCS%%%%DOCSDIR%%/gitcli.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-shortlog.txt
 %%HTMLDOCS%%%%DOCSDIR%%/fetch-options.txt
@@ -853,6 +860,7 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/urls-remotes.txt
 %%HTMLDOCS%%%%DOCSDIR%%/githooks.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-instaweb.txt
+%%HTMLDOCS%%%%DOCSDIR%%/git-interpret-trailers.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-upload-pack.txt
 %%HTMLDOCS%%%%DOCSDIR%%/blame-options.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-describe.txt
@@ -959,6 +967,7 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/git-unpack-objects.txt
 %%HTMLDOCS%%%%DOCSDIR%%/git-diff.txt
 %%HTMLDOCS%%%%DOCSDIR%%/gitdiffcore.txt
+%%HTMLDOCS%%%%DOCSDIR%%/giteveryday.txt
 %%HTMLDOCS%%%%DOCSDIR%%/gitrevisions.html
 %%HTMLDOCS%%%%DOCSDIR%%/gitrevisions.txt
 %%HTMLDOCS%%%%DOCSDIR%%/gitweb.html
@@ -1180,17 +1189,26 @@ share/git-core/templates/info/exclude
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.8.5.3.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.8.5.4.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.8.5.5.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.8.5.6.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.0.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.1.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.2.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.3.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.4.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/1.9.5.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.0.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.1.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.2.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.3.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.4.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.0.5.txt
 %%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.1.0.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.1.1.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.1.2.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.1.3.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.1.4.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.2.0.txt
+%%HTMLDOCS%%%%DOCSDIR%%/RelNotes/2.2.1.txt
 %%GITWEB%%%%EXAMPLESDIR%%/gitweb/gitweb.cgi
 %%GITWEB%%%%EXAMPLESDIR%%/gitweb/static/gitweb.js
 %%GITWEB%%%%EXAMPLESDIR%%/gitweb/static/gitweb.css
@@ -1340,65 +1358,4 @@ share/git-core/templates/info/exclude
 %%CONTRIB%%share/git-core/contrib/thunderbird-patch-inline/README
 %%CONTRIB%%share/git-core/contrib/thunderbird-patch-inline/appp.sh
 %%CONTRIB%%share/git-core/contrib/workdir/git-new-workdir
-%%GITWEB%%@dirrm %%EXAMPLESDIR%%/gitweb/static
-%%GITWEB%%@dirrm %%EXAMPLESDIR%%/gitweb
-%%GITWEB%%@dirrm %%EXAMPLESDIR%%
-%%PERLSUB%%@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Git
-%%PERLSUB%%@dirrmtry %%SITE_PERL%%/Git/SVN/Memoize
-%%PERLSUB%%@dirrmtry %%SITE_PERL%%/Git/SVN
-%%PERLSUB%%@dirrmtry %%SITE_PERL%%/Git
-@dirrm lib/xemacs/site-lisp/git
-@dirrmtry lib/xemacs/site-lisp
-@dirrmtry lib/xemacs
-@dirrm share/emacs/site-lisp/git
-%%GUI%%@dirrm share/gitk/lib/msgs
-%%GUI%%@dirrm share/gitk/lib
-%%GUI%%@dirrm share/gitk
-%%GUI%%@dirrm share/git-gui/lib/msgs
-%%GUI%%@dirrm share/git-gui/lib
-%%GUI%%@dirrm share/git-gui
-%%HTMLDOCS%%@dirrm %%DOCSDIR%%/technical
-%%HTMLDOCS%%@dirrm %%DOCSDIR%%/RelNotes
-%%HTMLDOCS%%@dirrm %%DOCSDIR%%/howto
-%%HTMLDOCS%%@dirrm %%DOCSDIR%%
-@dirrm libexec/git-core/mergetools
-@dirrm libexec/git-core
-@dirrmtry share/git-core/templates/branches
-@dirrmtry share/git-core/templates/hooks
-@dirrm share/git-core/templates/info
-@dirrmtry share/git-core/templates
-%%CONTRIB%%@dirrm share/git-core/contrib/buildsystems/Generators
-%%CONTRIB%%@dirrm share/git-core/contrib/buildsystems
-%%CONTRIB%%@dirrm share/git-core/contrib/completion
-%%CONTRIB%%@dirrm share/git-core/contrib/contacts
-%%CONTRIB%%@dirrm share/git-core/contrib/convert-objects
-%%CONTRIB%%@dirrm share/git-core/contrib/credential/gnome-keyring
-%%CONTRIB%%@dirrm share/git-core/contrib/credential/osxkeychain
-%%CONTRIB%%@dirrm share/git-core/contrib/credential/netrc
-%%CONTRIB%%@dirrm share/git-core/contrib/credential/wincred
-%%CONTRIB%%@dirrm share/git-core/contrib/credential
-%%CONTRIB%%@dirrm share/git-core/contrib/diff-highlight
-%%CONTRIB%%@dirrm share/git-core/contrib/emacs
-%%CONTRIB%%@dirrm share/git-core/contrib/examples
-%%CONTRIB%%@dirrm share/git-core/contrib/fast-import
-%%CONTRIB%%@dirrm share/git-core/contrib/git-jump
-%%CONTRIB%%@dirrm share/git-core/contrib/git-shell-commands
-%%CONTRIB%%@dirrm share/git-core/contrib/gitview
-%%CONTRIB%%@dirrm share/git-core/contrib/hg-to-git
-%%CONTRIB%%@dirrm share/git-core/contrib/hooks/multimail
-%%CONTRIB%%@dirrm share/git-core/contrib/hooks
-%%CONTRIB%%@dirrm share/git-core/contrib/mw-to-git/bin-wrapper
-%%CONTRIB%%@dirrm share/git-core/contrib/mw-to-git/Git
-%%CONTRIB%%@dirrm share/git-core/contrib/mw-to-git/t/install-wiki
-%%CONTRIB%%@dirrm share/git-core/contrib/mw-to-git/t/
-%%CONTRIB%%@dirrm share/git-core/contrib/mw-to-git/
-%%CONTRIB%%@dirrm share/git-core/contrib/persistent-https
-%%CONTRIB%%@dirrm share/git-core/contrib/remote-helpers
-%%CONTRIB%%@dirrm share/git-core/contrib/subtree/t
-%%CONTRIB%%@dirrm share/git-core/contrib/subtree
-%%CONTRIB%%@dirrm share/git-core/contrib/stats
-%%CONTRIB%%@dirrm share/git-core/contrib/svn-fe
-%%CONTRIB%%@dirrm share/git-core/contrib/thunderbird-patch-inline
-%%CONTRIB%%@dirrm share/git-core/contrib/workdir
-%%CONTRIB%%@dirrm share/git-core/contrib
-@dirrm share/git-core
+@dir %%DATADIR%%-core/templates/branches
