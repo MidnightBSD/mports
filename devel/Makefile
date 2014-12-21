@@ -92,6 +92,7 @@ SUBDIR += gdb
 SUBDIR += gdb66
 SUBDIR += geany
 SUBDIR += gettext
+SUBDIR += gettext-lint
 SUBDIR += gettext-msghack
 SUBDIR += gettext-runtime
 SUBDIR += gettext-tools
