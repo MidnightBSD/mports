@@ -2,7 +2,6 @@ bin/bluej
 bluej/LICENSE.txt
 bluej/README.TXT
 bluej/THIRDPARTYLICENSE.txt
-bluej/bluej
 bluej/examples/appletdemo/CaseConverter.java
 bluej/examples/appletdemo/README.TXT
 bluej/examples/appletdemo/package.bluej
@@ -110,6 +109,7 @@ bluej/lib/chinese/templates/newclass/interface.tmpl
 bluej/lib/chinese/templates/newclass/stdclass.tmpl
 bluej/lib/chinese/templates/newclass/unittest.tmpl
 bluej/lib/chinese/templates/readme.tmpl
+bluej/lib/commons-logging-api-1.1.2.jar
 bluej/lib/czech/bluejparser.help
 bluej/lib/czech/dialogues
 bluej/lib/czech/exception.help
@@ -147,6 +147,7 @@ bluej/lib/danish/templates/newclass/interface.tmpl
 bluej/lib/danish/templates/newclass/stdclass.tmpl
 bluej/lib/danish/templates/newclass/unittest.tmpl
 bluej/lib/danish/templates/readme.tmpl
+bluej/lib/diffutils-1.2.1.jar
 bluej/lib/dutch/dialogues
 bluej/lib/dutch/exception.help
 bluej/lib/dutch/javac.help
@@ -197,6 +198,7 @@ bluej/lib/french/templates/newclass/abstract.tmpl
 bluej/lib/french/templates/newclass/appletj.tmpl
 bluej/lib/french/templates/newclass/enum.tmpl
 bluej/lib/french/templates/newclass/interface.tmpl
+bluej/lib/french/templates/newclass/midlet.tmpl
 bluej/lib/french/templates/newclass/stdclass.tmpl
 bluej/lib/french/templates/newclass/unittest.tmpl
 bluej/lib/french/templates/readme.tmpl
@@ -233,6 +235,10 @@ bluej/lib/greek/templates/newclass/interface.tmpl
 bluej/lib/greek/templates/newclass/stdclass.tmpl
 bluej/lib/greek/templates/newclass/unittest.tmpl
 bluej/lib/greek/templates/readme.tmpl
+bluej/lib/httpclient-4.1.1.jar
+bluej/lib/httpcore-4.1.jar
+bluej/lib/httpmime-4.1.1.jar
+bluej/lib/images/Weather.png
 bluej/lib/images/about-logo.jpg
 bluej/lib/images/arrow_black_uml.gif
 bluej/lib/images/bluej-icon-256.png
@@ -431,72 +437,3 @@ bluej/lib/swedish/templates/readme.tmpl
 bluej/lib/trilead.jar
 bluej/lib/userlib/README.TXT
 bluej/lib/windowtofront.js
-@dirrm bluej/lib/userlib
-@dirrm bluej/lib/swedish/templates/newclass
-@dirrm bluej/lib/swedish/templates
-@dirrm bluej/lib/swedish
-@dirrm bluej/lib/spanish/templates/newclass
-@dirrm bluej/lib/spanish/templates
-@dirrm bluej/lib/spanish
-@dirrm bluej/lib/slovak/templates/newclass
-@dirrm bluej/lib/slovak/templates
-@dirrm bluej/lib/slovak
-@dirrm bluej/lib/russian/templates/newclass
-@dirrm bluej/lib/russian/templates
-@dirrm bluej/lib/russian
-@dirrm bluej/lib/portuguese/templates/newclass
-@dirrm bluej/lib/portuguese/templates
-@dirrm bluej/lib/portuguese
-@dirrm bluej/lib/korean/templates/newclass
-@dirrm bluej/lib/korean/templates
-@dirrm bluej/lib/korean
-@dirrm bluej/lib/japanese/templates/newclass
-@dirrm bluej/lib/japanese/templates
-@dirrm bluej/lib/japanese
-@dirrm bluej/lib/italian/templates/newclass
-@dirrm bluej/lib/italian/templates
-@dirrm bluej/lib/italian
-@dirrm bluej/lib/images
-@dirrm bluej/lib/greek/templates/newclass
-@dirrm bluej/lib/greek/templates
-@dirrm bluej/lib/greek
-@dirrm bluej/lib/german/templates/newclass
-@dirrm bluej/lib/german/templates
-@dirrm bluej/lib/german
-@dirrm bluej/lib/french/templates/newclass
-@dirrm bluej/lib/french/templates
-@dirrm bluej/lib/french
-@dirrm bluej/lib/extensions
-@dirrm bluej/lib/english/templates/newclass
-@dirrm bluej/lib/english/templates
-@dirrm bluej/lib/english
-@dirrm bluej/lib/dutch/templates/newclass
-@dirrm bluej/lib/dutch/templates
-@dirrm bluej/lib/dutch
-@dirrm bluej/lib/danish/templates/newclass
-@dirrm bluej/lib/danish/templates
-@dirrm bluej/lib/danish
-@dirrm bluej/lib/czech/templates/newclass
-@dirrm bluej/lib/czech/templates
-@dirrm bluej/lib/czech
-@dirrm bluej/lib/chinese/templates/newclass
-@dirrm bluej/lib/chinese/templates
-@dirrm bluej/lib/chinese
-@dirrm bluej/lib/catalan/templates/newclass
-@dirrm bluej/lib/catalan/templates
-@dirrm bluej/lib/catalan
-@dirrm bluej/lib/afrikaans/templates/newclass
-@dirrm bluej/lib/afrikaans/templates
-@dirrm bluej/lib/afrikaans
-@dirrm bluej/lib
-@dirrm bluej/icons
-@dirrm bluej/examples/shapes
-@dirrm bluej/examples/picture
-@dirrm bluej/examples/people2
-@dirrm bluej/examples/people
-@dirrm bluej/examples/hello
-@dirrm bluej/examples/file-reader
-@dirrm bluej/examples/debugdemo
-@dirrm bluej/examples/appletdemo
-@dirrm bluej/examples
-@dirrm bluej
