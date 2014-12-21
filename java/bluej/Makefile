@@ -1,34 +1,32 @@
 # $MidnightBSD$
 
 PORTNAME=	bluej
-PORTVERSION=	3.0.9
+PORTVERSION=	3.1.1
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}
 EXTRACT_SUFX=	.jar
-EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Java environment designed for introductory teaching
 
-LICENSE=	restricted
-# not for profit  distribution
+LICENSE=	gpl2 cddl mit bsd3
+LICENSE_COMB=	multi
 
-RESTRICTED=	yes
-NO_CDROM=	yes
-IS_INTERACTIVE=	yes
 NO_BUILD=	yes
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
+SUB_FILES=	bluej
+
+post-extract:
+	@${MKDIR} ${WRKSRC}
+	@${TAR} -xf ${WRKDIR}/bluej-dist.jar -C ${WRKSRC}
 
 do-install:
-	@${ECHO} Starting BlueJ graphical installer...  Please install to default path of
-	@${ECHO} ${PREFIX}/bluej.  Close the installer when done.
-	@cd ${PREFIX}; ${JAVA_HOME}/bin/java -jar ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
-	-@${MKDIR} ${PREFIX}/bin
-	@${LN} -sf ${PREFIX}/bluej/bluej ${PREFIX}/bin/bluej
-	${REINPLACE_CMD} 's|${PREFIX}|${TRUE_PREFIX}|g' ${PREFIX}/bluej/bluej
+	${MKDIR} ${STAGEDIR}${PREFIX}/bluej
+	cd ${WRKSRC}; ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/bluej
+	${INSTALL_SCRIPT} ${WRKDIR}/bluej ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
