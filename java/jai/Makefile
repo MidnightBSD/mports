@@ -3,24 +3,25 @@
 
 PORTNAME=	jai
 PORTVERSION=	1.1.3
+PORTREVISION=	1
 CATEGORIES=	java graphics
-MASTER_SITES=	#
+MASTER_SITES=	http://download.java.net/media/${PORTNAME}/builds/release/${PORTVERSION:S/./_/g}/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/./_/g}-lib
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance image processing libraries for Java
 
-LICENSE=	restricted
+LICENSE=	sunbin
+LICENSE_NAME=	Sun Binary Licensing Agreement
+LICENSE_FILE=	${WRKSRC}/LICENSE-jai.txt
+LICENSE_PERMS=	
 
-# a self fetching prophecy 
-IS_INTERACTIVE=	yes
-
+USES=		zip
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/./_/g}
 NO_BUILD=	yes
 
-USE_ZIP=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	TARGET_DIR=${TARGET_DIR}
 PKGMESSAGE=	${WRKDIR}/pkg-message
@@ -38,23 +39,15 @@ PORTDOCS=	\
 		LICENSE-jai.txt \
 		THIRDPARTYLICENSEREADME-jai.txt
 
-.include <bsd.port.pre.mk>
-
-.if !exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) && !defined(PACKAGE_BUILDING)
-IGNORE=		"You must manually fetch from the \"Java Advanced Imaging API 1.1.3 Download Page\", the \"Java (no native acceleration)\" distribution \(${DISTNAME}${EXTRACT_SUFX}\) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again"
-.endif
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 # documentation
-.ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 # jars
 	@${MKDIR} ${TARGET_DIR}
 	@${INSTALL_DATA} ${WRKSRC}/lib/jai_codec.jar ${TARGET_DIR}
 	@${INSTALL_DATA} ${WRKSRC}/lib/jai_core.jar ${TARGET_DIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
