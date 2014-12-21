@@ -22,7 +22,6 @@
 %%T%%/bin/tnameserv
 %%T%%/bin/unpack200
 %%T%%/lib/alt-rt.jar
-@exec mkdir -p %D/%%T%%/lib/applet
 %%T%%/lib/calendars.properties
 %%T%%/lib/charsets.jar
 %%T%%/lib/classlist
@@ -285,7 +284,6 @@
 %%T%%/lib/zi/Africa/Gaborone
 %%T%%/lib/zi/Africa/Harare
 %%T%%/lib/zi/Africa/Johannesburg
-%%T%%/lib/zi/Africa/Juba
 %%T%%/lib/zi/Africa/Kampala
 %%T%%/lib/zi/Africa/Khartoum
 %%T%%/lib/zi/Africa/Kigali
@@ -314,7 +312,6 @@
 %%T%%/lib/zi/Africa/Windhoek
 %%T%%/lib/zi/America/Adak
 %%T%%/lib/zi/America/Anchorage
-%%T%%/lib/zi/America/Anguilla
 %%T%%/lib/zi/America/Antigua
 %%T%%/lib/zi/America/Araguaina
 %%T%%/lib/zi/America/Argentina/Buenos_Aires
@@ -329,7 +326,6 @@
 %%T%%/lib/zi/America/Argentina/San_Luis
 %%T%%/lib/zi/America/Argentina/Tucuman
 %%T%%/lib/zi/America/Argentina/Ushuaia
-%%T%%/lib/zi/America/Aruba
 %%T%%/lib/zi/America/Asuncion
 %%T%%/lib/zi/America/Atikokan
 %%T%%/lib/zi/America/Bahia
@@ -358,7 +354,6 @@
 %%T%%/lib/zi/America/Dawson_Creek
 %%T%%/lib/zi/America/Denver
 %%T%%/lib/zi/America/Detroit
-%%T%%/lib/zi/America/Dominica
 %%T%%/lib/zi/America/Edmonton
 %%T%%/lib/zi/America/Eirunepe
 %%T%%/lib/zi/America/El_Salvador
@@ -367,8 +362,6 @@
 %%T%%/lib/zi/America/Godthab
 %%T%%/lib/zi/America/Goose_Bay
 %%T%%/lib/zi/America/Grand_Turk
-%%T%%/lib/zi/America/Grenada
-%%T%%/lib/zi/America/Guadeloupe
 %%T%%/lib/zi/America/Guatemala
 %%T%%/lib/zi/America/Guayaquil
 %%T%%/lib/zi/America/Guyana
@@ -407,7 +400,6 @@
 %%T%%/lib/zi/America/Monterrey
 %%T%%/lib/zi/America/Montevideo
 %%T%%/lib/zi/America/Montreal
-%%T%%/lib/zi/America/Montserrat
 %%T%%/lib/zi/America/Nassau
 %%T%%/lib/zi/America/New_York
 %%T%%/lib/zi/America/Nipigon
@@ -439,17 +431,12 @@
 %%T%%/lib/zi/America/Scoresbysund
 %%T%%/lib/zi/America/Sitka
 %%T%%/lib/zi/America/St_Johns
-%%T%%/lib/zi/America/St_Kitts
-%%T%%/lib/zi/America/St_Lucia
-%%T%%/lib/zi/America/St_Thomas
-%%T%%/lib/zi/America/St_Vincent
 %%T%%/lib/zi/America/Swift_Current
 %%T%%/lib/zi/America/Tegucigalpa
 %%T%%/lib/zi/America/Thule
 %%T%%/lib/zi/America/Thunder_Bay
 %%T%%/lib/zi/America/Tijuana
 %%T%%/lib/zi/America/Toronto
-%%T%%/lib/zi/America/Tortola
 %%T%%/lib/zi/America/Vancouver
 %%T%%/lib/zi/America/Whitehorse
 %%T%%/lib/zi/America/Winnipeg
@@ -460,10 +447,10 @@
 %%T%%/lib/zi/Antarctica/DumontDUrville
 %%T%%/lib/zi/Antarctica/Macquarie
 %%T%%/lib/zi/Antarctica/Mawson
-%%T%%/lib/zi/Antarctica/McMurdo
 %%T%%/lib/zi/Antarctica/Palmer
 %%T%%/lib/zi/Antarctica/Rothera
 %%T%%/lib/zi/Antarctica/Syowa
+%%T%%/lib/zi/Antarctica/Troll
 %%T%%/lib/zi/Antarctica/Vostok
 %%T%%/lib/zi/Asia/Aden
 %%T%%/lib/zi/Asia/Almaty
@@ -639,7 +626,6 @@
 %%T%%/lib/zi/Europe/Tallinn
 %%T%%/lib/zi/Europe/Tirane
 %%T%%/lib/zi/Europe/Uzhgorod
-%%T%%/lib/zi/Europe/Vaduz
 %%T%%/lib/zi/Europe/Vienna
 %%T%%/lib/zi/Europe/Vilnius
 %%T%%/lib/zi/Europe/Volgograd
@@ -678,7 +664,6 @@
 %%T%%/lib/zi/Pacific/Guadalcanal
 %%T%%/lib/zi/Pacific/Guam
 %%T%%/lib/zi/Pacific/Honolulu
-%%T%%/lib/zi/Pacific/Johnston
 %%T%%/lib/zi/Pacific/Kiritimati
 %%T%%/lib/zi/Pacific/Kosrae
 %%T%%/lib/zi/Pacific/Kwajalein
@@ -744,111 +729,4 @@
 %%T%%/plugin/i386/ns7/libjavaplugin_oji.so
 %%T%%/release
 @exec %%LOCALBASE%%/bin/registervm "%D/%%T%%/bin/java # Linux-Sun-JRE%%PORTVERSION%%"
-@dirrm %%T%%/plugin/i386/ns7
-@dirrm %%T%%/plugin/i386
-@dirrm %%T%%/plugin/desktop
-@dirrm %%T%%/plugin
-@dirrm %%T%%/man/man1
-@dirrm %%T%%/man/ja_JP.UTF-8/man1
-@dirrm %%T%%/man/ja_JP.UTF-8
-@dirrm %%T%%/man
-@dirrm %%T%%/lib/zi/SystemV
-@dirrm %%T%%/lib/zi/Pacific
-@dirrm %%T%%/lib/zi/Indian
-@dirrm %%T%%/lib/zi/Europe
-@dirrm %%T%%/lib/zi/Etc
-@dirrm %%T%%/lib/zi/Australia
-@dirrm %%T%%/lib/zi/Atlantic
-@dirrm %%T%%/lib/zi/Asia
-@dirrm %%T%%/lib/zi/Antarctica
-@dirrm %%T%%/lib/zi/America/North_Dakota
-@dirrm %%T%%/lib/zi/America/Kentucky
-@dirrm %%T%%/lib/zi/America/Indiana
-@dirrm %%T%%/lib/zi/America/Argentina
-@dirrm %%T%%/lib/zi/America
-@dirrm %%T%%/lib/zi/Africa
-@dirrm %%T%%/lib/zi
-@dirrm %%T%%/lib/security
-@dirrm %%T%%/lib/oblique-fonts
-@dirrm %%T%%/lib/management
-@dirrm %%T%%/lib/locale/zh_TW/LC_MESSAGES
-@dirrm %%T%%/lib/locale/zh_TW.BIG5/LC_MESSAGES
-@dirrm %%T%%/lib/locale/zh_TW.BIG5
-@dirrm %%T%%/lib/locale/zh_TW
-@dirrm %%T%%/lib/locale/zh_HK.BIG5HK/LC_MESSAGES
-@dirrm %%T%%/lib/locale/zh_HK.BIG5HK
-@dirrm %%T%%/lib/locale/zh/LC_MESSAGES
-@dirrm %%T%%/lib/locale/zh.GBK/LC_MESSAGES
-@dirrm %%T%%/lib/locale/zh.GBK
-@dirrm %%T%%/lib/locale/zh
-@dirrm %%T%%/lib/locale/sv/LC_MESSAGES
-@dirrm %%T%%/lib/locale/sv
-@dirrm %%T%%/lib/locale/pt_BR/LC_MESSAGES
-@dirrm %%T%%/lib/locale/pt_BR
-@dirrm %%T%%/lib/locale/ko/LC_MESSAGES
-@dirrm %%T%%/lib/locale/ko.UTF-8/LC_MESSAGES
-@dirrm %%T%%/lib/locale/ko.UTF-8
-@dirrm %%T%%/lib/locale/ko
-@dirrm %%T%%/lib/locale/ja/LC_MESSAGES
-@dirrm %%T%%/lib/locale/ja
-@dirrm %%T%%/lib/locale/it/LC_MESSAGES
-@dirrm %%T%%/lib/locale/it
-@dirrm %%T%%/lib/locale/fr/LC_MESSAGES
-@dirrm %%T%%/lib/locale/fr
-@dirrm %%T%%/lib/locale/es/LC_MESSAGES
-@dirrm %%T%%/lib/locale/es
-@dirrm %%T%%/lib/locale/de/LC_MESSAGES
-@dirrm %%T%%/lib/locale/de
-@dirrm %%T%%/lib/locale
-@dirrm %%T%%/lib/jfr
-@dirrm %%T%%/lib/images/icons
-@dirrm %%T%%/lib/images/cursors
-@dirrm %%T%%/lib/images
-@dirrm %%T%%/lib/i386/xawt
-@dirrm %%T%%/lib/i386/server
-@dirrm %%T%%/lib/i386/jli
-@dirrm %%T%%/lib/i386/headless
-@dirrm %%T%%/lib/i386/client
-@dirrm %%T%%/lib/i386
-@dirrm %%T%%/lib/fonts
-@dirrm %%T%%/lib/ext
-@dirrm %%T%%/lib/desktop/mime/packages
-@dirrm %%T%%/lib/desktop/mime
-@dirrm %%T%%/lib/desktop/icons/hicolor/48x48/mimetypes
-@dirrm %%T%%/lib/desktop/icons/hicolor/48x48/apps
-@dirrm %%T%%/lib/desktop/icons/hicolor/48x48
-@dirrm %%T%%/lib/desktop/icons/hicolor/16x16/mimetypes
-@dirrm %%T%%/lib/desktop/icons/hicolor/16x16/apps
-@dirrm %%T%%/lib/desktop/icons/hicolor/16x16
-@dirrm %%T%%/lib/desktop/icons/hicolor
-@dirrm %%T%%/lib/desktop/icons/LowContrast/48x48/mimetypes
-@dirrm %%T%%/lib/desktop/icons/LowContrast/48x48/apps
-@dirrm %%T%%/lib/desktop/icons/LowContrast/48x48
-@dirrm %%T%%/lib/desktop/icons/LowContrast/16x16/mimetypes
-@dirrm %%T%%/lib/desktop/icons/LowContrast/16x16/apps
-@dirrm %%T%%/lib/desktop/icons/LowContrast/16x16
-@dirrm %%T%%/lib/desktop/icons/LowContrast
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/48x48/mimetypes
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/48x48/apps
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/48x48
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/16x16/mimetypes
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/16x16/apps
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse/16x16
-@dirrm %%T%%/lib/desktop/icons/HighContrastInverse
-@dirrm %%T%%/lib/desktop/icons/HighContrast/48x48/mimetypes
-@dirrm %%T%%/lib/desktop/icons/HighContrast/48x48/apps
-@dirrm %%T%%/lib/desktop/icons/HighContrast/48x48
-@dirrm %%T%%/lib/desktop/icons/HighContrast/16x16/mimetypes
-@dirrm %%T%%/lib/desktop/icons/HighContrast/16x16/apps
-@dirrm %%T%%/lib/desktop/icons/HighContrast/16x16
-@dirrm %%T%%/lib/desktop/icons/HighContrast
-@dirrm %%T%%/lib/desktop/icons
-@dirrm %%T%%/lib/desktop/applications
-@dirrm %%T%%/lib/desktop
-@dirrm %%T%%/lib/deploy
-@dirrm %%T%%/lib/cmm
-@dirrm %%T%%/lib/applet
-@dirrm %%T%%/lib
-@dirrm %%T%%/bin
-@dirrm %%T%%/.systemPrefs
-@dirrm %%T%%
+@dir %%T%%/lib/applet
