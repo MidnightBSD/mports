@@ -1,74 +1,44 @@
 # $MidnightBSD$
 
 PORTNAME=	lcms2
-PORTVERSION=	2.4
+PORTVERSION=	2.6
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lcms/lcms/${PORTVERSION} \
 		http://www.littlecms.com/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accurate, fast, and small-footprint color management engine
+
 LICENSE=	mit
 
 OPTIONS_DEFINE=	DOCS JPEGICC TIFFICC
+OPTIONS_DEFAULT=JPEGICC TIFFICC
+OPTIONS_SUB=	yes
 JPEGICC_DESC=	Build color profile applier for JPEG
 TIFFICC_DESC=	Build color profile applier for TIFF
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
-USE_GNOME=	gnomehack lthack
 USE_LDCONFIG=	yes
+USES=		libtool:keepla pathfix
 
-MAN1=		linkicc.1 psicc.1 transicc.1
-PLIST_SUB=	PORTVERSION=${PORTVERSION}
+PORTDOCS=	*
 
-UTILS=		linkicc psicc transicc
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MJPEGICC}
-LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg
-CONFIGURE_ARGS+=--with-jpeg=${LOCALBASE}
-MAN1+=		jpgicc.1
-PLIST_SUB+=	JPEGICC=""
-UTILS+=		jpgicc
-.else
-CONFIGURE_ARGS+=--without-jpeg
-PLIST_SUB+=	JPEGICC="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTIFFICC}
-LIB_DEPENDS+=	tiff:${PORTSDIR}/graphics/tiff
-CONFIGURE_ARGS=	--with-tiff=${LOCALBASE}
-MAN1+=		tificc.1
-PLIST_SUB+=	TIFFICC=""
-UTILS+=		tificc
-.else
-CONFIGURE_ARGS+=--without-tiff
-PLIST_SUB+=	TIFFICC="@comment "
-.endif
-
-post-patch:
-.if empty(PORT_OPTIONS:MJPEGICC)
-	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| utils/jpgicc||' ${WRKSRC}/Makefile.in
-.endif
-.if empty(PORT_OPTIONS:MTIFFICC)
-	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| utils/tificc||' ${WRKSRC}/Makefile.in
-.endif
-
-post-configure:
-# Get rid of .la and static library files
-	@${REINPLACE_CMD} -E -e '/Install the pseudo-library/,/staticlibs=/s,^,#,' ${WRKSRC}/libtool
+JPEGICC_CONFIGURE_OFF=	--without-jpeg
+JPEGICC_CONFIGURE_ON=	--with-jpeg=${LOCALBASE}
+JPEGICC_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+TIFFICC_CONFIGURE_OFF=	--without-tiff
+TIFFICC_CONFIGURE_ON=	--with-tiff=${LOCALBASE}
+TIFFICC_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
 
 post-install:
-	cd ${WRKSRC}/utils/ && ${INSTALL_MAN} linkicc/linkicc.1 psicc/psicc.1 transicc/transicc.1 ${MANPREFIX}/man/man1/
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${DOCSDIR}/
-.endif
+	cd ${WRKSRC}/utils/ && ${INSTALL_MAN} linkicc/linkicc.1 psicc/psicc.1 transicc/transicc.1 ${STAGEDIR}${PREFIX}/man/man1/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${STAGEDIR}${DOCSDIR}/
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblcms2.so.2
 
 regression-test test: build
-	cd ${WRKSRC}/testbed/ && ${SETENV} ${MAKE_ENV} ${MAKE} check
+	cd ${WRKSRC}/testbed/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include <bsd.port.mk>
