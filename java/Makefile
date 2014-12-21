@@ -12,7 +12,6 @@ SUBDIR += diablo-jdk16
 SUBDIR += diablo-jre16
 SUBDIR += jaf
 SUBDIR += jai
-SUBDIR += jai-imageio
 SUBDIR += jakarta-bcel
 SUBDIR += jakarta-commons-cli
 SUBDIR += jakarta-commons-lang
