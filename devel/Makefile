@@ -52,7 +52,6 @@ SUBDIR += cvsps-devel
 SUBDIR += cvsweb3
 SUBDIR += dbus
 SUBDIR += dbus-glib
-SUBDIR += dbus-qt3
 SUBDIR += dbus-qt4
 SUBDIR += dconf
 SUBDIR += desktop-file-utils
