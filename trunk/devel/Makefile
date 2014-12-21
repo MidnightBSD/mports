@@ -444,6 +444,7 @@ SUBDIR += qt4-uic3
 SUBDIR += qtcreator
 SUBDIR += rclint
 SUBDIR += rcs57
+SUBDIR += re2
 SUBDIR += re2c
 SUBDIR += readline
 SUBDIR += scons
