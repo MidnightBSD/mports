@@ -338,7 +338,8 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake cpe display dos2unix \
 		efl emacs execinfo fam fuse \
-		gecko gettext gnome gnustep gstreamer iconv imake \
+		gecko gettext gettext-tools gettext-runtime \
+		gnome gnustep gstreamer iconv imake \
 		ldap libtool lua makeself motif mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl wx xfce zip
