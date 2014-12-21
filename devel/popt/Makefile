@@ -2,7 +2,7 @@
 
 PORTNAME=	popt
 PORTVERSION=	1.16
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://rpm5.org/files/popt/
 
@@ -16,11 +16,8 @@ CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE} \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
-USES=		pathfix iconv
+USES=		libtool pathfix iconv
 USE_LDCONFIG=	yes
-
-MAN3=		popt.3
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=--disable-nls
