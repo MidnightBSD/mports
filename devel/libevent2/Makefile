@@ -2,6 +2,7 @@
 
 PORTNAME=	libevent2
 PORTVERSION=	2.0.21
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://cloud.github.com/downloads/libevent/libevent/
 DISTNAME=	${PORTNAME:S/2//}-${DISTVERSION}-stable
@@ -10,8 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for executing callback functions on events or timeouts
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_GNOME=	lthack
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	${PREFIX}/lib/event2
