@@ -2,6 +2,7 @@
 
 PORTNAME=	libXaw
 PORTVERSION=	1.0.12
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,9 +12,7 @@ LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	printproto:both x11 xau xext xextproto xmu xp xpm xproto:both xt
-USE_GMAKE=	yes
+USES=		gmake
 CONFIGURE_ARGS+=--without-xmlto
-
-MAN3=		Xaw.3
 
 .include <bsd.port.mk>
