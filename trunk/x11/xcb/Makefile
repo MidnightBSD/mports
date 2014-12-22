@@ -2,7 +2,7 @@
 
 PORTNAME=	xcb
 PORTVERSION=	2.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	http://oldhome.schmorp.de/marc/data/ \
 		http://ftp.lyx.org/pub/pcg/marc/ \
@@ -10,11 +10,11 @@ MASTER_SITES=	http://oldhome.schmorp.de/marc/data/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for managing x11 cut-buffers
+
 LICENSE=	mit
 
-USE_IMAKE=	yes
-USE_XORG=	ice sm x11 xaw xext xmu xt
+USES=		imake
 
-MAN1=		xcb.1
+USE_XORG=	ice sm x11 xaw xext xmu xt
 
 .include <bsd.port.mk>
