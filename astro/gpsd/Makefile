@@ -8,18 +8,18 @@ MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Daemon that monitors one or more GPSes attached to a host computer
+
 LICENSE=	bsd4
 
 BUILD_DEPENDS=	docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
 		xsltproc:${PORTSDIR}/textproc/libxslt
 
-USE_GNOME=	pkgconfig
+USES=		pkgconfig
 USE_SCONS=	yes
 USE_RC_SUBR=	gpsd
 USE_PYTHON=	yes
 INSTALLS_EGGINFO=	yes
 PYDISTUTILS_EGGINFO=	gps-${PORTVERSION}.egg-info
-MAKE_JOBS_SAFE=	yes
 
 SCONS_BUILDENV=	${SCONS_ENV}
 SCONS_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig" \
