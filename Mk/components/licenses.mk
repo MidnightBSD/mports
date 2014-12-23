@@ -446,7 +446,12 @@ clean-for-cdrom-list:
 # Check variables are correctly defined and print status up to here
 
 .if ${_LICENSE_STATUS} == "ask" && defined(BATCH)
+# Allow magus to build packages anyway
+.if defined(PACKAGE_BUILDING)
+_LICENSE_STATUS=	"accepted"
+.else
 IGNORE=		License ${_LICENSE} needs confirmation, but BATCH is defined
+.endif
 .endif
 
 check-license:
