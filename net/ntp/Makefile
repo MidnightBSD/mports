@@ -1,9 +1,8 @@
 # $MidnightBSD$
-# $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 
 PORTNAME=	ntp
-PORTVERSION?=	4.2.6p5
-PORTREVISION=	4
+PORTVERSION=	4.2.8
+PORTREVISION=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
 		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
@@ -16,41 +15,32 @@ COMMENT=	The Network Time Protocol Distribution
 
 LICENSE=	other
 
-LATEST_LINK=	${PORTNAME}
-
-USES=		libtool
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	automake
 OPTIONS_SUB=	yes
+USES=		pathfix shebangfix libtool
+LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
+
+NTP_SHEBANG_FILES=	sbin/ntp-wait sbin/ntptrace
 
 .include "Makefile.inc"
 
-.include <bsd.mport.options.mk>
+PERL_UTILS_USES=	perl5
 
-.if ${PORT_OPTIONS:MNTPSNMPD}
-PLIST_FILES+=		bin/ntpsnmpd
-BUILD_DEPENDS+=		${LOCALBASE}/include/net-snmp/net-snmp-config.h:${PORTSDIR}/net-mgmt/net-snmp
-RUN_DEPENDS+=		${LOCALBASE}/include/net-snmp/net-snmp-config.h:${PORTSDIR}/net-mgmt/net-snmp
-.else
-CONFIGURE_ARGS+=	--without-ntpsnmpd
-.endif
+SSL_USE=		OPENSSL=yes
+SSL_CONFIGURE_OFF=	--without-crypto
+
+IPV6_CONFIGURE_ENABLE=	ipv6
+
+NTP_SIGND_CONFIGURE_ENABLE=	ntp-signd
+
+NTPSNMPD_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
+NTPSNMPD_CONFIGURE_OFF=	--without-ntpsnmpd
+
+.include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=		yes
 CONFIGURE_ARGS+=	--with-openssl-incdir=${OPENSSLINC} \
 			--with-openssl-libdir=${OPENSSLLIB}
-PLIST_SUB+=		SSL=""
-.else
-CONFIGURE_ARGS+=        --without-crypto
-PLIST_SUB+=             SSL="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=        --enable-ipv6
-.endif
-
-.if ${PORT_OPTIONS:MNTP_SIGND}
-CONFIGURE_ARGS+=        --enable-ntp-signd
 .endif
 
 .for D in ${NTP_DRIVERS}
@@ -59,21 +49,22 @@ CONFIGURE_ARGS+=	--enable-${D}
 .endif
 .endfor
 
-AUTOTOOLSFILES=	aclocal.m4
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}4
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|1.11.1|1.14|g' \
-			  ${WRKSRC}/aclocal.m4
+# XXX Temporary hack. Remember to remove this next commit.
+post-extract:
+	@/usr/bin/touch ${WRKSRC}/scripts/build/checkHtmlFileDates
+	@${CHMOD} +x ${WRKSRC}/scripts/build/checkHtmlFileDates
 
 post-install:
+	${MV} ${PREFIX}/bin/* ${PREFIX}/sbin/
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/conf/* ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${FILESDIR}/ntp.conf ${EXAMPLESDIR}/ntp.conf.sample
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${FIND} ${WRKSRC}/html -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
 	@cd ${WRKSRC}/html && ${FIND} . -print | \
 		${CPIO} -pdu -R ${SHAREOWN}:${SHAREGRP} --quiet ${DOCSDIR}
-.endif
+	cd ${PREFIX}; \
+		${ECHO_CMD} ${NTP_SHEBANG_FILES} | ${XARGS} ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
