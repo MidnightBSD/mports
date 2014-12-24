@@ -3,26 +3,31 @@
 
 PORTNAME=	freealut
 PORTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://connect.creativelabs.com/openal/Downloads/ALUT/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The OpenAL Utility Toolkit
+
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig gnomehack
 USE_OPENAL=	al
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/@CFLAGS@/& -lopenal ${PTHREAD_LIBS}/g' \
+	@${REINPLACE_CMD} -e 's/@CFLAGS@/& -lopenal -lpthread/g' \
 		${WRKSRC}/examples/Makefile.in \
 		${WRKSRC}/test_suite/Makefile.in
+
+post-install:
+	cd ${PREFIX}/lib && ${LN} -sf libalut.so.1.0 libalut.so
+	${CP} ${PREFIX}/lib/pkgconfig/freealut.pc ${PREFIX}/libdata/pkgconfig/freealut.pc
 
 .include <bsd.port.post.mk>
