@@ -2,16 +2,16 @@
 
 PORTNAME=	libnova
 PORTVERSION=	0.14.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Astronomical Calculation Library
+
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	lthack
+USES=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
