@@ -2,6 +2,7 @@
 
 PORTNAME=	lame
 PORTVERSION=	3.99.5
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/3.99
 
@@ -13,8 +14,7 @@ LICENSE_NAME=	LGPL + Patent restrictions.
 LICENSE_TEXT=	Lame is covered under the LGPL, but commercial use requires royalty payments
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
-USES=		gmake iconv
-USE_AUTOTOOLS=	libtool
+USES=		gmake iconv libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
