@@ -16,7 +16,7 @@ RESTRICTED=	Distribution in binary form is prohibited
 
 USES=		gmake tar:bzip2
 USE_DOS2UNIX=	yes
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
+USES=	aclocal autoheader automake autoconf libtool
 ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

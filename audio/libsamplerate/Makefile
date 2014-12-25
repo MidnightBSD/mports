@@ -11,7 +11,7 @@ COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
 LICENSE=	gpl2
 
 USES=	pathfix pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
