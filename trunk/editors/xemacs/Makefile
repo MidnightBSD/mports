@@ -26,7 +26,7 @@ USE_BZIP2=	yes
 USE_CSTD=	gnu89
 WANT_GNOME=	yes
 STRIP=
-USE_AUTOTOOLS=	autoconf213
+USES=	autoconf213
 CONFIGURE_TARGET=${MACHINE_ARCH}--freebsd
 
 CONFIGURE_ARGS?=--with-clash-detection \

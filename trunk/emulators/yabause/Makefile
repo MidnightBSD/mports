@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
 
-USE_AUTOTOOLS=	automake:env autoconf:env aclocal:env
+USES=	automake:env autoconf:env aclocal:env
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GL=		gl glu glut
