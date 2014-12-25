@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A libpcap wrapper library
 LICENSE=	mit
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${DOCSDIR}
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

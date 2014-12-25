@@ -12,7 +12,7 @@ LICENSE=	unknown
 
 CONFLICTS=	libilbc-[0-9]*
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

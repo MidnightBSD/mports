@@ -13,7 +13,7 @@ COMMENT=	A simple network library built upon Glib-2
 LICENSE=	lgpl
 
 USES=		pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

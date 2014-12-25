@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_BDB=	46+
 USE_BZIP2=	yes
 USES=		iconv
