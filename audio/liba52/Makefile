@@ -8,11 +8,10 @@ DISTNAME=	a52dec-${PORTVERSION:S/.b/b/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free library for decoding ATSC A/52 streams, aka AC-3
+
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gmake libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-oss --enable-shared
 USE_LDCONFIG=	yes
