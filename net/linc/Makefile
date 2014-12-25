@@ -19,7 +19,7 @@ USES=		pkgconfig
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CPPFLAGS+=	-I${LOCALBASE}/include -DGLIB_COMPILATION

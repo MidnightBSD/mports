@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small sample cross-platform networking library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_SDL=	sdl
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

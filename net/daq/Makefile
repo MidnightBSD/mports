@@ -19,7 +19,7 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USES=		bison
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 MAKE_JOBS_UNSAFE=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include

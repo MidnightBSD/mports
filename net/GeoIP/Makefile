@@ -18,7 +18,7 @@ LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
 USES=		libtool pathfix
-USE_AUTOTOOLS=	aclocal automake libtoolize autoconf
+USES=	aclocal automake libtoolize autoconf
 AUTOMAKE_ARGS=	--add-missing
 PATHFIX_MAKEFILEIN=	Makefile.am
 

@@ -17,7 +17,7 @@ MAKE_JOBS_UNSAFE=	yes
 USES=			iconv
 USE_PERL5=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf autoheader
+USES=		autoconf autoheader
 
 WRKSRC=			${WRKDIR}/${PORTNAME}/source
 

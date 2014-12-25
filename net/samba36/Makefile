@@ -30,7 +30,7 @@ AUTOCONF_ARGS=		${IPATHS}
 
 GNU_CONFIGURE=		yes
 USES=			gmake pkgconfig iconv
-USE_AUTOTOOLS=		autoconf autoheader
+USES=		autoconf autoheader
 USE_LDCONFIG=		${SAMBA_LIBDIR}
 # pkg-config is used to find talloc
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig

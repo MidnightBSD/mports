@@ -19,7 +19,7 @@ COMMENT=	A C library for creating IP packets
 LICENSE=	agg
 
 CFLAGS+=	-fPIC
-USE_AUTOTOOLS=	autoconf:261
+USES=	autoconf:261
 WRKSRC=		${WRKDIR}/Libnet-${PORTVERSION}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 MAN3=		libnet${PKGNAMESUFFIX}.3
