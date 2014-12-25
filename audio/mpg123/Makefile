@@ -12,7 +12,7 @@ COMMENT=	Command-line player for MPEG layer 1, 2 and 3 audio
 LICENSE=	lgpl2.1
 
 USES=		tar:bzip2 gmake libtool:keepla pathfix
-USE_AUTOTOOLS=	libltdl
+USES=	libltdl
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

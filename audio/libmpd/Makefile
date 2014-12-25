@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstraction around libmpdclient
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 USE_GNOME=	pkgconfig glib20 gnomehack
 USE_LDCONFIG=	yes

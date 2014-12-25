@@ -22,7 +22,7 @@ LICENSE=	lgpl
 WANT_GNOME=	yes
 USE_GNOME=	 lthack
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 MAKE_ENV=	SHELL=/bin/sh

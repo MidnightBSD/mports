@@ -16,7 +16,7 @@ LIB_DEPENDS=	fftw3:${PORTSDIR}/math/fftw3 \
 
 PROJECTHOST=	musicip-libofa
 USE_DOS2UNIX=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_PATHFIX=	yes
 USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes

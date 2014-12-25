@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for playing audio CDs
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

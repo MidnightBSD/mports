@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Alsa compatibility library to build DSSI
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
