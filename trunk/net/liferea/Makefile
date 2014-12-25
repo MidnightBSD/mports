@@ -15,7 +15,7 @@ LIB_DEPENDS=	sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 
 USE_GNOME=	gnomeprefix gnomehack libglade2 gconf2
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

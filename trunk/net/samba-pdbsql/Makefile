@@ -19,7 +19,7 @@ LICENSE=		gpl2
 USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
 # Add a build dependency for Samba port
-USE_AUTOTOOLS=		autoconf autoheader
+USES=		autoconf autoheader
 
 SAMBA_PORT=		net/samba34
 

@@ -41,7 +41,7 @@ LICENSE=		openldap2.8
 LATEST_LINK?=		${PKGNAMEPREFIX}openldap24${PKGNAMESUFFIX}
 USE_OPENSSL=		yes
 USES=                 libtool:keepla
-USE_AUTOTOOLS=		libtool
+USES=		libtool
 .if !defined(CLIENT_ONLY)
 USERS=			ldap
 GROUPS=			ldap

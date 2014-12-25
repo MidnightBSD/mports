@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
