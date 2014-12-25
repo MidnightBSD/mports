@@ -2,31 +2,27 @@
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An open-source patent-free voice codec
+COMMENT=	open-source patent-free voice codec
+
 LICENSE=	bsd3
 
 LIB_DEPENDS=	ogg:${PORTSDIR}/audio/libogg
 
 CONFLICTS=	speex-devel-[0-9]*
 
-MAKE_JOBS_SAFE=	yes
-
-USE_GNOME=	gnomehack ltverhack
+USES=		gmake libtool
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg-dir=${LOCALBASE} \
 		--build=${ARCH}-portbld-freebsd9.1
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=		speexdec.1 speexenc.1
 
 .include <bsd.port.pre.mk>
 
