@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A SDL audio library and player for some popular sound file formats
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_LDCONFIG=	yes
 USE_SDL=	sdl
 CONFIGURE_ARGS=	--program-prefix=""

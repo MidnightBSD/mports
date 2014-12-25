@@ -17,7 +17,7 @@ LICENSE=	lgpl2.1
 
 USES=		pathfix pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 
 CONFLICTS=	osalp-0.7.*

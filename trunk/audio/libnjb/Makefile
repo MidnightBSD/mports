@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

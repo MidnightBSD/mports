@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sample multi-channel audio mixer library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_SDL=	sdl
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
