@@ -25,7 +25,7 @@ USES=		bison gettext gmake tar:bzip2
 USE_GNOME=	gnomeprefix gnomehack intlhack ltverhack ltasneededhack gconf2 \
 		libxml2
 USE_OPENLDAP=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_BDB=	41+
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static \

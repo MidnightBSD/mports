@@ -14,7 +14,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_GMAKE=	yes
 CONFIGURE_TARGET=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \

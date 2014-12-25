@@ -18,7 +18,7 @@ TDS_VER?=	5.0
 
 USES=		iconv gmake pkgconfig libtool:keepla
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:env
+USES=	autoconf:env
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 LIBS+=		-lgcrypt

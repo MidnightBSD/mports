@@ -24,7 +24,7 @@ CONFLICTS=	unixODBC-[0-9]*
 MAKE_JOBS_SAFE=	yes
 USE_GNOME=	gnomehack pkgconfig
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--with-iodbc-inidir=${ETCDIR}
 USE_LDCONFIG=	yes

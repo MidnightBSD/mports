@@ -118,7 +118,7 @@ CONFIGURE_ARGS+=--with-openssl
 
 .if !defined(SLAVE_ONLY)
 .  if ( defined(SERVER_ONLY) && ${PORT_OPTIONS:MICU} ) || make(makesum)
-USE_AUTOTOOLS=	autoconf
+USES=	autoconf
 CONFIGURE_ARGS+=--with-icu
 PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
 PATCHFILES+=	${ICU_PATCHFILE}:icu
