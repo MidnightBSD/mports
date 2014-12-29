@@ -30,7 +30,8 @@ USE_XORG=	x11 sm ice
 
 CONFIGURE_ARGS+=--enable-legacy-sm \
 		--disable-systemd \
-		--with-xsession-prefix=${PREFIX}
+		--with-xsession-prefix=${PREFIX} \
+		--disable-static
 
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
