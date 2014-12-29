@@ -1,5 +1,3 @@
-# $Id: OrigTree.pm,v 1.3 2008-06-29 22:52:58 laffer1 Exp $
-
 package XML::Parser::Style::OrigTree;
 $XML::Parser::Built_In_Styles{OrigTree} = 1;
 
