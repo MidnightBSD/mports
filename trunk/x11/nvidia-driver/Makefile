@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	331.67
+DISTVERSION?=	340.65
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
