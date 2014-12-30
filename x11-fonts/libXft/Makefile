@@ -2,13 +2,14 @@
 
 PORTNAME=	libXft
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client-sided font API for X applications
 LICENSE=	mit
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
