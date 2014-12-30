@@ -3,19 +3,19 @@
 
 PORTNAME=	fonttosfnt
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrap a bitmap font in a sftn wrapper
+
 LICENSE=	mit
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 
 XORG_CAT=	app
 USE_XORG=	xproto fontenc
 
-PLIST_FILES=	bin/fonttosfnt
-
-MAN1=		fonttosfnt.1
+PLIST_FILES=	bin/fonttosfnt man/man1/fonttosfnt.1.gz
 
 .include <bsd.port.mk>
