@@ -3,7 +3,7 @@
 
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
 PKGNAMESUFFIX=	99
@@ -202,11 +202,20 @@ post-configure:
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
-		${WRKSRC}/HISTORY ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/HISTORY ${WRKSRC}/README ${DOCSDIR}
 .endif
+.for i in dynamic master slave working
+	@${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/$i
+.endfor
+	${INSTALL_DATA} ${FILESDIR}/named.root ${FAKE_DESTDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${FAKE_DESTDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${FAKE_DESTDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${FAKE_DESTDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf ${FAKE_DESTDIR}${ETCDIR}/rndc.conf.sample
+
 
 .include <bsd.port.mk>
