@@ -13,17 +13,12 @@ LICENSE=	bsd2
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_PYTHON_BUILD=	yes
 CONFIGURE_ARGS=	--localstatedir=${PREFIX} --enable-tests
 CONFIGURE_ENV=	RST2MAN=true
 USE_LDCONFIG=	yes
-USES=		pkgconfig
-USE_AUTOTOOLS=  aclocal libtool libtoolize automake autoconf
-ACLOCAL_ARGS=	-I m4
-LIBTOOLFLAGS=	--copy --force --disable-static
-AUTOMAKE_ARGS=	--add-missing --copy --foreign
-
+USES=		autoreconf gmake libtool readline pkgconfig python:build
+INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	varnishd varnishlog varnishncsa
 SUB_FILES=	pkg-message
 .if defined(NO_INET6) || defined(WITHOUT_INET6)
