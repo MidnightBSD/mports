@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libFS
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,5 @@ LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	fontsproto:both xproto:both xtrans
-USE_AUTOTOOLS=	libtool
 
 .include <bsd.port.mk>
