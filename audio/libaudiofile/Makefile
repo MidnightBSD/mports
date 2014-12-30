@@ -3,7 +3,7 @@
 
 PORTNAME=	libaudiofile
 PORTVERSION=	0.3.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://www.68k.org/~michael/audiofile/ \
 		ftp://oss.sgi.com/projects/audiofile/download/ \
@@ -11,13 +11,12 @@ MASTER_SITES=	http://www.68k.org/~michael/audiofile/ \
 DISTNAME=	audiofile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A sound library for SGI audio file
+COMMENT=	Sound library for SGI audio file
 
 LICENSE=	lgpl2.1
 
-USES=		pathfix pkgconfig
+USES=		pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
-USES=	libtool
 GNU_CONFIGURE=	yes
 
 CONFLICTS=	osalp-0.7.*
