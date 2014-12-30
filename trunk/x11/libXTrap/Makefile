@@ -2,14 +2,15 @@
 
 PORTNAME=	libXTrap
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The XTrap library
+
 LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	trapproto:both x11 xext xextproto xt
-USE_AUTOTOOLS=	libtool
 
 .include <bsd.port.mk>
