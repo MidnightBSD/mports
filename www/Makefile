@@ -56,6 +56,7 @@ SUBDIR += mod_python3
 SUBDIR += mod_wsgi3
 SUBDIR += moinmoin
 SUBDIR += nanoblogger
+SUBDIR += neon
 SUBDIR += neon29
 SUBDIR += nginx
 SUBDIR += npm
