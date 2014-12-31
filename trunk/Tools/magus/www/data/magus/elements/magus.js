@@ -11,7 +11,7 @@ function showPorts(id, status) {
 	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
 	td.style.display = 'table-cell';
 
-	var url = '//www.midnightbsd.org/magus/async/run-ports-list?run=' + id + '&status=' + status;
+	var url = '//www.midnightbsd.org/magus/async/run-ports-list?run=' + id + '&status=' + status + '&tm=' + (new Date).getTime();
 	sendAsycQuery(url, process_showPorts);
 	return false;
 }
