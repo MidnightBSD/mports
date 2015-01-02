@@ -4,7 +4,7 @@
          reserve_area( base, end );
      }
      else reserve_area( user_space_limit, 0 );
-+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
++#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__MidnightBSD__)
 +    wine_mmap_remove_reserved_area( (char *)0x82000000, 0xffffffff - 0x82000000, 1 );
 +#endif
 
