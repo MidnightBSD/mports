@@ -350,6 +350,7 @@ CONFIGURE_ARGS+=--enable-sockets
 .if ${PHP_MODNAME} == "sqlite3"
 USE_SQLITE=	yes
 CONFIGURE_ARGS+=--with-sqlite3=${LOCALBASE}
+LIB_DEPENDS+=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 .endif
 
 .if ${PHP_MODNAME} == "sybase_ct"
