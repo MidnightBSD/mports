@@ -4,7 +4,7 @@
 
 PORTNAME=	vxtools
 PORTVERSION=	0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	ftp://ftp.penguin.cz/pub/users/mhi/vxfs/
 
@@ -12,12 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line utilities for reading Veritas Filesystem (VxFS)
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		tar:bzip2 gmake
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-
-MAN1=		vxmount.1 vxumount.1
-MAN8=		prtvtoc.8
 
 do-install:
 	@ ${INSTALL_PROGRAM} ${WRKSRC}/vxls ${PREFIX}/bin
