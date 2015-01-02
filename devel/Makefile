@@ -60,6 +60,7 @@ SUBDIR += devhelp
 SUBDIR += devtodo
 SUBDIR += distcc
 SUBDIR += dmalloc
+SUBDIR += dotconf
 SUBDIR += doxygen
 SUBDIR += eggdbus
 SUBDIR += etoile-collectionkit
