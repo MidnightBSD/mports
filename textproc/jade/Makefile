@@ -2,7 +2,7 @@
 
 PORTNAME=	jade
 PORTVERSION=	1.2.1
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.jclark.com/pub/jade/ \
 		http://dist.bsdlab.org/
@@ -13,19 +13,19 @@ PATCHFILES=	jade_1.2.1-35.diff.gz
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An object-oriented SGML/XML parser toolkit and DSSSL engine
+COMMENT=	Object-oriented SGML/XML parser toolkit and DSSSL engine
+
 LICENSE=	mit
 
 CONFLICTS=	sp-1.*
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
-USE_GMAKE=	yes
+USES=		desthack libtool gmake
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
-USE_GCC=	any
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog
+CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
+		--enable-shared --enable-static
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
 MAKE_JOBS_UNSAFE=	yes
