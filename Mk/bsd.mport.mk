@@ -1720,14 +1720,36 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 .endif
 
 .for target in check-sanity fetch checksum extract patch configure all build fake install reinstall package
-.if !target(${target})
-${target}:
-	@${IGNORECMD}
-.if defined(INSTALLS_DEPENDS)
-	@${FALSE}
+.if !target(${target}) && defined(_OPTIONS_OK)
+_PHONY_TARGETS+= ${target}
+${target}: ${${target:tu}_COOKIE}
+	echo foo
+.elif !target(${target})
+${target}: config-conditional
+	echo bar
+	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${UNIQUENAME:tu}=1 ${${target:tu}_COOKIE}
+.elif target(${target}) && defined(IGNORE)
 .endif
-.endif
-.endfor
+
+.if !exists(${${target:tu}_COOKIE})
+.  if defined(USE_SUBMAKE)
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
+	@cd ${.CURDIR} && \
+		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+.  else # !USE_SUBMAKE
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+.  endif # USE_SUBMAKE
+.else # exists(cookie)
+${${target:tu}_COOKIE}::
+	@if [ -e ${.TARGET} ]; then \
+		${DO_NADA}; \
+	else \
+		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
+	fi
+.endif # !exists(cookie)
+.endfor # foreach(targets)
 
 .endif
 
@@ -1857,6 +1879,16 @@ package:
 
 pre-everything::
 	@${DO_NADA}
+
+.if !target(do-autoreconf)
+do-autoreconf::
+	@${DO_NADA}
+.endif
+
+.if !target(patch-libtool)
+patch-libtool::
+	@${DO_NADA}
+.endif
 
 buildanyway-message:
 .if defined(TRYBROKEN) && defined(BROKEN)
@@ -2546,7 +2578,8 @@ _PATCH_SEQ=		ask-license patch-message check-license \
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	build-depends lib-depends misc-depends configure-message \
 				pre-configure pre-configure-script \
-				run-autotools do-configure post-configure post-configure-script
+				run-autotools do-autoreconf patch-libtool \
+				do-configure post-configure post-configure-script
 
 _BUILD_DEP=		configure
 _BUILD_SEQ=		build-message pre-build pre-build-script do-build \

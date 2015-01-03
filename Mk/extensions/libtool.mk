@@ -4,12 +4,9 @@
 #
 # Feature:	libtool
 # Usage:	USES=libtool or USES=libtool:args
-# Valid args:	keepla	Normally libtool libraries (*.la) are not installed.
-#			With this option they are.  This is needed as long
-#			as there are dependent ports with .la libraries that
-#			refer to .la libraries in this port.  As soon as all
-#			those dependent ports have some form of USES=libtool
-#			keepla can be removed.
+# Valid args:	keepla	Don't remove libtool libraries (*.la) from the stage
+#			directory.  Some ports need them at runtime (e.g. ports
+#			that call lt_dlopen from libltdl).
 #		build	Add a build dependency on devel/libtool.  This can
 #			be used when a port does not generate its own libtool
 #			script and relies on the system to provide one.
@@ -32,25 +29,13 @@ _INCLUDE_USES_LIBTOOL_POST_MK=	yes
 patch-libtool:
 	@${FIND} ${WRKDIR} \( -name configure -or -name ltconfig \)	\
 		-type f | while read i; do ${SED} -i.bak		\
-		-e '/dragonfly\*/!s/^ *freebsd\*[ )]/dragonfly* | &/'	\
+		-e '/midnightbsd\*/!s/^ *freebsd\*[ )]/midnightbsd* | &/'	\
 		-e '/gcc_dir=\\`/s/gcc /$$CC /'				\
 		-e '/gcc_ver=\\`/s/gcc /$$CC /'				\
 		-e '/link_all_deplibs[0-9A-Z_]*=/s/=unknown/=no/'	\
 		-e '/objformat=/s/echo aout/echo elf/'			\
 		-e "/freebsd-elf\\*)/,/;;/ {				\
-		    /deplibs_check_method=/s/=.*/=pass_all/; }"		\
-		$${i} && ${TOUCH} -mr $${i}.bak $${i}; done
-
-	@${FIND} ${WRKDIR} -type f -name ltmain.sh |			\
-		${XARGS} ${REINPLACE_CMD}				\
-		-e '/if.*linkmode.*prog.*mode.*!= relink/s/if.*;/if :;/'\
-		-e '/if.*linkmode.*prog.*mode.* = relink/s/||.*;/;/'	\
-		-e 's/|-p|-pg|/|-B*|-p|-pg|/'
-
-.if ! ${libtool_ARGS:Moldver}
-	@${FIND} ${WRKDIR} \( -name configure -or -name ltconfig \)	\
-		-type f | while read i; do ${SED} -i.bak		\
-		-e "/freebsd-elf\\*)/,/;;/ {				\
+		    /deplibs_check_method=/s/=.*/=pass_all/;		\
 		    /library_names_spec=.*\\.so/			\
 		    s/=.*/='\$$libname\$$release.so\$$versuffix		\
 			\$$libname\$$release.so\$$major \$$libname.so'	\
@@ -68,16 +53,20 @@ patch-libtool:
 		    s/darwin|linux|/darwin|freebsd-elf|linux|/'		\
 		-e '/freebsd-elf)/,+2 {					\
 		    /major=/s/=.*/=.$$(($$current - $$age))/;		\
-		    /versuffix=/s/=.*/="$$major.$$age.$$revision"/; }'
-.endif
+		    /versuffix=/s/=.*/="$$major.$$age.$$revision"/; }'	\
+		-e '/if.*linkmode.*prog.*mode.*!= relink/s/if.*;/if :;/'\
+		-e '/if.*prog.*linkmode.*relink !=.*mode/s/if.*;/if :;/'\
+		-e '/if.*linkmode.*prog.*mode.* = relink/s/||.*;/;/'	\
+		-e '/if.*prog.*linkmode.*relink = .*mode/s/||.*;/;/'	\
+		-e 's/|-p|-pg|/|-B*|-p|-pg|/'
 
 patch-lafiles:
-.if ${libtool_ARGS:Mkeepla} || ${libtool_ARGS:Moldver}
+.if ${libtool_ARGS:Mkeepla}
 	@${FIND} ${FAKE_DESTDIR} -type f -name '*.la' |			\
 		${XARGS} ${SED} -i '' -e "/dependency_libs=/s/=.*/=''/"
 .else
 	@${FIND} ${FAKE_DESTDIR} -type l -exec ${SH} -c			\
-		'case `${READLINK_CMD} -f "{}"` in			\
+		'case `${REALPATH} -q "{}"` in				\
 			*.la) ${ECHO_CMD} "{}" ;; esac' \; |		\
 		${XARGS} ${GREP} -l 'libtool library' | ${XARGS} ${RM}
 	@${FIND} ${FAKE_DESTDIR} -type f -name '*.la' |			\
