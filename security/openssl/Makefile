@@ -2,8 +2,8 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.1
-PORTREVISION=	3
-DISTVERSIONSUFFIX=	j
+PORTREVISION=	4
+DISTVERSIONSUFFIX=	k
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/%SUBDIR%/ \
 		ftp://ftp.openssl.org/%SUBDIR%/ \
