@@ -2,7 +2,7 @@
 
 PORTNAME=	ucl
 PORTVERSION=	1.03
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/ucl/download/
 
@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data compression library with low memory usage
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	DOCS
 
