@@ -6,16 +6,18 @@ CATEGORIES?=	misc
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt demonstration and example programs
+COMMENT=	Qt 4 demonstration and example applications
+
 LICENSE=	gpl3
 
+USES=		pkgconfig
+USE_GSTREAMER=	yes
 USE_QT4=	qmake_build moc_build rcc_build uic_build corelib designer \
 		gui network opengl sql svg qtestlib xml imageformats_run dbus \
 		script webkit phonon help assistant_run phonon-gst scripttools \
 		xmlpatterns multimedia
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
