@@ -2,7 +2,7 @@
 
 PORTNAME=	libmspack
 PORTVERSION=	0.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
