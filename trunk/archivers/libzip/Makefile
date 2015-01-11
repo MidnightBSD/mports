@@ -2,11 +2,12 @@
 
 PORTNAME=	libzip
 PORTVERSION=	0.11.2
+PORTREVISION=	1
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.nih.at/libzip/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A C library for reading, creating, and modifying zip archives
+COMMENT=	C library for reading, creating, and modifying zip archives
 
 LICENSE=	bsd3
 
