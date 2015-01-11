@@ -2,6 +2,7 @@
 
 PORTNAME=	rar
 PORTVERSION=	4.2.0
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
@@ -21,7 +22,7 @@ IA32_BINARY_PORT=	YES
 RESTRICTED=	only unmodified original package can be distributed
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/rar
-PLIST_FILES=	bin/rar lib/default.sfx etc/rarfiles.lst man/cat1/rar.1
+PLIST_FILES=	bin/rar lib/default.sfx etc/rarfiles.lst man/cat1/rar.1.gz
 PORTDOCS=	technote.txt license.txt whatsnew.txt order.htm \
 		readme.txt
 
