@@ -2,8 +2,9 @@ include/ogg/config_types.h
 include/ogg/ogg.h
 include/ogg/os_types.h
 lib/libogg.a
-lib/libogg.la
 lib/libogg.so
+lib/libogg.so.0
+lib/libogg.so.0.8.2
 lib/libogg.so.8
 libdata/pkgconfig/ogg.pc
 share/aclocal/ogg.m4
@@ -90,6 +91,3 @@ share/aclocal/ogg.m4
 %%PORTDOCS%%%%DOCSDIR%%/vorbisword2.png
 %%PORTDOCS%%%%DOCSDIR%%/white-ogg.png
 %%PORTDOCS%%%%DOCSDIR%%/white-xifish.png
-@dirrm include/ogg
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/libogg
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
