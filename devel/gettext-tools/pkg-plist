@@ -21,7 +21,8 @@ lib/libgettextlib-0.19.3.so
 lib/libgettextlib.so
 lib/libgettextpo.a
 lib/libgettextpo.so
-lib/libgettextpo.so.5
+lib/libgettextpo.so.0.5.2
+lib/libgettextpo.so.0
 lib/libgettextsrc-0.19.3.so
 lib/libgettextsrc.so
 lib/gettext/hostname
