@@ -26,7 +26,7 @@ BUILD_DEPENDS+=	${ICONV_CMD}:${PORTSDIR}/converters/libiconv
 .elif ${iconv_ARGS:Mpatch}
 PATCH_DEPENDS+=	${ICONV_CMD}:${PORTSDIR}/converters/libiconv
 .else
-LIB_DEPENDS+=	libiconv.so:${PORTSDIR}/converters/libiconv
+LIB_DEPENDS+=	iconv:${PORTSDIR}/converters/libiconv
 .endif
 
 .else
