@@ -1726,7 +1726,6 @@ ${target}: ${${target:tu}_COOKIE}
 	echo foo
 .elif !target(${target})
 ${target}: config-conditional
-	echo bar
 	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${UNIQUENAME:tu}=1 ${${target:tu}_COOKIE}
 .elif target(${target}) && defined(IGNORE)
 .endif
