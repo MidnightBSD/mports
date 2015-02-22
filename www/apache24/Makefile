@@ -2,7 +2,7 @@
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.12
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -14,7 +14,7 @@ COMMENT=	Version 2.4.x of Apache web server
 LICENSE=	apache2
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libapr-1.so:${PORTSDIR}/devel/apr \
+		libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libpcre.so:${PORTSDIR}/devel/pcre
 
 CONFLICTS=	apache-*-2.2.* apache22-*
