@@ -17,7 +17,7 @@ COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
-		apr-1:${PORTSDIR}/devel/apr \
+		apr-1:${PORTSDIR}/devel/apr1 \
 		pcre:${PORTSDIR}/devel/pcre
 
 
