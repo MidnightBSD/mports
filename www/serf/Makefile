@@ -2,6 +2,7 @@
 
 PORTNAME=	serf
 PORTVERSION=	1.3.8
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://serf.googlecode.com/svn/src_releases/
 
@@ -10,7 +11,7 @@ COMMENT=	Serf HTTP client library
 
 LICENSE=	apache2
 
-LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
+LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr1
 
 USE_SCONS=	yes
 USES=		tar:bzip2 cpe
