@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gettext-runtime
-PORTREVISION=	0
+PORTREVISION=	1
 
 COMMENT=	GNU gettext runtime libraries and programs
 
