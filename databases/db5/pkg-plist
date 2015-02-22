@@ -71,6 +71,7 @@ lib/db5/libdb-%%BDBVER%%.a
 lib/db5/libdb-%%BDBVER%%.la
 lib/db5/libdb-%%BDBVER%%.so
 lib/db5/libdb-%%BDBVER%%.so.0
+lib/db5/libdb-%%BDBVER%%.so.0.0.0
 lib/db5/libdb-%%BDBMAJ%%.so
 lib/db5/libdb.a
 lib/db5/libdb.so
