@@ -217,6 +217,8 @@ pre-configure:
 		${FALSE} ; \
 	fi		
 .endif
+# this is required for msgfmt to work
+	@${REINPLACE_CMD} -e 's/UTF-8\\n/UTF-8/gI' ${WRKSRC}/subversion/po/*.po
 
 # takes a long time, and will fail but gives maintainer a good oversight
 .if ${PORT_OPTIONS:MTEST}
