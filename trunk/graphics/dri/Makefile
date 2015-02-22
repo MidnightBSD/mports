@@ -2,7 +2,7 @@
 
 PORTNAME=	dri
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	2
 CATEGORIES=	graphics
 
@@ -12,7 +12,7 @@ LICENSE=	mit
 LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm \
 		libexpat.so:${PORTSDIR}/textproc/expat2
 
-USES+=		gettext:build pkgconfig
+USES+=		pkgconfig
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
 
 .include <bsd.mport.options.mk>
@@ -41,12 +41,12 @@ ALL_DRI_DRIVERS+=I810 MACH64 MGA R128 R300 R600 SAVAGE SIS TDFX UNICHROME
 
 PLIST_SUB+=	VERSION=${MESADISTVERSION}
 
-.if ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == ia64
+.if ${ARCH} == amd64 || ${ARCH} == i386
 DRI_DRIVERS=	${ALL_DRI_DRIVERS}
 .endif
 
 .if defined(WITH_NEW_XORG)
-. if !defined(WITHOUT_GALLIUM) && (${ARCH} == i386 || ${ARCH} == amd64)
+. if !defined(WITHOUT_GALLIUM)
 BUILD_DEPENDS+=	llvm-config33:${PORTSDIR}/devel/llvm33
 CONFIGURE_ENV+=	LLVM_CONFIG=${LOCALBASE}/bin/llvm-config33
 
@@ -63,12 +63,6 @@ DRI_DRIVERS=	RADEON SWRAST
 . endif
 . if ${ARCH} == sparc64 || ${ARCH} == armv6
 DRI_DRIVERS=	SWRAST
-. endif
-.else # !defined(WITH_NEW_XORG)
-. if ${ARCH} == powerpc || ${ARCH} == powerpc64
-DRI_DRIVERS=	MACH64 RADEON SWRAST TDFX
-. elif ${ARCH} == sparc64
-DRI_DRIVERS=	MACH64 RADEON SWRAST
 . endif
 .endif # defined(WITH_NEW_XORG)
 
