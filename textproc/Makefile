@@ -15,7 +15,6 @@ SUBDIR += diffutils
 SUBDIR += docbook
 SUBDIR += docbook-241
 SUBDIR += docbook-300
-SUBDIR += docbook-310
 SUBDIR += docbook-400
 SUBDIR += docbook-410
 SUBDIR += docbook-420
