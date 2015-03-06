@@ -2,7 +2,7 @@
 
 PORTNAME=	recode
 PORTVERSION=	3.6
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	converters
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ GH_TAGNAME=	v3.6
 GH_COMMIT=	2127b34
 
 GNU_CONFIGURE=	yes
-USES=		gettext iconv libtool:keepla
+USES=		gettext iconv libtool
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-included-gettext
@@ -39,8 +39,5 @@ post-patch:
 	@${REINPLACE_CMD} 's,"iconv\.h","${ICONV_PREFIX}/include/iconv.h",' \
 		${WRKSRC}/src/libiconv.c
 	@${CP} ${WRKSRC}/lib/error.c ${WRKSRC}/src
-
-post-install:
-	cd ${PREFIX}/lib && ln -s librecode.so.3.6 librecode.so
 
 .include <bsd.port.mk>
