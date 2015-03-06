@@ -2,7 +2,7 @@
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nic.ad.jp/ja/idn/idnkit/download/sources/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -13,7 +13,7 @@ COMMENT=	Library to handle internationalized domain names
 LICENSE=	other
 #bsd 4 ish
 
-USES=		iconv libtool:keepla
+USES=		iconv libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
 		--enable-runidn \
