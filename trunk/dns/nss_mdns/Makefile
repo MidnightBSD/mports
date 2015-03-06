@@ -12,7 +12,7 @@ COMMENT=	NSS module implementing multicast DNS name resolution
 
 LICENSE=	lgpl2
 
-USE_AUTOTOOLS=	autoconf automake libtool
+USES=	autoconf automake libtool
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 AUTOTOOLSFILES=	aclocal.m4
