@@ -44,7 +44,6 @@ OPTIONS_SUB=	yes
 CLI_DESC=	Build CLI version
 CGI_DESC=	Build CGI version
 FPM_DESC=	Build FPM version
-FPM_IPV6_DESC=	Enable ipv6 patch for FPM
 EMBED_DESC=	Build embedded library
 DEBUG_DESC=	Enable debug
 DTRACE_DESC=	Enable DTrace support
