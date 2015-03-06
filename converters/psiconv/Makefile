@@ -11,7 +11,7 @@ COMMENT=	A conversion utility to convert Psion 5(MX) files into other formats
 
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool
+USES=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
