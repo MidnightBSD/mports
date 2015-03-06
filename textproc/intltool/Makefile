@@ -2,6 +2,7 @@
 
 PORTNAME=	intltool
 PORTVERSION=	0.50.2
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://launchpadlibrarian.net/94524169/
 DIST_SUBDIR=	gnome
