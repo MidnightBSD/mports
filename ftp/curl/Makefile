@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.38.0
+PORTVERSION=	7.40.0
 CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -33,9 +33,9 @@ CONFIGURE_ARGS+=--disable-werror \
 		--without-axtls
 CONFIGURE_ENV+=	LOCALBASE=${LOCALBASE}
 GNU_CONFIGURE=	yes
-MAKE_ENV+=	INSTALL_STRIP_FLAG=${STRIP}
+INSTALL_TARGET=	install-strip
 USE_PERL5=	build
-USES=		libtool:oldver pathfix perl5 tar:lzma
+USES=		libtool pathfix perl5 tar:lzma
 
 .if !defined(BUILDING_HIPHOP)
 USE_LDCONFIG=	yes
@@ -163,9 +163,11 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = / s|$$| docs|; /^DIST_SUBDIRS = / s| docs||; /cd docs &&/d' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|\(flags_dbg_off=\)".*"|\1""|; s|\(flags_opt_off=\)".*"|\1""|; s|lib/pkgconfig|libdata/pkgconfig|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|include <gssapi.h>|include <gssapi/gssapi.h>|' ${WRKSRC}/lib/curl_gssapi.h ${WRKSRC}/lib/urldata.h
+	@${REINPLACE_CMD} -e 's|gss_nt_service_name|GSS_C_NT_HOSTBASED_SERVICE|' ${WRKSRC}/lib/curl_sasl_gssapi.c
 
 post-install:
 .if !defined(BUILDING_HIPHOP)
+	${LN} -s libcurl.so.4 ${STAGEDIR}${PREFIX}/lib/libcurl.so.7
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${DOCSDIR}/libcurl/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
@@ -174,7 +176,7 @@ post-install:
 	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${STAGEDIR}${EXAMPLESDIR}/
 .endif
 
-x-regression-test test: build
+regression-test test: build
 .if !${PORT_OPTIONS:MPROXY}
 	@${ECHO_MSG} "******************************************"
 	@${ECHO_MSG} "* You have disabled curl proxy support.  *"
