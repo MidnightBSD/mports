@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libffi
-PORTVERSION=	3.0.13
-PORTREVISION=	2
+PORTVERSION=	3.2.1
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -11,32 +10,32 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign Function Interface
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
 
-USES=		libtool pathfix pkgconfig
+USES=		libtool pathfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
 OPTIONS_DEFINE=	TESTS
-TESTS_DESC=	Include tools for test suite
 
-.include <bsd.mport.options.mk>
+TESTS_DESC=		Include tools for test suite
+TESTS_BUILD_DEPENDS=	${TEST_DEPENDS}
 
-.if ${PORT_OPTIONS:MTESTS}
-BUILD_DEPENDS:=	${TEST_DEPENDS}
-.endif
-
-GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-PLIST_SUB=	PORTVERSION=${PORTVERSION}
 INFO=		libffi
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's| -Wno-psabi||g' \
+		${WRKSRC}/testsuite/lib/libffi.exp
 
 post-install:
 	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffi.h ${PREFIX}/include/
 	@${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffitarget.h ${PREFIX}/include/
 
 regression-test: build
-	@cd ${WRKSRC} && ${MAKE} check
+	@(cd ${WRKSRC} && ${MAKE_CMD} check)
 
 .include <bsd.port.mk>
