@@ -2,7 +2,7 @@
 
 PORTNAME?=	mysql
 PORTVERSION=	5.1.73
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
@@ -14,8 +14,9 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
-USES=	libtool
-USE_GMAKE=	yes
+
+GNU_CONFIGURE=	yes
+USES+=		libtool makeinfo
 CONFIGURE_TARGET=${MACHINE_ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-debug \
@@ -24,7 +25,9 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-low-memory \
 		--with-comment='MidnightBSD port: ${PKGNAME}' \
+		--with-named-thread-libs=-pthread \
 		--enable-thread-safe-client
+CONFIGURE_ENV=	mysql_cv_btype_last_arg_accept=socklen_t
 
 .ifdef USE_MYSQL
 .error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
@@ -61,22 +64,14 @@ CONFIGURE_ARGS+=--with-plugins=max-no-ndb
 .if defined(WITH_COLLATION) && ${WITH_COLLATION} != ""
 CONFIGURE_ARGS+=--with-collation=${WITH_COLLATION}
 .endif
+.if defined(CLIENT_ONLY)
+USES+=		readline
+.endif
 
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
 CONFIGURE_ARGS+=--enable-assembler
-.endif
-.if defined(WITH_LINUXTHREADS)
-CONFIGURE_ARGS+=--with-named-thread-libs='-DHAVE_GLIBC2_STYLE_GETHOSTBYNAME_R
-CONFIGURE_ARGS+=-D_THREAD_SAFE -I${LOCALBASE}/include/pthread/linuxthreads
-CFLAGS+=	-D__USE_UNIX98 -D_REENTRANT -D_THREAD_SAFE
-CFLAGS+=	-I${LOCALBASE}/include/pthread/linuxthreads
-LIB_DEPENDS+=	lthread.[35]:${PORTSDIR}/devel/linuxthreads
-CONFIGURE_ARGS+=-L${LOCALBASE}/lib -llthread -llgcc_r -llstdc++ -llsupc++'
-.else
-CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
-CFLAGS+=	${PTHREAD_CFLAGS}
 .endif
 
 .if defined(BUILD_OPTIMIZED)
@@ -95,7 +90,7 @@ LATEST_LINK=	mysql51-server
 
 CONFLICTS=	mysql-server-[34].* mysql-server-5.[02-9].*
 
-USE_RC_SUBR=	mysql-server.sh
+USE_RC_SUBR=	mysql-server
 
 USERS=		mysql
 GROUPS=		mysql
