@@ -11,6 +11,7 @@ bin/srptool
 include/gnutls/abstract.h
 include/gnutls/compat.h
 include/gnutls/crypto.h
+%%LIBDANE%%include/gnutls/dane.h
 include/gnutls/dtls.h
 include/gnutls/gnutls.h
 include/gnutls/gnutlsxx.h
@@ -39,17 +40,23 @@ info/pkcs11-vision.png
 lib/libgnutls-openssl.a
 lib/libgnutls-openssl.so
 lib/libgnutls-openssl.so.27
+lib/libgnutls-openssl.so.27.0.2
 lib/libgnutls-xssl.a
 lib/libgnutls-xssl.so
 lib/libgnutls-xssl.so.0
+lib/libgnutls-xssl.so.0.0.0
 lib/libgnutls.a
 lib/libgnutls.so
-lib/libgnutls.so.58
+lib/libgnutls.so.28
+lib/libgnutls.so.28.30.12
 lib/libgnutlsxx.a
 lib/libgnutlsxx.so
-lib/libgnutlsxx.so.29
+lib/libgnutlsxx.so.28
+lib/libgnutlsxx.so.28.1.0
 libdata/pkgconfig/gnutls.pc
+%%LIBDANE%%libdata/pkgconfig/gnutls-dane.pc
 man/man1/certtool.1.gz
+%%LIBDANE%%man/man1/danetool.1.gz
 man/man1/gnutls-cli-debug.1.gz
 man/man1/gnutls-cli.1.gz
 man/man1/gnutls-serv.1.gz
@@ -975,5 +982,3 @@ man/man3/xssl_write.3.gz
 %%NLS%%share/locale/uk/LC_MESSAGES/gnutls.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/gnutls.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/gnutls.mo
-@dirrm include/gnutls
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
