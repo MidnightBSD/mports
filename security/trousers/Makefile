@@ -2,7 +2,7 @@
 
 PORTNAME=	trousers
 PORTVERSION=	0.3.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -14,7 +14,7 @@ LICENSE_NAME=	Common Public License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		gmake iconv libtool pkgconfig
+USES=		alias gmake iconv libtool pkgconfig
 USE_OPENSSL=	YES
 USE_LDCONFIG=	YES
 USE_AUTOTOOLS= 	libtoolize aclocal autoconf automake
@@ -24,7 +24,10 @@ INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=	--with-gui=none --enable-static \
 		--localstatedir=${PREFIX}/var \
-		--with-tssuser=${USERS} --with-tssgroup=${GROUPS} RANLIB=:
+		--with-tssuser=${USERS} \
+		--with-tssgroup=${GROUPS} \
+		--with-openssl=${OPENSSLBASE} \
+		RANLIB=:
 MAKE_ENV=	ICONV_LIB=${ICONV_LIB} \
 		ICONV_PREFIX=${ICONV_PREFIX}
 SUB_FILES=	pkg-message
