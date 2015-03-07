@@ -2,7 +2,7 @@
 
 PORTNAME=	libgd
 PORTVERSION=	2.1.0
-PORTREVISION?=	4
+PORTREVISION?=	5
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	https://bitbucket.org/libgd/gd-libgd/downloads/ \
@@ -15,7 +15,7 @@ LICENSE=	agg
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	bazaar-1.*
