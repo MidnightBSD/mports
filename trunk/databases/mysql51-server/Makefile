@@ -2,7 +2,7 @@
 
 PORTNAME?=	mysql
 PORTVERSION=	5.1.73
-PORTREVISION=	2
+PORTREVISION?=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
@@ -86,8 +86,6 @@ CXXFLAGS+=	-fno-exceptions
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	51
 
-LATEST_LINK=	mysql51-server
-
 CONFLICTS=	mysql-server-[34].* mysql-server-5.[02-9].*
 
 USE_RC_SUBR=	mysql-server
@@ -130,7 +128,6 @@ pre-fetch:
 	@${ECHO} "	WITH_COLLATION=collate	Define default collation (latin1_swedish_ci)."
 	@${ECHO} "	WITH_OPENSSL=yes	Enable secure connections"
 	@${ECHO} "				(define WITHOUT_YASSL for backward compatibility)."
-	@${ECHO} "	WITH_LINUXTHREADS=yes	Use the linuxthreads pthread library."
 	@${ECHO} "	WITH_PROC_SCOPE_PTH=yes	Use process scope threads"
 	@${ECHO} "				(try it if you use libpthread)."
 	@${ECHO} "	WITH_FAST_MUTEXES=yes	Replace mutexes with spinlocks."
@@ -163,8 +160,6 @@ post-install:
 .else
 # MySQL-Client part
 .if defined(CLIENT_ONLY)
-LATEST_LINK=	mysql51-client
-
 CONFLICTS=	mysql-client-[34].* mysql-client-5.[02-9].*
 
 MAN1=		mysql_config.1 mysql_upgrade.1 mysql.1 mysqladmin.1 \
@@ -193,8 +188,6 @@ WANT_MYSQL_VER=	51
 USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql51
-
-LATEST_LINK=	mysql51-scripts
 
 CONFLICTS=	mysql-scripts-4.* mysql-scripts-5.0.* mysql-scripts-6.*
 
