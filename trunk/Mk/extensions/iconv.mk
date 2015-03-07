@@ -11,8 +11,6 @@
 .if !defined(_INCLUDE_USES_ICONV_MK)
 _INCLUDE_USES_ICONV_MK=	yes
 
-iconv_ARGS:=	${iconv_ARGS:S/,/ /g}
-
 .if ${iconv_ARGS:Mwchar_t} || ${iconv_ARGS:Mtranslit} || ${OSVERSION} < 6009 || defined(PACKAGE_BUILDING) || !exists(/usr/include/iconv.h)
 
 ICONV_CMD=	${LOCALBASE}/bin/iconv
@@ -26,7 +24,7 @@ BUILD_DEPENDS+=	${ICONV_CMD}:${PORTSDIR}/converters/libiconv
 .elif ${iconv_ARGS:Mpatch}
 PATCH_DEPENDS+=	${ICONV_CMD}:${PORTSDIR}/converters/libiconv
 .else
-LIB_DEPENDS+=	iconv:${PORTSDIR}/converters/libiconv
+LIB_DEPENDS+=	libiconv.so:${PORTSDIR}/converters/libiconv
 .endif
 
 .else
