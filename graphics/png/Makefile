@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	png
-PORTVERSION=	1.5.18
-PORTREVISION=	1
+PORTVERSION=	1.6.16
+PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	http://sourceforge.net/projects/libpng/files/libpng15/1.5.18/libpng-1.5.18.tar.xz/download
+MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${PORTVERSION}
+PATCH_SITES=	SF/apng/lib${PORTNAME}/lib${PORTNAME}16/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 FAKE_OPTS=	trueprefix
 
@@ -15,12 +15,12 @@ COMMENT=	Library for manipulating PNG images
 
 LICENSE=	other
 
-USES=		tar:xz cmake
+USES=		cmake cpe tar:xz
+CPE_PRODUCT=	libpng
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS+=	-DPNG_MAN_DIR:STRING=man
-SOSUFFIX=	.${PORTVERSION:E}
 
 OPTIONS_DEFINE=APNG PNGTEST
 OPTIONS_DEFAULT=APNG PNGTEST
@@ -29,25 +29,12 @@ PNGTEST_DESC=Enable Regression Test (recommended)
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MAPNG} || make(makesum) || defined(FETCH_ALL)
-MASTER_SITES+=	SF/apng/libpng/libpng15/:apng
-DISTFILES+=	${DISTNAME}-apng.patch.gz:apng
-EXTRACT_ONLY+=	${DISTNAME}${EXTRACT_SUFX}
-.endif
-.if ${PORT_OPTIONS:MAPNG}
-EXTRA_PATCHES+=	${WRKSRC}/${DISTNAME}-apng.unix
-.endif
-
-post-extract:
-.if ${PORT_OPTIONS:MAPNG}
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}-apng.patch.gz ${WRKSRC}/
-	${GZIP_CMD} -d ${WRKSRC}/${DISTNAME}-apng.patch.gz
-	${TR} -d '\r' < ${WRKSRC}/${DISTNAME}-apng.patch > ${WRKSRC}/${DISTNAME}-apng.unix
+.if ${PORT_OPTIONS:MAPNG} || make(makesum)
+PATCHFILES=	${DISTNAME}-apng.patch.gz
 .endif
 
 post-patch:
 	${REINPLACE_CMD} \
-		-e 's|RELEASE}.0|RELEASE}|' \
 		-e 's|LIBDIR}/pkgconfig|LIBDIR}data/pkgconfig|' \
 		${WRKSRC}/CMakeLists.txt
 
@@ -61,19 +48,5 @@ post-build:
         ${FALSE}; \
         fi)
 .endif
-
-pre-install:
-	@${MKDIR} ${PREFIX}/include/libpng
-	@${MKDIR} ${PREFIX}/libdata/pkgconfig
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/pngdebug.h ${WRKSRC}/pnginfo.h \
-		${WRKSRC}/pngpriv.h ${WRKSRC}/pngstruct.h \
-		${PREFIX}/include/libpng15/
-	-${RMDIR} ${PREFIX}/include/libpng
-	${RM} ${PREFIX}/libdata/pkgconfig/libpng.pc
-	${LN} -sf libpng15.pc ${PREFIX}/libdata/pkgconfig/libpng.pc
-	${RM} ${PREFIX}/lib/libpng15.so.15
-	${MV} ${PREFIX}/lib/libpng15.so.15${SOSUFFIX} ${PREFIX}/lib/libpng15.so.15
 
 .include <bsd.port.mk>
