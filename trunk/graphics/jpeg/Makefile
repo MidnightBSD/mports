@@ -2,7 +2,7 @@
 
 PORTNAME=	jpeg
 PORTVERSION=	8
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		http://sylvana.net/jpegcrop/:exif
@@ -21,7 +21,7 @@ CONFLICTS=	libjpeg-turbo-[0-9]*
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
 DISTVERSION2=	8d
-USES=		libtool:oldver
+USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
