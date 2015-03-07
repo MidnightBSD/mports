@@ -120,7 +120,7 @@ RUN_DEPENDS+=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/${_MYSQL_SERVER}
 BUILD_DEPENDS+=	${LOCALBASE}/lib/mysql/libmysqld.a:${PORTSDIR}/${_MYSQL_SERVER}
 .endif
 .else
-LIB_DEPENDS+=	mysqlclient.${MYSQL${MYSQL_VER}_LIBVER}:${PORTSDIR}/${_MYSQL_CLIENT}
+LIB_DEPENDS+=	libmysqlclient.so.${MYSQL${MYSQL_VER}_LIBVER}:${PORTSDIR}/${_MYSQL_CLIENT}
 .endif
 .else
 IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
