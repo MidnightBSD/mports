@@ -1,17 +1,13 @@
 bin/gpgme-config
+bin/gpgme-tool
 include/gpgme/gpgme.h
 lib/common-lisp/gpgme/gpgme-package.lisp
 lib/common-lisp/gpgme/gpgme.asd
 lib/common-lisp/gpgme/gpgme.lisp
-lib/libgpgme-pthread.a
-lib/libgpgme-pthread.la
 lib/libgpgme-pthread.so
-lib/libgpgme-pthread.so.19
-lib/libgpgme.a
-lib/libgpgme.la
+lib/libgpgme-pthread.so.11
+lib/libgpgme-pthread.so.11.13.2
 lib/libgpgme.so
-lib/libgpgme.so.19
+lib/libgpgme.so.11
+lib/libgpgme.so.11.13.2
 share/aclocal/gpgme.m4
-@dirrm lib/common-lisp/gpgme
-@dirrmtry lib/common-lisp
-@dirrm include/gpgme
