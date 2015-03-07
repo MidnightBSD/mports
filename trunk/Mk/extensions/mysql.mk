@@ -31,11 +31,15 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				- Detected MySQL version.
 ##
 
+.include "${PORTSDIR}/Mk/components/default-versions.mk"
+
+.if defined(DEFAULT_MYSQL_VER)
+WARNING+=	"DEFAULT_MYSQL_VER is defined, consider using DEFAULT_VERSIONS=mysql=${DEFAULT_MYSQL_VER} instead"
+.endif
+
 .if defined(USE_MYSQL)
-DEFAULT_MYSQL_VER?=	55
+DEFAULT_MYSQL_VER?=	${MYSQL_DEFAULT:S/.//}
 # MySQL client version currently supported.
-MYSQL41_LIBVER=		14
-MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		16
 MYSQL53m_LIBVER=	16
 MYSQL55_LIBVER=		18
