@@ -10,7 +10,7 @@ MASTERDIR=	${.CURDIR}/../mysql51-server
 
 PKGINSTALL=	mustnotexist
 PKGMESSAGE=	mustnotexist
-PLIST=		${PKGDIR}/pkg-plist.client
+PLIST=		${.CURDIR}/pkg-plist
 
 CLIENT_ONLY=	yes
 
