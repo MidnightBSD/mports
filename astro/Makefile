@@ -2,8 +2,8 @@
 
 COMMENT = Astronomical ports
 
-SUBDIR += boinc-milkyway
-SUBDIR += boinc-setiathome-enhanced
+SUBDIR += boinc-astropulse
+SUBDIR += boinc-setiathome-v7
 SUBDIR += google-earth
 SUBDIR += gpsd
 SUBDIR += libnova
