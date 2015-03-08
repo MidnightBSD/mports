@@ -6,7 +6,7 @@ Licenses_Include_MAINTAINER=         ports@MidnightBSD.org
 
 # Meta ports set these and we currently don't install the files if this is there
 # TODO: make license catalog always install
-.if defined(NO_BUILD) || defined(NO_INSTALL)
+.if defined(NO_INSTALL)
 NO_LICENSES_INSTALL=yes
 .endif
 
