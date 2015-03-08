@@ -590,6 +590,11 @@ ${_LICENSE_COOKIE}:
 	@${RM} -f ${_LICENSE_ASK_DATA}
 .endif
 
+# Meta ports set these and we currently don't install the files if this is there# TODO: make license catalog always install
+.if defined(NO_BUILD) || defined(NO_INSTALL)
+NO_LICENSES_INSTALL=yes
+.endif
+
 # Create report and catalog
 .if !defined(NO_LICENSES_INSTALL)
 	@${RM} -f ${_LICENSE_CATALOG_TMP} ${_LICENSE_REPORT_TMP}
