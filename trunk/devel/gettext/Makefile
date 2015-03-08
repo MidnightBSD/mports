@@ -6,6 +6,8 @@ DISTFILES=
 
 COMMENT=	GNU gettext meta package
 
+LICENSE=	gpl3
+
 .include "${.CURDIR}/../gettext/Makefile.common"
 
 USES=		gettext-runtime:run gettext-tools:run
