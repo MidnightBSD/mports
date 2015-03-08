@@ -2,6 +2,7 @@
 
 PORTNAME=	gtar
 PORTVERSION=	1.28
+PORTREVISION=	1
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	tar
@@ -19,45 +20,39 @@ WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
 
 INFO=		tar
 
-USE_AUTOTOOLS=	autoconf:env	# autom4te
-USES=		iconv:${STATIC_ARGS} tar:xz charsetfix makeinfo
+USES=		charsetfix cpe iconv:${STATIC_ARGS} makeinfo tar:xz
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--disable-silent-rules
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${LDSTATIC}
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	DEFAULT_ARCHIVE=/dev/sa0 \
 		DEFAULT_RMT_COMMAND=/etc/rmt
+# supply result to skip a test that will abort configure if run as root
+CONFIGURE_ENV+=	gl_cv_func_mknod_works=yes
 
-OPTIONS_DEFINE=	STATIC
+OPTIONS_DEFINE=	NLS STATIC
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext-runtime:${STATIC_ARGS}
+NLS_CONFIGURE_ENABLE=	nls
+
+STATIC_LDFLAGS=	-static
+STATIC_CONFIGURE_ENV=	SHLIBEXT=""
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSTATIC}
-LDSTATIC=	-static
-MAKE_ARGS+=	LIBINTL='$$(LTLIBINTL)' LIBICONV='$$(LTLIBICONV)'
+STATIC_ARGS=	build
 .else
-LDSTATIC=
+STATIC_ARGS=	lib
 .endif
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+# Tests 161 163 are known to fail because path resolution of ".."
+# in a removed directory fails.
 
 regression-test: build
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
-.include <bsd.port.pre.mk>
-
-# supply result to skip a test that will abort configure if run as root
-.if ${OSVERSION} < 4016
-CONFIGURE_ENV+=	gl_cv_func_mknod_works=no
-.else
-CONFIGURE_ENV+=	gl_cv_func_mknod_works=yes
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
