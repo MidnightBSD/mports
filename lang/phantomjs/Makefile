@@ -1,0 +1,32 @@
+# $MidnightBSD$
+
+PORTNAME=	phantomjs
+PORTVERSION=	1.9.8
+CATEGORIES=	lang
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
+		https://bitbucket.org/ariya/phantomjs/downloads/
+MASTER_SITE_SUBDIR=	kuriyama
+DISTNAME=	${PORTNAME}-${PORTVERSION}-source
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Minimalistic, headless, WebKit-based, JavaScript-driven tool
+
+LICENSE=	bsd3
+
+BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+
+PROJECTHOST=	phantomjs
+USES=		gmake dos2unix pkgconfig zip
+USE_GCC=	any
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+PLIST_FILES=	bin/phantomjs
+
+do-build:
+	cd ${WRKSRC} && ${SETENV} CC=${CC} CXX=${CXX} OSTYPE=freebsd MAKEFLAGS= PATH=${PATH} bash -x build.sh --jobs ${MAKE_JOBS_NUMBER} --confirm
+
+do-install:
+	cd ${WRKSRC} && ${INSTALL_PROGRAM} bin/phantomjs ${STAGEDIR}${PREFIX}/bin/
+
+.include <bsd.port.mk>
