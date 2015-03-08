@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-PORTVERSION=	2.2.1
+PORTVERSION=	2.3.1
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG
 MASTER_SITE_SUBDIR=	software/scm/git
@@ -26,7 +26,7 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 
 GNU_CONFIGURE=	yes
 USES=		gmake shebangfix tar:xz
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV+=	V=1 XMLTO_EXTRA=--skip-validation 
 USE_OPENSSL=	yes
