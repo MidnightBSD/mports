@@ -66,9 +66,6 @@ PREFIX?=	${LOCALBASE_REL}
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX} 
 
-# make sure bmake treats -V as expected
-.MAKE.EXPAND_VARIABLES= yes
-
 .include "${MPORTCOMPONENTS}/commands.mk"
 
 .if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
