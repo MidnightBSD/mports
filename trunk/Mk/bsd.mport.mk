@@ -55,6 +55,8 @@ TARGETDIR:=		${DESTDIR}${PREFIX}
 MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 
+.include "${MPORTCOMPONENTS}/commands.mk"
+
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
 .if defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
@@ -65,8 +67,6 @@ PREFIX?=	${LOCALBASE_REL}
 
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX} 
-
-.include "${MPORTCOMPONENTS}/commands.mk"
 
 .if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
 	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
