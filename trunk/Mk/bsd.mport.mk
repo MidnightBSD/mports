@@ -140,10 +140,10 @@ ARCH!=	${UNAME} -p
 OPSYS!=	${UNAME} -s
 .endif
 
+UNAMER!=${UNAME} -r
+
 # Get the operating system revision
-.if !defined(OSREL)
-OSREL!=	${UNAME} -r | ${SED} -e 's/[-(].*//'
-.endif
+OSREL?=	${UNAMER:C/-.*//}
 
 # Get __MidnightBSD_version
 .if !defined(OSVERSION)
@@ -290,10 +290,10 @@ PORTEPOCH?=		0
 _SUF2=	,${PORTEPOCH}
 .endif
 
-PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
-PKGBASE?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
+PKGBASE=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGSUBNAME=	${PKGBASE}
-PKGNAME?=	${PKGBASE}-${PKGVERSION}
+PKGNAME=	${PKGBASE}-${PKGVERSION}
 DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 
@@ -339,7 +339,7 @@ _LOAD_GSTREAMER_EXT=	yes
 _LOAD_${EXT:tu}_EXT=	yes
 .endfor
 
-# This is the order that we used before the extensions where refactored. 
+# This is the order that we used before the extensions were refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
@@ -2666,7 +2666,7 @@ ${${target:tu}_COOKIE}::
 	@if [ -e ${.TARGET} ]; then \
 		${DO_NADA}; \
 	else \
-		cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${.TARGET}; \
+		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
 	fi
 .endif
 
