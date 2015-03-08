@@ -35,7 +35,6 @@ LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
 DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 INDEXDIR?=		${PORTSDIR}
-INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 SRC_BASE?=		/usr/src
 SCRIPTSDIR?=		${PORTSDIR}/Mk/scripts
 LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
@@ -269,9 +268,9 @@ STRIP=	#none
 _PREMKINCLUDED= yes
 
 .if defined(PORTVERSION)
-.	if ${PORTVERSION:M*[-_,]*}x != x
+.if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
-.	endif
+.endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
 .elif defined(DISTVERSION)
 PORTVERSION=	${DISTVERSION:tl:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
@@ -293,7 +292,7 @@ PKGSUBNAME=	${PKGBASE}
 PKGNAME=	${PKGBASE}-${PKGVERSION}
 DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
-
+INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 PKGCOMPATDIR?=	${LOCALBASE}/lib/compat/pkg
 
@@ -4080,26 +4079,29 @@ desktop-categories:
 			editors)		c="Utility"						;; \
 			emulators)		c="System Emulator"					;; \
 			finance)		c="Office Finance"				;; \
-			ftp)			c="FileTransfer Network"		;; \
+			ftp)			c="Network FileTransfer"		;; \
 			games)			c="Game"						;; \
+			geography)		c="Education Science Geography"	;; \
 			gnome)			c="GNOME GTK"					;; \
 			graphics)		c="Graphics"					;; \
 			hamradio)		c="HamRadio"					;; \
 			haskell)		c="Development"					;; \
 			ipv6)			c="Network"						;; \
 			irc)			c="Network IRCClient"			;; \
-			java)			c="Java Development"			;; \
+			java)			c="Development Java"			;; \
+			kde)			c="KDE Qt"						;; \
 			lang)			c="Development"					;; \
 			lisp)			c="Development"					;; \
 			lua)			c="Development"				;; \
 			mail)			c="Office Email"		;; \
+			math)			c="Education Science Math"		;; \
 			multimedia)		c="AudioVideo"					;; \
 			net)			c="Network"						;; \
 			net-im)			c="Network InstantMessaging"	;; \
 			net-mgmt)		c="Network"						;; \
 			net-p2p)		c="Network P2P"					;; \
 			news)			c="News"						;; \
-			pear)			c="WebDevelopment Development"	;; \
+			pear)			c="Development WebDevelopment"	;; \
 			perl5)			c="Development"					;; \
 			python)			c="Development"					;; \
 			ruby)			c="Development"					;; \
@@ -4111,10 +4113,10 @@ desktop-categories:
 			sysutils)		c="System Utility"				;; \
 			tcl*|tk*)		c="Development"					;; \
 			www)			c="Network"						;; \
-			x11-clocks)		c="Clock Utility"				;; \
+			x11-clocks)		c="Utility Clock"				;; \
 			x11-fm)			c="FileManager"					;; \
 			xfce)			c="GTK XFCE"							;; \
-			zope)			c="WebDevelopment Development"	;; \
+			zope)			c="Development WebDevelopment"	;; \
 		esac; \
 		if [ -n "$$c" ]; then \
 			categories="$$categories $$c"; \
