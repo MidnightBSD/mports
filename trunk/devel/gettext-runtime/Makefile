@@ -37,8 +37,8 @@ post-patch:
 		-e '/^installdirs-local:/s/installdirs-html//' \
 		${WRKSRC}/libasprintf/Makefile.in ${WRKSRC}/man/Makefile.in
 
-#post-install:
-#	${LN} -s libintl.so.8 ${STAGEDIR}${PREFIX}/lib/libintl.so.9
+post-install:
+	${LN} -s libintl.so.8 ${STAGEDIR}${PREFIX}/lib/libintl.so.9
 
 regression-test: build
 	@(cd ${WRKSRC} && ${MAKE_CMD} check)
