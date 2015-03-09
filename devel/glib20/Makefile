@@ -20,10 +20,9 @@ LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libffi.so:${PORTSDIR}/devel/libffi
 
 GNU_CONFIGURE=	yes
-USES+=		gettext gmake iconv:wchar_t libtool pathfix pkgconfig shebangfix
+USES+=		gettext gmake iconv:wchar_t libtool pathfix python pkgconfig shebangfix
+USE_PYTHON=	py3kplist
 USE_LDCONFIG=	yes
-USE_PYTHON=	yes
-PYTHON_PY3K_PLIST_HACK=	yes
 USE_PERL5=	yes
 CONFIGURE_ARGS= --disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
@@ -38,7 +37,7 @@ INSTALL_TARGET=	install-strip
 
 SHEBANG_FILES=	*/*.pl
 
-LIBVERSION=	4200
+LIBVERSION=	0.4200.1
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
@@ -47,8 +46,9 @@ gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 \
 		glib-compile-resources.1 gresource.1 gdbus-codegen.1
 gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
 
-OPTIONS_DEFINE=	COLLATION_FIX DEBUG
+OPTIONS_DEFINE=	COLLATION_FIX DEBUG GDB
 COLLATION_FIX_DESC=	fix string collation
+GDB_DESC=	Install python gdb scripts
 
 .include <bsd.port.pre.mk>
 
@@ -76,6 +76,14 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 		${FILESDIR}/extra-patch-glib_gunicollate.c
 # Disable it until someone can figure why it causes net-im/pidgin crashed.
 #CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
+.endif
+
+.if ${PORT_OPTIONS:MGDB}
+PLIST_SUB+=	GDB=""
+.else
+EXTRA_PATCHES+=	${FILESDIR}/extra-glib_gdbscripts \
+		${FILESDIR}/extra-gobject_gdbscripts
+PLIST_SUB+=	GDB="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
