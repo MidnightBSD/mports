@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.11.0
-PORTREVISION?=	2
+PORTVERSION=	2.11.1
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
@@ -59,7 +59,7 @@ post-install:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.9
+	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.1.8.0
 
 .include <bsd.port.mk>
 
