@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.12.16
+PORTVERSION=	1.12.18
 PORTREVISION=	0
 PORTEPOCH?=	2
 CATEGORIES=	graphics
@@ -17,15 +17,15 @@ USES=		tar:xz
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-directfb \
 		--enable-tee
-USES+=		libtool:keepla pathfix pkgconfig
-USE_XORG=	pixman xext
+USES+=		libtool pathfix pkgconfig
+USE_XORG=	pixman
 USE_GNOME=	referencehack
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
@@ -43,7 +43,7 @@ OPTIONS_DEFAULT=XCB GLIB X11
 XCB_DESC=	Enable XCB (X C-language Binding) Support
 GLIB_DESC=	Enable GObject Functions Feature
 OPTIONS_SUB=	yes
-X11_USE=	xorg=xrender
+X11_USE=	xorg=xrender,xext
 X11_CONFIGURE_ENABLE=xlib
 OPENGL_USE=	gl=gl xorg=glproto:both,dri2proto:both
 OPENGL_CONFIGURE_ENABLE=gl
@@ -54,7 +54,7 @@ XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x1
 XCB_CONFIGURE_ENABLE=	xcb
 # this has another option --enable-xlib-xcb=auto but it is buggy.
 
-PLIST_SUB+=	LIBVER=11202
+PLIST_SUB+=	LIBVER=2.11200.18
 
 .include <bsd.mport.options.mk>
 
