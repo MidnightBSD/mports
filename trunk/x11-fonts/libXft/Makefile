@@ -1,17 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	libXft
-PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTVERSION=	2.3.2
+PORTREVISION=	0
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client-sided font API for X applications
+
 LICENSE=	mit
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
-BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
 XORG_CAT=	lib
 USE_XORG=	xproto:both xrender
@@ -27,5 +27,6 @@ post-patch:
 post-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/xft-config \
 		${PREFIX}/bin/
+	@${STRIP_CMD} ${PREFIX}/lib/libXft.so.2
 
 .include <bsd.port.mk>
