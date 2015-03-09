@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	pango
-PORTVERSION=	1.34.1
-PORTREVISION=	2
+PORTVERSION=	1.36.8
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,14 +16,15 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	fontconfig>=2.10.91:${PORTSDIR}/x11-fonts/fontconfig
+BUILD_DEPENDS=	fontconfig>=2.10.91:${PORTSDIR}/x11-fonts/fontconfig \
+		cairo>=1.12.10,2:${PORTSDIR}/graphics/cairo
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	${FONTSCALE}:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
 		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
 
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	cairo glib20 gnomehier referencehack introspection:build
@@ -32,8 +33,9 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 SUB_FILES+=	pkg-install
-
-PLIST_SUB=	VERSION="1.8.0"
+VERSION=	1.8.0
+LIBVERSION=     0.3600.8
+PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
 FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
 FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
