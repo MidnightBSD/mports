@@ -2,7 +2,7 @@
 
 PORTNAME=	polkit
 PORTVERSION=	0.105
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -25,23 +25,24 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--disable-systemd \
 		--enable-introspection \
 		--localstatedir=/var
+MAKE_JOBS_UNSAFE=yes
 CONFIGURE_ENV=	GTKDOC="false"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_DEFINE=	MANPAGES
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMANPAGES}
-BUILD_DEPENDS+=	${LOCALBASE}/share/sgml/docbook/4.1/dtd/catalog:${PORTSDIR}/textproc/docbook-410 \
+BUILD_DEPENDS+=	docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml \
 		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+
 USE_GNOME+=	libxslt:build
 PLIST_SUB+=	MANPAGES=""
 .else
-PLIST_SUB+=	MANPAGES="@comment "
 CONFIGURE_ARGS+=--disable-man-pages
+PLIST_SUB+=	MANPAGES="@comment "
 .endif
 
 post-patch:
