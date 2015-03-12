@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	consolekit
-PORTVERSION=	0.4.3
-PORTREVISION=	4
+PORTVERSION=	0.4.5
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/ConsoleKit/dist/
 DISTFILES=	ConsoleKit-${PORTVERSION}${EXTRACT_SUFX}
@@ -23,6 +23,8 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-pid-file=/var/run/${PORTNAME}.pid \
+		--enable-pam-module \
+		--with-pam-module-dir=${PREFIX}/lib \
 		--localstatedir=/var
 INSTALL_TARGET=	install-strip
 
