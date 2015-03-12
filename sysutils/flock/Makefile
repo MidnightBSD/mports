@@ -4,18 +4,20 @@
 
 PORTNAME=	flock
 PORTVERSION=	2.19
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.zonov.org/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage locks from shell scripts
+
 LICENSE=	mit
 
-PLIST_FILES=	bin/${PORTNAME}
-MAN1=		${PORTNAME}.1
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/${PORTNAME}.1.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${MAN1} ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
 
 .include <bsd.port.mk>
