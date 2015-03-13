@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	dbus
-PORTVERSION=	1.8.8
-PORTREVISION=	1
+PORTVERSION=	1.8.12
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -13,8 +13,8 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
-USE_GNOME=
-USES=		gmake libtool:keepla pathfix
+USE_GNOME=	# empty but we need it for USE_GNOME_SUBR
+USES=		cpe gmake libtool pathfix
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=--localstatedir=/var \
@@ -26,6 +26,9 @@ CONFIGURE_ARGS=--localstatedir=/var \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
+
+CPE_VENDOR=	d-bus_project
+CPE_PRODUCT=	d-bus
 
 USE_RC_SUBR=	dbus
 USE_GNOME_SUBR=	yes
@@ -42,7 +45,7 @@ X11_DESC=	Support X11 Desktop Environments
 
 MANPAGES_BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto
 MANPAGES_CONFIGURE_ENABLE=	xml-docs
-X11_USE=		xorg=ice,sm,x11
+X11_USE=	xorg=ice,sm,x11
 X11_CONFIGURE_WITH=	x
 
 post-patch:
