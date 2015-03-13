@@ -2,7 +2,7 @@
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
@@ -13,12 +13,12 @@ COMMENT=	Framework for controlling access to system-wide components
 LICENSE=	mit
 
 LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-    		libexpat.so:${PORTSDIR}/textproc/expat2
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
 USERS=		polkit
 GROUPS=		polkit
 
-USES=		gmake libtool:keepla pathfix pkgconfig
+USES=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_GNOME=	glib20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
