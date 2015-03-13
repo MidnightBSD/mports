@@ -2,7 +2,7 @@
 
 PORTNAME?=	windowmaker
 PORTVERSION=	0.95.4
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	http://windowmaker.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	source/release
