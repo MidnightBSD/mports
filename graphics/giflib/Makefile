@@ -2,7 +2,7 @@
 
 PORTNAME=	giflib
 PORTVERSION=	4.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x
 PKGNAMESUFFIX=	${NOX11SUFFIX}${PKGNAMESUFFIX2}
@@ -54,14 +54,14 @@ post-patch:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgif.so.5
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgif.so.4.1.7
 .for i in ${LMAN1}
-	${INSTALL_MAN} ${WRKSRC}/doc/${i} ${STAGEDIR}${PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/doc/${i} ${PREFIX}/man/man1/
 .endfor
 .if ${PORT_OPTIONS:MDOCBOOK} && ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${DOCSDIR}/
 .endif
 
 .include <bsd.port.mk>
