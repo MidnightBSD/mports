@@ -2,7 +2,7 @@
 
 PORTNAME=	dbus-glib
 PORTVERSION=	0.100.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 
