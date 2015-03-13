@@ -2,7 +2,7 @@
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.28
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
 		http://xmlsoft.org/sources/ \
@@ -16,7 +16,7 @@ LICENSE=	mit
 
 .if !defined(REFERENCE_PORT)
 
-USES=		gmake libtool:oldver pathfix
+USES+=		gmake libtool pathfix
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
@@ -36,17 +36,9 @@ MEM_DEBUG_DESC=	Enable memory debugging
 CRYPTO_DESC=	Enable crypto support for exslt
 .endif
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MMEM_DEBUG}
-CONFIGURE_ARGS+=	--with-mem-debug
-.endif
-
-.if ${PORT_OPTIONS:MCRYPTO}
-LIB_DEPENDS+=	gcrypt:${PORTSDIR}/security/libgcrypt
-.else
-CONFIGURE_ARGS+=--without-crypto
-.endif
+MEM_DEBUG_CONFIGURE_ON=	--with-mem-debug
+CRYPTO_CONFIGURE_WITH=	crypto
+CRYPTO_LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^install-data-am:/ s|install-data-local||' \
@@ -54,6 +46,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|[$$](bindir)/xsltproc|../xsltproc/xsltproc|g ; \
 		s|[$$](bindir)/xmllint|../xmllint/xmllint|g' \
 		${WRKSRC}/doc/Makefile.in
+
+.if !defined(MASTERDIR)
+post-install:
+	${LN} -s libxslt.so.1 ${PREFIX}/lib/libxslt.so.2
+	${LN} -s libexslt.so.0 ${PREFIX}/lib/libexslt.so.8
+.endif
 
 .include <bsd.port.mk>
 
