@@ -417,6 +417,7 @@ SUBDIR += py-termcolor
 SUBDIR += py-xdg
 SUBDIR += py-yaml
 SUBDIR += py3-dbus
+SUBDIR += py3-xdg
 SUBDIR += pydbus-common
 SUBDIR += qca
 SUBDIR += qgit
