@@ -1,26 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	at-spi2-atk
-PORTVERSION=	2.6.2
+PORTVERSION=	2.14.1
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assisted Technology Provider module for GTK+
-LICENSE=	gpl2
 
-BUILD_DEPENDS=	at-spi2-core>=2.1.4:${PORTSDIR}/accessibility/at-spi2-core
-LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
-RUN_DEPENDS=	at-spi2-core>=2.1.4:${PORTSDIR}/accessibility/at-spi2-core
+LICENSE=	lgpl2.1
 
-USES=		gmake pkgconfig tar:xz
-USE_GNOME=	gnomehack gnomehier intlhack glib20 atk
+BUILD_DEPENDS=	at-spi2-core>=2.8.0:${PORTSDIR}/accessibility/at-spi2-core
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
+RUN_DEPENDS=	at-spi2-core>=2.8.0:${PORTSDIR}/accessibility/at-spi2-core
+
+USES=		gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	atk glib20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-p2p
-GLIB_SCHEMAS=	org.a11y.atspi.gschema.xml
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
