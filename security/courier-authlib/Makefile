@@ -2,6 +2,7 @@
 
 PORTNAME=	courier-authlib
 PORTVERSION=	0.63.0
+PORTREVISION=	1
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
 MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
@@ -31,9 +32,11 @@ OPTIONS+=	GDBM	"Use gdbm instead of system bdb"	off
 
 .else	# !defined(PKGNAMESUFFIX)
 
-USE_AUTOTOOLS=	libltdl
+LIB_DEPENDS+=	libltdl.so:${PORTSDIR}/devel/libltdl
+
+USES=	iconv gmake libtool perl5 tar:bzip2
+
 USE_BZIP2=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
