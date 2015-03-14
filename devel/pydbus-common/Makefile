@@ -12,6 +12,9 @@ DISTNAME=	dbus-python-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Common files for the Python bindings for the D-BUS messaging system
 
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 BUILD_DEPENDS=	dbus-glib>=0:${PORTSDIR}/devel/dbus-glib
 
 SLAVE_PORT?=	no
