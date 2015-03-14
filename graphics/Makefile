@@ -138,6 +138,7 @@ SUBDIR += prison
 SUBDIR += py-cairo
 SUBDIR += py-clutter
 SUBDIR += py-clutter-gtk
+SUBDIR += py3-cairo
 SUBDIR += qt4-iconengines
 SUBDIR += qt4-imageformats
 SUBDIR += qt4-pixeltool
