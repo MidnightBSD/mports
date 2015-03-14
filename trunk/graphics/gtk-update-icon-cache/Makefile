@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk-update-icon-cache
-PORTVERSION=	2.24.22
-PORTREVISION=	1
+PORTVERSION=	2.24.25
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -15,10 +15,10 @@ COMMENT=	gtk-update-icon-cache utility from the Gtk+ toolkit.
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
+RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-USES=		gettext gmake libtool:keepla pathfix perl5 pkgconfig tar:xz
+USES=		gettext gmake libtool pathfix perl5 pkgconfig tar:xz
 USE_PERL5=	build
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
@@ -36,6 +36,16 @@ PLIST_FILES=	bin/gtk-update-icon-cache \
 		man/man1/gtk-update-icon-cache.1.gz
 
 .include <bsd.port.pre.mk>
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-DGDK_PIXBUF_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/configure
+
+pre-configure:
+.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
+	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
+	@${FALSE}
+.endif
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/gtk/gtk-update-icon-cache \
