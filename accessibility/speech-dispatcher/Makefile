@@ -3,6 +3,7 @@
 
 PORTNAME=	speech-dispatcher
 PORTVERSION=	0.8
+PORTREVISION=	1
 CATEGORIES=	accessibility audio
 MASTER_SITES=	http://devel.freebsoft.org/pub/projects/speechd/
 
@@ -23,6 +24,7 @@ GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 ETCFILES=	clients/emacs.conf clients/gnome-speech.conf \
 		modules/cicero.conf modules/dtk-generic.conf \

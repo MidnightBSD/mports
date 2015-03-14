@@ -1,25 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	mousetweaks
-PORTVERSION=	2.32.1
-PORTREVISION=	2
+PORTVERSION=	3.12.0
 CATEGORIES=	accessibility
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mouse accessibility enhancements for the GNOME desktop
 
 LICENSE=	gpl3
 
+BUILD_DEPENDS=	gsettings-desktop-schemas>=0.1.0:${PORTSDIR}/devel/gsettings-desktop-schemas
+RUN_DEPENDS=	gsettings-desktop-schemas>=0.1.0:${PORTSDIR}/devel/gsettings-desktop-schemas
+
 USE_XORG=	x11 xfixes xcursor xtst
-USE_GNOME=	gnomeprefix gnomepanel intlhack
-USES=		gmake gettext pathfix pkgconfig tar:bzip2
-INSTALLS_OMF=	yes
+USE_GNOME=	gnomeprefix gtk30 intlhack
+USES=		gettext gmake pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-GCONF_SCHEMAS=	mousetweaks.schemas pointer-capture-applet.schemas
+GLIB_SCHEMAS=	org.gnome.mousetweaks.enums.xml \
+		org.gnome.mousetweaks.gschema.xml
 
 .include <bsd.port.mk>

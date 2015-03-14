@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-speech
 PORTVERSION=	0.4.25
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	accessibility audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -20,27 +20,18 @@ CONFIGURE_ARGS=	--enable-static
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	ESPEAK FESTIVAL
+ESPEAK_DESC=	Espeak speech synthesizer support
+FESTIVAL_DESC=	Festival speech synthesis support
 
-.if exists(${LOCALBASE}/lib/libespeak.so)
-WITH_ESPEAK=	yes
-.endif
+OPTIONS_SUB=	yes
 
-#.if exists(${LOCALBASE}/bin/festival)
-#WITH_FESTIVAL=	yes
-#.endif
+ESPEAK_LIB_DEPENDS=	libespeak.so:${PORTSDIR}/audio/espeak
+ESPEAK_CONFIGURE_ON=--with-espeak-dir=${LOCALBASE}
+ESPEAK_CONFIGURE_OFF=--without-espeak
 
-.if defined(WITH_ESPEAK)
-LIB_DEPENDS+=	espeak.1:${PORTSDIR}/audio/espeak
-CONFIGURE_ARGS+=--with-espeak-dir=${LOCALBASE}
-PLIST_SUB+=	ESPEAK:=""
-.else
-PLIST_SUB+=	ESPEAK:="@comment "
-.endif
-
-#.if defined(WITH_FESTIVAL)
-#RUN_DEPENDS+=	festival:${PORTSDIR}/audio/festival
-#.endif
+FESTIVAL_RUN_DEPENDS=	festival:${PORTSDIR}/audio/festival
+FESTIVAL_CONFIGURE_OFF=--without-festival
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|== x|= x|g' \
@@ -54,4 +45,8 @@ post-patch:
 		${WRKSRC}/drivers/loquendo/*.[ch] \
 		${WRKSRC}/drivers/espeak/*.[ch]
 
-.include <bsd.port.post.mk>
+post-install:
+	@${STRIP_CMD} ${PREFIX}/lib/libgnomespeech.so.7
+	@${STRIP_CMD} ${PREFIX}/lib/orbit-2.0/GNOME_Speech_module.so
+
+.include <bsd.port.mk>
