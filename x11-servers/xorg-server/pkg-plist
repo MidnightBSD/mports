@@ -1,8 +1,7 @@
 bin/X
 %%SUID%%@owner root
 %%SUID%%@group wheel
-%%SUID%%@exec /bin/chmod 4555 /usr/local/bin/Xorg
-@comment %%SUID%%@mode 4555
+%%SUID%%@mode 4555
 bin/Xorg
 %%SUID%%@owner root
 %%SUID%%@group wheel
@@ -182,54 +181,30 @@ include/xorg/xorgVersion.h
 include/xorg/xserver-properties.h
 include/xorg/xvdix.h
 include/xorg/xvmcext.h
-lib/xorg/modules/extensions/libdbe.la
 lib/xorg/modules/extensions/libdbe.so
-lib/xorg/modules/extensions/libdri.la
 lib/xorg/modules/extensions/libdri.so
-lib/xorg/modules/extensions/libdri2.la
 lib/xorg/modules/extensions/libdri2.so
-lib/xorg/modules/extensions/libextmod.la
 lib/xorg/modules/extensions/libextmod.so
-lib/xorg/modules/extensions/librecord.la
 lib/xorg/modules/extensions/librecord.so
 lib/xorg/modules/extensions/.xorg/libglx.so
-lib/xorg/modules/libexa.la
 lib/xorg/modules/libexa.so
-lib/xorg/modules/libfb.la
 lib/xorg/modules/libfb.so
 %%NEW%%lib/xorg/modules/libfbdevhw.so
-%%NEW%%lib/xorg/modules/libfbdevhw.la
-lib/xorg/modules/libint10.la
 lib/xorg/modules/libint10.so
-lib/xorg/modules/libshadow.la
 lib/xorg/modules/libshadow.so
-lib/xorg/modules/libshadowfb.la
 lib/xorg/modules/libshadowfb.so
-lib/xorg/modules/libvbe.la
 lib/xorg/modules/libvbe.so
-lib/xorg/modules/libvgahw.la
 lib/xorg/modules/libvgahw.so
-lib/xorg/modules/libwfb.la
 lib/xorg/modules/libwfb.so
-lib/xorg/modules/libxaa.la
 lib/xorg/modules/libxaa.so
-%%OLD%%lib/xorg/modules/libxf8_16bpp.la
 %%OLD%%lib/xorg/modules/libxf8_16bpp.so
-%%OLD%%lib/xorg/modules/linux/libfbdevhw.la
 %%OLD%%lib/xorg/modules/linux/libfbdevhw.so
-lib/xorg/modules/multimedia/bt829_drv.la
 lib/xorg/modules/multimedia/bt829_drv.so
-lib/xorg/modules/multimedia/fi1236_drv.la
 lib/xorg/modules/multimedia/fi1236_drv.so
-lib/xorg/modules/multimedia/msp3430_drv.la
 lib/xorg/modules/multimedia/msp3430_drv.so
-lib/xorg/modules/multimedia/tda8425_drv.la
 lib/xorg/modules/multimedia/tda8425_drv.so
-lib/xorg/modules/multimedia/tda9850_drv.la
 lib/xorg/modules/multimedia/tda9850_drv.so
-lib/xorg/modules/multimedia/tda9885_drv.la
 lib/xorg/modules/multimedia/tda9885_drv.so
-lib/xorg/modules/multimedia/uda1380_drv.la
 lib/xorg/modules/multimedia/uda1380_drv.so
 lib/xorg/protocol.txt
 libdata/pkgconfig/xorg-server.pc
