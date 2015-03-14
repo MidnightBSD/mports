@@ -2,7 +2,6 @@
     
 COMMENT = Ports to help disabled users
 
-SUBDIR += at-poke
 SUBDIR += at-spi
 SUBDIR += at-spi-reference
 SUBDIR += at-spi2-atk

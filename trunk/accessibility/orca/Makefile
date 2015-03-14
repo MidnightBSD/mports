@@ -1,38 +1,40 @@
 # $MidnightBSD$
 
 PORTNAME=	orca
-PORTVERSION=	2.32.1
-PORTREVISION=	2
+PORTVERSION=	3.14.3
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi \
-		${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg
-LIB_DEPENDS=	gnome-mag.2:${PORTSDIR}/accessibility/gnome-mag
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi \
-		${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg
+BUILD_DEPENDS=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus \
+		py3?-xdg>=0:${PORTSDIR}/devel/py3-xdg \
+		py3?-cairo>=0:${PORTSDIR}/graphics/py3-cairo \
+		itstool:${PORTSDIR}/textproc/itstool
+LIB_DEPENDS=	libatspi.so:${PORTSDIR}/accessibility/at-spi2-core
+RUN_DEPENDS=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus \
+		py3?-atspi>=0:${PORTSDIR}/accessibility/py3-atspi \
+		py3?-xdg>=0:${PORTSDIR}/devel/py3-xdg \
+		py3?-cairo>=0:${PORTSDIR}/graphics/py3-cairo
 
-LATEST_LINK=	gnome-orca
+# conflict with py*-json-py because orca uses the json from python itself
+# and py*-json-py shadows this.
+CONFLICTS=	py*-json-py-[0-9]*
 
-USES=		gmake gettext pkgconfig tar:bzip2
-USE_PYTHON=	yes
-USE_GNOME=	gnomeprefix gnomehack libgnomeui gnomespeech pygnome2 \
-		pygnomedesktop
+USES=		gettext gmake pathfix pkgconfig python:3 tar:xz
+USE_GNOME=	gnomeprefix gtk30 py3gobject3 intlhack
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/src/orca/orca.in
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 	    	${WRKSRC}/src/orca/orca_i18n.py
 
