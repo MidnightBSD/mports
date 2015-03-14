@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk
-PORTVERSION=	2.24.22
-PORTREVISION?=	2
+PORTVERSION=	2.24.25
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+PKGNAMESUFFIX=	2
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -18,20 +19,20 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		python:${PORTSDIR}/lang/python
 
-USE_PERL5_BUILD=yes
-USE_PYTHON=	2.5-2.7
-USE_LDCONFIG=	yes
-USE_GNOME=	atk pango gdkpixbuf2 gtk-update-icon-cache introspection:build
-USES+=		gettext gmake libtool:keepla pathfix perl5 pkgconfig
+USES+=		gettext gmake libtool pathfix perl5 pkgconfig
 GNU_CONFIGURE=	yes
+USE_GNOME=	atk pango gdkpixbuf2 introspection:build \
+		gtk-update-icon-cache
+USE_LDCONFIG=	yes
+USE_PERL5=	build
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
-		xcomposite xau xdmcp xproto
+		xcomposite
 CONFIGURE_ARGS=	--with-xinput=yes
-CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
-		-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
@@ -44,14 +45,25 @@ CUPS_CONFIGURE_ON=	--enable-cups=auto
 CUPS_CONFIGURE_OFF=	--disable-cups
 DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
+.include <bsd.mport.options.mk>
+
+PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.25
+
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${GREP} -l lgmodule | \
 		${XARGS} ${REINPLACE_CMD} -e 's|-lgmodule|@GMODULE_LIBS@|g'
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
+		-e 's|-DGDK_PIXBUF_DISABLE_DEPRECATED||g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|@LN_S@|${LN} -sf|' ${WRKSRC}/gtk/Makefile.in
 	@${REINPLACE_CMD} -e 's|file,cups|file,cups,lpr|' \
 		${WRKSRC}/gtk/Makefile.in
+
+pre-configure:
+.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
+	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
+	@${FALSE}
+.endif
 
 pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
