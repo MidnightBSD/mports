@@ -7,24 +7,22 @@
 #
 
 PORTNAME=	libmodplug
-PORTVERSION=	0.8.8.1
+PORTVERSION=	0.8.8.5
+PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	SF/modplug-xmms/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF/modplug-xmms/${PORTNAME}/${PORTVERSION} LOCAL/ehaupt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ModPlug mod-like music shared libraries
 LICENSE=	publicdom
 
+USES=		gmake pathfix pkgconfig libtool
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^CXXFLAGS=/d' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|{libdir}/pkgconfig|{prefix}/libdata/pkgconfig|' \
-		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
