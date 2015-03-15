@@ -1,24 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	libdiscid
-PORTVERSION=	0.2.2
+PORTVERSION=	0.6.1
 CATEGORIES=	audio
-MASTER_SITES=	http://users.musicbrainz.org/~matt/ \
-		${MASTER_SITE_GENTOO}
-MASTER_SITE_SUBDIR=	distfiles
+MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/${PORTNAME}/ \
+		http://ftp.osuosl.org/pub/musicbrainz/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for creating MusicBrainz DiscIDs
-LICENSE=	lgpl
+COMMENT=	Library for creating MusicBrainz DiscIDs
 
-GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+LICENSE=	lgpl2.1
+
+USES=		cmake
 USE_LDCONFIG=	yes
 
-.include <bsd.port.pre.mk>
+post-patch:
+	${REINPLACE_CMD} -e '/pkgconfig/s|$${LIB_INSTALL_DIR}|libdata|' \
+		 ${WRKSRC}/CMakeLists.txt
 
-pre-configure:
-	@${REINPLACE_CMD} -e 's|\$$(libdir)/pkgconfig|\$$(prefix)/libdata/pkgconfig|' \
-		${WRKSRC}/Makefile.in
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
