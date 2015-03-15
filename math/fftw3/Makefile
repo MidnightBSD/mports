@@ -2,6 +2,7 @@
 
 PORTNAME=	fftw3
 PORTVERSION=	3.3.3
+PORTREVISION?=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.fftw.org/ \
 		ftp://ftp.fftw.org/pub/fftw/
@@ -10,6 +11,7 @@ DISTNAME=	fftw-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Fast C routines to compute the Discrete Fourier Transform
+
 LICENSE=	gpl2
 
 #current flavors: default, float, long, and quad
@@ -17,54 +19,41 @@ FFTW3_FLAVOR?=	default
 FFTW3_SUFX=
 
 GNU_CONFIGURE=	yes
-USES=	pathfix pkgconfig
-USE_PERL5_BUILD=yes
+INSTALL_TARGET=	install-strip
+USES=		libtool pathfix perl5 pkgconfig
+USE_PERL5=	build
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS =	--enable-shared --enable-threads --disable-fortran
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CONFIGURE_ARGS=		--enable-shared --enable-threads --disable-fortran
 
 .if ${FFTW3_FLAVOR} == "default"
-MAN1=	fftw-wisdom-to-conf.1 fftw-wisdom.1
 INFO=	fftw3
 .else
 #For non-default flavors, build and install the flavor-dependent components
 #only, so that these flavors may coexist with the default flavor
-MAN1=	fftw${FFTW3_SUFX}-wisdom.1
 INSTALL_TARGET=	install-pkgconfigDATA install-libLTLIBRARIES install-exec
 .endif
 
-OPTIONS_DEFINE =	G77_WRAPPERS OPENMP OPTIMIZED_CFLAGS
+OPTIONS_DEFINE=		G77_WRAPPERS OPENMP OPTIMIZED_CFLAGS
 
 G77_WRAPPERS_DESC=	Alter Fortran wrappers for use with g77
 OPENMP_DESC=		Build OpenMP multithreaded libraries
 
 OPTIONS_DEFAULT=	OPTIMIZED_CFLAGS
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MOPENMP}
 CONFIGURE_ARGS+=	--enable-openmp
 PLIST_SUB+=	OPENMP=""
-USE_GCC=	any
+USES+=		compiler:openmp
 .else
 CONFIGURE_ARGS+=	--disable-openmp
 PLIST_SUB+=	OPENMP="@comment "
+USES+=		compiler:env
 .endif
 
-.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
-CFLAGS+=	-O3 -ffast-math -fstrict-aliasing
-.  if !defined(WITH_DEBUG)
-CFLAGS+=	-fomit-frame-pointer
-.  endif
-.  if ${ARCH} == "i386"
-CFLAGS+=	-malign-double
-.  endif
-WITHOUT_NO_STRICT_ALIASING=	yes
-.endif # end OPTIMIZED_CFLAGS
-
-#Users must add altivec and avx to MACHINE_CPU when desired:
+#Users must add altivec to MACHINE_CPU when desired:
 #this is not currently done in bsd.cpu.mk
 .if ${FFTW3_FLAVOR} == "default"
 .  if !empty(MACHINE_CPU:Mavx)
@@ -84,10 +73,6 @@ CONFIGURE_ARGS+=--enable-sse
 CONFIGURE_ARGS+=--enable-altivec
 .  endif
 .elif ${FFTW3_FLAVOR} == "long"
-.  if ${OSVERSION} < 4004
-ONLY_FOR_ARCHS =	i386 sparc64
-LIB_DEPENDS+=	ml:${PORTSDIR}/math/ldouble
-.  endif
 FFTW3_SUFX=	l
 FFTW3_PKGNAMESUFFIX=	-long
 CONFIGURE_ARGS+=--enable-long-double
@@ -95,17 +80,30 @@ CONFIGURE_ARGS+=--enable-long-double
 FFTW3_SUFX=	q
 FFTW3_PKGNAMESUFFIX=	-quad
 CONFIGURE_ARGS+=--enable-quad-precision
-ONLY_FOR_ARCHS =	i386 amd64
-USE_GCC=	4.6+
+ONLY_FOR_ARCHS=		i386 amd64
+USE_GCC=	yes
 .endif
 
 .if ${FFTW3_FLAVOR} == "default"
-PLIST_SUB+=	DEF=""
+PLIST_SUB+=	DEF="" NONDEF="@comment "
 .else
-PLIST_SUB+=	DEF="@comment "
+PLIST_SUB+=	DEF="@comment " NONDEF=""
 .endif
 
 PLIST_SUB+=	FFTW3_SUFX="${FFTW3_SUFX}"
+
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
+CFLAGS+=	-O3 -ffast-math -fstrict-aliasing
+.  if !defined(WITH_DEBUG)
+CFLAGS+=	-fomit-frame-pointer
+.  endif
+.  if ${ARCH} == "i386" && (${COMPILER_TYPE} == "gcc" || !empty(USE_GCC))
+CFLAGS+=	-malign-double
+.  endif
+WITHOUT_NO_STRICT_ALIASING=	yes
+.endif # end OPTIMIZED_CFLAGS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/fftw|${PREFIX}/etc/fftw|' \
@@ -113,24 +111,13 @@ post-patch:
 		${WRKSRC}/api/import-system-wisdom.c \
 		${WRKSRC}/doc/fftw3* \
 		${WRKSRC}/tools/*
-	@${REINPLACE_CMD} \
-	-e '/libfftw3@PREC_SUFFIX@_threads\.la:/{N; \
-	s/$$(LIBS)/$$(PTHREAD_LIBS) &/;}' \
-		${WRKSRC}/threads/Makefile.in
 .if ${FFTW3_FLAVOR} != "default"
 	@${REINPLACE_CMD} -E \
 	-e '/(DIST_COMMON|bin_SCRIPTS|BUILT_SOURCES|EXTRA_DIST) =/,\
 	/[^\]$$/s/[^[:blank:]]*fftw-wisdom-to-conf[^[:blank:]]*//' \
 		${WRKSRC}/tools/Makefile.in
-.  if ${FFTW3_FLAVOR} == "long" && ${OSVERSION} < 800000
-	@${REINPLACE_CMD} -e 's|-lm |-L${LOCALBASE}/lib -lml &|' \
-		${WRKSRC}/configure
-.  endif
 .endif
-
-post-patch-script:
-	@${FIND} ${WRKSRC} -type f \( -name \*.bak -or -name \*.orig \) \
-	-exec ${RM} -f {} \;
+	@${FIND} ${WRKSRC} -type f \( -name \*.bak -or -name \*.orig \) -delete
 
 post-configure:
 #After issuing --disable-fortran in order to avoid using a Fortran compiler
@@ -153,9 +140,8 @@ regression-test test: smallcheck
 
 .for t in bigcheck check exhaustive-check paranoid-check smallcheck
 ${t}: build
-	@cd ${WRKSRC}/tests; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} \
-	${MAKE_ARGS} ${t}
-
+	@(cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
+		${MAKE_ARGS} ${t})
 .endfor
 
 .include <bsd.port.post.mk>
