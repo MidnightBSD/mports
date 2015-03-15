@@ -16,6 +16,7 @@ SUBDIR += gok
 SUBDIR += linux-f10-atk
 SUBDIR += mousetweaks
 SUBDIR += orca
+SUBDIR += py3-atspi
 SUBDIR += qt4-accessible
 SUBDIR += speech-dispatcher
 
