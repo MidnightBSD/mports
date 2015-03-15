@@ -2,7 +2,7 @@
 
 PORTNAME=	gperf
 PORTVERSION=	3.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gperf
@@ -18,8 +18,6 @@ GNU_CONFIGURE=	yes
 
 INFO=		gperf
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
-# avoid GPL3
-PORTSCOUT=	skipv:3.0.4
 
 regression-test: test
 
