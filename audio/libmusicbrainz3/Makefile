@@ -2,29 +2,27 @@
 
 PORTNAME=	libmusicbrainz3
 PORTVERSION=	3.0.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/ \
-    		http://uk.musicbrainz.org/pub/musicbrainz/ \
 		http://ftp.osuosl.org/pub/musicbrainz/
 DISTNAME=	${PORTNAME:S/3//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MusicBrainz client library for audio metadata lookup
-LICENSE=	lgpl
 
-LIB_DEPENDS=	discid:${PORTSDIR}/audio/libdiscid \
-		neon.27:${PORTSDIR}/www/neon29
+LICENSE=	lgpl2.1
 
-USE_CMAKE=	yes
-USE_GNOME=	pkgconfig
+LIB_DEPENDS=	libdiscid.so:${PORTSDIR}/audio/libdiscid \
+		libneon.so:${PORTSDIR}/www/neon
+
+USES=		cmake
 USE_LDCONFIG=	yes
 
-MAKE_JOBS_SAFE=	yes
-
-.include <bsd.port.pre.mk>
-
-pre-configure:
+post-patch:
 	${REINPLACE_CMD} -e '/pkgconfig/s|$${LIB_INSTALL_DIR}|libdata|' \
 		-e '/CppUnit/d' ${WRKSRC}/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+		 ${WRKSRC}/cmake/modules/*.cmake
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
