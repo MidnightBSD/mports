@@ -301,11 +301,11 @@ _WANTS_META_PORT=	3
 .endif  # ${USE_PYTHON} == "2"
 
 # Validate Python version whether it meets USE_PYTHON version restriction.
-_PYTHON_VERSION_CHECK:=			${_PYTHON_ARGS:C/^([1-9]\.[0-9])$/\1-\1/}
+_PYTHON_VERSION_CHECK:=		${_PYTHON_ARGS:C/^([1-9]\.[0-9])$/\1-\1/}
 _PYTHON_VERSION_MINIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/([1-9]\.[0-9])[-+].*/\1/}
-_PYTHON_VERSION_MINIMUM:=		${_PYTHON_VERSION_MINIMUM_TMP:M[1-9].[0-9]}
+_PYTHON_VERSION_MINIMUM:=	${_PYTHON_VERSION_MINIMUM_TMP:M[1-9].[0-9]}
 _PYTHON_VERSION_MAXIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/.*-([1-9]\.[0-9])/\1/}
-_PYTHON_VERSION_MAXIMUM:=		${_PYTHON_VERSION_MAXIMUM_TMP:M[1-9].[0-9]}
+_PYTHON_VERSION_MAXIMUM:=	${_PYTHON_VERSION_MAXIMUM_TMP:M[1-9].[0-9]}
 
 .if !empty(_PYTHON_VERSION_MINIMUM) && ( \
 		${_PYTHON_VERSION} < ${_PYTHON_VERSION_MINIMUM})
@@ -431,8 +431,8 @@ check-makevars::
 	@${ECHO} "Legal values are:"
 	@${ECHO} "  python2.7 (default)"
 	@${ECHO} "  python3.1"
-	@${ECHO} "  python3.2"
 	@${ECHO} "  python3.3"
+	@${ECHO} "  python3.4"
 	@${FALSE}
 .endif
 
