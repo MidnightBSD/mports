@@ -1,8 +1,8 @@
---- configure.orig	2009-12-25 20:21:00.000000000 +0100
-+++ configure	2009-12-25 20:21:01.000000000 +0100
-@@ -15968,6 +15968,14 @@
- _ACEOF
- 
+--- configure.orig	2012-05-14 06:21:51.000000000 +0200
++++ configure	2012-05-20 12:56:44.000000000 +0200
+@@ -16716,6 +16716,14 @@
+ 	DL_LIB=''
+ 	LIBEXECDIR_IN_SERVER_FILE="$libexecdir"
  	;;
 +*freebsd*)
 +	os_win32=no
@@ -13,5 +13,13 @@
 +	LIBEXECDIR_IN_SERVER_FILE="$libexecdir"
 +	;;
  *)
- 	os_win32=no
+ 	os_win32='no'
  	NO_UNDEFINED=''
+@@ -19295,6 +19303,7 @@
+ 			#include <com_err.h>
+ 			#endif
+ 
++#include <sys/types.h>
+ "
+ if test "x$ac_cv_header_com_err_h" = xyes; then :
+ 
