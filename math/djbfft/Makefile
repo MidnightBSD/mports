@@ -1,10 +1,4 @@
-# New ports collection makefile for:	djbfft
-# Date created:				Wed May 15 16:29:51 BRT 2002
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/math/djbfft/Makefile,v 1.16 2006/09/03 17:33:38 kris Exp $
-#
 
 PORTNAME=	djbfft
 PORTVERSION=	0.76
@@ -13,13 +7,13 @@ CATEGORIES=	math
 MASTER_SITES=	http://cr.yp.to/djbfft/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An extremely fast library for floating-point convolution
+COMMENT=	Extremely fast library for floating-point convolution
+
 LICENSE=	publicdom
 
 DISABLE_SIZE=	yes
 ALL_TARGET=
 INSTALL_TARGET=setup check
-MAKE_JOBS_SAFE=	yes
 
 HEADER_FILES=	complex4.h complex8.h fftc4.h fftc8.h fftfreq.h \
 		fftr4.h fftr8.h real4.h real8.h
