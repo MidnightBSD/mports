@@ -213,6 +213,13 @@ _PYTHON_RUN_DEP=	yes
 _PYTHON_ARGS:=		${_PYTHON_ARGS:Nrun}
 .endif
 
+# The port does not specify a build or run dependency, assume both are
+# required.
+.if !defined(_PYTHON_BUILD_DEP) && !defined(_PYTHON_RUN_DEP)
+_PYTHON_BUILD_DEP=	yes
+_PYTHON_RUN_DEP=	yes
+.endif
+
 # Determine version number of Python to use
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
 
@@ -226,17 +233,9 @@ WARNING+=	"PYTHON2_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=p
 WARNING+=	"PYTHON3_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python3=${PYTHON3_DEFAULT_VERSION:S/^python//} instead"
 .endif
 
-.if ${_PYTHON_ARGS} == "2"
-_PYTHON_ARGS=		${PYTHON2_DEFAULT_VERSION:S/^python//}
-_WANTS_META_PORT=	2
-.elif ${_PYTHON_ARGS} == "3"
-_PYTHON_ARGS=		${PYTHON3_DEFAULT_VERSION:S/^python//}
-_WANTS_META_PORT=	3
-.endif  # ${_PYTHON_ARGS} == "2"
-
 .if exists(${LOCALBASE}/bin/python)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
-		'import sys; print("%d.%d" sys.version[:2])' 2> /dev/null \
+		'import sys; print("%d.%d" % sys.version_info[:2])' 2> /dev/null \
 		|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
 .if defined(PYTHON_DEFAULT) && (${PYTHON_DEFAULT} != ${_PYTHON_DEFAULT_VERSION})
 WARNING+=	"Your requested default python version ${PYTHON_DEFAULT} is different from the installed default python interpreter version ${_PYTHON_DEFAULT_VERSION}"
@@ -263,6 +262,14 @@ PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
 PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
 .endif
 
+.if ${_PYTHON_ARGS} == "2"
+_PYTHON_ARGS=		${PYTHON2_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	2
+.elif ${_PYTHON_ARGS} == "3"
+_PYTHON_ARGS=		${PYTHON3_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	3
+.endif  # ${_PYTHON_ARGS} == "2"
+
 .if defined(PYTHON_VERSION)
 _PYTHON_VERSION:=	${PYTHON_VERSION:S/^python//}
 _PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_VERSION}
@@ -271,18 +278,19 @@ _PYTHON_VERSION:=	${PYTHON_DEFAULT_VERSION:S/^python//}
 _PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_DEFAULT_VERSION}
 .endif
 
+
 .if !defined(USE_PYTHON)
 .if defined(USE_PYTHON_BUILD)
-USE_PYTHON=		${USE_PYTHON_BUILD}
+USE_PYTHON=           ${USE_PYTHON_BUILD}
 .elif defined(USE_PYTHON_RUN)
-USE_PYTHON=		${USE_PYTHON_RUN}
+USE_PYTHON=           ${USE_PYTHON_RUN}
 .else
-USE_PYTHON=		yes
-.endif	# defined(USE_PYTHON_BUILD)
+USE_PYTHON=           yes
+.endif        # defined(USE_PYTHON_BUILD)
 .else
-USE_PYTHON_BUILD=	yes
-USE_PYTHON_RUN=		yes
-.endif	# !defined(USE_PYTHON)
+USE_PYTHON_BUILD=     yes
+USE_PYTHON_RUN=               yes
+.endif        # !defined(USE_PYTHON)
 
 .if ${USE_PYTHON} == "2"
 USE_PYTHON=			${PYTHON2_DEFAULT_VERSION:S/^python//}
@@ -293,7 +301,7 @@ _WANTS_META_PORT=	3
 .endif  # ${USE_PYTHON} == "2"
 
 # Validate Python version whether it meets USE_PYTHON version restriction.
-_PYTHON_VERSION_CHECK:=			${USE_PYTHON:C/^([1-9]\.[0-9])$/\1-\1/}
+_PYTHON_VERSION_CHECK:=			${_PYTHON_ARGS:C/^([1-9]\.[0-9])$/\1-\1/}
 _PYTHON_VERSION_MINIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/([1-9]\.[0-9])[-+].*/\1/}
 _PYTHON_VERSION_MINIMUM:=		${_PYTHON_VERSION_MINIMUM_TMP:M[1-9].[0-9]}
 _PYTHON_VERSION_MAXIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/.*-([1-9]\.[0-9])/\1/}
