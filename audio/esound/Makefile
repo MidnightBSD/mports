@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libaudiofile.so:${PORTSDIR}/audio/libaudiofile
 
-USES=		libtool:keepla pathfix pkgconfig:both tar:bzip2
+USES=		alias libtool:keepla pathfix pkgconfig:both tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 CONFIGURE_ENV=	JW=false
