@@ -15,4 +15,4 @@
 +#ifndef SNDCTL_DSP_SETDUPLEX
  #define SNDCTL_DSP_SETDUPLEX DSP_CAP_DUPLEX
  #endif
-
+ 
