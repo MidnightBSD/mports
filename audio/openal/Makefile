@@ -3,22 +3,21 @@
 
 PORTNAME=	openal
 PORTVERSION=	20060211
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	audio
 MASTER_SITES=	http://openal.org/openal_webstf/downloads/
 DISTVERSION=	0.0.8
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A 3D positional spatialized sound library
+COMMENT=	3D positional spatialized sound library
+
 LICENSE=	gpl2
 
-USES=	libtool
+USES=	libtool gmake pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--enable-capture
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig gnomehack
 WANT_SDL=	yes
 USE_LDCONFIG=	yes
 
@@ -95,8 +94,5 @@ post-patch:
 .if defined(WITHOUT_X86_ASM)
 	@${REINPLACE_CMD} -e '/^NASM=/ s|=.*|=no|' ${WRKSRC}/configure
 .endif
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
