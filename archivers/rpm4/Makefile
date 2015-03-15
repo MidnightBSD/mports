@@ -2,6 +2,7 @@
 
 PORTNAME=	rpm
 PORTVERSION=	4.12.0.1
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
@@ -29,7 +30,8 @@ NLS_USES=	gettext
 NLS_LIBS=	-lintl
 PORTDOCS=	*
 
-USES=		gmake libtool lua:51 pathfix shebangfix tar:bzip2 pkgconfig
+USES=		alias gmake libtool lua:51 pathfix pkgconfig shebangfix \
+		tar:bzip2
 USE_BDB=	46+
 INVALID_BDB_VER=51
 GNU_CONFIGURE=	yes
