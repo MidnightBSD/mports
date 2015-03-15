@@ -49,6 +49,7 @@ SUBDIR += linux-f10-libtheora
 SUBDIR += linux-helixplayer
 SUBDIR += linux-libtheora
 SUBDIR += linux-realplayer
+SUBDIR += mp4v2
 SUBDIR += mpeg2codec
 SUBDIR += mpeg4ip-libmp4v2
 SUBDIR += mplayer
