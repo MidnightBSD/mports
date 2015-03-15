@@ -92,6 +92,7 @@ SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
 SUBDIR += sound-juicer
 SUBDIR += speex
+SUBDIR += speexdsp
 SUBDIR += taglib
 SUBDIR += teamspeak_server
 SUBDIR += timemachine
