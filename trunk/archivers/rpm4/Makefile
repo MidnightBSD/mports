@@ -32,7 +32,7 @@ PORTDOCS=	*
 
 USES=		alias gmake libtool lua:51 pathfix pkgconfig shebangfix \
 		tar:bzip2
-USE_BDB=	46+
+USE_BDB=	48+
 INVALID_BDB_VER=51
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
