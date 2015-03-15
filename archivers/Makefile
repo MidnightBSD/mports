@@ -42,7 +42,6 @@ SUBDIR += php5-phar
 SUBDIR += php5-zip
 SUBDIR += php5-zlib
 SUBDIR += rar
-SUBDIR += rpm
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
 SUBDIR += snappy
