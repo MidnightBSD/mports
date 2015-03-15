@@ -189,8 +189,29 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 # PYEASYINSTALL_CMD - Full file path to easy_install command.
 #					  default: ${LOCALBASE}/bin/easy_install-${PYTHON_VER}
 
-_PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 3.4 3.3 # preferred first
+_PYTHON_VERSIONS=		2.7 3.4 3.3     # preferred first
+_PYTHON_PORTBRANCH=		2.7	 # ${_PYTHON_VERSIONS:[1]}
+_PYTHON_BASECMD=		${LOCALBASE}/bin/python
+_PYTHON_RELPORTDIR=		${PORTSDIR}/lang/python
+
+# Make each individual feature available as _PYTHON_FEATURE_<FEATURENAME>
+.for var in ${USE_PYTHON}
+_PYTHON_FEATURE_${var:tu}=	yes
+.endfor
+
+# Make sure that no dependency or some other environment variable
+# pollutes the build/run dependency detection
+.undef _PYTHON_BUILD_DEP
+.undef _PYTHON_RUN_DEP
+_PYTHON_ARGS=		${python_ARGS:S/,/ /g}
+.if ${_PYTHON_ARGS:Mbuild}
+_PYTHON_BUILD_DEP=	yes
+_PYTHON_ARGS:=		${_PYTHON_ARGS:Nbuild}
+.endif
+.if ${_PYTHON_ARGS:Mrun}
+_PYTHON_RUN_DEP=	yes
+_PYTHON_ARGS:=		${_PYTHON_ARGS:Nrun}
+.endif
 
 # Determine version number of Python to use
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
@@ -205,10 +226,18 @@ WARNING+=	"PYTHON2_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=p
 WARNING+=	"PYTHON3_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python3=${PYTHON3_DEFAULT_VERSION:S/^python//} instead"
 .endif
 
+.if ${_PYTHON_ARGS} == "2"
+_PYTHON_ARGS=		${PYTHON2_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	2
+.elif ${_PYTHON_ARGS} == "3"
+_PYTHON_ARGS=		${PYTHON3_DEFAULT_VERSION:S/^python//}
+_WANTS_META_PORT=	3
+.endif  # ${_PYTHON_ARGS} == "2"
+
 .if exists(${LOCALBASE}/bin/python)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
-							'import sys; print(sys.version[:3])' 2> /dev/null \
-							|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
+		'import sys; print("%d.%d" sys.version[:2])' 2> /dev/null \
+		|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
 .if defined(PYTHON_DEFAULT) && (${PYTHON_DEFAULT} != ${_PYTHON_DEFAULT_VERSION})
 WARNING+=	"Your requested default python version ${PYTHON_DEFAULT} is different from the installed default python interpreter version ${_PYTHON_DEFAULT_VERSION}"
 .endif
@@ -285,7 +314,7 @@ IGNORE=				needs Python ${_PYTHON_VERSION_NONSUPPORTED}.\
 					But you specified ${_PYTHON_VERSION}
 .else
 .undef _PYTHON_VERSION
-.for ver in ${_PYTHON_ALLBRANCHES}
+.for ver in ${_PYTHON_VERSIONS}
 __VER=		${ver}
 .if !defined(_PYTHON_VERSION) && \
 	!(!empty(_PYTHON_VERSION_MINIMUM) && ( \
@@ -642,7 +671,7 @@ Python_Post_Include=			bsd.python.mk
 
 # py-distutils support
 PYDISTUTILS_CONFIGURE_TARGET?=	config
-PYDISTUTILS_BUILD_TARGET?=		build
+PYDISTUTILS_BUILD_TARGET?=	build
 PYDISTUTILS_INSTALL_TARGET?=	install
 
 .if defined(USE_PYDISTUTILS)
