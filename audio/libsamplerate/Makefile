@@ -2,6 +2,7 @@
 
 PORTNAME=	libsamplerate
 PORTVERSION=	0.1.8
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/SRC/
 
@@ -10,13 +11,10 @@ COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
 
 LICENSE=	gpl2
 
-USES=	pathfix pkgconfig
-USES=	libtool
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--disable-gcc-pipe --program-prefix=''
+USES=		libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	CPU_CLIP DOCS EXAMPLES
 CPU_CLIP_DESC=	Allow machine-dependent clipping
@@ -38,19 +36,11 @@ CONFIGURE_ARGS+=	--disable-fftw
 .endif
 
 .if ${PORT_OPTIONS:MEXAMPLES}
-LIB_DEPENDS+=	sndfile.1:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS+=	libsndfile.so:${PORTSDIR}/audio/libsndfile
 .elif defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS +=	${LOCALBASE}/lib/libsndfile.so:${PORTSDIR}/audio/libsndfile
+BUILD_DEPENDS +=	libsndfile>=0:${PORTSDIR}/audio/libsndfile
 .else
 CONFIGURE_ARGS+=	--disable-sndfile
-.endif
-
-post-patch:
-.if empty(PORT_OPTIONS:MDOCS)
-	@${REINPLACE_CMD} -e '/SUBDIRS =/s/doc //' ${WRKSRC}/Makefile.in
-.endif
-.if empty(PORT_OPTIONS:MEXAMPLES)
-	@${REINPLACE_CMD} -e '/SUBDIRS =/s/examples //' ${WRKSRC}/Makefile.in
 .endif
 
 .if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
