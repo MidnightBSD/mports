@@ -94,7 +94,6 @@ SUBDIR += sound-juicer
 SUBDIR += speex
 SUBDIR += speexdsp
 SUBDIR += taglib
-SUBDIR += teamspeak_server
 SUBDIR += timemachine
 SUBDIR += timidity
 SUBDIR += twolame
