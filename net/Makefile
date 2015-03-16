@@ -39,6 +39,7 @@ SUBDIR += libdnet
 SUBDIR += libgweather
 SUBDIR += libnet
 SUBDIR += libnet10
+SUBDIR += liboath
 SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
