@@ -24,6 +24,7 @@ SUBDIR += gnet2
 SUBDIR += gnome-mud
 SUBDIR += gnome-netstatus
 SUBDIR += gnome-nettool
+SUBDIR += gnome-online-accounts
 SUBDIR += gnome-vnc
 SUBDIR += gtk-vnc
 SUBDIR += hinfo
