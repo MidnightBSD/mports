@@ -15,6 +15,7 @@ SUBDIR += kermit
 SUBDIR += libimobiledevice
 SUBDIR += libirman
 SUBDIR += lirc
+SUBDIR += libusbmuxd
 SUBDIR += lrzsz
 SUBDIR += minicom
 SUBDIR += p5-Device-Gsm
