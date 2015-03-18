@@ -3,17 +3,18 @@
 
 PORTNAME=	clucene
 DISTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	textproc
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	QtCLucene full text search library wrapper
+COMMENT=	Qt bindings for the CLucene full-text search library
+
 LICENSE=	gpl3
 
 USE_QT4=	qmake_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
