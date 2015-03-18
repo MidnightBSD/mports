@@ -10,4 +10,3 @@
  #endif
  
  extern XdgMimeCache **_caches;
-
