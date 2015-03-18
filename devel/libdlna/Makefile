@@ -2,21 +2,19 @@
 
 PORTNAME=	libdlna
 PORTVERSION=	0.2.3
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://libdlna.geexbox.org/releases/ \
-		http://critical.ch/distfiles/ \
-		http://energy.critical.ch/distfiles/
+		FREEBSD_LOCAL/ehaupt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reference DLNA open-source implementation
 LICENSE=	lgpl
 
-LIB_DEPENDS+=	avcodec:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
 
 HAS_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
+USES=		tar:bzip2 gmake pkgconfig
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 
