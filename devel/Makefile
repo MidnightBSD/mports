@@ -140,6 +140,7 @@ SUBDIR += libburn
 SUBDIR += libcheck
 SUBDIR += libconfuse
 SUBDIR += libdaemon
+SUBDIR += libdatrie
 SUBDIR += libdispatch
 SUBDIR += libdbusmenu-qt
 SUBDIR += libdlna
