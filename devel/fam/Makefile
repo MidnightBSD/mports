@@ -3,28 +3,29 @@
 
 PORTNAME=	fam
 PORTVERSION=	2.6.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	ftp://oss.sgi.com/projects/fam/download/
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A file alteration monitor
+COMMENT=	File alteration monitor
+
 LICENSE=	gpl2
 
 CFLAGS+=	-Wno-deprecated
 
-USE_AUTOTOOLS=	aclocal automake autoconf libtool
-AUTOMAKE_ARGS=	-c -a
-USE_GMAKE=	yes
+USES=		gmake libtool
+USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader automake
+AUTOMAKE_ARGS=	-a -c -f
 USE_LDCONFIG=	yes
-ACLOCAL_ARGS=	-I "${ACLOCAL_DIR}" -I ${LOCALBASE}/share/aclocal
+INSTALL_TARGET=	install-strip
 SUB_FILES=	pkg-message
 
-MAN1=		fam.1m
-MAN3=		fam.3x
+#CONFLICTS_INSTALL=	gamin-[0-9]*
 
-CONFLICTS=	gamin-[0-9]*
+post-patch:
+	${REINPLACE_CMD} -e "s/-lstdc++//g" ${WRKSRC}/libfam/Makefile.am
 
 pre-configure:
 	@${RM} -fr ${WRKSRC}/util
