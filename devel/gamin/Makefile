@@ -2,26 +2,26 @@
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
-PORTREVISION?=	333
+PORTREVISION?=	334
 CATEGORIES?=	devel
 MASTER_SITES=	http://people.gnome.org/~veillard/gamin/sources/
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	A file and directory monitoring system
+COMMENT?=	File and directory monitoring system
+
 LICENSE=	lgpl
 
-USES+=		gettext gmake pathfix pkgconfig
-USE_AUTOTOOLS=	libtool
+USES+=		gettext gmake libtool pathfix pkgconfig
 USE_GNOME?=	glib20
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
-LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-DHAVE_LINUX -I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 CONFLICTS=	fam-[0-9]*
-
-GNU_CONFIGURE=	yes
 
 .if !defined(GAMIN_SLAVE)
 OPTIONS_DEFINE=	GAM_POLLER LIBINOTIFY RUN_AS_EUID
@@ -40,8 +40,8 @@ CPPFLAGS+=	-DUSE_GAMIN_POLLER=1
 
 .if ${PORT_OPTIONS:MLIBINOTIFY}
 CONFIGURE_ARGS+=--enable-inotify
-LDFLAGS+=	-L${LOCALBASE}/lib -linotify
-LIB_DEPENDS+=	inotify:${PORTSDIR}/devel/libinotify
+LIBS+=		-linotify
+LIB_DEPENDS+=	libinotify.so:${PORTSDIR}/devel/libinotify
 .else
 CONFIGURE_ARGS+=--disable-inotify
 .endif
@@ -57,7 +57,7 @@ post-patch:
 .if !defined(GAMIN_SLAVE)
 regression-test: build
 	@${ECHO_MSG} "===> Running gamin regression tests"
-	@(cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
+	@(cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
 		Makefile ${MAKE_ARGS} tests)
 .endif
 
