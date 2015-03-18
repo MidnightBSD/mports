@@ -2,7 +2,7 @@
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,15 +12,14 @@ COMMENT=	Graphic library for enlightenment package
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		gif.5:${PORTSDIR}/graphics/giflib
+LIB_DEPENDS=	png:${PORTSDIR}/graphics/png \
+		tiff:${PORTSDIR}/graphics/tiff \
+		gif:${PORTSDIR}/graphics/giflib
 
-USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
+USES=		libtool tar:bzip2 gmake
 USE_XORG=	sm xext x11
 USE_GMAKE=	yes
-USE_GNOME=	gtk12 gnomehack
+USE_GNOME=	gtk12
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules
