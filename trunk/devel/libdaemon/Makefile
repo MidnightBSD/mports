@@ -5,7 +5,7 @@
 
 PORTNAME=	libdaemon
 PORTVERSION=	0.14
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://0pointer.de/lennart/projects/${PORTNAME}/
 
@@ -14,8 +14,8 @@ COMMENT=	Lightweight C library that eases the writing of UNIX daemons
 LICENSE=	lgpl
 
 CONFIGURE_ARGS=	--disable-lynx
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack ltverhack
+GNU_CONFIGURE=	yes
+USES=		libtool:keepla pathfix
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

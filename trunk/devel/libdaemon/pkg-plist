@@ -9,5 +9,7 @@ lib/libdaemon.a
 lib/libdaemon.la
 lib/libdaemon.so
 lib/libdaemon.so.0
+lib/libdaemon.so.0.5.0
 libdata/pkgconfig/libdaemon.pc
-@dirrm include/libdaemon
+%%DOCSDIR%%/README.html
+%%DOCSDIR%%/style.css
