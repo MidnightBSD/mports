@@ -1,57 +1,46 @@
-# New ports collection makefile for:   pcsc-lite
-# Date created:                15 Oct 2001
-# Whom:                        Toni Andjelkovic <toni@soth.at>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/pcsc-lite/Makefile,v 1.39 2008/03/20 09:37:20 pav Exp $
-#
 
 PORTNAME=	pcsc-lite
-PORTVERSION=	1.4.4
+PORTVERSION=	1.8.13
 CATEGORIES=	devel security
-MASTER_SITES=	http://alioth.debian.org/frs/download.php/2106/
-DISTNAME=	pcsc-lite-${PORTVERSION:S/.b./-beta/}
+MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/4126/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A smartcard development library
+COMMENT=	Smartcard development library
+
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack pkgconfig
+INSTALL_TARGET=	install-strip
+USES=		gmake libtool pathfix perl5 pkgconfig shebangfix tar:bzip2
+USE_PERL5=	build
 USE_RC_SUBR=	pcscd
+SHEBANG_FILES=	${WRKSRC}/src/spy/pcsc-spy
 
 USE_LDCONFIG=	yes
-CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}" \
-		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
-CONFIGURE_ARGS+=--enable-debug \
-		--enable-syslog \
-		--enable-runpid=/var/run/pcscd.pid \
-		--enable-ipcdir=/var/tmp/ \
-		--enable-confdir=${PREFIX}/etc/ \
-		--enable-usbdropdir=${PREFIX}/lib/pcsc/drivers/ \
-		--enable-muscledropdir=${PREFIX}/lib/pcsc/services/ \
-		--enable-threadsafe
+CONFIGURE_ARGS=	--enable-usbdropdir=${PREFIX}/lib/pcsc/drivers/ \
+		LIBUSB_CFLAGS=" " LIBUSB_LIBS="-lusb"
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
-MAN5=		reader.conf.5
-MAN8=		pcscd.8 update-reader.conf.8
 
-.if !defined(WITHOUT_USB)
-LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
-CONFIGURE_ARGS+=--enable-libusb=${LOCALBASE}
-.endif
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+.include <bsd.mport.options.mk>
+
+FETCH_DEPENDS=	wget:${PORTSDIR}/ftp/wget
+DISABLE_SIZE=	yes
+FETCH_CMD=	${LOCALBASE}/bin/wget -c -nc --no-check-certificate
 
 post-patch:
-	${REINPLACE_CMD} -e "s,^datadir,#datadir,; s,^data_DATA,#data_DATA," ${WRKSRC}/doc/Makefile.in
-	${REINPLACE_CMD} -e "s,^confdir,#sysconfdir,; s,^conf_DATA,#sysconf_DATA,; s,^EXTRA_DIST,#EXTRA_DIST," ${WRKSRC}/etc/Makefile.in
-
-pre-everything::
-.if !defined(WITHOUT_USB)
-	@${ECHO_MSG}
-	@${ECHO_MSG} "pcsc-lite has the following option(s):"
-	@${ECHO_MSG} "  WITHOUT_USB=yes            Disable USB support"
-	@${ECHO_MSG}
+	${REINPLACE_CMD} -e "s,^datadir,#datadir,; s,^data_DATA,#data_DATA," \
+		${WRKSRC}/doc/Makefile.in
+	${REINPLACE_CMD} -e "s,libusb-1.0/libusb.h,libusb.h,; \
+		s,libusb_strerror(ret),ret," ${WRKSRC}/configure \
+			${WRKSRC}/src/hotplug_libusb.c
+	${REINPLACE_CMD} -e "s,-ldl,," ${WRKSRC}/src/spy/Makefile.in
+.if ! ${PORT_OPTIONS:MDOCS}
+	${REINPLACE_CMD} -e '/^install-data-am: / s|install-docDATA||' ${WRKSRC}/doc/Makefile.in
 .endif
 
 post-install:
@@ -64,8 +53,6 @@ post-install:
 	@${MKDIR} ${PREFIX}/lib/pcsc/services
 	${TOUCH} ${PREFIX}/lib/pcsc/drivers/.keep_me
 	${TOUCH} ${PREFIX}/lib/pcsc/services/.keep_me
-	${INSTALL_DATA} ${WRKSRC}/etc/reader.conf \
-		${PREFIX}/etc/reader.conf.sample
 	@${SED} 's,%%PREFIX%%,${PREFIX},g' < ${FILESDIR}/pkg-message.in > \
 		${WRKDIR}/pkg-message
 

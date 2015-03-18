@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/devel/pcsc-lite/files/pcscd.in,v 1.1 2007/01/22 16:56:16 arved Exp $
+# $FreeBSD: head/devel/pcsc-lite/files/pcscd.in 340872 2014-01-24 00:14:07Z mat $
 #
 # PROVIDE:	pcscd
 # REQUIRE:	LOGIN
@@ -9,12 +9,15 @@
 #
 # pcscd_enable="YES"
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="pcscd"
-rcvar="pcscd_enable"
+rcvar=pcscd_enable
 
 command="%%PREFIX%%/sbin/pcscd"
 
 load_rc_config "$name"
+
+: ${pcscd_enable="NO"}
+
 run_rc_command "$1"

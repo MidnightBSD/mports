@@ -1,28 +1,25 @@
-etc/reader.conf.sample
+bin/pcsc-spy
 include/PCSC/debuglog.h
 include/PCSC/ifdhandler.h
 include/PCSC/pcsclite.h
 include/PCSC/reader.h
 include/PCSC/winscard.h
 include/PCSC/wintypes.h
-lib/libpcsclite.a
 lib/libpcsclite.so
 lib/libpcsclite.so.1
-lib/pcsc/drivers/.keep_me
-lib/pcsc/services/.keep_me
+lib/libpcsclite.so.1.0.0
+lib/libpcscspy.so
+lib/libpcscspy.so.0
+lib/libpcscspy.so.0.0.0
 libdata/pkgconfig/libpcsclite.pc
 sbin/pcscd
-sbin/update-reader.conf
-%%DOCSDIR%%/README.DAEMON
-%%DOCSDIR%%/pcsc-lite.tex
-%%DOCSDIR%%/pcsc-lite.bib
-%%DOCSDIR%%/ifdhandler-3.tex
-%%EXAMPLESDIR%%/Makefile.am
-%%EXAMPLESDIR%%/Makefile.in
-%%EXAMPLESDIR%%/pcsc_demo.c
-@dirrm include/PCSC
-@dirrm %%DOCSDIR%%
-@dirrm %%EXAMPLESDIR%%
-@dirrm lib/pcsc/drivers
-@dirrm lib/pcsc/services
-@dirrm lib/pcsc
+%%PORTDOCS%%%%DOCSDIR%%/README.DAEMON
+%%PORTDOCS%%%%DOCSDIR%%/README.polkit
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.am
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.in
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/pcsc_demo.c
+man/man1/pcsc-spy.1.gz
+man/man5/reader.conf.5.gz
+man/man8/pcscd.8.gz
+@dir lib/pcsc/services
+@dir lib/pcsc/drivers
