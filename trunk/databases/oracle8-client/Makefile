@@ -2,10 +2,9 @@
 
 PORTNAME=	oracle8-client
 PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	fjoe
+MASTER_SITES=	FREEBSD_LOCAL/fjoe
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle 8 client
@@ -17,8 +16,6 @@ ONLY_FOR_ARCHS=	i386
 WRKSRC=		${WRKDIR}/${PORTNAME}
 ORACLE_HOME=	${PREFIX}/${PORTNAME}
 
-.include <bsd.port.pre.mk>
-
 do-build:
 	@cd ${WRKSRC}/freebsd && ./redefine-syms.sh ../lib/libclntst8.a
 	@cd ${WRKSRC}/freebsd && ${MAKE} all patch clean ORACLE_HOME=${WRKSRC}
@@ -28,4 +25,4 @@ do-install:
 	cd ${WRKSRC} && ${FIND} . -not -name '*.orig' -print0 |\
 	    ${CPIO} -dump0 -R ${SHAREOWN}:${SHAREGRP} ${ORACLE_HOME}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
