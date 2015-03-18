@@ -37,7 +37,7 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 WARNING+=	"DEFAULT_MYSQL_VER is defined, consider using DEFAULT_VERSIONS=mysql=${DEFAULT_MYSQL_VER} instead"
 .endif
 
-.if defined(USE_MYSQL)
+#.if defined(USE_MYSQL)
 DEFAULT_MYSQL_VER?=	${MYSQL_DEFAULT:S/.//}
 # MySQL client version currently supported.
 MYSQL51_LIBVER=		16
@@ -47,6 +47,7 @@ MYSQL55m_LIBVER=	18
 MYSQL55p_LIBVER=	18
 MYSQL56_LIBVER=		18
 MYSQL56p_LIBVER=	18
+MYSQL100m_LIBVER=	18
 
 # Setting/finding MySQL version we want.
 .if exists(${LOCALBASE}/bin/mysql) && !defined(PACKAGE_BUILDING)
@@ -101,10 +102,6 @@ _MYSQL_CLIENT=	databases/mysql${MYSQL_VER}-client
 _MYSQL_SERVER=	databases/mysql${MYSQL_VER}-server
 .endif
 
-.if (${USE_MYSQL} == "embedded")
-IGNORE_WITH_MYSQL=	41
-.endif
-
 # And now we are checking if we can use it
 .if defined(MYSQL${MYSQL_VER}_LIBVER)
 .if defined(IGNORE_WITH_MYSQL)
@@ -126,6 +123,6 @@ LIB_DEPENDS+=	libmysqlclient.so.${MYSQL${MYSQL_VER}_LIBVER}:${PORTSDIR}/${_MYSQL
 IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
 .endif # Check for correct libs
 
-.endif # USE_MYSQL
+#.endif # USE_MYSQL
 
 .endif # defined(_POSTMKINCLUDED) && !defined(Mysql_Post_Include)
