@@ -1,7 +1,3 @@
-# New ports collection makefile for:	libiodbc
-# Date created:				24 Mar 2000
-# Whom:					erikhb@bgnett.no
-#
 # $MidnightBSD$
 # $FreeBSD: ports/databases/libiodbc/Makefile,v 1.28 2007/01/17 17:18:11 itetcu Exp $
 #
@@ -10,42 +6,33 @@
 #        databases/unixODBC.
 
 PORTNAME=	libiodbc
-PORTVERSION=	3.52.7
+PORTVERSION=	3.52.9
 CATEGORIES=	databases
-MASTER_SITES=	http://www.iodbc.org/downloads/iODBC/ \
-		SF/iodbc/iodbc/${PORTVERSION}
+MASTER_SITES=	SF/iodbc/iodbc/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An ODBC 3.x driver manager, for universal data source access
-LICENSE=	lgpl
+COMMENT=	ODBC 3.x driver manager, for universal data source access
 
-CONFLICTS=	unixODBC-[0-9]*
+LICENSE=		bsd3 lgpl
+LICENSE_COMB=		dual
+LICENSE_FILE_BSD=	${WRKSRC}/LICENSE.BSD
+LICENSE_FILE_LGPL20=	${WRKSRC}/LICENSE.LGPL
 
-MAKE_JOBS_SAFE=	yes
-USE_GNOME=	gnomehack pkgconfig
-USE_GMAKE=	yes
-USES=	libtool
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CONFIGURE_ARGS=	--with-iodbc-inidir=${ETCDIR}
+USES=		libtool pathfix pkgconfig
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-iodbc-inidir=${ETCDIR} \
+		--includedir=${LOCALBASE}/include/libiodbc \
+		--disable-libodbc
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-MAN1=		iodbc-config.1 iodbctest.1 iodbctestw.1
+OPTIONS_DEFINE=	GTK2 DOCS EXAMPLES
+OPTIONS_SUB=	yes
 
-CPPFLAGS=	${PTHREAD_CFLAGS} -D_BSD_WCHAR_T_DEFINED_
-LDFLAGS=	${PTHREAD_LIBS}
-
-.if defined(WITH_GUI)
-USE_GNOME+=	gtk20
-MAN1+=		iodbcadm-gtk.1
-PLIST_SUB+=	GUI=""
-.else
-CONFIGURE_ARGS+=	--disable-gui
-PLIST_SUB+=	GUI="@comment "
-.endif
+GTK2_USE=	GNOME=gtk20
+GTK2_CONFIGURE_ENABLE=	gui
 
 post-patch:
-	@${REINPLACE_CMD} -e \
-		's|$$CFLAGS -pthread|$$CFLAGS|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		'/^SUBDIRS/s|samples||' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e \
@@ -54,15 +41,13 @@ post-patch:
 post-install:
 	@${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/etc/odbc*.ini.sample ${ETCDIR}
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for f in AUTHORS ChangeLog NEWS README
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 	@${MKDIR} ${EXAMPLESDIR}
-.for f in Makefile iodbctest.c
+.for f in Makefile.sample iodbctest.c
 	${INSTALL_DATA} ${WRKSRC}/samples/${f} ${EXAMPLESDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
