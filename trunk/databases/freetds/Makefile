@@ -3,6 +3,7 @@
 
 PORTNAME=	freetds
 PORTVERSION=	0.91.103
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
@@ -18,7 +19,7 @@ TDS_VER?=	5.0
 
 USES=		iconv gmake pkgconfig libtool:keepla
 GNU_CONFIGURE=	yes
-USES=	autoconf:env
+USE_AUTOTOOLS=	autoconf:env
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 LIBS+=		-lgcrypt
