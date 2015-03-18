@@ -177,7 +177,6 @@ SUBDIR += libslang2
 SUBDIR += libsoup
 SUBDIR += libsoup-gnome
 SUBDIR += libthai
-SUBDIR += libtifiles
 SUBDIR += libtool
 SUBDIR += libublio
 SUBDIR += libunicode
