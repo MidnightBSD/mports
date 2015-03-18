@@ -28,7 +28,6 @@ SUBDIR += glproto
 SUBDIR += gnome-applets
 SUBDIR += gnome-desktop
 SUBDIR += gnome-desktop-reference
-SUBDIR += gnome-libs
 SUBDIR += gnome-menus
 SUBDIR += gnome-panel
 SUBDIR += gnome-screensaver
