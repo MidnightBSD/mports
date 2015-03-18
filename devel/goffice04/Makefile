@@ -6,7 +6,7 @@
 
 PORTNAME=	goffice
 PORTVERSION=	0.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	04
@@ -14,21 +14,16 @@ DISTFILES=	goffice-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
-NO_LATEST_LINK=	yes
-
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeprint libglade2 \
-		libgsf_gnome libgnomeui ltverhack
-USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool
+USES=		gettext gmake tar:bzip2 libtool
+USE_GNOME=	libgnomeprint libglade2 libgnomeui libgsf
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS="-I${LOCALBASE}/include"
+LDFLAGS="-L${LOCALBASE}/lib"
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
