@@ -449,6 +449,7 @@ SUBDIR += qt4-qvfb
 SUBDIR += qt4-rcc
 SUBDIR += qt4-script
 SUBDIR += qt4-scripttools
+SUBDIR += qt4-testlib
 SUBDIR += qt4-uic
 SUBDIR += qt4-uic3
 SUBDIR += qtcreator
