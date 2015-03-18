@@ -2,7 +2,7 @@
 
 PORTNAME=	memcachedb
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
@@ -19,7 +19,7 @@ CONFIGURE_ARGS=	--enable-threads --with-bdb="${LOCALBASE}" \
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-l"${BDB_LIB_NAME}" -L"${LOCALBASE}/lib"
 MCDBDIR?=	/var/db/memcachedb
-USE_BDB=	47+
+USE_BDB=	48+
 USE_RC_SUBR=	${PORTNAME}
 
 post-install:
