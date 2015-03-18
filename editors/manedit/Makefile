@@ -2,20 +2,20 @@
 
 PORTNAME=	manedit
 PORTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://wolfsinger.com/~wolfpack/packages/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A UNIX manual page editor and viewer
+COMMENT=	UNIX manual page editor and viewer
+
 LICENSE=        gpl2
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/${PORTNAME}
 
 MAKEFILE=	Makefile.FreeBSD
-MAKE_JOBS_SAFE=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GNOME=	gtk12
-
-MAN1=		manedit.1
 
 pre-configure:
 	@${CP} ${FILESDIR}/mntent* ${WRKSRC}
