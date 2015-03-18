@@ -8,28 +8,21 @@
 
 PORTNAME=	libconfuse
 PORTVERSION=	2.7
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	SAVANNAH
-MASTER_SITE_SUBDIR=	confuse
+MASTER_SITES=	SAVANNAH/confuse
 DISTNAME=	confuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration file parsing library
 LICENSE=	mit
 
-.if defined(WITH_CHECK)
-LIB_DEPENDS+=	${LOCALBASE}/lib/libcheck.a:${PORTSDIR}/devel/libcheck
-.endif
+LICENSE=	ISCL
 
-USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-nls --enable-shared
+INSTALL_TARGET=	install-strip
+USES=		iconv pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack pkgconfig
-CONFIGURE_ARGS+=	--disable-nls
-CFLAGS+=	-I${WRKSRC}/src
-.if defined(WITH_CHECK)
-CONFIGURE_ARGS+=	--with-check=${LOCALBASE}
-CFLAGS+=	-I${LOCALBASE}/include
-.endif
 
 .include <bsd.port.mk>
