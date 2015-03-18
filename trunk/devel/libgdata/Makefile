@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/libgdata/Makefile,v 1.12 2010/12/12 10:52:35 kwm Exp $
 
 PORTNAME=	libgdata
-PORTVERSION=	0.6.6
+PORTVERSION=	0.16.1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -10,17 +10,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib based implimentation of the GData protocol
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	soup-gnome-2.4.1:${PORTSDIR}/devel/libsoup-gnome
+BUILD_DEPENDS=	ca_root_nss>=0:${PORTSDIR}/security/ca_root_nss \
+		gtkdoc-check:${PORTSDIR}/textproc/gtk-doc \
+		vapigen:${PORTSDIR}/lang/vala
+LIB_DEPENDS=	libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome \
+		libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
+		libuhttpmock-0.0.so:${PORTSDIR}/net/uhttpmock \
+		libgcr-3.so:${PORTSDIR}/security/gcr \
+		liboauth.so:${PORTSDIR}/net/liboauth
+RUN_DEPENDS=	ca_root_nss>=0:${PORTSDIR}/security/ca_root_nss
 
-USE_BZIP2=	yes
-USES=		gmake pathfix pkgconfig
+USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	glib20 gnomeprefix intlhack \
+		introspection:build
 USE_LDCONFIG=	yes
-USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack intltool ltverhack glib20
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS+=--with-html-dir="${PREFIX}/share/doc"
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS+=--with-ca-certs=${LOCALBASE}/share/certs/ca-root-nss.crt
 
 .include <bsd.port.mk>
