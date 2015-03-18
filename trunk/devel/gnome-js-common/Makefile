@@ -3,17 +3,18 @@
 
 PORTNAME=	gnome-js-common
 PORTVERSION=	0.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME JavaScript common modules and tests
+
 LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack intltool
+USE_GNOME=	intltool
 USES=		pkgconfig gettext gmake tar:bzip2
 
 PORTDOCS=	AUTHORS COPYING INSTALL NEWS README ChangeLog
