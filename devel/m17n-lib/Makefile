@@ -3,29 +3,31 @@
 #
 
 PORTNAME=	m17n-lib
-PORTVERSION=	1.6.2
+PORTVERSION=	1.6.4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.m17n.org/m17n-lib-download/ \
 		http://anthesphoria.net/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for multilingual text handling
+COMMENT=	Library for multilingual text handling
+
 LICENSE=	lgpl2.1
 
 BUILD_DEPENDS=	bison:${PORTSDIR}/devel/bison \
 		m17n-db>=1.6.2:${PORTSDIR}/devel/m17n-db
-LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
-		freetype.9:${PORTSDIR}/print/freetype2 \
-		fribidi.3:${PORTSDIR}/converters/fribidi \
-		gd.4:${PORTSDIR}/graphics/gd \
-		otf.0:${PORTSDIR}/print/libotf
+LIB_DEPENDS=	fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
+		freetype:${PORTSDIR}/print/freetype2 \
+		fribidi:${PORTSDIR}/converters/fribidi \
+		gd:${PORTSDIR}/graphics/gd \
+		otf:${PORTSDIR}/print/libotf
 RUN_DEPENDS=	m17n-db>=1.6.2:${PORTSDIR}/devel/m17n-db
 
 MAKE_JOBS_UNSAFE=	yes
 
+USES=		libtool pkgconfig
 USE_XORG=	ice sm x11 xaw xft xt
-USE_GNOME=	libxml2 pkgconfig
-USE_AUTOTOOLS=	autoconf libtool
+USE_GNOME=	libxml2
+USE_AUTOTOOLS=	autoconf 
 USE_LDCONFIG=	yes
 
 OPTIONS=	ISPELL	"With Ispell support" off \
