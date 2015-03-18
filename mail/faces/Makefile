@@ -1,68 +1,57 @@
-# New ports collection makefile for:	faces-1.6.1
-# Date created:		09 December 96
-# Whom:			Lars Koeller <Lars_Koeller@odie.physik2.uni-rostock.de>
-#			Andreas Klemm <andreas@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/mail/faces/Makefile,v 1.40 2008/03/30 09:36:45 dinoex Exp $
-#
 
 PORTNAME=	faces
 PORTVERSION=	1.7.7
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Visual mail, user and print face server
+MAINTAINER=	ashish@FreeBSD.org
+COMMENT=	Visual mail, user, and print face server
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS=	X11 "X11/GTK support" on	\
-		NAS "NAS audio support" off	\
-		RPLAY "rplay audio support" off	\
-		SOX "Sox audio support" off
+OPTIONS_DEFINE=	X11 DOCS NLS AUDIO
+OPTIONS_DEFAULT=	X11
+OPTIONS_SINGLE=		AUDIO
+OPTIONS_SINGLE_AUDIO=	NAS RPLAY SOX
+AUDIO_DESC=	Audio support
+X11_DESC=	X11/GTK support
+RPLAY_DESC=	rplay audio support
+SOX_DESC=	Sox audio support
 
-WANT_GNOME=	yes
-USE_LDCONFIG=	yes
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
 
-MAN1=		compface.1
-MAN3=		compface.3
-MLINKS=		compface.1 uncompface.1 \
-		compface.3 uncompface.3
-PORTDOCS=	README
+OPTIONS_SUB=	X11
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITHOUT_X11)
-PLIST_SUB+=	X11="@comment "
-WITH_AUDIO=	# none
-.else # with X11
-PLIST_SUB+=	X11=""
-USE_GNOME=	gnomehack gtk12
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPFLAGS="-I../compface -I${LOCALBASE}/include" \
-		LDFLAGS="-L../compface -L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--enable-imap --enable-pop \
+X11_USE=	GNOME=gtk12
+X11_CPPFLAGS=	-I../compface -I${LOCALBASE}/include
+X11_LDFLAGS=	-L../compface -L${LOCALBASE}/lib
+X11_CONFIGURE_ON=	--enable-imap --enable-pop \
 		--enable-name-unknown --with-spooldir=/var/mail \
 		--with-facedir=${DATADIR}
-MAN1+=		faces.1
-.endif
+X11_CONFIGURE_WITH=	x
 
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=--disable-nls
-.endif
+AUDIO_CONFIGURE_ENABLE=	audio
 
-.ifdef WITH_NAS
- CONFIGURE_ARGS+=	--enable-audio --with-audio-cmd=${LOCALBASE}/bin/auplay
- RUN_DEPENDS=	auplay:${PORTSDIR}/audio/nas
-.elifdef WITH_SOX
- CONFIGURE_ARGS+=	--enable-audio --with-audio-cmd=${LOCALBASE}/bin/play
- RUN_DEPENDS=	play:${PORTSDIR}/audio/sox
-.elifdef WITH_RPLAY
- CONFIGURE_ARGS+=	--enable-audio --with-audio-cmd=${LOCALBASE}/bin/rplay
- RUN_DEPENDS=	rplay:${PORTSDIR}/audio/rplay
-.endif
+NAS_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/auplay
+NAS_RUN_DEPENDS=	auplay:${PORTSDIR}/audio/nas
+
+SOX_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/play
+SOX_RUN_DEPENDS=	play:${PORTSDIR}/audio/sox
+
+RPLAY_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/rplay
+RPLAY_RUN_DEPENDS=	rplay:${PORTSDIR}/audio/rplay
+
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+
+PORTDOCS=	README
+
+.include <bsd.mport.options.mk>
 
 # I have no better idea up to now
 # Install the working Makefile for compface from the old faces port
@@ -71,11 +60,11 @@ post-patch:
 	@${REINPLACE_CMD} -e "s%/usr/local/faces%${DATADIR}%g ; \
 		 s%/var/spool/mail%/var/mail%g" ${WRKSRC}/faces/faces.man
 	@${LN} -sf ${WRKSRC}/faces/faces.man ${WRKSRC}/faces/faces.1
-.ifdef WITH_NAS
+.if ${PORT_OPTIONS:MNAS}
 	@${REINPLACE_CMD} -e "s%rplay%auplay%" ${WRKSRC}/faces/Faces.ad
-.elifdef WITH_SOX
+.elif ${PORT_OPTIONS:MSOX}
 	@${REINPLACE_CMD} -e "s%rplay%play%" ${WRKSRC}/faces/Faces.ad
-.elifdef WITH_RPLAY
+.elif ${PORT_OPTIONS:MRPLAY}
 	# nada
 .else
 	@${REINPLACE_CMD} -e "s%^faces.audioSupport.*%faces.audioSupport:		false%" ${WRKSRC}/faces/Faces.ad
@@ -84,33 +73,30 @@ post-patch:
 do-build:
 	cd ${WRKSRC}/compface && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
 		${FILESDIR}/Makefile.compface ${MAKE_ARGS} ${ALL_TARGET}
-.if !defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MX11}
 	cd ${WRKSRC}/faces && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
 		${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET}
 .endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/compface/compface ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/compface/uncompface ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/compface/compface.h ${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.a ${PREFIX}/lib
-	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.so.1 ${PREFIX}/lib
-	${LN} -sf libcompface.so.1 ${PREFIX}/lib/libcompface.so
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${MANPREFIX}/man/man3
-	${INSTALL_SCRIPT} ${FILESDIR}/ikon2xbm ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${FILESDIR}/xbmsize48 ${PREFIX}/bin
-.if !defined(WITHOUT_X11)
-	${INSTALL_PROGRAM} ${WRKSRC}/faces/faces ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/faces/faces.1 ${MANPREFIX}/man/man1
-	${MKDIR} ${PREFIX}/lib/X11/app-defaults/Faces
-	${INSTALL_DATA} ${WRKSRC}/faces/Faces.ad ${PREFIX}/lib/X11/app-defaults/Faces
+	${INSTALL_PROGRAM} ${WRKSRC}/compface/compface ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/compface/uncompface ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/compface/compface.h ${STAGEDIR}${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/compface/libcompface.so.1 ${STAGEDIR}${PREFIX}/lib
+	${LN} -sf libcompface.so.1 ${STAGEDIR}${PREFIX}/lib/libcompface.so
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/compface/compface.3 ${STAGEDIR}${MANPREFIX}/man/man3
+	${INSTALL_SCRIPT} ${FILESDIR}/ikon2xbm ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/xbmsize48 ${STAGEDIR}${PREFIX}/bin
+.if ${PORT_OPTIONS:MX11}
+	${INSTALL_PROGRAM} ${WRKSRC}/faces/faces ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/faces/faces.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_DATA} ${WRKSRC}/faces/Faces.ad ${STAGEDIR}${LOCALBASE}/lib/X11/app-defaults/Faces
 .endif
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
