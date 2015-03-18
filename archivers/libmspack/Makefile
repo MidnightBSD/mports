@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libmspack
-PORTVERSION=	0.4
-PORTREVISION=	1
+PORTVERSION=	0.5
+PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
@@ -16,5 +16,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USES=		libtool pathfix
 INSTALL_TARGET=	install-strip
+
+post-patch:
+	@${REINPLACE_CMD} 's,-Wno-unused-result,,' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
