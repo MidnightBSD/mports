@@ -1,23 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	physfs
-PORTVERSION=	2.0.0
+PORTVERSION=	2.0.3
 CATEGORIES=	devel
 MASTER_SITES=	http://offload1.icculus.org:9090/${PORTNAME}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library to provide abstract access to various archives
+COMMENT=	Library to provide abstract access to various archives
+
 LICENSE=	other
 
-USE_CMAKE=	yes
-USE_AUTOTOOLS=	libtool
-USE_LDCONFIG=	yes
-
-patch-autotools:
-	@${DO_NADA}
-
-patch-autotools-libtool::
-	@${DO_NADA}
+USES=		cmake tar:bzip2
 
 post-patch:
 	@${REINPLACE_CMD} -e \
