@@ -113,6 +113,7 @@ SUBDIR += spideroak
 SUBDIR += tryst
 SUBDIR += tryst-examples
 SUBDIR += tsocks
+SUBDIR += uhttpmoc
 SUBDIR += ulxmlrpcpp
 SUBDIR += ushare
 SUBDIR += vinagre
