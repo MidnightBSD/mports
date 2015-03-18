@@ -2,7 +2,7 @@
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS}
 MASTER_SITE_SUBDIR=	xemacs-${XEMACS_REL}
@@ -11,22 +11,21 @@ DIST_SUBDIR=	xemacs
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	This port tracks the stable version of the XEmacs text editor
+
 LICENSE=	gpl2
 
 CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-devel-[0-9]* 
 
-MAKE_JOBS_SAFE=	yes
-
 XEMACS_REL=	21.4
 XEMACS_VER=	21.4.22
 XEMACS_ARCH=	${CONFIGURE_TARGET}
 
-USE_BZIP2=	yes
 USE_CSTD=	gnu89
 WANT_GNOME=	yes
 STRIP=
-USES=	autoconf213
+USES=		tar:bzip2
+USE_AUTOTOOLS=	autoconf213
 CONFIGURE_TARGET=${MACHINE_ARCH}--freebsd
 
 CONFIGURE_ARGS?=--with-clash-detection \
