@@ -8,8 +8,7 @@
 #
 
 PORTNAME=	glade3
-PORTVERSION=	3.7.3
-PORTREVISION=	1
+PORTVERSION=	3.8.5
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -19,42 +18,29 @@ COMMENT=	A user interface builder for GTK+/GNOME
 LICENSE=	gpl2
 
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gtk20 libxml2 gnomeprefix gnomehack \
-		gnomedocutils desktopfileutils ltverhack:10
-WANT_GNOME=	yes
-USE_GETTEXT=	yes
+USE_GNOME=	gtk20 libxml2 gnomedocutils
+USES=		gmake gettext libtool pathfix desktop-file-utils pkgconfig tar:xz
 INSTALLS_OMF=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 DOCSDIR=	${PREFIX}/share/doc/gladeui
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	GNOME PYTHON
+OPTIONS_DEFAULT=PYTHON
+GNOME_DESC=	GNOME UI widget support
+OPTIONS_SUB=	yes
 
-.if ${HAVE_GNOME:Mlibgnomeui}!=""
-USE_GNOME+=	libgnomeui
-CONFIGURE_ARGS+=--enable-gnome
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-gnome
-.else
-CONFIGURE_ARGS+=--disable-gnome
-.endif
-
-#.if ${HAVE_GNOME:Mpygtk2}!=""
-#USE_PYTHON=	yes
-#EXTENSIONS+=	python
-#USE_GNOME+=	pygtk2
-#PLIST_SUB+=	PYTHON:=""
-#CONFIGURE_ARGS+=--enable-python
-#.else
-CONFIGURE_ARGS+=--disable-python
-PLIST_SUB+=	PYTHON:="@comment "
-#.endif
+GNOME_CONFIGURE_ENABLE=	gnome
+GNOME_USE=	GNOME=libgnomeui
+PYTHON_CONFIGURE_ENABLE=	python
+PYTHON_USE=	GNOME=pygtk2
+PUTHON_USES=	python:2
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/glade3/bindings
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
