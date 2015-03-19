@@ -2,8 +2,8 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.1
-PORTREVISION=	5
-DISTVERSIONSUFFIX=	l
+DISTVERSIONSUFFIX=	m
+PORTREVISION=	7
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/%SUBDIR%/ \
 		ftp://ftp.openssl.org/%SUBDIR%/ \
@@ -20,13 +20,19 @@ LICENSE=	other
 .error You have `USE_OPENSSL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 
-OPTIONS_DEFINE=	SHARED THREADS I386 SSE2 ASM PADLOCK ZLIB SCTP MD2 RC5 RFC3779 GMP
-OPTIONS_DEFAULT=SHARED THREADS SSE2 ASM ZLIB SCTP MD2
+CONFLICTS?=	libressl-*
+
+OPTIONS_DEFINE=	SHARED THREADS I386 SSE2 ASM PADLOCK ZLIB GMP SCTP SSL2 SSL3 RFC3779 MD2 RC5 EXPCIPHERS DOCS
+OPTIONS_DEFAULT=SHARED THREADS SSE2 ASM ZLIB SCTP SSL2 SSL3 MD2
 .for a in amd64 ia64
 OPTIONS_DEFINE_${a}=	EC
 OPTIONS_DEFAULT_${a}=	EC
 .endfor
 TARGET_ARCH?=	${MACHINE_ARCH}
+.if ${TARGET_ARCH} == "mips64el"
+OPTIONS_DEFINE_mips=	EC
+OPTIONS_DEFAULT_mips=	EC
+.endif
 NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
 I386_DESC?=	Optimize for i386 (instead of i486+)
@@ -35,23 +41,29 @@ ASM_DESC?=	optimized Assembler code
 PADLOCK_DESC?=	VIA Padlock support
 SHARED_DESC?=	build of shared libs
 ZLIB_DESC?=	zlib compression support
+GMP_DESC?=	gmp support (LGPLv3)
 SCTP_DESC?=	SCTP protocol support
+SSL2_DESC?=	SSLv2 protocol support
+SSL3_DESC?=	SSLv3 protocol support
+RFC3779_DESC?=	RFC3779 support (BGP)
 MD2_DESC?=	MD2 hash (obsolete)
 RC5_DESC?=	RC5 cipher (patented)
-RFC3779_DESC?=	RFC3779 support
-GMP_DESC?=	gmp support (LGPLv3)
+EXPCIPHERS_DESC?=	Include experimental ciphers
 EC_DESC?=	Optimize NIST elliptic curves
+
+GMP_LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
 MAKE_JOBS_UNSAFE=	yes
 NOPRECIOUSMAKEVARS=	Too many _MLINKS for fetch
 NOPRECIOUSSOFTMAKEVARS=	Too many _MLINKS for fetch
 
-USE_PERL5_BUILD=	yes
-USE_PERL5_RUN=		yes
+USES=		perl5 cpe
+USE_PERL5=	build
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
-MAKE_ENV+=	LIBRPATH="${PREFIX}/lib"
+MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
 SUB_FILES=	pkg-message
-OPENSSLDIR=	${PREFIX}/openssl
+
+CPE_VERSION=	${PORTVERSION}${DISTVERSIONSUFFIX}
 
 FIX_POD=apps/cms.pod \
 	apps/smime.pod \
@@ -78,6 +90,9 @@ FIX_POD=apps/cms.pod \
 .if ${PREFIX} == /usr
 IGNORE=	OpenSSL can not be installed over the base version
 .endif
+
+OPENSSLDIR?=	${PREFIX}/openssl
+PLIST_SUB+=	OPENSSLDIR=${OPENSSLDIR:S=^${PREFIX}/==}
 
 OPENSSL_BASE_SONAME!=	readlink ${DESTDIR}/usr/lib/libcrypto.so || true
 OPENSSL_SHLIBVER_BASE=	${OPENSSL_BASE_SONAME:E}
@@ -126,6 +141,18 @@ EXTRACONFIGURE+=	sctp
 EXTRACONFIGURE+=	no-sctp
 .endif
 
+.if ${PORT_OPTIONS:MSSL2}
+EXTRACONFIGURE+=	enable-ssl2
+.else
+EXTRACONFIGURE+=	no-ssl2
+.endif
+
+.if ${PORT_OPTIONS:MSSL3}
+EXTRACONFIGURE+=	enable-ssl3
+.else
+EXTRACONFIGURE+=	no-ssl3
+.endif
+
 .if ${PORT_OPTIONS:MMD2}
 EXTRACONFIGURE+=	enable-md2
 .else
@@ -139,7 +166,7 @@ EXTRACONFIGURE+=	no-rc5
 .endif
 
 .if ${PORT_OPTIONS:MPADLOCK}
-#BROKEN=		does not build with openssl-1.0.1f
+BROKEN=		unfetchable do to rushed security update
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=	http://git.alpinelinux.org/cgit/aports/plain/main/openssl/:padlock
 PATCHFILES+=	0001-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:padlock \
@@ -185,6 +212,10 @@ post-patch:
 		${WRKSRC}/crypto/des/Makefile
 	${REINPLACE_CMD} -e 's|SHLIB_VERSION_NUMBER "1.0.0"|SHLIB_VERSION_NUMBER "${OPENSSL_SHLIBVER}"|' \
 		${WRKSRC}/crypto/opensslv.h
+.if ${PORT_OPTIONS:MEXPCIPHERS}
+	${REINPLACE_CMD} -e 's|TLS1_ALLOW_EXPERIMENTAL_CIPHERSUITES	0|TLS1_ALLOW_EXPERIMENTAL_CIPHERSUITES	1|' \
+		${WRKSRC}/ssl/tls1.h
+.endif
 
 do-configure:
 	${REINPLACE_CMD} -e "s|options 386|options|" \
