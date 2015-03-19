@@ -21,11 +21,8 @@ USE_QT4=	accessible clucene corelib dbus declarative designer \
 NO_BUILD=	yes
 NO_MTREE=	yes
 
-OPTIONS_DEFINE=	CODECS DOCS EXAMPLES GSTREAMER NLS SQL_PLUGINS TOOLS
+OPTIONS_DEFINE=	DOCS EXAMPLES GSTREAMER NLS SQL_PLUGINS TOOLS
 OPTIONS_DEFAULT=${OPTIONS_DEFINE}
-
-CODECS_DESC=	CN, JP, KR, TW codecs support
-CODECS_USE=	codecs-cn codecs-jp codecs-kr codecs-tw
 
 DOCS_USE=	doc
 
