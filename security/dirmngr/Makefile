@@ -3,7 +3,7 @@
 
 PORTNAME=	dirmngr
 PORTVERSION=	1.1.0
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	dirmngr
@@ -15,11 +15,11 @@ COMMENT=	Client for managing and downloading certificate revocation lists
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	assuan:${PORTSDIR}/security/libassuan \
-		gcrypt:${PORTSDIR}/security/libgcrypt \
-		gpg-error:${PORTSDIR}/security/libgpg-error \
-		ksba:${PORTSDIR}/security/libksba \
-		pth:${PORTSDIR}/devel/pth
+LIB_DEPENDS=	libassuan.so:${PORTSDIR}/security/libassuan \
+		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
+		libgpg-error.so:${PORTSDIR}/security/libgpg-error \
+		libksba.so:${PORTSDIR}/security/libksba \
+		libpth.so:${PORTSDIR}/devel/pth
 
 USES=		gmake iconv tar:bzip2
 USE_OPENLDAP=	yes
@@ -30,6 +30,7 @@ CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
 .include <bsd.mport.options.mk>
 
