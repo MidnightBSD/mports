@@ -154,7 +154,6 @@ SUBDIR += libgdata
 SUBDIR += libgee
 SUBDIR += libgii
 SUBDIR += libglade2
-SUBDIR += libglademm
 SUBDIR += libgsf
 SUBDIR += libgtop
 SUBDIR += libical
