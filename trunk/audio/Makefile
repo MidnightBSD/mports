@@ -53,7 +53,6 @@ SUBDIR += libmad
 SUBDIR += libmikmod
 SUBDIR += libmodplug
 SUBDIR += libmpd
-SUBDIR += libmtp
 SUBDIR += libmusicbrainz3
 SUBDIR += libmusicbrainz5
 SUBDIR += libnjb
