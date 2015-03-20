@@ -2,27 +2,24 @@
 
 PORTNAME=	libgtop
 PORTVERSION=	2.28.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 top library
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS=	lsof:${PORTSDIR}/sysutils/lsof
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
-USES+=		pkgconfig
-USE_BZIP2=	yes
+USES=		pkgconfig gettext gmake tar:bzip2 libtool
 USE_PERL5_BUILD=yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack glib20 ltverhack intlhack
+USE_GNOME=	gnomeprefix glib20 intlhack introspection:build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_NET_IF_VAR_H" \
