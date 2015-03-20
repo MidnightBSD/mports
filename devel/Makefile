@@ -180,7 +180,6 @@ SUBDIR += libthai
 SUBDIR += libtool
 SUBDIR += libublio
 SUBDIR += libunicode
-SUBDIR += libusb
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
 SUBDIR += linux-f10-allegro
