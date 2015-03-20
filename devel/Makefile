@@ -87,7 +87,6 @@ SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf
 SUBDIR += gconf2
-SUBDIR += gconfmm
 SUBDIR += gdb
 SUBDIR += gdb66
 SUBDIR += geany
