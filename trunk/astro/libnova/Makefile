@@ -2,7 +2,7 @@
 
 PORTNAME=	libnova
 PORTVERSION=	0.15.0
-PORTREVISION=	0
+PORTREVISION=	2
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v%20${PORTVERSION}
 
@@ -11,15 +11,14 @@ COMMENT=	Astronomical Calculation Library
 
 LICENSE=	lgpl
 
-USES=	libtool
+USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^CFLAGS=|#CFLAGS=|g' ${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
