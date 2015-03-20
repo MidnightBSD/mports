@@ -2,10 +2,11 @@
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	pth
+PKGNAMESUFFIX?=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Portable Threads
@@ -13,34 +14,32 @@ LICENSE=	lgpl
 
 MAKE_JOBS_UNSAFE=	yes
 
-USE_LDCONFIG=	${PREFIX}/lib/pth
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-optimize \
 		--enable-batch \
 		--includedir="${PREFIX}/include/pth" \
 		--libdir="${PREFIX}/lib/pth"
+USES=		libtool
+USE_LDCONFIG=	${PREFIX}/lib/pth
 
-MAN1=		pth-config.1
-MAN3=		pth.3
 
-OPTIONS=	OPTIMIZED_CFLAGS "Build with optimized CFLAGS" on
+OPTIONS_DEFINE=	OPTIMIZED_CFLAGS
+OPTIONS_DEFAULT=	OPTIMIZED_CFLAGS
 
 CONFLICTS?=	pth-hard-2.*
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(PKGNAMESUFFIX) && ${PKGNAMESUFFIX} == "-hard"
+.if ${PKGNAMESUFFIX} == "-hard"
 CONFIGURE_ARGS+=	--enable-syscall-hard --disable-syscall-soft
 PLIST_SUB=	PTHREAD="@comment "
 .else
 CONFIGURE_ARGS+=	--enable-syscall-soft --enable-pthread
 PLIST_SUB=	PTHREAD=""
-MAN1+=		pthread-config.1
-MAN3+=		pthread.3
 .endif
 
 post-patch:
-.if defined(WITHOUT_OPTIMIZED_CFLAGS)
+.if ! ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
 	${REINPLACE_CMD} -e \
 		's|-funroll-loops -fstrength-reduce -fomit-frame-pointer -ffast-math||' \
 		${WRKSRC}/configure
@@ -52,4 +51,4 @@ post-build:
 test: build
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
