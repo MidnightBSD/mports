@@ -85,7 +85,6 @@ SUBDIR += fpc-pthreads
 SUBDIR += fpc-zlib
 SUBDIR += gamin
 SUBDIR += gccmakedep
-SUBDIR += gconf
 SUBDIR += gconf2
 SUBDIR += gdb
 SUBDIR += gdb66
