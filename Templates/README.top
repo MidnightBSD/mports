@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>The MidnightBSD Ports Collection</title>
     <style type="text/css" media="screen">
 	html,body{ margin:0; padding; 0; height: 100%; }
@@ -18,7 +19,7 @@
 	li { list-style: none; width: auto; background: fff; margin: 1em; text-align: center; height: auto; vertical-align: top; }
 	li a { font-weight: bold;  text-decoration: none; color: #79c143; }
 	blockquote { margin-top: 3em; color: #aaa; font-size: .9em; }
-	</style>
+     </style>
   </head>
 
   <body>
