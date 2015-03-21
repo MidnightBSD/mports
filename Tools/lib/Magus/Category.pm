@@ -51,7 +51,7 @@ sub distinct_ports {
   my $dbh = $self->db_Main;
   
   return $dbh->selectcol_arrayref(
-    "SELECT DISTINCT(ports.name) FROM ports,port_categories WHERE ports.id=port AND category=?", 
+    "SELECT DISTINCT(ports.name) FROM ports,port_categories pc WHERE ports.id=pc.port AND pc.category=?", 
     undef, 
     $self->id
   );
