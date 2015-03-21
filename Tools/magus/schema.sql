@@ -107,7 +107,7 @@ CREATE TABLE  "machines" (
 
 DROP TABLE "port_categories" CASCADE\g
 CREATE TABLE  "port_categories" (
-   "port"   varchar(128) NOT NULL, 
+   "port"       int NOT NULL, 
    "category"   int NOT NULL
 )  ;
 CREATE INDEX "port_categories_port_idx" ON "port_categories" USING btree ("port");
