@@ -3153,9 +3153,7 @@ pre-repackage:
 
 .if !target(package-noinstall)
 package-noinstall: 
-	@${ECHO_MSG} "==> The 'package-noinstall' target is deprecated.  Use 'package' instead."
-	@sleep 5
-	@${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} package
 .endif
 
 ################################################################
