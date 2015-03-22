@@ -1586,6 +1586,22 @@ INFO_PATH?=	share/info
 INFO_PATH?=	info
 .endif
 
+.if defined(INFO)
+RUN_DEPENDS+=	indexinfo:${PORTSDIR}/print/indexinfo
+
+. for D in ${INFO:H}
+RD:=	${D}
+.  if ${RD} != "."
+.   if !defined(INFO_SUBDIR)
+INFO_SUBDIR:=	${RD}
+.   elif ${INFO_SUBDIR} != ${RD}
+BROKEN=		only one subdirectory in INFO is allowed
+.   endif
+.  endif
+.undef RD
+. endfor
+.endif
+
 DOCSDIR?=	${PREFIX}/share/doc/${PORTNAME}
 EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
 DATADIR?=	${PREFIX}/share/${PORTNAME}
