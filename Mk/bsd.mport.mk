@@ -1740,7 +1740,10 @@ IGNORECMD=	${DO_NADA}
 IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 .endif
 
-.for target in check-sanity fetch checksum extract patch configure all build fake install reinstall package
+_TARGETS=	check-sanity fetch checksum extract patch configure all build \
+		fake install reinstall package 
+
+.for target in ${_TARGETS}
 .if !target(${target}) && defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
 ${target}: ${${target:tu}_COOKIE}
