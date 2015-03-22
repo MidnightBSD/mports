@@ -2738,7 +2738,7 @@ ${stage}-${name}-script:
 
 .if !target(pretty-print-www-site)
 pretty-print-www-site:
-	@www_site=$$(cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} www-site); \
+	@www_site=$$(cd ${.CURDIR} && ${MAKE} www-site); \
 	if [ -n "$${www_site}" ]; then \
 		${ECHO_MSG} -n " and/or visit the "; \
 		${ECHO_MSG} -n "<a href=\"$${www_site}\">web site</a>"; \
