@@ -1743,6 +1743,7 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 _TARGETS=	check-sanity fetch checksum extract patch configure all build \
 		fake install reinstall package 
 
+# LAH
 .for target in ${_TARGETS}
 .if !target(${target}) && defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
@@ -1888,6 +1889,12 @@ package:
 .else
 	@${ECHO_MSG} "===>  ${PKGNAME} may not be packaged: "${NO_PACKAGE:Q}.
 .endif
+.endif
+
+# Disable describe
+.if defined(NO_DESCRIBE) && !target(describe)
+describe:
+	@${DO_NADA}
 .endif
 
 ################################################################
