@@ -36,6 +36,7 @@ SUBDIR += gv
 SUBDIR += harfbuzz
 SUBDIR += hs-hscolour
 SUBDIR += hs-hscolour-docs
+SUBDIR += indexinfo
 SUBDIR += jadetex
 SUBDIR += libgnomecups
 SUBDIR += libgnomeprint
