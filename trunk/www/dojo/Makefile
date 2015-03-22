@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dojo
-PORTVERSION=	1.9.1
+PORTVERSION=	1.10.1
 CATEGORIES=	www
 MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/ \
 		FREEBSD_LOCAL/glarkin
@@ -15,6 +15,7 @@ LICENSE=	bsd3
 NO_BUILD=	yes
 
 OPTIONS_DEFINE=		APACHE
+OPTIONS_SUB=		yes
 
 .include <bsd.mport.options.mk>
 
@@ -22,38 +23,18 @@ OPTIONS_DEFINE=		APACHE
 USE_APACHE_RUN=		22+
 CONFDIR=		${PREFIX}/${CONFDIR_REL}
 CONFDIR_REL=		${APACHEETCDIR}/Includes
-PLIST_SUB+=		NOAPACHE="" CONFDIR=${CONFDIR_REL}
+PLIST_SUB+=		CONFDIR=${CONFDIR_REL}
 
 CONF=			dojo.conf
 SUB_FILES+=		pkg-message ${CONF}
-.else
-PLIST_SUB+=		NOAPACHE="@comment "
 .endif
 
 do-install:
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR}
-	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${WWWDIR}
-	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} \
-		${WWWDIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
-	@${FIND} ${WWWDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
-	@${ECHO_CMD} '@exec ${FIND} ${WWWDIR} -type f -print0 | \
-		${XARGS} -0 ${CHMOD} 644' >> ${TMPPLIST}
-	@${FIND} ${WWWDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
-	@${ECHO_CMD} '@exec ${FIND} ${WWWDIR} -type d -print0 | \
-		${XARGS} -0 ${CHMOD} 755' >> ${TMPPLIST}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}
 
-.if defined(WITH_APACHE)
-post-install:
-	@if [ -d "${CONFDIR}" ]; then \
-	  ${CP} ${WRKDIR}/${CONF} ${CONFDIR}/dojo.conf; \
-	else \
-	  ${ECHO_MSG} "" ; \
-	  ${ECHO_MSG} "Please check your Apache 2.x installation -" ; \
-	  ${ECHO_MSG} "${CONFDIR} doesn't exist," ; \
-	  ${ECHO_MSG} "so I cannot install ${CONF} there!" ; \
-	  ${ECHO_MSG} "" ; \
-	  ${FALSE} ; \
-	fi
+.if ${PORT_OPTIONS:MAPACHE}
+	@${MKDIR} ${STAGEDIR}${CONFDIR}
+	${CP} ${WRKDIR}/${CONF} ${STAGEDIR}${CONFDIR}/dojo.conf.sample
 .endif
 
 .include <bsd.port.mk>
