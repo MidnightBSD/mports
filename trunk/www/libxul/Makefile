@@ -3,6 +3,7 @@
 
 PORTNAME=	libxul
 DISTVERSION=	1.9.2.24
+PORTREVISION=	1
 CATEGORIES?=	www devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=   firefox/releases/3.6.24/source
@@ -10,8 +11,9 @@ DISTNAME=     firefox-3.6.24.source
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
-LICENSE=	agg
-# Dual mpl/gpl2
+
+LICENSE=	gpl2 mpl
+LICENSE_COMB=	dual
 
 WRKSRC=		${WRKDIR}/mozilla-1.9.2
 CONFLICTS=	mozilla-[0-9]*
@@ -23,9 +25,7 @@ WANT_GNOME=	yes
 WANT_PERL=	yes
 ALL_TARGET=	default
 HAS_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gmake tar:bzip2
 MAKE_ENV=	SKIP_GRE_REGISTRATION=1 mozappdir=${PREFIX}/lib/${MOZILLA}
 LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
