@@ -3,6 +3,7 @@
 
 PORTNAME=	nss_mdns
 PORTVERSION=	0.10
+PORTREVISION=	1
 CATEGORIES=	dns ipv6
 MASTER_SITES=	http://0pointer.de/lennart/projects/nss-mdns/
 DISTNAME=	nss-mdns-${PORTVERSION}
@@ -10,14 +11,17 @@ DISTNAME=	nss-mdns-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NSS module implementing multicast DNS name resolution
 
-LICENSE=	lgpl2
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=	autoconf automake libtool
-USE_GMAKE=	yes
+LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
+
+CONFLICTS_INSTALL=	mDNSResponder_nss-[0-9]*
+
+GNU_CONFIGURE=	yes
+USES=	autoreconf gmake  libtool
 USE_LDCONFIG=	yes
 AUTOTOOLSFILES=	aclocal.m4
-
-LIB_DEPENDS+=	avahi-client:${PORTSDIR}/net/avahi-app
 
 OPTIONS_DEFINE=	SEARCH_DOMAINS DOCS
 SEARCH_DOMAINS_DESC=	Honour search domains in resolv.conf
