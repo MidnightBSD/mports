@@ -2,7 +2,7 @@
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/lib${PORTNAME}/${PORTVERSION:R}/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
@@ -12,23 +12,18 @@ COMMENT=	Library for single instance applications
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
-USE_XORG=	ice
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USES=		gettext
+USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	gtk20 gnomeprefix introspection:build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gtk20 gnomeprefix introspection:build ltverhack:2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-maintainer-flags
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|libdir)/pkgconfig|prefix)/libdata/pkgconfig|g' \
-		${WRKSRC}/configure ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|G_CONST_RETURN|const|g' \
 		${WRKSRC}/unique/uniqueapp.c \
 		${WRKSRC}/unique/uniquebackend.[ch] \
