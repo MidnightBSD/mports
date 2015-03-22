@@ -15,8 +15,10 @@ lib/%%APP_NAME%%/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/icon.
 lib/%%APP_NAME%%/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
 lib/%%APP_NAME%%/browser/icons/mozicon128.png
 lib/%%APP_NAME%%/browser/omni.ja
+lib/%%APP_NAME%%/browser/plugins
 lib/%%APP_NAME%%/browser/searchplugins/amazondotcom.xml
 lib/%%APP_NAME%%/browser/searchplugins/bing.xml
+lib/%%APP_NAME%%/browser/searchplugins/ddg.xml
 lib/%%APP_NAME%%/browser/searchplugins/eBay.xml
 lib/%%APP_NAME%%/browser/searchplugins/google.xml
 lib/%%APP_NAME%%/browser/searchplugins/twitter.xml
@@ -34,6 +36,8 @@ lib/%%APP_NAME%%/dictionaries/en-US.aff
 lib/%%APP_NAME%%/dictionaries/en-US.dic
 lib/%%APP_NAME%%/firefox
 lib/%%APP_NAME%%/firefox-bin
+lib/%%APP_NAME%%/gmp-clearkey/0.1/clearkey.info
+lib/%%APP_NAME%%/gmp-clearkey/0.1/libclearkey.so
 lib/%%APP_NAME%%/icons/updater.png
 lib/%%APP_NAME%%/libfreebl3.chk
 lib/%%APP_NAME%%/libfreebl3.so
@@ -56,7 +60,6 @@ lib/%%APP_NAME%%/libsoftokn3.chk
 lib/%%APP_NAME%%/libsoftokn3.so
 lib/%%APP_NAME%%/libssl3.so
 lib/%%APP_NAME%%/libxul.so
-lib/%%APP_NAME%%/mozilla-xremote-client
 lib/%%APP_NAME%%/omni.ja
 lib/%%APP_NAME%%/platform.ini
 lib/%%APP_NAME%%/plugin-container
@@ -69,9 +72,7 @@ lib/%%APP_NAME%%/updater.ini
 lib/%%APP_NAME%%/webapprt-stub
 lib/%%APP_NAME%%/webapprt/omni.ja
 lib/%%APP_NAME%%/webapprt/webapprt.ini
-@exec /bin/cp -R %%LOCALBASE%%/lib/npapi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/browser/plugins/ 2>/dev/null || true
 @exec /bin/cp -R %%LOCALBASE%%/lib/xpi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/browser/extensions/ 2>/dev/null || true
-@unexec /usr/bin/find %D/lib/%%APP_NAME%%/browser/plugins/  -depth 1 -type l -delete 2>/dev/null || true
 @unexec /usr/bin/find %D/lib/%%APP_NAME%%/browser/extensions/  -depth 1 -type l -delete 2>/dev/null || true
 @dirrm lib/%%APP_NAME%%/browser/chrome/icons/default
 @dirrm lib/%%APP_NAME%%/browser/chrome/icons
