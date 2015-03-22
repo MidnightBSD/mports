@@ -50,13 +50,9 @@ lib/%%APP_NAME%%/chrome/icons/default/places.png
 lib/%%APP_NAME%%/chrome/icons/default/places16.png
 lib/%%APP_NAME%%/chrome/icons/default/places48.png
 lib/%%APP_NAME%%/chrome/icons/default/seamonkey.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window16.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window48.png
 lib/%%APP_NAME%%/components/components.manifest
 lib/%%APP_NAME%%/components/libdbusservice.so
 lib/%%APP_NAME%%/components/libmozgnome.so
-lib/%%APP_NAME%%/components/libnkgnomevfs.so
 lib/%%APP_NAME%%/components/libsuite.so
 lib/%%APP_NAME%%/crashreporter
 lib/%%APP_NAME%%/crashreporter-override.ini
@@ -64,14 +60,15 @@ lib/%%APP_NAME%%/crashreporter.ini
 lib/%%APP_NAME%%/defaults/messenger/mailViews.dat
 lib/%%APP_NAME%%/defaults/pref/browser-prefs.js
 lib/%%APP_NAME%%/defaults/pref/channel-prefs.js
-lib/%%APP_NAME%%/defaults/profile/localstore.rdf
+lib/%%APP_NAME%%/defaults/profile/chrome/userChrome-example.css
+lib/%%APP_NAME%%/defaults/profile/chrome/userContent-example.css
+lib/%%APP_NAME%%/defaults/profile/mimeTypes.rdf
 lib/%%APP_NAME%%/defaults/profile/panels.rdf
 lib/%%APP_NAME%%/dependentlibs.list
 lib/%%APP_NAME%%/dictionaries/en-US.aff
 lib/%%APP_NAME%%/dictionaries/en-US.dic
 lib/%%APP_NAME%%/distribution/extensions/inspector@mozilla.org.xpi
 lib/%%APP_NAME%%/distribution/extensions/{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}.xpi
-lib/%%APP_NAME%%/distribution/extensions/{f13b157f-b174-47e7-a34d-4815ddfdfeb8}.xpi
 lib/%%APP_NAME%%/extensions/modern@themes.mozilla.org.xpi
 lib/%%APP_NAME%%/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
 lib/%%APP_NAME%%/icons/updater.png
@@ -107,7 +104,6 @@ lib/%%APP_NAME%%/libsoftokn3.so
 lib/%%APP_NAME%%/libssl3.so
 lib/%%APP_NAME%%/libxul.so
 lib/%%APP_NAME%%/license.txt
-lib/%%APP_NAME%%/mozilla-xremote-client
 lib/%%APP_NAME%%/omni.ja
 lib/%%APP_NAME%%/platform.ini
 lib/%%APP_NAME%%/plugin-container
@@ -117,7 +113,7 @@ lib/%%APP_NAME%%/removed-files
 lib/%%APP_NAME%%/run-mozilla.sh
 lib/%%APP_NAME%%/seamonkey
 lib/%%APP_NAME%%/seamonkey-bin
-lib/%%APP_NAME%%/searchplugins/creativecommons.xml
+lib/%%APP_NAME%%/searchplugins/duckduckgo.xml
 lib/%%APP_NAME%%/searchplugins/google.xml
 lib/%%APP_NAME%%/searchplugins/wikipedia.xml
 lib/%%APP_NAME%%/searchplugins/yahoo.xml
@@ -126,19 +122,3 @@ lib/%%APP_NAME%%/updater
 lib/%%APP_NAME%%/updater.ini
 @exec /bin/cp -R %%LOCALBASE%%/lib/xpi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/extensions/ 2>/dev/null || true
 @unexec /usr/bin/find %D/lib/%%APP_NAME%%/extensions/  -depth 1 -type l -delete 2>/dev/null || true
-@dirrm lib/%%APP_NAME%%/chrome/icons/default
-@dirrm lib/%%APP_NAME%%/chrome/icons
-@dirrm lib/%%APP_NAME%%/chrome
-@dirrm lib/%%APP_NAME%%/components
-@dirrm lib/%%APP_NAME%%/defaults/messenger
-@dirrm lib/%%APP_NAME%%/defaults/pref
-@dirrm lib/%%APP_NAME%%/defaults/profile
-@dirrm lib/%%APP_NAME%%/defaults
-@dirrm lib/%%APP_NAME%%/dictionaries
-@dirrm lib/%%APP_NAME%%/distribution/extensions
-@dirrm lib/%%APP_NAME%%/distribution
-@dirrm lib/%%APP_NAME%%/extensions
-@dirrm lib/%%APP_NAME%%/icons
-@dirrm lib/%%APP_NAME%%/isp
-@dirrm lib/%%APP_NAME%%/searchplugins
-@dirrm lib/%%APP_NAME%%

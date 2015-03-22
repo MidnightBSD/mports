@@ -29,8 +29,8 @@ ONLY_FOR_ARCHS=	i386 amd64
 APP_NAME=	${PKGBASE}
 BIN_NAME?=	${PORTNAME}
 USE_LINUX=	yes
-USE_LINUX_APPS+=	alsalib alsa-plugins-oss atk dbusglib dbuslibs \
-			fontconfig gtk2 hicontheme pango
+USE_LINUX_APPS+=alsalib alsa-plugins-oss atk dbusglib dbuslibs \
+		fontconfig gtk2 hicontheme pango
 
 WRKSRC?=	${WRKDIR}/${BIN_NAME}
 FDIR=		${PREFIX}/lib/${APP_NAME}
@@ -77,8 +77,8 @@ post-extract:
 post-patch:
 	@${MKDIR} ${PREFS_FILE:H}
 
-	# empty port preferences
-	@${DO_NADA} >>${PREFS_FILE}
+	# disable SSL 3.0
+	${ECHO} 'pref("security.tls.version.min", 1);' >> ${PREFS_FILE}
 .endif
 
 .if !target(do-install)
