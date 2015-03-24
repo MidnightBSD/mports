@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	openssl
-PORTVERSION=	1.0.1
-DISTVERSIONSUFFIX=	m
-PORTREVISION=	7
+PORTVERSION=	1.0.2
+DISTVERSIONSUFFIX=	a	
+PORTREVISION=	0
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/%SUBDIR%/ \
 		ftp://ftp.openssl.org/%SUBDIR%/ \
@@ -23,7 +23,7 @@ LICENSE=	other
 CONFLICTS?=	libressl-*
 
 OPTIONS_DEFINE=	SHARED THREADS I386 SSE2 ASM PADLOCK ZLIB GMP SCTP SSL2 SSL3 RFC3779 MD2 RC5 EXPCIPHERS DOCS
-OPTIONS_DEFAULT=SHARED THREADS SSE2 ASM ZLIB SCTP SSL2 SSL3 MD2
+OPTIONS_DEFAULT=SHARED THREADS SSE2 ASM SCTP SSL2 SSL3 MD2
 .for a in amd64 ia64
 OPTIONS_DEFINE_${a}=	EC
 OPTIONS_DEFAULT_${a}=	EC
@@ -166,13 +166,12 @@ EXTRACONFIGURE+=	no-rc5
 .endif
 
 .if ${PORT_OPTIONS:MPADLOCK}
-BROKEN=		unfetchable do to rushed security update
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=	http://git.alpinelinux.org/cgit/aports/plain/main/openssl/:padlock
-PATCHFILES+=	0001-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:padlock \
-		0002-engines-e_padlock-backport-cvs-head-changes.patch:padlock \
-		0003-engines-e_padlock-implement-sha1-sha224-sha256-accel.patch:padlock \
-		0004-crypto-engine-autoload-padlock-dynamic-engine.patch:padlock
+PATCHFILES+=	0009-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:padlock \
+		0010-backport-changes-from-upstream-padlock-module.patch:padlock \
+		0011-engines-e_padlock-implement-sha1-sha224-sha256-accel.patch:padlock \
+		0012-crypto-engine-autoload-padlock-dynamic-engine.patch:padlock
 .endif
 
 .if ${PORT_OPTIONS:MGMP}
@@ -212,6 +211,8 @@ post-patch:
 		${WRKSRC}/crypto/des/Makefile
 	${REINPLACE_CMD} -e 's|SHLIB_VERSION_NUMBER "1.0.0"|SHLIB_VERSION_NUMBER "${OPENSSL_SHLIBVER}"|' \
 		${WRKSRC}/crypto/opensslv.h
+	${REINPLACE_CMD} -e 's|ERR_R_MALLOC_ERROR|ERR_R_MALLOC_FAILURE|' \
+		${WRKSRC}/crypto/bio/bss_dgram.c
 .if ${PORT_OPTIONS:MEXPCIPHERS}
 	${REINPLACE_CMD} -e 's|TLS1_ALLOW_EXPERIMENTAL_CIPHERSUITES	0|TLS1_ALLOW_EXPERIMENTAL_CIPHERSUITES	1|' \
 		${WRKSRC}/ssl/tls1.h
