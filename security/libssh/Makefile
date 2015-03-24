@@ -1,52 +1,53 @@
 # $MidnightBSD$
 
 PORTNAME=	libssh
-PORTVERSION=	0.5.2
-PORTREVISION=	1
+DISTVERSION=	0.6.3
 CATEGORIES=	security devel
-MASTER_SITES=	http://www.libssh.org/files/0.5/ \
-		FREEBSD_LOCAL/avl
+MASTER_SITES=	https://red.libssh.org/attachments/download/87/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library implementing the SSH1 and SSH2 protocol
-LICENSE=	lgpl
+COMMENT=	Library implementing the SSH1 and SSH2 protocol
 
-OPTIONS=	GCRYPT	"Build with libgcrypt"		off \
-		SSH1	"Build with SSH1 support"	off
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-MAKE_JOBS_SAFE=	yes
-USE_CMAKE=	yes
-CMAKE_SOURCE_PATH=	${WRKSRC}
-CONFIGURE_WRKSRC=	${CMAKE_SOURCE_PATH}/build
-BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
-INSTALL_WRKSRC?=	${BUILD_WRKSRC}
-CMAKE_ARGS+=	-DWITH_STATIC_LIB:BOOL=ON
+OPTIONS_DEFINE=	SSH1 STATIC
+OPTIONS_RADIO=	CRYPTO
+OPTIONS_RADIO_CRYPTO=	GCRYPT OPENSSL
+OPTIONS_DEFAULT=	OPENSSL STATIC
+OPTIONS_SUB=	yes
+
+USES=		cmake:outsource cpe tar:xz
 USE_LDCONFIG=	yes
 
-.include <bsd.mport.options.mk>
+CMAKE_ARGS=	-DWITH_EXAMPLES:BOOL=OFF \
+		-DWITH_GSSAPI:BOOL=ON \
+		-DWITH_TESTING:BOOL=OFF \
+		-DWITH_ZLIB:BOOL=ON
 
-.if defined(WITH_GCRYPT)
-LIB_DEPENDS+=	gcrypt:${PORTSDIR}/security/libgcrypt
-CMAKE_ARGS+=	-DWITH_GCRYPT:BOOL=ON
-.else
-USE_OPENSSL=	yes
-.endif
+GCRYPT_LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+GCRYPT_CMAKE_ON=	-DWITH_GCRYPT:BOOL=ON
+GCRYPT_CMAKE_OFF=	-DWITH_GCRYPT:BOOL=OFF
 
-.if defined(WITH_SSH1)
-CMAKE_ARGS+=	-DWITH_SSH1:BOOL=ON
-PLIST_SUB+=	SSH1=""
-.else
-CMAKE_ARGS+=	-DWITH_SSH1:BOOL=OFF
-PLIST_SUB+=	SSH1="@comment "
-.endif
+OPENSSL_USE=		openssl=yes
+
+SSH1_DESC=		Build with SSH1 support
+SSH1_CMAKE_ON=		-DWITH_SSH1:BOOL=ON
+SSH1_CMAKE_OFF=		-DWITH_SSH1:BOOL=OFF
+
+STATIC_CMAKE_ON=	-DWITH_STATIC_LIB:BOOL=ON
+STATIC_CMAKE_OFF=	-DWITH_STATIC_LIB:BOOL=OFF
 
 post-patch:
-	@${MKDIR} ${BUILD_WRKSRC}
 	@${RM} ${PATCH_WRKSRC}/cmake/Modules/UseDoxygen.cmake
-	@${REINPLACE_CMD} -e '/add_subdirectory.*s)/d' \
+	@${REINPLACE_CMD} \
 		-e 's|LIB_INSTALL_DIR}|CMAKE_INSTALL_PREFIX}/libdata|' \
-		${PATCH_WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's|ssh_static|ssh|' \
-		${PATCH_WRKSRC}/src/CMakeLists.txt
+		-e 's|CMAKE_INSTALL_DIR}|CMAKE_INSTALL_DIR}/libssh|' \
+		${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -e 's|-lssh_threads|-lssh_threads ${PTHREAD_LIBS}|' \
+		-e 's|$${INCLUDE_INSTALL_DIR}|$${INCLUDE_INSTALL_DIR} ${PTHREAD_CFLAGS}|' \
+		${WRKSRC}/libssh_threads.pc.cmake
+	@${REINPLACE_CMD} -e 's| -pedantic-errors||' \
+		${WRKSRC}/cmake/Modules/DefineCompilerFlags.cmake
 
 .include <bsd.port.mk>
