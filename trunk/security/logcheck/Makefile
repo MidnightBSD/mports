@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	logcheck
-PORTVERSION=	1.3.14
+PORTVERSION=	1.3.17
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -15,27 +15,38 @@ RUN_DEPENDS=	mime-construct:${PORTSDIR}/mail/mime-construct \
 		bash:${PORTSDIR}/shells/bash
 
 LOGCHECK_USER=	logcheck
-LOGCHECK_UID=	915
-LOGCHECK_GROUP=	logcheck
-LOGCHECK_GID=	915
+LOGCHECK_GROUP=	${LOGCHECK_USER}
+USERS=		${LOGCHECK_USER}
+GROUPS=		${LOGCHECK_GROUP}
+
+BASEDIR?=	# None. portlint compliance
+DBDIR=		${BASEDIR}/var/db/${PORTNAME}
+RUNDIR=		${BASEDIR}/var/run/${PORTNAME}
+
+OPTIONS_DEFINE=	CRON
+CRON_DESC=	Install cron script automatically
+.if !defined(BATCH)
+OPTIONS_DEFAULT=CRON
+.endif
 
 # Enable Perl dependency for logtail script
-USE_PERL5=	yes
+USES=		perl5 shebangfix tar:xz
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${DISTNAME:S!_!-!}
 BINMODE=	755
-SHAREMODE=	640
 SUB_LIST+=	LOGCHECK_USER=${LOGCHECK_USER} \
-		LOGCHECK_UID=${LOGCHECK_UID} \
 		LOGCHECK_GROUP=${LOGCHECK_GROUP} \
-		LOGCHECK_GID=${LOGCHECK_GID} \
-		PW=${PW}
+		CRON=${PORT_OPTIONS:MCRON}
 SUB_FILES=	pkg-install pkg-deinstall pkg-message
+PLIST_SUB+=	LOGCHECK_USER=${LOGCHECK_USER} \
+		LOGCHECK_GROUP=${LOGCHECK_GROUP} \
+		DBDIR=${DBDIR} RUNDIR=${RUNDIR}
+SHEBANG_FILES=	src/logcheck src/logtail src/logtail2
 CONFIG_DIRS=	cracking.d ignore.d.paranoid ignore.d.server \
 		ignore.d.workstation violations.d violations.ignore.d
 DOCS=		AUTHORS CHANGES CREDITS LICENSE TODO docs/README*
 PORTDOCS=	${DOCS:T}
-MAN8=		logcheck.8 logtail.8 logtail2.8
+MAN_FILES=	logcheck.8 logtail.8 logtail2.8
 
 PATCH_LIST=	extra-patch-debian__logcheck.cron.d \
 		extra-patch-docs__logcheck.8 \
@@ -44,59 +55,49 @@ PATCH_LIST=	extra-patch-debian__logcheck.cron.d \
 		extra-patch-src__logtail2
 EXTRA_PATCHES=	${PATCH_LIST:C|^|${WRKDIR}/|g}
 
+.include <bsd.port.pre.mk>
+
 pre-patch:
 .for patch in ${PATCH_LIST}
 	@${SED} ${_SUB_LIST_TEMP} ${FILESDIR}/${patch}.in > ${WRKDIR}/${patch}
 .endfor
 
+post-patch:
+	@${FIND} ${WRKSRC}/rulefiles -type f -name \*.orig -delete
+
 do-build:
 	@${REINPLACE_CMD} -e 's!/var/log/syslog!/var/log/messages!' \
 		${WRKSRC}/etc/logcheck.logfiles
-	@${REINPLACE_CMD} -e "s|#!/usr/bin/perl|#!${PERL}|" \
-		${WRKSRC}/src/logtail
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck ${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail ${PREFIX}/sbin
-	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail2 ${PREFIX}/sbin
-	@PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-	@${INSTALL} -d /var/db/logcheck
-	@${INSTALL} -d /var/run/logcheck
-	${CHOWN} ${LOGCHECK_USER}:${LOGCHECK_GROUP} /var/db/logcheck
-	@${ECHO_CMD} '@exec ${CHOWN} -R ${LOGCHECK_USER}:${LOGCHECK_GROUP} \
-		/var/db/logcheck' >> ${TMPPLIST}
-	${CHOWN} ${LOGCHECK_USER}:${LOGCHECK_GROUP} /var/run/logcheck
-	@${ECHO_CMD} '@exec ${CHOWN} -R ${LOGCHECK_USER}:${LOGCHECK_GROUP} \
-		/var/run/logcheck' >> ${TMPPLIST}
-	@${INSTALL} -d ${ETCDIR}
-	@${INSTALL_DATA} ${WRKSRC}/etc/logcheck.conf \
-		${ETCDIR}/logcheck.conf.sample
-	@${INSTALL_DATA} ${WRKSRC}/etc/logcheck.logfiles \
-		${ETCDIR}/logcheck.logfiles.sample
+	@${MKDIR} ${STAGEDIR}${DATADIR}/detectrotate \
+		  ${STAGEDIR}${DBDIR} \
+		  ${STAGEDIR}${DOCSDIR} \
+		  ${STAGEDIR}${ETCDIR} \
+		  ${STAGEDIR}${EXAMPLESDIR} \
+		  ${STAGEDIR}${RUNDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logcheck ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/src/logtail2 ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_DATA} ${WRKSRC}/etc/logcheck.conf \
+		${STAGEDIR}${ETCDIR}/logcheck.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/etc/logcheck.logfiles \
+		${STAGEDIR}${ETCDIR}/logcheck.logfiles.sample
 .for i in ${CONFIG_DIRS}
-	@${INSTALL} -d ${ETCDIR}/${i}
-	@${INSTALL_DATA} ${WRKSRC}/rulefiles/linux/${i}/* ${ETCDIR}/${i}
+	@${MKDIR} ${STAGEDIR}${ETCDIR}/${i}
+	${INSTALL_DATA} ${WRKSRC}/rulefiles/linux/${i}/* \
+		${STAGEDIR}${ETCDIR}/${i}
 .endfor
-	@${INSTALL} -d ${DATADIR}/detectrotate
-	@${INSTALL_DATA} ${WRKSRC}/src/detectrotate/*.dtr ${DATADIR}/detectrotate
-.if !defined(NOPORTEXAMPLES)
-	@${INSTALL} -d ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/debian/logcheck.cron.d \
-		${EXAMPLESDIR}/crontab.in
-.endif
-	${CHOWN} -R root:${LOGCHECK_GROUP} ${ETCDIR}
-	@${ECHO_CMD} '@exec ${CHOWN} -R root:${LOGCHECK_GROUP} \
-		${ETCDIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
-	${CHOWN} -R root:${LOGCHECK_GROUP} ${DATADIR}
-	@${ECHO_CMD} '@exec ${CHOWN} -R root:${LOGCHECK_GROUP} \
+	${INSTALL_DATA} ${WRKSRC}/src/detectrotate/*.dtr \
+		${STAGEDIR}${DATADIR}/detectrotate
+	${INSTALL_DATA} ${WRKSRC}/debian/logcheck.cron.d \
+		${STAGEDIR}${EXAMPLESDIR}/crontab.in
+	@${ECHO_CMD} '@exec ${CHGRP} -R ${LOGCHECK_GROUP} \
+		${ETCDIR:S|^${PREFIX}/|%D/|} \
 		${DATADIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
-	@${INSTALL_MAN} ${WRKSRC}/docs/*.8 ${MAN8PREFIX}/man/man8
+.for i in ${MAN_FILES}
+	${INSTALL_MAN} ${WRKSRC}/docs/$i ${STAGEDIR}${MAN8PREFIX}/man/man8
+.endfor
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
 
-post-install:
-.if !defined(NOPORTDOCS)
-	@${INSTALL} -d ${DOCSDIR}
-	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-	@${CHMOD} 644 ${DOCSDIR}/*
-.endif
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
