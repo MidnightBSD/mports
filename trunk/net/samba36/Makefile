@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		${SAMBA_BASENAME}36
-PORTVERSION=		3.6.22
+PORTVERSION=		3.6.25
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -19,6 +19,8 @@ PATCH_STRIP=		-p1
 EXTRA_PATCHES=		${PATCHDIR}/sernet.patch
 
 SAMBA_BASENAME=		samba
+CPE_VENDOR=		samba
+CPE_PRODUCT=		samba
 
 LATEST_LINK=		${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
@@ -29,8 +31,8 @@ AUTOHEADER_ARGS=	${IPATHS}
 AUTOCONF_ARGS=		${IPATHS}
 
 GNU_CONFIGURE=		yes
-USES=			gmake pkgconfig iconv
-USES=		autoconf autoheader
+USES=			cpe execinfo gmake iconv pkgconfig
+USE_AUTOTOOLS=		autoconf autoheader
 USE_LDCONFIG=		${SAMBA_LIBDIR}
 # pkg-config is used to find talloc
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
@@ -78,8 +80,6 @@ CONFIGURE_ENV+=		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 CONFIGURE_ENV+=		ac_cv_header_sys_mount_h=yes
 # XXX: readdir test fails on ZFS, bringing unusable replacement code
 CONFIGURE_ENV+=		libreplace_cv_READDIR_NEEDED=no
-# Let process generate meaningful backtrace on a core dump
-LIB_DEPENDS+=		execinfo:${PORTSDIR}/devel/libexecinfo
 # tdb
 BUILD_DEPENDS+=		tdb>=1.2.6:${PORTSDIR}/databases/tdb
 RUN_DEPENDS+=		tdb>=1.2.6:${PORTSDIR}/databases/tdb
@@ -98,21 +98,35 @@ CONFIGURE_ARGS+=	--with-libiconv="${LOCALBASE}" \
 
 .if !defined(SAMBA_SUBPORT)
 OPTIONS_DEFINE=		ACL_SUPPORT ADS AIO_SUPPORT AVAHI CUPS DNSUPDATE \
-			EXP_MODULES FAM_SUPPORT IPV6 LDAP MAX_DEBUG \
-			PAM_SMBPASS POPT PTHREADPOOL QUOTAS SMBTORTURE \
-			SWAT SYSLOG UTMP WINBIND
+			DOCS EXAMPLES EXP_MODULES FAM IPV6 LDAP \
+			MAX_DEBUG PAM_SMBPASS POPT PTHREADPOOL QUOTAS \
+			SMBTORTURE SWAT SYSLOG UTMP WINBIND
+OPTIONS_RADIO=		GSSAPI
+OPTIONS_RADIO_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 
 OPTIONS_DEFAULT=	ACL_SUPPORT AIO_SUPPORT CUPS LDAP POPT PTHREADPOOL \
-			WINBIND
+			WINBIND GSSAPI_NONE
 
 ACL_SUPPORT_DESC=	ACL support
+
 ADS_DESC=		Active Directory support
+ADS_CONFIGURE_ON=	--with-ads --with-krb5="${GSSAPIBASEDIR}"
+ADS_CONFIGURE_OFF=	--without-ads --without-krb5
+
 AIO_SUPPORT_DESC=	Asyncronous IO support
 DNSUPDATE_DESC=		Dynamic DNS update(require ADS)
 EXP_MODULES_DESC=	Experimental modules
-FAM_SUPPORT_DESC=	File Alteration Monitor
+
+GSSAPI_BASE_DESC=	Use Heimdal in base
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_HEIMDAL_DESC=	Use Heimdal from ports
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal,flags
+GSSAPI_MIT_DESC=	Use MIT Kerberos V5
+GSSAPI_MIT_USES=	gssapi:mit,flags
+GSSAPI_NONE_DESC=	No Kerberos support
+
 MAX_DEBUG_DESC=		Maximum debugging
-PAM_SMBPASS_DESC=	PAM authentication vs passdb backends
+PAM_SMBPASS_DESC=	PAM authentication via passdb backends
 POPT_DESC=		System-wide POPT library
 PTHREADPOOL_DESC=	Pthread pool
 QUOTAS_DESC=		Disk quota support
@@ -135,7 +149,7 @@ CONFIGURE_ARGS+=	--disable-cups --disable-fam --without-winbind \
 .else
 # Samba server itself
 USE_RC_SUBR=		${SAMBA_BASENAME}
-SUB_FILES=		pkg-install pkg-message pkg-deinstall smb.conf.sample
+SUB_FILES=		pkg-message smb.conf.sample
 
 PLIST=			${WRKDIR}/.PLIST
 # We don't (yet) have clustered FS for cluster support
@@ -158,7 +172,7 @@ SAMBA_WANT_LDAP=	yes
 .endif
 
 .if ${PORT_OPTIONS:MCUPS}
-LIB_DEPENDS+=		cups:${PORTSDIR}/print/cups-client
+LIB_DEPENDS+=		libcups.so:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=	--enable-cups --enable-iprint
 SUB_LIST+=		CUPS=""
 .else
@@ -169,7 +183,7 @@ SUB_LIST+=		CUPS="@comment "
 .if ${PORT_OPTIONS:MMAX_DEBUG}
 CPPFLAGS+=		-g
 LDFLAGS+=		-g
-LIB_DEPENDS+=		dmalloc:${PORTSDIR}/devel/dmalloc
+LIB_DEPENDS+=		libdmalloc.so:${PORTSDIR}/devel/dmalloc
 CONFIGURE_ARGS+=	--enable-debug
 #			--enable-socket-wrapper --enable-nss-wrapper \
 #			--enable-developer --enable-krb5developer \
@@ -231,8 +245,8 @@ WANT_EXP_MODULES+=	vfs_cacheprime vfs_catia vfs_commit vfs_dirsort \
 .	endif
 .endif
 
-.if ${PORT_OPTIONS:MFAM_SUPPORT}
-USE_FAM=		yes
+.if ${PORT_OPTIONS:MFAM}
+USES+=			fam
 WANT_EXP_MODULES+=	vfs_notify_fam
 CONFIGURE_ARGS+=	--enable-fam
 .else
@@ -243,7 +257,7 @@ CONFIGURE_ARGS+=	--disable-fam
 CONFIGURE_ARGS+=	--with-acl-support
 .	if ${OSVERSION} > 4015
 WANT_EXP_MODULES+=	vfs_zfsacl
-LIB_DEPENDS+=		sunacl:${PORTSDIR}/sysutils/libsunacl
+LIB_DEPENDS+=		libsunacl.so:${PORTSDIR}/sysutils/libsunacl
 .	endif
 .else
 CONFIGURE_ARGS+=	--without-acl-support
@@ -270,7 +284,7 @@ PLIST_SUB+=		SMBPASS="@comment "
 .	if ! ${PORT_OPTIONS:MADS}
 IGNORE=			dynamic DNS updates require ADS support. Disable DNSUPDATE support
 .	endif
-LIB_DEPENDS+=		uuid:${PORTSDIR}/misc/e2fsprogs-libuuid
+LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
 CONFIGURE_ARGS+=	--with-dnsupdate
 .else
 CONFIGURE_ARGS+=	--without-dnsupdate
@@ -279,7 +293,7 @@ CONFIGURE_ARGS+=	--without-dnsupdate
 .if ${PORT_OPTIONS:MAVAHI}
 CPPFLAGS+=		`pkg-config --cflags avahi-client`
 CONFIGURE_ENV+=		DNSSD_LIBS="`pkg-config --libs avahi-client`"
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=		libavahi-client.so:${PORTSDIR}/net/avahi-app
 CONFIGURE_ARGS+=	--enable-avahi
 .else
 CONFIGURE_ARGS+=	--disable-avahi
@@ -292,7 +306,7 @@ CONFIGURE_ARGS+=	--disable-pthreadpool
 .endif
 
 .if ${PORT_OPTIONS:MPOPT}
-LIB_DEPENDS+=		popt:${PORTSDIR}/devel/popt
+LIB_DEPENDS+=		libpopt.so:${PORTSDIR}/devel/popt
 CONFIGURE_ARGS+=	--without-included-popt
 .else
 CONFIGURE_ARGS+=	--with-included-popt
@@ -311,26 +325,11 @@ PLIST_SUB+=		SMBTORTURE="@comment "
 ###
 
 .if ${PORT_OPTIONS:MADS}
-SAMBA_WANT_LDAP=	yes
-SAMBA_WANT_KRB5=	yes
-CONFIGURE_ARGS+=	--with-ads
-.else
-CONFIGURE_ARGS+=	--without-ads
-.endif
+.	if ${PORT_OPTIONS:MGSSAPI_NONE}
 # Kerberos5 is necessary for ADS
-.if defined(SAMBA_WANT_KRB5)
-.if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
-CONFIGURE_ARGS+=	--with-krb5="${KRB5_HOME}"
-.elif defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.so)
-CONFIGURE_ARGS+=	--with-krb5="${HEIMDAL_HOME}"
-.elif exists(/usr/lib/libkrb5.so) && exists(/usr/bin/krb5-config)
-CONFIGURE_ARGS+=	--with-krb5="/usr"
-.else
-LIB_DEPENDS+=		krb5:${PORTSDIR}/security/heimdal
-CONFIGURE_ARGS+=	--with-krb5="${LOCALBASE}"
-.endif
-.else
-CONFIGURE_ARGS+=	--without-krb5
+IGNORE=	ADS support requires GSSAPI_BASE, GSSAPI_HEIMDAL, or GSSAPI_MIT
+.	endif
+SAMBA_WANT_LDAP=	yes
 .endif
 
 .if defined(SAMBA_WANT_LDAP)
@@ -351,19 +350,21 @@ post-patch:
 		    ${WRKSRC}/Makefile.in
 		@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		    ${WRKSRC}/configure.in ${WRKSRC}/m4/aclocal.m4
+		${REINPLACE_CMD} -e '\|^Libs:|d; s|^#Libs:|Libs:|g' \
+		    ${WRKSRC}/pkgconfig/*.pc.in
 ###
 ### end of common part
 ###
 
 .if !defined(SAMBA_SUBPORT)
 # Samba server only
-MAN1=		dbwrap_tool.1 findsmb.1 \
+SAMBA_MAN1=	dbwrap_tool.1 findsmb.1 \
 		log2pcap.1 nmblookup.1 ntlm_auth.1 profiles.1 rpcclient.1 \
 		sharesec.1 smbcacls.1 smbclient.1 smbcontrol.1 smbcquotas.1 \
 		smbget.1 smbstatus.1 smbtar.1 smbtree.1 testparm.1 vfstest.1
-MAN5=		lmhosts.5 smb.conf.5 smbgetrc.5 smbpasswd.5
-MAN7=		samba.7
-MAN8=		eventlogadm.8 net.8 nmbd.8 pdbedit.8 smbd.8 smbpasswd.8 \
+SAMBA_MAN5=	lmhosts.5 smb.conf.5 smbgetrc.5 smbpasswd.5
+SAMBA_MAN7=	samba.7
+SAMBA_MAN8=	eventlogadm.8 net.8 nmbd.8 pdbedit.8 smbd.8 smbpasswd.8 \
 		smbspool.8 idmap_nss.8 idmap_tdb.8 idmap_tdb2.8 \
 		vfs_acl_tdb.8 vfs_acl_xattr.8 \
 		vfs_audit.8 vfs_cap.8 vfs_default_quota.8 vfs_extd_audit.8 \
@@ -374,62 +375,62 @@ MAN8=		eventlogadm.8 net.8 nmbd.8 pdbedit.8 smbd.8 smbpasswd.8 \
 		vfs_streams_xattr.8 vfs_xattr_tdb.8
 
 .if ${PORT_OPTIONS:MWINBIND}
-MAN1+=		wbinfo.1
-MAN5+=		pam_winbind.conf.5
-MAN7+=		winbind_krb5_locator.7
-MAN8+=		pam_winbind.8 winbindd.8
+SAMBA_MAN1+=	wbinfo.1
+SAMBA_MAN5+=	pam_winbind.conf.5
+SAMBA_MAN7+=	winbind_krb5_locator.7
+SAMBA_MAN8+=	pam_winbind.8 winbindd.8
 .endif
 
 .if ${PORT_OPTIONS:MSWAT}
-MAN8+=		swat.8
+SAMBA_MAN8+=	swat.8
 .endif
 
-.if ${PORT_OPTIONS:MFAM_SUPPORT}
-MAN8+=		vfs_notify_fam.8
+.if ${PORT_OPTIONS:MFAM}
+SAMBA_MAN8+=	vfs_notify_fam.8
 .endif
 
 .if ${PORT_OPTIONS:MPTHREADPOOL}
-MAN8+=		vfs_aio_pthread.8
+SAMBA_MAN8+=	vfs_aio_pthread.8
 .endif
 
 .if defined(SAMBA_WANT_LDAP)
-MAN8+=		idmap_ldap.8
+SAMBA_MAN8+=	idmap_ldap.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Midmap_ad)
-MAN8+=		idmap_ad.8
+SAMBA_MAN8+=	idmap_ad.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Midmap_adex)
-MAN8+=		idmap_adex.8
+SAMBA_MAN8+=	idmap_adex.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Midmap_hash)
-MAN8+=		idmap_hash.8
+SAMBA_MAN8+=	idmap_hash.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Midmap_rid)
-MAN8+=		idmap_rid.8
+SAMBA_MAN8+=	idmap_rid.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Mvfs_cacheprime)
-MAN8+=		vfs_cacheprime.8
+SAMBA_MAN8+=	vfs_cacheprime.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Mvfs_catia)
-MAN8+=		vfs_catia.8
+SAMBA_MAN8+=	vfs_catia.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Mvfs_commit)
-MAN8+=		vfs_commit.8
+SAMBA_MAN8+=	vfs_commit.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Mvfs_dirsort)
-MAN8+=		vfs_dirsort.8
+SAMBA_MAN8+=	vfs_dirsort.8
 .endif
 
 .if !empty(WANT_EXP_MODULES:Mvfs_streams_depot)
-MAN8+=		vfs_streams_depot.8
+SAMBA_MAN8+=	vfs_streams_depot.8
 .endif
 
 SAMBA_SUB=	SAMBA_LOGDIR="${SAMBA_LOGDIR}" \
@@ -475,59 +476,66 @@ pre-install:
 .endif
 
 post-install:
+	@${RM} -f ${STAGEDIR}/${PREFIX}/bin/findsmb
 .for sect in 1 3 5 7 8
-	@${MKDIR} ${MAN${sect}PREFIX}/man/man${sect}
-.	for man in ${MAN${sect}}
-	    @${INSTALL_MAN} "${WRKDIR}/${DISTNAME}/docs/manpages/${man}" "${MAN${sect}PREFIX}/man/man${sect}"
+	@${MKDIR} ${STAGEDIR}${MAN${sect}PREFIX}/man/man${sect}
+.	for man in ${SAMBA_MAN${sect}}
+	    @${INSTALL_MAN} "${WRKDIR}/${DISTNAME}/docs/manpages/${man}" "${STAGEDIR}${MAN${sect}PREFIX}/man/man${sect}"
+	    ${ECHO_CMD} "man/man${sect}/${man}.gz" >> ${TMPPLIST}
 .	endfor
 .endfor
 # Put examples in place
-	@${MKDIR} "${EXAMPLESDIR}"
-	@${CP} -Rp ${WRKDIR}/${DISTNAME}/examples/* "${EXAMPLESDIR}"
+	@${MKDIR} "${STAGEDIR}${EXAMPLESDIR}"
+	@${CP} -Rp ${WRKDIR}/${DISTNAME}/examples/* "${STAGEDIR}${EXAMPLESDIR}"
 .if ${PORT_OPTIONS:MPAM_SMBPASS}
-	@${MKDIR} "${EXAMPLESDIR}/pam_smbpass"
-	@${CP} -Rp ${WRKSRC}/pam_smbpass/samples/* "${EXAMPLESDIR}/pam_smbpass"
+	@${MKDIR} "${STAGEDIR}${EXAMPLESDIR}/pam_smbpass"
+	@${CP} -Rp ${WRKSRC}/pam_smbpass/samples/* "${STAGEDIR}${EXAMPLESDIR}/pam_smbpass"
 .endif
-	${INSTALL_DATA} "${WRKDIR}/smb.conf.sample" "${EXAMPLESDIR}/${SAMBA_CONFIG}.sample"
-	${INSTALL_SCRIPT} "${WRKSRC}/script/mksmbpasswd.sh" "${PREFIX}/bin/make_smbpasswd"
+	${INSTALL_DATA} "${WRKDIR}/smb.conf.sample" "${STAGEDIR}${EXAMPLESDIR}/${SAMBA_CONFIG}.sample"
+	${INSTALL_DATA} "${WRKDIR}/smb.conf.sample" "${STAGEDIR}${SAMBA_CONFDIR}/${SAMBA_CONFIG}.sample"
+	${INSTALL_SCRIPT} "${WRKSRC}/script/mksmbpasswd.sh" "${STAGEDIR}${PREFIX}/bin/make_smbpasswd"
 # Winbind
 .if ${PORT_OPTIONS:MWINBIND}
-	${INSTALL_PROGRAM} "${WRKDIR}/${DISTNAME}/nsswitch/nss_winbind.so" "${SAMBA_LIBDIR}/nss_winbind.so.1"
-	${INSTALL_PROGRAM} "${WRKDIR}/${DISTNAME}/nsswitch/nss_wins.so" "${SAMBA_LIBDIR}/nss_wins.so.1"
-	${INSTALL_PROGRAM} "${WRKSRC}/bin/pam_winbind.so" "${SAMBA_LIBDIR}"
+	${INSTALL_PROGRAM} "${WRKDIR}/${DISTNAME}/nsswitch/nss_winbind.so" "${STAGEDIR}${SAMBA_LIBDIR}/nss_winbind.so.1"
+	${INSTALL_PROGRAM} "${WRKDIR}/${DISTNAME}/nsswitch/nss_wins.so" "${STAGEDIR}${SAMBA_LIBDIR}/nss_wins.so.1"
+	${INSTALL_PROGRAM} "${WRKSRC}/bin/pam_winbind.so" "${STAGEDIR}${SAMBA_LIBDIR}"
 .endif
 .if ${PORT_OPTIONS:MPAM_SMBPASS}
-	${INSTALL_PROGRAM} "${WRKSRC}/bin/pam_smbpass.so" "${SAMBA_LIBDIR}"
+	${INSTALL_PROGRAM} "${WRKSRC}/bin/pam_smbpass.so" "${STAGEDIR}${SAMBA_LIBDIR}"
 .endif
 # smbtorture
 .if ${PORT_OPTIONS:MSMBTORTURE}
-	${INSTALL_PROGRAM} "${WRKSRC}/bin/smbtorture" "${PREFIX}/bin"
+	${INSTALL_PROGRAM} "${WRKSRC}/bin/smbtorture" "${STAGEDIR}${PREFIX}/bin"
 .endif
 # Lib
-	@${FIND} "${SAMBA_MODULEDIR}" -type f -o -type l | ${SED} -E 's|^${PREFIX}/?||;' | ${EGREP} -F -v -f ${WRKDIR}/.PLIST.exclude | ${SORT} >> ${TMPPLIST}
-	@for d in `${FIND} "${SAMBA_MODULEDIR}" -type d | ${SORT} -r`; do \
-	    ${ECHO_CMD} "@unexec ${RMDIR} \"$$d\" 2>/dev/null || true" >> ${TMPPLIST}; \
+	@${FIND} "${STAGEDIR}${SAMBA_MODULEDIR}" -type f -o -type l | ${SED} -E 's|^${STAGEDIR}${PREFIX}/?||;' | ${EGREP} -F -v -f ${WRKDIR}/.PLIST.exclude | ${SORT} >> ${TMPPLIST}
+	@for d in `${FIND} "${STAGEDIR}${SAMBA_MODULEDIR}" -type d | ${SORT} -r | ${SED} -E 's|^${STAGEDIR}${PREFIX}/?||;'`; do \
+	    ${ECHO_CMD} "@unexec rmdir >/dev/null 2>&1 \"%D/$$d\" || true" >> ${TMPPLIST}; \
 	done
 # Documentation
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${CP} -Rp "${WRKDIR}/${DISTNAME}/docs/registry" "${DOCSDIR}"
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${CP} -Rp "${WRKDIR}/${DISTNAME}/docs/registry" "${STAGEDIR}${DOCSDIR}"
 .	for f in Samba3-ByExample.pdf Samba3-HOWTO.pdf Samba3-Developers-Guide.pdf
-	    @${INSTALL_DATA} "${WRKDIR}/${DISTNAME}/docs/${f}" "${DOCSDIR}"
+	    @${INSTALL_DATA} "${WRKDIR}/${DISTNAME}/docs/${f}" "${STAGEDIR}${DOCSDIR}"
 .	endfor
 .	for f in README COPYING MAINTAINERS.txt PFIF.txt Manifest Roadmap \
 		WHATSNEW.txt docs/THANKS docs/history
-	    @${INSTALL_DATA} "${WRKDIR}/${DISTNAME}/${f}" "${DOCSDIR}"
+	    @${INSTALL_DATA} "${WRKDIR}/${DISTNAME}/${f}" "${STAGEDIR}${DOCSDIR}"
 .	endfor
-	@${INSTALL_DATA} "${FILESDIR}/README.FreeBSD" "${DOCSDIR}"
+	@${INSTALL_DATA} "${FILESDIR}/README.FreeBSD" "${STAGEDIR}${DOCSDIR}"
 .endif
 # Run post-install script
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.for dir in ${SAMBA_SPOOL} ${SAMBA_LOGDIR} ${SAMBA_RUNDIR} ${SAMBA_LOCKDIR} ${SAMBA_PRIVATEDIR}
+	@${MKDIR} "${STAGEDIR}${dir}"
+.endfor
+	@${CHMOD} 1777 ${STAGEDIR}${SAMBA_SPOOL}
+	@${CHMOD} 0700 ${STAGEDIR}${SAMBA_PRIVATEDIR}
 	@${CAT} ${PKGMESSAGE}
 
 .if ${PORT_OPTIONS:MMAX_DEBUG}
 test:
-	(cd ${WRKSRC} && ${GMAKE} test_nss_modules test_pam_modules && ${GMAKE} test)
+	(cd ${WRKSRC} && ${MAKE_CMD} test_nss_modules test_pam_modules && ${MAKE_CMD} test)
 .endif
 # !SAMBA_SUBPORT
 .endif
