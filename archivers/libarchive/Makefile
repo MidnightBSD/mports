@@ -3,6 +3,7 @@
 
 PORTNAME=	libarchive
 PORTVERSION=	3.1.2
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://libarchive.org/downloads/
 
@@ -33,7 +34,8 @@ PLIST_FILES=	bin/bsdcpio \
 		include/archive_entry.h \
 		lib/libarchive.a \
 		lib/libarchive.so \
-		lib/libarchive.so.14 \
+		lib/libarchive.so.13 \
+		lib/libarchive.so.13.1.2 \
 		libdata/pkgconfig/libarchive.pc \
 		man/man1/bsdcpio.1.gz \
 		man/man1/bsdtar.1.gz \
