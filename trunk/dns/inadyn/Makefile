@@ -2,7 +2,7 @@
 
 PORTNAME=	inadyn
 PORTVERSION=	1.96.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.inatech.eu/inadyn/ \
 		${MASTER_SITE_LOCAL}
@@ -10,23 +10,18 @@ MASTER_SITE_SUBDIR=	dhn
 DISTNAME=	${PORTNAME}.v${PORTVERSION}
 
 MAINTAINER=	ports@midnightbsd.org
-COMMENT=	DYNAMIC DNS client
+COMMENT=	Dynamic DNS update client
 
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_RC_SUBR=	inadyn
-USE_ZIP=	yes
+USES=		gmake zip
 USE_DOS2UNIX=	yes
-USE_GMAKE=	yes
 MAKEFILE=	makefile
 
-MAN8=		inadyn.8
-MAN5=		inadyn.conf.5
-MANCOMPRESSED=	no
-
 PORTDOCS=	readme.html
-PLIST_FILES=	bin/inadyn
+PLIST_FILES=	bin/inadyn man/man5/inadyn.conf.5.gz man/man8/inadyn.8.gz
 
 OPTIONS_DEFINE=	DOCS
 

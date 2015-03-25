@@ -2,7 +2,7 @@
 
 PORTNAME=	ez-ipupdate
 PORTVERSION=	3.0.11b8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	dns
 MASTER_SITES=	http://dyn.pl/client/UNIX/ez-ipupdate/ \
 		http://www.yi.org/help/software/ \
@@ -15,6 +15,8 @@ LICENSE=	gpl2
 
 USE_RC_SUBR=	ez-ipupdate
 GNU_CONFIGURE=	yes
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${TARGETDIR}/share/examples/${PORTNAME}

@@ -2,10 +2,10 @@
 
 PORTNAME=	ldns
 PORTVERSION=	1.6.17
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
-		CRITICAL
+		FREEBSD_LOCAL/ehaupt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for programs conforming to DNS RFCs and drafts
@@ -14,7 +14,6 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 GNU_CONFIGURE=	yes
-
 USES=		gmake libtool
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
@@ -41,7 +40,7 @@ OPTIONS_SUB=	yes
 .include <bsd.mport.options.mk>
 
 .if defined(BUILD_PYLDNS)
-USE_PYTHON=	yes
+USES+=		python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 ALL_TARGET=	pyldns
 INSTALL_TARGET=	install-pyldns
@@ -54,6 +53,7 @@ post-patch:
 	@${SED} -i '' -e 's=-I./include/ldns=-I${LOCALBASE}/include/ldns=' ${WRKSRC}/Makefile.in
 .elif defined(BUILD_P5PERL)
 USES+=		perl5
+USE_PERL5=	build run
 PKGNAMEPREFIX=	p5-DNS-
 
 ALL_TARGET=	p5-dns-ldns
@@ -78,6 +78,7 @@ INSTALL_TARGET+=install-manpages
 
 .if ${PORT_OPTIONS:MGOST}
 BUILD_DEPENDS+=	openssl>=1.0:${PORTSDIR}/security/openssl
+CONFLICTS+=	libressl-*
 .else
 NO_GOST=	--disable-gost
 CONFIGURE_ARGS+=${NO_GOST}
@@ -106,6 +107,7 @@ CONFIGURE_ARGS+=	--enable-rrtype-ta
 .if ! (defined(BUILD_PYLDNS) || defined(BUILD_P5PERL))
 
 post-configure:
+# ac_cv_prog_libtool=../libtool => Always use bundled libtool
 .if ${PORT_OPTIONS:MEXAMPLES}
 	@(cd ${WRKSRC}/examples; ./configure --prefix=${PREFIX} \
 		--infodir=${PREFIX}/${INFO_PATH} --mandir=${MANPREFIX}/man \
