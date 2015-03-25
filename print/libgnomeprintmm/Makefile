@@ -2,13 +2,14 @@
 
 PORTNAME=	libgnomeprintmm
 PORTVERSION=	2.5.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ bindings for the GNOME print support library
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	libgtkmm-2.4.so:${PORTSDIR}/x11-toolkits/gtkmm24
