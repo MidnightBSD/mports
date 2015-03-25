@@ -2,6 +2,7 @@
 
 PORTNAME=	libfontenc
 PORTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
