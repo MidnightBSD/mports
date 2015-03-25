@@ -2,7 +2,7 @@
 
 PORTNAME=	glib
 PORTVERSION=	1.2.10
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	12
@@ -21,9 +21,6 @@ USE_LDCONFIG=	yes
 INFO=		glib
 
 post-install:
-	cd ${PREFIX}/bin && ${LN} -sf glib-config glib12-config
-	cd ${PREFIX}/lib && ${LN} -sf libglib.so.0.10 libglib.so 
-	cd ${PREFIX}/lib && ${LN} -sf libgmodule.so.0.10 libgmodule.so
-	cd ${PREFIX}/lib && ${LN} -sf libgthread.so.0.10 libgthread.so
+	${LN} -sf glib-config ${PREFIX}/bin/glib12-config
 
 .include <bsd.port.mk>
