@@ -1,10 +1,5 @@
-# New ports collection makefile for:	compat4x libraries
-# Date created:		01 Aug 2001
-# Whom:			Scot W. Hetzel
-#
 # $MidnightBSD$
 # $FreeBSD: ports/misc/compat4x/Makefile,v 1.33 2006/08/15 00:56:13 clsung Exp $
-#
 
 PORTNAME=	compat4x
 PORTVERSION=	${COMPAT4X_PORTVERSION}
@@ -17,7 +12,8 @@ DISTFILES=	${COMPAT4X_DISTFILES}
 DIST_SUBDIR=	${COMPAT4X_ARCH}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A convenience package to install the compat4x libraries
+COMMENT=	Convenience package to install the compat4x libraries
+
 LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/usr/lib/compat
