@@ -31,7 +31,6 @@ SUBDIR += libgail-gnome
 SUBDIR += libgdiplus
 SUBDIR += libgnomeprintui
 SUBDIR += libgnomeui
-SUBDIR += libgnomeuimm
 SUBDIR += libsexy
 SUBDIR += libwnck
 SUBDIR += libxfce4gui
