@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lzo2
-PORTVERSION=	2.08
+PORTVERSION=	2.09
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		FREEBSD_LOCAL/mandree
@@ -9,9 +9,10 @@ DISTNAME=	lzo-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
+
 LICENSE=	gpl2
 
-USES=		libtool:keepla
+USES=		libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --docdir=${DOCSDIR}
 USE_LDCONFIG=	yes
