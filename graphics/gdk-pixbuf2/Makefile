@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.28.2
-PORTREVISION=	2
+PORTVERSION=	2.31.2
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -14,14 +14,16 @@ COMMENT=	Graphic library for GTK+
 LICENSE=	lgpl
 
 USE_XORG=	xt xi x11
-USES=		gmake libtool:keepla pathfix pkgconfig tar:xz
+USES=		gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME+=	gnomehier glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-introspection=yes --with-x11
+INSTALL_TARGET=	install-strip
 
+OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	JASPER JPEG PNG TIFF
 OPTIONS_DEFAULT=JASPER JPEG PNG TIFF
 
