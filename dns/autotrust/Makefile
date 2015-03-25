@@ -11,8 +11,8 @@ COMMENT=	Tool to automatically update DNSSEC trust anchors
 
 LICENSE=	bsd3
 
-LIB_DEPENDS+=	ldns:${PORTSDIR}/dns/ldns \
-		unbound:${PORTSDIR}/dns/unbound
+LIB_DEPENDS+=	libldns.so:${PORTSDIR}/dns/ldns \
+		libunbound.so:${PORTSDIR}/dns/unbound
 
 GNU_CONFIGURE=	yes
 CFLAGS=		-I${LOCALBASE}/include

@@ -3,7 +3,7 @@
 
 PORTNAME=	nss_mdns
 PORTVERSION=	0.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns ipv6
 MASTER_SITES=	http://0pointer.de/lennart/projects/nss-mdns/
 DISTNAME=	nss-mdns-${PORTVERSION}
@@ -19,6 +19,7 @@ LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 CONFLICTS_INSTALL=	mDNSResponder_nss-[0-9]*
 
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 USES=	autoreconf gmake  libtool
 USE_LDCONFIG=	yes
 AUTOTOOLSFILES=	aclocal.m4

@@ -9,7 +9,8 @@ include/tld.h
 info/libidn-components.png
 lib/libidn.a
 lib/libidn.so
-lib/libidn.so.17
+lib/libidn.so.11
+lib/libidn.so.11.6.12
 libdata/pkgconfig/libidn.pc
 share/emacs/site-lisp/idna.el
 share/emacs/site-lisp/punycode.el
