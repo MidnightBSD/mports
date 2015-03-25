@@ -10,6 +10,10 @@ COMMENT=	System independent dlopen wrapper
 
 LICENSE=	lgpl2.1
 
+BUILD_DEPENDS+= libtool:${PORTSDIR}/devel/libtool \
+		gm4:${PORTSDIR}/devel/m4
+
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ltdl-install
 INSTALL_TARGET=	install-strip
