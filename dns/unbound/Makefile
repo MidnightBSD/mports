@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	unbound
-PORTVERSION=	1.5.1
+PORTVERSION=	1.5.2
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
@@ -10,8 +10,8 @@ COMMENT=	Validating, recursive, and caching DNS resolver
 
 LICENSE=	bsd4
 
-USES=		gmake
-#USE_OPENSSL=	yes
+USES=		gmake libtool
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-ssl=/usr --with-libexpat=${LOCALBASE}
 USE_LDCONFIG=	yes
