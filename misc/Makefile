@@ -54,6 +54,7 @@ SUBDIR += susv2
 SUBDIR += susv3
 SUBDIR += tvbrowser
 SUBDIR += unclutter
+SUBDIR += usbids
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
 SUBDIR += wmfirew
