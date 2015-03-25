@@ -208,6 +208,7 @@ SUBDIR += nasm
 SUBDIR += ncurses
 SUBDIR += newt
 SUBDIR += ninja
+SUBDIR += npth
 SUBDIR += nspr
 SUBDIR += objcunit
 SUBDIR += oniguruma
