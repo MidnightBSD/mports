@@ -3,6 +3,7 @@
 
 PORTNAME=	droid-fonts-ttf
 PORTVERSION=	20131024
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet/
 
@@ -14,7 +15,7 @@ LICENSE=	apache2
 BUILD_DEPENDS=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 		${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 
-USE_XZ=		yes
+USES=		tar:xz
 
 FONTDIR=	lib/X11/fonts/Droid
 PKGMESSAGE=	${WRKDIR}/pkg-message
