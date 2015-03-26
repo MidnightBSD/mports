@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	3.0.5
+PORTVERSION=	3.0.6
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 
@@ -10,7 +10,7 @@ COMMENT=	The Varnish high-performance HTTP accelerator
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
 GNU_CONFIGURE=	yes
 USE_PYTHON_BUILD=	yes
@@ -19,6 +19,7 @@ CONFIGURE_ENV=	RST2MAN=true
 USE_LDCONFIG=	yes
 USES=		autoreconf gmake libtool readline pkgconfig python:build
 INSTALL_TARGET=	install-strip
+
 USE_RC_SUBR=	varnishd varnishlog varnishncsa
 SUB_FILES=	pkg-message
 .if defined(NO_INET6) || defined(WITHOUT_INET6)
@@ -34,7 +35,7 @@ post-patch:
 .endif
 
 regression-test check test: build
-	${GMAKE} TESTS_PARALLELISM=1 -C ${WRKSRC} check
+	${MAKE_CMD} TESTS_PARALLELISM=1 -C ${WRKSRC} check
 
 post-build:
 	#
@@ -56,6 +57,7 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/include/${f} ${PREFIX}/include/varnish
 .endfor
 	@${RM} -f ${PREFIX}/lib/libvarnishapi.*a ${PREFIX}/lib/varnish/lib*a ${PREFIX}/lib/varnish/vmods/lib*a
+	${MV} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.pre.mk>
 
