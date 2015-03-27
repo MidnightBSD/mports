@@ -25,8 +25,6 @@ CONFIGURE_ARGS=	--without-systemd \
 		libusb_CFLAGS="-I/usr/include" \
 		libusb_LIBS="-lusb"
 
-PLIST_FILES=	sbin/usbmuxd
-
 PORTDOCS=	AUTHORS README
 
 OPTIONS_DEFINE=	DOCS
