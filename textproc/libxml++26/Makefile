@@ -2,7 +2,7 @@
 
 PORTNAME=	libxml++
 PORTVERSION=	2.34.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
@@ -10,28 +10,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML API for C++
 LICENSE=	lgpl
 
-USE_XZ=		yes
+USES+=		tar:xz
 
 PLIST_SUB=	VERSION="2.6" API_VERSION="2.6"
 
 .if !defined(REFERENCE_PORT)
 
-LATEST_LINK=	libxml++26
-
-LIB_DEPENDS=	glibmm-2.4.1:${PORTSDIR}/devel/glibmm
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack libxml2 pkgconfig
-GNU_CONFIGURE=	yes
+USES+=		gmake libtool pathfix pkgconfig
+USE_GNOME=	glibmm libxml2
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --disable-documentation
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/examples//' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e '/^gentoo_ltmain_version=/s/`.*`/$$gentoo_lt_version/' \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/^library_configdir =/s/libdir/includedir/' \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e '/^Cflags:/s/libdir/includedir/' \
