@@ -2,17 +2,16 @@
 
 PORTNAME=	motor
 PORTVERSION=	3.4.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://thekonst.net/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A powerful text mode based programming IDE
+COMMENT=	Powerful text mode based programming IDE
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		tar:bzip2 gmake iconv
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE}
 .if !defined(WITHOUT_NLS)
@@ -23,8 +22,6 @@ PLIST_SUB=	NLS=""
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB=	NLS="@comment "
 .endif
-
-MAN1=		motor.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|zxvf|&o|' ${WRKSRC}/share/Makefile.in
