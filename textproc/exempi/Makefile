@@ -1,25 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	exempi
-PORTVERSION=	2.1.1
-PORTREVISION=	1
+PORTVERSION=	2.2.2
 CATEGORIES=	textproc
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A port of Adobe XMP SDK to work on UNIX
+COMMENT=	Port of Adobe XMP SDK to work on UNIX
+
 LICENSE=	bsd3
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack gnomehack
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-unittest=no
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		LIBS="-liconv"
-USE_ICONV=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib ${ICONV_LIB}
+USES=		pathfix iconv libtool tar:bzip2
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$${libdir}/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
