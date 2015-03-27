@@ -2,7 +2,7 @@
 
 PORTNAME=	libxml
 PORTVERSION=	1.8.17
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -12,9 +12,7 @@ LICENSE=	gpl2
 
 DEPRECATED=   Last release in 2002, unsupported by developers
 
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
-USE_PKGCONFIG=	yes
+USES=	libtool gmake pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
