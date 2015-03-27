@@ -1,89 +1,59 @@
 # $MidnightBSD$
-# $FreeBSD: ports/www/epiphany/Makefile,v 1.148 2010/11/20 15:36:57 kwm Exp $
 
 PORTNAME=	epiphany
-PORTVERSION=	2.30.6
-PORTREVISION?=	0
+PORTVERSION=	3.12.1
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	An extremely lightweight and simple web browser for GNOME 2
+COMMENT=	Extremely lightweight and simple web browser for GNOME 3
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
-		${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2 \
-		soup-gnome-2.4.1:${PORTSDIR}/devel/libsoup-gnome \
-		notify.1:${PORTSDIR}/devel/libnotify \
-		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
-		${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss \
-		${LOCALBASE}/share/icons/HighContrastLargePrint/index.theme:${PORTSDIR}/x11-themes/gnome-themes
+BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+		itstool:${PORTSDIR}/textproc/itstool \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libwebkitgtk-3.0.so:${PORTSDIR}/www/webkit-gtk3 \
+		libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome \
+		libgcr-3.so:${PORTSDIR}/security/gcr \
+		libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
+		libnss3.so:${PORTSDIR}/security/nss \
+		libavahi-gobject.so:${PORTSDIR}/net/avahi-app \
+		libnotify.so:${PORTSDIR}/devel/libnotify \
+		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
+RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		gnome-icon-theme-symbolic>=0:${PORTSDIR}/x11-themes/gnome-icon-theme-symbolic \
+		gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme
 
-USE_LDCONFIG=	yes
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig python:3 tar:xz
+USE_GNOME=	gnomedesktop3 gnomeprefix intlhack libwnck3 libxml2 libxslt
+USE_XORG=	ice x11 sm
 INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
-USE_BZIP2=	yes
-USE_PYTHON=	yes
-GNOME_DESKTOP_VERSION=2
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop desktopfileutils
-WANT_GNOME=	yes
+USE_SQLITE=	3
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-INSTALLS_OMF=	yes
 CONFIGURE_ARGS+=--enable-introspection \
-		--with-ca-file=${LOCALBASE}/share/certs/ca-root-nss.crt
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS} ${EXTRA_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} ${EXTRA_LIBS}"
+		--with-distributor-name="FreeBSD GNOME Project"
+#		--with-ca-file=${LOCALBASE}/share/certs/ca-root-nss.crt
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	epiphany-lockdown.schemas epiphany.schemas
+GLIB_SCHEMAS=	org.gnome.Epiphany.enums.xml \
+		org.gnome.epiphany.gschema.xml
 
-PLIST_SUB+=	EPHY_VERSION="${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}"
+PLIST_SUB+=	EPHY_VERSION=${PORTVERSION:R}
 
-MAN1=		epiphany.1
-
-OPTIONS=	NSS "Import passwords from 2.26 and older on first run" on \
-		SPELLCHECK "Enable spell checking by default" on \
-		SEED "Enable seed (JavaScript) support" off \
-
-.if defined(PACKAGE_BUILDING)
-.undef WITHOUT_GNOME
-WITH_GNOME=	yes
-.endif
-
-.include <bsd.port.pre.mk>
-
-NO_WERROR=	yes
-# allow build with more warnings enabled
-.if defined(NO_WERROR)
 CONFIGURE_ARGS+=	--enable-compile-warnings=no
-.endif
-
-.if defined(WITH_NSS)
-LIB_DEPENDS+=	nss3.1:${PORTSDIR}/security/nss
-CONFIGURE_ARGS+=--enable-nss
-.else
-CONFIGURE_ARGS+=--disable-nss
-.endif
-
-.if defined(WITH_SEED)
-LIB_DEPENDS+=	seed.0:${PORTSDIR}/devel/seed
-CONFIGURE_ARGS+=--enable-seed
-.endif
-
-.if defined(WITH_SPELLCHECK)
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-embed_ephy-embed-prefs.c
-.endif
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in*" | ${XARGS} ${REINPLACE_CMD} -e \
 		 's|-lpthread|${PTHREAD_LIBS}|g'
 	@${REINPLACE_CMD} -e 's|execinfo.h|#|g ; \
 	    	s|-ldl"$$|"|g' \
-		-e 's|EPIPHANY_API_VERSION=2.29|EPIPHANY_API_VERSION=2.30|g' \
 		${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
