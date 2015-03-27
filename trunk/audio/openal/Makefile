@@ -3,9 +3,9 @@
 
 PORTNAME=	openal
 PORTVERSION=	20060211
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	audio
-MASTER_SITES=	http://openal.org/openal_webstf/downloads/
+MASTER_SITES=	GENTOO/distfiles
 DISTVERSION=	0.0.8
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,71 +13,36 @@ COMMENT=	3D positional spatialized sound library
 
 LICENSE=	gpl2
 
-USES=	libtool gmake pkgconfig
+CONFLICTS=	openal-soft-[0-9]*
+
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--enable-capture
-WANT_SDL=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-Wno-return-type
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd9.0
+CONFIGURE_ARGS=	--enable-capture \
+		--disable-arts
+USES=		pathfix pkgconfig gmake libtool:keepla
 USE_LDCONFIG=	yes
 
-OPTIONS=	ARTS "aRts backend" off \
-		ESD "esd backend" off \
-		SDL "SDL backend" off \
-		VORBIS "vorbis support" off \
-		SMPEG "smpeg support" off
+OPTIONS_DEFINE=	ESOUND SDL VORBIS SMPEG ALSA
+OPTIONS_DEFINE_i386=	ASM
+OPTIONS_DEFAULT_i386=	ASM
+SMPEG_DESC=	smpeg support
 
-.include <bsd.port.pre.mk>
+ESOUND_USE=		GNOME=esound
+ESOUND_CONFIGURE_ENABLE=esd
+SDL_USE=		SDL=sdl
+SDL_CONFIGURE_ENABLE=	sdl
+VORBIS_LIB_DEPENDS=	libvorbisfile.so:${PORTSDIR}/audio/libvorbis
+VORBIS_CONFIGURE_ENABLE=vorbis
+SMPEG_LIB_DEPENDS=	libsmpeg.so:${PORTSDIR}/multimedia/smpeg
+SMPEG_CONFIGURE_ENABLE=	mp3
+ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
+ALSA_CONFIGURE_ENABLE=	alsa
+ASM_BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
-.if defined(WITH_SMPEG)
-WITH_SDL=	yes	# smpeg requires SDL
-.endif
-
-.if defined(WITH_ARTS)
-LIB_DEPENDS+=	artsc.0:${PORTSDIR}/audio/arts
-CONFIGURE_ARGS+=--enable-arts
-.else
-CONFIGURE_ARGS+=--disable-arts
-.endif
-
-.if defined(WITH_ESD)
-USE_GNOME+=	esound
-CONFIGURE_ARGS+=--enable-esd
-.else
-CONFIGURE_ARGS+=--disable-esd
-.endif
-
-.if defined(WITH_SDL)
-USE_SDL+=	sdl
-CONFIGURE_ENV+=	HAVESDL="${SDL_CONFIG}"
-CONFIGURE_ARGS+=--enable-sdl
-.else
-CONFIGURE_ARGS+=--disable-sdl
-.endif
-
-.if defined(WITH_VORBIS)
-LIB_DEPENDS+=	vorbisfile.6:${PORTSDIR}/audio/libvorbis
-CONFIGURE_ARGS+=--enable-vorbis
-.else
-CONFIGURE_ARGS+=--disable-vorbis
-.endif
-
-.if defined(WITH_SMPEG)
-LIB_DEPENDS+=	smpeg.1:${PORTSDIR}/multimedia/smpeg
-CONFIGURE_ARGS+=--enable-smpeg
-.else
-CONFIGURE_ARGS+=--disable-smpeg
-.endif
-
-.if ${ARCH} == "i386"
-OPTIONS+=	X86_ASM "Enable x86 assembly code" on
-.if !defined(WITHOUT_X86_ASM)
-BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
-.endif
-.endif
-
-NOT_FOR_ARCHS=	ia64
-NOT_FOR_ARCHS_REASON_ia64=	does not compile
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/-pthread/${PTHREAD_LIBS}/; \
@@ -91,8 +56,8 @@ post-patch:
 		s|Libs: |&${PTHREAD_LIBS} |;\
 		s|Cflags: |&${PTHREAD_CFLAGS} |' \
 		${WRKSRC}/admin/pkgconfig/openal.pc.in
-.if defined(WITHOUT_X86_ASM)
+.if ! ${PORT_OPTIONS:MASM}
 	@${REINPLACE_CMD} -e '/^NASM=/ s|=.*|=no|' ${WRKSRC}/configure
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
