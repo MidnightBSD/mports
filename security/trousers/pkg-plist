@@ -128,4 +128,4 @@ etc/tcsd.conf.dist
 @owner
 @group
 @mode
-@dir(_tss,_tss,0700) var/lib/tpm
+@comment @dir(_tss,_tss,0700) var/lib/tpm
