@@ -14,6 +14,8 @@ COMMENT=	MIDI to PCM software synthesizer
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS+=	trueprefix
+
 CONFLICTS=	timidity++-2.*
 
 TIINS=		goemon.tgz
