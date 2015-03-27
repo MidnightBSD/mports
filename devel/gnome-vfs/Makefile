@@ -1,11 +1,5 @@
-# New ports collection makefile for:	gnomevfs2
-# Date created:				28th June 2000
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
-#   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
-#
 
 PORTNAME=	gnome-vfs
 PORTVERSION=	2.24.4
@@ -16,6 +10,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Virtual File System
+
 LICENSE=	gpl2
 
 USES=		tar:bzip2
