@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/autoconf-wrapper/Makefile,v 1.3 2007/11/09 14:47:26 des Exp $
 
 PORTNAME?=	autoconf-wrapper
-PORTVERSION=	20101119
+PORTVERSION=	20131203
 CATEGORIES=	devel
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -16,7 +16,7 @@ NO_BUILD=	YES
 
 TOOL?=		AUTOCONF
 WRAPPED_TOOLS?=	autoconf autoheader autom4te autoreconf autoscan \
-		autoupdates ifnames
+		autoupdate ifnames
 .include <bsd.port.pre.mk>
 
 TOOLS_CASE!=	${ECHO_CMD} ${WRAPPED_TOOLS} | ${TR} ' ' '|'
@@ -35,7 +35,7 @@ do-configure:
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${PREFIX}/bin/${PORTNAME}
 .for tool in ${WRAPPED_TOOLS}
-	@${LN} -s ${PORTNAME} ${PREFIX}/bin/${tool}
+	@${LN} -sf ${PORTNAME} ${PREFIX}/bin/${tool}
 .endfor
 
 .include <bsd.port.post.mk>
