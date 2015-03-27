@@ -1,9 +1,7 @@
 bin/linc-cleanup-sockets
 bin/orbit-idl-2
 bin/orbit2-config
-@unexec if cmp -s %D/etc/orbit2rc.default %D/etc/orbit2rc; then rm -f %D/etc/orbit2rc; fi
-etc/orbit2rc.default
-@exec if [ ! -f %D/etc/orbit2rc ] ; then cp -p %D/%F %B/orbit2rc; fi
+@sample etc/orbit2rc.sample
 include/orbit-2.0/ORBitservices/CosNaming.h
 include/orbit-2.0/ORBitservices/CosNaming_impl.h
 include/orbit-2.0/ORBitservices/orbit-imodule.h
@@ -52,15 +50,18 @@ include/orbit-2.0/orbit/util/orbit-util.h
 lib/libORBit-2.a
 lib/libORBit-2.la
 lib/libORBit-2.so
-lib/libORBit-2.so.1
+lib/libORBit-2.so.0
+lib/libORBit-2.so.0.1.0
 lib/libORBit-imodule-2.a
 lib/libORBit-imodule-2.la
 lib/libORBit-imodule-2.so
 lib/libORBit-imodule-2.so.0
+lib/libORBit-imodule-2.so.0.0.0
 lib/libORBitCosNaming-2.a
 lib/libORBitCosNaming-2.la
 lib/libORBitCosNaming-2.so
-lib/libORBitCosNaming-2.so.1
+lib/libORBitCosNaming-2.so.0
+lib/libORBitCosNaming-2.so.0.1.0
 lib/libname-server-2.a
 libdata/pkgconfig/ORBit-2.0.pc
 libdata/pkgconfig/ORBit-CosNaming-2.0.pc
@@ -68,16 +69,4 @@ libdata/pkgconfig/ORBit-idl-2.0.pc
 libdata/pkgconfig/ORBit-imodule-2.0.pc
 share/aclocal/ORBit2.m4
 share/idl/orbit-2.0/CosNaming.idl
-@dirrm share/idl/orbit-2.0
-@exec /bin/mkdir -p %D/lib/orbit-2.0/idl-backends
-@dirrmtry share/idl
-@dirrmtry lib/orbit-2.0/idl-backends
-@dirrmtry lib/orbit-2.0
-@dirrm include/orbit-2.0/orbit/util
-@dirrm include/orbit-2.0/orbit/poa
-@dirrm include/orbit-2.0/orbit/orb-core
-@dirrm include/orbit-2.0/orbit/dynamic
-@dirrm include/orbit-2.0/orbit-idl
-@dirrm include/orbit-2.0/orbit
-@dirrm include/orbit-2.0/ORBitservices
-@dirrm include/orbit-2.0
+@dir lib/orbit-2.0/idl-backends

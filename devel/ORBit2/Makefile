@@ -2,7 +2,7 @@
 
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -18,8 +18,8 @@ USES=		tar:bzip2
 
 GNU_CONFIGURE=	yes
 USES+=		gettext gmake libtool:keepla pathfix pkgconfig
-USE_LDCONFIG=	yes
 USE_GNOME=	libidl referencehack
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CPPFLAGS+=	-I${LOCALBASE}/include
