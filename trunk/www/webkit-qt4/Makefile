@@ -1,9 +1,9 @@
-# Created by: danny@ricin.com
 # $MidnightBSD$
 # $FreeBSD: head/www/webkit-qt4/Makefile 367888 2014-09-10 20:50:31Z gerald $
 
 PORTNAME=	webkit
 DISTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMEPREFIX=	qt4-
 
