@@ -3,7 +3,8 @@ include/ao/os_types.h
 include/ao/plugin.h
 lib/libao.a
 lib/libao.so
-lib/libao.so.5
+lib/libao.so.4
+lib/libao.so.4.1.0
 lib/ao/plugins-4/liboss.so
 %%ESOUND%%lib/ao/plugins-4/libesd.so
 %%NAS%%lib/ao/plugins-4/libnas.so
@@ -47,7 +48,3 @@ share/aclocal/ao.m4
 %%PORTDOCS%%%%DOCSDIR%%/plugin-api.html
 %%PORTDOCS%%%%DOCSDIR%%/plugin-overview.html
 %%PORTDOCS%%%%DOCSDIR%%/style.css
-@dirrm include/ao
-@dirrm lib/ao/plugins-4
-@dirrm lib/ao
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
