@@ -2,7 +2,7 @@
 
 PORTNAME=	libnova
 PORTVERSION=	0.15.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v%20${PORTVERSION}
 
@@ -11,7 +11,7 @@ COMMENT=	Astronomical Calculation Library
 
 LICENSE=	lgpl
 
-USES=		libtool
+USES=		autoreconf libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
