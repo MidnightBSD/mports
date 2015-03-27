@@ -15,9 +15,11 @@ include/psiconv/parse.h
 include/psiconv/parse_routines.h
 include/psiconv/unicode.h
 lib/libpsiconv.a
-lib/libpsiconv.la
 lib/libpsiconv.so
-lib/libpsiconv.so.10
+lib/libpsiconv.so.6
+lib/libpsiconv.so.6.4.2
+man/man1/psiconv-config.1.gz
+man/man1/psiconv.1.gz
 %%DATADIR%%/psion/ASCII_Codes.psi
 %%DATADIR%%/psion/Application_ID_Section.psi
 %%DATADIR%%/psion/Basic_Elements.psi
@@ -118,8 +120,3 @@ lib/libpsiconv.so.10
 %%DATADIR%%/xhtml/Word_Status_Section.html
 %%DATADIR%%/xhtml/Word_Styles_Section.html
 %%DATADIR%%/xhtml/World_Data_File.html
-@dirrm %%DATADIR%%/xhtml
-@dirrm %%DATADIR%%/psion
-@dirrm %%DATADIR%%
-@dirrm include/psiconv
-@dirrm etc/psiconv
