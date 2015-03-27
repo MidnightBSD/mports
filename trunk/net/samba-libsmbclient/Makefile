@@ -1,6 +1,7 @@
 # $MidnightBSD$
+# $FreeBSD: head/net/samba-libsmbclient/Makefile 364390 2014-08-08 21:36:33Z timur $
 
-PORTREVISION=		1
+PORTREVISION=		2
 PORTEPOCH=		0
 PKGNAMESUFFIX=		-libsmbclient
 
@@ -22,16 +23,16 @@ CONFIGURE_ARGS+=	--with-libsmbclient
 ALL_TARGET=		libsmbclient
 
 do-install:
-			-@${MKDIR} ${STAGEDIR}${MAN7PREFIX}/man/man7
-			${INSTALL_MAN} ${WRKDIR}/${DISTNAME}/docs/manpages/libsmbclient.7 ${STAGEDIR}${MAN7PREFIX}/man/man7
-			-@${MKDIR} ${STAGEDIR}${PREFIX}/include
-			${INSTALL_DATA} ${WRKSRC}/include/libsmbclient.h ${STAGEDIR}${PREFIX}/include
-			${INSTALL_DATA} ${WRKSRC}/pkgconfig/smbclient.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
-			-@${MKDIR} ${STAGEDIR}${PREFIX}/lib
-			${INSTALL_SCRIPT} ${WRKSRC}/bin/libsmbclient.a ${STAGEDIR}${PREFIX}/lib
-			${INSTALL_SCRIPT} ${WRKSRC}/bin/libsmbclient.so ${STAGEDIR}${PREFIX}/lib/libsmbclient.so.0
-			${LN} -snf libsmbclient.so.0 ${STAGEDIR}${PREFIX}/lib/libsmbclient.so
-			-@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-			@${CP} -Rp ${WRKDIR}/${DISTNAME}/examples/libsmbclient/ ${STAGEDIR}${EXAMPLESDIR}
+			-@${MKDIR} ${MAN7PREFIX}/man/man7
+			${INSTALL_MAN} ${WRKDIR}/${DISTNAME}/docs/manpages/libsmbclient.7 ${MAN7PREFIX}/man/man7
+			-@${MKDIR} ${PREFIX}/include
+			${INSTALL_DATA} ${WRKSRC}/include/libsmbclient.h ${PREFIX}/include
+			${INSTALL_DATA} ${WRKSRC}/pkgconfig/smbclient.pc ${PREFIX}/libdata/pkgconfig/
+			-@${MKDIR} ${PREFIX}/lib
+			${INSTALL_SCRIPT} ${WRKSRC}/bin/libsmbclient.a ${PREFIX}/lib
+			${INSTALL_SCRIPT} ${WRKSRC}/bin/libsmbclient.so ${PREFIX}/lib/libsmbclient.so.0
+			${LN} -snf libsmbclient.so.0 ${PREFIX}/lib/libsmbclient.so
+			-@${MKDIR} ${EXAMPLESDIR}
+			@${CP} -Rp ${WRKDIR}/${DISTNAME}/examples/libsmbclient/ ${EXAMPLESDIR}
 
 .include "${MASTERDIR}/Makefile"
