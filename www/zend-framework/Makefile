@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ZendFramework
-PORTVERSION=	2.3.1
+PORTVERSION=	2.3.3
 CATEGORIES=	www
 MASTER_SITES=	https://packages.zendframework.com/releases/${DISTNAME}/
 
@@ -9,6 +9,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for developing PHP web applications
 
 LICENSE=	bsd3
+
+CONFLICTS=	ZendFramework-1.*
 
 NO_BUILD=	yes
 USE_PHP=	spl
@@ -43,7 +45,8 @@ USE_PHP+=	sqlite
 .else
 USE_PHP+=	sqlite3
 .endif
-RUN_DEPENDS+=	pecl-memcache>=0:${PORTSDIR}/databases/pecl-memcache
+RUN_DEPENDS+=	pecl-memcache>=0:${PORTSDIR}/databases/pecl-memcache \
+		pecl-memcached>=0:${PORTSDIR}/databases/pecl-memcached
 .endif
 .if ${PORT_OPTIONS:MOPTPHP}
 USE_PHP+=	bcmath bitset json posix
@@ -76,7 +79,6 @@ USE_PHP+=	pdo_sqlite
 do-install:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "library bin resources" ${DATADIR}
 
-post-install:
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
