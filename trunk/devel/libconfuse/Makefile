@@ -1,10 +1,5 @@
-# New ports collection makefile for:	libconfuse
-# Date created:				18 September 2004
-# Whom:					Juraj Lutter <otis@sk.freebsd.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/libconfuse/Makefile,v 1.7 2008/04/25 12:50:35 garga Exp $
-#
 
 PORTNAME=	libconfuse
 PORTVERSION=	2.7
@@ -15,9 +10,8 @@ DISTNAME=	confuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration file parsing library
-LICENSE=	mit
 
-LICENSE=	ISCL
+LICENSE=	iscl
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-shared
