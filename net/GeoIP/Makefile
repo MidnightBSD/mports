@@ -1,35 +1,38 @@
-# New ports collection makefile for:	GeoIP
-# Date created:				May 17 2008
-# Whom:	      				Lucas Holt <luke@MidnightBSD.org>
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.6.0
-PORTREVISION=	0
+PORTVERSION=	1.6.5
 CATEGORIES=	net geography
-MASTER_SITES=	http://geolite.maxmind.com/download/geoip/api/c/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find the country that any IP address or hostname originates from
 
-LICENSE=	gpl2 lgpl2.1
-LICENSE_COMB=	multi
+LICENSE=	gpl2
 
-USES=		libtool pathfix
-USES=	aclocal automake libtoolize autoconf
-AUTOMAKE_ARGS=	--add-missing
+USE_GITHUB=	yes
+GH_ACCOUNT=	maxmind
+GH_PROJECT=	geoip-api-c
+GH_TAGNAME=	v${PORTVERSION}
+GH_COMMIT=	fd1d4fa
+
+USES=		autoreconf libtool pathfix
 PATHFIX_MAKEFILEIN=	Makefile.am
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
 SUB_FILES=	geoipupdate.sh pkg-message
+PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
+
+OPTIONS_DEFINE=	DOCS
+PORTDOCS=	COPYING ChangeLog LICENSE README.md
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/geoipupdate.sh ${STAGEDIR}${PREFIX}/bin
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libGeoIP.so.*
 	@${MKDIR} ${STAGEDIR}${DATADIR}
+
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:C|^|${WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>
