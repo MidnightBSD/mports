@@ -3,8 +3,7 @@
 # $FreeBSD: head/lang/python34/Makefile 367307 2014-09-04 19:26:24Z antoine $
 
 PORTNAME=	python34
-PORTVERSION=	3.4.1
-PORTREVISION=	5
+PORTVERSION=	3.4.3
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	ftp/python/${PORTVERSION}
@@ -16,7 +15,7 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline tar:xz
+USES=		cpe ncurses pkgconfig readline tar:xz iconv
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -36,12 +35,13 @@ MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
 
-OPTIONS_DEFINE=		DEBUG IPV6 NLS PYMALLOC THREADS TSC
-OPTIONS_DEFAULT=	IPV6 NLS PYMALLOC THREADS
+OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC THREADS TSC
+OPTIONS_DEFAULT=	IPV6 LIBFFI NLS PYMALLOC THREADS
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
 
+LIBFFI_DESC=		Use libffi from ports instead of bundled version
 NLS_DESC=		Enable gettext support for the locale module
 PYMALLOC_DESC=		Enable specialized mallocs
 TSC_DESC=		Enable processor timestamp counter profiling
@@ -52,25 +52,44 @@ SIPHASH_DESC=		SipHash24 Algorithm
 
 FNV_CONFIGURE_ON=	--with-hash-algorithm=fnv
 SIPHASH_CONFIGURE_ON=	--with-hash-algorithm=siphash24
+
 DEBUG_CONFIGURE_WITH=	pydebug
 IPV6_CONFIGURE_ENABLE=	ipv6
+
+LIBFFI_CONFIGURE_ON=	--with-system-ffi
+LIBFFI_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
 # Upstream Issue: http://bugs.python.org/issue6299
-NLS_USES=		gettext
-NLS_LIBS=		-L${LOCALBASE}/lib -lintl
-NLS_CPPFLAGS=		-I${LOCALBASE}/include
-NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
 
 PYMALLOC_CONFIGURE_WITH=	pymalloc
 
-THREADS_CONFIGURE_WITH=	threads
-THREADS_CFLAGS=		${PTHREAD_CFLAGS}
-THREADS_LDFLAGS=	${PTHREAD_LIBS}
 TSC_CONFIGURE_WITH=	tsc
 
 .include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MTHREADS}
+PLIST_SUB+=     THREADS=""
+CONFIGURE_ARGS+=        --with-threads
+CFLAGS+=                ${PTHREAD_CFLAGS}
+LDFLAGS+=               -lpthread
+# ${PTHREAD_LIBS}
+.else
+PLIST_SUB+=     THREADS="@comment "
+CONFIGURE_ARGS+=        --without-threads
+.endif
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=                gettext
+LDFLAGS+=     -L${LOCALBASE}/lib
+# We use CPPFLAGS over CFLAGS here due to -I ordering causing things like
+# elementtree and pyexpat to break with python27, or to silence preprocessor
+# complaints with python33
+CPPFLAGS+=    -I${LOCALBASE}/include
+.else
+CONFIGURE_ENV+=       ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
+.endif
 
 .if ${PORT_OPTIONS:MPYMALLOC}
 ABIFLAGS:=	m${ABIFLAGS}
@@ -86,12 +105,18 @@ PLIST_FILES+=	bin/python3.4%%ABI%%-config
 PLIST_FILES+=	libdata/pkgconfig/python-3.4%%ABI%%.pc
 .endif
 
+# http://bugs.python.org/issue22521
+# http://bugs.python.org/issue23042
+.if ${ARCH} == i386 && !${PORT_OPTIONS:MLIBFFI}
+BROKEN=	You must use libffi from ports on i386. Enable the LIBFFI option
+.endif
+
 .if ${ARCH} == sparc64
 CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
 .endif
 
-# See http://bugs.freebsd.org/115940
-.if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS) # the world with NO_NIS
+# See http://bugs.freebsd.org/115940 and http://bugs.freebsd.org/193650
+.if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
 PLIST_SUB+=	NO_NIS="@comment "
 DISABLED_EXTENSIONS+=	nis
 .else
@@ -100,9 +125,9 @@ PLIST_SUB+=	NO_NIS=""
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
-	${RM} -f ${STAGEDIR}${PREFIX}/lib/libpython3.so						# Upstream Issue: http://bugs.python.org/issue17975
+	${RM} -f ${PREFIX}/lib/libpython3.so						# Upstream Issue: http://bugs.python.org/issue17975
 .endif
-	for i in ${STAGEDIR}${PREFIX}/lib/python3.4/lib-dynload/*.so; do \
+	for i in ${PREFIX}/lib/python3.4/lib-dynload/*.so; do \
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 
 regression-test: build
