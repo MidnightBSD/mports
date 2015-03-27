@@ -2,24 +2,19 @@
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.26
+PORTREVISION=	1
 CATEGORIES=	security ipv6
-MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
-MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
-
+MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/ \
+		http://cyrusimap.org/releases/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer)
 
 LICENSE=	bsd4
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LATEST_LINK=	${PORTNAME}2
-
-USE_AUTOTOOLS=	libtool
+USES=		libtool:keepla pathfix perl5
+USE_PERL5=	patch
 USE_LDCONFIG=	yes
-
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2
-
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
@@ -27,140 +22,92 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-configdir=${PREFIX}/lib/sasl2:${PREFIX}/etc/sasl2 \
 		--with-plugindir=${PREFIX}/lib/sasl2 \
 		--with-dbpath=${PREFIX}/etc/sasldb2 \
+		--with-lib-subdir=lib \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--includedir=${PREFIX}/include \
 		--mandir=${MANPREFIX}/man \
 		--enable-static \
 		--enable-auth-sasldb \
 		--with-rc4=openssl \
 		--with-saslauthd=${SASLAUTHD_RUNPATH} \
+		--disable-gssapi \
 		--disable-krb4
+MAKE_ENV+=	INSTALL_STRIP_FLAG=${STRIP}
 
-OPTIONS=	BDB		"Use Berkeley DB"			off \
-		MYSQL		"Use MySQL"				off \
-		PGSQL		"Use PostgreSQL"			off \
-		SQLITE		"Use SQLite"				off \
-		DEV_URANDOM	"Use /dev/urandom"			off \
-		ALWAYSTRUE	"Enable the alwaystrue password verifier" off \
-		KEEP_DB_OPEN	"Keep handle to Berkeley DB open"	off \
-		AUTHDAEMOND	"Enable use of authdaemon"		on \
-		LOGIN		"Enable LOGIN authentication"		on \
-		PLAIN		"Enable PLAIN authentication"		on \
-		CRAM		"Enable CRAM-MD5 authentication"	on \
-		DIGEST		"Enable DIGEST-MD5 authentication"	on \
-		OTP		"Enable OTP authentication"		on \
-		NTLM		"Enable NTLM authentication"		on
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2
 
-.include <bsd.mport.options.mk>
+NO_OPTIONS_SORT=	yes
+OPTIONS_DEFINE=		ALWAYSTRUE AUTHDAEMOND DOCS KEEP_DB_OPEN \
+			OBSOLETE_CRAM_ATTR BDB MYSQL PGSQL
+OPTIONS_RADIO=		SQLITE
+OPTIONS_RADIO_SQLITE=	SQLITE2 SQLITE3
+OPTIONS_GROUP=		MECH
+OPTIONS_GROUP_MECH=	CRAM DIGEST LOGIN NTLM OTP PLAIN SCRAM
+OPTIONS_DEFAULT=	AUTHDAEMOND OBSOLETE_CRAM_ATTR CRAM DIGEST \
+			LOGIN NTLM OTP PLAIN SCRAM
+OPTIONS_SUB=		yes
+ALWAYSTRUE_DESC=	the alwaystrue password verifier
+ALWAYSTRUE_CONFIGURE_ENABLE=alwaystrue
+AUTHDAEMOND_DESC=	use of authdaemon
+AUTHDAEMOND_CONFIGURE_ON=--with-authdaemond=/var/run/authdaemond/socket
+AUTHDAEMOND_CONFIGURE_OFF=--with-authdaemond=no
+KEEP_DB_OPEN_DESC=	Keep handle to Berkeley DB open
+KEEP_DB_OPEN_CONFIGURE_ENABLE=keep-db-open
+OBSOLETE_CRAM_ATTR_DESC=cmusaslsecretCRAM-MD5 property
+OBSOLETE_CRAM_ATTR_CONFIGURE_OFF=--enable-obsolete_cram_attr=no
+BDB_USE=		BDB=yes
+BDB_CONFIGURE_ON=	--with-dblib=berkeley \
+			--with-bdb-libdir=${BDB_LIB_DIR} \
+			--with-bdb-incdir=${BDB_INCLUDE_DIR} \
+			--with-bdb=${BDB_LIB_NAME}
+BDB_CONFIGURE_OFF=	--with-dblib=ndbm
+MYSQL_USE=		MYSQL=yes
+MYSQL_CONFIGURE_ON=	--with-mysql=${LOCALBASE}
+MYSQL_CONFIGURE_OFF=	--without-mysql
+PGSQL_USES=		pgsql
+PGSQL_CONFIGURE_ON=	--with-pgsql=${LOCALBASE}
+PGSQL_CONFIGURE_OFF=	--without-pgsql
+SQLITE2_DESC=		SQLite 2 database
+SQLITE2_USE=		SQLITE=2
+SQLITE2_CONFIGURE_ON=	--with-sqlite=${LOCALBASE}
+SQLITE2_CONFIGURE_OFF=	--without-sqlite
+SQLITE3_USE=		SQLITE=3
+SQLITE3_CONFIGURE_ON=	--with-sqlite3=${LOCALBASE}
+SQLITE3_CONFIGURE_OFF=	--without-sqlite3
+CRAM_DESC=		CRAM-MD5 authentication
+CRAM_CONFIGURE_ENABLE=	cram
+DIGEST_DESC=		DIGEST-MD5 authentication
+DIGEST_CONFIGURE_ENABLE=digest
+LOGIN_DESC=		LOGIN authentication
+LOGIN_CONFIGURE_ENABLE=	login
+NTLM_DESC=		NTLM authentication
+NTLM_CONFIGURE_ENABLE=	ntlm
+OTP_DESC=		OTP authentication
+OTP_CONFIGURE_ENABLE=	otp
+PLAIN_DESC=		PLAIN authentication
+PLAIN_CONFIGURE_ENABLE=	plain
+SCRAM_DESC=		SCRAM authentication
+SCRAM_CONFIGURE_ENABLE=	scram
 
-.if defined(WITH_BDB)
-USE_BDB=	yes
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MBDB}
 INVALID_BDB_VER=2
-CONFIGURE_ARGS+=--with-dblib=berkeley \
-		--with-bdb-libdir=${BDB_LIB_DIR} \
-		--with-bdb-incdir=${BDB_INCLUDE_DIR} \
-		--with-bdb=${BDB_LIB_NAME}
 SASLDB_NAME=	sasldb2
 .else
-CONFIGURE_ARGS+=--with-dblib=ndbm
 SASLDB_NAME=	sasldb2.db
 .endif
 
-.if defined(WITH_MYSQL)
-USE_MYSQL=	yes
-CONFIGURE_ARGS+=--with-mysql=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=--without-mysql
-.endif
-
-.if defined(WITH_PGSQL)
-USE_PGSQL=	yes
-CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=--without-pgsql
-.endif
-
-.if defined(WITH_SQLITE)
-USE_SQLITE=	2
-CONFIGURE_ARGS+=--with-sqlite=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=--without-sqlite
-.endif
-
-.if defined(WITH_MYSQL) || defined(WITH_PGSQL) || defined(WITH_SQLITE)
+.if ${PORT_OPTIONS:MMYSQL} || ${PORT_OPTIONS:MPGSQL} || \
+    ${PORT_OPTIONS:MSQLITE2} || ${PORT_OPTIONS:MSQLITE3}
 CONFIGURE_ARGS+=--enable-sql
 .else
 SQL=	"@comment "
 .endif
 
-.if defined(WITH_DEV_URANDOM)
-CONFIGURE_ARGS+=--with-devrandom=/dev/urandom
-.endif
-
-.if defined(WITH_ALWAYSTRUE)
-CONFIGURE_ARGS+=--enable-alwaystrue
-.endif
-
-.if defined(WITH_KEEP_DB_OPEN)
-CONFIGURE_ARGS+=--enable-keep-db-open
-.endif
-
-.if defined(WITHOUT_AUTHDAEMOND)
-CONFIGURE_ARGS+=--with-authdaemond=no
-.else
-CONFIGURE_ARGS+=--with-authdaemond=/var/run/authdaemond/socket
-.endif
-
-.if defined(WITHOUT_LOGIN)
-LOGIN=	"@comment "
-.else
-CONFIGURE_ARGS+=--enable-login
-.endif
-
-.if defined(WITHOUT_PLAIN)
-CONFIGURE_ARGS+=--disable-plain
-PLAIN= "@comment "
-.endif
-
-.if defined(WITHOUT_OTP)
-CONFIGURE_ARGS+=--disable-otp
-OTP=	"@comment "
-.endif
-
-.if defined(WITHOUT_CRAM)
-CONFIGURE_ARGS+=--disable-cram
-CRAM=	"@comment "
-.endif
-
-.if defined(WITHOUT_DIGEST)
-CONFIGURE_ARGS+=--disable-digest
-DIGEST=	"@comment "
-.endif
-
-.if defined(WITHOUT_NTLM)
-CONFIGURE_ARGS+=--disable-ntlm
-NTLM=	"@comment "
-.else
-CONFIGURE_ARGS+=--enable-ntlm
-.endif
-
 .if ${ARCH} == "amd64"
 CPPFLAGS+=	-fPIC
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}"
 .endif
-.if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
-CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
-.elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
-CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
-.elif !defined(WITHOUT_GSSAPI) && exists(/usr/lib/libkrb5.a)
-CONFIGURE_ARGS+=--enable-gssapi
-.else
-CONFIGURE_ARGS+=--disable-gssapi
-GSSAPI=	"@comment "
-.endif
-
-EBONES=	"@comment "
-
-.include <bsd.port.pre.mk>
 
 .if ${OPENSSLBASE} == /usr
 CONFIGURE_ARGS+=--with-openssl=yes
@@ -189,15 +136,7 @@ HTDOCS=	advanced appconvert components gssapi index install macosx \
 	mechanisms options plugprog programming readme sysadmin upgrading \
 	windows
 
-PLIST_SUB=	PREFIX=${PREFIX} \
-		LOGIN=${LOGIN} \
-		PLAIN=${PLAIN} \
-		OTP=${OTP} \
-		CRAM=${CRAM} \
-		DIGEST=${DIGEST} \
-		NTLM=${NTLM} \
-		GSSAPI=${GSSAPI} \
-		EBONES=${EBONES} \
+PLIST_SUB+=	PREFIX=${PREFIX} \
 		SQL=${SQL} \
 		DOCSDIR=${DOCSDIR:S/^${PREFIX}\///}
 
@@ -205,8 +144,8 @@ PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-# Fix sasldb name in pkg-install/deinstall scripts
 post-patch:
+# Fix sasldb name in pkg-install/deinstall scripts
 	@${SED} -e "s;%%SASLDB%%;${SASLDB_NAME};g" \
 		-e "s;%%CYRUS_USER%%;${CYRUS_USER};g" \
 		-e "s;%%CYRUS_GROUP%%;${CYRUS_GROUP};g" \
@@ -217,14 +156,16 @@ post-patch:
 		${.CURDIR}/pkg-deinstall > ${PKGDEINSTALL}
 	@${SED} -e "s;%%PREFIX%%;${PREFIX};g" \
 		${.CURDIR}/pkg-message > ${PKGMESSAGE}
-
-# Create Cyrus user and group
-pre-su-install:
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+# Try to unbreak parallel (-jX) builds, part 1: make build commands atomic
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${PERL} -w0pi.bak \
+		-e 's/(^\@am__fastdepCC_TRUE\@.*?) \
+		\n\@am__fastdepCC_TRUE\@\s+(.*?)$$/$$1 && $$2/mgx'
+# Part 2: prevent intermediate *.Tpo output files clash (use unique names)
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${PERL} -wpi.bak \
+		-e 's/\$$\*\.Tpo/$$&.$$./g'
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}/html
 .for f in ${DOCS}
 	@${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
@@ -238,6 +179,5 @@ post-install:
 	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${DOCSDIR}
 .endif
 	@PKG_PREFIX=${PREFIX} BATCH=${BATCH} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
