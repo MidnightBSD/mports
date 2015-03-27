@@ -2,21 +2,19 @@
 
 PORTNAME=	psiconv
 PORTVERSION=	0.9.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	converters devel
 MASTER_SITES=	http://software.frodo.looijaard.name/psiconv/files/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A conversion utility to convert Psion 5(MX) files into other formats
+COMMENT=	Conversion utility to convert Psion 5(MX) files into other formats
 
 LICENSE=	gpl2
 
-USES=	libtool
+USES=		gmake libtool
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-imagemagick=no
-
-MAN1=		psiconv.1 psiconv-config.1
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
