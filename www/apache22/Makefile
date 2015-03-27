@@ -12,7 +12,7 @@ DISTNAME=	httpd-${PORTVERSION}
 DIST_SUBDIR=	apache22
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
+COMMENT?=	Version 2.2.x of Apache web server with ${WITH_MPM:L} MPM.
 
 LICENSE=	apache2
 
@@ -28,11 +28,16 @@ CONFLICTS_INSTALL=	caudium14-1.* \
 		apache-*-2.4.* apache24-*-2.4.*
 
 USE_APACHE=	common22
-USES=		iconv tar:bzip2
-USE_AUTOTOOLS=	autoconf libtool
+USES=		iconv tar:bzip2 libtool cpe
+USE_AUTOTOOLS=	autoconf
 USE_PERL5=	yes
 USE_RC_SUBR=	apache22 htcacheclean
 LIBTOOLFILES=	configure.in
+
+CPE_VENDOR=	apache
+CPE_PRODUCT=	http_server
+
+PORTDOCS=	*
 
 USERS=		www
 GROUPS=		www
