@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libxcb
-PORTVERSION=	1.10
+PORTVERSION=	1.11
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -19,10 +19,11 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/l
 CONFIGURE_ARGS+=	--disable-build-docs --without-doxygen --enable-xinput
 
 XORG_CAT=	lib
-USES=		gmake
+USES=		gmake python:2,build
 USE_GNOME=	libxslt:build
 USE_XORG=	xau xdmcp
 USE_PYTHON_BUILD=2
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
 
@@ -41,8 +42,5 @@ XPROTO_CFLAGS=	-I${LOCALBASE}/include
 XPROTO_LIBS=	-L${LOCALBASE}/lib
 
 .include <bsd.mport.options.mk>
-
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libxcb*.so.*
 
 .include <bsd.port.mk>
