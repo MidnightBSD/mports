@@ -68,7 +68,6 @@ SUBDIR += libcroco
 SUBDIR += libtre
 SUBDIR += libuninameslist
 SUBDIR += libwpd
-SUBDIR += libxml
 SUBDIR += libxml++
 SUBDIR += libxml++26
 SUBDIR += libxml2
