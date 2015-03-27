@@ -2,6 +2,7 @@
 
 PORTNAME=	neon
 PORTVERSION=	0.30.1
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.webdav.org/neon/
 
@@ -56,6 +57,6 @@ post-patch:
 	${REINPLACE_CMD} -e 's|-@NEON_VERSION@$$||' ${WRKSRC}/Makefile.in
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libneon.so.30
+	${STRIP_CMD} ${PREFIX}/lib/libneon.so.27.*
 
 .include <bsd.port.mk>
