@@ -101,6 +101,7 @@ SUBDIR += rsync
 SUBDIR += samba-libsmbclient
 SUBDIR += samba-nmblookup
 SUBDIR += samba-pdbsql
+SUBDIR += samba-smbclient
 SUBDIR += samba36
 SUBDIR += samba4
 SUBDIR += samba4wins
