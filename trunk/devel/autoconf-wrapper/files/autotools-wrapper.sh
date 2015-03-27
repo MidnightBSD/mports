@@ -1,6 +1,6 @@
 #!/bin/sh
 #-
-# Copyright (c) 2007 Dag-Erling Coïdan Smørgrav
+# Copyright (c) 2007 Dag-Erling SmÃ¸rgrav
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -30,6 +30,8 @@
 
 bindir=%%PREFIX%%/bin
 tool=$(basename $0)
+
+exec 4<&0
 
 error() {
 	echo "$@" 1>&2
@@ -85,5 +87,6 @@ if [ -n "${AUTOTOOLS_DEBUG}" ] ; then
 	    "(${bindir}/${tool}-${selected_version})" 1>&2
 fi
 
+exec 0<&4 4<&-
 exec ${bindir}/${tool}-${selected_version} "$@"
 }
