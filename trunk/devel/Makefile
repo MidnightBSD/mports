@@ -169,7 +169,6 @@ SUBDIR += libpthread-stubs
 SUBDIR += libsigc++12
 SUBDIR += libsigc++20
 SUBDIR += libsigsegv
-SUBDIR += libslang
 SUBDIR += libslang2
 SUBDIR += libsoup
 SUBDIR += libsoup-gnome
