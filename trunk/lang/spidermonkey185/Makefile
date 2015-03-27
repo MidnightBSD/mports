@@ -2,6 +2,7 @@
 
 PORTNAME=		spidermonkey185
 PORTVERSION=		1.8.5
+PORTREVISION=		1
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	js
@@ -10,17 +11,16 @@ DISTNAME=		js185-1.0.0
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Standalone JavaScript (1.8.5) interpreter from Mozilla
 
-BUILD_DEPENDS=		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=		nspr4:${PORTSDIR}/devel/nspr
+BUILD_DEPENDS=		zip:${PORTSDIR}/archivers/zip \
+			autoconf-2.13:${PORTSDIR}/devel/autoconf213
+LIB_DEPENDS=		libnspr4.so:${PORTSDIR}/devel/nspr
 
 CONFLICTS=		njs-[0-9]*
 
-USES=			gmake pathfix pkgconfig
-USE_AUTOTOOLS=		autoconf213:env
+USES=			gmake pathfix perl5 pkgconfig python:2,build
 GNU_CONFIGURE=		yes
 USE_LDCONFIG=		yes
 USE_PERL5=		build
-USE_PYTHON_BUILD=	2.5-2.7
 
 WRKSRC=			${WRKDIR}/js-${PORTVERSION}/js/src
 
@@ -28,7 +28,6 @@ CONFIGURE_ARGS=		--with-pthreads \
 			--with-system-nspr
 
 # This comes from bsd.gecko.mk, fixes linking issues on 9.0 and higher.
-NO_STAGE=	yes
 post-configure:
 	${ECHO_CMD} "fenv.h" >> ${WRKSRC}/config/system-headers
 	${ECHO_CMD} "pthread_np.h" >> ${WRKSRC}/config/system-headers
@@ -48,62 +47,19 @@ THREADSAFE_DESC=	Enable multiple thread support
 TRACEJIT_DESC=		Enable tracing JIT support
 UTF8_DESC=		Treat strings as UTF8 instead of ISO-8859-1
 
+DEBUG_CONFIGURE_ENABLE=	debug
+DEBUG_CONFIGURE_ON=	--enable-debug-sumbols
+GCZEAL_CONFIGURE_ENABLE=	gczeal
+JEMALLOC_CONFIGURE_ENABLE=	jemalloc
+METHODJIT_CONFIGURE_ENABLE=	methodjit
+OPTIMIZE_CONFIGURE_ENABLE=	optimize
+READLINE_CONFIGURE_ENABLE=	readline
+READLINE_USES=	readline
+THREADSAFE_CONFIGURE_ENABLE=	threadsafe
+TRACEJIT_CONFIGURE_ENABLE=	tracejit
+UTF8_CFLAGS=			-DJS_C_STRINGS_ARE_UTF8
+
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug \
-			--enable-debug-symbols
-.else
-CONFIGURE_ARGS+=	--disable-debug
-.endif
-
-.if ${PORT_OPTIONS:MGCZEAL}
-CONFIGURE_ARGS+=	--enable-gczeal
-.else
-CONFIGURE_ARGS+=	--disable-gczeal
-.endif
-
-.if ${PORT_OPTIONS:MJEMALLOC}
-CONFIGURE_ARGS+=	--enable-jemalloc
-.else
-CONFIGURE_ARGS+=	--disable-jemalloc
-.endif
-
-.if ${PORT_OPTIONS:MMETHODJIT}
-CONFIGURE_ARGS+=	--enable-methodjit
-.else
-CONFIGURE_ARGS+=	--disable-methodjit
-.endif
-
-.if ${PORT_OPTIONS:MOPTIMIZE}
-CONFIGURE_ARGS+=	--enable-optimize
-.else
-CONFIGURE_ARGS+=	--disable-optimize
-.endif
-
-.if ${PORT_OPTIONS:MREADLINE}
-CONFIGURE_ARGS+=	--enable-readline
-.else
-CONFIGURE_ARGS+=	--disable-readline
-.endif
-
-.if ${PORT_OPTIONS:MTHREADSAFE}
-CONFIGURE_ARGS+=	--enable-threadsafe
-.else
-CONFIGURE_ARGS+=	--disable-threadsafe
-.endif
-
-.if ${PORT_OPTIONS:MTRACEJIT}
-CONFIGURE_ARGS+=	--enable-tracejit
-.else
-CONFIGURE_ARGS+=	--disable-tracejit
-.endif
-
-.if ${PORT_OPTIONS:MUTF8}
-CFLAGS+=		-DJS_C_STRINGS_ARE_UTF8
-.endif
-
-.include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
 CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
@@ -150,7 +106,7 @@ PLIST_SUB+=	SPARC="@comment "
 .endif
 
 pre-configure:
-	(cd ${WRKSRC} && ${AUTOCONF})
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
 
 regression-test: build
 	@${ECHO_MSG} -n "===> Running jstests.py: "
@@ -163,6 +119,9 @@ regression-test: build
 .endif
 
 post-install:
-	${LN} -s libmozjs185.so.1.0 ${PREFIX}/lib/libmozjs185.so.1
+	${LN} -sf libmozjs185.so.1.0.0 ${STAGEDIR}${PREFIX}/lib/libmozjs185.so
+	${LN} -sf libmozjs185.so.1.0.0 ${STAGEDIR}${PREFIX}/lib/libmozjs185.so.1
+	${LN} -sf libmozjs185.so.1.0.0 ${STAGEDIR}${PREFIX}/lib/libmozjs185.so.1.0
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmozjs185.so.1.0.0
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
