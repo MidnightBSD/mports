@@ -2,92 +2,57 @@
 
 PORTNAME=	enchant
 PORTVERSION=	1.6.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dictionary/spellchecking framework
+
 LICENSE=	lgpl
 
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_PKGCONFIG=	yes
-USE_PATHFIX=	yes
-USE_GNOME=	glib20 ltverhack
+USES=		gmake libtool:keepla pathfix pkgconfig
+USE_GNOME=	glib20
 CONFIGURE_ARGS=	--disable-uspell \
 		--disable-voikko
-MAKE_JOBS_SAFE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		enchant.1
+INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	ASPELL HSPELL HUNSPELL ISPELL ZEMBEREK
-OPTIONS_DEFAULT=ASPELL
+OPTIONS_MULTI=	SPELL
+OPTIONS_MULTI_SPELL=ASPELL HSPELL HUNSPELL ISPELL ZEMBEREK
+OPTIONS_DEFAULT=HUNSPELL
+OPTIONS_SUB=	yes
 HSPELL_DESC=	Spell checking via Hspell
 HUNSPELL_DESC=	Spell checking via Hunspell
 ZEMBEREK_DESC=	Spell checking via Zemberek
 
-.include <bsd.mport.options.mk>
+ASPELL_LIB_DEPENDS=	libaspell.so:${PORTSDIR}/textproc/aspell
+ASPELL_CONFIGURE_ENABLE=	aspell
+ASPELL_CONFIGURE_ON=	--with-aspell-prefix=${LOCALBASE}
 
-.if ${PORT_OPTIONS:MASPELL}
-LIB_DEPENDS+=	pspell:${PORTSDIR}/textproc/aspell
-CONFIGURE_ARGS+=--enable-aspell \
-		--with-aspell-prefix=${LOCALBASE}
-PLIST_SUB+=	ASPELL=""
-.else
-CONFIGURE_ARGS+=--disable-aspell
-PLIST_SUB+=	ASPELL="@comment "
-.endif
+HSPELL_BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/hebrew/hspell
+HSPELL_CONFIGURE_ENABLE=	hspell
+HSPELL_CONFIGURE_ON=	--with-hspell-prefix=${LOCALBASE}
 
-.if ${PORT_OPTIONS:MHSPELL}
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/hebrew/hspell
-CONFIGURE_ARGS+=--enable-hspell
-PLIST_SUB+=	HSPELL=""
-.else
-CONFIGURE_ARGS+=--disable-hspell
-PLIST_SUB+=	HSPELL="@comment "
-.endif
+HUNSPELL_LIB_DEPENDS=	libhunspell-1.3.so:${PORTSDIR}/textproc/hunspell
+HUNSPELL_CONFIGURE_ENABLE=	myspell
+HUNSPELL_CONFIGURE_ON=	--with-system-myspell=yes \
+			--with-myspell-dir=${LOCALBASE}/share/hunspell
 
-.if ${PORT_OPTIONS:MHUNSPELL}
-LIB_DEPENDS+=	hunspell-1.3:${PORTSDIR}/textproc/hunspell
-CONFIGURE_ARGS+=--enable-myspell
-PLIST_SUB+=	HUNSPELL=""
-.else
-CONFIGURE_ARGS+=--disable-myspell
-PLIST_SUB+=	HUNSPELL="@comment "
-.endif
+ISPELL_RUN_DEPENDS=	ispell:${PORTSDIR}/textproc/aspell-ispell
+ISPELL_CONFIGURE_ENABLE=	ispell
 
-.if ${PORT_OPTIONS:MISPELL}
-RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
-CONFIGURE_ARGS+=--enable-ispell
-PLIST_SUB+=	ISPELL=""
-.else
-CONFIGURE_ARGS+=--disable-ispell
-PLIST_SUB+=	ISPELL="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MZEMBEREK}
-LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
-CONFIGURE_ARGS+=--enable-zemberek
-PLIST_SUB+=	ZEMBEREK=""
-.else
-PLIST_SUB+=	ZEMBEREK="@comment "
-CONFIGURE_ARGS+=--disable-zemberek
-.endif
+ZEMBEREK_LIb_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+ZEMBEREK_CONFIGURE_ENABLE=	zemberek
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
 		${WRKSRC}/install-sh
-.if ${OSVERSION} < 4015
-	@${REINPLACE_CMD} -E -e "s|-Wunsafe-loop-optimizations ||g" \
-		-e "s|-Wno-missing-field-initializers ||g" \
-		-e "s|-Wno-attributes ||g" \
-			${WRKSRC}/configure
-.endif
 
 .include <bsd.port.mk>
