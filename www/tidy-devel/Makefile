@@ -2,7 +2,7 @@
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 #MASTER_SITES=	http://tidy.sourceforge.net/src/%SUBDIR%/	\
@@ -29,10 +29,10 @@ USES+=		gmake
 PLIST_SUB=	SHLIB="@comment " NSHLIB=""
 CONFLICTS=	tidy-lib-[0-9]*
 .else
-USE_AUTOTOOLS=	automake autoconf libtool
-AUTOMAKE_ARGS+=	-a -c --foreign
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
+USES+=		autoreconf libtool
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 PLIST_SUB=	SHLIB="" NSHLIB="@comment "
 CONFLICTS=	tidy-devel-[0-9]*
 .endif
@@ -85,28 +85,10 @@ post-patch:
 . endfor
 .endif
 
-patch-autotools-libtool::
-.if defined(WITH_SHLIB)
-	(cd ${WRKSRC}				\
-	&& ${LIBTOOLIZE} --force --copy		\
-	&& ${ACLOCAL}				\
-	&& ${REINPLACE_CMD} -e '/^_LT_AC_SHELL_INIT/d' aclocal.m4)
-	(cd ${PATCH_WRKSRC};			\
-	for ltf in ${LIBTOOLFILES}; do		\
-		${CP} $$ltf $$ltf.tmp;	\
-		${SED} -e "s^\$$ac_aux_dir/ltconfig^${LTCONFIG}^g" \
-			-e "/^ltmain=/!s^\$$ac_aux_dir/ltmain.sh^${LIBTOOLFLAGS} ${LTMAIN}^g" \
-			$$ltf.tmp > $$ltf;	\
-	 done);
-.endif
-
 post-install:
 .for pgm in ${BIN2STRIP}
 	${STRIP_CMD} ${PREFIX}/bin/${pgm}
 .endfor
-.if defined(WITH_SHLIB)
-	${STRIP_CMD} ${PREFIX}/lib/libtidy-0.99.so.0
-.endif
 .if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
 	${MKDIR} ${DOCSDIR}
