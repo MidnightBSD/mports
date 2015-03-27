@@ -5,7 +5,7 @@
 
 PORTNAME=	apache22
 PORTVERSION=	2.2.29
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -16,12 +16,9 @@ COMMENT?=	Version 2.2.x of Apache web server with ${WITH_MPM:L} MPM.
 
 LICENSE=	apache2
 
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
-		apr-1:${PORTSDIR}/devel/apr1 \
-		pcre:${PORTSDIR}/devel/pcre
-
-
-LATEST_LINK?=	apache22
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libapr-1.so:${PORTSDIR}/devel/apr1 \
+		libpcre.so:${PORTSDIR}/devel/pcre
 
 CONFLICTS_INSTALL=	caudium14-1.* \
 		apache-*-2.2.* apache22-*-2.2.* \
