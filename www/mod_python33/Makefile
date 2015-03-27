@@ -7,6 +7,7 @@ CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 MASTER_SITE_SUBDIR=	modpython
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
+PKGNAMESUFFIX=        33
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,12 +16,11 @@ COMMENT=	Apache module that embeds the Python interpreter within the server
 LICENSE=	apache2
 
 USE_APACHE=	22
-USE_PYTHON=	yes
+USES=		python
 
 MAKE_ARGS+=	APXS=${APXS}
 
 INSTALLS_EGGINFO=	yes
-LATEST_LINK=	mod_python3
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-apxs="${APXS}" --with-python="${PYTHON_CMD}" \
 		--without-flex
