@@ -3,11 +3,13 @@
 
 PORTNAME=	libopensync
 PORTVERSION=	0.22
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.opensync.org/download/releases/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freedesktop synchronization framework
+
 LICENSE=	lgpl
 
 CONFLICTS=	libopensync-0.[3-9]*
@@ -18,9 +20,8 @@ RUN_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13
 
 CONFIGURE_ENV=	LDFLAGS="${PTHREAD_LIBS}"
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_PYTHON=	yes
-USE_GNOME=	gnomehack glib20 libxml2
+USES=		libtool pathfix pkgconfig python tar:bzip2
+USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
 
 LATEST_LINK=	libopensync022
