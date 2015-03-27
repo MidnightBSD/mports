@@ -2,30 +2,30 @@
 
 PORTNAME=	gdome2
 PORTVERSION=	0.8.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	textproc
 MASTER_SITES=	http://gdome2.cs.unibo.it/tarball/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome DOM Engine
 
-LICENSE=	gpl2
-
-LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
-
-USE_AUTOTOOLS=	libtool
-USES=		pathfix pkgconfig
-USE_GNOME=	glib20
+USES=		pathfix pkgconfig libtool
+USE_GNOME=	glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	GLIB_CONFIG="${LOCALBASE}/bin/pkg-config glib-2.0"
 CPPFLAGS+=	-I${LOCALBASE}/include
-PLIST_SUB=	DOCSDIR="share/doc/${DISTNAME}"
+DOCSDIR=	${PREFIX}/share/doc/${DISTNAME}
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
-MAN1=	gdome-config.1
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
+
+.include <bsd.port.options.mk>
 
 post-patch:
-.ifndef(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -E -e \
 		's,^(HTML_DIR *= *).*,\1\$$(prefix)/share/doc,' \
 		${WRKSRC}/gtk-doc/Makefile.in
@@ -44,5 +44,8 @@ post-patch:
 		 s,<xmlIO\.h>,<libxml/xmlIO.h>,; \
 		 s,<parserInternals\.h>,<libxml/parserInternals.h>,; \
 		 s,<entities\.h>,<libxml/entities.h>,'
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/lib/libgdome.so
 
 .include <bsd.port.mk>
