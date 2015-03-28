@@ -1,10 +1,5 @@
-# New ports collection makefile for:	ldouble
-# Date created:		2004-09-02
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/math/ldouble/Makefile,v 1.12 2008/04/19 17:51:56 miwi Exp $
-#
 
 PORTNAME=	ldouble
 PORTVERSION=	0.1
@@ -16,16 +11,19 @@ DISTFILES=	${LDOUBLE_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Long double math precision functions
+
 LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 sparc64
+ONLY_FOR_ARCHS=	i386
 
 PLIST_FILES=	lib/libml.a \
 		lib/libml.so \
 		lib/libml.so.0
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 
@@ -42,23 +40,20 @@ PORTDOCS=	128bdoc.html
 .endif
 
 post-patch:
-.if ${ARCH}!="sparc64"
 	@${REINPLACE_CMD} -e 's|-msoft-quad-float||' \
 		${WRKSRC}/${MAKEFILE}
-.endif
 	@${REINPLACE_CMD} -e 's|%%CC%%|${CC}|; s|%%CFLAGS%%|${CFLAGS}|' \
 		${WRKSRC}/${MAKEFILE}
 
 do-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
-.endif
 	${INSTALL_DATA} ${WRKSRC}/libml.a ${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/libml.so.0 ${PREFIX}/lib
 	${LN} -sf libml.so.0 ${PREFIX}/lib/libml.so
+	${STRIP_CMD} ${PREFIX}/lib/libml.so
 .if ${ARCH}=="i386"
 	${INSTALL_DATA} ${WRKSRC}/protos.h ${PREFIX}/include/mathl.h
 .endif
