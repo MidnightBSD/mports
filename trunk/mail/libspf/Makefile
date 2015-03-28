@@ -3,20 +3,22 @@
 
 PORTNAME=	libspf
 DISTVERSION=	1.0.0-p5
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.libspf.org/files/src/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	mnag/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sender Policy Framework (SPF) library and client
 
-LICENSE=	other
+LICENSE=	bsd2
+LICENSE_FILE=	${WORKSRC}/LICENSE
 
 MAKE_JOBS_UNSAFE=yes
 
-USES=		tar:bzip2
-USE_AUTOTOOLS=	libtool
+INSTALL_TARGET=	install-strip
+USES=		tar:bzip2 libtool
 GNU_CONFIGURE=	yes
 
 USE_LDCONFIG=	yes
