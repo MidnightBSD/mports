@@ -3,9 +3,11 @@
 
 PORTNAME=	qhull
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.qhull.org/download/
 DISTNAME=	${PORTNAME}-2003.1
+PKGNAMESUFFIX=	5
 
 PATCH_SITES=		http://www.qhull.org/download/
 PATCHFILES=		poly.c-qh_gethash.patch
@@ -15,20 +17,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qhull computes convex hulls, Delaunay triangulations and halfspaces
 LICENSE=	other
 
-LATEST_LINK=	qhull5
-CONFLICTS=	qhull-2011*
+CONFLICTS=	qhull-2011* afni-[0-9]*
 
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
+USES=		libtool gmake
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
-.if !defined(NOPORTDOCS)
-MAN1=		qhull.1 rbox.1
-.endif
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
 
 pre-configure:
-.if defined(NOPORTDOCS)
+.if empty(PORT_OPTIONS:MDOCS)
 	@${REINPLACE_CMD} -e "s|src html eg config|src config|"		\
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-docDATA install-examplesDATA||"	\
