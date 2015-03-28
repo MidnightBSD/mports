@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.98.4
+PORTVERSION=	0.98.6
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -10,7 +10,8 @@ COMMENT=	Command line virus scanner written entirely in C
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
+		libcurl.so:${PORTSDIR}/ftp/curl
 
 OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR LLVM TESTS MILTER LDAP ICONV STDERR \
 		EXPERIMENTAL DOCS IPV6 DMG_XAR
@@ -56,14 +57,12 @@ PORTDOCS=	*
 DBDIR=		/var/db/clamav
 LOGDIR=		/var/log/clamav
 RUNDIR=		/var/run/clamav
-PLIST_SUB+=	DBDIR=${DBDIR:S/^\///} \
-		LOGDIR=${LOGDIR:S/^\///} \
-		RUNDIR=${RUNDIR:S/^\///} \
+PLIST_SUB+=	DBDIR=${DBDIR} \
+		LOGDIR=${LOGDIR} \
+		RUNDIR=${RUNDIR} \
 		CLAMAVUSER=${CLAMAVUSER} \
-		CLAMAVGROUP=${CLAMAVGROUP} \
-		RESETPREFIX=${PREFIX}
+		CLAMAVGROUP=${CLAMAVGROUP}
 PY_NO_THREAD=	${WRKDIR}/.python-has-no-threads
-USE_AUTOTOOLS=	libltdl
 OPTIONS_SUB=	yes
 
 CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
@@ -134,7 +133,7 @@ GROUPS=	clamav mail
 .if ${PORT_OPTIONS:MLLVM} && ( ${ARCH} == "i386" || ${ARCH} == "amd64" )
 CONFIGURE_ARGS+=--enable-llvm
 . if ${PORT_OPTIONS:MTESTS}
-USE_PYTHON_BUILD=	yes
+USES+=		python:build
 . endif
 .else
 CONFIGURE_ARGS+=--disable-llvm
@@ -167,6 +166,7 @@ CFLAGS+=	-march=i486
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g' \
+			  -e 's|LC_REVISION=22|LC_REVISION=24|' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's,^\(pkgconfigdir = \).*$$,\1$$\(prefix\)/libdata/pkgconfig,g' \
 		${WRKSRC}/Makefile.in
