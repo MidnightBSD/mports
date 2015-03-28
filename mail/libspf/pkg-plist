@@ -2,25 +2,24 @@ bin/spfqtool
 bin/spfqtool_static
 include/_stdint.h
 include/spf.h
-lib/libspf.so
-lib/libspf-1.0.so
 lib/libspf-1.0.so.0
+lib/libspf-1.0.so.0.0.26
 lib/libspf.a
-lib/libspf.la
-%%EXAMPLESDIR%%/examples/Sendmail/sendmail.cf
-%%EXAMPLESDIR%%/examples/Sendmail/sendmail.mc.example
-%%EXAMPLESDIR%%/examples/Sendmail/spf.m4
-%%EXAMPLESDIR%%/examples/qmail/control/spfaction
-%%EXAMPLESDIR%%/examples/qmail/control/spfbestguess
-%%EXAMPLESDIR%%/examples/qmail/control/spfdebugstate
-%%EXAMPLESDIR%%/examples/qmail/control/spfexplainstate
-%%EXAMPLESDIR%%/examples/qmail/control/spfexplanation
-%%EXAMPLESDIR%%/examples/qmail/control/spfguessstate
-%%EXAMPLESDIR%%/examples/qmail/control/spfheaderstate
-%%EXAMPLESDIR%%/examples/qmail/control/spftarpit
-%%EXAMPLESDIR%%/examples/qmail/control/spftarpittime
-%%EXAMPLESDIR%%/examples/qmail/control/spftrustedforwarder
-%%EXAMPLESDIR%%/examples/qmail/control/spftrustedstate
+lib/libspf.so
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/Sendmail/sendmail.cf
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/Sendmail/sendmail.mc.example
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/Sendmail/spf.m4
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfaction
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfbestguess
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfdebugstate
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfexplainstate
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfexplanation
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfguessstate
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spfheaderstate
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spftarpit
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spftarpittime
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spftrustedforwarder
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/examples/qmail/control/spftrustedstate
 %%DATADIR%%/patches/Courier-MTA/courier-0.45.4-spf.diff
 %%DATADIR%%/patches/Postfix/2.1.x/postfix-2.1.4-libspf-1.0-RC6.diff
 %%DATADIR%%/patches/Postfix/README
@@ -40,19 +39,6 @@ lib/libspf.la
 %%DATADIR%%/patches/qmail/1.05/netqmail-1.05-libspf-1.0.0-RC5.diff
 %%DATADIR%%/patches/qmail/1.05/netqmail-1.05-libspf-1.0.0-RC6.diff
 %%DATADIR%%/patches/qmail/README
-@dirrm %%DATADIR%%/patches/qmail/1.05
-@dirrm %%DATADIR%%/patches/qmail/1.03
-@dirrm %%DATADIR%%/patches/qmail
-@dirrm %%DATADIR%%/patches/Sendmail/8.13.x
-@dirrm %%DATADIR%%/patches/Sendmail/8.12.x
-@dirrm %%DATADIR%%/patches/Sendmail
-@dirrm %%DATADIR%%/patches/Postfix/2.1.x
-@dirrm %%DATADIR%%/patches/Postfix
-@dirrm %%DATADIR%%/patches/Courier-MTA
-@dirrm %%DATADIR%%/patches
-@dirrm %%DATADIR%%
-@dirrm %%EXAMPLESDIR%%/examples/qmail/control
-@dirrm %%EXAMPLESDIR%%/examples/qmail
-@dirrm %%EXAMPLESDIR%%/examples/Sendmail
-@dirrm %%EXAMPLESDIR%%/examples
-@dirrm %%EXAMPLESDIR%%
+%%PORTDOCS%%@dir %%DOCSDIR%%/docs/qmail/1.04
+%%PORTDOCS%%@dir %%DOCSDIR%%/docs/qmail/1.03
+%%PORTDOCS%%@dir %%DOCSDIR%%/docs/Postfix/2.1.x
