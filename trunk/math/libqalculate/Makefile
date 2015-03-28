@@ -2,35 +2,36 @@
 
 PORTNAME=	libqalculate
 PORTVERSION=	0.9.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	SF/qalculate/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A a multi-purpose desktop calculator (backend library)
+COMMENT=	Multi-purpose desktop calculator (backend library)
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	cln:${PORTSDIR}/math/cln
+LIB_DEPENDS=	libcln.so:${PORTSDIR}/math/cln
 
-USE_PKGCONFIG=	build
-USE_GNOME=	glib20 gnomehack intlhack libxml2
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=		pkgconfig pathfix gmake libtool gettext-tools
+USE_GNOME=	glib20 intltool libxml2
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=		yes
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext-runtime
+
+.include <bsd.mport.options.mk>
 
 post-patch:
+.if !${PORT_OPTIONS:MNLS}
+	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|po ||g' ${WRKSRC}/Makefile.in
+.endif
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s|docs||g' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's/^GMSGFMT = @GMSGFMT@/GMSGFMT = msgfmt/' ${WRKSRC}/po/Makefile.in.in
-	@${REINPLACE_CMD} -e 's/-pthread/${PTHREAD_LIBS}/g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's/-lpthread/${PTHREAD_LIBS}/g' ${WRKSRC}/libqalculate.pc.in
 
 .include <bsd.port.mk>
