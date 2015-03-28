@@ -1,50 +1,30 @@
-# ex:ts=8
-# Ports collection makefile for:	libfame
-# Date created:			Mar 23, 2002
-# Whom:				ijliao
-#
 # $MidnightBSD$
 # $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
-#
 
 PORTNAME=	libfame
 PORTVERSION=	0.9.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/fame/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A video encoding library
+COMMENT=	Video encoding library
+
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		libtool
 USE_LDCONFIG=	yes
 
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
+OPTIONS_DEFINE=	MMX
+OPTIONS_DEFAULT=MMX
 
-MAN3=	fame_close.3 fame_encode_frame.3 fame_get_object.3 fame_init.3 \
-	fame_open.3 fame_register.3 fame_unregister.3 fame_encode_slice.3 \
-	fame_start_frame.3 fame_end_frame.3
-
-OPTIONS=	SSE "SSE optimized routines (no effect in this release)" off \
-		MMX "MMX optimized routines" on
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_SSE)
-CONFIGURE_ARGS+=	--enable-sse
-.endif
-
-.if defined(WITHOUT_MMX)
-CONFIGURE_ARGS+=	--disable-mmx
-.endif
+MMX_CONFIGURE_ENABLE=	mmx
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} \
 		-e 's|AC_DEFUN(AM_PATH_LIBFAME|AC_DEFUN([AM_PATH_LIBFAME]|g' \
 		${WRKSRC}/libfame.m4 ${WRKSRC}/libfame.m4.in
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
