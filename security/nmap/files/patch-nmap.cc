@@ -2,7 +2,7 @@
 +++ nmap.cc	Thu Jan 10 20:41:30 2008
 @@ -99,6 +99,7 @@
  
- /* $Id: patch-nmap.cc,v 1.1 2010-12-16 04:14:56 laffer1 Exp $ */
+ /* $Id: nmap.cc 6633 2007-12-22 06:32:03Z fyodor $ */
  
 +#include <getopt.h>
  #include "nmap.h"
