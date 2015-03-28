@@ -2,20 +2,19 @@
 
 PORTNAME=	libmcrypt
 PORTVERSION=	2.5.8
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	SF/mcrypt/Libmcrypt/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-cipher cryptographic library (used in PHP)
-LICENSE=	lgpl
 
-GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+LICENSE=	lgpl2.1
+
 CONFIGURE_ARGS=	--enable-static
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
-
-MAN3=		mcrypt.3
+USES=		libtool
 
 .include <bsd.port.mk>
