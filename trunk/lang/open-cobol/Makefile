@@ -6,14 +6,14 @@ CATEGORIES=	lang
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An open-source COBOL compiler
+COMMENT=	Open-source COBOL compiler
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
+USES=		gmake libtool
 USE_BDB=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 INFO=		open-cobol
