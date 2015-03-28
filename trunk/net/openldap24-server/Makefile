@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=		openldap
-DISTVERSION=		2.4.39
+DISTVERSION=		2.4.40
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -38,10 +38,8 @@ COMMENT?=		Open source LDAP server implementation
 
 LICENSE=		openldap2.8
 
-LATEST_LINK?=		${PKGNAMEPREFIX}openldap24${PKGNAMESUFFIX}
 USE_OPENSSL=		yes
 USES=                 libtool:keepla
-USES=		libtool
 .if !defined(CLIENT_ONLY)
 USERS=			ldap
 GROUPS=			ldap
@@ -55,8 +53,9 @@ BROKEN=			incompatible OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 
 PORTREVISION_CLIENT=	1
-PORTREVISION_SERVER=	2
+PORTREVISION_SERVER=	0
 OPENLDAP_SHLIB_MAJOR=	2
+OPENLDAP_SHLIB_MINOR=	10.3
 OPENLDAP_MAJOR=		${DISTVERSION:R}
 
 OPTIONS_DEFINE=		FETCH GSSAPI
@@ -71,8 +70,9 @@ OPTIONS_DEFINE+=	ACCESSLOG AUDITLOG COLLECT CONSTRAINT DDS
 OPTIONS_DEFINE+=	DEREF DYNGROUP DYNLIST MEMBEROF PPOLICY PROXYCACHE
 OPTIONS_DEFINE+=	REFINT RETCODE RWM SEQMOD SSSVLV SYNCPROV TRANSLUCENT
 OPTIONS_DEFINE+=	UNIQUE VALSORT SMBPWD SHA2 DYNAMIC_BACKENDS SASL
+OPTIONS_DEFINE+=	LMPASSWD
 
-OPTIONS_DEFAULT=	BDB MDB SYNCPROV DYNAMIC_BACKENDS
+OPTIONS_DEFAULT=	MDB SYNCPROV DYNAMIC_BACKENDS
 
 DYNACL_DESC=		Run-time loadable ACL (experimental)
 ACI_DESC=		Per-object ACI (experimental)
@@ -112,6 +112,7 @@ UNIQUE_DESC=		With attribute Uniqueness overlay
 VALSORT_DESC=		With Value Sorting overlay
 SMBPWD_DESC=		With Samba Password hashes overlay
 SHA2_DESC=		With SHA2 Password hashes overlay
+LMPASSWD_DESC=		With LM hash password support (DEPRECATED)
 DYNAMIC_BACKENDS_DESC=	Build dynamic backends
 .endif
 
@@ -125,7 +126,7 @@ OPENLDAP_PKGFILESUFX=
 
 CONFIGURE_SED=		-e 's,uuid/uuid.h,xxuuid/uuid.h,g'
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(CLIENT_ONLY)
 PORTDOCS=		CHANGES drafts rfc
@@ -216,7 +217,7 @@ USE_RC_SUBR=		slapd
 EXTRA_PATCHES+=		${FILESDIR}/extrapatch-Makefile.in
 
 .if ${PORT_OPTIONS:MMODULES} || ${PORT_OPTIONS:MDYNAMIC_BACKENDS} || ${PORT_OPTIONS:MSLAPI}
-USE_AUTOTOOLS+=		libltdl
+LIB_DEPENDS+=		libltdl.so:${PORTSDIR}/devel/libltdl
 CONFIGURE_ARGS+=	--enable-modules
 PLIST_SUB+=		MODULES=""
 .else
@@ -239,7 +240,6 @@ OVERLAY_ENABLE=		yes
 
 CONFIGURE_ARGS+=	--localstatedir=${LOCALSTATEDIR} \
 			--enable-crypt \
-			--enable-lmpasswd \
 			--enable-ldap=${BACKEND_ENABLE} \
 			--enable-meta=${BACKEND_ENABLE} \
 			--enable-rewrite \
@@ -278,6 +278,10 @@ CONFIGURE_ARGS+=	--enable-dyngroup=${OVERLAY_ENABLE}
 
 .if ${PORT_OPTIONS:MDYNLIST}
 CONFIGURE_ARGS+=	--enable-dynlist=${OVERLAY_ENABLE}
+.endif
+
+.if ${PORT_OPTIONS:MLMPASSWD}
+CONFIGURE_ARGS+=	--enable-lmpasswd
 .endif
 
 .if ${PORT_OPTIONS:MMEMBEROF}
@@ -347,26 +351,13 @@ PLIST_SUB+=		BACK_BDB="@comment " \
 			BACK_HDB="@comment "
 .else
 
-WITH_BDB_VER?=		46
-USE_BDB=		44+
+USE_BDB=		48+
+INVALID_BDB_VER=	6
 
-# XXX Can BDB 5.x use XY instead of X as version?
-.if ${WITH_BDB_VER} >= 43 || ${WITH_BDB_VER} == 5 || ${WITH_BDB_VER} == 6
 CONFIGURE_ARGS+=	--enable-bdb=${BACKEND_ENABLE} \
 			--enable-hdb=${BACKEND_ENABLE}
 PLIST_SUB+=		BACK_BDB=${BACKEND_PLIST} \
 			BACK_HDB=${BACKEND_PLIST}
-.elif ${WITH_BDB_VER} >= 4
-CONFIGURE_ARGS+=	--disable-bdb \
-			--enable-hdb=${BACKEND_ENABLE}
-PLIST_SUB+=		BACK_BDB="@comment " \
-			BACK_HDB=${BACKEND_PLIST}
-.elif ${WITH_BDB_VER} == 3
-CONFIGURE_ARGS+=	--disable-bdb \
-			--disable-hdb
-PLIST_SUB+=		BACK_BDB="@comment " \
-			BACK_HDB="@comment "
-.endif
 
 CPPFLAGS+=		-I${BDB_INCLUDE_DIR}
 LDFLAGS+=		-L${BDB_LIB_DIR}
@@ -418,7 +409,7 @@ PLIST_SUB+=		BACK_SOCK="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-USE_PERL5=		yes
+USES+=			perl5
 CONFIGURE_ARGS+=	--enable-perl=${BACKEND_ENABLE}
 CONFIGURE_ENV+=		PERLBIN="${PERL}"
 PLIST_SUB+=		BACK_PERL=${BACKEND_PLIST}
@@ -494,6 +485,7 @@ SUB_LIST+=		RC_DIR=${PREFIX} \
 
 PLIST_SUB+=		${SUB_LIST}
 PLIST_SUB+=		SHLIB_MAJOR=${OPENLDAP_SHLIB_MAJOR}
+PLIST_SUB+=		SHLIB_MINOR=${OPENLDAP_SHLIB_MINOR}
 PLIST_SUB+=		OPENLDAP_MAJOR=${OPENLDAP_MAJOR}
 
 post-patch:
@@ -522,65 +514,50 @@ test: build
 post-build:
 	@${DO_NADA}
 .if ${PORT_OPTIONS:MSMBPWD}
-	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/smbk5pwd && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} DEFS="-DDO_SAMBA" all)
+	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/smbk5pwd && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
+		${MAKE_ARGS} DEFS="-DDO_SAMBA" prefix="${PREFIX}" all)
 .endif
 .if ${PORT_OPTIONS:MSHA2}
-	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/passwd/sha2 && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} all)
+	@(cd ${BUILD_WRKSRC}/contrib/slapd-modules/passwd/sha2 && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
+		${MAKE_ARGS} prefix="${PREFIX}" all)
 .endif
 .endif
 
-pre-su-install:
-	@if [ -f ${PKGINSTALL} ]; then \
-		${SETENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL; \
-	fi
-.if ${PORT_OPTIONS:MMODULES} || ${PORT_OPTIONS:MDYNAMIC_BACKENDS} || ${PORT_OPTIONS:MSLAPI}
-	@${MKDIR} ${PREFIX}/libexec/openldap
-.endif
+pre-install:
 .if !defined(CLIENT_ONLY)
-	@${MKDIR} ${DATABASEDIR}
+	@${MKDIR} ${STAGEDIR}${DATABASEDIR}
 .endif
 
 post-install:
 .if defined(CLIENT_ONLY)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${STAGEDIR}${DOCSDIR}
 	@for dir in drafts rfc; do \
 		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${dir}; \
-		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${DOCSDIR}/$${dir}; \
+		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${STAGEDIR}${DOCSDIR}/$${dir}; \
 	done
 	@for library in lber ldap ldap_r; do \
 		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
 	done
 .else
-	@${MKDIR} ${LDAP_RUN_DIR}
-	@for schema in ${SCHEMATA}; do \
-		${ECHO_CMD} "@unexec if cmp -s %D/etc/openldap/schema/$${schema}.schema " \
-			"%D/etc/openldap/schema/$${schema}.schema.default; then" \
-			"rm -f %D/etc/openldap/schema/$${schema}.schema; fi"; \
-		${ECHO_CMD} "etc/openldap/schema/$${schema}.schema.default"; \
-		${ECHO_CMD} "@exec [ -f %B/$${schema}.schema ] || ${CP} %B/%f %B/$${schema}.schema"; \
-	done >>${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${RMDIR} %D/etc/openldap/schema 2>/dev/null || true" >>${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${RMDIR} %D/etc/openldap 2>/dev/null || true" >>${TMPPLIST}
-.if ${PORT_OPTIONS:MDYNAMIC_BACKENDS}
-	@${STRIP_CMD} ${PREFIX}/libexec/openldap/*.so.${OPENLDAP_SHLIB_MAJOR}
-.endif
+	@${MKDIR} ${STAGEDIR}${LDAP_RUN_DIR}
 .if ${PORT_OPTIONS:MSMBPWD}
-	@${INSTALL_DATA} ${WRKSRC}/contrib/slapd-modules/smbk5pwd/smbk5pwd.la \
-		${PREFIX}/libexec/openldap/
-	@${INSTALL_PROGRAM} ${WRKSRC}/contrib/slapd-modules/smbk5pwd/.libs/smbk5pwd.so.0 \
-		${PREFIX}/libexec/openldap/
-	@${LN} -s smbk5pwd.so.0 ${PREFIX}/libexec/openldap/smbk5pwd.so
+	@(cd ${WRKSRC}/contrib/slapd-modules/smbk5pwd && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
+		${MAKE_ARGS} prefix="${PREFIX}" install)
+	${RM} ${STAGEDIR}${PREFIX}/libexec/openldap/smbk5pwd.a
 .endif
 .if ${PORT_OPTIONS:MSHA2}
-	@${INSTALL_DATA} ${WRKSRC}/contrib/slapd-modules/passwd/sha2/pw-sha2.la \
-		${PREFIX}/libexec/openldap/
-	@${INSTALL_PROGRAM} ${WRKSRC}/contrib/slapd-modules/passwd/sha2/.libs/pw-sha2.so.0 \
-		${PREFIX}/libexec/openldap/
-	@${LN} -s pw-sha2.so.0 ${PREFIX}/libexec/openldap/pw-sha2.so
+	@(cd ${WRKSRC}/contrib/slapd-modules/passwd/sha2 && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
+		${MAKE_ARGS} prefix="${PREFIX}" install)
+	${RM} ${STAGEDIR}${PREFIX}/libexec/openldap/pw-sha2.a
 .endif
+.if ${PORT_OPTIONS:MDYNAMIC_BACKENDS} || ${PORT_OPTIONS:MSMBPWD} || ${PORT_OPTIONS:MSHA2}
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/openldap/*.so
 .endif
+.endif # defined(CLIENT_ONLY)
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
