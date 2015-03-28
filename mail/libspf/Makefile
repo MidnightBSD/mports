@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sender Policy Framework (SPF) library and client
 
 LICENSE=	bsd2
-LICENSE_FILE=	${WORKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 MAKE_JOBS_UNSAFE=yes
 
