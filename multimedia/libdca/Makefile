@@ -8,6 +8,7 @@
 
 PORTNAME=	libdca
 PORTVERSION=	0.0.5
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${PORTVERSION}/
 
@@ -15,12 +16,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free DTS Coherent Acoustics decoder
 LICENSE=	gpl2
 
+USES=		libtool pathfix pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GNOME=	pkgconfig gnomehack
 USE_LDCONFIG=	yes
-
-MAN1=		dcadec.1 extract_dca.1
-MLINKS=		dcadec.1 dtsdec.1 extract_dca.1 extract_dts.1
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
