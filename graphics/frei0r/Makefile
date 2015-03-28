@@ -12,14 +12,13 @@ MASTER_SITES?=	http://piksel.no/${PORTNAME}/releases/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Minimalistic plugin API for video effects
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 .if !defined(BUILDING_FREI0R_METAPORT)
 GNU_CONFIGURE=	yes
 USES=		pathfix pkgconfig
-
-LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
