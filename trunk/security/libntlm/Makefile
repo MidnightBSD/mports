@@ -2,6 +2,7 @@
 
 PORTNAME=	libntlm
 PORTVERSION=	1.3
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.nongnu.org/libntlm/releases/
 
@@ -10,10 +11,9 @@ COMMENT=	Library that implement Microsoft's NTLM authentication
 
 LICENSE=	lgpl2.1
 
-USES=	pathfix pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=	pathfix pkgconfig libtool
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=	yes
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README THANKS
 
