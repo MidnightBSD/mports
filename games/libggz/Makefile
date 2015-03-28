@@ -2,7 +2,7 @@
 
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,28 +10,27 @@ COMMENT=	The GGZ Gaming Zone - Base Library
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack 
+USES=		libtool pathfix
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--disable-debug
 USE_LDCONFIG=	yes
 
-MAN3=	ggz.h.3
+INSTALL_TARGET=	install-strip
 
-CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 
-.if defined(WITH_GNUTLS)
-LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=	--with-tls=GnuTLS
-.else
-USE_OPENSSL=	yes
-CONFIGURE_ARGS+=	--with-tls=OpenSSL
-.endif
+OPTIONS_DEFAULT=	OPENSSL
+OPTIONS_SINGLE=		TLS
+OPTIONS_SINGLE_TLS=	GNUTLS OPENSSL
 
-.include <bsd.port.pre.mk>
-.include "${PORTSDIR}/games/libggz/bsd.ggz.mk"
-.include <bsd.port.post.mk>
+GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+GNUTLS_CONFIGURE_ARGS=	--with-tls=GnuTLS
+
+OPENSSL_USE=		OPENSSL=yes
+OPENSSL_CONFIGURE_ARGS=	--with-tls=OpenSSL
+
+.include "${.CURDIR}/../libggz/bsd.ggz.mk"
+.include <bsd.port.mk>
