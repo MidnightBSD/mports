@@ -21,7 +21,6 @@ SUBDIR += dhcpdump
 SUBDIR += fping
 SUBDIR += glib-networking
 SUBDIR += gnet2
-SUBDIR += gnome-mud
 SUBDIR += gnome-netstatus
 SUBDIR += gnome-nettool
 SUBDIR += gnome-online-accounts
