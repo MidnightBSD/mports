@@ -26,6 +26,14 @@ INSTALL_TARGET=	install-strip
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	JASPER JPEG PNG TIFF
 OPTIONS_DEFAULT=JASPER JPEG PNG TIFF
+JASPER_CONFIGURE_WITH=	libjasper
+JASPER_LIB_DEPENDS=	libjasper.so:${PORTSDIR}/graphics/jasper
+JPEG_CONFIGURE_WITPNGH=	libjpeg
+JPEG_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+PNG_CONFIGURE_WITH=	libpng
+PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+TIFF_CONFIGURE_WITH=	libtiff
+TIFF_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
 
 .include <bsd.mport.options.mk>
 
@@ -35,38 +43,6 @@ PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MJASPER}
-LIB_DEPENDS+=	libjasper.so:${PORTSDIR}/graphics/jasper
-CONFIGURE_ARGS+=--with-libjasper
-PLIST_SUB+=	JP2=""
-.else
-PLIST_SUB+=	JP2="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-PLIST_SUB+=	JPEG=""
-.else
-CONFIGURE_ARGS+=--without-libjpeg
-PLIST_SUB+=	JPEG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
-PLIST_SUB+=	PNG=""
-.else
-CONFIGURE_ARGS+=--without-libpng
-PLIST_SUB+=	PNG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTIFF}
-LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
-PLIST_SUB+=	TIFF=""
-.else
-CONFIGURE_ARGS+=--without-libtiff
-PLIST_SUB+=	TIFF="@comment "
 .endif
 
 post-install:
