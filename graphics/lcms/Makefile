@@ -3,80 +3,50 @@
 
 PORTNAME=	lcms
 PORTVERSION=	1.19
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.19 \
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION} \
 		http://www.littlecms.com/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light Color Management System -- a color management library
+
 LICENSE=	mit
 
-USE_GNOME=	gnomehack lthack
-GNU_CONFIGURE=	yes
+OPTIONS_DEFINE=	DOCS JPEGICC TIFFICC
+OPTIONS_DEFAULT=JPEGICC TIFFICC
+OPTIONS_SUB=	yes
+JPEGICC_DESC=	Build color profile applier for JPEG
+TIFFICC_DESC=	Build color profile applier for TIFF
+
 CPPFLAGS+=	-I${LOCALBASE}/include
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
-CFLAGS+=	-I${LOCALBASE}/include
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/lcms-1.19
+USES=		libtool:keepla pathfix
 
-OPTIONS=	TIFFICC "Build color profile applier for tiff" off \
-		JPEGICC "Build color profile applier for JPEG" off
+PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_TIFFICC)
-LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
-PLIST_SUB+=	TIFFICC=""
-MAN1+=		tifficc.1
-.else
-CONFIGURE_ARGS=	--without-tiff
-PLIST_SUB+=	TIFFICC="@comment "
-.endif
-
-.if defined(WITH_JPEGICC)
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
-PLIST_SUB+=	JPEGICC=""
-MAN1+=		jpegicc.1
-.else
-CONFIGURE_ARGS=	--without-jpeg
-PLIST_SUB+=	JPEGICC="@comment "
-.endif
+JPEGICC_CONFIGURE_OFF=	--without-jpeg
+JPEGICC_CONFIGURE_ON=	--with-jpeg=${LOCALBASE}
+JPEGICC_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+TIFFICC_CONFIGURE_OFF=	--without-tiff
+TIFFICC_CONFIGURE_ON=	--with-tiff=${LOCALBASE}
+TIFFICC_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
 
 post-patch:
-	@${REINPLACE_CMD} -e \
-		's|^SUBDIRS =.*$$|SUBDIRS = src include|g' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e \
-		's|-O3||g' ${WRKSRC}/src/Makefile.in
-
-#
-# Get rid of .la and static library files
-#
-post-configure:
-	@${REINPLACE_CMD} -E -e \
-	    '/Install the pseudo-library/,/staticlibs=/s,^,#,' ${WRKSRC}/libtool
+	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| python samples||' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/^#ifdef __sgi/ s|__sgi|__unix__|; /^#include "sgidefs.h"/d' ${WRKSRC}/include/icc34.h.in
+	@${REINPLACE_CMD} -e '/^testcms_LDFLAGS = / s|$$| -static|' ${WRKSRC}/testbed/Makefile.in
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in doc/LCMSAPI.TXT doc/TUTORIAL.TXT tifficc/tifficc.c \
-	jpegicc/jpegicc.c jpegicc/iccjpeg.c samples/wtpt.c samples/icctrans.c
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-.endif
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} doc/LCMSAPI.TXT doc/TUTORIAL.TXT tifficc/tifficc.c \
+		jpegicc/jpegicc.c jpegicc/iccjpeg.c samples/wtpt.c samples/icctrans.c ${STAGEDIR}${DOCSDIR}/
 
-.if defined(WITH_TIFFICC)
-	@(cd ${WRKSRC}/tifficc && ${SETENV} ${MAKE_ENV} ${MAKE} \
-		${MAKE_FLAGS} Makefile all install)
-.endif
+regression-test test: build
+	cd ${WRKSRC}/testbed/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
-.if defined(WITH_JPEGICC)
-	@(cd ${WRKSRC}/jpegicc && ${SETENV} ${MAKE_ENV} ${MAKE} \
-		${MAKE_FLAGS} Makefile all install)
-.endif
-
-post-build test:
-	cd ${WRKSRC}/testbed && ${SETENV} ${MAKE_ENV} ${MAKE} check
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
