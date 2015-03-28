@@ -1,29 +1,28 @@
-# New ports collection makefile for:	ortp
-# Date created:				20 October 2003
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/net/ortp/Makefile,v 1.13 2007/03/25 16:47:00 pav Exp $
-#
 
 PORTNAME=	ortp
-PORTVERSION=	0.13.0
+PORTVERSION=	0.23.0
+PORTREVISION=	2
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	linphone/ortp/sources
+MASTER_SITES=	SAVANNAH/linphone/ortp/sources
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Real-time Transport Protocol (RTP) stack
-LICENSE=	lgpl
+COMMENT=	Real-time Transport Protocol (RTP) library
 
-USE_GNOME=	glib20 pkgconfig gnomehack
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libsrtp.so:${PORTSDIR}/net/libsrtp \
+		libzrtpcppcore.so:${PORTSDIR}/security/libzrtpcppcore
+
+CONFLICTS_INSTALL=	linphone-base-[0-9]*
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
+CONFIGURE_ARGS=	--disable-silent-rules --disable-strict \
+		--enable-zrtp --with-srtp
+INSTALL_TARGET=	install-strip
+USES=		libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
-
-pre-install:
-.if defined(NOPORTDOCS)
-	${RM} -rf ${WRKSRC}/docs/html
-.endif
 
 .include <bsd.port.mk>
