@@ -2,7 +2,7 @@
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.su.se/pub/lunar/source-archive/ \
 		${MASTER_SITE_GENTOO}
@@ -13,8 +13,7 @@ COMMENT=	Fast pixel formats conversion library
 
 LICENSE=	gpl2
 
-USES=		gmake tar:bzip2
-USE_AUTOTOOLS=	libtool
+USES=		gmake tar:bzip2 libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 MAKE_ARGS=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}" \
@@ -24,10 +23,6 @@ USE_LDCONFIG=	yes
 PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == sparc64
-IGNORE=		is broken on sparc64: interchanges red and blue colour channels in images
-.endif
 
 post-install:
 .if !defined(NOPORTDOCS)
