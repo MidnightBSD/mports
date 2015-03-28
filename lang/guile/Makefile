@@ -2,30 +2,31 @@
 
 PORTNAME=	guile
 PORTVERSION=	1.8.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
-LICENSE=	lgpl
 
-LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp
+LICENSE=	lgpl2.1
 
-USE_AUTOTOOLS=	autoconf libltdl
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-GNU_CONFIGURE=	yes
+LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
+		libgmp.so:${PORTSDIR}/math/gmp
+
+CONFLICTS_INSTALL=	guile2-[0-9]*
+
+USES=		gmake libtool makeinfo ncurses pathfix
+USE_AUTOTOOLS=	autoheader
 USE_LDCONFIG=	yes
-USE_NCURSES=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib
+GNU_CONFIGURE=	yes
+CFLAGS+=	-fwrapv
 CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-GUILE_VER=	1.8
-PLIST_SUB=	GUILE_VER=${GUILE_VER}
-
-MAN1=		guile.1
+PLIST_SUB=	GUILE_VER=${PORTVERSION:R}
 
 REINPLACE_FILES=	libguile/smob.c libguile/filesys.c libguile/gc.c \
 			libguile/mallocs.c libguile/eval.c libguile/gc-malloc.c \
@@ -33,7 +34,11 @@ REINPLACE_FILES=	libguile/smob.c libguile/filesys.c libguile/gc.c \
 
 INFO=		goops guile-tut guile r5rs
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 post-extract:
 	cd ${WRKSRC}; ${CHMOD} u+w ${REINPLACE_FILES}
@@ -42,6 +47,7 @@ post-extract:
 post-patch:
 	@cd ${WRKSRC} ; \
 	  ${REINPLACE_CMD} -e 's|<malloc\.h>|<stdlib.h>|g' ${REINPLACE_FILES}
-	@${REINPLACE_CMD} -e 's|2.63|%%AUTOCONF_VERSION%%|g' ${WRKSRC}/aclocal.m4
+	@${REINPLACE_CMD} -e 's|2.68|${AUTOCONF_VERSION}|g' ${WRKSRC}/aclocal.m4
+	@${TOUCH} ${WRKSRC}/Makefile.in
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
