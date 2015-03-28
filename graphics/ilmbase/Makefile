@@ -1,33 +1,50 @@
 # $MidnightBSD$
 
 PORTNAME=	ilmbase
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	2.2.0
 CATEGORIES=	graphics devel
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	openexr
+MASTER_SITES=	SAVANNAH/openexr/
+DISTNAME=	ilmbase-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	ILM Base libraries a.k.a. Half, IlmThread, Imath and Iex
-LICENSE=	ilm
+COMMENT=	ILM Base libraries a.k.a. Half, IlmThread, Imath, and Iex
 
-OPTIONS=	THREAD	"Enable multithreaded file I/O support"	on
+LICENSE=	bsd3
 
-USE_GNOME=	pkgconfig
+USES=		cmake pkgconfig
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
 
-regression test check:	build
+PORTDOCS=	AUTHORS ChangeLog README
+OPTIONS_DEFINE=		DOCS
+
+OPTIONS_SUB=	yes
+
+THREAD_CONFIGURE_ENABLE=	threading
+
+MAJORVER=	2_2
+VER=		12
+
+PLIST_SUB=	MAJORVER=${MAJORVER}
+PLIST_SUB+=	VER=${VER}
+
+HALF_BIN=	eLut toFloat
+
+regression-test regression test check:	build
 	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
 
-.include <bsd.port.pre.mk>
+post-install:
+	${STRIP_CMD} ${PREFIX}/lib/libHalf.so.${VER}
+	${RM} -f ${PREFIX}/lib/*.la
+.for l in libIex libIexMath libImath libIlmThread
+	${STRIP_CMD} ${PREFIX}/lib/${l}-${MAJORVER}.so.${VER}
+	${LN} -s ${l}-${MAJORVER}.so.${VER} ${PREFIX}/lib/${l}.so
+.endfor
 
-.if defined(WITH_THREAD)
-CONFIGURE_ENV+=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
-.else
-CONFIGURE_ARGS+=--disable-threading
-.endif
+.for e in ${HALF_BIN}
+	${INSTALL_PROGRAM} ${WRKSRC}/Half/${e} ${PREFIX}/bin/${e}
+.endfor
 
-.include <bsd.port.post.mk>
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+
+.include <bsd.port.mk>
