@@ -1,104 +1,115 @@
 # $MidnightBSD$
 
 PORTNAME=	pinentry
-PORTVERSION=	0.8.1
-PORTREVISION=	1
+PORTVERSION=	0.9.0
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GNUPG}
-MASTER_SITE_SUBDIR=	pinentry
+MASTER_SITES=	GNUPG/pinentry
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	A collection of simple PIN or passphrase entry dialogs
+COMMENT?=	collection of simple PIN or passphrase entry dialogs
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt \
-		ksba.19:${PORTSDIR}/security/libksba
+USES=		tar:bzip2
 
-CONFLICTS?=	pinentry-[a-z]*-[0.9]*
-
-USE_ICONV=	yes
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+.if !defined(PINENTRY_GUI)
 INFO=		pinentry
+NO_ARCH=	yes
+NO_BUILD=	yes
+PLIST_FILES=	bin/pinentry
+
+OPTIONS_SINGLE=	FRONTEND
+OPTIONS_SINGLE_FRONTEND=	TTY NCURSES GTK2 QT4
+OPTIONS_DEFAULT=	TTY
+
+FRONTEND_DESC=	Default frontend
+
+TTY_DESC=	Console version
+PINENTRY_TTY=	pinentry-tty
+TTY_RUN_DEPENDS=	${PINENTRY_TTY}:${PORTSDIR}/security/pinentry-tty
+
+NCURSES_DESC=	Curses frontend
+PINENTRY_NCURSES=	pinentry-curses
+NCURSES_RUN_DEPENDS=	${PINENTRY_NCURSES}:${PORTSDIR}/security/pinentry-curses
+
+GTK2_DESC=	Gtk+ 2 frontend
+PINENTRY_GTK2=	pinentry-gtk-2
+GTK2_RUN_DEPENDS=	${PINENTRY_GTK2}:${PORTSDIR}/security/pinentry-gtk2
+
+.if exists(/usr/lib/libc++.so)
+QT4_DESC=	Qt 4 frontend (broken)
+.else
+QT4_DESC=	Qt 4 frontend
+.endif
+PINENTRY_QT4=	pinentry-qt4
+QT4_RUN_DEPENDS=	${PINENTRY_QT4}:${PORTSDIR}/security/pinentry-qt4
+
+.include <bsd.mport.options.mk>
+
+.for gui in ${OPTIONS_SINGLE_FRONTEND}
+. if ${PORT_OPTIONS:M${gui}}
+PINENTRY_BIN=	${PINENTRY_${gui}}
+. endif
+.endfor
+
+do-install:
+	${LN} -sf ${PINENTRY_BIN} ${STAGEDIR}${PREFIX}/bin/pinentry
+	${INSTALL_DATA} ${WRKSRC}/doc/pinentry.info ${STAGEDIR}${PREFIX}/${INFO_PATH}
+
+.else # !defined(PINENTRY_GUI)
+PKGNAMESUFFIX=	-${PINENTRY_GUI}
+LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt \
+		libksba.so:${PORTSDIR}/security/libksba
+
+USES+=		iconv gmake pkgconfig
+GNU_CONFIGURE=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-.if !defined(PINENTRY_SLAVE)
-OPTIONS=	NCURSES "Curses frontend" on \
-		GTK "Gtk+1 frontend" on \
-		GTK2 "Gtk+2 frontend" on \
-		QT3 "Qt3 frontend" on \
-		QT4 "Qt4 frontend" on
-.else
-PKGNAMESUFFIX=	${PINENTRY_SLAVE}
-.endif
-
-.include <bsd.mport.options.mk>
-
-.if !(defined(WITH_NCURSES) || defined(WITH_GTK) || defined(WITH_GTK2) || defined(WITH_QT3) || defined(WITH_QT4))
-IGNORE=	requires at least one frontend. Please rerun 'make config'
-.endif
-
-.if defined(WITH_QT3)
-USE_QT_VER=	3
-PLIST_SUB+=	WITH_QT3=""
-MOC3=		${LOCALBASE}/bin/moc
-.else
-CONFIGURE_ARGS+=--disable-pinentry-qt
-PLIST_SUB+=	WITH_QT3="@comment "
-.endif
-
-.if defined(WITH_QT4)
-#USE_QT_VER=	4
-#QT_COMPONENTS=	gui moc_build
-EXTENSIONS+=	qt
-BUILD_DEPENDS+=	moc-qt4:${PORTSDIR}/devel/qt4-moc
-LIB_DEPENDS+=	QtGui.4:${PORTSDIR}/x11-toolkits/qt4-gui
-PLIST_SUB+=	WITH_QT4=""
-MOC4=		${LOCALBASE}/bin/moc-qt4
-LDFLAGS+=	${PTHREAD_LIBS}
+.if ${PINENTRY_GUI} == "qt4"
+. if exists(/usr/lib/libc++.so)
+IGNORE=		does not compile with libc++
+. endif
+USE_QT4=	gui moc_build
+PLIST_FILES=	bin/pinentry-qt4
 .else
 CONFIGURE_ARGS+=--disable-pinentry-qt4
-PLIST_SUB+=	WITH_QT4="@comment "
 .endif
 
-.if defined(WITH_GTK)
-USE_GNOME+=	gtk12
-PLIST_SUB+=	WITH_GTK=""
-.else
-CONFIGURE_ARGS+=--disable-pinentry-gtk
-PLIST_SUB+=	WITH_GTK="@comment "
-.endif
-
-.if defined(WITH_GTK2)
+.if ${PINENTRY_GUI} == "gtk2"
 USE_GNOME+=	gtk20
-PLIST_SUB+=	WITH_GTK2=""
+PLIST_FILES=	bin/pinentry-gtk-2
 .else
 CONFIGURE_ARGS+=--disable-pinentry-gtk2
-PLIST_SUB+=	WITH_GTK2="@comment "
 .endif
 
-.if defined(WITH_NCURSES)
-USE_NCURSES=	yes
-PLIST_SUB+=	WITH_NCURSES=""
+.if ${PINENTRY_GUI} == "curses"
+USES+=		ncurses
+PLIST_FILES=	bin/pinentry-curses
 .else
 CONFIGURE_ARGS+=--disable-pinentry-curses
-PLIST_SUB+=	WITH_NCURSES="@comment "
+.endif
+
+.if ${PINENTRY_GUI} == "tty"
+PLIST_FILES=	bin/pinentry-tty
+CONFIGURE_ARGS+=--enable-pinentry-tty
+.else
+CONFIGURE_ARGS+=--disable-pinentry-tty
 .endif
 
 pre-configure:
-	${REINPLACE_CMD} -e "s@-lpthread@${PTHREAD_LIBS}@g" \
-		${WRKSRC}/m4/qt.m4 ${WRKSRC}/configure
-.if defined(WITH_QT3)
-	${REINPLACE_CMD} -e "/^MOC/s,@MOC@,${MOC3}," \
-		${WRKSRC}/qt/Makefile.in
-.endif
-.if defined(WITH_QT4)
+.if ${PINENTRY_GUI} == "qt4"
 	cd ${WRKSRC}/qt4 && \
-		${MOC4} pinentrydialog.h > pinentrydialog.moc && \
-		${MOC4} qsecurelineedit.h > qsecurelineedit.moc
+		${MOC} pinentrydialog.h > pinentrydialog.moc && \
+		${MOC} qsecurelineedit.h > qsecurelineedit.moc && \
+		${MOC} pinentryconfirm.h > pinentryconfirm.moc
 .endif
+
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
+		${STAGEDIR}${PREFIX}/info/pinentry.info
+
+.endif # !defined(PINENTRY_GUI)
 
 .include <bsd.port.mk>
