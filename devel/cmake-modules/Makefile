@@ -1,7 +1,6 @@
 # $MidnightBSD$
 
 PKGNAMESUFFIX=	-modules
-LATEST_LINK=	cmake-modules
 
 COMMENT=	Modules and Templates for CMake
 
