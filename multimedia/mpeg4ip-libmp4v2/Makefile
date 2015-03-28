@@ -1,10 +1,5 @@
-# New ports collection makefile for:	mpeg4ip-libmp4v2
-# Date created:		28 Sep 2004
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.15 2007/01/27 07:54:19 kris Exp $
-#
 
 PORTNAME=	mpeg4ip
 PORTVERSION=	1.5.0.1
@@ -14,11 +9,11 @@ PKGNAMESUFFIX=	-libmp4v2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mpeg-4 library and tools from mpeg4ip
+
 LICENSE=	agg
 #mpl etc
 
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
+USES=		libtool gmake
 USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include -I${X11BASE}/include ${PTHREAD_CFLAGS}" \
