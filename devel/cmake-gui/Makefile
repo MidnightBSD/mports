@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.11.2
+PORTVERSION=	3.1.3
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v2.8/
+MASTER_SITES=	http://www.cmake.org/files/v3.1/
 PKGNAMESUFFIX=	-gui
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,17 +11,31 @@ COMMENT=	Qt4 GUI for cmake
 
 LICENSE=	bsd3
 
-USE_QT4=	gui qmake_build moc_build uic_build rcc_build
-USES=		cmake:run
+BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
+		libexpat.so:${PORTSDIR}/textproc/expat2
+
+USE_QT5=	core gui widgets buildtools_build qmake_build
+USES=		cmake:run desktop-file-utils shared-mime-info
 CMAKE_ARGS=	-DBUILD_QtDialog:bool=on \
+		-DBUILD_CursesDialog:BOOL=OFF \
+		-DSPHINX_MAN:BOOL=ON \
+		-DCMAKE_USE_SYSTEM_LIBRARIES:BOOL=ON \
 		-DCMAKE_DATA_DIR:STRING="/${DATADIR_REL}" \
 		-DCMAKE_DOC_DIR:STRING="/${DOCSDIR_REL}"
-MAN1=		cmake-gui.1
 
-BUILD_WRKSRC=	${WRKSRC}/Source/QtDialog
-INSTALL_WRKSRC=	${BUILD_WRKSRC}
+ALL_TARGET=	cmake-gui documentation
+INSTALL_WRKSRC=	${WRKSRC}/Source/QtDialog
 
-DISTINFO_FILE=  ${.CURDIR}/../cmake/distinfo
+DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
+
+.include <bsd.port.pre.mk>
+
+# CMake >= 3.1.0 needs libarchive3 because it calls
+# archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000009
+LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
+.endif
 
 post-patch:
 	@(${FIND} ${WRKSRC}/Modules -name "*.cmake" -print0; \
@@ -31,10 +45,9 @@ post-patch:
 
 pre-install:
 	${LN} -sf ${CMAKE_BIN} ${WRKSRC}/bin
-	${WRKSRC}/bin/cmake-gui --help-man > ${WRKSRC}/cmake-gui.1
 
 post-install:
-	${MKDIR} ${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/cmake-gui.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/Utilities/Sphinx/man/cmake-gui.1 \
+		${STAGEDIR}${PREFIX}/man/man1
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
