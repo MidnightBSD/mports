@@ -2,6 +2,7 @@
 
 PORTNAME=	virtio
 PORTVERSION=	0.${SVN_REV}
+PORTREVISION=	1
 CATEGORIES=	emulators kld
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
@@ -10,9 +11,8 @@ DISTFILES=	${FILE_8} ${FILE_9}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	virtio kernel modules port for 0.4
-LICENSE=	bsd2
 
-ONLY_FOR_ARCHS=	amd64 i386
+LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}
 KMODDIR?=	/boot/modules
