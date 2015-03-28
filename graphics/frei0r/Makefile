@@ -4,6 +4,7 @@
 PORTNAME=	frei0r
 PORTVERSION=	1.3
 DISTVERSIONPREFIX=	plugins-
+PORTREVISION?=	1
 CATEGORIES=	graphics
 MASTER_SITES?=	http://piksel.no/${PORTNAME}/releases/ \
 		ftp://ftp.dyne.org/${PORTNAME}/releases/ \
@@ -15,8 +16,10 @@ LICENSE=	gpl2
 
 .if !defined(BUILDING_FREI0R_METAPORT)
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack pkgconfig
-MAKE_JOBS_SAFE=	yes
+USES=		pathfix pkgconfig
+
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
@@ -25,27 +28,29 @@ IGNORE=		cannot build OpenCV and gavl plugins simultaneously
 .endif
 
 .if defined(BUILDING_FREI0R_OPENCV)
-PORTREVISION=	1
+PORTREVISION=	3
 COMMENT=	Frei0r OpenCV plugins
-PKGNAMESUFFIX=  -plugins-opencv
-LIB_DEPENDS+=	opencv_legacy.2:${PORTSDIR}/graphics/opencv
+PKGNAMESUFFIX=	-plugins-opencv
+LIB_DEPENDS+=	libopencv_legacy.so:${PORTSDIR}/graphics/opencv
 FREI0R_PLUGINS=	facebl0r facedetect
 .elif defined(BUILDING_FREI0R_GAVL)
-PORTREVISION=	1
+PORTREVISION=	2
 COMMENT=	Frei0r gavl plugins
-PKGNAMESUFFIX=  -plugins-gavl
-LIB_DEPENDS+=	gavl.1:${PORTSDIR}/multimedia/gavl
+PKGNAMESUFFIX=	-plugins-gavl
+LIB_DEPENDS+=	libgavl.so:${PORTSDIR}/multimedia/gavl
 FREI0R_PLUGINS=	rgbparade scale0tilt vectorscope
 .else
 
 PORTDOCS=	*
 
-OPTIONS=	APIDOC "Install full documentation (requires doxygen)" off \
-		MMX "Enable MMX CPU instructions" off
+OPTIONS_DEFINE=	APIDOC DOCS
+OPTIONS_DEFINE_amd64=	MMX
+APIDOC_DESC=	Install full documentation (requires doxygen)
+MMX_DESC=	MMX CPU instructions
 
 .include <bsd.mport.options.mk>
 
-. if !defined(NOPORTDOCS) && defined(WITH_APIDOC)
+. if ${PORT_OPTIONS:MDOCS} && ${PORT_OPTIONS:MAPIDOC}
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 . endif
 
@@ -53,6 +58,7 @@ BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 
 .if defined(FREI0R_PLUGINS)
 CPPFLAGS+=	"-I${LOCALBASE}/include"
+LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST=		${WRKSRC}/PLIST
 ALL_TARGET=
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -60,13 +66,6 @@ BUILD_WRKSRC=	${WRKSRC}/src
 ALL_TARGET+=	${FILE}.la
 PLIST_FILES+=	lib/frei0r-1/${FILE}.so
 . endfor
-PLIST_FILES+=	"@dirrmtry lib/frei0r-1"
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if !defined(WITH_MMX) && ${ARCH} != "amd64"
-CONFIGURE_ARGS+=--disable-cpuflags
 .endif
 
 post-patch:
@@ -79,10 +78,10 @@ post-patch:
 		${WRKSRC}/configure
 .endif
 .if !defined(FREI0R_PLUGINS)
-. if !defined(NOPORTDOCS) && defined(WITH_APIDOC)
+. if ${PORT_OPTIONS:MDOCS} && ${PORT_OPTIONS:MAPIDOC}
 	@${REINPLACE_CMD} -e '/^SUBDIRS/s|include|include doc|' ${WRKSRC}/Makefile.in
 . endif
-. if defined(NOPORTDOCS)
+. if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e '/^install-data-am/s| install-docsDATA||' \
 		${WRKSRC}/Makefile.in
 . endif
@@ -103,6 +102,6 @@ pre-build:
 	@${TOUCH} ${WRKSRC}/aclocal.m4 ${WRKSRC}/Makefile.in \
 		${WRKSRC}/configure ${WRKSRC}/config.h.in
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif # !defined(BUILDING_FREI0R_METAPORT)
