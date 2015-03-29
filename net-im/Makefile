@@ -21,6 +21,5 @@ SUBDIR += pork
 SUBDIR += sendxmpp
 SUBDIR += telepathy-glib
 SUBDIR += tmsnc
-SUBDIR += ysm
 
 .include <bsd.port.subdir.mk>
