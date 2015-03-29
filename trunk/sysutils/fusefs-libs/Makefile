@@ -2,6 +2,7 @@
 
 PORTNAME=	fusefs
 PORTVERSION=	2.7.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/fuse/fuse-2.X/${PORTVERSION}
 PKGNAMESUFFIX=	-libs
@@ -9,14 +10,15 @@ DISTNAME=	fuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE allows filesystem implementation in userspace
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MOUNT_FUSE_PATH=${PREFIX}/sbin \
 		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
-USE_GNOME=	pkgconfig
+
+USES=		iconv pkgconfig libtool
 USE_LDCONFIG=	yes
-USE_ICONV=	yes
 CONFIGURE_ARGS=	--disable-kernel-module --prefix=${PREFIX} \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 TXT_DOCS=	how-fuse-works \
