@@ -1,15 +1,11 @@
-# New ports collection makefile for:	pvpgn
-# Date created:				19 January 2005
-# Whom:					mek
-#
 # $FreeBSD: ports/games/pvpgn/Makefile,v 1.12 2008/05/30 15:42:54 miwi Exp $
 # $MidnightBSD$
 
 PORTNAME=	pvpgn
 PORTVERSION=	1.8.5
+PORTREVISION=	1
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_BERLIOS}
-MASTER_SITE_SUBDIR=	pvpgn
+MASTER_SITES=	BERLIOS
 DISTFILES=	${EXTRACT_ONLY} pvpgn-support-1.2.tar.gz
 DIST_SUBDIR=	pvpgn
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -17,11 +13,14 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Blizzard Battle.net emulation software
 LICENSE=        gpl2
+
 PKGINSTALL?=	${WRKDIR}/pkg-install
 PKGDEINSTALL?=	${WRKDIR}/pkg-deinstall
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
 SED_SCRIPT=	-e 's|%%PREFIX%%|${PREFIX}|g'
+
+USERS=		bnetd
+GROUPS=		${USERS}
 
 RC_DIR=		${PREFIX}/etc/rc.d
 RC_SUFX=	.sh
@@ -37,40 +36,23 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pvpgn \
 		--localstatedir=${DATADIR} \
 		--with-libraries=${LOCALBASE}/lib
 
-USE_RC_SUBR=	bnetd.sh
+USE_RC_SUBR=	bnetd
 
-MAN1=		bnbot.1 bnchat.1 bnetd.1 bnftp.1 bni2tga.1 bnibuild.1 \
-		bniextract.1 bnilist.1 bnpass.1 bnstat.1 bntrackd.1 tgainfo.1
-MAN5=		bnetd.conf.5 bntext.5
+OPTIONS_DEFINE=		D2 MYSQL PGSQL SQLITE3
+OPTIONS_DEFAULT=	D2
+OPTIONS_SUB=		yes
 
-OPTIONS=	MYSQL "Include MySQL user accounts support" off \
-		PGSQL "Include PostgreSQL user accounts support" off \
-		SQLITE3 "Include SQLite3 user accounts support" off \
-		D2 "Enable Diablo II server (D2CS/D2DBS)" on
+D2_DESC=		Diablo II server (D2CS/D2DBS)
+D2_CONFIGURE_ENABLE=	d2cs d2dbs
 
-.include <bsd.port.pre.mk>
+MYSQL_USE=		MYSQL=yes
+MYSQL_CONFIGURE_WITH=	mysql
 
-.if defined(WITH_MYSQL)
-USE_MYSQL=	yes
-CONFIGURE_ARGS+=--with-mysql
-.endif
+PGSQL_USES=		pgsql
+PGSQL_CONFIGURE_WITH=	pgsql
 
-.if defined(WITH_PGSQL)
-USE_PGSQL=	yes
-CONFIGURE_ARGS+=--with-pgsql
-.endif
-
-.if defined(WITH_SQLITE3)
-USE_SQLITE=	3
-CONFIGURE_ARGS+=--with-sqlite3
-.endif
-
-.if defined(WITHOUT_D2)
-CONFIGURE_ARGS+=	--disable-d2cs --disable-d2dbs
-PLIST_SUB+=	WITH_D2="@comment "
-.else
-PLIST_SUB+=	WITH_D2=""
-.endif
+SQLITE3_USE=		SQLITE=3
+SQLITE3_CONFIGURE_WITH=	sqlite3
 
 ## support files
 
@@ -91,18 +73,14 @@ post-install:
 	bnserver-D2XP.ini bnserver-WAR3.ini bnserver.ini icons-WAR3.bni \
 	icons.bni icons_STAR.bni ver-ix86-1.mpq
 
-	${INSTALL_DATA} ${WRKSRC}/${SUPPORT_FILES}/${i} ${DATADIR}/files
+	${INSTALL_DATA} ${WRKSRC}/${SUPPORT_FILES}/${i} ${STAGEDIR}${DATADIR}/files
 .endfor
 
 ## Additional documentation
 
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in INSTALL.unix PORTS README.fdwatch README.storage bnmotd.txt
-	${INSTALL_MAN} ${WRKSRC}/../docs/${i} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/../docs/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
 
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
