@@ -2,6 +2,7 @@
 
 PORTNAME=	mod_fastcgi
 PORTVERSION=	2.4.7
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.fastcgi.com/dist/ \
 		FREEBSD_LOCAL/ohauer
@@ -9,11 +10,11 @@ DISTNAME=	mod_fastcgi-SNAP-0910052141
 DIST_SUBDIR=	apache2
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	A fast-cgi module for Apache
+COMMENT=	Fast-cgi module for Apache
 
 LICENSE=	other
 
-USE_APACHE=	22
+USE_APACHE=	22+
 AP_FAST_BUILD=	yes
 AP_GENPLIST=	yes
 SRC_FILE=	*.c
