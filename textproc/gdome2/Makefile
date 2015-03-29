@@ -2,12 +2,14 @@
 
 PORTNAME=	gdome2
 PORTVERSION=	0.8.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	textproc
 MASTER_SITES=	http://gdome2.cs.unibo.it/tarball/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome DOM Engine
+
+LICENSE=	gpl2
 
 USES=		pathfix pkgconfig libtool
 USE_GNOME=	glib20 libxml2
@@ -22,7 +24,7 @@ OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 post-patch:
 .if ${PORT_OPTIONS:MDOCS}
