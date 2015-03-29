@@ -8,12 +8,6 @@ MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.ncftp.com/ncftp/
 DISTNAME=	ncftp-${PORTVERSION}-src
 
-.if !defined(WITHOUT_NCFTP_IPV6) && !defined(WITHOUT_IPV6)
-#PATCH_SITES=	ftp://ftp.kame.net/pub/kame/misc/
-#PATCHFILES=	ncftp-323-v6-20091109.diff.gz
-#PATCH_DIST_STRIP=	-p1
-.endif
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ftp replacement with advanced user interface
 
@@ -22,7 +16,7 @@ LICENSE_NAME=	The Clarified Artistic License
 LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
 LICENSE_PERMS=	pkg-mirror dist-mirror
 
-USES=		tar:bzip2
+USES=	tar:bzip2
 
 .include <bsd.port.pre.mk>
 
