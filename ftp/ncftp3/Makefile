@@ -2,7 +2,7 @@
 
 PORTNAME=	ncftp
 PORTVERSION=	3.2.5
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.ncftp.com/ncftp/
@@ -17,7 +17,10 @@ DISTNAME=	ncftp-${PORTVERSION}-src
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ftp replacement with advanced user interface
 
-LICENSE_FILE=	doc/License.txt
+LICENSE=	clartistic
+LICENSE_NAME=	The Clarified Artistic License
+LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
+LICENSE_PERMS=	pkg-mirror dist-mirror
 
 USES=		tar:bzip2
 
