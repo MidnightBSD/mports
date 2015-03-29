@@ -10,7 +10,7 @@ EXTRACT_ONLY=
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mono .NET implementation for Wine development branch (HTML support)
 
-LICENSE=	mit gpl2 lgpl2
+LICENSE=	mit gpl2 lgpl
 LICENSE_COMB=	multi
 
 NO_BUILD=	yes
