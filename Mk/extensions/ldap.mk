@@ -32,7 +32,6 @@ Database_Include_MAINTAINER=		ports@MidnightBSD.org
 .if defined(USE_OPENLDAP)
 DEFAULT_OPENLDAP_VER?=	24
 # OpenLDAP client versions currently supported
-OPENLDAP23_LIBVER=	2.3.2
 OPENLDAP24_LIBVER=	2.4.8
 
 .if exists(${LOCALBASE}/bin/ldapwhoami)
