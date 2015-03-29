@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xtrans
-PORTVERSION=	1.3.4
+PORTVERSION=	1.3.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
