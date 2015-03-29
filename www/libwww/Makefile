@@ -10,6 +10,11 @@ DISTNAME=	w3c-${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The W3C Reference Library
 
+LICENSE=	w3cipr
+LICENSE_NAME=	W3C IPR SOFTWARE NOTICE
+LICENSE_FILE=	${WRKSRC}/LICENSE.html
+LICENSE_PERMS=	dist-mirror pkg-mirror
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-zlib --with-ssl=${OPENSSLBASE}
 USES=		perl5 gmake libtool tar:tgz
