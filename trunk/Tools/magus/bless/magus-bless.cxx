@@ -64,7 +64,7 @@ main(int argc, char *argv[])
 
     if (argc != 5)
     {
-        fprintf( stderr, "Usage: %s <run id> <mysql_user> <mysql_pass> <files>\n", argv[0] );
+        fprintf( stderr, "Usage: %s <run id> <pg_user> <pg_pass> <files>\n", argv[0] );
         exit(1);
     }
 
