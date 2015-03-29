@@ -628,6 +628,10 @@ USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
 .endif
 
+.if defined(USE_OPENLDAP)
+EXTENSIONS+=	ldap
+.endif
+
 .if defined(USE_RC_SUBR) || defined(USE_RCORDER)
 RC_SUBR=	/etc/rc.subr
 SUB_LIST+=	RC_SUBR=${RC_SUBR}
