@@ -2,6 +2,7 @@
 
 PORTNAME=	cfitsio
 PORTVERSION=	3.100
+PORTREVISION=	1
 CATEGORIES=	science astro
 MASTER_SITES=	ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/ \
 		ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/oldvers/
@@ -9,14 +10,15 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for reading and writing files in FITS data format
+
 LICENSE=	gpl2
 # worst case..
 
-LIB_DEPENDS=	f2c.2:${PORTSDIR}/lang/f2c
+LIB_DEPENDS=	libf2c.so:${PORTSDIR}/lang/f2c
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_GNOME=	 pkgconfig
+USES=		pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	ac_cv_prog_FC="f2c"
 ALL_TARGET=	shared
