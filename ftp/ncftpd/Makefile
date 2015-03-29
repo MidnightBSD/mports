@@ -11,7 +11,11 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-freebsd${BINVER}-${DIST_ARCH}-export
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Commercial FTP daemon with a 30-day evaluation license
-LICENSE=	restricted
+
+LICENSE=	ncftpd
+LICENSE_NAME=	NcFTP Software End-user License Agreement.
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror pkg-mirror
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
