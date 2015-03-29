@@ -1,34 +1,33 @@
 # $MidnightBSD$
 
 PORTNAME=	zenity
-PORTVERSION=	2.32.1
-PORTREVISION=	8
+PORTVERSION=	3.14.0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display GNOME dialogs from the command line
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
-RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
 
-USES=		pathfix perl5 gettext gmake pkgconfig tar:bzip2
-USE_PERL5=	run
-USE_GNOME=	gnomeprefix gtk20 gnomedocutils intlhack
+CONFLICTS=	gtkada-1.2.* zenity-2.*
+
+USES=		gettext gmake pathfix pkgconfig perl5 tar:xz
+USE_GNOME=	gnomeprefix gtk30 intlhack
+USE_XORG=	x11
 GNU_CONFIGURE=	yes
-INSTALLS_OMF=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib -lintl
-
-CONFLICTS=	gtkada-1.2.*
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	NOTIFY
 OPTIONS_DEFAULT=NOTIFY
-
 NOTIFY_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
-NOTIFY_CONFIGURE_ENABLE=	libnotify
+NOTIFY_CONFIGURE_ENABLE=libnotify
+
+post-patch:
+	@${RM} ${WRKSRC}/src/gdialog
 
 .include <bsd.port.mk>
