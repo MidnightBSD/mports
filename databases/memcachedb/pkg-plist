@@ -1,3 +1,0 @@
-@stopdaemon memcachedb
-bin/memcachedb
-@dirrmtry /var/db/memcachedb
