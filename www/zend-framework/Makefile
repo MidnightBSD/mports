@@ -45,8 +45,7 @@ USE_PHP+=	sqlite
 .else
 USE_PHP+=	sqlite3
 .endif
-RUN_DEPENDS+=	pecl-memcache>=0:${PORTSDIR}/databases/pecl-memcache \
-		pecl-memcached>=0:${PORTSDIR}/databases/pecl-memcached
+RUN_DEPENDS+=	pecl-memcache>=0:${PORTSDIR}/databases/pecl-memcache
 .endif
 .if ${PORT_OPTIONS:MOPTPHP}
 USE_PHP+=	bcmath bitset json posix
