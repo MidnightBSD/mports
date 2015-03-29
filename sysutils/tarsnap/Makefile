@@ -2,10 +2,10 @@
 
 PORTNAME=	tarsnap
 PORTVERSION=	1.0.35
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
 DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online encrypted backup service (client)
@@ -16,11 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
 GNU_CONFIGURE=	yes
-USES=		gmake
-
-MAN1=		tarsnap.1 tarsnap-keygen.1 tarsnap-keymgmt.1	\
-		tarsnap-keyregen.1 tarsnap-recrypt.1
-MAN5=		tarsnap.conf.5
+USES=		gmake tar:tgz
 
 OPTIONS_DEFINE=	SSE2
 SSE2_DESC=	Use SSE2-optimized code
@@ -39,6 +35,7 @@ CONFIGURE_ARGS+=	--disable-sse2
 LICENSE_PERMS=	no-dist-mirror no-pkg-mirror
 RESTRICTED=	license only allows redistribution and use of unmodified source and binaries
 .endif
+LEGAL_TEXT=	license restricts redistribution of source and binaries
 
 post-install:
 	@if [ ! -f ${PREFIX}/etc/tarsnap.conf ]; then \
