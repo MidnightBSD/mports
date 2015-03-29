@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	libXvMC
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Video Extension Motion Compensation library
+
 LICENSE=	mit
 
 XORG_CAT=	lib

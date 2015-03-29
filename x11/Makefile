@@ -77,7 +77,6 @@ SUBDIR += libdmx
 SUBDIR += libexo
 SUBDIR += libgnome
 SUBDIR += libgnomekbd
-SUBDIR += libgnomemm
 SUBDIR += liboldX
 SUBDIR += libxcb
 SUBDIR += libxdg-basedir
