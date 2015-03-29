@@ -7,7 +7,7 @@ CATEGORIES?=	www
 MASTER_SITES?=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Secure, fast, compliant, and very flexible Web Server
+COMMENT=	Secure, fast, compliant, and flexible Web Server
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
 LICENSE=	bsd3
