@@ -333,6 +333,7 @@ SAMBA_WANT_LDAP=	yes
 .endif
 
 .if defined(SAMBA_WANT_LDAP)
+EXTENSIONS+=		ldap
 USE_OPENLDAP=		yes
 CONFIGURE_ARGS+=	--with-ldap
 .else
