@@ -1,13 +1,9 @@
 # $MidnightBSD$
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
-#
-# If possible, please consider updating the simple ports/x11-clocks/rclock
-# (and maybe ports/chinese/rxvt) when you upgrade rxvt.  These ports all use
-# the same distfile.
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES+=	x11
 MASTER_SITES=	SF
 
