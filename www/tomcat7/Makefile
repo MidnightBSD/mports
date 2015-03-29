@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tomcat
-PORTVERSION=	7.0.57
+PORTVERSION=	7.0.59
 CATEGORIES=	www java
 MASTER_SITES=	APACHE
 MASTER_SITE_SUBDIR=	tomcat/tomcat-7/v${PORTVERSION}/bin
@@ -13,6 +13,9 @@ COMMENT=	Open-source Java web server by Apache, 7.x branch
 LICENSE=	apache2
 
 RUN_DEPENDS=	jsvc:${PORTSDIR}/devel/jakarta-commons-daemon
+
+USES=		cpe
+CPE_VENDOR=	apache
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
