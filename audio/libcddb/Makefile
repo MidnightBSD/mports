@@ -3,7 +3,7 @@
 
 PORTNAME=	libcddb
 PORTVERSION=	1.3.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
@@ -13,7 +13,7 @@ COMMENT=	Library to access data on a CDDB server
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
-USES=		pathfix pkgconfig iconv libtool:oldver tar:bzip2
+USES=		iconv libtool pathfix tar:bzip2
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-cdio
 CPPFLAGS+=	-DICONV_CONST="const" -I${LOCALBASE}/include
