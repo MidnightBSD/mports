@@ -57,6 +57,10 @@ PERL_PORT?=		perl${PERL_BRANCH}
 PERL_PREFIX?=		${LOCALBASE}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=		${PERL_PREFIX}/${SITE_PERL_REL}
+SITE_ARCH_REL?=		${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}
+SITE_ARCH?=		${LOCALBASE}/${SITE_ARCH_REL}
+SITE_MAN3_REL?=		${SITE_PERL_REL}/man/man3
+SITE_MAN3?=		${PREFIX}/${SITE_MAN3_REL}
 
 .if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=			/usr/bin/perl
