@@ -2,6 +2,7 @@
 
 PORTNAME=	CGI.pm
 PORTVERSION=	3.63
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
@@ -10,13 +11,11 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Common Gateway Interface Class for Perl
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENCE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		CGI.3 CGI::Apache.3 CGI::Carp.3 CGI::Cookie.3 \
-		CGI::Fast.3 CGI::Pretty.3 CGI::Push.3 CGI::Switch.3 \
-		CGI::Util.3
 
 .if !defined(NOPORTEXAMPLES)
 EXAMPLES=	examples/caution.xbm examples/clickable_image.cgi \
