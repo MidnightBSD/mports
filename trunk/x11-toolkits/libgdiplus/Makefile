@@ -1,28 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	libgdiplus
-PORTVERSION=	2.10
-PORTREVISION=	3
+PORTVERSION=	3.8
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
+MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDI+ API for System.Windows.Forms in Mono
+
 LICENSE=	mit
 
-LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
-		gif.5:${PORTSDIR}/graphics/giflib \
-		png15:${PORTSDIR}/graphics/png \
-		cairo.2:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
+		libgif.so:${PORTSDIR}/graphics/giflib \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libcairo.so:${PORTSDIR}/graphics/cairo
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack glib20
-USE_GMAKE=	yes
+USES=		gmake libtool:keepla pathfix pkgconfig
+USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 USE_XORG=	x11
-CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-.include "${.CURDIR}/../../lang/mono/bsd.mono.mk"
 .include <bsd.port.mk>

@@ -6,9 +6,9 @@ include/libsexy/sexy-tree-view.h
 include/libsexy/sexy-url-label.h
 include/libsexy/sexy.h
 lib/libsexy.a
-lib/libsexy.la
 lib/libsexy.so
 lib/libsexy.so.2
+lib/libsexy.so.2.0.4
 libdata/pkgconfig/libsexy.pc
 share/gtk-doc/html/libsexy/SexyIconEntry.html
 share/gtk-doc/html/libsexy/SexySpellEntry.html
@@ -25,7 +25,3 @@ share/gtk-doc/html/libsexy/libsexy.devhelp2
 share/gtk-doc/html/libsexy/right.png
 share/gtk-doc/html/libsexy/style.css
 share/gtk-doc/html/libsexy/up.png
-@dirrm share/gtk-doc/html/libsexy
-@dirrmtry share/gtk-doc/html
-@dirrmtry share/gtk-doc
-@dirrm include/libsexy
