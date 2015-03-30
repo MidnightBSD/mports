@@ -2,26 +2,35 @@
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An OpenGL extension to GTK
-LICENSE=	gpl2
+COMMENT=	OpenGL extension to GTK+
 
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnomeprefix  gtk20
-USE_XORG=	x11 xt
-USE_GL=		yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+LICENSE=	lgpl2.1 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
+
+GNU_CONFIGURE=	yes
+USES=		gettext gmake iconv libtool pathfix pkgconfig tar:bzip2
+USE_GL=		glu
+USE_GNOME=	gtk20 pangox-compat
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-DGTK_DISABLE_DEPRECATED||g' \
-		-e 's|-DGDK_DISABLE_DEPRECATED||g' \
-		${WRKSRC}/examples/Makefile.in ${WRKSRC}/gtk/Makefile.in 
+	@${REINPLACE_CMD} -e \
+		'/^SUBDIRS/s|docs||' ${WRKSRC}/Makefile.in
+	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
+		's|-DGTK_DISABLE_DEPRECATED||g ; \
+		 s|-DGDK_DISABLE_DEPRECATED||g'
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/reference/gtkglext/html/* ${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
