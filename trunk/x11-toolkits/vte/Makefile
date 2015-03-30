@@ -2,7 +2,7 @@
 
 PORTNAME=	vte
 PORTVERSION=	0.28.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,38 +16,29 @@ USES+=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-USES+=		bison gettext gmake pathfix pkgconfig libtool:keepla
+RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:${PORTSDIR}/x11-toolkits/gnome-pty-helper
+
+USES+=		gettext gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
 USE_GNOME?=	gnomeprefix gtk20 introspection:build referencehack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS?=--disable-python \
 		--disable-Bsymbolic \
 		--disable-freetypetest \
 		--disable-static \
 		--with-gtk=2.0 \
 		--enable-introspection \
-		-disable-gnome-pty-helper
-GNU_CONFIGURE=	yes
-
-.if !defined(MASTERDIR)
-OPTIONS_DEFINE=	GLX
-GLX_DESC=	Support for DRI/GLX rendering
-.endif
+		--disable-gnome-pty-helper
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MGLX} && !defined(MASTERDIR)
-CONFIGURE_ARGS+=	--with-glX
-USE_GL=			yes
-.endif
-
-.include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 4016
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-gnome-pty-helper_gnome-utmp.c
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif
