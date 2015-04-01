@@ -40,7 +40,7 @@ PORTDOCS=	ChangeLog PROGRAMMING README
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MIPV6}
-RUN_DEPENDS=	p5-IO-Socket-INET6>0:${PORTSDIR}/net/p5-IO-INET6
+RUN_DEPENDS=	p5-IO-Socket-INET6>0:${PORTSDIR}/net/p5-IO-Socket-INET6
 EXTRA_PATCHES=	${PATCHDIR}/dsirc-ipv6
 .else
 EXTRA_PATCHES=	${PATCHDIR}/dsirc-minimal
