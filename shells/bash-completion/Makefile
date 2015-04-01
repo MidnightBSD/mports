@@ -14,10 +14,8 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 CONFLICTS=	bash-completion-classic-[0-9]*
 
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-
-USE_BZIP2=	yes
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	RUNFILE=${DATADIR}/bash_completion.sh
@@ -42,12 +40,10 @@ post-patch:
 		${WRKSRC}/completions/*
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-.	for i in README doc/bash_completion.txt doc/bashrc doc/inputrc
-		${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
-.	endfor
-.endif
+	@${MKDIR} ${DOCSDIR}
+.for i in README doc/bash_completion.txt doc/bashrc doc/inputrc
+	${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
+.endfor
 
 
 .include <bsd.port.mk>
