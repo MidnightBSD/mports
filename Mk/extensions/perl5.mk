@@ -1,10 +1,6 @@
-#-*- tab-width: 4; -*-
-# ex:ts=4
-#
 # $MidnightBSD$
 #
-# perl.mk - perl specific make directives
-
+# Provide support to use perl5
 
 .if !defined(_POSTMKINCLUDED) || !defined(Perl_Pre_Include)
 
