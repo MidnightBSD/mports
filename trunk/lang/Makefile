@@ -30,6 +30,7 @@ SUBDIR += gnustep-base
 SUBDIR += gnustep-guile
 SUBDIR += gscheme
 SUBDIR += guile
+SUBDIR += guile2
 SUBDIR += libobjc2
 SUBDIR += linux-f10-libg2c
 SUBDIR += linux-f10-tcl85
