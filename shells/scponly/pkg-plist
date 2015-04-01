@@ -18,3 +18,4 @@ bin/scponly
 etc/scponly/debuglevel
 @dirrm etc/scponly
 %%SCPONLY_CHROOT%%@dirrm %%EXAMPLESDIR%%
+man/man8/scponly.8.gz
