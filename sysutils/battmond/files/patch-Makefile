@@ -8,10 +8,10 @@
 -	$(INSTALL) battmond.sh ${PREFIX}/etc/rc.d/battmond
 -	$(INSTALL) -c battmond.1 ${PREFIX}/man/man1/battmond.1
 -	gzip -9f ${PREFIX}/man/man1/battmond.1
-+	$(INSTALL) -s battmond $(DESTDIR)${PREFIX}/sbin/battmond
-+	$(INSTALL) battmond.sh $(DESTDIR)${PREFIX}/etc/rc.d/battmond
-+	$(INSTALL) -c battmond.1 $(DESTDIR)${PREFIX}/man/man1/battmond.1
-+	gzip -9f $(DESTDIR)${PREFIX}/man/man1/battmond.1
++	$(INSTALL) -s battmond $(DESTDIR)${TRUE_PREFIX}/sbin/battmond
++	$(INSTALL) battmond.sh $(DESTDIR)${TRUE_PREFIX}/etc/rc.d/battmond
++	$(INSTALL) -c battmond.1 $(DESTDIR)${TRUE_PREFIX}/man/man1/battmond.1
++	gzip -9f $(DESTDIR)${TRUE_PREFIX}/man/man1/battmond.1
  
  clean:
  	rm -f battmond

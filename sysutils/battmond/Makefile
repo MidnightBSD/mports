@@ -2,6 +2,7 @@
 
 PORTNAME=	battmond
 PORTVERSION=	0.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ntarmos.dyndns.org/Software/FreeBSD/
 
@@ -10,10 +11,8 @@ COMMENT=	Daemon monitoring the battery level of ACPI-enabled laptops
 
 LICENSE=	unknown
 
-MAN1=		battmond.1
-MANCOMPRESSED=	yes
-
 PLIST_FILES=	sbin/battmond \
-		etc/rc.d/battmond
+		etc/rc.d/battmond \
+		man/man1/battmond.1.gz
 
 .include <bsd.port.mk>
