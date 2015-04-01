@@ -331,6 +331,10 @@ _LOAD_GNOME_EXT=	yes
 _LOAD_GSTREAMER_EXT=	yes
 .endif
 
+.if defined(USE_LDAP)
+_LOAD_LDAP_EXT=	yes
+.endif
+
 .for EXT in ${EXTENSIONS}
 _LOAD_${EXT:tu}_EXT=	yes
 .endfor
@@ -626,10 +630,6 @@ MAKE_ENV+=	${b}="${${b}}"
 .if defined(USE_OPENLDAP_VER)
 USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
-.endif
-
-.if defined(USE_OPENLDAP)
-EXTENSIONS+=	ldap
 .endif
 
 .if defined(USE_RC_SUBR) || defined(USE_RCORDER)
