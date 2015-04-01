@@ -710,16 +710,10 @@ BUILD_DEPENDS+=	${LINUX_BASE_PORT}
 RUN_DEPENDS+=	${LINUX_BASE_PORT}
 .endif
 
-.if defined(USE_XORG)
-# Add explicit X options to avoid problems with false positives in configure
-.if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
-.endif
-
 # required by mport.create MPORT_CREATE_ARGS
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
+_GL_gbm_LIB_DEPENDS=		libgbm.so:${PORTSDIR}/graphics/gbm
 _GL_glesv2_LIB_DEPENDS=		libGLESv2.so:${PORTSDIR}/graphics/libglesv2
 _GL_egl_LIB_DEPENDS=		libEGL.so:${PORTSDIR}/graphics/libEGL
 _GL_gl_LIB_DEPENDS=		libGL.so:${PORTSDIR}/graphics/libGL
@@ -747,6 +741,10 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 . endfor
 .endif
 
+.if defined(USE_LOCAL_MK)
+EXTENSIONS+=	local
+.endif
+
 .if defined(XORG_CAT)
 EXTENSIONS+=xorg
 .endif
@@ -760,7 +758,23 @@ EXTENSIONS+=xorg
 .	endif
 .endfor
 
+# FreeBSD compatibility: Loading features
+.for f in ${_USES_POST}
+_f:=            ${f:C/\:.*//}
+.if !defined(${_f}_ARGS)
+${_f}_ARGS:=    ${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
+.endif
+.endfor
+.for f in ${_USES_POST}
+.include "${PORTSDIR}/Mk/extensions}/${f:C/\:.*//}.mk"
+.endfor
 
+.if defined(USE_XORG)
+# Add explicit X options to avoid problems with false positives in configure
+.if defined(GNU_CONFIGURE)
+CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
+.endif
+.endif
 
 .if exists(${PORTSDIR}/../Makefile.inc)
 .include "${PORTSDIR}/../Makefile.inc"
@@ -828,12 +842,14 @@ HASH_FILE?=		${MASTERDIR}/distinfo
 
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
-MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
+MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
+			DESTDIR=${DESTDIR} \
+			PREFIX=${PREFIX} \
 			LOCALBASE=${LOCALBASE_REL} \
 			LIBDIR="${LIBDIR}" \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
-			LDFLAGS="${LDFLAGS}" \
+			LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
 			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
 			MANPREFIX="${MANPREFIX}"
 
@@ -846,21 +862,15 @@ CFLAGS+=       -fno-strict-aliasing
 .endif
 .endif
 
-.if defined(USE_CSTD)
-CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
+.for lang in C CXX
+.if defined(USE_${lang}STD)
+${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 .endif
 
-.if defined(CFLAGS_${ARCH})
-CFLAGS+=	${CFLAGS_${ARCH}}
+.if defined(${lang}FLAGS_${ARCH})
+${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
 .endif
-
-.if defined(USE_CXXSTD)
-CXXFLAGS:=	${CXXFLAGS:N-std=*} -std=${USE_CXXSTD}
-.endif
-
-.if defined(CXXFLAGS_${ARCH})
-CXXFLAGS+=	${CXXFLAGS_${ARCH}}
-.endif
+.endfor
 
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
@@ -878,13 +888,13 @@ MAKE_JOBS_NUMBER=	${MAKE_JOBS_NUMBER_LIMIT}
 MAKE_JOBS_NUMBER=	${_MAKE_JOBS_NUMBER}
 .endif
 _MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
-BUILD_FAIL_MESSAGE+=Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
+BUILD_FAIL_MESSAGE+=	Try to set MAKE_JOBS_UNSAFE=yes and rebuild before reporting the failure to the maintainer.
 .endif
 
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
-FETCH_ENV?=	SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
+FETCH_ENV?=		SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-AFpr
 FETCH_REGET?=	1
@@ -914,6 +924,9 @@ PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -d ${PATCH_WRKSRC} -E ${PATCH_DIST_STRIP}
 PATCH_DEBUG_TMP=	no
 PATCH_ARGS?=	-d ${PATCH_WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -d ${PATCH_WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP}
+.endif
+.if !defined(QUIET)
+PATCH_SILENT=		PATCH_SILENT=yes
 .endif
 .if defined(BATCH)
 PATCH_ARGS+=		--batch
