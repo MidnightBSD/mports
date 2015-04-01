@@ -9,6 +9,8 @@ COMMENT=	Kevent based inotify compatible library
 
 LICENSE=	mit
 
+FAKE_OPTS=	trueprefix
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	dmatveev
 GH_PROJECT=	libinotify-kqueue
