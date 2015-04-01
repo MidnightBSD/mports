@@ -3,6 +3,7 @@
 
 PORTNAME=	scponly
 PORTVERSION=	4.8.20110526
+PORTREVISION=	1
 CATEGORIES=	shells security
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}-snapshots
@@ -10,10 +11,9 @@ DISTNAME=	${PORTNAME}-20110526
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tiny shell that only permits scp and sftp
-LICENSE=	bsd2
+COMMENT=	Tiny shell that only permits scp and sftp
 
-MAN8=		scponly.8
+LICENSE=	bsd2
 
 PORTDOCS=	BUILDING-JAILS.TXT INSTALL README SECURITY
 
@@ -107,27 +107,6 @@ post-patch:
 	@${ECHO_MSG} "this directory after authentication."
 
 post-install:
-	@${ECHO_MSG} "Updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/scponly /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/scponly) > /etc/shells
-	@${RM} /etc/shells.bak
-.if defined(WITH_SCPONLY_CHROOT)
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/sbin/scponlyc /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/sbin/scponlyc) > /etc/shells
-	@${RM} /etc/shells.bak
-	@${MKDIR} ${EXAMPLESDIR}
-	@${INSTALL_SCRIPT} ${WRKSRC}/setup_chroot.sh ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/config.h ${EXAMPLESDIR}
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "To setup chroot cage, run the following commands:"
-	@${ECHO_MSG} "  1) cd ${EXAMPLESDIR}/ && ${SH} setup_chroot.sh"
-	@${ECHO_MSG} "  2) Set scponlyc_enable=\"YES\" in /etc/rc.conf"
-	@${ECHO_MSG} "  3) Run ${PREFIX}/etc/rc.d/scponly start"
-	@${ECHO_MSG} ""
-.endif
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
 	@${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
@@ -137,6 +116,6 @@ post-install:
 	@${ECHO_MSG} "please read:"
 	@${ECHO_MSG} "${DOCSDIR}/SECURITY"
 	@${ECHO_MSG} ""
-.endif
+
 
 .include <bsd.port.post.mk>
