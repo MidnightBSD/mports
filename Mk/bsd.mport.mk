@@ -766,7 +766,7 @@ ${_f}_ARGS:=    ${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${_USES_POST}
-.include "${PORTSDIR}/Mk/extensions}/${f:C/\:.*//}.mk"
+.include "${PORTSDIR}/Mk/extensions/${f:C/\:.*//}.mk"
 .endfor
 
 .if defined(USE_XORG)
