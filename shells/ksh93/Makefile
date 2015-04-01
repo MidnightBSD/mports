@@ -1,6 +1,6 @@
 # $MidnightBSD$
 #
-# Make sure that your configuration DOES NOT set AN?Y gcc-related
+# Make sure that your configuration DOES NOT set ANY gcc-related
 # variables.  ksh93 will not compile if you set even the seemingly
 # most unrelated variable related to gcc configuration.  This means
 # especially any flag which attempts to set the cputype.  Setting the
@@ -45,8 +45,8 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh ${STAGEDIR}${PREFIX}/bin/ksh93
 	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/ksh93.1
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${STAGEDIR}${EXAMPLESDIR}/
+	${MKDIR} ${EXAMPLESDIR}/
+	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${EXAMPLESDIR}/
 
 test: build
 	@cd ${WRKSRC}/src/cmd/ksh93/tests/ && \
