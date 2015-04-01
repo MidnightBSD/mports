@@ -2,7 +2,7 @@
 
 PORTNAME=	mc-light
 PORTVERSION=	4.1.40.p9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc shells
 MASTER_SITES=	http://mc.linuxinside.com/Releases/
 DISTNAME=	mc-${PORTVERSION:S/.p9/-pre9/}
@@ -16,12 +16,7 @@ RUN_DEPENDS=	gawk:${PORTSDIR}/lang/gawk
 
 CONFLICTS=	mc-4.7*
 
-OPTIONS_DEFINE=	NLS SUBSHELL MC_IN_MC
-SUBSHELL_DESC=	Build with subshell support (only for bash!)
-MC_IN_MC_DESC=	Allow run mc inside mc (useful for mcedit)
-
-USES=		pkgconfig iconv
-USE_GMAKE=	yes
+USES=		pkgconfig iconv gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-included-slang \
 		--with-gettext \
@@ -30,30 +25,25 @@ CONFIGURE_ARGS+=--with-included-slang \
 		--without-gpm-mouse \
 		--with-edit
 
-MAN1=		mc.1 mcedit.1
-MAN8=		mcserv.8
+OPTIONS_DEFINE=	NLS SUBSHELL MC_IN_MC
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+SUBSHELL_DESC=	Build with subshell support (only for bash!)
+SUBSHELL_CONFIGURE_WITH=	subshell
 
-.if ! ${PORT_OPTIONS:MSUBSHELL}
-CONFIGURE_ARGS+=--without-subshell
-.endif
+MC_IN_MC_DESC=	Allow run mc inside mc (useful for mcedit)
+MC_IN_MC_CPPFLAGS=	-DMC_IN_MC_ALLOWED
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
 
-.if ${PORT_OPTIONS:MMC_IN_MC}
-CPPFLAGS+=	-DMC_IN_MC_ALLOWED
-.endif
+post-patch:
+	@${REINPLACE_CMD} '/destdir/ s|gnulocaledir|DESTDIR)$$(&|' \
+		${WRKSRC}/po/Makefile.in.in
 
 post-install:
 .for i in a arfs audio cpio deb esp ftplist hp48 iso lha lslR mailfs patchfs rar rpm trpm uarj uha zip zoo
-	${CHMOD} 755 ${PREFIX}/share/mc/extfs/${i}
+	${CHMOD} 755 ${PREFIX}/share/mc/extfs/${i} 
 .endfor
 
 .include <bsd.port.mk>
