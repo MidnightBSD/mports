@@ -18,5 +18,6 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-cdio
 CPPFLAGS+=	-DICONV_CONST="const" -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
