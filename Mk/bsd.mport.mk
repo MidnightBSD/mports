@@ -531,7 +531,8 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
 PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} \
-		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
+		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
+		RESETPREFIX=${TRUE_PREFIX}
 SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
@@ -553,15 +554,25 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .endif
 .endif
 
+.if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
+.if !defined(INSTALL_STRIPPED)
+STRIP=  #none
+MAKE_ENV+=      DONTSTRIP=yes
+STRIP_CMD=      ${TRUE}
+.endif
+DEBUG_FLAGS?=	-g
+CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
+.if defined(INSTALL_TARGET)
+INSTALL_TARGET:=	${INSTALL_TARGET:S/^install-strip$/install/g}
+.endif
+.endif
+
 .if defined(WITH_SSP) || defined(WITH_SSP_PORTS)
 .include "${PORTSDIR}/Mk/components/ssp.mk"
 .endif
 
-.if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
-.undef STRIP
-DEBUG_FLAGS?=	-g
-CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
-.endif
+# XXX PIE support to be added here
+MAKE_ENV+=	NO_PIE=yes
 
 .if defined(NOPORTDOCS)
 PLIST_SUB+=	PORTDOCS="@comment "
