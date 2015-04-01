@@ -46,6 +46,7 @@ SUBDIR += libsecret
 SUBDIR += libssh
 SUBDIR += libssh2
 SUBDIR += libtasn1
+SUBDIR += libzrtpcppcore
 SUBDIR += linux-f10-cyrus-sasl2
 SUBDIR += linux-f10-gnutls
 SUBDIR += linux-f10-libgcrypt
