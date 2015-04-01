@@ -1,20 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	libspiro
-DISTVERSION=	20071029
+DISTVERSION=	0.3.20150131
+PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF
-DISTNAME=	${PORTNAME}_src-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library to convert clothoid splines into bezier splines
-LICENSE=	gpl2
+COMMENT=	Library to convert clothoid splines into Bezier splines
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	fontforge
+GH_COMMIT=	d12f7f7
+
+USES=		gmake libtool autoreconf
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
