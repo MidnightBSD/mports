@@ -2,9 +2,10 @@
 
 PORTNAME=		f10
 PORTVERSION=		10
-PORTREVISION=		3
+PORTREVISION=		4
 CATEGORIES=		emulators linux
-MASTER_SITES=		CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
+MASTER_SITES=		FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION} \
+			FEDORA_LINUX/../releases/${PORTVERSION}/Everything/${LINUX_RPM_ARCH}/os/Packages/
 PKGNAMEPREFIX=		linux_base-
 DISTFILES=		${BIN_DISTFILES} ${SRC_DISTFILES}
 DIST_SUBDIR=		rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
@@ -37,6 +38,7 @@ BIN_DISTFILES=	basesystem-10.0-1.noarch.rpm \
 		glib2-2.18.4-2.fc10.${LINUX_RPM_ARCH}.rpm \
 		glibc-2.9-3.${LINUX_RPM_ARCH}.rpm \
 		glibc-common-2.9-3.${LINUX_RPM_ARCH}.rpm \
+		gmp-4.2.2-8.fc10.${LINUX_RPM_ARCH}.rpm \
 		grep-2.5.1a-61.fc10.${LINUX_RPM_ARCH}.rpm \
 		info-4.12-4.fc10.${LINUX_RPM_ARCH}.rpm \
 		keyutils-libs-1.2-3.fc9.${LINUX_RPM_ARCH}.rpm \
@@ -60,7 +62,7 @@ BIN_DISTFILES=	basesystem-10.0-1.noarch.rpm \
 		zlib-1.2.3-18.fc9.${LINUX_RPM_ARCH}.rpm
 
 .if defined(PACKAGE_BUILDING)
-MASTER_SITES+= FEDORA_LINUX
+MASTER_SITES+=	FEDORA_LINUX
 MASTER_SITE_SUBDIR+= ../updates/${PORTVERSION}/SRPMS \
 		../releases/${PORTVERSION}/Everything/source/SRPMS/
 
@@ -83,6 +85,7 @@ SRC_DISTFILES+=	acl-2.2.47-3.fc10.src.rpm \
 		glib-1.2.10-32.fc10.src.rpm \
 		glib2-2.18.2-3.fc10.src.rpm \
 		glibc-2.9-2.src.rpm \
+		gmp-4.2.2-8.fc10.src.rpm \
 		grep-2.5.1a-61.fc10.src.rpm \
 		keyutils-1.2-3.fc9.src.rpm \
 		krb5-1.6.3-16.fc10.src.rpm \
@@ -110,7 +113,7 @@ LINUX_RPM_ARCH=		i386
 USE_LINUX_PREFIX=	yes
 NO_WRKSUBDIR=		yes
 DISTINFO_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
-PLIST_SUB=		GLIBCVER="2.9"
+PLIST_SUB=		GLIBCVER="2.9" LINUXBASE=${LINUXBASE}
 
 EXTRACT_ONLY=		${BIN_DISTFILES}
 EXTRACT_CMD?=		${TAR}
@@ -198,6 +201,10 @@ do-build:
 # Restore the status quo for usr/bin/*db4* files
 #	@${CHMOD} u-w ${WRKSRC}/usr/bin/*db4*
 
+# Install locales
+	@${MV} ${WRKSRC}/usr/lib/locale/locale-archive.tmpl \
+		${WRKSRC}/usr/lib/locale/locale-archive
+
 do-install:
 #
 # Handle the loading of the linux loadable kernel module if required.
@@ -206,7 +213,7 @@ do-install:
 #
 # Do install without using linux rpm system
 #
-	@cd ${WRKSRC} && ${FIND} * -type d -exec ${MKDIR} "${PREFIX}/{}" \;
+	@cd ${WRKSRC} && ${FIND} * ! -path "fake*" -type d -exec ${MKDIR} "${PREFIX}/{}" \;
 	@cd ${WRKSRC} && ${FIND} * ! -type d \
 		| ${CPIO} -pm -R root:wheel ${PREFIX}
 
