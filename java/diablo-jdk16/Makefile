@@ -21,7 +21,6 @@ DEPRICATED=	Should use openjdk6 now.
 
 USE_BZIP2=	yes
 USE_XORG+=	xi xp xt xtst
-ONLY_FOR_ARCHS=	amd64 i386
 JDK_VERSION=	1.6.0
 RELEASE_VERSION=07
 BUILD_VERSION=	02
