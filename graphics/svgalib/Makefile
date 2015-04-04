@@ -11,8 +11,6 @@ COMMENT=	Low level console graphics library
 
 LICENSE=	publicdom
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 #USE_DOS2UNIX=  utils/gtf/gtf.h utils/gtf/scitech.h
 USES=	gmake uidfix shebangfix
 SHEBANG_FILES=	utils/svgakeymap

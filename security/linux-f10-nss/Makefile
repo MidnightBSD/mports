@@ -12,7 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Security Services (Linux Fedora 10)
 LICENSE=	mpl
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	nspr sqlite3
 LINUX_DIST_VER=	10

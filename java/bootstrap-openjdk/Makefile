@@ -15,8 +15,6 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 
-ONLY_FOR_ARCH=	amd64 i386
-
 DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
 DISTVERSION_amd64=	r351880
 DISTVERSION_i386=	r351880
