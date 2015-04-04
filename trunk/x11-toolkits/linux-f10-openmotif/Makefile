@@ -12,11 +12,11 @@ DIST_SUBDIR=	rpm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif toolkit Linux libraries
+
 LICENSE=	other
 
 CONFLICTS=	linux-openmotif-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	xorglibs
 LINUX_DIST_VER=	10

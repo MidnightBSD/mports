@@ -24,7 +24,6 @@ LICENSE=	lgpl
 
 CONFLICTS=	linux-gtk2-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 # these libraries are required by gtk-query-immodules-2.0 or
