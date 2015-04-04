@@ -23,7 +23,6 @@ RESTRICTED=	cannot distribute under any means
 NO_CDROM=	Redistribution is limited
 NO_BUILD=	yes
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
 USES=		zip:infozip
 

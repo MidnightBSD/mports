@@ -19,7 +19,6 @@ LICENSE_PERMS=	dist-mirror pkg-mirror
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	YES
 RESTRICTED=	30 day evaluation license
 USE_RC_SUBR=	ncftpd

@@ -126,7 +126,6 @@ ALWAYS_KEEP_DISTFILES=	yes
 
 CONFLICTS=		linux_base-gentoo* linux_base-f10-[0-9]* linux-glib2-*
 
-ONLY_FOR_ARCHS=		i386 amd64
 LINUX_RPM_ARCH=		i686
 USE_LINUX_PREFIX=	yes
 NO_WRKSUBDIR=		yes

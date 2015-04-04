@@ -18,7 +18,6 @@ BUILD_DEPENDS?=	#
 RUN_DEPENDS?=	#
 
 PROJECTHOST=	bsdistfiles
-ONLY_FOR_ARCHS=	i386 amd64
 
 #USE_BZIP2=	yes
 USE_GMAKE=	yes
