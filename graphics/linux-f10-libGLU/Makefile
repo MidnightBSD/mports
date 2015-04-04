@@ -14,7 +14,6 @@ LICENSE=	x11
 
 CONFLICTS=	linux_dri-[0-9]* linux-libGLU-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 LINUX_NAME=	mesa-libGLU
 LINUX_DIST_VER=	10

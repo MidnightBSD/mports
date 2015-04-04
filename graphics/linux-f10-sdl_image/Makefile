@@ -14,7 +14,6 @@ LICENSE=	lgpl
 
 CONFLICTS=	linux-sdl_image-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	jpeg png sdl12 tiff
 LINUX_NAME=	SDL_image
