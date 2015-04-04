@@ -4,9 +4,7 @@
 PORTNAME=	freealut
 PORTVERSION=	1.1.0
 CATEGORIES=	audio linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free implementation of OpenAL's ALUT standard (Linux Fedora 10)
@@ -14,9 +12,10 @@ LICENSE=	lgpl
 
 CONFLICTS=	linux-freealut-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	openal
-LINUX_DIST_VER=	10
+
 RPMVERSION=	6.fc9
 USE_LDCONFIG=	yes
 
