@@ -1,7 +1,5 @@
 %%GUI%%bin/eview
 bin/evim
-@comment bin/ex
-%%GUI%%@comment bin/gex
 %%GUI%%bin/gview
 %%GUI%%bin/gvim
 %%GUI%%bin/gvimdiff
@@ -14,7 +12,8 @@ bin/vim
 bin/vimdiff
 bin/vimtutor
 bin/xxd
-@comment bin/view
+%%DEFAULT_VIMRC%%@sample %%ETCDIR%%/gvimrc.sample
+%%DEFAULT_VIMRC%%@sample %%ETCDIR%%/vimrc.sample
 %%GUI%%%%NON_LITE%%%%NLS%%man/fr/man1/eview.1.gz
 %%NON_LITE%%%%NLS%%man/fr/man1/evim.1.gz
 %%GUI%%%%NON_LITE%%%%NLS%%man/fr/man1/gview.1.gz
@@ -184,23 +183,3 @@ man/man1/xxd.1.gz
 %%NON_LITE%%%%NLS%%man/ru.UTF-8/man1/vimdiff.1.gz
 %%NON_LITE%%%%NLS%%man/ru.UTF-8/man1/vimtutor.1.gz
 %%NON_LITE%%%%NLS%%man/ru.UTF-8/man1/xxd.1.gz
-%%NON_LITE%%%%NLS%%@dirrmtry man/ru.UTF-8/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/ru.UTF-8
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl.UTF-8/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl.UTF-8
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl.ISO8859-2/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl.ISO8859-2
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/pl
-%%NON_LITE%%%%NLS%%@dirrmtry man/it.UTF-8/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/it.UTF-8
-%%NON_LITE%%%%NLS%%@dirrmtry man/it.ISO8859-1/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/it.ISO8859-1
-%%NON_LITE%%%%NLS%%@dirrmtry man/it/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/it
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr.UTF-8/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr.UTF-8
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr.ISO8859-1/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr.ISO8859-1
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr/man1
-%%NON_LITE%%%%NLS%%@dirrmtry man/fr
