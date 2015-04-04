@@ -16,7 +16,6 @@ CONFLICTS=	linux-allegro-[0-9]*
 
 USE_LINUX_RPM=		yes
 USE_LINUX_APPS=		xorglibs
-ONLY_FOR_ARCHS=		i386 amd64
 LINUX_DIST_VER=		10
 RPMVERSION=		10.fc10
 USE_LDCONFIG=		yes
