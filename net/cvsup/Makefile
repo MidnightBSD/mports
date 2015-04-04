@@ -12,7 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	General network file distribution system optimized for CVS (GUI version)
 
 CONFLICTS?=	cvsup-without-gui-[0-9]*
-ONLY_FOR_ARCHS=	amd64 i386 sparc64
 USE_RC_SUBR=	cvsupd
 
 .include <bsd.port.pre.mk>
