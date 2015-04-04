@@ -14,7 +14,6 @@ LICENSE=	other
 
 CONFLICTS=	linux-png-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 LINUX_NAME=	libpng
 LINUX_DIST_VER=	10

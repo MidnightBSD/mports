@@ -14,7 +14,6 @@ LICENSE=	bsd2
 
 CONFLICTS=	linux-tiff-[0-9]*
 
-ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	jpeg
 LINUX_NAME=	lib${PORTNAME}
