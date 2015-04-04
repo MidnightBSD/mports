@@ -14,7 +14,6 @@ LICENSE=	gpl2
 
 CONFLICTS=	linux-libg2c-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 LINUX_NAME=	compat-libf2c-34
 LINUX_DIST_VER=	10
