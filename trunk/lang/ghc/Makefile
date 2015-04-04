@@ -12,8 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler for the functional language Haskell
 LICENSE=	bsd3
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 GHC_VERSION=		${PORTVERSION}
 BOOT_GHC_VERSION=	7.4.1
 HSCOLOUR_VERSION=	1.20.2
