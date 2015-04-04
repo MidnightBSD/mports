@@ -15,7 +15,6 @@ LICENSE=	lgpl
 
 CONFLICTS=	linux-gtk-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	xorglibs
 LINUX_NAME=	${PORTNAME}+

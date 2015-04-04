@@ -12,11 +12,11 @@ PKGNAMEPREFIX=	linux-f10-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The pango library (Linux Fedora 10)
+
 LICENSE=	lgpl
 
 CONFLICTS=	linux-pango-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 # these libraries are required by pango-querymodules
 USE_LINUX_APPS=	cairo expat fontconfig xorglibs
