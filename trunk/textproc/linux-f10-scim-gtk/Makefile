@@ -15,7 +15,6 @@ LICENSE=	unknown
 
 CONFLICTS=	linux-scim-gtk-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	gtk2 scimlibs
 LINUX_DIST_VER=	10
