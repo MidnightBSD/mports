@@ -11,7 +11,6 @@ COMMENT=	State Threads Library for Internet Applications
 LICENSE=	mpl
 
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 
 DOCS=		fig.gif notes.html reference.html st.html \
 		timeout_heap.txt
