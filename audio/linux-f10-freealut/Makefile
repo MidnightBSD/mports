@@ -19,7 +19,6 @@ USE_LINUX_APPS=	openal
 LINUX_DIST_VER=	10
 RPMVERSION=	6.fc9
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 
 PLIST_FILES=	usr/lib/libalut.so.0 usr/lib/libalut.so.0.1.0
 DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}

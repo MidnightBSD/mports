@@ -14,7 +14,6 @@ LICENSE=	bsd3
 
 CONFLICTS=	linux-libvorbis-[0-9]* 
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	libogg
 LINUX_DIST_VER=	10
