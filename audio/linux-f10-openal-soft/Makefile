@@ -12,7 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3D positional spatialized sound library (Linux Fedora 10)
 LICENSE=	gpl2
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	alsalib arts esound
 LINUX_DIST_VER=	10
