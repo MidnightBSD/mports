@@ -7,7 +7,7 @@
 # 
 # Ports can use this as follows:
 #
-# USE_LINUX_APPS=    esound xorglibs
+# USE_LINUX_APPS=	esound xorglibs
 #
 # .include <bsd.port.mk>
 #
@@ -36,16 +36,17 @@ Linux_APPS_Pre_Include=			linux_apps.mk
 
 Linux_APPS_Post_Include=	linux_apps.mk
 
-# OVERRIDE_LINUX_NONBASE_PORTS may be used only with LINUX_OSRELEASE=2.6.16
-.  if (${LINUX_OSRELEASE} == "2.6.16") && defined(OVERRIDE_LINUX_NONBASE_PORTS)
-.    if ${OVERRIDE_LINUX_NONBASE_PORTS} == "f10"
-LINUX_DIST_SUFFIX=	-f10
-.    else
-IGNORE=		valid values for OVERRIDE_LINUX_NONBASE_PORTS are: \"f10\"
-.    endif
-.  elif ${OSVERSION} < 4004 || ${LINUX_OSRELEASE} == "2.4.2"
-# default for OSVERSION < 4004
-LINUX_DIST_SUFFIX=
+#new
+. if defined(OVERRIDE_LINUX_NONBASE_PORTS)
+.        if ${OVERRIDE_LINUX_NONBASE_PORTS} == "f10" || ${OVERRIDE_LINUX_NONBASE_PORTS} == "c6"
+LINUX_DIST_SUFFIX=      -${OVERRIDE_LINUX_NONBASE_PORTS}
+.        else
+IGNORE=         valid values for OVERRIDE_LINUX_NONBASE_PORTS are: \"f10\" and \"c6\"
+.        endif
+. elif defined(USE_LINUX)
+.        if ${USE_LINUX} == "f10" || ${USE_LINUX} == "c6"
+LINUX_DIST_SUFFIX=      -${USE_LINUX}
+.        endif
 .  else
 # default for OSVERSION >= 4004
 LINUX_DIST_SUFFIX=	-f10
@@ -56,7 +57,7 @@ WEB_AUTH=			nvu
 # Non-version specific components
 _LINUX_APPS_ALL=	allegro alsalib alsa-plugins-oss alsa-plugins-pulseaudio \
 					arts aspell atk avahi-libs cairo cups-libs curl dri devtools esound expat \
-					flac fontconfig freealut gdkpixbuf gnutls gtk2 hicontheme imlib jpeg libaudiofile \
+					flac fontconfig freealut gdkpixbuf gdkpixbuf2 gnutls gtk2 hicontheme imlib jpeg libaudiofile \
 					libasyncns libg2c libgcrypt libglade2 libglu libgpg-error libmng libogg \
 					libpciaccess libsigcpp20 libsndfile libtasn1 libtheora libvorbis libxml2 mikmod \
 					naslibs ncurses-base openal openmotif openssl openssl-compat pango png \
@@ -201,6 +202,15 @@ gdkpixbuf_f10_FILE=	${LINUXBASE}/usr/lib/libgdk_pixbuf.so.2
 gdkpixbuf_DETECT=	${gdkpixbuf${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 gdkpixbuf_PORT=		${PORTSDIR}/graphics/linux${LINUX_DIST_SUFFIX}-gdk-pixbuf
 
+gdkpixbuf2_f10_FILE=${LINUXBASE}/usr/lib/libgdk_pixbuf-2.0.so.0
+gdkpixbuf2_c6_FILE=	${LINUXBASE}/usr/lib/libgdk_pixbuf-2.0.so.0
+gdkpixbuf2_DETECT=	${gdkpixbuf2${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
+.if ${USE_LINUX} == "f10"
+gdkpixbuf2_PORT=	${PORTSDIR}/x11-toolkits/linux${LINUX_DIST_SUFFIX}-gtk2
+.else # default to CentOS 6.
+gdkpixbuf2_PORT=	${PORTSDIR}/graphics/linux${LINUX_DIST_SUFFIX}-gdk-pixbuf2
+.endif
+
 gnutls_f10_FILE=	${LINUXBASE}/usr/lib/libgnutls.so.26.4.6
 gnutls_c6_FILE=		${LINUXBASE}/usr/lib/libgnutls.so.26.14.12
 gnutls_DETECT=		${gnutls${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
@@ -208,10 +218,10 @@ gnutls_PORT=		${PORTSDIR}/security/linux${LINUX_DIST_SUFFIX}-gnutls
 gnutls_DEPENDS=		libtasn1 libgcrypt libgpg-error
 
 gtk2_f10_FILE=		${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0.1400.7
-gtk2_c6_FILE=		${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0.2000.1
+gtk2_c6_FILE=		${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0.2400.23
 gtk2_DETECT=		${gtk2${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 gtk2_PORT=			${PORTSDIR}/x11-toolkits/linux${LINUX_DIST_SUFFIX}-gtk2
-gtk2_DEPENDS=		atk jpeg png pango tiff xorglibs
+gtk2_DEPENDS=		atk gdkpixbuf2 jpeg png pango tiff xorglibs
 
 hicontheme_f10_FILE=	${LINUXBASE}/usr/share/icons/hicolor
 hicontheme_c6_FILE=	${LINUXBASE}/usr/share/icons/hicolor
@@ -276,10 +286,11 @@ libogg_DETECT=		${libogg${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 libogg_PORT=		${PORTSDIR}/audio/linux${LINUX_DIST_SUFFIX}-libogg
 
 libpciaccess_c6_FILE=		${LINUXBASE}/usr/lib/libpciaccess.so.0.11.1
-libpciaccess_DETECT=		${libogg${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
+libpciaccess_DETECT=		${libpciaccess${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 libpciaccess_PORT=		${PORTSDIR}/devel/linux${LINUX_DIST_SUFFIX}-libpciaccess
 
 libsigcpp20_f10_FILE=	${LINUXBASE}/usr/lib/libsigc-2.0.so.0
+libsigcpp20_c6_FILE=	${LINUXBASE}/usr/lib/libsigc-2.0.so.0
 libsigcpp20_DETECT=	${libsigcpp20${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 libsigcpp20_PORT=	${PORTSDIR}/devel/linux${LINUX_DIST_SUFFIX}-libsigc++20
 
@@ -331,7 +342,7 @@ naslibs_PORT=		${PORTSDIR}/audio/linux${LINUX_DIST_SUFFIX}-nas-libs
 naslibs_DEPENDS=	xorglibs
 
 openldap_f10_FILE=	${LINUXBASE}/usr/lib/libldap-2.4.so.2.2.0
-openldap_c6_FILE=	${LINUXBASE}/lib/libldap-2.4.so.2.5.6
+openldap_c6_FILE=	${LINUXBASE}/lib/libldap-2.4.so.2.10.2
 openldap_DETECT=	${openldap${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 openldap_PORT=		${PORTSDIR}/net/linux${LINUX_DIST_SUFFIX}-openldap
 
@@ -404,7 +415,7 @@ sdl12_PORT=			${PORTSDIR}/devel/linux${LINUX_DIST_SUFFIX}-sdl12
 sdl12_DEPENDS=		xorglibs
 
 sdlimage_f10_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.1.5
-sdlimage_c6_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.8.2
+sdlimage_c6_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.8.4
 sdlimage_DETECT=	${sdlimage${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 sdlimage_PORT=		${PORTSDIR}/graphics/linux${LINUX_DIST_SUFFIX}-sdl_image
 sdlimage_DEPENDS=	jpeg png sdl12 tiff
