@@ -16,7 +16,6 @@ LICENSE=	agg
 
 USES=		tar:bzip2
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat

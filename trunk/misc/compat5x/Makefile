@@ -21,7 +21,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		tar:bzip2
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	amd64 i386
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat
 TARGET_DIR=	${PREFIX}/lib/compat
