@@ -36,7 +36,6 @@ USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
 JDK_REVISION=	45
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
-ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
 APP_HOME=	${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}
 PACKED_JARS=	jre/lib/charsets jre/lib/deploy jre/lib/ext/localedata jre/lib/javaws jre/lib/jsse jre/lib/plugin jre/lib/rt lib/tools
