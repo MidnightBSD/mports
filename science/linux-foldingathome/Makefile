@@ -13,7 +13,6 @@ COMMENT=	Distributed client for Protein Folding
 LICENSE=        unknown
 
 USE_LINUX=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 
 PLIST_FILES=	share/${PORTNAME}/${DISTNAME}${EXTRACT_SUFX} \
 		bin/FoldingAtHome

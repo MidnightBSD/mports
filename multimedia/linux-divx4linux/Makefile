@@ -20,7 +20,6 @@ LICENSE=	restricted
 
 RESTRICTED=	unsure of licensing issues
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_PREFIX=	yes
 USE_LINUX=	yes
 WRKSRC=	${WRKDIR}/${PORTNAME}-${RELEASE_DATE}

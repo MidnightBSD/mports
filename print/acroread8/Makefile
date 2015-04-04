@@ -17,7 +17,6 @@ RUN_DEPENDS=	acroreadwrapper>=0.0.20100806:${PORTSDIR}/print/acroreadwrapper
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
 
-ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
 USE_LINUX_APPS=	cups-libs gtk2 pango libgcrypt libgpg-error
 USE_BZIP2=	yes

@@ -13,7 +13,6 @@ LICENSE=	bsd2
 
 RUN_DEPENDS=	${LOCALBASE}/lib/linux-libgtkembedmoz/libgtkembedmoz.so:${PORTSDIR}/www/linux-libgtkembedmoz
 
-ONLY_FOR_ARCHS=	amd64 i386
 PLIST_FILES=	bin/acroread8 bin/acroread9 bin/acroread \
 		${KMODDIR}/linux_adobe.ko
 PLIST_DIRS=	${KMODDIR}

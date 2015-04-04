@@ -13,7 +13,6 @@ LICENSE=	restricted
 EXTRACT_DEPENDS=	rpm2cpio.pl:${PORTSDIR}/archivers/rpm2cpio
 
 WRKSRC=		${WRKDIR}/opt/helix/HelixPlayer
-ONLY_FOR_ARCHS=	i386 amd64
 USE_GCPIO=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	gtk2 xorglibs

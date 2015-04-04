@@ -21,7 +21,6 @@ NO_WRKSUBDIR=	yes
 
 USE_LINUX=	yes
 USE_LINUX_APPS=	gdkpixbuf gtk
-ONLY_FOR_ARCHS=	i386 amd64
 STRIP=
 
 SHARE_FILES=	yahoo_gnome.png yahoo_kde.xpm ymessenger.desktop\
