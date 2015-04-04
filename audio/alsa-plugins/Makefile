@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.28
+PORTVERSION=	1.0.29
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/plugins \
 		GENTOO/distfiles
@@ -9,12 +9,12 @@ MASTER_SITES=	ALSA/plugins \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library plugins
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	asound:${PORTSDIR}/audio/alsa-lib
 
 GNU_CONFIGURE=	yes
-USES=		pkgconfig tar:bzip2
+USES=		libtool:keepla pkgconfig tar:bzip2
 LDFLAGS+=	-L${LOCALBASE}/lib
 EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
 
