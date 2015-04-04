@@ -11,12 +11,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
-
-MAN8=		extipl.8
-MANCOMPRESSED=	yes
 
 post-patch:
 	cd ${WRKSRC}; \

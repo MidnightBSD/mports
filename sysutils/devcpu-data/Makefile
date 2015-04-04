@@ -15,8 +15,6 @@ LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 DATADIR=	${PREFIX}/share/cpucontrol
 
 USE_RC_SUBR=	microcode_update
