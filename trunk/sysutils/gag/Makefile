@@ -15,7 +15,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Boot Manager
 LICENSE=	gpl2
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_ZIP=	yes
 NO_BUILD=	yes
 
