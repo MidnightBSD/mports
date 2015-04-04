@@ -80,7 +80,6 @@ CONFIGURE_ARGS+=--enable-long-double
 FFTW3_SUFX=	q
 FFTW3_PKGNAMESUFFIX=	-quad
 CONFIGURE_ARGS+=--enable-quad-precision
-ONLY_FOR_ARCHS=		i386 amd64
 USE_GCC=	yes
 .endif
 
