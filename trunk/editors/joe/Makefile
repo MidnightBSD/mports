@@ -2,7 +2,7 @@
 
 PORTNAME=	joe
 PORTVERSION=	3.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 
@@ -16,8 +16,7 @@ RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 
 CONFLICTS=	jupp-[0-9]*
 
-USES=		gmake iconv
-USE_NCURSES=	yes
+USES=		gmake iconv ncurses
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -liconv"
