@@ -64,6 +64,7 @@ SUBDIR += libcdio-paranoia
 SUBDIR += libchk
 SUBDIR += libsunacl
 SUBDIR += libutempter
+SUBDIR += linux-f10-procps
 SUBDIR += lmmon
 SUBDIR += lsof
 SUBDIR += mbmon
