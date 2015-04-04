@@ -4,19 +4,19 @@
 PORTNAME=	libvorbis
 PORTVERSION=	1.2.0
 CATEGORIES=	audio linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio compression codec library (Linux Fedora 10)
+
 LICENSE=	bsd3
 
 CONFLICTS=	linux-libvorbis-[0-9]* 
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	libogg
-LINUX_DIST_VER=	10
+
 RPMVERSION=	5.fc10
 USE_LDCONFIG=	yes
 
