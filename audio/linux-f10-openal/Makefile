@@ -4,20 +4,19 @@
 PORTNAME=	openal
 PORTVERSION=	0.0.9
 CATEGORIES=	audio linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A 3D positional spatialized sound library (Linux Fedora 10)
+COMMENT=	3D positional spatialized sound library (Linux Fedora 10)
+
 LICENSE=	gpl2
 
 CONFLICTS=	linux-openal-[0-9]* 
 
-ONLY_FOR_ARCHS=	i386 amd64
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	alsalib arts esound libaudiofile libvorbis sdl12
-LINUX_DIST_VER=	10
+
 RPMVERSION=	0.15.20060204cvs.fc9
 USE_LDCONFIG=	yes
 
