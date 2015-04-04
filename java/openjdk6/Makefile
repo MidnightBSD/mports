@@ -92,8 +92,6 @@ RUN_DEPENDS+=  ${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 # avoid ARCH in MAKEFLAGS, breaks build
 NOPRECIOUSMAKEVARS=	yes
 
-ONLY_FOR_ARCHS=	amd64 i386
-
 BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk6 \
 		${LOCALBASE}/bootstrap-openjdk
 
