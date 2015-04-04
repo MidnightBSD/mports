@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for Intel integrated graphics chipsets
 LICENSE=	mit
 
-ONLY_FOR_ARCHS=	amd64 i386
 USE_GL=		gl
 
 USE_LDCONFIG=	yes

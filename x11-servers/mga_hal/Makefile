@@ -19,8 +19,6 @@ LICENSE_PERMS=	no-dist-sell no-dist-mirror no-pkg-sell
 
 RESTRICTED=	Matrox drivers may not be distributed.
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
