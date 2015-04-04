@@ -13,7 +13,6 @@ LICENSE=	apache2
 USE_JAVA=	yes
 NO_BUILD=	yes
 JAVA_VERSION=	1.6+
-ONLY_FOR_ARCHS=	i386 amd64
 USE_RC_SUBR=	elasticsearch
 SUB_FILES+=	elasticsearch
 

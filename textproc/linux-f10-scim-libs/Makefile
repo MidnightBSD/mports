@@ -14,7 +14,6 @@ LICENSE=	unknown
 
 CONFLICTS=	linux-scim-libs-[0-9]*
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	gtk2
 LINUX_DIST_VER=	10
