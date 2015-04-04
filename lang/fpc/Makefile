@@ -26,7 +26,6 @@ LICENSE_COMB=	multi
 
 PROJECTHOST=	bsdistfiles
 USES=		gmake iconv
-ONLY_FOR_ARCHS=	i386 amd64
 
 OPTIONSFILE=	${PORT_DBDIR}/${PORTNAME}${PKGNAMESUFFIX}/options
 
