@@ -1,32 +1,29 @@
 # $MidnightBSD$
 
 PORTNAME=	mg
-PORTVERSION=	20110905
+PORTVERSION=	20140414
 CATEGORIES=	editors
 MASTER_SITES=	http://homepage.boetes.org/software/mg/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A small, fast Emacs-like editor
+COMMENT=	Small, fast Emacs-like editor
+
 LICENSE=	publicdom
 
-MAN1=	mg.1
-MANCOMPRESSED=	no
+PLIST_FILES=	bin/mg man/man1/mg.1.gz
 PORTDOCS=	README tutorial
-HAS_CONFIGURE=	yes
+
+OPTIONS_DEFINE=	DOCS
 
 pre-configure:
-	@${REINPLACE_CMD} -e 's|-Wno-error=unused-but-set-variable||g' \
-		-e '/^CC=/d' -e 's|-g -Wall|-Wall|' -e 's|/usr/local|${PREFIX}|' \
-		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|__dead|__dead2|' ${WRKSRC}/main.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN}  ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
-.if !defined(NOPORTDOCS)
+	${INSTALL_MAN}  ${WRKSRC}/${PORTNAME}.1 ${MAN1PREFIX}/man/man1
 	${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
