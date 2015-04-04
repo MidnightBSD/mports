@@ -15,8 +15,6 @@ USE_RC_SUBR=	915resolution.sh
 
 DOCS=		README.txt LICENSE.txt chipset_info.txt changes.log
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 .include <bsd.port.pre.mk>
 
 do-build:
