@@ -441,6 +441,7 @@ SUBDIR += qt4-qdoc3
 SUBDIR += qt4-qmlviewer
 SUBDIR += qt4-qt3support
 SUBDIR += qt4-qtestlib
+SUBDIR += qt4-qtsolutions-singleapplication
 SUBDIR += qt4-qvfb
 SUBDIR += qt4-rcc
 SUBDIR += qt4-script
