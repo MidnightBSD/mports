@@ -10,13 +10,14 @@ DISTNAME=		${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		UPX, a high-performance executable packer (Linux Fedora 10)
+
 LICENSE=		gpl2
 
 CONFLICTS=		linux-upx-[0-9]*
 
+USE_LINUX=		f10
 USE_LINUX_RPM=		yes
 USE_LINUX_APPS=		ucl
-LINUX_DIST_VER=		10
 RPMVERSION=		1.fc10
 BRANDELF_FILES=		usr/bin/upx
 
