@@ -16,7 +16,6 @@ LICENSE=	bsd2
 
 USES=		tar:xz
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 TARGET_DIR=	${PREFIX}/lib/compat
 TARGET32_DIR=	${PREFIX}/lib32/compat
