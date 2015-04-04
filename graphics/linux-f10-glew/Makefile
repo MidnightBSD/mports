@@ -12,7 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL Extension Wrangler Library (Linux Fedora 10)
 LICENSE=	bsd3
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 LINUX_NAME=	glew
 LINUX_DIST_VER=	10
