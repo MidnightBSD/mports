@@ -8,12 +8,13 @@ MASTER_SITES=		FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VE
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		UCL, a lossless data compression library (Linux Fedora 10)
+
 LICENSE=		gpl2
 
 CONFLICTS=		linux-ucl-[0-9]* linux-f8-ucl-[0-9]*
 
+USE_LINUX=		f10
 USE_LINUX_RPM=		yes
-LINUX_DIST_VER=		10
 RPMVERSION=		8.fc9
 USE_LDCONFIG=		yes
 
