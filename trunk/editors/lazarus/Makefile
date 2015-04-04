@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lazarus
-PORTVERSION=	1.0.12
+PORTVERSION=	1.2.6
 CATEGORIES=	editors devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_FREEBSD_LOCAL:S|$|acm/freepascal/|} \
