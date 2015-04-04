@@ -16,7 +16,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel Accelerator for QEMU CPU Emulator (development version)
 LICENSE=	gpl2
 
-ONLY_FOR_ARCHS=	i386 amd64
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GCC=	any

@@ -20,7 +20,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wolfenstein: Enemy Territory (Linux version)
 LICENSE=	restricted
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
 USE_ZIP=	yes
 NO_CDROM=	Redistribution is limited, see license

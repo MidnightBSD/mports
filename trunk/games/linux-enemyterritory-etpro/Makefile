@@ -20,7 +20,6 @@ LICENSE=	restricted
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_ZIP=	yes
 USE_LINUX=	yes
 NO_WRKSUBDIR=	yes
