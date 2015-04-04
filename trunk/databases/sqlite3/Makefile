@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.8.7
+PORTVERSION=	3.8.8.2
 CATEGORIES=	databases
-MASTER_SITES=	http://www.sqlite.org/2014/ http://www2.sqlite.org/2014/ http://www3.sqlite.org/2014/
-DISTNAME=	sqlite-autoconf-3080700
+MASTER_SITES=	http://www.sqlite.org/2015/ http://www2.sqlite.org/2015/ http://www3.sqlite.org/2015/
+DISTNAME=	sqlite-autoconf-3080802
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SQL database engine in a C library
