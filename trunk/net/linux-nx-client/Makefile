@@ -11,10 +11,8 @@ DISTNAME=		nxclient-${PORTVERSION}-5.i386
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The NoMachine NX client
 LICENSE=	gpl2
-# agg but gpl2 is the worst case
 
 NO_WRKSUBDIR=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
 USE_LINUX_APPS=	libaudiofile jpeg png
 INSTALLS_ICONS=	yes
