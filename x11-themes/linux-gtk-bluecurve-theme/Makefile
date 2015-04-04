@@ -16,7 +16,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Bluecurve GTK+ 1.x and 2.x themes (Linux version)
 LICENSE=	unknown
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	3
 PLIST=		${WRKDIR}/.plist
