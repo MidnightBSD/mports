@@ -3,17 +3,18 @@
 
 PORTNAME=	nspr
 PORTVERSION=	4.7.6
+PORTREVISION=	1
 CATEGORIES=	devel linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Netscape Portable Runtime (Linux Fedora 10)
+
 LICENSE=	agg
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
-LINUX_DIST_VER=	10
+
 RPMVERSION=	1.fc10.1
 
 PLIST_FILES=	lib/libnspr4.so lib/libplc4.so lib/libplds4.so

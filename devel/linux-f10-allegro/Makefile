@@ -3,20 +3,21 @@
 
 PORTNAME=	allegro
 PORTVERSION=	4.2.2
+PORTREVISION=	1
 CATEGORIES=	devel linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform game programming library (Linux Fedora 10)
+
 LICENSE=	other
 
 CONFLICTS=	linux-allegro-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=		yes
 USE_LINUX_APPS=		xorglibs
-LINUX_DIST_VER=		10
+
 RPMVERSION=		10.fc10
 USE_LDCONFIG=		yes
 
