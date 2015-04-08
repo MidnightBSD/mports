@@ -9,12 +9,15 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of libglade (Linux Fedora 10)
+
 LICENSE=	lgpl
+
+DEPRECATED=	This old version of libglade is no longer supported
 
 CONFLICTS=	linux-libglade-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
-LINUX_DIST_VER=	10
 RPMVERSION=	21.fc9
 USE_LDCONFIG=	yes
 
