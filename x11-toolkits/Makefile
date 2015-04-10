@@ -65,6 +65,7 @@ SUBDIR += tk86
 SUBDIR += tkshape
 SUBDIR += unique
 SUBDIR += vte
+SUBDIR += vte3
 SUBDIR += wxgtk26
 SUBDIR += wxgtk26-common
 SUBDIR += wxgtk26-docs
