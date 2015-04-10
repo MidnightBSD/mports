@@ -64,11 +64,11 @@ post-patch:
 
 # cmake-gui(1) is installed by devel/cmake-gui. Remove the man page's source to
 # prevent it from being built/installed by devel/cmake.
-	${RM} ${WRKSRC}/Help/manual/cmake-gui.1.rst
+	@${RM} ${WRKSRC}/Help/manual/cmake-gui.1.rst
 
 .if !defined(CMAKE_MODULES)
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/Auxiliary/cmake-mode.el ${STAGEDIR}${PREFIX}/share/emacs/site-lisp
+	${INSTALL_DATA} ${WRKSRC}/Auxiliary/cmake-mode.el ${PREFIX}/share/emacs/site-lisp
 .endif
 
 .include <bsd.port.post.mk>

@@ -398,6 +398,7 @@ SUBDIR += py-dbus
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
+SUBDIR += py-gobject3
 SUBDIR += py-isodate
 SUBDIR += py-notify
 SUBDIR += py-orbit
