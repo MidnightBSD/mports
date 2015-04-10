@@ -1,3 +1,4 @@
 bin/applypatch
 bin/makepatch
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/makepatch
+man/man1/makepatch.1.gz
+man/man1/applypatch.1.gz
