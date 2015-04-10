@@ -2,29 +2,28 @@
 
 PORTNAME=	gtksourceview
 PORTVERSION=	1.8.5
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A text widget that adds syntax highlighting to the GtkTextView widget
+COMMENT=	Widget that adds syntax highlighting to the GtkTextView widget
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-USE_GETTEXT=	yes
-USE_XLIB=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack libgnome libgnomeprintui intlhack \
-		ltverhack referencehack
+USE_GNOME=	gnomeprefix libgnome libgnomeprintui intlhack referencehack
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-compile-warnings=no
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -lgnuregex"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib -lgnuregex
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
 
