@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/textproc/sphinxsearch/files/sphinxsearch.sh.in,v 1.5 2009/12/03 09:07:28 pav Exp $
+# $FreeBSD: head/textproc/sphinxsearch/files/sphinxsearch.in 340872 2014-01-24 00:14:07Z mat $
 #
 # PROVIDE: %%PORTNAME%%
 # REQUIRE: LOGIN
@@ -31,7 +31,7 @@
 . /etc/rc.subr
 
 name=%%PORTNAME%%
-rcvar=`set_rcvar`
+rcvar=%%PORTNAME%%_enable
 
 load_rc_config ${name}
 
