@@ -3,10 +3,10 @@
 
 PORTNAME=	gtk2
 PORTVERSION=	2.14.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+
 DISTFILES=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}.${LINUX_RPM_ARCH}.rpm \
 		${PORTNAME}-engines-2.16.1-1.fc10.${LINUX_RPM_ARCH}.rpm \
 		gtk-murrine-engine-0.53.1-3.fc10.${LINUX_RPM_ARCH}.rpm \
@@ -29,6 +29,7 @@ USE_LINUX_RPM=	yes
 # these libraries are required by gtk-query-immodules-2.0 or
 # gdk-pixbuf-query-loaders
 USE_LINUX_APPS=	atk jpeg pango png tiff xorglibs
+
 RPMVERSION=	9.fc10
 BRANDELF_DIRS=	usr/bin
 USE_LDCONFIG=	yes
@@ -45,7 +46,8 @@ SRC_DISTFILES=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}.src.rpm \
 		jasper-1.900.1-8.fc9.src.rpm
 
 post-install:
-#	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
-#	@chroot ${PREFIX} /usr/bin/gdk-pixbuf-query-loaders-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+	${RM} ${PREFIX}/usr/lib/gtk-2.0/modules/libferret.la
+	${RM} ${PREFIX}/usr/lib/gtk-2.0/modules/libgail.la
+
 
 .include <bsd.port.mk>
