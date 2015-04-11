@@ -3,8 +3,9 @@
 
 PORTNAME=	dri
 PORTVERSION=	7.2
+PORTREVISION=	1
 CATEGORIES=	graphics linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTFILES=	Glide3-20050815-7.fc9.${LINUX_RPM_ARCH}.rpm \
 		freeglut-2.4.0-14.fc9.${LINUX_RPM_ARCH}.rpm \
@@ -24,13 +25,14 @@ ALWAYS_KEEP_DISTFILES=  YES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mesa libGL runtime libraries and DRI drivers (Linux Fedora 10)
+
 LICENSE=	mit
 
 CONFLICTS=	linux_dri-[0-9]* 
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	xorglibs
-LINUX_DIST_VER=	10
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
