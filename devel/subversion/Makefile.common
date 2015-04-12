@@ -43,7 +43,7 @@ PLIST_SUB+=	SASL="@comment "
 
 # Default is "on"
 .if ${PORT_OPTIONS:MBDB}
-USE_BDB=	42+
+USE_BDB=	48+
 PLIST_SUB+=	BDB=""
 .else
 CONFIGURE_ARGS+=--without-berkeley-db
