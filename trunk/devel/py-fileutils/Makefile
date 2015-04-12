@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File I/O related functions and classes
 LICENSE=	mit
 
-USE_BZIP2=		yes
+USES=		tar:bzip2
 USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_AUTOPLIST=	yes
