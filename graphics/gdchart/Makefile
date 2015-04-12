@@ -1,14 +1,9 @@
-# New ports collection makefile for:	gdchart
-# Date created:         4 June 2001
-# Whom:                 Anders Nordby <anders@fix.no>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/graphics/gdchart/Makefile,v 1.18 2007/05/19 20:09:09 flz Exp $
-#
 
 PORTNAME=	gdchart
 PORTVERSION=	0.11.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.fred.net/brv/chart/ \
 		ftp://ftp.nuug.no/pub/anders/distfiles/
@@ -16,23 +11,26 @@ DISTNAME=	${PORTNAME}${PORTVERSION}dev
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use, fast C API for creating charts and graphs
+
 LICENSE=	other
 
-LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
-		jpeg:${PORTSDIR}/graphics/jpeg \
-		freetype:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
+USES=		uidfix
 MAKEFILE=	${FILESDIR}/Makefile
 MAKE_ARGS=	PREFIX="${PREFIX}" LOCALBASE="${LOCALBASE}"
 USE_LDCONFIG=	yes
 
-DOCS=		README.txt
 EXAMPLES=	ft_samp.c gdc_pie_samp.c gdc_samp1.c gdc_samp2.c
 
-.if defined(NOPROFILE)
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+.if defined(NO_PROFILE)
 PLIST_SUB+=	PROFILE="@comment "
 .else
-PLIST_SUB+=	PROFILE=
+PLIST_SUB+=	PROFILE=""
 .endif
 
 post-patch:
@@ -51,17 +49,9 @@ post-patch:
 			${WRKSRC}/gdc_pie_samp.c
 
 post-install:
-.if !defined(NOPORTDOCS)
-.for f in ${DOCS}
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
-.endfor
-.endif
-.if !defined(NOPORTEXAMPLES)
-.for f in ${EXAMPLES}
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${EXAMPLESDIR}/
-.endfor
-.endif
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.txt ${DOCSDIR}
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${EXAMPLESDIR}
 
 .include <bsd.port.mk>
