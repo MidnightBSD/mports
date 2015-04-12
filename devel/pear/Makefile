@@ -2,6 +2,7 @@
 
 PORTNAME=	pear
 PORTVERSION=	1.9.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://miwibox.org/distfiles/
 
@@ -10,7 +11,7 @@ COMMENT=	PEAR framework for PHP
 
 LICENSE=	php
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 
 WANT_PHP_CLI=	yes
