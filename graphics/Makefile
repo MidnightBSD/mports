@@ -97,7 +97,6 @@ SUBDIR += linux-f10-jpeg
 SUBDIR += linux-f10-libGLU
 SUBDIR += linux-f10-libmng
 SUBDIR += linux-f10-png
-SUBDIR += linux-f10-png10
 SUBDIR += linux-f10-sdl_image
 SUBDIR += linux-f10-sdl_ttf
 SUBDIR += linux-f10-tiff
