@@ -3,10 +3,10 @@
 
 PORTNAME=	sdl_image
 PORTVERSION=	1.2.6
+PORTREVISION=	1
 CATEGORIES=	graphics linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
-PKGNAMEPREFIX=	linux-f10-
-DISTNAME=	${LINUX_NAME}-${PORTVERSION}-${RPMVERSION}
+MASTER_SITES=	LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+DISTNAME=	SDL_image-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple library to load images as SDL interfaces (Linux Fedora 10)
@@ -14,10 +14,11 @@ LICENSE=	lgpl
 
 CONFLICTS=	linux-sdl_image-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	jpeg png sdl12 tiff
 LINUX_NAME=	SDL_image
-LINUX_DIST_VER=	10
+
 RPMVERSION=	6.fc9
 BRANDELF_FILES=	usr/bin/showimage
 USE_LDCONFIG=	yes
