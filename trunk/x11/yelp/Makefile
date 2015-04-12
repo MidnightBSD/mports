@@ -2,6 +2,7 @@
 
 PORTNAME=	yelp
 PORTVERSION=	3.14.1
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -10,6 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Help browser for the GNOME 3 desktop
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	yelp-xsl>=0:${PORTSDIR}/textproc/yelp-xsl \
 		itstool:${PORTSDIR}/textproc/itstool
@@ -30,11 +32,7 @@ INSTALL_TARGET=	install-strip
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 900012 || (${OSVERSION} >= 800505 && ${OSVERSION} < 900000)
 CONFIGURE_ENV+=	YELP_LZMA_CFLAGS="-I/usr/include" \
 		YELP_LZMA_LIBS="-L/usr/lib -llzma"
-.else
-LIB_DEPENDS+=	liblzma.so:${PORTSDIR}/archivers/xz
-.endif
 
 .include <bsd.port.post.mk>
