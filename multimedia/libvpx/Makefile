@@ -1,82 +1,73 @@
 # $MidnightBSD$
 
 PORTNAME=	libvpx
-PORTVERSION=	1.1.0
+PORTVERSION=	1.3.0
 CATEGORIES=	multimedia
-MASTER_SITES=	GOOGLE_CODE
-DISTNAME=	${PORTNAME}-v${PORTVERSION}
+MASTER_SITES=	DEBIAN
+DISTNAME=	${PORTNAME}_${DISTVERSION}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	VP8 Codec SDK
+COMMENT=	VP8/VP9 Codec SDK
+
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/bin/yasm:${PORTSDIR}/devel/yasm
+BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash \
+		yasm:${PORTSDIR}/devel/yasm
 
-USE_BZIP2=	yes
-PROJECTHOST=	webm
+USES=		gmake perl5 tar:bzip2
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_PERL5_BUILD=	yes
+USE_PERL5=	build
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=yes
 
-OPTIONS=	DEBUG	"Enable debugging"	OFF \
-		POSTPROC	"Enable postprocessing"	ON \
-		RUNTIME	"Enable runtime CPU detection"	ON \
-		THREADS	"Enable multithread"	ON \
-		SHARED	"Enable shared-library support"	ON
+OPTIONS_DEFINE=	DEBUG POSTPROC RUNTIME THREADS SHARED
+OPTIONS_DEFAULT=	POSTPROC RUNTIME THREADS SHARED
+OPTIONS_EXCLUDE_armv6=	RUNTIME
+POSTPROC_DESC=	Enable postprocessing
+RUNTIME_DESC=	Enable runtime CPU detection
+SHARED_DESC=	Enable shared-library support
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 ALL_TARGET=
-CONFIGURE_ARGS+=	--enable-pic --disable-install-srcs --enable-vp8 --disable-install-docs
-MAKE_ARGS+=	DIST_DIR=${FAKE_DESTDIR}${PREFIX} verbose=yes
+CONFIGURE_ARGS+=--prefix=${PREFIX} \
+		--disable-install-docs \
+		--disable-install-srcs \
+		--enable-pic \
+		--enable-vp8 \
+		--enable-vp9
+MAKE_ARGS+=	verbose=yes
+MAKE_ENV=	LC_ALL=C
+
+OPTIONS_SUB=		SHARED
+
+DEBUG_CONFIGURE_ON=	--enable-debug
+POSTPROC_CONFIGURE_ON=	--enable-postproc
+RUNTIME_CONFIGURE_ON=	--enable-runtime-cpu-detect
+THREADS_CONFIGURE_OFF=	--disable-multithread
+SHARED_CONFIGURE_ON=	--enable-shared
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug
+.if ${OSVERSION}  < 4015
+.if ${ARCH} == "amd64"
+USE_GCC=	yes
 .endif
-
-.if defined(WITH_POSTPROC)
-CONFIGURE_ARGS+=	--enable-postproc
 .endif
-
-.if defined(WITH_RUNTIME)
-CONFIGURE_ARGS+=	--enable-runtime-cpu-detect
-.endif
-
-.if defined(WITHOUT_THREADS)
-CONFIGURE_ARGS+=	--disable-multithread
-.endif
-
-.if defined(WITH_SHARED)
-CONFIGURE_ARGS+=	--enable-shared
-PLIST_SUB+=	SHARED=""
-.else
-PLIST_SUB+=	SHARED="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
 CONFIGURE_ARGS+=	--target=x86_64-linux-gcc
 .elif ${ARCH} == "i386"
 CONFIGURE_ARGS+=	--target=x86-linux-gcc
-.elif ${ARCH} == "ia64"
-CONFIGURE_ARGS+=	--target=ia64-linux-gcc
-.else
-IGNORE=	no support for ${ARCH} the moment. testing/patches are welcome
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} 's|\(link_with_cc\)=gcc|\1=$${CC}|' \
+		${WRKSRC}/build/make/configure.sh
+	@${REINPLACE_CMD} -e 's|%%DESTDIR%%|${STAGEDIR}|g' \
+	       	${WRKSRC}/build/make/Makefile ${WRKSRC}/libs.mk
 	@${GREP} -Rl '^#!/bin/bash' ${WRKSRC} |${XARGS} ${REINPLACE_CMD} \
-		-e 's,#!/bin/bash,#!${LOCALBASE}/bin/bash,g'
-.if ${OSVERSION} < 700000
-	@${GREP} -Rl 'LIBVPX_SO.*extralibs' ${WRKSRC} |${XARGS} ${REINPLACE_CMD} \
-		-e 's/\(LIBVPX_SO.*extralibs[[:space:]]*+=[[:space:]]*\)/\1-lc /g'
-.else
+		-e 's,#!/bin/bash,#!/usr/bin/env bash,g'
 	@${GREP} -Rl -- '-l\?pthread' ${WRKSRC} |${XARGS} ${REINPLACE_CMD} -E \
 		-e 's/-l?pthread/${PTHREAD_LIBS}/g'
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
