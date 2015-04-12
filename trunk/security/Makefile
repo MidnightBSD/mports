@@ -97,6 +97,7 @@ SUBDIR += php5-hash
 SUBDIR += php5-mcrypt
 SUBDIR += php5-openssl
 SUBDIR += pinentry
+SUBDIR += pinentry-tty
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
 SUBDIR += qca-ossl
