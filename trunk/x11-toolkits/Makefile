@@ -34,6 +34,7 @@ SUBDIR += libgnomeprintui
 SUBDIR += libgnomeui
 SUBDIR += libsexy
 SUBDIR += libwnck
+SUBDIR += libwnck3
 SUBDIR += libxfce4gui
 SUBDIR += linux-f10-blt
 SUBDIR += linux-f10-gtk2
