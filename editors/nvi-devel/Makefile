@@ -2,7 +2,7 @@
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	editors
 MASTER_SITES=	http://garage.linux.student.kuleuven.be/~skimo/nvi/devel/ \
 		http://www.kotnet.org/~skimo/nvi/devel/
