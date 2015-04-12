@@ -10,13 +10,14 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Smart Common Input Method libraries (Linux Fedora 10)
+
 LICENSE=	unknown
 
 CONFLICTS=	linux-scim-libs-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	gtk2
-LINUX_DIST_VER=	10
 RPMVERSION=	35.fc10
 USE_LDCONFIG=	yes
 SRC_DISTFILES=	scim-${PORTVERSION}-${RPMVERSION}.src.rpm
