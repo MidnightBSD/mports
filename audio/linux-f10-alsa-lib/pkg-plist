@@ -3,11 +3,8 @@ etc/asound.conf
 lib/libasound.so.2
 lib/libasound.so.2.0.0
 usr/bin/aserver
-usr/lib/alsa-lib/smixer/smixer-ac97.la
 usr/lib/alsa-lib/smixer/smixer-ac97.so
-usr/lib/alsa-lib/smixer/smixer-hda.la
 usr/lib/alsa-lib/smixer/smixer-hda.so
-usr/lib/alsa-lib/smixer/smixer-sbase.la
 usr/lib/alsa-lib/smixer/smixer-sbase.so
 usr/share/alsa/alsa.conf
 usr/share/alsa/cards/AACI.conf
@@ -87,11 +84,3 @@ usr/share/doc/alsa-lib-1.0.21/COPYING
 usr/share/doc/alsa-lib-1.0.21/ChangeLog
 usr/share/doc/alsa-lib-1.0.21/TODO
 usr/share/doc/alsa-lib-1.0.21/asoundrc.txt
-@comment non-empty directory listing in revers order
-@dirrm usr/share/doc/alsa-lib-1.0.21
-@dirrm usr/share/alsa/pcm
-@dirrm usr/share/alsa/cards/SI7018
-@dirrm usr/share/alsa/cards
-@dirrm usr/share/alsa
-@dirrm usr/lib/alsa-lib/smixer
-@dirrm usr/lib/alsa-lib
