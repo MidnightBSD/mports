@@ -1,29 +1,25 @@
 # $MidnightBSD$
 
-PORTNAME=	memtest
-PORTVERSION=	4.2.2
+PORTNAME=	memtester
+PORTVERSION=	4.3.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://pyropus.ca/software/${PORTNAME}er/old-versions/
-DISTNAME=	${PORTNAME}er-${PORTVERSION}
+MASTER_SITES=	http://pyropus.ca/software/${PORTNAME}/old-versions/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to test for faulty memory subsystem
+
 LICENSE=	gpl2
 
-MAN8=		${PORTNAME}.8
-PLIST_FILES=	bin/memtest
+PLIST_FILES=	bin/${PORTNAME} man/man8/${PORTNAME}.8.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|cc|${CC}|' \
 		${WRKSRC}/conf-*
-	@${MV} ${WRKSRC}/${PORTNAME}er.8 ${WRKSRC}/${MAN8}
-	@${REINPLACE_CMD} -e 's|${PORTNAME}er |${PORTNAME} |g' \
-			  -e 's| ${PORTNAME}er| ${PORTNAME}|' \
-			  -e "s|${PORTNAME}er's|${PORTNAME}'s|" \
-		${WRKSRC}/${MAN8}
+	@${REINPLACE_CMD} -e 's|_SC_PAGE_SIZE|_SC_PAGESIZE|' \
+		${WRKSRC}/${PORTNAME}.c
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME}er ${PREFIX}/bin/${PORTNAME}
-	@${INSTALL_MAN} ${WRKSRC}/${MAN8} ${PREFIX}/man/man8/${MAN8}
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${MANPREFIX}/man/man8
 
 .include <bsd.port.mk>
