@@ -463,7 +463,6 @@ SUBDIR += silc-toolkit
 SUBDIR += slf4j
 SUBDIR += splint
 SUBDIR += st
-SUBDIR += stlport
 SUBDIR += subversion
 SUBDIR += svndelta
 SUBDIR += svnkit

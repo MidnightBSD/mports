@@ -7,7 +7,7 @@ CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt makefile generator
+COMMENT=	Qt Makefile generator
 
 LICENSE=	gpl3
 
