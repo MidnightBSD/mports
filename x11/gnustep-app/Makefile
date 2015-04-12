@@ -2,7 +2,7 @@
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.19.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -38,7 +38,6 @@ USE_GNUSTEP_SYSTEM_LIBS+=	\
 
 USE_GNUSTEP_LOCAL_LIBS+=	\
 	Pantomime:mail/pantomime \
-	GToolKit:x11-toolkits/gtoolkit \
 	Addresses:mail/addresses \
 	SlideShow:graphics/gnustep-slideshowkit \
 	netclasses:net/netclasses \
