@@ -8,6 +8,7 @@ SUBDIR += eel
 SUBDIR += fltk
 SUBDIR += fpc-gtk2
 SUBDIR += gdl
+SUBDIR += gnome-pty-helper
 SUBDIR += gnustep-art
 SUBDIR += gnustep-back
 SUBDIR += gnustep-cairo
