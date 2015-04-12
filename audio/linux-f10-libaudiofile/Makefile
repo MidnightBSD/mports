@@ -9,14 +9,15 @@ PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${LINUX_NAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of the Audio File Library from SGI (Linux Fedora 10)
+COMMENT=	Implementation of the Audio File Library from SGI (Linux Fedora 10)
+
 LICENSE=	gpl2
 
 CONTFLICTS=	linux-libaudiofile-[0-9]*
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 LINUX_NAME=	audiofile
-LINUX_DIST_VER=	10
 RPMVERSION=	9.fc10
 BRANDELF_DIRS=	usr/bin
 USE_LDCONFIG=	yes
