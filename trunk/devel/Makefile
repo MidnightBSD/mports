@@ -165,6 +165,7 @@ SUBDIR += liboobs
 SUBDIR += libopensync022
 SUBDIR += libpci
 SUBDIR += libpciaccess
+SUBDIR += libpeas
 SUBDIR += libplist
 SUBDIR += libpthread-stubs
 SUBDIR += libsigc++12
