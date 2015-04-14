@@ -10,6 +10,9 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modules for perl5, for enabling FastCGI support in CGI scripts
 
+LICENSE=	other
+LICENSE_FILE=	${WRKSRC}/LICENSE.TERMS
+
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
