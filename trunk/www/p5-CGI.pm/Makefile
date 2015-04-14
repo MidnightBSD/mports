@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Common Gateway Interface Class for Perl
 
 LICENSE=	artistic gpl
-LICENCE_COMB=	dual
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
 
