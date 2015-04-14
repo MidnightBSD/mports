@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 NO_BUILD=	yes
 USE_LINUX=	yes
-USE_BZIP2=	yes
+USES=		tar:bzip2 uidfix
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/nvu-1.0
 PLIST_SUB=	MOZLIBDIR=${MOZLIBDIR}
