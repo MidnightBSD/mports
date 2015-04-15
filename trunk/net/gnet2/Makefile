@@ -2,23 +2,27 @@
 
 PORTNAME=	gnet
 PORTVERSION=	2.0.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net ipv6
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A simple network library built upon Glib-2
+COMMENT=	Simple network library built upon Glib-2
 
 LICENSE=	lgpl
 
-USES=		pkgconfig
-USES=	libtool
-USE_GNOME=	gnomehack glib20
+USES=		pathfix pkgconfig libtool
+USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 
-.if !defined(NOPORTDOCS)
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=	--with-html-dir=${DOCSDIR}
 .else
 CONFIGURE_ARGS+=	--without-html-dir
