@@ -1,6 +1,8 @@
 # $MidnightBSD$
 PORTNAME=		tdb
-PORTVERSION=		1.2.13
+PORTVERSION=		1.3.4
+PORTREVISION=		0
+PORTEPOCH=		1
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -34,13 +36,10 @@ MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
 .if defined(NO_PYTHON)
 CONFIGURE_ARGS+=	--disable-python
+USES+=			python:2,build
 .else
 USE_PYTHON_RUN=		yes
 PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so
-.endif
-
-.if defined(NO_PYTHON)
-
 .endif
 
 .include <bsd.port.pre.mk>
