@@ -1,26 +1,28 @@
-# New ports collection makefile for:	gtkjj
-# Date created:				27 Feb 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	gtkjj
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	deskutils
-MASTER_SITES=	SF \
-		http://www.justjournal.com/software/unix/
-MASTER_SITE_SUBDIR=	justjournal
-DISTNAME=	jjclient-${PORTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	GTK client for posting JustJournal entries
-LICENSE=	bsd2
 
-LIB_DEPENDS=	xmlrpc_client.9:${PORTSDIR}/net/xmlrpc-c
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/../COPYING
+
+WRKSRC=         ${WRKDIR}/laffer1-justjournal-client-unix-c3cacf8/gtk
+USE_GITHUB=     yes
+GH_PROJECT=     justjournal-client-unix
+GH_ACCOUNT=     laffer1
+GH_TAGNAME=     ${PORTVERSION}
+GH_COMMIT=      0a8de9b
+USE_CSTD=       c99
+
+CFLAGS+=        -I/usr/local/include
+LDFLAGS+=       -L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse
+
+LIB_DEPENDS=	xmlrpc_client.so:${PORTSDIR}/net/xmlrpc-c
 USE_GNOME=	gtk20
 WANT_GNOME=	yes
-
-WRKSRC=		${WRKDIR}/${DISTNAME}/gtk
 
 .include <bsd.port.mk>
