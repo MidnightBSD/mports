@@ -1,7 +1,7 @@
 # $MidnightBSD: trunk/sysutils/ciso/Makefile 15462 2013-09-17 03:15:41Z laffer1 $
 
 PORTNAME=	ciso-maker
-PORTVERSION=	1.03
+PORTVERSION=	1.05
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,12 +11,12 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/license
 
-WRKSRC=		${WRKDIR}/laffer1-ciso-maker-df63e07
+WRKSRC=		${WRKDIR}/laffer1-ciso-maker-f2e5d18
 USE_GITHUB=     yes
 GH_PROJECT=     ${PORTNAME}
 GH_ACCOUNT=     laffer1
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      1ad2a3f
+GH_COMMIT=      1eed35b
 
 FAKE_OPTS=	trueprefix
 
