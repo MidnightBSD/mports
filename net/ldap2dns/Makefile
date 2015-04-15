@@ -1,25 +1,26 @@
-# New ports collection makefile for:	ldap2dns
-# Date created:				May 30, 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	ldap2dns
-PORTVERSION=	0.4.1
+PORTVERSION=	0.4.2
 CATEGORIES=	net
-MASTER_SITES=	http://projects.alkaloid.net/e107_files/downloads/
+MASTER_SITES=	GHC
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Maintain DNS zones using an LDAP directory
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/Net/LDAP.pm:${PORTSDIR}/net/p5-perl-ldap
 
-USE_GMAKE=	yes
+WRKSRC=		${WRKDIR}/${DISTNAME}
+
+USES=		gmake ldap
 USE_OPENLDAP=	yes
 USE_PERL5=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	bklang
 
 MAKE_ENV=	PREFIX=${PREFIX} INC=-I${PREFIX}/include LIB=-L${PREFIX}/lib
 
