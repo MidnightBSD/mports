@@ -6,7 +6,7 @@
 # $FreeBSD: ports/net/avahi-qt4/Makefile,v 1.7 2008/07/03 21:53:55 mezz Exp $
 #
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	-qt4
 
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 4 bindings to the Avahi mDNS system
 LICENSE=	lgpl
 
-LIB_DEPENDS=	avahi-common.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-common.so:${PORTSDIR}/net/avahi-app
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-qt
@@ -23,7 +23,6 @@ DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	qt4
-USE_GNOME=	gnomehack ltverhack intltool
 USE_QT4=	corelib moc_build
 AVAHI_PKGCONFIG=	avahi-qt4.pc
 
