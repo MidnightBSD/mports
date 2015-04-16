@@ -76,26 +76,33 @@ lib/girepository-1.0/AvahiCore-0.6.typelib
 lib/libavahi-client.a
 lib/libavahi-client.la
 lib/libavahi-client.so
-lib/libavahi-client.so.5
+lib/libavahi-client.so.3
+lib/libavahi-client.so.3.2.9
 lib/libavahi-common.a
 lib/libavahi-common.la
 lib/libavahi-common.so
+lib/libavahi-common.so.3
+lib/libavahi-common.so.3.5.3
 lib/libavahi-core.a
 lib/libavahi-core.la
 lib/libavahi-core.so
 lib/libavahi-core.so.7
+lib/libavahi-core.so.7.0.2
 lib/libavahi-glib.a
 lib/libavahi-glib.la
 lib/libavahi-glib.so
 lib/libavahi-glib.so.1
+lib/libavahi-glib.so.1.0.2
 lib/libavahi-gobject.a
 lib/libavahi-gobject.la
 lib/libavahi-gobject.so
 lib/libavahi-gobject.so.0
+lib/libavahi-gobject.so.0.0.4
 lib/libhowl.a
 lib/libhowl.la
 lib/libhowl.so
 lib/libhowl.so.0
+lib/libhowl.so.0.0.0
 libdata/pkgconfig/avahi-client.pc
 libdata/pkgconfig/avahi-compat-howl.pc
 libdata/pkgconfig/avahi-core.pc
@@ -129,7 +136,7 @@ share/dbus-1/interfaces/org.freedesktop.Avahi.Server.xml
 share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceBrowser.xml
 share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceResolver.xml
 share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceTypeBrowser.xml
-@comment share/dbus-1/system-services/org.freedesktop.Avahi.service
+share/dbus-1/system-services/org.freedesktop.Avahi.service
 share/gir-1.0/Avahi-0.6.gir
 share/gir-1.0/AvahiCore-0.6.gir
 share/locale/bg/LC_MESSAGES/avahi.mo
@@ -165,23 +172,3 @@ share/locale/sr@latin/LC_MESSAGES/avahi.mo
 share/locale/uk/LC_MESSAGES/avahi.mo
 share/locale/zh_CN/LC_MESSAGES/avahi.mo
 share/locale/zh_TW/LC_MESSAGES/avahi.mo
-@dirrmtry share/locale/sr@latin/LC_MESSAGES
-@dirrmtry share/locale/sr@latin
-@dirrmtry share/locale/fo/LC_MESSAGES
-@dirrmtry share/locale/fo
-@dirrmtry share/locale/en_NZ/LC_MESSAGES
-@dirrmtry share/locale/en_NZ
-@dirrm %%DATADIR%%
-@dirrm lib/avahi
-@dirrm include/avahi-gobject
-@dirrm include/avahi-glib
-@dirrm include/avahi-core
-@dirrm include/avahi-compat-howl/salt
-@dirrm include/avahi-compat-howl/rendezvous
-@dirrm include/avahi-compat-howl/discovery
-@dirrm include/avahi-compat-howl/corby
-@dirrm include/avahi-compat-howl
-@dirrm include/avahi-common
-@dirrm include/avahi-client
-@dirrm etc/avahi/services
-@dirrm etc/avahi

@@ -6,9 +6,10 @@ PKGNAMESUFFIX=	-libdns
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	mDNSResponder compatibility from Avahi
+
 LICENSE=	lgpl
 
-LIB_DEPENDS=	avahi-common.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-common.so:${PORTSDIR}/net/avahi-app
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-compat-libdns_sd
