@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 PKGNAMESUFFIX=	-autoipd
 
@@ -11,7 +11,7 @@ LICENSE=	lgpl
 USERS=		avahi-autoipd
 GROUPS=		${USERS}
 
-LIB_DEPENDS=	avahi-common.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-common.so:${PORTSDIR}/net/avahi-app
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-autoipd
@@ -23,8 +23,7 @@ MAKE_ARGS+=	-I /usr/include
 
 AVAHI_SLAVE=	autoipd
 
-MAN8=		avahi-autoipd.8
-USE_GNOME=	gnomehack  ltverhack intltool
 PKGINSTALL=	${.CURDIR}/pkg-install
+MANPAGES=	avahi-autoipd.8
 
 .include "${MASTERDIR}/Makefile"
