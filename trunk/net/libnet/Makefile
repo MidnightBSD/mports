@@ -2,42 +2,59 @@
 # $FreeBSD: ports/net/libnet/Makefile,v 1.16 2005/11/14 17:07:01 sem Exp $
 
 PORTNAME=	libnet
-PORTVERSION=	1.1.2.1
-PORTREVISION=	2
+PORTVERSION=	1.1.6
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	net
-PKGNAMESUFFIX=	11
-MASTER_SITES=	http://www.packetfactory.net/libnet/dist/ \
-		${MASTER_SITE_GENTOO}
-MASTER_SITE_SUBDIR=	distfiles
+MASTER_SITES=	SF/libnet-dev
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A C library for creating IP packets
-LICENSE=	agg
+COMMENT=	C library for creating IP packets
+
+LICENSE=	bsd2
+
+OPTIONS_DEFINE=	BPF DOCS EXAMPLES
+OPTIONS_DEFAULT=BPF
+BPF_DESC=	link layer bpf
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-		--host=${ARCH}-portbld-freebsd6.0 \
-		--target=${ARCH}-portbld-freebsd6.0
-CFLAGS+=	-fPIC
+INSTALL_TARGET=	install-strip
+USE_CSTD=	gnu89
+USE_LDCONFIG=	yes
+USES=		libtool
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
-EXAMPLESDIR=	${PREFIX}/share/examples/${PORTNAME}${PKGNAMESUFFIX}
+SHORT_NAME=	${PORTNAME}11
+DOCSDIR=	${PREFIX}/share/doc/${SHORT_NAME}
+EXAMPLESDIR=	${PREFIX}/share/examples/${SHORT_NAME}
+USE_LDCONFIG=	${PREFIX}/lib/${SHORT_NAME}
+PLIST_SUB=	SNAME=${SHORT_NAME} VERSION=${PORTVERSION}
 
-DOCS=		README doc/BUGS doc/CHANGELOG doc/CONTRIB doc/COPYING \
+DOCS=		README doc/CHANGELOG doc/CONTRIB doc/COPYING \
 		doc/DESIGN_NOTES doc/MIGRATION doc/PACKET_BUILDING doc/PORTED \
-		doc/RAWSOCKET_NON_SEQUITUR doc/TODO doc/html/*
+		doc/RAWSOCKET_NON_SEQUITUR doc/TODO
 EXAMPLES=	sample/*.c
 
+BPF_CONFIGURE_OFF=	--with-link-layer=none
+BPF_CONFIGURE_ON=	--with-link-layer=bpf
+
+post-patch:
+	@${REINPLACE_CMD} \
+		 -e 's|@LIBNET_CONFIG_LIBS@|@LIBNET_CONFIG_LIBS@ -L@prefix@/lib/${SHORT_NAME}|' \
+		 -e 's|@LIBNET_CONFIG_CFLAGS@|@LIBNET_CONFIG_CFLAGS@ -I@prefix@/include/${SHORT_NAME}|' \
+			${WRKSRC}/libnet-config.in
+	@${REINPLACE_CMD} -e 's|^includedir =.*|includedir = @includedir@/${SHORT_NAME}|' \
+		${WRKSRC}/include/Makefile.in \
+		${WRKSRC}/include/libnet/Makefile.in
+	@${REINPLACE_CMD} -e 's|^libdir =.*|libdir = @libdir@/${SHORT_NAME}|' \
+		-e 's|^libnet_la_LDFLAGS =\(.*\)|libnet_la_LDFLAGS =\1 -soname=libnet-${SHORT_NAME}.so.1|' \
+		${WRKSRC}/src/Makefile.in
+
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/libnet-config \
-		${PREFIX}/bin/libnet${PKGNAMESUFFIX}-config
-	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-.endif
+	${INSTALL_SCRIPT} ${WRKSRC}/libnet-config ${STAGEDIR}${PREFIX}/bin/${SHORT_NAME}-config
+	${LN} -fs ${SHORT_NAME}/libnet.so.1 ${STAGEDIR}${PREFIX}/lib/libnet-${PORTVERSION}.so.1
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${EXAMPLES} ${STAGEDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.mk>
