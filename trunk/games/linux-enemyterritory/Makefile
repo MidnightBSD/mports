@@ -1,32 +1,31 @@
-# New ports collection makefile for:    Enemy Territory
-# Date created:                         Sun Jan 18 18:54:00 CET 2004
-# Whom:                                 benlutz@datacomm.ch
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory/Makefile,v 1.11 2006/06/14 14:29:54 miwi Exp $
-#
 
 PORTNAME=	enemyterritory
 PORTVERSION=	2.60b
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games linux
-MASTER_SITES=		${MASTER_SITE_IDSOFTWARE:S|$|et/:patch|}
-#MASTER_SITES=	${MASTER_SITE_IDSOFTWARE:S|$|et/linux/:full|}
+MASTER_SITES=		${MASTER_SITE_IDSOFTWARE:S|$|et/:patch|} \
+			${MASTER_SITE_IDSOFTWARE:S|$|et/linux/:full|}
 PKGNAMEPREFIX=	linux-
 DISTNAME=	et-linux-2.60b.x86
 DISTFILES=	et-linux-2.60.x86.run:full ET-2.60b.zip:patch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wolfenstein: Enemy Territory (Linux version)
-LICENSE=	restricted
 
-USE_LINUX=	yes
-USE_ZIP=	yes
+LICENSE=	id
+LICENSE_NAME=	id Software License
+LICENSE_FILE=	${WRKSRC}/Docs/EULA_Wolfenstein_Enemy_Territory.txt
+LICENSE_PERMS=	dist-mirror pkg-mirror
+
+USES=		zip
+USE_LINUX=	f10
 NO_CDROM=	Redistribution is limited, see license
 ETDIR=		${PREFIX}/lib/${PORTNAME}
 INSTALL_DIR=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
 PATCH_260B_DIR=	Enemy Territory 2.60b
-USE_LINUX_APPS=	dri
+USE_LINUX_APPS=	xorglibs dri
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
