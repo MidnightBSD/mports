@@ -2,17 +2,19 @@
 
 PORTNAME=		ldb
 PORTVERSION=		1.1.15
+PORTREVISION=		1
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		LDAP-like embedded database
+
 LICENSE=		gpl3
 
 CONFLICTS=		*samba3[0-4]-3.*
 
-USE_PKGCONFIG=		yes
+USES=			pkgconfig ldap
 USE_PYTHON_BUILD=	-2.7
 USE_LDCONFIG=		yes
 HAS_CONFIGURE=		yes
@@ -20,8 +22,6 @@ WAF_TOOL=		buildtools/bin/waf
 CONFIGURE_SCRIPT=	${WAF_TOOL} configure
 
 USE_OPENLDAP=		yes
-
-MAKE_JOBS_SAFE=		yes
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
