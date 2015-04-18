@@ -284,6 +284,7 @@ SUBDIR += p5-Heap
 SUBDIR += p5-Hook-LexWrap
 SUBDIR += p5-IO
 SUBDIR += p5-IO-Multiplex
+SUBDIR += p5-IO-SessionData
 SUBDIR += p5-IO-String
 SUBDIR += p5-IO-Tty
 SUBDIR += p5-IO-stringy
