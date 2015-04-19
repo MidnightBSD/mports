@@ -1,4 +1,14 @@
-# $FreeBSD: ports/textproc/xmlcatmgr/files/pkg-deinstall.in,v 1.2 2004/12/31 08:15:59 hrs Exp $
+#!/bin/sh
+# $FreeBSD: head/textproc/xmlcatmgr/files/pkg-deinstall.in 340719 2014-01-22 15:52:06Z mat $
+
+PATH=/bin:/usr/bin:%%LOCALBASE%%/bin
+
+export PATH
+XMLCATMGR=%%XMLCATMGR%%
+CATALOG_MASTER_SGML=%%CATALOG_MASTER_SGML%%
+CATALOG_MASTER_XML=%%CATALOG_MASTER_XML%%
+CATALOG_PORTS_SGML=%%CATALOG_PORTS_SGML%%
+CATALOG_PORTS_XML=%%CATALOG_PORTS_XML%%
 
 case $2 in
 DEINSTALL)
