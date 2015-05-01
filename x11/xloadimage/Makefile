@@ -3,6 +3,7 @@
 
 PORTNAME=	xloadimage
 PORTVERSION=	4.1.21
+PORTREVISION=	1
 CATEGORIES=	x11 graphics
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}.${VERSION}
@@ -14,9 +15,9 @@ COMMENT=	X11 Image Loading Utility
 LICENSE=	mit
 
 
-LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		tiff:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libtiff.so:${PORTSDIR}/graphics/tiff
 
 CONFLICTS_INSTALL=	xli-*
 
@@ -28,14 +29,9 @@ REVISION=	${PORTVERSION:E}
 
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
-MAKE_JOBS_SAFE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-MAN1=		xloadimage.1 uufilter.1
-MLINKS=		xloadimage.1 xsetbg.1 \
-		xloadimage.1 xview.1
 
 post-patch:
 	@${CHMOD} a+rx ${WRKSRC}/configure
