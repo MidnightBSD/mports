@@ -2,10 +2,12 @@
 
 PORTNAME=	libXdamage
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Damage extension library
+
 LICENSE=	mit
 
 XORG_CAT=	lib
