@@ -47,6 +47,7 @@ lib/alsa-lib/smixer/smixer-sbase.so
 lib/libasound.la
 lib/libasound.so
 lib/libasound.so.2
+lib/libasound.so.2.0.0
 libdata/pkgconfig/alsa.pc
 share/aclocal/alsa.m4
 share/alsa/alsa.conf
@@ -131,6 +132,11 @@ share/alsa/smixer.conf
 share/alsa/sndo-mixer.alisp
 share/alsa/ucm/DAISY-I2S/DAISY-I2S.conf
 share/alsa/ucm/DAISY-I2S/HiFi.conf
+share/alsa/ucm/GoogleNyan/GoogleNyan.conf
+share/alsa/ucm/GoogleNyan/HiFi.conf
+share/alsa/ucm/PAZ00/HiFi.conf
+share/alsa/ucm/PAZ00/PAZ00.conf
+share/alsa/ucm/PAZ00/Record.conf
 share/alsa/ucm/PandaBoard/FMAnalog
 share/alsa/ucm/PandaBoard/PandaBoard.conf
 share/alsa/ucm/PandaBoard/hifi
@@ -153,22 +159,4 @@ share/alsa/ucm/SDP4430/record
 share/alsa/ucm/SDP4430/voice
 share/alsa/ucm/SDP4430/voiceCall
 share/alsa/ucm/tegraalc5632/tegraalc5632.conf
-@unexec if cmp -s %D/etc/asound.conf.sample %D/etc/asound.conf; then rm -f %D/etc/asound.conf; else echo "If permanently deleting this package, %D/etc/asound.conf must be removed manually."; fi
-etc/asound.conf.sample
-@exec [ -f %B/asound.conf ] || cp -p %B/%f %B/asound.conf
-@dirrm share/alsa/ucm/PandaBoardES
-@dirrm share/alsa/ucm/SDP4430
-@dirrm share/alsa/ucm/DAISY-I2S
-@dirrm share/alsa/ucm/tegraalc5632
-@dirrm share/alsa/ucm/PandaBoard
-@dirrm share/alsa/ucm
-@dirrm share/alsa/pcm
-@dirrm share/alsa/cards/SI7018
-@dirrm share/alsa/cards
-@dirrm share/alsa/alsa.conf.d
-@dirrm share/alsa
-@dirrm lib/alsa-lib/smixer
-@dirrm lib/alsa-lib
-@dirrmtry include/sys
-@dirrm include/alsa/sound
-@dirrm include/alsa
+@sample etc/asound.conf.sample
