@@ -175,5 +175,6 @@ SUBDIR += xhtml-modularization
 SUBDIR += xmlcatmgr
 SUBDIR += xmlcharent
 SUBDIR += xmlto
+SUBDIR += yelp-xsl
 
 .include <bsd.port.subdir.mk>
