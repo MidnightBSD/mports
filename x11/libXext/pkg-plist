@@ -2,6 +2,7 @@ lib/libXext.a
 lib/libXext.la
 lib/libXext.so
 lib/libXext.so.6
+lib/libXext.so.6.4.0
 include/X11/extensions/MITMisc.h
 include/X11/extensions/XEVI.h
 include/X11/extensions/XLbx.h
@@ -80,4 +81,3 @@ man/man3/XShmPixmapFormat.3.gz
 man/man3/XShmPutImage.3.gz
 man/man3/XShmQueryExtension.3.gz
 man/man3/XShmQueryVersion.3.gz
-@dirrmtry include/X11/extensions
