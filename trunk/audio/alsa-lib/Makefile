@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-lib
-PORTVERSION=	1.0.28
-PORTREVISION=	1
+PORTVERSION=	1.0.29
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/lib \
 		GENTOO/distfiles
@@ -12,10 +11,10 @@ COMMENT=	ALSA compatibility library
 
 LICENSE=	lgpl2.1
 
-USES=		tar:bzip2 libtool:keepla
+USES=		libtool:keepla tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-pkgconfdir="${PREFIX}/libdata/pkgconfig"
+CONFIGURE_ARGS=	--with-pkgconfdir="\$${prefix}/libdata/pkgconfig"
 INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${FILESDIR}
 
@@ -23,7 +22,7 @@ OPTIONS_DEFINE=	PYTHON
 OPTIONS_SUB=	yes
 
 PYTHON_CONFIGURE_ENABLE=python
-PYTHON_USE=	PYTHON=2
+PYTHON_USES=	python:2
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \
@@ -37,10 +36,6 @@ post-patch:	.SILENT
 		${WRKSRC}/src/conf/alsa.conf
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/asound.conf.sample ${PREFIX}/etc
-	@if [ ! -f ${PREFIX}/etc/asound.conf ]; then \
-		${CP} -p ${PREFIX}/etc/asound.conf.sample \
-			${PREFIX}/etc/asound.conf ; \
-	fi
+	${INSTALL_DATA} ${FILESDIR}/asound.conf.sample ${STAGEDIR}${PREFIX}/etc
 
 .include <bsd.port.mk>
