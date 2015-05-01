@@ -25,14 +25,6 @@ SCONS_BUILDENV=	${SCONS_ENV}
 SCONS_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig" \
 		chrpath=no
 
-MAN1=	cgps.1 gegps.1 gps.1 gpscat.1 gpsctl.1 gpsdecode.1 \
-	gpsfake.1  gpspipe.1 gpsprof.1 xgps.1 xgpsspeed.1 \
-	gpsmon.1 lcdgps.1
-MAN3=	libgps.3 libgpsd.3 libgpsmm.3 libQgpsmm.3
-MAN5=	srec.5 gpsd_json.5
-MAN8=	gpsd.8 gpsdctl.8
-MANCOMPRESSED=	no
-
 OPTIONS=	AIVDM "Aivdm support" on \
 		ASHTECH "Ashtech support" on \
 		CPPBIND "Build C++ bindings" on \
