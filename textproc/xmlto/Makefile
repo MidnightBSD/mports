@@ -2,7 +2,7 @@
 
 PORTNAME=	xmlto
 PORTVERSION=	0.0.26
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	https://fedorahosted.org/releases/x/m/xmlto/:xmlto \
 		LOCAL/mandree/:xmlto \
@@ -21,7 +21,7 @@ BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
 		/usr/local/bin/getopt:${PORTSDIR}/misc/getopt \
 		xmllint:${PORTSDIR}/textproc/libxml2 \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
-		${XSL_DIR}:${PORTSDIR}/textproc/docbook-xsl \
+		docbook-xsl>0:${PORTSDIR}/textproc/docbook-xsl \
 		paperconf:${PORTSDIR}/print/libpaper \
 		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml
 RUN_DEPENDS:=	${BUILD_DEPENDS}
@@ -54,7 +54,7 @@ PORTDOCS=	AUTHORS ChangeLog NEWS THANKS
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MPASSIVETEX}
-BUILD_DEPENDS+=	${LOCALBASE}/share/texmf-local/tex/passivetex/fotex.sty:${PORTSDIR}/print/passivetex
+USE_TEX+=	xmltex
 .endif
 
 .if ${PORT_OPTIONS:MFOP}
