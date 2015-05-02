@@ -14,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 RUN_DEPENDS=	dbus-launch:${PORTSDIR}/devel/dbus
 
-USE_GNOME=	glib20 intlhack gnomehier introspection
+USE_GNOME=	glib20 intlhack introspection
 GNU_CONFIGURE=	yes
 USES=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
