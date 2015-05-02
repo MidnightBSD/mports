@@ -351,7 +351,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gnome gnustep gstreamer iconv imake \
 		ldap libtool lua makeself motif mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
-		tar tcl wx xfce zip
+		tar tcl tex wx xfce zip
 
 .for EXT in ${_ALL_EXT:tu} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
