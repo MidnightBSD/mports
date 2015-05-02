@@ -19,6 +19,7 @@ SUBDIR += findutils
 SUBDIR += fpc-chm
 SUBDIR += getopt
 SUBDIR += gnome-icon-theme
+SUBDIR += gnome-icon-theme-extras
 SUBDIR += gnome-mime-data
 SUBDIR += gnome-user-docs
 SUBDIR += gnomehier
