@@ -2,6 +2,7 @@
 
 PORTNAME=	xkeyboard-config
 PORTVERSION=	2.13
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,23 +15,27 @@ MASTER_SITE_SUBDIR=	individual/${XORG_CAT}/${PORTNAME}
 BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
 XORG_CAT=	data
 
+NO_ARCH=	yes
 USES=		gmake pathfix tar:bzip2
 USE_GNOME=	intlhack libxslt:build
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=yes
 INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--with-xkb-base=${PREFIX}/share/X11/xkb \
 		--with-xkb-rules-symlink=xorg
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=	ETERSOFT
+ETERSOFT_DESC=	Add pre-1918 Russian letters to typographic layout
+ETERSOFT_EXTRA_PATCHES=	${FILESDIR}/etersoft-patch-symbols-typo
 
 .include <bsd.mport.options.mk>
 
 # !nls case doesn't work correctly, comment it out.
 #.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext:build iconv
+USES+=		gettext-tools iconv
 PLIST_SUB+=	NLS=""
 #.else
 #CONFIGURE_ARGS+=--disable-nls
