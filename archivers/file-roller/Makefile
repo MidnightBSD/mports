@@ -1,60 +1,56 @@
 # $MidnightBSD$
 
 PORTNAME=	file-roller
-PORTVERSION=	2.32.1
+PORTVERSION=	3.14.2
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An archive manager for zip files, tar, etc
+COMMENT=	Archive manager for zip files, tar, etc
 
 LICENSE=	gpl2
 
-OPTIONS=	NAUTILUS	"Enable Nautilus extension"	on
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
+RUN_DEPENDS=	gtar:${PORTSDIR}/archivers/gtar \
+    		unzip:${PORTSDIR}/archivers/unzip
 
-RUN_DEPENDS=	${LOCALBASE}/bin/gtar:${PORTSDIR}/archivers/gtar \
-    		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
-
-USE_LDCONFIG=	yes
-USES=		gettext gmake tar:bzip2
-INSTALLS_OMF=	yes
-INSTALLS_ICONS=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack desktopfileutils gnomedocutils \
-		gtk20 gconf2
-GNOME_DESKTOP_VERSION=2
+USES=		desktop-file-utils gettext gmake libtool \
+		pathfix pkgconfig tar:xz
+USE_GNOME=	gnomeprefix gtk30 intlhack introspection:build
 USE_XORG=	sm
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-packagekit
+INSTALL_TARGET=	install-strip
 
 PORTDOCS=	AUTHORS NEWS README TODO ChangeLog
-GCONF_SCHEMAS=	file-roller.schemas
+GLIB_SCHEMAS=	org.gnome.FileRoller.gschema.xml
 
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_NAUTILUS)
-USE_GNOME+=	nautilus2
-PLIST_SUB+=	NAUTILUS=""
-.else
-PLIST_SUB+=	NAUTILUS="@comment "
-CONFIGURE_ARGS+=	--disable-nautilus-actions
-.endif
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	NAUTILUS
+OPTIONS_DEFAULT=NAUTILUS
+NAUTILUS_DESC=	Enable Nautilus extension
+NAUTILUS_USE=	GNOME=nautilus3
+NAUTILUS_CONFIGURE_ENABLE=	nautilus-actions
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/src/fr-command-tar.c \
 		${WRKSRC}/src/fr-command-zip.c
 
+.include <bsd.mport.options.mk>
+
 post-install:
-	@-update-desktop-database
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${DOCSDIR}
 .endfor
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
