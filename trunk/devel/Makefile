@@ -33,6 +33,7 @@ SUBDIR += bouml
 SUBDIR += bouml-doc
 SUBDIR += bug-buddy
 SUBDIR += bugzilla44
+SUBDIR += bullet
 SUBDIR += compiler-rt
 SUBDIR += chrpath
 SUBDIR += cmake
