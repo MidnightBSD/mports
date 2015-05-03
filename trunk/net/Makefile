@@ -38,7 +38,6 @@ SUBDIR += ldapdiff
 SUBDIR += libdnet
 SUBDIR += libgweather
 SUBDIR += libnet
-SUBDIR += libnet10
 SUBDIR += liboauth
 SUBDIR += libpcap
 SUBDIR += libpcapnav
