@@ -6,7 +6,8 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
 		mit modula3 mpl npl nvidia openldap2.8 opera owl \
 		perl pgsql php python ruby sgi subversion x11 zlib \
-		publicdom unknown other agg restricted
+		publicdom unknown other agg restricted \
+		ccasa3
 
 # List of groups (only names must be present)
 
@@ -76,6 +77,9 @@ _LICENSE_GROUPS_bsd4=	FSF
 
 _LICENSE_NAME_bzip2=	BZIP License
 _LICENSE_GROUPS_bzip2=
+
+_LICENSE_NAME_ccasa3=	Creative Commons Attribution-Share Alike 3.0
+_LICENSE_GROUPS_ccasa3=
 
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
