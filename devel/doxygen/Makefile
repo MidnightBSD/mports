@@ -2,6 +2,7 @@
 
 PORTNAME=	doxygen
 PORTVERSION=	1.8.3.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -13,7 +14,7 @@ COMMENT=	Documentation system for C, C++ and other languages
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
 
 USE_BISON=	build
 USE_ICONV=	yes
