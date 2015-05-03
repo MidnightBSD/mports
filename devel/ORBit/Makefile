@@ -2,17 +2,17 @@
 
 PORTNAME=	ORBit
 PORTVERSION=	0.5.17
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance CORBA ORB with support for the C language
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USES=		tar:bzip2 gettext
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
