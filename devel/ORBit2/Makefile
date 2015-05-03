@@ -2,7 +2,7 @@
 
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19
-PORTREVISION?=	5
+PORTREVISION?=	6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -34,11 +34,8 @@ post-patch:
 		${WRKSRC}/src/services/name/Makefile.in
 
 post-install:
-	@${ECHO_CMD} "ORBIIOPIPv4=0" > ${PREFIX}/etc/orbit2rc.default
-	@${ECHO_CMD} "ORBIIOPIPv6=0" >> ${PREFIX}/etc/orbit2rc.default
-	@if [ ! -f ${PREFIX}/etc/orbit2rc ]; then \
-		${CP} -p ${PREFIX}/etc/orbit2rc.default ${PREFIX}/etc/orbit2rc ; \
-	fi
+	@${ECHO_CMD} "ORBIIOPIPv4=0" > ${PREFIX}/etc/orbit2rc.sample
+	@${ECHO_CMD} "ORBIIOPIPv6=0" >> ${PREFIX}/etc/orbit2rc.sample
 	@${MKDIR} ${PREFIX}/lib/orbit-2.0/idl-backends
 
 .include <bsd.port.mk>
