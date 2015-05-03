@@ -10,7 +10,8 @@ PKGNAMEPREFIX=	linux-
 DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A high-color icon theme shell from the FreeDesktop project
+COMMENT=	High-color icon theme shell from the FreeDesktop project
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme

@@ -12,9 +12,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QtCurve GTK2 Theme Engine (Linux Fedora 10)
 LICENSE=	gpl2
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	gtk2
-LINUX_DIST_VER=	10
 RPMVERSION=	1.fc10
 
 .include <bsd.port.mk>
