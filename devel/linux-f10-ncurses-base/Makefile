@@ -8,6 +8,8 @@ MASTER_SITES=	http://archives.fedoraproject.org/pub/archive/fedora/linux/release
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminfo database required by Linux ncurses programs
 
+LICENSE=	mit
+
 USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 
