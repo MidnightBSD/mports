@@ -11,12 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A high dynamic-range (HDR) image file format
 LICENSE=	ilm
 
-LIB_DEPENDS=	Half.6:${PORTSDIR}/graphics/ilmbase
+LIB_DEPENDS=	Half:${PORTSDIR}/graphics/ilmbase
 
-USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
+USES=		gmake pkgocnifg libtool tar:gz
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=--enable-imfexamples
