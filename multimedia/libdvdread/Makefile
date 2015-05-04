@@ -6,7 +6,7 @@ CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/videolan/libdvdread/${PORTVERSION}/ \
 		http://dvdnav.mplayerhq.hu/releases/ \
 		http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
-		LOCAL/martymac
+		FREEBSD_LOCAL/martymac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPlayer version of the libdvdread project
