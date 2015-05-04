@@ -15,16 +15,14 @@ LICENSE=	openldap2.8
 
 USE_LINUX=	f10
 USE_LINUX_RPM=	yes
+
 RPMVERSION=	1.fc10
 USE_LDCONFIG=	yes
 DESCR=	${.CURDIR}/../openldap24-server/pkg-descr
 
-PLIST_FILES=	usr/lib/liblber-2.4.so.2 usr/lib/liblber-2.4.so.2.2.0 usr/lib/libldap-2.4.so.2 usr/lib/libldap-2.4.so.2.2.0 usr/lib/libldap_r-2.4.so.2 usr/lib/libldap_r-2.4.so.2.2.0 etc/openldap
+PLIST_FILES=	usr/lib/liblber-2.4.so.2 usr/lib/liblber-2.4.so.2.2.0 usr/lib/libldap-2.4.so.2 usr/lib/libldap-2.4.so.2.2.0 usr/lib/libldap_r-2.4.so.2 usr/lib/libldap_r-2.4.so.2.2.0 etc/openldap usr/share/man/man5/ldap.conf.5.gz usr/share/man/man5/ldif.5.gz
 DOCSDIR=	usr/share/doc/${PORTNAME}-${PORTVERSION}
 PORTDOCS=	ANNOUNCEMENT CHANGES COPYRIGHT LICENSE README
-MANPREFIX=	${PREFIX}/usr/share
-MAN5=		ldap.conf.5 ldif.5
-MANCOMPRESSED=	yes
 
 # do not install any openldap configuration directories/files
 post-extract:
