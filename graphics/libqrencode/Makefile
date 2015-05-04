@@ -2,31 +2,32 @@
 # $FreeBSD: ports/graphics/libqrencode/Makefile,v 1.23 2011/11/30 14:01:42 vanilla Exp $
 
 PORTNAME=	libqrencode
-PORTVERSION=	3.3.1
+PORTVERSION=	3.4.4
 CATEGORIES=	graphics
 MASTER_SITES=	http://fukuchi.org/works/qrencode/
 DISTNAME=	qrencode-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A C library for encoding data in a QR Code symbol
-LICENSE=	lgpl
+COMMENT=	C library for encoding data in a QR Code symbol
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+LICENSE=	lgpl2.1
 
-USE_GNOME=	gnomehack pkgconfig
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+
+USES=		pathfix pkgconfig libtool tar:gz
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-I${LOCALBASE}/include
-USE_LDCONFIG=	yes
-
-MAN1=		qrencode.1
 
 PLIST_FILES=	bin/qrencode \
 		include/qrencode.h \
-		lib/libqrencode.la \
 		lib/libqrencode.so \
 		lib/libqrencode.so.3 \
-		libdata/pkgconfig/libqrencode.pc
+		lib/libqrencode.so.3.4.4 \
+		libdata/pkgconfig/libqrencode.pc \
+		man/man1/qrencode.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,libpng12,libpng,' ${WRKSRC}/configure
