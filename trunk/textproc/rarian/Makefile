@@ -2,7 +2,7 @@
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -26,7 +26,7 @@ DOCBOOK_VERSION=4.2
 CONFLICTS=	scrollkeeper-[0-9]*
 
 USES=		gmake libtool pathfix python tar:bzip2
-USE_GNOME=	gnomehier libxslt
+USE_GNOME=	libxslt
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-convert-dir=${LOCALBASE}/share/omf \
