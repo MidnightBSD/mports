@@ -3,18 +3,20 @@
 
 PORTNAME=	libssh2
 PORTVERSION=	0.18
+PORTREVISION=	1
 CATEGORIES=	security linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The library implementing the SSH2 protocol (Linux Fedora 10)
+COMMENT=	Library implementing the SSH2 protocol (Linux Fedora 10)
+
 LICENSE=	bsd3
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	openssl
-LINUX_DIST_VER=	10
 RPMVERSION=	7.fc9
 USE_LDCONFIG=	yes
 
