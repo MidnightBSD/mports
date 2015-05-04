@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-audio
 PORTVERSION=	2.22.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 
@@ -14,7 +14,6 @@ LICENSE=	agg
 
 USES=		tar:bzip2
 NO_BUILD=	yes
-USE_GNOME=	gnomehier
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/share|${PREFIX}/share|' \
