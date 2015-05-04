@@ -3,8 +3,9 @@
 
 PORTNAME=	openldap
 PORTVERSION=	2.4.12
+PORTREVISION=	1
 CATEGORIES=	net linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
@@ -12,8 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight Directory Access Protocol libraries (Linux Fedora 10)
 LICENSE=	openldap2.8
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
-LINUX_DIST_VER=	10
 RPMVERSION=	1.fc10
 USE_LDCONFIG=	yes
 DESCR=	${.CURDIR}/../openldap24-server/pkg-descr
