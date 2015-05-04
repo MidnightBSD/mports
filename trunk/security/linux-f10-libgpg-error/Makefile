@@ -11,8 +11,8 @@ COMMENT=	Common error values for all GnuPG components
 
 LICENSE=	gpl2
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
-LINUX_DIST_VER=	10
 RPMVERSION=	2
 USE_LDCONFIG=	yes
 BRANDELF_FILES=	usr/bin/gpg-error
