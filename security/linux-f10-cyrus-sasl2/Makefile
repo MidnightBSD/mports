@@ -3,8 +3,9 @@
 
 PORTNAME=	cyrus-sasl2
 PORTVERSION=	2.1.22
+PORTREVISION=	1
 CATEGORIES=	security linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	cyrus-sasl-lib-${PORTVERSION}-${RPMVERSION}
 
@@ -12,10 +13,11 @@ SRC_DISTFILES=	cyrus-sasl-${PORTVERSION}-${RPMVERSION}.src.rpm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer) (Linux Fedora 10)
+
 LICENSE=	bsd4
 
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
-LINUX_DIST_VER=	10
 RPMVERSION=	19.fc10
 USE_LDCONFIG=	yes
 BRANDELF_FILES=	usr/sbin/sasldblistusers2 usr/sbin/saslpasswd2
