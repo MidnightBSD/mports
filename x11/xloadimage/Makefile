@@ -54,5 +54,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/xloadimagerc ${PREFIX}/etc/xloadimagerc.sample
 	@[ -f ${PREFIX}/etc/xloadimagerc ] || ${CP} -f ${PREFIX}/etc/xloadimagerc.sample \
                 ${PREFIX}/etc/xloadimagerc
+	@(cd ${MAN1PREFIX}/man/man1 && \
+		${LN} -sf xloadimage.1 xsetbg.1 && \
+		${LN} -sf xloadimage.1 xview.1 )
+
 
 .include <bsd.port.mk>
