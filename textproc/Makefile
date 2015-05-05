@@ -161,7 +161,6 @@ SUBDIR += sdocbook-xml
 SUBDIR += sgmlformat
 SUBDIR += soprano
 SUBDIR += sphinxsearch
-SUBDIR += sphinxsearch2
 SUBDIR += texi2html
 SUBDIR += tidyp
 SUBDIR += urlview
