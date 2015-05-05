@@ -2,19 +2,20 @@
 
 PORTNAME=	slim
 PORTVERSION=	1.3.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
 		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
 		jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
+		png:${PORTSDIR}/graphics/png \
 		freetype:${PORTSDIR}/print/freetype2 \
 		ck-connector:${PORTSDIR}/sysutils/consolekit \
 		expat:${PORTSDIR}/textproc/expat2 \
