@@ -9,9 +9,11 @@ DISTNAME=	js-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A standalone JavaScript interpreter from the Mozilla project
-LICENSE=	gpl2
-# dual mpl gpl
-LIB_DEPENDS=	nspr4.1:${PORTSDIR}/devel/nspr
+
+LICENSE=	gpl2 mpl
+LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
 
 MAKE_ARGS+=	JS_THREADSAFE=YES \
 		PROG_LIBS="-lreadline -ltermcap -lm ${PTHREAD_LIBS}" \
