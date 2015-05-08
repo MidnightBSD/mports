@@ -2,7 +2,7 @@
 
 PORTNAME=	gdk-pixbuf
 PORTVERSION=	2.31.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -15,7 +15,7 @@ LICENSE=	lgpl
 
 USE_XORG=	xt xi x11
 USES=		gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME+=	gnomehier glib20 introspection:build
+USE_GNOME+=	glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
