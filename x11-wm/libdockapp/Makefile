@@ -2,13 +2,14 @@
 
 PORTNAME=	libdockapp
 PORTVERSION=	0.6.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	xride
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Standard library for Window Maker dock apps
+
 LICENSE=	mit
 
 OPTIONS_DEFINE=	EXAMPLES
@@ -25,7 +26,6 @@ post-install:
 .for file in fonts.alias fonts.dir *.pcf.gz
 	${INSTALL_DATA} ${WRKSRC}/fonts/${file} ${PREFIX}/lib/X11/fonts/dockapp
 .endfor
-.if !defined(NOPORTEXAMPLES)
 	@${MKDIR} ${EXAMPLESDIR}
 .for file in README
 	${INSTALL_DATA} ${WRKSRC}/examples/${file} ${EXAMPLESDIR}
@@ -38,6 +38,5 @@ post-install:
 .for file in Imakefile *.c
 	${INSTALL_DATA} ${WRKSRC}/examples/rectangles/${file} ${EXAMPLESDIR}/rectangles
 .endfor
-.endif
 
 .include <bsd.port.mk>
