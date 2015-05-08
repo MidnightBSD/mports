@@ -2,16 +2,16 @@
 
 PORTNAME=	distcc
 PORTVERSION=	3.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distribute compilation of C(++) code acrosss machines on a network
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt
 
 USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
