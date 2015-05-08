@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	340.65
+DISTVERSION?=	346.47
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
@@ -101,11 +101,6 @@ PLIST_SUB+=	LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
 		MODULESDIR=${MODULESDIR}
 
 .include <bsd.mport.options.mk>
-
-# FreeBSD src SVN r254138 had broken 71.86.xx legacy series :(
-.if ${OSVERSION} > 1000041 && ${NVVERSION} <= 718615
-BROKEN=		does not compile
-.endif
 
 .if ${PORT_OPTIONS:MLINUX}
 CONFLICTS=	linux[-_]dri-[0-9]* linux-f10-dri-[0-9]*
