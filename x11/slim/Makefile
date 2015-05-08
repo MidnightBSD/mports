@@ -12,24 +12,21 @@ COMMENT=	Graphical login manager for X11, derived from Login.app
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
-		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
-		jpeg:${PORTSDIR}/graphics/jpeg \
-		png:${PORTSDIR}/graphics/png \
-		freetype:${PORTSDIR}/print/freetype2 \
-		ck-connector:${PORTSDIR}/sysutils/consolekit \
-		expat:${PORTSDIR}/textproc/expat2 \
-		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
+		libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libck-connector.so:${PORTSDIR}/sysutils/consolekit \
+		libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_CMAKE=	yes
+USES=		cmake pkgconfig
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrender xt
-USE_PKGCONFIG=	build
 USE_RC_SUBR=	slim
 SUB_FILES=	pkg-message
 
 CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes
-
-MAN1=		slim.1
 
 OPTIONS_DEFINE=	PAM
 

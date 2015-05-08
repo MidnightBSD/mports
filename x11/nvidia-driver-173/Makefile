@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-DISTVERSION=	173.14.35
+DISTVERSION=	173.14.39
 # Explicitly set PORTREVISION as it can be overridden by the master port
 PORTREVISION=	2
 
