@@ -2,7 +2,7 @@
 
 PORTNAME=		spidermonkey185
 PORTVERSION=		1.8.5
-PORTREVISION=		1
+PORTREVISION=		2
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	js
@@ -10,6 +10,9 @@ DISTNAME=		js185-1.0.0
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Standalone JavaScript (1.8.5) interpreter from Mozilla
+
+LICENSE=		gpl2 mpl
+LICENSE_COMB=		dual
 
 BUILD_DEPENDS=		zip:${PORTSDIR}/archivers/zip \
 			autoconf-2.13:${PORTSDIR}/devel/autoconf213
