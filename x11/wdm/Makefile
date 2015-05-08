@@ -2,7 +2,7 @@
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
@@ -19,9 +19,9 @@ COMMENT=	WINGs Display Manager; an xdm replacement
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	wraster.4:${PORTSDIR}/x11-wm/windowmaker
+LIB_DEPENDS=	libWINGs.so:${PORTSDIR}/x11-wm/windowmaker
 
-USES=		tar:bzip2
+USES=		gettext tar:bzip2
 USE_XORG=	x11 xmu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	DEF_SERVER="${DEF_SERVER}" XRDB_PATH="${XRDB_PATH}"
