@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.14 2008/09/10 19:44:16 ctriv Exp $
+# $MidnightBSD$
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
