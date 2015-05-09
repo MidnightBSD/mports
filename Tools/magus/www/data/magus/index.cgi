@@ -260,13 +260,27 @@ sub port_page {
   my @depends = map { {
     port   => $_->port->name,
     id     => $_->port->id,
-    status => $_->port->status,
-    type   => $_->type
+    status => $_->port->status
   } } $port->depends;
+
+  my ($buildDepends) = Magus::Depend->search( port => $port->id, type => 'build'); 
+  my ($runDepends) = Magus::Depend->search( port => $port->id, type => 'run');
+  my ($libDepends) = Magus::Depend->search( port => $port->id, type => 'lib');
+  my ($patchDepends) = Magus::Depend->search( port => $port->id, type => 'patch');
+  my ($fetchDepends) = Magus::Depend->search( port => $port->id, type => 'fetch');
+  my ($extractDepends) = Magus::Depend->search( port => $port->id, type => 'extract');
+  my ($testDepends) = Magus::Depend->search( port => $port->id, type => 'test');
 
   if (@depends) {
     $tmpl->param(depends => \@depends);
   }
+  $tmpl->param(buildDepends => $buildDepends);
+  $tmpl->param(runDepends => $runDepends);
+  $tmpl->param(libDepends => $libDepends);
+  $tmpl->param(patchDepends => $patchDepends);
+  $tmpl->param(fetchDepends => $fetchDepends);
+  $tmpl->param(extractDepends => $extractDepends);
+  $tmpl->param(testDepends => $testDepends);
   
   my @depends_of = map { {
     port   => $_->name,
