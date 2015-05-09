@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	obconf
-PORTVERSION=	2.0.3
-PORTREVISION=	2
+PORTVERSION=	2.0.4
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://openbox.org/dist/obconf/
 
@@ -11,10 +10,11 @@ COMMENT=	Preferences manager for the Openbox window manager
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
-		obrender.27:${PORTSDIR}/x11-wm/openbox
+LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
+		libobrender.so:${PORTSDIR}/x11-wm/openbox
 
-USE_GNOME=	gnomehier libglade2
+USES=		pkgconfig desktop-file-utils shared-mime-info
+USE_GNOME=	libglade2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	OPENBOX_CFLAGS="`pkg-config --cflags obrender-3.5 obt-3.5`" \
 		OPENBOX_LIBS="`pkg-config --libs obrender-3.5 obt-3.5`"
@@ -25,6 +25,8 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTDOCS=	ABOUT-NLS AUTHORS README TODO
+
+OPTIONS_DEFINE=	DOCS NLS
 
 .include <bsd.mport.options.mk>
 
