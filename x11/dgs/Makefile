@@ -2,26 +2,26 @@
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	../old-gnu/dgs
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A display ghostscript system
+COMMENT=	Display ghostscript system
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		tiff:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libtiff.so:${PORTSDIR}/graphics/tiff
 
 USE_GHOSTSCRIPT_RUN=	yes
 USE_XORG=	xt sm ice xext x11
 USE_GNOME=	glib12
-USES=		gmake
+USES=		gmake libtool makeinfo
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool
 WRKSRC=		${WRKDIR}/${PORTNAME}-0.5.9
 MAKE_JOBS_UNSAFE=	yes
 
