@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface for VTE (Terminal widget)
+
 LICENSE=	lgpl
 
 MASTERDIR=	${.CURDIR}/../vte
@@ -14,7 +15,7 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
-USE_GNOME=	gnomehack  vte pygtk2
+USE_GNOME=	vte pygtk2
 USE_PYTHON=	yes
 CONFIGURE_ARGS=	--enable-python \
 		--disable-freetypetest \
