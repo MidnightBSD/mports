@@ -4,24 +4,19 @@
 PORTNAME=	libksane
 PORTVERSION=	${KDE4_VERSION}
 CATEGORIES=	graphics kde
-MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
-DIST_SUBDIR=	KDE
+MASTER_SITES=	KDE/${KDE4_BRANCH}/${PORTVERSION}/src
+DIST_SUBDIR=	KDE/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SANE library interface for KDE
 LICENSE=	gpl2
 
-LIB_DEPENDS=	sane.1:${PORTSDIR}/graphics/sane-backends
+LIB_DEPENDS=	libsane.so:${PORTSDIR}/graphics/sane-backends
 
-CONFLICTS=	kdegraphics-4.[0-6].*
-
-USE_KDE4=	kdehier kdelibs kdeprefix automoc4
-KDE4_BUILDENV=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib moc_build qmake_build rcc_build uic_build
-USE_BZIP2=	yes
-MAKE_JOBS_SAFE=	yes
+USE_KDE4=	kdelibs kdeprefix automoc4
+USES=		cmake:outsource tar:xz
+USE_QT4=	moc_build qmake_build rcc_build uic_build
+USE_LDCONFIG=	yes
 
 pre-configure:
 	${REINPLACE_CMD} -e '/pkgconfig/ s/$${LIB_INSTALL_DIR}/libdata/' \
