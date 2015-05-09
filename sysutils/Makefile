@@ -74,7 +74,6 @@ SUBDIR += memtest86
 SUBDIR += munin-common
 SUBDIR += munin-master
 SUBDIR += munin-node
-SUBDIR += nautilus-cd-burner
 SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openupsd
