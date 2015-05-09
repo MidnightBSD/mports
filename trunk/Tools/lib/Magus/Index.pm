@@ -73,15 +73,11 @@ sub sync {
       pkgname     => $dump{pkgname},
     });     
 
-    # We only have one depend type, merge into a unique list
-    my %portdepends;
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
-        $portdepends{$dep} = $type;
+	push($depends{$port->id}, \{ "name" => $dep, "type" => $type });
       }
     }
-      
-    $depends{$port->id} = [keys %portdepends];
       
     $class->sync_categories(\%dump, $port, $arch);
       
@@ -99,17 +95,17 @@ sub sync {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
 
     for (@$depends) {
-      my $depend = Magus::Port->retrieve(run => $run, name => $_);
+      my $depend = Magus::Port->retrieve(run => $run, name => $_->name);
       
       if (!$depend) {
-        warn "\tMissing depend for $port: $_\n";
-        $port->set_result_fail(qq(depend "$_" does not exist.));
+        warn "\tMissing depend for $port: $_->name\n";
+        $port->set_result_fail(qq(depend "$_->name" does not exist.));
         next PORT;
       }
       
       $port->add_to_depends({ 
         dependency => $depend,
-	type => $portdepends{$_}
+	type => $_->type
       });    
     }    
   }
