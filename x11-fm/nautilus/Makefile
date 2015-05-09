@@ -1,53 +1,47 @@
 # $MidnightBSD$
 
 PORTNAME=	nautilus
-PORTVERSION=	2.32.2.1
-PORTREVISION=	2
+PORTVERSION=	3.14.2
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	g-ir-compiler:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	exif:${PORTSDIR}/graphics/libexif \
-		unique-1.0:${PORTSDIR}/x11-toolkits/unique \
-		exempi:${PORTSDIR}/textproc/exempi
+BUILD_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libexif.so:${PORTSDIR}/graphics/libexif \
+		libnotify.so:${PORTSDIR}/devel/libnotify \
+		libexempi.so:${PORTSDIR}/textproc/exempi
+RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
 
-CONFLICTS=	nautilus-3.[0-9]*
-
-INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USES=		gettext
-USES=		desktop-file-utils shared-mime-info
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop \
-		librsvg2 ltverhack gvfs ltasneededhack
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig shared-mime-info tar:xz
+USE_GNOME=	gnomeprefix intlhack gnomedesktop3 libxml2 \
+		gvfs introspection:build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
-		LIBPNG="-L${LOCALBASE}/lib -lpng -lz"
+GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-CONFIGURE_ARGS=	--enable-static --disable-packagekit
-MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ENV=	LIBS="-pthread"
+CONFIGURE_ARGS=	--disable-packagekit
+INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	apps_nautilus_preferences.schemas
+GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
 
-MAN1=		nautilus-connect-server.1 nautilus-file-management-properties.1 \
-		nautilus.1
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	TRACKER
+OPTIONS_DEFAULT=TRACKER
+TRACKER_DESC=	Tracker support
+TRACKER_LIB_DEPENDS=	libtracker-control-1.0.so:${PORTSDIR}/sysutils/tracker
+TRACKER_CONFIGURE_ENABLE=	tracker
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|G_CONST_RETURN|const|g' \
-		${WRKSRC}/eel/eel-*.[ch] \
-		${WRKSRC}/libnautilus-private/*.[ch] \
-		${WRKSRC}/src/nautilus-zoom-control.c
-	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
-		${WRKSRC}/configure ${WRKSRC}/eel/Makefile.in
-
-post-install:
-	@${MKDIR} ${PREFIX}/lib/nautilus/extensions-2.0
+	@${REINPLACE_CMD} -e 's|-DGTK_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
