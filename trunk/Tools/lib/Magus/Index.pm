@@ -73,9 +73,10 @@ sub sync {
       pkgname     => $dump{pkgname},
     });     
 
+    $depends{$port->id} = [];
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
-	push($depends{$port->id}, \{ "name" => $dep, "type" => $type });
+	push(@{$depends{$port->id}}, \{ "name" => $dep, "type" => $type });
       }
     }
       
