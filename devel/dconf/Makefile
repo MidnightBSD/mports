@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME?=	dconf
-PORTVERSION=	0.14.1
-PORTREVISION?=	3
+PORTVERSION=	0.22.0
+PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DISTNAME=	dconf-${PORTVERSION}
@@ -18,16 +18,15 @@ BUILD_DEPENDS=	vala>=0.18.1:${PORTSDIR}/lang/vala \
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
 USES=		gettext gmake pathfix pkgconfig tar:xz
-USE_GNOME=	glib20 gnomehier intltool
+USE_GNOME=	glib20 intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 DCONF_SLAVE?=	no
 
-.if ${DCONF_SLAVE} == "editor"
+.if ${DCONF_SLAVE} == editor
 USE_GNOME+=	gtk30
 INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	ca.desrt.dconf-editor.gschema.xml
@@ -51,10 +50,13 @@ post-patch:
 		${WRKSRC}/bin/Makefile.in \
 		${WRKSRC}/client/Makefile.in \
 		${WRKSRC}/editor/Makefile.in
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/docs/Makefile.in
 
+.if ${DCONF_SLAVE} == no
 post-install:
-	-${LOCALBASE}/bin/gio-querymodules ${PREFIX}/lib/gio/modules
 	@${MKDIR} ${PREFIX}/etc/dconf/db
 	@${MKDIR} ${PREFIX}/etc/dconf/profile
+.endif
 
 .include <bsd.port.mk>
