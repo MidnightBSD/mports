@@ -102,7 +102,7 @@ sub current_result {
 
 =head2 $port->all_depends
 
-Returns a list of every port in this port's depends tree.
+Returns a list of every port in this port's dependency tree.
 
 =cut 
 
