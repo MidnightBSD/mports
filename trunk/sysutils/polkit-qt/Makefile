@@ -2,33 +2,32 @@
 # $FreeBSD: ports/sysutils/polkit-qt/Makefile,v 1.4 2011/03/25 10:22:45 avilla Exp $
 
 PORTNAME=	polkit-qt
-PORTVERSION=	0.103.0
+PORTVERSION=	0.112.0
 DISTVERSIONPREFIX=	1-
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/apps/KDE4.x/admin/
+MASTER_SITES=	KDE/stable/apps/KDE4.x/admin/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 frontend to PolKit-1
-LICENSE=	lgpl
 
-LIB_DEPENDS=	polkit-agent-1.0:${PORTSDIR}/sysutils/polkit
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_LDCONFIG=	yes
+LIB_DEPENDS=	libpolkit-agent-1.so:${PORTSDIR}/sysutils/polkit
+
+CMAKE_ARGS=	-DBUILD_EXAMPLES:BOOL=OFF \
+		-DBUILD_TEST:BOOL=OFF \
+		-DUSE_QT4:BOOL=ON
+
+USE_GNOME=	glib20
 USE_KDE4=	automoc4
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib dbus gui network svg xml  \
+USE_QT4=	corelib dbus gui \
 		qmake_build moc_build rcc_build uic_build
-USE_CMAKE=	yes
-# TODO: the next release (post-0.103.0) should have commit 56883bd, which
-#       syncs FindGObject.cmake with kdelibs' and should find GObject without
-#       requiring us to explicitly set LDFLAGS.
-LDFLAGS+=	-L${LOCALBASE}/lib
+USES=		cmake:outsource tar:bzip2
+USE_LDCONFIG=	yes
 
-post-extract:
-	${REINPLACE_CMD} -e 's|$${LIB_INSTALL_DIR}/pkgconfig|libdata/pkgconfig|' \
+post-patch:
+	${REINPLACE_CMD} -e 's|$${LIB_DESTINATION}/pkgconfig|libdata/pkgconfig|' \
 		${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
