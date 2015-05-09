@@ -15,7 +15,7 @@ LICENSE=	bsd3
 
 USES=		pathfix
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	i386-portbld-freebsd7.0
+CONFIGURE_TARGET=	i386-portbld-freebsd9.1
 USE_LDCONFIG=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}

@@ -128,6 +128,7 @@ SUBDIR += jansson
 SUBDIR += jenkins
 SUBDIR += json-c
 SUBDIR += json-glib
+SUBDIR += jsoncpp
 SUBDIR += judy
 SUBDIR += kBuild
 SUBDIR += lemon
