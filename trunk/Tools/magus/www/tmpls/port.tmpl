@@ -91,7 +91,7 @@
 <TMPL_IF NAME="depends">
 <ul class="depends">
     <TMPL_LOOP NAME="depends">
-	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
+	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a> (<TMPL_VAR NAME="type">)</li>
     </TMPL_LOOP>
 </ul>
 <TMPL_ELSE>
@@ -103,7 +103,7 @@
 <TMPL_IF NAME="depends_of">
 <ul class="depends">
     <TMPL_LOOP NAME="depends_of">
-	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
+	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a> (<TMPL_VAR NAME="type">)</li>
     </TMPL_LOOP>
 </ul>
 <TMPL_ELSE>
