@@ -96,17 +96,17 @@ sub sync {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
 
     for (@$depends) {
-      my $depend = Magus::Port->retrieve(run => $run, name => $_->{name});
+      my $depend = Magus::Port->retrieve(run => $run, name => $_{name});
       
       if (!$depend) {
-        warn "\tMissing depend for $port: $_->{name}\n";
-        $port->set_result_fail(qq(depend "$_->{name}" does not exist.));
+        warn "\tMissing depend for $port: $_{name}\n";
+        $port->set_result_fail(qq(depend "$_{name}" does not exist.));
         next PORT;
       }
       
       $port->add_to_depends({ 
         dependency => $depend,
-	type => $_->{type}
+	type => $_{type}
       });    
     }    
   }
