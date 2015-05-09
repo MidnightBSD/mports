@@ -2,7 +2,7 @@
 
 PORTNAME?=	xscreensaver-gnome
 PORTVERSION=	5.12
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	x11 gnome
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 DISTNAME=	xscreensaver-${PORTVERSION}
@@ -23,7 +23,7 @@ USE_XORG=	x11 xpm
 USE_GL=		gl
 USES+=		dos2unix gettext gmake perl5 pathfix pkgconfig
 USE_PERL5_RUN=	yes
-USE_GNOME=	gnomehier libglade2
+USE_GNOME=	libglade2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
 		--with-jpeg=${LOCALBASE} --with-xshm-ext --with-xdbe-ext \
