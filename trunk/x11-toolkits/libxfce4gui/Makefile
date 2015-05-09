@@ -2,7 +2,7 @@
 
 PORTNAME=	libxfce4gui
 PORTVERSION=	4.10.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/archive/libxfcegui4/${PORTVERSION:R}
@@ -10,20 +10,17 @@ DISTNAME=	libxfcegui4-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Xfce 4 widget library required by Xfce4 and Xfwm4
+COMMENT=	Various Gtk widgets for the Xfce Desktop
 
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNOME=	gtk20 intltool intlhack libglade2
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libutil
 USE_XORG=	sm x11
-USES=	pathfix pkgconfig
+USES=	pathfix pkgconfig libtool tar:bzip2 gmake gettext-tools
 
 CONFIGURE_ARGS+=--disable-gtk-doc-html
 
