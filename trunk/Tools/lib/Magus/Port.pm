@@ -44,7 +44,7 @@ __PACKAGE__->columns(Stringify => qw(name));
 
 __PACKAGE__->has_a(run => 'Magus::Run');
 
-__PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => port);
+__PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
 
