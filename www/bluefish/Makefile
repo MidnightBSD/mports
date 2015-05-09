@@ -1,80 +1,59 @@
 # $MidnightBSD$
 
 PORTNAME=	bluefish
-PORTVERSION=	2.0.2
-PORTREVISION=	2
+PORTVERSION=	2.2.7
 CATEGORIES=	www editors
-MASTER_SITES=	SF
+MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
+		http://bluefish.mrball.net/stable/source/ \
+		SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre \
-		aspell.16:${PORTSDIR}/textproc/aspell \
-		enchant.1:${PORTSDIR}/textproc/enchant
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
+		libenchant.so:${PORTSDIR}/textproc/enchant
 
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata desktopfileutils
+USES=		gmake pkgconfig desktop-file-utils shared-mime-info \
+		tar:bzip2 libtool
+USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--with-freedesktop_org-menu=${PREFIX}/share/applications \
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--with-gtk2 \
+		--with-freedesktop_org-menu=${PREFIX}/share/applications \
 		--with-freedesktop_org-mime=${PREFIX}/share/mime \
-		--without-gnome2_4-mime \
-		--without-gnome2_4-appreg \
 		--with-icon-path=${PREFIX}/share/pixmaps
+INSTALL_TARGET=	install-strip
 
-MAN1=		bluefish.1
+OPTIONS_DEFINE=	DEBUG NLS TIDY WEBLINT EXAMPLES
 
-OPTIONS=	DEBUG "Enable debugging output" Off \
-		SPLASH "Show splash screen at startup" On \
-		TIDY "Include Tidy HTML cleanup program" Off \
-		WEBLINT "Include Weblint syntax and style checker" On
+DEBUG_DESC=	Enable debugging output
+TIDY_DESC=	Include Tidy HTML cleanup program
+WEBLINT_DESC=	Include Weblint syntax and style checker
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFAULT=WEBLINT
 
-.if ${HAVE_GNOME:Mlibgnomeui}!=""
-USE_GNOME+=	libgnomeui
-.endif
+OPTIONS_SUB=	yes
 
-# Turns debugging output on
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--with-debugging-output
-.endif
+NLS_USES=		gettext
+NLS_CONFIGURE_OFF=	--disable-nls
 
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.else
-USE_GETTEXT=		yes
-PLIST_SUB+=		NLS=""
-.endif
+DEBUG_CONFIGURE_ON=	--with-debugging-output
+LIBGNOME_USE=		GNOME=libgnomeui
+TIDY_RUN_DEPENDS=	tidy4:${PORTSDIR}/www/tidy
+WEBLINT_RUN_DEPENDS=	weblint:${PORTSDIR}/www/weblint
 
-.if defined(WITHOUT_SPLASH)
-CONFIGURE_ARGS+=	--disable-splash-screen
-.endif
-
-.if defined(WITH_TIDY)
-RUN_DEPENDS+=	tidy:${PORTSDIR}/www/tidy
-.endif
-.if !defined(WITHOUT_WEBLINT)
-RUN_DEPENDS+=	weblint:${PORTSDIR}/www/weblint
-.endif
+post-patch:
+	@${REINPLACE_CMD} -e '/^bflangsampledir = /s|$$(docdir)/bflang|${EXAMPLESDIR}|' \
+		${WRKSRC}/data/bflang/Makefile.in
 
 pre-install:
 	@${MKDIR} ${PREFIX}/share/mime
 
-post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${MKDIR} ${DOCSDIR}/bflang
-	${INSTALL_DATA} ${WRKSRC}/data/bflang/sample.bflang2 ${DOCSDIR}/bflang
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
