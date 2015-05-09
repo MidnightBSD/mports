@@ -76,7 +76,10 @@ sub sync {
     $depends{$port->id} = [];
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
-	push(@{$depends{$port->id}}, \{ "name" => $dep, "type" => $type });
+	my %dependsItem;
+	$dependsItem{name} = $dep;
+	$dependsItem{type} = $type;
+	push(@{$depends{$port->id}}, \%dependsItem);
       }
     }
       
@@ -95,18 +98,18 @@ sub sync {
   PORT: while (my ($id, $depends) = each %depends) {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
 
-    for (@$depends) {
-      my $depend = Magus::Port->retrieve(run => $run, name => $_{name});
+    foreach my $item (@$depends) {
+      my $depend = Magus::Port->retrieve(run => $run, name => $item->{name});
       
       if (!$depend) {
-        warn "\tMissing depend for $port: $_{name}\n";
-        $port->set_result_fail(qq(depend "$_{name}" does not exist.));
+        warn "\tMissing depend for $port: $item->{name}\n";
+        $port->set_result_fail(qq(depend "$item->{name}" does not exist.));
         next PORT;
       }
       
       $port->add_to_depends({ 
         dependency => $depend,
-	type => $_{type}
+	type => $item->{type}
       });    
     }    
   }
