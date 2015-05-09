@@ -15,7 +15,7 @@ COMMENT=	Adobe Flash Player NPAPI Plugin
 
 LICENSE=	other
 
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	openssl curl cyrus-sasl2 libssh2 nspr nss openldap gtk2
 WANT_GNOME=	yes
 
