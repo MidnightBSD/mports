@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.8 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD$
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
