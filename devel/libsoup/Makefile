@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.40.3
-PORTREVISION?=	1
+PORTVERSION=	2.48.1
+PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -20,26 +20,27 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
-USE_GNOME=	gnomehier glib20 libxml2 referencehack intltool
+USES+=		gettext gmake libtool pathfix pkgconfig \
+		python:3:build tar:xz
+USE_GNOME=	glib20 intltool introspection:build \
+		libxml2 referencehack
 USE_SQLITE=	3
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_PYTHON_BUILD=	2
 CONFIGURE_ARGS=	--disable-more-warnings
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-LIBVERSION=	1.5.0
+LIBVERSION=	1.7.0
 PLIST_SUB=	VERSION="2.4" LIBVERSION=${LIBVERSION}
 
 .if defined(SOUP_SLAVE)
-USE_SQLITE=	3
+USE_SQLITE=	yes
 LIB_DEPENDS+=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
 CONFIGURE_ARGS+=--with-gnome
 .else
-USE_GNOME+=	introspection:build
 CONFIGURE_ARGS+=--without-gnome
 .endif
 
@@ -50,24 +51,25 @@ post-patch:
 		${WRKSRC}/libsoup/tld-parser.py
 
 .if defined(SOUP_SLAVE)
-do-build:
-	cd ${WRKSRC}/libsoup && ${MAKE_CMD} libsoup-gnome-2.4.la
-
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.la ${PREFIX}/lib/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.6 ${PREFIX}/lib/
-	cd ${WRKSRC}/libsoup && DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} install-libsoupgnomeincludeHEADERS
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/gir-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.gir ${STAGEDIR}${PREFIX}/share/gir-1.0/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.typelib ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.${LIBVERSION} ${STAGEDIR}${PREFIX}/lib/
+	cd ${WRKSRC}/libsoup && DESTDIR=${STAGEDIR} ${GMAKE} install-libsoupgnomeincludeHEADERS
 .endif
 
 post-install:
 .if defined(SOUP_SLAVE)
-	@${MKDIR} ${PREFIX}/libdata/pkgconfig
-	@${INSTALL_DATA} ${WRKSRC}/libsoup-gnome-2.4.pc \
-		${PREFIX}/libdata/pkgconfig/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/libsoup-gnome-2.4.pc \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/
 .else
-	@${INSTALL_DATA} ${WRKSRC}/libsoup/soup-connection.h \
-	    	${PREFIX}/include/libsoup-2.4/libsoup/soup-connection.h
+	${INSTALL_DATA} ${WRKSRC}/libsoup/soup-connection.h \
+		${STAGEDIR}${PREFIX}/include/libsoup-2.4/libsoup/soup-connection.h
 .endif
 
 .include <bsd.port.mk>
