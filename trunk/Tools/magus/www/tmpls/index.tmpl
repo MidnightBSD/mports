@@ -109,6 +109,15 @@
 </p>
 </TMPL_IF>
 
+<h3>Compare Runs</h3>
+<form class="form" id="compareruns" action="<TMPL_VAR NAME=root>/compare" method="get">
+	<fieldset>
+        <input class="input-md" placeholder="Run ID 1" type="text" name="run1" value=""><br>
+        <input class="input-md" placeholder="Run ID 2" type="text" name="run2" value="">
+        <input class="btn btn-default" type="submit" value="Compare">
+	</fieldset>
+</form>
+
 </div>
 </section>
 
