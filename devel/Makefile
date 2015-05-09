@@ -10,6 +10,7 @@ SUBDIR += allegro
 SUBDIR += anjuta
 SUBDIR += antlr
 SUBDIR += apache-ant
+SUBDIR += appdata-tools
 SUBDIR += apr1
 SUBDIR += autoconf
 SUBDIR += autoconf-wrapper
