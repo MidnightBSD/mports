@@ -2,7 +2,7 @@
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.21
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	SF/librdf/${PORTNAME}/${PORTVERSION} \
 		http://download.librdf.org/source/
@@ -12,23 +12,21 @@ COMMENT=	RDF Parser Toolkit for Redland
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
-USE_GNOME=	gnomehack libxml2
+USES=		libtool pathfix
+USE_GNOME=	libxml2
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-xml2-config=${LOCALBASE}/bin/xml2-config \
 		--with-curl-config=${LOCALBASE}/bin/curl-config \
+		--with-html-dir=${PREFIX}/share/doc \
 		--with-xml-parser=libxml --with-www=curl
-CONFIGURE_ENV+=	DOC_MODULE_VERSION=1
-MAKE_ENV+=	DOC_MODULE_VERSION=1
+INSTALL_TARGET=	install-strip
 
-USE_LDCONFIG=	yes
+OPTIONS_DEFINE=	DOCS
 
-MAN1=		raptor-config.1
-MAN3=		libraptor.3
-
-post-extract:
-	${REINPLACE_CMD} -e 's|utils ||' \
-		${WRKSRC}/Makefile.in
+post-patch:
+	@${REINPLACE_CMD} -e 's|utils ||' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
