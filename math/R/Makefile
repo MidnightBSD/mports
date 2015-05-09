@@ -1,7 +1,9 @@
-# $MidnightBSD$
+# Created by: Maurice Castro <maurice@serc.rmit.edu.au>
+# $FreeBSD: head/math/R/Makefile 378945 2015-02-13 21:41:22Z sbruno $
 
 PORTNAME?=	R
-PORTVERSION=	3.0.1
+PORTVERSION=	3.0.2
+PORTREVISION=	3
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/%SUBDIR%/ \
 		ftp://cran.r-project.org/pub/R/%SUBDIR%/ \
@@ -20,16 +22,22 @@ MASTER_SITES=	http://cran.r-project.org/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	src/base/R-${PORTVERSION:C|\..*||}
 DISTNAME=	R-${PORTVERSION}
 
+PATCH_SITES=		${MASTER_SITE_LOCAL}
+PATCH_SITE_SUBDIR=	bf
+PATCHFILES=		R-patched-20131112-r64207.diff.bz2
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	A language for statistical computing and graphics
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=		${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 
-CONFIGURE_ENV=		SED="${LOCALBASE}/bin/gsed" \
+CONFIGURE_ENV=		LIBR_LDFLAGS="${LDFLAGS}" OBJC="${CC}" \
+			SED="${LOCALBASE}/bin/gsed" \
 			ac_cv_have_decl_powl=yes ac_cv_have_decl_log1pl=yes
 
-OPTIONS_DEFINE=		MISSING
+OPTIONS_DEFINE=		MISSING DOCS
 
 MISSING_DESC=		use libmissing rather than libquadmath
 
@@ -44,11 +52,10 @@ PLIST_SUB=		RMATH_SOVERSION="${RMATH_SOVERSION}"
 USE_LDCONFIG=		yes
 .else # LIBRMATH_SLAVEPORT
 ALL_TARGET=		all
-INSTALL_TARGET =	install
-CONFIGURE_ARGS =	--enable-memory-profiling rdocdir=${DOCSDIR} \
+INSTALL_TARGET=		install
+CONFIGURE_ARGS=		--enable-memory-profiling rdocdir=${DOCSDIR} \
 			--with-system-bzlib --with-system-zlib
 CONFIGURE_ENV+=		FCFLAGS="${FFLAGS}" \
-			INSTALL_DATA="${INSTALL} ${COPY} ${_SHROWNGRP} -m 644" \
 			R_LD_LIBRARY_PATH="${R_LD_LIBRARY_PATH}" TAR="${TAR}"
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
@@ -57,16 +64,15 @@ OPTIONS_DEFINE+=	ATLAS ICU PCRE_PORT THREADS
 
 ATLAS_DESC=		Use ATLAS instead of BLAS/LAPACK
 ICU_DESC=		Use ICU for collation in multibyte locales
-PCRE_PORT_DESC =	Use devel/pcre instead of the bundled PCRE
+PCRE_PORT_DESC=		Use devel/pcre instead of the bundled PCRE
 
 OPTIONS_DEFAULT+=	ICU PCRE_PORT THREADS
 .if !defined(LIBR_SLAVEPORT)
 RUN_DEPENDS+=		${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 USE_LDCONFIG=		${PREFIX}/lib/R/lib
 #now only used to build the R.1 manpage:
-USE_PERL5_BUILD=	yes
-
-MAN1=			R.1 Rscript.1
+USES+=			makeinfo perl5
+USE_PERL5=		build
 
 OPTIONS_DEFINE+=	GHOSTSCRIPT INFO_MANUALS JPEG LETTER_PAPER LIBR \
 			PANGOCAIRO PDF_MANUALS PNG TCLTK TIFF X11
@@ -85,6 +91,10 @@ X11_DESC=		X11() graphics device
 OPTIONS_DEFAULT+=	GHOSTSCRIPT INFO_MANUALS JPEG LIBR PANGOCAIRO PNG \
 			TCLTK TIFF X11
 
+OPTIONS_DEFAULT_armv6+=		MISSING
+OPTIONS_DEFAULT_powerpc+=	MISSING
+OPTIONS_DEFAULT_powerpc64+=	MISSING
+
 .endif # !LIBR_SLAVEPORT
 PLIST_SUB=		R_SOVERSION="${R_SOVERSION}" \
 			RBLAS_SOVERSION="${RBLAS_SOVERSION}" \
@@ -98,36 +108,36 @@ R_SOVERSION=		1
 RBLAS_SOVERSION=	2
 RLAPACK_SOVERSION=	4
 RMATH_SOVERSION=	0
-USE_FORTRAN=		yes
+USES+=			fortran
+USE_GCC=		yes
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == "sparc64"
-PICFLAG?=		-fPIC
-.else
 PICFLAG?=		-fpic
-.endif
 .for flag in LD CXXLD
 CONFIGURE_ENV +=	SHLIB_${flag}FLAGS="${PICFLAG}"
 .endfor
 
 .if ${PORT_OPTIONS:MMISSING}
-LIB_DEPENDS+=		missing:${PORTSDIR}/math/libmissing
-LIBM=			-L${LOCALBASE}/lib -lmissing
+.for _f in acos asin atan cos cosh exp log pow sin sinh tan tanh
+CONFIGURE_ENV+=		ac_cv_have_decl_c${_f}=yes
+.endfor
+LIB_DEPENDS+=		libmissing.so:${PORTSDIR}/math/libmissing
+LIBM=			-L${LOCALBASE}/lib -lmissing -lm
 LIBMH=			"missing_math.h"
 .if defined(LIBRMATH_SLAVEPORT)
 CPPFLAGS+=		-I${LOCALBASE}/include
 .endif
 .else
-LIBM=			-lquadmath
+LIBM=			-lquadmath -lm
 LIBMH=			<quadmath.h>
 .endif
 
 .if !defined(LIBRMATH_SLAVEPORT)
 .if ${PORT_OPTIONS:MATLAS}
-LIB_DEPENDS+=		atlas:${PORTSDIR}/math/atlas
-BLAS?=			-lf77blas
-LAPACK?=		-lalapack -lcblas
+LIB_DEPENDS+=		libatlas.so:${PORTSDIR}/math/atlas
+BLAS?=			${LIBM} -lf77blas
+LAPACK?=		${LIBM} -lalapack -lcblas
 .else
 BLAS?=			no
 LAPACK?=		no
@@ -140,7 +150,7 @@ PLIST_SUB+=		LAPACK="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MICU}
-LIB_DEPENDS+=		icui18n:${PORTSDIR}/devel/icu
+LIB_DEPENDS+=		libicui18n.so:${PORTSDIR}/devel/icu
 CONFIGURE_ARGS+=	--with-ICU
 .else
 CONFIGURE_ARGS+=	--without-ICU
@@ -155,7 +165,7 @@ PLIST_SUB+=		NLS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPCRE_PORT}
-LIB_DEPENDS+=		pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=		libpcre.so:${PORTSDIR}/devel/pcre
 CONFIGURE_ARGS+=	--with-system-pcre
 .else
 CONFIGURE_ARGS+=	--without-system-pcre
@@ -170,6 +180,7 @@ CONFIGURE_ARGS+=	--disable-threads
 .if defined(LIBR_SLAVEPORT)
 
 CONFIGURE_ARGS+=	--disable-BLAS-shlib --without-pic --without-x
+USES+=			readline
 
 .else # LIBR_SLAVEPORT
 
@@ -178,7 +189,7 @@ USE_GHOSTSCRIPT_RUN=	yes
 .endif
 
 .if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=		jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=		libjpeg.so:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=	--with-jpeglib
 .else
 CONFIGURE_ARGS+=	--without-jpeglib
@@ -196,6 +207,7 @@ PLIST_SUB+=		LIBR="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPANGOCAIRO}
+USES+=			pkgconfig
 USE_GNOME+=		pango
 PLIST_SUB+=		PANGOCAIRO=""
 .else
@@ -204,14 +216,14 @@ PLIST_SUB+=		PANGOCAIRO="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=		png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		libpng.so:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--with-libpng
 .else
 CONFIGURE_ARGS+=	--without-libpng
 .endif
 
 .if ${PORT_OPTIONS:MTCLTK}
-USE_TK =		84+
+USE_TK=			84+
 CONFIGURE_ARGS+=	--with-tcltk \
 			--with-tcl-config=${TCL_LIBDIR}/tclConfig.sh \
 			--with-tk-config=${TK_LIBDIR}/tkConfig.sh
@@ -222,7 +234,7 @@ PLIST_SUB+=		TCLTK="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MTIFF}
-LIB_DEPENDS+=		tiff:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=		libtiff.so:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-libtiff
 .else
 CONFIGURE_ARGS+=	--without-libtiff
@@ -243,9 +255,7 @@ INFO=		R-FAQ R-admin R-data R-exts R-intro R-lang
 .endif
 
 .if ${PORT_OPTIONS:MPDF_MANUALS} && ${PORT_OPTIONS:MDOCS}
-BROKEN=			The PDF_MANUALS option cannot be used, because it\
-			requires broken components of texlive
-USE_TEX=		texlive pdftex:build
+USE_TEX=		texlive dvipsk kpathsea pdftex
 BUILD_DEPENDS +=	texi2dvi:${PORTSDIR}/print/texinfo
 ALL_TARGET+=		pdf
 CONFIGURE_ENV +=	INSTALL_INFO="${LOCALBASE}/bin/install-info" \
@@ -253,39 +263,54 @@ CONFIGURE_ENV +=	INSTALL_INFO="${LOCALBASE}/bin/install-info" \
 INSTALL_TARGET+=	install-pdf
 PLIST_SUB+=		PDF_MANUAL=""
 .else
+.for _b in KPSEWHICH MAKEINDEX PDFLATEX PDFTEX TEX TEXI2DVI
+CONFIGURE_ENV+=		ac_cv_path_${_b}=""
+.endfor
 PLIST_SUB+=		PDF_MANUAL="@comment "
 .endif
 .endif # LIBR_SLAVEPORT
 .endif # !LIBRMATH_SLAVEPORT
 
 post-patch:
+	@${REINPLACE_CMD} -e '\|LIBS=|s|-lrt ||' \
+		-e '\|-lm[". ]|s|-lm|${LIBM}|' \
+		${WRKSRC}/configure
 .if !${PORT_OPTIONS:MMISSING}
 .if ${OSVERSION} < 1000016
 	@${REINPLACE_CMD} -e 's/# define EXP expl/# define EXP(x) (long double)expq((__float128)(x))/' \
 		${WRKSRC}/src/nmath/pnchisq.c
 .endif
+.if ${OSVERSION} < 1000034
 	@${REINPLACE_CMD} -Ee 's/(log)(1p)?l\(/(long double)\1\2q((__float128)/' \
 		${WRKSRC}/src/nmath/dnbeta.c \
 		${WRKSRC}/src/nmath/pnbeta.c
+.endif
 	@${REINPLACE_CMD} -Ee 's/powl\((.*)(long double)/(long double)powq((__float128)\1__float128/' \
 		${WRKSRC}/src/main/format.c
+.else
+.if ${OSVERSION} > 1000052 && \
+(${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == ia64 || ${ARCH} == pc98 || ${ARCH} == sparc64)
+	@${REINPLACE_CMD} -e '\|^FLIBS="$$ac_cv_f77_libs"|s|"|&${LIBM} |' \
+		${WRKSRC}/configure
 .endif
 	@${REINPLACE_CMD} -e \
-	'\|#include <math.h>|{x;s|^.*$$|#include ${LIBMH}|;H;x;}' \
-		${WRKSRC}/src/nmath/nmath.h
-	@${REINPLACE_CMD} -e '\|LIBS=|s|-lrt ||' \
-		-e '\|-lm[". ]|s|-lm|${LIBM}|' \
-		${WRKSRC}/configure
+	'\|#[[:blank:]]*include[[:blank:]]*<complex.h>|{x;s|^.*$$|#include "missing_complex.h"|;H;x;}' \
+		${WRKSRC}/src/main/complex.c
+.endif
+	@${REINPLACE_CMD} -e \
+	'\|#[[:blank:]]*include[[:blank:]]*<math.h>|{x;s|^.*$$|#include ${LIBMH}|;H;x;}' \
+		${WRKSRC}/src/nmath/nmath.h \
+		${WRKSRC}/src/include/Rmath.h0.in
 	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/src/nmath/standalone/Makefile.in \
 		${WRKSRC}/src/unix/Makefile.in
 	@${REINPLACE_CMD} -e "s|-lpthread|${PTHREAD_LIBS}|g" \
 		${WRKSRC}/configure \
-		${WRKSRC}/src/scripts/javareconf
+		${WRKSRC}/src/scripts/javareconf.in
 	@${REINPLACE_CMD} -e "s|/usr/local|${LOCALBASE}|g" \
 		${WRKSRC}/configure \
 		${WRKSRC}/src/library/profile/Rprofile.unix \
-		${WRKSRC}/src/scripts/javareconf
+		${WRKSRC}/src/scripts/javareconf.in
 .if !defined(LIBRMATH_SLAVEPORT)
 .if !${PORT_OPTIONS:MNLS}
 	@(cd ${WRKSRC}/src/library/Recommended; \
@@ -315,8 +340,8 @@ do-build:
 	${MAKE_ARGS} Makefile Makedeps libR.a)
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/R/lib
-	@${INSTALL_DATA} ${WRKSRC}/src/main/libR.a ${PREFIX}/lib/R/lib
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/R/lib
+	@${INSTALL_LIB} ${WRKSRC}/src/main/libR.a ${STAGEDIR}${PREFIX}/lib/R/lib
 
 .else # LIBR_SLAVEPORT
 
@@ -335,25 +360,24 @@ check-all: build
 
 post-install:
 .for L in R Rblas Rlapack
-	@(cd ${PREFIX}/lib/R/lib; if [ -f lib${L}.so ] ; then \
-	${LN} -sf lib${L}.so lib${L}.so.${${L:U}_SOVERSION} ; fi)
+	@(cd ${STAGEDIR}${PREFIX}/lib/R/lib; if [ -f lib${L}.so ] ; then \
+	${LN} -sf lib${L}.so lib${L}.so.${${L:tu}_SOVERSION} ; fi)
 .endfor
 .if ${PORT_OPTIONS:MINFO_MANUALS} && ${PORT_OPTIONS:MDOCS}
 	@(cd ${WRKSRC}/doc/manual; \
 	for infofile in ${INFO}; do \
-		${INSTALL_DATA} $${infofile}.info* ${PREFIX}/${INFO_PATH}/; \
+		${INSTALL_DATA} $${infofile}.info* ${STAGEDIR}${PREFIX}/${INFO_PATH}/; \
 	done)
 .endif
 
 .endif # LIBR_SLAVEPORT
 .else # !LIBRMATH_SLAVEPORT
 do-install:
-	@${INSTALL_DATA} ${WRKSRC}/src/include/Rmath.h ${PREFIX}/include
-	@${INSTALL_DATA} ${BUILD_WRKSRC}/libRmath.a ${PREFIX}/lib
-	@${STRIP_CMD} ${BUILD_WRKSRC}/libRmath.so
-	@${INSTALL_DATA} ${BUILD_WRKSRC}/libRmath.so \
-	${PREFIX}/lib/libRmath.so.${RMATH_SOVERSION}
-	@(cd ${PREFIX}/lib; ${LN} -sf libRmath.so.${RMATH_SOVERSION} libRmath.so)
+	@${INSTALL_DATA} ${WRKSRC}/src/include/Rmath.h ${STAGEDIR}${PREFIX}/include
+	@${INSTALL_DATA} ${BUILD_WRKSRC}/libRmath.a ${STAGEDIR}${PREFIX}/lib
+	@${INSTALL_LIB} ${BUILD_WRKSRC}/libRmath.so \
+	${STAGEDIR}${PREFIX}/lib/libRmath.so.${RMATH_SOVERSION}
+	@(cd ${STAGEDIR}${PREFIX}/lib; ${LN} -sf libRmath.so.${RMATH_SOVERSION} libRmath.so)
 
 check regression-test test: build
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} LANGUAGE=en \
