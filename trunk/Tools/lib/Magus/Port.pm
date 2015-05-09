@@ -44,7 +44,7 @@ __PACKAGE__->columns(Stringify => qw(name));
 
 __PACKAGE__->has_a(run => 'Magus::Run');
 
-__PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ]);
+__PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => port);
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
 
@@ -118,7 +118,7 @@ sub all_depends {
 sub _walk {
   my ($port, $depends) = @_;
   
-  foreach my $dep ($port->depends->dependency) {
+  foreach my $dep ($port->depends) {
     if (!$depends->{$dep}) {
       $depends->{$dep} = $dep;
       _walk($dep, $depends);
