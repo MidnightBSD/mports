@@ -21,7 +21,9 @@ CREATE TABLE  "categories" (
 DROP TABLE "depends" CASCADE\g
 CREATE TABLE  "depends" (
    "port"   int NOT NULL, 
-   "dependency"   int NOT NULL
+   "dependency"   int NOT NULL,
+   "type" character varying(10) NOT NULL,
+   primary key ("port", "dependency", "type")
 )  ;
 CREATE INDEX "depends_port_idx" ON "depends" USING btree ("port");
 CREATE INDEX "depends_dependency_idx" ON "depends" USING btree ("dependency");
