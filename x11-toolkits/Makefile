@@ -58,7 +58,6 @@ SUBDIR += qt4-gui
 SUBDIR += renaissance
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
-SUBDIR += tk83
 SUBDIR += tk84
 SUBDIR += tk85
 SUBDIR += tk86
