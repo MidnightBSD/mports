@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $MidnightBSD: mports/Tools/magus/master/nuke_internals.pl,v 1.1 2008/04/22 06:54:49 ctriv Exp $
+# $MidnightBSD$
 #
 use strict;
 use warnings;
