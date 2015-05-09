@@ -261,6 +261,7 @@ sub port_page {
     port   => $_->name,
     id     => $_->id,
     status => $_->status,
+    type   => $_->type
   } } $port->depends;
 
   if (@depends) {
@@ -271,6 +272,7 @@ sub port_page {
     port   => $_->name,
     id     => $_->id,
     status => $_->status,
+    type   => $_->type
   } } map { Magus::Port->retrieve($_->port) } Magus::Depend->search(dependency => $port);
   
   if ($port->log) {
