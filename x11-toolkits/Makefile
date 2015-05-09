@@ -4,7 +4,6 @@ COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
 SUBDIR += attica
-SUBDIR += eel
 SUBDIR += fltk
 SUBDIR += fpc-gtk2
 SUBDIR += gdl
@@ -47,7 +46,6 @@ SUBDIR += p5-Tk
 SUBDIR += pango
 SUBDIR += pangomm
 SUBDIR += pangox-compat
-SUBDIR += py-gnome-desktop
 SUBDIR += py-gnome2
 SUBDIR += py-gtk2
 SUBDIR += py-gtksourceview
