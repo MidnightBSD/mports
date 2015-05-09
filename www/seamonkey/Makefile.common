@@ -54,10 +54,9 @@
 #			specified in CONFIGURE_ARGS instead
 
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
-		nspr4:${PORTSDIR}/devel/nspr 
-#		nss3:${PORTSDIR}/security/nss
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libnspr4.so:${PORTSDIR}/devel/nspr 
 
 MAINTAINER?=	ports@MidnightBSD.org
 
@@ -82,8 +81,8 @@ KRB5_HOME?=	/usr
 BROWSER_PLUGINS_DIR?=	lib/browser_plugins
 MOZ_PIS_DIR?=		lib/${MOZILLA}/init.d
 
-ESD_LIB?=	libesd.so.2
-FREETYPE_LIB?=	libfreetype.so.9
+ESD_LIB?=	libesd.so
+FREETYPE_LIB?=	libfreetype.so
 
 GENERIC_MOZCONFIG?=	${.CURDIR}/../../www/mozilla/files/mozconfig-generic.in
 PORT_MOZCONFIG?=	${FILESDIR}/mozconfig.in

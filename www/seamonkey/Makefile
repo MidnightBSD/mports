@@ -10,13 +10,13 @@ DISTNAME=	${PORTNAME}-${DISTVERSION}.source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
-LICENSE=	mpl
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+LICENSE=	mpl gpl2
+LICENSE_COMB=	dual
+
+USES=		gmake tar:bzip2
 WANT_GNOME=	yes
 WANT_PERL=	yes
-MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 ALL_TARGET=	default
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
@@ -56,11 +56,7 @@ GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{
 .if exists(${LOCALBASE}/include/cairo/cairo-glitz.h)
 # Glitz support can only be enabled if cairo is built with glitz support
 MOZ_OPTIONS+=	--enable-glitz
-LIB_DEPENDS+=	glitz.1:${PORTSDIR}/graphics/glitz
-.endif
-
-.if ${ARCH}=="sparc64" && ${OSVERSION} < 3000
-IGNORE=		core dumps on ${ARCH}, need kern.osreldate>=3000
+LIB_DEPENDS+=	libglitz.so:${PORTSDIR}/graphics/glitz
 .endif
 
 .if defined(WITHOUT_MAILNEWS)
