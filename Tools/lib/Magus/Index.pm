@@ -77,7 +77,7 @@ sub sync {
     my %portdepends;
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
-        $portdepends{$dep}++;
+        $portdepends{$dep} = $type;
       }
     }
       
@@ -108,7 +108,8 @@ sub sync {
       }
       
       $port->add_to_depends({ 
-        dependency => $depend
+        dependency => $depend,
+	type => $portdepends{$_}
       });    
     }    
   }
