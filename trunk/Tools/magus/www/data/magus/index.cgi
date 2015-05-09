@@ -225,7 +225,7 @@ sub port_page {
   my $tmpl = template($p, "port.tmpl");
   
   $port = Magus::Port->retrieve($port) || die "No such port: $port";
-  
+ 
   $tmpl->param(
     port      => $port->name, 
     id        => $port->id,
@@ -257,30 +257,21 @@ sub port_page {
     $tmpl->param(events => \@events);
   }
     
-  my @depends = map { {
-    port   => $_->port->name,
-    id     => $_->port->id,
-    status => $_->port->status
-  } } $port->depends;
+  my @depends;
+  my @fullDepends = Magus::Depend->search( port => $port->id, { order_by=> 'type, dependency' });
 
-  my ($buildDepends) = Magus::Depend->search( port => $port->id, type => 'build'); 
-  my ($runDepends) = Magus::Depend->search( port => $port->id, type => 'run');
-  my ($libDepends) = Magus::Depend->search( port => $port->id, type => 'lib');
-  my ($patchDepends) = Magus::Depend->search( port => $port->id, type => 'patch');
-  my ($fetchDepends) = Magus::Depend->search( port => $port->id, type => 'fetch');
-  my ($extractDepends) = Magus::Depend->search( port => $port->id, type => 'extract');
-  my ($testDepends) = Magus::Depend->search( port => $port->id, type => 'test');
+      foreach my $item (@fullDepends) {
+		my %h;
+		$h{id} = $item->dependency->id;
+		$h{port} = $item->dependency->name;
+		$h{status} = $item->dependency->status;
+ 		$h{type} = $item->type;
+              push @depends, \%h;
+      }
 
   if (@depends) {
     $tmpl->param(depends => \@depends);
   }
-  $tmpl->param(buildDepends => $buildDepends);
-  $tmpl->param(runDepends => $runDepends);
-  $tmpl->param(libDepends => $libDepends);
-  $tmpl->param(patchDepends => $patchDepends);
-  $tmpl->param(fetchDepends => $fetchDepends);
-  $tmpl->param(extractDepends => $extractDepends);
-  $tmpl->param(testDepends => $testDepends);
   
   my @depends_of = map { {
     port   => $_->name,
