@@ -2,85 +2,115 @@
 # $FreeBSD: ports/textproc/ibus/Makefile,v 1.16 2011/01/13 02:44:25 wen Exp $
 
 PORTNAME=	ibus
-PORTVERSION=	1.3.9
+PORTVERSION=	1.5.9
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${PORTVERSION}/ \
+		http://github.com/${PORTNAME}/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intelligent Input Bus for Linux / Unix OS
-LICENSE=	lgpl
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83.0:${PORTSDIR}/devel/py-dbus \
-		librsvg2>=2.0:${PORTSDIR}/graphics/librsvg2
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83.0:${PORTSDIR}/devel/py-dbus
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83.0:${PORTSDIR}/devel/py-dbus \
 		${PYTHON_SITELIBDIR}/gtk-2.0/pynotify/__init__.py:${PORTSDIR}/devel/py-notify \
 		${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg \
-		librsvg2>=2.0:${PORTSDIR}/graphics/librsvg2
+		setxkbmap:${PORTSDIR}/x11/setxkbmap
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
-USE_PYTHON=	yes
-USE_GNOME=	pygtk2 gconf2
-USE_QT_VER=	4
-
+USES=		compiler cpe gmake libtool pathfix pkgconfig python
+USE_GNOME=	glib20 librsvg2 pygobject3
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-GCONF_SCHEMAS=	ibus.schemas
+OPTIONS_SUB=	yes
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--disable-tests
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 
-OPTIONS=	ISOCODES "Use isocodecs" on \
-		VALA "Install vala binding" on \
-		GINTRO "Install GObject Introspection data" on
+OPTIONS_DEFINE=	ISOCODES NLS GTK2 GTK3 VALA GINTRO PYTHON_LIB DOCS XIM ENGINE
+OPTIONS_RADIO=	CONFIG
+OPTIONS_RADIO_CONFIG=	GCONF DCONF
+OPTIONS_DEFAULT=	ISOCODES NLS GTK2 GTK3 VALA GINTRO PYTHON_LIB DCONF XIM ENGINE
+
+ISOCODES_DESC=	Use isocodecs
+GTK2_DESC=	Install GTK2 client
+GTK3_DESC=	Install GTK3 client and panel
+VALA_DESC=	Install vala binding
+GINTRO_DESC=	Install GObject Introspection data
+PYTHON_LIB_DESC=	Install ibus Python libraries
+GCONF_DESC=	Use GConf for configuration
+DCONF_DESC=	Use dconf for configuration
+XIM_DESC=	Install XIM server
+ENGINE_DESC=	Install ibus simple engine
+CPE_VENDOR=	ibus_project
+
+ISOCODES_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+ISOCODES_RUN_DEPENDS=	${LOCALBASE}/share/xml/iso-codes/iso_639.xml:${PORTSDIR}/misc/iso-codes
+ISOCODES_CONFIGURE_OFF=	--disable-iso-codes-check
+
+NLS_USES=		gettext
+NLS_CONFIGURE_WITH=	nls
+
+GTK2_USE=		GNOME=gtk20
+GTK2_CONFIGURE_ENABLE=	gtk2
+
+GTK3_USE=		GNOME=gtk30
+GTK3_CONFIGURE_ENABLE=	gtk3 libnotify
+GTK3_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
+
+VALA_BUILD_DEPENDS=	vala>=0.20:${PORTSDIR}/lang/vala
+VALA_CONFIGURE_ENABLE=	vala
+
+GINTRO_BUILD_DEPENDS=	gobject-introspection>=0.6.8:${PORTSDIR}/devel/gobject-introspection
+GINTRO_RUN_DEPENDS=	gobject-introspection>=0.6.8:${PORTSDIR}/devel/gobject-introspection
+GINTRO_CONFIGURE_ON=	--enable-introspection=yes
+GINTRO_CONFIGURE_OFF=	--enable-introspection=no
+
+PYTHON_LIB_USE=			GNOME=pygtk2
+PYTHON_LIB_CONFIGURE_ENABLE=	python-library
+
+GCONF_USE=		GNOME=gconf2
+GCONF_CONFIGURE_ENABLE=	gconf
+
+DCONF_USE=		GNOME=dconf,gconf2
+DCONF_CONFIGURE_ENABLE=	dconf
+
+DOCS_CONFIGURE_ENABLE=	gtk-doc-html
+DOCS_CONFIGURE_ON=	--with-html-dir=${PREFIX}/share/doc
+
+XIM_CONFIGURE_ENABLE=	xim
+
+ENGINE_CONFIGURE_ENABLE=	engine
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_ISOCODES)
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
-RUN_DEPENDS+=	${LOCALBASE}/share/xml/iso-codes/iso_639.xml:${PORTSDIR}/misc/iso-codes
-.else
-CONFIGURE_ARGS+=	--disable-iso-codes-check
+.if ${COMPILER_TYPE} == gcc && ${COMPILER_VERSION} < 46
+USE_GCC=	yes
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CPPFLAGS=	-I${LOCALBASE}/include
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
+.if ${PORT_OPTIONS:MGCONF}
+GCONF_SCHEMAS=	ibus.schemas
 .endif
 
-.if defined(WITH_VALA)
-CONFIGURE_ARGS+=	--enable-vala
-PLIST_SUB+=	VALA=""
-.else
-CONFIGURE_ARGS+=	--disable-vala
-PLIST_SUB+=	VALA="@comment "
+.if ${PORT_OPTIONS:MDCONF}
+GLIB_SCHEMAS=	org.freedesktop.ibus.gschema.xml
 .endif
 
-.if defined(WITH_GINTRO)
-BUILD_DEPENDS+=		gobject-introspection>=0.6.8:${PORTSDIR}/devel/gobject-introspection
-RUN_DEPENDS+=		gobject-introspection>=0.6.8:${PORTSDIR}/devel/gobject-introspection
-CONFIGURE_ARGS+=	--enable-introspection=yes
-PLIST_SUB+=		GINTRO=""
+.if ${PORT_OPTIONS:MENGINE} || ${PORT_OPTIONS:MGTK3} || ${PORT_OPTIONS:MGCONF} || ${PORT_OPTIONS:MDCONF}
+PLIST_SUB+=	COMPDIR=""
 .else
-CONFIGURE_ARGS+=	--enable-introspection=no
-PLIST_SUB+=		GINTRO="@comment "
+PLIST_SUB+=	COMPDIR="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|/usr/share/xml/iso-codes/|${LOCALBASE}/share/xml/iso-codes/|g' ${WRKSRC}/ibus/lang.py
-	@${REINPLACE_CMD} -e 's|locale.bind_textdomain_codeset|gettext.bind_textdomain_codeset|g' ${WRKSRC}/setup/main.py
-	@${REINPLACE_CMD} -e 's|locale.bind_textdomain_codeset|gettext.bind_textdomain_codeset|g' ${WRKSRC}/ui/gtk/main.py
-	@${REINPLACE_CMD} -e 's|import locale|import gettext|g' ${WRKSRC}/ui/gtk/main.py
-	@${REINPLACE_CMD} -e 's|setpgrp ()|setpgrp (0,0)|g' ${WRKSRC}/bus/main.c
+	${REINPLACE_CMD} -e 's|/var/lib/dbus|/var/db/dbus|g' ${WRKSRC}/src/ibusshare.c
 
 post-install:
-	@gtk-query-immodules-2.0 > ${LOCALBASE}/etc/gtk-2.0/gtk.immodules
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO} To display this message again, type ${PKG_INFO} -D ${PKGNAME}
-
-post-deinstall:
-	@gtk-query-immodules-2.0 > ${LOCALBASE}/etc/gtk-2.0/gtk.immodules
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/xdg/autostart
+	${INSTALL_DATA} ${PATCHDIR}/ibus.desktop ${STAGEDIR}${PREFIX}/etc/xdg/autostart
 
 .include <bsd.port.post.mk>
