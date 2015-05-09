@@ -2,27 +2,24 @@
 
 PORTNAME=	gnome-spell
 PORTVERSION=	1.0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A GNOME/Bonobo component for spell checking
+COMMENT=	GNOME/Bonobo component for spell checking
 LICENSE=	gpl2
 
-LIB_DEPENDS=	aspell.16:${PORTSDIR}/textproc/aspell
+LIB_DEPENDS=	libaspell.so:${PORTSDIR}/textproc/aspell
 
-USE_BZIP2=	yes
-USE_XLIB=	yes
-USE_PERL5=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui
-USE_GETTEXT=	yes
+USE_GNOME=	gnomeprefix intlhack libgnomeui
+USES=		gettext gmake libtool pathfix pkgconfig perl5 tar:bzip2
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	VERSION=${PORTVERSION}
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@mkdir_p@|mkdir -p|g' \
