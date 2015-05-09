@@ -1,5 +1,6 @@
 # $MidnightBSD$
 
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 PKGNAMESUFFIX=	-gnome
 
