@@ -112,8 +112,15 @@
 <h3>Compare Runs</h3>
 <form class="form" id="compareruns" action="<TMPL_VAR NAME=root>/compare/" method="get">
 	<fieldset>
-        <input class="input-md" placeholder="Run ID 1" type="text" name="run1" value=""><br>
-        <input class="input-md" placeholder="Run ID 2" type="text" name="run2" value=""><br>
+	<div class="form-group">
+	<label for="run1">Run 1 ID</label>
+        <input class="form-control" placeholder="Run ID 1" type="number" name="run1" value="">
+	</div>
+
+	<div class="form-group">
+	<label for="run2">Run 2 ID</label>
+        <input class="form-control" placeholder="Run ID 2" type="number" name="run2" value="">
+	</div>
         <input class="btn btn-default" type="submit" value="Compare">
 	</fieldset>
 </form>
