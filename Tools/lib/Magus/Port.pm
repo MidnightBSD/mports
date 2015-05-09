@@ -118,7 +118,7 @@ sub all_depends {
 sub _walk {
   my ($port, $depends) = @_;
   
-  foreach my $dep ($port->depends->port) {
+  foreach my $dep ($port->depends->dependency) {
     if (!$depends->{$dep}) {
       $depends->{$dep} = $dep;
       _walk($dep, $depends);
