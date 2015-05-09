@@ -2,7 +2,7 @@
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	../old-gnu/dgs
@@ -16,6 +16,8 @@ LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff
 
+MAKE_JOBS_UNSAFE=	yes
+
 USE_GHOSTSCRIPT_RUN=	yes
 USE_XORG=	xt sm ice xext x11
 USE_GNOME=	glib12
@@ -23,33 +25,19 @@ USES=		gmake libtool makeinfo
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-0.5.9
-MAKE_JOBS_UNSAFE=	yes
-
-MAN1=		dgs.1 dpsnx.agent.1
-MANN=		dpsexec.man makepsres.man xepsf.man
-INSTALLDIRS=	gs DPS/clients/makepsres DPS/clients/pswrap \
-		DPS/demos/dpsexec DPS/demos/texteroids DPS/demos/xepsf \
-		DPS/lib/dpstk DPS/lib/psres DPS/lib/dps DPS/include/DPS
-
-.include <bsd.port.pre.mk>
 
 pre-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} \
 		${REINPLACE_CMD} -e 's|manm|mann|g'
 
 post-patch:
-	${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
-	-e 's|freebsd2\*)|freebsd2.\*)|' -e 's|freebsd1\*)|freebsd1.\*)|' \
-		${WRKSRC}/DPS/ltconfig
+	${REINPLACE_CMD} -e 's,@prefix@,$$(DESTDIR)@prefix@,g' \
+		-e 's,@mandir@,$$(DESTDIR)@mandir@,g' \
+		${WRKSRC}/gs/unix-gcc.mak.in
 
-do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/dgs-config ${PREFIX}/bin/
-	${INSTALL_SCRIPT} ${WRKSRC}/dpsnx.agent ${PREFIX}/bin/
-#	${INSTALL_DATA} ${WRKSRC}/path_dps.m4 ${PREFIX}/share/aclocal/
-	${INSTALL_MAN} ${WRKSRC}/dpsnx.agent.1 ${PREFIX}/man/man1/
-.for i in ${INSTALLDIRS}
-	@(cd ${INSTALL_WRKSRC}/${i} && ${SETENV} ${MAKE_ENV} \
-		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
-.endfor
+post-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/dgs-config ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/dpsnx.agent ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/dpsnx.agent.1 ${STAGEDIR}${PREFIX}/man/man1/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
