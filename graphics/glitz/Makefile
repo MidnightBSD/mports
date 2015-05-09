@@ -3,17 +3,18 @@
 
 PORTNAME=	glitz
 PORTVERSION=	0.5.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL image compositing library
-LICENSE=	x11
 
+LICENSE=	mit
+
+USES=		libtool:keepla pathfix pkgconfig
 USE_GL=		yes
 USE_XORG=	xt xorg-server
-USE_GNOME=	pkgconfig  gnomehack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
