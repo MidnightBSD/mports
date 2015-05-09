@@ -25,7 +25,7 @@ package Magus::DBI;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.6 2008/05/05 19:52:22 ctriv Exp $
+# $MidnightBSD$
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #

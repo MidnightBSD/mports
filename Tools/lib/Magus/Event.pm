@@ -24,7 +24,7 @@ package Magus::Event;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Event.pm,v 1.2 2008/03/14 18:43:15 ctriv Exp $
+# $MidnightBSD$
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #

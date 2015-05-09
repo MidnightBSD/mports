@@ -24,7 +24,7 @@ package Magus::Depend;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Depend.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD$
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,7 +37,7 @@ use base 'Magus::DBI';
 
 __PACKAGE__->table('depends');
 __PACKAGE__->columns(Primary => qw(port dependency));
-__PACKAGE__->columns(All => qw(type);
+__PACKAGE__->columns(All => qw(type));
 __PACKAGE__->has_a(dependency => 'Magus::Port');
 
 

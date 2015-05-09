@@ -24,7 +24,7 @@ package Magus::Log;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.4 2007/11/20 17:03:45 ctriv Exp $
+# $MidnightBSD$
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
