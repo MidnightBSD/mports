@@ -3,6 +3,7 @@
 
 PORTNAME=	eigen
 PORTVERSION=	2.0.17
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	https://bitbucket.org/eigen/eigen/get/
 DISTNAME=	${PORTVERSION}
