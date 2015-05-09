@@ -2,7 +2,7 @@
 
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
 		FREEBSD_LOCAL/jkim \
@@ -10,10 +10,11 @@ MASTER_SITES=	http://nspluginwrapper.org/download/ \
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${BINFILE}:binfile
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A compatibility plugin for Mozilla NPAPI plugins
+COMMENT=	Compatibility plugin for Mozilla NPAPI plugins
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
 CONFLICTS=	nspluginwrapper-1.3.*
 
@@ -23,7 +24,7 @@ BINFILE=	${PORTNAME}-i386-${PORTVERSION}-${BINBUILD}${EXTRACT_SUFX}
 HAS_CONFIGURE=	yes
 USE_GNOME=	glib20 gtk20
 USE_LDCONFIG=	yes
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	gtk2
 USE_XORG=	x11 xext xt
 USES=		gmake pkgconfig
