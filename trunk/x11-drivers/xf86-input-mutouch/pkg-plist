@@ -1,5 +1,2 @@
-lib/xorg/modules/input/mutouch_drv.la
 lib/xorg/modules/input/mutouch_drv.so
-@dirrmtry lib/xorg/modules/input
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/mutouch.4x.gz
