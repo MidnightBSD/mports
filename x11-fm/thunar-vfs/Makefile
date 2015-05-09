@@ -3,7 +3,7 @@
 
 PORTNAME=	thunar-vfs
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/archive/${PORTNAME}/${PORTVERSION:R}
@@ -13,78 +13,40 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The virtual filesystem for Thunar
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		jpeg:${PORTSDIR}/graphics/jpeg \
-		freetype:${PORTSDIR}/print/freetype2 \
-		gamin-1:${PORTSDIR}/devel/gamin
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool
-USE_PERL5=	yes
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libgamin-1.so:${PORTSDIR}/devel/gamin
+
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNOME=	glib20 gtk20 intltool intlhack
-USE_XFCE=	configenv libutil libexo
+USE_GNOME=	glib20 gtk20 gdkpixbuf2 intltool intlhack
+USE_XFCE=	libexo
 USE_XORG=	x11
-USES=		pkgconfig pathfix
+USES=		gmake pathfix perl5 pkgconfig libtool desktop-file-utils \
+		gettext-tools xfce tar:bzip2
 
-CONFIGURE_ARGS=	--disable-debug
+CONFIGURE_ARGS=	--disable-debug --without-html-dir
 
-OPTIONS_DEFINE=	NLS HAL DBUS STARTUP GCONF APIDOCS
-OPTIONS_DEFAULT=	NLS HAL DBUS STARTUP APIDOCS
-
-APIDOCS_DESC=	Install api documentation
-STARTUP_DESC=	Enable startup notification support
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=	--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MHAL}
-LIB_DEPENDS+=	hal:${PORTSDIR}/sysutils/hal
-CONFIGURE_ARGS+=--with-volume-manager=hal
-.else
-CONFIGURE_ARGS+=--with-volume-manager=freebsd
-.endif
-
-.if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=	dbus-glib-1:${PORTSDIR}/devel/dbus-glib
-CONFIGURE_ARGS+=--enable-dbus
-.else
-CONFIGURE_ARGS+=--disable-dbus
-.endif
-
-.if ${PORT_OPTIONS:MSTARTUP}
-LIB_DEPENDS+=	startup-notification-1:${PORTSDIR}/x11/startup-notification
-CONFIGURE_ARGS+=--enable-startup-notification
-.else
-CONFIGURE_ARGS+=--disable-startup-notification
-.endif
-
-# GNOME thumbnailers
-.if ${PORT_OPTIONS:MGCONF}
-USE_GNOME+=	gconf2
-CONFIGURE_ARGS+=--enable-gnome-thumbnailers
-.else
-CONFIGURE_ARGS+=--disable-gnome-thumbnailers
-.endif
-
-.if ${PORT_OPTIONS:MAPIDOCS}
-CONFIGURE_ARGS+=--with-html-dir=${PREFIX}/share/gtk-doc/html
-PLIST_SUB+=	APIDOCS=""
-.else
-CONFIGURE_ARGS+=--without-html-dir
-PLIST_SUB+=	APIDOCS="@comment "
-.endif
+OPTIONS_DEFINE=	NLS HAL DBUS STARTUP GCONF
+OPTIONS_DEFAULT=	NLS HAL DBUS STARTUP
+STARTUP_DESC=	Startup notification
+NLS_USES=	gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
+HAL_LIB_DEPENDS=	libhal.so:${PORTSDIR}/sysutils/hal
+HAL_CONFIGURE_WITH=	volume-manager=hal
+HAL_CONFIGURE_OFF=	--with-volume-manager=freebsd
+DBUS_LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+DBUS_CONFIGURE_ENABLE=	dbus
+STARTUP_LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
+STARTUP_CONFIGURE_ENABLE=	startup-notification
+GCONF_USE=	gnome=gconf2
+GCONF_CONFIGURE_ENABLE=	gnome-thumbnailers
+OPTIONS_SUB=	yes
 
 post-patch:
-		@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' ${WRKSRC}/configure
 
 .include <bsd.port.mk>
