@@ -8,6 +8,7 @@ DISTNAME=	EdenMath_GNUstep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scientific calcualtor for GNUstep
+
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
