@@ -279,6 +279,7 @@ SUBDIR += p5-File-ShareDir
 SUBDIR += p5-File-Tail
 SUBDIR += p5-File-Temp
 SUBDIR += p5-Filter
+SUBDIR += p5-FreezeThaw
 SUBDIR += p5-Getopt-ArgvFile
 SUBDIR += p5-Getopt-Long
 SUBDIR += p5-Heap
