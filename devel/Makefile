@@ -60,6 +60,7 @@ SUBDIR += distcc
 SUBDIR += dmalloc
 SUBDIR += dotconf
 SUBDIR += doxygen
+SUBDIR += efl
 SUBDIR += eggdbus
 SUBDIR += etoile-collectionkit
 SUBDIR += etoile-coreobject
