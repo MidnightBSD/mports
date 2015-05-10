@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	smartmontools
-PORTVERSION=	6.2
+PORTVERSION=	6.3
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -10,7 +10,13 @@ COMMENT=	S.M.A.R.T. disk monitoring tools
 
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+CONFLICTS=	smartmontools-devel-[0-9]*
+
+OPTIONS_DEFINE=	DOCS
+DOCS_CONFIGURE_OFF=	--without-docdir --without-exampledir
+DOCS_CONFIGURE_ON=	--with-docdir=${DOCSDIR}
+
+USES=		alias gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-drivedb --enable-sample \
@@ -19,20 +25,7 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 SUB_FILES=	pkg-message smart
 USE_RC_SUBR=	smartd
 
-MAN5=		smartd.conf.5
-MAN8=		smartd.8 smartctl.8
-
 PORTDOCS=	*
-
-.include <bsd.mport.options.mk>
-
-.if ! ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=	--without-docdir --without-exampledir
-.else
-CONFIGURE_ARGS+=	--with-docdir=${DOCSDIR}
-.endif
-
-CFLAGS:=	${CFLAGS:S/-O2/-O/} -Wno-write-strings
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| install-initdDATA| |' ${WRKSRC}/Makefile.in
