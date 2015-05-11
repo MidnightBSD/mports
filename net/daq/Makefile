@@ -11,6 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data Acquisition abstraction library for snort 2.9+
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet \
 		libpcap.so:${PORTSDIR}/net/libpcap
@@ -29,7 +30,7 @@ LIBS+=		-L${LOCALBASE}/lib
 .include <bsd.port.pre.mk>
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.* ${STAGEDIR}${PREFIX}/lib/daq/*.so
+	@${STRIP_CMD} ${PREFIX}/lib/*.so.* ${PREFIX}/lib/daq/*.so
 
 .if ${OSVERSION} < 4015
 CONFIGURE_ARGS+=--disable-netmap-module
