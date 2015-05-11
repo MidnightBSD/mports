@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libpcap
-PORTVERSION=	1.4.0
+PORTVERSION=	1.6.2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.tcpdump.org/release/
 
@@ -11,8 +11,7 @@ COMMENT=	Ubiquitous network traffic capture library
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USES=		bison
+USES=		bison gmake
 USE_LDCONFIG=	yes
 
 .if defined(LIBPCAP_OVERWRITE_BASE)
@@ -22,80 +21,12 @@ MANPREFIX=	${PREFIX}/share
 PKGMESSAGE=	${FILESDIR}/pkg-message-base
 .endif
 
-MAN1=		pcap-config.1
-MAN3=		pcap.3 \
-		pcap_activate.3 \
-		pcap_breakloop.3 \
-		pcap_can_set_rfmon.3 \
-		pcap_close.3 \
-		pcap_compile.3 \
-		pcap_create.3 \
-		pcap_datalink.3 \
-		pcap_datalink_name_to_val.3 \
-		pcap_datalink_val_to_name.3 \
-		pcap_dump.3 \
-		pcap_dump_close.3 \
-		pcap_dump_file.3 \
-		pcap_dump_flush.3 \
-		pcap_dump_ftell.3 \
-		pcap_dump_open.3 \
-		pcap_file.3 \
-		pcap_fileno.3 \
-		pcap_findalldevs.3 \
-		pcap_freecode.3 \
-		pcap_get_selectable_fd.3 \
-		pcap_geterr.3 \
-		pcap_inject.3 \
-		pcap_is_swapped.3 \
-		pcap_lib_version.3 \
-		pcap_list_datalinks.3 \
-		pcap_list_tstamp_types.3 \
-		pcap_lookupdev.3 \
-		pcap_lookupnet.3 \
-		pcap_loop.3 \
-		pcap_major_version.3 \
-		pcap_next_ex.3 \
-		pcap_offline_filter.3 \
-		pcap_open_dead.3 \
-		pcap_open_live.3 \
-		pcap_open_offline.3 \
-		pcap_set_buffer_size.3 \
-		pcap_set_datalink.3 \
-		pcap_set_promisc.3 \
-		pcap_set_rfmon.3 \
-		pcap_set_snaplen.3 \
-		pcap_set_timeout.3 \
-		pcap_set_tstamp_type.3 \
-		pcap_setdirection.3 \
-		pcap_setfilter.3 \
-		pcap_setnonblock.3 \
-		pcap_snapshot.3 \
-		pcap_stats.3 \
-		pcap_statustostr.3 \
-		pcap_strerror.3 \
-		pcap_tstamp_type_name_to_val.3 \
-		pcap_tstamp_type_val_to_name.3
-MAN5=		pcap-savefile.5
-MAN7=		pcap-filter.7 \
-		pcap-linktype.7 \
-		pcap-tstamp.7
-
-MLINKS=		pcap_datalink_val_to_name.3 \
-		pcap_datalink_val_to_description.3 \
-		pcap_dump_open.3 pcap_dump_fopen.3 \
-		pcap_geterr.3 pcap_perror.3 \
-		pcap_inject.3 pcap_sendpacket.3 \
-		pcap_loop.3 pcap_dispatch.3 \
-		pcap_major_version.3 pcap_minor_version.3 \
-		pcap_next_ex.3 pcap_next.3 \
-		pcap_open_offline.3 pcap_fopen_offline.3 \
-		pcap_setnonblock.3 pcap_getnonblock.3
-
 PLIST_FILES+=	bin/pcap-config \
 		include/pcap/bluetooth.h \
 		include/pcap/bpf.h \
 		include/pcap/ipnet.h \
 		include/pcap/namedb.h \
+		include/pcap/nflog.h \
 		include/pcap/pcap.h \
 		include/pcap/sll.h \
 		include/pcap/usb.h \
@@ -106,8 +37,67 @@ PLIST_FILES+=	bin/pcap-config \
 		lib/libpcap.a \
 		lib/libpcap.so.1 \
 		lib/libpcap.so.${PORTVERSION} \
-		lib/libpcap.so
-PLIST_DIRS+=	include/pcap
+		lib/libpcap.so \
+		man/man1/pcap-config.1.gz \
+		man/man3/pcap.3.gz \
+		man/man3/pcap_activate.3.gz \
+		man/man3/pcap_breakloop.3.gz \
+		man/man3/pcap_can_set_rfmon.3.gz \
+		man/man3/pcap_close.3.gz \
+		man/man3/pcap_compile.3.gz \
+		man/man3/pcap_create.3.gz \
+		man/man3/pcap_datalink.3.gz \
+		man/man3/pcap_datalink_name_to_val.3.gz \
+		man/man3/pcap_datalink_val_to_name.3.gz \
+		man/man3/pcap_dump.3.gz \
+		man/man3/pcap_dump_close.3.gz \
+		man/man3/pcap_dump_file.3.gz \
+		man/man3/pcap_dump_flush.3.gz \
+		man/man3/pcap_dump_ftell.3.gz \
+		man/man3/pcap_dump_open.3.gz \
+		man/man3/pcap_file.3.gz \
+		man/man3/pcap_fileno.3.gz \
+		man/man3/pcap_findalldevs.3.gz \
+		man/man3/pcap_freecode.3.gz \
+		man/man3/pcap_get_tstamp_precision.3.gz \
+		man/man3/pcap_get_selectable_fd.3.gz \
+		man/man3/pcap_geterr.3.gz \
+		man/man3/pcap_inject.3.gz \
+		man/man3/pcap_is_swapped.3.gz \
+		man/man3/pcap_lib_version.3.gz \
+		man/man3/pcap_list_datalinks.3.gz \
+		man/man3/pcap_list_tstamp_types.3.gz \
+		man/man3/pcap_lookupdev.3.gz \
+		man/man3/pcap_lookupnet.3.gz \
+		man/man3/pcap_loop.3.gz \
+		man/man3/pcap_major_version.3.gz \
+		man/man3/pcap_next_ex.3.gz \
+		man/man3/pcap_offline_filter.3.gz \
+		man/man3/pcap_open_dead.3.gz \
+		man/man3/pcap_open_live.3.gz \
+		man/man3/pcap_open_offline.3.gz \
+		man/man3/pcap_set_buffer_size.3.gz \
+		man/man3/pcap_set_datalink.3.gz \
+		man/man3/pcap_set_immediate_mode.3.gz \
+		man/man3/pcap_set_promisc.3.gz \
+		man/man3/pcap_set_rfmon.3.gz \
+		man/man3/pcap_set_snaplen.3.gz \
+		man/man3/pcap_set_timeout.3.gz \
+		man/man3/pcap_set_tstamp_precision.3.gz \
+		man/man3/pcap_set_tstamp_type.3.gz \
+		man/man3/pcap_setdirection.3.gz \
+		man/man3/pcap_setfilter.3.gz \
+		man/man3/pcap_setnonblock.3.gz \
+		man/man3/pcap_snapshot.3.gz \
+		man/man3/pcap_stats.3.gz \
+		man/man3/pcap_statustostr.3.gz \
+		man/man3/pcap_strerror.3.gz \
+		man/man3/pcap_tstamp_type_name_to_val.3.gz \
+		man/man3/pcap_tstamp_type_val_to_name.3.gz \
+		man/man5/pcap-savefile.5.gz \
+		man/man7/pcap-filter.7.gz \
+		man/man7/pcap-linktype.7.gz \
+		man/man7/pcap-tstamp.7.gz
 
 OPTIONS_DEFINE=	DAG IPV6
 
@@ -146,5 +136,7 @@ CFLAGS+=	-DHAVE_DEVICE_CLONING=1
 .if ${ARCH} == "amd64" || ${ARCH} == "sparc64"
 CFLAGS+=	-fPIC
 .endif
+
+CONFIGURE_ARGS+=	--enable-dbus=no
 
 .include <bsd.port.post.mk>
