@@ -10,6 +10,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	The "meta-port" for the GNOME 3 integrated X11 desktop
 
+LICENSE=	agg
+
 CONFLICTS?=	gnome3-lite-[0-9]*
 
 RUN_DEPENDS?=	dconf-editor:${PORTSDIR}/devel/dconf-editor \
