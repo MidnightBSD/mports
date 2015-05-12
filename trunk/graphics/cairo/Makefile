@@ -2,7 +2,7 @@
 
 PORTNAME=	cairo
 PORTVERSION=	1.12.18
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -26,7 +26,7 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--enable-tee
 USES+=		libtool pathfix pkgconfig
 USE_XORG=	pixman
-USE_GNOME=	referencehack
+USE_GNOME=	referencehack glib20
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
@@ -36,19 +36,17 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-glesv2 \
 		--disable-wgl \
 		--disable-egl \
-		--enable-tee
+		--enable-tee \	
+		--enable-gobject
 
-OPTIONS_DEFINE=	OPENGL XCB GLIB X11 
-OPTIONS_DEFAULT=XCB GLIB X11
+OPTIONS_DEFINE=	OPENGL XCB X11 
+OPTIONS_DEFAULT=XCB X11
 XCB_DESC=	Enable XCB (X C-language Binding) Support
-GLIB_DESC=	Enable GObject Functions Feature
 OPTIONS_SUB=	yes
 X11_USE=	xorg=xrender,xext
 X11_CONFIGURE_ENABLE=xlib
 OPENGL_USE=	gl=gl xorg=glproto:both,dri2proto:both
 OPENGL_CONFIGURE_ENABLE=gl
-GLIB_USE=	gnome=glib20
-GLIB_CONFIGURE_ENABLE=	gobject
 XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
 XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
 XCB_CONFIGURE_ENABLE=	xcb
