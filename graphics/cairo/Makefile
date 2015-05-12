@@ -36,7 +36,7 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-glesv2 \
 		--disable-wgl \
 		--disable-egl \
-		--enable-tee \	
+		--enable-tee \
 		--enable-gobject
 
 OPTIONS_DEFINE=	OPENGL XCB X11 
