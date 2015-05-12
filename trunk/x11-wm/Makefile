@@ -22,7 +22,6 @@ SUBDIR += obconf
 SUBDIR += obmenu
 SUBDIR += openbox
 SUBDIR += ratpoison
-SUBDIR += transset-df
 SUBDIR += twm
 SUBDIR += windowmaker
 SUBDIR += wmii

@@ -1,51 +1,56 @@
-# $MidnightBSD$
+# Created by: Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
+# $FreeBSD: head/x11-wm/enlightenment/Makefile 380054 2015-02-26 21:12:40Z gblach $
 
 PORTNAME=	enlightenment
-DISTVERSION=	1.0.0
-CATEGORIES=	x11-wm
-MASTER_SITES=	SF/enlightenment
-DISTNAME=	e16-${DISTVERSION}
+PORTVERSION=	0.19.4
+PORTEPOCH=	2
+CATEGORIES=	x11-wm enlightenment
+MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
 
-MAINTAINER=	ports@MdinightBSD.org
-COMMENT=	A very artistic X window manager
-LICENSE=	mit
+MAINTAINER=	gblach@FreeBSD.org
+COMMENT=	Artistic X window manager
 
-E16_REVISION=	000
-DATADIR=	${PREFIX}/share/e16
-DOCSDIR=	${PREFIX}/share/doc/e16
+LICENSE=	BSD2CLAUSE
 
-LIB_DEPENDS+=	Imlib2.5:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS=	libefl.so:${PORTSDIR}/devel/efl \
+		libelementary.so:${PORTSDIR}/x11-toolkits/elementary \
+		libedbus.so:${PORTSDIR}/devel/e_dbus \
+		libxcb-keysyms.so:${PORTSDIR}/x11/xcb-util-keysyms
+RUN_DEPENDS=	${LOCALBASE}/lib/evas/utils/evas_image_loader.svg:${PORTSDIR}/graphics/evas_generic_loaders-svg
 
-USE_XORG=	compositeproto damageproto xextproto x11 xbitmaps xcomposite xdamage \
-		xext xfixes xft xinerama xrandr xrender xxf86vm
-USE_ICONV=	yes
-USE_GMAKE=	yes
+DIST_SUBDIR=	enlightenment
+USE_AUTOTOOLS=	autoconf aclocal
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-esdtest --disable-dependency-tracking \
-		--disable-rpath
+USES=		alias desktop-file-utils execinfo libtool pathfix iconv gmake \
+		pkgconfig tar:xz
+USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+SUB_FILES=	pkg-message
 
-.if !defined(WITHOUT_ESOUND)
-USE_GNOME=	esound
-.else
-CONFIGURE_ARGS+=--disable-sound
-.endif
+CONFIGURE_ARGS=	--with-profile=MEDIUM_PC \
+		--disable-connman --disable-bluez4 \
+		--disable-device-udev --disable-mount-udisks
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+CPPFLAGS+=	-I${LOCALBASE}/include/e_dbus-1
 
-.if !defined(NOPORTDOCS)
-BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto
-CONFIGURE_ARGS+=--enable-docs=yes
-.else
-CONFIGURE_ARGS+=--enable-docs=no
+.include "Makefile.plist"
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+
 post-patch:
-	${REINPLACE_CMD} -e '/^SUBDIRS/s|docs ||' \
-	    ${WRKSRC}/Makefile.am ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's/\(setuid_root_mode = a=rx,u+x\)s/\1/g' \
+		${WRKSRC}/src/bin/Makefile.mk \
+		${WRKSRC}/src/modules/Makefile_cpufreq.mk
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not install on sparc64: signal 10
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
