@@ -52,6 +52,7 @@ SUBDIR += dbus
 SUBDIR += dbus-glib
 SUBDIR += dbus-qt4
 SUBDIR += dconf
+SUBDIR += dconf-editor
 SUBDIR += desktop-file-utils
 SUBDIR += dev86
 SUBDIR += devhelp
