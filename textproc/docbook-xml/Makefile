@@ -3,7 +3,7 @@
 
 PORTNAME=	docbook
 PORTVERSION=	5.0
-PORTREVISION=	0
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	${DBFILES:C,(.*):(.*),http://www.docbook.org/xml/\1/:\2,:C,:docbook-xml-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,:C,:docbook-([0-9]+).([0-9]+).?([0-9]*),:db\1\2\3,}
 PKGNAMESUFFIX=	-xml
@@ -50,9 +50,9 @@ post-extract:
 pre-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${DBKDIR}
 	${ECHO_CMD} "CATALOG \"${LOCALBASE}/share/xml/xmlcharent/catalog\"" \
-	    > ${STAGEDIR}${DBCAT_SGML}
-	${XMLCATMGR_CMD} -c ${STAGEDIR}${DBCAT_XML} create
-	${XMLCATMGR_CMD} -c ${STAGEDIR}${DBCAT_XML} \
+	    > ${DBCAT_SGML}
+	${XMLCATMGR_CMD} -c ${DBCAT_XML} create
+	${XMLCATMGR_CMD} -c ${DBCAT_XML} \
 	    add nextCatalog "${LOCALBASE}/share/xml/xmlcharent/catalog.xml"
 
 .for D in ${DBFILES:C,:.*,,}
@@ -70,7 +70,7 @@ do-install: do-install-${D:S/./_/g}
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/catalog412.xml \
-	    ${STAGEDIR}${PREFIX}/${DBKDIR}/4.1.2/catalog.xml
+	    ${PREFIX}/${DBKDIR}/4.1.2/catalog.xml
 	${REINPLACE_CMD} -i'' -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/share/xml/docbook/catalog.xml \
 		${PREFIX}/share/xml/docbook/catalog
