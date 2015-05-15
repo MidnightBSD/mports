@@ -1,20 +1,20 @@
 # $MidnightBSD$
 
-PORTNAME=		openvpn
-DISTVERSION=		2.3.3
-CATEGORIES=		security net
-MASTER_SITES=		http://swupdate.openvpn.net/community/releases/ \
-			http://build.openvpn.net/downloads/releases/
+PORTNAME=	openvpn
+DISTVERSION=	2.3.6
+CATEGORIES=	security net
+MASTER_SITES=	http://swupdate.openvpn.net/community/releases/ \
+		http://build.openvpn.net/downloads/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure IP/Ethernet tunnel daemon
 
-LICENSE=		gpl2
+LICENSE=	gpl2
 
 CONFLICTS=	openvpn-devel-[0-9]* openvpn-2.0* openvpn-beta-[0-9]*
 
 GNU_CONFIGURE=	yes
-USES=		tar:xz
+USES=		cpe libtool pkgconfig shebangfix tar:xz
 USE_OPENSSL=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--with-lzo-lib=${LOCALBASE}/lib \
@@ -25,7 +25,7 @@ INSTALL_TARGET=	install mandir=${MANPREFIX}/man
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
-OPTIONS_DEFINE=		PW_SAVE PKCS11 EASYRSA
+OPTIONS_DEFINE=		PW_SAVE PKCS11 EASYRSA DOCS EXAMPLES
 OPTIONS_DEFAULT=	EASYRSA OPENSSL
 OPTIONS_SINGLE=		SSL
 OPTIONS_SINGLE_SSL=	OPENSSL POLARSSL
