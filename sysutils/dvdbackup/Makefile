@@ -2,22 +2,23 @@
 
 PORTNAME=	dvdbackup
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 CATEGORIES=	sysutils multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backup content from DVD to hard disk
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	dvdread:${PORTSDIR}/multimedia/libdvdread
+LIB_DEPENDS=	libdvdread.so:${PORTSDIR}/multimedia/libdvdread
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		dvdbackup.1
 PORTDOCS=	NEWS README
 
 DEFAULT_DVD_DEVICE?=	/dev/cd0
