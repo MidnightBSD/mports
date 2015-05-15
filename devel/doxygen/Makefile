@@ -14,14 +14,12 @@ COMMENT=	Documentation system for C, C++ and other languages
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
-LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
-USE_BISON=	build
-USE_ICONV=	yes
+USES=		bison iconv gmake
 ALL_TARGET=	all
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
 QT_NONSTANDARD=	yes	# non-standard configure arguments
 CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
 		--install "${INSTALL}"
