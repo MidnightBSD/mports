@@ -2,6 +2,7 @@
 
 PORTNAME=	libtelepathy
 PORTVERSION=	0.3.3
+PORTREVISION=	1
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/${PORTNAME}/
 
@@ -10,18 +11,15 @@ COMMENT=	Flexible Communications Framework
 
 LICENSE=	lgpl
 
-LIB_PC_DEPENDS=	dbus-glib-1.pc:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
-BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
-LIB_DEPENDS=	telepathy-glib.0:${PORTSDIR}/net-im/telepathy-glib
-
-BUILD_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
-RUN_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
-
-USES=		pkgconfig
-USE_GMAKE=	yes
+USES=		gmake libtool pathfix pkgconfig python:build
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack glib20 ltverhack 
-USE_AUTOTOOLS=	libtool
+USE_GNOME=	glib20 libxslt:build
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lglib-2.0 `pkg-config --libs telepathy-glib`
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
