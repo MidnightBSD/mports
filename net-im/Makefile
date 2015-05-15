@@ -7,12 +7,13 @@ SUBDIR += etoile-xmppkit
 SUBDIR += gossip
 SUBDIR += jabberd
 SUBDIR += libnice
+SUBDIR += libnice-gst010
+SUBDIR ++ libnice-gst1
 SUBDIR += libpurple
 SUBDIR += libtelepathy
 SUBDIR += linux-ymessenger
 SUBDIR += loudmouth
 SUBDIR += meanwhile
-SUBDIR += msn-proxy
 SUBDIR += openfire
 SUBDIR += p5-Net-XMPP
 SUBDIR += pidgin
