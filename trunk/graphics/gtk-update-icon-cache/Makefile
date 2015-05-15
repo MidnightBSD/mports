@@ -10,7 +10,7 @@ DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	gtk-update-icon-cache utility from the Gtk+ toolkit.
+COMMENT=	Gtk-update-icon-cache utility from the Gtk+ toolkit
 
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
