@@ -2,6 +2,7 @@
 
 PORTNAME=	libidn
 PORTVERSION=	1.29
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
@@ -19,7 +20,7 @@ GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-USES=	automake
+USE_AUTOTOOLS=	automake:env
 USES=		iconv libtool makeinfo pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	build
@@ -28,17 +29,13 @@ INFO=		libidn
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^Libs.private:/s/$$/ @LTLIBINTL@/' \
 		${WRKSRC}/libidn.pc.in
+	${REINPLACE_CMD} -e 's/1.14/1.15/g' ${WRKSRC}/configure.ac
 
 post-install:
 	${MKDIR} ${DOCSDIR}
