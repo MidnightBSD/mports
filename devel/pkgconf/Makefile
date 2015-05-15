@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pkgconf
-PORTVERSION=	0.9.7
+PORTVERSION=	0.9.10
 CATEGORIES=	devel
 MASTER_SITES=	http://rabbit.dereferenced.org/~nenolod/distfiles/ \
 		http://files.etoilebsd.net/pkgconf/
@@ -16,6 +16,7 @@ CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/p
 		--with-system-libdir=/usr/lib \
 		--with-system-includedir=/usr/include
 USES=		tar:bzip2
+MAKE_ARGS=	MANDIR="${MAN1PREFIX}/man/man1"
 
 CONFLICTS_INSTALL=	pkg-config-*
 
