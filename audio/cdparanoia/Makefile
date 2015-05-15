@@ -2,7 +2,7 @@
 
 PORTNAME=	cdparanoia
 PORTVERSION=	3.9.8
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	audio sysutils
 MASTER_SITES=	http://www.xiph.org/paranoia/download/
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/^3\./III-alpha/}
@@ -16,9 +16,6 @@ LICENSE=	gpl2
 USES=		gmake
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes
-
-FAKE_OPTS=	prefixhack
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/\(^ *default:\)/\1break;/' ${WRKSRC}/interface/utils.h
