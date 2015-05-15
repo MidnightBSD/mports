@@ -2,7 +2,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -13,17 +13,14 @@ COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 
 LICENSE=        gpl2
 
-LIB_DEPENDS=	orc-0.4.0:${PORTSDIR}/devel/orc
+LIB_DEPENDS=	liborc-0.4.so:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomelibs
-USE_PKGCONFIG=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET= ${ARCH}-portbld-freebsd9.1
 FFMPEG_CONFIG=        --cc=${CC} \
               --enable-runtime-cpudetect \
               --enable-pic
