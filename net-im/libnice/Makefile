@@ -7,8 +7,9 @@ MASTER_SITES=	http://nice.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library and transmitter that implements ICE-19
-LICENSE=	lgpl
-# dual.. mpl or lgpl
+
+LICENSE=	lgpl mpl
+LICENSE_COMB=	dual
 
 USES=		gettext gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
