@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		tar:bz2 gmake libtool pathfix pkgconfig
+USES=		tar:bzip2 gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README TODO
