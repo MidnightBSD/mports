@@ -2,7 +2,7 @@
 
 PORTNAME?=	opencv
 PORTVERSION=	2.4.9
-PORTREVISION?=	0
+PORTREVISION?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}library/${PORTNAME}-unix/${PORTVERSION}
 
@@ -16,9 +16,6 @@ USES=		cmake pkgconfig zip
 USE_LDCONFIG=	yes
 WANT_GSTREAMER=	yes
 MAKE_JOBS_UNSAFE=	yes
-
-NOT_FOR_ARCHS=	sparc64
-NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
 
 DATADIR=	${PREFIX}/share/OpenCV
 PLIST_SUB+=	VERSION=${DISTVERSION}
@@ -144,7 +141,7 @@ CMAKE_ARGS+=	-DWITH_OPENGL:BOOL=Off
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 CMAKE_ARGS+=	-DWITH_PNG:BOOL=On
 .else
 CMAKE_ARGS+=	-DWITH_PNG:BOOL=Off
@@ -229,6 +226,7 @@ post-patch:
 		 ${WRKSRC}/cmake/OpenCVGenPkgconfig.cmake
 	@${REINPLACE_CMD} -e 's|share/OpenCV/doc|${DOCSDIR_REL}|g' \
 		-e 's|share/OpenCV/samples|${EXAMPLESDIR_REL}|g' \
+		-e 's/FreeBSD|NetBSD|DragonFly/MidnightBSD|FreeBSD/g' \
 		${WRKSRC}/CMakeLists.txt
 	@${FIND} ${WRKSRC} -name '*.orig' -exec ${RM} {} \;
 .if defined(OCV_CORE)
