@@ -5,7 +5,8 @@ PORTREVISION=	0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Multihead X from X.Org
-LICENSE=	x11
+
+LICENSE=	mit
 
 MASTERDIR=	${.CURDIR}/../xorg-server
 DESCR=		${.CURDIR}/pkg-descr
@@ -21,8 +22,6 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 CONFIGURE_ARGS=	--disable-xvfb --disable-xnest \
 		--without-xmlto	--disable-docs --disable-devel-docs \
 		--enable-dmx --localstatedir=/var --without-dtrace
-
-MAN1=		Xdmx.1 dmxtodmx.1 vdltodmx.1 xdmxconfig.1
 
 SLAVE_PORT=	yes
 
