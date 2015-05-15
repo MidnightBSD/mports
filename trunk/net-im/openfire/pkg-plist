@@ -1,28 +1,32 @@
-@unexec if cmp -s %D/%%ETCDIR%%/openfire.xml %D/%%EXAMPLESDIR%%/openfire.xml; then rm -f %D/%%ETCDIR%%/openfire.xml; else echo If permanently deleting this package, %D/%%ETCDIR%%/openfire.xml must be removed manually; fi
-@unexec if cmp -s %D/%%ETCDIR%%/keystore %D/%%EXAMPLESDIR%%/keystore; then rm -f %D/%%ETCDIR%%/keystore; else echo If permanently deleting this package, %D/%%ETCDIR%%/keystore must be removed manually; fi
-@unexec if cmp -s %D/%%ETCDIR%%/truststore %D/%%EXAMPLESDIR%%/truststore; then rm -f %D/%%ETCDIR%%/truststore; else echo If permanently deleting this package, %D/%%ETCDIR%%/truststore must be removed manually; fi
-%%EXAMPLESDIR%%/openfire.xml
-%%EXAMPLESDIR%%/keystore
-%%EXAMPLESDIR%%/truststore
+@owner openfire
+@group openfire
+@mode 0600
+@sample %%ETCDIR%%/openfire.xml.sample
+@sample %%ETCDIR%%/security.xml.sample
+@sample %%ETCDIR%%/keystore.sample
+@sample %%ETCDIR%%/truststore.sample
+@mode
+%%DATADIR%%/conf
+%%DATADIR%%/embedded-db
+%%DATADIR%%/logs
 %%DATADIR%%/lib/activation.jar
-%%DATADIR%%/lib/bouncycastle.jar
+%%DATADIR%%/lib/bcpg-jdk15on.jar
+%%DATADIR%%/lib/bcpkix-jdk15on.jar
+%%DATADIR%%/lib/bcprov-jdk15on.jar
 %%DATADIR%%/lib/commons-el.jar
 %%DATADIR%%/lib/hsqldb.jar
 %%DATADIR%%/lib/jasper-compiler.jar
 %%DATADIR%%/lib/jasper-runtime.jar
 %%DATADIR%%/lib/jdic.jar
 %%DATADIR%%/lib/jtds.jar
+%%DATADIR%%/lib/log4j.xml
 %%DATADIR%%/lib/mail.jar
 %%DATADIR%%/lib/mysql.jar
 %%DATADIR%%/lib/openfire.jar
 %%DATADIR%%/lib/postgres.jar
 %%DATADIR%%/lib/servlet.jar
-%%DATADIR%%/lib/startup.jar
 %%DATADIR%%/lib/slf4j-log4j12.jar
-%%DATADIR%%/lib/log4j.xml
-%%DATADIR%%/conf
-%%DATADIR%%/embedded-db
-%%DATADIR%%/logs
+%%DATADIR%%/lib/startup.jar
 %%DATADIR%%/plugins/admin/plugin.xml
 %%DATADIR%%/plugins/admin/webapp/WEB-INF/admin.tld
 %%DATADIR%%/plugins/admin/webapp/WEB-INF/decorators.xml
@@ -183,6 +187,8 @@
 %%DATADIR%%/plugins/admin/webapp/style/lightbox.css
 %%DATADIR%%/plugins/admin/webapp/style/login.css
 %%DATADIR%%/plugins/admin/webapp/style/setup.css
+%%PLUGINS%%%%DATADIR%%/plugins/jitsivideobridge.jar
+%%PLUGINS%%%%DATADIR%%/plugins/rayo.jar
 %%PLUGINS%%%%DATADIR%%/plugins/fastpath.jar
 %%PLUGINS%%%%DATADIR%%/plugins/broadcast.jar
 %%PLUGINS%%%%DATADIR%%/plugins/clientControl.jar
@@ -360,50 +366,51 @@
 %%DATADIR%%/resources/security
 %%DATADIR%%/resources/spank/WEB-INF/web.xml
 %%DATADIR%%/resources/spank/index.html
-@dirrm %%DATADIR%%/resources/spank/WEB-INF
-@dirrm %%DATADIR%%/resources/spank
-@dirrm %%DATADIR%%/resources/nativeAuth/win32-x86
-@dirrm %%DATADIR%%/resources/nativeAuth/solaris-sparc
-@dirrm %%DATADIR%%/resources/nativeAuth/osx-ppc
-@dirrm %%DATADIR%%/resources/nativeAuth/linux-i386
-@dirrm %%DATADIR%%/resources/nativeAuth
-@dirrm %%DATADIR%%/resources/database/upgrade/9
-@dirrm %%DATADIR%%/resources/database/upgrade/8
-@dirrm %%DATADIR%%/resources/database/upgrade/7
-@dirrm %%DATADIR%%/resources/database/upgrade/6
-@dirrm %%DATADIR%%/resources/database/upgrade/5
-@dirrm %%DATADIR%%/resources/database/upgrade/4
-@dirrm %%DATADIR%%/resources/database/upgrade/21
-@dirrm %%DATADIR%%/resources/database/upgrade/20
-@dirrm %%DATADIR%%/resources/database/upgrade/2
-@dirrm %%DATADIR%%/resources/database/upgrade/19
-@dirrm %%DATADIR%%/resources/database/upgrade/18
-@dirrm %%DATADIR%%/resources/database/upgrade/17
-@dirrm %%DATADIR%%/resources/database/upgrade/16
-@dirrm %%DATADIR%%/resources/database/upgrade/15
-@dirrm %%DATADIR%%/resources/database/upgrade/14
-@dirrm %%DATADIR%%/resources/database/upgrade/13
-@dirrm %%DATADIR%%/resources/database/upgrade/12
-@dirrm %%DATADIR%%/resources/database/upgrade/11
-@dirrm %%DATADIR%%/resources/database/upgrade/10
-@dirrm %%DATADIR%%/resources/database/upgrade/1
-@dirrm %%DATADIR%%/resources/database/upgrade
-@dirrm %%DATADIR%%/resources/database
-@dirrm %%DATADIR%%/resources
-@dirrm %%DATADIR%%/plugins/admin/webapp/style
-@dirrm %%DATADIR%%/plugins/admin/webapp/setup
-@dirrm %%DATADIR%%/plugins/admin/webapp/js/tooltips
-@dirrm %%DATADIR%%/plugins/admin/webapp/js/jscalendar
-@dirrm %%DATADIR%%/plugins/admin/webapp/js
-@dirrm %%DATADIR%%/plugins/admin/webapp/images
-@dirrm %%DATADIR%%/plugins/admin/webapp/WEB-INF/lib
-@dirrm %%DATADIR%%/plugins/admin/webapp/WEB-INF
-@dirrm %%DATADIR%%/plugins/admin/webapp
-@dirrm %%DATADIR%%/plugins/admin
-%%PLUGINS%%@dirrm %%DATADIR%%/plugins
-@dirrm %%DATADIR%%/lib
-@dirrm %%EXAMPLESDIR%%
-@unexec rmdir %D/%%DATADIR%% 2> /dev/null
-@unexec rmdir %D/%%ETCDIR%% 2> /dev/null || echo "If permanently deleting this package, %D/%%ETCDIR%% must be removed manually"
-@unexec rmdir /var/db/openfire 2> /dev/null || echo "If permanently deleting this package, /var/db/openfire must be removed manually"
-@unexec rmdir /var/log/openfire 2> /dev/null || echo "If permanently deleting this package, /var/log/openfire must be removed manually"
+@dir %%DATADIR%%/resources/spank/WEB-INF
+@dir %%DATADIR%%/resources/spank
+@dir %%DATADIR%%/resources/nativeAuth/win32-x86
+@dir %%DATADIR%%/resources/nativeAuth/solaris-sparc
+@dir %%DATADIR%%/resources/nativeAuth/osx-ppc
+@dir %%DATADIR%%/resources/nativeAuth/linux-i386
+@dir %%DATADIR%%/resources/nativeAuth
+@dir %%DATADIR%%/resources/database/upgrade/9
+@dir %%DATADIR%%/resources/database/upgrade/8
+@dir %%DATADIR%%/resources/database/upgrade/7
+@dir %%DATADIR%%/resources/database/upgrade/6
+@dir %%DATADIR%%/resources/database/upgrade/5
+@dir %%DATADIR%%/resources/database/upgrade/4
+@dir %%DATADIR%%/resources/database/upgrade/21
+@dir %%DATADIR%%/resources/database/upgrade/20
+@dir %%DATADIR%%/resources/database/upgrade/2
+@dir %%DATADIR%%/resources/database/upgrade/19
+@dir %%DATADIR%%/resources/database/upgrade/18
+@dir %%DATADIR%%/resources/database/upgrade/17
+@dir %%DATADIR%%/resources/database/upgrade/16
+@dir %%DATADIR%%/resources/database/upgrade/15
+@dir %%DATADIR%%/resources/database/upgrade/14
+@dir %%DATADIR%%/resources/database/upgrade/13
+@dir %%DATADIR%%/resources/database/upgrade/12
+@dir %%DATADIR%%/resources/database/upgrade/11
+@dir %%DATADIR%%/resources/database/upgrade/10
+@dir %%DATADIR%%/resources/database/upgrade/1
+@dir %%DATADIR%%/resources/database/upgrade
+@dir %%DATADIR%%/resources/database
+@dir %%DATADIR%%/resources
+@dir %%DATADIR%%/plugins/admin/webapp/style
+@dir %%DATADIR%%/plugins/admin/webapp/setup
+@dir %%DATADIR%%/plugins/admin/webapp/js/tooltips
+@dir %%DATADIR%%/plugins/admin/webapp/js/jscalendar
+@dir %%DATADIR%%/plugins/admin/webapp/js
+@dir %%DATADIR%%/plugins/admin/webapp/images
+@dir %%DATADIR%%/plugins/admin/webapp/WEB-INF/lib
+@dir %%DATADIR%%/plugins/admin/webapp/WEB-INF
+@dir %%DATADIR%%/plugins/admin/webapp
+@dir %%DATADIR%%/plugins/admin
+@dir %%DATADIR%%/plugins
+@dir %%DATADIR%%/lib
+@dir %%DATADIR%%
+@dir %%ETCDIR%%
+@dir %%VARLOG%%
+@dir %%VARDB%%
+@owner
+@group
