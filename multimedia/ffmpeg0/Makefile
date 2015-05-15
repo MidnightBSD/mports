@@ -20,7 +20,7 @@ CONFLICTS=	ffmpeg-20*
 
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	config.err
-USES=		gmake tar:bzip2
+USES=		gmake pkgconfig tar:bzip2
 WANT_SDL=	yes
 
 OPTIONS=	ALSA	"Enable alsa input/output device" off \
@@ -174,7 +174,7 @@ CONFIGURE_ARGS+=	--disable-libopencore-amrwb
 
 # celt
 .if defined(WITH_CELT)
-LIB_DEPENDS+=	celt0.2:${PORTSDIR}/audio/celt
+LIB_DEPENDS+=	libcelt0.so:${PORTSDIR}/audio/celt
 CONFIGURE_ARGS+=	--enable-libcelt
 .else
 CONFIGURE_ARGS+=	--disable-libcelt
@@ -182,7 +182,7 @@ CONFIGURE_ARGS+=	--disable-libcelt
 
 # dirac
 .if defined(WITH_DIRAC)
-LIB_DEPENDS+=	dirac_encoder.1:${PORTSDIR}/multimedia/dirac
+LIB_DEPENDS+=	libdirac_encoder.so:${PORTSDIR}/multimedia/dirac
 CONFIGURE_ARGS+=	--enable-libdirac
 .else
 CONFIGURE_ARGS+=	--disable-libdirac
@@ -191,7 +191,7 @@ CONFIGURE_ARGS+=	--disable-libdirac
 # faac
 .if defined(WITH_FAAC)
 RESTRICTED=	linking to libfaac restricts redistribution
-LIB_DEPENDS+=	faac.0:${PORTSDIR}/audio/faac
+LIB_DEPENDS+=	libfaac.so:${PORTSDIR}/audio/faac
 CONFIGURE_ARGS+=	--enable-libfaac --enable-nonfree
 .else
 CONFIGURE_ARGS+=	--disable-libfaac
@@ -207,7 +207,7 @@ CONFIGURE_ARGS+=	--disable-ffserver
 
 # freetype
 .if !defined(WITHOUT_FREETYPE)
-LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
 CONFIGURE_ARGS+=	--enable-libfreetype
 .else
 CONFIGURE_ARGS+=	--disable-libfreetype
@@ -223,7 +223,7 @@ CONFIGURE_ARGS+=	--disable-frei0r
 
 # gsm
 .if defined(WITH_GSM)
-LIB_DEPENDS+=	gsm.1:${PORTSDIR}/audio/gsm
+LIB_DEPENDS+=	libgsm.so:${PORTSDIR}/audio/gsm
 CONFIGURE_ARGS+=	--enable-libgsm
 .else
 CONFIGURE_ARGS+=	--disable-libgsm
@@ -231,7 +231,7 @@ CONFIGURE_ARGS+=	--disable-libgsm
 
 # mp3
 .if defined(WITH_LAME)
-LIB_DEPENDS+=	mp3lame.0:${PORTSDIR}/audio/lame
+LIB_DEPENDS+=	libmp3lame.so:${PORTSDIR}/audio/lame
 CONFIGURE_ARGS+=	--enable-libmp3lame
 .else
 CONFIGURE_ARGS+=	--disable-libmp3lame
@@ -239,7 +239,7 @@ CONFIGURE_ARGS+=	--disable-libmp3lame
 
 # opencv
 .if !defined(WITHOUT_OPENCV)
-LIB_DEPENDS+=	opencv_imgproc.2:${PORTSDIR}/graphics/opencv-core
+LIB_DEPENDS+=	libopencv_imgproc.so:${PORTSDIR}/graphics/opencv-core
 CONFIGURE_ARGS+=	--enable-libopencv
 .else
 CONFIGURE_ARGS+=	--disable-libopencv
@@ -247,7 +247,7 @@ CONFIGURE_ARGS+=	--disable-libopencv
 
 # openjpeg
 .if defined(WITH_OPENJPEG)
-LIB_DEPENDS+=	openjpeg.2:${PORTSDIR}/graphics/openjpeg
+LIB_DEPENDS+=	libopenjpeg.so:${PORTSDIR}/graphics/openjpeg
 CONFIGURE_ARGS+=	--enable-libopenjpeg
 .else
 CONFIGURE_ARGS+=	--disable-libopenjpeg
@@ -255,7 +255,7 @@ CONFIGURE_ARGS+=	--disable-libopenjpeg
 
 # rtmp
 .if defined(WITH_RTMP)
-LIB_DEPENDS+=	rtmp.0:${PORTSDIR}/multimedia/rtmpdump
+LIB_DEPENDS+=	librtmp.so:${PORTSDIR}/multimedia/rtmpdump
 CONFIGURE_ARGS+=	--enable-librtmp
 .else
 CONFIGURE_ARGS+=	--disable-librtmp
@@ -282,7 +282,7 @@ CONFIGURE_ARGS+=	--disable-ffplay
 
 # speex
 .if defined(WITH_SPEEX)
-LIB_DEPENDS+=	speex.1:${PORTSDIR}/audio/speex
+LIB_DEPENDS+=	libspeex.so:${PORTSDIR}/audio/speex
 CONFIGURE_ARGS+=	--enable-libspeex
 .else
 CONFIGURE_ARGS+=	--disable-libspeex
