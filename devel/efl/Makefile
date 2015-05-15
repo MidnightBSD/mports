@@ -2,7 +2,7 @@
 
 PORTNAME=	efl
 PORTVERSION=	1.13.1
-CATEGORIES=	devel enlightenment
+CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
