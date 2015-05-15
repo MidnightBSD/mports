@@ -2,7 +2,7 @@
 
 PORTNAME=	gdk-pixbuf
 PORTVERSION=	2.31.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -12,14 +12,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_XORG=	xt xi x11
-USES=		gmake libtool pathfix pkgconfig tar:xz
+USES=		cpe gmake libtool pathfix pkgconfig tar:xz
+CPE_VENDOR=	gnome
 USE_GNOME+=	glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+LDFLAGS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-introspection=yes --with-x11
 INSTALL_TARGET=	install-strip
 
