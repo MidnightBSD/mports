@@ -1,57 +1,45 @@
-# New ports collection makefile for:    lincity
-# Date created:         13 Feb 1997
-# Whom:                 Julian Assange
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/lincity/Makefile,v 1.24 2007/05/19 20:06:46 flz Exp $
-#
 
 PORTNAME=	lincity
 PORTVERSION=	1.13.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/Lincity%20Development%20Source/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rich city simulation game for X
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	SVGALIB NLS
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
-
-.if ${CC} == "clang"
-USE_CSTD=	c89
-.endif
-
-USE_GMAKE=	yes
+USES=		gmake
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN6=		lincity.6
+OPTIONS_DEFINE=	NLS SVGALIB
+OPTIONS_SUB=	yes
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
+
+SVGALIB_LIB_DEPENDS=	libvga.so:${PORTSDIR}/graphics/svgalib
+SVGALIB_CONFIGURE_ON=	--without-x
+SVGALIB_CONFIGURE_OFF=	--without-svga
 
 .include <bsd.mport.options.mk>
 
-pre-configure:
-	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g' ${WRKSRC}/readpng.c
-
 .if ${PORT_OPTIONS:MSVGALIB}
-LIB_DEPENDS+=	vga.1:${PORTSDIR}/graphics/svgalib
-CONFIGURE_ARGS+=	--without-x
-PLIST_SUB=	PROG="bin/lincity"
+PLIST_SUB+=	PROG="bin/lincity"
 .else
 USE_XORG=	sm xext
-CONFIGURE_ARGS+=	--without-svga
-PLIST_SUB=	PROG="bin/xlincity"
+PLIST_SUB+=	PROG="bin/xlincity"
 .endif
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+pre-configure:
+	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g' ${WRKSRC}/readpng.c
 
 .include <bsd.port.mk>
