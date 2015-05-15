@@ -2,7 +2,6 @@
 
 COMMENT = X11 drivers
 
-SUBDIR += input-wacom
 SUBDIR += xf86-input-acecad
 SUBDIR += xf86-input-elographics
 SUBDIR += xf86-input-hyperpen
