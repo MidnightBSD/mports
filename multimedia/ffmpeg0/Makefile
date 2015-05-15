@@ -20,9 +20,7 @@ CONFLICTS=	ffmpeg-20*
 
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	config.err
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gmake tar:bzip2
 WANT_SDL=	yes
 
 OPTIONS=	ALSA	"Enable alsa input/output device" off \
