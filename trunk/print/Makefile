@@ -56,6 +56,7 @@ SUBDIR += teTeX-base
 SUBDIR += teTeX-texmf
 SUBDIR += tex-texmflocal
 SUBDIR += texinfo
+SUBDIR += texlive-texmf
 SUBDIR += ttf2pt1
 SUBDIR += wmlpq
 SUBDIR += xdvik
