@@ -73,7 +73,6 @@ SUBDIR += tcl84
 SUBDIR += tcl85
 SUBDIR += tcl86
 SUBDIR += vala
-SUBDIR += vala-vapigen
 SUBDIR += yabasic
 
 .include <bsd.port.subdir.mk>
