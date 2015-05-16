@@ -22,6 +22,7 @@ LICENSE=	unknown
 RUN_DEPENDS=	mplayer:${PORTSDIR}/multimedia/mplayer
 
 NO_BUILD=	yes
+USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	atk gtk2 pango xorglibs
 PREFIX?=	${LOCALBASE}
