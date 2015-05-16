@@ -11,10 +11,9 @@ COMMENT=	GNU GDB of newer version than comes with the system
 
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
 USE_CSTD=	gnu89
 USE_GMAKE=	yes
-USES=		iconv
+USES=		iconv tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
