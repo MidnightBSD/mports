@@ -13,9 +13,13 @@ DIST_SUBDIR=	${PKGNAMEPREFIX}${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Doom data files (Doom, Doom II, Hexen, Heretic and Strife)
-LICENSE=	restricted
 
-USE_BZIP2=	yes
+LICENSE=	id
+LICENSE_NAME=	id license
+LICENSE_PERMS=
+LICENSE_TEXT=	no redistributions
+
+USES=		tar:bzip2
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
