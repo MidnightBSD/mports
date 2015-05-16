@@ -124,6 +124,7 @@ OPENLDAP_PORTREVISION=	${PORTREVISION_SERVER}
 OPENLDAP_PKGFILESUFX=
 .endif
 
+GNU_CONFIGURE=		yes
 CONFIGURE_SED=		-e 's,uuid/uuid.h,xxuuid/uuid.h,g'
 
 .include <bsd.mport.options.mk>
