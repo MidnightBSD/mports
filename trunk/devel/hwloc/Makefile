@@ -3,7 +3,7 @@
 
 PORTNAME=	hwloc
 PORTVERSION=	1.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION}/downloads/ \
 		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION}/downloads/
