@@ -7,7 +7,7 @@
 -PLATFORM=$(shell uname|tr A-Z a-z)
 -PLATFORM_RELEASE=$(shell uname -r)
 +PLATFORM=freebsd
-+PLATFORM_RELEASE=6.0-RELEASE
++PLATFORM_RELEASE=9.1-RELEASE
  
  ###
  ### These paths are where you probably want to change things
