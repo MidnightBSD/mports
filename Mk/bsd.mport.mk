@@ -1774,34 +1774,11 @@ _TARGETS=	check-sanity fetch checksum extract patch configure all build \
 
 # LAH
 .for target in ${_TARGETS}
-.if !target(${target}) && defined(_OPTIONS_OK)
+.if !target(${target}) #&& defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
 ${target}: ${${target:tu}_COOKIE}
-	echo foo
-.elif !target(${target})
-${target}: config-conditional
-	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${UNIQUENAME:tu}=1 ${${target:tu}_COOKIE}
-.elif target(${target}) && defined(IGNORE)
+	@${IGNORECMD}
 .endif
-
-.if !exists(${${target:tu}_COOKIE})
-.  if defined(USE_SUBMAKE)
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-	@cd ${.CURDIR} && \
-		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  else # !USE_SUBMAKE
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  endif # USE_SUBMAKE
-.else # exists(cookie)
-${${target:tu}_COOKIE}::
-	@if [ -e ${.TARGET} ]; then \
-		${DO_NADA}; \
-	else \
-		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
-	fi
-.endif # !exists(cookie)
 .endfor # foreach(targets)
 
 .endif
