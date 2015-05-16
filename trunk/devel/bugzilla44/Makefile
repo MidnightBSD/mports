@@ -40,7 +40,7 @@ EMPTY_DIRS_LIST=data graphs contrib lib t xt
 
 .include "${.CURDIR}/Makefile.common"
 .include "${.CURDIR}/Makefile.options"
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .include <bsd.port.pre.mk>
 .if ${PERL_LEVEL} >= 501800
