@@ -2,7 +2,7 @@
 
 PORTNAME=	libidn
 PORTVERSION=	1.29
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
@@ -11,6 +11,8 @@ COMMENT=	Internationalized Domain Names command line tool
 
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
+
+BUILD_DEPENDS+=	 help2man:${PORTSDIR}/misc/help2man
 
 OPTIONS_DEFINE=	DOCS NLS
 
