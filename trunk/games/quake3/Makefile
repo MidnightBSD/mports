@@ -8,13 +8,11 @@
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c
+PORTREVISION=	1
 CATEGORIES=	games
-MASTER_SITES=	http://www.proarena.com/p/ftpx/x8524/quake_3_arena/ \
-		http://www.planetgargoyle.com/ \
-		http://www.teamdarkside.net/ \
-		http://0day.icculus.org/mirrors/quake3/ \
-		http://www.olpainless.net/files/ \
+MASTER_SITES=	ftp://mancubus.net/pub/idgames/idstuff/source/ \
 		http://ftp.mancubus.net/pub/idgames/idstuff/source/ \
+		http://www.gamers.org/pub/idgames/idstuff/source/ \
 		${MASTER_SITE_IDSOFTWARE:S|$|source/|}
 DISTNAME=	${PORTNAME}-${REALVERSION}-source
 
@@ -22,19 +20,22 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena -- first person shooter (native build)
 LICENSE=	gpl2
 
+USES=		dos2unix gmake zip
 ONLY_FOR_ARCHS=	i386
 ONLY_FOR_ARCHS_REASON=	does not run properly; try games/ioquake3
-USE_ZIP=	yes
-USE_DOS2UNIX=	yes
-USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${REALVERSION}
 BUILD_WRKSRC=	${WRKSRC}/code/unix
+MAKE_JOBS_UNSAFE=	yes
 
-OPTIONS=	CLIENT "Build client" on \
-		DEDICATED "Build dedicated server" on \
-		GAMELIBS "Build game libraries (when not mandatory)" off \
-		OPTIMIZED_CFLAGS "Enable compilation optimizations" on \
-		SMP "Build SMP (threaded) client" on
+OPTIONS_DEFINE=	GAMELIBS OPTIMIZED_CFLAGS
+OPTIONS_MULTI=	FLAVOR
+OPTIONS_MULTI_FLAVOR=	CLIENT DEDICATED THREADS
+FLAVOR_DESC=	Executable Selection
+CLIENT_DESC=	Build client
+DEDICATED_DESC=	Build dedicated server
+GAMELIBS_DESC=	Build game libraries (when not mandatory)
+
+OPTIONS_DEFAULT=	CLIENT DEDICATED OPTIMIZED_CFLAGS THREADS
 
 MAKE_ENV=	LIBDIR="${LIBDIR}"
 PLIST_SUB=	LIBDIR="${LIBDIR:S/${PREFIX}\///}"
@@ -43,12 +44,7 @@ LIBDIR=		${PREFIX}/lib/${PORTNAME}
 REALVERSION=	1.32b
 VM_ARCHS=	i386 powerpc
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITHOUT_CLIENT) && defined(WITHOUT_DEDICATED) && \
-    defined(WITHOUT_SMP)
-IGNORE=		needs at least one of CLIENT, DEDICATED and SMP options
-.endif
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == "i386"
 BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
@@ -64,12 +60,12 @@ HAVE_VM_COMPILED=	yes
 MAKE_ENV+=	DLL_ONLY=true
 .endif
 
-.if !defined(WITHOUT_CLIENT) || !defined(WITHOUT_SMP)
+.if ${PORT_OPTIONS:MCLIENT} || ${PORT_OPTIONS:MTHREADS}
 USE_GL=		yes
 USE_XORG=	xxf86dga
 .endif
 
-.if !defined(WITHOUT_CLIENT)
+.if ${PORT_OPTIONS:MCLIENT}
 MAKE_ENV+=	CLIENT=YES
 PLIST_SUB+=	CLIENT=""
 Q3BIN+=		quake3
@@ -77,7 +73,7 @@ Q3BIN+=		quake3
 PLIST_SUB+=	CLIENT="@comment "
 .endif
 
-.if !defined(WITHOUT_DEDICATED)
+.if ${PORT_OPTIONS:MDEDICATED}
 MAKE_ENV+=	DEDICATED=YES
 PLIST_SUB+=	DEDICATED=""
 Q3BIN+=		q3ded
@@ -85,18 +81,18 @@ Q3BIN+=		q3ded
 PLIST_SUB+=	DEDICATED="@comment "
 .endif
 
-.if defined(WITH_GAMELIBS) || !defined(HAVE_VM_COMPILED)
+.if ${PORT_OPTIONS:MGAMELIBS} || !defined(HAVE_VM_COMPILED)
 MAKE_ENV+=	GAMELIBS=YES
 PLIST_SUB+=	GAMELIBS=""
 .else
 PLIST_SUB+=	GAMELIBS="@comment "
 .endif
 
-.if !defined(WITHOUT_OPTIMIZED_CFLAGS)
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
 MAKE_ENV+=	OPTIMIZED_CFLAGS=YES
 .endif
 
-.if !defined(WITHOUT_SMP)
+.if ${PORT_OPTIONS:MTHREADS}
 MAKE_ENV+=	SMP=YES \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
 PLIST_SUB+=	SMP=""
@@ -117,7 +113,7 @@ do-install:
 .for bin in ${Q3BIN}
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/release/${bin} ${PREFIX}/bin
 .endfor
-.if defined(WITH_GAMELIBS) || !defined(HAVE_VM_COMPILED)
+.if ${PORT_OPTIONS:MGAMELIBS} || !defined(HAVE_VM_COMPILED)
 .for dir in baseq3 missionpack
 	${MKDIR} ${LIBDIR}/${dir}
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/release/${dir}/*.so ${LIBDIR}/${dir}
@@ -125,4 +121,4 @@ do-install:
 .endif
 
 .include "${.CURDIR}/../quake3-data/Makefile.include"
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
