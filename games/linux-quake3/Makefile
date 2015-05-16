@@ -13,10 +13,14 @@ DIST_SUBDIR=	${Q3PKGNAMEPREFIX}data
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena for Linux
-LICENSE=	restricted
 
-USE_ZIP=	yes
-USE_LINUX=	yes
+LICENSE=	Loki
+LICENSE_NAME=	Loki Software License
+LICENSE_FILE=	${WRKDIR}/Q3A_EULA.txt
+LICENSE_PERMS=
+
+USES=		zip:infozip
+USE_LINUX=	f10
 NO_WRKSUBDIR=	yes
 
 RESTRICTED=	Restrictive license by Loki Software
