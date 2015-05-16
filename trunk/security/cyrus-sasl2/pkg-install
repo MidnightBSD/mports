@@ -79,8 +79,10 @@ create_sasldb() {
                         echo "WARNING: Failed to create ${SASLDB_NAME}"
                 else
 			${PKG_PREFIX}/sbin/saslpasswd2 -d ${CYRUS_USER}
-			chown ${CYRUS_USER}:mail ${SASLDB_NAME}
-			chmod 640 ${SASLDB_NAME}
+			if [ -f ${SASLDB_NAME} ]; then
+				chown ${CYRUS_USER}:mail ${SASLDB_NAME}
+				chmod 640 ${SASLDB_NAME}
+			fi
 		fi
 	fi
 }
