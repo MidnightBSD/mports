@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/motor/files/patch-src::manager::Makefile.in,v 1.2 2002/05/16 11:22:06 sobomax Exp $
+$FreeBSD: head/devel/motor/files/patch-src__manager__Makefile.in 363362 2014-07-29 17:12:47Z adamw $
 
 --- src/manager/Makefile.in	2002/05/16 11:03:39	1.1
 +++ src/manager/Makefile.in	2002/05/16 11:03:53
