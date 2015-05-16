@@ -10,9 +10,10 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monsters, explosions, destruction game for X Window System
+
 LICENSE=	other
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_GL=		glu
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LIBS="${LDFLAGS}"
 MAKE_JOBS_SAFE=	yes
