@@ -153,7 +153,6 @@ SUBDIR += libffi
 SUBDIR += libftdi
 SUBDIR += libgdata
 SUBDIR += libgee
-SUBDIR += libgii
 SUBDIR += libglade2
 SUBDIR += libgsf
 SUBDIR += libgtop
