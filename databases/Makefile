@@ -19,7 +19,6 @@ SUBDIR += db48
 SUBDIR += db5
 SUBDIR += evolution-data-server
 SUBDIR += freetds
-SUBDIR += freetds-msdblib
 SUBDIR += fpc-dblib
 SUBDIR += fpc-fpindexer
 SUBDIR += fpc-gdbm
