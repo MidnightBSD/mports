@@ -19,7 +19,7 @@ LICENSE_NAME=	id Software License
 LICENSE_FILE=	${WRKSRC}/Docs/EULA_Wolfenstein_Enemy_Territory.txt
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
-USES=		zip
+USES=		zip:infozip
 USE_LINUX=	f10
 NO_CDROM=	Redistribution is limited, see license
 ETDIR=		${PREFIX}/lib/${PORTNAME}
