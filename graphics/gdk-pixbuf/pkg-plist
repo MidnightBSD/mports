@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 bin/gdk-pixbuf-config
 etc/gdk_pixbufConf.sh
 etc/gdk_pixbuf_xlibConf.sh
@@ -20,9 +19,11 @@ lib/gdk-pixbuf/loaders/libpixbufloader-xpm.so
 lib/libgdk_pixbuf.a
 lib/libgdk_pixbuf.so
 lib/libgdk_pixbuf.so.2
+lib/libgdk_pixbuf.so.2.0.0
 lib/libgdk_pixbuf_xlib.a
 lib/libgdk_pixbuf_xlib.so
 lib/libgdk_pixbuf_xlib.so.2
+lib/libgdk_pixbuf_xlib.so.2.0.0
 share/aclocal/gdk-pixbuf.m4
 %%DOCSDIR%%/a3696.html
 %%DOCSDIR%%/compiling.html
@@ -47,8 +48,3 @@ share/aclocal/gdk-pixbuf.m4
 %%DOCSDIR%%/r27.html
 %%DOCSDIR%%/x3715.html
 %%DOCSDIR%%/x3767.html
-@dirrm %%DOCSDIR%%
-@dirrm lib/gdk-pixbuf/loaders
-@dirrm lib/gdk-pixbuf
-@dirrm include/gdk-pixbuf-1.0/gdk-pixbuf
-@dirrm include/gdk-pixbuf-1.0
