@@ -21,7 +21,6 @@ SUBDIR += gtkpool
 SUBDIR += gtypist
 SUBDIR += libggz
 SUBDIR += lincity
-SUBDIR += linux-americasarmy
 SUBDIR += linux-enemyterritory
 SUBDIR += linux-enemyterritory-etpro
 SUBDIR += linux-enemyterritory-etpub
