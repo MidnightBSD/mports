@@ -88,7 +88,7 @@ PGSQL_VER=	${version}
 .      endif
 PGSQL_VER?=	${version}
 .    endfor
-.    if defined(_PGSQL_VER) && ${_PGSQL_VER} != ${PGSQL_VER}
+.    if !defined(PACKAGE_BUILDING) && defined(_PGSQL_VER) && ${_PGSQL_VER} != ${PGSQL_VER}
 IGNORE?=	cannot install: the port wants postgresql-client version ${_WANT_PGSQL_VER} and you have version ${_PGSQL_VER} installed
 .    endif
 .  endif
