@@ -27,8 +27,6 @@ SUBDIR += pico-alpine
 SUBDIR += textedit
 SUBDIR += vim
 SUBDIR += vim-lite
-SUBDIR += xemacs
-SUBDIR += xemacs-packages
 SUBDIR += xenon
 SUBDIR += zile
 
