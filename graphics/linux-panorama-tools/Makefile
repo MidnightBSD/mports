@@ -20,8 +20,8 @@ COMMENT=	Software to View, Create, Edit and Remap Panoramic Images
 LICENSE=	unknown
 
 NO_BUILD=	yes
-USE_LINUX=	yes
-USE_LINUX_APPS=	jpeg png10 tiff
+USE_LINUX=	f10
+USE_LINUX_APPS=	jpeg png tiff
 WRKSRC=	${WRKDIR}/PTLinux
 PROGRAM=	Helpers/PTStitcher
 
