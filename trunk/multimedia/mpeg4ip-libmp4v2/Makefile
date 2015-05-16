@@ -17,8 +17,8 @@ LICENSE=	agg
 USES=		libtool gmake
 USE_GNOME=	
 GNU_CONFIGURE=	yes
-CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" 
-LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CPPFLAGS+=" -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" 
+LDFLAGS+=" -L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 USE_LDCONFIG=	yes
 
 .include <bsd.port.pre.mk>
