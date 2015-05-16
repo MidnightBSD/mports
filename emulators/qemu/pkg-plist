@@ -16,6 +16,8 @@ bin/qemu-img
 %%ALLTARGETS%%bin/qemu-system-sparc
 %%ALLTARGETS%%bin/qemu-system-sparc64
 bin/qemu-system-x86_64
+man/man1/qemu.1.gz
+man/man1/qemu-img.1.gz
 @unexec if cmp -s %D/etc/qemu-ifup.sample %D/etc/qemu-ifup; then rm -f %D/etc/qemu-ifup; fi
 etc/qemu-ifup.sample
 @exec if [ ! -f %D/etc/qemu-ifup ] ; then cp -p %D/%F %B/qemu-ifup; fi
@@ -24,7 +26,6 @@ etc/qemu-ifdown.sample
 @exec if [ ! -f %D/etc/qemu-ifdown ] ; then cp -p %D/%F %B/qemu-ifdown; fi
 %%PORTDOCS%%%%DOCSDIR%%/qemu-doc.html
 %%PORTDOCS%%%%DOCSDIR%%/qemu-tech.html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%DATADIR%%/bios.bin
 %%DATADIR%%/vgabios.bin
 %%DATADIR%%/vgabios-cirrus.bin
@@ -75,5 +76,3 @@ etc/qemu-ifdown.sample
 %%DATADIR%%/keymaps/sv
 %%DATADIR%%/keymaps/th
 %%DATADIR%%/keymaps/tr
-@dirrm %%DATADIR%%/keymaps
-@dirrm %%DATADIR%%
