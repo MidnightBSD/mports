@@ -10,9 +10,12 @@ DISTNAME=	adobesvg-${DISTVERSION}-linux-i386
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Adobe SVG browser plugin (Linux version)
 
-LICENSE=	restricted
+LICENSE=	adobe
+LICENSE_NAME=	adobe svg license
+LICENSE_PERMS=
+LICENSE_TEXT=	no redistribution
 
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	xorglibs
 USE_LDCONFIG=	yes
 
