@@ -2,7 +2,7 @@
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.78_3.10%20build%2022
 
@@ -15,16 +15,14 @@ OPTIONS_DEFINE=	DOCS
 
 MAKE_JOBS_UNSAFE=	yes
 
+USES=		gmake
 USE_AUTOTOOLS=	autoconf
-USE_GMAKE=	yes
 CONFIGURE_WRKSRC=	${WRKSRC}/gnu
 CFLAGS+=	-fPIC
 MAKEFILE=	GNUmakefile
 STRIP=
 LANGUAGE?=	en
 MAKE_ENV+=	"LOCALE=${LANGUAGE}"
-
-MAN1=		arj-register.1 arj.1 arjdisp.1 rearj.1
 
 .include <bsd.mport.options.mk>
 
