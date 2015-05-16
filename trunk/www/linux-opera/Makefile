@@ -24,7 +24,7 @@ LICENSE=	opera
 
 RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	gtk2 naslibs png sqlite3 xorglibs
 USES=		desktop-file-utils shared-mime-info tar:xz
 WANT_GNOME=	yes
