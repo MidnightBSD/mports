@@ -2,7 +2,7 @@
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/0.22
@@ -14,9 +14,9 @@ COMMENT?=	Graphic library for GTK+
 
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 USES=		gmake libtool pathfix tar:bzip2
 USE_XORG=	xt xi x11
