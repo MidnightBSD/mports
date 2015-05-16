@@ -2,6 +2,7 @@
 
 PORTNAME=	etoile
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -9,6 +10,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metaport for Etoile desktop
+
 LICENSE=	agg
 
 NO_BUILD=	yes
@@ -55,7 +57,6 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 	MediaKit:multimedia/etoile-mediakit \
 	LanguageKit:lang/etoile-languagekit \
 	SmalltalkSupport:lang/etoile-smalltalkkit \
-	XMPPKit:net-im/etoile-xmppkit \
 
 USE_GNUSTEP_SYSTEM_BUNDLES+=	\
 	EtoileMenus:x11-themes/etoile-etoilemenus \
