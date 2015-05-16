@@ -24,7 +24,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/\..*//g}/
 
 #OPTIONS_DEFINE=	NVIDIA
 
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	xorglibs curl
 USES=		perl5 shared-mime-info desktop-file-utils
 USE_PERL5=	patch build
