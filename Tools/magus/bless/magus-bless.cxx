@@ -57,7 +57,7 @@ main(int argc, char *argv[])
 {
     char query_def[1000];
     int runid;
-    sqlite3 *db;
+    sqlite3 *db = NULL;
     sqlite3_stmt *stmt;
     char *fileHash;
     char *filePath;
@@ -83,7 +83,7 @@ main(int argc, char *argv[])
 		cout << "We are connected to " << C.dbname() << endl;
     } else {
 		cout << "We are not connected! Check username and password." << endl;
-		return 0;
+		return -1;
     }
 
     sprintf(query_def,
@@ -112,7 +112,7 @@ main(int argc, char *argv[])
                        continue;
                    }
 
-		   if (row[5].as(boolean()))
+		   if (row[6].as(bool()))
 		   {
 			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);	
 			unlink(filePath);
