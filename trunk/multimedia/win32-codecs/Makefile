@@ -15,7 +15,8 @@ EXTRACT_ONLY=	all-${DISTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Huge compilation of Win32 binary video codecs
-LICENSE=	restricted
+
+LICENSE=	unknown
 
 RESTRICTED=	Unsure of codec's license
 
