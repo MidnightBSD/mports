@@ -2,7 +2,7 @@
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.19.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -75,7 +75,6 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 	MediaKit:multimedia/etoile-mediakit \
 	LanguageKit:lang/etoile-languagekit \
 	SmalltalkSupport:lang/etoile-smalltalkkit \
-	XMPPKit:net-im/etoile-xmppkit \
 	WebServices:www/webservices \
 
 USE_GNUSTEP_SYSTEM_BUNDLES+=	\
