@@ -2,6 +2,7 @@
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	SF
 
@@ -12,6 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
+GNU_CONFIGURE=	yes
 USES=		gmake libtool
 USE_BDB=	yes
 USE_LDCONFIG=	yes
