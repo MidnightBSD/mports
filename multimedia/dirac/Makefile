@@ -2,16 +2,17 @@
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-codec/Dirac-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Open source video codec from the BBC
+
 LICENSE=	mpl
 
 GNU_CONFIGURE=	yes
-USES=		gmake libtool:oldver pathfix shebangfix
+USES=		gmake libtool pathfix shebangfix
 SHEBANG_FILES=	${WRKSRC}/tests/create_dirac_testfile.pl
 USE_LDCONFIG=	yes
 
