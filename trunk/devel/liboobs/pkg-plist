@@ -31,9 +31,9 @@ include/liboobs-1.0/oobs/oobs-user.h
 include/liboobs-1.0/oobs/oobs-usersconfig.h
 include/liboobs-1.0/oobs/oobs.h
 lib/liboobs-1.a
-lib/liboobs-1.la
 lib/liboobs-1.so
 lib/liboobs-1.so.5
+lib/liboobs-1.so.5.0.1
 libdata/pkgconfig/liboobs-1.pc
 %%DOCSDIR%%/OobsGroup.html
 %%DOCSDIR%%/OobsGroupsConfig.html
@@ -79,6 +79,3 @@ libdata/pkgconfig/liboobs-1.pc
 %%DOCSDIR%%/right.png
 %%DOCSDIR%%/style.css
 %%DOCSDIR%%/up.png
-@dirrm %%DOCSDIR%%
-@dirrm include/liboobs-1.0/oobs
-@dirrm include/liboobs-1.0

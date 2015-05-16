@@ -3,7 +3,8 @@
 
 
 PORTNAME=	liboobs
-PORTVERSION=	2.32.0
+PORTVERSION=	3.0.0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,18 +13,18 @@ MAINTAINER=	portsMidnightBSD.org
 COMMENT=	Wrapping library to the System Tools Backends
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/etc/dbus-1/system.d/org.freedesktop.SystemToolsBackends.conf:${PORTSDIR}/sysutils/system-tools-backends
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-    		hal.1:${PORTSDIR}/sysutils/hal
-RUN_DEPENDS=	${LOCALBASE}/etc/dbus-1/system.d/org.freedesktop.SystemToolsBackends.conf:${PORTSDIR}/sysutils/system-tools-backends
+BUILD_DEPENDS=	system-tools-backends:${PORTSDIR}/sysutils/system-tools-backends
+LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libhal.so:${PORTSDIR}/sysutils/hal
+RUN_DEPENDS=	system-tools-backends:${PORTSDIR}/sysutils/system-tools-backends
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack glib20
+USES=		gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	gnomeprefix glib20
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc --with-hal
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
+CONFIGURE_ARGS=	--with-hal
+CPPFLAGS+=	-I${LOCALBASE}/include
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.pre.mk>
 
