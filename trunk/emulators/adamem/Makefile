@@ -9,7 +9,11 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ADAMEm is a portable Coleco ADAM and ColecoVision emulator
-LICENSE=	restricted
+
+LICENSE=	ADAMEm
+LICENSE_NAME=	ADAMEm Software License
+LICENSE_TEXT=	Do not distribute commericially
+LICENSE_PERMS=	
 
 RESTRICTED=	yes
 NO_CDROM=	yes
