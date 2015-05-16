@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	xterm
-PORTVERSION=	316
+PORTVERSION=	317
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
-		LOCAL/ehaupt:src1 LOCAL/ehaupt:src2
+		FREEBSD_LOCAL/ehaupt:src1 LOCAL/ehaupt:src2
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src1 \
 		bsd-xterm-icons-${ICONVERSION}${EXTRACT_SUFX}:src2
 
