@@ -2,7 +2,7 @@
 
 PORTNAME=	quake3
 DISTVERSION=	1.11-6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
@@ -13,9 +13,14 @@ EXTRACT_SUFX=	.gz.sh
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena Demo
-LICENSE=	restricted
 
-USE_LINUX=	yes
+LICENSE=        Loki
+LICENSE_NAME=   Loki Software License
+LICENSE_FILE=   ${WRKDIR}/Q3A_EULA.txt
+LICENSE_PERMS=
+
+RESTRICTED=	no commerical redistribution
+USE_LINUX=	f10
 USE_LINUX_APPS+=dri
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
