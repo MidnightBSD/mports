@@ -2,29 +2,26 @@
 
 PORTNAME=	qemu
 PORTVERSION=	0.11.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
+MASTER_SITES=	SAVANNAH \
 		http://bellard.org/qemu/
-MASTER_SITE_SUBDIR=	qemu
 DIST_SUBDIR=	qemu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QEMU CPU Emulator
+
 LICENSE=	gpl2
 
 HAS_CONFIGURE=	yes
+USES=		gmake
 USE_GCC=	any
-USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
 PATCH_STRIP=	-p1
 MAKE_ENV+=	BSD_MAKE="${MAKE}"
-MAN1=		qemu.1 qemu-img.1
-ONLY_FOR_ARCHS=	amd64 i386
-MAKE_JOBS_SAFE=	yes
 
 OPTIONS_DEFINE=	KQEMU RTL8139_TIMER SAMBA SDL GNUTLS CURL PCAP GNS3 \
-		CDROM_DMA ADD_AUDIO ALL_TARGETS
+		CDROM_DMA ADD_AUDIO ALL_TARGETS DOCS
 KQEMU_DESC=		Build with (alpha!) accelerator module
 RTL8139_TIMER_DESC=	allow use of re(4) nic with FreeBSD guests
 SAMBA_DESC=		samba dependency (for -smb)
@@ -36,7 +33,7 @@ GNS3_DESC=		gns3 patches (udp, promiscuous multicast)
 CDROM_DMA_DESC=		IDE CDROM DMA
 ADD_AUDIO_DESC=		Emulate more audio hardware (experimental!)
 ALL_TARGETS_DESC=	Also build non-x86 targets
-OPTIONS_DEFAULT=	SDL GNUTLS CURL PCAP GNS3 CDROM_DMA ALL_TARGETS
+OPTIONS_DEFAULT=	SDL GNUTLS CURL PCAP GNS3 CDROM_DMA
 
 .include <bsd.mport.options.mk>
 
