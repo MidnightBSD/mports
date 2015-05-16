@@ -1,93 +1,152 @@
 # $MidnightBSD$
 
 PORTNAME=	bochs
-PORTVERSION=	2.6.2
+PORTVERSION=	2.6.7
 PORTEPOCH=	2
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An IA-32 (x86) PC emulator that runs DOS, Win 95, and more
+COMMENT=	IA-32 (x86) PC emulator that runs DOS, Win 95, and more
+
 LICENSE=	lgpl2.1
 
-OPTIONS_DEFINE=	A20_PIN ALIGN_CHECK ASSERT_CHECK AVX \
-		CDROM CHAINING CLGD54XX CONF_MSRS CPP_SUFX \
-		DISASM DOCS \
-		E1000 ES1370 FPU \
-		GAMEPORT IDLE_HACK IODEBUG \
-		LARGE_RAMFILE LOGGING LONG_PHY_ADDR \
-		MWAIT NE2000 OPTIMIZATIONS PCI PLUGINS PNIC \
-		RAW_SERIAL READLINE REPEAT_SPEED RFB \
-		SB16 SDL SHOW_IPS SMP SVGALIB SVM TERM USB USB_OHCI USB_XHCI \
-		VMX VOODOO WXGTK X11 X86_64 XPM
-OPTIONS_DEFINE_i386=	FAST_FUNCCALL
-OPTIONS_RADIO=	DEBUG
-OPTIONS_RADIO_DEBUG=	DEBUGGER GDB_STUB
-OPTIONS_DEFAULT=A20_PIN ALIGN_CHECK CDROM CONF_MSRS DISASM FPU LOGGING \
-		NE2000 OPTIMIZATIONS SB16 X11
-
-A20_PIN_DESC=	Enable support for A20 pin
-ALIGN_CHECK_DESC=	Enable alignment check support
-ASSERT_CHECK_DESC=	Enable BX_ASSERT checks
-AVX_DESC=	Enable AVX instructions support
-CDROM_DESC=	Enable CDROM support
-CHAINING_DESC=	Enable handlers-chaining emulation speedups
-CLGD54XX_DESC=	Enable Cirrus Logic GD54xx video card
-CONF_MSRS_DESC=	Enable configurable MSR registers support
-CPP_SUFX_DESC=	Use .cpp as C++ suffix
-DEBUG_DESCR=	Enable Debugging, select this and one of DEBUGGER or GDB_STUB (or none)
-DEBUGGER_DESC=	Enable debugger support
-DEBUGGER_X86_DESC=	Enable x86 hardware debugger
-DISASM_DESC=	Enable disassemler support
-E1000_DESC=	Enable Intel(R) Gigabit Ethernet support
-ES1370_DESC=	Enable ES1370 soundcard support
-FAST_FUNCCALL_DESC=	Enable fast function calls support (x86 only)
-FPU_DESC=	Enable FPU emulator
-GAMEPORT_DESC=	Enable standard PC gameport support
-GDB_STUB_DESC=	Enable GDB stub support
-IDLE_HACK_DESC=	Keep Bochs from using all CPU time
-IODEBUG_DESC=	Enable I/O interface to debugger
-LARGE_RAMFILE_DESC=	Enable large ramfile support
-LOGGING_DESC=	Enable logging
-LONG_PHY_ADDR_DESC=	Enable support for physical address >= 32bit
-MWAIT_DESC=	Enable experimental MONITOR/MWAIT support
-NE2000_DESC=	Enable ne2000 support
-OPTIMIZATIONS_DESC=	Enable all safe speed optimizations
-PCI_DESC=	Enable i440FX PCI support
-PLUGINS_DESC=	Enable building dynamic loadable plugins
-PNIC_DESC=	Enable PCI pseudo NIC (network card) support
-RAW_SERIAL_DESC=	Use raw serial port access
-READLINE_DESC=	Enable readline support in debugger
-REPEAT_SPEED_DESC=	Enable repeated IO and mem copy speedups
-RFB_DESC=	Enable VNC server support in display
-SB16_DESC=	Enable Sound Blaster 16 emulation
-SHOW_IPS_DESC=	Enable logging of measured IPS
-SMP_DESC=	Enable SMP simulation support (CPU level 6)
-SVM_DESC=	Enable SVM (AMD: secure virtual machine) emulation
-TERM_DESC=	Use text only, console based interface
-USB_DESC=	Enable USB UHCI support
-USB_OHCI_DESC=	Enable USB OHCI support
-USB_XHCI_DESC=	Enable experimental USB xHCI support
-VMX_DESC=	Enable Virtialization extensions
-VOODOO_DESC=	Enable 3dfx Voodoo Graphics emulation
-X86_64_DESC=	Enable x86-64 instructions support
-
-USE_GMAKE=	yes
-USES=	libtool
+USES=		gmake libtool:keepla pkgconfig
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_alsa_asoundlib_h=no
 CONFIGURE_ARGS=	--disable-docbook --disable-instrumentation
-MAKE_JOBS_SAFE=	yes
-
-CFLAGS+=	-fno-exceptions -fomit-frame-pointer ${CPPFLAGS}
-CXXFLAGS+=	-fno-rtti
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-MANCOMPRESSED=	yes
-MAN1=		bochs.1 bochs-dlx.1 bxcommit.1 bximage.1
-MAN5=		bochsrc.5
 
 SUB_FILES=	pkg-message
+
+CFLAGS+=	-fno-exceptions -fomit-frame-pointer
+CXXFLAGS+=	-fno-rtti
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=		A20_PIN ALIGN_CHECK ASSERT_CHECK AVX BUSMOUSE \
+			CDROM CHAINING CLGD54XX CONF_MSRS \
+			DISASM DOCS \
+			E1000 ES1370 EVEX FPU \
+			GAMEPORT IDLE_HACK IODEBUG \
+			LARGE_RAMFILE LOGGING LONG_PHY_ADDR \
+			MWAIT NE2000 OPTIMIZATIONS PCI PLUGINS PNIC \
+			RAW_SERIAL READLINE REPEAT_SPEED RFB \
+			SB16 SDL SHOW_IPS SMP SVGALIB SVM \
+			TERM TRACE_LINK \
+			USB USB_OHCI USB_XHCI \
+			VMX VNCSERVER VOODOO WXGTK X11 X86_64 XPM
+OPTIONS_DEFINE_i386=	FAST_FUNCCALL
+OPTIONS_RADIO=		DEBUG
+OPTIONS_RADIO_DEBUG=	DEBUGGER GDB_STUB
+OPTIONS_DEFAULT=	A20_PIN ALIGN_CHECK CDROM CONF_MSRS DISASM FPU \
+			LOGGING NE2000 OPTIMIZATIONS SB16 X11
+
+A20_PIN_DESC=		Enable support for A20 pin
+A20_PIN_CONFIGURE_ENABLE=	a20-pin
+ALIGN_CHECK_DESC=	Enable alignment check support
+ALIGN_CHECK_CONFIGURE_ENABLE=	alignment-check
+ASSERT_CHECK_DESC=	Enable BX_ASSERT checks
+ASSERT_CHECK_CONFIGURE_ENABLE=	assert-checks
+AVX_DESC=		Enable AVX instructions support
+AVX_CONFIGURE_ENABLE=	avx
+BUSMOUSE_DESC=		Enable Busmouse support
+BUSMOUSE_CONFIGURE_ENABLE=	busmouse
+CDROM_DESC=		Enable CDROM support
+CDROM_CONFIGURE_ENABLE=	cdrom
+CHAINING_DESC=		Enable handlers-chaining emulation speedups
+CHAINING_CONFIGURE_ENABLE=	handlers-chaining
+CLGD54XX_DESC=		Enable Cirrus Logic GD54xx video card
+CLGD54XX_CONFIGURE_ENABLE=	clgd54xx
+CONF_MSRS_DESC=		Enable configurable MSR registers support
+CONF_MSRS_CONFIGURE_ENABLE=	configurable-msrs
+DEBUG_DESCR=		Enable Debugging, select this and one of DEBUGGER or GDB_STUB (or none)
+DEBUGGER_DESC=		Enable debugger support
+DEBUGGER_CONFIGURE_ENABLE=	debugger
+DEBUGGER_X86_DESC=	Enable x86 hardware debugger
+DEBUGGER_X86_CONFIGURE_ENABLE=	x86-debugger
+DISASM_DESC=		Enable disassemler support
+DISASM_CONFIGURE_ENABLE=	disasm
+E1000_DESC=		Enable Intel(R) Gigabit Ethernet support
+E1000_CONFIGURE_ENABLE=		e1000
+ES1370_DESC=		Enable ES1370 soundcard support
+ES1370_CONFIGURE_ENABLE=	es1370
+EVEX_DESC=		Enable EVEX prefix and AVX-512 extensios support
+EVEX_CONFIGURE_ENABLE=	evex
+FAST_FUNCCALL_DESC=	Enable fast function calls support (x86 only)
+FAST_FUNCCALL_CONFIGURE_ENABLE=	fast-function-calls
+FPU_DESC=		Enable FPU emulator
+FPU_CONFIGURE_ENABLE=		fpu
+GAMEPORT_DESC=		Enable standard PC gameport support
+GAMEPORT_CONFIGURE_ENABLE=	gameport
+GDB_STUB_DESC=		Enable GDB stub support
+GDB_STUB_CONFIGURE_ENABLE=	gdb-stub
+IDLE_HACK_DESC=		Keep Bochs from using all CPU time
+IDLE_HACK_CONFIGURE_ENABLE=	idle-hack
+IODEBUG_DESC=		Enable I/O interface to debugger
+IODEBUG_CONFIGURE_ENABLE=	iodebug
+LARGE_RAMFILE_DESC=	Enable large ramfile support
+LARGE_RAMFILE_CONFIGURE_ENABLE=	large-ramfile
+LOGGING_DESC=		Enable logging
+LOGGING_CONFIGURE_ENABLE=	logging
+LONG_PHY_ADDR_DESC=	Enable support for physical address >= 32bit
+LONG_PHY_ADDR_CONFIGURE_ENABLE=	long-phy-address
+MWAIT_DESC=		Enable experimental MONITOR/MWAIT support
+MWAIT_CONFIGURE_ENABLE=		monitor-mwait
+NE2000_DESC=		Enable ne2000 support
+NE2000_CONFIGURE_ENABLE=	ne2000
+OPTIMIZATIONS_DESC=	Enable all safe speed optimizations
+OPTIMIZATIONS_CONFIGURE_ENABLE=	all-optimizations
+PCI_DESC=		Enable i440FX PCI support
+PCI_CONFIGURE_ENABLE=		pci
+PLUGINS_DESC=		Enable building dynamic loadable plugins
+PLUGINS_CONFIGURE_ENABLE=	plugins
+PNIC_DESC=		Enable PCI pseudo NIC (network card) support
+PNIC_CONFIGURE_ENABLE=		pnic
+RAW_SERIAL_DESC=	Use raw serial port access
+RAW_SERIAL_CONFIGURE_ENABLE=	raw-serial
+READLINE_DESC=		Enable readline support in debugger
+READLINE_USES=		readline
+READLINE_CONFIGURE_ENABLE=	readline
+REPEAT_SPEED_DESC=	Enable repeated IO and mem copy speedups
+REPEAT_SPEED_CONFIGURE_ENABLE=	repeat-speedups
+RFB_DESC=		Use RFB protocol (works with VNC viewer)
+RFB_CONFIGURE_WITH=	rfb
+SB16_DESC=		Enable Sound Blaster 16 emulation
+SB16_CONFIGURE_ENABLE=	sb16
+SDL_USE=		SDL=sdl
+SDL_CONFIGURE_WITH=	sdl
+SHOW_IPS_DESC=		Enable logging of measured IPS
+SHOW_IPS_CONFIGURE_ENABLE=	show-ips
+SMP_DESC=		Enable SMP simulation support (CPU level 6)
+SMP_CONFIGURE_ENABLE=	smp
+SVGALIB_LIB_DEPENDS=	libvga.so:${PORTSDIR}/graphics/svgalib
+SVGALIB_CONFIGURE_WITH=	svga
+SVM_DESC=		Enable SVM (AMD: secure virtual machine) emulation
+SVM_CONFIGURE_ENABLE=	svm
+TERM_DESC=		Use text only, console based interface
+TERM_CONFIGURE_WITH=	term
+TRACE_LINK_DESC=	Enable trace linking speedups
+TRACE_LINK_CONFIGURE_ENABLE=	trace-linking
+USB_DESC=		Enable USB UHCI support
+USB_CONFIGURE_ENABLE=	usb
+USB_OHCI_DESC=		Enable USB OHCI support
+USB_OHCI_CONFIGURE_ENABLE=	usb-ohci
+USB_XHCI_DESC=		Enable experimental USB xHCI support
+USB_XHCI_CONFIGURE_ENABLE=	usb-xhci
+VMX_DESC=		Enable Virtialization extensions
+VNCSERVER_DESC= 		Use LibVNCServer (works with VNC viewer)
+VNCSERVER_LIB_DEPENDS=	libvncserver.so:${PORTSDIR}/net/libvncserver
+VNCSERVER_CONFIGURE_WITH=	vncsrv
+VOODOO_DESC=		Enable 3dfx Voodoo Graphics emulation
+VOODOO_CONFIGURE_ENABLE=	voodoo
+WXGTK_USE=		WX=2.8
+WXGTK_CONFIGURE_WITH=	wx
+WXGTK_CONFIGURE_OFF=	--disable-debugger-gui
+X11_USE=		XORG=xrandr
+X11_CONFIGURE_WITH=	x11
+X86_64_DESC=		Enable x86-64 instructions support
+X86_64_CONFIGURE_ENABLE=	x86-64
+XPM_USE=		XORG=xpm
+XOM_CONFIGURE_ENABE=	xpm
 
 .include <bsd.mport.options.mk>
 
@@ -95,261 +154,12 @@ SUB_FILES=	pkg-message
 CONFIGURE_ARGS+=--with-nogui
 .endif
 
-.if ${PORT_OPTIONS:MA20_PIN}
-CONFIGURE_ARGS+=--enable-a20-pin
-.else
-CONFIGURE_ARGS+=--disable-a20-pin
-.endif
-
-.if ${PORT_OPTIONS:MALIGN_CHECK}
-CONFIGURE_ARGS+=--enable-alignment-check
-.else
-CONFIGURE_ARGS+=--disable-alignment-check
-.endif
-
-.if ${PORT_OPTIONS:MASSERT_CHECK}
-CONFIGURE_ARGS+=--enable-assert-checks
-.else
-CONFIGURE_ARGS+=--disable-assert-checks
-.endif
-
-.if ${PORT_OPTIONS:MAVX}
-CONFIGURE_ARGS+=--enable-avx
-.else
-CONFIGURE_ARGS+=--disable-avx
-.endif
-
-.if ${PORT_OPTIONS:MCDROM}
-CONFIGURE_ARGS+=--enable-cdrom
-.else
-CONFIGURE_ARGS+=--disable-cdrom
-.endif
-
-.if ${PORT_OPTIONS:MCHAINING}
-CONFIGURE_ARGS+=--enable-handlers-chaining
-.else
-CONFIGURE_ARGS+=--disable-handlers-chaining
-.endif
-
-.if ${PORT_OPTIONS:MCLGD54XX}
-CONFIGURE_ARGS+=--enable-clgd54xx
-.else
-CONFIGURE_ARGS+=--disable-clgd54xx
-.endif
-
-.if ${PORT_OPTIONS:MCONF_MSRS}
-CONFIGURE_ARGS+=--enable-configurable-msrs
-.else
-CONFIGURE_ARGS+=--disable-configurable-msrs
-.endif
-
-.if ${PORT_OPTIONS:MCPP_SUFX}
-CONFIGURE_ARGS+=--enable-cpp
-.else
-CONFIGURE_ARGS+=--disable-cpp
-.endif
-
-.if ${PORT_OPTIONS:MDEBUGGER}
-CONFIGURE_ARGS+=--enable-debugger
-.else
-CONFIGURE_ARGS+=--disable-debugger
-.endif
-
-.if ${PORT_OPTIONS:MDEBUGGER_X86}
-CONFIGURE_ARGS+=--enable-x86-debugger
-.else
-CONFIGURE_ARGS+=--disable-x86-debugger
-.endif
-
-.if ${PORT_OPTIONS:MDISASM}
-CONFIGURE_ARGS+=--enable-disasm
-.else
-CONFIGURE_ARGS+=--disable-disasm
-.endif
-
-.if ${PORT_OPTIONS:ME1000}
-CONFIGURE_ARGS+=--enable-e1000
-.else
-CONFIGURE_ARGS+=--disable-e1000
-.endif
-
-.if ${PORT_OPTIONS:MES1370}
-CONFIGURE_ARGS+=--enable-es1370
-.else
-CONFIGURE_ARGS+=--disable-es1370
-.endif
-
-.if ${PORT_OPTIONS:MFAST_FUNCCALL}
-CONFIGURE_ARGS+=--enable-fast-function-calls
-.else
-CONFIGURE_ARGS+=--disable-fast-function-calls
-.endif
-
-.if ${PORT_OPTIONS:MFPU}
-CONFIGURE_ARGS+=--enable-fpu
-.else
-CONFIGURE_ARGS+=--disable-fpu
+.if ! ${PORT_OPTIONS:MFPU}
 WITH_CPU_LEVEL=	3
 .endif
 
-.if ${PORT_OPTIONS:MGAMEPORT}
-CONFIGURE_ARGS+=--enable-gameport
-.else
-CONFIGURE_ARGS+=--disable-gameport
-.endif
-
-.if ${PORT_OPTIONS:MGDB_STUB}
-CONFIGURE_ARGS+=--enable-gdb-stub
-.else
-CONFIGURE_ARGS+=--disable-gdb-stub
-.endif
-
-.if ${PORT_OPTIONS:MIDLE_HACK}
-CONFIGURE_ARGS+=--enable-idle-hack
-.else
-CONFIGURE_ARGS+=--disable-idle-hack
-.endif
-
-.if ${PORT_OPTIONS:MIODEBUG}
-CONFIGURE_ARGS+=--enable-iodebug
-.else
-CONFIGURE_ARGS+=--disable-iodebug
-.endif
-
-.if ${PORT_OPTIONS:MLARGE_RAMFILE}
-CONFIGURE_ARGS+=--enable-large-ramfile
-.else
-CONFIGURE_ARGS+=--disable-large-ramfile
-.endif
-
-.if ${PORT_OPTIONS:MLOGGING}
-CONFIGURE_ARGS+=--enable-logging
-.else
-CONFIGURE_ARGS+=--disable-logging
-.endif
-
-.if ${PORT_OPTIONS:MLONG_PHY_ADDR}
-CONFIGURE_ARGS+=--enable-long-phy-address
-.else
-CONFIGURE_ARGS+=--disable-long-phy-address
-.endif
-
-.if ${PORT_OPTIONS:MMWAIT}
-CONFIGURE_ARGS+=--enable-monitor-mwait
-.else
-CONFIGURE_ARGS+=--disable-monitor-mwait
-.endif
-
-.if ${PORT_OPTIONS:MNE2000}
-CONFIGURE_ARGS+=--enable-ne2000
-.else
-CONFIGURE_ARGS+=--disable-ne2000
-.endif
-
-.if ${PORT_OPTIONS:MOPTIMIZATIONS}
-CONFIGURE_ARGS+=--enable-all-optimizations
-.else
-CONFIGURE_ARGS+=--disable-all-optimizations
-.endif
-
-.if ${PORT_OPTIONS:MPCI}
-CONFIGURE_ARGS+=--enable-pci
-.else
-CONFIGURE_ARGS+=--disable-pci
-.endif
-
-.if ${PORT_OPTIONS:MPLUGINS}
-CONFIGURE_ARGS+=--enable-plugins
-.else
-CONFIGURE_ARGS+=--disable-plugins
-.endif
-
-.if ${PORT_OPTIONS:MPNIC}
-CONFIGURE_ARGS+=--enable-pnic
-.else
-CONFIGURE_ARGS+=--disable-pnic
-.endif
-
-.if ${PORT_OPTIONS:MRAW_SERIAL}
-CONFIGURE_ARGS+=--enable-raw-serial
-.else
-CONFIGURE_ARGS+=--disable-raw-serial
-.endif
-
-.if ${PORT_OPTIONS:MREADLINE}
-USES+=		readline
-CONFIGURE_ARGS+=--enable-readline
-.else
-CONFIGURE_ARGS+=--disable-readline
-.endif
-
-.if ${PORT_OPTIONS:MREPEAT_SPEED}
-CONFIGURE_ARGS+=--enable-repeat-speedups
-.else
-CONFIGURE_ARGS+=--disable-repeat-speedups
-.endif
-
-.if ${PORT_OPTIONS:MRFB}
-CONFIGURE_ARGS+=--with-rfb
-.else
-CONFIGURE_ARGS+=--without-rfb
-.endif
-
-.if ${PORT_OPTIONS:MSB16}
-CONFIGURE_ARGS+=--enable-sb16
-.endif
-
-.if ${PORT_OPTIONS:MSDL}
-USE_SDL=	sdl
-CONFIGURE_ARGS+=--with-sdl
-.endif
-
-.if ${PORT_OPTIONS:MSHOW_IPS}
-CONFIGURE_ARGS+=--enable-show-ips
-.else
-CONFIGURE_ARGS+=--disable-show-ips
-.endif
-
 .if ${PORT_OPTIONS:MSMP}
-CONFIGURE_ARGS+=--enable-smp
 WITH_CPU_LEVEL=	6
-.endif
-
-.if ${PORT_OPTIONS:MSVGALIB}
-LIB_DEPENDS+=	vga:${PORTSDIR}/graphics/svgalib
-CONFIGURE_ARGS+=--with-svga
-.else
-CONFIGURE_ARGS+=--without-svga
-.endif
-
-.if ${PORT_OPTIONS:MSVM}
-CONFIGURE_ARGS+=--enable-svm
-.else
-CONFIGURE_ARGS+=--disable-svm
-.endif
-
-.if ${PORT_OPTIONS:MTERM}
-CONFIGURE_ARGS+=--with-term
-.else
-CONFIGURE_ARGS+=--without-term
-.endif
-
-.if ${PORT_OPTIONS:MUSB}
-CONFIGURE_ARGS+=--enable-usb
-.else
-CONFIGURE_ARGS+=--disable-usb
-.endif
-
-.if ${PORT_OPTIONS:MUSB_OHCI}
-CONFIGURE_ARGS+=--enable-usb-ohci
-.else
-CONFIGURE_ARGS+=--disable-usb-ohci
-.endif
-
-.if ${PORT_OPTIONS:MUSB_XHCI}
-CONFIGURE_ARGS+=--enable-usb-xhci
-.else
-CONFIGURE_ARGS+=--disable-usb-xhci
 .endif
 
 .if ${PORT_OPTIONS:MVMX} && ${PORT_OPTIONS:MX86_64}
@@ -362,36 +172,8 @@ CONFIGURE_ARGS+=--enable-vmx=1
 WITH_CPU_LEVEL=	6
 .endif
 
-.if ${PORT_OPTIONS:MVOODOO}
-CONFIGURE_ARGS+=--enable-voodoo
-.else
-CONFIGURE_ARGS+=--disable-voodoo
-.endif
-
-.if ${PORT_OPTIONS:MWXGTK}
-USE_WX=		2.4+
-CONFIGURE_ARGS+=--with-wx
-.else
-CONFIGURE_ARGS+=--disable-debugger-gui
-.endif
-
-.if ${PORT_OPTIONS:MX11}
-USE_XORG=	xrandr
-CONFIGURE_ARGS+=--with-x11
-.endif
-
 .if ${PORT_OPTIONS:MX86_64}
-CONFIGURE_ARGS+=--enable-x86-64
 WITH_CPU_LEVEL=	6
-.else
-CONFIGURE_ARGS+=--disable-x86-64
-.endif
-
-.if ${PORT_OPTIONS:MXPM} && ${PORT_OPTIONS:MX11}
-USE_XORG+=	xpm
-CONFIGURE_ARGS+=--enable-xpm
-.else
-CONFIGURE_ARGS+=--disable-xpm
 .endif
 
 .if defined(WITH_CPU_LEVEL)
@@ -405,12 +187,20 @@ CONFIGURE_ARGS+=--enable-cpu-level=${WITH_CPU_LEVEL}
 IGNORE=		GDB_STUB is incompatible with multiprocessor
 .endif
 
+.if ${PORT_OPTIONS:ME1000} && empty(PORT_OPTIONS:MPCI)
+IGNORE=		E1000 network adapter support requires PCI support
+.endif
+
 .if ${PORT_OPTIONS:MES1370} && empty(PORT_OPTIONS:MGAMEPORT)
 IGNORE=		ES1370 soundcard support requires GAMEPORT support
 .endif
 
 .if ${PORT_OPTIONS:MES1370} && empty(PORT_OPTIONS:MPCI)
 IGNORE=		ES1370 soundcard support requires PCI support
+.endif
+
+.if ${PORT_OPTIONS:MEVEX} && empty(PORT_OPTIONS:MAVX)
+IGNORE=		EVEX instructions support requires AVX support
 .endif
 
 .if ${PORT_OPTIONS:MPNIC} && empty(PORT_OPTIONS:MPCI)
@@ -427,6 +217,10 @@ IGNORE=		AVX instructions support requires X86-64 support
 
 .if ${PORT_OPTIONS:MSVM} && empty(PORT_OPTIONS:MX86_64)
 IGNORE=		SVM emulation requires X86-64 support
+.endif
+
+.if ${PORT_OPTIONS:MXPM} && empty(PORT_OPTIONS:MX11)
+IGNORE=		XPM support requires X11 support
 .endif
 
 pre-everything::
@@ -460,23 +254,28 @@ post-patch:
 		 s|(-lvgagl)$$|\1 @LDFLAGS@|' \
 		 ${WRKSRC}/gui/Makefile.in
 
+post-build:
+	@${LN} -sf .bochsrc ${WRKSRC}/bochsrc-sample.txt
+
 post-install:
+.for f in bochs bximage
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
+.endfor
 .if ${PORT_OPTIONS:MPLUGINS}
-	@${FIND} ${PREFIX}/lib/bochs ! -type d | \
-		${SED} 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	@${FIND} ${PREFIX}/lib/bochs -type d | ${SORT} -r | \
-		${SED} 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
+	@${FIND} ${STAGEDIR}${PREFIX}/lib/bochs ! -type d | \
+		${SED} 's,^${STAGEDIR}${PREFIX}/,,' >> ${TMPPLIST}
+	@${FIND} ${STAGEDIR}${PREFIX}/lib/bochs -type d -empty | ${SORT} -r | \
+		${SED} 's,^${STAGEDIR}${PREFIX}/,@dir ,' >> ${TMPPLIST}
 .endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}/CHANGES
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}/README
-	@${INSTALL_DATA} ${WRKSRC}/TODO ${DOCSDIR}/TODO
-	@${INSTALL_DATA} ${WRKSRC}/.bochsrc ${DOCSDIR}/bochsrc-sample.txt
-	@${INSTALL_DATA} ${WRKSRC}/docs-html/*.txt ${DOCSDIR}
-	@${MKDIR} ${DOCSDIR}/html
-	@${INSTALL_DATA} ${WRKSRC}/docs-html/*.html ${DOCSDIR}/html
-.endif
-	@${ECHO_CMD}; ${CAT} ${PKGMESSAGE}; ${ECHO_CMD}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for i in CHANGES README TODO bochsrc-sample.txt
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} \
+		${STAGEDIR}${DOCSDIR})
+.endfor
+	(cd ${WRKSRC}/docs-html && ${INSTALL_DATA} *.txt \
+		${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html
+	(cd ${WRKSRC}/docs-html && ${INSTALL_DATA} *.html \
+		${STAGEDIR}${DOCSDIR}/html)
 
 .include <bsd.port.mk>
