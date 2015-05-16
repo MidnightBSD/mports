@@ -45,7 +45,7 @@ BSD host notes
   the same way.
 
 - The -smb option (smb-export local dir to guest using the default
-  slirp networking) needs the net/samba34 port/package installed
+  slirp networking) needs the net/samba36 port/package installed
   in addition to qemu.
 
 - If you want to use usb devices connected to the host in the guest
