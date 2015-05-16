@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/libltdl/Makefile,v 1.6 2010/12/08 19:58:46 ade Exp $
 
 PORTNAME=	libltdl
-PORTREVISION=	0
+PORTREVISION=	1
 
 COMMENT=	System independent dlopen wrapper
 
@@ -11,8 +11,8 @@ COMMENT=	System independent dlopen wrapper
 LICENSE=	lgpl2.1
 
 BUILD_DEPENDS+= libtool:${PORTSDIR}/devel/libtool \
-		gm4:${PORTSDIR}/devel/m4
-
+		gm4:${PORTSDIR}/devel/m4 \
+		help2man:${PORTSDIR}/misc/help2man
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ltdl-install
