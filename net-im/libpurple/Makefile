@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME?=	libpurple
-PORTVERSION=	2.10.7
-PORTREVISION?=	2
+PORTVERSION=	2.10.11
+PORTREVISION?=	0
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -12,27 +12,24 @@ COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
 
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME?=	gnomeprefix gnomehack intlhack glib20 libxml2
+USES=		cpe gettext gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME?=	gnomeprefix intltool glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
-		--with-dynamic_prpls=${PRPL_MODULES:S/,$//} \
+		--with-dynamic-prpls=${PRPL_MODULES:S/,$//} \
 		--enable-static \
 		--disable-nm
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
-		PTHREAD_LIB="${PTHREAD_LIBS}"
-CFLAGS+=	-D_XOPEN_SOURCE_EXTENDED
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 .if !defined(PIDGIN_SLAVE)
 # Pidgin slave ports that require the following functionality, must explicitly
 # set these macros themselves.
-USES=		gettext iconv
+USES+=		iconv python
 USE_LDCONFIG=	yes
 WANT_GNOME=	yes
-USE_PYTHON=	yes
 
 .if defined(PACKAGE_BUILDING)
 .undef WITHOUT_GNOME
@@ -42,6 +39,8 @@ WITH_GNOME=	yes
 .endif
 
 PRPL_MODULES=
+
+CPE_VENDOR=	pidgin
 
 OPTIONS_DEFINE=	BONJOUR DBUS GNUTLS NSS SASL GSTREAMER VV IDN PERL TCLTK \
 		SAMETIME SILC GG IRC JABBER MSN MYSPACE NOVELL OSCAR QQ \
@@ -53,6 +52,7 @@ GNUTLS_DESC=	Use GNUTLS for encryption support
 NSS_DESC=	Use Mozilla NSS for encryption support
 SASL_DESC=	Cyrus SASL support (for jabberd)
 GSTREAMER_DESC=	Use GStreamer for playing sounds
+VV_DESC=	Video and voice support
 SAMETIME_DESC=	The Lotus Sametime chat protocol
 SILC_DESC=	The Secure Internet Live Conferencing protocol
 GG_DESC=	The Gadu-Gadu chat protocol
@@ -72,19 +72,26 @@ OPTIONS_DEFINE+=	GTKSPELL CAP
 OPTIONS_DEFAULT+=	GTKSPELL CAP
 GTKSPELL_DESC=	Spell checking support
 CAP_DESC=	Contact Availability Prediction plugin
+PLIST_SUB+=	GTKUI=""
+.else
+PLIST_SUB+=	GTKUI="@comment not installed: "
 .endif
 
-OPTIONSFILE=	${PORT_DBDIR}/${UNIQUENAME}/options
+.if defined(WITH_CONSOLEUI)
+PLIST_SUB+=	CONSOLEUI=""
+.else
+PLIST_SUB+=	CONSOLEUI="@comment not installed: "
+.endif
 
 CONFIGURE_ARGS+=--disable-doxygen
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MTCLTK}
-USE_TK=			yes
-CFLAGS+=		-I${LOCALBASE}/include/tk${TK_VER} -I${LOCALBASE}/include/tcl${TCL_VER}
-CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCL_VER} \
-			--with-tkconfig=${LOCALBASE}/lib/tk${TK_VER}
+USES+=			tk
+CFLAGS+=		-I${TK_INCLUDEDIR} -I${TCL_INCLUDEDIR}
+CONFIGURE_ARGS+=	--with-tclconfig=${TCL_LIBDIR} \
+			--with-tkconfig=${TK_LIBDIR}
 PLIST_SUB+=		TCL:=""
 .else
 CONFIGURE_ARGS+=	--disable-tcl
@@ -115,17 +122,23 @@ USE_GSTREAMER+=	core good
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
+.if ${PORT_OPTIONS:MVV} && ${PORT_OPTIONS:MGSTREAMER}
+LIB_DEPENDS+=	libgstfarsight-0.10.so:${PORTSDIR}/net-im/farsight2
+USE_GSTREAMER+=	v4l2
+PLIST_SUB+=	VV=""
+.else
 CONFIGURE_ARGS+=--disable-vv
 PLIST_SUB+=	VV="@comment "
+.endif
 
 .if ${PORT_OPTIONS:MIDN}
-LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
+LIB_DEPENDS+=	libidn.so:${PORTSDIR}/dns/libidn
 .else
 CONFIGURE_ARGS+=--disable-idn
 .endif
 
 .if ${PORT_OPTIONS:MCAP}
-LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS+=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 CONFIGURE_ARGS+=--enable-cap
 PLIST_SUB+=	CAP=""
 .else
@@ -134,7 +147,7 @@ PLIST_SUB+=	CAP="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		libgnutls.so:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--enable-gnutls=yes
 PLIST_SUB+=		GNUTLS=""
 .else
@@ -143,7 +156,7 @@ PLIST_SUB+=		GNUTLS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MNSS}
-LIB_DEPENDS+=		nss3:${PORTSDIR}/security/nss
+LIB_DEPENDS+=		libnss3.so:${PORTSDIR}/security/nss
 CONFIGURE_ARGS+=	--enable-nss=yes \
 			--with-nspr-includes=${LOCALBASE}/include/nspr \
 			--with-nspr-libs=${LOCALBASE}/lib \
@@ -156,12 +169,12 @@ PLIST_SUB+=		NSS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSASL}
-LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=		libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 CONFIGURE_ARGS+=	--enable-cyrus-sasl
 .endif
 
 .if ${PORT_OPTIONS:MBONJOUR}
-LIB_DEPENDS+=	avahi-client.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	bonjour,${PRPL_MODULES}
 .else
@@ -170,13 +183,13 @@ PLIST_SUB+=	BONJOUR="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MGTKSPELL}
-LIB_DEPENDS+=		gtkspell.0:${PORTSDIR}/textproc/gtkspell
+LIB_DEPENDS+=		libgtkspell.so:${PORTSDIR}/textproc/gtkspell
 .else
 CONFIGURE_ARGS+=	--disable-gtkspell
 .endif
 
 .if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS+=		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 .if !defined(PIDGIN_SLAVE)
 RUN_DEPENDS+=		${PYTHON_SITELIBDIR}/dbus/__init__.py:${PORTSDIR}/devel/py-dbus
 .endif
@@ -188,19 +201,22 @@ PLIST_SUB+=		DBUS="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-USE_PERL5=		yes
+USES+=			perl5
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=		PERL:=""
 .if !defined(PIDGIN_SLAVE)
-MAN3+=			Purple.3
+PLIST_SUB+=		PERLMAN:=""
+.else
+PLIST_SUB+=		PERLMAN:="@comment not installed: "
 .endif
 .else
 CONFIGURE_ARGS+=	--disable-perl
-PLIST_SUB+=		PERL:="@comment not installed: "
+PLIST_SUB+=		PERL:="@comment not installed: " \
+			PERLMAN:="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MSAMETIME}
-LIB_DEPENDS+=	meanwhile.1:${PORTSDIR}/net-im/meanwhile
+LIB_DEPENDS+=	libmeanwhile.so:${PORTSDIR}/net-im/meanwhile
 PLIST_SUB+=	SAMETIME=""
 PRPL_MODULES:=	sametime,${PRPL_MODULES}
 .else
@@ -209,7 +225,7 @@ CONFIGURE_ARGS+=--disable-meanwhile
 .endif
 
 .if ${PORT_OPTIONS:MSILC}
-LIB_DEPENDS+=		silcclient-1.1:${PORTSDIR}/devel/silc-toolkit
+LIB_DEPENDS+=		libsilcclient.so:${PORTSDIR}/devel/silc-toolkit
 CONFIGURE_ARGS+=	--with-silc-includes=${LOCALBASE}/include/silc \
 			--with-silc-libs=${LOCALBASE}/lib
 PLIST_SUB+=		SILC=""
@@ -301,24 +317,19 @@ pre-everything::
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthreads|${PTHREAD_LIBS:S/"//g}|g' \
-		-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		-e 's|-lpanel |-lpanel -lncurses|g' \
+	@${REINPLACE_CMD} \
 		-e 's|-lpthread|${PTHREAD_LIBS:S/"//g}|g' \
-		-e 's|-lsilc -lsilcclient ${PTHREAD_LIBS} $$LIBDL|-lsilc -lsilcclient ${PTHREAD_LIBS} -liconv|' \
-		-e 's|TCL_VERSION found but 8.3 required|TCL_VERSION found but ${TCLTK_VER} required|g' \
-		-e 's|TCL_MINOR_VERSION" -ne 3|TCL_MINOR_VERSION" -ne ${TCLTK_VER:E}|' \
+		-e 's|-lsilc -lsilcclient ${PTHREAD_LIBS} $$LIBDL|-lsilc -lsilcclient ${PTHREAD_LIBS} ${ICONV_LIB}|' \
 			${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|/bin/bash|${SH}|' \
-			${WRKSRC}/libpurple/purple-send \
-			${WRKSRC}/libpurple/purple-send-async
-	@${REINPLACE_CMD} -e 's|/python|/env python|' \
-	    		${WRKSRC}/libpurple/purple-remote \
-			${WRKSRC}/libpurple/purple-url-handler
 .if defined(PIDGIN_SLAVE)
 	@${FIND} ${BUILD_WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-		's|[$$][(]top_builddir[)]/libpurple/libpurple.la|${LOCALBASE}/lib/libpurple.la|g'
+		's|$$(top_builddir)/libpurple/libpurple.la|-lpurple|'
 .endif
-	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH}
+
+.if !defined(PIDGIN_SLAVE) && ${PORT_OPTIONS:MPERL}
+post-install:
+	@${SED} -i '' -e 's|^${FAKE_DESTDIR}||g' \
+		${PREFIX}/lib/purple-2/perl/auto/Purple/.packlist
+.endif
 
 .include <bsd.port.post.mk>
