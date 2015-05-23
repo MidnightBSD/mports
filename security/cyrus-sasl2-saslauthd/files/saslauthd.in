@@ -19,10 +19,10 @@ saslauthd_flags=${saslauthd_flags:-"-a pam"}	# Flags to saslauthd program
 #saslauthd_runpath="%%SASLAUTHD_RUNPATH%%"	# Working directory
 #saslauthd_program="%%PREFIX%%/sbin/saslauthd"	# Location of saslauthd
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="saslauthd"
-rcvar=`set_rcvar`
+rcvar=saslauthd_enable
 command="%%PREFIX%%/sbin/${name}"
 
 load_rc_config $name
