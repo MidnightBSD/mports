@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	postfix
-PORTVERSION=	2.11.1
+PORTVERSION=	2.11.4
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/official/ \
 		ftp://ftp.tux.org/pub/net/postfix/official/ \
@@ -63,27 +63,6 @@ RG2_DESC=	Kerberos network authentication protocol type
 OPTIONS_DEFAULT=	PCRE
 
 .include <bsd.mport.options.mk>
-
-MAN1=	postalias.1 postcat.1 postconf.1 postdrop.1 postfix.1 postkick.1 \
-	postlock.1 postlog.1 postmap.1 postmulti.1 postqueue.1 postsuper.1 \
-	sendmail.1 qshape.1
-
-MAN5=	access.5 aliases.5 bounce.5 canonical.5 cidr_table.5 generic.5 \
-	header_checks.5 ldap_table.5 lmdb_table.5 master.5 memcache_table.5 \
-	mysql_table.5 nisplus_table.5 pcre_table.5 pgsql_table.5 postconf.5 \
-	postfix-wrapper.5 regexp_table.5 relocated.5 socketmap_table.5 \
-	sqlite_table.5 tcp_table.5 transport.5 virtual.5
-
-MAN8=	anvil.8 bounce.8 cleanup.8 discard.8 dnsblog.8 error.8 flush.8 local.8 master.8 \
-	oqmgr.8 pickup.8 pipe.8 postscreen.8 proxymap.8 qmgr.8 qmqpd.8 scache.8 showq.8 \
-	smtp.8 smtpd.8 spawn.8 tlsmgr.8 tlsproxy.8 trivial-rewrite.8 verify.8 virtual.8
-
-MLINKS=	sendmail.1 mailq.1 \
-	sendmail.1 newaliases.1 \
-	header_checks.5 body_checks.5 \
-	bounce.8 defer.8 \
-	bounce.8 trace.8 \
-	smtp.8 lmtp.8
 
 HTML1=	body_checks.5.html bounce.5.html postfix-power.png \
 	scache.8.html tlsmgr.8.html
