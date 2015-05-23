@@ -1,5 +1,5 @@
 --- /dev/null	2013-07-15 22:04:14.000000000 -0400
-+++ ../../security/coreconf/MidnightBSD.mk	2013-07-15 22:06:54.000000000 -0400
++++ coreconf/MidnightBSD.mk	2013-07-15 22:06:54.000000000 -0400
 @@ -0,0 +1,66 @@
 +#
 +# This Source Code Form is subject to the terms of the Mozilla Public

@@ -80,6 +80,7 @@ include/nss/nss/pk11priv.h
 include/nss/nss/pk11pub.h
 include/nss/nss/pk11sdr.h
 include/nss/nss/pkcs11.h
+include/nss/nss/pkcs1sig.h
 include/nss/nss/pkcs11f.h
 include/nss/nss/pkcs11n.h
 include/nss/nss/pkcs11p.h
@@ -136,6 +137,3 @@ lib/nss/libsoftokn3.so.1
 lib/nss/libssl3.so
 lib/nss/libssl3.so.1
 libdata/pkgconfig/nss.pc
-@dirrm lib/nss
-@dirrm include/nss/nss
-@dirrm include/nss

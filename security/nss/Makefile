@@ -1,54 +1,55 @@
 # $MidnightBSD$
 
 PORTNAME=	nss
-PORTVERSION=	3.14.3
+PORTVERSION=	3.19
 PORTREVISION=	0
 CATEGORIES=	security
-MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:U:C/[-.]/_/g}_RTM/src
+MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
 LICENSE=	unknown
 #mpl?
 
-BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	nspr4.1:${PORTSDIR}/devel/nspr
+BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
+		nspr>=4.10.5:${PORTSDIR}/devel/nspr
+LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/mozilla/security/nss
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
 
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/nss
-USE_GMAKE=	yes
-USE_PERL5_BUILD=yes
+USES=		cpe gmake perl5
+CPE_VENDOR=	mozilla
+CPE_PRODUCT=	network_security_services
+USE_PERL5=	build
 MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 		SQLITE_INCLUDE_DIR="${LOCALBASE}/include" \
-		NSS_ENABLE_ECC=1 NSS_USE_SYSTEM_SQLITE=1
-ALL_TARGET=	nss_build_all
+		NSS_USE_SYSTEM_SQLITE=1
 CFLAGS+=	-I${LOCALBASE}/include/nspr
 
 SUB_FILES=	nss-config nss.pc
-SUB_LIST=	MAJOR_VERSION=${PORTVERSION:R:R} \
-		PORTVERSION=${PORTVERSION}
+SUB_LIST=	PORTVERSION=${PORTVERSION}
 
-DIST=		${WRKSRC:H:H}/dist
+DIST=		${WRKSRC:H}/dist
 
-EXTERNALS=	CVS dbm security/nss/lib/zlib nsprpub security/dbm
-EXTRACT_AFTER_ARGS=| ${TAR} -xf -	\
-	${EXTERNALS:C,^,--exclude ${PORTNAME}-${PORTVERSION}/mozilla/,}
+EXTRACT_AFTER_ARGS=--exclude */lib/zlib --exclude */lib/dbm --exclude */lib/sqlite
 
 INSTALL_BINS=	certcgi certutil checkcert cmsutil crlutil derdump makepqg \
 		mangle modutil ocspclnt oidcalc p7content p7env p7sign \
 		p7verify pk12util rsaperf shlibsign signtool signver \
 		ssltap strsclnt symkeyutil vfychain vfyserv
 
-.if !defined(WITH_DEBUG)
+OPTIONS_DEFINE=	DEBUG
+
+.include <bsd.mport.options.mk>
+
+.if ! ${PORT_OPTIONS:MDEBUG}
 MAKE_ENV+=	BUILD_OPT=1
 BINS=		${DIST}/${OPSYS}${OSREL}_OPT.OBJ
 .else
 BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
 .endif
-
-.include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
 USE_BINUTILS=	# intel-gcm.s
@@ -61,8 +62,8 @@ check regression-test test:
 		    LD_LIBRARY_PATH="${BINS}/lib" \
 		    ${MAKE_ENV}	\
 			./all.sh
-	@if ${GREP} -F '>Failed<'	\
-	    ${WRKSRC:H:H}/tests_results/security/*/results.html; then	\
+	@if ${GREP} -Fh '>Failed<'	\
+	    ${WRKSRC:H}/tests_results/security/*/results.html; then	\
 		echo "Some tests have failed. Let ${MAINTAINER} know.";	\
 		exit 1;	\
 	else	\
@@ -97,4 +98,4 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
