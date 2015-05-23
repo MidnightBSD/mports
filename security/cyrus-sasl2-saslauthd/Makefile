@@ -18,7 +18,7 @@ LICENSE=	bsd4
 LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
 CYRUS_SASL2_DIR=${MASTERDIR}/../cyrus-sasl2
-HASH_FILE=	${CYRUS_SASL2_DIR}/distinfo
+DISTINFO_FILE=	${CYRUS_SASL2_DIR}/distinfo
 PATCHDIR=	${CYRUS_SASL2_DIR}/files
 INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/saslauthd
 DOCSDIR=	${PREFIX}/share/doc/cyrus-sasl2
