@@ -1,13 +1,19 @@
---- ../pr/include/md/_freebsd.cfg
+--- ../pr/include/md/_freebsd.cfg.orig	2015-01-22 20:44:59 UTC
 +++ ../pr/include/md/_freebsd.cfg
-@@ -251,6 +251,97 @@
- #define PR_ALIGN_OF_POINTER 8
- #define PR_ALIGN_OF_WORD    8
+@@ -392,6 +392,108 @@
+ #define PR_BYTES_PER_WORD_LOG2   2
+ #define PR_BYTES_PER_DWORD_LOG2  3
  
-+#elif defined(__powerpc64__)
++#elif defined(__mips64__)
 +
++#if defined(__MIPSEB__) || defined(_MIPSEB)
 +#undef  IS_LITTLE_ENDIAN
 +#define IS_BIG_ENDIAN    1
++#else
++#undef  IS_BIG_ENDIAN
++#define IS_LITTLE_ENDIAN 1
++#endif
++
 +#define IS_64
 +
 +#define PR_BYTES_PER_BYTE   1
@@ -50,10 +56,15 @@
 +#define PR_BYTES_PER_WORD_LOG2   3
 +#define PR_BYTES_PER_DWORD_LOG2  3
 +
-+#elif defined(__powerpc__)
++#elif defined(__mips__)
 +
++#if defined(__MIPSEB__) || defined(_MIPSEB)
 +#undef  IS_LITTLE_ENDIAN
 +#define IS_BIG_ENDIAN    1
++#else
++#undef  IS_BIG_ENDIAN
++#define IS_LITTLE_ENDIAN 1
++#endif
 +
 +#define PR_BYTES_PER_BYTE   1
 +#define PR_BYTES_PER_SHORT  2
@@ -98,16 +109,16 @@
  #else
  
  #error "Unknown CPU architecture"
---- ../pr/include/md/_freebsd.h
+--- ../pr/include/md/_freebsd.h.orig	2015-01-22 20:44:59 UTC
 +++ ../pr/include/md/_freebsd.h
-@@ -25,6 +25,10 @@
- #define _PR_SI_ARCHITECTURE "ia64"
- #elif defined(__amd64__)
- #define _PR_SI_ARCHITECTURE "amd64"
-+#elif defined(__powerpc64__)
-+#define _PR_SI_ARCHITECTURE "powerpc64"
-+#elif defined(__powerpc__)
-+#define _PR_SI_ARCHITECTURE "powerpc"
+@@ -31,6 +31,10 @@
+ #define _PR_SI_ARCHITECTURE "powerpc"
+ #elif defined(__arm__)
+ #define _PR_SI_ARCHITECTURE "arm"
++#elif defined(__mips64__)
++#define _PR_SI_ARCHITECTURE "mips64"
++#elif defined(__mips__)
++#define _PR_SI_ARCHITECTURE "mips"
  #else
  #error "Unknown CPU architecture"
  #endif

@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	nspr
-DISTVERSION=	4.10
+DISTVERSION=	4.10.8
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
@@ -13,22 +14,21 @@ LICENSE=	lgpl
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/nspr/build
 
+USES=		cpe gmake
+CPE_VENDOR=	mozilla
+CPE_PRODUCT=	netscape_portable_runtime
 USE_LDCONFIG=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=../configure
 CONFIGURE_ARGS=	--srcdir=${WRKSRC:H}
 
 MAKE_ENV=	DIST=${WRKSRC}/dist
 
-LIBS=		libnspr4.so.1 libplc4.so.1 libplds4.so.1
+LIBRARIES=	libnspr4.so.1 libplc4.so.1 libplds4.so.1
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	DEBUG
 
-.if !defined(WITH_DEBUG)
-CONFIGURE_ARGS+=--disable-debug
-.endif
+DEBUG_CONFIGURE_ENABLE=debug
 
 do-install:
 	${MKDIR} ${PREFIX}/include/nspr
@@ -43,7 +43,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/config/nspr-config ${PREFIX}/bin
 	${MKDIR} ${PREFIX}/libdata/pkgconfig
 	${INSTALL_DATA} ${WRKSRC}/config/nspr.pc ${PREFIX}/libdata/pkgconfig
-.for lib in ${LIBS}
+.for lib in ${LIBRARIES}
 .if defined(STRIP) && ${STRIP} != ""
 	${STRIP_CMD} ${PREFIX}/lib/${lib}
 .endif
@@ -52,12 +52,12 @@ do-install:
 .endfor
 
 prtests:
-	${GMAKE} -C ${WRKSRC}/pr/tests
+	${DO_MAKE_BUILD} -C ${WRKSRC}/pr/tests
 	${LN} -sf libmy.so.1 ${WRKSRC}/pr/tests/dll/libmy.so
 	cd ${WRKSRC}/pr/tests && ../../../pr/tests/runtests.sh
 
 libtests:
-	${GMAKE} -C ${WRKSRC}/lib/tests
+	${DO_MAKE_BUILD} -C ${WRKSRC}/lib/tests
 	${WRKSRC}/lib/tests/string
 	${WRKSRC}/lib/tests/base64t
 	# The test below is commented out, because arena requires
@@ -80,4 +80,4 @@ post-build:
 	#
 #.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
