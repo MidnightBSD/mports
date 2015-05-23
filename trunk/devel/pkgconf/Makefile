@@ -18,6 +18,4 @@ CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/p
 USES=		tar:bzip2
 MAKE_ARGS=	MANDIR="${MAN1PREFIX}/man/man1"
 
-CONFLICTS_INSTALL=	pkg-config-*
-
 .include <bsd.port.mk>
