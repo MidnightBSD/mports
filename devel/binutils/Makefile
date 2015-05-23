@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	binutils
-PORTVERSION=	2.24
+PORTVERSION=	2.25
+PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEWARE}
-MASTER_SITE_SUBDIR=	binutils/releases
+MASTER_SITES=	SOURCEWARE/binutils/releases
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU binary tools
@@ -22,7 +22,7 @@ OPTIONS_DEFINE=	NLS
 LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
 
-USES=		bison gmake libtool tar:bzip2
+USES=		bison gmake libtool tar:bzip2 compiler:env
 GNU_CONFIGURE=	yes
 
 .if defined(PKGNAMEPREFIX)
@@ -39,10 +39,8 @@ CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-mpfr=${LOCALBASE}
 INFO=		as \
 		binutils \
-		standards \
 		gprof \
 		bfd \
-		configure \
 		ld
 .endif
 
@@ -53,10 +51,14 @@ OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
+
+.if ! defined(PKGNAMEPREFIX) && ${OSVERSION} < 900000
+EXTRA_PATCHES+=	${FILESDIR}/allow-missing-group-info
+.endif
 
 # Actual earliest version may differ slightly
-.if ${OSVERSION} >= 4016
+.if ${ARCH} != ia64 && ${ARCH} != mips && ${ARCH} != mips64 && ${OSVERSION} >= 900044 && !defined(PKGNAMEPREFIX) && (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 34 || ${COMPILER_TYPE} == gcc)
 CONFIGURE_ARGS+=	--enable-gold --enable-plugins
 PLIST_SUB+=	GOLD=""
 .else
@@ -74,14 +76,15 @@ post-install:
 .if ${OSVERSION} >= 4016
 	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
 .endif
-	@${FIND} -ds ${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
+	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
 		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	@${FIND} -ds ${PREFIX}/${CONFIGURE_TARGET} -type d | \
-		${SED} -e 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
-	${RM} ${PREFIX}/include/ansidecl.h
+	${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h
 	${REINPLACE_CMD} '/#include "ansidecl.h"/d' ${PREFIX}/include/bfd.h
 .else
+.if ${PKGNAMEPREFIX:S/-$//} != ${BUTARGET}
 	${RM} -rf ${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 .endif
+	${LN} -fs ../../bin/${BUTARGET}-size ${PREFIX}/${BUTARGET}/bin/size
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
