@@ -21,7 +21,7 @@ USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	xorglibs
 USE_LDCONFIG=	yes
 SRC_DISTFILES=
-HASH_FILE=	${MASTERDIR}/distinfo.i386
+DISTINFO_FILE=	${MASTERDIR}/distinfo.i386
 
 post-extract:
 		@${RM} -r ${WRKSRC}/etc ${WRKSRC}/usr/bin ${WRKSRC}/usr/include \
