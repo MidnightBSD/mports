@@ -15,7 +15,7 @@
 +++ lib/softoken/legacydb/dbmshim.c	2009-08-31 10:40:35.000000000 +0200
 @@ -39,7 +39,8 @@
   *
-  * $Id: patch-sysdb,v 1.3 2013-07-16 02:24:05 laffer1 Exp $
+  * $Id: dbmshim.c,v 1.2 2007/06/13 00:24:57 rrelyea%redhat.com Exp $
   */
 -#include "mcom_db.h"
 +#include <db.h>
@@ -122,6 +122,17 @@
  #include "seccomon.h"
  #include "secdert.h"
  #include "secoidt.h"
+--- lib/manifest.mn~
++++ lib/manifest.mn
+@@ -20,7 +20,7 @@ DIRS = \
+ 	$(UTIL_SRCDIR) \
+ 	$(FREEBL_SRCDIR) \
+ 	$(SQLITE_SRCDIR) \
+-	$(DBM_SRCDIR) \
++	$(NULL) \
+ 	$(SOFTOKEN_SRCDIR) \
+ 	base dev pki \
+ 	libpkix \
 --- cmd/platlibs.mk.orig	2009-08-31 12:57:13.000000000 +0200
 +++ cmd/platlibs.mk	2009-08-31 12:57:29.000000000 +0200
 @@ -85,7 +85,7 @@
