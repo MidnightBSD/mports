@@ -3,8 +3,7 @@
 PORTNAME=	libressl
 PORTVERSION=	2.1.6
 CATEGORIES=	security devel
-MASTER_SITES=	${MASTER_SITE_OPENBSD}
-MASTER_SITE_SUBDIR=	LibreSSL
+MASTER_SITES=	OPENBSD/LibreSSL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free version of the SSL/TLS protocol forked from OpenSSL
