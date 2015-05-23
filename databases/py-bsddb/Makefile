@@ -20,7 +20,7 @@ USE_PYDISTUTILS=yes
 USES=		tar:xz
 
 DIST_SUBDIR=	python
-HASH_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
+DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
 
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
