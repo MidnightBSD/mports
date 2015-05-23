@@ -2,11 +2,10 @@
 
 PORTNAME=	saslauthd
 PORTVERSION=	2.1.26
+PORTREVISION=	1
 CATEGORIES=	security ipv6
-MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
-MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
+MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/ \
+		http://cyrusimap.org/releases/
 PKGNAMEPREFIX=	cyrus-sasl-
 DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
 
@@ -14,23 +13,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SASL authentication server for cyrus-sasl2
 
 LICENSE=	bsd4
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
 CYRUS_SASL2_DIR=${MASTERDIR}/../cyrus-sasl2
 DISTINFO_FILE=	${CYRUS_SASL2_DIR}/distinfo
 PATCHDIR=	${CYRUS_SASL2_DIR}/files
-INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/saslauthd
+INSTALL_WRKSRC=	${WRKSRC}/saslauthd
 DOCSDIR=	${PREFIX}/share/doc/cyrus-sasl2
 
-USE_RC_SUBR=	saslauthd.sh
-
+USE_RC_SUBR=	saslauthd
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-plugindir=${PREFIX}/lib/sasl2 \
 		--with-dbpath=${PREFIX}/etc/sasldb2 \
+		--with-lib-subdir=lib \
 		--includedir=${PREFIX}/include \
 		--mandir=${MANPREFIX}/man \
 		--enable-static \
@@ -39,47 +39,44 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-rc4=openssl \
 		--with-saslauthd=${SASLAUTHD_RUNPATH} \
 		--disable-krb4
+CONFIGURE_ENV+=	andrew_cv_runpath_switch=none
 
-OPTIONS=	BDB		"Use Berkeley DB"			off \
-		OPENLDAP	"Use OpenLDAP"				off \
-		HTTPFORM	"Enable HTTP form authentication"	off
+OPTIONS_DEFINE=		BDB DOCS OPENLDAP HTTPFORM
+BDB_CONFIGURE_ON=	--with-dblib=berkeley \
+			--with-bdb-libdir=${BDB_LIB_DIR} \
+			--with-bdb-incdir=${BDB_INCLUDE_DIR} \
+			--with-bdb=${BDB_LIB_NAME}
+BDB_USE=		BDB=yes
+BDB_CONFIGURE_OFF=	--with-dblib=ndbm
+OPENLDAP_DESC=		Use OpenLDAP
+OPENLDAP_USE=		OPENLDAP=yes
+OPENLDAP_CONFIGURE_ON=	--with-ldap=${LOCALBASE}
+HTTPFORM_DESC=		Enable HTTP form authentication
+HTTPFORM_CONFIGURE_ENABLE=httpform
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
-.if defined(WITH_BDB)
-USE_BDB=	yes
+.if ${PORT_OPTIONS:MBDB}
 INVALID_BDB_VER=2
-CONFIGURE_ARGS+=--with-dblib=berkeley \
-		--with-bdb-libdir=${BDB_LIB_DIR} \
-		--with-bdb-incdir=${BDB_INCLUDE_DIR} \
-		--with-bdb=${BDB_LIB_NAME}
-.else
-CONFIGURE_ARGS+=--with-dblib=ndbm
 .endif
 
-.if defined(WITH_OPENLDAP)
+.if ${PORT_OPTIONS:MOPENLDAP}
 .if defined(WITH_OPENLDAP_VER)
 WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
 .endif
-USE_OPENLDAP=	yes
-CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
-.endif
-
-.if defined(WITH_HTTPFORM)
-CONFIGURE_ARGS+=--enable-httpform
 .endif
 
 .if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
 CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
+LDFLAGS+=	-R${KRB5_HOME}/lib
 .elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
 CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
 .elif !defined(WITHOUT_GSSAPI) && exists(/usr/lib/libkrb5.a)
-CONFIGURE_ARGS+=--enable-gssapi
+CONFIGURE_ARGS+=--enable-gssapi=/usr
+CFLAGS+=	-nostdinc -I/usr/include
 .else
 CONFIGURE_ARGS+=--disable-gssapi
 .endif
-
-.include <bsd.port.pre.mk>
 
 .if ${OPENSSLBASE} == /usr
 CONFIGURE_ARGS+=--with-openssl=yes
@@ -123,10 +120,11 @@ post-install:
 	${MKDIR} -m 770 ${SASLAUTHD_RUNPATH}
 	${CHOWN} ${CYRUS_USER}:mail ${SASLAUTHD_RUNPATH}
 .endif
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}/saslauthd
 .for file in ${DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/saslauthd/${file} ${DOCSDIR}/saslauthd
+	@${INSTALL_DATA} ${WRKSRC}/saslauthd/${file} \
+		${DOCSDIR}/saslauthd
 .endfor
 .endif
 
