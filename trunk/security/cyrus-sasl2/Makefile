@@ -2,7 +2,7 @@
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.26
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/ \
 		http://cyrusimap.org/releases/
@@ -12,7 +12,7 @@ COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer)
 LICENSE=	bsd4
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool:keepla pathfix perl5
+USES=		cpe libtool:keepla pathfix perl5
 USE_PERL5=	patch
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
@@ -35,6 +35,8 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 MAKE_ENV+=	INSTALL_STRIP_FLAG=${STRIP}
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2
+
+CPE_VENDOR=	cmu
 
 NO_OPTIONS_SORT=	yes
 OPTIONS_DEFINE=		ALWAYSTRUE AUTHDAEMOND DOCS KEEP_DB_OPEN \
@@ -178,6 +180,5 @@ post-install:
 .endfor
 	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${DOCSDIR}
 .endif
-	@PKG_PREFIX=${PREFIX} BATCH=${BATCH} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
