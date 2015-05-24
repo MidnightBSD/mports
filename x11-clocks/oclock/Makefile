@@ -3,6 +3,7 @@
 
 PORTNAME=	oclock
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	x11-clocks
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xmu xext xt xkbfile
-
-MAN1=		oclock.1
 
 .include <bsd.port.mk>
