@@ -2,7 +2,7 @@
 
 PORTNAME=	IO-Zlib
 PORTVERSION=	1.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	IO
@@ -10,10 +10,11 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IO:: style interface to Compress::Zlib
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-MAN3=		IO::Zlib.3
 
 .include <bsd.port.pre.mk>
 
