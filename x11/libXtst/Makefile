@@ -2,7 +2,7 @@
 
 PORTNAME=	libXtst
 PORTVERSION=	1.2.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +13,9 @@ LICENSE=	mit
 XORG_CAT=	lib
 USE_XORG=	x11 xext recordproto:both xextproto inputproto:both \
 		xi
+USES+=	cpe
+CPE_PRODUCT=	libxtst
+CPE_VENDOR=	x
 
 CONFIGURE_ARGS+=--disable-specs --without-xmlto
 
