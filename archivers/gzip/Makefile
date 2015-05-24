@@ -1,23 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	gzip
-PORTVERSION=	1.4
+PORTVERSION=	1.6
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A compression utility designed to be a replacement for compress
+COMMENT=	Compression utility designed to be a replacement for compress
+
 LICENSE=	gpl3
+
+USES=		cpe charsetfix makeinfo
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS+=	--infodir=${LOCALBASE}/info \
 		--mandir=${MANPREFIX}/man
 
-MAN1=	gunzip.1 gzexe.1 gzip.1 zcat.1 zcmp.1 zdiff.1 zforce.1 \
-	zgrep.1 zless.1 zmore.1 znew.1
-INFO=	gzip
+INFO=		gzip
+CPE_VENDOR=	gnu
 
 DOC_FILES=	AUTHORS COPYING ChangeLog ChangeLog-2007 INSTALL NEWS README \
 		THANKS TODO
