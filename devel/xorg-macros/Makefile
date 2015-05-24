@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-macros
 PORTVERSION=	1.19.0
+PORTREVISION=	1
 CATEGORIES=	devel x11
 DISTNAME=	util-macros-$(PORTVERSION)
 
@@ -17,7 +18,5 @@ MAKE_ARGS=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
 PLIST_FILES=	share/aclocal/xorg-macros.m4 \
 		libdata/pkgconfig/xorg-macros.pc \
 		share/util-macros/INSTALL
-
-PLIST_DIRS=	share/util-macros
 
 .include <bsd.port.mk>
