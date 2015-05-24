@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-cf-files
 PORTVERSION=	1.0.5
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libXp
-PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,5 +11,8 @@ LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto xau printproto:both
+USES+=	cpe
+CPE_PRODUCT=	libxp
+CPE_VENDOR=	x
 
 .include <bsd.port.mk>

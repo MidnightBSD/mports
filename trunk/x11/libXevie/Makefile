@@ -3,6 +3,7 @@
 
 PORTNAME=	libXevie
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,12 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	evieproto x11 xext xextproto xproto:both
-
-MAN3=		Xevie.3 \
-		XevieEnd.3 \
-		XevieQueryVersion.3 \
-		XevieSelectInput.3 \
-		XevieSendEvent.3 \
-		XevieStart.3
 
 .include <bsd.port.mk>

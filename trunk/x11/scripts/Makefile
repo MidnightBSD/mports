@@ -12,5 +12,9 @@ LICENSE=	unknown
 
 XORG_CAT=	app
 USE_XORG=	x11
+USES=		shebangfix
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|XCOMM!${ksh_OLD_CMD}|XCOMM!${ksh_CMD}|' ${WRKSRC}/xauth_switch_to_sun-des-1.cpp
 
 .include <bsd.port.mk>
