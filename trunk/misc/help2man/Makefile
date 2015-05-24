@@ -2,7 +2,7 @@
 
 PORTNAME=	help2man
 PORTVERSION=	1.43.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc
 MASTER_SITES=	GNU/${PORTNAME}
 
@@ -15,12 +15,12 @@ OPTIONS_DEFINE=	NLS
 
 CFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake:lite perl5
 USE_PERL5=	yes
 
 INFO=		${PORTNAME}
-MAN1=		${PORTNAME}.1
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/help2man.1.gz
 
 .include <bsd.mport.options.mk>
 
