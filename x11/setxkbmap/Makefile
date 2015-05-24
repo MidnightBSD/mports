@@ -2,6 +2,7 @@
 
 PORTNAME=	setxkbmap
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +14,6 @@ USE_XORG=	xkbfile x11
 
 CONFIGURE_ARGS=	--with-xkb-config-root=${LOCALBASE}/share/X11/xkb
 
-PLIST_FILES=	bin/setxkbmap
-
-MAN1=		setxkbmap.1
+PLIST_FILES=	bin/setxkbmap man/man1/setxkbmap.1.gz
 
 .include <bsd.port.mk>

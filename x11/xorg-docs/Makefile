@@ -2,13 +2,13 @@
 
 PORTNAME=	xorg-docs
 PORTVERSION=	1.7
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org documentation files
-LICENSE=	mit
 
-MAN7=	X.7 Standards.7 XProjectTeam.7 Consortium.7 Xsecurity.7 XOrgFoundation.7
+LICENSE=	mit
 
 CONFIGURE_ARGS+=	--without-xmlto --without-fop --disable-specs
 

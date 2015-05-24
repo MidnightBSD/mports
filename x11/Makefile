@@ -63,7 +63,6 @@ SUBDIR += libXprintUtil
 SUBDIR += libXrandr
 SUBDIR += libXrender
 SUBDIR += libXres
-SUBDIR += libXtrans
 SUBDIR += libXtst
 SUBDIR += libXv
 SUBDIR += libXvMC

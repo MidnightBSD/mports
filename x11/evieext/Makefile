@@ -3,10 +3,12 @@
 
 PORTNAME=	evieext
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XEVIE extension headers
+
 LICENSE=	mit
 
 XORG_CAT=	proto
