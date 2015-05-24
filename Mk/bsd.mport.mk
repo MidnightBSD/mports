@@ -359,10 +359,11 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake fpc gmake bison local perl5 openssl \
 		apache autotools bdb cmake cpe display dos2unix \
-		efl emacs execinfo fam fuse \
+		efl emacs execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
 		gnome gnustep gstreamer iconv imake \
-		ldap libtool lua makeself motif mysql ncurses ocaml openal \
+		ldap libtool lua \
+		metaport makeself motif mysql ncurses ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl tex wx xfce zip
 
@@ -551,9 +552,12 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
-PLIST_REINPLACE+=	stopdaemon rmtry
+PLIST_REINPLACE+=	group mode owner stopdaemon rmtry
 PLIST_REINPLACE_RMTRY=s!^@rmtry \(.*\)!@unexec rm -f %D/\1 2>/dev/null || true!
 PLIST_REINPLACE_STOPDAEMON=s!^@stopdaemon \(.*\)!@unexec %D/etc/rc.d/\1 forcestop 2>/dev/null || true!
+PLIST_REINPLACE_owner=s!^@owner \(.*\)!@exec chown \1 %D
+PLIST_REINPLACE_group=s!^@group \(.*\)!@exec chgroup \1 %D
+PLIST_REINPLACE_mode=s!^@mode \(.*\)!@exec chmod \1 %D
 
 # kludge to strip trailing whitespace from CFLAGS;
 # sub-configure will not # survive double space
