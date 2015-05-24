@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	2.00
+PORTVERSION=	2.04
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:BINGOS
@@ -9,7 +9,6 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for creation and manipulation of tar files
-LICENSE=	perl
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

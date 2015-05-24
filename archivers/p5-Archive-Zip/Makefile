@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	Archive-Zip
-PORTVERSION=	1.37
+PORTVERSION=	1.46
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Perl module to create, manipulate, read, and write Zip archive files
+COMMENT=	Create, manipulate, read, and write Zip archive files
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual

@@ -27,17 +27,21 @@
 %%SITE_PERL%%/IO/Uncompress/Inflate.pm
 %%SITE_PERL%%/IO/Uncompress/RawInflate.pm
 %%SITE_PERL%%/IO/Uncompress/Unzip.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Compress
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Compress
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO
-@dirrmtry %%SITE_PERL%%/IO/Uncompress/Adapter
-@dirrmtry %%SITE_PERL%%/IO/Uncompress
-@dirrmtry %%SITE_PERL%%/IO/Compress/Zlib
-@dirrmtry %%SITE_PERL%%/IO/Compress/Zip
-@dirrmtry %%SITE_PERL%%/IO/Compress/Gzip
-@dirrmtry %%SITE_PERL%%/IO/Compress/Base
-@dirrmtry %%SITE_PERL%%/IO/Compress/Adapter
-@dirrmtry %%SITE_PERL%%/IO/Compress
-@dirrmtry %%SITE_PERL%%/IO
-@dirrmtry %%SITE_PERL%%/File
-@dirrmtry %%SITE_PERL%%/Compress
+%%PERL5_MAN3%%/Compress::Zlib.3.gz
+%%PERL5_MAN3%%/File::GlobMapper.3.gz
+%%PERL5_MAN3%%/IO::Compress::Base.3.gz
+%%PERL5_MAN3%%/IO::Compress::Bzip2.3.gz
+%%PERL5_MAN3%%/IO::Compress::Deflate.3.gz
+%%PERL5_MAN3%%/IO::Compress::FAQ.3.gz
+%%PERL5_MAN3%%/IO::Compress::Gzip.3.gz
+%%PERL5_MAN3%%/IO::Compress::RawDeflate.3.gz
+%%PERL5_MAN3%%/IO::Compress::Zip.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::AnyInflate.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::AnyUncompress.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::Base.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::Bunzip2.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::Gunzip.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::Inflate.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::RawInflate.3.gz
+%%PERL5_MAN3%%/IO::Uncompress::Unzip.3.gz
+%%EXE_FILES%%man/man1/zipdetails.1.gz
