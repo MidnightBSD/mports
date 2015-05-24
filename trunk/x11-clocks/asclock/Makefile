@@ -20,8 +20,7 @@ CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 USE_GCC=	any
 USE_IMAKE=	yes
 USE_XORG=	xpm xext x11
-MAN1=		asclock.1
-PLIST_FILES=	bin/asclock
+PLIST_FILES=	bin/asclock man/man1/asclock.1.gz
 
 pre-configure:
 	(cd ${WRKSRC}; \
