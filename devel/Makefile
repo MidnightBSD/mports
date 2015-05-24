@@ -11,6 +11,7 @@ SUBDIR += anjuta
 SUBDIR += antlr
 SUBDIR += apache-ant
 SUBDIR += appdata-tools
+SUBDIR += appstream-glib
 SUBDIR += apr1
 SUBDIR += autoconf
 SUBDIR += autoconf-wrapper
