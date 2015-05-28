@@ -1,44 +1,24 @@
 # $MidnightBSD$
 
-PORTNAME=	demos
-PORTVERSION=	${MESAVERSION}
+PORTNAME=	mesa-demos
+PORTVERSION=	8.2.0
 CATEGORIES=	graphics
-PKGNAMEPREFIX=	mesa-
+MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/demos/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL demos distributed with Mesa
 LICENSE=	agg
 
-USE_GL=		glu glut
-USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
+GNU_CONFIGURE=	yes
+USES=		gmake pkgconfig tar:bzip2
+USE_GL=		glew glu glut
+USE_XORG=	dri2proto glproto x11 xdamage xext xfixes xi xxf86vm
 
-DATADIR=	${PREFIX}/share/${PKGNAMEPREFIX}${PORTNAME}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-do-install:
-	@for i in demos xdemos; do \
-		cd ${WRKSRC}/progs/$$i; \
-		for j in `${MAKE} -V PROGS`; do \
-			echo ${INSTALL_PROGRAM} $$j ${PREFIX}/bin; \
-			${INSTALL_PROGRAM} $$j ${PREFIX}/bin; \
-		done; \
-	done
-	${MKDIR} ${DATADIR}/images ${DATADIR}/data
-	@cd ${WRKSRC}/progs/images; \
-		for i in `ls *.rgb*`; do \
-			echo ${INSTALL_DATA} $$i ${DATADIR}/images; \
-			${INSTALL_DATA} $$i ${DATADIR}/images; \
-		done
-	@cd ${WRKSRC}/progs/demos; \
-		for i in `ls *.dat`; do \
-			echo ${INSTALL_DATA} $$i ${DATADIR}/data; \
-			${INSTALL_DATA} $$i ${DATADIR}/data; \
-		done
+CONFIGURE_ARGS+=--disable-egl --disable-gbm --disable-gles2 \
+		--disable-osmesa --disable-vg --disable-wayland \
+		--with-system-data-files
 
-.include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_NVIDIA_GL)
-CFLAGS+=	-DWITH_NVIDIA_GL=1
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
