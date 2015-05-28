@@ -15,8 +15,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 USE_XORG=	x11 xpm
 PORTDOCS=	BUGS CHANGES HINTS INSTALL README TODO
 
-MAN1=		wmCalClock.1
-
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
