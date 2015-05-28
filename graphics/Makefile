@@ -72,6 +72,7 @@ SUBDIR += libdrm
 SUBDIR += libemf
 SUBDIR += libexif
 SUBDIR += libfpx
+SUBDIR += libglapi
 SUBDIR += libgnomecanvas
 SUBDIR += libgnomecanvasmm
 SUBDIR += libgphoto2
