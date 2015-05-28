@@ -10,6 +10,7 @@ SUBDIR += classpath
 SUBDIR += cos
 SUBDIR += diablo-jdk16
 SUBDIR += diablo-jre16
+SUBDIR += hamcrest
 SUBDIR += jaf
 SUBDIR += jai
 SUBDIR += jakarta-bcel
