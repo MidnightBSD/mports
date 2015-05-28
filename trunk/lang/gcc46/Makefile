@@ -2,19 +2,21 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.6.4
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	lang java
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	releases/gcc-${VERSIONSTRING}
+PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.6
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
-		mpfr:${PORTSDIR}/math/mpfr \
-		mpc:${PORTSDIR}/math/mpc
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp \
+		libmpfr.so:${PORTSDIR}/math/mpfr \
+		libmpc.so:${PORTSDIR}/math/mpc
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
@@ -22,6 +24,7 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 BUILD_DEPENDS+=	runtest:${PORTSDIR}/misc/dejagnu
 .endif
 
+CPE_VENDOR=	gnu
 # VERSIONSTRING relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.
 VERSIONSTRING=	${PORTVERSION}
@@ -30,8 +33,9 @@ SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
 USE_BINUTILS=	yes
 USE_BISON=	build
-USES=		gmake iconv tar:bzip2
+USES=		cpe gmake iconv libtool makeinfo perl5 tar:bzip2
 USE_PERL5_BUILD=yes
+SSP_UNSAFE=	yes
 
 PATCH_WRKSRC=	${SRCDIR}
 CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
