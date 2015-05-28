@@ -2,7 +2,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.2.5.20090325
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
@@ -12,7 +12,10 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.2
+
 LICENSE=	gpl2
+
+DEPRECATED=	this port is old and will be removed soon
 
 LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
 		mpfr:${PORTSDIR}/math/mpfr
@@ -30,9 +33,9 @@ CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
