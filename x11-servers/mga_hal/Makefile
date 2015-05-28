@@ -3,7 +3,7 @@
 
 PORTNAME=	mga_hal
 PORTVERSION=	4.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-servers
 MASTER_SITES=	ftp://ftp.matrox.com/pub/mga/archive/linux/%SUBDIR%/:i386,amd64
 MASTER_SITE_SUBDIR=	2006/:i386 2006/64bit/:amd64
@@ -19,6 +19,10 @@ LICENSE_PERMS=	no-dist-sell no-dist-mirror no-pkg-sell
 
 RESTRICTED=	Matrox drivers may not be distributed.
 
+
+
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
@@ -32,10 +36,8 @@ NO_BUILD=	YES
 XORG_VERSION=	6.9.0
 
 do-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/readme.txt ${DOCSDIR}
-.endif
 	${MKDIR} ${PREFIX}/lib/modules/drivers
 	${INSTALL_DATA} ${WRKSRC}/xserver/${XORG_VERSION}/mga_hal_drv.so \
 		${PREFIX}/lib/modules/drivers/
