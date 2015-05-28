@@ -1,12 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME?=	xorg-server
-PORTVERSION=	${XORG_VERSION}
-PORTREVISION?=	${XORG_REVISION}
+PORTVERSION=	1.14.7
+PORTREVISION?=	5
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
-MASTER_SITES=	XORG
-MASTER_SITE_SUBDIR=	individual/xserver
+MASTER_SITES=	XORG/individual/xserver
 DISTNAME=	xorg-server-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,41 +20,20 @@ RUN_DEPENDS=	xkeyboard-config>=2.5:${PORTSDIR}/x11/xkeyboard-config \
 XORG_CAT=	xserver
 SLAVE_PORT?=	no
 
-OPTIONS_DEFINE=	AIGLX SUID
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	SUID
 OPTIONS_RADIO=	CONF
-OPTIONS_RADIO_CONF= HAL DEVD
-AIGLX_DESC=	Compile with Accelerated Indirect GLX support
+OPTIONS_RADIO_CONF=	HAL DEVD
 SUID_DESC=	Install the Xorg server with setuid bit set
 HAL_DESC=	Compile with HAL config support
-DEVD_DESC=	Use devd for autoconfiguration of input devices (experimental)
-OPTIONS_DEFAULT=AIGLX SUID HAL
+DEVD_DESC=	Use devd for autoconfiguration of input devices
+OPTIONS_DEFAULT=SUID DEVD
 
 OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_NEW_XORG)
-XORG_VERSION=	1.12.4
-XORG_REVISION=	2
-PLIST_SUB+=	OLD="@comment " NEW=""
-EXTRA_PATCHES+=	${FILESDIR}/extra-clang \
-		${FILESDIR}/extra-configure \
-		${FILESDIR}/extra-new-bad-impl \
-		${FILESDIR}/extra-new-dix_dixfonts.c
-.else
-XORG_VERSION=	1.7.7
-XORG_REVISION=	8
-PLIST_SUB+=	OLD="" NEW="@comment "
-EXTRA_PATCHES+=	${FILESDIR}/extra-Xext-xace.c \
-		${FILESDIR}/extra-Xserver-os-xprintf.c \
-		${FILESDIR}/extra-include_eventstr.h \
-		${FILESDIR}/extra-os-utils.c \
-		${FILESDIR}/extra-dix_events.c \
-		${FILESDIR}/extra-Xserver-hw-xfree86-common-xf86Config.c \
-		${FILESDIR}/extra-old-dix_dixfonts.c
-.endif
-
-USES=		gmake libtool:keepla perl5 tar:bzip2
+USES=		gmake libtool perl5 tar:bzip2
 USE_PERL5=	build
 USE_GL=		gl
 USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
@@ -97,58 +75,31 @@ CONFIGURE_ARGS+=	--enable-config-hal=yes
 CONFIGURE_ARGS+=	--enable-config-hal=no
 .endif
 
-.if ${PORT_OPTIONS:MDEVD}
-EXTRA_PATCHES+=		${FILESDIR}/extra-config_devd.c
-.endif
+# We handle Xorg setuid in the plist. This allows to build xorg-server as a user.
+CONFIGURE_ARGS+=--disable-install-setuid
 
-.if ${PORT_OPTIONS:MAIGLX}
-CONFIGURE_ARGS+=	--enable-aiglx=yes
-.else
-CONFIGURE_ARGS+=	--enable-aiglx=no
-.endif
-
-# We handle Xorg setuid in the plist. This allows to build xorg-server as a user
-CONFIGURE_ARGS+=--enable-install-setuid=no
-.if ${PORT_OPTIONS:MSUID}
-PLIST_SUB+=	SUID=""
-.else
-PLIST_SUB+=	SUID="@comment "
+.if ${ARCH} == armv6
+EXTRA_PATCHES+=	${FILESDIR}/extra-arm-patch-hw__xfree86__os-support__bsd__Makefile.in
+EXTRA_PATCHES+=	${FILESDIR}/extra-arm-patch-include__servermd.h
 .endif
 
 .if ${ARCH} == i386
-.if defined(WITH_NEW_XORG)
-EXTRA_PATCHES+=	${FILESDIR}/extra-new-arch-i386
-.else
-EXTRA_PATCHES+=	${FILESDIR}/extra-old-arch-i386
-.endif
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-i386
 .endif
 
 .if ${ARCH} == ia64
-PLIST_SUB+=	IA64_NA="@comment "
-EXTRA_PATCHES=	${.CURDIR}/files/extra-arch-ia64
-.else
-PLIST_SUB+=	IA64_NA=""
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-ia64
 .endif
 
 .if ${ARCH} == powerpc || ${ARCH} == powerpc64
-PLIST_SUB+=	PPC_NA="@comment "
-EXTRA_PATCHES=	${.CURDIR}/files/extra-arch-powerpc
-.else
-PLIST_SUB+=	PPC_NA=""
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-powerpc
 .endif
 
 .if ${ARCH} == sparc64
 PLIST_SUB+=	SPARC64=""
-PLIST_SUB+=	SPARC64_NA="@comment "
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-sparc64
 .else
 PLIST_SUB+=	SPARC64="@comment "
-PLIST_SUB+=	SPARC64_NA=""
-.endif
-
-.if ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == sparc64
-PLIST_SUB+=	AMD64_I386_SPARC64=""
-.else
-PLIST_SUB+=	AMD64_I386_SPARC64="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSUID}
@@ -168,29 +119,24 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@GLX_TRUE@GLXMODS =|@GLX_BOGUS@GLXMODS =|g' \
 		-e 's|^LTLIBRARIES = |LTLIBRARIES = libglx.la |g' \
 		${WRKSRC}/hw/xfree86/dixmods/Makefile.in
-.if ${PORT_OPTIONS:MDEVD}
-	@${ECHO_CMD} -e "\nint config_devd_init(void);\nvoid config_devd_fini(void);" \
-		>> ${WRKSRC}/config/config-backends.h
-.endif
- 
+
 post-configure:
 .if ${PORT_OPTIONS:MDEVD}
 	@${REINPLACE_CMD} -e 's|config\.c|config.c devd.c|g' \
 		-e 's|config\.lo|config.lo devd.lo|g' \
 		${WRKSRC}/config/Makefile
+	@${REINPLACE_CMD} -e 's|^/\* #undef CONFIG_UDEV \*/|#define CONFIG_DEVD 1|' \
+		${WRKSRC}/include/dix-config.h
 .endif
 
 .if ${SLAVE_PORT} == "no"
-pre-install:
-	${MKDIR} ${PREFIX}/lib/xorg/modules/extensions/.xorg
-	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
-		${PREFIX}/lib/xorg/modules/extensions/.xorg/
-
 post-install:
-.if defined(WITH_NEW_XORG)
-	@${MKDIR} ${PREFIX}/share/X11/xorg.conf.d
-.endif
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
+# The .xorg dir because else the xorg-server might not load the correct
+# libglx module.
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg
+	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
+		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+.endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
