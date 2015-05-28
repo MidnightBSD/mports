@@ -53,13 +53,9 @@ BOOTSTRAP_DESC=		Build using a full bootstrap
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.0
-.endif
-
-.if ${ARCH} == powerpc64
-CONFIGURE_ENV+=	UNAME_m="powerpc64"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran
@@ -98,10 +94,8 @@ INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/gccint \
 		gcc${SUFFIX}/gfortran \
 		gcc${SUFFIX}/libgomp
-.if ${ARCH} == "i386" || ${ARCH} == "amd64"
 INFO+=		gcc${SUFFIX}/libquadmath \
 		gcc${SUFFIX}/libitm
-.endif
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
 
@@ -137,13 +131,13 @@ full-regression-test: build
 .endif
 
 post-install:
-	${RM} -f ${STAGEDIR}${PREFIX}/man/man7/*
-	${RM} -f ${STAGEDIR}${PREFIX}/bin/rebuild-gcj-db${SUFFIX} \
-	         ${STAGEDIR}${PREFIX}/man/man1/rebuild-gcj-db${SUFFIX}.1
+	${RM} -f ${PREFIX}/man/man7/*
+	${RM} -f ${PREFIX}/bin/rebuild-gcj-db${SUFFIX} \
+	         ${PREFIX}/man/man1/rebuild-gcj-db${SUFFIX}.1
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///} include/gcj include/gnu include/java include/javax
-	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
+	cd ${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	    ${FIND} $d -type d | ${SORT} -r \
 	        | ${SED} -e 's/^/@dirrm /g' >>${WRKDIR}/PLIST.lib ;\
