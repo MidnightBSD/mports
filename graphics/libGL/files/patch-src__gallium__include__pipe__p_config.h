@@ -1,7 +1,7 @@
---- src/gallium/include/pipe/p_config.h.orig	2011-10-15 02:43:58.000000000 +0200
-+++ src/gallium/include/pipe/p_config.h	2012-06-28 21:27:06.000000000 +0200
-@@ -106,6 +106,13 @@
- #endif
+--- src/gallium/include/pipe/p_config.h.orig	2014-08-14 17:22:24 UTC
++++ src/gallium/include/pipe/p_config.h
+@@ -81,6 +81,13 @@
+ #define PIPE_CC_SUNPRO
  #endif
  
 +#if defined(__sparc__) || defined(__sparc64__)
@@ -13,13 +13,17 @@
 +
  
  /*
-  * Endian detection.
-@@ -133,7 +140,7 @@
- 
- #if defined(PIPE_ARCH_X86) || defined(PIPE_ARCH_X86_64)
- #define PIPE_ARCH_LITTLE_ENDIAN
--#elif defined(PIPE_ARCH_PPC) || defined(PIPE_ARCH_PPC_64)
-+#elif defined(PIPE_ARCH_PPC) || defined(PIPE_ARCH_PPC_64) || defined(PIPE_ARCH_SPARC) || defined(PIPE_ARCH_SPARC_64)
- #define PIPE_ARCH_BIG_ENDIAN
+  * Processor architecture
+@@ -200,6 +207,12 @@
+ #define PIPE_OS_ANDROID
  #endif
  
++#if defined(__MidnightBSD__)
++#define PIPE_OS_FREEBSD
++#define PIPE_OS_BSD
++#define PIPE_OS_UNIX
++#endif
++
+ #if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
+ #define PIPE_OS_FREEBSD
+ #define PIPE_OS_BSD
