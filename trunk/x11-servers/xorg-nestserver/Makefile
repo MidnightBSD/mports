@@ -1,14 +1,47 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-nestserver
-PORTREVISION=	1
+PORTVERSION=	1.14.7
+PORTREVISION=	2
+PORTEPOCH=	1
+CATEGORIES=	x11-servers
+MASTER_SITES=	XORG/individual/xserver
+DISTNAME=	xorg-server-${PORTVERSION}
+DIST_SUBDIR=	xorg/xserver
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nesting X server from X.Org
 LICENSE=	mit
 
-MASTERDIR=	${.CURDIR}/../xorg-server
-DESCR=		${.CURDIR}/pkg-descr
+USES=		tar:bzip2 pkgconfig
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS= --disable-dmx \
+		--disable-xephyr \
+		--enable-xnest \
+		--disable-xfbdev \
+		--disable-kdrive \
+		--disable-xfake \
+		--disable-screensaver \
+		--disable-xwin \
+		--disable-xwayland \
+		--disable-xorg \
+		--without-xmlto \
+		--disable-docs \
+		--disable-devel-docs \
+		--localstatedir=/var \
+		--without-dtrace \
+		--without-doxygen \
+		--disable-libpciaccess \
+		--disable-glx \
+		--disable-dri  \
+		--disable-config-hal \
+		--disable-libdrm \
+		--disable-glx-tls \
+		--disable-vbe \
+		--disable-vgahw \
+		--disable-xvfb \
+		--with-fontrootdir=${PREFIX}/share/fonts
+
 USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		damageproto xcmiscproto xextproto xf86miscproto inputproto \
 		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
@@ -17,20 +50,11 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		xineramaproto xinerama evieproto xkbfile xfont fontenc xkbui \
 		xxf86misc xxf86vm xaw7 xmu xpm xext pixman xtrans
 
-CONFIGURE_ARGS=	--disable-dmx --disable-xvfb \
-		--without-xmlto --disable-docs --disable-devel-docs \
-		--localstatedir=/var --without-dtrace
-
-SLAVE_PORT=	yes
-PLIST_FILES=	bin/Xnest
-MAN1=		Xnest.1
+PLIST_FILES=	bin/Xnest \
+		man/man1/Xnest.1.gz
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/hw/xnest/Xnest ${PREFIX}/bin/
-.if defined(WITH_NEW_XORG)
-	${INSTALL_MAN} ${WRKSRC}/hw/xnest/man/Xnest.1 ${PREFIX}/man/man1/
-.else
-	${INSTALL_MAN} ${WRKSRC}/hw/xnest/Xnest.1 ${PREFIX}/man/man1/
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/hw/xnest/Xnest ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/hw/xnest/man/Xnest.1 ${STAGEDIR}${PREFIX}/man/man1/
 
-.include "${MASTERDIR}/Makefile"
+.include <bsd.port.mk>

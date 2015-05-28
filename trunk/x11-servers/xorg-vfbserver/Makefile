@@ -1,31 +1,58 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-vfbserver
-PORTREVISION=	1
+PORTVERSION=	1.14.7
+CATEGORIES=	x11-servers
+MASTER_SITES=	XORG/individual/xserver
+DISTNAME=	xorg-server-${PORTVERSION}
+DIST_SUBDIR=	xorg/xserver
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X virtual framebuffer server from X.Org
+
 LICENSE=	mit
 
-MASTERDIR=	${.CURDIR}/../xorg-server
-DESCR=		${.CURDIR}/pkg-descr
-USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
-		damageproto xcmiscproto xextproto xf86miscproto inputproto \
-		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
-		dri2proto resourceproto fontsproto xf86dgaproto videoproto \
-		compositeproto trapproto recordproto resourceproto \
-		xineramaproto xinerama evieproto xkbfile xfont fontenc \
-		xkbui xxf86misc xxf86vm xaw7 xmu xpm xext pixman xtrans
+USES=		tar:bzip2 pkgconfig
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-dmx \
+		--disable-xephyr \
+		--disable-xnest \
+		--disable-kdrive \
+		--disable-xfbdev \
+		--disable-xfake \
+		--disable-screensaver \
+		--disable-xwin \
+		--disable-xwayland \
+		--disable-xorg \
+		--without-xmlto \
+		--disable-docs \
+		--disable-devel-docs \
+		--localstatedir=/var \
+		--without-dtrace \
+		--without-doxygen \
+		--disable-libpciaccess \
+		--disable-glx \
+		--disable-dri  \
+		--disable-config-hal \
+		--disable-libdrm \
+		--disable-glx-tls \
+		--disable-vbe \
+		--disable-vgahw \
+		--enable-xvfb \
+		--with-fontrootdir=${PREFIX}/share/fonts
 
-CONFIGURE_ARGS=	--disable-dmx --disable-xnest \
-		--without-xmlto --disable-docs --disable-devel1-docs \
-		--localstatedir=/var --without-dtrace
+USE_XORG=	pixman x11 fixesproto damageproto xcmiscproto xtrans \
+		bigreqsproto randrproto renderproto xextproto inputproto \
+		videoproto compositeproto recordproto \
+		fontsproto resourceproto xf86driproto glproto \
+		presentproto xineramaproto xkbfile xfont
 
-SLAVE_PORT=	yes
-PLIST_FILES=	bin/Xvfb
-MAN1=		Xvfb.1
+PLIST_FILES=	bin/Xvfb \
+		man/man1/Xvfb.1.gz
+
+.include <bsd.port.pre.mk>
 
 do-install:
 	cd ${WRKSRC}/hw/vfb; ${MAKE} ${FAKE_MAKEARGS} install
 
-.include "${MASTERDIR}/Makefile"
+.include <bsd.port.post.mk>
