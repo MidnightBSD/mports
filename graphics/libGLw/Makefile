@@ -2,6 +2,7 @@
 
 PORTNAME=	libGLw
 PORTVERSION=	8.0.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glw/
 DISTNAME=	glw-${PORTVERSION}
