@@ -23,4 +23,7 @@ NO_BUILD=	# none
 NO_MTREE=	yes
 FONTDIR=	${LOCALBASE}/share/fonts
 
+do-install:
+	@${NADA}
+
 .include <bsd.port.mk>
