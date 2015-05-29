@@ -4,11 +4,10 @@
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 
 PORTNAME=	afterstep
-PORTVERSION=	2.2.11
-PORTREVISION=	1
+PORTVERSION=	2.2.12
+PORTREVISION=	0
 CATEGORIES=	x11-wm afterstep
-MASTER_SITES=	${MASTER_SITE_AFTERSTEP}
-MASTER_SITE_SUBDIR=	stable
+MASTER_SITES=	AFTERSTEP/stable
 DISTNAME=	AfterStep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,50 +15,87 @@ COMMENT=	Window manager originally based on the Bowman NeXTstep clone
 
 LICENSE=	mit
 
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-
-LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo \
-		execinfo.1:${PORTSDIR}/devel/libexecinfo \
-		freetype.9:${PORTSDIR}/print/freetype2 \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		rsvg-2.2:${PORTSDIR}/graphics/librsvg2 \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		ungif.5:${PORTSDIR}/graphics/libungif
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
+		libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libgif.so:${PORTSDIR}/graphics/giflib \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libtiff.so:${PORTSDIR}/graphics/tiff
 RUN_DEPENDS=	xli:${PORTSDIR}/graphics/xli
 
-USE_GNOME=	glib20 gtk20 pango
-USE_ICONV=	yes
-USE_XORG+=	ice sm x11 xcursor xext xfixes xi xinerama xrandr xrender
-
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+USES=		execinfo gmake pkgconfig shebangfix tar:bzip2
+USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 librsvg2 pango
+USE_XORG+=	ice sm x11 xcomposite xcursor xdamage xext xfixes xi xinerama \
+		xrandr xrender
+GNU_CONFIGURE=	yes
+SHEBANG_FILES=	tools/ascommand.pl \
+		tools/importasmenu
+MAKE_JOBS_UNSAFE=	yes
 CONFIGURE_ARGS+=--disable-ascp \
 		--enable-i18n \
 		--disable-send-postcard-to-developer \
 		--with-helpcommand="xterm -e man" \
+		--x-includes="${LOCALBASE}/include" \
 		--with-jpeg-includes="${LOCALBASE}/include" \
-		--with-jpeg-libs="${LOCALBASE}/lib" \
 		--with-png-includes="${LOCALBASE}/include" \
-		--with-png-libs="${LOCALBASE}/lib" \
-		--with-ungif
+		--with-gif
+MAKE_ENV+=	HOME=-
 
-MAN1=		ASDatabase.1x ASDatabaseEntry.1x AfterStep.1x Align.1x \
-		Animate.1x AnimateTypes.1x Arrange.1x AutoExec.1x \
-		BalloonContents.1x Base.1x Bevel.1x ColorScheme.1x \
-		Feel.1x FeelWindowBox.1x Functions.1x Gravity.1x Look.1x \
-		MyBackground.1x MyFrame.1x MyStyle.1x Pager.1x \
-		PagerDecorations.1x Placement.1x Sound.1x SoundEvents.1x \
-		SupportedHints.1x TbarLayout.1x Wharf.1x WharfFolders.1x \
-		WharfSounds.1x WinCommand.1x WinList.1x WinTabs.1x \
-		afterstep_faq.1x asimagexml.1x
+WRKSRC=		${WRKDIR}/${PORTNAME}-devel-${PORTVERSION}
 
 .if defined(WITH_DIFFERENT_LOOKNFEELS)
-CONFIGURE_ARGS+=      --enable-different-looknfeels
+CONFIGURE_ARGS+=	--enable-different-looknfeels
 .endif
 
 .if !defined(WITH_SAVEWINDOWS)
-CONFIGURE_ARGS+=      --disable-savewindows
+CONFIGURE_ARGS+=	--disable-savewindows
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if exists(${PREFIX}/share/gnome/wm-properties)
+PLIST_SUB+=	GNOME=""
+.else
+PLIST_SUB+=	GNOME="@comment "
+.endif
+
+.if !exists(/usr/lib/libexecinfo.so)
+STATIC_LIBEXECINFO=	${LOCALBASE}/lib/libexecinfo.a
+.endif
+
+post-extract:
+	${CP} ${FILESDIR}/monitor_bsd.xpm \
+		${WRKSRC}/afterstep/desktop/icons/xml/monitor-bsd.xpm
+
+post-patch:
+.for f in afterstep/database
+	@${REINPLACE_CMD} -e 's,linux-penguin,monitor-bsd,' \
+		${WRKSRC}/${f}
+.endfor
+.for f in libAfterBase/Makefile.in libAfterImage/Makefile.in
+	@${REINPLACE_CMD} -e 's,^install\.,noinstall.,g ; \
+		 s,^install:,install:#,g' ${WRKSRC}/${f}
+.endfor
+.for f in libAfterBase/configure libAfterImage/configure
+	@${REINPLACE_CMD} -e 's,="-O3",="$$CFLAGS",g' \
+		${WRKSRC}/${f}
+.endfor
+.for f in libAfterStep/afterstep-config.in
+	@${REINPLACE_CMD} -e 's,ft_version,libafterstep_version,g' \
+		${WRKSRC}/${f}
+.endfor
+.for f in configure libAfterBase/configure libAfterConf/Makefile.in libAfterImage/configure tools/makeastheme.pl.in tools/installastheme.pl.in
+	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},g' \
+		${WRKSRC}/${f}
+.endfor
+	@${REINPLACE_CMD} \
+		-e 's,%%STATIC_LIBEXECINFO%%,${STATIC_LIBEXECINFO},g' \
+		${WRKSRC}/configure
+
+.if exists(${PREFIX}/share/gnome/wm-properties)
+pre-install:
+	${MKDIR} ${STAGEDIR}/${PREFIX}/share/gnome/wm-properties
+.endif
+
+.include <bsd.port.post.mk>
