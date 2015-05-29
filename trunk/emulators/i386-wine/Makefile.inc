@@ -46,14 +46,6 @@ PORTSCOUT=	limitw:1,even
 # Included for OPSYS and OSVERSION
 .include <bsd.port.pre.mk>
 
-.for osrel in 8 9 10 11
-.if 9 == ${osrel}
-PLIST_SUB+=	OSREL${osrel}=""
-.else
-PLIST_SUB+=	OSREL${osrel}="@comment "
-.endif
-.endfor
-
 do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
