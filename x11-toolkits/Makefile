@@ -4,6 +4,7 @@ COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
 SUBDIR += attica
+SUBDIR += elementary
 SUBDIR += fltk
 SUBDIR += fpc-gtk2
 SUBDIR += gdl
