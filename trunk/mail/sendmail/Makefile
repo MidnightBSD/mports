@@ -2,7 +2,7 @@
 
 PORTNAME=	sendmail
 PORTVERSION=	8.15.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BDB_SUFFIX}${PKGNAMESUFFIX2}
@@ -17,6 +17,10 @@ CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.* opensmtpd-
 
 FAKE_OPTS+=	trueprefix
 
+USERS=		smmsp
+GROUPS=		smmsp
+
+USES=		cpe
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 WCONF=		${WRKSRC}/devtools/Site
 SITE=		${FILESDIR}/site.config.m4.pre4
@@ -229,9 +233,6 @@ pre-install:
 		-h - -d /nonexistent -s /nonexistent -c "Sendmail Queue"; fi
 	@cd ${WRKSRC} && ${FIND} cf -type f | \
 	${AWK} '{print "share/sendmail/" $$1}' >>${PLIST}
-	@cd ${WRKSRC} && ${FIND} -d cf -type d | \
-	${AWK} '{print "@dirrm share/sendmail/" $$1}' >>${PLIST}
-	@${ECHO_CMD} "@dirrm share/sendmail" >>${PLIST}
 .if ${PORT_OPTIONS:MDOCS}
 .for i in ${DOCS}
 	@${ECHO_CMD} `${BASENAME} ${i}` | \
@@ -240,7 +241,6 @@ pre-install:
 .if ${PORT_OPTIONS:MCYRUSLOOKUP}
 	@${ECHO_CMD} "share/doc/sendmail/CYRUS_LOOKUP" >>${PLIST}
 .endif
-	@${ECHO_CMD} "@dirrm %%DOCSDIR%%" >>${PLIST}
 .endif
 
 # We want mail.local and rmail for our system.
@@ -299,6 +299,11 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/CYRUS_LOOKUP ${DOCSDIR}/CYRUS_LOOKUP
 .endif
 .endif
+	${RM} ${PREFIX}/man/cat*/*
+	${STRIP_CMD} ${PREFIX}/bin/vacation
+	${STRIP_CMD} ${PREFIX}/bin/rmail
+	${STRIP_CMD} ${PREFIX}/sbin/*
+	${STRIP_CMD} ${PREFIX}/libexec/*
 .if exists(${DESTDIR}/etc/mail/mailer.conf)
 
 mailer.base:
