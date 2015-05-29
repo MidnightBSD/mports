@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-fonts-miscbitmaps
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -27,7 +28,7 @@ RUN_DEPENDS=	${FONTDIR}/misc/arabic24.pcf.gz:${PORTSDIR}/x11-fonts/font-arabic-m
 CONFLICTS=	XFree86-fontDefaultBitmaps-*
 
 NO_BUILD=	# none
-FONTDIR=	${LOCALBASE}/lib/X11/fonts
+FONTDIR=	${LOCALBASE}/share/fonts
 
 do-install:	# empty
 
