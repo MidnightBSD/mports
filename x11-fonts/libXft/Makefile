@@ -2,7 +2,7 @@
 
 PORTNAME=	libXft
 PORTVERSION=	2.3.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +15,7 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 
 XORG_CAT=	lib
 USE_XORG=	xproto:both xrender
+INSTALL_TARGET=	install-strip
 
 post-extract:
 	@${CP} ${FILESDIR}/xft-config.in \
@@ -26,7 +27,6 @@ post-patch:
 
 post-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/xft-config \
-		${PREFIX}/bin/
-	@${STRIP_CMD} ${PREFIX}/lib/libXft.so.2
+		${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>
