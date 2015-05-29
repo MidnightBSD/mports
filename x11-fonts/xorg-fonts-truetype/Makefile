@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-fonts-truetype
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -14,12 +15,12 @@ LICENSE=	agg
 RUN_DEPENDS=	${FONTDIR}/TTF/luximb.ttf:${PORTSDIR}/x11-fonts/font-bh-ttf \
 		${FONTDIR}/OTF/SyrCOMAdiabene.otf:${PORTSDIR}/x11-fonts/font-misc-meltho \
 		${FONTDIR}/TTF/GohaTibebZemen.ttf:${PORTSDIR}/x11-fonts/font-misc-ethiopic \
-		${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
-		${LOCALBASE}/lib/X11/fonts/bitstream-vera/VeraIt.ttf:${PORTSDIR}/x11-fonts/bitstream-vera
+		${FONTDIR}/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
+		${FONTDIR}/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
 
-do-install:	# empty
+NO_BUILD=	# none
 
-NO_BUILD=	yes
-FONTDIR=	${LOCALBASE}/lib/X11/fonts
+NO_MTREE=	yes
+FONTDIR=	${LOCALBASE}/share/fonts
 
 .include <bsd.port.mk>
