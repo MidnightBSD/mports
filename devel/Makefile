@@ -97,6 +97,7 @@ SUBDIR += gettext-msghack
 SUBDIR += gettext-runtime
 SUBDIR += gettext-tools
 SUBDIR += git
+SUBDIR += github-backup-utils
 SUBDIR += glade3
 SUBDIR += glib12
 SUBDIR += glib20
