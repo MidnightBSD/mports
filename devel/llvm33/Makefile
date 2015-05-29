@@ -2,7 +2,7 @@
 
 PORTNAME=	llvm
 PORTVERSION=	3.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
@@ -19,12 +19,9 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 UNIQUENAME=	${PORTNAME}${LLVM_SUFFIX}
 
-SSP_UNSAFE=	compiler don't work with this
-
 USES=		execinfo gmake perl5
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_PREFIX=	${LLVM_PREFIX}
-#USE_BINUTILS=	yes
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 
 SUB_FILES=	llvm-wrapper.sh
@@ -32,21 +29,20 @@ SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
 # Suggested tweaks from http://llvm.org/docs/Packaging.html
 CONFIGURE_ARGS+=	--enable-shared
-MAKE_ARGS+=		REQUIRES_RTTI=1 TOOL_VERBOSE=1
+MAKE_ARGS+=		REQUIRES_RTTI=1
 LIBNAME=		libLLVM-${DISTVERSION:C/\rc[0-9]//}.so
 
 CONFIGURE_ARGS+=	--enable-bindings=none
-CONFIGURE_ARGS+=	--enable-optimized \
-			--enable-targets=host-only
+CONFIGURE_ARGS+=	--enable-optimized
 
-OPTIONS_DEFINE=	ASSERTS CMAKE LIT LTOPLUGIN
+OPTIONS_DEFINE=	ASSERTS CMAKE DOCS LIT LTOPLUGIN MANPAGES
 
 ASSERTS_DESC=	Enable assertions (thread unsafe)
 CMAKE_DESC=	Build cmake support files
 LIT_DESC=	Install lit and FileCheck test tools (requires python)
 LTOPLUGIN_DESC=	Build LTO plugin (requires gold)
 
-OPTIONS_DEFAULT=	CMAKE LIT
+OPTIONS_DEFAULT=	CMAKE LIT MANPAGES
 OPTIONS_SUB=	yes
 
 PLIST_SUB+=		PORTVERSION=${PORTVERSION}
@@ -91,6 +87,9 @@ CONFIGURE_ARGS+=--enable-experimental-targets=R600
 
 .include <bsd.mport.options.mk>
 
+# keep in sync with /usr/src/lib/clang/clang.build.mk
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-freebsd9.1
+
 .if ${PORT_OPTIONS:MASSERTS}
 CONFIGURE_ARGS+=	--enable-assertions
 RELEASE_TYPE=		Release+Asserts
@@ -104,9 +103,23 @@ BUILD_DEPENDS+=	cmake:${PORTSDIR}/devel/cmake
 PORTDATA+=	cmake
 .endif
 
-CONFIGURE_ARGS+=	--disable-docs
+.if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MMANPAGES}
+BUILD_DEPENDS+=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
+.endif
 
-USE_PYTHON_BUILD=	yes
+.if ${PORT_OPTIONS:MDOCS}
+CONFIGURE_ARGS+=	--enable-docs
+.else
+CONFIGURE_ARGS+=	--disable-docs
+.endif
+
+.if ${PORT_OPTIONS:MLIT}
+MAN1SRCS+=		lit.1
+USES+=			python:-2.9
+LIT_COMMANDS=		lit llvm-lit FileCheck
+.else
+USES+=			python:-2.9,build
+.endif
 
 .if ${PORT_OPTIONS:MLTOPLUGIN}
 BUILD_DEPENDS+=		ld.gold:${PORTSDIR}/devel/binutils
@@ -114,6 +127,16 @@ RUN_DEPENDS+=		ld.gold:${PORTSDIR}/devel/binutils
 CONFIGURE_ARGS+=	--with-binutils-include=${LOCALBASE}/include
 PLIST_FILES+=		llvm${LLVM_SUFFIX}/lib/LLVMgold.so
 .endif
+
+.if ${PORT_OPTIONS:MMANPAGES}
+MAN1SRCS+=	bugpoint.1 llc.1 lli.1 llvm-ar.1 llvm-as.1 \
+		llvm-bcanalyzer.1 llvm-config.1 llvm-cov.1 llvm-diff.1 \
+		llvm-dis.1 llvm-extract.1 llvm-link.1 llvm-nm.1 \
+		llvm-prof.1 llvm-ranlib.1 llvm-stress.1 opt.1 tblgen.1
+PLIST_FILES+=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
+.endif
+
+
 
 .include <bsd.port.pre.mk>
 
@@ -140,10 +163,18 @@ post-patch:
 .if ${PORT_OPTIONS:MCMAKE}
 post-configure:
 	${MKDIR} ${WRKDIR}/cmake
-	cd ${WRKDIR}/cmake && cmake -G "Unix Makefiles" ${WRKSRC}
+	cd ${WRKDIR}/cmake && cmake -DPYTHON_EXECUTABLE=${PYTHON_CMD} -G "Unix Makefiles" ${WRKSRC}
 	${REINPLACE_CMD} -e 's|${WRKDIR}/cmake|${LLVM_PREFIX}|' \
 	    -e 's|${WRKSRC}/cmake/modules|${DATADIR}/cmake|' \
 	    ${WRKDIR}/cmake/share/llvm/cmake/LLVMConfig.cmake
+.endif
+
+post-build:
+.if ${PORT_OPTIONS:MMANPAGES}
+	@cd ${WRKSRC}/docs && ${MAKE_CMD} -f Makefile.sphinx man
+.endif
+.if ${PORT_OPTIONS:MDOCS}
+	@cd ${WRKSRC}/docs && ${MAKE_CMD} -f Makefile.sphinx html
 .endif
 
 post-install:
@@ -164,21 +195,36 @@ post-install:
 	    ${WRKDIR}/cmake/share/llvm/cmake/*.cmake \
 	    ${STAGEDIR}${DATADIR}/cmake/
 .endif
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/html
+	${FIND} ${WRKSRC}/docs/_build/html -type f | \
+	    ${XARGS} -I _DOC_ ${INSTALL_DATA} _DOC_ ${STAGEDIR}${DOCSDIR}/html/
+.endif
 .if ${PORT_OPTIONS:MLIT}
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/lit/lit.py \
-	    ${FAKE_DESTEDIR}${LLVM_PREFIX}/bin/lit
-	(cd ${LLVM_PREFIX}/bin && ${LN} -f lit llvm-lit)
-	(cd ${PREFIX} && ${LN} -f llvm33/bin/lit bin/lit${LLVM_SUFFIX})
-	(cd ${PREFIX} && ${LN} -f llvm33/bin/lit bin/llvm-lit${LLVM_SUFFIX})
+	    ${STAGEDIR}${LLVM_PREFIX}/bin/lit
+	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
+	    ${STAGEDIR}${LLVM_PREFIX}/bin/llvm-lit
+	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
+	    ${STAGEDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
+	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
+	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
 	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/*.py \
 	    ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_PROGRAM} ${WRKSRC}/${RELEASE_TYPE}/bin/FileCheck \
-	    ${LLVM_PREFIX}/bin/
-	(cd ${LLVM_PREFIX}/bin && ${LN} -f FileCheck FileCheck${LLVM_SUFFIX})
+	    ${STAGEDIR}${LLVM_PREFIX}/bin/
+	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
+	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+.endif
+.if ${PORT_OPTIONS:MMANPAGES}
+	for man in ${MAN1SRCS}; do \
+		${INSTALL_MAN} ${WRKSRC}/docs/_build/man/$${man} \
+		    ${STAGEDIR}${MANPREFIX}/man/man1/$${man%.1}${LLVM_SUFFIX}.1 ; \
+	done
 .endif
 
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${GMAKE} check-local-lit)'
+TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 regression-test: ${BUILD_COOKIE}
 	if [ `${ID} -u` = 0 ]; then \
 		${CHOWN} -R nobody ${WRKSRC}/test; \
