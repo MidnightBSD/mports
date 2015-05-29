@@ -1,5 +1,2 @@
-lib/xorg/modules/drivers/tseng_drv.la
 lib/xorg/modules/drivers/tseng_drv.so
-@dirrmtry lib/xorg/modules/drivers
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/tseng.4x.gz
