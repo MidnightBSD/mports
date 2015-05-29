@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-mouse
-PORTVERSION=	1.9.0
-PORTREVISION=	1
+PORTVERSION=	1.9.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
