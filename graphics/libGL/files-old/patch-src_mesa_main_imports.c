@@ -4,7 +4,7 @@
  _mesa_strtof( const char *s, char **end )
  {
  #if defined(_GNU_SOURCE) && !defined(__CYGWIN__) && !defined(__FreeBSD__) && \
-+   !defined(__DragonFly__) && !defined(__MidnightBSD__) \
++   !defined(__DragonFly__) && !defined(__MidnightBSD__) && \
     !defined(ANDROID) && !defined(__HAIKU__) && !defined(__UCLIBC__)
     static locale_t loc = NULL;
     if (!loc) {
