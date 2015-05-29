@@ -1,5 +1,2 @@
-lib/xorg/modules/drivers/i128_drv.la
 lib/xorg/modules/drivers/i128_drv.so
-@dirrmtry lib/xorg/modules/drivers
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/i128.4x.gz
