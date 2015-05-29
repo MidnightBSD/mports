@@ -2,15 +2,18 @@
 # $MidnightBSD$
 
 PORTNAME=	font-util
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.1
+MASTER_SITES=	XORG/individual/font
+
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create an index of X font files in a directory
+
 LICENSE=	bsd3
 
-XORG_CAT=	font
-
-MAN1=		bdftruncate.1 ucs2any.1
+USES=		pathfix tar:bzip2
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-fontrootdir=${PREFIX}/share/fonts
 
 .include <bsd.port.mk>
