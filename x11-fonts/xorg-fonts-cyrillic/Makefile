@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-fonts-cyrillic
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -20,7 +21,7 @@ RUN_DEPENDS=	${FONTDIR}/cyrillic/crox1c.pcf.gz:${PORTSDIR}/x11-fonts/font-cronyx
 CONFLICTS=	XFree86-fontCyrillic-*
 
 NO_BUILD=	# none
-FONTDIR=	${LOCALBASE}/lib/X11/fonts
+FONTDIR=	${LOCALBASE}/share/fonts
 
 do-install:	# empty
 
