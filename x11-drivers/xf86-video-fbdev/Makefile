@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-fbdev
 PORTVERSION=	0.4.4
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto
-MAN4=		fbdev.4x
 
 .include <bsd.port.mk>
