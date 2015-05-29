@@ -59,18 +59,23 @@ MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
 .if defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
-PREFIX?=	${LINUXBASE_REL}
+PREFIX:=	${LINUXBASE_REL}
+NO_MTREE=	yes
 .else
 PREFIX?=	${LOCALBASE_REL}
 .endif
 
 # Fake targets override this when they submake.
-TRUE_PREFIX?=		${PREFIX} 
+TRUE_PREFIX?=		${PREFIX}
+
+#
+# DESTDIR section to start a chrooted process if invoked with DESTDIR set
+#
 
 .if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
 	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
-.include ${PORTSDIR}/Mk/components/destdir.mk
+.include "${PORTSDIR}/Mk/components/destdir.mk"
 
 .else
 
@@ -260,12 +265,12 @@ STRIP=	#none
 
 .include "${MPORTCOMPONENTS}/options.mk"
 
-# Start of pre-makefile section
+# Start of pre-makefile section.
 .if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
 .include "${MPORTCOMPONENTS}/sanity.mk"
 
-_PREMKINCLUDED= yes
+_PREMKINCLUDED=		yes
 
 .if defined(PORTVERSION)
 .if ${PORTVERSION:M*[-_,]*}x != x
@@ -291,7 +296,7 @@ PKGBASE=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGSUBNAME=	${PKGBASE}
 PKGNAME=	${PKGBASE}-${PKGVERSION}
 DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
-DISTVERSIONFULL=${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
+DISTVERSIONFULL=	${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 .if defined(USE_GITHUB) && empty(MASTER_SITES:MGHC)
 # Only add in DISTVERSIONFULL if GH_TAGNAME if set by port. Otherwise
@@ -402,16 +407,15 @@ EXTRACT_SUFX?=			.run
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
+
 PACKAGES?=		${PORTSDIR}/Packages/${ARCH}
 TEMPLATES?=		${PORTSDIR}/Templates
+KEYWORDS?=		${PORTSDIR}/Keywords
 
 PATCHDIR?=		${MASTERDIR}/files
 FILESDIR?=		${MASTERDIR}/files
 SCRIPTDIR?=		${MASTERDIR}/scripts
 PKGDIR?=		${MASTERDIR}
-
-
-
 
 .if defined(USE_LINUX_PREFIX)
 _LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
