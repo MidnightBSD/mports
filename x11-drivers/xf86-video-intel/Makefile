@@ -32,7 +32,7 @@ CONFIGURE_ARGS+=	--enable-sna
 CONFIGURE_ARGS+=	--disable-glamor
 INSTALL_TARGET=	install-strip
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if (${OSVERSION} >= 903000 && ${OSVERSION} < 1000000)
 RUN_DEPENDS+=	drm-kmod>=9:${PORTSDIR}/x11-drivers/drm-kmod
