@@ -1,5 +1,2 @@
-lib/xorg/modules/drivers/fbdev_drv.la
 lib/xorg/modules/drivers/fbdev_drv.so
-@dirrmtry lib/xorg/modules/drivers
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/fbdev.4x.gz
