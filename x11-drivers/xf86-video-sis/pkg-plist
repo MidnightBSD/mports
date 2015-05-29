@@ -1,5 +1,2 @@
-lib/xorg/modules/drivers/sis_drv.la
 lib/xorg/modules/drivers/sis_drv.so
-@dirrmtry lib/xorg/modules/drivers
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/sis.4x.gz

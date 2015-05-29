@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-apm
 PORTVERSION=	1.2.5
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto
-MAN4=		apm.4x
 
 .include <bsd.port.mk>

@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-sis
 PORTVERSION=	0.10.7
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +16,5 @@ USE_GL=		gl
 
 XORG_CAT=	driver
 USE_XORG=	xf86dgaproto xf86driproto xineramaproto videoproto xf86miscproto xextproto glproto
-MAN4=		sis.4x
 
 .include <bsd.port.mk>
