@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-i740
-PORTVERSION=	1.3.4
+PORTVERSION=	1.3.5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +11,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto
-MAN4=		i740.4x
 
 .include <bsd.port.mk>
