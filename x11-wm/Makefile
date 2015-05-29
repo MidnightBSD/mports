@@ -7,7 +7,6 @@ SUBDIR += awesome
 SUBDIR += blackbox
 SUBDIR += compiz
 SUBDIR += enlightenment
-SUBDIR += enlightenment-docs
 SUBDIR += etoile-azalea
 SUBDIR += etoile-azdock
 SUBDIR += etoile-azswitch

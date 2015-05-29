@@ -1,16 +1,15 @@
-# Created by: Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
-# $FreeBSD: head/x11-wm/enlightenment/Makefile 380054 2015-02-26 21:12:40Z gblach $
+# $MidnightBSD$
 
 PORTNAME=	enlightenment
-PORTVERSION=	0.19.4
+PORTVERSION=	0.19.5
 PORTEPOCH=	2
 CATEGORIES=	x11-wm enlightenment
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Artistic X window manager
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	bsd2
 
 LIB_DEPENDS=	libefl.so:${PORTSDIR}/devel/efl \
 		libelementary.so:${PORTSDIR}/x11-toolkits/elementary \
@@ -47,10 +46,4 @@ post-patch:
 		${WRKSRC}/src/bin/Makefile.mk \
 		${WRKSRC}/src/modules/Makefile_cpufreq.mk
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not install on sparc64: signal 10
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
