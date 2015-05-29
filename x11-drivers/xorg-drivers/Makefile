@@ -81,29 +81,15 @@ OPTIONS_DEFAULT_i386=	INTEL OPENCHROME
 OPTIONS_DEFINE_amd64:=	${OPTIONS_DEFINE_i386}
 OPTIONS_DEFAULT_amd64:=	${OPTIONS_DEFAULT_i386}
 
-OPTIONS_DEFINE_sparc64=	SUNFFB
-OPTIONS_DEFAULT_sparc64=SUNFFB
-
-OPTIONS_DEFINE_ia64=	OPENCHROME
-OPTIONS_DEFAULT_ia64=	OPENCHROME
-
 INTEL_DESC=		Install intel video driver
 OPENCHROME_DESC=	Install openchrome video driver
-SUNFFB_DESC=		Install sunffb video driver
 
 # these drivers have a different module name compared to the plugin they install
 QUIRKS=		keyboard:kbd
 
 .include <bsd.mport.options.mk>
 
-# Manual add arch specific drivers so they be added to depend lines.
-.if ${ARCH}==i386 || ${ARCH}==amd64
 VIDEO_DRIVERS+=	intel openchrome
-.endif
-
-.if ${ARCH}==sparc64
-VIDEO_DRIVERS+=	sunffb
-.endif
 
 .for type in input video
 . for i in ${${type:U}_DRIVERS}
