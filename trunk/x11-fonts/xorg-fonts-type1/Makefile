@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-fonts-type1
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -23,6 +24,6 @@ CONFLICTS=	XFree86-fontScalable-[0-9]*
 do-install:	# empty
 
 NO_BUILD=	yes
-FONTDIR=	${LOCALBASE}/lib/X11/fonts
+FONTDIR=	${LOCALBASE}/share/fonts
 
 .include <bsd.port.mk>
