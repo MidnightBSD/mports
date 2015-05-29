@@ -9,9 +9,10 @@ DISTNAME=	WizardKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework needed by Project Manager
-LICENSE=	agg
 
-USE_BZIP2=	yes
+LICENSE=	mit
+
+USES=		tar:bzip2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
