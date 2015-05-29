@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-ati
-PORTVERSION=	${ATI_VERSION}
-PORTREVISION=	${ATI_REVISION}
+PORTVERSION=	7.5.0
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,36 +12,24 @@ LICENSE=	mit
 
 USE_GL=		gl
 XORG_CAT=	driver
-USE_XORG=	xf86driproto xineramaproto xf86miscproto glproto
+USE_XORG=	xf86driproto \
+		xineramaproto \
+		xf86miscproto \
+		glproto \
+		presentproto
+INSTALL_TARGET=	install-strip
+
+CONFIGURE_ARGS+=--disable-udev
+CONFIGURE_ARGS+=--disable-glamor
 
 .include <bsd.mport.options.mk>
 
-.if (${OSVERSION} >= 6000)
-. if defined(WITH_NEW_XORG)
-NEW_ATI_DRIVER=	yes
-. else
-NEW_ATI_DRIVER=	no
-. endif
-.else
-. if defined(FORCE_KMS_ONLY_DDX)
-NEW_ATI_DRIVER=	yes
-. else
-NEW_ATI_DRIVER=	no
-. endif
-.endif
+.if (${OSVERSION} >= 903000 && ${OSVERSION} < 1000000)
+RUN_DEPENDS+=	drm-kmod>=9:${PORTSDIR}/x11-drivers/drm-kmod
 
-.if ${NEW_ATI_DRIVER} == no
-ATI_VERSION=	6.14.6
-ATI_REVISION=	4
-CONFIGURE_ARGS+=--disable-kms
-PLIST_SUB+=	OLD=""
-.else
-ATI_VERSION=	7.2.0
-ATI_REVISION=	4
-CONFIGURE_ARGS+=--disable-udev
-CONFIGURE_ARGS+=--disable-glamor
-EXTRA_PATCHES+=	${FILESDIR}/extra-src__radeon_kms.c
-PLIST_SUB+=	OLD="@comment "
+post-patch:
+	@${REINPLACE_CMD} -e 's|"radeonkms"|"radeonkms_port"|g' \
+		${WRKSRC}/src/radeon_kms.c
 .endif
 
 .include <bsd.port.mk>
