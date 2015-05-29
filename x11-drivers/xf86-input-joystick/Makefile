@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-joystick
-PORTVERSION=	${JOYVER}
-PORTREVISION=	${JOYREVISION}
+PORTVERSION=	1.6.2
+PORTREVISION=	3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,16 +10,6 @@ COMMENT=	X.Org joystick input driver
 LICENSE=	mit
 
 XORG_CAT=	driver
-
-.include <bsd.mport.options.mk>
-
-.if defined(WITH_NEW_XORG)
-JOYVER=		1.6.2
-JOYREVISION=	0
-.else
-JOYVER=		1.5.0
-JOYREVISION=	1
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
