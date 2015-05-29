@@ -2,6 +2,7 @@
 
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.7
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -47,7 +48,6 @@ VIDEO_DRIVERS=		ati \
 			i740 \
 			mga \
 			neomagic \
-			newport \
 			rendition \
 			s3 \
 			s3virge \
@@ -55,7 +55,6 @@ VIDEO_DRIVERS=		ati \
 			siliconmotion \
 			sis \
 			tdfx \
-			tga \
 			trident \
 			tseng \
 			vmware \

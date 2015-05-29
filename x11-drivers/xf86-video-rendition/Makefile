@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-rendition
 PORTVERSION=	4.2.5
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	xextproto
-MAN4=		rendition.4x
 
 .include <bsd.port.mk>

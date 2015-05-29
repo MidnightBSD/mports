@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-mach64
 PORTVERSION=	6.9.4
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
