@@ -3,40 +3,37 @@
 # $MidnightBSD$ 
 
 PORTNAME=	dejavu
-DISTVERSION=	2.34
+PORTVERSION=	2.35
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF
-DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
+DISTNAME=	${PORTNAME}-fonts-ttf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera Fonts clone with a wider range of characters
 
-LICENSE=        other
+LICENSE=	other
 
-RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
+OPTIONS_DEFINE=	DOCS LINKS
+OPTIONS_DEFAULT=LINKS
+OPTIONS_SUB=	yes
+LINKS_DESC=	Install links of configuration files in conf.d
 
-USES=		tar:bzip2
-USE_XORG=	x11
 NO_BUILD=	yes
-PORTDOCS=	README status.txt unicover.txt langcover.txt
-PLIST_SUB=	FONTSDIR="${FONTSDIR:S|${PREFIX}/||}/"
-MSG_FILE=	${PKGDIR}/pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
-FONTNAME=	${PORTNAME}
-FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
-INSTALLS_TTF=	yes
+USES=		fonts tar:bzip2
 
-post-patch:
-	@${SED} 's|%%FONTSDIR%%|${FONTSDIR}|g' ${MSG_FILE} > ${PKGMESSAGE}
+PLIST_SUB=	FCDIR=${FCDIR} FCDIR_LINKS=${FCDIR_LINKS}
+PORTDOCS=	README langcover.txt status.txt unicover.txt
+SUB_FILES=	pkg-message
+
+FCDIR?=		etc/fonts/conf.avail
+FCDIR_LINKS=	${FCDIR:S|conf.avail|conf.d|}
 
 do-install:
-	@${MKDIR} ${FONTSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${FONTSDIR}
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for f in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
-.endfor
-.endif
+	cd ${STAGEDIR}${PREFIX}/ && ${MKDIR} ${FCDIR}/ ${FCDIR_LINKS}/ ${STAGEDIR}${FONTSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/fontconfig/*.conf ${STAGEDIR}${PREFIX}/${FCDIR}/
+	cd ${STAGEDIR}${PREFIX}/${FCDIR_LINKS}/ && ${LN} -fs ../conf.avail/*dejavu*.conf .
+	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${STAGEDIR}${FONTSDIR}/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>
