@@ -2,6 +2,7 @@
 
 PORTNAME=	llvm
 PORTVERSION=	3.3
+PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
@@ -12,8 +13,6 @@ COMMENT=	Low Level Virtual Machine
 
 LICENSE=	agg
 
-LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo
-
 LLVM_SUFFIX=	${PORTVERSION:S/.//g}
 LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
@@ -22,7 +21,7 @@ UNIQUENAME=	${PORTNAME}${LLVM_SUFFIX}
 
 SSP_UNSAFE=	compiler don't work with this
 
-USES=		gmake perl5
+USES=		execinfo gmake perl5
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_PREFIX=	${LLVM_PREFIX}
 #USE_BINUTILS=	yes
