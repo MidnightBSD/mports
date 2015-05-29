@@ -2,7 +2,7 @@
 
 PORTNAME=	svgalib
 PORTVERSION=	1.4.3
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.svgalib.org/
 
@@ -11,8 +11,8 @@ COMMENT=	Low level console graphics library
 
 LICENSE=	publicdom
 
-#USE_DOS2UNIX=  utils/gtf/gtf.h utils/gtf/scitech.h
-USES=	gmake uidfix shebangfix
+USES=	gmake uidfix dos2unix shebangfix
+DOS2UNIX_FILES=	utils/gtf/gtf.h utils/gtf/scitech.h
 SHEBANG_FILES=	utils/svgakeymap
 USE_LDCONFIG=	yes
 
