@@ -3,6 +3,7 @@
 
 PORTNAME=	xf86-video-trident
 PORTVERSION=	1.3.6
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +13,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto xf86dgaproto
-MAN4=		trident.4x
 
 .include <bsd.port.mk>
