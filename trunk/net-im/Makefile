@@ -4,6 +4,7 @@ COMMENT = Instant messaging
 
 SUBDIR += etoile-stepchat
 SUBDIR += etoile-xmppkit
+SUBDIR += farsight2
 SUBDIR += gossip
 SUBDIR += jabberd
 SUBDIR += libnice
