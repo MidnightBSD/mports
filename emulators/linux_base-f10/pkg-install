@@ -3,6 +3,9 @@
 
 case "$2" in
 PRE-INSTALL)
+	if [ ! -d ${PKG_PREFIX} ]; then
+		mkdir -p ${PKG_PREFIX}
+	fi
 	if [ "`/sbin/sysctl -n compat.linux.osrelease`"x = "x" ]; then
 		echo 'linuxulator is not (kld)loaded, exiting'
 		exit 1
