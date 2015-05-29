@@ -87,7 +87,7 @@ STRIP_LIBS=	BugpointPasses.so \
 		libprofile_rt.so
 
 # Enable AMD r600 backend used by the r600/radeonsi graphics/dri gallium drivers
-#CONFIGURE_ARGS+=--enable-experimental-targets=R600
+CONFIGURE_ARGS+=--enable-experimental-targets=R600
 
 .include <bsd.mport.options.mk>
 
