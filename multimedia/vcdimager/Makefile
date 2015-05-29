@@ -3,10 +3,9 @@
 
 PORTNAME=	vcdimager
 PORTVERSION=	0.7.24
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	vcdimager
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU VCDImager/VCDRip -- The GNU VideoCD Image Maker/Ripping Tool
@@ -18,15 +17,13 @@ LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
 		libcdio.so:${PORTSDIR}/sysutils/libcdio
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/man/ --bindir=${PREFIX}/bin
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool:oldver pathfix pkgconfig
+USES=		gmake libtool pkgconfig pathfix
 USE_LDCONFIG=	yes
-CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 
 INFO=		vcdimager vcdxrip vcd-info
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|libvcd||' ${WRKSRC}/libvcdinfo.pc.in
 
 .include <bsd.port.mk>
