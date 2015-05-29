@@ -2,7 +2,7 @@
 
 PORTNAME=	xorg-libraries
 PORTVERSION=	7.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -13,7 +13,6 @@ COMMENT=	X.org libraries meta-port
 LICENSE=	mit
 
 NO_BUILD=	yes
-NO_INSTALL=	yes
 NO_MTREE=	yes
 
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dmx.pc:${PORTSDIR}/x11/libdmx \
