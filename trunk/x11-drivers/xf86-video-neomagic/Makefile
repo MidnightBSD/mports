@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-neomagic
 PORTVERSION=	1.2.8
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +12,5 @@ LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto xf86dgaproto
-MAN4=		neomagic.4x
 
 .include <bsd.port.mk>

@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-openchrome
 PORTVERSION=	0.3.3
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +14,6 @@ USE_GL=		gl
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xf86driproto xextproto xvmc glproto
-MAN4=		openchrome.4x
 
 MAKE_ARGS+=	drivermandir=${LOCALBASE}/man/man4
 
