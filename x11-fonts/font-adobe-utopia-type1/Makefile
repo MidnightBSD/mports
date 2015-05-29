@@ -2,6 +2,7 @@
 
 PORTNAME=	font-adobe-utopia-type1
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
