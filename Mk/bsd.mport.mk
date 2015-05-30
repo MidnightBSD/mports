@@ -3797,7 +3797,7 @@ generate-plist:
 .	endfor
  
 .	for dir in ${PLIST_DIRS}
-		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dirrm ,' >> ${TMPPLIST}
+		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
 .	endfor
 
 .	if defined(USE_LDCONFIG)
@@ -3822,7 +3822,7 @@ generate-plist:
 .endif 
 
 ${TMPPLIST}:
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} generate-plist
+	@cd ${.CURDIR} && ${MAKE} generate-plist
 
 .if !target(add-plist-docs)
 add-plist-docs:
@@ -3842,8 +3842,8 @@ add-plist-docs:
 		@${FIND} -P ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
 			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,,p' >> ${TMPPLIST}
 		@${FIND} -P -d ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
-			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dirrm ,p' >> ${TMPPLIST}
-		@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${PREFIX}/,,}" >> ${TMPPLIST}
+			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dir ,p' >> ${TMPPLIST}
+		@${ECHO_CMD} "@dir ${DOCSDIR:S,^${PREFIX}/,,}" >> ${TMPPLIST}
 .	else
 		@${DO_NADA}
 .	endif
@@ -3860,7 +3860,7 @@ add-plist-info:
 	@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 		>> ${TMPPLIST}
 	@if [ "`${DIRNAME} $i`" != "." ]; then \
-		${ECHO_CMD} "@dirrmtry info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@dir info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
 	fi
 .endfor
 .if defined(INFO_SUBDIR)
@@ -3871,7 +3871,7 @@ add-plist-info:
 		 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
 
 .if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
-	@${ECHO_CMD} "@dirrmtry rmdir info/" >> ${TMPPLIST}
+	@${ECHO_CMD} "@dir rmdir info/" >> ${TMPPLIST}
 .endif
 
 .endif
