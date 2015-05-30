@@ -3068,6 +3068,7 @@ checksum: fetch check-checksum-algorithms
 						${ECHO_MSG} "=> $$alg Checksum mismatch for $$file."; \
 						refetchlist="$$refetchlist$$file "; \
 						OK="$${OK:-retry}"; \
+						[ "$${OK}" = "retry" -a ${FETCH_REGET} -gt 0 ] && ${RM} -f $${file}; \
 						ignored="false"; \
 					fi; \
 				fi; \
@@ -3080,6 +3081,27 @@ checksum: fetch check-checksum-algorithms
 			\
 		done; \
 		\
+		if [ "$${OK:=true}" = "retry" ] && [ ${FETCH_REGET} -gt 0 ]; then \
+			${ECHO_MSG} "===>  Refetch for ${FETCH_REGET} more times files: $$refetchlist"; \
+			if ( cd ${.CURDIR} && \
+				${MAKE} ${.MAKEFLAGS} FORCE_FETCH="$$refetchlist" FETCH_REGET="`${EXPR} ${FETCH_REGET} - 1`" fetch); then \
+				if ( cd ${.CURDIR} && \
+					${MAKE} ${.MAKEFLAGS} FETCH_REGET="`${EXPR} ${FETCH_REGET} - 1`" checksum ); then \
+					OK="true"; \
+				fi; \
+			fi; \
+		fi; \
+		\
+		if [ "$$OK" != "true" -a ${FETCH_REGET} -eq 0 ]; then \
+			${ECHO_MSG} "===>  Giving up on fetching files: $$refetchlist"; \
+			${ECHO_MSG} "Make sure the Makefile and distinfo file (${DISTINFO_FILE})"; \
+			${ECHO_MSG} "are up to date.  If you are absolutely sure you want to override this"; \
+			${ECHO_MSG} "check, type \"make NO_CHECKSUM=yes [other args]\"."; \
+			exit 1; \
+		fi; \
+		if [ "$$OK" != "true" ]; then \
+			exit 1; \
+		fi; \
 	elif [ -n "${_CKSUMFILES:M*}" ]; then \
 		${ECHO_MSG} "=> No checksum file (${DISTINFO_FILE})."; \
 		exit 1; \
