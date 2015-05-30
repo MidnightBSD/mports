@@ -16,6 +16,7 @@ SUBDIR += fvwm2
 SUBDIR += icewm
 SUBDIR += libcompizconfig
 SUBDIR += libdockapp
+SUBDIR += libwraster
 SUBDIR += metacity
 SUBDIR += obconf
 SUBDIR += obmenu
