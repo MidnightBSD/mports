@@ -1993,22 +1993,24 @@ DISTINFO_DATA?= if [ \( -n "${DISABLE_SIZE}" -a -n "${NO_CHECKSUM}" \) -o ! -f "
 .if !target(do-fetch)
 do-fetch:
 	@${MKDIR} ${_DISTDIR}
-	@(cd ${_DISTDIR}; \
+	@cd ${_DISTDIR}; \
 	${_MASTER_SITES_ENV} ; \
 	for _file in ${DISTFILES}; do \
-		file=`${ECHO_CMD} $$_file | ${SED} -E -e 's/:[^:]+$$//'` ; \
-		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
+		file=$${_file%%:*}; \
+		if [ $$_file = $$file ]; then	\
+			select='';	\
+		else    \
+			select=`${ECHO_CMD} $${_file##*:} | ${SED} -e 's/,/ /g'` ;	\
+		fi;     \
 		force_fetch=false; \
-		filebasename=`${BASENAME} $$file`; \
+		filebasename=$${file##*/}; \
 		for afile in ${FORCE_FETCH}; do \
-			afile=`${BASENAME} $$afile`; \
+			afile=$${afile##*/}; \
 			if [ "x$$afile" = "x$$filebasename" ]; then \
 				force_fetch=true; \
 			fi; \
 		done; \
 		if [ ! -f $$file -a ! -f $$filebasename -o "$$force_fetch" = "true" ]; then \
-			DIR=${DIST_SUBDIR}; \
-			pattern="$${DIR:+$$DIR/}`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
 			if [ -L $$file -o -L $$filebasename ]; then \
 				${ECHO_MSG} "=> ${_DISTDIR}/$$file is a broken symlink."; \
 				${ECHO_MSG} "=> Perhaps a filesystem (most likely a CD) isn't mounted?"; \
@@ -2016,7 +2018,8 @@ do-fetch:
 				exit 1; \
 			fi ; \
 			if [ -f ${DISTINFO_FILE} -a "x${NO_CHECKSUM}" = "x" ]; then \
-				if ! ${GREP} -q "^SHA256 ($$pattern)" ${DISTINFO_FILE}; then \
+				_sha256sum=`alg=SHA256; ${DISTINFO_DATA}`; \
+				if [ -z "$$_sha256sum" ]; then \
 					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is not in ${DISTINFO_FILE}."; \
 					${ECHO_MSG} "=> Either ${DISTINFO_FILE} is out of date, or"; \
 					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is spelled incorrectly."; \
@@ -2024,8 +2027,8 @@ do-fetch:
 				fi; \
 			fi; \
 			${ECHO_MSG} "=> $$file doesn't seem to exist in ${_DISTDIR}."; \
-			if [ ! -w ${DISTDIR} ]; then \
-			   ${ECHO_MSG} "=> ${DISTDIR} is not writable by you; cannot fetch."; \
+			if [ ! -w ${_DISTDIR} ]; then \
+			   ${ECHO_MSG} "=> ${_DISTDIR} is not writable by you; cannot fetch."; \
 			   exit 1; \
 			fi; \
 			if [ ! -z "$$select" ] ; then \
@@ -2041,40 +2044,59 @@ do-fetch:
 			else \
 				SORTED_MASTER_SITES_CMD_TMP="${SORTED_MASTER_SITES_DEFAULT_CMD}" ; \
 			fi ; \
-			for site in `eval $$SORTED_MASTER_SITES_CMD_TMP ${_RANDOMIZE_SITES}`; do \
-			    ${ECHO_MSG} "=> Attempting to fetch from $${site}."; \
-				DIR=${DIST_SUBDIR}; \
-				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${DISTINFO_FILE} | ${AWK} '{print $$4}'`; \
+			sites_remaining=0; \
+			sites="`eval $$SORTED_MASTER_SITES_CMD_TMP ${_RANDOMIZE_SITES}`"; \
+			for site in $${sites}; do \
+				sites_remaining=$$(($${sites_remaining} + 1)); \
+                        done; \
+			for site in $${sites}; do \
+				sites_remaining=$$(($${sites_remaining} - 1)); \
+			    ${ECHO_MSG} "=> Attempting to fetch $${site}$${file}"; \
+				CKSIZE=`alg=SIZE; ${DISTINFO_DATA}`; \
 				case $${file} in \
 				*/*)	${MKDIR} $${file%/*}; \
 						args="-o $${file} $${site}$${file}";; \
 				*)		args=$${site}$${file};; \
 				esac; \
 				if ${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} $${args} ${FETCH_AFTER_ARGS}; then \
-					continue 2; \
-				fi \
+					actual_size=`stat -f %z "$${file}"`; \
+					if [ -n "${DISABLE_SIZE}" ] || [ -z "$${CKSIZE}" ] || [ $${actual_size} -eq $${CKSIZE} ]; then \
+						continue 2; \
+					else \
+						${ECHO_MSG} "=> Fetched file size mismatch (expected $${CKSIZE}, actual $${actual_size})"; \
+						if [ $${sites_remaining} -gt 0 ]; then \
+							${ECHO_MSG} "=> Trying next site"; \
+							${RM} -f $${file}; \
+						fi; \
+					fi; \
+				fi; \
 			done; \
 			${ECHO_MSG} "=> Couldn't fetch it - please try to retrieve this";\
 			${ECHO_MSG} "=> port manually into ${_DISTDIR} and try again."; \
 			exit 1; \
-	    fi \
-	 done)
+	    fi; \
+	 done
 .if defined(PATCHFILES)
-	@(cd ${_DISTDIR}; \
+	@cd ${_DISTDIR}; \
 	 ${_PATCH_SITES_ENV} ; \
 	 for _file in ${PATCHFILES}; do \
 		file=`${ECHO_CMD} $$_file | ${SED} -E -e 's/:[^:]+$$//'` ; \
-		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
+		if [ $$_file = $$file ]; then	\
+			select='';	\
+		else	\
+			select=`${ECHO_CMD} $${_file##*:} | ${SED} -e 's/,/ /g'` ;	\
+		fi;	\
+		file=`${ECHO_CMD} $$file | ${SED} -E -e 's/:-[^:]+$$//'` ;	\
 		force_fetch=false; \
-		filebasename=`${BASENAME} $$file`; \
+		filebasename=$${file##*/}; \
 		for afile in ${FORCE_FETCH}; do \
-			afile=`${BASENAME} $$afile`; \
+			afile=$${afile##*/}; \
 			if [ "x$$afile" = "x$$filebasename" ]; then \
 				force_fetch=true; \
 			fi; \
 		done; \
 		if [ ! -f $$file -a ! -f $$filebasename -o "$$force_fetch" = "true" ]; then \
-			if [ -L $$file -o -L `${BASENAME} $$file` ]; then \
+			if [ -L $$file -o -L $${file##*/} ]; then \
 				${ECHO_MSG} "=> ${_DISTDIR}/$$file is a broken symlink."; \
 				${ECHO_MSG} "=> Perhaps a filesystem (most likely a CD) isn't mounted?"; \
 				${ECHO_MSG} "=> Please correct this problem and try again."; \
@@ -2094,25 +2116,37 @@ do-fetch:
 			else \
 				SORTED_PATCH_SITES_CMD_TMP="${SORTED_PATCH_SITES_DEFAULT_CMD}" ; \
 			fi; \
-			for site in `eval $$SORTED_PATCH_SITES_CMD_TMP`; do \
-			    ${ECHO_MSG} "=> Attempting to fetch from $${site}."; \
-				DIR=${DIST_SUBDIR}; \
-				pattern="$${DIR:+$$DIR/}`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
-				CKSIZE=`${GREP} "^SIZE ($$pattern)" ${DISTINFO_FILE} | ${AWK} '{print $$4}'`; \
+			sites_remaining=0; \
+			sites="`eval $$SORTED_PATCH_SITES_CMD_TMP`"; \
+			for site in $${sites}; do \
+				sites_remaining=$$(($${sites_remaining} + 1)); \
+			done; \
+			for site in $${sites}; do \
+				sites_remaining=$$(($${sites_remaining} - 1)); \
+			    ${ECHO_MSG} "=> Attempting to fetch $${site}$${file}"; \
+				CKSIZE=`alg=SIZE; ${DISTINFO_DATA}`; \
 				case $${file} in \
 				*/*)	${MKDIR} $${file%/*}; \
 						args="-o $${file} $${site}$${file}";; \
 				*)		args=$${site}$${file};; \
 				esac; \
 				if ${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} $${args} ${FETCH_AFTER_ARGS}; then \
-					continue 2; \
-				fi \
+					if [ -n "${DISABLE_SIZE}" ] || [ -z "$${CKSIZE}" ] || [ $${actual_size} -eq $${CKSIZE} ]; then \
+						continue 2; \
+					else \
+						${ECHO_MSG} "=> Fetched file size mismatch (expected $${CKSIZE}, actual $${actual_size})"; \
+						if [ $${sites_remaining} -gt 1 ]; then \
+							${ECHO_MSG} "=> Trying next site"; \
+							${RM} -f $${file}; \
+						fi; \
+					fi; \
+				fi; \
 			done; \
 			${ECHO_MSG} "=> Couldn't fetch it - please try to retrieve this";\
 			${ECHO_MSG} "=> port manually into ${_DISTDIR} and try again."; \
 			exit 1; \
 	    fi; \
-	 done)
+	 done
 .endif
 .endif
 
