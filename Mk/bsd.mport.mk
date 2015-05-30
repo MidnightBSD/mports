@@ -3021,9 +3021,7 @@ makesum: check-checksum-algorithms
 					$$alg_executable $$file >> ${DISTINFO_FILE}; \
 				fi; \
 			done; \
-			if [ -z "${NO_SIZE}" ]; then \
-				${ECHO_CMD} "SIZE ($$file) = "`${LS} -ALln $$file | ${AWK} '{print $$5}'` >> ${DISTINFO_FILE}; \
-			fi; \
+			${ECHO_CMD} "SIZE ($$file) = `${STAT} -f \"%z\" $$file`" >> ${DISTINFO_FILE}; \
 		done \
 	)
 .endif
