@@ -2,7 +2,7 @@
 
 PORTNAME=	cups
 PORTVERSION=	1.5.4
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -92,7 +92,7 @@ DESCR=		${MASTERDIR}/pkg-descr.client
 .elif defined(CUPS_IMAGE)
 LIB_DEPENDS+=	cups:${PORTSDIR}/${PKGCATEGORY}/cups-client \
 		jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
+		png:${PORTSDIR}/graphics/png \
 		tiff:${PORTSDIR}/graphics/tiff
 # force build if old cups is installed.
 BUILD_DEPENDS+=	cups-client${PKGNAMESUFFIX2}>=${PORTVERSION}:${PORTSDIR}/${PKGCATEGORY}/cups-client
