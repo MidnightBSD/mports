@@ -2150,12 +2150,13 @@ do-fetch:
 .endif
 .endif
 
-#
 # Extract
-#
+
+clean-wrkdir:
+	@${RM} -rf ${WRKDIR}
+
 .if !target(do-extract)
 do-extract:
-	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
 		if ! (cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
@@ -2163,12 +2164,10 @@ do-extract:
 			exit 1; \
 		fi; \
 	done
-.if !defined(EXTRACT_PRESERVE_OWNERSHIP)
 	@if [ ${UID} = 0 ]; then \
 		${CHMOD} -R ug-s ${WRKDIR}; \
 		${CHOWN} -R 0:0 ${WRKDIR}; \
 	fi
-.endif
 .endif
 
 
@@ -2639,8 +2638,8 @@ _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 				do-fetch post-fetch post-fetch-script
 
 _EXTRACT_DEP=	fetch
-_EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
-				pre-extract-script do-extract \
+_EXTRACT_SEQ=	extract-message checksum extract-depends \
+				clean-wrkdir ${WRKDIR} pre-extract pre-extract-script do-extract \
 				post-extract post-extract-script 
 
 _PATCH_DEP=		extract
