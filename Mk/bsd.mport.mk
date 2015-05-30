@@ -1983,6 +1983,11 @@ check-vulnerable:
 	fi
 .endif
 
+# set alg to any of SIZE, SHA256 (or any other checksum algorithm):
+DISTINFO_DATA?= if [ \( -n "${DISABLE_SIZE}" -a -n "${NO_CHECKSUM}" \) -o ! -f "${DISTINFO_FILE}" ]; then exit; fi; \
+	DIR=${DIST_SUBDIR}; ${AWK} -v alg=$$alg -v file=$${DIR:+$$DIR/}$${file} \
+		'$$1 == alg && $$2 == "(" file ")" {print $$4}' ${DISTINFO_FILE}
+
 # Fetch
 
 .if !target(do-fetch)
@@ -3034,16 +3039,15 @@ checksum: fetch check-checksum-algorithms
 	if [ -f ${DISTINFO_FILE} ]; then \
 		cd ${DISTDIR}; OK=""; \
 		for file in ${_CKSUMFILES}; do \
-			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
-			\
 			ignored="true"; \
+			_file=$${file#${DIST_SUBDIR}/*};	\
 			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 				ignore="false"; \
 				eval alg_executable=\$$$$alg; \
 				\
 				if [ $$alg_executable != "NO" ]; then \
 					MKSUM=`$$alg_executable < $$file`; \
-					CKSUM=`${GREP} "^$$alg ($$pattern)" ${DISTINFO_FILE} | ${AWK} '{print $$4}'`; \
+					CKSUM=`file=$$_file; ${DISTINFO_DATA}`; \
 				else \
 					ignore="true"; \
 				fi; \
