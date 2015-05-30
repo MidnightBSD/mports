@@ -1,5 +1,3 @@
-@exec mkdir -p %D/GNUstep/Applications/WPrefs.app/xpm
-@exec mkdir -p %D/share/WindowMaker/Sounds
 GNUstep/Applications/WPrefs.app/WPrefs
 GNUstep/Applications/WPrefs.app/WPrefs.tiff
 GNUstep/Applications/WPrefs.app/WPrefs.xpm
@@ -10,7 +8,9 @@ GNUstep/Applications/WPrefs.app/tiff/clip.tiff
 GNUstep/Applications/WPrefs.app/tiff/configs.tiff
 GNUstep/Applications/WPrefs.app/tiff/cycleworkspaces.tiff
 GNUstep/Applications/WPrefs.app/tiff/dock.tiff
+GNUstep/Applications/WPrefs.app/tiff/dockclipdrawersection.tiff
 GNUstep/Applications/WPrefs.app/tiff/dontlinkworkspaces.tiff
+GNUstep/Applications/WPrefs.app/tiff/drawer.tiff
 GNUstep/Applications/WPrefs.app/tiff/ergonomic.tiff
 GNUstep/Applications/WPrefs.app/tiff/expert.tiff
 GNUstep/Applications/WPrefs.app/tiff/fonts.tiff
@@ -74,7 +74,6 @@ GNUstep/Applications/WPrefs.app/tiff/workspacename.tiff
 GNUstep/Applications/WPrefs.app/tiff/xis.tiff
 bin/convertfonts
 bin/get-wings-flags
-bin/get-wraster-flags
 bin/get-wutil-flags
 bin/geticonset
 bin/getstyle
@@ -88,6 +87,7 @@ bin/wmagnify
 bin/wmaker
 bin/wmaker.inst
 bin/wmgenmenu
+bin/wmiv
 bin/wmmenugen
 bin/wmsetbg
 bin/wxcopy
@@ -100,30 +100,21 @@ etc/WindowMaker/WindowMaker
 include/WINGs/WINGs.h
 include/WINGs/WINGsP.h
 include/WINGs/WUtil.h
-include/wraster.h
 include/WMaker.h
 lib/libWINGs.a
-lib/libWINGs.la
 lib/libWINGs.so
-lib/libWINGs.so.2
-lib/libWINGs.so.2.0.1
-lib/libWUtil.a
-lib/libWUtil.la
-lib/libWUtil.so
-lib/libWUtil.so.2
-lib/libWUtil.so.2.0.0
-lib/libwraster.a
-lib/libwraster.la
-lib/libwraster.so
-lib/libwraster.so.3
-lib/libwraster.so.3.1.0
+lib/libWINGs.so.3
+lib/libWINGs.so.3.0.0
+lib/libWMaker.a
+lib/libWMaker.so
 lib/libWMaker.so.1
 lib/libWMaker.so.1.0.1
-lib/libWMaker.so
-lib/libWMaker.la
-lib/libWMaker.a
+lib/libWUtil.a
+lib/libWUtil.so
+lib/libWUtil.so.5
+lib/libWUtil.so.5.0.0
 libdata/pkgconfig/WINGs.pc
-libdata/pkgconfig/wrlib.pc
+libdata/pkgconfig/WUtil.pc
 share/WINGs/Images.tiff
 share/WINGs/Images.xpm
 share/WINGs/defaultIcon.tiff
@@ -132,6 +123,8 @@ share/WindowMaker/Backgrounds/BlueImage.jpeg
 share/WindowMaker/IconSets/Default.iconset
 share/WindowMaker/Icons/BitchX.tiff
 share/WindowMaker/Icons/BitchX.xpm
+share/WindowMaker/Icons/Drawer.tiff
+share/WindowMaker/Icons/Drawer.xpm
 share/WindowMaker/Icons/Ear.png
 share/WindowMaker/Icons/Ftp.png
 share/WindowMaker/Icons/GNUstep.tiff
@@ -288,84 +281,120 @@ share/WindowMaker/plmenu.hr
 share/WindowMaker/plmenu.it
 share/WindowMaker/plmenu.ja
 share/WindowMaker/plmenu.ko
+share/WindowMaker/plmenu.nl
 share/WindowMaker/plmenu.pl
 share/WindowMaker/plmenu.ro
 share/WindowMaker/plmenu.sk
 share/WindowMaker/plmenu.zh_CN
 share/WindowMaker/plmenu.zh_TW
 share/WindowMaker/wmmacros
-share/locale/be/LC_MESSAGES/WindowMaker.mo
-share/locale/bg/LC_MESSAGES/WINGs.mo
-share/locale/bg/LC_MESSAGES/WPrefs.mo
-share/locale/bg/LC_MESSAGES/WindowMaker.mo
-share/locale/bs/LC_MESSAGES/WindowMaker.mo
-share/locale/ca/LC_MESSAGES/WINGs.mo
-share/locale/ca/LC_MESSAGES/WPrefs.mo
-share/locale/ca/LC_MESSAGES/WindowMaker.mo
-share/locale/cs/LC_MESSAGES/WINGs.mo
-share/locale/cs/LC_MESSAGES/WPrefs.mo
-share/locale/cs/LC_MESSAGES/WindowMaker.mo
-share/locale/da/LC_MESSAGES/WindowMaker.mo
-share/locale/de/LC_MESSAGES/WINGs.mo
-share/locale/de/LC_MESSAGES/WPrefs.mo
-share/locale/de/LC_MESSAGES/WindowMaker.mo
-share/locale/de/LC_MESSAGES/wmgenmenu.mo
-share/locale/el/LC_MESSAGES/WindowMaker.mo
-share/locale/es/LC_MESSAGES/WPrefs.mo
-share/locale/es/LC_MESSAGES/WindowMaker.mo
-share/locale/es/LC_MESSAGES/wmgenmenu.mo
-share/locale/et/LC_MESSAGES/WPrefs.mo
-share/locale/et/LC_MESSAGES/WindowMaker.mo
-share/locale/fi/LC_MESSAGES/WPrefs.mo
-share/locale/fi/LC_MESSAGES/WindowMaker.mo
-share/locale/fr/LC_MESSAGES/WINGs.mo
-share/locale/fr/LC_MESSAGES/WPrefs.mo
-share/locale/fr/LC_MESSAGES/WindowMaker.mo
-share/locale/fr/LC_MESSAGES/wmgenmenu.mo
-share/locale/gl/LC_MESSAGES/WindowMaker.mo
-share/locale/hr/LC_MESSAGES/WPrefs.mo
-share/locale/hr/LC_MESSAGES/WindowMaker.mo
-share/locale/hu/LC_MESSAGES/WPrefs.mo
-share/locale/hu/LC_MESSAGES/WindowMaker.mo
-share/locale/hy/LC_MESSAGES/WindowMaker.mo
-share/locale/it/LC_MESSAGES/WPrefs.mo
-share/locale/it/LC_MESSAGES/WindowMaker.mo
-share/locale/ja/LC_MESSAGES/WPrefs.mo
-share/locale/ja/LC_MESSAGES/WindowMaker.mo
-share/locale/ko/LC_MESSAGES/WPrefs.mo
-share/locale/ko/LC_MESSAGES/WindowMaker.mo
-share/locale/ms/LC_MESSAGES/WindowMaker.mo
-share/locale/nl/LC_MESSAGES/WindowMaker.mo
-share/locale/no/LC_MESSAGES/WindowMaker.mo
-share/locale/pl/LC_MESSAGES/WindowMaker.mo
-share/locale/pt/LC_MESSAGES/WPrefs.mo
-share/locale/pt/LC_MESSAGES/WindowMaker.mo
-share/locale/pt/LC_MESSAGES/wmgenmenu.mo
-share/locale/ro/LC_MESSAGES/WindowMaker.mo
-share/locale/ru/LC_MESSAGES/WPrefs.mo
-share/locale/ru/LC_MESSAGES/WindowMaker.mo
-share/locale/sk/LC_MESSAGES/WINGs.mo
-share/locale/sk/LC_MESSAGES/WPrefs.mo
-share/locale/sk/LC_MESSAGES/WindowMaker.mo
-share/locale/sv/LC_MESSAGES/WindowMaker.mo
-share/locale/tr/LC_MESSAGES/WindowMaker.mo
-share/locale/zh_CN/LC_MESSAGES/WPrefs.mo
-share/locale/zh_CN/LC_MESSAGES/WindowMaker.mo
-share/locale/zh_TW/LC_MESSAGES/WPrefs.mo
-share/locale/zh_TW/LC_MESSAGES/WindowMaker.mo
-@dirrm GNUstep/Applications/WPrefs.app/tiff
-@dirrm GNUstep/Applications/WPrefs.app/xpm
-@dirrm GNUstep/Applications/WPrefs.app
-@dirrm GNUstep/Applications
-@dirrm GNUstep
-@dirrm etc/WindowMaker
-@dirrm include/WINGs
-@dirrm man/sk/man1
-@dirrm man/sk
-@dirrmtry share/locale/hy/LC_MESSAGES
-@dirrmtry share/locale/hy
-@dirrm share/WINGs
-@dirrm share/WindowMaker/Backgrounds
-@dirrm share/WindowMaker/IconSets
-@dirrm share/WindowMaker/Sounds
-@dirrm share/WindowMaker/Styles
+%%NLS%%share/locale/be/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/bg/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/bg/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/bg/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/bs/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/da/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/de/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/de/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/de/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/de/LC_MESSAGES/wmgenmenu.mo
+%%NLS%%share/locale/el/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/es/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/es/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/es/LC_MESSAGES/wmgenmenu.mo
+%%NLS%%share/locale/et/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/et/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/wmgenmenu.mo
+%%NLS%%share/locale/gl/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/hr/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/hr/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/hy/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/it/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/it/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/ko/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/ko/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/ms/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/wmgenmenu.mo
+%%NLS%%share/locale/no/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/wmgenmenu.mo
+%%NLS%%share/locale/ro/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/WINGs.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/WindowMaker.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/WPrefs.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/WindowMaker.mo
+man/cs/man1/geticonset.1x.gz
+man/cs/man1/getstyle.1x.gz
+man/cs/man1/seticons.1x.gz
+man/cs/man1/setstyle.1x.gz
+man/cs/man1/wdwrite.1x.gz
+man/cs/man1/wmaker.1x.gz
+man/cs/man1/wmsetbg.1x.gz
+man/cs/man1/wxcopy.1x.gz
+man/cs/man1/wxpaste.1x.gz
+man/man1/WPrefs.1x.gz
+man/man1/WindowMaker.1x.gz
+man/man1/get-wings-flags.1.gz
+man/man1/get-wutil-flags.1.gz
+man/man1/geticonset.1x.gz
+man/man1/getstyle.1x.gz
+man/man1/seticons.1x.gz
+man/man1/setstyle.1x.gz
+man/man1/wdread.1.gz
+man/man1/wdwrite.1x.gz
+man/man1/wmagnify.1x.gz
+man/man1/wmaker.1x.gz
+man/man1/wmgenmenu.1.gz
+man/man1/wmmenugen.1.gz
+man/man1/wmsetbg.1x.gz
+man/man1/wxcopy.1x.gz
+man/man1/wxpaste.1x.gz
+man/man8/upgrade-windowmaker-defaults.8.gz
+man/ru/man1/geticonset.1x.gz
+man/ru/man1/getstyle.1x.gz
+man/ru/man1/seticons.1x.gz
+man/ru/man1/setstyle.1x.gz
+man/ru/man1/wdwrite.1x.gz
+man/ru/man1/wmaker.1x.gz
+man/ru/man1/wmsetbg.1x.gz
+man/ru/man1/wxcopy.1x.gz
+man/ru/man1/wxpaste.1x.gz
+man/sk/man1/geticonset.1x.gz
+man/sk/man1/getstyle.1x.gz
+man/sk/man1/seticons.1x.gz
+man/sk/man1/setstyle.1x.gz
+man/sk/man1/wdwrite.1x.gz
+man/sk/man1/wmaker.1x.gz
+man/sk/man1/wmsetbg.1x.gz
+man/sk/man1/wxcopy.1x.gz
+man/sk/man1/wxpaste.1x.gz
+@dir GNUstep/Applications/WPrefs.app/xpm
+@dir share/WindowMaker/Sounds
