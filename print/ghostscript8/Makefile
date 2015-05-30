@@ -150,8 +150,8 @@ pre-build: pre-build-drivers.mak
 	${LN} -s -f ${LOCALBASE}/lib/libfreetype.so \
 		${WRKSRC}/freetype/objs/freetype214MT_D.so
 
-pre-su-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+pre-install:
+	${MKDIR} ${DATADIR}
 
 post-install-docs:
 	${MKDIR} ${WRKSRC}/contrib/japanese
