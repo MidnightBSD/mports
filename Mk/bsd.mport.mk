@@ -2284,19 +2284,80 @@ run-configure:
 	@(cd ${CONFIGURE_WRKSRC}; ${SETENV} ${MAKE_ENV} ${XMKMF})
 .endif
 
-#
 # Build
-#
-
+# XXX: ${MAKE_ARGS:N${DESTDIRNAME}=*} would be easier but it is not valid with the old fmake
+DO_MAKE_BUILD?= ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
 .if !target(do-build)
-do-build: run-build
+do-build:
+	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
+		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
+			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
+			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT} 75 79 ; \
+			fi; \
+		${FALSE}; \
+		fi)
 .endif
 
-run-build:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET})
+# Check conflicts
 
+.if !target(check-conflicts)
+check-conflicts: check-build-conflicts check-install-conflicts
+.endif
 
+.if !target(check-build-conflicts)
+check-build-conflicts:
+.if ( defined(CONFLICTS) || defined(CONFLICTS_BUILD) ) && !defined(DISABLE_CONFLICTS) && !defined(DEFER_CONFLICTS_CHECK)
+	@for _name in ${CONFLICTS:C/.+/'&'/}; do \
+		if ${MPORT_QUERY} -q name=$${_name} ; then \
+			${ECHO_CMD} -n "===> $${_name} conflicts with installed packages. You need to remove it with mport delete $${_name}"; \
+			exit 1;	 \
+		fi; \
+	done;
+	@for _name in ${CONFLICTS_BUILD:C/.+/'&'/}; do \
+		if ${MPORT_QUERY} -q name=$$_name ; then \
+			${ECHO_CMD} -n "===> $${_name} conflicts with installed packages. You need to remove it with mport delete $${_name}"; \
+			exit 1;  \
+		fi; \
+	done;
+.endif
+.endif
 
+.if !target(identify-install-conflicts)
+identify-install-conflicts:
+.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) ) && !defined(DISABLE_CONFLICTS)
+	@for _name in ${CONFLICTS_INSTALL:C/.+/'&'/}; do \
+                if ${MPORT_QUERY} -q name=$$_name ; then \
+                        ${ECHO_MSG} "===> $${_name} conflicts with installed packages."; \
+			${ECHO_MSG} "      They install files into the same place."; \
+			${ECHO_MSG} "      You may want to stop build with Ctrl + C."; \
+                        sleep 10;  \
+                fi; \
+        done;
+.endif
+.endif
+
+.if !target(check-install-conflicts)
+check-install-conflicts:
+.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) || ( defined(CONFLICTS_BUILD) && defined(DEFER_CONFLICTS_CHECK) ) ) && !defined(DISABLE_CONFLICTS)
+.if defined(DEFER_CONFLICTS_CHECK)
+	@for _name in ${CONFLICTS:C/.+/'&'/} ${CONFLICTS_BUILD:C/.+/'&'/} ${CONFLICTS_INSTALL:C/.+/'&'/}; do \
+		if ${MPORT_QUERY} -q name=$${_name} ; then \
+			${ECHO_CMD} -n "===> $${_name} conflicts with installed packages. You need to remove it with mport delete $${_name}"; \
+			exit 1;  \
+		fi; \
+	done;
+.else
+	@for _name in ${CONFLICTS_INSTALL:C/.+/'&'/}; do \
+		if ${MPORT_QUERY} -q name=$$_name ; then \
+			${ECHO_MSG} "===> $${_name} conflicts with installed packages."; \
+			${ECHO_MSG} "      They install files into the same place."; \
+			${ECHO_MSG} "      You may want to stop build with Ctrl + C."; \
+			exit 1;  \
+		fi; \
+	done;
+.endif # defined(DEFER_CONFLICTS_CHECK)
+.endif
+.endif
 
 
 #
@@ -2629,8 +2690,9 @@ security-check:
 _TARGETS_STAGES=SANITY FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE INSTALL UPDATE
 
 _SANITY_SEQ=	pre-everything check-makefile check-categories \
-				check-makevars check-desktop-entries check-depends \
-				check-deprecated check-vulnerable check-license buildanyway-message \
+				check-makevars check-desktop-entries \
+				check-depends identify-install-conflicts check-deprecated \
+				check-vulnerable check-license buildanyway-message \
 				options-message
 
 _FETCH_DEP=		check-sanity
@@ -2638,7 +2700,7 @@ _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 				do-fetch post-fetch post-fetch-script
 
 _EXTRACT_DEP=	fetch
-_EXTRACT_SEQ=	extract-message checksum extract-depends \
+_EXTRACT_SEQ=	check-build-conflicts extract-message checksum extract-depends \
 				clean-wrkdir pre-extract pre-extract-script do-extract \
 				post-extract post-extract-script 
 
