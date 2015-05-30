@@ -167,9 +167,9 @@ post-install:
 		${STAGEDIR}${DATADIR}/${PORTVERSION}/Resource/Init
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/${PORTVERSION}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gsc ${STAGEDIR}${PREFIX}/bin/gsx
-	${LN} -sf gsc ${STAGEDIR}${PREFIX}/bin/gs
-	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont \
-	    ${STAGEDIR}${CIDFONTDIR}/CIDFont
+	${LN} -sf gsc ${PREFIX}/bin/gs
+	(cd ${PREFIX}/share/ && ${LN} -s -f fonts/CIDFont \
+	    ghostscript/8.71/Resource/CIDFont)
 
 .if ${PORT_OPTIONS:MDOCS}
 post-install: post-install-docs

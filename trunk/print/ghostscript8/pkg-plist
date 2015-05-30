@@ -680,4 +680,4 @@ man/man1/wftopfa.1.gz
 %%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-EnvDLRotated.ps
 %%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Letter.ps
 %%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-LetterRotated.ps
-%%CIDFONTDIR%%/CIDFont
+share/ghostscript/8.71/Resource/CIDFont
