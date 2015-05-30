@@ -1478,36 +1478,15 @@ patch-sites-default: patch-sites-DEFAULT
 master-sites: master-sites-DEFAULT
 patch-sites: patch-sites-DEFAULT
 
-.if defined(IGNOREFILES)
-.if !defined(CKSUMFILES)
-CKSUMFILES!=	\
-	for file in ${ALLFILES}; do \
-		ignore=0; \
-		for tmp in ${IGNOREFILES}; do \
-			if [ "$$file" = "$$tmp" ]; then \
-				ignore=1; \
-			fi; \
-		done; \
-		if [ "$$ignore" = 0 ]; then \
-			${ECHO_CMD} "$$file"; \
-		fi; \
-	done
-.endif
-.else
 CKSUMFILES=		${ALLFILES}
-.endif
 
 # List of all files, with ${DIST_SUBDIR} in front.  Used for checksum.
 .if defined(DIST_SUBDIR)
 .if defined(CKSUMFILES) && ${CKSUMFILES}!=""
 _CKSUMFILES?=	${CKSUMFILES:S/^/${DIST_SUBDIR}\//}
 .endif
-.if defined(IGNOREFILES) && ${IGNOREFILES}!=""
-_IGNOREFILES?=	${IGNOREFILES:S/^/${DIST_SUBDIR}\//}
-.endif
 .else
 _CKSUMFILES?=	${CKSUMFILES}
-_IGNOREFILES?=	${IGNOREFILES}
 .endif
 
 # This is what is actually going to be extracted, and is overridable
@@ -3047,21 +3026,15 @@ makesum: check-checksum-algorithms
 			fi; \
 		done \
 	)
-	@for file in ${_IGNOREFILES}; do \
-		for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
-			${ECHO_CMD} "$$alg ($$file) = IGNORE" >> ${DISTINFO_FILE}; \
-		done; \
-	done
 .endif
 
 .if !target(checksum)
 checksum: fetch check-checksum-algorithms
-	@ \
-	\
+	@set -e ; \
 	${checksum_init} \
 	\
 	if [ -f ${DISTINFO_FILE} ]; then \
-	(	cd ${DISTDIR}; OK=""; \
+		cd ${DISTDIR}; OK=""; \
 		for file in ${_CKSUMFILES}; do \
 			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
 			\
@@ -3080,13 +3053,6 @@ checksum: fetch check-checksum-algorithms
 				if [ $$ignore = "false" -a -z "$$CKSUM" ]; then \
 					${ECHO_MSG} "=> No $$alg checksum recorded for $$file."; \
 					ignore="true"; \
-				fi; \
-				\
-				if [ "$$CKSUM" = "IGNORE" ]; then \
-					${ECHO_MSG} "=> $$alg Checksum for $$file is set to IGNORE in distinfo file even though"; \
-					${ECHO_MSG} "   the file is not in the "'$$'"{IGNOREFILES} list."; \
-					ignore="true"; \
-					OK=${FALSE}; \
 				fi; \
 				\
 				if [ $$ignore = "false" ]; then \
@@ -3116,67 +3082,9 @@ checksum: fetch check-checksum-algorithms
 			\
 		done; \
 		\
-		for file in ${_IGNOREFILES}; do \
-			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
-			\
-			ignored="true"; \
-			alreadymatched="false"; \
-			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
-				ignore="false"; \
-				eval alg_executable=\$$$$alg; \
-				\
-				if [ $$alg_executable != "NO" ]; then \
-					CKSUM=`${GREP} "^$$alg ($$pattern)" ${DISTINFO_FILE} | ${AWK} '{print $$4}'`; \
-				else \
-					ignore="true"; \
-				fi; \
-				\
-				if [ $$ignore = "false" ]; then \
-					if [ -z "$$CKSUM" ]; then \
-						${ECHO_MSG} "=> No $$alg checksum for $$file recorded (expected IGNORE)"; \
-						OK="$$alreadymatched"; \
-					elif [ $$CKSUM != "IGNORE" ]; then \
-						${ECHO_MSG} "=> $$alg Checksum for $$file is not set to IGNORE in distinfo file even though"; \
-						${ECHO_MSG} "   the file is in the "'$$'"{IGNOREFILES} list."; \
-						OK="false"; \
-					else \
-						ignored="false"; \
-						alreadymatched="true"; \
-					fi; \
-				fi; \
-			done; \
-			\
-			if ( [ $$ignored = "true" ]) ; then \
-				${ECHO_MSG} "=> No suitable checksum found for $$file."; \
-				OK="false"; \
-			fi; \
-			\
-		done; \
-		\
-		if [ "$${OK:=true}" = "retry" ] && [ ${FETCH_REGET} -gt 0 ]; then \
-			${ECHO_MSG} "===>  Refetch for ${FETCH_REGET} more times files: $$refetchlist"; \
-			if ( cd ${.CURDIR} && \
-			    ${MAKE} ${.MAKEFLAGS} FORCE_FETCH="$$refetchlist" FETCH_REGET="`${EXPR} ${FETCH_REGET} - 1`" fetch); then \
-				  if ( cd ${.CURDIR} && \
-			        ${MAKE} ${.MAKEFLAGS} FETCH_REGET="`${EXPR} ${FETCH_REGET} - 1`" checksum ); then \
-				      OK="true"; \
-				  fi; \
-			fi; \
-		fi; \
-		\
-		if [ "$$OK" != "true" -a ${FETCH_REGET} -eq 0 ]; then \
-			${ECHO_MSG} "===>  Giving up on fetching files: $$refetchlist"; \
-			${ECHO_MSG} "Make sure the Makefile and distinfo file (${DISTINFO_FILE})"; \
-			${ECHO_MSG} "are up to date.  If you are absolutely sure you want to override this"; \
-			${ECHO_MSG} "check, type \"make NO_CHECKSUM=yes [other args]\"."; \
-			exit 1; \
-		fi; \
-		if [ "$$OK" != "true" ]; then \
-			exit 1; \
-		fi \
-	); \
 	elif [ -n "${_CKSUMFILES:M*}" ]; then \
 		${ECHO_MSG} "=> No checksum file (${DISTINFO_FILE})."; \
+		exit 1; \
 	fi
 .endif
 
