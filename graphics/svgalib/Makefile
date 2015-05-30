@@ -16,6 +16,8 @@ DOS2UNIX_FILES=	utils/gtf/gtf.h utils/gtf/scitech.h
 SHEBANG_FILES=	utils/svgakeymap
 USE_LDCONFIG=	yes
 
+FAKE_OPTS=	trueprefix
+
 ALL_TARGET=	shared static
 
 .include <bsd.port.pre.mk>
@@ -23,8 +25,11 @@ ALL_TARGET=	shared static
 .if ${ARCH} != "i386"
 MAKE_ENV=	NO_ASM=y
 .endif
+MAKE_ENV+=	FREEBSD=yes __FREEBSD__=yes
 
 post-patch: .SILENT
+	${REINPLACE_CMD} -e 's/__FREEBSD__/__MidnightBSD__/g' \
+		${WRKSRC}/utils/gtf/scitech.h
 	${MKDIR} ${WRKSRC}/include/linux
 # Fix for GCC 4.1
 	${REINPLACE_CMD} -e '30d' ${WRKSRC}/src/vgabg.h
