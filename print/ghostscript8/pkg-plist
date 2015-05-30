@@ -2,7 +2,7 @@ bin/bdftops
 bin/dumphint
 bin/dvipdf
 bin/eps2eps
-%%GS_dmprt%%bin/ert
+%%GS_epag%%bin/ert
 bin/fixmswrd.pl
 bin/font2c
 bin/gs
@@ -37,10 +37,31 @@ bin/wftopfa
 include/ghostscript/gdevdsp.h
 include/ghostscript/iapi.h
 include/ghostscript/ierrors.h
-@dirrm include/ghostscript
 lib/libgs.so
 lib/libgs.so.%%SHLIB_VER%%
 lib/libgs.so.%%GS_VERSION%%
+man/man1/dvipdf.1.gz
+man/man1/eps2eps.1.gz
+man/man1/font2c.1.gz
+%%GS_pcl3%%man/man1/gs-pcl3.1.gz
+man/man1/gs.1.gz
+man/man1/gslp.1.gz
+man/man1/gsnd.1.gz
+%%GS_pcl3%%man/man1/pcl3opts.1.gz
+man/man1/pdf2dsc.1.gz
+man/man1/pdf2ps.1.gz
+man/man1/pdfopt.1.gz
+man/man1/pf2afm.1.gz
+man/man1/pfbtopfa.1.gz
+man/man1/printafm.1.gz
+man/man1/ps2ascii.1.gz
+man/man1/ps2epsi.1.gz
+man/man1/ps2pdf.1.gz
+man/man1/ps2pdf12.1.gz
+man/man1/ps2pdf13.1.gz
+man/man1/ps2pdfwr.1.gz
+man/man1/ps2ps.1.gz
+man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-EUC-H
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-EUC-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-H
@@ -387,9 +408,9 @@ lib/libgs.so.%%GS_VERSION%%
 %%DATADIR%%/%%GS_VERSION%%/examples/tiger.eps
 %%DATADIR%%/%%GS_VERSION%%/examples/vasarely.ps
 %%DATADIR%%/%%GS_VERSION%%/examples/waterfal.ps
-%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIcidfmap
-%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIconfig
-%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIfontmap
+%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIcidfmap
+%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIconfig
+%%DATADIR%%/%%GS_VERSION%%/Resource/Init/FAPIfontmap
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/FCOfontmap-PCLPS2
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/Fontmap
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/Fontmap.GS
@@ -457,12 +478,10 @@ lib/libgs.so.%%GS_VERSION%%
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/pdf_rbld.ps
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/pdf_sec.ps
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/xlatmap
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Init
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/CNS1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/GB1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/Japan1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/Korea1-WMode
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID
 %%DATADIR%%/%%GS_VERSION%%/lib/ht_ccsto.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/acctest.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/addxchar.ps
@@ -662,15 +681,3 @@ lib/libgs.so.%%GS_VERSION%%
 %%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Letter.ps
 %%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-LetterRotated.ps
 %%CIDFONTDIR%%/CIDFont
-%%GS_pcl3%%@dirrm %%DATADIR%%/%%GS_VERSION%%/pcl3
-@dirrm %%DATADIR%%/%%GS_VERSION%%/lib
-@dirrm %%DATADIR%%/%%GS_VERSION%%/examples
-@dirrm %%DATADIR%%/%%GS_VERSION%%/doc
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Font
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Encoding
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/ColorSpace
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/CMap
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource
-@dirrmtry %%DATADIR%%/%%GS_VERSION%%
-@dirrmtry %%DATADIR%%

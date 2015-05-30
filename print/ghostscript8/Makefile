@@ -1,16 +1,18 @@
-# $MidnightBSD$
+# Created by: Andreas Klemm <andreas@klemm.gtn.com>
+# $FreeBSD: head/print/ghostscript8/Makefile 358556 2014-06-20 11:15:57Z amdmi3 $
 
-PORTNAME=	ghostscript8
+PORTNAME=	ghostscript
 PORTVERSION=	8.71
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://downloads.ghostscript.com/public/:gs_srcs \
 		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
 		ftp://mirror.cs.wisc.edu/pub/mirrors/ghost/GPL/gs${PORTVERSION:S/.//}/:gs_srcs \
 		http://www.humblesoft.com/pub/:epag
 MASTER_SITE_SUBDIR=	ghostscript/:gs_srcs
-DISTNAME=	${PORTNAME:S,8$,,}-${PORTVERSION}
+PKGNAMESUFFIX=	8
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:gs_srcs ${EPAG_SRCS}:epag
-DIST_SUBDIR=	${PORTNAME:S,8$,,}
+DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 
@@ -19,41 +21,47 @@ COMMENT=	Ghostscript 8.x PostScript interpreter
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2 \
-		jasper:${PORTSDIR}/graphics/jasper \
-		jbig2dec:${PORTSDIR}/graphics/jbig2dec \
-		jpeg:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		tiff:${PORTSDIR}/graphics/tiff
-RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME:S,8,,}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libjasper.so:${PORTSDIR}/graphics/jasper \
+		libjbig2dec.so:${PORTSDIR}/graphics/jbig2dec \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libpaper.so:${PORTSDIR}/print/libpaper \
+		libtiff.so:${PORTSDIR}/graphics/tiff
+RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
 
-CONFLICTS=	gambc-[0-9]* ghostscript[79]-[0-9]* \
-			ghostscript[79]-*-[0-9]*
+CONFLICTS_INSTALL= \
+		gambc-[0-9]* \
+		ghostscript[79]-[0-9]* \
+		ghostscript[79]-nox11-[0-9]* \
+		ghostscript9-agpl-[0-9]* \
+		ghostscript9-agpl-nox11-[0-9]*
 
-USES=		gmake tar:xz
+USES=		gmake pkgconfig tar:xz shebangfix
+SHEBANG_FILES=	${WRKSRC}/lib/fixmswrd.pl
 WANT_GNOME=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes
 
+MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV=	CFLAGS_STANDARD="${CFLAGS}" \
 		XCFLAGS="${XCFLAGS}" XLDFLAGS="${XLDFLAGS}" \
-		EXTRALIBS="${EXTRALIBS}" \
 		SOC_LOADER="dxmainc.c"
 CONFIGURE_ENV=	${MAKE_ENV}
-LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-compile-inits \
 		--enable-contrib \
 		--enable-dynamic \
 		--with-ijs \
 		--with-jasper \
+		--with-libpaper \
 		--with-drivers=""
 CPPFLAGS+=	-DUPD_SIGNAL=0 -I. \
 		-I${WRKSRC}/jasper/src/libjasper/include \
-		-I${LOCALBASE}/include/libpng15 \
 		-I${LOCALBASE}/include
-XCFLAGS=	${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib
+XCFLAGS=	${PTHREAD_CFLAGS} \
+		-DA4
 XLDFLAGS=	${PTHREAD_LIBS}
 
 PLIST_SUB=	GS_VERSION="${PORTVERSION}" \
@@ -61,63 +69,29 @@ PLIST_SUB=	GS_VERSION="${PORTVERSION}" \
 SUB_FILES=	pkg-message
 SUB_LIST=	DATADIR=${DATADIR} PORTVERSION=${PORTVERSION}
 PKGMESSAGE=	${WRKDIR}/pkg-message
-DATADIR=	${PREFIX}/share/${PORTNAME:S,8$,,}
 
-OPTIONS=	A4SIZE	"Set A4 (not Letter) as a default paper size"	off \
-		CUPS	"Enable CUPS support"	on \
-		FONTCONFIG	"fontconfig support"	on \
-		FT_BRIDGE	"FreeType bridge"	off \
-		GTK	"GTK frontend"	off \
-		X11	"X11 support"	on
-
-MAN1=		dvipdf.1 font2c.1 gs.1 gslp.1 gsnd.1 \
-		pdf2dsc.1 pdf2ps.1 pdfopt.1 pf2afm.1 pfbtopfa.1 printafm.1 \
-		ps2ascii.1 ps2epsi.1 ps2pdf.1 ps2pdfwr.1 ps2ps.1 wftopfa.1
-MLINKS=		gslp.1 gsbj.1 \
-		gslp.1 gsdj.1 \
-		gslp.1 gsdj500.1 \
-		gslp.1 gslj.1 \
-		ps2pdf.1 ps2pdf12.1 \
-		ps2pdf.1 ps2pdf13.1 \
-		ps2ps.1 eps2eps.1
+OPTIONS_DEFINE=	X11 DOCS CAIRO CUPS FONTCONFIG GTK2 ICONV
+OPTIONS_DEFAULT=X11 DOCS CAIRO CUPS FONTCONFIG      ICONV
+OPTIONS_SUB=	yes
+FONTCONFIG_DESC=Enable fontconfig support
+NO_OPTIONS_SORT=yes
 
 CIDFONTDIR=	${DATADIR}/${PORTVERSION}/Resource
 EXCLUDE_DIRS=	jbig2dec jpeg expat jasper libpng tiff zlib
 
 .include "Makefile.drivers"
-.include <bsd.port.pre.mk>
-.include "${FILESDIR}/Makefile.drivers_post"
+.include <bsd.mport.options.mk>
 
-.for D in ${OPTIONS:MGS_*:S/^GS_//}
-.if !defined(WITHOUT_GS_${D})
-PLIST_SUB+=	GS_${D}=""
-.else
-PLIST_SUB+=	GS_${D}="@comment "
-.endif
-.endfor
+MASTERDIR?=	${.CURDIR}
+.include "${MASTERDIR}/files/Makefile.drivers_post"
 
-.if !defined(WITH_LETTERSIZE)
-.if defined(A4) || defined(WITH_A4SIZE)
-XCFLAGS+=	-DA4
-MSG_PAPERSIZE=	"NOTE: Default paper size will be A4."
-.endif
-.endif
+FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+FONTCONFIG_CONFIGURE_ENABLE=	fontconfig
 
-.if !defined(WITHOUT_FONTCONFIG)
-LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
-CONFIGURE_ARGS+=	--enable-fontconfig
-.else
-CONFIGURE_ARGS+=	--disable-fontconfig
-.endif
-
-.if !defined(WITHOUT_FT_BRIDGE)
-LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
+# FT_BRIDGE=1 by default
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
 MAKE_ENV+=	FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".so"
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2
-PLIST_SUB+=	FAPI=""
-.else
-PLIST_SUB+=	FAPI="@comment "
-.endif
 
 ALL_TARGET=	so
 INSTALL_TARGET=	soinstall
@@ -139,25 +113,27 @@ PORTDOC_FILES=	japanese/Gdevlips.htm japanese/README.gs550j		\
 	lxm3200-tweaked/RELEASE_NOTES					\
 	lxm3200-tweaked/Z12-Z31-QuickSetup md2k_md5k/README.jis
 
-pre-everything::
-	@${ECHO_MSG} ${MSG_PAPERSIZE}
-
 post-patch:
 	${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}|g ; \
-		 s|%%GS_VERSION%%|${PORTVERSION}|g' \
-			${WRKSRC}/contrib/japanese/dmp_site.ps
+	    s|%%GS_VERSION%%|${PORTVERSION}|g' \
+	    ${WRKSRC}/contrib/japanese/dmp_site.ps
 
 pre-build-drivers.mak:
 	@${ECHO_CMD} '# automatically generated' > ${WRKSRC}/base/drivers.mak
 .for N in ${DEVS_LIST}
 	@${ECHO_CMD} 'DEVICE_${N}=' >> ${WRKSRC}/base/drivers.mak
 .endfor
-.for D in ${OPTIONS:MGS_*:S/^GS_//}
+.for D in ${OPTIONS_DEFINE:MGS_*:S/^GS_//} \
+	${OPTIONS_MULTI_X11:MGS_*:S/^GS_//} \
+	${OPTIONS_GROUP_ICONV:MGS_*:S/^GS_//} \
+	${OPTIONS_GROUP_SVGALIB:MGS_*:S/^GS_//}
 .for N in ${DEVS_LIST}
-.if defined(WITH_GS_${D})
+.if ${PORT_OPTIONS:MGS_${D}}
+.if !defined(OPTIONS_UNSET) || !${OPTIONS_UNSET:MGS_${D}}
 .for X in ${DEVICE_${N}:M${D}.dev}
 	@${ECHO_CMD} 'DEVICE_${N}+= $$(DD)${D}.dev'  >> ${WRKSRC}/base/drivers.mak
 .endfor
+.endif
 .endif
 .endfor
 .endfor
@@ -165,7 +141,6 @@ pre-build-drivers.mak:
 pre-build: pre-build-drivers.mak
 	${MKDIR} ${WRKSRC}/obj
 	${MKDIR} ${WRKSRC}/bin
-.if defined(WITH_FT_BRIDGE)
 	${MKDIR} ${WRKSRC}/freetype/include
 	${LN} -s -f ${LOCALBASE}/include/ft2build.h \
 		${WRKSRC}/freetype/include/ft2build.h
@@ -174,36 +149,30 @@ pre-build: pre-build-drivers.mak
 	${MKDIR} ${WRKSRC}/freetype/objs
 	${LN} -s -f ${LOCALBASE}/lib/libfreetype.so \
 		${WRKSRC}/freetype/objs/freetype214MT_D.so
-.endif
 
-pre-install:
-	${MKDIR} ${DATADIR}
+pre-su-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}
 
 post-install-docs:
 	${MKDIR} ${WRKSRC}/contrib/japanese
 	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* ${WRKSRC}/contrib/japanese
-	${MKDIR} ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/contrib && \
 		${TAR} -cf - ${PORTDOC_FILES} | \
-		( cd ${DOCSDIR} && ${TAR} -xof - )
-
-.if defined(WITH_FT_BRIDGE)
-post-install-fapi:
-	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap			\
-		${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap	\
-		${DATADIR}/${PORTVERSION}/Resource/Init
-
-post-install: post-install-fapi
-.endif
+		( cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof - )
 
 post-install:
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/${PORTVERSION}
-	${STRIP_CMD} ${PREFIX}/bin/gsc ${PREFIX}/bin/gsx
-	${LN} -sf gsc ${PREFIX}/bin/gs
-	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont ${CIDFONTDIR}/CIDFont
+	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap			\
+		${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap	\
+		${STAGEDIR}${DATADIR}/${PORTVERSION}/Resource/Init
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/${PORTVERSION}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gsc ${STAGEDIR}${PREFIX}/bin/gsx
+	${LN} -sf gsc ${STAGEDIR}${PREFIX}/bin/gs
+	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont \
+	    ${STAGEDIR}${CIDFONTDIR}/CIDFont
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 post-install: post-install-docs
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
