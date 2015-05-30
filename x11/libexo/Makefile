@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libexo
-PORTVERSION=	0.10.3
+PORTVERSION=	0.10.6
 CATEGORIES=	x11 xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITES=	XFCE/src/xfce/${PORTNAME:C/lib//}/${PORTVERSION:R}
 DISTNAME=	exo-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
@@ -24,7 +24,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 USES=		desktop-file-utils gmake libtool pathfix perl5 \
-		pkgconfig gettext-tools xfce tar:bzip2
+		pkgconfig gettext-tools tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	libmenu
