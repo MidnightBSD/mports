@@ -2639,7 +2639,7 @@ _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 
 _EXTRACT_DEP=	fetch
 _EXTRACT_SEQ=	extract-message checksum extract-depends \
-				clean-wrkdir ${WRKDIR} pre-extract pre-extract-script do-extract \
+				clean-wrkdir pre-extract pre-extract-script do-extract \
 				post-extract post-extract-script 
 
 _PATCH_DEP=		extract
