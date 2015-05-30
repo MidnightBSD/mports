@@ -3005,7 +3005,7 @@ checksum_init=\
 
 .if !target(makesum)
 makesum: check-checksum-algorithms
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} fetch NO_CHECKSUM=yes \
+	@cd ${.CURDIR} && ${MAKE} fetch NO_CHECKSUM=yes \
 		DISABLE_SIZE=yes
 	@if [ -f ${DISTINFO_FILE} ]; then ${CAT} /dev/null > ${DISTINFO_FILE}; fi
 	@( \
