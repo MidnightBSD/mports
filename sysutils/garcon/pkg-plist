@@ -16,6 +16,7 @@ include/garcon-1/garcon/garcon-menu.h
 include/garcon-1/garcon/garcon.h
 lib/libgarcon-1.so
 lib/libgarcon-1.so.0
+lib/libgarcon-1.so.0.0.0
 libdata/pkgconfig/garcon-1.pc
 share/desktop-directories/xfce-accessories.directory
 share/desktop-directories/xfce-development.directory
