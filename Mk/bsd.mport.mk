@@ -2077,16 +2077,16 @@ do-fetch:
 	    fi; \
 	 done
 .if defined(PATCHFILES)
-	@cd ${_DISTDIR}; \
-	 ${_PATCH_SITES_ENV} ; \
-	 for _file in ${PATCHFILES}; do \
+	@cd ${_DISTDIR};\
+	${_PATCH_SITES_ENV} ; \
+	for _file in ${PATCHFILES}; do \
 		file=`${ECHO_CMD} $$_file | ${SED} -E -e 's/:[^:]+$$//'` ; \
 		if [ $$_file = $$file ]; then	\
 			select='';	\
 		else	\
 			select=`${ECHO_CMD} $${_file##*:} | ${SED} -e 's/,/ /g'` ;	\
 		fi;	\
-		file=`${ECHO_CMD} $$file | ${SED} -E -e 's/:-[^:]+$$//'` ;	\
+		file=`${ECHO_CMD} $$file | ${SED} -E -e 's/:-[^:]+$$//'` ; \
 		force_fetch=false; \
 		filebasename=$${file##*/}; \
 		for afile in ${FORCE_FETCH}; do \
@@ -2131,6 +2131,7 @@ do-fetch:
 				*)		args=$${site}$${file};; \
 				esac; \
 				if ${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} $${args} ${FETCH_AFTER_ARGS}; then \
+					actual_size=`stat -f %z "$${file}"`; \
 					if [ -n "${DISABLE_SIZE}" ] || [ -z "$${CKSIZE}" ] || [ $${actual_size} -eq $${CKSIZE} ]; then \
 						continue 2; \
 					else \
@@ -2180,35 +2181,48 @@ _SLEEP=sleep
 .endif
 
 # Patch
+
 .if !target(do-patch)
 do-patch:
 .if defined(PATCHFILES)
 	@${ECHO_MSG} "===>  Applying distribution patches for ${PKGNAME}"
-	@(cd ${_DISTDIR}; \
-	  for i in ${_PATCHFILES}; do \
+	@(set -e; \
+	cd ${_DISTDIR}; \
+	patch_dist_strip () { \
+		case "$$1" in \
+		${_PATCH_DIST_STRIP_CASES} \
+		esac; \
+	}; \
+	for i in ${_PATCHFILES}; do \
 		if [ ${PATCH_DEBUG_TMP} = yes ]; then \
 			${ECHO_MSG} "===>   Applying distribution patch $$i" ; \
 		fi; \
 		case $$i in \
-			*.Z|*.gz) \
-				${GZCAT} $$i | ${PATCH} ${PATCH_DIST_ARGS}; \
-				;; \
-			*.bz2) \
-				${BZCAT} $$i | ${PATCH} ${PATCH_DIST_ARGS}; \
-				;; \
-			*) \
-				${PATCH} ${PATCH_DIST_ARGS} < $$i; \
-				;; \
-		esac; \
-	  done)
+		*.Z|*.gz) ${GZCAT} $$i ;; \
+		*.bz2) ${BZCAT} $$i ;; \
+		*.xz) ${XZCAT} $$i ;; \
+		*) ${CAT} $$i ;; \
+		esac | ${PATCH} ${PATCH_DIST_ARGS} `patch_dist_strip $$i` ; \
+	done)
 .endif
 .if defined(EXTRA_PATCHES)
-	@for i in ${EXTRA_PATCHES}; do \
-		${ECHO_MSG} "===>  Applying extra patch $$i"; \
-		${PATCH} ${PATCH_ARGS} < $$i; \
+	@set -e; \
+	for i in ${EXTRA_PATCHES}; do \
+		case $$i in \
+		*:-p[0-9]) patch_file=$${i%:*} ; patch_strip=$${i##*:} ;; \
+		*) patch_file=$$i ;; \
+		esac ; \
+		${ECHO_MSG} "===>  Applying extra patch $$patch_file" ; \
+		case $$patch_file in \
+		*.Z|*.gz) ${GZCAT} $$patch_file ;; \
+		*.bz2) ${BZCAT} $$patch_file ;; \
+		*.xz) ${XZCAT} $$patch_file ;; \
+		*) ${CAT} $$patch_file ;; \
+		esac | ${PATCH} ${PATCH_ARGS} $$patch_strip ; \
 	done
 .endif
-	@if [ -d ${PATCHDIR} ]; then \
+	@set -e ;\
+	if [ -d ${PATCHDIR} ]; then \
 		if [ "`${ECHO_CMD} ${PATCHDIR}/patch-*`" != "${PATCHDIR}/patch-*" ]; then \
 			${ECHO_MSG} "===>  Applying ${OPSYS} patches for ${PKGNAME}" ; \
 			PATCHES_APPLIED="" ; \
