@@ -18,10 +18,6 @@ SUB_FILES=	pkg-message
 PLIST_FILES=	sbin/cron bin/crontab
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-MAN1=		crontab.1
-MAN5=		crontab.5
-MAN8=		cron.8
-
 do-extract:
 	${MKDIR} ${WRKSRC}
 	cd ${WRKSRC} && ${SH} ${DISTDIR}/${DISTNAME}
