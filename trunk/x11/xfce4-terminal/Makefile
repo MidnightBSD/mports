@@ -2,9 +2,9 @@
 
 PORTNAME=	xfce4-terminal
 PORTVERSION=	0.6.3
+PORTREVISION=	1
 CATEGORIES=	x11 xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=	src/apps/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE/src/apps/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,24 +17,18 @@ LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 glib20 intltool intlhack vte libxml2
-USE_XFCE=	configenv libmenu
+USE_XFCE=	libmenu
 USE_XORG=	x11
-USES=		pkgconfig gmake tar:bzip2
+USES=		pkgconfig gmake gettext-tools xfce tar:bzip2
 
 CONFIGURE_ARGS=	--without-gnome-default-appsdir
 
 OPTIONS_DEFINE=	NLS
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext-runtime
+OPTIONS_SUB=	yes
 
-.include  <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+.include <bsd.port.pre.mk>
 
 post-patch:
 .if ! ${PORT_OPTIONS:MNLS}
@@ -42,4 +36,4 @@ post-patch:
 		s|po \\|terminal|' ${WRKSRC}/Makefile.in
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
