@@ -2,6 +2,7 @@
 
 PORTNAME=	at-spi2-atk
 PORTVERSION=	2.14.1
+PORTREVISION=	1
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -15,7 +16,7 @@ BUILD_DEPENDS=	at-spi2-core>=2.8.0:${PORTSDIR}/accessibility/at-spi2-core
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 RUN_DEPENDS=	at-spi2-core>=2.8.0:${PORTSDIR}/accessibility/at-spi2-core
 
-USES=		gmake libtool pathfix pkgconfig tar:xz
+USES=		cpe gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME=	atk glib20 intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -23,5 +24,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-p2p
 INSTALL_TARGET=	install-strip
+CPE_VENDOR=	gnome
 
 .include <bsd.port.mk>
