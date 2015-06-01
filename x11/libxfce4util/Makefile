@@ -2,44 +2,29 @@
 # $FreeBSD: ports/x11/libxfce4util/Makefile,v 1.35 2008/06/06 14:09:04 edwin Exp $
 
 PORTNAME=	libxfce4util
-PORTVERSION=	4.10.1
-PORTREVISION=	1
+PORTVERSION=	4.12.1
 CATEGORIES=	x11 xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	XFce 4 library with non-graphical helper functions
+COMMENT=	Extension library for the Xfce desktop environment
 
-LICENSE=	lgpl
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		gmake libtool pathfix pkgconfig gettext-tools \
+	xfce tar:bzip2
 USE_GNOME=	glib20 intltool intlhack
-USE_PERL5=	yes
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv
-USES=		pathfix pkgconfig gmake tar:bzip2
+USE_PERL5=	yes
 
-OPTIONS_DEFINE=		NLS DOCS
+CONFIGURE_ARGS=--without-html-dir
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=--with-html-dir=${PREFIX}/share/gtk-doc/html
-PLIST_SUB+=	APIDOCS=""
-.else
-CONFIGURE_ARGS+=--without-html-dir
-PLIST_SUB+=	APIDOCS="@comment "
-.endif
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+NLS_USES=		gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
 
 .include <bsd.port.mk>
