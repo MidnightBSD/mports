@@ -24,7 +24,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 USES=		desktop-file-utils gmake libtool pathfix perl5 \
-		pkgconfig gettext-tools tar:bzip2
+		pkgconfig gettext-tools xfce tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	libmenu
