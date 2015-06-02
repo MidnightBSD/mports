@@ -2,7 +2,7 @@
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -12,14 +12,12 @@ COMMENT=	OMF help system based on the Freedesktop specification
 LICENSE=        gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-    		${LOCALBASE}/share/xml/docbook/${DOCBOOK_VERSION}/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
-		${LOCALBASE}/share/xml/docbook/4.1.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-sk \
+    		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml \
 		bash:${PORTSDIR}/shells/bash
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
     		${LOCALBASE}/bin/getopt:${PORTSDIR}/misc/getopt \
 		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-		${LOCALBASE}/share/xml/docbook/${DOCBOOK_VERSION}/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
-		${LOCALBASE}/share/xml/docbook/4.1.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-sk
+		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
 
 DOCBOOK_VERSION=4.2
 
