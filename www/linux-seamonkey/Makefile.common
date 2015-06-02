@@ -124,7 +124,7 @@ create-plist: build
 	${ECHO_CMD} '@unexec ${FIND} %D/lib/%%APP_NAME%%/${APP_SUBDIR}extensions/ \
 		-depth 1 -type l -delete ${_Q}' >> ${PLIST}
 	cd ${WRKSRC} && ${FIND} -sd . -type d | \
-		${SED} -e "s#^\.#@dirrm lib/%%APP_NAME%%#" >> ${PLIST}
+		${SED} -e "s#^\.#@dir lib/%%APP_NAME%%#" >> ${PLIST}
 .if defined(WANT_GTK218)
 . for f in ${GTK218_FILES}
 	${REINPLACE_CMD} -i '' '/${f:T}/s/^/%%GTK218%%/' ${PLIST}
