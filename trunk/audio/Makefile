@@ -91,6 +91,7 @@ SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
 SUBDIR += sound-juicer
+SUBDIR += soundtouch
 SUBDIR += speex
 SUBDIR += speexdsp
 SUBDIR += taglib
