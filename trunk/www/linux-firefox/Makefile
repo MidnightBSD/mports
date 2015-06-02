@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	37.0.1
+DISTVERSION=	38.0.1
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
@@ -16,7 +16,7 @@ LICENSE_COMB=	dual
 USES+=		tar:bzip2
 WANT_GTK218=	yes
 
-USE_LINUX_APPS=	dbusglib dbuslibs alsalib alsa-plugins-oss
+USE_LINUX_APPS=	dbusglib dbuslibs alsalib
 
 PREFS_FILE=	${WRKSRC}/${APP_SUBDIR}defaults/preferences/browser-prefs.js
 APP_SUBDIR=	browser/ # plugins, extensions
