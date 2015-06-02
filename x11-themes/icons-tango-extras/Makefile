@@ -3,11 +3,10 @@
 
 PORTNAME=	icons-tango-extras
 PORTVERSION=	0.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/ \
-		${MASTER_SITE_GENTOO}
-MASTER_SITE_SUBDIR=	distfiles
+		GENTOO
 DISTNAME=	tango-icon-theme-extras-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
