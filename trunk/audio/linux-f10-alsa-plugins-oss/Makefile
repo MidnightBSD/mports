@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OSS plugin for ALSA (Linux Fedora 10)
 LICENSE=	unknown
 
-ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	alsalib
