@@ -2,6 +2,7 @@
 
 PORTNAME=	openjpeg
 PORTVERSION=	1.5.2
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/openjpeg.mirror/${PORTVERSION}/
 PKGNAMESUFFIX=	15
@@ -12,7 +13,7 @@ COMMENT=	Open-source JPEG 2000 codec
 LICENSE=	bsd2
 
 LIB_DEPENDS=	liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff
 
 OPTIONS_DEFINE=	DOCS
