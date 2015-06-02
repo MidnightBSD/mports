@@ -21,6 +21,7 @@ include/gphoto2/gphoto2-widget.h
 include/gphoto2/gphoto2.h
 lib/libgphoto2.so
 lib/libgphoto2.so.6
+lib/libgphoto2.so.6.0.0
 lib/libgphoto2/%%VERSION%%/adc65.so
 lib/libgphoto2/%%VERSION%%/agfa_cl20.so
 lib/libgphoto2/%%VERSION%%/aox.so
@@ -87,12 +88,13 @@ lib/libgphoto2/%%VERSION%%/toshiba_pdrm11.so
 lib/libgphoto2/%%VERSION%%/tp6801.so
 lib/libgphoto2/print-camera-list
 lib/libgphoto2_port.so
-lib/libgphoto2_port.so.11
+lib/libgphoto2_port.so.12
+lib/libgphoto2_port.so.12.0.0
 lib/libgphoto2_port/%%VERSION_PORT%%/disk.so
 lib/libgphoto2_port/%%VERSION_PORT%%/ptpip.so
-@comment lib/libgphoto2_port/%%VERSION_PORT%%/usb1.so
-@comment lib/libgphoto2_port/%%VERSION_PORT%%/usbdiskdirect.so
-@comment lib/libgphoto2_port/%%VERSION_PORT%%/usbscsi.so
+lib/libgphoto2_port/%%VERSION_PORT%%/usb1.so
+lib/libgphoto2_port/%%VERSION_PORT%%/usbdiskdirect.so
+lib/libgphoto2_port/%%VERSION_PORT%%/usbscsi.so
 libdata/pkgconfig/libgphoto2.pc
 libdata/pkgconfig/libgphoto2_port.pc
 man/man3/libgphoto2.3.gz
@@ -157,49 +159,38 @@ share/libgphoto2/%%VERSION%%/konica/japanese
 share/libgphoto2/%%VERSION%%/konica/korean
 share/libgphoto2/%%VERSION%%/konica/spanish
 %%NLS%%share/locale/cs/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/cs/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/da/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/da/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/da/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/de/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/de/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/de/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/es/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/es/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/es/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/eu/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/eu/LC_MESSAGES/libgphoto2_port-10.mo
-%%NLS%%share/locale/fi/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/eu/LC_MESSAGES/libgphoto2_port-12.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/fr/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/libgphoto2-6.mo
 %%NLS%%share/locale/it/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/it/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/it/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/ja/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/nl/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/pl/LC_MESSAGES/libgphoto2_port-10.mo
-%%NLS%%share/locale/pt_BR/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/libgphoto2_port-12.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/ru/LC_MESSAGES/libgphoto2_port-10.mo
-%%NLS%%share/locale/sk/LC_MESSAGES/libgphoto2_port-10.mo
-%%NLS%%share/locale/sr/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/libgphoto2_port-12.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/libgphoto2_port-12.mo
+%%NLS%%share/locale/sr/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/sv/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/uk/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/uk/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/uk/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/vi/LC_MESSAGES/libgphoto2_port-10.mo
+%%NLS%%share/locale/vi/LC_MESSAGES/libgphoto2_port-12.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/libgphoto2-6.mo
-%%NLS%%share/locale/zh_CN/LC_MESSAGES/libgphoto2_port-10.mo
-%%NLS%%share/locale/zh_TW/LC_MESSAGES/libgphoto2_port-10.mo
-@dirrm share/libgphoto2/%%VERSION%%/konica
-@dirrm share/libgphoto2/%%VERSION%%
-@dirrm share/libgphoto2
-%%PORTDOCS%%@dirrm share/doc/libgphoto2_port
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/camlibs
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm lib/libgphoto2_port/%%VERSION_PORT%%
-@dirrm lib/libgphoto2_port
-@dirrm lib/libgphoto2/%%VERSION%%
-@dirrm lib/libgphoto2
-@dirrm include/gphoto2
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/libgphoto2_port-12.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/libgphoto2_port-12.mo
