@@ -1,15 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	libgphoto2
-PORTVERSION=	2.5.5.1
-PORTREVISION=	1
+PORTVERSION=	2.5.7
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Universal digital camera control library
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
 
@@ -28,7 +28,7 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-PLIST_SUB=	VERSION="${PORTVERSION}" VERSION_PORT=0.10.0
+PLIST_SUB=	VERSION="${PORTVERSION}" VERSION_PORT=0.12.0
 
 OPTIONS_DEFINE=		DOCS GD JPEG LIBEXIF NLS XML
 OPTIONS_DEFAULT=	GD JPEG LIBEXIF XML
@@ -47,9 +47,7 @@ XML_CONFIGURE_WITH=	libxml2
 
 .include <bsd.mport.options.mk>
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000040
 CONFIGURE_ENV+=	LIBUSB1_CFLAGS=" " LIBUSB1_LIBS="-lusb"
-.endif
 
 post-patch:
 .for i in configure libgphoto2_port/configure
