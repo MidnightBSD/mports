@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	1
+PORTREVISION=	2
 PKGNAMESUFFIX=	-glib
 
 MAINTAINER=	ports@MidnightBSD.org
