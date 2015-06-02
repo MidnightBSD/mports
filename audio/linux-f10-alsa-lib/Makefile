@@ -28,6 +28,7 @@ post-extract:
 	@${RM} -r ${WRKSRC}/etc
 
 post-install:
+	${MKDIR} ${PREFIX}/etc
 	${LN} -fs ${LOCALBASE}/etc/asound.conf ${PREFIX}/etc
 	${RM} ${PREFIX}/usr/lib/alsa-lib/smixer/smixer-ac97.la
 	${RM} ${PREFIX}/usr/lib/alsa-lib/smixer/smixer-hda.la
