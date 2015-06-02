@@ -29,6 +29,7 @@ post-extract:
 			${WRKSRC}/usr/share/man/man1/fc-cache.1.gz
 
 post-install:
+		${MKDIR} ${PREFIX}/etc
 		@${LN} -s ${LOCALBASE}/etc/fonts ${PREFIX}/etc/
 
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
