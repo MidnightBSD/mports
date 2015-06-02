@@ -14,6 +14,7 @@ SUBDIR += etoile-wildmenus
 SUBDIR += gnome-backgrounds
 SUBDIR += gnome-icon-theme-symbolic
 SUBDIR += gnome-themes
+SUBDIR += gnome-themes-standard
 SUBDIR += gtk-engines2
 SUBDIR += gtk-xfce-engine
 SUBDIR += icon-naming-utils
