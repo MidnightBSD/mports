@@ -2,7 +2,7 @@
 
 PORTNAME=	xine
 PORTVERSION=	0.99.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-ui/${PORTVERSION}
 DISTNAME=	${PORTNAME}-ui-${PORTVERSION}
@@ -11,13 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 multimedia player
 LICENSE=	gpl2
 
-LIB_DEPENDS=	xine.1:${PORTSDIR}/multimedia/libxine \
-		png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libxine.so:${PORTSDIR}/multimedia/libxine \
+		libpng.so:${PORTSDIR}/graphics/png
 
-USE_XZ=		yes
+USES=		tar:xz gettext gmake gettext-tools
 USE_XORG=	x11 xt xtst xv xinerama xxf86vm
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-vdr-keys
