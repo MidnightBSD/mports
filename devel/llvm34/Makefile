@@ -11,6 +11,8 @@ PKGNAMESUFFIX=	${LLVM_SUFFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low Level Virtual Machine
 
+LICENSE=	agg
+
 LLVM_SUFFIX=	${PORTVERSION:C/([0-9]\.[0-9]).*/\1/:S/.//g:C/r.//}
 LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
@@ -112,9 +114,11 @@ CONFIGURE_ARGS+=	--disable-docs
 .if ${PORT_OPTIONS:MLIT}
 MAN1SRCS+=		lit.1
 USE_PYTHON=		yes
+USES+=			python
 LIT_COMMANDS=		lit llvm-lit FileCheck
 .else
 USE_PYTHON_BUILD=	yes
+USES+=			python:build
 .endif
 
 .if ${PORT_OPTIONS:MLTOPLUGIN}
