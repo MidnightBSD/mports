@@ -2,6 +2,7 @@
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.22.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -14,12 +15,12 @@ LICENSE=	gpl3
 BUILD_DEPENDS+=	texi2html:${PORTSDIR}/textproc/texi2html
 BUILD_DEPENDS+=	texi2pdf:${PORTSDIR}/print/texinfo
 .endif
-LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
-LIB_DEPENDS+=	gif.5:${PORTSDIR}/graphics/giflib
-LIB_DEPENDS+=	sndfile:${PORTSDIR}/audio/libsndfile
-LIB_DEPENDS+=	ao.4:${PORTSDIR}/audio/libao
+LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libgif.so:${PORTSDIR}/graphics/giflib
+LIB_DEPENDS+=	libsndfile.so:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS+=	libao.so:${PORTSDIR}/audio/libao
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libflite.a:${PORTSDIR}/audio/flite
 
 GNU_CONFIGURE=	yes
