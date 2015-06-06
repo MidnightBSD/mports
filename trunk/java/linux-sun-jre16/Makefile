@@ -10,7 +10,7 @@ EXTRACT_SUFX=	.bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sun Java Runtime Environment 1.6 for Linux
-LICENSE=	restricted
+LICENSE=	other
 
 # must fetch yourself
 IS_INTERACTIVE= yes
@@ -27,7 +27,7 @@ PLIST_SUB+=	T=${APP_HOME:S/^${PREFIX}\///} PORTVERSION=${PORTVERSION}
 PKGINSTALL=	${WRKDIR}/pkg-install
 
 NO_BUILD=	yes
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	xorglibs
 JRE_VERSION=	1.6.0
 JRE_REVISION=	45
