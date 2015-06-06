@@ -14,7 +14,6 @@ SUBDIR += browser3
 SUBDIR += browser35
 SUBDIR += cherokee
 SUBDIR += chromium
-SUBDIR += dillo
 SUBDIR += dummyflash
 SUBDIR += epiphany
 SUBDIR += epiphany-extensions
