@@ -2,9 +2,10 @@
 
 PORTNAME=	wx
 PORTVERSION=	2.8.12
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/${PORTVERSION}
-PKGNAMESUFFIX=	${WXGTK_FLAVOR}
+PKGNAMESUFFIX=	28-${WXGTK_FLAVOR}
 DISTNAME=	wxGTK-${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -12,16 +13,14 @@ COMMENT?=	The wxWidgets GUI toolkit with GTK+ bindings
 
 LICENSE=	lgpl
 
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png\
-		jpeg.11:${PORTSDIR}/graphics/jpeg\
-		tiff.4:${PORTSDIR}/graphics/tiff\
-		expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png\
+		libjpeg.so:${PORTSDIR}/graphics/jpeg\
+		libtiff.so:${PORTSDIR}/graphics/tiff\
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
-USES=		iconv
-USE_BZIP2=	yes
-USE_XORG=	x11 sm xxf86vm xinerama 
+USES=		compiler iconv gmake pkgconfig tar:bzip2
+USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		glu
-USE_GMAKE=	yes
 USE_GNOME=	gtk20 pangox-compat
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libpng=sys\
@@ -35,11 +34,9 @@ CONFIGURE_ARGS=	--with-libpng=sys\
 		--enable-mediactrl\
 		--disable-backtrace\
 		--enable-graphics_ctx
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"\
-		WXCONFIG_CPPFLAGS="${PTHREAD_CFLAGS}"\
-		PTHREAD_LIBS="${PTHREAD_LIBS}"\
-		X11BASE="${LOCALBASE}"
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+CONFIGURE_ENV=	X11BASE="${LOCALBASE}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 PLIST=		${.CURDIR}/pkg-plist
 
 WXGTK_FLAVOR?=	gtk2
@@ -62,7 +59,7 @@ PLIST_SUB+=     GSTREAMER="@comment "
 
 .if ${PORT_OPTIONS:MMSPACK}
 CONFIGURE_ARGS+=--with-libmspack
-LIB_DEPENDS+=	mspack.1:${PORTSDIR}/archivers/libmspack
+LIB_DEPENDS+=	libmspack.so:${PORTSDIR}/archivers/libmspack
 .else
 CONFIGURE_ARGS+=--without-libmspack
 .endif
@@ -74,6 +71,7 @@ RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/wx.h:${PORTSDIR}/x11-toolkits/wxgtk2
 .if ${WXGTK_FLAVOR:M*-common} != ""
 NO_BUILD=	yes
 INSTALL_TARGET=	install-common
+USES+=		gettext-tools
 .else
 USE_LDCONFIG=	yes
 .endif # *-common
@@ -103,10 +101,16 @@ pre-configure:
 CONFIGURE_ARGS+=--enable-unicode
 .endif
 
+.include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == gcc
+CONFIGURE_ARGS+=	--disable-precomp-headers
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|pkg_config_args --cflags|pkg_config_args pangox --cflags|g ; \
 		s|pkg_config_args --libs|pkg_config_args pangox --libs|g' \
 		-e 's|png_check_sig|png_sig_cmp|g' \
 			${WRKSRC}/configure
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
