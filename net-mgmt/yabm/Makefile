@@ -2,7 +2,7 @@
 
 PORTNAME=	yabm
 PORTVERSION=	0.2.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.shapeshifter.se/code/yabm/release/
 
@@ -11,7 +11,7 @@ COMMENT=	Yet Another Bandwidth Meter, somewhat resembles the Linux bwbar
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 USE_RC_SUBR=	yes
 RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=/etc/rc.subr
