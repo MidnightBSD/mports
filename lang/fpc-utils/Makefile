@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-utils
 
@@ -9,7 +9,7 @@ COMMENT=	Free Pascal Compiler utils
 
 LICENSE=	gpl2
 
-USE_FPC=	chm fcl-base fcl-net fcl-passrc fcl-process fcl-res fppkg libcurl
+USE_FPC=	chm fcl-base fcl-net fcl-passrc fcl-process fcl-res libcurl
 
 MASTERDIR=	${.CURDIR}/../../lang/fpc
 WRKUNITDIR=	${FPCSRCDIR}/${PKGNAMESUFFIX:S/-//}
