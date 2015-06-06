@@ -2,7 +2,7 @@
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -23,52 +23,53 @@ LICENSE_FILE=	${WRKSRC}/copyright.h
 LICENSE_PERMS=	
 # non commericial use only
 
-LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
-		tiff:${PORTSDIR}/graphics/tiff \
-		png15:${PORTSDIR}/graphics/png \
-		jasper:${PORTSDIR}/graphics/jasper
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libjasper.so:${PORTSDIR}/graphics/jasper
 
-USE_IMAKE=	yes
+USES=		imake
 USE_XORG=	xext x11 xt
 
-XVDIST=		${DISTDIR}/${DIST_SUBDIR}
-CFLAGS+=	-I${LOCALBASE}/include/libpng15
+OPTIONS_DEFINE=	M17N DOCS
+M17N_DESC=	build with Multilingualization support
 
-pre-patch:
-	@${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/xv-3.10a-jumbo-fix-enh-patch-20070520.txt
-
-post-patch:
-	@${MV} ${WRKSRC}/config.h ${WRKSRC}/config.h.in
-	@${CAT} ${WRKSRC}/config.h.in | \
-		${SED} -e "s@%%LOCALBASE%%@${LOCALBASE}@" > ${WRKSRC}/config.h
-.for i in ${MAN1}
-	@${CP} ${WRKSRC}/docs/${i:R}.man ${WRKSRC}
-.endfor
-.if defined(NOMAN)
-	${REINPLACE_CMD} -e 's,^InstallManPage.*$$,/\* $$& \*/,' \
-		${WRKSRC}/Imakefile
-.endif
-
-post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README.jumbo ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README.pcd ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/epsf.ps ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/xpm.ps ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/xvdocs.ps ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/xvtitle.ps ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/help ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/bmp.doc ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/gif* ${DOCSDIR}
-.endif
-
+.include <bsd.mport.options.mk>
 
 .if defined(CC) && ${CC:T:Mclang}
 # Optimizer crashes with
 # Assertion failed: (isPtrIV == IndVar->getType()->isPointerTy() && "IndVar type must match IVInit type")
 CFLAGS:= ${CFLAGS:S/-O2//g}
+.endif
+
+.if ${PORT_OPTIONS:MM17N}
+MAKE_ENV=	LOCALE_EXTENSION=-DTV_MULTILINGUAL
+DESCR=	${FILESDIR}/pkg-descr
+.endif
+
+pre-patch:
+	${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/xv-3.10a-jumbo-fix-enh-patch-20070520.txt
+
+post-patch:
+	${REINPLACE_CMD} -e "s@%%LOCALBASE%%@${LOCALBASE}@" \
+		${WRKSRC}/config.h
+.for i in bggen.1 vdcomp.1 xcmap.1 xv.1 xvp2p.1
+	${CP} ${WRKSRC}/docs/${i:R}.man ${WRKSRC}
+.endfor
+
+post-install:
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/README.jumbo ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/README.pcd ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/epsf.ps ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/xpm.ps ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/xvdocs.ps ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/xvtitle.ps ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/help ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/bmp.doc ${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/docs/gif* ${DOCSDIR}/
 .endif
 
 .include <bsd.port.mk>
