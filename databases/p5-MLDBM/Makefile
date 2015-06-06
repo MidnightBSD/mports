@@ -16,6 +16,6 @@ BUILD_DEPENDS=	p5-FreezeThaw>=0:${PORTSDIR}/devel/p5-FreezeThaw
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
-PERL5_CONFIGURE=	yes
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
