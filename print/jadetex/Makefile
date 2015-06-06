@@ -7,11 +7,13 @@ CATEGORIES=	print
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A TeX backend for Jade, for typesetting SGML documents
+COMMENT=	TeX backend for Jade, for typesetting SGML documents
 LICENSE=	unknown
 
+DEPRECATED=	this port is obsolete and will go away soon
+
 BUILD_DEPENDS+=	etex:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 RUN_DEPENDS+=	etex:${PORTSDIR}/print/teTeX-base
 
 MAKE_JOBS_UNSAFE=	yes
