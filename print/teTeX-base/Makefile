@@ -46,7 +46,7 @@ CONFIGURE_ARGS=	--disable-multiplatform \
 CONFIGURE_ENV=	INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 		INSTALL_DATA="${INSTALL_DATA}" \
 		INSTALL_PROGRAM="${INSTALL_PROGRAM}"
-CFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
+CFLAGS+=	-I${LOCALBASE}/include
 CONFLICTS=	ja-ptex-base-[0-9]* latex2e-[0-9]* \
 		tex-[0-9]* dvips-[0-9]* xdvi-[0-9]*
 
