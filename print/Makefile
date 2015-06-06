@@ -54,6 +54,7 @@ SUBDIR += t1utils
 SUBDIR += teTeX
 SUBDIR += teTeX-base
 SUBDIR += teTeX-texmf
+SUBDIR += tex-formats
 SUBDIR += tex-texmflocal
 SUBDIR += texinfo
 SUBDIR += texlive-texmf
