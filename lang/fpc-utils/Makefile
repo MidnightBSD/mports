@@ -9,7 +9,7 @@ COMMENT=	Free Pascal Compiler utils
 
 LICENSE=	gpl2
 
-USE_FPC=	chm fcl-base fcl-net fcl-passrc fcl-process fcl-res libcurl
+USE_FPC=	chm fcl-base fcl-net fcl-passrc fcl-process fcl-res
 
 MASTERDIR=	${.CURDIR}/../../lang/fpc
 WRKUNITDIR=	${FPCSRCDIR}/${PKGNAMESUFFIX:S/-//}
