@@ -2,6 +2,7 @@
 
 PORTNAME=	libatomic_ops
 DISTVERSION=	7.4.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.hboehm.info/gc/gc_source/
 
