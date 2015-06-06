@@ -2,7 +2,7 @@
 
 PORTNAME=	open-motif
 PORTVERSION=	2.3.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 # MASTER_SITES=	SF/${PORTNAME}/Motif%202.3.4%20Source%20Code/
 MASTER_SITES=	SF/motif/Motif%202.3.4%20Source%20Code/
@@ -14,7 +14,7 @@ COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 MAKE_JOBS_UNSAFE=	yes
@@ -31,6 +31,7 @@ USE_LDCONFIG=	yes
 MAKE_ENV=	LANG=C
 CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include
 USE_CSTD=	gnu89
+INSTALL_TARGET=	install-strip
 
 DEMOS_SRC=	${WRKSRC}/demos/programs
 
