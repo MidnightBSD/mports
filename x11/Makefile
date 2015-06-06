@@ -29,6 +29,7 @@ SUBDIR += gnome-desktop
 SUBDIR += gnome-desktop-reference
 SUBDIR += gnome-menus
 SUBDIR += gnome-session
+SUBDIR += gnome-shell
 SUBDIR += gnome-terminal
 SUBDIR += gnome3
 SUBDIR += gnome3-lite
