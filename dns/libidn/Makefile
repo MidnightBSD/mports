@@ -12,7 +12,8 @@ COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	 help2man:${PORTSDIR}/misc/help2man
+BUILD_DEPENDS+=	 help2man:${PORTSDIR}/misc/help2man \
+		 automake:${PORTSDIR}/devel/automake
 
 OPTIONS_DEFINE=	DOCS NLS
 
