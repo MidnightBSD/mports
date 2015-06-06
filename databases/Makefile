@@ -53,6 +53,7 @@ SUBDIR += p5-DBIx-ContextualFetch
 SUBDIR += p5-Data-Page
 SUBDIR += p5-Ima-DBI
 SUBDIR += p5-MLDBM
+SUBDIR += p5-MLDBM-Sync
 SUBDIR += p5-Pg
 SUBDIR += p5-SQL-Abstract
 SUBDIR += p5-SQL-Abstract-Limit
