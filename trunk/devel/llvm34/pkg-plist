@@ -24,12 +24,6 @@ bin/llvm-symbolizer%%LLVM_SUFFIX%%
 bin/llvm-tblgen%%LLVM_SUFFIX%%
 bin/macho-dump%%LLVM_SUFFIX%%
 bin/opt%%LLVM_SUFFIX%%
-%%LIT%%bin/lit%%LLVM_SUFFIX%%
-%%LIT%%llvm%%LLVM_SUFFIX%%/bin/lit
-%%LIT%%bin/llvm-lit%%LLVM_SUFFIX%%
-%%LIT%%llvm%%LLVM_SUFFIX%%/bin/llvm-lit
-%%LIT%%bin/FileCheck%%LLVM_SUFFIX%%
-%%LIT%%llvm%%LLVM_SUFFIX%%/bin/FileCheck
 llvm%%LLVM_SUFFIX%%/bin/bugpoint
 llvm%%LLVM_SUFFIX%%/bin/llc
 llvm%%LLVM_SUFFIX%%/bin/lli
@@ -729,23 +723,6 @@ llvm%%LLVM_SUFFIX%%/lib/libLLVMipa.a
 llvm%%LLVM_SUFFIX%%/lib/libLLVMipo.a
 llvm%%LLVM_SUFFIX%%/lib/libLTO.a
 llvm%%LLVM_SUFFIX%%/lib/libLTO.so
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/LitConfig.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/LitTestCase.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/ProgressBar.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/ShCommands.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/ShUtil.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/Test.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/TestRunner.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/TestingConfig.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/__init__.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/discovery.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/formats/__init__.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/formats/base.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/formats/googletest.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/formats/shtest.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/main.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/run.py
-%%LIT%%%%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/util.py
 %%PORTDOCS%%%%DOCSDIR%%/html.tar.gz
 %%PORTDOCS%%%%DOCSDIR%%/html/.buildinfo
 %%PORTDOCS%%%%DOCSDIR%%/html/AliasAnalysis.html
@@ -977,37 +954,3 @@ llvm%%LLVM_SUFFIX%%/lib/libLTO.so
 %%PORTDOCS%%%%DOCSDIR%%/html/websupport.js
 %%PORTDOCS%%%%DOCSDIR%%/html/yaml2obj.html
 %%PORTDOCS%%%%DOCSDIR%%/html/yaml2obj.txt
-@dirrm llvm%%LLVM_SUFFIX%%/lib
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Transforms/Utils
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Transforms/IPO
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Transforms
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Target
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/TableGen
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Support
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Option
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Object
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/MC/MCParser
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/MC
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/LTO
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/IRReader
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/IR
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/ExecutionEngine
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/DebugInfo
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Config
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/CodeGen/PBQP/Heuristics
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/CodeGen/PBQP
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/CodeGen
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Bitcode
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Assembly
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/Analysis
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm/ADT
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm-c/Transforms
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm-c
-@dirrm llvm%%LLVM_SUFFIX%%/include/llvm
-@dirrm llvm%%LLVM_SUFFIX%%/include
-@dirrm llvm%%LLVM_SUFFIX%%/bin
-@dirrm llvm%%LLVM_SUFFIX%%
-%%LIT%%@dirrm %%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%
-%%LIT%%@dirrm %%PYTHON_SITELIBDIR%%/lit%%LLVM_SUFFIX%%/formats
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
