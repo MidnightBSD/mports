@@ -1,17 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	gnustep-make
-PORTVERSION=	2.6.2
-PORTREVISION=	1
+PORTVERSION=	2.6.6
 CATEGORIES=	devel gnustep
-MASTER_SITES=	${MASTER_SITE_GNUSTEP}
-MASTER_SITE_SUBDIR=	core
+MASTER_SITES=	GNUSTEP/core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep makefile package
+
 LICENSE=	gpl3
 
-USE_GNUSTEP=	yes
+USES=		gnustep objc
 GNU_CONFIGURE=	yes
 
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
@@ -19,15 +18,8 @@ CONFIGURE_ENV+=	INSTALL_PROGRAM="${INSTALL} -c" INSTALL_DATA="${INSTALL} -c"
 CONFIGURE_ARGS+=	--with-thread-lib=-pthread
 CONFIGURE_ARGS+=	--with-config-file=${GNUSTEP_PREFIX}/GNUstep.conf
 CONFIGURE_ARGS+=	--with-layout=gnustep
-.if defined(GNUSTEP_WITH_LIBOBJC2) || defined(GNUSTEP_WITH_CLANG)
-CONFIGURE_ARGS+=	--with-objc-lib-flag=-l:libobjc.so.16
-LDFLAGS+=	-L${LOCALBASE}/lib
-.endif
+CONFIGURE_ARGS+=	--enable-objc-nonfragile-abi --enable-native-objc-exceptions
 GNU_CONFIGURE_PREFIX=	${GNUSTEP_PREFIX}
-
-post-patch:
-	${REINPLACE_CMD} -e 's|/usr/local/|${LOCALBASE}/|' \
-		${WRKSRC}/configure
 
 post-install:
 	${LN} -s Library/Makefiles ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/System/
