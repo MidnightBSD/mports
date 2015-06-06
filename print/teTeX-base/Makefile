@@ -2,7 +2,7 @@
 
 PORTNAME=	teTeX-base
 PORTVERSION=	3.0
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -19,10 +19,10 @@ BUILD_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTe
 RUN_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		texi2html:${PORTSDIR}/textproc/texi2html
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		wwwcore.1:${PORTSDIR}/www/libwww \
-		t1.5:${PORTSDIR}/devel/t1lib \
-		gd.4:${PORTSDIR}/graphics/gd
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
+		libwwwcore.so:${PORTSDIR}/www/libwww \
+		libt1.so:${PORTSDIR}/devel/t1lib \
+		libgd.so:${PORTSDIR}/graphics/gd
 
 WRKSRC=		${WRKDIR}/tetex-src-${PORTVERSION}
 GNU_CONFIGURE=	yes
