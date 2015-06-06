@@ -2,6 +2,7 @@
 
 PORTNAME=	pilot-link
 PORTVERSION=	0.12.5
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	palm comms
 MASTER_SITES=	http://downloads.pilot-link.org/ \
@@ -42,7 +43,7 @@ LDFLAGS+=	${PTHREAD_LIBS}
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--with-libpng=${PREFIX}
 .else
 CONFIGURE_ARGS+=	--disable-png
