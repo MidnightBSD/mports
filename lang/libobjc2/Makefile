@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libobjc2
-PORTVERSION=	1.6
-PORTREVISION=	1
+PORTVERSION=	1.7
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	http://download.gna.org/gnustep/
 
@@ -11,48 +10,40 @@ COMMENT=	Replacement Objective-C runtime supporting Obj-C 2 features
 
 LICENSE=	mit
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+SSP_UNSAFE=	yes
 
-USES=		tar:bzip2
-USE_LDCONFIG=	yes
-MAKE_ENV+=	LD=${LOCALBASE}/bin/ld
-MAKE_ENV+=	SHLIB_VERSION="${SHLIB_VERSION}"
-PLIST_SUB=	SHLIB=${SHLIB_VERSION}
-
-OPTIONS_DEFINE=		NSOBJECT_ROOT
-OPTIONS_DEFAULT=	NSOBJECT_ROOT
-NSOBJECT_ROOT_DESC=	Root class is NSObject not Object
-
-SHLIB_VERSION?=	16
+USES=		cmake tar:bzip2
 
 .include <bsd.mport.options.mk>
 
-MAKE_ARGS+=	-DWITHOUT_TOYDISPATCH
+_CLANG!=	if [ -f /usr/bin/clang ] ; then  /usr/bin/clang --version | head -1 | \
+		${SED} -e 's/.*clang version \([0-9]\)\.\([0-9]\).*/\1\2/' ; else ${ECHO} 0 ; fi
 
-.if ${PORT_OPTIONS:MNSOBJECT_ROOT}
-CPPFLAGS+=	-DGNUSTEP
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 4015
-.if defined(CC) && ${CC:T:Mclang}
-# all done
+.if ${_CLANG} < 34
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
+CC=		${LOCALBASE}/bin/clang34
+CXX=	${LOCALBASE}/bin/clang++34
 .else
-# force clang
-CC=	${LOCALBASE}/bin/clang
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang:${PORTSDIR}/lang/clang
-.endif
+CC=		/usr/bin/clang
+CXX=	/usr/bin/clang++
 .endif
 
-.if (${ARCH} == i386) || (${ARCH} == i486)
-CFLAGS+=	-march=i586
-.endif
+SHLIB_MAJOR=	4
+SHLIB_MINOR=	6
 
-post-patch:
-	${RM} ${WRKSRC}/GNUmakefile
+PLIST_SUB+=	SHLIB_MAJOR=${SHLIB_MAJOR} SHLIB_MINOR=${SHLIB_MINOR}
+
+CMAKE_ARGS+=	-DFORCE_LIBOBJCXX=ON
+PLIST_SUB+=	WITH_SEPARATECXX=""
+
+CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib
+CMAKE_ARGS+=	-DTESTS=OFF
+# This shouldn't be needed, but our llvm port installs llvm-config with a silly
+# name...
+CMAKE_ARGS+=	-DLLVM_OPTS=OFF
 
 post-install:
-	${RM} ${PREFIX}/include/objc/toydispatch.h
+	${LN} -sf libobjc.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${STAGEDIR}${PREFIX}/lib/libobjc.so.${SHLIB_MAJOR}
+	${LN} -sf libobjcxx.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${STAGEDIR}${PREFIX}/lib/libobjcxx.so.${SHLIB_MAJOR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
