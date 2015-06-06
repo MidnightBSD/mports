@@ -2,22 +2,22 @@
 
 PORTNAME=	gnustep-base
 PORTVERSION=	1.24.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang devel gnustep
-MASTER_SITES=	${MASTER_SITE_GNUSTEP}
-MASTER_SITE_SUBDIR=	core
+MASTER_SITES=	GNUSTEP/core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
 
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
-LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
-LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
-#LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/mDNSResponder
-LIB_DEPENDS+=	gnutls-openssl.27:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	libxml2.so:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS+=	libxslt.so:${PORTSDIR}/textproc/libxslt
+LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	libgnutls-openssl.so:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libicuuc.so:${PORTSDIR}/devel/icu
+LIB_DEPENDS+=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
