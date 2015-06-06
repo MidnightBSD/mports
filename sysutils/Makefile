@@ -4,6 +4,7 @@ COMMENT = System utilities
 
 SUBDIR += 915resolution
 SUBDIR += LPRng
+SUBDIR += accountsservice
 SUBDIR += apachetop
 SUBDIR += bacula-client
 SUBDIR += bacula-client-static
