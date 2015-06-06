@@ -26,6 +26,7 @@ SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += bisongen
 SUBDIR += boehm-gc
+SUBDIR += boehm-gc-threaded
 SUBDIR += boost-all
 SUBDIR += boost-docs
 SUBDIR += boost-jam
