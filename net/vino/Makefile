@@ -2,37 +2,41 @@
 # $MidnightBSD$
 
 PORTNAME=	vino
-PORTVERSION=	2.32.2
-PORTREVISION=	2
+PORTVERSION=	3.14.2
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC server that allows for remote access to your GNOME desktop
 
-LICENSE=        gpl2       
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
-		telepathy-glib.0:${PORTSDIR}/net-im/telepathy-glib \
- 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
+LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls \
+		libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
+		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
+		libnotify.so:${PORTSDIR}/devel/libnotify \
+		libavahi-glib.so:${PORTSDIR}/net/avahi-app
 
-USES=		gettext gmake pkgconfig tar:bzip2
-USE_GNOME=	gnomeprefix intlhack gnomehack gnomepanel
-USE_XORG=	xtst
-GNOME_DESKTOP_VERSION=2
+USES=		cpe gettext gmake pathfix pkgconfig tar:xz
+CPE_VENDOR=	david_king
+USE_GNOME=	gnomeprefix gtk30 intlhack
+USE_XORG=	xdamage xfixes xtst
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--without-network-manager \
+		--disable-http-server
+CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
+LDFLAGS+=	-L${LOCALBASE}/lib
+GLIB_SCHEMAS=	org.gnome.Vino.enums.xml org.gnome.Vino.gschema.xml
 
-GCONF_SCHEMAS=	vino-server.schemas
-
-.if !defined(WITHOUT_NOTIFY)
-LIB_DEPENDS+=	notify.4:${PORTSDIR}/devel/libnotify
-CONFIGURE_ARGS+=--enable-libnotify=yes
-.else
-CONFIGURE_ARGS+=--enable-libnotify=no
-.endif
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	NOTIFY
+OPTIONS_DEFAULT=NOTIFY
+NOTIFY_LIBS_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
+NOTIFY_CONFIGURE_WITH=	libnotify
 
 .include <bsd.port.mk>
