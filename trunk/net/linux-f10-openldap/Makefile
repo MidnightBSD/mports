@@ -3,7 +3,7 @@
 
 PORTNAME=	openldap
 PORTVERSION=	2.4.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net linux
 MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
@@ -30,6 +30,7 @@ post-extract:
 
 # use a native openldap configuration directories/files
 post-install:
-	${LN} -sf ${LOCALBASE}/etc/openldap ${PREFIX}/etc
+	${MKDIR} ${PREFIX}/etc
+	${LN} -sf ${LOCALBASE}/etc/openldap ${PREFIX}/etc/openldap
 
 .include <bsd.port.mk>
