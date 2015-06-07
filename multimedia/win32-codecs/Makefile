@@ -2,12 +2,12 @@
 
 PORTNAME=	win32-codecs
 DISTVERSION=	20110131
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
-MASTER_SITES=	${MASTER_SITE_MPLAYERHQ} \
+MASTER_SITES=	MPLAYERHQ/releases/codecs \
 		http://ftp.lug.udel.edu/MPlayer/releases/codecs/ \
 		ftp://ftp.lug.udel.edu/MPlayer/releases/codecs/
-MASTER_SITE_SUBDIR=	releases/codecs
 DISTFILES=	all-${DISTVERSION}.tar.bz2 \
 		${ADDITIONAL_CODECS_DISTFILES}
 DIST_SUBDIR=	win32
@@ -21,6 +21,7 @@ LICENSE=	unknown
 RESTRICTED=	Unsure of codec's license
 
 USES=		tar:bzip2
+
 ONLY_FOR_ARCHS=	i386
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/w32codec-${DISTVERSION}
@@ -40,11 +41,13 @@ ADDITIONAL_CODECS_WRKSRC=	${DISTFILES:S/.tar.bz2//}
 REMOVE_CODECS_FILES=	AvidQTAVUICodec.qtx QuickTimeEssentials.qtx QuickTime.qts \
 			QuickTimeInternetExtras.qtx qtmlClient.dll BeHereiVideo.qtx
 
-OPTIONS=	REALPLAYER	"Install realplayer codec"	on
+OPTIONS_DEFINE=	REALPLAYER
+OPTIONS_DEFAULT=	REALPLAYER
+REALPLAYER_DESC=	Install realplayer codec
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_REALPLAYER)
+.if ${PORT_OPTIONS:MREALPLAYER}
 ADDITIONAL_CODECS_DISTFILES+=	rp9codecs-20050115.tar.bz2 \
 				rp9codecs-win32-20050115.tar.bz2
 PLIST_SUB+=	REALPLAYER=""
@@ -66,8 +69,7 @@ post-extract:
 
 do-install:
 	@${MKDIR} ${PREFIX}/lib/win32
-	@${CHMOD} 0755 ${PREFIX}/lib/win32
-.if !defined(WITHOUT_REALPLAYER)
+.if ${PORT_OPTIONS:MREALPLAYER}
 	@${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/lib/win32
 .else
 	@${INSTALL_DATA} ${WRKSRC}/*[^0] ${PREFIX}/lib/win32
@@ -76,4 +78,4 @@ do-install:
 	@${CP} /dev/null ${PREFIX}/lib/win32/${PKGNAME}
 	@${CHMOD} 0444 ${PREFIX}/lib/win32/${PKGNAME}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
