@@ -107,6 +107,7 @@ SUBDIR += glib20-reference
 SUBDIR += glibmm
 SUBDIR += gmake
 SUBDIR += gmake-lite
+SUBDIR += gnome-common
 SUBDIR += gnome-js-common
 SUBDIR += gnome-vfs
 SUBDIR += gnustep
