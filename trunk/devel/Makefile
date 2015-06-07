@@ -488,6 +488,7 @@ SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += uclmmbase
 SUBDIR += upnp
+SUBDIR += uthash
 SUBDIR += viewvc
 SUBDIR += websvn
 SUBDIR += wizardkit
