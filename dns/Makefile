@@ -23,6 +23,7 @@ SUBDIR += nss_mdns
 SUBDIR += p5-Net-DNS
 SUBDIR += p5-Net-DNS-Resolver-Programmable
 SUBDIR += pdnsd
+SUBDIR += py-dns
 SUBDIR += py-dnspython
 SUBDIR += samba-nsupdate
 SUBDIR += udns
