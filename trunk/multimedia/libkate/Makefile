@@ -3,28 +3,28 @@
 
 PORTNAME=	libkate
 PORTVERSION=	0.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Codec for karaoke and text encapsulation for Ogg
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg \
 		libpng.so:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
-USES=		pkgconfig gmake
+USES=		pkgconfig gmake libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--program-prefix=''
 
 CFLAGS+=	"-I${LOCALBASE}/include"
 
-MAN1=		katalyzer.1 kateenc.1 katedec.1
-
-OPTIONS_DEFINE=		DOXYGEN HTMLDOCS KATEDJ
+MANPAGE=	katalyzer.1 kateenc.1 katedec.1
+OPTIONS_DEFINE=	DOXYGEN HTMLDOCS KATEDJ DOCS
 
 HTMLDOCS_DESC=	Install bundled html documentation
 KATEDJ_DESC=	Install KateDJ (Huge dependencies list)
@@ -45,7 +45,7 @@ USE_PYTHON=	yes
 EXTENSIONS+=	python
 USE_WX=		2.8
 WX_COMPS=	wx contrib python:lib
-MAN1+=		KateDJ.1
+MANPAGE+=	KateDJ.1
 PLIST_SUB+=	KATEDJ=""
 .else
 PLIST_SUB+=	KATEDJ="@comment "
@@ -72,17 +72,16 @@ post-patch:
 .endif
 
 post-install:
-.for f in ${MAN1}
+	@${STRIP_CMD} ${PREFIX}/lib/*.so
+.for f in ${MANPAGE}
 	${INSTALL_MAN} ${WRKSRC}/doc/man/${f} ${PREFIX}/man/man1
 .endfor
-.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
-. for FILE in README AUTHORS COPYING THANKS ChangeLog
+.for FILE in README AUTHORS COPYING THANKS ChangeLog
 	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
-. endfor
-. if ${PORT_OPTIONS:MHTMLDOCS} || ${PORT_OPTIONS:MDOXYGEN}
+.endfor
+.if ${PORT_OPTIONS:MHTMLDOCS} || ${PORT_OPTIONS:MDOXYGEN}
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR})
 . endif
-.endif
 
 .include <bsd.port.mk>

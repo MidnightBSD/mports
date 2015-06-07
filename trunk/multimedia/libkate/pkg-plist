@@ -6,15 +6,19 @@ include/kate/kate.h
 include/kate/kate_config.h
 include/kate/oggkate.h
 lib/libkate.a
-lib/libkate.la
 lib/libkate.so
-lib/libkate.so.4
+lib/libkate.so.1
+lib/libkate.so.1.3.0
 lib/liboggkate.a
-lib/liboggkate.la
 lib/liboggkate.so
-lib/liboggkate.so.3
+lib/liboggkate.so.1
+lib/liboggkate.so.1.2.2
 libdata/pkgconfig/kate.pc
 libdata/pkgconfig/oggkate.pc
+man/man1/katalyzer.1.gz
+man/man1/katedec.1.gz
+man/man1/kateenc.1.gz
+%%KATEDJ%%man/man1/KateDJ.1.gz
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/__init__.py
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/__init__.pyc
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/__init__.pyo
@@ -48,5 +52,3 @@ libdata/pkgconfig/oggkate.pc
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/ui_options.py
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/ui_options.pyc
 %%KATEDJ%%%%PYTHON_SITELIBDIR%%/kdj/ui_options.pyo
-%%KATEDJ%%@dirrm %%PYTHON_SITELIBDIR%%/kdj
-@dirrm include/kate
