@@ -11,6 +11,8 @@ DIST_SUBDIR=	TeX
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX Live Typesetting System, texmf Tree
 
+LICENSE=	publicdom
+
 CONFLICTS_INSTALL=	texlive-base-201[23]*
 
 USES=		tar:xz
