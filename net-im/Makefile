@@ -12,7 +12,6 @@ SUBDIR += libnice-gst010
 SUBDIR += libnice-gst1
 SUBDIR += libpurple
 SUBDIR += libtelepathy
-SUBDIR += linux-ymessenger
 SUBDIR += loudmouth
 SUBDIR += meanwhile
 SUBDIR += openfire
