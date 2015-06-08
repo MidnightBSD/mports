@@ -3,7 +3,7 @@
 
 PORTNAME=	gpac
 PORTVERSION=	0.4.5
-PORTREVISION=	6
+PORTREVISION=	7
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/GPAC/GPAC%20${PORTVERSION}
@@ -25,7 +25,7 @@ INSTALL_WRKSRC=	${WRKSRC}/bin/gcc
 LIBVER=	1
 
 OPTIONS_DEFINE=	IPV6 JPEG OPENGL SSL PNG XVIDEO
-OPTIONS_DEFAULT=	IPV6 JPEG SSL PNG
+OPTIONS_DEFAULT=	IPV6 JPEG SSL
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -55,7 +55,7 @@ CONFIGURE_ARGS+=	--disable-opengl
 .endif
 
 .if ${PORT_OPTIONS:MXVIDEO}
-LIB_DEPENDS+=	Xv.1:${PORTSDIR}/x11/libXv
+LIB_DEPENDS+=	libXv.so:${PORTSDIR}/x11/libXv
 .else
 CONFIGURE_ARGS+=	--disable-x11-xv --disable-x11-shm
 .endif
@@ -67,16 +67,16 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 .if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=	--use-jpeg=local
 .else
 CONFIGURE_ARGS+=	--use-jpeg=no
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+BROKEN=		png update broke the build, need to update gpac
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--use-png=local
-CFLAGS+=	-I${LOCALBASE}/include/libpng15
 .else
 CONFIGURE_ARGS+=	--use-png=no
 .endif
