@@ -3,7 +3,7 @@
 
 PORTNAME=	libopensync
 PORTVERSION=	0.22
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.opensync.org/download/releases/${PORTVERSION}/
 
@@ -14,9 +14,10 @@ LICENSE=	lgpl
 
 CONFLICTS=	libopensync-0.[3-9]*
 
-BUILD_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13
-LIB_DEPENDS=	sqlite3.8:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13
+BUILD_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
+		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
+		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 CONFIGURE_ENV=	LDFLAGS="${PTHREAD_LIBS}"
 GNU_CONFIGURE=	yes
