@@ -43,6 +43,7 @@ SUBDIR += libv4l
 SUBDIR += libva
 SUBDIR += libvdpau
 SUBDIR += libvpx
+SUBDIR += libx264
 SUBDIR += libxine
 SUBDIR += linux-divx4linux
 SUBDIR += linux-f10-libtheora
