@@ -2,10 +2,9 @@
 
 PORTNAME=	44bsd-rdist
 PORTVERSION=	20001111
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	cy
+MASTER_SITES=	FREEBSD_LOCAL/cy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The traditional 4.4BSD rdist
@@ -15,7 +14,10 @@ LICENSE=        bsd3
 USES=		tar:bzip2
 
 NO_WRKSUBDIR=	yes
-PLIST_FILES=	bin/44bsd-rdist 44bsd-rdist.1.gz
+PLIST_FILES=	bin/44bsd-rdist \
+		man/man1/44bsd-rdist.1.gz
+
+.include <bsd.port.pre.mk>
 
 post-extract:
 	cd ${WRKSRC} ; co RCS/*,v
@@ -28,4 +30,4 @@ tarup:
 	-cd ${WRKSRC} ; ${RM} *
 	cd ${WRKSRC} ; ${TAR} cvyf /tmp/${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} .
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
