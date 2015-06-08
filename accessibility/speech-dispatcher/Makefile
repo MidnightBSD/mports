@@ -3,7 +3,7 @@
 
 PORTNAME=	speech-dispatcher
 PORTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	accessibility audio
 MASTER_SITES=	http://devel.freebsoft.org/pub/projects/speechd/
 
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libdotconf.so:${PORTSDIR}/devel/dotconf \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile
 
 # gnomehier is required because of share/sounds directory.
-USE_GNOME=	glib20 gnomehier intltool
+USE_GNOME=	glib20 intltool
 USES=		alias gettext gmake pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
