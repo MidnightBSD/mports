@@ -19,10 +19,10 @@ include/cairomm-1.0/cairomm/win32_font.h
 include/cairomm-1.0/cairomm/win32_surface.h
 include/cairomm-1.0/cairomm/xlib_surface.h
 lib/cairomm-1.0/include/cairommconfig.h
-lib/libcairomm-1.0.a
 lib/libcairomm-1.0.la
 lib/libcairomm-1.0.so
 lib/libcairomm-1.0.so.1
+lib/libcairomm-1.0.so.1.4.0
 libdata/pkgconfig/cairomm-1.0.pc
 libdata/pkgconfig/cairomm-ft-1.0.pc
 libdata/pkgconfig/cairomm-pdf-1.0.pc
@@ -227,11 +227,3 @@ libdata/pkgconfig/cairomm-xlib-xrender-1.0.pc
 %%PORTDOCS%%share/doc/cairomm-1.0/reference/html/tabs.css
 %%PORTDOCS%%share/doc/cairomm-1.0/reference/html/toy-text_8cc-example.html
 %%PORTDOCS%%share/doc/cairomm-1.0/reference/html/user-font_8cc-example.html
-%%PORTDOCS%%@dirrm share/doc/cairomm-1.0/reference/html
-%%PORTDOCS%%@dirrm share/doc/cairomm-1.0/reference
-%%PORTDOCS%%@dirrm share/doc/cairomm-1.0
-%%PORTDOCS%%@dirrm share/devhelp/books/cairomm-1.0
-@dirrm lib/cairomm-1.0/include
-@dirrm lib/cairomm-1.0
-@dirrm include/cairomm-1.0/cairomm
-@dirrm include/cairomm-1.0
