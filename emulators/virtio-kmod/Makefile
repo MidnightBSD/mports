@@ -2,7 +2,7 @@
 
 PORTNAME=	virtio
 PORTVERSION=	0.${SVN_REV}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators kld
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
@@ -27,14 +27,9 @@ IGNORE=		requires kernel source to be installed
 .endif
 
 SVN_REV=	250249
-FILE_8=		${PORTNAME}-8-0.${SVN_REV}${EXTRACT_SUFX}
 FILE_9=		${PORTNAME}-9-0.${SVN_REV}${EXTRACT_SUFX}
-.if ${OSREL} == "0.4"
 OSBRANCH=	9.1
 EXTRACT_ONLY=	${FILE_9}
-.else
-IGNORE=		not supported $${OSREL} (${OSREL})
-.endif
 
 post-extract:
 	cd ${WRKSRC} && ${MKDIR} sys/dev tmp && ${MV} dev modules tmp/
