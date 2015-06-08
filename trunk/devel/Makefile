@@ -221,7 +221,6 @@ SUBDIR += newt
 SUBDIR += ninja
 SUBDIR += npth
 SUBDIR += nspr
-SUBDIR += objcunit
 SUBDIR += oniguruma
 SUBDIR += oniguruma4
 SUBDIR += oniguruma5
