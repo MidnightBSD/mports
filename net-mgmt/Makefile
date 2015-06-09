@@ -25,6 +25,5 @@ SUBDIR += tcptrack
 SUBDIR += trafd
 SUBDIR += weplab
 SUBDIR += whatmask
-SUBDIR += yabm
 
 .include <bsd.port.subdir.mk>
