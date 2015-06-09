@@ -1,25 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	zipper
-PORTVERSION=	1.3
+PORTVERSION=	1.5
+PORTREVISION=	0
 CATEGORIES=	archivers gnustep
-MASTER_SITES=	http://xanthippe.dyndns.org/Zipper/ \
-		${MASTER_SITE_GNUSTEP_CH}
+MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	Zipper-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for inspecting the contents of a compressed archive
 LICENSE=	publicdom
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_SYSTEM_LIBS+=	Renaissance:${RENAISSANCE_PORT}
+USES=		gnustep
+USE_GNUSTEP=	back build
 
-WRKSRC=		${WRKDIR}/Zipper
-
-RENAISSANCE_PORT?=	x11-toolkits/renaissance
+post-patch:
+	cd ${WRKSRC} && ${FIND} . -name "*#*" -exec ${RM} -f -v "{}" ";"
 
 .include <bsd.port.mk>
