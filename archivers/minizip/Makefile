@@ -2,7 +2,7 @@
 
 PORTNAME=	minizip
 PORTVERSION=	1.2.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	SF/libpng/zlib/${PORTVERSION}
 DISTNAME=	zlib-${PORTVERSION}
@@ -13,6 +13,7 @@ COMMENT=	Zip library and programs from Zlib distribution
 LICENSE=	zlib
 
 USES=		autoreconf libtool pathfix tar:xz
+USE_AUTOTOOLS=	libtoolize
 PATHFIX_MAKEFILEIN=	Makefile.am
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-demos
