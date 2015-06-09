@@ -2,16 +2,15 @@
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros
-LICENSE=	gpl3
 
-MAKE_JOBS_SAFE=	yes
+LICENSE=	gpl3
 
 CONFLICTS=	emacs-19.* emacs-21.* emacs-22.* emacs-23.* \
 		xemacs-[0-9]* xemacs-devel-[0-9]* \
@@ -19,16 +18,12 @@ CONFLICTS=	emacs-19.* emacs-21.* emacs-22.* emacs-23.* \
 
 EMACS_VER=	24.2
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_NCURSES=	yes
-USE_XZ=		yes
+USES=		gmake ncurses tar:xz
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--localstatedir=/var
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-#MAN1=		ctags.1 ebrowse.1 emacs.1 emacsclient.1 etags.1 \
-#		grep-changelog.1 rcs-checkin.1
 PLIST_SUB=	EMACS_VER=${EMACS_VER}
 
 EMACS_DIRS=	${DATADIR}/${EMACS_VER}/leim ${DATADIR}/${EMACS_VER}/lisp ${DATADIR}/${EMACS_VER}/src \
@@ -127,23 +122,19 @@ LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 .if defined(WITHOUT_TIFF)
 CONFIGURE_ARGS+=	--without-tiff
 .else
-LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
 .endif
 
 .if defined(WITHOUT_GIF)
 CONFIGURE_ARGS+=	--without-gif
 .else
-. if exists(${LOCALBASE}/lib/libgif.so)
-LIB_DEPENDS+=	gif.5:${PORTSDIR}/graphics/giflib
-. else
-LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
-. endif
+LIB_DEPENDS+=	libgif.so:${PORTSDIR}/graphics/giflib
 .endif
 
 .if defined(WITHOUT_PNG)
 CONFIGURE_ARGS+=	--without-png
 .else
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 .endif
 
 .if defined(WITHOUT_XPM)
@@ -162,14 +153,14 @@ CONFIGURE_ARGS+=	--without-xft
 .endif
 .else
 USE_XORG+=	xft
-LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
 .endif
 
 .if defined(WITHOUT_M17N)
 CONFIGURE_ARGS+=	--without-m17n-flt
 .else
 .if !defined(WITHOUT_XFT)
-LIB_DEPENDS+=	m17n.4:${PORTSDIR}/devel/m17n-lib
+LIB_DEPENDS+=	libm17n.so:${PORTSDIR}/devel/m17n-lib
 .endif
 .endif
 
@@ -177,7 +168,7 @@ LIB_DEPENDS+=	m17n.4:${PORTSDIR}/devel/m17n-lib
 CONFIGURE_ARGS+=	--without-libotf
 .else
 .if !defined(WITHOUT_XFT)
-LIB_DEPENDS+=	otf.0:${PORTSDIR}/print/libotf
+LIB_DEPENDS+=	libotf.so:${PORTSDIR}/print/libotf
 .endif
 .endif
 
