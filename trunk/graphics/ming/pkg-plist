@@ -99,10 +99,11 @@ include/ming/util/png2dbl.c
 include/ming/util/read.h
 include/ming/util/swfoutput.h
 include/ming/util/swftypes.h
+include/ming/util/vasprintf.h
 lib/libming.a
-lib/libming.la
 lib/libming.so
-lib/libming.so.5
+lib/libming.so.1
+lib/libming.so.1.4.4
 libdata/pkgconfig/libming.pc
 %%PORTDOCS%%%%DOCSDIR%%/HISTORY
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
@@ -112,8 +113,3 @@ libdata/pkgconfig/libming.pc
 %%PORTDOCS%%%%DOCSDIR%%/util/TIPS
 %%PORTDOCS%%%%DOCSDIR%%/util/TODO
 %%PORTDOCS%%%%DOCSDIR%%/util/swftoperl.html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/util
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm include/ming/blocks
-@dirrm include/ming/util
-@dirrm include/ming
