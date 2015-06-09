@@ -1,5 +1,0 @@
-@comment $MidnightBSD$
-bin/wmweather+
-%%EXAMPLESDIR%%/HINTS
-%%EXAMPLESDIR%%/example.conf
-@dirrm %%EXAMPLESDIR%%
