@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	3.0.6
+PORTVERSION=	3.0.7
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Varnish high-performance HTTP accelerator
+COMMENT=	High-performance HTTP accelerator
 
 LICENSE=	bsd2
 
@@ -57,7 +57,6 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/include/${f} ${PREFIX}/include/varnish
 .endfor
 	@${RM} -f ${PREFIX}/lib/libvarnishapi.*a ${PREFIX}/lib/varnish/lib*a ${PREFIX}/lib/varnish/vmods/lib*a
-	${MV} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.pre.mk>
 
