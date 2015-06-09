@@ -8,22 +8,26 @@
 
 PORTNAME=	cddb
 PORTVERSION=	0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnustep
-MASTER_SITES=	SF/gsburn/${PORTNAME}.bundle/${PORTNAME}.bundle-${PORTVERSION}
+MASTER_SITES=	SF/gsburn/cdplayer/${DISTNAME}
 PKGNAMESUFFIX=	-bundle${PKGNAMESUFFIX2}
-DISTNAME=	cddb.bundle-${PORTVERSION}
+DISTNAME=	cdplayer-${CDPLAYER_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CDDB client bundle GNUstep
-LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+LICENSE=	gpl2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-WRKSRC=		${WRKDIR}/cddb.bundle
+USES=		tar:bzip2 gnustep
+USE_GNUSTEP=	back build
+
+CDPLAYER_VERSION=	0.5.1
+WRKSRC=		${WRKDIR}/CDPlayer-${CDPLAYER_VERSION}/Cddb
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Library/Bundles/Cddb.bundle/Cddb
 
 .include <bsd.port.mk>
