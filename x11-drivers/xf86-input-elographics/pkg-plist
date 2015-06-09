@@ -1,5 +1,2 @@
-lib/xorg/modules/input/elographics_drv.la
 lib/xorg/modules/input/elographics_drv.so
-@dirrmtry lib/xorg/modules/input
-@dirrmtry lib/xorg/modules
-@dirrmtry lib/xorg
+man/man4/elographics.4x.gz
