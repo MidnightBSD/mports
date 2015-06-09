@@ -2,22 +2,23 @@
 
 PORTNAME=	aclock
 PORTVERSION=	0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-clocks gnustep
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	gap
+MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	AClock-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analog Clock for GNUstep
 
-LICENSE=	gpl2
+LICENSE=	gpl2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/AClock.app/AClock
 
 .include <bsd.port.mk>
