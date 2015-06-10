@@ -8,13 +8,14 @@ DISTFILES=	HelixPlayer-${DISTVERSION}.i586.rpm:player
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux HelixPlayer 11 from RealNetworks
-LICENSE=	restricted
+
+LICENSE=	other
 
 EXTRACT_DEPENDS=	rpm2cpio.pl:${PORTSDIR}/archivers/rpm2cpio
 
 WRKSRC=		${WRKDIR}/opt/helix/HelixPlayer
 USE_GCPIO=	yes
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	gtk2 xorglibs
 RESTRICTED=	Redistribution not allowed
 NO_BUILD=	yes
