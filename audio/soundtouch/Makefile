@@ -17,6 +17,7 @@ CONFIGURE_ARGS=	--disable-silent-rules
 USE_LDCONFIG=	yes
 
 USES=			autoreconf libtool pathfix
+USE_AUTOTOOLS=		libtoolize
 PATHFIX_MAKEFILEIN=	Makefile.am
 
 OPTIONS_DEFINE=	INTEGER_SAMPLES DOCS
