@@ -59,6 +59,7 @@ SUBDIR += jpeg
 SUBDIR += laternamagica
 SUBDIR += lcms
 SUBDIR += lcms2
+SUBDIR += libEGL
 SUBDIR += libGL
 SUBDIR += libGLU
 SUBDIR += libGLw
