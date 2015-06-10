@@ -6,35 +6,32 @@
 # $MidnightBSD$
 #
 
-PORTNAME=	preferences.app
+PORTNAME=	preferences
 PORTVERSION=	1.2.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	SF/prefsapp/prefsapp/${PORTVERSION}
 DISTNAME=	Preferences-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep workspace manager
-LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LDCONFIG= ${GNUSTEP_SYSTEM_LIBRARIES}
-MAKEFILE=	GNUmakefile
+LICENSE_COMB=	multi
+LICENSE=	gpl2 lgpl2.1
 
+USES=		tar:bzip2 gnustep
+USE_GNUSTEP=	back build
+USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+
+DEAFULT_LIBVERSION=	1.1.1
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 MODIFY=		GNUmakefile.preamble PrefsModule/GNUmakefile.preamble \
 		Modules/Keyboard/GNUmakefile.preamble \
 		Modules/PrefsApp/GNUmakefile.preamble
 
 post-patch:
-.for i in ${MODIFY}
-	@${MV} ${WRKSRC}/${i} ${WRKSRC}/${i}.sed
-	@${SED} -e "s= -Werror==" ${WRKSRC}/${i}.sed > ${WRKSRC}/${i}
-	@${REINPLACE_CMD} -e 's/GNUSTEP_INSTALLATION_DIR=.*/GNUSTEP_INSTALLATION_DOMAIN=SYSTEM/' ${WRKSRC}/${i}
-.endfor
+	${REINPLACE_CMD} 's, -Werror,,' ${MODIFY:S,^,${WRKSRC}/,}
+	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DIR|#GNUSTEP_INSTALLATION_DIR|' \
+		${WRKSRC}/GNUmakefile.preamble
 
 .include <bsd.port.mk>
