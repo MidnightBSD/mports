@@ -471,6 +471,7 @@ SUBDIR += sysconftool
 SUBDIR += t1lib
 SUBDIR += talloc
 SUBDIR += tevent
+SUBDIR += tex-web2c
 SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += uclmmbase
