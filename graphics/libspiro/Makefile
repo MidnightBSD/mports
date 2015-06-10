@@ -11,6 +11,8 @@ COMMENT=	Library to convert clothoid splines into Bezier splines
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+WRKSRC=		${WRKDIR}/libspiro-0.3.20150131
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	fontforge
 GH_COMMIT=	d12f7f7
