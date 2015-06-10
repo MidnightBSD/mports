@@ -381,15 +381,14 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 
 # Loading features - USES directive
 .for f in ${USES}
-_f=${f:C/\:.*//g}
-USE_${_f:tu}=    yes
-.if ${_f} != ${f}
-${_f}_ARGS:=    ${f:C/^[^\:]*\://g}
-USE_${_f}=      ${_f}_ARGS
+_f:=	${f:C/\:.*//}
+.if !defined(${_f}_ARGS)
+${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
-.include "${MPORTEXTENSIONS}/${_f}.mk"
 .endfor
-
+.for f in ${USES}
+.include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
+.endfor
 
 
 .if defined(USE_GCPIO)
@@ -775,19 +774,19 @@ EXTENSIONS+=xorg
 #
 .for EXT in ${_ALL_EXT:tu} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
-.		include "${PORTSDIR}/Mk/extensions/${EXT:tl}.mk"
+.		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
 .endfor
 
 # FreeBSD compatibility: Loading features
 .for f in ${_USES_POST}
-_f:=            ${f:C/\:.*//}
+_f:=	${f:C/\:.*//}
 .if !defined(${_f}_ARGS)
-${_f}_ARGS:=    ${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
+${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${_USES_POST}
-.include "${PORTSDIR}/Mk/extensions/${f:C/\:.*//}.mk"
+.include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
 .endfor
 
 .if defined(USE_XORG)
