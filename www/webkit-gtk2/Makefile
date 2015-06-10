@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	-gtk2
 DISTNAME=	${PORTNAME}gtk-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Opensource browser engine
+COMMENT=	Opensource browser engine using the GTK+ 2 toolkit
 
 LICENSE=	lgpl
 
