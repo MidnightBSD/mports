@@ -14,8 +14,7 @@ LICENSE=		gpl3
 
 CONFLICTS=		*samba3[0-4]-3.*
 
-USES=			pkgconfig ldap
-USE_PYTHON_BUILD=	-2.7
+USES=			compiler pkgconfig ldap python:2
 USE_LDCONFIG=		yes
 HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
