@@ -20,7 +20,6 @@ SUBDIR += fpc-postgres
 SUBDIR += fpc-pxlib
 SUBDIR += fpc-sqlite
 SUBDIR += gdbm
-SUBDIR += gdl2
 SUBDIR += gnats4
 SUBDIR += ldb
 SUBDIR += libgda4
