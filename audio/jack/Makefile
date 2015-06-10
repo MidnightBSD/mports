@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	jackit
-PORTVERSION=	0.121.3
-PORTREVISION=	1
+PORTVERSION=	0.124.1
 CATEGORIES=	audio
 MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
@@ -13,24 +12,28 @@ COMMENT=	Low latency audio server
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libportaudio.so:${PORTSDIR}/audio/portaudio \
+LIB_DEPENDS=	libportaudio.so.0:${PORTSDIR}/audio/portaudio \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile \
 		libsamplerate.so:${PORTSDIR}/audio/libsamplerate \
-		libcelt0.so:${PORTSDIR}/audio/celt
+		libcelt0.so:${PORTSDIR}/audio/celt \
+		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USES=		gmake pathfix pkgconfig libtool:keepla
+USE_BDB=	48+
 
 CONFIGURE_ARGS=	--enable-portaudio \
 		--with-default-tmpdir=/tmp
+
+CFLAGS+=	-I${BDB_INCLUDE_DIR}
 CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib -L${BDB_LIB_DIR}
 INSTALL_TARGET=	install-strip
 
 LATEST_LINK=	jack
 
-OPTIONS_DEFINE=	ALSA DOCS READLINE
+OPTIONS_DEFINE=	ALSA DOXYGEN READLINE
 OPTIONS_DEFAULT=READLINE
 OPTIONS_SUB=	yes
 
@@ -41,7 +44,7 @@ READLINE_LIB_DEPENDS=	libreadline.so:${PORTSDIR}/devel/readline
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MDOCS}
+.if ${PORT_OPTIONS:MDOXYGEN}
 BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
 .else
 CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
@@ -54,6 +57,7 @@ CONFIGURE_ENV+=	ac_cv_lib_readline_readline=no \
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|define USE_MLOCK|undef USE_MLOCK|' \
+		-e 's|alloca.h||' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s,-lpthread,-pthread," \
 		${WRKSRC}/configure ${WRKSRC}/libjack/Makefile.in \
