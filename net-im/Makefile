@@ -21,6 +21,7 @@ SUBDIR += pidgin-twitter
 SUBDIR += pork
 SUBDIR += sendxmpp
 SUBDIR += telepathy-glib
+SUBDIR += telepathy-logger
 SUBDIR += tmsnc
 
 .include <bsd.port.subdir.mk>
