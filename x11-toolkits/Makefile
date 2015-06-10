@@ -6,7 +6,6 @@ SUBDIR += Xaw3d
 SUBDIR += attica
 SUBDIR += elementary
 SUBDIR += fltk
-SUBDIR += fpc-gtk2
 SUBDIR += gdl
 SUBDIR += gnome-pty-helper
 SUBDIR += gnustep-art
