@@ -50,6 +50,10 @@
 # USE_TEX=	formats
 # USE_TEX=	latex:build dvipsk:build
 
+.if !defined(Tex_Pre_Include)
+
+Tex_Pre_Include=             tex.mk
+
 # default TeX distribution.  "texlive"
 TEX_DEFAULT?=	texlive
 
@@ -622,3 +626,4 @@ TEX_FORMAT_XMLTEX_DIRS= \
 post-install-xmltex:
 	${LN} -sf pdftex ${PREFIX}/bin/xmltex
 	${LN} -sf pdftex ${PREFIX}/bin/pdfxmltex
+.endif
