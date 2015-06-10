@@ -3,7 +3,6 @@
 PORTNAME=	usbmuxd
 DISTVERSION=	1.0.9-alpha1
 CATEGORIES=	comms
-MASTER_SITES=	http://www.libimobiledevice.org/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Daemon for multiplexing connections over USB to iPhone/iPod Touch
@@ -19,7 +18,9 @@ GH_ACCOUNT=	libimobiledevice
 GH_TAGNAME=	${GH_COMMIT}
 GH_COMMIT=	2f6d9d5
 
-USES=		autoreconf libtool pathfix pkgconfig tar:bzip2
+USES=		autoreconf cpe libtool pathfix pkgconfig tar:bzip2
+CPE_VENDOR=	nikias_bassen
+CPE_VERSION=	${DISTVERSION:C/-.*//}
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-systemd \
 		libusb_CFLAGS="-I/usr/include" \
