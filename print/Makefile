@@ -3,8 +3,6 @@
 COMMENT = Desktop publishing
 
 SUBDIR += a2ps
-SUBDIR += acroread8
-SUBDIR += acroread8-de
 SUBDIR += acroread9
 SUBDIR += acroreadwrapper
 SUBDIR += adobe-cmaps
