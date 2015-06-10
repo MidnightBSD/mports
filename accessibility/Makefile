@@ -9,6 +9,7 @@ SUBDIR += at-spi2-core
 SUBDIR += atk
 SUBDIR += atk-reference
 SUBDIR += atkmm
+SUBDIR += caribou
 SUBDIR += dasher
 SUBDIR += gnome-mag
 SUBDIR += gnome-speech
