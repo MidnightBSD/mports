@@ -97,6 +97,7 @@ SUBDIR += gmake-lite
 SUBDIR += gnome-common
 SUBDIR += gnome-js-common
 SUBDIR += gnome-vfs
+SUBDIR += gnulib
 SUBDIR += gnustep
 SUBDIR += gnustep-make
 SUBDIR += gobject-introspection
