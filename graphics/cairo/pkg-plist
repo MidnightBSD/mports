@@ -13,8 +13,8 @@ include/cairo/cairo-svg.h
 include/cairo/cairo-tee.h
 include/cairo/cairo-version.h
 %%XCB%%include/cairo/cairo-xcb.h
-%%X11%%include/cairo/cairo-xlib-xrender.h
-%%X11%%include/cairo/cairo-xlib.h
+include/cairo/cairo-xlib-xrender.h
+include/cairo/cairo-xlib.h
 include/cairo/cairo.h
 lib/cairo/cairo-fdr.a
 lib/cairo/cairo-fdr.so
@@ -54,6 +54,6 @@ libdata/pkgconfig/cairo-svg.pc
 libdata/pkgconfig/cairo-tee.pc
 %%XCB%%libdata/pkgconfig/cairo-xcb.pc
 %%XCB%%libdata/pkgconfig/cairo-xcb-shm.pc
-%%X11%%libdata/pkgconfig/cairo-xlib.pc
-@comment %%X11%%%%XCB%%libdata/pkgconfig/cairo-xlib-xcb.pc
-%%X11%%libdata/pkgconfig/cairo-xlib-xrender.pc
+libdata/pkgconfig/cairo-xlib.pc
+@comment %%XCB%%libdata/pkgconfig/cairo-xlib-xcb.pc
+libdata/pkgconfig/cairo-xlib-xrender.pc
