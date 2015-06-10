@@ -30,7 +30,7 @@ TESTS_DESC=	Run bundled self-tests after build
 
 OPTIONS_DEFAULT=X11 TESTS DOCS
 
-USES=		iconv libtool tar:bz2
+USES=		iconv libtool tar:bzip2
 USE_GHOSTSCRIPT=yes
 GNU_CONFIGURE=	yes
 
