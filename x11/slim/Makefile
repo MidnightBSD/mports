@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	slim
-PORTVERSION=	1.3.5
-PORTREVISION=	2
+PORTVERSION=	1.3.6
+PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
@@ -17,18 +17,26 @@ LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libck-connector.so:${PORTSDIR}/sysutils/consolekit \
-		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
 USES=		cmake pkgconfig
-USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrender xt
+USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
+		xrender xt
 USE_RC_SUBR=	slim
+USE_LDCONFIG=	yes
 SUB_FILES=	pkg-message
 
-CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes
+CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes \
+	-DBUILD_SLIMLOCK=no \
+	-DBUILD_SHARED_LIBS=yes
 
-OPTIONS_DEFINE=	PAM
+OPTIONS_DEFINE=		PAM UTF8 CONSOLEKIT
+OPTIONS_DEFAULT=	PAM CONSOLEKIT
+
+UTF8_DESC=	Support UTF-8 characters
+CONSOLEKIT_DESC=Enable support for consolekit
+
+PLIST_SUB+=	VERSION="${PORTVERSION}"
 
 .include <bsd.mport.options.mk>
 
@@ -40,27 +48,30 @@ CMAKE_ARGS+=	-DUSE_PAM=no
 PLIST_SUB+=	PAM="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MUTF8}
+# patch taken from slim-unicode in Arch User Repository
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
+.endif
+
+.if ${PORT_OPTIONS:MCONSOLEKIT}
+CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
+LIB_DEPENDS+=	libck-connector.so:${PORTSDIR}/sysutils/consolekit
+.else
+CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
+.endif
+
 post-patch:
 	@${CP} ${WRKSRC}/slim.conf ${WRKSRC}/slim.conf.sample
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/slim.conf.sample
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' \
-		-e 's|/etc|${PREFIX}/etc|' \
-		-e 's|share/man|man|' \
-		-e 's|slim.conf|slim.conf.sample|' \
-		-e '/systemd/d' \
-		${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
+		${WRKSRC}/slim.1
 
 post-install:
-	@if [ ! -f ${PREFIX}/etc/slim.conf ]; then \
-		${CP} ${PREFIX}/etc/slim.conf.sample ${PREFIX}/etc/slim.conf ; \
-	fi
+	${CP} ${FILESDIR}/background.jpg ${PREFIX}/share/slim/themes/default/background.jpg
+
 .	if ${PORT_OPTIONS:MPAM}
-	@${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/slim.default
-	@if [ ! -f ${PREFIX}/etc/pam.d/slim ]; then \
-		${CP} ${PREFIX}/etc/pam.d/slim.default ${PREFIX}/etc/pam.d/slim ; \
-	fi
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/slim.default
 .	endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
