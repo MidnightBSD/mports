@@ -99,7 +99,6 @@ SUBDIR += samba-nmblookup
 SUBDIR += samba-smbclient
 SUBDIR += samba36
 SUBDIR += samba4
-SUBDIR += samba4wins
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
 SUBDIR += sixxs-aiccu
