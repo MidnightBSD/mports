@@ -84,7 +84,6 @@ SUBDIR += libqrencode
 SUBDIR += librsvg2
 SUBDIR += libspiro
 SUBDIR += libsvg
-SUBDIR += libungif
 SUBDIR += libvisual04
 SUBDIR += libwmf
 SUBDIR += linux-adobesvg
