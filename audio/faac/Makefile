@@ -2,7 +2,7 @@
 
 PORTNAME=	faac
 PORTVERSION=	1.28
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}
 
@@ -17,6 +17,7 @@ LIB_DEPENDS=	libmp4v2.so:${PORTSDIR}/multimedia/mp4v2
 RESTRICTED=	Distribution in binary form is prohibited
 
 USES=		autoreconf dos2unix gmake libtool tar:bzip2
+USE_AUTOTOOLS=	libtoolize
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-mp4v2
