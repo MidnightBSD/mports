@@ -48,6 +48,7 @@ SUBDIR += linux-f10-cups-libs
 SUBDIR += mp-letter
 SUBDIR += pdflib
 SUBDIR += pecl-pdflib
+SUBDIR += psutils
 SUBDIR += t1utils
 SUBDIR += teTeX
 SUBDIR += teTeX-base
