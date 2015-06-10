@@ -2,7 +2,7 @@
 
 PORTNAME=	cairo
 PORTVERSION=	1.12.18
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -21,11 +21,9 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
-		--disable-directfb \
-		--enable-tee
-USES+=		libtool pathfix pkgconfig
-USE_XORG=	pixman
+USES+=		cpe libtool pathfix pkgconfig
+CPE_VENDOR=	cairographics
+USE_XORG=	pixman xrender xext
 USE_GNOME=	referencehack glib20
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
@@ -37,14 +35,13 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-wgl \
 		--disable-egl \
 		--enable-tee \
-		--enable-gobject
+		--enable-gobject \
+		--enable-xlib
 
-OPTIONS_DEFINE=	OPENGL XCB X11 
-OPTIONS_DEFAULT=XCB X11
+OPTIONS_DEFINE=	OPENGL XCB
+OPTIONS_DEFAULT=XCB
 XCB_DESC=	Enable XCB (X C-language Binding) Support
 OPTIONS_SUB=	yes
-X11_USE=	xorg=xrender,xext
-X11_CONFIGURE_ENABLE=xlib
 OPENGL_USE=	gl=gl xorg=glproto:both,dri2proto:both
 OPENGL_CONFIGURE_ENABLE=gl
 XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
@@ -61,7 +58,7 @@ post-patch:
 		-e '/LIBS/s/-lrt//'  -e '/LIBS/s|-ldld||' \
 		-e '/LIBS/s|-ldl||' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|-lcairo|-lcairo ${PTHREAD_LIBS}|' \
+	@${REINPLACE_CMD} -e 's|-lcairo|-lcairo -pthread|' \
 		${WRKSRC}/src/*.pc.in
 	@${REINPLACE_CMD} -e '/@CAIRO_HAS_PNG_FUNCTIONS_TRUE@.*=/d' \
 		${WRKSRC}/Makefile.in
