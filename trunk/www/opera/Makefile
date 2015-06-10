@@ -3,7 +3,7 @@
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -33,6 +33,7 @@ USES=		tar:xz desktop-file-utils shared-mime-info
 USE_XORG=	x11 xext sm ice xft xrender
 INSTALLS_ICONS=	yes
 
+WEBPLUGIN_SUBDIR=	${LOCALBASE}/lib/browser_plugins/symlinks/opera
 NO_BUILD=	yes
 EXPLICIT_PACKAGE_DEPENDS=	yes
 
@@ -90,6 +91,9 @@ do-install:
 	@${RM} ${DATADIR}/defaults/pluginpath.ini.bak
 	-${LOCALBASE}/bin/update-desktop-database
 	-${LOCALBASE}/bin/update-mime-database ${LOCALBASE}/share/mime
+	@${MKDIR} ${PREFIX}/etc/libmap.d
+	${INSTALL_DATA} ${FILESDIR}/libmap.conf \
+		${PREFIX}/etc/libmap.d/opera.conf
 
 # target to build distinfo for both arch
 makesum-all:
