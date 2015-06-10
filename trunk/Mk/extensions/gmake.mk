@@ -9,7 +9,7 @@
 .if !defined(_INCLUDE_USES_GMAKE_MK)
 _INCLUDE_USES_GMAKE_MK=	yes
 
-.if defined(gmake_ARGS)
+.if !empty(gmake_ARGS)
 .if ${gmake_ARGS} == lite
 _GMAKE_EXT=	-lite
 .else
