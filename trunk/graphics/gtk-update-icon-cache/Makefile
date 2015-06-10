@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk-update-icon-cache
-PORTVERSION=	2.24.25
+PORTVERSION=	2.24.27
 PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -32,8 +31,8 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 BUILD_WRKSRC=	${WRKSRC}/gtk
 ALL_TARGET=	${PORTNAME}
-PLIST_FILES=	bin/gtk-update-icon-cache \
-		man/man1/gtk-update-icon-cache.1.gz
+PLIST_FILES=	bin/gtk-update-icon-cache
+#		man/man1/gtk-update-icon-cache.1.gz
 
 .include <bsd.port.pre.mk>
 
@@ -50,7 +49,7 @@ pre-configure:
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/gtk/gtk-update-icon-cache \
 		${PREFIX}/bin/
-	@${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-update-icon-cache.1 \
-		${PREFIX}/man/man1/
+#	@${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-update-icon-cache.1 \
+#		${PREFIX}/man/man1/
 
 .include <bsd.port.post.mk>
