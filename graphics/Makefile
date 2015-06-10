@@ -14,7 +14,6 @@ SUBDIR += clutter
 SUBDIR += clutter-gtk
 SUBDIR += colord
 SUBDIR += dia
-SUBDIR += djvulibre-nox11
 SUBDIR += dri
 SUBDIR += eog
 SUBDIR += etoile-distributedview
