@@ -2,7 +2,7 @@
 
 PORTNAME=	libgda
 PORTVERSION?=	4.2.12
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -19,10 +19,10 @@ LIBGDA4_SLAVE?=	no
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-		gcrypt.18:${PORTSDIR}/security/libgcrypt \
-    		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		json-glib-1.0.0:${PORTSDIR}/devel/json-glib
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
+		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
+    		libsoup-2.so:${PORTSDIR}/devel/libsoup \
+		libjson-glib-1.so:${PORTSDIR}/devel/json-glib
 RUN_DEPENDS=	${LOCALBASE}/lib/girepository-1.0/GObject-2.0.typelib:${PORTSDIR}/devel/gobject-introspection
 
 USES+=		gettext gmake libtool pathfix pkgconfig
