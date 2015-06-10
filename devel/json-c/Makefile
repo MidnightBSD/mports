@@ -22,6 +22,8 @@ GH_COMMIT=	2a03577
 GH_PROJECT=	${PORTNAME}
 GH_TAGNAME=	${PORTNAME}-${PORTVERSION}-20140410
 
+WRKSRC=		${WRKDIR}/json-c-json-c-0.12-20140410
+
 post-patch:
 	@${REINPLACE_CMD} -e 's| -Werror||g' ${WRKSRC}/Makefile.in
 
