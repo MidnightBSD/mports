@@ -21,7 +21,6 @@ SUBDIR += etoile-iterm
 SUBDIR += etoile-xwindowserverkit
 SUBDIR += evieext
 SUBDIR += fixesproto
-SUBDIR += fpc-x11
 SUBDIR += fstobdf
 SUBDIR += gdm
 SUBDIR += glproto
