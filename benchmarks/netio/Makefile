@@ -2,12 +2,10 @@
 # $FreeBSD: ports/benchmarks/netio/Makefile,v 1.5 2006/09/02 12:07:20 arved Exp $
 
 PORTNAME=	netio
-PORTVERSION=	1.26
-PORTREVISION=	1
+PORTVERSION=	1.32
 CATEGORIES=	benchmarks net ipv6
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	arved
-DISTNAME=	netio126
+MASTER_SITES=	FREEBSD_LOCAL/arved
+DISTNAME=	netio132
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network benchmark
@@ -21,9 +19,10 @@ RESTRICTED=	No commercial use
 
 WRKSRC=		${WRKDIR}
 USES=		gmake zip
+PATCH_ARGS=	-d ${PATCH_WRKSRC} -N -s -E ${PATCH_STRIP} -l
 PLIST_FILES=	bin/netio
 
-CFLAGS+=	-DUNIX
+CFLAGS+=	-DUNIX -DSOCKLEN_T
 LIBS+=		-pthread
 MAKE_ENV+=	OUT=-o
 
