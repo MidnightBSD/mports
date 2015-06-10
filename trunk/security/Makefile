@@ -21,7 +21,6 @@ SUBDIR += cyrus-sasl2-saslauthd
 SUBDIR += dirmngr
 SUBDIR += easy-rsa
 SUBDIR += firewalk
-SUBDIR += fpc-hash
 SUBDIR += gcr
 SUBDIR += gnome-keyring
 SUBDIR += gnupg
