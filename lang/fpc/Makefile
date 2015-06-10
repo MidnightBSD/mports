@@ -62,44 +62,6 @@ MAKE_ENV+=	PP=${WRKDIR}/${PPNAME}-${PORTVERSION}-${OPSYS:L} \
 		OPT="${OPT}" \
 		BSDHIER=1
 
-MAN1=	bin2obj.1 \
-	chmcmd.1 \
-	chmls.1 \
-	data2inc.1 \
-	delp.1 \
-	fd2pascal.1 \
-	fp.1 \
-	fpc.1 \
-	fpclasschart.1 \
-	fpcmake.1 \
-	fpcmkcfg.1 \
-	fpdoc.1 \
-	fprcp.1 \
-	fpcres.1 \
-	fpcsubst.1 \
-	fppkg.1 \
-	grab_vcsa.1 \
-	h2pas.1 \
-	h2paspp.1 \
-	makeskel.1 \
-	plex.1 \
-	postw32.1 \
-	ppc386.1 \
-	ppcarm.1 \
-	ppcppc.1 \
-	ppcsparc.1 \
-	ppcx64.1 \
-	ppdep.1 \
-	ppudump.1 \
-	ppufiles.1 \
-	ppumove.1 \
-	ptop.1 \
-	pyacc.1 \
-	rmcvsdir.1 \
-	rstconv.1 \
-	unitdiff.1
-MAN5=	fpc.cfg.5 fpcmake.5 ptop.cfg.5
-
 do-extract:
 # unpack binary distribution
 	@${MKDIR} ${WRKDIR}
