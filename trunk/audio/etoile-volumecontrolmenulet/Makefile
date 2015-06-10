@@ -2,6 +2,7 @@
 
 PORTNAME=	volumecontrolmenulet
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	audio gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-
@@ -12,10 +13,8 @@ COMMENT=	Etoile Project VolumeControlMenulet bundle
 
 LICENSE=	bsd3
 
-USES=		tar:bzip2
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=		tar:bzip2 gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LOCAL_LIBS+=	SystemConfig:${SYSTEMCONFIG_PORT}
 
