@@ -3,7 +3,7 @@
 # $FreeBSD: head/graphics/gifsicle/Makefile 363294 2014-07-29 06:17:30Z vanilla $
 
 PORTNAME=	gifsicle
-PORTVERSION=	1.84
+PORTVERSION=	1.87
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.lcdf.org/gifsicle/
 
