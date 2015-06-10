@@ -12,17 +12,22 @@ include/plotcompat.h
 include/plotter.h
 include/xmi.h
 lib/libplot.a
-lib/libplot.la
 lib/libplot.so
-lib/libplot.so.4
+lib/libplot.so.2
+lib/libplot.so.2.2.4
 lib/libplotter.a
-lib/libplotter.la
 lib/libplotter.so
-lib/libplotter.so.4
+lib/libplotter.so.2
+lib/libplotter.so.2.2.4
 lib/libxmi.a
-lib/libxmi.la
 lib/libxmi.so
-lib/libxmi.so.1
+lib/libxmi.so.0
+lib/libxmi.so.0.1.3
+man/man1/ode.1.gz
+man/man1/plot.1.gz
+man/man1/plotfont.1.gz
+man/man1/spline.1.gz
+man/man1/tek2plot.1.gz
 share/libplot/README
 share/libplot/colors.txt
 share/libplot/h-fonts.txt
@@ -63,7 +68,3 @@ share/tek2plot/scale.tek
 share/tek2plot/skymap.tek
 share/tek2plot/skymap2.tek
 share/tek2plot/usmap.tek
-@dirrm share/tek2plot
-@dirrm share/pic2plot
-@dirrm share/ode
-@dirrm share/libplot
