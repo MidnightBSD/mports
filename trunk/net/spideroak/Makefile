@@ -1,80 +1,64 @@
 # $MidnightBSD$
 
 PORTNAME=	spideroak
-PORTVERSION=	5.0.2
+PORTVERSION=	5.1.8
 CATEGORIES=	net
-MASTER_SITES=	http://nivit.altervista.org/FreeBSD/ports/distfiles/ \
-		https://spideroak.com/getbuild?platform=slackware&arch=${ARCH:S,amd,x86_,}&dummy=/
-PKGNAMESUFFIX=	-${ARCH}
-DISTNAME=	${PORTNAME}-${PORTVERSION}-${LINARCH}-1
+MASTER_SITES=	http://nivit.altervista.org/FreeBSD/ports/distfiles/spideroak/ \
+		https://spideroak.com/getbuild?platform=slackware&arch=i386&dummy=/
+DISTNAME=	SpiderOak-${PORTVERSION}-i686-1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SpiderOak Client (Linux version)
 
-LICENSE=	other
-
-FETCH_ARGS=	-Fpr
+LICENSE=	TOU
+LICENSE_NAME=	Terms Of Use
+LICENSE_TEXT=	http://spideroak.com/terms_of_use
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_SUB=	yes
 
 PLIST_SUB=	DESKTOPDIR=${DESKTOPDIR:S,${PREFIX}/,,} \
-		LINARCH=${LINARCH} \
-		ONLYI386=${ONLYI386}
+		BINMODE=${BINMODE}
 
 REINPLACE_ARGS=	-e 's,%%PREFIX%%,${PREFIX},1' \
 		-e 's,%%DATADIR%%,${DATADIR},1' \
 		-i.bak
 
-.include <bsd.mport.options.mk>
+SUB_LIST=	LINUXBASE=${LINUXBASE}
+SUB_FILES=	pkg-message
 
-.if ${PORT_OPTIONS:MMANPAGES}
-MAN1=	SpiderOak.1
-MANCOMPRESSED=	yes
-.endif
-
-USE_LINUX=	yes
+USE_LINUX=	f10
 USE_LINUX_APPS=	xorglibs
-USE_PYTHON=	2.7
-USES=	desktop-file-utils
+USES=		desktop-file-utils python:2 tar:tgz
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	${REINPLACE_CMD} ${WRKDIR}/usr/share/applications/SpiderOak.desktop \
 		${WRKDIR}/usr/bin/SpiderOak
 
 do-install:
-	cd ${WRKDIR}/etc && \
-	${COPYTREE_SHARE} . ${PREFIX}/etc/
-	${MKDIR} ${DATADIR}
-	cd ${WRKDIR}/opt/SpiderOak/lib && \
-	${COPYTREE_SHARE} . ${DATADIR}
-	${CHMOD} ${BINMODE} ${DATADIR}/SpiderOak ${DATADIR}/inotify_dir_watcher
-	${INSTALL_SCRIPT} ${WRKDIR}/usr/bin/SpiderOak ${PREFIX}/bin/SpiderOak
-	${LN} -s ${PREFIX}/bin/SpiderOak ${PREFIX}/bin/spideroak
+	@(cd ${WRKDIR}/etc && \
+	${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/etc/)
+	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@(cd ${WRKDIR}/opt/SpiderOak/lib && \
+	${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} "-not -name SpiderOak")
+	${INSTALL_PROGRAM} ${WRKDIR}/opt/SpiderOak/lib/SpiderOak ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/usr/bin/SpiderOak ${STAGEDIR}${PREFIX}/bin/SpiderOak
+	${LN} -sf SpiderOak ${STAGEDIR}${PREFIX}/bin/spideroak
 	${LOCALBASE}/bin/desktop-file-install \
-		--mode=${SHAREMODE} --dir=${DESKTOPDIR} \
-		--rebuild-mime-info-cache \
+		--mode=${SHAREMODE} --dir=${STAGEDIR}${DESKTOPDIR} \
 		${WRKDIR}/usr/share/applications/SpiderOak.desktop
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKDIR}/usr/share/doc/SpiderOak/globalsync-linux.pdf ${DOCSDIR}
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKDIR}/usr/share/doc/SpiderOak/globalsync-linux.pdf ${STAGEDIR}${DOCSDIR}
 .if ${PORT_OPTIONS:MMANPAGES}
-	${INSTALL_MAN} ${WRKDIR}/usr/share/man/man1/SpiderOak.1.gz ${MANPREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKDIR}/usr/share/man/man1/SpiderOak.1.gz ${STAGEDIR}${MANPREFIX}/man/man1/
 .endif
-	${INSTALL_DATA} ${WRKDIR}/usr/share/pixmaps/*.png ${PREFIX}/share/pixmaps/
+	${INSTALL_DATA} ${WRKDIR}/usr/share/pixmaps/*.png ${STAGEDIR}${PREFIX}/share/pixmaps/
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "i386"
-LINARCH=	i686
-ONLYI386=	""
-.else
-LINARCH=	x86_64
-ONLYI386=	"@comment "
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
