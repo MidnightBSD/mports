@@ -11,7 +11,7 @@ DIST_SUBDIR=	acroread
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Reader for view, print, and search PDF documents (${ADOBE_LANG})
-LICENSE=	restricted
+LICENSE=	other
 
 RUN_DEPENDS=	acroreadwrapper>=0.0.20110529:${PORTSDIR}/print/acroreadwrapper
 
