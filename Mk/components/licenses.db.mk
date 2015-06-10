@@ -99,6 +99,9 @@ _LICENSE_GROUPS_gpl2=	FSF GPL OSI
 _LICENSE_NAME_gpl3=	GNU General Public License version 3
 _LICENSE_GROUPS_gpl3=	FSF GPL OSI
 
+_LICENSE_NAME_ibm=	IBM License
+_LICENSE_GROUPS_ibm=
+
 _LICENSE_NAME_infozip=	Info-ZIP License
 _LICENSE_GROUPS_infozip=
 
