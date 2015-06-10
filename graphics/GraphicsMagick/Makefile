@@ -2,7 +2,7 @@
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
@@ -10,15 +10,16 @@ MASTER_SITES=	SF \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast image processing tools based on ImageMagick
+
 LICENSE=	bsd2
 
 CONFLICTS=	GraphicsMagick-1.[23].*
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2	\
-		fpx.[2-9]:${PORTSDIR}/graphics/libfpx	\
-		jbig:${PORTSDIR}/graphics/jbigkit	\
-		png15:${PORTSDIR}/graphics/png		\
-		xml2:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2	\
+		libfpx.so:${PORTSDIR}/graphics/libfpx	\
+		libjbig.so:${PORTSDIR}/graphics/jbigkit	\
+		libpng.so:${PORTSDIR}/graphics/png		\
+		libxml2.so:${PORTSDIR}/textproc/libxml2
 OTHERGRAPHICS=	jasper jpeg lcms tiff
 LIB_DEPENDS+=	${OTHERGRAPHICS:C|(.+)|\1:${PORTSDIR}/graphics/\1|}
 
@@ -29,18 +30,9 @@ TESTS_DESC=	Run bundled self-tests after build
 
 OPTIONS_DEFAULT=X11 TESTS DOCS
 
-USES=		iconv
-USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
+USES=		iconv libtool tar:bz2
 USE_GHOSTSCRIPT=yes
 GNU_CONFIGURE=	yes
-
-MAN1=	GraphicsMagick++-config.1 \
-	GraphicsMagick-config.1 \
-	GraphicsMagickWand-config.1 \
-	gm.1
-MAN4=	miff.4
-MAN5=	quantize.5
 
 .ifndef WINDOWS_FONT_DIR
 # Use fonts installed by x11-fonts/webfonts by default
