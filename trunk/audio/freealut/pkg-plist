@@ -3,6 +3,5 @@ include/AL/alut.h
 libdata/pkgconfig/freealut.pc
 lib/libalut.a
 lib/libalut.so
-lib/libalut.so.1.0
-@dirrmtry include/AL
-
+lib/libalut.so.0
+lib/libalut.so.0.1.0
