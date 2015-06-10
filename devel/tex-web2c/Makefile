@@ -12,6 +12,8 @@ DIST_SUBDIR=	TeX
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TeX implementation translating WEB to C
 
+LICENSE=	publicdom
+
 LIB_DEPENDS=	libopenjpeg.so:${PORTSDIR}/graphics/openjpeg15 \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libzzip.so:${PORTSDIR}/devel/zziplib
