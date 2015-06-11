@@ -11,14 +11,13 @@ DIST_SUBDIR=	brs
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive King James Bible
 
-LICENSE=	restricted
-# it's marked as do not distribute
+LICENSE=	publicdom
+# based on man page description
 
 USES=		tar:bzip2
 NO_WRKSUBDIR=	yes
 ALL_TARGET=
 CFLAGS+=	-Wno-error=return-type
-MAN1=		bible.1
 
 .include <bsd.port.pre.mk>
 
