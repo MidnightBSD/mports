@@ -2,21 +2,19 @@
 
 PORTNAME=	login
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	x11-wm gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-
 DISTNAME=	etoile-${PORTVERSION}
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project GDM Greeter plugin
+
 LICENSE=	unknown
 
-PORTSCOUT=	limit:^0\.2
-
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_INSTALL=	yes
 
 WRKSRC=	${WRKDIR}/Etoile-${PORTVERSION}
