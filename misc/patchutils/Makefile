@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	patchutils
-PORTVERSION=	0.3.3
-PORTREVISION=	1
+PORTVERSION=	0.3.4
 CATEGORIES=	misc
 MASTER_SITES=	http://cyberelk.net/tim/data/patchutils/stable/
 
@@ -11,12 +10,14 @@ COMMENT=	Small collection of programs that operate on patch files
 
 LICENSE=	gpl2
 
-USES=		tar:xz
-USE_PERL5=	yes
-GNU_CONFIGURE=	yes
+RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
-post-patch:
-	@${GREP} -lR "#!/bin/bash" ${WRKSRC} | ${XARGS} ${PERL} -pi.bak -e \
-		"s,#!/bin/bash,#!/bin/sh,"
+USES=		perl5 shebangfix tar:xz
+USE_PERL5=	run build patch
+GNU_CONFIGURE=	yes
+SHEBANG_FILES=	scripts/*
+
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}/${MANPREFIX}/man/man1
 
 .include <bsd.port.mk>
