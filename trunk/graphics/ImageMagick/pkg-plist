@@ -133,6 +133,7 @@ include/ImageMagick-6/magick/transform.h
 include/ImageMagick-6/magick/type.h
 include/ImageMagick-6/magick/utility.h
 include/ImageMagick-6/magick/version.h
+include/ImageMagick-6/magick/vision.h
 include/ImageMagick-6/magick/widget.h
 include/ImageMagick-6/magick/xml-tree.h
 include/ImageMagick-6/magick/xwindow.h
@@ -163,7 +164,6 @@ include/ImageMagick-6/wand/pixel-wand.h
 include/ImageMagick-6/wand/stream.h
 include/ImageMagick-6/wand/wand-view.h
 lib/ImageMagick-%%PORTVERSION%%/config-%%QBIT%%%%HDRI%%/configure.xml
-%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/aai.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/aai.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/art.la
@@ -346,6 +346,8 @@ lib/ImageMagick-%%PORTVERSION%%/config-%%QBIT%%%%HDRI%%/configure.xml
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sfw.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sgi.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sgi.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sixel.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sixel.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/stegano.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/stegano.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/sun.la
@@ -400,48 +402,49 @@ lib/ImageMagick-%%PORTVERSION%%/config-%%QBIT%%%%HDRI%%/configure.xml
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xpm.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xps.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xps.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xtrn.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xtrn.so
 %%X11%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xwd.la
 %%X11%%%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/xwd.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/ycbcr.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/ycbcr.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/yuv.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders/yuv.so
-%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/filters/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/filters/analyze.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/filters/analyze.so
-lib/libMagick++-6.%%QBIT%%%%HDRI%%.a
-lib/libMagick++-6.%%QBIT%%%%HDRI%%.la
-lib/libMagick++-6.%%QBIT%%%%HDRI%%.so
-lib/libMagick++-6.%%QBIT%%%%HDRI%%.so.5
-lib/libMagick++-6.%%QBIT%%%%HDRI%%.so.5.0.0
-lib/libMagickCore-6.%%QBIT%%%%HDRI%%.a
-lib/libMagickCore-6.%%QBIT%%%%HDRI%%.la
-lib/libMagickCore-6.%%QBIT%%%%HDRI%%.so
-lib/libMagickCore-6.%%QBIT%%%%HDRI%%.so.2
-lib/libMagickCore-6.%%QBIT%%%%HDRI%%.so.2.0.0
-lib/libMagickWand-6.%%QBIT%%%%HDRI%%.a
-lib/libMagickWand-6.%%QBIT%%%%HDRI%%.la
-lib/libMagickWand-6.%%QBIT%%%%HDRI%%.so
-lib/libMagickWand-6.%%QBIT%%%%HDRI%%.so.2
-lib/libMagickWand-6.%%QBIT%%%%HDRI%%.so.2.0.0
+lib/libMagick++-6.a
+lib/libMagick++-6.la
+lib/libMagick++-6.so
+lib/libMagick++-6.so.6
+lib/libMagick++-6.so.6.0.0
+lib/libMagickCore-6.a
+lib/libMagickCore-6.la
+lib/libMagickCore-6.so
+lib/libMagickCore-6.so.2
+lib/libMagickCore-6.so.2.0.0
+lib/libMagickWand-6.a
+lib/libMagickWand-6.la
+lib/libMagickWand-6.so
+lib/libMagickWand-6.so.2
+lib/libMagickWand-6.so.2.0.0
 libdata/pkgconfig/ImageMagick++.pc
 libdata/pkgconfig/Magick++.pc
 libdata/pkgconfig/ImageMagick.pc
 libdata/pkgconfig/MagickCore.pc
 libdata/pkgconfig/MagickWand.pc
 libdata/pkgconfig/Wand.pc
-libdata/pkgconfig/ImageMagick++-6.%%QBIT%%%%HDRI%%.pc
-libdata/pkgconfig/ImageMagick-6.%%QBIT%%%%HDRI%%.pc
-libdata/pkgconfig/Magick++-6.%%QBIT%%%%HDRI%%.pc
-libdata/pkgconfig/MagickCore-6.%%QBIT%%%%HDRI%%.pc
-libdata/pkgconfig/MagickWand-6.%%QBIT%%%%HDRI%%.pc
-libdata/pkgconfig/Wand-6.%%QBIT%%%%HDRI%%.pc
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Image/Magick.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Image/Magick/%%QBIT%%%%HDRI%%.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/Magick.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/%%QBIT%%%%HDRI%%/%%QBIT%%%%HDRI%%.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/%%QBIT%%%%HDRI%%/autosplit.ix
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/autosplit.ix
+libdata/pkgconfig/ImageMagick++-6.pc
+libdata/pkgconfig/ImageMagick-6.pc
+libdata/pkgconfig/Magick++-6.pc
+libdata/pkgconfig/MagickCore-6.pc
+libdata/pkgconfig/MagickWand-6.pc
+libdata/pkgconfig/Wand-6.pc
+%%WITH_PERL%%%%SITE_ARCH%%/Image/Magick.pm
+%%WITH_PERL%%%%SITE_ARCH%%/Image/Magick/%%QBIT%%%%HDRI%%.pm
+%%WITH_PERL%%%%SITE_ARCH%%/auto/Image/Magick/Magick.so
+%%WITH_PERL%%%%SITE_ARCH%%/auto/Image/Magick/%%QBIT%%%%HDRI%%/%%QBIT%%%%HDRI%%.so
+%%WITH_PERL%%%%SITE_ARCH%%/auto/Image/Magick/%%QBIT%%%%HDRI%%/autosplit.ix
+%%WITH_PERL%%%%SITE_ARCH%%/auto/Image/Magick/autosplit.ix
 %%WITH_PERL%%%%PERL5_MAN3%%/Image::Magick.3.gz
 %%WITH_PERL%%%%PERL5_MAN3%%/Image::Magick::%%QBIT%%%%HDRI%%.3.gz
 man/man1/ImageMagick.1.gz
@@ -486,6 +489,7 @@ man/man1/stream.1.gz
 %%PORTDOCS%%%%DOCSDIR%%-6/images/granite.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/imade_art2.jpg
 %%PORTDOCS%%%%DOCSDIR%%-6/images/label.gif
+%%PORTDOCS%%%%DOCSDIR%%-6/images/litecoin.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/logo-sm-flop.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/logo-sm-fx.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/logo-sm.png
@@ -493,6 +497,9 @@ man/man1/stream.1.gz
 %%PORTDOCS%%%%DOCSDIR%%-6/images/logo.jpg
 %%PORTDOCS%%%%DOCSDIR%%-6/images/montage.jpg
 %%PORTDOCS%%%%DOCSDIR%%-6/images/navy.png
+%%PORTDOCS%%%%DOCSDIR%%-6/images/objects.gif
+%%PORTDOCS%%%%DOCSDIR%%-6/images/objects.jpg
+%%PORTDOCS%%%%DOCSDIR%%-6/images/objects.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/patterns/bricks.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/patterns/checkerboard.png
 %%PORTDOCS%%%%DOCSDIR%%-6/images/patterns/circles.png
@@ -613,6 +620,9 @@ man/man1/stream.1.gz
 %%PORTDOCS%%%%DOCSDIR%%-6/www/advanced-unix-installation.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/advanced-windows-installation.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/animate.html
+%%PORTDOCS%%%%DOCSDIR%%-6/www/css/bootstrap.min.css
+%%PORTDOCS%%%%DOCSDIR%%-6/www/css/magick.css
+%%PORTDOCS%%%%DOCSDIR%%-6/www/js/bootstrap.min.js
 %%PORTDOCS%%%%DOCSDIR%%-6/www/openmp.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/webp.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/distribute-pixel-cache.html
@@ -1401,6 +1411,7 @@ man/man1/stream.1.gz
 %%PORTDOCS%%%%DOCSDIR%%-6/www/compose.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/composite.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/conjure.html
+%%PORTDOCS%%%%DOCSDIR%%-6/www/connected-components.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/contact.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/convert.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/display.html
@@ -1459,33 +1470,7 @@ man/man1/stream.1.gz
 %%PORTDOCS%%%%DOCSDIR%%-6/www/source/type-windows.xml
 %%PORTDOCS%%%%DOCSDIR%%-6/www/source/type.xml
 %%PORTDOCS%%%%DOCSDIR%%-6/www/source/wand.c
-%%PORTDOCS%%%%DOCSDIR%%-6/www/sponsors.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/stream.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/subversion.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/t-shirt.html
 %%PORTDOCS%%%%DOCSDIR%%-6/www/wand.png
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www/source
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www/api/MagickCore
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www/api/MagickWand
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www/api
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www/Magick++
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/www
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/images/patterns
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6/images
-%%PORTDOCS%%@dirrm %%DOCSDIR%%-6
-@dirrm %%DATADIR%%-6
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/%%QBIT%%%%HDRI%%
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Image/Magick
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Image
-%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/filters
-%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%/coders
-%%MODULES%%@dirrmtry lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%%%HDRI%%
-@dirrmtry lib/ImageMagick-%%PORTVERSION%%/config-%%QBIT%%%%HDRI%%
-@dirrmtry lib/ImageMagick-%%PORTVERSION%%
-@dirrm include/ImageMagick-6/wand
-@dirrm include/ImageMagick-6/magick
-@dirrm include/ImageMagick-6/Magick++
-@dirrm include/ImageMagick-6
-@dirrmtry etc/ImageMagick-6
