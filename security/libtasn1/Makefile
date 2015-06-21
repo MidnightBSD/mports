@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libtasn1
-PORTVERSION=	4.2
+PORTVERSION=	4.5
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	libtasn1
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
@@ -12,14 +11,16 @@ COMMENT=	ASN.1 structure parser library
 LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
-USES=		pkgconfig pathfix gmake libtool
+USES=		cpe pkgconfig pathfix gmake libtool
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+CPE_VENDOR=	gnu
 
 OPTIONS_DEFINE=	DOCS
 
 DOCS=		AUTHORS NEWS README THANKS doc/TODO \
 		doc/libtasn1.html doc/libtasn1.pdf doc/libtasn1.ps
+INFO=		libtasn1
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
