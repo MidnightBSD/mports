@@ -17,5 +17,6 @@ GNU_CONFIGURE=	yes
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/object/vxquery ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${FILESDIR}/pkg_check.sh ${PREFIX}/bin
 
 .include <bsd.port.mk>
