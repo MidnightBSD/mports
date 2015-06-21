@@ -5,4 +5,4 @@ FORMAT="${FORMAT:-text}"
 VULN_XML="${VULN_XML:-${PORTSDIR}/security/vuxml/vuln.xml}"
 
 set -e
-echo /usr/libexec/mport.list | "${VXQUERY}" -f - -t "${FORMAT}" "${VULN_XML}"
+/usr/libexec/mport.list | "${VXQUERY}" -f - -t "${FORMAT}" "${VULN_XML}"
