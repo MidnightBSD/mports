@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	dbus-glib
-PORTVERSION=	0.100.2
-PORTREVISION=	3
+PORTVERSION=	0.104
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 
@@ -14,7 +14,8 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool:keepla pathfix pkgconfig
+USES=		cpe gettext gmake libtool pathfix pkgconfig
+CPE_VENDOR=	freedesktop
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
