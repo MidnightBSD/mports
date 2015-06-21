@@ -464,7 +464,7 @@ Notes:
     <affects>
       <package>
 	<name>pcre</name>
-	<range><lt>8.37_1</lt></range>
+	<range><lt>8.37</lt></range>
       </package>
     </affects>
     <description>
