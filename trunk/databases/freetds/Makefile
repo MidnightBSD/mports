@@ -2,8 +2,8 @@
 # $FreeBSD: head/databases/freetds/Makefile 369379 2014-09-27 08:31:58Z riggs $
 
 PORTNAME=	freetds
-PORTVERSION=	0.91.103
-PORTREVISION=	1
+PORTVERSION=	0.95.8
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
@@ -17,12 +17,11 @@ LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 
 TDS_VER?=	5.0
 
-USES=		iconv gmake pkgconfig libtool:keepla
+USES=		autoreconf iconv gmake libtool:keepla pkgconfig readline tar:bzip2
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:env
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-LIBS+=		-lgcrypt
+LIBS+=		-lgcrypt -lpthread
 CONFIGURE_ARGS=	--with-tdsver=${TDS_VER} --sysconfdir=${ETCDIR} \
 	       	--enable-sybase-compat --enable-msdblib
 USE_LDCONFIG=	yes
@@ -30,7 +29,10 @@ INSTALL_TARGET=	install-strip
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=		OPENSSL GNUTLS DOCS
+OPTIONS_DEFINE=		DOCS
+OPTIONS_SINGLE=		SSL
+OPTIONS_SINGLE_SSL=	OPENSSL GNUTLS
+OPTIONS_DEFAULT=	OPENSSL
 OPTIONS_RADIO=		ODBC
 OPTIONS_RADIO_ODBC=	IODBC UNIXODBC
 OPENSSL_USE=		OPENSSL=yes
@@ -57,21 +59,16 @@ post-extract:
 	@cd ${WRKSRC}/src/pool && ${LN} -s pool.conf pool.conf.sample
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
+	@${FIND} ${WRKSRC} -name "Makefile.am" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|<malloc.h>|<stdlib.h>| ; \
 		 s|/freetds.conf|/freetds.conf.sample|g ; \
 		 s|/locales.conf|/locales.conf.sample|g ; \
 		 s|/pool.conf|/pool.conf.sample|g ; \
 		 s| common.h||g'
-	@${REINPLACE_CMD} -e 's|$$ODBC_INC/isql.h|$$ODBC_INC/libiodbc/isql.h|g ; \
-		 s|$$ODBC_INC/isqlext.h|$$ODBC_INC/libiodbc/isqlext.h|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|\(\$with_iodbc/include\)|\1/libiodbc|g' \
+		${WRKSRC}/configure.ac
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@(cd ${WRKSRC}/doc/doc/${PORTNAME}-${PORTVERSION} && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-.endif
+	${INSTALL_DATA} ${WRKSRC}/interfaces ${ETCDIR}/interfaces.sample
 
 .include <bsd.port.mk>
