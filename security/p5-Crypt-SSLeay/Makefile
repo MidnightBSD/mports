@@ -17,6 +17,4 @@ PERL_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--lib=${OPENSSLBASE}
 USE_OPENSSL=	yes
 
-MAN3=		Crypt::SSLeay.3 Net::SSL.3
-
 .include <bsd.port.mk>
