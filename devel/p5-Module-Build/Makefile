@@ -1,47 +1,22 @@
 # $MidnightBSD$
 
 PORTNAME=	Module-Build
-PORTVERSION=	0.4005
+PORTVERSION=	0.4214
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build and install Perl modules
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 OPTIONS_DEFINE=	DOCS
 
+USE_PERL5=	yes
 PERL_MODBUILD=	yes
 
-MAN3=		inc::latest.3 \
-		Module::Build.3 \
-  		Module::Build::Bundling.3 \
-		Module::Build::API.3 \
-		Module::Build::Authoring.3 \
-		Module::Build::Base.3 \
-		Module::Build::Compat.3 \
-		Module::Build::ConfigData.3 \
-		Module::Build::Cookbook.3 \
-		Module::Build::ModuleInfo.3 \
-		Module::Build::Notes.3 \
-		Module::Build::PPMMaker.3 \
-		Module::Build::Platform::Amiga.3 \
-		Module::Build::Platform::Default.3 \
-		Module::Build::Platform::EBCDIC.3 \
-		Module::Build::Platform::MPEiX.3 \
-		Module::Build::Platform::MacOS.3 \
-		Module::Build::Platform::RiscOS.3 \
-		Module::Build::Platform::Unix.3 \
-		Module::Build::Platform::VMS.3 \
-		Module::Build::Platform::VOS.3 \
-		Module::Build::Platform::Windows.3 \
-		Module::Build::Platform::aix.3 \
-		Module::Build::Platform::cygwin.3 \
-		Module::Build::Platform::darwin.3 \
-		Module::Build::Platform::os2.3 \
-		Module::Build::Version.3 \
-		Module::Build::YAML.3
 PORTDOCS=	Changes INSTALL README
 
 .include <bsd.port.pre.mk>
