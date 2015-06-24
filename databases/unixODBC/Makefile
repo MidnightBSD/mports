@@ -26,6 +26,7 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's,@MSQL_TRUE@lib_LTLIBRARIES,#&,' \
 		${WRKSRC}/Drivers/MiniSQL/Makefile.in
+	touch ${WRKSRC}/Interix/config.sub
 
 post-install:
 .if !defined(NOPORTDOCS)
