@@ -1,6 +1,6 @@
 # $MidnightBSD$
 #
-# Allows to feature determine the compiler used
+# Allows to determine the compiler being used
 #
 # Feature:	compiler
 # Usage:	USES=compiler or USES=compiler:ARGS
@@ -8,6 +8,7 @@
 #
 # c++0x:	The port needs a compiler understanding C++0X
 # c++11-lang:	The port needs a compiler understanding C++11
+# gcc-c++11-lib:The port needs g++ compiler with a C++11 library
 # c++11-lib:	The port needs a compiler understanding C++11 and with a C++11 ready standard library
 # c11:		The port needs a compiler understanding C11
 # openmp:	The port needs a compiler understanding openmp
@@ -18,8 +19,8 @@
 #
 # COMPILER_TYPE:	can be gcc or clang
 # ALT_COMPILER_TYPE:	can be gcc or clang depending on COMPILER_TYPE, only set if the base system has 2 compilers
-# COMPILER_VERSION:	first 2 digits of the version: 33 for clang 3.3.*, 46 for gcc 4.6.*
-# ALT_COMPILER_VERSION:	first 2 digits of the version: 33 for clang 3.3.*, 46 for gcc 4.6.* of the ALT_COMPILER_TYPE
+# COMPILER_VERSION:	first 2 digits of the version: 33 for clang 3.3.*, 47 for gcc 4.7.*
+# ALT_COMPILER_VERSION:	first 2 digits of the version: 33 for clang 3.3.*, 47 for gcc 4.7.* of the ALT_COMPILER_TYPE
 #
 # COMPILER_FEATURES:	the list of features supported by the compiler includes the standard C++ library.
 # CHOSEN_COMPILER_TYPE:	can be gcc or clang (type of compiler chosen by the framework)
@@ -27,13 +28,15 @@
 .if !defined(_INCLUDE_USES_COMPILER_MK)
 _INCLUDE_USES_COMPILER_MK=	yes
 
-.if !defined(compiler_ARGS)
+.if empty(compiler_ARGS)
 compiler_ARGS=	env
 .endif
 
-VALID_ARGS=	c++11-lib c++11-lang c11 features openmp env nestedfct c++0x
+VALID_ARGS=	c++11-lib c++11-lang c11 features openmp env nestedfct c++0x gcc-c++11-lib
 
-.if ${compiler_ARGS} == c++11-lib
+.if ${compiler_ARGS} == gcc-c++11-lib
+_COMPILER_ARGS+=	features gcc-c++11-lib
+.elif ${compiler_ARGS} == c++11-lib
 _COMPILER_ARGS+=	features c++11-lib
 .elif ${compiler_ARGS} == c++0x
 _COMPILER_ARGS+=	features c++0x
@@ -70,12 +73,14 @@ ALT_COMPILER_VERSION=	0
 ALT_COMPILER_TYPE=	none
 _ALTCCVERSION=	
 .if ${COMPILER_TYPE} == gcc && exists(/usr/bin/clang)
+.if ${ARCH} == amd64 || ${ARCH} == i386 # clang often non-default for a reason
 _ALTCCVERSION!=	/usr/bin/clang --version
+.endif
 .elif ${COMPILER_TYPE} == clang && exists(/usr/bin/gcc)
 _ALTCCVERSION!=	/usr/bin/gcc --version
 .endif
 
-ALT_COMPILER_VERSION=	${_ALTCCVERSION:M[0-9].[0-9])*:C/([0-9]).([0-9]).*/\1\2/g}
+ALT_COMPILER_VERSION=	${_ALTCCVERSION:M[0-9].[0-9]*:C/([0-9]).([0-9]).*/\1\2/g}
 .if ${_ALTCCVERSION:Mclang}
 ALT_COMPILER_TYPE=	clang
 .elif !empty(_ALTCCVERSION)
@@ -123,30 +128,30 @@ COMPILER_FEATURES+=	${std}
 
 .if ${_COMPILER_ARGS:Mc++11-lib}
 .if !${COMPILER_FEATURES:Mc++11}
-USE_GCC=	4.7+
+USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
 .elif ${COMPILER_TYPE} == clang && ${COMPILER_FEATURES:Mlibstdc++}
-USE_GCC=	4.7+
+USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
 .endif
 .endif
 
 .if ${_COMPILER_ARGS:Mc++11-lang}
 .if !${COMPILER_FEATURES:Mc++11}
-.if defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc
-USE_GCC=	4.7+
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
+USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
-.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 33) || ${COMPILER_TYPE} == gcc
-.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} == 33 
+.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} == gcc
+.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 34
 CPP=	clang-cpp
 CC=	clang
 CXX=	clang++
 CHOSEN_COMPILER_TYPE=	clang
 .else
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang33:${PORTSDIR}/lang/clang33
-CPP=	${LOCALBASE}/bin/clang-cpp33
-CC=	${LOCALBASE}/bin/clang33
-CXX=	${LOCALBASE}/bin/clang++33
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
+CPP=	${LOCALBASE}/bin/clang-cpp34
+CC=	${LOCALBASE}/bin/clang34
+CXX=	${LOCALBASE}/bin/clang++34
 CHOSEN_COMPILER_TYPE=	clang
 .if ${OSVERSION} < 4016
 USE_BINUTILS=	yes
@@ -159,21 +164,21 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 
 .if ${_COMPILER_ARGS:Mc++0x}
 .if !${COMPILER_FEATURES:Mc++0x}
-.if defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
 USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
-.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 33) || ${COMPILER_TYPE} == gcc
-.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 33
+.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} == gcc
+.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 34
 CPP=	clang-cpp
 CC=	clang
 CXX=	clang++
 CHOSEN_COMPILER_TYPE=	clang
 .else
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang33:${PORTSDIR}/lang/clang33
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
 CHOSEN_COMPILER_TYPE=	clang
-CPP=	${LOCALBASE}/bin/clang-cpp33
-CC=	${LOCALBASE}/bin/clang33
-CXX=	${LOCALBASE}/bin/clang++33
+CPP=	${LOCALBASE}/bin/clang-cpp34
+CC=	${LOCALBASE}/bin/clang34
+CXX=	${LOCALBASE}/bin/clang++34
 .if ${OSVERSION} < 4016
 USE_BINUTILS=	yes
 LDFLAGS+=	-B${LOCALBASE}/bin
@@ -185,27 +190,37 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 
 .if ${_COMPILER_ARGS:Mc11}
 .if !${COMPILER_FEATURES:Mc11}
-.if defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc
-USE_GCC=	4.7+
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
+USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
-.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 33) || ${COMPILER_TYPE} == gcc
-.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 33
+.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} == gcc
+.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 34
 CPP=	clang-cpp
 CC=	clang
 CXX=	clang++
 CHOSEN_COMPILER_TYPE=	clang
 .else
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang33:${PORTSDIR}/lang/clang33
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
 CHOSEN_COMPILER_TYPE=	clang
-CPP=	${LOCALBASE}/bin/clang-cpp33
-CC=	${LOCALBASE}/bin/clang33
-CXX=	${LOCALBASE}/bin/clang++33
-.if ${OSVERSION} < 4016
+CPP=	${LOCALBASE}/bin/clang-cpp34
+CC=	${LOCALBASE}/bin/clang34
+CXX=	${LOCALBASE}/bin/clang++34
+.if ${OSVERSION} < 900033
 USE_BINUTILS=	yes
 LDFLAGS+=	-B${LOCALBASE}/bin
 .endif
 .endif
 .endif
+.endif
+.endif
+
+.if ${_COMPILER_ARGS:Mgcc-c++11-lib}
+USE_GCC=	yes
+CHOSEN_COMPILER_TYPE=	gcc
+.if ${COMPILER_FEATURES:Mlibc++}
+LDFLAGS+=	-L${LOCALBASE}/lib/c++
+CXXFLAGS+=	-nostdinc++ -isystem ${LOCALBASE}/include/c++/v1
+BUILD_DEPENDS+=	${LOCALBASE}/lib/c++/libstdc++.so:${PORTSDIR}/devel/libc++
 .endif
 .endif
 
