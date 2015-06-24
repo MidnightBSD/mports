@@ -12,6 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=	File::NFSLock.3
-
 .include <bsd.port.mk>
