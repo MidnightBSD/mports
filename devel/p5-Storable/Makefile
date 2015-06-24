@@ -2,14 +2,18 @@
 
 PORTNAME=	Storable
 PORTVERSION=	2.45
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistency for perl data structures
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
 post-patch:
