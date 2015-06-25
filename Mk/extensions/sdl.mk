@@ -31,105 +31,133 @@
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 
-.if !defined(_POSTMKINCLUDED) && !defined(Sdl_Pre_Include)
-
-Sdl_Pre_Include=	sdl.mk
 Sdl_Include_MAINTAINER=		ports@MidnightBSD.org
 
 #
-# These are the current supported SDL modules
+# These are the current supported SDL1.2 modules
 #
-_USE_SDL_ALL=	gfx gui image mixer mm net sdl sound ttf
+_USE_SDL_ALL=	console gfx image mixer mm net pango sdl sound ttf
+#
+# These are the current supported SDL2 modules
+#
+_USE_SDL_ALL+=	gfx2 image2 mixer2 net2 sdl2 ttf2
 
 #
 # Variables used to determine what is needed:
-# _VERSION_xxx	version of the shared library (required)
 # _SUBDIR_xxx	subdirectory below ${PORTSDIR} (required)
-# _PORTDIR_xxx	subdirectory below ${PORTSDIR}/${_SUBDIR_xxx}, default sdl_xxx
-# _LIB_xxx		name of the shared lib, default SDL_xxx
+# _PORTDIR_xxx	subdirectory below ${PORTSDIR}/${_SUBDIR_xxx}
+# _LIB_xxx		name of the shared lib
 # _REQUIRES_xxx	also needs these SDL libraries
 #
 
-_VERSION_gfx=	13
+_SUBDIR_console=	devel
+_PORTDIR_console=	sdl_console
+_LIB_console=		libSDL_console.so
+_REQUIRES_console=	sdl
+
 _SUBDIR_gfx=	graphics
+_PORTDIR_gfx=	sdl_gfx
+_LIB_gfx=	libSDL_gfx.so
 _REQUIRES_gfx=	sdl
 
-_VERSION_gui=	0
-_SUBDIR_gui=	x11-toolkits
-_REQUIRES_gui=	sdl image ttf
-
-_VERSION_image=	1
 _SUBDIR_image=	graphics
+_PORTDIR_image=	sdl_image
+_LIB_image=	libSDL_image.so
 _REQUIRES_image=sdl
 
-_VERSION_mixer=	2
 _SUBDIR_mixer=	audio
-_LIB_mixer=	SDL_mixer-1.2
+_PORTDIR_mixer=	sdl_mixer
+_LIB_mixer=	libSDL_mixer.so
 _REQUIRES_mixer=sdl
 
-_VERSION_mm=	8
-_SUBDIR_mm=		devel
-_LIB_mm=		SDLmm
+_SUBDIR_mm=	devel
 _PORTDIR_mm=	sdlmm
+_LIB_mm=	libSDLmm.so
 _REQUIRES_mm=	sdl
 
-_VERSION_net=	0
 _SUBDIR_net=	net
-_LIB_net=	SDL_net-1.2
+_PORTDIR_net=	sdl_net
+_LIB_net=	libSDL_net.so
 _REQUIRES_net=	sdl
 
-_VERSION_sdl=	11
-_SUBDIR_sdl=	devel
-_LIB_sdl=		SDL-1.2
-_PORTDIR_sdl=	sdl12
+_SUBDIR_pango=	x11-toolkits
+_PORTDIR_pango=	sdl_pango
+_LIB_pango=	libSDL_Pango.so
+_REQUIRES_pango=sdl
 
-_VERSION_sound=	1
+_SUBDIR_sdl=	devel
+_PORTDIR_sdl=	sdl12
+_LIB_sdl=	libSDL.so
+_REQUIRES_sdl=
+
 _SUBDIR_sound=	audio
+_PORTDIR_sound=	sdl_sound
+_LIB_sound=	libSDL_sound.so
 _REQUIRES_sound=sdl
 
-_VERSION_ttf=	6
 _SUBDIR_ttf=	graphics
+_PORTDIR_ttf=	sdl_ttf
+_LIB_ttf=	libSDL_ttf.so
 _REQUIRES_ttf=	sdl
 
-#
-# Update the variables if they need the default values.
-#
-.for component in ${_USE_SDL_ALL}
-. if !defined(_LIB_${component})
-_LIB_${component}=SDL_${component}
-. endif
-. if !defined(_PORTDIR_${component})
-_PORTDIR_${component}=sdl_${component}
-. endif
-. if !defined(_REQUIRES_${component})
-_REQUIRES_${component}=
-. endif
-.endfor
+_SUBDIR_gfx2=	graphics
+_PORTDIR_gfx2=	sdl2_gfx
+_LIB_gfx2=	libSDL2_gfx.so
+_REQUIRES_gfx2=	sdl2
+
+_SUBDIR_image2=		graphics
+_PORTDIR_image2=	sdl2_image
+_LIB_image2=		libSDL2_image.so
+_REQUIRES_image2=	sdl2
+
+_SUBDIR_mixer2=		audio
+_PORTDIR_mixer2=	sdl2_mixer
+_LIB_mixer2=		libSDL2_mixer.so
+_REQUIRES_mixer2=	sdl2
+
+_SUBDIR_net2=	net
+_PORTDIR_net2=	sdl2_net
+_LIB_net2=	libSDL2_net.so
+_REQUIRES_net2=	sdl2
+
+_SUBDIR_sdl2=	devel
+_PORTDIR_sdl2=	sdl20
+_LIB_sdl2=	libSDL2.so
+_REQUIRES_sdl2=
+
+_SUBDIR_ttf2=	graphics
+_PORTDIR_ttf2=	sdl2_ttf
+_LIB_ttf2=	libSDL2_ttf.so
+_REQUIRES_ttf2=	sdl2
 
 #
 # If WANT_SDL is defined, check for the available libraries
 #
+.if !defined(AFTERPORTMK)
+.if !defined(SDL_Include_pre)
+
+SDL_Include_pre=	bsd.sdl.mk
 
 HAVE_SDL?=
 .if defined(WANT_SDL)
 .for component in ${_USE_SDL_ALL}
-.if exists(${LOCALBASE}/lib/lib${_LIB_${component}}.so.${_VERSION_${component}})
+.if exists(${LOCALBASE}/lib/lib${_LIB_${component}}.so)
 HAVE_SDL+=	${component}
 .endif
 .endfor
 .endif
 
-.endif # !defined(_POSTMKINCLUDED) && !defined(Sdl_Pre_Include)
-
-.if defined(_POSTMKINCLUDED) && !defined(Sdl_Post_Include)
-
-Sdl_Post_Include=	sdl.mk
-
+.endif
+.endif
 
 #
 # If USE_SDL is defined, make dependencies for the libraries
 #
+.if !defined(BEFOREPORTMK)
+.if !defined(SDL_Include_post)
 .if defined(USE_SDL)
+
+SDL_Include_post=	bsd.sdl.mk
 
 #
 # Keep some backward compatibility
@@ -163,16 +191,25 @@ __USE_SDL+= ${component}
 # Finally make the list of libs required
 #
 .for component in ${__USE_SDL}
-LIB_DEPENDS+=	${_LIB_${component}}.${_VERSION_${component}}:${PORTSDIR}/${_SUBDIR_${component}}/${_PORTDIR_${component}}
+LIB_DEPENDS+=	${_LIB_${component}}:${PORTSDIR}/${_SUBDIR_${component}}/${_PORTDIR_${component}}
 .endfor
 
 #
 # "Normal" dependencies and variables
 #
+.if ${__USE_SDL:Msdl} != ""
 BUILD_DEPENDS+=	${SDL_CONFIG}:${PORTSDIR}/${_SUBDIR_sdl}/${_PORTDIR_sdl}
 SDL_CONFIG?=	${LOCALBASE}/bin/sdl-config
 CONFIGURE_ENV+=	SDL_CONFIG=${SDL_CONFIG}
 MAKE_ENV+=		SDL_CONFIG=${SDL_CONFIG}
+.endif
+.if ${__USE_SDL:Msdl2} != ""
+BUILD_DEPENDS+=	${SDL2_CONFIG}:${PORTSDIR}/${_SUBDIR_sdl2}/${_PORTDIR_sdl2}
+SDL2_CONFIG?=	${LOCALBASE}/bin/sdl2-config
+CONFIGURE_ENV+=	SDL2_CONFIG=${SDL2_CONFIG}
+MAKE_ENV+=		SDL2_CONFIG=${SDL2_CONFIG}
+.endif
 
-.endif # defined(USE_SDL)
-.endif # defined(_POSTMKINCLUDED) && !defined(Sdl_Post_Include)
+.endif
+.endif
+.endif
