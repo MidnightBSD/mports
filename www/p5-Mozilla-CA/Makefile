@@ -10,6 +10,8 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Mozilla CA cert bundle in PEM format
 
+LICENSE=	unknown
+
 USES=		perl5
 PERL_CONFIGURE=	yes
 
