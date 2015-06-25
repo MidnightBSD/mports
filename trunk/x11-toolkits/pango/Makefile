@@ -2,7 +2,7 @@
 
 PORTNAME=	pango
 PORTVERSION=	1.36.8
-PORTREVISION=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -27,18 +27,17 @@ RUN_DEPENDS=	${FONTSCALE}:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
 USES+=		gettext gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	cairo glib20 referencehack introspection:build
+USE_GNOME=	cairo glib20 introspection:build referencehack
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-SUB_FILES+=	pkg-install
 VERSION=	1.8.0
 LIBVERSION=     0.3600.8
 PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
-FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
-FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
+FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
+FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=X11
@@ -52,6 +51,12 @@ PLIST_SUB+=	X11=""
 .else
 CONFIGURE_ARGS+=--without-xft
 PLIST_SUB+=	X11="@comment "
+.endif
+
+pre-configure:
+.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-gobject.pc)
+	@${ECHO_CMD} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."
+	@${FALSE}
 .endif
 
 .include <bsd.port.mk>
