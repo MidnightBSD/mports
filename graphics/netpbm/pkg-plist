@@ -378,7 +378,7 @@ lib/libnetpbm.so.1
 %%MANPAGES%%man/man1/mrftopbm.1.gz
 %%MANPAGES%%man/man1/mtvtoppm.1.gz
 %%MANPAGES%%man/man1/neotoppm.1.gz
-man/man1/netpbm.1
+man/man1/netpbm.1.gz
 %%MANPAGES%%man/man1/palmtopnm.1.gz
 %%MANPAGES%%man/man1/pamarith.1.gz
 %%MANPAGES%%man/man1/pamchannel.1.gz
@@ -656,5 +656,3 @@ man/man1/netpbm.1
 %%DATADIR%%/pcxstd.ppm
 %%DATADIR%%/rgb.txt
 %%PORTDOCS%%%%DOCSDIR%%/USERDOC
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm %%DATADIR%%
