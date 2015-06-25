@@ -1,39 +1,34 @@
 # $MidnightBSD$
 
 PORTNAME=	RPC-XML
-PORTVERSION=	0.77
+PORTVERSION=	0.79
 CATEGORIES=	net www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-RPC client and server library for Perl
-LICENSE=	perl
+
+LICENSE=	artistic2 lgpl2.1
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-XML-Parser>=2.31:${PORTSDIR}/textproc/p5-XML-Parser \
 		p5-libwww>=5.834:${PORTSDIR}/www/p5-libwww
-RUN_DEPENDS=	p5-XML-Parser>=2.31:${PORTSDIR}/textproc/p5-XML-Parser \
-		p5-libwww>=5.834:${PORTSDIR}/www/p5-libwww
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-DateTime-Format-ISO8601>=0.07:${PORTSDIR}/devel/p5-DateTime-Format-ISO8601
 
-USE_GMAKE=	yes
+USES=		gmake perl5
 PERL_CONFIGURE=	yes
 
-MAN1=		make_method.1
-MAN3=		Apache::RPC::Server.3 \
-		Apache::RPC::Status.3 \
-		RPC::XML.3 \
-		RPC::XML::Client.3 \
-		RPC::XML::Parser.3 \
-		RPC::XML::Parser::XMLLibXML.3 \
-		RPC::XML::Parser::XMLParser.3 \
-		RPC::XML::ParserFactory.3 \
-		RPC::XML::Procedure.3 \
-		RPC::XML::Server.3
+OPTIONS_DEFINE=	XS
+
+XS_BUILD_DEPENDS=	p5-XML-LibXML>=1.85:${PORTSDIR}/textproc/p5-XML-LibXML
+XS_RUN_DEPENDS=		${XS_BUILD_DEPENDS}
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 501200
-TEST_DEPENDS+=	p5-Test-Simple>=0.94:${PORTSDIR}/devel/p5-Test-Simple
+.if ${PERL_LEVEL} < 501905
+TEST_DEPENDS+=	p5-Scalar-List-Utils>=1.33:${PORTSDIR}/lang/p5-Scalar-List-Utils
 .endif
 
 .include <bsd.port.post.mk>
