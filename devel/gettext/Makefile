@@ -13,6 +13,9 @@ LICENSE=	gpl3
 USES=		gettext-runtime:run gettext-tools:run
 
 NO_BUILD=	yes
-NO_INSTALL=	yes
+#NO_INSTALL=	yes
+
+do-install:
+	mkdir ${WRKSRC}
 
 .include <bsd.port.mk>
