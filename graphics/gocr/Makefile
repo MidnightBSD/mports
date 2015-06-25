@@ -1,24 +1,20 @@
-# New ports collection makefile for:	gocr
-# Date created:				03 June 2002
-# Whom:					Kay Lehmann
-#
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	gocr
-PORTVERSION=	0.49
+PORTVERSION=	0.50
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GOCR/JOCR is an OCR (Optical Character Recognition) program
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	latex:${PORTSDIR}/print/teTeX
-LIB_DEPENDS=	netpbm.1:${PORTSDIR}/graphics/netpbm
+LIB_DEPENDS=	libnetpbm.so:${PORTSDIR}/graphics/netpbm
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-netpbm=${LOCALBASE}
