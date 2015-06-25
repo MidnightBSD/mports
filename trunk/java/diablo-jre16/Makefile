@@ -2,7 +2,7 @@
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -13,14 +13,18 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Runtime Environment ${JRE_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
-LICENSE=	restricted
+
+LICENSE=        diablo
+LICENSE_NAME=   Diablo JDK custom license
+LICENSE_PERMS=
+LICENSE_TEXT=   No redistribution with fee
 
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 RESTRICTED=	License does not allow distribution with fee
 
+USES=		tar:bzip2
 USE_GCPIO=	yes
-USE_BZIP2=	yes
 USE_XORG+=	xi xp xt xtst
 JRE_VERSION=	1.6.0
 RELEASE_VERSION=07
