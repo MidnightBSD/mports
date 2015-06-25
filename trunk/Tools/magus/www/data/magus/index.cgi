@@ -236,6 +236,7 @@ sub port_page {
               -type=>'text/plain',
               -status=> '404 Not Found'
     );
+    print "404 Not Found\n";
     exit;
   }
 
