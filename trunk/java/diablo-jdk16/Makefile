@@ -12,14 +12,18 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Development Kit ${JDK_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
-LICENSE=	restricted
+
+LICENSE=	diablo
+LICENSE_NAME=	Diablo JDK custom license
+LICENSE_PERMS=
+LICENSE_TEXT=	No redistribution with fee
 
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 RESTRICTED=	License does not allow distribution with fee
 DEPRICATED=	Should use openjdk6 now. 
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 USE_XORG+=	xi xp xt xtst
 JDK_VERSION=	1.6.0
 RELEASE_VERSION=07
