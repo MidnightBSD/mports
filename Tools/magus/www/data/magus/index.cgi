@@ -70,7 +70,11 @@ sub main {
   } elsif ($path =~m:^/compare/:) {
     compare_runs($p);
   } else {
-    die "Unknown path: $path\n";
+    print $p->header(
+              -type=>'text/plain',
+              -status=> '404 Not Found'
+    );
+    print "Unknown path: $path\n";
   }
 }
 
@@ -223,9 +227,18 @@ sub port_page {
   my ($p, $port) = @_;
   
   my $tmpl = template($p, "port.tmpl");
-  
-  $port = Magus::Port->retrieve($port) || die "No such port: $port";
- 
+
+  eval { 
+      $port = Magus::Port->retrieve($port) || die "No such port: $port";
+  };
+  if ($@) {
+      print $p->header(
+              -type=>'text/plain',
+              -status=> '404 Not Found'
+    );
+    exit;
+  }
+
   $tmpl->param(
     port      => $port->name, 
     id        => $port->id,
