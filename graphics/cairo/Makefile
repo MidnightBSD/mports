@@ -2,7 +2,7 @@
 
 PORTNAME=	cairo
 PORTVERSION=	1.12.18
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 GNU_CONFIGURE=	yes
 USES+=		cpe libtool pathfix pkgconfig
 CPE_VENDOR=	cairographics
-USE_XORG=	pixman xrender xext
+USE_XORG=	pixman xrender xext x11
 USE_GNOME=	referencehack glib20
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
