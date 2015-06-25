@@ -3,6 +3,7 @@
 
 PORTNAME=	Socket6
 PORTVERSION=	0.25
+PORTREVISION=	1
 CATEGORIES=	net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,8 +15,8 @@ LICENSE=	bsd3
 
 PERL_CONFIGURE=	yes
 
-PLIST_FILES=	%%SITE_PERL%%/%%PERL_ARCH%%/Socket6.pm \
-		%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6/.packlist \
+PLIST_FILES=	%%PERL5_MAN3%%/Socket6.3.gz \
+		%%SITE_PERL%%/%%PERL_ARCH%%/Socket6.pm \
 		%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6/Socket6.bs \
 		%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6/Socket6.so
 PLIST_DIRS=	%%SITE_PERL%%/%%PERL_ARCH%%/auto/Socket6
