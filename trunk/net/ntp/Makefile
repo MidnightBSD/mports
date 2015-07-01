@@ -1,12 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.8
-PORTREVISION=	0
+PORTVERSION=	4.2.8p2
+PORTREVISION=	2
 CATEGORIES=	net ipv6
-MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
-		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
-		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ \
+MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
+		http://archive.ntp.org/ntp4/ntp-4.2/ \
 		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/P/p/:S/.r/-RC/}
 
@@ -17,10 +16,13 @@ LICENSE=	other
 
 GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
-USES=		pathfix shebangfix libtool
+USES=		cpe pathfix shebangfix libtool pkgconfig
 LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 
-NTP_SHEBANG_FILES=	sbin/ntp-wait sbin/ntptrace
+SHEBANG_FILES=	scripts/ntptrace/ntptrace.in \
+		scripts/ntp-wait/ntp-wait.in \
+		scripts/update-leap/update-leap
+perl_OLD_CMD=	@PATH_PERL@
 
 .include "Makefile.inc"
 
@@ -49,8 +51,6 @@ CONFIGURE_ARGS+=	--enable-${D}
 .endif
 .endfor
 
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}4
-
 # XXX Temporary hack. Remember to remove this next commit.
 post-extract:
 	@/usr/bin/touch ${WRKSRC}/scripts/build/checkHtmlFileDates
@@ -64,7 +64,5 @@ post-install:
 	@${FIND} ${WRKSRC}/html -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
 	@cd ${WRKSRC}/html && ${FIND} . -print | \
 		${CPIO} -pdu -R ${SHAREOWN}:${SHAREGRP} --quiet ${DOCSDIR}
-	cd ${PREFIX}; \
-		${ECHO_CMD} ${NTP_SHEBANG_FILES} | ${XARGS} ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS}
 
 .include <bsd.port.post.mk>
