@@ -80,7 +80,6 @@ SUBDIR += p5-Socket6
 SUBDIR += p5-URI
 SUBDIR += p5-XML-RPC
 SUBDIR += p5-perl-ldap
-SUBDIR += pcnfsd
 SUBDIR += php5-ldap
 SUBDIR += php5-soap
 SUBDIR += php5-sockets
