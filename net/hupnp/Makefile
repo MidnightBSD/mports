@@ -3,22 +3,20 @@
 
 PORTNAME=	hupnp
 PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 DISTNAME=	herqq-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library for building UPnP devices and control points
+COMMENT=	Library for building UPnP devices and control points
+
 LICENSE=	gpl3
 
-USE_ZIP=	yes
-USE_GMAKE=	yes
+USES=		gmake qmake zip
 USE_QT4=	corelib network xml dbus gui \
-		qmake_build moc_build rcc_build uic_build
-QMAKE_ARGS=	PREFIX=${PREFIX} herqq.pro
+		moc_build rcc_build uic_build
 
-do-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${QMAKE} ${QMAKEFLAGS} ${QMAKE_ARGS} ${FAKE_MAKEARGS}
+QMAKE_ARGS=	"CONFIG+=DISABLE_AVTESTAPP DISABLE_TESTAPP"
 
 .include <bsd.port.mk>
