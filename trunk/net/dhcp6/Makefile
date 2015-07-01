@@ -16,7 +16,6 @@ FAKE_OPTS=	prefixhack
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KAME DHCP6 client, server, and relay
-LICENSE=	bsd3
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
