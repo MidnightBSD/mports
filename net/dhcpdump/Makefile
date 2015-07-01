@@ -2,6 +2,7 @@
 
 PORTNAME=	dhcpdump
 PORTVERSION=	1.8
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.mavetju.org/download/
 
@@ -9,8 +10,7 @@ MAINTAINER=	ports@Midnightbsd.org
 COMMENT=	Decode and diagnose sniffed DHCP packets
 LICENSE=        other
 
-MAN8=		dhcpdump.8
-PLIST_FILES=	bin/dhcpdump
+PLIST_FILES=	bin/dhcpdump man/man8/dhcpdump.8.gz
 
 USE_PERL5_BUILD=	yes
 
