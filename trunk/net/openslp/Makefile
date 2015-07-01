@@ -2,7 +2,7 @@
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/OpenSLP/${PORTVERSION}
 
@@ -10,8 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
 LICENSE=	bsd3
 
-USES=	libtool
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USES=		libtool
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openslp \
@@ -19,18 +20,12 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openslp \
 
 USE_RC_SUBR=	slpd
 
-OPTIONS=	SLP_SECURITY "Turn on SLPv2 security support" off \
-		ASYNC_API "Enable asynchronous communication API" off
+OPTIONS_DEFINE=	SLP_SECURITY ASYNC_API DOCS
+SLP_SECURITY_DESC=	Turn on SLPv2 security support
+ASYNC_API_DESC=		Enable asynchronous communication API
 
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_SLP_SECURITY)
-CONFIGURE_ARGS+=	--enable-slpv2-security
-.endif
-
-.if defined(WITH_ASYNC_API)
-CONFIGURE_ARGS+=	--enable-async-api
-.endif
+SLP_SECURITY_CONFIGURE_ENABLE=	slpv2-security
+ASYNC_API_CONFIGURE_ENABLE=	async-api
 
 post-extract:
 	@(cd ${WRKSRC}; \
@@ -39,13 +34,9 @@ post-extract:
 
 post-install:
 .for FILE in slp.conf slp.reg slp.spi
-	${INSTALL_DATA} ${WRKSRC}/etc/${FILE} ${PREFIX}/etc/openslp/${FILE}.default
+	${INSTALL_DATA} ${WRKSRC}/etc/${FILE} ${PREFIX}/etc/openslp/${FILE}.sample
 .endfor
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-	(cd ${INSTALL_WRKSRC}/doc; \
-		${FIND} . -type d -exec ${MKDIR} ${DOCSDIR}/\{} \; ;\
-		${FIND} . -type f -exec ${INSTALL_DATA} \{} ${DOCSDIR}/\{} \;)
-.endif
+	(cd ${INSTALL_WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR})
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
