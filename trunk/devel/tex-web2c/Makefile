@@ -3,6 +3,7 @@
 
 PORTNAME=	web2c
 PORTVERSION=	20140525
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2014/
 PKGNAMEPREFIX=	tex-
@@ -51,7 +52,9 @@ CONFIGURE_ARGS=	--disable-luatex \
 		--with-libpng-libdir=${LOCALBASE}/lib \
 		--with-system-pixman \
 		--with-system-zlib \
-		--with-system-zziplib
+		--with-system-zziplib \
+		--host=${ARCH}-portbld-freebsd9.1 \
+		--build=${ARCH}-portbld-freebsd9.1
 CFLAGS+=	-I${LOCALBASE}/include
 
 INFO=	web2c
