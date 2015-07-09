@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	texinfo
-PORTVERSION=	5.1.20130809
-PORTREVISION=	1
+PORTVERSION=	5.2.20150205
 CATEGORIES=	print
-MASTER_SITES=	GNU \
-		ftp://ftp.stack.nl/pub/users/johans/texinfo/${PORTVERSION:E}/
+MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/texinfo/${PORTVERSION:E}/ \
+		GNU
 DISTNAME=	${PORTNAME}-${PORTVERSION:R}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} htmlxref.cnf texinfo.tex texi2dvi
+DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,41 +17,30 @@ LICENSE=	gpl3
 
 BUILD_DEPENDS+=	help2man:${PORTSDIR}/misc/help2man
 
-FETCH_ARGS=	-Ap
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
+
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install install-tex
 PKGDEINSTALL=	${PKGINSTALL}
-USE_PERL5=	yes
-USES+=		charsetfix gmake:lite tar:xz
+USES+=		charsetfix cpe gmake:lite perl5 tar:xz
 
-MAKE_ARGS=	TEXMF=${PREFIX}/${TEXMF}
-CPPFLAGS+=	-I${LOCALBASE}/lib
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
-
-INFO=		${PORTNAME} info-stnd info
-MAN1=		info.1 infokey.1 install-info.1 makeinfo.1 texi2dvi.1 \
-		texi2pdf.1 pdftexi2dvi.1 pod2texi.1 texi2any.1 texindex.1
-MAN5=		info.5 texinfo.5
+MAKE_ARGS=	TEXMF=${PREFIX}/${TEXMF} PERL=/usr/bin/perl
+INFO=		texinfo info-stnd info
+CPE_VENDOR=	gnu
+CPE_VERSION=	${PORTVERSION:R}
 
 TEXMF=		share/texmf
 PLIST_SUB=	TEXMF=${TEXMF}
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
 post-patch:
 	${CHMOD} 755 ${WRKSRC}/build-aux/install-sh
-	${CP} ${DISTDIR}/texinfo.tex ${WRKSRC}/doc/
-	${CP} ${DISTDIR}/texi2dvi ${WRKSRC}/util/
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/texinfo.tex ${WRKSRC}/doc/
+	${INSTALL_SCRIPT} ${DISTDIR}/${DIST_SUBDIR}/texi2dvi ${WRKSRC}/util/
 
 post-install:
-	@${INSTALL_DATA} ${DISTDIR}/htmlxref.cnf ${DATADIR}/
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/htmlxref.cnf ${DATADIR}
 
 .include <bsd.port.mk>
