@@ -16,6 +16,8 @@ COMMENT=	Utilities for manipulating PostScript documents
 LICENSE=	other
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 LIB_DEPENDS=	libpaper.so:${PORTSDIR}/print/libpaper
 
 USES=		perl5
