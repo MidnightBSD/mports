@@ -477,6 +477,7 @@ SUBDIR += tradcpp
 SUBDIR += uclmmbase
 SUBDIR += upnp
 SUBDIR += uthash
+SUBDIR += valgrind
 SUBDIR += viewvc
 SUBDIR += websvn
 SUBDIR += wizardkit
