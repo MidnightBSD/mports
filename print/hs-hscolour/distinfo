@@ -1,3 +1,2 @@
-SHA256 (hscolour-1.10.1.tar.gz) = 293f24b8373be1d70d9e5a4b8d3c527166ad645b4ac983c1a6fc5999c44a2d36
-RMD160 (hscolour-1.10.1.tar.gz) = a3fff87cfd825c3817618a4045a621dcedf2d1e5
-SIZE (hscolour-1.10.1.tar.gz) = 51292
+SHA256 (cabal/hscolour-1.20.3.tar.gz) = 3adb816fba3ecdf9f1ee5fb23feb0611b0762f7e8c2a282c2def5cc2f5483d96
+SIZE (cabal/hscolour-1.20.3.tar.gz) = 25810

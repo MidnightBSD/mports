@@ -3,6 +3,7 @@
 
 PORTNAME=	cups-pstoraster
 PORTVERSION=	8.15.4
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_EASYSW}
 MASTER_SITE_SUBDIR=	ghostscript/${PORTVERSION}
@@ -14,7 +15,7 @@ COMMENT=	Postscript interpreter for CUPS printing to non-PS printers
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS=	libcupsimage.so:${PORTSDIR}/print/cups-image
 
 ESPGS_VER=	${PORTVERSION}
 GS_VERSION=	8.15
@@ -25,13 +26,13 @@ WRKSRC=		${WRKDIR}/espgs-${PORTVERSION}
 
 DATADIR=	${PREFIX}/share/espgs
 
-USES=		gmake tar:bzip2
+USES=		gmake iconv tar:bzip2
 # We just need the ghostscript fonts, nothing more
 USE_GHOSTSCRIPT_RUN=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--without-x --with-gs=espgs
 MAKE_ARGS=	CFLAGS_STANDARD="${CFLAGS} -DUPD_SIGNAL=0" \
 		DEVICE_DEVS="\$$(DD)cups.dev \$$(DD)pxlcolor.dev \$$(DD)pxlmono.dev"

@@ -1,23 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	gspdf
-PORTVERSION=	0.3
+PORTVERSION=	0.5
+PORTREVISION=	3
 CATEGORIES=	print gnustep
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	gap
+MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	GSPdf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Postscript and Pdf Viewer for GNUstep
+COMMENT=	Postscript and Pdf Viewer for GNUstep
+
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GHOSTSCRIPT=	yes
 
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/GSPdf.app/GSPdf
 
 .include <bsd.port.mk>
