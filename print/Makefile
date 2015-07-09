@@ -45,6 +45,7 @@ SUBDIR += psutils
 SUBDIR += qpdf
 SUBDIR += t1utils
 SUBDIR += tex-formats
+SUBDIR += tex-ptexenc
 SUBDIR += tex-texmflocal
 SUBDIR += texinfo
 SUBDIR += texlive-base
