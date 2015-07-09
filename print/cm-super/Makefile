@@ -1,39 +1,28 @@
-# New ports collection makefile for:	cm-super
-# Date created:		27 June 2006
-# Whom:			hrs
-#
 # $FreeBSD: ports/print/cm-super/Makefile,v 1.1 2006/06/29 18:42:45 hrs Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	cm-super
 PORTVERSION=	0.3.4
+PORTREVISION=	1
 CATEGORIES=	print x11-fonts
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-#MASTER_SITES=	${MASTER_SITE_TEX_CTAN}
-MASTER_SITE_SUBDIR=	hrs
-#MASTER_SITE_SUBDIR=	fonts/ps-type1
+MASTER_SITES=	FREEBSD_LOCAL/hrs
+#MASTER_SITES=	TEX_CTAN/fonts/ps-type1
 #DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Computer Modern Font Families in Type 1 Fonts
+
 LICENSE=	gpl2
 
-.if !defined(WITHOUT_X11)
-BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
-.endif
-RUN_DEPENDS=	mktexlsr:${PORTSDIR}/print/teTeX-base
+OPTIONS_DEFINE=	X11
+OPTIONS_SUB=	yes
+X11_BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
 
-USE_ZIP=	yes
+USES=		zip
+USE_TEX=	base texmf infra
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-.if !defined(WITHOUT_X11)
-PLIST_X11=	""
-.else
-PLIST_X11=	"@comment "
-.endif
-PLIST_SUB=	PLIST_X11=${PLIST_X11} \
-		UPDMAP_SYS="${UPDMAP_SYS}" \
+PLIST_SUB=	UPDMAP_SYS="${UPDMAP_SYS}" \
 		MAPFILES="${MAPFILES}" \
 		MKTEXLSR="${MKTEXLSR}" \
 		TEXMFDIR=${TEXMFDIR} \
@@ -56,8 +45,13 @@ MAPFILES=	cm-super-t1.map \
 		cm-super-ts1.map \
 		cm-super-x2.map
 
+IGNORE=		print/texlive-texmf includes this package
+
+.include <bsd.mport.options.mk>
+
 do-build:
-.if !defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MX11}
+	${TOUCH} ${WRKSRC}/pfb/fonts.dir
 	(cd ${WRKSRC}/pfb; ${LOCALBASE}/bin/type1inst -nolog -quiet)
 .else
 	@${DO_NADA}
@@ -67,32 +61,32 @@ post-extract:
 	${GZIP_CMD} -d ${WRKSRC}/afm/*.gz
 
 do-install:
-	${MKDIR} ${PREFIX}/${FONTSDIR}/afm
-	${MKDIR} ${PREFIX}/${AFMDIR}
-	${INSTALL_DATA} ${WRKSRC}/afm/* ${PREFIX}/${FONTSDIR}/afm
+	${MKDIR} ${STAGEDIR}${PREFIX}/${FONTSDIR}/afm
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDIR}/fonts/afm/public
+	${INSTALL_DATA} ${WRKSRC}/afm/* ${STAGEDIR}${PREFIX}/${FONTSDIR}/afm
 	${LN} -s -f ${PREFIX}/${FONTSDIR}/afm \
-		${PREFIX}/${AFMDIR}
-	${MKDIR} ${PREFIX}/${FONTSDIR}/type1
-	${MKDIR} ${PREFIX}/${TYPE1DIR}
-	${INSTALL_DATA} ${WRKSRC}/pfb/* ${PREFIX}/${FONTSDIR}/type1
+		${STAGEDIR}${PREFIX}/${AFMDIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${FONTSDIR}/type1
+	${INSTALL_DATA} ${WRKSRC}/pfb/* ${STAGEDIR}${PREFIX}/${FONTSDIR}/type1
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDIR}/fonts/type1/public
 	${LN} -s -f ${PREFIX}/${FONTSDIR}/type1 \
-		${PREFIX}/${TYPE1DIR}
-	${MKDIR} ${PREFIX}/${DVIPSMAPDIR}
+		${STAGEDIR}${PREFIX}/${TYPE1DIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${DVIPSMAPDIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/dvips/*.map \
-		${PREFIX}/${DVIPSMAPDIR}
-	${MKDIR} ${PREFIX}/${DVIPSENCDIR}
+		${STAGEDIR}${PREFIX}/${DVIPSMAPDIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${DVIPSENCDIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/dvips/*.enc \
-		${PREFIX}/${DVIPSENCDIR}
-	${MKDIR} ${PREFIX}/${DVIPDFMMAPDIR}
+		${STAGEDIR}${PREFIX}/${DVIPSENCDIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${DVIPDFMMAPDIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/dvipdfm/*.map \
-		${PREFIX}/${DVIPDFMMAPDIR}
-	${MKDIR} ${PREFIX}/${MACRODIR}
+		${STAGEDIR}${PREFIX}/${DVIPDFMMAPDIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${MACRODIR}
 	${INSTALL_DATA} \
 		${WRKSRC}/type1ec.sty \
-		${PREFIX}/${MACRODIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/${FONTSDIR}/
+		${STAGEDIR}${PREFIX}/${MACRODIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${PREFIX}/${FONTSDIR}/
 
 .include <bsd.port.mk>
