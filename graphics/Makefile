@@ -147,6 +147,7 @@ SUBDIR += scr2png
 SUBDIR += sdl_gfx
 SUBDIR += sdl_image
 SUBDIR += sdl_ttf
+SUBDIR += silgraphite
 SUBDIR += svgalib
 SUBDIR += svgviewer
 SUBDIR += tiff
