@@ -14,7 +14,7 @@ LICENSE=	gpl2
 CONFLICTS=	gimp-print-[0-9]*
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
-USE_GNOME=	gnomehack gtk20
+USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=--with-gimp=no --with-gimp2=no
 USE_LDCONFIG=	yes
@@ -25,15 +25,16 @@ LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
 .include <bsd.port.pre.mk>
 
 .if ${SLAVE_PORT}=="yes"
-LIB_DEPENDS+=	gutenprintui2.1:${PORTSDIR}/print/gutenprint-base
+LIB_DEPENDS+=	libgutenprintui2.so:${PORTSDIR}/print/gutenprint-base
 PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
 GUTENPRINTUI2_LIBS=`${PKG_CONFIG} --libs gutenprintui2`
 .else
+MAN1+=		escputil.1
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
-LIB_DEPENDS+=	gimp-2.0:${PORTSDIR}/graphics/gimp-app \
-		gutenprint.2:${PORTSDIR}/print/gutenprint-base
+LIB_DEPENDS+=	libgimp-2.0.so:${PORTSDIR}/graphics/gimp-app \
+		libgutenprint.so:${PORTSDIR}/print/gutenprint-base
 CONFIGURE_ARGS=--with-gimp2=yes # Override CONFIGURE_ARGS
 BUILD_WRKSRC=	${WRKSRC}/src/gimp2
 INSTALL_WRKSRC=	${WRKSRC}/src/gimp2
@@ -42,8 +43,8 @@ CONFIGURE_ARGS+=--without-gimp2
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="cups"
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client \
-		cupsimage.2:${PORTSDIR}/print/cups-image
+LIB_DEPENDS+=	libcups.so:${PORTSDIR}/print/cups-client \
+		libcupsimage.so:${PORTSDIR}/print/cups-image
 RUN_DEPENDS+=	espgs:${PORTSDIR}/print/cups-pstoraster
 CONFIGURE_ARGS+=	--with-cups=${PREFIX} \
 			--enable-cups-ppds \
@@ -55,7 +56,7 @@ CONFIGURE_ARGS+=	--without-cups
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="ijs"
-LIB_DEPENDS+=	ijs.1:${PORTSDIR}/print/libijs
+LIB_DEPENDS+=	libijs.so:${PORTSDIR}/print/libijs
 CONFIGURE_ARGS+=--with-ijs=yes
 BUILD_WRKSRC=	${WRKSRC}/src/ghost
 INSTALL_WRKSRC=	${WRKSRC}/src/ghost
@@ -66,7 +67,7 @@ CONFIGURE_ARGS+=--without-ghostscript
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="foomatic"
 BUILD_DEPENDS+=	foomatic-combo-xml:${PORTSDIR}/print/foomatic-db-engine
 RUN_DEPENDS+=	foomatic-combo-xml:${PORTSDIR}/print/foomatic-db-engine \
-		foomatic-db>0:${PORTSDIR}/print/foomatic-db
+		${LOCALBASE}/share/cups/model/foomatic-db-ppds:${PORTSDIR}/print/foomatic-db
 CONFIGURE_ARGS+=--with-foomatic=yes --with-foomatic3=yes
 BUILD_WRKSRC=	${WRKSRC}/src/foomatic
 INSTALL_WRKSRC=	${WRKSRC}/src/foomatic

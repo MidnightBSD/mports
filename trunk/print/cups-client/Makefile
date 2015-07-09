@@ -3,15 +3,13 @@
 
 CATEGORIES=	print
 
-MAINTAINER=	ports@MidnightBSD.ORG
+MAINTAINER=	ports@MidnightBSD.org
 
 LICENSE=	gpl2
 
 MASTERDIR?=	${.CURDIR}/../cups-base
  
 CUPS_CLIENT=	yes
-
-OPTIONS=	GNUTLS		"Build with GNUTLS instead of OpenSSL" off
 
 .if exists(${.CURDIR}/Makefile.local)
 .include "${.CURDIR}/Makefile.local"

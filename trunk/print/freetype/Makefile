@@ -3,13 +3,12 @@
 
 PORTNAME=	freetype
 PORTVERSION=	1.3.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	print
 MASTER_SITES=	SF \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype1/ \
 		http://www.funet.fi/pub/mirrors/ftp.freetype.org/freetype1/ \
 		http://ftp.sunet.se/pub/text-processing/freetype/freetype1/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/freetype/&,} \
 		ftp://ftp.freetype.org/freetype/freetupe1/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,29 +18,12 @@ LICENSE=	freetype
 LICENSE_NAME=	The FreeType Project LICENSE
 LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_PERMS=	dist-mirror
-#apple patent whore
 
 FAKE_OPTS+=	prefixhack
 
-USES=		libtool
+USES=		cpe libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-static --enable-shared
-
-PORTSCOUT=	limit:^1\.
-
-.ifdef USE_FREETYPE
-IGNORE=	cannot be installed: you have the 'USE_FREETYPE' variable defined either in environment or in make(1) arguments. Please undefine and try again
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
-		${WRKSRC}/configure
-
-post-install:
-	cd ${PREFIX}/lib && ln libttf.so.4.0 libttf.so.4
-
-#post-install:
-#	${LN} -fs ${PREFIX}/include/freetype/*.h ${PREFIX}/include
 
 .include <bsd.port.mk>

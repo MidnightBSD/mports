@@ -2,18 +2,18 @@
 
 PORTNAME=	gv
 PORTVERSION=	3.7.4
+PORTREVISION=	1
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A PostScript and PDF previewer
+COMMENT=	PostScript and PDF previewer
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	Xaw3d:${PORTSDIR}/x11-toolkits/Xaw3d
+LIB_DEPENDS=	libXaw3d.so:${PORTSDIR}/x11-toolkits/Xaw3d
 
-USES=		iconv gmake
+USES=		cpe iconv gmake
 USE_XORG=	xpm ice sm xext xmu x11
 USE_GHOSTSCRIPT=	yes
 USE_PERL5_BUILD=	yes
@@ -24,8 +24,7 @@ CONFIGURE_ENV +=	LDFLAGS="${LDFLAGS}" LIBS="${ICONV_LIB}"
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/X11 \
 			--enable-setenv-code \
 			--enable-SIGCHLD-fallback
-
-MAN1=		gv.1 gv-update-userconfig.1
+CPE_VENDOR=	gnu
 INFO=		gv
 PLIST_FILES=	bin/gv \
 		bin/gv-update-userconfig \

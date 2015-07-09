@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	fontforge
-DISTVERSION=	20150430
+DISTVERSION=	20150612
 CATEGORIES=	print
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -15,7 +15,6 @@ BUILD_DEPENDS=	${LOCALBASE}/include/uthash.h:${PORTSDIR}/devel/uthash \
 		${LOCALBASE}/bin/gnulib-tool:${PORTSDIR}/devel/gnulib
 LIB_DEPENDS=	libuninameslist.so:${PORTSDIR}/textproc/libuninameslist \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libgif.so:${PORTSDIR}/graphics/giflib \
 		libspiro.so:${PORTSDIR}/graphics/libspiro \
@@ -23,10 +22,9 @@ LIB_DEPENDS=	libuninameslist.so:${PORTSDIR}/textproc/libuninameslist \
 		libltdl.so:${PORTSDIR}/devel/libltdl
 
 USE_GITHUB=	yes
-WRKSRC=		${WRKDIR}/fontforge-20150430
 
 USES=		autoreconf:build desktop-file-utils execinfo gettext gmake iconv \
-		libtool pkgconfig python shared-mime-info
+		jpeg libtool pkgconfig python shared-mime-info
 USE_XORG=	x11 xi ice xkbui
 USE_GNOME=	glib20 gtk20 libxml2 pango
 

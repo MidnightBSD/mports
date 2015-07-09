@@ -2,14 +2,13 @@
 
 PORTNAME=	t1utils
 PORTVERSION=	1.32
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	http://www.lcdf.org/type/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Six utilities for manipulating t1 fonts
 LICENSE=	other
-
-MAN1=		t1ascii.1 t1binary.1 t1asm.1 t1disasm.1 t1unmac.1 t1mac.1
 
 GNU_CONFIGURE=	yes
 
