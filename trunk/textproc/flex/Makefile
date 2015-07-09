@@ -10,7 +10,8 @@ MASTER_SITES=	SF/${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast lexical analyzer generator
 
-LICENSE=	other
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	help2man:${PORTSDIR}/misc/help2man \
 		gm4:${PORTSDIR}/devel/m4
