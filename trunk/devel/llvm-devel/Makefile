@@ -204,7 +204,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/cmake/modules/*.cmake \
 	    ${WRKDIR}/cmake/share/llvm/cmake/*.cmake \
 	    ${STAGEDIR}${DATADIR}/cmake/
-	${REINPLACE_CMD} -e 's|${STAGEDIR}||' \
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||' \
 	    ${STAGEDIR}${DATADIR}/cmake/LLVMConfig.cmake
 	${RM} -f ${STAGEDIR}${DATADIR}/cmake/LLVMConfig.cmake.bak
 .endif
@@ -215,20 +215,20 @@ post-install:
 .endif
 .if ${PORT_OPTIONS:MLIT}
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/lit/lit.py \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/lit
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/llvm-lit
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${PREFIX}/bin/lit${LLVM_SUFFIX}
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
-	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
-	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${LLVM_PREFIX}/bin/lit
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${LLVM_PREFIX}/bin/llvm-lit
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${PREFIX}/bin/lit${LLVM_SUFFIX}
+	${LN} -f ${LLVM_PREFIX}/bin/lit \
+	    ${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
+	${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/*.py \
-	    ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
+	    ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_PROGRAM} ${WRKSRC}/${RELEASE_TYPE}/bin/FileCheck \
-	    ${STAGEDIR}${LLVM_PREFIX}/bin/
-	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
-	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+	    ${LLVM_PREFIX}/bin/
+	${LN} -f ${LLVM_PREFIX}/bin/FileCheck \
+	    ${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
 .endif
 .if ${PORT_OPTIONS:MMANPAGES}
 	for man in ${MAN1SRCS}; do \
