@@ -10,7 +10,6 @@ SUBDIR += clang34
 SUBDIR += cython
 SUBDIR += etoile-compiler
 SUBDIR += etoile-io
-SUBDIR += etoile-languagekit
 SUBDIR += etoile-lkplugins
 SUBDIR += etoile-scriptkit
 SUBDIR += etoile-smalltalkkit
