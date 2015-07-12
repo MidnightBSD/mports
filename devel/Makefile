@@ -187,7 +187,6 @@ SUBDIR += linux-f10-libsigc++20
 SUBDIR += linux-f10-ncurses-base
 SUBDIR += linux-f10-nspr
 SUBDIR += linux-f10-sdl12
-SUBDIR += llvm
 SUBDIR += llvm33
 SUBDIR += llvm34
 SUBDIR += llvm-devel

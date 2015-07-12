@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	llvm
-DISTVERSION=	3.5.r${SVN_REV}
+DISTVERSION=	3.7.r${SVN_REV}
 CATEGORIES=	devel lang
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	brooks
+MASTER_SITES=	FREEBSD_LOCAL/brooks
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -93,6 +92,9 @@ STRIP_LIBS=	BugpointPasses.so \
 
 .include <bsd.mport.options.mk>
 
+# keep in sync with /usr/src/lib/clang/clang.build.mk
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-freebsd9.1
+
 .if ${PORT_OPTIONS:MASSERTS}
 RELEASE_TYPE=		Release+Asserts
 .else
@@ -105,10 +107,10 @@ PORTDATA+=	cmake
 
 .if ${PORT_OPTIONS:MLIT}
 MAN1SRCS+=		lit.1
-USE_PYTHON=		yes
+USES+=			python
 LIT_COMMANDS=		lit llvm-lit FileCheck
 .else
-USE_PYTHON_BUILD=	yes
+USES+=			python:build
 .endif
 
 .if ${PORT_OPTIONS:MMANPAGES}
@@ -124,10 +126,11 @@ NOT_FOR_ARCH=	ia64
 
 .include <bsd.port.pre.mk>
 
+SVN?=	svnlite
 .if !defined(SVN_REV)
 .if defined(BOOTSTRAP)
 LANG=		"C"
-SVN_REV!=	svn info http://llvm.org/svn/llvm-project/ | ${GREP} Revision | cut -d' ' -f2
+SVN_REV!=	${SVN} info http://llvm.org/svn/llvm-project/ | ${GREP} Revision | cut -d' ' -f2
 .else
 .include "Makefile.svn_rev"
 .endif
@@ -142,11 +145,9 @@ CONFIGURE_ARGS+=	--with-optimize-option=-O2
 .endif
 
 .if defined(BOOTSTRAP) || defined(SVN_FETCH)
-FETCH_DEPENDS+=	svn:${PORTSDIR}/devel/subversion
-
 do-fetch:
 	${MKDIR} ${WRKDIR}
-	svn export -r ${SVN_REV} \
+	${SVN} export -r ${SVN_REV} \
 	    http://llvm.org/svn/llvm-project/llvm/trunk ${WRKSRC}
 	cd ${WRKDIR}; tar cvfy ${DISTDIR}/${DISTNAME}.tar.bz2 ${DISTNAME}
 	echo "SVN_REV=	${SVN_REV}" > ${MASTERDIR}/Makefile.svn_rev
@@ -265,12 +266,5 @@ build-plist:
 	${FIND} ${STAGEDIR}${DOCSDIR} -type f | \
 	    ${SED} -e 's|${STAGEDIR}${DOCSDIR}|%%PORTDOCS%%%%DOCSDIR%%|' | \
 	    ${SORT} >> ${PLIST}
-	${FIND} ${STAGEDIR}${LLVM_PREFIX} -type d | \
-	    ${SED} -e 's|${STAGEDIR}${PREFIX}/||' | \
-	    ${SORT} -r | ${SED} -e 's|^|@dirrm |' >> ${PLIST}
-	echo "%%LIT%%@dirrm %%PYTHON_SITELIBDIR%%/lit${LLVM_SUFFIX}" >> ${PLIST}
-	${FIND} ${STAGEDIR}${DOCSDIR} -type d | \
-	    ${SED} -e 's|${STAGEDIR}${DOCSDIR}|%%PORTDOCS%%@dirrm %%DOCSDIR%%|' | \
-	    ${SORT} -r >> ${PLIST}
 
 .include <bsd.port.post.mk>
