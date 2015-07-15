@@ -1,14 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	Template-Toolkit
-PORTVERSION=	2.22
+PORTVERSION=	2.26
 CATEGORIES=	www textproc perl5
-MASTER_SITES=	CPAN
+MASTER_SITES=	CPAN \
+		http://www.template-toolkit.org/download/
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensive Toolkit for template processing
-LICENSE=	perl
+
+LICENSE=	gpl artistic
+LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	\
 		${SITE_PERL}/AppConfig.pm:${PORTSDIR}/devel/p5-AppConfig
@@ -42,8 +45,6 @@ BUILD_DEPENDS+=${SITE_PERL}/Pod/POM.pm:${PORTSDIR}/textproc/p5-Pod-POM
 .if defined(BATCH)
 CONFIGURE_ENV=	|
 .endif
-
-.include "Makefile.man"
 
 post-patch:
 	${PERL} -pi -e 's,/usr/local/tt2,${TARGETDIR}/share/tt2,g' \
