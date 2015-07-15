@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	bugzilla
-PORTVERSION=	4.4.8
+PORTVERSION=	4.4.9
 CATEGORIES=	devel
-MASTER_SITES=	BUGZILLA
-MASTER_SITE_SUBDIR=	webtools webtools/archived
+MASTER_SITES=	MOZILLA/webtools MOZILLA/webtools/archived
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bug-tracking system developed by Mozilla Project
