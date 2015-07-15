@@ -2,8 +2,7 @@
 # $FreeBSD: ports/shells/osh/Makefile,v 1.17 2006/08/07 07:58:26 miwi Exp $
 
 PORTNAME=	osh
-DISTVERSION=	20140410
-PORTREVISION=	0
+DISTVERSION=	20150115
 CATEGORIES=	shells
 MASTER_SITES=	http://v6shell.org/src/
 
@@ -21,6 +20,7 @@ MAKE_ENV+=	DOCDIR=${DOCSDIR} \
 PORTDOCS=	*
 PORTEXAMPLES=	*
 INSTALL_TARGET=	install install-doc install-exp
+PLIST_SUB+=	VER=${DISTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|(DESTEXPDIR)=|\1?=|' \
