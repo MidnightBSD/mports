@@ -1,1 +1,1 @@
-bin/esh
+@shell bin/esh
