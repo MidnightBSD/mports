@@ -1,4 +1,3 @@
-bin/nologinmsg
+@shell bin/nologinmsg
 man/man8/nologinmsg.8.gz
-@exec mkdir %D/etc/nologinmsgs
-@dirrm etc/nologinmsgs
+@dir etc/nologinmsgs
