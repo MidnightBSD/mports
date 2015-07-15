@@ -4,7 +4,7 @@ PORTNAME=	esh
 PORTVERSION=	0.8.5
 PORTREVISION=	2
 CATEGORIES=	shells
-MASTER_SITES=	GENTOO/distfiles
+MASTER_SITES=	GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "easy shell", a small shell with Lisp-like syntax
