@@ -1,23 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	AppConfig
-PORTVERSION=	1.66
+PORTVERSION=	1.71
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Perl module for reading configuration files
-LICENSE=	perl
+COMMENT=	Perl module for reading configuration files
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	YES
-
-MAN3=		AppConfig.3 \
-		AppConfig::Args.3 \
-		AppConfig::CGI.3 \
-		AppConfig::File.3 \
-		AppConfig::Getopt.3 \
-		AppConfig::State.3 \
-		AppConfig::Sys.3
 
 .include <bsd.port.mk>
