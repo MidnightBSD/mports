@@ -2,7 +2,7 @@
 
 PORTNAME=	libxml2
 PORTVERSION=	2.9.2
-PORTREVISION?=	0
+PORTREVISION?=	3
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
 		http://xmlsoft.org/sources/ \
@@ -17,7 +17,7 @@ LICENSE=	bsd3
 .if !defined(REFERENCE_PORT)
 
 GNU_CONFIGURE=	yes
-USES=		cpe gmake iconv libtool pathfix pkgconfig shebangfix
+USES+=		cpe gmake iconv libtool pathfix pkgconfig shebangfix
 CPE_VENDOR=	xmlsoft
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-iconv=${ICONV_PREFIX} \
