@@ -2,6 +2,7 @@
 
 PORTNAME=	cvs-server
 PORTVERSION=	20120307
+PORTREVISION=	1
 CATEGORIES=	shells devel
 MASTER_SITES=	# no dist 
 DISTFILES=	# none
