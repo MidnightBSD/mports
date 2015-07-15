@@ -60,6 +60,7 @@ SUBDIR += node
 SUBDIR += nspluginwrapper
 SUBDIR += opera
 SUBDIR += p5-CGI-Ajax
+SUBDIR += p5-CGI
 SUBDIR += p5-CGI.pm
 SUBDIR += p5-FCGI
 SUBDIR += p5-HTML-Breadcrumbs
