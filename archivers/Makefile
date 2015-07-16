@@ -58,5 +58,6 @@ SUBDIR += zip
 SUBDIR += zipper
 SUBDIR += zlib
 SUBDIR += zoo
+SUBDIR += zutils
 
 .include <bsd.port.subdir.mk>
