@@ -3,7 +3,7 @@
 
 PORTNAME=	libarchive
 PORTVERSION=	3.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	http://libarchive.org/downloads/
 
@@ -21,7 +21,7 @@ LIBXML2_DESC=	Support writing xar via libxml2
 LZO_DESC=	Support lzo compression via liblzo2
 NETTLE_DESC=	Use Nettle instead of OpenSSL
 
-USES=		libtool pathfix
+USES=		cpe libtool pathfix
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 PATCH_STRIP=	-p1

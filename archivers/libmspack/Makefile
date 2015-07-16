@@ -2,7 +2,7 @@
 
 PORTNAME=	libmspack
 PORTVERSION=	0.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
@@ -14,7 +14,8 @@ LICENSE=	lgpl2.1
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		libtool pathfix
+USES=		cpe libtool pathfix
+CPE_VENDOR=	libmspack_project
 INSTALL_TARGET=	install-strip
 
 post-patch:

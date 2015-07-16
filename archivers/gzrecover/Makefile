@@ -1,30 +1,30 @@
 # $MidnightBSD$
 
 PORTNAME=	gzrecover
-PORTVERSION=	0.5
+PORTVERSION=	0.8
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.urbanophile.com/arenn/hacking/gzrt/ \
-		CRITICAL
+		FREEBSD_LOCAL/ehaupt
 DISTNAME=	gzrt-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A gzip recovery toolkit
+COMMENT=	gzip recovery toolkit
+
 LICENSE=	gpl2
 
-MAKE_JOBS_SAFE=	yes
 CFLAGS+=	-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -lz
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	README
 
+OPTIONS_DEFINE=	DOCS
+
 do-build:
-	${CC} -o ${WRKSRC}/${PORTNAME} ${CFLAGS} ${WRKSRC}/${PORTNAME}.c
+	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} ${WRKSRC}/${PORTNAME}.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${TARGETDIR}/bin
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}/${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}/${DOCSDIR}
 
 .include <bsd.port.mk>
