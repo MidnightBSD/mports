@@ -1,25 +1,33 @@
 # $MidnightBSD$
 
 PORTNAME=	sendxmpp
-PORTVERSION=	0.0.8
-PORTREVISION=	1
+PORTVERSION=	1.24
+DISTVERSIONPREFIX=	v
 CATEGORIES=	net-im perl5
-MASTER_SITES=	http://www.djcbsoftware.nl/code/sendxmpp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl-script to send xmpp (jabber) messages
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${SITE_PERL}/Net/XMPP.pm:${PORTSDIR}/net-im/p5-Net-XMPP \
-		p5-IO-Socket-SSL>0.0:${PORTSDIR}/security/p5-IO-Socket-SSL
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	p5-Net-XMPP>0.0:${PORTSDIR}/net-im/p5-Net-XMPP
+RUN_DEPENDS=	p5-Getopt-Long>0.0:${PORTSDIR}/devel/p5-Getopt-Long
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	lhost
 
 PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
-MAN1=	sendxmpp.1
+PORTEXAMPLES=	send-url.xml sendxmpp-raw-messages
+PLIST_FILES=	bin/sendxmpp man/man1/sendxmpp.1.gz
 
-PLIST_FILES=	bin/sendxmpp
-PLIST_DIRS=	%%SITE_PERL%%/mach/auto/sendxmpp
+OPTIONS_DEFINE=	EXAMPLES
+
+post-install:
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/examples/,} ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
