@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	p7zip
-PORTVERSION=	9.20.1
-PORTREVISION?=	1
+PORTVERSION=	9.38.1
+PORTREVISION?=	0
 CATEGORIES=	archivers
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
@@ -14,7 +14,8 @@ LICENSE=	agg
 LICENSE?=	lpgl2.1
 
 ALL_TARGET?=	all3
-USES=		tar:bzip2
+USES=		cpe tar:bzip2
+CPE_VENDOR=	7-zip
 MAKEFILE=	makefile
 MAKE_ARGS=	OPTFLAGS="${CXXFLAGS}"
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
@@ -27,12 +28,13 @@ OPTIONS_DEFINE=	DOCS
 post-patch:
 	${SED} -e 's!g\+\+!${CXX}!' \
 	       -e 's!gcc!${CC}!' \
+	       -e 's/ -s //' \
 	       -e 's/-D_LARGEFILE_SOURCE//' \
 	       -e 's/-D_FILE_OFFSET_BITS=64//' \
 	       ${WRKSRC}/makefile.freebsd6 > ${WRKSRC}/makefile.machine
 	${REINPLACE_CMD} -e 's|{DEST_SHARE_DOC}|${DOCSDIR}|' \
 		${WRKSRC}/man1/*
-	${MV} ${WRKSRC}/README ${WRKSRC}/DOCS/readme.unix
+	${MV} ${WRKSRC}/README ${WRKSRC}/DOC/readme.unix
 
 .if ! defined(PKGNAMESUFFIX)
 do-install:
@@ -46,7 +48,7 @@ do-install:
 	${LN} -sf 7z ${STAGEDIR}${PREFIX}/bin/7za
 	${LN} -sf 7z ${STAGEDIR}${PREFIX}/bin/7zr
 
-	(cd ${WRKSRC}/DOCS && \
+	(cd ${WRKSRC}/DOC && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 	(cd ${WRKSRC}/man1 && \
 		${INSTALL_MAN} 7z*.1 ${STAGEDIR}${MAN1PREFIX}/man/man1)

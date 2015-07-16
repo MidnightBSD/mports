@@ -1,32 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	pbzip2
-PORTVERSION=	1.0.5
+PORTVERSION=	1.1.8
 CATEGORIES=	archivers
 MASTER_SITES=	http://compression.ca/pbzip2/
-DIST_SUBDIR=    ${PORTNAME}-${PORTVERSION}
+DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parallel BZIP2
-LICENSE=	bzip2
 
-PLIST_FILES=	bin/pbzip2 bin/pbunzip2
+LICENSE=	bsd4
 
-MAN1=		pbzip2.1
-MLINKS=		pbzip2.1 pbunzip2.1
+USES=		gmake
+MAKE_ARGS=	CFLAGS="${CXXFLAGS}" CC="${CXX}"
 
-USE_GMAKE=  YES
-MAKE_JOBS_SAFE=	yes
+PLIST_FILES=	bin/pbzip2 bin/pbunzip2 \
+		man/man1/pbzip2.1.gz man/man1/pbunzip2.1.gz
 
-post-patch:
-	@${REINPLACE_CMD} \
-		-e 's,-pthread -lpthread,${PTHREAD_LIBS},g; \
-		s,-O2,${CXXFLAGS},; \
-		s,^CC,#CC,; \
-		s,CC,CXX,' ${WRKSRC}/Makefile
-	
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
-	@${LN} -sf ${PORTNAME} ${PREFIX}/bin/pbunzip2
-	@${INSTALL_MAN} ${WRKSRC}/${MAN1} ${MAN1PREFIX}/man/man1/
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
+	${LN} -sf ${PORTNAME} ${PREFIX}/bin/pbunzip2
+	${INSTALL_MAN} ${WRKSRC}/pbzip2.1 ${MAN1PREFIX}/man/man1/
+	${LN} -sf pbzip2.1 ${MAN1PREFIX}/man/man1/pbunzip2.1
 
 .include <bsd.port.mk>
