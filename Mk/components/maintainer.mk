@@ -9,20 +9,30 @@
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
 .if !target(makepatch)
+PATCH_PATH_SEPARATOR=	_
 makepatch:
-	@cd ${.CURDIR} && ${MKDIR} ${FILESDIR}
-	@(cd ${WRKSRC}; \
-		for i in `find . -type f -name '*.orig'`; do \
-			ORIG=$$i; \
-			NEW=$${i%.orig}; \
+	@${MKDIR} ${PATCHDIR}
+	@(cd ${PATCH_WRKSRC}; \
+		for f in `${FIND} -s . -type f -name '*.orig'`; do \
+			ORIG=$${f#./}; \
+			NEW=$${ORIG%.orig}; \
 			cmp -s $${ORIG} $${NEW} && continue; \
-			PATCH=`${ECHO} $${NEW} | ${SED} -e 's|/|__|g'`; \
-			OUT=${FILESDIR}/patch-$${PATCH}; \
-			${ECHO} ${DIFF} -ud $${ORIG} $${NEW} '>' $${OUT}; \
-			TZ=UTC ${DIFF} -ud $${ORIG} $${NEW} | ${SED} -e \
-				'/^---/s|\.[0-9]* +0000$$| UTC|' -e \
-				'/^+++/s|\([[:blank]][-0-9:.+]*\)*\)*$$||' \
-				> $${OUT} || ${TRUE}; \
+			! for _lps in `${ECHO} _ - + | ${SED} -e \
+			's|${PATCH_PATH_SEPARATOR}|__|'`; do \
+                           	PATCH=`${ECHO} $${NEW} | ${SED} -e "s|/|$${_lps}|g"`; \
+				test -f "${PATCHDIR}/patch-$${PATCH}" && break; \
+			done || ${ECHO} $${_SEEN} | ${GREP} -q /$${PATCH} && { \
+				PATCH=`${ECHO} $${NEW} | ${SED} -e \
+                                        's|${PATCH_PATH_SEPARATOR}|&&|g' -e \
+                                        's|/|${PATCH_PATH_SEPARATOR}|g'`; \
+                                _SEEN=$${_SEEN}/$${PATCH}; \
+                        }; \
+                        OUT=${PATCHDIR}/patch-$${PATCH}; \
+                        ${ECHO} ${DIFF} -udp $${ORIG} $${NEW} '>' $${OUT}; \
+                        TZ=UTC ${DIFF} -udp $${ORIG} $${NEW} | ${SED} -e \
+                                '/^---/s|\.[0-9]* +0000$$| UTC|' -e \
+                                '/^+++/s|\([[:blank:]][-0-9:.+]*\)*$$||' \
+                                        > $${OUT} || ${TRUE}; \
 		done \
 	)
 .endif
