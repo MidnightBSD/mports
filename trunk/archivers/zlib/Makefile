@@ -7,7 +7,7 @@ MASTER_SITES=	SF/libpng/${PORTNAME}/${PORTVERSION} \
 		http://zlib.net/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Massively Spiffy Yet Delicately Unobtrusive Compression Library
+COMMENT=	Massively Spiffy Yet Delicately Unobtrusive Compression Library
 
 LICENSE=	other
 

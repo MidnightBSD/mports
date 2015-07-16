@@ -2,9 +2,9 @@
 
 PORTNAME=	unzoo
 PORTVERSION=	4.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
-MASTER_SITES=	CRITICAL
+MASTER_SITES=	FREEBSD_LOCAL/ehaupt
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 
 PATCH_SITES=	${MASTER_SITES}
@@ -12,16 +12,14 @@ PATCHFILES=	unzoo_4.4-4.diff.gz
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A zoo archive extractor
+COMMENT=	Zoo archive extractor
+
 LICENSE=	publicdom
 
-MAKE_JOBS_SAFE=	yes
+USES=		cpe
 EXTRA_DEFINES=	-DSYS_IS_UNIX -DSYS_HAS_MKDIR
 
-MAN1=		unzoo.1
-PLIST_FILES=	bin/unzoo
-
-.include <bsd.port.pre.mk>
+PLIST_FILES=	bin/unzoo man/man1/unzoo.1.gz
 
 CFLAGS+=	-trigraphs
 
@@ -37,4 +35,4 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/debian/${PORTNAME}.1 ${MAN1PREFIX}/man/man1
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

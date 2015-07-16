@@ -1,30 +1,23 @@
-# New ports collection makefile for:	xar
-# Date created:		24 January 2005
-# Whom:			Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/archivers/xar/Makefile,v 1.3 2006/12/13 12:41:19 roam Exp $
-#
 
 PORTNAME=	xar
 PORTVERSION=	1.5.2
+PORTREVISION=	1
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
-		${MASTER_SITE_GENTOO}
-MASTER_SITE_SUBDIR=	distfiles
+MASTER_SITES=	GOOGLE_CODE GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenDarwin XML eXtensible ARchiver
+
 LICENSE=	bsd3
 
 USE_LDCONFIG=	yes
 
+USES=		gmake libtool
 USE_GNOME=	libxml2
-USE_GMAKE=	yes
 USE_OPENSSL=	yes
 
 GNU_CONFIGURE=	yes
-
-MAN1=		xar.1
 
 .include <bsd.port.mk>

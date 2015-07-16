@@ -2,13 +2,14 @@
 
 PORTNAME=	zipper
 PORTVERSION=	1.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	archivers gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	Zipper-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for inspecting the contents of a compressed archive
+
 LICENSE=	publicdom
 
 USES=		gnustep
