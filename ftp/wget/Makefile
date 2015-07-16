@@ -1,18 +1,19 @@
 # $MidnightBSD$
 
 PORTNAME=	wget
-DISTVERSION=	1.16
+DISTVERSION=	1.16.3
 CATEGORIES=	ftp www ipv6
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	wget
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		charsetfix gmake makeinfo perl5 tar:xz
+USES=		charsetfix cpe gmake makeinfo perl5 tar:xz
 USE_PERL5=	build
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
 
@@ -44,10 +45,11 @@ PCRE_CONFIGURE_ENV_OFF=	ac_cv_header_pcre_h=no
 
 .if ${PORT_OPTIONS:MOPENSSL}
 USE_OPENSSL=	yes
-CONFIGURE_ARGS+=--with-ssl=openssl
+CONFIGURE_ARGS+=--with-ssl=openssl --with-libssl-prefix=${OPENSSLBASE}
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 .elif ${PORT_OPTIONS:MGNUTLS}
+USES+=		pkgconfig
 LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=--with-ssl=gnutls
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -66,5 +68,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's,/usr/local/etc/wgetrc,${PREFIX}/etc/wgetrc,' \
 			 -e 's,@file{},@file{${PREFIX}},' \
 		${WRKSRC}/doc/sample.wgetrc* ${WRKSRC}/doc/wget.texi
+	${REINPLACE_CMD} -e '/ac_fn_c_check_header_mongrel.*uuid\/uuid.h/ d' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
