@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	screen
-PORTVERSION=	4.2.1
+PORTVERSION=	4.3.1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -13,13 +13,13 @@ MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
 		http://people.freebsd.org/~cy/distfiles/ \
 		GNU
 
-MAINTAINER=	cy@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-screen window manager
 
 LICENSE=	gpl3
 
-OPTIONS_DEFINE=		INFO MAN NETHACK XTERM_256 SHOWENC
-OPTIONS_DEFAULT=	INFO MAN NETHACK XTERM_256 SOCKETS
+OPTIONS_DEFINE=		INFO MAN NETHACK XTERM_256 SHOWENC SYSTEM_SCREENRC
+OPTIONS_DEFAULT=	INFO MAN NETHACK XTERM_256 SOCKETS SYSTEM_SCREENRC
 OPTIONS_SINGLE=		IPC
 OPTIONS_SINGLE_IPC=	SOCKETS NAMED_PIPES
 INFO_DESC=		Build and install info documentation
@@ -29,10 +29,13 @@ XTERM_256_DESC=		Enable support for 256 colour xterm
 SHOWENC_DESC=		Show encoding on the status line
 SOCKETS_DESC=		Use new (4.2.1+) sockets for IPC (default)
 NAMED_PIPES_DESC=	Use legacy (4.0.3) named pipes for IPC (override)
+SYSTEM_SCREENRC_DESC=	Install system screenrc with helpful status line
 
 OPTIONS_SUB=
 
-USES=		gmake
+USES=		gmake cpe
+
+CPE_VENDOR=	gnu
 
 .include <bsd.mport.options.mk>
 
@@ -69,7 +72,7 @@ EXTRA_PATCHES+=	${FILESDIR}/opt-showencoding
 .endif
 
 post-patch:
-	@${RM} ${WRKSRC}/doc/screen.info*
+	-@${RM} ${WRKSRC}/doc/screen.info*
 	@${REINPLACE_CMD} -e 's|/dev/ptmx|/nonexistent|' ${WRKSRC}/configure
 
 # Bug 191029:	Users can choose whether to use sockets or named pipes.
@@ -83,9 +86,21 @@ post-configure:
 	@${ECHO_CMD} User selected named pipes override set.
 .endif
 
+ETCDIR?=	${PREFIX}/etc
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/etc/etcscreenrc \
-		${STAGEDIR}${EXAMPLESDIR}/screenrc
+		${STAGEDIR}${EXAMPLESDIR}/screenrc.sample-1
+	${INSTALL_DATA} ${FILESDIR}/screenrc.sample \
+		${STAGEDIR}${EXAMPLESDIR}/screenrc.sample-2
+	@${MKDIR} ${ETCDIR}
+.if ${PORT_OPTIONS:MSYSTEM_SCREENRC}
+	${INSTALL_DATA} ${FILESDIR}/screenrc.sample \
+		${ETCDIR}/screenrc.sample
+.else
+	${INSTALL_DATA} ${WRKSRC}/etc/etcscreenrc \
+		${ETCDIR}/screenrc.sample
+.endif
 
 .include <bsd.port.mk>
