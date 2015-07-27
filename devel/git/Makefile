@@ -1,14 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-PORTVERSION=	2.3.2
+PORTVERSION=	2.4.5
 CATEGORIES=	devel
-MASTER_SITES=	KERNEL_ORG
-MASTER_SITE_SUBDIR=	software/scm/git
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
+MASTER_SITES=	KERNEL_ORG/software/scm/git
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 # We manually extract the htmldocs.
-EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,8 +17,8 @@ LICENSE=	gpl2
 
 CONFLICTS?=	git-subversion-[0-9]*
 
-USERS=	git_daemon
-GROUPS=	git_daemon
+USERS=		git_daemon
+GROUPS=		git_daemon
 
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
@@ -35,7 +34,8 @@ SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
 		contrib/hooks/update-paranoid \
 		contrib/credential/netrc/git-credential-netrc \
 		contrib/diff-highlight/diff-highlight \
-		contrib/buildsystems/generate contrib/contacts/git-contacts
+		contrib/buildsystems/generate contrib/contacts/git-contacts \
+		contrib/svn-fe/svnrdump_sim.py
 
 CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
@@ -81,10 +81,10 @@ RUN_DEPENDS+=	p5-Error>=0:${PORTSDIR}/lang/p5-Error \
 		p5-Net-SMTP-SSL>=0:${PORTSDIR}/mail/p5-Net-SMTP-SSL \
 		p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
 		p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
-PLIST_SUB+=	PERLSUB=""
+PLIST_SUB+=	PERL=""
 .else
 MAKE_ARGS+=	NO_PERL=1
-PLIST_SUB+=	PERLSUB="@comment "
+PLIST_SUB+=	PERL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MICONV}
