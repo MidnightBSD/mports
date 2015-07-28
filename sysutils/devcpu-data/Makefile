@@ -1,17 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	data
-PORTVERSION=	1.2
+PORTVERSION=	1.5
 CATEGORIES=	sysutils
-MASTER_SITES=	http://downloadmirror.intel.com/23984/eng/:intel \
+MASTER_SITES=	http://downloadmirror.intel.com/24661/eng/:intel \
 		http://www.amd64.org/microcode/:amd
 PKGNAMEPREFIX=	devcpu-
-DISTFILES=	microcode-20140624.tgz:intel amd-ucode-latest.tar.bz2:amd
+DISTFILES=	microcode-20150121.tgz:intel amd-ucode-2014-12-01.tar.bz2:amd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel and AMD CPUs microcode updates
 
-LICENSE=	unknown
+LICENSE=	EULA
+LICENSE_NAME=	Intel Software License Agreement
+LICENSE_FILE=	${FILESDIR}/LICENSE
+LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell
 
 NO_WRKSUBDIR=	yes
 
