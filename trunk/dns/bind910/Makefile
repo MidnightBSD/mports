@@ -9,12 +9,12 @@ PKGNAMESUFFIX?=	910
 DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
+COMMENT?=	BIND DNS suite with updated DNSSEC and DNS64
 
 LICENSE=	iscl
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.10.2
+ISCVERSION=	9.10.2-P2
 
 MAKE_JOBS_UNSAFE=	yes
 
