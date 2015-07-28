@@ -1,14 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	unbound
-PORTVERSION=	1.5.2
+PORTVERSION=	1.5.3
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Validating, recursive, and caching DNS resolver
 
-LICENSE=	bsd4
+LICENSE=	bsd3
 
 USES=		gmake libtool
 USE_OPENSSL=	yes
