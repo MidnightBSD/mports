@@ -80,7 +80,7 @@
  {
    u->ut_type = DEAD_PROCESS;
 -#if (!defined(linux) || defined(EMPTY)) && !defined(__CYGWIN__)
-+#if (!defined(linux) || defined(EMPTY)) && !defined(__CYGWIN__) && !defined(__FreeBSD__)
++#if (!defined(linux) || defined(EMPTY)) && !defined(__CYGWIN__) && !defined(__MidnightBSD__)
    u->ut_exit.e_termination = 0;
    u->ut_exit.e_exit = 0;
  #endif
