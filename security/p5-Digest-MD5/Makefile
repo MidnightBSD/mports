@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Digest-MD5
-PORTVERSION=	2.53
+PORTVERSION=	2.54
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,9 +14,8 @@ LICENSE=	perl
 BUILD_DEPENDS=	${SITE_PERL}/Digest.pm:${PORTSDIR}/security/p5-Digest
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+USES=		perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Digest::MD5.3
 
 .include <bsd.port.pre.mk>
 
