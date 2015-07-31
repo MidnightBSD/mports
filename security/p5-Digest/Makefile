@@ -2,6 +2,7 @@
 
 PORTNAME=	Digest
 PORTVERSION=	1.17
+PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,11 +12,7 @@ COMMENT=	Modules that calculate message digests
 
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
-RUN_DEPENDS=	${BUILD_DEPENDS}
-
+USES=		perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Digest.3 Digest::base.3 Digest::file.3
 
 .include <bsd.port.mk>
