@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libssh
-DISTVERSION=	0.6.3
+DISTVERSION=	0.7.0
 CATEGORIES=	security devel
-MASTER_SITES=	https://red.libssh.org/attachments/download/87/
+MASTER_SITES=	https://red.libssh.org/attachments/download/140/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library implementing the SSH1 and SSH2 protocol
@@ -44,8 +44,7 @@ post-patch:
 		-e 's|LIB_INSTALL_DIR}|CMAKE_INSTALL_PREFIX}/libdata|' \
 		-e 's|CMAKE_INSTALL_DIR}|CMAKE_INSTALL_DIR}/libssh|' \
 		${WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's|-lssh_threads|-lssh_threads ${PTHREAD_LIBS}|' \
-		-e 's|$${INCLUDE_INSTALL_DIR}|$${INCLUDE_INSTALL_DIR} ${PTHREAD_CFLAGS}|' \
+	@${REINPLACE_CMD} -e 's|-lssh_threads|-lssh_threads -lpthread|' \
 		${WRKSRC}/libssh_threads.pc.cmake
 	@${REINPLACE_CMD} -e 's| -pedantic-errors||' \
 		${WRKSRC}/cmake/Modules/DefineCompilerFlags.cmake
