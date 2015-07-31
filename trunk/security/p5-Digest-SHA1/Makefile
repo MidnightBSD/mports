@@ -9,10 +9,10 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interface to the SHA-1 Algorithm
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+USES=		perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Digest::SHA1.3
 
 .include <bsd.port.mk>
