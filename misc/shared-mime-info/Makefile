@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	1.1
-PORTREVISION=	1
+PORTVERSION=	1.4
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
