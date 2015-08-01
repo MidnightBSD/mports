@@ -367,7 +367,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		efl emacs execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
 		gnome gnustep gssapi gstreamer iconv imake jpeg \
-		ldap libtool lua \
+		ldap libedit libtool localbase lua \
 		metaport makeself motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl tex wx xfce zip
