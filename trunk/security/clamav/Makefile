@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.98.6
+PORTVERSION=	0.98.7
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -48,7 +48,7 @@ DMG_XAR_USE=		GNOME=libxml2
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		gmake libtool
+USES=		cpe gmake libtool
 INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
 
@@ -75,14 +75,11 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--enable-gethostbyname_r \
 		--disable-dependency-tracking \
 		--enable-clamdtop
-CPPFLAGS+=	-I${LOCALBASE}/include \
-		${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib \
-		${PTHREAD_LIBS}
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 # This port has a problem with -pthread,
 # force to use -lthr until it's not fixed.
-PTHREAD_LIBS=	-lthr
+LDFLAGS+=	-lthr -L${LOCALBASE}/lib
 
 CONFLICTS?=	clamav-milter-[0-9]*
 
@@ -149,6 +146,7 @@ LDFLAGS+=	-lldap
 . if !exists(/usr/lib/libmilter.a) || exists(${LOCALBASE}/lib/libmilter.a)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
 CONFIGURE_ARGS+=--with-sendmail=${LOCALBASE}/sbin/sendmail
+LDFLAGS+=	-L${LOCALBASE}/lib
 . else
 CONFIGURE_ARGS+=--with-sendmail=/usr/sbin/sendmail
 . endif
@@ -165,7 +163,7 @@ CFLAGS+=	-march=i486
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g' \
+	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|-lthr|g' \
 			  -e 's|LC_REVISION=22|LC_REVISION=24|' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's,^\(pkgconfigdir = \).*$$,\1$$\(prefix\)/libdata/pkgconfig,g' \
