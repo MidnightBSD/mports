@@ -1,22 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.26
+PORTVERSION=	5.1.36
 CATEGORIES=	databases java
-MASTER_SITES=	${MASTER_SITE_MYSQL}
-MASTER_SITE_SUBDIR=	Connector-J
+MASTER_SITES=	MYSQL/Connector-J
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MySQL Connector/J: JDBC interface for MySQL
 
 LICENSE=	gpl2
 
-CONFLICTS=	mysql-connector-java*-5.0.*
-
 RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
 
+USES=		cpe
+CPE_VENDOR=	oracle
+CPE_PRODUCT=	mysql_connector_j
+
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	1.6 1.7
 BUILDDIR=	${WRKDIR}/${DISTNAME}
 APIDOCSDIR=	${DOCSDIR}/javadoc
 SRCDIR=		${WRKDIR}/${DISTNAME}/src
