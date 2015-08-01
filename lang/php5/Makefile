@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.39
+PORTVERSION=	5.4.43
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=	${MASTER_SITE_PHP}
-MASTER_SITE_SUBDIR=	distributions
+MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -60,8 +59,7 @@ DESTDIRNAME=	INSTALL_ROOT
 
 PATCH_DIST_STRIP=	-p1
 
-PATCH_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
-PATCH_SITE_SUBDIR=	ale
+PATCH_SITES+=	FREEBSD_LOCAL/ale
 
 .if ${PORT_OPTIONS:MMAILHEAD}
 PATCHFILES+=	php-5.4.x-mail-header.patch:mail
@@ -143,7 +141,7 @@ CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 		lt_cv_path_SED="sed"
 
 .if ${PORT_OPTIONS:MLINKTHR}
-LIBS+=		${PTHREAD_LIBS}
+LIBS+=		-lpthread
 .endif
 
 .if ${PORT_OPTIONS:MZTS}
@@ -159,6 +157,9 @@ CONFIGURE_ARGS+=--enable-debug
 IGNORE=		cannot be built with DTrace support on MidnightBSD < 0.4
 .endif
 CONFIGURE_ARGS+=--enable-dtrace
+PLIST_SUB+=	DTRACE=""
+.else
+PLIST_SUB+=	DTRACE="@comment "
 .endif
 
 .if empty(PORT_OPTIONS:MIPV6)
