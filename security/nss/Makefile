@@ -1,19 +1,22 @@
 # $MidnightBSD$
 
 PORTNAME=	nss
-PORTVERSION=	3.19
-PORTREVISION=	0
+PORTVERSION=	3.19.2
+#DISTVERSIONSUFFIX=	.with.ckbi.1.93
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
+
 LICENSE=	unknown
 #mpl?
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		nspr>=4.10.5:${PORTSDIR}/devel/nspr
-LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
+		nspr>=4.10.5:${PORTSDIR}/devel/nspr \
+		sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr \
+		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
 

@@ -1,4 +1,5 @@
 %%CERTDIR%%/ca-root-nss.crt
-@dirrmtry %%CERTDIR%%
+@sample etc/ssl/cert.pem.sample
+@sample openssl/cert.pem.sample
 %%ETCSYMLINK%%@cwd /
 %%ETCSYMLINK%%@exec ln -sf /usr/local/%%CERTDIR%%/ca-root-nss.crt /etc/ssl/cert.pem
