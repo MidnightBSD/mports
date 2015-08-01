@@ -4,7 +4,7 @@ PORTNAME=	ca_root_nss
 PORTVERSION=	${VERSION_NSS}
 PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	MOZILLA/security/nss/releases/${DISTNAME:U:C/[-.]/_/g}_RTM/src
+MASTER_SITES=	MOZILLA/security/nss/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 DISTNAME=	nss-${VERSION_NSS}${NSS_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,11 +27,12 @@ PLIST_SUB+=	CERTDIR=${CERTDIR}
 # !!!  Please DO NOT submit patches for new version until it has !!!
 # !!!  been committed there first.                               !!!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-VERSION_NSS=	3.14.3
-#NSS_SUFFIX=	.with.ckbi.1.93
-CERTDATA_TXT_PATH=	nss-${VERSION_NSS}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt
+VERSION_NSS=	3.19.2
+#NSS_SUFFIX=	.with.ckbi.1.98
+CERTDATA_TXT_PATH=	nss-${VERSION_NSS}/nss/lib/ckfw/builtins/certdata.txt
 BUNDLE_PROCESSOR=	MAca-bundle.pl
-SUB_FILES=	MAca-bundle.pl
+
+SUB_FILES=	MAca-bundle.pl pkg-message
 SUB_LIST=	VERSION_NSS=${VERSION_NSS}
 
 .include <bsd.mport.options.mk>
@@ -61,5 +62,9 @@ do-install:
 .if ${PORT_OPTIONS:METCSYMLINK}
 	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt /etc/ssl/cert.pem
 .endif
+	${MKDIR} ${PREFIX}/etc/ssl
+	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt ${PREFIX}/etc/ssl/cert.pem.sample
+	${MKDIR} ${PREFIX}/openssl
+	${LN} -sf ${PREFIX}/${CERTDIR}/ca-root-nss.crt ${PREFIX}/openssl/cert.pem.sample
 
 .include <bsd.port.mk>
