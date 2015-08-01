@@ -58,7 +58,6 @@ SUBDIR += nginx
 SUBDIR += npm
 SUBDIR += node
 SUBDIR += nspluginwrapper
-SUBDIR += opera
 SUBDIR += p5-CGI-Ajax
 SUBDIR += p5-CGI
 SUBDIR += p5-CGI.pm
