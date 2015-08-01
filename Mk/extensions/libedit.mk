@@ -9,7 +9,7 @@
 
 .if !defined(_INCLUDE_USES_LIBEDIT_MK)
 _INCLUDE_USES_LIBEDIT_MK=	yes
-.include "${EXTENSIONSDIR}/localbase.mk"
+.include "${MPORTEXTENSIONS}/localbase.mk"
 
 LIB_DEPENDS+=	libedit.so.0:${PORTSDIR}/devel/libedit
 .endif
