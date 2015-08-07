@@ -19,4 +19,12 @@ TEXHASHDIRS=	${TEXMFVARDIR}
 TEX_FORMATS=	amstex context cslatex csplain eplain latex-bin \
 		metafont mex mptopdf pdftex tex
 
+NO_BUILD=	yes
+
+post-extract:
+	mkdir ${WRKSRC}
+	mkdir ${FAKE_DESTDIR}
+
+do-install: do-texhash do-fmtutil
+
 .include <bsd.port.mk>
