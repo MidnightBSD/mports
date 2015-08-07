@@ -19,6 +19,7 @@ SUBDIR += dri
 SUBDIR += eog
 SUBDIR += etoile-distributedview
 SUBDIR += evince
+SUBDIR += evince-lite
 SUBDIR += exif
 SUBDIR += exiv2
 SUBDIR += feh
