@@ -2,13 +2,14 @@
 
 PORTNAME=	at-spi
 PORTVERSION=	1.32.0
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive Technology Service Provider Interface
+
 LICENSE=	lgpl
 
 USES+=		tar:bzip2
