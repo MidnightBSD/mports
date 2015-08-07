@@ -3,6 +3,7 @@
 
 PORTNAME=	gocr
 PORTVERSION=	0.50
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
@@ -11,39 +12,52 @@ COMMENT=	GOCR/JOCR is an OCR (Optical Character Recognition) program
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	latex:${PORTSDIR}/print/teTeX
 LIB_DEPENDS=	libnetpbm.so:${PORTSDIR}/graphics/netpbm
 
 USES=		gmake
-USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-netpbm=${LOCALBASE}
 
-.if !defined(WITHOUT_X11)
-RUN_DEPENDS=	wish8.4:${PORTSDIR}/x11-toolkits/tk84
-PLIST_FILES+=	bin/gocr.tcl
-.endif
+PLIST_FILES=	bin/gocr \
+		man/man1/gocr.1.gz
 
-MAN1=		gocr.1
+PORTDOCS=	*
 
-PORTDOCS=	examples.txt gocr.html unicode.txt
-PLIST_FILES+=	bin/gocr
+DOCSRCDIR1=	${WRKSRC}
+DOC_FILES1=	AUTHORS BUGS CREDITS HISTORY README READMEde.txt TODO
+
+DOCSRCDIR2=	${WRKSRC}/doc
+DOCSDIR2=	${DOCSDIR}/doc
+DOC_FILES2=	*.dtd *.xml *.html *.txt *.fig *.png
+
+OPTIONS_DEFINE=	X11 DOCS
+OPTIONS_DEFAULT=	X11
 
 # This port doesn't understand what DESTDIR is supposed to do.
 FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} mandir=/man ${MAKE_ARGS}
 
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MX11}
+USES+=		tk
+PLIST_FILES+=	bin/gocr.tcl
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|@LIBS@|-L${LOCALBASE}/lib @LIBS@|g' ${WRKSRC}/src/Makefile.in
-.if defined(WITHOUT_X11)
+.if !  ${PORT_OPTIONS:MX11}
 	@${REINPLACE_CMD} -e '/gocr.tcl/d' ${WRKSRC}/src/Makefile.in
 .else
-	@${REINPLACE_CMD} -e 's/exec wish/exec wish8.4/' ${WRKSRC}/bin/gocr.tcl
+	@${REINPLACE_CMD} -e 's|exec wish|exec ${WISH}|' ${WRKSRC}/bin/gocr.tcl
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
+	@${STRIP_CMD} ${PREFIX}/bin/gocr
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
+	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR2}
+	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${DOCSDIR2}
 .endif
 
 .include <bsd.port.mk>
