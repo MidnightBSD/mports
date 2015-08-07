@@ -172,6 +172,7 @@ SUBDIR += xerces-j
 SUBDIR += xhtml
 SUBDIR += xhtml-basic
 SUBDIR += xhtml-modularization
+SUBDIR += xml2rfc
 SUBDIR += xmlcatmgr
 SUBDIR += xmlcharent
 SUBDIR += xmlto
