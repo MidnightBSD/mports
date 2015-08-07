@@ -76,6 +76,7 @@ SUBDIR += libglapi
 SUBDIR += libgnomecanvas
 SUBDIR += libgnomecanvasmm
 SUBDIR += libgphoto2
+SUBDIR += libgxps
 SUBDIR += libksane
 SUBDIR += liblqr-1
 SUBDIR += libmng
