@@ -1,6 +1,4 @@
 bin/evince
-bin/evince-previewer
-bin/evince-thumbnailer
 include/evince/%%VERSION%%/evince-document.h
 include/evince/%%VERSION%%/evince-view.h
 include/evince/%%VERSION%%/libdocument/ev-annotation.h
@@ -51,12 +49,12 @@ include/evince/%%VERSION%%/libview/ev-view.h
 %%COMICS%%lib/evince/4/backends/comicsdocument.evince-backend
 %%DJVU%%lib/evince/4/backends/djvudocument.evince-backend
 %%DVI%%lib/evince/4/backends/dvidocument.evince-backend
-%%COMICS%%lib/evince/4/backends/libcomicsdocument.a
-%%COMICS%%lib/evince/4/backends/libcomicsdocument.so
 %%DJVU%%lib/evince/4/backends/libdjvudocument.a
 %%DJVU%%lib/evince/4/backends/libdjvudocument.so
 %%DVI%%lib/evince/4/backends/libdvidocument.a
 %%DVI%%lib/evince/4/backends/libdvidocument.so
+%%COMICS%%lib/evince/4/backends/libcomicsdocument.a
+%%COMICS%%lib/evince/4/backends/libcomicsdocument.so
 lib/evince/4/backends/libpdfdocument.a
 lib/evince/4/backends/libpdfdocument.so
 lib/evince/4/backends/libpsdocument.a
@@ -65,12 +63,10 @@ lib/evince/4/backends/libtiffdocument.a
 lib/evince/4/backends/libtiffdocument.so
 %%XPS%%lib/evince/4/backends/libxpsdocument.a
 %%XPS%%lib/evince/4/backends/libxpsdocument.so
-%%XPS%%lib/evince/4/backends/xpsdocument.evince-backend
 lib/evince/4/backends/pdfdocument.evince-backend
 lib/evince/4/backends/psdocument.evince-backend
 lib/evince/4/backends/tiffdocument.evince-backend
-lib/girepository-1.0/EvinceDocument-%%VERSION%%.typelib
-lib/girepository-1.0/EvinceView-%%VERSION%%.typelib
+%%XPS%%lib/evince/4/backends/xpsdocument.evince-backend
 lib/libevdocument3.a
 lib/libevdocument3.so
 lib/libevdocument3.so.4
@@ -81,11 +77,8 @@ lib/libevview3.so.3
 lib/libevview3.so.3.0.0
 lib/mozilla/plugins/libevbrowserplugin.a
 lib/mozilla/plugins/libevbrowserplugin.so
-%%NAUTILUS%%lib/nautilus/extensions-%%VERSION%%/libevince-properties-page.a
-%%NAUTILUS%%lib/nautilus/extensions-%%VERSION%%/libevince-properties-page.so
 libdata/pkgconfig/evince-document-%%VERSION%%.pc
 libdata/pkgconfig/evince-view-%%VERSION%%.pc
-libexec/evinced
 man/man1/evince.1.gz
 share/GConf/gsettings/evince.convert
 %%COMICS%%share/appdata/evince-comicsdocument.metainfo.xml
@@ -98,7 +91,6 @@ share/appdata/evince-tiffdocument.metainfo.xml
 share/appdata/evince.appdata.xml
 share/applications/evince-previewer.desktop
 share/applications/evince.desktop
-share/dbus-1/services/org.gnome.evince.Daemon.service
 %%DATADIR%%/hand-open.png
 %%DATADIR%%/icons/hicolor/16x16/actions/object-rotate-left.png
 %%DATADIR%%/icons/hicolor/16x16/actions/object-rotate-right.png
@@ -139,8 +131,6 @@ share/dbus-1/services/org.gnome.evince.Daemon.service
 %%DATADIR%%/icons/hicolor/scalable/actions/object-rotate-left.svg
 %%DATADIR%%/icons/hicolor/scalable/actions/object-rotate-right.svg
 %%DATADIR%%/icons/hicolor/scalable/mimetypes/x-office-presentation.svg
-share/gir-1.0/EvinceDocument-%%VERSION%%.gir
-share/gir-1.0/EvinceView-%%VERSION%%.gir
 share/gtk-doc/html/evince/EggFindBar.html
 share/gtk-doc/html/evince/EvFileMonitor.html
 share/gtk-doc/html/evince/EvHistory.html
@@ -2957,4 +2947,3 @@ share/locale/zh_CN/LC_MESSAGES/evince.mo
 share/locale/zh_HK/LC_MESSAGES/evince.mo
 share/locale/zh_TW/LC_MESSAGES/evince.mo
 share/locale/zu/LC_MESSAGES/evince.mo
-share/thumbnailers/evince.thumbnailer
