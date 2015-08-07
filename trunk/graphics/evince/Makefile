@@ -1,122 +1,130 @@
-# New ports collection makefile for:	evince
-# Date created:				09 January 2005
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/graphics/evince/Makefile,v 1.33 2008/02/26 18:35:39 ahze Exp $
-#   $MCom: ports-stable/graphics/evince/Makefile,v 1.1 2007/12/01 19:16:37 marcus Exp $
-#
 
 PORTNAME=	evince
-PORTVERSION=	2.32.0
-PORTREVISION=	5
+PORTVERSION=	3.14.2
+PORTREVISION?=	1
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 2 multi-format document viewer
+COMMENT?=	GNOME 3 multi-format document viewer
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
-LIB_DEPENDS=	poppler-glib.8:${PORTSDIR}/graphics/poppler-glib \
-		spectre.1:${PORTSDIR}/print/libspectre
-RUN_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
+BUILD_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		itstool:${PORTSDIR}/textproc/itstool \
+		adwaita-icon-theme>=0:${PORTSDIR}/x11-themes/adwaita-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libpoppler-glib.so:${PORTSDIR}/graphics/poppler-glib \
+		libspectre.so:${PORTSDIR}/print/libspectre
+RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		adwaita-icon-theme>=0:${PORTSDIR}/x11-themes/adwaita-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
 
+SLAVEPORT?=	no
+
+USES=		compiler:c++11-lib desktop-file-utils gettext gmake libtool \
+		pathfix pkgconfig tar:xz
+USE_GNOME=	gtk30 intlhack
 USE_LDCONFIG=	yes
-USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
+USE_XORG=	ice
 INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-INSTALLS_OMF=	yes
-USE_GNOME=	gnomehack intlhack gnomeprefix desktopfileutils \
-		gnomedocutils ltasneededhack gconf2
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-GLIB_SCHEMAS=	org.gnome.Evince.gschema.xml
-GCONF_SCHEMAS=	\
-		evince-thumbnailer.schemas \
-		evince-thumbnailer-ps.schemas
-
-PLIST_SUB+=	VERSION=2.32
-
-MAN1=		evince.1
-
-OPTIONS=	DVI		"Enable DVI viewer support"		off \
-		T1LIB		"Enable T1LIB for TYPE1 fonts to DVI (Enables DVI)"	off \
-		NAUTILUS	"Enable Nautilus plugin"		on  \
-		KEYRING		"Enable Gnome-Keyring without Nautilus" on \
-		DBUS		"Enable D-BUS support"			on \
-		COMICS		"Enable comic book archives support"	on \
-		IMPRESS		"Enable Impress presentations support"	off \
-		DJVU		"Enable DJVU support"			off
-
-.include <bsd.port.pre.mk>
-
-.if defined(PACKAGE_BUILDING) || exists(${LOCALBASE}/lib/libdbus-glib-1.so)
-WITH_DBUS=	yes
+.if ${SLAVEPORT} == lite
+CONFIGURE_ARGS+=--disable-introspection \
+		--disable-libgnome-desktop \
+		--disable-thumbnailer \
+		--disable-previewer
+.else
+USE_GNOME+=	introspection:build
+CONFIGURE_ARGS+=	--enable-introspection
 .endif
 
-.if defined(WITH_DVI) || defined(WITH_T1LIB) || exists(${LOCALBASE}/lib/libkpathsea.a)
-BUILD_DEPENDS+=	tex:${PORTSDIR}/print/teTeX-base
-RUN_DEPENDS+=	tex:${PORTSDIR}/print/teTeX-base
+GLIB_SCHEMAS=	org.gnome.Evince.gschema.xml
+
+PLIST_SUB=	VERSION=3.0
+
+OPTIONS_DEFINE=	COMICS DJVU DVI KEYRING NAUTILUS T1LIB XPS
+OPTIONS_DEFAULT=COMICS KEYRING NAUTILUS XPS
+DVI_DESC=	DVI viewer support
+T1LIB_DESC=	T1LIB for TYPE1 fonts to DVI (Enables DVI)
+NAUTILUS_DESC=	Nautilus plugin
+KEYRING_DESC=	Keyring support
+COMICS_DESC=	Comic book archives support
+DJVU_DESC=	DJVU support
+XPS_DESC=	XPS support
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:NDBUS} && ${SLAVEPORT} == lite
+CONFIGURE_ARGS+=--disable-dbus
+.else
+CONFIGURE_ARGS+=--enable-dbus
+.endif
+
+.if ${OSVERSION} < 900000
+BROKEN=		Fails to build
+.endif
+
+.if ${PORT_OPTIONS:MDVI} || ${PORT_OPTIONS:MT1LIB}
+USE_TEX=	latex
 
 CONFIGURE_ARGS+=	--enable-dvi
-GCONF_SCHEMAS+=	evince-thumbnailer-dvi.schemas
 PLIST_SUB+=		DVI=""
-. if defined(WITH_T1LIB)
-LIB_DEPENDS+=	t1.5:${PORTSDIR}/devel/t1lib
-
+. if ${PORT_OPTIONS:MT1LIB}
+LIB_DEPENDS+=	libt1.so:${PORTSDIR}/devel/t1lib
 CONFIGURE_ARGS+=	--enable-t1lib
+. else
+CONFIGURE_ARGS+=	--disable-t1lib
 . endif
 .else
+CONFIGURE_ARGS+=	--disable-dvi
 PLIST_SUB+=		DVI="@comment "
 .endif
 
-.if !defined(WITHOUT_NAUTILUS)
-USE_GNOME+=		nautilus2
+.if ${PORT_OPTIONS:MKEYRING}
+LIB_DEPENDS+=	libsecret-1.so:${PORTSDIR}/security/libsecret
+.else
+CONFIGURE_ARGS+=--without-keyring
+.endif
+
+.if ${PORT_OPTIONS:MNAUTILUS}
+USE_GNOME+=		nautilus3
 CONFIGURE_ARGS+=	--enable-nautilus
 PLIST_SUB+=		NAUTILUS=""
 .else
 BUILD_DEPENDS+=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
 RUN_DEPENDS+=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
-.if !defined(WITHOUT_KEYRING)
-LIB_DEPENDS+=	gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
-.else
-CONFIGURE_ARGS+=	--without-keyring
-.endif
 CONFIGURE_ARGS+=	--disable-nautilus
 PLIST_SUB+=		NAUTILUS="@comment "
 .endif
 
-.if defined(WITH_IMPRESS)
-CONFIGURE_ARGS+=	--enable-impress
-PLIST_SUB+=		IMPRESS=""
+.if ${PORT_OPTIONS:MXPS}
+LIB_DEPENDS+=		libgxps.so:${PORTSDIR}/graphics/libgxps
+CONFIGURE_ARGS+=	--enable-xps
+PLIST_SUB+=		XPS=""
 .else
-CONFIGURE_ARGS+=	--disable-impress
-PLIST_SUB+=		IMPRESS="@comment "
+CONFIGURE_ARGS+=	--disable-xps
+PLIST_SUB+=		XPS="@comment "
 .endif
 
-.if defined(WITH_DJVU)
-LIB_DEPENDS+=		djvulibre.24:${PORTSDIR}/graphics/djvulibre-nox11
+.if ${PORT_OPTIONS:MDJVU}
+LIB_DEPENDS+=		libdjvulibre.so:${PORTSDIR}/graphics/djvulibre
 CONFIGURE_ARGS+=	--enable-djvu
-GCONF_SCHEMAS+=		evince-thumbnailer-djvu.schemas
 PLIST_SUB+=		DJVU=""
 .else
 CONFIGURE_ARGS+=	--disable-djvu
 PLIST_SUB+=		DJVU="@comment "
 .endif
 
-.if !defined(WITHOUT_DBUS)
-LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
-.endif
-
-.if !defined(WITHOUT_COMICS)
-RUN_DEPENDS+=		unzip:${PORTSDIR}/archivers/unzip
+.if ${PORT_OPTIONS:MCOMICS}
 CONFIGURE_ARGS+=	--enable-comics
-GCONF_SCHEMAS+=		evince-thumbnailer-comics.schemas
 PLIST_SUB+=		COMICS=""
 .else
 CONFIGURE_ARGS+=	--disable-comics
@@ -126,12 +134,10 @@ PLIST_SUB+=		COMICS="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|execinfo.h|#|g' \
 		-e 's|" == "|" = "|g' \
+		-e 's|-Werror||g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/^DOC_MODULE_VERSION/d' \
 		${WRKSRC}/help/reference/libdocument/Makefile.in \
 		${WRKSRC}/help/reference/libview/Makefile.in
 
-post-install:
-	@-update-desktop-database
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
