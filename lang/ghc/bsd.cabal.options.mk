@@ -64,7 +64,7 @@ OPTIONS_MULTI_${f}=	${FLAGS_MULTI_${f}}
 .  endif
 .endfor
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .for f in ${_COMPLETE_FLAGS}
 .  if defined(${f}_FLAG_DEPENDS)
