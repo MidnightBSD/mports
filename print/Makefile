@@ -48,6 +48,7 @@ SUBDIR += tex-formats
 SUBDIR += tex-jadetex
 SUBDIR += tex-ptexenc
 SUBDIR += tex-texmflocal
+SUBDIR += tex-xmltex
 SUBDIR += texinfo
 SUBDIR += texlive-base
 SUBDIR += texlive-texmf
