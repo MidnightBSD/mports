@@ -400,6 +400,7 @@ SUBDIR += py-gdata
 SUBDIR += py-gobject
 SUBDIR += py-gobject3
 SUBDIR += py-isodate
+SUBDIR += py-lxml
 SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-parsing
