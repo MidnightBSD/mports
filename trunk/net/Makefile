@@ -21,6 +21,7 @@ SUBDIR += dhcp6
 SUBDIR += dhcpdump
 SUBDIR += fping
 SUBDIR += geoclue
+SUBDIR += geocode-glib
 SUBDIR += glib-networking
 SUBDIR += gnet2
 SUBDIR += gnome-nettool
