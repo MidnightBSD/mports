@@ -45,6 +45,7 @@ SUBDIR += qpdf
 SUBDIR += t1utils
 SUBDIR += tex-dvipsk
 SUBDIR += tex-formats
+SUBDIR += tex-jadetex
 SUBDIR += tex-ptexenc
 SUBDIR += tex-texmflocal
 SUBDIR += texinfo
