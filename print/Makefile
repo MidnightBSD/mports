@@ -4,7 +4,6 @@ COMMENT = Desktop publishing
 
 SUBDIR += a2ps
 SUBDIR += adobe-cmaps
-SUBDIR += cm-super
 SUBDIR += cups
 SUBDIR += cups-base
 SUBDIR += cups-client
