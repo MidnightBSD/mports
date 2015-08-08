@@ -3,34 +3,42 @@
 
 PORTNAME=	docbook-utils
 PORTVERSION=	0.6.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEWARE}
-MASTER_SITE_SUBDIR=	docbook-tools/new-trials/SOURCES
+MASTER_SITES=	SOURCEWARE/docbook-tools/new-trials/SOURCES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates various output formats from DocBook SGML documents
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS+=	nsgmls:${PORTSDIR}/textproc/jade \
-		${LOCALBASE}/share/sgml/docbook/3.1/docbook.dtd:${PORTSDIR}/textproc/docbook-sgml \
-		${LOCALBASE}/share/sgml/docbook/dsssl:${PORTSDIR}/textproc/dsssl-docbook-modular
-RUN_DEPENDS+=	${LOCALBASE}/share/texmf/tex/jadetex/dsssl.def:${PORTSDIR}/print/jadetex \
+BUILD_DEPENDS+=	docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml \
+		dsssl-docbook-modular>0:${PORTSDIR}/textproc/dsssl-docbook-modular \
+		nsgmls:${PORTSDIR}/textproc/jade
+RUN_DEPENDS+=	dsssl-docbook-modular>0:${PORTSDIR}/textproc/dsssl-docbook-modular \
+		nsgmls:${PORTSDIR}/textproc/jade \
 		sgmlspl:${PORTSDIR}/textproc/p5-SGMLSpm \
-    		jade:${PORTSDIR}/textproc/jade \
 		lynx:${PORTSDIR}/www/lynx
 
-USE_PERL5_RUN=	yes
+CONFLICTS=	docbook2X-*
+
+USES=		perl5 gmake shebangfix
+USE_PERL5=	run
+USE_TEX=	jadetex
 GNU_CONFIGURE=	yes
-USES=		gmake
 MAKE_ARGS+=	docdir="${DOCSDIR}" htmldir="${DOCSDIR}/html"
+SHEBANG_FILES=	bin/sgmldiff.in
+perl_OLD_CMD=	@perl_bindir@/perl
 
 PORTDOCS=	*
 
 post-patch:
-	 @${REINPLACE_CMD} -e '254 s/install-htmlDATA//' \
+	@${REINPLACE_CMD} -e 's|/etc/sgml/catalog|${PREFIX}/share/sgml/catalog|g' \
 		${WRKSRC}/doc/HTML/Makefile.in
+	@${REINPLACE_CMD} -e 's|/etc/sgml|${LOCALBASE}/share/sgml|g' \
+			-e 's|/usr/bin/|${LOCALBASE}/bin/|g' \
+			${WRKSRC}/doc/refentry/*.sgml \
+			${WRKSRC}/backends/txt
 
 pre-configure:
 	${RM} -f ${WRKSRC}/config.cache
