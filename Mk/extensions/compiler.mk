@@ -8,6 +8,7 @@
 #
 # c++0x:	The port needs a compiler understanding C++0X
 # c++11-lang:	The port needs a compiler understanding C++11
+# c++14-lang:	The port needs a compiler understanding C++14
 # gcc-c++11-lib:The port needs g++ compiler with a C++11 library
 # c++11-lib:	The port needs a compiler understanding C++11 and with a C++11 ready standard library
 # c11:		The port needs a compiler understanding C11
@@ -32,7 +33,7 @@ _INCLUDE_USES_COMPILER_MK=	yes
 compiler_ARGS=	env
 .endif
 
-VALID_ARGS=	c++11-lib c++11-lang c11 features openmp env nestedfct c++0x gcc-c++11-lib
+VALID_ARGS=	c++11-lib c++11-lang c++14-lang c11 features openmp env nestedfct c++0x gcc-c++11-lib
 
 .if ${compiler_ARGS} == gcc-c++11-lib
 _COMPILER_ARGS+=	features gcc-c++11-lib
@@ -42,6 +43,8 @@ _COMPILER_ARGS+=	features c++11-lib
 _COMPILER_ARGS+=	features c++0x
 .elif ${compiler_ARGS} == c++11-lang
 _COMPILER_ARGS+=	features c++11-lang
+.elif ${compiler_ARGS} == c++14-lang
+_COMPILER_ARGS+=	features c++14-lang
 .elif ${compiler_ARGS} == c11
 _COMPILER_ARGS+=	features c11
 .elif ${compiler_ARGS} == features
@@ -73,9 +76,7 @@ ALT_COMPILER_VERSION=	0
 ALT_COMPILER_TYPE=	none
 _ALTCCVERSION=	
 .if ${COMPILER_TYPE} == gcc && exists(/usr/bin/clang)
-.if ${ARCH} == amd64 || ${ARCH} == i386 # clang often non-default for a reason
 _ALTCCVERSION!=	/usr/bin/clang --version
-.endif
 .elif ${COMPILER_TYPE} == clang && exists(/usr/bin/gcc)
 _ALTCCVERSION!=	/usr/bin/gcc --version
 .endif
@@ -112,7 +113,7 @@ COMPILER_FEATURES=	libstdc++
 .endif
 
 CSTD=	c89 c99 c11 gnu89 gnu99 gnu11
-CXXSTD=	c++98 c++11 gnu++98 gnu++11 c++0x
+CXXSTD=	c++98 c++0x c++11 c++14 gnu++98 gnu++11
 
 .for std in ${CSTD} ${CXXSTD}
 _LANG=c
@@ -133,6 +134,32 @@ CHOSEN_COMPILER_TYPE=	gcc
 .elif ${COMPILER_TYPE} == clang && ${COMPILER_FEATURES:Mlibstdc++}
 USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
+.endif
+.endif
+
+.if ${_COMPILER_ARGS:Mc++14-lang}
+.if !${COMPILER_FEATURES:Mc++14}
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc)
+USE_GCC=	5+
+CHOSEN_COMPILER_TYPE=	gcc
+.elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 35) || ${COMPILER_TYPE} == gcc
+.if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 35
+CPP=	clang-cpp
+CC=	clang
+CXX=	clang++
+CHOSEN_COMPILER_TYPE=	clang
+.else
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang36:${PORTSDIR}/lang/clang36
+CPP=	${LOCALBASE}/bin/clang-cpp36
+CC=	${LOCALBASE}/bin/clang36
+CXX=	${LOCALBASE}/bin/clang++36
+CHOSEN_COMPILER_TYPE=	clang
+.if ${OSVERSION} < 4015
+USE_BINUTILS=	yes
+LDFLAGS+=	-B${LOCALBASE}/bin
+.endif
+.endif
+.endif
 .endif
 .endif
 
