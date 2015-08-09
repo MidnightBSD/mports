@@ -1,21 +1,19 @@
 # $MidnightBSD$
 
-PORTNAME?=	rtorrent
-PORTVERSION=	0.9.2
-PORTREVISION=	1
+PORTNAME=	rtorrent
+PORTVERSION=	0.9.4
+PORTREVISION=	0
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BitTorrent Client written in C++
 
-LICENSE=	gpl2
+LICENSE=	gpl2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	libtorrent=0.13.2_1:${PORTSDIR}/net-p2p/libtorrent
-RUN_DEPENDS=	libtorrent=0.13.2_1:${PORTSDIR}/net-p2p/libtorrent
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
-
-CONFLICTS=	rtorrent-devel-[0-9]*
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
+		libtorrent.so.18:${PORTSDIR}/net-p2p/libtorrent
 
 GNU_CONFIGURE=	yes
 USES=		pkgconfig
@@ -26,32 +24,27 @@ SUB_FILES=	pkg-message
 
 PORTDOCS=	README
 
-OPTIONS_DEFINE=	XMLRPC IPV6 DOCS
-OPTIONS_DEFAULT=	XMLRPC IPV6
+OPTIONS_DEFINE=	XMLRPC IPV6 DOCS EXAMPLES
+OPTIONS_DEFAULT=XMLRPC
 XMLRPC_DESC=	Compile with xmlrpc-c support
+IPV6_CONFIGURE_ON=	--enable-ipv6
+XMLRPC_LIB_DEPENDS=	libxmlrpc.so:${PORTSDIR}/net/xmlrpc-c-devel
+XMLRPC_CONFIGURE_ON=	--with-xmlrpc-c
+XMLRPC_CONFIGURE_OFF=	--with-xmlrpc-c=no
+
+.include <bsd.mport.options.mk>
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MXMLRPC}
-CONFIGURE_ARGS+=	--with-xmlrpc-c
-LIB_DEPENDS+=	xmlrpc:${PORTSDIR}/net/xmlrpc-c
-.else
-CONFIGURE_ARGS+=	--with-xmlrpc-c=no
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.endif
+USES+=	compiler:c++11-lang
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3|${CFLAGS}|' ${WRKSRC}/configure
 
 post-install:
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/rtorrent.rc ${EXAMPLESDIR}/
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}/
-.endif
+	@${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/rtorrent.rc ${EXAMPLESDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}
 
 .include <bsd.port.post.mk>
