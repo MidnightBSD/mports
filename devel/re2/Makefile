@@ -1,9 +1,8 @@
 # $MidnightBSD$ 
 
 PORTNAME=	re2
-PORTVERSION=	20140304
+PORTVERSION=	20150601
 CATEGORIES=	devel
-MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast C++ regex library
@@ -12,17 +11,17 @@ LICENSE=	bsd3
 
 MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" prefix=${PREFIX}
 USE_LDCONFIG=	yes
-USES=		compiler:c++11-lang gmake tar:tgz
+USES=		gmake pathfix tar:tgz
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+GH_ACCOUNT=	google
+GH_TAGNAME=	${PORTVERSION:C|(....)(..)(..)|\1-\2-\3|}
+USE_GITHUB=	yes
+
+WRKSRC=		${WRKDIR}/re2-2015-06-01
 
 .include <bsd.port.pre.mk>
 
-post-patch:
-# remove tr1 if using libc++
-.if ${COMPILER_FEATURES:Mlibc++}
-	@${REINPLACE_CMD} -e 's|tr1/||; s|tr1::||' ${WRKSRC}/util/util.h
-.endif
+USES+=		compiler:c++11-lang
 
 post-build:
 	@${STRIP_CMD} ${WRKSRC}/obj/so/libre2.so
