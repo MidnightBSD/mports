@@ -67,7 +67,6 @@ SUBDIR += php5-sqlite3
 SUBDIR += php5-sybase_ct
 SUBDIR += phpmyadmin
 SUBDIR += phppgadmin
-SUBDIR += postgresql-docs
 SUBDIR += postgresql-jdbc
 SUBDIR += postgresql-libpqxx
 SUBDIR += postgresql-plruby
