@@ -7,6 +7,8 @@ CATEGORIES=	graphics
 
 COMMENT=	OpenEGL library
 
+LICENSE=	mit
+
 LIB_DEPENDS+=	libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libdevq.so:${PORTSDIR}/devel/libdevq \
