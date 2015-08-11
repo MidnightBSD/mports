@@ -28,4 +28,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
+pre-patch: dos2unix
+
 .include <bsd.port.mk>
