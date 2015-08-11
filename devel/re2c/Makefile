@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/re2c/Makefile,v 1.21 2007/06/16 19:43:13 sat Exp $
 
 PORTNAME=	re2c
-PORTVERSION=	0.13.6
+PORTVERSION=	0.14.3
 CATEGORIES=	devel
 MASTER_SITES=	SF
 
