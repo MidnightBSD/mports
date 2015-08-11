@@ -27,8 +27,6 @@
 # Where to put distfiles that don't have any other master site
 .if !defined(IGNORE_MASTER_SITE_LOCAL)
 MASTER_SITE_LOCAL+= \
-	ftp://mirrors.isc.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
-	http//mirrors.secution.com/midnightbsd/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
 
@@ -112,6 +110,14 @@ MASTER_SITE_CHEESESHOP+= \
 	http://pypi.python.org/packages/%SUBDIR%/ \
 	http://pypi.crate.io/packages/%SUBDIR%/ \
 	http://pypi.python.jp/${DISTNAME:S/${DISTVERSION}//:S/-//}/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_COMP_SOURCES)
+MASTER_SITE_COMP_SOURCES+= \
+	http://ftp.isc.org/pub/usenet/comp.sources.%SUBDIR%/ \
+	http://ftp.funet.fi/pub/archive/comp.sources.%SUBDIR%/ \
+	http://ftp.sunet.se/pub/usenet/ftp.uu.net/comp.sources.%SUBDIR%/ \
+	http://ftp.fi.netbsd.org/pub/misc/archive/comp.sources.%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
@@ -251,6 +257,7 @@ MASTER_SITE_FEDORA_LINUX+= \
 	ftp://mirror.solarvps.com/fedora/archive/fedora/linux/core/%SUBDIR%/ \
 	ftp://ftp.gmd.de/archives.fedoraproject.org/fedora/linux/core/%SUBDIR%/ \
 	ftp://mirror.fraunhofer.de/archives.fedoraproject.org/fedora/linux/core/%SUBDIR%/ \
+	ftp://linuxsoft.cern.ch/fedora/linux/core/%SUBDIR%/ \
 	ftp://ftp-mirror.bi.fraunhofer.de/archives.fedoraproject.org/fedora/linux/core/%SUBDIR%/ \
 	http://ftp.udl.es/pub/fedora/linux/core/%SUBDIR%/ \
 	http://ftp.sunet.se/pub/Linux/distributions/fedora/linux/core/%SUBDIR%/ \
@@ -531,13 +538,13 @@ MASTER_SITE_GITHUB_CLOUD+=	http://cloud.github.com/downloads/%SUBDIR%
 .  if !defined(MASTER_SITES) || !${MASTER_SITES:MGH} && !${MASTER_SITES:MGHC} && !${USE_GITHUB:Mnodefault}
 MASTER_SITES+=	GH
 .  endif
-_GH_ACCOUNT_DEFAULT=	${PORTNAME}
-GH_ACCOUNT?=	${_GH_ACCOUNT_DEFAULT}
-_GH_PROJECT_DEFAULT=	${PORTNAME}
-GH_PROJECT?=	${_GH_PROJECT_DEFAULT}
+GH_ACCOUNT_DEFAULT=	${PORTNAME}
+GH_ACCOUNT?=	${GH_ACCOUNT_DEFAULT}
+GH_PROJECT_DEFAULT=	${PORTNAME}
+GH_PROJECT?=	${GH_PROJECT_DEFAULT}
 # Use full PREFIX/SUFFIX and converted DISTVERSION
-_GH_TAGNAME_DEFAULT=	${DISTVERSIONFULL}
-GH_TAGNAME?=	${_GH_TAGNAME_DEFAULT}
+GH_TAGNAME_DEFAULT=	${DISTVERSIONFULL}
+GH_TAGNAME?=	${GH_TAGNAME_DEFAULT}
 # Iterate over GH_ACCOUNT, GH_PROJECT and GH_TAGNAME to extract groups
 _GITHUB_GROUPS= DEFAULT
 .for _A in ${GH_ACCOUNT}
@@ -554,10 +561,10 @@ check-makevars::
 .      if !${_GITHUB_GROUPS:M${_group}}
 _GITHUB_GROUPS+=	${_group}
 .       endif
-_GH_ACCOUNT_${_group}=	${_A:C@^(.*):[^/:]+$@\1@}
+GH_ACCOUNT_${_group}=	${_A:C@^(.*):[^/:]+$@\1@}
 .    endfor
 .  else
-_GH_ACCOUNT_DEFAULT=	${_A:C@^(.*):[^/:]+$@\1@}
+GH_ACCOUNT_DEFAULT=	${_A:C@^(.*):[^/:]+$@\1@}
 .  endif
 .endfor
 .for _P in ${GH_PROJECT}
@@ -574,10 +581,10 @@ check-makevars::
 .      if !${_GITHUB_GROUPS:M${_group}}
 _GITHUB_GROUPS+=	${_group}
 .       endif
-_GH_PROJECT_${_group}=	${_P:C@^(.*):[^/:]+$@\1@}
+GH_PROJECT_${_group}=	${_P:C@^(.*):[^/:]+$@\1@}
 .    endfor
 .  else
-_GH_PROJECT_DEFAULT=	${_P:C@^(.*):[^/:]+$@\1@}
+GH_PROJECT_DEFAULT=	${_P:C@^(.*):[^/:]+$@\1@}
 .  endif
 .endfor
 .for _T in ${GH_TAGNAME}
@@ -594,17 +601,17 @@ check-makevars::
 .      if !${_GITHUB_GROUPS:M${_group}}
 _GITHUB_GROUPS+=	${_group}
 .       endif
-_GH_TAGNAME_${_group}=	${_T:C@^(.*):[^/:]+$@\1@}
+GH_TAGNAME_${_group}=	${_T:C@^(.*):[^/:]+$@\1@}
 .    endfor
 .  else
-_GH_TAGNAME_DEFAULT=	${_T:C@^(.*):[^/:]+$@\1@}
+GH_TAGNAME_DEFAULT=	${_T:C@^(.*):[^/:]+$@\1@}
 .  endif
 .endfor
 # Put the default values back into the variables so that the *default* behavior
 # is not changed.
-GH_ACCOUNT:=	${_GH_ACCOUNT_DEFAULT}
-GH_PROJECT:=	${_GH_PROJECT_DEFAULT}
-GH_TAGNAME:=	${_GH_TAGNAME_DEFAULT}
+GH_ACCOUNT:=	${GH_ACCOUNT_DEFAULT}
+GH_PROJECT:=	${GH_PROJECT_DEFAULT}
+GH_TAGNAME:=	${GH_TAGNAME_DEFAULT}
 .  if defined(GH_TAGNAME)
 GH_TAGNAME_SANITIZED=	${GH_TAGNAME:S,/,-,}
 # Github silently converts tags starting with v to not have v in the filename
@@ -638,32 +645,16 @@ DISTFILES+=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
 # entries with the correct group and create {WRKSRC,DISTNAME,DISTFILES}_group
 # helper variables.
 .  for _group in ${_GITHUB_GROUPS:NDEFAULT}
-.if defined(_GH_ACCOUNT_${_group})
-_a_tmp=	${_GH_ACCOUNT_${_group}}
-.else
-_a_tmp=	${_GH_ACCOUNT_DEFAULT}
-.endif
-.if defined(_GH_PROJECT_${_group})
-_p_tmp=	${_GH_PROJECT_${_group}}
-.else
-_p_tmp=	${_GH_PROJECT_DEFAULT}
-.endif
-.if defined(_GH_TAGNAME_${_group})
-_t_tmp=	${_GH_TAGNAME_${_group}}
-.else
-_t_tmp=	${_GH_TAGNAME_DEFAULT}
-.endif
-# starting with 10+:
-#_a_tmp=	${_GH_ACCOUNT_${_group}:U${_GH_ACCOUNT_DEFAULT}}
-#_p_tmp=	${_GH_PROJECT_${_group}:U${_GH_PROJECT_DEFAULT}}
-#_t_tmp=	${_GH_TAGNAME_${_group}:U${_GH_TAGNAME_DEFAULT}}
-_t_tmp_s=	${_t_tmp:S,/,-,}
-_t_tmp_e=	${_t_tmp_s:C/^[vV]([0-9])/\1/}
-DISTNAME_${_group}:=	${_a_tmp}-${_p_tmp}-${_t_tmp_s}
+GH_ACCOUNT_${_group}?=	${GH_ACCOUNT_DEFAULT}
+GH_PROJECT_${_group}?=	${GH_PROJECT_DEFAULT}
+GH_TAGNAME_${_group}?=	${GH_TAGNAME_DEFAULT}
+GH_TAGNAME_${_group}_SANITIZED=	${GH_TAGNAME_${_group}:S,/,-,}
+GH_TAGNAME_${_group}_EXTRACT=	${GH_TAGNAME_${_group}_SANITIZED:C/^[vV]([0-9])/\1/}
+DISTNAME_${_group}:=	${GH_ACCOUNT_${_group}}-${GH_PROJECT_${_group}}-${GH_TAGNAME_${_group}_SANITIZED}
 DISTFILE_${_group}:=	${DISTNAME_${_group}}_GH${_GITHUB_REV}${_GITHUB_EXTRACT_SUFX}
 DISTFILES:=	${DISTFILES} ${DISTFILE_${_group}}:${_group}
-MASTER_SITES:=	${MASTER_SITES} ${MASTER_SITE_GITHUB:S@%SUBDIR%@${_a_tmp}/${_p_tmp}/tar.gz/${_t_tmp}?dummy=/:${_group}@}
-WRKSRC_${_group}:=	${WRKDIR}/${_p_tmp}-${_t_tmp_e}
+MASTER_SITES:=	${MASTER_SITES} ${MASTER_SITE_GITHUB:S@%SUBDIR%@${GH_ACCOUNT_${_group}}/${GH_PROJECT_${_group}}/tar.gz/${GH_TAGNAME_${_group}}?dummy=/:${_group}@}
+WRKSRC_${_group}:=	${WRKDIR}/${GH_PROJECT_${_group}}-${GH_TAGNAME_${_group}_EXTRACT}
 .  endfor
 .endif
 .endif
@@ -703,7 +694,7 @@ MASTER_SITE_GNU+= \
 	ftp://ftp.gnu.org/gnu/%SUBDIR%/ \
 	http://www.gtlib.gatech.edu/pub/gnu/gnu/%SUBDIR%/ \
 	http://mirrors.kernel.org/gnu/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/GNU/%SUBDIR%/ \
+	ftp://ftp.kddlabs.co.jp/GNU/gnu/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/GNU/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/%SUBDIR%/ \
 	ftp://ftp.informatik.hu-berlin.de/pub/gnu/gnu/%SUBDIR%/ \
@@ -726,6 +717,7 @@ MASTER_SITE_GNUPG+= \
 	ftp://ftp.sunet.se/pub/security/gnupg/%SUBDIR%/ \
 	ftp://mirror.switch.ch/mirror/gnupg/%SUBDIR%/ \
 	http://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
+	http://www.ring.gr.jp/pub/net/gnupg/%SUBDIR%/ \
 	ftp://ftp.gnupg.org/gcrypt/%SUBDIR%/
 .endif
 
@@ -881,43 +873,18 @@ MASTER_SITE_MOZDEV+= \
 	http://ftp.osuosl.org/pub/mozdev/%SUBDIR%/
 .endif
 
-# releases.mozilla.org mirror sites
-#
-# For the full list, see the following:
-#
-#	http://www.mozilla.org/mirrors.html
-#
 .if !defined(IGNORE_MASTER_SITE_MOZILLA)
 MASTER_SITE_MOZILLA+= \
-	https://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://mirror3.mirrors.tds.net/pub/mozilla.org/%SUBDIR%/ \
-	http://mozilla.isc.org/pub/mozilla.org/%SUBDIR%/ \
 	http://releases.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://kyoto-mz-dl.sinet.ad.jp/pub/mozilla.org/%SUBDIR%/ \
-	http://jp-nii01.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://jp-nii02.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://mirror.internode.on.net/pub/mozilla/%SUBDIR%/ \
-	http://ftp.acc.umu.se/pub/mozilla.org/%SUBDIR%/ \
-	http://mozilla.c3sl.ufpr.br/releases/%SUBDIR%/ \
-	http://www.gtlib.gatech.edu/pub/mozilla.org/%SUBDIR%/ \
-	ftp://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	ftp://ftp.fh-wolfenbuettel.de/pub/www/mozilla/%SUBDIR%/ \
-	ftp://ftp.informatik.rwth-aachen.de/pub/mirror/ftp.mozilla.org/pub/%SUBDIR%/ \
-	http://ftp.twaren.net/Unix/Mozilla/%SUBDIR%/
-.endif
-
-.if !defined(IGNORE_MASTER_SITE_BUGZILLA)
-MASTER_SITE_BUGZILLA+= \
 	https://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
 	http://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	ftp://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	http://mirror.internode.on.net/pub/mozilla/%SUBDIR%/
+	ftp://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_MOZILLA_EXTENDED)
-MASTER_SITE_MOZILLA_EXTENDED+= \
-	http://releases.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-	${MASTER_SITE_MOZILLA}
+.if !defined(IGNORE_MASTER_SITE_MOZILLA_ADDONS)
+MASTER_SITE_MOZILLA_ADDONS+= \
+	https://addons.cdn.mozilla.net/user-media/%SUBDIR%/ \
+	http://kyoto-mz-dl.sinet.ad.jp/pub/mozilla.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MPLAYERHQ)
@@ -1309,7 +1276,6 @@ MASTER_SITE_SUNSITE+= \
 	ftp://ftp.nvg.ntnu.no/pub/mirrors/metalab.unc.edu/%SUBDIR%/ \
 	ftp://ftp.icm.edu.pl/pub/Linux/sunsite/%SUBDIR%/ \
 	ftp://ftp.cse.cuhk.edu.hk/pub4/Linux/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/Linux/metalab.unc.edu/%SUBDIR%/ \
 	ftp://ftp.chg.ru/pub/Linux/sunsite/%SUBDIR%/ \
 	ftp://ftp.sun.ac.za/pub/mirrors/sunsite.unc.edu/pub/Linux/%SUBDIR%/
 .endif
