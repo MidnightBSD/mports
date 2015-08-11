@@ -1,81 +1,106 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
-bin/joe
-bin/termidx
 bin/jmacs
+bin/joe
+bin/jpico
 bin/jstar
 bin/rjoe
-bin/jpico
-etc/joe/joerc
-etc/joe/jicerc.ru
-etc/joe/jmacsrc
-etc/joe/jstarrc
-etc/joe/rjoerc
-etc/joe/jpicorc
-etc/joe/ftyperc
-etc/joe/jmacsrc.dist
-etc/joe/jpicorc.dist
-etc/joe/jstarrc.dist
-etc/joe/rjoerc.dist
-etc/joe/joerc.dist
-%%DOCSDIR%%/LIST
-%%DOCSDIR%%/README
-%%DOCSDIR%%/HINTS
-%%DOCSDIR%%/ChangeLog
-%%DOCSDIR%%/HACKING
-%%DOCSDIR%%/NEWS
-%%DATADIR%%/lang/ru.po
+bin/stringify
+bin/termidx
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/hacking.md
+%%PORTDOCS%%%%DOCSDIR%%/NEWS.md
+%%PORTDOCS%%%%DOCSDIR%%/README.md
+%%ETCDIR%%/ftyperc
+%%ETCDIR%%/jicerc.ru
+@unexec if cmp -s %D/%%ETCDIR%%/jmacsrc.dist %D/%%ETCDIR%%/jmacsrc; then rm -f %D/%%ETCDIR%%/jmacsrc; fi
+%%ETCDIR%%/jmacsrc.dist
+@exec if [ ! -f %D/%%ETCDIR%%/jmacsrc ]; then cp %D/%%ETCDIR%%/%f %D/%%ETCDIR%%/jmacsrc; fi
+@unexec if cmp -s %D/%%ETCDIR%%/joerc.dist %D/%%ETCDIR%%/joerc; then rm -f %D/%%ETCDIR%%/joerc; fi
+%%ETCDIR%%/joerc.dist
+@exec if [ ! -f %D/%%ETCDIR%%/joerc ]; then cp %D/%%ETCDIR%%/%f %D/%%ETCDIR%%/joerc; fi
+@unexec if cmp -s %D/%%ETCDIR%%/jpicorc.dist %D/%%ETCDIR%%/jpicorc; then rm -f %D/%%ETCDIR%%/jpicorc; fi
+%%ETCDIR%%/jpicorc.dist
+@exec if [ ! -f %D/%%ETCDIR%%/jpicorc ]; then cp %D/%%ETCDIR%%/%f %D/%%ETCDIR%%/jpicorc; fi
+@unexec if cmp -s %D/%%ETCDIR%%/jstarrc.dist %D/%%ETCDIR%%/jstarrc; then rm -f %D/%%ETCDIR%%/jstarrc; fi
+%%ETCDIR%%/jstarrc.dist
+@exec if [ ! -f %D/%%ETCDIR%%/jstarrc ]; then cp %D/%%ETCDIR%%/%f %D/%%ETCDIR%%/jstarrc; fi
+@unexec if cmp -s %D/%%ETCDIR%%/rjoerc.dist %D/%%ETCDIR%%/rjoerc; then rm -f %D/%%ETCDIR%%/rjoerc; fi
+%%ETCDIR%%/rjoerc.dist
+@exec if [ ! -f %D/%%ETCDIR%%/rjoerc ]; then cp %D/%%ETCDIR%%/%f %D/%%ETCDIR%%/rjoerc; fi
+%%ETCDIR%%/shell.csh
+%%ETCDIR%%/shell.sh
+%%DATADIR%%/charmaps/klingon
 %%DATADIR%%/lang/de.po
 %%DATADIR%%/lang/fr.po
+%%DATADIR%%/lang/ru.po
 %%DATADIR%%/lang/uk.po
-%%DATADIR%%/syntax/c.jsf
-%%DATADIR%%/syntax/perl.jsf
-%%DATADIR%%/syntax/verilog.jsf
-%%DATADIR%%/syntax/conf.jsf
-%%DATADIR%%/syntax/python.jsf
-%%DATADIR%%/syntax/php.jsf
-%%DATADIR%%/syntax/sh.jsf
-%%DATADIR%%/syntax/mail.jsf
-%%DATADIR%%/syntax/pascal.jsf
-%%DATADIR%%/syntax/html.jsf
-%%DATADIR%%/syntax/vhdl.jsf
-%%DATADIR%%/syntax/fortran.jsf
-%%DATADIR%%/syntax/java.jsf
-%%DATADIR%%/syntax/xml.jsf
-%%DATADIR%%/syntax/tcl.jsf
-%%DATADIR%%/syntax/lisp.jsf
-%%DATADIR%%/syntax/csh.jsf
-%%DATADIR%%/syntax/mason.jsf
-%%DATADIR%%/syntax/diff.jsf
-%%DATADIR%%/syntax/asm.jsf
-%%DATADIR%%/syntax/tex.jsf
-%%DATADIR%%/syntax/css.jsf
-%%DATADIR%%/syntax/ocaml.jsf
 %%DATADIR%%/syntax/4gl.jsf
-%%DATADIR%%/syntax/sml.jsf
-%%DATADIR%%/syntax/sql.jsf
-%%DATADIR%%/syntax/awk.jsf
-%%DATADIR%%/syntax/cobol.jsf
-%%DATADIR%%/syntax/sed.jsf
-%%DATADIR%%/syntax/ps.jsf
 %%DATADIR%%/syntax/ada.jsf
-%%DATADIR%%/syntax/troff.jsf
+%%DATADIR%%/syntax/ant.jsf
+%%DATADIR%%/syntax/asm.jsf
+%%DATADIR%%/syntax/awk.jsf
+%%DATADIR%%/syntax/batch.jsf
+%%DATADIR%%/syntax/c.jsf
+%%DATADIR%%/syntax/cobol.jsf
+%%DATADIR%%/syntax/comment_todo.jsf
+%%DATADIR%%/syntax/conf.jsf
+%%DATADIR%%/syntax/csh.jsf
+%%DATADIR%%/syntax/csharp.jsf
+%%DATADIR%%/syntax/css.jsf
+%%DATADIR%%/syntax/debian.jsf
+%%DATADIR%%/syntax/diff.jsf
+%%DATADIR%%/syntax/elixir.jsf
+%%DATADIR%%/syntax/erb.jsf
+%%DATADIR%%/syntax/erlang.jsf
+%%DATADIR%%/syntax/filename.jsf
+%%DATADIR%%/syntax/fortran.jsf
+%%DATADIR%%/syntax/git-commit.jsf
+%%DATADIR%%/syntax/go.jsf
+%%DATADIR%%/syntax/haml.jsf
 %%DATADIR%%/syntax/haskell.jsf
-%%DATADIR%%/syntax/rexx.jsf
-%%DATADIR%%/syntax/skill.jsf
-%%DATADIR%%/syntax/lua.jsf
-%%DATADIR%%/syntax/ruby.jsf
-%%DATADIR%%/syntax/m4.jsf
+%%DATADIR%%/syntax/html.jsf
+%%DATADIR%%/syntax/htmlerb.jsf
+%%DATADIR%%/syntax/ini.jsf
+%%DATADIR%%/syntax/iptables.jsf
+%%DATADIR%%/syntax/java.jsf
 %%DATADIR%%/syntax/joerc.jsf
-%%DATADIR%%/syntax/spec.jsf
-%%DATADIR%%/syntax/matlab.jsf
+%%DATADIR%%/syntax/js.jsf
 %%DATADIR%%/syntax/jsf.jsf
 %%DATADIR%%/syntax/jsf_check.jsf
-%%DATADIR%%/charmaps/klingon
+%%DATADIR%%/syntax/json.jsf
+%%DATADIR%%/syntax/lisp.jsf
+%%DATADIR%%/syntax/lua.jsf
+%%DATADIR%%/syntax/m4.jsf
+%%DATADIR%%/syntax/mail.jsf
+%%DATADIR%%/syntax/mason.jsf
+%%DATADIR%%/syntax/matlab.jsf
+%%DATADIR%%/syntax/md.jsf
+%%DATADIR%%/syntax/ocaml.jsf
+%%DATADIR%%/syntax/pascal.jsf
+%%DATADIR%%/syntax/perl.jsf
+%%DATADIR%%/syntax/php.jsf
+%%DATADIR%%/syntax/powershell.jsf
+%%DATADIR%%/syntax/prolog.jsf
+%%DATADIR%%/syntax/properties.jsf
+%%DATADIR%%/syntax/ps.jsf
+%%DATADIR%%/syntax/puppet.jsf
+%%DATADIR%%/syntax/python.jsf
+%%DATADIR%%/syntax/rexx.jsf
+%%DATADIR%%/syntax/ruby.jsf
+%%DATADIR%%/syntax/sed.jsf
+%%DATADIR%%/syntax/sh.jsf
+%%DATADIR%%/syntax/sieve.jsf
+%%DATADIR%%/syntax/skill.jsf
+%%DATADIR%%/syntax/sml.jsf
+%%DATADIR%%/syntax/spec.jsf
+%%DATADIR%%/syntax/sql.jsf
+%%DATADIR%%/syntax/tcl.jsf
+%%DATADIR%%/syntax/tex.jsf
+%%DATADIR%%/syntax/troff.jsf
+%%DATADIR%%/syntax/typescript.jsf
+%%DATADIR%%/syntax/verilog.jsf
+%%DATADIR%%/syntax/vhdl.jsf
+%%DATADIR%%/syntax/whitespace.jsf
+%%DATADIR%%/syntax/xml.jsf
+%%DATADIR%%/syntax/yaml.jsf
 man/man1/joe.1.gz
 man/ru/man1/joe.1.gz
-@dirrm etc/joe
-@dirrm %%DOCSDIR%%
-@dirrm %%DATADIR%%/lang
-@dirrm %%DATADIR%%/syntax
-@dirrm %%DATADIR%%/charmaps
-@dirrm %%DATADIR%%

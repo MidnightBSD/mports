@@ -1,26 +1,39 @@
-# Ports collection makefile for:  impress
-# Date created:			  23 Aug 2001
-# Whom:				  Kris Kennaway <kris@FreeBSD.org>
-#
+# Created by: Kris Kennaway <kris@FreeBSD.org>
 # $MidnightBSD$
-# $FreeBSD: ports/editors/impress/Makefile,v 1.9 2007/04/02 22:56:10 pav Exp $
-#
 
 PORTNAME=	impress
 PORTVERSION=	1.1b9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors tk
-MASTER_SITES=	TUCOWS http://fresh.t-systems-sfr.com/unix/src/privat2/ \
-		ftp://ftp.plig.net/pub/OpenBSD/distfiles/ \
-		ftp://ftp.openoffice.pl/bsd/FreeBSD/ports/distfiles/
+MASTER_SITES=	http://www.ntlug.org/~ccox/impress/
 DISTNAME=	imp${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Publishing and presentation tool
-LICENSE=	gpl2
 
-RUN_DEPENDS=    wish8.4:${PORTSDIR}/x11-toolkits/tk84
+LICENSE=	gpl2 gpl3
+LICENSE_COMB=	dual
 
+OPTIONS_DEFINE=	DOCS
+
+NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+USES+=		tk
+
+PORTDOCS=	*
+PLIST_FILES=	bin/impress
+
+.include <bsd.mport.options.mk>
+
+post-patch:
+	${REINPLACE_CMD} -e 's|exec wish|exec ${WISH}|g' \
+	    ${WRKSRC}/src/impress.tcl
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/src/impress.tcl ${PREFIX}/bin/impress
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC}/src/doc && ${COPYTREE_SHARE} . ${DOCSDIR}
+.endif
 
 .include <bsd.port.mk>

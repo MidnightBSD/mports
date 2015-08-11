@@ -1,53 +1,45 @@
 # $MidnightBSD$
 
 PORTNAME=	gedit-plugins
-PORTVERSION=	2.32.0
-PORTREVISION=	1
+PORTVERSION=	3.16.0
+PORTREVISION=	2
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Plugins for GEdit 2
+MAINTAINER=	gnome@FreeBSD.org
+COMMENT=	Plugins for GEdit 3
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
-		gucharmap:${PORTSDIR}/deskutils/gucharmap
-RUN_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
-		gucharmap:${PORTSDIR}/deskutils/gucharmap
+BUILD_DEPENDS=	gedit>=0:${PORTSDIR}/editors/gedit \
+		itstool:${PORTSDIR}/textproc/itstool
+LIB_DEPENDS=	libpeas-1.0.so:${PORTSDIR}/devel/libpeas \
+		libgit2-glib-1.0.so:${PORTSDIR}/devel/libgit2-glib
+RUN_DEPENDS=	gedit>=0:${PORTSDIR}/editors/gedit
 
-CONFLICTS=	gedit-plugins-3.[0-9]*
-
+USES=		gettext gmake libtool pathfix pkgconfig \
+		python:3 tar:xz
+USE_GNOME=	gtk30 gtksourceview3 intlhack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
-USE_GNOME=	gnomeprefix intlhack gnomevfs2
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	gedit-show-tabbar-plugin.schemas \
-		gedit-drawspaces.schemas
+GLIB_SCHEMAS=	org.gnome.gedit.plugins.drawspaces.gschema.xml \
+		org.gnome.gedit.plugins.wordcompletion.gschema.xml
 
-OPTIONS_DEFINE=	PYTHON
+PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	yes
-USE_GNOME+=	pygtksourceview
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte \
-		${PYTHON_SITELIBDIR}/dbus/bus.py:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/gtksourceview2.so:${PORTSDIR}/x11-toolkits/py-gtksourceview
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte \
-		${PYTHON_SITELIBDIR}/dbus/bus.py:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/gtksourceview2.so:${PORTSDIR}/x11-toolkits/py-gtksourceview
+USES+=		python
+BUILD_DEPENDS+=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus
+LIB_DEPENDS+=	libgucharmap_2_90.so:${PORTSDIR}/deskutils/gucharmap
+RUN_DEPENDS+=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus \
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:${PORTSDIR}/devel/py3-libpeas
+USE_GNOME+=	vte3
 CONFIGURE_ARGS+=--enable-python
-PLIST_SUB+=	PYTHON=""
-.else
-CONFIGURE_ARGS+=--disable-python
-PLIST_SUB+=	PYTHON="@comment "
-.endif
+GLIB_SCHEMAS+=	org.gnome.gedit.plugins.terminal.gschema.xml
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| \\t\\r\\n\\f|[:space:]|g' \
