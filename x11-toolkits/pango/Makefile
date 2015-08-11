@@ -54,10 +54,7 @@ PLIST_SUB+=	X11="@comment "
 .endif
 
 pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-gobject.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."
-	@${FALSE}
-.endif
+	@test -s ${LOCALBASE}/libdata/pkgconfig/cairo-gobject.pc || { ${ECHO_CMD} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."; exit 1; }
 
 .include <bsd.port.mk>
 
