@@ -1,35 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	joe
-PORTVERSION=	3.7
-PORTREVISION=	3
+PORTVERSION=	4.0
 CATEGORIES=	editors
 MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
 
-LICENSE=	gpl
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 
-CONFLICTS=	jupp-[0-9]*
+OPTIONS_DEFINE=	DOCS
+
+CONFLICTS=	joe-2.* jupp-[0-9]*
 
 USES=		gmake iconv ncurses
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -liconv"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib ${ICONV_LIB}
 
 ALL_TARGET=	${PORTNAME}
 
-.include <bsd.port.pre.mk>
-
-.ifdef NOPORTDOCS
 post-patch:
-	${REINPLACE_CMD} 's,install-data-am: install-data_charmapsDATA install-data_docDATA,install-data-am: install-data_charmapsDATA,' \
-		${WRKSRC}/Makefile.in
-.endif
+	${REINPLACE_CMD} -e 's|docs/README.old docs/man.md ||' ${WRKSRC}/Makefile.in
 
 post-install:
 	@${CAT} ${FILESDIR}/ftyperc.mbsd >> ${PREFIX}/etc/${PORTNAME}/ftyperc
@@ -39,4 +35,4 @@ post-install:
 .endif
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
