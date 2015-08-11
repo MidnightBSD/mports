@@ -2,47 +2,52 @@
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
 
 PORTNAME=	gedit
-PORTVERSION=	2.30.4
-PORTREVISION=	3
+PORTVERSION=	3.16.2
+PORTREVISION=	1
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Small but powerful text editor for GNOME 2 Desktop Environment
+COMMENT=	Small but powerful text editor for GNOME 3 Desktop Environment
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+		vala:${PORTSDIR}/lang/vala \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		itstool:${PORTSDIR}/textproc/itstool
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
+		libpeas-gtk-1.0.so:${PORTSDIR}/devel/libpeas \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:${PORTSDIR}/devel/py3-libpeas
 
-USES=		desktop-file-utils gettext gmake libtool:keepla  pathfix \
-		pkgconfig tar:bzip2
-USE_XORG=	ice sm
-INSTALLS_OMF=	yes
-INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix intlhack gconf2 gtksourceview2 gnomedocutils
+USES=		desktop-file-utils gettext gmake libtool \
+		pathfix pkgconfig python:3 tar:xz
+USE_GNOME=	gtksourceview3 intlhack introspection:build \
+		libxml2 py3gobject3
+USE_XORG=	sm
 GNU_CONFIGURE=	yes
-GNOME_DESKTOP_VERSION=2
-CPPFLAGS+=	-I${LOCALBASE}/include
+CONFIGURE_ARGS=	--disable-updater
+CONFIGURE_ARGS+=--disable-zeitgeist \
+		--enable-python
+CPPFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
+CFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
 LDFLAGS+=	-L${LOCALBASE}/lib
-PLIST_SUB=	VERSION="2.20"
+PLIST_SUB=	VERSION="3.14"
+INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	gedit.schemas gedit-file-browser.schemas
+GLIB_SCHEMAS=	org.gnome.gedit.enums.xml \
+		org.gnome.gedit.plugins.externaltools.gschema.xml \
+		org.gnome.gedit.gschema.xml \
+		org.gnome.gedit.plugins.filebrowser.enums.xml \
+		org.gnome.gedit.plugins.filebrowser.gschema.xml \
+		org.gnome.gedit.plugins.pythonconsole.gschema.xml \
+		org.gnome.gedit.plugins.time.enums.xml \
+		org.gnome.gedit.plugins.time.gschema.xml
 
-OPTIONS_DEFINE=	PYTHON
-OPTIONS_SUB=	yes
-
-PYTHON_CONFIGURE_ENABLE=python
-PYTHON_USE=		GNOME=pygtksourceview
-
-post-patch:
-	@${REINPLACE_CMD} '/^libgedit_la_LIBADD =/s/=/= -lgmodule-2.0/' \
-		${WRKSRC}/gedit/Makefile.in
-	@${REINPLACE_CMD} '/EGG_SMCLIENT_LIBS =/s/$$/ -lICE/' \
-		${WRKSRC}/gedit/smclient/Makefile.in
+PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
 
 .include <bsd.port.mk>
