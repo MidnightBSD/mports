@@ -2,13 +2,12 @@
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Open Fingerprint Architecture Library
-LICENSE=	gpl2
+COMMENT=	Open Fingerprint Architecture Library
 
 LICENSE=		APL1 gpl2
 LICENSE_COMB=		dual
