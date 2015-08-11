@@ -2,7 +2,7 @@
 
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.4.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
 
@@ -10,31 +10,27 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play, encode, and manage Ogg Vorbis files
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	ao.4:${PORTSDIR}/audio/libao \
-		curl:${PORTSDIR}/ftp/curl \
-		FLAC:${PORTSDIR}/audio/flac \
-		kate.4:${PORTSDIR}/multimedia/libkate \
-		speex.1:${PORTSDIR}/audio/speex \
-		vorbis.4:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS=	libao.so:${PORTSDIR}/audio/libao \
+		libcurl.so:${PORTSDIR}/ftp/curl \
+		libFLAC.so:${PORTSDIR}/audio/flac \
+		libkate.so:${PORTSDIR}/multimedia/libkate \
+		libspeex.so:${PORTSDIR}/audio/speex \
+		libvorbis.so:${PORTSDIR}/audio/libvorbis
 
-USES=		pkgconfig
+USES=		cpe iconv pkgconfig
+CPE_VENDOR=	xiph
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CONFIGURE_ENV=	PTHREAD_LIBS="-lpthread"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=     NLS=""
-.else
-USES+=		iconv
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=     NLS="@comment "
-.endif
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 post-install:
 	${MKDIR} ${PREFIX}/share/examples/vorbis-tools
