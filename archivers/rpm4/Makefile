@@ -2,7 +2,7 @@
 
 PORTNAME=	rpm
 PORTVERSION=	4.12.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
@@ -30,8 +30,8 @@ NLS_USES=	gettext
 NLS_LIBS=	-lintl
 PORTDOCS=	*
 
-USES=		alias gmake libtool lua:51 pathfix pkgconfig shebangfix \
-		tar:bzip2
+USES=		alias gmake libarchive libtool lua:51 pathfix pkgconfig \
+		shebangfix tar:bzip2
 USE_BDB=	48+
 INVALID_BDB_VER=51
 GNU_CONFIGURE=	yes
@@ -63,10 +63,6 @@ CONFIGURE_ENV+=	LUA_CFLAGS=-I${LUA_INCDIR} \
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 6000
-LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e 's:\.\./\.\./bin/::' ${WRKSRC}/Makefile.in
