@@ -2,7 +2,7 @@
 
 PORTNAME=	nas
 PORTVERSION=	1.9.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}%20%28stable%29
 EXTRACT_SUFX=	.src.tar.gz
@@ -26,6 +26,10 @@ SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
+pre-configure:
+	 ${CP} ${PORTSDIR}/Templates/config.sub \
+                ${PORTSDIR}/Templates/config.guess ${WRKSRC}/config/
+
 post-configure:
 # Work around shortcomings of the Imake.rules et. al:
 	${REINPLACE_CMD} -e 's:-fPIC:${FPIC} -DPIC:g' \
@@ -33,13 +37,9 @@ post-configure:
 	    -e 's,\(\$$(AR) \$$@ \$$\)(OBJS),\1(OBJS:S|^|unshared/|),' \
 		${WRKSRC}/lib/audio/Makefile
 
-.if ${ARCH} == "sparc64"
-FPIC=	-fPIC
-.else
 FPIC=	-fpic
-.endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaudio.so.2
+	${STRIP_CMD} ${PREFIX}/lib/libaudio.so.2
 
 .include <bsd.port.post.mk>
