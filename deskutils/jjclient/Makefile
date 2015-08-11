@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 FAKE_OPTS=	trueprefix
 
-WRKSRC=         ${WRKDIR}/laffer1-justjournal-client-unix-c3cacf8
+WRKSRC=         ${WRKDIR}/justjournal-client-unix-${PORTVERSION}
 USE_GITHUB=     yes
 GH_PROJECT=     justjournal-client-unix
 GH_ACCOUNT=     laffer1
