@@ -2,6 +2,7 @@
 
 PORTNAME=	recode
 PORTVERSION=	3.6
+DISTVERSIONPREFIX=	v
 PORTREVISION=	12
 CATEGORIES=	converters
 
@@ -13,12 +14,12 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	pinard
 GH_PROJECT=	Recode
-GH_TAGNAME=	v3.6
-GH_COMMIT=	2127b34
+
+WRKSRC=		${WRKDIR}/${GH_PROJECT}-${PORTVERSION}
 
 GNU_CONFIGURE=	yes
-USES=		gettext iconv libtool
-USE_PERL5=	yes
+USES=		gettext iconv libtool perl5
+USE_PERL5=	run build
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-included-gettext
 CPPFLAGS+=	-I${LOCALBASE}/include
