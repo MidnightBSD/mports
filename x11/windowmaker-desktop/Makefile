@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	windowmaker-desktop
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -17,7 +17,6 @@ LICENSE=	agg
 
 RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		wdm:${PORTSDIR}/x11/wdm \
-		wmlpq:${PORTSDIR}/print/wmlpq \
 		wmBinClock:${PORTSDIR}/x11-clocks/wmbinclock \
 		wmCalClock:${PORTSDIR}/x11-clocks/wmcalclock \
 		wmmp3:${PORTSDIR}/audio/wmmp3 \
