@@ -20,11 +20,8 @@ COMMENT=	Etoile Project Terminal application
 
 LICENSE=	gpl2
 
-USES=		tar:bzip2
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep tar:bzip2
+USE_GNUSTEP=	back build
 USE_GNUSTEP_LOCAL_LIBS+=	Addresses:${ADDRESSES_PORT}
 
 SNAPSHOT=	20061221
