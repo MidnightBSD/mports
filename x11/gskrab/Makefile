@@ -8,12 +8,11 @@ DISTNAME=	GSKrab-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Keyboard Grabber
+
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 ADDITIONAL_LIB_DIRS+=	-L${WRKSRC}/GSKrabFramework/GSKrab.framework/Versions/Current
