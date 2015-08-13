@@ -10,12 +10,15 @@ PKGNAMESUFFIX?=	${BACK_SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
+
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
+USES=		gnustep pkgconfig
+USE_GNUSTEP=	base gui build
 USE_XORG=		xft xrender xmu xext x11
 USE_FREETYPE=		yes
 GNU_CONFIGURE=		yes
@@ -26,7 +29,6 @@ CONFIGURE_ARGS+=	--with-jpeg-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}"
 USE_GMAKE=		yes
-USE_GNUSTEP=		yes
 USE_GNUSTEP_GUI=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
