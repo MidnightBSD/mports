@@ -2,7 +2,7 @@
 
 PORTNAME=	innerspace
 PORTVERSION=	0.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
@@ -10,11 +10,10 @@ DISTNAME=	InnerSpace-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep screensaver
+
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 .include <bsd.port.mk>
