@@ -45,7 +45,6 @@ SUBDIR += libvdpau
 SUBDIR += libvpx
 SUBDIR += libx264
 SUBDIR += libxine
-SUBDIR += linux-divx4linux
 SUBDIR += linux-f10-libtheora
 SUBDIR += linux-f10-libv4l
 SUBDIR += linux-helixplayer
