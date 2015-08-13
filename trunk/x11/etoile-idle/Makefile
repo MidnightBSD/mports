@@ -15,11 +15,8 @@ LICENSE=	unknown
 
 BUILD_DEPENDS=	${LOCALBASE}/include/X11/extensions/scrnsaver.h:${PORTSDIR}/x11/scrnsaverproto
 
-USES=		tar:bzip2
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep tar:bzip2
+USE_GNUSTEP=	back build
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
 USE_XORG=	xscrnsaver
 
