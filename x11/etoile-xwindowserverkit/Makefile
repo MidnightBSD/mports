@@ -18,11 +18,8 @@ COMMENT=	Etoile Project XWindowServerKit frameowrk
 
 LICENSE=	bsd3
 
-USES=		tar:bzip2
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep tar:bzip2
+USE_GNUSTEP=	back build
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 DEFAULT_LIBVERSION=	0.1.1
