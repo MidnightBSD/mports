@@ -2,10 +2,10 @@
 
 PORTNAME=	inadyn
 PORTVERSION=	1.96.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns
 MASTER_SITES=	http://www.inatech.eu/inadyn/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dhn
 DISTNAME=	${PORTNAME}.v${PORTVERSION}
 
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_RC_SUBR=	inadyn
-USES=		gmake zip
+USES=		gmake zip dos2unix
 USE_DOS2UNIX=	yes
 MAKEFILE=	makefile
 
@@ -30,7 +30,9 @@ OPTIONS_DEFINE=	DOCS
 post-extract:
 	${MV} ${WRKDIR}/${PORTNAME} ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-post-patch:
+pre-patch: dos2unix
+
+post-patch: 
 	@${REINPLACE_CMD} -e 's|gcc|$$\(CC\)|g' ${WRKSRC}/makefile
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX},g" \
 		${WRKSRC}/man/inadyn.8 ${WRKSRC}/readme.html \
