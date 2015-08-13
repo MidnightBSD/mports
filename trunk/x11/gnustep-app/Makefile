@@ -2,7 +2,7 @@
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.19.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -15,16 +15,9 @@ LICENSE=	agg
 
 NO_BUILD=	yes
 NO_INSTALL=	yes
-USE_GNUSTEP=	yes
+USES=         gnustep
+USE_GNUSTEP=  back base gui
 USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BASE=	yes
-USE_GNUSTEP_GUI=	yes
-USE_GNUSTEP_BACK=	yes
-.if !defined(WITH_GNUSTEP_SINGLE_BACKEND)
-USE_GNUSTEP_XLIB=	yes
-USE_GNUSTEP_LIBART=	yes
-USE_GNUSTEP_CAIRO=	yes
-.endif
 
 USE_GNUSTEP_SYSTEM_LIBS+=	\
 	ScriptKit:lang/gnustep-guile \
