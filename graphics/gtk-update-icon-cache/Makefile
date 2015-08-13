@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk-update-icon-cache
-PORTVERSION=	2.24.27
+PORTVERSION=	2.24.28
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
