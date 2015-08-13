@@ -1,32 +1,24 @@
+# Created by: Alexander Churanov <churanov.port.maintainer@gmail.com>
 # $MidnightBSD$
 
 PORTNAME=	boost-jam
-PORTVERSION=	1.48.0
-PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
-CATEGORIES=	devel
-MASTER_SITES=	SF/boost/boost/${PORTVERSION}
-DISTNAME=	boost_${PORTVERSION:S/./_/g}
-
-MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Build tool from the boost.org
+
 LICENSE=	mit
 
-CONFLICTS=	boost-python-1* boost-1*
+PLIST_FILES=	bin/bjam
 
-USES=		tar:bzip2
+EXTRACT_AFTER_ARGS=	${DISTNAME}/tools/build/v2/engine
 
-.include <bsd.port.pre.mk>
-
-BJAM=		${WRKSRC}/bjam
-
-post-patch:
-	@${REINPLACE_CMD} -e '/toolset cc/,/;/ { /opt --release/d; }' ${WRKSRC}/tools/build/v2/engine/build.jam
+.include "${.CURDIR}/../boost-all/common.mk"
 
 do-build:
-	cd ${WRKSRC} && ${MAKE_ENV} ./bootstrap.sh --with-toolset=cc --prefix=${PREFIX}
+	cd ${WRKSRC}/tools/build/v2/engine && \
+		${MAKE_ENV} ./build.sh cc
 
 do-install:
-	${MKDIR} ${PREFIX}/bin
-	${INSTALL_PROGRAM} ${BJAM} ${PREFIX}/bin/
+	${MKDIR} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/build/v2/engine/bin.*/bjam \
+		${STAGEDIR}${PREFIX}/bin/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
