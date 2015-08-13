@@ -8,9 +8,8 @@ MASTER_SITES=	http://seehuhn.de/media/programs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Drive a buggy across the moons surface
-LICENSE=	gpl2
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
