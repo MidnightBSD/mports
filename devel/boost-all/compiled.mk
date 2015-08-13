@@ -1,51 +1,58 @@
-
-USE_GCC=	4.2+
 USE_LDCONFIG=	yes
-BOOST_SHARED_LIB_VER=	4
 PKGMESSAGE=	${WRKDIR}/pkg-message
-MAKE_JOBS_SAFE=	yes
 BJAM=		bjam
-CXXFLAGS+=	-Wno-long-long
+USES+=		compiler:c++11-lang
 
-PLIST_SUB+=	BOOST_SHARED_LIB_VER=${BOOST_SHARED_LIB_VER}
+PLIST_SUB+=	BOOST_SHARED_LIB_VER=${PORTVERSION} COMPAT_LIB_VER=5
 
 PKG_MESSAGE_FILE_THREADS=	${PORTSDIR}/devel/boost-all/pkg-message.threads
 PKG_MESSAGE_FILE_PYTHON=	${PORTSDIR}/devel/boost-all/pkg-message.python
 
-BOOST_TOOLS=	gcc
+.include <bsd.port.pre.mk>
 
-BJAM_OPTIONS=	--layout=system --disable-long-double
-BJAM_OPTIONS+=	${_MAKE_JOBS}
-.if defined (WITH_VERBOSE_BUILD)
-BJAM_OPTIONS+=	-d2
+BJAM_ARGS=	--layout=system \
+		--prefix=${PREFIX} \
+
+.if ${ARCH} == amd64
+BJAM_ARGS+=	cxxflags=-fPIC
 .endif
 
-.if defined (WITHOUT_DEBUG)
-BJAM_OPTIONS+=	variant=release
+# Our compiler-flags will be added AFTER those set by bjam. We remove
+# the optimization level, because Boost sets it itself (to -O3 in case
+# of gcc/g++):
+BJAM_ARGS+=    cxxflags="${CXXFLAGS:N-O*}" cflags="${CFLAGS:N-O*}"
+
+BOOST_TOOLSET=	${CHOSEN_COMPILER_TYPE}
+
+BJAM_ARGS+=	--toolset=${BOOST_TOOLSET} \
+		${_MAKE_JOBS}
+
+.if ${PORT_OPTIONS:MVERBOSE_BUILD}
+BJAM_ARGS+=	-d2
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+BJAM_ARGS+=	debug
 .else
-BJAM_OPTIONS+=	variant=debug
+BJAM_ARGS+=	release
 .endif
 
-BJAM_OPTIONS+=	threading=multi
+BJAM_ARGS+=	threading=multi \
+		link=shared,static
 
-# Unless WITH_OPTIMIZED_CFLAGS is defined, the port uses
-# CXXFLAGS as defined by the user (overridng Boost's 'speed'
-# configuration scheme
-BJAM_OPTIONS+=	optimization=speed
-.if defined (WITH_OPTIMIZED_CFLAGS)
-BJAM_OPTIONS+=	inlining=full
-CXXFLAGS+=	-O3
+BJAM_ARGS+=	optimization=speed
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
+BJAM_ARGS+=	inlining=full
 .endif
 
-customize-boost-build:
-# Do the right thing(tm) for pthread support and respect CXX
-	@${REINPLACE_CMD}\
-		-e 's|%%PTHREAD_CFLAGS%%|${PTHREAD_CFLAGS}|'\
-		-e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|'\
-		-e 's|%%CXX%%|${CXX}|'\
-		-e 's|%%CXXFLAGS%%|${CXXFLAGS}|'\
-	${WRKSRC}/tools/build/v2/tools/gcc.jam
+# ccache build fails when using precompiled headers, on a cached build.
+.if defined(WITH_CCACHE_BUILD)
+BJAM_ARGS+=	pch=off
+.endif
 
-	@${REINPLACE_CMD}\
-		-e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS:S/-//}|'\
-	${WRKSRC}/tools/build/v2/tools/python.jam
+post-patch:
+.if defined(USE_BINUTILS)
+	@${ECHO} "using ${BOOST_TOOLSET} : : ${CXX} : <linkflags>-B${LOCALBASE}/bin ;" >> ${WRKSRC}/tools/build/v2/user-config.jam
+.else
+	@${ECHO} "using ${BOOST_TOOLSET} : : ${CXX} ;" >> ${WRKSRC}/tools/build/v2/user-config.jam
+.endif
