@@ -28,6 +28,7 @@ EXTRACT_AFTER_ARGS=	 '${DISTNAME}/doc'
 
 DOCSDIR=	${PREFIX}/share/doc/qt4
 
+EXTRA_PATCHES=        # empty
 do-install:
 	${MKDIR} ${DOCSDIR} && \
 	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR} && \
