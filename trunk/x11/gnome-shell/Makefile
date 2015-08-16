@@ -35,7 +35,7 @@ RUN_DEPENDS=	py*-dbus>=0:${PORTSDIR}/devel/py-dbus \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 cpe gettext gmake libtool pathfix pkgconfig \
+USES=		cpe gettext gmake libtool pathfix pkgconfig \
 		tar:xz webplugin:native
 USE_GNOME=	evolutiondataserver3 gnomedesktop3 gnomeprefix \
 		gtk30 intlhack introspection
@@ -54,6 +54,10 @@ INSTALL_TARGET=	install-strip
 CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.shell.gschema.xml
+
+.include <bsd.mport.options.mk>
+
+USES+= 	compiler:c11
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|applications.menu|gnome-applications.menu|g' \
