@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	elementary
-PORTVERSION=	1.13.1
+PORTVERSION=	1.13.2
 CATEGORIES=	x11-toolkits enlightenment
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 
@@ -14,7 +14,7 @@ LIB_DEPENDS=	libefl.so:${PORTSDIR}/devel/efl
 
 DIST_SUBDIR=	enlightenment
 GNU_CONFIGURE=	yes
-USES=		compiler:c11 gmake libtool lua pathfix pkgconfig tar:xz
+USES=		gmake libtool lua pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
@@ -22,6 +22,8 @@ INSTALL_TARGET=	install-strip
 PLIST_SUB=	BRANCHVERSION=${PORTVERSION:R} PORTVERSION=${PORTVERSION}
 
 .include <bsd.mport.options.mk>
+
+USES+=	compiler:c11
 
 .if ${PORT_OPTIONS:MNLS}
 USES+=			gettext
