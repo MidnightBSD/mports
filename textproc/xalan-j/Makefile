@@ -9,11 +9,12 @@ DISTNAME=	${PORTNAME}_${PORTVERSION:S/./_/g}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache XSLT processor for transforming XML documents
+
 LICENSE=	apache2
 
 RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:${PORTSDIR}/textproc/xerces-j
 
-USE_ZIP=	yes
+USES=		zip
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	yes
