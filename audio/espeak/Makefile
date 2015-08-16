@@ -1,35 +1,45 @@
-# New ports collection makefile for:	espeak
-# Date created:		2006-03-25
-# Whom:			Nicola Vitale	<nivit@email.it>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/audio/espeak/Makefile,v 1.15 2007/08/06 13:33:16 nivit Exp $
-#
 
 PORTNAME=	espeak
-PORTVERSION=	1.45.03
+PORTVERSION=	1.48.04
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
 MAINTAINER=	nivit@FreeBSD.org
-COMMENT=	A software speech synthesizer
+COMMENT=	Software speech synthesizer
+
 LICENSE=	gpl3
 
 FAKE_OPTS+=	trueprefix
 
-LIB_DEPENDS=	portaudio:${PORTSDIR}/audio/portaudio
+OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFAULT=	PORTAUDIO
+OPTIONS_RADIO=	AUDIO_SYSTEM
+OPTIONS_RADIO_AUDIO_SYSTEM=	PORTAUDIO PULSEAUDIO RUNTIME
+RUNTIME_DESC=	Sound interface selected at runtime
+
+PORTAUDIOLIB=	libportaudio.so:${PORTSDIR}/audio/portaudio
+PULSEAUDIOLIB=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+
+PORTAUDIO_LIB_DEPENDS=	${PORTAUDIOLIB}
+PULSEAUDIO_LIB_DEPENDS=	${PULSEAUDIOLIB}
+RUNTIME_LIB_DEPENDS=	${PORTAUDIOLIB} \
+			${PULSEAUDIOLIB}
+
+PULSEAUDIO_USES=	compiler:c++0x
+RUNTIME_USES=		compiler:c++0x
+
+PULSEAUDIO_MAKE_ENV=	AUDIO="pulseaudio"
+PORTAUDIO_MAKE_ENV=	AUDIO="portaudio"
+RUNTIME_MAKE_ENV=	AUDIO="runtime"
 
 CONFLICTS=	speak-1.[0-9]
 
-MAKE_ENV+=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="${LDFLAGS}" CXX="${CXX}"
-
-USE_GMAKE=	yes
-USE_GCC=	4.2+
+CXXFLAGS+=	-I${LOCALBASE}/include
+USES=		gmake zip
 USE_LDCONFIG=	yes
-USE_ZIP=	yes
 
 WRKSRC=	${WRKDIR}/${DISTNAME}
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -38,19 +48,18 @@ INSTALL_WRKSRC=	${WRKSRC}/src
 REINPLACE_FILES=	Makefile speech.h
 REINPLACE_ARGS=	-i.bak -e "s|%%DATADIR%%|${DATADIR}|g"
 
+.include <bsd.mport.options.mk>
+
 post-patch:
 	cd ${BUILD_WRKSRC} && ${REINPLACE_CMD} ${REINPLACE_FILES}
+.if ${PORT_OPTIONS:MPORTAUDIO}
+	${MV} ${WRKSRC}/src/portaudio19.h ${WRKSRC}/src/portaudio.h
+.endif
 
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${DOCSDIR}
-.endif
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/lib/libespeak.so*
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not compile on sparc64
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
