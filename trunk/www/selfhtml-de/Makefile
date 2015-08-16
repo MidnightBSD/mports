@@ -1,13 +1,9 @@
-# New ports collection makefile for:	selfhtml
-# Date created:			January 7th 2005
-# Whom:				Frerich Raabe <frerich.raabe@gmx.de>
-#
 # $FreeBSD: ports/german/selfhtml/Makefile,v 1.6 2006/06/09 21:07:11 linimon Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	selfhtml
 PORTVERSION=	8.1.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www german
 MASTER_SITES=	http://aktuell.de.selfhtml.org/extras/ \
@@ -26,11 +22,12 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensive german HTML reference
+
 LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}
 
-USE_ZIP=	yes
+USES=		zip
 NO_BUILD=	yes
 
 PORTDOCS=	\
