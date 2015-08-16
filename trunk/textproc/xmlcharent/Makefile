@@ -1,23 +1,20 @@
-# New ports collection makefile for:   xmlcharent # Date created:                31 January 2002
-# Whom:                        Kimura Fuyuki <fuyuki@mj.0038.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/textproc/xmlcharent/Makefile,v 1.7 2006/07/14 16:32:39 hrs Exp $
-#
 
 PORTNAME=	xmlcharent
 PORTVERSION=	0.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML character entities
+
 LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
-USE_ZIP=	yes
+USES=		zip
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
