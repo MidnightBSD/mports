@@ -19,10 +19,8 @@ CONFIGURE_ARGS+=--prefix=${FAKE_DESTDIR}${TRUE_PREFIX} \
 		--bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin \
 		--libdir=${FAKE_DESTDIR}${TRUE_PREFIX}/lib \
 		--siterubyver=${FAKE_DESTDIR}${RUBY_SITELIBDIR}
-USE_ZIP=	yes
+USES=		zip
 USE_RUBY=	yes
 USE_RUBY_SETUP=	yes
-
-MAN1=		deplate.1
 
 .include <bsd.port.mk>
