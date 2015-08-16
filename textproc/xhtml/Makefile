@@ -1,14 +1,9 @@
-# New ports collection makefile for:	XHTML DTD
-# Date created:		10 May 2000
-# Whom:			kuriyama
-#
 # $MidnightBSD$
 # $FreeBSD: ports/textproc/xhtml/Makefile,v 1.11 2005/06/13 20:54:18 glewis Exp $
-#
 
 PORTNAME=	xhtml
 PORTVERSION=	1.0.20020801
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc
 #MASTER_SITES=	http://www.w3.org/TR/xhtml1/
 MASTER_SITES=	${MASTER_SITE_LOCAL}
@@ -21,7 +16,7 @@ COMMENT=	W3C's XHTML DTD
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
-USE_ZIP=	YES
+USES=		zip
 NO_MTREE=	YES
 NO_BUILD=	YES
 WRKSRC=		${WRKDIR}/xhtml1-20020801
