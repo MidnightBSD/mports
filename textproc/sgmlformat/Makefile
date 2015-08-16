@@ -29,13 +29,9 @@ RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/openjade
 RUN_DEPENDS=	nsgmls:${PORTSDIR}/textproc/jade
 .endif
 RUN_DEPENDS+=	${PREFIX}/share/sgml/linuxdoc:${PORTSDIR}/textproc/linuxdoc \
-		${LOCALBASE}/share/sgml/docbook/4.1/dtd/docbook.dtd:${PORTSDIR}/textproc/docbook-410
+		docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml
 
 USE_PERL5_RUN=	yes
-
-MAN1=		instant.1 sgmlfmt.1
-MAN5=		transpec.5
-MANCOMPRESSED=	yes
 
 .if defined(WITH_OPENJADE)
 post-patch:
