@@ -2,8 +2,7 @@
 # $FreeBSD: head/accessibility/speech-dispatcher/Makefile 371241 2014-10-20 08:12:20Z marino $
 
 PORTNAME=	speech-dispatcher
-PORTVERSION=	0.8
-PORTREVISION=	2
+PORTVERSION=	0.8.3
 CATEGORIES=	accessibility audio
 MASTER_SITES=	http://devel.freebsoft.org/pub/projects/speechd/
 
@@ -17,7 +16,6 @@ LIB_DEPENDS=	libdotconf.so:${PORTSDIR}/devel/dotconf \
 		libltdl.so:${PORTSDIR}/devel/libltdl \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile
 
-# gnomehier is required because of share/sounds directory.
 USE_GNOME=	glib20 intltool
 USES=		alias gettext gmake pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
@@ -26,7 +24,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
-ETCFILES=	clients/emacs.conf clients/gnome-speech.conf \
+ETCFILES=	clients/emacs.conf modules/pico-generic.conf \
 		modules/cicero.conf modules/dtk-generic.conf \
 		modules/epos-generic.conf modules/espeak-generic.conf \
 		modules/espeak-mbrola-generic.conf modules/espeak.conf \
@@ -34,13 +32,12 @@ ETCFILES=	clients/emacs.conf clients/gnome-speech.conf \
 		modules/ivona.conf modules/llia_phon-generic.conf \
 		modules/swift-generic.conf speechd.conf
 
-PLIST_SUB+=	ETCFILES="${ETCFILES}"
+PORTDOCS=	ANNOUNCE AUTHORS ChangeLog FAQ NEWS README TODO
 
-PORTDOCS=	AUTHORS ChangeLog FAQ INSTALL NEWS README TODO
+INFO=		spd-say speech-dispatcher speech-dispatcher-cs ssip
 
-INFO=		spd-say speech-dispatcher ssip
-
-OPTIONS_DEFINE=	ALSA AO DOCS ESPEAK FESTIVAL FLITE NAS PULSEAUDIO #PYTHON
+OPTIONS_DEFINE=	ALSA AO DOCS ESPEAK FESTIVAL FLITE NAS \
+		PULSEAUDIO PYTHON
 OPTIONS_DEFAULT=ESPEAK
 OPTIONS_SUB=	yes
 
@@ -68,12 +65,10 @@ NAS_CONFIGURE_WITH=	nas
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 PULSEAUDIO_CONFIGURE_WITH=pulse
 
-# devel/py-xdg doesn't support Python 3.
-CONFIGURE_ARGS+=	--disable-python
-PLIST_SUB+=		PYTHON="@comment "
-#PYTHON_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg
-#PYTHON_USE=		PYTHON=3
-#PYTHON_CONFIGURE_ENABLE=python
+PYTHON_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py3-xdg
+PYTHON_USES=		python:3
+PYTHON_USE=		PYTHON=py3kplist
+PYTHON_CONFIGURE_ENABLE=python
 
 post-patch:
 	@${REINPLACE_CMD} -e '/SUBDIRS/ s/tests//' \
@@ -83,7 +78,9 @@ post-install:
 .for f in ${ETCFILES}
 	@${MV} ${ETCDIR}/${f} ${ETCDIR}/${f}.sample
 .endfor
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+	@${RM} -rf ${STAGEDIR}${DATADIR}/conf
+	@${RMDIR} ${STAGEDIR}${DATADIR} || ${TRUE}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
