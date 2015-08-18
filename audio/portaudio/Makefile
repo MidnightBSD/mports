@@ -2,17 +2,17 @@
 
 PORTNAME=	portaudio
 PORTVERSION=	18.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
 DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable cross-platform Audio API
+
 LICENSE=	unknown
 
-USE_ZIP=	yes
-USE_GMAKE=	yes
+USES=		zip gmake
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
