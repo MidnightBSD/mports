@@ -2,19 +2,18 @@
 
 PORTNAME=	pybench
 PORTVERSION=	2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks python
 MASTER_SITES=	http://downloads.egenix.com/python/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An extensible benchmark suite for Python
+COMMENT=	Extensible benchmark suite for Python
 
 LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_ZIP=	yes
-USE_PYTHON=	yes
+USES=		python zip
 
 PORTDOCS=	README
 
