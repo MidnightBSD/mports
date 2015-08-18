@@ -1,10 +1,5 @@
-# New ports collection makefile for:	doom-freedoom
-# Date created:				23 November 2005
-# Whom:					Alejandro Pulver <alejandro@varnet.biz>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/doom-freedoom/Makefile,v 1.7 2008/03/10 16:05:05 alepulver Exp $
-#
 
 PORTNAME=	freedoom
 PORTVERSION=	0.7
@@ -16,9 +11,10 @@ DISTNAME=	${PORTNAME}-iwad-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete Doom-based game IWAD that is Free Software
+
 LICENSE=	bsd3
 
-USE_ZIP=	yes
+USES=		zip
 NO_BUILD=	yes
 
 DATADIR=	${DMDIR}/${PORTNAME}
