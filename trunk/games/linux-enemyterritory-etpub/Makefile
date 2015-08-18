@@ -17,13 +17,16 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ET Pub - An Enemy Territory Modification
-LICENSE=	restricted
+
+LICENSE=	other
 
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-USE_ZIP=	yes
-USE_LINUX=	yes
+USES=		zip
+USE_LINUX=	f10
+
+RESTRICTED=	do not redistribute
 
 OPTIONS=	OMNIBOT "Install Omni-Bot for bot support" off
 
