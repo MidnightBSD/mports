@@ -2,7 +2,7 @@
 
 PORTNAME=	scimark2c
 DISTVERSION=	2_1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://math.nist.gov/scimark2/
 DISTNAME=	${PORTNAME:S/2/${DISTVERSION}/}
@@ -14,7 +14,8 @@ LICENSE=	unknown
 
 PLIST_FILES=	bin/scimark2
 WRKSRC=		${WRKDIR}
-USE_ZIP=	yes
+
+USES=		zip
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/scimark2 ${PREFIX}/bin
