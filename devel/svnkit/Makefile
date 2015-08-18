@@ -7,13 +7,14 @@ MASTER_SITES=	http://svnkit.com/
 DISTNAME=	org.tmatesoft.svn_${PORTVERSION}.standalone
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The only pure Java Subversion client library in the world
+COMMENT=	only pure Java Subversion client library in the world
+
 LICENSE=	agg
 
 RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
+USES=		zip
 NO_BUILD=	yes
-USE_ZIP=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
