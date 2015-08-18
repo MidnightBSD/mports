@@ -1,10 +1,5 @@
-# New ports collection makefile for:	shrub
-# Date created:				7 May 2006
-# Whom:					alepulver
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
-#
 
 PORTNAME=	shrub
 PORTVERSION=	1.2
@@ -17,13 +12,16 @@ DISTNAME=	1.2-test13-l
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shrub - An Enemy Territory Modification
-LICENSE=	restricted
+
+LICENSE=	other
 
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-USE_ZIP=	yes
-USE_LINUX=	yes
+RESTRICTED=	not redistributable
+
+USES=		zip
+USE_LINUX=	f10
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}

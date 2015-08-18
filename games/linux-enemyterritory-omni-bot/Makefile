@@ -1,10 +1,5 @@
-# New ports collection makefile for:	omni-bot
-# Date created:				7 May 2006
-# Whom:					alepulver
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.12 2008/02/19 13:20:31 alepulver Exp $
-#
 
 PORTNAME=	omni-bot
 PORTVERSION=	0.66
@@ -15,13 +10,16 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Omni-Bot is a bot for Enemy Territory
-LICENSE=	restricted
+
+LICENSE=	other
 
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-USE_ZIP=	yes
-USE_LINUX=	yes
+RESTRICTED=	mods are not redistributable
+
+USES=		zip
+USE_LINUX=	f10
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
