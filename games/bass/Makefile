@@ -9,11 +9,12 @@ DISTNAME=	bass-cd-1.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beneath a Steel Sky: a post-apocalyptic futuristic graphical adventure
+
 LICENSE=	other
 
 RUN_DEPENDS=	scummvm:${PORTSDIR}/games/scummvm
 
-USE_ZIP=	yes
+USES=		zip
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
