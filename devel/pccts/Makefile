@@ -1,30 +1,24 @@
-# ex:ts=8
-# New ports collection makefile for:	pccts
-# Date created:				22 June 1997
-# Whom:					Andrey Zakhvatov
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/pccts/Makefile,v 1.28 2006/05/04 21:40:58 edwin Exp $
-#
 
-PORTNAME=		pccts
-PORTVERSION=		1.33.33
-CATEGORIES=		devel
-MASTER_SITES=		http://www.polhode.com/
-DISTNAME=		pccts${PORTVERSION:R:S/.//}mr${PORTVERSION:E}
+PORTNAME=	pccts
+PORTVERSION=	1.33.33
+CATEGORIES=	devel
+MASTER_SITES=	http://www.polhode.com/
+DISTNAME=	pccts${PORTVERSION:R:S/.//}mr${PORTVERSION:E}
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=	The Purdue Compiler Construction Tool Set
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Purdue Compiler Construction Tool Set
+
 LICENSE=        other
+
 CONFLICTS=	antlr*
 
-USE_ZIP=		yes
-WRKSRC=			${WRKDIR}/pccts
+USES=		zip
+WRKSRC=		${WRKDIR}/pccts
 ALL_TARGET=
-MAKEFILE=		makefile
-MAKE_ENV=		COPT="${CFLAGS}"
-
-MAN1=			antlr.1 dlg.1
+MAKEFILE=	makefile
+MAKE_ENV=	COPT="${CFLAGS}"
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "*.c" | ${XARGS} ${REINPLACE_CMD} -e \
