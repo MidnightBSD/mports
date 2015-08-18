@@ -15,14 +15,17 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ET Pro - The Enemy Territory Competition Mod
-LICENSE=	restricted
+
+LICENSE=	other
 
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-USE_ZIP=	yes
-USE_LINUX=	yes
+USES=		zip
+USE_LINUX=	f10
 NO_WRKSUBDIR=	yes
+
+RESTRICTED=	license does not allow redistribution
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 
