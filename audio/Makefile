@@ -84,7 +84,6 @@ SUBDIR += openal
 SUBDIR += openal-soft
 SUBDIR += opencore-amr
 SUBDIR += portaudio
-SUBDIR += portaudio2
 SUBDIR += pulseaudio
 SUBDIR += py-mutagen
 SUBDIR += rhythmbox
