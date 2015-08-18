@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IA64 simulator (Intel(R) Architecture 64)
 LICENSE=	publicdom
 
-USE_ZIP=	yes
+USES=		gmake zip
 
 .include <bsd.port.pre.mk>
 
