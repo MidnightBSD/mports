@@ -7,7 +7,7 @@ CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
-MAINTAINER=	nivit@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Software speech synthesizer
 
 LICENSE=	gpl3
