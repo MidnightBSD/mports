@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	je
-PORTVERSION=	3.2.76
-PORTREVISION=	2
+PORTVERSION=	6.2.31
 CATEGORIES=	java databases
 MASTER_SITES=	http://download.oracle.com/berkeley-db/	\
 		http://download-east.oracle.com/berkeley-db/	\
@@ -11,29 +10,26 @@ MASTER_SITES=	http://download.oracle.com/berkeley-db/	\
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley DB Java Edition
 
-LICENSE=	other
-
-OPTIONS_DEFINE=	TEST
+OPTIONS_DEFINE=	DOCS EXAMPLES TEST
 
 BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:${PORTSDIR}/java/junit
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	1.7+
 USE_ANT=	yes
 MAKE_ENV+=	JAVALIBDIR="${JAVALIBDIR}"
 MAKE_ARGS+=	-cp ${JAVALIBDIR}/junit.jar
-USE_DOS2UNIX=	build.xml
 
 PLIST_FILES=	%%JAVAJARDIR%%/je.jar
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-test:
+regression-test check test: build
 	#
 	# Running the vendor-provided self-tests. This may take a while
 	#
-	if ! (cd ${BUILD_WRKSRC} ; ${MAKE_ENV} ${ANT} ${MAKE_ARGS} ${.TARGET}) ; \
+	if ! (cd ${BUILD_WRKSRC} ; ${MAKE_ENV} ${ANT} ${MAKE_ARGS} test) ; \
 	then	\
 		${ECHO_MSG} Please, review test failures and consider \
 			reporting them via \
@@ -62,19 +58,14 @@ post-build:
 	#
 .endif
 
-
 post-patch:
 	@${REINPLACE_CMD} "s,/usr/local,${PREFIX}," ${WRKSRC}/build.xml
 
 do-install:
-	@${INSTALL_DATA} ${WRKSRC}/build/lib/je.jar ${JAVAJARDIR}
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/docs/ && ${COPYTREE_SHARE} \* ${DOCSDIR})
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${EXAMPLESDIR}
-	@(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} \*  ${EXAMPLESDIR})
-.endif
+	${INSTALL_DATA} ${WRKSRC}/build/lib/je.jar ${STAGEDIR}${JAVAJARDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@(cd ${WRKSRC}/docs/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>
