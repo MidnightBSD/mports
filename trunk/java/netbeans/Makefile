@@ -1,19 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	netbeans
-PORTVERSION=	7.3
+PORTVERSION=	8.0.2
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.netbeans.org/netbeans/${PORTVERSION}/final/zip/ \
     		http://dlc.sun.com.edgesuite.net/netbeans/${PORTVERSION}/final/zip/
-DISTNAME=	netbeans-${PORTVERSION}-201302132200
+DISTNAME=	netbeans-${PORTVERSION}-201411181905
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-featured integrated environment for Java
-LICENSE=	agg
 
-USE_ZIP=	yes
+LICENSE=	cddl gpl2
+LICENSE_COMB=	dual
+
+USES=		shebangfix zip
+SHEBANG_FILES=	extide/ant/bin/antRun.pl \
+		extide/ant/bin/complete-ant-cmd.pl \
+		extide/ant/bin/runant.pl \
+		extide/ant/bin/runant.py
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	1.7+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/netbeans
@@ -26,22 +33,19 @@ DESKTOP_ENTRIES="NetBeans" \
 		${DATADIR}/nb/netbeans.png \
 		${PORTNAME}-${PORTVERSION} \
 		"Development;" \
-		${FALSE}
+		false
 
 post-patch:
 	@${REINPLACE_CMD} -i "" -e '57s|#||;57s|/path/to/jdk|${JAVA_HOME}|' \
 	    ${WRKSRC}/etc/netbeans.conf
-	@${REINPLACE_CMD} -i "" -e 's|%%GCONFTOOL2%%|${LOCALBASE}/bin/gconftool-2|g; \
-	    s|%%GREP%%|${GREP}|g;s|%%SED%%|${SED}|g;s|%%AWK%%|${AWK}|g' \
-	    ${WRKSRC}/platform/lib/nbexec
 	@${FIND} ${WRKSRC} -name "*.orig" -delete
 
 do-install:
-	@(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR})
-	@${CHMOD} ${BINMODE} ${DATADIR}/bin/netbeans
-	@${LN} -sf ${DATADIR}/bin/netbeans ${PREFIX}/bin/${PORTNAME}-${PORTVERSION}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${DATADIR}
+	${CHMOD} ${BINMODE} ${STAGEDIR}${DATADIR}/bin/netbeans
+	${LN} -sf ${DATADIR}/bin/netbeans ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-${PORTVERSION}
 
 post-install:
-	@${CHMOD} ${BINMODE} ${DATADIR}/java/maven/bin/mvn
+	${FIND} ${STAGEDIR}${DATADIR} -type f -ipath "*/bin/*" | ${XARGS} ${CHMOD} ${BINMODE}
 
 .include <bsd.port.mk>
