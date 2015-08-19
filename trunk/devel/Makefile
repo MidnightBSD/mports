@@ -416,6 +416,7 @@ SUBDIR += py-xdg
 SUBDIR += py-yaml
 SUBDIR += py3-dbus
 SUBDIR += py3-gobject3
+SUBDIR += py3-libpeas
 SUBDIR += py3-xdg
 SUBDIR += pydbus-common
 SUBDIR += pygobject3-common
