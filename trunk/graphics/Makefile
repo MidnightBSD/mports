@@ -18,6 +18,7 @@ SUBDIR += dia
 SUBDIR += dri
 SUBDIR += eog
 SUBDIR += etoile-distributedview
+SUBDIR += evas_generic_loaders-svg
 SUBDIR += evince
 SUBDIR += evince-lite
 SUBDIR += exif
