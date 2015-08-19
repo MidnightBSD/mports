@@ -15,7 +15,6 @@ SUBDIR += clucene-qt4
 SUBDIR += diffutils
 SUBDIR += docbook
 SUBDIR += docbook-sgml
-SUBDIR += docbook-sk
 SUBDIR += docbook-to-man
 SUBDIR += docbook-utils
 SUBDIR += docbook-xml
