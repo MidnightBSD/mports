@@ -1,8 +1,24 @@
-@comment $FreeBSD: ports/x11-wm/awesome/pkg-plist,v 1.9 2010/05/20 18:11:13 garga Exp $
 bin/awesome
 bin/awesome-client
-bin/awsetbg
 etc/xdg/awesome/rc.lua
+man/de/man1/awesome-client.1.gz
+man/de/man1/awesome.1.gz
+man/de/man5/awesomerc.5.gz
+man/es/man1/awesome-client.1.gz
+man/es/man1/awesome.1.gz
+man/es/man5/awesomerc.5.gz
+man/fr/man1/awesome-client.1.gz
+man/fr/man1/awesome.1.gz
+man/fr/man5/awesomerc.5.gz
+man/it/man1/awesome-client.1.gz
+man/it/man1/awesome.1.gz
+man/it/man5/awesomerc.5.gz
+man/man1/awesome-client.1.gz
+man/man1/awesome.1.gz
+man/man5/awesomerc.5.gz
+man/ru/man1/awesome-client.1.gz
+man/ru/man1/awesome.1.gz
+man/ru/man5/awesomerc.5.gz
 %%DATADIR%%/icons/awesome16.png
 %%DATADIR%%/icons/awesome32.png
 %%DATADIR%%/icons/awesome48.png
@@ -12,9 +28,10 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/lib/awful/client.lua
 %%DATADIR%%/lib/awful/completion.lua
 %%DATADIR%%/lib/awful/dbus.lua
-%%DATADIR%%/lib/awful/hooks.lua
+%%DATADIR%%/lib/awful/ewmh.lua
 %%DATADIR%%/lib/awful/init.lua
 %%DATADIR%%/lib/awful/key.lua
+%%DATADIR%%/lib/awful/keygrabber.lua
 %%DATADIR%%/lib/awful/layout/init.lua
 %%DATADIR%%/lib/awful/layout/suit/fair.lua
 %%DATADIR%%/lib/awful/layout/suit/floating.lua
@@ -42,10 +59,6 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/lib/awful/widget/graph.lua
 %%DATADIR%%/lib/awful/widget/init.lua
 %%DATADIR%%/lib/awful/widget/launcher.lua
-%%DATADIR%%/lib/awful/widget/layout/default.lua
-%%DATADIR%%/lib/awful/widget/layout/horizontal.lua
-%%DATADIR%%/lib/awful/widget/layout/init.lua
-%%DATADIR%%/lib/awful/widget/layout/vertical.lua
 %%DATADIR%%/lib/awful/widget/layoutbox.lua
 %%DATADIR%%/lib/awful/widget/progressbar.lua
 %%DATADIR%%/lib/awful/widget/prompt.lua
@@ -53,7 +66,34 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/lib/awful/widget/tasklist.lua
 %%DATADIR%%/lib/awful/widget/textclock.lua
 %%DATADIR%%/lib/beautiful.lua
+%%DATADIR%%/lib/gears/color.lua
+%%DATADIR%%/lib/gears/debug.lua
+%%DATADIR%%/lib/gears/init.lua
+%%DATADIR%%/lib/gears/object.lua
+%%DATADIR%%/lib/gears/sort.lua
+%%DATADIR%%/lib/gears/surface.lua
+%%DATADIR%%/lib/gears/wallpaper.lua
+%%DATADIR%%/lib/menubar/init.lua
+%%DATADIR%%/lib/menubar/menu_gen.lua
+%%DATADIR%%/lib/menubar/utils.lua
 %%DATADIR%%/lib/naughty.lua
+%%DATADIR%%/lib/wibox/drawable.lua
+%%DATADIR%%/lib/wibox/init.lua
+%%DATADIR%%/lib/wibox/layout/align.lua
+%%DATADIR%%/lib/wibox/layout/base.lua
+%%DATADIR%%/lib/wibox/layout/constraint.lua
+%%DATADIR%%/lib/wibox/layout/fixed.lua
+%%DATADIR%%/lib/wibox/layout/flex.lua
+%%DATADIR%%/lib/wibox/layout/init.lua
+%%DATADIR%%/lib/wibox/layout/margin.lua
+%%DATADIR%%/lib/wibox/layout/mirror.lua
+%%DATADIR%%/lib/wibox/layout/rotate.lua
+%%DATADIR%%/lib/wibox/widget/background.lua
+%%DATADIR%%/lib/wibox/widget/base.lua
+%%DATADIR%%/lib/wibox/widget/imagebox.lua
+%%DATADIR%%/lib/wibox/widget/init.lua
+%%DATADIR%%/lib/wibox/widget/systray.lua
+%%DATADIR%%/lib/wibox/widget/textbox.lua
 %%DATADIR%%/themes/default/README
 %%DATADIR%%/themes/default/background.png
 %%DATADIR%%/themes/default/background_white.png
@@ -84,8 +124,6 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/themes/default/submenu.png
 %%DATADIR%%/themes/default/taglist/squarefw.png
 %%DATADIR%%/themes/default/taglist/squarew.png
-%%DATADIR%%/themes/default/tasklist/floating.png
-%%DATADIR%%/themes/default/tasklist/floatingw.png
 %%DATADIR%%/themes/default/theme.lua
 %%DATADIR%%/themes/default/titlebar/close_focus.png
 %%DATADIR%%/themes/default/titlebar/close_normal.png
@@ -106,12 +144,14 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/themes/default/titlebar/sticky_normal_active.png
 %%DATADIR%%/themes/default/titlebar/sticky_normal_inactive.png
 %%DATADIR%%/themes/sky/awesome-icon.png
+%%DATADIR%%/themes/sky/layouts/dwindle.png
 %%DATADIR%%/themes/sky/layouts/fairh.png
 %%DATADIR%%/themes/sky/layouts/fairv.png
 %%DATADIR%%/themes/sky/layouts/floating.png
 %%DATADIR%%/themes/sky/layouts/fullscreen.png
 %%DATADIR%%/themes/sky/layouts/magnifier.png
 %%DATADIR%%/themes/sky/layouts/max.png
+%%DATADIR%%/themes/sky/layouts/spiral.png
 %%DATADIR%%/themes/sky/layouts/tile.png
 %%DATADIR%%/themes/sky/layouts/tilebottom.png
 %%DATADIR%%/themes/sky/layouts/tileleft.png
@@ -154,36 +194,3 @@ etc/xdg/awesome/rc.lua
 %%DATADIR%%/themes/zenburn/titlebar/sticky_normal_inactive.png
 %%DATADIR%%/themes/zenburn/zenburn-background.png
 share/xsessions/awesome.desktop
-@dirrm %%DATADIR%%/icons
-@dirrm %%DATADIR%%/lib/awful/layout/suit
-@dirrm %%DATADIR%%/lib/awful/layout
-@dirrm %%DATADIR%%/lib/awful/mouse
-@dirrm %%DATADIR%%/lib/awful/widget/layout
-@dirrm %%DATADIR%%/lib/awful/widget
-@dirrm %%DATADIR%%/lib/awful
-@dirrm %%DATADIR%%/lib
-@dirrm %%DATADIR%%/themes/default/layouts
-@dirrm %%DATADIR%%/themes/default/taglist
-@dirrm %%DATADIR%%/themes/default/tasklist
-@dirrm %%DATADIR%%/themes/default/titlebar
-@dirrm %%DATADIR%%/themes/default
-@dirrm %%DATADIR%%/themes/sky/layouts
-@dirrm %%DATADIR%%/themes/sky
-@dirrm %%DATADIR%%/themes/zenburn/titlebar
-@dirrm %%DATADIR%%/themes/zenburn/taglist
-@dirrm %%DATADIR%%/themes/zenburn/layouts
-@dirrm %%DATADIR%%/themes/zenburn
-@dirrm %%DATADIR%%/themes
-@dirrm %%DATADIR%%
-@dirrmtry etc/xdg/awesome
-@dirrmtry etc/xdg
-@dirrmtry man/de/man1
-@dirrmtry man/de/man5
-@dirrmtry man/de
-@dirrmtry man/es/man1
-@dirrmtry man/es/man5
-@dirrmtry man/es
-@dirrmtry man/fr/man1
-@dirrmtry man/fr/man5
-@dirrmtry man/fr
-@dirrmtry share/xsessions
