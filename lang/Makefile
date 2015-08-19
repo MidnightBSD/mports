@@ -23,6 +23,7 @@ SUBDIR += gcc47
 SUBDIR += gcc48
 SUBDIR += gcc-ecj45
 SUBDIR += ghc
+SUBDIR += gjs
 SUBDIR += gnustep-base
 SUBDIR += gnustep-guile
 SUBDIR += gscheme
