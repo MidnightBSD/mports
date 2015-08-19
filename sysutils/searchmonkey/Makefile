@@ -10,12 +10,12 @@ DISTNAME=	${PORTNAME}_v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Search using regexes for file names and text
+
 LICENSE=	gpl3
 
-USE_ZIP=	yes
+USES=		zip
 USE_DOS2UNIX=	*.cpp *.h
 USE_QT4=	corelib gui moc_build qmake_build rcc_build uic_build
-MAKE_JOBS_SAFE=	yes
 
 PLIST_FILES=	bin/${PORTNAME}
 
