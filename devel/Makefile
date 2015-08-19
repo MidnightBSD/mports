@@ -194,6 +194,7 @@ SUBDIR += llvm-devel
 SUBDIR += lndir
 SUBDIR += log4j
 SUBDIR += looks
+SUBDIR += lua-lgi
 SUBDIR += m17n-db
 SUBDIR += m17n-docs
 SUBDIR += m17n-lib
