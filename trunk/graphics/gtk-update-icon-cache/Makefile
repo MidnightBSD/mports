@@ -40,12 +40,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-DGDK_PIXBUF_DISABLE_DEPRECATED||g' \
 		${WRKSRC}/configure
 
-pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
-	@${FALSE}
-.endif
-
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/gtk/gtk-update-icon-cache \
 		${PREFIX}/bin/
