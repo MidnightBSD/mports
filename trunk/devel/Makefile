@@ -103,6 +103,7 @@ SUBDIR += gnustep-make
 SUBDIR += gobject-introspection
 SUBDIR += goffice
 SUBDIR += goffice04
+SUBDIR += goffice010
 SUBDIR += google-perftools
 SUBDIR += gorm
 SUBDIR += gperf
