@@ -1,10 +1,5 @@
-# New ports collection makefile for:	docbookide
-# Date created:		2 July 2002
-# Whom:			Sean Chittenden <seanc@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/textproc/docbookide.el/Makefile,v 1.3 2003/03/07 06:11:39 ade Exp $
-#
 
 PORTNAME=	docbookide.el
 PORTVERSION=	0.1
@@ -14,9 +9,10 @@ DISTNAME=	docbookide01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emacs lisp modules for editing DocBook documents
+
 LICENSE=	gpl2
 
-USE_ZIP=	yes
+USES=		zip
 WRKSRC=		${WRKDIR}/docbookide
 NO_BUILD=	yes
 
