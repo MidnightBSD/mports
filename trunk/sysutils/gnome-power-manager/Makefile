@@ -27,7 +27,7 @@ GLIB_SCHEMAS=	org.gnome.power-manager.gschema.xml
 
 OPTIONS_DEFINE=	MANPAGES
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMANPAGES} || defined(PACKAGE_BUILDING)
 BUILD_DEPENDS+=	docbook2html:${PORTSDIR}/textproc/docbook-utils \
