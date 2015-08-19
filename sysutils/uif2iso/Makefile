@@ -9,9 +9,10 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert MagicISO UIF files to ISO9660
+
 LICENSE=	gpl2
 
-USE_ZIP=	yes
+USES=		zip
 
 WRKSRC=		${WRKDIR}/src
 
