@@ -39,7 +39,7 @@ BUILD_WRKSRC=	${WRKSRC}/src/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|target.path.*|target.path=${FAKE_DESTDIR}${PREFIX}/bin|g' \
+	${REINPLACE_CMD} -e 's|target.path.*|target.path=${PREFIX}/bin|g' \
 			-e 's|^TARGET.*|TARGET=moc-qt4|g' \
 		${BUILD_WRKSRC}/${PORTNAME}.pro
 	${MKDIR} ${WRKSRC}/mkspecs
