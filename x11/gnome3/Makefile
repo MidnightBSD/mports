@@ -25,20 +25,16 @@ RUN_DEPENDS?=	dconf-editor:${PORTSDIR}/devel/dconf-editor \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
 		gnome-shell>=3.0.0:${PORTSDIR}/x11/gnome-shell \
 		gnome-shell-extensions>=3.0.0:${PORTSDIR}/x11/gnome-shell-extensions \
-		gnome-tweak-tool:${PORTSDIR}/deskutils/gnome-tweak-tool \
-		sushi>=0:${PORTSDIR}/x11-fm/sushi \
 		nautilus>=3.0.0:${PORTSDIR}/x11-fm/nautilus \
 		${LOCALBASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
 		${LOCALBASE}/share/hal/fdi/information/10freedesktop/10-camera-ptp.fdi:${PORTSDIR}/sysutils/hal-info \
 		yelp>=3.0.0:${PORTSDIR}/x11/yelp \
 		zenity>=3.0.0:${PORTSDIR}/x11/zenity \
-		seahorse>=3.0.0:${PORTSDIR}/security/seahorse \
 		gnome-control-center>=3.0.0:${PORTSDIR}/sysutils/gnome-control-center \
 		${LOCALBASE}/share/gnome-background-properties/gnome-backgrounds.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		caribou>=0:${PORTSDIR}/accessibility/caribou \
 		${LOCALBASE}/share/help/C/gnome-help/index.page:${PORTSDIR}/misc/gnome-user-docs \
-		${LOCALBASE}/share/sounds/freedesktop/index.theme:${PORTSDIR}/audio/freedesktop-sound-theme \
-		ekiga:${PORTSDIR}/net-im/ekiga
+		${LOCALBASE}/share/sounds/freedesktop/index.theme:${PORTSDIR}/audio/freedesktop-sound-theme 
 
 NO_BUILD=	yes
 NO_MTREE=	yes
@@ -51,30 +47,24 @@ MAPI_DESC=	Depend on evolution-mapi (pulls in samba4)
 .include <bsd.mport.options.mk>
 
 .if ${.CURDIR:T}!="gnome3-lite"
-RUN_DEPENDS+=	empathy>=3.0.0:${PORTSDIR}/net-im/empathy \
-		epiphany>=3.0.0:${PORTSDIR}/www/epiphany \
+RUN_DEPENDS+=	epiphany>=3.0.0:${PORTSDIR}/www/epiphany \
 		gucharmap>=3.0.0:${PORTSDIR}/deskutils/gucharmap \
 		eog>=3.0.0:${PORTSDIR}/graphics/eog \
-		eog-plugins>=3.0.0:${PORTSDIR}/graphics/eog-plugins \
 		gedit>=3.0.0:${PORTSDIR}/editors/gedit \
 		gedit-plugins>=3.0.0:${PORTSDIR}/editors/gedit-plugins \
 		gnome-terminal>=3.0.0:${PORTSDIR}/x11/gnome-terminal \
 		mousetweaks>=3.0.0:${PORTSDIR}/accessibility/mousetweaks \
 		brasero>=3.0.0:${PORTSDIR}/sysutils/brasero \
-		accerciser>=3.0.0:${PORTSDIR}/accessibility/accerciser \
-		gnome-calculator>=3.0.0:${PORTSDIR}/math/gnome-calculator \
 		gnome-utils>=3.6.0:${PORTSDIR}/deskutils/gnome-utils \
 		file-roller>=3.0.0:${PORTSDIR}/archivers/file-roller \
 		evince>=3.0.0:${PORTSDIR}/graphics/evince \
 		vino>=3.0.0:${PORTSDIR}/net/vino \
 		vinagre>=3.0.0:${PORTSDIR}/net/vinagre \
-		gnome-games>=3.0.0:${PORTSDIR}/games/gnome-games \
 		totem>=3.0.0:${PORTSDIR}/multimedia/totem \
 		gconf-editor>=3.0.0:${PORTSDIR}/sysutils/gconf-editor \
 		gdm>=3.0.0:${PORTSDIR}/x11/gdm \
 		evolution>=3.0.0:${PORTSDIR}/mail/evolution \
-		cheese>=3.0.0:${PORTSDIR}/multimedia/cheese \
-		alacarte>=3.0.0:${PORTSDIR}/deskutils/alacarte
+		cheese>=3.0.0:${PORTSDIR}/multimedia/cheese
 
 .if ${PORT_OPTIONS:MMAPI}
 RUN_DEPENDS+=	evolution-mapi>=3.0.0:${PORTSDIR}/mail/evolution-mapi
