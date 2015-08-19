@@ -14,7 +14,6 @@ USE_QT4=	qmake_build moc_build rcc_build corelib clucene \
 		gui sql sql-sqlite3_run xml network
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
@@ -38,8 +37,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/tools/assistant/lib
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs

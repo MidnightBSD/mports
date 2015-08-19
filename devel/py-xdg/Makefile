@@ -8,11 +8,11 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A python library to access freedesktop.org standards
+COMMENT=	Python 2 library to access freedesktop.org standards
 
 LICENSE=	lgpl
 
-USE_PYTHON=	2
+USES=		python:2
 USE_PYDISTUTILS=yes
 PYDISTUTILS_AUTOPLIST=	yes
 
