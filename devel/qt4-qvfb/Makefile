@@ -44,8 +44,6 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 CONFIGURE_ARGS+=	-I../../include/Qt -I../../include
 
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
-
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
 	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=qvfb-qt4|g' \
