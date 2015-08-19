@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Boot Manager
 LICENSE=	gpl2
 
-USE_ZIP=	yes
+USES=		zip
 NO_BUILD=	yes
 
 # security/gag
