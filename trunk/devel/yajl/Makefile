@@ -12,7 +12,8 @@ LICENSE=	iscl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	lloyd
-GH_COMMIT=	66cb08c
+
+WRKSRC=		${WRKDIR}/yajl-2.1.0
 
 CFLAGS+=	-g -O0
 
