@@ -20,10 +20,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolbox bundle for GNUstep
 LICENSE=        gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=           gnustep
+USE_GNUSTEP=    back build
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 WRKSRC=		${WRKDIR}/Toolbox
