@@ -4,7 +4,7 @@
 PORTNAME=	clucene
 DISTVERSION=	${QT4_VERSION}
 PORTREVISION=	1
-CATEGORIES?=	textproc
+CATEGORIES=	textproc
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,8 +38,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/tools/assistant/lib/fulltextsearch
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
