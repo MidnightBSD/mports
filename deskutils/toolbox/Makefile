@@ -14,9 +14,8 @@ COMMENT=	Collection of tools for GNUstep
 
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=           gnustep
+USE_GNUSTEP=    back build
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LOCAL_LIBS+=	Toolbox:${TOOLBOXKIT_PORT}
 
