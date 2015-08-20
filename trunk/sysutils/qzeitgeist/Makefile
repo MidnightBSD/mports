@@ -18,9 +18,9 @@ LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	rapper:${PORTSDIR}/textproc/raptor2 \
-		${PYTHON_SITELIBDIR}/rdflib/__init__.py:${PORTSDIR}/textproc/py-rdflib
+		${PYTHON_SITELIBDIR}/rdflib/__init__.py:${PORTSDIR}/textproc/py-rdflib \
+		automoc4:${PORTSDIR}/devel/automoc4
 
-USE_KDE4=	automoc4
 USE_QT4=	dbus declarative qtestlib \
 		moc_build qmake_build rcc_build uic_build
 USES=		cmake python:build tar:bzip2
