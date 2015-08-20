@@ -3,7 +3,7 @@
 
 PORTNAME=	gui
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	x11-toolkits
+CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -48,8 +48,8 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 CONFIGURE_ARGS+=	-I../../include/QtCore -I../../include/QtGui \
 			-I../../include/Qt -I../../include
 
-FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
-FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
+FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
+FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
 
@@ -59,7 +59,7 @@ CONFIGURE_ARGS+=-cups -L${LOCALBASE}/lib -I. -I${LOCALBASE}/include
 .endif
 
 .if ${QT4_OPTIONS:MNAS}
-LIB_DEPENDS+=	audio:${PORTSDIR}/audio/nas
+LIB_DEPENDS+=	libaudio.so:${PORTSDIR}/audio/nas
 CONFIGURE_ARGS+=-system-nas-sound
 .else
 CONFIGURE_ARGS+=-no-nas-sound
@@ -73,8 +73,8 @@ CONFIGURE_ARGS+=-no-gtkstyle
 .endif
 
 .if defined(PACKAGE_BUILDING)
-RUN_DEPENDS+=	${FONTSCALE}:${X_FONTS_TTF_PORT} \
-		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT}
+RUN_DEPENDS+=	xorg-fonts-truetype>0:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
+		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
 .endif
 
 .include <bsd.port.pre.mk>
@@ -97,6 +97,5 @@ post-configure:
 post-install:
 	${INSTALL_DATA} ${BUILD_WRKSRC}/dialogs/images/qtlogo-64.png \
 		${PREFIX}/share/pixmaps/qtlogo.png
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
