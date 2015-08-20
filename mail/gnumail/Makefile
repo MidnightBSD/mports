@@ -1,31 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	gnumail
-PORTVERSION=	1.2.0
-PORTREVISION=	3
+PORTVERSION=	1.2.2
 CATEGORIES=	mail gnustep
-MASTER_SITES=	http://www.collaboration-world.com/gnumail.data/releases/Stable/
+MASTER_SITES=	http://download.gna.org/gnustep-nonfsf/
 DISTNAME=	GNUMail-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep mail client
+
 LICENSE=	gpl2
 
-#WRKSRC=		${WRKDIR}/GNUMail
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LOCAL_LIBS+=	Pantomime:${PANTOMIME_PORT}
-USE_GNUSTEP_LOCAL_LIBS+=	Addresses:${ADDRESSES_PORT}
-PANTOMIME_PORT?=	mail/pantomime
-ADDRESSES_PORT?=	mail/addresses
-MAKEFILE=
-ALL_TARGET=
+USES=		cpe gnustep
+CPE_VENDOR=	gnu
+USE_GNUSTEP=	back build
+LIB_DEPENDS=	libPantomime.so:${PORTSDIR}/mail/pantomime \
+		libAddresses.so:${PORTSDIR}/mail/addresses
+USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-post-patch:
-	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_LOCAL_LIBRARIES}/GNUMail/Viewing.prefs
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
 
 .include <bsd.port.mk>

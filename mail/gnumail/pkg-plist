@@ -1,3 +1,4 @@
+@dir GNUstep/Local/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/Headers
 GNUstep/Local/Applications/GNUMail.app/GNUMail
 GNUstep/Local/Applications/GNUMail.app/Resources/AddressBook_32.tiff
 GNUstep/Local/Applications/GNUMail.app/Resources/AddressManager_32.tiff
@@ -176,6 +177,27 @@ GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs/Compose
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs/Resources/Info-gnustep.plist
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs/Resources/MailIcon_create.tiff
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs/stamp.make
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Emoticon
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/Info-gnustep.plist
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face1.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face10.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face11.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face13.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face14.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face15.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face19.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face2.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face3.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face4.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face5.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face6.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face8.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/Resources/emoticon-face9.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Emoticon.bundle/stamp.make
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Face.bundle/Face
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Face.bundle/Resources/Info-gnustep.plist
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Face.bundle/Resources/stamp.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/Face.bundle/stamp.make
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Filtering.prefs/Filtering
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Filtering.prefs/Resources/Filtering.tiff
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Filtering.prefs/Resources/Info-gnustep.plist
@@ -191,6 +213,21 @@ GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs/MIME
 GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs/Resources/Info-gnustep.plist
 GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs/Resources/mime.tiff
 GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs/stamp.make
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/PGP
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/Info-gnustep.plist
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/clear_20.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/clear_48.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/encrypted_20.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/encrypted_48.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/encrypted_80.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/pgp-mail.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/signed+encrypted_80.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/signed_20.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/signed_48.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/signed_80.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/unsigned_20.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/Resources/unsigned_48.tiff
+GNUstep/Local/Library/ApplicationSupport/GNUMail/PGP.bundle/stamp.make
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Receiving.prefs/Receiving
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Receiving.prefs/Resources/Info-gnustep.plist
 GNUstep/Local/Library/ApplicationSupport/GNUMail/Receiving.prefs/Resources/MailIcon_retrieve.tiff
@@ -222,64 +259,3 @@ GNUstep/Local/Library/Libraries/libGNUMail.so
 GNUstep/Local/Library/Libraries/libGNUMail.so.%%MAJORVERSION%%
 GNUstep/Local/Library/Libraries/libGNUMail.so.%%VERSION%%
 GNUstep/Local/Tools/GNUMail
-@dirrm GNUstep/Local/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/Resources
-@dirrm GNUstep/Local/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%/Headers
-@dirrm GNUstep/Local/Library/Frameworks/GNUMail.framework/Versions/%%MAJORVERSION%%
-@dirrm GNUstep/Local/Library/Frameworks/GNUMail.framework/Versions
-@dirrm GNUstep/Local/Library/Frameworks/GNUMail.framework
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Viewing.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Viewing.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Sending.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Sending.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Receiving.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Receiving.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/MIME.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Import.bundle/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Import.bundle
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Fonts.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Fonts.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Filtering.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Filtering.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Compose.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Colors.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Colors.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Advanced.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Advanced.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Account.prefs/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail/Account.prefs
-@dirrm GNUstep/Local/Library/ApplicationSupport/GNUMail
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Turkish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Swedish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Spanish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Russian.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Turkish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Swedish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Spanish.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Russian.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/German.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/French.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/English.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Czech.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources/Arabic.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Resources
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/German.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/French.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/PreferencesWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/PasswordPanel.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/NewMailboxPanel.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/MessageViewWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/MainMenu.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/MailboxInspectorPanel.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/MailWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/FindWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/EditWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/ConsoleWindow.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/AddressBookPanel.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj/AboutPanel.nib
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/English.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Czech.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources/Arabic.lproj
-@dirrm GNUstep/Local/Applications/GNUMail.app/Resources
-@dirrm GNUstep/Local/Applications/GNUMail.app
