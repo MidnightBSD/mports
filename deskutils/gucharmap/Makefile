@@ -1,28 +1,29 @@
 # $MidnightBSD$
 
 PORTNAME=	gucharmap
-PORTVERSION=	2.32.1
+PORTVERSION=	3.14.2
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Unicode/ISO10646 character map and font viewer
+COMMENT=	Unicode/ISO10646 character map and font viewer
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	rarian.0:${PORTSDIR}/textproc/rarian
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool \
+		appdata-tools>=0:${PORTSDIR}/devel/appdata-tools
 
-USE_BZIP2=	yes
-USES=		gettext
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gtk20 gnomedocutils gconf2
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig tar:xz
+USE_GNOME=	gnomeprefix gtk30 intlhack introspection:build
 GNU_CONFIGURE=	yes
-INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--disable-Bsymbolic
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	gucharmap.schemas
+GLIB_SCHEMAS=	org.gnome.Charmap.enums.xml org.gnome.Charmap.gschema.xml
 
 .include <bsd.port.mk>
