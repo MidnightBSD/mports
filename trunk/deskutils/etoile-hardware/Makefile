@@ -18,11 +18,10 @@ DISTNAME=	Etoile-${SNAPSHOT}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project Hardware application
 LICENSE=        lgpl
-USE_BZIP2=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+
+USES=           gnustep tar:bzip2
+USE_GNUSTEP=    back build
+
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LOCAL_LIBS+=	PaneKit:${PANEKIT_PORT}
 

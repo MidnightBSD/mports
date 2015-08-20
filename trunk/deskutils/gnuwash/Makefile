@@ -9,13 +9,11 @@ DISTNAME=	${PORTNAME}.app_${PORTVERSION}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable GNUstep timer application
+
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=           gnustep
+USE_GNUSTEP=    back build
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
