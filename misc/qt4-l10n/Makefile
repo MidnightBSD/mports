@@ -8,9 +8,10 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt translations messages
+
 LICENSE=	gpl3
 
-USE_QT4=	linguist_build
+USE_QT4=	linguisttools_build
 QT_DIST=	yes
 
 EXTRACT_AFTER_ARGS+=	--include '${DISTNAME}/src/corelib' \
