@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnustep-make
-PORTVERSION=	2.6.6
+PORTVERSION=	2.6.7
 CATEGORIES=	devel gnustep
 MASTER_SITES=	GNUSTEP/core
 
