@@ -8,12 +8,12 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt SVG icon engine plugin
+
 LICENSE=	gpl3
 
+USES=		pkgconfig
 USE_QT4=	qmake_build moc_build corelib gui svg xml
-QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -36,8 +36,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/src/plugins/${PORTNAME}/svgiconengine
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
