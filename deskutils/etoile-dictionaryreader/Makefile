@@ -1,7 +1,3 @@
-# New ports collection makefile for:    etoile-dictionaryreader
-# Date created:         4 Sep 2006
-# Whom:                 gurkan@linuks.mine.nu
-#
 # $MidnightBSD$
 # $FreeBSD: ports/deskutils/etoile-dictionaryreader/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
@@ -19,11 +15,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dict client for GNUstep
 LICENSE=	mit
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=           gnustep
+USE_GNUSTEP=    back build
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
