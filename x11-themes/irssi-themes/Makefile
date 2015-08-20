@@ -9,8 +9,7 @@ PORTNAME=	irssi-themes
 PORTVERSION=	20101013
 CATEGORIES=	x11-themes irc
 MASTER_SITES=	http://www.irssi.org/themefiles/ \
-		CRITICAL
-MASTER_SITE_SUBDIR=	${PORTNAME}
+		FREEBSD_LOCAL/ehaupt/${PORTNAME}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
