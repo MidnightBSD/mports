@@ -11,7 +11,7 @@ COMMENT=	Python extension module for BerkeleyDB 3 and 4
 
 LICENSE=	python
 
-USE_BDB=	43+
+USE_BDB=	48+
 USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_AUTOPLIST=	yes
