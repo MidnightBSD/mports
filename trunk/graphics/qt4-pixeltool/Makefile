@@ -1,10 +1,5 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
 # $MidnightBSD$
 # $FreeBSD: ports/graphics/qt4-pixeltool/Makefile,v 1.11 2008/08/04 23:30:36 miwi Exp $
-#
 
 PORTNAME=	pixeltool
 DISTVERSION=	${QT4_VERSION}
@@ -13,12 +8,11 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt screen magnification utility
-LICENSE=	gpl2
+
+LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build corelib gui network
-QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -46,8 +40,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|target.path.*|target.path=${PREFIX}/bin|g' \
