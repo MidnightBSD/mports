@@ -1,4 +1,0 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.134 2009/01/04 03:19:34 ctriv Exp $
-Local/Tools/mknfonts
-@dirrm Local/Tools
-@dirrm Local

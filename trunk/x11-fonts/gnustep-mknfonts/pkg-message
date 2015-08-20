@@ -1,6 +1,0 @@
-You will have to create .nfont files if you plan on using the GNUstep libart backend. To do this, 
-make sure that the "gnustep-mknfonts" package is installed. Then create a new directory and cd into it. 
-Then run:
-    mknfonts /usr/local/lib/X11/fonts/{Type1,TTF}/* /usr/local/lib/X11/fonts/{mscorefonts,freefont}/*
-
-This will create a bunch of .nfont directories. Move them to /usr/local/GNUstep/System/Library/Fonts.
