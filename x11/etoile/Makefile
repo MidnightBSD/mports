@@ -15,6 +15,7 @@ LICENSE=	agg
 
 NO_BUILD=	yes
 NO_INSTALL=	yes
+USES=		gnustep
 USE_GNUSTEP=	back build base gui
 
 USE_GNUSTEP_SYSTEM_LIBS+=	\
