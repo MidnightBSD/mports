@@ -1,53 +1,41 @@
+# Created by: Martin Wilke <miwi@FreeBSD.org>
 # $MidnightBSD$
+# $FreeBSD: head/multimedia/phonon/Makefile 375654 2014-12-26 20:05:09Z rakuco $
 
 PORTNAME=	phonon
-PORTVERSION=	4.7.0
-CATEGORIES=	multimedia kde ipv6
-MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	${PHONON_BRANCH}/${PORTNAME}/${PORTVERSION}
+PORTVERSION=	4.8.3
+CATEGORIES=	multimedia
+MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Multimedia framework for KDE4
+COMMENT=	KDE multimedia framework
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	qzeitgeist:${PORTSDIR}/sysutils/qzeitgeist
+LIB_DEPENDS=	libqzeitgeist.so:${PORTSDIR}/sysutils/qzeitgeist
 
-CONFLICTS=	qt4-phonon-4*
-
-PHONON_BRANCH=	stable
-
-USE_KDE4=	kdehier kdeprefix automoc4
+USE_KDE4=	kdeprefix automoc4
 USE_QT4=	corelib dbus gui \
 		qmake_build moc_build rcc_build uic_build
-USE_XZ=		yes
-USES=		cmake
+USES=		cmake tar:xz
 CMAKE_ARGS=	-DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=TRUE \
 		-DPHONON_NO_PLATFORMPLUGIN:BOOL=TRUE \
 		-DPHONON_BUILD_DESIGNER_PLUGIN:BOOL=OFF
 USE_LDCONFIG=	yes
 
+PLIST_SUB=	SHLIB_VER=${PORTVERSION}
+
 OPTIONS_DEFINE=	PULSEAUDIO
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MPULSEAUDIO}
-LIB_DEPENDS+=	pulse:${PORTSDIR}/audio/pulseaudio
-USE_GNOME+=	glib20
-CMAKE_ARGS+=	-DWITH_PulseAudio:BOOL=ON
-.else
-CMAKE_ARGS+=	-DWITH_PulseAudio:BOOL=OFF
-.endif
-
-PLIST_SUB+=	QT_PREFIX=${QT_PREFIX}
-
-pre-configure:
-	${REINPLACE_CMD} -e '/phonon.pc/s|pkgconfig|../libdata/pkgconfig|' \
-		-e 's|{QT_INCLUDES}|{QT_INCLUDES} ${LOCALBASE}/include|'\
-		${PATCH_WRKSRC}/CMakeLists.txt
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+PULSEAUDIO_USE=		GNOME=glib20
+PULSEAUDIO_CMAKE_ON=	-DWITH_PulseAudio:BOOL=ON
+PULSEAUDIO_CMAKE_OFF=	-DWITH_PulseAudio:BOOL=OFF
 
 post-install:
+	${MKDIR} ${QT_INCDIR}
+	${MKDIR} ${QT_LIBDIR}
 	${LN} -sf ${PREFIX}/include/phonon ${QT_INCDIR}/phonon
 	${LN} -sf ${PREFIX}/include/phonon ${QT_INCDIR}/Phonon
 	${LN} -sf ${PREFIX}/include/KDE/Phonon ${PREFIX}/include/phonon/Phonon
