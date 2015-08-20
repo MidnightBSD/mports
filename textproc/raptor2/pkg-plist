@@ -5,7 +5,10 @@ lib/libraptor2.a
 lib/libraptor2.la
 lib/libraptor2.so
 lib/libraptor2.so.0
+lib/libraptor2.so.0.0.0
 libdata/pkgconfig/raptor2.pc
+man/man1/rapper.1.gz
+man/man3/libraptor2.3.gz
 share/gtk-doc/html/raptor2/home.png
 share/gtk-doc/html/raptor2/index.html
 share/gtk-doc/html/raptor2/index.sgml
@@ -28,11 +31,16 @@ share/gtk-doc/html/raptor2/raptor-formats.html
 share/gtk-doc/html/raptor2/raptor-parsers.html
 share/gtk-doc/html/raptor2/raptor-serializers.html
 share/gtk-doc/html/raptor2/raptor2-changes-1-4-21-to-2-0-0.html
+share/gtk-doc/html/raptor2/raptor2-changes-2-0-10-to-2-0-11.html
+share/gtk-doc/html/raptor2/raptor2-changes-2-0-11-to-2-0-12.html
+share/gtk-doc/html/raptor2/raptor2-changes-2-0-13-to-2-0-14.html
+share/gtk-doc/html/raptor2/raptor2-changes-2-0-14-to-2-0-15.html
 share/gtk-doc/html/raptor2/raptor2-changes-2-0-3-to-2-0-4.html
 share/gtk-doc/html/raptor2/raptor2-changes-2-0-4-to-2-0-5.html
 share/gtk-doc/html/raptor2/raptor2-changes-2-0-5-to-2-0-6.html
 share/gtk-doc/html/raptor2/raptor2-changes-2-0-6-to-2-0-7.html
 share/gtk-doc/html/raptor2/raptor2-changes-2-0-7-to-2-0-8.html
+share/gtk-doc/html/raptor2/raptor2-changes-2-0-9-to-2-0-10.html
 share/gtk-doc/html/raptor2/raptor2-changes.html
 share/gtk-doc/html/raptor2/raptor2-section-avltree.html
 share/gtk-doc/html/raptor2/raptor2-section-constants.html
@@ -98,7 +106,3 @@ share/gtk-doc/html/raptor2/tutorial-serializer-to-destination.html
 share/gtk-doc/html/raptor2/tutorial-serializing.html
 share/gtk-doc/html/raptor2/tutorial.html
 share/gtk-doc/html/raptor2/up.png
-@dirrm share/gtk-doc/html/raptor2
-@dirrmtry share/gtk-doc/html
-@dirrmtry share/gtk-doc
-@dirrm include/raptor2
