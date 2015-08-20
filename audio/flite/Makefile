@@ -2,7 +2,7 @@
 
 PORTNAME=	flite
 PORTVERSION=	1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://www.speech.cs.cmu.edu/flite/packed/${PORTNAME}-${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-release
@@ -16,20 +16,18 @@ FAKE_OPTS=	prefixhack
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		gmake tar:bzip2
+USES=		cpe gmake tar:bzip2
+CPE_VENDOR=	cmu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared=yes
 USE_LDCONFIG=	yes
 
-MAKE_JOBS_UNSAFE=	yes
-
-CFLAGS:=	${CFLAGS:N-O:N-O[0123456789]} -O0
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|-pd|-p|g' ${WRKSRC}/main/Makefile
+	@${REINPLACE_CMD} -e 's|-pd|-pR|g' ${WRKSRC}/main/Makefile
 
 post-install:
-	@${MKDIR} ${DOCSDIR}/
-	${INSTALL_MAN} ${WRKSRC}/README ${DOCSDIR}/
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+	${STRIP_CMD} ${PREFIX}/bin/* ${PREFIX}/lib/*.so
 
 .include <bsd.port.mk>
