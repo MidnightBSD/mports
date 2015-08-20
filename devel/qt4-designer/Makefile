@@ -3,7 +3,8 @@
 
 PORTNAME=	designer
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	devel
+PORTREVISION=	1
+CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,24 +13,23 @@ LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build rcc_build uic_build assistant_run \
 		qt3support corelib declarative gui network script sql xml \
-		webkit phonon
-QT_NONSTANDARD=	yes
+		webkit
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
-#Try to fix linking when previous version is installed
-CONFIGURE_ARGS+=	-L${WRKSRC}/lib
-USE_LDCONFIG=	${PREFIX}/lib/qt4
+# Try to fix linking when previous version is installed
+CONFIGURE_ARGS=	-L${WRKSRC}/lib -no-phonon
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
-DESKTOP_ENTRIES="Qt Designer" "${COMMENT}" \
+DESKTOP_ENTRIES="Qt 4 Designer" "" \
 		"${PREFIX}/share/pixmaps/designer-qt4.png" \
-		"${PREFIX}/bin/designer-qt4" "Development;Qt;" true
+		"${PREFIX}/${QT_BINDIR_REL}/designer${_QT_BINSUFX}" \
+		"Development;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/opengl src/openvg \
@@ -44,11 +44,11 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
-
 pre-configure:
-	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=designer-qt4|g' \
+	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=designer${_QT_BINSUFX}|g' \
 		${BUILD_WRKSRC}/src/${PORTNAME}/${PORTNAME}.pro
+	${REINPLACE_CMD} -e '/QLatin1String/ s|("assistant")|("assistant${_QT_BINSUFX}")|' \
+		${BUILD_WRKSRC}/src/${PORTNAME}/assistantclient.cpp
 # fix build when previous version is installed
 	${REINPLACE_CMD} -e '/^CONFIG/s|depend_prl||' \
 		${BUILD_WRKSRC}/src/components/lib/lib.pro
