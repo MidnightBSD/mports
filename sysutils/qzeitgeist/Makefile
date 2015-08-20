@@ -2,10 +2,10 @@
 
 PORTNAME=	qzeitgeist
 PORTVERSION=	0.8.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_KDE:C@$@:kde@} \
+MASTER_SITES=	KDE/stable/lib${PORTNAME}/${PORTVERSION}/src/:kde \
 		http://launchpad.net/zeitgeist/${ZEITGEIST_VERSION:R}/${ZEITGEIST_VERSION}/+download/
-MASTER_SITE_SUBDIR=	stable/lib${PORTNAME}/${PORTVERSION}/src/:kde
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:kde \
 		zeitgeist-${ZEITGEIST_VERSION}.tar.gz
@@ -15,24 +15,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 4 wrapper library around the Zeitgeist D-Bus API
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	rapper:${PORTSDIR}/textproc/raptor2 \
 		${PYTHON_SITELIBDIR}/rdflib/__init__.py:${PORTSDIR}/textproc/py-rdflib
 
 USE_KDE4=	automoc4
-USE_PYTHON_BUILD=	yes
 USE_QT4=	dbus declarative qtestlib \
 		moc_build qmake_build rcc_build uic_build
-USE_BZIP2=	yes
-USES=		cmake
+USES=		cmake python:build tar:bzip2
 USE_LDCONFIG=	yes
 
 # To be kept in sync with sysutils/zeitgeist.
 ZEITGEIST_VERSION=	0.8.2
 
 post-extract:
-	@(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
-		${_DISTDIR}/zeitgeist-${ZEITGEIST_VERSION}.tar.gz ${EXTRACT_AFTER_ARGS})
+	@(cd ${WRKDIR} && ${TAR} ${EXTRACT_BEFORE_ARGS} \
+		${_DISTDIR}/zeitgeist-${ZEITGEIST_VERSION}.tar.gz \
+		${EXTRACT_AFTER_ARGS})
 	cd ${WRKDIR}/zeitgeist-${ZEITGEIST_VERSION} && \
 		${CP} zeitgeist/datamodel.py \
 			extra/ontology/*.trig \
