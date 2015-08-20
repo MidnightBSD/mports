@@ -62,7 +62,6 @@ SUBDIR += php5-pdo_odbc
 SUBDIR += php5-pdo_pgsql
 SUBDIR += php5-pdo_sqlite
 SUBDIR += php5-pgsql
-SUBDIR += php5-rrdtool
 SUBDIR += php5-sqlite3
 SUBDIR += php5-sybase_ct
 SUBDIR += phpmyadmin
