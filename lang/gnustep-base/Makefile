@@ -21,6 +21,7 @@ LIB_DEPENDS+=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --disable-openssl --enable-tls \
+		--disable-libdispatch \
 		--with-tls-prefix=${LOCALBASE} TLS_CONFIG="pkg-config -gnutls" \
 		--disable-mixedabi \
 		--target=${ARCH}-portbld-freebsd9.1 \
