@@ -3,11 +3,12 @@
 
 PORTNAME=	xml
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	textproc
+CATEGORIES=	textproc
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt XML library
+COMMENT=	Qt XML library with SAX and DOM implementations
+
 LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build corelib
@@ -37,8 +38,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
