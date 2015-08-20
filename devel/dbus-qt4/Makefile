@@ -3,18 +3,20 @@
 
 PORTNAME=	dbus
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	devel
+CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 bindings for the D-BUS messaging system
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
+USES=		pkgconfig
 USE_QT4=	qmake_build moc_build rcc_build corelib xml
-QT_NONSTANDARD=	yes
 QT_DIST=	yes
+
 MAKE_JOBS_UNSAFE=	yes
 
 HAS_CONFIGURE=	yes
@@ -39,8 +41,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/tools/qdbus
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 .include <bsd.port.pre.mk>
 
