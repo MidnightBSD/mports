@@ -14,9 +14,9 @@ OPTIONS_DEFAULT=PHONON
 
 PHONON_DESC=	Multimedia via Phonon (implies GStreamer)
 
+USES=		pkgconfig
 USE_QT4=	qmake_build moc_build rcc_build uic_build \
-		dbus gui xml
-QT_NONSTANDARD=	yes
+		corelib dbus gui xml
 QT_DIST=	yes
 
 HAS_CONFIGURE=	yes
@@ -52,8 +52,6 @@ CONFIGURE_ARGS+=-no-phonon -no-gstreamer
 
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=qtconfig-qt4|g' \
