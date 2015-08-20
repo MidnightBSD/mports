@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libgphoto2
-PORTVERSION=	2.5.7
+PORTVERSION=	2.5.8
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
@@ -36,7 +36,7 @@ OPTIONS_SUB=		yes
 
 GD_LIB_DEPENDS=		libgd.so:${PORTSDIR}/graphics/gd
 GD_CONFIGURE_WITH=	gd
-JPEG_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+JPEG_USES=		jpeg
 JPEG_CONFIGURE_WITH=	jpeg
 LIBEXIF_LIB_DEPENDS=	libexif.so:${PORTSDIR}/graphics/libexif
 LIBEXIF_CONFIGURE_OFF=	--with-libexif=no
@@ -52,9 +52,9 @@ CONFIGURE_ENV+=	LIBUSB1_CFLAGS=" " LIBUSB1_LIBS="-lusb"
 post-patch:
 .for i in configure libgphoto2_port/configure
 	@${REINPLACE_CMD} -e \
-		's|{libdir}/pkgconfig|{prefix}/libdata/pkgconfig| ; \
-		 /FLAGS/s|-g|| ; \
-		 /grep -i linux/s|; fi ; then|; else false; fi ; then|' \
+		'/FLAGS/s|-g|| ; \
+		 /grep -i linux/s|; fi ; then|; else false; fi ; then| ; \
+		 /pkgconfig/s|$${libdir}|$${prefix}/libdata|' \
 		${WRKSRC}/${i}
 .endfor
 	@${REINPLACE_CMD} -e \
