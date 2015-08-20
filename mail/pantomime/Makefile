@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pantomime
-PORTVERSION=	1.2.0
-PORTREVISION=	1
+PORTVERSION=	1.2.2
 CATEGORIES=	mail gnustep
 MASTER_SITES=	http://download.gna.org/gnustep-nonfsf/
 DISTNAME=	Pantomime-${PORTVERSION}
@@ -12,12 +11,14 @@ COMMENT=	Mail/MIME handling library for GNUstep
 
 LICENSE=	lgpl2.1
 
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+# The use of libiconv shouldn't be necessary, but a build dependency installs
+# it and we end up picking up the header.
+MAKE_ARGS+=	LIBRARIES_DEPEND_UPON='${ICONV_LIB} -lssl'
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+USES=		gnustep iconv
+USE_OPENSSL=	yes
+USE_GNUSTEP=	back build
+USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 DEFAULT_LIBVERSION=	1.2
 
