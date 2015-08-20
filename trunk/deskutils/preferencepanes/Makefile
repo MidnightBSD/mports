@@ -15,15 +15,13 @@ DISTNAME=	systempreferences-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PreferencePanes framework for GNUstep
+
 LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/PreferencePanes
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+
+USES=           gnustep gmake
+USE_GNUSTEP=    back build
 DEFAULT_LIBVERSION=	1.0.0
 
 .include <bsd.port.mk>
