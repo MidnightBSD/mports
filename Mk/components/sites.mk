@@ -1348,6 +1348,28 @@ MASTER_SITE_TUCOWS+= \
 	http://iinets.linux.tucows.com/files/%SUBDIR%/
 .endif
 
+# List:         http://www.vim.org/mirrors.php
+# Updated:      2014-02-28
+.if !defined(IGNORE_MASTER_SITE_VIM)
+MASTER_SITE_VIM+= \
+        http://ftp.vim.org/pub/vim/unix/ \
+        http://vim.mirrors.hostinginnederland.nl/unix/ \
+        http://ftp.tw.vim.org/pub/vim/unix/ \
+        http://ftp2.tw.vim.org/pub/vim/unix/ \
+        http://artfiles.org/vim.org/unix/ \
+        http://vim.cybermirror.org/unix/ \
+        http://tweedo.com/mirror/ftp.vim.org/unix/ \
+        http://vim.mirror.fr/unix/ \
+        http://ftp.gr.vim.org/pub/vim/unix/ \
+        http://mirror.netinch.com/pub/vim/unix/ \
+        http://servingzone.com/mirrors/vim/unix/ \
+        http://ftp2.uk.vim.org/pub/vim/unix/ \
+        http://ftp2.jp.vim.org/pub/vim/unix/ \
+        http://ftp2.kr.vim.org/pub/vim/unix/ \
+        http://mirrors-usa.go-parts.com/pub/vim/unix/ \
+        ftp://ftp.home.vim.org/pub/vim/unix/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_WINDOWMAKER)
 MASTER_SITE_WINDOWMAKER+= \
 	ftp://ftp.windowmaker.info/pub/%SUBDIR%/ \
