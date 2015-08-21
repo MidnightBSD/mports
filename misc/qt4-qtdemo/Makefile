@@ -2,7 +2,7 @@
 
 PORTNAME=	qtdemo
 DISTVERSION=	${QT4_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 PKGNAMEPREFIX=	qt4-
 
@@ -52,20 +52,20 @@ post-patch:
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs/modules
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
-	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
+	${LN} -sf ${QMAKE} ${WRKSRC}/bin/qmake
+	${LN} -sf ${MOC} ${WRKSRC}/bin/moc
+	${LN} -sf ${UIC} ${WRKSRC}/bin/uic
+	${LN} -sf ${RCC} ${WRKSRC}/bin/rcc
 
 post-build:
 	cd ${WRKSRC}/examples && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} ${MAKEFILE} \
-		${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}
+		${_MAKE_JOBS} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET}
 
 post-install:
 	cd ${WRKSRC}/examples && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} ${MAKEFILE} \
-		${MAKE_ARGS} ${INSTALL_TARGET}
+		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 	${FIND} -E ${PREFIX}/share/examples/qt4/examples/declarative/cppextensions -regex ".*\.(moc|obj|pch|rcc)" -type d | ${XARGS} ${RM} -r
 
 .include <bsd.port.mk>
