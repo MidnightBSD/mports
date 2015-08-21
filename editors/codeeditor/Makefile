@@ -13,10 +13,8 @@ COMMENT=	CodeEditor is a text and code editor for GNUstep
 
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/CodeEditor
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
