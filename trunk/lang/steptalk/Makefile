@@ -11,10 +11,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The official GNUstep scripting framework
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
+USES=		gnustep
+USE_GNUSTEP=	gui build
 USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_GUI=	yes
-USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
