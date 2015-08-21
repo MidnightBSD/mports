@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Net-SSLeay
-PORTVERSION=	1.55
+PORTVERSION=	1.70
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,21 +9,27 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to SSL
 
-LICENSE=	perl
+LICENSE=	other
+
+TEST_DEPENDS=	p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception \
+		p5-Test-NoWarnings>=0:${PORTSDIR}/devel/p5-Test-NoWarnings \
+		p5-Test-Warn>=0:${PORTSDIR}/devel/p5-Test-Warn
+
+OPTIONS_DEFINE=	EXAMPLES
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ENV=	OPENSSL_PREFIX=${OPENSSLBASE}
+USES=		perl5 shebangfix
 USE_OPENSSL=	yes
 
-MAN3=		Net::SSLeay.3 Net::SSLeay::Handle.3
-
-.if !defined(NOPORTEXAMPLES)
 PORTEXAMPLES=	*
 
+SHEBANG_FILES=	examples/*.pl
+
 post-install:
-	${MKDIR} ${EXAMPLESDIR}/
-	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${EXAMPLESDIR}/
-	${INSTALL_DATA} ${WRKSRC}/examples/req.conf ${EXAMPLESDIR}/req.conf
-.endif
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Net/SSLeay/SSLeay.so
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/examples/*.pl ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/req.conf ${STAGEDIR}${EXAMPLESDIR}/req.conf
 
 .include <bsd.port.mk>
