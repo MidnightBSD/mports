@@ -11,13 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic text editor for GNUstep
 LICENSE=	other
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		tar:bzip2 gnustep
+USE_GNUSTEP=	back build gui
 
+WRKSRC=		${WRKDIR}/${DISTNAME}/${USE_GNUSTEP_MAKE_DIRS}
 USE_GNUSTEP_MAKE_DIRS=	System/Applications/TextEdit
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
