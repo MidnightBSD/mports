@@ -23,6 +23,7 @@ CONFLICTS=		njs-[0-9]*
 GNU_CONFIGURE=		yes
 USES=			gmake pathfix perl5 python:2,build \
 			readline tar:bzip2
+USE_PYTHON=		2
 USE_PERL5=		build
 USE_LDCONFIG=		yes
 
