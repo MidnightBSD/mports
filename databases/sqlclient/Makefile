@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlclient
-PORTVERSION=	1.7.0
-CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_GNUSTEP}
-MASTER_SITE_SUBDIR=	libs
+PORTVERSION=	1.8.1
+CATEGORIES=	databases gnustep
+MASTER_SITES=	GNUSTEP/libs
 DISTNAME=	SQLClient-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,12 +11,12 @@ COMMENT=	Lightweight database abstraction layer
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=  libPerformance.so:${PORTSDIR}/devel/performance
+LIB_DEPENDS=	libPerformance.so:${PORTSDIR}/devel/performance \
 
-USES=	gmake gnustep pgsql
+USES=		gnustep pgsql
 USE_GNUSTEP=	base build
-USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 GNU_CONFIGURE=	yes
+USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 USE_MYSQL=yes
 USE_SQLITE=yes
 
