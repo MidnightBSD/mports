@@ -11,11 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple image viewer and editor for GNUstep
 LICENSE=	lgpl
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/PhotoClip
 
