@@ -1,4 +1,4 @@
-" $FreeBSD: head/editors/vim/files/vietnamese_viscii.vim 340872 2014-01-24 00:14:07Z mat $
+" $MidnightBSD$
 " vim:ts=8
 "
 "   VIQR input
