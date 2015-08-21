@@ -26,7 +26,7 @@
 # COMPILER_FEATURES:	the list of features supported by the compiler includes the standard C++ library.
 # CHOSEN_COMPILER_TYPE:	can be gcc or clang (type of compiler chosen by the framework)
 
-.if !defined(_INCLUDE_USES_COMPILER_MK)
+.if !defined(_INCLUDE_USES_COMPILER_MK) && defined(BEFOREPORTMK)
 _INCLUDE_USES_COMPILER_MK=	yes
 
 .if empty(compiler_ARGS)
@@ -232,7 +232,7 @@ CHOSEN_COMPILER_TYPE=	clang
 CPP=	${LOCALBASE}/bin/clang-cpp34
 CC=	${LOCALBASE}/bin/clang34
 CXX=	${LOCALBASE}/bin/clang++34
-.if ${OSVERSION} < 900033
+.if ${OSVERSION} < 4015
 USE_BINUTILS=	yes
 LDFLAGS+=	-B${LOCALBASE}/bin
 .endif
