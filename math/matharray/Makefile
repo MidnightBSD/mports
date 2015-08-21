@@ -11,9 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Class library for mathematical manipulation of matrices
 LICENSE=	lgpl
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BASE=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=		gnustep
+USE_GNUSTEP=	build base
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
