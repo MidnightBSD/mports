@@ -391,7 +391,6 @@ SUBDIR += pkgconf
 SUBDIR += pmk
 SUBDIR += popt
 SUBDIR += projectcenter
-SUBDIR += projectmanager
 SUBDIR += protobuf
 SUBDIR += pth
 SUBDIR += pth-hard
