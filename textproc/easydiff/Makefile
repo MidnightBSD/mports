@@ -8,22 +8,19 @@
 
 PORTNAME=	easydiff
 PORTVERSION=	0.4.0
+PORTREVISION=	1
 CATEGORIES=	textproc gnustep
-MASTER_SITES=	${MASTER_SITE_GNUSTEP}
-MASTER_SITE_SUBDIR=	usr-apps
+MASTER_SITES=	GNUSTEP/usr-apps
 DISTNAME=	EasyDiff-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep graphical diff
 LICENSE=	gpl3
 
-GUN_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=	GNUmakefile
+USES=		gnustep
+USE_GNUSTEP=	back build
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/EasyDiff.app/EasyDiff
 
 .include <bsd.port.mk>
