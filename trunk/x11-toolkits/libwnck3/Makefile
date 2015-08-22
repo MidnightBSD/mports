@@ -10,7 +10,7 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library used for writing pagers and taskslists
 
-LICENCE=	lgpl
+LICENSE=	lgpl
 
 USES=		tar:xz
 
