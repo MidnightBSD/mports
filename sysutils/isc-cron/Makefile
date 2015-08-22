@@ -2,6 +2,7 @@
 
 PORTNAME=	isc-cron
 PORTVERSION=	4.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	cron
@@ -15,7 +16,8 @@ LICENSE=	mit
 
 WRKSRC=		${WRKDIR}
 SUB_FILES=	pkg-message
-PLIST_FILES=	sbin/cron bin/crontab
+PLIST_FILES=	sbin/cron bin/crontab man/man1/crontab.1.gz \
+		man/man5/crontab.5.gz man/man8/cron.8.gz
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 do-extract:
