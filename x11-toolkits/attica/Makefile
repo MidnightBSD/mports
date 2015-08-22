@@ -2,10 +2,10 @@
 
 PORTNAME=	attica
 PORTVERSION=	0.4.2
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/${PORTNAME}
+MASTER_SITES=	KDE/stable/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Collaboration Services API library
@@ -14,12 +14,10 @@ LICENSE=	lgpl
 
 USE_QT4=	network qtestlib_build xml \
 		moc_build qmake_build rcc_build uic_build
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USES=		cmake
+USES=		cmake tar:bzip2
 CMAKE_ARGS=	-DATTICA_ENABLE_TESTS:BOOL=OFF \
 		-DQT4_BUILD:BOOL=ON
-MAKE_JOBS_SAFE=	yes
 
 post-patch:
 	${MKDIR} ${WRKSRC}
