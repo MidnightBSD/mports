@@ -14,6 +14,8 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt *.adp-compatible documentation browser
 
+LICENSE=	gpl3
+
 USE_QT4=	moc_build rcc_build uic_build corelib \
 		gui network xml doc dbus
 USES=		qmake
