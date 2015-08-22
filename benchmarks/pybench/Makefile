@@ -14,6 +14,7 @@ LICENSE=	unknown
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		python zip
+USE_PYTHON=	yes 
 
 PORTDOCS=	README
 
