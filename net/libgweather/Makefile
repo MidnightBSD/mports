@@ -1,27 +1,33 @@
 # $MidnightBSD$
 
 PORTNAME=	libgweather
-PORTVERSION=	2.30.2
+PORTVERSION=	3.16.1
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to accessing online weather informations
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
-LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
+BUILD_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		vala:${PORTSDIR}/lang/vala
+LIB_DEPENDS=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
+		libgeocode-glib.so:${PORTSDIR}/net/geocode-glib
+RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme
 
-USE_GETTEXT=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 ltverhack
+PORTSCOUT=	limitw:1,even
+
+USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	gtk30 intlhack introspection:build
+INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-USES=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-
-GCONF_SCHEMAS=	gweather.schemas
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+CONFIGURE_ARGS+=--disable-glade-catalog
+INSTALL_TARGET=	install-strip
+GLIB_SCHEMAS=	org.gnome.GWeather.enums.xml \
+		org.gnome.GWeather.gschema.xml
 
 .include <bsd.port.mk>
