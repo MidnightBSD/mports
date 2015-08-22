@@ -1,4 +1,2 @@
-MD5 (libgweather-2.30.2.tar.bz2) = 050f4ed212261c2a147c89012d5daa90
-SHA256 (libgweather-2.30.2.tar.bz2) = dd98545cd4aaa2a856e62c9cc7822baf8d5f54bd277fd56ed8de6728dd61e312
-RMD160 (libgweather-2.30.2.tar.bz2) = 3950b8342e4e5fe5435c780193dc19f978e6f375
-SIZE (libgweather-2.30.2.tar.bz2) = 7452039
+SHA256 (gnome3/libgweather-3.16.1.tar.xz) = db0955261427bb0f1a3f2747507863c591bf2f09dc477cfbf1cea0382cd34dfd
+SIZE (gnome3/libgweather-3.16.1.tar.xz) = 3478080
