@@ -3,6 +3,7 @@
 
 PORTNAME=	libdmtx
 PORTVERSION=	0.7.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
@@ -10,16 +11,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for reading and writing Data Matrix barcodes
 LICENSE=	other
 
-LIB_DEPENDS=	MagickWand.5:${PORTSDIR}/graphics/ImageMagick
+LIB_DEPENDS=	libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick
 
-MAN3=		libdmtx.3
-
-USE_BZIP2=	yes
-USE_LDCONFIG=	yes
+USES=		tar:bzip2 libtool
 GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
 
 post-patch:
-	${REINPLACE_CMD} -e '/^pkgconfigdir /s:(libdir):{prefix}/libdata:' \
+	@${REINPLACE_CMD} -e '/^pkgconfigdir /s:(libdir):{prefix}/libdata:' \
 		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
