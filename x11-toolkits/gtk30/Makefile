@@ -78,12 +78,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-DG_DISABLE_CHECKS||' \
 		${WRKSRC}/configure
 
-pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
-	@${FALSE}
-.endif
-
 pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
 
