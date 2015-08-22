@@ -17,6 +17,8 @@ GH_PROJECT=	libinotify-kqueue
 GH_COMMIT=	d775062
 GH_TAGNAME=	${GH_COMMIT}
 
+WRKSRC=		${WRKDIR}/libinotify-kqueue-d775062
+
 USE_LDCONFIG=	yes
 
 post-patch:
