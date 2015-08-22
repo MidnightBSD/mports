@@ -19,11 +19,13 @@ HAS_CONFIGURE=	yes
 QMAKE_ARGS=     -unix -recursive ${QMAKE_PRO}
 QMAKE_PRO=      PBReg.pro
 
+DESTDIRNAME=	INSTALL_ROOT
+
 PLIST_FILES=	bin/pbreg
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-				 ${WRKSRC}/${QMAKE_PRO}
+				${WRKSRC}/${QMAKE_PRO}
 
 do-configure:
 	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
