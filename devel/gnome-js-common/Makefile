@@ -15,7 +15,7 @@ LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	intltool
-USES=		pkgconfig gettext gmake tar:bzip2
+USES=		pathfix pkgconfig gettext gmake tar:bzip2
 
 PORTDOCS=	AUTHORS COPYING INSTALL NEWS README ChangeLog
 
