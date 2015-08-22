@@ -1,5 +1,9 @@
 bin/libgtop_daemon2
+@group kmem
+@mode 2555
 bin/libgtop_server2
+@mode
+@group
 include/libgtop-2.0/glibtop.h
 include/libgtop-2.0/glibtop/close.h
 include/libgtop-2.0/glibtop/command.h
@@ -43,14 +47,16 @@ include/libgtop-2.0/glibtop_private.h
 include/libgtop-2.0/glibtop_server.h
 include/libgtop-2.0/glibtop_suid.h
 include/libgtop-2.0/libgtopconfig.h
+lib/girepository-1.0/GTop-2.0.typelib
 lib/libgtop-2.0.a
-lib/libgtop-2.0.la
 lib/libgtop-2.0.so
-lib/libgtop-2.0.so.7
+lib/libgtop-2.0.so.10
+lib/libgtop-2.0.so.10.0.0
 libdata/pkgconfig/libgtop-2.0.pc
 %%DOCSDIR%%/home.png
 %%DOCSDIR%%/index.html
 %%DOCSDIR%%/index.sgml
+%%DOCSDIR%%/left-insensitive.png
 %%DOCSDIR%%/left.png
 %%DOCSDIR%%/libgtop-Close.html
 %%DOCSDIR%%/libgtop-Command.html
@@ -59,6 +65,9 @@ libdata/pkgconfig/libgtop-2.0.pc
 %%DOCSDIR%%/libgtop-Net-List.html
 %%DOCSDIR%%/libgtop-Net-Load.html
 %%DOCSDIR%%/libgtop-PPP.html
+%%DOCSDIR%%/libgtop-Process-Arguments.html
+%%DOCSDIR%%/libgtop-Process-List.html
+%%DOCSDIR%%/libgtop-Process-Time.html
 %%DOCSDIR%%/libgtop-Shared-Memory-Limits.html
 %%DOCSDIR%%/libgtop-Uptime.html
 %%DOCSDIR%%/libgtop-cpu.html
@@ -70,16 +79,13 @@ libdata/pkgconfig/libgtop-2.0.pc
 %%DOCSDIR%%/libgtop-msg-limits.html
 %%DOCSDIR%%/libgtop-open.html
 %%DOCSDIR%%/libgtop-parameter.html
-%%DOCSDIR%%/libgtop-procargs.html
 %%DOCSDIR%%/libgtop-prockernel.html
-%%DOCSDIR%%/libgtop-proclist.html
 %%DOCSDIR%%/libgtop-procmap.html
 %%DOCSDIR%%/libgtop-procmem.html
 %%DOCSDIR%%/libgtop-procopenfiles.html
 %%DOCSDIR%%/libgtop-procsegment.html
 %%DOCSDIR%%/libgtop-procsignal.html
 %%DOCSDIR%%/libgtop-procstate.html
-%%DOCSDIR%%/libgtop-proctime.html
 %%DOCSDIR%%/libgtop-procuid.html
 %%DOCSDIR%%/libgtop-sem-limits.html
 %%DOCSDIR%%/libgtop-signal.html
@@ -90,11 +96,13 @@ libdata/pkgconfig/libgtop-2.0.pc
 %%DOCSDIR%%/libgtop-version.html
 %%DOCSDIR%%/libgtop-white-paper-overview.html
 %%DOCSDIR%%/libgtop-white-paper.html
-%%DOCSDIR%%/libgtop.devhelp
 %%DOCSDIR%%/libgtop.devhelp2
+%%DOCSDIR%%/right-insensitive.png
 %%DOCSDIR%%/right.png
 %%DOCSDIR%%/style.css
+%%DOCSDIR%%/up-insensitive.png
 %%DOCSDIR%%/up.png
+share/gir-1.0/GTop-2.0.gir
 share/locale/am/LC_MESSAGES/libgtop-2.0.mo
 share/locale/ar/LC_MESSAGES/libgtop-2.0.mo
 share/locale/as/LC_MESSAGES/libgtop-2.0.mo
@@ -123,6 +131,7 @@ share/locale/eu/LC_MESSAGES/libgtop-2.0.mo
 share/locale/fa/LC_MESSAGES/libgtop-2.0.mo
 share/locale/fi/LC_MESSAGES/libgtop-2.0.mo
 share/locale/fr/LC_MESSAGES/libgtop-2.0.mo
+share/locale/fur/LC_MESSAGES/libgtop-2.0.mo
 share/locale/ga/LC_MESSAGES/libgtop-2.0.mo
 share/locale/gl/LC_MESSAGES/libgtop-2.0.mo
 share/locale/gu/LC_MESSAGES/libgtop-2.0.mo
@@ -170,52 +179,13 @@ share/locale/sr@latin/LC_MESSAGES/libgtop-2.0.mo
 share/locale/sv/LC_MESSAGES/libgtop-2.0.mo
 share/locale/ta/LC_MESSAGES/libgtop-2.0.mo
 share/locale/te/LC_MESSAGES/libgtop-2.0.mo
+share/locale/tg/LC_MESSAGES/libgtop-2.0.mo
 share/locale/th/LC_MESSAGES/libgtop-2.0.mo
 share/locale/tr/LC_MESSAGES/libgtop-2.0.mo
+share/locale/ug/LC_MESSAGES/libgtop-2.0.mo
 share/locale/uk/LC_MESSAGES/libgtop-2.0.mo
 share/locale/vi/LC_MESSAGES/libgtop-2.0.mo
 share/locale/xh/LC_MESSAGES/libgtop-2.0.mo
 share/locale/zh_CN/LC_MESSAGES/libgtop-2.0.mo
 share/locale/zh_HK/LC_MESSAGES/libgtop-2.0.mo
 share/locale/zh_TW/LC_MESSAGES/libgtop-2.0.mo
-@dirrm %%DOCSDIR%%
-@dirrm include/libgtop-2.0/glibtop
-@dirrm include/libgtop-2.0
-@dirrmtry share/locale/zh_HK/LC_MESSAGES
-@dirrmtry share/locale/zh_HK
-@dirrmtry share/locale/xh/LC_MESSAGES
-@dirrmtry share/locale/xh
-@dirrmtry share/locale/te/LC_MESSAGES
-@dirrmtry share/locale/te
-@dirrmtry share/locale/sr@latin/LC_MESSAGES
-@dirrmtry share/locale/sr@latin
-@dirrmtry share/locale/rw/LC_MESSAGES
-@dirrmtry share/locale/rw
-@dirrmtry share/locale/oc/LC_MESSAGES
-@dirrmtry share/locale/oc
-@dirrmtry share/locale/mr/LC_MESSAGES
-@dirrmtry share/locale/mr
-@dirrmtry share/locale/mi/LC_MESSAGES
-@dirrmtry share/locale/mi
-@dirrmtry share/locale/mg/LC_MESSAGES
-@dirrmtry share/locale/mg
-@dirrmtry share/locale/mai/LC_MESSAGES
-@dirrmtry share/locale/mai
-@dirrmtry share/locale/la/LC_MESSAGES
-@dirrmtry share/locale/la
-@dirrmtry share/locale/ky/LC_MESSAGES
-@dirrmtry share/locale/ky
-@dirrmtry share/locale/ku/LC_MESSAGES
-@dirrmtry share/locale/ku
-@dirrmtry share/locale/en@shaw/LC_MESSAGES
-@dirrmtry share/locale/en@shaw
-@dirrmtry share/locale/dz/LC_MESSAGES
-@dirrmtry share/locale/dz
-@dirrmtry share/locale/ca@valencia/LC_MESSAGES
-@dirrmtry share/locale/ca@valencia
-@dirrmtry share/locale/bn_IN/LC_MESSAGES
-@dirrmtry share/locale/bn_IN
-@dirrmtry share/locale/ast/LC_MESSAGES
-@dirrmtry share/locale/ast
-@dirrmtry share/locale/as/LC_MESSAGES
-@dirrmtry share/locale/as
