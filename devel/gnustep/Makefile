@@ -14,9 +14,13 @@ LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 
 NO_BUILD=	yes
-NO_INSTALL=	yes
+#NO_INSTALL=	yes
 
 USES=		gnustep
 USE_GNUSTEP=	back gui base
+
+do-install:
+	${MKDIR} ${PREFIX}/share/gnustep
+	${TOUCH} ${PREFIX}/share/gnustep/keep.me
 
 .include <bsd.port.mk>
