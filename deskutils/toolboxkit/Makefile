@@ -8,7 +8,7 @@
 
 PORTNAME=	toolbox
 PORTVERSION=	0.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://ftp.azc.uam.mx/mirrors/gnu/savannah/files/toolbox/Release.pkg/0.8/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -22,9 +22,8 @@ LICENSE=        gpl2
 
 USES=           gnustep
 USE_GNUSTEP=    back build
-USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-WRKSRC=		${WRKDIR}/Toolbox
-USE_GNUSTEP_MAKE_DIRS+=	Toolbox
+WRKSRC=		${WRKDIR}/Toolbox/Toolbox
 
 .include <bsd.port.mk>
