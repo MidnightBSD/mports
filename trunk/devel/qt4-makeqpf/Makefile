@@ -8,12 +8,12 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt qtopia font creator
+
 LICENSE=	gpl3
 
 USE_QT4=	qmake_build moc_build rcc_build uic_build corelib gui
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -37,17 +37,7 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
-
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 4000
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch__tools__makeqpf__qpf2.cpp
-.endif
-
-.if ${ARCH} == "sparc64"
-BROKEN=		does not compile on sparc64
-.endif
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|^TARGET[[:blank:]]*=[[:blank:]]*|TARGET=${PORTNAME}-qt4|g' \
