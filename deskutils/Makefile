@@ -3,7 +3,6 @@
 COMMENT = Things that used to be on the desktop before computers were invented
 
 SUBDIR += appwrapper
-SUBDIR += deskbar-applet
 SUBDIR += drivel
 SUBDIR += etoile-addresseskit
 SUBDIR += etoile-corner
@@ -29,7 +28,6 @@ SUBDIR += gnuwash
 SUBDIR += gtkjj
 SUBDIR += gucharmap
 SUBDIR += gworkspace
-SUBDIR += hamster-applet
 SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
