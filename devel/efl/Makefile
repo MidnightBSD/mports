@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	efl
-PORTVERSION=	1.13.1
+PORTVERSION=	1.15.0
 CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 
@@ -11,8 +11,7 @@ COMMENT=	Enlightenment Foundation Libraries
 LICENSE=	bsd2 lgpl2.1
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libgif.so:${PORTSDIR}/graphics/giflib \
+LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
@@ -22,7 +21,7 @@ LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 
 DIST_SUBDIR=	enlightenment
 GNU_CONFIGURE=	yes
-USES=		autoreconf compiler:c++11-lib gettext-tools gmake libtool \
+USES=		autoreconf compiler:c++11-lib gettext-tools gmake jpeg libtool \
 		pathfix pkgconfig shared-mime-info tar:xz
 USE_XORG=	x11 xcursor xcomposite xdamage xext xinerama xp xrandr xtst xscrnsaver
 USE_LDCONFIG=	yes
