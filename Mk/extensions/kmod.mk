@@ -11,9 +11,9 @@
 .if !defined(_INCLUDE_USES_KMOD_MK)
 _INCLUDE_USES_KMOD_MK=	yes
 
-_USES_POST=	kmod
+_USES_POST+=	kmod
 
-.if defined(kmod_ARGS)
+.if !empty(kmod_ARGS)
 IGNORE=	USES=kmod takes no arguments
 .endif
 
@@ -23,18 +23,16 @@ IGNORE=	requires kernel source files in ${SRC_BASE}
 
 CATEGORIES+=	kld
 
-SSP_UNSAFE=	kernel module does not support SSP
+SSP_UNSAFE=	kernel module supports SSP natively
 
 KMODDIR?=	/boot/modules
 .if ${KMODDIR} == /boot/kernel
 KMODDIR=	/boot/modules
 .endif
 PLIST_SUB+=	KMODDIR="${KMODDIR:C,^/,,}"
-MAKE_ENV+=	KMODDIR="${KMODDIR}" SYSDIR="${SRC_BASE}/sys"
-.if !defined(NO_STAGE)
-MAKE_ENV+=	NO_XREF=yes
-.endif
+MAKE_ENV+=	KMODDIR="${KMODDIR}" SYSDIR="${SRC_BASE}/sys" NO_XREF=yes
 
+STRIP_CMD+=	--strip-debug # do not strip kernel symbols
 .endif
 
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_KMOD_POST_MK)
