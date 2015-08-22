@@ -10,21 +10,20 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphics library for GNOME
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USES+=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_XORG=	x11
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack libglade2 libartlgpl2 ltverhack referencehack
+USE_GNOME=	intltool libglade2 libartlgpl2 referencehack
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--enable-glade \
 		--disable-gtk-doc
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
 
