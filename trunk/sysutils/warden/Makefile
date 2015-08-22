@@ -2,6 +2,7 @@
 
 PORTNAME=	warden
 PORTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.pcbsd.org/pub/software/ \
 		http://www.pcbsd.org/~kris/software/
@@ -17,6 +18,8 @@ WRKSRC=		${WRKDIR}/warden
 
 USE_QT4=	corelib gui qmake_build moc_build rcc_build uic_build
 HAS_CONFIGURE=	yes
+
+DESTDIRNAME=	INSTALL_ROOT
 
 QMAKE_PRO=	warden.pro
 QMAKE_ARGS=	-unix -recursive ${QMAKE_PRO}
@@ -34,6 +37,5 @@ post-patch:
 do-configure:
 	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
 		${QMAKE} -unix CONFIG+="configure" ${QMAKE_PRO}
-
 
 .include <bsd.port.mk>
