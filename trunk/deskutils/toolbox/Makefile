@@ -14,15 +14,14 @@ COMMENT=	Collection of tools for GNUstep
 
 LICENSE=	gpl2
 
+BUILD_DEPENDS+=	toolboxkit>0:${PORTSDIR}/deskutils/toolboxkit
+
 USES=           gnustep
 USE_GNUSTEP=    back build
 USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LOCAL_LIBS+=	Toolbox:${TOOLBOXKIT_PORT}
 
 WRKSRC=		${WRKDIR}/Toolbox
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
-
-TOOLBOXKIT_PORT?=	deskutils/toolboxkit
 
 post-patch:
 	${REINPLACE_CMD} -e 's| Toolbox ||' ${WRKSRC}/GNUmakefile
