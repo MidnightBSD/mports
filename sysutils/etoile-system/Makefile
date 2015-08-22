@@ -8,7 +8,7 @@
 
 PORTNAME=	system
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=   3
+PORTREVISION=   4
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -18,12 +18,10 @@ DISTNAME=	etoile-0.2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project System Tool
 
-LIB_DEPENDS=    dbus:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=    libdbus.so:${PORTSDIR}/devel/dbus
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 #MAKE_ENV+=      GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
