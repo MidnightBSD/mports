@@ -4,24 +4,27 @@ PORTNAME=	clutter-gtk
 PORTVERSION=	0.10.8
 PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	GNOME \
-		http://source.clutter-project.org/sources/${PORTNAME}/${PORTVERSION:R}/
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK+ Integration library for Clutter
 LICENSE=	lgpl
 
-LIB_DEPENDS=	clutter-glx-1.0:${PORTSDIR}/graphics/clutter
+LIB_DEPENDS=	libclutter-glx-1.0.so:${PORTSDIR}/graphics/clutter
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack gtk20 ltverhack gnomeprefix
+PORTSCOUT=	ignore:1
+
+USE_GL=		gl
+USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
+GNU_CONFIGURE=	yes
+USE_GNOME=	gtk20 gnomeprefix
 USE_XORG=	xp x11
 USE_LDCONFIG=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+post-patch:
+	@${REINPLACE_CMD} '/SUBDIRS =/s/examples//' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
