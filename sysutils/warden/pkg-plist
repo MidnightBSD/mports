@@ -1,9 +1,10 @@
-bin/warden
-etc/rc.d/wardenrc
+@dir warden
+@exec ln -fs /usr/local/warden/bin/warden /usr/local/bin/warden
+@exec ln -fs /usr/mports /usr/local/warden/ports
+@exec ln -fs /usr/local/warden/scripts/rc.d/wardenrc /usr/local/etc/rc.d/wardenrc
 warden/bin/warden
 warden/bin/warden-gui
 warden/conf/warden.conf
-warden/ports
 warden/scripts/warden.sh
 warden/scripts/init-warden.sh
 warden/scripts/managejails.sh
