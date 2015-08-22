@@ -1,185 +1,93 @@
 # $MidnightBSD$
 
 PORTNAME=	gnustep-app
-PORTVERSION=	1.19.1
-PORTREVISION=	4
+PORTVERSION=	2.0.0
+PORTREVISION=	0
 CATEGORIES=	x11 gnustep
-MASTER_SITES=	# empty
-DISTFILES=	# empty
-EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metaport for GNUstep applications
 
 LICENSE=	agg
 
-NO_BUILD=	yes
-NO_INSTALL=	yes
-USES=         gnustep
-USE_GNUSTEP=  back base gui
-USE_GNUSTEP_PREFIX=	yes
+USES=		gnustep
+USE_GNUSTEP=	back base gui
 
-USE_GNUSTEP_SYSTEM_LIBS+=	\
-	ScriptKit:lang/gnustep-guile \
-	Renaissance:x11-toolkits/renaissance \
-	PreferencePanes:deskutils/preferencepanes \
-	TrackerKit:deskutils/etoile-trackerkit \
-	ExtendedWorkspace:deskutils/etoile-extendedworkspacekit \
-	ServicesBarKit:deskutils/etoile-servicesbarkit \
-	XWindowServerKit:x11/etoile-xwindowserverkit \
-	WorkspaceCommKit:sysutils/etoile-system \
+NO_BUILD=       yes
+NO_INSTALL=     yes
 
-USE_GNUSTEP_LOCAL_LIBS+=	\
-	Pantomime:mail/pantomime \
-	Addresses:mail/addresses \
-	SlideShow:graphics/gnustep-slideshowkit \
-	netclasses:net/netclasses \
-	EOInterface:databases/gdl2 \
-	WizardKit:devel/wizardkit \
-	HighlighterKit:devel/highlighterkit \
-	Performance:devel/performance \
-	SQLClient:databases/sqlclient \
-	WebServer:www/webserver \
-	StepTalk:lang/steptalk \
-	MathArray:math/matharray \
-	ObjcUnit:devel/objcunit \
-	GSKrab:x11/gskrab \
-	UnitKit:devel/etoile-unitkit \
-	BookmarkKit:www/etoile-bookmarkkit \
-	IconKit:x11-themes/etoile-iconkit \
-	RSSKit:www/etoile-rsskit \
-	PopplerKit:graphics/popplerkit \
-	Toolbox:deskutils/toolboxkit \
-	Tryst:net/tryst \
-	OgreKit:textproc/etoile-ogrekit \
-	LuceneKit:textproc/etoile-lucenekit \
-	CollectionKit:devel/etoile-collectionkit \
-	EtoileFoundation:devel/etoile-foundation \
-	PaneKit:deskutils/etoile-panekit \
-	SystemConfig:deskutils/etoile-systemconfig \
-	MultimediaKit:multimedia/etoile-multimediakit \
-	EtoileSerialize:devel/etoile-serialize \
-	CoreObject:devel/etoile-coreobject \
-	EtoileUI:deskutils/etoile-ui \
-	DistributedView:deskutils/etoile-distributedview \
-	InspectorKit:deskutils/etoile-inspectorkit \
-	OPMLKit:textproc/etoile-opmlkit \
-	ScriptKit:lang/etoile-scriptkit \
-	MediaKit:multimedia/etoile-mediakit \
-	LanguageKit:lang/etoile-languagekit \
-	SmalltalkSupport:lang/etoile-smalltalkkit \
-	WebServices:www/webservices \
-
-USE_GNUSTEP_SYSTEM_BUNDLES+=	\
-	EtoileMenus:x11-themes/etoile-etoilemenus \
-	EtoileBehavior:sysutils/etoile-behavior \
-
-USE_GNUSTEP_LOCAL_BUNDLES+=	\
-	Cddb:audio/cddb-bundle	\
-
-USE_GNUSTEP_LOCAL_BURNS+=	\
-
-USE_GNUSTEP_SYSTEM_THEMES+=	\
-	Camaelon:x11-themes/etoile-camaelon \
-
-USE_GNUSTEP_LOCAL_THEMES+=	\
-	WildMenus:x11-themes/etoile-wildmenus \
-
-USE_GNUSTEP_LOCAL_MENULETS+=	\
-	PowerMenulet:sysutils/etoile-powermenulet \
-	ServiceMenulet:deskutils/etoile-servicemenulet \
-
-USE_GNUSTEP_LOCAL_ASTS+=	\
-	CommentToLog:lang/etoile-lkplugins \
-
-USE_GNUSTEP_SYSTEM_APPS+=	\
-	Gorm:devel/gorm \
-	ProjectCenter:devel/projectcenter \
-	Preferences:deskutils/preferences.app \
-	GWorkspace:deskutils/gworkspace \
-	TextEdit:editors/textedit \
-	Terminal:x11/terminal.app \
-	GSPdf:print/gspdf \
-	Azalea:x11-wm/etoile-azalea \
-	AZDock:x11-wm/etoile-azdock \
-	AZBackground:x11-themes/etoile-azbackground \
-	AZSwitch:x11-wm/etoile-azswitch \
-	Login:x11-wm/etoile-login \
-	EtoileMenuServer:deskutils/etoile-menuserver \
-
-USE_GNUSTEP_LOCAL_APPS+=	\
-	GNUMail:mail/gnumail \
-	EasyDiff:textproc/easydiff \
-	Ink:misc/gnustep-examples \
-	GSCommander:shells/gscommander \
-	ImageViewer:graphics/imageviewer \
-	SlideShow:graphics/gnustep-slideshow \
-	Preview:graphics/preview \
-	oolite:games/oolite \
-	TimeMon:sysutils/timemon \
-	Gridlock:games/gridlock \
-	PRICE:graphics/price \
-	EdenMath:math/edenmath \
-	TalkSoup:irc/talksoup \
-	Zipper:archivers/zipper \
-	Ladder:games/gnustep-ladder \
-	GTAMSAnalyzer:science/gtamsanalyzer \
-	Paje:science/paje \
-	AClock:x11-clocks/aclock \
-	PhotoClip:graphics/photoclip \
-	ProjectManager:devel/projectmanager \
-	Ticker:www/gnustep-ticker \
-	NoteBook:deskutils/gnustep-notebook \
-	Duncan:textproc/duncan \
-	Jishyo:misc/jishyo \
-	InnerSpace:x11/innerspace \
-	FTP:ftp/gnustep-ftp \
-	DictionaryReader:deskutils/etoile-dictionaryreader \
-	batmon:sysutils/batmon \
-	RemoteDesk:net/remotedesk \
-	GNUWash:deskutils/gnuwash \
-	Poe:multimedia/poe \
-	CDPlayer:audio/gnustep-cdplayer \
-	Burn:sysutils/burn \
-	GScheme:lang/gscheme \
-	Mplayer:multimedia/gnustep-mplayer \
-	NeXTGo:games/nextgo \
-	iTerm:x11/etoile-iterm \
-	Installer:sysutils/etoile-installer \
-	Hardware:deskutils/etoile-hardware \
-	LookAndBehavior:deskutils/etoile-lookandbehavior \
-	FreeTar:archivers/freetar \
-	CodeEditor:editors/codeeditor \
-	Localize:textproc/localize \
-	SVGViewer:graphics/svgviewer \
-	Vindaloo:graphics/vindaloo \
-	AppWrapper:deskutils/appwrapper \
-	Pixen:graphics/pixen \
-	LuserNET:news/lusernet \
-	Popup:textproc/popup \
-	Toolbox:deskutils/toolbox \
-	Fortunate:games/fortunate \
-	TBrowser:net/tryst-examples \
-	Typewriter:editors/etoile-typewriter \
-	Babbler:multimedia/etoile-babbler \
-	Mollusk:www/etoile-mollusk \
-	FontManager:x11-fm/etoile-fontmanager \
-	ScriptServices:deskutils/etoile-scriptservices \
-	Melodie:audio/etoile-melodie \
-	StepChat:net-im/etoile-stepchat \
-	LaternaMagica:graphics/laternamagica \
-
-USE_GNUSTEP_SYSTEM_TOOLS+=	\
-	Idle:x11/etoile-idle \
-	Corner:deskutils/etoile-corner \
-
-USE_GNUSTEP_LOCAL_TOOLS+=	\
-	zillion:net/zillion \
-	adtool:mail/addresses-goodies \
-	ioobjc:lang/etoile-io \
-	edlc:lang/etoile-compiler \
-
-USE_GNUSTEP_LOCAL_SERVICES+=	\
-	LaTeX:textproc/latex-service \
+RUN_DEPENDS=	aclock>0:${PORTSDIR}/x11-clocks/aclock \
+		addresses>0:${PORTSDIR}/mail/addresses \
+		addresses-goodies>0:${PORTSDIR}/mail/addresses-goodies \
+		affiche>0:${PORTSDIR}/deskutils/affiche \
+		appwrapper>0:${PORTSDIR}/deskutils/appwrapper \
+		batmon>0:${PORTSDIR}/sysutils/batmon \
+		biococoa>0:${PORTSDIR}/biology/biococoa \
+		camera>0:${PORTSDIR}/graphics/camera \
+		camerakit>0:${PORTSDIR}/graphics/camerakit \
+		cartotheque>0:${PORTSDIR}/deskutils/cartotheque \
+		cddb-bundle>0:${PORTSDIR}/audio/cddb-bundle \
+		gnustep-cdplayer>0:${PORTSDIR}/audio/gnustep-cdplayer \
+		cenon>0:${PORTSDIR}/graphics/cenon \
+		displaycalibrator>0:${PORTSDIR}/deskutils/displaycalibrator \
+		duncan>0:${PORTSDIR}/textproc/duncan \
+		easydiff>0:${PORTSDIR}/textproc/easydiff \
+		edenmath>0:${PORTSDIR}/math/edenmath \
+		expense>0:${PORTSDIR}/finance/expense \
+		fortunate>0:${PORTSDIR}/games/fortunate \
+		fortytwo-bdb>0:${PORTSDIR}/databases/fortytwo-bdb \
+		fortytwo-encore>0:${PORTSDIR}/devel/fortytwo-encore \
+		fortytwo>0:${PORTSDIR}/graphics/fortytwo \
+		freetar>0:${PORTSDIR}/archivers/freetar \
+		gmastermind>0:${PORTSDIR}/games/gmastermind \
+		gmines>0:${PORTSDIR}/games/gmines \
+		gnumail>0:${PORTSDIR}/mail/gnumail \
+		gnustep-ftp>0:${PORTSDIR}/ftp/gnustep-ftp \
+		gnustep-ladder>0:${PORTSDIR}/games/gnustep-ladder \
+		gnustep-slideshowkit>0:${PORTSDIR}/graphics/gnustep-slideshowkit \
+		gnustep-slideshow>0:${PORTSDIR}/graphics/gnustep-slideshow \
+		gnustep-sudoku>0:${PORTSDIR}/games/gnustep-sudoku \
+		gnustep-wrapper>0:${PORTSDIR}/deskutils/gnustep-wrapper \
+		gorm>0:${PORTSDIR}/devel/gorm \
+		grubik>0:${PORTSDIR}/games/grubik \
+		gscheme>0:${PORTSDIR}/lang/gscheme \
+		gshisen>0:${PORTSDIR}/games/gshisen \
+		gskrab>0:${PORTSDIR}/x11/gskrab \
+		gspdf>0:${PORTSDIR}/print/gspdf \
+		gtamsanalyzer>0:${PORTSDIR}/science/gtamsanalyzer \
+		gworkspace-gwmetadata>0:${PORTSDIR}/deskutils/gworkspace-gwmetadata \
+		gworkspace>0:${PORTSDIR}/deskutils/gworkspace \
+		helpviewer>0:${PORTSDIR}/deskutils/helpviewer \
+		highlighterkit>0:${PORTSDIR}/devel/highlighterkit \
+		imageviewer>0:${PORTSDIR}/graphics/imageviewer \
+		innerspace>0:${PORTSDIR}/x11/innerspace \
+		jigsaw>0:${PORTSDIR}/games/jigsaw \
+		ja-jishyo>0:${PORTSDIR}/japanese/jishyo \
+		lapispuzzle>0:${PORTSDIR}/games/lapispuzzle \
+		laternamagica>0:${PORTSDIR}/graphics/laternamagica \
+		latex-service>0:${PORTSDIR}/textproc/latex-service \
+		localize>0:${PORTSDIR}/textproc/localize \
+		lusernet>0:${PORTSDIR}/news/lusernet \
+		mpdcon>0:${PORTSDIR}/audio/mpdcon \
+		nextgo>0:${PORTSDIR}/games/nextgo \
+		gnustep-notebook>0:${PORTSDIR}/deskutils/gnustep-notebook \
+		paje>0:${PORTSDIR}/science/paje \
+		pantomime>0:${PORTSDIR}/mail/pantomime \
+		pixen>0:${PORTSDIR}/graphics/pixen \
+		plopfolio>0:${PORTSDIR}/deskutils/plopfolio \
+		poe>0:${PORTSDIR}/multimedia/poe \
+		popup>0:${PORTSDIR}/textproc/popup \
+		gnustep-preview>0:${PORTSDIR}/graphics/preview \
+		price>0:${PORTSDIR}/graphics/price \
+		remotedesk>0:${PORTSDIR}/net/remotedesk \
+		simpleagenda>0:${PORTSDIR}/deskutils/simpleagenda \
+		systempreferences>0:${PORTSDIR}/deskutils/systempreferences \
+		terminal.app>0:${PORTSDIR}/x11/terminal.app \
+		timemon>0:${PORTSDIR}/sysutils/timemon \
+		toolboxkit>0:${PORTSDIR}/deskutils/toolboxkit \
+		waiho>0:${PORTSDIR}/ftp/waiho \
+		wizardkit>0:${PORTSDIR}/devel/wizardkit \
+		zillion>0:${PORTSDIR}/net/zillion \
+		zipper>0:${PORTSDIR}/archivers/zipper
 
 .include <bsd.port.mk>
