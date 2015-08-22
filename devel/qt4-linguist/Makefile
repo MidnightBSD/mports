@@ -3,7 +3,8 @@
 
 PORTNAME=	linguist
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	devel
+PORTREVISION=	1
+CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,8 +13,7 @@ COMMENT=	Qt localisation tool
 LICENSE=	gpl3
 
 USE_QT4=	qmake_build designer_build moc_build rcc_build uic_build \
-		assistant_run gui network xml
-QT_NONSTANDARD=	yes
+		assistant_run gui linguisttools_run network xml
 QT_DIST=	yes
 
 HAS_CONFIGURE=	yes
@@ -23,9 +23,10 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
-DESKTOP_ENTRIES="Qt Linguist" "${COMMENT}" \
+DESKTOP_ENTRIES="Qt 4 Linguist" "" \
 		"${PREFIX}/share/pixmaps/linguist-qt4.png" \
-		"${PREFIX}/bin/linguist-qt4" "Development;Qt;" true
+		"${PREFIX}/${QT_BINDIR_REL}/linguist${_QT_BINSUFX}" \
+		"Development;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/dbus src/multimedia src/network src/opengl \
@@ -42,17 +43,15 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
-
 pre-configure:
 	${REINPLACE_CMD} -E -e 's|^TARGET[[:blank:]]*=[[:blank:]]*([a-z]+)|TARGET=\1-qt4|g' \
 		${BUILD_WRKSRC}/${PORTNAME}.pro ${BUILD_WRKSRC}/${PORTNAME}/${PORTNAME}.pro \
 		${BUILD_WRKSRC}/lrelease/lrelease.pro ${BUILD_WRKSRC}/lupdate/lupdate.pro
 	${MKDIR} ${WRKSRC}/mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
-	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
+	${LN} -sf ${QMAKE} ${WRKSRC}/bin/qmake
+	${LN} -sf ${MOC} ${WRKSRC}/bin/moc
+	${LN} -sf ${UIC} ${WRKSRC}/bin/uic
+	${LN} -sf ${RCC} ${WRKSRC}/bin/rcc
 
 post-install:
 	${INSTALL_DATA} ${BUILD_WRKSRC}/linguist/images/icons/linguist-128-32.png \
