@@ -13,8 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphical interface to git repositories
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USE_QT4=	corelib gui moc_build qmake_build rcc_build uic_build
+USES=		qmake tar:bzip2
+USE_QT4=	corelib gui moc_build rcc_build uic_build
 MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
