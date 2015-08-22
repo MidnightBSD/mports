@@ -179,16 +179,6 @@ pre-install:
 
 post-install:
 #
-# XXX: hack to strip ruby binary. Ruby uses its own install script that seems
-# bogus to hack.
-#
-.if defined(STRIP) && ${STRIP} == -s && ! ${PORT_OPTIONS:MDEBUG}
-	${STRIP_CMD} ${PREFIX}/bin/${RUBY_NAME}
-	${STRIP_CMD} ${PREFIX}/lib/libruby${RUBY_SHLIBVER}.so.${RUBY_SHLIBVER}
-	${FIND} ${RUBY_ARCHLIBDIR} -type f -name '*\.so' -exec ${STRIP_CMD} {} \;
-.endif
-
-#
 # Link just installed "ruby" to "ruby22", etc.
 #
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
