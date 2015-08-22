@@ -11,7 +11,7 @@ COMMENT=	Courier SMTP IMAP POP3 HTTP mail server suite
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base \
 		${LOCALBASE}/share/sysconftool/sysconftool:${PORTSDIR}/devel/sysconftool \
 		${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support \
@@ -57,16 +57,14 @@ CALENDIR=	/var/spool/calendar
 MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
-USE_AUTOTOOLS=	libtool aclocal
-USE_GCC=	any
-USE_FAM=	yes
-USES=		gettext gmake tar:bzip2
+USES=		fam gettext gmake libtool perl5 pkgconfig tar:bzip2
 USE_OPENSSL=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
 
 USE_RC_SUBR=	courier
 
+GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV:=	${CONFIGURE_ENV}
