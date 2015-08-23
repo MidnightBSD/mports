@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	totem-pl-parser
-PORTVERSION=	2.32.3
+PORTVERSION=	3.10.5
 PORTREVISION=	1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
@@ -11,30 +11,28 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject-based library to parse a host of playlist formats
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	gmime-2.4:${PORTSDIR}/mail/gmime24 \
-		soup-gnome-2.4:${PORTSDIR}/devel/libsoup-gnome
-RUN_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection
+LIB_DEPENDS=	libgmime-2.6.so:${PORTSDIR}/mail/gmime26 \
+		libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USES=		pathfix gettext
-USE_GNOME=	gnomeprefix glib20 libxml2 intlhack ltverhack
+USES=		gettext gmake libarchive libtool pathfix pkgconfig tar:xz
+USE_GNOME=	glib20 gnomeprefix intltool introspection:build \
+		libxml2
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-libarchive
+INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	QUVI
-QUVI_DESC=	Enable flash media stream URL support
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	GCRYPT QUVI
+OPTIONS_DEFAULT=GCRYPT QUVI
+QUVI_DESC=	Flash media stream URL support
+QUVI_CONFIGURE_ENABLE=	quvi
+QUVI_LIB_DEPENDS=	libquvi-0.9.so:${PORTSDIR}/multimedia/libquvi09
+GCRYPT_LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+GCRYPT_CONFIGURE_ENABLE=	libgcrypt
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MQUVI}
-LIB_DEPENDS+=	quvi:${PORTSDIR}/multimedia/libquvi
-CONFIGURE_ARGS+=--enable-enable-quvi
-.else
-CONFIGURE_ARGS+=--enable-enable-quvi=no
-.endif
+post-patch:
+	@${REINPLACE_CMD} -e 's|pkg_modules libarchive"|pkg_modules"|g' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
