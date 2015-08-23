@@ -15,22 +15,21 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nspr>=4.8:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		cairo.2:${PORTSDIR}/graphics/cairo \
-		nspr4:${PORTSDIR}/devel/nspr \
-		freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libcairo.so:${PORTSDIR}/graphics/cairo \
+		libnspr4.so:${PORTSDIR}/devel/nspr \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	firefox-[0-9]* browser-2* browser-3.0.[0-9]*
 
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
+USES=		iconv desktop-file-utils
 USE_AUTOTOOLS=	autoconf213:env
-USE_GNOME+=	gtk20 libidl desktopfileutils gnomelibs
-USE_ICONV=	yes
+USE_GNOME+=	gtk20 libidl
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XORG=	printproto sm xt xi xext x11 xinerama ice xproto
-MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
