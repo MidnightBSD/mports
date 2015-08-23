@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	ctorrent
-PORTVERSION=    3.3.2
-PORTREVISION=	1
+PORTVERSION=	3.3.2
+PORTREVISION=	2
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://www.rahul.net/dholmes/ctorrent/
 DISTNAME=	${PORTNAME}-dnh${PORTVERSION}
@@ -16,10 +16,13 @@ GNU_CONFIGURE=	yes
 #WRKSRC=		${WRKDIR}/${PORTNAME}-dnh${PATCHLEVEL}
 
 PLIST_FILES=	bin/ctorrent
-
 PORTDOCS=	README-DNH.TXT UserGuide
 
-.if !defined(NOPORTDOCS)
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
