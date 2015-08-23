@@ -8,24 +8,22 @@
 
 PORTNAME=	hot-babe
 PORTVERSION=	0.2.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	http://dindinx.net/hotbabe/downloads/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	novel
+		FREEBSD_LOCAL/novel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small utility which displays the system activity in a very special way
 LICENSE=	artistic
 
-USE_BZIP2=	yes
-USE_X_PREFIX=	yes
+USES=		pkgconfig tar:bzip2
 MAKE_ARGS+=	PREFIX="${PREFIX}" CC="${CC}"
 USE_GNOME=	gtk20
 
-MAN1=	hot-babe.1
-
 PORTDOCS=	ChangeLog NEWS TODO LICENSE CONTRIBUTORS copyright config.example
+
+OPTIONS_DEFINE=	DOCS
 
 pre-everything::
 	@${ECHO_MSG} "Warning! This port contains some adults only content."
@@ -33,11 +31,9 @@ pre-everything::
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/hot-babe.1 ${PREFIX}/man/man1
-.ifndef (NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
 	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
