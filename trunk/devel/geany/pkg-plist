@@ -1,4 +1,5 @@
 bin/geany
+include/geany/build.h
 include/geany/document.h
 include/geany/editor.h
 include/geany/encodings.h
@@ -6,6 +7,7 @@ include/geany/filetypes.h
 include/geany/geany.h
 include/geany/geanyfunctions.h
 include/geany/geanyplugin.h
+include/geany/gtkcompat.h
 include/geany/highlighting.h
 include/geany/keybindings.h
 include/geany/msgwindow.h
@@ -20,6 +22,7 @@ include/geany/search.h
 include/geany/stash.h
 include/geany/support.h
 include/geany/tagmanager/tm_file_entry.h
+include/geany/tagmanager/tm_parser.h
 include/geany/tagmanager/tm_project.h
 include/geany/tagmanager/tm_source_file.h
 include/geany/tagmanager/tm_symbol.h
@@ -31,19 +34,14 @@ include/geany/templates.h
 include/geany/toolbar.h
 include/geany/ui_utils.h
 include/geany/utils.h
-lib/geany/classbuilder.la
 lib/geany/classbuilder.so
-lib/geany/export.la
 lib/geany/export.so
-lib/geany/filebrowser.la
 lib/geany/filebrowser.so
-lib/geany/htmlchars.la
 lib/geany/htmlchars.so
-lib/geany/saveactions.la
 lib/geany/saveactions.so
-lib/geany/splitwindow.la
 lib/geany/splitwindow.so
 libdata/pkgconfig/geany.pc
+%%PORTDOCS%%man/man1/geany.1.gz
 share/applications/geany.desktop
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
@@ -80,13 +78,20 @@ share/applications/geany.desktop
 %%DATADIR%%/c99.tags
 %%DATADIR%%/colorschemes/alt.conf
 %%DATADIR%%/filetype_extensions.conf
+%%DATADIR%%/filetypes.CUDA.conf
+%%DATADIR%%/filetypes.Clojure.conf
 %%DATADIR%%/filetypes.Cython.conf
 %%DATADIR%%/filetypes.Genie.conf
+%%DATADIR%%/filetypes.Go.conf
+%%DATADIR%%/filetypes.Graphviz.conf
 %%DATADIR%%/filetypes.Scala.conf
+%%DATADIR%%/filetypes.abaqus
 %%DATADIR%%/filetypes.abc
 %%DATADIR%%/filetypes.actionscript
 %%DATADIR%%/filetypes.ada
+%%DATADIR%%/filetypes.asciidoc
 %%DATADIR%%/filetypes.asm
+%%DATADIR%%/filetypes.batch
 %%DATADIR%%/filetypes.c
 %%DATADIR%%/filetypes.caml
 %%DATADIR%%/filetypes.cmake
@@ -118,14 +123,17 @@ share/applications/geany.desktop
 %%DATADIR%%/filetypes.markdown
 %%DATADIR%%/filetypes.matlab
 %%DATADIR%%/filetypes.nsis
+%%DATADIR%%/filetypes.objectivec
 %%DATADIR%%/filetypes.pascal
 %%DATADIR%%/filetypes.perl
 %%DATADIR%%/filetypes.php
 %%DATADIR%%/filetypes.po
+%%DATADIR%%/filetypes.powershell
 %%DATADIR%%/filetypes.python
 %%DATADIR%%/filetypes.r
 %%DATADIR%%/filetypes.restructuredtext
 %%DATADIR%%/filetypes.ruby
+%%DATADIR%%/filetypes.rust
 %%DATADIR%%/filetypes.sh
 %%DATADIR%%/filetypes.sql
 %%DATADIR%%/filetypes.tcl
@@ -135,6 +143,9 @@ share/applications/geany.desktop
 %%DATADIR%%/filetypes.vhdl
 %%DATADIR%%/filetypes.xml
 %%DATADIR%%/filetypes.yaml
+%%DATADIR%%/geany.css
+%%DATADIR%%/geany.glade
+%%DATADIR%%/geany.gtkrc
 %%DATADIR%%/html_entities.tags
 %%DATADIR%%/pascal.tags
 %%DATADIR%%/php.tags
@@ -153,10 +164,19 @@ share/applications/geany.desktop
 %%DATADIR%%/templates/files/main.java
 %%DATADIR%%/templates/files/main.py
 %%DATADIR%%/templates/files/main.vala
+%%DATADIR%%/templates/files/module.erl
 %%DATADIR%%/templates/files/program.pas
 %%DATADIR%%/templates/function
 %%DATADIR%%/templates/gpl
 %%DATADIR%%/ui_toolbar.xml
+share/icons/Tango/16x16/actions/geany-save-all.png
+share/icons/Tango/24x24/actions/geany-save-all.png
+share/icons/Tango/32x32/actions/geany-save-all.png
+share/icons/Tango/48x48/actions/geany-save-all.png
+share/icons/Tango/scalable/actions/geany-save-all.svg
+share/icons/hicolor/16x16/actions/geany-build.png
+share/icons/hicolor/16x16/actions/geany-close-all.png
+share/icons/hicolor/16x16/actions/geany-save-all.png
 share/icons/hicolor/16x16/apps/classviewer-class.png
 share/icons/hicolor/16x16/apps/classviewer-macro.png
 share/icons/hicolor/16x16/apps/classviewer-member.png
@@ -166,8 +186,21 @@ share/icons/hicolor/16x16/apps/classviewer-other.png
 share/icons/hicolor/16x16/apps/classviewer-struct.png
 share/icons/hicolor/16x16/apps/classviewer-var.png
 share/icons/hicolor/16x16/apps/geany.png
+share/icons/hicolor/24x24/actions/geany-build.png
+share/icons/hicolor/24x24/actions/geany-close-all.png
+share/icons/hicolor/24x24/actions/geany-save-all.png
+share/icons/hicolor/32x32/actions/geany-build.png
+share/icons/hicolor/32x32/actions/geany-close-all.png
+share/icons/hicolor/32x32/actions/geany-save-all.png
+share/icons/hicolor/48x48/actions/geany-build.png
+share/icons/hicolor/48x48/actions/geany-close-all.png
+share/icons/hicolor/48x48/actions/geany-save-all.png
 share/icons/hicolor/48x48/apps/geany.png
+share/icons/hicolor/scalable/actions/geany-build.svg
+share/icons/hicolor/scalable/actions/geany-close-all.svg
+share/icons/hicolor/scalable/actions/geany-save-all.svg
 share/icons/hicolor/scalable/apps/geany.svg
+%%NLS%%share/locale/ar/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/ast/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/be/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/geany.mo
@@ -177,44 +210,36 @@ share/icons/hicolor/scalable/apps/geany.svg
 %%NLS%%share/locale/el/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/en_GB/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/es/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/et/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/eu/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/fa/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/fi/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/gl/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/he/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/hi/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/id/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/it/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/kk/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/lb/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/lt/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/mn/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/nn/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/pt/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/ro/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/geany.mo
+%%NLS%%share/locale/sr/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/tr/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/uk/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/geany.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/geany.mo
-%%NLS%%@dirrmtry share/locale/lb/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/lb
-%%NLS%%@dirrmtry share/locale/kk/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/kk
-%%NLS%%@dirrmtry share/locale/ast/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/ast
-@dirrm %%DATADIR%%/templates/files
-@dirrm %%DATADIR%%/templates
-@dirrm %%DATADIR%%/colorschemes
-@dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html/images
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrmtry share/applications
-@dirrm lib/geany
-@dirrm include/geany/tagmanager
-@dirrm include/geany/scintilla
-@dirrm include/geany

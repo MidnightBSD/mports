@@ -1,64 +1,43 @@
-# New ports collection Makefile for:	geany
-# Date Created:				15 Jan 06
-# Whom:					Remington Lang <MrL0Lz@gmail.com>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/geany/Makefile,v 1.10 2008/06/06 13:21:12 edwin Exp $
-#
 
 PORTNAME=	geany
-PORTVERSION=	0.21
+PORTVERSION=	1.24.1
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A fast and lightweight GTK+ IDE
+COMMENT=	Fast and lightweight GTK+ IDE
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gtk20
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+USE_GNOME=	gtk20 intltool
+USES=		desktop-file-utils gettext-tools \
+		gmake libtool pathfix pkgconfig tar:bzip2
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS=	VTE	"Enable Virtual Terminal Emulation support"	on \
-		NLS	"Enable Native Language support"		on
+OPTIONS_DEFINE=	VTE NLS DOCS
+OPTIONS_DEFAULT=	VTE
+OPTIONS_SUB=	yes
 
-MAN1=		geany.1
+NLS_USES=	gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
 
-.include <bsd.port.pre.mk>
+VTE_DESC=	Embedded virtual terminal
+VTE_CONFIGURE_ENABLE=	vte
+VTE_USE=	GNOME=vte
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if !defined(WITHOUT_VTE)
-USE_GNOME+=	vte
-CONFIGURE_ARGS+=--enable-vte
-.else
-CONFIGURE_ARGS+=--disable-vte
-.endif
+.include <bsd.mport.options.mk>
 
 post-patch:
-.if defined(NOPORTDOCS)
+.if !${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e '/^SUBDIRS/ s|doc||' ${WRKSRC}/Makefile.in
 .endif
-.if defined(WITHOUT_NLS)
+.if !${PORT_OPTIONS:MNLS}
 	@${REINPLACE_CMD} -e '/^SUBDIRS/ s|po||' ${WRKSRC}/Makefile.in
 .endif
 
-post-configure:
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
-		${WRKSRC}/Makefile
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/geany.desktop ${PREFIX}/share/applications/
-	${INSTALL_MAN} ${WRKSRC}/doc/geany.1 ${MAN1PREFIX}/man/man1
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
