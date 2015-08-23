@@ -1,4 +1,5 @@
 bin/transmission-qt
+man/man1/transmission-qt.1.gz
 share/applications/transmission-qt.desktop
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
