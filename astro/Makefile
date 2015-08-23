@@ -4,7 +4,6 @@ COMMENT = Astronomical ports
 
 SUBDIR += boinc-astropulse
 SUBDIR += boinc-setiathome-v7
-SUBDIR += google-earth
 SUBDIR += gpsd
 SUBDIR += libnova
 SUBDIR += luna
