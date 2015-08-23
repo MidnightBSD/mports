@@ -15,7 +15,6 @@ SUBDIR += facile
 SUBDIR += fftw3
 SUBDIR += fftw3-float
 SUBDIR += fftw3-long
-SUBDIR += gcalctool
 SUBDIR += gmm++
 SUBDIR += gmp
 SUBDIR += gnumeric
