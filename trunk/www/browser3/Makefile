@@ -12,25 +12,24 @@ WRKSRC=		${WRKDIR}/mozilla
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		cairo.2:${PORTSDIR}/graphics/cairo \
-		nspr4:${PORTSDIR}/devel/nspr \
-		freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libcairo.so:${PORTSDIR}/graphics/cairo \
+		libnspr4.so:${PORTSDIR}/devel/nspr \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	firefox-[0-9]* browser-2*
 
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
-USE_GNOME+=	gtk20 libidl desktopfileutils
-USE_ICONV=	yes
+USE_GNOME+=	gtk20 libidl
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XORG=	printproto sm xt xi xext x11 xinerama ice xproto
-MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
@@ -44,8 +43,7 @@ CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
 			--host=${ARCH}-portbld-freebsd7.0
 EXTRA_CFLAGS=	-O2
 HAS_CONFIGURE=	yes
-USE_BZIP2=	yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2 desktop-file-utils iconv
 NO_MOZPKGINSTALL=yes
 WANT_PERL=	yes
 GECKO_PLIST_PRE_FILES=	lib/${MOZILLA}/chrome/icons/default/default.xpm
