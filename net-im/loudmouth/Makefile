@@ -2,26 +2,25 @@
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net-im gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight Jabber client library
 
-LICENSE=	lgpl
+LICENSE=	gpl2
 
-LIB_DEPENDS=	idn:${PORTSDIR}/dns/libidn
+LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 
-USES=		pkgconfig gettext
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
+USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	glib20
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack glib20 ltverhack
 CONFIGURE_ARGS=	--disable-gtk-doc
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-Wl,-Bsymbolic -L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFAULT=GNUTLS
 OPTIONS_RADIO=	SSL
@@ -30,7 +29,7 @@ OPTIONS_RADIO_SSL=	GNUTLS OPENSSL
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 .endif
 
