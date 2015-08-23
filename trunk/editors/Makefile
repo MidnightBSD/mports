@@ -22,7 +22,6 @@ SUBDIR += nvi-devel
 SUBDIR += pico-alpine
 SUBDIR += textedit
 SUBDIR += vim
-SUBDIR += vim-lite
 SUBDIR += zile
 
 .include <bsd.port.subdir.mk>
