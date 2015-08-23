@@ -1,33 +1,29 @@
 # $MidnightBSD$
 
 PORTNAME=	libchamplain
-PORTVERSION=	0.8.1
-PORTREVISION=	2
+PORTVERSION=	0.12.10
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A C library aimed to provide a Gtk+ widget to display rasterized maps and markers
+COMMENT=	C library aimed to provide a Gtk+ widget to display rasterized maps and markers
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	clutter-gtk-0.10:${PORTSDIR}/graphics/clutter-gtk \
-		soup-gnome-2.4:${PORTSDIR}/devel/libsoup-gnome
-RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+LIB_DEPENDS=	libclutter-gtk-1.0.so:${PORTSDIR}/graphics/clutter-gtk3 \
+		libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome
 
-USE_BZIP2=	yes
-USES=		pathfix pkgconfig
-USE_GNOME=	gnomeprefix gtk20 ltverhack:1
-USE_SQLITE=	3
-USE_AUTOTOOLS=	libtool
+USES=		gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	gtk30 introspection:build
 USE_GL=		gl
-USE_GMAKE=	yes
+USE_SQLITE=	3
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--enable-gtk-doc-html=no
+INSTALL_TARGET=	install-strip
 
-PLIST_SUB=	VERSION=0.8
+PLIST_SUB=	VERSION=0.12
 
 .include <bsd.port.mk>
