@@ -2,9 +2,9 @@
 
 PORTNAME=	xfce4-battery-plugin
 PORTVERSION=	1.0.5
+PORTREVISION=	1
 CATEGORIES=	sysutils xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE/src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,24 +12,18 @@ COMMENT=	Battery monitor panel plugin for Xfce4
 
 LICENSE=	gpl2
 
+SSP_UNSAFE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gtk20 glib20 intltool intlhack
-USE_XFCE=	configenv libmenu libutil panel
 INSTALLS_ICONS=	yes
-USES=	pkgconfig gmake tar:bzip2
+INSTALL_TARGET=	install-strip
+USES=		alias gmake libtool pkgconfig gettext-tools xfce tar:bzip2
+USE_GNOME=	gtk20 glib20 intltool intlhack
+USE_XFCE=	panel
 
 OPTIONS_DEFINE= NLS
 OPTIONS_DEFAULT=        NLS
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_USES=	gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
+OPTIONS_SUB=	yes
 
 .include <bsd.port.mk>
