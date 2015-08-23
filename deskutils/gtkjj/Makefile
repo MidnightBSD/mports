@@ -2,6 +2,7 @@
 
 PORTNAME=	gtkjj
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -10,7 +11,7 @@ COMMENT=	GTK client for posting JustJournal entries
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-WRKSRC=         ${WRKDIR}/laffer1-justjournal-client-unix-c3cacf8/gtk
+WRKSRC=         ${WRKDIR}/justjournal-client-unix-1.0.3/gtk
 USE_GITHUB=     yes
 GH_PROJECT=     justjournal-client-unix
 GH_ACCOUNT=     laffer1
