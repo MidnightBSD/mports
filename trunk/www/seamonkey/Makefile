@@ -14,7 +14,7 @@ COMMENT=	The open source, standards compliant web browser
 LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
 
-USES=		gmake tar:bzip2
+USES=		gmake tar:bzip2 desktop-file-utils
 WANT_GNOME=	yes
 WANT_PERL=	yes
 HAS_CONFIGURE=	yes
