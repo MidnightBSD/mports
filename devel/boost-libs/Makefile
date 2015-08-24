@@ -2,11 +2,21 @@
 # $MidnightBSD$
 
 PORTNAME=	boost-libs
+PORTVERSION=    1.55.0
+PORTREVISION=	1
+CATEGORIES=	devel
+MASTER_SITES=	SF/boost/boost/${PORTVERSION}
+PORTVERSUFFIX=  ${PORTVERSION:C/\.[0-9]+$//}
+DISTNAME=       boost_${PORTVERSION:S/./_/g}
+
+MAINTAINER=     ports@MidnightBSD.org
 COMMENT=	Free portable C++ libraries (without Boost.Python)
 
-LICENSE=mit
+LICENSE=	mit
 
-PORTREVISION=	0
+CONFLICTS+=     boost-python-1* boost-1*
+
+USES+=          tar:bzip2
 
 BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
 
@@ -14,8 +24,6 @@ OPTIONS_DEFINE=	VERBOSE_BUILD DEBUG ICU OPTIMIZED_CFLAGS
 OPTIONS_DEFAULT=	ICU
 VERBOSE_BUILD_DESC=	Show compiler messages
 ICU_DESC=		Boost.Regex with ICU unicode support
-
-.include "${.CURDIR}/../boost-all/common.mk"
 
 .include "${.CURDIR}/../boost-all/compiled.mk"
 
