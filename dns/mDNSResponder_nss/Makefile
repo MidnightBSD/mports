@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mDNSResponder_nss
-PORTVERSION=	561.1.1
+PORTVERSION=	567
 CATEGORIES=	dns net
 MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=	${PORTNAME:S/_nss//}-${PORTVERSION}
@@ -18,6 +18,12 @@ CONFLICTS_INSTALL=	nss_mdns-[0-9]*
 
 WRKSRC=		${WRKDIR}/${PORTNAME:S/_nss//}-${PORTVERSION}
 
+.include <bsd.port.pre.mk>
+
+.if ${ARCH:C/^(...).*/\1/} == "arm"
+LD=${CC}
+.endif
+
 post-extract:
 	@${CP} ${FILESDIR}/nss_mdns_freebsd.c ${WRKSRC}/mDNSPosix
 
@@ -28,14 +34,22 @@ do-build:
 	(cd ${WRKSRC}/mDNSPosix && ${LD} -shared nss_mdns.o nss_mdns_freebsd.o \
 		-o nss_mdns.so.1 -L${PREFIX}/lib -R${PREFIX}/lib -ldns_sd)
 
+post-build:
+	${STRIP_CMD} ${WRKSRC}/mDNSPosix/nss_mdns.so.1
+
 do-install:
-	${INSTALL_LIB} ${WRKSRC}/mDNSPosix/nss_mdns.so.1 ${STAGEDIR}${PREFIX}/lib
-	${LN} -sf ${PREFIX}/lib/nss_mdns.so.1 ${STAGEDIR}${PREFIX}/lib/nss_mdns.so
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_MAN} ${WRKSRC}/mDNSPosix/nss_mdns.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5
+	${INSTALL_LIB} ${WRKSRC}/mDNSPosix/nss_mdns.so.1 \
+		${PREFIX}/lib
+	${LN} -sf ${PREFIX}/lib/nss_mdns.so.1 \
+		${PREFIX}/lib/nss_mdns.so
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
+		${EXAMPLESDIR}
+	${INSTALL_MAN} ${WRKSRC}/mDNSPosix/nss_mdns.conf.5 \
+		${MANPREFIX}/man/man5
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/nss_mdns.so.1
+	${INSTALL_DATA} ${WRKSRC}/mDNSPosix/nss_mdns.conf \
+		${PREFIX}/etc/nss_mdns.conf.sample
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
