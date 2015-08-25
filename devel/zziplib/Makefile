@@ -2,7 +2,7 @@
 
 PORTNAME=	zziplib
 PORTVERSION=	0.13.62
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}13/${PORTVERSION}
 
@@ -14,6 +14,7 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
+USE_PYTHON=	yes
 USES=		tar:bzip2 pathfix pkgconfig gmake libtool python:2,build
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_XMLTO=":"
