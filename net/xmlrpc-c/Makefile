@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.25.28
+PORTVERSION=	1.25.30
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 
@@ -40,8 +40,6 @@ post-extract:
 	@${FIND} ${WRKSRC} -type l -name srcdir -delete
 
 post-patch:
-	@${GREP} -lR '\-lpthread' ${WRKSRC} 2>/dev/null | \
-		${XARGS} ${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g'
 	@${REINPLACE_CMD} -e '/#include.*features.h/d' \
 		${WRKSRC}/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
 	@${REINPLACE_CMD} -e '/<curl\/types.h>/d' \
@@ -50,6 +48,6 @@ post-patch:
 		${WRKSRC}/lib/curl_transport/curlmulti.c
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libxmlrpc*.so.[37].25
+	@${STRIP_CMD} ${PREFIX}/lib/libxmlrpc*.so.[37].25
 
 .include <bsd.port.post.mk>
