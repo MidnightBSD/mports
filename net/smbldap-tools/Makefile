@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	smbldap-tools
-PORTVERSION=	0.9.9
+PORTVERSION=	0.9.10
 CATEGORIES=	net
 MASTER_SITES=	http://download.gna.org/smbldap-tools/sources/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Samba-LDAP management and support tools
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${SITE_PERL}/Net/LDAP.pm:${PORTSDIR}/net/p5-perl-ldap \
@@ -17,9 +18,8 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/a//}
 
-USE_PERL5=	yes
+USES=		perl5 gmake
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 ALL_TARGET=	build
 
 PORTDOCS=	*
