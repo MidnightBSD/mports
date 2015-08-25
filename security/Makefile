@@ -100,7 +100,6 @@ SUBDIR += polarssl
 SUBDIR += py-fail2ban
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
-SUBDIR += qca-ossl
 SUBDIR += saint
 SUBDIR += secpwgen
 SUBDIR += skipfish
