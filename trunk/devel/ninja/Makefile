@@ -16,6 +16,7 @@ GH_ACCOUNT=	martine
 WRKSRC=		${WRKDIR}/ninja-${PORTVERSION}
 
 CONFLICTS=	irc/ninja-[0-9]*
+USE_PYTHON=	yes
 USES=		python:build
 
 PLIST_FILES=	bin/ninja
