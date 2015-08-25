@@ -6,25 +6,27 @@
 #
 
 PORTNAME=	xmlrpc-epi
-PORTVERSION=	0.54.1
+PORTVERSION=	0.54.2
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-base/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A general purpose implementation of the xmlrpc specification in C
-LICENSE=	other
+COMMENT=	General purpose implementation of the xmlrpc specification in C
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GMAKE=	yes
-USE_ICONV=	yes
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+
 USE_LDCONFIG=	yes
-USES=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"               \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib -liconv"
+USES=	libtool gmake iconv tar:bzip2
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -liconv
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-transform="s|^|xre-|" \
 		--with-expat=/usr/local
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd9.1
+INSTALL_TARGET=	install-strip
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
 
@@ -33,8 +35,6 @@ METHODS=	TestNormal TestFault TestStruct TestArray TestBoolean	\
 
 CONFLICTS=	xmlrpc-c-0.* xmlrpc-c-devel-[0-9]*
 
-WRKSRC=	${WRKDIR}/${PORTNAME:C/-.*//}
-
 pre-configure:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS}	\
 	${REINPLACE_CMD} -e '/^LTCOMPILE =/s/--mode=/--tag=CC --mode=/'
@@ -42,10 +42,8 @@ pre-configure:
 	${REINPLACE_CMD} -e '/^LINK =/s/--mode=/--tag=CC --mode=/'
 
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
-.endif
 
 regression-test:
 .for tm in ${METHODS}
