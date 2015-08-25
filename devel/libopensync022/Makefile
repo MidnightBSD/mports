@@ -3,9 +3,10 @@
 
 PORTNAME=	libopensync
 PORTVERSION=	0.22
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.opensync.org/download/releases/${PORTVERSION}/
+PKGNAMESUFFIX=	022
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freedesktop synchronization framework
@@ -18,27 +19,19 @@ BUILD_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
 		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
 RUN_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
 		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
-
-CONFIGURE_ENV=	LDFLAGS="${PTHREAD_LIBS}"
+SWIG_LANGUAGES=	python
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix pkgconfig python tar:bzip2
 USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
-LATEST_LINK=	libopensync022
-
-pre-everything::
-	@${ECHO_MSG} "NOTE: You may want to avoid extra dependencies"
-	@${ECHO_MSG} " from devel/swig13 by building with the following"
-	@${ECHO_MSG} " SWIG_LANGUAGES=\"perl python\""
-	@${ECHO_MSG}
+CONFLICTS=	libopensync-0.[3-9]*
 
 post-patch:
+	@${FIND} ${WRKSRC} -name "Makefile*" | ${XARGS} ${REINPLACE_CMD} \
+	    -e 's|-Werror||g'
 	@${REINPLACE_CMD} -e 's|$${libdir}/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/Makefile.in
-	${REINPLACE_CMD} -e "s,-Werror,," ${WRKSRC}/opensync/Makefile.in \
-		${WRKSRC}/osengine/Makefile.in \
-		${WRKSRC}/formats/vformats-xml/Makefile.in
-	${REINPLACE_CMD} -e "s,echo aout, echo elf,g" ${WRKSRC}/configure
 
 .include <bsd.port.mk>
