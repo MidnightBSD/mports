@@ -14,6 +14,8 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	libgit2
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
 USES=		cmake pkgconfig python:build
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
@@ -31,10 +33,6 @@ THREADS_CMAKE_ON=	-DTHREADSAFE=ON
 THREADS_CMAKE_OFF=	-DTHREADSAFE=OFF
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not install on sparc64: thread-local storage not supported
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|/pkgconfig|/../libdata/pkgconfig|; \
