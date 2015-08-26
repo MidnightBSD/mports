@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.42.1
+PORTVERSION=	2.44.1
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -37,7 +37,7 @@ INSTALL_TARGET=	install-strip
 
 SHEBANG_FILES=	*/*.pl
 
-LIBVERSION=	0.4200.1
+LIBVERSION=	0.4400.1
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
