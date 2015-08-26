@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.12.18
-PORTREVISION=	3
+PORTVERSION=	1.14.2
+PORTREVISION=	0
 PORTEPOCH?=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -49,7 +49,7 @@ XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x1
 XCB_CONFIGURE_ENABLE=	xcb
 # this has another option --enable-xlib-xcb=auto but it is buggy.
 
-PLIST_SUB+=	LIBVER=2.11200.18
+PLIST_SUB+=	LIBVER=2.11400.2
 
 .include <bsd.mport.options.mk>
 
