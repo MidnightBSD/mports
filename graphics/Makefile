@@ -39,6 +39,7 @@ SUBDIR += gle
 SUBDIR += glew
 SUBDIR += glitz
 SUBDIR += gnash
+SUBDIR += gnome-video-effects
 SUBDIR += gnustep-slideshow
 SUBDIR += gnustep-slideshowkit
 SUBDIR += gocr
