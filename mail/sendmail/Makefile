@@ -299,7 +299,6 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/CYRUS_LOOKUP ${DOCSDIR}/CYRUS_LOOKUP
 .endif
 .endif
-	${RM} ${PREFIX}/man/cat*/*
 	${STRIP_CMD} ${PREFIX}/bin/vacation
 	${STRIP_CMD} ${PREFIX}/bin/rmail
 	${STRIP_CMD} ${PREFIX}/sbin/*
