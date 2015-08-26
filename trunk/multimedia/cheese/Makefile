@@ -1,35 +1,48 @@
 # $MidnightBSD$
 
 PORTNAME=	cheese
-PORTVERSION=	2.32.0
-PORTREVISION=	1
+PORTVERSION=	3.16.1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Photobooth-inspired app for taking pictures and videos from webcam
+COMMENT=	Photobooth-inspired app for taking pictures and videos from webcam
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev.h:${PORTSDIR}/multimedia/v4l_compat
-LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		hal.1:${PORTSDIR}/sysutils/hal
+BUILD_DEPENDS=	v4l_compat>=0:${PORTSDIR}/multimedia/v4l_compat \
+		gnome-video-effects>=0:${PORTSDIR}/graphics/gnome-video-effects \
+		vala>=0.14.0:${PORTSDIR}/lang/vala \
+		itstool:${PORTSDIR}/textproc/itstool
+LIB_DEPENDS=	libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3 \
+		libhal.so:${PORTSDIR}/sysutils/hal \
+		libclutter-gtk-1.0.so:${PORTSDIR}/graphics/clutter-gtk3 \
+		libclutter-gst-2.0.so:${PORTSDIR}/multimedia/clutter-gst
+RUN_DEPENDS=	gnome-video-effects>=0:${PORTSDIR}/graphics/gnome-video-effects
 
-USE_XORG=	xxf86vm
-USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnomeprefix intlhack evolutiondataserver librsvg2 \
-		gnomedocutils gnomedesktop
-USES=		gettext gmake pkgconfig
-USE_GSTREAMER=	gconf good ogg theora v4l2 vorbis
-INSTALLS_OMF=	yes
+USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	intlhack evolutiondataserver3 librsvg2 \
+		gnomedesktop3 libxml2:build introspection:build
+USE_XORG=	xxf86vm x11
+USE_GSTREAMER1=	bad good jpeg ogg theora v4l2 vorbis vpx
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 DOCS=		AUTHORS COPYING ChangeLog NEWS README
-GCONF_SCHEMAS=	cheese.schemas
+GLIB_SCHEMAS=	org.gnome.Cheese.gschema.xml
+
+OPTIONS_DEFINE=	MANPAGES
+OPTIONS_DEFAULT=MANPAGES
+
+MANPAGES_CONFIGURE_ENABLE=	man
+MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:${PORTSDIR}/textproc/docbook-xml \
+			docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
+MANPAGES_USE=	GNOME=libxslt:build
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
