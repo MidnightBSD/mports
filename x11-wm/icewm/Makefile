@@ -1,90 +1,74 @@
-# New ports collection makefile for:	icewm
-# Date created:		10 August 1997
-# Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
-#
 
 PORTNAME=	icewm
-PORTVERSION=	1.3.7
+PORTVERSION=	1.3.8
 CATEGORIES=	x11-wm
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}/${PORTVERSION}/
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window Manager designed for speed, usability and consistency
-LICENSE=	lgpl
 
-WANT_GNOME=	yes
-USE_XORG=	x11 ice xinerama xext xrandr sm
-USE_GNOME=	 gtk20 # gdkpixbuf really :-)
-USE_GMAKE=	yes
+LICENSE=	gpl2
+
+USES=		gmake iconv:translit pkgconfig
+USE_XORG=	ice sm x11 xext
+USE_GNOME=	gdkpixbuf2
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--enable-shaped-decorations \
-		--enable-guievents \
+CONFIGURE_ARGS=	--enable-guievents \
 		--with-cfgdir=${DATADIR} \
 		--with-libdir=${DATADIR} \
 		--with-kdedatadir=${LOCALBASE}/share \
 		--with-docdir=${PREFIX}/share/doc \
 		--with-mkfontdir=${NONEXISTENT}
 
-OPTIONS=	GNOMEDESKTOP	"Enable GNOME desktop support"		off \
-		ESOUND		"Enable EsounD daemon support"		off \
-		XFT		"Enable Xft support for fonts"		on \
-		XINERAMA	"Enable Xinerama support"		off \
-		X86_ASM		"Use optimized x86 assembly code"	on \
-		BEASTIE		"Use Beastie'fied startup button"	off \
-		NLS		"Enable National Language Support"	on
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-# Restrict to stable (even) versions, indicated by the second component.
-#PORTSCOUT=	limitw:1,even
+OPTIONS_DEFINE=		BEASTIE ESOUND GNOME LITE MENUFIX NLS XFT XINERAMA \
+			XRANDR DOCS
+OPTIONS_DEFINE_i386=	ASM
+OPTIONS_DEFAULT=	BEASTIE MENUFIX NLS XFT XINERAMA XRANDR
+OPTIONS_DEFAULT_i386=	ASM
+OPTIONS_SUB=		yes
 
-.include <bsd.port.pre.mk>
+BEASTIE_DESC=		Use Beastie'fied startup button
+ESOUND_USE=		GNOME=esound
+ESOUND_CONFIGURE_ON=	--with-icesound=esound
+ESOUND_CONFIGURE_OFF=	--with-icesound=oss
+GNOME_DESC=		Display GNOME 2 menus
+GNOME_USE=		GNOME=gnomedesktop,libgnomeui
+GNOME_CONFIGURE_ENABLE=	menus-gnome2
+LITE_CONFIGURE_ENABLE=	lite
+MENUFIX_DESC=		MenuIconSize fix
+MENUFIX_EXTRA_PATCHES=	${FILESDIR}/extra-menu-icon-fix.patch
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+XFT_LIB_DEPENDS=	libXft.so:${PORTSDIR}/x11-fonts/libXft
+XFT_CONFIGURE_OFF=	--enable-corefonts --disable-xfreetype
+XINERAMA_USE=		XORG=xinerama
+XINERAMA_CONFIGURE_ENABLE=	xinerama
+XRANDR_USE=		XORG=xrandr
+XRANDR_CONFIGURE_ENABLE=	xrandr
 
-.if defined(WITH_GNOMEDESKTOP)
-USE_GNOME+=	gnomedesktop
-CONFIGURE_ARGS+=--enable-menus-gnome2
-INSTALL_TARGET=	install install-gnome
-PLIST_SUB+=	GNOMEDESKTOP=""
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MASM}
+CONFIGURE_ARGS+=--enable-x86-asm
 .else
-PLIST_SUB+=	GNOMEDESKTOP="@comment "
-.endif
-
-.if defined(WITH_ESOUND)
-USE_GNOME+=	esound
-CONFIGURE_ARGS+=--with-icesound=esound
-.else
-CONFIGURE_ARGS+=--with-icesound=oss
-.endif
-
-.if !defined(WITHOUT_XFT)
-LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
-CONFIGURE_ARGS+=--enable-gradients
-.else
-CONFIGURE_ARGS+=--enable-corefonts --disable-xfreetype
-.endif
-
-.if defined(WITHOUT_XINERAMA)
-CONFIGURE_ARGS+=--disable-xinerama
-.endif
-
-.if ${ARCH} != "i386" || defined(WITHOUT_X86_ASM)
 CONFIGURE_ARGS+=--disable-x86-asm
 .endif
 
-.if defined(WITH_BEASTIE)
+.if ${PORT_OPTIONS:MBEASTIE}
 STARTUP_PIXMAP=	${DATADIR}/taskbar/bsd-daemon.xpm
 .else
 STARTUP_PIXMAP=	icewm-logo.xpm
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
+.if ${PORT_OPTIONS:MLITE}
+PLIST_SUB+=	NOLITE="@comment "
 .else
-CONFIGURE_ARGS+=--disable-nls --disable-i18n
-PLIST_SUB+=	NLS="@comment "
+PLIST_SUB+=	NOLITE=""
 .endif
 
 post-extract:
@@ -100,21 +84,24 @@ post-patch:
 		 s|/usr/share/app|${LOCALBASE}/share/app|g ; \
 		 s|/usr/share/gnome|${LOCALBASE}/share/gnome|g' \
 		 ${WRKSRC}/src/gnome2.cc
-
-post-configure:
-	${REINPLACE_CMD} -e 's|icewm-set-gnomewm||g' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e \
+		's|SHELL=.*|SHELL=@SHELL@| ; \
+		 s|icewm-set-gnomewm||g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e \
+		's|icewm-$$(VERSION)|icewm| ; \
+		 s|`pkg-config fontconfig --cflags`|| ; \
+		 s|`pkg-config fontconfig --libs`|| ; \
+		 /@echo/s|^|#| ; \
+		 s|@$$(|$$(|' ${WRKSRC}/src/Makefile.in
 
 post-install:
 .for dir in taskbar themes/Infadel2/taskbar
-	@${LN} -sf ${STARTUP_PIXMAP} ${DATADIR}/${dir}/start.xpm
+	@${LN} -s ${STARTUP_PIXMAP} ${DATADIR}/${dir}/start.xpm
 .endfor
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 . for f in CHANGES INSTALL README TODO
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 . endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}
-.endif
-	@${ECHO_CMD}; ${CAT} ${PKGMESSAGE}; ${ECHO_CMD}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
