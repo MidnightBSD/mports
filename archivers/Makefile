@@ -9,6 +9,7 @@ SUBDIR += cabextract
 SUBDIR += fastjar
 SUBDIR += file-roller
 SUBDIR += freetar
+SUBDIR += gcab
 SUBDIR += gcpio
 SUBDIR += gtar
 SUBDIR += gzip
