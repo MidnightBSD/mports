@@ -3,7 +3,7 @@
 
 PORTNAME=	mplayer
 PORTVERSION=	0.4.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	http://www.sonappart.net/gnustep/mplayer/
 PKGNAMEPREFIX=	gnustep-
@@ -11,12 +11,11 @@ DISTNAME=	Mplayer-0.4-1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep port of MPlayerOSX
+
 LICENSE=        gpl3
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/mplayerPort/Sources
 
