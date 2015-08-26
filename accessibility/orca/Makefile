@@ -1,14 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	orca
-PORTVERSION=	3.14.3
-PORTREVISION=	1
+PORTVERSION=	3.16.2
+PORTREVISION=	0
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus \
@@ -26,7 +27,7 @@ RUN_DEPENDS=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus \
 CONFLICTS=	py*-json-py-[0-9]*
 
 USES=		gettext gmake pathfix pkgconfig python:3 tar:xz
-USE_GNOME=	gnomeprefix gtk30 py3gobject3 intlhack
+USE_GNOME=	gtk30 py3gobject3 intlhack
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
