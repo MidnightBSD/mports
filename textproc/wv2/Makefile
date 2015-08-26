@@ -2,7 +2,7 @@
 
 PORTNAME=	wv2
 PORTVERSION=	0.4.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	SF/wvware/
 
@@ -11,8 +11,8 @@ COMMENT=	A library providing routines to access Microsoft Word files
 LICENSE=	lgpl
 
 USE_GNOME=	libgsf
-USE_BZIP2=	yes
-USES=		cmake iconv
+GNU_CONFIGURE=	yes
+USES=		cmake iconv pkgconfig libtool tar:bzip2
 USE_LDCONFIG=	yes
 
 post-patch:
