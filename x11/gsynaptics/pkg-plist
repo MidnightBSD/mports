@@ -1,5 +1,7 @@
 bin/gsynaptics
 bin/gsynaptics-init
+man/man1/gsynaptics-init.1.gz
+man/man1/gsynaptics.1.gz
 share/applications/gsynaptics.desktop
 share/gnome/autostart/gsynaptics-init.desktop
 share/gnome/help/gsynaptics/C/gsynaptics.xml
@@ -17,7 +19,3 @@ share/locale/ru/LC_MESSAGES/gsynaptics.mo
 share/locale/zh_CN/LC_MESSAGES/gsynaptics.mo
 share/locale/zh_TW/LC_MESSAGES/gsynaptics.mo
 share/pixmaps/touchpad.png
-@dirrm %%DATADIR%%
-@dirrm share/gnome/help/gsynaptics/C
-@dirrm share/gnome/help/gsynaptics
-@dirrmtry share/applications
