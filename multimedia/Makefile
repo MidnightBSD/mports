@@ -5,7 +5,6 @@ COMMENT = Multimedia software
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += dirac
-SUBDIR += dragon
 SUBDIR += etoile-babbler
 SUBDIR += etoile-mediakit
 SUBDIR += etoile-multimediakit
