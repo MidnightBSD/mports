@@ -2,12 +2,12 @@
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-codec/Dirac-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Open source video codec from the BBC
+COMMENT=	Open source video codec from the BBC
 
 LICENSE=	mpl
 
