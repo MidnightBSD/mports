@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gobject
-PORTVERSION=	3.14.0
+PORTVERSION=	3.16.2
 PORTREVISION?=	0
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
@@ -40,11 +40,11 @@ USE_GNOME=	glib20:build introspection:build
 NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/include/pygobject-3.0/
+	@${MKDIR} ${PREFIX}/include/pygobject-3.0/
 	${INSTALL_DATA} ${WRKSRC}/gi/pygobject.h \
-		${STAGEDIR}${PREFIX}/include/pygobject-3.0/pygobject.h
+		${PREFIX}/include/pygobject-3.0/pygobject.h
 	${INSTALL_DATA} ${WRKSRC}/pygobject-3.0.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
 .else 
 USE_GNOME+=	glib20 introspection
 LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
@@ -52,12 +52,14 @@ RUN_DEPENDS+=	pygobject3-common>=0:${PORTSDIR}/devel/pygobject3-common
 
 .if ${SLAVE_PORT} == python2
 USES+=		python:2
+USE_PYTHON=	2
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 .endif
 
 .if ${SLAVE_PORT} == python3
 USES+=		python:3
+USE_PYTHON=	3
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
 PLIST_SUB+=	PYTVER=${PYTHON_VER:S/.//}
