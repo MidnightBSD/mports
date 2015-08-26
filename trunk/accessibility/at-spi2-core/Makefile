@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	at-spi2-core
-PORTVERSION=	2.14.1
+PORTVERSION=	2.16.0
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,8 +12,6 @@ COMMENT=	Assistive Technology Service Provider Interface
 LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
-
-PORTSCOUT=	limitw:1,even
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME=	glib20 intlhack introspection:build
