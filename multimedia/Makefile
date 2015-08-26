@@ -37,6 +37,7 @@ SUBDIR += libdvdread
 SUBDIR += libfame
 SUBDIR += libkate
 SUBDIR += libmpeg2
+SUBDIR += libquvi
 SUBDIR += libtheora
 SUBDIR += librtmp
 SUBDIR += libv4l
