@@ -516,12 +516,6 @@ post-patch:
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 .endif
 
-pre-configure:
-	@if [ -n "`${PKG_INFO} -xI '^bind\(84\)\{0,1\}-base-8\.' 2>/dev/null`" ]; then \
-		${ECHO_CMD} "${PKGNAME}: bind installed with PORT_REPLACES_BASE_BIND causes build problems."; \
-		${FALSE}; \
-	fi
-
 .if !defined(CLIENT_ONLY)
 test: build
 	@(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
@@ -543,40 +537,40 @@ post-build:
 
 pre-install:
 .if !defined(CLIENT_ONLY)
-	@${MKDIR} ${STAGEDIR}${DATABASEDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DATABASEDIR}
 .endif
 
 post-install:
 .if defined(CLIENT_ONLY)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
 	@for dir in drafts rfc; do \
-		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${dir}; \
-		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${STAGEDIR}${DOCSDIR}/$${dir}; \
+		${MKDIR} ${DOCSDIR}/$${dir}; \
+		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${DOCSDIR}/$${dir}; \
 	done
 	@for prog in ldapcompare ldapdelete ldapexop ldapmodify ldapmodrdn ldappasswd ldapsearch ldapurl ldapwhoami; do\
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$${prog}; \
+		${STRIP_CMD} ${PREFIX}/bin/$${prog}; \
 	done
 
 	@for library in lber ldap ldap_r; do \
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
+		${STRIP_CMD} }${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
 	done
 .else
-	@${MKDIR} ${STAGEDIR}${LDAP_RUN_DIR}
+	@${MKDIR} ${FAKE_DESTDIR}${LDAP_RUN_DIR}
 .if ${PORT_OPTIONS:MSMBPWD}
 	@(cd ${WRKSRC}/contrib/slapd-modules/smbk5pwd && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} prefix="${PREFIX}" install)
-	${RM} ${STAGEDIR}${PREFIX}/libexec/openldap/smbk5pwd.a
+	${RM} ${PREFIX}/libexec/openldap/smbk5pwd.a
 .endif
 .if ${PORT_OPTIONS:MSHA2}
 	@(cd ${WRKSRC}/contrib/slapd-modules/passwd/sha2 && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} prefix="${PREFIX}" install)
-	${RM} ${STAGEDIR}${PREFIX}/libexec/openldap/pw-sha2.a
+	${RM} ${PREFIX}/libexec/openldap/pw-sha2.a
 .endif
 .if ${PORT_OPTIONS:MDYNAMIC_BACKENDS} || ${PORT_OPTIONS:MSMBPWD} || ${PORT_OPTIONS:MSHA2}
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/openldap/*.so
+	@${STRIP_CMD} ${PREFIX}/libexec/openldap/*.so
 .endif
 .endif # defined(CLIENT_ONLY)
 
