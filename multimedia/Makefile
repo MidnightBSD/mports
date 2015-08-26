@@ -38,6 +38,7 @@ SUBDIR += libfame
 SUBDIR += libkate
 SUBDIR += libmpeg2
 SUBDIR += libquvi
+SUBDIR += libquvi-scripts
 SUBDIR += libtheora
 SUBDIR += librtmp
 SUBDIR += libv4l
