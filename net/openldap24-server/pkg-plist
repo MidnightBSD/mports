@@ -1,34 +1,32 @@
 @unexec %%RC_DIR%%/etc/rc.d/slapd stop 2>&1 >/dev/null || true
-%%ETCDIR%%/schema/README
-%%ETCDIR%%/schema/collective.ldif
-@sample %%ETCDIR%%/schema/collective.schema.sample
-%%ETCDIR%%/schema/corba.ldif
-@sample %%ETCDIR%%/schema/corba.schema.sample
-%%ETCDIR%%/schema/core.ldif
-@sample %%ETCDIR%%/schema/core.schema.sample
-%%ETCDIR%%/schema/cosine.ldif
-@sample %%ETCDIR%%/schema/cosine.schema.sample
-%%ETCDIR%%/schema/duaconf.ldif
-@sample %%ETCDIR%%/schema/duaconf.schema.sample
-%%ETCDIR%%/schema/dyngroup.ldif
-@sample %%ETCDIR%%/schema/dyngroup.schema.sample
-%%ETCDIR%%/schema/inetorgperson.ldif
-@sample %%ETCDIR%%/schema/inetorgperson.schema.sample
-%%ETCDIR%%/schema/java.ldif
-@sample %%ETCDIR%%/schema/java.schema.sample
-%%ETCDIR%%/schema/misc.ldif
-@sample %%ETCDIR%%/schema/misc.schema.sample
-%%ETCDIR%%/schema/nis.ldif
-@sample %%ETCDIR%%/schema/nis.schema.sample
-%%ETCDIR%%/schema/openldap.ldif
-@sample %%ETCDIR%%/schema/openldap.schema.sample
-%%ETCDIR%%/schema/pmi.ldif
-@sample %%ETCDIR%%/schema/pmi.schema.sample
-%%ETCDIR%%/schema/ppolicy.ldif
-@sample %%ETCDIR%%/schema/ppolicy.schema.sample
-@sample %%ETCDIR%%/slapd.conf.sample
-@sample %%ETCDIR%%/slapd.ldif.sample
-%%BACK_BDB%%%%ETCDIR%%/DB_CONFIG.example
+etc/openldap/schema/README
+etc/openldap/schema/collective.ldif
+@sample etc/openldap/schema/collective.schema.sample
+etc/openldap/schema/corba.ldif
+@sample etc/openldap/schema/corba.schema.sample
+etc/openldap/schema/core.ldif
+@sample etc/openldap/schema/core.schema.sample
+etc/openldap/schema/cosine.ldif
+@sample etc/openldap/schema/cosine.schema.sample
+etc/openldap/schema/duaconf.ldif
+@sample etc/openldap/schema/duaconf.schema.sample
+etc/openldap/schema/dyngroup.ldif
+@sample etc/openldap/schema/dyngroup.schema.sample
+etc/openldap/schema/inetorgperson.ldif
+@sample etc/openldap/schema/inetorgperson.schema.sample
+etc/openldap/schema/java.ldif
+@sample etc/openldap/schema/java.schema.sample
+etc/openldap/schema/misc.ldif
+@sample etc/openldap/schema/misc.schema.sample
+etc/openldap/schema/nis.ldif
+@sample etc/openldap/schema/nis.schema.sample
+etc/openldap/schema/openldap.ldif
+@sample etc/openldap/schema/openldap.schema.sample
+etc/openldap/schema/pmi.ldif
+@sample etc/openldap/schema/pmi.schema.sample
+etc/openldap/schema/ppolicy.ldif
+@sample etc/openldap/schema/ppolicy.schema.sample
+%%BACK_BDB%%etc/DB_CONFIG.example
 %%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
 %%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.%%SHLIB_MINOR%%
 %%SLAPI%%lib/libslapi.a
@@ -163,7 +161,7 @@ sbin/slapindex
 sbin/slappasswd
 sbin/slapschema
 sbin/slaptest
-@dir %%ETCDIR%%/schema
+@dir etc/schema
 %%MODULES%%@dir libexec/openldap
 @dir(%%LDAP_USER%%,%%LDAP_GROUP%%,775) %%LDAP_RUN_DIR%%
 @dir(%%LDAP_USER%%,%%LDAP_GROUP%%,775) %%DATABASEDIR%%
