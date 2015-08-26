@@ -12,6 +12,7 @@ SUBDIR += cairo
 SUBDIR += cairomm
 SUBDIR += clutter
 SUBDIR += clutter-gtk
+SUBDIR += clutter-gtk3
 SUBDIR += cogl
 SUBDIR += colord
 SUBDIR += dia
