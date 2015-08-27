@@ -3,6 +3,7 @@
 COMMENT = Security tools
 
 SUBDIR += aide
+SUBDIR += apg
 SUBDIR += autossh
 SUBDIR += barnyard2
 SUBDIR += ca_root_nss
