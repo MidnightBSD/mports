@@ -1,67 +1,74 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTVERSION=	3.16.3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Control center for GNOME 2 project
+COMMENT=	Control center for GNOME 3 project
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit \
-		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
-BUILD_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
+BUILD_DEPENDS=	gnome-settings-daemon>=3.4.0:${PORTSDIR}/sysutils/gnome-settings-daemon \
+		gsettings-desktop-schemas>=3.2.2:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
+		iso-codes>=0:${PORTSDIR}/misc/iso-codes
+LIB_DEPENDS=	libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3 \
+		libxklavier.so:${PORTSDIR}/x11/libxklavier \
+		libupower-glib.so:${PORTSDIR}/sysutils/upower \
+		libaccountsservice.so:${PORTSDIR}/sysutils/accountsservice \
+		libcolord.so:${PORTSDIR}/graphics/colord \
+		libcolord-gtk.so:${PORTSDIR}/graphics/colord-gtk \
+		libibus-1.0.so:${PORTSDIR}/textproc/ibus \
+		libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
+		libsocialweb.so:${PORTSDIR}/www/libsocialweb \
+		libpwquality.so:${PORTSDIR}/security/libpwquality \
+		libgtop-2.0.so:${PORTSDIR}/devel/libgtop \
+		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
+		libgrilo-0.2.so:${PORTSDIR}/net/grilo \
+		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
 RUN_DEPENDS=	gnome-eject:${PORTSDIR}/sysutils/gnome-mount \
-		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
+		gnome-settings-daemon>=3.4.0:${PORTSDIR}/sysutils/gnome-settings-daemon \
+		gsettings-desktop-schemas>=3.2.2:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+		glxinfo:${PORTSDIR}/graphics/mesa-demos \
+		apg:${PORTSDIR}/security/apg \
+		gcm-calibrate:${PORTSDIR}/graphics/gnome-color-manager
 
-USE_BZIP2=	yes
-USES=		gettext
-USE_GMAKE=	yes
-GNOME_DESKTOP_VERSION=2
-USE_GSTREAMER=	good
-WANT_GNOME=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack metacity gnomemenus \
-		desktopfileutils libgnomekbd gnomedesktop librsvg2 gconf2
-USE_XORG=	xscrnsaver
+CONFLICTS=	gnome-media-2.[0-9]*
+PORTSCOUT=	limitw:1,even
+
+USES=		compiler:c++11-lib gettext gmake pathfix pkgconfig tar:xz
+USE_GNOME=	gnomedesktop3 gnomemenus3 intltool libxml2
+USE_XORG=	xscrnsaver x11 xxf86misc kbproto xi
 GNU_CONFIGURE=	yes
-INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-GCONF_SCHEMAS=	control-center.schemas fontilus.schemas \
-		gnome-control-center.schemas
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	CUPS
+OPTIONS_DEFAULT=CUPS
+CUPS_DESC=	Cups (printing) support
+CHEESE_DESC=	Cheese webcam support
 
-.if defined(PACKAGE_BUILDING)
-.undef WITHOUT_GNOME
-WITH_GNOME=	yes
-.endif
+OPTIONS_DEFINE_i386=	CHEESE
+OPTIONS_DEFAULT_i386=	CHEESE
+OPTIONS_DEFINE_amd64=	CHEESE
+OPTIONS_DEFAULT_amd64=	CHEESE
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client \
+			libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
+CUPS_CONFIGURE_ENABLE=	cups	
+CHEESE_LIB_DEPENDS=	libcheese.so:${PORTSDIR}/multimedia/cheese
+CHEESE_CONFIGUE_WITH=	cheese	
 
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mevolutiondataserver}!=""
-USE_GNOME+=	evolutiondataserver
-CONFIGURE_ARGS+=--enable-aboutme
-PLIST_SUB+=	ABOUTME=""
-.else
-CONFIGURE_ARGS+=--disable-aboutme
-PLIST_SUB+=	ABOUTME="@comment "
-.endif
+.include <bsd.mport.options.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-	    	${WRKSRC}/capplets/common/gnome-theme-info.c
-	@${REINPLACE_CMD} -e 's|/usr/sbin|${PREFIX}/sbin|g' \
-		${WRKSRC}/capplets/display/org.gnome.randr.policy.in
+	@${REINPLACE_CMD} -e 's|datetime wacom|datetime|g' \
+		${WRKSRC}/panels/Makefile.in
 
-post-install:
-	@-update-desktop-database
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
