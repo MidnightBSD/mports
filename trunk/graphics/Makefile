@@ -73,6 +73,7 @@ SUBDIR += libchamplain
 SUBDIR += libdmtx
 SUBDIR += libdrm
 SUBDIR += libemf
+SUBDIR += libepoxy
 SUBDIR += libexif
 SUBDIR += libfpx
 SUBDIR += libglapi
