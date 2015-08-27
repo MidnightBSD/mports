@@ -77,6 +77,7 @@ SUBDIR += libepoxy
 SUBDIR += libexif
 SUBDIR += libfpx
 SUBDIR += libglapi
+SUBDIR += libglesv2
 SUBDIR += libgnomecanvas
 SUBDIR += libgnomecanvasmm
 SUBDIR += libgphoto2
