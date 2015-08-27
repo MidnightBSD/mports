@@ -36,6 +36,7 @@ SUBDIR += libdvdnav
 SUBDIR += libdvdread
 SUBDIR += libfame
 SUBDIR += libkate
+SUBDIR += libmediaart
 SUBDIR += libmpeg2
 SUBDIR += libquvi
 SUBDIR += libquvi-scripts
