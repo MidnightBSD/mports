@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	yelp
-PORTVERSION=	3.14.1
-PORTREVISION=	1
+PORTVERSION=	3.16.1
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -21,12 +21,12 @@ RUN_DEPENDS=	yelp-xsl>=0:${PORTSDIR}/textproc/yelp-xsl
 USES=		desktop-file-utils gettext gmake libtool pathfix \
 		pkgconfig tar:xz
 USE_XORG=	x11 ice
-USE_GNOME=	gnomeprefix gtk30 intlhack libxml2 libxslt
+USE_GNOME=	gtk30 intlhack libxml2 libxslt
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -fstack-protector
+LDFLAGS+=	-L${LOCALBASE}/lib
 GLIB_SCHEMAS=	org.gnome.yelp.gschema.xml
 INSTALL_TARGET=	install-strip
 
