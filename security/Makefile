@@ -41,6 +41,7 @@ SUBDIR += libksba
 SUBDIR += libmcrypt
 SUBDIR += libntlm
 SUBDIR += libotr
+SUBDIR += libpwquality
 SUBDIR += libressl
 SUBDIR += libsecret
 SUBDIR += libssh
