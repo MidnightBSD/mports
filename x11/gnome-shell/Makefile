@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-shell
-PORTVERSION=	3.14.4
+PORTVERSION=	3.16.3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -28,7 +28,6 @@ LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
 		libclutter-1.0.so:${PORTSDIR}/graphics/clutter \
 		libgjs.so:${PORTSDIR}/lang/gjs
 RUN_DEPENDS=	py*-dbus>=0:${PORTSDIR}/devel/py-dbus \
-		gdm>=0:${PORTSDIR}/x11/gdm \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
 		ca_root_nss>=0:${PORTSDIR}/security/ca_root_nss
 
@@ -36,17 +35,17 @@ PORTSCOUT=	limitw:1,even
 
 USES=		cpe gettext gmake libtool pathfix pkgconfig \
 		tar:xz webplugin:native
-USE_GNOME=	evolutiondataserver3 gnomedesktop3 gnomeprefix \
-		gtk30 intlhack introspection
+USE_GNOME=	evolutiondataserver3 gnomedesktop3 gtk30 intlhack \
+		introspection
 USE_XORG=	x11 xfixes sm
 USE_GSTREAMER1=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-WEBPLUGIN_DIR=	${PREFIX}/lib/
+WEBPLUGIN_NAME=	libgnome-shell-browser-plugin.so
+WEBPLUGIN_DIR=	${PREFIX}/lib/mozilla/plugins/
 WEBPLUGIN_FILES=libgnome-shell-browser-plugin.so
 CONFIGURE_ARGS+=--enable-compile-warnings=no \
 		--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
-CONFIGURE_ENV+=	BROWSER_PLUGIN_DIR=${PREFIX}/lib/
 CPPFLAGS+=	-I${LOCALASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip

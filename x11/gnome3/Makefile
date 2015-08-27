@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome3
-PORTVERSION=	3.14.2
+PORTVERSION=	3.16.2
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty
