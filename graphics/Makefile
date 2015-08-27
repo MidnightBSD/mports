@@ -15,6 +15,7 @@ SUBDIR += clutter-gtk
 SUBDIR += clutter-gtk3
 SUBDIR += cogl
 SUBDIR += colord
+SUBDIR += colord-gtk
 SUBDIR += dia
 SUBDIR += dri
 SUBDIR += eog
