@@ -1,4 +1,4 @@
-# $Midnight$
+# $MidnightBSD$
 # $FreeBSD: head/graphics/libepoxy/Makefile 385633 2015-05-07 15:17:32Z mat $
 
 PORTNAME=	libepoxy
@@ -13,6 +13,8 @@ LICENSE=	mit
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	anholt
+
+WRKSRC=		${WRKDIR}/libepoxy-1.2
 
 USES=		autoreconf libtool pathfix pkgconfig python:3,build
 USE_XORG=	xorg-macros x11
