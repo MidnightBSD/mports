@@ -31,6 +31,7 @@ SUBDIR += google-sitemapgen
 SUBDIR += gtkhtml3
 SUBDIR += joomla15
 SUBDIR += libgtkhtml
+SUBDIR += libsocialweb
 SUBDIR += libwww
 SUBDIR += libxul
 SUBDIR += lighttpd
