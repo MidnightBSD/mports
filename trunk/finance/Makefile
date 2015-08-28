@@ -2,6 +2,7 @@
 
 COMMENT = Monetary, financial and related applications
 
+SUBDIR += expense
 SUBDIR += libofx
 SUBDIR += openhbci
 SUBDIR += opentaxsolver
