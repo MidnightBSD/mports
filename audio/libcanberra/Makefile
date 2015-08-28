@@ -1,10 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	libcanberra
-PORTVERSION=	0.28
-PORTREVISION=	4
+PORTVERSION=	0.30
+PORTREVISION=	0
 CATEGORIES=	audio devel
-MASTER_SITES=	http://0pointer.de/lennart/projects/libcanberra/
+MASTER_SITES=	http://0pointer.de/lennart/projects/libcanberra/ \
+		http://pkgs.fedoraproject.org/repo/pkgs/libcanberra/libcanberra-0.30.tar.xz/34cb7e4430afaf6f447c4ebdb9b42072/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the Freedesktop sound theme spec
@@ -15,8 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LGPL
 LIB_DEPENDS=	libvorbisfile.so:${PORTSDIR}/audio/libvorbis \
 		libltdl.so:${PORTSDIR}/devel/libltdl
 
-USES=		gmake libtool pathfix pkgconfig
-USE_GNOME=	gnomeprefix gtk20 gconf2
+USES=		gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	gnomeprefix gtk20 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-lynx --disable-tdb --disable-alsa
@@ -24,9 +25,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-.if !defined(SLAVEPORT)
-GCONF_SCHEMAS=	libcanberra.schemas
-.else
+.if defined(SLAVEPORT)
 OPTIONS_DEFINE=	PULSEAUDIO GSTREAMER
 .endif
 
@@ -50,7 +49,7 @@ PLIST_SUB+=	PULSE="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGSTREAMER}
-USE_GSTREAMER=	yes
+USE_GSTREAMER1=	yes
 PLIST_SUB+=	GSTREAMER=""
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
