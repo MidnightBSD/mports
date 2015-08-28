@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gdm
-PORTVERSION=	3.14.2
+PORTVERSION=	3.16.2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -22,6 +22,7 @@ LIB_DEPENDS=	libck-connector.so:${PORTSDIR}/sysutils/consolekit \
 		libaccountsservice.so:${PORTSDIR}/sysutils/accountsservice \
 		libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3
 RUN_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
+		gnome-shell>=3.15.92:${PORTSDIR}/x11/gnome-shell \
 		gnome-settings-daemon>=3.0.0:${PORTSDIR}/sysutils/gnome-settings-daemon \
 		gnome-keyring-3:${PORTSDIR}/security/gnome-keyring \
 		gnome-session>=3.0.0:${PORTSDIR}/x11/gnome-session \
@@ -39,7 +40,7 @@ USERS=		gdm
 GROUPS=		gdm
 
 USES=		execinfo gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	dconf gnomeprefix intlhack introspection librsvg2
+USE_GNOME=	dconf intlhack introspection librsvg2
 USE_LDCONFIG=	yes
 USE_XORG=	dmx dmxproto
 INSTALLS_ICONS=	yes
@@ -54,15 +55,19 @@ CONFIGURE_ARGS=	--disable-static \
 		--with-custom-conf=${PREFIX}/etc/gdm/custom.conf \
 		--with-dbus-sys=${PREFIX}/etc/dbus-1/system.d \
 		--with-log-dir=/var/log/gdm \
+		--localstatedir=/var \
+		--with-console-kit \
 		--with-working-directory=${PREFIX}/etc/gdm/home \
 		--with-sysconfsubdir=gdm \
 		--with-pid-file=/var/run/gdm.pid \
 		--with-dmconfdir=${LOCALBASE}/share/xsessions \
 		--with-screenshot-dir=/var/run/gdm/greeter \
 		--enable-authentication-scheme=pam \
+		--without-plymouth \
 		--with-user=gdm \
 		--with-group=gdm \
  		--with-initial-vt=09 \
+		--disable-wayland-support \
 		--with-systemd=no
 
 # this is a hack until we can get our own pam dir and dir in order.
