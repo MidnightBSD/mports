@@ -714,7 +714,7 @@ easyinstall-setopt:
 .endif		# !target(eayinstall-setopt)
 
 pre-build: easyinstall-setopt
-.endif		# defined(PYEASYINSTALL_ARCHDEP)
-.endif		# defined(USE_PYDISTUTILS)
+.endif	# defined(PYEASYINSTALL_ARCHDEP)
+.endif	# defined(USE_PYDISTUTILS)
 
-.endif		# defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
+.endif	# defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
