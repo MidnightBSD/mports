@@ -5,6 +5,7 @@ COMMENT = Things that used to be on the desktop before computers were invented
 SUBDIR += affiche
 SUBDIR += appwrapper
 SUBDIR += cartotheque
+SUBDIR += displaycalibrator
 SUBDIR += drivel
 SUBDIR += etoile-addresseskit
 SUBDIR += etoile-corner
