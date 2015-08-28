@@ -2,8 +2,6 @@
 #
 # Provide support for CMake based projects
 #
-# MAINTAINER: kde@FreeBSD.org
-#
 # Feature:		cmake
 # Usage:		USES=cmake or USES=cmake:ARGS
 # Valid ARGS:		outsource
@@ -44,21 +42,18 @@
 _INCLUDE_USES_CMAKE_MK=	yes
 
 _valid_ARGS=		outsource run
-_cmake_ARGS=		${cmake_ARGS:C/\:/ /g}
 
 # Sanity check
-.if defined(cmake_ARGS)
-.  for arg in ${_cmake_ARGS}
+.for arg in ${cmake_ARGS}
 .    if empty(_valid_ARGS:M${arg})
 IGNORE=	Incorrect 'USES+= cmake:${cmake_ARGS}' usage: argument [${arg}] is not recognized
 .    endif
-.  endfor
-.endif
+.endfor
 
 CMAKE_BIN=		${LOCALBASE}/bin/cmake
 BUILD_DEPENDS+=		${CMAKE_BIN}:${PORTSDIR}/devel/cmake
 
-.if ${_cmake_ARGS:Mrun}
+.if ${cmake_ARGS:Mrun}
 RUN_DEPENDS+=		${CMAKE_BIN}:${PORTSDIR}/devel/cmake
 .endif
 
@@ -74,7 +69,6 @@ PLIST_SUB+=		CMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:tl}"
 INSTALL_TARGET?=	install/strip
 .endif
 
-CMAKE_ENV?=		${CONFIGURE_ENV}
 CMAKE_ARGS+=		-DCMAKE_C_COMPILER:STRING="${CC}" \
 			-DCMAKE_CXX_COMPILER:STRING="${CXX}" \
 			-DCMAKE_C_FLAGS:STRING="${CFLAGS}" \
@@ -88,9 +82,10 @@ CMAKE_ARGS+=		-DCMAKE_C_COMPILER:STRING="${CC}" \
 			-DCMAKE_SHARED_LINKER_FLAGS:STRING="${LDFLAGS}" \
 			-DCMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
 			-DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}" \
-			-DTHREADS_HAVE_PTHREAD_ARG:BOOL=YES
+			-DTHREADS_HAVE_PTHREAD_ARG:BOOL=YES \
+			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=YES
 
-.if defined(BATCH) || defined(PACKAGE_BUILDING)
+.if defined(BATCH) || defined(PACKAGE_BUILDING) || defined(MAGUS)
 CMAKE_VERBOSE=		yes
 CMAKE_NOCOLOR=		yes
 .endif
@@ -102,10 +97,14 @@ CMAKE_ARGS+=		-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
 CMAKE_ARGS+=		-DCMAKE_COLOR_MAKEFILE:BOOL=OFF
 .endif
 
+.if defined(CMAKE_NINJA)
+.include "${PORTSDIR}/Mk/extensions/ninja.mk"
+.endif
+
 _CMAKE_MSG=		"===>  Performing in-source build"
 CMAKE_SOURCE_PATH?=	${WRKSRC}
 
-.if ${_cmake_ARGS:Moutsource}
+.if ${cmake_ARGS:Moutsource}
 _CMAKE_MSG=		"===>  Performing out-of-source build"
 CONFIGURE_WRKSRC=	${WRKDIR}/.build
 BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
@@ -116,7 +115,7 @@ INSTALL_WRKSRC=		${CONFIGURE_WRKSRC}
 do-configure:
 	@${ECHO_MSG} ${_CMAKE_MSG}
 	${MKDIR} ${CONFIGURE_WRKSRC}
-	@cd ${CONFIGURE_WRKSRC}; ${SETENV} ${CMAKE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
+	@cd ${CONFIGURE_WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
 .endif
 
 
