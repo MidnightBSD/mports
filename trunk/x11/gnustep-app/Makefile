@@ -22,7 +22,6 @@ RUN_DEPENDS=	aclock>0:${PORTSDIR}/x11-clocks/aclock \
 		affiche>0:${PORTSDIR}/deskutils/affiche \
 		appwrapper>0:${PORTSDIR}/deskutils/appwrapper \
 		batmon>0:${PORTSDIR}/sysutils/batmon \
-		biococoa>0:${PORTSDIR}/biology/biococoa \
 		camera>0:${PORTSDIR}/graphics/camera \
 		camerakit>0:${PORTSDIR}/graphics/camerakit \
 		cartotheque>0:${PORTSDIR}/deskutils/cartotheque \
