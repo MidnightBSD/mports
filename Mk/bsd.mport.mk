@@ -345,7 +345,7 @@ _LOAD_QT_EXT=		yes
 _LOAD_GNOME_EXT=	yes
 .endif
 
-.if defined(USE_GSTREAMER80)
+.if defined(USE_GSTREAMER1)
 _LOAD_GSTREAMER_EXT=	yes
 .endif
 
