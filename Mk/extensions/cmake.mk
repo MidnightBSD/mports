@@ -18,8 +18,6 @@
 #			Default: not set, until BATCH or PACKAGE_BUILDING is defined
 #
 # Variables for ports:
-# CMAKE_ENV		- Environment passed to cmake.
-#			Default: ${CONFIGURE_ENV}
 # CMAKE_ARGS		- Arguments passed to cmake
 #			Default: see below
 # CMAKE_BUILD_TYPE	- Type of build (cmake predefined build types).
@@ -33,10 +31,6 @@
 #			Debug otherwise
 # CMAKE_SOURCE_PATH	- Path to the source directory
 #			Default: ${WRKSRC}
-#
-# Deprecated variables:
-# CMAKE_OUTSOURCE	- Instruct to perform an out-of-source build.
-#			Deprecated, use 'USES+=	cmake:outsource' instead.
 
 .if !defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_CMAKE_MK)
 _INCLUDE_USES_CMAKE_MK=	yes
@@ -65,7 +59,7 @@ CMAKE_BUILD_TYPE?=	Release
 
 PLIST_SUB+=		CMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:tl}"
 
-.if defined(STRIP) && ${STRIP} != ""
+.if defined(STRIP) && ${STRIP} != "" && !defined(WITH_DEBUG)
 INSTALL_TARGET?=	install/strip
 .endif
 
@@ -80,10 +74,12 @@ CMAKE_ARGS+=		-DCMAKE_C_COMPILER:STRING="${CC}" \
 			-DCMAKE_EXE_LINKER_FLAGS:STRING="${LDFLAGS}" \
 			-DCMAKE_MODULE_LINKER_FLAGS:STRING="${LDFLAGS}" \
 			-DCMAKE_SHARED_LINKER_FLAGS:STRING="${LDFLAGS}" \
-			-DCMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
+			-DCMAKE_INSTALL_PREFIX:PATH="${CMAKE_INSTALL_PREFIX}" \
 			-DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}" \
 			-DTHREADS_HAVE_PTHREAD_ARG:BOOL=YES \
 			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=YES
+
+CMAKE_INSTALL_PREFIX?=	${PREFIX}
 
 .if defined(BATCH) || defined(PACKAGE_BUILDING) || defined(MAGUS)
 CMAKE_VERBOSE=		yes
