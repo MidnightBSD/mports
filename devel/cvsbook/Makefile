@@ -1,10 +1,5 @@
-# New ports collection makefile for:	cvsbook
-# Date created:		2002/02/28
-# Whom:			Alan Eldridge <alane@geeksrus.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/cvsbook/Makefile,v 1.13 2008/05/17 12:41:03 miwi Exp $
-#
 
 PORTNAME=	cvsbook
 PORTVERSION=	1.21
