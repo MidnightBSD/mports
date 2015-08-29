@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.48.1
+PORTVERSION=	2.50.0
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -22,7 +22,7 @@ USES=		tar:xz
 
 USES+=		gettext gmake libtool pathfix pkgconfig \
 		python:3:build tar:xz
-USE_GNOME=	glib20 intltool introspection:build \
+USE_GNOME=	glib20 intlhack introspection:build \
 		libxml2 referencehack
 USE_SQLITE=	3
 USE_LDCONFIG=	yes
@@ -37,8 +37,7 @@ PLIST_SUB=	VERSION="2.4" LIBVERSION=${LIBVERSION}
 
 .if defined(SOUP_SLAVE)
 USE_SQLITE=	yes
-LIB_DEPENDS+=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
-		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
+LIB_DEPENDS+=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup
 CONFIGURE_ARGS+=--with-gnome
 .else
 CONFIGURE_ARGS+=--without-gnome
@@ -52,12 +51,12 @@ post-patch:
 
 .if defined(SOUP_SLAVE)
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/gir-1.0/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.gir ${STAGEDIR}${PREFIX}/share/gir-1.0/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.typelib ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${STAGEDIR}${PREFIX}/lib/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${STAGEDIR}${PREFIX}/lib/
+	@${MKDIR} ${PREFIX}/share/gir-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.gir ${PREFIX}/share/gir-1.0/
+	@${MKDIR} ${PREFIX}/lib/girepository-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.typelib ${PREFIX}/lib/girepository-1.0/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
 	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.${LIBVERSION} ${STAGEDIR}${PREFIX}/lib/
 	cd ${WRKSRC}/libsoup && DESTDIR=${FAKE_DESTDIR} ${GMAKE} install-libsoupgnomeincludeHEADERS
 .endif
