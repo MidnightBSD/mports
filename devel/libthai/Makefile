@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libthai
-PORTVERSION=	0.1.21
+PORTVERSION=	0.1.22
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/
 
