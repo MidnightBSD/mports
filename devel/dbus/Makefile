@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dbus
-PORTVERSION=	1.8.12
+PORTVERSION=	1.8.20
 PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/

@@ -24,11 +24,11 @@ include/dbus-%%VERSION%%/dbus/dbus-syntax.h
 include/dbus-%%VERSION%%/dbus/dbus-threads.h
 include/dbus-%%VERSION%%/dbus/dbus-types.h
 include/dbus-%%VERSION%%/dbus/dbus.h
-include/dbus-%%VERSION%%/include/dbus/dbus-arch-deps.h
+lib/dbus-%%VERSION%%/include/dbus/dbus-arch-deps.h
 lib/libdbus-1.a
 lib/libdbus-1.so
 lib/libdbus-1.so.3
-lib/libdbus-1.so.3.8.9
+lib/libdbus-1.so.3.8.13
 libdata/pkgconfig/dbus-1.pc
 libexec/dbus-daemon-launch-helper
 %%MANPAGES%%man/man1/dbus-cleanup-sockets.1.gz
@@ -48,10 +48,10 @@ libexec/dbus-daemon-launch-helper
 @dirrmtry share/dbus-1/services
 @dirrmtry share/dbus-1/interfaces
 @dirrmtry share/dbus-1
-@dirrm include/dbus-%%VERSION%%/include/dbus
-@dirrm include/dbus-%%VERSION%%/include
-@dirrm include/dbus-%%VERSION%%/dbus
-@dirrm include/dbus-%%VERSION%%
-@dirrm etc/dbus-1/system.d
-@dirrm etc/dbus-1/session.d
-@dirrm etc/dbus-1
+@dir include/dbus-%%VERSION%%/include/dbus
+@dir include/dbus-%%VERSION%%/include
+@dir include/dbus-%%VERSION%%/dbus
+@dir include/dbus-%%VERSION%%
+@dir etc/dbus-1/system.d
+@dir etc/dbus-1/session.d
+@dir etc/dbus-1
