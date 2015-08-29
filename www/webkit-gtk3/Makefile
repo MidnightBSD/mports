@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	webkit
-PORTVERSION=	2.4.8
+PORTVERSION=	2.4.9
 PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
@@ -14,6 +14,7 @@ COMMENT=	Opensource browser engine
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
+		p5-Switch>0:${PORTSDIR}/lang/p5-Switch \
 		geoclue>=0:${PORTSDIR}/net/geoclue
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libsecret-1.so:${PORTSDIR}/security/libsecret \
