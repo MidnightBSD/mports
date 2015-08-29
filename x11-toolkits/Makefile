@@ -11,6 +11,7 @@ SUBDIR += gnome-pty-helper
 SUBDIR += gnustep-back
 SUBDIR += gnustep-gui
 SUBDIR += gstreamer-plugins-pango
+SUBDIR += gstreamer1-plugins-pango
 SUBDIR += gtk12
 SUBDIR += gtk20
 SUBDIR += gtk30
