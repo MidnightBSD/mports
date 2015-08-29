@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	harfbuzz
-PORTVERSION=	0.9.40
+PORTVERSION=	1.0.1
 CATEGORIES=	print
 MASTER_SITES=	http://www.freedesktop.org/software/harfbuzz/release/
 
@@ -25,6 +25,6 @@ INSTALL_TARGET=	install-strip
 
 EXTRA_PATCHES=	${PATCHDIR}/extra-src_hb-open-type-private.hh
 
-PLIST_SUB+=	LIBVER=0.940.0
+PLIST_SUB+=	LIBVER=0.10000.1
 
 .include <bsd.port.post.mk>
