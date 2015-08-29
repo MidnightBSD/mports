@@ -1,5 +1,5 @@
-%%CLIENT%%bin/minetest
-%%SERVER%%bin/minetestserver
+bin/minetest
+bin/minetestserver
 @unexec if cmp -s %D/etc/minetest.conf.example %D/etc/minetest.conf; then rm -f %D/etc/minetest.conf; fi
 etc/minetest.conf.example
 @exec if [ ! -f %B/minetest.conf ]; then cp -p %D/%F %B/minetest.conf; fi
