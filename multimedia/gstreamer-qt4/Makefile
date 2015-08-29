@@ -11,12 +11,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 bindings for GStreamer multimedia library
 LICENSE=	lgpl
 
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
+LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs
 
-USE_BISON=	build
-USE_BZIP2=	yes
-USE_CMAKE=	yes
-USE_GMAKE=	yes
+USES=		bison cmake gmake pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	yes
 USE_GNOME=	glib20
