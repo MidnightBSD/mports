@@ -109,6 +109,7 @@ SUBDIR += nas
 SUBDIR += openal
 SUBDIR += openal-soft
 SUBDIR += opencore-amr
+SUBDIR += opus
 SUBDIR += portaudio
 SUBDIR += pulseaudio
 SUBDIR += py-mutagen
