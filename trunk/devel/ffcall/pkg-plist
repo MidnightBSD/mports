@@ -1,3 +1,8 @@
+man/man3/avcall.3.gz
+man/man3/callback.3.gz
+man/man3/trampoline.3.gz
+man/man3/trampoline_r.3.gz
+man/man3/vacall.3.gz
 include/avcall.h
 include/callback.h
 include/trampoline.h
@@ -5,9 +10,7 @@ include/trampoline_r.h
 include/vacall.h
 include/vacall_r.h
 lib/libavcall.a
-lib/libavcall.la
 lib/libcallback.a
-lib/libcallback.la
 lib/libtrampoline.a
 lib/libvacall.a
 share/html/avcall.html
@@ -15,4 +18,3 @@ share/html/callback.html
 share/html/trampoline.html
 share/html/trampoline_r.html
 share/html/vacall.html
-@dirrm share/html
