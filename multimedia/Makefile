@@ -30,6 +30,7 @@ SUBDIR += gstreamer-plugins-vp8
 SUBDIR += gstreamer-plugins-xvid
 SUBDIR += gstreamer-qt4
 SUBDIR += gstreamer1
+SUBDIR += gstreamer1-plugins
 SUBDIR += libdca
 SUBDIR += libdv
 SUBDIR += libdvdcss
