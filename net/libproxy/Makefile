@@ -2,16 +2,17 @@
 
 PORTNAME=	libproxy
 PORTVERSION=	0.4.6
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES?=	net devel
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Library that provides automatic proxy configuration management
 
 LICENSE=	lgpl2.1
 
-USE_CMAKE=	yes
+USES+=		cmake cpe
+CPE_VENDOR=	libproxy_project
 
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
@@ -62,7 +63,5 @@ CMAKE_ARGS+=	-DWITH_MOZJS:BOOL=OFF
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/libproxy/${PORTVERSION}/modules/
-	-(cd ${PREFIX}/lib/ && ln -s libproxy.so libproxy.so.1)
-	-(cd ${PREFIX}/lib/ && ln -s libmodman.so libmodman.so.1)
 
 .include <bsd.port.mk>
