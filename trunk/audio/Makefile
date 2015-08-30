@@ -85,6 +85,7 @@ SUBDIR += libnjb
 SUBDIR += libofa
 SUBDIR += libogg
 SUBDIR += libsamplerate
+SUBDIR += libshout
 SUBDIR += libsndfile
 SUBDIR += libvorbis
 SUBDIR += linux-f10-alsa-lib
