@@ -101,6 +101,7 @@ SUBDIR += totem
 SUBDIR += totem-pl-parser
 SUBDIR += v4l_compat
 SUBDIR += vcdimager
+SUBDIR += webcamd
 SUBDIR += win32-codecs
 SUBDIR += x264
 SUBDIR += xanim
