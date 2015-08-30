@@ -23,10 +23,11 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		iconv gmake zip
+USES=		iconv gmake zip:infozip
 USE_XORG+=	x11 xext xi xrender xt xtst
-MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
+MAKE_ARGS=	CC=${CC} CXX=${CXX} HOST_CC=${CC}
 MAKE_JOBS_UNSAFE=	yes
+USE_GCC=	any
 
 OPTIONS_DEFINE=		DEBUG POLICY TZUPDATE
 OPTIONS_DEFAULT=	POLICY TZUPDATE
@@ -34,22 +35,19 @@ DEBUG_DESC=		Enable extra debugging info
 POLICY_DESC=		Install the Unlimited Strength Policy Files
 TZUPDATE_DESC=		Update the time zone data
 
-PORT_MINOR_VERSION=	45
-PORT_BUILD_NUMBER=	18
+PORT_MINOR_VERSION=	25
+PORT_BUILD_NUMBER=	15
 JDK_MAJOR_VERSION=	7
-JDK_MINOR_VERSION=	40
-JDK_BUILD_NUMBER=	43
-JDK_BUILD_DATE=		26_aug_2013
+JDK_MINOR_VERSION=	6
+JDK_BUILD_NUMBER=	24
+JDK_BUILD_DATE=		09_aug_2012
 JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-b${JDK_BUILD_NUMBER}-${JDK_BUILD_DATE}
 
 # Use our own version of ant to avoid circular dependencies
-ANT_VERSION=		1.9.4
+ANT_VERSION=		1.8.4
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
 
-LATEST_LINK=		openjdk7
-
 LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2 \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		asound:${PORTSDIR}/audio/alsa-lib
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip \
 		unzip:${PORTSDIR}/archivers/unzip \
@@ -64,6 +62,7 @@ INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}
 
 NOPRECIOUSMAKEVARS=	yes
 
+FETCH_ARGS=	-Fpr
 MAKE_ENV+=	LANG="C" \
 		LC_ALL="C" \
 		JAVA_HOME="" \
@@ -90,7 +89,6 @@ MAKE_ENV+=	LANG="C" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}" \
 		MILESTONE="fcs" \
 		JDK_MICRO_VERSION="0_${PORT_MINOR_VERSION}" \
-		COMPILER_WARNINGS_FATAL="false" \
 		BUILD_NUMBER="b${PORT_BUILD_NUMBER}"
 
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
@@ -99,7 +97,19 @@ BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
 		${LOCALBASE}/openjdk6 \
 		${LOCALBASE}/bootstrap-openjdk
 
-NO_STAGE=	yes
+SECURITY_ICONS= security-icon-bw16.png \
+		security-icon-bw24.png \
+		security-icon-bw32.png \
+		security-icon-bw48.png \
+		security-icon-interim16.png \
+		security-icon-interim24.png \
+		security-icon-interim32.png \
+		security-icon-interim48.png \
+		security-icon-yellow16.png \
+		security-icon-yellow24.png \
+		security-icon-yellow32.png \
+		security-icon-yellow48.png
+
 .include <bsd.mport.options.mk>
 
 .if empty(PORT_OPTIONS:MDEBUG)
@@ -128,6 +138,14 @@ PATCH_DEPENDS+=	gpatch:${PORTSDIR}/devel/patch
 PATCH=		gpatch
 .endif
 
+post-extract: dos2unix
+	# Move icons to their new home.
+	@${MKDIR} ${WRKSRC}/jdk/src/share/classes/sun/awt/resources
+.for icon in ${SECURITY_ICONS}
+	@${MV} ${WRKSRC}/jdk/src/solaris/classes/sun/awt/X11/${icon} \
+		${WRKSRC}/jdk/src/share/classes/sun/awt/resources/
+.endfor
+
 post-patch:
 	@${REINPLACE_CMD} "s|%%LOCALBASE%%|${LOCALBASE}|" \
 		${WRKSRC}/hotspot/src/os/bsd/vm/os_bsd.cpp
@@ -142,6 +160,8 @@ post-patch:
 		${WRKSRC}/jdk/make/java/npt/Makefile \
 		${WRKSRC}/jdk/make/java/instrument/Makefile
 .endif
+	${REINPLACE_CMD} '' \
+		${WRKSRC}/jdk/src/share/classes/java/util/CurrencyData.properties
 
 .if ${PORT_OPTIONS:MTZUPDATE}
 pre-install:
@@ -163,11 +183,11 @@ do-install:
 	@${CHOWN} ${BINOWN}:${BINGRP} ${INSTALLDIR}/jre/lib/${ARCH}/jexec
 	@${CHMOD} ${BINMODE} ${INSTALLDIR}/jre/lib/${ARCH}/jexec
 	@${INSTALL_DATA} ${FILESDIR}/cacerts ${INSTALLDIR}/jre/lib/security/cacerts
-	@${ECHO} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}${PORTNAME}${JDK_MAJOR_VERSION}/bin/java" >> ${TMPPLIST}
+	@${ECHO} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}${PORTNAME}/${JDK_MAJOR_VERSION}/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${INSTALLDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	@${FIND} ${INSTALLDIR} -type d | ${SORT} -r | \
 		${SED} -e 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
-	@${ECHO} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}${PORTNAME}${JDK_MAJOR_VERSION}/bin/java # OpenJDK${JDK_MAJOR_VERSION}'" >> ${TMPPLIST}
+	@${ECHO} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}${PORTNAME}/${JDK_MAJOR_VERSION}/bin/java # OpenJDK${JDK_MAJOR_VERSION}'" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
