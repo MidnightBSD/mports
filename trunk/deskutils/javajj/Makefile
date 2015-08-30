@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	javajj
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 PORTREVISION=	1
 CATEGORIES=	deskutils java
 #MASTER_SITES=	http://www.justjournal.com/software/
@@ -18,13 +18,12 @@ BUILD_DEPENDS+=	mvn:${PORTSDIR}/java/maven3
 USE_GITHUB=	yes
 GH_ACCOUNT=	laffer1
 GH_PROJECT=	justjournal-client-java
-GH_COMMIT=	d35bcc3
 
 USES=		tar:bzip2
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 
-WRKSRC=		${WRKDIR}/justjournal-client-java-1.0
+WRKSRC=		${WRKDIR}/justjournal-client-java-${PORTVERSION}
 
 SUB_FILES=	${PORTNAME}.sh
 PLIST_FILES+=	bin/${PORTNAME}
