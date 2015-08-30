@@ -73,12 +73,12 @@ makeplist:
 			${ECHO_CMD} $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			${ECHO_CMD} "@dirrm $$dir" >> ${GENPLIST}; \
+			${ECHO_CMD} "@dir $$dir" >> ${GENPLIST}; \
 		done;
 .	else 
 		@cd ${FAKE_DESTDIR}${PREFIX}; \
 		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST}; \
-		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dirrm :' >> ${GENPLIST};
+		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dir :' >> ${GENPLIST};
 .	endif
 
 
@@ -104,7 +104,7 @@ makeplist:
 			${ECHO_CMD} $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			${ECHO_CMD} "@dirrm " >> ${GENPLIST}; \
+			${ECHO_CMD} "@dir " >> ${GENPLIST}; \
 		done;
 		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
 .	endif
