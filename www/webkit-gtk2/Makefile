@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	webkit
-PORTVERSION=	2.4.8
+PORTVERSION=	2.4.9
 PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
@@ -14,6 +14,7 @@ COMMENT=	Opensource browser engine using the GTK+ 2 toolkit
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
+		p5-Switch>0:${PORTSDIR}/lang/p5-Switch \
 		geoclue>=0:${PORTSDIR}/net/geoclue
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libsecret-1.so:${PORTSDIR}/security/libsecret \
@@ -24,7 +25,7 @@ LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
 RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
 
-USE_GSTREAMER=	yes
+USE_GSTREAMER1=	yes
 USE_XORG=	xt xdamage xcomposite
 USES=		bison compiler:c++11-lib gettext gmake gperf libtool \
 		perl5 pkgconfig shebangfix tar:xz
