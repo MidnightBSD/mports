@@ -31,7 +31,7 @@ class Plist
 		thiswd.chop!
 		# Strip mtree-created directories
 		if level > 0 && !@mtree.find {|x| x == thiswd}
-			subs.push('@dirrm ' + thiswd)
+			subs.push('@dir ' + thiswd)
 		end
 		return subs
 	end
@@ -112,7 +112,7 @@ usage: #{$0} [-Md] [-m mtree] somepath
        a port has been installed into (PREFIX=somepath).  The mtree file is
        consulted to prevent base directories from being added to the plist.
        The -M argument allows manpages to be added to the plist.
-       The -d argument puts all @dirrm commands at the end of the plist.
+       The -d argument puts all @dir commands at the end of the plist.
 USAGE_EOF
 		exit 1
 	end
@@ -122,7 +122,7 @@ USAGE_EOF
 		plnotdirrm = []
 		pldirrm = []
 		pl.each {|ent|
-			if ent =~ /^@dirrm /
+			if ent =~ /^@dir /
 				pldirrm.push(ent)
 			else
 				plnotdirrm.push(ent)
