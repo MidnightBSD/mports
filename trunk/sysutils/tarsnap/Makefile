@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	tarsnap
-PORTVERSION=	1.0.35
-PORTREVISION=	1
+PORTVERSION=	1.0.36
+PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
 DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
@@ -18,21 +18,10 @@ LICENSE_PERMS=	dist-mirror pkg-mirror
 GNU_CONFIGURE=	yes
 USES=		gmake tar:tgz
 
-OPTIONS_DEFINE=	SSE2
-SSE2_DESC=	Use SSE2-optimized code
-
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MSSE2}
-CONFIGURE_ARGS+=	--enable-sse2
-CFLAGS+=		-msse2
-.else
-CONFIGURE_ARGS+=	--disable-sse2
-.endif
 
 # safety check to ensure that we don't violate the license
 .if exists(${PATCHDIR})
-LICENSE_PERMS=	no-dist-mirror no-pkg-mirror
 RESTRICTED=	license only allows redistribution and use of unmodified source and binaries
 .endif
 LEGAL_TEXT=	license restricts redistribution of source and binaries
