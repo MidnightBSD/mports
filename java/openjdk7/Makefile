@@ -47,13 +47,13 @@ JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-
 ANT_VERSION=		1.8.4
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
 
-LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2 \
-		asound:${PORTSDIR}/audio/alsa-lib
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libasound.so:${PORTSDIR}/audio/alsa-lib
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip \
 		unzip:${PORTSDIR}/archivers/unzip \
 		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
 RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
-		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
 USE_DOS2UNIX=	jdk/src/share/classes/com/sun/org/apache/xml/internal/security/resource/xmlsecurity_en.properties
 
@@ -183,11 +183,11 @@ do-install:
 	@${CHOWN} ${BINOWN}:${BINGRP} ${INSTALLDIR}/jre/lib/${ARCH}/jexec
 	@${CHMOD} ${BINMODE} ${INSTALLDIR}/jre/lib/${ARCH}/jexec
 	@${INSTALL_DATA} ${FILESDIR}/cacerts ${INSTALLDIR}/jre/lib/security/cacerts
-	@${ECHO} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}${PORTNAME}/${JDK_MAJOR_VERSION}/bin/java" >> ${TMPPLIST}
+	@${ECHO} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${INSTALLDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	@${FIND} ${INSTALLDIR} -type d | ${SORT} -r | \
 		${SED} -e 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
-	@${ECHO} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}${PORTNAME}/${JDK_MAJOR_VERSION}/bin/java # OpenJDK${JDK_MAJOR_VERSION}'" >> ${TMPPLIST}
+	@${ECHO} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}/bin/java # OpenJDK${JDK_MAJOR_VERSION}'" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
