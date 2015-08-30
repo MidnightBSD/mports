@@ -44,7 +44,7 @@ JDK_BUILD_DATE=		09_aug_2012
 JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-b${JDK_BUILD_NUMBER}-${JDK_BUILD_DATE}
 
 # Use our own version of ant to avoid circular dependencies
-ANT_VERSION=		1.8.4
+ANT_VERSION=		1.9.4
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
 
 LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
