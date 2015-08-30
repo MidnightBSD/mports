@@ -222,7 +222,7 @@ add-plist-phpext:
 	@${FIND} -P ${FAKE_DESTDIR}${PREFIX}/include/php/ext/${PHP_MODNAME} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,,p' >> ${TMPPLIST}
 	@${FIND} -P -d ${FAKE_DESTDIR}${PREFIX}/include/php/ext/${PHP_MODNAME} -type d 2>/dev/null | \
-		${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dirrm ,p' >> ${TMPPLIST}
+		${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dir ,p' >> ${TMPPLIST}
 	@${ECHO_CMD} "@exec echo \#include \\\"ext/${PHP_MODNAME}/config.h\\\" >> %D/include/php/ext/php_config.h" \
 		>> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec cp %D/include/php/ext/php_config.h %D/include/php/ext/php_config.h.orig" \
