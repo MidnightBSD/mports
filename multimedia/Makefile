@@ -5,6 +5,7 @@ COMMENT = Multimedia software
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
+SUBDIR += cuse4bsd-kmod
 SUBDIR += dirac
 SUBDIR += etoile-babbler
 SUBDIR += etoile-mediakit
