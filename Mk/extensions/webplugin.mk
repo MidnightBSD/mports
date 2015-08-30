@@ -94,7 +94,7 @@
 #	lib/application/fooplugin.la
 #	lib/application/fooplugin.so
 #	lib/application/fooplugin.xpi
-#	@dirrm lib/application
+#	@dir lib/application
 #	------------------------------------------------------
 #
 # Here is what it will look like when it creates symlinks:
