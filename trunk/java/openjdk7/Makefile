@@ -114,6 +114,10 @@ SECURITY_ICONS= security-icon-bw16.png \
 
 .include <bsd.mport.options.mk>
 
+.if empty(ICONV_LIB)
+MAKE_ENV+=	EXTRA_CFLAGS=-DLIBICONV_PLUG
+.endif
+
 .if empty(PORT_OPTIONS:MDEBUG)
 MAKE_ENV+=	ALT_OBJCOPY="/nonexistent"
 .endif
