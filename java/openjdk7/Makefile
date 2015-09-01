@@ -2,7 +2,7 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${PORT_MINOR_VERSION}.${PORT_BUILD_NUMBER}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}/promoted/b${JDK_BUILD_NUMBER}/ \
 		http://download.java.net/jaxp/1.4.5/:jaxp \
@@ -114,10 +114,6 @@ SECURITY_ICONS= security-icon-bw16.png \
 
 .include <bsd.mport.options.mk>
 
-.if empty(ICONV_LIB)
-MAKE_ENV+=	EXTRA_CFLAGS=-DLIBICONV_PLUG
-.endif
-
 .if empty(PORT_OPTIONS:MDEBUG)
 MAKE_ENV+=	ALT_OBJCOPY="/nonexistent"
 .endif
@@ -142,6 +138,12 @@ BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
 .if ${OSVERSION} < 4015
 PATCH_DEPENDS+=	gpatch:${PORTSDIR}/devel/patch
 PATCH=		gpatch
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if empty(ICONV_LIB)
+MAKE_ENV+=      EXTRA_CFLAGS=-DLIBICONV_PLUG
 .endif
 
 post-extract: dos2unix
@@ -196,4 +198,4 @@ do-install:
 		${SED} -e 's,^${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
 	@${ECHO} "@exec ${LOCALBASE}/bin/registervm '${TRUE_PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}/bin/java # OpenJDK${JDK_MAJOR_VERSION}'" >> ${TMPPLIST}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
