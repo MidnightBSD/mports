@@ -122,6 +122,7 @@ SUBDIR += wrapper
 SUBDIR += x11perf
 SUBDIR += xauth
 SUBDIR += xbacklight
+SUBDIR += xbrightness
 SUBDIR += xbiff
 SUBDIR += xbitmaps
 SUBDIR += xcalc
