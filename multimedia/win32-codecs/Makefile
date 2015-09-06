@@ -18,7 +18,7 @@ COMMENT=	Huge compilation of Win32 binary video codecs
 
 LICENSE=	unknown
 
-RESTRICTED=	Unsure of codec's license
+RESTRICTED=	Unsure of codec license
 
 USES=		tar:bzip2
 
