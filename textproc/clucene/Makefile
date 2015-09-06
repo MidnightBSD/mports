@@ -2,18 +2,19 @@
 
 PORTNAME=	clucene
 PORTVERSION=	2.3.3.4
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-core-unstable/2.3
 DISTNAME=	${PORTNAME}-core-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CLucene is a C++ port of Lucene
+
 LICENSE=	apache2
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libboost_regex.a:${PORTSDIR}/devel/boost-libs
 
-USE_CMAKE=	yes
-USE_ICONV=	yes
+USES=		cmake iconv
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DBUILD_CONTRIBS_LIB=ON
