@@ -26,7 +26,7 @@
 # COMPILER_FEATURES:	the list of features supported by the compiler includes the standard C++ library.
 # CHOSEN_COMPILER_TYPE:	can be gcc or clang (type of compiler chosen by the framework)
 
-.if !defined(_INCLUDE_USES_COMPILER_MK) && defined(BEFOREPORTMK)
+.if !defined(_INCLUDE_USES_COMPILER_MK) && !defined(BEFOREPORTMK)
 _INCLUDE_USES_COMPILER_MK=	yes
 
 .if empty(compiler_ARGS)
@@ -165,7 +165,7 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 
 .if ${_COMPILER_ARGS:Mc++11-lang}
 .if !${COMPILER_FEATURES:Mc++11}
-.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc)
 USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
 .elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} == gcc
@@ -217,7 +217,7 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 
 .if ${_COMPILER_ARGS:Mc11}
 .if !${COMPILER_FEATURES:Mc11}
-.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
+.if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc)
 USE_GCC=	yes
 CHOSEN_COMPILER_TYPE=	gcc
 .elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} == gcc
