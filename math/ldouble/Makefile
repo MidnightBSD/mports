@@ -29,7 +29,7 @@ OPTIONS_DEFINE=	DOCS
 
 .if ${ARCH}=="i386"
 LDOUBLE_DISTFILE=	ldouble.zip
-USE_ZIP=		yes
+USES+=		zip
 EXTRA_PATCHES=	${FILESDIR}/i386-makefile-patch
 PORTDOCS=	ldoubdoc.html
 PLIST_FILES+=	include/mathl.h
