@@ -4,7 +4,7 @@
 PORTNAME=	notify
 PORTVERSION=	0.1.1
 DISTVERSIONPREFIX=python-
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.galago-project.org/files/releases/source/notify-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,9 +15,8 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	notify:${PORTSDIR}/devel/libnotify
 
-USE_BZIP2=	yes
-USES=		gmake pkgconfig
-USE_GNOME=	gnomehack pygtk2
+USES=		tar:bzip2 pkgconfig gmake
+USE_GNOME=	pygtk2
 USE_PYTHON=	2
 GNU_CONFIGURE=	yes
 
