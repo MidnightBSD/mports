@@ -73,6 +73,7 @@ TRUE_PREFIX?=		${PREFIX}
 #
 
 .if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
+	defined(HACK_SO_I_AM_OFF_FOR_NIJA_PORTS) &&
 	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .include "${PORTSDIR}/Mk/components/destdir.mk"
