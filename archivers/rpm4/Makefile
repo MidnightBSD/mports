@@ -2,7 +2,7 @@
 
 PORTNAME=	rpm
 PORTVERSION=	4.12.0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
@@ -17,6 +17,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
 		libnss3.so:${PORTSDIR}/security/nss \
+		libnspr4.so:${PORTSDIR}/devel/nspr \
 		libdbus-1.so:${PORTSDIR}/devel/dbus
 BUILD_DEPENDS=	${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 
