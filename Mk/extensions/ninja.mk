@@ -22,7 +22,7 @@ MAKE_ARGS+=	-v
 BUILD_DEPENDS+=	ninja:${PORTSDIR}/devel/ninja
 
 CMAKE_ARGS+=	-GNinja
-MAKEFILE=
+MAKEFILE=	build.ninja
 MAKE_CMD=	ninja
 MAKE_FLAGS=
 # Set a minimal job of 1
