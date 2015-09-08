@@ -1,21 +1,21 @@
 # $MidnightBSD$
 
-PORTNAME=		gtkperf
-PORTVERSION=		0.40
-PORTREVISION=	4
-CATEGORIES=		benchmarks
-MASTER_SITES=		SF
-DISTNAME=		${PORTNAME}_${PORTVERSION}
+PORTNAME=	gtkperf
+PORTVERSION=	0.40
+PORTREVISION=	5
+CATEGORIES=	benchmarks
+MASTER_SITES=	SF
+DISTNAME=	${PORTNAME}_${PORTVERSION}
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		Measure your system's GTK+ performance
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Measure your system's GTK+ performance
 
-LICENSE=		gpl2
+LICENSE=	gpl2
 
-WRKSRC=			${WRKDIR}/${PORTNAME}
-USE_GMAKE=		yes
-GNU_CONFIGURE=		yes
-USE_GNOME=		gtk20 gnomeprefix
+WRKSRC=		${WRKDIR}/${PORTNAME}
+USES=		gmake pkgconfig
+GNU_CONFIGURE=	yes
+USE_GNOME=	gtk20 gnomeprefix
 
 .include <bsd.mport.options.mk>
 
