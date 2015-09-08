@@ -414,7 +414,7 @@ gst_nas_PLIST_FILES=	${GST_LIB_DIR}/libgstnassink.la \
 		${GST_LIB_DIR}/libgstnassink.so
 
 # neon
-gst_neon_LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+gst_neon_LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon
 gst_neon_CONFIGURE_ENV+=	NEON_CFLAGS="-I${LOCALBASE}/include/neon"
 gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.la \
 			${GST_LIB_DIR}/libgstneonhttpsrc.so
@@ -535,9 +535,7 @@ gst_twolame_DIST=		ugly
 
 # gst_v4l2
 gst_gst_v4l2_LIB_DEPENDS+=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
-.if ${OSVERSION} >= 800000
 gst_gst_v4l2_RUN_DEPENDS+=	webcamd:${PORTSDIR}/multimedia/webcamd
-.endif
 gst_gst_v4l2_PLIST_FILES=	${GST_LIB_DIR}/libgstvideo4linux2.la \
 		${GST_LIB_DIR}/libgstvideo4linux2.so
 gst_gst_v4l2_CONFIGURE_ARGS+=	--enable-gst_v4l2
@@ -653,7 +651,7 @@ GST_POSTBUILD_DIR=${gst_${GST_PLUGIN}_GST_POSTBUILD_DIR}
 .if !target(do-build)
 do-build:
 .for dir in ${GST_PREBUILD_DIR} ${GST_PLUGIN_DIR} ${GST_POSTBUILD_DIR}
-	@cd ${WRKSRC}/${dir}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
+	@cd ${WRKSRC}/${dir}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
 		${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET}
 .endfor
 .endif
@@ -661,7 +659,7 @@ do-build:
 .if !target(do-install)
 do-install:
 .for dir in ${GST_PLUGIN_DIR}
-	@cd ${WRKSRC}/${dir}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
+	@cd ${WRKSRC}/${dir}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
 		${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
 .endif
