@@ -8,6 +8,7 @@
 # $MidnightBSD$
 # $FreeBSD: head/Mk/bsd.destdir.mk 340713 2014-01-22 15:12:27Z mat $
 #
+# Please make sure all changes to this file are passed through the maintainer.
 
 DESTDIR_Include_MAINTAINER=	ports@MidnightBSD.org
 
@@ -140,7 +141,7 @@ do-chroot:
 		_tp=$${_entry#*:}; \
 		_host_path=`${REALPATH} $${_tp%:*}`; \
 		_dest_path=$${_entry##*:}; \
-		_full_dest_path=`${REALPATH} $${_destdir}/$${_dest_path}`; \
+		_full_dest_path=`${REALPATH} -q $${_destdir}/$${_dest_path} || :`; \
 		_entry_was_created=0; \
 		_entry_should_mount=0; \
 		${DEBUG_MSG} "$${_mount_var}:$${_host_path}:$${_full_dest_path}"; \
