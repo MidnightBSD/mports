@@ -12,6 +12,8 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
 WRKSRC=         ${WRKDIR}/justjournal-client-unix-1.0.3/gtk
+
+USES=		pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     justjournal-client-unix
 GH_ACCOUNT=     laffer1
