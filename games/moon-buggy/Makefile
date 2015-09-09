@@ -19,6 +19,9 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 
 INFO=		moon-buggy
 
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}/var/games/moon-buggy
+
 post-install:
 	${CHMOD} 0555 ${PREFIX}/bin/moon-buggy
 
