@@ -6,7 +6,7 @@ PORTREVISION=	1
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftpd/${PORTVERSION}/ \
 		ftp://ftp.nl.uu.net/pub/unix/ftp/ncftpd/${PORTVERSION}/ \
-		LOCAL/beech
+		FREEBSD_LOCAL/beech
 DISTNAME=	${PORTNAME}-${PORTVERSION}-freebsd${BINVER}-${DIST_ARCH}-export
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +18,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+ONLY_FOR_ARCHS=		amd64
+ONLY_FOR_ARCHS_REASON=	only available for amd64
 
 NO_BUILD=	YES
 RESTRICTED=	30 day evaluation license
