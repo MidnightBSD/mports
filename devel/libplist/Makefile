@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libplist
-PORTVERSION=	1.11
+PORTVERSION=	1.12
 PORTREVISION?=	0
 CATEGORIES?=	devel
 MASTER_SITES=	http://www.libimobiledevice.org/downloads/
