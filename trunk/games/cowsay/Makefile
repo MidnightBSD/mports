@@ -3,7 +3,7 @@
 
 PORTNAME=	cowsay
 PORTVERSION=	3.03
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://www.nog.net/~tony/warez/
 
@@ -14,9 +14,6 @@ LICENSE=	artistic
 USE_PERL5=	yes
 
 NO_BUILD=	# defined
-
-MAN1=		cowsay.1
-MLINKS=		cowsay.1 cowthink.1
 
 do-install:
 	cd ${WRKSRC}; ${SH} install.sh ${PREFIX}
