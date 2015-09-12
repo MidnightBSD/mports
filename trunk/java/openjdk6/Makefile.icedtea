@@ -1,3 +1,5 @@
+# $MidnightBSD$
+
 _PATCHES= \
 	jaxp.patch \
 	jaxws.patch \
