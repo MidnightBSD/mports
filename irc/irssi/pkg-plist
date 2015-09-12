@@ -1,6 +1,6 @@
-%%WITH_BOT%%bin/botti
+%%BOT%%bin/botti
 bin/irssi
-etc/irssi.conf.sample
+@sample etc/irssi.conf.sample
 include/irssi/irssi-config.h
 include/irssi/irssi-version.h
 include/irssi/src/common.h
@@ -113,16 +113,16 @@ include/irssi/src/irc/notifylist/notify-setup.h
 include/irssi/src/irc/notifylist/notifylist.h
 include/irssi/src/lib-config/iconfig.h
 include/irssi/src/lib-config/module.h
-%%WITH_PROXY%%lib/irssi/modules/libirc_proxy.a
-%%WITH_PROXY%%lib/irssi/modules/libirc_proxy.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Irssi.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Irssi/Irc.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Irssi/TextUI.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Irssi/UI.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/Irc/Irc.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/Irssi.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/TextUI/TextUI.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/UI/UI.so
+%%PROXY%%lib/irssi/modules/libirc_proxy.a
+%%PROXY%%lib/irssi/modules/libirc_proxy.so
+%%SITE_ARCH%%/Irssi.pm
+%%SITE_ARCH%%/Irssi/Irc.pm
+%%SITE_ARCH%%/Irssi/TextUI.pm
+%%SITE_ARCH%%/Irssi/UI.pm
+%%SITE_ARCH%%/auto/Irssi/Irc/Irc.so
+%%SITE_ARCH%%/auto/Irssi/Irssi.so
+%%SITE_ARCH%%/auto/Irssi/TextUI/TextUI.so
+%%SITE_ARCH%%/auto/Irssi/UI/UI.so
 man/man1/irssi.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/design.txt
 %%PORTDOCS%%%%DOCSDIR%%/faq.html
@@ -166,8 +166,6 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/ignore
 %%DATADIR%%/help/info
 %%DATADIR%%/help/invite
-%%DATADIR%%/help/invitelist
-%%DATADIR%%/help/ircnet
 %%DATADIR%%/help/ison
 %%DATADIR%%/help/join
 %%DATADIR%%/help/kick
@@ -194,7 +192,6 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/netsplit
 %%DATADIR%%/help/network
 %%DATADIR%%/help/nick
-%%DATADIR%%/help/note
 %%DATADIR%%/help/notice
 %%DATADIR%%/help/notify
 %%DATADIR%%/help/op
@@ -212,17 +209,13 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/restart
 %%DATADIR%%/help/rmreconns
 %%DATADIR%%/help/rmrejoins
-%%DATADIR%%/help/rping
 %%DATADIR%%/help/save
-%%DATADIR%%/help/say
 %%DATADIR%%/help/sconnect
 %%DATADIR%%/help/script
 %%DATADIR%%/help/scrollback
 %%DATADIR%%/help/server
-%%DATADIR%%/help/servlist
 %%DATADIR%%/help/set
 %%DATADIR%%/help/silence
-%%DATADIR%%/help/squery
 %%DATADIR%%/help/squit
 %%DATADIR%%/help/stats
 %%DATADIR%%/help/statusbar
@@ -239,7 +232,7 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/unquery
 %%DATADIR%%/help/unsilence
 %%DATADIR%%/help/upgrade
-%%DATADIR%%/help/uping
+%%DATADIR%%/help/uptime
 %%DATADIR%%/help/userhost
 %%DATADIR%%/help/ver
 %%DATADIR%%/help/version
@@ -247,13 +240,10 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/wait
 %%DATADIR%%/help/wall
 %%DATADIR%%/help/wallops
-%%DATADIR%%/help/watch
 %%DATADIR%%/help/who
 %%DATADIR%%/help/whois
 %%DATADIR%%/help/whowas
 %%DATADIR%%/help/window
-%%DATADIR%%/help/wjoin
-%%DATADIR%%/help/wquery
 %%DATADIR%%/scripts/autoop.pl
 %%DATADIR%%/scripts/autorejoin.pl
 %%DATADIR%%/scripts/buf.pl
@@ -271,31 +261,4 @@ man/man1/irssi.1.gz
 %%DATADIR%%/scripts/usercount.pl
 %%DATADIR%%/themes/colorless.theme
 %%DATADIR%%/themes/default.theme
-@dirrm %%DATADIR%%/themes
-@dirrm %%DATADIR%%/scripts
-@dirrm %%DATADIR%%/help
-@dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/UI
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/TextUI
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi/Irc
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Irssi
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Irssi
-@exec mkdir -p %D/lib/irssi/modules
-@dirrmtry lib/irssi/modules
-@dirrmtry lib/irssi
-@dirrm include/irssi/src/lib-config
-@dirrm include/irssi/src/irc/notifylist
-@dirrm include/irssi/src/irc/flood
-@dirrm include/irssi/src/irc/dcc
-@dirrm include/irssi/src/irc/core
-@dirrm include/irssi/src/irc
-@dirrm include/irssi/src/fe-text
-@dirrm include/irssi/src/fe-common/irc/notifylist
-@dirrm include/irssi/src/fe-common/irc/dcc
-@dirrm include/irssi/src/fe-common/irc
-@dirrm include/irssi/src/fe-common/core
-@dirrm include/irssi/src/fe-common
-@dirrm include/irssi/src/core
-@dirrm include/irssi/src
-@dirrm include/irssi
+@dir lib/irssi/modules
