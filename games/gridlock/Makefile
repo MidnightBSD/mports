@@ -9,13 +9,14 @@ MASTER_SITES=	http://www.dozingcatsoftware.com/Gridlock/ \
 DISTNAME=	Gridlock-gnustep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A collection of grid-based board games for GNUstep
+COMMENT=	Collection of grid-based board games for GNUstep
+
 LICENSE=	mit
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+BROKEN=		does not build with latest gnustep
+
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/Gridlock
 
