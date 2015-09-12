@@ -10,7 +10,7 @@ MASTER_SITES=	ftp://sunsite.auc.dk/pub/os/linux/loki/open-source/smpeg/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free MPEG1 video player library with sound support
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
