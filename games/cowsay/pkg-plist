@@ -1,5 +1,6 @@
 bin/cowsay
 bin/cowthink
+man/man1/cowsay.1.gz
 share/cows/beavis.zen.cow
 share/cows/bong.cow
 share/cows/box.cow
@@ -50,4 +51,3 @@ share/cows/udder.cow
 share/cows/vader-koala.cow
 share/cows/vader.cow
 share/cows/www.cow
-@dirrm share/cows
