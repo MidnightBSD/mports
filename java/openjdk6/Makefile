@@ -162,7 +162,7 @@ MAKE_ENV+=	DONT_ENABLE_IPV6="YES"
 
 .if ${PORT_OPTIONS:MSOUND}
 EXTRA_PATCHES+=	${FILESDIR}/alsa-enable.patch
-LIB_DEPENDS+=	asound:${PORTSDIR}/audio/alsa-lib
+LIB_DEPENDS+=	libasound.so:${PORTSDIR}/audio/alsa-lib
 RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
 .else
 EXTRA_PATCHES+=	${FILESDIR}/alsa-disable.patch
