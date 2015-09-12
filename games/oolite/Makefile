@@ -2,7 +2,7 @@
 
 PORTNAME=		oolite
 PORTVERSION=		1.65
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		games gnustep
 MASTER_SITES=		${MASTER_SITE_BERLIOS} \
 			ftp://ftp.alioth.net/%SUBDIR%/:alioth
@@ -15,12 +15,10 @@ COMMENT=		Trade and combat space simulator, clone of Elite
 LICENSE=		gpl2
 
 WRKSRC=			${WRKDIR}/${PORTNAME}-${PORTVERSION}-src
+USES=			gnustep gmake
 USE_GL=			yes
 USE_SDL=		mixer image gfx
-USE_GMAKE=		yes
-USE_GNUSTEP=		yes
-USE_GNUSTEP_BASE=	yes
-USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP=		back build
 MAKEFILE=		GNUmakefile
 MAKE_FLAGS+=		debug=no
 SUB_FILES=		pkg-message
