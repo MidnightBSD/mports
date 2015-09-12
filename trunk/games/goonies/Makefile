@@ -2,7 +2,7 @@
 
 PORTNAME=	goonies
 PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://goonies.jorito.net/download/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remake of the 8 bit classic game 'The Goonies'
 LICENSE=	unknown
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_SDL=	sdl mixer image
 USE_GL=		yes
 
@@ -25,10 +25,6 @@ DATADIRS=	sound graphics maps
 PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not compile on sparc64
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|__APPLE__|__FreeBSD__|' \
