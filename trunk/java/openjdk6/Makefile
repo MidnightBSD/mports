@@ -14,7 +14,7 @@ MASTER_SITES=	http://download.java.net/openjdk/jdk6/promoted/${PORTVERSION}/ \
 		http://icedtea.wildebeest.org/download/drops/:jaxp \
 		http://icedtea.wildebeest.org/download/drops/:jaxws \
 		http://icedtea.wildebeest.org/download/drops/:jaf \
-		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,} \
+		APACHE/ant/binaries/:ant \
 		http://download.java.net/openjdk/jtreg/promoted/4.1/${JTREGVERSION}/:jtreg
 DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -76,7 +76,7 @@ UPDATE_VERSION=	32
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
-ANTVERSION=	1.8.4
+ANTVERSION=	1.9.4
 ANTFILE=	apache-ant-${ANTVERSION}-bin.tar.bz2
 
 .include <bsd.port.pre.mk>
