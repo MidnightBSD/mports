@@ -10,7 +10,10 @@ DISTNAME=	bass-cd-1.2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beneath a Steel Sky: a post-apocalyptic futuristic graphical adventure
 
-LICENSE=	other
+LICENSE=	bass
+LICENSE_NAME=	no name
+LICENSE_FILE=	${WRKSRC}/readme.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 RUN_DEPENDS=	scummvm:${PORTSDIR}/games/scummvm
 
@@ -20,18 +23,14 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${DISTNAME}
 SUB_FILES=	pkg-message
 
+OPTIONS_DEFINE=	DOCS
+
 do-install:
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/sky.dnr ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/sky.dsk ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/sky.cpt ${DATADIR}
-
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for docs in readme.txt
-	@${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
-.endfor
-.endif
-
+	@${INSTALL_DATA} ${WRKSRC}/readme.txt ${DOCSDIR}
 
 .include <bsd.port.mk>
