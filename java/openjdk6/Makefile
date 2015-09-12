@@ -60,7 +60,7 @@ EXTRA_PATCHES=	${ICEDTEA_PATCHES}
 # java extracts directly to the cwd
 WRKSRC=		${WRKDIR}
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_MOTIF=	yes
 USE_XORG=	x11 xext xi xt xtst
 
