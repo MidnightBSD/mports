@@ -34,7 +34,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/zip:${PORTSDIR}/archivers/zip \
 		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
-		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
 OPENJDK_BUILDDATE=	26_oct_2012
 
