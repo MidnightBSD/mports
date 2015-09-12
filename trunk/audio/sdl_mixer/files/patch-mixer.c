@@ -1,6 +1,3 @@
-
-$FreeBSD: ports/audio/sdl_mixer/files/patch-mixer.c,v 1.1 2001/05/08 08:20:10 sobomax Exp $
-
 --- mixer.c	2001/05/08 07:44:26	1.1
 +++ mixer.c	2001/05/08 07:47:09
 @@ -865,3 +865,18 @@

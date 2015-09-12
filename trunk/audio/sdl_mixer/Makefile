@@ -1,56 +1,67 @@
 # $MidnightBSD$
 
 PORTNAME=	sdl_mixer
-PORTVERSION=	1.2.8
+PORTVERSION=	1.2.12
+PORTREVISION=	0
 CATEGORIES=	audio
 MASTER_SITES=	http://www.libsdl.org/projects/SDL_mixer/release/
 DISTNAME=	SDL_mixer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sample multi-channel audio mixer library
-LICENSE=	lgpl
 
-USES=	libtool
+LICENSE=	zlib
+
+USES=		gmake libtool pathfix pkgconfig
 USE_SDL=	sdl
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CPPFLAGS+=	-DCONFIG_FILE_ETC_TIMIDITY \"${LOCALBASE}/etc/timidity.cfg\"
+LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
 USE_LDCONFIG=	yes
 
-OPTIONS=	MIKMOD		"Enable MOD music via libMikMod"	On \
-		SMPEG		"Enable MP3 music via SMPEG"		On \
-		VORBIS		"Enable Ogg Vorbis music"		On \
-		TIMIDITYPLUS	"Use Timidity++ instead of Timidity"	Off
+OPTIONS_DEFINE=		SMPEG FLAC VORBIS TIMIDITYPLUS
+OPTIONS_DEFAULT=	SMPEG FLAC VORBIS MIKMOD
+OPTIONS_RADIO=		MOD
+OPTIONS_RADIO_MOD=	MIKMOD MODPLUG
 
-.include <bsd.port.pre.mk>
+MIKMOD_DESC=	Enable MOD music via libMikMod
+MODPLUG_DESC=	Enable MOD music via libModPlug
+SMPEG_DESC=	Enable MP3 music via SMPEG
+FLAC_DESC=	Enable FLAC encoding support via flac
+VORBIS_DESC=	Enable Ogg Vorbis music
+TIMIDITYPLUS_DESC=	Use Timidity++ instead of Timidity (soundfont)
 
-.if defined(WITHOUT_MIKMOD)
-CONFIGURE_ARGS+=--disable-music-libmikmod
+MIKMOD_LIB_DEPENDS=		libmikmod.so:${PORTSDIR}/audio/libmikmod
+MIKMOD_CONFIGURE_ENABLE=	music-mod
+
+MODPLUG_LIB_DEPENDS=		libmodplug.so:${PORTSDIR}/audio/libmodplug
+MODPLUG_CONFIGURE_ENABLE=	music-mod-modplug
+
+FLAC_LIB_DEPENDS=		libFLAC.so:${PORTSDIR}/audio/flac
+FLAC_CONFIGURE_ENABLE=		music-flac
+
+SMPEG_LIB_DEPENDS=		libsmpeg.so:${PORTSDIR}/multimedia/smpeg
+SMPEG_CONFIGURE_ENABLE=		music-mp3
+
+VORBIS_LIB_DEPENDS=		libvorbis.so:${PORTSDIR}/audio/libvorbis
+VORBIS_CONFIGURE_ENABLE=	music-ogg
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MTIMIDITYPLUS}
+RUN_DEPENDS+=	${LOCALBASE}/share/timidity/timidity.cfg-eawpats:${PORTSDIR}/audio/eawpats
+CONFIG_FILE=	${LOCALBASE}/share/timidity/timidity.cfg-eawpats
 .else
-LIB_DEPENDS=	mikmod.2:${PORTSDIR}/audio/libmikmod
-CONFIGURE_ARGS+=--enable-music-libmikmod
-.endif
-
-.if defined(WITHOUT_SMPEG)
-CONFIGURE_ARGS+=--disable-music-mp3
-.else
-LIB_DEPENDS+=	smpeg.1:${PORTSDIR}/multimedia/smpeg
-CONFIGURE_ARGS+=--enable-music-mp3
-.endif
-
-.if defined(WITHOUT_VORBIS)
-CONFIGURE_ARGS+=--disable-music-ogg
-.else
-LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
-CONFIGURE_ARGS+=--enable-music-ogg
+RUN_DEPENDS+=	${LOCALBASE}/lib/timidity/timidity.cfg:${PORTSDIR}/audio/timidity
+CONFIG_FILE=	${LOCALBASE}/lib/timidity/timidity.cfg
 .endif
 
 post-patch:
-.if defined(WITH_TIMIDITYPLUS)
-	@${REINPLACE_CMD} -e 's|"${LOCALBASE}/lib/timidity"|"${LOCALBASE}/share/timidity"|g' \
+	@${REINPLACE_CMD} -e 's|\($$(prefix)/libdata/pkgconfig\)|$$(DESTDIR)\1|' \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|%%CONFIG_FILE%%|${CONFIG_FILE}|g' \
 		${WRKSRC}/timidity/config.h
-.endif
+	@${REINPLACE_CMD} -e 's|"modplug.h"|"libmodplug/modplug.h"|' \
+		${WRKSRC}/music_modplug.h
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
