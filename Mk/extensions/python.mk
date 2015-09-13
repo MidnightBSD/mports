@@ -267,12 +267,10 @@ PYDISTUTILS_INSTALLARGS?=		-O 1 -N -S ${PYTHON_SITELIBDIR} \
 								-d ${PYEASYINSTALL_SITELIBDIR} \
 								-s ${PYEASYINSTALL_BINDIR} \
 								${WRKSRC}/dist/${PYEASYINSTALL_EGG}
-.if !defined(NO_STAGE)
 MAKE_ENV+=			PYTHONUSERBASE=${FAKE_DESTDIR}${PYTHONBASE}
 PYDISTUTILS_INSTALLARGS:=	-m -q --user ${PYDISTUTILS_INSTALLARGS}
-.endif
 
-.if ${TRUE_PREFIX} != ${LOCALBASE} || !defined(NO_STAGE)
+.if ${TRUE_PREFIX} != ${LOCALBASE}
 MAKE_ENV+=						PYTHONPATH=${PYEASYINSTALL_SITELIBDIR}
 .endif
 
@@ -289,11 +287,7 @@ PLIST_SUB+=		PYEASYINSTALL_EGG=${PYEASYINSTALL_EGG}
 
 pre-install: pre-install-easyinstall
 pre-install-easyinstall:
-.if defined(NO_STAGE)
-	@${MKDIR} ${PYEASYINSTALL_SITELIBDIR}
-.else
 	@${MKDIR} ${FAKE_DESTDIR}${PYEASYINSTALL_SITELIBDIR}
-.endif
 
 add-plist-post: add-plist-easyinstall
 add-plist-easyinstall:
@@ -306,7 +300,6 @@ add-plist-easyinstall:
 			/bin/ed ${PYEASYINSTALL_SITELIBDIR}/easy-install.pth" \
 		>> ${TMPPLIST}
 
-.if !defined(NO_STAGE)
 .if !target(stage-python-compileall)
 stage-python-compileall:
 	(cd ${FAKE_DESTDIR}${TRUE_PREFIX} && \
@@ -317,7 +310,6 @@ stage-python-compileall:
 .endif
 
 post-install: stage-python-compileall
-.endif
 
 .endif		# defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
 
@@ -400,7 +392,8 @@ PYMAGICTAG=		${PYTHON_CMD} -c 'import imp; print(imp.get_tag())'
 add-plist-post:
 	@${AWK} '\
 		/\.py[co]$$/ && !($$0 ~ "/" pc "/") {id = match($$0, /\/[^\/]+\.py[co]$$/); if (id != 0) {d = substr($$0, 1, RSTART - 1); dirs[d] = 1}; sub(/\.py[co]$$/,  "." mt "&"); sub(/[^\/]+\.py[co]$$/, pc "/&"); print; next} \
-		/^@dir / {d = substr($$0, 8); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
+		/^@dirrm / {d = substr($$0, 8); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
+		/^@dirrmtry / {d = substr($$0, 11); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
 		{print} \
 		END {if (sp in dirs) {print "@dir " sp "/" pc}} \
 		' \
@@ -453,7 +446,7 @@ PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_VER=${PYTHON_VER}
 
 _USES_POST+=	python
-.endif		# _INCLUDE_USES_PYTHON_MK
+.endif	# _INCLUDE_USES_PYTHON_MK
 
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PYTHON_POST_MK)
 _INCLUDE_USES_PYTHON_POST_MK=	yes
@@ -483,6 +476,5 @@ do-install:
 .endif
 
 add-plist-post: add-plist-egginfo
-
 .endif # defined(_PYTHON_FEATURE_DISTUTILS)
 .endif # defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PYTHON_POST_MK)
