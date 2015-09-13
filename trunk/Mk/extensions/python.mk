@@ -1,196 +1,22 @@
 # $MidnightBSD$
+#
+# Provide support for Python related ports. This includes detecting Python
+# interpreters, ports providing package and modules for python as well as
+# consumer ports requiring Python at build or run time.
+#
+# Feature:	python
+# Usage:	USES=python or USES=python:args
+# Valid ARGS:	<version>, build, run
+#
 
-.if !defined(_POSTMKINCLUDED) && !defined(Python_Pre_Include)
+# MAINTAINER: ports@MidnightBSD.org
 
-Python_Pre_Include=		python.mk
-Python_Include_MAINTAINER=	ports@MidnightBSD.org
+.if !defined(_INCLUDE_USES_PYTHON_MK)
+_INCLUDE_USES_PYTHON_MK=	yes
 
-# This file contains some variable definitions that are supposed to
-# make your life easier when dealing with ports related to the Python
-# language. It's automatically included when USE_PYTHON is defined in
-# the ports' makefile. If your port requires only some set of Python
-# versions, you can define USE_PYTHON as [min]-[max] or min+ or -max
-# or as an explicit version or as a meta port version (eg. 3.1-3.2
-# for [min]-[max], 2.7+ or -3.2 for min+ and -max, 2.7 for an
-# explicit version or 3 for a meta port version).
-#
-# The variables:
-#
-# PYTHONBASE		- Python port's installation prefix.
-#					  default: ${LOCALBASE}
-#
-# PYTHON_CMD		- Python's command line file name, including the version
-#					  number (used for dependencies).
-#					  default: ${PYTHONBASE}/bin/${PYTHON_VERSION}
-#
-# PYTHON_DISTFILE	- The ${DISTFILE} for your python version. Needed for
-#					  extensions like bsddb, gdbm, sqlite3 and tkinter, which
-#					  are built from sources contained in the Python
-#					  distribution.
-#
-# PYTHON_MASTER_SITES
-#					- The ${MASTER_SITES} for your python version. (You must
-#					  use this instead of ${MASTER_SITE_PYTHON} to support
-#					  python-devel port.)
-#
-# PYTHON_MASTER_SITE_SUBDIR
-#					- The ${MASTER_SITE_SUBDIR} for your python version.
-#
-# PYTHON_INCLUDEDIR	- Location of the Python include files.
-#					  default: ${PYTHONBASE}/include/${PYTHON_VERSION}
-#
-# PYTHON_LIBDIR		- Base of the python library tree
-#					  default: ${PYTHONBASE}/lib/${PYTHON_VERSION}
-#
-# PYTHON_PKGNAMEPREFIX
-#					- Use this as a ${PKGNAMEPREFIX} to distinguish
-#					  packages for different Python versions.
-#					  default: py${PYTHON_SUFFIX}-
-#
-# PYTHON_PKGNAMESUFFIX
-#					- If your port's name is more popular without `py-'
-#					  prefix, use this as a ${PKGNAMESUFFIX} alternatively.
-#					  default: -py${PYTHON_SUFFIX}
-#
-# PYTHON_PLATFORM	- Python's idea of the OS release.
-#					  XXX This is faked with ${OPSYS} and ${OSREL} until I
-#					  find out how to delay defining a variable until after
-#					  a certain target has been built.
-#
-# PYTHON_PORTSDIR	- The source of your binary's port. Needed for the
-#					  RUN_DEPENDS.
-#
-# PYTHON_PORTVERSION
-#					- Version number suitable for ${PORTVERSION}.
-#
-# PYTHON_REL		- Version number in numerical format, to ease
-#					  comparison in makefiles
-#
-# PYTHON_SITELIBDIR	- Location of the site-packages tree. Don't change,
-#					  unless you know what you do.
-#					  default: ${PYTHON_LIBDIR}/site-packages
-#
-# PYTHON_SUFFIX		- Yet another short version number, primarily intended
-#					  for ${PYTHON_PKGNAMEPREFIX}.
-#
-# PYTHON_VERSION	- Version of the python binary in your ${PATH}, in the
-#					  format "python2.0". Set this in your makefile in case you
-#					  want to build extensions with an older binary.
-#					  default: depends on the version of your python binary
-#
-# PYTHON_VER		- Version of the python binary in your ${PATH}, in the
-#					  format "2.7".
-#
-# PYTHON_DEFAULT_VERSION
-#					- Version of the default python binary in your ${PATH}, in
-#					  the format "python2.7".
-#
-# PYTHON2_DEFAULT_VERSION
-#					- Version of the default python2 binary in your ${PATH}, in
-#					  the format "python2.7".
-#
-# PYTHON3_DEFAULT_VERSION
-#					- Version of the default python3 binary in your ${PATH}, in
-#					  the format "python3.2".
-#
-# PYTHON_MAJOR_VER	- Python version major number. 2 for python-2.x,
-#					  3 for python-3.x and so on.
-#
-# PYTHON_WRKSRC		- The ${WRKSRC} for your python version. Needed for
-#					  extensions like Tkinter, py-gdbm and py-expat, which
-#					  are built from sources contained in the Python
-#					  distribution.
-#
-# There are PREFIX-clean variants of the PYTHON_*DIR variables above.
-# They are meant to be used in the installation targets.
-#
-# PYTHONPREFIX_INCLUDEDIR	default: ${PREFIX}/include/${PYTHON_VERSION}
-# PYTHONPREFIX_LIBDIR		default: ${PREFIX}/lib/${PYTHON_VERSION}
-# PYTHONPREFIX_SITELIBDIR	default: ${PYTHONPREFIX_LIBDIR}/site-packages
-#
-# PYGAME			- Dependency line for the Pygame library.
-#
-# PYNUMERIC			- Dependency line for the numeric extension.
-#
-# PYNUMPY			- Dependency line for the new numeric extension.
-#                     py-numpy, Py-Numeric is deprecated.
-#
-# PYXML				- Dependency line for the XML extension. As of Python-2.0,
-#					  this extension is in the base distribution.
-#
-# USE_PYTHON_PREFIX	- Says that the port installs in ${PYTHONBASE}.
-#
-# USE_PYDISTUTILS	- Use distutils as do-configure, do-build and do-install
-#					  targets.
-#
-# PYSETUP			- Name of the setup script used by the distutils package.
-#					  default: setup.py
-#
-# PYDISTUTILS_AUTOPLIST
-#					- Automatically generates the packaging list for a port that uses
-#                                         distutils or setuptools (easy_install) when defined.
-#                                         requires: USE_PYDISTUTILS
-#
-# PYTHON_PY3K_PLIST_HACK
-#					- Automatically generates Python 3.x compatible __pycache__ entries
-#                                         from a Python 2.x packaging list when defined. Use this for ports that
-#                                         do *not* use standard Python packaging mechanisms such as distutils
-#                                         or setuptools, and support *both* Python 2.x and 3.x. Not needed when
-#                                         PYDISTUTILS_AUTOPLIST is defined.
-#
-# PYDISTUTILS_PKGNAME
-#					- Internal name in the distutils for egg-info.
-#					  default: ${PORTNAME}
-#
-# PYDISTUTILS_PKGVERSION
-#					- Internal version in the distutils for egg-info.
-#					  default: ${PORTVERSION}
-#
-# PYDISTUTILS_CONFIGURE_TARGET
-#					- Pass this command to distutils on configure stage.
-#					  default: config
-#
-# PYDISTUTILS_BUILD_TARGET
-#					- Pass this command to distutils on build stage.
-#					  default: build
-#
-# PYDISTUTILS_INSTALL_TARGET
-#					- Pass this command to distutils on install stage.
-#					  default: install
-#
-# PYDISTUTILS_CONFIGUREARGS
-#					- Arguments to config with distutils.
-#					  default: <empty>
-#
-# PYDISTUTILS_BUILDARGS
-#					- Arguments to build with distutils.
-#					  default: <empty>
-#
-# PYDISTUTILS_INSTALLARGS
-#					- Arguments to install with distutils.
-#					  default: -c -O1 --prefix=${PREFIX}
-#
-# PYDISTUTILS_EGGINFO
-#					- Canonical name for egg-info.
-#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
-#
-# PYDISTUTILS_NOEGGINFO
-#					- Skip an egg-info entry from plist when defined.
-#
-# PYEASYINSTALL_EGG
-#					- Canonical directory name for easy_install egg packages.
-#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
-#
-# PYEASYINSTALL_OSARCH
-#					- Platform identifier for easy_install.
-#					  default: -${OPSYS:tl}-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}-${ARCH}
-#							   if PYEASYINSTALL_ARCHDEP is defined.
-#
-# PYEASYINSTALL_CMD - Full file path to easy_install command.
-#					  default: ${LOCALBASE}/bin/easy_install-${PYTHON_VER}
-
+# What Python version and what Python interpreters are currently supported?
 _PYTHON_VERSIONS=		2.7 3.4 3.3     # preferred first
-_PYTHON_PORTBRANCH=		2.7	 # ${_PYTHON_VERSIONS:[1]}
+_PYTHON_PORTBRANCH=		2.7		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
 _PYTHON_RELPORTDIR=		${PORTSDIR}/lang/python
 
@@ -312,16 +138,11 @@ _PYTHON_CMD=		${LOCALBASE}/bin/python${ver}
 .endif
 .endfor
 .if !defined(_PYTHON_VERSION)
-IGNORE=			needs an unsupported version of Python
+IGNORE=		needs an unsupported version of Python
 .endif
 .endif	# defined(_PYTHON_VERSION_NONSUPPORTED)
 
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
-PYTHON_CMD?=		${_PYTHON_CMD}
-.if !defined(PYTHONBASE)
-PYTHONBASE!=		(${PYTHON_CMD} -c 'import sys; print(sys.prefix)' \
-						2> /dev/null || ${ECHO_CMD} ${LOCALBASE}) | ${TAIL} -1
-.endif
 DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 
 # We can only use the cached version if we are using the default python version.  Otherwise it
@@ -501,7 +322,7 @@ post-install: stage-python-compileall
 .endif		# defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
 
 # distutils support
-PYSETUP?=				setup.py
+PYSETUP?=		setup.py
 PYDISTUTILS_SETUP?=	-c "import setuptools; __file__='${PYSETUP}'; exec(compile(open(__file__).read().replace('\\r\\n', '\\n'), __file__, 'exec'))"
 PYDISTUTILS_CONFIGUREARGS?=
 PYDISTUTILS_BUILDARGS?=
@@ -535,26 +356,22 @@ add-plist-egginfo:
 		${LS} ${PYDISTUTILS_EGGINFODIR}/${egginfo} | while read f; do \
 			${ECHO_CMD} ${PYDISTUTILS_EGGINFODIR:S;^${FAKE_DESTDIR}${PYTHONBASE}/;;}/${egginfo}/$${f} >> ${TMPPLIST}; \
 		done; \
-		${ECHO_CMD} "@unexec rmdir \"%D/${PYDISTUTILS_EGGINFODIR:S;${FAKE_DESTDIR}${PYTHONBASE}/;;}/${egginfo}\" 2>/dev/null || true" >> ${TMPPLIST}; \
 	fi;
 . endfor
 .else
 	@${DO_NADA}
 .endif
 
-.if defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
+.if defined(_PYTHON_FEATURE_AUTOPLIST) && defined(_PYTHON_FEATURE_DISTUTILS)
 _RELSITELIBDIR=	${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
 _RELLIBDIR=		${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;}
 
 add-plist-post:	add-plist-pymod
 add-plist-pymod:
-	@{ ${ECHO_CMD} "#mtree"; ${CAT} ${MTREE_FILE}; } | ${TAR} tf - | \
-		${SED} '/^\.$$/d' > ${WRKDIR}/.localmtree
-	@${ECHO_CMD} "${_RELSITELIBDIR}" >> ${WRKDIR}/.localmtree
-	@${ECHO_CMD} "${_RELLIBDIR}" >> ${WRKDIR}/.localmtree
 	@${SED} -e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
 		-e 's|^${TRUE_PREFIX}/||' \
-		-e 's|^\(man/man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2${MANEXT}|' \
+		-e 's|^\(man/.*man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2.gz|' \
+		-e 's|[[:alnum:]|[:space:]]*/\.\./*||g; s|/\./|/|g' \
 		${_PYTHONPKGLIST} | ${SORT} >> ${TMPPLIST}
 	@${SED} -e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/\(.*\)/\(.*\)|\1|' \
 		-e 's|^${TRUE_PREFIX}/\(.*\)/\(.*\)|\1|' ${_PYTHONPKGLIST} | \
@@ -575,7 +392,7 @@ add-plist-pymod:
 	@${ECHO_CMD} "@unexec rmdir \"%D/${PYTHON_LIBDIR:S;${PYTHONBASE}/;;}\" 2>/dev/null || true" >> ${TMPPLIST}
 
 .else
-.if ${PYTHON_REL} >= 330 && defined(PYTHON_PY3K_PLIST_HACK)
+.if ${PYTHON_REL} >= 3200 && defined(_PYTHON_FEATURE_PY3KPLIST)
 # When Python version is 3.2+ we rewrite all the filenames
 # of TMPPLIST that end with .py[co], so that they conform
 # to PEP 3147 (see http://www.python.org/dev/peps/pep-3147/)
@@ -590,76 +407,63 @@ add-plist-post:
 		pc="__pycache__" mt="$$(${PYMAGICTAG})" sp="${PYTHON_SITELIBDIR:S,${PYTHONBASE}/,,g}" \
 		${TMPPLIST} > ${TMPPLIST}.pyc_tmp
 	@${MV} ${TMPPLIST}.pyc_tmp ${TMPPLIST}
-.endif # ${PYTHON_REL} >= 330 && defined(PYTHON_PY3K_PLIST_HACK)
-.endif # defined(PYDISTUTILS_AUTOPLIST) && defined(USE_PYDISTUTILS)
+.endif # ${PYTHON_REL} >= 3200 && defined(_PYTHON_FEATURE_PY3KPLIST)
+.endif # defined(_PYTHON_FEATURE_AUTOPLIST) && defined(_PYTHON_FEATURE_DISTUTILS)
 
 # Fix for programs that build python from a GNU auto* environment
 CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
+# By default CMake picks up the highest available version of Python package.
+# Enforce the version required by the port or the default.
+CMAKE_ARGS+=	-DPython_ADDITIONAL_VERSIONS=${PYTHON_VER}
 
 # Python 3rd-party modules
-PYGAME=			${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
-PYNUMERIC=		${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
-PYNUMPY=		${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
-PYXML=			${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
+PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
+PYNUMERIC=	${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
+PYNUMPY=	${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
+PYXML=		${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
 
 # dependencies
-PYTHON_NO_DEPENDS?=		NO
 
-.if ${PYTHON_NO_DEPENDS} == "NO"
-.if defined(USE_PYTHON_BUILD)
+.if defined(_PYTHON_BUILD_DEP)
 BUILD_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 .if defined(_WANTS_META_PORT)
 BUILD_DEPENDS+=	python${_WANTS_META_PORT}:${PORTSDIR}/lang/python${_WANTS_META_PORT}
 .endif
 .endif
-.if defined(USE_PYTHON_RUN)
+.if defined(_PYTHON_RUN_DEP)
 RUN_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 .if defined(_WANTS_META_PORT)
 RUN_DEPENDS+=	python${_WANTS_META_PORT}:${PORTSDIR}/lang/python${_WANTS_META_PORT}
 .endif
 .endif
-.endif		# ${PYTHON_NO_DEPENDS} == "NO"
 
 # set $PREFIX as Python's one
-.if defined(USE_PYTHON_PREFIX)
-PREFIX=			${PYTHONBASE}
+.if defined(_PYTHON_FEATURE_PYTHONPREFIX)
+PREFIX=		${PYTHONBASE}
 .endif
 
 # Substitutions for pkg-plist
 # Use a short form of the PYTHONPREFIX_*DIR variables; we don't need the
 # base directory in the plist file.
-PLIST_SUB+=		PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
-				PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;} \
-				PYTHON_PLATFORM=${PYTHON_PLATFORM} \
-				PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
-				PYTHON_VERSION=${PYTHON_VERSION} \
-				PYTHON_VER=${PYTHON_VER}
+PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
+		PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;} \
+		PYTHON_PLATFORM=${PYTHON_PLATFORM} \
+		PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
+		PYTHON_VERSION=python${_PYTHON_VERSION} \
+		PYTHON_VER=${PYTHON_VER}
 
-# XXX Hm, should I export some of the variables above to *_ENV?
+_USES_POST+=	python
+.endif		# _INCLUDE_USES_PYTHON_MK
 
-
-# If multiple Python versions are installed and cmake is used, it might
-# happen that a cmake-enabled port using find_package(PythonLibs) and
-# find_package(PythonInterp) detects different Python versions.
-# This in turn might cause it to link against version X while using the
-# includes of version Y, leading to a broken port.
-# Enforce a certain Python version by using PYTHON_VER for cmake.
-
-CMAKE_ARGS+=	-DPythonLibs_FIND_VERSION:STRING="${PYTHON_VER}" \
-		-DPythonInterp_FIND_VERSION:STRING="${PYTHON_VER}"
-
-.endif		# !defined(_POSTMKINCLUDED) && !defined(Python_Pre_Include)
-
-.if defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
-
-Python_Post_Include=			bsd.python.mk
+.if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PYTHON_POST_MK)
+_INCLUDE_USES_PYTHON_POST_MK=	yes
 
 # py-distutils support
 PYDISTUTILS_CONFIGURE_TARGET?=	config
 PYDISTUTILS_BUILD_TARGET?=	build
 PYDISTUTILS_INSTALL_TARGET?=	install
 
-.if defined(USE_PYDISTUTILS)
+.if defined(_PYTHON_FEATURE_DISTUTILS)
 LDSHARED?=	${CC} -shared
 MAKE_ENV+=	LDSHARED="${LDSHARED}" PYTHONDONTWRITEBYTECODE= PYTHONOPTIMIZE=
 
@@ -680,18 +484,5 @@ do-install:
 
 add-plist-post: add-plist-egginfo
 
-.if defined(PYEASYINSTALL_ARCHDEP)
-.if !target(easyinstall-setopt)
-easyinstall-setopt:
-	@(cd ${BUILD_WRKSRC}; \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c build -o build-platlib -s lib.${PYEASYINSTALL_OSARCH:S/^-//}; \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c build -o build-temp -s temp.${PYEASYINSTALL_OSARCH:S/^-//}-${PYTHON_VER}; \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c bdist_egg -o plat-name -s ${PYEASYINSTALL_OSARCH:S/^-//}; \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c bdist -o plat-name -s ${PYEASYINSTALL_OSARCH:S/^-//})
-.endif		# !target(eayinstall-setopt)
-
-pre-build: easyinstall-setopt
-.endif	# defined(PYEASYINSTALL_ARCHDEP)
-.endif	# defined(USE_PYDISTUTILS)
-
-.endif	# defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
+.endif # defined(_PYTHON_FEATURE_DISTUTILS)
+.endif # defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PYTHON_POST_MK)
