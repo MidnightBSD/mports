@@ -27,13 +27,13 @@ WRKSRC=		${WRKDIR}/justjournal-client-java-${PORTVERSION}
 
 SUB_FILES=	${PORTNAME}.sh
 PLIST_FILES+=	bin/${PORTNAME}
-PLIST_FILES+=	%%JAVAJARDIR%%/javajj.jar
+PLIST_FILES+=	%%JAVAJARDIR%%/javajj-1.1.jar
 
 do-build:
 	cd ${WRKSRC} && mvn clean compile package
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/target/javajj.jar ${JAVAJARDIR}/
+	${INSTALL_DATA} ${WRKSRC}/target/javajj-1.1.jar ${JAVAJARDIR}/
 
 .include <bsd.port.mk>
