@@ -13,7 +13,7 @@ COMMENT=	Python 2 bindings for Cairo
 LICENSE=	lgpl
 
 USE_PYTHON=	2
-USES=		pkgconfig shebangfix tar:bzip2
+USES=		pkgconfig python:2 shebangfix tar:bzip2
 USE_GNOME=	cairo
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -36,9 +36,9 @@ do-install:
 
 post-install:
 	cd ${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
 	cd ${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
 
 .include <bsd.port.mk>
