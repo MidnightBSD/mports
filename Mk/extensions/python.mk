@@ -215,7 +215,8 @@ _PYTHON_ARGS:=		${_PYTHON_ARGS:Nrun}
 
 # The port does not specify a build or run dependency, assume both are
 # required.
-.if !defined(_PYTHON_BUILD_DEP) && !defined(_PYTHON_RUN_DEP)
+.if !defined(_PYTHON_BUILD_DEP) && !defined(_PYTHON_RUN_DEP) && \
+    !defined(PYTHON_NO_DEPENDS)
 _PYTHON_BUILD_DEP=	yes
 _PYTHON_RUN_DEP=	yes
 .endif
@@ -276,53 +277,30 @@ _PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_VERSION}
 .else
 _PYTHON_VERSION:=	${PYTHON_DEFAULT_VERSION:S/^python//}
 _PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_DEFAULT_VERSION}
-.endif
+.endif # defined(PYTHON_VERSION)
 
-
-.if !defined(USE_PYTHON)
-.if defined(USE_PYTHON_BUILD)
-USE_PYTHON=           ${USE_PYTHON_BUILD}
-.elif defined(USE_PYTHON_RUN)
-USE_PYTHON=           ${USE_PYTHON_RUN}
-.else
-USE_PYTHON=           yes
-.endif        # defined(USE_PYTHON_BUILD)
-.else
-USE_PYTHON_BUILD=     yes
-USE_PYTHON_RUN=               yes
-.endif        # !defined(USE_PYTHON)
-
-.if ${USE_PYTHON} == "2"
-USE_PYTHON=			${PYTHON2_DEFAULT_VERSION:S/^python//}
-_WANTS_META_PORT=	2
-.elif ${USE_PYTHON} == "3"
-USE_PYTHON=			${PYTHON3_DEFAULT_VERSION:S/^python//}
-_WANTS_META_PORT=	3
-.endif  # ${USE_PYTHON} == "2"
-
-# Validate Python version whether it meets USE_PYTHON version restriction.
+# Validate Python version whether it meets the version restriction.
 _PYTHON_VERSION_CHECK:=		${_PYTHON_ARGS:C/^([1-9]\.[0-9])$/\1-\1/}
 _PYTHON_VERSION_MINIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/([1-9]\.[0-9])[-+].*/\1/}
 _PYTHON_VERSION_MINIMUM:=	${_PYTHON_VERSION_MINIMUM_TMP:M[1-9].[0-9]}
 _PYTHON_VERSION_MAXIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/.*-([1-9]\.[0-9])/\1/}
 _PYTHON_VERSION_MAXIMUM:=	${_PYTHON_VERSION_MAXIMUM_TMP:M[1-9].[0-9]}
 
-.if !empty(_PYTHON_VERSION_MINIMUM) && ( \
-		${_PYTHON_VERSION} < ${_PYTHON_VERSION_MINIMUM})
+.undef _PYTHON_VERSION_NONSUPPORTED
+.if !empty(_PYTHON_VERSION_MINIMUM) && (${_PYTHON_VERSION} < ${_PYTHON_VERSION_MINIMUM})
 _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MINIMUM} at least
-.elif !empty(_PYTHON_VERSION_MAXIMUM) && ( \
-		${_PYTHON_VERSION} > ${_PYTHON_VERSION_MAXIMUM})
+.elif !empty(_PYTHON_VERSION_MAXIMUM) && (${_PYTHON_VERSION} > ${_PYTHON_VERSION_MAXIMUM})
 _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MAXIMUM} at most
 .endif
 
 # If we have an unsupported version of Python, try another.
 .if defined(_PYTHON_VERSION_NONSUPPORTED)
 .if defined(PYTHON_VERSION) || defined(PYTHON_CMD)
-IGNORE=				needs Python ${_PYTHON_VERSION_NONSUPPORTED}.\
-					But you specified ${_PYTHON_VERSION}
-.else
+_PV:=		${_PYTHON_VERSION}	# preserve the specified python version
+WARNING+=	"needs Python ${_PYTHON_VERSION_NONSUPPORTED}. But a port depending on this one specified ${_PV}"
+.endif # defined(PYTHON_VERSION) || defined(PYTHON_CMD)
 .undef _PYTHON_VERSION
-.for ver in ${_PYTHON_VERSIONS}
+.for ver in ${PYTHON2_DEFAULT} ${PYTHON3_DEFAULT} ${_PYTHON_VERSIONS}
 __VER=		${ver}
 .if !defined(_PYTHON_VERSION) && \
 	!(!empty(_PYTHON_VERSION_MINIMUM) && ( \
@@ -334,10 +312,8 @@ _PYTHON_CMD=		${LOCALBASE}/bin/python${ver}
 .endif
 .endfor
 .if !defined(_PYTHON_VERSION)
-IGNORE=				needs an unsupported version of Python
-_PYTHON_VERSION=	${_PYTHON_PORTBRANCH} # just to avoid version sanity checking.
+IGNORE=			needs an unsupported version of Python
 .endif
-.endif	# defined(PYTHON_VERSION) || defined(PYTHON_CMD)
 .endif	# defined(_PYTHON_VERSION_NONSUPPORTED)
 
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
