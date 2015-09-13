@@ -41,14 +41,14 @@ do-build:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf
 
 do-install:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf install --destdir=${STAGEDIR}
+	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf install --destdir=${FAKE_DESTDIR}
 
 post-install:
-	@${RM} ${STAGEDIR}${PYTHON_SITELIBDIR}/cairo/__init__.py[co]
-	@cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+	@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/__init__.py[co]
+	cd ${PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
-	@cd ${STAGEDIR}${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+	cd ${PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
+	${STRIP_CMD} ${PYTHON_SITELIBDIR}/cairo/_cairo.so
 
 .include <bsd.port.mk>
