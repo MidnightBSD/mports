@@ -52,22 +52,20 @@ RUN_DEPENDS+=	pygobject3-common>=0:${PORTSDIR}/devel/pygobject3-common
 
 .if ${SLAVE_PORT} == python2
 USES+=		python:2
-USE_PYTHON=	2
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
 .endif
 
 .if ${SLAVE_PORT} == python3
 USES+=		python:3
-USE_PYTHON=	3
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
 PLIST_SUB+=	PYTVER=${PYTHON_VER:S/.//}
 .endif
 
 post-install:
-	@${RM} -rf ${STAGEDIR}${PREFIX}/include/pygobject-3.0 \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+	@${RM} -rf ${PREFIX}/include/pygobject-3.0 \
+		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
 .endif
 
 .include <bsd.port.pre.mk>
