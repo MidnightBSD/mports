@@ -31,6 +31,7 @@ CONFIGURE_ENV+=		OPT="" SVNVERSION="echo midnightbsd" DISABLED_EXTENSIONS="${DIS
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
 MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
+MAKE_JOBS_UNSAFE=	yes 
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
