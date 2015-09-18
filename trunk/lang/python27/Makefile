@@ -1,29 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	python27
-PORTVERSION=	2.7.8
-PORTREVISION=	1
+PORTVERSION=	2.7.10
+PORTREVISION=	0
 CATEGORIES=	lang python ipv6
-MASTER_SITES=	PYTHON
-MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
-DISTFILES=	${PYTHON_DISTFILE}
+MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
+DISTNAME=	Python-${PORTVERSION}
+DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-DIST_SUBDIR=	python
-WRKSRC=		${PYTHON_WRKSRC}/portbld.static
-PATCH_WRKSRC=	${PYTHON_WRKSRC}
-GNU_CONFIGURE=	yes
-CONFIGURE_SCRIPT=	../configure # must be relative
-CONFIGURE_ENV=	SVNVERSION="echo midnightbsd" ac_cv_opt_olimit_ok=no
+USES=		cpe ncurses pkgconfig readline tar:xz
+CONFIGURE_ENV=	SVNVERSION="echo midnightbsd"
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
-		  --host=${ARCH}-portbld-midnightbsd${OSREL}
-MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
+		  --host=${ARCH}-portbld-midnightbsd${OSREL} \
+		  --target=${ARCH}-portbld-midnightbsd${OSREL}
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	altinstall
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
@@ -31,88 +26,58 @@ CPE_VENDOR=	python
 CPE_PRODUCT=	${CPE_VENDOR}
 CPE_VERSION=	${PORTVERSION}
 
-USE_PYTHON=	yes
-USES=		cpe ncurses readline tar:xz
-PYTHON_VERSION=	python2.7
-PYTHON_NO_DEPENDS=	yes
+CONFIGURE_ARGS+=	--enable-shared
+CONFIGURE_ENV+=		ac_cv_opt_olimit_ok=no OPT=""				# Null out OPT to respect user CFLAGS and remove optimizations
 
-SHARED_WRKSRC=	${PYTHON_WRKSRC}/portbld.shared
-PLIST=		${WRKDIR}/PLIST
-PLIST_TEMPLATE?=${PKGDIR}/pkg-plist
-PLIST_SUB=	PYVER=${PYTHON_VERSION:S/python//} \
-		PYMAJOR=${PYTHON_MAJOR_VER} \
-		PYVER_WITHPAT=${PORTVERSION:S/.c/c/} \
-		PORTVERSION=${PORTVERSION}
+INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
+#MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
+MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
+MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
-EXAMPLESDIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
-DATADIR=	${PREFIX}/share/${PYTHON_VERSION}
+PLIST_SUB=		ABI=${ABIFLAGS} \
+			PORTVERSION=${PORTVERSION} \
+			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
 
-PLATFORMS=	plat-freebsd4 plat-freebsd5 plat-freebsd6 \
-		plat-freebsd7 
-#plat-midnightbsd0
+OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI PYMALLOC SEM THREADS
+OPTIONS_DEFAULT=	IPV6 LIBFFI PYMALLOC SEM THREADS UCS4
+OPTIONS_SINGLE=		UNICODE
+OPTIONS_SINGLE_UNICODE=	UCS2 UCS4
+OPTIONS_SUB=		yes
 
-BIN_SCRIPTS=	2to3 idle pydoc smtpd.py
-BIN_FILES=	python python-shared python-config python-shared-config \
-		${BIN_SCRIPTS}
-BINLINKS_SUB=	-e 's,smtpd,smtpd${PYTHON_VER},' \
-		-e 's,2to3,2to3-${PYTHON_VER},' \
-		-e 's,(idle|pydoc|python-shared|python),\1${PYTHON_VER},'
+LIBFFI_DESC=	Use libffi from ports instead of bundled version
+UCS2_DESC=	Enable UCS2 Unicode Strings
+UCS4_DESC=	Enable UCS4 Unicode Strings
+PYMALLOC_DESC=	Enable specialized mallocs
 
-OPTIONS=	THREADS "Enable thread support" on \
-		SEM "Use POSIX semaphores (experimental)" off \
-		PTH "Use GNU Pth for threading/multiprocessing" off \
-		UCS4 "Use UCS4 for unicode support" on \
-		PYMALLOC "Use python's internal malloc" on \
-		IPV6 "Enable IPv6 support" on \
-		FPECTL "Enable floating point exception handling" off
+DEBUG_CONFIGURE_WITH=	pydebug
+IPV6_CONFIGURE_ENABLE=	ipv6
+LIBFFI_CONFIGURE_ON=	--with-system-ffi
+LIBFFI_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
 
-.include <bsd.port.pre.mk>
+# Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
+# to break in Python 2.7, or preprocessor complaints in Python >= 3.3
+# Upstream Issue: http://bugs.python.org/issue6299
+USES+=		gettext
+CPPFLAGS+=		-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib -lintl
 
-CONFIGURE_ARGS+=	--with-system-ffi
-LIB_DEPENDS+=	ffi:${PORTSDIR}/devel/libffi
+PYMALLOC_CONFIGURE_WITH=	pymalloc
 
-SEM_MSG=	"@comment "
+SEM_CONFIGURE_ENV=	ac_cv_posix_semaphores_enabled=yes
+SEM_CONFIGURE_ENV_OFF=	ac_cv_posix_semaphores_enabled=no
 
-SUB_FILES=	pkg-message
-SUB_LIST=	SEM=${SEM_MSG}
+THREADS_CONFIGURE_WITH=	threads
+THREADS_LDFLAGS=	-lpthread
 
-.if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
-MLINKS=		${PYTHON_VERSION}.1 python.1
-PLIST_SUB+=	IF_DEFAULT=""
-.else
-PLIST_SUB+=	IF_DEFAULT="@comment "
-.endif
+UCS2_CONFIGURE_ON=	--enable-unicode=ucs2
+UCS4_CONFIGURE_ON=	--enable-unicode=ucs4
 
-.if !defined(WITHOUT_THREADS)
-PLIST_SUB+=	THREADS=""
-.if defined(WITH_PTH)
-BROKEN=			does not build with PTH enabled
-CONFIGURE_ARGS+=	--with-pth
-EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-configure-pth
-LIB_DEPENDS+=		pth:${PORTSDIR}/devel/pth
-_PTH_CPPFLAGS=		"-I${LOCALBASE}/include/pth"
-_PTH_LDFLAGS=		"-L${LOCALBASE}/lib/pth"
-CPPFLAGS:=		${_PTH_CPPFLAGS} ${CPPFLAGS}
-LDFLAGS+=		${_PTH_LDFLAGS}
-.else # !defined(WITH_PTH)
-CONFIGURE_ARGS+=	--with-threads
-CFLAGS+=		${PTHREAD_CFLAGS}
-LDFLAGS+=		${PTHREAD_LIBS}
-.endif # defined(WITH_PTH)
-.else # defined(WITHOUT_THREADS)
-PLIST_SUB+=	THREADS="@comment "
-CONFIGURE_ARGS+=	--without-threads
-.if defined(LDFLAGS)
-CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
-.endif # defined(LDFLAGS)
-.endif # !defined(WITHOUT_THREADS)
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_UCS4) && !defined(WITH_UCS2)
-CONFIGURE_ARGS+=	--enable-unicode=ucs4
-.endif
-
-.if defined(WITHOUT_PYMALLOC)
-CONFIGURE_ARGS+=	--without-pymalloc
+# http://bugs.python.org/issue22521
+# http://bugs.python.org/issue23042
+.if !${PORT_OPTIONS:MLIBFFI} && ${ARCH} == i386
+BROKEN=	You must use libffi from ports on i386. Enable the LIBFFI option
 .endif
 
 .if ${ARCH} == i386
@@ -120,156 +85,40 @@ PLIST_SUB+=	X86_ONLY=""
 .else
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
-.if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64
-PLIST_SUB+=     32BIT_ONLY="@comment "
+
+.if ${ARCH} == amd64
+PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
 .endif
-.if ${ARCH} == sparc64
-CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
-.endif
 
-# See http://bugs.freebsd.org/115940
-.if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS) # the world with NO_NIS
+.if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
 PLIST_SUB+=	NO_NIS="@comment "
-WITHOUT_NIS?=	detected
 .else
 PLIST_SUB+=	NO_NIS=""
 .endif
 
-.if !defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
-
-.if defined(WITH_FPECTL)
-CONFIGURE_ARGS+=	--with-fpectl
-.endif
-
-pre-patch:
-	${CP} -r ${PATCH_WRKSRC}/Lib/plat-freebsd8 \
-		${PATCH_WRKSRC}/Lib/plat-midnightbsd0
-	${MKDIR} ${WRKSRC} ${SHARED_WRKSRC}/Modules
-	${LN} ${PATCH_WRKSRC}/Lib/smtpd.py ${PATCH_WRKSRC}/Tools/scripts/
-.for script in ${BIN_SCRIPTS}
-	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
-		${PATCH_WRKSRC}/Tools/scripts/${script} \
-		> ${WRKDIR}/`${ECHO_CMD} ${script} | ${SED} -E ${BINLINKS_SUB}`
-.endfor
-	${REINPLACE_CMD} -e \
+post-patch:
+	${CP} -r ${WRKSRC}/Lib/plat-freebsd8 \
+		${WRKSRC}/Lib/plat-midnightbsd0
+	@${REINPLACE_CMD} -e \
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
 		${PATCH_WRKSRC}/Lib/pydoc.py
-	${REINPLACE_CMD} -e \
-		's|^\( *prefixes = .*\)\]$$|\1, "${LOCALBASE}"]|g' \
-		${PATCH_WRKSRC}/Lib/site.py
-	${REINPLACE_CMD} -e \
-		's|^	\(..ASDLGEN.*\)$$|	${TRUE}|g; \
-		s|[(]LIBDIR[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-		${PATCH_WRKSRC}/Makefile.pre.in
-
-	${REINPLACE_CMD} -e \
-		's|*\(..INSTALL_SCRIPT.*\)python-config$$|#port \1|' \
-		${PATCH_WRKSRC}/Makefile.pre.in
-
-	${SED} -e 's|^#!.*|#!${PREFIX}/bin/${PYTHON_VERSION}|' \
-		${PATCH_WRKSRC}/Misc/python-config.in > ${WRKDIR}/${PYTHON_VERSION}-config
-	${SED} -e 's|^#!.*|#!${PREFIX}/bin/${PYTHON_VERSION:S/thon/thon-shared/}|' \
-		${PATCH_WRKSRC}/Misc/python-config.in > ${WRKDIR}/${PYTHON_VERSION:S/thon/thon-shared/}-config
-
-.if defined(WITH_FPECTL) && ${ARCH} == i386
-	${MKDIR} ${WRKSRC}/Modules
-	${ECHO} "fpectl fpectlmodule.c" >> ${WRKSRC}/Modules/Setup.dist
+.if ${PORT_OPTIONS:MSEM}
+	@# do not use SEM_EXTRA_PATCHES here, since patch-setup.py overlaps with this one
+	cd ${WRKSRC} && ${PATCH} ${PATCH_ARGS} < ${PATCHDIR}/extra-patch-setup.py
 .endif
 
-post-patch:
-.if defined(WITH_SEM)
-.if ${OSVERSION} >= 4000
-	@cd ${WRKSRC} && ${PATCH} ${PATCH_ARGS} < ${PATCHDIR}/extra-patch-setup.py
+.if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
+	@${REINPLACE_CMD} -e 's/disabled_module_list =[^]]*/&, "nis"/' \
+		${WRKSRC}/setup.py
 .endif
-.endif
-.if defined(WITHOUT_NIS)
-	${REINPLACE_CMD} -e \
-	    's/disabled_module_list =[^]]*/&, "nis"/' \
-		${PATCH_WRKSRC}/setup.py
-.endif
-
-post-configure:
-	${TAR} -C ${WRKSRC} -cf - . | ${TAR} -C ${SHARED_WRKSRC} -xf -
-	${LN} -sf ${PYTHON_WRKSRC}/Lib ${WRKSRC}/Lib
-	${SED} -e 's,^\(LDLIBRARY=\).*$$,\1libpython$$(VERSION).so,' \
-		-e 's,^\(BLDLIBRARY=\).*$$,\1-L. -lpython$$(VERSION),' \
-		-e 's,^\(CFLAGSFORSHARED=\).*$$,\1$$(CCSHARED),' \
-		-e 's,^\(Makefile Modules/config.c:.*\)Makefile.pre,\1,' \
-		-e 's,^\(.(BUILDPYTHON)\: .*\).(LIBRARY),\1,' \
-		-e 's,^\(.(BUILDPYTHON):.*\).(LIBRARY),\1,' \
-		${WRKSRC}/Makefile > ${SHARED_WRKSRC}/Makefile
-
-pre-build:
-	cd ${SHARED_WRKSRC}; \
-	${SETENV} ${MAKE_ENV} ${MAKE} lib${PYTHON_VERSION}.so python; \
-	${LN} -f lib${PYTHON_VERSION}.so lib${PYTHON_VERSION}.so.1; \
-	${LN} -f python ${PYTHON_VERSION:S/thon/thon-shared/}
-
-pre-install:
-.for platform in ${PLATFORMS}
-	${MKDIR} ${PYTHONPREFIX_LIBDIR}/${platform}
-.for file in IN.py regen
-	${INSTALL_DATA} ${WRKSRC}/Lib/${platform}/${file} \
-		${PYTHONPREFIX_LIBDIR}/${platform}/
-.endfor
-.endfor
-	${CAT} ${PLIST_TEMPLATE} | ${AWK} '{ print $$0; } \
-	/LIBDIR.*\.py$$/ && \
-	!/\/bad|tests\/data/ \
-	{ print $$0 "o"; print $$0 "c"; }'      > ${PLIST}
-
-	@# if openssl 0.9.8 is detected, _sha{256,512} module won't be installed
-	([ -f ${WRKSRC}/.without_own_sha ] && \
-		${GREP} -v 'lib-dynload/_sha' ${PLIST} > ${PLIST}.tmp && \
-		${CAT} ${PLIST}.tmp > ${PLIST}) || ${TRUE}
 
 post-install:
-	@# install config providers
-	${INSTALL_SCRIPT} ${WRKDIR}/${PYTHON_VERSION}-config ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKDIR}/${PYTHON_VERSION:S/thon/thon-shared/}-config ${PREFIX}/bin
+	for i in ${PREFIX}/lib/python2.7/lib-dynload/*.so; do \
+		${STRIP_CMD} $$i; done						# Strip shared extensions
 
-	@# shared version of executable and library
-	${INSTALL_PROGRAM} ${SHARED_WRKSRC}/lib${PYTHON_VERSION}.so.1 \
-		${PREFIX}/lib
-	cd ${PREFIX}/lib; ${LN} -sf lib${PYTHON_VERSION}.so.1 \
-		lib${PYTHON_VERSION}.so
-	cd ${PREFIX}/lib; ${LN} -sf lib${PYTHON_VERSION}.so python2.7/config/lib${PYTHON_VERSION}.so
-	${INSTALL_PROGRAM} \
-		${SHARED_WRKSRC}/${PYTHON_VERSION:S/thon/thon-shared/} \
-		${PREFIX}/bin
+regression-test: build
+	@cd ${WRKSRC} && ${MAKE} TESTOPTS=-j${MAKE_JOBS_NUMBER} buildbottest
 
-	@# additional files installing by ports
-.for script in ${BIN_SCRIPTS}
-	${INSTALL_SCRIPT} \
-		${WRKDIR}/`${ECHO_CMD} ${script} | ${SED} -E ${BINLINKS_SUB}` \
-		${PREFIX}/bin
-.endfor
-	@${MKDIR} ${MANPREFIX}/man/man1
-	${INSTALL_MAN} ${PYTHON_WRKSRC}/Misc/python.man \
-		${MANPREFIX}/man/man1/${PYTHON_VERSION}.1
-
-.if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
-	for f in ${BIN_FILES}; do \
-		TARGET=`${ECHO_CMD} $$f | ${SED} -E ${BINLINKS_SUB}`; \
-		cd ${PREFIX}/bin && ${LN} -f $$TARGET $$f; \
-	done
-.endif
-
-.if !defined(NOPORTDATA)
-	@${MKDIR} ${DATADIR}
-	@cd ${PYTHON_WRKSRC}; ${TAR} -cf - Tools | \
-		(cd ${DATADIR}; ${TAR} --no-same-owner -xf -)
-.endif
-.if !defined(NOPORTEXAMPLES)
-	@${MKDIR} ${EXAMPLESDIR}
-	@cd ${PYTHON_WRKSRC}/Demo; ${TAR} -cf - * | \
-		(cd ${EXAMPLESDIR}; ${TAR} --no-same-owner -xf -)
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
