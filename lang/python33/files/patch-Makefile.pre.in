@@ -1,5 +1,15 @@
---- Makefile.pre.in.orig	2013-05-16 02:32:57.000000000 +1000
-+++ Makefile.pre.in	2013-09-05 23:48:22.439871947 +1000
+# Patch based on lang/python34/files/patch-Makefile.pre.in
+
+# Description: Remove duplicate CFLAGS, CPPFLAGS, LDFLAGS by stripping CONFIGURE_*
+# Submitted by: koobs (r326729)
+# TODO: Upstream
+
+# Description: Create symlinks for non-ABI-suffixed python*-config and ABI-suffixed python-*.pc
+# Submitted by: antoine@ (r358029)
+# TODO: Upstream
+
+--- Makefile.pre.in.orig	2014-03-09 09:40:23.000000000 +0100
++++ Makefile.pre.in	2014-07-15 08:23:56.000000000 +0200
 @@ -70,18 +70,18 @@
  OPT=		@OPT@
  BASECFLAGS=	@BASECFLAGS@
@@ -25,7 +35,7 @@
  NO_AS_NEEDED=	@NO_AS_NEEDED@
  LDLAST=		@LDLAST@
  SGI_ABI=	@SGI_ABI@
-@@ -306,21 +306,21 @@
+@@ -310,21 +310,21 @@
  
  ##########################################################################
  # AST
@@ -51,7 +61,7 @@
  
  OPCODETARGETGEN= \
  		$(srcdir)/Python/makeopcodetargets.py
-@@ -742,7 +742,7 @@
+@@ -747,7 +747,7 @@
  Objects/setobject.o: $(srcdir)/Objects/stringlib/eq.h
  
  $(OPCODETARGETS_H): $(OPCODETARGETGEN_FILES)
@@ -60,7 +70,7 @@
  
  Python/ceval.o: $(OPCODETARGETS_H) $(srcdir)/Python/ceval_gil.h
  
-@@ -753,7 +753,7 @@
+@@ -758,7 +758,7 @@
  
  Objects/typeobject.o: Objects/typeslots.inc
  Objects/typeslots.inc: $(srcdir)/Include/typeslots.h $(srcdir)/Objects/typeslots.py
@@ -69,3 +79,29 @@
  
  ############################################################################
  # Header files
+@@ -972,12 +972,6 @@
+ 	else true; \
+ 	fi
+ 	(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(VERSION)$(EXE) python3$(EXE))
+-	-if test "$(VERSION)" != "$(LDVERSION)"; then \
+-		rm -f $(DESTDIR)$(BINDIR)/python$(VERSION)-config; \
+-		(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(LDVERSION)-config python$(VERSION)-config); \
+-		rm -f $(DESTDIR)$(LIBPC)/python-$(LDVERSION).pc; \
+-		(cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(VERSION).pc python-$(LDVERSION).pc); \
+-	fi
+ 	-rm -f $(DESTDIR)$(BINDIR)/python3-config
+ 	(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(VERSION)-config python3-config)
+ 	-rm -f $(DESTDIR)$(LIBPC)/python3.pc
+@@ -1223,6 +1217,12 @@
+ 	$(INSTALL_SCRIPT) $(srcdir)/Modules/makesetup $(DESTDIR)$(LIBPL)/makesetup
+ 	$(INSTALL_SCRIPT) $(srcdir)/install-sh $(DESTDIR)$(LIBPL)/install-sh
+ 	$(INSTALL_SCRIPT) python-config $(DESTDIR)$(BINDIR)/python$(LDVERSION)-config
++	-if test "$(VERSION)" != "$(LDVERSION)"; then \
++		rm -f $(DESTDIR)$(BINDIR)/python$(VERSION)-config; \
++		(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(LDVERSION)-config python$(VERSION)-config); \
++		rm -f $(DESTDIR)$(LIBPC)/python-$(LDVERSION).pc; \
++		(cd $(DESTDIR)$(LIBPC); $(LN) -s python-$(VERSION).pc python-$(LDVERSION).pc); \
++	fi
+ 	rm python-config
+ 	@if [ -s Modules/python.exp -a \
+ 		"`echo $(MACHDEP) | sed 's/^\(...\).*/\1/'`" = "aix" ]; then \
