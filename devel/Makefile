@@ -412,6 +412,7 @@ SUBDIR += py-setuptools33
 SUBDIR += py-simplejson
 SUBDIR += py-subversion
 SUBDIR += py-termcolor
+SUBDIR += py-virtualenv
 SUBDIR += py-xdg
 SUBDIR += py-yaml
 SUBDIR += py3-dbus
