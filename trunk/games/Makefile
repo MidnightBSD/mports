@@ -13,6 +13,7 @@ SUBDIR += dopewars
 SUBDIR += fortunate
 SUBDIR += fotaq
 SUBDIR += ggz-client-libs
+SUBDIR += gmastermind
 SUBDIR += gnugo
 SUBDIR += gnustep-ladder
 SUBDIR += goonies
