@@ -4,7 +4,7 @@
  
  #include "DrawView.h"
  #ifdef GNUSTEP
-+#ifndef __FreeBSD__
++#ifndef __MidnightBSD__
  #include <values.h>
 +#else
 +#include <math.h>
