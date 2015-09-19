@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	fail2ban
-PORTVERSION=	0.9.1
+PORTVERSION=	0.9.3
 CATEGORIES=	security python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -9,18 +9,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scans log files and bans IP that makes too many password failures
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	${PORTNAME}
-GH_PROJECT=	${PORTNAME}
-GH_COMMIT=	2ab2bd8
-GH_TAGNAME=	${PORTVERSION}
 
-USES=		python:2
-USE_PYTHON=	distutils
-USE_PYDISTUTILS=   yes
+USES=		python shebangfix
+SHEBANG_FILES=	config/filter.d/ignorecommands/apache-fakegooglebot
+USE_PYTHON=	distutils py3kplist
 
 USE_RC_SUBR=	fail2ban
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
