@@ -2,8 +2,8 @@
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.104
+DISTVERSIONPREFIX=    v
 CATEGORIES=	www
-MASTER_SITES=	GH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and flexible web server
@@ -13,8 +13,6 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}
 GH_PROJECT=	webserver
-GH_TAGNAME=	${PORTVERSION:S/^/v/}
-GH_COMMIT=	e5583c6
 
 USES=		gettext gmake libtool pathfix pkgconfig python:2,build \
 		shebangfix
