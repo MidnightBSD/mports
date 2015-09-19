@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	midori
-PORTVERSION=	0.5.10
+PORTVERSION=	0.5.11
 CATEGORIES=	www xfce
-MASTER_SITES=	http://www.midori-browser.org/downloads/
-DISTNAME=	${PORTNAME}_${PORTVERSION}_all_
+MASTER_SITES=	https://launchpadlibrarian.net/215909491/ \
+		https://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,8 +26,6 @@ CFLAGS+=	-Wno-return-type
 CMAKE_ARGS=	-DUSE_APIDOCS:BOOL=OFF \
 	-DUSE_GRANITE:BOOL=OFF
 
-#WRKSRC=	${WRKDIR}/${DISTNAME:C/([a-z]*)_([0-9\.]*)(_all_)/\1-\2/}
-NO_WRKSUBDIR=	yes
 USE_GNOME=	glib20 intltool libxml2
 USE_XORG=	xscrnsaver
 INSTALLS_ICONS=	yes
