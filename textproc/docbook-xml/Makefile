@@ -15,7 +15,8 @@ COMMENT=	DocBook XML DTD
 LICENSE=	unknown
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:${PORTSDIR}/textproc/xmlcharent \
-		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr
+		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr \
+		${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
 RUN_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:${PORTSDIR}/textproc/xmlcharent \
 		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr
 
@@ -38,9 +39,8 @@ do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
 .for df in ${DISTFILES:C,:.*,,}
-	@cd ${WRKDIR} && ${TAR} \
-		${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${df} \
-		${EXTRACT_AFTER_ARGS} -s ,^,${df:R}/,
+	cd ${WRKDIR} && /usr/local/bin/bsdtar \
+		-xf ${DISTDIR}/${df} -s ,^,${df:R}/,
 .endfor
 
 post-extract:
