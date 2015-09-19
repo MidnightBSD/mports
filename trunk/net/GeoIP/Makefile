@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.6.5
-PORTREVISION=	1
+PORTVERSION=	1.6.6
+DISTVERSIONPREFIX=	v
 CATEGORIES=	net geography
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,11 +13,8 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	maxmind
 GH_PROJECT=	geoip-api-c
-GH_TAGNAME=	v${PORTVERSION}
-GH_COMMIT=	fd1d4fa
 
 USES=		autoreconf libtool pathfix
-USE_LIBTOOL=	yes
 PATHFIX_MAKEFILEIN=	Makefile.am
 
 USE_LDCONFIG=	yes
