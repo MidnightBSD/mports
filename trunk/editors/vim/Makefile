@@ -2,7 +2,7 @@
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	editors
 MASTER_SITES=	VIM:source \
 		${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|}:patch
@@ -20,14 +20,13 @@ LICENSE=	other
 
 PATCH_DEPENDS=	${LOCALBASE}/bin/gpatch:${PORTSDIR}/devel/patch
 
-OPTIONS_DEFINE=	CSCOPE DEFAULT_VIMRC EXUBERANT_CTAGS LUA NLS PERL PYTHON RUBY TCL XTERM_SAVE
+OPTIONS_DEFINE=	CSCOPE EXUBERANT_CTAGS LUA NLS PERL PYTHON RUBY TCL XTERM_SAVE
 OPTIONS_SINGLE=	UI
 OPTIONS_SINGLE_UI=	ATHENA CONSOLE GNOME GTK2 MOTIF X11
 OPTIONS_SUB=	yes
 ATHENA_DESC=		Athena GUI toolkit
 CSCOPE_DESC=		cscope support
 CONSOLE_DESC=		Console/terminal mode
-DEFAULT_VIMRC_DESC=	Install bundled vimrc as default setting
 EXUBERANT_CTAGS_DESC=	Use exctags instead of ctags
 UI_DESC=		User interface
 XTERM_SAVE_DESC=	Restore xterm screen after exit
@@ -72,7 +71,6 @@ SHEBANG_FILES=	runtime/tools/efm_perl.pl
 .if defined(LITE)
 PKGNAMESUFFIX+=	-lite
 CONFLICTS_INSTALL=	vim-[0-9]*
-OPTIONS_DEFAULT=DEFAULT_VIMRC
 OPTIONS_EXCLUDE=ATHENA CSCOPE EXUBERANT_CTAGS GNOME GTK2 LUA MOTIF NLS PERL PYTHON RUBY TCL X11 XTERM_SAVE
 OPTIONS_SLAVE=	CONSOLE
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" \
@@ -84,7 +82,7 @@ MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" \
 PLIST_SUB+=	NON_LITE="@comment "
 .else
 CONFLICTS_INSTALL=	vim-lite-[0-9]*
-OPTIONS_DEFAULT=CSCOPE DEFAULT_VIMRC EXUBERANT_CTAGS GTK2 LUA PERL PYTHON RUBY TCL
+OPTIONS_DEFAULT=CSCOPE EXUBERANT_CTAGS GTK2 LUA PERL PYTHON RUBY TCL
 MAKE_ARGS+=	CONF_OPT_FEAT=--with-features=big \
 		CONF_OPT_INPUT=--enable-xim \
 		CONF_OPT_OUTPUT=--enable-fontset
@@ -182,16 +180,14 @@ post-install:
 	${TEST} -e ${STAGEDIR}${PREFIX}/bin/${file} || ${LN} -fs vim ${STAGEDIR}${PREFIX}/bin/${file}
 .endfor
 .endif
-.if ${PORT_OPTIONS:MDEFAULT_VIMRC}
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${FILESDIR}/vimrc ${ETCDIR}/gvimrc.sample
 	${INSTALL_DATA} ${FILESDIR}/vimrc ${ETCDIR}/vimrc.sample
-.endif
 .if !${PORT_OPTIONS:MNLS}
-	${MKDIR} ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
-	${INSTALL_DATA} ${WRKSRC}/runtime/keymap/* ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
+	${MKDIR} ${DATADIR}/${VIM_VER}/keymap/
+	${INSTALL_DATA} ${WRKSRC}/runtime/keymap/* ${DATADIR}/${VIM_VER}/keymap/
 .endif
-	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${STAGEDIR}${DATADIR}/${VIM_VER}/keymap/
-	${TOUCH} ${STAGEDIR}${DATADIR}/${VIM_VER}/lang/.keepme
+	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${DATADIR}/${VIM_VER}/keymap/
+	${TOUCH} ${DATADIR}/${VIM_VER}/lang/.keepme
 
 .include <bsd.port.post.mk>
