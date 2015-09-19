@@ -2,7 +2,7 @@
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.104
-DISTVERSIONPREFIX=    v
+DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}
 GH_PROJECT=	webserver
 
-USES=		gettext gmake libtool pathfix pkgconfig python:2,build \
+USES=		cpe gettext gmake libtool pathfix pkgconfig python:2,build \
 		shebangfix
 SHEBANG_FILES=	admin/CTK/CTK-run.pre admin/server.py \
 		admin/upgrade_config.py cherokee/cherokee-admin-launcher \
@@ -28,6 +28,7 @@ USE_RC_SUBR=	cherokee
 USE_OPENSSL=	yes
 USE_AUTOTOOLS=	libtoolize aclocal automake autoheader autoconf
 AUTOMAKE_ARGS=	--add-missing --copy --foreign
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules \
 		--disable-static \
 		--localstatedir=${CHEROKEE_VARDIR} \
@@ -40,6 +41,7 @@ MAKE_ARGS=	pkgconfigdir=${PREFIX}/libdata/pkgconfig
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
+CPE_VENDOR=	cherokee-project
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 
