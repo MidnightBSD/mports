@@ -3,7 +3,6 @@
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 #
 # $MidnightBSD$
-#
 
 PORTNAME=	furl
 PORTVERSION=	2.1
@@ -12,11 +11,10 @@ MASTER_SITES=	http://www.gumbynet.org.uk/software/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to display the HTTP headers returned by web-servers
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=       ${MACHINE_ARCH}-portbld-midnightbsd${OSREL}
-
-MAKE_JOBS_SAFE=	yes
 
 .include <bsd.port.mk>
