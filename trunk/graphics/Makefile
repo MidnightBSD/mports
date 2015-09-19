@@ -29,6 +29,7 @@ SUBDIR += evince-lite
 SUBDIR += exif
 SUBDIR += exiv2
 SUBDIR += feh
+SUBDIR += fortytwo
 SUBDIR += freeglut
 SUBDIR += frei0r
 SUBDIR += gd
