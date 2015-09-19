@@ -15,6 +15,7 @@ SUBDIR += browser35
 SUBDIR += cherokee
 SUBDIR += chromium
 SUBDIR += dummyflash
+SUBDIR += drupal7
 SUBDIR += epiphany
 SUBDIR += etoile-bookmarkkit
 SUBDIR += etoile-mollusk
