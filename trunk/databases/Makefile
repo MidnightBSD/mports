@@ -9,6 +9,7 @@ SUBDIR += db
 SUBDIR += db48
 SUBDIR += db5
 SUBDIR += evolution-data-server
+SUBDIR += fortytwo-bdb
 SUBDIR += freetds
 SUBDIR += gdbm
 SUBDIR += gnats4
