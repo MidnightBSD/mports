@@ -73,6 +73,7 @@ SUBDIR += etoile-unitkit
 SUBDIR += fam
 SUBDIR += ffcall
 SUBDIR += fmake
+SUBDIR += fortytwo-encore
 SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf2
