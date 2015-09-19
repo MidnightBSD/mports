@@ -1,4 +1,6 @@
 A small utility designed to display the HTTP headers returned by web-servers
 in response to client requests.
 
+Also on github https://github.com/bingos/furl
+
 WWW: http://www.gumbynet.org.uk/software/furl.html
