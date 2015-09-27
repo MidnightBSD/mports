@@ -411,6 +411,7 @@ SUBDIR += py-setuptools
 SUBDIR += py-setuptools27
 SUBDIR += py-setuptools33
 SUBDIR += py-simplejson
+SUBDIR += py-six
 SUBDIR += py-subversion
 SUBDIR += py-termcolor
 SUBDIR += py-virtualenv
