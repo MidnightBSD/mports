@@ -1,49 +1,38 @@
 # $MidnightBSD$
 
 PORTNAME=	setuptools
-PORTVERSION=	2.0.1
+PORTVERSION=	17.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	python
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Download, build, install, upgrade, and uninstall Python packages
+MAINTAINER=	python@MidnightBSD.org
+COMMENT=	Python packages installer
 
 LICENSE=	python
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}distribute-[0-9]*
+NO_ARCH=	yes
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
 
-PLIST_SUB=	PYVER=${PYTHON_VER} VERSION=${PORTVERSION} \
-		EASYINSTALL_PTH=${PYTHON_SITELIBDIR}/easy-install.pth
-
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_AUTOPLIST=	yes
 PYDISTUTILS_SETUP=	${PYSETUP}
 
-SUB_LIST=	IF_DEFAULT=${IF_DEFAULT}
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}distribute-[0-9]*
+MAKE_ENV+=		SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT=1
+PLIST_SUB=		EASYINSTALL_PTH=${PYTHON_SITELIBDIR}/easy-install.pth
 
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
 SUB_FILES+=	pkg-message
+SUB_LIST+=	PYTHON_VER=${PYTHON_VER}
 .endif
-
-post-patch:
-.if ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
-	@${REINPLACE_CMD} 's,.*yield "easy_install =.*,,' ${WRKSRC}/setup.py
-.endif
-	@${REINPLACE_CMD} 's,#!python,#!${PYTHON_CMD},' \
-		${WRKSRC}/setuptools/command/easy_install.py
-	@${REINPLACE_CMD} 's,#!/usr/bin/python,#!${PYTHON_CMD},' \
-		${WRKSRC}/setuptools/tests/test_resources.py
-	@${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/easy-install.pth.dist ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/
 
 regression-test: build
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>
