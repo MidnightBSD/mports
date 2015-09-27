@@ -32,6 +32,7 @@ SUBDIR += gnuwash
 SUBDIR += gtkjj
 SUBDIR += gucharmap
 SUBDIR += gworkspace
+SUBDIR += gworkspace-gwmetadata
 SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
