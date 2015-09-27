@@ -1,14 +1,8 @@
-# New ports collection makefile for:	oniguruma4
-# Date created:		31 January 2003
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/oniguruma4/Makefile,v 1.37 2007/02/11 21:02:15 dinoex Exp $
-#
 
 PORTNAME=	oniguruma
-PORTVERSION=	4.7.0
-PORTREVISION=	1
+PORTVERSION=	4.7.1
 CATEGORIES=	devel textproc
 MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/
 DISTNAME=	onig-${PORTVERSION}
@@ -16,8 +10,9 @@ DIST_SUBDIR=	ruby
 PKGNAMESUFFIX=	4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A BSDL Regular Expressions library compatible with POSIX/GNU/Perl
-LICENSE=	agg
+COMMENT=	BSDL Regular Expressions library compatible with POSIX/GNU/Perl
+
+LICENSE=	bsd2
 
 CONFLICTS=	oniguruma-2.*
 GNU_CONFIGURE=	yes
@@ -34,7 +29,6 @@ post-configure:
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/onig-config ${PREFIX}/bin/
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/sample/*.c ${WRKSRC}/sample/Makefile* \
 		${EXAMPLESDIR}/
@@ -42,6 +36,5 @@ post-install:
 .for f in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
 .endfor
-.endif
 
 .include <bsd.port.mk>
