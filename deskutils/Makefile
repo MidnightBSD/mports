@@ -50,6 +50,7 @@ SUBDIR += strigi
 SUBDIR += strigiclient
 SUBDIR += strigidaemon
 SUBDIR += strigiutils
+SUBDIR += systempreferences
 SUBDIR += toolbox
 SUBDIR += toolboxkit
 SUBDIR += vnc2flv
