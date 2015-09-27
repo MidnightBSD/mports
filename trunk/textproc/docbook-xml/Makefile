@@ -14,6 +14,8 @@ COMMENT=	DocBook XML DTD
 
 LICENSE=	unknown
 
+EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
+
 BUILD_DEPENDS=	${LOCALBASE}/share/xml/xmlcharent/catalog.xml:${PORTSDIR}/textproc/xmlcharent \
 		${XMLCATMGR_CMD}:${PORTSDIR}/textproc/xmlcatmgr \
 		${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
