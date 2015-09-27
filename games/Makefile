@@ -21,6 +21,7 @@ SUBDIR += gnustep-sudoku
 SUBDIR += goonies
 SUBDIR += gridlock
 SUBDIR += grubik
+SUBDIR += gshisen
 SUBDIR += gtkpool
 SUBDIR += gtypist
 SUBDIR += libggz
