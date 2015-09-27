@@ -26,6 +26,7 @@ SUBDIR += etoile-systemconfig
 SUBDIR += etoile-trackerkit
 SUBDIR += etoile-ui
 SUBDIR += glabels
+SUBDIR += gnome-contacts
 SUBDIR += gnome-screenshot
 SUBDIR += gnome-utils
 SUBDIR += gnote
