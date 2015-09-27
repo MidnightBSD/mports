@@ -20,6 +20,7 @@ SUBDIR += gnustep-ladder
 SUBDIR += gnustep-sudoku
 SUBDIR += goonies
 SUBDIR += gridlock
+SUBDIR += grubik
 SUBDIR += gtkpool
 SUBDIR += gtypist
 SUBDIR += libggz
