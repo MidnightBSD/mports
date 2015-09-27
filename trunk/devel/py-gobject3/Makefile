@@ -7,6 +7,8 @@ COMMENT=	Python 2 bindings for GObject
 
 SLAVE_PORT=	python2
 
+MAKE_JOBS_UNSAFE=	yes
+
 MASTERDIR=	${.CURDIR}/../../devel/pygobject3-common
 PLIST=		${.CURDIR}/pkg-plist
 
