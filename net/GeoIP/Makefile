@@ -27,9 +27,9 @@ OPTIONS_DEFINE=	DOCS
 PORTDOCS=	COPYING ChangeLog LICENSE README.md
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/geoipupdate.sh ${STAGEDIR}${PREFIX}/bin
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libGeoIP.so.*
-	@${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/geoipupdate.sh ${PREFIX}/bin
+	${STRIP_CMD} ${PREFIX}/lib/libGeoIP.so.*
+	@${MKDIR} ${DATADIR}
 
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:C|^|${WRKSRC}/|} ${DOCSDIR}
