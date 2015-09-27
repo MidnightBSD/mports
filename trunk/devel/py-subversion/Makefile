@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PKGNAMEPREFIX=	py-
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for version control system
@@ -9,10 +9,10 @@ LICENSE=	agg
 MASTERDIR=	${.CURDIR}/../../devel/subversion
 PKGDIR=		${.CURDIR}
 
-USE_PYTHON=yes
+USES+=		python
 
-SVN_BUILD_BINDINGS=yes
-SVN_BUILD_ADDONS=yes
+SVN_BUILD_BINDINGS=	yes
+SVN_BUILD_ADDONS=	yes
 
 .include "${MASTERDIR}/Makefile.common"
 
