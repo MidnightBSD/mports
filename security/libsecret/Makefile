@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libsecret
-PORTVERSION=	0.18
+PORTVERSION=	0.18.3
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
