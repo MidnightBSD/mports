@@ -3,20 +3,22 @@
 
 PORTNAME=	libexecinfo
 PORTVERSION=	1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	itetcu
+MASTER_SITES=	FREEBSD_LOCAL/itetcu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for inspecting program's backtrace
 
 LICENSE=	bsd2
 
+OPTIONS_DEFINE=	DOCS
+
 USES=		tar:bzip2 uidfix
 USE_LDCONFIG=	yes
-FAKE_MAKEARGS=	LIBDIR=${FAKE_DESTDIR}${PREFIX}/lib \
-		INCLUDEDIR=${FAKE_DESTDIR}${PREFIX}/include
+CFLAGS=		-fno-omit-frame-pointer
+FAKE_MAKEARGS=	LIBDIR=${PREFIX}/lib \
+		INCLUDEDIR=${PREFIX}/include
 
 PORTDOCS=	README
 
@@ -27,9 +29,7 @@ CFLAGS+=      -fno-omit-frame-pointer
 .endif
 
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
 
 .include <bsd.port.post.mk>
