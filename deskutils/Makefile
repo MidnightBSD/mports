@@ -28,6 +28,7 @@ SUBDIR += etoile-ui
 SUBDIR += glabels
 SUBDIR += gnome-screenshot
 SUBDIR += gnome-utils
+SUBDIR += gnote
 SUBDIR += gnustep-notebook
 SUBDIR += gnustep-wrapper
 SUBDIR += gnuwash
