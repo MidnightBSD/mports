@@ -25,6 +25,8 @@ GNU_CONFIGURE=	yes
 
 DOCS=		AUTHORS COPYING ChangeLog NEWS
 
+.include <bsd.mport.options.mk>
+
 post-extract:
 	@${RM} ${WRKSRC}/src/pynotify.c
 
