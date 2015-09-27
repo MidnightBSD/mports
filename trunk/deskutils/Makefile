@@ -27,6 +27,7 @@ SUBDIR += etoile-ui
 SUBDIR += glabels
 SUBDIR += gnome-utils
 SUBDIR += gnustep-notebook
+SUBDIR += gnustep-wrapper
 SUBDIR += gnuwash
 SUBDIR += gtkjj
 SUBDIR += gucharmap
