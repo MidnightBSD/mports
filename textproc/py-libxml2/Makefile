@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -14,9 +14,8 @@ DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
 USE_GNOME+=	libxml2
-USE_PYTHON=	2
-USE_PYDISTUTILS=yes
-PYDISTUTILS_EGGINFO=	libxml2_python-${PORTVERSION}-py${PYTHON_VER}.egg-info
+USES+=		python:2
+USE_PYTHON=	autoplist distutils
 
 CPPFLAGS+=	`${PYTHON_VERSION}-config --cflags`
 LDFLAGS+=	-L${LOCALBASE}/lib `${PYTHON_VERSION}-config --libs`
