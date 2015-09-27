@@ -11,10 +11,12 @@ DISTNAME=	Pygments-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A syntax highlighter written in Python
+
 LICENSE=	bsd2
 
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	easy_install
+USES=		python
+USE_PYTHON=   distutils autoplist
+
 PYDISTUTILS_PKGNAME=	Pygments
 
 .if !defined(NOPORTDOCS)
