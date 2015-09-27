@@ -2,6 +2,7 @@
 
 PORTNAME=	ninja
 PORTVERSION=	1.5.3
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -16,7 +17,6 @@ GH_ACCOUNT=	martine
 WRKSRC=		${WRKDIR}/ninja-${PORTVERSION}
 
 CONFLICTS=	irc/ninja-[0-9]*
-USE_PYTHON=	yes
 USES=		python:build
 
 PLIST_FILES=	bin/ninja
