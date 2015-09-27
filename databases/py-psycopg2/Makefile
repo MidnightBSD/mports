@@ -13,10 +13,8 @@ COMMENT=	High performance Python adapter for PostgreSQL
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_PGSQL=		yes
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_AUTOPLIST=	yes
+USES=		python pgsql
+USE_PYTHON=		distutils autoplist concurrent
 
 DOCSDIR=	${PREFIX}/share/doc/py-psycopg2
 EXAMPLESDIR=	${PREFIX}/share/examples/py-psycopg2
