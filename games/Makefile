@@ -17,6 +17,7 @@ SUBDIR += gmastermind
 SUBDIR += gmines
 SUBDIR += gnugo
 SUBDIR += gnustep-ladder
+SUBDIR += gnustep-sudoku
 SUBDIR += goonies
 SUBDIR += gridlock
 SUBDIR += gtkpool
