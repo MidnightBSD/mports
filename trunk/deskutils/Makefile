@@ -26,6 +26,7 @@ SUBDIR += etoile-systemconfig
 SUBDIR += etoile-trackerkit
 SUBDIR += etoile-ui
 SUBDIR += glabels
+SUBDIR += gnome-screenshot
 SUBDIR += gnome-utils
 SUBDIR += gnustep-notebook
 SUBDIR += gnustep-wrapper
