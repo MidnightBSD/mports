@@ -2,6 +2,7 @@
 
 PORTNAME=	getopt
 PORTVERSION=	1.1.6
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://frodo.looijaard.name/system/files/software/getopt/ \
 		FREEBSD_LOCAL/sunpoet
@@ -12,11 +13,11 @@ COMMENT=	getopt(1) replacement that supports GNU-style long options
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
+FAKE_OPTS+=	trueprefix
+
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 FAKE_MAKEENV+=	LIGCGETOPT=0
 FAKE_MAKEARGS+=	CC=${CC}
 USES=		gmake
