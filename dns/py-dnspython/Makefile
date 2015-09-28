@@ -14,8 +14,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
-USE_PYDISTUTILS=yes
-PYDISTUTILS_AUTOPLIST=yes
+USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	DOCS EXAMPLES PYCRYPTO
 PYCRYPTO_DESC=	Enable pycrypto (part of dnssec needs it)

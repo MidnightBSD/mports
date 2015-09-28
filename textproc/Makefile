@@ -153,6 +153,7 @@ SUBDIR += sphinxsearch
 SUBDIR += teckit
 SUBDIR += texi2html
 SUBDIR += tidyp
+SUBDIR += unoconv
 SUBDIR += urlview
 SUBDIR += wv
 SUBDIR += wv2
