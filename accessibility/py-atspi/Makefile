@@ -5,6 +5,7 @@
 
 PORTNAME=	atspi
 PORTVERSION=	2.16.0
+PORTREVISION=	1
 CATEGORIES=	accessibility x11-toolkits python
 MASTER_SITES=	GNOME/sources/pyatspi/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +20,6 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:${PORTSDIR}/accessibility/at
 CONFLICTS=	at-spi-1.[0-9]*
 
 USES=		gettext gmake pathfix pkgconfig python:2 tar:xz
-USE_PYTHON=	2
 USE_GNOME=	intlhack pygobject3
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
