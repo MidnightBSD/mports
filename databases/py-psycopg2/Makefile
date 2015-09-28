@@ -14,7 +14,7 @@ LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python pgsql
-USE_PYTHON=		distutils autoplist concurrent
+USE_PYTHON=	distutils autoplist
 
 DOCSDIR=	${PREFIX}/share/doc/py-psycopg2
 EXAMPLESDIR=	${PREFIX}/share/examples/py-psycopg2

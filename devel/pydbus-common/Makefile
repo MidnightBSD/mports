@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dbus
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.0
 PORTREVISION?=	0
 CATEGORIES=	devel gnome python
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
