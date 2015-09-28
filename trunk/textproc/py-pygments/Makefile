@@ -8,7 +8,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Pygments-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A syntax highlighter written in Python
+COMMENT=	Syntax highlighter written in Python
 
 LICENSE=	bsd2
 
