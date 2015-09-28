@@ -12,10 +12,10 @@ COMMENT=	GData Python Client Library
 LICENSE=	apache2
 
 PROJECTHOST=	gdata-python-client
-USE_PYTHON=	2
-USE_PYDISTUTILS=	yes
+USES=	python:2
+USE_PYTHON=	distutils
 
-OPTIONS_DEFINE=	GMPY M2CRYPTO PYCRYPTO
+OPTIONS_DEFINE=	GMPY M2CRYPTO PYCRYPTO EXAMPLES
 
 # optional modules (see src/gdata/tlslite/utils/cryptomath.py)
 GMPY_DESC=	Multiprecision arithmetic
@@ -40,8 +40,9 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gmpy>0:${PORTSDIR}/math/py-gmpy
 
 post-install:
 .if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${EXAMPLESDIR}/
-	${CP} -R ${WRKSRC}/samples/ ${EXAMPLESDIR}/
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+	@cd ${WRKSRC}/samples && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
 .endif
 
 .include <bsd.port.mk>
