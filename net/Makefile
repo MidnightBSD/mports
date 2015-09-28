@@ -48,6 +48,7 @@ SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += libsrtp
 SUBDIR += libvncserver
+SUBDIR += libzapojit
 SUBDIR += liferea
 SUBDIR += linc
 SUBDIR += linux-f10-nss_ldap
