@@ -1,7 +1,6 @@
 # Created by: Maxim Sobolev <sobomax@FreeBSD.org>
 # $MidnightBSD$
 # $FreeBSD: head/accessibility/py-atspi/Makefile 386312 2015-05-14 10:15:04Z mat $
-#   $MCom: ports/trunk/accessibility/py-atspi/Makefile 20031 2014-11-02 21:47:55Z kwm $
 
 PORTNAME=	atspi
 PORTVERSION=	2.16.0
@@ -14,6 +13,8 @@ DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python API for the D-BUS based SPI framework
+
+LICENSE=	lgpl
 
 RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:${PORTSDIR}/accessibility/at-spi2-core
 
