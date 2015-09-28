@@ -42,6 +42,7 @@ SUBDIR += gnugrep
 SUBDIR += gsed
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
+SUBDIR += gtkspell3
 SUBDIR += hspell
 SUBDIR += html
 SUBDIR += html2text
