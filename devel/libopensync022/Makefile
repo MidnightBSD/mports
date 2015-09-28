@@ -3,7 +3,7 @@
 
 PORTNAME=	libopensync
 PORTVERSION=	0.22
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	http://www.opensync.org/download/releases/${PORTVERSION}/
 PKGNAMESUFFIX=	022
@@ -15,10 +15,8 @@ LICENSE=	lgpl
 
 CONFLICTS=	libopensync-0.[3-9]*
 
-BUILD_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
-		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=	swig1.3:${PORTSDIR}/devel/swig13 \
-		${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
 SWIG_LANGUAGES=	python
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix pkgconfig python tar:bzip2
