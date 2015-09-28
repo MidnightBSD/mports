@@ -14,9 +14,8 @@ COMMENT=	A general-purpose parser generator for Python
 LICENSE=	other
 #apache 1.1 like
 
-USES=		tar:bzip2
-USE_PYTHON=	yes
-USE_PYDISTUTILS=yes
+USES=		tar:bzip2 python:2
+USE_PYTHON=	distutils autoplist
 PYDISTUTILS_PKGNAME=	BisonGen
 
 post-install:

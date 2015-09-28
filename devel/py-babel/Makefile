@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Babel
-PORTVERSION=	1.3
+PORTVERSION=	2.0
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
@@ -14,9 +14,8 @@ LICENSE=	bsd3
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:${PORTSDIR}/devel/py-pytz
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	easy_install
-PYDISTUTILS_AUTOPLIST=	yes
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
 
 PORTDOCS=	docs/*
 
