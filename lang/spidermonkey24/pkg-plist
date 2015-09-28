@@ -1,6 +1,5 @@
 bin/js24
 bin/js24-config
-%%DTRACE%%include/mozjs-24/javascript-trace.h
 include/mozjs-24/js-config.h
 include/mozjs-24/js.msg
 include/mozjs-24/js/Anchor.h
