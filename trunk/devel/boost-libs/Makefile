@@ -10,7 +10,7 @@ PORTVERSUFFIX=  ${PORTVERSION:C/\.[0-9]+$//}
 DISTNAME=       boost_${PORTVERSION:S/./_/g}
 
 MAINTAINER=     ports@MidnightBSD.org
-COMMENT=	Free portable C++ libraries (without Boost.Python)
+COMMENT=	Free portable libraries (without Boost.Python)
 
 LICENSE=	mit
 
