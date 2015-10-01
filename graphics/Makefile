@@ -105,6 +105,7 @@ SUBDIR += libksane
 SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libopenraw
+SUBDIR += libpotrace
 SUBDIR += libqrencode
 SUBDIR += librsvg2
 SUBDIR += libspiro
