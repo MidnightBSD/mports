@@ -43,6 +43,7 @@ SUBDIR += pecl-pdflib
 SUBDIR += psutils
 SUBDIR += qpdf
 SUBDIR += t1utils
+SUBDIR += tex-basic-engines
 SUBDIR += tex-dvipsk
 SUBDIR += tex-formats
 SUBDIR += tex-jadetex
