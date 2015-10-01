@@ -6,7 +6,7 @@
  #
 -MPPATH     = /usr/local
 +#MPPATH     = /usr/local
-+MPPATH     = $(PREFIX)
++MPPATH     = $(LOCALBASE)
  MPBINDIR   = $(MPPATH)/bin
 -MPLIBDIR   = $(MPPATH)/lib
 +#MPLIBDIR   = $(MPPATH)/lib
