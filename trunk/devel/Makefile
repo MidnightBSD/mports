@@ -119,6 +119,7 @@ SUBDIR += hwloc
 SUBDIR += icu
 SUBDIR += imake
 SUBDIR += jakarta-commons-daemon
+SUBDIR += jam
 SUBDIR += jansson
 SUBDIR += jenkins
 SUBDIR += json-c
