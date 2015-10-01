@@ -10,11 +10,11 @@ DISTFILES=	#empty
 EXTRACT_ONLY=	#empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Formats for Basic TeX Engines
+COMMENT=	Formats for Basic TeX engines
 
 LICENSE=	unknown
 
-USE_TEX=	web2c kpathsea texmf texhash fmtutil
+USE_TEX=	web2c basic texmf fmtutil texhash
 TEXHASHDIRS=	${TEXMFVARDIR}
 TEX_FORMATS=	amstex context cslatex csplain eplain latex-bin \
 		metafont mex mptopdf pdftex tex
