@@ -68,19 +68,6 @@ PREFIX?=	${LOCALBASE_REL}
 # Fake targets override this when they submake.
 TRUE_PREFIX?=		${PREFIX}
 
-#
-# DESTDIR section to start a chrooted process if invoked with DESTDIR set
-#
-
-.if defined(DESTDIR) && !empty(DESTDIR) && !defined(CHROOTED) && \
-	defined(HACK_SO_I_AM_OFF_FOR_NIJA_PORTS) &&
-	!defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
-
-.include "${PORTSDIR}/Mk/components/destdir.mk"
-
-.else
-
-
 # Figure out where the local mtree file is
 .if !defined(MTREE_FILE)  && !defined(NO_MTREE)
 .if ${PREFIX} == /usr
@@ -4362,7 +4349,5 @@ install-desktop-entries:
 
 .endif
 
-
-.endif
 
 # End of post-makefile section.
