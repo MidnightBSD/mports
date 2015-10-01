@@ -53,6 +53,7 @@ SUBDIR += tex-xmltex
 SUBDIR += texinfo
 SUBDIR += texlive-base
 SUBDIR += texlive-texmf
+SUBDIR += texlive-tlmgr
 SUBDIR += ttf2pt1
 SUBDIR += xfce4-print
 
