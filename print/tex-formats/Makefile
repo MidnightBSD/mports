@@ -2,7 +2,7 @@
 # $FreeBSD: head/print/tex-formats/Makefile 373858 2014-12-04 02:30:05Z hrs $
 
 PORTNAME=	formats
-PORTVERSION=	20140525
+PORTVERSION=	20150521
 CATEGORIES=	print
 MASTER_SITES=	#empty
 PKGNAMEPREFIX=	tex-
