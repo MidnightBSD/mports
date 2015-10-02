@@ -11,7 +11,7 @@ PKGNAMESUFFIX=	09
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform library for parsing flash media stream URLs
 
-LICENSE=	apgl
+LICENSE=	agpl
 
 BUILD_DEPENDS=	libquvi-scripts09>=0.9:${PORTSDIR}/multimedia/libquvi-scripts09
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
