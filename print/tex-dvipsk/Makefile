@@ -3,6 +3,7 @@
 
 PORTNAME=	dvipsk
 PORTVERSION=	5.995
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-

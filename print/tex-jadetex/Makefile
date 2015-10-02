@@ -29,8 +29,10 @@ NO_WRKSRC=	yes
 NO_BUILD=	yes
 TEX_FORMATS=	jadetex
 
-do-install:
+pre-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS}
+
+do-install: do-texhash do-fmtutil
 
 .include <bsd.port.mk>

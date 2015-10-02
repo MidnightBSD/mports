@@ -18,7 +18,7 @@ LICENSE=	unknown
 USES=		tar:xz
 USE_TEX=	texmf pdftex fmtutil
 TEXHASHDIRS=	${TEXMFDISTDIR}
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner \
 		${EXTRACT_FILES:S,^,${DISTNAME}/,}
 EXTRACT_FILES= \
@@ -28,8 +28,10 @@ NO_WRKSRC=	yes
 NO_BUILD=	yes
 TEX_FORMATS=	xmltex
 
-do-install:
+pre-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS}
+
+do-install:  do-texhash do-fmtutil
 
 .include <bsd.port.mk>
