@@ -8,6 +8,7 @@ SUBDIR += ImageMagick
 SUBDIR += OpenEXR
 SUBDIR += aalib
 SUBDIR += agg
+SUBDIR += argyllcms
 SUBDIR += cairo
 SUBDIR += cairomm
 SUBDIR += camera
