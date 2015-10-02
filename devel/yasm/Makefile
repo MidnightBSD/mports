@@ -2,7 +2,7 @@
 
 PORTNAME=	yasm
 PORTVERSION=	1.2.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 

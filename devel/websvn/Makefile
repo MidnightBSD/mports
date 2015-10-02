@@ -7,8 +7,11 @@ MASTER_SITES=	http://websvn.tigris.org/files/documents/1380/49056/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Subversion repository web frontend
-LICENSE=	gpl2
 
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/license.txt
+
+USES=		cpe
 USE_PHP=	iconv pcre xml
 NO_BUILD=	yes
 
