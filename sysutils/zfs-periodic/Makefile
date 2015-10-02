@@ -2,6 +2,7 @@
 
 PORTNAME=	zfs-periodic
 PORTVERSION=	1.0.20130213
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,8 +12,7 @@ LICENSE=	unknown
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ross
-GH_COMMIT=	9ffa662
-GH_TAGNAME=	${GH_COMMIT}
+GH_TAGNAME=	9ffa662
 
 NO_BUILD=	yes
 
@@ -27,6 +27,9 @@ PERIODIC_FILES=	etc/periodic/hourly/000.zfs-snapshot \
 
 PLIST_FILES=	${PERIODIC_FILES} bin/zfs-snapshot
 PLIST_DIRSTRY=	${PERIODIC_DIRS}
+
+post-extract:
+	${LN} -fs ${WRKDIR}/zfs-periodic-9ffa662 ${WRKSRC}
 
 post-patch:
 .for _file in ${PERIODIC_FILES}

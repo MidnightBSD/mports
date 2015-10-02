@@ -2,9 +2,9 @@
 # $FreeBSD: head/sysutils/zetaback/Makefile 326573 2013-09-07 06:47:20Z az $
 
 PORTNAME=	zetaback
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.7
 CATEGORIES=	sysutils
-MASTER_SITES=	https://labs.omniti.com/zetaback/tags/1.0/
+MASTER_SITES=	http://mirrors.omniti.com/zetaback/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zetaback ZFS backup and recovery management system

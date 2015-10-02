@@ -1,15 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	zfs-snapshot-clean
-PORTVERSION=	0.1.3
+PORTVERSION=	0.2.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
-MASTER_SITES=	http://cloud.github.com/downloads/knu/${PORTNAME}/ \
-		ftp://ftp.iDaemons.org/pub/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool to sieve ZFS snapshots as per given spec a la 'pdumpfs-clean'
+COMMENT=	Tool to sieve ZFS snapshots as per given spec a la 'pdumpfs-clean'
 
 LICENSE=	bsd2
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	knu
 
 NO_BUILD=	yes
 PLIST_FILES=	sbin/${PORTNAME}

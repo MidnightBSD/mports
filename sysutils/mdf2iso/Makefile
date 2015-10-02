@@ -7,7 +7,8 @@ MASTER_SITES=	BERLIOS
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Alcohol 120% to ISO converter
+COMMENT=	Alcohol 120% to ISO converter
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
