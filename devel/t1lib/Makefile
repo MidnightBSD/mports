@@ -3,18 +3,18 @@
 
 PORTNAME=	t1lib
 PORTVERSION=	5.1.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	SUNSITE/libs/graphics/ \
 		http://www.skysmurf.nl/comp/FreeBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Type 1 Rasterizer Library for UNIX/X11
+COMMENT=	Type 1 font rasterization library for UNIX/X11
 
 LICENSE=	lgpl
 
-USES=		gmake libtool
+USES=		cpe gmake libtool
 GNU_CONFIGURE=	yes
 ALL_TARGET=	without_doc
 USE_LDCONFIG=	yes
