@@ -10,6 +10,9 @@ MASTER_SITES=	GNOME
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Personal social data server.
 
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 BUILD_DEPENDS=	vapigen:${PORTSDIR}/lang/vala
 LIB_DEPENDS=	librest-0.7.so:${PORTSDIR}/devel/librest \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
