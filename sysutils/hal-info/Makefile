@@ -2,7 +2,7 @@
 
 PORTNAME=	hal-info
 PORTVERSION=	20091130
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 

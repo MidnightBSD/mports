@@ -2,7 +2,7 @@
 
 PORTNAME=	dirdiff
 PORTVERSION=	2.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils tcl tk
 MASTER_SITES=	ftp://ftp.samba.org/pub/paulus/
 
@@ -12,10 +12,10 @@ COMMENT=	Graphical diff tool
 LICENSE=	gpl2 # (or later)
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES+=		tcl tk
+USES=		tk
 USE_LDCONFIG=	yes
 
-PLIST_FILES=	bin/dirdiff lib/libfilecmp.so.0
+PLIST_FILES=	bin/dirdiff lib/libfilecmp.so.0.0
 
 CFLAGS+=	-fPIC -I${TCL_INCLUDEDIR}
 
@@ -33,6 +33,6 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/dirdiff ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/libfilecmp.so.0 ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/libfilecmp.so.0 ${PREFIX}/lib/libfilecmp.so.0.0
 
 .include <bsd.port.mk>
