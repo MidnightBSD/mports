@@ -10,6 +10,9 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 top library
 
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 USE_PERL5=	build
 USE_XORG=	xau
 USES=		gettext gmake libtool makeinfo pathfix perl5 pkgconfig tar:xz

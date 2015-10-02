@@ -12,7 +12,7 @@ LICENSE=	gpl3
 
 USES=		tar:bzip2
 USE_PERL5=	yes
-HAS_CONFIGURE=	yes
+GNu_CONFIGURE=	yes
 
 USE_AUTOTOOLS=	automake aclocal autoconf
 
