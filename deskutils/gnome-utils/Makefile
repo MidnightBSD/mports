@@ -4,11 +4,16 @@ PORTNAME=	gnome-utils
 PORTVERSION=	3.16.0
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
+MASTER_SITES=	#empty
+DISTFILES=	#empty
+EXTRACT_ONLY=	#empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 3 support utilities
 
 LICENSE=	gpl2
+
+USES=	metaport
 
 RUN_DEPENDS=	baobab>=3.0:${PORTSDIR}/deskutils/baobab \
 		gnome-screenshot>=3.0:${PORTSDIR}/deskutils/gnome-screenshot \
