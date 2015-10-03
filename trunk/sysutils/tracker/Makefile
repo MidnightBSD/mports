@@ -22,7 +22,6 @@ LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 RUN_DEPENDS=	xdg-desktop-icon:${PORTSDIR}/devel/xdg-utils \
 		o3totxt:${PORTSDIR}/converters/o3read \
 		pdftotext:${PORTSDIR}/graphics/poppler-utils \
-		w3m:${PORTSDIR}/www/w3m
 
 USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME=	gtk30 intltool introspection:build libxslt:build
