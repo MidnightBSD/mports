@@ -98,6 +98,7 @@ SUBDIR += php5-hash
 SUBDIR += php5-mcrypt
 SUBDIR += php5-openssl
 SUBDIR += pinentry
+SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
 SUBDIR += polarssl
 SUBDIR += py-fail2ban
