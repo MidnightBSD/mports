@@ -8,14 +8,11 @@ web browser or e-mail client. If you wish to install the full desktop, you can
 remove this port, and install the x11/gnome3 port or package.  That can be best
 accomplished using the following commands:
 
-# pkg_delete gnome3-lite
-# cd /usr/ports/x11/gnome3
+# mport delete gnome3-lite
+# cd /usr/mports/x11/gnome3
 # make install clean
 
 Alternatively, you can install additional GNOME components individually
 using either their ports or packages.
-
-For more help on using GNOME on FreeBSD, please see the FreeBSD GNOME project
-site at http://www.FreeBSD.org/gnome.
 
 ************************************************************
