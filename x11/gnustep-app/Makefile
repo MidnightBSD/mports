@@ -61,7 +61,6 @@ RUN_DEPENDS=	aclock>0:${PORTSDIR}/x11-clocks/aclock \
 		imageviewer>0:${PORTSDIR}/graphics/imageviewer \
 		innerspace>0:${PORTSDIR}/x11/innerspace \
 		jigsaw>0:${PORTSDIR}/games/jigsaw \
-		ja-jishyo>0:${PORTSDIR}/japanese/jishyo \
 		lapispuzzle>0:${PORTSDIR}/games/lapispuzzle \
 		laternamagica>0:${PORTSDIR}/graphics/laternamagica \
 		latex-service>0:${PORTSDIR}/textproc/latex-service \
