@@ -2,6 +2,7 @@
 
 PORTNAME=	graphviz
 PORTVERSION=	2.38.0
+PORTREVISION=	2
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
@@ -11,14 +12,13 @@ COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 LICENSE=	epl
 
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libgd.so:${PORTSDIR}/${GD_PORT}
 
-USES=		cpe gmake bison libtool:keepla pkgconfig pathfix shebangfix
+USES=		bison cpe gmake jpeg libtool:keepla pkgconfig pathfix shebangfix
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -48,7 +48,7 @@ PDOCS_TXT=	doc/Dot.ref doc/latex_suggestions.txt
 PDOCS_PDF=	doc/*.pdf */*/*.pdf
 PDOCS_HTML=	doc/*.html doc/info/*.gif
 
-USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+USE_LDCONFIG=	${TRUE_PREFIX}/lib/${PORTNAME}
 
 OPTIONS_DEFINE=	XPM DIGCOLA IPSEPCOLA ICONV NLS PANGOCAIRO LIBRSVG2 POPPLER \
 		ANN GTS GTK2 GDK GDK_PIXBUF GNOMEUI SMYRNA GVEDIT MING DEVIL \
@@ -313,9 +313,9 @@ post-patch:
 		${WRKSRC}/Makefile.in
 .endif
 
-post-install: install-ldconfig-file
+post-install:
 	cd ${WRKSRC}/lib/expr && \
-		${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${INSTALL_TARGET}
+		${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${FIX_INCLUDE} ${PREFIX}/include/graphviz/
 .if ${PORT_OPTIONS:MDOCS}
