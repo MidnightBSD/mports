@@ -25,6 +25,7 @@ SUBDIR += gshisen
 SUBDIR += gtkpool
 SUBDIR += gtypist
 SUBDIR += jigsaw
+SUBDIR += lapispuzzle
 SUBDIR += libggz
 SUBDIR += lincity
 SUBDIR += linux-enemyterritory
