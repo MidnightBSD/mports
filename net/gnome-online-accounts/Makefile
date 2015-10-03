@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-online-accounts
-PORTVERSION=	3.14.2
+PORTVERSION=	3.16.3
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
-LIB_DEPENDS=	libwebkitgtk-3.0.so:${PORTSDIR}/www/webkit-gtk3 \
+LIB_DEPENDS=	libwebkit2gtk-4.0.so:${PORTSDIR}/www/webkit2-gtk3 \
 		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
 		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
@@ -30,5 +30,8 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 GLIB_SCHEMAS=	org.gnome.online-accounts.gschema.xml
+
+# for webkit2-gtk3
+USES+=		compiler:c++11-lib
 
 .include <bsd.port.mk>
