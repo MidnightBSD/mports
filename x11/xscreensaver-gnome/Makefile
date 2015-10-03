@@ -2,7 +2,7 @@
 
 PORTNAME?=	xscreensaver-gnome
 PORTVERSION=	5.12
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	x11 gnome
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 DISTNAME=	xscreensaver-${PORTVERSION}
@@ -12,16 +12,16 @@ COMMENT=	Save your screen while you entertain your cat (for GNOME users)
 
 LICENSE=	mit
 
-FAKE_OPTS+=	trueprefix
+#FAKE_OPTS+=	trueprefix
+DESTDIRNAME=	install_prefix
 
-LIB_DEPENDS=	libgle.so:${PORTSDIR}/graphics/gle \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libgle.so:${PORTSDIR}/graphics/gle
 
 #CONFLICTS?=	xscreensaver-[0-9]* xscreensaver-gnome-hacks-[0-9]*
 
 USE_XORG=	x11 xpm
 USE_GL=		gl
-USES+=		dos2unix gettext gmake perl5 pathfix pkgconfig
+USES+=		dos2unix gettext gmake jpeg perl5 pathfix pkgconfig
 USE_PERL5_RUN=	yes
 USE_GNOME=	libglade2
 GNU_CONFIGURE=	yes
@@ -74,9 +74,10 @@ CFLAGS+=	-O0
 .endif
 
 USE_DOS2UNIX=	hacks/glx/topblock.c
+pre-patch: dos2unix
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g ; \
-	    	s|malloc.h|stdlib.h|g ; \
+	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g ; \
 		s|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 .if ${PORT_OPTIONS:MPAM}
