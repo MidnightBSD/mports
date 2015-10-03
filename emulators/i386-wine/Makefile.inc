@@ -9,7 +9,7 @@ MASTER_SITES=	FREEBSD_LOCAL/dbn/repos/wine/${DIST_SUBDIR}/${PORTVERSION}
 PKGNAMEPREFIX=	i386-
 DISTNAME=	${PKGNAME}
 EXTRACT_SUFX=	.txz
-DIST_SUBDIR=	freebsd:${OSREL:C/\..*//}:x86:64
+DIST_SUBDIR=	freebsd:9:x86:64
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	32bit Microsoft Windows compatibility environment for 64bit BSD
@@ -41,6 +41,9 @@ USES=		tar:xz
 GECKO_RUN_DEPENDS=   ${DATADIR}/gecko/wine_gecko-2.21-x86.msi:${PORTSDIR}/emulators/wine-gecko
 MONO_RUN_DEPENDS=   ${DATADIR}/mono/wine-mono-0.0.8.msi:${PORTSDIR}/emulators/wine-mono
 
+EXTRACT_DEPENDS+=	/usr/local/bin/bsdtar:${PORTSDIR}/archivers/libarchive
+EXTRACT_CMD=	/usr/local/bin/bsdtar
+
 PORTSCOUT=	limitw:1,even
 
 # Included for OPSYS and OSVERSION
@@ -60,13 +63,11 @@ ${PLIST}: fetch
 
 port-update:
 	${RM} -f ${.CURDIR}/distinfo ${.CURDIR}/distinfo~ ${.CURDIR}/pkg-plist.*
-.for osrel in 8 9 10 11
-	${MAKE} fetch OSREL=${osrel}
-	${MAKE} makesum OSREL=${osrel}
+	${MAKE} fetch OSREL=9
+	${MAKE} makesum OSREL=9
 	${CAT} ${.CURDIR}/distinfo >> ${.CURDIR}/distinfo~
 	${RM} ${.CURDIR}/distinfo
-	${MAKE} pkg-plist.${osrel} PLIST=pkg-plist.${osrel} OSREL=${osrel}
-.endfor
+	${MAKE} pkg-plist.9 PLIST=pkg-plist.9 OSREL=9
 	${MV} ${.CURDIR}/distinfo~ ${.CURDIR}/distinfo
 	python ${FILESDIR}/mergeplist.py ${.CURDIR}/pkg-plist.* > ${PLIST}
 	${RM} ${.CURDIR}/pkg-plist.*
