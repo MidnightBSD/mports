@@ -43,6 +43,7 @@ SUBDIR += gsed
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
 SUBDIR += gtkspell3
+SUBDIR += highlight
 SUBDIR += hspell
 SUBDIR += html
 SUBDIR += html2text
