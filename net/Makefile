@@ -20,6 +20,7 @@ SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
 SUBDIR += fping
+SUBDIR += freerdp
 SUBDIR += geoclue
 SUBDIR += geocode-glib
 SUBDIR += gfbgraph
