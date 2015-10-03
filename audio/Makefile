@@ -106,6 +106,7 @@ SUBDIR += linux-f10-pulseaudio-libs
 SUBDIR += linux-f10-sdl_mixer
 SUBDIR += madplay
 SUBDIR += mikmod
+SUBDIR += mpdcon
 SUBDIR += mpg123
 SUBDIR += musicpd
 SUBDIR += nas
