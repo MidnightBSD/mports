@@ -24,6 +24,7 @@ SUBDIR += grubik
 SUBDIR += gshisen
 SUBDIR += gtkpool
 SUBDIR += gtypist
+SUBDIR += jigsaw
 SUBDIR += libggz
 SUBDIR += lincity
 SUBDIR += linux-enemyterritory
