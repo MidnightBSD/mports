@@ -46,6 +46,7 @@ SUBDIR += gtkjj
 SUBDIR += gucharmap
 SUBDIR += gworkspace
 SUBDIR += gworkspace-gwmetadata
+SUBDIR += helpviewer
 SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
