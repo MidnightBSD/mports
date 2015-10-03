@@ -5,7 +5,7 @@
      enable_image=x11
      case "`uname -s`" in
 -    Linux|linux|LINUX)
-+    Linux|linux|LINUX|FreeBSD|freebsd|FREEBSD)
++    Linux|linux|LINUX|MidnightBSD|midnightbsd|MIDNIGHTBSD|FreeBSD|freebsd|FREEBSD)
  	if test -c /dev/fb0; then
  	  enable_image=x11,fb
          fi;;
