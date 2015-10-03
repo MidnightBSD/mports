@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	file-roller
-PORTVERSION=	3.14.2
+PORTVERSION=	3.16.3
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
@@ -16,9 +16,9 @@ BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
 RUN_DEPENDS=	gtar:${PORTSDIR}/archivers/gtar \
     		unzip:${PORTSDIR}/archivers/unzip
 
-USES=		desktop-file-utils gettext gmake libtool \
+USES=		desktop-file-utils gettext gmake libarchive libtool \
 		pathfix pkgconfig tar:xz
-USE_GNOME=	gnomeprefix gtk30 intlhack introspection:build
+USE_GNOME=	gtk30 intlhack introspection:build
 USE_XORG=	sm
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
