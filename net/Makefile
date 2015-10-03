@@ -9,6 +9,7 @@ SUBDIR += avahi
 SUBDIR += avahi-app
 SUBDIR += avahi-autoipd
 SUBDIR += avahi-gtk
+SUBDIR += avahi-gtk3
 SUBDIR += avahi-header
 SUBDIR += avahi-libdns
 SUBDIR += avahi-qt4
