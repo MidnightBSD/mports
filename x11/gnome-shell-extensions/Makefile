@@ -3,7 +3,7 @@
 # $FreeBSD: head/x11/gnome-shell-extensions/Makefile 382383 2015-03-27 09:24:39Z kwm $
 
 PORTNAME=	gnome-shell-extensions
-PORTVERSION=	3.14.4
+PORTVERSION=	3.16.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
