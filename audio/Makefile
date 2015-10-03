@@ -80,6 +80,7 @@ SUBDIR += libmad
 SUBDIR += libmikmod
 SUBDIR += libmodplug
 SUBDIR += libmpd
+SUBDIR += libmpdclient
 SUBDIR += libmusicbrainz3
 SUBDIR += libmusicbrainz5
 SUBDIR += libnjb
