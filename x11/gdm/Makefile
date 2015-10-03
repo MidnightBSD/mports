@@ -124,13 +124,19 @@ post-patch:
 		${WRKSRC}/data/PostSession.in \
 		${WRKSRC}/data/PreSession.in \
 		${WRKSRC}/data/Xsession.in
-	@${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
+	-${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
 		${WRKSRC}/data/applications/gdm-simple-greeter.desktop.in \
 		${WRKSRC}/data/applications/gnome-shell.desktop \
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/data/gdm.conf-custom \
-		${STAGEDIR}${PREFIX}/etc/gdm/custom.conf.default
+		${STAGEDIR}${PREFIX}/etc/gdm/custom.conf.sample
+	@${RM} ${STAGEDIR}${PREFIX}/etc/gdm/custom.conf
+	${MV} ${STAGEDIR}${PREFIX}/etc/gdm/PostSession/Default \
+		${STAGEDIR}${PREFIX}/etc/gdm/PostSession/Default.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/gdm/PreSession/Default \
+		${STAGEDIR}${PREFIX}/etc/gdm/PreSession/Default.sample
+
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/xsessions
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/gdm/Sessions
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/dm/Sessions
