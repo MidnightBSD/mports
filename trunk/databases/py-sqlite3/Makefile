@@ -35,6 +35,6 @@ post-extract:
 .endif
 
 post-install:
-	${STRIP_CMD} ${PYTHON_LIBDIR}/lib-dynload/_sqlite3.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_LIBDIR}/lib-dynload/_sqlite3.so
 
 .include <bsd.port.post.mk>
