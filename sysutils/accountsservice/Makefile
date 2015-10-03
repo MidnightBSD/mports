@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	accountsservice
-PORTVERSION=	0.6.37
+PORTVERSION=	0.6.40
 CATEGORIES=	sysutils devel
 MASTER_SITES=	http://www.freedesktop.org/software/${PORTNAME}/
 
