@@ -2,8 +2,7 @@
 # $FreeBSD: ports/graphics/evince/Makefile,v 1.33 2008/02/26 18:35:39 ahze Exp $
 
 PORTNAME=	evince
-PORTVERSION=	3.14.2
-PORTREVISION?=	1
+PORTVERSION=	3.16.1
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -66,10 +65,6 @@ XPS_DESC=	XPS support
 CONFIGURE_ARGS+=--disable-dbus
 .else
 CONFIGURE_ARGS+=--enable-dbus
-.endif
-
-.if ${OSVERSION} < 900000
-BROKEN=		Fails to build
 .endif
 
 .if ${PORT_OPTIONS:MDVI} || ${PORT_OPTIONS:MT1LIB}
