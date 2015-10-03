@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	upower
-PORTVERSION=	0.99.0
-PORTREVISION=	1
+PORTVERSION=	0.99.2
+PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://upower.freedesktop.org/releases/
 
