@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-power-manager
-PORTVERSION=	3.14.1
+PORTVERSION=	3.16.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -15,8 +15,7 @@ LIB_DEPENDS=	libupower-glib.so:${PORTSDIR}/sysutils/upower
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 INSTALLS_ICONS=	yes
-USE_GNOME=	gnomeprefix gtk30 intlhack
-MAKE_JOBS_UNSAFE=yes
+USE_GNOME=	gtk30 intlhack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-doc-dir=${PREFIX}/share/doc \
 		--disable-docbook-docs
@@ -35,6 +34,7 @@ BUILD_DEPENDS+=	docbook2html:${PORTSDIR}/textproc/docbook-utils \
 PLIST_SUB+=	MAN=""
 .else
 PLIST_SUB+=	MAN="@comment "
+
 post-patch:
 	@${REINPLACE_CMD} -e "s|2MAN_TRUE=$$|2MAN_TRUE='#'|g ; \
 		s|2MAN_FALSE='#'|2MAN_FALSE=|g" ${WRKSRC}/configure
