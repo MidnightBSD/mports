@@ -53,7 +53,6 @@ SUBDIR += gnome-mount
 SUBDIR += gnome-power-manager
 SUBDIR += gnome-settings-daemon
 SUBDIR += gnome-system-monitor
-SUBDIR += gnome-system-tools
 SUBDIR += gnome_subr
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
