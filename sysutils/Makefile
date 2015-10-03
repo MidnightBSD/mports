@@ -15,7 +15,6 @@ SUBDIR += battmond
 SUBDIR += brasero
 SUBDIR += bsd-splash-changer
 SUBDIR += bsdstats
-SUBDIR += burn
 SUBDIR += cdircmp
 SUBDIR += cdrdao
 SUBDIR += cdrtools
