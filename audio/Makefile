@@ -21,6 +21,7 @@ SUBDIR += gnome-audio
 SUBDIR += gnome-media
 SUBDIR += gnustep-cdplayer
 SUBDIR += gsm
+SUBDIR += gsound
 SUBDIR += gstreamer-plugins-a52dec
 SUBDIR += gstreamer-plugins-cdparanoia
 SUBDIR += gstreamer-plugins-esound
