@@ -1,68 +1,64 @@
 # $MidnightBSD$
 
 PORTNAME=	polkit
-PORTVERSION=	0.105
-PORTREVISION=	4
+PORTVERSION=	0.113
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
 
-LICENSE=	lgpl
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libmozjs-17.0.so:${PORTSDIR}/lang/spidermonkey170
 RUN_DEPENDS=	dbus-launch:${PORTSDIR}/devel/dbus
 
-USE_GNOME=	glib20 intlhack introspection
+USERS=	polkitd
+GROUPS=	polkitd
+
+USE_GNOME=	glib20 intlhack introspection:build
+USES=		gettext gmake libtool pathfix pkgconfig shebangfix
+SHEBANG_FILES=	${WRKSRC}/src/polkitbackend/toarray.pl
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-gtk-doc \
+CONFIGURE_ARGS=	--disable-gtk-doc-html \
+		--without-html-dir \
 		--with-authfw=pam \
 		--with-pam-include=system \
 		--with-os-type=freebsd \
-		--disable-systemd \
-		--enable-introspection \
+		--with-polkitd-user=${USERS} \
+		--disable-static \
+		--disable-examples \
+		--with-mozjs=mozjs-17.0 \
+		--disable-libsystemd-login \
+		--disable-test \
+		--enable-introspection=yes \
 		--localstatedir=/var
-MAKE_JOBS_UNSAFE=yes
-CONFIGURE_ENV=	GTKDOC="false"
+#MAKE_JOBS_UNSAFE=yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	MANPAGES
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MMANPAGES}
-BUILD_DEPENDS+=	docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml \
-		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
-
-USE_GNOME+=	libxslt:build
-PLIST_SUB+=	MANPAGES=""
-.else
-CONFIGURE_ARGS+=--disable-man-pages
-PLIST_SUB+=	MANPAGES="@comment "
-.endif
+MANPAGES_BUILD_DEPENDS=	docbook-sgml>=4.5:${PORTSDIR}/textproc/docbook-sgml \
+		docbook-xsl>=1.76:${PORTSDIR}/textproc/docbook-xsl
+MANPAGES_USE=	gnome=libxslt:build
+MANPAGES_CONFIGURE_ENABLE=	man-pages
+OPTIONS_SUB=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/bin/|${PREFIX}/bin/|g' \
 		${WRKSRC}/docs/man/pkexec.xml \
 		${WRKSRC}/src/examples/org.freedesktop.policykit.examples.pkexec.policy.in
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' \
+		${WRKSRC}/docs/man/polkit.xml
 
 post-install:
-	${MKDIR} ${PREFIX}/etc/dbus-1/system.d/
-	if [ ! -f ${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf ]; then \
-		${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
-			${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf ; \
-	fi
+	@${MKDIR} ${STAGEDIR}/var/lib/polkit-1
 	${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
-		${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf.dist
-	@${STRIP_CMD} ${PREFIX}/lib/lib*.so*
-	@${STRIP_CMD} ${PREFIX}/lib/polkit-1/extensions/lib*.so
-
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
+		${STAGEDIR}${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf.sample
 
 .include <bsd.port.mk>
