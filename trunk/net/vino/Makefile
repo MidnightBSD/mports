@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	vino
-PORTVERSION=	3.14.2
+PORTVERSION=	3.16.0
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -23,20 +23,12 @@ LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls \
 
 USES=		cpe gettext gmake pathfix pkgconfig tar:xz
 CPE_VENDOR=	david_king
-USE_GNOME=	gnomeprefix gtk30 intlhack
+USE_GNOME=	gtk30 intlhack
 USE_XORG=	xdamage xfixes xtst
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ARGS=	--without-network-manager \
-		--disable-http-server
 CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
 LDFLAGS+=	-L${LOCALBASE}/lib
 GLIB_SCHEMAS=	org.gnome.Vino.enums.xml org.gnome.Vino.gschema.xml
-
-OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	NOTIFY
-OPTIONS_DEFAULT=NOTIFY
-NOTIFY_LIBS_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
-NOTIFY_CONFIGURE_WITH=	libnotify
 
 .include <bsd.port.mk>
