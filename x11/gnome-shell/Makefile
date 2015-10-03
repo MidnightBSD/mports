@@ -2,6 +2,7 @@
 
 PORTNAME=	gnome-shell
 PORTVERSION=	3.16.3
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -21,6 +22,7 @@ LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
 		libgcr-3.so:${PORTSDIR}/security/gcr \
 		libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
 		libtelepathy-logger.so:${PORTSDIR}/net-im/telepathy-logger \
+		libfolks.so:${PORTSDIR}/net-im/folks \
 		libibus-1.0.so:${PORTSDIR}/textproc/ibus \
 		libpulse.so:${PORTSDIR}/audio/pulseaudio \
 		libcroco-0.6.so:${PORTSDIR}/textproc/libcroco \
