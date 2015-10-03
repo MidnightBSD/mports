@@ -1,35 +1,34 @@
 # $MidnightBSD$
 
 PORTNAME=	engine
-PORTVERSION=	4.0.1
+PORTVERSION=	4.0.12
+PORTEPOCH=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.openprinting.org/download/foomatic/ \
-		${MASTER_SITE_GOOGLE_CODE} \
-		${MASTER_SITE_LOCAL:S,$,acm/foomatic/,}
+		GOOGLE_CODE \
+		LOCAL/acm/foomatic
 PKGNAMEPREFIX=	foomatic-db-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	foomatic
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foomatic database engine
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	curl:${PORTSDIR}/ftp/curl
-RUN_DEPENDS=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
-PROJECTHOST=	bsdistfiles
-USE_GNOME=	libxml2
 USE_PERL5=	yes
-USE_GMAKE=	yes
+USE_GNOME=	libxml2
+USES=		gmake perl5
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	PERL=${PERL} LIBDIR=${PREFIX}/share/foomatic/
+PLIST_SUB+=	SITE_PERL=${SITE_PERL_REL}
+CONFIGURE_ENV=	PERL=${PERL} LIBDIR=${PREFIX}/share/foomatic/ \
+		LIB_CUPS=${LOCALBASE}/libexec/cups \
+		CUPS_FILTERS=${LOCALBASE}/libexec/cups/filters \
+		CUPS_BACKENDS=${LOCALBASE}/libexec/cups/backends
 
-MAN1=		foomatic-printjob.1 foomatic-ppdfile.1 foomatic-perl-data.1 \
-		foomatic-configure.1 foomatic-compiledb.1 foomatic-combo-xml.1 \
-		foomatic-ppd-options.1
-MAN8=		foomatic-preferred-driver.8 \
-		foomatic-kitload.8 foomatic-getpjloptions.8 \
-		foomatic-addpjloptions.8
+MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e \
@@ -37,13 +36,12 @@ post-patch:
 		 s,/usr/local/etc:,${PREFIX}/etc:,g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		"s,/usr/local/bin:,${PREFIX}/bin:,g" ${WRKSRC}/Makefile.in
-	@${MKDIR} ${FAKE_DESTDIR}${SITE_PERL}/Foomatic
+	@${REINPLACE_CMD} -e \
+		"/ln -sf foo/ s,foomatic-ppdfile,$$\(BINDIR\)/foomatic-ppdfile," \
+		-e "/if \[ -d/ s,LIB_CUPS,PREFIX," ${WRKSRC}/Makefile.in
 
 post-install:
-.for file in DB.pm Defaults.pm PPD.pm UIElem.pm
-	${MV} ${FAKE_DESTDIR}${FAKE_DESTDIR}${SITE_PERL}/Foomatic/${file} \
-		${FAKE_DESTDIR}${SITE_PERL}/Foomatic/${file}
-.endfor
+	cpdup -i0 ${FAKE_DESTDIR}/usr/lib ${PREFIX}/lib
 .for file in foomatic-combo-xml foomatic-perl-data
 	@${STRIP_CMD} ${PREFIX}/bin/${file}
 .endfor
