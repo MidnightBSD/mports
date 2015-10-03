@@ -18,6 +18,7 @@ SUBDIR += gtk30
 SUBDIR += gtkglext
 SUBDIR += gtkmm20
 SUBDIR += gtkmm24
+SUBDIR += gtkmm30
 SUBDIR += gtksourceview
 SUBDIR += gtksourceview2
 SUBDIR += gtksourceview3
