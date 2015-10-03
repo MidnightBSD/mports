@@ -3,7 +3,7 @@
 # $FreeBSD: head/lang/gjs/Makefile 385016 2015-04-29 22:13:10Z truckman $
 
 PORTNAME=	gjs
-PORTVERSION=	1.42.0
+PORTVERSION=	1.43.3
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
