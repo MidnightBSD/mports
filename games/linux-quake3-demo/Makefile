@@ -16,7 +16,7 @@ COMMENT=	Quake III Arena Demo
 
 LICENSE=        Loki
 LICENSE_NAME=   Loki Software License
-LICENSE_FILE=   ${WRKDIR}/Q3A_EULA.txt
+LICENSE_FILE=   ${WRKDIR}/Help/Q3A_EULA.txt
 LICENSE_PERMS=
 
 RESTRICTED=	no commerical redistribution
