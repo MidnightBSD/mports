@@ -23,7 +23,6 @@ SUBDIR += automoc4
 SUBDIR += autotools
 SUBDIR += binutils
 SUBDIR += bison
-SUBDIR += bisongen
 SUBDIR += boehm-gc
 SUBDIR += boehm-gc-threaded
 SUBDIR += boost-all
