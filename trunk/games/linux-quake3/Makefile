@@ -2,7 +2,7 @@
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games linux
 MASTER_SITES=	${MASTER_SITE_IDSOFTWARE:S|$|quake3/linux/:data|} \
 		${MASTER_SITE_IDSOFTWARE:S|$|quake3/:patch|}
@@ -25,16 +25,14 @@ NO_WRKSUBDIR=	yes
 
 RESTRICTED=	Restrictive license by Loki Software
 NO_CDROM=	${RESTRICTED}
-NO_PACKAGE=	${RESTRICTED}
 
 OPTIONS_MULTI=	TYPE
 OPTIONS_MULTI_TYPE=	CLIENT DEDICATED SMP
-OPTIONS_DEFINE=	PUNKBUSTER DOCS
-OPTIONS_DEFAULT=	CLIENT DEDICATED PUNKBUSTER SMP
+OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFAULT=	CLIENT DEDICATED SMP
 
 CLIENT_DESC=	Install client
 DEDICATED_DESC=	Install dedicated server
-PUNKBUSTER_DESC=	Install PunkBuster
 SMP_DESC=	Install SMP (threaded) client
 
 PLIST_SUB+=	LIBDIR="${LIBDIR:S/${PREFIX}\///}"
@@ -74,12 +72,6 @@ PLIST_SUB+=	CLIENT=""
 PLIST_SUB+=	CLIENT="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MPUNKBUSTER}
-PLIST_SUB+=	PUNKBUSTER=""
-.else
-PLIST_SUB+=	PUNKBUSTER="@comment "
-.endif
-
 .if ${PORT_OPTIONS:MSMP}
 PROGS+=		quake3-smp.x86
 PLIST_SUB+=	SMP=""
@@ -95,23 +87,13 @@ do-build:
 .endfor
 
 do-install:
-	@${MKDIR} ${LIBDIR}
+	${MKDIR} ${LIBDIR}
 .for f in ${PROGS}
-	@${INSTALL_PROGRAM} ${WRKSRC}/bin/Linux/x86/${f} ${LIBDIR}/${f:R}
-	@${INSTALL_SCRIPT} ${WRKDIR}/${f:R} ${PREFIX}/bin/linux-${f:R}
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/Linux/x86/${f} ${LIBDIR}/${f:R}
+	${INSTALL_SCRIPT} ${WRKDIR}/${f:R} ${PREFIX}/bin/linux-${f:R}
 .endfor
-.if ${PORT_OPTIONS:MPUNKBUSTER}
-	@${CP} -Rp ${WRKSRC}/pb ${DATADIR}
-	@${RM} ${DATADIR}/pb/PB_EULA.txt
-.endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README-linux.txt ${DOCSDIR}
-	@${CP} -Rp ${WRKSRC}/Docs/LinuxFAQ ${DOCSDIR}
-.   if ${PORT_OPTIONS:MPUNKBUSTER}
-	@${CP} -Rp ${WRKSRC}/Docs/PunkBuster ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/pb/PB_EULA.txt ${DOCSDIR}/PunkBuster
-.   endif
-.endif
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README-linux.txt ${DOCSDIR}
+	${CP} -Rp ${WRKSRC}/Docs/LinuxFAQ ${DOCSDIR}
 
 .include <bsd.port.mk>
