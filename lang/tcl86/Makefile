@@ -5,14 +5,13 @@ PORTVERSION=	8.6.b.1
 PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	SF/tcl/Tcl/8.6b1
-PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
+PKGNAMESUFFIX?=	86
 DISTNAME=	${PORTNAME}${PORTVERSION:S/.b.1/b1/}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Tool Command Language
 LICENSE=	other
 
-LATEST_LINK?=	tcl86
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}/unix
 ALL_TARGET=	all
@@ -20,9 +19,9 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --without-tzdata --includedir=${PREFIX}/include/tcl${TCL_VER}
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
-CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd6.1 \
-		 --host=${ARCH}-portbld-freebsd6.1 \
-		 --target=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd9.1 \
+		 --host=${ARCH}-portbld-freebsd9.1 \
+		 --target=${ARCH}-portbld-freebsd9.1
 TCL_VER=	8.6
 SHORT_TCL_VER=	${TCL_VER:S/8./8/}
 MAKE_ENV=	SHORT_TCL_VER=${SHORT_TCL_VER} LANG=C LC_ALL=C	# LANG=C is required for some of UTF-using tests
