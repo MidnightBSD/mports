@@ -14,6 +14,7 @@ SUBDIR += php5-ftp
 SUBDIR += proftpd
 SUBDIR += tnftp
 SUBDIR += tnftpd
+SUBDIR += waiho
 SUBDIR += wget
 
 .include <bsd.port.subdir.mk>
