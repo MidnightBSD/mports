@@ -56,7 +56,7 @@ CFLAGS+=	-DALL_VORBIS_TAGS
 .endif
 
 .if !defined(WITHOUT_MIKMOD)
-LIB_DEPENDS+=	mikmod.2:${PORTSDIR}/audio/libmikmod
+LIB_DEPENDS+=	libmikmod.so:${PORTSDIR}/audio/libmikmod
 INPUT_PLUGINS+=	mikmod
 PLIST_SUB+=	MIKMODPLUGIN:=""
 .else
@@ -65,7 +65,7 @@ PLIST_SUB+=	MIKMODPLUGIN:="@comment "
 .endif
 
 .if !defined(WITHOUT_VORBIS)
-LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 INPUT_PLUGINS+=	vorbis
 PLIST_SUB+=	VORBISPLUGIN:=""
 .else
@@ -141,6 +141,5 @@ post-patch:
 
 post-install:
 	@${MKDIR} ${PREFIX}/share/xmms/Skins
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
