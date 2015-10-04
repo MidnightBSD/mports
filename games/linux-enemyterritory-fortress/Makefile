@@ -17,7 +17,7 @@ EXTRACT_SUFX=	.run
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A class-based teamplay modification for Enemy Territory
-LICENSE=	restricted
+LICENSE=	other
 
 BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
