@@ -2,7 +2,7 @@
 
 PORTNAME=	linuxigd
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF/linux-igd/linux-igd/${PORTNAME}-${PORTVERSION}
 
@@ -11,13 +11,10 @@ COMMENT=	Linux UPnP Internet Gateway Device
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	upnp.9:${PORTSDIR}/devel/upnp
+LIB_DEPENDS=	libupnp.so:${PORTSDIR}/devel/upnp
 
 USE_RC_SUBR=	linuxigd
-USE_GMAKE=	yes
-MAKE_ENV=	PTHREAD_LIBS=${PTHREAD_LIBS}
-
-MAN8=		upnpd.8
+USES=		gmake
 
 post-extract:
 	@${RM} ${WRKSRC}/iptc.?
