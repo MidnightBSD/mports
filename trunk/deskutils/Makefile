@@ -61,6 +61,7 @@ SUBDIR += planner
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
+SUBDIR += simpleagenda
 SUBDIR += strigi
 SUBDIR += strigiclient
 SUBDIR += strigidaemon
