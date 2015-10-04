@@ -7,6 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	lang linux
 MASTER_SITES=	FREEBSD_LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMESUFFIX=	85
+PKGNAMEPREFIX=	linux-f10
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language (Linux Fedora 10)
