@@ -13,6 +13,8 @@ COMMENT=	Etoile Project application for managing fonts
 
 LICENSE=	bsd3
 
+BROKEN=		does not build with current gnustep
+
 USES=		tar:bzip2 gnustep
 USE_GNUSTEP=	back build
 USE_GNUSTEP_INSTALL=	yes
