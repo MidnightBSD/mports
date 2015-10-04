@@ -24,7 +24,6 @@ SUBDIR += fcgi
 SUBDIR += firefox-remote
 SUBDIR += furl
 SUBDIR += gnome-user-share
-SUBDIR += gnustep-ticker
 SUBDIR += google-sitemapgen
 SUBDIR += gtkhtml3
 SUBDIR += joomla15
