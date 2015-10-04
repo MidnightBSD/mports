@@ -58,6 +58,7 @@ SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += orage
 SUBDIR += planner
+SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
 SUBDIR += strigi
