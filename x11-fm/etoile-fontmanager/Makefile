@@ -2,6 +2,7 @@
 
 PORTNAME=	fontmanager
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	x11-fm x11-fonts gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-
@@ -9,12 +10,11 @@ DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project application for managing fonts
+
 LICENSE=	bsd3
 
-USE_BZIP2=	yes
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
+USES=		tar:bzip2 gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_INSTALL=	yes
 
 WRKSRC=	${WRKDIR}/Etoile-${PORTVERSION}
