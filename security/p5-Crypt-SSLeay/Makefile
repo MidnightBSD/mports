@@ -2,6 +2,7 @@
 
 PORTNAME=	Crypt-SSLeay
 PORTVERSION=	0.72
+PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -18,6 +19,7 @@ RUN_DEPENDS=	p5-LWP-Protocol-https>=6.02:${PORTSDIR}/www/p5-LWP-Protocol-https
 
 USES=		perl5
 PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 USE_OPENSSL=	yes
 CONFIGURE_ARGS=	--no-live-tests
 
