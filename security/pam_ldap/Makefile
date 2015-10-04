@@ -2,18 +2,18 @@
 
 PORTNAME=	pam_ldap
 PORTVERSION=	1.8.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security net
 MASTER_SITES=	http://www.padl.com/download/ \
 		ftp://ftp.padl.com/pub/
 DISTNAME=	pam_ldap-${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A pam module for authenticating with LDAP
+COMMENT=	Pam module for authenticating with LDAP
 
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+USES=		gmake perl5
 GNU_CONFIGURE=	yes
 USE_OPENLDAP=	yes
 USE_PERL5_BUILD=	yes
@@ -26,8 +26,6 @@ CONFIGURE_ARGS=	--with-ldap-lib=openldap \
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
 PORTDATA=	*.schema
-
-MAN5=		pam_ldap.5
 
 pre-install:
 	@${MKDIR} ${DATADIR}
