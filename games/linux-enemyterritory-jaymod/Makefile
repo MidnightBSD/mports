@@ -1,30 +1,23 @@
-# New ports collection makefile for:	jaymod
-# Date created:				7 May 2006
-# Whom:					alepulver
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-jaymod/Makefile,v 1.12 2008/02/19 13:20:30 alepulver Exp $
-#
 
 PORTNAME=	jaymod
-PORTVERSION=	2.1.7
+PORTVERSION=	2.2.0
 CATEGORIES=	games linux
 MASTER_SITES=	http://jaymod.clanfu.org/lib/downloads/ \
-		http://budjb.com/lib/downloads/ \
-		http://www.zenenterprises.org/bud/jaymod/ \
-		http://www.spherens.com/zen/et/distro/
+		http://www.zenenterprises.biz/bud/jaymod/
 PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jaymod - An Enemy Territory Modification
-LICENSE=	restricted
+LICENSE=	other
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
 USE_LINUX=	yes
 
-OPTIONS=	OMNIBOT "Install Omni-Bot for bot support" off
+OPTIONS_DEFINE=	DOCS OMNIBOT
+OMNIBOT_DESC=	Install Omni-Bot for bot support
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
@@ -32,11 +25,9 @@ DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
 CLIENT_PK3=	${PORTNAME}-${PORTVERSION}.pk3
 PLIST_SUB=	CLIENT_PK3="${CLIENT_PK3}"
 
-.include <bsd.port.pre.mk>
+OMNIBOT_RUN_DEPENDS=	et-omni-bot:${PORTSDIR}/games/linux-enemyterritory-omni-bot
 
-.if defined(WITH_OMNIBOT)
-RUN_DEPENDS+=	et-omni-bot:${PORTSDIR}/games/linux-enemyterritory-omni-bot
-.endif
+.include <bsd.mport.options.mk>
 
 do-build:
 .for f in et etded
@@ -47,15 +38,18 @@ do-build:
 
 do-install:
 .for f in et etded
-	${INSTALL_SCRIPT} ${WRKSRC}/${f}-${PORTNAME} ${PREFIX}/bin
+	@${INSTALL_SCRIPT} ${WRKSRC}/${f}-${PORTNAME} ${PREFIX}/bin
 .endfor
-	${MKDIR} ${DATADIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/qagame.mp.i386.so ${DATADIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${CLIENT_PK3} *.cfg ${DATADIR}
-	${CP} -r ${WRKSRC}/linux ${WRKSRC}/mapscripts ${DATADIR}
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} README.txt doc/jaymod.pdf ${DOCSDIR}
-.endif
+	@${MKDIR} ${DATADIR}
+	@${INSTALL_PROGRAM} ${WRKSRC}/qagame.mp.i386.so ${DATADIR}
+	@cd ${WRKSRC} && ${INSTALL_DATA} ${CLIENT_PK3} ${DATADIR}
+.for f in jaymod.cfg server.cfg
+	@${CP} -p ${WRKSRC}/${f} ${DATADIR}/${f}.sample
+.endfor
+	@${CP} -r ${WRKSRC}/linux ${WRKSRC}/mapscripts ${DATADIR}
+	@${MKDIR} ${DOCSDIR}
+.for f in README.txt doc/jaymod.pdf
+	@cd ${WRKSRC} && ${INSTALL_DATA} ${f} ${DOCSDIR}
+.endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
