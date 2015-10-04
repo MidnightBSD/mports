@@ -20,7 +20,6 @@ SUBDIR += epiphany
 SUBDIR += etoile-bookmarkkit
 SUBDIR += etoile-mollusk
 SUBDIR += etoile-rsskit
-SUBDIR += evolution-webcal
 SUBDIR += fcgi
 SUBDIR += firefox-remote
 SUBDIR += furl
