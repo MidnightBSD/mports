@@ -2,6 +2,7 @@
 
 PORTNAME=	rtmpdump
 PORTVERSION=	2.4.20130923
+PORTREVISION=	2
 CATEGORIES=	multimedia net
 MASTER_SITES=	FREEBSD_LOCAL/hrs
 
@@ -10,12 +11,14 @@ COMMENT=	RTMP streams download utility
 
 LICENSE=	gpl2
 
+FAKE_OPTS=	trueprefix
+
 LIB_DEPENDS=	librtmp.so:${PORTSDIR}/multimedia/librtmp
 
 USES=		pkgconfig
 USE_OPENSSL=	yes
-MAKE_ENV=	THREADLIB="${PTHREAD_LIBS}"
-CFLAGS+=	${PTHREAD_CFLAGS} -I${OPENSSLINC}
+MAKE_ENV=	THREADLIB="-lpthread"
+CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 PORTDOCS=	ChangeLog README
 
