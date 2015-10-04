@@ -3,7 +3,7 @@
 
 PORTNAME=	xmms
 PORTVERSION=	1.2.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES+=	multimedia audio ipv6
 # http://www.xmms.org/files/1.2.x/
 MASTER_SITES=	ftp://ftp.swin.edu.au/slackware/slackware-10.0/source/xap/xmms/ \
@@ -11,10 +11,10 @@ MASTER_SITES=	ftp://ftp.swin.edu.au/slackware/slackware-10.0/source/xap/xmms/ \
 		FREEBSD_LOCAL/beech
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	X Multimedia System --- Audio player with a Winamp GUI
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	X Multimedia System -- audio player with Winamp GUI
 
-LICENSE=        gpl2
+LICENSE=	gpl2
 
 USES=		desktop-file-utils gmake iconv libtool pathfix tar:bzip2
 USE_XLIB=	yes
