@@ -6,7 +6,7 @@ use warnings;
 use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
-use CGI;
+use CGI::Fast;
 use HTML::Template;
 use JSON::XS;
 
@@ -20,26 +20,28 @@ use JSON::XS;
   use Class::DBI::AbstractSearch;
 }
 
-eval {
-  main();
-  exit 0;
-};
+while (my $p = CGI::Fast->new) {
+	eval {
+  		main($p);
+		exit 0;
+	};
 
-if ($@) {
-  print "Content-Type: text/html\n\n";
-  print <<END_OF_ERROR;
-      <html>
-      <head><title>Error</title></head>
-      <body>
-      <h1>Error</h1>
-      <p>The following error occured:</p>
-      <pre>$@</pre>
-END_OF_ERROR
-  exit 0;
+	if ($@) {
+	  print "Content-Type: text/html\n\n";
+	  print <<END_OF_ERROR;
+	      <html>
+	      <head><title>Error</title></head>
+	      <body>
+	      <h1>Error</h1>
+	      <p>The following error occured:</p>
+	      <pre>$@</pre>
+	  END_OF_ERROR
+	  exit 0;
+	}
 }
 
 sub main {
-  my $p = CGI->new;
+  my ($p) = @_;
   
   my $path = $p->path_info;
 
