@@ -179,6 +179,7 @@ SUBDIR += silgraphite
 SUBDIR += svgalib
 SUBDIR += svgviewer
 SUBDIR += tiff
+SUBDIR += vigra
 SUBDIR += vindaloo
 SUBDIR += webp
 SUBDIR += wmicons
