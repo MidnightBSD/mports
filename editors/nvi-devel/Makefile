@@ -5,7 +5,8 @@ PORTVERSION=	1.81.6
 PORTREVISION=	5
 CATEGORIES=	editors
 MASTER_SITES=	http://garage.linux.student.kuleuven.be/~skimo/nvi/devel/ \
-		http://www.kotnet.org/~skimo/nvi/devel/
+		http://www.kotnet.org/~skimo/nvi/devel/ \
+		ftp://ftp.stack.nl/pub/users/johans/nvi/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development snapshot of the world-renown nvi editor
