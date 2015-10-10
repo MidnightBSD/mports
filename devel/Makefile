@@ -66,6 +66,7 @@ SUBDIR += doxygen
 SUBDIR += e_dbus
 SUBDIR += efl
 SUBDIR += eggdbus
+SUBDIR += epm
 SUBDIR += etoile-collectionkit
 SUBDIR += etoile-coreobject
 SUBDIR += etoile-foundation
