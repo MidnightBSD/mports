@@ -48,6 +48,7 @@ SUBDIR += hspell
 SUBDIR += html
 SUBDIR += html2text
 SUBDIR += hunspell
+SUBDIR += hyphen
 SUBDIR += ibus
 SUBDIR += intltool
 SUBDIR += iso8879
