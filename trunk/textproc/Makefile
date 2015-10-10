@@ -73,6 +73,7 @@ SUBDIR += localize
 SUBDIR += lucene
 SUBDIR += makepatch
 SUBDIR += meld
+SUBDIR += mythes
 SUBDIR += openjade
 SUBDIR += opensp
 SUBDIR += p5-HTML-Tidy
