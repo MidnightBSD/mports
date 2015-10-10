@@ -96,6 +96,17 @@ sub compare_runs {
 
   my $run_id1 = $p->param('run1');
   my $run_id2 = $p->param('run2');
+
+    if (!defined($run_id1) || !defined($run_id2)) {
+
+            print $p->header(
+                -type=>'text/plain',
+                -status=> '400 Bad Request'
+            );
+            print "One or more run ids missing.\n";
+            exit;
+
+    }
   
   my $tmpl = template($p, 'compare.tmpl');
 
