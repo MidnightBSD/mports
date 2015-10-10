@@ -4,7 +4,6 @@ COMMENT = Editors
 
 SUBDIR += 2bsd-vi
 SUBDIR += abiword
-SUBDIR += codeeditor
 SUBDIR += emacs
 SUBDIR += etoile-typewriter
 SUBDIR += gedit
