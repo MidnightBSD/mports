@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.43
+PORTVERSION=	5.4.44
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
