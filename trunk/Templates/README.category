@@ -14,7 +14,7 @@
         a { color: #79c143; }
         a:hover { color: #a0d07b; }
         ul { margin: 0; padding: 0; text-align: center; }
-        li { list-style: none; width: auto; background: fff; margin: 1em; text-align: center; height: auto; vertical-align: top; }
+        li { list-style: none; width: auto; background: fff; margin: 1em; text-align: left; height: auto; vertical-align: top; }
         li a { font-weight: bold;  text-decoration: none; color: #79c143; }
         blockquote { margin-top: 3em; color: #aaa; font-size: .9em; }
 	pre { line-height: 1.5 }
