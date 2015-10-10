@@ -59,6 +59,7 @@ SUBDIR += dev86
 SUBDIR += devhelp
 SUBDIR += devtodo
 SUBDIR += distcc
+SUBDIR += dmake
 SUBDIR += dmalloc
 SUBDIR += dotconf
 SUBDIR += doxygen
