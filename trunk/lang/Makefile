@@ -4,6 +4,7 @@ COMMENT = Programming languages
 
 SUBDIR += alisp
 SUBDIR += bcc
+SUBDIR += bsh
 SUBDIR += clang33
 SUBDIR += clang34
 SUBDIR += cython
