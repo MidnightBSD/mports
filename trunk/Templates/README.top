@@ -28,9 +28,9 @@
     <h2>TOP</h2>
     <h3>Parent dir</h3>
 
-<pre>
+    <ul>
 %%SUBDIR%%
-</pre>
+    </ul>
 
     <blockquote>
     <p>For information on how to use the ports tree, please look at 
