@@ -70,6 +70,7 @@ SUBDIR += linux-f10-scim-gtk
 SUBDIR += linux-f10-scim-libs
 SUBDIR += linuxdoc
 SUBDIR += localize
+SUBDIR += lucene
 SUBDIR += makepatch
 SUBDIR += meld
 SUBDIR += openjade
