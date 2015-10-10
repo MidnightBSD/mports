@@ -23,20 +23,18 @@ use JSON::XS;
 while (my $p = CGI::Fast->new) {
 	eval {
   		main($p);
-		exit 0;
 	};
 
 	if ($@) {
 	  print "Content-Type: text/html\n\n";
-	  print <<END_OF_ERROR;
+      print <<END_OF_ERROR;
 	      <html>
 	      <head><title>Error</title></head>
 	      <body>
 	      <h1>Error</h1>
 	      <p>The following error occured:</p>
 	      <pre>$@</pre>
-	  END_OF_ERROR
-	  exit 0;
+END_OF_ERROR
 	}
 }
 
@@ -201,10 +199,20 @@ sub summary_page {
 }
 
 sub run_page {
-  my ($p, $run) = @_;
-  
-  $run = Magus::Run->retrieve($run) || die "No such run: $run\n";
-  
+    my ($p, $run) = @_;
+
+    eval {
+        $run = Magus::Run->retrieve($run) || die("No such run");
+    };
+    if ($@) {
+        print $p->header(
+            -type => 'text/plain',
+            -status => '404 Not Found'
+        );
+        print "404 Not Found\n";
+        exit;
+    }
+
   my $tmpl = template($p, "run.tmpl");
   $tmpl->param(title => "Run $run");
   $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
@@ -312,9 +320,19 @@ sub port_page {
 
 sub machine_page {
   my ($p, $machine) = @_;
-  
-  $machine = Magus::Machine->retrieve($machine) || die "No such machine: $machine\n";
-  
+
+    eval {
+        $machine = Magus::Machine->retrieve($machine) || die "No such machine: $machine\n";
+    };
+    if ($@) {
+        print $p->header(
+            -type=>'text/plain',
+            -status=> '404 Not Found'
+        );
+        print "404 Not Found\n";
+        exit;
+    }
+
   my $tmpl = template($p, 'machine.tmpl');
 
   (my $maint = $machine->maintainer) =~ s/\@/{...}/;
@@ -467,8 +485,18 @@ sub browse {
   }
   
   # $path is a category
-  my $cat = Magus::Category->retrieve(category => $path) || die "No such category: $path\n";
-  
+    eval {
+        my $cat = Magus::Category->retrieve(category => $path) || die "No such category: $path\n";
+    };
+    if ($@) {
+        print $p->header(
+            -type=>'text/plain',
+            -status=> '404 Not Found'
+        );
+        print "404 Not Found\n";
+        exit;
+    }
+
   my $tmpl = template($p, "category.tmpl");
   $tmpl->param(
     title    => "Magus // Browse // $path",
@@ -478,9 +506,6 @@ sub browse {
   
   print $p->header. $tmpl->output;
 }
-
-  
-  
 
 sub template {
   my ($p, $file) = @_;
