@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cython
-PORTVERSION=	0.19.1
+PORTVERSION=	0.23
 CATEGORIES=	lang python
 MASTER_SITES=	http://www.cython.org/release/ \
 		CHEESESHOP
@@ -12,8 +12,11 @@ COMMENT=	Compiler for Writing C Extensions for the Python Language
 
 LICENSE=	apache2
 
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_PKGNAME=	Cython
+USES=		python
+USE_PYTHON=	autoplist distutils
+
+post-install:
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Cython \
+		-name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
