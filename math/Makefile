@@ -7,6 +7,7 @@ SUBDIR += atlas
 SUBDIR += blas
 SUBDIR += calc
 SUBDIR += cln
+SUBDIR += coinmp
 SUBDIR += djbfft
 SUBDIR += edenmath
 SUBDIR += eigen2
