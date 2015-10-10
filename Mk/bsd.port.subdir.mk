@@ -313,7 +313,7 @@ README.html:
 .if defined(PORTSTOP)
 	@${ECHO_CMD} -n '<a href="'${entry}/README.html'">'"`${ECHO_CMD} ${entry} | ${HTMLIFY}`"'</a>: ' >> $@.tmp
 .else
-	@${ECHO_CMD} -n '<a href="'${entry}/README.html'">'"`cd ${entry}; ${MAKE} package-name | ${HTMLIFY}`</a>: " >> $@.tmp
+	@${ECHO_CMD} -n '<li><a href="'${entry}/README.html'">'"`cd ${entry}; ${MAKE} package-name | ${HTMLIFY}`</a>: " >> $@.tmp
 .endif
 	@${ECHO_CMD} `cd ${entry}; ${MAKE} -V COMMENT` | ${HTMLIFY} >> $@.tmp
 .endif
