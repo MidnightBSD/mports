@@ -311,7 +311,7 @@ README.html:
 .for entry in ${SUBDIR}
 .if exists(${entry})
 .if defined(PORTSTOP)
-	@${ECHO_CMD} -n '<a href="'${entry}/README.html'">'"`${ECHO_CMD} ${entry} | ${HTMLIFY}`"'</a>: ' >> $@.tmp
+	@${ECHO_CMD} -n '<li><a href="'${entry}/README.html'">'"`${ECHO_CMD} ${entry} | ${HTMLIFY}`"'</a>: ' >> $@.tmp
 .else
 	@${ECHO_CMD} -n '<li><a href="'${entry}/README.html'">'"`cd ${entry}; ${MAKE} package-name | ${HTMLIFY}`</a>: " >> $@.tmp
 .endif
