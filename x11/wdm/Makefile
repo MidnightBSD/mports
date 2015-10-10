@@ -2,12 +2,11 @@
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
-		${MASTER_SITE_LOCAL:S/$/:pic_small/}
-MASTER_SITE_SUBDIR=	tg/:pic_small
+		FREEBSD_LOCAL/tg:pic_small
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:wdm \
 		beastie.xpm:pic_small \
 		daemon1-HQ-1280x960.jpg:pic_large
@@ -20,6 +19,12 @@ COMMENT=	WINGs Display Manager; an xdm replacement
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libWINGs.so:${PORTSDIR}/x11-wm/windowmaker
+
+
+
+OPTIONS_DEFINE=	PAM
+OPTIONS_DEFAULT=	PAM
+OPTIONS_SUB=	yes
 
 USES=		gettext tar:bzip2
 USE_XORG=	x11 xmu
@@ -38,36 +43,23 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
 
 CPPFLAGS+=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+LIBS+=		-L${LOCALBASE}/lib
 
 DEF_SERVER?=	${LOCALBASE}/bin/X
 XRDB_PATH?=	${LOCALBASE}/bin/xrdb
 
 WDMDIR=		${PREFIX}/lib/X11/wdm
 
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_PAM)
-WITH_PAM=	yes
-CONFIGURE_ARGS+=	--with-pamdir=${LOCALBASE}/etc/pam.d/
-PLIST_SUB+=	PAM=""
-.else
-PLIST_SUB+=	PAM="@comment "
-.endif
-
-.if !defined(WITH_PAM)
-CONFIGURE_ARGS+=	--disable-pam
-.endif
-
-pre-everything::
-.if !defined(WITH_PAM)
-	@${ECHO_MSG}
-	@${ECHO_MSG} "If you want to compile with PAM support,"
-	@${ECHO_MSG} "hit Ctrl-C right now and use \"make WITH_PAM=yes\""
-	@${ECHO_MSG}
-.endif
+PAM_CONFIGURE_OFF=	--disable-pam
+PAM_CONFIGURE_ON=	--with-pamdir=${LOCALBASE}/etc/pam.d/
 
 post-patch:
+	@${REINPLACE_CMD} -e \
+		's|/usr/X11R6|${PREFIX}|g' ${WRKSRC}/configs/KillConsole
+	@${REINPLACE_CMD} -e \
+		's|/usr/X11R6|${PREFIX}|g' ${WRKSRC}/configs/Xclients.in
+	@${REINPLACE_CMD} -e \
+		's|/usr/X11R6|${PREFIX}|g' ${WRKSRC}/configs/Xsession.in
 	@${REINPLACE_CMD} -e \
 		's|$$(DESTDIR)$$(PAMDIR)/wdm||g' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|-ldl||g ; \
@@ -79,28 +71,12 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|/etc/X11/wdm|${WDMDIR}|g' ${WRKSRC}/doc/wdmLogin.man
 
-pre-install:
-.if exists(${WDMDIR}/wdm-config)
-	${MV} ${WDMDIR}/wdm-config ${WDMDIR}/wdm-config.preserve
-.endif
-.if exists(${WDMDIR}/Xsetup_0)
-	${MV} ${WDMDIR}/Xsetup_0 ${WDMDIR}/Xsetup_0.preserve
-.endif
-
 post-install:
-	@${CP} ${WDMDIR}/wdm-config ${WDMDIR}/wdm-config.dist
-.if exists(${WDMDIR}/wdm-config.preserve)
-	${MV} ${WDMDIR}/wdm-config.preserve ${WDMDIR}/wdm-config
-.endif
-	@${CP} ${WDMDIR}/Xsetup_0 ${WDMDIR}/Xsetup_0.dist
-.if exists(${WDMDIR}/Xsetup_0.preserve)
-	${MV} ${WDMDIR}/Xsetup_0.preserve ${WDMDIR}/Xsetup_0
-.endif
+	@${MV} ${STAGEDIR}${WDMDIR}/wdm-config ${WDMDIR}/wdm-config.sample
+	@${MV} ${STAGEDIR}${WDMDIR}/Xsetup_0 ${WDMDIR}/Xsetup_0.sample
 .for file in beastie.xpm daemon1-HQ-1280x960.jpg
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WDMDIR}/pixmaps
 .endfor
-.if defined(WITH_PAM)
 	${INSTALL_DATA} ${FILESDIR}/wdm.pam ${PREFIX}/etc/pam.d/wdm
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
