@@ -38,9 +38,9 @@
 
     <p>Here are the one-line descriptions for each items in this
     directory:</p>
-<pre>
+<ul>
 %%SUBDIR%%
-</pre>
+</ul>
     <a href="../README.html">Go to parent directory</a>
   </body>
 </html>
