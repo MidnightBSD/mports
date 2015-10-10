@@ -159,6 +159,7 @@ SUBDIR += libgtop
 SUBDIR += libical
 SUBDIR += libinotify
 SUBDIR += libixp
+SUBDIR += liblangtag
 SUBDIR += libltdl
 SUBDIR += libnotify
 SUBDIR += liboil
