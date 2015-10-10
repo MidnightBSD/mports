@@ -16,8 +16,8 @@ use JSON::XS;
 # the search_where() method into Magus::DBI here...
 #
 {
-  package Magus::DBI;
-  use Class::DBI::AbstractSearch;
+    package Magus::DBI;
+    use Class::DBI::AbstractSearch;
 }
 
 while (my $p = CGI::Fast->new) {
@@ -475,36 +475,41 @@ sub async_run_port_stats {
 }
   
 sub browse {
-  my ($p, $path) = @_;
-  
-  if ($path =~ m:(.*?)/(.+):) {
-    return search($p, 
-      "name:$path status:any", 
-      {title => '<a href="'.$p->script_name . qq[/browse/$1">$1</a>/$2]} 
-    );
-  }
-  
-  # $path is a category
+    my ($p, $path) = @_;
+    my $cat;
+
+    if ($path =~ m:(.*?)/(.+):) {
+        return search($p,
+        "name:$path status:any",
+        {title => '<a href="'.$p->script_name . qq[/browse/$1">$1</a>/$2]}
+        );
+    }
+
+    # $path is a category
     eval {
-        my $cat = Magus::Category->retrieve(category => $path) || die "No such category: $path\n";
+        $cat = Magus::Category->retrieve(category => $path) || die "No such category: $path\n";
     };
     if ($@) {
         print $p->header(
-            -type=>'text/plain',
-            -status=> '404 Not Found'
+            -type => 'text/plain',
+            -status => '404 Not Found'
         );
         print "404 Not Found\n";
         exit;
     }
 
-  my $tmpl = template($p, "category.tmpl");
-  $tmpl->param(
-    title    => "Magus // Browse // $path",
-    ports    => [map {{ port => $_ }} sort @{$cat->distinct_ports}],
-    category => $path,
-  );
-  
-  print $p->header. $tmpl->output;
+    my $tmpl = template($p, "category.tmpl");
+    $tmpl->param(
+        title    => "Magus // Browse // $path",
+        ports    => [map {
+            {
+                port => $_
+            }
+        } sort @{$cat->distinct_ports}],
+        category => $path,
+    );
+
+    print $p->header. $tmpl->output;
 }
 
 sub template {
