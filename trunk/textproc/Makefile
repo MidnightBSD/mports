@@ -56,6 +56,7 @@ SUBDIR += jade
 SUBDIR += latex-service
 SUBDIR += libcroco
 SUBDIR += libcue
+SUBDIR += libtextcat
 SUBDIR += libtre
 SUBDIR += libuninameslist
 SUBDIR += libwpd
