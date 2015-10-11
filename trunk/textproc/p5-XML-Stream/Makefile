@@ -1,31 +1,22 @@
 # $MidnightBSD$
 
 PORTNAME=	XML-Stream
-PORTVERSION=	1.22
+DISTVERSION=	1.24
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:DAPATRICK
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML::Stream provides you with access to XML Stream
-LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
-		${SITE_PERL}/Authen/SASL.pm:${PORTSDIR}/security/p5-Authen-SASL \
-		${SITE_PERL}/${PERL_ARCH}/Unicode/String.pm:${PORTSDIR}/converters/p5-Unicode-String
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	lgpl2.1
 
+BUILD_DEPENDS=	p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
-MAN3=		XML::Stream.3 XML::Stream::Namespace.3 XML::Stream::Node.3 \
-		XML::Stream::Parser.3 XML::Stream::Parser::DTD.3 \
-		XML::Stream::Tree.3
-
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-IGNORE=		requires perl 5.8.x or later. Install lang/perl5.8 then try again
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
