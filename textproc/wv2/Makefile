@@ -2,12 +2,13 @@
 
 PORTNAME=	wv2
 PORTVERSION=	0.4.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc
 MASTER_SITES=	SF/wvware/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library providing routines to access Microsoft Word files
+COMMENT=	Library providing routines to access Microsoft Word files
+
 LICENSE=	lgpl
 
 USE_GNOME=	libgsf
