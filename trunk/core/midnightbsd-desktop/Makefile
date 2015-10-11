@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	1.9
+PORTVERSION=	2.0
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -21,7 +21,7 @@ RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		pidgin:${PORTSDIR}/net-im/pidgin \
 		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:${PORTSDIR}/x11-themes/midnightbsd-backgrounds \
-		browser:${PORTSDIR}/www/browser3 \
+		midori:${PORTSDIR}/www/midori \
 		common-services>=1.0:${PORTSDIR}/core/common-services \
 		${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server \
 		${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
@@ -38,7 +38,8 @@ NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
 do-install:
-	${MKDIR} ${PREFIX}/etc/dm/Sessions
-	${CP} ${FILESDIR}/etoile.desktop ${PREFIX}/etc/dm/Sessions
+	${MKDIR} ${PREFIX}/share/xsessions
+	${CP} ${FILESDIR}/etoile.desktop ${PREFIX}/share/xsessions/
+	${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
 
 .include <bsd.port.mk>
