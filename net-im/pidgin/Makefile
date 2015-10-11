@@ -1,14 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	pidgin
-PORTREVISION=	0
+PORTREVISION=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pidgin multi-protocol messaging client (GTK+ UI)
 LICENSE=	gpl2
 
-LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
-		purple.10:${PORTSDIR}/net-im/libpurple
+LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
+		libpurple.so:${PORTSDIR}/net-im/libpurple
 
 MASTERDIR=	${.CURDIR}/../libpurple
 BUILD_WRKSRC=	${WRKSRC}/pidgin
@@ -21,15 +21,13 @@ PIDGIN_SLAVE=	yes
 WITH_GTKUI=	yes
 
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gtk20
+USE_GNOME=	gnomeprefix intlhack gtk20
 USE_XORG=	xscrnsaver sm
 WANT_GNOME=	yes
 CONFIGURE_ARGS=	--disable-consoleui \
 		--disable-nm \
 		--enable-screensaver \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//}
-
-MAN1=		pidgin.1
 
 post-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
