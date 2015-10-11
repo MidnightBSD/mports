@@ -2,7 +2,7 @@
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.10.11
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -318,8 +318,7 @@ pre-everything::
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e 's|-lpthread|${PTHREAD_LIBS:S/"//g}|g' \
-		-e 's|-lsilc -lsilcclient ${PTHREAD_LIBS} $$LIBDL|-lsilc -lsilcclient ${PTHREAD_LIBS} ${ICONV_LIB}|' \
+		-e 's|-lsilc -lsilcclient -lpthread $$LIBDL|-lsilc -lsilcclient -lpthread ${ICONV_LIB}|' \
 			${WRKSRC}/configure
 .if defined(PIDGIN_SLAVE)
 	@${FIND} ${BUILD_WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \

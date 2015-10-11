@@ -2,6 +2,7 @@
 
 PORTNAME=	jabberd
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/jabberd2/jabberd2/releases/download/${PORTNAME}-${DISTVERSION}/ \
 		FREEBSD_LOCAL/matthew/${PORTNAME}
@@ -31,7 +32,7 @@ USE_RC_SUBR=	jabberd
 USE_LDCONFIG=	${PREFIX}/lib/jabberd
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--sysconfdir=${PREFIX}/etc/jabberd \
-		--enable-ssl --enable-mio=poll \
+		--enable-ssl --enable-mio=kqueue \
 		--disable-tests \
 		--with-extra-include-path="${LOCALBASE}/include ${EIP}" \
 		--with-extra-library-path="${LOCALBASE}/lib ${ELP}"

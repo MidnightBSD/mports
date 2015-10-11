@@ -2,12 +2,13 @@
 
 PORTNAME=	meanwhile
 PORTVERSION=	1.0.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-im
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source implementation of the Lotus Sametime protocol
+
 LICENSE=	lgpl
 
 USES=		gmake libtool pathfix pkgconfig
