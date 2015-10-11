@@ -2,6 +2,7 @@
 
 PORTNAME=	soprano
 PORTVERSION=	2.9.4
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/Soprano/${PORTVERSION}
 
@@ -10,9 +11,9 @@ COMMENT=	QT4 RDF framework
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
-		rdf:${PORTSDIR}/textproc/redland \
-		iodbc:${PORTSDIR}/databases/libiodbc
+LIB_DEPENDS=	libraptor2.so:${PORTSDIR}/textproc/raptor2 \
+		librdf.so:${PORTSDIR}/textproc/redland \
+		libiodbc.so:${PORTSDIR}/databases/libiodbc
 
 USE_QT4=	corelib dbus network qtestlib_build xml \
 		qmake_build moc_build uic_build rcc_build
