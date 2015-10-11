@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	yelp-xsl
-PORTVERSION=	3.14.0
+PORTVERSION=	3.16.1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
