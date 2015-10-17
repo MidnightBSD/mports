@@ -69,6 +69,8 @@ sub main {
     browse($p, $1);
   } elsif ($path =~m:^/compare/:) {
     compare_runs($p);
+  } elsif ($path =~m:^/blockers/(.*):) {
+    blockers($p, $1);
   } else {
     print $p->header(
               -type=>'text/plain',
@@ -207,6 +209,39 @@ sub summary_page {
     cats  => \@categories,
   ); 
   print $tmpl->output;
+}
+
+sub blockers {
+	my ($p, $run) = @_;
+
+	my %objs;
+	my %blocking;
+	my $ports = Magus::Port->search(run => $run, status => 'untested');
+
+    my $tmpl = template($p, "blockers.tmpl");
+    $tmpl->param(title => "Top Blockers for Run $run");
+
+while (my $port = $ports->next) {
+  my $add = $blocking{$port} || 1;
+  $objs{$port} ||= $port;
+
+  foreach my $dep ($port->depends) {
+    next unless $dep->status eq 'fail' || $dep->status eq 'skip' || $dep->status eq 'untested';
+    
+    
+    $objs{$dep}    ||= $dep;
+    $blocking{$dep} += $add;
+  }    
+}
+
+my @blocks;
+foreach my $port (sort { $blocking{$b} <=> $blocking{$a} } keys %blocking) {
+  next if $objs{$port}->status eq 'untested';
+  push(@blocks, { port => $port, blocking => $blocking{$port} });
+}
+$tmpl->param(blocks => \@blocks);
+print $p->header;
+print $tmpl->output;
 }
 
 sub run_page {
