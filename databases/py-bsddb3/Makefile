@@ -11,10 +11,9 @@ COMMENT=	Python extension module for BerkeleyDB 3 and 4
 
 LICENSE=	python
 
+USES=		python
+USE_PYTHON=	autoplist distutils
 USE_BDB=	48+
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_AUTOPLIST=	yes
 
 PYDISTUTILS_CONFIGUREARGS=--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
 PYDISTUTILS_BUILDARGS=	--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
