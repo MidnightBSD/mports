@@ -15,7 +15,6 @@ LIB_DEPENDS+=	libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
 		libdrm.so:${PORTSDIR}/graphics/libdrm
 
 USES+=		python:3
-USE_PYTHON=	3
 
 USE_XORG=	x11 xau xcb xdmcp
 
