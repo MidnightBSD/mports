@@ -11,7 +11,7 @@ COMMENT=	VAAPI wrapper and dummy driver
 LICENSE=	mit
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
-LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
+LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm
 
 USES=		tar:bzip2
 USE_XORG=	glproto pciaccess xext xfixes 
