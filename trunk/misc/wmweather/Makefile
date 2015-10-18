@@ -8,10 +8,11 @@ CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.godisch.de/debian/wmweather/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A WMaker dockapp which displays meteorological data for your city
+COMMENT=	WMaker dockapp which displays meteorological data for your city
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 BUILD_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
