@@ -27,8 +27,8 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-pthread \
 		--disable-rpath \
 		--with-ruby-version=minor \
-		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
-		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby"
+		--with-sitedir="${TRUE_PREFIX}/lib/ruby/site_ruby" \
+		--with-vendordir="${TRUE_PREFIX}/lib/ruby/vendor_ruby"
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
@@ -205,6 +205,10 @@ post-install:
 			${WRKSRC}/LEGAL		\
 			${WRKSRC}/README*	\
 			${FAKE_DESTDIR}${RUBY_DOCDIR}/
+
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${PREFIX}/bin/erb22 ${PREFIX}/bin/irb22 \
+		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22
 
 test:
 	@(cd ${WRKSRC}; ${MAKE} test)
