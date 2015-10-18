@@ -14,7 +14,7 @@ LICENSE=		gpl3
 
 CONFLICTS=		*samba3[0-4]-3.*
 
-USES=			compiler pkgconfig ldap python:2
+USES=			compiler pkgconfig ldap python:2,build,run
 USE_LDCONFIG=		yes
 HAS_CONFIGURE=		yes
 WAF_TOOL=		buildtools/bin/waf
@@ -88,7 +88,6 @@ _MAKE_JOBS=		--jobs=${MAKE_JOBS_NUMBER}
 .endif
 .endif
 
-USE_PYTHON_RUN=		yes
 PLIST_FILES+=		include/pyldb.h \
 			lib/libpyldb-util.so \
 			lib/libpyldb-util.so.1 \
