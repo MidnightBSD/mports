@@ -27,8 +27,11 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-pthread \
 		--disable-rpath \
 		--with-ruby-version=minor \
-		--with-sitedir="${TRUE_PREFIX}/lib/ruby/site_ruby" \
-		--with-vendordir="${TRUE_PREFIX}/lib/ruby/vendor_ruby"
+		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
+		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby" \
+		--with-rubyhdrdir="${PREFIX}/include/ruby-2.2/" \
+		--with-rubylibprefix="${PREFIX}/lib/ruby" \
+		--docdir="${PREFIX}/share/doc/ruby22"	
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
