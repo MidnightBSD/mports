@@ -1,7 +1,6 @@
-@comment $FreeBSD: ports/textproc/docbook-to-man/pkg-plist,v 1.3 2002/11/10 22:30:18 kris Exp $
 bin/docbook-to-man
 bin/oinstant
+man/man1/oinstant.1.gz
 share/sgml/otranspec/docbook-to-man.ts
 share/sgml/otranspec/roff.cmap
 share/sgml/otranspec/roff.sdata
-@dirrm share/sgml/otranspec

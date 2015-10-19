@@ -2,7 +2,7 @@
 
 PORTNAME=	agrep
 PORTVERSION=	2.04
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.cs.arizona.edu/agrep/
 EXTRACT_SUFX=	.tar.Z
@@ -21,7 +21,6 @@ NO_CDROM=	No redistribution for profit
 
 ALL_TARGET=
 MAKE_ARGS=	CFLAGS="${CFLAGS}"
-MAN1=		agrep.1
 PORTDOCS=	COPYRIGHT agrep.algorithms agrep.ps.1.Z agrep.ps.2.Z
 
 post-extract:
