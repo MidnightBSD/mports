@@ -2,12 +2,13 @@
 
 PORTNAME=	aspell
 PORTVERSION=	0.60.6.1
+PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	aspell
+MASTER_SITES=	GNU/aspell
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better suggestion logic than ispell
+
 LICENSE=	lgpl2.1
 
 OPTIONS_DEFINE=	NLS DOCS ISPELL
@@ -20,10 +21,11 @@ CONFIGURE_ARGS=		--enable-dict-dir=${DATADIR}	\
 			--enable-curses=ncursesw \
 			--enable-static
 
-USE_GMAKE=		yes
-USE_ICONV=		yes
+USES=         cpe gmake iconv libtool perl5 shebangfix
+USE_LDCONFIG= yes
+SHEBANG_FILES=        scripts/aspell-import
+CPE_VENDOR=   gnu
 USE_PERL5_BUILD=	yes
-USE_LDCONFIG=		yes
 
 MAKE_ARGS=		NOPORTDOCS=${NOPORTDOCS}
 VERINST=		${PORTVERSION:R:R}

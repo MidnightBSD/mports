@@ -1,38 +1,30 @@
-# New ports collection makefile for:		cdiff
-# Date created:					September 20th 2000
-# Whom:						eivind
-#
 # $MidnightBSD$
 # $FreeBSD: ports/textproc/cdiff/Makefile,v 1.9 2006/09/04 08:17:26 linimon Exp $
-#
-# This port is self contained in the src directory.
-#
 
 PORTNAME=	cdiff
-PORTVERSION=	1.5
+PORTVERSION=	0.9.7
+PORTEPOCH=	1
+MASTER_SITES=	FREEBSD_LOCAL/mat/cdiff GH
 CATEGORIES=	textproc
-MASTER_SITES=	# none
-DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Diff readability enhancher for color terminals
+
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NO_BUILD=	yes
-NO_WRKSUBDIR=	yes
-USE_PERL5=	yes
-MAKE_JOBS_SAFE=	yes
+USE_GITHUB=
+GH_ACCOUNT=	ymattw
 
-SRC=		${.CURDIR}/src
+USES=		python
+USE_PYTHON=	distutils autoplist
 
-MAN1=		cdiff.1
-PLIST_FILES=	bin/cdiff
+OPTIONS_DEFINE=	DOCS
 
-do-fetch:
-	@${DO_NADA}
+PORTDOCS=	README.rst
 
-do-install:
-	@${INSTALL_SCRIPT} ${SRC}/cdiff.sh ${PREFIX}/bin/cdiff
-	@${INSTALL_MAN} ${SRC}/cdiff.1 ${PREFIX}/man/man1
+post-install:
+	${INSTALL} -d ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

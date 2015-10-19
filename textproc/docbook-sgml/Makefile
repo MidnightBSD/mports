@@ -2,7 +2,7 @@
 
 PORTNAME=	docbook
 PORTVERSION=	4.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	${DBFILES:C,(.*):(.*),http://www.oasis-open.org/docbook/sgml/\1/:\2,:C,:docbook-([0-9]+).([0-9]+),:db\1\2,}
 PKGNAMESUFFIX=	-sgml
@@ -12,6 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook SGML DTD
 
 LICENSE=	unknown
+
+EXTRACT_DEPENDS=	${LOCALBASE}/bin/bsdtar:${PORTSDIR}/archivers/libarchive
 
 RUN_DEPENDS=	${LOCALBASE}/${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
 		${LOCALBASE}/${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
@@ -33,7 +35,7 @@ do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
 .for df in ${DISTFILES:C,:.*,,}
-	@cd ${WRKDIR} && ${TAR} \
+	@cd ${WRKDIR} && /usr/local/bin/bsdtar \
 		${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${df} \
 		${EXTRACT_AFTER_ARGS} -s ,^,${df:R}/,
 .endfor
