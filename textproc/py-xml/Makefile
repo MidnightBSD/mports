@@ -2,19 +2,19 @@
 
 PORTNAME=	xml
 PORTVERSION=	0.8.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc python
 MASTER_SITES=	SF/py${PORTNAME}/py${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	PyXML-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	PyXML: Python XML library enhancements
+COMMENT=	Python XML library enhancements
 
 LICENSE=	other
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
+USES=		python
+USE_PYTHON=	distutils autoplist
 PYDISTUTILS_PKGNAME=	PyXML
 
 .include <bsd.port.pre.mk>

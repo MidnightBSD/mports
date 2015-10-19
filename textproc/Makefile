@@ -3,10 +3,8 @@
 COMMENT = Text processing utilities (does not include desktop publishing)
 
 SUBDIR += agrep
-SUBDIR += alt-aspell-de
 SUBDIR += asciidoc
 SUBDIR += aspell
-SUBDIR += aspell-de
 SUBDIR += aspell-ispell
 SUBDIR += bsdgrep
 SUBDIR += cdiff
@@ -135,12 +133,16 @@ SUBDIR += php5-xmlwriter
 SUBDIR += php5-xsl
 SUBDIR += popup
 SUBDIR += py-MarkupSafe
+SUBDIR += py-alabaster
 SUBDIR += py-docutils
 SUBDIR += py-libxml2
 SUBDIR += py-pygments
+SUBDIR += py-pystemmer
 SUBDIR += py-rdflib
+SUBDIR += py-snowballstemmer
 SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
+SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-xml
 SUBDIR += qt4-xml
 SUBDIR += qt4-xmlpatterns
