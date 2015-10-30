@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libev
-PORTVERSION=	4.15
+PORTVERSION=	4.20
 CATEGORIES=	devel
 MASTER_SITES=	http://dist.schmorp.de/libev/ \
 		http://dist.schmorp.de/libev/Attic/
