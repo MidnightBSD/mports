@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	0
+PORTREVISION=	1
 PKGNAMESUFFIX=	-daemon
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,7 +22,5 @@ EXTRA_CONF_ARGS=--disable-cli \
 		--without-gtk \
 		--disable-mac \
 		--disable-nls
-
-MAN1=		transmission-daemon.1 transmission-remote.1
 
 .include "${MASTERDIR}/Makefile"
