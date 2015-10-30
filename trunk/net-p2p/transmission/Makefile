@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	transmission
-PORTVERSION=	2.80
+PORTVERSION=	2.84
 CATEGORIES=	net-p2p
 MASTER_SITES=	# empty
 DISTFILES=	# empty

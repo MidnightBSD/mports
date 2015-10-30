@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PKGNAMESUFFIX=	-gtk
-PORTREVISION=	1
+PORTREVISION=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and lightweight GTK+2 BitTorrent client

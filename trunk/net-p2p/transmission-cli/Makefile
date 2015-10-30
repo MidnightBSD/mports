@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	transmission
-PORTVERSION=	2.80
-PORTREVISION?=	0
+PORTVERSION=	2.84
+PORTREVISION?=	2
 CATEGORIES?=	net-p2p
 #MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 MASTER_SITES=	http://transmission.cachefly.net/
@@ -19,10 +19,15 @@ LICENSE=	mit
 .else
 LICENSE=	gpl2
 .endif
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES+=		cpe tar:xz
+CPE_VENDOR=	transmissionbt
 
 CONFLICTS_INSTALL=	${PORTNAME}${PKGNAMESUFFIX}-2.5*
 
-OPTIONS_DEFINE=	LITE
+OPTIONS_DEFINE=	LITE DOCS
+EXTRACT_AFTER_ARGS=--no-same-owner --no-same-permissions --exclude third-party
 
 .include <bsd.mport.options.mk>
 
@@ -30,18 +35,34 @@ OPTIONS_DEFINE=	LITE
 LIB_DEPENDS?=	${GEN_LIB_DEPENDS}
 
 # General dependencies
-GEN_LIB_DEPENDS=curl:${PORTSDIR}/ftp/curl \
-		event-2.0.6:${PORTSDIR}/devel/libevent2
+GEN_LIB_DEPENDS=libcurl.so:${PORTSDIR}/ftp/curl \
+		libdht.so:${PORTSDIR}/devel/jech-dht \
+		libminiupnpc.so:${PORTSDIR}/net/miniupnpc \
+		libnatpmp.so:${PORTSDIR}/net/libnatpmp \
+		libutp.so:${PORTSDIR}/net/libutp \
+		libevent.so:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
 
-USE_GMAKE=	yes
-USES=		pkgconfig
+# This is master port of transmission-*, so don't override USES definition 
+USES+=		gmake iconv libtool pkgconfig
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -DWITH_UTP=1
 LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		${ICONV_LIB}
 CONFIGURE_ARGS=--with-zlib=/usr \
+		 --without-inotify \
+		 --disable-utp \
+		 --enable-external-natpmp \
 		${EXTRA_CONF_ARGS}
+CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto" \
+		DHT_CFLAGS=" " \
+		DHT_LIBS="-ldht" \
+		LIBUTP_CFLAGS=" " \
+		LIBUTP_LIBS="-lutp" \
+		LIBUTP_LIBS_QT="-lutp"
+
 EXTRA_CONF_ARGS?=--enable-cli \
 		 --disable-daemon \
 		 --without-gtk \
@@ -52,8 +73,6 @@ EXTRA_CONF_ARGS?=--enable-cli \
 CONFIGURE_ARGS+=--enable-lightweight
 .endif
 
-MAN1?=		transmission-cli.1 transmission-create.1 transmission-edit.1 \
-		transmission-show.1
 EXTRA_PATCHES=	${PATCHDIR}/disable-web
 .endif
 
@@ -70,9 +89,8 @@ general-patch:
 		${WRKSRC}/libtransmission/utils.h
 .endif
 	@${REINPLACE_CMD} -e \
-		's|_pthread_flags=".*"|_pthread_flags="${PTHREAD_LIBS}"|g ; \
-		s|rt_clock_gettime=yes|rt_clock_gettime=no|g ; \
-		s|" == "|" = "|g ; s|$$with_ssl.*/usr;|${OPENSSLBASE};|g' \
+		's|rt_clock_gettime=yes|rt_clock_gettime=no|g ; \
+		s|" == "|" = "|g' \
 			${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|doc \\| \\|g' \
 		${WRKSRC}/Makefile.in
@@ -80,16 +98,22 @@ general-patch:
 	@${REINPLACE_CMD} -e 's|utils \\|\\|g' \
 		${WRKSRC}/Makefile.in
 .endif
+# Don't conflict with patches but force system libraries
+	@${REINPLACE_CMD} -e 's|third-party \\|\\|g' \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -Ee '/^DHT_(CFLAGS|LIBS)=/d' \
+		-e 's|third-party/[^ ]*Makefile||g' \
+		${WRKSRC}/configure
+	@${REINPLACE_CMD} \
+		-e 's,TRANSMISSION_TOP}/third-party/dht/libdht.a,DHT_LIBS},' \
+		${WRKSRC}/qt/qtr.pro
+	@${ECHO_CMD} 'DHT_LIBS = @DHT_LIBS@' >>${WRKSRC}/qt/config.pri.in
 
 post-patch: general-patch
 
 general-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-.for i in ${DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
-.endif
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} \
+		"${DOCS}" ${STAGEDIR}${DOCSDIR})
 
 post-install: general-install
 
