@@ -3,6 +3,7 @@
 
 PORTNAME=	MIME-Base32
 PORTVERSION=	1.02a
+PORTREVISION=	1
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,12 +11,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for Base32 encodings
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.02
 PERL_CONFIGURE=	YES
-
-MAN3=		MIME::Base32.3
 
 post-extract:
 	@${RM} ${WRKSRC}/test1.pl
