@@ -3,9 +3,7 @@
 PORTNAME=	phantomjs
 PORTVERSION=	1.9.8
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
-		https://bitbucket.org/ariya/phantomjs/downloads/
-MASTER_SITE_SUBDIR=	kuriyama
+MASTER_SITES=	https://bitbucket.org/ariya/phantomjs/downloads/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
