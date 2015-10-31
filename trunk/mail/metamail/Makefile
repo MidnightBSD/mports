@@ -2,6 +2,7 @@
 
 PORTNAME=	metamail
 PORTVERSION=	2.7
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://ftp.funet.fi/pub/unix/mail/metamail/ \
 		ftp://ftp.research.telcordia.com/pub/nsb/
@@ -14,17 +15,10 @@ LICENSE=	mit
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=	X11
+OPTIONS_SUB=	yes
 X11_DESC=	X11 hebrew font support
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
-
-MAN1=		audiocompose.1 audiosend.1 extcompose.1 \
-		getfilename.1 mailto-hebrew.1 mailto.1 metamail.1 \
-		metasend.1 mime.1 mimencode.1 mmencode.1 \
-		patch-metamail.1 richtext.1 showaudio.1 \
-		showexternal.1 shownonascii.1 showpartial.1 \
-		showpicture.1 splitmail.1
-MAN4=		mailcap.4
 
 .include <bsd.mport.options.mk>
 
