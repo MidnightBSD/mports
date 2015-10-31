@@ -3,18 +3,18 @@
 
 PORTNAME=	Unicode-String
 PORTVERSION=	2.09
+PORTREVISION=	1
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	These are experimental Perl5 modules to handle various Unicode issues
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
 PERL_CONFIGURE=	yes
 
-.include <bsd.port.pre.mk>
-
-MAN3=		Unicode::CharName.3 Unicode::String.3
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

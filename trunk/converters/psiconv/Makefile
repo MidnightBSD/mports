@@ -1,15 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	psiconv
-PORTVERSION=	0.9.8
-PORTREVISION=	3
+PORTVERSION=	0.9.9
 CATEGORIES=	converters devel
-MASTER_SITES=	http://software.frodo.looijaard.name/psiconv/files/
+MASTER_SITES=	http://www.frodo.looijaard.name/system/files/software/psiconv/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Conversion utility to convert Psion 5(MX) files into other formats
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake libtool
 USE_LDCONFIG=	yes

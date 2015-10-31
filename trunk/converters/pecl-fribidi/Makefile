@@ -2,7 +2,7 @@
 
 PORTNAME=	fribidi
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters 
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -14,7 +14,7 @@ COMMENT=	PECL extension for the unicode Bidi algorithm
 
 LICENSE=	php
 
-LIB_DEPENDS=	fribidi.3:${PORTSDIR}/converters/fribidi
+LIB_DEPENDS=	libfribidi.so:${PORTSDIR}/converters/fribidi
 
 USES=		pkgconfig
 

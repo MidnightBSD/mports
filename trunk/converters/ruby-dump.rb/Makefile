@@ -16,7 +16,8 @@ EXTRACT_SUFX=	# none
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A binary data dumper module for Ruby
+COMMENT=	Binary data dumper module for Ruby
+
 LICENSE=	unknown
 
 USE_RUBY=	yes
