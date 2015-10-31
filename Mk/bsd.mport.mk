@@ -1404,7 +1404,7 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/^://:S/,/ /g}
 .			if !target(master-sites-${_group})
-SORTED_MASTER_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} master-sites-${_group}
+SORTED_MASTER_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-${_group}
 master-sites-${_group}:
 	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_${_group}}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
 .			endif
@@ -1416,7 +1416,7 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/^://:S/,/ /g}
 .			if !target(patch-sites-${_group})
-SORTED_PATCH_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} patch-sites-${_group}
+SORTED_PATCH_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} patch-sites-${_group}
 patch-sites-${_group}:
 	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_PATCH_SITES_${_group}}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
 .			endif
@@ -2539,7 +2539,7 @@ security-check:
 		! ${AWK} -v audit="$${PORTS_AUDIT}" -v destdir="${DESTDIR}" -f ${PORTSDIR}/Tools/scripts/security-check.awk \
 		  ${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.objdump ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
 	then \
-		www_site=$$(cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} www-site); \
+		www_site=$$(cd ${.CURDIR} && ${MAKE} www-site); \
 	    if [ ! -z "$${www_site}" ]; then \
 			${ECHO_MSG}; \
 			${ECHO_MSG} "      For more information, and contact details about the security"; \
@@ -2772,19 +2772,19 @@ ${target}: config
 .if ${UID} != 0 && defined(_${target:tu}_SUSEQ) && !defined(INSTALL_AS_USER)
 .if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SEQ}
+	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_SEQ}
 .else
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_SEQ}
 .endif 
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
-		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SUSEQ}"
+		${SU_CMD} "${MAKE} ${_${target:tu}_SUSEQ}"
 	@${ECHO_MSG} "===>  Returning to user credentials"
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .elif defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
 	@cd ${.CURDIR} && \
-		${MAKE} ${__softMAKEFLAGS} ${_${target:tu}_SEQ} ${_${target:tu}_SUSEQ}
+		${MAKE} ${_${target:tu}_SEQ} ${_${target:tu}_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .else
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_SEQ} ${_${target:tu}_SUSEQ}
@@ -2890,7 +2890,7 @@ pretty-print-www-site:
 
 .if !target(checkpatch)
 checkpatch:
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} PATCH_CHECK_ONLY=yes ${_PATCH_DEP} ${_PATCH_SEQ}
+	@cd ${.CURDIR} && ${MAKE} PATCH_CHECK_ONLY=yes ${_PATCH_DEP} ${_PATCH_SEQ}
 .endif
 
 # Reinstall
