@@ -1,4 +1,12 @@
-4377a4378,4380
-> 	"MidnightBSD")
-> 	  OS_VERSION=linux
-> 	  ;;
+--- configure.orig	2015-10-31 15:04:53.283339542 -0400
++++ configure	2015-10-31 15:05:20.558339372 -0400
+@@ -4375,6 +4375,9 @@
+ 	"FreeBSD")
+ 	  OS_VERSION=linux
+ 	  ;;
++	"MidnightBSD")
++	  OS_VERSION=linux
++	  ;;
+ 	"NetBSD")
+ 	  OS_VERSION=linux
+ 	  ;;
