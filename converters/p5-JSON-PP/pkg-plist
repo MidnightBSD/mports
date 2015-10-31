@@ -1,9 +1,6 @@
-%%BIN_JSON_PP%%bin/json_pp
 bin/p5json_pp
 %%SITE_PERL%%/JSON/PP.pm
 %%SITE_PERL%%/JSON/PP/Boolean.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/PP/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/PP
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON
-@dirrm %%SITE_PERL%%/JSON/PP
-@dirrmtry %%SITE_PERL%%/JSON
+%%PERL5_MAN3%%/JSON::PP.3.gz
+%%PERL5_MAN3%%/JSON::PP::Boolean.3.gz
+man/man1/p5json_pp.1.gz
