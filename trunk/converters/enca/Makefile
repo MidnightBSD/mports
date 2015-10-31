@@ -4,6 +4,7 @@
 
 PORTNAME=	enca
 PORTVERSION=	1.13
+PORTREVISION=	1
 CATEGORIES=	converters textproc russian ukrainian
 MASTER_SITES=	http://dl.cihar.com/enca/
 

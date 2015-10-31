@@ -7,7 +7,7 @@ CATEGORIES=	converters
 MASTER_SITES=	http://fribidi.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Free Implementation of the Unicode Bidirectional Algorithm
+COMMENT=	Free Implementation of the Unicode Bidirectional Algorithm
 
 LICENSE=	lgpl
 

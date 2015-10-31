@@ -3,10 +3,9 @@
 
 PORTNAME=	Encode-Detect
 PORTVERSION=	1.01
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	Encode
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,8 +15,7 @@ LICENSE=	mpl
 
 BUILD_DEPENDS+=	${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
 
+USES=	perl5
 PERL_MODBUILD=	yes
-
-MAN3=		Encode::Detect.3 Encode::Detect::Detector.3
 
 .include <bsd.port.mk>
