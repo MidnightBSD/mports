@@ -363,6 +363,7 @@ SUBDIR += p5-Tie-IxHash
 SUBDIR += p5-Time-HiRes
 SUBDIR += p5-Time-Local
 SUBDIR += p5-TimeDate
+SUBDIR += p5-Types-Serialiser
 SUBDIR += p5-UNIVERSAL-moniker
 SUBDIR += p5-UNIVERSAL-require
 SUBDIR += p5-Variable-Magic
