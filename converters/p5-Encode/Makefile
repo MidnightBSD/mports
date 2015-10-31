@@ -1,45 +1,33 @@
 # $MidnightBSD$
 
 PORTNAME=	Encode
-PORTVERSION=	2.55
+PORTVERSION=	2.76
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../../authors/id/D/DA/DANKOGAI
+MASTER_SITE_SUBDIR=	CPAN:DANKOGAI
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides interfaces between strings and the rest of the system
 
-LICENSE=        perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+USES=		perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Encode.3 \
-		Encode::Alias.3 \
-		Encode::CJKConstants.3 \
-		Encode::CN::HZ.3 \
-		Encode::Config.3 \
-		Encode::Encoder.3 \
-		Encode::Encoding.3 \
-		Encode::GSM0338.3 \
-		Encode::Guess.3 \
-		Encode::JP::H2Z.3 \
-		Encode::JP::JIS7.3 \
-		Encode::KR::2022_KR.3 \
-		Encode::MIME::Header.3 \
-		Encode::MIME::Name.3 \
-		Encode::PerlIO.3 \
-		Encode::Supported.3 \
-		Encode::Unicode::UTF7.3 \
-		encoding.3
 
 .include <bsd.port.pre.mk>
 
-post-patch:
-	${PERL} -pi -e '$$_="" if $$.>=24 && $$.<=26; $$_="my \@exe_files=();\n" if $$.==25' ${WRKSRC}/Makefile.PL
+.if ${PERL_LEVEL} < 502200
+PLIST_SUB+=	OLD_PERL=""
+.else
+PLIST_SUB+=	OLD_PERL="@comment "
+.endif
 
-post-configure:
-	@${FIND} ${WRKSRC}/ -name Makefile -exec \
-		${REINPLACE_CMD} -e 's,^CC =,CC ?=,' {} \;
+post-patch:
+	@${REINPLACE_CMD} -e 's|bin/enc2xs||; s|bin/piconv||' ${WRKSRC}/Makefile.PL
+.if ${PERL_LEVEL} >= 502200
+	@${REINPLACE_CMD} -e 's|bin/encguess||' ${WRKSRC}/Makefile.PL
+.endif
 
 .include <bsd.port.post.mk>
