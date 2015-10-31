@@ -16,6 +16,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	dbus-glib>=0:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=    libdbus-1.so:${PORTSDIR}/devel/dbus
 
 SLAVE_PORT?=	no
 
