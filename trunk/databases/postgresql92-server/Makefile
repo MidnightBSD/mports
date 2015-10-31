@@ -23,6 +23,8 @@ DIST_SUBDIR=	postgresql
 
 ICU_PATCHFILE?=	pg-928-icu-2014-06-09.diff.gz
 
+OPTIONS_SUB=	yes
+
 .if !defined(SLAVE_ONLY)
 UNIQUENAME?=	${PORTNAME}${DISTVERSION:R:S/.//}
 .else # Contrib has different options from -client/-server
