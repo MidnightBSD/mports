@@ -14,6 +14,7 @@ MASTER_SITES=	http://www.jmknoble.net/fonts/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jim Knoble's font package for X
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS+=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
@@ -22,11 +23,10 @@ BUILD_DEPENDS+=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
 		fc-cache:${PORTSDIR}/x11-fonts/fontconfig 
 RUN_DEPENDS+=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_IMAKE=	yes
+USES=		fonts imake
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/X11/fonts/jmk
-	@${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${PREFIX}/lib/X11/fonts/jmk
-	@${INSTALL_DATA} ${WRKSRC}/fonts.dir ${PREFIX}/lib/X11/fonts/jmk
+	${MKDIR} ${FONTSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${FONTSDIR}
 
 .include <bsd.port.mk>
