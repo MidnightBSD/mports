@@ -13,8 +13,9 @@ COMMENT=	Python clone of WikiWiki
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/docs/licenses/COPYING
 
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
+USES=		cpe python
+CPE_VENDOR=	moinmo
+USE_PYTHON=	distutils
 PYDISTUTILS_PKGNAME=	moin
 
 PLIST_SUB+=	PYTHON_SITELIB=${PYTHON_SITELIBDIR:S|^${LOCALBASE}/||} \
