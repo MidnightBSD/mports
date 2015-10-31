@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.9.7
+PORTVERSION=	1.9.8
 PORTREVISION=	0
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
