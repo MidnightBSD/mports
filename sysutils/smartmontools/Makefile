@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	smartmontools
-PORTVERSION=	6.3
+PORTVERSION=	6.4
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
