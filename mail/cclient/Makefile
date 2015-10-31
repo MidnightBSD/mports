@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cclient
-PORTVERSION=	2007e
+PORTVERSION=	2007f
 PORTEPOCH=	1
 CATEGORIES=	mail devel ipv6
 MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
