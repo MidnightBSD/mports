@@ -1,20 +1,28 @@
+# $MidnightBSD$
 # $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.0.3
+DISTVERSION=	1.1.2
+PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	SF/${PORTNAME}mail/${PORTNAME}mail/${DISTVERSION:tu}
-DISTNAME=	${PORTNAME}mail-${DISTVERSION}
+DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 
 LICENSE=	gpl3
 
+WRKSRC=		${WRKDIR}/roundcubemail-1.1.2
+
 NO_BUILD=	yes
 
-RCUBECOMP=	SQL config index.php installer logs plugins program robots.txt skins temp
+RCUBECOMP=	SQL config index.php installer logs plugins program robots.txt skins temp vendor
 PORTDOCS=	CHANGELOG INSTALL README.md UPGRADING
+
+USES=		cpe
+CPE_PRODUCT=	webmail
+CPE_VENDOR=	roundcube
 
 WANT_PHP_WEB=	yes
 USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter
