@@ -2,12 +2,13 @@
 
 PORTNAME=	mime-construct
 PORTVERSION=	1.11
+PORTREVISION=	1
 CATEGORIES=	mail
-MASTER_SITES=	http://www.argon.org/~roderick/ \
-		ftp://renatasystems.org/pub/FreeBSD/ports/distfiles/
+MASTER_SITES=	http://www.argon.org/~roderick/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Construct and optionally send MIME messages from command line
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
@@ -16,7 +17,5 @@ BUILD_DEPENDS=	p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN1=		mime-construct.1
 
 .include <bsd.port.mk>
