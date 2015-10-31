@@ -2,19 +2,24 @@
 
 PORTNAME=	Unicode-Map8
 PORTVERSION=	0.13
+PORTREVISION=	2
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mapping table between 8-bit chars and Unicode
-LICENSE=	perl
 
-RUN_DEPENDS=	p5-Unicode-String>=2:${PORTSDIR}/converters/p5-Unicode-String
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	p5-Unicode-String>=2:${PORTSDIR}/converters/p5-Unicode-String
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5
 PERL_CONFIGURE=	yes
 
-MAN1=		umap.1
-MAN3=		Unicode::Map8.3
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Unicode/Map8/Map8.so
 
 .include <bsd.port.mk>
