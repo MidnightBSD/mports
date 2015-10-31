@@ -89,9 +89,7 @@ CONFIGURE_ARGS+=	--with-setjmp-type=_setjmp
 
 CONFIGURE_ENV=	debugflags=
 
-.if ${PORT_OPTIONS:MCAPIDOCS}
 MAKE_JOBS_UNSAFE=	yes
-.endif
 
 BUILD_DEPENDS+=	readline>=0:${PORTSDIR}/devel/readline
 RUN_DEPENDS+=	readline>=0:${PORTSDIR}/devel/readline
