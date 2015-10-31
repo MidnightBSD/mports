@@ -223,10 +223,9 @@ do-configure:
 .if ${PORT_OPTIONS:MTHREADS}
 	cd ${WRKSRC} \
 	&& ${SETENV} CC="${CC}" FREEBSDCC="${CC}" CFLAGS="${CFLAGS}" PERL="${PERL}" \
-		PTHREAD_CFLAGS=${PTHREAD_CFLAGS} PTHREAD_LIBS=${PTHREAD_LIBS} \
 	./config --prefix=${PREFIX} --openssldir=${OPENSSLDIR} \
 		--install_prefix=${FAKE_DESTDIR} \
-		-L${PREFIX}/lib ${EXTRACONFIGURE}
+		-L${PREFIX}/lib ${EXTRACONFIGURE} -enable-npn
 .else
 	cd ${WRKSRC} \
 	&& ${SETENV} CC="${CC}" FREEBSDCC="${CC}" CFLAGS="${CFLAGS}" PERL="${PERL}" \
