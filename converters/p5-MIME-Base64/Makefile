@@ -2,18 +2,18 @@
 # $MidnightBSD$
 
 PORTNAME=	MIME-Base64
-PORTVERSION=	3.13
+PORTVERSION=	3.15
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for Base64 and Quoted-Printable encodings
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
 PERL_CONFIGURE=	YES
-
-MAN3=		MIME::Base64.3 \
-		MIME::QuotedPrint.3
 
 .include <bsd.port.mk>
