@@ -6,17 +6,18 @@
 #
 
 PORTNAME=	Convert-ASN1
-PORTVERSION=	0.26
+PORTVERSION=	0.27
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module to encode and decode ASN.1 data structures
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=	perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Convert::ASN1.3
 
 .include <bsd.port.mk>
