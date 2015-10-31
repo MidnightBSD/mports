@@ -16,6 +16,8 @@ LICENSE=	python
 
 USE_PYTHON=	distutils autoplist
 USES=		python tar:xz tk
+USE_TCL=	85
+USE_TK=		85
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
