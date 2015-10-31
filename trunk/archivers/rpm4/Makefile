@@ -2,7 +2,7 @@
 
 PORTNAME=	rpm
 PORTVERSION=	4.12.0.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R:R}.x/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-${PORTVERSION:E}.x/
@@ -50,6 +50,7 @@ SHEBANG_FILES=	scripts/brp-python-bytecompile scripts/check-prereqs \
 
 CPPFLAGS+=	-I${LOCALBASE}/include \
 		-I${LOCALBASE}/include/nspr -I${LOCALBASE}/include/nss/nss \
+		-I${LOCALBASE}/include/nss \
 		-I${BDB_INCLUDE_DIR} -I${LUA_INCDIR}
 LDFLAGS+=	-L${LOCALBASE}/lib -L${LOCALBASE}/lib/nss \
 		-L${BDB_LIB_DIR} -L${LUA_LIBDIR}
@@ -67,9 +68,9 @@ PLIST_SUB+=	VERSION=${PORTVERSION}
 
 post-patch:
 	${REINPLACE_CMD} -e 's:\.\./\.\./bin/::' ${WRKSRC}/Makefile.in
-	${REINPLACE_CMD} -e 's/(hpux)/& || defined(__FreeBSD__)/' \
+	${REINPLACE_CMD} -e 's/(hpux)/& || defined(__MidnightBSD__)/' \
 		${WRKSRC}/misc/fts.?
-	${REINPLACE_CMD} -e 's/ __GLIBC__.*/& || defined(__FreeBSD__)/' \
+	${REINPLACE_CMD} -e 's/ __GLIBC__.*/& || defined(__MidnightBSD__)/' \
 		${WRKSRC}/system.h
 
 post-install:
