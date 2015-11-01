@@ -2,6 +2,7 @@
 
 COMMENT = Character code converters
 
+SUBDIR += bsdconv
 SUBDIR += enca
 SUBDIR += fribidi
 SUBDIR += libiconv
