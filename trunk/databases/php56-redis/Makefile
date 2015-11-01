@@ -1,15 +1,16 @@
 # Created by: Benedikt Niessen <ports@niessen.ch>
 # $FreeBSD: head/databases/php56-redis/Makefile 390794 2015-06-28 16:02:34Z antoine $
+# $MidnightBSD$
 
 PORTNAME=	redis
 PORTVERSION=	2.2.5
 CATEGORIES=	databases
 PKGNAMEPREFIX=	php56-
 
-MAINTAINER=	m.tsatsenko@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP5 extension for Redis
 
-LICENSE=	PHP301
+LICENSE=	php
 
 GITVERSION=	0f0661e
 
@@ -27,7 +28,7 @@ PHP_MODNAME=	redis
 OPTIONS_DEFINE=	IGBINARY
 IGBINARY_DESC=	Build with Igbinary serializer
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MIGBINARY}
 USE_PHP+=	igbinary
