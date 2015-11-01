@@ -1,6 +1,7 @@
 bin/alisp
 lib/libalisp.a
 lib/libalisp.so
+man/man7/alisp.7.gz
 include/alisp.h
 %%DATADIR%%/LICENSE
 %%DATADIR%%/alisp-image

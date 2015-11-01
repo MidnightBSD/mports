@@ -2,15 +2,14 @@
 
 PORTNAME=	alisp
 PORTVERSION=	20060917
+PORTREVISION=	1
 CATEGORIES=	lang devel lisp
 MASTER_SITES=	http://t3x.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An interpreter for purely symbolic LISP
+COMMENT=	Interpreter for purely symbolic LISP
 
 LICENSE=	bsd2
-
-MAN7=		alisp.7
 
 USE_LDCONFIG=	yes
 MAKE_ENV+=	BINOWN=${BINOWN} \
