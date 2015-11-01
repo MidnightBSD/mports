@@ -15,6 +15,7 @@ SUBDIR += jaf
 SUBDIR += jai
 SUBDIR += jakarta-bcel
 SUBDIR += jakarta-commons-cli
+SUBDIR += jakarta-commons-codec
 SUBDIR += jakarta-commons-httpclient
 SUBDIR += jakarta-commons-lang
 SUBDIR += jakarta-commons-logging
