@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # Created by: Palle Girgensohn <girgen@FreeBSD.org>
 # $FreeBSD: head/databases/postgresql92-client/Makefile 346217 2014-02-26 17:24:35Z antoine $
 

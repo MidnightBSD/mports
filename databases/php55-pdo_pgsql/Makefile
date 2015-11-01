@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # Created by: Alex Dupre <ale@FreeBSD.org>
 # $FreeBSD: head/databases/php55-pdo_pgsql/Makefile 340722 2014-01-22 17:00:46Z mat $
 
