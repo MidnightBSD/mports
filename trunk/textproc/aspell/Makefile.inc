@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/aspell/Makefile.inc,v 1.1 2006/07/15 14:28:41 thierry Exp $
 # To be included by dictionaries ports.
 
