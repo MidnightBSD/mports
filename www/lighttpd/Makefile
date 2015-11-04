@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.35
-PORTREVISION=	1
+PORTVERSION=	1.4.36
+PORTREVISION=	0
 CATEGORIES?=	www
 MASTER_SITES?=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
 
 GNU_CONFIGURE=	yes
-USES=		gmake libtool pkgconfig tar:bzip2
+USES=		gmake libtool pkgconfig tar:xz
 
 USE_AUTOTOOLS=	autoconf autoheader aclocal automake
 AUTOMAKE_ARGS=	-a -c -f
