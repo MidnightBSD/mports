@@ -4,6 +4,7 @@ COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
 SUBDIR += GeoIP
+SUBDIR += activemq
 SUBDIR += asio
 SUBDIR += avahi
 SUBDIR += avahi-app
