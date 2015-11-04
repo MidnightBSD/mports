@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $FreeBSD: head/www/apache24/Makefile.options 399207 2015-10-13 18:17:28Z ohauer $
 
 # ===========================================================
-# The list of modules are no longer classified in CATEGORIES.
-# We use for enabled/disabled now the resulting modules from
-# configure --enable-modules=most
+# Only the most important modules are enabled per default in 
+# httpd.conf, therfore build all modules not depending on other
+# ports, marked as example or developer module.
 #
 # Required modules without OPTION:
 #   UNIXD LOG_CONFIG

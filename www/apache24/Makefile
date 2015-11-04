@@ -2,9 +2,9 @@
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.17
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
-MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
+MASTER_SITES=	APACHE_HTTPD
 DISTNAME=	httpd-${PORTVERSION}
 DIST_SUBDIR=	apache24
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libpcre.so:${PORTSDIR}/devel/pcre
 
-CONFLICTS=	apache-*-2.2.* apache22-*
+CONFLICTS_INSTALL=	apache-*-2.2.* apache22-*
 
 SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_VERSION=${LIBTOOL_VERSION} AUTOCONF=${AUTOCONF} \
@@ -25,17 +25,26 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			AUTOHEADER=${AUTOHEADER}
 
 USE_APACHE=	common24
-USES=		iconv tar:bzip2 cpe libtool
+USES=		cpe iconv libtool perl5 tar:bzip2
 USE_AUTOTOOLS=	autoconf
 USE_PERL5=	yes
 USE_PYTHON=	yes
 USE_RC_SUBR=	apache24 htcacheclean
 LIBTOOLFILES=	configure.in
+GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	apache
 CPE_PRODUCT=	http_server
 
 PORTDOCS=	*
+SUB_FILES=	pkg-install pkg-deinstall
+
+# XXX: before running makepatch please run the command
+# `$SED -e 's/PATCH_PATH_SEPARATOR=/PATCH_PATH_SEPARATOR?=/' Mk/bsd.port.mk
+PATCH_PATH_SEPARATOR=	__
+
+# Fallback MPM after switching from static to modular MPM
+SUB_LIST+=	MPMF="000_mpm_prefork_fallback.conf"
 
 USERS=		www
 GROUPS=		www
@@ -56,18 +65,22 @@ WITH_SSL_PORT?=		443
 AUTHNZ_LDAP_CONFIGURE_ON=	--enable-authnz-ldap
 
 # http://httpd.apache.org/docs/2.4/bind.html
-IPV4_MAPPED_CONFIGURE_OFF=	--disable-v4-mapped
-IPV4_MAPPED_CONFIGURE_ON=	--enable-v4-mapped
+IPV4_MAPPED_CONFIGURE_ENABLE=	v4-mapped
 
 LDAP_CONFIGURE_ON=		--enable-ldap=shared
 
-LUAJIT_LIB_DEPENDS=		luajit:${PORTSDIR}/lang/luajit
-LUA_CONFIGURE_OFF=		--without-lua
-LUA_CONFIGURE_ON=		--with-lua=${LOCALBASE}
+HTTP2_CONFIGURE_ON=		--with-nghttp2=${LOCALBASE}
+HTTP2_LIB_DEPENDS=		libnghttp2.so:${PORTSDIR}/www/nghttp2
+LUAJIT_LIB_DEPENDS=		libluajit-5.1.so:${PORTSDIR}/lang/luajit
+LUA_CONFIGURE_WITH=		lua
+LUA_USES=			lua
 
 SOCACHE_DC_CONFIGURE_ON=	--with-distcache=${LOCALBASE}
-SOCACHE_DC_LIB_DEPENDS=		distcache:${PORTSDIR}/security/distcache
+SOCACHE_DC_LIB_DEPENDS=		libdistcache.so:${PORTSDIR}/security/distcache
 
+# Note:
+# OpenSSL version (base/ports) depends how devel/apr1 was build
+#  apu-1-config --(includes|ldflags) and apr_rules.mk
 SSL_CFLAGS=			-I${OPENSSLINC}
 SSL_CONFIGURE_ON=		--with-ssl=${OPENSSLBASE}
 SSL_LDFLAGS=			-L${OPENSSLLIB}
@@ -76,10 +89,6 @@ SSL_USE=			OPENSSL=yes
 .include <bsd.mport.options.mk>
 
 ETC_SUBDIRS=		Includes envvars.d extra modules.d
-
-.if ! ${PORT_OPTIONS:MDOCS}
-MAKE_ENV+=	NOPORTDOCS=yes
-.endif
 
 APR_CONFIG?=		${LOCALBASE}/bin/apr-1-config
 APU_CONFIG?=		${LOCALBASE}/bin/apu-1-config
@@ -108,20 +117,20 @@ CONFIGURE_ARGS+=--prefix=${PREFIX_RELDEST} \
 		--with-apr=${APR_CONFIG} \
 		--with-apr-util=${APU_CONFIG}
 
-CONFIGURE_ENV=	CONFIG_SHELL="${SH}" \
-		LOCALBASE="${LOCALBASE}"
+CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}" \
+		CONFIG_SHELL="${SH}"
 
 MAKE_ENV+=	EXPR_COMPAT=yes \
 		INSTALL_MAN="${INSTALL_MAN}" \
-		EXAMPLESDIR=${EXAMPLESDIR}
+		DATADIR=${DATADIR}
 
 #=====================================================
 # CONFIGURE_ARGS will be handled in Makefile.modules,
 # here we do only OPTIONS fixups
 
 .if ${PORT_OPTIONS:MLUA}
-USE_LUA=	5.1+
-LUA_COMPS=	lua
+CONFIGURE_ENV+=	LUA_CFLAGS="-I${LUA_INCDIR}" \
+		LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER}"
 .endif
 
 .if ${PORT_OPTIONS:MPROXY_HTML} || ${PORT_OPTIONS:MXML2ENC}
@@ -131,37 +140,58 @@ USE_GNOME=	libxml2
 .include <bsd.port.pre.mk>
 .include "${APACHEDIR}/Makefile.modules"
 
-pre-configure::
-	@${ECHO_MSG}	""
-	@${ECHO_MSG}	"  You can check your modules configuration by using make show-modules"
-	@${ECHO_MSG}	""
-
 post-extract:
 # remove possible leftover .svn directories in the sources
 	@${FIND} ${WRKSRC} -type d -name .svn -print | ${XARGS} ${RM} -rf
 # limit grep results ...
-	@${FIND} ${WRKSRC} -type f \( -name 'NWGNU*' -o -name '*.ds?' -o -name '*.dep' -o -name '*.mak' -o -name '*.win' \) -delete
+	@${FIND} ${WRKSRC} -type f \( -name 'NWGNU*' -o -name '*.ds?' -o -name '*.dep' -o -name '*.mak' -o -name '*.win' -o -name '*.vbs' -o -name '*.wsf' \) -delete
+# make sure the configure script contains our patches, preserve the original script for comparsion
+	-${MV} -v ${WRKSRC}/configure ${WRKSRC}/configure.upstream
+
+# make stage-qa script happy, it complains on empty dirs even 'PORTDOCS=*' is set
+# use RMDIR in case upstream ever place some files into this directories
+.for d in xsl/util xsl lang
+	-${RMDIR} ${WRKSRC}/docs/manual/style/${d}
+.endfor
 
 post-patch:
-	@${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' ${WRKSRC}/server/core.c
-# IPv4_mapping fix: https://issues.apache.org/bugzilla/show_bug.cgi?id=53824
-	@${REINPLACE_CMD} -e 's|freebsd5|freebsd|' ${WRKSRC}/configure.in ${WRKSRC}/configure
-	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
-	@${INSTALL_DATA} ${WRKSRC}/NOTICE ${WRKSRC}/docs/manual
+	${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' ${WRKSRC}/server/core.c
+	${REINPLACE_CMD} -e 's|logs/error_log|/var/log/httpd-error.log|' \
+		${WRKSRC}/include/httpd.h
+	${REINPLACE_CMD} -e 's|perlbin=.*|perlbin=${PERL}|' \
+		${WRKSRC}/configure.in
+	${RM} -f ${WRKSRC}/docs/docroot/*.bak
+	${INSTALL_DATA} ${WRKSRC}/NOTICE ${WRKSRC}/docs/manual
+
+pre-configure::
+	@${ECHO_MSG}	""
+	@${ECHO_MSG}	"  You can check your modules configuration by using make show-modules"
+	@${ECHO_MSG}	""
+# silence autotools
+	-${MV} -v ${WRKSRC}/configure.in ${WRKSRC}/configure.ac
 
 post-configure:
 	@FTPUSERS=`${EGREP} -v '^#' /etc/ftpusers| ${TR} -s "\n" " "` ;\
-	${REINPLACE_CMD} -e "s,%%FTPUSERS%%,$${FTPUSERS}," ${WRKSRC}/docs/conf/extra/httpd-userdir.conf
-	@${REINPLACE_CMD} -e "s,%%WWWOWN%%,${WWWOWN}," -e "s,%%WWWGRP%%,${WWWGRP}," ${WRKSRC}/docs/conf/httpd.conf
-	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/support/envvars-std
+		${REINPLACE_CMD} -e "s,%%FTPUSERS%%,$${FTPUSERS}," \
+			${WRKSRC}/docs/conf/extra/httpd-userdir.conf
+	${REINPLACE_CMD} -e "s,%%WWWOWN%%,${WWWOWN}," -e "s,%%WWWGRP%%,${WWWGRP}," \
+		${WRKSRC}/docs/conf/httpd.conf
+	${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/support/envvars-std
 
 post-install:
 	${MKDIR} ${ETCDIR}/Includes
 	${MKDIR} ${ETCDIR}/modules.d
 	${INSTALL_DATA} ${FILESDIR}/no-accf.conf ${ETCDIR}/Includes/
+	${INSTALL_DATA} ${FILESDIR}/README_modules.d ${ETCDIR}/modules.d
+
+
+# strip returns an error for non binary files, but we have a big mix
+	-${STRIP_CMD} ${PREFIX}/sbin/* 2>/dev/null
+	-${STRIP_CMD} ${PREFIX}/bin/*
+	-${STRIP_CMD} ${PREFIX}/libexec/apache24/mod_*.so
 
 .if ${PORT_OPTIONS:MLOG_FORENSIC}
-	@${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${PREFIX}/sbin
 .endif
 
 # maintainer only, check for new modules
