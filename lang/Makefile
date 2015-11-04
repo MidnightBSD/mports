@@ -8,6 +8,7 @@ SUBDIR += bsh
 SUBDIR += clang33
 SUBDIR += clang34
 SUBDIR += cython
+SUBDIR += erlang
 SUBDIR += etoile-compiler
 SUBDIR += etoile-io
 SUBDIR += etoile-lkplugins
