@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	unixODBC
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3.4
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
