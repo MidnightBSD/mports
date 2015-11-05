@@ -124,6 +124,7 @@ SUBDIR += imake
 SUBDIR += jakarta-commons-daemon
 SUBDIR += jam
 SUBDIR += jansson
+SUBDIR += jech-dht
 SUBDIR += jenkins
 SUBDIR += json-c
 SUBDIR += json-glib
