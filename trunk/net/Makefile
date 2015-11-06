@@ -59,6 +59,7 @@ SUBDIR += linux-f10-openldap
 SUBDIR += linuxigd
 SUBDIR += liveMedia
 SUBDIR += mDNSResponder
+SUBDIR += miniupnpc
 SUBDIR += netatalk
 SUBDIR += netcat
 SUBDIR += netclasses
