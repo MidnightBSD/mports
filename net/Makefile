@@ -44,6 +44,7 @@ SUBDIR += ldap2dns
 SUBDIR += ldapdiff
 SUBDIR += libdnet
 SUBDIR += libgweather
+SUBDIR += libnatpmp
 SUBDIR += libnet
 SUBDIR += liboauth
 SUBDIR += libpcap
