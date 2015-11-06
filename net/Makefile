@@ -51,6 +51,7 @@ SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += libsrtp
+SUBDIR += libutp
 SUBDIR += libvncserver
 SUBDIR += libzapojit
 SUBDIR += liferea
