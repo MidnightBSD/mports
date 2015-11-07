@@ -47,7 +47,7 @@ FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/' \
 		--enable-application=browser \
-		--enable-official-branding
+		--disable-official-branding
 MAKE_ENV+=	__FreeBSD__=9 __FreeBSD__version=90004
 
 OPTIONS_EXCLUDE=	LOGGING
