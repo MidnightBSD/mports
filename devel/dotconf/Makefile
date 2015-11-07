@@ -3,7 +3,7 @@
 PORTNAME=	dotconf
 PORTVERSION=	1.3
 CATEGORIES=	devel
-MASTER_SITES=	GENTOO/distfiles
+MASTER_SITES=	GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple, powerful configuration-file parser
