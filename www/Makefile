@@ -11,6 +11,7 @@ SUBDIR += bluefish
 SUBDIR += bookmarkbridge
 SUBDIR += bozohttpd
 SUBDIR += browser
+SUBDIR += browser-esr
 SUBDIR += cherokee
 SUBDIR += chromium
 SUBDIR += dummyflash
