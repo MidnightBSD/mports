@@ -423,6 +423,7 @@ SUBDIR += py-lxml
 SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-parsing
+SUBDIR += py-ply
 SUBDIR += py-pytz
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools27
