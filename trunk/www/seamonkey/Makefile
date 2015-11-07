@@ -1,134 +1,202 @@
 # $MidnightBSD$
 
 PORTNAME=	seamonkey
-DISTVERSION=	1.1.19
-PORTREVISION=	2
-CATEGORIES?=	www ipv6
-MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
-MASTER_SITE_SUBDIR=	seamonkey/releases/${DISTVERSION}
-DISTNAME=	${PORTNAME}-${DISTVERSION}.source
+DISTVERSION=	2.33.1
+PORTREVISION=	0
+CATEGORIES?=	www mail news editors irc ipv6
+MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
+DISTFILES=	${PORTNAME}-${DISTVERSION}.source${EXTRACT_SUFX}
+EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}.source${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
 
-LICENSE=	mpl gpl2
-LICENSE_COMB=	dual
+LICENSE=	mpl
 
-USES=		gmake tar:bzip2 desktop-file-utils
-WANT_GNOME=	yes
-WANT_PERL=	yes
-HAS_CONFIGURE=	yes
-ALL_TARGET=	default
+BUILD_DEPENDS=	nspr>=4.10.6:${PORTSDIR}/devel/nspr \
+		nss>=3.17.4:${PORTSDIR}/security/nss \
+		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
+		soundtouch>=1.8.0:${PORTSDIR}/audio/soundtouch \
+		harfbuzz>=0.9.34:${PORTSDIR}/print/harfbuzz \
+		graphite2>=1.2.4:${PORTSDIR}/graphics/graphite2 \
+		libvorbis>=1.3.5:${PORTSDIR}/audio/libvorbis \
+		opus>=1.1:${PORTSDIR}/audio/opus \
+		libvpx>=1.3.0:${PORTSDIR}/multimedia/libvpx \
+		sqlite3>=3.8.7.4:${PORTSDIR}/databases/sqlite3 \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3 \
+		v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat \
+		autoconf-2.13:${PORTSDIR}/devel/autoconf213 \
+		zip:${PORTSDIR}/archivers/zip \
+		unzip:${PORTSDIR}/archivers/unzip
+
+LIB_DEPENDS=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
+
+EM_VERSION=	1.8.2
+L_VERSION=	3.8
+
+SSP_UNSAFE=	yes
+USE_GECKO=	gecko
+USE_QT5=	# empty
+QT_NONSTANDARD=	yes
+USE_GL=		gl
+USES=		dos2unix tar:bzip2
+DOS2UNIX_FILES=	mozilla/media/webrtc/trunk/webrtc/system_wrappers/source/spreadsortlib/spreadsort.hpp
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
-MAKE_ENV=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/cairo" CXXFLAGS="-lc" \
-		ac_cv_func__Unwind_Backtrace=no \
-		LOCALBASE=${LOCALBASE}
-
-FAKE_OPTS=	trueprefix
 
 MOZ_EXTENSIONS=	default
-MOZ_OPTIONS+=	--enable-svg \
-		--enable-application=suite	\
-		--enable-svg-renderer=cairo	\
-		--enable-system-cairo		\
-		--enable-canvas 		\
-		--with-system-nss
-MOZ_MK_OPTIONS+=	MOZ_CO_PROJECT=suite
+MOZ_OPTIONS+=	--program-transform-name='s/seamonkey/${MOZILLA}/' \
+		--enable-application=suite
 
-OPTIONS=MAILNEWS "Enable Mail and News modules" on \
-	COMPOSER "Enable the HTML Composer module" on \
-	LDAP "Enable LDAP for Mailnews (broken)" off \
-	CHATZILLA "Enable the Chatzilla IRC module" on \
-	JAVASCRIPT_DEBUGGER "Enable DTD and JavaScript debuggers" off \
-	SMB "Enable smb:// URI support using gnomevfs" off
+MAKE_ENV+=    __FreeBSD_=9 __FREEBSD_version=90100
+
+USE_MOZILLA=	# empty
+MOZ_PKGCONFIG_FILES=
+
+NOT_FOR_ARCHS=	ia64
+
+OPTIONS_DEFINE=	CHATZILLA COMPOSER ENIGMAIL LDAP LIGHTNING MAILNEWS
+OPTIONS_DEFAULT=CANBERRA CHATZILLA COMPOSER ENIGMAIL LDAP LIGHTNING MAILNEWS
+
+CHATZILLA_DESC?=Chatzilla IRC module
+COMPOSER_DESC?=	HTML Composer module
+LDAP_DESC?=	LDAP support for Mailnews
+MAILNEWS_DESC?=	Mail and News modules
+
+.include "${.CURDIR}/../../www/browser/Makefile.options"
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MCHATZILLA}
+MOZ_EXTENSIONS:=	${MOZ_EXTENSIONS},irc
+.endif
 
 .include <bsd.port.pre.mk>
 
-.if (${ARCH} == "amd64")
-CONFIGURE_ARGS+= x86_64-midnightbsd-freebsd
-.else
-CONFIGURE_ARGS+= ${ARCH}-midnightbsd-freebsd
+WRKSRC=		${WRKDIR}/comm-release
+MOZSRC:=	${WRKSRC}/mozilla
+
+XPI_LIBDIR=	${PREFIX}/lib/xpi
+
+.if ${PORT_OPTIONS:MALSA}
+RUN_DEPENDS+=	alsa-lib>=1.0.27.2_1:${PORTSDIR}/audio/alsa-lib
 .endif
 
-GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{\!pg: %{pthread:|| ; s|}.*$$||' || ${TRUE}
-
-.if exists(${LOCALBASE}/include/cairo/cairo-glitz.h)
-# Glitz support can only be enabled if cairo is built with glitz support
-MOZ_OPTIONS+=	--enable-glitz
-LIB_DEPENDS+=	libglitz.so:${PORTSDIR}/graphics/glitz
+.if ! ${PORT_OPTIONS:MBUNDLED_CAIRO}
+BUILD_DEPENDS+=	cairo>=1.12.16_1,2:${PORTSDIR}/graphics/cairo
 .endif
 
-.if defined(WITHOUT_MAILNEWS)
+.if ${PORT_OPTIONS:MGSTREAMER}
+RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:${PORTSDIR}/multimedia/gstreamer1-libav
+.endif
+
+.if ! ${PORT_OPTIONS:MMAILNEWS}
 MOZ_OPTIONS+=	--disable-ldap --disable-mailnews
 .else
 # mail and news desired, but not LDAP
-.if defined(WITHOUT_LDAP)
+.if ! ${PORT_OPTIONS:MLDAP}
 MOZ_OPTIONS+=	--disable-ldap --enable-mailnews
 .else
 MOZ_OPTIONS+=	--enable-ldap --enable-mailnews
 .endif
+.if ${PORT_OPTIONS:MENIGMAIL}
+MASTER_SITES+=	https://www.enigmail.net/download/source/:enigmail
+DISTFILES+=	${EM_DISTFILE}:enigmail
+RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg
+EM_DISTNAME=	enigmail-${EM_VERSION}
+EM_DISTFILE=	${EM_DISTNAME}.tar.gz
+EM_XPI_FILE=	${WRKSRC}/mailnews/extensions/enigmail/build/${EM_DISTNAME}-${OPSYS:tl}-${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc/ppc/}-gcc3.xpi
+EM_ORIG_ID=	{847b3a00-7ab1-11d4-8f02-006008948af5}
+EM_ID=		${PORTNAME}@mozilla-enigmail.org
+EM_ID_RFILES=	${XPI_LIBDIR}/${EM_ID}/install.rdf \
+		${XPI_LIBDIR}/${EM_ID}/components/enigmail.js \
+		${XPI_LIBDIR}/${EM_ID}/modules/enigmailCommon.jsm
 .endif
-.if !defined(WITHOUT_CHATZILLA)
-MOZ_EXTENSIONS:=	${MOZ_EXTENSIONS},irc
-.endif
-.if defined(WITH_JAVASCRIPT_DEBUGGER)
-MOZ_OPTIONS+=		--enable-jsd \
-			--enable-dtd-debug
-.else
-MOZ_OPTIONS+=		--disable-jsd \
-			--disable-dtd-debug
 .endif
 
-.if defined(WITHOUT_COMPOSER)
+.if ! ${PORT_OPTIONS:MCOMPOSER}
 MOZ_OPTIONS+=	--disable-composer
 .endif
 
+.if ${PORT_OPTIONS:MLIGHTNING}
+MOZ_OPTIONS+=	--enable-calendar
+MOZ_MK_OPTIONS+=	MOZ_CO_PROJECT=calendar
+LIGHTNING_DIR=	share/lightning
+XPI_FILE=	${MOZ_OBJDIR}/dist/xpi-stage/lightning-${L_VERSION}.en-US.${OPSYS:tl}${OSREL}-${ARCH:S/amd64/x86_64/}.xpi
+XPI_ORIG_ID=	{e2fda1a4-762b-4020-b5ad-a41df1933103}
+XPI_ID=		lightning@seamonkey.mozilla.org
+.else
+MOZ_OPTIONS+=	--disable-calendar
+.endif
+
+.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
+post-extract:
+	@${TAR} -xf ${_DISTDIR}/${EM_DISTFILE} \
+		-C ${WRKSRC}/mailnews/extensions
+.endif
+
+pre-patch: dos2unix
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-		${WRKSRC}/security/manager/ssl/src/Makefile.in
-	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS:C/-pthread/${GECKO_PTHREAD_LIBS}/}|' \
-		${WRKSRC}/storage/build/Makefile.in
+	@${REINPLACE_CMD} -e '/MOZPNG/s/=[0-9]*/=10511/' \
+		${MOZSRC}/configure.in ${WRKSRC}/configure.in
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/suite/app/nsSuiteApp.cpp
 	@${REINPLACE_CMD} -e '/accessibility.typeaheadfind.enablesound/s/true/false/' \
-		${WRKSRC}/modules/libpref/src/init/all.js
-	@${REINPLACE_CMD} -e 's|<iconv.h>|\"${LOCALBASE}/include/iconv.h\"|g' \
-		${WRKSRC}/configure \
-		${WRKSRC}/intl/uconv/native/nsNativeUConvService.cpp \
-		${WRKSRC}/xpcom/io/nsNativeCharsetUtils.cpp
-	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' \
+		${WRKSRC}/mozilla/modules/libpref/init/all.js
+	@${SED} -e 's|%%MOZILLA%%|${MOZILLA}|g' \
 		< ${FILESDIR}/seamonkey.desktop.in > \
-		${WRKDIR}/seamonkey.desktop
-	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD`${UNAME} -r`.mk
-	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD${OSREL}.mk
+		${WRKDIR}/${MOZILLA}.desktop
+.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
+	@${REINPLACE_CMD} -e 's,/usr/bin/perl,${PERL},' \
+		${WRKSRC}/mailnews/extensions/enigmail/util/fixlang.pl \
+		${WRKSRC}/mailnews/extensions/enigmail/util/make-lang-xpi.pl
+	@${REINPLACE_CMD} -e '/^xpi/s/$$/ all/' \
+		-e '/^all/s/ xpi//' \
+		-e '/^XPI_MODULE_VERS/s/= .*/= ${EM_VERSION}/' \
+		${WRKSRC}/mailnews/extensions/enigmail/Makefile
+	@${REINPLACE_CMD} -e '/em:version/s,>[^<]*<,>${EM_VERSION}<,' \
+		-e '/em:maxVersion/s/pre//' \
+		${WRKSRC}/mailnews/extensions/enigmail/package/install.rdf
+.endif
 
+pre-configure:
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${MOZSRC} && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${MOZSRC}/js/src/ && ${LOCALBASE}/bin/autoconf-2.13)
+
+.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
 post-configure:
-	${REINPLACE_CMD} -e 's|@MAJOR@||g' \
-		${WRKSRC}/config/autoconf.mk
+	cd ${WRKSRC}/mailnews/extensions/enigmail/ && \
+		${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} ./configure --build=${ARCH}-portbld-freebsd9.1 --host=${ARCH}-portbld-freebsd9.1
+.endif
 
-pre-install:
-	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
-		for jpi in ${JPI_LIST}; do \
-			if [ -f $${jpi} ]; then \
-				${ECHO_CMD} lib/browser_plugins/libjavaplugin_oji.so >> ${PLIST} ; \
-				break; \
-			fi; \
-		done; \
-	fi
-	${ECHO_CMD} share/applications/seamonkey.desktop >> ${PLIST}
-	${ECHO_CMD} "@unexec ${RMDIR} %D/share/applications 2>/dev/null || ${TRUE}" >> ${PLIST}
+.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
+post-build:
+	${DO_MAKE_BUILD:S/${MAKEFILE}/Makefile/} all xpi \
+		-C ${WRKSRC}/mailnews/extensions/enigmail
+.endif
 
-do-install:
-	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
-		for jpi in ${JPI_LIST}; do \
-			if [ -f $${jpi} ]; then \
-		    		${LN} -sf $${jpi} \
-			    		${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ; \
-				break; \
-			fi; \
-		done; \
-	fi
-	${MKDIR} ${PREFIX}/share/applications
-	${INSTALL_DATA} ${WRKDIR}/seamonkey.desktop ${PREFIX}/share/applications
+post-install:
+	${INSTALL_DATA} ${WRKDIR}/${MOZILLA}.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	${LN} -sf ${PREFIX}/lib/${MOZILLA}/chrome/icons/default/default48.png \
+		${STAGEDIR}${PREFIX}/share/pixmaps/${MOZILLA}.png
+.if ${PORT_OPTIONS:MLIGHTNING}
+	@${MKDIR} ${STAGEDIR}${XPI_LIBDIR}/${XPI_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/seamonkey
+	@(cd ${STAGEDIR}${XPI_LIBDIR}/${XPI_ID}; ${TAR} -xf ${XPI_FILE})
+	@${REINPLACE_CMD} -i "" "s/${XPI_ORIG_ID}/${XPI_ID}/" ${STAGEDIR}${XPI_LIBDIR}/${XPI_ID}/install.rdf
+	@${CHMOD} -R a+rX,go-w ${STAGEDIR}${XPI_LIBDIR}/${XPI_ID}
+	@${LN} -sf ${XPI_LIBDIR}/${XPI_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/seamonkey 2>/dev/null || true
+	@${ECHO_CMD} '@exec ${LN} -sf %D/lib/xpi/${XPI_ID} ${LOCALBASE}/lib/seamonkey/extensions 2>/dev/null || true' >> ${TMPPLIST}
+	@${ECHO_CMD} '@unexec ${RM} -f ${LOCALBASE}/lib/seamonkey/extensions/${XPI_ID}' >> ${TMPPLIST}
+.endif
+.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
+	@${MKDIR} ${STAGEDIR}${XPI_LIBDIR}/${EM_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/${PORTNAME}
+	@(cd ${STAGEDIR}${XPI_LIBDIR}/${EM_ID}; ${TAR} -xf ${EM_XPI_FILE})
+	@${REINPLACE_CMD} -i "" "s/${EM_ORIG_ID}/${EM_ID}/" ${EM_ID_RFILES:S/^/${STAGEDIR}/g}
+	@${CHMOD} -R a+rX,go-w ${STAGEDIR}${XPI_LIBDIR}/${EM_ID}
+	@${LN} -sf ${XPI_LIBDIR}/${EM_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/${PORTNAME} 2>/dev/null || true
+	@${ECHO_CMD} '@exec ${LN} -sf %D/lib/xpi/${EM_ID} ${LOCALBASE}/lib/${PORTNAME}/extensions 2>/dev/null || true' >> ${TMPPLIST}
+	@${ECHO_CMD} '@unexec ${RM} -f ${LOCALBASE}/lib/${PORTNAME}/extensions/${EM_ID}' >> ${TMPPLIST}
+.endif
 
-.include "Makefile.common"
 .include <bsd.port.post.mk>
