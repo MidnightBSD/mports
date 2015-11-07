@@ -418,6 +418,7 @@ SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
 SUBDIR += py-gobject3
+SUBDIR += py-gyp-devel
 SUBDIR += py-isodate
 SUBDIR += py-lxml
 SUBDIR += py-notify
