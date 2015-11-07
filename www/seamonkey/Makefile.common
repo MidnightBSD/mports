@@ -64,7 +64,7 @@ MOZILLA?=	${PORTNAME}
 MOZILLA_VER?=	${PORTVERSION}
 MOZILLA_BIN?=	${PORTNAME}-bin
 MOZ_RPATH?=	${MOZILLA}
-USE_GNOME+=	gtk20 libidl desktopfileutils
+USE_GNOME+=	gtk20 libidl
 USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
@@ -118,7 +118,7 @@ PKGCONFIG_FILES?=	${MOZILLA}-gtkmozembed ${MOZILLA}-js \
 CPPFLAGS+=		-I${LOCALBASE}/include/nss -I${LOCALBASE}/include/nss/nss
 CFLAGS+=		${PTHREAD_CFLAGS}
 LDFLAGS+=		-L${LOCALBASE}/lib/nss -Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
-LIBS+=			${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv
+LIBS+=			-pthread -L${LOCALBASE}/lib -liconv
 
 _USE_GECKO_OPTIONS_ALL=	java debug logging optimized_cflags
 
@@ -212,7 +212,7 @@ MOZ_OPTIONS+=	--disable-debug				\
 
 .if defined(WITH_JAVA) && defined(_WITH_JAVA)
 USE_JAVA=	yes
-JAVA_VERSION+=	1.4+
+JAVA_VERSION+=	1.6+
 JAVA_OS+=	native
 CONFIGURE_ENV+=	JAVA_HOME="${JAVA_HOME}"
 MOZ_OPTIONS+=	--enable-javaxpcom
