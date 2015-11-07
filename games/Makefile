@@ -3,6 +3,7 @@
 COMMENT = Games
 
 SUBDIR += allenroids
+SUBDIR += aop
 SUBDIR += bass
 SUBDIR += battalion
 SUBDIR += cowsay
