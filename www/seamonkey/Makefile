@@ -2,7 +2,7 @@
 
 PORTNAME=	seamonkey
 DISTVERSION=	2.33.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES?=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
@@ -53,10 +53,8 @@ MAKE_ENV+=    __FreeBSD_=9 __FREEBSD_version=90100
 USE_MOZILLA=	# empty
 MOZ_PKGCONFIG_FILES=
 
-NOT_FOR_ARCHS=	ia64
-
-OPTIONS_DEFINE=	CHATZILLA COMPOSER ENIGMAIL LDAP LIGHTNING MAILNEWS
-OPTIONS_DEFAULT=CANBERRA CHATZILLA COMPOSER ENIGMAIL LDAP LIGHTNING MAILNEWS
+OPTIONS_DEFINE=	CHATZILLA COMPOSER LIGHTNING MAILNEWS
+OPTIONS_DEFAULT=CANBERRA CHATZILLA COMPOSER LIGHTNING MAILNEWS
 
 CHATZILLA_DESC?=Chatzilla IRC module
 COMPOSER_DESC?=	HTML Composer module
@@ -93,24 +91,7 @@ RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:${PORTSDIR}/multimedia/gstreamer1-libav
 MOZ_OPTIONS+=	--disable-ldap --disable-mailnews
 .else
 # mail and news desired, but not LDAP
-.if ! ${PORT_OPTIONS:MLDAP}
 MOZ_OPTIONS+=	--disable-ldap --enable-mailnews
-.else
-MOZ_OPTIONS+=	--enable-ldap --enable-mailnews
-.endif
-.if ${PORT_OPTIONS:MENIGMAIL}
-MASTER_SITES+=	https://www.enigmail.net/download/source/:enigmail
-DISTFILES+=	${EM_DISTFILE}:enigmail
-RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg
-EM_DISTNAME=	enigmail-${EM_VERSION}
-EM_DISTFILE=	${EM_DISTNAME}.tar.gz
-EM_XPI_FILE=	${WRKSRC}/mailnews/extensions/enigmail/build/${EM_DISTNAME}-${OPSYS:tl}-${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc/ppc/}-gcc3.xpi
-EM_ORIG_ID=	{847b3a00-7ab1-11d4-8f02-006008948af5}
-EM_ID=		${PORTNAME}@mozilla-enigmail.org
-EM_ID_RFILES=	${XPI_LIBDIR}/${EM_ID}/install.rdf \
-		${XPI_LIBDIR}/${EM_ID}/components/enigmail.js \
-		${XPI_LIBDIR}/${EM_ID}/modules/enigmailCommon.jsm
-.endif
 .endif
 
 .if ! ${PORT_OPTIONS:MCOMPOSER}
@@ -128,12 +109,6 @@ XPI_ID=		lightning@seamonkey.mozilla.org
 MOZ_OPTIONS+=	--disable-calendar
 .endif
 
-.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
-post-extract:
-	@${TAR} -xf ${_DISTDIR}/${EM_DISTFILE} \
-		-C ${WRKSRC}/mailnews/extensions
-.endif
-
 pre-patch: dos2unix
 
 post-patch:
@@ -146,35 +121,11 @@ post-patch:
 	@${SED} -e 's|%%MOZILLA%%|${MOZILLA}|g' \
 		< ${FILESDIR}/seamonkey.desktop.in > \
 		${WRKDIR}/${MOZILLA}.desktop
-.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
-	@${REINPLACE_CMD} -e 's,/usr/bin/perl,${PERL},' \
-		${WRKSRC}/mailnews/extensions/enigmail/util/fixlang.pl \
-		${WRKSRC}/mailnews/extensions/enigmail/util/make-lang-xpi.pl
-	@${REINPLACE_CMD} -e '/^xpi/s/$$/ all/' \
-		-e '/^all/s/ xpi//' \
-		-e '/^XPI_MODULE_VERS/s/= .*/= ${EM_VERSION}/' \
-		${WRKSRC}/mailnews/extensions/enigmail/Makefile
-	@${REINPLACE_CMD} -e '/em:version/s,>[^<]*<,>${EM_VERSION}<,' \
-		-e '/em:maxVersion/s/pre//' \
-		${WRKSRC}/mailnews/extensions/enigmail/package/install.rdf
-.endif
 
 pre-configure:
 	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
 	(cd ${MOZSRC} && ${LOCALBASE}/bin/autoconf-2.13)
 	(cd ${MOZSRC}/js/src/ && ${LOCALBASE}/bin/autoconf-2.13)
-
-.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
-post-configure:
-	cd ${WRKSRC}/mailnews/extensions/enigmail/ && \
-		${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} ./configure --build=${ARCH}-portbld-freebsd9.1 --host=${ARCH}-portbld-freebsd9.1
-.endif
-
-.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
-post-build:
-	${DO_MAKE_BUILD:S/${MAKEFILE}/Makefile/} all xpi \
-		-C ${WRKSRC}/mailnews/extensions/enigmail
-.endif
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/${MOZILLA}.desktop ${STAGEDIR}${PREFIX}/share/applications/
@@ -188,15 +139,6 @@ post-install:
 	@${LN} -sf ${XPI_LIBDIR}/${XPI_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/seamonkey 2>/dev/null || true
 	@${ECHO_CMD} '@exec ${LN} -sf %D/lib/xpi/${XPI_ID} ${LOCALBASE}/lib/seamonkey/extensions 2>/dev/null || true' >> ${TMPPLIST}
 	@${ECHO_CMD} '@unexec ${RM} -f ${LOCALBASE}/lib/seamonkey/extensions/${XPI_ID}' >> ${TMPPLIST}
-.endif
-.if ${PORT_OPTIONS:MMAILNEWS} && ${PORT_OPTIONS:MENIGMAIL}
-	@${MKDIR} ${STAGEDIR}${XPI_LIBDIR}/${EM_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/${PORTNAME}
-	@(cd ${STAGEDIR}${XPI_LIBDIR}/${EM_ID}; ${TAR} -xf ${EM_XPI_FILE})
-	@${REINPLACE_CMD} -i "" "s/${EM_ORIG_ID}/${EM_ID}/" ${EM_ID_RFILES:S/^/${STAGEDIR}/g}
-	@${CHMOD} -R a+rX,go-w ${STAGEDIR}${XPI_LIBDIR}/${EM_ID}
-	@${LN} -sf ${XPI_LIBDIR}/${EM_ID} ${STAGEDIR}${XPI_LIBDIR}/symlinks/${PORTNAME} 2>/dev/null || true
-	@${ECHO_CMD} '@exec ${LN} -sf %D/lib/xpi/${EM_ID} ${LOCALBASE}/lib/${PORTNAME}/extensions 2>/dev/null || true' >> ${TMPPLIST}
-	@${ECHO_CMD} '@unexec ${RM} -f ${LOCALBASE}/lib/${PORTNAME}/extensions/${EM_ID}' >> ${TMPPLIST}
 .endif
 
 .include <bsd.port.post.mk>
