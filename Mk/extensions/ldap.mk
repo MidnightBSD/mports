@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-.if defined(_POSTMKINCLUDED) && !defined(Ldap_Post_Include)
+.if !defined(Ldap_Post_Include)
 
 Ldap_Post_Include=			ldap.mk
 Database_Include_MAINTAINER=		ports@MidnightBSD.org
@@ -92,4 +92,4 @@ IGNORE=		cannot install: unknown OpenLDAP version: ${OPENLDAP_VER}
 
 .endif # defined(USE_OPENLDAP)
 
-.endif # defined(_POSTMKINCLUDED) && !defined(Ldap_Post_Include)
+.endif # !defined(Ldap_Post_Include)
