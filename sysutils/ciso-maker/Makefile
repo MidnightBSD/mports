@@ -11,7 +11,7 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/license
 
-WRKSRC=		${WRKDIR}/laffer1-ciso-maker-f2e5d18
+WRKSRC=		${WRKDIR}/ciso-maker-1.05
 USE_GITHUB=     yes
 GH_PROJECT=     ${PORTNAME}
 GH_ACCOUNT=     laffer1
