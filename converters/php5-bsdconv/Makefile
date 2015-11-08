@@ -1,15 +1,16 @@
 # Created by: buganini@gmail.com
 # $FreeBSD: head/converters/php5-bsdconv/Makefile 390748 2015-06-28 08:38:15Z sunpoet $
+# $MidnightBSD$
 
 PORTNAME=	bsdconv
 PORTVERSION=	11.3.0
 CATEGORIES=	converters
 PKGNAMEPREFIX=	php5-
 
-MAINTAINER=	buganini@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP wrapper for bsdconv
 
-LICENSE=	ISCL
+LICENSE=	isc
 
 LIB_DEPENDS=	libbsdconv.so:${PORTSDIR}/converters/bsdconv
 
