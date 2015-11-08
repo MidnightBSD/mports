@@ -11,9 +11,12 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TBrowser and TChat
+
 LICENSE=	lgpl
 
-USE_GNUSTEP=	yes
+
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
