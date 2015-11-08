@@ -10,7 +10,10 @@ CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v1.6/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A High Performance Message Passing Library
+COMMENT=	High Performance Message Passing Library
+
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo \
 		hwloc:${PORTSDIR}/devel/hwloc \
