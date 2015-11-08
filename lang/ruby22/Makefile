@@ -1,31 +1,31 @@
-# $MidnightBSD$
+ $MidnightBSD$
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
 PORTREVISION=	${RUBY_PORTREVISION}
 PORTEPOCH=	${RUBY_PORTEPOCH}
 CATEGORIES=	lang ruby ipv6
-MASTER_SITES=		RUBY/${MASTER_SITE_SUBDIR_RUBY}
+MASTER_SITES=	RUBY/${MASTER_SITE_SUBDIR_RUBY}
 DISTNAME=	${RUBY_DISTNAME}
 DIST_SUBDIR=	ruby
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Object-oriented interpreted scripting language
 
-LICENSE=	bsd2
-
-LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
+LICENSE=	bsd2 ruby
+LICENSE_COMB=	dual
 
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
+LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
 BUILD_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 RUN_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
-		--enable-shared \
-		--enable-pthread \
 		--disable-rpath \
+		--enable-pthread \
+		--enable-shared \
 		--with-ruby-version=minor \
 		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
 		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby" \
@@ -211,7 +211,7 @@ post-install:
 		${PREFIX}/bin/erb22 ${PREFIX}/bin/irb22 \
 		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22
 
-test:
+regression-test test:
 	@(cd ${WRKSRC}; ${MAKE} test)
 
 validate:
