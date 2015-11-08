@@ -19,7 +19,7 @@ RUN_DEPENDS=	t1asm:${PORTSDIR}/print/t1utils
 
 USES=		pkgconfig shebangfix perl5 uidfix tar:tgz
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} ${CPPFLAGS}" LIBS="${LIBS}" \
-		INSTDIR="${PREFIX}" LIBXDIR="${PREFIX}/bin" \
+		INSTDIR="${FAKE_DESTDIR}${TRUE_PREFIX}" LIBXDIR="${FAKE_DESTDIR}${TRUE_PREFIX}/bin" \
 		OWNER=${BINOWN} GROUP=${BINGRP}
 SHEBANG_FILES=	app/TeX/sfd2map \
 		app/TeX/cjk-latex-config \
@@ -40,11 +40,11 @@ LIBS+=		`pkg-config --libs freetype2` \
 		-L${LOCALBASE}/lib -lm
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ttf2pt1
-	@${SED} -i '' 's,${STAGEDIR},,' ${STAGEDIR}${PREFIX}/bin/ttf2pt1_convert \
-		${STAGEDIR}${PREFIX}/man/man1/ttf2pt1_x2gs.1 \
-		${STAGEDIR}${PREFIX}/man/man1/ttf2pt1.1 \
-		${STAGEDIR}${PREFIX}/man/man1/ttf2pt1_convert.1 \
-		${STAGEDIR}${DATADIR}/scripts/convert
+	${STRIP_CMD} ${PREFIX}/bin/ttf2pt1
+	@${SED} -i '' 's,${FAKE_DESTDIR},,' ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/ttf2pt1_convert \
+		${PREFIX}/man/man1/ttf2pt1_x2gs.1 \
+		${PREFIX}/man/man1/ttf2pt1.1 \
+		${PREFIX}/man/man1/ttf2pt1_convert.1 \
+		${DATADIR}/scripts/convert
 
 .include <bsd.port.mk>
