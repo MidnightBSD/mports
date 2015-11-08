@@ -10,12 +10,14 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of Apples Bonjour for GNUstep
+
 LICENSE=	lgpl
 
-USE_GNUSTEP=	yes
+DEPRECATED=	not supported on modern gnustep
+
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GNUSTEP_PREFIX=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
