@@ -7,7 +7,6 @@ SUBDIR += clive
 SUBDIR += clutter-gst
 SUBDIR += cuse4bsd-kmod
 SUBDIR += dirac
-SUBDIR += etoile-babbler
 SUBDIR += etoile-mediakit
 SUBDIR += etoile-multimediakit
 SUBDIR += ffmpeg
