@@ -26,7 +26,6 @@ SUBDIR += ebook-tools
 SUBDIR += elasticsearch
 SUBDIR += enchant
 SUBDIR += etoile-lucenekit
-SUBDIR += etoile-ogrekit
 SUBDIR += etoile-opmlkit
 SUBDIR += exempi
 SUBDIR += expat2
