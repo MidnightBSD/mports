@@ -9,7 +9,6 @@ SUBDIR += cvs-server
 SUBDIR += es
 SUBDIR += esh
 SUBDIR += fd
-SUBDIR += gscommander
 SUBDIR += ibsh
 SUBDIR += ksh93
 SUBDIR += mksh
