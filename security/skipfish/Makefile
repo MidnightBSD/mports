@@ -2,6 +2,7 @@
 
 PORTNAME=	skipfish
 PORTVERSION=	2.10b
+PORTREVISION=	1
 CATEGORIES=	security www
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 EXTRACT_SUFX=	.tgz
@@ -10,39 +11,32 @@ MAINTAINER=	ports@mMidnightBSD.org
 COMMENT=	A fully automated, active web application security reconnaissance tool
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	idn:${PORTSDIR}/dns/libidn \
-    		pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn \
+		libpcre.so:${PORTSDIR}/devel/pcre
 
-USE_GMAKE=	yes
+USES=		gmake tar:tgz
+USE_OPENSSL=	yes
 SUB_FILES=	pkg-message
 
-MAN1=		skipfish.1
+OPTIONS_DEFINE=	DOCS
 
-.if !defined(NOPORTDOCS)
 PORTDOCS=	README COPYING ChangeLog
-.endif
-
-.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's:"skipfish.wl":"${DATADIR}/dictionaries/complete.wl":' \
 		-e 's:"assets":"${DATADIR}/assets":' ${WRKSRC}/src/config.h
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/skipfish ${PREFIX}/bin/skipfish
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/sfscandiff ${PREFIX}/bin/sfscandiff
-	${INSTALL_MAN} ${WRKSRC}/doc/skipfish.1 ${PREFIX}/man/man1
-	(cd ${WRKSRC}/assets/ && ${COPYTREE_SHARE} . ${DATADIR}/assets/)
-	(cd ${WRKSRC}/dictionaries/ && ${COPYTREE_SHARE} . ${DATADIR}/dictionaries/)
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/skipfish ${STAGEDIR}${PREFIX}/bin/skipfish
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/sfscandiff ${STAGEDIR}${PREFIX}/bin/sfscandiff
+	${INSTALL_MAN} ${WRKSRC}/doc/skipfish.1 ${STAGEDIR}${PREFIX}/man/man1
+	(cd ${WRKSRC}/assets/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/assets/)
+	(cd ${WRKSRC}/dictionaries/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/dictionaries/)
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .	for doc in ${PORTDOCS}
-		${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
+		${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
 .	endfor
-.endif
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
