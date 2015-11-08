@@ -12,12 +12,9 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
-USES=	libtool
-USE_BDB=	46+
-USE_BZIP2=	yes
-USES=		iconv
+USES=	libtool tar:bzip2 iconv gmake
+USE_BDB=	48+
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_PERL5=	yes
 WANT_GNOME=	yes
 USE_RC_SUBR=	netatalk
