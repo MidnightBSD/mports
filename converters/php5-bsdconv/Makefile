@@ -10,7 +10,7 @@ PKGNAMEPREFIX=	php5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP wrapper for bsdconv
 
-LICENSE=	isc
+LICENSE=	iscl
 
 LIB_DEPENDS=	libbsdconv.so:${PORTSDIR}/converters/bsdconv
 
