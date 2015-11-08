@@ -225,7 +225,7 @@ do-configure:
 	&& ${SETENV} CC="${CC}" FREEBSDCC="${CC}" CFLAGS="${CFLAGS}" PERL="${PERL}" \
 	./config --prefix=${PREFIX} --openssldir=${OPENSSLDIR} \
 		--install_prefix=${FAKE_DESTDIR} \
-		-L${PREFIX}/lib ${EXTRACONFIGURE} -enable-npn
+		-L${PREFIX}/lib ${EXTRACONFIGURE}
 .else
 	cd ${WRKSRC} \
 	&& ${SETENV} CC="${CC}" FREEBSDCC="${CC}" CFLAGS="${CFLAGS}" PERL="${PERL}" \
