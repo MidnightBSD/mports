@@ -151,6 +151,9 @@ _LICENSE_PERMS_LPPL13c=	dist-mirror dist-sell
 _LICENSE_NAME_mit=	MIT license / X11 license
 _LICENSE_GROUPS_mit=	FSF GPL OSI COPYFREE
 
+_LICENSE_NAME_mmodula3=	Modula 3 license
+_LICENSE_GROUPS_modula3=
+
 _LICENSE_NAME_mpl=	Mozilla Public License
 _LICENSE_GROUPS_mpl=	FSF OSI
 
