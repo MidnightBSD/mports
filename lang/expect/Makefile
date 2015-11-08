@@ -18,6 +18,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}
 FAKE_OPTS+=	prefixhack
 
 USES=		tcl
+USE_TCL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared \
