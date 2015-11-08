@@ -16,9 +16,8 @@ LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo \
 		hwloc:${PORTSDIR}/devel/hwloc \
 		ltdl:${PORTSDIR}/devel/libltdl
 
-USE_BZIP2=	yes
+USES=		tar:bzip2 gmake
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
 
 MPIBASE?=	mpi
 MPIDIR?=	${MPIBASE}/${UNIQUENAME}
