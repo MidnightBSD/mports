@@ -3,7 +3,7 @@
 
 PORTNAME=	ldapdiff
 PORTVERSION=	1.4.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://launchpadlibrarian.net/20391352/
 DISTNAME=	${PORTNAME}-${PORTVERSION}_src
@@ -24,11 +24,14 @@ SAMPLES=	addentry.sh webtomware_without_jpeg.user.ldif \
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 PORTDOCS=	CHANGES ChangeLog README TODO
+
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 
+.if ! empty(ICONV_LIB)
 CONFIGURE_ARGS+=--with-iconv-dir=${LOCALBASE}
+.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ldapdiff ${PREFIX}/bin
@@ -38,11 +41,9 @@ do-install:
 .for sample in ${SAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/samples/${sample} ${DATADIR}/samples
 .endfor
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for docs in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.post.mk>
