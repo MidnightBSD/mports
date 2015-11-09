@@ -13,6 +13,8 @@ LICENSE=	gpl2 # (or later)
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tk
+USE_TCL=	yes
+USE_TK=		yes
 USE_LDCONFIG=	yes
 
 PLIST_FILES=	bin/dirdiff lib/libfilecmp.so.0.0
