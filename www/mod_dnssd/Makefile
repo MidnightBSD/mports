@@ -2,20 +2,20 @@
 
 PORTNAME=	mod_dnssd
 PORTVERSION=	0.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://0pointer.de/lennart/projects/mod_dnssd/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An Apache module that provides DNS-SD capabilities
+COMMENT=	Apache module that provides DNS-SD capabilities
 
 LICENSE=	apache2
 
-LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 
-USE_GMAKE=	yes
-USE_APACHE=	22
+USES=		gmake pkgconfig
+USE_APACHE=	24
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	APR_CFLAGS="`${LOCALBASE}/bin/apr-1-config --cflags --cppflags --includes`" \
 		APR_LIBS="`${LOCALBASE}/bin/apr-1-config --ldflags`"
