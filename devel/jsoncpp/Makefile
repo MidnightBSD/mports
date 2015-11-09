@@ -12,7 +12,7 @@ COMMENT=	JSON reader and writer library for C++
 
 LICENSE=	mit
 
-USES=		dos2unix scons
+USES=		dos2unix scons python:2
 USE_LDCONFIG=	yes
 
 MAKE_ARGS=	platform=linux-gcc
