@@ -4,6 +4,7 @@
 
 PORTNAME=	phonon
 PORTVERSION=	4.8.3
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE
@@ -34,14 +35,14 @@ PULSEAUDIO_CMAKE_ON=	-DWITH_PulseAudio:BOOL=ON
 PULSEAUDIO_CMAKE_OFF=	-DWITH_PulseAudio:BOOL=OFF
 
 post-install:
-	${MKDIR} ${QT_INCDIR}
-	${MKDIR} ${QT_LIBDIR}
-	${LN} -sf ${PREFIX}/include/phonon ${QT_INCDIR}/phonon
-	${LN} -sf ${PREFIX}/include/phonon ${QT_INCDIR}/Phonon
+	${MKDIR} ${FAKE_DESTDIR}${QT_INCDIR}
+	${MKDIR} ${FAKE_DESTDIR}${QT_LIBDIR}
+	${LN} -sf ${PREFIX}/include/phonon ${FAKE_DESTDIR}${QT_INCDIR}/phonon
+	${LN} -sf ${PREFIX}/include/phonon ${FAKE_DESTDIR}${QT_INCDIR}/Phonon
 	${LN} -sf ${PREFIX}/include/KDE/Phonon ${PREFIX}/include/phonon/Phonon
 .for lib in phonon phononexperimental
-	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${QT_LIBDIR}/lib${lib}.so
-	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${QT_LIBDIR}/lib${lib}.so.4
+	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${FAKE_DESTDIR}${QT_LIBDIR}/lib${lib}.so
+	${LN} -sf ${PREFIX}/lib/lib${lib}.so.${PORTVERSION} ${FAKE_DESTDIR}${QT_LIBDIR}/lib${lib}.so.4
 .endfor
 
 .include <bsd.port.mk>
