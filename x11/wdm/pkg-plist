@@ -35,4 +35,4 @@ share/locale/es/LC_MESSAGES/wdm.mo
 share/locale/fr_FR/LC_MESSAGES/wdm.mo
 share/locale/ja/LC_MESSAGES/wdm.mo
 share/locale/ru/LC_MESSAGES/wdm.mo
-%%PAM%%%%LOCALBASE%%/etc/pam.d/wdm
+%%PAM%%etc/pam.d/wdm
