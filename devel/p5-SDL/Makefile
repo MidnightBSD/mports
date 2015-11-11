@@ -11,11 +11,13 @@ DISTNAME=	SDL_Perl-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Bindings for SDL
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=  p5-YAML>=0.62:${PORTSDIR}/textproc/p5-YAML
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 USE_PERL5=	yes
 USE_SDL=	sdl
