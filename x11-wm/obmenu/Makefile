@@ -7,11 +7,12 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Menu manager for Openbox supporting both static and pipe menus
+
 LICENSE=	gpl2
 
+USES=			python
 USE_GNOME=		pygtk2
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
+USE_PYTHON=		distutils
 PYDISTUTILS_PKGNAME=	obMenu
 
 PORTDOCS=	README
