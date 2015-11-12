@@ -19,7 +19,7 @@
 # This parameter should never be used in the Makefile of a port!
 #
 # Example entry in /etc/make.conf:
-#  APACHE_PORT=	www/apache22
+#  APACHE_PORT=	www/apache24
 #
 # To get a list of "possible" valid values execute the command:
 #  $> egrep 'apache[12]' ports/www/Makefile | awk '{print "www/" $3}'
