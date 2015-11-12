@@ -20,7 +20,6 @@ LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
 BUILD_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 RUN_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 
-GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--disable-rpath \
@@ -31,12 +30,16 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby" \
 		--with-rubyhdrdir="${PREFIX}/include/ruby-2.2/" \
 		--with-rubylibprefix="${PREFIX}/lib/ruby" \
-		--docdir="${PREFIX}/share/doc/ruby22"	
+		--docdir="${PREFIX}/share/doc/ruby22"
+CONFIGURE_ENV+=	LC_ALL=C debugflags=
+CPPFLAGS+=	-I${LOCALBASE}/include
+GNU_CONFIGURE=	yes
+# Keep this, else ruby will fail to load libraries dependent of libpthread.
+LIBS+=		-lpthread -L${LOCALBASE}/lib
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
 
-CONFIGURE_ENV+=	LC_ALL=C debugflags=
 MAKE_ENV+=	LC_ALL=C
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${RUBY_DISTVERSION}
@@ -76,10 +79,6 @@ _SUF2=	,${PORTEPOCH}
 .if ${PORTREVISION} != 0
 _SUF1=	_${PORTREVISION}
 .endif
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-# Keep this, else ruby will fail to load libraries dependent op libpthread.
-LIBS+=		-lpthread -L${LOCALBASE}/lib
 
 CONFIGURE_ARGS+=	--disable-dtrace
 
