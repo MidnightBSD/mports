@@ -17,6 +17,8 @@ SVN_BUILD_ADDONS=	yes
 
 .include "${MASTERDIR}/Makefile.common"
 
+.include <bsd.mport.options.mk>
+
 CATEGORIES+=	perl5
 
 CONFIGURE_ARGS+=	--without-gnome-keyring \
