@@ -1,115 +1,86 @@
 # $MidnightBSD$
 
 PORTNAME=	gnuplot
-PORTVERSION=	4.6.5
+PORTVERSION=	4.6.6
 CATEGORIES=	math graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Command-line driven interactive function plotting program
+COMMENT=	Command-line driven graphing utility
 
 LICENSE=	other
 
-USES=		iconv
+USES=		iconv lua pkgconfig readline
+USE_TEX=	kpathsea
 GNU_CONFIGURE=	yes
+LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
+CONFIGURE_ENV=	LUA_VER="${LUA_VER}"
 CONFIGURE_ARGS+=--with-lasergnu \
 		--with-readline=gnu \
+		--with-kpsexpand \
 		--without-linux-vga \
 		--without-lisp-files \
 		--without-tutorial \
-		--with-bitmap-terminals
+		--with-bitmap-terminals \
+		--with-latex \
+		ac_cv_prog_KPSEXPAND=${LOCALBASE}/bin/kpsexpand \
+		ac_cv_prog_PLAINTEX=${LOCALBASE}/bin/tex \
+		ac_cv_prog_LATEX=${LOCALBASE}/bin/latex \
+		ac_cv_prog_PDFLATEX=${LOCALBASE}/bin/pdflatex
+PORTDOCS=	*
+PORTEXAMPLES=	*
 
-OPTIONS_DEFINE=	CAIRO DOCS EXAMPLES GD GRIDBOX PDF PLOT TEX THINSPLINES WX X11
+OPTIONS_DEFINE=	CAIRO DOCS EXAMPLES GD GRIDBOX PDF PLOT THINSPLINES WX X11
 GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
 PLOT_DESC=		Enable plot support
-TEX_DESC=		Search kpsexpand at run-time
 THINSPLINES_DESC=	Enable thin plate splines for grids in dgrid3d
 WX_DESC=		wxWidgets (formerly wxWindows) support
 
-OPTIONS_DEFAULT=CAIRO GD PDF PLOT TEX WX X11
+OPTIONS_DEFAULT=CAIRO GD PLOT WX X11
+OPTIONS_SUB=	yes
 
-MAN1=		gnuplot.1 lasergnu.1
+CAIRO_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
+CAIRO_USE=	GNOME=pango
+CAIRO_CONFIGURE_WITH=	cairo
+
+GD_LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
+GD_CONFIGURE_ON=	--with-gd=${LOCALBASE}
+GD_CONFIGURE_OFF+=	--without-gd
+
+GRIDBOX_CONFIGURE_OFF=	--disable-h3d-quadtree --enable-h3d-gridbox
+
+PDF_LIB_DEPENDS=	libpdf.so:${PORTSDIR}/print/pdflib
+PDF_CONFIGURE_ON=	--with-pdf=${LOCALBASE}
+PDF_CONFIGURE_OFF=	--without-pdf
+
+PLOT_USE=		XORG=xaw,xmu,xt,xext
+PLOT_LIB_DEPENDS=	libplot.so:${PORTSDIR}/graphics/plotutils
+PLOT_CONFIGURE_ON=	--with-plot=${LOCALBASE}
+PLOT_CONFIGURE_OFF=	--without-plot
+
+THINSPLINES_CONFIGURE_ENABLE=	thin-splines
+
+X11_USE=	XORG=x11
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=		cairo:${PORTSDIR}/graphics/cairo
-USE_GNOME+=		pango
-.else
-CONFIGURE_ARGS+=	--without-cairo
-.endif
-
-.if ${PORT_OPTIONS:MGD}
-LIB_DEPENDS+=		gd:${PORTSDIR}/graphics/gd
-CONFIGURE_ARGS+=	--with-gd=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--without-gd
-.endif
-
-.if ! ${PORT_OPTIONS:MGRIDBOX}
-CONFIGURE_ARGS+=	--disable-h3d-quadtree --enable-h3d-gridbox
-.endif
-
-.if ${PORT_OPTIONS:MPDF}
-LIB_DEPENDS+=		pdf:${PORTSDIR}/print/pdflib
-CONFIGURE_ARGS+=	--with-pdf=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--without-pdf
-.endif
-
-.if ${PORT_OPTIONS:MPLOT}
-USE_XORG+=		xaw xmu xt xext
-LIB_DEPENDS+=		plot:${PORTSDIR}/graphics/plotutils
-CONFIGURE_ARGS+=	--with-plot=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--without-plot
-.endif
-
-.if ${PORT_OPTIONS:MTEX}
-USE_TEX=		base texmf latex
-CONFIGURE_ARGS+=	--with-kpsexpand \
-			--with-texdir=${LOCALBASE}/share/texmf/tex/latex/gnuplot
-PLIST_SUB+=		TEX=""
-.else
-PLIST_SUB+=		TEX="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTHINSPLINES}
-CONFIGURE_ARGS+=	--enable-thin-splines
-.else
-CONFIGURE_ARGS+=	--disable-thin-splines
-.endif
-
 .if ${PORT_OPTIONS:MWX}
-USE_WX=			2.5-2.8
+# Version 3.x of WX currently cause gnuplot to crash.
+# Do not update without this without testing.
+USE_WX=			2.8
+WX_UNICODE=		yes
 WX_CONF_ARGS=		absolute
 .else
 CONFIGURE_ARGS+=	--disable-wxwidgets
 .endif
 
-.if ${PORT_OPTIONS:MX11}
-USE_XORG=		x11
-PLIST_SUB+=		X11=""
-.else
-CONFIGURE_ARGS+=	--without-x
-PLIST_SUB+=		X11="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-PORTDOCS=	*
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-PORTEXAMPLES=	*
-.endif
-
 post-patch:
-.if ! ${PORT_OPTIONS:MTEX}
 	@${REINPLACE_CMD} -e \
 		'/^install:/s/install-am//' ${WRKSRC}/share/LaTeX/Makefile.in
-.endif
 	@${REINPLACE_CMD} -e \
 		's|)/@PACKAGE@/@PKG_MAJOR@|)|g' ${WRKSRC}/src/Makefile.in
-	@${FIND} "${WRKSRC}" -name '*.orig' -delete
+	@${REINPLACE_CMD} -e \
+		's|luaL_checkint(|(int)luaL_checkinteger(|' ${WRKSRC}/term/lua.trm
 
 .if ${PORT_OPTIONS:MDOCS}
 post-build:
@@ -117,18 +88,14 @@ post-build:
 .endif
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/src/lasergnu ${PREFIX}/bin
-.if !defined(NOPORTEXAMPLES)
-	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC}/demo && ${FIND} . \
-		| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${EXAMPLESDIR}
-.endif
-
+	${INSTALL_SCRIPT} ${WRKSRC}/src/lasergnu ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}/psdoc
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/psdoc
 	cd ${WRKSRC}/docs && ${INSTALL_DATA} gnuplot.txt gnuplot.dvi \
-		gnuplot.ps ${DOCSDIR}
-	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${DOCSDIR}/psdoc
+		gnuplot.ps ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${STAGEDIR}${DOCSDIR}/psdoc
 .endif
 
 check test: build
