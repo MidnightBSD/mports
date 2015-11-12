@@ -55,6 +55,7 @@ ASIO_LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs
 ASIO_RUN_DEPENDS=	boost-libs>=1.54.0:${PORTSDIR}/devel/boost-libs
 HPACK_CONFIGURE_ENABLE=	hpack-tools
 HPACK_LIB_DEPENDS=	libjansson.so:${PORTSDIR}/devel/jansson
+HPACK_BUILD_DEPENDS=	${LOCALBASE}/lib/libjansson.so:${PORTSDIR}/devel/jansson
 
 .include <bsd.port.pre.mk>
 
