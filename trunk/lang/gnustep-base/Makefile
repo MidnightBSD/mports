@@ -8,7 +8,8 @@ MASTER_SITES=	GNUSTEP/core
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
 
-LICENSE=	gpl3
+LICENSE=	gpl3 lgpl3
+LICENSE_COMB=	multi
 
 LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
 LIB_DEPENDS+=	libxml2.so:${PORTSDIR}/textproc/libxml2
