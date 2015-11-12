@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	intltool
-PORTVERSION=	0.50.2
-PORTREVISION=	1
+PORTVERSION=	0.51.0
 CATEGORIES=	textproc gnome
-MASTER_SITES=	http://launchpadlibrarian.net/94524169/
+MASTER_SITES=	https://launchpad.net/intltool/trunk/$(PORTVERSION)/+download/
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
