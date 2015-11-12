@@ -23,13 +23,15 @@ USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --disable-openssl --enable-tls \
 		--disable-libdispatch \
+		--with-zeroconf-api=mdns \
 		--with-tls-prefix=${LOCALBASE} TLS_CONFIG="pkg-config -gnutls" \
 		--disable-mixedabi \
 		--target=${ARCH}-portbld-freebsd9.1 \
 		--host=${ARCH}-portbld-freebsd9.1
-USE_GNUSTEP=  build
-USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
-CONFIGURE_ENV+=		OBJCFLAGS='-fobjc-runtime=gnustep-1.7 -fblocks'
+USES=		pkgconfig iconv gnustep
+USE_GNUSTEP=	build
+USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+CONFIGURE_ENV+=	OBJCFLAGS='-fobjc-runtime=gnustep-1.7 -fblocks'
 USES=		pkgconfig gnustep iconv
 
 
@@ -38,12 +40,13 @@ MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 PLIST_SUB+=	LOCALBASE=${LOCALBASE}
 ETCDIR=		${LOCALBASE}/etc
+STAGEHEADER=	${FAKE_DESTDIR}${TRUE_PREFIX}/GNUstep/System/Library/Headers
 
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
 
 .include <bsd.port.pre.mk>
 
-PATH:=	${PREFIX}/System/Tools:${PATH}
+PATH:=	${PREFIX}/GNUstep/System/Tools:${PATH}
 
 post-build:
 .for i in ${MAKE_APPS}
@@ -63,6 +66,9 @@ post-install:
 	-@${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/rc.d
 	${INSTALL_SCRIPT} ${WRKSRC}/GNUstep.sh ${FAKE_DESTDIR}${ETCDIR}/rc.d/GNUstep.sh
 	${INSTALL_DATA} ${FILESDIR}/gdomap_if ${FAKE_DESTDIR}${ETCDIR}
+	${RMDIR} ${STAGEHEADER}/gnustep/base
+	${RMDIR} ${STAGEHEADER}/GNUstepBase/unicode
+
 .for i in ${INSTALL_APPS}
 	(cd ${WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} -d ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
