@@ -62,4 +62,8 @@ pre-configure:
 	@${CP} ${GNUSTEP_PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
 .endfor
 
+do-build:
+	(cd ${WRKSRC}/; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+                ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+
 .include <bsd.port.mk>
