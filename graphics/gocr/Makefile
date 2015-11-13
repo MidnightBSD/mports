@@ -8,7 +8,7 @@ CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GOCR/JOCR is an OCR (Optical Character Recognition) program
+COMMENT=	OCR (Optical Character Recognition) program
 
 LICENSE=	gpl2
 
