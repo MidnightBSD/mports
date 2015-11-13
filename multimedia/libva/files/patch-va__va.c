@@ -1,6 +1,6 @@
---- va/va.c~
+--- va/va.c.orig	2014-09-30 01:48:34 UTC
 +++ va/va.c
-@@ -199,7 +199,7 @@ static VAStatus va_openDriver(VADisplay 
+@@ -227,7 +227,7 @@
          strncat( driver_path, DRIVER_EXTENSION, strlen(DRIVER_EXTENSION) );
          
          va_infoMessage("Trying to open %s\n", driver_path);
