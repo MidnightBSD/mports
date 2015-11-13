@@ -1,78 +1,72 @@
-# New ports collection makefile for:	doomlegacy
-# Date Created:				Oct 20 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>	
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
 
 PORTNAME=	doomlegacy
-PORTVERSION=	142
-PORTREVISION=	5
+PORTVERSION=	1.45.2
+PORTEPOCH=	1
 CATEGORIES=	games
-MASTER_SITES=	SF/${PORTNAME}/DooM%20Legacy%20source%20code/1.42
-DISTNAME=	legacy_${PORTVERSION}_src
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${WADFILE}
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	SF/${PORTNAME}/${DISTVERSION:S,_,%20,}/
+DISTNAME=	${PORTNAME}_${DISTVERSION}_source
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		${PORTNAME}_${DISTVERSION}_common.zip
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	DooM Legacy: popular DooM clone!
+COMMENT=	Improved and extended version of Doom
+
 LICENSE=	gpl2
 
-EXTRACT_DEPENDS=${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
-
-USE_GL=		yes
-USE_GMAKE=	yes
+USES=		gmake tar:bzip2
+USE_GL=		glu
 USE_SDL=	mixer sdl
-MAKEFILE=	makefile
-MAKE_ENV=	FREEBSD=1 FBSD_SDL=1 PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
-WRKSRC=		${WRKDIR}/doomlegacy_${PORTVERSION}_src
 
-OPTIONS=	X86_ASM "Enable use of x86 assembly code" on
+CFLAGS+=	-DSVN_REV=\\\"1139\\\"
 
-DATADIR=	${PREFIX}/lib/${PORTNAME}
-SUB_FILES=	legacy
+PLIST_FILES=	bin/${PORTNAME} share/doom/legacy.wad
+PORTDOCS=	*
 
-WADFILE=	legacy_dat.zip
+OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE_i386=	ASM
 
-.include "${.CURDIR}/../doom-data/Makefile.include"
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_X86_ASM) && ${ARCH} == "i386"
-BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
-MAKE_ARGS+=	USEASM=1
+.if exists(/usr/include/netipx/ipx.h)
+OPTIONS_DEFINE+=	IPX
+IPX_DESC=	IPX protocol support
 .endif
 
-post-extract:
-	@${UNZIP_CMD} -q ${DISTDIR}/${WADFILE} -d ${WRKDIR}/bin
+ASM_BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
+ASM_MAKE_ENV=		USEASM=1 OLD_DEPENDENCIES=1
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's|-I/usr/local/include/SDL11|`${SDL_CONFIG} --cflags`|; \
-		 s|-lSDL-1\.1|`${SDL_CONFIG} --libs`|; \
-		 s|/usr/local|${LOCALBASE}|; \
-		 s|/usr/X11R6|${LOCALBASE}|' \
-		 ${WRKSRC}/${MAKEFILE}
+.include <bsd.mport.options.mk>
+
+post-patch: .SILENT
+# Adjust default WAD search path
+	${REINPLACE_CMD} -e '/DEFWADS1/s|/.*|${DMDIR}"|' \
+		${WRKSRC}/src/doomdef.h
+# Provide better support for relative paths (for `-iwad' switch)
+	${REINPLACE_CMD} -e "s|s\[0\] ==[^)]*|strchr(s, '/')|" \
+		${WRKSRC}/src/d_main.c
+# Unbreak against Clang (https://llvm.org/bugs/show_bug.cgi?id=10365)
+	${REINPLACE_CMD} -e 's,%cc,cc,' ${WRKSRC}/src/m_fixed.h
+# Unbreak against Clang 3.7.0
+	${REINPLACE_CMD} -e '/draw_dir_line(/s,inline,static &,' \
+		${WRKSRC}/src/m_menu.c
+.if ! ${PORT_OPTIONS:MIPX}
+	${REINPLACE_CMD} -e '/USE_IPX/s|define|undef|' ${WRKSRC}/src/doomdef.h
+	${REINPLACE_CMD} -e 's| -lipx||' ${WRKSRC}/Makefile
+.endif
 
 pre-build:
-	@cd ${WRKSRC}/linux_x/sndserv && ${GMAKE} clean
-
-post-build:
-	@${LN} -sf ${WRKSRC}/linux_x/sndserv/linux/llsndserv ${WRKDIR}/bin
+	${ECHO_CMD} CC_ENVIRONMENT=1 MAKE_OPTIONS_PRESENT=1 HAVE_MIXER=1 | \
+		${XARGS} -n 1 > ${BUILD_WRKSRC}/make_options
+	${MAKE_CMD} -C ${BUILD_WRKSRC} dirs
+	${MAKE_CMD} -C ${BUILD_WRKSRC} depend
 
 do-install:
-	${MKDIR} ${DATADIR}
-	cd ${WRKDIR}/bin && ${INSTALL_PROGRAM} llsndserv r_opengl.so ${DATADIR}
-	${INSTALL} -c -s -o root -g kmem -m 2555 ${WRKDIR}/bin/lsdldoom \
-		${DATADIR}
-	${INSTALL_DATA} ${WRKDIR}/bin/legacy.dat ${DATADIR}
-	${INSTALL_SCRIPT} ${WRKDIR}/legacy ${PREFIX}/bin/${PORTNAME}
-.ifndef(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-. for f in *.html *.txt *.cfg README_SDL copying
-	${INSTALL_DATA} ${WRKSRC}/_doc/${f} ${DOCSDIR}
-. endfor
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/doomlegacy ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}${DMDIR}
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}_${PORTVERSION}/legacy.wad \
+		${STAGEDIR}${DMDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 
-.include <bsd.port.post.mk>
+.include "${.CURDIR}/../doom-data/Makefile.include"
+.include <bsd.port.mk>
