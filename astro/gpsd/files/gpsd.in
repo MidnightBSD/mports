@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD: head/astro/gpsd/files/gpsd.in 340851 2014-01-23 19:55:14Z mat $
+#
 
 # PROVIDE: gpsd
 # REQUIRE: NETWORKING DAEMON cleanvar devfs
