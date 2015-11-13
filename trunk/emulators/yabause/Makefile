@@ -1,53 +1,52 @@
 # $MidnightBSD$
 
 PORTNAME=	yabause
-PORTVERSION=	0.9.11.1
-PORTREVISION=	0
+PORTVERSION=	0.9.14
 CATEGORIES=	emulators
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION:S/1.1/1/g}/
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sega Saturn system emulator
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
-
-USES=	automake:env autoconf:env aclocal:env
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		cmake dos2unix openal:soft pkgconfig
+DOS2UNIX_FILES=	src/qt/YabauseThread.cpp
+USE_XORG=	xmu xrandr
 USE_GL=		gl glu glut
-USE_GNOME=	#
-USE_OPENAL=	soft
-USE_SDL=	yes
+
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 SUB_FILES=	pkg-message
-MAN1=	yabause.1
 
-OPTIONS_DEFINE=	QT4
+OPTIONS_DEFINE=		SDL2
+OPTIONS_SINGLE=		GUI
+OPTIONS_SINGLE_GUI=	GTK2 QT4 QT5
 OPTIONS_DEFAULT=	QT4
-QT4_DESC=	Build wit qt4 interface instead of gtk2 one
+
+GTK2_LIB_DEPENDS=	libgtkglext-x11-1.0.so:${PORTSDIR}/x11-toolkits/gtkglext
+GTK2_USE=		gnome=gtk20
+GTK2_CMAKE_ON=		-DYAB_PORTS:STRING=gtk
+GTK2_CMAKE_OFF=		-DYAB_PORTS:STRING=qt
+QT4_USE=		qt4=corelib,gui,opengl \
+			qt4=moc_build,qmake_build,rcc_build,uic_build
+QT4_CMAKE_ON=		-DQt5_FOUND:BOOL=OFF
+QT5_USE=		qt5=core,gui,opengl \
+			qt5=buildtools_build,qmake_build
+SDL2_DESC=		SDL2 libraries support
+SDL2_USE=		sdl=sdl2
+SDL2_USE_OFF=		sdl=sdl
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MQT4}
-USE_QT4=	corelib gui opengl
-CONFIGURE_ARGS+=	--with-port=qt
-.else
-USE_GNOME=	gtk20
-CONFIGURE_ARGS+=	--with-port=gtk
-.endif
-
-.include <bsd.port.pre.mk>
+pre-patch: dos2unix
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|%%ACLOCAL%%|${ACLOCAL}|g" -e "s|%%AUTOCONF%%|${AUTOCONF}|g" \
-		-e "s|%%AUTOMAKE%%|${AUTOMAKE}|g" ${WRKSRC}/autogen.sh
-	@${REINPLACE_CMD} -e "s|0.9.10|${PORTVERSION}|g" ${WRKSRC}/configure.in
+.if empty(PORT_OPTIONS:MSDL2)
+	@${REINPLACE_CMD} -e \
+		's|SDL2 |SDL | ; \
+		 s|SDL2_|SDL_|' ${WRKSRC}/src/CMakeLists.txt
+.endif
 
-pre-configure:
-	@cd ${WRKSRC} && ${SH} autogen.sh
-
-post-install:
-	@${ECHO_CMD}; ${CAT} ${PKGMESSAGE}; ${ECHO_CMD}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
