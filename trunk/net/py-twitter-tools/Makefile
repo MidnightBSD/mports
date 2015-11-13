@@ -1,25 +1,29 @@
 # $MidnightBSD$
 
-PORTNAME=	twitter-tools
-PORTVERSION=	1.9.4
+PORTNAME=	twitter
+PORTVERSION=	1.15.0
+DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	net python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	twitter-${PORTVERSION}
+PKGNAMESUFFIX=	-tools
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python API and command-line toolset for Twitter
 
-LICENSE=	mit
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:${PORTSDIR}/devel/py-nose
 
-USE_GITHUB=		yes
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	easy_install
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		python
+USE_PYTHON=	distutils autoplist
+USE_GITHUB=	yes
 
 GH_ACCOUNT=	sixohsix
-GH_PROJECT=	twitter
-GH_TAGNAME=	${DISTNAME}
-GH_COMMIT=	479117d
 
-PYDISTUTILS_PKGNAME=	twitter
+WRKSRC=		${WRKDIR}/twitter-twitter-1.15.0
+
+regression-test: build
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
