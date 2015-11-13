@@ -2,11 +2,11 @@
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	games
 MASTER_SITES=	SF \
 		SF/${PORTNAME}/${PORTNAME}-data/${PORTVERSION}:data
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-data-${PORTVERSION}${EXTRACT_SUFX}:data
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,29 +14,24 @@ COMMENT=	3D penguin racing game using OpenGL
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	tcl85:${PORTSDIR}/lang/tcl85
-
-USES=		gmake
 USE_SDL=	mixer sdl
-USE_TK=		yes
 USE_GL=		gl
 USE_XORG=	x11 xt xmu xi
-USE_AUTOTOOLS=	automake14 autoconf
-AUTOMAKE_ARGS=	-a
-CONFIGURE_ENV=	THREAD_LIB="${PTHREAD_LIBS}"
-MAKE_ENV=	${CONFIGURE_ENV}
-CONFIGURE_ARGS=	--with-tcl-inc="${LOCALBASE}/include/tcl8.5" \
+USES=		gmake tk tcl
+USE_TK=	yes
+USE_TCL=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-tcl-inc="${TCL_INCLUDEDIR}" \
 		--with-tcl-libs="${LOCALBASE}/lib" \
+		--with-tcl-lib-name=tcl${TCL_VER:S/.//} \
 		--with-gl-libs="${LOCALBASE}/lib" \
 		--with-gl-inc="${LOCALBASE}/include" \
-		--with-data-dir=${PREFIX}/share/tuxracer
-
-post-extract:
-	@${RM} ${WRKSRC}/missing
+		--with-data-dir=${DATADIR}
+CPPFLAGS+=	-DGLX_GLXEXT_LEGACY
 
 post-install:
-	@${MKDIR} ${DATADIR}
-	@(cd ${WORKDATA} ${WRKDIR}/${PORTNAME}-data-${PORTVERSION} \
-		&& ${COPYTREE_SHARE} . ${DATADIR})
+	@${MKDIR} ${STAGEDIR}${DATADIR}
+	(cd ${WORKDATA} ${WRKDIR}/${PORTNAME}-data-${PORTVERSION} \
+		&& ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
 
 .include <bsd.port.mk>
