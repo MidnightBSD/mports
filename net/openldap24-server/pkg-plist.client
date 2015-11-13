@@ -8,6 +8,7 @@ bin/ldappasswd
 bin/ldapsearch
 bin/ldapurl
 bin/ldapwhoami
+@sample etc/openldap/ldap.conf.sample
 include/lber.h
 include/lber_types.h
 include/ldap.h
