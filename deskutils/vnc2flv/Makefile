@@ -6,21 +6,21 @@ PORTVERSION=	20100207
 PORTREVISION=	1
 CATEGORIES=	deskutils multimedia www python
 MASTER_SITES=	CHEESESHOP
-MASTER_SITE_SUBDIR=	source/v/${PORTNAME}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Captures a VNC desktop session and saves as a flv
+
 LICENSE=	mit
 
-.if empty(PORT_OPTIONS:MX11)
-RUN_DEPENDS+=	x11vnc:${PORTSDIR}/net/x11vnc
-.endif
-
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_PKGNAME=	${PORTNAME}
-PYDISTUTILS_PKGVERSION=	${PORTVERSION}
+USES=		python
+USE_PYTHON=	distutils autoplist
+
+OPTIONS_DEFINE=	X11
+X11_RUN_DEPENDS=x11vnc:${PORTSDIR}/net/x11vnc
+
+post-install:
+	${STRIP_CMD} ${PYTHONPREFIX_SITELIBDIR}/flvscreen.so
 
 .include <bsd.port.mk>
