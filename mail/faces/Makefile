@@ -7,7 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
-MAINTAINER=	ashish@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Visual mail, user, and print face server
 
 LICENSE=	gpl2
@@ -52,6 +52,9 @@ GNU_CONFIGURE=	yes
 PORTDOCS=	README
 
 .include <bsd.mport.options.mk>
+
+post-extract:
+	${TOUCH} ${WRKSRC}/config.guess
 
 # I have no better idea up to now
 # Install the working Makefile for compface from the old faces port
