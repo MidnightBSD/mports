@@ -2,7 +2,7 @@
 
 PORTNAME=	e_dbus
 PORTVERSION=	1.7.10
-CATEGORIES=	devel enlightenment
+CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
