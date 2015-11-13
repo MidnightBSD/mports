@@ -1,27 +1,25 @@
-# New ports collection makefile for:	bookmarkbridge
-#
 # $MidnightBSD$
 # $FreeBSD: ports/www/bookmarkbridge/Makefile,v 1.9 2006/02/23 10:39:35 ade Exp $
-#
 
 PORTNAME=	bookmarkbridge
 PORTVERSION=	0.76
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronize bookmarks between multiple browsers
-LICENSE=        gpl2
-LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
 
-USE_PERL5_BUILD=	yes
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		autoreconf gmake perl5 pkgconfig shebangfix
+SHEBANG_FILES=	bookmarkbridge/docs/autodocs.pl
 USE_XORG=	x11 ice xext
-USE_QT4=	corelib gui moc_build rcc_build uic_build qt3support
+USE_QT4=	corelib gui qt3support moc_build rcc_build uic_build
 USE_GNOME=	libxml2
-USE_GMAKE=	yes
-USES=		pkgconfig
-USE_AUTOTOOLS=	aclocal automake autoconf
-ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
+GNU_CONFIGURE=	yes
+
+DESKTOP_ENTRIES="BookmarkBridge" "" "" "${PORTNAME}" "Qt;Network;" ""
 
 .include <bsd.port.mk>
