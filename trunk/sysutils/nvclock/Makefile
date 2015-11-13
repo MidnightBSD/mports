@@ -23,20 +23,19 @@ OPTIONS_DEFAULT=	NVCONTROL X11
 NVCONTROL_DESC=	NV-CONTROL support (for OpenGL settings)
 X11_DESC=	Build GUI program (requires GTK+ 2.x)
 
+NVCONTROL_USE=		XORG=xext
+NVCONTROL_USES=		pkgconfig
+NVCONTROL_CONFIGURE_OFF=	--disable-nvcontrol
+
+X11_USE=		GNOME=gtk20
+X11_PLIST_FILES=	bin/nvclock_gtk share/applications/nvclock.desktop \
+			share/icons/hicolor/48x48/apps/nvclock.png
+X11_CONFIGURE_OFF=	--disable-gtk
+
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MNVCONTROL}
-USE_XORG=	xext
-USES+=		pkgconfig
-.else
-CONFIGURE_ARGS+=	--disable-nvcontrol
-.endif
-
 .if ${PORT_OPTIONS:MX11}
-USE_GNOME=	gtk20
-PLIST_FILES+=	bin/nvclock_gtk
-.else
-CONFIGURE_ARGS+=	--disable-gtk
+INSTALLS_ICONS=	yes
 .endif
 
 post-patch:
@@ -45,12 +44,11 @@ post-patch:
 		${WRKSRC}/src/gtk/Makefile.in \
 		${WRKSRC}/src/qt/Makefile.in \
 		${WRKSRC}/src/nvcontrol/Makefile.in
-
-do-install:
-	${GMAKE} -C ${WRKSRC}/src install
-	${GMAKE} -C ${WRKSRC} install-man
-.if ${PORT_OPTIONS:MDOCS}
-	${GMAKE} -C ${WRKSRC} install-docs
-.endif
+# Prevent recursive prepending of DESTDIR
+	@${REINPLACE_CMD} -E '/exec_prefix|bindir/s|\$$\(DESTDIR\)||' \
+		${WRKSRC}/src/gtk/Makefile.in \
+		${WRKSRC}/src/qt/Makefile.in
+	@${REINPLACE_CMD} 's/-lnvcontrol/& @X11_LIBS@/' \
+		${WRKSRC}/src/gtk/Makefile.in
 
 .include <bsd.port.mk>
