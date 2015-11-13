@@ -2,7 +2,7 @@
 
 PORTNAME=	bsddb
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases python
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	ftp/python/${PORTVERSION}
@@ -14,23 +14,21 @@ COMMENT=	Standard Python bindings to the Berkeley DB library
 
 LICENSE=	python
 
-USE_BDB=	43+
-USE_PYTHON=	yes
-USE_PYDISTUTILS=yes
-USES=		tar:xz
+USE_BDB=	48+
+USE_PYTHON=	distutils autoplist
+USES=		python tar:xz
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
 
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
-PYDISTUTILS_AUTOPLIST=	yes
 
 MAKE_ENV=	BSDDB_VERSION=${BDB_LIB_NAME}
 
 .include <bsd.port.pre.mk>
 
-.if ${PYTHON_REL} >= 300
+.if ${PYTHON_REL} >= 3000
 IGNORE=	bsddb package was removed from core standard library since 3.0, use databases/py-bsddb3 instead
 .endif
 
