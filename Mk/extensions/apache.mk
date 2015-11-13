@@ -341,6 +341,7 @@ AP_BUILDEXT=	la
 APACHEMODDIR=	libexec/apache${APACHE_VERSION}
 APACHEINCLUDEDIR=include/apache${APACHE_VERSION}
 APACHEETCDIR=	etc/apache${APACHE_VERSION}
+APACHEBUILDDIR= share/apache${APACHE_VERSION}/build
 APACHE_PORT?=	www/apache${APACHE_VERSION}
 .endif
 
@@ -447,6 +448,14 @@ show-modules:
 
 .elif defined(AP_PORT_IS_MODULE)
 
+.if exists(${APXS})	 
+APR_CONFIG!=	${APXS} -q APR_CONFIG	 
+AP_LIBTOOL!=	${APR_CONFIG} --apr-libtool	 
+.else	 
+APR_CONFIG=	${LOCALBASE}/bin/apr-1-config	 
+AP_LIBTOOL=	${LOCALBASE}/build-1/libtool	 
+.endif
+
 .if defined(AP_FAST_BUILD)
 .if !target(ap-gen-plist)
 ap-gen-plist:
@@ -475,11 +484,14 @@ do-build: ap-gen-plist
 
 .if !target(do-install)
 do-install:
-.if defined(AP_MODENABLE)
-	@${APXS} -i -a -n ${SHORTMODNAME} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT}
-.else
-	@${APXS} -i -A -n ${SHORTMODNAME} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT}
-.endif
+	${MKDIR} ${PREFIX}/${APACHEMODDIR}
+	${TRUE_PREFIX}/${APACHEBUILDDIR}/instdso.sh SH_LIBTOOL=${AP_LIBTOOL} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT} ${PREFIX}/${APACHEMODDIR}
+
+#.if defined(AP_MODENABLE)
+#	@${APXS} -i -a -n ${SHORTMODNAME} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT}
+#.else
+#	@${APXS} -i -A -n ${SHORTMODNAME} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT}
+#.endif
 .endif
 .endif
 .endif
