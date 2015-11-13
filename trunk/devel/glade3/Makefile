@@ -1,11 +1,6 @@
-# New ports collection makefile for:	glade3
-# Date created:		Sun May 22 17:22:53 CEST 2005
-# Whom:			Koop Mast <kwm@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
 #   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
-#
 
 PORTNAME=	glade3
 PORTVERSION=	3.8.5
@@ -14,11 +9,12 @@ MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A user interface builder for GTK+/GNOME
+COMMENT=	User interface builder for GTK+/GNOME
+
 LICENSE=	gpl2
 
 INSTALLS_ICONS=	yes
-USE_GNOME=	gtk20 libxml2 gnomedocutils
+USE_GNOME=	gtk20 intltool libxml2 gnomedocutils
 USES=		gmake gettext libtool pathfix desktop-file-utils pkgconfig tar:xz
 INSTALLS_OMF=	yes
 INSTALL_TARGET=	install-strip
