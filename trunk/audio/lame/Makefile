@@ -4,7 +4,7 @@ PORTNAME=	lame
 PORTVERSION=	3.99.5
 PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/3.99
+MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.99
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MP3 encoder kit
@@ -21,9 +21,9 @@ CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
 
 RESTRICTED=	patent issues, see http://www.mp3licensing.com/
 
-MAN1=		lame.1
-
 DOC_FILES=	API LICENSE README TODO USAGE
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 
@@ -36,22 +36,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,test -d \.libs || mkdir,mkdir -p,' \
 		${WRKSRC}/libmp3lame/i386/Makefile.in
 
-.if defined(NOPORTDOCS)
-do-install:
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} \
-		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install-exec
-	@cd ${INSTALL_WRKSRC}/include && ${SETENV} ${MAKE_ENV} ${GMAKE} \
-		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install-data
-	@cd ${INSTALL_WRKSRC}/doc/man && ${SETENV} ${MAKE_ENV} ${GMAKE} \
-		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install-data
-.else
-post-install: install-doc
-
-install-doc:
-	@${MKDIR} ${DOCSDIR}
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmp3lame.so.0
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for file in ${DOC_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.post.mk>
