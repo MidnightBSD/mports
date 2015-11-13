@@ -1,282 +1,149 @@
 # $MidnightBSD$
 
 PORTNAME=	gpsd
-PORTVERSION=	3.6
-PORTREVISION=	1
+PORTVERSION=	3.14
 CATEGORIES=	astro geography
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Daemon that monitors one or more GPSes attached to a host computer
 
-LICENSE=	bsd4
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
 		xsltproc:${PORTSDIR}/textproc/libxslt
 
-USES=		pkgconfig python:2
-USE_SCONS=	yes
+USES=		cpe pathfix pkgconfig python scons
+CPE_VENDOR=	gpsd_project
 USE_RC_SUBR=	gpsd
-INSTALLS_EGGINFO=	yes
-PYDISTUTILS_EGGINFO=	gps-${PORTVERSION}.egg-info
 
-SCONS_BUILDENV=	${SCONS_ENV}
-SCONS_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig" \
-		chrpath=no
+MAKE_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig"
+MAKE_ENV=	DESTDIR="${FAKE_DESTDIR}"
 
-OPTIONS=	AIVDM "Aivdm support" on \
-		ASHTECH "Ashtech support" on \
-		CPPBIND "Build C++ bindings" on \
-		DBUS "DBUS support" off \
-		EARTHMATE "DeLorme EarthMate Zodiac support" on \
-		EVERMORE "Evermore binary support" on \
-		FV18 "San Jose Navigation FV-18 support" on \
-		GARMIN "Garmin kernel driver support" on \
-		GARMINTXT "Garmin Simple Text support" on \
-		GEOSTAR "Geostar Protocol support" on \
-		GPSCLOCK "GPSclock support" on \
-		GTK2 "Install py-gtk2 (required for xgps & xgpsspeed)" off \
-		IP6 "IPv6 support" on \
-		ITRAX "iTrax support" on \
-		MTK "MTK-3301 support" on \
-		NAVCOM "Navcom support" on \
-		NETFEED "Build support for handling TCP/IP data sources" on \
-		NCURSES "Build with ncurses(3)" off \
-		NMEA "NMEA support" on \
-		NTPSHM "NTP time hinting support" on \
-		NTRIP "NTRIP support" on \
-		OCEANSERVER "Oceanserver support" on \
-		OLDPROTO "Old (pre-JSON) protocol support in client lib" on \
-		ONCORE "Motorola OnCore chipset support" on \
-		PASSTHROUGH "Build support for passing through JSON" on \
-		PPS "PPS time syncing support" on \
-		PPSONCTS "PPS pulse on CTS rather than DCD" off \
-		PROFILING "Profiling support" off \
-		RECONFIGURE "Allow gpsd to change device settings" on \
-		RTCM104V2 "rtcm104v2 support" on \
-		RTCM104V3 "rtcm104v3 support" on \
-		SHMEXPORT "Enable export via shared memory" on \
-		SIRF "SiRF chipset support" on \
-		SOCKEXPORT "Enable export over sockets" on \
-		SUPERSTARII "SuperStarII support" on \
-		TIMING "Build latency timing support" on \
-		TNT "True North Technologies support" on \
-		TRIPMATE "DeLorme TripMate support" on \
-		TSIP "Trimble TSIP support" on \
-		QTBIND "build QT bindings" off \
-		UBX "UBX protocol support" on \
-		USB "libusb support for USB devices" on
+OPTIONS_DEFINE=	AIVDM ASHTECH CPPBIND DBUS EARTHMATE EVERMORE FURY FV18 GARMIN \
+		GARMINTXT GEOSTAR GPSCLOCK IPV6 ITRAX MTK NAVCOM NCURSES \
+		NETFEED NMEA0183 NTP NTPSHM NTRIP OCEANSERVER ONCORE \
+		PASSTHROUGH PPS PROFILING RECONFIGURE RTCM104V2 RTCM104V3 \
+		SHMEXPORT SIRF SOCKEXPORT SUPERSTARII TIMING TNT TRIPMATE \
+		TSIP QTBIND UBLOX USB
+OPTIONS_DEFAULT= AIVDM ASHTECH CPPBIND EARTHMATE EVERMORE FURY FV18 GARMIN \
+		GARMINTXT GEOSTAR GPSCLOCK ITRAX NAVCOM NCURSES NETFEED \
+		NMEA0183 NTP NTPSHM NTRIP OCEANSERVER ONCORE PASSTHROUGH \
+		RECONFIGURE RTCM104V2 RTCM104V3 SHMEXPORT SIRF SOCKEXPORT \
+		SUPERSTARII TIMING TNT TRIPMATE TSIP UBLOX USB
 
-.include <bsd.mport.options.mk>
-
-# Requires libusb.h available in 0.4
-.if ${OSVERSION} < 4015
-WITHOUT_USB=	yes
-.endif
+AIVDM_DESC=		Aivdm support
+ASHTECH_DESC=		Ashtech support
+CPPBIND_DESC=		Build C++ bindings
+EARTHMATE_DESC=		DeLorme EarthMate Zodiac support
+EVERMORE_DESC=		Evermore binary support
+FURY_DESC=		Jackson Labs Fury and Firefly support
+FV18_DESC=		San Jose Navigation FV-18 support
+GARMIN_DESC=		Garmin kernel driver support
+GARMINTXT_DESC=		Garmin Simple Text support
+GEOSTAR_DESC=		Geostar Protocol support
+GPSCLOCK_DESC=		GPSclock support
+ITRAX_DESC=		iTrax support
+MTK_DESC=		MTK-3301 support
+NAVCOM_DESC=		Navcom support
+NCURSES_DESC=		Build with ncurses
+NETFEED_DESC=		Build support for handling TCP/IP data sources
+NMEA0183_DESC=		NMEA0183 support
+NTP_DESC=		NTP time hinting support
+NTPSHM_DESC=		NTP time hinting support via shared memory
+NTRIP_DESC=		NTRIP support
+OCEANSERVER_DESC=	Oceanserver support
+ONCORE_DESC=		Motorola OnCore chipset support
+PASSTHROUGH_DESC=	Build support for passing through JSON
+PPS_DESC=		PPS time syncing support
+PROFILING_DESC=		Profiling support
+RECONFIGURE_DESC=	Allow gpsd to change device settings
+RTCM104V2_DESC=		rtcm104v2 support
+RTCM104V3_DESC=		rtcm104v3 support
+SHMEXPORT_DESC=		Enable export via shared memory
+SIRF_DESC=		SiRF chipset support
+SOCKEXPORT_DESC=	Enable export over sockets
+SUPERSTARII_DESC=	SuperStarII support
+TIMING_DESC=		Build latency timing support
+TNT_DESC=		True North Technologies support
+TRIPMATE_DESC=		DeLorme TripMate support
+TSIP_DESC=		Trimble TSIP support
+QTBIND_DESC=		build QT bindings
+UBLOX_DESC=		u-blox protocol support
+USB_DESC=		libusb support for USB devices
 
 # Options related to GPS protocols
-.if defined(WITHOUT_NMEA)
-SCONS_ARGS+=	nmea=no
-.endif
-
-.if defined(WITHOUT_ASHTECH)
-SCONS_ARGS+=	ashtech=no
-.endif
-
-.if defined(WITHOUT_EARTHMATE)
-SCONS_ARGS+=	earthmate=no
-.endif
-
-.if defined(WITHOUT_EVERMORE)
-SCONS_ARGS+=	evermore=no
-.endif
-
-.if defined(WITHOUT_FV18)
-SCONS_ARGS+=	fv18=no
-.endif
-
-.if defined(WITHOUT_GARMIN)
-SCONS_ARGS+=	garmin=no
-.endif
-
-.if defined(WITHOUT_GARMINTXT)
-SCONS_ARGS+=	garmintxt=no
-.endif
-
-.if defined(WITHOUT_GEOSTAR)
-SCONS_ARGS+=	geostar=no
-.endif
-
-.if defined(WITHOUT_ITRAX)
-SCONS_ARGS+=	itrax=no
-.endif
-
-.if defined(WITHOUT_MTK)
-SCONS_ARGS+=	mtk3301=no
-.endif
-
-.if defined(WITHOUT_NAVCOM)
-SCONS_ARGS+=	navcom=no
-.endif
-
-.if defined(WITHOUT_ONCORE)
-SCONS_ARGS+=	oncore=no
-.endif
-
-.if defined(WITHOUT_SIRF)
-SCONS_ARGS+=	sirf=no
-.endif
-
-.if defined(WITHOUT_SUPERSTARII)
-SCONS_ARGS+=	superstar2=no
-.endif
-
-.if defined(WITHOUT_TNT)
-SCONS_ARGS+=	tnt=no
-.endif
-
-.if defined(WITHOUT_TRIPMATE)
-SCONS_ARGS+=	tripmate=no
-.endif
-
-.if defined(WITHOUT_TSIP)
-SCONS_ARGS+=	tsip=no
-.endif
-
-.if defined(WITHOUT_UBX)
-SCONS_ARGS+=	ubx=no
-.endif
+NMEA0183_MAKE_ARGS_OFF=	nmea0183=no
+ASHTECH_MAKE_ARGS_OFF=	ashtech=no
+EARTHMATE_MAKE_ARGS_OFF=	earthmate=no
+EVERMORE_MAKE_ARGS_OFF=	evermore=no
+FURY_MAKE_ARGS_OFF=	fury=no
+FV18_MAKE_ARGS_OFF=	fv18=no
+GARMIN_MAKE_ARGS_OFF=	garmin=no
+GARMINTXT_MAKE_ARGS_OFF=	garmintxt=no
+GEOSTAR_MAKE_ARGS_OFF=	geostar=no
+ITRAX_MAKE_ARGS_OFF=	itrax=no
+MTK_MAKE_ARGS_OFF=	mtk3301=no
+NAVCOM_MAKE_ARGS_OFF=	navcom=no
+ONCORE_MAKE_ARGS_OFF=	oncore=no
+SIRF_MAKE_ARGS_OFF=	sirf=no
+SUPERSTARII_MAKE_ARGS_OFF=	superstar2=no
+TNT_MAKE_ARGS_OFF=	tnt=no
+TRIPMATE_MAKE_ARGS_OFF=	tripmate=no
+TSIP_MAKE_ARGS_OFF=	tsip=no
+UBLOX_MAKE_ARGS_OFF=	ublox=no
 
 # Options related to Non-GPS protocols
-.if defined(WITHOUT_AIVDM)
-SCONS_ARGS+=	aivdm=no
-.endif
-
-.if defined(WITHOUT_GPSCLOCK)
-SCONS_ARGS+=	gpsclock=no
-.endif
-
-.if defined(WITHOUT_NTRIP)
-SCONS_ARGS+=	ntrip=no
-.endif
-
-.if defined(WITHOUT_OCEANSERVER)
-SCONS_ARGS+=	oceanserver=no
-.endif
-
-.if defined(WITHOUT_RTCM104V2)
-SCONS_ARGS+=	rtcm104v2=no
-.endif
-
-.if defined(WITHOUT_RTCM104V3)
-SCONS_ARGS+=	rtcm104v3=no
-.endif
+AIVDM_MAKE_ARGS_OFF=	aivdm=no
+GPSCLOCK_MAKE_ARGS_OFF=	gpsclock=no
+NTRIP_MAKE_ARGS_OFF=	ntrip=no
+OCEANSERVER_MAKE_ARGS_OFF=	oceanserver=no
+RTCM104V2_MAKE_ARGS_OFF=	rtcm104v2=no
+RTCM104V3_MAKE_ARGS_OFF=	rtcm104v3=no
 
 # Time service
-.if defined(WITHOUT_NTPSHM)
-SCONS_ARGS+=	ntpshm=no
-.endif
-
-.if defined(WITHOUT_PPS)
-SCONS_ARGS+=	pps=no
-.else
-.	if defined(WITHOUT_NTPSHM)
-IGNORE=		PPS requires NTPSHM
-.	endif
-.endif
-
-.if defined(WITH_PPSONCTS)
-SCONS_ARGS+=	pps_on_cts=yes
-.endif
+NTP_MAKE_ARGS_OFF=	ntp=no
+NTPSHM_MAKE_ARGS_OFF=	ntpshm=no
+PPS_MAKE_ARGS_OFF=	pps=no
+PPS_IMPLIES=	NTPSHM
 
 # Export methods
-.if defined(WITHOUT_SOCKEXPORT)
-SCONS_ARGS+=	socket_export=no
-.endif
-
-.if defined(WITH_DBUS)
-LIB_DEPENDS+=	dbus:${PORTSDIR}/devel/dbus \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
-SCONS_ARGS+=	dbus_export=yes
-.endif
-
-.if defined(WITHOUT_SHMEXPORT)
-SCONS_ARGS+=	shm_export=no
-.endif
+SOCKEXPORT_MAKE_ARGS_OFF=	socket_export=no
+DBUS_LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
+DBUS_MAKE_ARGS=	dbus_export=yes
+SHMEXPORT_MAKE_ARGS_OFF=	shm_export=no
 
 # Communication
-.if defined(WITHOUT_USB)
-SCONS_ARGS+=	usb=no
-.endif
-
-.if defined(WITHOUT_IPV6)
-SCONS_ARGS+=	ipv6=no
-.endif
-
-.if defined(WITHOUT_NETFEED)
-SCONS_ARGS+=	netfeed=no
-.endif
-
-.if defined(WITHOUT_PASSTHROUGH)
-SCONS_ARGS+=	passthrough=no
-.endif
+USB_MAKE_ARGS_OFF=	usb=no
+IPV6_MAKE_ARGS_OFF=	ipv6=no
+NETFEED_MAKE_ARGS_OFF=	netfeed=no
+PASSTHROUGH_MAKE_ARGS_OFF=	passthrough=no
 
 # Other daemon options
-.if defined(WITHOUT_TIMING)
-SCONS_ARGS+=	timing=no
-.endif
+TIMING_MAKE_ARGS_OFF=	timing=no
 
 # Client-side options
-.if defined(WITHOUT_OLDPROTO)
-SCONS_ARGS+=	oldstyle=no
-.endif
-
-.if defined(WITH_QTBIND)
-USE_QT_VER=	4
-QT_COMPONENTS=	network
-SCONS_ARGS+=	libQgpsmm=yes
-PLIST_SUB+=	QTBIND=""
-.else
-SCONS_ARGS+=	libQgpsmm=no
-PLIST_SUB+=	QTBIND="@comment "
-.endif
-
-.if defined(WITHOUT_RECONFIGURE)
-SCONS_ARGS+=	reconfigure=no
-.endif
-
-.if defined(WITHOUT_CPPBIND)
-SCONS_ARGS+=	libgpsmm=no
-.endif
-
-.if defined(WITHOUT_NCURSES)
-SCONS_ARGS+=	ncurses=no
-PLIST_SUB+=	CURSES="@comment "
-.else
-PLIST_SUB+=	CURSES=""
-.endif
+NCURSES_MAKE_ARGS_OFF=	ncurses=no
+QTBIND_USE=	QT4=network
+QTBIND_MAKE_ARGS=	qt=yes
+QTBIND_MAKE_ARGS_OFF=	qt=no
+QTBIND_PLIST_SUB=	QTBIND=""
+QTBIND_PLIST_SUB_OFF=	QTBIND="@comment "
+RECONFIGURE_MAKE_ARGS_OFF=	reconfigure=no
+CPPBIND_MAKE_ARGS_OFF=	libgpsmm=no
 
 # Build control
-.if defined(WITH_PROFILING)
-SCONS_ARGS+=	profiling=yes
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Qgpsmm.pc.in
+PROFILING_MAKE_ARGS=	profiling=yes
 
 # generates .py[co] files for installed modules
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
 # with these files when module is imported from root user
 post-install:
-	@${FIND} ${PYTHON_SITELIBDIR:C/^${LOCALBASE}/${PREFIX}/}/gps \
-		-name "*.py" -exec \
-		${PYTHON_CMD} ${PYTHON_LIBDIR}/py_compile.py {} \;
-	@${SETENV} PYTHONOPTIMIZE=yes \
-		${FIND} ${PYTHON_SITELIBDIR:C/^${LOCALBASE}/${PREFIX}/}/gps \
-		-name "*.py" -exec \
-		${PYTHON_CMD} ${PYTHON_LIBDIR}/py_compile.py {} \;
-	@${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig/libgps.pc \
-		${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig/libgpsd.pc
+	(cd ${PREFIX} && \
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
 
 .include <bsd.port.mk>
