@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free library for decoding ATSC A/52 streams, aka AC-3
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake libtool
 GNU_CONFIGURE=	yes
@@ -30,8 +31,6 @@ DJBFFT_CONFIGURE_ON=	--enable-djbfft
 .if ${ARCH} == "amd64"
 CFLAGS+=	-fPIC
 .endif
-
-MAN1=	a52dec.1 extract_a52.1
 
 HEADER_FILES=	liba52/a52_internal.h
 
