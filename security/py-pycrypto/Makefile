@@ -13,13 +13,12 @@ COMMENT=	The Python Cryptography Toolkit
 LICENSE=	agg
 # publicdom and python license
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
+USES=		python
+USE_PYTHON=	distutils autoplist
 
-HAS_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf
+GNU_CONFIGURE=	yes
 
-OPTIONS_DEFINE=	GMP
+OPTIONS_DEFINE=		GMP
 OPTIONS_DEFAULT=	GMP
 GMP_DESC=	Use GMP for faster DSA/RSA operations
 
