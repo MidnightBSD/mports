@@ -7,7 +7,8 @@ CATEGORIES?=	graphics
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt imageformat plugins for GIF, JPEG, MNG and SVG
+COMMENT=	Qt plugins for several image formats
+
 LICENSE=	gpl3
 
 LIB_DEPENDS=	libmng.so:${PORTSDIR}/graphics/libmng \
