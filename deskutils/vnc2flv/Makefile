@@ -21,6 +21,6 @@ OPTIONS_DEFINE=	X11
 X11_RUN_DEPENDS=x11vnc:${PORTSDIR}/net/x11vnc
 
 post-install:
-	${STRIP_CMD} ${PYTHONPREFIX_SITELIBDIR}/flvscreen.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/flvscreen.so
 
 .include <bsd.port.mk>
