@@ -17,7 +17,6 @@ SUBDIR += dri2proto
 SUBDIR += editres
 SUBDIR += etoile
 SUBDIR += etoile-idle
-SUBDIR += etoile-iterm
 SUBDIR += etoile-xwindowserverkit
 SUBDIR += evieext
 SUBDIR += fixesproto
