@@ -41,6 +41,8 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 BUILD_WRKSRC=	${WRKSRC}/src/plugins/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
+PLIST_SUB+=	QT_PLUGINDIR_REL=${QT_PLUGINDIR_REL}
+
 pre-configure:
 	${MKDIR} ${WRKSRC}/mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
