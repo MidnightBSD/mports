@@ -85,7 +85,6 @@ SUBDIR += linux-realplayer
 SUBDIR += mjpegtools
 SUBDIR += mp4v2
 SUBDIR += mpeg2codec
-SUBDIR += mpeg4ip-libmp4v2
 SUBDIR += mplayer
 SUBDIR += mplayer-skins
 SUBDIR += phonon
