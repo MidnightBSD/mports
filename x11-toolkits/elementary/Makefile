@@ -2,7 +2,7 @@
 
 PORTNAME=	elementary
 PORTVERSION=	1.15.0
-CATEGORIES=	x11-toolkits enlightenment
+CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
