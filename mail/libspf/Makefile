@@ -6,8 +6,7 @@ DISTVERSION=	1.0.0-p5
 PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.libspf.org/files/src/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	mnag/${PORTNAME}
+		FREEBSD_LOCAL/mnag/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sender Policy Framework (SPF) library and client
@@ -17,15 +16,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 MAKE_JOBS_UNSAFE=yes
 
-INSTALL_TARGET=	install-strip
-USES=		tar:bzip2 libtool
 GNU_CONFIGURE=	yes
-
+INSTALL_TARGET=	install-strip
+USES=		autoreconf libtool tar:bzip2
 USE_LDCONFIG=	yes
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	RFC_RECURSION LOGFILE_STATS DEBUG DOCS
+OPTIONS_DEFINE=	RFC_RECURSION LOGFILE_STATS DEBUG DOCS EXAMPLES
 RFC_RECURSION_DESC=	Change SPF recursion to 20 (as per RFC)
 LOGFILE_STATS_DESC=	Enables logfile stats
 
@@ -43,9 +41,8 @@ CONFIGURE_ARGS+=	--enable-logfile-stats
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} -e "s|CFLAGS =|CFLAGS +=|" \
-		${WRKSRC}/src/libspf/Makefile.in ${WRKSRC}/src/spfqtool/Makefile.in
+post-extract:
+	@${CHMOD} u+w ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
