@@ -26,6 +26,6 @@ CONFIGURE_ARGS=	--disable-xvfb --disable-xnest \
 SLAVE_PORT=	yes
 
 do-install:
-	cd ${WRKSRC}/hw/dmx; ${MAKE} install
+	cd ${WRKSRC}/hw/dmx; ${FAKE_MAKEENV} ${MAKE} ${FAKE_MAKEARGS} install
 
 .include "${MASTERDIR}/Makefile"
