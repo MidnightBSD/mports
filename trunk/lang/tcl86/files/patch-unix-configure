@@ -1,59 +1,28 @@
---- configure.orig	Fri Mar 28 14:41:53 2008
-+++ configure	Sun May  4 03:00:38 2008
-@@ -6633,7 +6633,7 @@
-     LDFLAGS_ARCH=""
-     TCL_EXPORT_FILE_SUFFIX=""
-     UNSHARED_LIB_SUFFIX=""
--    TCL_TRIM_DOTS='`echo ${VERSION} | tr -d .`'
-+    TCL_TRIM_DOTS=`echo ${VERSION} | tr -d .`
-     ECHO_VERSION='`echo ${VERSION}`'
-     TCL_LIB_VERSIONS_OK=ok
-     CFLAGS_DEBUG=-g
-@@ -7615,7 +7615,7 @@
- 	    UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
- 	    TCL_LIB_VERSIONS_OK=nodots
- 	    ;;
--	NetBSD-*|FreeBSD-*)
-+	NetBSD-*|FreeBSD-*|MidnightBSD-*)
- 	    # FreeBSD 3.* and greater have ELF.
- 	    # NetBSD 2.* has ELF and can use 'cc -shared' to build shared libs
- 	    SHLIB_CFLAGS="-fPIC"
-@@ -7624,7 +7624,7 @@
- 	    SHLIB_SUFFIX=".so"
- 	    DL_OBJS="tclLoadDl.o"
- 	    DL_LIBS=""
--	    LDFLAGS="$LDFLAGS -export-dynamic"
-+	    LDFLAGS=""
- 	    if test $doRpath = yes; then
- 
- 		CC_SEARCH_FLAGS='-Wl,-rpath,${LIB_RUNTIME_DIR}'
-@@ -7635,16 +7635,16 @@
- 
- 		# The -pthread needs to go in the CFLAGS, not LIBS
- 		LIBS=`echo $LIBS | sed s/-pthread//`
--		CFLAGS="$CFLAGS -pthread"
--	    	LDFLAGS="$LDFLAGS -pthread"
-+		CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-+	    	LDFLAGS="$LDFLAGS $PTHREAD_LIBS"
- 
+--- configure.orig	2015-03-11 09:59:56.000000000 -0400
++++ configure	2015-11-12 23:17:33.244839706 -0500
+@@ -7746,7 +7746,7 @@
  fi
  
- 	    case $system in
+ 	    ;;
+-	FreeBSD-*)
++	FreeBSD-*|MidnightBSD-*)
+ 	    # This configuration from FreeBSD Ports.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="${CC} -shared"
+@@ -7769,15 +7769,11 @@
+ 		LDFLAGS="$LDFLAGS $PTHREAD_LIBS"
+ fi
+ 
+-	    case $system in
 -	    FreeBSD-3.*)
-+	    FreeBSD-*|MidnightBSD-*)
- 	    	# FreeBSD-3 doesn't handle version numbers with dots.
- 	    	UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
--	    	SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so'
-+	    	SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so.1'
- 	    	TCL_LIB_VERSIONS_OK=nodots
- 		;;
- 	    esac
-@@ -8634,7 +8634,7 @@
- 	    AIX-*) ;;
- 	    BSD/OS*) ;;
- 	    IRIX*) ;;
--	    NetBSD-*|FreeBSD-*) ;;
-+	    NetBSD-*|FreeBSD-*|MidnightBSD-*) ;;
- 	    Darwin-*) ;;
- 	    SCO_SV-3.2*) ;;
- 	    *) SHLIB_CFLAGS="-fPIC" ;;
+ 		# Version numbers are dot-stripped by system policy.
+ 		TCL_TRIM_DOTS=`echo ${VERSION} | tr -d .`
+ 		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so'
++		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so.1'
+ 		TCL_LIB_VERSIONS_OK=nodots
+-		;;
+-	    esac
+ 	    ;;
+ 	Darwin-*)
+ 	    CFLAGS_OPTIMIZE="-Os"
