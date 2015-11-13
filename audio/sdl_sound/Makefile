@@ -8,15 +8,16 @@ MASTER_SITES=	http://offload1.icculus.org:9090/SDL_sound/downloads/ \
 DISTNAME=	SDL_sound-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A SDL audio library and player for some popular sound file formats
+COMMENT=	SDL audio library and player for some popular sound file formats
+
 LICENSE=	lgpl
 
-USES=	libtool
+USES=		libtool
 USE_LDCONFIG=	yes
 USE_SDL=	sdl
 CONFIGURE_ARGS=	--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 OPTIONS=	FLAC "Enable flac support" on \
 		MIKMOD "Enable mikmod support" on \
@@ -29,32 +30,32 @@ OPTIONS=	FLAC "Enable flac support" on \
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_FLAC)
-LIB_DEPENDS+=	FLAC.10:${PORTSDIR}/audio/flac
+LIB_DEPENDS+=	libFLAC.so:${PORTSDIR}/audio/flac
 .else
 CONFIGURE_ARGS+=--disable-flac
 .endif
 
 .if !defined(WITHOUT_MIKMOD)
-LIB_DEPENDS+=	mikmod.2:${PORTSDIR}/audio/libmikmod
+LIB_DEPENDS+=	libmikmod.so:${PORTSDIR}/audio/libmikmod
 .else
 CONFIGURE_ARGS+=--disable-mikmod
 .endif
 
 .if !defined(WITHOUT_PHYSFS)
-LIB_DEPENDS+=	physfs.1:${PORTSDIR}/devel/physfs
+LIB_DEPENDS+=	libphysfs.so:${PORTSDIR}/devel/physfs
 .else
 CONFIGURE_ARGS+=--disable-physfs
 .endif
 
 .if !defined(WITHOUT_SMPEG)
-LIB_DEPENDS+=	smpeg.1:${PORTSDIR}/multimedia/smpeg
+LIB_DEPENDS+=	libsmpeg.so:${PORTSDIR}/multimedia/smpeg
 CONFIGURE_ARGS+=--disable-mpglib
 .else
 CONFIGURE_ARGS+=--disable-smpeg
 .endif
 
 .if !defined(WITHOUT_SPEEX)
-LIB_DEPENDS+=	speex.1:${PORTSDIR}/audio/speex
+LIB_DEPENDS+=	libspeex.so:${PORTSDIR}/audio/speex
 .else
 CONFIGURE_ARGS+=--disable-speex
 .endif
@@ -67,7 +68,7 @@ CONFIGURE_ARGS+=--disable-midi
 .endif
 
 .if !defined(WITHOUT_VORBIS)
-LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 .else
 CONFIGURE_ARGS+=--disable-ogg
 .endif
