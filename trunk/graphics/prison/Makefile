@@ -4,20 +4,20 @@
 PORTNAME=	prison
 PORTVERSION=	1.0
 PORTREVISION=	1
-CATEGORIES=	graphics kde
+CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A barcode library for KDE
+COMMENT=	Barcode library for KDE
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dmtx.0:${PORTSDIR}/graphics/libdmtx \
-		qrencode.3:${PORTSDIR}/graphics/libqrencode
+LIB_DEPENDS=	libdmtx.so:${PORTSDIR}/graphics/libdmtx \
+		libqrencode.so:${PORTSDIR}/graphics/libqrencode
 
 USE_QT4=	corelib gui qmake_build moc_build rcc_build uic_build
 USES=		cmake
-MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
