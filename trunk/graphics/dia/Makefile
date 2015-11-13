@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	dia
-DISTVERSION=	0.97.1
-PORTREVISION=	2
+PORTVERSION=	0.97.3
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -10,79 +10,49 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Diagram creation program, similar to Visio
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
+OPTIONS_DEFINE=	DOCS
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gtk20 gnomehack gnomeprefix libxslt libartlgpl2 intlhack \
-		desktopfileutils
-WANT_GNOME=	yes
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig tar:xz
+USE_GNOME=	gtk20 gnomeprefix libxslt libartlgpl2 intlhack
 INSTALLS_ICONS=	yes
-USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -lintl" \
-		LOCALBASE="${LOCALBASE}"
+CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}"
 CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--disable-gnome
+INSTALL_TARGET=	install-strip
 
-MAN1=		dia.1
-MANLANG=	"" fr
+DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_PYTHON)
-USE_PYTHON=	yes
-USE_GNOME+=	pygtk2
-CONFIGURE_ARGS=	--with-python
-PLIST_SUB+=	PYTHON=""
-.else
-PLIST_SUB+=	PYTHON="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "i386"
-LIB_DEPENDS+=		EMF.1:${PORTSDIR}/graphics/libemf
-CONFIGURE_ARGS+=	--enable-libemf
-PLIST_SUB+=		WMF=""
-.else
+#.if ${ARCH} == "i386"
+#LIB_DEPENDS+=		libEMF.so:${PORTSDIR}/graphics/libemf
+#CONFIGURE_ARGS+=	--enable-libemf
+#PLIST_SUB+=		WMF=""
+#.else
 CONFIGURE_ARGS+=	--disable-libemf
 PLIST_SUB+=		WMF="@comment "
-.endif
-
-.if ${HAVE_GNOME:Mlibgnomeui}!=""
-USE_GNOME+=		libgnomeui
-INSTALLS_OMF=		yes
-CONFIGURE_ARGS+=	--enable-gnome
-PKGNAMESUFFIX=		-gnome
-GNOME_ENABLED=		yes
-PLIST_SUB+=		GNOME=""
-.else
-CONFIGURE_ARGS+=	--disable-gnome
-PLIST_SUB+=		GNOME="@comment "
-.endif
+#.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/lib/intl.c
-.if defined(NOPORTDOCS)
-	@${FIND} ${WRKSRC}/doc -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-		's|$$(examples)||g ; s|$$(mkinstalldirs) $$(sysdoc)/examples||g ; \
-		s|$$(mkinstalldirs) $$(sysdoc)||g'
-.endif
-.ifndef (GNOME_ENABLED)
+	@${REINPLACE_CMD} -e 's|glib/gstrfuncs.h>|glib.h>|g' \
+		-e 's|glib/gtestutils.h|glib.h|g' \
+		${WRKSRC}/objects/custom/shape_typeinfo.c \
+		${WRKSRC}/tests/test-objects.c \
+		${WRKSRC}/tests/test-boundingbox.c
 	@${FIND} ${WRKSRC} -name Makefile.in | \
 		${XARGS} ${REINPLACE_CMD} -e \
-		's,\(^GTK_LIBS.*\),\1 ${PTHREAD_LIBS}, ; \
-		 s,\(^GTK_CFLAGS = \),\1 ${PTHREAD_CFLAGS} ,'
-.endif
-
-pre-configure:
+		's,\(^GTK_LIBS.*\),\1 -lpthread,'
 	@${REINPLACE_CMD} -e 's|http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl|${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl| ; \
-		s|echo aout|echo elf|g ; s|/usr/include/libEMF|${LOCALBASE}/include/libEMF|g' \
-		${WRKSRC}/configure
+		s|/usr/include/libEMF|${LOCALBASE}/include/libEMF|g ; \
+		s|-lstdc++||g'  ${WRKSRC}/configure
 
-post-install:
-	@-update-desktop-database
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
