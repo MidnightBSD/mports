@@ -34,7 +34,7 @@ CISCOVERSION_DESC=	Mask linux presentation string
 
 OPTIONS_DEFAULT=DECRYPT
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDECRYPT}
 MANPAGE1=	cisco-decrypt.1
