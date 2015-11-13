@@ -3,7 +3,7 @@
 # $FreeBSD: head/graphics/evas_generic_loaders-svg/Makefile 384128 2015-04-16 21:55:10Z bapt $
 
 PORTNAME=	svg
-PORTVERSION=	1.13.2
+PORTVERSION=	1.15.0
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PKGNAMEPREFIX:S/-//}/
 PKGNAMEPREFIX=	evas_generic_loaders-
