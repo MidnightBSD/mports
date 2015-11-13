@@ -180,7 +180,6 @@ SUBDIR += sdl_image
 SUBDIR += sdl_ttf
 SUBDIR += silgraphite
 SUBDIR += svgalib
-SUBDIR += svgviewer
 SUBDIR += tiff
 SUBDIR += vigra
 SUBDIR += vindaloo
