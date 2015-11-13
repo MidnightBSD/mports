@@ -4,11 +4,12 @@ PORTNAME=	imlib2
 PORTVERSION=	1.4.6
 PORTREVISION=	6
 PORTEPOCH=	2
-CATEGORIES=	graphics enlightenment
+CATEGORIES=	graphics
 MASTER_SITES=	SF/enlightenment/imlib2-src/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The next generation graphics library for Enlightenment
+
 LICENSE=	unknown
 
 LICENSE=	imlib2
