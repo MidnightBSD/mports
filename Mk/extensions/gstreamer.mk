@@ -380,6 +380,8 @@ IGNORE=	cannot install: unknown gstreamer ${GST_VERSION} plugin -- ${ext}
 .endif
 
 .if defined(USE_GSTREAMER1)
+LIB_DEPENDS+=	libgstreamer-1.0.so:${PORTSDIR}/multimedia/gstreamer1
+BUILD_DEPENDS+= gst-play-1.0:${PORTSDIR}/multimedia/gstreamer1-plugins
 .for ext in ${USE_GSTREAMER1}
 ${ext}_GST_PREFIX?=	gstreamer1-plugins-
 ${ext}_GST_VERSION?=	${GST1_VERSION}${GST1_MINIMAL_VERSION}
