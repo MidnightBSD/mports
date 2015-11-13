@@ -27,7 +27,7 @@ PORTDOCS=	*
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|__APPLE__|__FreeBSD__|' \
+	@${REINPLACE_CMD} -e 's|__APPLE__|__MidnightBSD__|' \
 		${WRKSRC}/src/SFXManager.cpp
 	@${REINPLACE_CMD} -e 's|sound/|${DATADIR}/sound/|g' \
 		${WRKSRC}/src/SFXManager.cpp
