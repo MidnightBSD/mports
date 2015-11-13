@@ -93,7 +93,7 @@ PORTEXAMPLES=	examples_camltk examples_labltk
 IGNORE=requires X11 support to build TK bindings
 . endif
 USE_TK=		84+
-#USES+=		tk:84+
+USES+=		tk:84+
 PLIST_SUB+=	TK=""
 CONFIGURE_ARGS+=	-tkdefs \
 			"-I${TCL_INCLUDEDIR} -I${TK_INCLUDEDIR} ${THR_CPP}" \
