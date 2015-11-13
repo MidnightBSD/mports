@@ -1,5 +1,4 @@
-# Created by: torstenb@FreeBSD.org
-# $FreeBSD: head/misc/mc/Makefile 369159 2014-09-24 05:29:56Z nemysis $
+# $MidnightBSD$
 
 PORTNAME=	mc
 PORTVERSION=	4.8.13
@@ -12,10 +11,10 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}.png:icons
 EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 LIB_DEPENDS=	libssh2.so:${PORTSDIR}/security/libssh2
 
