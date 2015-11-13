@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libcaca
-DISTVERSION=	0.99.beta18
-PORTREVISION=	0
+DISTVERSION=	0.99.beta19
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://caca.zoy.org/raw-attachment/wiki/libcaca/
 
@@ -11,54 +11,51 @@ COMMENT=	Graphics library that outputs text instead of pixels
 LICENSE=	unknown
 # this guy has his own license, gpl and lgpl stuff... ?
 
-USE_GNOME=	gnomehack ltverhack pkgconfig
+USES=		libtool pathfix pkgconfig
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-doc \
 		--enable-ncurses \
 		--disable-java \
 		--disable-csharp \
 		--disable-ruby \
-		--disable-python
+		--disable-python \
+		--disable-cppunit \
+		--disable-zzuf
+INSTALL_TARGET=	install-strip
 
 DOCS=		AUTHORS COPYING COPYING.GPL COPYING.LGPL ChangeLog NEWS \
 		NOTES README THANKS
-MAN1=		caca-config.1 cacademo.1 cacafire.1 cacaplay.1 cacaserver.1 \
-		cacaview.1 img2txt.1
 
-.if defined(WITHOUT_X11)
-CONFIGURE_ARGS+=--disable-x11
-.else
-USE_XORG=	x11
-.endif
+OPTIONS_DEFINE=	X11 IMLIB2 FTGL SLANG DOCS
+OPTIONS_DEFAULT=	X11 IMLIB2
+X11_DESC=	X11 and OpenGL support
+FTGL_DESC=	Freetype font rendering in OpenGL
 
-.if defined(WITHOUT_IMLIB2)
-CONFIGURE_ARGS+=--disable-imlib2
-.else
-USE_EFL+=	imlib2
-.endif
+X11_USE=	XORG=x11 GL=glut
+X11_CONFIGURE_OFF=	--disable-x11 --disable-gl
+IMLIB2_LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
+IMLIB2_CONFIGURE_ENABLE=	imlib2
+SLANG_LIB_DEPENDS=	libslang.so.2:${PORTSDIR}/devel/libslang2
+SLANG_CONFIGURE_ENABLE=	slang=${LOCALBASE}
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
-.if defined(WITH_SLANG)
-LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
-CONFIGURE_ARGS+=--enable-slang
-.else
-CONFIGURE_ARGS+=--disable-slang
+.if ${PORT_OPTIONS:MFTGL} && ${PORT_OPTIONS:MX11}
+LIB_DEPENDS+=	libftgl.so:${PORTSDIR}/graphics/ftgl
 .endif
 
 post-patch:
+.if ! ${PORT_OPTIONS:MFTGL}
+	@${REINPLACE_CMD} -e '/PKG_CONFIG.*ftgl/ s|ftgl|no-&|' ${WRKSRC}/configure
+.endif
 	@${REINPLACE_CMD} -e 's|-g -O2 ||g ; s| -fomit-frame-pointer||g ; \
 		s|arpa\/inet.h ||g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|: install-docDATA|:|g ; s| csharp||g' \
 			${WRKSRC}/Makefile.in
 
-.ifndef (NOPORTDOCS)
 post-install:
-	@${MKDIR} ${DOCSDIR}
-.for i in ${DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

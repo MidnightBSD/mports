@@ -11,25 +11,23 @@ include/caca.h
 include/caca0.h
 include/caca_conio.h
 include/caca_types.h
-include/cucul.h
 lib/libcaca++.a
-lib/libcaca++.la
 lib/libcaca++.so
 lib/libcaca++.so.0
+lib/libcaca++.so.0.99.19
 lib/libcaca.a
-lib/libcaca.la
 lib/libcaca.so
 lib/libcaca.so.0
-lib/libcucul++.la
-lib/libcucul++.so
-lib/libcucul++.so.0
-lib/libcucul.la
-lib/libcucul.so
-lib/libcucul.so.0
+lib/libcaca.so.0.99.19
 libdata/pkgconfig/caca++.pc
 libdata/pkgconfig/caca.pc
-libdata/pkgconfig/cucul++.pc
-libdata/pkgconfig/cucul.pc
+man/man1/caca-config.1.gz
+man/man1/cacademo.1.gz
+man/man1/cacafire.1.gz
+man/man1/cacaplay.1.gz
+man/man1/cacaserver.1.gz
+man/man1/cacaview.1.gz
+man/man1/img2txt.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/COPYING.GPL
@@ -40,6 +38,3 @@ libdata/pkgconfig/cucul.pc
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%%%DOCSDIR%%/THANKS
 %%DATADIR%%/caca.txt
-@dirrm %%DATADIR%%
-@dirrmtry lib/jni
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
