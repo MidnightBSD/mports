@@ -13,14 +13,14 @@ MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 MAINTAINER=	stevan_tiefert_midnight@yahoo.de
 COMMENT=	Super Tux is a side-scroller similar to Super Mario Brothers
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-debug
-USE_SDL=	sdl mixer image
-USE_GL=		yes
-USE_GMAKE=	yes
+USE_SDL=	mixer image
+USE_GL=		gl
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,Menu::,,' ${WRKSRC}/src/menu.h
