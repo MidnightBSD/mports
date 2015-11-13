@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	devhelp
-PORTVERSION=	3.14.0
+PORTVERSION=	3.16.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,10 +12,11 @@ COMMENT=	Developer help browser for GNOME 3
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libwebkitgtk-3.0.so:${PORTSDIR}/www/webkit-gtk3
+LIB_DEPENDS=	libwebkit2gtk-4.0.so:${PORTSDIR}/www/webkit2-gtk3
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gnomeprefix gtk30 intlhack libxslt
+USES=		compiler:c++11-lib gettext gmake libtool pathfix \
+		pkgconfig tar:xz
+USE_GNOME=	gtk30 intlhack libxslt
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
