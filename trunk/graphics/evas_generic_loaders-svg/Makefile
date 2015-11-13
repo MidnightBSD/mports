@@ -25,9 +25,9 @@ USE_LDCONFIG=	yes
 BINSRC=		${WRKSRC}/src/bin/${PORTNAME}
 
 do-build:
-	${MAKE} ${MAKE_ARGS} -C ${BINSRC}
+	${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} -C ${BINSRC}
 
 do-install:
-	${MAKE} ${MAKE_ARGS} -C ${BINSRC} install
+	${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} -C ${BINSRC} install
 
 .include <bsd.port.mk>
