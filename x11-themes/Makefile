@@ -10,7 +10,6 @@ SUBDIR += etoile-azbackground
 SUBDIR += etoile-camaelon
 SUBDIR += etoile-etoilemenus
 SUBDIR += etoile-iconkit
-SUBDIR += etoile-wildmenus
 SUBDIR += gnome-backgrounds
 SUBDIR += gnome-icon-theme-symbolic
 SUBDIR += gnome-themes
