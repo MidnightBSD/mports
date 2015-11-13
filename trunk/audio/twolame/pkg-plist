@@ -1,9 +1,9 @@
 bin/twolame
 include/twolame.h
 lib/libtwolame.a
-lib/libtwolame.la
 lib/libtwolame.so
 lib/libtwolame.so.0
+lib/libtwolame.so.0.0.0
 libdata/pkgconfig/twolame.pc
 %%DOCSDIR%%/api.txt
 %%DOCSDIR%%/html/api.html
@@ -26,5 +26,4 @@ libdata/pkgconfig/twolame.pc
 %%DOCSDIR%%/html/vbr.html
 %%DOCSDIR%%/psycho.txt
 %%DOCSDIR%%/vbr.txt
-@dirrm %%DOCSDIR%%/html
-@dirrm %%DOCSDIR%%
+man/man1/twolame.1.gz
