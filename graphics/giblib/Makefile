@@ -2,31 +2,28 @@
 
 PORTNAME=	giblib
 PORTVERSION=	1.2.4
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://linuxbrit.co.uk/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A utility library that includes a wrapper for imlib2
 
-LICENSE=	other
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	Imlib2.5:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
 
-USES=	pathfix pkgconfig
-USE_AUTOTOOLS=	libtool
+USES=		pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+MAKE_ARGS=	docsdir=${DOCSDIR}
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|: install-docsDATA|:|g' ${WRKSRC}/Makefile.in
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in AUTHORS ChangeLog README TODO
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-.endif
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgiblib.so
 
 .include <bsd.port.mk>
