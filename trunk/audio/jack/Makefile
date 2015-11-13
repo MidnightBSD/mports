@@ -20,7 +20,7 @@ LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		gmake pathfix pkgconfig libtool:keepla
+USES=		gmake pathfix pkgconfig libtool
 USE_BDB=	48+
 
 CONFIGURE_ARGS=	--disable-portaudio \
@@ -30,8 +30,6 @@ CFLAGS+=	-I${BDB_INCLUDE_DIR}
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -L${BDB_LIB_DIR}
 INSTALL_TARGET=	install-strip
-
-LATEST_LINK=	jack
 
 OPTIONS_DEFINE=	ALSA DOXYGEN READLINE
 OPTIONS_DEFAULT=READLINE
