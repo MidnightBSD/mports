@@ -3,7 +3,7 @@
 
 PORTNAME=	gocr
 PORTVERSION=	0.50
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
@@ -16,7 +16,8 @@ LIB_DEPENDS=	libnetpbm.so:${PORTSDIR}/graphics/netpbm
 
 USES=		gmake
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-netpbm=${LOCALBASE}
+CONFIGURE_ARGS=	--with-netpbm=${LOCALBASE}
+MAKE_ARGS=	prefix=${TRUE_PREFIX} exec_prefix=${TRUE_PREFIX} DESTDIR=${FAKE_DESTDIR}
 
 PLIST_FILES=	bin/gocr \
 		man/man1/gocr.1.gz
@@ -32,9 +33,6 @@ DOC_FILES2=	*.dtd *.xml *.html *.txt *.fig *.png
 
 OPTIONS_DEFINE=	X11 DOCS
 OPTIONS_DEFAULT=	X11
-
-# This port doesn't understand what DESTDIR is supposed to do.
-FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} mandir=/man ${MAKE_ARGS}
 
 .include <bsd.mport.options.mk>
 
