@@ -26,7 +26,9 @@ etc/openldap/schema/pmi.ldif
 @sample etc/openldap/schema/pmi.schema.sample
 etc/openldap/schema/ppolicy.ldif
 @sample etc/openldap/schema/ppolicy.schema.sample
-%%BACK_BDB%%etc/DB_CONFIG.example
+@sample etc/openldap/slapd.conf.sample
+@sample etc/openldap/slapd.ldif.sample
+%%BACK_BDB%%etc/openldap/DB_CONFIG.example
 %%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%
 %%SLAPI%%lib/libslapi-%%OPENLDAP_MAJOR%%.so.%%SHLIB_MAJOR%%.%%SHLIB_MINOR%%
 %%SLAPI%%lib/libslapi.a
@@ -161,7 +163,7 @@ sbin/slapindex
 sbin/slappasswd
 sbin/slapschema
 sbin/slaptest
-@dir etc/schema
+@dir etc/openldap/schema
 %%MODULES%%@dir libexec/openldap
 @dir(%%LDAP_USER%%,%%LDAP_GROUP%%,775) %%LDAP_RUN_DIR%%
 @dir(%%LDAP_USER%%,%%LDAP_GROUP%%,775) %%DATABASEDIR%%
