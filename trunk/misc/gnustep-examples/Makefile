@@ -12,10 +12,8 @@ COMMENT=	GNUstep example applications
 
 LICENSE=	gpl2
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 USE_GL=		yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
