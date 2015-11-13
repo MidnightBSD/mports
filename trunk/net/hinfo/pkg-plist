@@ -1,7 +1,7 @@
 bin/hinfo
 etc/hinfo.conf
 etc/hinfo.conf.example
-man/man1/hinfo.1
-man/man5/hinfo.conf.5
+man/man1/hinfo.1.gz
+man/man5/hinfo.conf.5.gz
 sbin/hinfo-update
 @unexec rm -fR %%PREFIX%%/lib/hinfo
