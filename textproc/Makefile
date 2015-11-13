@@ -94,6 +94,7 @@ SUBDIR += p5-Text-Autoformat
 SUBDIR += p5-Text-Balanced
 SUBDIR += p5-Text-Diff
 SUBDIR += p5-Text-Glob
+SUBDIR += p5-Text-Patch
 SUBDIR += p5-Text-RecordParser
 SUBDIR += p5-Text-Reform
 SUBDIR += p5-Text-TabularDisplay
