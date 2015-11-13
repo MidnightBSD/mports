@@ -95,6 +95,8 @@ SUB_LIST+=	OPTION_USER="true"
 SUB_LIST+=	OPTION_USER=""
 .endif
 
+post-extract: dos2unix
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|@PREFIX@|${PREFIX}|' \
 		${WRKSRC}/client/hostinfo_unix.cpp
