@@ -5,7 +5,6 @@ DISTVERSION=	1.7.0
 PORTREVISION=	1
 CATEGORIES=	games emulators
 MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreter for several adventure games
@@ -23,7 +22,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--disable-debug \
 		--disable-nasm \
 		--disable-tremor
-LDFLAGS+=	${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	VORBIS MP3 PNG FLAC FLUIDSYNTH MT32EMU DOCS
 FLUIDSYNTH_DESC=	FluidSynth MIDI synthesizer
