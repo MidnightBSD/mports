@@ -11,7 +11,7 @@ COMMENT=	Library for camera RAW files decoding
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
+LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs
 
 USES=		jpeg pkgconfig
 USE_GNOME=	libxml2
