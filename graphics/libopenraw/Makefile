@@ -8,14 +8,12 @@ MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for camera RAW files decoding
+
 LICENSE=	gpl3
 
-# we only need boost libs, but since most ports use
-# boost-python, go with that for now
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
 
-MAKE_JOBS_SAFE=	yes
+USES=		jpeg pkgconfig
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
