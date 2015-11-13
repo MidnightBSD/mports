@@ -19,7 +19,6 @@ SUBDIR += ezm3
 SUBDIR += f2c
 SUBDIR += gawk
 SUBDIR += gcc
-SUBDIR += gcc42
 SUBDIR += gcc46
 SUBDIR += gcc47
 SUBDIR += gcc48
