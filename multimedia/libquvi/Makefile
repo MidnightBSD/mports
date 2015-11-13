@@ -22,13 +22,12 @@ LUAJIT_DESC=	Use LuaJIT instead of Lua
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		iconv libtool pathfix pkgconfig tar:xz
+USES=		iconv libtool pathfix pkgconfig tar:xz lua
 USE_LDCONFIG=	yes
 
 PORTDOCS=	*
 
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
-LUAJIT_USES_OFF=	lua
 
 post-patch-LUAJIT-off:
 	@${REINPLACE_CMD} 's|lua-5.1|lua-${LUA_VER}|g' ${WRKSRC}/configure
