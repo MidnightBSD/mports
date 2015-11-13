@@ -9,8 +9,8 @@ MASTER_SITES=	http://www.fastcgi.com/dist/ \
 DISTNAME=	mod_fastcgi-SNAP-0910052141
 DIST_SUBDIR=	apache2
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Apache 2.2 Fast-cgi module
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Apache 2.2 fast-cgi module
 
 LICENSE=	other
 
@@ -18,14 +18,12 @@ USE_APACHE=	22+
 AP_FAST_BUILD=	yes
 AP_GENPLIST=	yes
 SRC_FILE=	*.c
-PORTDOCS=	LICENSE.TERMS mod_fastcgi.html
+PORTDOCS=	mod_fastcgi.html
+
+FAKE_OPTS=	prefixhack
 
 post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/docs/${f} ${DOCSDIR}
-.endfor
-.endif
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/docs/|} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
