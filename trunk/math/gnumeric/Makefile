@@ -1,94 +1,68 @@
 # $MidnightBSD$
 
 PORTNAME=	gnumeric
-PORTVERSION=	1.10.17
-PORTREVISION=	1
+PORTVERSION=	1.12.23
 CATEGORIES=	math gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNOME 2 spreadsheet
-LICENSE=        gpl2
+COMMENT=	GNOME spreadsheet
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
-LIB_DEPENDS=	goffice-0.8.8:${PORTSDIR}/devel/goffice \
-		psiconv.10:${PORTSDIR}/converters/psiconv
+LIB_DEPENDS=	libgoffice-0.10.so:${PORTSDIR}/devel/goffice010 \
+		libpsiconv.so:${PORTSDIR}/converters/psiconv
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
-USE_XZ=		yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier pygtk2 \
-		desktopfileutils
-WANT_GNOME=	yes
-USE_PYTHON=	yes
+USES=		cpe desktop-file-utils gettext gmake libtool pathfix pkgconfig \
+		python:2 shebangfix tar:xz
+USE_GNOME=	intlhack libgsf pygobject3
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
-USE_CSTD=	gnu89
-WANT_PERL=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-gnome --disable-silent-rules
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -liconv ${PTHREAD_LIBS}" \
-		python_prog=${PYTHON_VERSION}
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-MAKE_JOBS_SAFE=	yes
+CONFIGURE_ARGS=	--disable-compile-warnings \
+		--without-paradox \
+		--enable-introspection
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+
+CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.gnumeric.dialogs.gschema.xml \
 		org.gnome.gnumeric.gschema.xml \
 		org.gnome.gnumeric.plugin.gschema.xml
 
-MAN1=		gnumeric.1 ssconvert.1 ssindex.1 ssgrep.1
+SHEBANG_FILES=	plugins/perl-func/perl_func.pl
 
-PLIST_SUB=	VERSION=${PORTVERSION} GOFFICE=0.8.17
+PLIST_SUB=	VERSION=${PORTVERSION} \
+		GOFFICE=0.10 \
+		SHORT_VER=${PORTVERSION:R}
 
-OPTIONS=	PERL "Enable Perl as extension language" on
-#GNOMEDB "Enable libgnomedb support" off
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	PERL GDA
+OPTIONS_DEFAULT=PERL
+GDA_DESC=	Gnome Database Access plugin
+PERL_DESC=	Support Perl as extension language
 
-.include <bsd.port.pre.mk>
+PERL_USES=	perl5
+PERL_CONFIGURE_WITH=	perl
 
-.if ${HAVE_GNOME:Mlibgnomeui}!=""
-CONFIGURE_ARGS+=--with-gnome=yes
-USE_GNOME+=	libgnomeui libgsf_gnome
-.else
-CONFIGURE_ARGS+=--with-gnome=no
-USE_GNOME+=	libgsf
-.endif
-
-.if defined(WITH_PERL)
-USE_PERL5=		yes
-PLIST_SUB+=		PERL=""
-.else
-CONFIGURE_ARGS+=	--without-perl
-PLIST_SUB+=		PERL="@comment "
-.endif
-
-#.if defined(WITH_GNOMEDB)
-#USE_GNOME+=		libgnomedb
-#CONFIGURE_ARGS+=	--with-gda
-#PLIST_SUB+=		GNOMEDB=""
-#.else
-CONFIGURE_ARGS+=	--without-gda
-PLIST_SUB+=		GNOMEDB="@comment "
-#.endif
+GDA_CONFIGURE_WITH=	gda
+GDA_USE=	GNOME=libgda5-ui
 
 post-patch:
-	@${RM} -f ${WRKSRC}/GNOME_Gnumeric.server.in
-	@${REINPLACE_CMD} -e 's|gda-3.0 >= 3.1.1|gda-3.0 >= 3.0.1|g' \
-		-e 's|gnomedb-3.0 >= 3.0.1|gnomedb-3.0 >= 3.0.0|g' \
-		-e 's|gnumeric_with_gconf=true|gnumeric_with_gconf=false|g' \
-			${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|^GETTEXT_PACKAGE=gnumeric-$${VERSION}|GETTEXT_PACKAGE=gnumeric|g' \
+		${WRKSRC}/configure
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/gnumeric.desktop ${PREFIX}/share/applications
-	${INSTALL_DATA} ${WRKSRC}/gnumeric.mime ${PREFIX}/share/mime-info
-	@-update-desktop-database
-.for dir in share lib
-	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${PREFIX}/${dir}/gnumeric
-.endfor
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py -d \
+		${PREFIX}/${dir}/gnumeric -f ${STAGEDIR}${PREFIX}/lib/gnumeric/${PORTVERSION}
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d \
+		${PREFIX}/${dir}/gnumeric -f ${STAGEDIR}${PREFIX}/lib/gnumeric/${PORTVERSION}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
