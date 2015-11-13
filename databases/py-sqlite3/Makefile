@@ -16,6 +16,8 @@ LICENSE=	python
 LICENSE_FILE=	${WRKDIR}/Python-${PORTVERSION}/LICENSE
 
 LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 USES=		python tar:xz
 USE_PYTHON=	autoplist distutils
