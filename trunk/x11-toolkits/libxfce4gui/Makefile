@@ -12,15 +12,15 @@ DIST_SUBDIR=	xfce4
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Various Gtk widgets for the Xfce Desktop
 
-LICENSE=	lgpl
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	gtk20 intltool intlhack libglade2
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libutil
+USE_XFCE=	libutil
 USE_XORG=	sm x11
-USES=	pathfix pkgconfig libtool tar:bzip2 gmake gettext-tools
+USES=		pathfix pkgconfig libtool tar:bzip2 gmake gettext-tools
 
 CONFIGURE_ARGS+=--disable-gtk-doc-html
 
