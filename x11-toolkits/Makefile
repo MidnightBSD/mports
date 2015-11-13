@@ -53,6 +53,7 @@ SUBDIR += py-tkinter
 SUBDIR += py-vte
 SUBDIR += qt4-declarative
 SUBDIR += qt4-gui
+SUBDIR += sdl_pango
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
 SUBDIR += tk84
