@@ -14,8 +14,8 @@ COMMENT=	Gstreamer Plugins Mp3 decoder meta-port
 
 LICENSE=	agg
 
-NO_BUILD=	yes
 NO_INSTALL=	yes
+NO_BUILD=	yes
 NO_MTREE=	yes
 WANT_GSTREAMER=	yes
 
@@ -33,5 +33,8 @@ USE_GSTREAMER+=	mad
 .if ${PORT_OPTIONS:MFLUENDO}
 USE_GSTREAMER+=	fluendo-mp3
 .endif
+
+post-extract:
+	${MKDIR} ${WRKSRC}
 
 .include <bsd.port.mk>
