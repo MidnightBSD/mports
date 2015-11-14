@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python pgsql
 USE_PYTHON=	distutils autoplist
+USE_PGSQL=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/py-psycopg2
 EXAMPLESDIR=	${PREFIX}/share/examples/py-psycopg2
