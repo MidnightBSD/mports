@@ -162,6 +162,7 @@ SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-xml
+SUBDIR += py3-libxml2
 SUBDIR += qt4-xml
 SUBDIR += qt4-xmlpatterns
 SUBDIR += qt4-xmlpatterns-tool
