@@ -1,5 +1,5 @@
---- psycopg/config.h.orig	2015-11-13 19:16:42.574838932 -0500
-+++ psycopg/config.h	2015-11-13 19:16:55.001643787 -0500
+--- psycopg/config.h.orig	2015-06-15 05:48:36.000000000 -0400
++++ psycopg/config.h	2015-11-13 19:18:25.412200192 -0500
 @@ -141,17 +141,6 @@
  #endif
  #endif
@@ -15,6 +15,6 @@
 -}
 -#endif
 -
- /* postgresql < 7.4 does not have PQfreemem */
- #ifndef HAVE_PQFREEMEM
- #define PQfreemem free
+ /* resolve missing isinf() function for Solaris */
+ #if defined (__SVR4) && defined (__sun)
+ #include <ieeefp.h>
