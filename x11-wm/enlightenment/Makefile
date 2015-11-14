@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	enlightenment
-PORTVERSION=	0.19.5
+PORTVERSION=	0.19.9
 PORTEPOCH=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
@@ -38,6 +38,8 @@ OPTIONS_SUB=	yes
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
+
+PLIST_SUB+=	ARCH=${ARCH}
 
 post-patch:
 	@${REINPLACE_CMD} -e \
