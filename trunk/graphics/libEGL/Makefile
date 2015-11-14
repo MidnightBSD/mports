@@ -13,8 +13,10 @@ LIB_DEPENDS+=	libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libdevq.so:${PORTSDIR}/devel/libdevq \
 		libdrm.so:${PORTSDIR}/graphics/libdrm
+BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py3-libxml2
 
 USES+=		python:3
+PYTHON_VERSION=	python3.3
 
 USE_XORG=	x11 xau xcb xdmcp
 
