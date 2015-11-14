@@ -3,7 +3,7 @@
 PORTNAME=	enlightenment
 PORTVERSION=	0.19.5
 PORTEPOCH=	2
-CATEGORIES=	x11-wm enlightenment
+CATEGORIES=	x11-wm
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
