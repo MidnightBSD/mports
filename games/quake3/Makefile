@@ -1,10 +1,5 @@
-# New ports collection makefile for:	quake3
-# Date created:				23 August 2005
-# Whom:					pypt
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/quake3/Makefile,v 1.18 2007/11/07 00:37:19 pav Exp $
-#
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c
@@ -18,6 +13,7 @@ DISTNAME=	${PORTNAME}-${REALVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quake III Arena -- first person shooter (native build)
+
 LICENSE=	gpl2
 
 USES=		dos2unix gmake zip
@@ -42,13 +38,11 @@ PLIST_SUB=	LIBDIR="${LIBDIR:S/${PREFIX}\///}"
 
 LIBDIR=		${PREFIX}/lib/${PORTNAME}
 REALVERSION=	1.32b
-VM_ARCHS=	i386 powerpc
+VM_ARCHS=	i386
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == "i386"
 BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
-.endif
 
 .for i in ${ARCH}
 .   if ${VM_ARCHS:M${i}} != ""
@@ -100,6 +94,8 @@ Q3BIN+=		quake3-smp
 .else
 PLIST_SUB+=	SMP="@comment "
 .endif
+
+post-extract: dos2unix
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|botlib\.log|/dev/null|' \
