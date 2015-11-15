@@ -12,8 +12,8 @@ COMMENT=	Image viewer that utilizes Imlib2
 
 LICENSE=	mit
 
-LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
-		giblib.1:${PORTSDIR}/graphics/giblib
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
+		libgiblib.so:${PORTSDIR}/graphics/giblib
 
 USES=		gmake tar:bzip2
 USE_XORG=	x11 xt xinerama
