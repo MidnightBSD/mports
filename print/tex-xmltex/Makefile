@@ -34,4 +34,11 @@ pre-install:
 
 do-install:  do-texhash do-fmtutil
 
+post-install:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.log \
+		${PREFIX}/share/texmf-var/web2c/pdftex/xmltex.fmt \
+		${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.log \
+		${PREFIX}/share/texmf-var/web2c/pdftex/pdfxmltex.fmt
+
 .include <bsd.port.mk>
