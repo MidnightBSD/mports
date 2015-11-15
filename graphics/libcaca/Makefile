@@ -8,6 +8,7 @@ MASTER_SITES=	http://caca.zoy.org/raw-attachment/wiki/libcaca/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics library that outputs text instead of pixels
+
 LICENSE=	unknown
 # this guy has his own license, gpl and lgpl stuff... ?
 
@@ -39,7 +40,7 @@ IMLIB2_CONFIGURE_ENABLE=	imlib2
 SLANG_LIB_DEPENDS=	libslang.so.2:${PORTSDIR}/devel/libslang2
 SLANG_CONFIGURE_ENABLE=	slang=${LOCALBASE}
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MFTGL} && ${PORT_OPTIONS:MX11}
 LIB_DEPENDS+=	libftgl.so:${PORTSDIR}/graphics/ftgl
@@ -55,7 +56,7 @@ post-patch:
 			${WRKSRC}/Makefile.in
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 
 .include <bsd.port.mk>
