@@ -1,8 +1,0 @@
-System/Library/Etoile/SystemTaskList.plist
-System/Library/Headers/WorkspaceCommKit/NSWorkspace+Communication.h
-System/Library/Libraries/libWorkspaceCommKit.so
-System/Library/Libraries/libWorkspaceCommKit.so.%%MAJORLIBVERSION%%
-System/Library/Libraries/libWorkspaceCommKit.so.%%LIBVERSION%%
-System/Tools/etoile_system
-@dirrm System/Library/Etoile
-@dirrm System/Library/Headers/WorkspaceCommKit
