@@ -28,6 +28,7 @@ INSTALL_TARGET=	install-strip
 
 USE_LDCONFIG=	yes
 USES+=		tcl:${SHORT_TK_VER}
+USE_TCL=	86
 USE_XORG=	x11 xft xscrnsaver
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared \
