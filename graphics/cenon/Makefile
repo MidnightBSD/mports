@@ -32,7 +32,7 @@ FULL_LIBRARY_DESC=	Install complete Cenon Library
 DISTFILES+=	CenonLibrary-${FULLVERSION}-1${EXTRACT_SUFX}
 
 pre-install:
-	${MKDIR} ${GNUSTEP_LOCAL_ROOT}/Library/
+	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_LOCAL_ROOT}/Library/
 	${TAR} -xyvf ${_DISTDIR}/CenonLibrary-${FULLVERSION}-1${EXTRACT_SUFX} \
 		-C ${FAKE_DESTDIR}${GNUSTEP_LOCAL_ROOT}/Library/ \
 		--exclude COPYING --exclude '._*'
