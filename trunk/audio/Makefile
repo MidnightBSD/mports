@@ -9,7 +9,6 @@ SUBDIR += cdparanoia
 SUBDIR += celt
 SUBDIR += esound
 SUBDIR += espeak
-SUBDIR += etoile-volumecontrolmenulet
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += flac
