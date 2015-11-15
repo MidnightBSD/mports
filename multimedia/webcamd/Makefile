@@ -108,7 +108,7 @@ pre-install:
 
 post-install:
 	@${MKDIR} ${PREFIX}/etc/devd
-	${SED} -e "s|%%PREFIX%%|${PREFIX}|g" \
+	${SED} -e "s|%%PREFIX%%|${TRUE_PREFIX}|g" \
 		< ${FILESDIR}/webcamd.conf.in > ${WRKDIR}/webcamd.conf
 	${INSTALL_DATA} "${WRKDIR}/webcamd.conf" ${PREFIX}/etc/devd
 
