@@ -8,18 +8,16 @@ MASTER_SITES=	http://feh.finalrewind.org/ \
 MASTER_SITE_SUBDIR=	uqs
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An image viewer that utilizes Imlib2
+COMMENT=	Image viewer that utilizes Imlib2
+
 LICENSE=	mit
 
 LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
 		giblib.1:${PORTSDIR}/graphics/giblib
 
+USES=		gmake tar:bzip2
 USE_XORG=	x11 xt xinerama
 USE_PERL5_RUN=	yes
-USE_GMAKE=	yes
-USE_BZIP2=	yes
-
-MAN1=		feh.1 feh-cam.1 gen-cam-menu.1
 
 CPPFLAGS+=	-I${LOCALBASE}/include -std=c99
 LDFLAGS+=	-L${LOCALBASE}/lib
