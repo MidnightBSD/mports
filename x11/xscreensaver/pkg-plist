@@ -211,7 +211,7 @@ bin/xscreensaver-hacks/xspirograph
 bin/xscreensaver-hacks/zoom
 bin/xscreensaver-text
 %%PAM%%etc/pam.d/xscreensaver
-lib/X11/app-defaults/XScreenSaver
+@comment lib/X11/app-defaults/XScreenSaver
 man/man1/xscreensaver-command.1.gz
 man/man1/xscreensaver-demo.1.gz
 man/man1/xscreensaver-getimage-file.1.gz
