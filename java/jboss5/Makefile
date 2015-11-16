@@ -11,7 +11,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source J2EE application server (5.x family)
 LICENSE=	unknown
 
-LATEST_LINK=	jboss5
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 JAVA_OS=	native
@@ -19,8 +18,6 @@ ANT_HOME=	${WRKSRC}/tools
 ANT=		${WRKSRC}/tools/bin/ant
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
-
-MANUAL_PACKAGE_BUILD=	fetches files in build phase
 
 MAKE_ARGS=	-buildfile build/build.xml
 
