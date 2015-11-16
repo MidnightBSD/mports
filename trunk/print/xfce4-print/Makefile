@@ -20,7 +20,7 @@ RUN_DEPENDS+=	a2ps:${PORTSDIR}/print/a2ps
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USES=		gettext gmake pkgconfig pathfix tar:bzip2
-USE_GNOME=	glib20 gnomehack gtk20 intltool intlhack
+USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libgui libutil xfconf
 
