@@ -13,6 +13,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Yahoo! JavaScript and CSS Compressor
 
+LICENSE=	unknown
+
 NO_WRKSUBDIR=	yes
 
 USE_JAVA=	yes
