@@ -123,7 +123,7 @@ pre-build:
 .if ${LIBGDA4_SLAVE}=="no"
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/data/config \
-		${PREFIX}/etc/libgda-${VERSION}/config.default
+		${PREFIX}/etc/libgda-${VERSION}/config.sample
 .endif
 
 .include <bsd.port.mk>
