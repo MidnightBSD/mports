@@ -19,6 +19,8 @@ USE_QT4=	corelib gui moc_build qmake_build rcc_build uic_build
 
 PLIST_FILES=	bin/${PORTNAME}
 
+post-extract: dos2unix
+
 do-configure:
 	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${QMAKE} ${PORTNAME}_2_0.pro \
 		${QMAKEFLAGS})
