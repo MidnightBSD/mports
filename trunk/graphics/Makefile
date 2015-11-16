@@ -100,7 +100,6 @@ SUBDIR += libglesv2
 SUBDIR += libgnomecanvas
 SUBDIR += libgphoto2
 SUBDIR += libgxps
-SUBDIR += libksane
 SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libopenraw
