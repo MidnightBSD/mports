@@ -22,7 +22,7 @@ INSTALLS_ICONS=	yes
 USES=		gettext gmake pkgconfig pathfix tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libgui libutil xfconf
+USE_XFCE=	libgui libutil xfconf
 
 OPTIONS_DEFINE=	LETTER
 OPTIONS_DEFAULT=	LPR
