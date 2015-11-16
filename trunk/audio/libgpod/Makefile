@@ -14,7 +14,7 @@ LIB_DEPENDS=	plist:${PORTSDIR}/devel/libplist \
 		tag:${PORTSDIR}/audio/taglib \
 		sgutils2:${PORTSDIR}/sysutils/sg3_utils
 
-USE_GNOME=	gtk20
+USE_GNOME=	gtk20 intltool
 USE_SQLITE=	3
 USES=		gettext tar:bzip2
 GNU_CONFIGURE=	yes
