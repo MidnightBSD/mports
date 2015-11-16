@@ -11,7 +11,7 @@ COMMENT=	Convenience functions for the Render extension
 
 LICENSE=	mit
 
-LIB_DEPENDS=	xcb-util:${PORTSDIR}/x11/xcb-util
+LIB_DEPENDS=	libxcb-util.so:${PORTSDIR}/x11/xcb-util
 
 USES=		gmake pkgconfig tar:bzip2
 USE_XORG=	xcb xorg-macros
