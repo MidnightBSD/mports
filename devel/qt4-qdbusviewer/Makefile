@@ -8,15 +8,15 @@ PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 D-BUS viewer
+
 LICENSE=	gpl3
 
-LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
 USE_QT4=	qmake_build moc_build rcc_build corelib dbus gui xml \
 		clucene
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -43,8 +43,6 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 BUILD_WRKSRC=	${WRKSRC}/tools/qdbus/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
-
-EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 post-patch:
 	${MKDIR} ${WRKSRC}/mkspecs
