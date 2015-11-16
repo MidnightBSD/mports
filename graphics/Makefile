@@ -159,7 +159,6 @@ SUBDIR += poppler-data
 SUBDIR += poppler-glib
 SUBDIR += poppler-qt4
 SUBDIR += poppler-utils
-SUBDIR += popplerkit
 SUBDIR += preview
 SUBDIR += price
 SUBDIR += prison
