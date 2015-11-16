@@ -18,6 +18,7 @@ USE_SDL=	sdl
 CONFIGURE_ARGS=	--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+HAS_CONFIGURE=	yes
 
 OPTIONS=	FLAC "Enable flac support" on \
 		MIKMOD "Enable mikmod support" on \
