@@ -1,10 +1,5 @@
-# New ports collection makefile for:   py-avahi
-# Date Created:			06 May 2006
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/net/py-avahi/Makefile,v 1.16 2008/07/03 21:53:55 mezz Exp $
-#
 
 PORTREVISION=	0
 CATEGORIES=	net gnome python
@@ -13,11 +8,12 @@ PKGNAMESUFFIX=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface to the Avahi mDNS system
+
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm \
 		${PYTHON_SITELIBDIR}/dbus/_dbus.py:${PORTSDIR}/devel/py-dbus
-LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm \
 		${PYTHON_SITELIBDIR}/dbus/_dbus.py:${PORTSDIR}/devel/py-dbus
 
@@ -29,9 +25,8 @@ PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	python
 
-USE_GNOME=	gnomehack  pygtk2
-USE_PYTHON=	yes
-MAN1=		avahi-bookmarks.1 avahi-discover.1
+USES+=		python:2
+USE_GNOME=	pygtk2
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@pkglibdir@|${DATADIR}|' \
