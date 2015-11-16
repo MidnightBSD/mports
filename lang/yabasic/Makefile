@@ -24,9 +24,7 @@ post-build test:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/yabasic.htm ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
