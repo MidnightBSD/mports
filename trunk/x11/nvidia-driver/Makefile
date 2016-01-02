@@ -75,7 +75,7 @@ EXTRA_PATCHES+=	${FILESDIR}/legacy-patch-x11-driver-Makefile
 
 # Fix recent arbitrary memory access vulnerability in legacy drivers
 .if ${NVVERSION} <= 190.053
-.  if ${NVVERSION} != 173.01435
+.  if ${NVVERSION} != 173.01439
 EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-0946
 .  endif
 EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-4225
