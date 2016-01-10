@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nano
-PORTVERSION=	2.4.2
+PORTVERSION=	2.4.3
 CATEGORIES=	editors
 MASTER_SITES=	http://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
 
