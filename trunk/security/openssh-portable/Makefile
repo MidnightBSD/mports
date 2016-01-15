@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	openssh
-DISTVERSION=	6.9p1
-PORTREVISION=	2
+DISTVERSION=	7.1p2
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -60,9 +60,9 @@ HPN_CONFIGURE_WITH=		hpn
 NONECIPHER_CONFIGURE_WITH=	nonecipher
 
 # See http://www.roumenpetrov.info/openssh/
-X509_VERSION=		8.4
+X509_VERSION=		8.5
 X509_PATCH_SITES=	http://www.roumenpetrov.info/openssh/x509-${X509_VERSION}/:x509
-X509_PATCHFILES=	${PORTNAME}-6.9p1+x509-${X509_VERSION}.diff.gz:-p1:x509
+X509_PATCHFILES=	${PORTNAME}-7.0p1+x509-${X509_VERSION}.diff.gz:-p1:x509
 
 # See https://bugzilla.mindrot.org/show_bug.cgi?id=2016
 # and https://bugzilla.mindrot.org/show_bug.cgi?id=1604
@@ -109,22 +109,17 @@ EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn:-p2
 PATCHFILES+=	openssh-6.7p1-gsskex-all-20141021-284f364.patch.gz:-p1:gsskex
 .endif
 
-
-.if ${OSVERSION} >= 4016
 CONFIGURE_LIBS+=	-lutil
-.endif
 
-# 900007 is when utmp(5) was removed and utmpx(3) added
-.if ${OSVERSION} >= 4016
 CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp --disable-wtmpx --without-lastlog
-.else
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-sshd-utmp-size
-.endif
+
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hostkeyalg_plus:-p1
 
 # Keep this last
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-version-addendum
 
 .if ${PORT_OPTIONS:MX509}
+BROKEN=	Patch does not apply with 7.1
 .  if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
 BROKEN=		X509 patch and HPN patch do not apply cleanly together
 .  endif
