@@ -2,8 +2,8 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.2
-DISTVERSIONSUFFIX=	e
-PORTREVISION=	6
+DISTVERSIONSUFFIX=	f
+PORTREVISION=	7
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
 		ftp://ftp.openssl.org/source/ \
@@ -13,7 +13,10 @@ DIST_SUBDIR=	${DISTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL and crypto library
 
-LICENSE=	other
+LICENSE=	openssl
+LICENSE_NAME=	OpenSSL License
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 .ifdef USE_OPENSSL
 .error You have `USE_OPENSSL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
