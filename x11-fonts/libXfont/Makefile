@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libXfont
-PORTVERSION=	1.4.9
-PORTREVISION=	1
+PORTVERSION=	1.5.1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
