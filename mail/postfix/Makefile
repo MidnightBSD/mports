@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	postfix
-PORTVERSION=	2.11.4
+PORTVERSION=	2.11.5
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/official/ \
 		ftp://ftp.tux.org/pub/net/postfix/official/ \
