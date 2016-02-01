@@ -21,6 +21,7 @@ SUBDIR += automake-wrapper
 SUBDIR += automake14
 SUBDIR += automoc4
 SUBDIR += autotools
+SUBDIR += awscli
 SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += boehm-gc
