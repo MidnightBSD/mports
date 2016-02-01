@@ -2,11 +2,10 @@
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
-PORTREVISION=	5
+PORTREVISION=	15
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ece.uvic.ca/~mdadams/jasper/software/ \
-		${MASTER_SITE_IMAGEMAGICK}
-MASTER_SITE_SUBDIR=	ImageMagick/delegates
+		ftp://ftp.imagemagick.org/pub/ImageMagick/delegates/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the codec specified in the JPEG-2000 standard
@@ -22,11 +21,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-shared --enable-static
 USE_LDCONFIG=	yes
 
-MASTER_SITE_IMAGEMAGICK=	\
-	ftp://ftp.imagemagick.org/pub/%SUBDIR%/ \
-	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/&,}
-
-OPTIONS_DEFINE= OPENGL UUID DOCS
+OPTIONS_DEFINE=	OPENGL UUID DOCS
 UUID_DESC=	UUID support (required by GDAL)
 
 .include <bsd.mport.options.mk>
