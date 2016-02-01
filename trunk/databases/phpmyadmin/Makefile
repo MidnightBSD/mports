@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	4.2.10.1
+DISTVERSION=	4.5.1
 CATEGORIES=	databases www
-MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME}/${DISTVERSION}
+MASTER_SITES=	https://files.phpmyadmin.net/${PORTNAME}/${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,8 +15,8 @@ USES=		cpe shebangfix tar:xz
 CPE_PRODUCT=	${PORTNAME:tl}
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-IGNORE_WITH_PHP=52
-USE_PHP=	ctype session filter mbstring json mysqli
+IGNORE_WITH_PHP=54
+USE_PHP=	ctype session filter mbstring json spl mysqli
 .endif
 
 # Note: default settings will pull in X11 client support.  If you don't
