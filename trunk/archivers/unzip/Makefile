@@ -2,7 +2,7 @@
 
 PORTNAME=	unzip
 PORTVERSION=	6.0
-PORTREVISION=	3
+PORTREVISION=	7
 CATEGORIES=	archivers
 MASTER_SITES=	SF/infozip/UnZip%206.x%20%28latest%29/UnZip%20${PORTVERSION}/:main \
 		SF/infozip/UnZip%205.x%20and%20earlier/5.51/:unreduce
@@ -14,18 +14,14 @@ COMMENT?=	List, test, and extract compressed files from a ZIP archive
 
 LICENSE=	infozip
 
+USES=		cpe
+CPE_VENDOR=	info-zip
 ALL_TARGET=	bsd
-
 MAKEFILE=	unix/Makefile
 MAKE_ARGS=	LF2="${STRIP}"
-.if defined(INSTALL_AS_INFOUNZIP)
-UNZIP_NAME=	info-unzip
-.else
-UNZIP_NAME=	unzip
-.endif
 PORTDOCS=	README WHERE
-MANPAGES=	${UNZIP_NAME}.1 funzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
-PLIST_FILES=	bin/${UNZIP_NAME} bin/funzip bin/unzipsfx bin/zipgrep \
+MANPAGES=	unzip.1 funzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
+PLIST_FILES=	bin/unzip bin/funzip bin/unzipsfx bin/zipgrep \
 		bin/zipinfo
 PLIST_FILES+=	${MANPAGES:C|^(.*)\.([1-9])$|man/man\2/\1.\2.gz|}
 
@@ -85,22 +81,15 @@ CATEGORIES+=	russian
 EXTRA_PATCHES+=	${FILESDIR}/extra-ru-patch-ebcdic.h
 .endif
 
-.if !defined(INSTALL_AS_INFOUNZIP)
-pre-fetch:
-	@${ECHO} ""
-	@${ECHO} "Use INSTALL_AS_INFOUNZIP=yes to install Info Unzip as ${PREFIX}/bin/info-unzip"
-	@${ECHO} ""
-.endif
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/unzip \
-		${STAGEDIR}${PREFIX}/bin/${UNZIP_NAME}
+		${PREFIX}/bin
 	cd ${WRKSRC} && \
 		${INSTALL_PROGRAM} funzip unzipsfx ${STAGEDIR}${PREFIX}/bin
-	${LN} -sf ${UNZIP_NAME} ${STAGEDIR}${PREFIX}/bin/zipinfo
+	${LN} -sf unzip ${PREFIX}/bin/zipinfo
 	${INSTALL_SCRIPT} ${WRKSRC}/unix/zipgrep ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/man/unzip.1 \
-		${STAGEDIR}${MAN1PREFIX}/man/man1/${UNZIP_NAME}.1
+		${MAN1PREFIX}/man/man1
 	cd ${WRKSRC}/man && ${INSTALL_MAN} ${MANPAGES:Nunzip.1:Ninfo-unzip.1} \
 		${STAGEDIR}${MAN1PREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
