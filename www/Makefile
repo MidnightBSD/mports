@@ -18,7 +18,6 @@ SUBDIR += dummyflash
 SUBDIR += drupal7
 SUBDIR += epiphany
 SUBDIR += fcgi
-SUBDIR += firefox-remote
 SUBDIR += furl
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
