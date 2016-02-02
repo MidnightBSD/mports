@@ -2,6 +2,7 @@
 
 PORTNAME=	bluefish
 PORTVERSION=	2.2.7
+PORTREVISION=	1
 CATEGORIES=	www editors
 MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
 		http://bluefish.mrball.net/stable/source/ \
@@ -20,7 +21,7 @@ USE_LDCONFIG=	yes
 
 USES=		gmake pkgconfig desktop-file-utils shared-mime-info \
 		tar:bzip2 libtool
-USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata
+USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata intltool
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
