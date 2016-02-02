@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	links
-DISTVERSION=	2.8
-PORTREVISION=	1
+DISTVERSION=	2.9
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://links.twibright.com/download/ LOCAL/bf
