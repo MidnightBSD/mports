@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mDNSResponder
-PORTVERSION=	541
+PORTVERSION=	567
 CATEGORIES=	net dns
 MASTER_SITES=	http://opensource.apple.com/tarballs/${PORTNAME}/
 
