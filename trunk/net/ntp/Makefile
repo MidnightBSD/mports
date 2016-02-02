@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.8p4
+PORTVERSION=	4.2.8p6
 PORTREVISION=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
