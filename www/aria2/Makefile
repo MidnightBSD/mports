@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	aria2
-PORTVERSION=	1.19.0
+PORTVERSION=	1.19.3
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION}
 
@@ -42,7 +42,7 @@ PORTDOCS=	*
 CA_BUNDLE_CONFIGURE_OFF=--without-ca-bundle
 CA_BUNDLE_CONFIGURE_ON=	--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-NLS_CONFIGURE_OFF=	--disable-nls
+NLS_CONFIGURE_OFF=	--disable-nls --without-libintl-prefix
 NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
 NLS_USES=		gettext
 SQLITE_CONFIGURE_OFF=	--without-sqlite3
