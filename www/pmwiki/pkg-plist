@@ -91,6 +91,7 @@
 %%PMWIKIDIR%%/wikilib.d/PmWiki.BasicEditing
 %%PMWIKIDIR%%/wikilib.d/PmWiki.BasicVariables
 %%PMWIKIDIR%%/wikilib.d/PmWiki.Blocklist
+%%PMWIKIDIR%%/wikilib.d/PmWiki.BlockMarkup
 %%PMWIKIDIR%%/wikilib.d/PmWiki.Categories
 %%PMWIKIDIR%%/wikilib.d/PmWiki.ChangeLog
 %%PMWIKIDIR%%/wikilib.d/PmWiki.ConditionalMarkup
@@ -206,15 +207,6 @@
 %%PMWIKIDIR%%/wikilib.d/SiteAdmin.GroupAttributes
 %%PMWIKIDIR%%/wikilib.d/SiteAdmin.SiteAdmin
 %%PMWIKIDIR%%/wikilib.d/SiteAdmin.Status
-@dirrm %%PMWIKIDIR%%/wikilib.d
-@dirrm %%PMWIKIDIR%%/wiki.d
-@dirrm %%PMWIKIDIR%%/scripts
-@dirrm %%PMWIKIDIR%%/pub/skins/print
-@dirrm %%PMWIKIDIR%%/pub/skins/pmwiki
-@dirrm %%PMWIKIDIR%%/pub/skins
-@dirrm %%PMWIKIDIR%%/pub/guiedit
-@dirrm %%PMWIKIDIR%%/pub/css
-@dirrm %%PMWIKIDIR%%/pub
-@dirrm %%PMWIKIDIR%%/local
-@dirrm %%PMWIKIDIR%%/cookbook
-@dirrmtry %%PMWIKIDIR%%
+@dir(%%WWWOWN%%,%%WWWGRP%%,775) %%PMWIKIDIR%%/wiki.d
+@dir %%PMWIKIDIR%%/pub/css
+@dir(%%WWWOWN%%,%%WWWGRP%%) %%PMWIKIDIR%%
