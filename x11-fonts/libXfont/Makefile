@@ -2,6 +2,7 @@
 
 PORTNAME=	libXfont
 PORTVERSION=	1.5.1
+PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
