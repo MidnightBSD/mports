@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libidn
-PORTVERSION=	1.29
-PORTREVISION=	2
+PORTVERSION=	1.31
+PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
@@ -24,7 +24,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 USE_AUTOTOOLS=	automake:env
-USES=		iconv libtool makeinfo pathfix perl5 pkgconfig
+USES=		gmake iconv libtool makeinfo pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
