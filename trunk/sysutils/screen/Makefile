@@ -2,7 +2,7 @@
 
 PORTNAME=	screen
 PORTVERSION=	4.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.gnu.org/gnu/screen/ \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -34,7 +34,7 @@ SYSTEM_SCREENRC_DESC=	Install system screenrc with helpful status line
 
 OPTIONS_SUB=
 
-USES=		gmake cpe
+USES=		gmake cpe ncurses
 
 CPE_VENDOR=	gnu
 
