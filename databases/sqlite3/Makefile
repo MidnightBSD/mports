@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.8.10.2
+PORTVERSION=	3.9.1
 CATEGORIES=	databases
-MASTER_SITES=	http://www.sqlite.org/2015/ http://www2.sqlite.org/2015/ http://www3.sqlite.org/2015/
-DISTNAME=	sqlite-autoconf-${PORTVERSION:S|.10|10|:S|.|0|g}
+MASTER_SITES=	https://www.sqlite.org/2015/ http://www2.sqlite.org/2015/ http://www3.sqlite.org/2015/
+DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SQL database engine in a C library
@@ -23,12 +23,11 @@ MAKE_JOBS_UNSAFE=	yes
 # Compilation Options For SQLite http://www.sqlite.org/compile.html
 OPTIONS_DEFINE=	FTS4 UPD_DEL_LIMIT URI URI_AUTHORITY SOUNDEX METADATA \
 		DIRECT_READ MEMMAN SECURE_DELETE UNLOCK_NOTIFY THREADS \
-		EXTENSION READLINE ARMOR STMT DBSTAT
+		EXTENSION READLINE ARMOR STMT DBSTAT FTS5 JSON1 RBU
 OPTIONS_SINGLE=	RAMT
 OPTIONS_RADIO=	STAT
 OPTIONS_GROUP=	UNICODE RTREEG
 
-FTS4_DESC=		Enable FTS3/4 (Full Text Search) module
 UPD_DEL_LIMIT_DESC=	ORDER BY and LIMIT on UPDATE and DELETE
 URI_DESC=		Enable use the URI filename
 URI_AUTHORITY_DESC=	Allow convert URL into a UNC
@@ -42,6 +41,18 @@ EXTENSION_DESC=		Allow loadable extensions
 
 # http://www.sqlite.org/compile.html#enable_api_armor
 ARMOR_DESC=		Detect misuse of the API
+
+# http://www.sqlite.org/fts3.html
+FTS4_DESC=		Enable FTS3/4 (Full Text Search) module
+
+# http://www.sqlite.org/fts5.html
+FTS5_DESC=		Enable version 5 full-text search engine
+
+# http://www.sqlite.org/json1.html
+JSON1_DESC=		Enable the JSON1 extension
+
+# http://www.sqlite.org/rbu.html
+RBU_DESC=		Enable the Resumable Bulk Update
 
 # http://www.sqlite.org/c3ref/stmt_scanstatus.html
 STMT_DESC=		Prepared Statement Scan Status
@@ -75,8 +86,8 @@ RTREE_DESC=		Enable R*Tree module
 RTREE_INT_DESC=		Store 32-bit sig int (no float) coordinates
 
 OPTIONS_DEFAULT=	FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
-			EXTENSION TS1 UNICODE61 RTREE READLINE
-# SECURE_DELETE, UNLOCK_NOTIFY used by www/firefox, www/libxul
+			EXTENSION TS1 UNICODE61 RTREE READLINE DBSTAT
+# SECURE_DELETE, UNLOCK_NOTIFY, DBSTAT (since 41.0) used by www/firefox et al.
 # RTREE used by graphics/mapnik, databases/spatialite
 
 PLIST_FILES=	bin/sqlite3 include/sqlite3.h include/sqlite3ext.h \
@@ -137,11 +148,18 @@ UNICODE61_CPPFLAGS_OFF=	-DSQLITE_DISABLE_FTS3_UNICODE=1
 READLINE_CONFIGURE_ENABLE=	readline
 READLINE_USES=	readline
 
+FTS5_CONFIGURE_ENABLE=	fts5
+
+JSON1_CONFIGURE_ENABLE=	json1
+
+RBU_CPPFLAGS=	-DSQLITE_ENABLE_RBU=1
+
 .include <bsd.mport.options.mk>
 
 post-configure:
 	@${ECHO_MSG} "===> CONFIGURE_ARGS=${CONFIGURE_ARGS}"
 	@${ECHO_MSG} "===> CPPFLAGS=${CPPFLAGS}"
+	@${ECHO_MSG} "===> CFLAGS=${CFLAGS}"
 	@${ECHO_MSG} "===> LDFLAGS=${LDFLAGS}"
 
 post-build:
