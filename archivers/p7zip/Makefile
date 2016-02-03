@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	p7zip
-PORTVERSION=	9.38.1
-PORTREVISION?=	0
+PORTVERSION=	15.09
 CATEGORIES=	archivers
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
@@ -24,6 +23,8 @@ CFLAGS_amd64=	-fPIC
 CFLAGS_ia64=	-fPIC
 
 OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
 
 post-patch:
 	${SED} -e 's!g\+\+!${CXX}!' \
