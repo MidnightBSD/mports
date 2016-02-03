@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	asio
-PORTVERSION=	1.4.8
+PORTVERSION=	1.10.4
 CATEGORIES=	net devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20(Stable)/
 
@@ -10,11 +10,11 @@ COMMENT=	Cross-platform C++ library for network and low-level I/O programming
 
 LICENSE=	other
 
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
+RUN_DEPENDS=	${LOCALBASE}/include/boost/chrono/system_clocks.hpp:${PORTSDIR}/devel/boost-libs
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-
-CONFIGURE_ARGS=	--with-boost=${LOCALBASE}/include
+USES=		gmake tar:bzip2
+NO_BUILD=	yes
+INSTALL_TARGET=	install-data
 
 .include <bsd.port.mk>
