@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	nspr
-DISTVERSION=	4.10.8
+DISTVERSION=	4.10.9
 PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A platform-neutral API for system level and libc like functions
+COMMENT=	Platform-neutral API for system level and libc like functions
 
 LICENSE=	lgpl
 # lgpl, gpl2, or mpl
