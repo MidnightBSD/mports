@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	4.0.3
+PORTVERSION=	4.1.1
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 PKGNAMESUFFIX=	4
