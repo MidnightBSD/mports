@@ -2,7 +2,8 @@
 
 PORTNAME=	nss
 PORTVERSION=	3.20
-#DISTVERSIONSUFFIX=	.with.ckbi.1.93
+PORTREVISION=	1
+#DISTVERSIONSUFFIX=	.with-ckbi-1.98
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -13,7 +14,7 @@ LICENSE=	unknown
 #mpl?
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		nspr>=4.10.5:${PORTSDIR}/devel/nspr \
+		nspr>=4.10.8:${PORTSDIR}/devel/nspr \
 		sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
 LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr \
 		libsqlite3.so:${PORTSDIR}/databases/sqlite3
