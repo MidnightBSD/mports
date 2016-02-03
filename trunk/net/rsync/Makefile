@@ -5,7 +5,7 @@
 #
 
 PORTNAME=	rsync
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
@@ -17,7 +17,7 @@ MASTER_SITE_SUBDIR=	rsync
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A network file distribution/synchronization utility
+COMMENT=	Network file distribution/synchronization utility
 
 LICENSE=	gpl3
 
