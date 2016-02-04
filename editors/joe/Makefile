@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	joe
-PORTVERSION=	4.0
+PORTVERSION=	4.1
 CATEGORIES=	editors
 MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 
@@ -30,8 +30,8 @@ post-patch:
 post-install:
 	@${CAT} ${FILESDIR}/ftyperc.mbsd >> ${PREFIX}/etc/${PORTNAME}/ftyperc
 .for file in jmacsrc jpicorc jstarrc rjoerc joerc
-.if !exists(${PREFIX}/etc/${PORTNAME}/${file}.dist)
-	@${CP} ${PREFIX}/etc/${PORTNAME}/${file} ${PREFIX}/etc/${PORTNAME}/${file}.dist
+.if !exists(${PREFIX}/etc/${PORTNAME}/${file}.sample)
+	@${CP} ${PREFIX}/etc/${PORTNAME}/${file} ${PREFIX}/etc/${PORTNAME}/${file}.sample
 .endif
 .endfor
 
