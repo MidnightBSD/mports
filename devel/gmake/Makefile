@@ -2,10 +2,9 @@
 
 PORTNAME=	gmake
 PORTVERSION=	4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	make
+MASTER_SITES=	GNU/make
 DISTNAME=	make-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +14,8 @@ LICENSE=	gpl3
 
 USES=		makeinfo tar:bzip2
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--program-prefix=g
+CONFIGURE_ARGS+=--program-prefix=g \
+		--without-guile
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
