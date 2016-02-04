@@ -1,18 +1,12 @@
 bin/gfind
-bin/goldfind
 bin/glocate
 bin/gupdatedb
 bin/gxargs
-info/find-maint.info
-info/find.info
-info/find.info-1
-info/find.info-2
 libexec/gbigram
 libexec/gcode
 libexec/gfrcode
 man/man1/gfind.1.gz
 man/man1/glocate.1.gz
-man/man1/goldfind.1.gz
 man/man1/gupdatedb.1.gz
 man/man1/gxargs.1.gz
 man/man5/glocatedb.5.gz
@@ -39,6 +33,7 @@ man/man5/glocatedb.5.gz
 %%NLS%%share/locale/lg/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/ms/LC_MESSAGES/findutils.mo
+%%NLS%%share/locale/nb/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/pt/LC_MESSAGES/findutils.mo
@@ -55,7 +50,3 @@ man/man5/glocatedb.5.gz
 %%NLS%%share/locale/vi/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/findutils.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/findutils.mo
-%%NLS%%@dirrmtry share/locale/rw/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/rw
-%%NLS%%@dirrmtry share/locale/lg/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/lg
