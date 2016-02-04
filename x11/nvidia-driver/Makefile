@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	346.47
+DISTVERSION?=	346.96
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
 # MASTER_SITE_SUBDIR has to be set later because it depends on NVVERSION
@@ -129,7 +129,7 @@ post-patch: .SILENT
 # We should support -CURRENT: kill the check
 	${REINPLACE_CMD} -e '24,26d' ${WRKSRC}/src/nv-freebsd.h
 # Adjust legacy drivers for updated d_mmap() since FreeBSD src SVN r201223
-.if ${OSVERSION} > 4015 && ${NVVERSION} < 195.022
+.if ${NVVERSION} < 195.022
 	${REINPLACE_CMD} -e 's/vm_offset_t offset/vm_ooffset_t offset/ ; \
 		s/vm_offset_t \*address/vm_paddr_t *address/ ; \
 		s/int nprot/&, vm_memattr_t *memattr/' \
@@ -139,13 +139,13 @@ post-patch: .SILENT
 # around vm_page_(un)wire() after FreeBSD src SVN r207410, r207617, and
 # r207644; also remove page queue locking around vm_page_wakeup() after
 # FreeBSD src SVN r163622
-.if ${OSVERSION} > 4014 && ${NVVERSION} < 304.064
+.if ${NVVERSION} < 304.064
 	${REINPLACE_CMD} -E '/vm_page_(un)?lock_queues\(\);/d ; \
 		s/(vm_page_(un)?wire\()([^,]+)(, 0)?(\);)/vm_page_lock(\3); & vm_page_unlock(\3);/' \
 			${WRKSRC}/src/nvidia_subr.c
 .endif
 # Catch up legacy drivers with FreeBSD src SVN r225617
-.if ${OSVERSION} > 4015 && ${NVVERSION} < 195.022
+.if ${NVVERSION} < 195.022
 	${REINPLACE_CMD} -e '/return/s/ioctl/sys_&/' \
 		${WRKSRC}/src/nvidia_linux.c
 .endif
@@ -277,6 +277,8 @@ post-install: .SILENT
 .endif
 .if ${NVVERSION} < 180.029
 	${REINPLACE_CMD} -e '/vdpau/d' ${TMPPLIST}
+.elif ${NVVERSION} >= 304.128 && ${NVVERSION} < 310.019
+	${REINPLACE_CMD} -E '/libvdpau(_trace)?\.so/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 185.01829
 	${REINPLACE_CMD} -e '/libcuda/d' ${TMPPLIST}
