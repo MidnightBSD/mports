@@ -2,8 +2,8 @@
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
 
 PORTNAME=	gedit
-PORTVERSION=	3.16.2
-PORTREVISION=	1
+PORTVERSION=	3.16.4
+PORTREVISION=	0
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
