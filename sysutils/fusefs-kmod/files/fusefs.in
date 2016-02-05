@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD$
+# $FreeBSD: head/sysutils/fusefs-kmod/files/fusefs.in 363947 2014-08-03 22:04:34Z pi $
 #
 # PROVIDE: fusefs
 # REQUIRE: sysctl
@@ -27,7 +27,7 @@
 name="fusefs"
 rcvar=fusefs_enable
 
-kmod="%%PREFIX%%/modules/fuse.ko"
+kmod="%%KMODDIR%%/fuse.ko"
 
 start_cmd="fusefs_start"
 stop_cmd="fusefs_stop"
