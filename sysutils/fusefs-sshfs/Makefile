@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sshfs
-PORTVERSION=	2.2
+PORTVERSION=	2.5
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/fuse/${PORTNAME}-fuse/${PORTVERSION}
 PKGNAMEPREFIX=	fusefs-
@@ -11,19 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount remote directories over ssh
 LICENSE=	gpl2
 
-LIB_DEPENDS=	fuse.2:${PORTSDIR}/sysutils/fusefs-libs
-RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
-BUILD_DEPENDS=	fusefs-libs>2.4.1:${PORTSDIR}/sysutils/fusefs-libs
+LICENSE=	gpl2
+
+KMODDIR?=	${LOCALBASE}/modules
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
+USES=		fuse pkgconfig
 USE_GNOME=	glib20
 
-MAN1=	sshfs.1
+PLIST_FILES=	bin/sshfs \
+		man/man1/sshfs.1.gz
 
-.include <bsd.port.pre.mk>
-
-post-install:
-	@${SED} -e "s|%%PREFIX%%|${PREFIX}|" ${PKGMESSAGE}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
