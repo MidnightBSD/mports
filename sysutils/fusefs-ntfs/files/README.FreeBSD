@@ -1,5 +1,5 @@
 ==============================================================================
-NTFS-3G README for the FreeBSD port
+NTFS-3G README for the BSD port
 ==============================================================================
 
 1. Introduction
@@ -27,13 +27,13 @@ fuse4bsd site:	http://fuse4bsd.creo.hu/
 ==============================================================================
 
 The port has a patch to align read/write operations to the media block size
-(required on FreeBSD).
+(required on BSD).
 
 The port has 2 options: LOCK (to prevent access to the device by external
 programs than NTFS-3G once mounted, default on Linux), and UBLIO (use a user
 space cache library, see devel/libublio, not required on Linux).
 
-The reason for using UBLIO is that FreeBSD removed support for block devices,
+The reason for using UBLIO is that BSD removed support for block devices,
 being them now character devices. The former ones had a cache, and NTFS-3G was
 optimized for it (Linux still uses them). The same happens on Mac OS X (based
 on FreeBSD 5). So using UBLIO both improves performance (~10 times faster),
@@ -124,26 +124,8 @@ directory not being found, but entering again would work. The details are
 described in fuse4bsd (sysutils/fusefs-kmod) documentation (Linux access is
 path based while FreeBSD is vnode based, which may be reused).
 
-==============================================================================
-6. Reporting bugs
-==============================================================================
-
-About the port itself, you can ask the maintainer (preferable) and/or in the
-ports@FreeBSD.org mailing list.
-
-About general NTFS problems (corruptions, etc) ask in the NTFS-3G forum (see
-below).
-
-But often (even on Linux, 50% of the issues are related to these) the problems
-reside on the FUSE implementation (the library itself, or fuse4bsd portion).
-
-For reporting kernel panics, see:
-
-http://fuse.sourceforge.net/wiki/index.php/DebugFreeBSDPanicsHowto
-
 And you can report them to the fuse4bsd author (preferable), or here:
 
 NTFS-3G forum:	http://forum.ntfs-3g.org/
-FreeBSD PRs:	http://www.freebsd.org/send-pr.html
 
 ==============================================================================
