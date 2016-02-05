@@ -1,33 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	httpfs
-PORTVERSION=	2.06.08.26
-PORTREVISION=	1
+PORTVERSION=	2.${VERSION}
+PORTEPOCH=	1
 CATEGORIES=	sysutils www
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}_with_static_binaries_${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}2/
 PKGNAMEPREFIX=	fusefs-
-DISTNAME=	${PORTNAME}_with_static_binaries_${PORTVERSION}
+DISTNAME=	${PORTNAME}2-${VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fuse-based http filesystem
 LICENSE=	gpl2
 
-USE_ICONV=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}2-${VERSION}
 
-RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
-BUILD_DEPENDS=	${LOCALBASE}/include/fuse.h:${PORTSDIR}/sysutils/fusefs-libs
-
-PLIST_FILES=	bin/httpfs
-WRKSRC=		${WRKDIR}
-
-do-build:
-	(cd ${WRKSRC} && ${CC} ${CFLAGS} -I${LOCALBASE}/include/fuse \
-	 -DUSE_AUTH -D_FILE_OFFSET_BITS=64 -D_REENTRANT \
-	 -DFUSE_USE_VERSION=25 -D_POSIX_C_SOURCE=200112L -D_POSIX_SOURCE \
-	 -D_SVID_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=500 \
-	 -o httpfs httpfs.c -L${LOCALBASE}/lib ${PTHREAD_LIBS} -lfuse -liconv)
+VERSION=	0.1.5
+USES=		fuse pkgconfig gmake
+CFLAGS+=	-D__BSD_VISIBLE
+ALL_TARGET=	httpfs2
+PLIST_FILES=	bin/httpfs2
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/httpfs ${TARGETDIR}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/httpfs2 ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
