@@ -1,12 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	setxkbmap
-PORTVERSION=	1.3.0
+PORTVERSION=	1.3.1
 PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the keyboard using the X Keyboard Extension
+
 LICENSE=	sgi
 
 XORG_CAT=	app
