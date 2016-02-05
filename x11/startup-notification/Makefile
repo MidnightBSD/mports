@@ -2,7 +2,7 @@
 
 PORTNAME=	startup-notification
 PORTVERSION=	0.12
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11 gnome
 MASTER_SITES=	http://www.freedesktop.org/software/startup-notification/releases/
 DIST_SUBDIR=	gnome2
