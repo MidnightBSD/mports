@@ -1,6 +1,6 @@
---- configure.orig	2008-08-11 13:14:21.000000000 -0300
-+++ configure	2008-09-17 23:01:15.000000000 -0300
-@@ -2663,7 +2663,7 @@
+--- configure.orig	2015-03-14 14:10:24 UTC
++++ configure
+@@ -3256,7 +3256,7 @@ if test "${enable_mount_helper+set}" = s
  else
  
  		case "${target_os}" in
@@ -9,16 +9,16 @@
  			*) enable_mount_helper="no" ;;
  		esac
  
-@@ -19619,7 +19619,7 @@
- fi
- 
- 	;;
--darwin*|netbsd*|solaris*)
-+darwin*|netbsd*|solaris*|freebsd*)
- 	with_fuse="external"
- 	;;
- freebsd*)
-@@ -23029,7 +23029,7 @@
+@@ -12871,7 +12871,7 @@ fi
+ 		with_fuse="external"
+ 		;;
+ 	freebsd*)
+-		as_fn_error $? "Please see FreeBSD support at http://www.freshports.org/sysutils/fusefs-ntfs" "$LINENO" 5
++		with_fuse="external"
+ 		;;
+ 	*)
+ 		as_fn_error $? "ntfs-3g can be built for Linux, FreeBSD, Mac OS X, NetBSD, and Solaris only." "$LINENO" 5
+@@ -15014,7 +15014,7 @@ if test "x${DISTCHECK_HACK}" != "x"; the
  fi
  
  # Settings
