@@ -24,8 +24,6 @@ MAKE_ENV=	BINDIR="${PREFIX}/sbin" \
 SUB_LIST+=	KMODDIR=${KMODDIR}
 SUB_FILES=	pkg-message
 
-PREFIX=		${FAKE_DESTDIR}/
-
 .include <bsd.port.pre.mk>
 
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-9-fuse_main.c
@@ -40,6 +38,8 @@ do-install:
 	${INSTALL_KLD} ${WRKSRC}/modules/fuse/fuse.ko ${STAGEDIR}${KMODDIR}
 	${INSTALL_MAN} ${WRKSRC}/mount_fusefs/mount_fusefs.8 ${STAGEDIR}${PREFIX}/man/man8
 	${INSTALL_PROGRAM} ${WRKSRC}/mount_fusefs/mount_fusefs ${STAGEDIR}${PREFIX}/sbin
+	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/etc/rc.d/
+	${INSTALL_SCRIPT} ${WRKSRC}/fusefs ${FAKE_DESTDIR}/${LOCALBASE}/etc/rc.d/
 
 SVN_REV=	263233
 SVN_MIRROR?=	http://svn.freebsd.org/base
