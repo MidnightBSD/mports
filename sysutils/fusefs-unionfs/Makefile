@@ -1,30 +1,35 @@
 # $MidnightBSD$
 
 PORTNAME=	unionfs
-PORTVERSION=	0.20
+PORTVERSION=	1.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
-MASTER_SITES=	http://podgorny.cz/unionfs-fuse/releases/
 PKGNAMEPREFIX=	fusefs-
-DISTNAME=	unionfs-fuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE based implementation of the well-known unionfs
+
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
-BUILD_DEPENDS=	${LOCALBASE}/include/fuse.h:${PORTSDIR}/sysutils/fusefs-libs
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-PLIST_FILES=	bin/unionfs
+USE_GITHUB=	yes
+GH_ACCOUNT=	rpodgorny
+GH_PROJECT=	unionfs-fuse
 
-USE_BZIP2=	yes
+SUB_FILES=	pkg-message
 
-do-build:
-	(cd ${WRKSRC} && \
-	 ${CC} ${CFLAGS} -I${LOCALBASE}/include/fuse \
-	 -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26 -U_POSIX_SYNCHRONIZED_IO \
-	 -o unionfs *.c -L${LOCALBASE}/lib ${PTHREAD_LIBS} -lfuse -lm)
+PLIST_FILES=	bin/unionfs \
+		bin/unionfsctl \
+		man/man8/unionfs.8.gz
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/unionfs ${TARGETDIR}/bin
+USES=		fuse cmake localbase
+
+post-patch:
+	@${REINPLACE_CMD} "s,share/man,man,g" ${WRKSRC}/man/CMakeLists.txt
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
 
 .include <bsd.port.mk>
