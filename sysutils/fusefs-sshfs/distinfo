@@ -1,4 +1,2 @@
-MD5 (sshfs-fuse-2.2.tar.gz) = 26e9206eb5169e87e6f95f54bc005a4f
-SHA256 (sshfs-fuse-2.2.tar.gz) = 206ebcbc4cb9f5039bfcc7059678a0f61120605a5cdcbffa3ae5716c113e5423
-RMD160 (sshfs-fuse-2.2.tar.gz) = 65aeb030e492b5d9a7c16558d62792eb0d3ac3a6
-SIZE (sshfs-fuse-2.2.tar.gz) = 115709
+SHA256 (sshfs-fuse-2.5.tar.gz) = e9171452e5d0150b9c6a2158fd2e2dcefb5d5d03ba4d208949e00a3a46c6e63e
+SIZE (sshfs-fuse-2.5.tar.gz) = 136378
