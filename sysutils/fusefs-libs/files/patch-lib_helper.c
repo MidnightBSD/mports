@@ -1,6 +1,6 @@
---- lib/helper.c.orig	2007-12-12 09:33:35.000000000 -0500
-+++ lib/helper.c	2008-02-04 00:22:51.000000000 -0500
-@@ -30,7 +30,7 @@
+--- lib/helper.c.orig	2015-05-22 09:24:02 UTC
++++ lib/helper.c
+@@ -31,7 +31,7 @@ enum  {
  struct helper_opts {
  	int singlethread;
  	int foreground;
@@ -9,25 +9,25 @@
  	char *mountpoint;
  };
  
-@@ -41,8 +41,7 @@
- 	FUSE_HELPER_OPT("debug",       foreground),
- 	FUSE_HELPER_OPT("-f",	       foreground),
- 	FUSE_HELPER_OPT("-s",	       singlethread),
--	FUSE_HELPER_OPT("fsname=",     nodefault_subtype),
--	FUSE_HELPER_OPT("subtype=",    nodefault_subtype),
-+	FUSE_HELPER_OPT("fsname=",     fsname),
+@@ -42,8 +42,7 @@ static const struct fuse_opt fuse_helper
+ 	FUSE_HELPER_OPT("debug",	foreground),
+ 	FUSE_HELPER_OPT("-f",		foreground),
+ 	FUSE_HELPER_OPT("-s",		singlethread),
+-	FUSE_HELPER_OPT("fsname=",	nodefault_subtype),
+-	FUSE_HELPER_OPT("subtype=",	nodefault_subtype),
++	FUSE_HELPER_OPT("fsname=",	fsname),
  
- 	FUSE_OPT_KEY("-h",	    KEY_HELP),
- 	FUSE_OPT_KEY("--help",	    KEY_HELP),
-@@ -52,7 +51,6 @@
- 	FUSE_OPT_KEY("-d",	    FUSE_OPT_KEY_KEEP),
- 	FUSE_OPT_KEY("debug",	    FUSE_OPT_KEY_KEEP),
- 	FUSE_OPT_KEY("fsname=",	    FUSE_OPT_KEY_KEEP),
--	FUSE_OPT_KEY("subtype=",    FUSE_OPT_KEY_KEEP),
+ 	FUSE_OPT_KEY("-h",		KEY_HELP),
+ 	FUSE_OPT_KEY("--help",		KEY_HELP),
+@@ -53,7 +52,6 @@ static const struct fuse_opt fuse_helper
+ 	FUSE_OPT_KEY("-d",		FUSE_OPT_KEY_KEEP),
+ 	FUSE_OPT_KEY("debug",		FUSE_OPT_KEY_KEEP),
+ 	FUSE_OPT_KEY("fsname=",		FUSE_OPT_KEY_KEEP),
+-	FUSE_OPT_KEY("subtype=",	FUSE_OPT_KEY_KEEP),
  	FUSE_OPT_END
  };
  
-@@ -122,24 +120,24 @@
+@@ -123,24 +121,24 @@ static int fuse_helper_opt_proc(void *da
  	}
  }
  
@@ -59,7 +59,7 @@
  	return res;
  }
  
-@@ -155,8 +153,8 @@
+@@ -156,8 +154,8 @@ int fuse_parse_cmdline(struct fuse_args 
  	if (res == -1)
  		return -1;
  

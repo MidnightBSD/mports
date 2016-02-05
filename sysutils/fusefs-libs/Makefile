@@ -1,47 +1,41 @@
 # $MidnightBSD$
 
 PORTNAME=	fusefs
-PORTVERSION=	2.7.4
-PORTREVISION=	1
+PORTVERSION=	2.9.5
 CATEGORIES=	sysutils
-MASTER_SITES=	SF/fuse/fuse-2.X/${PORTVERSION}
 PKGNAMESUFFIX=	-libs
-DISTNAME=	fuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE allows filesystem implementation in userspace
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
+
+OPTIONS_DEFINE=	DOCS
+
+WRKSRC=		${WRKDIR}/libfuse-1ac9ca5
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	libfuse
+GH_PROJECT=	libfuse
+GH_TAGNAME=	1ac9ca5
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	MOUNT_FUSE_PATH=${PREFIX}/sbin \
-		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
-
-USES=		iconv pkgconfig libtool
-USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-kernel-module --prefix=${PREFIX} \
+CONFIGURE_ENV=	MOUNT_FUSE_PATH=${PREFIX}/sbin
+CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
-TXT_DOCS=	how-fuse-works \
-		kernel.txt
+INSTALL_TARGET=	install-strip
+USES=		iconv libtool autoreconf gettext-tools
+USE_LDCONFIG=	yes
 
-.include <bsd.port.pre.mk>
+PORTDOCS=	*
 
-post-patch:
-	${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},' \
-		-e 's,-D_FILE_OFFSET_BITS=64,-D_FILE_OFFSET_BITS=64 ${PTHREAD_CFLAGS},' \
-		${WRKSRC}/fuse.pc.in
-	${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},' \
-		${WRKSRC}/lib/Makefile.in \
-		${WRKSRC}/example/Makefile.in
+pre-configure:
+	${CP} ${LOCALBASE}/share/gettext/config.rpath ${WRKSRC}
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/include/fuse_kernel.h ${PREFIX}/include/fuse
+	${INSTALL_DATA} ${WRKSRC}/include/fuse_kernel.h ${STAGEDIR}${PREFIX}/include/fuse
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/libs
+	${INSTALL_DATA} ${WRKSRC}/doc/how-fuse-works ${WRKSRC}/doc/kernel.txt ${STAGEDIR}${DOCSDIR}/libs
 
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/libs
-.for i in ${TXT_DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/doc/$i ${DOCSDIR}/libs
-.endfor
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

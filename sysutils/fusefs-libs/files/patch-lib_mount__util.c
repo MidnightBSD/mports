@@ -1,6 +1,6 @@
---- lib/mount_util.c.orig	2008-02-04 00:23:30.000000000 -0500
-+++ lib/mount_util.c	2008-02-04 00:23:58.000000000 -0500
-@@ -224,20 +224,3 @@
+--- lib/mount_util.c.orig	2015-05-22 09:24:02 UTC
++++ lib/mount_util.c
+@@ -344,20 +344,3 @@ int fuse_mnt_check_empty(const char *pro
  	}
  	return 0;
  }
