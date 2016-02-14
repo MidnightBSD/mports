@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	jjclient
-PORTVERSION=	1.0.3
+PORTVERSION=	2.0.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -17,7 +17,7 @@ USE_GITHUB=     yes
 GH_PROJECT=     justjournal-client-unix
 GH_ACCOUNT=     laffer1
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      0a8de9b
+GH_COMMIT=      087a087
 USE_CSTD=	c99
 
 CFLAGS+=	-I/usr/local/include
