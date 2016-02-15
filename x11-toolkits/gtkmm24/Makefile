@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	24
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	C++ wrapper for Gtk+, Pango
+COMMENT=	C++ wrapper for Gtk+
 
 LICENSE=	lgpl
 
