@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk
-PORTVERSION=	2.24.25
-PORTREVISION?=	1
+PORTVERSION=	2.24.29
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -47,7 +47,7 @@ DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 .include <bsd.mport.options.mk>
 
-PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.25
+PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.29
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${GREP} -l lgmodule | \
@@ -67,8 +67,6 @@ post-install:
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/engines
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/loaders
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/modules
-	${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-query-immodules-2.0.1 \
-		${PREFIX}/man/man1
 
 .include <bsd.port.mk>
 
