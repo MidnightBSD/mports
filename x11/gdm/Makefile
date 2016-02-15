@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gdm
-PORTVERSION=	3.16.2
-PORTREVISION=	1
+PORTVERSION=	3.16.4
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -40,7 +40,9 @@ RUN_DEPENDS+=	xrdb:${PORTSDIR}/x11/xrdb \
 USERS=		gdm
 GROUPS=		gdm
 
-USES=		execinfo gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		cpe execinfo gettext gmake libtool pathfix pkgconfig tar:xz
+CPE_VENDOR=	gnome
+CPE_VENDOR=	gnome_display_manager
 USE_GNOME=	dconf intlhack introspection librsvg2
 USE_LDCONFIG=	yes
 USE_XORG=	dmx dmxproto
