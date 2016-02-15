@@ -296,7 +296,6 @@ libdata/pkgconfig/gdk-x11-2.0.pc
 libdata/pkgconfig/gtk+-2.0.pc
 libdata/pkgconfig/gtk+-unix-print-2.0.pc
 libdata/pkgconfig/gtk+-x11-2.0.pc
-man/man1/gtk-query-immodules-2.0.1.gz
 share/aclocal/gtk-2.0.m4
 share/gir-1.0/Gdk-2.0.gir
 share/gir-1.0/GdkX11-2.0.gir
@@ -669,3 +668,9 @@ share/themes/Raleigh/gtk-2.0/gtkrc
 @dirrmtry share/locale/as
 @dirrmtry share/locale/ang/LC_MESSAGES
 @dirrmtry share/locale/ang
+@dir lib/gtk-2.0/modules
+@dir lib/gtk-2.0/%%GTK2_VERSION%%/printbackends
+@dir lib/gtk-2.0/%%GTK2_VERSION%%/modules
+@dir lib/gtk-2.0/%%GTK2_VERSION%%/loaders
+@dir lib/gtk-2.0/%%GTK2_VERSION%%/immodules
+@dir lib/gtk-2.0/%%GTK2_VERSION%%/engines
