@@ -3,13 +3,14 @@
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	20
 PORTVERSION=	2.2.12
-PORTREVISION?=	10
+PORTREVISION?=	11
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/${PORTNAME}/2.2
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for Gtk+, Pango, Atk, and Glib
+
 LICENSE=	lgpl
 
 USES+=		tar:bzip2
