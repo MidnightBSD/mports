@@ -2,7 +2,7 @@
 
 PORTNAME=	slim
 PORTVERSION=	1.3.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
@@ -31,6 +31,7 @@ CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes \
 
 OPTIONS_DEFINE=		PAM UTF8 CONSOLEKIT
 OPTIONS_DEFAULT=	PAM CONSOLEKIT
+OPTIONS_SUB=	yes
 
 UTF8_DESC=	Support UTF-8 characters
 CONSOLEKIT_DESC=Enable support for consolekit
