@@ -2,6 +2,7 @@
 
 PORTNAME=	gnome-terminal
 PORTVERSION=	3.16.2
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -13,7 +14,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		itstool:${PORTSDIR}/textproc/itstool \
-		appdata-validate:${PORTSDIR}/devel/appstream-glib \
+		appstream-builder:${PORTSDIR}/devel/appstream-glib \
 		vala:${PORTSDIR}/lang/vala
 LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
 		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
