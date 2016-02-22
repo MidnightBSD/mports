@@ -1,0 +1,4 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
+bin/mport-manager
+share/mport/icon.png
+@dir share/mport
