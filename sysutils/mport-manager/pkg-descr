@@ -1,0 +1,4 @@
+mport-manager is a graphical package manager for MidnightBSD. It uses
+libmport to manage installed packages.
+
+
