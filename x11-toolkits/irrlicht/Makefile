@@ -3,7 +3,7 @@
 # $FreeBSD: head/x11-toolkits/irrlicht/Makefile 390310 2015-06-22 18:33:20Z antoine $
 
 PORTNAME=	irrlicht
-PORTVERSION=	1.8.1
+PORTVERSION=	1.8.3
 CATEGORIES=	x11-toolkits graphics
 MASTER_SITES=	SF/${PORTNAME}/Irrlicht%20SDK/${PORTVERSION:R}/${PORTVERSION}/
 
