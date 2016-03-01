@@ -850,6 +850,7 @@ DISTINFO_FILE?=		${MASTERDIR}/distinfo
 
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
+MAKE_CMD?=		${BSDMAKE}
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 			DESTDIR=${DESTDIR} \
 			PREFIX=${PREFIX} \
@@ -3257,10 +3258,10 @@ _INSTALL_DEPENDS=	\
 			if [ -r "$${subpkgfile}" -a "$$target" = "${DEPENDS_TARGET}" ]; then \
 				if [ -z "${DESTDIR}" ] ; then \
 					${ECHO_MSG} "===>   Installing existing package $${subpkgfile}"; \
-					${PKG_ADD} $${subpkgfile}; \
+					${MPORT_INSTALL} $${subpkgfile}; \
 				else \
 					${ECHO_MSG} "===>   Installing existing package $${subpkgfile} into ${DESTDIR}"; \
-					${PKG_ADD} -C ${DESTDIR} $${subpkgfile}; \
+					${MPORT_INSTALL} $${subpkgfile}; \
 				fi; \
 			else \
 				(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
@@ -4116,14 +4117,6 @@ depend:
 # Same goes for tags
 .if !target(tags)
 tags:
-.endif
-
-.if !defined(NOPRECIOUSSOFTMAKEVARS)
-.for softvar in CKSUMFILES _MLINKS
-.if defined(${softvar})
-__softMAKEFLAGS+=      '${softvar}+=${${softvar}:S/'/'\''/g}'
-.endif
-.endfor
 .endif
 
 .if !defined(NOPRECIOUSMAKEVARS)
