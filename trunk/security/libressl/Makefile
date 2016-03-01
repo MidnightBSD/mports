@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libressl
-PORTVERSION=	2.2.3
+PORTVERSION=	2.2.6
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
@@ -9,17 +9,35 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free version of the SSL/TLS protocol forked from OpenSSL
 
 LICENSE=	bsd4
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 CPE_VENDOR=	openbsd
 
-CONFLICTS?=	openssl-*
+OPTIONS_DEFINE=	MAN3
+OPTIONS_DEFAULT=	MAN3
+MAN3_DESC=	Install API manpages (section 3)
+
+CONFLICTS?=	openssl-[0-9]* \
+		libressl-devel-[0-9]*
 
 GNU_CONFIGURE=	yes
 USES=		cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
-test: build
-	cd ${WRKSRC} && ${MAKE} check
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${ARCH} == "amd64"
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+.endif
+
+post-install-MAN3-off:
+	${RM} -rf ${STAGEDIR}/${PREFIX}/man/man3
+	${REINPLACE_CMD} -e '/^man\/man3/d' ${TMPPLIST}
+
+post-install:
+	${RM} -rf ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
+
+.include <bsd.port.post.mk>
