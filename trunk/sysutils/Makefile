@@ -65,7 +65,6 @@ SUBDIR += mbmon
 SUBDIR += mdf2iso
 SUBDIR += memtest
 SUBDIR += memtest86
-SUBDIR += mport-manager
 SUBDIR += munin-common
 SUBDIR += munin-master
 SUBDIR += munin-node

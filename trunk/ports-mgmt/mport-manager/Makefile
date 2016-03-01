@@ -2,7 +2,7 @@
 
 PORTNAME=	mport-manager
 PORTVERSION=	0.1.1
-CATEGORIES=	sysutils
+CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Graphical Package Manager for MidnightBSD
