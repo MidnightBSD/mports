@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.0
+PORTVERSION=	2.1
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -10,11 +10,10 @@ DISTFILES=	# none
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        MidnightBSD desktop environment
 
-LICENSE=	agg
+LICENSE=	bsd2
 
 # needs firefox ?
 # gimp:${PORTSDIR}/graphics/gimp-app \
-# gdm:${PORTSDIR}/x11/gdm \
 
 RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		bash:${PORTSDIR}/shells/bash \
@@ -28,7 +27,9 @@ RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
                 ${LOCALBASE}/libdata/xorg/libraries:${PORTSDIR}/x11/xorg-libraries \
                 ${LOCALBASE}/libdata/xorg/fonts:${PORTSDIR}/x11-fonts/xorg-fonts
  \
-                ${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers
+                ${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers \
+		mport-manager:${PORTSDIR}/ports-mgmt/mport-manager \
+		mlogind:${PORTSDIR}/x11/mlogind
 
 
 USE_PERL5_RUN=	yes
