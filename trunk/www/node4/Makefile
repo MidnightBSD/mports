@@ -1,24 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	node
-PORTVERSION=	5.7.0
+PORTVERSION=	4.3.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
+PKGNAMESUFFIX=	4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	V8 JavaScript for client and server (5.x)
+COMMENT=	V8 JavaScript for client and server (4.x LTS)
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		compiler execinfo gmake python
+USES=		compiler execinfo gmake python:2
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-CONFLICTS_INSTALL=	node4-* node-0.[02-9][0-9]* node-devel-0.[0-9]* node010-[0-9]* node012-[0-9]* iojs-[0-9]*
+CONFLICTS_INSTALL=	node-* node-0.[02-9][0-9]* node-devel-0.[0-9]* node010-[0-9]* node012-[0-9]* iojs-[0-9]*
 
 ONLY_FOR_ARCHS=	i386 amd64
 CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} --without-npm --shared-zlib \
@@ -28,6 +29,7 @@ REINPLACE_ARGS=	-i ''
 MAKE_ENV+=	CC.host=${CC} CXX.host=${CXX} LINK.host=${CXX} LINK.target=${CXX}
 
 .include <bsd.port.pre.mk>
+
 
 .if ${COMPILER_TYPE} == clang
 CFLAGS+=	-I/usr/include/c++/v1/ -stdlib=libc++
@@ -56,8 +58,7 @@ post-patch:
 		${WRKSRC}/tools/icu/icu-generic.gyp \
 		${WRKSRC}/deps/v8/build/shim_headers.gypi \
 		${WRKSRC}/deps/v8/tools/gyp/v8.gyp \
-		${WRKSRC}/deps/v8/src/d8.gyp \
-		${WRKSRC}/node.gyp
+		${WRKSRC}/deps/v8/src/d8.gyp
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/node
