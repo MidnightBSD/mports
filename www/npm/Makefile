@@ -3,6 +3,7 @@
 
 PORTNAME=	npm
 PORTVERSION=	2.14.7
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
@@ -11,19 +12,31 @@ COMMENT=	Node package manager
 
 LICENSE=	mit
 
+RUN_DEPENDS=	gmake:${PORTSDIR}/devel/gmake
+
+OPTIONS_SINGLE=	BACKEND
+OPTIONS_SINGLE_BACKEND=	NODE NODE012 NODE4
+OPTIONS_DEFAULT=NODE
+NODE_DESC=    Use www/node as backend
+NODE012_DESC= Use www/node012 as backend
+NODE4_DESC=   Use www/node4 as backend
+
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
-USES=		cpe tar:xz
+USES=		cpe python:2 tar:xz
 
 MANPREFIX=	${PREFIX}/lib/node_modules/npm
 
 CPE_VENDOR=	npmjs
 CPE_PRODUCT=	node_packaged_modules
 
-.include <bsd.mport.options.mk>
+NODE_RUN_DEPENDS=	node>=0.8.0:${PORTSDIR}/www/node
+NODE012_RUN_DEPENDS=	node012>=0.8.0:${PORTSDIR}/www/node012
+NODE4_RUN_DEPENDS=	node4>=0.8.0:${PORTSDIR}/www/node4
 
-BUILD_DEPENDS+=	node>=0.8.0:${PORTSDIR}/www/node
-RUN_DEPENDS+=	node>=0.8.0:${PORTSDIR}/www/node
+BUILD_DEPENDS+=	${RUN_DEPENDS}
+
+.include <bsd.mport.options.mk>
 
 post-patch:
 	@${SED} -i '' -e 's|node cli.js|& --cache ${WRKDIR}/.cache |; /^install: / s| docclean||' ${WRKSRC}/Makefile
