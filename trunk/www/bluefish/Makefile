@@ -11,7 +11,7 @@ MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
 
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libenchant.so:${PORTSDIR}/textproc/enchant
