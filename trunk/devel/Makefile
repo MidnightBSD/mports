@@ -361,6 +361,7 @@ SUBDIR += p5-Test-SubCalls
 SUBDIR += p5-Test-Taint
 SUBDIR += p5-Test-Tester
 SUBDIR += p5-Tie-IxHash
+SUBDIR += p5-Tie-Simple
 SUBDIR += p5-Time-HiRes
 SUBDIR += p5-Time-Local
 SUBDIR += p5-TimeDate
