@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME types database from the freedesktop.org project
 
 LICENSE=	gpl2
