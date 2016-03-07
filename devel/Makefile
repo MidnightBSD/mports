@@ -413,6 +413,7 @@ SUBDIR += pth
 SUBDIR += pth-hard
 SUBDIR += py-Jinja2
 SUBDIR += py-babel
+SUBDIR += py-bcdoc
 SUBDIR += py-dbus
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
