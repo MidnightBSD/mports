@@ -1,6 +1,6 @@
 # $MidnightBSD$
 PORTNAME=		tdb
-PORTVERSION=		1.3.4
+PORTVERSION=		1.3.8
 PORTREVISION=		0
 PORTEPOCH=		1
 CATEGORIES=		databases
@@ -14,7 +14,7 @@ LICENSE=		gpl3
 
 CONFLICTS=		*samba3[0-4]-3.*
 
-USES=			compiler pkgconfig
+USES=			compiler pkgconfig waf
 USE_PYTHON_BUILD=	2
 USE_LDCONFIG=		yes
 WAF_TOOL=		buildtools/bin/waf
