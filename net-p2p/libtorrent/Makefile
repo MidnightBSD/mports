@@ -1,43 +1,59 @@
 # $MidnightBSD$
 
 PORTNAME=	libtorrent
-PORTVERSION=	0.13.4
-PORTREVISION=	3
+PORTVERSION=	0.13.6
 CATEGORIES=	net-p2p
-MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/
+MASTER_SITES=	http://rtorrent.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	BitTorrent Library written in C++
+COMMENT=	BitTorrent Library
 
-LICENSE=	gpl2
+LICENSE=	gpl2 gpl3
+LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool pathfix pkgconfig
-USE_OPENSSL=	yes
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
+CONFLICTS_INSTALL=	rblibtorrent-[0-9]* rblibtorrent-devel-[0-9]*
+
+OPTIONS_DEFINE=	IPV6 KQUEUE
+OPTIONS_DEFAULT=KQUEUE
+KQUEUE_DESC=	Use kqueue(2) support
+
 CONFIGURE_ARGS=	--disable-debug
 CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLBASE}/lib -ssl -crypto" OPENSSL_CFLAGS="-I${OPENSSLBASE}/include"
+GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
+USES=		compiler:c++11-lang libtool pathfix pkgconfig
 
-OPTIONS_DEFINE=	KQUEUE IPV6
-OPTIONS_DEFAULT=	KQUEUE
-KQUEUE_DESC=	Use kqueue(2) support
-KQUEUE_CONFIGURE_ON=	--with-kqueue
-IPV6_CONFIGURE_ON=	--enable-ipv6
+IPV6_CONFIGURE_ENABLE=	ipv6
+KQUEUE_CONFIGURE_WITH=	kqueue
 
 .include <bsd.port.pre.mk>
-
-USES+=	compiler:c++11-lang
 
 # Disable amd64 atomic ops on i386 when using gcc
 # undefined reference to __sync_add_and_fetch_8
 # undefined reference to __sync_fetch_and_and_8
 .if ${ARCH} == "i386" && ${COMPILER_TYPE} == "gcc"
-CONFIGURE_ARGS+=	--disable-instrumentation
+CONFIGURE_ARGS+=--disable-instrumentation
+.endif
+
+.if ${OSVERSION} >= 8000
+USE_CXXSTD=	c++11
+EXTRA_PATCHES+=	${FILESDIR}/extra-clang
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3|${CFLAGS}|' ${WRKSRC}/configure
+.if ${OSVERSION} >= 8000
+	@${FIND} ${WRKSRC} \( -name '*.h' -o -name '*.cc' \) -type f \
+		-exec ${REINPLACE_CMD} -e 's/tr1::/std::/g' {} \; \
+		-exec ${REINPLACE_CMD} -e 's/std::std::/std::/g' {} \; \
+		-exec ${REINPLACE_CMD} -e '/namespace tr1/d' {} \; \
+		-exec ${REINPLACE_CMD} -e '/include/s,tr1/,,' {} \;
+	@${REINPLACE_CMD} -e 's/\.assign/.fill/' \
+		${WRKSRC}/src/torrent/utils/extents.h \
+		${WRKSRC}/src/torrent/utils/log.cc
+.endif
 
 .include <bsd.port.post.mk>
