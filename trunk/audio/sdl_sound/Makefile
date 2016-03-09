@@ -2,6 +2,7 @@
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://offload1.icculus.org:9090/SDL_sound/downloads/ \
 		http://offload2.icculus.org:9090/SDL_sound/downloads/
@@ -15,9 +16,11 @@ LICENSE=	lgpl
 USES=		libtool
 USE_LDCONFIG=	yes
 USE_SDL=	sdl
-CONFIGURE_ARGS=	--program-prefix=""
+CONFIGURE_ARGS=	--program-prefix="" \
+			--build=${ARCH}-portbld-freebsd9.1 \
+			--host=${ARCH}-portbld-freebsd9.1 \
+			--target=${ARCH}-portbld-freebsd9.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 HAS_CONFIGURE=	yes
 
 OPTIONS=	FLAC "Enable flac support" on \
