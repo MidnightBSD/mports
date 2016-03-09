@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
 		xsltproc:${PORTSDIR}/textproc/libxslt
 
-USES=		cpe pathfix pkgconfig python scons
+USES=		cpe pathfix pkgconfig python:2 scons
 CPE_VENDOR=	gpsd_project
 USE_RC_SUBR=	gpsd
 
