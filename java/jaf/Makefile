@@ -10,7 +10,10 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S,.,_,g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JavaBeansTM Activation Framework
-LICENSE=	restricted
+
+LICENSE=	other
+
+RESTRICTED=	No CDROM distribution
 
 USES=		zip
 USE_JAVA=	YES
