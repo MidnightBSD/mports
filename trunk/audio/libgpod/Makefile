@@ -2,10 +2,11 @@
 
 PORTNAME=	libgpod
 PORTVERSION=	0.8.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/gtkpod/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 
-MAINTAINER=	avilla@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for direct access to iPod contents
 
 LICENSE=	lgpl
@@ -16,11 +17,10 @@ LIB_DEPENDS=	plist:${PORTSDIR}/devel/libplist \
 
 USE_GNOME=	gtk20 intltool
 USE_SQLITE=	3
-USES=		gettext tar:bzip2
+USES=		gettext gmake pkgconfig tar:bzip2 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-udev --without-hal \
 		--with-html-dir="${DOCSDIR:H}"
-USE_GMAKE=	yes
 USE_CSTD=	gnu89
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
