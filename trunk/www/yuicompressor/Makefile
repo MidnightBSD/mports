@@ -25,8 +25,6 @@ PLIST_FILES=	bin/yuicompressor %%JAVAJARDIR%%/yuicompressor.jar
 PLIST_DIRS=	%%JAVAJARDIR%%
 SUB_FILES=	yuicompressor
 
-PORTDOCS=	README
-
 .include <bsd.port.pre.mk>
 
 do-install:
