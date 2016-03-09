@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Microsoft Windows compatibility environment
 
 LICENSE=        lgpl2.1 lgpl3
-LICENCE_COMB=	dual
+LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
