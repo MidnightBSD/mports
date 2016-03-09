@@ -53,6 +53,8 @@ PLIST_SUB+=	PLUGINS=""
 PLIST_SUB+=	PLUGINS="@comment "
 .endif
 
+pre-patch: dos2unix
+
 do-install:
 	@${MKDIR} ${DATADIR}/lib
 	@${MKDIR} ${ETCDIR}
