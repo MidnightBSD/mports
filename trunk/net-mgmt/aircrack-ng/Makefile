@@ -7,13 +7,14 @@ CATEGORIES=	net-mgmt security
 MASTER_SITES=	http://download.aircrack-ng.org/ \
 		http://bsd-geek.de/FreeBSD/distfiles/
 
-MAINTAINER=	lme@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 
 LICENSE=	gpl2 bsd3 apache2
 LICENSE_COMB=	dual
 
 USES=		gmake dos2unix
+USE_DOS2UNIX=	yes
 DOS2UNIX_FILES=	src/osdep/byteorder.h
 MAKE_ARGS=	unstable=true libnl=false prefix=${PREFIX}
 USE_OPENSSL=	yes
@@ -35,6 +36,8 @@ USE_SQLITE=	yes
 MAKE_ARGS+=	SQLITE=true
 BIN_FILES+=	airolib-ng
 .endif
+
+pre-patch: dos2unix
 
 post-patch:
 	@${REINPLACE_CMD} \
