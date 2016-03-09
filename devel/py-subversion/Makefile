@@ -4,6 +4,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for version control system
+
 LICENSE=	agg
 
 MASTERDIR=	${.CURDIR}/../../devel/subversion
@@ -15,7 +16,7 @@ SVN_BUILD_BINDINGS=	yes
 SVN_BUILD_ADDONS=	yes
 
 .include "${MASTERDIR}/Makefile.common"
-
+.include <bsd.mport.options.mk>
 CATEGORIES+=	python
 
 CONFIGURE_ARGS+=	--without-gnome-keyring \
