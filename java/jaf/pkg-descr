@@ -8,4 +8,7 @@ that stream of data as an JPEG image, and from that type, the browser
 could locate and instantiate an object that could manipulate, or view that
 image.
 
+The actual jar was released under CDDL as part of the glassfish opensource
+project and is available on several maven repositories under that license.
+
 WWW: http://java.sun.com/products/javabeans/jaf/ 
