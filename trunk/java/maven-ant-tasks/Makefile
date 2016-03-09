@@ -11,17 +11,19 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows Maven's artifact handling to be used from within an Ant build
+
 LICENSE=	apache2
 
 RUN_DEPENDS=	ant:${PORTSDIR}/devel/apache-ant
 
-USE_JAVA=	1.5+
+USE_JAVA=	1.6+
 
 NO_BUILD=	yes
 
 PLIST_FILES=	%%JAVASHAREDIR%%/apache-ant/lib/${DISTNAME}${EXTRACT_SUFX}
 
 do-install:
+	${MKDIR} ${JAVASHAREDIR}/apache-ant/lib/
 	@${INSTALL_DATA} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} \
 		${JAVASHAREDIR}/apache-ant/lib/
 
