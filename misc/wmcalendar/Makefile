@@ -8,10 +8,11 @@ CATEGORIES=	misc windowmaker
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A dockable calendar with interface to iCalendar based calendars
+COMMENT=	Dockable calendar with interface to iCalendar based calendars
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ical.44:${PORTSDIR}/devel/libical
+LIB_DEPENDS=	libical.so:${PORTSDIR}/devel/libical
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 
@@ -26,8 +27,7 @@ MAKE_ARGS=	CC="${CC}" \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-MAN1=		wmCalendar.1
-PLIST_FILES=	bin/wmCalendar
+PLIST_FILES=	bin/wmCalendar man/man1/wmCalendar.1.gz
 
 post-patch:
 	${REINPLACE_CMD} -e 's#/usr/local#${LOCALBASE}#g' \
