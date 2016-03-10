@@ -15,6 +15,9 @@ USES=		cmake cpe
 CPE_VENDOR=	synergy-foss
 USE_XORG=	ice xtst x11 sm
 USE_GITHUB=	yes
+GH_COMMIT=	c734bab
+GH_PROJECT=     ${PORTNAME}
+GH_ACCOUNT=     symless
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-stable
 
