@@ -10,6 +10,8 @@ MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
 
+LICENSE=	unknown
+
 LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 RUN_DEPENDS=	vpnc-script:${PORTSDIR}/sysutils/vpnc-scripts
 
@@ -55,11 +57,6 @@ CFLAGS+=	-DCISCO_PATCH_VERSION
 .endif
 
 post-patch:
-.if ${OSVERSION} >= 1100042
-	@${REINPLACE_CMD} \
-		-e 's|.*%%FREEBSD_IPLEN_FIX%%.*|#define NEED_IPLEN_FIX 1|' \
-		${WRKSRC}/sysdep.h
-.endif
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/config.c
 	@${REINPLACE_CMD} -e 's|\(/etc/vpnc\)|${PREFIX}\1|' \
 		${WRKSRC}/${MANPAGE8}.template
