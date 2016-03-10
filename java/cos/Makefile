@@ -11,7 +11,7 @@ DISTNAME=	${PORTNAME}-05Nov2002
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The O\'Reilly package of utility classes for servlet developers
 
-LICENSE=	restricted
+LICENSE=	other
 
 USES=		zip
 NO_WRKSUBDIR=	yes
