@@ -21,7 +21,6 @@ SUBDIR += cdrtools
 SUBDIR += ciso-maker
 SUBDIR += consolekit
 SUBDIR += coreutils
-SUBDIR += devcpu
 SUBDIR += devcpu-data
 SUBDIR += dirdiff
 SUBDIR += dmidecode
