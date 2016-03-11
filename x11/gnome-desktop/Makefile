@@ -24,12 +24,16 @@ BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		xkeyboard-config>=0:${PORTSDIR}/x11/xkeyboard-config \
 		libxkbfile>=0:${PORTSDIR}/x11/libxkbfile \
 		itstool:${PORTSDIR}/textproc/itstool \
-		python2:${PORTSDIR}/lang/python2
+		python2:${PORTSDIR}/lang/python2 \
+		${PYTHON_SITELIBDIR}/libxml2.py:${PORTSDIR}/textproc/py3-libxml2 \
+		${LOCALBASE}/lib/python2.7/site-packages/libxml2.py:${PORTSDIR}/textproc/py-libxml2	
 RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		xkeyboard-config>=0:${PORTSDIR}/x11/xkeyboard-config \
 		libxkbfile>=0:${PORTSDIR}/x11/libxkbfile \
-		python2:${PORTSDIR}/lang/python2
+		python2:${PORTSDIR}/lang/python2 \
+		${PYTHON_SITELIBDIR}/libxml2.py:${PORTSDIR}/textproc/py3-libxml2 \
+		${LOCALBASE}/lib/python2.7/site-packages/libxml2.py:${PORTSDIR}/textproc/py-libxml2	
 
 USES+=		bison gettext gmake libtool pathfix pkgconfig python:3
 USE_GNOME=	gtk30 intlhack introspection:build referencehack
