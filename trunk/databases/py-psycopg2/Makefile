@@ -25,7 +25,7 @@ PORTEXAMPLES=	binary.py copy_from.py copy_to.py cursor.py dialtone.py \
 		mogrify.py myfirstrecipe.py notify.py simple.py somehackers.jpg \
 		threads.py typecast.py tz.py usercast.py whereareyou.jpg
 
-PORTDOCS=	AUTHORS INSTALL README NEWS PKG-INFO
+PORTDOCS=	AUTHORS INSTALL NEWS PKG-INFO
 
 post-install:
 	@${MKDIR} ${EXAMPLESDIR}
