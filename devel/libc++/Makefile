@@ -18,6 +18,8 @@ LICENSE_NAME_UIUC=      University of Illinois/NCSA Open Source License
 LICENSE_PERMS_UIUC=     dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_FILE_UIUC=	${WRKSRC}/LICENSE.TXT
 
+SKIP_FAKE_CHECK=.*\.so
+
 USES=		tar:xz
 
 .ifndef MASTERDIR
