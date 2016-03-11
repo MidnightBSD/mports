@@ -64,7 +64,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doomlegacy ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DMDIR}
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}_${PORTVERSION}/legacy.wad \
-		${FAKE_DESTDIR}${DMDIR}
+		${FAKE_DESTDIR}${DMDIR}/legacy.wad
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 
