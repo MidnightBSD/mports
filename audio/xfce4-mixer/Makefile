@@ -20,7 +20,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
 USES=		gmake libtool pkgconfig tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack
-USE_XFCE=	configenv libmenu libutil panel xfconf
+USE_XFCE=	libmenu libutil panel xfconf
 USE_GSTREAMER=	good
 
 MAKE_JOBS_UNSAFE=	yes
