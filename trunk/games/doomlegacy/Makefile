@@ -61,12 +61,12 @@ pre-build:
 	${MAKE_CMD} -C ${BUILD_WRKSRC} depend
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/doomlegacy ${STAGEDIR}${PREFIX}/bin
-	@${MKDIR} ${STAGEDIR}${DMDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/doomlegacy ${PREFIX}/bin
+	@${MKDIR} ${FAKE_DESTDIR}${DMDIR}
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}_${PORTVERSION}/legacy.wad \
 		${FAKE_DESTDIR}${DMDIR}/legacy.wad
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	@${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${DOCSDIR})
 
 .include "${.CURDIR}/../doom-data/Makefile.include"
 .include <bsd.port.mk>
