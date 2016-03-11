@@ -34,7 +34,7 @@ pre-install:
 	    ${EXTRACT_AFTER_ARGS}
 
 do-install: do-texhash do-fmtutil
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR||g' \
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/share/texmf-var/web2c/pdftex/jadetex.log \
 		${PREFIX}/share/texmf-var/web2c/pdftex/pdfjadetex.log
 
