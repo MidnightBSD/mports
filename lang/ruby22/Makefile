@@ -82,10 +82,6 @@ _SUF1=	_${PORTREVISION}
 
 CONFIGURE_ARGS+=	--disable-dtrace
 
-.if ${ARCH} == "armv6" || ${ARCH} == "armv6hf"
-CONFIGURE_ARGS+=	--with-setjmp-type=_setjmp
-.endif
-
 CONFIGURE_ENV=	debugflags=
 
 MAKE_JOBS_UNSAFE=	yes
@@ -183,7 +179,7 @@ post-install:
 #
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 . for FILE in ${INSTALLED_SCRIPTS}
-	${LN} -fs ${FILE}${RUBY_SUFFIX} ${PREFIX}/bin/${FILE}
+	cd ${PREFIX}/bin && ${LN} -fs ${FILE}${RUBY_SUFFIX} ${FILE}
 . endfor
 .endif
 
