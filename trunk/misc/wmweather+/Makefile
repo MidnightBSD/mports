@@ -46,7 +46,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES WM
 WM_DESC=	Depend on Window Maker port (otherwise only libwraster)
 
 DESKTOP_ENTRIES="${PORTNAME}" "" "${PORTNAME}" \
-		"${PORTNAME}" "System;Monitor;" ""
+		"${PORTNAME}" "System;Monitor;" "false"
 
 .include <bsd.mport.options.mk>
 
