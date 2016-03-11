@@ -13,8 +13,8 @@ COMMENT=	Access a MySQL database through Python
 
 LICENSE=	gpl2
 
-USE_PYTHON=		2
-USE_PYDISTUTILS=	yes
+USES=		python:2
+USE_PYTHON=	distutils autoplist
 PYDISTUTILS_AUTOPLIST=	yes
 USE_MYSQL=		yes
 
