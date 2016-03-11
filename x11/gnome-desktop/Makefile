@@ -23,11 +23,13 @@ BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		xkeyboard-config>=0:${PORTSDIR}/x11/xkeyboard-config \
 		libxkbfile>=0:${PORTSDIR}/x11/libxkbfile \
-		itstool:${PORTSDIR}/textproc/itstool
+		itstool:${PORTSDIR}/textproc/itstool \
+		python2:${PORTSDIR}/lang/python2
 RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		xkeyboard-config>=0:${PORTSDIR}/x11/xkeyboard-config \
-		libxkbfile>=0:${PORTSDIR}/x11/libxkbfile
+		libxkbfile>=0:${PORTSDIR}/x11/libxkbfile \
+		python2:${PORTSDIR}/lang/python2
 
 USES+=		bison gettext gmake libtool pathfix pkgconfig python:3
 USE_GNOME=	gtk30 intlhack introspection:build referencehack
