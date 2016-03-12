@@ -1,47 +1,52 @@
-include/libgdl-3.0/gdl/gdl-dock-bar.h
-include/libgdl-3.0/gdl/gdl-dock-item-grip.h
-include/libgdl-3.0/gdl/gdl-dock-item.h
-include/libgdl-3.0/gdl/gdl-dock-layout.h
-include/libgdl-3.0/gdl/gdl-dock-master.h
-include/libgdl-3.0/gdl/gdl-dock-object.h
-include/libgdl-3.0/gdl/gdl-dock-placeholder.h
-include/libgdl-3.0/gdl/gdl-dock.h
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
 include/libgdl-3.0/gdl/gdl.h
+include/libgdl-3.0/gdl/gdl-dock-item.h
+include/libgdl-3.0/gdl/gdl-dock.h
+include/libgdl-3.0/gdl/gdl-dock-object.h
+include/libgdl-3.0/gdl/gdl-dock-master.h
+include/libgdl-3.0/gdl/gdl-dock-placeholder.h
+include/libgdl-3.0/gdl/gdl-dock-item-grip.h
+include/libgdl-3.0/gdl/gdl-dock-bar.h
+include/libgdl-3.0/gdl/gdl-dock-layout.h
 include/libgdl-3.0/gdl/libgdltypebuiltins.h
 lib/girepository-1.0/Gdl-3.typelib
+lib/libgdl-3.la
 lib/libgdl-3.so
 lib/libgdl-3.so.5
-lib/libgdl-3.so.5.0.8
+lib/libgdl-3.so.5.0.9
 libdata/pkgconfig/gdl-3.0.pc
-share/doc/gdl-3.0/GdlDock.html
-share/doc/gdl-3.0/GdlDockBar.html
-share/doc/gdl-3.0/GdlDockItem.html
-share/doc/gdl-3.0/GdlDockItemButtonImage.html
-share/doc/gdl-3.0/GdlDockItemGrip.html
-share/doc/gdl-3.0/GdlDockLayout.html
-share/doc/gdl-3.0/GdlDockMaster.html
-share/doc/gdl-3.0/GdlDockNotebook.html
-share/doc/gdl-3.0/GdlDockObject.html
-share/doc/gdl-3.0/GdlDockPaned.html
-share/doc/gdl-3.0/GdlDockPlaceholder.html
-share/doc/gdl-3.0/GdlDockTablabel.html
-share/doc/gdl-3.0/GdlPreviewWindow.html
-share/doc/gdl-3.0/GdlSwitcher.html
-share/doc/gdl-3.0/annotation-glossary.html
-share/doc/gdl-3.0/api-index-full.html
-share/doc/gdl-3.0/api.html
-share/doc/gdl-3.0/core.html
-share/doc/gdl-3.0/deprecated.html
-share/doc/gdl-3.0/gdl-3.0.devhelp2
-share/doc/gdl-3.0/home.png
-share/doc/gdl-3.0/index.html
-share/doc/gdl-3.0/index.sgml
-share/doc/gdl-3.0/left.png
-share/doc/gdl-3.0/private.html
-share/doc/gdl-3.0/right.png
-share/doc/gdl-3.0/style.css
-share/doc/gdl-3.0/up.png
-share/doc/gdl-3.0/widget.html
+%%DOCSDIR%%-3.0/index.html
+%%DOCSDIR%%-3.0/up.png
+%%DOCSDIR%%-3.0/GdlDockItem.html
+%%DOCSDIR%%-3.0/index.sgml
+%%DOCSDIR%%-3.0/GdlDockMaster.html
+%%DOCSDIR%%-3.0/api.html
+%%DOCSDIR%%-3.0/up-insensitive.png
+%%DOCSDIR%%-3.0/private.html
+%%DOCSDIR%%-3.0/right-insensitive.png
+%%DOCSDIR%%-3.0/GdlDock.html
+%%DOCSDIR%%-3.0/core.html
+%%DOCSDIR%%-3.0/GdlSwitcher.html
+%%DOCSDIR%%-3.0/right.png
+%%DOCSDIR%%-3.0/GdlPreviewWindow.html
+%%DOCSDIR%%-3.0/GdlDockLayout.html
+%%DOCSDIR%%-3.0/home.png
+%%DOCSDIR%%-3.0/deprecated.html
+%%DOCSDIR%%-3.0/left-insensitive.png
+%%DOCSDIR%%-3.0/GdlDockItemButtonImage.html
+%%DOCSDIR%%-3.0/style.css
+%%DOCSDIR%%-3.0/GdlDockTablabel.html
+%%DOCSDIR%%-3.0/GdlDockItemGrip.html
+%%DOCSDIR%%-3.0/gdl-3.0.devhelp2
+%%DOCSDIR%%-3.0/GdlDockPlaceholder.html
+%%DOCSDIR%%-3.0/left.png
+%%DOCSDIR%%-3.0/widget.html
+%%DOCSDIR%%-3.0/GdlDockPaned.html
+%%DOCSDIR%%-3.0/GdlDockNotebook.html
+%%DOCSDIR%%-3.0/annotation-glossary.html
+%%DOCSDIR%%-3.0/GdlDockBar.html
+%%DOCSDIR%%-3.0/api-index-full.html
+%%DOCSDIR%%-3.0/GdlDockObject.html
 share/gir-1.0/Gdl-3.gir
 share/locale/am/LC_MESSAGES/gdl-3.mo
 share/locale/ar/LC_MESSAGES/gdl-3.mo
@@ -51,6 +56,7 @@ share/locale/az/LC_MESSAGES/gdl-3.mo
 share/locale/be/LC_MESSAGES/gdl-3.mo
 share/locale/bg/LC_MESSAGES/gdl-3.mo
 share/locale/bn/LC_MESSAGES/gdl-3.mo
+share/locale/bs/LC_MESSAGES/gdl-3.mo
 share/locale/ca/LC_MESSAGES/gdl-3.mo
 share/locale/ca@valencia/LC_MESSAGES/gdl-3.mo
 share/locale/cs/LC_MESSAGES/gdl-3.mo
@@ -116,3 +122,42 @@ share/locale/vi/LC_MESSAGES/gdl-3.mo
 share/locale/zh_CN/LC_MESSAGES/gdl-3.mo
 share/locale/zh_HK/LC_MESSAGES/gdl-3.mo
 share/locale/zh_TW/LC_MESSAGES/gdl-3.mo
+@dir include/libgdl-3.0/gdl
+@dir include/libgdl-3.0
+@dir lib/girepository-1.0
+@dir %%DOCSDIR%%-3.0
+@dir share/gir-1.0
+@dir share/locale/as/LC_MESSAGES
+@dir share/locale/as
+@dir share/locale/ast/LC_MESSAGES
+@dir share/locale/ast
+@dir share/locale/ca@valencia/LC_MESSAGES
+@dir share/locale/ca@valencia
+@dir share/locale/dz/LC_MESSAGES
+@dir share/locale/dz
+@dir share/locale/en@shaw/LC_MESSAGES
+@dir share/locale/en@shaw
+@dir share/locale/hy/LC_MESSAGES
+@dir share/locale/hy
+@dir share/locale/km/LC_MESSAGES
+@dir share/locale/km
+@dir share/locale/mai/LC_MESSAGES
+@dir share/locale/mai
+@dir share/locale/mr/LC_MESSAGES
+@dir share/locale/mr
+@dir share/locale/oc/LC_MESSAGES
+@dir share/locale/oc
+@dir share/locale/ps/LC_MESSAGES
+@dir share/locale/ps
+@dir share/locale/rw/LC_MESSAGES
+@dir share/locale/rw
+@dir share/locale/si/LC_MESSAGES
+@dir share/locale/si
+@dir share/locale/sr@latin/LC_MESSAGES
+@dir share/locale/sr@latin
+@dir share/locale/te/LC_MESSAGES
+@dir share/locale/te
+@dir share/locale/ug/LC_MESSAGES
+@dir share/locale/ug
+@dir share/locale/zh_HK/LC_MESSAGES
+@dir share/locale/zh_HK

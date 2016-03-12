@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gdl
-PORTVERSION=	3.14.0
+PORTVERSION=	3.18.0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,7 +12,7 @@ COMMENT=	Components intended to be shared between GNOME development tools
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GNOME=	gnomeprefix gtk30 intlhack
+USE_GNOME=	gnomeprefix gtk30 intlhack introspection:build
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
