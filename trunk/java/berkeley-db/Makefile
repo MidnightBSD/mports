@@ -10,6 +10,8 @@ MASTER_SITES=	http://download.oracle.com/berkeley-db/	\
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley DB Java Edition
 
+LICENSE=	agpl
+
 OPTIONS_DEFINE=	DOCS EXAMPLES TEST
 
 BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:${PORTSDIR}/java/junit
