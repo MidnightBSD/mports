@@ -10,9 +10,8 @@ DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The virtual filesystem for Thunar
-LICENSE=	gpl2
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
