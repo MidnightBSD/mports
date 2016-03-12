@@ -2,10 +2,9 @@
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	http://offload1.icculus.org:9090/SDL_sound/downloads/ \
-		http://offload2.icculus.org:9090/SDL_sound/downloads/
+MASTER_SITES=	http://www.icculus.org/SDL_sound/downloads/
 DISTNAME=	SDL_sound-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,72 +15,83 @@ LICENSE=	lgpl
 USES=		libtool
 USE_LDCONFIG=	yes
 USE_SDL=	sdl
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix="" \
 			--build=${ARCH}-portbld-freebsd9.1 \
 			--host=${ARCH}-portbld-freebsd9.1 \
 			--target=${ARCH}-portbld-freebsd9.1
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-HAS_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
-OPTIONS=	FLAC "Enable flac support" on \
-		MIKMOD "Enable mikmod support" on \
-		PHYSFS "Enable physfs support" on \
-		SMPEG "Enable smpeg support" on \
-		SPEEX "Enable speex support" on \
-		MIDI "Enable MIDI support" on \
-		VORBIS "Enable Ogg Vorbis support" on
+OPTIONS_DEFINE=		FLAC MIKMOD MIDI MODPLUG PHYSFS SMPEG SPEEX VORBIS
+OPTIONS_DEFAULT=	FLAC MIKMOD MIDI MODPLUG PHYSFS SMPEG SPEEX VORBIS
 
-.include <bsd.port.pre.mk>
+MIDI_DESC=	Software MIDI music
+PHYSFS_DESC=	PhysicsFS support
+SMPEG_DESC=	MP3 audio format
 
-.if !defined(WITHOUT_FLAC)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MFLAC}
 LIB_DEPENDS+=	libFLAC.so:${PORTSDIR}/audio/flac
 .else
 CONFIGURE_ARGS+=--disable-flac
 .endif
 
-.if !defined(WITHOUT_MIKMOD)
+.if ${PORT_OPTIONS:MMIKMOD}
 LIB_DEPENDS+=	libmikmod.so:${PORTSDIR}/audio/libmikmod
 .else
 CONFIGURE_ARGS+=--disable-mikmod
 .endif
 
-.if !defined(WITHOUT_PHYSFS)
+.if ${PORT_OPTIONS:MMODPLUG}
+LIB_DEPENDS+=	libmodplug.so:${PORTSDIR}/audio/libmodplug
+.else
+CONFIGURE_ARGS+=--disable-modplug
+.endif
+
+.if ${PORT_OPTIONS:MPHYSFS}
 LIB_DEPENDS+=	libphysfs.so:${PORTSDIR}/devel/physfs
 .else
 CONFIGURE_ARGS+=--disable-physfs
 .endif
 
-.if !defined(WITHOUT_SMPEG)
+.if ${PORT_OPTIONS:MSMPEG}
 LIB_DEPENDS+=	libsmpeg.so:${PORTSDIR}/multimedia/smpeg
 CONFIGURE_ARGS+=--disable-mpglib
 .else
 CONFIGURE_ARGS+=--disable-smpeg
 .endif
 
-.if !defined(WITHOUT_SPEEX)
+.if ${PORT_OPTIONS:MSPEEX}
 LIB_DEPENDS+=	libspeex.so:${PORTSDIR}/audio/speex
 .else
 CONFIGURE_ARGS+=--disable-speex
 .endif
 
-.if !defined(WITHOUT_MIDI)
+.if ${PORT_OPTIONS:MMIDI}
 RUN_DEPENDS+=	${LOCALBASE}/lib/timidity/goemon.cfg:${PORTSDIR}/audio/timidity
 BUILD_DEPENDS+=	${LOCALBASE}/lib/timidity/goemon.cfg:${PORTSDIR}/audio/timidity
 .else
 CONFIGURE_ARGS+=--disable-midi
 .endif
 
-.if !defined(WITHOUT_VORBIS)
+.if ${PORT_OPTIONS:MVORBIS}
 LIB_DEPENDS+=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 .else
 CONFIGURE_ARGS+=--disable-ogg
 .endif
 
-.if defined(WITHOUT_SMPEG)
 pre-everything::
+.if !${PORT_OPTIONS:MSMPEG}
 	@${ECHO_CMD}
 	@${ECHO_CMD} "WARNING: the built-in MP3 support is currently broken, consider enabling the SMPEG option to use that library instead." | ${FMT}
 	@${ECHO_CMD}
 .endif
 
-.include <bsd.port.post.mk>
+post-patch:
+	@${REINPLACE_CMD} 's|timidity.cfg|${PREFIX}/share/timidity/&|' \
+		${WRKSRC}/decoders/timidity/options.h
+
+.include <bsd.port.mk>
