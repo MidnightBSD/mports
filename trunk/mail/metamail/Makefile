@@ -24,7 +24,8 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/src
 
 .if ${PORT_OPTIONS:MX11}
 BUILD_DEPENDS+=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
-		mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
+		mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale \
+		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
 RUN_DEPENDS+=	xloadimage:${PORTSDIR}/x11/xloadimage \
 		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
 USE_XORG=	x11
