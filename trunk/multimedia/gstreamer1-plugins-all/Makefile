@@ -8,6 +8,8 @@ CATEGORIES=	multimedia
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port of all gstreamer 1.x plugins with options
 
+LICENSE=	agg
+
 USES=		metaport
 
 USE_GSTREAMER1=	yes
