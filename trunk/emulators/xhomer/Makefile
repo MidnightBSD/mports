@@ -8,7 +8,7 @@
 
 PORTNAME=	xhomer
 DISTVERSION=	9-16-06
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://xhomer.isani.org/xhomer/
@@ -16,9 +16,10 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emulator for the DEC Pro 350 computer
+
 LICENSE=	agg
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_XORG=	xt sm ice xext x11
 ALL_TARGET=	clean xhomer
 INSTALL_TARGET=
@@ -29,6 +30,8 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 PLIST_FILES=	bin/xhomer %%EXAMPLESDIR%%/xhomer.cfg
 PLIST_DIRS=	%%EXAMPLESDIR%%
 PORTDOCS=	README LICENSE SIMH
+
+MAKE_JOBS_UNSAFE=	yes
 
 post-install:
 .if !defined(NOPORTDOCS)
