@@ -3,7 +3,7 @@
 #       python setup.py install
 #
 
-__version__ = "$FreeBSD$"
+__version__ = "$MidnightBSD$"
 
 import os, string
 
