@@ -1,14 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	mport-manager
-PORTVERSION=	0.1.1
+PORTVERSION=	0.1.2
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Graphical Package Manager for MidnightBSD
 
 LICENSE=	bsd2
-#LICENSE_FILE=	${WRKSRC}/../COPYING
 
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
@@ -17,7 +16,7 @@ USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
 GH_TAGNAME=     ${PORTVERSION}
-GH_COMMIT=      60da404
+GH_COMMIT=      b7486c0
 USE_CSTD=       c99
 
 USE_GNOME=	gtk30
