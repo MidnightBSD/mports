@@ -2,6 +2,7 @@
 
 PORTNAME=	varnish
 PORTVERSION=	4.1.1
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 PKGNAMESUFFIX=	4
@@ -26,6 +27,9 @@ CONFIGURE_ARGS=	--localstatedir=${PREFIX} --enable-tests
 CONFIGURE_ENV=	RST2MAN=true
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+
+USERS=		varnish varnishlog
+GROUPS=		varnish
 
 USE_RC_SUBR=	varnishd varnishlog varnishncsa
 SUB_FILES=	pkg-message
