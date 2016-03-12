@@ -20,7 +20,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 
 USES=		tar:bzip2 pkgconfig gmake gettext pathfix desktop-file-utils libtool
-USE_XFCE=	configenv libutil thunar
+USE_XFCE=	libutil thunar
 USE_XORG=	x11
 USE_GNOME=	gtk20 glib20 intltool intlhack
 USE_LDCONFIG=	yes
