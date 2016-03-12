@@ -3,6 +3,7 @@
 
 PORTNAME=	antlr
 PORTVERSION=	2.7.7
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.antlr2.org/download/
 
@@ -14,22 +15,19 @@ RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
 CONFLICTS=	pccts-[0-9]*
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
-
-OPTIONS_DEFINE=	PYTHON DOCS
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" CLASSPATH="${PORT_CLASSPATH}"
-CONFIGURE_ARGS=	--disable-csharp --prefix=${PREFIX}
+CONFIGURE_ARGS=	--disable-csharp --prefix=${PREFIX} \
+		--build=${ARCH}-portbld-freebsd9.1 \
+		--host=${ARCH}-portbld-freebsd9.1
 
 PORT_CLASSPATH=	${WRKSRC}/antlrall.jar:.
 
-EXAMPLES=	cpp java
+SUB_FILES=	antlr.sh
 
-.include <bsd.mport.options.mk>
-.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		csharp-runtime.html err.html glossary.html hidden.stream.gif \
 		index.html inheritance.html j-guru-blue.jpg jguru-logo.gif \
@@ -38,61 +36,35 @@ PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 		stream.perspectives.gif stream.selector.gif \
 		stream.splitter.gif streams.html subrule.gif trees.html \
 		vocab.html
-.endif
 
-.if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	2.2+
-PORTDOCS+=	python-runtime.html
-ANTLR_PYTHON=	${WRKSRC}/lib/python
-PLIST_SUB+=	WITH_PYTHON=""
-.else
-PLIST_SUB+=	WITH_PYTHON="@comment "
-.endif
+OPTIONS_DEFINE=	PYTHON DOCS
+OPTIONS_SUB=	yes
+
+PYTHON_USES=		python
+PYTHON_PORTDOCS=	python-runtime.html
 
 post-extract:
 	(cd ${WRKSRC} && ${CP} antlr.jar antlrall.jar)
 
-post-configure:
-	${SED} -e 's|%%JAVAJARDIR%%|${JAVAJARDIR}|' \
-	-e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-	-e 's|%%JAVA_VERSION%%|${JAVA_VERSION}|' ${FILESDIR}/antlr.sh > ${WRKDIR}/antlr.sh
-.if ${PORT_OPTIONS:MPYTHON}
-	(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py config)
-.endif
+post-configure-PYTHON-on:
+	(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py config)
 
-.if defined(WITH_BUILT_JAVA_LIB)
-pre-build:
-	(cd ${WRKSRC} && ${JAVA} -classpath "${PORT_CLASSPATH}" antlr.build.Tool build)
-	(cd ${WRKSRC} && ${JAVA} -classpath "${PORT_CLASSPATH}" antlr.build.Tool jar)
-.endif
-
-.if ${PORT_OPTIONS:MPYTHON}
-post-build:
-	(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py build && \
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${ANTLR_PYTHON})
-.endif
+post-build-PYTHON-on:
+	(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py build && \
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${WRKSRC}/lib/python)
 
 do-install:
-	@${ECHO_MSG} -n ">> Installing JAR as ${JAVAJARDIR}/${PORTNAME}.jar..."
-	@${MKDIR} ${JAVAJARDIR}
-	@${INSTALL_DATA} ${WRKSRC}/antlr.jar ${JAVAJARDIR}/${PORTNAME}.jar
-	@${ECHO_MSG} " [ DONE ]"
-	@${ECHO_MSG} -n ">> Installing antlr script as ${PREFIX}/bin/${PORTNAME}..."
-	@${INSTALL_SCRIPT} ${WRKDIR}/antlr.sh ${PREFIX}/bin/antlr
-	@${ECHO_MSG} " [ DONE ]"
-	@${ECHO_MSG} ">> Installing native files..."
-	@(cd ${WRKSRC}/lib/cpp && ${GMAKE} install)
-	@${ECHO_MSG} "   [ DONE ]"
-.if ${PORT_OPTIONS:MPYTHON}
-	@${ECHO_MSG} -n ">> Installing Python runtime files..."
-	@(cd ${ANTLR_PYTHON} && ${PYTHON_CMD} setup.py install)
-	@${ECHO_MSG} "   [ DONE ]"
-.endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${DOCSDIR}
-	@cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}/
-	@${ECHO_MSG} " [ DONE ]"
-.endif
+	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/antlr.jar ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/antlr.sh ${STAGEDIR}${PREFIX}/bin/antlr
+	@${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/lib/cpp/antlr/*.hpp \
+		${STAGEDIR}${PREFIX}/include/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/lib/cpp/src/libantlr.a ${STAGEDIR}${PREFIX}/lib
+	${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
+
+do-install-PYTHON-on:
+	@(cd ${WRKSRC}/lib/python && ${PYTHON_CMD} setup.py install --root=${FAKE_DESTDIR})
 
 .include <bsd.port.mk>
