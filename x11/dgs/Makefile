@@ -2,7 +2,7 @@
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	x11
 MASTER_SITES=	GNU/../old-gnu/dgs
 
@@ -29,9 +29,9 @@ pre-patch:
 		${REINPLACE_CMD} -e 's|manm|mann|g'
 
 post-patch:
-	${REINPLACE_CMD} -e 's,@prefix@,$$(DESTDIR)@prefix@,g' \
-		-e 's,@mandir@,$$(DESTDIR)@mandir@,g' \
-		${WRKSRC}/gs/unix-gcc.mak.in
+	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
+		${WRKSRC}/config.guess
+	${TOUCH} ${WRKSRC}/config.sub
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/lib/*.so
