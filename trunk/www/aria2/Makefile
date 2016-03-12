@@ -44,6 +44,7 @@ CA_BUNDLE_CONFIGURE_ON=	--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.cr
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 NLS_CONFIGURE_OFF=	--disable-nls --without-libintl-prefix
 NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
+NLS_LDFLAGS=		-lintl
 NLS_USES=		gettext
 SQLITE_CONFIGURE_OFF=	--without-sqlite3
 SQLITE_CONFIGURE_ON=	--with-sqlite3=/usr
