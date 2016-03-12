@@ -33,8 +33,6 @@ CONFIGURE_ARGS+=	--with-libwraster=${LOCALBASE} \
 			--with-xpm-includes=${LOCALBASE} \
 			--with-xpm-libraries=${LOCALBASE}
 
-SUB_FILES=	pkg-message
-
 PLIST_FILES=	bin/${PORTNAME} \
 		man/man1/${PORTNAME}.1.gz \
 		share/pixmaps/${PORTNAME}.png
