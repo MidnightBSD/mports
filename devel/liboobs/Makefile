@@ -4,13 +4,14 @@
 
 PORTNAME=	liboobs
 PORTVERSION=	3.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	portsMidnightBSD.org
 COMMENT=	Wrapping library to the System Tools Backends
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	system-tools-backends:${PORTSDIR}/sysutils/system-tools-backends
@@ -26,10 +27,4 @@ CONFIGURE_ARGS=	--with-hal
 CPPFLAGS+=	-I${LOCALBASE}/include
 INSTALL_TARGET=	install-strip
 
-.include <bsd.port.pre.mk>
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|utmpx|utmp|g' \
-		${WRKSRC}/configure
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
