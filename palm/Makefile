@@ -7,7 +7,6 @@ SUBDIR += imgvtopgm
 SUBDIR += jfconv
 SUBDIR += libmal
 SUBDIR += mdbconv
-SUBDIR += palmos-sdk
 SUBDIR += pilot-link
 SUBDIR += pilot_makedoc
 
