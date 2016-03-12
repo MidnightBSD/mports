@@ -1,5 +1,5 @@
 #! /bin/sh
 #
-# $FreeBSD: ports/devel/antlr/files/antlr.sh,v 1.4 2004/11/15 23:59:52 glewis Exp $
+# $FreeBSD: head/devel/antlr/files/antlr.sh.in 350206 2014-04-05 08:01:26Z pawel $
 
 JAVA_VERSION="%%JAVA_VERSION%%" "%%LOCALBASE%%/bin/java" -classpath "%%JAVAJARDIR%%/antlr.jar" antlr.Tool "$@"
