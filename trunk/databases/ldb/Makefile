@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=		ldb
-PORTVERSION=		1.1.15
-PORTREVISION=		1
+PORTVERSION=		1.1.24
+PORTREVISION=		0
 CATEGORIES=		databases
-MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=		SAMBA
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		LDAP-like embedded database
@@ -14,22 +13,27 @@ LICENSE=		gpl3
 
 CONFLICTS=		*samba3[0-4]-3.*
 
-USES=			compiler pkgconfig ldap python:2,build,run
+USES=			compiler pkgconfig python:2 waf
 USE_LDCONFIG=		yes
-HAS_CONFIGURE=		yes
-WAF_TOOL=		buildtools/bin/waf
-CONFIGURE_SCRIPT=	${WAF_TOOL} configure
+WAF_CMD=		buildtools/bin/waf
+CONFIGURE_LOG=		bin/config.log
 
 USE_OPENLDAP=		yes
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-.include <bsd.mport.options.mk>
+CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
+			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
+			--disable-rpath \
+			--without-gettext
 
-BUILD_DEPENDS+=		talloc>=2.0.8:${PORTSDIR}/devel/talloc \
-			tevent>=0.9.17:${PORTSDIR}/devel/tevent \
-			tdb>=1.2.11:${PORTSDIR}/databases/tdb \
+OPTIONS_DEFINE=		MANPAGES
+MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
+
+BUILD_DEPENDS+=		talloc>=2.1.5:${PORTSDIR}/devel/talloc \
+			tevent>=0.9.26:${PORTSDIR}/devel/tevent \
+			tdb>=1.3.8,1:${PORTSDIR}/databases/tdb \
 			popt>=0:${PORTSDIR}/devel/popt
 RUN_DEPENDS:=		${BUILD_DEPENDS}
 
@@ -37,18 +41,14 @@ CONFIGURE_ARGS+=	--bundled-libraries=!talloc,!tevent,!tdb,!popt \
 			--with-modulesdir=${PREFIX}/lib/shared-modules \
 			--with-privatelibdir=${PREFIX}/lib/ldb
 
-MAN1=			ldbadd.1 \
-			ldbdel.1 \
-			ldbedit.1 \
-			ldbmodify.1 \
-			ldbrename.1 \
-			ldbsearch.1
+.include <bsd.port.pre.mk>
 
-MAN3=			ldb.3
-
-PLIST_DIRSTRY=		lib/ldb \
-			lib/shared-modules/ldb \
-			lib/shared-modules
+.if ! ${PORT_OPTIONS:MMANPAGES}
+CONFIGURE_ENV+=		XSLTPROC="true"
+.else
+BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
+			xsltproc:${PORTSDIR}/textproc/libxslt
+.endif
 
 PLIST_FILES=		bin/ldbedit \
 			bin/ldbmodify \
@@ -75,31 +75,30 @@ PLIST_FILES=		bin/ldbedit \
 			lib/shared-modules/ldb/tdb.so \
 			%%PKGCONFIGDIR%%/ldb.pc
 
-CONFIGURE_ENV+=		XSLTPROC="/usr/bin/true"
+# No fancy color error messages
+.if ${COMPILER_TYPE} == "clang"
+CFLAGS+=		-fno-color-diagnostics
+.endif
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
-
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man
-
-.if !defined(DISABLE_MAKE_JOBS) && !defined(MAKE_JOBS_UNSAFE)
-.if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
-CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS_NUMBER}
-_MAKE_JOBS=		--jobs=${MAKE_JOBS_NUMBER}
-.endif
-.endif
 
 PLIST_FILES+=		include/pyldb.h \
 			lib/libpyldb-util.so \
 			lib/libpyldb-util.so.1 \
 			%%PYTHON_SITELIBDIR%%/ldb.so \
+			%%PYTHON_SITELIBDIR%%/_ldb_text.py \
 			%%PKGCONFIGDIR%%/pyldb-util.pc
-PLIST_DIRSTRY+=		%%PYTHON_SITELIBDIR%% \
-			%%PYTHON_LIBDIR%%
 
-ALL_TARGET=		build
-INSTALL_TARGET=		install
+LDB_MAN1=		man/man1/ldbadd.1.gz \
+			man/man1/ldbdel.1.gz \
+			man/man1/ldbedit.1.gz \
+			man/man1/ldbmodify.1.gz \
+			man/man1/ldbrename.1.gz \
+			man/man1/ldbsearch.1.gz
 
-.include <bsd.port.pre.mk>
+LDB_MAN3=		man/man3/ldb.3.gz
+
+PLIST_FILES+=		${LDB_MAN1} ${LDB_MAN3}
 
 IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
@@ -117,22 +116,11 @@ pre-configure:
 			fi
 
 pre-build:
+.if ! ${PORT_OPTIONS:MMANPAGES}
 			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-.for man in ${MAN1} ${MAN3}
-			${INSTALL_MAN} ${FILESDIR}/${man} ${BUILD_WRKSRC}/bin/default/man
-.endfor
-
-do-build:
-			@(cd ${BUILD_WRKSRC}; \
-			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_TOOL} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
-				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
-					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-				fi; \
-			${FALSE}; \
-			fi)
-
-do-install:
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${INSTALL_TARGET})
+.	for man in ${LDB_MAN1} ${LDB_MAN3}
+			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
+.	endfor
+.endif
 
 .include <bsd.port.post.mk>
