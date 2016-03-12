@@ -3,7 +3,7 @@
 
 PORTNAME=	qdbusviewer
 DISTVERSION=	${QT4_VERSION}
-CATEGORIES?=	devel
+CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,9 +13,9 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
+USES=		pkgconfig
 USE_QT4=	qmake_build moc_build rcc_build corelib dbus gui xml \
 		clucene
-QT_NONSTANDARD=	yes
 QT_DIST=	yes
 
 HAS_CONFIGURE=	yes
@@ -25,9 +25,10 @@ CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
 		PATH=${WRKSRC}/bin:$$PATH
 
-DESKTOP_ENTRIES="Qt D-Bus viewer" "${COMMENT}" \
-		"${PREFIX}/share/pixmaps/qdbusviewer.png" \
-		"${PREFIX}/bin/qdbusviewer" "Development;Qt;" true
+DESKTOP_ENTRIES="Qt 4 D-Bus viewer" "" \
+		"${PREFIX}/share/pixmaps/qdbusviewer-qt4.png" \
+		"${PREFIX}/${QT_BINDIR_REL}/qdbusviewer" \
+		"Development;Qt;" true
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/activeqt src/multimedia src/network src/opengl src/openvg \
@@ -51,7 +52,7 @@ post-patch:
 	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
 
 post-install:
-	${INSTALL_DATA} ${BUILD_WRKSRC}/images/qdbusviewer-128.png \
-		${PREFIX}/share/pixmaps/qdbusviewer.png
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/images/qdbusviewer-128.png \
+		${STAGEDIR}${PREFIX}/share/pixmaps/qdbusviewer-qt4.png
 
 .include <bsd.port.mk>
