@@ -4,7 +4,7 @@ PORTNAME=	ghc
 PORTVERSION=	7.8.3
 CATEGORIES=	lang haskell
 MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
-		LOCAL/pgj/:boot
+		FREEBSD_LOCAL/pgj/:boot
 DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source
 
 MAINTAINER=	ports@MidnightBSD.org
