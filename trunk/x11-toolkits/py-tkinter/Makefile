@@ -19,6 +19,8 @@ USES=		python tar:xz tk
 USE_TCL=	85
 USE_TK=		85
 
+CFLAGS+=	-I${LOCALBASE}/include/tcl8.5/generic/
+
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
