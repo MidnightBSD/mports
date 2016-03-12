@@ -1,19 +1,28 @@
-System/Library/Frameworks/PreferencePanes.framework/Headers
-System/Library/Frameworks/PreferencePanes.framework/Resources
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers/NSPreferencePane.h
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers/PreferencePanes.h
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/PreferencePanes
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/Resources/Info-gnustep.plist
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so.%%MAJORLIBVERSION%%
-System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so.%%LIBVERSION%%
-System/Library/Frameworks/PreferencePanes.framework/Versions/Current
-System/Library/Headers/PreferencePanes
-System/Library/Libraries/libPreferencePanes.so
-System/Library/Libraries/libPreferencePanes.so.%%MAJORLIBVERSION%%
-System/Library/Libraries/libPreferencePanes.so.%%LIBVERSION%%
-@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1/Resources
-@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers
-@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1
-@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions
-@dirrm System/Library/Frameworks/PreferencePanes.framework
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20%%MAJORLIBVERSION%%46 20%%MAJORLIBVERSION%%5-08-30 %%MAJORLIBVERSION%%6:57:2%%MAJORLIBVERSION%%Z laffer%%MAJORLIBVERSION%% $
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/libPreferencePanes.so
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/PreferencePanes
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/libPreferencePanes.so.%%LIBVERSION%%
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/Resources/Info-gnustep.plist
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/libPreferencePanes.so.%%MAJORLIBVERSION%%
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/Headers/PreferencePanes.h
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/Headers/NSPreferencePane.h
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/PreferencePanes
+GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/libPreferencePanes.so
+GNUstep/System/Library/Libraries/libPreferencePanes.so
+GNUstep/System/Library/Libraries/libPreferencePanes.so.%%LIBVERSION%%
+GNUstep/System/Library/Libraries/libPreferencePanes.so.%%MAJORLIBVERSION%%
+@dir GNUstep/System/Library/Headers/PreferencePanes
+@dir GNUstep/System/Library/Headers
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Resources
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/Resources
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%/Headers
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/%%MAJORLIBVERSION%%
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions/Current
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Versions
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework/Headers
+@dir GNUstep/System/Library/Frameworks/PreferencePanes.framework
+@dir GNUstep/System/Library/Frameworks
+@dir GNUstep/System/Library/Libraries
+@dir GNUstep/System/Library
+@dir GNUstep/System
+@dir GNUstep
