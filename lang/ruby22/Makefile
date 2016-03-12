@@ -26,11 +26,13 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-pthread \
 		--enable-shared \
 		--with-ruby-version=minor \
-		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
-		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby" \
-		--with-rubyhdrdir="${PREFIX}/include/ruby-2.2/" \
-		--with-rubylibprefix="${PREFIX}/lib/ruby" \
-		--docdir="${PREFIX}/share/doc/ruby22"
+		--with-sitedir="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/site_ruby" \
+		--with-vendordir="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/vendor_ruby" \
+		--with-rubyhdrdir="${FAKE_DESTDIR}${TRUE_PREFIX}/include/ruby-2.2/" \
+		--with-rubylibprefix="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby" \
+		--docdir="${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/ruby22" \
+		--mandir="${FAKE_DESTDIR}/usr/local/man" \
+		--prefix=${FAKE_DESTDIR}
 CONFIGURE_ENV+=	LC_ALL=C debugflags=
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
@@ -112,7 +114,7 @@ RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]
 
 post-patch:
 	${MKDIR} -p ${FAKE_DESTDIR}/usr
-	${LN} -s /usr/mports ${FAKE_DESTDIR}/usr/mports
+	${LN} -s ${PORTSDIR} ${FAKE_DESTDIR}${PORTSDIR}
 	@${REINPLACE_CMD} -E \
 		-e 's,-l$$pthread_lib,-lpthread,g' \
 		-e '/^RUBY_LIB_PATH/s,\.\$$\{TEENY\},,' \
@@ -179,7 +181,7 @@ post-install:
 #
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 . for FILE in ${INSTALLED_SCRIPTS}
-	cd ${PREFIX}/bin && ${LN} -fs ${FILE}${RUBY_SUFFIX} ${FILE}
+	cd ${FAKE_DESTDIR}${TRUE_PREFIX}/bin && ${LN} -fs ${FILE}${RUBY_SUFFIX} ${FILE}
 . endfor
 .endif
 
@@ -204,7 +206,9 @@ post-install:
 
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb22 ${PREFIX}/bin/irb22 \
-		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22
+		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22 \
+		${PREFIX}/lib/ruby/2.2/amd64-midnightbsd0/rbconfig.rb  \
+		${PREFIX}/libdata/pkgconfig/ruby-2.2.pc
 
 regression-test test:
 	@(cd ${WRKSRC}; ${MAKE} test)
