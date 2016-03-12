@@ -14,7 +14,7 @@ COMMENT=	Gstreamer Plugins Mp3 decoder meta-port
 
 LICENSE=	agg
 
-NO_BUILD=	yes
+USES=		metaport
 WANT_GSTREAMER=	yes
 
 OPTIONS_MULTI=	MP3
