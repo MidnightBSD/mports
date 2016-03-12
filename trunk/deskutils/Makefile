@@ -24,7 +24,6 @@ SUBDIR += gnome-weather
 SUBDIR += gnote
 SUBDIR += gnustep-notebook
 SUBDIR += gnustep-wrapper
-SUBDIR += gnuwash
 SUBDIR += gtkjj
 SUBDIR += gucharmap
 SUBDIR += gworkspace
