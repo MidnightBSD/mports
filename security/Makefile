@@ -112,6 +112,7 @@ SUBDIR += polarssl
 SUBDIR += py-fail2ban
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
+SUBDIR += py-rsa
 SUBDIR += saint
 SUBDIR += seahorse
 SUBDIR += secpwgen
