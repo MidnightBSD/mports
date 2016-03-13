@@ -2,7 +2,7 @@
 
 PORTNAME=	farsight2
 PORTVERSION=	0.0.31
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://www.freedesktop.org/software/farstream/releases/farsight2/ \
 		http://miwibox.org/distfiles/
@@ -10,13 +10,15 @@ MASTER_SITES=	http://www.freedesktop.org/software/farstream/releases/farsight2/ 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of GStreamer modules and libraries for videoconferencing
 
+LICENSE=	lgpl
+
 LIB_DEPENDS=	libnice.so:${PORTSDIR}/net-im/libnice
 RUN_DEPENDS=	libnice-gst010>=0:${PORTSDIR}/net-im/libnice-gst010
 
 USES=		gettext libtool gmake pathfix pkgconfig python
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20
-USE_GSTREAMER=	core good bad python
+USE_GSTREAMER=	core good bad
 GNU_CONFIGURE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
