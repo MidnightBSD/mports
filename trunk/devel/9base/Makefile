@@ -2,6 +2,7 @@
 
 PORTNAME=	9base
 DISTVERSION=	b20100604
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://dl.suckless.org/tools/
 DISTNAME=	${PORTNAME}-6
@@ -21,7 +22,6 @@ APPS=		ascii awk basename bc cal cat cleanname cmp date dc du dd diff echo ed \
 		factor fortune fmt freq getflags grep hoc join look ls mk mkdir mtime pbd \
 		primes rc read sam sha1sum sed seq sleep sort split strings tail tee test \
 		touch tr troff unicode uniq unutf yacc
-MAN1=		${APPS:S|$|.1|}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|PREFIX|"${PREFIX}/9"|' ${WRKSRC}/lib9/get9root.c
