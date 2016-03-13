@@ -417,6 +417,7 @@ SUBDIR += py-babel
 SUBDIR += py-bcdoc
 SUBDIR += py-boto
 SUBDIR += py-botocore
+SUBDIR += py-colorama
 SUBDIR += py-dbus
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
