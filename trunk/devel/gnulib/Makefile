@@ -19,9 +19,6 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/makeinfo:${PORTSDIR}/print/texinfo
 USES=		gmake perl5 shebangfix
 SHEBANG_FILES=	check-module
 
-PLIST_FILES=	bin/check-module bin/gnulib-tool \
-		share/gnulib/check-module \
-		share/gnulib/gnulib-tool
 INFO=		${PORTNAME}
 PORTDOCS=	gnulib.html
 PORTDATA=	*
