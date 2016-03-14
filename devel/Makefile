@@ -418,6 +418,7 @@ SUBDIR += py-bcdoc
 SUBDIR += py-boto
 SUBDIR += py-botocore
 SUBDIR += py-colorama
+SUBDIR += py-dateutil
 SUBDIR += py-dbus
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
