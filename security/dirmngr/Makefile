@@ -3,7 +3,7 @@
 
 PORTNAME=	dirmngr
 PORTVERSION=	1.1.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libassuan.so:${PORTSDIR}/security/libassuan \
 		libksba.so:${PORTSDIR}/security/libksba \
 		libpth.so:${PORTSDIR}/devel/pth
 
-USES=		gmake iconv tar:bzip2
+USES=		gmake iconv ldap tar:bzip2
 USE_OPENLDAP=	yes
 GNU_CONFIGURE=	yes
 INFO=		dirmngr
