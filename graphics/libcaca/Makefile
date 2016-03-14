@@ -39,6 +39,7 @@ IMLIB2_LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
 IMLIB2_CONFIGURE_ENABLE=	imlib2
 SLANG_LIB_DEPENDS=	libslang.so.2:${PORTSDIR}/devel/libslang2
 SLANG_CONFIGURE_ENABLE=	slang=${LOCALBASE}
+SLANG_CONFIGURE_OFF=	--disable-slang
 
 .include <bsd.mport.options.mk>
 
