@@ -13,7 +13,7 @@ COMMENT=	Pam module for authenticating with LDAP
 
 LICENSE=	gpl2
 
-USES=		gmake perl5
+USES=		gmake perl5 ldap
 GNU_CONFIGURE=	yes
 USE_OPENLDAP=	yes
 USE_PERL5_BUILD=	yes
