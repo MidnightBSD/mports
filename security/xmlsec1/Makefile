@@ -2,7 +2,7 @@
 
 PORTNAME=	xmlsec1
 PORTVERSION=	1.2.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 		ftp://ftp.aleksey.com/pub/xmlsec/releases/ \
@@ -27,7 +27,7 @@ NSS_LIB_DEPENDS=	libnss3.so:${PORTSDIR}/security/nss
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool:oldver pathfix pkgconfig
+USES=		libtool pathfix pkgconfig
 USE_OPENSSL=	yes
 USE_GNOME=	libxml2 libxslt
 USE_LDCONFIG=	yes
@@ -55,12 +55,11 @@ post-patch:
 	    -e '/^XMLSEC_SHLIBSFX="/s|"[^"]*"|".so"|' \
 	    -e 's|openssl_exlibs=-ldl|openssl_exlibs=|' \
 	    -e 's|-ldl"|"|' \
-	    -e 's,with_nspr/include,with_nspr/include/nspr ${PTHREAD_CFLAGS},' \
 	    -e 's,with_nss/include,with_nss/include/nss/nss,' \
 	    -e 's,with_nss/lib,with_nss/lib/nss,g' \
 	    -e 's,\(CPPFLAGS="\$$NSS_CFLAGS\),\1 $$NSPR_CFLAGS,' \
 	    -e '/XMLSEC_CRYPTO_LIST=.*openssl/s,$$,\; CPPFLAGS="$$CPPFLAGS $$OPENSSL_CFLAGS",' \
-	    -e 's,\(-lplc4\)",\1 ${PTHREAD_LIBS}",' \
+	    -e 's,\(-lplc4\)",\1 -lpthread",' \
 	    -e '/ test /s, == , = ,' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} \
@@ -76,7 +75,7 @@ post-patch:
 .if ${PORT_OPTIONS:MNSS}
 # Makeing the xmlsec1 executable multi-threaded to let load -lnss,
 # when needed.
-	@${REINPLACE_CMD} -e 's,^\(xmlsec1_LDADD = \)\\$$,\1 -L${LOCALBASE}/lib ${PTHREAD_LIBS}\\,' \
+	@${REINPLACE_CMD} -e 's,^\(xmlsec1_LDADD = \)\\$$,\1 -L${LOCALBASE}/lib -lpthread\\,' \
 		${WRKSRC}/apps/Makefile.in
 .endif
 
