@@ -1,17 +1,21 @@
---- ./setup.py.orig	2012-10-03 11:45:35.000000000 +0200
-+++ ./setup.py	2012-10-03 11:46:32.000000000 +0200
-@@ -37,14 +37,8 @@
+--- setup.py.orig	2014-12-19 23:01:22 UTC
++++ setup.py
+@@ -37,17 +37,9 @@ To install the `in-development version
  #ez_setup.use_setuptools()
  
  import sys
 -try:
 -    from setuptools import setup
 -    kw = {
--        'install_requires': 'pycrypto >= 2.1, != 2.4',
+-        'install_requires': [
+-            'pycrypto >= 2.1, != 2.4',
+-            'ecdsa >= 0.11',
+-        ],
 -    }
 -except ImportError:
 -    from distutils.core import setup
 -    kw = {}
++
 +from distutils.core import setup
 +kw = {}
  
