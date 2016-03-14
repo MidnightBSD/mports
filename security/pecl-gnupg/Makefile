@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.3
 CATEGORIES=	security
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -9,10 +9,11 @@ EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A pecl wrapper around the gpgme library
+COMMENT=	PECL wrapper around the gpgme library
+
 LICENSE=	bsd2
 
-LIB_DEPENDS=	gpgme.19:${PORTSDIR}/security/gpgme
+LIB_DEPENDS=	libgpgme.so:${PORTSDIR}/security/gpgme
 
 CFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--with-gnupg=${LOCALBASE}/include/gpgme
