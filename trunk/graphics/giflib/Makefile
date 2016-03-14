@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	giflib
-PORTVERSION=	5.0.6
+PORTVERSION=	5.1.2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}
 
@@ -26,6 +26,8 @@ INSTALL_TARGET=	install-strip
 .if ${PORT_OPTIONS:MDOCBOOK} && ${PORT_OPTIONS:MDOCS}
 BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto \
 		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
+.else
+CONFIGURE_ENV+=	have_xmlto=no
 .endif
 
 post-patch:
