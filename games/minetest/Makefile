@@ -4,6 +4,7 @@
 
 PORTNAME=	minetest
 PORTVERSION=	0.4.12
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +20,7 @@ GH_ACCOUNT=	minetest
 
 WRKSRC=		${WRKDIR}/minetest-${PORTVERSION}
 
-USES=		cmake jpeg
+USES=		cmake jpeg openal
 CMAKE_ARGS+=	-DCUSTOM_MANDIR="${TRUE_PREFIX}/man" \
 		-DCUSTOM_EXAMPLE_CONF_DIR="${TRUE_PREFIX}/etc" \
 		-DIRRLICHT_INCLUDE_DIR="/usr/local/include/irrlicht"
@@ -31,6 +32,7 @@ PORTDOCS=	*
 CMAKE_ARGS+=	-DBUILD_CLIENT=1
 LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
 		libIrrlicht.so:${PORTSDIR}/x11-toolkits/irrlicht
+USE_OPENAL=	yes
 USE_XORG=	x11
 USE_GL=		gl
 CMAKE_ARGS+=	-DBUILD_SERVER=1
@@ -44,7 +46,6 @@ LIB_DEPENDS+=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 
 .include <bsd.mport.options.mk>
 
-USES+=		openal
 LIB_DEPENDS+=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 
 USE_RC_SUBR=	${PORTNAME}
