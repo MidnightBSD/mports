@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	paramiko
-PORTVERSION=	1.10.1
+PORTVERSION=	1.15.2
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,20 +11,15 @@ COMMENT=	Python SSH2 protocol library
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/Crypto/__init__.py:${PORTSDIR}/security/py-pycrypto
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:${PORTSDIR}/security/py-pycrypto \
+		${PYTHON_PKGNAMEPREFIX}ecdsa>0:${PORTSDIR}/security/py-ecdsa
 
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
+USES=		python
+USE_PYTHON=	distutils autoplist
 
-EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
+OPTIONS_DEFINE=	EXAMPLES
 
 .include <bsd.mport.options.mk>
-
-post-install:
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${EXAMPLESDIR}
-	@(cd ${WRKSRC}/demos && ${COPYTREE_SHARE} \* ${EXAMPLESDIR})
-.endif
 
 regression-test: extract
 	@(cd ${WRKSRC} && ${PYTHON_CMD} test.py)
