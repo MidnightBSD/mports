@@ -115,7 +115,6 @@ SUBDIR += py-pycrypto
 SUBDIR += py-rsa
 SUBDIR += saint
 SUBDIR += seahorse
-SUBDIR += secpwgen
 SUBDIR += skipfish
 SUBDIR += smap
 SUBDIR += snort
