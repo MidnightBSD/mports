@@ -144,7 +144,7 @@ sbin/krb5kdc
 sbin/sim_server
 sbin/sserver
 sbin/uuserver
-share/doc/krb5/README.FreeBSD
+share/doc/krb5/README.MidnightBSD
 share/et/et_c.awk
 share/et/et_h.awk
 share/examples/krb5/kdc.conf
