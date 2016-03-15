@@ -6,8 +6,10 @@ lib/charset.alias
 lib/libcharset.a
 lib/libcharset.so
 lib/libcharset.so.1
+lib/libcharset.so.1.0.0
 lib/libiconv.a
 lib/libiconv.so
+lib/libiconv.so.2
 lib/libiconv.so.3
 lib/libiconv.so.3.0.0
 man/man1/iconv.1.gz
@@ -22,4 +24,3 @@ man/man3/iconvctl.3.gz
 %%PORTDOCS%%%%DOCSDIR%%/iconv_open.3.html
 %%PORTDOCS%%%%DOCSDIR%%/iconv_open_into.3.html
 %%PORTDOCS%%%%DOCSDIR%%/iconvctl.3.html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
