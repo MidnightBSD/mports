@@ -1,12 +1,13 @@
 # Created by: Alex Dupre <ale@FreeBSD.org>
 # $FreeBSD: head/lang/php70-extensions/Makefile 408945 2016-02-15 16:24:04Z miwi $
+# $MidnightBSD$
 
 PORTNAME=	php70
 PORTVERSION=	1.1
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-extensions
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" to install PHP extensions
 
 USES=		metaport
@@ -109,7 +110,7 @@ OPTIONS_DEFAULT=	CTYPE \
 			XMLREADER \
 			XMLWRITER
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .for opt in ${OPTIONS_DEFINE}
 .	if ${PORT_OPTIONS:M${opt}}
