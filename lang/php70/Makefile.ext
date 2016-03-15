@@ -3,13 +3,13 @@ COMMENT=	The ${PHP_MODNAME} shared extension for php
 USE_PHP=	yes
 USE_PHPEXT=	yes
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
-PHP_DEFAULT=	5.4
-IGNORE_WITH_PHP=52 53 55
+PHP_DEFAULT=	7.0
+IGNORE_WITH_PHP=	55 56
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
 PATCHDIR=	${.CURDIR}/files
-PLIST=		${WRKDIR}/PLIST
+PLIST=		${NONEXISTENT}
 
 EXTRACT_AFTER_ARGS?=	${EXTSUBDIR}
 
@@ -87,8 +87,8 @@ USE_OPENSSL=	yes
 
 .if ${PHP_MODNAME} == "gd"
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg
+		libpng.so:${PORTSDIR}/graphics/png
+USES+=		jpeg
 
 CONFIGURE_ARGS+=--with-gd \
 		--with-freetype-dir=${LOCALBASE} \
@@ -132,16 +132,26 @@ USES+=	iconv:translit
 .endif
 
 .if ${PHP_MODNAME} == "imap"
-LIB_DEPENDS+=	libc-client4.so:${PORTSDIR}/mail/cclient
+OPTIONS_DEFINE=	PANDA
+PANDA_DESC=	Uses the forked panda-cclient instead of the original cclient
 
 CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
-		--with-pcre-dir=${LOCALBASE}
-.if !defined(WITHOUT_SSL)
-CONFIGURE_ARGS+=--with-imap-ssl=${OPENSSLBASE}
+		--with-pcre-dir=${LOCALBASE} \
+		--with-imap-ssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 USE_OPENSSL=	yes
 .endif
+
+.if ${PHP_MODNAME} == "interbase"
+CONFIGURE_ARGS+=--with-interbase=${LOCALBASE}
+
+USES+=	firebird
+.endif
+
+.if ${PHP_MODNAME} == "intl"
+CONFIGURE_ARGS+=--with-intl=${LOCALBASE}
+LIB_DEPENDS=	libicui18n.so:${PORTSDIR}/devel/icu
 .endif
 
 .if ${PHP_MODNAME} == "json"
@@ -151,7 +161,6 @@ CONFIGURE_ARGS+=--enable-json
 .if ${PHP_MODNAME} == "ldap"
 CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
 
-EXTENSIONS+=	ldap
 USE_OPENLDAP=	yes
 
 . ifdef(WANT_OPENLDAP_SASL)
@@ -179,19 +188,6 @@ LIB_DEPENDS+=	libltdl.so:${PORTSDIR}/devel/libltdl \
 CONFIGURE_ARGS+=--with-mcrypt=${LOCALBASE}
 .endif
 
-.if ${PHP_MODNAME} == "mssql"
-LIB_DEPENDS+=	libsybdb.so:${PORTSDIR}/databases/freetds
-
-CONFIGURE_ARGS+=--with-mssql=${LOCALBASE}
-.endif
-
-.if ${PHP_MODNAME} == "mysql"
-OPTIONS_DEFINE=	MYSQLND
-OPTIONS_DEFAULT=MYSQLND
-
-MYSQLND_DESC=	Use MySQL Native Driver
-.endif
-
 .if ${PHP_MODNAME} == "mysqli"
 OPTIONS_DEFINE=	MYSQLND
 OPTIONS_DEFAULT=MYSQLND
@@ -213,6 +209,11 @@ LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 USE_OPENSSL=	yes
 .endif
 
+.if ${PHP_MODNAME} == "opcache"
+CONFIGURE_ARGS+=--enable-opcache
+USES+=	localbase
+.endif
+
 .if ${PHP_MODNAME} == "pcntl"
 CONFIGURE_ARGS+=--enable-pcntl
 .endif
@@ -232,12 +233,10 @@ OPTIONS_DEFINE=	MSSQL
 MSSQL_DESC=	Enable Microsoft SQL Server support
 .endif
 
-.if ${PHP_MODNAME} == "pdo_mysql"
-OPTIONS_DEFINE=	MYSQLND
-OPTIONS_DEFAULT=MYSQLND
+.if ${PHP_MODNAME} == "pdo_firebird"
+CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
 
-MYSQLND_DESC=	Use MySQL Native Driver
-
+USES+=	firebird
 USE_PHP=	pdo
 USE_PHP_BUILD=	yes
 .endif
@@ -250,8 +249,18 @@ USE_PHP=	pdo
 USE_PHP_BUILD=	yes
 .endif
 
+.if ${PHP_MODNAME} == "pdo_mysql"
+OPTIONS_DEFINE=	MYSQLND
+OPTIONS_DEFAULT=MYSQLND
+
+MYSQLND_DESC=	Use MySQL Native Driver
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+.endif
+
 .if ${PHP_MODNAME} == "pdo_pgsql"
-USE_PGSQL=	yes
+USES+=		pgsql
 
 CONFIGURE_ARGS+=--with-pdo-pgsql=${LOCALBASE}
 
@@ -260,7 +269,7 @@ USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_sqlite"
-USE_SQLITE=	yes
+USES+=		sqlite
 CONFIGURE_ARGS+=--with-pdo-sqlite=${LOCALBASE}
 
 USE_PHP=	pdo
@@ -268,13 +277,9 @@ USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pgsql"
-USE_PGSQL=	yes
+USES+=		pgsql
 
 CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
-.endif
-
-.if ${PHP_MODNAME} == "pear"
-CONFIGURE_ARGS+=--with-pear
 .endif
 
 .if ${PHP_MODNAME} == "phar"
@@ -353,9 +358,8 @@ CONFIGURE_ARGS+=--enable-sockets
 .endif
 
 .if ${PHP_MODNAME} == "sqlite3"
-USE_SQLITE=	yes
+USES+=		sqlite
 CONFIGURE_ARGS+=--with-sqlite3=${LOCALBASE}
-LIB_DEPENDS+=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 .endif
 
 .if ${PHP_MODNAME} == "sybase_ct"
@@ -443,9 +447,12 @@ USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "zip"
+LIB_DEPENDS+=	libzip.so:${PORTSDIR}/archivers/libzip
+
 CONFIGURE_ARGS+=--enable-zip \
 		--with-zlib-dir=/usr \
-		--with-pcre-dir=${LOCALBASE}
+		--with-pcre-dir=${LOCALBASE} \
+		--with-libzip=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "zlib"
@@ -511,23 +518,20 @@ CONFIGURE_ARGS+=--with-vpx-dir=${LOCALBASE}
 .	endif
 .endif
 
-.if ${PHP_MODNAME} == "mbstring"
-.	if ${PORT_OPTIONS:MREGEX}
-LIB_DEPENDS+=	libonig.so:${PORTSDIR}/devel/oniguruma4
-CONFIGURE_ARGS+=--with-onig=${LOCALBASE}
+.if ${PHP_MODNAME} == "imap"
+.	if ${PORT_OPTIONS:MPANDA}
+LIB_DEPENDS+=	libc-client4.so.10:${PORTSDIR}/mail/panda-cclient
 .	else
-CONFIGURE_ARGS+=--disable-mbregex
+LIB_DEPENDS+=	libc-client4.so.9:${PORTSDIR}/mail/cclient
 .	endif
 .endif
 
-.if ${PHP_MODNAME} == "mysql"
-.	if ${PORT_OPTIONS:MMYSQLND}
-CONFIGURE_ARGS+=--with-mysql=mysqlnd
+.if ${PHP_MODNAME} == "mbstring"
+.	if ${PORT_OPTIONS:MREGEX}
+LIB_DEPENDS+=	libonig.so:${PORTSDIR}/devel/oniguruma5
+CONFIGURE_ARGS+=--with-onig=${LOCALBASE}
 .	else
-CONFIGURE_ARGS+=--with-mysql=${LOCALBASE} \
-		--with-zlib-dir=/usr
-
-USE_MYSQL=	yes
+CONFIGURE_ARGS+=--disable-mbregex
 .	endif
 .endif
 
@@ -536,7 +540,16 @@ USE_MYSQL=	yes
 CONFIGURE_ARGS+=--with-mysqli=mysqlnd
 .	else
 CONFIGURE_ARGS+=--with-mysqli=${LOCALBASE}/bin/mysql_config
+USE_MYSQL=	yes
+.	endif
+.endif
 
+.if ${PHP_MODNAME} == "pdo_mysql"
+.	if ${PORT_OPTIONS:MMYSQLND}
+CONFIGURE_ARGS+=--with-pdo-mysql=mysqlnd
+.	else
+CONFIGURE_ARGS+=--with-pdo-mysql=${LOCALBASE} \
+		--with-zlib-dir=/usr
 USE_MYSQL=	yes
 .	endif
 .endif
@@ -551,19 +564,6 @@ post-extract:
 LIB_DEPENDS+=	libsybdb.so:${PORTSDIR}/databases/freetds
 .	else
 LIB_DEPENDS+=	libct.so:${PORTSDIR}/databases/freetds
-.	endif
-.endif
-
-.if ${PHP_MODNAME} == "pdo_mysql"
-.	if ${PORT_OPTIONS:MMYSQLND}
-CONFIGURE_ARGS+=--with-pdo-mysql=mysqlnd
-
-USE_PHP+=	mysql
-.	else
-CONFIGURE_ARGS+=--with-pdo-mysql=${LOCALBASE} \
-		--with-zlib-dir=/usr
-
-USE_MYSQL=	yes
 .	endif
 .endif
 
