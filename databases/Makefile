@@ -32,6 +32,7 @@ SUBDIR += mysql56-server
 SUBDIR += oracle8-client
 SUBDIR += p5-Class-DBI
 SUBDIR += p5-Class-DBI-AbstractSearch
+SUBDIR += p5-Class-DBI-Plugin-AbstractCount
 SUBDIR += p5-Class-DBI-Plugin-Pager
 SUBDIR += p5-DBD-Pg
 SUBDIR += p5-DBD-SQLite
