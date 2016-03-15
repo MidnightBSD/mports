@@ -2,7 +2,7 @@
 +++ wddx.c	Mon Jan 16 12:56:21 2006
 @@ -18,6 +18,10 @@
  
- /* $Id: patch-wddx.c,v 1.1 2007-02-25 22:39:23 laffer1 Exp $ */
+ /* $Id: wddx.c,v 1.119.2.8 2006/01/01 12:50:16 sniper Exp $ */
  
 +#ifdef HAVE_CONFIG_H
 +# include "config.h"
