@@ -1,10 +1,5 @@
-# New ports collection makefile for:	SQL-Abstract
-# Date created:	   18 Feb 2003
-# Whom:		   Dominic Mitchell <dom@happygiraffe.net>
-#
 # $FreeBSD: ports/databases/p5-SQL-Abstract/Makefile,v 1.9 2007/01/05 17:55:38 lbr Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	SQL-Abstract
 PORTVERSION=	1.67
@@ -14,12 +9,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to generate SQL from Perl data structures
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=	perl
 PERL_CONFIGURE=	yes
-
-MAN3=		SQL::Abstract.3 \
-		SQL::Abstract::Test.3
 
 post-extract:
 	@${PERL} -i -ne 'print unless m,^test,' ${WRKSRC}/Makefile.PL
