@@ -2,7 +2,8 @@
 
 
 PORTNAME=	Class-DBI-Plugin-Pager
-PORTVERSION=	0.561
+PORTVERSION=	0.566
+PORTREVISION=	0
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,15 +11,20 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to paged queries for CDBI
 
+
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	${SITE_PERL}/Class/DBI.pm:${PORTSDIR}/databases/p5-Class-DBI \
-		${SITE_PERL}/SQL/Abstract.pm:${PORTSDIR}/databases/p5-SQL-Abstract \
-		${SITE_PERL}/UNIVERSAL/require.pm:${PORTSDIR}/devel/p5-UNIVERSAL-require \
-		${SITE_PERL}/Data/Page.pm:${PORTSDIR}/databases/p5-Data-Page
+BUILD_DEPENDS=	p5-Class-DBI>=0:${PORTSDIR}/databases/p5-Class-DBI \
+		p5-SQL-Abstract>=1.61:${PORTSDIR}/databases/p5-SQL-Abstract \
+		p5-UNIVERSAL-require>=0:${PORTSDIR}/devel/p5-UNIVERSAL-require \
+		p5-Data-Page>=0:${PORTSDIR}/databases/p5-Data-Page \
+		p5-Class-DBI-Plugin-AbstractCount>=0:${PORTSDIR}/databases/p5-Class-DBI-Plugin-AbstractCount
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-Text-Exception>0:${PORTSDIR}/devel/p5-Test-Exception
 
-USES=	perl
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
