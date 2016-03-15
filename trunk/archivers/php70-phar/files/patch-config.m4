@@ -1,5 +1,5 @@
---- config.m4.orig	2011-11-25 15:31:20.000000000 +0100
-+++ config.m4	2011-11-25 15:47:45.000000000 +0100
+--- config.m4.orig	2015-12-10 14:23:55.176546745 +0300
++++ config.m4	2015-12-10 14:29:14.284524651 +0300
 @@ -4,8 +4,38 @@
  PHP_ARG_ENABLE(phar, for phar archive support,
  [  --disable-phar          Disable phar support], yes)
@@ -34,7 +34,7 @@
 +    ])
 +  ])
 +
-   PHP_NEW_EXTENSION(phar, util.c tar.c zip.c stream.c func_interceptors.c dirstream.c phar.c phar_object.c phar_path_check.c, $ext_shared)
+   PHP_NEW_EXTENSION(phar, util.c tar.c zip.c stream.c func_interceptors.c dirstream.c phar.c phar_object.c phar_path_check.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
 +  PHP_HASH=yes
    AC_MSG_CHECKING([for phar openssl support])
    if test "$PHP_HASH_SHARED" != "yes"; then

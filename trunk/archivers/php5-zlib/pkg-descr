@@ -1,5 +1,0 @@
-The zlib shared extension for php.  This port actually only builds lang/php5 with
-zlib support.
-
-WWW: http://www.php.net/
-
