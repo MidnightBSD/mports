@@ -1,12 +1,13 @@
+# Created by:	marcus@FreeBSD.org
+# $FreeBSD: head/www/mod_php70/Makefile 408932 2016-02-15 14:34:26Z miwi $
 # $MidnightBSD$
 
-PORTEPOCH=	1
 CATEGORIES=	www devel
 PKGNAMEPREFIX=	mod_
 
 MAINTAINER=	ports@MidnightBSD.org
 
-PHP_PORT=	lang/php5
+PHP_PORT=	lang/php70
 MASTERDIR=	${.CURDIR}/../../${PHP_PORT}
 
 OPTIONS_DEFINE=	AP2FILTER
