@@ -86,7 +86,7 @@ USE_PHP=	yes
 PHP_DEFAULT=	7.0
 IGNORE_WITH_PHP=	55 56
 USE_APACHE=	22+
-.include "${PORTSDIR}/Mk/bsd.apache.mk"
+EXTENSIONS+=	apache
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
 .else
