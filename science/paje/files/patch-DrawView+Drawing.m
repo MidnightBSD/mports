@@ -1,14 +1,14 @@
 --- SpaceTimeViewer/DrawView+Drawing.m.orig	Mon Jan  9 02:13:30 2006
-+++ SpaceTimeViewer/DrawView+Drawing.m	Thu Sep 28 20:56:39 2006
++++ SpaceTimeViewer/DrawView+Drawing.m
 @@ -23,7 +23,11 @@
  
  #include "DrawView.h"
  #ifdef GNUSTEP
-+#ifndef __MidnightBSD__
++#  if !defined(__FreeBSD__) && !defined(__DragonFly__) && !defined(__MidnightBSD__)
  #include <values.h>
-+#else
++#  else
 +#include <math.h>
-+#endif
++#  endif
  #endif
  
  @implementation DrawView (Drawing)
