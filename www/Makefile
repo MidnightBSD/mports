@@ -85,6 +85,7 @@ SUBDIR += p5-Template-Toolkit
 SUBDIR += p5-WWW-Curl
 SUBDIR += p5-WWW-RobotRules
 SUBDIR += p5-libwww
+SUBDIR += pear-HTTP_Request
 SUBDIR += pecl-APC
 SUBDIR += php5-session
 SUBDIR += php5-tidy
