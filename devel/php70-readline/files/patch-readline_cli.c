@@ -2,7 +2,7 @@
 +++ readline_cli.c	2012-03-02 16:40:43.000000000 +0100
 @@ -19,6 +19,10 @@
  
- /* $Id: patch-readline_cli.c,v 1.1 2013-02-23 02:39:21 laffer1 Exp $ */
+ /* $Id: readline_cli.c 321634 2012-01-01 13:15:04Z felipe $ */
  
 +#ifdef HAVE_CONFIG_H
 +#include "config.h"
