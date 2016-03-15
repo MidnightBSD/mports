@@ -74,6 +74,7 @@ SUBDIR += mythes
 SUBDIR += openjade
 SUBDIR += opensp
 SUBDIR += p5-HTML-Tidy
+SUBDIR += p5-Hash-Merge
 SUBDIR += p5-PPI
 SUBDIR += p5-PPIx-Regexp
 SUBDIR += p5-PPIx-Utilities
