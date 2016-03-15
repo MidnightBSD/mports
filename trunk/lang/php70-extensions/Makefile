@@ -1,32 +1,25 @@
-# $MidnightBSD$
+# Created by: Alex Dupre <ale@FreeBSD.org>
+# $FreeBSD: head/lang/php70-extensions/Makefile 408945 2016-02-15 16:24:04Z miwi $
 
-PORTNAME=	php5
-PORTVERSION=	1.7
+PORTNAME=	php70
+PORTVERSION=	1.1
 CATEGORIES=	lang
-MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
-DISTFILES=	# none
-EXTRACT_ONLY=	# none
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	miwi@FreeBSD.org
 COMMENT=	"meta-port" to install PHP extensions
-LICENSE=	agg
 
+USES=		metaport
 USE_PHP=	yes
-DEFAULT_PHP_VER=5
+PHP_DEFAULT=	7.0
+IGNORE_WITH_PHP=	55 56
 USE_PHP_BUILD=	yes
-
-NO_BUILD=	yes
-NO_MTREE=	yes
-
-LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
-OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 
 OPTIONS_DEFINE=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
 		DOM EXIF FILEINFO FILTER FTP GD GETTEXT \
-		GMP HASH ICONV IMAP INTERBASE JSON LDAP MBSTRING MCRYPT \
-		MSSQL MYSQL MYSQLI \
-		ODBC OPENSSL PCNTL PDF PDO PDO_DBLIB PDO_FIREBIRD \
+		GMP HASH ICONV INTL IMAP INTERBASE JSON LDAP MBSTRING MCRYPT \
+		MYSQLI \
+		ODBC OPCACHE OPENSSL PCNTL PDF PDO PDO_DBLIB PDO_FIREBIRD \
 		PDO_MYSQL PDO_ODBC PDO_PGSQL PDO_SQLITE PGSQL PHAR POSIX \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
 		SOCKETS SQLITE3 SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
@@ -50,15 +43,15 @@ GMP_DESC=		GNU MP support
 HASH_DESC=		HASH Message Digest Framework
 ICONV_DESC=		iconv support
 IMAP_DESC=		IMAP support
+INTL_DESC=		Internationalization(ICU)
 INTERBASE_DESC=		Interbase 6 database support (Firebird)
 JSON_DESC=		JavaScript Object Serialization support
 LDAP_DESC=		OpenLDAP support
 MBSTRING_DESC=		multibyte string support
 MCRYPT_DESC=		Encryption support
-MSSQL_DESC=		MS-SQL database support
-MYSQL_DESC=		MySQL database support
 MYSQLI_DESC=		MySQLi database support
 ODBC_DESC=		ODBC support
+OPCACHE_DESC=		OPcache support
 OPENSSL_DESC=		OpenSSL support
 PCNTL_DESC=		pcntl support (CLI only)
 PDF_DESC=		PDFlib support (implies GD)
@@ -103,6 +96,7 @@ OPTIONS_DEFAULT=	CTYPE \
 			HASH \
 			ICONV \
 			JSON \
+			OPCACHE \
 			PDO \
 			PDO_SQLITE \
 			PHAR \
@@ -115,15 +109,12 @@ OPTIONS_DEFAULT=	CTYPE \
 			XMLREADER \
 			XMLWRITER
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.options.mk>
 
 .for opt in ${OPTIONS_DEFINE}
 .	if ${PORT_OPTIONS:M${opt}}
 USE_PHP+=	${opt:tl}
 .	endif
 .endfor
-
-do-install: build
-	@${DO_NADA}
 
 .include <bsd.port.mk>
