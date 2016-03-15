@@ -109,6 +109,7 @@ SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
 SUBDIR += polarssl
+SUBDIR += py-ecdsa
 SUBDIR += py-fail2ban
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
