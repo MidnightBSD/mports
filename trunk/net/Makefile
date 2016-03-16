@@ -92,6 +92,7 @@ SUBDIR += p5-Socket6
 SUBDIR += p5-URI
 SUBDIR += p5-XML-RPC
 SUBDIR += p5-perl-ldap
+SUBDIR += pear-Net_Socket
 SUBDIR += pear-Net_URL
 SUBDIR += pear-Net_URL2
 SUBDIR += php55-ldap
