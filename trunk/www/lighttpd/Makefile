@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.36
+PORTVERSION=	1.4.39
 PORTREVISION=	0
 CATEGORIES?=	www
 MASTER_SITES?=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
