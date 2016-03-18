@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	rrdtool
-PORTVERSION=	1.4.8
-PORTREVISION=	2
+PORTVERSION=	1.5.5
+PORTREVISION=	0
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -25,12 +25,11 @@ CONFIGURE_ARGS=	--disable-tcl --program-prefix="" --disable-silent-rules
 PORTEXAMPLES=	4charts.pl bigtops.pl cgi-demo.cgi minmax.pl perftest.pl \
 		piped-demo.pl shared-demo.pl stripes.pl
 
-OPTIONS_DEFINE=	DEJAVU GRAPH JSON MMAP NLS PERL_MODULE PYTHON_MODULE \
+OPTIONS_DEFINE=	DEJAVU GRAPH MMAP NLS PERL_MODULE PYTHON_MODULE \
 		RUBY_MODULE EXAMPLES DOCS
 OPTIONS_DEFAULT=	GRAPH MMAP PERL_MODULE
 GRAPH_DESC=		Enable the rrdtool graph command (needs cairo)
 DEJAVU_DESC=		Use DejaVu fonts (requires X11)
-JSON_DESC=		Support of json export
 MMAP_DESC=		Use mmap in rrd_update
 PERL_MODULE_DESC=	Build PERL module
 PYTHON_MODULE_DESC=	Build PYTHON bindings
@@ -43,49 +42,45 @@ USE_PYTHON=	yes
 INSTALLS_EGGINFO=yes
 PYDISTUTILS_EGGINFO=py_rrdtool-0.2.2-${PYTHON_VERSION:S/thon//}.egg-info
 EXTENSIONS+=	python
-PLIST_SUB+=	WITH_PYTHON=""
+PLIST_SUB+=	PYTHON=""
 CONFIGURE_ARGS+=	--enable-python
 .else
 CONFIGURE_ARGS+=	--disable-python
-PLIST_SUB+=	WITH_PYTHON="@comment "
+PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MRUBY_MODULE}
 USE_RUBY=	yes
 EXTENSIONS+=	ruby
-PLIST_SUB+=	WITH_RUBY=""
+PLIST_SUB+=	RUBY=""
 CONFIGURE_ARGS+=	--enable-ruby
 .else
 CONFIGURE_ARGS+=	--disable-ruby
-PLIST_SUB+=	WITH_RUBY="@comment "
+PLIST_SUB+=	RUBY="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPERL_MODULE}
 USES+=		perl5
 USE_PERL5+=	build run fixpacklist
 CONFIGURE_ARGS+=	--enable-perl --enable-perl-site-install
-PLIST_SUB+=	WITH_PERL=""
+PLIST_SUB+=	PERL=""
 .else
 CONFIGURE_ARGS+=	--disable-perl
-PLIST_SUB+=	WITH_PERL="@comment "
+PLIST_SUB+=	PERL="@comment "
 .endif
 
 .if ! ${PORT_OPTIONS:MMMAP}
 CONFIGURE_ARGS+=	--disable-mmap
 .endif
 
-.if ${PORT_OPTIONS:MJSON}
-EXTRA_PATCHES+=		${FILESDIR}/thirdparty-json.diff
-.endif
-
 .if ${PORT_OPTIONS:MGRAPH}
 LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libpng.so:${PORTSDIR}/graphics/png
 USE_GNOME+=	cairo pango
-PLIST_SUB+=	WITH_GRAPH=""
+PLIST_SUB+=	GRAPH=""
 .else
 CONFIGURE_ARGS+=--disable-rrdcgi --disable-rrd_graph
-PLIST_SUB+=	WITH_GRAPH="@comment "
+PLIST_SUB+=	GRAPH="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MNLS}
