@@ -1,5 +1,5 @@
 bin/rrdcached
-%%WITH_GRAPH%%bin/rrdcgi
+%%GRAPH%%bin/rrdcgi
 bin/rrdcreate
 bin/rrdinfo
 bin/rrdtool
@@ -10,11 +10,11 @@ include/rrd_format.h
 lib/librrd.a
 lib/librrd.so
 lib/librrd.so.4
-lib/librrd.so.4.2.1
+lib/librrd.so.4.3.5
 lib/librrd_th.a
 lib/librrd_th.so
 lib/librrd_th.so.4
-lib/librrd_th.so.4.2.1
+lib/librrd_th.so.4.3.5
 libdata/pkgconfig/librrd.pc
 %%PORTDOCS%%man/man1/bin_dec_hex.1.gz
 %%PORTDOCS%%man/man1/cdeftutorial.1.gz
@@ -45,15 +45,17 @@ libdata/pkgconfig/librrd.pc
 %%PORTDOCS%%man/man1/rrdupdate.1.gz
 %%PORTDOCS%%man/man1/rrdxport.1.gz
 %%PORTDOCS%%man/man3/librrd.3.gz
-%%WITH_PERL%%%%PERL5_MAN3%%/RRDp.3.gz
-%%WITH_PERL%%%%PERL5_MAN3%%/RRDs.3.gz
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/RRDs/RRDs.so
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/RRDs.pm
-%%WITH_PERL%%%%SITE_PERL%%/RRDp.pm
-%%WITH_PYTHON%%%%PYTHON_SITELIBDIR%%/rrdtoolmodule.so
-%%WITH_RUBY%%%%RUBY_SITEARCHLIBDIR%%/RRD.so
-%%PORTEXAMPLES%%share/rrdtool/examples/rrdcached/RRDCached.pm
-%%PORTEXAMPLES%%share/rrdtool/examples/rrdcached/rrdcached-size.pl
+%%PERL%%%%PERL5_MAN3%%/RRDp.3.gz
+%%PERL%%%%PERL5_MAN3%%/RRDs.3.gz
+%%PERL%%%%SITE_ARCH%%/auto/RRDs/RRDs.so
+%%PERL%%%%SITE_ARCH%%/RRDs.pm
+%%PERL%%%%SITE_PERL%%/RRDp.pm
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/py_rrdtool-0.2.2-py%%PYTHON_VER%%.egg-info
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/rrdtool.so
+%%RUBY%%%%RUBY_SITEARCHLIBDIR%%/RRD.so
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/rrdcached/RRDCached.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/rrdcached/rrdcached-size.pl
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/stripes.py
 %%PORTDOCS%%%%DOCSDIR%%/html/RRDp.html
 %%PORTDOCS%%%%DOCSDIR%%/html/RRDs.html
 %%PORTDOCS%%%%DOCSDIR%%/html/bin_dec_hex.html
@@ -143,11 +145,3 @@ libdata/pkgconfig/librrd.pc
 %%PORTDOCS%%%%DOCSDIR%%/txt/rrdupdate.txt
 %%PORTDOCS%%%%DOCSDIR%%/txt/rrdxport.pod
 %%PORTDOCS%%%%DOCSDIR%%/txt/rrdxport.txt
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/RRDp
-%%WITH_PERL%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/RRDs
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/txt
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-%%PORTEXAMPLES%%@dirrm share/rrdtool/examples/rrdcached
-%%PORTEXAMPLES%%@dirrm share/rrdtool/examples
-%%PORTEXAMPLES%%@dirrm share/rrdtool
