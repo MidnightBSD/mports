@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nghttp2
-PORTVERSION=	1.6.0
+PORTVERSION=	1.8.0
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
