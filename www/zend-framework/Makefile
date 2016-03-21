@@ -2,6 +2,7 @@
 
 PORTNAME=	ZendFramework
 PORTVERSION=	2.3.3
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://packages.zendframework.com/releases/${DISTNAME}/
 
@@ -38,7 +39,7 @@ PORTDOCS=	CHANGELOG.md INSTALL.md README-GIT.md CONTRIBUTING.md README.md
 # Add all of the required and/or optional PHP extension dependencies,
 # if chosen by the user.
 .if ${PORT_OPTIONS:MREQPHP}
-USE_PHP+=	apc ctype curl dom gd hash iconv mbstring ldap mcrypt \
+USE_PHP+=	ctype curl dom gd hash iconv mbstring ldap mcrypt \
 		pcre pdo session simplexml soap wddx xml zlib
 .if ${PHP_VER} == 52
 USE_PHP+=	sqlite
