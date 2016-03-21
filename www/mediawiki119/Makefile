@@ -2,6 +2,7 @@
 
 PORTNAME=	mediawiki
 PORTVERSION=	1.19.18
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
 PKGNAMESUFFIX=	119
@@ -19,8 +20,7 @@ MEDIAWIKIDIR?=	www/mediawiki
 OPTIONS=	PGSQL "Use PostgreSQL (instead of MySQL)" off \
 		LDAP "Use LDAP authentication" off \
 		TEXVC "Use built-in TeX rendering" off \
-		APC "Use pecl-APC" on \
-		EACCEL "Use eAccelerator (instead of pecl-APC)" off \
+		EACCEL "Use eAccelerator " on \
 		IMAGICK "Use ImageMagick" off
 
 .include <bsd.port.pre.mk>
@@ -49,12 +49,8 @@ WITH_IMAGICK=yes
 RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/imagick.so:${PORTSDIR}/graphics/pecl-imagick
 .endif
 
-.if defined(WITH_APC) || defined(WITH_EACCEL)
 .if defined(WITH_EACCEL)
 RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/eaccelerator.so:${PORTSDIR}/www/eaccelerator
-.else
-RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/apc.so:${PORTSDIR}/www/pecl-APC
-.endif
 .endif
 
 do-build:
