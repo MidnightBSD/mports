@@ -10,9 +10,8 @@ DISTNAME=	SlideShow-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SlideShow Viewer
-LICENSE=	gpl2
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 
 USES=		tar:bzip2 gnustep
 USE_GNUSTEP=	back build
