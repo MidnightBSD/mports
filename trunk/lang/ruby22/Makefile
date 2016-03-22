@@ -40,7 +40,6 @@ GNU_CONFIGURE=	yes
 LIBS+=		-lpthread -L${LOCALBASE}/lib
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf
 
 MAKE_ENV+=	LC_ALL=C
 
@@ -64,7 +63,7 @@ CAPIDOCS_BUILD_DEPENDS=	doxygen>0:${PORTSDIR}/devel/doxygen \
 CAPIDOCS_CONFIGURE_ENABLE=	install-capi
 RDOC_CONFIGURE_ENABLE=	install-rdoc
 
-USES=		execinfo cpe tar:xz
+USES=		execinfo cpe tar:xz autoreconf
 
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
