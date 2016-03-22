@@ -3,4 +3,3 @@ man/man1/dosbox.1.gz
 share/pixmaps/dosbox.ico
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/INSTALL
