@@ -12,18 +12,15 @@ DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python modules for Clutter toolkit
+
 LICENSE=	python
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
 LIB_DEPENDS=	clutter-glx-1.0:${PORTSDIR}/graphics/clutter
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack pygnome2 pygtk2
-USE_PYTHON=	2.5+
+USES=		tar:bzip2 gmake gettext libtool python:2
+USE_GNOME=	pygnome2 pygtk2
 CONFIGURE_ARGS=	--disable-docs
 
 CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
