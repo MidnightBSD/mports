@@ -1,11 +1,6 @@
-# New ports collection makefile for:	Planner
-# Date created:				15 July 2001
-# Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/deskutils/planner/Makefile,v 1.45 2007/05/19 20:01:49 flz Exp $
 #   $MCom: ports/deskutils/planner/Makefile,v 1.1 2005/10/08 19:33:55 marcus Exp $
-#
 
 PORTNAME=	planner
 PORTVERSION=	0.14.3
@@ -17,15 +12,14 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Project management application for GNOME 2
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USES=		gettext gmake tar:bzip2
 USE_XLIB=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui libgnomeprintui \
-		libgsf desktopfileutils
+USE_GNOME=	gnomeprefix intlhack libgnomeui libgnomeprintui \
+		libgsf
 WANT_GNOME=	yes
-USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
@@ -37,8 +31,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 GCONF_SCHEMAS=	planner.schemas
-
-MAN1=		planner.1
 
 .include <bsd.port.pre.mk>
 
