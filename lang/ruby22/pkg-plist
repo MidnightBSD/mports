@@ -17868,6 +17868,7 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/page-NEWS-2_0_0.ri
 %%RDOC%%%%RUBY_RIDIR%%/page-NEWS-2_1_0.ri
 %%RDOC%%%%RUBY_RIDIR%%/page-NEWS.ri
+%%RDOC%%%%RUBY_RIDIR%%/page-README.ri
 %%RDOC%%%%RUBY_RIDIR%%/page-README_EXT.ri
 %%RDOC%%%%RUBY_RIDIR%%/page-contributing_rdoc.ri
 %%RDOC%%%%RUBY_RIDIR%%/page-contributors_rdoc.ri
