@@ -2,7 +2,7 @@
 
 PORTNAME=	libgtkhtml
 PORTVERSION=	2.11.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,7 +12,7 @@ COMMENT=	Lightweight HTML rendering/printing/editing engine
 
 LICENSE=	lgpl
 
-USES=		tar:bzip2 gmake libtool
+USES=		tar:bzip2 gmake libtool pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomeprefix libxslt gnomevfs2 
 USE_LDCONFIG=	yes
