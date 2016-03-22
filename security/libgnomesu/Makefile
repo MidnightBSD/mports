@@ -13,6 +13,7 @@ LICENSE=	gpl2
 
 USES=		gmake libtool
 USE_GNOME=	gnomeprefix libgnomeui
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-install-pam
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
