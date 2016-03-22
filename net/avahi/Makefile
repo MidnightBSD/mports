@@ -5,8 +5,10 @@ PORTVERSION=	0.6.31
 PORTREVISION?=	1
 CATEGORIES?=	net dns
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" for the Avahi service discovery suite
+
+LICENSE=	lgpl
 
 RUN_DEPENDS=	avahi-app>=0.6.31:${PORTSDIR}/net/avahi-app
 
