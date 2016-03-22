@@ -11,19 +11,17 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A gconf database editor for the GNOME 2 environment
+
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
-USES=		gettext
+USES=		gettext gmake tar:bzip2
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack libgnomeui gnomedocutils
+USE_GNOME=	gnomeprefix intlhack libgnomeui gnomedocutils
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-MAN1=		gconf-editor.1
 GCONF_SCHEMAS=	gconf-editor.schemas
 
 .include <bsd.port.mk>
