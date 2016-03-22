@@ -22,13 +22,14 @@ CONFIGURE_ARGS=	--disable-doc \
 		--disable-ruby \
 		--disable-python \
 		--disable-cppunit \
-		--disable-zzuf
+		--disable-zzuf \
+		--disable-slang
 INSTALL_TARGET=	install-strip
 
 DOCS=		AUTHORS COPYING COPYING.GPL COPYING.LGPL ChangeLog NEWS \
 		NOTES README THANKS
 
-OPTIONS_DEFINE=	X11 IMLIB2 FTGL SLANG DOCS
+OPTIONS_DEFINE=	X11 IMLIB2 FTGL DOCS
 OPTIONS_DEFAULT=	X11 IMLIB2
 X11_DESC=	X11 and OpenGL support
 FTGL_DESC=	Freetype font rendering in OpenGL
@@ -37,9 +38,6 @@ X11_USE=	XORG=x11 GL=glut
 X11_CONFIGURE_OFF=	--disable-x11 --disable-gl
 IMLIB2_LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
 IMLIB2_CONFIGURE_ENABLE=	imlib2
-SLANG_LIB_DEPENDS=	libslang.so.2:${PORTSDIR}/devel/libslang2
-SLANG_CONFIGURE_ENABLE=	slang=${LOCALBASE}
-SLANG_CONFIGURE_OFF=	--disable-slang
 
 .include <bsd.mport.options.mk>
 
