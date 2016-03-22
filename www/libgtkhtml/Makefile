@@ -13,6 +13,7 @@ COMMENT=	Lightweight HTML rendering/printing/editing engine
 LICENSE=	lgpl
 
 USES=		tar:bzip2 gmake libtool
+GNU_CONFIGURE=	yes
 USE_GNOME=	gnomeprefix libxslt gnomevfs2 
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
