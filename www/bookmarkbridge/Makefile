@@ -20,6 +20,6 @@ USE_QT4=	corelib gui qt3support moc_build rcc_build uic_build
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 
-DESKTOP_ENTRIES="BookmarkBridge" "" "" "${PORTNAME}" "Qt;Network;" ""
+DESKTOP_ENTRIES="BookmarkBridge" "" "" "${PORTNAME}" "Qt;Network;" "false"
 
 .include <bsd.port.mk>
