@@ -11,9 +11,8 @@ COMMENT=	Library and frontend for running commands as root
 LICENSE=	gpl2
 # while the library is lgpl, it uses GPL components directly.
 
-USE_AUTOTOOLS=	libtool
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnomeprefix libgnomeui
+USES=		gmake libtool
+USE_GNOME=	gnomeprefix libgnomeui
 CONFIGURE_ARGS+=--disable-install-pam
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
