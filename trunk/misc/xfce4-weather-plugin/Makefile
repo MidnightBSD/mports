@@ -19,7 +19,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USES=		pkgconfig gettext gmake pathfix tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack libxml2
-USE_XFCE=	configenv libmenu libutil panel
+USE_XFCE=	libmenu libutil panel
 
 OPTIONS_DEFINE=	UPOWER
 UPOWER_DESC=	Power state support
