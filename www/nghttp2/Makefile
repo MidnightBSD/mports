@@ -39,11 +39,12 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 LIBS+=		-L${LOCALBASE}/lib -lev
+PATHFIX_MAKEFILEIN=	Makefile.am
 USE_CXXSTD=	c++11
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
-USES=		compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz
+USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz
 
 PORTDATA=	fetch-ocsp-response
 PORTDOCS=	*
@@ -60,8 +61,5 @@ HPACK_BUILD_DEPENDS=	${LOCALBASE}/lib/libjansson.so:${PORTSDIR}/devel/jansson
 .include <bsd.port.pre.mk>
 
 CPPFLAGS+=	-D_GLIBCXX_USE_C99
-
-post-patch:
-	@${REINPLACE_CMD} -e '/JEMALLOC_LIBS/ s|-ljemalloc||' ${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
