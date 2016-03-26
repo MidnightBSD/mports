@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	netclasses
-PORTVERSION=	1.06
-PORTREVISION=	2
+PORTVERSION=	1.1.0
+PORTREVISION=	0
 CATEGORIES=	net gnustep
-MASTER_SITES=	SF
+MASTER_SITES=	http://savannah.nongnu.org/download/gap/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Objective-C framework for socket programming with GNUstep
