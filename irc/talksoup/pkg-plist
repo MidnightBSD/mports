@@ -1,243 +1,261 @@
-GNUstep/Local/Applications/TalkSoup.app/Resources/Defaults.plist
-GNUstep/Local/Applications/TalkSoup.app/Resources/Info-gnustep.plist
-GNUstep/Local/Applications/TalkSoup.app/Resources/TalkSoup.desktop
-GNUstep/Local/Applications/TalkSoup.app/Resources/TalkSoup.icns
-GNUstep/Local/Applications/TalkSoup.app/Resources/TalkSoup.tiff
-GNUstep/Local/Applications/TalkSoup.app/TalkSoup
-GNUstep/Local/Applications/TalkSoup.app/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/DCCSupport
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/Defaults.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj/DCCSupportPreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj/DCCSupportPreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj/DCCSupportPreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/dccsupport_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/Debold
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/Decolorizer
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/Dereverse
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/Deunderline
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Emoticon
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face1.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face10.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face11.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face13.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face14.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face15.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face19.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face2.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face3.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face4.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face5.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face6.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face8.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/emoticon-face9.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Highlighting
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/Defaults.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj/HighlightingPreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj/HighlightingPreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj/HighlightingPreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/highlighting_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/KeepAlive
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/Logging
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/MessageInTab
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/MessageOutTab
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/PrivateBeep
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input/NetclassesInput/NetclassesInput
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input/NetclassesInput/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input/NetclassesInput/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/Colorizer
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/Piper
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/stamp.make
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/GNUstepOutput
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/Defaults.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/BundlePreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/BundlePreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/BundlePreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/BundlePreferences.txt
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ColorPreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ColorPreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ColorPreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/FontPreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/FontPreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/FontPreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GNUstepOutput.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GNUstepOutput.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GNUstepOutput.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GeneralPreferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GeneralPreferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GeneralPreferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GroupEditor.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GroupEditor.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GroupEditor.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/NamePrompt.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/NamePrompt.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/NamePrompt.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/Preferences.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/Preferences.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/Preferences.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerEditor.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerEditor.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerEditor.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerList.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerList.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerList.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/TopicInspector.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/TopicInspector.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/Info-gnustep.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/ServerList.plist
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardChannel.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardChannel.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardChannel.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardQuery.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardQuery.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardQuery.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/TabContent.gorm/data.classes
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/TabContent.gorm/data.info
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/TabContent.gorm/objects.gorm
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/Tools/dns_helper
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/Tools/exec_helper
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/bundle_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/color_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/common_ret.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/common_retH.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/font_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/general_prefs.tiff
-GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/stamp.make
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Headers
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Resources
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/TalkSoupBundles
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/Encodings.h
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoup.h
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoupMisc.h
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoupProtocols.h
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/English.lproj/Localizable.strings
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/Info-gnustep.plist
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/TalkSoupBundles
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so.%%MAJORLIBVERSION%%
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so.%%LIBVERSION%%
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/Current
-GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/libTalkSoupBundles.so
-GNUstep/Local/Library/Headers/TalkSoupBundles
-GNUstep/Local/Library/Libraries/libTalkSoupBundles.so
-GNUstep/Local/Library/Libraries/libTalkSoupBundles.so.%%MAJORLIBVERSION%%
-GNUstep/Local/Library/Libraries/libTalkSoupBundles.so.%%LIBVERSION%%
-GNUstep/Local/Tools/TalkSoup
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/English.lproj
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework/Versions
-@dirrm GNUstep/Local/Library/Frameworks/TalkSoupBundles.framework
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/Tools
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/TabContent.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardQuery.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/StandardChannel.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/TopicInspector.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerList.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ServerEditor.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/Preferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/NamePrompt.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GroupEditor.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GeneralPreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/GNUstepOutput.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/FontPreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/ColorPreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj/BundlePreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output/GNUstepOutput
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Output
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Piper
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters/Colorizer
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/OutFilters
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input/NetclassesInput/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input/NetclassesInput
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/Input
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/PrivateBeep
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageOutTab
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/MessageInTab
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Logging
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/KeepAlive
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj/HighlightingPreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Highlighting
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Emoticon
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Deunderline
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Dereverse
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Decolorizer
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/Debold
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj/DCCSupportPreferences.gorm
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources/English.lproj
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport/Resources
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters/DCCSupport
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup/InFilters
-@dirrm GNUstep/Local/Library/ApplicationSupport/TalkSoup
-@dirrm GNUstep/Local/Applications/TalkSoup.app/Resources
-@dirrm GNUstep/Local/Applications/TalkSoup.app
+GNUstep/System/Applications/TalkSoup.app/stamp.make
+GNUstep/System/Applications/TalkSoup.app/TalkSoup
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/Piper
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/Colorizer
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/TalkSoup.icns
+GNUstep/System/Applications/TalkSoup.app/Resources/TalkSoup.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/GNUstepOutput
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/common_ret.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardQuery.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardQuery.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardQuery.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/bundle_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/NamePrompt.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/NamePrompt.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/NamePrompt.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/BundlePreferences.txt
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/TopicInspector.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/TopicInspector.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/Preferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/Preferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/Preferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GNUstepOutput.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GNUstepOutput.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GNUstepOutput.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GeneralPreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GeneralPreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GeneralPreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GroupEditor.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GroupEditor.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GroupEditor.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerEditor.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerEditor.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerEditor.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/BundlePreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/BundlePreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/BundlePreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ColorPreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ColorPreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ColorPreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/FontPreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/FontPreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/FontPreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerList.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerList.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerList.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/Tools/exec_helper
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/Tools/dns_helper
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/TabContent.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/TabContent.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/TabContent.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/general_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/common_retH.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardChannel.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardChannel.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardChannel.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/ServerList.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/font_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/Defaults.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/color_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/Input/NetclassesInput.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/Input/NetclassesInput.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/Input/NetclassesInput.bundle/NetclassesInput
+GNUstep/System/Applications/TalkSoup.app/Resources/TalkSoup.desktop
+GNUstep/System/Applications/TalkSoup.app/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/Defaults.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/Decolorizer
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/PrivateBeep
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/MessageInTab
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Ignore.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Ignore.bundle/Ignore
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Ignore.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/Debold
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/Dereverse
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/highlighting_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj/HighlightingPreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj/HighlightingPreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj/HighlightingPreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/Defaults.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Highlighting
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/Logging
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%4.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%0.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face6.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face2.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face3.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%9.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%5.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%%%MAJORVERSION%%.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face5.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face9.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face%%MAJORVERSION%%3.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face8.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/emoticon-face4.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Emoticon
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/MessageOutTab
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/KeepAlive
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/stamp.make
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/Deunderline
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj/Localizable.strings
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj/DCCSupportPreferences.gorm/data.classes
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj/DCCSupportPreferences.gorm/data.info
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj/DCCSupportPreferences.gorm/objects.gorm
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/dccsupport_prefs.tiff
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/Defaults.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/Info-gnustep.plist
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/DCCSupport
+GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/stamp.make
+GNUstep/System/Library/Libraries/libTalkSoupBundles.so
+GNUstep/System/Library/Libraries/libTalkSoupBundles.so.%%LIBVERSION%%
+GNUstep/System/Library/Libraries/libTalkSoupBundles.so.0
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/libTalkSoupBundles.so
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so.%%LIBVERSION%%
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so.0
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoupMisc.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoup.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/Encodings.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers/TalkSoupProtocols.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/libTalkSoupBundles.so
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/TalkSoupBundles
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/Info-gnustep.plist
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/English.lproj/Localizable.strings
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/TalkSoupBundles
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/libTalkSoupBundles.so.%%LIBVERSION%%
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/libTalkSoupBundles.so.0
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Headers/TalkSoupMisc.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Headers/TalkSoup.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Headers/Encodings.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Headers/TalkSoupProtocols.h
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/libTalkSoupBundles.so
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/TalkSoupBundles
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Resources/Info-gnustep.plist
+GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current/Resources/English.lproj/Localizable.strings
+GNUstep/System/Tools/TalkSoup
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Piper.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters/Colorizer.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/OutFilters
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardQuery.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/NamePrompt.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/TopicInspector.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/Preferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GNUstepOutput.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GeneralPreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/GroupEditor.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerEditor.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/BundlePreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ColorPreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/FontPreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj/ServerList.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/Tools
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/TabContent.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources/StandardChannel.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output/GNUstepOutput.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Output
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Input/NetclassesInput.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Input/NetclassesInput.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/Input
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Decolorizer.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/PrivateBeep.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageInTab.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Ignore.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Ignore.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Debold.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Dereverse.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj/HighlightingPreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Highlighting.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Logging.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Emoticon.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/MessageOutTab.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/KeepAlive.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/Deunderline.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj/DCCSupportPreferences.gorm
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources/English.lproj
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle/Resources
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters/DCCSupport.bundle
+@dir GNUstep/System/Applications/TalkSoup.app/Resources/InFilters
+@dir GNUstep/System/Applications/TalkSoup.app/Resources
+@dir GNUstep/System/Applications/TalkSoup.app
+@dir GNUstep/System/Applications
+@dir GNUstep/System/Library/Headers/TalkSoupBundles
+@dir GNUstep/System/Library/Headers
+@dir GNUstep/System/Library/Libraries
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Resources
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Headers
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources/English.lproj
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%/Resources
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/%%APPVERSION%%
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions/Current
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Versions
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework/Headers
+@dir GNUstep/System/Library/Frameworks/TalkSoupBundles.framework
+@dir GNUstep/System/Library/Frameworks
