@@ -6,30 +6,30 @@
 # $FreeBSD: ports/games/gtypist/Makefile,v 1.17 2004/07/11 10:55:23 krion Exp $
 
 PORTNAME=	gtypist
-PORTVERSION=	2.9.1
+PORTVERSION=	2.9.5
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive typing tutor
-LICENSE=	gpl2
 
+LICENSE=	gpl3
+
+USES=		iconv ncurses shebangfix tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	EMACS=no
-CPPFLAGS=	-I${WRKDIR}/include
-MAKE_JOBS_SAFE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include -I${WRKDIR}/include
+LDFLAGS+=	-L${LOCALBASE}/libs
 
 INFO=		gtypist gtypist.cs gtypist.es
-MAN1=		gtypist.1 typefortune.1
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+SHEBANG_FILES=	typefortune
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 # wide curses header expected at <ncursesw/ncurses.h>
 pre-configure:

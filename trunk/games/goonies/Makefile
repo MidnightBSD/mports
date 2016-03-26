@@ -41,10 +41,7 @@ do-install:
 	cd ${WRKSRC} && \
 		${FIND} ${DATADIRS} -type d -exec ${MKDIR} ${DATADIR}/{} \; ;\
 		${FIND} ${DATADIRS} -type f -exec ${INSTALL_DATA} {} ${DATADIR}/{} \;
-
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/* ${DOCSDIR}/
-.endif
 
 .include <bsd.port.post.mk>

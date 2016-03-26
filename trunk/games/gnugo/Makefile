@@ -3,20 +3,18 @@
 PORTNAME=	gnugo
 PORTVERSION=	3.8
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	gnugo
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The game of Go
 LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-MAKE_JOBS_SAFE=	yes
+USES=		gmake
 
 INFO=		gnugo
-MAN6=		gnugo.6
-PLIST_FILES=	bin/gnugo
+PLIST_FILES=	bin/gnugo \
+		man/man6/gnugo.6.gz
 
 post-extract:
 	${RM} -f ${WRKSRC}/doc/gnugo.info*

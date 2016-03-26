@@ -4,6 +4,7 @@
 
 PORTNAME=	lapispuzzle
 PORTVERSION=	1.2
+PORTREVISION=	1
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	LapisPuzzle-${PORTVERSION}
@@ -20,6 +21,6 @@ USE_GNUSTEP=	back build
 WRKSRC=		${WRKDIR}/LapisPuzzle-${PORTVERSION}
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/LapisPuzzle.app/LapisPuzzle
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/LapisPuzzle.app/LapisPuzzle
 
 .include <bsd.port.mk>

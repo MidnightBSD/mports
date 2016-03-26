@@ -11,12 +11,13 @@ COMMENT=	Interpreter for several adventure games
 
 LICENSE=	gpl2
 
-USES=		gmake tar:bzip2
+USES=		gmake jpeg tar:bzip2
 HAS_CONFIGURE=	yes
 USE_SDL=	sdl
 
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--with-sdl-prefix=${LOCALBASE} \
+		--with-jpeg-prefix=${LOCALBASE} \
 		--disable-alsa \
 		--with-zlib-prefix=/usr \
 		--disable-debug \

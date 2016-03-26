@@ -16,8 +16,6 @@ LICENSE=	gpl2
 USES=		gnustep
 USE_GNUSTEP=	back build
 
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-
 post-install:
 	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/GShisen.app/GShisen
 

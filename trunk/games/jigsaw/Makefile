@@ -3,6 +3,7 @@
 
 PORTNAME=	jigsaw
 PORTVERSION=	0.8
+PORTREVISION=	1
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	Jigsaw-${PORTVERSION}
@@ -16,6 +17,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Jigsaw.app/Jigsaw
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Jigsaw.app/Jigsaw
 
 .include <bsd.port.mk>

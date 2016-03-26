@@ -2,7 +2,7 @@
 
 PORTNAME=	ladder
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 PKGNAMEPREFIX=	gnustep-
@@ -20,5 +20,9 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/Ladder.app/Ladder
+
 
 .include <bsd.port.mk>
