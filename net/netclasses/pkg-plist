@@ -1,4 +1,7 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20%%MAJORVERSION%%46 20%%MAJORVERSION%%5-08-30 %%MAJORVERSION%%6:57:2%%MAJORVERSION%%Z laffer%%MAJORVERSION%% $
+GNUstep/Local/Library/Headers/netclasses/IRCObject.h
+GNUstep/Local/Library/Headers/netclasses/LineObject.h
+GNUstep/Local/Library/Headers/netclasses/NetBase.h
+GNUstep/Local/Library/Headers/netclasses/NetTCP.h
 GNUstep/Local/Library/Frameworks/netclasses.framework/libnetclasses.so
 GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/libnetclasses.so
 GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/netclasses
@@ -21,10 +24,4 @@ GNUstep/Local/Library/Libraries/libnetclasses.so.%%MAJORVERSION%%
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/Current
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework/Versions
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework
-@dir GNUstep/Local/Library/Frameworks
 @dir GNUstep/Local/Library/Headers/netclasses
-@dir GNUstep/Local/Library/Headers
-@dir GNUstep/Local/Library/Libraries
-@dir GNUstep/Local/Library
-@dir GNUstep/Local
-@dir GNUstep
