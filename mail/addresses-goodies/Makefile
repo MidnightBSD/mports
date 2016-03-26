@@ -1,14 +1,9 @@
-# New ports collection makefile for:    addresses-goodies
-# Date created:         29 Nov 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
 # $MidnightBSD$
 # $FreeBSD: ports/mail/addresses-goodies/Makefile,v 1.4 2007/01/31 18:18:04 dinoex Exp $
-#
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	mail gnustep
 MASTER_SITES=	SAVANNAH/gap
 PKGNAMESUFFIX=	-goodies${PKGNAMESUFFIX2}
