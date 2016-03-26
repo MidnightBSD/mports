@@ -3,6 +3,7 @@
 
 PORTNAME=	encore
 PORTVERSION=	0.3.1
+PORTREVISION=	1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	SF/fortytwo/Encore/${PORTVERSION}
 PKGNAMEPREFIX=	fortytwo-
@@ -30,6 +31,6 @@ OPTIONS_DEFINE=	DOCS
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKDIR}/Encore-${PORTVERSION}-api-ref && ${COPYTREE_SHARE} . ${DOCSDIR}
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Library/Frameworks/Encore.framework/Versions/0/libEncore.so
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Library/Frameworks/Encore.framework/Versions/0/libEncore.so
 
 .include <bsd.port.mk>
