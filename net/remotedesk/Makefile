@@ -2,13 +2,14 @@
 
 PORTNAME=	remotedesk
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	RemoteDesk-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical interface to rdesktop
+
 LICENSE=	gpl2
 
 RUN_DEPENDS=	rdesktop:${PORTSDIR}/net/rdesktop
@@ -21,6 +22,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/RemoteDesk.app/RemoteDesk
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/RemoteDesk.app/RemoteDesk
 
 .include <bsd.port.mk>
