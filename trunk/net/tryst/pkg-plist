@@ -1,5 +1,5 @@
-GNUstep/Local/Library/Headers/Tryst/NSNetServices.h
-GNUstep/Local/Library/Libraries/libTryst.so
-GNUstep/Local/Library/Libraries/libTryst.so.%%MAJORVERSION%%
-GNUstep/Local/Library/Libraries/libTryst.so.%%VERSION%%
-@dirrm GNUstep/Local/Library/Headers/Tryst
+GNUstep/System/Library/Headers/Tryst/NSNetServices.h
+GNUstep/System/Library/Libraries/libTryst.so
+GNUstep/System/Library/Libraries/libTryst.so.%%MAJORVERSION%%
+GNUstep/System/Library/Libraries/libTryst.so.%%VERSION%%
+@dirrm GNUstep/System/Library/Headers/Tryst
