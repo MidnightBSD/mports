@@ -21,21 +21,16 @@ CONFIGURE_ARGS=	--disable-doxygen --disable-dot --disable-gengetopt \
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+PORTDOCS=	*
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFINE=	DOCS DOXYGEN
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
 post-install:
 	${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING
-.if ${PORT_OPTIONS:MDOXYGEN}
-	@${FIND} -P ${STAGEDIR}${DOCSDIR}/html -type f 2>/dev/null | \
-		${SED} -ne 's|^${STAGEDIR}${PREFIX}/||p' >> ${TMPPLIST}
-	@${FIND} -P -d ${STAGEDIR}${DOCSDIR}/ -type d 2>/dev/null | \
-		${SED} -ne 's|^${STAGEDIR}${PREFIX}/|@dirrmtry |p' >> ${TMPPLIST}
-.endif
 
 .include <bsd.port.mk>
