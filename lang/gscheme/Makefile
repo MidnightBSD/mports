@@ -2,6 +2,7 @@
 
 PORTNAME=	gscheme
 PORTVERSION=	0.6
+PORTREVISION=	1
 CATEGORIES=	lang gnustep
 MASTER_SITES=	http://www.gnustep.it/marko/GScheme/ \
 		FREEBSD_LOCAL/dinoex
@@ -25,6 +26,6 @@ post-patch:
 		${WRKSRC}/SchemeTypes.h ${WRKSRC}/SchemeTypes.m
 
 post-install:
-	${RM} -f ${GNUSTEP_PREFIX}/Local/Applications/GScheme.app/Resources/library.scm~
+	${RM} -f ${GNUSTEP_PREFIX}/System/Applications/GScheme.app/Resources/library.scm~
 
 .include <bsd.port.mk>
