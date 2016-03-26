@@ -16,7 +16,7 @@ LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
 		libjbig.so:${PORTSDIR}/graphics/jbigkit \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		libwebp.so:${PORTSDIR}/graphics/webp \
-		libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick
+		libMagickWand-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
 
 USES=		jpeg libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
