@@ -2,7 +2,7 @@
 
 PORTNAME=	gtamsanalyzer
 PORTVERSION=	0.42
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science gnustep
 MASTER_SITES=	SF/tamsys/gnustep%20tams/GTAMSAnalyzer%2${PORTVERSION}
 DISTNAME=	GTAMSAnalyzer.src.${PORTVERSION}
@@ -23,6 +23,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/GTAMSAnalyzer.app/GTAMSAnalyzer
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/GTAMSAnalyzer.app/GTAMSAnalyzer
 
 .include <bsd.port.mk>
