@@ -2,7 +2,7 @@
 
 PORTNAME=	netclasses
 PORTVERSION=	1.1.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net gnustep
 MASTER_SITES=	http://savannah.nongnu.org/download/gap/
 
