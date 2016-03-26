@@ -2,7 +2,7 @@
 
 PORTNAME=	aclock
 PORTVERSION=	0.4.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-clocks gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	AClock-${PORTVERSION}
@@ -19,6 +19,6 @@ USE_GNUSTEP=	back build
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/AClock.app/AClock
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/AClock.app/AClock
 
 .include <bsd.port.mk>
