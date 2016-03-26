@@ -3,11 +3,9 @@
 #   $MCom: ports/deskutils/planner/Makefile,v 1.1 2005/10/08 19:33:55 marcus Exp $
 
 PORTNAME=	planner
-PORTVERSION=	0.14.3
-#PORTREVISION=	4
+PORTVERSION=	0.14.6
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.14
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,38 +13,22 @@ COMMENT=	Project management application for GNOME 2
 
 LICENSE=	gpl2
 
-USES=		gettext gmake tar:bzip2
-USE_XLIB=	yes
+USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
+		shared-mime-info tar:xz
 USE_GNOME=	gnomeprefix intlhack libgnomeui libgnomeprintui \
 		libgsf
 WANT_GNOME=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-static \
-		--disable-python \
-		--disable-dotnet
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--disable-python \
+		--disable-python-plugin \
+		--disable-update-mimedb
+CPPFLAGS+=	-I${LOCALBASE}/include -DGLIB_COMPILATION
+LIBS+=		-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	planner.schemas
 
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mlibgda2}!=""
-USE_GNOME+=	libgda2
-CONFIGURE_ARGS+=--enable-database=yes
-PLIST_SUB+=	GDA=""
-.else
-PLIST_SUB+=	GDA="@comment "
-.endif
-
-post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
-		's|[(]datadir[)]/doc|(prefix)/share/doc|g'
-
-post-install:
-	@-update-desktop-database
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
