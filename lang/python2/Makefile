@@ -2,7 +2,7 @@
 
 PORTNAME=	python2
 PORTVERSION=	${PYTHON_MAJOR_VER}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -34,17 +34,17 @@ RUN_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 do-install:
 .for file in idle pydoc python python-shared
 	${LN} -sf ${file}${PYTHON_VER} \
-		${STAGEDIR}${PREFIX}/bin/${file}${PYTHON_MAJOR_VER}
+		${PREFIX}/bin/${file}${PYTHON_MAJOR_VER}
 .endfor
 	${LN} -sf 2to3-${PYTHON_VER} \
-		${STAGEDIR}${PREFIX}/bin/2to3-${PYTHON_MAJOR_VER}
+		${PREFIX}/bin/2to3-${PYTHON_MAJOR_VER}
 	${LN} -sf smtpd${PYTHON_VER}.py \
-		${STAGEDIR}${PREFIX}/bin/smtpd${PYTHON_MAJOR_VER}.py
+		${PREFIX}/bin/smtpd${PYTHON_MAJOR_VER}.py
 	${LN} -sf python${PYTHON_VER}-config \
-		${STAGEDIR}${PREFIX}/bin/python${PYTHON_MAJOR_VER}-config
+		${PREFIX}/bin/python${PYTHON_MAJOR_VER}-config
 	${LN} -sf python-shared${PYTHON_VER}-config \
-		${STAGEDIR}${PREFIX}/bin/python-shared${PYTHON_MAJOR_VER}-config
+		${PREFIX}/bin/python-shared${PYTHON_MAJOR_VER}-config
 	${LN} -sf python-${PYTHON_VER}.pc \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/python${PYTHON_MAJOR_VER}.pc
+		${PREFIX}/libdata/pkgconfig/python${PYTHON_MAJOR_VER}.pc
 
 .include <bsd.port.post.mk>
