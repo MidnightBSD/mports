@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	timemon
-PORTVERSION=	4.1
-PORTREVISION=	2
+PORTVERSION=	4.2
+PORTREVISION=	0
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	TimeMon-${PORTVERSION}
@@ -18,9 +18,9 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-patch:
-	${RM} ${WRKSRC}/shared_obj/*.*
+	-${RM} ${WRKSRC}/shared_obj/*.*
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/TimeMon.app/TimeMon
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/TimeMon.app/TimeMon
 
 .include <bsd.port.mk>
