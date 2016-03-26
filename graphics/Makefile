@@ -143,7 +143,6 @@ SUBDIR += p5-Image-PBMlib
 SUBDIR += p5-Image-Size
 SUBDIR += p5-Chart
 SUBDIR += pecl-imlib2
-SUBDIR += photoclip
 SUBDIR += php55-exif
 SUBDIR += php55-gd
 SUBDIR += php56-exif
