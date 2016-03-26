@@ -2,7 +2,7 @@
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	NeXTGo-${PORTVERSION}
@@ -23,6 +23,6 @@ post-patch:
 		${WRKSRC}/Board.m
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/NeXTGo.app/NeXTGo
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/NeXTGo.app/NeXTGo
 
 .include <bsd.port.mk>
