@@ -2,6 +2,7 @@
 
 PORTNAME=	laternamagica
 PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	LaternaMagica-${PORTVERSION}
@@ -15,6 +16,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/LaternaMagica.app/LaternaMagica
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/LaternaMagica.app/LaternaMagica
 
 .include <bsd.port.mk>
