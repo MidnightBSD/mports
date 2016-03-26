@@ -12,6 +12,7 @@ GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%
 GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers/NetTCP.h
 GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/libnetclasses.so.%%MAJORVERSION%%
 GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Resources/Info-gnustep.plist
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current/libnetclasses.so
 GNUstep/System/Library/Frameworks/netclasses.framework/netclasses
 GNUstep/System/Library/Libraries/libnetclasses.so
 GNUstep/System/Library/Libraries/libnetclasses.so.1
