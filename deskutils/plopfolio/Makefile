@@ -3,6 +3,7 @@
 
 PORTNAME=	plopfolio
 PORTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	GNUSTEP/usr-apps
 
@@ -21,6 +22,6 @@ post-patch:
 		${WRKSRC}/PreferencesPanelController.m
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/PlopFolio.app/PlopFolio
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/PlopFolio.app/PlopFolio
 
 .include <bsd.port.mk>
