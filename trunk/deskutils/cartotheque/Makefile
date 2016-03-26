@@ -3,8 +3,9 @@
 
 PORTNAME=	cartotheque
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
-MASTER_SITES=	LOCAL/dinoex
+MASTER_SITES=	FREEBSD_LOCAL/dinoex
 DISTNAME=	Cartotheque-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +21,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Cartotheque.app/Cartotheque
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Cartotheque.app/Cartotheque
 
 .include <bsd.port.mk>
