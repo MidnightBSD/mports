@@ -1,4 +1,3 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20%%MAJORLIBVERSION%%46 20%%MAJORLIBVERSION%%5-08-30 %%MAJORLIBVERSION%%6:57:2%%MAJORLIBVERSION%%Z laffer%%MAJORLIBVERSION%% $
 GNUstep/Local/Library/Documentation/SQLClient/SQLClient.html
 GNUstep/Local/Library/Documentation/SQLClient/dependencies
 GNUstep/Local/Library/Documentation/SQLClient/OrderedSymbolDeclarations.plist
@@ -59,19 +58,3 @@ libdata/ldconfig/sqlclient
 @dir GNUstep/Local/Library
 @dir GNUstep/Local
 @dir GNUstep
-@dir Local/Library/Libraries
-@dir Local/Library/Bundles/SQLClient/Postgres.bundle/Resources
-@dir Local/Library/Bundles/SQLClient/Postgres.bundle
-@dir Local/Library/Bundles/SQLClient/ECPG_libs.bundle/Resources
-@dir Local/Library/Bundles/SQLClient/ECPG_libs.bundle
-@dir Local/Library/Bundles/SQLClient/Postgres_libs.bundle
-@dir Local/Library/Bundles/SQLClient/SQLite.bundle/Resources
-@dir Local/Library/Bundles/SQLClient/SQLite.bundle
-@dir Local/Library/Bundles/SQLClient/SQLite_libs.bundle/Resources
-@dir Local/Library/Bundles/SQLClient/SQLite_libs.bundle
-@dir Local/Library/Bundles/SQLClient/ECPG.bundle/Resources
-@dir Local/Library/Bundles/SQLClient/ECPG.bundle
-@dir Local/Library/Bundles/SQLClient
-@dir Local/Library/Bundles
-@dir Local/Library
-@dir Local
