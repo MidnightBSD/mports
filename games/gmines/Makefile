@@ -3,6 +3,7 @@
 
 PORTNAME=	gmines
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 DISTNAME=	GMines-${PORTVERSION}
@@ -16,6 +17,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/GMines.app/GMines
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/GMines.app/GMines
 
 .include <bsd.port.mk>

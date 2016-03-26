@@ -8,12 +8,13 @@
 
 PORTNAME=	fortunate
 PORTVERSION=	3.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games gnustep
 MASTER_SITES=	GNUSTEP_CH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical front-end to the command-line BSD fortune
+
 LICENSE=	bsd4
 
 USES=		gnustep

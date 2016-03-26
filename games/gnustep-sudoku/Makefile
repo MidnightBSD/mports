@@ -3,6 +3,7 @@
 
 PORTNAME=	sudoku
 PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	games gnustep
 MASTER_SITES=	SAVANNAH/gap
 PKGNAMEPREFIX=	gnustep-
@@ -17,6 +18,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Sudoku.app/Sudoku
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Sudoku.app/Sudoku
 
 .include <bsd.port.mk>

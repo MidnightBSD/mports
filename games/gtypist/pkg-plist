@@ -1,5 +1,7 @@
 bin/gtypist
 bin/typefortune
+man/man1/gtypist.1.gz
+man/man1/typefortune.1.gz
 share/gtypist/c.typ
 share/gtypist/cs.typ
 share/gtypist/d.typ
@@ -58,4 +60,3 @@ share/gtypist/v.typ
 %%NLS%%share/locale/tr/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/gtypist.mo
-@dirrm share/gtypist
