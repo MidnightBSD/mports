@@ -34,9 +34,13 @@ GNUSTEP_LOCAL_TOOLS=		${GNUSTEP_LOCAL_ROOT}/Tools
 LIB_DIRS+=	${GNUSTEP_SYSTEM_LIBRARIES} \
 		${GNUSTEP_LOCAL_LIBRARIES}
 
-.for a in FLAGS CFLAGS CPPFLAGS OBJCFLAGS INCLUDE_DIRS LDFLAGS LIB_DIRS
+.for a in CFLAGS CPPFLAGS CXXFLAGS OBJCCFLAGS OBJCFLAGS LDFLAGS
+MAKE_ENV+=	ADDITIONAL_${a}="${ADDITIONAL_${a}} ${${a}}"
+.endfor
+.for a in FLAGS INCLUDE_DIRS LIB_DIRS
 MAKE_ENV+=	ADDITIONAL_${a}="${ADDITIONAL_${a}}"
 .endfor
+MAKE_ARGS+=messages=yes
 
 MAKEFILE=	GNUmakefile
 #MAKE_ENV+=	GNUSTEP_CONFIG_FILE=${PORTSDIR}/devel/gnustep-make/files/GNUstep.conf
@@ -61,6 +65,10 @@ LIB_DEPENDS+=	libgnustep-base.so:${PORTSDIR}/lang/gnustep-base
 .  if ${USE_GNUSTEP:Mbuild}
 PATH:=	${GNUSTEP_SYSTEM_TOOLS}:${GNUSTEP_LOCAL_TOOLS}:${PATH}
 MAKE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}" GNUSTEP_SYSTEM_ROOT="${GNUSTEP_SYSTEM_ROOT}"
+# All GNUstep things installed from ports should be in the System domain.
+# Things installed from source can then freely live in the Local domain without
+# conflicts.
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 CONFIGURE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}" GNUSTEP_SYSTEM_ROOT="${GNUSTEP_SYSTEM_ROOT}"
 BUILD_DEPENDS+=	gnustep-make>0:${PORTSDIR}/devel/gnustep-make
 .include "${PORTSDIR}/Mk/extensions/objc.mk"
