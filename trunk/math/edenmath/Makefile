@@ -2,13 +2,13 @@
 
 PORTNAME=	edenmath
 PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/EdenMath/files/
 DISTNAME=	EdenMath_GNUstep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Scientific calcualtor for GNUstep
+COMMENT=	Scientific calcultor for GNUstep
 
 LICENSE=	gpl2
 
@@ -20,6 +20,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/EdenMath.app/EdenMath
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/EdenMath.app/EdenMath
 
 .include <bsd.port.mk>
