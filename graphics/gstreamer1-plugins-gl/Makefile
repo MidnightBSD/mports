@@ -13,10 +13,10 @@ PLIST=		${.CURDIR}/pkg-plist
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
 pre-build:
-	@cd ${WRKSRC}/gst-libs/gst/gl && ${GMAKE}
+	@cd ${WRKSRC}/gst-libs/gst/gl && ${GMAKE} ${FAKE_MAKEARGS}
 
 post-install:
-	@cd ${WRKSRC}/gst-libs/gst/gl && ${SETENV} DESTDIR=${STAGEDIR} \
-		INSTALL_TARGET=${INSTALL_TARGET} ${GMAKE} install
+	@cd ${WRKSRC}/gst-libs/gst/gl && ${SETENV} DESTDIR=${FAKE_DESTDIR} \
+		INSTALL_TARGET=${INSTALL_TARGET} ${GMAKE} ${FAKE_MAKEARGS} install
 
 .include "${MASTERDIR}/Makefile"
