@@ -14,8 +14,8 @@ GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/
 GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Resources/Info-gnustep.plist
 GNUstep/Local/Library/Frameworks/netclasses.framework/netclasses
 GNUstep/Local/Library/Libraries/libnetclasses.so
-GNUstep/Local/Library/Libraries/libnetclasses.so.%%VERSION%%
-GNUstep/Local/Library/Libraries/libnetclasses.so.%%MAJORVERSION%%
+GNUstep/Local/Library/Libraries/libnetclasses.so.1
+GNUstep/Local/Library/Libraries/libnetclasses.so.1.1.0
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework/Headers
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework/Resources
 @dir GNUstep/Local/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers
