@@ -1,21 +1,13 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
-GNUstep/Local/Applications/batmon.app/stamp.make
-GNUstep/Local/Applications/batmon.app/batmon
-GNUstep/Local/Applications/batmon.app/Resources/small_battery.tif
-GNUstep/Local/Applications/batmon.app/Resources/small_plug.tif
-GNUstep/Local/Applications/batmon.app/Resources/Info-gnustep.plist
-GNUstep/Local/Applications/batmon.app/Resources/batmon.gorm/data.classes
-GNUstep/Local/Applications/batmon.app/Resources/batmon.gorm/objects.gorm
-GNUstep/Local/Applications/batmon.app/Resources/batmon.gorm/data.info
-GNUstep/Local/Applications/batmon.app/Resources/LICENSE
-GNUstep/Local/Applications/batmon.app/Resources/BatMon_icon.tif
-GNUstep/Local/Applications/batmon.app/Resources/README
-GNUstep/Local/Applications/batmon.app/Resources/batmon.desktop
-GNUstep/Local/Tools/batmon
-@dir GNUstep/Local/Applications/batmon.app/Resources/batmon.gorm
-@dir GNUstep/Local/Applications/batmon.app/Resources
-@dir GNUstep/Local/Applications/batmon.app
-@dir GNUstep/Local/Applications
-@dir GNUstep/Local/Tools
-@dir GNUstep/Local
-@dir GNUstep
+GNUstep/System/Applications/batmon.app/Resources/BatMon_icon.tif
+GNUstep/System/Applications/batmon.app/Resources/Info-gnustep.plist
+GNUstep/System/Applications/batmon.app/Resources/LICENSE
+GNUstep/System/Applications/batmon.app/Resources/README
+GNUstep/System/Applications/batmon.app/Resources/batmon.desktop
+GNUstep/System/Applications/batmon.app/Resources/batmon.gorm/data.classes
+GNUstep/System/Applications/batmon.app/Resources/batmon.gorm/data.info
+GNUstep/System/Applications/batmon.app/Resources/batmon.gorm/objects.gorm
+GNUstep/System/Applications/batmon.app/Resources/small_battery.tif
+GNUstep/System/Applications/batmon.app/Resources/small_plug.tif
+GNUstep/System/Applications/batmon.app/batmon
+GNUstep/System/Applications/batmon.app/stamp.make
+GNUstep/System/Tools/batmon
