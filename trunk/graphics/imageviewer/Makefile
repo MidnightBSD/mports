@@ -2,7 +2,7 @@
 
 PORTNAME=	imageviewer
 PORTVERSION=	0.6.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://www.nice.ch/~phip/ \
 		FREEBSD_LOCAL/dinoex
@@ -19,6 +19,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/ImageViewer.app/ImageViewer
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/ImageViewer.app/ImageViewer
 
 .include <bsd.port.mk>
