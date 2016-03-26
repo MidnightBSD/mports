@@ -10,6 +10,8 @@ PKGNAMESUFFIX=	-extensions
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"meta-port" to install PHP extensions
 
+LICENSE=	php
+
 USES=		metaport
 USE_PHP=	yes
 PHP_DEFAULT=	7.0
