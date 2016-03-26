@@ -2,7 +2,7 @@
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/0.22
@@ -37,7 +37,6 @@ post-patch:
 	@${REINPLACE_CMD} '/confexecdir =/s/=.*/= $$(sysconfdir)/' \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
-		-e 's/freebsd/freebsd*|midnightbsd/' \
 		 ${WRKSRC}/configure
 
 .include <bsd.port.mk>
