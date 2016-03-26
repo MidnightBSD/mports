@@ -1,8 +1,10 @@
 # Created by: gurkan@phys.ethz.ch
 # $FreeBSD: head/graphics/camera/Makefile 383626 2015-04-09 07:44:41Z bapt $
+# $MidnightBSD$
 
 PORTNAME=	camera
 PORTVERSION=	0.8
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/gsimageapps/
 DISTNAME=	Camera-${PORTVERSION}
@@ -25,6 +27,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Camera.app/Camera
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Camera.app/Camera
 
 .include <bsd.port.mk>
