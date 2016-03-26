@@ -2,7 +2,7 @@
 
 PORTNAME=	duncan
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Dictionaries/files/
 DISTNAME=	Duncan-${PORTVERSION}
@@ -23,6 +23,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Duncan.app/Duncan
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Duncan.app/Duncan
 
 .include <bsd.port.mk>
