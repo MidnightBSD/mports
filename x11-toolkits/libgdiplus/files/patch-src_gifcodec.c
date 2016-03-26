@@ -1,25 +1,21 @@
-$OpenBSD: patch-src_gifcodec_c,v 1.2 2014/07/18 16:00:28 ajacoutot Exp $
-
-giflib 5.0+
-http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patches/patch-src_gifcodec.c?rev=1.2
-
---- src/gifcodec.c.orig	Fri Dec  2 18:23:12 2011
-+++ src/gifcodec.c	Fri Jul 18 15:30:15 2014
-@@ -39,8 +39,12 @@ GUID gdip_gif_image_format_guid = {0xb96b3cb0U, 0x0728
- 
+--- src/gifcodec.c.orig	2015-01-05 10:27:06 UTC
++++ src/gifcodec.c
+@@ -40,9 +40,13 @@ GUID gdip_gif_image_format_guid = {0xb96
  #include "gifcodec.h"
  
+ #ifdef EgifOpen
 -/* giflib declares this incorrectly as EgifOpen */
 +/* giflib declares this incorrectly as EgifOpen up to 4.1.2
 +   GIF_LIB_VERSION is defined up to 4.1.6, and prototype is changed in 5.0,
 +   so it is safe to use it as check condition */
 +#ifdef GIF_LIB_VERSION
  extern GifFileType *EGifOpen(void *userData, OutputFunc writeFunc);
+ #endif
 +#endif
  
  /* Data structure used for callback */
  typedef struct
-@@ -129,7 +133,11 @@ AddExtensionBlockMono(SavedImage *New, int Len, BYTE E
+@@ -131,7 +135,11 @@ AddExtensionBlockMono(SavedImage *New, i
  
  	if (ExtData) {
  		memcpy(ep->Bytes, ExtData, Len);
@@ -31,7 +27,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  	}
  
  	return (GIF_OK);
-@@ -232,7 +240,11 @@ DGifSlurpMono(GifFileType * GifFile, SavedImage *Trail
+@@ -234,7 +242,11 @@ DGifSlurpMono(GifFileType * GifFile, Sav
  			}
  
  			case EXTENSION_RECORD_TYPE: {
@@ -43,7 +39,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  					return (GIF_ERROR);
  				}
  
-@@ -245,7 +257,9 @@ DGifSlurpMono(GifFileType * GifFile, SavedImage *Trail
+@@ -247,7 +259,9 @@ DGifSlurpMono(GifFileType * GifFile, Sav
  					if (DGifGetExtensionNext(GifFile, &ExtData) == GIF_ERROR) {
  						return (GIF_ERROR);
  					}
@@ -53,7 +49,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  				}
  				break;
  			}
-@@ -304,9 +318,17 @@ gdip_load_gif_image (void *stream, GpImage **image, BO
+@@ -306,9 +320,17 @@ gdip_load_gif_image (void *stream, GpIma
  	loop_counter = FALSE;
  
  	if (from_file) {
@@ -71,7 +67,31 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  	}
  	
  	if (gif == NULL) {
-@@ -661,9 +683,17 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -583,7 +605,11 @@ gdip_load_gif_image (void *stream, GpIma
+ 	}
+ 
+ 	FreeExtensionMono(&global_extensions);
++#if GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1 || GIFLIB_MAJOR > 5
++	DGifCloseFile (gif, NULL);
++#else
+ 	DGifCloseFile (gif);
++#endif
+ 
+ 	*image = result;
+ 	return Ok;
+@@ -599,7 +625,11 @@ error:	
+ 
+ 	if (gif != NULL) {
+ 		FreeExtensionMono (&global_extensions);
++#if GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1 || GIFLIB_MAJOR > 5
++		DGifCloseFile (gif, NULL);
++#else
+ 		DGifCloseFile (gif);
++#endif
+ 	}
+ 
+ 	*image = NULL;
+@@ -663,9 +693,17 @@ gdip_save_gif_image (void *stream, GpIma
  	}
  
  	if (from_file) {
@@ -89,7 +109,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  	}
  		
  	if (!fp) {
-@@ -702,7 +732,11 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -704,7 +742,11 @@ gdip_save_gif_image (void *stream, GpIma
  					goto error; 
  				}
  
@@ -101,7 +121,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  
  				pixbuf = GdipAlloc(pixbuf_size);
  				if (pixbuf == NULL) {
-@@ -793,7 +827,11 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -795,7 +837,11 @@ gdip_save_gif_image (void *stream, GpIma
  				pixbuf = pixbuf_org;
  			} else {
  				cmap_size = 256;
@@ -113,7 +133,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  
  				red = GdipAlloc(pixbuf_size);
  				green = GdipAlloc(pixbuf_size);
-@@ -824,13 +862,21 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -826,13 +872,21 @@ gdip_save_gif_image (void *stream, GpIma
  						v += 4;
  					}
  				}
@@ -135,7 +155,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  			cmap->ColorCount = 1 << cmap->BitsPerPixel;
  
  			if ((frame == 0) && (k == 0)) {
-@@ -848,8 +894,15 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -850,8 +904,15 @@ gdip_save_gif_image (void *stream, GpIma
  						Buffer[0] = 1;
  						Buffer[1] = ptr[0];
  						Buffer[2] = ptr[1];
@@ -151,7 +171,7 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  					}
  				}
  
-@@ -901,7 +954,11 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -903,7 +964,11 @@ gdip_save_gif_image (void *stream, GpIma
  				pixbuf += bitmap_data->width;
  			}
  
@@ -163,7 +183,17 @@ http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/pkgsrc/graphics/libgdiplus/patche
  			if (red != NULL) {
  				GdipFree (red);
  			}
-@@ -929,7 +986,11 @@ gdip_save_gif_image (void *stream, GpImage *image, BOO
+@@ -925,13 +990,21 @@ gdip_save_gif_image (void *stream, GpIma
+ 		}
+ 	}
+ 
++#if GIFLIB_MAJOR == 5 && GIFLIB_MINOR >= 1 || GIFLIB_MAJOR > 5
++	EGifCloseFile (fp, NULL);	
++#else
+ 	EGifCloseFile (fp);	
++#endif
+ 	
+ 	return Ok;
  
  error:
  	if (cmap != NULL) {
