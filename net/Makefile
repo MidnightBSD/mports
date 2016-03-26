@@ -15,7 +15,6 @@ SUBDIR += avahi-header
 SUBDIR += avahi-libdns
 SUBDIR += avahi-qt4
 SUBDIR += boinc-client
-SUBDIR += cagibi
 SUBDIR += cvsup
 SUBDIR += cvsup-without-gui
 SUBDIR += daq
