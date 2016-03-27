@@ -1,0 +1,38 @@
+--- kBuild/header.kmk.orig	2016-03-27 15:16:48.883550275 -0400
++++ kBuild/header.kmk	2016-03-27 15:17:30.389555353 -0400
+@@ -188,7 +188,7 @@
+ # this keyword namespace is shared between OSes, architectures, cpus and
+ # build types. (PORTME)
+ #
+-KBUILD_OSES      := darwin dos dragonfly freebsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
++KBUILD_OSES      := darwin dos dragonfly freebsd haiku l4 linux midnightbsd netbsd nt openbsd os2 solaris win os-agnostic
+ KBUILD_ARCHES    := x86 amd64 sparc32 sparc64 s390 s390x ppc32 ppc64 mips32 mips64 ia64 hppa32 hppa64 arm alpha
+ KBUILD_ARCHES_64 := amd64 sparc64 s390x ppc64 mips64 ia64 hppa64 alpha
+ KBUILD_ARCHES_32 := x86 sparc32 s390 ppc32 mips32 hppa32 arm
+@@ -553,7 +553,7 @@
+ EXEC_X86_WIN32      := innopec.exe
+ HOSTSUFF_EXE        := .exe
+ 
+-else if1of ($(KBUILD_HOST), freebsd dragonfly linux openbsd netbsd)
++else if1of ($(KBUILD_HOST), freebsd dragonfly linux midnightbsd openbsd netbsd)
+ # Unix (like) systems with wine.
+ EXEC_X86_WIN32      := wine
+ HOSTSUFF_EXE        :=
+@@ -597,7 +597,7 @@
+ SUFF_LIB    := .a
+ SUFF_DLL    := .so
+ SUFF_EXE    :=
+- if1of ($(KBUILD_TARGET), dragonfly freebsd linux netbsd openbsd) ## @todo check netbsd and openbsd.
++ if1of ($(KBUILD_TARGET), dragonfly freebsd linux midnightbsd netbsd openbsd) ## @todo check netbsd and openbsd.
+ SUFF_SYS    := .ko
+  else
+ SUFF_SYS    :=
+@@ -1268,7 +1268,7 @@
+ 	/Developer/usr/
+  KBUILD_LIB_SEARCH_SUBS  := lib/
+ 
+-else if1of ($(KBUILD_TARGET), freebsd netbsd openbsd dragonfly)
++else if1of ($(KBUILD_TARGET), freebsd netbsd midnightbsd openbsd dragonfly)
+  KBUILD_LIB_SEARCH_ROOTS := \
+ 	/ \
+ 	/usr/ \
