@@ -51,7 +51,8 @@ LAVF_CONFIGURE_OFF=	--disable-swscale --disable-lavf
 CONFIGURE_ARGS+=	--extra-cflags="-I${LOCALBASE}/include" \
 			--extra-ldflags="-L${LOCALBASE}/lib" \
 			--disable-opencl \
-			--system-libx264
+			--system-libx264 \
+			--host=${ARCH}-freebsd9.1
 
 CFLAGS_armv6+=		-mcpu=arm1136jf-s
 
@@ -93,6 +94,7 @@ post-patch:
 		s|VER="x"|VER="${X264_REV} ${X264_GITVER}"|; \
 		s|VERSION=""|VERSION=" r${X264_REV} ${X264_GITVER}"|' \
 		${WRKSRC}/version.sh
+	${CP} ${PORTSDIR}/Templates/config.guess ${WRKSRC}/
 
 pre-build:
 	@(${RM} ${WRKSRC}/x264_config.h)
