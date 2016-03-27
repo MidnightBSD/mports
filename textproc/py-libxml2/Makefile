@@ -1,6 +1,5 @@
 # $MidnightBSD$
 
-PORTREVISION=	6
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
