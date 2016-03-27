@@ -13,7 +13,7 @@ COMMENT=	PHP Scripting Language
 
 LICENSE=	php
 
-USES=		tar:bzip2 cpe
+USES+=		tar:bzip2 cpe
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
@@ -90,7 +90,7 @@ CONFIGURE_ARGS+=--enable-fpm \
 .if defined(PKGNAMEPREFIX)
 USE_PHP=	yes
 PHP_DEFAULT=	5.6
-IGNORE_WITH_PHP=53 54 5
+IGNORE_WITH_PHP=55 70
 USE_APACHE=	22+
 .include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${PORT_OPTIONS:MAP2FILTER}
