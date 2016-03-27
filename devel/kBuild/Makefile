@@ -2,6 +2,7 @@
 
 PORTNAME=	kBuild
 DISTVERSION=	${KBUILD_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.netlabs.org/pub/kbuild/ \
 		http://tmp.chruetertee.ch/ \
@@ -10,6 +11,7 @@ DISTNAME=	${PORTNAME}-${DISTVERSION}r2695-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Makefile framework
+
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
