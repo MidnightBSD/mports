@@ -1,6 +1,6 @@
---- configure.orig	2011-08-10 08:16:41 -0400
-+++ configure	2011-09-17 23:36:08 -0400
-@@ -1657,7 +1657,7 @@
+--- configure.orig	2015-03-11 20:05:42.000000000 -0400
++++ configure	2016-03-27 18:48:51.257550545 -0400
+@@ -1666,7 +1666,7 @@
  nm_opts='-g'
  
  # machine
@@ -9,7 +9,7 @@
  cpu="generic"
  
  # OS
-@@ -1698,7 +1698,7 @@
+@@ -1707,7 +1707,7 @@
  SLIBSUF=".so"
  SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
  SLIBNAME_WITH_VERSION='$(SLIBNAME).$(LIBVERSION)'
@@ -18,17 +18,17 @@
  LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'
  
  CC_O='-o $@'
-@@ -2427,6 +2427,9 @@
+@@ -2434,6 +2434,9 @@
+         disable symver
+         ;;
      freebsd)
++	enable malloc_aligned
++	;;
++    midnightbsd)
          enable malloc_aligned
          ;;
-+    midnightbsd)
-+        enable malloc_aligned
-+        ;;
      bsd/os)
-         add_extralibs -lpoll -lgnugetopt
-         strip="strip -d"
-@@ -2435,13 +2438,13 @@
+@@ -2444,13 +2447,13 @@
          enable malloc_aligned
          gas="gas-preprocessor.pl $cc"
          enabled ppc && add_asflags -force_cpusubtype_ALL
@@ -44,7 +44,7 @@
          FFSERVERLDFLAGS=-Wl,-bind_at_load
          objformat="macho"
          enabled x86_64 && objformat="macho64"
-@@ -2465,7 +2468,7 @@
+@@ -2474,7 +2477,7 @@
          SLIBPREF=""
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -53,7 +53,7 @@
          SLIB_EXTRA_CMD='-lib.exe /machine:$(LIBTARGET) /def:$$(@:$(SLIBSUF)=.def) /out:$(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)'
          SLIB_INSTALL_EXTRA_CMD='-install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME:$(SLIBSUF)=.lib)"; \
              install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)"; \
-@@ -2487,7 +2490,7 @@
+@@ -2496,7 +2499,7 @@
          SLIBPREF="cyg"
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -62,7 +62,7 @@
          SHFLAGS='-shared -Wl,--enable-auto-image-base'
          objformat="win32"
          enable dos_paths
-@@ -2520,7 +2523,7 @@
+@@ -2529,7 +2532,7 @@
          SLIBPREF=""
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(NAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -71,7 +71,13 @@
          SLIB_CREATE_DEF_CMD='echo LIBRARY $(SLIBNAME_WITH_MAJOR) INITINSTANCE TERMINSTANCE > $(SUBDIR)$(NAME).def; \
            echo PROTMODE >> $(SUBDIR)$(NAME).def; \
            echo CODE PRELOAD MOVEABLE DISCARDABLE >> $(SUBDIR)$(NAME).def; \
-@@ -2791,8 +2794,8 @@
+@@ -2798,13 +2801,13 @@
+         $nogas "GNU assembler not found, install gas-preprocessor"
+ fi
+ 
+-check_ldflags -Wl,--as-needed
++
+ check_ldflags -Wl,-z,noexecstack
  
  if check_func dlopen; then
      ldl=
@@ -82,7 +88,7 @@
  fi
  
  if enabled network; then
-@@ -2920,12 +2923,12 @@
+@@ -2934,12 +2937,12 @@
      "dirac_decoder_init dirac_encoder_init"
  enabled libfaac    && require2 libfaac "stdint.h faac.h" faacEncGetVersion -lfaac
  enabled libfreetype && require_pkg_config freetype2 "ft2build.h freetype/freetype.h" FT_Init_FreeType
@@ -97,7 +103,7 @@
  enabled libopenjpeg && require libopenjpeg openjpeg.h opj_version -lopenjpeg
  enabled librtmp    && require_pkg_config librtmp librtmp/rtmp.h RTMP_Socket
  enabled libschroedinger && require_pkg_config schroedinger-1.0 schroedinger/schro.h schro_init
-@@ -2966,8 +2969,8 @@
+@@ -2980,8 +2983,8 @@
  texi2html -version > /dev/null 2>&1 && enable texi2html || disable texi2html
  
  check_header linux/fb.h
@@ -108,7 +114,7 @@
  check_header sys/videoio.h
  
  check_func_headers "windows.h vfw.h" capCreateCaptureWindow "$vfwcap_indev_extralibs"
-@@ -3326,7 +3329,7 @@
+@@ -3345,7 +3348,7 @@
  SRC_PATH="$source_path"
  SRC_PATH_BARE=$source_path
  CC_IDENT=$cc_ident
@@ -117,7 +123,7 @@
  CC=$cc
  AS=$as
  LD=$ld
-@@ -3370,7 +3373,7 @@
+@@ -3389,7 +3392,7 @@
  SDL_LIBS=$sdl_libs
  SDL_CFLAGS=$sdl_cflags
  LIB_INSTALL_EXTRA_CMD=$LIB_INSTALL_EXTRA_CMD
