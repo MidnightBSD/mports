@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	usbids
-PORTVERSION=	20151217
+PORTVERSION=	20160303
 CATEGORIES=	misc
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known IDs used in USB devices
 
 LICENSE=	bsd3 gpl2 gpl3
