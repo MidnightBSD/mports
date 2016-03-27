@@ -161,6 +161,7 @@ CONFIGURE_ARGS+=--enable-json
 .if ${PHP_MODNAME} == "ldap"
 CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
 
+USES+=	ldap
 USE_OPENLDAP=	yes
 
 . ifdef(WANT_OPENLDAP_SASL)
