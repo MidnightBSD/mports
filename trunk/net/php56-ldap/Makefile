@@ -7,4 +7,6 @@ MASTERDIR=	${.CURDIR}/../../lang/php56
 
 PKGNAMESUFFIX=	-ldap
 
+USES=	ldap
+
 .include "${MASTERDIR}/Makefile"
