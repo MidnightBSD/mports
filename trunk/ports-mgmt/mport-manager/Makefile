@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mport-manager
-PORTVERSION=	0.1.2
+PORTVERSION=	0.1.3
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
