@@ -24,6 +24,7 @@ SUBDIR += coreutils
 SUBDIR += devcpu-data
 SUBDIR += dirdiff
 SUBDIR += dmidecode
+SUBDIR += docker-freebsd
 SUBDIR += dvd+rw-tools
 SUBDIR += dvdbackup
 SUBDIR += e2fsprogs
