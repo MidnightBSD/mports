@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mport-manager
-PORTVERSION=	0.1.3
+PORTVERSION=	0.1.5
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -21,5 +21,8 @@ USE_CSTD=       c99
 
 USE_GNOME=	gtk30
 WANT_GNOME=	yes
+
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
 
 .include <bsd.port.mk>
