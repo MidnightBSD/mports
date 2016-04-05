@@ -2,6 +2,7 @@
 
 PORTNAME=	scan_ffs
 PORTVERSION=	1.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ranner.eu/stuff/
 
@@ -12,8 +13,7 @@ LICENSE=	bsd2
 
 USES=		tar:bzip2
 
-MAN8=		scan_ffs.8
-PLIST_FILES=	sbin/scan_ffs
+PLIST_FILES=	sbin/scan_ffs man/man8/scan_ffs.8.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/scan_ffs ${PREFIX}/sbin/.
