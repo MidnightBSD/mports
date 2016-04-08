@@ -26,13 +26,14 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-pthread \
 		--enable-shared \
 		--with-ruby-version=minor \
-		--with-sitedir="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/site_ruby" \
-		--with-vendordir="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/vendor_ruby" \
-		--with-rubyhdrdir="${FAKE_DESTDIR}${TRUE_PREFIX}/include/ruby-2.2/" \
-		--with-rubylibprefix="${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby" \
+		--with-sitedir="${TRUE_PREFIX}/lib/ruby/site_ruby" \
+		--with-vendordir="${TRUE_PREFIX}/lib/ruby/vendor_ruby" \
+		--with-rubyhdrdir="${TRUE_PREFIX}/include/ruby-2.2/" \
+		--with-rubylibprefix="${TRUE_PREFIX}/lib/ruby" \
 		--docdir="${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/ruby22" \
 		--mandir="${FAKE_DESTDIR}/usr/local/man" \
-		--prefix=${FAKE_DESTDIR}
+		--prefix=${TRUE_PREFIX} \
+		--with-destdir=${FAKE_DESTDIR}
 CONFIGURE_ENV+=	LC_ALL=C debugflags=
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
