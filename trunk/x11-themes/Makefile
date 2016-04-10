@@ -20,6 +20,7 @@ SUBDIR += linux-f10-hicolor-icon-theme
 SUBDIR += linux-f10-qtcurve-gtk2
 SUBDIR += linux-hicolor-icon-theme
 SUBDIR += midnightbsd-backgrounds
+SUBDIR += slim-themes
 SUBDIR += ubuntulooks
 SUBDIR += xcursor-themes
 
