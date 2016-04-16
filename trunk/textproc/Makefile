@@ -185,6 +185,7 @@ SUBDIR += urlview
 SUBDIR += wv
 SUBDIR += wv2
 SUBDIR += xalan-j
+SUBDIR += xerces-c
 SUBDIR += xerces-j
 SUBDIR += xhtml
 SUBDIR += xhtml-basic
