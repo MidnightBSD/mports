@@ -6,8 +6,7 @@ CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/official/ \
 		ftp://ftp.tux.org/pub/net/postfix/official/ \
 		ftp://ftp.utoronto.ca/mirror/packages/postfix/official/ \
-		ftp://ftp.samurai.com/pub/postfix/official/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/postfix/official/&,}
+		ftp://ftp.samurai.com/pub/postfix/official/
 MASTER_SITE_SUBDIR=	. old related/postfix
 DIST_SUBDIR=	${PORTNAME}
 
