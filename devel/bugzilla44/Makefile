@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	bugzilla
-PORTVERSION=	4.4.9
+PORTVERSION=	4.4.11
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/webtools MOZILLA/webtools/archived
 
