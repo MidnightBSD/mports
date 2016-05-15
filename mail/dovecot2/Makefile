@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.19
+PORTVERSION=	2.2.21
 PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
@@ -33,7 +33,7 @@ INSTALL_TARGET=	install-strip
 USERS=		dovecot dovenull
 GROUPS=		${USERS}
 
-OPTIONS_DEFINE=	GC KQUEUE LIBWRAP LZ4 SSL VPOPMAIL DOCS EXAMPLES
+OPTIONS_DEFINE=	KQUEUE LIBWRAP LZ4 SSL VPOPMAIL DOCS EXAMPLES
 OPTIONS_DEFAULT=KQUEUE SSL GSSAPI_NONE
 OPTIONS_SUB=	yes
 
@@ -44,7 +44,6 @@ OPTIONS_GROUP_FTS=	ICU LUCENE SOLR TEXTCAT
 OPTIONS_SINGLE=		GSSAPI
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_NONE GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
 
-GC_DESC=	Garbage collection with boehm-gc
 KQUEUE_DESC=	kqueue(2) support
 LZ4_DESC=	LZ4 compression support
 VPOPMAIL_DESC=	vpopmail support
@@ -66,9 +65,6 @@ GSSAPI_MIT_DESC=	Use MIT GSSAPI from security/krb5
 CDB_CONFIGURE_WITH=	cdb
 CDB_LIB_DEPENDS=	libcdb.so:${PORTSDIR}/databases/tinycdb
 
-GC_CONFIGURE_WITH=	gc
-GC_LIB_DEPENDS=		libgc.so:${PORTSDIR}/devel/boehm-gc
-
 GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
 GSSAPI_BASE_USES=		gssapi
 GSSAPI_BASE_CONFIGURE_ON=	--with-gssapi ${GSSAPI_CONFIGURE_ARGS}
@@ -86,7 +82,6 @@ KQUEUE_CONFIGURE_ON=	--with-ioloop=kqueue --with-notify=kqueue
 
 LDAP_USE=		OPENLDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
-LDAP_RC_REQUIRE=	slapd
 
 LIBWRAP_CONFIGURE_WITH=	libwrap
 
@@ -97,11 +92,9 @@ LZ4_LIB_DEPENDS=	liblz4.so:${PORTSDIR}/archivers/liblz4
 
 MYSQL_USE=		MYSQL=yes
 MYSQL_CONFIGURE_WITH=	mysql
-MYSQL_RC_REQUIRE=	mysql
 
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
-PGSQL_RC_REQUIRE=	postgresql
 
 SOLR_CONFIGURE_WITH=	solr
 SOLR_BUILD_DEPENDS=	curl:${PORTSDIR}/ftp/curl
@@ -122,20 +115,20 @@ DOCS=		AUTHORS COPYING COPYING.LGPL COPYING.MIT INSTALL NEWS TODO README
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-.include <bsd.mport.options.mk>
-
-CPPFLAGS+=	-I${LOCALBASE}/include -I${OPENSSLINC}
-LDFLAGS+=	-L${LOCALBASE}/lib -I${OPENSSLLIB}
-
 # Default requirement for dovecot rc script
 _REQUIRE=	LOGIN
 
-.for opt in ${PORT_OPTIONS}
-_REQUIRE+=	${${opt}_RC_REQUIRE}
-.endfor
+LDAP_VARS=	_REQUIRE+=slapd
+MYSQL_VARS=	_REQUIRE+=mysql
+PGSQL_VARS=	_REQUIRE+=postgresql
+
+.include <bsd.mport.options.mk>
 
 SUB_LIST+=	REQUIRE="${_REQUIRE}"
 SUB_FILES+=	pkg-message
+
+CPPFLAGS+=	-I${LOCALBASE}/include -I${OPENSSLINC}
+LDFLAGS+=	-L${LOCALBASE}/lib -I${OPENSSLLIB}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dovecot,${PREFIX}/etc/dovecot,g; \
@@ -150,7 +143,8 @@ post-patch:
 
 post-configure:
 	${REINPLACE_CMD} 's|#define HAVE_CLEARENV 1||g' ${WRKSRC}/config.h
-
+	@${REINPLACE_CMD} -e '/^[^#]/s|/usr|${LOCALBASE}|' \
+		${WRKSRC}/src/plugins/fts/decode2text.sh
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${STAGEDIR}${DOCSDIR}
