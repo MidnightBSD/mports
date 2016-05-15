@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.1.2
+DISTVERSION=	1.1.4
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	SF/${PORTNAME}mail/${PORTNAME}mail/${DISTVERSION:tu}
@@ -13,7 +13,7 @@ COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 
 LICENSE=	gpl3
 
-WRKSRC=		${WRKDIR}/roundcubemail-1.1.2
+WRKSRC=		${WRKDIR}/roundcubemail-1.1.4
 
 NO_BUILD=	yes
 
