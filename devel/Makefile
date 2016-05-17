@@ -290,6 +290,7 @@ SUBDIR += p5-Getopt-Long
 SUBDIR += p5-Heap
 SUBDIR += p5-Hook-LexWrap
 SUBDIR += p5-IO
+SUBDIR += p5-IO-HTML
 SUBDIR += p5-IO-Multiplex
 SUBDIR += p5-IO-SessionData
 SUBDIR += p5-IO-String
