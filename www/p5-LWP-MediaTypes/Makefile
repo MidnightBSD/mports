@@ -3,6 +3,7 @@
 
 PORTNAME=	LWP-MediaTypes
 PORTVERSION=	6.02
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,8 +15,7 @@ LICENSE=	perl
 
 CONFLICTS=	p5-libwww-5*
 
+USES=	perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		LWP::MediaTypes.3
 
 .include <bsd.port.mk>
