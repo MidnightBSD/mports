@@ -57,6 +57,8 @@ SITE_ARCH_REL?=		${SITE_PERL_REL}/${PERL_ARCH}
 SITE_ARCH?=		${LOCALBASE}/${SITE_ARCH_REL}
 SITE_MAN3_REL?=		${SITE_PERL_REL}/man/man3
 SITE_MAN3?=		${PREFIX}/${SITE_MAN3_REL}
+SITE_MAN1_REL?=		${SITE_PERL_REL}/man/man1
+SITE_MAN1?=		${PREFIX}/${SITE_MAN1_REL}
 
 .if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=			/usr/bin/perl
@@ -225,6 +227,7 @@ Perl_Post_Include=	perl.mk
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
 				PERL_ARCH=${PERL_ARCH} \
+				PERL5_MAN1=man/man1 \
 				PERL5_MAN3=man/man3 \
 				SITE_PERL=${SITE_PERL_REL} \
 				SITE_ARCH=${SITE_ARCH_REL}
@@ -234,6 +237,7 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_ARCH=${PERL_ARCH} \
 				SITE_PERL=${SITE_PERL_REL} \
 				SITE_ARCH=${SITE_ARCH_REL} \
+				PERL5_MAN1=man/man1 \
 				PERL5_MAN3=man/man3 \
 				PERL=${PERL}
 
