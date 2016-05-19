@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.99
+PORTVERSION=	0.99.2
 CATEGORIES=	security
-MASTER_SITES=	SF
+MASTER_SITES=	http://www.clamav.net/downloads/production/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
