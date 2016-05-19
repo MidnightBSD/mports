@@ -1,15 +1,15 @@
---- configure.orig	2014-05-22 09:18:22.000000000 -0400
-+++ configure	2014-07-30 17:45:23.093837950 -0400
-@@ -5556,7 +5556,7 @@
+--- configure.orig	2016-04-22 12:19:50.000000000 -0400
++++ configure	2016-05-19 08:01:16.000000000 -0400
+@@ -5845,7 +5845,7 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
  
--  netbsd* | freebsd* | openbsd* | darwin* | dragonfly*)
-+  netbsd* | freebsd* | openbsd* | darwin* | dragonfly* | midnightbsd*)
+-  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
++  bitrig* | darwin* | dragonfly* | freebsd* | midnightbsd* | netbsd* | openbsd*)
      # This has been around since 386BSD, at least.  Likely further.
      if test -x /sbin/sysctl; then
        lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
-@@ -5991,7 +5991,7 @@
+@@ -6256,7 +6256,7 @@
    lt_cv_deplibs_check_method=pass_all
    ;;
  
@@ -18,7 +18,7 @@
    if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
      case $host_cpu in
      i*86 )
-@@ -9864,7 +9864,7 @@
+@@ -10501,7 +10501,7 @@
        ;;
  
      # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
@@ -27,7 +27,7 @@
        archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
        hardcode_libdir_flag_spec='-R$libdir'
        hardcode_direct=yes
-@@ -10828,7 +10828,7 @@
+@@ -11546,7 +11546,7 @@
    shlibpath_var=LD_LIBRARY_PATH
    ;;
  
@@ -36,16 +36,23 @@
    # DragonFly does not have aout.  When/if they implement a new
    # versioning mechanism, adjust this.
    if test -x /usr/bin/objformat; then
-@@ -10846,7 +10846,7 @@
+@@ -11559,13 +11559,13 @@
+   fi
+   version_type=freebsd-$objformat
+   case $version_type in
+-    freebsd-elf*)
++    freebsd-elf* | midnightbsd-elf*)
+       library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
+       soname_spec='$libname$release$shared_ext$major'
        need_version=no
        need_lib_prefix=no
        ;;
 -    freebsd-*)
 +    freebsd-* | midnightbsd-*)
-       library_names_spec='${libname}${release}${shared_ext}$versuffix $libname${shared_ext}$versuffix'
+       library_names_spec='$libname$release$shared_ext$versuffix $libname$shared_ext$versuffix'
        need_version=yes
        ;;
-@@ -12621,7 +12621,7 @@
+@@ -13396,7 +13396,7 @@
      # If you are looking for one http://www.opendarwin.org/projects/dlcompat
      lt_cv_sys_dlopen_deplibs=yes
      ;;
@@ -54,7 +61,7 @@
      lt_cv_sys_dlopen_deplibs=yes
      ;;
    gnu* | linux* | k*bsd*-gnu | kopensolaris*-gnu)
-@@ -18680,7 +18680,7 @@
+@@ -20756,7 +20756,7 @@
  $as_echo "#define C_BSD 1" >>confdefs.h
  
      ;;
@@ -63,7 +70,7 @@
      if test "$have_pthreads" = "yes"; then
  	THREAD_LIBS="-lthr"
  	TH_SAFE="-thread-safe"
-@@ -18858,7 +18858,7 @@
+@@ -20934,7 +20934,7 @@
  if test "$have_milter" = "yes"; then
  
          save_LIBS="$LIBS"
@@ -72,7 +79,7 @@
      if test -d /usr/lib/libmilter ; then
  	CLAMAV_MILTER_LIBS="$CLAMAV_MILTER_LIBS -L/usr/lib/libmilter"
      fi
-@@ -21891,7 +21891,7 @@
+@@ -24065,7 +24065,7 @@
  
  
  case "$host_os" in
