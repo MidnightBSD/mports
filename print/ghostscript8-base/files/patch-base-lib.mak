@@ -1,5 +1,14 @@
---- base/lib.mak.orig	2013-04-18 04:24:52.000000000 +0900
-+++ base/lib.mak	2013-04-18 04:25:13.000000000 +0900
+--- base/lib.mak.orig	2009-12-30 07:18:01.000000000 +0900
++++ base/lib.mak	2015-08-21 20:39:55.003384000 +0900
+@@ -895,7 +895,7 @@
+ $(GLOBJ)gsparamx.$(OBJ) : $(GLSRC)gsparamx.c $(string__h)\
+  $(gserror_h) $(gserrors_h) $(gsmemory_h) $(gsparam_h) $(gsparamx_h)\
+  $(gstypes_h)
+-	$(GLCC) $(GLO_)gsparamx.$(OBJ) $(C_) $(GLSRC)gsparamx.c
++	$(GLCCSHARED) $(GLO_)gsparamx.$(OBJ) $(C_) $(GLSRC)gsparamx.c
+ 
+ # Future replacement for gsparams.c
+ $(GLOBJ)gsparam2.$(OBJ) : $(GLSRC)gsparam2.c $(GXERR) $(memory__h)\
 @@ -2684,12 +2684,12 @@
  # This is used to access compressed, compiled-in support files
  gsiorom_h=$(GLSRC)gsiorom.h

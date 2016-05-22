@@ -1,52 +1,48 @@
-# Created by: Andreas Klemm <andreas@klemm.gtn.com>
-# $FreeBSD: head/print/ghostscript8/Makefile 358556 2014-06-20 11:15:57Z amdmi3 $
+# $MidnightBSD$
 
 PORTNAME=	ghostscript
 PORTVERSION=	8.71
-PORTREVISION=	2
+PORTREVISION=	20
 CATEGORIES=	print
 MASTER_SITES=	http://downloads.ghostscript.com/public/:gs_srcs \
 		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
-		ftp://mirror.cs.wisc.edu/pub/mirrors/ghost/GPL/gs${PORTVERSION:S/.//}/:gs_srcs \
 		http://www.humblesoft.com/pub/:epag
-MASTER_SITE_SUBDIR=	ghostscript/:gs_srcs
-PKGNAMESUFFIX=	8
+PKGNAMESUFFIX=	8-base
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:gs_srcs ${EPAG_SRCS}:epag
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
-EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Ghostscript 8.x PostScript interpreter
+COMMENT=	Ghostscript 8.x PostScript interpreter, base part
 
 LICENSE=	gpl3
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
+		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libjasper.so:${PORTSDIR}/graphics/jasper \
 		libjbig2dec.so:${PORTSDIR}/graphics/jbig2dec \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng.so:${PORTSDIR}/graphics/png \
 		libpaper.so:${PORTSDIR}/print/libpaper \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff
 RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
 
 CONFLICTS_INSTALL= \
 		gambc-[0-9]* \
-		ghostscript[79]-[0-9]* \
-		ghostscript[79]-nox11-[0-9]* \
+		ghostscript[789]-[0-9]* \
+		ghostscript[789]-nox11-[0-9]* \
 		ghostscript9-agpl-[0-9]* \
 		ghostscript9-agpl-nox11-[0-9]*
 
-USES=		gmake pkgconfig tar:xz shebangfix
-SHEBANG_FILES=	${WRKSRC}/lib/fixmswrd.pl
-WANT_GNOME=	yes
+USES=		autoreconf gmake pkgconfig shebangfix tar:xz
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf
+SHEBANG_FILES=	${WRKSRC}/lib/fixmswrd.pl
+EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
 GNU_CONFIGURE=	yes
-
+DATADIR=	${PREFIX}/share/${PORTNAME}/${PORTVERSION}
 MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV=	CFLAGS_STANDARD="${CFLAGS}" \
 		XCFLAGS="${XCFLAGS}" XLDFLAGS="${XLDFLAGS}" \
+		FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".so" \
 		SOC_LOADER="dxmainc.c"
 CONFIGURE_ENV=	${MAKE_ENV}
 CONFIGURE_ARGS=	--disable-compile-inits \
@@ -55,48 +51,38 @@ CONFIGURE_ARGS=	--disable-compile-inits \
 		--with-ijs \
 		--with-jasper \
 		--with-libpaper \
+		--without-x \
+		--disable-gtk \
 		--with-drivers=""
-CPPFLAGS+=	-DUPD_SIGNAL=0 -I. \
+CPPFLAGS+=	-DUPD_SIGNAL=0 \
+		-DJBIG_NO_MEMENTO \
+		-I. \
 		-I${WRKSRC}/jasper/src/libjasper/include \
+		-I${LOCALBASE}/include/freetype2 \
 		-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-XCFLAGS=	${PTHREAD_CFLAGS} \
-		-DA4
-XLDFLAGS=	${PTHREAD_LIBS}
-
-PLIST_SUB=	GS_VERSION="${PORTVERSION}" \
-		CIDFONTDIR="${CIDFONTDIR:S,^${PREFIX}/,,}"
+XCFLAGS=	-DA4
+XLDFLAGS=	-lpthread
+ALL_TARGET=	so
+INSTALL_TARGET=	soinstall
+PLIST_SUB=	SHLIB_VER="${PORTVERSION:R}" \
+		GS_VERSION="${PORTVERSION}"
 SUB_FILES=	pkg-message
-SUB_LIST=	DATADIR=${DATADIR} PORTVERSION=${PORTVERSION}
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS_DEFINE=	X11 DOCS CAIRO CUPS FONTCONFIG GTK2 ICONV
-OPTIONS_DEFAULT=X11 DOCS CAIRO CUPS FONTCONFIG      ICONV
+OPTIONS_DEFINE=	DOCS CAIRO CUPS FONTCONFIG ICONV
+OPTIONS_DEFAULT=DOCS CAIRO CUPS FONTCONFIG ICONV
 OPTIONS_SUB=	yes
 FONTCONFIG_DESC=Enable fontconfig support
+FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+FONTCONFIG_CONFIGURE_ENABLE=	fontconfig
 NO_OPTIONS_SORT=yes
 
-CIDFONTDIR=	${DATADIR}/${PORTVERSION}/Resource
 EXCLUDE_DIRS=	jbig2dec jpeg expat jasper libpng tiff zlib
 
 .include "Makefile.drivers"
 .include <bsd.mport.options.mk>
-
-MASTERDIR?=	${.CURDIR}
-.include "${MASTERDIR}/files/Makefile.drivers_post"
-
-FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
-FONTCONFIG_CONFIGURE_ENABLE=	fontconfig
-
-# FT_BRIDGE=1 by default
-LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
-MAKE_ENV+=	FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".so"
-CPPFLAGS+=	-I${LOCALBASE}/include/freetype2
-
-ALL_TARGET=	so
-INSTALL_TARGET=	soinstall
-USE_LDCONFIG=	yes
-PLIST_SUB+=	SHLIB_VER="${PORTVERSION:R}"
+.include "files/Makefile.drivers_post"
 
 PORTDOCS=	japanese chp2200 epson740 lxm3200-tweaked md2k_md5k
 PORTDOC_FILES=	japanese/Gdevlips.htm japanese/README.gs550j		\
@@ -114,8 +100,7 @@ PORTDOC_FILES=	japanese/Gdevlips.htm japanese/README.gs550j		\
 	lxm3200-tweaked/Z12-Z31-QuickSetup md2k_md5k/README.jis
 
 post-patch:
-	${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}|g ; \
-	    s|%%GS_VERSION%%|${PORTVERSION}|g' \
+	${REINPLACE_CMD} -e 's,%%DATADIR%%,${DATADIR},' \
 	    ${WRKSRC}/contrib/japanese/dmp_site.ps
 
 pre-build-drivers.mak:
@@ -124,7 +109,6 @@ pre-build-drivers.mak:
 	@${ECHO_CMD} 'DEVICE_${N}=' >> ${WRKSRC}/base/drivers.mak
 .endfor
 .for D in ${OPTIONS_DEFINE:MGS_*:S/^GS_//} \
-	${OPTIONS_MULTI_X11:MGS_*:S/^GS_//} \
 	${OPTIONS_GROUP_ICONV:MGS_*:S/^GS_//} \
 	${OPTIONS_GROUP_SVGALIB:MGS_*:S/^GS_//}
 .for N in ${DEVS_LIST}
@@ -139,40 +123,33 @@ pre-build-drivers.mak:
 .endfor
 
 pre-build: pre-build-drivers.mak
-	${MKDIR} ${WRKSRC}/obj
-	${MKDIR} ${WRKSRC}/bin
-	${MKDIR} ${WRKSRC}/freetype/include
+	${MKDIR} ${WRKSRC}/obj ${WRKSRC}/bin ${WRKSRC}/freetype/include
 	${LN} -s -f ${LOCALBASE}/include/ft2build.h \
-		${WRKSRC}/freetype/include/ft2build.h
+	    ${WRKSRC}/freetype/include/ft2build.h
 	${LN} -s -f ${LOCALBASE}/include/freetype2/freetype \
-		${WRKSRC}/freetype/include/freetype
+	    ${WRKSRC}/freetype/include/freetype
 	${MKDIR} ${WRKSRC}/freetype/objs
 	${LN} -s -f ${LOCALBASE}/lib/libfreetype.so \
-		${WRKSRC}/freetype/objs/freetype214MT_D.so
+	    ${WRKSRC}/freetype/objs/freetype214MT_D.so
 
 pre-install:
-	${MKDIR} ${DATADIR}
+	cd ${WRKSRC}/Resource/Init && ${RM} -f \
+	    gs_statd.ps.orig gs_ttf.ps.orig pdf_font.ps.orig
+	${MKDIR} ${STAGEDIR}${DATADIR}
 
-post-install-docs:
+post-install: post-install-docs
 	${MKDIR} ${WRKSRC}/contrib/japanese
-	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* ${WRKSRC}/contrib/japanese
+	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* \
+	    ${WRKSRC}/contrib/japanese
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/contrib && \
-		${TAR} -cf - ${PORTDOC_FILES} | \
-		( cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof - )
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap			\
-		${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap	\
-		${STAGEDIR}${DATADIR}/${PORTVERSION}/Resource/Init
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/${PORTVERSION}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gsc ${STAGEDIR}${PREFIX}/bin/gsx
-	${LN} -sf gsc ${PREFIX}/bin/gs
-	(cd ${PREFIX}/share/ && ${LN} -s -f fonts/CIDFont \
-	    ghostscript/8.71/Resource/CIDFont)
-
-.if ${PORT_OPTIONS:MDOCS}
-post-install: post-install-docs
-.endif
+	    ${TAR} -cf - ${PORTDOC_FILES} | \
+	    (cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof -)
+	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap \
+	    ${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap \
+	    ${STAGEDIR}${DATADIR}/Resource/Init
+	${LN} -sf gsc ${STAGEDIR}${PREFIX}/bin/gs
+	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont \
+	    ${STAGEDIR}${DATADIR}/Resource/CIDFont
 
 .include <bsd.port.mk>

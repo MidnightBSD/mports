@@ -1,4 +1,4 @@
-# $FreeBSD: head/print/ghostscript8/files/Makefile.drivers_post 347164 2014-03-06 07:07:55Z hrs $
+# $FreeBSD: head/print/ghostscript8-base/files/Makefile.drivers_post 410825 2016-03-11 11:53:42Z tijl $
 # pre/postprocessing driver variables
 
 # dmprt specific
@@ -40,7 +40,7 @@ PORT_OPTIONS:=	${PORT_OPTIONS:NGS_${D}}
 .endfor
 
 .if defined(_CUPS_DEVS)
-LIB_DEPENDS+=	libcupsimage.so:${PORTSDIR}/print/cups-image
+LIB_DEPENDS+=	libcupsimage.so:${PORTSDIR}/print/cups
 CONFIGURE_ARGS+=	--enable-cups
 .else
 CONFIGURE_ARGS+=	--disable-cups
@@ -63,37 +63,6 @@ OPTIONS_UNSET+=	${PORT_OPTIONS:MGS_${D}}
 .if defined(_VGA_DEVS)
 LIB_DEPENDS+=	libvga.so:${PORTSDIR}/graphics/svgalib
 .endif
-
-# x11 specific
-X11_DEVS= x11 x11alpha x11cmyk x11cmyk2 x11cmyk4 x11cmyk8 x11gray2 \
-	x11gray4 x11mono x11rg16x x11rg32x display
-.undef _X11_DEVS
-
-.for D in ${X11_DEVS}
-.if ${PORT_OPTIONS:MX11} && ${PORT_OPTIONS:MGS_${D}}
-_X11_DEVS+= ${D}
-.else
-PORT_OPTIONS:=	${PORT_OPTIONS:NGS_${D}}
-.endif
-.endfor
-
-.if defined(_X11_DEVS)
-USE_XORG=	xt xext
-CONFIGURE_ARGS+=--with-x \
-		--x-includes=${LOCALBASE}/include \
-		--x-libraries=${LOCALBASE}/lib
-CONFLICTS_INSTALL+=	ghostscript8-nox11-[0-9]*
-.if ${PORT_OPTIONS:MGTK2}
-USE_GNOME=	atk gdkpixbuf2 glib20 gtk20
-CONFIGURE_ARGS+=--enable-gtk
-.else
-CONFIGURE_ARGS+=--disable-gtk
-.endif
-.else	# defined(_X11_DEVS)
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-nox11
-CONFIGURE_ARGS+=--without-x --disable-gtk
-CONFLICTS_INSTALL+=	ghostscript8-[0-9]*
-.endif	# defined(_X11_DEVS)
 
 # iconv specific
 ICONV_DEVS= oprp opvp

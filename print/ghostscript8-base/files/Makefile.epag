@@ -1,4 +1,4 @@
-# $FreeBSD: head/print/ghostscript8/files/Makefile.epag 381971 2015-03-22 23:53:18Z bdrewery $
+# $FreeBSD: head/print/ghostscript8-base/files/Makefile.epag 381971 2015-03-22 23:53:18Z bdrewery $
 
 # EPAG - additional driver for Epson ESC/Page printers
 # http://www.humblesoft.com/gdevepag.html
