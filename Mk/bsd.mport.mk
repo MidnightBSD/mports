@@ -354,7 +354,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		apache autotools bdb cmake cpe display dos2unix \
 		efl emacs execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
-		gnome gnustep gssapi gstreamer iconv imake jpeg \
+		ghostscript gnome gnustep gssapi gstreamer iconv imake jpeg \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt ruby scons sdl sqlite \
@@ -797,22 +797,6 @@ USE_MPORT_TOOLS=	yes
 .include "${MPORTCOMPONENTS}/fake/targets.mk"
 .include "${MPORTCOMPONENTS}/update.mk"
 
-
-# Set the default for the installation of Postscript(TM)-
-# compatible functionality.
-.if !defined(WITHOUT_X11)
-GHOSTSCRIPT_PORT?=	print/ghostscript8
-.else
-GHOSTSCRIPT_PORT?=	print/ghostscript8-nox11
-.endif
-
-# Set up the ghostscript dependencies.
-.if defined(USE_GHOSTSCRIPT) || defined(USE_GHOSTSCRIPT_BUILD)
-BUILD_DEPENDS+=	gs:${PORTSDIR}/${GHOSTSCRIPT_PORT}
-.endif
-.if defined(USE_GHOSTSCRIPT) || defined(USE_GHOSTSCRIPT_RUN)
-RUN_DEPENDS+=	gs:${PORTSDIR}/${GHOSTSCRIPT_PORT}
-.endif
 
 # Set up the cdrtools.
 .if defined(USE_CDRTOOLS)
