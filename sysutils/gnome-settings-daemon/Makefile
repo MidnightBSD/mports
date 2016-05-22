@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-settings-daemon
-PORTVERSION=	3.16.3
+PORTVERSION=	3.18.2
 PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
@@ -31,9 +31,11 @@ RUN_DEPENDS=	gnome-session>=0:${PORTSDIR}/x11/gnome-session \
 		geoclue>=0:${PORTSDIR}/net/geoclue \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
 
+PORTSCOUT=	limitw:1,even
+
 USE_XORG=	xxf86misc
 USE_GNOME=	gnomedesktop3 intltool libxslt
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	--disable-gudev \
@@ -51,7 +53,7 @@ OPTIONS_DEFINE=	CUPS SMARTCARD
 OPTIONS_DEFAULT=CUPS SMARTCARD
 SMARTCARD_DESC=	Smartcard support
 CUPS_CONFIGURE_ENABLE=	cups
-CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
 SMARTCARD_CONFIGURE_ENABLE=	smartcard-support
 SMARTCARD_LIB_DEPENDS=	libnss3.so:${PORTSDIR}/security/nss
 
@@ -64,6 +66,7 @@ GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
 		org.gnome.settings-daemon.plugins.keyboard.gschema.xml \
 		org.gnome.settings-daemon.plugins.media-keys.gschema.xml \
 		org.gnome.settings-daemon.plugins.power.gschema.xml \
+		org.gnome.settings-daemon.plugins.power.gschema.xml.override \
 		org.gnome.settings-daemon.plugins.print-notifications.gschema.xml \
 		org.gnome.settings-daemon.plugins.sharing.gschema.xml \
 		org.gnome.settings-daemon.plugins.xrandr.gschema.xml \
@@ -72,5 +75,9 @@ GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/gnome|${PREFIX}/etc/gnome|g' \
 		${WRKSRC}/data/org.gnome.settings-daemon.plugins.xrandr.gschema.xml.in.in
+
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/org.gnome.settings-daemon.plugins.power.gschema.xml.override \
+		${PREFIX}/share/glib-2.0/schemas/
 
 .include <bsd.port.mk>
