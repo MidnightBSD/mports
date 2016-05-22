@@ -3,7 +3,7 @@
 
 PORTNAME=	texlive
 PORTVERSION=	20150521
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	TEX_CTAN/systems/texlive/Source/
 PKGNAMESUFFIX=	-base
@@ -32,8 +32,7 @@ LIB_DEPENDS=	libicuio.so:${PORTSDIR}/devel/icu \
 CONFLICTS_INSTALL=	texlive-texmf-201[234]*
 
 USE_TEX=	web2c kpathsea ptexenc tlmgr texhash-bootstrap
-USES=		pkgconfig perl5 shebangfix tar:xz
-USE_GHOSTSCRIPT=	yes
+USES=		ghostscript pkgconfig perl5 shebangfix tar:xz
 USE_PERL5=	run
 USE_XORG=	x11 xmu
 # during build phase gnu configure is run a lot
