@@ -8,7 +8,7 @@
 
 PORTNAME=	gworkspace
 PORTVERSION=	0.9.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 #MASTER_SITES=	http://www.gnustep.it/enrico/gworkspace/
 MASTER_SITES=	GNUSTEP/usr-apps
@@ -29,7 +29,7 @@ ADDITIONAL_LDFLAGS+=	-L${WRKSRC}/FSNode/FSNode.framework/Versions/A
 PLIST_SUB+=	PDFVIEW="@comment "
 .else
 PLIST_SUB+=	PDFVIEW=""
-USE_GHOSTSCRIPT=	yes
+USES+=		ghostscript
 .endif
 
 pre-configure:
