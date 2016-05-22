@@ -354,7 +354,11 @@ PLIST_SUB+=		PANGO="@comment "
 
 # PDF (Adobe Portable Document Format) support
 .if ${PORT_OPTIONS:MPDF}
-USE_GHOSTSCRIPT=	yes
+. if ${PORT_OPTIONS:MX11}
+USES+=			ghostscript:x11
+. else
+USES+=			ghostscript
+. endif
 .endif
 
 .if ! ${PORT_OPTIONS:MX11}
@@ -377,7 +381,11 @@ INSTALL_TARGET=	install-strip
 .endif
 
 .if ${PORT_OPTIONS:MTESTS}
-USE_GHOSTSCRIPT_BUILD=yes
+. if ${PORT_OPTIONS:MX11}
+USES+=		ghostscript:x11,build
+. else
+USES+=		ghostscript:build
+. endif
 .endif
 
 post-patch:
