@@ -18,8 +18,8 @@ SUBDIR += foomatic-db-engine
 SUBDIR += foomatic-db-hpijs
 SUBDIR += freetype
 SUBDIR += freetype2
-SUBDIR += ghostscript8
-SUBDIR += ghostscript8-nox11
+SUBDIR += ghostscript8-base
+SUBDIR += ghostscript8-x11
 SUBDIR += ghostscript9-agpl-base
 SUBDIR +- ghostscript9-agpl-x11
 SUBDIR += ghostscript9-base
