@@ -2,16 +2,17 @@
 
 PORTNAME=		${SAMBA_BASENAME}36
 PORTVERSION=		3.6.25
-PORTREVISION?=		1
+PORTREVISION?=		2
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	samba samba/stable samba/pre
 DISTNAME=		${SAMBA_BASENAME}-${PORTVERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 MAINTAINER?=		ports@MidnightBSD.org
-COMMENT?=		A free SMB and CIFS client and server for UNIX
+COMMENT?=		Free SMB and CIFS client and server for UNIX
 
 LICENSE=		gpl3
+LICENSE_FILE=		${WRKDIR}/${DISTNAME}/COPYING
 
 CONFLICTS?=		*samba3[2-5]-3.*
 # Additional patches from Sernet.de
