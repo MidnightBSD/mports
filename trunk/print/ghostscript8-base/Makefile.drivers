@@ -1,19 +1,4 @@
-# $FreeBSD: head/print/ghostscript8/Makefile.drivers 340722 2014-01-22 17:00:46Z mat $
-
-OPTIONS_X11= \
-	GS_x11 \
-	GS_x11alpha \
-	GS_x11cmyk \
-	GS_x11cmyk2 \
-	GS_x11cmyk4 \
-	GS_x11cmyk8 \
-	GS_x11gray2 \
-	GS_x11gray4 \
-	GS_x11mono \
-	GS_x11rg16x \
-	GS_x11rg32x
-OPTIONS_MULTI=	X11
-OPTIONS_MULTI_X11=	${OPTIONS_X11}
+# $FreeBSD: head/print/ghostscript8-base/Makefile.drivers 395047 2015-08-22 17:48:35Z hrs $
 
 OPTIONS_SVGALIB= \
 	GS_lvga256 \
@@ -323,7 +308,6 @@ OPTIONS_DEFINE+= \
 	GS_wtscmyk
 
 OPTIONS_DEFAULT+= \
-	${OPTIONS_X11} \
 	${OPTIONS_SVGALIB} \
 	${OPTIONS_ICONV} \
 	${OPTIONS_CAIRO} \
@@ -614,17 +598,6 @@ OPTIONS_DEFAULT+= \
 	GS_wtsimdi \
 	GS_wtscmyk
 
-GS_x11_DESC=		D: X Window System version 11
-GS_x11alpha_DESC=	D: X Window System masquer. alpha capability
-GS_x11cmyk_DESC=	D: X Window System masquer. 1bit/plane CMYK
-GS_x11cmyk2_DESC=	D: X Window System 2-bit-per-plane CMYK
-GS_x11cmyk4_DESC=	D: X Window System 4-bit-per-plane CMYK
-GS_x11cmyk8_DESC=	D: X Window System 8-bit-per-plane CMYK
-GS_x11gray2_DESC=	D: X Window System 2-bit gray-scale
-GS_x11gray4_DESC=	D: X Window System 4-bit gray-scale
-GS_x11mono_DESC=	D: X Window System masquer. black-and-white
-GS_x11rg16x_DESC=	D: X Window System G5/B5/R6 pixel layout
-GS_x11rg32x_DESC=	D: X Window System G11/B10/R11 pixel layout
 GS_lvga256_DESC=	D: SVGAlib, 256-color VGA modes
 GS_vgalib_DESC=		D: SVGAlib, 16-color VGA modes
 GS_oprp_DESC=		D: OpenPrinting Raster driver interface

@@ -1,4 +1,4 @@
-# $FreeBSD: head/print/ghostscript8/files/Makefile.pcl3 347164 2014-03-06 07:07:55Z hrs $
+# $FreeBSD: head/print/ghostscript8-base/files/Makefile.pcl3 395047 2015-08-22 17:48:35Z hrs $
 
 PORTDOCS+=	pcl3
 PORTDOC_FILES+= pcl3/NEWS pcl3/BUGS pcl3/README pcl3/gs-pcl3.html	\
@@ -6,26 +6,26 @@ PORTDOC_FILES+= pcl3/NEWS pcl3/BUGS pcl3/README pcl3/gs-pcl3.html	\
 
 post-build-pcl3:
 	cd ${WRKSRC} && \
-		${CC} ${CFLAGS} -I./obj -I./soobj -I./base \
-		-I./contrib/pcl3/eprn -o bin/pcl3opts \
-		contrib/pcl3/src/pcl3opts.c contrib/pcl3/src/pclscan.c \
-		contrib/pcl3/eprn/mediasize.c contrib/pcl3/src/pclsize.c
+	    ${CC} ${CFLAGS} -I./obj -I./soobj -I./base \
+	    -I./contrib/pcl3/eprn -o bin/pcl3opts \
+	    contrib/pcl3/src/pcl3opts.c contrib/pcl3/src/pclscan.c \
+	    contrib/pcl3/eprn/mediasize.c contrib/pcl3/src/pclsize.c
 
 post-install-pcl3:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/pcl3opts ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}/${PORTVERSION}/pcl3
+	${MKDIR} ${STAGEDIR}${DATADIR}/pcl3
 	cd ${WRKSRC}/contrib/pcl3 && \
-		${INSTALL_DATA} lib/example.mcf lib/if-pcl3		\
-			ps/calign.ps ps/dumppdd.ps ps/levels-test.ps	\
-			ps/margins-A4.ps ps/margins-A4Rotated.ps	\
-			ps/margins-Env10Rotated.ps			\
-			ps/margins-EnvDLRotated.ps			\
-			ps/margins-Letter.ps				\
-			ps/margins-LetterRotated.ps			\
-			${STAGEDIR}${DATADIR}/${PORTVERSION}/pcl3
+	    ${INSTALL_DATA} lib/example.mcf lib/if-pcl3		\
+		ps/calign.ps ps/dumppdd.ps ps/levels-test.ps	\
+		ps/margins-A4.ps ps/margins-A4Rotated.ps	\
+		ps/margins-Env10Rotated.ps			\
+		ps/margins-EnvDLRotated.ps			\
+		ps/margins-Letter.ps				\
+		ps/margins-LetterRotated.ps			\
+		${STAGEDIR}${DATADIR}/pcl3
 	cd ${WRKSRC}/contrib/pcl3/doc && \
-		${INSTALL_MAN} gs-pcl3.1 pcl3opts.1 \
-		    ${STAGEDIR}${MANPREFIX}/man/man1
+	    ${INSTALL_MAN} gs-pcl3.1 pcl3opts.1 \
+		${STAGEDIR}${MANPREFIX}/man/man1
 
 post-install-docs-pcl3:
 	${MKDIR} ${WRKSRC}/contrib/pcl3
