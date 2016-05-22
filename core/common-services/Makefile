@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	common-services
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,7 +15,7 @@ LICENSE=	agg
 RUN_DEPENDS=	${LOCALBASE}/sbin/named:${PORTSDIR}/dns/bind99 \
 		${LOCALBASE}/sbin/sendmail:${PORTSDIR}/mail/sendmail \
 		smbd:${PORTSDIR}/net/samba36 \
-		cupsd:${PORTSDIR}/print/cups-base
+		cupsd:${PORTSDIR}/print/cups
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
