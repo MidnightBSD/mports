@@ -2,7 +2,7 @@
 
 PORTNAME=	gv
 PORTVERSION=	3.7.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	GNU/${PORTNAME}
 
@@ -13,10 +13,9 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	libXaw3d.so:${PORTSDIR}/x11-toolkits/Xaw3d
 
-USES=		cpe iconv gmake
+USES=		cpe ghostscript:x11 iconv gmake perl5 shebangfix
+USE_PERL5=	build
 USE_XORG=	xpm ice sm xext xmu x11
-USE_GHOSTSCRIPT=	yes
-USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
