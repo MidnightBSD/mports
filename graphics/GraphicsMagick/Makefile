@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	GraphicsMagick
-PORTVERSION=	1.3.20
+PORTVERSION=	1.3.23
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
@@ -19,8 +20,7 @@ LIB_DEPENDS=	libjbig.so:${PORTSDIR}/graphics/jbigkit		\
 		libtiff.so:${PORTSDIR}/graphics/tiff		\
 		libfreetype.so:${PORTSDIR}/print/freetype2
 
-USES=		iconv jpeg libtool tar:bzip2
-USE_GHOSTSCRIPT=	yes
+USES=		ghostscript iconv jpeg libtool tar:bzip2
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PTHREAD_LIBS="-lpthread"
