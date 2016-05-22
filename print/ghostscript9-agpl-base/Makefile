@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: head/print/ghostscript9-agpl-base/Makefile 410825 2016-03-11 11:53:42Z tijl $
 
 PORTNAME=	ghostscript
@@ -13,10 +14,10 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:gs_srcs ${EPAG_SRCS}:epag
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	doceng@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 9.x PostScript interpreter, base part
 
-LICENSE=	AGPLv3
+LICENSE=	agpl
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
@@ -82,7 +83,7 @@ NO_OPTIONS_SORT=yes
 EXCLUDE_DIRS=	freetype jbig2dec jpeg expat lcms2 libpng tiff zlib
 
 .include "Makefile.drivers"
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 .include "files/Makefile.drivers_post"
 
 PORTDOCS=	japanese chp2200 epson740 lxm3200-tweaked md2k_md5k
@@ -133,7 +134,7 @@ pre-install:
 	    gs_statd.ps.orig gs_ttf.ps.orig pdf_font.ps.orig
 	${MKDIR} ${STAGEDIR}${DATADIR}
 
-post-install-DOCS-on: post-install-docs
+post-install: post-install-docs
 	${MKDIR} ${WRKSRC}/contrib/japanese
 	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* \
 	    ${WRKSRC}/contrib/japanese
@@ -141,8 +142,6 @@ post-install-DOCS-on: post-install-docs
 	cd ${WRKSRC}/contrib && \
 	    ${TAR} -cf - ${PORTDOC_FILES} | \
 	    (cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof -)
-
-post-install:
 	${LN} -sf gsc ${STAGEDIR}${PREFIX}/bin/gs
 	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont \
 	    ${STAGEDIR}${DATADIR}/Resource/CIDFont/fonts

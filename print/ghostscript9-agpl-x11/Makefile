@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: head/print/ghostscript9-agpl-x11/Makefile 395158 2015-08-24 06:09:14Z hrs $
 
 PORTNAME=	ghostscript
@@ -9,10 +10,10 @@ MASTER_SITES=	http://downloads.ghostscript.com/public/ \
 PKGNAMESUFFIX=	9-agpl-x11
 DIST_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	doceng@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 9.x PostScript interpreter, X11 support
 
-LICENSE=	AGPLv3
+LICENSE=	agpl
 
 CONFLICTS_INSTALL= \
 		gambc-[0-9]* \
