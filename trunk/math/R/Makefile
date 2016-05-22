@@ -3,7 +3,7 @@
 
 PORTNAME?=	R
 PORTVERSION=	3.0.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/%SUBDIR%/ \
 		ftp://cran.r-project.org/pub/R/%SUBDIR%/ \
@@ -22,7 +22,7 @@ MASTER_SITES=	http://cran.r-project.org/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	src/base/R-${PORTVERSION:C|\..*||}
 DISTNAME=	R-${PORTVERSION}
 
-PATCH_SITES=		${MASTER_SITE_LOCAL}
+PATCH_SITES=		${MASTER_SITE_FREEBSD_LOCAL}
 PATCH_SITE_SUBDIR=	bf
 PATCHFILES=		R-patched-20131112-r64207.diff.bz2
 
@@ -185,7 +185,7 @@ USES+=			readline
 .else # LIBR_SLAVEPORT
 
 .if ${PORT_OPTIONS:MGHOSTSCRIPT}
-USE_GHOSTSCRIPT_RUN=	yes
+USES+=		ghostscript
 .endif
 
 .if ${PORT_OPTIONS:MJPEG}
