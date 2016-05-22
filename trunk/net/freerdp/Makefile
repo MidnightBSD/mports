@@ -4,6 +4,7 @@
 
 PORTNAME=	freerdp
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	net comms ipv6
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,7 +36,7 @@ ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
 ALSA_CMAKE_ON=		-DWITH_ALSA=ON
 ALSA_CMAKE_OFF=		-DWITH_ALSA=OFF
 
-CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
 CUPS_CMAKE_ON=		-DWITH_CUPS=ON
 CUPS_CMAKE_OFF=		-DWITH_CUPS=OFF
 
