@@ -2,7 +2,7 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${PORT_MINOR_VERSION}.${PORT_BUILD_NUMBER}
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}/promoted/b${JDK_BUILD_NUMBER}/ \
 		http://download.java.net/jaxp/1.4.5/:jaxp \
@@ -53,7 +53,7 @@ LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libasound.so:${PORTSDIR}/audio/alsa-lib
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip \
 		unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
+		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups
 RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
