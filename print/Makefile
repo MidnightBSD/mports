@@ -5,6 +5,7 @@ COMMENT = Desktop publishing
 SUBDIR += a2ps
 SUBDIR += adobe-cmaps
 SUBDIR += cups
+SUBDIR += cups-bjnp
 SUBDIR += cups-connector
 SUBDIR += cups-cloud-print
 SUBDIR += cups-filters
