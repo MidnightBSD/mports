@@ -3,7 +3,7 @@
 PORTNAME=	cups
 PORTVERSION=	2.1.3
 DISTVERSIONSUFFIX=-source
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	http://www.cups.org/software/${PORTVERSION}/
 
@@ -12,10 +12,10 @@ COMMENT=	Common UNIX Printing System
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
-LICENSE_FILE_GPLv2=	${WRKSRC}/LICENSE.txt
-LICENSE_FILE_LGPL20=	${WRKSRC}/LICENSE.txt
+LICENSE_FILE_gpl2=	${WRKSRC}/LICENSE.txt
+LICENSE_FILE_lgpl=	${WRKSRC}/LICENSE.txt
 
-LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 
 CONFLICTS=	LPRng-[0-9]*
 
@@ -75,6 +75,12 @@ X11_RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 PLIST_SUB+=	OVERWRITE=""
 .else
 PLIST_SUB+=	OVERWRITE="@comment "
+.endif
+
+.if exists(/usr/lib/libusb.so)
+PLIST_SUB+=   USB=""
+.else
+PLIST_SUB+=   USB="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
