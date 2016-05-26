@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	unbound
-PORTVERSION=	1.5.3
-PORTREVISION=	1
+PORTVERSION=	1.5.8
+PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
@@ -29,13 +29,14 @@ PORTDOCS=	CREDITS Changelog FEATURES LICENSE README README.svn \
 		ietf67-design-02.pdf requirements.txt
 PLIST_SUB+=	PYTHON=${PYTHON} MUNIN=${MUNIN}
 
-OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN DOCS LIBEVENT FILTER_AAAA
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN_PLUGIN DOCS LIBEVENT FILTER_AAAA
 OPTIONS_DEFAULT=THREADS ECDSA
 
 LIBEVENT_DESC=	Build against libevent
 GOST_DESC=	Enable GOST support (requires OpenSSL >= 1.0)
 ECDSA_DESC=	Enable ECDSA (elliptic curve) support (OpenSSL >= 1.0)
-MUNIN_DESC=	Install Munin plugin
+MUNIN_PLUGIN_DESC=	Install Munin plugin
 FILTER_AAAA_DESC=	Build with AAAA filter functionality (contrib)
 
 .include <bsd.mport.options.mk>
@@ -71,9 +72,9 @@ DEPENDS_ARGS+=	WITH_ECDSA=yes
 CONFIGURE_ARGS+=--disable-ecdsa
 .endif
 
-.if ${PORT_OPTIONS:MMUNIN}
+.if ${PORT_OPTIONS:MMUNIN_PLUGIN}
 SUB_FILES+=	pkg-message
-MUNIN_ALL=	hits queue memory by_type by_class by_opcode by_rcode \
+MUNIN_PLUGIN_ALL=	hits queue memory by_type by_class by_opcode by_rcode \
 		by_flags histogram
 MUNIN=
 .else
@@ -111,12 +112,12 @@ post-install:
 .if ${PORT_OPTIONS:MPYTHON}
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/_unbound.so
 .endif
-.if ${PORT_OPTIONS:MMUNIN}
+.if ${PORT_OPTIONS:MMUNIN_PLUGIN}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/munin/plugins
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/munin/plugins
 	@${INSTALL_SCRIPT} ${WRKDIR}/unbound-${PORTVERSION}/contrib/unbound_munin_\
 		${STAGEDIR}${PREFIX}/share/munin/plugins/
-	@for i in ${MUNIN_ALL}; do\
+	@for i in ${MUNIN_PLUGIN_ALL}; do\
 		${LN} -fs ${PREFIX}/share/munin/plugins/unbound_munin_\
 			${STAGEDIR}${PREFIX}/etc/munin/plugins/unbound_munin_$$i ;\
 	done
