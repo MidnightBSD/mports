@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	data
-PORTVERSION=	1.5
+PORTVERSION=	1.6
 CATEGORIES=	sysutils
-MASTER_SITES=	http://downloadmirror.intel.com/24661/eng/:intel \
+MASTER_SITES=	http://downloadmirror.intel.com/25512/eng/:intel \
 		http://www.amd64.org/microcode/:amd
 PKGNAMEPREFIX=	devcpu-
-DISTFILES=	microcode-20150121.tgz:intel amd-ucode-2014-12-01.tar.bz2:amd
+DISTFILES=	microcode-20151106.tgz:intel amd-ucode-2014-12-01.tar.bz2:amd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel and AMD CPUs microcode updates
