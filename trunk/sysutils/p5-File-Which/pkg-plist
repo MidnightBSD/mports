@@ -1,5 +1,2 @@
-bin/pwhich
 %%SITE_PERL%%/File/Which.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/File/Which
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/File
-@dirrmtry %%SITE_PERL%%/File
+%%PERL5_MAN3%%/File::Which.3.gz
