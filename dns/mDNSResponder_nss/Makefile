@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
-PORTNAME=	mDNSResponder_nss
-PORTVERSION=	567
+PORTNAME=	mDNSResponder
+PORTVERSION=	576.30.4
 CATEGORIES=	dns net
 MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
-DISTNAME=	${PORTNAME:S/_nss//}-${PORTVERSION}
+PKGNAMESUFFIX=	_nss
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apple mDNS responder - BSD nsswitch module
