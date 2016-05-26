@@ -2,7 +2,7 @@
 # $FreeBSD: ports/sysutils/synergy/Makefile,v 1.14 2007/07/25 01:25:03 kevlo Exp $
 
 PORTNAME=	synergy
-PORTVERSION=	1.7.4
+PORTVERSION=	1.7.5
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
