@@ -2,12 +2,13 @@
 
 PORTNAME=	openjdk6
 PORTVERSION=	b36
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE/ant/binaries/:ant \
 		http://download.java.net/openjdk/jtreg/promoted/4.1/b05/:jtreg \
 		https://java.net/downloads/openjdk6/ \
-		LOCAL/jkim
+		FREEBSD_LOCAL/jkim
 DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
 DISTFILES=	${ANTFILE}:ant \
 		${DISTNAME}${EXTRACT_SUFX}
@@ -20,7 +21,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/zip:${PORTSDIR}/archivers/zip \
 		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
+		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
