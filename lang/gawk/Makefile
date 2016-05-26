@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	gawk
-PORTVERSION=	4.1.1
+PORTVERSION=	4.1.3
 CATEGORIES=	lang
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU version of Awk
+COMMENT=	GNU version of Awk
 
 LICENSE=	gpl3
 
