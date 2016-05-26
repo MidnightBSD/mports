@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	bindgraph
-PORTVERSION=	0.2
+PORTVERSION=	0.3
 PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	http://www.linux.it/~md/software/
