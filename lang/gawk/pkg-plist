@@ -43,11 +43,13 @@ share/awk/libintl.awk
 share/awk/noassign.awk
 share/awk/ord.awk
 share/awk/passwd.awk
+share/awk/processarray.awk
 share/awk/quicksort.awk
 share/awk/readable.awk
 share/awk/readfile.awk
 share/awk/rewind.awk
 share/awk/round.awk
+share/awk/shellquote.awk
 share/awk/strtonum.awk
 share/awk/walkarray.awk
 share/awk/zerofile.awk
@@ -64,6 +66,3 @@ share/awk/zerofile.awk
 %%NLS%%share/locale/pl/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/gawk.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/gawk.mo
-@dirrm share/awk
-@dirrm libexec/awk
-@dirrm lib/gawk
