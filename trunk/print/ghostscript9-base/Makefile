@@ -3,6 +3,7 @@
 
 PORTNAME=	ghostscript
 PORTVERSION=	9.06
+PORTREVISION=	12
 CATEGORIES=	print
 MASTER_SITES=	http://downloads.ghostscript.com/public/:gs_srcs \
 		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
@@ -82,7 +83,7 @@ NO_OPTIONS_SORT=yes
 
 EXCLUDE_DIRS=	freetype jbig2dec jpeg expat jasper lcms lcms2 libpng tiff zlib
 
-CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
 
 .include "Makefile.drivers"
 .include <bsd.mport.options.mk>
