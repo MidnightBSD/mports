@@ -48,6 +48,7 @@ SUBDIR += mp-letter
 SUBDIR += pdflib
 SUBDIR += pecl-pdflib
 SUBDIR += psutils
+SUBDIR += py-pycups
 SUBDIR += qpdf
 SUBDIR += t1utils
 SUBDIR += tex-basic-engines
