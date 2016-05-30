@@ -2,7 +2,7 @@
 
 PORTNAME?=		${SAMBA4_PORTNAME}
 PORTVERSION?=		${SAMBA4_VERSION}
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	samba/stable samba/rc
@@ -251,14 +251,14 @@ CONFIGURE_ARGS+=	--without-aio-support
 .endif
 
 .if ${PORT_OPTIONS:MAVAHI}
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=		libavahi-client.so:${PORTSDIR}/net/avahi-app
 CONFIGURE_ARGS+=	--enable-avahi
 .else
 CONFIGURE_ARGS+=	--disable-avahi
 .endif
 
 .if ${PORT_OPTIONS:MCUPS}
-LIB_DEPENDS+=		cups:${PORTSDIR}/print/cups-client
+LIB_DEPENDS+=		libcups.so:${PORTSDIR}/print/cups
 CONFIGURE_ARGS+=	--enable-cups --enable-iprint
 .else
 CONFIGURE_ARGS+=	--disable-cups --disable-iprint
