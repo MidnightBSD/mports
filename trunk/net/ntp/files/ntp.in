@@ -21,7 +21,7 @@ ntp_sync_on_start="${ntp_sync_on_start-NO}"
 
 name="ntp"
 rcvar=`set_rcvar`
-command="%%PREFIX%%/bin/${name}d"
+command="%%PREFIX%%/sbin/${name}d"
 pidfile="/var/run/${name}.pid"
 start_precmd="ntp_precmd"
 
