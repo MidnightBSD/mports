@@ -2,7 +2,7 @@
 
 PORTNAME=	ntp
 PORTVERSION=	4.2.8p8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
 		http://archive.ntp.org/ntp4/ntp-4.2/ \
@@ -61,6 +61,7 @@ post-install:
 	${MV} ${PREFIX}/bin/* ${PREFIX}/sbin/
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/conf/* ${EXAMPLESDIR}
+	@${INSTALL_DATA} ${FILESDIR}/ntp.conf ${PREFIX}/etc/
 	@${MKDIR} ${DOCSDIR}
 	@${FIND} ${WRKSRC}/html -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
 	@cd ${WRKSRC}/html && ${FIND} . -print | \
