@@ -2,6 +2,7 @@
 
 PORTNAME=	Ima-DBI
 PORTVERSION=	0.35
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/P/PE/PERRIN
@@ -16,8 +17,7 @@ BUILD_DEPENDS=	${SITE_PERL}/DBIx/ContextualFetch.pm:${PORTSDIR}/databases/p5-DBI
 		${SITE_PERL}/Class/Data/Inheritable.pm:${PORTSDIR}/devel/p5-Class-Data-Inheritable
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
+USES=	perl5
 PERL_CONFIGURE=	yes
-
-MAN3=		Ima::DBI.3
 
 .include <bsd.port.mk>
