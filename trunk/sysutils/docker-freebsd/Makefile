@@ -14,10 +14,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	go>=1.4:${PORTSDIR}/lang/go \
 		bash:${PORTSDIR}/shells/bash \
-		sqlite3:${PORTSDIR}/databases/sqlite3
+		${LOCALBASE}/bin/sqlite3:${PORTSDIR}/databases/sqlite3
 RUN_DEPENDS=	go>=1.4:${PORTSDIR}/lang/go \
 		bash:${PORTSDIR}/shells/bash \
-		sqlite3:${PORTSDIR}/databases/sqlite3
+		${LOCALBASE}/bin/sqlite3:${PORTSDIR}/databases/sqlite3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kvasdopil
