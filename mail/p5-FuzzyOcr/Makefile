@@ -1,9 +1,4 @@
-# New ports collection makefile for:	FuzzyOcr
-# Date Created:				8 Nov 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	FuzzyOcr
 DISTVERSION=	3.6.0
@@ -24,7 +19,7 @@ RUN_DEPENDS=	giftopnm:${PORTSDIR}/graphics/netpbm			\
 		gifsicle:${PORTSDIR}/graphics/gifsicle			\
 		gocr:${PORTSDIR}/graphics/gocr				\
 		ocrad:${PORTSDIR}/graphics/ocrad			\
-		gifasm:${PORTSDIR}/graphics/giflib			\
+		giffix:${PORTSDIR}/graphics/giflib			\
 		spamassassin:${PORTSDIR}/mail/spamassassin	\
 		p5-MLDBM>=0:${PORTSDIR}/databases/p5-MLDBM	\
 		p5-MLDBM-Sync>=0:${PORTSDIR}/databases/p5-MLDBM-Sync \
