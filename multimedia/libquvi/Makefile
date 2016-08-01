@@ -29,11 +29,14 @@ PORTDOCS=	*
 
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 
-post-patch-LUAJIT-off:
-	@${REINPLACE_CMD} 's|lua-5.1|lua-${LUA_VER}|g' ${WRKSRC}/configure
+.include <bsd.mport.options.mk>
 
-post-patch-LUAJIT-on:
-	@${REINPLACE_CMD} 's|lua >= 5.1|luajit|g' ${WRKSRC}/configure
+post-patch:
+.if ! ${PORT_OPTIONS:MLUAJIT}
+	${REINPLACE_CMD} 's|lua-5.1|lua-${LUA_VER}|g' ${WRKSRC}/configure
+.else
+	${REINPLACE_CMD} 's|lua >= 5.1|luajit|g' ${WRKSRC}/configure
+.endif
 
 post-install:
 	${MKDIR} ${DOCSDIR}/
