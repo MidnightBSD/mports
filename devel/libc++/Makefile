@@ -24,7 +24,7 @@ USES=		tar:xz
 
 .ifndef MASTERDIR
 
-LIB_DEPENDS=	libcxxrt.so:${PORTSDIR}/devel/libcxxrt
+LIB_DEPENDS=	${LOCALBASE}/lib/libcxxrt.so:${PORTSDIR}/devel/libcxxrt
 
 USES+=		cmake:outsource compiler:c++11-lang
 USE_LDCONFIG=	yes
