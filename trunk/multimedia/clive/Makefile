@@ -24,6 +24,7 @@ CONFLICTS=	py*-clive-[0-1]* ljclive-[0-9]*
 
 USES=		perl5
 USE_PERL5=	configure
+PERL_CONFIGURE=	yes
 
 PLIST_FILES=	bin/clive \
 		man/man1/clive.1.gz
