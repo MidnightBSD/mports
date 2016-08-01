@@ -8,7 +8,9 @@ MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
 
-LICENSE=	gpl2
+LICENSE=	bsd3 gpl2 lgpl2.1
+LICENSE_COMB=	multi
+LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
 LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
@@ -19,9 +21,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
 		--enable-sse \
 		--with-ogg="${LOCALBASE}" \
+		--disable-doxygen-docs \
 		--disable-silent-rules \
 		--disable-thorough-tests \
 		--disable-xmms-plugin
+INSTALL_TARGET= install-strip
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.mport.options.mk>
 
@@ -30,10 +36,10 @@ BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
 .endif
 
 post-install:
-	cd ${STAGEDIR}${PREFIX}/share/doc && ${MV} ${DISTNAME} flac
+	cd ${PREFIX}/share/doc && ${MV} ${DISTNAME} flac
 	${REINPLACE_CMD} 's:%%PREFIX%%:${PREFIX}:' \
-	    ${STAGEDIR}${PREFIX}/man/man1/flac.1
-	${RM} ${STAGEDIR}${PREFIX}/man/man1/flac.1.bak
+	    ${PREFIX}/man/man1/flac.1
+	${RM} ${PREFIX}/man/man1/flac.1.bak
 
 regression-test: build
 	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
