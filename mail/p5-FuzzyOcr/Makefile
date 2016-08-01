@@ -46,6 +46,7 @@ SUB_FILES=	pkg-message
 SA_PLUGINDIR?=	Mail/SpamAssassin/Plugin
 SA_CONFIGDIR?=	etc/mail/spamassassin
 
+PLIST_SUB+= SITE_PERL=${SITE_PERL_REL}
 PLIST_FILES=	%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr.pm		\
 		%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr/Config.pm \
 		%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr/Deanimate.pm \
