@@ -12,7 +12,6 @@ PORTDOCS=	BUGS CHANGES COMMITTERS INSTALL README
 OPTIONS_DEFINE=	\
 		BDB		\
 		DOCS		\
-		FREEBSD_TEMPLATE\
 		GNOME_KEYRING	\
 		MAINTAINER_DEBUG\
 		MOD_DAV_SVN	\
@@ -26,14 +25,12 @@ OPTIONS_DEFINE=	\
 		TOOLS
 
 OPTIONS_DEFAULT=P4_STYLE_MARKERS \
-		FREEBSD_TEMPLATE \
 		SERF
 
 GNOME_KEYRING_DESC=	Build with GNOME Keyring auth support
 MAINTAINER_DEBUG_DESC=	Build debug version
 MOD_DAV_SVN_DESC=	mod_dav_svn module for Apache 2.X
 P4_STYLE_MARKERS_DESC=	Perforce-style conflict markers
-FREEBSD_TEMPLATE_DESC=	FreeBSD Project log template
 SERF_DESC=		WebDAV/Delta-V (HTTP/HTTPS) repo access module
 STATIC_DESC=		Build static version (no shared libs)
 SVNSERVE_WRAPPER_DESC=	Enable svnserve wrapper (umask setter)
@@ -61,9 +58,6 @@ MKREPOS_TARGET=	_mkrepos
 # Patches required for use with the FreeBSD Project repository only
 .if ${PORT_OPTIONS:MP4_STYLE_MARKERS}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-3way-conflict-markers
-.endif
-.if ${PORT_OPTIONS:MFREEBSD_TEMPLATE}
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-fbsd-template
 .endif
 
 .if empty(PORT_OPTIONS:MMAINTAINER_DEBUG)
