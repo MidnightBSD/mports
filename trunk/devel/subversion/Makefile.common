@@ -16,8 +16,9 @@ CONFLICTS_INSTALL+=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-1.[6|7].[0-9]*
 CPE_VENDOR=	apache
 
 LIB_DEPENDS+=		libapr-1.so:${PORTSDIR}/devel/apr1 \
-			${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
+			libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
 			libexpat.so:${PORTSDIR}/textproc/expat2
+BUILD_DEPENDS+=		${LOCALBASE}/bin/sqlite3:${PORTSDIR}/databases/sqlite3
 
 CONFIGURE_ARGS+=	--without-swig \
 			--with-sqlite=${LOCALBASE} \
