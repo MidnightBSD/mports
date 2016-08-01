@@ -1,10 +1,5 @@
-# New ports collection makefile for:	p5-Net-DNS-Resolver-Programmable
-# Date created:				February 9, 2007
-# Whom:	      				Koen Martens <gmc@sonologic.nl>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
-#
 
 PORTNAME=	Net-DNS-Resolver-Programmable
 PORTVERSION=	0.003
@@ -15,15 +10,15 @@ DISTNAME=	${PORTNAME}-v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable DNS resolver for off-line testing
+
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS
+RUN_DEPENDS=	p5-Net-DNS>=1.05:${PORTSDIR}/dns/p5-Net-DNS
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
+USES=		perl5
 PERL_MODBUILD=	yes
 PERL_CONFIGURE=	yes
-
-MAN3=		Net::DNS::Resolver::Programmable.3
 
 .include <bsd.port.pre.mk>
 
