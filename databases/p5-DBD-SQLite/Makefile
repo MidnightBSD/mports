@@ -11,15 +11,11 @@ COMMENT=	Provides access to SQLite3 databases through the DBI
 
 LICENSE=	perl
 
-.if defined(PACKAGE_BUILDING)
-BUILD_DEPENDS=          sqlite>=3.4.1:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=            ${BUILD_DEPENDS}
-SQLITE_LOCATION=        ${LOCALBASE}
-.elif exists(/usr/lib/libsqlite3.a)
+.if exists(/usr/lib/libsqlite3.a)
 SQLITE_LOCATION=	/usr
 CONFIGURE_ARGS+=	LIBS="-lpthread -lsqlite3"
 .else
-BUILD_DEPENDS=		sqlite>=3.4.1:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=		sqlite>=3.9.1:${PORTSDIR}/databases/sqlite3
 RUN_DEPENDS=		${BUILD_DEPENDS}
 SQLITE_LOCATION= 	${LOCALBASE}
 .endif
