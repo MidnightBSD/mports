@@ -32,9 +32,4 @@ post-install:
 .endfor
 .endif
 
-.if ${PERL_LEVEL} < 501000
-BUILD_DEPENDS+=  ${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
-RUN_DEPENDS+=    ${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
-.endif
-
 .include <bsd.port.post.mk>
