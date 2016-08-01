@@ -2,7 +2,7 @@
 
 PORTNAME=	help2man
 PORTVERSION=	1.43.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc
 MASTER_SITES=	GNU/${PORTNAME}
 
@@ -12,6 +12,7 @@ COMMENT=	Automatically generating simple manual pages from program output
 LICENSE=	gpl3
 
 OPTIONS_DEFINE=	NLS
+OPTIONS_DEFAULT=	NLS
 
 CFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
