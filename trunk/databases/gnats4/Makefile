@@ -1,40 +1,25 @@
-# New ports collection makefile for:	gnats4
-# Date created:				22 Aug 2003
-# Whom:					Oliver Eikemeier <eikemeier@fillmore-labs.com>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/databases/gnats4/Makefile,v 1.11 2006/01/28 02:11:06 linimon Exp $
-#
 
-PORTNAME=		gnats
-PORTVERSION=		4.1.0
-CATEGORIES=		databases devel
-MASTER_SITES=		${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	gnats
+PORTNAME=	gnats
+PORTVERSION=	4.1.0
+PORTREVISION=	1
+CATEGORIES=	databases devel
+MASTER_SITES=	GNU
+PKGNAMESUFFIX=	4
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNATS, the GNU Problem Report Management System
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		GNATS, the GNU Problem Report Management System
-LICENSE=                gpl2
-GNU_CONFIGURE=		yes
-USE_GMAKE=		yes
+LICENSE=	gpl2
 
-LATEST_LINK=		${PKGNAMEPREFIX}gnats4${PKGNAMESUFFIX}
-CONFLICTS=		gnats-3.*
+GNU_CONFIGURE=	yes
+USES=		cpe gmake makeinfo
+USE_GCC=	any
+USERS=		gnats
+CPE_VENDOR=	gnu
 
-PKGMESSAGE=		${WRKDIR}/pkg-message
-PKGINSTALL=		${WRKDIR}/pkg-install
-
-.ifdef WANT_FREEFALL_CFG
-EXTRA_PATCHES+=		${PATCHDIR}/extrapatch-*
-
-GNATSDBDIR=		${DATADIR}
-
-CONFIGURE_ARGS+=	--with-gnats-default-db=${GNATSDBDIR}/gnats-db
-
-WITH_SUBMITTER_ID=	current-users
-WITH_ORGANIZATION=	MidnightBSD
-WITH_GNATSD_SERVICE=	support
-.endif
+PKGMESSAGE=	${WRKDIR}/pkg-message
+PKGINSTALL=	${WRKDIR}/pkg-install
 
 GNATSDBDIR?=		/var/db/gnats
 
