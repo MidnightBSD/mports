@@ -2,6 +2,7 @@
 
 PORTNAME=	flac
 PORTVERSION=	1.3.1
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 
@@ -14,7 +15,7 @@ LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
 LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
-USES=		iconv libtool pathfix pkgconfig tar:xz
+USES=		iconv libtool pathfix pkgconfig tar:xz compiler:gcc-c++11-lib
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -26,6 +27,7 @@ CONFIGURE_ARGS=	--enable-static \
 		--disable-thorough-tests \
 		--disable-xmms-plugin
 INSTALL_TARGET= install-strip
+
 
 OPTIONS_DEFINE=	DOCS
 
