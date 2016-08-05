@@ -16,7 +16,7 @@ LICENSE=	mit
 
 CONFLICTS+=     boost-python-1* boost-1*
 
-USES+=          tar:bzip2 compiler:gcc-c++11-lib
+USES+=          tar:bzip2
 
 BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
 
