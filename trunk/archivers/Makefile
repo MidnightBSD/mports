@@ -65,7 +65,6 @@ SUBDIR += upx
 SUBDIR += xar
 SUBDIR += zip
 SUBDIR += zipper
-SUBDIR += zlib
 SUBDIR += zoo
 SUBDIR += zutils
 

@@ -1,9 +1,0 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 15462 2013-09-17 03:15:41Z laffer1 $
-include/zconf.h
-include/zlib.h
-lib/libz.a
-lib/libz.so
-lib/libz.so.1
-lib/libz.so.1.2.7
-lib/pkgconfig/zlib.pc
-@dirrm lib/pkgconfig
