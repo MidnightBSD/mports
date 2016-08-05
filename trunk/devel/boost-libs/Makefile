@@ -3,7 +3,7 @@
 
 PORTNAME=	boost-libs
 PORTVERSION=    1.55.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/boost/boost/${PORTVERSION}
 PORTVERSUFFIX=  ${PORTVERSION:C/\.[0-9]+$//}
@@ -16,7 +16,7 @@ LICENSE=	mit
 
 CONFLICTS+=     boost-python-1* boost-1*
 
-USES+=          tar:bzip2
+USES+=          tar:bzip2 compiler:gcc-c++11-lib
 
 BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
 
