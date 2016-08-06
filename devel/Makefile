@@ -404,7 +404,6 @@ SUBDIR += php70-readline
 SUBDIR += php70-tokenizer
 SUBDIR += physfs
 SUBDIR += pkgconf
-SUBDIR += pmk
 SUBDIR += popt
 SUBDIR += projectcenter
 SUBDIR += protobuf
