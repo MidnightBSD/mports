@@ -41,7 +41,7 @@ GEN_LIB_DEPENDS=libcurl.so:${PORTSDIR}/ftp/curl \
 		libnatpmp.so:${PORTSDIR}/net/libnatpmp \
 		libutp.so:${PORTSDIR}/net/libutp \
 		libevent.so:${PORTSDIR}/devel/libevent2
-GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
+GEN_RUN_DEPENDS=transmission-web>=2.84:${PORTSDIR}/www/transmission-web
 
 # This is master port of transmission-*, so don't override USES definition 
 USES+=		gmake iconv libtool pkgconfig
