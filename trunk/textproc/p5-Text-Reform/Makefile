@@ -1,21 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	Text-Reform
-PORTVERSION=	1.11
+PORTVERSION=	1.20
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Text
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manual text wrapping and reformatting
-LICENSE=	perl
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
-
-MAN3=		Text::Reform.3
-
-pre-configure:
-	@${FIND} ${WRKSRC} -name \*.orig -delete
 
 .include <bsd.port.mk>
