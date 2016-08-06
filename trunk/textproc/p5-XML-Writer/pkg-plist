@@ -1,4 +1,2 @@
+%%PERL5_MAN3%%/XML::Writer.3.gz
 %%SITE_PERL%%/XML/Writer.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Writer
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
-@dirrmtry %%SITE_PERL%%/XML
