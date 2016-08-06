@@ -2,6 +2,7 @@
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.85
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF/razor/${PORTNAME}/${PORTVERSION}
 
@@ -10,9 +11,10 @@ COMMENT=	A distributed, collaborative, spam detection and filtering network
 
 LICENSE=	artistic2
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
-		${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1 \
-		${SITE_PERL}/URI/Escape.pm:${PORTSDIR}/net/p5-URI
+BUILD_DEPENDS=	p5-Net-DNS>=0:dns/p5-Net-DNS \
+		p5-Digest-SHA1>=0:security/p5-Digest-SHA1 \
+		p5-URI>=0:net/p5-URI
+
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 MAKE_JOBS_UNSAFE=	yes
