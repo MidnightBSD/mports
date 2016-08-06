@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.5.44
+PORTVERSION=	5.5.46
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	MYSQL/MySQL-5.5
@@ -49,12 +49,10 @@ SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
 .include <bsd.mport.options.mk>
 
-#.if ${OSVERSION} < 4015
 CMAKE_ARGS+=	-DCMAKE_THREAD_LIBS="" \
 		-DCMAKE_USE_PTHREADS=1 \
 		-DCMAKE_EXE_LINKER_FLAGS="${PTHREAD_LIBS}" \
 		-DENABLE_DTRACE:BOOL=OFF
-#.endif
 
 .if ${PORT_OPTIONS:MSSL}
 CMAKE_ARGS+=	-DWITH_SSL=bundled
