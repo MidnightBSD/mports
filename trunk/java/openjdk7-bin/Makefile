@@ -18,7 +18,7 @@ ONLY_FOR_ARCH=	amd64
 NO_BUILD=	yes
 
 RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
-		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+		dejavu>=2.35:${PORTSDIR}/x11-fonts/dejavu
 
 do-install:
 	${MV} ${WRKDIR}/openjdk7 ${FAKE_DESTDIR}/${LOCALBASE}/
