@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tin
-PORTVERSION=	2.0.1
-PORTREVISION?=	4
+PORTVERSION=	2.3.2
 CATEGORIES+=	news ipv6
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
 		ftp://ftp.sunet.se/pub/news/readers/tin/v${PORTVERSION:R}/ \
@@ -21,24 +20,34 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use threaded newsreader with NOV/NNTP support
 LICENSE=	bsd3
 
-LIB_DEPENDS=	uu:${PORTSDIR}/converters/uulib \
-		pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libuu.so:${PORTSDIR}/converters/uulib \
+		libpcre.so:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		gmake iconv ncurses shebangfix tar:bzip2
 GNU_CONFIGURE=	yes
+SHEBANG_FILES=	tools/opt-case.pl tools/tinews.pl tools/url_handler.pl \
+		tools/w2r.pl
 TIN_EDITOR?=	/usr/bin/ee
 TIN_SCREEN?=	ncursesw
 
-OPTIONS_DEFINE=	GNUPG METAMAIL CANLOCK NNTP_ONLY
-OPTIONS_DEFAULT=GNUPG METAMAIL
-CANLOCK_DESC=	Enable Cancel-Lock key support via libcanlock
-NNTP_ONLY=	Only read news via NNTP (no spool dir support)
-
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=		GNUPG ISPELL METAMAIL CANLOCK NNTP_ONLY NLS
+OPTIONS_DEFAULT=	GNUPG ISPELL METAMAIL
+OPTIONS_SUB=		yes
+NNTP_ONLY_DESC=		Only read news via NNTP (no spool dir support)
+NNTP_ONLY_CONFIGURE_ENABLE=nntp-only
+GNUPG_RUN_DEPENDS=	gpg:${PORTSDIR}/security/gnupg
+GNUPG_CONFIGURE_ON=	--with-gpg=${PREFIX}/bin/gpg \
+			--without-pgp --without-pgpk
+GNUPG_CONFIGURE_OFF=	--disable-pgp-gpg
+ISPELL_RUN_DEPENDS=	ispell:${PORTSDIR}/textproc/aspell-ispell
+ISPELL_CONFIGURE_ARGS=	--with-ispell=${PREFIX}/bin/ispell
+METAMAIL_RUN_DEPENDS=	metamail:${PORTSDIR}/mail/metamail
+METAMAIL_CONFIGURE_ARGS=--with-metamail=${PREFIX}/bin/metamail
+CANLOCK_DESC=		Enable Cancel-Lock key support via libcanlock
+CANLOCK_CONFIGURE_ENABLE=cancel-locks
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 # --with-mime-default-charset=US-ASCII needed to build tin in the non-ascii
 # national environment.
@@ -50,47 +59,16 @@ CONFIGURE_ARGS+=--with-nntp-default-server=news \
 		--with-pcre=yes \
 		--with-screen=${TIN_SCREEN} \
 		--enable-break-long-lines \
-		--with-libiconv-prefix=${LOCALBASE} \
+		${ICONV_CONFIGURE_ARG} \
 		--with-mime-default-charset=US-ASCII \
 		--enable-ipv6
-MAKE_ARGS+=	MAKE=${GMAKE}
+MAKE_ARGS+=	MAKE=${MAKE_CMD}
 CFLAGS+=	-DNNTP_SERVER_FILE=\\\"${PREFIX}/etc/nntpserver\\\"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 ALL_TARGET=	build
-MAN1=		tin.1 w2r.pl.1 opt-case.pl.1 tinews.pl.1 tinurl_handler.pl.1
-MAN5=		tin.5 tin_mbox.5 tin_mmdf.5
-MLINKS=		tin.1 rtin.1
 
-.if ${PORT_OPTIONS:MNNTP_ONLY}
-CONFIGURE_ARGS+=	--enable-nntp-only
-.endif
-
-.if ${PORT_OPTIONS:MGNUPG}
-RUN_DEPENDS+=		gpg:${PORTSDIR}/security/gnupg
-CONFIGURE_ARGS+=	--with-gpg=${PREFIX}/bin/gpg \
-		 	--without-pgp --without-pgpk
-.else
-CONFIGURE_ARGS+=	--disable-pgp-gpg
-.endif
-
-.if ${PORT_OPTIONS:MMETAMAIL}
-RUN_DEPENDS+=		metamail:${PORTSDIR}/mail/metamail
-CONFIGURE_ARGS+=	--with-metamail=${PREFIX}/bin/metamail
-.endif
-
-.if ${PORT_OPTIONS:MCANLOCK}
-CONFIGURE_ARGS+=	--enable-cancel-locks
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-CONFIGURE_ARGS+=	--enable-nls
-USES+=		gettext
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
+.include <bsd.mport.options.mk>
 
 post-patch:
 	${REINPLACE_CMD} -Ee 's:5/(mmdf|mbox):5/tin_\1:g' \
@@ -110,15 +88,14 @@ post-patch:
 	${MV}   ${WRKSRC}/tools/url_handler.pl \
 		${WRKSRC}/tools/tinurl_handler.pl
 
-post-build:
 .if ${PORT_OPTIONS:MNLS}
-	cd ${WRKSRC}/po; ${GMAKE}
+post-build:
+	${MAKE_CMD} -C ${WRKSRC}/po
 .endif
 
 post-install:
-	cd ${WRKSRC}/doc; ${INSTALL_DATA} tin.defaults ${PREFIX}/etc/tin.defaults.dist
-	if [ ! -f ${PREFIX}/etc/tin.defaults ] ; then \
-		${CP} ${PREFIX}/etc/tin.defaults.dist ${PREFIX}/etc/tin.defaults; \
-	fi
+	${INSTALL_DATA} ${WRKSRC}/doc/tin.defaults \
+		${STAGEDIR}${PREFIX}/etc/tin.defaults.sample
+	ln -sf tin ${STAGEDIR}${PREFIX}/bin/rtin
 
 .include <bsd.port.mk>
