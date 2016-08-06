@@ -20,6 +20,7 @@ SUBDIR += cdrdao
 SUBDIR += cdrtools
 SUBDIR += ciso-maker
 SUBDIR += consolekit
+SUBDIR += consolehm
 SUBDIR += coreutils
 SUBDIR += devcpu-data
 SUBDIR += dirdiff
