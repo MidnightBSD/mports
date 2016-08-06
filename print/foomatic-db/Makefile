@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	db
-PORTVERSION=	20150415
+PORTVERSION=	20160226
 CATEGORIES=	print
 MASTER_SITES=	FREEBSD_LOCAL/danilo
 		
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2 \
 		libcurl.so:${PORTSDIR}/ftp/curl
 
-USES=		autoreconf gmake
+USES=		autoreconf gmake tar:xz
 GNU_CONFIGURE=	yes
 
 FOOMATICVER=	4.0
