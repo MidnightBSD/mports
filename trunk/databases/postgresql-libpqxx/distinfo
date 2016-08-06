@@ -1,4 +1,2 @@
-MD5 (postgresql/libpqxx-2.6.9.tar.gz) = 0b0c64af41dfdeea8556dc359994e1cb
-SHA256 (postgresql/libpqxx-2.6.9.tar.gz) = 2b2ef5dfb852667299e50727419075cf333bbbeffadaa398d96dc93bac6f7b6a
-RMD160 (postgresql/libpqxx-2.6.9.tar.gz) = c456b5a3ed3c96963aad334d3504ed0443a8f63e
-SIZE (postgresql/libpqxx-2.6.9.tar.gz) = 1639557
+SHA256 (postgresql/libpqxx-4.0.1.tar.gz) = 097ceda2797761ce517faa5bee186c883df1c407cb2aada613a16773afeedc38
+SIZE (postgresql/libpqxx-4.0.1.tar.gz) = 1582532
