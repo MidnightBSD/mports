@@ -3,6 +3,7 @@
 
 PORTNAME=	HTML-Tidy
 PORTVERSION=	1.56
+PORTREVISION=	1
 CATEGORIES=	textproc www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,25 +11,26 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web validation in a Perl object using tidy
 
-LICENSE=	gpl2
+LICENSE=	artistic
 
-BUILD_DEPENDS=	${SITE_PERL}/LWP/Simple.pm:${PORTSDIR}/www/p5-libwww
-LIB_DEPENDS=	tidyp:${PORTSDIR}/textproc/tidyp
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	p5-libwww>=0:${PORTSDIR}/www/p5-libwww
+LIB_DEPENDS=	libtidyp.so:${PORTSDIR}/textproc/tidyp
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+OPTIONS_DEFINE=	DOCS
+
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/Makefile.PL
+PORTDOCS=	Changes README.markdown
 
-.if !defined(NOPORTDOCS)
-PORTDOCS=	Changes
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/Makefile.PL
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
-.endif
 
 .include <bsd.port.mk>
