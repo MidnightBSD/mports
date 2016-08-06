@@ -1,18 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	XML-Writer
-PORTVERSION=	0.602
+PORTVERSION=	0.625
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:JOSEPHW
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A simple Perl module for writing XML documents
-LICENSE=	perl
+COMMENT=	Simple Perl module for writing XML documents
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
-
-MAN3=		XML::Writer.3
 
 .include <bsd.port.mk>
