@@ -74,7 +74,6 @@ SUBDIR += gstreamer1-plugins-zba
 SUBDIR += gtk-update-icon-cache
 SUBDIR += ilmbase
 SUBDIR += imageviewer
-SUBDIR += imlib
 SUBDIR += imlib2
 SUBDIR += jasper
 SUBDIR += jbig2dec
