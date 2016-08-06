@@ -1,9 +1,6 @@
-
-$FreeBSD: head/lang/expect/files/patch-exp_main_sub.c 340725 2014-01-22 17:40:44Z mat $
-
---- exp_main_sub.c	2002/08/24 08:04:43	1.1
-+++ exp_main_sub.c	2002/08/24 08:15:33
-@@ -593,6 +593,9 @@
+--- exp_main_sub.c.orig	2010-08-27 22:01:15 UTC
++++ exp_main_sub.c
+@@ -672,6 +672,9 @@ char **argv;
  	char *args;		/* ptr to string-rep of all args */
  	char *debug_init;
  
@@ -13,7 +10,7 @@ $FreeBSD: head/lang/expect/files/patch-exp_main_sub.c 340725 2014-01-22 17:40:44
  	exp_argv0 = argv[0];
  
  #ifdef TCL_DEBUGGER
-@@ -768,18 +771,23 @@
+@@ -853,18 +856,23 @@ char **argv;
  	expDiagLog("set argc %s\r\n",argc_rep);
  
  	if (exp_cmdfilename) {
