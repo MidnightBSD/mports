@@ -1,14 +1,9 @@
-# New ports collection makefile for:	uulib
-# Date Created:		04 Aug 1996
-# Whom:			Tim Vanderhoek <ac199@freenet.hamilton.on.ca>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/converters/uulib/Makefile,v 1.35 2007/01/30 10:25:23 pav Exp $
-#
 
 PORTNAME=	uulib
 PORTVERSION=	0.5.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters
 MASTER_SITES=	http://www.fpx.de/fp/Software/UUDeview/download/
 DISTNAME=	uudeview-${PORTVERSION}
@@ -18,8 +13,6 @@ COMMENT=	A library for uu/xx/Base64/BinHex/yEnc de-/encoding
 LICENSE=        gpl2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-MAN3=		uulib.3
 
 ALL_TARGET=	libuu.a	libuu.so.${VERSION}
 VERSION=	3
