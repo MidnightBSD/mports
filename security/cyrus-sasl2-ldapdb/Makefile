@@ -1,74 +1,16 @@
 # $MidnightBSD$
+# $FreeBSD: head/security/cyrus-sasl2-ldapdb/Makefile 409943 2016-03-02 14:13:45Z ume $
 
-PORTNAME=	ldapdb
-PORTVERSION=	2.1.23
-PORTREVISION=	1
-CATEGORIES=	security ipv6
-MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
-MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
-PKGNAMEPREFIX=	cyrus-sasl-
-DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
+PKGNAMESUFFIX=	-ldapdb
+PORTREVISION=	5
 
-MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SASL LDAPDB auxprop plugin
-LICENSE=	bsd4
 
-LIB_DEPENDS=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+CYRUS_CONFIGURE_ARGS=	--enable-ldapdb --with-ldap=${LOCALBASE}
 
-CYRUS_SASL2_DIR=${MASTERDIR}/../cyrus-sasl2
-MD5_FILE=	${CYRUS_SASL2_DIR}/distinfo
-PATCHDIR=	${CYRUS_SASL2_DIR}/files
-INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/plugins
-
-USE_LDCONFIG=	yes
-
-USE_OPENSSL=	yes
-GNU_CONFIGURE=	yes
-
+USE_OPENLDAP=	yes
 .if defined(WITH_OPENLDAP_VER)
 WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
 .endif
-USE_OPENLDAP=	yes
 
-CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
-		--with-plugindir=${PREFIX}/lib/sasl2 \
-		--with-dbpath=${PREFIX}/etc/sasldb2 \
-		--with-lib-subdir=lib \
-		--includedir=${PREFIX}/include \
-		--mandir=${MANPREFIX}/man \
-		--enable-static \
-		--with-rc4=openssl
-
-CONFIGURE_ARGS+=--with-dblib=none \
-		--disable-anon \
-		--disable-cram \
-		--disable-digest \
-		--disable-gssapi \
-		--disable-krb4 \
-		--disable-ntlm \
-		--disable-otp \
-		--disable-plain \
-		--disable-scram
-
-CONFIGURE_ARGS+=--enable-ldapdb --with-ldap=${LOCALBASE}
-
-PLIST_FILES=	lib/sasl2/libldapdb.a \
-		lib/sasl2/libldapdb.la \
-		lib/sasl2/libldapdb.so \
-		lib/sasl2/libldapdb.so.2
-
-.include <bsd.port.pre.mk>
-
-.if ${OPENSSLBASE} == /usr
-CONFIGURE_ARGS+=--with-openssl=yes
-.else
-CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
-.endif
-
-do-build:
-	cd ${WRKSRC}/include && ${MAKE}
-	cd ${WRKSRC}/plugins && ${MAKE}
-
-.include <bsd.port.post.mk>
+.include "${.CURDIR}/../../security/cyrus-sasl2/Makefile.common"
