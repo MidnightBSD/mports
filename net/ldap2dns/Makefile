@@ -10,8 +10,8 @@ COMMENT=	Maintain DNS zones using an LDAP directory
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
-		${SITE_PERL}/Net/LDAP.pm:${PORTSDIR}/net/p5-perl-ldap
+RUN_DEPENDS=	p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS \
+		p5-perl-ldap>=0:${PORTSDIR}/net/p5-perl-ldap
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
@@ -21,8 +21,6 @@ USE_PERL5=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bklang
-
-MAKE_ENV=	PREFIX=${PREFIX} INC=-I${PREFIX}/include LIB=-L${PREFIX}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/ldap2dns.c
