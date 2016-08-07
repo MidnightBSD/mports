@@ -68,6 +68,7 @@ SUBDIR += pyzor
 SUBDIR += razor-agents
 SUBDIR += roundcube
 SUBDIR += sendmail
+SUBDIR += spamass-rules
 SUBDIR += spamassassin
 SUBDIR += spamd
 SUBDIR += squirrelmail
