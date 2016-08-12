@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep interface to the GUILE scheme interpreter
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	guile.21:${PORTSDIR}/lang/guile
+LIB_DEPENDS+=	libguile.so:${PORTSDIR}/lang/guile
 
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
