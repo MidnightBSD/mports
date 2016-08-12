@@ -125,7 +125,4 @@ man/man8/tcsd.8.gz
 @mode 0600
 etc/tcsd.conf.dist
 @exec [ -f %D/etc/tcsd.conf ] || cp -p %D/etc/tcsd.conf.dist %D/etc/tcsd.conf
-@owner
-@group
-@mode
-@comment @dir(_tss,_tss,0700) var/lib/tpm
+@dir(_tss,_tss,0700) var/lib/tpm
