@@ -18,6 +18,7 @@ BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
 		sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
 LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr \
 		libsqlite3.so:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=	sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
 
