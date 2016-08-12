@@ -103,6 +103,8 @@ PLIST_SUB+=	SPARC64="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSUID}
+PLIST_SUB+=	NOSUID="@comment "
+
 pre-everything::
 	@${ECHO_MSG} "By default, the X Server installs as a set-user-id root binary. When run by"
 	@${ECHO_MSG} "a normal user, it checks arguments and environment as done in the x11/wrapper"
@@ -110,6 +112,10 @@ pre-everything::
 	@${ECHO_MSG} "of this, but still want to run an X Server (for example using xdm/kdm/gdm,"
 	@${ECHO_MSG} "which will still run the server as root), you can cancel the build and set"
 	@${ECHO_MSG} "xorg-server_UNSET=SUID in /etc/make.conf."
+
+
+.else
+PLIST_SUB+=	NOSUID="" SUID="@comment "
 .endif
 
 post-patch:
