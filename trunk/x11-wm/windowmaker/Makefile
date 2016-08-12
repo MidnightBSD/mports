@@ -17,7 +17,7 @@ LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
 		libjbig.so:${PORTSDIR}/graphics/jbigkit \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		libwebp.so:${PORTSDIR}/graphics/webp \
-		libMagickWand-6.Q16.so:${PORTSDIR}/graphics/ImageMagick \
+		libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick \
 		libwraster.so.5:${PORTSDIR}/x11-wm/libwraster
 RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
 
