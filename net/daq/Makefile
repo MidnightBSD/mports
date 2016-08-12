@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	daq
-PORTVERSION=	2.0.5
+PORTVERSION=	2.0.6
 CATEGORIES=	net
-MASTER_SITES=	SF/snort/snort \
+MASTER_SITES=	https://snort.org/downloads/snort/ \
 		http://mirrors.rit.edu/zi/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet \
 		libpcap.so:${PORTSDIR}/net/libpcap
-BUILD_DEPENDS=	flex:${PORTSDIR}/textproc/flex
+BUILD_DEPENDS=	flex:${PORTSDIR}/textproc/flex \
+		${LOCALBASE}/lib/libpcap.so:${PORTSDIR}/net/libpcap
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -26,16 +27,7 @@ MAKE_JOBS_UNSAFE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 
-.include <bsd.port.pre.mk>
-
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/*.so.* ${PREFIX}/lib/daq/*.so
 
-.if ${OSVERSION} < 4015
-CONFIGURE_ARGS+=--disable-netmap-module
-PLIST_SUB+=	NETMAP="@comment "
-.else
-PLIST_SUB+=	NETMAP=""
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
