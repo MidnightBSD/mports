@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	gnutls
-PORTVERSION=	3.3.16
-PORTREVISION=	0
+PORTVERSION=	3.3.17.1
+PORTREVISION=	3
 CATEGORIES=	security net
-MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
+MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R:R}
 
 MAINTAINER=	novel@FreeBSD.org
 COMMENT=	GNU Transport Layer Security library
@@ -16,6 +16,8 @@ LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LESSER
 
 LIB_DEPENDS=	libnettle.so:${PORTSDIR}/security/nettle \
 		libtasn1.so:${PORTSDIR}/security/libtasn1
+BUILD_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
 USES=		cpe gmake iconv libtool makeinfo pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
@@ -26,6 +28,7 @@ CONFIGURE_ARGS=	--disable-guile \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV=	MAKEINFOFLAGS=--no-split
+
 CPE_VENDOR=	gnu
 
 OPTIONS_DEFINE=		CRYWRAP EXAMPLES LIBDANE NLS P11KIT TPM ZLIB
