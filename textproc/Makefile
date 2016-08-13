@@ -170,6 +170,7 @@ SUBDIR += py3-libxml2
 SUBDIR += qt4-xml
 SUBDIR += qt4-xmlpatterns
 SUBDIR += qt4-xmlpatterns-tool
+SUBDIR += qt5-xml
 SUBDIR += raptor
 SUBDIR += raptor2
 SUBDIR += rarian
