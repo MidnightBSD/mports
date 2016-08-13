@@ -20,6 +20,17 @@ _OPTIONS_FLAGS=	ALL_TARGET BROKEN CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
 		TEST_TARGET USES
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN
 
+# The format here is target_family:priority:target-type
+_OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
+			extract:300:pre extract:500:do extract:700:post \
+			patch:300:pre patch:500:do patch:700:post \
+			configure:300:pre configure:500:do configure:700:post \
+			build:300:pre build:500:do build:700:post \
+			install:300:pre install:500:do install:700:post  \
+			test:300:pre test:500:do test:700:post  \
+			package:300:pre package:500:do package:700:post \
+			stage:800:post
+
 # Set the default values for the global options
 .if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
 PORT_OPTIONS+=	DOCS
@@ -233,21 +244,21 @@ NOPORTDOCS=     yes
 NOPORTEXAMPLES= yes
 .endif
 
+.if ${PORT_OPTIONS:MDEBUG}
+WITH_DEBUG=	yes
+.endif
+
 .if empty(PORT_OPTIONS:MNLS)
 WITHOUT_NLS=    yes
 .endif
 
 .if defined(NO_OPTIONS_SORT)
-_SORTED_OPTIONS:=       ${ALL_OPTIONS}
-ALL_OPTIONS:=
-.for opt in ${OPTIONS_DEFINE}
-.if ${_SORTED_OPTIONS:M${opt}}
-ALL_OPTIONS+=   ${opt}
+ALL_OPTIONS=	${OPTIONS_DEFINE}
 .endif
+
+.for target in ${_OPTIONS_TARGETS:C/:.*//:u}
+_OPTIONS_${target}?=
 .endfor
-.undef opt
-.undef _SORTED_OPTIONS
-.endif
 
 ### to be removed once old OPTIONS disappear
 .for opt in ${ALL_OPTIONS}
@@ -267,9 +278,10 @@ WITH_${opt}:=  true
 
 .if !defined(ONETIMERUNTHROUGH)
 ONETIMERUNTHROUGH=	yes
-.for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE}
+.for opt in ${COMPLETE_OPTIONS_LIST} ${_ALL_EXCLUDE:O:u}
 # PLIST_SUB
 PLIST_SUB?=
+SUB_LIST?=
 .  if defined(OPTIONS_SUB)
 .    if ! ${PLIST_SUB:M${opt}=*}
 .      if ${PORT_OPTIONS:M${opt}}
@@ -278,24 +290,37 @@ PLIST_SUB:=	${PLIST_SUB} ${opt}="" NO_${opt}="@comment "
 PLIST_SUB:=	${PLIST_SUB} ${opt}="@comment " NO_${opt}=""
 .      endif
 .    endif
+.    if ! ${SUB_LIST:M${opt}=*}
+.      if ${PORT_OPTIONS:M${opt}}
+SUB_LIST:=	${SUB_LIST} ${opt}="" NO_${opt}="@comment "
+.      else
+SUB_LIST:=	${SUB_LIST} ${opt}="@comment " NO_${opt}=""
+.      endif
+.    endif
 .  endif
 
 .  if ${PORT_OPTIONS:M${opt}}
 .    if defined(${opt}_USE)
 .      for option in ${${opt}_USE}
-_u=             ${option:C/=.*//g}
-USE_${_u:tu}+=  ${option:C/.*=//g:C/,/ /g}
+_u=		${option:C/=.*//g}
+USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
+.      endfor
+.    endif
+.    if defined(${opt}_VARS)
+.      for var in ${${opt}_VARS:C/=.*//:O:u}
+_u=			${var}
+.        if ${_u:M*+}
+${_u:C/.$//:tu}+=	${${opt}_VARS:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
+.        else
+${_u:tu}=		${${opt}_VARS:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.        endif
 .      endfor
 .    endif
 .    if defined(${opt}_CONFIGURE_ENABLE)
-.      for iopt in ${${opt}_CONFIGURE_ENABLE}
-CONFIGURE_ARGS+=	--enable-${iopt}
-.      endfor
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--enable-/}
 .    endif
 .    if defined(${opt}_CONFIGURE_WITH)
-.      for iopt in ${${opt}_CONFIGURE_WITH}
-CONFIGURE_ARGS+=	--with-${iopt:C/=.*//}
-.      endfor
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--with-/}
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_ON)
@@ -338,8 +363,80 @@ ${flags}+=      ${${opt}_${flags}_OFF}
 ${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS_OFF}
 .      endif
 .    endfor
+.    for target in ${_OPTIONS_TARGETS}
+_target=	${target:C/:.*//}
+_prio=		${target:C/.*:(.*):.*/\1/}
+_type=		${target:C/.*://}
+_OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-on
+.    endfor
+.  else
+.    if defined(${opt}_USE_OFF)
+.      for option in ${${opt}_USE_OFF}
+_u=		${option:C/=.*//g}
+USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
+.      endfor
+.    endif
+.    if defined(${opt}_VARS_OFF)
+.      for var in ${${opt}_VARS_OFF:C/=.*//:O:u}
+_u=			${var}
+.        if ${_u:M*+}
+${_u:C/.$//:tu}+=	${${opt}_VARS_OFF:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
+.        else
+${_u:tu}=		${${opt}_VARS_OFF:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.        endif
+.      endfor
+.    endif
+.    if defined(${opt}_CONFIGURE_ENABLE)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--disable-/:C/=.*//}
+.    endif
+.    if defined(${opt}_CONFIGURE_WITH)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--without-/:C/=.*//}
+.    endif
+.    for configure in CONFIGURE CMAKE QMAKE
+.      if defined(${opt}_${configure}_OFF)
+${configure}_ARGS+=	${${opt}_${configure}_OFF}
+.      endif
+.    endfor
+.    for flags in ${_OPTIONS_FLAGS}
+.      if defined(${opt}_${flags}_OFF)
+${flags}+=	${${opt}_${flags}_OFF}
+.      endif
+.    endfor
+.    for deptype in ${_OPTIONS_DEPENDS}
+.      if defined(${opt}_${deptype}_DEPENDS_OFF)
+${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS_OFF}
+.      endif
+.    endfor
+.    for target in ${_OPTIONS_TARGETS}
+_target=	${target:C/:.*//}
+_prio=		${target:C/.*:(.*):.*/\1/}
+_type=		${target:C/.*://}
+_OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-off
+.    endfor
 .  endif
 .endfor
+
+.undef (SELECTED_OPTIONS)
+.undef (DESELECTED_OPTIONS)
+.for opt in ${ALL_OPTIONS}
+.  if ${PORT_OPTIONS:M${opt}}
+SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
+.  else
+DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
+.  endif
+.endfor
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+.    for opt in ${OPTIONS_${otype}_${m}}
+.      if ${PORT_OPTIONS:M${opt}}
+SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
+.      else
+DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
+.      endif
+.    endfor
+.  endfor
+.endfor
+
 .endif #onetime run through
 
 .if defined(_POSTMKINCLUDED)
