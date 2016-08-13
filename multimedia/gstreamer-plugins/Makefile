@@ -157,9 +157,6 @@ post-patch:
 		${WRKSRC}/configure
 
 # workaround a crash in clang 3.3 crash llvm bug # 15840
-.if ((${OSVERSION} >= 901504 && ${OSVERSION} < 902502) || \
-     (${OSVERSION} >= 1000037 && ${OSVERSION} < 1000056))
 USE_GCC=	any
-.endif
 
 .include <bsd.port.post.mk>
