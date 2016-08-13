@@ -1,5 +1,5 @@
---- a/src/vdr/input_vdr.c
-+++ b/src/vdr/input_vdr.c
+--- src/vdr/input_vdr.c.orig
++++ src/vdr/input_vdr.c
 @@ -32,6 +32,9 @@
  #include <errno.h>
  #include <pthread.h>
