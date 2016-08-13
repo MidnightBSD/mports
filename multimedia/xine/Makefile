@@ -1,126 +1,66 @@
 # $MidnightBSD$
 
 PORTNAME=	xine
-PORTVERSION=	0.99.6
-PORTREVISION=	2
+PORTVERSION=	0.99.9
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-ui/${PORTVERSION}
 DISTNAME=	${PORTNAME}-ui-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 multimedia player
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libxine.so:${PORTSDIR}/multimedia/libxine \
-		libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
+		libxine.so:${PORTSDIR}/multimedia/libxine
 
-USES=		tar:xz gettext gmake gettext-tools
-USE_XORG=	x11 xt xtst xv xinerama xxf86vm
-INSTALLS_ICONS=	yes
+USES=		desktop-file-utils execinfo gmake iconv jpeg pkgconfig readline \
+		shared-mime-info tar:xz
+USE_XORG=	x11 xext xinerama xscrnsaver xtst xv xxf86vm
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--enable-vdr-keys
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		THREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		THREAD_LIBS="${PTHREAD_LIBS}"
-MAKE_JOBS_SAFE=	yes
+CONFIGURE_ARGS=	--enable-vdr-keys \
+		--disable-nvtvsimple \
+		--disable-rpath
+MAKE_ENV=	V=1
+INSTALLS_ICONS=	yes
 
-MANLANG=	"" de es fr pl
-MAN1_EN=	aaxine.1 xine-bugreport.1 xine-check.1 xine-remote.1 xine.1
-MAN1_DE=	${MAN1_EN}
-MAN1_ES=	${MAN1_EN}
-MAN1_FR=	xine.1
-MAN1_PL=	aaxine.1 xine-remote.1 xine.1
-
-OPTIONS=	CACA "Enable libcaca output" off \
-		AALIB "Enable aalib output" off \
-		LIRC "Enable lirc support" off \
-		CURL "Enable curl support" on \
-		WIN32_CODECS "Enable win32 codecs (for i386 only)" on \
-		NLS "Enable Native Language Support" on \
-		XFT "Enable Xft support" on
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 DOCSDIR=	${PREFIX}/share/doc/xine-ui
 
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=		AALIB CACA CURL DOCS LIRC NLS XFT
+OPTIONS_DEFAULT=	CURL XFT
+OPTIONS_DEFINE_i386=	WIN32_CODECS
+OPTIONS_SUB=		yes
 
-.if ${ARCH} == "i386"
-.if !defined(WITHOUT_WIN32_CODECS)
-RUN_DEPENDS+=	${CODEC_DETECTION_FILE}:${CODEC_PORT}
-
-CODEC_PORT=	${PORTSDIR}/multimedia/win32-codecs
-CODEC_DETECTION_FILE!=	${MAKE} -f ${CODEC_PORT}/Makefile -V CODEC_DETECTION_FILE
-.endif
-.endif
-
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.endif
-
-.if !defined(WITHOUT_XFT)
-USE_XORG+=	xft
-.else
-CONFIGURE_ARGS+=	--disable-xft
-.endif
-
-.if !defined(WITHOUT_CURL)
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
-.else
-CONFIGURE_ARGS+=	--without-curl
-.endif
-
-.if defined(WITH_LIRC)
-LIB_DEPENDS+=	lirc_client.2:${PORTSDIR}/comms/lirc
-CONFIGURE_ARGS+=	--enable-lirc
-CONFIGURE_ENV+=		LIRC_CFLAGS="-I${LOCALBASE}/include" \
+AALIB_LIB_DEPENDS=	libaa.so:${PORTSDIR}/graphics/aalib
+AALIB_CONFIGURE_WITH=	aalib
+CACA_LIB_DEPENDS=	libcaca.so:${PORTSDIR}/graphics/libcaca
+CACA_RUN_DEPENDS=	${LOCALBASE}/${XINE_PLUGINSDIR}/xineplug_vo_out_caca.so:${PORTSDIR}/multimedia/libxine
+CACA_CONFIGURE_WITH=	caca
+CURL_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+CURL_CONFIGURE_WITH=	curl
+LIRC_LIB_DEPENDS=	liblirc_client.so:${PORTSDIR}/comms/lirc
+LIRC_CONFIGURE_ENV=	LIRC_CFLAGS="-I${LOCALBASE}/include" \
 			LIRC_LIBS="-L${LOCALBASE}/libs -llirc_client"
-.else
-CONFIGURE_ARGS+=	--disable-lirc
-.endif
+LIRC_CONFIGURE_ENABLE=	lirc
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+WIN32_CODECS_DESC=	Enable win32 codecs
+WIN32_CODECS_RUN_DEPENDS=\
+			win32-codecs>0:${PORTSDIR}/multimedia/win32-codecs
+XFT_USE=		XORG=xft
+XFT_CONFIGURE_ENABLE=	xft
 
-.if defined(WITH_CACA)
-XINE_PLUGINSDIR=	lib/xine/plugins/1.29
-.if !exists(${LOCALBASE}/${XINE_PLUGINSDIR}/xineplug_vo_out_caca.so)
-IGNORE=		libxine should be compiled with caca support
-.endif
-LIB_DEPENDS+=	caca.0:${PORTSDIR}/graphics/libcaca
-PLIST_SUB+=	WITH_CACA=""
-.else
-PLIST_SUB+=	WITH_CACA="@comment "
-CONFIGURE_ARGS+=	--without-caca --disable-cacatest
-.endif
-
-.if defined(WITH_AALIB)
-LIB_DEPENDS+=	aa.1:${PORTSDIR}/graphics/aalib
-PLIST_SUB+=	WITH_AALIB=""
-CONFIGURE_ARGS+=	--with-aalib
-.else
-PLIST_SUB+=	WITH_AALIB="@comment "
-CONFIGURE_ARGS+=	--without-aalib --disable-aalibtest
-.endif
+XINE_PLUGINSDIR=	lib/xine/plugins/2.5
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|THREAD_LIBS=.*$$|THREAD_LIBS="\$$THREAD_LIBS"|g ; \
-		s|THREAD_CFLAGS=.*$$|THREAD_CFLAGS="\$$THREAD_CFLAGS"|g' \
-		${WRKSRC}/configure
+		's|<string.h>|<strings.h>|' ${WRKSRC}/src/aaui/main.c
+	@${REINPLACE_CMD} -e \
+		's|<\(readline.h\)>|<readline/\1>| ; \
+		 s|<\(history.h\)>|<readline/\1>|' ${WRKSRC}/src/xitk/network.c
 
-post-install:
-.for l in es fr
-	@${CP} ${PREFIX}/man/man1/aaxine.1 ${PREFIX}/man/${l}/man1/aaxine.1
-.endfor
-.for l in es fr pl
-	@${CP} ${PREFIX}/man/man1/xine-bugreport.1 ${PREFIX}/man/${l}/man1/xine-bugreport.1
-.endfor
-.for l in es fr pl
-	@${CP} ${PREFIX}/man/man1/xine-check.1 ${PREFIX}/man/${l}/man1/xine-check.1
-.endfor
-.for l in es fr
-	@${CP} ${PREFIX}/man/man1/xine-remote.1 ${PREFIX}/man/${l}/man1/xine-remote.1
-.endfor
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
