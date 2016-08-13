@@ -37,12 +37,12 @@ LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
 LIB_DEPENDS+=	dvdcss.${DVDCSS_LIBVERSION}:${PORTSDIR}/multimedia/libdvdcss
 .endif
 
-USE_XZ=		yes
-USE_ICONV=	yes
 GNU_CONFIGURE=	yes
+USES=		compiler cpe execinfo gmake iconv libtool:keepla \
+		localbase pathfix perl5 pkgconfig tar:xz
+CPE_PRODUCT=	xine-lib
+CPE_VENDOR=	xine
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack
-USE_GMAKE=	yes
 USE_XORG=	x11 xv xinerama
 USE_GL=		gl glu
 USE_PERL5_BUILD=yes
