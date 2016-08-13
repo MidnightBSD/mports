@@ -69,7 +69,7 @@ OPTIONS_DEFINE:=       ${OPTIONS_DEFINE:N${opt}}
 PORT_OPTIONS:=         ${PORT_OPTIONS:N${opt}}
 .  for otype in SINGLE RADIO MULTI GROUP
 .    for m in ${OPTIONS_${otype}}
-OPTIONS_${otype}_${m}:=        ${OPTIONS_${otype}_${m}:N${opt}}
+OPTIONS_${otype}_${m}:=	${OPTIONS_${otype}_${m}:N${opt}}
 .    endfor
 .  endfor
 .endfor
@@ -79,7 +79,7 @@ OPTIONS_${otype}_${m}:=        ${OPTIONS_${otype}_${m}:N${opt}}
 .for otype in SINGLE RADIO MULTI GROUP
 .  for m in ${OPTIONS_${otype}}
 .    if empty(OPTIONS_${otype}_${m})
-OPTIONS_${otype}:=     ${OPTIONS_${otype}:N${m}}
+OPTIONS_${otype}:=	${OPTIONS_${otype}:N${m}}
 .    endif
 .  endfor
 .endfor
@@ -92,7 +92,7 @@ OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:O:u}
 COMPLETE_OPTIONS_LIST= ${ALL_OPTIONS}
 .for otype in SINGLE RADIO MULTI GROUP
 .  for m in ${OPTIONS_${otype}}
-COMPLETE_OPTIONS_LIST+=        ${OPTIONS_${otype}_${m}}
+COMPLETE_OPTIONS_LIST+=	${OPTIONS_${otype}_${m}}
 .  endfor
 .endfor
 
@@ -111,27 +111,30 @@ PORT_OPTIONS+=	${OPTIONS_DEFAULT}
 ## Set system-wide defined options (set by user in make.conf)
 .  for opt in ${OPTIONS_SET}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=  ${opt}
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endif
 .  endfor
 PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
 ## Remove the options excluded system-wide (set by user in make.conf)
 .  for opt in ${OPTIONS_UNSET}
-PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
 
 ## Set the options specified per-port (set by user in make.conf)
 .  for opt in ${${UNIQUENAME}_SET}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=  ${opt}
+PORT_OPTIONS+=	${opt}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endif
 .  endfor
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
 ## Unset the options excluded per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_UNSET}
+.  for opt in ${${OPTIONS_NAME}_UNSET}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
 
 ## options files (from dialog)
@@ -144,15 +147,49 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 
 .if !defined(PACKAGE_BUILDING)
 ### convert WITH and WITHOUT found in make.conf or reloaded from old optionsfile
-.for opt in ${ALL_OPTIONS}
+# XXX once WITH_DEBUG is not magic any more, do remove the :NDEBUG from here.
+.for opt in ${ALL_OPTIONS:NDEBUG}
 .if defined(WITH_${opt})
+OPTIONS_WARNINGS+=	"WITH_${opt}"
+OPTIONS_WARNINGS_SET+=	${opt}
 PORT_OPTIONS+=  ${opt}
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 .endif
 .if defined(WITHOUT_${opt})
+OPTIONS_WARNINGS+=	"WITHOUT_${opt}"
+OPTIONS_WARNINGS_UNSET+=	${opt}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .endif
 .endfor
+
+_OPTIONS_UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}
+.for _k in SET UNSET SET_FORCE UNSET_FORCE
+.if defined(${_OPTIONS_UNIQUENAME}_${_k})
+WARNING+=	"You are using ${_OPTIONS_UNIQUENAME}_${_k} which is not supported any more, use:"
+WARNING+=	"${OPTIONS_NAME}_${_k}=	${${_OPTIONS_UNIQUENAME}_${_k}}"
+.endif
+.endfor
+
+.if defined(OPTIONS_WARNINGS)
+WARNING+=	"You are using the following deprecated options: ${OPTIONS_WARNINGS}"
+WARNING+=	"If you added them on the command line, you should replace them by"
+WARNING+=	"WITH=\"${OPTIONS_WARNINGS_SET}\" WITHOUT=\"${OPTIONS_WARNINGS_UNSET}\""
+WARNING+=	""
+WARNING+=	"If they are global options set in your make.conf, you should replace them with:"
+.if defined(OPTIONS_WARNINGS_SET)
+WARNING+=	"OPTIONS_SET=${OPTIONS_WARNINGS_SET}"
+.endif
+.if defined(OPTIONS_WARNINGS_UNSET)
+WARNING+=	"OPTIONS_UNSET=${OPTIONS_WARNINGS_UNSET}"
+.endif
+WARNING+=	""
+WARNING+=	"If they are local to this port, you should use:"
+.if defined(OPTIONS_WARNINGS_SET)
+WARNING+=	"${OPTIONS_NAME}_SET=${OPTIONS_WARNINGS_SET}"
+.endif
+.if defined(OPTIONS_WARNINGS_UNSET)
+WARNING+=	"${OPTIONS_NAME}_UNSET=${OPTIONS_WARNINGS_UNSET}"
+.endif
+.endif
 
 ## Finish by using the options set by the port config dialog, if any
 .  for opt in ${OPTIONS_FILE_SET}
@@ -165,7 +202,6 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 .for opt in ${OPTIONS_FILE_UNSET}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .endfor
-.undef opt
 
 .endif
 .endif
