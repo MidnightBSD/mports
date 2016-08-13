@@ -325,7 +325,7 @@ _LOAD_TCL_EXT=		yes
 _LOAD_APACHE_EXT=	yes
 .endif
 
-.if (defined (USE_QT_VER) && ${USE_QT_VER:tl} == 4) || defined(USE_QT4)
+.if (defined (USE_QT_VER) && ${USE_QT_VER:tl} == 4) || defined(USE_QT4) || defined(USE_QT5)
 _LOAD_QT_EXT=		yes
 .endif
 
