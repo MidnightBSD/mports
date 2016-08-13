@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	trousers
-PORTVERSION=	0.3.10
-PORTREVISION=	3
+PORTVERSION=	0.3.13
 CATEGORIES=	security
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open-source TCG Software Stack
@@ -14,11 +13,13 @@ LICENSE_NAME=	Common Public License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		alias gmake iconv libtool pkgconfig
+BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:${PORTSDIR}/emulators/tpm-emulator
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		dos2unix alias autoreconf gmake iconv libtool pkgconfig
+DOS2UNIX_GLOB=	*.h *.c
 USE_OPENSSL=	YES
 USE_LDCONFIG=	YES
-USE_AUTOTOOLS= 	libtoolize aclocal autoconf automake
-AUTOMAKE_ARGS=	-a -c -f
 USE_RC_SUBR=	tcsd
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	YES
@@ -31,34 +32,19 @@ CONFIGURE_ARGS=	--with-gui=none --enable-static \
 MAKE_ENV=	ICONV_LIB=${ICONV_LIB} \
 		ICONV_PREFIX=${ICONV_PREFIX}
 SUB_FILES=	pkg-message
-SUB_LIST=	USERS=${USERS} GROUPS=${GROUPS}
+SUB_LIST=	USERS="${USERS}" GROUPS="${GROUPS}"
+PLIST_SUB=	USERS="${USERS}" GROUPS="${GROUPS}"
 USERS=		_tss
 GROUPS=		_tss
 
-OPTIONS_DEFINE=	EMULATOR DEBUG
-EMULATOR_DESC=	Build for use with the tpm-emulator
+OPTIONS_DEFINE=	DEBUG
 DEBUG_CONFIGURE_ENABLE=	debug
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MEMULATOR}
-PKGNAMESUFFIX+=	-no_tddl
-LIB_DEPENDS+=	libtddl.so:${PORTSDIR}/emulators/tpm-emulator
-
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-src-tcs-Makefile.am \
-		${FILESDIR}/extra-patch-src-tcsd-Makefile.am \
-		${FILESDIR}/extra-patch-src-tddl-Makefile.am
-# The emulator has already a libttddl.so, so comment out trousers' libtddl in the pkg-plist
-PLIST_SUB+=	TDDL="@comment "
-.else
-PKGNAMESUFFIX+=	-tddl
-CONFLICTS+=	tpm-emulator-[0-9]*
-PLIST_SUB+=	TDDL=""
-.endif
+pre-patch: dos2unix
 
 post-install:
 	${INSTALL_DATA} \
-	    ${WRKSRC}/dist/tcsd.conf ${STAGEDIR}${PREFIX}/etc/tcsd.conf.dist
+	    ${WRKSRC}/dist/tcsd.conf ${STAGEDIR}${PREFIX}/etc/tcsd.conf.sample
 	${MKDIR} ${STAGEDIR}${PREFIX}/var/lib/tpm
 
 .include <bsd.port.mk>
