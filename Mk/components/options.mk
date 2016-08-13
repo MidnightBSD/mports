@@ -43,6 +43,10 @@ WITHOUT+=			EXAMPLES
 OPTIONS_WARNINGS_UNSET+=	EXAMPLES
 .endif
 
+.if defined(DEVELOPER)
+PORT_OPTIONS+=	TEST
+.endif
+
 PORT_OPTIONS+=	IPV6
 
 # Add per arch options
@@ -55,8 +59,11 @@ OPTIONS_DEFINE+=	${opt}
 # Add per arch defaults
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
+_ALL_EXCLUDE=	${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} \
+		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}}
+
 # Remove options the port maintainer doesn't want
-.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE}
+.for opt in ${_ALL_EXCLUDE:O:u}
 OPTIONS_DEFAULT:=      ${OPTIONS_DEFAULT:N${opt}}
 OPTIONS_DEFINE:=       ${OPTIONS_DEFINE:N${opt}}
 PORT_OPTIONS:=         ${PORT_OPTIONS:N${opt}}
