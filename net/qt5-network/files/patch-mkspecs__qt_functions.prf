@@ -1,0 +1,11 @@
+--- mkspecs/features/qt_functions.prf.orig	2016-08-13 13:26:41.680600797 -0400
++++ mkspecs/features/qt_functions.prf	2016-08-13 13:27:15.734600909 -0400
+@@ -271,7 +271,7 @@
+         }
+         equals(QMAKE_HOST.os, Windows) {
+             deppath.name = PATH
+-        } else:contains(QMAKE_HOST.os, Linux|FreeBSD|OpenBSD|NetBSD|DragonFly|SunOS|HP-UX|QNX|GNU) {
++        } else:contains(QMAKE_HOST.os, Linux|FreeBSD|OpenBSD|NetBSD|MidnightBSD|DragonFly|SunOS|HP-UX|QNX|GNU) {
+             deppath.name = LD_LIBRARY_PATH
+         } else:contains(QMAKE_HOST.os, Haiku) {
+             deppath.name = LIBRARY_PATH
