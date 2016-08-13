@@ -147,6 +147,7 @@ SUBDIR += qt4-odbc-plugin
 SUBDIR += qt4-pgsql-plugin
 SUBDIR += qt4-sql
 SUBDIR += qt4-sqlite3-plugin
+SUBDIR += qt5-sql
 SUBDIR += redis
 SUBDIR += rrdtool
 SUBDIR += ruby-bdb
