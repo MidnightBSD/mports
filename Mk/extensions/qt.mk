@@ -25,7 +25,7 @@ Qt_Pre_Include=		qt.mk
 # Qt versions currently supported by the framework.
 _QT_SUPPORTED?=	4 5
 QT4_VERSION?=	4.8.6
-QT5_VERSION?=	5.4.1
+QT5_VERSION?=	5.5.1
 
 QT_PREFIX?=		${LOCALBASE}
 
@@ -88,12 +88,21 @@ DISTFILES=		${DISTNAME:S,$,${EXTRACT_SUFX},}
 DIST_SUBDIR=		KDE/Qt/${_QT_VERSION}
 USES+=			tar:xz
 
+# Qt (at least when used with qmake) has a tendency to overlink: some libraries
+# have dependencies on others in the mkspec configurations and the latter are
+# always passed to the linker even if they are not actually used. By passing
+# --as-needed to the linker by default when building the Qt ports we do not
+# have to declare a lot of unnecessary dependencies in USE_QT5.
+# This could arguably work for Qt4 too, but since it is maintenance mode it is
+# better not to fix what is not explicitly broken there.
+LDFLAGS+=		-Wl,--as-needed
+
 .  if ${.TARGETS:Mmakesum} || ${.TARGETS:Mfetch} && \
 	defined(DISABLE_SIZE) && defined(NO_CHECKSUM)
 # Ensure that the "makesum" target (with its inner "fetch" one) uses
 # devel/qt*/distinfo for every port.
-QT_DIST=		base declarative doc graphicaleffects imageformats \
-				multimedia quick1 quickcontrols script serialport svg tools \
+QT_DIST=		3d base canvas3d connectivity declarative doc graphicaleffects imageformats \
+				location multimedia quick1 quickcontrols script sensors serialport svg tools \
 				translations webchannel webkit webkit-examples websockets x11extras xmlpatterns
 .  endif
 
@@ -169,13 +178,15 @@ CONFIGURE_ARGS+=-verbose
 . endif
 
 . if ${QT_DIST} == "base" || ${_QT_VERSION:M4*}
+.  if ${_QT_VERSION:M4*}
+_EXTRA_PATCHES_QT4=	${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-src-corelib-global-qglobal.h
+.  else
+_EXTRA_PATCHES_QT5=	${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-src_corelib_global_qcompilerdetection.h
+.  endif
 EXTRA_PATCHES?=	${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-configure \
 		${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-config.tests-unix-compile.test \
-		${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-libtool
-.  if ${_QT_VERSION:M4*}
-EXTRA_PATCHES?=	${EXTRA_PATCHES} \
-				${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-src-corelib-global-qglobal.h
-.  endif
+		${.CURDIR:H:H}/devel/${_QT_RELNAME}/files/extrapatch-libtool \
+		${_EXTRA_PATCHES_QT4} ${_EXTRA_PATCHES_QT5}
 . endif
 
 # Override settings installed in qconfig.h and *.pri files. The flags will be
@@ -205,16 +216,6 @@ QMAKE_ARGS+=	QT_CONFIG-="${QT_CONFIG:M-*:O:u:C/^-//}"
 PLIST_SUB+=		SHORTVER=${_QT_VERSION:R} \
 				FULLVER=${_QT_VERSION:C/-.*//}
 .endif # defined(QT_DIST)
-
-.if !defined(QT_NONSTANDARD)
-CONFIGURE_ENV+=	QTDIR="${QT_PREFIX}" QMAKE="${QMAKE}" \
-				MOC="${MOC}" RCC="${RCC}" UIC="${UIC}" \
-				QMAKESPEC="${QMAKESPEC}"
-CONFIGURE_ARGS+=--with-qt-includes=${QT_INCDIR} \
-				--with-qt-libraries=${QT_LIBDIR} \
-				--with-extra-includes=${LOCALBASE}/include \
-				--with-extra-libs=${LOCALBASE}/lib
-.endif # !defined(QT_NONSTANDARD)
 
 .if ${_QT_VERSION:M4*}
 QT_BINDIR_REL?=	bin
@@ -285,22 +286,37 @@ PLIST_SUB+=		QT_${dir}DIR="${QT_${dir}DIR_REL}"
 
 Qt_Post_Include=	qt.mk
 
-_USE_QT_ALL=	assistant clucene dbus declarative designer gui help \
-				imageformats linguist linguisttools multimedia network opengl pixeltool \
-				qdbusviewer qmake script scripttools sql sql-ibase sql-mysql \
-				sql-odbc sql-pgsql sql-sqlite2 sql-sqlite3 svg testlib webkit \
+.if !defined(QT_NONSTANDARD)
+CONFIGURE_ENV+=	QTDIR="${QT_PREFIX}" QMAKE="${QMAKE}" \
+				MOC="${MOC}" RCC="${RCC}" UIC="${UIC}" \
+				QMAKESPEC="${QMAKESPEC}"
+CONFIGURE_ARGS+=--with-qt-includes=${QT_INCDIR} \
+				--with-qt-libraries=${QT_LIBDIR} \
+				--with-extra-includes=${LOCALBASE}/include \
+				--with-extra-libs=${LOCALBASE}/lib
+.endif # !defined(QT_NONSTANDARD)
+
+_USE_QT_ALL=	assistant clucene dbus declarative designer doc gui help \
+				imageformats l10n linguist linguisttools multimedia \
+				network opengl pixeltool qdbusviewer qmake script \
+				scripttools sql sql-ibase sql-mysql sql-odbc sql-pgsql \
+				sql-sqlite2 sql-sqlite3 svg testlib webkit \
 				xml xmlpatterns
 
 _USE_QT4_ONLY=	accessible assistant-adp assistantclient codecs-cn codecs-jp \
-				codecs-kr codecs-tw corelib demo doc graphicssystems-opengl \
-				help-tools iconengines inputmethods l10n makeqpf moc phonon \
+				codecs-kr codecs-tw corelib demo graphicssystems-opengl \
+				help-tools iconengines inputmethods makeqpf moc phonon \
 				phonon-gst porting qdoc3 qmlviewer qt3support qtconfig \
 				qtestlib qvfb rcc uic uic3 xmlpatterns-tool
 
-_USE_QT5_ONLY=	buildtools concurrent core graphicaleffects \
-				paths phonon4 printsupport qdbus qdoc qev qml quick \
-				quickcontrols serialport uitools webchannel websockets \
-				widgets x11extras
+_USE_QT5_ONLY=	3d buildtools canvas3d concurrent connectivity core \
+				examples graphicaleffects location paths phonon4 \
+				printsupport qdbus qdoc qev qml quick quickcontrols \
+				sensors serialport sql-tds uiplugin uitools webchannel \
+				websockets widgets x11extras
+
+3d_PORT=		graphics/${_QT_RELNAME}-3d
+3d_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}3DCore.so
 
 accessible_PORT=	accessibility/${_QT_RELNAME}-accessible
 accessible_PATH=	${QT_PLUGINDIR}/accessible/libqtaccessiblewidgets.so
@@ -316,6 +332,9 @@ assistantclient_PATH=	${QT_LIBDIR}/libQt${_QT_LIBVER}AssistantClient.so
 
 buildtools_PORT=	devel/${_QT_RELNAME}-buildtools
 buildtools_PATH=	${MOC}
+
+canvas3d_PORT=		x11-toolkits/${_QT_RELNAME}-canvas3d
+canvas3d_PATH=		${QT_QMLDIR}/QtCanvas3D/qmldir
 
 clucene_PORT=		textproc/clucene-${_QT_RELNAME}
 clucene_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}CLucene.so
@@ -334,6 +353,9 @@ codecs-tw_PATH=		${QT_PLUGINDIR}/codecs/libqtwcodecs.so
 
 concurrent_PORT=	devel/${_QT_RELNAME}-concurrent
 concurrent_PATH=	${QT_LIBDIR}/libQt${_QT_LIBVER}Concurrent.so
+
+connectivity_PORT=	comms/${_QT_RELNAME}-connectivity
+connectivity_PATH=	${QT_LIBDIR}/libQt${_QT_LIBVER}Bluetooth.so
 
 core_PORT=			devel/${_QT_RELNAME}-core
 core_PATH=			${QT_LIBDIR}/libQt${_QT_LIBVER}Core.so
@@ -355,6 +377,9 @@ designer_PATH=		${QT_BINDIR}/designer${_QT_BINSUFX}
 
 doc_PORT=			misc/${_QT_RELNAME}-doc
 doc_PATH=			${_QT_RELNAME}-doc>=${_QT_VERSION:R:R}
+
+examples_PORT=		misc/${_QT_RELNAME}-examples
+examples_PATH=		${_QT_RELNAME}-examples>=${_QT_VERSION:R:R}
 
 graphicaleffects_PORT=	graphics/${_QT_RELNAME}-graphicaleffects
 graphicaleffects_PATH=	${QT_QMLDIR}/QtGraphicalEffects/qmldir
@@ -385,6 +410,9 @@ linguist_PATH=		${QT_BINDIR}/linguist${_QT_BINSUFX}
 
 linguisttools_PORT=	devel/${_QT_RELNAME}-linguisttools
 linguisttools_PATH=	${LRELEASE}
+
+location_PORT=		devel/${_QT_RELNAME}-location
+location_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}Location.so
 
 l10n_PORT=			misc/${_QT_RELNAME}-l10n
 l10n_PATH=			${_QT_RELNAME}-l10n>=${_QT_VERSION:R:R}
@@ -470,6 +498,9 @@ qvfb_PATH=			${QT_BINDIR}/qvfb${_QT_BINSUFX}
 rcc_PORT=			devel/${_QT_RELNAME}-rcc
 rcc_PATH=			${RCC}
 
+sensors_PORT=		comms/${_QT_RELNAME}-sensors
+sensors_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}Sensors.so
+
 script_PORT=		devel/${_QT_RELNAME}-script
 script_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}Script.so
 
@@ -490,7 +521,7 @@ sql-sqlite2_PORT=	databases/${_QT_RELNAME}-sqlite-plugin
 
 sql-sqlite3_PATH=	${QT_PLUGINDIR}/sqldrivers/libqsqlite.so
 
-.for db in ibase mysql odbc pgsql sqlite2 sqlite3
+.for db in ibase mysql odbc pgsql sqlite2 sqlite3 tds
 .if ${_QT_VERSION:M4*}
 sql-${db}_PORT?=	databases/${_QT_RELNAME}-${db}-plugin
 .else
@@ -510,6 +541,9 @@ uic_PATH=			${UIC}
 
 uic3_PORT=			devel/${_QT_RELNAME}-uic3
 uic3_PATH=			${QT_BINDIR}/uic3
+
+uiplugin_PORT=		x11-toolkits/${_QT_RELNAME}-uiplugin
+uiplugin_PATH=		${QT_INCDIR}/QtUiPlugin/QtUiPlugin
 
 uitools_PORT=		devel/${_QT_RELNAME}-uitools
 uitools_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}UiTools.a
@@ -540,8 +574,8 @@ xmlpatterns-tool_PATH=	${QT_BINDIR}/xmlpatterns
 
 _USE_QT_ALL+=	${_USE_QT${_QT_VERSION:R:R}_ONLY}
 .for comp in ${_USE_QT_ALL}
-${comp}_BUILD_DEPENDS?=	${${comp}_PATH}:${PORTSDIR}/${${comp}_PORT}
-${comp}_RUN_DEPENDS?=	${${comp}_PATH}:${PORTSDIR}/${${comp}_PORT}
+${comp}_BUILD_DEPENDS?=	${${comp}_PATH}:${${comp}_PORT}
+${comp}_RUN_DEPENDS?=	${${comp}_PATH}:${${comp}_PORT}
 ${comp}_build_BUILD_DEPENDS?=	${${comp}_BUILD_DEPENDS}
 ${comp}_run_RUN_DEPENDS?=	${${comp}_RUN_DEPENDS}
 _USE_QT_ALL_SUFFIXED+=	${comp} ${comp}_build ${comp}_run
@@ -602,15 +636,24 @@ post-configure: qmake-configure
 .  endif
 . endif # ${QT_DIST} == "base"
 
+pre-configure: qt5-pre-configure
+qt5-pre-configure:
 # Qt 5.3.2 introduced a check in mkspecs/features/create_cmake.prf that
 # requires tests/auto/cmake to be present, otherwise the configure stage will
 # fail.
 # Since we cannot extract tests/auto/cmake/ and exclude tests/ at the same
 # time, we have to disable the check in a cache file (the only way to get this
 # value through to the configure script in qtbase).
-pre-configure: qt5-pre-configure
-qt5-pre-configure:
 	${ECHO_CMD} 'CMAKE_MODULE_TESTS = -' > ${WRKSRC}/.qmake.cache
+# We piggyback on QMAKE_LIBDIR_FLAGS to make sure -L${WRKSRC}/lib is passed to
+# the linker before -L/usr/local/lib. By default, the opposite happens, which
+# is a problem when a Qt port is being upgraded, since an existing library
+# would end up being picked up instead of those built in ${WRKSRC}/lib. Since
+# qmake appends the value of QMAKE_LIBDIR to QMAKE_LIBDIR_FLAGS, we can use the
+# latter to get the linker path order right. qmake is smart enough to strip
+# occurrences of ${WRKSRC}/lib from .pc and .prl files when installing them.
+# See QTBUG-40825 and ports bugs 194088, 195105 and 198720.
+	${ECHO_CMD} 'QMAKE_LIBDIR_FLAGS = -L${WRKSRC}/lib' >> ${WRKSRC}/.qmake.cache
 
 pre-install: qt-pre-install
 qt-pre-install:
@@ -633,7 +676,7 @@ qt-post-install:
 	@${MKDIR} ${STAGEDIR}${QT_INCDIR}/QtCore/modules
 	@${ECHO_CMD} -n \
 		> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
-.  for def in ${QT_DEFINES:N-*:O:u}
+.  for def in ${QT_DEFINES:N-*:O:u:C/=.*$//}
 	@${ECHO_CMD} "#if !defined(QT_${def}) && !defined(QT_NO_${def})" \
 		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	${ECHO_CMD} "# define QT_${def}" \
