@@ -53,6 +53,7 @@ SUBDIR += py-tkinter
 SUBDIR += py-vte
 SUBDIR += qt4-declarative
 SUBDIR += qt4-gui
+SUBDIR += qt5-declarative
 SUBDIR += qt5-gui
 SUBDIR += qt5-widgets
 SUBDIR += sdl_pango
