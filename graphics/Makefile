@@ -167,6 +167,7 @@ SUBDIR += qt4-imageformats
 SUBDIR += qt4-opengl
 SUBDIR += qt4-pixeltool
 SUBDIR += qt4-svg
+SUBDIR += qt5-opengl
 SUBDIR += sane-backends
 SUBDIR += scr2png
 SUBDIR += sdl_gfx
