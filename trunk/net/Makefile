@@ -112,6 +112,7 @@ SUBDIR += py-oauth2
 SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
 SUBDIR += qt4-network
+SUBDIR += qt5-network
 SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c
 SUBDIR += rdesktop
