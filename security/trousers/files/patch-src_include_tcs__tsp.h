@@ -1,6 +1,6 @@
---- src/include/tcs_tsp.h.orig	2010-01-29 01:27:51.000000000 +0900
-+++ src/include/tcs_tsp.h	2010-10-24 21:04:04.822560729 +0900
-@@ -79,7 +79,13 @@
+--- src/include/tcs_tsp.h.orig	2016-06-20 15:21:26 UTC
++++ src/include/tcs_tsp.h
+@@ -79,7 +79,13 @@ struct key_disk_cache
  /* XXX Get rid of this, there's no reason to set an arbitrary limit */
  #define MAX_KEY_CHILDREN	10
  

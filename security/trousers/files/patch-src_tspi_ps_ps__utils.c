@@ -1,5 +1,5 @@
---- src/tspi/ps/ps_utils.c.orig	2010-01-29 01:27:51.000000000 +0900
-+++ src/tspi/ps/ps_utils.c	2010-10-24 21:04:04.841558702 +0900
+--- src/tspi/ps/ps_utils.c.orig	2016-06-20 15:21:26 UTC
++++ src/tspi/ps/ps_utils.c
 @@ -22,7 +22,7 @@
  #include "tspps.h"
  #include "tsplog.h"
@@ -9,7 +9,7 @@
  read_data(int fd, void *data, UINT32 size)
  {
  	int rc;
-@@ -39,7 +39,7 @@
+@@ -39,7 +39,7 @@ read_data(int fd, void *data, UINT32 siz
  	return TSS_SUCCESS;
  }
  

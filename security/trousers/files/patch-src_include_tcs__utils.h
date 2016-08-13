@@ -1,5 +1,5 @@
---- src/include/tcs_utils.h.orig	2010-01-29 01:27:51.000000000 +0900
-+++ src/include/tcs_utils.h	2010-10-24 21:04:04.824555399 +0900
+--- src/include/tcs_utils.h.orig	2016-06-20 15:21:26 UTC
++++ src/include/tcs_utils.h
 @@ -18,6 +18,20 @@
  #include "tcs_tsp.h"
  #include "trousers_types.h"

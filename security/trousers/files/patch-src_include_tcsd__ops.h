@@ -1,5 +1,5 @@
---- src/include/tcsd_ops.h.orig	2010-01-29 01:27:51.000000000 +0900
-+++ src/include/tcsd_ops.h	2010-10-24 21:04:04.827558718 +0900
+--- src/include/tcsd_ops.h.orig	2016-06-20 15:21:26 UTC
++++ src/include/tcsd_ops.h
 @@ -123,7 +123,7 @@
  
  struct tcsd_op {
