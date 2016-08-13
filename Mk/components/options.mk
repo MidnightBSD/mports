@@ -217,7 +217,12 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 .for opt in ${WITHOUT}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .endfor
-.undef opt
+
+# Finally, add options required by slave ports
+PORT_OPTIONS+=	${OPTIONS_SLAVE}
+
+# Sort options and eliminate duplicates
+PORT_OPTIONS:=	${PORT_OPTIONS:O:u}
 
 ## Now some compatibility
 .if empty(PORT_OPTIONS:MDOCS)
