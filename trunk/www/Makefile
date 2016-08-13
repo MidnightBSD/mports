@@ -120,6 +120,7 @@ SUBDIR += w3m
 SUBDIR += webkit-gtk2
 SUBDIR += webkit-gtk3
 SUBDIR += webkit-qt4
+SUBDIR += webkit-qt5
 SUBDIR += webkit2-gtk3
 SUBDIR += weblint
 SUBDIR += youtube_dl
