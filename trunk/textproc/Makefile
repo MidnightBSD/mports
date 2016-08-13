@@ -171,6 +171,7 @@ SUBDIR += qt4-xml
 SUBDIR += qt4-xmlpatterns
 SUBDIR += qt4-xmlpatterns-tool
 SUBDIR += qt5-xml
+SUBDIR += qt5-xmlpatterns
 SUBDIR += raptor
 SUBDIR += raptor2
 SUBDIR += rarian
