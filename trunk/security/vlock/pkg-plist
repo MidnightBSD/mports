@@ -7,9 +7,7 @@ man/man8/vlock-main.8.gz
 %%VLOCKSCRIPTS%%lib/vlock/scripts/mplayer
 lib/vlock/modules/all.so
 %%CACASAVER%%lib/vlock/modules/caca.so
-@mode 4711
-sbin/vlock-main
-@mode
+@(,,4771) sbin/vlock-main
 @group %%VLOCK_GRP%%
 lib/vlock/modules/new.so
 @group wheel
