@@ -480,6 +480,7 @@ SUBDIR += qt4-testlib
 SUBDIR += qt4-uic
 SUBDIR += qt4-uic3
 SUBDIR += qt5
+SUBDIR += qt5-assistant
 SUBDIR += qt5-buildtools
 SUBDIR += qt5-core
 SUBDIR += qt5-concurrent
