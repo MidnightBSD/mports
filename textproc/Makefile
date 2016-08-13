@@ -10,6 +10,7 @@ SUBDIR += bsdgrep
 SUBDIR += cdiff
 SUBDIR += clucene
 SUBDIR += clucene-qt4
+SUBDIR += clucene-qt5
 SUBDIR += diffutils
 SUBDIR += docbook
 SUBDIR += docbook-sgml
