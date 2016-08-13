@@ -89,6 +89,7 @@ SUBDIR += phonon
 SUBDIR += phonon-gstreamer
 SUBDIR += poe
 SUBDIR += qt4-multimedia
+SUBDIR += qt5-multimedia
 SUBDIR += quvi
 SUBDIR += rtmpdump
 SUBDIR += schroedinger
