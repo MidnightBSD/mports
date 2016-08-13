@@ -478,6 +478,7 @@ SUBDIR += qt4-scripttools
 SUBDIR += qt4-testlib
 SUBDIR += qt4-uic
 SUBDIR += qt4-uic3
+SUBDIR += qt5-buildtools
 SUBDIR += qtcreator
 SUBDIR += rclint
 SUBDIR += rcs57
