@@ -63,6 +63,7 @@ SUBDIR += python3
 SUBDIR += python33
 SUBDIR += python34
 SUBDIR += python27
+SUBDIR += qt5-qml
 SUBDIR += ruby22
 SUBDIR += spidermonkey170
 SUBDIR += spidermonkey24
