@@ -1,7 +1,10 @@
+# Created by: Sebastian Schuetz <sschuetz@fhm.edu>
+# $FreeBSD: head/emulators/tpm-emulator/Makefile 415449 2016-05-18 13:53:45Z hrs $
 # $MidnightBSD$
 
 PORTNAME=	tpm-emulator
 PORTVERSION=	0.7.4
+PORTREVISION=	1
 CATEGORIES=	emulators security
 MASTER_SITES=	SF/${PORTNAME}.berlios
 DISTNAME=	${PORTNAME:S,-,_,}-${PORTVERSION}
@@ -11,25 +14,22 @@ COMMENT=	Trusted Platform Module (TPM) emulator
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
-
-CONFLICTS=	trousers-tddl-[0-9]*
+LIB_DEPENDS=	libgmp.so:math/gmp
 
 USES=		cmake:outsource
 USE_RC_SUBR=	tpmd
-CMAKE_ENV=	PREFIX="${PREFIX}"
+CONFIGURE_ENV=	PREFIX="${PREFIX}"
 CMAKE_ARGS=	-DTPM_INCLUDE_DIRS:STRING="${LOCALBASE}/include" \
+		-DTDDL_LIBRARY_DIRS:STRING="${LOCALBASE}/lib/tddl_emu" \
 		-DTPM_LIBRARY_DIRS:STRING="${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
 USERS=		_tss
 GROUPS=		_tss
 SUB_LIST=	USERS="${USERS}" GROUPS="${GROUPS}"
+PLIST_SUB=	USERS="${USERS}" GROUPS="${GROUPS}"
 
 post-install:
-	@${ECHO_CMD} "@exec ${INSTALL} -d -o ${USERS} -g ${GROUPS} -m 0700 /var/run/tpm" >> ${TMPPLIST}
 	@${MKDIR} ${STAGEDIR}/var/run/tpm
-	@${ECHO_CMD} "@dirrmtry /var/run/tpm" >> ${TMPPLIST}
-	@${ECHO_CMD} "@exec ${INSTALL} -d -o ${USERS} -g ${GROUPS} -m 0700 %D/var/db/tpm" >> ${TMPPLIST}
-	@${MKDIR} ${STAGEDIR}/${PREFIX}/var/db/tpm
+	@${MKDIR} ${STAGEDIR}${PREFIX}/var/db/tpm
 
 .include <bsd.port.mk>
