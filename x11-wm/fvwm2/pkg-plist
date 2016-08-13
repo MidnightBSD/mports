@@ -12,9 +12,7 @@ bin/fvwm-root
 bin/fvwm
 bin/fvwm2
 bin/xpmroot
-@unexec if cmp -s %D/etc/system.fvwm2rc %D/etc/system.fvwm2rc.dist; then rm -f %D/etc/system.fvwm2rc; fi
-etc/system.fvwm2rc.dist
-@exec [ -f %B/system.fvwm2rc ] || cp %B/%f %B/system.fvwm2rc
+@sample etc/system.fvwm2rc.dist etc/system.fvwm2rc
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAnimate
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAudio
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAuto
@@ -98,6 +96,7 @@ man/man1/fvwm-menu-xlock.1.gz
 man/man1/fvwm-root.1.gz
 man/man1/fvwm.1.gz
 man/man1/fvwm2.1.gz
+man/man1/xpmroot.1.gz
 %%ICONS%%%%DATADIR%%/pixmaps/Jlock.xpm
 %%ICONS%%%%DATADIR%%/pixmaps/Jnews.xpm
 %%ICONS%%%%DATADIR%%/pixmaps/Jrecycle.xpm
@@ -430,10 +429,13 @@ man/man1/fvwm2.1.gz
 %%DATADIR%%/FvwmForm-Capture
 %%DATADIR%%/FvwmForm-Desktop
 %%DATADIR%%/FvwmForm-Form
+%%DATADIR%%/FvwmForm-GenOptionHelp
+%%DATADIR%%/FvwmForm-MultiMenuHelp
 %%DATADIR%%/FvwmForm-QuitVerify
 %%DATADIR%%/FvwmForm-Rlogin
 %%DATADIR%%/FvwmForm-RootCursor
 %%DATADIR%%/FvwmForm-Setup
+%%DATADIR%%/FvwmForm-SingleMenuHelp
 %%DATADIR%%/FvwmForm-Talk
 %%DATADIR%%/FvwmForm-TalkHelp
 %%DATADIR%%/FvwmScript-BaseConfig
@@ -452,6 +454,7 @@ man/man1/fvwm2.1.gz
 %%DATADIR%%/FvwmScript-Setup95
 %%DATADIR%%/FvwmScript-WidgetDemo
 %%DATADIR%%/FvwmTabs-DefaultSetup
+%%DATADIR%%/fvwm-menu-desktop-config.fpl
 %%DATADIR%%/fvwm-script-ComExample.pl
 %%DATADIR%%/fvwm-script-setup95.pl
 %%DATADIR%%/system.fvwm2rc-sample-95
@@ -489,7 +492,3 @@ man/man1/fvwm2.1.gz
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/FvwmScript.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/FvwmTaskBar.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/fvwm.mo
-@dir %%DOCSDIR%%/commands
-@dir %%DOCSDIR%%/fvwm
-@dir %%DOCSDIR%%/images/svg_rendering
-@dir %%DOCSDIR%%/modules/images/FvwmTabs
