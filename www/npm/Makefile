@@ -46,7 +46,7 @@ post-patch:
 
 do-install:
 	mkdir ${WRKDIR}/home
-	cd ${WRKSRC} && HOME=${WRKDIR}/home node cli.js --cache /usr/mports/www/npm/work/.cache  install -g -f --prefix=/usr/mports/www/npm/work/fake-inst-amd64/usr/local
+	cd ${WRKSRC} && HOME=${WRKDIR}/home node cli.js --cache ${WRKDIR}/.cache  install -g -f --prefix=${FAKE_DESTDIR}/usr/local
 
 post-install:
 	@${INSTALL_DATA} ${WRKDIR}/npm.conf ${PREFIX}/etc/man.d/npm.conf
