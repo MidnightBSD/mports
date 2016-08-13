@@ -50,6 +50,7 @@ SUBDIR += pecl-pdflib
 SUBDIR += psutils
 SUBDIR += py-pycups
 SUBDIR += qpdf
+SUBDIR += qt5-printsupport
 SUBDIR += t1utils
 SUBDIR += tex-basic-engines
 SUBDIR += tex-dvipsk
