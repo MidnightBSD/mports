@@ -659,8 +659,8 @@ pre-install: qt-pre-install
 qt-pre-install:
 # Search both in CONFIGURE_WRKSRC and WRKSRC, as the former is not
 # a subdirectory of the latter for out-of-source builds.
-	@${FIND} ${WRKSRC} ${CONFIGURE_WRKSRC} -name "Makefile*" -type f | \
-		${XARGS} ${REINPLACE_CMD} -e 's,${PREFIX}/${QT_LIBDIR_REL}/pkgconfig,${PREFIX}/libdata/pkgconfig,g'
+	${FIND} ${WRKSRC} ${CONFIGURE_WRKSRC} -name "Makefile*" -type f | \
+		${XARGS} ${REINPLACE_CMD} -e 's,${TRUE_PREFIX}/${QT_LIBDIR_REL}/pkgconfig,${TRUE_PREFIX}/libdata/pkgconfig,g'
 
 post-install: qt-post-install
 qt-post-install:
@@ -673,29 +673,29 @@ qt-post-install:
 		-e 's,%%QT_INCDIR%%,${QT_INCDIR},g' \
 		${.CURDIR:H:H}/devel/${_QT_RELNAME}/${FILESDIR:T}/${PKGDEINSTALL:T}.in > \
 		${PKGDEINSTALL}
-	@${MKDIR} ${STAGEDIR}${QT_INCDIR}/QtCore/modules
+	@${MKDIR} ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules
 	@${ECHO_CMD} -n \
-		> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		> ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 .  for def in ${QT_DEFINES:N-*:O:u:C/=.*$//}
 	@${ECHO_CMD} "#if !defined(QT_${def}) && !defined(QT_NO_${def})" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	${ECHO_CMD} "# define QT_${def}" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	@${ECHO_CMD} "#endif" \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 	@${ECHO_CMD} \
-		>> ${STAGEDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
+		>> ${FAKE_DESTDIR}${QT_INCDIR}/QtCore/modules/qconfig-${QT_MODNAME}.h
 .  endfor
-	@${ECHO_CMD} "${QT_PREFIX}/${QT_INCDIR_REL}/QtCore/modules/qconfig-${QT_MODNAME}.h" \
+	@${ECHO_CMD} "${QT_INCDIR_REL}/QtCore/modules/qconfig-${QT_MODNAME}.h" \
 		>> ${TMPPLIST}
 	@${ECHO_CMD} "@exec echo '#include <QtCore/modules/qconfig-${QT_MODNAME}.h>' >> ${QT_PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig-modules.h" \
 		>> ${TMPPLIST}
 . endif # ${QT_DEFINES:N-*}
 . if ${QT_CONFIG:N-*}
-	@${MKDIR} ${STAGEDIR}${QT_MKSPECDIR}/modules
+	@${MKDIR} ${FAKE_DESTDIR}${QT_MKSPECDIR}/modules
 	${ECHO_CMD} "QT_CONFIG += ${QT_CONFIG:N-*:O:u}" \
-		> ${STAGEDIR}${QT_MKSPECDIR}/modules/qt_config_${QT_MODNAME}.pri
-	@${ECHO_CMD} "${QT_PREFIX}/${QT_MKSPECDIR_REL}/modules/qt_config_${QT_MODNAME}.pri" \
+		> ${FAKE_DESTDIR}${QT_MKSPECDIR}/modules/qt_config_${QT_MODNAME}.pri
+	@${ECHO_CMD} "${QT_MKSPECDIR_REL}/modules/qt_config_${QT_MODNAME}.pri" \
 		>> ${TMPPLIST}
 . endif # ${QT_CONFIG:N-*}
 .endif # defined(QT_DIST) && ! ${_QT_VERSION:M4*}
