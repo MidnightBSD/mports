@@ -17,6 +17,7 @@ SUBDIR += linux-f10
 SUBDIR += linux_base-c6
 SUBDIR += linux_base-f10
 SUBDIR += mtools
+SUBDIR += open-vm-tools
 SUBDIR += pearpc
 SUBDIR += qemu
 SUBDIR += rtc
