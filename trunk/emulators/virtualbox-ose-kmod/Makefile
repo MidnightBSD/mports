@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	virtualbox-ose
-DISTVERSION=	4.3.36
+DISTVERSION=	5.0.26
 CATEGORIES=	emulators
 MASTER_SITES=	http://download.virtualbox.org/virtualbox/${DISTVERSION}/ \
 		http://tmp.chruetertee.ch/ \
