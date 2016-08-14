@@ -25,6 +25,7 @@ SUBDIR += rtc
 SUBDIR += tpm-emulator
 SUBDIR += vMac
 SUBDIR += virtio-kmod
+SUBDIR += virtualbox-ose-kmod
 SUBDIR += vxtools
 SUBDIR += wine
 SUBDIR += wine-gecko
