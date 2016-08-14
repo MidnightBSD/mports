@@ -16,6 +16,7 @@ SUBDIR += icon-naming-utils
 SUBDIR += icons-tango
 SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
+SUBDIR += kde4-icons-oxygen
 SUBDIR += linux-f10-hicolor-icon-theme
 SUBDIR += linux-f10-qtcurve-gtk2
 SUBDIR += linux-hicolor-icon-theme
