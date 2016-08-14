@@ -83,6 +83,7 @@ SUBDIR += libxshmfence
 SUBDIR += linux-f10-xorg-libs
 SUBDIR += listres
 SUBDIR += luit
+SUBDIR += lumina
 SUBDIR += mkcomposecache
 SUBDIR += mlogind
 SUBDIR += nvidia-driver
