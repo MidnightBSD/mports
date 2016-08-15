@@ -1,0 +1,13 @@
+# $MidnightBSD$
+# $FreeBSD: head/devel/libtool/Makefile.common 370099 2014-10-05 18:01:19Z tijl $
+
+PORTVERSION=	2.4.2.418
+PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
+CATEGORIES=	devel
+MASTER_SITES=	GNU_ALPHA/libtool
+DISTNAME=	libtool-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+
+DISTINFO_FILE=	${.CURDIR}/../libtool/distinfo
+USES=		tar:xz

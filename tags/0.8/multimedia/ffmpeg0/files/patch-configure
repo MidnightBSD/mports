@@ -1,0 +1,134 @@
+--- configure.orig	2015-03-11 20:05:42.000000000 -0400
++++ configure	2016-03-27 18:48:51.257550545 -0400
+@@ -1666,7 +1666,7 @@
+ nm_opts='-g'
+ 
+ # machine
+-arch_default=$(uname -m)
++arch_default=$(uname -p)
+ cpu="generic"
+ 
+ # OS
+@@ -1707,7 +1707,7 @@
+ SLIBSUF=".so"
+ SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
+ SLIBNAME_WITH_VERSION='$(SLIBNAME).$(LIBVERSION)'
+-SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'
++SLIBNAME_WITH_MAJOR='$(SLIBNAME).1'
+ LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'
+ 
+ CC_O='-o $@'
+@@ -2434,6 +2434,9 @@
+         disable symver
+         ;;
+     freebsd)
++	enable malloc_aligned
++	;;
++    midnightbsd)
+         enable malloc_aligned
+         ;;
+     bsd/os)
+@@ -2444,13 +2447,13 @@
+         enable malloc_aligned
+         gas="gas-preprocessor.pl $cc"
+         enabled ppc && add_asflags -force_cpusubtype_ALL
+-        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,$(LIBMAJOR)'
++        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,1'
+         enabled x86_32 && append SHFLAGS -Wl,-read_only_relocs,suppress
+         strip="${strip} -x"
+         add_ldflags -Wl,-dynamic,-search_paths_first
+         SLIBSUF=".dylib"
+         SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME).$(LIBVERSION)$(SLIBSUF)'
+-        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME).$(LIBMAJOR)$(SLIBSUF)'
++        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME).1$(SLIBSUF)'
+         FFSERVERLDFLAGS=-Wl,-bind_at_load
+         objformat="macho"
+         enabled x86_64 && objformat="macho64"
+@@ -2474,7 +2477,7 @@
+         SLIBPREF=""
+         SLIBSUF=".dll"
+         SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
+-        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
++        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-1$(SLIBSUF)'
+         SLIB_EXTRA_CMD='-lib.exe /machine:$(LIBTARGET) /def:$$(@:$(SLIBSUF)=.def) /out:$(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)'
+         SLIB_INSTALL_EXTRA_CMD='-install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME:$(SLIBSUF)=.lib)"; \
+             install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)"; \
+@@ -2496,7 +2499,7 @@
+         SLIBPREF="cyg"
+         SLIBSUF=".dll"
+         SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
+-        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
++        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-1$(SLIBSUF)'
+         SHFLAGS='-shared -Wl,--enable-auto-image-base'
+         objformat="win32"
+         enable dos_paths
+@@ -2529,7 +2532,7 @@
+         SLIBPREF=""
+         SLIBSUF=".dll"
+         SLIBNAME_WITH_VERSION='$(SLIBPREF)$(NAME)-$(LIBVERSION)$(SLIBSUF)'
+-        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(shell echo $(NAME) | cut -c1-6)$(LIBMAJOR)$(SLIBSUF)'
++        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(shell echo $(NAME) | cut -c1-6)1$(SLIBSUF)'
+         SLIB_CREATE_DEF_CMD='echo LIBRARY $(SLIBNAME_WITH_MAJOR) INITINSTANCE TERMINSTANCE > $(SUBDIR)$(NAME).def; \
+           echo PROTMODE >> $(SUBDIR)$(NAME).def; \
+           echo CODE PRELOAD MOVEABLE DISCARDABLE >> $(SUBDIR)$(NAME).def; \
+@@ -2798,13 +2801,13 @@
+         $nogas "GNU assembler not found, install gas-preprocessor"
+ fi
+ 
+-check_ldflags -Wl,--as-needed
++
+ check_ldflags -Wl,-z,noexecstack
+ 
+ if check_func dlopen; then
+     ldl=
+-elif check_func dlopen -ldl; then
+-    ldl=-ldl
++elif check_func dlopen ; then
++    ldl=
+ fi
+ 
+ if enabled network; then
+@@ -2934,12 +2937,12 @@
+     "dirac_decoder_init dirac_encoder_init"
+ enabled libfaac    && require2 libfaac "stdint.h faac.h" faacEncGetVersion -lfaac
+ enabled libfreetype && require_pkg_config freetype2 "ft2build.h freetype/freetype.h" FT_Init_FreeType
+-enabled libgsm     && require  libgsm gsm/gsm.h gsm_create -lgsm
++enabled libgsm     && require  libgsm gsm.h gsm_create -lgsm
+ enabled libmp3lame && require  "libmp3lame >= 3.98.3" lame/lame.h lame_set_VBR_quality -lmp3lame
+ enabled libnut     && require  libnut libnut.h nut_demuxer_init -lnut
+ enabled libopencore_amrnb  && require libopencore_amrnb opencore-amrnb/interf_dec.h Decoder_Interface_init -lopencore-amrnb
+ enabled libopencore_amrwb  && require libopencore_amrwb opencore-amrwb/dec_if.h D_IF_init -lopencore-amrwb
+-enabled libopencv  && require_pkg_config opencv opencv/cxcore.h cvCreateImageHeader
++enabled libopencv  && require_pkg_config opencv-core opencv2/core/core_c.h cvCreateImageHeader
+ enabled libopenjpeg && require libopenjpeg openjpeg.h opj_version -lopenjpeg
+ enabled librtmp    && require_pkg_config librtmp librtmp/rtmp.h RTMP_Socket
+ enabled libschroedinger && require_pkg_config schroedinger-1.0 schroedinger/schro.h schro_init
+@@ -2980,8 +2983,8 @@
+ texi2html -version > /dev/null 2>&1 && enable texi2html || disable texi2html
+ 
+ check_header linux/fb.h
+-check_header linux/videodev.h
+-check_header linux/videodev2.h
++#check_header linux/videodev.h
++#check_header linux/videodev2.h
+ check_header sys/videoio.h
+ 
+ check_func_headers "windows.h vfw.h" capCreateCaptureWindow "$vfwcap_indev_extralibs"
+@@ -3345,7 +3348,7 @@
+ SRC_PATH="$source_path"
+ SRC_PATH_BARE=$source_path
+ CC_IDENT=$cc_ident
+-ARCH=$arch
++FFMPEG_ARCH=$arch
+ CC=$cc
+ AS=$as
+ LD=$ld
+@@ -3389,7 +3392,7 @@
+ SDL_LIBS=$sdl_libs
+ SDL_CFLAGS=$sdl_cflags
+ LIB_INSTALL_EXTRA_CMD=$LIB_INSTALL_EXTRA_CMD
+-EXTRALIBS=$extralibs
++EXTRALIBS=-L/usr/local/lib $extralibs
+ INSTALL=$install
+ LIBTARGET=${LIBTARGET}
+ SLIBNAME=${SLIBNAME}

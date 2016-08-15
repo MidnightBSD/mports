@@ -1,0 +1,43 @@
+# Created by: ijliao
+# $MidnightBSD$
+# $FreeBSD: head/www/py-html5lib/Makefile 392400 2015-07-18 00:10:54Z rm $
+
+PORTNAME=	html5lib
+PORTVERSION=	0.999999
+CATEGORIES=	www python
+MASTER_SITES=	CHEESESHOP \
+		http://magemana.nl/ports/dist/:test
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python based HTML parser based on the HTML5 spec
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:${PORTSDIR}/devel/py-six
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:${PORTSDIR}/devel/py-nose
+
+OPTIONS_DEFINE=	TEST
+
+NO_ARCH=	yes
+USES=		python
+USE_PYTHON=	autoplist distutils
+
+.include <bsd.mport.options.mk>
+
+.if !empty(PORT_OPTIONS:MTEST)
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:master \
+		${DISTNAME}-testdata${EXTRACT_SUFX}:test
+BUILD_DEPENDS+=	${TEST_DEPENDS}
+.endif
+
+regression-test: build
+	@${ECHO_MSG} "===>  Testing ${PORTNAME} (patience...)"
+	@cd ${WRKSRC} && nosetests -q
+
+.if !empty(PORT_OPTIONS:MTEST)
+pre-install: regression-test
+.endif
+
+.include <bsd.port.mk>

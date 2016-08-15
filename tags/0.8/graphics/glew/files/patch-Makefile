@@ -1,0 +1,20 @@
+--- Makefile.orig	2011-08-25 10:17:55 -0400
++++ Makefile	2012-03-10 21:15:45 -0500
+@@ -31,7 +31,7 @@
+ include config/version
+ 
+ SHELL = /bin/sh
+-SYSTEM ?= $(shell config/config.guess | cut -d - -f 3 | sed -e 's/[0-9\.]//g;')
++SYSTEM ?= midnightbsd
+ SYSTEM.SUPPORTED = $(shell test -f config/Makefile.$(SYSTEM) && echo 1)
+ 
+ ifeq ($(SYSTEM.SUPPORTED), 1)
+@@ -65,7 +65,7 @@
+ OPT = $(POPT)
+ endif
+ INCLUDE = -Iinclude
+-CFLAGS = $(OPT) $(WARN) $(INCLUDE) $(CFLAGS.EXTRA)
++CFLAGS += $(OPT) $(WARN) $(INCLUDE) $(CFLAGS.EXTRA)
+ 
+ LIB.SRCS = src/glew.c
+ LIB.OBJS = $(LIB.SRCS:.c=.o)

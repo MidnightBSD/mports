@@ -1,0 +1,83 @@
+# $MidnightBSD$
+
+PORTNAME=	midori
+PORTVERSION=	0.5.11
+CATEGORIES=	www xfce
+MASTER_SITES=	https://launchpadlibrarian.net/215909491/ \
+		https://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
+DIST_SUBDIR=	xfce4
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Lightweight web browser using WebKit browser engine
+
+LICENSE=	lgpl2.1 mit
+LICENSE_COMB=	multi
+
+BUILD_DEPENDS=	rsvg-convert:${PORTSDIR}/graphics/librsvg2 \
+		valac:${PORTSDIR}/lang/vala
+LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
+		libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome \
+		libgcr-3.so:${PORTSDIR}/security/gcr
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=	-Wno-return-type
+CMAKE_ARGS=	-DUSE_APIDOCS:BOOL=OFF \
+	-DUSE_GRANITE:BOOL=OFF
+
+USE_GNOME=	glib20 intltool libxml2
+USE_XORG=	xscrnsaver
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
+USES=		desktop-file-utils pkgconfig cmake gettext tar:bzip2
+USE_SQLITE=	yes
+
+PLIST_SUB=	VERSION="${PORTVERSION:R}"
+
+OPTIONS_DEFINE=	GIR ZEITGEIST
+OPTIONS_SINGLE=	GTK
+OPTIONS_SINGLE_GTK=	GTK2 GTK3
+OPTIONS_DEFAULT=	GTK2
+GIR_DESC=	GObject Introspection
+ZEITGEIST_DESC=	User logs activities
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MGTK2}
+LIB_DEPENDS+=	libwebkitgtk-1.0.so:${PORTSDIR}/www/webkit-gtk2
+USE_GNOME+=	gtk20
+CMAKE_ARGS+=	-DUSE_GTK3:BOOL=OFF
+.endif
+
+.if ${PORT_OPTIONS:MGTK3}
+LIB_DEPENDS+=	libwebkitgtk-3.0.so:${PORTSDIR}/www/webkit-gtk3
+USE_GNOME+=	gtk30
+CMAKE_ARGS+=	-DUSE_GTK3:BOOL=ON \
+	-DHALF_BRO_INCOM_WEBKIT2:BOOL=OFF
+.endif
+
+.if ${PORT_OPTIONS:MZEITGEIST}
+BROKEN=               Doesn't build with zeitgeist >= 0.9.0
+LIB_DEPENDS+=	libzeitgeist-1.0.so:${PORTSDIR}/sysutils/libzeitgeist
+CMAKE_ARGS+=	-DUSE_ZEITGEIST:BOOL=ON
+.else
+CMAKE_ARGS+=	-DUSE_ZEITGEIST:BOOL=OFF
+.endif
+
+.if ${PORT_OPTIONS:MGIR} && ${PORT_OPTIONS:MGTK2}
+USE_GNOME+=	introspection:build
+CMAKE_ARGS+=	-DUSE_GIR:BOOL=ON
+PLIST_SUB+=	GIR=""
+.else
+CMAKE_ARGS+=	-DUSE_GIR:BOOL=OFF
+PLIST_SUB+=	GIR="@comment "
+.endif
+
+post-patch:
+# Avoid errors with CMake
+.for dir in config extensions
+	@${RM} ${WRKSRC}/${dir}/*.orig
+.endfor
+
+.include <bsd.port.mk>

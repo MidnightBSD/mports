@@ -1,0 +1,32 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 17427 2014-09-20 15:34:51Z laffer1 $
+share/fonts/75dpi/term14.pcf.gz
+share/fonts/75dpi/charR24.pcf.gz
+share/fonts/75dpi/tech14.pcf.gz
+share/fonts/75dpi/charBI18.pcf.gz
+share/fonts/75dpi/charR08.pcf.gz
+share/fonts/75dpi/charI14.pcf.gz
+share/fonts/75dpi/charB18.pcf.gz
+share/fonts/75dpi/charI12.pcf.gz
+share/fonts/75dpi/charB08.pcf.gz
+share/fonts/75dpi/charB24.pcf.gz
+share/fonts/75dpi/charBI24.pcf.gz
+share/fonts/75dpi/charI10.pcf.gz
+share/fonts/75dpi/charBI08.pcf.gz
+share/fonts/75dpi/charR18.pcf.gz
+share/fonts/75dpi/termB14.pcf.gz
+share/fonts/75dpi/charBI10.pcf.gz
+share/fonts/75dpi/charI24.pcf.gz
+share/fonts/75dpi/charB12.pcf.gz
+share/fonts/75dpi/charI08.pcf.gz
+share/fonts/75dpi/techB14.pcf.gz
+share/fonts/75dpi/charBI12.pcf.gz
+share/fonts/75dpi/charR14.pcf.gz
+share/fonts/75dpi/charB10.pcf.gz
+share/fonts/75dpi/charR12.pcf.gz
+share/fonts/75dpi/charBI14.pcf.gz
+share/fonts/75dpi/charR10.pcf.gz
+share/fonts/75dpi/fonts.dir
+share/fonts/75dpi/charI18.pcf.gz
+share/fonts/75dpi/charB14.pcf.gz
+@dirrm share/fonts/75dpi
+@dirrm share/fonts

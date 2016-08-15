@@ -1,0 +1,21 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 17427 2014-09-20 15:34:51Z laffer1 $
+share/fonts/Type1/c0583bt_.afm
+share/fonts/Type1/c0583bt_.pfb
+share/fonts/Type1/fonts.dir
+share/fonts/Type1/c0649bt_.afm
+share/fonts/Type1/c0633bt_.afm
+share/fonts/Type1/c0649bt_.pfb
+share/fonts/Type1/c0633bt_.pfb
+share/fonts/Type1/fonts.scale
+share/fonts/Type1/c0632bt_.afm
+share/fonts/Type1/c0419bt_.afm
+share/fonts/Type1/c0611bt_.pfb
+share/fonts/Type1/c0648bt_.afm
+share/fonts/Type1/c0632bt_.pfb
+share/fonts/Type1/c0419bt_.pfb
+share/fonts/Type1/c0611bt_.afm
+share/fonts/Type1/c0648bt_.pfb
+share/fonts/Type1/c0582bt_.afm
+share/fonts/Type1/c0582bt_.pfb
+@dirrm share/fonts/Type1
+@dirrm share/fonts

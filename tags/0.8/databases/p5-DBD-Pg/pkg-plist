@@ -1,0 +1,15 @@
+@comment $MidnightBSD$
+%%SITE_PERL%%/%%PERL_ARCH%%/DBD/Pg.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/Pg/Pg.bs
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/Pg/Pg.so
+%%SITE_PERL%%/%%PERL_ARCH%%/Bundle/DBD/Pg.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/DBD
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/Pg
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Bundle/DBD
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Bundle
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%
+@dirrm %%SITE_PERL%%
+@dirrm lib/perl5/site_perl
+@dirrm lib/perl5

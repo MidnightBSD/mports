@@ -1,0 +1,10 @@
+--- INSTALL.orig	2015-02-08 13:43:29.000000000 +0000
++++ INSTALL	2015-02-19 12:22:34.259436291 +0000
+@@ -29,7 +29,6 @@
+    - memory_limit > 16MB (increase as suitable to support large attachments)
+    - file_uploads enabled (for attachment upload features)
+    - session.auto_start disabled
+-   - suhosin.session.encrypt disabled
+    - mbstring.func_overload disabled
+    - magic_quotes_runtime disabled
+    - magic_quotes_sybase disabled

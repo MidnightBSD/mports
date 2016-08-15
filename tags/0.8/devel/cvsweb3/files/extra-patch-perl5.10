@@ -1,0 +1,29 @@
+--- c2	Sat Oct 11 11:57:36 2008
++++ cvsweb.cgi	Sat Oct 11 11:59:44 2008
+@@ -294,7 +294,7 @@
+              $ENV{SCRIPT_NAME});
+ }
+ 
+-$scriptname    = '' unless defined($scriptname);
++$scriptname    = '' unless defined($scriptwhere);
+ 
+ $where         =  $pathinfo;
+ $doCheckout    =  $where =~ s|^/$CheckoutMagic/|/|o;
+@@ -1718,7 +1718,7 @@
+   my ($command) = @_;
+   for my $d (@command_path) {
+     my $cmd = catfile($d, $command);
+-    return $cmd if (-x $cmd && !-d _);
++    return $cmd if (-x $cmd && !-d $cmd);
+   }
+   return '';
+ }
+@@ -4458,7 +4458,7 @@
+               crc    => 0,
+               len    => 0,
+             };
+-  my ($header) = pack("c10",
++  my ($header) = pack("C10",
+                       MAGIC1, MAGIC2, Compress::Zlib::Z_DEFLATED(),
+                       0, 0, 0, 0, 0, 0, OSCODE);
+   print {$o->{handle}} $header;

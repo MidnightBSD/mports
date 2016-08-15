@@ -1,0 +1,8 @@
+@comment $MidnightBSD$
+bin/classpath
+bin/javavm
+bin/registervm
+bin/unregistervm
+bin/checkvms
+bin/manvm
+etc/javavm_opts.conf.dist

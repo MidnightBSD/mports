@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/devel/gnome-vfs/pkg-deinstall.in,v 1.10 2009/01/10 05:21:21 marcus Exp $
+#   $MCom: ports/devel/gnome-vfs/pkg-deinstall.in,v 1.20 2008/08/06 04:22:49 mezz Exp $
+#
+# Restore gconf keys of libgnome.
+
+if [ "$2" != "POST-DEINSTALL" ]; then
+	exit 0
+fi
+
+SCHEMAS=%%LOCALBASE%%/etc/gconf/schemas/desktop_gnome_applications_terminal.schemas
+
+if [ -f ${SCHEMAS} ]; then
+	env GCONF_CONFIG_SOURCE=xml::%%LOCALBASE%%/etc/gconf/gconf.xml.defaults \
+	%%LOCALBASE%%/bin/gconftool-2 --makefile-install-rule ${SCHEMAS} \
+		> /dev/null || /usr/bin/true
+fi
+
+exit 0
+

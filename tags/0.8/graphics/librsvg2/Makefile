@@ -1,0 +1,38 @@
+# $MidnightBSD$
+
+PORTNAME=	librsvg
+PORTVERSION=	2.40.6
+PORTREVISION=	1
+CATEGORIES=	graphics gnome
+MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	2
+DIST_SUBDIR=	gnome2
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Library for parsing and rendering SVG vector-graphic files
+
+LICENSE=	gpl2
+
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libcroco-0.6.so:${PORTSDIR}/textproc/libcroco
+RUN_DEPENDS=	gtk-engines2>=2.7.5_1:${PORTSDIR}/x11-themes/gtk-engines2
+
+USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USE_GNOME=	gnomeprefix libgsf gtk20 introspection:build
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--with-svgz \
+		--disable-vala \
+		--with-croco \
+		--disable-Bsymbolic \
+		--enable-gtk-theme
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|GTK3_REQUIRED=3.[0-9].[0-9]|GTK3_REQUIRED=9.90.0|g' \
+		${WRKSRC}/configure
+
+.include <bsd.port.mk>

@@ -1,0 +1,64 @@
+# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
+# $MidnightBSD$
+# $FreeBSD: head/multimedia/mjpegtools/Makefile 390310 2015-06-22 18:33:20Z antoine $
+
+PORTNAME=	mjpegtools
+PORTVERSION=	2.1.0
+CATEGORIES=	multimedia
+MASTER_SITES=	SF/${PORTNAME:S/tools//}/${PORTNAME}/${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Set of tools to record/playback/edit videos in MPEG format
+
+LICENSE=	gpl2 # (or later)
+
+BUILD_DEPENDS=	v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat
+
+CONFLICTS=	mplex-[0-9]*
+
+USES=		gmake jpeg libtool pathfix pkgconfig
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--without-dga --without-x
+CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-${OPSYS:tl}${OSREL}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+
+INFO=		mjpeg-howto
+
+OPTIONS_DEFINE=		DOCS DV GTK2 PNG QUICKTIME SDL
+OPTIONS_DEFAULT=	GTK2 PNG SDL
+OPTIONS_SUB=		yes
+
+DV_LIB_DEPENDS=		libdv.so:${PORTSDIR}/multimedia/libdv
+DV_CONFIGURE_WITH=	libdv
+GTK2_USE=		GNOME=gtk20
+GTK2_CONFIGURE_WITH=	gtk
+PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+PNG_CONFIGURE_WITH=	libpng
+QUICKTIME_LIB_DEPENDS=	libquicktime.so:${PORTSDIR}/multimedia/libquicktime
+QUICKTIME_CONFIGURE_WITH=	libquicktime
+SDL_USE=		SDL=gfx,sdl
+SDL_CONFIGURE_OFF=	--without-libsdl --without-sdlgfx
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "i386"
+USES+=		compiler:c++11-lang
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} \
+		-e 's| \*-\*-linux\*)| *-*-*)|' \
+		-e '/ARCHFLAGS=/d' ${WRKSRC}/configure
+
+post-install:
+	@${MKDIR} ${DOCSDIR}
+.for i in AUTHORS BUGS CHANGES ChangeLog HINTS NEWS PLANS README README.DV \
+	README.avilib README.glav README.AltiVec README.lavpipe \
+	README.transist TODO
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${DOCSDIR})
+.endfor
+
+.include <bsd.port.mk>

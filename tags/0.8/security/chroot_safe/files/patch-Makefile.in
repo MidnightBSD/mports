@@ -1,0 +1,35 @@
+--- ./Makefile.in.orig	Thu May 10 08:04:16 2007
++++ ./Makefile.in	Thu May 10 08:06:00 2007
+@@ -1,5 +1,5 @@
+ VPATH=@srcdir@
+-CXX=g++
++CXX?=c++
+ SOFLAGS=-fpic -shared
+ DEFINES=
+ prefix=@prefix@
+@@ -12,18 +12,18 @@
+ all: chroot_safe.so
+ 
+ chroot_safe.so: chroot_safe.cpp Makefile
+-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(DEFINES) $(SOFLAGS) -o chroot_safe.so $<
++	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(DEFINES) $(SOFLAGS) chroot_safe.cpp -o chroot_safe.so $<
+ 
+ clean:
+ 	rm -f *.o *.so *~
+ 
+ install: all
+-	$(install) -m 0755 -d $(libexec)
+-	$(install) -m 0755 -s chroot_safe.so $(libexec)/chroot_safe.so
+-	$(install) -m 0755 -d $(sbin)
+-	$(install) -m 0750 chroot_safe $(sbin)/chroot_safe
+-	$(install) -m 0755 -d $(man)
+-	$(install) -m 0444 chroot_safe.1 $(man)/chroot_safe.1
++	$(install) -m 0755 -d $(DESTDIR)$(libexec)
++	$(install) -m 0755 -s chroot_safe.so $(DESTDIR)$(libexec)/chroot_safe.so
++	$(install) -m 0755 -d $(DESTDIR)$(sbin)
++	$(install) -m 0750 chroot_safe $(DESTDIR)$(sbin)/chroot_safe
++	$(install) -m 0755 -d $(DESTDIR)$(man)
++	$(install) -m 0444 chroot_safe.1 $(DESTDIR)$(man)/chroot_safe.1
+ 
+ distclean: clean
+ 	rm -f chroot_safe config.log config.status Makefile chroot_safe.1

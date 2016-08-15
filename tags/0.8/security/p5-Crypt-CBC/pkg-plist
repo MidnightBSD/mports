@@ -1,0 +1,4 @@
+%%SITE_PERL%%/Crypt/CBC.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/CBC
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt
+@dirrmtry %%SITE_PERL%%/Crypt

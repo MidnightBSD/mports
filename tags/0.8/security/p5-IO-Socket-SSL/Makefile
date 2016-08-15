@@ -1,0 +1,42 @@
+# $MidnightBSD$
+
+PORTNAME=	IO-Socket-SSL
+PORTVERSION=	2.016
+CATEGORIES=	security perl5
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:SULLR
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Perl5 interface to SSL sockets
+
+LICENSE=	artistic
+
+BUILD_DEPENDS=	p5-Net-SSLeay>=1.59:${PORTSDIR}/security/p5-Net-SSLeay \
+		p5-Mozilla-CA>=20130114:${PORTSDIR}/www/p5-Mozilla-CA
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5 shebangfix
+PERL_CONFIGURE=	yes
+
+CONFIGURE_ARGS=	< /dev/null
+
+OPTIONS_DEFINE=	EXAMPLES IDN IPV6
+
+INSTALL_TARGET=	pure_install
+
+PORTEXAMPLES=	*
+
+SHEBANG_FILES=	example/ssl_mitm.pl
+
+IDN_BUILD_DEPENDS=	p5-URI>=1.50:${PORTSDIR}/net/p5-URI
+IDN_RUN_DEPENDS=	${IDN_BUILD_DEPENDS}
+IPV6_BUILD_DEPENDS=	p5-IO-Socket-IP>=0.31:${PORTSDIR}/net/p5-IO-Socket-IP \
+			p5-Socket>=1.95:${PORTSDIR}/net/p5-Socket
+IPV6_RUN_DEPENDS=	${IPV6_BUILD_DEPENDS}
+
+post-install:
+	${MKDIR} ${EXAMPLESDIR}/
+	${INSTALL_SCRIPT} ${WRKSRC}/example/* ${EXAMPLESDIR}/
+
+.include <bsd.port.mk>

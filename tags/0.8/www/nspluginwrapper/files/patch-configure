@@ -1,0 +1,32 @@
+--- configure.orig	2011-06-30 23:18:57 -0400
++++ configure	2011-08-30 22:54:45 -0400
+@@ -6,13 +6,8 @@
+ PACKAGE=nspluginwrapper
+ 
+ # set temporary file name
+-if test ! -z "$TMPDIR" ; then
+-    TMPDIR1="${TMPDIR}"
+-elif test ! -z "$TEMPDIR" ; then
+-    TMPDIR1="${TEMPDIR}"
+-else
+-    TMPDIR1="/tmp"
+-fi
++mkdir -p tmp
++TMPDIR1="./tmp"
+ 
+ TMPC="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.c"
+ TMPO="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.o"
+@@ -783,10 +778,10 @@
+     echo "OS=dragonfly" >> $config_mak
+     echo "#define HOST_DRAGONFLY 1" >> $config_h
+     echo "#define HOST_OS \"dragonfly\"" >> $config_h
+-elif test "$host_os" = "freebsd"; then
++elif test "$host_os" = "midnightbsd"; then
+     echo "OS=freebsd" >> $config_mak
+-    echo "#define HOST_FREEBSD 1" >> $config_h
+-    echo "#define HOST_OS \"freebsd\"" >> $config_h
++    echo "#define HOST_MIDNIGHTBSD 1" >> $config_h
++    echo "#define HOST_OS \"mdinightbsd\"" >> $config_h
+ elif test "$host_os" = "netbsd"; then
+     echo "OS=netbsd" >> $config_mak
+     echo "#define HOST_NETBSD 1" >> $config_h

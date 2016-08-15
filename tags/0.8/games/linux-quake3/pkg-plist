@@ -1,0 +1,11 @@
+bin/linux-q3ded
+%%CLIENT%%bin/linux-quake3
+%%SMP%%bin/linux-quake3-smp
+%%LIBDIR%%/q3ded
+%%CLIENT%%%%LIBDIR%%/quake3
+%%SMP%%%%LIBDIR%%/quake3-smp
+%%PORTDOCS%%%%DOCSDIR%%/LinuxFAQ/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/LinuxFAQ/index.html
+%%PORTDOCS%%%%DOCSDIR%%/LinuxFAQ/udp_wide_README.txt
+%%PORTDOCS%%%%DOCSDIR%%/LinuxFAQ/udp_wide_broadcast.patch
+%%PORTDOCS%%%%DOCSDIR%%/README-linux.txt

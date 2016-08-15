@@ -1,0 +1,32 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<div class="row-fluid">
+     <div class="col-md-10 col-md-offset-1">
+       <h2>Run <TMPL_VAR NAME="run_id1"> vs Run <TMPL_VAR NAME="run_id2"></h2>
+
+ <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Port</th>
+        <th>Version</th>
+        <th>Status</th>
+        <th>Version 2</th>
+        <th>Status 2</th>
+    </tr>
+    </thead>
+
+<TMPL_LOOP NAME="ding">
+    <tr>
+        <td><TMPL_VAR NAME="name"></td>
+        <td class="<TMPL_VAR NAME=status1>"><TMPL_VAR NAME="version1"></td>
+        <td class="<TMPL_VAR NAME=status1>"><TMPL_VAR NAME="status1"></td>
+        <td class="<TMPL_VAR NAME=status2>"><TMPL_VAR NAME="version2"></td>
+        <td class="<TMPL_VAR NAME=status2>"><TMPL_VAR NAME="status2"></td>
+    </tr>
+</TMPL_LOOP>
+</table>
+    </div>
+
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# $MidnightBSD: mports/net/ntp/files/ntp.in,v 1.4 2010/02/28 16:50:43 laffer1 Exp $
+
+# PROVIDE: ntp
+# REQUIRE: DAEMON ntpdate cleanvar devfs
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+
+# Define ntp_* variables in one of these files:
+#       /etc/rc.conf
+#       /etc/rc.conf.local
+#       /etc/rc.conf.d/dovecot
+
+ntp_enable="${ntp_enable-NO}"
+ntp_config="${ntp_config-%%PREFIX%%/etc/ntp.conf}"
+ntp_flags="${ntp_flags-}"
+ntp_sync_on_start="${ntp_sync_on_start-NO}"
+
+. /etc/rc.subr
+
+name="ntp"
+rcvar=`set_rcvar`
+command="%%PREFIX%%/sbin/${name}d"
+pidfile="/var/run/${name}.pid"
+start_precmd="ntp_precmd"
+
+load_rc_config $name
+
+ntp_precmd()
+{
+	rc_flags="-c ${ntp_config} -p ${pidfile} ${ntp_flags}"
+
+	if checkyesno ntp_sync_on_start; then
+		rc_flags="-g $rc_flags"
+	fi
+
+	if [ -z "$ntp_chrootdir" ]; then
+		return 0;
+	fi
+
+	# If running in a chroot cage, ensure that the appropriate files
+	# exist inside the cage, as well as helper symlinks into the cage
+	# from outside.
+	#
+	# As this is called after the is_running and required_dir checks
+	# are made in run_rc_command(), we can safely assume ${ntpd_chrootdir}
+	# exists and ntpd isn't running at this point (unless forcestart
+	# is used).
+	#
+	if [ ! -c "${ntp_chrootdir}/dev/clockctl" ]; then
+		rm -f "${ntp_chrootdir}/dev/clockctl"
+		( cd /dev ; /bin/pax -rw -pe clockctl "${ntp_chrootdir}/dev" )
+	fi
+	ln -fs "${ntp_chrootdir}/var/db/ntp.drift" /var/db/ntp.drift
+
+	#	Change run_rc_commands()'s internal copy of $ntp_flags
+	#
+	rc_flags="-u ntpd:ntpd -i ${ntp_chrootdir} $rc_flags"
+}
+
+run_rc_command "$1"

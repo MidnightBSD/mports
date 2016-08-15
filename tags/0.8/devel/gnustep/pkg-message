@@ -1,0 +1,15 @@
+To use GNUstep you need to source the envoroment in your shell:
+
+for sh/bash:
+. /usr/local/GNUstep/System/Library/Makefiles/GNUstep.sh
+
+for csh:
+source /usr/local/GNUstep/System/Library/Makefiles/GNUstep.csh
+
+then start your applications with "openapp <name>".
+
+You can add this to your shell config file to automate the process. For
+csh, add it to ~/.cshrc
+
+MidnightBSD tries to source this file in shells automatically.  New
+versions of GNUstep may requires changes to your shell environment.

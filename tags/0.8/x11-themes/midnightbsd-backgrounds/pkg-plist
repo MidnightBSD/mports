@@ -1,0 +1,26 @@
+@comment $MidnightBSD$
+share/wallpapers/BSDkeyboard.jpg
+share/wallpapers/BSDkeyboard.jpg.desktop
+share/wallpapers/bsdheart.jpg
+share/wallpapers/bsdheart.jpg.desktop
+share/wallpapers/mnbsd_bsdgurl1.jpg
+share/wallpapers/mnbsd_bsdgurl1.jpg.desktop
+share/wallpapers/mnbsd_bsdgurl2.jpg
+share/wallpapers/mnbsd_bsdgurl2.jpg.desktop
+share/wallpapers/MidnightBSD-Space.jpg
+share/wallpapers/MidnightBSD-Space.jpg.desktop
+share/wallpapers/mnbsd_bg_gray.png
+share/wallpapers/mnbsd_bg_gray.png.desktop
+share/wallpapers/mnbsd_bg_purple.png
+share/wallpapers/mnbsd_bg_purple.png.desktop
+share/wallpapers/mnbsd_bg_black.png
+share/wallpapers/mnbsd_bg_black.png.desktop
+share/wallpapers/mnbsd_bg_green.png
+share/wallpapers/mnbsd_bg_green.png.desktop
+share/wallpapers/mnbsd_bg_yellow.png
+share/wallpapers/mnbsd_bg_yellow.png.desktop
+share/wallpapers/mnbsd_bg_blue.png
+share/wallpapers/mnbsd_bg_blue.png.desktop
+share/wallpapers/mnbsd_bg_pink.png
+share/wallpapers/mnbsd_bg_pink.png.desktop
+@dirrm share/wallpapers

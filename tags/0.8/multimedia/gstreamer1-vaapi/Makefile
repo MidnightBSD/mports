@@ -1,0 +1,35 @@
+# Created by: Koop Mast <kwm@rainbow-runner.nl>
+# $MidnightBSD$
+
+PORTNAME=	gstreamer1-vaapi
+PORTVERSION=	0.5.10
+PORTREVISION=	1
+CATEGORIES=	multimedia
+MASTER_SITES=	http://www.freedesktop.org/software/vaapi/releases/gstreamer-vaapi/
+DISTNAME=	gstreamer-vaapi-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GStreamer hardware video decoding via VA-API plug-in
+
+LICENSE=	lgpl2.1
+
+LIB_DEPENDS=	libva.so:${PORTSDIR}/multimedia/libva
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-wayland --with-gstreamer-api=1.4 \
+		--disable-builtin-libvpx --disable-silent-rules
+INSTALL_TARGET=	install-strip
+USES=		compiler:c11 gmake libtool pkgconfig tar:bzip2
+USE_LDCONFIG=	yes
+USE_GSTREAMER1=	yes
+USE_GL=		gl
+USE_XORG=	x11 xrandr xrender xproto:build
+
+PLIST_SUB=	VERSION=1.0 LIBVER=1.4
+
+# manual since pathfix doesn't work.
+post-patch:
+	@${REINPLACE_CMD} -e 's|[{]libdir[}]/pkgconfig|{prefix}/libdata/pkgconfig|g' \
+		${WRKSRC}/configure
+
+.include <bsd.port.mk>

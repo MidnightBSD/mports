@@ -1,0 +1,12 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:%%LOCALBASE%%/bin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Adding catalog entry... "
+    @${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG openjade/catalog
+    echo "done."
+    ;;
+esac

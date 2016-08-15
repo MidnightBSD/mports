@@ -1,0 +1,22 @@
+# $MidnightBSD$
+
+PORTNAME=	postgresql
+PORTVERSION=	1.1.0
+PORTREVISION=	2
+CATEGORIES=	databases python
+MASTER_SITES=	CHEESESHOP \
+		http://python.projects.postgresql.org/files/
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	py-${PORTNAME}-${PORTVERSION}
+DIST_SUBDIR=	postgresql
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python 3 compatible PostgreSQL database driver and tools
+
+LICENSE=	bsd3
+
+USES=		zip pgsql python:3
+USE_PYTHON=	distutils autoplist
+PYTHON_VERSION= python3.3
+
+.include <bsd.port.mk>

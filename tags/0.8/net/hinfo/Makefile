@@ -1,0 +1,55 @@
+# $MidnightBSD$
+
+PORTNAME=	hinfo
+PORTVERSION=	1.0
+PORTREVISION=	1
+CATEGORIES=	net perl5
+# note: the "true" MASTER_SITE is http://www.blars.org, but
+# due to policies on that site, it is not reachable from the
+# build machines.
+MASTER_SITES=	http://www.lonesome.com/FreeBSD/distfiles/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Utility primarily designed to find the owner of an IP block
+
+LICENSE=	gpl2
+
+RUN_DEPENDS=	p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS \
+		wget:${PORTSDIR}/ftp/wget
+
+USES=		perl5
+
+DATADIR?=	${PREFIX}/lib/${PORTNAME}
+
+HINFO_DBFILES=	dnsbl.ins.pl whois.ins.pl
+HINFO_SCRIPTS=	hinfo hinfo-update myhostinfo.cgi
+
+#MAN1=		hinfo.1
+#MAN5=		hinfo.conf.5
+
+NO_BUILD=	yes
+
+# By default, we don't install myhostinfo.cgi.  Install it if you wish; it'll
+# already be patched for you.
+post-extract:
+.for filename in ${HINFO_SCRIPTS}
+	${REINPLACE_CMD} -E '1s|^#!.+|#!${PERL}|' ${WRKSRC}/${filename}
+.endfor
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/hinfo ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/hinfo-update ${PREFIX}/sbin
+	${INSTALL_DATA} ${WRKSRC}/hinfo.conf ${PREFIX}/etc/hinfo.conf.example
+.if !exists({PREFIX}/etc/hinfo.conf)
+	${INSTALL_DATA} ${WRKSRC}/hinfo.conf ${PREFIX}/etc/hinfo.conf
+.endif
+.if !defined(NOPORTDOCS)
+	${INSTALL_MAN} ${WRKSRC}/hinfo.1 ${PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/hinfo.conf.5 ${PREFIX}/man/man5/
+.endif
+	@${MKDIR} ${DATADIR}
+.for filename in ${HINFO_DBFILES}
+	${INSTALL_DATA} ${WRKSRC}/${filename} ${DATADIR}
+.endfor
+
+.include <bsd.port.mk>

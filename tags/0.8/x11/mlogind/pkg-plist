@@ -1,0 +1,11 @@
+bin/mlogind
+lib/libmlogind.so
+lib/libmlogind.so.1.3.6
+%%DATADIR%%/themes/default/background.jpg
+%%DATADIR%%/themes/default/panel.png
+%%DATADIR%%/themes/default/mlogind.theme
+man/man1/mlogind.1.gz
+@sample etc/mlogind.conf.sample
+%%PAM%%@unexec if cmp -s %D/etc/pam.d/mlogind.default %D/etc/pam.d/mlogind; then rm -f %D/etc/pam.d/mlogind; fi
+%%PAM%%etc/pam.d/mlogind.default
+%%PAM%%@exec if [ ! -f %D/etc/pam.d/mlogind ]; then cp -p %D/%F %B/mlogind; fi

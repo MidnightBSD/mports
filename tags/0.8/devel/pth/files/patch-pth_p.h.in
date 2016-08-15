@@ -1,0 +1,18 @@
+--- pth_p.h.in.orig	2006-06-08 17:54:03.000000000 +0000
++++ pth_p.h.in	2013-02-28 19:51:16.000000000 +0000
+@@ -32,7 +32,14 @@
+ #include <stdarg.h>
+ #include <string.h>
+ #include <setjmp.h>
+-#include <signal.h>
++#if defined(__MidnightBSD__)
++# include <osreldate.h>
++# if __MidnightBSD_version < 4015
++#  include <signal.h>
++# endif
++#else
++# include <signal.h>
++#endif
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <errno.h>

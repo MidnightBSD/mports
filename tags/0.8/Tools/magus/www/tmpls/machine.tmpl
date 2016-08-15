@@ -1,0 +1,46 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<section>
+  <div class="row-fluid">
+    <div class="col-md-10 col-md-offset-1">
+    <h2>Machine <TMPL_VAR name="name"></h2>
+
+    <table class="table machine-summary">
+    <thead>
+    <tr>
+	<th>ID</th>
+	<th>Name</th>
+	<th>Maintainer</th>
+	<th>Arch</th>
+	<th>OSVersion</th>
+	<th>Run</th>
+	<th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+	<td><TMPL_VAR NAME="id"></td>
+	<td><TMPL_VAR NAME="name"></td>
+	<td><TMPL_VAR NAME="maintainer"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><a href="#" class="edit"><TMPL_VAR NAME="osversion"></a></td>
+	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></td>
+	<td>
+	<select onchange="return showEvents(<TMPL_VAR NAME="id">, this.value);">
+		<option value="">Show Events</option>
+	    <TMPL_LOOP NAME="runs">
+		<option value="<TMPL_VAR NAME="run">">Run  <TMPL_VAR NAME="run"></option>
+	    </TMPL_LOOP>
+	</select>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="7" id="events-display" style="display: none"> </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

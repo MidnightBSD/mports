@@ -1,0 +1,4 @@
+%%QT_PLUGINDIR%%/sqldrivers/libqsql%%DB%%.so
+@dirrm %%QT_PLUGINDIR%%/sqldrivers
+@dirrm %%QT_PLUGINDIR%%
+@dirrm %%QT_LIBDIR%%

@@ -1,0 +1,6 @@
+%%SITE_PERL%%/File/Copy/Recursive.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/File/Copy/Recursive
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/File/Copy
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/File
+@dirrmtry %%SITE_PERL%%/File/Copy
+@dirrmtry %%SITE_PERL%%/File

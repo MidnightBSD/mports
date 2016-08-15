@@ -1,0 +1,21 @@
+--- ./transpec/Makefile.orig	Wed Aug 20 17:37:13 1997
++++ ./transpec/Makefile	Mon May  7 21:40:31 2007
+@@ -5,15 +5,15 @@
+ FILES+=	linuxdoc-docbook.ts
+ FILES+=	iso12083article-roff.ts
+ FILES+=	transpec.dtd catalog
+-NOOBJ=	noobj
++NO_OBJ=	noobj
+ 
+ all clean cleandir depend lint tags:
+ 
+ beforeinstall:
+-	@mkdir -p ${TRANSPEC_DIR}
++	@mkdir -p ${DESTDIR}${TRANSPEC_DIR}
+ 
+ afterinstall:
+ 	${INSTALL} -c -o ${BINOWN} -g ${BINGRP} -m 444 ${FILES} \
+-		${TRANSPEC_DIR}
++		${DESTDIR}${TRANSPEC_DIR}
+ 
+ .include <bsd.prog.mk>
