@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Module/Runtime.pm
-@dirrmtry %%SITE_PERL%%/Module
+%%PERL5_MAN3%%/Module::Runtime.3.gz
