@@ -14,7 +14,7 @@ COMMENT=	Trusted Platform Module (TPM) emulator
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgmp.so:math/gmp
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
 USES=		cmake:outsource
 USE_RC_SUBR=	tpmd
