@@ -15,12 +15,9 @@ OPTIONS_GROUP_ICONV=	${OPTIONS_ICONV}
 OPTIONS_CAIRO= \
 	GS_cairo
 
-OPTIONS_CUPS= \
-	GS_cups
-
 OPTIONS_DEFINE+= \
 	${OPTIONS_CAIRO} \
-	${OPTIONS_CUPS} \
+	GS_cups \
 	GS_display \
 	GS_omni \
 	GS_md2k \
@@ -311,7 +308,7 @@ OPTIONS_DEFAULT+= \
 	${OPTIONS_SVGALIB} \
 	${OPTIONS_ICONV} \
 	${OPTIONS_CAIRO} \
-	${OPTIONS_CUPS} \
+	GS_cups \
 	GS_display \
 	GS_omni \
 	GS_md2k \
