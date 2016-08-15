@@ -37,9 +37,9 @@ UNITY_CONFIGURE_ENV=	CUSTOM_URIPARSER_CPPFLAGS="-I${LOCALBASE}/include/uriparser
 UNITY_LIB_DEPENDS=	liburiparser.so:net/uriparser
 UNITY_CONFIGURE_ENABLE=	unity
 DNET_CONFIGURE_WITH=	dnet
-DNET_LIB_DEPENDS=	libdnet.so:net/libdnet
+DNET_LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet
 ICU_CONFIGURE_WITH=	icu
-ICU_LIB_DEPENDS=	libicuuc.so:devel/icu
+ICU_LIB_DEPENDS=	libicuuc.so:${PORTSDIR}/devel/icu
 
 WRKSRC=			${WRKDIR}/open-vm-tools-${RELEASE_VER}-${BUILD_VER}
 GNU_CONFIGURE=		yes
