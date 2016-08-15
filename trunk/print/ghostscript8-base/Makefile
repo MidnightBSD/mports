@@ -23,7 +23,8 @@ LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libjbig2dec.so:${PORTSDIR}/graphics/jbig2dec \
 		libpaper.so:${PORTSDIR}/print/libpaper \
 		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libcups.so:${PORTSDIR}/print/cups
 RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
 
 CONFLICTS_INSTALL= \
@@ -70,8 +71,8 @@ PLIST_SUB=	SHLIB_VER="${PORTVERSION:R}" \
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS_DEFINE=	DOCS CAIRO CUPS FONTCONFIG ICONV
-OPTIONS_DEFAULT=DOCS CAIRO CUPS FONTCONFIG ICONV
+OPTIONS_DEFINE=	DOCS CAIRO FONTCONFIG ICONV
+OPTIONS_DEFAULT=DOCS CAIRO FONTCONFIG ICONV
 OPTIONS_SUB=	yes
 FONTCONFIG_DESC=Enable fontconfig support
 FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
