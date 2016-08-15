@@ -337,7 +337,6 @@ ${flags}+=	${${opt}_${flags}}
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
-.  else
 .    if defined(${opt}_CONFIGURE_ENABLE)
 .      for iopt in ${${opt}_CONFIGURE_ENABLE}
 CONFIGURE_ARGS+=	--disable-${iopt}
