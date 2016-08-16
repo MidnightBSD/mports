@@ -1,13 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	json-glib
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.1.2
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON (RFC 4627) interface for Glib
+
 LICENSE=	lgpl
 
 USES=		gmake libtool pathfix pkgconfig tar:xz
