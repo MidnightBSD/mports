@@ -22,7 +22,7 @@ BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
     		libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
-		libjson-glib-1.so:${PORTSDIR}/devel/json-glib
+		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib
 RUN_DEPENDS=	${LOCALBASE}/lib/girepository-1.0/GObject-2.0.typelib:${PORTSDIR}/devel/gobject-introspection
 
 USES+=		gettext gmake libtool pathfix pkgconfig
