@@ -1,13 +1,15 @@
+# $MidnightBSD$
 # $FreeBSD: head/print/cups-filters/Makefile 411031 2016-03-13 21:16:26Z tijl $
 
 PORTNAME=	cups-filters
 PORTVERSION=	1.8.2
-PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.openprinting.org/download/cups-filters/
 
-MAINTAINER=	cyberbotx@cyberbotx.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backends, filters and other software (was part of the core CUPS)
+
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	pdftops:${PORTSDIR}/graphics/poppler-utils
 RUN_DEPENDS=	pdftops:${PORTSDIR}/graphics/poppler-utils
