@@ -2,6 +2,7 @@
 
 PORTNAME=	gtkjj
 PORTVERSION=	2.0.0
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -23,7 +24,7 @@ USE_CSTD=       c99
 CFLAGS+=        -I/usr/local/include
 LDFLAGS+=       -L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse
 
-LIB_DEPENDS=	xmlrpc_client.so:${PORTSDIR}/net/xmlrpc-c
+LIB_DEPENDS=	libxmlrpc_client.so:${PORTSDIR}/net/xmlrpc-c
 USE_GNOME=	gtk30
 WANT_GNOME=	yes
 
