@@ -2,7 +2,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -17,6 +17,7 @@ LIB_DEPENDS=	liborc-0.4.so:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USES=		gmake pkgconfig tar:bzip2
+USE_GCC=	any
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
