@@ -1,9 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	nss
-PORTVERSION=	3.20.2
-PORTREVISION=	1
-#DISTVERSIONSUFFIX=	.with-ckbi-1.98
+PORTVERSION=	3.26
+#DISTVERSIONSUFFIX=	-with-ckbi-1.98
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -30,6 +29,8 @@ CPE_PRODUCT=	network_security_services
 USE_PERL5=	build
 MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 		SQLITE_INCLUDE_DIR="${LOCALBASE}/include" \
+		FREEBL_LOWHASH=1 \
+		NSS_DISABLE_GTESTS=1 \
 		NSS_USE_SYSTEM_SQLITE=1
 CFLAGS+=	-I${LOCALBASE}/include/nspr
 
@@ -40,7 +41,7 @@ DIST=		${WRKSRC:H}/dist
 
 EXTRACT_AFTER_ARGS=--exclude */lib/zlib --exclude */lib/dbm --exclude */lib/sqlite
 
-INSTALL_BINS=	certcgi certutil checkcert cmsutil crlutil derdump makepqg \
+INSTALL_BINS=	certcgi certutil cmsutil crlutil derdump makepqg \
 		mangle modutil ocspclnt oidcalc p7content p7env p7sign \
 		p7verify pk12util rsaperf shlibsign signtool signver \
 		ssltap strsclnt symkeyutil vfychain vfyserv
@@ -58,7 +59,7 @@ BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
 
 .if ${ARCH} == amd64
 USE_BINUTILS=	# intel-gcm.s
-CFLAGS+=	-B${LOCALBASE}/bin
+CC+=	-B${LOCALBASE}/bin
 .endif
 
 check regression-test test:
