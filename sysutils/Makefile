@@ -23,6 +23,7 @@ SUBDIR += consolekit
 SUBDIR += consolehm
 SUBDIR += coreutils
 SUBDIR += devcpu-data
+SUBDIR += di
 SUBDIR += dirdiff
 SUBDIR += dmidecode
 SUBDIR += docker-freebsd
