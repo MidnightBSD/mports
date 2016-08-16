@@ -15,7 +15,7 @@ COMMENT=	Roles, like a nouvelle cusine portion size slice of Moose
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-Class-Method-Modifiers>=1.05:devel/p5-Class-Method-Modifiers
+BUILD_DEPENDS=	p5-Class-Method-Modifiers>=1.05:${PORTSDIR}/devel/p5-Class-Method-Modifiers
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 NO_ARCH=	yes
