@@ -109,6 +109,7 @@ SUBDIR += php70-xmlrpc
 SUBDIR += phpldapadmin
 SUBDIR += py-avahi
 SUBDIR += py-oauth2
+SUBDIR += py-s3cmd
 SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
 SUBDIR += qt4-network
