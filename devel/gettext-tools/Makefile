@@ -23,23 +23,27 @@ CONFIGURE_ARGS=	--disable-csharp --disable-java --disable-openmp \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-USES=		charsetfix gettext-runtime iconv libtool tar:xz
+PLIST_SUB=	VERSION=${PORTVERSION:R}
+TEST_TARGET=	check
+USES=		charsetfix cpe gettext-runtime iconv libtool tar:xz
 USE_LDCONFIG=	yes
+WRKSRC_SUBDIR=	gettext-tools
 
-OPTIONS_DEFINE=	DOCS
+CPE_PRODUCT=	gettext
+CPE_VENDOR=	gnu
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS THREADS
+OPTIONS_DEFAULT=THREADS
+OPTIONS_EXCLUDE_DragonFly=	THREADS
 
-.if ${PORT_OPTIONS:MDOCS}
-INFO+=		gettext
-.endif
+DOCS_INFO=	gettext
 
-CONFIGURE_ARGS+=--disable-threads
+THREADS_CONFIGURE_ENABLE=	threads
+
+post-patch-DOCS-off:
+	@${REINPLACE_CMD} '/^SUBDIRS =/s/doc//' ${WRKSRC}/Makefile.in
 
 post-patch:
-.if ! ${PORT_OPTIONS:MDOCS}
-	@${REINPLACE_CMD} '/^SUBDIRS =/s/doc//' ${WRKSRC}/Makefile.in
-.endif
 # Exclude examples and gnulib-tests.
 	@${REINPLACE_CMD} -E '/^SUBDIRS =/s/(examples|gnulib-tests)//g' \
 		${WRKSRC}/Makefile.in
@@ -61,8 +65,5 @@ post-patch:
 # Use libasprintf installed by gettext-runtime.
 	@${REINPLACE_CMD} 's,[^ ]*libasprintf.la,-lasprintf,' \
 		${WRKSRC}/tests/lang-c++
-
-regression-test: build
-	@(cd ${WRKSRC} && ${MAKE_CMD} check)
 
 .include <bsd.port.mk>
