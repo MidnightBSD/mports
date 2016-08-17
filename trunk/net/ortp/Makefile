@@ -2,7 +2,7 @@
 # $FreeBSD: ports/net/ortp/Makefile,v 1.13 2007/03/25 16:47:00 pav Exp $
 
 PORTNAME=	ortp
-PORTVERSION=	0.24.2
+PORTVERSION=	0.25.0
 PORTREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	SAVANNAH/linphone/ortp/sources
