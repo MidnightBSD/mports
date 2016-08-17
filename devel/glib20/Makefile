@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.44.1
-PORTREVISION?=	1
+PORTVERSION=	2.46.2
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -27,7 +27,7 @@ USE_PERL5=	yes
 CONFIGURE_ARGS= --disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
 		--disable-dtrace \
-		--enable-static \
+		--enable-static=yes \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
@@ -37,7 +37,7 @@ INSTALL_TARGET=	install-strip
 
 SHEBANG_FILES=	*/*.pl
 
-LIBVERSION=	0.4400.1
+LIBVERSION=	0.4600.2
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
