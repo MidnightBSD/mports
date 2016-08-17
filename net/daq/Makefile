@@ -2,6 +2,7 @@
 
 PORTNAME=	daq
 PORTVERSION=	2.0.6
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://snort.org/downloads/snort/ \
 		http://mirrors.rit.edu/zi/
@@ -13,7 +14,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet \
-		libpcap.so:${PORTSDIR}/net/libpcap
+		libpcap.so.1:${PORTSDIR}/net/libpcap
 BUILD_DEPENDS=	flex:${PORTSDIR}/textproc/flex \
 		${LOCALBASE}/lib/libpcap.so:${PORTSDIR}/net/libpcap
 
