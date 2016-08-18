@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dgen-sdl
-PORTVERSION=	1.32
+PORTVERSION=	1.33
 CATEGORIES=	emulators
 MASTER_SITES=	SF/dgen/dgen/${PORTVERSION}
 
@@ -9,12 +9,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wonderful Sega Genesis/MegaDrive emulator
 LICENSE=	unknown
 
+USES=		gmake libarchive
 USE_SDL=	sdl
 USE_GL=		yes
 GNU_CONFIGURE=	yes
 
-MAN1=		dgen.1 dgen_tobin.1
-MAN5=		dgenrc.5
+PLIST_FILES=	bin/dgen \
+		bin/dgen_tobin \
+		man/man1/dgen.1.gz \
+		man/man1/dgen_tobin.1.gz \
+		man/man5/dgenrc.5.gz
 
 .include <bsd.port.pre.mk>
 
