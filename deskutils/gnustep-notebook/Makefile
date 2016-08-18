@@ -23,7 +23,4 @@ LICENSE=	gpl2
 USES=		gnustep
 USE_GNUSTEP=	back build
 
-post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/NoteBook.app/NoteBook
-
 .include <bsd.port.mk>
