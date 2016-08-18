@@ -2,7 +2,7 @@
 
 PORTNAME=	sqlclient
 PORTVERSION=	1.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases gnustep
 MASTER_SITES=	GNUSTEP/libs
 DISTNAME=	SQLClient-${PORTVERSION}
@@ -12,7 +12,7 @@ COMMENT=	Lightweight database abstraction layer
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libPerformance.so:${PORTSDIR}/devel/performance \
+LIB_DEPENDS=	libPerformance.so:${PORTSDIR}/devel/performance
 
 USES=		gnustep pgsql
 USE_GNUSTEP=	base build
