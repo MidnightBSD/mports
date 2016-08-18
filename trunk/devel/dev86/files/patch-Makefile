@@ -1,20 +1,11 @@
---- Makefile.orig	2004-06-20 13:57:52 -0400
-+++ Makefile	2009-06-04 01:24:32 -0400
-@@ -12,12 +12,12 @@
+--- Makefile.orig	2007-10-25 12:17:41.000000000 +0200
++++ Makefile	2007-10-25 12:17:48.000000000 +0200
+@@ -12,7 +12,7 @@
      config tests dis88 doselks bootblocks ld86r
  
  ELKSSRC= /usr/src/elks
 -PREFIX=  /usr
--BINDIR=	 $(PREFIX)/bin
--LIBDIR=  $(PREFIX)/lib/bcc
--INCLDIR= $(PREFIX)/lib/bcc
 +PREFIX?=  /usr
-+BINDIR=	 $(DESTDIR)$(PREFIX)/bin
-+LIBDIR=  $(DESTDIR)$(PREFIX)/lib/bcc
-+INCLDIR= $(DESTDIR)$(PREFIX)/lib/bcc
- ASLDDIR= $(BINDIR)
--MANDIR=	 $(PREFIX)/man
-+MANDIR=	 $(DESTDIR)$(PREFIX)/man
- CFLAGS=  -O
- 
- # Some makes take the last of a list as the default ...
+ BINDIR=	 $(PREFIX)/bin
+ LIBDIR=  $(PREFIX)/lib/bcc
+ INCLDIR= $(PREFIX)/lib/bcc
