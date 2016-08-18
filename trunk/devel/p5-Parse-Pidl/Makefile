@@ -16,7 +16,7 @@ RUN_DEPENDS:=		${BUILD_DEPENDS}
 
 CONFLICTS=
 
-SAMBA4_PORT?=		samba4
+SAMBA4_PORT?=		samba43
 SAMBA4_SUBPORT=		yes
 
 MASTERDIR=		${.CURDIR}/../../net/${SAMBA4_PORT}
@@ -25,11 +25,6 @@ PKGDIR=			${.CURDIR}
 PERL_CONFIGURE=		yes
 PATCH_WRKSRC=		${WRKDIR}/${DISTNAME}
 WRKSRC=			${WRKDIR}/${DISTNAME}/pidl
-
-MAN1=			pidl.1
-MAN3=			Parse::Pidl::Dump.3 Parse::Pidl::NDR.3 \
-			Parse::Pidl::Util.3 Parse::Pidl::Wireshark::Conformance.3 \
-			Parse::Pidl::Wireshark::NDR.3
 
 post-extract:
 			@${RM} -rf ${WRKSRC}/lib/Parse/Yapp ${WRKSRC}/lib/wscript_build
