@@ -7,13 +7,13 @@ PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for using Python to write SQL functions
 
-USES+=		pgsql:${WANT_PGSQL_VER} ${WANT_PYTHON_USE}
+USES+=		pgsql:${WANT_PGSQL_VER} python:2
 WANT_PGSQL=	server
+USE_PYTHON=	2
 
 MASTERDIR=	${.CURDIR}/../postgresql${WANT_PGSQL_VER:S/.//}-server
 
 WANT_PGSQL_VER?=	9.0
-WANT_PYTHON_USE?=	python
 
 CONFIGURE_ARGS=	--with-python
 COMPONENT=	-plpython
