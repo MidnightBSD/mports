@@ -1,11 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libmapi
-PORTVERSION=	0.9
-PORTREVISION=	2
+PORTVERSION=	2.3
 CATEGORIES=	mail
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=openchange/openchange/openchange-${PORTVERSION}%20${CODENAME}/
+MASTER_SITES=	https://github.com/openchange/openchange/archive/
 DISTNAME=	openchange-${PORTVERSION}-${CODENAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,57 +11,83 @@ COMMENT=	Open Source implementation of Microsoft Exchange protocols
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	${HOSTCONFIG}:${PORTSDIR}/net/samba4 \
-		pidl:${PORTSDIR}/devel/p5-Parse-Pidl
-LIB_DEPENDS=	sqlite3:${PORTSDIR}/databases/sqlite3 \
-		ical:${PORTSDIR}/devel/libical \
-		tdb:${PORTSDIR}/databases/tdb \
-		tevent:${PORTSDIR}/devel/tevent \
-		talloc:${PORTSDIR}/devel/talloc
-RUN_DEPENDS=	${HOSTCONFIG}:${PORTSDIR}/net/samba4
+BUILD_DEPENDS=	${SAMBA_DEP} \
+		${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
+		p5-Parse-Pidl>=4.0.1:${PORTSDIR}/devel/p5-Parse-Pidl
+LIB_DEPENDS=	libical.so:${PORTSDIR}/devel/libical \
+		libnanomsg.so:${PORTSDIR}/net/nanomsg \
+		libmemcached.so:${PORTSDIR}/databases/libmemcached \
+		libcheck.so:${PORTSDIR}/devel/libcheck \
+		libtdb.so:${PORTSDIR}/databases/tdb \
+		libtevent.so:${PORTSDIR}/devel/tevent \
+		libtalloc.so:${PORTSDIR}/devel/talloc
+RUN_DEPENDS=	${SAMBA_DEP}
 
-HOSTCONFIG=	${LOCALBASE}/libdata/pkgconfig/samba-hostconfig.pc
+CODENAME=	VULCAN
+WRKSRC=		${WRKDIR}/openchange-openchange-${PORTVERSION}-${CODENAME}
 
-CODENAME=	COCHRANE
-USE_GMAKE=	yes
-USES=		pkgconfig
-USE_PYTHON=	yes
+USE_MYSQL=	yes
+USES=		autoreconf:build bison compiler:c++11-lib gmake pathfix \
+		pkgconfig python shebangfix sqlite
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-samba=${LOCALBASE}
+CONFIGURE_ENV=	PYTHON_CONFIG=${LOCALBASE}/bin/python${PYTHON_VER}-config \
+		FLEX=${LOCALBASE}/bin/flex
+SHEBANG_FILES=	libmapi/conf/mparse.pl \
+		script/check_exchange \
+		script/mkproto.pl \
+		setup/openchange_group \
+		setup/openchange_migrate \
+		setup/openchange_neworganization \
+		setup/openchange_newuser \
+		setup/openchange_provision
+PATHFIX_MAKEFILEIN=	Makefile.am
 
+OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	BOOST DOXYGEN
-OPTIONS_DEFAULT=	BOOST
-BOOST_DESC=	Enable libmapi++ (needs boost)
+# SAMBA43
+OPTIONS_DEFAULT=BOOST
+BOOST_LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
+BOOST_CONFIGURE_ENV_OFF=	ov_cv_boost_thread=no
+BOOST_DESC=	libmapi C++ library (needs boost)
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
+DOXYGEN_CONFIGURE_ENV_OFF=	ac_cv_path_DOXYGEN=""
+SAMBA43_DESC=	Build agains samba 4.3 instead of 4.2
 
 .include <bsd.mport.options.mk>
 
-CONFIGURE_ARGS+=	--disable-swig-perl
-CONFIGURE_ARGS+=	--disable-pymapi
-
-.if ${PORT_OPTIONS:MBOOST} || exists(${LOCALBASE}/lib/libboost_thread.so)
-LIB_DEPENDS+=	boost_thread:${PORTSDIR}/devel/boost-libs
-PLIST_SUB+=	BOOST=""
+# no support for samba 4.3 yet
+.if ${PORT_OPTIONS:MSAMBA43}
+SAMBA_DEP=	samba43>=4.3.0:${PORTSDIR}/net/samba43
+PLIST_SUB+=	SAMBA=samba43
 .else
-PLIST_SUB+=	BOOST="@comment "
+SAMBA_DEP=	samba42>=4.2.0:${PORTSDIR}/net/samba42
+PLIST_SUB+=	SAMBA=samba42
 .endif
 
-.if ${PORT_OPTIONS:MDOXYGEN} || exists(${LOCALBASE}/bin/doxygen)
-BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
-PLIST_SUB+=	DOXYGEN=""
-.else
-PLIST_SUB+=	DOXYGEN="@comment "
-.endif
+#  --enable-openchange-qt4 Compile OpenChange Qt4 wrapper.
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
+	@${REINPLACE_CMD} -e "s/mkdir --parent/mkdir -p/g; \
+		s,(libdir)/pkgconfig,(prefix)/libdata/pkgconfig,g" \
 		${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e 's|<endian.h>|<sys/endian.h>|g' \
+		${WRKSRC}/configure.ac
+	@${REINPLACE_CMD} -e 's|libnanomsg|nanomsg|g' \
+		${WRKSRC}/configure.ac
+
+pre-configure:
+	@cd ${WRKSRC} && sh autogen.sh
 
 post-install:
-.for i in libmapi libmapiadmin libmapiproxy libmapiserver libmapistore libocpf
-	@${LN} -fs ${PREFIX}/lib/${i}.so.0.9 ${PREFIX}/lib/${i}.so.0
-.endfor
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/openchange
+	cd ${WRKSRC}/doc/doxygen/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/openchange/
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/*
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/lib*.so.*
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/shared-modules/dcerpc_server/*.so
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/modules/dcerpc_mapiproxy*/*.so
 
 .include <bsd.port.mk>
