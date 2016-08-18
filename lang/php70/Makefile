@@ -145,7 +145,8 @@ CONFIGURE_ARGS+=--enable-debug
 
 .if ${PORT_OPTIONS:MZTS}
 CONFIGURE_ARGS+=--enable-maintainer-zts
-USES=	localhost
+USES+=	localhost
+CONFIGURE_ENV+=	pthreads_working="yes"
 .endif
 
 .if ${PORT_OPTIONS:MDTRACE}
