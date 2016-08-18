@@ -2,6 +2,7 @@
 
 PORTNAME=	helpviewer
 PORTVERSION=	0.3
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://www.roard.com/helpviewer/download/
 DISTNAME=	HelpViewer-${PORTVERSION}
@@ -20,6 +21,6 @@ post-patch:
 		${WRKSRC}/TextFormatterXLP.h
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/HelpViewer.app/HelpViewer
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/HelpViewer.app/HelpViewer
 
 .include <bsd.port.mk>
