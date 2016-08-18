@@ -29,6 +29,7 @@ SUBDIR += mysql55-client
 SUBDIR += mysql55-server
 SUBDIR += mysql56-client
 SUBDIR += mysql56-server
+SUBDIR += ntdb
 SUBDIR += oracle8-client
 SUBDIR += p5-Class-DBI
 SUBDIR += p5-Class-DBI-AbstractSearch
