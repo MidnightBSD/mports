@@ -968,3 +968,4 @@ share/fonts/100dpi/courBO08.pcf.gz
 share/fonts/100dpi/courR08-ISO8859-13.pcf.gz
 @dirrm share/fonts/100dpi
 @dirrm share/fonts
+@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
