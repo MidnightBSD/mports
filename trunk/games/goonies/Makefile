@@ -16,6 +16,7 @@ LICENSE=	unknown
 USES=		gmake
 USE_SDL=	sdl mixer image
 USE_GL=		yes
+USE_GCC=	any
 
 BUILD_WRKSRC=	${WRKSRC}/src
 MAKEFILE=	../build/linux/Makefile
@@ -27,8 +28,8 @@ PORTDOCS=	*
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|__APPLE__|__MidnightBSD__|' \
-		${WRKSRC}/src/SFXManager.cpp
+#	@${REINPLACE_CMD} -e 's|__APPLE__|__MidnightBSD__|' \
+#		${WRKSRC}/src/SFXManager.cpp
 	@${REINPLACE_CMD} -e 's|sound/|${DATADIR}/sound/|g' \
 		${WRKSRC}/src/SFXManager.cpp
 	@${REINPLACE_CMD} -e 's|graphics/|${DATADIR}/graphics/|g' \
