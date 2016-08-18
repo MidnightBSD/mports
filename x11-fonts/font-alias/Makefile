@@ -3,14 +3,15 @@
 
 PORTNAME=	font-alias
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org Font aliases
+
 LICENSE=	unknown
 
 XORG_CAT=	font
-FONTDIR=	100dpi 75dpi misc cyrillic
+NOFONT=	yes
 
 .include <bsd.port.mk>
