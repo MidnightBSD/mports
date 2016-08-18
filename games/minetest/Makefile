@@ -13,8 +13,6 @@ COMMENT=	Infiniminer/Minecraft inspired game
 LICENSE=	lgpl2.1 # or later
 LICENSE_FILE=	${WRKSRC}/doc/lgpl-2.1.txt
 
-LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	minetest
 
