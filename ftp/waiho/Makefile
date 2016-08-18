@@ -3,6 +3,7 @@
 
 PORTNAME=	waiho
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	ftp gnustep
 MASTER_SITES=	http://www.roard.com/waiho/download/
 DISTNAME=	Waiho-${PORTVERSION}
@@ -17,6 +18,6 @@ USES=		tar:tgz gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Waiho.app/Waiho
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Waiho.app/Waiho
 
 .include <bsd.port.mk>
