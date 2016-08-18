@@ -14,6 +14,7 @@ MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
 WANT_PGSQL_VER?=9.1
 
 USES+=		tcl pgsql:${WANT_PGSQL_VER}
+USE_TCL=	yes
 WANT_PGSQL=	server
 
 CONFIGURE_ARGS=	--with-tcl --without-tk \
