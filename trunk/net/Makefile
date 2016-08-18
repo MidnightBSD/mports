@@ -123,6 +123,7 @@ SUBDIR += samba-libsmbclient
 SUBDIR += samba-nmblookup
 SUBDIR += samba-smbclient
 SUBDIR += samba36
+SUBDIR += samba42
 SUBDIR += samba43
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
