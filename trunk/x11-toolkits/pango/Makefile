@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	pango
-PORTVERSION=	1.36.8
-PORTREVISION?=	2
+PORTVERSION=	1.38.0
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -33,7 +33,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 VERSION=	1.8.0
-LIBVERSION=     0.3600.8
+LIBVERSION=	0.3800.0
 PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
 FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
@@ -54,7 +54,11 @@ PLIST_SUB+=	X11="@comment "
 .endif
 
 pre-configure:
-	@test -s ${LOCALBASE}/libdata/pkgconfig/cairo-gobject.pc || { ${ECHO_CMD} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."; exit 1; }
+# .if !exists() evaluates too early before cairo has a chance to be installed
+	@if ! pkg-config --exists cairo-gobject; then \
+		${ECHO_MSG} "${PKGNAME}: Needs cairo with GLIB (GObject) support enabled."; \
+		${FALSE}; \
+	fi
 
 .include <bsd.port.mk>
 
