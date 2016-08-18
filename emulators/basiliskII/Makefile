@@ -14,6 +14,7 @@ LICENSE=	gpl2
 WRKSRC=		${WRKDIR}/BasiliskII-${PORTVERSION}/src/Unix
 
 USES=		gmake tar:bzip2
+USE_GCC=	any
 USE_XORG=	x11
 USE_XLIB=	yes
 USE_GNOME=	esound gtk20
