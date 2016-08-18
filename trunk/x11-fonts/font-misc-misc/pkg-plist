@@ -332,3 +332,4 @@ share/fonts/misc/9x18B-ISO8859-9.pcf.gz
 share/fonts/misc/9x18B.pcf.gz
 share/fonts/misc/k14.pcf.gz
 share/fonts/misc/nil2.pcf.gz
+@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
