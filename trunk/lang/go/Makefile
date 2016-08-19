@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	go
-PORTVERSION=	1.6
+PORTVERSION=	1.6.3
 PORTEPOCH=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://golang.org/dl/
