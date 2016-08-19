@@ -65,6 +65,7 @@ SUBDIR += python34
 SUBDIR += python27
 SUBDIR += qt5-qml
 SUBDIR += ruby22
+SUBDIR += ruby23
 SUBDIR += spidermonkey170
 SUBDIR += spidermonkey24
 SUBDIR += tcl-modules
