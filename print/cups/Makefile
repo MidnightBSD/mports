@@ -1,27 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	cups
-PORTVERSION=	2.1.3
-DISTVERSIONSUFFIX=-source
-PORTREVISION=	1
+PORTVERSION=	2.1.4
+DISTVERSIONPREFIX=release-
 CATEGORIES=	print
-MASTER_SITES=	http://www.cups.org/software/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System
 
 LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
-LICENSE_FILE_gpl2=	${WRKSRC}/LICENSE.txt
-LICENSE_FILE_lgpl=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 
 CONFLICTS=	LPRng-[0-9]*
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	apple
+
 DESTDIRNAME=	DSTROOT
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-dnssd						\
+CONFIGURE_ARGS=	--enable-dnssd						\
 		--disable-gssapi					\
 		--disable-launchd					\
 		--disable-systemd					\
@@ -38,24 +37,20 @@ CONFIGURE_ARGS=	--disable-dnssd						\
 		--with-pam-module="unix"				\
 		ac_cv_path_JAVA= ac_cv_path_PERL= ac_cv_path_PHPCGI=	\
 		ac_cv_path_PHP= ac_cv_path_PYTHON=
+CPPFLAGS+=	-isystem ${LOCALBASE}/include # libpaper mainly
 LIBS+=		-L${LOCALBASE}/lib
 USES=		cpe gmake iconv pkgconfig tar:bzip2
 CPE_VENDOR=	apple
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	cupsd
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}-release-${PORTVERSION}
 
 GROUPS=		cups
 USERS=		cups
 
-OPTIONS_DEFINE=		AVAHI DBUS DOCS IPPTOOL LIBPAPER NLS X11
-OPTIONS_DEFAULT=	AVAHI DBUS LIBPAPER
+OPTIONS_DEFINE=		DBUS DOCS IPPTOOL LIBPAPER NLS X11
+OPTIONS_DEFAULT=	DBUS LIBPAPER
 OPTIONS_SUB=		yes
-
-AVAHI_LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
-AVAHI_CONFIGURE_ENABLE=	avahi
-AVAHI_SUB_LIST=		AVAHI_DAEMON=avahi_daemon
-AVAHI_SUB_LIST_OFF=	AVAHI_DAEMON=
 
 DBUS_LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 DBUS_CONFIGURE_ENABLE=	dbus
@@ -78,9 +73,9 @@ PLIST_SUB+=	OVERWRITE="@comment "
 .endif
 
 .if exists(/usr/lib/libusb.so)
-PLIST_SUB+=   USB=""
+PLIST_SUB+=	USB=""
 .else
-PLIST_SUB+=   USB="@comment "
+PLIST_SUB+=	USB="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
