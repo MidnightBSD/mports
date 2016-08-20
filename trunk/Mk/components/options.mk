@@ -73,6 +73,17 @@ OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 _ALL_EXCLUDE=	${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} \
 		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}}
 
+.for opt in ${OPTIONS_DEFINE:O:u}
+.  if !${_ALL_EXCLUDE:M${opt}}
+.    for opt_implied in ${${opt}_IMPLIES}
+.       if ${_ALL_EXCLUDE:M${opt_implied}}
+_ALL_EXCLUDE+= ${opt}
+.       endif
+.    endfor
+.  endif
+.endfor
+
+
 # Remove options the port maintainer doesn't want
 .for opt in ${_ALL_EXCLUDE:O:u}
 OPTIONS_DEFAULT:=      ${OPTIONS_DEFAULT:N${opt}}
@@ -322,6 +333,12 @@ CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--enable-/}
 .    if defined(${opt}_CONFIGURE_WITH)
 CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--with-/}
 .    endif
+.    if defined(${opt}_CMAKE_BOOL)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=true/}
+.    endif
+.    if defined(${opt}_CMAKE_BOOL_OFF)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=false/}
+.    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_ON)
 ${configure}_ARGS+=	${${opt}_${configure}_ON}
@@ -337,8 +354,8 @@ ${flags}+=	${${opt}_${flags}}
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
-.    if defined(${opt}_CONFIGURE_ENABLE)
-.      for iopt in ${${opt}_CONFIGURE_ENABLE}
+.    if defined(${opt}_CONFIGURE_DISABLE)
+.      for iopt in ${${opt}_CONFIGURE_DISABLE}
 CONFIGURE_ARGS+=	--disable-${iopt}
 .      endfor
 .    endif
