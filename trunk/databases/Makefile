@@ -17,6 +17,7 @@ SUBDIR += ldb
 SUBDIR += libgda4
 SUBDIR += libiodbc
 SUBDIR += libmemcache
+SUBDIR += libmemcached
 SUBDIR += linux-f10-sqlite3
 SUBDIR += lmdb
 SUBDIR += memcached
