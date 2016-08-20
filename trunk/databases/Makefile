@@ -110,7 +110,7 @@ SUBDIR += postgresql90-plpython
 SUBDIR += postgresql90-pltcl
 SUBDIR += postgresql90-server
 SUBDIR += postgresql91-client
-SUBDIR ++ postgresql91-pltcl
+SUBDIR += postgresql91-pltcl
 SUBDIR += postgresql91-server
 SUBDIR += postgresql92-client
 SUBDIR += postgresql92-contrib
