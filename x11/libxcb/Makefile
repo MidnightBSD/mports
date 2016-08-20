@@ -22,7 +22,6 @@ XORG_CAT=	lib
 USES=		cpe gmake python:2,build
 USE_GNOME=	libxslt:build
 USE_XORG=	xau xdmcp
-USE_PYTHON_BUILD=2
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	x
 
