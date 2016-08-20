@@ -90,7 +90,7 @@ USES+=		cpe compiler:c++11-lang gmake iconv perl5 pkgconfig \
 			python:2.7,build desktop-file-utils
 CPE_VENDOR?=mozilla
 USE_PERL5=	build
-USE_XORG=	xext xrender xt
+USE_XORG=	x11 xcomposite xdamage xext xfixes xrender xt
 
 .if ${MOZILLA} != "libxul"
 BUNDLE_LIBS=	yes
@@ -127,12 +127,34 @@ MOZ_OPTIONS+=	${CONFIGURE_TARGET} --prefix="${PREFIX}"
 MOZ_MK_OPTIONS+=MOZ_OBJDIR="${MOZ_OBJDIR}"
 
 CPPFLAGS+=		-isystem${LOCALBASE}/include
-LDFLAGS+=		-L${LOCALBASE}/lib -Wl,-rpath,${PREFIX}/lib/${MOZILLA}
+LDFLAGS+=		-L${LOCALBASE}/lib \
+			-Wl,-rpath,${PREFIX}/lib/${MOZILLA} -Wl,--as-needed
+
+.if ${OPSYS} != DragonFly # XXX xpcshell crash during install
+# use jemalloc 3.0.0 (4.0 for firefox 43+) API for stats/tuning
+MOZ_EXPORT+=	MOZ_JEMALLOC3=1 MOZ_JEMALLOC4=1
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100079
+. if ${MOZILLA_VER:R:R} < 43
+# system jemalloc 4.0.0 vs. bundled jemalloc 3.6.0-204-gb4acf73
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-bug1125514
+. endif
+.elif ${OPSYS} != FreeBSD || ${OSVERSION} < 1000012 || ${MOZILLA_VER:R:R} >= 37
+MOZ_OPTIONS+=	--enable-jemalloc
+.endif
+.endif # !DragonFly
 
 # Standard depends
-_ALL_DEPENDS=	cairo event ffi graphite harfbuzz hunspell icu jpeg nspr nss opus png pixman soundtouch sqlite vorbis vpx
+_ALL_DEPENDS=	cairo event ffi graphite harfbuzz hunspell icu jpeg nspr nss opus png pixman soundtouch sqlite vpx
+
+.if ${PORT_OPTIONS:MINTEGER_SAMPLES}
+MOZ_EXPORT+=	MOZ_INTEGER_SAMPLES=1
+_ALL_DEPENDS+=	tremor
+.else
+_ALL_DEPENDS+=	vorbis
+.endif
 
 .if ! ${PORT_OPTIONS:MBUNDLED_CAIRO}
+cairo_BUILD_DEPENDS=cairo>=1.12.16_1,2:${PORTSDIR}/graphics/cairo
 cairo_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
 cairo_MOZ_OPTIONS=	--enable-system-cairo
 .endif
@@ -183,10 +205,6 @@ png_MOZ_OPTIONS=	--with-system-png=${LOCALBASE}
 .if exists(${FILESDIR}/patch-z-bug517422)
 soundtouch_LIB_DEPENDS=	libSoundTouch.so:${PORTSDIR}/audio/soundtouch
 soundtouch_MOZ_OPTIONS=	--with-system-soundtouch
-
-# XXX disabled: bug 913854 not yet upstreamed
-speex_LIB_DEPENDS=	libspeexdsp.so:${PORTSDIR}/audio/speex
-speex_MOZ_OPTIONS=	--with-system-speex
 .endif
 
 sqlite_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
@@ -197,7 +215,10 @@ sqlite_MOZ_OPTIONS=	--enable-system-sqlite
 theora_LIB_DEPENDS=	libtheora.so:${PORTSDIR}/multimedia/libtheora
 theora_MOZ_OPTIONS=	--with-system-theora
 
-vorbis_LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
+tremor_LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg libvorbisidec.so:${PORTSDIR}/audio/libtremor
+tremor_MOZ_OPTIONS=	--with-system-tremor --with-system-ogg
+
+vorbis_LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg libvorbis.so:${PORTSDIR}/audio/libvorbis
 vorbis_MOZ_OPTIONS=	--with-system-vorbis --with-system-ogg
 .endif
 
@@ -208,6 +229,9 @@ vpx_MOZ_OPTIONS=	--with-system-libvpx
 .for use in ${USE_MOZILLA}
 ${use:S/-/_WITHOUT_/}=	${TRUE}
 .endfor
+
+LIB_DEPENDS+=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
 .for dep in ${_ALL_DEPENDS} ${USE_MOZILLA:M+*:S/+//}
 .if !defined(_WITHOUT_${dep})
@@ -227,6 +251,7 @@ MOZ_TOOLKIT?=	cairo-gtk2
 MOZ_OPTIONS+=	\
 		--enable-chrome-format=${MOZ_CHROME} \
 		--enable-default-toolkit=${MOZ_TOOLKIT} \
+		--enable-pie \
 		--with-pthreads
 # Configure options for install
 .if !defined(MOZ_EXTENSIONS)
@@ -263,20 +288,14 @@ MOZ_EXPORT+=	MOZ_GOOGLE_API_KEY=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8 \
 MOZ_TOOLKIT=	cairo-gtk3
 .endif
 
-.if ${MOZ_TOOLKIT:Mcairo-qt}
-# don't use - transparent backgrounds (bug 521582),
-USE_MOZILLA+=	-cairo # ports/169343
-USE_DISPLAY=yes # install
-USE_GNOME+=	pango
-USE_QT5+=	qmake_build buildtools_build gui network quick printsupport
-MOZ_EXPORT+=	HOST_QMAKE="${QMAKE}" HOST_MOC="${MOC}" HOST_RCC="${RCC}"
-.elif ${MOZ_TOOLKIT:Mcairo-gtk3}
-USE_GNOME+=	gtk30
+.if ${MOZ_TOOLKIT:Mcairo-gtk3}
+BUILD_DEPENDS+=	gtk3>=3.14.6:${PORTSDIR}/x11-toolkits/gtk30
+USE_GNOME+=	gdkpixbuf2 gtk30
 . if ${MOZILLA_VER:R:R} >= 32
 USE_GNOME+= gtk20 # bug 624422
 . endif
 .else # gtk2, cairo-gtk2
-USE_GNOME+=	gtk20
+USE_GNOME+=	gdkpixbuf2 gtk20
 .endif
 
 .if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
@@ -300,7 +319,13 @@ MOZ_OPTIONS+=	--enable-startup-notification
 MOZ_OPTIONS+=	--disable-dbus --disable-libnotify
 .endif
 
+.if ${PORT_OPTIONS:MFFMPEG}
+# dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
+RUN_DEPENDS+=	ffmpeg>=0.8,1:${PORTSDIR}/multimedia/ffmpeg
+.endif
+
 .if ${PORT_OPTIONS:MGSTREAMER}
+RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:${PORTSDIR}/multimedia/gstreamer1-libav
 USE_GSTREAMER1?=good libav
 MOZ_OPTIONS+=	--enable-gstreamer=1.0
 .else
@@ -315,7 +340,7 @@ MOZ_OPTIONS+=	--enable-gconf
 MOZ_OPTIONS+=	--disable-gconf
 .endif
 
-.if ${PORT_OPTIONS:MGIO} && ! ${MOZ_TOOLKIT:Mcairo-qt}
+.if ${PORT_OPTIONS:MGIO}
 MOZ_OPTIONS+=	--enable-gio
 .else
 MOZ_OPTIONS+=	--disable-gio
@@ -347,6 +372,7 @@ MOZ_EXPORT+=MOZ_OPTIMIZE_FLAGS="-Os" MOZ_PGO_OPTIMIZE_FLAGS="${CFLAGS:M-O*}"
 .if ${PORT_OPTIONS:MALSA}
 LIB_DEPENDS+=	libasound.so:${PORTSDIR}/audio/alsa-lib
 RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
+RUN_DEPENDS+=	alsa-lib>=1.1.1_1:${PORTSDIR}/audio/alsa-lib
 MOZ_OPTIONS+=	--enable-alsa
 .endif
 
@@ -362,6 +388,16 @@ MOZ_OPTIONS+=	--enable-pulseaudio
 MOZ_OPTIONS+=	--disable-pulseaudio
 .endif
 
+.if ${MOZILLA_VER:R:R} >= 40
+.if ${PORT_OPTIONS:MRUST}
+BUILD_DEPENDS+=	rustc:${RUST_PORT}
+RUST_PORT?=		${PORTSDIR}/lang/rus
+MOZ_OPTIONS+=	--enable-rust
+.else
+MOZ_OPTIONS+=	--disable-rust
+.endif
+.endif
+
 .if ${PORT_OPTIONS:MDEBUG}
 MOZ_OPTIONS+=	--enable-debug --disable-release
 STRIP=	# ports/184285
@@ -370,7 +406,8 @@ MOZ_OPTIONS+=	--disable-debug --enable-release
 .endif
 
 .if ${PORT_OPTIONS:MDTRACE}
-MOZ_OPTIONS+=	--enable-dtrace
+MOZ_OPTIONS+=	--enable-dtrace \
+		--disable-gold
 . if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100061
 LIBS+=			-lelf
 . endif
@@ -511,7 +548,7 @@ gecko-post-patch:
 .if ${USE_MOZILLA:M-nspr}
 	@${ECHO_MSG} "===>  Applying NSPR patches"
 	@for i in ${.CURDIR}/../../devel/nspr/files/patch-*; do \
-		${PATCH} ${PATCH_ARGS} -d ${MOZSRC}/nsprpub/build < $$i; \
+		${PATCH} ${PATCH_ARGS} -d ${MOZSRC}/nsprpub < $$i; \
 	done
 .endif
 .if ${USE_MOZILLA:M-nss}
@@ -556,7 +593,7 @@ gecko-post-patch:
 		${MOZSRC}/xpcom/io/nsAppFileLocationProvider.cpp \
 		${MOZSRC}/toolkit/xre/nsXREDirProvider.cpp
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		${MOZSRC}/extensions/spellcheck/hunspell/src/mozHunspell.cpp
+		${MOZSRC}/extensions/spellcheck/hunspell/*/mozHunspell.cpp
 
 # handles mozilla pis scripts.
 gecko-moz-pis-patch:
