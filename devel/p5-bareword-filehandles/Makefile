@@ -17,10 +17,10 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-B-Hooks-OP-Check>=0:devel/p5-B-Hooks-OP-Check \
-		p5-Lexical-SealRequireHints>=0:devel/p5-Lexical-SealRequireHints
+BUILD_DEPENDS=	p5-B-Hooks-OP-Check>=0:${PORTSDIR}/devel/p5-B-Hooks-OP-Check \
+		p5-Lexical-SealRequireHints>=0:${PORTSDIR}/devel/p5-Lexical-SealRequireHints
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-BUILD_DEPENDS+=	p5-ExtUtils-Depends>=0:devel/p5-ExtUtils-Depends
+BUILD_DEPENDS+=	p5-ExtUtils-Depends>=0:${PORTSDIR}/devel/p5-ExtUtils-Depends
 
 USE_PERL5=	configure
 USES=		perl5
