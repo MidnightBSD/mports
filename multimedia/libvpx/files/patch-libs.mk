@@ -1,6 +1,3 @@
-
-$FreeBSD: head/multimedia/libvpx/files/patch-libs.mk 336806 2013-12-18 09:05:36Z ashish $
-
 --- libs.mk.orig
 +++ libs.mk
 @@ -232,8 +232,8 @@
