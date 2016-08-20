@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.29
+PORTVERSION=	1.1.1
 CATEGORIES=	audio
-MASTER_SITES=	ALSA/plugins \
-		GENTOO/distfiles
+MASTER_SITES=	ftp://ftp.alsa-project.org/pub/plugins/ \
+		GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ALSA compatibility library plugins
@@ -14,13 +14,12 @@ LICENSE=	lgpl2.1
 LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
 
 GNU_CONFIGURE=	yes
-USES=		libtool:keepla pkgconfig tar:bzip2
+USES=		alias libtool:keepla localbase pkgconfig tar:bzip2
 EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
 INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${.CURDIR}/../alsa-lib/files
-LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFAULT=IO_PTR
+OPTIONS_DEFAULT=BUFSZ_P2 IO_PTR
 OPTIONS_DEFINE=	JACK FFMPEG PULSEAUDIO SAMPLERATE SPEEX
 OPTIONS_SUB=	yes
 
@@ -39,10 +38,10 @@ VERBOSE_CFLAGS=	-DFREEBSD_OSS_DEBUG_VERBOSE
 
 JACK_LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack
 JACK_CONFIGURE_ENABLE=	jack
+JACK_IMPLIES=		SAMPLERATE
 
 FFMPEG_LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
 FFMPEG_CONFIGURE_ENABLE=avcodec
-FFMPEG_CPPFLAGS=	-I${LOCALBASE}/include
 
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 PULSEAUDIO_CONFIGURE_ENABLE=pulseaudio
