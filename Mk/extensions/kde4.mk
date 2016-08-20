@@ -202,7 +202,7 @@ nepomuk-widgets_PATH=	${KDE4_PREFIX}/lib/libnepomukwidgets.so
 okular_PORT=		graphics/okular
 okular_PATH=		${KDE4_PREFIX}/lib/libokularcore.so
 
-oxygen_PORT=		x11-themes/kde4-icons-oxygen
+oxygen_PORT=		${PORTSDIR}/x11-themes/kde4-icons-oxygen
 oxygen_PATH=		${KDE4_PREFIX}/share/icons/oxygen/index.theme
 oxygen_TYPE=		run
 
@@ -227,42 +227,42 @@ pykdeuic4_TYPE=		run
 qtruby_PORT=		devel/ruby-qtruby
 qtruby_PATH=		${KDE4_PREFIX}/lib/libqtruby4shared.so
 
-runtime_PORT=		x11/kde4-runtime
+runtime_PORT=		${PORTSDIR}/x11/kde4-runtime
 runtime_PATH=		${KDE4_PREFIX}/bin/knotify4
 runtime_TYPE=		run
 
-smokegen_PORT=		devel/smokegen
+smokegen_PORT=		${PORTSDIR}/devel/smokegen
 smokegen_PATH=		${KDE4_PREFIX}/lib/libsmokebase.so
 
-smokekde_PORT=		devel/smokekde
+smokekde_PORT=		${PORTSDIR}/devel/smokekde
 smokekde_PATH=		${KDE4_PREFIX}/lib/libsmokekdecore.so
 
-smokeqt_PORT=		devel/smokeqt
+smokeqt_PORT=		${PORTSDIR}/devel/smokeqt
 smokeqt_PATH=		${KDE4_PREFIX}/lib/libsmokeqtcore.so
 
-workspace_PORT=		x11/kde4-workspace
+workspace_PORT=		${PORTSDIR}/x11/kde4-workspace
 workspace_PATH=		${KDE4_PREFIX}/lib/libkworkspace.so
 
-akonadi_PORT=		databases/akonadi
+akonadi_PORT=		${PORTSDIR}/databases/akonadi
 akonadi_PATH=		${KDE4_PREFIX}/lib/libakonadiprotocolinternals.so
 
-attica_PORT=		x11-toolkits/attica
+attica_PORT=		${PORTSDIR}/x11-toolkits/attica
 attica_PATH=		${LOCALBASE}/lib/libattica.so
 
-automoc4_PORT=		devel/automoc4
+automoc4_PORT=		${PORTSDIR}/devel/automoc4
 automoc4_PATH=		${LOCALBASE}/bin/automoc4
 automoc4_TYPE=		build
 
-ontologies_PORT=	x11-toolkits/shared-desktop-ontologies
+ontologies_PORT=	${PORTSDIR}/x11-toolkits/shared-desktop-ontologies
 ontologies_PATH=	${LOCALBASE}/share/ontology/core/rdf.ontology
 
-qimageblitz_PORT=	x11/qimageblitz
+qimageblitz_PORT=	${PORTSDIR}/x11/qimageblitz
 qimageblitz_PATH=	${LOCALBASE}/lib/libqimageblitz.so
 
-soprano_PORT=		textproc/soprano
+soprano_PORT=		${PORTSDIR}/textproc/soprano
 soprano_PATH=		${LOCALBASE}/lib/libsoprano.so
 
-strigi_PORT=		deskutils/libstreamanalyzer
+strigi_PORT=		${PORTSDIR}/deskutils/libstreamanalyzer
 strigi_PATH=		${LOCALBASE}/lib/libstreamanalyzer.so.0
 
 # Iterate through components deprived of suffix.
