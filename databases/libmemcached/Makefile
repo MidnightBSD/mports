@@ -46,7 +46,7 @@ HSIEH_CONFIGURE_ENABLE=		hsieh_hash
 MURMUR_CONFIGURE_ENABLE=	murmur_hash
 
 SASL_CONFIGURE_ENABLE=	sasl
-SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
+SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
 PATHFIX_MAKEFILEIN=	include.am
 
