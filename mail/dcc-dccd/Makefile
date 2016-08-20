@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dcc-dccd
-PORTVERSION=	1.3.141
+PORTVERSION=	1.3.158
 CATEGORIES=	mail
 MASTER_SITES=	http://www.dcc-servers.net/dcc/source/old/ \
 		http://www.rhyolite.com/anti-spam/dcc/source/old/ \
@@ -18,10 +18,9 @@ LICENSE_NAME=	DCC
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	no-pkg-sell no-dist-mirror no-pkg-mirror no-dist-sell
 
+USE_GCC=	any
+
 HAS_CONFIGURE=	yes
-MANCOMPRESSED=	yes
-MAN8=		cdcc.8 dbclean.8 dblist.8 dcc.8 dccd.8 dccifd.8 dccm.8 \
-		dccproc.8 dccsight.8
 
 #
 # ALT_HOME -	DCC keeps its config files in its home directory but writes
@@ -43,6 +42,7 @@ MAN8=		cdcc.8 dbclean.8 dblist.8 dcc.8 dccd.8 dccifd.8 dccm.8 \
 #		like SpamAssassin may need to be explicitly told where
 #		to find dccifd's socket.
 #
+OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	DCCIFD DCCM DCCD DCCGREY IPV6 ALT_HOME PORTS_SENDMAIL
 OPTIONS_DEFAULT=	DCCIFD DCCM DCCD DCCGREY
 DCCIFD_DESC=		DCC interface daemon (for SpamAssassin etc)
@@ -172,6 +172,13 @@ pre-everything::
 	@${ECHO_MSG} ' '
 	@${ECHO_MSG} "A description of ALT_HOME may be found in the port's Makefile."
 	@${ECHO_MSG} ' '
+
+pre-build:
+	${MKDIR} ${FAKE_DESTDIR}/usr/lib
+	${LN} -sf /usr/lib/libc.a ${FAKE_DESTDIR}/usr/lib/libc.a
+
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/dcc/libexec
 
 post-install:
 
