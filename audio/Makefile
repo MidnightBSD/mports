@@ -88,6 +88,7 @@ SUBDIR += libsamplerate
 SUBDIR += libshout
 SUBDIR += libsidplay
 SUBDIR += libsndfile
+SUBDIR += libtremor
 SUBDIR += libvorbis
 SUBDIR += linux-f10-alsa-lib
 SUBDIR += linux-f10-alsa-plugins-oss
