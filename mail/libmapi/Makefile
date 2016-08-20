@@ -47,10 +47,9 @@ SHEBANG_FILES=	libmapi/conf/mparse.pl \
 PATHFIX_MAKEFILEIN=	Makefile.am
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	BOOST DOXYGEN
-# SAMBA43
+OPTIONS_DEFINE=	BOOST DOXYGEN SAMBA43
 OPTIONS_DEFAULT=BOOST
-BOOST_LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
+BOOST_LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs
 BOOST_CONFIGURE_ENV_OFF=	ov_cv_boost_thread=no
 BOOST_DESC=	libmapi C++ library (needs boost)
 DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
