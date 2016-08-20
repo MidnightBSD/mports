@@ -10,10 +10,8 @@ COMMENT=	Strigi desktop search: utilities
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	streams:${PORTSDIR}/deskutils/libstreams \
-		streamanalyzer:${PORTSDIR}/deskutils/libstreamanalyzer
-
-MAKE_JOBS_SAFE=	yes
+LIB_DEPENDS=	libstreams.so:${PORTSDIR}/deskutils/libstreams \
+		libstreamanalyzers.so:${PORTSDIR}/deskutils/libstreamanalyzer
 
 .include <${.CURDIR}/../strigi/Makefile.common>
 .include <bsd.port.mk>
