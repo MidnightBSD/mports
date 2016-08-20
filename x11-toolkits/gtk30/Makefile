@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	gtk
-PORTVERSION=	3.16.7
-PORTREVISION?=	1
+PORTVERSION=	3.18.8
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	3
@@ -44,7 +44,7 @@ LIBS+=		-L${LOCALBASE}/lib
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.1600.7
+LIBVERSION=	0.1800.8
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
@@ -52,8 +52,8 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.Debug.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
 
-OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY TYPEAHEAD
-OPTIONS_DEFAULT=CUPS COLORD BROADWAY
+OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY
+OPTIONS_DEFAULT=CUPS COLORD
 OPTIONS_SUB=	yes
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
@@ -73,22 +73,16 @@ CLOUDPRINT_LIB_DEPENDS=	librest-0.7.so:${PORTSDIR}/devel/librest \
 
 DEBUG_CONFIGURE_ENABLE=debug
 
-# GTK+ 3.17 has a beter way
-TYPEAHEAD_DESC=		Re-enable type-a-head functionality in file chooser
-
-# needed for the exists() check, booo
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MTYPEAHEAD}
-EXTRA_PATCHES+=	${FILESDIR}/extra-gtk_gtkfilechooserwidget.c \
-		${FILESDIR}/extra-gtk_ui_gtkfilechooserwidget.ui
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|file,cups|file,cups,lpr|' \
-		${WRKSRC}/gtk/Makefile.in
+
+pre-configure:
+# .if !exists() evaluates too early before cairo has a chance to be installed
+	@if ! pkg-config --exists cairo-xlib; then \
+		${ECHO_MSG} "${PKGNAME}: Needs cairo with X11 support enabled."; \
+		${FALSE}; \
+	fi
 
 pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
