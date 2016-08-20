@@ -8,12 +8,12 @@ CATEGORIES=	audio
 MASTER_SITES=	http://git.xiph.org/?p=tremor.git;a=snapshot;sf=tgz;h=${GIT_COMMIT};/
 DISTNAME=	${PORTNAME:S/lib//}-${GIT_COMMIT}
 
-MAINTAINER=	ports@Midnight BSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integer-only fully Ogg Vorbis compliant decoder library
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	libogg.so:audio/libogg
+LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
 GIT_COMMIT=	b56ffc
 USES=		autoreconf libtool pathfix pkgconfig
