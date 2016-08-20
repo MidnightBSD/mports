@@ -12,10 +12,10 @@ COMMENT=	Qt plugins for additional image formats
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libjasper.so:graphics/jasper \
-		libmng.so:graphics/libmng \
-		libtiff.so:graphics/tiff \
-		libwebp.so:graphics/webp
+LIB_DEPENDS=	libjasper.so:${PORTSDIR}/graphics/jasper \
+		libmng.so:${PORTSDIR}/graphics/libmng \
+		libtiff.so:${PORTSDIR}/graphics/tiff \
+		libwebp.so:${PORTSDIR}/graphics/webp
 
 USE_QT5=	core gui buildtools_build
 QT_DIST=	${PORTNAME}
