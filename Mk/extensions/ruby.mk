@@ -16,7 +16,7 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # [variables that a user may define]
 #
 # RUBY_VER		- (See below)
-# RUBY_DEFAULT_VER	- Set to (e.g.) "2.0" if you want to refer to "ruby20"
+# RUBY_DEFAULT_VER	- Set to (e.g.) "2.1" if you want to refer to "ruby21"
 #			  just as "ruby".
 # RUBY_ARCH		- (See below)
 # RUBY_RD_HTML		- Define if you want HTML files generated from RD files.
@@ -53,15 +53,11 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 #			  expression will be set to RUBY_PROVIDED, which is
 #			  left undefined if the result is nil, false or a
 #			  zero-length string.  Implies USE_RUBY.
-# RUBY_SHEBANG_FILES	- Specify the files which shebang lines you want to fix.
 # RUBY_RD_FILES		- Specify the RD files which you want to generate HTML
 #			  documents from. If this is defined and not empty,
 #			  USE_RUBY_RDTOOL is implied and RUBY_RD_HTML_FILES is
 #			  defined.
-# USE_RUBYGEMS		- Says that the port uses rubygems packaging system.
-# RUBYGEM_AUTOPLIST	- Generate packing list for rubygems based port
-#			  automatically.
-#
+# USE_RUBYGEMS		- Do not use this -- instead USES=gem
 #
 # [variables that each port should not (re)define]
 #
@@ -168,17 +164,9 @@ _RUBY_VENDORDIR!=	${_RUBY_CONFIG} 'puts C["vendordir"]'
 RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 
 .if defined(RUBY_VER)
-. if ${RUBY_VER} == 2.0
-#
-# Ruby 2.0
-#
-RUBY_RELVERSION=	2.0.0
-RUBY_PORTREVISION=	0
-RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	645
-RUBY20=			""	# PLIST_SUB helpers
-
-. elif ${RUBY_VER} == 2.1
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
+. if ${RUBY_VER} == 2.1
 #
 # Ruby 2.1
 #
@@ -198,20 +186,40 @@ RUBY_PORTEPOCH=		1
 RUBY_PATCHLEVEL=	0
 RUBY22=			""	# PLIST_SUB helpers
 
+. elif ${RUBY_VER} == 2.3
+#
+# Ruby 2.3
+#
+RUBY_RELVERSION=	2.3.1
+RUBY_PORTREVISION=	0
+RUBY_PORTEPOCH=		1
+RUBY_PATCHLEVEL=	0
+RUBY23=			""	# PLIST_SUB helpers
+
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
 . else
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.0, 2.1 and 2.2 are supported
+IGNORE=	Only ruby 2.1, 2.2 and 2.3 are supported
 _INVALID_RUBY_VER=	1
 . endif
 .endif # defined(RUBY_VER)
 
 .if !defined(_INVALID_RUBY_VER)
 
-RUBY20?=		"@comment "
 RUBY21?=		"@comment "
 RUBY22?=		"@comment "
+RUBY23?=		"@comment "
+
+.if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
+.if ${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}} == "yes"
+BROKEN=			does not build with Ruby ${RUBY_VER}
+.else
+BROKEN=			${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}}
+.endif
+.endif
 
 .if ${RUBY_PATCHLEVEL} == 0
 RUBY_VERSION?=		${RUBY_RELVERSION}
@@ -340,9 +348,9 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_NAME="${RUBY_NAME}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
-			RUBY20=${RUBY20} \
 			RUBY21=${RUBY21} \
-			RUBY22=${RUBY22}
+			RUBY22=${RUBY22} \
+			RUBY23=${RUBY23}
 
 .if defined(USE_RUBY_RDOC)
 MAKE_ENV+=	RUBY_RDOC=${RUBY_RDOC}
