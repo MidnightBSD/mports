@@ -227,6 +227,7 @@ SUBDIR += p5-Algorithm-Diff
 SUBDIR += p5-Alien-SDL
 SUBDIR += p5-AppConfig
 SUBDIR += p5-B-Hooks-EndOfScope
+SUBDIR += p5-B-Hooks-OP-Check
 SUBDIR += p5-B-Keywords
 SUBDIR += p5-BSD-Resource
 SUBDIR += p5-CPAN-Meta
