@@ -61,6 +61,7 @@ SUBDIR += linuxigd
 SUBDIR += liveMedia
 SUBDIR += mDNSResponder
 SUBDIR += miniupnpc
+SUBDIR += nanomsg
 SUBDIR += netatalk
 SUBDIR += netcat
 SUBDIR += netclasses
