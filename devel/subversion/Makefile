@@ -203,7 +203,7 @@ pre-configure:
 	fi
 .endif
 .if ${PORT_OPTIONS:MSTATIC}
-	@if grep -q icui18n ${LOCALBASE}/lib/libsqlite3.la ; then \
+	@if grep -q icui18n /usr/lib/libsqlite3.la ; then \
 		${ECHO_MSG} "" ; \
 		${ECHO_MSG} "You can not build static subversion if your SQLite3 is built with ICU enabled."; \
 		${ECHO_MSG} "Please, reinstall 'devel/sqlite3' port with disabled ICU support."; \
