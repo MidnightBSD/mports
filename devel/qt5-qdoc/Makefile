@@ -20,11 +20,11 @@ CONFIGURE_ARGS=	-no-dbus -no-gui -no-xcb
 BUILD_WRKSRC=	${WRKSRC}/src/tools/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-QT_DOCDIR=      ${PREFIX}/share/doc/qt5
+QT_DOCDIR=      ${TRUE_PREFIX}/share/doc/qt5
 
 post-install:
-	${MKDIR} ${STAGEDIR}${QT_DOCDIR} && \
+	${MKDIR} ${FAKE_DESTDIR}${QT_DOCDIR} && \
 	cd ${WRKSRC}/doc/global && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${QT_DOCDIR}/global
+		${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${QT_DOCDIR}/global
 
 .include <bsd.port.mk>
