@@ -39,6 +39,7 @@ CONFIGURE_ARGS+=--disable-instrumentation
 .endif
 
 .if ${OSVERSION} >= 8000
+BUILD_DEPENDS+=	clang34:${PORTSDIR}/lang/clang34
 USE_CXXSTD=	c++11
 EXTRA_PATCHES+=	${FILESDIR}/extra-clang
 .endif
