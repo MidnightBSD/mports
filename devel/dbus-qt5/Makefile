@@ -46,6 +46,5 @@ post-install:
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
-	${CP} ${PREFIX}/lib/pkgconfig/Qt5DBus.pc ${PREFIX}/libdata/pkgconfig/Qt5DBus.pc
 
 .include <bsd.port.mk>
