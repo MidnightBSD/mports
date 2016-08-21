@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: head/devel/qt5-uitools/Makefile 407169 2016-01-24 18:10:14Z rakuco $
 
 PORTNAME=	uitools
@@ -5,8 +6,10 @@ DISTVERSION=	${QT5_VERSION}
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt Designer UI forms support module
+
+LICENSE=	gpl3
 
 USE_QT5=	core gui uiplugin widgets buildtools_build
 QT_DIST=	tools
