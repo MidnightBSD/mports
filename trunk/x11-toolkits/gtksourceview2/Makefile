@@ -14,6 +14,7 @@ COMMENT=	Widget that adds syntax highlighting to the GtkTextView
 LICENSE=	gpl2
 
 USES=		tar:bzip2
+USE_GCC=	any
 
 .if !defined(REFERENCE_PORT)
 
