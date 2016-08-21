@@ -13,6 +13,8 @@ COMMENT=	Python 3 bindings for Cairo
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27
+
 USES=		pkgconfig python:3 shebangfix tar:bzip2
 USE_GNOME=	cairo
 CPPFLAGS+=	-I${LOCALBASE}/include
