@@ -137,7 +137,6 @@ PORT_OPTIONS+=	${opt}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .    endif
 .  endfor
-PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
 ## Remove the options excluded system-wide (set by user in make.conf)
 .  for opt in ${OPTIONS_UNSET}
@@ -217,12 +216,14 @@ WARNING+=	"${OPTIONS_NAME}_UNSET=${OPTIONS_WARNINGS_UNSET}"
 .  for opt in ${OPTIONS_FILE_SET}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
 PORT_OPTIONS+=  ${opt}
+NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .    endif
 .  endfor
 PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
 .for opt in ${OPTIONS_FILE_UNSET}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .endfor
 
 .endif
@@ -232,12 +233,14 @@ PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
 .for opt in ${WITH}
 .  if !empty(COMPLETE_OPTIONS_LIST:M${opt})
 PORT_OPTIONS+=  ${opt}
+NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .  endif
 .endfor
 PORT_OPTIONS:=  ${PORT_OPTIONS:O:u}
 
 .for opt in ${WITHOUT}
 PORT_OPTIONS:=  ${PORT_OPTIONS:N${opt}}
+NEW_OPTIONS:=  ${NEW_OPTIONS:N${opt}}
 .endfor
 
 # Finally, add options required by slave ports
@@ -259,6 +262,7 @@ NOPORTEXAMPLES= yes
 WITH_DEBUG=	yes
 .endif
 
+# TODO: deprecated
 .if empty(PORT_OPTIONS:MNLS)
 WITHOUT_NLS=    yes
 .endif
@@ -354,31 +358,6 @@ ${flags}+=	${${opt}_${flags}}
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
-.    if defined(${opt}_CONFIGURE_DISABLE)
-.      for iopt in ${${opt}_CONFIGURE_DISABLE}
-CONFIGURE_ARGS+=	--disable-${iopt}
-.      endfor
-.    endif
-.    if defined(${opt}_CONFIGURE_WITHOUT)
-.      for iopt in ${${opt}_CONFIGURE_WITHOUT}
-CONFIGURE_ARGS+=        --without-${iopt:C/=.*//}
-.      endfor
-.    endif
-.    for configure in CONFIGURE CMAKE QMAKE
-.      if defined(${opt}_${configure}_OFF)
-${configure}_ARGS+=     ${${opt}_${configure}_OFF}
-.      endif
-.    endfor
-.    for flags in ${_OPTIONS_FLAGS}
-.      if defined(${opt}_${flags}_OFF)
-${flags}+=      ${${opt}_${flags}_OFF}
-.      endif
-.    endfor
-.    for deptype in ${_OPTIONS_DEPENDS}
-.      if defined(${opt}_${deptype}_DEPENDS_OFF)
-${deptype}_DEPENDS+=    ${${opt}_${deptype}_DEPENDS_OFF}
-.      endif
-.    endfor
 .    for target in ${_OPTIONS_TARGETS}
 _target=	${target:C/:.*//}
 _prio=		${target:C/.*:(.*):.*/\1/}
@@ -407,6 +386,12 @@ CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--disable-/:C/=.*//}
 .    endif
 .    if defined(${opt}_CONFIGURE_WITH)
 CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--without-/:C/=.*//}
+.    endif
+.    if defined(${opt}_CMAKE_BOOL)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=false/}
+.    endif
+.    if defined(${opt}_CMAKE_BOOL_OFF)
+CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=true/}
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_OFF)
