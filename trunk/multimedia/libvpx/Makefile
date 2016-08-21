@@ -12,7 +12,7 @@ COMMENT=	VP8/VP9 Codec SDK
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	yasm:devel/yasm
+BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	webmproject
