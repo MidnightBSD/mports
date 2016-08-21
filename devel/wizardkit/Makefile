@@ -18,6 +18,6 @@ USE_GNUSTEP=	back build
 USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Library/Frameworks/WizardKit.framework/Versions/0/libWizardKit.so
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Library/Frameworks/WizardKit.framework/Versions/0/libWizardKit.so
 
 .include <bsd.port.mk>
