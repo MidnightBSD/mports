@@ -12,7 +12,7 @@ bin/cancel
 bin/cups-config
 bin/cupstestdsc
 bin/cupstestppd
-bin/ippfind
+@comment TODO: fix bin/ippfind
 %%IPPTOOL%%bin/ipptool
 bin/lp
 bin/lpoptions
@@ -97,7 +97,7 @@ man/man1/cups-config.1.gz
 man/man1/cupstestdsc.1.gz
 man/man1/cupstestppd.1.gz
 man/man1/cups.1.gz
-man/man1/ippfind.1.gz
+@comment TODO FIX man/man1/ippfind.1.gz
 %%IPPTOOL%%man/man1/ipptool.1.gz
 man/man1/lp.1.gz
 man/man1/lpoptions.1.gz
