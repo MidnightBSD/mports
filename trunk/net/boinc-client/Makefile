@@ -52,9 +52,8 @@ NO_NET_INFO_DESC=	Do not send host address and name to servers
 OPTIONS_SUB=		yes
 
 MANAGER_USES=		iconv
-MANAGER_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
-			libsqlite3.so:${PORTSDIR}/databases/sqlite3
-MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=${LOCALBASE}
+MANAGER_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
+MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=/usr
 MANAGER_CONFIGURE_OFF=	--with-wx-config=false --without-x
 MANAGER_CONFIGURE_ENABLE=manager
 MANAGER_USE=		XORG=x11,xext,xscrnsaver WX=2.8
