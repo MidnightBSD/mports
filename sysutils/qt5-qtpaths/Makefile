@@ -21,7 +21,7 @@ PLIST_FILES=	${QT_BINDIR}/qtpaths
 # from the qtpaths directory. If we run it from the top of the source tree, it
 # will look for a lot more dependencies for other tools such as lupdate, which
 # we do not really have to depend on.
-WRKSRC_SUBDIR=	src/${PORTNAME}
+WRKSRC=	${WRKDIR}/qttools-opensource-src-5.5.1/src/${PORTNAME}
 post-patch:
 	${CP} ${WRKSRC}/../../.qmake.conf ${WRKSRC}
 
