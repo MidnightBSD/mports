@@ -4,7 +4,7 @@
 
 PORTNAME=	Net_URL
 PORTVERSION=	1.0.15
-CATEGORIES=	net www pear
+CATEGORIES=	net www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy parsing of URLs
