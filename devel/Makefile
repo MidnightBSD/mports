@@ -272,6 +272,7 @@ SUBDIR += p5-DateTime-HiRes
 SUBDIR += p5-DateTime-Locale
 SUBDIR += p5-DateTime-TimeZone
 SUBDIR += p5-Devel-ArgNames
+SUBDIR += p5-Devel-GlobalDestruction
 SUBDIR += p5-Devel-StackTrace
 SUBDIR += p5-Devel-Symdump
 SUBDIR += p5-Dist-CheckConflicts
