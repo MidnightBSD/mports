@@ -3,6 +3,11 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 BJAM=		bjam
 USES+=		compiler:c++11-lang
 
+BUILD_DEPENDS+= ${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
+CPP=    ${LOCALBASE}/bin/clang-cpp34
+CC=     ${LOCALBASE}/bin/clang34
+CXX=    ${LOCALBASE}/bin/clang++34
+
 PLIST_SUB+=	BOOST_SHARED_LIB_VER=${PORTVERSION} COMPAT_LIB_VER=5
 
 PKG_MESSAGE_FILE_THREADS=	${PORTSDIR}/devel/boost-all/pkg-message.threads
