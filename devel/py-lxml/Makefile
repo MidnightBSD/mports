@@ -16,6 +16,7 @@ LICENSE=	bsd3
 LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2 \
 		libxslt.so:${PORTSDIR}/textproc/libxslt
 
+USE_GCC=	any
 USES=		python uniquefiles:dirs
 USE_PYTHON=	autoplist concurrent distutils
 
