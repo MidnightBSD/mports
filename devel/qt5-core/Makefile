@@ -44,6 +44,5 @@ post-install:
 # Allow qconfig.h to be customized by single ports.
 	${REINPLACE_CMD} -i "" '1 s|.*|#include <QtCore/qconfig-modules.h>|' \
 		${STAGEDIR}${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h
-	${CP} ${PREFIX}/lib/pkgconfig/Qt5Core.pc ${PREFIX}/libdata/pkgconfig/Qt5Core.pc
 
 .include <bsd.port.post.mk>
