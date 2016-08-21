@@ -359,8 +359,8 @@ ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 CONFIGURE_ARGS+=	--disable-${iopt}
 .      endfor
 .    endif
-.    if defined(${opt}_CONFIGURE_WITH)
-.      for iopt in ${${opt}_CONFIGURE_WITH}
+.    if defined(${opt}_CONFIGURE_WITHOUT)
+.      for iopt in ${${opt}_CONFIGURE_WITHOUT}
 CONFIGURE_ARGS+=        --without-${iopt:C/=.*//}
 .      endfor
 .    endif
