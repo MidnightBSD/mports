@@ -3,7 +3,7 @@
 %%CLIENT%%bin/boinccmd
 %%CLIENT%%bin/switcher
 %%MANAGER%%bin/boincmgr
-%%MANAGER%%bin/boincscr
+@commentTODO FIX  %%MANAGER%%bin/boincscr
 include/boinc/app_ipc.h
 include/boinc/average.h
 include/boinc/base64.h
