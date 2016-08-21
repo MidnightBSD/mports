@@ -46,7 +46,7 @@ post-install:
 .endfor
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/syncqt.pl \
 		${PREFIX}/${QT_BINDIR_REL}/syncqt.pl
-	${CP} ${PREFIX}/lib/pkgconfig/Qt5Bootstrap.pc ${PREFIX}/libdata/pkgconfig/
+	-${CP} ${PREFIX}/lib/pkgconfig/Qt5Bootstrap.pc ${PREFIX}/libdata/pkgconfig/
 
 
 .include <bsd.port.mk>
