@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Share CUPS printers via Google Cloud Print
 
 LICENSE=	bsd2
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	go:${PORTSDIR}/lang/go \
 		cups>=0:${PORTSDIR}/print/cups \
