@@ -22,6 +22,6 @@ USES=		gnustep
 USE_GNUSTEP=	back build
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Applications/Popup.app/Popup
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Popup.app/Popup
 
 .include <bsd.port.mk>
