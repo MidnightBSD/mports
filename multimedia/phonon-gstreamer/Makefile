@@ -33,6 +33,6 @@ GST_PLUGINS_RUN_DEPENDS=	gstreamer1-plugins-all>=0:${PORTSDIR}/multimedia/gstrea
 post-install:
 	${MKDIR} ${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend
 	${LN} -sf ${PREFIX}/lib/kde4/plugins/phonon_backend/phonon_gstreamer.so \
-		${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
+		${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
 
 .include <bsd.port.mk>
