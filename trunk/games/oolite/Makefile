@@ -11,7 +11,10 @@ DISTFILES=		${PORTNAME}-${PORTVERSION}-src${EXTRACT_SUFX}:DEFAULT,alioth \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Trade and combat space simulator, clone of Elite
+
 LICENSE=		gpl2
+
+BROKEN=		does not build with current GNUstep
 
 WRKSRC=			${WRKDIR}/${PORTNAME}-${PORTVERSION}-src
 USES=			gnustep gmake
