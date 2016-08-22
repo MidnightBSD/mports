@@ -15,7 +15,7 @@ USE_QT5=	core widgets
 QT_DIST=	tools
 USES=		qmake
 
-WRKSRC_SUBDIR=	src/${PORTNAME}
+WRKSRC=	${WRKDIR}/qttools-opensource-src-5.5.1/src/${PORTNAME}
 
 # qev is not connected to qttool's build system, so we cannot just run qmake
 # and set {BUILD,INSTALL}_WRKSRC.
