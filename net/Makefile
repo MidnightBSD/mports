@@ -137,7 +137,6 @@ SUBDIR += tsocks
 SUBDIR += uhttpmock
 SUBDIR += ulxmlrpcpp
 SUBDIR += uriparser
-SUBDIR += ushare
 SUBDIR += vinagre
 SUBDIR += vino
 SUBDIR += vncreflector
