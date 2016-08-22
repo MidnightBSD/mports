@@ -5,6 +5,7 @@
 PORTNAME=	php70
 PORTVERSION=	1.1
 CATEGORIES=	lang
+MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,8 +13,6 @@ COMMENT=	"meta-port" to install PHP extensions
 
 LICENSE=	php
 
-
-MASTER_SITES=	# none
 DISTFILES=	# none
 EXTRACT_ONLY=	# none
 
@@ -21,6 +20,8 @@ USE_PHP=	yes
 PHP_DEFAULT=	7.0
 IGNORE_WITH_PHP=	55 56
 USE_PHP_BUILD=	yes
+NO_BUILD=	yes
+NO_MTREE=	yes
 
 OPTIONS_DEFINE=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
 		DOM EXIF FILEINFO FILTER FTP GD GETTEXT \
@@ -124,6 +125,7 @@ USE_PHP+=	${opt:tl}
 .	endif
 .endfor
 
-do-install: # fake
+do-install: build
+	@${DO_NADA}
 
 .include <bsd.port.mk>
