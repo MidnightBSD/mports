@@ -12,7 +12,11 @@ COMMENT=	"meta-port" to install PHP extensions
 
 LICENSE=	php
 
-USES=		metaport
+
+MASTER_SITES=	# none
+DISTFILES=	# none
+EXTRACT_ONLY=	# none
+
 USE_PHP=	yes
 PHP_DEFAULT=	7.0
 IGNORE_WITH_PHP=	55 56
@@ -119,5 +123,7 @@ OPTIONS_DEFAULT=	CTYPE \
 USE_PHP+=	${opt:tl}
 .	endif
 .endfor
+
+do-install: # fake
 
 .include <bsd.port.mk>
