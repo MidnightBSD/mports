@@ -15,7 +15,10 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts JFile database to CSV, and vice versa
+
 LICENSE=	gpl2
+
+USE_GCC=	any
 
 ALL_TARGET=	# none
 
