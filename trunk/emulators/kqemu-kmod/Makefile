@@ -14,11 +14,12 @@ DIST_SUBDIR=	kqemu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel Accelerator for QEMU CPU Emulator
+
 LICENSE=	gpl2
 
-ONLY_FOR_ARCHS=	i386 amd64
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
+USE_GCC=	any
+USES=		gmake
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 
 USE_RC_SUBR=	kqemu
