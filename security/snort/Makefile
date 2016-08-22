@@ -3,7 +3,8 @@
 PORTNAME=	snort
 PORTVERSION=	2.9.5.3
 CATEGORIES=	security
-MASTER_SITES=	SF/snort/snort \
+MASTER_SITES=	https://snort.org/downloads/snort/ \
+		http://www.talosintel.com/downloads/ \
 		http://mirrors.rit.edu/zi/
 
 PATCH_DIST_STRIP=	-p1
@@ -43,6 +44,7 @@ BARNYARD_DESC=		Depend on Barnyard2
 
 .include <bsd.mport.options.mk>
 
+USES=		cpe libtool pathfix
 USE_RC_SUBR=	snort
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes
@@ -54,13 +56,11 @@ CONFIG_FILES=	classification.config gen-msg.map reference.config \
 RULES_DIR=	${PREFIX}/etc/snort/rules
 LOGS_DIR=	/var/log/snort
 
-MAN8=		snort.8
 DOCS=		RELEASE.NOTES doc/AUTHORS doc/BUGS doc/CREDITS \
 		doc/README* doc/USAGE doc/*.pdf
 PREPROC_RULE_DIR=	${RULES_DIR}/../preproc_rules
 PREPROC_RULES=		decoder.rules preprocessor.rules sensitive-data.rules
 
-USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 LIBNET_CONFIG?=		${LOCALBASE}/bin/libnet11-config
 .if exists(${LIBNET_CONFIG})
