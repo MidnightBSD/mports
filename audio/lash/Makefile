@@ -33,8 +33,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 .if ${PORT_OPTIONS:MREADLINE}
 USES+=		readline
 PLIST_SUB+=	READLINE=""
-# jack defaults to readline and this is killing magus.
-LIB_DEPENDS+=   libreadline.so:${PORTSDIR}/devel/readline
 .else
 CONFIGURE_ENV+=	vl_cv_lib_readline=no
 PLIST_SUB+=	READLINE="@comment "
