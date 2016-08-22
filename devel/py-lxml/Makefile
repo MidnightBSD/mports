@@ -3,7 +3,7 @@
 # $FreeBSD: head/devel/py-lxml/Makefile 377589 2015-01-21 12:16:36Z wg $
 
 PORTNAME=	lxml
-PORTVERSION=	3.4.1
+PORTVERSION=	3.6.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,6 @@ LICENSE=	bsd3
 LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2 \
 		libxslt.so:${PORTSDIR}/textproc/libxslt
 
-USE_GCC=	any
 USES=		python uniquefiles:dirs
 USE_PYTHON=	autoplist concurrent distutils
 
