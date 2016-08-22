@@ -14,7 +14,6 @@ COMMENT=	TBrowser and TChat
 
 LICENSE=	lgpl
 
-
 USES=		gnustep
 USE_GNUSTEP=	back build
 USE_GNUSTEP_PREFIX=	yes
@@ -33,11 +32,6 @@ MASTER_SITES=	http://gnustep.dyndns.org/Downloads/Frameworks/
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if (${OSVERSION} < 3004)
-LIB_DEPENDS=    dns_sd:${PORTSDIR}/net/mDNSResponder
-.endif
-
 
 # to build on 64bit
 post-patch:
