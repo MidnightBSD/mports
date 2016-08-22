@@ -25,9 +25,4 @@ CONFIGURE_ARGS+=	--prefix="${PREFIX}" --disable-optimize \
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's#\(PKGCONFIG_DIR = \).*#\1${LOCALBASE}/libdata/pkgconfig#' \
-		${WRKSRC}/Makefile
-
 .include <bsd.port.mk>
