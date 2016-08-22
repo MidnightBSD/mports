@@ -16,6 +16,7 @@ USE_GNOME+=	libxml2
 USES+=		python:2
 USE_PYTHON=	autoplist distutils
 
+PYTHON_VERSION= python2.7
 CPPFLAGS+=	`${PYTHON_VERSION}-config --cflags`
 LDFLAGS+=	-L${LOCALBASE}/lib `${PYTHON_VERSION}-config --libs`
 CONFIGURE_ARGS=	--with-iconv=${ICONV_PREFIX} \
