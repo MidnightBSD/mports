@@ -17,6 +17,8 @@ RUN_DEPENDS=	${PYTHON_SITELIBDIR}/libxml2.py:${PORTSDIR}/textproc/py-libxml2
 USES=		python:2,run tar:bzip2
 GNU_CONFIGURE=	yes
 
+PYTHON_VERSION= python2.7
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|@PYTHON@|${PYTHON_CMD}|g' \
 		${WRKSRC}/itstool.in
