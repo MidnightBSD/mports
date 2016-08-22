@@ -14,7 +14,8 @@ COMMENT=	Gstreamer Plugins Mp3 decoder meta-port
 
 LICENSE=	agg
 
-USES=		metaport
+NO_BUILD=       yes
+NO_MTREE=       yes
 WANT_GSTREAMER=	yes
 
 OPTIONS_MULTI=	MP3
@@ -36,6 +37,8 @@ USE_GSTREAMER+=	fluendo-mp3
 
 post-extract:
 	${MKDIR} ${WRKSRC}
+
+do-install: #empty
 
 post-install:
 	${TOUCH} ${PREFIX}/share/gstreamer-plugins/mp3.meta
