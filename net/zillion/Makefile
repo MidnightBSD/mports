@@ -22,9 +22,9 @@ post-patch:
 	${REINPLACE_CMD} -e 's|^CC=|# CC=|' ${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Library/Bundles/simpleZillionJob.bundle/simpleZillionJob
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Tools/zillion
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Tools/zillionClient
-	${STRIP_CMD} ${PREFIX}/GNUstep/Local/Tools/zillionLoader
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Library/Bundles/simpleZillionJob.bundle/simpleZillionJob
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Tools/zillion
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Tools/zillionClient
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Tools/zillionLoader
 
 .include <bsd.port.mk>
