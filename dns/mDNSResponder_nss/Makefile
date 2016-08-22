@@ -12,7 +12,8 @@ COMMENT=	Apple mDNS responder - BSD nsswitch module
 LICENSE=    	apache2 bsd3
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libdns_sd.so:${PORTSDIR}/net/mDNSResponder
+# we will use base system instead
+#LIB_DEPENDS=	libdns_sd.so:${PORTSDIR}/net/mDNSResponder
 
 CONFLICTS_INSTALL=	nss_mdns-[0-9]*
 
