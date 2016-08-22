@@ -20,6 +20,6 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		gettext gmake libtool pkgconfig tar:bzip2
 USE_GNOME=	gtk20 intltool intlhack
-USE_XFCE=	configenv libexo libmenu panel
+USE_XFCE=	libexo libmenu panel
 
 .include <bsd.port.mk>
