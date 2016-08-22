@@ -7,8 +7,5 @@ include/dssi/alsa/sound/asequencer.h
 lib/libdssialsacompat.a
 lib/libdssialsacompat.so
 lib/libdssialsacompat.so.0
-lib/libdssialsacompat.la
+lib/libdssialsacompat.so.0.0.0
 libdata/pkgconfig/libdssialsacompat.pc
-@dirrm include/dssi/alsa/sound
-@dirrm include/dssi/alsa
-@dirrm include/dssi
