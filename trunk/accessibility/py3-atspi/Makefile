@@ -17,6 +17,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:${PORTSDIR}/accessibility/at-spi2-core
 
+# ugh magus issues. this is needed by glib20 up the chain
+BUILD_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27
+
 CONFLICTS=	at-spi-1.[0-9]*
 
 USES=		gettext gmake pathfix pkgconfig python:3 tar:xz
