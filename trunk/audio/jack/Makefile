@@ -38,8 +38,7 @@ OPTIONS_SUB=	yes
 ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
 ALSA_CONFIGURE_ENABLE=	alsa
 
-READLINE_LIB_DEPENDS=	libreadline.so:${PORTSDIR}/devel/readline
-READLINE_BUILD_DEPENDS=	${LOCALBASE}/lib/libreadline.so:${PORTSDIR}/devel/readline
+READLINE_USES=		readline
 
 .include <bsd.mport.options.mk>
 
