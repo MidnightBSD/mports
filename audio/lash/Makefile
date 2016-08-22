@@ -12,9 +12,9 @@ COMMENT=	Session management system for JACK audio applications
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	jack:${PORTSDIR}/audio/jack \
-		dssialsacompat:${PORTSDIR}/audio/libdssialsacompat \
-		uuid:${PORTSDIR}/misc/e2fsprogs-libuuid
+LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack \
+		libdssialsacompat.so:${PORTSDIR}/audio/libdssialsacompat \
+		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
 
 OPTIONS_DEFINE=	READLINE DOCS
 OPTIONS_DEFAULT=READLINE
@@ -33,6 +33,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 .if ${PORT_OPTIONS:MREADLINE}
 USES+=		readline
 PLIST_SUB+=	READLINE=""
+# jack defaults to readline and this is killing magus.
+LIB_DEPENDS+=   libreadline.so:${PORTSDIR}/devel/readline
 .else
 CONFIGURE_ENV+=	vl_cv_lib_readline=no
 PLIST_SUB+=	READLINE="@comment "
