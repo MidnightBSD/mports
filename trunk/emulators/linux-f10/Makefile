@@ -10,6 +10,8 @@ EXTRACT_ONLY=	# none
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for all things Fedora ${LINUX_DIST_VER}
 
+LICENSE=	agg
+
 NO_BUILD=	yes
 NO_MTREE=	yes
 NO_INSTALL=	yes
