@@ -14,18 +14,27 @@ LICENSE=	gpl2
 USES=		gmake libtool
 USE_GNOME=	gnomeprefix libgnomeui
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-install-pam
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+USE_GNOME=	gnomeprefix libgnomeui
+CONFIGURE_ARGS+=--disable-install-pam \
+		--disable-setuid-error
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+
+SUB_FILES=	pkg-message
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-DGTK_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/src/Makefile.in
 
 post-install:
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${FILESDIR}/gnomesu-pam.5.x.sample ${EXAMPLESDIR}
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/api.html ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/libgnomesu.css ${DOCSDIR}
-.endif
 	@${SED} -e "s|%%EXAMPLESDIR%%|${EXAMPLESDIR}|g" ${PKGMESSAGE}
 
 .include <bsd.port.mk>
