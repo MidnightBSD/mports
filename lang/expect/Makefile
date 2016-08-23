@@ -18,6 +18,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}
 
 FAKE_OPTS+=	prefixhack
 
+USE_GCC=	any
 USES=		tcl
 USE_TCL=	yes
 USE_LDCONFIG=	yes
