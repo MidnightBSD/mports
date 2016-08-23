@@ -14,10 +14,10 @@ COMMENT=	Popular virtual window manager for X
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
 
-RUN_DEPENDS=	gm4:devel/m4 \
-		p5-XML-Parser>=0:textproc/p5-XML-Parser
-LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
+RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
+		p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
+LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
 # Other ports this port cannot coexist with
 CONFLICTS?=	fvwm-1.* fvwm-2.[457].*
