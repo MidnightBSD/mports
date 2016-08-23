@@ -207,7 +207,7 @@ post-install:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb23 ${PREFIX}/bin/irb23 \
 		${PREFIX}/bin/rdoc23 ${PREFIX}/bin/ri23 \
-		${PREFIX}/lib/ruby/2.3/amd64-midnightbsd0/rbconfig.rb  \
+		${PREFIX}/lib/ruby/2.3/${ARCH}-midnightbsd0/rbconfig.rb  \
 		${PREFIX}/libdata/pkgconfig/ruby-2.3.pc
 
 regression-test test:
