@@ -13,11 +13,12 @@ MASTER_SITES=	http://src4.narod.ru/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast and less lossy FLV to MPEG4(AVI/MOV/MP4/MP3/3GP) converter
+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	avformat:${PORTSDIR}/multimedia/ffmpeg
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 
