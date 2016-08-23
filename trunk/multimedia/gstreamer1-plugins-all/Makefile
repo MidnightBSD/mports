@@ -4,15 +4,18 @@ PORTNAME=	gstreamer1-plugins-all
 PORTVERSION=	${GST1_VERSION}
 PORTREVISION=	0
 CATEGORIES=	multimedia
+DISTFILES=      # none
+EXTRACT_ONLY=   # none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port of all gstreamer 1.x plugins with options
 
 LICENSE=	agg
 
-USES=		metaport
-
 USE_GSTREAMER1=	yes
+
+NO_BUILD=       yes
+NO_MTREE=       yes
 
 .for all in ${_GSTREAMER_PLUGINS}
 OPTIONS_DEFINE+=	${all:tu}
@@ -36,5 +39,8 @@ OPTIONS_DEFINE_i386=	SPC
 USE_GSTREAMER1+=${f:tl}
 .endif
 .endfor
+
+do-install: build
+	@${DO_NADA}
 
 .include <bsd.port.mk>
