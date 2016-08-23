@@ -124,7 +124,7 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/sample.fvwmrc/system.fvwm2rc \
-		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.dist
+		${STAGEDIR}${PREFIX}/etc/system.fvwm2rc.sample
 .if ${PORT_OPTIONS:MICONS}
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/fvwm/pixmaps
 	${INSTALL_DATA} ${WRKDIR}/icons/${FVWM_ICONS}/*.xpm \
