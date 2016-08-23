@@ -21,7 +21,8 @@ USE_KDE4=	automoc4
 USE_QT4=	corelib gui opengl declarative \
 		qmake_build moc_build rcc_build uic_build qtestlib_build
 
-PLIST_SUB=	VERSION="${GST_VERSION}"
+PLIST_SUB=	VERSION="${GST_VERSION}" \
+		QT_LIBDIR_REL="${QT_LIBDIR_REL}"
 
 GST_VERSION=${PORTVERSION:C/..$//}
 
