@@ -128,8 +128,6 @@ post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
 	${RM} -f ${PREFIX}/lib/libpython3.so						# Upstream Issue: http://bugs.python.org/issue17975
 .endif
-	for i in ${PREFIX}/lib/python3.4/lib-dynload/*.so; do \
-		${STRIP_CMD} $$i; done								# Strip shared extensions
 
 regression-test: build
 	@cd ${WRKSRC} && ${MAKE} TESTOPTS=-j${MAKE_JOBS_NUMBER} buildbottest
