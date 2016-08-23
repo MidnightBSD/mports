@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
 RUN_DEPENDS=	gtar:${PORTSDIR}/archivers/gtar \
-    		unzip:${PORTSDIR}/archivers/unzip
+    		${LOCALBASE}/unzip:${PORTSDIR}/archivers/unzip
 
 USES=		desktop-file-utils gettext gmake libarchive libtool \
 		pathfix pkgconfig tar:xz
