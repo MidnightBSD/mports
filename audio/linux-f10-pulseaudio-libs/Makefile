@@ -9,6 +9,8 @@ MASTER_SITE_SUBDIR=	netchild/rpms/${LINUX_DIST}${LINUX_DIST_VER}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for PulseAudio clients (Linux Fedora 10)
 
+LICENSE=	gpl2
+
 USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 USE_LINUX_APPS=	libasyncns xorglibs
