@@ -12,7 +12,7 @@ bin/fvwm-root
 bin/fvwm
 bin/fvwm2
 bin/xpmroot
-@sample etc/system.fvwm2rc.dist etc/system.fvwm2rc
+@sample etc/system.fvwm2rc.smaple
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAnimate
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAudio
 libexec/fvwm/%%FVWM_VERSION%%/FvwmAuto
