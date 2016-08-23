@@ -23,8 +23,6 @@ OPTIONS_MULTI_MP3=	MAD FLUENDO
 OPTIONS_DEFAULT=	MAD
 FLUENDO_DESC=	Use Fluendo Mp3 decoder
 
-PKG_PLIST+=	share/gstreamer-plugins/mp3.meta
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMAD}
@@ -39,8 +37,5 @@ post-extract:
 	${MKDIR} ${WRKSRC}
 
 do-install: #empty
-
-post-install:
-	${TOUCH} ${PREFIX}/share/gstreamer-plugins/mp3.meta
 
 .include <bsd.port.mk>
