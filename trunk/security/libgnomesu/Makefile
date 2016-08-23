@@ -21,8 +21,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-SUB_FILES=	pkg-message
-
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:
