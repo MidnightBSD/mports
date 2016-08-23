@@ -14,6 +14,6 @@ USE_LINUX=	f10
 USE_LINUX_RPM=	yes
 RPMVERSION=	1.fc10
 USE_LDCONFIG=	yes
-AUTOMATIC_PLIST=yes
+#AUTOMATIC_PLIST=yes
 
 .include <bsd.port.mk>
