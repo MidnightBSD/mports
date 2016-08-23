@@ -9,7 +9,6 @@ SUBDIR += cuse4bsd-kmod
 SUBDIR += dirac
 SUBDIR += ffmpeg
 SUBDIR += ffmpeg0
-SUBDIR += flv2mpeg4
 SUBDIR += gnustep-mplayer
 SUBDIR += gpac-libgpac
 SUBDIR += gstreamer
