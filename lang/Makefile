@@ -21,7 +21,6 @@ SUBDIR += gcc-ecj45
 SUBDIR += ghc
 SUBDIR += gjs
 SUBDIR += gnustep-base
-SUBDIR += gnustep-guile
 SUBDIR += go
 SUBDIR += go14
 SUBDIR += gscheme
