@@ -32,6 +32,6 @@ QT4_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/avahi-qt4.pc:${PORTSDIR}/net/ava
 PYTHON_RUN_DEPENDS=	avahi-bookmarks:${PORTSDIR}/net/py-avahi
 
 do-install: build
-        @${DO_NADA}
+	@${DO_NADA}
 
 .include <bsd.port.mk>
