@@ -1,17 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	openjdk6
-PORTVERSION=	b36
-PORTREVISION=	1
+PORTVERSION=	b40
 PORTEPOCH=	1
 CATEGORIES=	java devel
 MASTER_SITES=	APACHE/ant/binaries/:ant \
-		http://download.java.net/openjdk/jtreg/promoted/4.1/b05/:jtreg \
-		https://java.net/downloads/openjdk6/ \
-		FREEBSD_LOCAL/jkim
+		https://java.net/downloads/openjdk6/:jdk \
+		FREEBSD_LOCAL/jkim:jdk,jtreg
 DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
 DISTFILES=	${ANTFILE}:ant \
-		${DISTNAME}${EXTRACT_SUFX}
+		${DISTNAME}${EXTRACT_SUFX}:jdk
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} ${ANTFILE}
 
 MAINTAINER=	luke@midnightbsd.org
@@ -26,10 +24,10 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/share/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
-OPENJDK_BUILDDATE=	22_jul_2015
+OPENJDK_BUILDDATE=	22_aug_2016
 
 OPTIONS_DEFINE=	ICEDTEA IPV6 POLICY SOUND TZUPDATE
-OPTIONS_DEFAULT=ICEDTEA IPV6 TZUPDATE
+OPTIONS_DEFAULT=ICEDTEA TZUPDATE
 ICEDTEA_DESC=	Apply additional patches from IcedTea
 POLICY_DESC=	Install the Unlimited Strength Policy Files
 SOUND_DESC=	Enable sound support
@@ -63,7 +61,7 @@ USE_XORG=	x11 xext xi xt xtst
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
-ANTVERSION=	1.9.4
+ANTVERSION=	1.9.7
 ANTFILE=	apache-ant-${ANTVERSION}-bin.tar.bz2
 
 JTREG_BUILD=	b05_29_nov_2012
