@@ -3,6 +3,7 @@
 COMMENT = peer-to-peer network applications
 
 SUBDIR += ctorrent
+SUBDIR += frost
 SUBDIR += libtorrent
 SUBDIR += rtorrent
 SUBDIR += transmission
