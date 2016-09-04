@@ -11,5 +11,6 @@ SUBDIR += transmission-cli
 SUBDIR += transmission-daemon
 SUBDIR += transmission-gtk
 SUBDIR += transmission-qt4
+SUBDIR += xnap
 
 .include <bsd.port.subdir.mk>
