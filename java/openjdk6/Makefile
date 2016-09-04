@@ -350,9 +350,6 @@ do-install:
 	@${ECHO_CMD} '${TEST} $$2 = POST-INSTALL && ${LOCALBASE}/bin/registervm "${PREFIX}/openjdk6-fastdebug/bin/java # OpenJDK6"' >> ${PKGINSTALL}
 .endif
 
-post-install:
-	(cd ${PREFIX}/openjdk6/include/ && ${LN} -s freebsd midnightbsd)
-
 .endif
 	@${ECHO_CMD} "exit 0" >> ${PKGDEINSTALL}
 	@${ECHO_CMD} "exit 0" >> ${PKGINSTALL}
