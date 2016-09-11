@@ -40,7 +40,7 @@ cat > ${MPM_FALLBACK} << _EOF
 # After activating one of the mpm_modules in httpd.conf it is save
 # to deactivate the "LoadModule" line in this file.
 #
-# In case mod_(php|perl|python|...) modules from the official FreeBSD
+# In case mod_(php|perl|python|...) modules from the official BSD
 # package repo are installed please use the mpm_prefork module, else
 # feel free to test mpm_event (preferred) or mpm_worker.
 #
