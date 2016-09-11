@@ -1,3 +1,10 @@
+# $FreeBSD: head/sysutils/munin-node/files/plugins.conf.in 377445 2015-01-19 17:47:47Z mat $
+#
+######################################################################
+# This file is installed by the sysutils/munin-node port, you should #
+# not change it, you should create a local.conf file in the same     #
+# directory with your local changes.                                 #
+######################################################################
 #
 # This file contains configuration options for the plugins. Three
 # options are understood by munin-node itself:
@@ -19,37 +26,57 @@
 # port security/logcheck. The munin-node port has no dependency on
 # that port because most plugins do not require it.
 
+[*]
+env.PATH %%LOCALBASE%%/sbin:%%LOCALBASE%%/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 [amavis]
 env.amavislog /var/log/maillog
-env.logtail /usr/local/bin/logtail
+env.logtail %%LOCALBASE%%/bin/logtail
 
 [courier_*]
 env.logfile /var/log/maillog
-env.logtail /usr/local/bin/logtail
+env.logtail %%LOCALBASE%%/bin/logtail
 
 [dhcp3]
-env.configfile /usr/local/etc/dhcpd.conf
+env.configfile %%LOCALBASE%%/etc/dhcpd.conf
 env.leasefile /var/db/dhcpd.leases
 
 [exim*]
 group mail
-env.exim /usr/local/sbin/exim
+env.exim %%LOCALBASE%%/sbin/exim
+
+[smart_*]
+user root
+group operator
+env.smartpath %%LOCALBASE%%/sbin/smartctl
 
 [hddtemp_smartctl]
+user root
 group operator
-env.smartctl /usr/local/sbin/smartctl
+env.smartctl %%LOCALBASE%%/sbin/smartctl
 
 [mbmon*]
-env.mbmon /usr/local/bin/mbmon
+env.mbmon %%LOCALBASE%%/bin/mbmon
 
 [mysql*]
-env.mysqladmin /usr/local/bin/mysqladmin
-env.mysqlshow /usr/local/bin/mysqlshow
+env.mysql %%LOCALBASE%%/bin/mysql
+env.mysqladmin %%LOCALBASE%%/bin/mysqladmin
+env.mysqlshow %%LOCALBASE%%/bin/mysqlshow
 
 [postfix*]
 user root
-env.logfile maillog
+env.logfile /var/log/maillog
 
 [sendmail*]
+group wheel
 env.mspqueue /var/spool/clientmqueue
 env.mailstats /usr/sbin/mailstats
+
+[fail2ban*]
+user root
+env.client %%LOCALBASE%%/bin/fail2ban-client
+
+[nut*]
+env.upsc    %%LOCALBASE%%/bin/upsc
+env.upsconf %%LOCALBASE%%/etc/nut/ups.conf
+
