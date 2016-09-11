@@ -15,7 +15,7 @@ LICENSE=	apache2
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
-USES=		iconv pathfix libtool cpe
+USES=		iconv:wchar_t pathfix libtool cpe
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--build=${ARCH}-midnightbsd-freebsd9.1
