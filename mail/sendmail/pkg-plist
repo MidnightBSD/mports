@@ -40,3 +40,4 @@ share/sendmail/helpfile
 %%PORTDOCS%%%%DOCSDIR%%/SENDMAIL
 %%PORTDOCS%%%%DOCSDIR%%/MAIL.LOCAL
 %%PORTDOCS%%%%DOCSDIR%%/SMRSH
+@dir libexec/sm.bin
