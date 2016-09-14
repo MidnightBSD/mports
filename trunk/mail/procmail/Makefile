@@ -2,7 +2,7 @@
 
 PORTNAME=	procmail
 PORTVERSION=	3.22
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.ucsb.edu/pub/mirrors/procmail/ \
 		ftp://ftp.informatik.rwth-aachen.de/pub/packages/procmail/ \
@@ -14,64 +14,28 @@ MASTER_SITES=	ftp://ftp.ucsb.edu/pub/mirrors/procmail/ \
 		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A local mail delivery agent
-LICENSE=	perl
+COMMENT=	Local mail delivery agent
 
-MAKE_JOBS_UNSAFE=	yes
+LICENSE=	gpl2
 
-#.if defined(WITH_COURIER_MAILDIR_KLUDGE)
-#PATCH_SITES=	http://www.john.net.au/pub/procmail-courier/
-#PATCHFILES=	procmail-authenticate.c-userMaildir.patch
-#PATCH_DIST_STRIP=-p
-#.endif
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
-# It asks for list of directories to do test for file locking
-# (defaults to /tmp and ".", so return should suffice in most cases).
-.if defined(BATCH) # handled in patch-aa
-MAKE_ARGS+=	-DBATCH
-.else
-IS_INTERACTIVE=	yes
-.endif
+INSTALL_TARGET=	install.bin install.man
+USES=		cpe
+EXTRA_PATCHES=	${FILESDIR}/procmail-3.22-getline.patch:-p1
 
-INSTALL_TARGET=	install-suid install.man
-
-MAN1=		formail.1 lockfile.1 procmail.1
-MAN5=		procmailex.5 procmailrc.5 procmailsc.5
-
-# Local variables
-#
-
-DOC_FILES=	FAQ FEATURES HISTORY KNOWN_BUGS README
-
-SAMPLESDIR=	${PREFIX}/share/examples/${PORTNAME}
-SAMPLE_FILES=	1procmailrc 1rmail 2procmailrc 2rmail 3procmailrc 3rmail \
+PORTDOCS=	FAQ FEATURES HISTORY KNOWN_BUGS README
+PORTEXAMPLES=	1procmailrc 1rmail 2procmailrc 2rmail 3procmailrc 3rmail \
 		advanced dirname forward local_procmail_lmtp.m4 mailstat
 
-# Post-configure
-#
-
-post-configure: patch-config
-
-patch-config:
+post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/config.h
+# Allow parallel builds (-jX) to work
+	@${FIND} ${WRKSRC} -name 'Makefile*' | ${XARGS} ${REINPLACE_CMD} -E 's|cd (.+); (\$$\(MAKE\))|\2 -C \1|'
 
-# Post-install
-#
-
-post-install: install-sample install-doc
-
-install-sample:
-	@${MKDIR} ${SAMPLESDIR}
-.for file in ${SAMPLE_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/examples/${file} ${SAMPLESDIR}
-.endfor
-
-install-doc:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in ${DOC_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-.endif
+post-install:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}/
+	cd ${WRKSRC}/examples/ && ${INSTALL_DATA} ${PORTEXAMPLES} ${STAGEDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.mk>
