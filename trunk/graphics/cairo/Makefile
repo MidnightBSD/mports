@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.14.2
+PORTVERSION=	1.14.6
 PORTREVISION=	0
 PORTEPOCH?=	2
 CATEGORIES=	graphics
@@ -10,7 +10,8 @@ MASTER_SITES=	http://cairographics.org/releases/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1 mpl
+LICENSE_COMB=	dual
 
 USES=		tar:xz
 
@@ -49,16 +50,17 @@ XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x1
 XCB_CONFIGURE_ENABLE=	xcb
 # this has another option --enable-xlib-xcb=auto but it is buggy.
 
-PLIST_SUB+=	LIBVER=2.11400.2
-
 .include <bsd.mport.options.mk>
 
+PLIST_SUB+=	LIBVER=2.11400.6
+
 post-patch:
-	@${REINPLACE_CMD} -e '/test/s/==/=/g' \
-		-e '/LIBS/s/-lrt//'  -e '/LIBS/s|-ldld||' \
+	@${REINPLACE_CMD} -e '/strings/s/ - / -a /' \
+		-e '/test/s/==/=/g' \
+		-e '/LIBS/s/-lrt//' -e '/LIBS/s|-ldld||' \
 		-e '/LIBS/s|-ldl||' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|-lcairo|-lcairo -pthread|' \
+	@${REINPLACE_CMD} -e 's|-lcairo|-lcairo -lpthread|' \
 		${WRKSRC}/src/*.pc.in
 	@${REINPLACE_CMD} -e '/@CAIRO_HAS_PNG_FUNCTIONS_TRUE@.*=/d' \
 		${WRKSRC}/Makefile.in
