@@ -386,6 +386,7 @@ SUBDIR += p5-Variable-Magic
 SUBDIR += p5-bareword-filehandles
 SUBDIR += p5-common-sense
 SUBDIR += p5-indirect
+SUBDIR += p5-multidimensional
 SUBDIR += p5-namespace-clean
 SUBDIR += p5-parent
 SUBDIR += p5-strictures
