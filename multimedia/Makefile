@@ -7,6 +7,7 @@ SUBDIR += clive
 SUBDIR += clutter-gst
 SUBDIR += cuse4bsd-kmod
 SUBDIR += dirac
+SUBDIR += emby-server
 SUBDIR += ffmpeg
 SUBDIR += ffmpeg0
 SUBDIR += gnustep-mplayer
