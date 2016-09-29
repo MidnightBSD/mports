@@ -1,29 +1,34 @@
+# Created by: Yukihiro Nakai <nakai@FreeBSD.org>
+# $FreeBSD: head/lang/mono/Makefile 420322 2016-08-17 08:23:37Z romain $
 # $MidnightBSD$
-# $FreeBSD: head/lang/mono/Makefile 333989 2013-11-16 12:47:59Z romain $
 
 PORTNAME=	mono
-PORTVERSION=	3.2.8
-PORTREVISION=	0
+PORTVERSION=	4.4.2.11
 CATEGORIES=	lang
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
-MAINTAINER=	mono@FreeBSD.org
-COMMENT=	Open source implementation of .NET Development Framework
+PATCHFILES=
+PATCH_SITES=	https://github.com/mono/mono/commit/
+PATCH_DIST_STRIP=-p1
 
-BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser \
-    		bash:${PORTSDIR}/shells/bash
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Open source implementation of .NET Development Framework
 
 LICENSE=	lgpl mit
 LICENSE_COMB=	dual
 
-USES=		bison gettext gmake iconv pathfix tar:bzip2
+
+BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser \
+		bash:${PORTSDIR}/shells/bash
+
+USES=		bison compiler:c11 cpe gettext gmake iconv libtool pathfix perl5 tar:bzip2
 USE_GNOME=	glib20
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+WRKSRC=		${WRKDIR}/mono-${PORTVERSION:R}
 
-# Moonlight is installed as part of www/moonlight
-CONFIGURE_ARGS=	--with-moonlight=no --disable-dtrace
+CONFIGURE_ARGS=	--disable-dtrace
 
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no
 
@@ -35,45 +40,29 @@ MONO_SHARED_DIR=${WRKDIR}
 # strange crashes.
 MAKE_ENV=	MONO_SHARED_DIR="${MONO_SHARED_DIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
-		LC_ALL=C
+		LC_ALL=C TZ=UTC
 
 .include <bsd.port.pre.mk>
 
-# Base GCC used to cause problems, so compile using clang which is usualy in
-# base. However, the clang version shipped with some older FreeBSD version will
-# not compile Mono, in such a case, compile using a clang port.
-.if ${OSVERSION} >= 5002 && exists(/usr/bin/clang)
-CC=	/usr/bin/clang
-CXX=	/usr/bin/clang++
-CPP=	/usr/bin/clang-cpp
-.else
-BUILD_DEPENDS+=	clang33:${PORTSDIR}/lang/clang33
-CC=	clang33
-CXX=	clang33
-CPP=	clang-cpp33
-.endif
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|^#!/bin/bash|#!/bin/sh|g' \
-		${WRKSRC}/mcs/class/Managed.Windows.Forms/build-csproj \
-		${WRKSRC}/mcs/class/Managed.Windows.Forms/build-csproj2k5 \
-		${WRKSRC}/mcs/class/Mono.WebBrowser/build-csproj2k5
 	@${REINPLACE_CMD} -e 's|^#!/bin/bash|#!/usr/bin/env bash|g' \
 		${WRKSRC}/scripts/mono-find-provides.in \
 		${WRKSRC}/scripts/mono-find-requires.in \
 		${WRKSRC}/scripts/mono-test-install
 	@${FIND} ${WRKSRC} -name '*.sh' | ${XARGS} ${REINPLACE_CMD} \
 		-e 's|^#!/bin/bash|#!/bin/sh|g'
-	@${REINPLACE_CMD} 's/(1)/(1.0)/g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} 's/isinf (1)/isinf (1.0)/g' ${WRKSRC}/configure
 
 tests: build
 	@${ECHO_MSG} "===> Running mono regression tests"
-	@(cd ${WRKSRC}/mono/tests && ${SETENV} ${MAKE_ENV} ${GMAKE} \
-		${MAKE_FLAGS} Makefile ${MAKE_ARGS} test)
+	@(cd ${WRKSRC}/mono/tests && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
+		${MAKE_FLAGS} Makefile ${MAKE_ARGS} check)
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|share\/man|man|g' \
 		${WRKSRC}/mcs/jay/Makefile
 
-.include "${PORTSDIR}/lang/mono/bsd.mono.mk"
+	@${REINPLACE_CMD} 's/^#define HAVE_LOCALCHARSET_H 1/#undef HAVE_LOCALCHARSET_H/' \
+		${WRKSRC}/eglib/config.h
+
 .include <bsd.port.post.mk>
