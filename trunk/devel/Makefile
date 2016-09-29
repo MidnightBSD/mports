@@ -434,6 +434,7 @@ SUBDIR += py-cffi
 SUBDIR += py-colorama
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
+SUBDIR += py-enum34
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
