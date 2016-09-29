@@ -3,7 +3,7 @@ If you have build/runtime errors with Mono and Gtk# apps please try the
 following first:
 
 * Build Mono and gtk+ (x11-toolkits/gtk20) without CPUTYPE and with the
-  default FreeBSD CFLAGS ('-O2 -fno-strict-aliasing -pipe') as Mono has
+  default BSD CFLAGS ('-O2 -fno-strict-aliasing -pipe') as Mono has
   been known to expose compiler bugs.
 
 * Try building and running Mono with the GENERIC kernel.
