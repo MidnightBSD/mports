@@ -3,7 +3,7 @@
 # Created by: Mark Linimon <linimon@FreeBSD.org>
 #
 # $FreeBSD: head/Mk/bsd.local.mk 358214 2014-06-18 07:14:22Z bapt $
-#
+# $MidnightBSD$
 
 .if !defined(_POSTMKINCLUDED) && !defined(Local_Pre_Include)
 
