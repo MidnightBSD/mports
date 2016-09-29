@@ -87,6 +87,7 @@ SUBDIR += mplayer-skins
 SUBDIR += phonon
 SUBDIR += phonon-gstreamer
 SUBDIR += plexmediaserver
+SUBDIR += plexmediaserver-plexpass
 SUBDIR += plexpy
 SUBDIR += plexwatch
 SUBDIR += poe
