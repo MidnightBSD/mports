@@ -125,6 +125,7 @@ SUBDIR += webkit-qt4
 SUBDIR += webkit-qt5
 SUBDIR += webkit2-gtk3
 SUBDIR += weblint
+SUBDIR += xsp
 SUBDIR += youtube_dl
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
