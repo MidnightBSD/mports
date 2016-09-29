@@ -105,6 +105,7 @@ SUBDIR += vcdimager
 SUBDIR += webcamd
 SUBDIR += win32-codecs
 SUBDIR += x264
+SUBDIR += x265
 SUBDIR += xanim
 SUBDIR += xine
 SUBDIR += xmms
