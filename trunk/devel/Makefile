@@ -430,6 +430,7 @@ SUBDIR += py-babel
 SUBDIR += py-bcdoc
 SUBDIR += py-boto
 SUBDIR += py-botocore
+SUBDIR += py-cffi
 SUBDIR += py-colorama
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
