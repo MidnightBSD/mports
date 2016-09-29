@@ -1,13 +1,13 @@
 # $MidnightBSD$
 # $FreeBSD: head/multimedia/plexmediaserver-plexpass/Makefile 421223 2016-09-01 14:13:35Z feld $
 
-PORTVERSION=	1.1.3.2700
+PORTVERSION=	1.1.4.2757
 PORTREVISION=	0
 PKGNAMESUFFIX=	-plexpass
 
 MAINTAINER=	ports@MidnightBSD.org
 
-PLEX_BUILD=	6f64a8d
+PLEX_BUILD=	24ffd60
 
 USE_RC_SUBR=	${PORTNAME}_plexpass
 
