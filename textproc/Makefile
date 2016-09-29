@@ -89,6 +89,7 @@ SUBDIR += p5-Pod-Escapes
 SUBDIR += p5-Pod-Markdown
 SUBDIR += p5-Pod-POM
 SUBDIR += p5-Pod-Parser
+SUBDIR += p5-Pod-Readme
 SUBDIR += p5-Pod-Simple
 SUBDIR += p5-SGML-Parser-OpenSP
 SUBDIR += p5-SGMLSpm
