@@ -91,6 +91,7 @@ SUBDIR += p5-Pod-POM
 SUBDIR += p5-Pod-Parser
 SUBDIR += p5-Pod-Readme
 SUBDIR += p5-Pod-Simple
+SUBDIR += p5-Regexp-Common
 SUBDIR += p5-SGML-Parser-OpenSP
 SUBDIR += p5-SGMLSpm
 SUBDIR += p5-Spreadsheet-ParseExcel
