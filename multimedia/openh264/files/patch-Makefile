@@ -1,0 +1,13 @@
+# Force gmp plugin to link dynamically against libopenh264
+
+--- Makefile~
++++ Makefile
+@@ -210,7 +210,7 @@ plugin:
+ 	@echo "You do not have gmp-api.  Run make gmp-bootstrap to get the gmp-api headers."
+ endif
+ 
+-$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXVER): $(MODULE_OBJS) $(ENCODER_OBJS) $(DECODER_OBJS) $(PROCESSING_OBJS) $(COMMON_OBJS)
++$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXVER): $(MODULE_OBJS) $(LIBPREFIX)$(PROJECT_NAME).$(SHAREDLIBSUFFIX)
+ 	$(QUIET)rm -f $@
+ 	$(QUIET_CXX)$(CXX) $(SHARED) $(CXX_LINK_O) $+ $(LDFLAGS) $(SHLDFLAGS) $(MODULE_LDFLAGS)
+ 
