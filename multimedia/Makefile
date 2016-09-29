@@ -86,6 +86,7 @@ SUBDIR += mplayer
 SUBDIR += mplayer-skins
 SUBDIR += phonon
 SUBDIR += phonon-gstreamer
+SUBDIR += plexmediaserver
 SUBDIR += poe
 SUBDIR += qt4-multimedia
 SUBDIR += qt5-multimedia
