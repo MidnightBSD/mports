@@ -86,6 +86,7 @@ SUBDIR += mp4v2
 SUBDIR += mpeg2codec
 SUBDIR += mplayer
 SUBDIR += mplayer-skins
+SUBDIR += openh264
 SUBDIR += phonon
 SUBDIR += phonon-gstreamer
 SUBDIR += plexmediaserver
