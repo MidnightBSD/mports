@@ -377,6 +377,7 @@ SUBDIR += p5-Tie-Simple
 SUBDIR += p5-Time-Duration
 SUBDIR += p5-Time-HiRes
 SUBDIR += p5-Time-Local
+SUBDIR += p5-Time-modules
 SUBDIR += p5-TimeDate
 SUBDIR += p5-Types-Serialiser
 SUBDIR += p5-UNIVERSAL-moniker
