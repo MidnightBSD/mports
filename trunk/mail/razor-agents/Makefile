@@ -7,13 +7,13 @@ CATEGORIES=	mail
 MASTER_SITES=	SF/razor/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A distributed, collaborative, spam detection and filtering network
+COMMENT=	Distributed, collaborative, spam detection and filtering network
 
 LICENSE=	artistic2
 
-BUILD_DEPENDS=	p5-Net-DNS>=0:dns/p5-Net-DNS \
-		p5-Digest-SHA1>=0:security/p5-Digest-SHA1 \
-		p5-URI>=0:net/p5-URI
+BUILD_DEPENDS=	p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS \
+		p5-Digest-SHA1>=0:${PORTSDIR}/security/p5-Digest-SHA1 \
+		p5-URI>=0:${PORTSDIR}/net/p5-URI
 
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
