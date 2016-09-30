@@ -370,7 +370,7 @@ PKGNAMESUFFIX=		-nox11
 CONFLICTS+=		ImageMagick-nox11-6*
 CONFLICTS+=		display-[0-9]*
 CONFIGURE_ARGS+=	--with-x
-USE_XORG=		xext xt
+USE_XORG=		sm ice x11 xext xt
 PLIST_SUB+=		X11=''
 .endif
 
