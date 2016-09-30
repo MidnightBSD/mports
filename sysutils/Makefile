@@ -40,6 +40,7 @@ SUBDIR += fusefs-httpfs
 SUBDIR += fusefs-kmod
 SUBDIR += fusefs-libs
 SUBDIR += fusefs-ntfs
+SUBDIR += fusefs-s3fs
 SUBDIR += fusefs-sshfs
 SUBDIR += fusefs-unionfs
 SUBDIR += gag
