@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	sshfs
-PORTVERSION=	2.5
+PORTVERSION=	2.8
+DISTVERSIONPREFIX=	${PORTNAME}_
 CATEGORIES=	sysutils
-MASTER_SITES=	SF/fuse/${PORTNAME}-fuse/${PORTVERSION}
 PKGNAMEPREFIX=	fusefs-
-DISTNAME=	${PORTNAME}-fuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount remote directories over ssh
@@ -15,8 +14,13 @@ LICENSE=	gpl2
 
 KMODDIR?=	${LOCALBASE}/modules
 
+WRKSRC=		${WRKDIR}/sshfs-sshfs_2.8
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	libfuse
+
 GNU_CONFIGURE=	yes
-USES=		fuse pkgconfig
+USES=		autoreconf fuse gettext pkgconfig
 USE_GNOME=	glib20
 
 PLIST_FILES=	bin/sshfs \
