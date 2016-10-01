@@ -112,6 +112,7 @@ SUBDIR += py-avahi
 SUBDIR += py-ipaddress
 SUBDIR += py-oauth2
 SUBDIR += py-s3cmd
+SUBDIR += py-s3transfer
 SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
 SUBDIR += qt4-network
