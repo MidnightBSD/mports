@@ -1,2 +1,3 @@
-SHA256 (python/setuptools-17.0.tar.gz) = 561b33819ef3da2bff89cc8b05fd9b5ea3caeb31ad588b53fdf06f886ac3d200
-SIZE (python/setuptools-17.0.tar.gz) = 629845
+TIMESTAMP = 1467171497
+SHA256 (python/setuptools-23.1.0.tar.gz) = 4e269d36ba2313e6236f384b36eb97b3433cf99a16b94c74cca7eee2b311f2be
+SIZE (python/setuptools-23.1.0.tar.gz) = 601865
