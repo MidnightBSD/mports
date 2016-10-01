@@ -436,6 +436,7 @@ SUBDIR += py-dateutil
 SUBDIR += py-dbus
 SUBDIR += py-enum34
 SUBDIR += py-fileutils
+SUBDIR += py-futures
 SUBDIR += py-gdata
 SUBDIR += py-gobject
 SUBDIR += py-gobject3
