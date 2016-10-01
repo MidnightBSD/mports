@@ -9,7 +9,7 @@ MASTER_SITES=	http://v3.sk/~lkundrak/dev86/archive/ \
 DISTNAME=	Dev86src-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Robert de Bath's 8086 development tools
+COMMENT=	8086 development tools
 
 LICENSE=	gpl2
 
