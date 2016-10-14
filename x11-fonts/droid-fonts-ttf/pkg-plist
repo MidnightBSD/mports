@@ -24,3 +24,4 @@
 %%FONTDIR%%/fonts.dir
 %%FONTDIR%%/fonts.scale
 @dirrm %%FONTDIR%%
+@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
