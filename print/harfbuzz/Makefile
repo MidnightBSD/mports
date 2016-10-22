@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	harfbuzz
-PORTVERSION=	1.0.1
+PORTVERSION=	1.3.2
 CATEGORIES=	print
 MASTER_SITES=	http://www.freedesktop.org/software/harfbuzz/release/
 
@@ -15,16 +15,14 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libgraphite2.so:${PORTSDIR}/graphics/graphite2
 
 USE_LDCONFIG=	yes
-USES=		gmake libtool pathfix pkgconfig tar:bzip2
-USE_GNOME=	cairo glib20
+USES=		compiler:c++0x gmake libtool pathfix pkgconfig tar:bzip2
+USE_GNOME=	cairo glib20 introspection:build
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-graphite2
+CONFIGURE_ARGS=	--with-graphite2 --with-gobject=yes
 INSTALL_TARGET=	install-strip
 
-.include <bsd.port.pre.mk>
+PLIST_SUB+=	LIBVER=0.10302.0
 
 EXTRA_PATCHES=	${PATCHDIR}/extra-src_hb-open-type-private.hh
 
-PLIST_SUB+=	LIBVER=0.10000.1
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
