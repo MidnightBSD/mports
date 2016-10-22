@@ -2,10 +2,10 @@
 # $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.1.5
+DISTVERSION=	1.2.2
 PORTEPOCH=	1
 CATEGORIES?=	mail www
-MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/1.1.5/
+MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/1.2.2/
 DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -13,11 +13,13 @@ COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 
 LICENSE=	gpl3
 
-WRKSRC=		${WRKDIR}/roundcubemail-1.1.5
+WRKSRC=		${WRKDIR}/roundcubemail-${DISTVERSION}
 
 NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}mail-${DISTVERSION}
 
-RCUBECOMP=	SQL config index.php installer logs plugins program robots.txt skins temp vendor
+RCUBECOMP=	SQL config .htaccess index.php installer logs \
+		plugins program robots.txt skins temp vendor
 PORTDOCS=	CHANGELOG INSTALL README.md UPGRADING
 
 USES=		cpe
@@ -28,15 +30,15 @@ WANT_PHP_WEB=	yes
 USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter
 IGNORE_WITH_PHP=52
 
-OPTIONS_DEFINE=	SSL LDAP GD PSPELL NSC DOCS
+OPTIONS_DEFINE=	LDAP GD PSPELL NSC DOCS
 OPTIONS_SINGLE=	DB
 OPTIONS_SINGLE_DB=	MYSQL PGSQL SQLITE
 OPTIONS_DEFAULT=MYSQL
 
+DB_DESC=	Database backend
 MYSQL_DESC=	Use MySQL backend
 PGSQL_DESC=	Use PostgreSQL backend
 SQLITE_DESC=	Use SQLite backend
-SSL_DESC=	Enable SSL support (imaps or google spellcheck)
 LDAP_DESC=	Enable LDAP support (address book)
 GD_DESC=	Enable GD support (image conversion)
 PSPELL_DESC=	Enable PSpell support (internal spellcheck)
@@ -56,9 +58,7 @@ USE_PHP+=	pdo_pgsql
 USE_PHP+=	pdo_sqlite
 .endif
 
-.if ${PORT_OPTIONS:MSSL}
 USE_PHP+=	openssl
-.endif
 
 .if ${PORT_OPTIONS:MLDAP}
 USE_PHP+=	ldap
