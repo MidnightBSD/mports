@@ -1,9 +1,8 @@
-# Created by: ruslan@shevchenko.kiev.ua
-# $FreeBSD: head/lang/erlang/Makefile 394856 2015-08-20 11:53:46Z olgeni $
 # $MidnightBSD$
+# $FreeBSD: head/lang/erlang/Makefile 424411 2016-10-21 12:51:40Z mat $
 
 PORTNAME=	erlang
-PORTVERSION=	18.2.4
+PORTVERSION=	19.1.5
 PORTEPOCH=	3
 CATEGORIES=	lang parallel java
 MASTER_SITES=	http://www.erlang.org/download/:erlangorg		\
@@ -12,7 +11,7 @@ MASTER_SITES=	http://www.erlang.org/download/:erlangorg		\
 		http://www.erlang.se/doc/:erlangse			\
 		http://www.erlang.se/publications/:publications		\
 		http://www.sics.se/~joe/thesis/:joe			\
-		LOCAL/olgeni:local
+		FREEBSD_LOCAL/olgeni:local
 DISTNAME=	otp_src_${ERL_RELEASE}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:erlangorg	\
 		${ERLANG_MAN}:erlangorg
@@ -21,7 +20,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES=	http://olgeni.olgeni.com/~olgeni/distfiles/ \
 		FREEBSD_LOCAL/olgeni
-PATCHFILES=	patch-otp-18.2.2 patch-otp-18.2.3 patch-otp-18.2.4
+PATCHFILES=	patch-otp-19.1.1 patch-otp-19.1.2 patch-otp-19.1.3 \
+		patch-otp-19.1.4 patch-otp-19.1.5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
@@ -38,20 +38,23 @@ PLIST_SUB=	ERLANG_LIB=${ERLANG_LIB}
 
 MAKE_JOBS_UNSAFE=yes
 
-OPTIONS_DEFINE=	DOCS DTRACE GCC GS HIPE JAVA KQUEUE ODBC OPENSSL SCTP SMP THREADS WX DIRTY
+OPTIONS_DEFINE=	DIRTY DOCS DTRACE GS HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP SMP THREADS WX
 
 DIRTY_DESC=	Enable Dirty schedulers (experimental)
 DTRACE_DESC=	Enable DTrace support
 GS_DESC=	Enable GS application (deprecated)
 HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
+NATIVE_DESC=	Enable native libraries
 SCTP_DESC=	Enable SCTP support
 SMP_DESC=	Enable SMP support
 WX_DESC=	Enable WX application
 
+NATIVE_IMPLIES=	HIPE
+
 OPTIONS_DEFAULT=HIPE KQUEUE OPENSSL SCTP SMP THREADS
 
-ERL_RELEASE=	18.2.1
+ERL_RELEASE=	19.1
 
 USES=		gmake ncurses perl5
 USE_PERL5=	build
@@ -59,9 +62,9 @@ USE_RC_SUBR=	epmd
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-EI_VSN=		3.8.1
-SNMP_VSN=	5.2.1
-TOOLS_VSN=	2.8.2
+EI_VSN=		3.9.1
+SNMP_VSN=	5.2.4
+TOOLS_VSN=	2.8.6
 
 .include <bsd.mport.options.mk>
 
@@ -80,14 +83,8 @@ DOC_DISTFILES=	armstrong_thesis_2003.pdf:joe		\
 # probes fixed does not match the number of defined probes (54 != 132,
 # respectively)" you probably misconfigured DTrace in some way.
 
-.if ${OSVERSION} < 1000000
-.if ${ARCH} == "amd64" && ${PORT_OPTIONS:MDTRACE} && ! ${PORT_OPTIONS:MGCC}
-IGNORE=		support for DTrace on amd64 requires GCC option
-.endif
-.endif
-
-.if ${PORT_OPTIONS:MGCC}
-USE_GCC?=	yes
+.if ${ARCH} == "amd64" && ${PORT_OPTIONS:MDTRACE}
+IGNORE=		support for DTrace broken
 .endif
 
 .if ${PORT_OPTIONS:MDTRACE}
@@ -99,7 +96,7 @@ CONFIGURE_ARGS+=--without-dynamic-trace
 .endif
 
 .if ${PORT_OPTIONS:MOPENSSL}
-USE_OPENSSL=	yes
+EXTENSIONS+=	openssl
 CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE}
 .else
 CONFIGURE_ARGS+=--without-ssl
@@ -119,6 +116,12 @@ CONFIGURE_ARGS+=--enable-hipe
 CONFIGURE_ARGS+=--disable-hipe
 .endif
 
+.if ${PORT_OPTIONS:MNATIVE}
+CONFIGURE_ARGS+=--enable-native-libs
+.else
+CONFIGURE_ARGS+=--disable-native-libs
+.endif
+
 .if ${PORT_OPTIONS:MKQUEUE}
 CONFIGURE_ARGS+=--enable-kernel-poll
 .else
@@ -132,8 +135,8 @@ USES+=		tk:run
 .if ${PORT_OPTIONS:MWX}
 USE_WX=		2.8+
 WX_COMPS=	wx contrib
-WX_UNICODE=	yes
 CONFIGURE_ARGS+=--with-wx-config=${WX_CONFIG}
+USE_GL+=	gl glu
 .endif
 
 .if ${PORT_OPTIONS:MODBC}
@@ -176,12 +179,6 @@ CONFIGURE_ARGS+=--enable-dirty-schedulers
 MAKE_ARGS+=	ARCH=x86
 .endif
 
-.if ${ARCH} == armv6
-MAKE_ARGS+=	ARCH=arm
-.endif
-
-# The man-pages are put (in spite of FreeBSD's port convention) in a private
-# subdir. This is to avoid cluttering up the man page name space. Also the
 # Erlang man pages are more of internal documentation using the man format than
 # actual system man pages. (erl.1 and epmd.1 perhaps being the exception).
 
@@ -205,6 +202,16 @@ pre-configure:
 	echo "disabled by port options" > ${WRKSRC}/lib/wx/SKIP
 .endif
 
+post-configure:
+.if ${PORT_OPTIONS:MODBC}
+	${RM} ${WRKSRC}/lib/odbc/SKIP
+.endif
+
+.if ${PORT_OPTIONS:MNATIVE}
+pre-build:
+	@cd ${WRKSRC} && ${MAKE_CMD} clean
+.endif
+
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${STAGEDIR}${PREFIX}/etc/man.d/erlang.conf
 	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call ${STAGEDIR}${PREFIX}/bin/erl_call
@@ -213,22 +220,18 @@ post-install:
 			-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB} \
 			"man/man$${SECTION}/*.$${SECTION}" || ${TRUE}; \
 	done
-	${RM} -rf ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/man/cat?
+	-${RM} -r ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/man/cat?
 .if ${PORT_OPTIONS:MDOCS}
 	${TAR} --unlink -xzpf ${DISTDIR}/${DIST_SUBDIR}/${ERLANG_DOCS} \
 		-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.11.1/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.11.2
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.11.1
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.2/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.6
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.2
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.1/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.1.1
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.1
-
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2.1
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.2/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.3
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.2
 
 	${INSTALL_DATA} ${WRKSRC}/lib/dialyzer/doc/*.txt \
 		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-*/doc/
