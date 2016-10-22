@@ -11,6 +11,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
 
 LICENSE=	mpl
+MAKE_JOBS_UNSAFE=	yes
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
@@ -39,7 +40,8 @@ MAKE_ENV=	SKIP_GRE_REGISTRATION=1 mozappdir=${PREFIX}/lib/${MOZILLA}
 LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
-MOZ_OPTIONS?=	--enable-application=xulrunner
+MOZ_OPTIONS?=	--enable-application=xulrunner --disable-webrtc \
+		--disable-sandbox
 USE_GECKO=	gecko
 CPE_PRODUCT=	firefox_esr
 MOZILLA_EXEC_NAME=xulrunner
@@ -48,7 +50,7 @@ MOZILLA_PLIST_DIRS=	bin include lib share/idl libdata
 MOZ_PKGCONFIG_FILES=	libxul-embedding libxul mozilla-js \
 			mozilla-plugin
 
-OPTIONS_EXCLUDE=	GSTREAMER LOGGING
+#OPTIONS_EXCLUDE=	GSTREAMER LOGGING
 OPTIONS_DEFINE=		RUST
 OPTIONS_DEFAULT=	BUNDLED_CAIRO GTK2
 
