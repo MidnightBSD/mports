@@ -1,7 +1,7 @@
 # MidnightBSD$
 
 PORTNAME=	graphite2
-PORTVERSION=	1.3.5
+PORTVERSION=	1.3.8
 CATEGORIES=	graphics print
 MASTER_SITES=	SF/silgraphite/${PORTNAME}
 EXTRACT_SUFX=	.tgz
