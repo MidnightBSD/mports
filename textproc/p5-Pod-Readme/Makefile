@@ -19,6 +19,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5 shebangfix dos2unix
 USE_PERL5=	configure
+PERL_CONFIGURE=	yes
 SHEBANG_FILES=	bin/pod2readme t/*
 
 .include <bsd.port.mk>
