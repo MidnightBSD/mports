@@ -42,5 +42,6 @@ do-install:
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/lz4*
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblz4.so.${SO_VER}
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/libdata/pkgconfig/liblz4.pc
 
 .include <bsd.port.mk>
