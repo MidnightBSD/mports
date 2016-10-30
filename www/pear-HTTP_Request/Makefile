@@ -4,10 +4,12 @@
 
 PORTNAME=	HTTP_Request
 PORTVERSION=	1.4.4
-CATEGORIES=	www pear
+CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PEAR classes providing an easy way to perform HTTP requests
+
+LICENSE=	bsd3
 
 BUILD_DEPENDS=	${PEARDIR}/Net/URL.php:${PORTSDIR}/net/pear-Net_URL		\
 		${PEARDIR}/Net/Socket.php:${PORTSDIR}/net/pear-Net_Socket
