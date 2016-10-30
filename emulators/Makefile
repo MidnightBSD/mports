@@ -13,7 +13,6 @@ SUBDIR += hyperv-is
 SUBDIR += i386-wine
 SUBDIR += ia64sim
 SUBDIR += kqemu-kmod
-SUBDIR += kqemu-kmod-devel
 SUBDIR += linux-f10
 SUBDIR += linux_base-c6
 SUBDIR += linux_base-f10
