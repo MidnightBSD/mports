@@ -29,7 +29,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|gcc|${CC}|g' ${WRKSRC}/testing/cffi0/test_ownlib.py
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/_cffi_backend.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_cffi_backend.so
 
 do-test:
 	@(cd ${TEST_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
