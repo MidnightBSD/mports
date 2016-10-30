@@ -18,7 +18,7 @@ CONFLICTS=	postgresql-libpqxx-3.* postgresql-libpqxx3-3.*
 PORTSCOUT=	limit:^2\.
 
 USE_GCC=	any
-USES+=		gmake libtool pgsql python:build shebangfix
+USES+=		gmake libtool pathfix pgsql python:build shebangfix
 USE_PGSQL=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
