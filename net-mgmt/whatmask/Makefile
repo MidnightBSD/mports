@@ -17,13 +17,12 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 
-MAN1=		whatmask.1
 DOCS=		AUTHORS ChangeLog README
 
-.if !defined(NOPORTDOCS)
+OPTIONS_DEFINE=	DOCS
+
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
