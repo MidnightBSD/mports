@@ -28,7 +28,4 @@ CONFIGURE_ARGS+=	\
 .endif
 PERL_CONFIGURE=	YES
 
-MAN1=		flowdumper.1
-MAN3=		Cflow.3
-
 .include <bsd.port.mk>
