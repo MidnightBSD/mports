@@ -19,7 +19,6 @@ SUBDIR += php56-snmp
 SUBDIR += php70-snmp
 SUBDIR += phpip
 SUBDIR += net-snmp
-SUBDIR += nipper
 SUBDIR += softflowd
 SUBDIR += subcalc
 SUBDIR += sysmon
