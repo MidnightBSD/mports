@@ -2,33 +2,25 @@
 # $MidnightBSD$
 
 PORTNAME=	facile
-PORTVERSION=	1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	math
-MASTER_SITES=	http://www.recherche.enac.fr/log/facile/distrib/
+MASTER_SITES=	http://opti.recherche.enac.fr/facile/distrib/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Functional Constraint Library
-LICENSE=	lgpl
+COMMENT=	Functional Constraint Library
+
+LICENSE=	lgpl2.1
 
 USE_OCAML=	yes
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 ALL_TARGET=	compile
 
-
-FACILEDIR=	${PREFIX}/lib/ocaml/facile
-
-
-FAKE_MAKEARGS=  FACILEDIR=${FAKE_DESTDIR}${FACILEDIR}
-
-
-pre-install:
-	@${MKDIR} ${FACILEDIR}
-
-post-patch:
-	${REINPLACE_CMD} -e "s,make,${GMAKE},; \
-		s,cp,${INSTALL_DATA}," ${WRKSRC}/Makefile
-
-
+post-configure:
+	${REINPLACE_CMD} -e "s,make,${MAKE_CMD},; \
+		s,cp,${INSTALL_DATA},;\
+		s,mkdir,${MKDIR}," ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e "s,${LOCALBASE},${FAKE_DESTDIR}${TRUE_PREFIX}," \
+		${WRKSRC}/config_Makefile
 
 .include <bsd.port.mk>
