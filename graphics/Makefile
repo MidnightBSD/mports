@@ -111,6 +111,7 @@ SUBDIR += libspiro
 SUBDIR += libsvg
 SUBDIR += libvisual04
 SUBDIR += libwmf
+SUBDIR += libwmf-nox11
 SUBDIR += linux-adobesvg
 SUBDIR += linux-f10-cairo
 SUBDIR += linux-f10-dri
