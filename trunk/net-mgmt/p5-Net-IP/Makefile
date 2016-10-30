@@ -8,11 +8,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for manipulating IPv4/IPv6 addresses
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Net::IP.3
 
 post-configure:
 	${PERL} -pi -e 's/-I\S+PERL\S+ //g if m{PERL_DL_NONLAZY}' ${WRKSRC}/Makefile
