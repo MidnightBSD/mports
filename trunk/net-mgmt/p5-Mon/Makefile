@@ -8,13 +8,11 @@ PKGNAMEPREFIX=	p5-
 DISTNAME=	Mon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A perl module that supports mon, a network and system monitoring daemon
+COMMENT=	mon, a network and system monitoring daemon
+
 LICENSE=	gpl2
 
+USES=		perl5
 PERL_CONFIGURE=	YES
-
-MAN3=		Mon::SNMP.3 \
-		Mon::Client.3 \
-		Mon::Protocol.3
 
 .include <bsd.port.mk>
