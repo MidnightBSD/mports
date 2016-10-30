@@ -17,12 +17,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 MAKE_ENV=	prefix="${PREFIX}"
 MAKE_ARGS=	-e
 
-OPTIONS_DEFINE=	NLS
-OPTIONS_SUB=	yes
-
-NLS_USES=	gettext
-NLS_MAKE_ENV_OFF=	DI_NO_NLS=T
-
 post-patch:
 	@${REINPLACE_CMD} -e "s|zoneid_t|zoneId_t|g" ${WRKSRC}/C/di.c
 
