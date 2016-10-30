@@ -9,12 +9,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NSNMP - fast, flexible, low-level, pure-Perl SNMP library
+
 LICENSE=	bsd3
 
+USES=		perl5
 PERL_CONFIGURE=	yes
 
-MAN3=	NSNMP.3 \
-	NSNMP::Simple.3
-
 .include <bsd.port.mk>
-
