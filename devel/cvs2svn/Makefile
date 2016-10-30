@@ -21,8 +21,8 @@ LICENSE=	other
 BUILD_DEPENDS=	${PYTHON_LIBDIR}/lib-dynload/gdbm.so:${PORTSDIR}/databases/py-gdbm
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USE_PYTHON=	2.6+
-USE_PYDISTUTILS=	yes
+USES=		shebangfix python:2.7
+USE_PYTHON=	distutils autoplist
 
 OPTIONS_MULTI=		SCM
 OPTIONS_MULTI_SCM=	SUBVERSION GIT BAZAAR
