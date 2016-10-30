@@ -7,7 +7,7 @@ MASTER_SITES=	ftp://puck.nether.net/pub/jared/ \
 		http://titan.oxeo.com/mirror/sysmon.org/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A network tool designed for high performance and accurate monitoring
+COMMENT=	Network tool designed for high performance and accurate monitoring
 
 LICENSE=	gpl2
 
