@@ -10,6 +10,9 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of modules for time manipulation
 
+LICENSE=	gpl artistic
+LICENSE_COMB=	dual
+
 USES=		perl5
 USE_PERL5=	configure
 PERL_CONFIGURE=	yes
