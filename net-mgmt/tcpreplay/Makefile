@@ -1,28 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	tcpreplay
-PORTVERSION=	3.4.4
+PORTVERSION=	4.1.1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to replay saved packet capture files
 
-LICENSE=	bsd3
+LICENSE=	gpl3
 
 BUILD_DEPENDS=	pcapnav-config:${PORTSDIR}/net/libpcapnav
 
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--program-transform-name='s|.*\(tcp.*\)|\1|' \
-		--with-pcapnav-config=${LOCALBASE}/bin/pcapnav-config \
-		--enable-tcpreplay-edit
-
-MAN1=		tcpreplay.1 tcpprep.1 tcprewrite.1 tcpbridge.1 tcpreplay-edit.1
-PLIST_FILES=	bin/tcpreplay bin/tcpprep bin/tcprewrite bin/tcpbridge \
-		bin/tcpreplay-edit
+		--with-pcapnav-config=${LOCALBASE}/bin/pcapnav-config
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Wall -O3||' ${WRKSRC}/${CONFIGURE_SCRIPT}
+
+regression-test: build
+	@cd ${WRKSRC} && ${MAKE} -s test
 
 .include <bsd.port.mk>
