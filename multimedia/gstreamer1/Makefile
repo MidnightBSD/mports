@@ -15,7 +15,8 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
-USES=		bison gettext gmake libtool pathfix pkgconfig tar:xz
+USES=		bison gettext gmake libtool pathfix pkgconfig tar:xz \
+		python:2
 USE_GNOME=	glib20 introspection:build
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-tests \
