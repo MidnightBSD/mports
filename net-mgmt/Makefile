@@ -25,7 +25,6 @@ SUBDIR += subcalc
 SUBDIR += sysmon
 SUBDIR += tcpreplay
 SUBDIR += tcptrack
-SUBDIR += trafd
 SUBDIR += weplab
 SUBDIR += whatmask
 
