@@ -17,7 +17,7 @@ DOCS=		Changes.html binaries.html config.html docs.html index.html \
 MANPAGE=	sysmon.man.8 sysmon.conf.man.8
 
 GNU_CONFIGURE=	yes
-
+USES=	alias
 OPTIONS_DEFINE=	DOCS
 
 do-install:
