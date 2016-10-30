@@ -38,6 +38,7 @@ CONFIGURE_ARGS+=	--disable-alsa \
 			--disable-sdl-ttf \
 			--disable-xpcom
 CONFIGURE_ARGS+=	--nofatal --with-gcc="${CC}" --with-g++="${CXX}"
+CFLAGS+=		-D__FreeBSD__=9 -D__FreeBSD_version=901000
 
 CONFLICTS_INSTALL=	virtualbox-ose-kmod-devel-4* \
 			virtualbox-ose-kmod-legacy-4*
