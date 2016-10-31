@@ -14,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS+=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
 
 HAS_CONFIGURE=	yes
-USES=		tar:bzip2 gmake pkgconfig
+USES=		tar:bzip2 gmake pathfix pkgconfig
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 
@@ -24,5 +24,8 @@ CONFIGURE_ARGS+=	--prefix="${PREFIX}" --disable-optimize \
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+post-install:
+	-${MV} ${PREFIX}/lib/pkgconfig/libdlna.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
