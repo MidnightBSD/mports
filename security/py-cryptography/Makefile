@@ -39,7 +39,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}enum34>0:${PORTSDIR}/devel/py-enum34
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/cryptography/hazmat/bindings/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cryptography/hazmat/bindings/*.so
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
