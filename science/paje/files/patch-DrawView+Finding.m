@@ -4,7 +4,7 @@
  #include "DrawView.h"
  
  #include <math.h>
-+#if !defined(__MidnightBSD__)
++#if !defined(__FreeBSD__) && !defined(__DragonFly__) && !defined(__MidnightBSD__)
  #include <values.h>
 +#endif
  
