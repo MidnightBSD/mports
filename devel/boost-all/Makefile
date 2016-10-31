@@ -3,12 +3,11 @@
 
 PORTNAME=	boost-all
 
-USES=		metaport
-
 COMMENT?=	The "meta-port" for boost libraries
 
 LICENSE=	mit
 
+NO_BUILD=	yes
 OPTIONS_DEFINE=	JAM LIBRARIES PYTHON DOCS
 OPTIONS_DEFAULT=	JAM LIBRARIES
 JAM_DESC=	Boost.Jam - Build tool from the boost.org
@@ -21,5 +20,8 @@ LIBRARIES_RUN_DEPENDS=	${LOCALBASE}/lib/libboost_thread.so:${PORTSDIR}/devel/boo
 JAM_RUN_DEPENDS=	${LOCALBASE}/bin/bjam:${PORTSDIR}/devel/boost-jam
 PYTHON_RUN_DEPENDS=	${LOCALBASE}/lib/libboost_python.so:${PORTSDIR}/devel/boost-python-libs
 DOCS_RUN_DEPENDS=	${LOCALBASE}/share/doc/boost/doc/html/index.html:${PORTSDIR}/devel/boost-docs
+
+pre-install:
+	${MKDIR} ${DATADIR}
 
 .include <bsd.port.mk>
