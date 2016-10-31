@@ -1,27 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	Parse-RecDescent
-PORTVERSION=	1.965.001
+PORTVERSION=	1.967.009
 CATEGORIES=	devel perl5
-MASTER_SITES=	CPAN/../../authors/id/D/DC/DCONWAY
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:C/\.(...)$/\1/}
+DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A recursive descent parsing framework for Perl
-LICENSE=	perl
+COMMENT=	Recursive descent parsing framework for Perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
+USES=		perl5
 PERL_CONFIGURE=	YES
 
-MAN3=		Parse::RecDescent.3
-
 post-install:
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/tutorial
 	${INSTALL_DATA} ${WRKSRC}/tutorial/* ${DOCSDIR}/tutorial
-.endif
 
 .include <bsd.port.pre.mk>
 
