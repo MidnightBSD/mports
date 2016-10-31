@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: head/security/cyrus-sasl2/Makefile.common 409943 2016-03-02 14:13:45Z ume $
 
 PORTNAME=	cyrus-sasl
@@ -62,7 +63,7 @@ CYRUS_BUILD_TARGET?=	${PORTNAME}
 
 INSTALL_WRKSRC=	${WRKSRC}/plugins
 LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
-USES=		libtool:build
+USES+=		libtool:build
 
 PLIST_FILES+=	lib/sasl2/lib${CYRUS_BUILD_TARGET}.a \
 		lib/sasl2/lib${CYRUS_BUILD_TARGET}.so \
