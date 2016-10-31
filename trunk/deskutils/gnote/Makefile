@@ -1,8 +1,9 @@
 # Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
-# $FreeBSD: head/deskutils/gnote/Makefile 394208 2015-08-14 13:21:50Z amdmi3 $
+# $FreeBSD: head/deskutils/gnote/Makefile 412346 2016-04-01 14:00:51Z mat $
+# $MidnightBSD$
 
 PORTNAME=	gnote
-PORTVERSION=	3.16.2
+PORTVERSION=	3.18.1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 
@@ -20,8 +21,8 @@ LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
 
 USE_GNOME=	gtk30 gtkmm30 intltool libxml2 libxslt
-USES=		desktop-file-utils gettext gmake libtool \
-		pathfix pkgconfig tar:xz
+USES=		desktop-file-utils compiler:c++11-lib gettext gmake \
+		gnome libtool pathfix pkgconfig tar:xz
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -35,6 +36,10 @@ GLIB_SCHEMAS=	org.gnome.gnote.gschema.xml
 DOCS=		AUTHORS ChangeLog NEWS README TODO
 
 PLIST_SUB+=	VERSION=${PORTVERSION}
+
+.include <bsd.mport.options.mk>
+
+EXTRA_PATCHES=	${FILESDIR}/extra-src_base_macros.hpp
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
