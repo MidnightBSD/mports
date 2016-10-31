@@ -11,6 +11,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 COMMENT=	libpeas Python 3 support
 
+BUILD_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27
 LIB_DEPENDS+=	libpeas-1.0.so:${PORTSDIR}/devel/libpeas
 
 LIBPEAS_SLAVE=	python3
