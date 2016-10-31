@@ -16,13 +16,15 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		vala:${PORTSDIR}/lang/vala \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
-		itstool:${PORTSDIR}/textproc/itstool
+		itstool:${PORTSDIR}/textproc/itstool \
+		python2.7:${PORTSDIR}/lang/python27
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libpeas-gtk-1.0.so:${PORTSDIR}/devel/libpeas \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
 RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:${PORTSDIR}/devel/py3-libpeas
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:${PORTSDIR}/devel/py3-libpeas \
+		python2.7:${PORTSDIR}/lang/python27
 
 USES=		desktop-file-utils gettext gmake libtool \
 		pathfix pkgconfig python:3 tar:xz
