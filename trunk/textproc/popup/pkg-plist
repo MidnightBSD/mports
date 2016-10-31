@@ -15,7 +15,7 @@ GNUstep/System/Applications/Popup.app/Resources/English.lproj/ChoiceQuiz.gorm/ob
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/Editor.gorm/data.classes
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/Editor.gorm/data.info
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/Editor.gorm/objects.gorm
-GNUstep/System/Applications/Popup.app/Resources/English.lproj/Systemizable.strings
+GNUstep/System/Applications/Popup.app/Resources/English.lproj/Localizable.strings
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/MainMenu.gorm/data.classes
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/MainMenu.gorm/data.info
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/MainMenu.gorm/objects.gorm
@@ -27,7 +27,7 @@ GNUstep/System/Applications/Popup.app/Resources/English.lproj/SpellingQuiz.gorm/
 GNUstep/System/Applications/Popup.app/Resources/English.lproj/SpellingQuiz.gorm/objects.gorm
 GNUstep/System/Applications/Popup.app/Resources/Fail.tiff
 GNUstep/System/Applications/Popup.app/Resources/FileIcon_cstack.tiff
-GNUstep/System/Applications/Popup.app/Resources/German.lproj/Systemizable.strings
+GNUstep/System/Applications/Popup.app/Resources/German.lproj/Localizable.strings
 GNUstep/System/Applications/Popup.app/Resources/German.lproj/MainMenu.gorm/data.classes
 GNUstep/System/Applications/Popup.app/Resources/German.lproj/MainMenu.gorm/data.info
 GNUstep/System/Applications/Popup.app/Resources/German.lproj/MainMenu.gorm/objects.gorm
@@ -40,7 +40,7 @@ GNUstep/System/Applications/Popup.app/Resources/PracticeImage.tiff
 GNUstep/System/Applications/Popup.app/Resources/QuizImage.tiff
 GNUstep/System/Applications/Popup.app/Resources/RemoveSched.tiff
 GNUstep/System/Applications/Popup.app/Resources/Schedule.plist
-GNUstep/System/Applications/Popup.app/Resources/Thai.lproj/Systemizable.strings
+GNUstep/System/Applications/Popup.app/Resources/Thai.lproj/Localizable.strings
 GNUstep/System/Applications/Popup.app/Resources/Thai.lproj/MainMenu.gorm/data.classes
 GNUstep/System/Applications/Popup.app/Resources/Thai.lproj/MainMenu.gorm/data.info
 GNUstep/System/Applications/Popup.app/Resources/Thai.lproj/MainMenu.gorm/objects.gorm
