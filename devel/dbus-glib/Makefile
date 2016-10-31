@@ -12,6 +12,7 @@ COMMENT=	GLib bindings for the D-BUS messaging system
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
+RUN_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27
 
 GNU_CONFIGURE=	yes
 USES=		cpe gettext gmake libtool pathfix pkgconfig
