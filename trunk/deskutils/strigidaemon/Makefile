@@ -14,7 +14,7 @@ LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
 		libstreams.so:${PORTSDIR}/deskutils/libstreams \
 		libstreamanalyzer.so:${PORTSDIR}/deskutils/libstreamanalyzer
 
-USES=		pkgconfig
+USES=		pkgconfig tar:bzip2
 USE_FAM=	yes
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
