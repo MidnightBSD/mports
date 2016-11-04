@@ -2,7 +2,7 @@
 # $FreeBSD: head/net/py-s3transfer/Makefile 419740 2016-08-06 11:55:47Z koobs $
 
 PORTNAME=	s3transfer
-PORTVERSION=	0.1.1
+PORTVERSION=	0.1.9
 CATEGORIES=	net python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,9 +13,9 @@ COMMENT=	Amazon S3 Transfer Manager for Python
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.3.0:devel/py-botocore
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=1.3.3:devel/py-nose \
-		${PYTHON_PKGNAMEPREFIX}mock>=1.3.0:devel/py-mock
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.3.0:${PORTSDIR}/devel/py-botocore
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=1.3.3:${PORTSDIR}/devel/py-nose \
+		${PYTHON_PKGNAMEPREFIX}mock>=1.3.0:${PORTSDIR}/devel/py-mock
 
 #Actually -2.7,3.3-3.5
 USES=		python
@@ -26,7 +26,7 @@ NO_ARCH=	yes
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 3000
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}futures>=2.2.0:devel/py-futures
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}futures>=2.2.0:${PORTSDIR}/devel/py-futures
 .endif
 
 # setup.py test runs integration tests which fail
