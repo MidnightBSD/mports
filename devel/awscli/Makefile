@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	awscli
-PORTVERSION=	1.10.56
+PORTVERSION=	1.11.13
 CATEGORIES=	devel
 MASTER_SITES=	CHEESESHOP
 
@@ -20,10 +20,4 @@ USES=		python:2
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 2700
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}argparse>0:devel/py-argparse
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
