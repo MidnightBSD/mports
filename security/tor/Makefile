@@ -1,12 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	tor
-DISTVERSION=	0.2.7.6
+DISTVERSION=	0.2.8.9
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An anonymizing overlay network for TCP
+COMMENT=	Anonymizing overlay network for TCP
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
