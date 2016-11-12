@@ -62,7 +62,7 @@ do-install:
 		${STAGEDIR}${PREFIX}/bin/${bin}
 .endfor
 
-post-install-DOCS-on:
+post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for doc in ${PORTDOCS}
 	${CP} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
