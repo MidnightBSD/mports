@@ -56,9 +56,6 @@ PHP_EXT_INC=    pcre spl
 .elif ${PHP_VER} == 56
 PHP_EXT_DIR=	20131226
 PHP_EXT_INC=	pcre spl
-.elif ${PHP_VER} == 55
-PHP_EXT_DIR=	20121212
-PHP_EXT_INC=	pcre spl
 .else
 # default to DEFAULT_VERSIONS
 PHP_EXT_DIR=	20131226
