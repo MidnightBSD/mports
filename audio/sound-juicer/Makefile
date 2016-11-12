@@ -1,36 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	sound-juicer
-PORTVERSION=	2.32.0
-PORTREVISION=	2
+PORTVERSION=	3.18.1
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Clean, mean and lean CD ripper for GNOME2
+COMMENT=	Clean, mean and lean CD ripper for GNOME
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libmusicbrainz3.so:${PORTSDIR}/audio/libmusicbrainz3 \
-		libgnome-media-profiles.so:${PORTSDIR}/audio/gnome-media \
-		libcdio.so:${PORTSDIR}/sysutils/libcdio \
-    		libtag.so:${PORTSDIR}/audio/taglib \
-		libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra \
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
+LIB_DEPENDS=	libmusicbrainz5.so:${PORTSDIR}/audio/libmusicbrainz5 \
+		libdiscid.so:${PORTSDIR}/audio/libdiscid \
+		libtag.so:${PORTSDIR}/audio/taglib \
+		libcanberra.so:${PORTSDIR}/audio/libcanberra \
 		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libbrasero-media.so:${PORTSDIR}/sysutils/brasero
+		libbrasero-media3.so:${PORTSDIR}/sysutils/brasero
 
-USES=		gettext gmake pathfix pkgconfig tar:bzip2 desktop-file-utils
-INSTALLS_OMF=	yes
-USE_GNOME=	intlhack gnomeprefix gconf2 libglade2 gnomedocutils
-USE_GSTREAMER=	cdparanoia vorbis flac gconf good gio
+USES=		desktop-file-utils gettext gmake gnome pathfix pkgconfig tar:xz
+USE_GNOME=	gnomeprefix intlhack
+USE_GSTREAMER1=	cdparanoia flac good vorbis
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ignore-missing-cd
 INSTALLS_ICONS=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
 LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
+INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	sound-juicer.schemas
+GLIB_SCHEMAS=	org.gnome.sound-juicer.gschema.xml
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^\(SUBDIRS = .*\)tests\(.*\)|\1\2|' \
