@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	jansson
-PORTVERSION=	2.7
-PORTREVISION=	1
+PORTVERSION=	2.9
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.digip.org/jansson/releases/
 
