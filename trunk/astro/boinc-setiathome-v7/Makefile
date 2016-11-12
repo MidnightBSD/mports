@@ -12,7 +12,8 @@ COMMENT=	Setiathome Enhanced for BOINC
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3
+BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
+		gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	libfftw3f.so:${PORTSDIR}/math/fftw3-float
 
@@ -49,14 +50,8 @@ X11_CONFIGURE_ENABLE=	graphics
 BUILD_DEPENDS+=	${LOCALBASE}/include/boinc/std_fixes.h:${PORTSDIR}/net/boinc-client
 .endif
 
-.if ${ARCH} == i386 || ${ARCH} == amd64
 # comment out if world is built with clang and port with gcc
 CFLAGS+=	-mtune=native
-.endif
-
-.if !empty(MACHINE_CPU:Maltivec)
-CONFIGURE_ARGS+=	--enable-altivec
-.endif
 
 CONFIGURE_ENV+=	BOINCDIR="${NONEXISTENT}"
 
@@ -82,7 +77,7 @@ PLIST_SUB+=	PREFIX=${PREFIX} \
 		BOINC_CLIENT_GROUP=${BOINC_CLIENT_GROUP}
 
 # str_replace.h is included in newer versions of net/boinc-client,
-# but it is not needed on FreeBSD
+# but it is not needed on BSD
 post-patch:
 	${REINPLACE_CMD} -E -e "s|#include \"str_replace.h\"||" \
 		${WRKSRC}/client/main.cpp \
@@ -92,6 +87,7 @@ post-patch:
 		${WRKSRC}/db/xml_util.cpp
 
 pre-configure:
+	${REINPLACE_CMD} -e 's/m4/gm4/g' ${WRKSRC}/_autosetup
 	(cd ${WRKSRC} ; ./_autosetup)
 
 do-install:
