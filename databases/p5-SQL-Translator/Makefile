@@ -22,6 +22,7 @@ BUILD_DEPENDS=	p5-Carp-Clan>=0:${PORTSDIR}/devel/p5-Carp-Clan \
 		p5-Parse-RecDescent>=1.967.009:${PORTSDIR}/devel/p5-Parse-RecDescent \
 		p5-Spreadsheet-ParseExcel>=0.41:${PORTSDIR}/textproc/p5-Spreadsheet-ParseExcel \
 		p5-Template-Toolkit>=2.20:${PORTSDIR}/www/p5-Template-Toolkit \
+		p5-Test-Differences>=0.61:${PORTSDIR}/devel/p5-Test-Differences \
 		p5-Text-ParseWords>=0:${PORTSDIR}/textproc/p5-Text-ParseWords \
 		p5-Text-RecordParser>=0.02:${PORTSDIR}/textproc/p5-Text-RecordParser \
 		p5-Try-Tiny>=0.04:${PORTSDIR}/lang/p5-Try-Tiny \
