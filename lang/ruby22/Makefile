@@ -185,7 +185,7 @@ post-install:
 . endfor
 .endif
 
-	# Create all dirs required (":u" isn't avaiable in STABLE yet :-()
+# Create all dirs required (":u" isn't avaiable in STABLE yet :-()
 	${MKDIR} ${EXTSAMPLES:C,^([^/]+)/.*,\1,:S,^,${FAKE_DESTDIR}${RUBY_EXAMPLESDIR}/,}
 	${MKDIR} ${EXTDOCS:C,^([^/]+)/.*,\1,:S,^,${FAKE_DESTDIR}${RUBY_DOCDIR}/,}
 .for FILE in ${EXTSAMPLES}
