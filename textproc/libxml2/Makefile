@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libxml2
-PORTVERSION=	2.9.3
-PORTREVISION?=	6
+PORTVERSION=	2.9.4
+PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
 		http://xmlsoft.org/sources/ \
