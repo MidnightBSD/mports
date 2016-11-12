@@ -1,44 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	Spreadsheet-ParseExcel
-PORTVERSION=	0.57
+PORTVERSION=	0.65
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get information from Excel file
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-OLE-Storage_Lite>=0.19:${PORTSDIR}/devel/p5-OLE-Storage_Lite
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	p5-OLE-Storage_Lite>=0.19:${PORTSDIR}/devel/p5-OLE-Storage_Lite \
+		p5-Crypt-RC4>=0:${PORTSDIR}/security/p5-Crypt-RC4 \
+		p5-Digest-Perl-MD5>=0:${PORTSDIR}/security/p5-Digest-Perl-MD5
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5 shebangfix
+SHEBANG_FILES=	sample/parse.pl \
+		sample/xls2csv.pl
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
+NO_ARCH=	yes
 
-MAN3=		Spreadsheet::ParseExcel.3 \
-		Spreadsheet::ParseExcel::Cell.3 \
-		Spreadsheet::ParseExcel::Dump.3 \
-		Spreadsheet::ParseExcel::FmtDefault.3 \
-		Spreadsheet::ParseExcel::FmtJapan.3 \
-		Spreadsheet::ParseExcel::FmtJapan2.3 \
-		Spreadsheet::ParseExcel::FmtUnicode.3 \
-		Spreadsheet::ParseExcel::Font.3 \
-		Spreadsheet::ParseExcel::Format.3 \
-		Spreadsheet::ParseExcel::SaveParser.3 \
-		Spreadsheet::ParseExcel::SaveParser::Workbook.3 \
-		Spreadsheet::ParseExcel::SaveParser::Worksheet.3 \
-		Spreadsheet::ParseExcel::Utility.3 \
-		Spreadsheet::ParseExcel::Workbook.3 \
-		Spreadsheet::ParseExcel::Worksheet.3
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-
-.ifndef(NOPORTEXAMPLES)
 	@${ECHO_MSG} "===>   Installing examples for ${PKGNAME}"
-	@${MKDIR} ${EXAMPLESDIR}/Excel
-	@${INSTALL_DATA} ${WRKSRC}/sample/README ${EXAMPLESDIR}
-	@${INSTALL_SCRIPT} ${WRKSRC}/sample/*.pl ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/sample/Excel/* ${EXAMPLESDIR}/Excel
-.endif
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/Excel
+	${INSTALL_DATA} ${WRKSRC}/sample/README ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/sample/*.pl ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/sample/Excel/* ${STAGEDIR}${EXAMPLESDIR}/Excel
 
 .include <bsd.port.mk>
