@@ -1,0 +1,23 @@
+--- configure.orig	2016-11-17 19:06:51.000000000 -0500
++++ configure	2016-11-17 19:07:53.000000000 -0500
+@@ -5494,7 +5494,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -13924,6 +13924,11 @@
+    CFLAGS="$CFLAGS -D _REENTRANT"
+    test_kvm="true"
+    use_pam=0 # No PAM on OpenBSD (supports BSD Auth API instead of PAM)
++elif test "$architecture" = "MidnightBSD"
++then
++   ARCH="FREEBSD"
++   CFLAGS="$CFLAGS -D _REENTRANT"
++   test_kvm="true"
+ elif test "$architecture" = "FreeBSD"
+ then
+    ARCH="FREEBSD"
