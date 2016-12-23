@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	yasm
-PORTVERSION=	1.2.0
-PORTREVISION=	5
+PORTVERSION=	1.3.0
+PORTREVISION=	0
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 
