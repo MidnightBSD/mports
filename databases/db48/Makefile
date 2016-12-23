@@ -2,7 +2,7 @@
 
 PORTNAME=	db48
 PORTVERSION=	4.8.30.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	http://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
@@ -10,7 +10,7 @@ DISTNAME=	db-${PORTVERSION:R}
 DIST_SUBDIR=	bdb
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Berkeley DB package, revision 4.8
+COMMENT=	Berkeley DB package, revision 4.8
 
 LICENSE=	bdb
 
