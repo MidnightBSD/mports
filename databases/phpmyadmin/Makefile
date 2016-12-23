@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	4.5.4
+DISTVERSION=	4.6.4
 CATEGORIES=	databases www
 MASTER_SITES=	https://files.phpmyadmin.net/${PORTNAME}/${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
@@ -15,7 +15,6 @@ USES=		cpe shebangfix tar:xz
 CPE_PRODUCT=	${PORTNAME:tl}
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-IGNORE_WITH_PHP=54
 USE_PHP=	ctype session filter mbstring json spl mysqli
 .endif
 
@@ -23,10 +22,9 @@ USE_PHP=	ctype session filter mbstring json spl mysqli
 # want this, either turn off GD in the config dialog, or else turn off
 # FONTCONFIG in the graphics/gd port options.
 
-OPTIONS_DEFINE=		APC BZ2 GD MCRYPT OPENSSL PDF XML ZIP ZLIB
+OPTIONS_DEFINE=		BZ2 GD MCRYPT OPENSSL PDF XML ZIP ZLIB
 OPTIONS_DEFAULT=	BZ2 GD MCRYPT OPENSSL XML ZIP ZLIB
 
-APC_DESC=	PHP APC (animated progress bar) support
 BZ2_DESC=	PHP bzip2 library support
 GD_DESC=	PHP GD library support (requires X11)
 MCRYPT_DESC=	PHP MCrypt library support
@@ -50,9 +48,6 @@ SUB_LIST+=	PKGNAME=${PKGNAME}	        \
 		CFG_FILE=${WWWDIR}/${CFG_FILE}
 SUB_FILES+=	pkg-message
 
-SHEBANG_FILES=	libraries/plugins/transformations/generator_main_class.sh \
-		libraries/plugins/transformations/generator_plugin.sh
-
 .if !defined(WITHOUT_PHP_DEPENDS)
 
 .for opt in ${OPTIONS_DEFINE} ${OPTIONS_MULTI_DB_connect}
@@ -64,9 +59,6 @@ USE_PHP+=	${opt:tl}
 .endif
 
 .SILENT:
-
-# When creating a package, empty directories will not be generated
-# from the pkg tarball.	 Therefore make sure no directories are empty.
 
 post-patch:
 	cd ${WRKSRC} ; \
