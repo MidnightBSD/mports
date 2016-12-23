@@ -2,7 +2,7 @@
 
 PORTNAME=	db5
 PORTVERSION=	5.3.28
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases java
 MASTER_SITES=	http://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
@@ -12,7 +12,7 @@ DISTNAME=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Oracle Berkeley DB, revision ${BDBVER}
+COMMENT=	Oracle Berkeley DB, revision ${BDBVER}
 
 LICENSE=	bdb
 
