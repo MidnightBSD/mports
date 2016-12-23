@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rrdtool
-PORTVERSION=	1.5.5
+PORTVERSION=	1.6.0
 PORTREVISION=	0
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
