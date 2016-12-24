@@ -3,8 +3,7 @@
 # $FreeBSD: head/converters/enca/Makefile 368437 2014-09-18 09:51:18Z tijl $
 
 PORTNAME=	enca
-PORTVERSION=	1.13
-PORTREVISION=	1
+PORTVERSION=	1.19
 CATEGORIES=	converters textproc russian ukrainian
 MASTER_SITES=	http://dl.cihar.com/enca/
 
@@ -18,12 +17,11 @@ RUN_DEPENDS=	umap:${PORTSDIR}/converters/p5-Unicode-Map8
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake iconv libtool pathfix pkgconfig tar:bzip2
+USES=		gmake iconv libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR}
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
 
