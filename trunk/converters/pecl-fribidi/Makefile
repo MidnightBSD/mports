@@ -20,6 +20,7 @@ USES=		pkgconfig
 
 USE_PHP=	yes
 USE_PHPEXT=	yes
+IGNORE_WITH_PHP=	70
 
 CONFIGURE_ARGS=	--with-fribidi=${LOCALBASE}
 
