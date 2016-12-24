@@ -135,6 +135,7 @@ SUBDIR += postgresql95-pltcl
 SUBDIR += postgresql95-server
 SUBDIR += postgresql96-client
 SUBDIR += postgresql96-contrib
+SUBDIR += postgresql96-docs
 SUBDIR += postgresql96-server
 SUBDIR += py-MySQLdb
 SUBDIR += py-bsddb
