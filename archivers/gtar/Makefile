@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gtar
-PORTVERSION=	1.28
-PORTREVISION=	1
+PORTVERSION=	1.29
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	tar
@@ -52,7 +51,8 @@ STATIC_ARGS=	lib
 # Tests 161 163 are known to fail because path resolution of ".."
 # in a removed directory fails.
 
-regression-test: build
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
+# do not rebuild tar.info
+post-patch:
+	${TOUCH} -r ${WRKSRC}/doc/stamp-vti ${WRKSRC}/configure
 
 .include <bsd.port.mk>
