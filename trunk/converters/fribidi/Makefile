@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	fribidi
-PORTVERSION=	0.19.2
-PORTREVISION=	3
+PORTVERSION=	0.19.7
 CATEGORIES=	converters
 MASTER_SITES=	http://fribidi.org/download/
 
@@ -11,10 +10,10 @@ COMMENT=	Free Implementation of the Unicode Bidirectional Algorithm
 
 LICENSE=	lgpl
 
-USES=		gmake libtool pathfix
+USES=		gmake libtool pathfix tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-glib
+CONFIGURE_ARGS=	--enable-static --without-glib
 INSTALL_TARGET=	install-strip
 
 .if !defined(WITH_DEBUG)
