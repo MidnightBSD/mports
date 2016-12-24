@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.24
+PORTVERSION=	1.4.33
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
-		GOOGLE_CODE \
 		GENTOO
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -57,15 +56,11 @@ CONFIGURE_ARGS+=	--enable-64bit
 BROKEN=			DTRACE broken with gcc/clang - reported upstream
 .endif
 
-.if ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS=	xml2rfc:${PORTSDIR}/textproc/xml2rfc
-.endif
-
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${PREFIX}/bin
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in protocol-binary-range.xml protocol-binary.xml protocol.txt \
+.for i in protocol-binary-range.txt protocol-binary.txt protocol.txt \
 		readme.txt threads.txt
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
 .endfor
