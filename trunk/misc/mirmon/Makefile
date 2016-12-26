@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mirmon
-PORTVERSION=	2.10
+PORTVERSION=	2.11
 CATEGORIES=	misc
 MASTER_SITES=	http://www.staff.science.uu.nl/~penni101/mirmon/
 
