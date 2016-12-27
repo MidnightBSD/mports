@@ -4,6 +4,7 @@ COMMENT = Databases
 
 SUBDIR += adodb
 SUBDIR += cassandra
+SUBDIR += couchdb
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
 SUBDIR += db48
