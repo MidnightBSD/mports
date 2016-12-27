@@ -65,6 +65,7 @@ SUBDIR += ruby21
 SUBDIR += ruby22
 SUBDIR += ruby23
 SUBDIR += spidermonkey170
+SUBDIR += spidermonkey185
 SUBDIR += spidermonkey24
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
