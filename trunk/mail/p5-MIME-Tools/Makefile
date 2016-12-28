@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	MIME-Tools
-PORTVERSION=	5.505
+PORTVERSION=	5.508
 PORTEPOCH=	2
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
@@ -12,7 +12,8 @@ DISTNAME=	MIME-tools-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of perl5 modules for MIME
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-Convert-BinHex>=0:${PORTSDIR}/converters/p5-Convert-BinHex \
 		p5-IO-stringy>=2.11:${PORTSDIR}/devel/p5-IO-stringy \
@@ -21,29 +22,6 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 TEST_DEPENDS=	p5-Test-Deep>=0:${PORTSDIR}/devel/p5-Test-Deep
 
 PERL_CONFIGURE=	YES
-
-MAN3=	MIME::Body.3 \
-	MIME::Decoder.3	\
-	MIME::Decoder::Base64.3 \
-	MIME::Decoder::BinHex.3 \
-	MIME::Decoder::Binary.3 \
-	MIME::Decoder::Gzip64.3	\
-	MIME::Decoder::NBit.3 \
-	MIME::Decoder::QuotedPrint.3 \
-	MIME::Decoder::UU.3 \
-	MIME::Entity.3 \
-	MIME::Field::ConTraEnc.3 \
-	MIME::Field::ContDisp.3 \
-	MIME::Field::ContType.3 \
-	MIME::Field::ParamVal.3 \
-	MIME::Head.3 \
-	MIME::Parser.3 \
-	MIME::Parser::Filer.3 \
-	MIME::Parser::Reader.3 \
-	MIME::Parser::Results.3 \
-	MIME::Tools.3 \
-	MIME::WordDecoder.3 \
-	MIME::Words.3
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	ChangeLog README
