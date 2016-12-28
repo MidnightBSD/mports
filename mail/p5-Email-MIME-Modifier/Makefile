@@ -13,7 +13,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modify Email::MIME Objects Easily
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Email-MIME-Encodings>=1.3:${PORTSDIR}/mail/p5-Email-MIME-Encodings \
 		p5-Email-MIME>=1.82:${PORTSDIR}/mail/p5-Email-MIME \
@@ -23,7 +25,5 @@ BUILD_DEPENDS=	p5-Email-MIME-Encodings>=1.3:${PORTSDIR}/mail/p5-Email-MIME-Encod
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN3=	Email::MIME::Modifier.3
 
 .include <bsd.port.mk>
