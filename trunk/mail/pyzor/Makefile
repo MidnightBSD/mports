@@ -1,9 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	pyzor
-PORTVERSION=	0.7.0
+PORTVERSION=	1.0.0
 CATEGORIES=	mail python
-MASTER_SITES=	SF
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collaborative, networked system to detect and block spam
