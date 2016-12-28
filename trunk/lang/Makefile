@@ -72,6 +72,7 @@ SUBDIR += tcl-wrapper
 SUBDIR += tcl84
 SUBDIR += tcl85
 SUBDIR += tcl86
+SUBDIR += v8
 SUBDIR += vala
 SUBDIR += yabasic
 
