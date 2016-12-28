@@ -2,10 +2,9 @@
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons
-PORTVERSION=	2.3.0
-PORTREVISION=	3
+PORTVERSION=	2.5.0
 CATEGORIES=	devel python
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool alternative to make
