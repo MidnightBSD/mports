@@ -2,10 +2,10 @@
 # $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.2.2
+DISTVERSION=	1.2.3
 PORTEPOCH=	1
 CATEGORIES?=	mail www
-MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/1.2.2/
+MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DISTVERSION}/
 DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
 
 MAINTAINER?=	ports@MidnightBSD.org
