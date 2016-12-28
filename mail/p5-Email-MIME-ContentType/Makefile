@@ -6,19 +6,18 @@
 #
 
 PORTNAME=	Email-MIME-ContentType
-PORTVERSION=	1.01.5
+PORTVERSION=	1.01.7
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	Email
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION:C|\.([0-9])$|\1|}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse a MIME Content-Type Header
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Email::MIME::ContentType.3
 
 .include <bsd.port.mk>
