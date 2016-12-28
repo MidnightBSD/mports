@@ -1,4 +1,2 @@
 %%SITE_PERL%%/Email/MessageID.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email/MessageID
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email
-@dirrmtry %%SITE_PERL%%/Email
+%%PERL5_MAN3%%/Email::MessageID.3.gz
