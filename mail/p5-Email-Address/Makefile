@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Email-Address
-PORTVERSION=	1.90.5
+PORTVERSION=	1.90.8
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,7 +14,5 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Email::Address.3
 
 .include <bsd.port.mk>
