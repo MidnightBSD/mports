@@ -5,14 +5,16 @@
 # $MidnightBSD$
 
 PORTNAME=	Email-MIME
-PORTVERSION=	1.907
+PORTVERSION=	1.937
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy MIME message parsing
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Email-Simple>=2.100:${PORTSDIR}/mail/p5-Email-Simple \
 		p5-Email-MessageID>=0:${PORTSDIR}/mail/p5-Email-MessageID \
@@ -22,10 +24,5 @@ BUILD_DEPENDS=	p5-Email-Simple>=2.100:${PORTSDIR}/mail/p5-Email-Simple \
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Email::MIME.3 \
-		Email::MIME::Creator.3 \
-		Email::MIME::Header.3 \
-		Email::MIME::Modifier.3
 
 .include <bsd.port.mk>
