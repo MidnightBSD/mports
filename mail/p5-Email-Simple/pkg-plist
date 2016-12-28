@@ -1,8 +1,6 @@
-@comment $FreeBSD: ports/mail/p5-Email-Simple/pkg-plist,v 1.5 2008/06/29 02:24:28 leeym Exp $
 %%SITE_PERL%%/Email/Simple.pm
+%%SITE_PERL%%/Email/Simple/Creator.pm
 %%SITE_PERL%%/Email/Simple/Header.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Email/Simple/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email/Simple
-@dirrm %%SITE_PERL%%/Email/Simple
-@dirrmtry %%SITE_PERL%%/Email
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Email
+%%PERL5_MAN3%%/Email::Simple.3.gz
+%%PERL5_MAN3%%/Email::Simple::Creator.3.gz
+%%PERL5_MAN3%%/Email::Simple::Header.3.gz
