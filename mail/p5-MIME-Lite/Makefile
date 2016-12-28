@@ -2,14 +2,17 @@
 
 PORTNAME=	MIME-Lite
 PORTVERSION=	3.03.0
+PORTREVISION=	1
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A simple interface for creating (not parsing!) MIME messages
-LICENSE=	perl
+COMMENT=	Simple interface for creating (not parsing!) MIME messages
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Email-Date-Format>=1.000:${PORTSDIR}/mail/p5-Email-Date-Format \
 		p5-MIME-Types>=1.28:${PORTSDIR}/mail/p5-MIME-Types \
@@ -17,7 +20,5 @@ BUILD_DEPENDS=	p5-Email-Date-Format>=1.000:${PORTSDIR}/mail/p5-Email-Date-Format
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN3=		MIME::Lite.3 MIME::changes.3
 
 .include <bsd.port.mk>
