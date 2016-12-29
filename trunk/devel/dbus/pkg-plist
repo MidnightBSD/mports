@@ -38,7 +38,7 @@ libexec/dbus-daemon-launch-helper
 %%MANPAGES%%man/man1/dbus-run-session.1.gz
 %%MANPAGES%%man/man1/dbus-send.1.gz
 %%MANPAGES%%man/man1/dbus-uuidgen.1.gz
-@exec ln -sf /var/lib/dbus/machine-id /var/db/dbus/machine-id
+@exec ln -sf /var/lib/dbus /var/db/dbus/
 @dir share/dbus-1/system-services
 @dir share/dbus-1/services
 @dir share/dbus-1/interfaces
