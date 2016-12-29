@@ -13,7 +13,7 @@ RUN_DEPENDS=	postgres:${PORTSDIR}/databases/postgresql${WANT_PGSQL_VER:S/.//}-se
 
 MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
 
-WANT_PGSQL_VER?=9.0
+WANT_PGSQL_VER?=9.6
 
 USES+=		perl5 readline
 CONFIGURE_ARGS=	--with-perl
