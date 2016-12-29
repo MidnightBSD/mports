@@ -13,7 +13,7 @@ USE_PYTHON=	2
 
 MASTERDIR=	${.CURDIR}/../postgresql${WANT_PGSQL_VER:S/.//}-server
 
-WANT_PGSQL_VER?=	9.0
+WANT_PGSQL_VER?=	9.6
 
 CONFIGURE_ARGS=	--with-python
 COMPONENT=	-plpython
