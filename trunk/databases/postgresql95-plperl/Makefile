@@ -1,6 +1,26 @@
 # Created by: Palle Girgensohn <girgen@partitur.se>
-# $FreeBSD: head/databases/postgresql95-plperl/Makefile 405482 2016-01-07 19:58:47Z girgen $
+# $FreeBSD: head/databases/postgresql90-plperl/Makefile 366114 2014-08-25 17:53:26Z crees $
+# $MidnightBSD$
 
-WANT_PGSQL_VER=	9.5
+PORTNAME=	postgresql
+CATEGORIES=	databases perl5
+PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
 
-.include "${.CURDIR}/../postgresql90-plperl/Makefile"
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Write SQL functions for PostgreSQL using Perl5
+
+RUN_DEPENDS=	postgres:${PORTSDIR}/databases/postgresql${WANT_PGSQL_VER:S/.//}-server
+
+MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
+
+WANT_PGSQL_VER?=9.5
+
+USES+=		perl5 readline
+CONFIGURE_ARGS=	--with-perl
+
+BUILD_DIRS=	src/backend src/pl/plperl
+INSTALL_DIRS=	src/pl/plperl
+SLAVE_ONLY=	yes
+COMPONENT=	-plperl
+
+.include "${MASTERDIR}/Makefile"
