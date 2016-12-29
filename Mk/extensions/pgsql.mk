@@ -9,7 +9,7 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  If no version is given (by the maintainer via the port or
 #				  by the user via defined variable), try to find the
 #				  currently installed version.  Fall back to default if
-#				  necessary (PostgreSQL-8.4 = 84).
+#				  necessary (PostgreSQL-9.4 = 94).
 # DEFAULT_PGSQL_VER
 #				- PostgreSQL default version. Can be overridden within a port.
 #				  Default: 84.
@@ -26,7 +26,7 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 #	to add dependencies; use WANT_PGSQL as explained above
 #
 
-VALID_PGSQL_VER=	8.4 9.0 9.1 9.2 9.3 9.4 9.5
+VALID_PGSQL_VER=	9.0 9.1 9.2 9.3 9.4 9.5 9.6
 
 # Override non-default LIBVERS like this:
 #PGSQL99_LIBVER=6
