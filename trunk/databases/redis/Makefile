@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	redis
-DISTVERSION=	3.2.4
+DISTVERSION=	3.2.5
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
