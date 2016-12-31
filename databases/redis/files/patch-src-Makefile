@@ -21,7 +21,7 @@
  ifeq ($(uname_S),Darwin)
  	# Darwin (nothing to do)
  else
-+ifeq ($(uname_S),FreeBSD)
++ifeq ($(uname_S),MidnightBSD)
 +        # FreeBSD
 +        FINAL_CFLAGS?= $(CFLAGS) $(REDIS_CFLAGS) -I${PREFIX}/include
 +        FINAL_LDFLAGS= $(LDFLAGS) -pthread
