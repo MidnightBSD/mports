@@ -22,6 +22,7 @@ SUBDIR += open-vm-tools-nox11
 SUBDIR += pearpc
 SUBDIR += qemu
 SUBDIR += rtc
+SUBDIR += snes9x
 SUBDIR += tpm-emulator
 SUBDIR += vMac
 SUBDIR += virtio-kmod
