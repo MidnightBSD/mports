@@ -25,6 +25,7 @@ SUBDIR += rtc
 SUBDIR += snes9x
 SUBDIR += tpm-emulator
 SUBDIR += vMac
+SUBDIR += vba
 SUBDIR += virtio-kmod
 SUBDIR += virtualbox-ose-kmod
 SUBDIR += vxtools
