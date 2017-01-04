@@ -14,7 +14,7 @@ COMMENT=	H.265/High Efficiency Video Coding (HEVC) format
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-BUILD_DEPENDS=	yasm:devel/yasm
+BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm
 
 USES=		cmake pathfix tar:bzip2
 USE_LDCONFIG=	yes
