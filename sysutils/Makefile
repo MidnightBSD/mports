@@ -30,6 +30,7 @@ SUBDIR += docker-freebsd
 SUBDIR += dvd+rw-tools
 SUBDIR += dvdbackup
 SUBDIR += e2fsprogs
+SUBDIR += ec2-scripts
 SUBDIR += extipl
 SUBDIR += ezjail
 SUBDIR += ffs2recov
