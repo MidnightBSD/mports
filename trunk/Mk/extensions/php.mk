@@ -67,8 +67,8 @@ HTTPD?=		${LOCALBASE}/sbin/httpd
 APACHE_VERSION!=	${HTTPD} -V | ${SED} -ne 's/^Server version: Apache\/\([0-9]\)\.\([0-9]*\).*/\1\2/p'
 .	if ${APACHE_VERSION} > 13
 APXS?=		${LOCALBASE}/sbin/apxs
-APACHE_MPM!=	${APXS} -q MPM_NAME
-.	if ${APACHE_MPM} == "worker" || ${APACHE_MPM} == "event"
+APACHE_THR!=  ${HTTPD} -V | ${AWK} '/threaded/ {print $2}'
+.      if ${APACHE_THR:Myes}
 PHP_EXT_DIR:=	${PHP_EXT_DIR}-zts
 .	endif
 .endif
