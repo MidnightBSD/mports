@@ -90,7 +90,7 @@ PHP_EXT_INC?=	""
 .	for VER in ${IGNORE_WITH_PHP}
 .		if ${PHP_VER} == "${VER}"
 IGNORE=		cannot be installed: doesn't work with lang/php${PHP_VER} port\
-		(doesn't support PHP ${IGNORE_WITH_PHP:C/^5/5./})
+		(doesn't support PHP ${IGNORE_WITH_PHP:C/^5/6./})
 .		endif
 .	endfor
 .endif
@@ -257,7 +257,6 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		sockets spl sqlite3 sysvmsg sysvsem sysvshm \
 		tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zip zlib
 # version specific components
-_USE_PHP_VER55=	${_USE_PHP_ALL} mssql mysql sybase_ct
 _USE_PHP_VER56=	${_USE_PHP_ALL} mssql mysql sybase_ct
 _USE_PHP_VER70=	${_USE_PHP_ALL}
 
