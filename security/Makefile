@@ -89,6 +89,7 @@ SUBDIR += p5-Crypt-SmbHash
 SUBDIR += p5-Digest
 SUBDIR += p5-Digest-HMAC
 SUBDIR += p5-Digest-MD5
+SUBDIR += p5-Digest-Perl-MD5
 SUBDIR += p5-Digest-SHA
 SUBDIR += p5-Digest-SHA1
 SUBDIR += p5-GSSAPI
