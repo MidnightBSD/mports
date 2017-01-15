@@ -20,6 +20,7 @@ SUBDIR += cyrus-sasl2
 SUBDIR += cyrus-sasl2-ldapdb
 SUBDIR += cyrus-sasl2-saslauthd
 SUBDIR += dirmngr
+SUBDIR += doas
 SUBDIR += easy-rsa
 SUBDIR += firewalk
 SUBDIR += gcr
