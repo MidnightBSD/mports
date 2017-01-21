@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2016.06.26
+PORTVERSION=	2016.12.12
 CATEGORIES=	www
 MASTER_SITES=	https://yt-dl.org/downloads/${PORTVERSION}/
 DISTNAME=	youtube-dl-${PORTVERSION}
