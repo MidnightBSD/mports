@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pciids
-PORTVERSION=	20161215
+PORTVERSION=	20170108
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ PLIST_FILES=	%%DATADIR%%/pci.ids
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 GH_ACCOUNT=	pciutils
-GH_TAGNAME=	e483abc
+GH_TAGNAME=	5e4b70b
 USE_GITHUB=	yes
 
 do-install:
