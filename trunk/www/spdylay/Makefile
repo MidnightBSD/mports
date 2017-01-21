@@ -3,10 +3,10 @@
 # $MidnightBSD$
 
 PORTNAME=	spdylay
-PORTVERSION=	1.3.2
+PORTVERSION=	1.4.0
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
-		LOCAL/sunpoet
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SPDY protocol version 2, 3 and 3.1 implementation in C
