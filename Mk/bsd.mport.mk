@@ -260,6 +260,8 @@ STRIP=	#none
 
 _PREMKINCLUDED=		yes
 
+.include "${MPORTCOMPONENTS}/default-versions.mk"
+
 .if defined(PORTVERSION)
 .if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
