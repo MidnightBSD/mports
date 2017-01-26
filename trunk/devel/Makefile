@@ -145,6 +145,7 @@ SUBDIR += libdispatch
 SUBDIR += libdbusmenu-qt
 SUBDIR += libdlna
 SUBDIR += libedit
+SUBDIR += libepoll-shim
 SUBDIR += libev
 SUBDIR += libevent2
 SUBDIR += libexecinfo
