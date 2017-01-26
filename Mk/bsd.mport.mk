@@ -1562,6 +1562,9 @@ SET_LATE_CONFIGURE_ARGS= \
 	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null  && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--mandir' >/dev/null); then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
 	fi ;\
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
+		 _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
+	fi ; \
 	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--infodir' >/dev/null); then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}"; \
 	fi ;\
