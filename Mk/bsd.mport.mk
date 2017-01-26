@@ -3094,7 +3094,7 @@ makesum: check-checksum-algorithms
 			${GREP} -v "^TIMESTAMP " ${DISTINFO_FILE} > ${DISTINFO_FILE}.sav; \
 		fi; \
 	fi; \
-	@( \
+	( \
 		cd ${DISTDIR}; \
 		\
 		${checksum_init} \
@@ -3102,13 +3102,12 @@ makesum: check-checksum-algorithms
 		for file in ${_CKSUMFILES}; do \
 			for alg in ${CHECKSUM_ALGORITHMS:tu}; do \
 				eval alg_executable=\$$$$alg; \
-				\
 				if [ $$alg_executable != "NO" ]; then \
 					$$alg_executable $$file >> ${DISTINFO_FILE}.new; \
 				fi; \
 			done; \
 			${ECHO_CMD} "SIZE ($$file) = `${STAT} -f \"%z\" $$file`" >> ${DISTINFO_FILE}.new; \
-		done \
+		done; \
 		if [ ! -f ${DISTINFO_FILE}.sav ] || ! cmp -s ${DISTINFO_FILE}.sav ${DISTINFO_FILE}.new; then \
 			${ECHO_CMD} "TIMESTAMP = `date '+%s'`" > ${DISTINFO_FILE} ; \
 			${CAT} ${DISTINFO_FILE}.new >> ${DISTINFO_FILE} ; \
