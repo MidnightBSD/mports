@@ -214,6 +214,9 @@ USE_SUBMAKE=	yes
 .if exists(${MASTERDIR}/Makefile.local)
 .include "${MASTERDIR}/Makefile.local"
 USE_SUBMAKE=	yes
+.elif ${MASTERDIR} != ${.CURDIR} && exists(${.CURDIR}/Makefile.local)
+.include "${.CURDIR}/Makefile.local"
+USE_SUBMAKE=	yes
 .endif
 
 # where 'make config' records user configuration options
