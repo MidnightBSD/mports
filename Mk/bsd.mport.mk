@@ -4130,12 +4130,12 @@ tags:
 
 .if !defined(NOPRECIOUSMAKEVARS)
 # These won't change, so we can pass them through the environment
-.MAKEFLAGS: \
-	ARCH="${ARCH:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	OPSYS="${OPSYS:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	OSREL="${OSREL:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	OSVERSION="${OSVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	SYSTEMVERSION="${SYSTEMVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}"
+_EXPORTED_VARS=	ARCH OPSYS OPREL OSVERSION
+.for var in ${_EXPORTED_VARS}
+.if empty(.MAKEFLAGS:M${var}=*)
+.MAKEFLAGS:	${var}=${${var}:Q}
+.endif
+.endfor
 .endif
 
 desktop-categories:
