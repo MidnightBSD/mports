@@ -77,7 +77,6 @@ MTREE_FILE=	${MTREE_LINUX_FILE}
 .else
 MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
 .endif
-
 .endif
 MTREE_CMD?=		/usr/sbin/mtree
 MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
@@ -3703,8 +3702,12 @@ _LIB_RUN_DEPENDS=	${LIB_DEPENDS} ${RUN_DEPENDS}
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
 PACKAGE-DEPENDS-LIST?= \
-	for depend in `${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
+	for depend in `${ECHO_CMD} "${_LIB_RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
+		case "$$dir" in \
+		/*) ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac ; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
 			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
