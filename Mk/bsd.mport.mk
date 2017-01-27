@@ -3776,7 +3776,7 @@ finish-tmpplist: add-plist-info add-plist-docs add-plist-post
 .if !target(generate-plist)
 generate-plist:
 	@${ECHO_MSG} "===>   Generating temporary packing list"
-	@${MKDIR} `${DIRNAME} ${TMPPLIST}`
+	@${MKDIR} ${TMPPLIST:H}
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@>${TMPPLIST}
 	@for file in ${PLIST_FILES}; do \
