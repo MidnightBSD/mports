@@ -231,6 +231,10 @@ GID_OFFSET?=	0
 # alpha numeric sort order
 USERS_BLACKLIST=	_dhcp _ntp _pflogd auditdistd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
 
+# predefined accounts from src/etc/group
+# alpha numeric sort order
+GROUPS_BLACKLIST=	_dhcp _pflogd audit authpf bin bind daemon dialer ftp games guest hast kmem mail mailnull man network news nobody nogroup operator proxy smmsp sshd staff sys tty uucp wheel www
+
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
@@ -4036,9 +4040,11 @@ create-users-groups:
 						${ECHO_MSG} "Adding user \`$${_login}' to group \`${_group}'."; \
 						${PW} groupmod ${_group} -m $${_login}; \
 					fi; \
+					if [ ! ${GROUP_BLACKLIST:M${_group}} ]; then \
 					${ECHO_CMD} "@exec if ! ${PW} groupshow ${_group} | ${GREP} -qw $${_login}; then \
 						echo \"Adding user '$${_login}' to group '${_group}'.\"; \
 						${PW} groupmod ${_group} -m $${_login}; fi" >> ${TMPPLIST}; \
+					fi;
 				fi; \
 			done; \
 		done; \
