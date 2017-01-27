@@ -77,7 +77,7 @@ MTREE_FILE=	${MTREE_LINUX_FILE}
 .else
 MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
 .endif
-MTREE_FILE_DEFAULT=yes
+
 .endif
 MTREE_CMD?=		/usr/sbin/mtree
 MTREE_LINUX_FILE?=	${PORTSDIR}/Templates/BSD.compat.dist
