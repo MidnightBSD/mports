@@ -122,16 +122,22 @@ MAINTAINER?=	ports@MidnightBSD.org
 .if !defined(ARCH)
 ARCH!=	${UNAME} -p
 .endif
+_EXPORTED_VARS+=	ARCH
 
 # Get the operating system type
 .if !defined(OPSYS)
 OPSYS!=	${UNAME} -s
 .endif
+_EXPORTED_VARS+=	OPSYS
 
-UNAMER!=${UNAME} -r
+.if !defined(_OSRELEASE)
+_OSRELEASE!=	${UNAME} -r
+.endif
+_EXPORTED_VARS+=	_OSRELEASE
 
 # Get the operating system revision
-OSREL?=	${UNAMER:C/-.*//}
+OSREL?=	${_OSRELEASE:C/-.*//}
+_EXPORTED_VARS+=	OSREL
 
 # Get __MidnightBSD_version
 .if !defined(OSVERSION)
@@ -143,6 +149,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < $
 OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
 .endif
+_EXPORTED_VARS+=	OSVERSION
 
 MASTERDIR?=	${.CURDIR}
 
