@@ -55,7 +55,7 @@ PORTSTOP=	yes
 
 index:
 	@rm -f ${INDEXDIR}/${INDEXFILE}
-	@cd ${.CURDIR} && make ${INDEXDIR}/${INDEXFILE}
+	@cd ${.CURDIR} && ${MAKE} ${INDEXDIR}/${INDEXFILE}
 
 indexbz2: index
 	@rm -f ${INDEXDIR}/${INDEXFILE}.bz2
@@ -145,7 +145,15 @@ print-index:	${INDEXDIR}/${INDEXFILE}
 	@awk -F\| '{ printf("Port:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nE-deps:\t%s\nP-deps:\t%s\nF-deps:\t%s\nWWW:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$11, $$12, $$13, $$10); }' < ${INDEXDIR}/${INDEXFILE}
 
 GIT?= git
-SVN?= svn
+.if !defined(SVN) || empty(SVN)
+. for _P in /usr/bin /usr/local/bin
+.  for _S in svn svnlite
+.   if exists(${_P}/${_S})
+SVN=   ${_P}/${_S}
+.   endif
+.  endfor
+. endfor
+.endif
 RSYNC?= rsync
 .if !target(update)
 update:
