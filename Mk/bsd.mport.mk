@@ -393,6 +393,9 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${USES}
+.if !defined(USE_${f:tu})
+USE_${f:tu}=yes
+.endif
 .include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
 .endfor
 
