@@ -34,10 +34,14 @@ describe:
 		@rdirs = map((split /:/)[1], split(q{ }, q{${RUN_DEPENDS}})); \
 		@ddirs = map((split /:/)[0], split(q{ }, q{${DEPENDS}})); \
 		@ldirs = map((split /:/)[1], split(q{ }, q{${LIB_DEPENDS}})); \
-		for my $$i (\@edirs, \@pdirs, \@fdirs, \@bdirs, \@rdirs, \@ddirs, \@ldirs) { \
+		@pkgdirs = map((split /:/)[1], split(q{ }, q{${PKG_DEPENDS}})); \
+		for my $$i (\@edirs, \@pdirs, \@fdirs, \@bdirs, \@rdirs, \@ddirs, \@ldirs, \@pkgdirs) { \
 			my @dirs = @$$i; \
 			@$$i = (); \
 			for (@dirs) { \
+				if (index($$_, "/usr/mports") == -1) {
+					$$_ = "/usr/mports" . $$_;
+				}
 				if (-d $$_) { \
 					push @$$i, $$_; \
 				} else { \
