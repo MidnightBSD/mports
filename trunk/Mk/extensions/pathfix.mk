@@ -11,7 +11,7 @@ IGNORE=	USES=pathfix does not require args
 .endif
 
 PATHFIX_CMAKELISTSTXT?=	CMakeLists.txt
-.if ${USES:Mautoreconf*}
+.if defined(USE_AUTORECONF)
 PATHFIX_MAKEFILEIN?=	Makefile.am Makefile.in
 .else
 PATHFIX_MAKEFILEIN?=	Makefile.in
@@ -21,7 +21,7 @@ PATHFIX_WRKSRC?=	${WRKSRC}
 pre-patch: pathfix-pre-patch
 
 pathfix-pre-patch:
-.if ${USES:Mcmake*}
+.if defined(USE_CMAKE)
 .for file in ${PATHFIX_CMAKELISTSTXT}
 	@${FIND} ${PATHFIX_WRKSRC} -name "${file}" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[{]CMAKE_INSTALL_LIBDIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
