@@ -474,9 +474,6 @@ LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG} -R
 CPIO=	${GCPIO}
 .endif
 
-# Location of mounted CDROM(s) to search for files
-CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
-
 # Owner and group of the WWW user
 WWWOWN?=	www
 WWWGRP?=	www
@@ -1296,17 +1293,6 @@ _MASTER_SITE_BACKUP:=	# empty
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 .endif
-
-# Search CDROM first if mounted, symlink instead of copy if
-# FETCH_SYMLINK_DISTFILES is set
-.for MOUNTPT in ${CD_MOUNTPTS}
-.if exists(${MOUNTPT}/mports/Distfiles)
-_MASTER_SITE_OVERRIDE:=	file:${MOUNTPT}/mports/Distfiles/${DIST_SUBDIR}/ ${_MASTER_SITE_OVERRIDE}
-.if defined(FETCH_SYMLINK_DISTFILES)
-FETCH_BEFORE_ARGS+=	-l
-.endif
-.endif
-.endfor
 
 NOFETCHFILES?=
 
