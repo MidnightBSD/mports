@@ -39,9 +39,9 @@ describe:
 			my @dirs = @$$i; \
 			@$$i = (); \
 			for (@dirs) { \
-				if (index($$_, "/usr/mports") == -1) {
-					$$_ = "/usr/mports" . $$_;
-				}
+				if (index($$_, "/usr/mports/") == -1) { \
+					$$_ = "/usr/mports/" . $$_; \
+				} \
 				if (-d $$_) { \
 					push @$$i, $$_; \
 				} else { \
