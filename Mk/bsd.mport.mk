@@ -4029,7 +4029,7 @@ create-users-groups:
 					${ECHO_CMD} "@exec if ! ${PW} groupshow ${_group} | ${GREP} -qw $${_login}; then \
 						echo \"Adding user '$${_login}' to group '${_group}'.\"; \
 						${PW} groupmod ${_group} -m $${_login}; fi" >> ${TMPPLIST}; \
-					fi;
+					fi; \
 				fi; \
 			done; \
 		done; \
