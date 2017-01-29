@@ -274,6 +274,10 @@ describe: ${SUBDIR:S/^/_/:S/$/.describe/}
 .else
 describe:
 	@for sub in ${SUBDIR}; do \
+	 case $$sub in \
+                /*) pdir=$$sub ;; \
+                *) pdir=${PORTSDIR}/$$sub ;; \
+                esac ; \
 	if ${TEST} -d ${.CURDIR}/$${sub}; then \
 		${ECHO_MSG} "===> ${DIRPRFX}$${sub}"; \
 		cd ${.CURDIR}/$${sub}; \
