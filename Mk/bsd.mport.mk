@@ -3713,6 +3713,28 @@ _LIB_RUN_DEPENDS=	${LIB_DEPENDS} ${RUN_DEPENDS}
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
 PACKAGE-DEPENDS-LIST?= \
+	for depend in `${ECHO_CMD} "${_LIB_RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
+		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
+		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':'`; \
+		case "$$dir" in \
+		/*) ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac ; \
+		dir=$$(${REALPATH} $$dir); \
+		if [ -d $$dir ]; then \
+			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
+			if [ -z "$$version" ]; then \
+				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
+			else \
+				version=`${ECHO_CMD} $$version | ${SED} -E 's/^.*([<>])/\1/'`; \
+				${ECHO_CMD} "$$dir $$meta $$version" | ${AWK} '{print $$2 " " $$1 " " $$3 " " $$4}'; \
+			fi; \
+		else \
+			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
+		fi; \
+	done
+	
+PACKAGE-DEPENDS-LIST?= \
 	if [ "${CHILD_DEPENDS}" ]; then \
 		installed=$$(${MPORT_QUERY} -q origin=$${PKGORIGIN} || \
 		${TRUE}); \
@@ -3990,6 +4012,7 @@ create-users-groups:
 	@${ECHO_CMD} "** ${_file} doesn't exist. Exiting."; exit 1
 .endif
 .endfor
+.endif
 	@${ECHO_MSG} "===> Creating users and/or groups."
 	@${ECHO_CMD} "@exec echo \"===> Creating users and/or groups.\"" >> ${TMPPLIST}
 .for _group in ${GROUPS}
