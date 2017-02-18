@@ -2,18 +2,17 @@
 
 PORTNAME=	ljclive
 PORTVERSION=	0.4.10
+PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/clive-${PORTVERSION}
 DISTFILES=	clive-${PORTVERSION}.tar.gz		
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A command line client for posting LiveJournal entries
+COMMENT=	Command line client for posting LiveJournal entries
 
 LICENSE=	bsd3
 
 WRKSRC=		${WRKDIR}/clive-${PORTVERSION}
-
-MAN1=	clive.1
 
 GNU_CONFIGURE=	yes
 USES=		iconv
