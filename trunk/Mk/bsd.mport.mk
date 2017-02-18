@@ -3720,7 +3720,7 @@ PACKAGE-DEPENDS-LIST?= \
 			break; \
 		fi; \
 		if [ -z "$$installed" ]; then \
-			installed="${PKGNAME}"; \
+			installed="${PKGBASE}"; \
 		fi; \
 		for pkgname in $$installed; do \
 			${ECHO_CMD} "$$pkgname ${.CURDIR} ${PKGORIGIN}"; \
