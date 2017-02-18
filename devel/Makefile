@@ -136,6 +136,7 @@ SUBDIR += libbonobo
 SUBDIR += libburn
 SUBDIR += libc++
 SUBDIR += libcheck
+SUBDIR += libconfig
 SUBDIR += libconfuse
 SUBDIR += libcxxrt
 SUBDIR += libdaemon
