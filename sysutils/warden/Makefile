@@ -12,7 +12,7 @@ COMMENT=	PC-BSD's Jail Management Utility
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	pbreg:${PORTSDIR}/sysutils/pbreg
+RUN_DEPENDS=	pbreg:sysutils/pbreg
 
 WRKSRC=		${WRKDIR}/warden
 
