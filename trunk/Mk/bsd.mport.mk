@@ -3297,6 +3297,10 @@ ${deptype:tl}-depends:
 			target="${DEPENDS_TARGET}"; \
 			depends_args="${DEPENDS_ARGS}"; \
 		fi; \
+		case $$dir in \
+		/*) dir=$$dir ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac ; \
 		if ${EXPR} "$$prog" : \\/ >/dev/null; then \
 			if [ -e "$$prog" ]; then \
 				if [ "$$prog" = "${NONEXISTENT}" ]; then \
@@ -3383,7 +3387,7 @@ ${deptype:tl}-depends:
 			fi; \
 		fi; \
 		if [ $$notfound != 0 ]; then \
-			${ECHO_MSG} "===>    Verifying $$target for $$prog in $$dir"; \
+			${ECHO_MSG} "===>  Verifying $$target for $$prog in $$dir"; \
 			if [ ! -d "$$dir" ]; then \
 				${ECHO_MSG} "     => No directory for $$prog.  Skipping.."; \
 			else \
@@ -3409,6 +3413,10 @@ lib-depends:
 		${ECHO_MSG}  -n "===>   ${PKGNAME} depends on shared library: $${lib}" ; \
 		found=0 ; \
 		dirs="${LIB_DIRS} `${CAT} ${LOCALBASE}/libdata/ldconfig/* 2>/dev/null || : `" ; \
+		case $$dir in \
+                /*) dir=$$dir ;; \
+                *) dir=${PORTSDIR}/$$dir ;; \
+                esac ; \
 		for libdir in $$dirs; do \
 			test -f $${libdir}/$${lib} || continue; \
 			if [ -x /usr/bin/file ]; then \
@@ -3433,6 +3441,10 @@ lib-depends:
 		pattern="`${ECHO_CMD} $$lib | ${SED} -E -e 's/\./\\\\./g' -e 's/(\\\\)?\+/\\\\+/g'`"\
 		dir=$${i#*:}; \
 		target=$${i##*:}; \
+		case $$dir in \
+                /*) pdir=$$dir ;; \
+                *) pdir=${PORTSDIR}/$$dir ;; \
+                esac ; \
 		if ${TEST} $$dir = $$target; then \
 			target="${DEPENDS_TARGET}"; \
 			depends_args="${DEPENDS_ARGS}"; \
