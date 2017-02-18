@@ -3733,45 +3733,6 @@ PACKAGE-DEPENDS-LIST?= \
 			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
-	
-PACKAGE-DEPENDS-LIST?= \
-	if [ "${CHILD_DEPENDS}" ]; then \
-		installed=$$(${MPORT_QUERY} -q origin=$${PKGORIGIN} || \
-		${TRUE}); \
-		if [ "$$installed" ]; then \
-			break; \
-		fi; \
-		if [ -z "$$installed" ]; then \
-			installed="${PKGNAME}"; \
-		fi; \
-		for pkgname in $$installed; do \
-			${ECHO_CMD} "$$pkgname ${.CURDIR} ${PKGORIGIN}"; \
-		done; \
-	fi; \
-	checked="${PARENT_CHECKED}"; \
-	for dir in ${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}; do \
-		case "$$dir" in \
-		/*) ;; \
-		*) dir=${PORTSDIR}/$$dir ;; \
-		esac ; \
-		dir=$$(${REALPATH} $$dir); \
-		if [ -d $$dir ]; then \
-			case $$checked in \
-			$$dir|$$dir\ *|*\ $$dir|*\ $$dir\ *) continue;; \
-			esac; \
-			childout=$$(cd $$dir; ${MAKE} CHILD_DEPENDS=yes PARENT_CHECKED="$$checked" package-depends-list); \
-			set -- $$childout; \
-			childdir=""; \
-			while [ $$\# != 0 ]; do \
-				childdir="$$childdir $$2"; \
-				${ECHO_CMD} "$$1 $$2 $$3"; \
-				shift 3; \
-			done; \
-			checked="$$dir $$childdir $$checked"; \
-		else \
-			${ECHO_MSG} "${PKGNAME}: \"$$dir\" non-existent -- dependency list incomplete" >&2; \
-		fi; \
-	done
 
 .if !target(package-depends)
 package-depends:
