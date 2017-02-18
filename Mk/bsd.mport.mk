@@ -3715,10 +3715,6 @@ _LIB_RUN_DEPENDS=	${LIB_DEPENDS} ${RUN_DEPENDS}
 PACKAGE-DEPENDS-LIST?= \
 	for depend in `${ECHO_CMD} "${_LIB_RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
-		case "$$dir" in \
-		/*) ;; \
-		*) dir=${PORTSDIR}/$$dir ;; \
-		esac ; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
 			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
