@@ -64,7 +64,6 @@ SUBDIR += sdl_pango
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
 SUBDIR += tk84
-SUBDIR += tk85
 SUBDIR += tk86
 SUBDIR += tkshape
 SUBDIR += unique
