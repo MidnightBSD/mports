@@ -12,6 +12,8 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		does not build
+
 CONFLICTS_INSTALL=	rblibtorrent-[0-9]* rblibtorrent-devel-[0-9]*
 
 OPTIONS_DEFINE=	IPV6 KQUEUE
