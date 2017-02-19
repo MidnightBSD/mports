@@ -21,17 +21,11 @@ PORTDOCS=	*
 .include <bsd.port.pre.mk>
 
 .if !exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX})
-IGNORE=		"may not be redistributed because of licensing reasons. Please visit http://www.unix-systems.org/online.html to accept their license and download ${DISTFILES} into ${DISTDIR}"
+IGNORE=		may not be redistributed because of licensing reasons. Please visit http://www.unix.org/version2/online.html to accept their license and download ${DISTFILES} into ${DISTDIR}
 .endif
 
 do-install:
-	@${MKDIR} ${DOCSDIR}
-	@${FIND} ${WRKSRC} | ${SED} -e 's#^${WRKSRC}##' | while read file; do \
-		if ${TEST} -d "${WRKSRC}$$file"; then \
-			${MKDIR} "${DOCSDIR}$$file"; \
-		else \
-			${INSTALL_DATA} "${WRKSRC}$$file" "${DOCSDIR}$$file"; \
-		fi; \
-	done
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} '*' ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
