@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php70
-PORTVERSION=	7.0.12
+PORTVERSION=	7.0.14
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -14,7 +14,7 @@ COMMENT=	PHP Scripting Language
 
 LICENSE=	php
 
-USES=		tar:xz cpe
+USES+=		tar:xz cpe
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
@@ -23,7 +23,7 @@ USE_AUTOTOOLS=	autoconf
 #USES+=		autoreconf gmake
 #GNU_CONFIGURE=	yes
 
-LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFIGURE_ARGS+=--with-layout=GNU \
 		--localstatedir=/var \
