@@ -19,7 +19,7 @@ GNU_CONFIGURE=	yes
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	cd ${PREFIX} && ${LN} -s lib/libogg.so.0 lib/libogg.so.8
+	cd ${PREFIX}/lib && ${LN} -s libogg.so.0.8.2 libogg.so.8
 
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
