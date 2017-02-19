@@ -57,6 +57,7 @@ SUBDIR += shared-mime-info
 SUBDIR += shc
 SUBDIR += susv2
 SUBDIR += susv3
+SUBDIR += susv4
 SUBDIR += tvbrowser
 SUBDIR += unclutter
 SUBDIR += usbids
