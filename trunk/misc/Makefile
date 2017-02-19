@@ -30,7 +30,6 @@ SUBDIR += iso-codes
 SUBDIR += jishyo
 SUBDIR += ldconfig_compat
 SUBDIR += localedata
-SUBDIR += manpages-de
 SUBDIR += mc
 SUBDIR += mc-light
 SUBDIR += metalink-tools
