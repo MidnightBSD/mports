@@ -844,7 +844,7 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Digest/SHA/SHA.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/Util.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/FieldHash/FieldHash.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Filter/Util/Call/Call.so
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/GDBM_File/GDBM_File.so
+%%GDBM%%lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/GDBM_File/GDBM_File.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/SDBM_File/SDBM_File.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/re/re.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Devel/Peek/Peek.so
@@ -933,7 +933,7 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/IO.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Config.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/I18N/Langinfo.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/arybase.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/GDBM_File.pm
+%%GDBM%%lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/GDBM_File.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Config_git.pl
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/CORE/op_reg_common.h
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/CORE/pp.h

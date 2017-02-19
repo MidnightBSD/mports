@@ -1,7 +1,8 @@
-# $MidnightBSD: trunk/lang/perl5.18/Makefile 16286 2014-04-13 14:53:29Z laffer1 $
+# $MidnightBSD$
 
 PORTNAME=	perl
 PORTVERSION=	5.20.0
+PORTREVISION=	1
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../src
@@ -103,6 +104,8 @@ CONFIGURE_ARGS+=	-Duse64bitint
 
 
 post-install:
+	${MKDIR} ${PREFIX}/share/licenses/perl-${PKGVERSION}
+	cd ${PREFIX}/share/licenses && ${LN} -sf perl-${PKGVERSION} perl-threaded-5.20.0
 	@${STRIP_CMD} ${PREFIX}/bin/perl${PERL_VER}
 	@${STRIP_CMD} ${PREFIX}/bin/perl
 	@${SETENV} LD_LIBRARY_PATH=${WRKSRC} ${PREFIX}/bin/perl -I${WRKSRC}/lib \
