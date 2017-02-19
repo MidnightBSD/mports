@@ -3,7 +3,7 @@
 
 PORTNAME=	tkinter
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,10 +16,10 @@ LICENSE=	python
 
 USE_PYTHON=	distutils autoplist
 USES=		python tar:xz tk
-USE_TCL=	85
-USE_TK=		85
+USE_TCL=	86
+USE_TK=		86
 
-CFLAGS+=	-I${LOCALBASE}/include/tcl8.5/generic/
+CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
