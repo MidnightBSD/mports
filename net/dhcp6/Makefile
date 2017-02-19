@@ -3,16 +3,12 @@
 # Whom:			laffer1
 #
 # $MidnightBSD$
-#
 
 PORTNAME=	dhcp6
-PORTVERSION=	20080615
-PORTREVISION=	2
+PORTVERSION=	20080615.1
+PORTREVISION=	3
+DISTVERSIONPREFIX=	v
 CATEGORIES=	net ipv6
-MASTER_SITES=	SF/wide-dhcpv6/wide-dhcpv6/wide-dhcpv6-${PORTVERSION}
-DISTNAME=	wide-dhcpv6-${PORTVERSION}
-
-FAKE_OPTS=	prefixhack
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KAME DHCP6 client, server, and relay
@@ -20,6 +16,9 @@ COMMENT=	KAME DHCP6 client, server, and relay
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	hrs-allbsd
+GH_PROJECT=	wide-dhcpv6
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
 		--with-localdbdir=/var/db
