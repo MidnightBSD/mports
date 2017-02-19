@@ -1,2 +1,3 @@
-SHA256 (libical-1.0.tar.gz) = 7c39b3448e4927a2de2775d853f52b3aaeb42400970a3db0b01a78987e6ec0b7
-SIZE (libical-1.0.tar.gz) = 1199483
+TIMESTAMP = 1487520076
+SHA256 (libical-v1.0.1_GH0.tar.gz) = 7d5f613454ec6c7d1bcfb441c919215be53292aa15cd1cb14249d1413d6c610c
+SIZE (libical-v1.0.1_GH0.tar.gz) = 720618
