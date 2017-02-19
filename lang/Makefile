@@ -70,7 +70,6 @@ SUBDIR += spidermonkey185
 SUBDIR += spidermonkey24
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
-SUBDIR += tcl84
 SUBDIR += tcl86
 SUBDIR += v8
 SUBDIR += vala
