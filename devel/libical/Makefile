@@ -19,7 +19,7 @@ MAKE_JOBS_UNSAFE= yes
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 CFLAGS+=	-fPIC
 .endif
 
