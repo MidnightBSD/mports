@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	serf
-PORTVERSION=	1.3.8
-PORTREVISION=	2
+PORTVERSION=	1.3.9
+PORTREVISION=	0
 CATEGORIES=	www
-MASTER_SITES=	http://serf.googlecode.com/svn/src_releases/
+MASTER_SITES=	APACHE/serf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serf HTTP client library
@@ -12,13 +12,21 @@ COMMENT=	Serf HTTP client library
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS+=	libapr-1.so:${PORTSDIR}/devel/apr1
+LIB_DEPENDS+=	libapr-1.so:devel/apr1
 
 USES=		scons tar:bzip2 cpe python:2
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	DOCS GSSAPI
+OPTIONS_DEFINE=	DOCS
+OPTIONS_RADIO=	KERBEROS
+OPTIONS_RADIO_KERBEROS= MIT HEIMDAL HEIMDAL_BASE
+
+HEIMDAL_DESC=		Heimdal Kerberos (security/heimdal)
+HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
+MIT_DESC=		MIT Kerberos (security/krb5)
+MIT_LIB_DEPENDS=	libkrb5.so.3:security/krb5
+HEIMDAL_LIB_DEPENDS=	libkrb5.so.26:security/heimdal
 
 SCONS_ARGS=	APR=${LOCALBASE}/bin/apr-1-config
 SCONS_ARGS+=	APU=${LOCALBASE}/bin/apu-1-config
@@ -30,8 +38,12 @@ INSTALL_TARGET=	install --install-sandbox=${STAGEDIR}
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MGSSAPI}
+.if ${PORT_OPTIONS:MHEIMDAL_BASE}
 SCONS_ARGS+=	GSSAPI="/usr"
+.endif
+
+.if ${PORT_OPTIONS:MMIT} || ${PORT_OPTIONS:MHEIMDAL}
+SCONS_ARGS+=	GSSAPI="${LOCALBASE}"
 .endif
 
 do-build:
