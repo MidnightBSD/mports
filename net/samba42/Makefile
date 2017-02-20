@@ -296,6 +296,7 @@ CONFIGURE_ARGS+=	--without-dnsupdate
 # https://bugzilla.samba.org/show_bug.cgi?id=9545
 .if ${PORT_OPTIONS:MFAM}
 USES+=			fam
+USE_FAM=		yes
 CONFIGURE_ARGS+=	--with-fam
 WANT_EXP_MODULES+=	vfs_notify_fam
 SAMBA4_MODULES+=	vfs_notify_fam
