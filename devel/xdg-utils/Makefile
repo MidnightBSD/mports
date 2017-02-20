@@ -12,7 +12,8 @@ COMMENT=	Tools to allow all applications to integrate with the free desktop
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto
+BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto \
+		lynx:www/lynx
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		xprop:${PORTSDIR}/x11/xprop \
 		xset:${PORTSDIR}/x11/xset
