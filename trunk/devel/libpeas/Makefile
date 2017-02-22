@@ -11,7 +11,7 @@ COMMENT=	Next evolution of the Gedit plugins engine
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	valac:${PORTSDIR}/lang/vala
+BUILD_DEPENDS=	+valac:${PORTSDIR}/lang/vala
 
 LIBPEAS_SLAVE?=	no
 
