@@ -110,4 +110,7 @@ do-install:
 # Include to automatic install file in libdata/ldconfig{,32}
 .include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
 
+pre-clean:
+	@[ -w ${WRKDIR}/var ] && chflags -R noschg ${WRKDIR}/var || ${TRUE}
+
 .include <bsd.port.post.mk>
