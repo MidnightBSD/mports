@@ -100,7 +100,6 @@ SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += qt5-webchannel
 SUBDIR += qt5-websockets
-SUBDIR += retsina
 SUBDIR += seamonkey
 SUBDIR += serf
 SUBDIR += selfhtml-de
