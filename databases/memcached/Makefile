@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.33
+PORTVERSION=	1.4.34
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -12,21 +12,19 @@ COMMENT=	High-performance distributed memory object cache system
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
+LIB_DEPENDS=	libevent.so:devel/libevent2
 
 CONFLICTS=	memcached-1.2*
 
 # Dtrace option disabled until it is fixed upstream
 OPTIONS_DEFINE=		SASL DOCS DTRACE
-OPTIONS_DEFAULT=	SASL DOCS
+OPTIONS_DEFAULT=	SASL
 
 DTRACE_DESC=	Enable dtrace probes
 SASL_DESC=	Enable SASL Authentication
 
 USE_RC_SUBR=	memcached
 SUB_LIST+=	RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
-
-MAKE_JOBS_UNSAFE=yes
 
 USES=		cpe shebangfix autoreconf:build
 USE_AUTOTOOLS=	aclocal
@@ -38,15 +36,18 @@ CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} \
 		--program-prefix= \
 		--disable-coverage
 
-CFLAGS+=	-no-integrated-as
+DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc
+DOCS_CONFIGURE_ENABLE=	docs
 
 DTRACE_CONFIGURE_ENABLE=	dtrace
 
-SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_CONFIGURE_ENABLE=	sasl
 SASL_CFLAGS=		-I${LOCALBASE}/include
 SASL_CPPFLAGS+=		${CFLAGS}
 SASL_LDFLAGS=		-L${LOCALBASE}/lib
+
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -54,13 +55,13 @@ SASL_LDFLAGS=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--enable-64bit
 .endif
 
-.if ${PORT_OPTIONS:MDTRACE}
-BROKEN=			DTRACE broken with gcc/clang - reported upstream
-.endif
-
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${PREFIX}/bin
-	@${MKDIR} ${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${DOCSDIR}
+.for i in protocol-binary-range.txt protocol-binary.txt protocol.txt \
+		readme.txt threads.txt
+	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
+.endfor
 
 regression-test: test
 test: build
