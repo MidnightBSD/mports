@@ -13,7 +13,10 @@ COMMENT=	Perl binding interface for curl
 
 LICENSE=	mit
 
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl:install
+LIB_DEPENDS=	libcurl.so:ftp/curl
+TEST_DEPENDS=	p5-Test-CPAN-Meta>=0:devel/p5-Test-CPAN-Meta \
+		p5-Test-Pod>=1.14:devel/p5-Test-Pod \
+		p5-Test-Pod-Coverage>=1.04:devel/p5-Test-Pod-Coverage
 
 USES=	perl5
 PERL_CONFIGURE=	yes
