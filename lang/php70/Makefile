@@ -15,6 +15,7 @@ COMMENT=	PHP Scripting Language
 LICENSE=	php
 
 USES+=		tar:xz cpe
+USE_GCC=	4.8+
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
