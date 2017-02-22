@@ -4,7 +4,7 @@
 
 PORTNAME=	hspell
 PORTVERSION=	1.1
-CATEGORIES=	hebrew
+CATEGORIES=	textproc hebrew
 MASTER_SITES=	http://hspell.ivrix.org.il/ \
 		FREEBSD_LOCAL/makc
 
