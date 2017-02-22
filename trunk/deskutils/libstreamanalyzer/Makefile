@@ -2,7 +2,7 @@
 
 PORTNAME=	libstreamanalyzer
 PORTVERSION=	${STRIGI_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils
 MASTER_SITES=	${STRIGI_MASTER_SITES}
 
@@ -11,10 +11,10 @@ COMMENT=	Strigi desktop search: streamanalyzer library
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	avcodec${FFMPEG_SUFFIX}:${PORTSDIR}/multimedia/ffmpeg${FFMPEG_SUFFIX} \
-		clucene-core:${PORTSDIR}/textproc/clucene \
-		exiv2:${PORTSDIR}/graphics/exiv2 \
-		streams:${PORTSDIR}/deskutils/libstreams
+LIB_DEPENDS=	libavcodec${FFMPEG_SUFFIX}.so:multimedia/ffmpeg${FFMPEG_SUFFIX} \
+		libclucene-core.so:textproc/clucene \
+		libexiv2.so:graphics/exiv2 \
+		libstreams.so:deskutils/libstreams
 
 USES=		pkgconfig iconv tar:bzip2
 USE_GNOME=	libxml2
