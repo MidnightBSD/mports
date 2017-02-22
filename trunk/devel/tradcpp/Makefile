@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	tradcpp
-PORTVERSION=	0.5.1
-PORTREVISION=	1
+PORTVERSION=	0.5.2
 CATEGORIES=	devel
-MASTER_SITES=	http://ftp.NetBSD.org/pub/NetBSD/misc/dholland/
+MASTER_SITES=	http://ftp.NetBSD.org/pub/NetBSD/misc/dholland/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Traditional (K&R-style) C preprocessor
