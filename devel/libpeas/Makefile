@@ -11,13 +11,13 @@ COMMENT=	Next evolution of the Gedit plugins engine
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	+valac:${PORTSDIR}/lang/vala
+BUILD_DEPENDS+=	valac:lang/vala
 
 LIBPEAS_SLAVE?=	no
 
 .if ${LIBPEAS_SLAVE} == no
 .else
-LIB_DEPENDS+=	libpeas-1.0.so:${PORTSDIR}/devel/libpeas
+LIB_DEPENDS+=	libpeas-1.0.so:devel/libpeas
 .endif
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
