@@ -1,13 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	jedit
-PORTVERSION=	5.2.0
+PORTVERSION=	5.3.0
 PORTEPOCH=	1
 CATEGORIES=	editors java
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}${PORTVERSION}install
 EXTRACT_SUFX=	.jar
-EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Powerful programmer\'s text editor written in Java
