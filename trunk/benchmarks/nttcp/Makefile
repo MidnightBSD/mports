@@ -5,7 +5,8 @@ PORTVERSION=	1.47
 PORTREVISION=	3
 CATEGORIES=	benchmarks net
 MASTER_SITES=	http://freeware.sgi.com/source/nttcp/ \
-		http://reality.sgiweb.org/freeware/source/nttcp/
+		http://reality.sgiweb.org/freeware/source/nttcp/ \
+		FREEBSD_LOCAL/martymac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client/server program for testing network performance
