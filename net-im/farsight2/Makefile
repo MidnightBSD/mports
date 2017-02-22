@@ -12,8 +12,9 @@ COMMENT=	Collection of GStreamer modules and libraries for videoconferencing
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libnice.so:${PORTSDIR}/net-im/libnice
-RUN_DEPENDS=	libnice-gst010>=0:${PORTSDIR}/net-im/libnice-gst010
+BUILD_DEPENDS=	py-gobject>=0:devel/py-gobject
+LIB_DEPENDS=	libnice.so:net-im/libnice
+RUN_DEPENDS=	libnice-gst010>=0:net-im/libnice-gst010
 
 USES=		gettext libtool gmake pathfix pkgconfig python
 USE_LDCONFIG=	yes
