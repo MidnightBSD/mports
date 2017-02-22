@@ -15,13 +15,13 @@ LICENSE=        lgpl2.1 lgpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
-LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpng15.so:${PORTSDIR}/graphics/png \
-		libxml2.so:${PORTSDIR}/textproc/libxml2
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libjpeg.so:graphics/jpeg \
+		liblcms2.so:graphics/lcms2 \
+		libpng16.so:graphics/png \
+		libxml2.so:textproc/libxml2
 
 CONFLICTS_INSTALL=	i386-wine-[0-9]* i386-wine-devel-[0-9]* wine-devel-[0-9]*
 
