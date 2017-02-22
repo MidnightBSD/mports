@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>=0:${PORTSDIR}/databases/py-gdbm
 
-USES=		python tar:bzip2
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>
