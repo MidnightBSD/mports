@@ -2,7 +2,7 @@
 
 PORTNAME=	timemachine
 PORTVERSION=	0.3.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://plugin.org.uk/timemachine/
 
@@ -11,25 +11,19 @@ COMMENT=	JACK audio capture tool
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jack:${PORTSDIR}/audio/jack \
-		lo:${PORTSDIR}/audio/liblo \
-		sndfile:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS=	libjack.so:audio/jack \
+		liblo.so:audio/liblo \
+		libsndfile.so:audio/libsndfile
 
 OPTIONS_DEFINE=	LASH
 
-USES=        pathfix
+USES=		gmake pathfix pkgconfig
 USE_GNOME=	gtk20
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-lm
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MLASH}
-LIB_DEPENDS+=	lash:${PORTSDIR}/audio/lash
-.else
-CONFIGURE_ARGS+=--disable-lash
-.endif
+LASH_LIB_DEPENDS=	liblash.so:audio/lash
+LASH_CONFIGURE_OFF=	--disable-lash
 
 post-patch:
 	@${REINPLACE_CMD} -e \
