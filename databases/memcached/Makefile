@@ -38,6 +38,8 @@ CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} \
 		--program-prefix= \
 		--disable-coverage
 
+CFLAGS+=	-no-integrated-as
+
 DTRACE_CONFIGURE_ENABLE=	dtrace
 
 SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
@@ -58,13 +60,7 @@ BROKEN=			DTRACE broken with gcc/clang - reported upstream
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${PREFIX}/bin
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in protocol-binary-range.txt protocol-binary.txt protocol.txt \
-		readme.txt threads.txt
-	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
-.endfor
-.endif
+	@${MKDIR} ${DOCSDIR}
 
 regression-test: test
 test: build
