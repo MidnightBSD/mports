@@ -29,7 +29,7 @@ RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 USES=		desktop-file-utils gettext gmake libtool \
 		pathfix pkgconfig python:3 tar:xz
 USE_GNOME=	gtksourceview3 intlhack introspection:build \
-		libxml2 py3gobject3
+		libxml2 py3gobject3 glib20
 USE_XORG=	sm
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-updater
