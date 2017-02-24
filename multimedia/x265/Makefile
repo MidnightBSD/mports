@@ -27,6 +27,6 @@ do-test:
 	${WRKSRC}/test/TestBench
 
 post-install:
-	${CP} ${PREFIX}/lib/pkgconfig/x265.pc ${PREFIX}/libdata/pkgconfig/
+	-${CP} ${PREFIX}/lib/pkgconfig/x265.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
