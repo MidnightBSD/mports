@@ -15,6 +15,8 @@ LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg \
 		libspeexdsp.so:${PORTSDIR}/audio/speexdsp
 
 GNU_CONFIGURE=	yes
+# required for magus to generate encoder
+CONFIGURE_ARGS+=	--enable-binaries
 INSTALL_TARGET=	install-strip
 USES=		libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
