@@ -19,7 +19,7 @@ RUN_DEPENDS=	libnice-gst010>=0:net-im/libnice-gst010
 USES=		gettext libtool gmake pathfix pkgconfig python
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20
-USE_GSTREAMER=	core good bad
+USE_GSTREAMER=	core good bad python
 GNU_CONFIGURE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
