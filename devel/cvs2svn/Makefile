@@ -8,8 +8,7 @@ MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49237/ \
 		FREEBSD_LOCAL/ohauer
 
 # 2.4.0 -> svn r5392
-PATCH_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-PATCH_SITE_SUBDIR=	ohauer
+PATCH_SITES=	FREEBSD_LOCAL/ohauer
 PATCHREV=	5433
 PATCHFILES=	${PORTNAME}-${PORTVERSION}-r${PATCHREV}.diff.bz2
 
@@ -23,6 +22,10 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		shebangfix python:2.7
 USE_PYTHON=	distutils autoplist
+
+SHEBANG_FILES=	cvs2svn cvs2git cvs2bzr *.py \
+		contrib/* cvs2svn_lib/*.py \
+		svntest/* cvs2svn_rcsparse/*.py
 
 OPTIONS_MULTI=		SCM
 OPTIONS_MULTI_SCM=	SUBVERSION GIT BAZAAR
@@ -45,10 +48,6 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/git:${PORTSDIR}/devel/git
 .if ${PORT_OPTIONS:MBAZAAR}
 RUN_DEPENDS+=	${LOCALBASE}/bin/bzr:${PORTSDIR}/devel/bzr
 .endif
-
-MAN1=		cvs2svn.1 \
-		cvs2git.1 \
-		cvs2bzr.1
 
 # documents from ${WRKSRC}/doc
 DOCS1=		design-notes.txt making-releases.txt \
@@ -87,8 +86,6 @@ post-build:
 	${MAKE} man -C ${WRKSRC}
 
 post-install:
-	@${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/|} ${PREFIX}/man/man1/
-
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${DOCS1:S|^|${WRKSRC}/doc/|} ${DOCSDIR}/
