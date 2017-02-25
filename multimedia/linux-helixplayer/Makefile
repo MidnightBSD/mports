@@ -34,13 +34,6 @@ PLIST_SUB+=	NLS="" LINUXBASE="${LINUXBASE}"
 
 .include <bsd.port.pre.mk>
 
-.if exists(${LOCALBASE}/share/icons)
-WITH_ICONS=	yes
-PLIST_SUB+=	ICONS=""
-.else
-PLIST_SUB+=	ICONS="@comment "
-.endif
-
 .if ${HAVE_GNOME:Mgnomehier}!=""
 WITH_GNOME=	yes
 PLIST_SUB+=	GNOME=""
