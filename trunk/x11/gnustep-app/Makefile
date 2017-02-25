@@ -4,6 +4,9 @@ PORTNAME=	gnustep-app
 PORTVERSION=	2.0.0
 PORTREVISION=	0
 CATEGORIES=	x11 gnustep
+MASTER_SITES=   # empty
+DISTFILES=      # empty
+EXTRACT_ONLY=   # empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metaport for GNUstep applications
