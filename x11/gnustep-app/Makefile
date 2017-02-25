@@ -17,11 +17,11 @@ USES=		gnustep
 USE_GNUSTEP=	back base gui
 
 NO_BUILD=       yes
-
+APP_DIR=	${LOCALBASE}/GNUstep/System/Applications
 RUN_DEPENDS=	aclock>0:x11-clocks/aclock \
 		addresses>0:mail/addresses \
 		addresses-goodies>0:mail/addresses-goodies \
-		affiche>0:deskutils/affiche \
+		${APP_DIR}/Affiche.app/Affiche:deskutils/affiche \
 		appwrapper>0:deskutils/appwrapper \
 		batmon>0:sysutils/batmon \
 		camera>0:graphics/camera \
