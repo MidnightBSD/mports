@@ -1,4 +1,4 @@
-# $MIdnightBSD$
+# $MidnightBSD$
 
 PORTVERSION=	1.55.0
 PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
