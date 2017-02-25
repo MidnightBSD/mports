@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mod_perl
-PORTVERSION=	2.0.8
-PORTREVISION=	1
+PORTVERSION=	2.0.10
 PORTEPOCH=	3
 CATEGORIES=	www perl5
 MASTER_SITES=	APACHE/perl
@@ -17,11 +16,16 @@ LICENSE=	apache2
 BUILD_DEPENDS=	p5-BSD-Resource>=0:devel/p5-BSD-Resource
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+TEST_DEPENDS=	p5-CGI>=4.15:www/p5-CGI \
+		p5-libwww>=6.13:www/p5-libwww
+
 SUB_FILES=	pkg-message
 SUB_LIST=	APACHEMODDIR=${APACHEMODDIR}
-USES=		cpe gmake perl
+USES=		cpe gmake perl5
 USE_APACHE=	22+
 PERL_CONFIGURE=	yes
+USE_CSTD=	gnu89
+CPE_VENDOR=	apache
 
 CSTD=	c89
 

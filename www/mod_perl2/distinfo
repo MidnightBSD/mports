@@ -1,2 +1,3 @@
-SHA256 (mod_perl-2.0.8.tar.gz) = 35dc1b7a40a90a395ce88bba2df84f22289975f34d1757de6d715560c20a20e6
-SIZE (mod_perl-2.0.8.tar.gz) = 3790026
+TIMESTAMP = 1488039449
+SHA256 (mod_perl-2.0.10.tar.gz) = d1cf83ed4ea3a9dfceaa6d9662ff645177090749881093051020bf42f9872b64
+SIZE (mod_perl-2.0.10.tar.gz) = 3846211
