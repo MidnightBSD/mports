@@ -11,7 +11,9 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
 
 LICENSE=	mpl
+
 MAKE_JOBS_UNSAFE=	yes
+USE_GCC=	4.8+
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
@@ -36,7 +38,8 @@ CONFLICTS_INSTALL=	libxul-1.9.*
 
 USE_GL=		gl
 USES=		pathfix tar:xz
-MAKE_ENV=	SKIP_GRE_REGISTRATION=1 mozappdir=${PREFIX}/lib/${MOZILLA}
+MAKE_ENV=	SKIP_GRE_REGISTRATION=1 mozappdir=${PREFIX}/lib/${MOZILLA} \
+		__FreeBSD__=9
 LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
