@@ -298,6 +298,7 @@ PLIST_SUB+=		DNSUPDATE="@comment "
 # https://bugzilla.samba.org/show_bug.cgi?id=9545
 .if ${PORT_OPTIONS:MFAM}
 USES+=			fam
+USE_FAM=		yes
 CONFIGURE_ARGS+=	--with-fam
 .else
 CONFIGURE_ARGS+=	--without-fam
