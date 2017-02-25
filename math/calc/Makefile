@@ -10,6 +10,8 @@ COMMENT=	Arbitrary precision calculator
 
 LICENSE=	lgpl
 
+BROKEN=		fails to build
+
 USES=		gmake tar:bzip2 readline
 USE_LDCONFIG=	yes
 
