@@ -207,17 +207,6 @@ lib/RealPlayer/share/realplay/setup_welcome.png
 %%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-ogg_48x48.png
 %%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-rv_48x48.png
 %%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-swf_48x48.png
-%%NLS%%%%LINUXBASE%%/usr/share/locale/de/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/es/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/fr/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/hi/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/it/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/ja/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/ko/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/pl/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/pt_BR/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/zh_CN/LC_MESSAGES/realplay.mo
-%%NLS%%%%LINUXBASE%%/usr/share/locale/zh_TW/LC_MESSAGES/realplay.mo
 %%NLS%%@dir %%LINUXBASE%%/usr/share/locale/de/LC_MESSAGES
 %%NLS%%@dir %%LINUXBASE%%/usr/share/locale/de
 %%NLS%%@dir %%LINUXBASE%%/usr/share/locale/es/LC_MESSAGES
