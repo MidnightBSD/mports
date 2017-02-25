@@ -32,10 +32,6 @@ CONFIGURE_ARGS=	MP_APXS=${LOCALBASE}/sbin/apxs PREFIX=${PREFIX}
 
 .include <bsd.port.pre.mk>
 
-.if ${APACHE_VERSION} > 22
-BROKEN=	Does not build with apache24
-.endif
-
 .if defined(APR_H)
 APR_HAS_THREADS!=	${ECHO_CMD} `${GREP} -c 'APR_HAS_THREADS *1' ${APR_H}`
 .else
