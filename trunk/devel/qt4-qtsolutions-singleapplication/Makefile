@@ -12,6 +12,7 @@ COMMENT=	Qt 4 Solutions Single Application Framework
 
 LICENSE=	unknown
 
+USES=		qmake
 USE_QT4?=	moc_build rcc_build uic_build gui network
 USE_LDCONFIG=	yes
 
