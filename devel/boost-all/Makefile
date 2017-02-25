@@ -24,4 +24,8 @@ DOCS_RUN_DEPENDS=	${LOCALBASE}/share/doc/boost/doc/html/index.html:${PORTSDIR}/d
 pre-install:
 	${MKDIR} ${DATADIR}
 
+do-install:
+	${MKDIR} ${DATADIR}/boost-all
+	${TOUCH} ${DATADIR}/boost-all/.installed
+
 .include <bsd.port.mk>
