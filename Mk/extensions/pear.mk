@@ -113,20 +113,20 @@ DIRFILTER=	${SED} -En '\:^.*/[^/]*$$:s:^(.+)/[^/]*$$:\1:p' \
 .if !defined(USE_PHPIZE)
 do-autogenerate-plist: patch
 	@${ECHO_MSG} "===>   Generating packing list with pear"
-	@${LN} -sf ${WRKDIR}/package.xml ${WRKSRC}/package.xml
-	@cd ${WRKSRC} && ${PEAR} install -n -f -P ${WRKDIR}/inst package.xml > /dev/null 2> /dev/null
+	${LN} -sf ${WRKDIR}/package.xml ${WRKSRC}/package.xml
+	cd ${WRKSRC} && ${PEAR} install -n -f -P ${WRKDIR}/inst package.xml > /dev/null 2> /dev/null
 .for R in .channels .depdb .depdblock .filemap .lock .registry
-	@${RM} -rf ${WRKDIR}/inst/${PREFIX}/${LPEARDIR}/${R}
-	@${RM} -rf ${WRKDIR}/inst/${R}
+	${RM} -rf ${WRKDIR}/inst/${PREFIX}/${LPEARDIR}/${R}
+	${RM} -rf ${WRKDIR}/inst/${R}
 .endfor
-	@FILES=`cd ${WRKDIR}/inst && ${FIND} . -type f | ${CUT} -c 2- | \
+	FILES=`cd ${WRKDIR}/inst && ${FIND} . -type f | ${CUT} -c 2- | \
 	${GREP} -v -E "^${PREFIX}/"` || exit 0; \
 	${ECHO_CMD} $${FILES}; if ${TEST} -n "$${FILES}"; then \
 	${ECHO_CMD} "Cannot generate packing list: package files outside PREFIX"; \
 	exit 1; fi;
-	@${ECHO_CMD} "${LPKGREGDIR}/package.xml" > ${PLIST}
+	${ECHO_CMD} "${LPKGREGDIR}/package.xml" > ${PLIST}
 # pkg_install needs to escape $ in directory name while pkg does not
-	@cd ${WRKDIR}/inst/${PREFIX} && ${FIND} . -type f | ${SORT} \
+	cd ${WRKDIR}/inst/${PREFIX} && ${FIND} . -type f | ${SORT} \
 	| ${CUT} -c 3- >> ${PLIST}
 
 pre-install:	pear-pre-install do-autogenerate-plist do-generate-deinstall-script
