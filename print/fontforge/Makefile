@@ -12,6 +12,8 @@ COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_GCC=	4.8+
+
 BUILD_DEPENDS=	${LOCALBASE}/include/uthash.h:devel/uthash \
 		${LOCALBASE}/bin/gnulib-tool:devel/gnulib
 LIB_DEPENDS=	libuninameslist.so:textproc/libuninameslist \
@@ -36,6 +38,7 @@ USE_GNOME=	cairo glib20 gtk20 libxml2 pango
 CONFIGURE_ARGS=	--enable-tile-path --enable-gtk2-use
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_ENV+=	-D__FreeBSD_version=90100
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
