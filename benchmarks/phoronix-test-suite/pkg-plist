@@ -1,4 +1,3 @@
-%%NO_X11%%$MidnightBSD$
 bin/phoronix-test-suite
 %%BASH_COMPLETIONS%%etc/bash_completion.d/phoronix-test-suite
 %%X11%%share/appdata/phoronix-test-suite.appdata.xml
