@@ -1,6 +1,6 @@
---- install-sh.orig	2014-04-02 04:01:50.000000000 +0200
-+++ install-sh	2014-06-29 13:45:13.466462663 +0200
-@@ -47,16 +47,21 @@
+--- install-sh.orig	2016-01-01 16:41:58 UTC
++++ install-sh
+@@ -47,16 +47,21 @@ then
  fi
  
  rm -rf $DESTDIR$INSTALL_PREFIX/share/phoronix-test-suite/
@@ -22,10 +22,10 @@
 +then
 +mkdir -p $DESTDIR$INSTALL_PREFIX/etc/bash_completion.d/
 +fi
+ #mkdir -p $DESTDIR$INSTALL_PREFIX/../usr/lib/systemd/system/
+ #mkdir -p $DESTDIR$INSTALL_PREFIX/../etc/init/
  
- cp CHANGE-LOG $DESTDIR$INSTALL_PREFIX/share/doc/phoronix-test-suite/
- cp COPYING $DESTDIR$INSTALL_PREFIX/share/doc/phoronix-test-suite/
-@@ -67,12 +72,18 @@
+@@ -69,15 +74,18 @@ cp -r * $DESTDIR$INSTALL_PREFIX/share/do
  cd ..
  rm -rf $DESTDIR$INSTALL_PREFIX/share/doc/phoronix-test-suite/man-pages/
  
@@ -42,11 +42,14 @@
  cp pts-core/static/phoronix-test-suite.desktop $DESTDIR$INSTALL_PREFIX/share/applications/
  cp pts-core/static/phoronix-test-suite-launcher.desktop $DESTDIR$INSTALL_PREFIX/share/applications/
  cp pts-core/static/phoronix-test-suite.appdata.xml $DESTDIR$INSTALL_PREFIX/share/appdata/
+-
+-mkdir -p $DESTDIR$INSTALL_PREFIX/../usr/lib/systemd/system/
+-cp deploy/*-systemd/*.service $DESTDIR$INSTALL_PREFIX/../usr/lib/systemd/system/
 +fi
  
- rm -f $DESTDIR$INSTALL_PREFIX/share/phoronix-test-suite/pts/etc/scripts/package-build-*
- cp -r pts-core $DESTDIR$INSTALL_PREFIX/share/phoronix-test-suite/
-@@ -83,12 +94,13 @@
+ # mkdir -p $DESTDIR$INSTALL_PREFIX/../etc/init/
+ # cp pts-core/static/upstart/*.conf $DESTDIR$INSTALL_PREFIX/../etc/init/
+@@ -92,12 +100,13 @@ rm -f $DESTDIR$INSTALL_PREFIX/share/phor
  rm -f $DESTDIR$INSTALL_PREFIX/share/phoronix-test-suite/pts-core/static/images/openbenchmarking.png
  rm -f $DESTDIR$INSTALL_PREFIX/share/phoronix-test-suite/pts-core/static/images/%phoronix-test-suite.png
  
@@ -59,9 +62,9 @@
 +if [ -z "$WITHOUT_X11" ]
 +then
  # XDG MIME OpenBenchmarking support
- if [ "X$DESTDIR" = "X" ]
+ if [ "X$DESTDIR" = "X" ] && which xdg-mime >/dev/null && which xdg-icon-resource >/dev/null
  then
-@@ -103,10 +115,10 @@
+@@ -112,15 +121,14 @@ else
  	cp pts-core/static/images/openbenchmarking.png $DESTDIR$INSTALL_PREFIX/share/icons/hicolor/64x64/mimetypes/application-x-openbenchmarking.png
  
  fi
@@ -73,3 +76,8 @@
  Phoronix Test Suite Files: $INSTALL_PREFIX/share/phoronix-test-suite/\n"
  
  if [ "X$DESTDIR" != "X" ]
+ then
+ 	echo "Installed to chroot: $DESTDIR"
+-	echo "Please update your desktop and mime-database manually"
+ fi
+ 
