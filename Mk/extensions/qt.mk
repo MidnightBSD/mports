@@ -555,7 +555,7 @@ webchannel_PATH=	${QT_LIBDIR}/libQt${_QT_LIBVER}WebChannel.so
 websockets_PORT=	www/${_QT_RELNAME}-websockets
 websockets_PATH=	${QT_LIBDIR}/libQt${_QT_LIBVER}WebSockets.so
 
-webkit_PORT=		www/webkit-${_QT_RELNAME}
+webkit_PORT=		www/${_QT_RELNAME}-webkit
 webkit_PATH=		${QT_LIBDIR}/libQt${_QT_LIBVER}WebKit.so
 
 widgets_PORT=		x11-toolkits/${_QT_RELNAME}-widgets
