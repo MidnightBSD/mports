@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	joomla
-PORTVERSION=	3.4.6
+PORTVERSION=	3.6.5
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	3
 
@@ -15,6 +16,10 @@ GH_PROJECT=	${PORTNAME}-cms
 NO_ARCH=	yes
 NO_BUILD=	yes
 
+OPTIONS_DEFINE=	MYSQL PGSQL
+OPTIONS_DEFAULT=MYSQL
+OPTIONS_SUB=	yes
+
 PLIST_SUB=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
 
 USES=		shebangfix
@@ -24,8 +29,10 @@ SHEBANG_FILES=	build/indexmaker.php \
 SUB_FILES=	pkg-message
 
 USE_GITHUB=	yes
-USE_MYSQL=	yes
-USE_PHP=	gd json mbstring mysql mysqli pcre pdf session simplexml xml zip zlib
+USE_PHP=	gd json mbstring pcre pdf session simplexml xml zip zlib
+
+MYSQL_USE=	PHP=mysqli
+PGSQL_USE=	PHP=pgsql
 
 WANT_PHP_WEB=	yes
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PORTVERSION:R:R}
