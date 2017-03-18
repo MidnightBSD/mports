@@ -22,6 +22,4 @@ RPMVERSION=	1.fc10
 BRANDELF_FILES=	usr/bin/tclsh8.5
 USE_LDCONFIG=	yes
 
-DESCR=		${.CURDIR}/../${PORTNAME}${PKGNAMESUFFIX}/pkg-descr
-
 .include <bsd.port.mk>
