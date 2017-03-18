@@ -1,4 +1,4 @@
- $MidnightBSD$
+# $MidnightBSD$
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -20,20 +20,25 @@ LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
 BUILD_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 RUN_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
 
+FAKE_OPTS=	trueprefix
+
 WRKSRC=		${RUBY_WRKSRC}
-CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
+CONFIGURE_ARGS=	\
+		--with-soname=ruby21 \
+		--program-prefix="" \
+		--program-suffix="21" \
 		--disable-rpath \
 		--enable-pthread \
 		--enable-shared \
 		--with-ruby-version=minor \
-		--with-sitedir="${TRUE_PREFIX}/lib/ruby/site_ruby" \
-		--with-vendordir="${TRUE_PREFIX}/lib/ruby/vendor_ruby" \
-		--with-rubyhdrdir="${TRUE_PREFIX}/include/ruby-2.1/" \
-		--with-rubylibprefix="${TRUE_PREFIX}/lib/ruby" \
-		--docdir="${FAKE_DESTDIR}${TRUE_PREFIX}/share/doc/ruby21" \
-		--mandir="${FAKE_DESTDIR}/usr/local/man" \
-		--prefix=${TRUE_PREFIX} \
-		--with-destdir=${FAKE_DESTDIR}
+		--with-bindir="${LOCALBASE}/bin" \
+		--with-sitedir="${LOCALBASE}/lib/ruby/site_ruby" \
+		--with-vendordir="${LOCALBASE}/lib/ruby/vendor_ruby" \
+		--with-rubyhdrdir="${LOCALBASE}/include/ruby-2.1/" \
+		--with-rubylibprefix="${LOCALBASE}/lib/ruby" \
+		--docdir="${LOCALBASE}/share/doc/ruby21" \
+		--mandir="${LOCALBASE}/man"
+#		--with-destdir=${FAKE_DESTDIR}
 CONFIGURE_ENV+=	LC_ALL=C debugflags=
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
@@ -125,7 +130,7 @@ post-patch:
 	#
 	# Eliminate all leftovers
 	#
-#	@${FIND} ${WRKSRC}/ -name "*.orig" -delete
+	@${FIND} ${WRKSRC}/ -name "*.orig" -delete
 
 #
 # Remove modules we don't want
@@ -186,28 +191,28 @@ post-install:
 .endif
 
 	# Create all dirs required (":u" isn't avaiable in STABLE yet :-()
-	${MKDIR} ${EXTSAMPLES:C,^([^/]+)/.*,\1,:S,^,${FAKE_DESTDIR}${RUBY_EXAMPLESDIR}/,}
-	${MKDIR} ${EXTDOCS:C,^([^/]+)/.*,\1,:S,^,${FAKE_DESTDIR}${RUBY_DOCDIR}/,}
+	${MKDIR} ${EXTSAMPLES:C,^([^/]+)/.*,\1,:S,^,${RUBY_EXAMPLESDIR}/,}
+	${MKDIR} ${EXTDOCS:C,^([^/]+)/.*,\1,:S,^,${RUBY_DOCDIR}/,}
 .for FILE in ${EXTSAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/ext/${FILE} \
-		${FAKE_DESTDIR}${RUBY_EXAMPLESDIR}/${FILE:C,^([^/]+)/.*,\1,}/
+		${RUBY_EXAMPLESDIR}/${FILE:C,^([^/]+)/.*,\1,}/
 .endfor
 .for FILE in ${EXTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/ext/${FILE} \
-		${FAKE_DESTDIR}${RUBY_DOCDIR}/${FILE:C,^([^/]+)/.*,\1,}/
+		${RUBY_DOCDIR}/${FILE:C,^([^/]+)/.*,\1,}/
 .endfor
-	@(cd ${WRKSRC}/sample/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${RUBY_EXAMPLESDIR}/)
-	@(cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${RUBY_DOCDIR}/)
+	@(cd ${WRKSRC}/sample/ && ${COPYTREE_SHARE} \* ${RUBY_EXAMPLESDIR}/)
+	@(cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} \* ${RUBY_DOCDIR}/)
 	${INSTALL_DATA} ${WRKSRC}/COPYING*	\
 			${WRKSRC}/ChangeLog	\
 			${WRKSRC}/LEGAL		\
 			${WRKSRC}/README*	\
-			${FAKE_DESTDIR}${RUBY_DOCDIR}/
+			${RUBY_DOCDIR}/
 
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb21 ${PREFIX}/bin/irb21 \
 		${PREFIX}/bin/rdoc21 ${PREFIX}/bin/ri21 \
-		${PREFIX}/lib/ruby/2.1/amd64-midnightbsd0/rbconfig.rb  \
+		${PREFIX}/lib/ruby/2.1/${ARCH}-midnightbsd0/rbconfig.rb  \
 		${PREFIX}/libdata/pkgconfig/ruby-2.1.pc
 
 regression-test test:
