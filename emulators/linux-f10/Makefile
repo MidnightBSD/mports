@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	linux-f10
-PORTVERSION=	0.1
+PORTVERSION=	0.2
 CATEGORIES=	emulators linux
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -62,7 +62,6 @@ RUN_DEPENDS+=	linux-f10-libasyncns>0:${PORTSDIR}/dns/linux-f10-libasyncns \
 		linux-f10-alsa-lib>0:${PORTSDIR}/audio/linux-f10-alsa-lib \
 		linux-f10-libv4l>0:${PORTSDIR}/multimedia/linux-f10-libv4l \
 		linux-f10-libtheora>0:${PORTSDIR}/multimedia/linux-f10-libtheora \
-		linux-f10-flashplugin>0:${PORTSDIR}/www/linux-f10-flashplugin11 \
 		linux-f10-nss>0:${PORTSDIR}/security/linux-f10-nss \
 		linux-f10-libtasn1>0:${PORTSDIR}/security/linux-f10-libtasn1 \
 		linux-f10-libgcrypt>0:${PORTSDIR}/security/linux-f10-libgcrypt \
