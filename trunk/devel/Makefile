@@ -416,6 +416,7 @@ SUBDIR += php56-pcntl
 SUBDIR += php56-readline
 SUBDIR += php56-tokenizer
 SUBDIR += php70-gettext
+SUBDIR += php70-intl
 SUBDIR += php70-json
 SUBDIR += php70-pcntl
 SUBDIR += php70-readline

@@ -1,5 +1,6 @@
 # Created by: Alex Dupre <ale@FreeBSD.org>
-# $FreeBSD: head/devel/php70-intl/Makefile 408932 2016-02-15 14:34:26Z miwi $
+# $FreeBSD: head/devel/php70-intl/Makefile 424244 2016-10-19 13:34:18Z tz $
+# $MidnightBSD$
 
 CATEGORIES=	devel
 
