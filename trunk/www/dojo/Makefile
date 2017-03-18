@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	dojo
-PORTVERSION=	1.10.1
+PORTVERSION=	1.11.1
 CATEGORIES=	www
-MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/ \
-		FREEBSD_LOCAL/glarkin
+MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/
 DISTNAME=	dojo-release-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +12,8 @@ COMMENT=	Open-source DHTML toolkit written in JavaScript
 LICENSE=	bsd3
 
 NO_BUILD=	yes
+SHAREOWN=	www
+SHAREGRP=	www
 
 OPTIONS_DEFINE=		APACHE
 OPTIONS_SUB=		yes
