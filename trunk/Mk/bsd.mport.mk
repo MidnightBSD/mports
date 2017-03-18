@@ -378,7 +378,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl tk tex wx xfce zip
 
-.for EXT in ${_ALL_EXT:tu} 
+.for EXT in ${_ALL_EXT:S/python//g:tu}
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
