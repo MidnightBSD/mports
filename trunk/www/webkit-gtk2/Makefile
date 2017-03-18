@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	webkit
-PORTVERSION=	2.4.9
+PORTVERSION=	2.4.11
 PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
@@ -31,7 +31,7 @@ USES=		bison compiler:c++11-lib gettext gmake gperf libtool \
 		perl5 pkgconfig shebangfix tar:xz
 USE_RUBY=	yes
 RUBY_NO_RUN_DEPENDS=yes
-USE_GNOME=	cairo gtk20 introspection:build libxslt
+USE_GNOME=	cairo gdkpixbuf2 gtk20 introspection:build libxslt
 USE_GL=		gl
 USE_SQLITE=	3
 USE_PERL5=	build
