@@ -6,29 +6,32 @@
 #
 # Feature:	python
 # Usage:	USES=python or USES=python:args
-# Valid ARGS:	<version>, build, run
+# Valid ARGS:	<version>, build, run, test
 #
 # version 	If your port requires only some set of Python versions, you
 # 		can set this to [min]-[max] or min+ or -max or as an
-# 		explicit version or as a meta port version (eg. 3.2-3.3 for
-# 		[min]-[max], 2.7+ or -3.2 for min+ and -max, 2.7 for an
+# 		explicit version or as a meta port version (eg. 3.3-3.4 for
+# 		[min]-[max], 2.7+ or -3.3 for min+ and -max, 2.7 for an
 # 		explicit version or 3 for a meta port version). Example:
 #
 #			USES=python:2.7		# Only use Python 2.7
-#			USES=python:3.2+	# Use Python 3.2 or newer
-#			USES=python:3.2-3.3	# Use Python 3.2 or 3.3
-#			USES=python:-3.2	# Use any Python up to 3.2
+#			USES=python:3.3+	# Use Python 3.3 or newer
+#			USES=python:3.3-3.4	# Use Python 3.3 or 3.4
+#			USES=python:-3.3	# Use any Python up to 3.3
 #			USES=python:2		# Use the Python 2 meta port
 #			USES=python		# Use the set default Python
 #						# version
 #
 # build		Indicates that Python is needed at build time and adds
-#		it as BUILD_DEPENDS.
+#		it to BUILD_DEPENDS.
 # run		Indicates that Python is needed at run time and adds
-#		it as RUN_DEPENDS.
+#		it to RUN_DEPENDS.
+# test		Indicates that Python is needed at test time and adds
+# 		it to TEST_DEPENDS.
 #
-# If build and run are omitted, Python will be added as BUILD_DEPENDS and
-# RUN_DEPENDS. PYTHON_NO_DEPENDS can be set to not add any dependencies.
+# If build, run and test are omitted, Python will be added as BUILD_DEPENDS,
+# RUN_DEPENDS and TEST_DEPENDS. PYTHON_NO_DEPENDS can be set to not add any
+# dependencies.
 #
 # Variables, which can be set by a user:
 #
@@ -190,10 +193,16 @@
 #	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${PREFIX}/;;}
 #	PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${PREFIX}/;;}
 #	PYTHON_PLATFORM=${PYTHON_PLATFORM}
+#	PYTHON_PYOEXTENSION=${PYTHON_PYOEXTENSION}
 #	PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}
-#	PYTHON_VERSION=${PYTHON_VERSION}
+#	PYTHON_SUFFIX=${PYTHON_SUFFIX}
 #	PYTHON_VER=${PYTHON_VER}
+#	PYTHON_VERSION=${PYTHON_VERSION}
 #
+# and PYTHON2 and PYTHON3 will be set according to the Python version:
+#
+#	PYTHON2="" PYTHON3="@comment " for Python 2.x
+#	PYTHON2="@comment " PYTHON3="" for Python 3.x
 #
 # Deprecated variables, which exist for compatibility and will be removed
 # soon:
@@ -217,10 +226,12 @@
 _INCLUDE_USES_PYTHON_MK=	yes
 
 # What Python version and what Python interpreters are currently supported?
-_PYTHON_VERSIONS=		2.7 3.4 3.3     # preferred first
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
+_PYTHON_VERSIONS=		2.7 3.6 3.5 3.4 3.3	# preferred first
 _PYTHON_PORTBRANCH=		2.7		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
-_PYTHON_RELPORTDIR=		${PORTSDIR}/lang/python
+_PYTHON_RELPORTDIR=		lang/python
 
 # Make each individual feature available as _PYTHON_FEATURE_<FEATURENAME>
 .for var in ${USE_PYTHON}
@@ -231,6 +242,7 @@ _PYTHON_FEATURE_${var:tu}=	yes
 # pollutes the build/run dependency detection
 .undef _PYTHON_BUILD_DEP
 .undef _PYTHON_RUN_DEP
+.undef _PYTHON_TEST_DEP
 _PYTHON_ARGS=		${python_ARGS:S/,/ /g}
 .if ${_PYTHON_ARGS:Mbuild}
 _PYTHON_BUILD_DEP=	yes
@@ -240,17 +252,22 @@ _PYTHON_ARGS:=		${_PYTHON_ARGS:Nbuild}
 _PYTHON_RUN_DEP=	yes
 _PYTHON_ARGS:=		${_PYTHON_ARGS:Nrun}
 .endif
+.if ${_PYTHON_ARGS:Mtest}
+_PYTHON_TEST_DEP=	yes
+_PYTHON_ARGS:=		${_PYTHON_ARGS:Ntest}
+.endif
 
-# The port does not specify a build or run dependency, assume both are
+# The port does not specify a build, run or test dependency, assume all are
 # required.
 .if !defined(_PYTHON_BUILD_DEP) && !defined(_PYTHON_RUN_DEP) && \
-    !defined(PYTHON_NO_DEPENDS)
+    !defined(_PYTHON_TEST_DEP) && !defined(PYTHON_NO_DEPENDS)
 _PYTHON_BUILD_DEP=	yes
 _PYTHON_RUN_DEP=	yes
+_PYTHON_TEST_DEP=	yes
 .endif
 
 # Determine version number of Python to use
-.include "${PORTSDIR}/Mk/components/default-versions.mk"
+#.include "${PORTSDIR}/Mk/components/default-versions.mk"
 
 .if defined(PYTHON_DEFAULT_VERSION)
 WARNING+=	"PYTHON_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python=${PYTHON_DEFAULT_VERSION:S/^python//} instead"
@@ -263,9 +280,12 @@ WARNING+=	"PYTHON3_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=p
 .endif
 
 .if exists(${LOCALBASE}/bin/python)
+.if !defined(_PYTHON_DEFAULT_VERSION)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
 		'import sys; print("%d.%d" % sys.version_info[:2])' 2> /dev/null \
 		|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
+.endif
+_EXPORTED_VARS+=	_PYTHON_DEFAULT_VERSION
 .if defined(PYTHON_DEFAULT) && (${PYTHON_DEFAULT} != ${_PYTHON_DEFAULT_VERSION})
 WARNING+=	"Your requested default python version ${PYTHON_DEFAULT} is different from the installed default python interpreter version ${_PYTHON_DEFAULT_VERSION}"
 .endif
@@ -315,10 +335,8 @@ _WANTS_META_PORT=	3
 # hint. Just warn maintainers, if the versions do not match
 # (_PYTHON_VERSION_NONSUPPORTED).
 _PYTHON_VERSION:=	${PYTHON_VERSION:S/^python//}
-_PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_VERSION}
 .else
 _PYTHON_VERSION:=	${PYTHON_DEFAULT_VERSION:S/^python//}
-_PYTHON_CMD=		${LOCALBASE}/bin/${PYTHON_DEFAULT_VERSION}
 .endif # defined(PYTHON_VERSION)
 
 # Validate Python version whether it meets the version restriction.
@@ -350,7 +368,6 @@ __VER=		${ver}
 	!(!empty(_PYTHON_VERSION_MAXIMUM) && ( \
 		${__VER} > ${_PYTHON_VERSION_MAXIMUM}))
 _PYTHON_VERSION=	${ver}
-_PYTHON_CMD=		${LOCALBASE}/bin/python${ver}
 .endif
 .endfor
 .if !defined(_PYTHON_VERSION)
@@ -363,7 +380,9 @@ IGNORE=		needs an unsupported version of Python
 # try to find a different one, if the passed version fits into
 # the supported version range.
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
+.if !defined(PYTHON_NO_DEPENDS)
 DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
+.endif
 
 # NOTE:
 #
@@ -382,17 +401,32 @@ PYTHON_MAJOR_VER=	${PYTHON_VER:R}
 PYTHON_REL=		# empty
 PYTHON_ABIVER=		# empty
 PYTHON_PORTSDIR=	${_PYTHON_RELPORTDIR}${PYTHON_SUFFIX}
-PYTHON_PORTVERSION!=	${MAKE} -V PORTVERSION -C ${PYTHON_PORTSDIR}
-PYTHON_REL=		${PYTHON_PORTVERSION:C/\.([0-9]+)$/.0\1/:C/\.0?([0-9][0-9])$/.\1/:S/.//g}
+# Protect partial checkouts from Mk/Scripts/functions.sh:export_ports_env().
+.if !defined(_PORTS_ENV_CHECK) || exists(${PORTSDIR}/${PYTHON_PORTSDIR})
+.include "${PORTSDIR}/${PYTHON_PORTSDIR}/Makefile.version"
+.endif
+# Create a 4 integer version string, prefixing 0 to the last token if
+# it's a single character. Only use the the first 3 tokens of
+# PORTVERSION to support pre-release versions (rc3, alpha4, etc) of
+# any Python port (lang/pythonXY)
+PYTHON_REL=	${PYTHON_PORTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/:C/\.([0-9]+)$/.0\1/:C/\.0?([0-9][0-9])$/.\1/:S/.//g}
 
 # Might be overridden by calling ports
 PYTHON_CMD?=		${_PYTHON_BASECMD}${_PYTHON_VERSION}
-.if exists(${PYTHON_CMD}-config) && ${PYTHON_VER} != 2.7
+.if ${PYTHON_VER} != 2.7
+.if exists(${PYTHON_CMD}-config)
 PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
+.else
+# Default ABI flags for lang/python3x ports
+PYTHON_ABIVER=		m
+.endif
 .endif
 
+.if !defined(PYTHONBASE)
 PYTHONBASE!=	(${PYTHON_CMD} -c 'import sys; print(sys.prefix)' \
 			2> /dev/null || ${ECHO_CMD} ${LOCALBASE}) | ${TAIL} -1
+.endif
+_EXPORTED_VARS+=	PYTHONBASE
 
 PYTHON_INCLUDEDIR=	${PYTHONBASE}/include/python${_PYTHON_VERSION}${PYTHON_ABIVER}
 PYTHON_LIBDIR=		${PYTHONBASE}/lib/python${_PYTHON_VERSION}
@@ -407,6 +441,13 @@ PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${TRUE_PREFIX};}
 
 # Used for recording the installed files.
 _PYTHONPKGLIST=	${WRKDIR}/.PLIST.pymodtmp
+
+# PEP 0488 (https://www.python.org/dev/peps/pep-0488/)
+.if ${PYTHON_REL} < 3500
+PYTHON_PYOEXTENSION=	pyo
+.else
+PYTHON_PYOEXTENSION=	opt-1.pyc
+.endif
 
 # Ports bound to a certain python version SHOULD
 # - use the PYTHON_PKGNAMEPREFIX
@@ -443,9 +484,9 @@ UNIQUE_FIND_SUFFIX_FILES=	\
 
 _CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 .if defined(_PYTHON_FEATURE_DISTUTILS) && \
-	${_CURRENTPORT:S/${PYTHON_SUFFIX}$//} != ${PYTHON_PKGNAMEPREFIX}setuptools
-BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools${PYTHON_SUFFIX}>0:${PORTSDIR}/devel/py-setuptools${PYTHON_SUFFIX}
-RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools${PYTHON_SUFFIX}>0:${PORTSDIR}/devel/py-setuptools${PYTHON_SUFFIX}
+	${_CURRENTPORT} != ${PYTHON_PKGNAMEPREFIX}setuptools
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/${PYTHON_PKGNAMEPREFIX}setuptools
+RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/${PYTHON_PKGNAMEPREFIX}setuptools
 .endif
 
 # distutils support
@@ -483,8 +524,6 @@ add-plist-egginfo:
 		done; \
 	fi;
 . endfor
-.else
-	@${DO_NADA}
 .endif
 
 .if defined(_PYTHON_FEATURE_AUTOPLIST) && defined(_PYTHON_FEATURE_DISTUTILS)
@@ -507,12 +546,12 @@ add-plist-pymod:
 PYMAGICTAG=		${PYTHON_CMD} -c 'import imp; print(imp.get_tag())'
 add-plist-post:
 	@${AWK} '\
-		/\.py[co]$$/ && !($$0 ~ "/" pc "/") {id = match($$0, /\/[^\/]+\.py[co]$$/); if (id != 0) {d = substr($$0, 1, RSTART - 1); dirs[d] = 1}; sub(/\.py[co]$$/,  "." mt "&"); sub(/[^\/]+\.py[co]$$/, pc "/&"); print; next} \
+		/\.py[co]$$/ && !($$0 ~ "/" pc "/") {id = match($$0, /\/[^\/]+\.py[co]$$/); if (id != 0) {d = substr($$0, 1, RSTART - 1); dirs[d] = 1}; sub(/\.pyc$$/,  "." mt "&"); sub(/\.pyo$$/, "." mt "." pyo); sub(/[^\/]+\.py[co]$$/, pc "/&"); print; next} \
 		/^@dirrm / {d = substr($$0, 8); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
 		/^@dirrmtry / {d = substr($$0, 11); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
 		{print} \
 		' \
-		pc="__pycache__" mt="$$(${PYMAGICTAG})" sp="${PYTHON_SITELIBDIR:S,${PYTHONBASE}/,,g}" \
+		pc="__pycache__" mt="$$(${PYMAGICTAG})" pyo="${PYTHON_PYOEXTENSION}" \
 		${TMPPLIST} > ${TMPPLIST}.pyc_tmp
 	@${MV} ${TMPPLIST}.pyc_tmp ${TMPPLIST}
 .endif # ${PYTHON_REL} >= 3200 && defined(_PYTHON_FEATURE_PY3KPLIST)
@@ -526,10 +565,9 @@ CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
 CMAKE_ARGS+=	-DPython_ADDITIONAL_VERSIONS=${PYTHON_VER}
 
 # Python 3rd-party modules
-PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
-PYNUMERIC=	${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
-PYNUMPY=	${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
-PYXML=		${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
+PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game
+PYNUMERIC=	${PYTHON_SITELIBDIR}/Numeric/Numeric.py:math/py-numeric
+PYNUMPY=	${PYTHON_SITELIBDIR}/numpy/core/numeric.py:math/py-numpy
 
 # dependencies
 .if defined(_PYTHON_BUILD_DEP)
@@ -544,6 +582,12 @@ RUN_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 RUN_DEPENDS+=	python${_WANTS_META_PORT}:${_PYTHON_RELPORTDIR}${_WANTS_META_PORT}
 .endif
 .endif
+.if defined(_PYTHON_TEST_DEP)
+TEST_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
+.if defined(_WANTS_META_PORT)
+TEST_DEPENDS+=	python${_WANTS_META_PORT}:${_PYTHON_RELPORTDIR}${_WANTS_META_PORT}
+.endif
+.endif
 
 # set $PREFIX as Python's one
 .if defined(_PYTHON_FEATURE_PYTHONPREFIX)
@@ -556,9 +600,16 @@ PREFIX=		${PYTHONBASE}
 PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_PLATFORM=${PYTHON_PLATFORM} \
+		PYTHON_PYOEXTENSION=${PYTHON_PYOEXTENSION} \
 		PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
-		PYTHON_VERSION=python${_PYTHON_VERSION} \
-		PYTHON_VER=${PYTHON_VER}
+		PYTHON_SUFFIX=${PYTHON_SUFFIX} \
+		PYTHON_VER=${PYTHON_VER} \
+		PYTHON_VERSION=${PYTHON_VERSION}
+.if ${PYTHON_REL} < 3000
+PLIST_SUB+=	PYTHON2="" PYTHON3="@comment "
+.else
+PLIST_SUB+=	PYTHON2="@comment " PYTHON3=""
+.endif
 
 _USES_POST+=	python
 .endif # _INCLUDE_USES_PYTHON_MK
