@@ -1,9 +1,0 @@
-# $MidnightBSD$
-
-PKGNAMESUFFIX=	${PYTHON_SUFFIX}
-
-PYTHON_VERSION=	python3.3
-
-MASTERDIR=	${.CURDIR}/../py-setuptools
-
-.include "${MASTERDIR}/Makefile"
