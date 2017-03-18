@@ -1,19 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	aria2
-PORTVERSION=	1.20.0
+PORTVERSION=	1.31.0
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/release-${PORTVERSION}/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/release-${PORTVERSION}/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet another download tool
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	CA_BUNDLE DOCS NLS SQLITE
+OPTIONS_DEFINE=	CA_BUNDLE DOCS NLS SQLITE SSH2
 OPTIONS_DEFAULT=SQLITE
 OPTIONS_SUB=	yes
 CA_BUNDLE_DESC=	Use CA bundle from Mozilla Project
+SSH2_DESC=	SSH2 protocol support
 
 CONFIGURE_ARGS=	--disable-epoll --enable-bittorrent --enable-libaria2 \
 		--enable-metalink --enable-shared --enable-ssl --enable-static \
@@ -25,8 +29,6 @@ CONFIGURE_ARGS=	--disable-epoll --enable-bittorrent --enable-libaria2 \
 		--without-libnettle --without-libuv
 CONFIGURE_ENV=	OPENSSL_CFLAGS=-I${OPENSSLINC} \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl" \
-		ZLIB_CFLAGS=-I${INCLUDEDIR} \
-		ZLIB_LIBS="-L${LIBDIR} -lz" \
 		ac_cv_path_RST2HTML=no
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -41,19 +43,20 @@ PORTDOCS=	*
 
 CA_BUNDLE_CONFIGURE_OFF=--without-ca-bundle
 CA_BUNDLE_CONFIGURE_ON=	--with-ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
-CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 NLS_CONFIGURE_OFF=	--disable-nls --without-libintl-prefix
 NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
 NLS_LDFLAGS=		-lintl
-NLS_USES=		gettext
-SQLITE_CONFIGURE_OFF=	--without-sqlite3
-SQLITE_CONFIGURE_ON=	--with-sqlite3=/usr
+NLS_USES=		gettext localbase
+SQLITE_CONFIGURE_WITH=	sqlite3
+SQLITE_USES=		sqlite
+SSH2_CONFIGURE_WITH=	libssh2
+SSH2_LIB_DEPENDS=	libssh2.so:security/libssh2
 
 ARIA2_DISK_CACHE?=	16M
 
-.include <bsd.port.pre.mk>
-
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libaria2.so.0.0.0
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
+	${INSTALL_DATA} ${WRKSRC}/doc/bash_completion/aria2c ${STAGEDIR}${PREFIX}/etc/bash_completion.d/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
