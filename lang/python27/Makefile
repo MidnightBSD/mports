@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	python27
-PORTVERSION=	2.7.10
+PORTVERSION=	${PYTHON_PORTVERSION}
 PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
@@ -72,6 +72,7 @@ THREADS_LDFLAGS=	-lpthread
 UCS2_CONFIGURE_ON=	--enable-unicode=ucs2
 UCS4_CONFIGURE_ON=	--enable-unicode=ucs4
 
+.include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
 
 # http://bugs.python.org/issue22521
