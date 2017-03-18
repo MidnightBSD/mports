@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	python33
-PORTVERSION=	3.3.5
+PORTVERSION=	${PYTHON_PORTVERSION}
 PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
@@ -65,6 +65,7 @@ THREADS_LDFLAGS=	-lpthread
 
 TSC_CONFIGURE_WITH=	tsc
 
+.include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPYMALLOC}
