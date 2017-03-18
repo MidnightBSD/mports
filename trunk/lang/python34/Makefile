@@ -3,7 +3,7 @@
 # $FreeBSD: head/lang/python34/Makefile 367307 2014-09-04 19:26:24Z antoine $
 
 PORTNAME=	python34
-PORTVERSION=	3.4.3
+PORTVERSION=	${PYTHON_PORTVERSION}
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON
 MASTER_SITE_SUBDIR=	ftp/python/${PORTVERSION}
@@ -68,6 +68,7 @@ PYMALLOC_CONFIGURE_WITH=	pymalloc
 
 TSC_CONFIGURE_WITH=	tsc
 
+.include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MTHREADS}
