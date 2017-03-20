@@ -9,6 +9,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Development Environment for C and C++
+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen \
@@ -34,7 +35,7 @@ INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_PERL5=	yes
 USE_PYTHON=	yes
-USE_GNOME=	gnomeprefix gnomehack vte gtksourceview2 libgda4
+USE_GNOME=	gnomeprefix gnomehack vte gtksourceview2 libgda4 gconf2
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
