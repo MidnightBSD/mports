@@ -29,7 +29,7 @@ USES=		bison gettext gmake gperf libtool pathfix pkgconfig tar:xz
 # this change would be done there, but it is not a C++ application, so it
 # does not link directly to libstdc++ and adding the libstdc++ rpath to
 # the executable does not work at runtime.
-USES+=		compiler:c++11-lib
+USES+=		compiler:c++11-lib ldap
 USE_GNOME=	gtk30 intlhack introspection:build libxml2
 USE_OPENLDAP=	yes
 USE_SQLITE=	yes
