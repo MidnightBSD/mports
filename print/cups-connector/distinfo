@@ -1,5 +1,6 @@
-SHA256 (google-cups-connector-0.0.0.2016.03.09-1fdc26d_GH0.tar.gz) = bd3e0aad70c4be1ffd6a22aa79d3f1f81697f1bfc61ea7726dc0fb330a5a5720
-SIZE (google-cups-connector-0.0.0.2016.03.09-1fdc26d_GH0.tar.gz) = 110516
+TIMESTAMP = 1490114702
+SHA256 (google-cups-connector-1fdc26d_GH0.tar.gz) = 8184150fddfd5ffe11ce10eaa73af4acd2580b0d8fa4bf6ad3270e03e1b089cc
+SIZE (google-cups-connector-1fdc26d_GH0.tar.gz) = 110554
 SHA256 (codegangsta-cli-a294348_GH0.tar.gz) = 163aa4f713f8c5bc5095f6c5d42bdd6b5149df97d02f24dc6de3a86dc1c3c79c
 SIZE (codegangsta-cli-a294348_GH0.tar.gz) = 22095
 SHA256 (coreos-go-systemd-7b2428f_GH0.tar.gz) = 25df932ed355c1c113eb8d78b09c3cfa9ff49325e5cf8dceb10178405fddb2eb
