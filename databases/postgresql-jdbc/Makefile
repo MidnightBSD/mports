@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	postgresql
-PORTVERSION=	9.1.902
+PORTVERSION=	9.2.1004
 DISTVERSIONSUFFIX=.src
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
@@ -17,11 +17,15 @@ DIST_SUBDIR=	postgresql
 
 USE_ANT=	yes
 USE_JAVA=	yes
+NO_ARCH=	yes
 
 PLIST_FILES=	%%JAVAJARDIR%%/postgresql.jar
 PORTDOCS=	*
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 SUB_FILES=	pkg-message
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 post-patch:
 	${REINPLACE_CMD} 's,/usr/local/pgsql/share/java,${JAVAJARDIR},' ${WRKSRC}/README
