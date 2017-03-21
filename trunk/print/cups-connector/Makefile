@@ -16,11 +16,11 @@ BUILD_DEPENDS=	go:${PORTSDIR}/lang/go \
 
 USES=		compiler pkgconfig
 USE_GITHUB=	yes
-GH_ACCOUNT=	google:DEFAULT codegangsta:cli coreos:gosystemd \
+GH_ACCOUNT=	google:D codegangsta:cli coreos:gosystemd \
 		golang:oauth2,net mildred:xdg
 GH_PROJECT=	cli:cli go-systemd:gosystemd oauth2:oauth2 net:net \
 		go-xdg:xdg
-GH_TAGNAME=	1fdc26d:DEFAULT a294348:cli 7b2428f:gosystemd \
+GH_TAGNAME=	1fdc26d:D a294348:cli 7b2428f:gosystemd \
 		2cd4472:oauth2 6acef71:net 875014b:xdg
 
 BIN_FILES=	gcp-connector-util gcp-cups-connector
@@ -29,6 +29,9 @@ PLIST_FILES=	${BIN_FILES:S/^/bin\//}
 OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	CONTRIBUTING.md README.md
+
+post-extract:
+	${LN} -sf ${WRKDIR}/cloud-print-connector-1fdc26d ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -e "s@%%PREFIX%%@${PREFIX}@g" \
