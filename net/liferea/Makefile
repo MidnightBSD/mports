@@ -11,12 +11,10 @@ COMMENT=	Simple RSS/RDF feed reader
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	sqlite3.8:${PORTSDIR}/databases/sqlite3 \
-		webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2
+LIB_DEPENDS= webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2
 
 USE_GNOME=	gnomeprefix libglade2 gconf2
-USE_GMAKE=	yes
-USES=	libtool
+USES=	libtool gmake sqlite
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
