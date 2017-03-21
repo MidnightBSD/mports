@@ -10,11 +10,13 @@ PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Ruby extension to GDBM library
-LICENSE=	gpl2
+COMMENT=	Ruby extension to GDBM library
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/${RUBY_PORT}:patch
-LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
+LICENSE=	ruby bsd2
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	${NONEXISTENT}:${RUBY_PORT}:patch
+LIB_DEPENDS=	libgdbm.so:databases/gdbm
 
 PLIST_FILES=	%%RUBY_ARCHLIBDIR%%/gdbm.so
 USE_RUBY=	yes
