@@ -17,7 +17,7 @@ USES=		tar:bzip2
 USE_RUBY=	yes
 USE_RUBY_FEATURES=	optparse
 
-FAKE_MAKEARGS+=	PREFIX=${FAKE_DESTDIR}${PREFIX} MANDIR="${FAKE_DESTDIR}${PREFIX}/man/man"
+FAKE_MAKEARGS+=	MANDIR="${TRUE_PREFIX}/man/man"
 
 PLIST_FILES=	sbin/libchk man/man1/libchk.1.gz
 
