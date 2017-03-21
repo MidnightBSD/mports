@@ -8,12 +8,13 @@ MASTER_SITES=	SF/${PORTNAME}/Liferea%20Stable/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple RSS/RDF feed reader
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2
 
-USE_GNOME=	gnomeprefix gnomehack libglade2 gconf2
+USE_GNOME=	gnomeprefix libglade2 gconf2
 USE_GMAKE=	yes
 USES=	libtool
 GNU_CONFIGURE=	yes
