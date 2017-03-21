@@ -17,7 +17,7 @@ LICENSE=        bsd3
 CONFLICTS=	postgresql-libpqxx-3.* postgresql-libpqxx3-3.*
 PORTSCOUT=	limit:^2\.
 
-USE_GCC=	any
+USE_GCC=	yes
 USES+=		gmake libtool pathfix pgsql python:build shebangfix
 USE_PGSQL=	yes
 GNU_CONFIGURE=	yes
