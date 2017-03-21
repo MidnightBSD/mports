@@ -9,7 +9,11 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby tool for converting wiki-like markup
+
 LICENSE=	gpl2
+
+BROKEN_RUBY22=	yes
+BROKEN_RUBY23=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
