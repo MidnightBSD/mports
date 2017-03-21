@@ -26,5 +26,6 @@ CONFIGURE_ARGS+=--prefix=${FAKE_DESTDIR}${TRUE_PREFIX} \
 USES=		zip
 USE_RUBY=	yes
 USE_RUBY_SETUP=	yes
+RUBY_VER=	2.1
 
 .include <bsd.port.mk>
