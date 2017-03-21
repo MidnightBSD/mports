@@ -25,6 +25,7 @@ USE_RUBY=		yes
 USE_RUBY_EXTCONF=	yes
 USE_RUBY_RDOC=		yes
 
+ALL_TARGET=	all rdoc
 CONFIGURE_ARGS=	--with-db-include=${BDB_INCLUDE_DIR} \
 		--with-db-lib=${BDB_LIB_DIR}
 INSTALL_TARGET=	site-install
@@ -32,6 +33,7 @@ INSTALL_TARGET=	site-install
 DOCS=		Changes README.en bdb.rd docs/*.rd
 DOCSDIR=	${RUBY_MODDOCDIR}
 EXAMPLESDIR=	${RUBY_MODEXAMPLESDIR}
+SHAREMODE=	0644
 PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/bdb.so
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -55,17 +57,16 @@ SHEBANG_FILES=	examples/record.rb \
 		examples/basic.rb \
 		examples/lock.rb
 
-
-
 .include <bsd.port.pre.mk>
 
-post-patch:
-.if ${RUBY_VER} >= 2.0
-	@${REINPLACE_CMD} -e '/remove_const/d' ${WRKSRC}/src/features.rb
+.if ${RUBY_VER} == 2.1
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-21
 .endif
 
-.if ${RUBY_VER} >= 2.1
-	@${REINPLACE_CMD} -e 's|RBASIC(obj)->klass = \(.*\);|RBASIC_SET_CLASS_RAW(obj, \1);|' -e 's|RCLASS(\([[:alnum:]_]*\))->m_tbl|RCLASS_M_TBL(\1)|g' ${WRKSRC}/bdbxml2/bdbxml.h ${WRKSRC}/src/common.c
+.if ${RUBY_VER} >= 2.2
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-22 \
+			${FILESDIR}/extra-patch-src-recnum.c-22 \
+			${FILESDIR}/extra-patch-src-cursor.c-22
 .endif
 post-build:
 	(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} \
