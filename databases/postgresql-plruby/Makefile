@@ -13,6 +13,7 @@ LICENSE=	unknown
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	CraigCottingham
+GH_TAGNAME=	${GH_COMMIT}
 GH_COMMIT=	f8d9ced
 WRKSRC=		${WRKDIR}/postgresql-plruby-${GH_COMMIT}
 
