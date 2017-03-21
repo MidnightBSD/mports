@@ -13,10 +13,10 @@ LICENSE=	unknown
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	CraigCottingham
-GH_TAGNAME=	${GH_COMMIT}
 GH_COMMIT=	f8d9ced
+WRKSRC=		${WRKDIR}/postgresql-plruby-${GH_COMMIT}
 
-USES+=		uidfix tar:bzip2 pgsql
+USES+=		uidfix pgsql
 WANT_PGSQL=	server
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
