@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	tiff
-DISTVERSION=	4.0.6
-PORTREVISION=	2
+DISTVERSION=	4.0.7
+PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
-		http://download.osgeo.org/libtiff/
+MASTER_SITES=	http://download.osgeo.org/libtiff/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
