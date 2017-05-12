@@ -16,6 +16,7 @@ SUBDIR += cherokee
 SUBDIR += chromium
 SUBDIR += dummyflash
 SUBDIR += drupal7
+SUBDIR += drupal8
 SUBDIR += epiphany
 SUBDIR += fcgi
 SUBDIR += furl
