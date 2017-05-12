@@ -2,7 +2,7 @@
 # $FreeBSD: head/lang/erlang/Makefile 424411 2016-10-21 12:51:40Z mat $
 
 PORTNAME=	erlang
-PORTVERSION=	19.1.5
+PORTVERSION=	19.2.3
 PORTEPOCH=	3
 CATEGORIES=	lang parallel java
 MASTER_SITES=	http://www.erlang.org/download/:erlangorg		\
@@ -20,8 +20,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES=	http://olgeni.olgeni.com/~olgeni/distfiles/ \
 		FREEBSD_LOCAL/olgeni
-PATCHFILES=	patch-otp-19.1.1 patch-otp-19.1.2 patch-otp-19.1.3 \
-		patch-otp-19.1.4 patch-otp-19.1.5
+PATCHFILES=	patch-otp-19.2.1 patch-otp-19.2.2 patch-otp-19.2.3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
@@ -54,7 +53,7 @@ NATIVE_IMPLIES=	HIPE
 
 OPTIONS_DEFAULT=HIPE KQUEUE OPENSSL SCTP SMP THREADS
 
-ERL_RELEASE=	19.1
+ERL_RELEASE=	19.2
 
 USES=		gmake ncurses perl5
 USE_PERL5=	build
@@ -62,9 +61,9 @@ USE_RC_SUBR=	epmd
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-EI_VSN=		3.9.1
+EI_VSN=		3.9.2
 SNMP_VSN=	5.2.4
-TOOLS_VSN=	2.8.6
+TOOLS_VSN=	2.9
 
 .include <bsd.mport.options.mk>
 
@@ -141,7 +140,7 @@ USE_GL+=	gl glu
 
 .if ${PORT_OPTIONS:MODBC}
 CONFIGURE_ARGS+=--with-odbc
-LIB_DEPENDS+=	libodbc.so:${PORTSDIR}/databases/unixODBC
+LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 .else
 CONFIGURE_ARGS+=--without-odbc
 .endif
@@ -225,13 +224,17 @@ post-install:
 	${TAR} --unlink -xzpf ${DISTDIR}/${DIST_SUBDIR}/${ERLANG_DOCS} \
 		-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.6
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.2
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2.2
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.3
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.2
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.2/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.3
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.2
+
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.4/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.5
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.4
 
 	${INSTALL_DATA} ${WRKSRC}/lib/dialyzer/doc/*.txt \
 		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-*/doc/
