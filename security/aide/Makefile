@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	aide
-PORTVERSION=	0.15.1
-PORTREVISION=	1
+PORTVERSION=	0.16
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
@@ -20,7 +20,7 @@ CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
 		--with-config_file=${PREFIX}/etc/aide.conf
 
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 CFLAGS+=	-I${LOCALBASE}/include
 
 SUB_FILES=	pkg-message
