@@ -2,7 +2,7 @@
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.8.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://invisible-mirror.net/archives/lynx/tarballs/ \
 		http://bitrote.org/distfiles/
