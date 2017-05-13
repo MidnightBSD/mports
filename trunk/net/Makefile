@@ -146,7 +146,6 @@ SUBDIR += vncreflector
 SUBDIR += x11vnc
 SUBDIR += xferstats
 SUBDIR += xmlrpc-c
-SUBDIR += xmlrpc-c-devel
 SUBDIR += xmlrpc-epi
 SUBDIR += yaz
 SUBDIR += zebra
