@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.8.2
+PORTVERSION=	1.8.3
 PORTREVISION?=	0
 CATEGORIES=	net comms ipv6
 MASTER_SITES=	SF
@@ -12,7 +12,7 @@ COMMENT=	RDP client for Windows NT/2000/2003 Terminal Server
 LICENSE=	gpl3
 
 USE_XORG=	x11
-USES=		gmake iconv
+USES=		gmake pkgconfig iconv
 CONFIGURE_ARGS+=	${ICONV_CONFIGURE_ARG} --disable-credssp
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
