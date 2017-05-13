@@ -5,6 +5,7 @@ COMMENT = Multimedia software
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
+SUBDIR += clutter-gst3
 SUBDIR += cuse4bsd-kmod
 SUBDIR += dirac
 SUBDIR += emby-server
