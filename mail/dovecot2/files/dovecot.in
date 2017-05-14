@@ -1,11 +1,20 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD: head/mail/dovecot2/files/dovecot.in 422397 2016-09-18 16:38:28Z ohauer $
 #
 
 # PROVIDE: dovecot
 # REQUIRE: %%REQUIRE%%
 # KEYWORD: shutdown
+
+# dovecot_enable (bool):	Set it to YES to enable dovecot
+#				Default: NO
+# dovecot_config (str):		Path to dovecot.conf
+#				Default: %%ETCDIR%%/dovecot.conf
+#				Set it to a space-separated list to start
+#				multiple dovecot instances
+# dovecot_flags (str):		Extra flags to pass to dovecot
+#				Default: empty
 
 # Define dovecot_* variables in one of these files:
 #	/etc/rc.conf
@@ -48,13 +57,18 @@ restart_cmd()
 }
 
 # To start multiple instances of dovecot set dovecot_config to
-# a space seperated list of configuration files.
+# a space separated list of configuration files.
 for config in ${dovecot_config}; do
 	required_files="${config}"
 	command_args="-c ${config}"
-	if [ -f ${config} ]; then
+	if [ -s ${config} ]; then
 		base_dir=$(${command} ${command_args} -a | /usr/bin/awk -F '= ' '/^base_dir =/ { print $2 }')
 		pidfile="${base_dir}/master.pid"
-		run_rc_command "$1"
+	else
+		echo "==Error=="
+		echo "Config file ${config} does not exist. If this is"
+		echo "a new installation, please create the config files as outlined in"
+		echo "	# pkg info -D dovecot2"
 	fi
+	run_rc_command "$1"
 done
