@@ -446,6 +446,7 @@ SUBDIR += py-gobject
 SUBDIR += py-gobject3
 SUBDIR += py-gyp-devel
 SUBDIR += py-jmespath
+SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
 SUBDIR += py-iso8601
 SUBDIR += py-isodate
