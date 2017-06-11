@@ -447,7 +447,7 @@ CONFIGURE_ARGS+=--enable-zip \
 CONFIGURE_ARGS+=--with-zlib=/usr
 .endif
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PHP_MODNAME} == "dba"
 .	if empty(PORT_OPTIONS:MCDB)
