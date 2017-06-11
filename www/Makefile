@@ -45,6 +45,7 @@ SUBDIR += mod_fastcgi
 SUBDIR += mod_perl2
 SUBDIR += mod_php56
 SUBDIR += mod_php70
+SUBDIR += mod_php71
 SUBDIR += mod_python33
 SUBDIR += mod_wsgi4
 SUBDIR += moinmoin
