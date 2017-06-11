@@ -431,6 +431,7 @@ SUBDIR += pth-hard
 SUBDIR += py-Jinja2
 SUBDIR += py-astroid
 SUBDIR += py-babel
+SUBDIR += py-backports.functools_lru_cache
 SUBDIR += py-bcdoc
 SUBDIR += py-boto
 SUBDIR += py-botocore
