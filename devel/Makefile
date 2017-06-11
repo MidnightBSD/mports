@@ -459,6 +459,7 @@ SUBDIR += py-parsing
 SUBDIR += py-ply
 SUBDIR += py-pyasn1
 SUBDIR += py-pycparser
+SUBDIR += py-pytest-runner
 SUBDIR += py-pytz
 SUBDIR += py-simplejson
 SUBDIR += py-six
