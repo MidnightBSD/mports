@@ -436,6 +436,7 @@ SUBDIR += py-boto
 SUBDIR += py-botocore
 SUBDIR += py-cffi
 SUBDIR += py-colorama
+SUBDIR += py-configparser
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
 SUBDIR += py-enum34
