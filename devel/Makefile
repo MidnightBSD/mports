@@ -445,6 +445,7 @@ SUBDIR += py-gdata
 SUBDIR += py-gobject
 SUBDIR += py-gobject3
 SUBDIR += py-gyp-devel
+SUBDIR += py-hgtools
 SUBDIR += py-jmespath
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
