@@ -452,6 +452,7 @@ SUBDIR += py-iso8601
 SUBDIR += py-isodate
 SUBDIR += py-isort
 SUBDIR += py-lxml
+SUBDIR += py-mccabe
 SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-parsing
