@@ -1,8 +1,11 @@
 COMMENT=	The ${PHP_MODNAME} shared extension for php
 
 USES+=	php:ext
+USE_PHP=      yes
+USE_PHPEXT=   yes
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	71
+PHP_DEFAULT=	7.1
 IGNORE_WITH_PHP=	55 56 70
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
@@ -86,7 +89,7 @@ CONFIGURE_ARGS+=--enable-ftp \
 		--with-openssl-dir=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USES+=		ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "gd"
@@ -143,13 +146,7 @@ CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
 		--with-imap-ssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USES+=	ssl
-.endif
-
-.if ${PHP_MODNAME} == "interbase"
-CONFIGURE_ARGS+=--with-interbase=${LOCALBASE}
-
-USES+=	firebird
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "intl"
@@ -209,7 +206,7 @@ CONFIGURE_ARGS+=--enable-odbc \
 CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USES+=	ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
@@ -335,7 +332,7 @@ CONFIGURE_ENV+=	ac_cv_buggy_snprint_value="no"
 
 LIB_DEPENDS+=	libnetsnmp.so:net-mgmt/net-snmp
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USES+=	ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "soap"
