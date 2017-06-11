@@ -2,6 +2,7 @@
 
 PORTNAME=	rtorrent
 PORTVERSION=	0.9.6
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://rtorrent.net/downloads/
 
@@ -12,8 +13,8 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
-		libtorrent.so:${PORTSDIR}/net-p2p/libtorrent
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libtorrent.so:net-p2p/libtorrent
 
 OPTIONS_DEFINE=	DOCS EXAMPLES IPV6 XMLRPC
 OPTIONS_DEFAULT=XMLRPC
@@ -32,7 +33,7 @@ SUB_FILES=	pkg-message
 IPV6_CONFIGURE_ENABLE=	ipv6
 XMLRPC_CONFIGURE_OFF=	--with-xmlrpc-c=no
 XMLRPC_CONFIGURE_ON=	--with-xmlrpc-c
-XMLRPC_LIB_DEPENDS=	libxmlrpc.so:${PORTSDIR}/net/xmlrpc-c-devel
+XMLRPC_LIB_DEPENDS=	libxmlrpc.so:net/xmlrpc-c
 
 .include <bsd.mport.options.mk>
 
