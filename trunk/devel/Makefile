@@ -462,6 +462,7 @@ SUBDIR += py-six
 SUBDIR += py-subversion
 SUBDIR += py-termcolor
 SUBDIR += py-virtualenv
+SUBDIR += py-wrapt
 SUBDIR += py-xdg
 SUBDIR += py-yaml
 SUBDIR += py27-setuptools
