@@ -450,6 +450,7 @@ SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
 SUBDIR += py-iso8601
 SUBDIR += py-isodate
+SUBDIR += py-isort
 SUBDIR += py-lxml
 SUBDIR += py-notify
 SUBDIR += py-orbit
