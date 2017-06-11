@@ -143,12 +143,6 @@ LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 USE_OPENSSL=	yes
 .endif
 
-.if ${PHP_MODNAME} == "interbase"
-CONFIGURE_ARGS+=--with-interbase=${LOCALBASE}
-
-USES+=	firebird
-.endif
-
 .if ${PHP_MODNAME} == "intl"
 CONFIGURE_ARGS+=--with-intl=${LOCALBASE}
 LIB_DEPENDS=	libicui18n.so:devel/icu
@@ -232,14 +226,6 @@ USE_PHP_BUILD=	yes
 OPTIONS_DEFINE=	MSSQL
 
 MSSQL_DESC=	Enable Microsoft SQL Server support
-.endif
-
-.if ${PHP_MODNAME} == "pdo_firebird"
-CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
-
-USES+=	firebird
-USE_PHP=	pdo
-USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_odbc"
