@@ -4,6 +4,7 @@
 
 PORTNAME=	cups-smb-backend
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -18,7 +19,7 @@ RUN_DEPENDS=	smbspool:${PORTSDIR}/net/${SAMBA_PORT} \
 
 NO_BUILD=	yes
 PLIST_FILES=	libexec/cups/backend/smb
-SAMBA_PORT?=	samba36
+SAMBA_PORT?=	samba43
 SUB_FILES=	pkg-message
 
 do-install:
