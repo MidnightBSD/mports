@@ -91,7 +91,7 @@ PHP_EXT_INC?=	""
 .	for VER in ${IGNORE_WITH_PHP}
 .		if ${PHP_VER} == "${VER}"
 IGNORE=		cannot be installed: doesn't work with lang/php${PHP_VER} port\
-		(doesn't support PHP ${IGNORE_WITH_PHP:C/^5/6./})
+		(doesn't support PHP ${IGNORE_WITH_PHP:C/^([57])/\1./})
 .		endif
 .	endfor
 .endif
