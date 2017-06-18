@@ -9,7 +9,7 @@ COMMENT=		Shared lib from the samba package
 
 CONFLICTS=
 
-SAMBA_PORT=		samba36
+SAMBA_PORT=		samba43
 SAMBA_SUBPORT=		yes
 
 MASTERDIR=		${.CURDIR}/../${SAMBA_PORT}
