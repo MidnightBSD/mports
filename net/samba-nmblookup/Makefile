@@ -9,7 +9,7 @@ COMMENT=		NetBIOS Name lookup tool
 
 CONFLICTS=		samba-[2-4].*
 
-SAMBA_PORT=		samba36
+SAMBA_PORT=		samba43
 SAMBA_SUBPORT=		yes
 
 MASTERDIR=		${.CURDIR}/../${SAMBA_PORT}
