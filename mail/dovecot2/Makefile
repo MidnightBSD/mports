@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.28
+PORTVERSION=	2.2.29.1
 PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	https://www.dovecot.org/releases/${PORTVERSION:R}/
