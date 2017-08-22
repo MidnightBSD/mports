@@ -15,7 +15,7 @@ LICENSE_COMB=	dual
 
 CONFLICTS=	dovecot-1.[0-9]*
 
-USES=		cpe iconv libtool
+USES=		cpe iconv:translit libtool
 USE_RC_SUBR=	dovecot
 USE_OPENSSL=	yes
 
