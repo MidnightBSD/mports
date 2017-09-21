@@ -35,7 +35,7 @@ use base qw(Magus::DBI);
 
 
 __PACKAGE__->table('runs');
-__PACKAGE__->columns(Essential => qw/id osversion arch status created/);
+__PACKAGE__->columns(Essential => qw/id osversion arch status created blessed/);
 
 __PACKAGE__->has_many(ports => 'Magus::Port');
 
