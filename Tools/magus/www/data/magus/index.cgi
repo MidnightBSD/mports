@@ -59,6 +59,8 @@ sub main {
     }
   } elsif ($path =~ m:^/ports/(.*):) {
     port_page($p, $1);
+  } elsif ($path =~ m:^/api/runs:) {
+    api_runs($p);
   } elsif ($path =~ m:^/async/run-ports-list:) {
     async_run_port_stats($p);
   } elsif ($path =~ m:^/async/machine-events:) {
@@ -79,6 +81,15 @@ sub main {
     print "Unknown path: $path\n";
   }
 }
+
+sub api_runs {
+  my ($p) = @_;
+
+  my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
+ 
+  print $p->header(-type => 'application/json'), encode_json(\%runs);
+}
+
 
 sub run_index {
   my ($p) = @_;
