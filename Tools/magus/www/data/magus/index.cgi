@@ -61,6 +61,8 @@ sub main {
     port_page($p, $1);
   } elsif ($path =~ m:^/api/runs:) {
     api_runs($p);
+  } elsif ($path =~ m:^/api/run-ports-list:) {
+    api_run_port_stats($p);
   } elsif ($path =~ m:^/async/run-ports-list:) {
     async_run_port_stats($p);
   } elsif ($path =~ m:^/async/machine-events:) {
@@ -86,8 +88,41 @@ sub api_runs {
   my ($p) = @_;
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
- 
-  print $p->header(-type => 'application/json'), encode_json(\%runs);
+  my @runOut;
+
+  foreach my $r (@runs) {
+     push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $r->{created},  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
+  }
+
+    print $p->header(-type => 'application/json'), encode_json(\@runOut);
+}
+
+sub api_run_port_stats { 
+  my ($p) = @_;
+  
+  my $run    = $p->param('run');
+  my $status = $p->param('status');
+    
+  my %details = (run => $run, status => $status);
+  my @ports;
+      
+  if ($status eq 'ready') {
+    @ports = Magus::Port->search_ready_ports($run);
+  } else {
+    @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
+  }
+
+  my @results;
+  foreach my $port (@ports) {
+     push(@results, { version => $port->{version}, summary => $port->{status}, port => $port->{name},
+      arch      => $port->run->arch, 
+      id        => $port->{id},
+    osversion => $port->run->osversion,
+    can_reset => $port->{can_reset} eq 'active' ? 1 : 0
+     });
+  }
+      
+  print $p->header(-type => 'application/json'), encode_json(\@results);
 }
 
 
