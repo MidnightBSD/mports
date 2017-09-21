@@ -23,6 +23,7 @@
 	<th>Arch</th>
 	<th>Status</th>
 	<th>Created</th>
+	<th>Blessed</th>
 	<th></th>
 </tr>
 </thead>
@@ -33,6 +34,7 @@
 	<td><TMPL_VAR NAME="arch"></td>
 	<td><a href="#" class="edit"><TMPL_VAR NAME="status"></a></td>
 	<td><TMPL_VAR NAME="created"></td>
+	<td><TMPL_VAR NAME="blessed"></td>
 	<td>
 	    <ul class="stats">
 	      <TMPL_LOOP NAME="status_stats">
@@ -46,7 +48,7 @@
 	</td>
 </tr>
 <tr>
-	<td colspan="6" id="ports-display" style="display: none"> </td>
+	<td colspan="7" id="ports-display" style="display: none"> </td>
 </tr>
 </table>
     </div>
