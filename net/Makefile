@@ -128,6 +128,7 @@ SUBDIR += samba-nmblookup
 SUBDIR += samba-smbclient
 SUBDIR += samba42
 SUBDIR += samba43
+SUBDIR += samba44
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
 SUBDIR += sixxs-aiccu
