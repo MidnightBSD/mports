@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libinotify
-PORTVERSION=	20150516
+PORTVERSION=	20160505
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,20 +12,15 @@ LICENSE=	mit
 FAKE_OPTS=	trueprefix
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	dmatveev
+GH_ACCOUNT=	libinotify-kqueue
 GH_PROJECT=	libinotify-kqueue
-GH_COMMIT=	f4a092a
-GH_TAGNAME=	${GH_COMMIT}
+GH_TAGNAME=	417e789
 
-WRKSRC=		${WRKDIR}/libinotify-kqueue-${GH_COMMIT}
+WRKSRC=		${WRKDIR}/libinotify-kqueue-${GH_TAGNAME}
 
+USES=		autoreconf libtool
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-post-patch:
-	@${CP} ${FILESDIR}/Makefile ${WRKSRC}
-	@${TOUCH} ${WRKSRC}/config.h
-	@echo "#define HAVE_PTHREAD_BARRIER 1" >> ${WRKSRC}/config.h
-	@echo "#define BUILD_LIBRARY 1" >> ${WRKSRC}/config.h
-	@echo "#include <sys/tree.h>" >> ${WRKSRC}/config.h
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
