@@ -2,7 +2,7 @@
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
-PORTREVISION?=	334
+PORTREVISION?=	335
 CATEGORIES?=	devel
 MASTER_SITES=	http://people.gnome.org/~veillard/gamin/sources/
 
@@ -41,7 +41,7 @@ CPPFLAGS+=	-DUSE_GAMIN_POLLER=1
 .if ${PORT_OPTIONS:MLIBINOTIFY}
 CONFIGURE_ARGS+=--enable-inotify
 LIBS+=		-linotify
-LIB_DEPENDS+=	libinotify.so:${PORTSDIR}/devel/libinotify
+LIB_DEPENDS+=	libinotify.so:devel/libinotify
 .else
 CONFIGURE_ARGS+=--disable-inotify
 .endif
