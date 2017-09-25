@@ -1,4 +1,2 @@
 %%SITE_PERL%%/DBIx/ContextualFetch.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/ContextualFetch
-@dirrmtry %%SITE_PERL%%/DBIx
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx
+%%PERL5_MAN3%%/DBIx::ContextualFetch.3.gz
