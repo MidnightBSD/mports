@@ -43,7 +43,6 @@ SUBDIR += p5-List-Compare
 SUBDIR += patchutils
 SUBDIR += pciids
 SUBDIR += phone-de
-SUBDIR += php55-calendar
 SUBDIR += php56-calendar
 SUBDIR += php70-calendar
 SUBDIR += qt4-doc

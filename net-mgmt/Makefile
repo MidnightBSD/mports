@@ -14,7 +14,6 @@ SUBDIR += p5-Net-SNMP
 SUBDIR += p5-NetAddr-IP
 SUBDIR += p5-NSNMP
 SUBDIR += p5-SNMP_Session
-SUBDIR += php55-snmp
 SUBDIR += php56-snmp
 SUBDIR += php70-snmp
 SUBDIR += phpip
