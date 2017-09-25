@@ -22,6 +22,5 @@ BRANELF_FILES=	usr/bin/wish8.5
 USE_LDCONFIG=	yes
 
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
-DESCR=		${.CURDIR}/../${PORTNAME}${PKGNAMESUFFIX}/pkg-descr
 
 .include <bsd.port.mk>
