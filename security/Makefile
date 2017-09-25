@@ -110,6 +110,7 @@ SUBDIR += php70-filter
 SUBDIR += php70-hash
 SUBDIR += php70-mcrypt
 SUBDIR += php70-openssl
+SUBDIR += php71-filter
 SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
