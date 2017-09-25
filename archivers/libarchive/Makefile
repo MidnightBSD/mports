@@ -15,7 +15,7 @@ LICENSE=	bsd2 bsd3 publicdom
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 OPTIONS_DEFINE=	LZ4 LZO NETTLE
 OPTIONS_DEFAULT=LZ4 LZO
@@ -89,9 +89,9 @@ CFLAGS+=	"-I${LOCALBASE}/include"
 CPPFLAGS+=	"-I${LOCALBASE}/include"
 LDFLAGS+=	"-L${LOCALBASE}/lib"
 
-LZO_LIB_DEPENDS=	liblzo2.so:${PORTSDIR}/archivers/lzo2
+LZO_LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 LZO_CONFIGURE_WITH=	lzo2
-LZ4_LIB_DEPENDS=	liblz4.so:${PORTSDIR}/archivers/liblz4
+LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 LZ4_CONFIGURE_WITH=	lz4
 
 NETTLE_LIB_DEPENDS=	libnettle.so:security/nettle
