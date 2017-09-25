@@ -1,13 +1,8 @@
-# New ports collection makefile for:    iozone
-# Date created:         26 September 1994
-# Whom:                 jmz
-#
 # $MidnightBSD$
 # $FreeBSD: ports/benchmarks/iozone/Makefile,v 1.48 2007/01/11 21:37:25 erwin Exp $
-#
 
 PORTNAME=	iozone
-PORTVERSION=	3.397
+DISTVERSION=	3.457
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.iozone.org/src/current/
 DISTNAME=	${PORTNAME}${PORTVERSION:S/./_/}
@@ -15,6 +10,7 @@ EXTRACT_SUFX=	.tar
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Sequential File I/O
+
 LICENSE=	unknown
 
 CONFLICTS=	iozone-2.*
