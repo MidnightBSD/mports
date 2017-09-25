@@ -1,6 +1,10 @@
-bin/siege
 bin/bombardment
-bin/siege2csv
+bin/siege
 bin/siege.config
-%%DATADIR%%/siegerc
-@dirrm %%DATADIR%%
+bin/siege2csv.pl
+%%ETCDIR%%/siegerc
+%%ETCDIR%%/urls.txt
+man/man1/bombardment.1.gz
+man/man1/siege.1.gz
+man/man1/siege.config.1.gz
+man/man1/siege2csv.1.gz
