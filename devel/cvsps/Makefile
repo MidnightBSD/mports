@@ -1,10 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:	cvsps
-# Date Created:			Jan 4, 2008
-# Whom:				laffer1
-#
 # $MidnightBSD$
-#
 
 PORTNAME=	cvsps
 PORTVERSION=	2.1
@@ -14,13 +8,13 @@ MASTER_SITES=	http://www.cobite.com/cvsps/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create patchset information from CVS
+
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
+USES=		gmake
 ALL_TARGET=	cvsps
 
-MAN1=		cvsps.1
-PLIST_FILES=	bin/cvsps
+PLIST_FILES=	bin/cvsps man/man1/${PORTNAME}.1.gz
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	README
