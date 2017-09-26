@@ -18,6 +18,4 @@ CONFLICTS=	p5-libwww-5*
 
 PERL_CONFIGURE=	yes
 
-MAN3=		File::Listing.3
-
 .include <bsd.port.mk>
