@@ -17,6 +17,4 @@ RUN_DEPENDS=	p5-Digest-HMAC>=0:${PORTSDIR}/security/p5-Digest-HMAC
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Authen::NTLM.3
-
 .include <bsd.port.mk>
