@@ -16,8 +16,6 @@ LICENSE=	unknown
 
 XORG_CAT=	util
 
-MAN1=		gccmakedep.1
-
-PLIST_FILES=	bin/gccmakedep
+PLIST_FILES=	bin/gccmakedep man/man1/gccmakedep.1.gz
 
 .include <bsd.port.mk>
