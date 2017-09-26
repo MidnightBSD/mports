@@ -19,9 +19,6 @@ NO_WRKSUBDIR=	yes
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 
-MAN1=		checkvms.1 javavm.1 manvm.1 registervm.1 unregistervm.1
-MAN5=		javavm_opts.conf.5 javavms.5
-
 SRC=		${.CURDIR}/src
 SCRIPTS=	classpath javavmwrapper
 # This is normally defined by bsd.java.mk when USE_JAVA is defined, but
@@ -39,7 +36,7 @@ do-configure:
 .endfor
 	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|;' \
 		${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-.for _man in checkvms.1 javavm.1 manvm.1 registervm.1 ${MAN5}
+.for _man in checkvms.1 javavm.1 manvm.1 registervm.1 javavm_opts.conf.5 javavms.5
 	${SED} -e 's|%%PREFIX%%|${PREFIX}|;' \
 	       -e 's|%%LOCALBASE%%|${LOCALBASE}|;' \
 	       -e 's|%%PORTSDIR%%|${PORTSDIR}|;' \
