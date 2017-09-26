@@ -1,68 +1,74 @@
 # $MidnightBSD$
 
 PORTNAME=	qtcreator
-DISTVERSION=	2.6.1
+DISTVERSION=	4.1.0
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_QT:S/$/:qtcreator/} \
-		${MASTER_SITE_QT}
-MASTER_SITE_SUBDIR=	official_releases/qtcreator/${DISTVERSION:R}/${DISTVERSION}/:qtcreator \
-			official_releases/qt/${QT4_VERSION:R}/${QT4_VERSION}
-DISTNAME=	qt-creator-${DISTVERSION}-src
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:qtcreator \
-		${QT_DISTNAME}.tar.gz
-DIST_SUBDIR=	KDE
+MASTER_SITES=	QT/official_releases/qtcreator/${DISTVERSION:R}/${DISTVERSION}
+DISTNAME=	qt-creator-opensource-src-${DISTVERSION}
+DIST_SUBDIR=	KDE/Qt/qtcreator
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ and QML IDE for Qt development
 
-LICENSE=	lgpl
+LICENSE=	gpl3
 
-LIB_DEPENDS=	Imath:${PORTSDIR}/graphics/ilmbase \
-		IlmImf:${PORTSDIR}/graphics/OpenEXR \
-		jasper:${PORTSDIR}/graphics/jasper \
-		jpeg:${PORTSDIR}/graphics/jpeg
+# depend on the split out qbs
+LIB_DEPENDS=	libqbscore.so:devel/qbs
 
-USE_QT4=	qmake_build moc_build rcc_build uic_build \
-		linguist_build assistant_run qt3support \
-		dbus designer gui help-tools_build network script \
-		sql svg xml webkit qdoc3_build
-HAS_CONFIGURE=	yes
-MAKE_ENV+=	INSTALL_ROOT=${PREFIX}
-MAKE_JOBS_UNSAFE=	yes
-ALL_TARGET=	all docs
-INSTALL_TARGET=	install install_docs
-USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+USE_LDCONFIG=	${LOCALBASE}/lib/${PORTNAME}
+USES=		qmake compiler:c++11-lib
+USE_GL=		gl
+USE_QT5=	buildtools concurrent core declarative designer gui help \
+		linguist network printsupport qdoc qml quick quickcontrols \
+		script script sql svg webkit widgets xml xmlpatterns
 
-QMAKE_ARGS=	-recursive CONFIG+="configure" ${QMAKE_PRO}
-QMAKE_PRO=	${WRKSRC}/${PORTNAME}.pro
+# be paranoid and do not extract qbs (devel/qbs) copy from source tree
+EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/src/shared/qbs'
+# Set QBS_INSTALL_DIR for QBS plugin build and set config parameter to build
+# the qbsprojectmanager plugin without compile error
+QMAKE_ARGS+=	QBS_INSTALL_DIR=${PREFIX} CONFIG+=qbs_enable_project_file_updates
 
-# Build Qt Quick Designer (requires update on every Qt update).
-QT_DISTNAME=	qt-everywhere-opensource-src-${QT4_VERSION}
-DO_NOT_EXTRACT=	config.profiles config.tests demos doc examples lib \
-		mkspecs tools translations
-.for dne in ${DO_NOT_EXTRACT}
-EXTRACT_AFTER_ARGS+=	--exclude '${QT_DISTNAME}/${dne}'
-.endfor
-QMAKE_ARGS+=	QT_PRIVATE_HEADERS="${WRKDIR}/${QT_DISTNAME}/include"
+# Enforce installation to ${PREFIX}.
+QMAKE_ARGS+=	QTC_PREFIX=${PREFIX}
 
-CONFIGURE_WRKSRC=	${WRKDIR}/build
-BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
-INSTALL_WRKSRC=		${CONFIGURE_WRKSRC}
+# Required for building the port with GCC: the define below is required for
+# std::to_string() to exist. More details in ports/193528.
+QMAKE_ARGS+=	DEFINES+=_GLIBCXX_USE_C99
 
-DESKTOP_ENTRIES=	"Qt Creator" "${COMMENT}" "QtProject-qtcreator" \
-			"${PREFIX}/bin/${PORTNAME}" "Development;Qt;" true
+DESKTOP_ENTRIES="Qt Creator" "" "QtProject-qtcreator" \
+		"${PREFIX}/bin/${PORTNAME}" "Development;Qt;" true
 
+BROKEN_aarch64=		fails to build: invokes x86 asm
+
+OPTIONS_DEFINE=		DOCS EXAMPLES
+DOCS_DESC=		Install the Qt5 api documentation
+DOCS_USE=		QT5=doc_run
+EXAMPLES_DESC=		Install the Qt5 example projects
+EXAMPLES_USE=		QT5=examples_run
+OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
+
+ALL_TARGET=		all
+INSTALL_TARGET=		install
+
+DOCS_ALL_TARGET=	docs
+DOCS_INSTALL_TARGET=	install_docs
+
+# Fix paths for gnuplot and ant.
 post-patch:
-	${REINPLACE_CMD} -e 's|lrelease|lrelease-qt4|' \
-		${WRKSRC}/share/qtcreator/translations/translations.pro
-	${REINPLACE_CMD} -e 's|lupdate|lupdate-qt4|' \
-		${WRKSRC}/share/qtcreator/translations/translations.pro
-	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/src/plugins/android/androidsettingswidget.cpp
+	${REINPLACE_CMD} -e 's|/usr/bin/gnuplot|${LOCALBASE}/bin/gnuplot|' \
+				${WRKSRC}/share/qtcreator/debugger/dumper.py
+	${REINPLACE_CMD} -e 's|/usr/bin/ant|${LOCALBASE}/bin/ant|' \
+				${WRKSRC}/src/plugins/android/androidsettingswidget.cpp
 
-do-configure:
-	${MKDIR} ${CONFIGURE_WRKSRC}
-	cd ${CONFIGURE_WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
-		${QMAKE} ${QMAKEFLAGS} ${QMAKE_ARGS}
+pre-configure:
+# We piggyback on QMAKE_LIBDIR_FLAGS to make sure -L${WRKSRC}/lib is passed to
+# the linker before -L/usr/local/lib. By default, the opposite happens, which
+# is a problem when a Qt port is being upgraded, since an existing library
+# would end up being picked up instead of those built in ${WRKSRC}/lib. Since
+# qmake appends the value of QMAKE_LIBDIR to QMAKE_LIBDIR_FLAGS, we can use the
+# latter to get the linker path order right. qmake is smart enough to strip
+# occurrences of ${WRKSRC}/lib from .pc and .prl files when installing them.
+# See QTBUG-40825 and ports bugs 194088, 195105 and 198720.
+	${ECHO_CMD} 'QMAKE_LIBDIR_FLAGS = -L${WRKSRC}/lib' >> ${WRKSRC}/.qmake.cache
 
 .include <bsd.port.mk>

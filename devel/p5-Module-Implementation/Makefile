@@ -17,8 +17,6 @@ RUN_DEPENDS=	p5-Module-Runtime>=0.012:${PORTSDIR}/devel/p5-Module-Runtime \
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Module::Implementation.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501001
