@@ -9,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple HTTP server class
+
 LICENSE=	perl
 
 RUN_DEPENDS=	p5-HTTP-Date>=6:${PORTSDIR}/www/p5-HTTP-Date \
@@ -19,7 +20,5 @@ BUILD_DEPENDS:=	${RUN_DEPENDS}
 CONFLICTS=	p5-libwww-5*
 
 PERL_CONFIGURE=	yes
-
-MAN3=		HTTP::Daemon.3
 
 .include <bsd.port.mk>
