@@ -14,8 +14,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Password-checking library
 LICENSE=	lgpl
 
-MAN3=		cracklib.3
-MLINKS=		cracklib.3 FascistCheck.3
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-default-dict=${PREFIX}/libdata/${PORTNAME}
