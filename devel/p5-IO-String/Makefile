@@ -19,6 +19,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		IO::String.3
-
 .include <bsd.port.mk>
