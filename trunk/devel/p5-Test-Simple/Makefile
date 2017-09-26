@@ -13,8 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Test::Builder.3 Test::More.3 Test::Simple.3 Test::Tutorial.3 \
-		Test::Builder::Module.3 Test::Builder::Tester.3 \
-		Test::Builder::Tester::Color.3 Test::Builder::IO::Scalar.3
-
 .include <bsd.port.mk>
