@@ -51,8 +51,6 @@ PLIST_SUB+=            SCRIPTS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
-MAN1=			aspell-import.1 aspell.1 pspell-config.1		\
-			run-with-aspell.1 word-list-compress.1 prezip-bin.1
 INFO=			aspell-dev aspell
 .endif
 
