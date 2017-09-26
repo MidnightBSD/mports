@@ -8,9 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility functions to aid in parameter checking
-LICENSE=        gpl2     
-PERL_CONFIGURE=	yes
 
-MAN3=	Params::Util.3
+LICENSE=        gpl2     
+
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
