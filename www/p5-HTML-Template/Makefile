@@ -1,7 +1,3 @@
-# New ports collection makefile for:	p5-HTML-Template
-# Date Created:				26 Oct, 2000
-# Whom:					Jun Kuriyama <kuriyama@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTML-Template/Makefile,v 1.17 2006/01/30 14:47:01 kuriyama Exp $
 #
@@ -17,8 +13,6 @@ COMMENT=	Perl module to use HTML Templates from CGI scripts
 LICENSE=	perl
 
 PERL_CONFIGURE=	yes
-
-MAN3=		HTML::Template.3
 
 .include <bsd.port.pre.mk>
 
