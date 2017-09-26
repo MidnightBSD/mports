@@ -12,7 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN1=		yapp.1
-MAN3=		Parse::Yapp.3
-
 .include <bsd.port.mk>
