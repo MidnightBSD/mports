@@ -20,9 +20,6 @@ RUN_DEPENDS=	p5-XML-NamespaceSupport>=0.03:${PORTSDIR}/textproc/p5-XML-Namespace
 
 PERL_CONFIGURE=	yes
 
-MAN3=		XML::SAX.3 XML::SAX::DocumentLocator.3 XML::SAX::Intro.3 \
-		XML::SAX::ParserFactory.3 XML::SAX::PurePerl.3 \
-		XML::SAX::PurePerl::Reader.3
 CONFIGURE_ARGS= </dev/null
 
 post-configure:
