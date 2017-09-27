@@ -13,7 +13,5 @@ LICENSE=	perl
 
 PERL_MODBUILD=	yes
 
-MAN3=		Algorithm::C3.3
-
 .include <bsd.port.mk>
 
