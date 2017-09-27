@@ -127,7 +127,6 @@ USE_RC_SUBR=	squid
 SQUID_UID?=	squid
 SQUID_GID?=	squid
 
-MAN8=		cachemgr.cgi.8 squid.8
 docs=		QUICKSTART README RELEASENOTES.html doc/debug-sections.txt
 PORTDOCS=	${docs:T}
 PORTEXAMPLES=	passwd.sql
@@ -216,13 +215,10 @@ CONFIGURE_ARGS=	--bindir=${PREFIX}/sbin  \
 basic_auth=	DB NCSA PAM MSNT SMB
 digest_auth=	password
 external_acl=	ip_user session unix_group wbinfo_group
-MAN8+=		ncsa_auth.8 pam_auth.8 squid_db_auth.8 squid_session.8 \
-		squid_unix_group.8
 .if defined(WITH_SQUID_LDAP_AUTH)
 USE_OPENLDAP=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAN8+=		squid_ldap_auth.8 squid_ldap_group.8
 basic_auth+=	LDAP
 digest_auth+=	ldap
 external_acl+=	ldap_group
