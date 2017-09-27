@@ -16,10 +16,10 @@ MASTER_SITES=	ftp://ftp.mutt.org/mutt/contrib/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	URL extractor/launcher
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-MAN1=		urlview.1
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,!!PREFIX!!,${PREFIX},g" ${WRKSRC}/url_handler.sh
