@@ -15,13 +15,6 @@ RUN_DEPENDS=	p5-Device-SerialPort>=0:${PORTSDIR}/comms/p5-Device-SerialPort
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Device::Modem.3 \
-		Device::Modem::FAQ.3 \
-		Device::Modem::Log::File.3 \
-		Device::Modem::Log::Syslog.3 \
-		Device::Modem::Protocol::Xmodem.3 \
-		Device::Modem::UsRobotics.3
-
 post-install:
 .ifndef(NOPORTEXAMPLES)
 	@${ECHO_MSG} "===>   Installing examples for ${PKGNAME}"
