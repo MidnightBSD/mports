@@ -3,22 +3,20 @@
 PORTNAME=	html2text
 PORTVERSION=	1.3.2a
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SUNSITE} \
-		http://userpage.fu-berlin.de/~mbayer/tools/
-MASTER_SITE_SUBDIR=	apps/www/converters
+MASTER_SITES=	SUNSITE/apps/www/converters \
+		http://www.mbayer.de/html2text/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts HTML documents into plain text
+
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 HAS_CONFIGURE=	yes
 MAKE_ARGS=	CXX="${CXX}"
 
-MANCOMPRESSED=	yes
-MAN1=		html2text.1
-MAN5=		html2textrc.5
 PORTDOCS=	CHANGES CREDITS KNOWN_BUGS README TODO
-PLIST_FILES=	bin/html2text
+PLIST_FILES=	bin/html2text man/man1/html2text.1.gz man/man5/html2textrc.5.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e '/echo=/s/ -e//' ${WRKSRC}/configure
