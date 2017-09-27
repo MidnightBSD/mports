@@ -17,7 +17,6 @@ CONFIGURE_ENV+=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_ARGS+=--disable-nls
 USE_GMAKE=	yes
 INFO=		sed
-MAN1=		gsed.1
 
 # Local variables
 PATCH_SUBDIRS=	. doc lib sed
