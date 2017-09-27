@@ -3,18 +3,18 @@
 PORTNAME=	NetPIPE
 PORTVERSION=	3.7.1
 CATEGORIES=	benchmarks net
-MASTER_SITES=	http://www.scl.ameslab.gov/Projects/Netpipe/code/
+MASTER_SITES=	http://www.scl.ameslab.gov/Projects/Netpipe/code/ \
+		http://bitspjoule.org/netpipe/code/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A self-scaling network benchmark
+COMMENT=	Self-scaling network benchmark
 LICENSE=	gpl2
 
 # The default port builds and installs only the TCP version of
 # netpipe(1).  The sources support many other variants.
 
-MAN1=		netpipe.1
 PORTDOCS=	README netpipe_paper.ps
-PLIST_FILES=	bin/NPtcp bin/NPtcp6
+PLIST_FILES=	bin/NPtcp bin/NPtcp6 man/man1/netpipe.1.gz
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME:L}
 
