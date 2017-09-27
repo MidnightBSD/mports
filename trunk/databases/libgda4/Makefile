@@ -60,7 +60,6 @@ CONFIGURE_ARGS+=--without-ui
 PLIST_SUB+=	UI="@comment "
 .endif
 
-MAN1=		gda-sql.1 gda-sql-4.0.1
 .else
 USE_GNOME+=	libgda4
 .endif
