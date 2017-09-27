@@ -21,9 +21,6 @@ MAKE_JOBS_SAFE=	yes
 PLIST_SUB=	CGIDIR="${CGIDIR}"
 CGIDIR=	www/cgi-bin
 
-MAN1=	man2web.1
-MAN5=	man2web.conf.5
-
 post-extract:
 	${CP} ${FILESDIR}/freebsd.h ${WRKSRC}/src/section_h/
 
