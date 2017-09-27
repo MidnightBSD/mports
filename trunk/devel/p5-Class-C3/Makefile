@@ -17,9 +17,6 @@ XS_DESC=	XS speed optimizations
 USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::C3.3 \
-		Class::C3::next.3
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MXS}
