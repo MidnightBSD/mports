@@ -29,7 +29,6 @@ PLIST_SUB=	XMLCATMGR=${XMLCATMGR} \
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
 
-MAN1=		openjade.1
 DATADIR=	${PREFIX}/share/sgml/openjade
 
 post-patch:
