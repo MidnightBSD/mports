@@ -8,10 +8,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IO::Multiplex - Manage IO on many file handles
+
 LICENSE=	perl
 
 PERL_CONFIGURE=	yes
-
-MAN3=		IO::Multiplex.3
 
 .include <bsd.port.mk>
