@@ -13,7 +13,7 @@ LICENSE=        perl
 
 PERL_MODBUILD=	yes
 
-PLIST_FILES=	bin/activitymail
-MAN1=		activitymail.1.gz
+PLIST_FILES=	bin/activitymail \
+		${SITE_MAN1}/activitymail.1.gz
 
 .include <bsd.port.mk>
