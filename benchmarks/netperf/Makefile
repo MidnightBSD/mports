@@ -59,7 +59,6 @@ CONFIGURE_ARGS+=	--enable-omni
 CONFIGURE_ARGS+=	--disable-omni
 .endif
 
-MAN1=		netperf.1 netserver.1
 INFO=		netperf
 SCRIPTS=	arr_script packet_byte_script sctp_stream_script snapshot_script \
 		tcp_range_script tcp_rr_script tcp_stream_script udp_rr_script \
