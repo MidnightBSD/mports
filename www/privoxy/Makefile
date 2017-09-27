@@ -14,15 +14,13 @@ LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_AUTOTOOLS=	autoconf
 
 USE_RC_SUBR=	privoxy
 SUB_FILES=	pkg-message
 
 MAKEFILE=	GNUmakefile
-
-MAN1=		privoxy.1
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
