@@ -15,6 +15,4 @@ RUN_DEPENDS=	${SITE_PERL}/Device/Modem.pm:${PORTSDIR}/comms/p5-Device-Modem
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Device::Gsm::Sms.3 Device::Gsm::Pdu.3 Device::Gsm.3
-
 .include <bsd.port.mk>
