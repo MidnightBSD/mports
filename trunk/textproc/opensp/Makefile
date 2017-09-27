@@ -28,8 +28,6 @@ PLIST_SUB+=	NLS="@comment "
 PLIST_SUB+=	NLS=""
 .endif
 
-#MAN1=		onsgmls.1 osgmlnorm.1 ospam.1 ospent.1 osx.1
-
 .include <bsd.port.pre.mk>
 
 # This port cannot be CFLAGS safe, using optimizations such as
