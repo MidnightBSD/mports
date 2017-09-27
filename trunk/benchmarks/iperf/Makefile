@@ -16,8 +16,7 @@ OPTIONS_DEFAULT=THREADS
 
 GNU_CONFIGURE=	yes
 
-MAN1=		iperf.1
-PLIST_FILES=	bin/iperf
+PLIST_FILES=	bin/iperf man/man1/iperf.1.gz
 PORTDOCS=	*
 
 .include <bsd.mport.options.mk>
