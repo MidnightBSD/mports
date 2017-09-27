@@ -11,6 +11,7 @@ MASTER_SITES=	ftp://ftp.dvo.ru/pub/Gentoo/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio converter and library for converting u-law to gsm encoding
+
 LICENSE=	other 
 # fairly loose, bsdish.
 
@@ -18,9 +19,5 @@ WRKSRC=		${WRKDIR}/gsm-1.0-pl13
 
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
-
-MAN1=		toast.1
-MAN3=		gsm.3 gsm_explode.3 gsm_option.3 gsm_print.3
-MLINKS=		toast.1 untoast.1 toast.1 tcat.1
 
 .include <bsd.port.mk>
