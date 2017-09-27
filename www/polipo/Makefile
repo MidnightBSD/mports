@@ -10,8 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and fast caching web proxy
 LICENSE=	bsd2
 
-MAN1=		polipo.1
-
 USE_RC_SUBR=	polipo.sh
 
 .include <bsd.port.pre.mk>
