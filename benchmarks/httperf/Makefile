@@ -17,11 +17,10 @@ USE_GMAKE=	yes
 MAKE_ARGS=	LIBUTIL_OBJS=ssl_writev.o \
 		exec_prefix=${PREFIX}
 
-PLIST_FILES=	bin/httperf
+PLIST_FILES=	bin/httperf man/man1/httperf.1.gz
 .if !defined(NOPORTDOCS)
 PORTDOCS=	ChangeLog NEWS README TODO
 .endif
-MAN1=		httperf.1
 
 post-install:
 .if !defined(NOPORTDOCS)
