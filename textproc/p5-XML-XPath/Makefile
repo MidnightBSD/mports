@@ -16,13 +16,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		XML::XPath.3 XML::XPath::Boolean.3 XML::XPath::Builder.3 \
-		XML::XPath::Literal.3 XML::XPath::Node.3 \
-		XML::XPath::Node::Attribute.3 XML::XPath::Node::Comment.3 \
-		XML::XPath::Node::Element.3 XML::XPath::Node::Namespace.3 \
-		XML::XPath::Node::PI.3 XML::XPath::Node::Text.3 \
-		XML::XPath::NodeSet.3 XML::XPath::Number.3 \
-		XML::XPath::PerlSAX.3 XML::XPath::XMLParser.3
-
-
 .include <bsd.port.mk>
