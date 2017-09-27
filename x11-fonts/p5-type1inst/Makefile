@@ -20,8 +20,6 @@ RUN_DEPENDS=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 USE_PERL5=	yes
 NO_BUILD=	yes
 
-MAN1=	type1inst.1
-
 post-patch:
 	@${REINPLACE_CMD} -e 's:#!/usr/bin/perl:#!${PERL}:' ${WRKSRC}/type1inst ${WRKSRC}/t1embed
 
