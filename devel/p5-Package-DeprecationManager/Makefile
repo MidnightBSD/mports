@@ -20,8 +20,6 @@ RUN_DEPENDS=	p5-Params-Util>=0:${PORTSDIR}/devel/p5-Params-Util \
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Package::DeprecationManager.3
-
 post-extract:
 	@${PERL} -i -ne "print unless /'BUILD_REQUIRES'/../},/" ${WRKSRC}/Makefile.PL
 
