@@ -1,6 +1,7 @@
 %%SITE_PERL%%/%%PERL_ARCH%%/Time/HiRes.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time/HiRes/HiRes.so
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time/HiRes/HiRes.bs
+%%PERL5_MAN3%%/Time::HiRes.3.gz
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time/HiRes
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Time
