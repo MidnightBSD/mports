@@ -56,8 +56,6 @@ GCONF_SCHEMAS=	anjuta-build-basic-autotools-plugin.schemas \
 		preferences.schemas \
 		python-plugin-properties.schemas
 
-MAN1=		anjuta.1 anjuta-launcher.1
-
 OPTIONS=	SVN "Build subversion plugin" off \
 		DEVHELP "Build devhelp plugin" on \
 		GRAPHVIZ "Build inheritance plugin" on
