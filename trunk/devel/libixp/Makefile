@@ -21,8 +21,6 @@ MAKE_ARGS=	PREFIX="${PREFIX}" CC="${CC} -c" LD="${CC}" \
 		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 		MANPREFIX="${MANPREFIX}/man"
 
-MAN1=		ixpc.1
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|\.a|.so|g; s|(AR)|(LD) -shared -fPIC -o|' \
 		${WRKSRC}/mk/lib.mk ${WRKSRC}/mk/hdr.mk
