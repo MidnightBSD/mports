@@ -17,8 +17,6 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	autoheader
 USE_LDCONFIG=	yes
 
-MAN3=	CUnit.3
-
 OPTIONS=	DEB "Enable debug interface" Off \
 		AUT "Enable automated(XML) interface" On \
 		BAS "Enable basic interface" On \
