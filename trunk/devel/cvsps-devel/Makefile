@@ -20,8 +20,7 @@ CONFLICTS=	cvsps-1.*
 
 USE_GMAKE=	yes
 
-MAN1=		cvsps.1
-PLIST_FILES=	bin/cvsps
+PLIST_FILES=	bin/cvsps man/man1/cvsps.1.gz
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/cvsps ${PREFIX}/bin
