@@ -8,13 +8,12 @@ MASTER_SITES=	http://ftp.tux.org/pub/X-Windows/ftp.hungry.com/chrpath/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to modify DT_RPATH in existing ELF binaries
+
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 
-MAN1=		chrpath.1
-
-PLIST_FILES=	bin/chrpath
+PLIST_FILES=	bin/chrpath  man/man1/chrpath.1.gz
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
 
