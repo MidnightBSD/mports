@@ -14,6 +14,6 @@ LICENSE=        perl
 PERL_MODBUILD=	yes
 
 PLIST_FILES=	bin/activitymail \
-		${SITE_MAN1}/activitymail.1.gz
+		man/man1/activitymail.1.gz
 
 .include <bsd.port.mk>
