@@ -14,6 +14,5 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	LIBS="-lcam" --program-prefix=""
 
 USE_LDCONFIG=	yes
-MAN1=		cdrskin.1
 
 .include <bsd.port.mk>
