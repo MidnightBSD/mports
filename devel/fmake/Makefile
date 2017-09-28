@@ -11,8 +11,7 @@ COMMENT=	Legacy FreeBSD pmake
 
 LICENSE=	bsd3
 
-PLIST_FILES=	bin/${PORTNAME}
-MAN1=		${PORTNAME}.1
+PLIST_FILES=	bin/${PORTNAME} man/man1/fmake.1.gz
 
 MAKE_ARGS+=	PROG=fmake NO_MAN=yes
 
