@@ -22,6 +22,4 @@ TEST_DEPENDS=	p5-Test-Fatal>=0:${PORTSDIR}/devel/p5-Test-Fatal
 
 PERL_CONFIGURE=	YES
 
-MAN3=		Dist::CheckConflicts.3
-
 .include <bsd.port.mk>
