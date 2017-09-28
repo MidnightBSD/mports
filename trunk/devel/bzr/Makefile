@@ -23,8 +23,6 @@ USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGNAME=	bzr
 USES=		gettext
 
-MAN1=		bzr.1
-
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSFTP}
