@@ -7,13 +7,12 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Demo of DBE creating a double buffered spinning scene
+
 LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xp xext xprintutil xp xau xext
 
-PLIST_FILES=	bin/xdbedizzy
-
-MAN1=		xdbedizzy.1
+PLIST_FILES=	bin/xdbedizzy man/man1/xdbedizzy.1.gz
 
 .include <bsd.port.mk>
