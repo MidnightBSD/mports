@@ -18,8 +18,6 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		namespace::clean.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501001
