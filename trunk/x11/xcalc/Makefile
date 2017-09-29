@@ -16,6 +16,4 @@ RUN_DEPENDS=	font-misc-misc>=1.1.2:${PORTSDIR}/x11-fonts/font-misc-misc \
 XORG_CAT=	app
 USE_XORG=	xt xaw
 
-MAN1=		xcalc.1
-
 .include <bsd.port.mk>
