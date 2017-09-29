@@ -1,10 +1,5 @@
-# New ports collection makefile for:	HTTP-DAV
-# Date created:	   02 June 2002
-# Whom:		   Sergey Skvortsov <skv@protey.ru>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/www/p5-HTTP-DAV/Makefile,v 1.5 2006/08/04 12:34:50 erwin Exp $
-#
 
 PORTNAME=	HTTP-DAV
 PORTVERSION=	0.31
@@ -21,9 +16,5 @@ BUILD_DEPENDS=	${SITE_PERL}/XML/DOM.pm:${PORTSDIR}/textproc/p5-XML-DOM \
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN1=		dave.1
-MAN3=		HTTP::DAV.3 HTTP::DAV::Lock.3 HTTP::DAV::Resource.3 \
-		HTTP::DAV::Response.3
 
 .include <bsd.port.mk>
