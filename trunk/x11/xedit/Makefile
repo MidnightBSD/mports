@@ -11,6 +11,4 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xt xaw7
 
-MAN1=		xedit.1
-
 .include <bsd.port.mk>
