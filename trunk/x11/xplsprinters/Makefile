@@ -11,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xp xprintutil x11
 
-PLIST_FILES=	bin/xplsprinters
-
-MAN1=		xplsprinters.1
+PLIST_FILES=	bin/xplsprinters man/man1/xplsprinters.1.gz
 
 .include <bsd.port.mk>
