@@ -17,7 +17,5 @@ LICENSE=	gpl2
 
 USE_XORG=	x11 xext
 
-MAN1=		xdesktopwaves.1
-
 .include <bsd.port.mk>
 
