@@ -1,6 +1,2 @@
-@comment $FreeBSD: ports/devel/p5-Config-Tiny/pkg-plist,v 1.3 2006/07/17 00:59:17 clsung Exp $
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Config/Tiny/.packlist
 %%SITE_PERL%%/Config/Tiny.pm
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Config/Tiny
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Config
-@dirrmtry %%SITE_PERL%%/Config
+%%PERL5_MAN3%%/Config::Tiny.3.gz
