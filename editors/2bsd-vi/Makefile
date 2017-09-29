@@ -20,8 +20,6 @@ LICENSE=	bsd4
 
 USES=		tar:bzip2
 
-MLINKS=		ex.1 edit.1  vi.1 vedit.1  vi.1 view.1
-
 PRESERVEDIR=	/var/preserve/${UNIQUENAME}
 PLIST_SUB=	PRESERVEDIR="${PRESERVEDIR}"
 
