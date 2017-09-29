@@ -17,6 +17,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	YES
 
-MAN3=		XML::Simple.3 XML::Simple::FAQ.3
-
 .include <bsd.port.mk>
