@@ -17,17 +17,4 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Mail::Address.3 \
-		Mail::Cap.3 \
-		Mail::Field.3 \
-		Mail::Field::AddrList.3 \
-		Mail::Field::Date.3 \
-		Mail::Field::Generic.3 \
-		Mail::Filter.3 \
-		Mail::Header.3 \
-		Mail::Internet.3 \
-		Mail::Mailer.3 \
-		Mail::Send.3 \
-		Mail::Util.3
-
 .include <bsd.port.mk>
