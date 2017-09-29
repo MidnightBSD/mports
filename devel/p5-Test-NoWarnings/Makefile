@@ -12,8 +12,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Test::NoWarnings.3
-
 OPTIONS_DEFINE=	DEVEL_STACKTRACE
 DEVEL_STACKTRACE_DESC=	Stack trace support
 
