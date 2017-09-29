@@ -1,7 +1,3 @@
-# New ports collection makefile for:	p5-GD-TextUtil
-# Date created:				21 February 2000
-# Whom:	      				Dmitry Sivachenko <dima@Chg.RU>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/graphics/p5-GD-TextUtil/Makefile,v 1.13 2003/10/24 12:02:28 ijliao Exp $
 #
@@ -21,7 +17,5 @@ RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD
 
 MAKE_JOBS_SAFE=  yes
 PERL_CONFIGURE=	YES
-
-MAN3=		GD::Text.3 GD::Text::Wrap.3 GD::Text::Align.3
 
 .include <bsd.port.mk>
