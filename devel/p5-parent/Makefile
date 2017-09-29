@@ -14,8 +14,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		parent.3
-
 regression-test:
 	cd ${WRKSRC} && ${MAKE} test
 
