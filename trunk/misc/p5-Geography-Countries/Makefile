@@ -13,6 +13,4 @@ LICENSE=	perl
 PERL_CONFIGURE=	yes
 CONFIGURE_ARGS+=	INSTALLDIRS='site'
 
-MAN3=		Geography::Countries.3
-
 .include <bsd.port.mk>
