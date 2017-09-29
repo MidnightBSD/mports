@@ -20,8 +20,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		ExtUtils::CBuilder.3 ExtUtils::CBuilder::Platform::Windows.3
-
 .if !defined(NOPORTDOCS)
 PORTDOCS=	Changes README
 
