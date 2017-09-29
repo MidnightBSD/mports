@@ -22,8 +22,6 @@ CFLAGS+=	-I${LOCALBASE}/include/X11 -I${LOCALBASE}/include \
 		-DLINUXVERSION -DLINUXAUDIO
 LDFLAGS=	-L${LOCALBASE}/lib
 
-MAN6=		battalion.6
-
 post-extract:
 	@${GZCAT} ${DISTDIR}/battalionSUN4.tar.gz | \
 		(cd ${WRKDIR} && ${TAR} --unlink -xf -)
