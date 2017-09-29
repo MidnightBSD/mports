@@ -27,8 +27,6 @@ PERL_CONFIGURE=	yes
 
 PLIST_SUB+=     PERL=${PERL}
 
-MAN3=		XML::SAX::Expat.3
-
 post-patch:
 		@${PERL} -pi -e "s/(?<=XML::SAX::Base          => ')1\.00(?=')/0.25/;" ${WRKSRC}/Makefile.PL
 
