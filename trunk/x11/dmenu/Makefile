@@ -19,8 +19,8 @@ OPTIONS_DEFAULT=	XINERAMA
 
 USE_XORG=	x11
 
-MAN1=		dmenu.1 stest.1
-PLIST_FILES=	bin/dmenu bin/dmenu_run bin/stest
+PLIST_FILES=	bin/dmenu bin/dmenu_run bin/stest \
+		man/man1/dmenu.1.gz man/man1/stest.1.gz
 
 .include <bsd.mport.options.mk>
 
