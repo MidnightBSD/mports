@@ -1,10 +1,5 @@
-# New ports collection makefile for:	Config-Tiny
-# Date created:	   11 December 2002
-# Whom:		   Sergey Skvortsov <skv@protey.ru>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Config-Tiny/Makefile,v 1.15 2007/12/20 09:49:17 gabor Exp $
-#
 
 PORTNAME=	Config-Tiny
 PORTVERSION=	2.12
@@ -14,10 +9,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read/Write .ini style files with as little code as possible
+
 LICENSE=	perl
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Config::Tiny.3
 
 .include <bsd.port.mk>
