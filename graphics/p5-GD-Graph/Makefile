@@ -20,13 +20,6 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		GD::Graph.3 \
-		GD::Graph::Data.3 \
-		GD::Graph::Error.3 \
-		GD::Graph::FAQ.3 \
-		GD::Graph::colour.3 \
-		GD::Graph::hbars.3
-
 post-patch:
 	@${FIND} ${WRKSRC} -name "*.orig" -print0 | ${XARGS} -0 ${RM} -f
 
