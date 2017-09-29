@@ -6,11 +6,11 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mailbox flag for X
+
 LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xbitmaps xext xaw
-MAN1=		xbiff.1
-PLIST_FILES=	bin/xbiff
+PLIST_FILES=	bin/xbiff man/man1/xbiff.1.gz
 
 .include <bsd.port.mk>
