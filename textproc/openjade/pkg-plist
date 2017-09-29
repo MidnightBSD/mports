@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 bin/openjade
 lib/libogrove.a
 lib/libogrove.la
@@ -12,6 +11,7 @@ lib/libostyle.a
 lib/libostyle.la
 lib/libostyle.so
 lib/libostyle.so.0
+man/man1/openjade.1.gz
 @unexec %%XMLCATMGR%% -sc %%CATALOG_PORTS_SGML%% remove CATALOG openjade/catalog
 @comment INSTALL_DATA: dsssl/README.jadetex %%DATADIR%%/README.jadetex
 @comment INSTALL_DATA: dsssl/builtins.dsl %%DATADIR%%/builtins.dsl
