@@ -16,6 +16,4 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=	File::ShareDir.3
-
 .include <bsd.port.mk>
