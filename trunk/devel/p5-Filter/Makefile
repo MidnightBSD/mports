@@ -13,13 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Filter::Util::Call.3 \
-		Filter::Util::Exec.3 \
-		Filter::cpp.3 \
-		Filter::decrypt.3 \
-		Filter::exec.3 \
-		Filter::sh.3 \
-		Filter::tee.3 \
-		perlfilter.3
-
 .include <bsd.port.mk>
