@@ -22,14 +22,6 @@ INSTALL_WRKSRC=	${WRKSRC}/lib/uuid
 FILESDIR=	${.CURDIR}/files
 USE_RC_SUBR=	uuidd
 
-MAN1=		uuidgen.1
-
-MAN3=		uuid.3 uuid_clear.3 uuid_compare.3 uuid_copy.3 uuid_generate.3 \
-		uuid_is_null.3 uuid_parse.3 uuid_time.3 uuid_unparse.3 \
-		uuid_generate_random.3 uuid_generate_time.3
-
-MAN8=		uuidd.8
-
 PKGDIR=		${.CURDIR}
 
 post-patch::
