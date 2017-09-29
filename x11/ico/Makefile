@@ -11,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11
 
-PLIST_FILES=	bin/ico
-
-MAN1=		ico.1
+PLIST_FILES=	bin/ico man/man1/ico.1.gz
 
 .include <bsd.port.mk>
