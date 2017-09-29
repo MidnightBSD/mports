@@ -14,6 +14,4 @@ RUN_DEPENDS+=	repl:${PORTSDIR}/mail/nmh
 XORG_CAT=	app
 USE_XORG=	xaw xmu xt xbitmaps
 
-MAN1=		xmh.1
-
 .include <bsd.port.mk>

@@ -12,8 +12,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11 xmuu
 
-PLIST_FILES=	bin/xkill
-
-MAN1=		xkill.1
+PLIST_FILES=	bin/xkill man/man1/xkill.1.gz
 
 .include <bsd.port.mk>
