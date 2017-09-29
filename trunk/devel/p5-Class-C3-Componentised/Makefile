@@ -19,8 +19,6 @@ BUILD_DEPENDS:=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::C3::Componentised.3 Class::C3::Componentised::ApplyHooks.3
-
 post-extract:
 	@${REINPLACE_CMD} -i '' -e '/Test::/d' ${WRKSRC}/Makefile.PL
 
