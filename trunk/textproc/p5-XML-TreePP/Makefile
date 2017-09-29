@@ -12,8 +12,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		XML::TreePP.3
-
 post-install:
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/example/envxml.cgi ${EXAMPLESDIR}
