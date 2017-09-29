@@ -12,6 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	5.6.0+
 
-MAN3=	Sub::Name.3
-
 .include <bsd.port.mk>
