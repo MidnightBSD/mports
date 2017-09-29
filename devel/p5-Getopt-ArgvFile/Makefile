@@ -13,6 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Getopt::ArgvFile.3
-
 .include <bsd.port.mk>
