@@ -15,6 +15,4 @@ LICENSE=	perl
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 PERL_CONFIGURE=	yes
 
-MAN3=		Data::JavaScript.3
-
 .include <bsd.port.mk>
