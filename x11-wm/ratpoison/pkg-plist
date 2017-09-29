@@ -1,6 +1,6 @@
-@comment $FreeBSD$
 bin/ratpoison
 %%PORTDATA%%bin/rpws
+man/man1/ratpoison.1.gz
 %%PORTDATA%%%%DATADIR%%/allwindows.sh
 %%PORTDATA%%%%DATADIR%%/clickframe.pl
 %%PORTDATA%%%%DATADIR%%/genrpbindings
