@@ -16,8 +16,6 @@ TEST_DEPENDS=	p5-Test-Fatal>=0:${PORTSDIR}/devel/p5-Test-Fatal \
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Package::Stash::XS.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501001
