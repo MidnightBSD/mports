@@ -13,9 +13,8 @@ LICENSE=	gpl2
 
 USE_XORG=	xpm
 
+USES=		gmake
 WRKSRC=		${WRKDIR}/wmstock/src
-USE_GMAKE=	yes
-MAN1=		wmstock.1
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wmstock ${PREFIX}/bin
