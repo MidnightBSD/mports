@@ -9,16 +9,16 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/p/-pre/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented SGML/XML parser toolkit and DSSSL engine
+
 LICENSE=	mit
 
-LIB_DEPENDS=	osp.5:${PORTSDIR}/textproc/opensp
+LIB_DEPENDS=	libosp.so:${PORTSDIR}/textproc/opensp
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
+USES=		gettext gmake libtool
 USE_GCC=	any
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
-USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${DATADIR}
