@@ -19,6 +19,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		XML::SAX::Writer.3 XML::SAX::Writer::XML.3
-
 .include <bsd.port.mk>
