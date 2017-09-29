@@ -13,8 +13,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11 ice xt xproxymngproto
 
-PLIST_FILES=	bin/xfindproxy
-
-MAN1=		xfindproxy.1
+PLIST_FILES=	bin/xfindproxy man/man1/xfindproxy.1.gz
 
 .include <bsd.port.mk>
