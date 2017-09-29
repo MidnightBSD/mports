@@ -20,6 +20,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-3g-source \
 		--disable-cdma-source \
+		--disable-nmea-source \
 		--disable-modem-gps-source
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
