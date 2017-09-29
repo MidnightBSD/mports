@@ -22,10 +22,6 @@ SS_SCRIPTS=	xscreensaver-getimage-desktop xscreensaver-getimage-file \
 		xscreensaver-getimage xscreensaver-getimage-video \
 		xscreensaver-text
 
-MAN1=		xscreensaver-getimage-desktop.1 xscreensaver-getimage-file.1 \
-		xscreensaver-getimage-video.1 xscreensaver-getimage.1 \
-		xscreensaver-text.1
-
 post-build:
 	@cd ${WRKSRC}/driver && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
 		Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} xscreensaver-getimage

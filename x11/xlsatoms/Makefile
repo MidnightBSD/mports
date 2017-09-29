@@ -11,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	x11 xmuu
 
-PLIST_FILES=	bin/xlsatoms
-
-MAN1=		xlsatoms.1
+PLIST_FILES=	bin/xlsatoms man/man1/xlsatoms.1.gz
 
 .include <bsd.port.mk>
