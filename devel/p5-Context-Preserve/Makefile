@@ -9,10 +9,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=ports@MidnightBSD.org
 COMMENT=	Run code after a subroutine call, preserving the context the subroutine
+
 LICENSE=perl
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Context::Preserve.3
 
 .include <bsd.port.mk>
