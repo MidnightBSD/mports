@@ -13,6 +13,5 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 ALL_TARGET=	all # vcheck
-MAN1=		lrz.1 lsz.1
 
 .include <bsd.port.mk>
