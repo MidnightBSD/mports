@@ -10,6 +10,7 @@ MASTER_SITE_SUBDIR=	ratpoison
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple window manager with no fat library dependencies
+
 LICENSE=	gpl2
 
 USE_XORG=	xext xinerama xtst
@@ -36,7 +37,6 @@ PLIST_SUB+=	WITH_GDM="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
-MAN1=		ratpoison.1
 INFO=		ratpoison
 .else
 INSTALL_TARGET=	SUBDIRS=src install-exec
