@@ -11,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xkbfile x11
 
-PLIST_FILES=	bin/xkbevd
-
-MAN1=		xkbevd.1
+PLIST_FILES=	bin/xkbevd man/man1/xkbevd.1.gz
 
 .include <bsd.port.mk>

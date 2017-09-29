@@ -11,8 +11,6 @@ LICENSE=	mit
 XORG_CAT=	app
 USE_XORG=	xp x11
 
-PLIST_FILES=	bin/xprehashprinterlist
-
-MAN1=		xprehashprinterlist.1
+PLIST_FILES=	bin/xprehashprinterlist man/man1/xprehashprinterlist.1.gz
 
 .include <bsd.port.mk>
