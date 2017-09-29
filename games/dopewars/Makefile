@@ -20,7 +20,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 PORTDOCS=	ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL LICENCE NEWS README TODO
-MAN6=	dopewars.6
 
 post-patch:
 	@${REINPLACE_CMD} -e 's!/pixmaps!/dopewars/pixmaps!' \
