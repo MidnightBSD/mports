@@ -1,13 +1,27 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
 %%SITE_PERL%%/JSON/RPC.pm
-%%SITE_PERL%%/JSON/RPC/Client.pm
-%%SITE_PERL%%/JSON/RPC/Server.pm
-%%SITE_PERL%%/JSON/RPC/Procedure.pm
 %%SITE_PERL%%/JSON/RPC/Server/CGI.pm
-%%SITE_PERL%%/JSON/RPC/Server/Daemon.pm
 %%SITE_PERL%%/JSON/RPC/Server/Apache2.pm
+%%SITE_PERL%%/JSON/RPC/Server/Daemon.pm
+%%SITE_PERL%%/JSON/RPC/Client.pm
+%%SITE_PERL%%/JSON/RPC/Procedure.pm
+%%SITE_PERL%%/JSON/RPC/Server.pm
 %%SITE_PERL%%/JSONRPC.pm
-@dirrm %%SITE_PERL%%/JSON/RPC/Server
-@dirrm %%SITE_PERL%%/JSON/RPC
-@dirrmtry %%SITE_PERL%%/JSON
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/RPC
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON
+%%PERL5_MAN3%%/JSON::RPC.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Client.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Procedure.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Server.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Server::Apache2.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Server::CGI.3.gz
+%%PERL5_MAN3%%/JSON::RPC::Server::Daemon.3.gz
+%%PERL5_MAN3%%/JSONRPC.3.gz
+@dir %%SITE_PERL%%/JSON/RPC/Server
+@dir %%SITE_PERL%%/JSON/RPC
+@dir %%SITE_PERL%%/JSON
+@dir %%SITE_ARCH%%/auto/JSON/RPC
+@dir %%SITE_ARCH%%/auto/JSON
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
