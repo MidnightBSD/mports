@@ -17,8 +17,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=	Test::Base.3 \
-	Test::Base::Filter.3 \
-	Module::Install::TestBase.3
-
 .include <bsd.port.mk>
