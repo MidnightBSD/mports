@@ -15,9 +15,6 @@ MAKE_ENV=	BINDIR=${PREFIX}/sbin MANDIR=${PREFIX}/man/man
 
 USE_RC_SUBR=	tits
 
-MAN8=		tits.8
-MANCOMPRESSED=	yes
-
 post-patch:
 	${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/tits.8
 
