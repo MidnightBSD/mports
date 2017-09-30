@@ -19,23 +19,6 @@ USES=		cmake:outsource
 CMAKE_ARGS=	-DBUILD_GUI=off
 USE_LDCONFIG=	yes
 
-MAN1=		babel.1 \
-		obabel.1 \
-		obchiral.1 \
-		obconformer.1 \
-		obenergy.1 \
-		obfit.1 \
-		obgen.1 \
-		obgrep.1 \
-		obgui.1 \
-		obminimize.1 \
-		obprobe.1 \
-		obprop.1 \
-		obrotamer.1 \
-		obrotate.1 \
-		obspectrophore.1 \
-		roundtrip.1
-
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
 OPTIONS_DEFINE=	CAIRO PYTHON
