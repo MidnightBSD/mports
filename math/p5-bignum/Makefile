@@ -13,10 +13,6 @@ LICENSE=        perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		bigint.3 \
-		bignum.3 \
-		bigrat.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501000
