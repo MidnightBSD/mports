@@ -1,7 +1,5 @@
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Return-Value/Makefile,v 1.5 2008/04/17 14:26:00 araujo Exp $
-#
 
 PORTNAME=	Return-Value
 PORTVERSION=	1.302
@@ -12,9 +10,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@Midnightbsd.org
 COMMENT=	Return::Value - Polymorphic Return Values
-LICENSE=       gpl2
-PERL_CONFIGURE=	yes
 
-MAN3=	Return::Value.3
+LICENSE=       gpl2
+
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
