@@ -9,7 +9,6 @@ SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
 SUBDIR += diablo-jdk16
-SUBDIR += diablo-jre16
 SUBDIR += hamcrest
 SUBDIR += intellij
 SUBDIR += intellij-fsnotifier
