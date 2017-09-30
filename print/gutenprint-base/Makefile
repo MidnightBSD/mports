@@ -28,8 +28,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
 LIB_DEPENDS+=	libgutenprintui2.so:${PORTSDIR}/print/gutenprint-base
 PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
 GUTENPRINTUI2_LIBS=`${PKG_CONFIG} --libs gutenprintui2`
-.else
-MAN1+=		escputil.1
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
