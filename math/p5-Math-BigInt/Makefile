@@ -13,10 +13,5 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Math::BigFloat.3 \
-		Math::BigInt.3 \
-		Math::BigInt::Calc.3 \
-		Math::BigInt::CalcEmu.3
-
 .include <bsd.port.mk>
 
