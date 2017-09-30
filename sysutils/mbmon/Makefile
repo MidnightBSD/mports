@@ -9,6 +9,7 @@ DISTNAME=	xmbmon${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Motherboard monitor for LM78/79, W8378x, AS99127F, VT82C686 and ADM9240
+
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
@@ -42,7 +43,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${CHMOD} u+s ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/|} ${PREFIX}/man/man1
+	${INSTALL_MAN} mbmon.1 ${PREFIX}/man/man1
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
