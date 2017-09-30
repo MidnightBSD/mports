@@ -15,6 +15,4 @@ RUN_DEPENDS=	p5-PadWalker>=0:${PORTSDIR}/devel/p5-PadWalker
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Devel::ArgNames.3
-
 .include <bsd.port.mk>
