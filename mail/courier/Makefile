@@ -132,7 +132,6 @@ EMPTYALIASES_DESC=	create empty aliases file
 
 .include <bsd.mport.options.mk>
 .include "${.CURDIR}/Makefile.doc"
-.include "${.CURDIR}/Makefile.man"
 .include "${.CURDIR}/Makefile.own"
 
 .if ${PORT_OPTIONS:MLDAP}
