@@ -13,8 +13,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Time::Local.3
-
 .if !defined(NOPORTDOCS)
 PORTDOCS=	Changes
 

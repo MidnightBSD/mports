@@ -15,9 +15,6 @@ LICENSE=	perl
 PERL_CONFIGURE=	yes
 INSTALL_TARGET=	pure_install
 
-MAN3=		Test::Tester.3 Test::Tester::Capture.3 \
-		Test::Tester::CaptureRunner.3
-
 .if !defined(NOPORTDOCS)
 PORTDOCS=	CHANGES
 
