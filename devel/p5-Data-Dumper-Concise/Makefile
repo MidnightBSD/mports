@@ -15,8 +15,4 @@ RUN_DEPENDS=	p5-Devel-ArgNames>=0.03:${PORTSDIR}/devel/p5-Devel-ArgNames
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Data::Dumper::Concise.3 \
-		Data::Dumper::Concise::Sugar.3 \
-		Devel::Dwarn.3
-
 .include <bsd.port.mk>
