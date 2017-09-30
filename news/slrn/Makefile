@@ -1,62 +1,42 @@
 # $MidnightBSD$
 
 PORTNAME=	slrn
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.3a
 CATEGORIES=	news ipv6
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME} \
-		http://www.jedsoft.org/slrn/download/
+MASTER_SITES=	http://www.jedsoft.org/releases/slrn/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SLang-based newsreader
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	slang:${PORTSDIR}/devel/libslang2
+LIB_DEPENDS=	libslang.so:devel/libslang2
 
 CONFLICTS_INSTALL=	ja-slrn-[0-9]*
 
-USE_GMAKE=	yes
-USE_ICONV=	yes
+USES=		gmake iconv tar:bzip2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--enable-ipv6 --disable-inews --with-slrnpull \
-			--with-libiconv-prefix=${LOCALBASE}
+CONFIGURE_ARGS+=--disable-inews --with-slrnpull \
+		--with-non-gnu-iconv ${ICONV_CONFIGURE_ARG} \
+		--enable-ssl
 
 ALL_TARGET=	all
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/[a-z]$//}
 
-MAN1=		slrn.1 slrnpull.1
+MAKE_JOBS_UNSAFE=	yes
 
-OPTIONS_DEFINE=	SSL DEVIEW
-OPTIONS_DEFAULT=SSL
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=	YES
-CONFIGURE_ARGS+=	--with-ssl
-.endif
-
-.if ${PORT_OPTIONS:MDEVIEW}
-LIB_DEPENDS+=	uu:${PORTSDIR}/converters/uulib
-CONFIGURE_ARGS+=	--with-uulib
-.endif
-
-.if ! ${PORT_OPTIONS:MDOCS}
-# Use dummy target rather than rewriting makefile
-CONFIGURE_ARGS+=	--with-docdir=${WRKSRC}/dummy
-.endif
+OPTIONS_DEFINE=	NLS DEVIEW DOCS
+OPTIONS_SUB=	yes
+NLS_USES=		gettext
+NLS_CONFIGURE_OFF=	--disable-nls
+DEVIEW_DESC?=		UUdecode view support
+DEVIEW_LIB_DEPENDS=	libuu.so:converters/uulib
+DEVIEW_CONFIGURE_WITH=	uulib
+DOCS_CONFIGURE_OFF=	--with-docdir=${WRKSRC}/dummy
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/lib/sendmail,/usr/sbin/sendmail,' \
 		${WRKSRC}/src/slrnfeat.hin
-	@${REINPLACE_CMD} -e 's,malloc.h,stdlib.h,' \
-		${WRKSRC}/src/jdmacros.h
 
 .include <bsd.port.mk>
