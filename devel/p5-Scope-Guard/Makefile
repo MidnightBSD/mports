@@ -15,7 +15,5 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Scope::Guard.3
-
 .include <bsd.port.mk>
 
