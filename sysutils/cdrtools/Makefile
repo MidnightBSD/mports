@@ -14,10 +14,6 @@ LICENSE=	other
 
 CONFLICTS=	cdrkit-* cdrtools-devel-* cjk-cdrtools-*
 
-MAN1=		btcflash.1 cdda2wav.1 cdrecord.1 readcd.1 scgcheck.1
-MAN8=		isoinfo.8 mkisofs.8
-MLINKS=		isoinfo.8 devdump.8 isoinfo.8 isodump.8 isoinfo.8 isovfy.8 \
-		mkisofs.8 mkhybrid.8
 DOCS=		README.FreeBSD README.mkisofs
 CDDA2WAVDOCS=	FAQ Frontends HOWTOUSE OtherProgs README THANKS TODO
 CDRECORDDOCS=	README README.ATAPI README.DiskT@2 README.WORM README.audio \
