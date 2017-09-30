@@ -63,7 +63,7 @@ CONFIGURE_ARGS+=	--mandir="${MANPREFIX}/man" \
 CONFIGURE_ENV+=		PTHREAD_LDFLAGS="-lpthread"
 
 USES=			cpe compiler waf pkgconfig perl5 python:2 \
-			readline iconv shebangfix
+			readline iconv shebangfix 
 USE_PERL5=		build
 USE_LDCONFIG=		${SAMBA4_LIBDIR}
 WAF_CMD=		buildtools/bin/waf
@@ -128,7 +128,6 @@ AD_DC_DESC=		Active Directory Domain Controller support
 ADS_DESC=		Active Directory client support
 DNSUPDATE_DESC=		Dynamic DNS update (require ADS)
 EXP_MODULES_DESC=	Experimental modules
-FAM_DESC=		File Alteration Monitor support
 LDAP_DESC=		LDAP client support
 PAM_SMBPASS_DESC=	PAM authentication via passdb backends
 PTHREADPOOL_DESC=	Pthread pool
@@ -280,13 +279,8 @@ CONFIGURE_ARGS+=	--without-dnsupdate
 PLIST_SUB+=		DNSUPDATE="@comment "
 .endif
 
-# https://bugzilla.samba.org/show_bug.cgi?id=9545
-.if ${PORT_OPTIONS:MFAM}
-USES+=			fam
+EXTENSIONS+=	fam
 CONFIGURE_ARGS+=	--with-fam
-.else
-CONFIGURE_ARGS+=	--without-fam
-.endif
 
 .if ${PORT_OPTIONS:MLDAP}
 SAMBA4_WANT_LDAP=	yes
