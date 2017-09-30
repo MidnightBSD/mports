@@ -1,6 +1,13 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/String/Approx.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/String/Approx/Approx.bs
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/String/Approx/Approx.so
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/String/Approx
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/String
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/String
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
+%%SITE_ARCH%%/String/Approx.pm
+%%SITE_ARCH%%/auto/String/Approx/Approx.so
+%%SITE_ARCH%%/auto/String/Approx/Approx.bs
+%%PERL5_MAN3%%/String::Approx.3.gz
+@dir %%SITE_ARCH%%/String
+@dir %%SITE_ARCH%%/auto/String/Approx
+@dir %%SITE_ARCH%%/auto/String
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
