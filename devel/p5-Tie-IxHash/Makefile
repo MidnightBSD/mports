@@ -10,10 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module implementing ordered in-memory associative arrays
 LICENSE=	perl
 
-MAKE_JOBS_SAFE=	yes
-
 PERL_CONFIGURE=	yes
-
-MAN3=		Tie::IxHash.3
 
 .include <bsd.port.mk>

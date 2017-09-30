@@ -1,4 +1,2 @@
 %%SITE_PERL%%/Time/Local.pm
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time/Local
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Time
-@dirrmtry %%SITE_PERL%%/Time
+%%PERL5_MAN3%%/Time::Local.3.gz
