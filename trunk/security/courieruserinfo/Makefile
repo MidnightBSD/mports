@@ -20,8 +20,6 @@ CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' LDFLAGS='${LDFLAGS}'
 
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
-MAN8=		courieruserinfo.8
-
 post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
