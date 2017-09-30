@@ -12,6 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		IPC::ShareLite.3
-
 .include <bsd.port.mk>
