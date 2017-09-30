@@ -16,8 +16,4 @@ RUN_DEPENDS=	p5-JSON>=2.0:${PORTSDIR}/converters/p5-JSON \
 
 PERL_CONFIGURE=	YES
 
-MAN3=		JSON::RPC.3 JSON::RPC::Server.3 JSON::RPC::Client.3 \
-		JSON::RPC::Procedure.3 JSON::RPC::Server::CGI.3 JSONRPC.3 \
-		JSON::RPC::Server::Daemon.3 JSON::RPC::Server::Apache2.3
-
 .include <bsd.port.mk>
