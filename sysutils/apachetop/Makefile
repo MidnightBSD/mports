@@ -14,8 +14,7 @@ MAKE_JOBS_SAFE=  yes
 
 GNU_CONFIGURE=	yes
 
-MAN1=		apachetop.1
-PLIST_FILES=	bin/apachetop
+PLIST_FILES=	bin/apachetop man/man1/apachetop.1.gz
 
 OPTIONS_DEFINE=	ADNS FAM PCRE
 ADNS_DESC=	Asynchronous-capable DNS support
