@@ -16,9 +16,4 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		SMS::Send.3 \
-		SMS::Send::AU::Test.3 \
-		SMS::Send::Driver.3 \
-		SMS::Send::Test.3
-
 .include <bsd.port.mk>
