@@ -12,6 +12,4 @@ LICENSE=	perl
 
 PERL_MODBUILD=	yes
 
-MAN3=		Class::Factory::Util.3
-
 .include <bsd.port.mk>
