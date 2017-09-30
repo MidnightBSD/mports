@@ -27,7 +27,6 @@ OPTIONS=	IPV6 "enable IPv6 support" on \
 
 PLIST_FILES=	bin/netcat
 PORTDOCS=	README
-MAN1=		netcat.1
 
 .include <bsd.port.pre.mk>
 
