@@ -13,9 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=	Log::Any.3 \
-	Log::Any::Adapter::Core.3 \
-	Log::Any::Adapter::Null.3 \
-	Log::Any::Test.3
-
 .include <bsd.port.mk>
