@@ -24,8 +24,6 @@ USE_PERL5=	yes
 USE_RC_SUBR=	${PORTNAME}d
 PORTDOCS=	CHANGES ChangeLog DEINSTALL INSTALL LICENSE TODO UPDATING USAGE
 SUB_FILES=	pkg-message
-MANLANG=	"" ru.KOI8-R
-MAN8=		${USE_RC_SUBR}.8 ${PORTNAME}master.8
 CONFIGS=	${PORTNAME}.conf.default ${PORTNAME}.conf.default.rus
 CONFIGURE_ARGS+=--localstatedir=/var
 
@@ -70,16 +68,6 @@ post-patch:
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/${USE_RC_SUBR}/${USE_RC_SUBR} ${PREFIX}/bin
-	@${MKDIR} ${MANPREFIX}/man/man8
-.for i in ${MAN8}
-	${INSTALL_MAN} ${WRKSRC}/man/en/${i} ${MANPREFIX}/man/man8
-.endfor
-.for lang in ${MANLANG:N""}
-	@${MKDIR} ${MANPREFIX}/man/${lang}/man8
-.for i in ${MAN8}
-	${INSTALL_MAN} ${WRKSRC}/man/${lang}/${i} ${MANPREFIX}/man/${lang}/man8
-.endfor
-.endfor
 .if !exists(${PREFIX}/etc/${PORTNAME}.conf)
 	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default ${PREFIX}/etc/${PORTNAME}.conf
 .endif
