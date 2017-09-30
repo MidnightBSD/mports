@@ -16,6 +16,4 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Crypt::DES.3
-
 .include <bsd.port.mk>
