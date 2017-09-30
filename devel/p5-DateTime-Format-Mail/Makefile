@@ -18,6 +18,4 @@ RUN_DEPENDS=	p5-Params-Validate>=0:${PORTSDIR}/devel/p5-Params-Validate \
 
 PERL_MODBUILD=	yes
 
-MAN3=		DateTime::Format::Mail.3
-
 .include <bsd.port.mk>
