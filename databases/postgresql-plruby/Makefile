@@ -17,7 +17,7 @@ GH_TAGNAME=	${GH_COMMIT}
 GH_COMMIT=	f8d9ced
 WRKSRC=		${WRKDIR}/postgresql-plruby-${GH_COMMIT}
 
-USES+=		uidfix pgsql
+USES+=		uidfix pgsql pkgconfig
 WANT_PGSQL=	server
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
