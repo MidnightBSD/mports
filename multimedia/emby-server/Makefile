@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	emby-server
-PORTVERSION=	3.1.2
+PORTVERSION=	3.2.32.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,7 +38,7 @@ X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick-nox11
 do-build:
 	(cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/xbuild /t:build /p:Configuration="Release Mono" \
-			/p:Platform="Any CPU" MediaBrowser.Mono.sln)
+			/p:Platform="Any CPU" MediaBrowser.sln)
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server
