@@ -13,6 +13,4 @@ LICENSE=	php
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Crypt::CBC.3
-
 .include <bsd.port.mk>
