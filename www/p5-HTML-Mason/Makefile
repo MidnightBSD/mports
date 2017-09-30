@@ -22,38 +22,6 @@ RUN_DEPENDS=	p5-Cache-Cache>=1:${PORTSDIR}/devel/p5-Cache-Cache \
 PERL_MODBUILD=	yes
 CONFIGURE_ARGS+=	--noprompts
 
-MAN3=		Bundle::HTML::Mason.3 \
-		HTML::Mason.3 \
-		HTML::Mason::Admin.3 \
-		HTML::Mason::ApacheHandler.3 \
-		HTML::Mason::CGIHandler.3 \
-		HTML::Mason::Cache::BaseCache.3 \
-		HTML::Mason::Compiler.3 \
-		HTML::Mason::Compiler::ToObject.3 \
-		HTML::Mason::Component.3 \
-		HTML::Mason::Component::FileBased.3 \
-		HTML::Mason::Component::Subcomponent.3 \
-		HTML::Mason::ComponentSource.3 \
-		HTML::Mason::Devel.3 \
-		HTML::Mason::Escapes.3 \
-		HTML::Mason::Exceptions.3 \
-		HTML::Mason::FakeApache.3 \
-		HTML::Mason::Interp.3 \
-		HTML::Mason::Lexer.3 \
-		HTML::Mason::MethodMaker.3 \
-		HTML::Mason::Params.3 \
-		HTML::Mason::Parser.3 \
-		HTML::Mason::Plugin.3 \
-		HTML::Mason::Plugin::Context.3 \
-		HTML::Mason::Request.3 \
-		HTML::Mason::Resolver.3 \
-		HTML::Mason::Resolver::File.3 \
-		HTML::Mason::Resolver::Null.3 \
-		HTML::Mason::Subclassing.3 \
-		HTML::Mason::Tests.3 \
-		HTML::Mason::Tools.3 \
-		HTML::Mason::Utils.3
-
 OPTIONS=	MOD_PERL "with mod_perl dependency" off \
 		APACHE2 "with mod_perl for Apache 2" off
 
