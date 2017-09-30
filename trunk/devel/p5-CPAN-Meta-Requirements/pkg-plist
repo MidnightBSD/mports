@@ -1,7 +1,2 @@
 %%SITE_PERL%%/CPAN/Meta/Requirements.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/CPAN/Meta/Requirements/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/CPAN/Meta/Requirements
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/CPAN/Meta
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/CPAN
-@dirrmtry %%SITE_PERL%%/CPAN/Meta
-@dirrmtry %%SITE_PERL%%/CPAN
+%%PERL5_MAN3%%/CPAN::Meta::Requirements.3.gz
