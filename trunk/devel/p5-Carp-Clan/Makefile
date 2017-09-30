@@ -14,6 +14,4 @@ BUILD_DEPENDS=	${SITE_PERL}/Test/Exception.pm:${PORTSDIR}/devel/p5-Test-Exceptio
 
 PERL_CONFIGURE=	yes
 
-MAN3=	Carp::Clan.3
-
 .include <bsd.port.mk>
