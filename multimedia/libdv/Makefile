@@ -1,10 +1,5 @@
-# New ports collection makefile for:	libdv
-# Date created:				Sun Nov 18 19:42:02 BRST 2001
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
-#
 
 PORTNAME=	libdv
 PORTVERSION=	1.0.0
@@ -13,10 +8,11 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quasar DV codec (libdv): software codec for DV video encoding format
+
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		popt.0:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	libjpeg.so:graphics/jpeg \
+		libpopt.so:devel/popt
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--disable-gtk --program-prefix=''
@@ -24,8 +20,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${LOCALBASE}/libdata/pkgconfig
 USE_LDCONFIG=	yes
-
-MAN1=	dubdv.1 dvconnect.1 encodedv.1
 
 PORTDOCS=	AUTHORS COPYING COPYRIGHT ChangeLog NEWS README \
 		README.dvconnect README.encoder TODO
