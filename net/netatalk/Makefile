@@ -61,12 +61,6 @@ PLIST_SUB+=		NETATALKKRB5="@comment "
 .if ${PORT_OPTIONS:MAPPLETALK}
 CONFIGURE_ARGS+=	--enable-ddp
 PLIST_SUB+=		APPLETALK=""
-MAN1+=			aecho.1 getzones.1 nbp.1 nbplkup.1 nbprgstr.1 \
-			nbpunrgstr.1 pap.1 papstatus.1 psorder.1
-MAN3+=			atalk_aton.3 nbp_name.3
-MAN4+=			atalk.4
-MAN5+=			atalkd.conf.5 papd.conf.5
-MAN8+=			atalkd.8 papd.8 papstatus.8 psf.8
 FILES+=			atalkd.conf papd.conf
 .else
 PLIST_SUB+=		APPLETALK="@comment "
