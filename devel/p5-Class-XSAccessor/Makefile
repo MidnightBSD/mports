@@ -16,8 +16,4 @@ LICENSE=	perl
 USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::XSAccessor.3 \
-    		Class::XSAccessor::Array.3 \
-    		Class::XSAccessor::Heavy.3
-
 .include <bsd.port.mk>
