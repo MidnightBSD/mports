@@ -20,6 +20,4 @@ BUILD_DEPENDS=	${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
 
 PERL_CONFIGURE=	YES
 
-MAN3=		String::Approx.3
-
 .include <bsd.port.mk>
