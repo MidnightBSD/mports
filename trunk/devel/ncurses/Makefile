@@ -82,8 +82,6 @@ EXAMPLES_CPP=	Makefile NEWS PROBLEMS README-first cursesapp.cc \
 
 .include <bsd.mport.options.mk>
 
-.include "${.CURDIR}/Makefile.man"
-
 CONFIGURE_ARGS_WIDEC=--enable-widec
 .if ${PORT_OPTIONS:MEXTCOLORS}
 CONFIGURE_ARGS_WIDEC+=--enable-ext-colors
