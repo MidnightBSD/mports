@@ -15,8 +15,7 @@ GNU_CONFIGURE=	yes
 
 MAKE_ARGS=	PROGRAM="${PORTNAME}"
 
-PLIST_FILES+=	bin/${PORTNAME}
-MAN1?=		mbmon.1
+PLIST_FILES+=	bin/${PORTNAME} man/man1/mbmon.1.gz
 PORTDOCS=	ChangeLog ChangeLog.jp ReadMe ReadMe.jp ReadMe.tech
 
 OPTIONS_DEFINE=	ASUS SMB
