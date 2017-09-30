@@ -39,8 +39,6 @@ PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-MAN1=		dnetc.1
-
 SUB_FILES=	pkg-install pkg-deinstall pkg-message
 SUB_LIST=	BINDIR="${BINDIR}" \
 		CLIENTUSER="${CLIENTUSER}" \
