@@ -32,7 +32,7 @@ PLIST_SUB+=	FC=""
 PLIST_SUB+=	FC="@comment "
 .endif
 
-MAN1=		f2c.1
+LMAN1=		f2c.1
 
 PORTDOCS=	00lastchange README README_libf2c changes f2c.pdf permission
 
@@ -71,7 +71,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/fc ${PREFIX}/bin/${FCNAME}
 .endif
 	${INSTALL_DATA} ${WRKSRC}/src/f2c.h ${PREFIX}/include
-	${INSTALL_MAN} ${WRKSRC}/src/${MAN1}t ${MAN1PREFIX}/man/man1/${MAN1}
+	${INSTALL_MAN} ${WRKSRC}/src/${LMAN1}t ${MAN1PREFIX}/man/man1/${LMAN1}
 	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.a ${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.so.2 ${PREFIX}/lib
 	${LN} -sf libf2c.so.2 ${PREFIX}/lib/libf2c.so
