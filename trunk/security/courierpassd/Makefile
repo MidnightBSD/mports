@@ -30,8 +30,6 @@ MINUID?=	100
 DELAY?=		3
 CONFIGURE_ARGS+=--with-minuid=${MINUID} --with-badpassdelay=${DELAY}
 
-MAN8=		courierpassd.8
-
 pre-everything::
 	@${ECHO} ""
 	@${ECHO} "###########################################################"

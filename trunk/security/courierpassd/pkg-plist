@@ -1,3 +1,4 @@
+man/man8/courierpassd.8.gz
 sbin/courierpassd
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
