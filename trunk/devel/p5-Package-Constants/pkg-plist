@@ -1,5 +1,11 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
 %%SITE_PERL%%/Package/Constants.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Package/Constants/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Package/Constants
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Package
-@dirrmtry %%SITE_PERL%%/Package
+%%PERL5_MAN3%%/Package::Constants.3.gz
+@dir %%SITE_PERL%%/Package
+@dir %%SITE_ARCH%%/auto/Package/Constants
+@dir %%SITE_ARCH%%/auto/Package
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
