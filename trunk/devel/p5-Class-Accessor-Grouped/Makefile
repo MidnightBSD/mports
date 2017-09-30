@@ -22,6 +22,4 @@ TEST_DEPENDS=	p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::Accessor::Grouped.3
-
 .include <bsd.port.mk>
