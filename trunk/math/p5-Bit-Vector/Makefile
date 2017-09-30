@@ -15,6 +15,4 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Bit::Vector.3 Bit::Vector::Overload.3 Bit::Vector::String.3
-
 .include <bsd.port.mk>
