@@ -98,7 +98,6 @@ RUN_DEPENDS+=	readline>=0:${PORTSDIR}/devel/readline
 CONFIGURE_ARGS+=	--disable-libedit --with-readline-prefix=${LOCALBASE}
 
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
-MLINKS=		${RUBY_NAME}.1 ruby.1
 PLIST_SUB+=	IF_DEFAULT=""
 .else
 PKGNAMESUFFIX=	${RUBY_VER:C/\.//}
