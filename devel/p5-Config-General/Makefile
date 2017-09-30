@@ -1,10 +1,5 @@
-# New ports collection makefile for:	p5-Config-General
-# Date created:				August 27 2002
-# Whom:	      				Sheldon Hearn <sheldonh@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Config-General/Makefile,v 1.16 2007/02/25 07:55:16 rafan Exp $
-#
 
 PORTNAME=	Config-General
 PORTVERSION=	2.40
@@ -18,9 +13,6 @@ COMMENT=	Perl5 module for handling Apache-style configuration files
 LICENSE=        perl
 
 PERL_CONFIGURE=	YES
-
-MAN3=		Config::General::Extended.3 Config::General::Interpolated.3 \
-		Config::General.3
 
 .include <bsd.port.pre.mk>
 

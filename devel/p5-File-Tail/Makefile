@@ -1,10 +1,5 @@
-# New ports collection makefile for:	File-Tail
-# Date created:			19 December 2000
-# Whom:				Jeremy Shaffner <jeremy@external.org>
-#
 # $FreeBSD: ports/devel/p5-File-Tail/Makefile,v 1.11 2006/06/19 20:06:51 shaun Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	File-Tail
 PORTVERSION=	0.99.3
@@ -18,8 +13,6 @@ COMMENT=	Perl Module to read the end of a file as it\'s appended to
 LICENSE=	perl
 
 PERL_CONFIGURE=	YES
-
-MAN3=		File::Tail.3
 
 .include <bsd.port.pre.mk>
 

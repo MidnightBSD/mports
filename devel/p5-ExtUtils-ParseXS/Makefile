@@ -22,6 +22,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		ExtUtils::ParseXS.3
-
 .include <bsd.port.mk>
