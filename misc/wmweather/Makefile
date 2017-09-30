@@ -23,8 +23,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/src
 USE_GMAKE=	yes
 USE_XORG=	xpm
 
-MAN1=		wmweather.1
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wmweather ${PREFIX}/bin/
 	${LN} ${PREFIX}/bin/wmweather ${PREFIX}/bin/wmWeather
