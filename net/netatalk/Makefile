@@ -38,15 +38,6 @@ SENDFILE_DESC=	sendfile support
 FILES=		AppleVolumes.default AppleVolumes.system afpd.conf netatalk.conf
 LINKS=		unbin unhex unsingle hqx2bin single2bin macbinary \
 		binheader nadheader
-MAN1=		ad.1 afpldaptest.1 afppasswd.1 apple_dump.1 asip-status.pl.1 \
-		dbd.1 hqx2bin.1 macbinary.1 macusers.1 megatron.1 \
-		netatalk-config.1 single2bin.1 unbin.1 unhex.1 uniconv.1 \
-		unsingle.1
-MAN5=		AppleVolumes.5 AppleVolumes.default.5 \
-		AppleVolumes.system.5 afp_ldap.conf.5 afp_signature.conf.5 \
-		afp_voluuid.conf.5 afpd.conf.5 netatalk.conf.5
-MAN8=		afpd.8 cnid_dbd.8 cnid_metad.8 timelord.8
-
 CONFLICTS=	bigloo-2.* cap-6.0.* tct-1.* netatalk-1* yudit-[0-9]*
 
 .include <bsd.mport.options.mk>
