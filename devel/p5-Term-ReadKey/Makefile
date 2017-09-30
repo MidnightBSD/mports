@@ -13,6 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Term::ReadKey.3
-
 .include <bsd.port.mk>

@@ -19,8 +19,6 @@ PORTSCOUT=	skipv:0.4801
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Test::Differences.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501400

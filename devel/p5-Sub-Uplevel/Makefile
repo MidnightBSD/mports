@@ -14,6 +14,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Sub::Uplevel.3
-
 .include <bsd.port.mk>
