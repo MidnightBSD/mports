@@ -1,55 +1,100 @@
 # $MidnightBSD$
 #
-# common templates for replacing #! interpreters in scripts file
+# Replace #! interpreters in scripts by what we actually have.
+#
+# Standard templates for bash, perl, python,... are included out of
+# the box, others can easily be added per port.
 #
 # Feature:	shebangfix
 # Usage:	USES=shebangfix
 #
-# To define that the file to modify are: ${WRKSRC}/path1/file and all the .pl files in ${WRKSRC}/path2:
+#   SHEBANG_REGEX	a regular expression to match files that needs to be converted
+#   SHEBANG_FILES	list of files or glob pattern relative to ${WRKSRC}
+#   SHEBANG_GLOB	list of glob pattern find(1) will match with
 #
-# SHEBANG_FILES=	path1/file path2/*.pl
+# To specify that ${WRKSRC}/path1/file and all .pl files in ${WRKSRC}/path2
+# should be processed:
 #
-# To define new shebang scheme, in the port Makefile add:
+#   SHEBANG_FILES=	path1/file path2/*.pl
 #
-# SHEBANG_LANG=	lua
-# lua_OLD_CMD=	/usr/bin/lua
-# lua_CMD=	${LOCALBASE}/bin/lua
+# To define custom shebangs to replace, use the following (note that
+# shebangs with spaces should be quoted):
 #
-# To override a definition for example replacing /usr/bin/perl by /usr/bin/env perl
-# add to the port Makefile:
-# perl_CMD=	${SENTENV} perl
+#   perl_OLD_CMD=	/usr/bin/perl5.005 "/usr/bin/setenv perl5.005"
 #
+# To define a new shebang scheme add the following to the port Makefile:
+#
+#   SHEBANG_LANG=	lua
+#   lua_OLD_CMD=	/usr/bin/lua
+#   lua_CMD=	${LOCALBASE}/bin/lua
+#
+# To override a definition, for example replacing /usr/bin/perl by
+# /usr/bin/env perl, add the following:
+#
+#   perl_CMD=	${SETENV} perl
 
-.if !defined(_INCLUDE_USES_SHEBANGFIX_Mk)
+.if !defined(_INCLUDE_USES_SHEBANGFIX_MK)
 _INCLUDE_USES_SHEBANGFIX_MK=	yes
 
-bash_OLD_CMD?=	/bin/bash
-bash_CMD?=	${LOCALBASE}/bin/bash
-perl_OLD_CMD?=	/usr/bin/perl
-perl_CMD?=	/usr/bin/perl
-python_OLD_CMD?=	/usr/bin/python
-python_CMD?=	${LOCALBASE}/bin/python
-ruby_OLD_CMD?=	/usr/bin/ruby
-ruby_CMD?=	${LOCALBASE}/bin/ruby
-php_OLD_CMD?=	/usr/bin/php
-php_CMD?=	${LOCALBASE}/bin/php
+SHEBANG_LANG+=	bash java ksh perl php python ruby tcl tk
 
-SHEBANG_LANG+=	bash perl python ruby php
+.if ${USES:Mlua*}
+SHEBANG_LANG+=	lua
+lua_CMD?=	${LOCALBASE}/bin/${LUA_CMD}
+.endif
+
+tcl_OLD_CMD+=	/usr/bin/tclsh
+tcl_CMD?=	${TCLSH}
+
+tk_OLD_CMD+=	/usr/bin/wish
+tk_CMD?=	${WISH}
+
+.if ${USES:Mpython*}
+python_CMD?=	${PYTHON_CMD}
+.endif
+
+# Replace the same patterns for all langs and setup a default, that may have
+# been set already above with ?=.
+.for lang in ${SHEBANG_LANG}
+${lang}_CMD?= ${LOCALBASE}/bin/${lang}
+${lang}_OLD_CMD+= "/usr/bin/env ${lang}"
+${lang}_OLD_CMD+= /bin/${lang}
+${lang}_OLD_CMD+= /usr/bin/${lang}
+${lang}_OLD_CMD+= /usr/local/bin/${lang}
+.endfor
 
 .for lang in ${SHEBANG_LANG}
-.if !defined(${lang}_CMD)
+.  if !defined(${lang}_CMD)
 IGNORE+=	missing definition for ${lang}_CMD
-.endif
-.if !defined(${lang}_OLD_CMD)
+.  endif
+.  if !defined(${lang}_OLD_CMD)
 IGNORE+=	missing definition for ${lang}_OLD_CMD
-.endif
-_SHEBANG_REINPLACE_ARGS+=	-e "1s|^\#![[:space:]]*${${lang}_OLD_CMD}|\#!${${lang}_CMD}|"
+.  endif
+.  for old_cmd in ${${lang}_OLD_CMD}
+_SHEBANG_REINPLACE_ARGS+=	-e "1s|^\#![[:space:]]*${old_cmd:C/\"//g}\([[:space:]]\)|\#!${${lang}_CMD}\1|"
+_SHEBANG_REINPLACE_ARGS+=	-e "1s|^\#![[:space:]]*${old_cmd:C/\"//g}$$|\#!${${lang}_CMD}|"
+.  endfor
 .endfor
 
 pre-patch: fix-shebang
 
 fix-shebang:
+.if defined(SHEBANG_REGEX)
 	@cd ${WRKSRC}; \
-		${ECHO_CMD} ${SHEBANG_FILES} | ${XARGS} ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS}
+		${FIND} -E . -type f -iregex '${SHEBANG_REGEX}' \
+		-exec ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS} {} +
+.endif
+.if defined(SHEBANG_GLOB)
+.  for f in ${SHEBANG_GLOB}
+	@cd ${WRKSRC}; \
+		${FIND} . -type f -name '${f}' \
+		-exec ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS} {} +
+.  endfor
+.endif
+.if defined(SHEBANG_FILES)
+	@cd ${WRKSRC}; \
+		${FIND} ${SHEBANG_FILES} -type f \
+		-exec ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS} {} +
+.endif
 
 .endif
