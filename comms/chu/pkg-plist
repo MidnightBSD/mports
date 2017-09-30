@@ -5,5 +5,4 @@ sbin/chu
 %%PORTDOCS%%%%DOCSDIR%%/chuman.html
 %%PORTDOCS%%%%DOCSDIR%%/ntp.html
 %%PORTDOCS%%%%DOCSDIR%%/TESTING
-@dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+man/man8/chu.8.gz
