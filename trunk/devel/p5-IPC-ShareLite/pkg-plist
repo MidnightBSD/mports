@@ -1,8 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.139 2009/03/19 17:02:30 ctriv Exp $
-%%SITE_PERL%%/%%PERL_ARCH%%/IPC/ShareLite.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/IPC/ShareLite/ShareLite.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/IPC/ShareLite/ShareLite.bs
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/IPC/ShareLite/autosplit.ix
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/IPC
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IPC/ShareLite
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IPC
+%%PERL5_MAN3%%/IPC::ShareLite.3.gz
+%%SITE_ARCH%%/IPC/ShareLite.pm
+%%SITE_ARCH%%/auto/IPC/ShareLite/ShareLite.so
+%%SITE_ARCH%%/auto/IPC/ShareLite/autosplit.ix
