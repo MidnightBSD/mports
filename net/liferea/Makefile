@@ -11,7 +11,7 @@ COMMENT=	Simple RSS/RDF feed reader
 
 LICENSE=	gpl2
 
-LIB_DEPENDS= webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2
+LIB_DEPENDS=	libwebkitgtk-1.0.so:www/webkit-gtk2
 
 USE_GNOME=	gnomeprefix libglade2 gconf2
 USES=	libtool gmake sqlite
@@ -20,8 +20,6 @@ CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 MAKE_JOBS_SAFE=	yes
 
-MAN1=		liferea.1
-MANLANG=	"" pl
 GCONF_SCHEMAS=	liferea.schemas
 INSTALLS_ICONS=	yes
 
