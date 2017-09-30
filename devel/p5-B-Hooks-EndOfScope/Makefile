@@ -17,10 +17,4 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		B::Hooks::EndOfScope.3 \
-		B::Hooks::EndOfScope::PP.3 \
-		B::Hooks::EndOfScope::PP::FieldHash.3 \
-		B::Hooks::EndOfScope::PP::HintHash.3 \
-		B::Hooks::EndOfScope::XS.3
-
 .include <bsd.port.mk>
