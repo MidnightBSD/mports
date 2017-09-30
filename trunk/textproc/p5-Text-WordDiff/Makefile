@@ -20,6 +20,4 @@ RUN_DEPENDS=	${SITE_PERL}/Algorithm/Diff.pm:${PORTSDIR}/devel/p5-Algorithm-Diff 
 
 PERL_MODBUILD=	yes
 
-MAN3=		Text::WordDiff.3 Text::WordDiff::ANSIColor.3 Text::WordDiff::HTML.3
-
 .include <bsd.port.mk>
