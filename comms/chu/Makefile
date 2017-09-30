@@ -13,8 +13,6 @@ COMMENT=	Synchronise computer clock to CHU radio station
 
 LICENSE=	gpl2
 
-MAN8=	chu.8
-
 .include <bsd.mport.options.mk>
 
 do-extract:
