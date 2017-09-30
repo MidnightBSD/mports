@@ -8,10 +8,10 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module implementing lanman and nt md4 hash functions
-LICENSE=	perl
+
+LICENSE=	gpl2 gpl3
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
-
-MAN3=		Crypt::SmbHash.3
 
 .include <bsd.port.mk>
