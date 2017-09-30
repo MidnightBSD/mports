@@ -16,6 +16,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Test::Exception.3
-
 .include <bsd.port.mk>
