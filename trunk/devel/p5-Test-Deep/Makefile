@@ -17,8 +17,6 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 PERL_CONFIGURE=	yes
 REINPLACE_ARGS=	-i ''
 
-MAN3=		Test::Deep.3 Test::Deep::NoTest.3
-
 post-patch:
 	@${REINPLACE_CMD} -e '/return (/s/;/);/' ${WRKSRC}/lib/Test/Deep/RegexpOnly.pm
 
