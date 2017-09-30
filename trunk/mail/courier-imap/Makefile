@@ -104,11 +104,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 LIB_DEPENDS+=	fam.0:${PORTSDIR}/devel/fam
 .endif
 
-MAN1=		couriertcpd.1 maildiracl.1 maildirkw.1 \
-		maildirmake.1
-
-MAN8=		deliverquota.8 imapd.8 mkimapdcert.8 mkpop3dcert.8
-
 EXTRA_DOCS=	AUTHORS INSTALL NEWS imap/ChangeLog imap/README \
 		imap/README.proxy maildir/README.imapkeywords.html \
 		maildir/README.maildirfilter.html \
