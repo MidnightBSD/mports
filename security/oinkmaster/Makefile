@@ -15,14 +15,12 @@ RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
 
-PLIST_FILES=	bin/oinkmaster etc/oinkmaster.conf.sample
+PLIST_FILES=	bin/oinkmaster etc/oinkmaster.conf.sample \
+		man/man1/oinkmaster.1.gz
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	README
 .endif
-
-MAN1=		oinkmaster.1
-MANCOMPRESSED=	no
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/bin/perl,${PERL},g' \
