@@ -36,8 +36,6 @@ CONFIGURE_ARGS=	--enable-opie --enable-RPA --enable-SDPS \
 		--with-ssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAN1=	fetchmail.1
-MLINKS=	fetchmail.1 fetchmailconf.1
 
 OPTIONS_DEFINE=	X11 NLS NTLM GSSAPI
 OPTIONS_DEFAULT=	GSSAPI
