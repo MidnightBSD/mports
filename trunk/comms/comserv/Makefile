@@ -8,9 +8,7 @@ MASTER_SITE_SUBDIR=	bsd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide network access to local serial ports and make remote ports appear local
-LICENSE=	bsd2
 
-MAN8=		comservd.8
-MANCOMPRESSED=	yes
+LICENSE=	bsd2
 
 .include <bsd.port.mk>
