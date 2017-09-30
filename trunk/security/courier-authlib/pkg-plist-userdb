@@ -1,6 +1,5 @@
 @comment libexec/courier-authlib/makedatprog
 man/man8/makeuserdb.8.gz
-man/man8/pw2userdb.8.gz
 man/man8/userdb.8.gz
 man/man8/userdbpw.8.gz
 sbin/makeuserdb
