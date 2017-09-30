@@ -39,8 +39,7 @@ HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
 CONFIGURE_ENV=	LSOF_CC="${CC}"  LSOF_VERS=7042 FREEBSD_SYS="${SRC_BASE}/sys" LSOF_VSTR="9.1-RELEASE"
-PLIST_FILES=	sbin/lsof
-MAN8=		lsof.8
+PLIST_FILES=	sbin/lsof man/man8/lsof.8.gz
 
 .if !defined(FIXUP_RELEASE)
 post-extract:
