@@ -28,8 +28,6 @@ PLIST_FILES=	sbin/hping
 PORTDOCS=	AS-BACKDOOR HPING2-HOWTO.txt HPING2-IS-OPEN \
 		MORE-FUN-WITH-IPID SPOOFED_SCAN.txt APD.txt
 
-MAN8=	hping.8
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/hping2 ${PREFIX}/sbin/hping
 	${INSTALL_MAN} ${WRKSRC}/docs/hping2.8 ${PREFIX}/man/man8/hping.8
