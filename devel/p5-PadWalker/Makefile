@@ -13,6 +13,4 @@ LICENSE=perl
 
 PERL_CONFIGURE=	5.8.0+
 
-MAN3=	PadWalker.3
-
 .include <bsd.port.mk>
