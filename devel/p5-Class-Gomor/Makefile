@@ -12,8 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=	Class::Gomor.3 \
-	Class::Gomor::Hash.3 \
-	Class::Gomor::Array.3
-
 .include <bsd.port.mk>
