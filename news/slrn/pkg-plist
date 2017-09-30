@@ -1,5 +1,7 @@
 bin/slrn
 bin/slrnpull
+man/man1/slrn.1.gz
+man/man1/slrnpull.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/COPYRIGHT
 %%PORTDOCS%%%%DOCSDIR%%/FAQ
@@ -56,7 +58,3 @@ bin/slrnpull
 %%DATADIR%%/slang/util.sl
 %%DATADIR%%/slang/varset.sl
 %%DATADIR%%/slang/xcomment.sl
-@dirrm %%DATADIR%%/slang
-@dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/slrnpull
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
