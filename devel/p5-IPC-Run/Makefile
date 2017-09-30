@@ -1,7 +1,3 @@
-# New ports collection makefile for:	devele/p5-IPC-Run
-# Date created:				12 July 2001
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
 # $FreeBSD: ports/devel/p5-IPC-Run/Makefile,v 1.8 2006/05/11 08:34:41 tobez Exp $
 # $MidnightBSD$
 #
@@ -20,9 +16,6 @@ LICENSE=	perl
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
-
-MAN3=	IPC::Run.3 IPC::Run::IO.3 IPC::Run::Timer.3 IPC::Run::Debug.3 \
-	IPC::Run::Win32IO.3 IPC::Run::Win32Helper.3 IPC::Run::Win32Pump.3
 
 .include <bsd.port.pre.mk>
 
