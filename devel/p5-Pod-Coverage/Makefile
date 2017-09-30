@@ -1,10 +1,5 @@
-# New ports collection makefile for:	p5-Pod-Coverage
-# Date created:	   10 octobre 2003
-# Whom:		   mat
-#
 # $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Pod-Coverage/Makefile,v 1.13 2007/10/26 21:46:04 mat Exp $
-#
 
 PORTNAME=	Pod-Coverage
 PORTVERSION=	0.20
@@ -21,11 +16,6 @@ RUN_DEPENDS=	${SITE_PERL}/Pod/Parser.pm:${PORTSDIR}/textproc/p5-Pod-Parser \
 		${SITE_PERL}/Devel/Symdump.pm:${PORTSDIR}/devel/p5-Devel-Symdump
 
 PERL_MODBUILD=	yes
-
-MAN3=		Pod::Coverage.3 \
-		Pod::Coverage::CountParents.3 \
-		Pod::Coverage::ExportOnly.3 \
-		Pod::Coverage::Overloader.3
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	Changes
