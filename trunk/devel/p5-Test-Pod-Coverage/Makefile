@@ -16,6 +16,4 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	YES
 
-MAN3=		Test::Pod::Coverage.3
-
 .include <bsd.port.mk>
