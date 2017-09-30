@@ -33,8 +33,6 @@ SOCKS_DESC=		Support for IRCing through a SOCKS proxy
 
 SUB_FILES=	sirc
 
-MAN1=		ssfe.1 sirc.1
-
 PORTDOCS=	ChangeLog PROGRAMMING README
 
 .include <bsd.mport.options.mk>
