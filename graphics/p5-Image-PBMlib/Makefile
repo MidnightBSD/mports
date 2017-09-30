@@ -13,6 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Image::PBMlib.3
-
 .include <bsd.port.mk>
