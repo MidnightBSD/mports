@@ -28,14 +28,12 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		gdb66:${PORTSDIR}/devel/gdb66 \
 		yelp:${PORTSDIR}/x11/yelp
 
-USE_BZIP2=	yes
-USE_GMAKE=	yes
-USE_GETTEXT=	yes
+USES=		gettext gmake tar:bzip2 python:2
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_PERL5=	yes
 USE_PYTHON=	yes
-USE_GNOME=	gnomeprefix gnomehack vte gtksourceview2 libgda4 gconf2
+USE_GNOME=	gnomeprefix vte gtksourceview2 libgda4 gconf2
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
