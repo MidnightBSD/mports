@@ -12,8 +12,6 @@ LICENSE=	gpl2
 USE_GNOME=	glib12
 GNU_CONFIGURE=	yes
 
-MAN8=		xferstats.8
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/xferstats ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/xferstats.8 ${MAN8PREFIX}/man/man8
