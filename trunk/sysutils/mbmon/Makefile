@@ -43,7 +43,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${CHMOD} u+s ${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} mbmon.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/mbmon.1 ${PREFIX}/man/man1
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
