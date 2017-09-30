@@ -16,6 +16,4 @@ RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Image/Magick.pm:${PORTSDIR}/graphics/Imag
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Image::Magick::Iterator.3 Image::Magick::Iterator::PPM.3
-
 .include <bsd.port.mk>
