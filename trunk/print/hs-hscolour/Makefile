@@ -13,7 +13,5 @@ LICENSE=	gpl2
 
 EXECUTABLE=	HsColour
 
-.include <bsd.mport.options.mk>
-
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>
