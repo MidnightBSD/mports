@@ -12,6 +12,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Term::ANSIColor.3
-
 .include <bsd.port.mk>

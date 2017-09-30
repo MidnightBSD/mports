@@ -15,6 +15,4 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_MODBUILD=	yes
 
-MAN3=		Test::Pod.3
-
 .include <bsd.port.mk>
