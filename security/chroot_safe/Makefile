@@ -14,8 +14,8 @@ LICENSE=	mit
 
 GNU_CONFIGURE=	YES
 
-MAN1=		chroot_safe.1
-PLIST_FILES=	sbin/chroot_safe libexec/chroot_safe/chroot_safe.so
+PLIST_FILES=	sbin/chroot_safe libexec/chroot_safe/chroot_safe.so \
+		man/man1/chroot_safe.1.gz
 PLIST_DIRS=	libexec/chroot_safe
 
 post-patch:
