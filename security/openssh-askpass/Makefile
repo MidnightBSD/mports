@@ -18,11 +18,10 @@ USE_XORG=	x11 xt sm ice
 DOCSDIR=	${PREFIX}/share/doc/ssh-askpass
 PLIST_FILES=	bin/x11-ssh-askpass \
 		bin/ssh-askpass \
-		lib/X11/app-defaults/SshAskpass
+		lib/X11/app-defaults/SshAskpass \
+		man/man1/ssh-askpass.1.gz \
+		man/man1/x11-ssh-askpass.1.gz
 PORTDOCS=	README TODO ChangeLog
-
-MAN1=		x11-ssh-askpass.1
-MLINKS=		x11-ssh-askpass.1 ssh-askpass.1
 
 OPTIONS_DEFINE=	DOCS
 
