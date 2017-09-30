@@ -14,9 +14,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN1=		imgsize.1
-MAN3=		Image::Size.3
-
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 500903
