@@ -13,8 +13,4 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Class::Adapter.3 \
-		Class::Adapter::Builder.3 \
-		Class::Adapter::Clear.3
-
 .include <bsd.port.mk>
