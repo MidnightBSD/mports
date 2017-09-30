@@ -2,7 +2,6 @@ include/Judy.h
 lib/libJudy.a
 lib/libJudy.so
 lib/libJudy.so.1
-lib/libJudy.so.1.0.3
 man/man3/J1BC.3.gz
 man/man3/J1C.3.gz
 man/man3/J1F.3.gz
