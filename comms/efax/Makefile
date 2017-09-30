@@ -14,9 +14,6 @@ LICENSE=	gpl2
 RUN_DEPENDS=	xloadimage:${PORTSDIR}/x11/xloadimage
 
 USE_GMAKE=	YES
-MAN1=		fax.1 \
-		efax.1 \
-		efix.1
 DOCDIR=		${PREFIX}/share/doc/efax
 MAKE_ENV=	INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 		INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
