@@ -543,6 +543,7 @@ SUBDIR += slf4j
 SUBDIR += splint
 SUBDIR += st
 SUBDIR += subversion
+SUBDIR += subversion18
 SUBDIR += svndelta
 SUBDIR += svnkit
 SUBDIR += swig13
