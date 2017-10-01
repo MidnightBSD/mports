@@ -2463,10 +2463,10 @@ lib/python2.7/pipes.pyc
 lib/python2.7/pkgutil.py
 lib/python2.7/pkgutil.pyo
 lib/python2.7/pkgutil.pyc
-lib/python2.7/plat-midnightbsd0/IN.py
-lib/python2.7/plat-midnightbsd0/IN.pyo
-lib/python2.7/plat-midnightbsd0/IN.pyc
-lib/python2.7/plat-midnightbsd0/regen
+lib/python2.7/plat-midnightbsd%%OSMAJOR%%/IN.py
+lib/python2.7/plat-midnightbsd%%OSMAJOR%%/IN.pyo
+lib/python2.7/plat-midnightbsd%%OSMAJOR%%/IN.pyc
+lib/python2.7/plat-midnightbsd%%OSMAJOR%%/regen
 lib/python2.7/platform.py
 lib/python2.7/platform.pyo
 lib/python2.7/platform.pyc
