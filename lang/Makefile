@@ -48,6 +48,7 @@ SUBDIR += p5-ePerl
 SUBDIR += pcc
 SUBDIR += perl5.18
 SUBDIR += perl5.20
+SUBDIR += perl5.26
 SUBDIR += phantomjs
 SUBDIR += php_doc
 SUBDIR += php56
