@@ -7,13 +7,19 @@ COMMENT=	Perl bindings for Version control system
 
 LICENSE=	other
 
+.if defined(WITH_SUBVERSION_VER) && ${WITH_SUBVERSION_VER} == 18
+MASTERDIR=	${.CURDIR}/../../devel/subversion18
+.else
 MASTERDIR=	${.CURDIR}/../../devel/subversion
+.endif
 PKGDIR=		${.CURDIR}
 
 USE_PERL5=	yes
 
 SVN_BUILD_BINDINGS=	yes
 SVN_BUILD_ADDONS=	yes
+
+MAKE_JOBS_UNSAFE=	yes
 
 .include "${MASTERDIR}/Makefile.common"
 
