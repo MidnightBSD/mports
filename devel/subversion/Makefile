@@ -153,25 +153,24 @@ test: build
 	-@make check -C ${WRKSRC}
 .endif
 
-post-build-TOOLS-on:
-	@${MAKE} -C ${WRKSRC} tools ${MAKE_ARGS}
+post-build:
+	${MAKE} -C ${WRKSRC} tools ${MAKE_ARGS}
 
 post-install:	${MKREPOS_TARGET}
-	-@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	@${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${WRKSRC}/tools.examples && ${TAR} --exclude '*.in' -cf - * | ${TAR} -C ${STAGEDIR}${DATADIR} -xof - )
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	-@${STRIP_CMD} ${PREFIX}/bin/*
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC}/tools.examples && ${TAR} --exclude '*.in' -cf - * | ${TAR} -C ${DATADIR} -xof - )
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 
-post-install-STATIC-off:
-	-@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+.if ${PORT_OPTIONS:MSTATIC}
 
-post-install-SVNSERVE_WRAPPER-on:
-	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${STAGEDIR}${PREFIX}/bin/svnserve.sample
-
-post-install-TOOLS-on:
-	@${MAKE} -C ${WRKSRC} install-tools ${MAKE_ARGS}
-	-@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+.else
+	-@${STRIP_CMD} ${PREFIX}/lib/*.so
+.endif
+	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${PREFIX}/bin/svnserve.sample
+	@${MAKE} -C ${WRKSRC} install-tools ${FAKE_MAKEARGS}
+	-@${STRIP_CMD} ${PREFIX}/bin/*
 
 # ===============================================================================
 repository:	_mkrepos
