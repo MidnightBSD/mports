@@ -199,9 +199,7 @@ ALL_TARGET?=
 PL_BUILD?=		Build
 CONFIGURE_SCRIPT?=	Build.PL
 .if ${PORTNAME} != Module-Build
-.if ${PERL_LEVEL} < 501000
 BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:${PORTSDIR}/devel/p5-Module-Build
-.endif
 .endif
 CONFIGURE_ARGS+= \
 	create_packlist=0 \
