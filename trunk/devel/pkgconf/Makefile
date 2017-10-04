@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pkgconf
-PORTVERSION=	1
+PORTVERSION=	1.3.7
 CATEGORIES=	devel
 MASTER_SITES=	http://rabbit.dereferenced.org/~nenolod/distfiles/ \
 		http://files.etoilebsd.net/pkgconf/
@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 TEST_TARGET=	check
-CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/pkgconfig \
+CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:${PREFIX}/lib/pkgconfig:/usr/libdata/pkgconfig \
 		--with-system-libdir=/usr/lib \
 		--with-system-includedir=/usr/include
 MAKE_ARGS=	MANDIR="${MAN1PREFIX}/man/man1"
