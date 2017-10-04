@@ -129,6 +129,7 @@ SUBDIR += p5-XML-Twig
 SUBDIR += p5-XML-Writer
 SUBDIR += p5-XML-XPath
 SUBDIR += p5-YAML
+SUBDIR += p5-YAML-Tiny
 SUBDIR += p5-libxml
 SUBDIR += php56-ctype
 SUBDIR += php56-dom
