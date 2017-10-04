@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons
-PORTVERSION=	2.5.0
+PORTVERSION=	2.5.1
 CATEGORIES=	devel python
 MASTER_SITES=	SF
 
