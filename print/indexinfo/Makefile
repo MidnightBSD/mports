@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	indexinfo
-PORTVERSION=	0.2.4
+PORTVERSION=	0.2.6
 CATEGORIES=	print ports-mgmt
 
 MAINTAINER=	ports@MidnightBSD.org
