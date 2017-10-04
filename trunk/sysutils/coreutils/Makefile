@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	coreutils
-PORTVERSION=	8.23
+PORTVERSION=	8.25
 PORTREVISION=	0
 CATEGORIES=	sysutils textproc
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The Free Software Foundation's core utilities
+COMMENT=	Free Software Foundation's core utilities
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -46,7 +46,7 @@ post-build:
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/g* \
-		${PREFIX}/libexec/coreutils/glibstdbuf.so
+		${PREFIX}/libexec/coreutils/libstdbuf.so
 
 #regression-test: build
 #	(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} check)
