@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sg3_utils
-PORTVERSION=	1.36
+PORTVERSION=	1.42
 CATEGORIES=	sysutils
 MASTER_SITES=	http://sg.danny.cz/sg/p/
 EXTRACT_SUFX=	.tgz
@@ -11,7 +11,8 @@ COMMENT=	Set of utilities that send SCSI commands to devices
 
 LICENSE=	bsd3
 
-USE_GMAKE=	yes
+USES=		gmake	
+
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
