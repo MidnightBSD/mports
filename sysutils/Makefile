@@ -67,6 +67,7 @@ SUBDIR += libsunacl
 SUBDIR += linux-f10-procps
 SUBDIR += lmmon
 SUBDIR += logstash
+SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += mbmon
 SUBDIR += mdf2iso
