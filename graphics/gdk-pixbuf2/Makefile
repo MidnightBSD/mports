@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.32.3
+PORTVERSION=	2.36.9
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -13,30 +13,39 @@ COMMENT=	Graphic library for GTK+
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USES=		cpe gmake gnome libtool localbase pathfix pkgconfig \
+		shared-mime-info tar:xz
 USE_XORG=	xt xi x11
-USES=		cpe gmake libtool pathfix pkgconfig tar:xz
 CPE_VENDOR=	gnome
 USE_GNOME+=	glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--enable-introspection=yes --with-x11
 INSTALL_TARGET=	install-strip
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	JASPER JPEG PNG TIFF NLS
-OPTIONS_DEFAULT=JASPER JPEG PNG TIFF NLS
+OPTIONS_DEFAULT=JASPER JPEG PNG TIFF
+
 JASPER_CONFIGURE_WITH=	libjasper
-JASPER_LIB_DEPENDS=	libjasper.so:${PORTSDIR}/graphics/jasper
+JASPER_LIB_DEPENDS=	libjasper.so:graphics/jasper
+
 JPEG_CONFIGURE_WITH=	libjpeg
 JPEG_USES=		jpeg
+
 PNG_CONFIGURE_WITH=	libpng
-PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS=	libpng.so:graphics/png
+
 TIFF_CONFIGURE_WITH=	libtiff
-TIFF_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
+TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
+
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
+
+# workaround tiff enable bug in configure
+post-patch:
+	@${REINPLACE_CMD} -e 's|$$LIBTIFF|$$TIFF_LIBS|' \
+		${WRKSRC}/configure
 
 post-install:
 	@cd ${WRKSRC}/docs/reference/gdk-pixbuf && gmake ${FAKE_MAKEARGS} install-man1
