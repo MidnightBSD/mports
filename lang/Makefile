@@ -17,6 +17,7 @@ SUBDIR += gcc
 SUBDIR += gcc46
 SUBDIR += gcc47
 SUBDIR += gcc48
+SUBDIR += gcc49
 SUBDIR += gcc-ecj45
 SUBDIR += ghc
 SUBDIR += gjs
