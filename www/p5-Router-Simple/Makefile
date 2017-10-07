@@ -1,0 +1,25 @@
+# $MidnightBSD$
+# $FreeBSD: head/www/p5-Router-Simple/Makefile 449893 2017-09-15 08:58:46Z mat $
+
+PORTNAME=	Router-Simple
+PORTVERSION=	0.17
+CATEGORIES=	www net perl5
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:TOKUHIROM
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Simple HTTP Router
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	p5-Class-Accessor-Lite>=0.05:devel/p5-Class-Accessor-Lite
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+NO_ARCH=	yes
+USE_PERL5=	modbuild
+USES=		perl5
+PERL_MODBUILD=	yes
+
+.include <bsd.port.mk>
