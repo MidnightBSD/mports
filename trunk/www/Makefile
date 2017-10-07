@@ -81,6 +81,7 @@ SUBDIR += p5-HTTP-Negotiate
 SUBDIR += p5-LWP-MediaTypes
 SUBDIR += p5-LWP-Protocol-https
 SUBDIR += p5-Mozilla-CA
+SUBDIR += p5-Router-Simple
 SUBDIR += p5-Template-GD
 SUBDIR += p5-Template-Toolkit
 SUBDIR += p5-WWW-Curl
