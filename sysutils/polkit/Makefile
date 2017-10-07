@@ -2,7 +2,7 @@
 
 PORTNAME=	polkit
 PORTVERSION=	0.113
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -20,8 +20,7 @@ USERS=		polkitd
 GROUPS=		polkitd
 
 USE_GNOME=	glib20 intlhack introspection:build
-USES=		gettext gmake libtool pathfix pkgconfig shebangfix
-SHEBANG_FILES=	${WRKSRC}/src/polkitbackend/toarray.pl
+USES=		gettext gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc-html \
