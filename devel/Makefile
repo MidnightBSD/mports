@@ -242,6 +242,7 @@ SUBDIR += p5-Carp-Clan
 SUBDIR += p5-Class-Accessor
 SUBDIR += p5-Class-Accessor-Chained
 SUBDIR += p5-Class-Accessor-Grouped
+SUBDIR += p5-Class-Accessor-Lite
 SUBDIR += p5-Class-Adapter
 SUBDIR += p5-Class-Base
 SUBDIR += p5-Class-C3
