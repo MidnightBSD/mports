@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.46.2
+PORTVERSION=	2.50.2
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -20,7 +20,8 @@ LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libffi.so:${PORTSDIR}/devel/libffi
 
 GNU_CONFIGURE=	yes
-USES+=		gettext gmake iconv:wchar_t libtool pathfix python pkgconfig shebangfix
+USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool pathfix \
+		python pkgconfig shebangfix
 USE_PYTHON=	py3kplist
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
@@ -35,9 +36,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-SHEBANG_FILES=	*/*.pl
-
-LIBVERSION=	0.4600.2
+LIBVERSION=	0.5000.2
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
