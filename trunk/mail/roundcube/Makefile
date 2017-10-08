@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.2.3
+DISTVERSION=	1.3.1
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DISTVERSION}/
@@ -19,7 +19,7 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}mail-${DISTVERSION}
 
 RCUBECOMP=	SQL config .htaccess index.php installer logs \
-		plugins program robots.txt skins temp vendor
+		plugins program skins temp vendor
 PORTDOCS=	CHANGELOG INSTALL README.md UPGRADING
 
 USES=		cpe
@@ -27,8 +27,8 @@ CPE_PRODUCT=	webmail
 CPE_VENDOR=	roundcube
 
 WANT_PHP_WEB=	yes
-USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter
-IGNORE_WITH_PHP=52
+USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter \
+		openssl fileinfo exif
 
 OPTIONS_DEFINE=	LDAP GD PSPELL NSC DOCS
 OPTIONS_SINGLE=	DB
@@ -57,8 +57,6 @@ USE_PHP+=	pdo_pgsql
 .if ${PORT_OPTIONS:MSQLITE}
 USE_PHP+=	pdo_sqlite
 .endif
-
-USE_PHP+=	openssl
 
 .if ${PORT_OPTIONS:MLDAP}
 USE_PHP+=	ldap
