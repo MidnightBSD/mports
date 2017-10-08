@@ -2,19 +2,20 @@
 
 PORTNAME=	aide
 PORTVERSION=	0.16
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement and extension for Tripwire
+
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libmhash.so:${PORTSDIR}/security/mhash
-USES=		bison gmake
+LIB_DEPENDS=	libmhash.so:security/mhash \
+		libpcre.so:devel/pcre
+USES=		autoreconf bison gmake
 
-USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
