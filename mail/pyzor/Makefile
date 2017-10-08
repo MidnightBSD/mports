@@ -10,8 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collaborative, networked system to detect and block spam
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>=0:${PORTSDIR}/databases/py-gdbm
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>=0:databases/py-gdbm
 
 USES=		python
 USE_PYTHON=	distutils autoplist
