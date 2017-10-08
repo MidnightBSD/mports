@@ -8,6 +8,7 @@ MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/official/ \
 		ftp://ftp.utoronto.ca/mirror/packages/postfix/official/ \
 		ftp://ftp.samurai.com/pub/postfix/official/
 MASTER_SITE_SUBDIR=	. old related/postfix
+PKGNAMESUFFIX?=	211
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
