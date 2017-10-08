@@ -150,15 +150,15 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 # The complete list of Java versions, os and vendors supported.
 __JAVA_VERSION_LIST=	1.6 1.7 1.8
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
-_JAVA_OS_LIST=			native linux
+_JAVA_OS_LIST=			native linux freebsd
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
 _JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
 											VERSION=1.7.0	OS=native	VENDOR=openjdk
-_JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_BIN_INFO=	PORT/java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=1.7.0	OS=native	VENDOR=openjdk
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
+											VERSION=1.7.0	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_1_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
 											VERSION=1.6.0	OS=native	VENDOR=openjdk
 _JAVA_PORT_NATIVE_FREEBSD_JDK_1_6_INFO=		PORT=java/diablo-jdk16			HOME=${LOCALBASE}/diablo-jdk1.6.0 \
@@ -181,13 +181,14 @@ _JAVA_VENDOR_oracle=		Oracle
 # Verbose description for each OS
 _JAVA_OS_native=	Native
 _JAVA_OS_linux=		Linux
+_JAVA_OS_freebsd=	FreeBSD
 
 # Enforce preferred Java ports according to OS
 .		if (${ARCH} == "amd64") || (${ARCH} == "i386")
 .			if defined(PACKAGE_BUILDING) 
-_JAVA_PREFERRED_PORTS+= JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
+_JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7
 .			else
-_JAVA_PREFERRED_PORTS+=	 JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
+_JAVA_PREFERRED_PORTS+=	 JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7
 NOT_FOR_ARCHS=sparc64
 .			endif
 .		else
@@ -196,7 +197,7 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
 
 # List all JDK ports
 __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
-			JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_BIN \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
