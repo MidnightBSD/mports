@@ -60,6 +60,7 @@ SUBDIR += phplist
 SUBDIR += phpmailer
 SUBDIR += pine-pgp-filters
 SUBDIR += postfix
+SUBDIR += postfix211
 SUBDIR += procmail
 SUBDIR += pyzor
 SUBDIR += razor-agents
