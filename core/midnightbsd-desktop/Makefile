@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.1
+PORTVERSION=	2.2
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -17,7 +17,6 @@ LICENSE=	bsd2
 
 RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		bash:${PORTSDIR}/shells/bash \
-		pidgin:${PORTSDIR}/net-im/pidgin \
 		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:${PORTSDIR}/x11-themes/midnightbsd-backgrounds \
 		midori:${PORTSDIR}/www/midori \
