@@ -12,7 +12,7 @@ COMMENT=	Tool for managing events and logs
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
+RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		cpe
 CPE_VENDOR=	elasticsearch
