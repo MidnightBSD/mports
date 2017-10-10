@@ -1,9 +1,9 @@
---- bin/elasticsearch.in.sh.orig	2015-10-21 04:41:12.000000000 -0400
-+++ bin/elasticsearch.in.sh	2015-12-15 12:00:37.323441838 -0500
+--- elasticsearch.in.sh.orig	2015-10-21 04:41:12.000000000 -0400
++++ elasticsearch.in.sh	2017-10-10 17:42:43.000000000 -0400
 @@ -1,5 +1,20 @@
  #!/bin/sh
  
-+if [ `uname -o` == "FreeBSD" ]; then
++if [ `uname -o` == "MidnightBSD" ]; then
 +	. /etc/rc.subr
 +	load_rc_config elasticsearch
 +	ES_MIN_MEM=${elasticsearch_min_mem}
