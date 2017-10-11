@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 openjdk7/ASSEMBLY_EXCEPTION
 openjdk7/LICENSE
 openjdk7/THIRD_PARTY_README
@@ -344,43 +343,52 @@ openjdk7/jre/bin/unpack200
 openjdk7/jre/lib/amd64/headless/libmawt.so
 openjdk7/jre/lib/amd64/jexec
 openjdk7/jre/lib/amd64/jli/libjli.so
+openjdk7/jre/lib/amd64/jspawnhelper
 openjdk7/jre/lib/amd64/jvm.cfg
+openjdk7/jre/lib/amd64/libattach.debuginfo
 openjdk7/jre/lib/amd64/libattach.so
 openjdk7/jre/lib/amd64/libawt.so
+openjdk7/jre/lib/amd64/libdt_socket.debuginfo
 openjdk7/jre/lib/amd64/libdt_socket.so
 openjdk7/jre/lib/amd64/libfontmanager.so
+openjdk7/jre/lib/amd64/libhprof.debuginfo
 openjdk7/jre/lib/amd64/libhprof.so
+openjdk7/jre/lib/amd64/libinstrument.debuginfo
 openjdk7/jre/lib/amd64/libinstrument.so
 openjdk7/jre/lib/amd64/libj2gss.so
 openjdk7/jre/lib/amd64/libj2pcsc.so
 openjdk7/jre/lib/amd64/libj2pkcs11.so
 openjdk7/jre/lib/amd64/libjaas_unix.so
 openjdk7/jre/lib/amd64/libjava.so
-openjdk7/jre/lib/amd64/libjava_crw_demo.so
 openjdk7/jre/lib/amd64/libjawt.so
+openjdk7/jre/lib/amd64/libjava_crw_demo.debuginfo
+openjdk7/jre/lib/amd64/libjava_crw_demo.so
 openjdk7/jre/lib/amd64/libjdwp.so
 openjdk7/jre/lib/amd64/libjpeg.so
+openjdk7/jre/lib/amd64/libjsdt.debuginfo
 openjdk7/jre/lib/amd64/libjsdt.so
 openjdk7/jre/lib/amd64/libjsig.so
 openjdk7/jre/lib/amd64/libjsound.so
-openjdk7/jre/lib/amd64/server/Xusage.txt
-openjdk7/jre/lib/amd64/server/libjsig.so
-openjdk7/jre/lib/amd64/server/libjvm.so
 openjdk7/jre/lib/amd64/libjsoundalsa.so
 openjdk7/jre/lib/amd64/liblcms.so
+openjdk7/jre/lib/amd64/libmanagement.debuginfo
 openjdk7/jre/lib/amd64/libmanagement.so
 openjdk7/jre/lib/amd64/libmlib_image.so
 openjdk7/jre/lib/amd64/libnet.so
 openjdk7/jre/lib/amd64/libnio.so
+openjdk7/jre/lib/amd64/libnpt.debuginfo
 openjdk7/jre/lib/amd64/libnpt.so
-openjdk7/jre/lib/amd64/librmi.so
 openjdk7/jre/lib/amd64/libsaproc.so
 openjdk7/jre/lib/amd64/libsctp.so
 openjdk7/jre/lib/amd64/libsplashscreen.so
 openjdk7/jre/lib/amd64/libsunec.so
 openjdk7/jre/lib/amd64/libunpack.so
+openjdk7/jre/lib/amd64/libverify.debuginfo
 openjdk7/jre/lib/amd64/libverify.so
 openjdk7/jre/lib/amd64/libzip.so
+openjdk7/jre/lib/amd64/server/Xusage.txt
+openjdk7/jre/lib/amd64/server/libjsig.so
+openjdk7/jre/lib/amd64/server/libjvm.so
 openjdk7/jre/lib/amd64/xawt/libmawt.so
 openjdk7/jre/lib/calendars.properties
 openjdk7/jre/lib/charsets.jar
@@ -421,6 +429,7 @@ openjdk7/jre/lib/management/jmxremote.access
 openjdk7/jre/lib/management/jmxremote.password.template
 openjdk7/jre/lib/management/management.properties
 openjdk7/jre/lib/management/snmp.acl.template
+openjdk7/jre/lib/zi
 openjdk7/jre/lib/meta-index
 openjdk7/jre/lib/net.properties
 openjdk7/jre/lib/psfont.properties.ja
@@ -432,7 +441,6 @@ openjdk7/jre/lib/security/cacerts
 openjdk7/jre/lib/security/java.policy
 openjdk7/jre/lib/security/java.security
 openjdk7/jre/lib/security/local_policy.jar
-openjdk7/jre/lib/servicetag/jdk_header.png
 openjdk7/jre/lib/sound.properties
 openjdk7/lib/ct.sym
 openjdk7/lib/dt.jar
@@ -464,13 +472,12 @@ openjdk7/man/ja_JP.UTF-8/man1/jsadebugd.1
 openjdk7/man/ja_JP.UTF-8/man1/jstack.1
 openjdk7/man/ja_JP.UTF-8/man1/jstat.1
 openjdk7/man/ja_JP.UTF-8/man1/jstatd.1
-openjdk7/man/ja_JP.UTF-8/man1/jvisualvm.1
 openjdk7/man/ja_JP.UTF-8/man1/keytool.1
 openjdk7/man/ja_JP.UTF-8/man1/native2ascii.1
 openjdk7/man/ja_JP.UTF-8/man1/orbd.1
+openjdk7/man/ja_JP.UTF-8/man1/rmic.1
 openjdk7/man/ja_JP.UTF-8/man1/pack200.1
 openjdk7/man/ja_JP.UTF-8/man1/policytool.1
-openjdk7/man/ja_JP.UTF-8/man1/rmic.1
 openjdk7/man/ja_JP.UTF-8/man1/rmid.1
 openjdk7/man/ja_JP.UTF-8/man1/rmiregistry.1
 openjdk7/man/ja_JP.UTF-8/man1/schemagen.1
@@ -481,6 +488,45 @@ openjdk7/man/ja_JP.UTF-8/man1/unpack200.1
 openjdk7/man/ja_JP.UTF-8/man1/wsgen.1
 openjdk7/man/ja_JP.UTF-8/man1/wsimport.1
 openjdk7/man/ja_JP.UTF-8/man1/xjc.1
+openjdk7/man/man1/appletviewer.1
+openjdk7/man/man1/apt.1
+openjdk7/man/man1/extcheck.1
+openjdk7/man/man1/idlj.1
+openjdk7/man/man1/jar.1
+openjdk7/man/man1/jarsigner.1
+openjdk7/man/man1/java.1
+openjdk7/man/man1/javac.1
+openjdk7/man/man1/javadoc.1
+openjdk7/man/man1/javah.1
+openjdk7/man/man1/javap.1
+openjdk7/man/man1/jcmd.1
+openjdk7/man/man1/jconsole.1
+openjdk7/man/man1/jdb.1
+openjdk7/man/man1/jhat.1
+openjdk7/man/man1/jinfo.1
+openjdk7/man/man1/jmap.1
+openjdk7/man/man1/jps.1
+openjdk7/man/man1/jrunscript.1
+openjdk7/man/man1/jsadebugd.1
+openjdk7/man/man1/jstack.1
+openjdk7/man/man1/jstat.1
+openjdk7/man/man1/jstatd.1
+openjdk7/man/man1/keytool.1
+openjdk7/man/man1/native2ascii.1
+openjdk7/man/man1/orbd.1
+openjdk7/man/man1/rmic.1
+openjdk7/man/man1/pack200.1
+openjdk7/man/man1/policytool.1
+openjdk7/man/man1/rmid.1
+openjdk7/man/man1/rmiregistry.1
+openjdk7/man/man1/schemagen.1
+openjdk7/man/man1/serialver.1
+openjdk7/man/man1/servertool.1
+openjdk7/man/man1/tnameserv.1
+openjdk7/man/man1/unpack200.1
+openjdk7/man/man1/wsgen.1
+openjdk7/man/man1/wsimport.1
+openjdk7/man/man1/xjc.1
 openjdk7/release
 openjdk7/sample/README
 openjdk7/sample/forkjoin/mergesort/MergeDemo.java
@@ -599,161 +645,161 @@ openjdk7/sample/scripting/scriptpad/src/scripts/memory.js
 openjdk7/sample/scripting/scriptpad/src/scripts/memory.sh
 openjdk7/sample/scripting/scriptpad/src/scripts/textcolor.js
 openjdk7/src.zip
-@dirrm openjdk7/bin
-@dirrm openjdk7/demo/applets/ArcTest
-@dirrm openjdk7/demo/applets/BarChart
-@dirrm openjdk7/demo/applets/Blink
-@dirrm openjdk7/demo/applets/CardTest
-@dirrm openjdk7/demo/applets/Clock
-@dirrm openjdk7/demo/applets/DitherTest
-@dirrm openjdk7/demo/applets/DrawTest
-@dirrm openjdk7/demo/applets/Fractal
-@dirrm openjdk7/demo/applets/GraphicsTest
-@dirrm openjdk7/demo/applets/MoleculeViewer/models
-@dirrm openjdk7/demo/applets/MoleculeViewer
-@dirrm openjdk7/demo/applets/NervousText
-@dirrm openjdk7/demo/applets/SimpleGraph
-@dirrm openjdk7/demo/applets/SortDemo
-@dirrm openjdk7/demo/applets/SpreadSheet
-@dirrm openjdk7/demo/applets/WireFrame/models
-@dirrm openjdk7/demo/applets/WireFrame
-@dirrm openjdk7/demo/applets
-@dirrm openjdk7/demo/jfc/CodePointIM
-@dirrm openjdk7/demo/jfc/FileChooserDemo
-@dirrm openjdk7/demo/jfc/Font2DTest
-@dirrm openjdk7/demo/jfc/Metalworks
-@dirrm openjdk7/demo/jfc/Notepad
-@dirrm openjdk7/demo/jfc/SampleTree
-@dirrm openjdk7/demo/jfc/SwingApplet
-@dirrm openjdk7/demo/jfc/TableExample
-@dirrm openjdk7/demo/jfc/TransparentRuler
-@dirrm openjdk7/demo/jfc
-@dirrm openjdk7/demo/jpda/com/sun/tools/example
-@dirrm openjdk7/demo/jpda/com/sun/tools
-@dirrm openjdk7/demo/jpda/com/sun
-@dirrm openjdk7/demo/jpda/com
-@dirrm openjdk7/demo/jpda
-@dirrm openjdk7/demo/jvmti/compiledMethodLoad/lib
-@dirrm openjdk7/demo/jvmti/compiledMethodLoad
-@dirrm openjdk7/demo/jvmti/gctest/lib
-@dirrm openjdk7/demo/jvmti/gctest
-@dirrm openjdk7/demo/jvmti/heapTracker/lib
-@dirrm openjdk7/demo/jvmti/heapTracker
-@dirrm openjdk7/demo/jvmti/heapViewer/lib
-@dirrm openjdk7/demo/jvmti/heapViewer
-@dirrm openjdk7/demo/jvmti/hprof/lib
-@dirrm openjdk7/demo/jvmti/hprof
-@dirrm openjdk7/demo/jvmti/minst/lib
-@dirrm openjdk7/demo/jvmti/minst
-@dirrm openjdk7/demo/jvmti/mtrace/lib
-@dirrm openjdk7/demo/jvmti/mtrace
-@dirrm openjdk7/demo/jvmti/versionCheck/lib
-@dirrm openjdk7/demo/jvmti/versionCheck
-@dirrm openjdk7/demo/jvmti/waiters/lib
-@dirrm openjdk7/demo/jvmti/waiters
-@dirrm openjdk7/demo/jvmti
-@dirrm openjdk7/demo/management/FullThreadDump
-@dirrm openjdk7/demo/management/JTop
-@dirrm openjdk7/demo/management/MemoryMonitor
-@dirrm openjdk7/demo/management/VerboseGC
-@dirrm openjdk7/demo/management
-@dirrm openjdk7/demo/nbproject/jfc/FileChooserDemo/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/FileChooserDemo
-@dirrm openjdk7/demo/nbproject/jfc/Font2DTest/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/Font2DTest
-@dirrm openjdk7/demo/nbproject/jfc/Metalworks/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/Metalworks
-@dirrm openjdk7/demo/nbproject/jfc/Notepad/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/Notepad
-@dirrm openjdk7/demo/nbproject/jfc/SampleTree/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/SampleTree
-@dirrm openjdk7/demo/nbproject/jfc/SwingApplet/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/SwingApplet
-@dirrm openjdk7/demo/nbproject/jfc/TableExample/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/TableExample
-@dirrm openjdk7/demo/nbproject/jfc/TransparentRuler/nbproject
-@dirrm openjdk7/demo/nbproject/jfc/TransparentRuler
-@dirrm openjdk7/demo/nbproject/jfc
-@dirrm openjdk7/demo/nbproject/management/FullThreadDump/nbproject
-@dirrm openjdk7/demo/nbproject/management/FullThreadDump
-@dirrm openjdk7/demo/nbproject/management/JTop/nbproject
-@dirrm openjdk7/demo/nbproject/management/JTop
-@dirrm openjdk7/demo/nbproject/management/MemoryMonitor/nbproject
-@dirrm openjdk7/demo/nbproject/management/MemoryMonitor
-@dirrm openjdk7/demo/nbproject/management/VerboseGC/nbproject
-@dirrm openjdk7/demo/nbproject/management/VerboseGC
-@dirrm openjdk7/demo/nbproject/management
-@dirrm openjdk7/demo/nbproject/scripting/jconsole-plugin/nbproject
-@dirrm openjdk7/demo/nbproject/scripting/jconsole-plugin
-@dirrm openjdk7/demo/nbproject/scripting
-@dirrm openjdk7/demo/nbproject
-@dirrm openjdk7/demo/nio/zipfs
-@dirrm openjdk7/demo/nio
-@dirrm openjdk7/demo/scripting/jconsole-plugin
-@dirrm openjdk7/demo/scripting
-@dirrm openjdk7/demo
-@dirrm openjdk7/include/freebsd
-@dirrm openjdk7/include
-@dirrm openjdk7/jre/bin
-@dirrm openjdk7/jre/lib/amd64/headless
-@dirrm openjdk7/jre/lib/amd64/jli
-@dirrm openjdk7/jre/lib/amd64/server
-@dirrm openjdk7/jre/lib/amd64/xawt
-@dirrm openjdk7/jre/lib/amd64
-@dirrm openjdk7/jre/lib/cmm
-@dirrm openjdk7/jre/lib/ext
-@dirrm openjdk7/jre/lib/images/cursors
-@dirrm openjdk7/jre/lib/images
-@dirrm openjdk7/jre/lib/management
-@dirrm openjdk7/jre/lib/zi
-@dirrm openjdk7/jre/lib/security
-@dirrm openjdk7/jre/lib/servicetag
-@dirrm openjdk7/jre/lib
-@dirrm openjdk7/jre
-@dirrm openjdk7/lib
-@dirrm openjdk7/man/ja
-@dirrm openjdk7/man/ja_JP.UTF-8/man1
-@dirrm openjdk7/man/ja_JP.UTF-8
-@dirrm openjdk7/man
-@dirrm openjdk7/sample/forkjoin/mergesort
-@dirrm openjdk7/sample/forkjoin
-@dirrm openjdk7/sample/jmx/jmx-scandir/docfiles
-@dirrm openjdk7/sample/jmx/jmx-scandir/nbproject
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples/scandir/config
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples/scandir
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com/sun
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/com
-@dirrm openjdk7/sample/jmx/jmx-scandir/src/etc
-@dirrm openjdk7/sample/jmx/jmx-scandir/src
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples/scandir/config
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples/scandir
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com/sun
-@dirrm openjdk7/sample/jmx/jmx-scandir/test/com
-@dirrm openjdk7/sample/jmx/jmx-scandir/test
-@dirrm openjdk7/sample/jmx/jmx-scandir
-@dirrm openjdk7/sample/jmx
-@dirrm openjdk7/sample/nbproject
-@dirrm openjdk7/sample/nio/chatserver
-@dirrm openjdk7/sample/nio/file
-@dirrm openjdk7/sample/nio/multicast
-@dirrm openjdk7/sample/nio/server
-@dirrm openjdk7/sample/nio
-@dirrm openjdk7/sample/scripting/scriptpad/nbproject
-@dirrm openjdk7/sample/scripting/scriptpad/src/META-INF
-@dirrm openjdk7/sample/scripting/scriptpad/src/com/sun/sample/scriptpad
-@dirrm openjdk7/sample/scripting/scriptpad/src/com/sun/sample
-@dirrm openjdk7/sample/scripting/scriptpad/src/com/sun
-@dirrm openjdk7/sample/scripting/scriptpad/src/com
-@dirrm openjdk7/sample/scripting/scriptpad/src/resources
-@dirrm openjdk7/sample/scripting/scriptpad/src/scripts
-@dirrm openjdk7/sample/scripting/scriptpad/src
-@dirrm openjdk7/sample/scripting/scriptpad
-@dirrm openjdk7/sample/scripting
-@dirrm openjdk7/sample
-@dirrm openjdk7
+@dir openjdk7/bin
+@dir openjdk7/demo/applets/ArcTest
+@dir openjdk7/demo/applets/BarChart
+@dir openjdk7/demo/applets/Blink
+@dir openjdk7/demo/applets/CardTest
+@dir openjdk7/demo/applets/Clock
+@dir openjdk7/demo/applets/DitherTest
+@dir openjdk7/demo/applets/DrawTest
+@dir openjdk7/demo/applets/Fractal
+@dir openjdk7/demo/applets/GraphicsTest
+@dir openjdk7/demo/applets/MoleculeViewer/models
+@dir openjdk7/demo/applets/MoleculeViewer
+@dir openjdk7/demo/applets/NervousText
+@dir openjdk7/demo/applets/SimpleGraph
+@dir openjdk7/demo/applets/SortDemo
+@dir openjdk7/demo/applets/SpreadSheet
+@dir openjdk7/demo/applets/WireFrame/models
+@dir openjdk7/demo/applets/WireFrame
+@dir openjdk7/demo/applets
+@dir openjdk7/demo/jfc/CodePointIM
+@dir openjdk7/demo/jfc/FileChooserDemo
+@dir openjdk7/demo/jfc/Font2DTest
+@dir openjdk7/demo/jfc/Metalworks
+@dir openjdk7/demo/jfc/Notepad
+@dir openjdk7/demo/jfc/SampleTree
+@dir openjdk7/demo/jfc/SwingApplet
+@dir openjdk7/demo/jfc/TableExample
+@dir openjdk7/demo/jfc/TransparentRuler
+@dir openjdk7/demo/jfc
+@dir openjdk7/demo/jpda/com/sun/tools/example
+@dir openjdk7/demo/jpda/com/sun/tools
+@dir openjdk7/demo/jpda/com/sun
+@dir openjdk7/demo/jpda/com
+@dir openjdk7/demo/jpda
+@dir openjdk7/demo/jvmti/compiledMethodLoad/lib
+@dir openjdk7/demo/jvmti/compiledMethodLoad
+@dir openjdk7/demo/jvmti/gctest/lib
+@dir openjdk7/demo/jvmti/gctest
+@dir openjdk7/demo/jvmti/heapTracker/lib
+@dir openjdk7/demo/jvmti/heapTracker
+@dir openjdk7/demo/jvmti/heapViewer/lib
+@dir openjdk7/demo/jvmti/heapViewer
+@dir openjdk7/demo/jvmti/hprof/lib
+@dir openjdk7/demo/jvmti/hprof
+@dir openjdk7/demo/jvmti/minst/lib
+@dir openjdk7/demo/jvmti/minst
+@dir openjdk7/demo/jvmti/mtrace/lib
+@dir openjdk7/demo/jvmti/mtrace
+@dir openjdk7/demo/jvmti/versionCheck/lib
+@dir openjdk7/demo/jvmti/versionCheck
+@dir openjdk7/demo/jvmti/waiters/lib
+@dir openjdk7/demo/jvmti/waiters
+@dir openjdk7/demo/jvmti
+@dir openjdk7/demo/management/FullThreadDump
+@dir openjdk7/demo/management/JTop
+@dir openjdk7/demo/management/MemoryMonitor
+@dir openjdk7/demo/management/VerboseGC
+@dir openjdk7/demo/management
+@dir openjdk7/demo/nbproject/jfc/FileChooserDemo/nbproject
+@dir openjdk7/demo/nbproject/jfc/FileChooserDemo
+@dir openjdk7/demo/nbproject/jfc/Font2DTest/nbproject
+@dir openjdk7/demo/nbproject/jfc/Font2DTest
+@dir openjdk7/demo/nbproject/jfc/Metalworks/nbproject
+@dir openjdk7/demo/nbproject/jfc/Metalworks
+@dir openjdk7/demo/nbproject/jfc/Notepad/nbproject
+@dir openjdk7/demo/nbproject/jfc/Notepad
+@dir openjdk7/demo/nbproject/jfc/SampleTree/nbproject
+@dir openjdk7/demo/nbproject/jfc/SampleTree
+@dir openjdk7/demo/nbproject/jfc/SwingApplet/nbproject
+@dir openjdk7/demo/nbproject/jfc/SwingApplet
+@dir openjdk7/demo/nbproject/jfc/TableExample/nbproject
+@dir openjdk7/demo/nbproject/jfc/TableExample
+@dir openjdk7/demo/nbproject/jfc/TransparentRuler/nbproject
+@dir openjdk7/demo/nbproject/jfc/TransparentRuler
+@dir openjdk7/demo/nbproject/jfc
+@dir openjdk7/demo/nbproject/management/FullThreadDump/nbproject
+@dir openjdk7/demo/nbproject/management/FullThreadDump
+@dir openjdk7/demo/nbproject/management/JTop/nbproject
+@dir openjdk7/demo/nbproject/management/JTop
+@dir openjdk7/demo/nbproject/management/MemoryMonitor/nbproject
+@dir openjdk7/demo/nbproject/management/MemoryMonitor
+@dir openjdk7/demo/nbproject/management/VerboseGC/nbproject
+@dir openjdk7/demo/nbproject/management/VerboseGC
+@dir openjdk7/demo/nbproject/management
+@dir openjdk7/demo/nbproject/scripting/jconsole-plugin/nbproject
+@dir openjdk7/demo/nbproject/scripting/jconsole-plugin
+@dir openjdk7/demo/nbproject/scripting
+@dir openjdk7/demo/nbproject
+@dir openjdk7/demo/nio/zipfs
+@dir openjdk7/demo/nio
+@dir openjdk7/demo/scripting/jconsole-plugin
+@dir openjdk7/demo/scripting
+@dir openjdk7/demo
+@dir openjdk7/include/freebsd
+@dir openjdk7/include
+@dir openjdk7/jre/bin
+@dir openjdk7/jre/lib/amd64/headless
+@dir openjdk7/jre/lib/amd64/jli
+@dir openjdk7/jre/lib/amd64/server
+@dir openjdk7/jre/lib/amd64/xawt
+@dir openjdk7/jre/lib/amd64
+@dir openjdk7/jre/lib/cmm
+@dir openjdk7/jre/lib/ext
+@dir openjdk7/jre/lib/images/cursors
+@dir openjdk7/jre/lib/images
+@dir openjdk7/jre/lib/management
+@dir openjdk7/jre/lib/security
+@dir openjdk7/jre/lib/applet
+@dir openjdk7/jre/lib
+@dir openjdk7/jre
+@dir openjdk7/lib
+@dir openjdk7/man/ja
+@dir openjdk7/man/ja_JP.UTF-8/man1
+@dir openjdk7/man/ja_JP.UTF-8
+@dir openjdk7/man/man1
+@dir openjdk7/man
+@dir openjdk7/sample/forkjoin/mergesort
+@dir openjdk7/sample/forkjoin
+@dir openjdk7/sample/jmx/jmx-scandir/docfiles
+@dir openjdk7/sample/jmx/jmx-scandir/nbproject
+@dir openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples/scandir/config
+@dir openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples/scandir
+@dir openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx/examples
+@dir openjdk7/sample/jmx/jmx-scandir/src/com/sun/jmx
+@dir openjdk7/sample/jmx/jmx-scandir/src/com/sun
+@dir openjdk7/sample/jmx/jmx-scandir/src/com
+@dir openjdk7/sample/jmx/jmx-scandir/src/etc
+@dir openjdk7/sample/jmx/jmx-scandir/src
+@dir openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples/scandir/config
+@dir openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples/scandir
+@dir openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx/examples
+@dir openjdk7/sample/jmx/jmx-scandir/test/com/sun/jmx
+@dir openjdk7/sample/jmx/jmx-scandir/test/com/sun
+@dir openjdk7/sample/jmx/jmx-scandir/test/com
+@dir openjdk7/sample/jmx/jmx-scandir/test
+@dir openjdk7/sample/jmx/jmx-scandir
+@dir openjdk7/sample/jmx
+@dir openjdk7/sample/nbproject
+@dir openjdk7/sample/nio/chatserver
+@dir openjdk7/sample/nio/file
+@dir openjdk7/sample/nio/multicast
+@dir openjdk7/sample/nio/server
+@dir openjdk7/sample/nio
+@dir openjdk7/sample/scripting/scriptpad/nbproject
+@dir openjdk7/sample/scripting/scriptpad/src/META-INF
+@dir openjdk7/sample/scripting/scriptpad/src/com/sun/sample/scriptpad
+@dir openjdk7/sample/scripting/scriptpad/src/com/sun/sample
+@dir openjdk7/sample/scripting/scriptpad/src/com/sun
+@dir openjdk7/sample/scripting/scriptpad/src/com
+@dir openjdk7/sample/scripting/scriptpad/src/resources
+@dir openjdk7/sample/scripting/scriptpad/src/scripts
+@dir openjdk7/sample/scripting/scriptpad/src
+@dir openjdk7/sample/scripting/scriptpad
+@dir openjdk7/sample/scripting
+@dir openjdk7/sample
+@dir openjdk7
 @exec /usr/local/bin/registervm '/usr/local/openjdk7/bin/java'
 @unexec /usr/local/bin/unregistervm '/usr/local/openjdk7/bin/java'
