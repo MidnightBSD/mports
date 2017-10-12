@@ -9,6 +9,7 @@ use Magus;
 use CGI::Fast;
 use HTML::Template;
 use JSON::XS;
+use DateTime::Format::Pg;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -91,7 +92,8 @@ sub api_runs {
   my @runOut;
 
   foreach my $r (@runs) {
-     push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $r->{created},  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
+     my $dt = DateTime::Format::Pg->parse_datetime( $r->{created} );
+     push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $dt->strftime('%FT%TZ'),  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
   }
 
     print $p->header(-type => 'application/json'), encode_json(\@runOut);
