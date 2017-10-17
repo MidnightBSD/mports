@@ -120,7 +120,9 @@ sub api_run_port_stats {
       arch      => $port->run->arch, 
       id        => $port->{id},
     osversion => $port->run->osversion,
-    can_reset => $port->{can_reset} eq 'active' ? 1 : 0
+    can_reset => $port->{can_reset} eq 'active' ? 1 : 0,
+    description => $port->description,
+    license => $port->license
      });
   }
       
