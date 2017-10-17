@@ -122,7 +122,8 @@ sub api_run_port_stats {
     osversion => $port->run->osversion,
     can_reset => $port->{can_reset} eq 'active' ? 1 : 0,
     description => $port->description,
-    license => $port->license
+    license => $port->license,
+    www => $port->www
      });
   }
       
