@@ -138,6 +138,7 @@ SUBDIR += vxquery
 SUBDIR += webfwlog
 SUBDIR += wipe
 SUBDIR += wolfssl
+SUBDIR += wpa_supplicant
 SUBDIR += xinetd
 SUBDIR += xmlsec1
 SUBDIR += xspy
