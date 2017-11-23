@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=		bash
-PATCHLEVEL=		42
-PORTVERSION=		4.3.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=		2
+PATCHLEVEL=		12
+PORTVERSION=		4.4.${PATCHLEVEL:S/^0//g}
+PORTREVISION?=		0
 CATEGORIES=		shells
 MASTER_SITES=		GNU/${PORTNAME}
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
@@ -17,26 +17,20 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 
 MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		The GNU Project's Bourne Again SHell
+COMMENT=		GNU Project's Bourne Again SHell
 
 LICENSE=		gpl3
 
-OPTIONS_DEFINE=		IMPLICITCD COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
-OPTIONS_DEFINE+=	IMPORTFUNCTIONS
-OPTIONS_DEFAULT=	IMPLICITCD COLONBREAKSWORDS HELP NLS
-IMPLICITCD_DESC=	Use directory name alone to cd into it
+OPTIONS_DEFINE=		COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
+OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP NLS
 COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
-IMPORTFUNCTIONS_DESC=	Import function from env without --import-functions
 
-USES=			bison cpe makeinfo
+USES=			bison cpe makeinfo pathfix
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
-IMPLICITCD_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-implicitcd
 COLONBREAKSWORDS_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-colonbreakswords
-# Always apply this for now. The option will modify the default.
-EXTRA_PATCHES+=			${PATCHDIR}/extrapatch-import-functions
 
 HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
@@ -52,8 +46,6 @@ PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
 CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
 			--enable-disabled-builtins
-
-CFLAGS+=		-DUSE_MKTEMP=1 -DUSE_MKSTEMP=1
 
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
