@@ -37,7 +37,8 @@ USE_SQLITE=	3
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ac_cv_path_DOLT_BASH=""
+CONFIGURE_ENV=	AR=/usr/bin/ar \
+		ac_cv_path_DOLT_BASH=""
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
@@ -104,6 +105,9 @@ CXXFLAGS+=	-Qunused-arguments
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%BROWSER_PLUGINS_DIR%%|${BROWSER_PLUGINS_DIR}|' \
 		${WRKSRC}/Source/WebCore/plugins/PluginDatabase.cpp
+# Since ruby 2.2 there is no ruby symlink
+	@${REINPLACE_CMD} -e 's|ruby|${RUBY_NAME}|g' \
+		${WRKSRC}/configure
 	@${FIND} ${WRKSRC} -name GNUmakefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g'
 
