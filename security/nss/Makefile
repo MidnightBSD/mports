@@ -95,7 +95,7 @@ do-install:
 	    	-exec ${INSTALL_DATA} {} ${PREFIX}/include/nss/nss \;
 	${LN} -sf ${DIST}/${OPSYS}${OSREL}-RELEASE_OPT.OBJ ${BINS}
 	${LN} -sf ${DIST}/${OPSYS}${OSREL}-CURRENT_OPT.OBJ ${BINS}
-	${INSTALL_DATA} ${BINS}/lib/*.so \
+	${INSTALL_LIB} ${BINS}/lib/*.so \
 		${PREFIX}/lib/nss
 	${INSTALL_DATA} ${BINS}/lib/libcrmf.a \
 	    	${PREFIX}/lib/nss
@@ -103,8 +103,6 @@ do-install:
 	${INSTALL_PROGRAM} ${BINS}/bin/${bin} \
 		${PREFIX}/bin
 .endfor
-	cd ${BINS}/lib && \
-	    	${TAR} -cf - *.so | ${TAR} --unlink -C ${PREFIX}/lib/nss -xf -
 	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
 
