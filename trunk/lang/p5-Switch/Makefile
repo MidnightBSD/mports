@@ -13,7 +13,7 @@ COMMENT=	Switch - A switch statement for Perl
 
 LICENSE=	perl
 
-BUILD_DEPENDS=	p5-Filter>0:${PORTSDIR}/devel/p5-Filter
+BUILD_DEPENDS=	p5-Filter>0:devel/p5-Filter
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
