@@ -1,6 +1,6 @@
---- /dev/null	2013-07-15 22:04:14.000000000 -0400
-+++ coreconf/MidnightBSD.mk	2013-07-15 22:06:54.000000000 -0400
-@@ -0,0 +1,66 @@
+--- coreconf/MidnightBSD.mk.orig	2017-11-24 13:20:03.920401712 -0500
++++ coreconf/MidnightBSD.mk	2017-11-24 13:21:22.882714831 -0500
+@@ -0,0 +1,73 @@
 +#
 +# This Source Code Form is subject to the terms of the Mozilla Public
 +# License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -22,6 +22,9 @@
 +endif
 +ifeq ($(CPU_ARCH),amd64)
 +CPU_ARCH		= x86_64
++endif
++ifneq (,$(filter arm%, $(CPU_ARCH)))
++CPU_ARCH		= arm
 +endif
 +ifneq (,$(filter powerpc%, $(CPU_ARCH)))
 +CPU_ARCH		= ppc
@@ -48,8 +51,12 @@
 +
 +ARCH			= midnightbsd
 +
-+ifndef MOZILLA_CLIENT
-+DLL_SUFFIX		= so.1
++MOZ_OBJFORMAT		:= $(shell test -x /usr/bin/objformat && /usr/bin/objformat || echo elf)
++
++ifeq ($(MOZ_OBJFORMAT),elf)
++DLL_SUFFIX		= so
++else
++DLL_SUFFIX		= so.1.0
 +endif
 +
 +ifneq (,$(filter alpha ia64,$(OS_TEST)))
