@@ -2180,10 +2180,10 @@ lib/python3.3/pickle.py
 lib/python3.3/pickletools.py
 lib/python3.3/pipes.py
 lib/python3.3/pkgutil.py
-lib/python3.3/plat-midnightbsd0/IN.py
-lib/python3.3/plat-midnightbsd0/__pycache__/IN.cpython-33.pyc
-lib/python3.3/plat-midnightbsd0/__pycache__/IN.cpython-33.pyo
-lib/python3.3/plat-midnightbsd0/regen
+lib/python3.3/plat-midnightbsd%%OSMAJOR%%/IN.py
+lib/python3.3/plat-midnightbsd%%OSMAJOR%%/__pycache__/IN.cpython-33.pyc
+lib/python3.3/plat-midnightbsd%%OSMAJOR%%/__pycache__/IN.cpython-33.pyo
+lib/python3.3/plat-midnightbsd%%OSMAJOR%%/regen
 lib/python3.3/platform.py
 lib/python3.3/plistlib.py
 lib/python3.3/poplib.py
