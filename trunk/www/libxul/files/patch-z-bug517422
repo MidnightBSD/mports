@@ -388,34 +388,7 @@ index 919b99e..cc776f7 100644
 +
 +if CONFIG['MOZ_NATIVE_OGG']:
 +    CFLAGS += CONFIG['MOZ_OGG_CFLAGS']
-diff --git toolkit/library/moz.build toolkit/library/moz.build
-index d42137a..695e75a8 100644
---- toolkit/library/moz.build
-+++ toolkit/library/moz.build
-@@ -178,6 +178,21 @@ if CONFIG['MOZ_NATIVE_PNG']:
- if CONFIG['MOZ_NATIVE_HUNSPELL']:
-     OS_LIBS += CONFIG['MOZ_HUNSPELL_LIBS']
  
-+if CONFIG['MOZ_NATIVE_OGG']:
-+    OS_LIBS += CONFIG['MOZ_OGG_LIBS']
-+
-+if CONFIG['MOZ_NATIVE_THEORA']:
-+    OS_LIBS += CONFIG['MOZ_THEORA_LIBS']
-+
-+if CONFIG['MOZ_NATIVE_VORBIS']:
-+    OS_LIBS += CONFIG['MOZ_VORBIS_LIBS']
-+
-+if CONFIG['MOZ_NATIVE_TREMOR']:
-+    OS_LIBS += CONFIG['MOZ_TREMOR_LIBS']
-+
-+if CONFIG['MOZ_NATIVE_SOUNDTOUCH']:
-+    OS_LIBS += CONFIG['MOZ_SOUNDTOUCH_LIBS']
-+
- if CONFIG['MOZ_NATIVE_LIBEVENT']:
-     OS_LIBS += CONFIG['MOZ_LIBEVENT_LIBS']
- 
-diff --git xpcom/build/XPCOMInit.cpp xpcom/build/XPCOMInit.cpp
-index 2cf281e..6d7af0e 100644
 --- xpcom/build/XPCOMInit.cpp
 +++ xpcom/build/XPCOMInit.cpp
 @@ -138,7 +138,9 @@ extern nsresult nsStringInputStreamConstructor(nsISupports*, REFNSIID, void**);
