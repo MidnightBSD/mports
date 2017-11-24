@@ -13,7 +13,7 @@ COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
 LICENSE=	mpl
 
 MAKE_JOBS_UNSAFE=	yes
-USE_GCC=	4.8+
+#USE_GCC=	4.8+
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
@@ -44,7 +44,7 @@ LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
 MOZ_OPTIONS?=	--enable-application=xulrunner --disable-webrtc \
-		--disable-sandbox
+		--disable-sandbox --disable-pie
 USE_GECKO=	gecko
 CPE_PRODUCT=	firefox_esr
 MOZILLA_EXEC_NAME=xulrunner
