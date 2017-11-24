@@ -113,6 +113,8 @@ EXTDOCS=	readline/README*		\
 		stringio/README			\
 		syslog/syslog.txt
 
+OSMAJOR=	${OSREL:C/\..*//}
+
 # Macros to change variables in rbconfig.rb
 RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' --
 
@@ -211,7 +213,7 @@ post-install:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb22 ${PREFIX}/bin/irb22 \
 		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22 \
-		${PREFIX}/lib/ruby/2.2/${ARCH}-midnightbsd0/rbconfig.rb  \
+		${PREFIX}/lib/ruby/2.2/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
 		${PREFIX}/libdata/pkgconfig/ruby-2.2.pc
 
 regression-test test:
