@@ -2,7 +2,7 @@
 
 PORTNAME=	python33
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 DISTNAME=	Python-${PORTVERSION}
@@ -31,8 +31,9 @@ MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
 MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
 MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
+OSMAJOR=		${OSREL:C/\..*//}
 PLIST_SUB=		ABI=${ABIFLAGS} \
-			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
+			OSMAJOR=${OSREL:C/\..*//}
 
 OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC THREADS TSC
 OPTIONS_DEFAULT=	IPV6 LIBFFI NLS PYMALLOC THREADS
@@ -101,7 +102,7 @@ PLIST_SUB+=	NO_NIS=""
 
 post-patch:
 	${CP} -r ${WRKSRC}/Lib/plat-freebsd8 \
-		${WRKSRC}/Lib/plat-midnightbsd0
+		${WRKSRC}/Lib/plat-midnightbsd${OSMAJOR}
 .if !exists(/usr/bin/ypcat) || defined(WITHOUT_NIS)
 	@${REINPLACE_CMD} -e 's/disabled_module_list =[^]]*/&, "nis"/' \
 		${WRKSRC}/setup.py
