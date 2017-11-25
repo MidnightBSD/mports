@@ -129,6 +129,8 @@ post-fake:
 	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/rebuild-gcj-db${SUFFIX} \
 	        ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/rebuild-gcj-db${SUFFIX}.1
 	${RM} -r ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	# Add target libraries and include files to packaging list.
+	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///} include/gcj include/gnu include/java include/javax
 	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
