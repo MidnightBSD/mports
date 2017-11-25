@@ -3,6 +3,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.9.4
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -104,5 +105,17 @@ full-regression-test: build
 	cd ${TEST_WRKSRC}; ${MAKE_CMD} -sk check \
 	; ${WRKSRC}/contrib/test_summary
 .endif
+
+post-fake:
+	${RM} -f ${PREFIX}/man/man7/*
+	${RM} -fr ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	# Add target libraries and include files to packaging list.
+	${RM} -f ${WRKDIR}/PLIST.lib
+.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
+	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
+	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
+	fi
+.endfor
+	cd ${WRKDIR} ; ${SED} -i -e "/PLIST.lib/ r PLIST.lib" ${TMPPLIST}
 
 .include <bsd.port.post.mk>
