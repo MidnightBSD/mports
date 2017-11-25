@@ -70,6 +70,7 @@ SUBDIR += logstash
 SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += mbmon
+SUBDIR += mcelog
 SUBDIR += mdf2iso
 SUBDIR += memtest
 SUBDIR += memtest86
