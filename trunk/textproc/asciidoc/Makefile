@@ -2,7 +2,7 @@
 
 PORTNAME=	asciidoc
 PORTVERSION=	8.6.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
@@ -33,8 +33,6 @@ SHEBANG_FILES=	a2x.py \
 		filters/graphviz/graphviz2png.py \
 		filters/music/music2png.py \
 		filters/code/code-filter.py
-python_OLD_CMD=	${SETENV} python
-python_CMD=	${PYTHON_CMD}
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^INSTALL_PROG/ s|INSTALL_PROGRAM|INSTALL_SCRIPT|; s|\.conf|&.sample|' ${WRKSRC}/Makefile.in
