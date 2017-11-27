@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	binutils
-PORTVERSION=	2.27
+PORTVERSION=	2.28
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
@@ -36,7 +36,8 @@ CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-gmp=${LOCALBASE} \
-			--with-mpfr=${LOCALBASE}
+			--with-mpfr=${LOCALBASE} \
+			--enable-targets=all
 INFO=		as \
 		binutils \
 		gprof \
@@ -45,7 +46,9 @@ INFO=		as \
 .endif
 
 CONFIGURE_ARGS+=	--disable-werror \
-			--with-sysroot=/
+			--with-sysroot=/ \
+			--enable-deterministic-archives \
+			--enable-x86-relax-relocations=no
 
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
@@ -70,9 +73,7 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 post-install:
 .if !defined(PKGNAMEPREFIX)
-.if ${OSVERSION} >= 4016
 	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
-.endif
 	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
 		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
 	${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h
