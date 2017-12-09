@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.9.8
+PORTVERSION=	1.9.9
 PORTREVISION=	0
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
@@ -13,21 +13,23 @@ COMMENT=	Python clone of WikiWiki
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/docs/licenses/COPYING
 
-USES=		cpe python
+USES=		cpe python shebangfix
 CPE_VENDOR=	moinmo
 USE_PYTHON=	distutils
 PYDISTUTILS_PKGNAME=	moin
+SHEBANG_FILES=	wiki/server/moin*
 
 PLIST_SUB+=	PYTHON_SITELIB=${PYTHON_SITELIBDIR:S|^${LOCALBASE}/||} \
 		DATADIR=share/moin
 SUB_FILES=	pkg-install
-SUB_LIST=	MOINDIR=${MOINDIR} MOINDEST=${MOINDEST} \
+SUB_LIST=	MOINDIR=${MOINDIR} MOINDEST=${MOINDEST} MOINVER=${MOINVER} \
 		HTDOCS=${PYTHON_SITELIBDIR}/MoinMoin/web/static/htdocs
 
 CGIUSER?=	www
 CGIGROUP?=	www
 MOINDIR=	${PREFIX}/share/moin
 MOINDEST?=	${PREFIX}/www/wiki
+MOINVER?=	${PORTVERSION:S|.||g}
 MOINTYPE?=	CGI
 
 PKGDEINSTALL=	${PKGINSTALL}
@@ -42,10 +44,11 @@ MOINSCRIPT=	${MOINDIR}/server/moin.cgi
 .elif ${MOINTYPE} == "WSGI"
 MOINSCRIPT=	${MOINDIR}/server/moin.wsgi
 .else
-BROKEN=		MOINTYPE must be a STANDALONE, FCGI, WSGI, MOD_PYTHON or CGI.
+BROKEN=		MOINTYPE must be a STANDALONE, FCGI, WSGI, MOD_PYTHON, or CGI
 .endif
 
 pre-everything::
+	@${ECHO}
 	@${ECHO} "Set MOINTYPE=(CGI|FCGI|WSGI|STANDALONE) to define"
 	@${ECHO} "type of installation. Default is CGI."
 	@${ECHO} "Use MOINDEST=/path to modify installation destination."
@@ -54,13 +57,6 @@ pre-everything::
 	@${ECHO} "To get correct permissions, please set CGIUSER, CGIGROUP"
 	@${ECHO} "per default it is set to www:www."
 	@${ECHO}
-	@${MKDIR} ${WRKDIR}
-
-post-install:
-#	@${FIND} ${PREFIX}/share/moin/underlay \! -type d | ${SED} -e 's,${PREFIX}/,,' >> ${TMPPLIST}
-#	@${FIND} ${PREFIX}/share/moin/underlay -type d | ${SED} -e 's,${PREFIX}/,@dirrm ,' | ${SORT} -r >> ${TMPPLIST}
-#	@${ECHO_CMD} "@dirrm share/moin" >> ${TMPPLIST}
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 instance: pre-everything apply-slist
 	@${ECHO_CMD} "Creating a new wiki instance in ${MOINDEST}."; \
