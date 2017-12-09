@@ -2,7 +2,7 @@
 
 PORTNAME?=	xorg-server
 PORTVERSION=	1.14.7
-PORTREVISION?=	5
+PORTREVISION?=	6
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -28,8 +28,6 @@ SUID_DESC=	Install the Xorg server with setuid bit set
 HAL_DESC=	Compile with HAL config support
 DEVD_DESC=	Use devd for autoconfiguration of input devices
 OPTIONS_DEFAULT=SUID DEVD
-
-OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
