@@ -1,14 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	geoclue
-PORTVERSION=	2.3.0
+PORTVERSION=	2.4.3
 CATEGORIES=	net devel gnome
 MASTER_SITES=	http://www.freedesktop.org/software/geoclue/releases/2.1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	D-Bus service that provides location information
 
-LICENSE=	gpl2
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
