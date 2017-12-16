@@ -2,13 +2,12 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.2
-DISTVERSIONSUFFIX=	k
-PORTREVISION=	12
+DISTVERSIONSUFFIX=	n
+PORTREVISION=	13
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
-		ftp://ftp.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
-DIST_SUBDIR=	${DISTNAME}
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION:C/[a-z]$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL and crypto library
