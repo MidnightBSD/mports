@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.50.0
+PORTVERSION=	2.52.2
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -12,9 +12,9 @@ COMMENT=	SOAP (Simple Object Access Protocol) implementation in C
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
-LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
-RUN_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
+BUILD_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
+RUN_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
 
 USES=		tar:xz
 
