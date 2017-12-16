@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libressl
-PORTVERSION=	2.4.3
+PORTVERSION=	2.6.3
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
@@ -13,31 +13,32 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CPE_VENDOR=	openbsd
 
-OPTIONS_DEFINE=	MAN3
-OPTIONS_DEFAULT=	MAN3
+OPTIONS_DEFINE=	MAN3 NC
+OPTIONS_DEFAULT=	MAN3 NC
 MAN3_DESC=	Install API manpages (section 3)
+NC_DESC=	Install TLS-enabled netcat
 
-CONFLICTS?=	openssl-[0-9]* \
-		libressl-devel-[0-9]*
+CONFLICTS_INSTALL=	libressl-devel-[0-9]* \
+			openssl-[0-9]* \
+			openssl-devel-[0-9]*
+
+NC_CONFIGURE_ENABLE=	nc
 
 GNU_CONFIGURE=	yes
 USES=		cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+OPTIONS_SUB=	yes
+CFLAGS+=	-fpic -DPIC -Wl,-rpath,${PREFIX}/lib -Wl,--as-needed
 
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
-.endif
-
-post-install-MAN3-off:
-	${RM} -rf ${STAGEDIR}/${PREFIX}/man/man3
-	${REINPLACE_CMD} -e '/^man\/man3/d' ${TMPPLIST}
+post-patch-MAN3-off:
+	${REINPLACE_CMD} -e 's/^install-man: install-man3/install-man:/' \
+		-e '/$$(MAKE) $$(AM_MAKEFLAGS) install-data-hook/d' \
+		${WRKSRC}/man/Makefile.in
 
 post-install:
-	${RM} -rf ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
+	${RM} -r ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
