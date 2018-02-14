@@ -331,7 +331,7 @@ share/mime/magic
 %%DATADIR%%/pts-core/external-test-dependencies/scripts/install-fedora-packages.sh
 %%DATADIR%%/pts-core/external-test-dependencies/scripts/install-opensuse-packages.sh
 %%DATADIR%%/pts-core/external-test-dependencies/scripts/install-zenwalk-packages.sh
-%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-freebsd-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-midnightbsd-packages.sh
 %%DATADIR%%/pts-core/external-test-dependencies/xml/arch-packages.xml
 %%DATADIR%%/pts-core/external-test-dependencies/xml/mandrivalinux-packages.xml
 %%DATADIR%%/pts-core/external-test-dependencies/xml/xsl/pts-exdep-viewer.xsl
@@ -354,7 +354,7 @@ share/mime/magic
 %%DATADIR%%/pts-core/external-test-dependencies/xml/alpine-packages.xml
 %%DATADIR%%/pts-core/external-test-dependencies/xml/macports-packages.xml
 %%DATADIR%%/pts-core/external-test-dependencies/xml/opensolaris-packages.xml
-%%DATADIR%%/pts-core/external-test-dependencies/xml/freebsd-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/midnightbsd-packages.xml
 %%DATADIR%%/pts-core/phoronix-test-suite.php
 %%DATADIR%%/pts-core/objects/pts_test_result_parser.php
 %%DATADIR%%/pts-core/objects/pts_result_merge_select.php
