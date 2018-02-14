@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	phoronix-test-suite
-PORTVERSION=	7.6.0
+PORTVERSION=	7.8.0
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.phoronix-test-suite.com/releases/
 
