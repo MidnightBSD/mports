@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	phoronix-test-suite
-PORTVERSION=	7.4.0
+PORTVERSION=	7.6.0
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.phoronix-test-suite.com/releases/
 
@@ -45,7 +45,7 @@ post-patch:
 		${WRKSRC}/pts-core/objects/phodevi/components/phodevi_system.php \
 		${WRKSRC}/pts-core/objects/client/pts_external_dependencies.php \
 		${WRKSRC}/pts-core/objects/client/pts_client.php \
-		${WRKSRC}/pts-core/external-test-dependencies/xml/freebsd-packages.xml
+		${WRKSRC}/pts-core/external-test-dependencies/xml/midnightbsd-packages.xml
 	@${SED} -i '' -e "s|/usr/share/fonts|${LOCALBASE}/share/fonts| ; \
 		s|/usr/X11/lib|${LOCALBASE}/lib|" \
 		${WRKSRC}/pts-core/objects/pts_svg_dom_gd.php
