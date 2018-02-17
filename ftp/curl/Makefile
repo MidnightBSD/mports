@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.53.0
+PORTVERSION=	7.58.0
 CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -51,7 +51,7 @@ INSTALL_TARGET=	install-strip
 TEST_ENV=	${MAKE_ENV} LC_ALL=C
 TEST_TARGET=	test
 USE_PERL5=	build
-USES=		gmake libtool pathfix perl5 tar:lzma
+USES=		gmake libtool pathfix perl5 tar:xz
 
 .if !defined(BUILDING_HIPHOP)
 USE_LDCONFIG=	yes
