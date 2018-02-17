@@ -1,17 +1,18 @@
 # $MidnightBSD$
 
 PORTNAME=	libtasn1
-PORTVERSION=	4.5
+PORTVERSION=	4.13
 CATEGORIES=	security
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
 
-LICENSE=	gpl3
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-USE_LDCONFIG=	yes
 USES=		cpe pkgconfig pathfix gmake libtool
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	gnu
