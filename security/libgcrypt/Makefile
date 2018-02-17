@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.6.3
+PORTVERSION=	1.8.2
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GNUPG}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
@@ -12,10 +11,11 @@ COMMENT=	General purpose crypto library based on code used in GnuPG
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
-RUN_DEPENDS=	libgpg-error>=1.8:${PORTSDIR}/security/libgpg-error
+BUILD_DEPENDS=	libgpg-error>=1.25:${PORTSDIR}/security/libgpg-error
+RUN_DEPENDS=	libgpg-error>=1.25:${PORTSDIR}/security/libgpg-error
 
 USES=		libtool makeinfo tar:bzip2
+CPE_VENDOR=	gnupg
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-drng-support
@@ -60,7 +60,7 @@ CFLAGS:=	${CFLAGS:N-O*} -O2
 .endif
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}.so.20.0.3
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}.so
 
 .if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
