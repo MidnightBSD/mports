@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	wget
-DISTVERSION=	1.18
-PORTREVISION=	2
+DISTVERSION=	1.19.4
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	GNU
+EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
