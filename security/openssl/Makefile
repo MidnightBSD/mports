@@ -3,7 +3,7 @@
 PORTNAME=	openssl
 PORTVERSION=	1.0.2
 DISTVERSIONSUFFIX=	n
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
