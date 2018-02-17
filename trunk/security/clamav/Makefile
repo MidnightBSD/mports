@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.99.2
+PORTVERSION=	0.99.3
 CATEGORIES=	security
 MASTER_SITES=	http://www.clamav.net/downloads/production/
 
