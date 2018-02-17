@@ -16,6 +16,7 @@ SUBDIR += inadyn
 SUBDIR += ldns
 SUBDIR += libbind
 SUBDIR += libidn
+SUBDIR += libidn2
 SUBDIR += linux-f10-libasyncns
 SUBDIR += mDNSResponder_nss
 SUBDIR += mdnsd
