@@ -1,19 +1,20 @@
 # $MidnightBSD$
 
 PORTNAME=	p11-kit
-PORTVERSION=	0.22.1
+PORTVERSION=	0.23.9
 CATEGORIES=	security devel
-MASTER_SITES=	http://p11-glue.freedesktop.org/releases/
+MASTER_SITES=	https://github.com/p11-glue/p11-kit/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for loading and enumerating of PKCS\#11 modules
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-BUILD_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-LIB_DEPENDS=	libtasn1.so:${PORTSDIR}/security/libtasn1 \
-		libffi.so:${PORTSDIR}/devel/libffi
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+BUILD_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+LIB_DEPENDS=	libtasn1.so:security/libtasn1 \
+		libffi.so:devel/libffi
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-debug=no \
@@ -21,8 +22,10 @@ CONFIGURE_ARGS=	--disable-nls --enable-debug=no \
 MAKE_ENV=	exampledir=${STAGEDIR}${EXAMPLESDIR}
 INSTALL_TARGET=	install-strip
 
-USES=		gmake libtool:keepla pathfix pkgconfig
+USES=		gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+
+TEST_TARGET=	check
 
 pre-configure:
 	@${REINPLACE_CMD} -e \
