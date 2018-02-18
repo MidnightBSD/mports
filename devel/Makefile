@@ -491,6 +491,7 @@ SUBDIR += py33-setuptools
 SUBDIR += pydbus-common
 SUBDIR += pygobject3-common
 SUBDIR += pylint
+SUBDIR += qbs
 SUBDIR += qca
 SUBDIR += qgit
 SUBDIR += qjson
