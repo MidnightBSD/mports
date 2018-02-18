@@ -8,11 +8,13 @@ MASTER_SITES=	SF
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The OpenGL Extension Wrangler Library
-LICENSE=	bsd3
+COMMENT=	OpenGL Extension Wrangler Library
 
+LICENSE=	mit bsd3
+LICENSE_COMB=	dual
+
+USES=		gmake
 USE_XORG=	x11 xext xi xmu
-USE_GMAKE=	yes
 USE_GL=		yes
 USE_LDCONFIG=	yes
 
