@@ -34,7 +34,7 @@ INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
 MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
-OSMAJOR=	${OSREL:C/([0-9]*).[0-9]*/\1/}
+OSMAJOR=	${OSREL:C/([0-9]*).*/\1/}
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			PORTVERSION=${PORTVERSION} \
