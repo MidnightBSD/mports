@@ -11,6 +11,9 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to display stack trace in HTML
 
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
 RUN_DEPENDS=	p5-Devel-StackTrace>0:devel/p5-Devel-StackTrace
 BUILD_DEPENDS:=	${RUN_DEPENDS}
 
