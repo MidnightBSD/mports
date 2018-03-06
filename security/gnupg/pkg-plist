@@ -19,7 +19,6 @@ libexec/gpg-check-pattern
 libexec/gpg-preset-passphrase
 libexec/gpg-protect-tool
 libexec/gpg-wks-client
-%%SCDAEMON%%libexec/scdaemon
 man/man1/dirmngr-client.1.gz
 man/man1/gpg-agent.1.gz
 man/man1/gpg-connect-agent.1.gz
