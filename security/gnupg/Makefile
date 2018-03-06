@@ -27,7 +27,7 @@ CPE_VENDOR=	gnupg
 
 USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
 CONFIGURE_ARGS=	--disable-ntbtls --disable-wks-tools \
-		--enable-gpg-is-gpg2 --enable-symcryptrun
+		--enable-gpg-is-gpg2 --enable-symcryptrun --disable-scdaemon
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INFO=		gnupg
