@@ -33,13 +33,12 @@ USE_LDCONFIG=	yes
 INFO=		gnupg
 TEST_TARGET=	check
 
-OPTIONS_DEFINE=	GNUTLS LDAP SCDAEMON NLS DOCS SUID_GPG
-OPTIONS_DEFAULT=GNUTLS SCDAEMON
+OPTIONS_DEFINE=	GNUTLS LDAP NLS DOCS SUID_GPG
+OPTIONS_DEFAULT=GNUTLS 
 NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
 
 LDAP_DESC=	LDAP keyserver interface
-SCDAEMON_DESC=	Enable Smartcard daemon (with libusb)
 SUID_GPG_DESC=	Install GPG with suid
 # In jail, SUID is required to avoid warning
 # (security.bsd.unprivileged_mlock sysctl is not used in jail).
@@ -54,8 +53,6 @@ LDAP_USES=		readline
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
-
-SCDAEMON_CONFIGURE_ENABLE=	scdaemon
 
 post-install:
 	@${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
