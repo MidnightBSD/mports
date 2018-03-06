@@ -20,10 +20,12 @@ BUILD_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf \
 RUN_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf \
 		${JAVALIBDIR}/mail.jar:${PORTSDIR}/java/javamail
 
+CPE_PRODUCT=	legion-of-the-bouncy-castle-java-crytography-api
+CPE_VENDOR=	${PORTNAME}
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
-JDKMVERSION=	${JAVA_PORT_VERSION:C/^([0-9]\.[0-9])(.*)$/\1/}
-JDKNVERSION=	${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1\2/}
+JDKMVERSION=	1.6 # ${JAVA_PORT_VERSION:C/^([0-9]\.[0-9])(.*)$/\1/}
+JDKNVERSION=	16 # ${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1\2/}
 USE_ANT=	yes
 MAKE_ENV=	ANT_INCLUDE_SHARED_JARS=YES
 MAKE_ARGS=	-f jdk${JDKNVERSION}.xml
