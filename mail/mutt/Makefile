@@ -3,8 +3,8 @@
 # $MidnightBSD$
 
 PORTNAME=	mutt
-PORTVERSION=	1.9.1
-PORTREVISION?=	1
+PORTVERSION=	1.9.3
+PORTREVISION?=	0
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -18,10 +18,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
-		https://github.com/aschrab/mutt/compare/dev-base...feature/:ats \
 		http://vc.org.ua/mutt/:vc
 PATCH_DIST_STRIP=	-p1
-PATCHFILES=	date-conditional.diff:ats
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Small but powerful text based program for read/writing e-mail
@@ -114,9 +112,7 @@ URLVIEW_RUN_DEPENDS=	urlview:textproc/urlview
 PKGNAMESUFFIX=	-lite
 USES+=	ncurses
 PLIST_SUB+=	MAILBOX_MANPAGES=""
-PLIST_SUB+=	COMPRESSED_FOLDERS="@comment "
 PLIST_SUB+=	HTML="@comment "
-PLIST_SUB+=	XML="@comment "
 PLIST_SUB+=	NNTP="@comment "
 # XXX bug in bpm ?
 PLIST_SUB+=	NLS="@comment "
@@ -207,8 +203,8 @@ DOCS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-doc-ref
 .include <bsd.mport.options.mk>
 
 # un/comment as each VERSION is created for PORTVERSION
-#VVV_PATCH_VERSION=	1.8.3
-GREETING_PATCH_VERSION=	1.9.0
+VVV_PATCH_VERSION=	1.9.1
+GREETING_PATCH_VERSION=	1.9.2
 
 .if !defined(VVV_PATCH_VERSION)
 VVV_PATCH_VERSION=	${PORTVERSION}
