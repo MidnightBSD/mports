@@ -6,7 +6,7 @@ CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GNU Privacy Guard
+COMMENT=	Complete and free PGP implementation
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
