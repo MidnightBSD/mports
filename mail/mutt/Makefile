@@ -150,7 +150,7 @@ HCACHE_NONE_CONFIGURE_ON=	--disable-hcache
 HCACHE_NONE_CONFIGURE_OFF=	--enable-hcache --without-qdbm --without-gdbm
 
 HCACHE_BDB_CONFIGURE_WITH=	bdb
-HCACHE_BDB_USES=	bdb:42+
+USE_BDB=	42+
 
 HCACHE_TOKYOCABINET_CONFIGURE_WITH=	tokyocabinet
 HCACHE_TOKYOCABINET_LIB_DEPENDS=	libtokyocabinet.so:databases/tokyocabinet
