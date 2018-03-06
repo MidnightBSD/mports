@@ -1,5 +1,5 @@
---- elasticsearch.in.sh.orig	2015-10-21 04:41:12.000000000 -0400
-+++ elasticsearch.in.sh	2017-10-10 17:42:43.000000000 -0400
+--- bin/elasticsearch.in.sh.orig	2015-10-21 04:41:12.000000000 -0400
++++ bin/elasticsearch.in.sh	2017-10-10 17:42:43.000000000 -0400
 @@ -1,5 +1,20 @@
  #!/bin/sh
  
