@@ -23,6 +23,12 @@ OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_MAKE_ENV_OFF=	DI_NO_NLS=T
 
+.include <bsd.mport.options.mk>
+
+.if ! ${PORT_OPTIONS:MNLS}
+FAKE_MAKEENV += DI_NO_NLS=T
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e "s|zoneid_t|zoneId_t|g" ${WRKSRC}/C/di.c
 
