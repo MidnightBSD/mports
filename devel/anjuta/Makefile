@@ -15,10 +15,10 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen \
 		bash:${PORTSDIR}/shells/bash \
 		p5-Locale-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext
-LIB_DEPENDS=	pcre.3:${PORTSDIR}/devel/pcre \
-		gladeui-1.10:${PORTSDIR}/devel/glade3 \
-		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
-		gdl-1.3:${PORTSDIR}/x11-toolkits/gdl
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
+		libgladeui-1.so:${PORTSDIR}/devel/glade3 \
+		libunique-1.0.so:${PORTSDIR}/x11-toolkits/unique \
+		libgdl-1.so:${PORTSDIR}/x11-toolkits/gdl
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		autogen:${PORTSDIR}/devel/autogen \
 		${LOCALBASE}/share/autotools:${PORTSDIR}/devel/autotools \
