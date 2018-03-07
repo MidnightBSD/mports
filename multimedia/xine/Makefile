@@ -15,6 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libxine.so:multimedia/libxine
 
+USE_GCC=	any
 USES=		desktop-file-utils execinfo gmake iconv jpeg pkgconfig readline \
 		shared-mime-info tar:xz
 USE_XORG=	x11 xext xinerama xscrnsaver xtst xv xxf86vm
