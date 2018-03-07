@@ -128,7 +128,6 @@ SUBDIR += samba43
 SUBDIR += samba44
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
-SUBDIR += sixxs-aiccu
 SUBDIR += smbldap-tools
 SUBDIR += spideroak
 SUBDIR += tryst
