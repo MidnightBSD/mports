@@ -13,13 +13,10 @@
  RANLIB			= ranlib
  
  CPU_ARCH		= $(OS_TEST)
-@@ -52,6 +52,16 @@ endif
+@@ -52,6 +52,13 @@ endif
  ifeq ($(CPU_ARCH),amd64)
  CPU_ARCH		= x86_64
  endif
-+ifneq (,$(filter arm%, $(CPU_ARCH)))
-+CPU_ARCH		= arm
-+endif
 +ifneq (,$(filter powerpc%, $(CPU_ARCH)))
 +CPU_ARCH		= ppc
 +endif
@@ -30,16 +27,25 @@
  
  OS_CFLAGS		= $(DSO_CFLAGS) -ansi -Wall -Wno-switch -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
  
-@@ -46,7 +56,11 @@ else
- DLL_SUFFIX		= so.1.0
- endif
+@@ -70,15 +85,15 @@
  
--MKSHLIB			= $(CC) $(DSO_LDOPTS)
+ ARCH			= freebsd
+ 
+-MOZ_OBJFORMAT		:= $(shell test -x /usr/bin/objformat && /usr/bin/objformat || echo elf)
++ifndef MOZILLA_CLIENT
++DLL_SUFFIX		= so.1
++endif
+ 
+-ifeq ($(MOZ_OBJFORMAT),elf)
+-DLL_SUFFIX		= so
 +ifneq (,$(filter alpha ia64,$(OS_TEST)))
 +MKSHLIB			= $(CC) -Wl,-Bsymbolic -lc $(DSO_LDOPTS)
-+else
+ else
+-DLL_SUFFIX		= so.1.0
 +MKSHLIB			= $(CC) -Wl,-Bsymbolic $(DSO_LDOPTS)
-+endif
+ endif
+-
+-MKSHLIB			= $(CC) $(DSO_LDOPTS)
  ifdef MAPFILE
  	MKSHLIB += -Wl,--version-script,$(MAPFILE)
  endif

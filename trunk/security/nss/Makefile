@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nss
-PORTVERSION=	3.34
+PORTVERSION=	3.26
 #DISTVERSIONSUFFIX=	-with-ckbi-1.98
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
@@ -9,18 +9,18 @@ MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RT
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
 
-LICENSE=	mpl
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	unknown
+#mpl?
 
-BUILD_DEPENDS=	zip:archivers/zip \
-		nspr>=4.12:devel/nspr \
-		sqlite3>=3.7.15:databases/sqlite3
-LIB_DEPENDS=	libnspr4.so:devel/nspr \
-		libsqlite3.so:databases/sqlite3
+BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
+		nspr>=4.10.8:${PORTSDIR}/devel/nspr \
+		sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr \
+		libsqlite3.so:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=	sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
 
-USE_GCC=6
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/nss
 USES=		cpe gmake perl5
@@ -57,10 +57,6 @@ BINS=		${DIST}/${OPSYS}${OSREL}_OPT.OBJ
 BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
 .endif
 
-.if ${ARCH} == i386
-USES+=	compiler:c++14-lang # gcm.h
-.endif
-
 .if ${ARCH} == amd64
 USE_BINUTILS=	# intel-gcm.s
 CC+=	-B${LOCALBASE}/bin
@@ -95,7 +91,7 @@ do-install:
 	    	-exec ${INSTALL_DATA} {} ${PREFIX}/include/nss/nss \;
 	${LN} -sf ${DIST}/${OPSYS}${OSREL}-RELEASE_OPT.OBJ ${BINS}
 	${LN} -sf ${DIST}/${OPSYS}${OSREL}-CURRENT_OPT.OBJ ${BINS}
-	${INSTALL_LIB} ${BINS}/lib/*.so \
+	${INSTALL_DATA} ${BINS}/lib/*.so.1 \
 		${PREFIX}/lib/nss
 	${INSTALL_DATA} ${BINS}/lib/libcrmf.a \
 	    	${PREFIX}/lib/nss
@@ -103,6 +99,8 @@ do-install:
 	${INSTALL_PROGRAM} ${BINS}/bin/${bin} \
 		${PREFIX}/bin
 .endfor
+	cd ${BINS}/lib && \
+	    	${TAR} -cf - *.so | ${TAR} --unlink -C ${PREFIX}/lib/nss -xf -
 	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
 
