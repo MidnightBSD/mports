@@ -13,11 +13,11 @@ COMMENT=	Small but powerful text editor for GNOME 3 Desktop Environment
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
+BUILD_DEPENDS=	python2.7:${PORTSDIR}/lang/python27 \
+		iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		vala:${PORTSDIR}/lang/vala \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		itstool:${PORTSDIR}/textproc/itstool \
-		python2.7:${PORTSDIR}/lang/python27
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libpeas-gtk-1.0.so:${PORTSDIR}/devel/libpeas \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
