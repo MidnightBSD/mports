@@ -11,17 +11,22 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Virtual File System
 
-LICENSE=	gpl2
+LICENSE=	lgpl2
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
+
+BROKEN_SSL=	openssl-devel
+BROKEN_SSL_REASON_openssl-devel=	incomplete definition of type 'struct ssl_st'
 
 USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
+RUN_DEPENDS=	update-mime-database:misc/shared-mime-info
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
+		libdbus-1.so:devel/dbus
 
 USES+=		gettext gmake libtool:keepla pathfix pkgconfig
-USE_GNOME=	gnomeprefix intlhack gnomemimedata gconf2 \
-		referencehack
+USE_GNOME=	gconf2 gnomemimedata intlhack referencehack
 INSTALL_TARGET=	install-strip
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
@@ -30,7 +35,8 @@ CONFIGURE_ARGS=	--enable-openssl \
 		--disable-gnutls \
 		--disable-howl \
 		--with-hal-mount=/sbin/mount \
-		--with-hal-umount=/sbin/umount
+		--with-hal-umount=/sbin/umount \
+		ac_cv_header_sys_inotify_h=no
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
@@ -53,12 +59,12 @@ USES+=		fam
 .endif
 
 .if exists(${LOCALBASE}/lib/libkrb5.so)
-LIB_DEPENDS+=	libkrb5.so:${PORTSDIR}/security/heimdal
+LIB_DEPENDS+=	libkrb5.so:security/heimdal
 .endif
 
 .if ${PORT_OPTIONS:MHAL}
 CONFIGURE_ARGS+=--enable-hal
-LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
+LIB_DEPENDS+=	libhal.so:sysutils/hal
 .else
 CONFIGURE_ARGS+=--disable-hal
 .endif
@@ -73,7 +79,7 @@ CONFIGURE_ARGS+=--disable-samba
 .endif
 
 .if ${PORT_OPTIONS:MMDNS}
-LIB_DEPENDS+=	libavahi-client.so:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=	libavahi-client.so:net/avahi-app
 .else
 CONFIGURE_ARGS+=--disable-avahi
 .endif
