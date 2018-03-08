@@ -64,7 +64,8 @@ CONFIGURE_ARGS+=--disable-hal
 .endif
 
 .if ${PORT_OPTIONS:MSAMBA}
-LIB_DEPENDS+=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
+CONFIGURE_ARGS+=--with-samba-includes=${SAMBAINCLUDES} --with-samba-libs=${SAMBALIBS}
+USES+=		samba:lib
 PLIST_SUB+=	SAMBA=""
 .else
 PLIST_SUB+=	SAMBA="@comment "
