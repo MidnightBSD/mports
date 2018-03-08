@@ -29,6 +29,7 @@ PYTHON_DEFAULT?=	2.7
 PYTHON2_DEFAULT?=	2.7
 PYTHON3_DEFAULT?=	3.3
 RUBY_DEFAULT?=		2.2
+SAMBA_DEFAULT?=		4.3
 TCLTK_DEFAULT?=		8.6
 
 # Version of lang/gcc.  Do not override!
