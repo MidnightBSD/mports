@@ -120,7 +120,6 @@ SUBDIR += rabbitmq-c
 SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
-SUBDIR += samba-libsmbclient
 SUBDIR += samba-nmblookup
 SUBDIR += samba-smbclient
 SUBDIR += samba42
