@@ -34,8 +34,8 @@ CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes \
 	-DBUILD_SLIMLOCK=no \
 	-DBUILD_SHARED_LIBS=yes
 
-OPTIONS_DEFINE=		PAM UTF8 CONSOLEKIT
-OPTIONS_DEFAULT=	PAM CONSOLEKIT
+OPTIONS_DEFINE=		UTF8 CONSOLEKIT
+OPTIONS_DEFAULT=	CONSOLEKIT
 OPTIONS_SUB=	yes
 
 UTF8_DESC=	Support UTF-8 characters
@@ -45,13 +45,7 @@ PLIST_SUB+=	VERSION="${PORTVERSION}"
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MPAM}
 CMAKE_ARGS+=	-DUSE_PAM=yes
-PLIST_SUB+=	PAM=""
-.else
-CMAKE_ARGS+=	-DUSE_PAM=no
-PLIST_SUB+=	PAM="@comment "
-.endif
 
 .if ${PORT_OPTIONS:MUTF8}
 # patch taken from slim-unicode in Arch User Repository
@@ -73,8 +67,6 @@ post-patch:
 		${WRKSRC}/mlogind.1
 
 post-install:
-.	if ${PORT_OPTIONS:MPAM}
-	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/mlogind.default
-.	endif
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/mlogind.sample
 
 .include <bsd.port.mk>
