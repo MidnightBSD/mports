@@ -3,7 +3,7 @@
 
 PORTNAME=	wmcalendar
 PORTVERSION=	0.5.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	SF
 
@@ -12,7 +12,7 @@ COMMENT=	Dockable calendar with interface to iCalendar based calendars
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libical.so:${PORTSDIR}/devel/libical
+LIB_DEPENDS=	libical.so:devel/libical
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 
@@ -23,7 +23,7 @@ MAKE_ARGS=	CC="${CC}" \
 		CFLAGS="${CFLAGS}" \
 		INCDIR="`pkg-config --cflags gtk+-2.0` -I${LOCALBASE}/include" \
 		LIBDIR="" \
-		LIBS="-lical -lXpm"
+		LIBS="-lical -lX11 -lXext -lXpm -lm"
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
