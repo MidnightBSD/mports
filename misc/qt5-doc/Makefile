@@ -18,6 +18,7 @@ LICENSE=	gpl3
 USES=		gmake python:build qmake:norecursive,outsource tar:xz
 USE_QT5=	buildtools_build concurrent_build help_build qdoc_build \
 		sql_build sql-sqlite3_build
+USE_XORG=	x11
 QMAKE_SOURCE_PATH=	${WRKSRC}/qt.pro
 
 ALL_TARGET=	docs
