@@ -37,7 +37,7 @@ USE_GNOME=	cairo glib20 gtk20 libxml2 pango
 CONFIGURE_ARGS=	--enable-tile-path --enable-gtk2-use
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV+=	-D__FreeBSD_version=90100
+MAKE_ENV+=	__FreeBSD_version=90100
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
