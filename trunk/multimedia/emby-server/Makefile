@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	emby-server
-PORTVERSION=	3.2.32.0
+PORTVERSION=	3.3.0.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
