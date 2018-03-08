@@ -11,7 +11,8 @@ COMMENT=	Audio player for GNOME
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat \
+BUILD_DEPENDS=	python2.7:lang/python27 \
+		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat \
 		valac:${PORTSDIR}/lang/vala \
 		gtkdoc-check:${PORTSDIR}/textproc/gtk-doc \
 		itstool:${PORTSDIR}/textproc/itstool
