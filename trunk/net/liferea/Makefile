@@ -31,7 +31,7 @@ OPTIONS=	LIBNOTIFY "Enable libnotify support" on
 CONFIGURE_ARGS+=--disable-libnotify
 PLIST_SUB+=	NOTIFY="@comment "
 .else
-LIB_DEPENDS+=	notify.1:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=	libnotify.so:${PORTSDIR}/devel/libnotify
 PLIST_SUB+=	NOTIFY=""
 .endif
 
