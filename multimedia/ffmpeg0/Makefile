@@ -17,9 +17,9 @@ LICENSE_COMB=		multi
 LICENSE_FILE_gpl2=	${WRKSRC}/COPYING.GPLv2
 LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LGPLv2.1
 
-BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm \
-		${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils \
-		${LOCALBASE}/bin/texi2html:${PORTSDIR}/textproc/texi2html
+BUILD_DEPENDS=	yasm:devel/yasm \
+		${LOCALBASE}/bin/as:devel/binutils \
+		${LOCALBASE}/bin/texi2html:textproc/texi2html
 
 PORTSCOUT=	limit:^0\.7.*
 
@@ -74,14 +74,14 @@ OPTIONS_SUB=		yes
 FFSERVER_DESC=		Build and install ffserver
 X11GRAB_DESC=		Enable x11 grabbing
 
-ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_CONFIGURE_OFF=	--disable-indev=alsa \
 			--disable-outdev=alsa
 
-CELT_LIB_DEPENDS=	libcelt0.so:${PORTSDIR}/audio/celt
+CELT_LIB_DEPENDS=	libcelt0.so:audio/celt
 CELT_CONFIGURE_ENABLE=	libcelt
 
-DIRAC_LIB_DEPENDS=	libdirac_encoder.so:${PORTSDIR}/multimedia/dirac
+DIRAC_LIB_DEPENDS=	libdirac_encoder.so:multimedia/dirac
 DIRAC_CONFIGURE_ENABLE=	libdirac
 
 DEBUG_CONFIGURE_ON=	--disable-stripping
@@ -89,48 +89,48 @@ DEBUG_CONFIGURE_OFF=	--disable-debug
 
 FFSERVER_CONFIGURE_OFF=	--disable-ffserver
 
-FREETYPE_LIB_DEPENDS=		libfreetype.so:${PORTSDIR}/print/freetype2
+FREETYPE_LIB_DEPENDS=		libfreetype.so:print/freetype2
 FREETYPE_CONFIGURE_ENABLE=	libfreetype
 
-FREI0R_BUILD_DEPENDS=		${LOCALBASE}/include/frei0r.h:${PORTSDIR}/graphics/frei0r
+FREI0R_BUILD_DEPENDS=		${LOCALBASE}/include/frei0r.h:graphics/frei0r
 FREI0R_CONFIGURE_ENABLE=	frei0r
 
-GSM_LIB_DEPENDS=		libgsm.so:${PORTSDIR}/audio/gsm
+GSM_LIB_DEPENDS=		libgsm.so:audio/gsm
 GSM_CONFIGURE_ENABLE=		libgsm
 
-LAME_LIB_DEPENDS=		libmp3lame.so:${PORTSDIR}/audio/lame
+LAME_LIB_DEPENDS=		libmp3lame.so:audio/lame
 LAME_CONFIGURE_ENABLE=		libmp3lame
 
-OPENCV_LIB_DEPENDS=		libopencv_imgproc.so:${PORTSDIR}/graphics/opencv-core
+OPENCV_LIB_DEPENDS=		libopencv_imgproc.so:graphics/opencv-core
 OPENCV_CONFIGURE_ENABLE=	libopencv
 
-OPENJPEG_LIB_DEPENDS=		libopenjpeg.so:${PORTSDIR}/graphics/openjpeg15
+OPENJPEG_LIB_DEPENDS=		libopenjpeg.so:graphics/openjpeg15
 OPENJPEG_CONFIGURE_ENABLE=	libopenjpeg
 
 RTMP_USE=			OPENSSL=yes
 
-SCHROEDINGER_LIB_DEPENDS=	libschroedinger-1.0.so:${PORTSDIR}/multimedia/schroedinger
+SCHROEDINGER_LIB_DEPENDS=	libschroedinger-1.0.so:multimedia/schroedinger
 SCHROEDINGER_CONFIGURE_ENABLE=	libschroedinger
 
-SPEEX_LIB_DEPENDS=		libspeex.so:${PORTSDIR}/audio/speex
+SPEEX_LIB_DEPENDS=		libspeex.so:audio/speex
 SPEEX_CONFIGURE_ENABLE=		libspeex
 
-THEORA_LIB_DEPENDS=		libtheora.so:${PORTSDIR}/multimedia/libtheora
+THEORA_LIB_DEPENDS=		libtheora.so:multimedia/libtheora
 THEORA_CONFIGURE_ENABLE=	libtheora
 
 X11GRAB_USE=		XORG=x11,xext,xfixes
 X11GRAB_CONFIGURE_ON=	--enable-x11grab
 
-X264_LIB_DEPENDS=	libx264.so:${PORTSDIR}/multimedia/libx264
+X264_LIB_DEPENDS=	libx264.so:multimedia/libx264
 X264_CONFIGURE_ENABLE=	libx264
 
-XVID_LIB_DEPENDS=	libxvidcore.so:${PORTSDIR}/multimedia/xvid
+XVID_LIB_DEPENDS=	libxvidcore.so:multimedia/xvid
 XVID_CONFIGURE_ENABLE=	libxvid
 
-VDPAU_BUILD_DEPENDS=	${LOCALBASE}/include/vdpau/vdpau.h:${PORTSDIR}/multimedia/libvdpau
+VDPAU_BUILD_DEPENDS=	${LOCALBASE}/include/vdpau/vdpau.h:multimedia/libvdpau
 VDPAU_CONFIGURE_ENABLE=	vdpau
 
-VPX_LIB_DEPENDS=	libvpx.so:${PORTSDIR}/multimedia/libvpx
+VPX_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
 VPX_CONFIGURE_ENABLE=	libvpx
 
 COMPAT_HEADERS=libavcodec/avcodec.h \
