@@ -11,7 +11,7 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Virtual File System
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BROKEN_SSL=	openssl-devel
