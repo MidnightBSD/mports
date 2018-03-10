@@ -121,7 +121,6 @@ SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba-nmblookup
-SUBDIR += samba-smbclient
 SUBDIR += samba42
 SUBDIR += samba43
 SUBDIR += samba44
