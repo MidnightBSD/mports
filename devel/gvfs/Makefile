@@ -74,6 +74,7 @@ LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
 
 .if ${PORT_OPTIONS:MSAMBA}
 GLIB_SCHEMAS+=	org.gnome.system.smb.gschema.xml
+CONFIGURE_ARGS+= --enable-samba  --with-samba-includes=${SAMBAINCLUDES} --with-samba-libs=${SAMBALIBS}
 .endif
 
 .if ${PORT_OPTIONS:MAVAHI}
