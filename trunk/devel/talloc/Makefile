@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=		talloc
-PORTVERSION=		2.1.6
+PORTVERSION=		2.1.11
 PORTEPOCH=		0
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=		SAMBA
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Hierarchical pool based memory allocator
@@ -14,10 +13,10 @@ LICENSE=		lgpl3
 
 CONFLICTS=		samba33-3.*
 
-USES=			compiler pkgconfig
+USES=			compiler pkgconfig waf
 USE_PYTHON_BUILD=	2
 USE_LDCONFIG=		yes
-WAF_TOOL=		buildtools/bin/waf
+WAF_CMD=		buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
@@ -26,7 +25,8 @@ PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 CONFIGURE_ARGS+=	--prefix=${FAKE_DESTDIR}${PREFIX} \
 			--mandir=${FAKE_DESTDIR}${MANPREFIX}/man \
 			--infodir=${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
-			--without-gettext
+			--without-gettext \
+			--disable-rpath 
 # Support staging
 DESTDIRNAME=		--destdir
 
@@ -34,6 +34,11 @@ OPTIONS_DEFINE=		MANPAGES
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
 .include <bsd.mport.options.mk>
+
+PLIST_FILES+=		include/talloc.h \
+			lib/libtalloc.so \
+			lib/libtalloc.so.2 \
+			%%PKGCONFIGDIR%%/talloc.pc
 
 .if defined(NO_PYTHON)
 CONFIGURE_ARGS+=	--disable-python
@@ -44,6 +49,37 @@ PLIST_FILES+=		include/pytalloc.h \
 			lib/libpytalloc-util.so.2 \
 			%%PYTHON_SITELIBDIR%%/talloc.so \
 			%%PKGCONFIGDIR%%/pytalloc-util.pc
+# XXX: This is a gross hack to make port use both Python 2.7+ and 3.3+
+# This is not officially supported, use at your own risk
+.if defined(WITH_SAMBA4_PYTHON3) && ${WITH_SAMBA4_PYTHON3:Mpython3\.[0-9]}
+SAMBA4_PYTHON3=		${WITH_SAMBA4_PYTHON3}
+SAMBA4_PYTHON3_VERSION:=${SAMBA4_PYTHON3:S/^python//}
+SAMBA4_PYTHON3_VER:=	${SAMBA4_PYTHON3_VERSION:C/\.//}
+.if !exists(${PORTSDIR}/lang/python${SAMBA4_PYTHON3_VER})
+.error			unsupported or unknown Python version ${SAMBA4_PYTHON3_VERSION}
+.endif
+BUILD_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
+RUN_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
+# cpython-36m
+SAMBA4_PYTHON3_SO_ABI!=	[ ! -f "${LOCALBASE}/bin/${SAMBA4_PYTHON3}" ] || ${LOCALBASE}/bin/${SAMBA4_PYTHON3} -c 'import sysconfig; print(sysconfig.get_config_var("SOABI") or "")' 2>/dev/null
+SAMBA4_PYTHON3_SITELIBDIR=lib/python${SAMBA4_PYTHON3_VERSION}/site-packages
+
+CONFIGURE_ENV+=		PYTHON3_SO_ABI_FLAG=.${SAMBA4_PYTHON3_SO_ABI}
+CONFIGURE_ARGS+=	--extra-python=${LOCALBASE}/bin/${SAMBA4_PYTHON3}
+
+PLIST_SUB+=		SAMBA4_PYTHON3_SO_ABI=${SAMBA4_PYTHON3_SO_ABI} \
+			SAMBA4_PYTHON3_SITELIBDIR=${SAMBA4_PYTHON3_SITELIBDIR}
+
+PLIST_FILES+=		lib/libpytalloc-util.%%SAMBA4_PYTHON3_SO_ABI%%.so \
+			lib/libpytalloc-util.%%SAMBA4_PYTHON3_SO_ABI%%.so.2 \
+			%%SAMBA4_PYTHON3_SITELIBDIR%%/talloc.%%SAMBA4_PYTHON3_SO_ABI%%.so \
+			%%PKGCONFIGDIR%%/pytalloc-util.%%SAMBA4_PYTHON3_SO_ABI%%.pc
+.endif
+.endif
+
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=219455
+.if ${ARCH} == powerpc64 || ${ARCH} == powerpc
+.info EXTRA_PATCHES+=		${FILESDIR}/powerpc-patch-lib_replace_wscript
 .endif
 
 .include <bsd.port.pre.mk>
@@ -51,15 +87,9 @@ PLIST_FILES+=		include/pytalloc.h \
 .if ! ${PORT_OPTIONS:MMANPAGES}
 CONFIGURE_ENV+=		XSLTPROC="true"
 .else
-BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
-			xsltproc:${PORTSDIR}/textproc/libxslt
+BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
+			xsltproc:textproc/libxslt
 .endif
-
-PLIST_FILES+=		include/talloc.h \
-			lib/libtalloc.so \
-			lib/libtalloc.so.2 \
-			%%PKGCONFIGDIR%%/talloc.pc
-
 # No fancy color error messages
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
@@ -67,23 +97,12 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
-.if !defined(DISABLE_MAKE_JOBS) && !defined(MAKE_JOBS_UNSAFE)
-CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS_NUMBER}
-_MAKE_JOBS+=		--jobs=${MAKE_JOBS_NUMBER}
-.endif
-
 TALLOC_MAN3=		man/man3/talloc.3.gz
 
-PLIST_FILES+=		${TALLOC_MAN3}
-
-CONFIGURE_TARGET=	configure
-ALL_TARGET=		build
-INSTALL_TARGET=		install
-
-IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
+#PLIST_FILES+=		${TALLOC_MAN3}
 
 post-patch:
-			@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${FAKE_DESTDIR}${PKGCONFIGDIR}|g' \
+			@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
 				${BUILD_WRKSRC}/wscript
 
 # Use threading (or multiprocessing) but not thread (renamed in python 3+).
@@ -95,47 +114,21 @@ pre-configure:
 				${FALSE}; \
 			fi
 
-do-configure:
-			@(cd ${CONFIGURE_WRKSRC} && \
-			    ${SET_LATE_CONFIGURE_ARGS} \
-				if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
-					CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-					LDFLAGS="${LDFLAGS}" \
-					INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
-					INSTALL_DATA="${INSTALL_DATA}" \
-					INSTALL_LIB="${INSTALL_LIB}" \
-					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
-					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
-					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_TOOL} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
-						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-						${FALSE}; \
-				fi)
-
 pre-build:
-.if ! ${PORT_OPTIONS:MMANPAGES}
 			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-.	for man in ${TALLOC_MAN3}
+.for man in ${TALLOC_MAN3}
 			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
-.	endfor
-.endif
-
-do-build:
-			@(cd ${BUILD_WRKSRC}; \
-			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_TOOL} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
-				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
-					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-				fi; \
-			${FALSE}; \
-			fi)
-
-do-install:
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${INSTALL_TARGET})
+.endfor
 
 post-install:
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
-		${PREFIX}/libdata/pkgconfig/talloc.pc \
-		${PREFIX}/libdata/pkgconfig/pytalloc-util.pc
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so
+.if !defined(NO_PYTHON)
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util.so
+			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/talloc.so
+.if defined(SAMBA4_PYTHON3)
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util.${SAMBA4_PYTHON3_SO_ABI}.so
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SAMBA4_PYTHON3_SITELIBDIR}/talloc.${SAMBA4_PYTHON3_SO_ABI}.so
+.endif
+.endif
 
 .include <bsd.port.post.mk>
