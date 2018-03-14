@@ -85,7 +85,7 @@ RUN_DEPENDS+=		libarchive>=3.1.2:archivers/libarchive
 # External Samba dependencies
 # Needed for IDL compiler
 BUILD_DEPENDS+=		p5-Parse-Yapp>=0:devel/p5-Parse-Yapp
-PLIST_SUB+=		PIDL=""
+PLIST_SUB+=		PIDL="@comment "
 # External Python modules
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython
@@ -155,7 +155,6 @@ CONFIGURE_ARGS+=	\
 			--disable-rpath \
 			--without-gettext \
 			--with-sendfile-support \
-			--builtin-libraries=smbclient \
 			${ICONV_CONFIGURE_BASE}
 # for libexecinfo: (so that __builtin_frame_address() finds the top of the stack)
 .if ${ARCH} == "amd64"
@@ -254,7 +253,6 @@ CONFIGURE_ARGS+=	--disable-avahi
 .endif
 
 .if ${PORT_OPTIONS:MMDNSRESPONDER}
-LIB_DEPENDS+=		libdns_sd.so:net/mDNSResponder
 CONFIGURE_ARGS+=	--enable-dnssd
 .else
 CONFIGURE_ARGS+=	--disable-dnssd
