@@ -194,6 +194,7 @@ SUBDIR += sphinxsearch
 SUBDIR += teckit
 SUBDIR += texi2html
 SUBDIR += tidyp
+SUBDIR += txt2man
 SUBDIR += unoconv
 SUBDIR += urlview
 SUBDIR += wv
