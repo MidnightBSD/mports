@@ -227,7 +227,9 @@ CONFIGURE_ARGS+=--enable-pdo
 .if ${PHP_MODNAME} == "pdo_dblib"
 CONFIGURE_ARGS+=--with-pdo-dblib=${LOCALBASE}
 
-USE_PHP=	pdo:build
+#USE_PHP=	pdo:build
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
 
 OPTIONS_DEFINE=	MSSQL
 
@@ -238,14 +240,18 @@ MSSQL_DESC=	Enable Microsoft SQL Server support
 CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
 
 USES+=	firebird
-USE_PHP=	pdo:build
+#USE_PHP=	pdo:build
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_odbc"
 LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
 
-USE_PHP=	pdo:build
+#USE_PHP=       pdo:build
+USE_PHP=        pdo
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_mysql"
@@ -254,7 +260,9 @@ OPTIONS_DEFAULT=MYSQLND
 
 MYSQLND_DESC=	Use MySQL Native Driver
 
-USE_PHP=	pdo:build
+#USE_PHP=       pdo:build
+USE_PHP=        pdo
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_pgsql"
@@ -262,14 +270,18 @@ USES+=		pgsql
 
 CONFIGURE_ARGS+=--with-pdo-pgsql=${LOCALBASE}
 
-USE_PHP=	pdo:build
+#USE_PHP=       pdo:build
+USE_PHP=        pdo
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_sqlite"
 USES+=		sqlite
 CONFIGURE_ARGS+=--with-pdo-sqlite=${LOCALBASE}
 
-USE_PHP=	pdo:build
+#USE_PHP=       pdo:build
+USE_PHP=        pdo
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "pgsql"
