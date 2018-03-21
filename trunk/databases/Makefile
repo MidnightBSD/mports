@@ -29,6 +29,7 @@ SUBDIR += libmemcache
 SUBDIR += libmemcached
 SUBDIR += linux-f10-sqlite3
 SUBDIR += lmdb
+SUBDIR += mdbtools
 SUBDIR += memcached
 SUBDIR += mysql-connector-java
 SUBDIR += mysql2pgsql
