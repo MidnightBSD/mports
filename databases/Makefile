@@ -31,6 +31,7 @@ SUBDIR += linux-f10-sqlite3
 SUBDIR += lmdb
 SUBDIR += mdbtools
 SUBDIR += memcached
+SUBDIR += mongodb
 SUBDIR += mysql-connector-java
 SUBDIR += mysql2pgsql
 SUBDIR += mysql55-client
