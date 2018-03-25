@@ -3,7 +3,6 @@
 COMMENT = Ports related to the World Wide Web
 
 SUBDIR += analog
-SUBDIR += apache22
 SUBDIR += apache24
 SUBDIR += aria2
 SUBDIR += awstats
