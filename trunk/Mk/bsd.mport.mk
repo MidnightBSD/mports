@@ -1055,8 +1055,8 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 					-t "${CATEGORIES}"
 
-.if ${OSVERSION} > 6000 && defined(PKG_NOTE_CPE)
-MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_CPE}
+.if ${OSVERSION} > 6000 && defined(PKG_NOTE_cpe)
+MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_cpe}
 .endif
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
 					
