@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tarsnap
-PORTVERSION=	1.0.37
+PORTVERSION=	1.0.39
 PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
