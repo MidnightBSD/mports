@@ -122,6 +122,7 @@ SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
 SUBDIR += py-rsa
 SUBDIR += seahorse
+SUBDIR += security-advisory-client
 SUBDIR += skipfish
 SUBDIR += smap
 SUBDIR += snort
