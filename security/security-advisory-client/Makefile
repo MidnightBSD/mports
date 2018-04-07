@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	security-advisory-client
-PORTVERSION=	1.0.0
+PORTVERSION=	1.0.2
 CATEGORIES=	security
 
 MAINTAINER=	luke@midnightbsd.org
