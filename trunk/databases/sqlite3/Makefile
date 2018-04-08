@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	3.20.1
-PORTREVISION=	1
+PORTVERSION=	3.22.0
+PORTREVISION=	0
 CATEGORIES=	databases
-MASTER_SITES=	https://www.sqlite.org/2017/ http://www2.sqlite.org/2017/ http://www3.sqlite.org/2017/
+MASTER_SITES=	https://www.sqlite.org/2018/ http://www2.sqlite.org/2017/ http://www3.sqlite.org/2018/
 DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	ports@MidnightBSD.org
