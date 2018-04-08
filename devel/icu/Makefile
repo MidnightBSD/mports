@@ -4,7 +4,7 @@
 
 PORTNAME=	icu
 PORTVERSION=	58.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://download.icu-project.org/files/icu4c/${PORTVERSION}/ \
 		SF/${PORTNAME}/ICU4C/${PORTVERSION}/
