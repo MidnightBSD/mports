@@ -2,7 +2,7 @@
 
 PORTNAME=	procmail
 PORTVERSION=	3.22
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.ucsb.edu/pub/mirrors/procmail/ \
 		ftp://ftp.informatik.rwth-aachen.de/pub/packages/procmail/ \
