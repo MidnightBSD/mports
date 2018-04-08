@@ -16,6 +16,7 @@ include/irssi/src/core/commands.h
 include/irssi/src/core/core.h
 include/irssi/src/core/expandos.h
 include/irssi/src/core/ignore.h
+include/irssi/src/core/iregex.h
 include/irssi/src/core/levels.h
 include/irssi/src/core/line-split.h
 include/irssi/src/core/log.h
@@ -27,6 +28,7 @@ include/irssi/src/core/modules.h
 include/irssi/src/core/net-disconnect.h
 include/irssi/src/core/net-nonblock.h
 include/irssi/src/core/net-sendbuffer.h
+include/irssi/src/core/network-openssl.h
 include/irssi/src/core/network.h
 include/irssi/src/core/nick-rec.h
 include/irssi/src/core/nicklist.h
@@ -46,6 +48,8 @@ include/irssi/src/core/session.h
 include/irssi/src/core/settings.h
 include/irssi/src/core/signals.h
 include/irssi/src/core/special-vars.h
+include/irssi/src/core/tls.h
+include/irssi/src/core/utf8.h
 include/irssi/src/core/window-item-def.h
 include/irssi/src/core/window-item-rec.h
 include/irssi/src/core/write-buffer.h
@@ -59,6 +63,8 @@ include/irssi/src/fe-common/core/fe-exec.h
 include/irssi/src/fe-common/core/fe-messages.h
 include/irssi/src/fe-common/core/fe-queries.h
 include/irssi/src/fe-common/core/fe-recode.h
+include/irssi/src/fe-common/core/fe-settings.h
+include/irssi/src/fe-common/core/fe-tls.h
 include/irssi/src/fe-common/core/fe-windows.h
 include/irssi/src/fe-common/core/formats.h
 include/irssi/src/fe-common/core/hilight-text.h
@@ -136,6 +142,7 @@ man/man1/irssi.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/signals.txt
 %%PORTDOCS%%%%DOCSDIR%%/special_vars.txt
 %%PORTDOCS%%%%DOCSDIR%%/startup-HOWTO.html
+%%PORTDOCS%%%%DOCSDIR%%/startup-HOWTO.txt
 %%DATADIR%%/help/accept
 %%DATADIR%%/help/action
 %%DATADIR%%/help/admin
@@ -214,11 +221,11 @@ man/man1/irssi.1.gz
 %%DATADIR%%/help/rmreconns
 %%DATADIR%%/help/rmrejoins
 %%DATADIR%%/help/save
-%%DATADIR%%/help/servlist
 %%DATADIR%%/help/sconnect
 %%DATADIR%%/help/script
 %%DATADIR%%/help/scrollback
 %%DATADIR%%/help/server
+%%DATADIR%%/help/servlist
 %%DATADIR%%/help/set
 %%DATADIR%%/help/silence
 %%DATADIR%%/help/squery
