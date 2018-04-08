@@ -36,7 +36,9 @@ CONFIGURE_ARGS+=	--with-data-packaging=archive \
 CPPFLAGS+=      -DICU_NO_USER_DATA_OVERRIDE
 MAKE_ARGS=      VERBOSE=1
 
-USES=		gmake pathfix  compiler:c++0x
+USES=		cpe gmake pathfix  compiler:c++0x
+CPE_VENDOR=	icu-project
+CPE_PRODUCT=	international_components_for_unicode
 
 ICUMAJOR=	${PORTVERSION:C/\..*//}
 PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUVER=${PORTVERSION}
