@@ -438,6 +438,7 @@ SUBDIR += protobuf
 SUBDIR += pth
 SUBDIR += pth-hard
 SUBDIR += py-Jinja2
+SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
 SUBDIR += py-babel
 SUBDIR += py-backports.functools_lru_cache
