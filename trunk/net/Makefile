@@ -113,6 +113,7 @@ SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
 SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
+SUBDIR += py-urllib3
 SUBDIR += qt4-network
 SUBDIR += qt5-network
 SUBDIR += rabbitmq
