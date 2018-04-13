@@ -10,6 +10,8 @@ COMMENT=	Checks installed packages for vulnerabilities
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+RUN_DEPENDS+=	p5-LWP-Protocol-https>=0:www/p5-LWP-Protocol-https
+
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_GITHUB=     yes
 GH_PROJECT=     security-advisory-client
