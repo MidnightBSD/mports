@@ -107,6 +107,7 @@ SUBDIR += polipo
 SUBDIR += privoxy
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
+SUBDIR += py-requests
 SUBDIR += qt4-webkit
 SUBDIR += qt5-webkit
 SUBDIR += qt5-webchannel
