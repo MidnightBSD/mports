@@ -33,6 +33,8 @@ GACUTIL_INSTALL_PACKAGE=${GACUTIL} /i /package 1.0 /package 2.0
 
 .if ${mono_ARGS:Mnuget}
 NUGET_PACKAGEDIR=	${WRKSRC}/packages
+EXTRACT_CMD=		${LOCALBASE}/bin/bsdtar
+EXTRACT_DEPENDS+=	bsdtar:archivers/libarchive
 
 .  for depend in ${NUGET_DEPENDS}
 id=		${depend:C/=.*$//}
@@ -63,7 +65,7 @@ nuget-extract:
 .  for nupkg in ${NUGET_NUPKGS}
 	@${MKDIR} ${NUGET_PACKAGEDIR}/${nupkg:C/^.*://:S/=/./}
 	@${LN} -s ${NUGET_PACKAGEDIR}/${nupkg:C/^.*://:S/=/./} ${NUGET_PACKAGEDIR}/${nupkg:C/^.*://:C/=.*//}
-	@tar -xf ${DISTDIR}/${nupkg:C/:.*$//} -C ${NUGET_PACKAGEDIR}/${nupkg:C/^.*://:S/=/./} \
+	@${EXTRACT_CMD} -xf ${DISTDIR}/${nupkg:C/:.*$//} -C ${NUGET_PACKAGEDIR}/${nupkg:C/^.*://:S/=/./} \
 		-s/%2B/\+/g -s/%2B/\+/g -s/%2B/\+/g \
 		--exclude '\[Content_Types\].xml' \
 		--exclude package/ \
