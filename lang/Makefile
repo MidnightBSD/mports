@@ -40,6 +40,7 @@ SUBDIR += lua52
 SUBDIR += luajit
 SUBDIR += mawk
 SUBDIR += mono
+SUBDIR += mono-basic
 SUBDIR += nawk
 SUBDIR += nwcc
 SUBDIR += ocaml
