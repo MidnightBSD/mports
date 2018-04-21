@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mono
-PORTVERSION=	4.4.2.11
+PORTVERSION=	4.6.1.5
 CATEGORIES=	lang
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
@@ -20,6 +20,7 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser \
 		bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	libinotify.so:devel/libinotify
 
 USES=		bison compiler:c11 cpe gettext gmake iconv libtool pathfix perl5 tar:bzip2
 USE_GNOME=	glib20
