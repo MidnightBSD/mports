@@ -13,6 +13,7 @@ SUBDIR += cython
 SUBDIR += erlang
 SUBDIR += expect
 SUBDIR += ezm3
+SUBDIR += fsharp
 SUBDIR += f2c
 SUBDIR += gawk
 SUBDIR += gcc
