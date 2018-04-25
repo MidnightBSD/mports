@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libevent2
-PORTVERSION=	2.0.22
+PORTVERSION=	2.1.8
 DISTVERSIONPREFIX=	release-
 DISTVERSIONSUFFIX=	-stable
 PORTREVISION=	1
@@ -34,13 +34,5 @@ OPENSSL_LDFLAGS=	-L${OPENSSLLIB}
 OPENSSL_CONFIGURE_ENABLE=	openssl
 
 THREADS_CONFIGURE_ENABLE=	thread-support
-
-post-patch:
-	${ECHO_CMD} 'AC_CONFIG_MACRO_DIR([m4])' >>${WRKSRC}/configure.in
-# error: using '$(top_srcdir)' in TESTS is currently broken
-	${REINPLACE_CMD} 's/^TESTS.*top_srcdir/#&/' ${WRKSRC}/test/Makefile.am
-
-regression-test: build
-	@(${SH} ${WRKSRC}/test/regress)
 
 .include <bsd.port.mk>
