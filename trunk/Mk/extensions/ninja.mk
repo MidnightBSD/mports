@@ -3,10 +3,6 @@
 #
 # Feature:		ninja
 # Usage:		USES=ninja
-#
-# User defined variables:
-# NINJA_VERBOSE		- Enable verbose output.
-#
 
 .if !defined(_INCLUDE_USES_NINJA_MK)
 _INCLUDE_USES_NINJA_MK=	yes
@@ -15,14 +11,12 @@ _INCLUDE_USES_NINJA_MK=	yes
 IGNORE=	Incorrect 'USES+= ninja:${ninja_ARGS}' ninja takes no arguments
 .endif
 
-.if defined(NINJA_VERBOSE)
 MAKE_ARGS+=	-v
-.endif
 
-BUILD_DEPENDS+=	ninja:${PORTSDIR}/devel/ninja
+BUILD_DEPENDS+=	ninja:devel/ninja
 
 CMAKE_ARGS+=	-GNinja
-MAKEFILE=	build.ninja
+MAKEFILE=
 MAKE_CMD=	ninja
 MAKE_FLAGS=
 # Set a minimal job of 1
