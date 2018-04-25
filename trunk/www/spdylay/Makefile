@@ -4,6 +4,7 @@
 
 PORTNAME=	spdylay
 PORTVERSION=	1.4.0
+PORTREVISION=	1
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
@@ -13,9 +14,9 @@ COMMENT=	SPDY protocol version 2, 3 and 3.1 implementation in C
 
 LICENSE=	mit
 
-BUILD_DEPENDS=	libevent2>=2.0.8:${PORTSDIR}/devel/libevent2
-LIB_DEPENDS=	libevent_openssl.so:${PORTSDIR}/devel/libevent2
-RUN_DEPENDS=	libevent2>=2.0.8:${PORTSDIR}/devel/libevent2
+BUILD_DEPENDS=	libevent>=2.0.8:${PORTSDIR}/devel/libevent
+LIB_DEPENDS=	libevent_openssl.so:${PORTSDIR}/devel/libevent
+RUN_DEPENDS=	libevent>=2.0.8:${PORTSDIR}/devel/libevent
 
 CONFIGURE_ARGS=	--enable-examples \
 		--enable-src
