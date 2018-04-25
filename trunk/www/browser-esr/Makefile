@@ -17,7 +17,7 @@ LICENSE=	mpl
 
 BUILD_DEPENDS=	nspr>=4.10.8:${PORTSDIR}/devel/nspr \
 		nss>=3.19.2:${PORTSDIR}/security/nss \
-		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
+		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
 		soundtouch>=1.8.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=0.9.34:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.2.4:${PORTSDIR}/graphics/graphite2 \
