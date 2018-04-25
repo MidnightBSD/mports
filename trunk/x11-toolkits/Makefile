@@ -12,6 +12,7 @@ SUBDIR += gnustep-back
 SUBDIR += gnustep-gui
 SUBDIR += gstreamer-plugins-pango
 SUBDIR += gstreamer1-plugins-pango
+SUBDIR += gtk-sharp-beans
 SUBDIR += gtk-sharp20
 SUBDIR += gtk-sharp30
 SUBDIR += gtk12
