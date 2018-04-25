@@ -216,6 +216,7 @@ SUBDIR += m4
 SUBDIR += makedepend
 SUBDIR += mercurial
 SUBDIR += mm
+SUBDIR += monodevelop
 SUBDIR += motor
 SUBDIR += nasm
 SUBDIR += ncurses
