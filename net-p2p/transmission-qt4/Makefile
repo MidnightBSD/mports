@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	1
+PORTREVISION=	2
 PKGNAMESUFFIX=	-qt4
 
 MAINTAINER=	ports@MidnightBSD.org
