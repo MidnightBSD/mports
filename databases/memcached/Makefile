@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.34
+PORTVERSION=	1.5.5
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -12,7 +12,7 @@ COMMENT=	High-performance distributed memory object cache system
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libevent.so:devel/libevent2
+LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	memcached-1.2*
 
