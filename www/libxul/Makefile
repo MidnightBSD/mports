@@ -17,7 +17,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
-		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
+		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
 		soundtouch>=1.9.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=1.1.0:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.3.6:${PORTSDIR}/graphics/graphite2 \
