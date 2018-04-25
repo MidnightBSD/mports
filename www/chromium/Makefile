@@ -32,7 +32,7 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
 		libcups.so:${PORTSDIR}/print/cups \
-		libevent.so:${PORTSDIR}/devel/libevent2 \
+		libevent.so:${PORTSDIR}/devel/libevent \
 		libexif.so:${PORTSDIR}/graphics/libexif \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libpci.so:${PORTSDIR}/devel/libpci \
