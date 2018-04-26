@@ -188,6 +188,7 @@ SUBDIR += libublio
 SUBDIR += libunicode
 SUBDIR += libuninum
 SUBDIR += libunistring
+SUBDIR += libuv
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
 SUBDIR += linux-f10-allegro
