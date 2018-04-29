@@ -4,6 +4,7 @@ COMMENT = Instant messaging
 
 SUBDIR += farstream
 SUBDIR += farsight2
+SUBDIR += finch
 SUBDIR += folks
 SUBDIR += jabberd
 SUBDIR += libnice
