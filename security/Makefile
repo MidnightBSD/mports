@@ -116,6 +116,7 @@ SUBDIR += pinentry-tty
 SUBDIR += polarssl
 SUBDIR += py-acme
 SUBDIR += py-certbot
+SUBDIR ++ py-certifi
 SUBDIR += py-cryptography
 SUBDIR += py-ecdsa
 SUBDIR += py-fail2ban
