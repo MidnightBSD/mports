@@ -14,11 +14,11 @@ COMMENT=	JOSE protocol implementation in Python
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=0.8:security/py-cryptography@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:security/py-openssl@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=1.9.0:devel/py-six@${FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=0.8:security/py-cryptography \
+		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:security/py-openssl \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools \
+		${PYTHON_PKGNAMEPREFIX}six>=1.9.0:devel/py-six
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock
 
 USES=		python
 USE_PYTHON=	autoplist distutils
