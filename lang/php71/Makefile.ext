@@ -294,7 +294,6 @@ CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
 CONFIGURE_ARGS+=--enable-phar \
 		--with-pcre-dir=${LOCALBASE}
 
-USE_PHP=	hash:build
 #USE_PHP=       hash:build
 USE_PHP=        hash
 USE_PHP_BUILD=  yes
@@ -417,7 +416,9 @@ CONFIGURE_ARGS+=--enable-xmlreader \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	dom:build
+#USE_PHP=	dom:build
+USE_PHP=	dom
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "xmlrpc"
@@ -430,7 +431,8 @@ USE_GNOME=	libxml2
 
 PHP_HEADER_DIRS=libxmlrpc
 
-USE_PHP=	xml:build
+USE_PHP=	xml
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "xmlwriter"
@@ -444,7 +446,8 @@ USE_GNOME=      libxml2
 CONFIGURE_ARGS+=--with-xsl=${LOCALBASE}
 
 USE_GNOME=	libxslt
-USE_PHP=	dom:build xml:build
+USE_PHP=	dom xml
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "zip"
