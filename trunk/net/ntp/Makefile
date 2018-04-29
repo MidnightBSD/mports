@@ -2,6 +2,7 @@
 
 PORTNAME=	ntp
 PORTVERSION=	4.2.8p11
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
 		http://archive.ntp.org/ntp4/ntp-4.2/ \
@@ -17,7 +18,7 @@ GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
 USES=		cpe pathfix shebangfix libtool pkgconfig
 USE_RC_SUBR=    ntp
-LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
+LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent
 
 SHEBANG_FILES=	scripts/ntptrace/ntptrace.in \
 		scripts/ntp-wait/ntp-wait.in \
