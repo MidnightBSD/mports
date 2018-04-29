@@ -477,6 +477,7 @@ SUBDIR += py-parsing
 SUBDIR += py-ply
 SUBDIR += py-pyasn1
 SUBDIR += py-pycparser
+SUBDIR += py-pyrfc3339
 SUBDIR += py-pytest-runner
 SUBDIR += py-pytz
 SUBDIR += py-setuptools_darcs
