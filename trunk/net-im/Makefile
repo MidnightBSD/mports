@@ -2,6 +2,7 @@
 
 COMMENT = Instant messaging
 
+SUBDIR += farstream
 SUBDIR += farsight2
 SUBDIR += folks
 SUBDIR += jabberd
