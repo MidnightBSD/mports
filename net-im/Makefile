@@ -19,7 +19,6 @@ SUBDIR += openfire
 SUBDIR += p5-Net-XMPP
 SUBDIR += pidgin
 SUBDIR += pidgin-twitter
-SUBDIR += pork
 SUBDIR += purple-discord
 SUBDIR += purple-facebook
 SUBDIR += sendxmpp
