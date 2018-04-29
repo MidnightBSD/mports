@@ -400,7 +400,8 @@ CONFIGURE_ARGS+=--enable-wddx \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	xml:build session:build
+USE_PHP=	xml session
+USE_PHP_BUILD=  yes
 .endif
 
 .if ${PHP_MODNAME} == "xml"
