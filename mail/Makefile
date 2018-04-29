@@ -16,7 +16,6 @@ SUBDIR += dcc-dccd
 SUBDIR += dovecot2
 SUBDIR += evolution
 SUBDIR += evolution-ews
-SUBDIR += evolution-mapi
 SUBDIR += faces
 SUBDIR += fetchmail
 SUBDIR += gmime2
