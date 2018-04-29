@@ -24,7 +24,6 @@ SUBDIR += gmime24
 SUBDIR += gmime26
 SUBDIR += gnumail
 SUBDIR += hashcash
-SUBDIR += libmapi
 SUBDIR += libspf
 SUBDIR += libspf2
 SUBDIR += linux-thunderbird
