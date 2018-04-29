@@ -8,6 +8,7 @@ SUBDIR += elementary
 SUBDIR += fltk
 SUBDIR += gdl
 SUBDIR += gnome-pty-helper
+SUBDIR += gnome-sharp20
 SUBDIR += gnustep-back
 SUBDIR += gnustep-gui
 SUBDIR += gstreamer-plugins-pango
