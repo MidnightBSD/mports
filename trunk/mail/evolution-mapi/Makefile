@@ -1,40 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	evolution-mapi
-PORTVERSION=	0.30.3
+PORTVERSION=	3.18.4
 CATEGORIES=	mail gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Evolution plugin to connect to Microsoft Exchange servers
+COMMENT=	Evolution Microsoft Exchange plugin through OpenChange
+
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	${PKGFILES}:${PORTSDIR}/mail/evolution
-LIB_DEPENDS=	mapi.0:${PORTSDIR}/mail/libmapi
-RUN_DEPENDS=	${PKGFILES}:${PORTSDIR}/mail/evolution
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		evolution>=3.0.0:mail/evolution
+LIB_DEPENDS=	libmapi.so:mail/libmapi
+RUN_DEPENDS=	evolution>=3.0.0:mail/evolution
 
-PKGFILES=	${LOCALBASE}/libdata/pkgconfig/evolution-plugin.pc
+PORTSCOUT=	limitw:1,even
 
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	evolutiondataserver
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
+USE_GNOME=	intltool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-
-EVO_VERSION=	2.30
-EDS_VERSION=	1.2
-PLIST_SUB=	EVO_VERSION=${EVO_VERSION} EDS_VERSION=${EDS_VERSION}
-
-.include <bsd.port.pre.mk>
+CPPFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
+CFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--datarootdir=${PREFIX}/share/
+INSTALL_TARGET=	install-strip
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-		${WRKSRC}/src/libexchangemapi/Makefile.in
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
-	    	${WRKSRC}/configure
+		-e 's|$$(prefix)/$$(DATADIRNAME)/|$$(prefix)/share/|g' \
+		${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
