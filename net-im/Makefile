@@ -20,6 +20,7 @@ SUBDIR += p5-Net-XMPP
 SUBDIR += pidgin
 SUBDIR += pidgin-twitter
 SUBDIR += pork
+SUBDIR += purple-facebook
 SUBDIR += sendxmpp
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
