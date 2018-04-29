@@ -161,6 +161,7 @@ SUBDIR += php71-xsl
 SUBDIR += popup
 SUBDIR += py-MarkupSafe
 SUBDIR += py-alabaster
+SUBDIR += py-chardet
 SUBDIR += py-docutils
 SUBDIR += py-libxml2
 SUBDIR += py-markdown
