@@ -434,6 +434,7 @@ SUBDIR += php70-json
 SUBDIR += php70-pcntl
 SUBDIR += php70-readline
 SUBDIR += php70-tokenizer
+SUBDIR += php71-json
 SUBDIR += physfs
 SUBDIR += pkgconf
 SUBDIR += popt
