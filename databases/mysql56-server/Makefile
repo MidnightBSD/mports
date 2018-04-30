@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.6.34
+PORTVERSION=	5.6.39
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	MYSQL/MySQL-5.6
@@ -19,6 +19,7 @@ USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
 LIB_DEPENDS+=	libevent.so:devel/libevent \
 		liblz4.so:archivers/liblz4
 
+CMAKE_BUILD_TYPE=	Release
 CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
 		-DINSTALL_INCLUDEDIR="include/mysql" \
