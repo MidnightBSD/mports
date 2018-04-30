@@ -12,7 +12,8 @@ LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	mono>=3.0:lang/mono \
-		referenceassemblies-pcl>=4.6-1:lang/referenceassemblies-pcl
+		referenceassemblies-pcl>=4.6-1:lang/referenceassemblies-pcl \
+		${LOCALBASE}/bin/bsdtar:archivers/libarchive
 RUN_DEPENDS=	mono>=3.0:lang/mono
 
 NUGET_DEPENDS=	FSharp.Compiler.Tools=4.0.1.3 \
