@@ -453,6 +453,7 @@ SUBDIR += py-botocore
 SUBDIR += py-cffi
 SUBDIR += py-colorama
 SUBDIR += py-configargparse
+SUBDIR += py-configobj
 SUBDIR += py-configparser
 SUBDIR += py-darcsver
 SUBDIR += py-dateutil
