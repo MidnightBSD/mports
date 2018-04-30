@@ -13,7 +13,11 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql56-client
-USES=		cmake shebangfix
+USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
+		cpe libedit localbase perl5 shebangfix
+
+LIB_DEPENDS+=	libevent.so:devel/libevent \
+		liblz4.so:archivers/liblz4
 
 CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
@@ -31,7 +35,9 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_SQLBENCHDIR="share/mysql" \
 		-DINSTALL_SUPPORTFILESDIR="share/mysql" \
 		-DWITH_EDITLINE=system \
-		-DWITH_LIBWRAP=1 \
+ 		-DWITH_LIBEVENT=system \
+ 		-DWITH_LZ4=system \
+ 		-DWITH_ZLIB=system \
 		-DENABLE_DTRACE:BOOL=OFF
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
@@ -42,15 +48,15 @@ SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY)
-USE_MYSQL=	yes
-WANT_MYSQL_VER=	56
+USES+=		mysql:56
 
-USES+=		perl5
 USE_PERL5=	run
 
 CONFLICTS_INSTALL=	mysql5[0-57-9]-server-* \
-			mariadb*-server-* \
-			percona*-server-*
+ 			mysql[0-46-9][0-9]-server-* \
+ 			mysqlwsrep* \
+ 			mariadb[0-9][0-9]-server-* \
+ 			percona[0-9][0-9]-server-*
 
 USE_RC_SUBR=	mysql-server
 
@@ -65,9 +71,6 @@ MMAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1
 		mysqltest.1 perror.1 replace.1 resolve_stack_dump.1 resolveip.1
 
 CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON"
-.else
-BUILD_DEPENDS+=	libedit>=0:${PORTSDIR}/devel/libedit
-RUN_DEPENDS+=	libedit>=0:${PORTSDIR}/devel/libedit
 .endif
 
 post-patch:
