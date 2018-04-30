@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTNAME=	libevent2
+PORTNAME=	libevent
 PORTVERSION=	2.1.8
 DISTVERSIONPREFIX=	release-
 DISTVERSIONSUFFIX=	-stable
