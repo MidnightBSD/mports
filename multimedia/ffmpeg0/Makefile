@@ -26,7 +26,6 @@ PORTSCOUT=	limit:^0\.7.*
 USES=		cpe gmake perl5 pkgconfig tar:bzip2 shebangfix
 USE_LDCONFIG=	${PREFIX}/lib/ffmpeg${FFMPEG_SUFFIX}
 USE_PERL5=	build
-SHEBANG_FILES=	doc/texi2pod.pl
 
 FFMPEG_SUFFIX=	0
 HAS_CONFIGURE=	yes
@@ -37,7 +36,7 @@ PLIST_SUB+=	SUFF="${FFMPEG_SUFFIX}"
 PROGS=		ffmpeg ffprobe
 
 CONFIGURE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
-MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin V=1
 
 CONFIGURE_ARGS+=--prefix="${PREFIX}" \
 		--mandir="${PREFIX}/man" \
@@ -52,6 +51,8 @@ CONFIGURE_ARGS+=--prefix="${PREFIX}" \
 		--enable-avfilter \
 		--enable-pthreads \
 		--enable-runtime-cpudetect \
+		--enable-memalign-hack \
+		--enable-pic \
 		--cc="${CC}" \
 		--extra-cflags="${FFMPEG_CFLAGS} -I${LOCALBASE}/include" \
 		--extra-ldflags="-L${LOCALBASE}/lib ${FFMPEG_LDFLAGS}" \
@@ -206,7 +207,7 @@ CFLAGS+=	-O3 -ffast-math -fno-finite-math-only -fomit-frame-pointer
 #aacplus
 .if ${PORT_OPTIONS:MAACPLUS}
 FFMPEG_NONFREE=	yes
-LIB_DEPENDS+=	libaacplus.so:${PORTSDIR}/audio/libaacplus
+LIB_DEPENDS+=	libaacplus.so:audio/libaacplus
 CONFIGURE_ARGS+=	--enable-libaacplus
 .else
 CONFIGURE_ARGS+=	--disable-libaacplus
@@ -215,7 +216,7 @@ CONFIGURE_ARGS+=	--disable-libaacplus
 # Opencore AMR NB
 .if ${PORT_OPTIONS:MAMR_NB}
 FFMPEG_LICENSE_GPL3=	yes
-LIB_DEPENDS+=	libopencore-amrnb.so:${PORTSDIR}/audio/opencore-amr
+LIB_DEPENDS+=	libopencore-amrnb.so:audio/opencore-amr
 CONFIGURE_ARGS+=	--enable-libopencore-amrnb
 .else
 CONFIGURE_ARGS+=	--disable-libopencore-amrnb
@@ -224,7 +225,7 @@ CONFIGURE_ARGS+=	--disable-libopencore-amrnb
 # Opencore AMR WB
 .if ${PORT_OPTIONS:MAMR_WB}
 FFMPEG_LICENSE_GPL3=	yes
-LIB_DEPENDS+=	libopencore-amrwb.so:${PORTSDIR}/audio/opencore-amr
+LIB_DEPENDS+=	libopencore-amrwb.so:audio/opencore-amr
 CONFIGURE_ARGS+=	--enable-libopencore-amrwb
 .else
 CONFIGURE_ARGS+=	--disable-libopencore-amrwb
@@ -233,7 +234,7 @@ CONFIGURE_ARGS+=	--disable-libopencore-amrwb
 # faac
 .if ${PORT_OPTIONS:MFAAC}
 FFMPEG_NONFREE=	yes
-LIB_DEPENDS+=	libfaac.so:${PORTSDIR}/audio/faac
+LIB_DEPENDS+=	libfaac.so:audio/faac
 CONFIGURE_ARGS+=	--enable-libfaac
 .else
 CONFIGURE_ARGS+=	--disable-libfaac
@@ -241,7 +242,7 @@ CONFIGURE_ARGS+=	--disable-libfaac
 
 # rtmp
 .if ${PORT_OPTIONS:MRTMP}
-LIB_DEPENDS+=	librtmp.so:${PORTSDIR}/multimedia/librtmp
+LIB_DEPENDS+=	librtmp.so:multimedia/librtmp
 CONFIGURE_ARGS+=	--enable-librtmp
 . if ${OPENSSLBASE} != "/usr"
 FFMPEG_CFLAGS+=		-I${OPENSSLINC}
@@ -263,7 +264,7 @@ CONFIGURE_ARGS+=	--disable-ffplay
 # vaapi
 .if ${PORT_OPTIONS:MVAAPI}
 FFMPEG_LICENSE_GPL3=	yes
-LIB_DEPENDS+=	libva.so:${PORTSDIR}/multimedia/libva
+LIB_DEPENDS+=	libva.so:multimedia/libva
 CONFIGURE_ARGS+=	--enable-vaapi
 .else
 CONFIGURE_ARGS+=	--disable-vaapi
@@ -272,7 +273,7 @@ CONFIGURE_ARGS+=	--disable-vaapi
 # vo-aacenc
 .if ${PORT_OPTIONS:MVO_AACENC}
 FFMPEG_LICENSE_GPL3=	yes
-LIB_DEPENDS+=	libvo-aacenc.so:${PORTSDIR}/audio/vo-aacenc
+LIB_DEPENDS+=	libvo-aacenc.so:audio/vo-aacenc
 CONFIGURE_ARGS+=	--enable-libvo-aacenc
 .else
 CONFIGURE_ARGS+=	--disable-libvo-aacenc
@@ -281,7 +282,7 @@ CONFIGURE_ARGS+=	--disable-libvo-aacenc
 # vo-amrwbenc
 .if ${PORT_OPTIONS:MVO_AMRWBENC}
 FFMPEG_LICENSE_GPL3=	yes
-LIB_DEPENDS+=	libvo-amrwbenc.so:${PORTSDIR}/audio/vo-amrwbenc
+LIB_DEPENDS+=	libvo-amrwbenc.so:audio/vo-amrwbenc
 CONFIGURE_ARGS+=	--enable-libvo-amrwbenc
 .else
 CONFIGURE_ARGS+=	--disable-libvo-amrwbenc
@@ -289,7 +290,7 @@ CONFIGURE_ARGS+=	--disable-libvo-amrwbenc
 
 # vorbis
 .if ${PORT_OPTIONS:MVORBIS}
-LIB_DEPENDS+=	libvorbisenc.so:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	libvorbisenc.so:audio/libvorbis
 CONFIGURE_ARGS+=	--enable-libvorbis
 FFMPEG_CFLAGS+=		-I${LOCALBASE}/include/vorbis
 .else
@@ -310,6 +311,7 @@ CONFIGURE_ARGS+=	--enable-version3
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local/bin/perl|/usr/bin/perl|g' ${WRKSRC}/doc/texi2pod.pl
 # {C,LD}FLAGS safeness
 	@${REINPLACE_CMD} -e 's|$$(LIBDIR)/pkgconfig|$$(DESTDIR)$$(prefix)/libdata/pkgconfig|' \
 		${WRKSRC}/subdir.mak
