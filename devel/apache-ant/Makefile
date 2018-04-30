@@ -11,6 +11,7 @@ EXTRACT_ONLY=	${ANT_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java- and XML-based build tool, conceptually similar to make
+
 LICENSE=	apache2
 
 RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper
@@ -21,7 +22,7 @@ ANT_DISTFILE=	${PORTNAME}-${PORTVERSION}-bin.tar.bz2
 MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
 MANPAGE_VERSION=	20030908
 USES=		tar:bzip2
-USE_JAVA=	yes
+USE_JAVA=	1.7+
 
 NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
