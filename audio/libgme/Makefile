@@ -26,7 +26,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/pkgconfig/s/lib[[:>:]]/libdata/' \
 		${WRKSRC}/gme/CMakeLists.txt
 
-post-install-DOCS-on:
+post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
