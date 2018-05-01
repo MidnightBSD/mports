@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	cmake
-PORTVERSION=	3.6.3
+PORTVERSION=	3.7.2
 PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v3.6/
+MASTER_SITES=	http://www.cmake.org/files/v3.7/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
@@ -28,7 +28,8 @@ HAS_CONFIGURE=	yes
 
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libjsoncpp.so:devel/jsoncpp
+		libjsoncpp.so:devel/jsoncpp \
+		libuv.so:devel/libuv
 RUN_DEPENDS=	${LOCALBASE}/share/cmake/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
 
 MANPAGES_BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
