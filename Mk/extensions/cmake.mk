@@ -127,7 +127,7 @@ TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
 .    if ! empty(USES:Mgmake)
 BROKEN=		USES=gmake is incompatible with cmake's ninja-generator
 .    endif
-.      include "${USESDIR}/ninja.mk"
+.      include "${PORTSDIR}/Mk/extensions/ninja.mk"
 .  endif
 .endif
 
