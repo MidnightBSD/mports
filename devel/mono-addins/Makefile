@@ -13,6 +13,8 @@ LICENSE=	mit
 USE_GITHUB=	yes
 GH_ACCOUNT=	mono
 
+WRKSRC=		${WRKDIR}/mono-addins-mono-addins-1.3
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_MCS=${LOCALBASE}/bin/mcs
 USES=		autoreconf gmake mono pkgconfig
