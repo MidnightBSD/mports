@@ -111,9 +111,9 @@ CMAKE_SOURCE_PATH?=	${WRKSRC}
 
 .if ${cmake_ARGS:Moutsource}
 _CMAKE_MSG=		"===>  Performing out-of-source build"
-CONFIGURE_WRKSRC=	${WRKDIR}/.build
-BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
-INSTALL_WRKSRC=		${CONFIGURE_WRKSRC}
+CONFIGURE_WRKSRC?=	${WRKDIR}/.build
+BUILD_WRKSRC?=		${CONFIGURE_WRKSRC}
+INSTALL_WRKSRC?=		${CONFIGURE_WRKSRC}
 TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
 .endif
 
@@ -123,12 +123,12 @@ TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
 #             or if CONFIGURE_WRKSRC does not match  BUILD_WRKSRC or INSTALL_WRKSRC
 #             as the build.ninja file won't be where ninja expects it.
 .if empty(cmake_ARGS:Mnoninja) && empty(cmake_ARGS:Mrun) && empty(USES:Mfortran)
-.  if "${CONFIGURE_WRKSRC}" == "${BUILD_WRKSRC}" && "${CONFIGURE_WRKSRC}" == "${INSTALL_WRKSRC}"
+#.  if "${CONFIGURE_WRKSRC}" == "${BUILD_WRKSRC}k" && "${CONFIGURE_WRKSRC}" == "${INSTALL_WRKSRC}"
 .    if ! empty(USES:Mgmake)
 BROKEN=		USES=gmake is incompatible with cmake's ninja-generator
 .    endif
 .      include "${PORTSDIR}/Mk/extensions/ninja.mk"
-.  endif
+#.  endif
 .endif
 
 .if !target(do-configure)
