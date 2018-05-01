@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	png
-PORTVERSION=	1.6.28
-PORTREVISION=	0
+PORTVERSION=	1.6.34
 CATEGORIES=	graphics
-MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${PORTVERSION}
+MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${PORTVERSION} \
+		ftp://ftp.simplesystems.org/pub/lib${PORTNAME}/${PORTNAME}/src/lib${PORTNAME}16/
 PATCH_SITES=	SF/apng/lib${PORTNAME}/lib${PORTNAME}16/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
@@ -13,40 +13,28 @@ FAKE_OPTS=	trueprefix
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating PNG images
 
-LICENSE=	other
+LICENSE=	Libpng
+LICENSE_GROUPS=	FSF GPL OSI
+LICENSE_NAME=	libpng License
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		cmake cpe tar:xz
+USES=		cpe libtool tar:xz
 CPE_PRODUCT=	libpng
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check-TESTS
 USE_LDCONFIG=	yes
 
-CMAKE_ARGS+=	-DPNG_MAN_DIR:STRING=man
-
-OPTIONS_DEFINE=APNG PNGTEST
-OPTIONS_DEFAULT=APNG PNGTEST
+OPTIONS_DEFINE=	APNG
+OPTIONS_DEFAULT=APNG
 APNG_DESC=Enable Animated PNG support
-PNGTEST_DESC=Enable Regression Test (recommended)
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MAPNG} || make(makesum)
 PATCHFILES=	${DISTNAME}-apng.patch.gz
-.endif
-
-post-patch:
-	${REINPLACE_CMD} \
-		-e 's|LIBDIR}/pkgconfig|LIBDIR}data/pkgconfig|' \
-		${WRKSRC}/CMakeLists.txt
-
-.if ${PORT_OPTIONS:MPNGTEST}
-post-build:
-	(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} test; then \
-        if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
-            ${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-            (${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-            fi; \
-        ${FALSE}; \
-        fi)
 .endif
 
 .include <bsd.port.mk>
