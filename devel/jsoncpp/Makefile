@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/jsoncpp/Makefile 424299 2016-10-20 01:25:03Z cpm $
 
 PORTNAME=	jsoncpp
-DISTVERSION=	1.7.2
+DISTVERSION=	1.7.7
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@rawbw.com
