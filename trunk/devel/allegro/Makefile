@@ -12,7 +12,10 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform library for games and multimedia programming
 
-LICENSE=	other
+LICENSE=	GIFTWARE
+LICENSE_NAME=	Giftware
+LICENSE_FILE=	${WRKSRC}/docs/txt/license.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
 		libvorbis.so:${PORTSDIR}/audio/libvorbis
