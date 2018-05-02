@@ -62,10 +62,10 @@ fake-post-install:
 
 run-fake:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-		${MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
+		${MAKE_CMD} ${MAKE_ARGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
 .	if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
 		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-			${MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
+			${MAKE_CMD} ${MAKE_ARGS} ${MAKEFILE} ${FAKE_MAKEARGS} install.man
 .	endif
 
 
