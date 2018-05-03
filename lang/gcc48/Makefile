@@ -2,8 +2,9 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.8.5
+PORTREVISION=	1
 CATEGORIES=	lang java
-MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
+MASTER_SITES=	GCC/releases/gcc-${PORTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,25 +12,23 @@ COMMENT=	GNU Compiler Collection 4.8
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp \
-		libmpfr.so:${PORTSDIR}/math/mpfr \
-		libmpc.so:${PORTSDIR}/math/mpc
-BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
-RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+LIB_DEPENDS=	libgmp.so:math/gmp \
+		libmpfr.so:math/mpfr \
+		libmpc.so:math/mpc
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
+RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 
 .if defined(MAINTAINER_MODE)
-BUILD_DEPENDS+=	runtest:${PORTSDIR}/misc/dejagnu
+BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
 CONFLICTS=	gcc-4.8.*
 CPE_VENDOR=	gnu
-CPE_VERSION=	${GCC_VERSION}
 UNIQUENAME=	${PORTNAME}${PKGNAMESUFFIX}
 
 # DISTVERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.
-DISTVERSION=	${PORTVERSION}
-GCC_VERSION=	${PORTVERSION:C/(.+)\.[0-9]{8}/\1/}
+GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 
 USES=		cpe gmake iconv libtool makeinfo perl5 tar:bzip2
