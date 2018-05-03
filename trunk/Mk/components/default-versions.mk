@@ -18,7 +18,7 @@ ${_l:tu}_DEFAULT=	${lang:C/.*=//g}
 
 APACHE_DEFAULT?=	2.4
 FPC_DEFAULT?=		2.6.4
-GCC_DEFAULT?=		4.8
+GCC_DEFAULT?=		6
 GHOSTSCRIPT_DEFAULT?=	9
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.6
@@ -31,8 +31,5 @@ PYTHON3_DEFAULT?=	3.3
 RUBY_DEFAULT?=		2.2
 SAMBA_DEFAULT?=		4.4
 TCLTK_DEFAULT?=		8.6
-
-# Version of lang/gcc.  Do not override!
-LANG_GCC_IS=		4.8
 
 .endif

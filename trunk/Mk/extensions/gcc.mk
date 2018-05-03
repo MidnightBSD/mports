@@ -21,7 +21,7 @@
 #   USE_GCC=	yes			# port requires a current version of GCC
 #							# as defined in bsd.default-versions.mk.
 #   USE_GCC=	any			# port requires GCC 4.2 or later.
-#   USE_GCC=	4.9+		# port requires GCC 4.9 or later.
+#   USE_GCC=	6+		# port requires GCC 6 or later.
 #   USE_GCC=	4.9			# port requires GCC 4.9.
 #
 # If you are wondering what your port exactly does, use "make test-gcc"
@@ -49,6 +49,7 @@ GCCVERSION_040800=	      0 4.8
 GCCVERSION_040900=	      0 4.9
 GCCVERSION_050000=	      0 5
 GCCVERSION_060000=	      0 6
+GCCVERSION_070000=	      0 7
 
 # No configurable parts below this. ####################################
 #
@@ -148,11 +149,7 @@ _USE_GCC:=	${GCC_DEFAULT}
 .  if ${OSVERSION} > ${_GCCVERSION_${v}_R} || !exists(/usr/bin/gcc)
 V:=			${_GCCVERSION_${v}_V:S/.//}
 _GCC_PORT_DEPENDS:=	gcc${V}
-.   if ${_USE_GCC} == ${LANG_GCC_IS}
-_GCC_PORT:=		gcc
-.   else
 _GCC_PORT:=		gcc${V}
-.   endif
 CC:=			gcc${V}
 CXX:=			g++${V}
 CPP:=			cpp${V}
@@ -174,8 +171,8 @@ CPP:=			cpp
 .undef V
 
 .if defined(_GCC_PORT_DEPENDS)
-BUILD_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_PORT}
-RUN_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_PORT}
+BUILD_DEPENDS+=	${_GCC_PORT_DEPENDS}:lang/${_GCC_PORT}
+RUN_DEPENDS+=	${_GCC_PORT_DEPENDS}:lang/${_GCC_PORT}
 # Later GCC ports already depend on binutils; make sure whatever we
 # build leverages this as well.
 USE_BINUTILS=	yes
