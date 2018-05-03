@@ -32,6 +32,7 @@ USES=		bdb:5 bison gettext gmake gnome gperf libtool pathfix pkgconfig \
 # this change would be done there, but it is not a C++ application, so it
 # does not link directly to libstdc++ and adding the libstdc++ rpath to
 # the executable does not work at runtime.
+USE_CXXSTD=	gnu++11
 USES+=		compiler:c++11-lib
 USE_GNOME=	gtk30 intltool introspection:build libxml2
 USE_OPENLDAP=	yes
