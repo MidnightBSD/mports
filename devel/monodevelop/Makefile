@@ -9,6 +9,7 @@ COMMENT=	IDE for the .NET platform
 
 LICENSE=	unknown
 
+EXTRACT_DEPENDS= ${LOCALBASE}/bin/bsdtar:archivers/libarchive
 BUILD_DEPENDS=	mautil:devel/mono-addins \
 		fsharpc:lang/fsharp \
 		cmake:devel/cmake \
@@ -55,7 +56,7 @@ GH_TUPLE=	mono:${PORTNAME}:${PORTNAME}-${PORTVERSION} \
 		mono:roslyn:16e117c:roslyn \
 		mono:xwt:9ee2853:xwt
 
-USES=		autoreconf desktop-file-utils gettext gmake mono:nuget pathfix shared-mime-info 
+USES=		autoreconf desktop-file-utils gettext gmake mono:nuget pathfix shared-mime-info libarchive
 USE_OPENSSL=	yes
 USE_GNOME=	gtksharp20 gnomesharp20
 INSTALLS_ICONS=	yes
