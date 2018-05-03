@@ -15,7 +15,7 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline tar:xz iconv
+USES=		cpe ncurses:base pathfix pkgconfig readline:port tar:xz iconv
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -31,9 +31,20 @@ CONFIGURE_ENV+=		OPT="" SVNVERSION="echo midnightbsd" DISABLED_EXTENSIONS="${DIS
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
 MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
+MAKE_ARGS+=	DESTDIR=${FAKE_DESTDIR}
 MAKE_JOBS_UNSAFE=	yes 
 
+PYTHON_SUFFIX=		34
+PYTHON_VER=		3.4
+
+SUB_LIST+=		XY=${PYTHON_SUFFIX} \
+                        XYDOT=${PYTHON_VER} \
+                        XYZDOT=${PORTVERSION} \
+
 PLIST_SUB=		ABI=${ABIFLAGS} \
+			XY=${PYTHON_SUFFIX} \
+			XYDOT=${PYTHON_VER} \
+			XYZDOT=${PORTVERSION} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}		# For plat-freebsd* in pkg-plist. http://bugs.python.org/issue19554
 
 OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC THREADS TSC
@@ -58,7 +69,7 @@ DEBUG_CONFIGURE_WITH=	pydebug
 IPV6_CONFIGURE_ENABLE=	ipv6
 
 LIBFFI_CONFIGURE_ON=	--with-system-ffi
-LIBFFI_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
+LIBFFI_LIB_DEPENDS=	libffi.so:devel/libffi
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
@@ -75,7 +86,7 @@ TSC_CONFIGURE_WITH=	tsc
 PLIST_SUB+=     THREADS=""
 CONFIGURE_ARGS+=        --with-threads
 CFLAGS+=                ${PTHREAD_CFLAGS}
-LDFLAGS+=               -lpthread
+LDFLAGS=               -lpthread
 # ${PTHREAD_LIBS}
 .else
 PLIST_SUB+=     THREADS="@comment "
