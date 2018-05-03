@@ -2,6 +2,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	6.4.0
+PORTREVISION=	1
 CATEGORIES=	lang java
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -35,10 +36,15 @@ OPTIONS_DEFAULT=	BOOTSTRAP JAVA
 BOOTSTRAP_DESC=		Build using a full bootstrap
 GRAPHITE_DESC=		Support for Graphite loop optimizations
 
-JAVA_USES=		python shebangfix
+JAVA_USES=		python:build shebangfix
 SHEBANG_FILES=	libjava/contrib/aot-compile.in
 
+.if exists(/usr/lib32/libc.so)
+MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
+MULTILIB_CONFIGURE_ENABLE=	multilib
+.else
 CONFIGURE_ARGS+=	--disable-multilib
+.endif
 
 .include <bsd.port.pre.mk>
 
