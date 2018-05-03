@@ -2,7 +2,7 @@
 
 PORTNAME=	vpnc
 PORTVERSION=	0.5.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	security
 MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 		FREEBSD_LOCAL/ehaupt
@@ -12,8 +12,9 @@ COMMENT=	Client for Cisco 3000 VPN Concentrator
 
 LICENSE=	unknown
 
-LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
-RUN_DEPENDS=	vpnc-script:${PORTSDIR}/sysutils/vpnc-scripts
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
+		libgpg-error.so:security/libgpg-error
+RUN_DEPENDS=	vpnc-script:sysutils/vpnc-scripts
 
 USES=		shebangfix gmake perl5
 USE_PERL5=	build
