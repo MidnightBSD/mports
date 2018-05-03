@@ -3,7 +3,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.9.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -95,6 +95,11 @@ SUB_LIST+=	TARGLIB=${TARGLIB}
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${CONFIGURE_TARGET} [${LANGUAGES}]"
+
+post-patch:
+	@${FIND} ${WRKSRC} -type f -name '*.[ch]' | \
+	    ${XARGS} ${EGREP} -l '"(HOST_WIDE|PLUGIN_COND)' | \
+	    ${XARGS} ${REINPLACE_CMD} -E -e 's/"(HOST_WIDE|PLUGIN_COND)/" \1/g'
 
 pre-configure:
 	cd ${WRKSRC} ; contrib/gcc_update --touch
