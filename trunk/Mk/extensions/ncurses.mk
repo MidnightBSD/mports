@@ -60,19 +60,19 @@ NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
 NCURSES_PORT?=		devel/ncurses
 NCURSES_SHLIBVER?=	5
 
-BUILD_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${PORTSDIR}/${NCURSES_PORT}
-RUN_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${PORTSDIR}/${NCURSES_PORT}
+BUILD_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${NCURSES_PORT}
+RUN_DEPENDS+=		${LOCALBASE}/lib/libncurses.so.${NCURSES_SHLIBVER}:${NCURSES_PORT}
 NCURSESRPATH=		${NCURSESBASE}/lib
+
+.if defined(NCURSES_RPATH)
+CFLAGS+=	-Wl,-rpath,${NCURSESRPATH}
+.endif
+LDFLAGS+=	-Wl,-rpath=${NCURSESRPATH}
 
 .else
 .error		USES=ncurses only accept 'port' and 'base' as arguments, got ${ncurses_ARGS}
 .endif
 
 NCURSESLIB=	${NCURSESBASE}/lib
-
-.if defined(NCURSES_RPATH)
-CFLAGS+=	-Wl,-rpath,${NCURSESRPATH}
-.endif
-LDFLAGS+=	-Wl,-rpath=${NCURSESRPATH}
 
 .endif
