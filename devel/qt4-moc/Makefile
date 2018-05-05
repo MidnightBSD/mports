@@ -6,7 +6,7 @@ CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt meta object compiler
+COMMENT=	Qt Meta-Object Compiler
 
 LICENSE=	gpl3
 
