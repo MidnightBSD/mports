@@ -1,5 +1,5 @@
---- sah_config.h.orig	2012-09-19 00:45:14.000000000 +0200
-+++ sah_config.h	2013-07-19 18:35:22.000000000 +0200
+--- sah_config.h.orig	2012-09-18 22:45:14 UTC
++++ sah_config.h
 @@ -21,7 +21,7 @@
  #define AVX_MASKSTORE_TYPECAST(x) reinterpret_cast<__m256i>(x)
  

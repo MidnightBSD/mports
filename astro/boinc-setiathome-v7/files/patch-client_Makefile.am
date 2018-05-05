@@ -1,6 +1,6 @@
---- client/Makefile.am.orig	2009-09-23 01:50:50.000000000 +0200
-+++ client/Makefile.am	2011-12-04 17:19:18.000000000 +0100
-@@ -165,7 +165,7 @@
+--- client/Makefile.am.orig	2013-06-26 17:01:48 UTC
++++ client/Makefile.am
+@@ -199,7 +199,7 @@ if PPC
  seti_boinc-analyzeFuncs_altivec.o:  vector/analyzeFuncs_altivec.cpp
  	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
  	$(CPPFLAGS) $(seti_boinc_CXXFLAGS) $(CXXFLAGS) -DUSE_ALTIVEC \

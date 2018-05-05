@@ -1,6 +1,6 @@
---- m4/sah_check_boinc.m4.orig	2008-09-09 18:55:19.000000000 +0200
-+++ m4/sah_check_boinc.m4	2011-03-13 16:24:18.000000000 +0100
-@@ -30,7 +30,7 @@
+--- m4/sah_check_boinc.m4.orig	2008-09-09 16:55:19 UTC
++++ m4/sah_check_boinc.m4
+@@ -30,7 +30,7 @@ AC_DEFUN([SAH_CHECK_BOINC],[
  	cd $thisdir
  	break
        else

@@ -1,5 +1,5 @@
---- client/vector/analyzeFuncs_vector.cpp.orig	2013-07-11 22:32:37.000000000 +0200
-+++ client/vector/analyzeFuncs_vector.cpp	2013-07-11 22:41:59.000000000 +0200
+--- client/vector/analyzeFuncs_vector.cpp.orig	2011-08-04 00:35:40 UTC
++++ client/vector/analyzeFuncs_vector.cpp
 @@ -98,9 +98,7 @@
  
  
