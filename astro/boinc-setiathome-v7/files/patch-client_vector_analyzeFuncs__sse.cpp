@@ -1,6 +1,6 @@
---- client/vector/analyzeFuncs_sse.cpp.origin	2013-08-02 01:08:24.000000000 +0400
-+++ client/vector/analyzeFuncs_sse.cpp	2013-08-02 01:18:33.000000000 +0400
-@@ -191,7 +191,7 @@
+--- client/vector/analyzeFuncs_sse.cpp.orig	2013-06-26 16:56:49 UTC
++++ client/vector/analyzeFuncs_sse.cpp
+@@ -191,7 +191,7 @@ inline void v_vsubTranspose4(float *in, 
      prefetcht0(out+3*yline);
      // TODO: figure out why the intrinsic version crashes for MinGW build
      // not critical, but shuffle-only _MM_TRANSPOSE4_PS is optimal on some
@@ -9,7 +9,7 @@
      register float4 row0=*(__m128 *)in;
      register float4 row1=*(__m128 *)(in+xline);
      register float4 row2=*(__m128 *)(in+2*xline);
-@@ -273,7 +273,7 @@
+@@ -273,7 +273,7 @@ inline void v_vsubTranspose4np(float *in
  
      // TODO: figure out why the intrinsic version crashes for MinGW build
      // not critical, but the shuffle-only _MM_TRANSPOSE4_PS is optimal on some
@@ -18,7 +18,7 @@
      register float4 row0=*(__m128 *)in;
      register float4 row1=*(__m128 *)(in+xline);
      register float4 row2=*(__m128 *)(in+2*xline);
-@@ -1592,8 +1592,14 @@
+@@ -1592,8 +1592,14 @@ inline float s_maxp2f( __m128 max1 ) {
      return ( tMax );
  }
  
