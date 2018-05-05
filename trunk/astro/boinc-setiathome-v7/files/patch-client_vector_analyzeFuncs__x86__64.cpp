@@ -1,6 +1,6 @@
---- client/vector/analyzeFuncs_x86_64.cpp.orig	2011-04-03 07:25:53.000000000 +0200
-+++ client/vector/analyzeFuncs_x86_64.cpp	2013-07-29 17:41:37.000000000 +0200
-@@ -61,8 +61,14 @@
+--- client/vector/analyzeFuncs_x86_64.cpp.orig	2011-04-03 05:25:53 UTC
++++ client/vector/analyzeFuncs_x86_64.cpp
+@@ -61,8 +61,14 @@ int v_vChirpData_x86_64(
      static const int as [4]  __attribute__((aligned(16)))= {INT_MIN, 0, INT_MIN, 0} ; // {-, +, -, +}
      char *cblock = (char *)alloca(11*16);
      cblock+=(16-((ssize_t)cblock % 16));

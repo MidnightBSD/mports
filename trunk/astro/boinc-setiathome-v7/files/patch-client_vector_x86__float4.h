@@ -1,6 +1,6 @@
---- client/vector/x86_float4.h.orig	2011-05-22 21:08:50.000000000 +0200
-+++ client/vector/x86_float4.h	2013-07-29 18:52:18.000000000 +0200
-@@ -58,11 +58,15 @@
+--- client/vector/x86_float4.h.orig	2011-05-22 19:08:50 UTC
++++ client/vector/x86_float4.h
+@@ -58,11 +58,15 @@ extern const_float4 INDGEN[2];
  
  ALIGNED(static const int sign_bits[4],16)={INT_MIN, INT_MIN, INT_MIN, INT_MIN};
  ALIGNED(static const int other_bits[4],16)={INT_MAX, INT_MAX, INT_MAX, INT_MAX};
@@ -18,7 +18,7 @@
  struct float4 {
         float4() {};
         float4(const __m128 b) { m=b; };
-@@ -263,4 +267,3 @@
+@@ -263,4 +267,3 @@ struct const_float4 : public float4 {
  
  #endif
  #endif
