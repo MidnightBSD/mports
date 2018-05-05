@@ -5,7 +5,7 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
 		mit modula3 mpl npl nvidia openldap2.8 opera owl \
-		perl pgsql php python ruby sgi subversion x11 zlib \
+		perl pgsql php python ruby sgi subversion x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
 
@@ -201,6 +201,9 @@ _LICENSE_GROUPS_unknown=
 
 _LICENSE_NAME_zlib=		zlib License
 _LICENSE_GROUPS_zlib=	GPL FSF OSI
+
+_LICENSE_NAME_zpl21=    Zope Public License version 2.1 
+_LICENSE_GROUPS_zpl21=  GPL OSI
 
 # Set default permissions if not defined
 
