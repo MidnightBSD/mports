@@ -22,7 +22,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}acme>=${ACME_VERSION}:security/py-acme \
 		${PYTHON_PKGNAMEPREFIX}openssl>0:security/py-openssl \
 		${PYTHON_PKGNAMEPREFIX}pyrfc3339>0:devel/py-pyrfc3339 \
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py27-setuptools \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six \
 		${PYTHON_PKGNAMEPREFIX}zope.component>0:devel/py-zope.component \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>0:devel/py-zope.interface
