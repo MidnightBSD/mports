@@ -25,6 +25,7 @@ SUBDIR += p5-SMS-Send
 SUBDIR += pr
 SUBDIR += qt5-connectivity
 SUBDIR += qt5-sensors
+SUBDIR += qt5-serialbus
 SUBDIR += qt5-serialport
 SUBDIR += tits
 SUBDIR += usbmuxd
