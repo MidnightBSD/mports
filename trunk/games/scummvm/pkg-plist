@@ -9,7 +9,10 @@ share/applications/scummvm.desktop
 %%PORTDOCS%%%%DOCSDIR%%/COPYRIGHT
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README
+share/appdata/scummvm.appdata.xml
+share/icons/hicolor/scalable/apps/scummvm.svg
 share/pixmaps/scummvm.xpm
+%%DATADIR%%/access.dat
 %%DATADIR%%/drascula.dat
 %%DATADIR%%/hugo.dat
 %%DATADIR%%/kyra.dat
@@ -22,6 +25,7 @@ share/pixmaps/scummvm.xpm
 %%DATADIR%%/scummmodern.zip
 %%DATADIR%%/sky.cpt
 %%DATADIR%%/teenagent.dat
+%%DATADIR%%/titanic.dat
 %%DATADIR%%/tony.dat
 %%DATADIR%%/toon.dat
 %%DATADIR%%/translations.dat
