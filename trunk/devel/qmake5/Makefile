@@ -13,7 +13,9 @@ LICENSE=	gpl3
 
 USE_QT5=	# empty
 USES=		pkgconfig shebangfix
-SHEBANG_FILES=	mkspecs/macx-ios-clang/rename_main.sh
+SHEBANG_FILES=	util/harfbuzz/update-harfbuzz \
+		util/unicode/x11/makeencodings \
+		src/3rdparty/freetype/src/tools/afblue.pl
 QT_DIST=	base
 REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
@@ -36,23 +38,7 @@ post-patch:
 # Prevent qconfig.pri from being module dependent.
 	@${REINPLACE_CMD} -E -e '/"\$$QT_CONFIG +(${TBR_CONFIG})"/ d' \
 		${WRKSRC}/configure
-
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/mkspecs/common/freebsd.conf
-	@${REINPLACE_CMD} -e 's|unix.conf|freebsd.conf|' \
-		${WRKSRC}/mkspecs/freebsd-icc/qmake.conf
-
-# Add mkspec for Clang. For now, this means adjusting the existing
-# unsupported/freebsd-clang mkspec while we get it into shape upstream.
-	@${MV} ${WRKSRC}/mkspecs/unsupported/freebsd-clang \
-		${WRKSRC}/mkspecs/freebsd-clang
-	@${REINPLACE_CMD} -e 's|(../|(|g' \
-		${WRKSRC}/mkspecs/freebsd-clang/qmake.conf
-	@${REINPLACE_CMD} -e 's|"../|"|g' \
-		${WRKSRC}/mkspecs/freebsd-clang/qplatformdefs.h
-
 	@${RM} ${WRKSRC}/mkspecs/*/*.orig
-	@${RM} -Rf ${WRKSRC}/mkspecs/freebsd-g++46
 
 post-build:
 # Complete configure stage to generate *.pri files.
