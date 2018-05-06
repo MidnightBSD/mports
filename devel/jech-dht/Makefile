@@ -21,11 +21,19 @@ USES=	uidfix
 post-build:
 	${SETENV} ${MAKE_ENV} ${MAKE} -C ${WRKSRC} -f \
 		${FILESDIR}/Makefile.example
+
+do-install:
+	${INSTALL_LIB} ${WRKSRC}/libdht.so.0 ${PREFIX}/lib/libdht.so.0
+	${INSTALL_LIB} ${WRKSRC}/libdht.so ${PREFIX}/lib/libdht.so
+	${INSTALL_LIB} ${WRKSRC}/libdht.a ${PREFIX}/lib/libdht.a
+	${INSTALL_SCRIPT} ${WRKSRC}/dht-example ${PREFIX}/bin/dht-example
+	${INSTALL_DATA} ${WRKSRC}/dht.h ${PREFIX}/include/dht/dht.h
+
 post-install:
 	${SETENV} ${MAKE_ENV} ${MAKE} -C ${WRKSRC} -f \
 		${FILESDIR}/Makefile.example install
 
-pre-su-install:
+pre-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/dht
 
 .include <bsd.port.mk>
