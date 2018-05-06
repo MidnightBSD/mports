@@ -29,12 +29,23 @@ CONFIGURE_ARGS=	-no-accessibility -no-openssl -no-gui -no-cups \
 		-no-libpng -no-pulseaudio -no-widgets
 # Features yet to be removed from qconfig.pri.
 TBR_CONFIG=	concurrent|inotify|xlib
-QMAKESPEC=	${WRKSRC}/mkspecs/freebsd-${QMAKE_COMPILER}
+QMAKESPEC=	${WRKSRC}/mkspecs/midnightbsd-${QMAKE_COMPILER}
 INSTALL_TARGET=	install_qmake install_mkspecs
 
 BUILD_WRKSRC=	${WRKSRC}/${PORTNAME}
 
 post-patch:
+	${CP} -R ${WRKSRC}/mkspecs/freebsd-g++ ${WRKSRC}/mkspecs/midnightbsd-g++
+	${CP} -R ${WRKSRC}/mkspecs/freebsd-clang ${WRKSRC}/mkspecs/midnightbsd-clang
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' \
+		${WRKSRC}/mkspecs/midnightbsd-g++/qmake.conf \
+		${WRKSRC}/mkspecs/midnightbsd-clang/qmake.conf \
+		${WRKSRC}/mkspecs/midnightbsd-clang/qplatformdefs.h \
+		${WRKSRC}/mkspecs/midnightbsd-g++/qplatformdefs.h 
+	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
+		${WRKSRC}/mkspecs/midnightbsd-g++/qmake.conf \
+		${WRKSRC}/mkspecs/midnightbsd-clang/qmake.conf \
+		${WRKSRC}/mkspecs/midnightbsd-clang/qplatformdefs.h \
 # Prevent qconfig.pri from being module dependent.
 	@${REINPLACE_CMD} -E -e '/"\$$QT_CONFIG +(${TBR_CONFIG})"/ d' \
 		${WRKSRC}/configure
