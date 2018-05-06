@@ -15,7 +15,7 @@ DIST_SUBDIR=	KDE/Qt/${QT5_VERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QDoc configuration files
 
-LICENSE=	fdl1.3
+LICENSE=	gfdl
 LICENSE_FILE=	${WRKSRC}/LICENSE.FDL
 
 USES=		tar:xz
