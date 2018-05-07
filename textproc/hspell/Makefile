@@ -4,7 +4,7 @@
 
 PORTNAME=	hspell
 PORTVERSION=	1.4
-CATEGORIES=	hebrew
+CATEGORIES=	textproc hebrew
 MASTER_SITES=	http://hspell.ivrix.org.il/
 
 MAINTAINER=	ports@MidnightBSD.org
