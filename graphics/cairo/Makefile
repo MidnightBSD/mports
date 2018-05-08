@@ -17,12 +17,12 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libpng.so:graphics/png \
+		libfontconfig.so:x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-USES+=		cpe libtool pathfix pkgconfig
+USES+=		cpe gnome libtool pathfix pkgconfig
 CPE_VENDOR=	cairographics
 USE_XORG=	pixman xrender xext x11
 USE_GNOME=	referencehack glib20
@@ -44,8 +44,8 @@ XCB_DESC=	Enable XCB (X C-language Binding) Support
 OPTIONS_SUB=	yes
 OPENGL_USE=	gl=gl,egl xorg=glproto:both,dri2proto:both
 OPENGL_CONFIGURE_ENABLE=gl egl
-XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
-XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
+XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:x11/xcb-util-renderutil
+XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:x11/xcb-util-renderutil
 XCB_CONFIGURE_ENABLE=	xcb
 # this has another option --enable-xlib-xcb=auto but it is buggy.
 
