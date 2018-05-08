@@ -517,7 +517,6 @@ SUBDIR += qbs
 SUBDIR += qca
 SUBDIR += qgit
 SUBDIR += qjson
-SUBDIR += qmake
 SUBDIR += qmake4
 SUBDIR += qmake5
 SUBDIR += qt4
