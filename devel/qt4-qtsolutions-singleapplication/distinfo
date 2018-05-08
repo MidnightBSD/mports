@@ -1,2 +1,3 @@
-SHA256 (KDE/qt-everywhere-opensource-src-4.8.7.tar.gz) = e2882295097e47fe089f8ac741a95fef47e0a73a3f3cdf21b56990638f626ea0
-SIZE (KDE/qt-everywhere-opensource-src-4.8.7.tar.gz) = 241075567
+TIMESTAMP = 1525782182
+SHA256 (qt4-qtsolutions-singleinstance-20110722.tar.gz) = 88144813a3785f4c2f7e48dd09e0aa48bf993da45a04f241bfd627aa1445c48b
+SIZE (qt4-qtsolutions-singleinstance-20110722.tar.gz) = 40369
