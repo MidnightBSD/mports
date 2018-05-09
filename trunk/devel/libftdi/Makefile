@@ -23,7 +23,7 @@ OPTIONS_DEFAULT=BOOST PYTHON
 OPTIONS_SUB=	yes
 
 BOOST_DESC=		C++ bindings (requires Boost)
-BOOST_LIB_DEPENDS=	libboost_system.so:${PORTSDIR}/devel/boost-libs
+BOOST_LIB_DEPENDS=	libboost_system.so:devel/boost-libs
 BOOST_CMAKE_ON=		-DFTDIPP:BOOL=ON
 BOOST_CMAKE_OFF=	-DFTDIPP:BOOL=OFF
 BOOST_CXXFLAGS=		-I${LOCALBASE}/include
@@ -32,7 +32,7 @@ PYTHON_DESC=		Python bindings
 PYTHON_BUILD_DEPENDS=	swig2.0:${PORTSDIR}/devel/swig20
 PYTHON_CMAKE_ON=	-DPYTHON_BINDINGS:BOOL=ON
 PYTHON_CMAKE_OFF=	-DPYTHON_BINDINGS:BOOL=OFF
-PYTHON_USES=		python
+PYTHON_USES=		python:2.7
 
 .include <bsd.mport.options.mk>
 
@@ -47,9 +47,9 @@ post-patch:
 
 post-install:
 .if ${PORT_OPTIONS:MPYTHON}
-	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} 
-	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR}
-	${STRIP_CMD} ${PYTHON_SITELIBDIR}/_ftdi.so
+	python2.7 -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
+	python2.7 -O -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
+	python2.7 ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages/_ftdi.so
 .endif
 
 .include <bsd.port.mk>
