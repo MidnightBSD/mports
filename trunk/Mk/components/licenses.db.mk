@@ -202,8 +202,8 @@ _LICENSE_GROUPS_unknown=
 _LICENSE_NAME_zlib=		zlib License
 _LICENSE_GROUPS_zlib=	GPL FSF OSI
 
-_LICENSE_NAME_zpl21=    Zope Public License version 2.1 
-_LICENSE_GROUPS_zpl21=  GPL OSI
+_LICENSE_NAME_zpl2.1=    Zope Public License version 2.1 
+_LICENSE_GROUPS_zpl2.1=  GPL OSI
 
 # Set default permissions if not defined
 
