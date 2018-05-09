@@ -3,10 +3,9 @@
 # $FreeBSD: head/multimedia/phonon/Makefile 375654 2014-12-26 20:05:09Z rakuco $
 
 PORTNAME=	phonon
-PORTVERSION=	4.8.3
-PORTREVISION=	1
+PORTVERSION=	4.9.0
 CATEGORIES=	multimedia
-MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/src
+MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +13,7 @@ COMMENT=	KDE multimedia framework
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libqzeitgeist.so:${PORTSDIR}/sysutils/qzeitgeist
+LIB_DEPENDS=	libqzeitgeist.so:sysutils/qzeitgeist
 
 USE_KDE4=	automoc4
 USE_QT4=	corelib dbus gui \
