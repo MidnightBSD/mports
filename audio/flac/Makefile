@@ -15,9 +15,8 @@ LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
 LIB_DEPENDS=	libogg.so:audio/libogg
 
-USES=		iconv libtool pathfix pkgconfig tar:xz
+USES=		compiler:gcc-c++11-lib iconv libtool pathfix pkgconfig tar:xz
 
-USE_GCC=	4.8
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
