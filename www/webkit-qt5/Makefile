@@ -20,8 +20,6 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libwebp.so:graphics/webp
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
 
-DISTINFO_FILE=	${MASTERDIR}/distinfo
-
 USE_GL=		gl
 USE_GNOME=	libxml2 libxslt
 USE_PERL5=	build
@@ -49,6 +47,8 @@ OPTIONS_DEFAULT=GSTREAMER
 GSTREAMER_USE=	GNOME=glib20 GSTREAMER1=yes
 
 .include <bsd.port.pre.mk>
+
+DISTINFO_FILE=  ${PORTSDIR}/www/webkit-qt5/distinfo
 
 post-patch:
 	${REINPLACE_CMD} -e 's,python,${PYTHON_VERSION},g' \
