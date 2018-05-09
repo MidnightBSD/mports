@@ -7,7 +7,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.intra2net.com/en/developer/libftdi/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library (using libusb) to talk to FTDI chips
+COMMENT=	Library (using libusb) to talk to FTDI chips
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -47,9 +47,9 @@ post-patch:
 
 post-install:
 .if ${PORT_OPTIONS:MPYTHON}
-	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_ftdi.so
+	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} 
+	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR}
+	${STRIP_CMD} ${PYTHON_SITELIBDIR}/_ftdi.so
 .endif
 
 .include <bsd.port.mk>
