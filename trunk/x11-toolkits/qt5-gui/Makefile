@@ -10,6 +10,8 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt graphical user interface module
 
+LICENSE=	gpl3
+
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
