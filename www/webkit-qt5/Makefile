@@ -48,7 +48,7 @@ GSTREAMER_USE=	GNOME=glib20 GSTREAMER1=yes
 
 .include <bsd.port.pre.mk>
 
-DISTINFO_FILE=  ${PORTSDIR}/www/webkit-qt5/distinfo
+DISTINFO_FILE=  ${.CURDIR:H:H}/www/webkit-qt5/distinfo
 
 post-patch:
 	${REINPLACE_CMD} -e 's,python,${PYTHON_VERSION},g' \
