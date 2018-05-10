@@ -38,16 +38,16 @@ PLIST=          ${.CURDIR}/pkg-plist
 .if ${LIBPEAS_SLAVE} == python2
 USES+=		python:2
 USE_GNOME+=	pygobject3
-.else
-CONFIGURE_ARGS+=	--disable-python2 \
-			ac_cv_path_PYTHON3_CONFIG=${LOCALBASE}/bin/python${PYTHON_VER}-config
-BUILD_WRKSRC=	${WRKSRC}/loaders/python3
-INSTALL_WRKSRC=	${WRKSRC}/loaders/python3
-.endif
-
-.if ${LIBPEAS_SLAVE} == python3
+CONFIGURE_ARGS+=	--disable-python3
+BUILD_WRKSRC=	${WRKSRC}/loaders/python
+INSTALL_WRKSRC=	${WRKSRC}/loaders/python
+.elsif ${LIBPEAS_SLAVE} == python3
 USES+=		python:3
 USE_GNOME+=	py3gobject3
+CONFIGURE_ARGS+=        --disable-python2 \
+                        ac_cv_path_PYTHON3_CONFIG=${LOCALBASE}/bin/python${PYTHON_VER}-config
+BUILD_WRKSRC=   ${WRKSRC}/loaders/python3
+INSTALL_WRKSRC= ${WRKSRC}/loaders/python3
 .else
 CONFIGURE_ARGS+=	--disable-python2 --disable-python3
 .endif
