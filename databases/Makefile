@@ -15,6 +15,7 @@ SUBDIR += freetds
 SUBDIR += gdbm
 SUBDIR += gnats4
 SUBDIR += ldb
+SUBDIR += leveldb
 SUBDIR += libgda4
 SUBDIR += libgda5
 SUBDIR += libgda5-bdb
