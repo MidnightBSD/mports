@@ -19,6 +19,6 @@ USES=		qmake
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-PLIST_FILES=	${QT_BINDIR}/qdoc
+PLIST_FILES=	lib/qt5/bin/qdoc
 
 .include <bsd.port.mk>
