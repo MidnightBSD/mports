@@ -2,6 +2,7 @@
 
 COMMENT = Multimedia software
 
+SUBDIR += assimp
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
