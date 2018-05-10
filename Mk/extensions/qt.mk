@@ -297,7 +297,7 @@ CONFIGURE_ARGS+=--with-qt-includes=${QT_INCDIR} \
 _USE_QT_ALL=	assistant clucene dbus declarative designer doc gui help \
 				imageformats l10n linguist linguisttools multimedia \
 				network opengl pixeltool qdbusviewer qmake script \
-				scripttools sql sql-ibase sql-mysql sql-odbc sql-pgsql \
+				scripttools sql sql-mysql sql-odbc sql-pgsql \
 				sql-sqlite2 sql-sqlite3 svg testlib webkit \
 				xml xmlpatterns
 
@@ -528,7 +528,7 @@ sql-sqlite2_PORT=	databases/${_QT_RELNAME}-sqlite-plugin
 
 sql-sqlite3_PATH=	${QT_PLUGINDIR}/sqldrivers/libqsqlite.so
 
-.for db in ibase mysql odbc pgsql sqlite2 sqlite3 tds
+.for db in mysql odbc pgsql sqlite2 sqlite3 tds
 .if ${_QT_VERSION:M4*}
 sql-${db}_PORT?=	databases/${_QT_RELNAME}-${db}-plugin
 .else
