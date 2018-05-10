@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.14.8
+PORTVERSION=	1.14.12
 PORTREVISION=	0
 PORTEPOCH?=	2
 CATEGORIES=	graphics
@@ -36,7 +36,8 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-wgl \
 		--enable-tee \
 		--enable-gobject \
-		--enable-xlib
+		--enable-xlib \
+		--enable-png
 
 OPTIONS_DEFINE=	OPENGL XCB
 OPTIONS_DEFAULT=OPENGL XCB
@@ -51,7 +52,7 @@ XCB_CONFIGURE_ENABLE=	xcb
 
 .include <bsd.mport.options.mk>
 
-PLIST_SUB+=	LIBVER=2.11400.8
+PLIST_SUB+=	LIBVER=2.11400.12
 
 post-patch:
 	@${REINPLACE_CMD} -e '/strings/s/ - / -a /' \
