@@ -14,6 +14,9 @@ USE_XORG=	x11
 GNU_CONFIGURE=	yes
 SUB_FILES=	pkg-message
 
+USE_GCC=	yes
+USE_CXXSTD=	gnu++03
+
 MAN1=		ppc.1
 
 PLIST_FILES=	bin/ppc etc/ppccfg.example %%DATADIR%%/video.x
