@@ -31,7 +31,7 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
-post-install-DOCS-on:
+post-install:
 	@${MKDIR} ${STAGEDIR}/${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/*.pdf ${STAGEDIR}/${DOCSDIR}
 
