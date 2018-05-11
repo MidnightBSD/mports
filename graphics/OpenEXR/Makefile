@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	OpenEXR
-PORTVERSION=	2.2.0
-PORTREVISION=	3
+PORTVERSION=	2.2.1
 CATEGORIES=	graphics devel
 MASTER_SITES=	SAVANNAH/openexr/:dist \
 		FREEBSD_LOCAL/mandree/:test
@@ -16,16 +15,17 @@ COMMENT=	High dynamic-range (HDR) image file format
 LICENSE=	bsd3
 
 # exact version required to avoid hard-to-debug issues
-LIB_DEPENDS=	libImath-2_2.so.12:${PORTSDIR}/graphics/ilmbase
+LIB_DEPENDS=	libImath-2_2.so.23:graphics/ilmbase
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 USES=		compiler:features gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-ilmbasetest --enable-imfexamples
+CONFIGURE_ARGS=	--disable-ilmbasetest --enable-imfexamples
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I. -I../IlmImf
+TEST_TARGET=	check
 
+CPPFLAGS+=	-I. -I../IlmImf
 # must be linked with -l{thr|pthread} explicitly
 LDFLAGS+=	-lpthread
 
@@ -48,8 +48,12 @@ LARGE_STACK_CONFIGURE_ENABLE=	large-stack
 
 .include <bsd.port.pre.mk>
 
+.if ${ARCH} == powerpc
+USE_GCC=	yes
+.endif
+
 MAJORVER=	2_2
-VER=		22
+VER=		23
 
 PLIST_SUB=	MAJORVER=${MAJORVER}
 PLIST_SUB+=	VER=${VER}
@@ -67,24 +71,18 @@ post-patch:
 # library
 _ilm_libcxx=${COMPILER_FEATURES:Mlib*c++}
 pre-configure:
-	@${OBJDUMP} -p ${LOCALBASE}/lib/libImath.so \
-	| ${EGREP} -q '^[[:space:]]*NEEDED[[:space:]]+${_ilm_libcxx:C/\+/\\+/g}\.' \
+	@${READELF} -d ${LOCALBASE}/lib/libImath.so \
+	| ${EGREP} -q '\<NEEDED\>.*\[${_ilm_libcxx:C/\+/\\+/g}\.' \
 	|| {	${ECHO_CMD} "*** Your ilmbase package uses a different C++ standard library than ***" ; \
 		${ECHO_CMD} "*** OpenEXR would. Please recompile and reinstall ilmbase with the  ***" ; \
 		${ECHO_CMD} "*** same C++ std. library before trying to build OpenEXR.  Abort.   ***" ; \
 		exit 1; }
 
-.if ! ${PORT_OPTIONS:MEXAMPLES}
-EXTRA_PATCHES+=${FILESDIR}/extra-patch-IlmImfExamples__Makefile.in
-.endif
-
-regression-test regression test check:	build
-	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${_MAKE_JOBS} check)
-
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${VER}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER} \
+		${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${VER}
 
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR2}
