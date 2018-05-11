@@ -375,7 +375,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ghostscript gnome gnustep groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself mono motif mysql ncurses objc ocaml openal \
-		pgsql php python java qt ruby samba scons sdl sqlite \
+		pgsql php python java qt ruby samba scons sdl sqlite ssl \
 		tar tcl tk tex wx xfce zip
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
