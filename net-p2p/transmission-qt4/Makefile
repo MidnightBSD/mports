@@ -18,7 +18,7 @@ SLAVEPORT=	qt4
 
 QT_NONSTANDARD=	yes
 USE_QT4=	moc_build qmake_build rcc_build uic_build gui dbus network
-USES=		desktop-file-utils
+USES=		compiler:c++11-lib desktop-file-utils
 
 EXTRA_CONF_ARGS=--disable-cli \
 		--disable-daemon \
