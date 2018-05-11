@@ -1,6 +1,12 @@
---- ./IlmImfUtil/Makefile.in.orig	2014-08-15 19:35:57.000000000 +0200
-+++ ./IlmImfUtil/Makefile.in	2014-08-15 19:45:15.000000000 +0200
-@@ -265,10 +265,11 @@
+--- IlmImfUtil/Makefile.in.orig	2017-12-01 01:20:37 UTC
++++ IlmImfUtil/Makefile.in
+@@ -375,15 +375,16 @@ libIlmImfUtil_la_SOURCES = \
+ 	ImfImageDataWindow.h ImfImageDataWindow.cpp \
+ 	ImfImageChannelRenaming.h
+ 
+-libIlmImfUtil_la_LDFLAGS = @ILMBASE_LDFLAGS@ -version-info \
++libIlmImfUtil_la_LDFLAGS = -L$(top_builddir)/IlmImf @ILMBASE_LDFLAGS@ -version-info \
+ 	@LIBTOOL_VERSION@ -no-undefined $(am__append_1)
  libIlmImfUtil_la_LIBADD = -L$(top_builddir)/IlmImf @ILMBASE_LIBS@ -lIlmImf
  libIlmImfUtilincludedir = $(includedir)/OpenEXR
  EXTRA_DIST = CMakeLists.txt
