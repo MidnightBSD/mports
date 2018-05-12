@@ -13,8 +13,7 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline tar:xz
-USE_OPENSSL=	yes
+USES=		cpe ncurses pkgconfig readline ssl tar:xz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	OPT="" SVNVERSION="echo midnightbsd"
