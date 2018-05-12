@@ -15,8 +15,7 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses:base pathfix pkgconfig readline:port tar:xz iconv
-USE_OPENSSL=	yes
+USES=		cpe ncurses:base pathfix pkgconfig readline:port tar:xz iconv ssl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 

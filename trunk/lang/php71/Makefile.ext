@@ -89,7 +89,7 @@ CONFIGURE_ARGS+=--enable-ftp \
 		--with-openssl-dir=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USE_OPENSSL=	yes
+EXTENSIONS+=    ssl
 .endif
 
 .if ${PHP_MODNAME} == "gd"
