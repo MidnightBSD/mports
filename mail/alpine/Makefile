@@ -7,7 +7,7 @@
 
 PORTNAME?=	alpine
 PORTVERSION=	2.20
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	mail news ipv6
 MASTER_SITES=	http://patches.freeiz.com/alpine/release/src/
 DIST_SUBDIR=	alpine-${PORTVERSION}
@@ -44,7 +44,7 @@ THREADS_CONFIGURE_WITH=	pthread
 MOUSE_CONFIGURE_ENABLE=	mouse
 NLS_CONFIGURE_ENABLE=	nls
 IPV6_CONFIGURE_WITH=	ipv6
-SSL_USES=		openssl
+SSL_USES=		ssl
 
 .if !defined(PICO_ALPINE_SLAVE)
 
@@ -71,7 +71,6 @@ MAKE_ARGS+=	CC="${CC}" CXX="${CXX}" GCCCFLAGS="${CFLAGS}"
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=	yes
 CONFIGURE_ARGS+=	--with-ssl-dir=${OPENSSLDIR} \
 			--with-ssl-include-dir=${OPENSSLINC} \
 			--with-ssl-lib-dir=${OPENSSLLIB} \
