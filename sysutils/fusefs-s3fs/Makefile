@@ -18,9 +18,8 @@ LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 USE_GITHUB=	yes
 GH_ACCOUNT=	s3fs-fuse
 
-USES=		autoreconf fuse pkgconfig
+USES=		autoreconf fuse pkgconfig ssl
 GNU_CONFIGURE=	yes
-USE_OPENSSL=	yes
 
 WRKSRC=		${WRKDIR}/${GH_ACCOUNT}-${PORTVERSION}
 
