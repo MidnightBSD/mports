@@ -3,7 +3,7 @@
 
 PORTNAME=	hostapd
 PORTVERSION=	2.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	https://w1.fi/releases/
 PATCH_SITES=	https://w1.fi/security/2017-1/
@@ -21,8 +21,7 @@ COMMENT=	IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
 
 LICENSE=	bsd3
 
-USE_OPENSSL=	yes
-USES=		cpe gmake
+USES=		cpe gmake ssl
 CPE_VENDOR=	w1.f1
 BUILD_WRKSRC=	${WRKSRC}/hostapd
 CFLAGS+=	-I${OPENSSLINC}

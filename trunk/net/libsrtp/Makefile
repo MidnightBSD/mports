@@ -20,9 +20,8 @@ WRKSRC=		${WRKDIR}/${GH_PROJECT}-${DISTVERSION}
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-openssl
 CFLAGS+=	-fPIC	# Taken from configure script
-USES=		gmake pathfix pkgconfig
+USES=		gmake pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
 WITH_OPENSSL_PORT=	yes
 
 .if ! defined(WITH_DEBUG)
