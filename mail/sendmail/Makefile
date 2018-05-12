@@ -117,7 +117,7 @@ SITE+=	${FILESDIR}/site.config.m4.ldap
 SITE+=	${FILESDIR}/site.config.m4.milter
 .endif
 .if ${PORT_OPTIONS:MTLS}
-USE_OPENSSL=	yes
+USES+=	ssl
 .endif
 
 # install directly if no mailwrapper support
