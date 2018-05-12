@@ -2,7 +2,7 @@
 
 PORTNAME=	openssh
 DISTVERSION=	7.4p1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -17,9 +17,8 @@ LICENSE_FILE= ${WRKSRC}/LICENCE
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.*
 
-USES=			alias ncurses
+USES=			alias ncurses ssl
 USE_AUTOTOOLS=		autoconf autoheader
-USE_OPENSSL=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ENV=		ac_cv_func_strnvis=no
 CONFIGURE_ARGS=		--prefix=${PREFIX} --with-md5-passwords \
