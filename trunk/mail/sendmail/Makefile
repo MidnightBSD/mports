@@ -2,7 +2,7 @@
 
 PORTNAME=	sendmail
 PORTVERSION=	8.15.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -393,7 +393,7 @@ SITE+=	${FILESDIR}/site.config.m4.local
 pre-everything::
 	@${ECHO_CMD} "#"
 	@${ECHO_CMD} "# You can't override the base sendmail this way."
-	@${ECHO_CMD} "# your version FreeBSD use mailwrapper."
+	@${ECHO_CMD} "# your version BSD use mailwrapper."
 	@${ECHO_CMD} "#"
 	@${ECHO_CMD} "# Please install with normal PREFIX"
 	@${ECHO_CMD} "# and activate the port version with"
