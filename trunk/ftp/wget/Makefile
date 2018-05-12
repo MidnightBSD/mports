@@ -2,6 +2,7 @@
 
 PORTNAME=	wget
 DISTVERSION=	1.19.4
+PORTREVISION=	1
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	GNU
 EXTRACT_SUFX=	.tar.lz
@@ -45,7 +46,7 @@ PCRE_CONFIGURE_ENV_OFF=	ac_cv_header_pcre_h=no
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MOPENSSL}
-USE_OPENSSL=	yes
+EXTENSIONS+=	ssl
 CONFIGURE_ARGS+=--with-ssl=openssl --with-libssl-prefix=${OPENSSLBASE}
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
