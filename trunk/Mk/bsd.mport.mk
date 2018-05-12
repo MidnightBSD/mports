@@ -1037,6 +1037,7 @@ MPORT_UPDATE?=		/usr/libexec/mport.update
 MPORT_CHECK_OLDER?=	/usr/libexec/mport.check-for-older
 MPORT_INFO?=		/usr/libexec/mport.info
 MPORT_LIST?=		/usr/libexec/mport.list
+MPORT_CMD?=		/usr/sbin/mport
 
 .if defined(DESTDIR)
 MPORT_INSTALL:=		${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
@@ -1047,6 +1048,7 @@ MPORT_UPDATE:=		${CHROOT} ${DESTDIR} ${MPORT_UPDATE}
 MPORT_CHECK_OLDER:=	${CHROOT} ${DESTDIR} ${MPORT_CHECK_OLDER}
 MPORT_INFO:=		${CHROOT} ${DESTDIR} ${MPORT_INFO}
 MPORT_LIST:=		${CHROOT} ${DESTDIR} ${MPORT_LIST}
+MPORT_CMD:=		${CHROOT} ${DESTDIR} ${MPORT_CMD}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
