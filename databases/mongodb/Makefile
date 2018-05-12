@@ -50,8 +50,7 @@ PORTSCOUT=	limitw:1,even
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=	yes
-#USES+=		ssl
+EXTENSIONS+=	ssl
 FAKE_MAKEARGS+=	--ssl
 .endif
 
