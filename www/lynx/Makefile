@@ -2,7 +2,7 @@
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.8.2
-PORTREVISION=	6
+PORTREVISION=	7
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://invisible-mirror.net/archives/lynx/tarballs/ \
@@ -16,8 +16,7 @@ LICENSE=	gpl2
 
 MAKE_JOBS_UNSAFE=yes
 
-USES=		cpe tar:bzip2
-USE_OPENSSL=	yes
+USES=		cpe ssl tar:bzip2
 WRKSRC=		${WRKDIR}/${PORTNAME}2-8-8
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
