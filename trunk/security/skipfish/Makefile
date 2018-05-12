@@ -2,7 +2,7 @@
 
 PORTNAME=	skipfish
 PORTVERSION=	2.10b
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security www
 MASTER_SITES=	GOOGLE_CODE
 EXTRACT_SUFX=	.tgz
@@ -13,11 +13,10 @@ COMMENT=	Fully automated, active web application security reconnaissance tool
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn \
-		libpcre.so:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libidn.so:dns/libidn \
+		libpcre.so:devel/pcre
 
-USES=		gmake tar:tgz
-USE_OPENSSL=	yes
+USES=		gmake tar:tgz ssl
 SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=	DOCS

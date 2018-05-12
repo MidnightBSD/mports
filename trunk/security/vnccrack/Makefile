@@ -3,7 +3,7 @@
 
 PORTNAME=	vnccrack
 PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://files.randombit.net/vnccrack/
 DISTNAME=	VNCcrack-${PORTVERSION}
@@ -14,8 +14,8 @@ COMMENT=	Fast offline password cracker for VNC passwords
 
 LICENSE=	gpl2
 
+USES=		ssl
 GNU_CONFIGURE=	yes
-USE_OPENSSL=	yes
 
 SUB_FILES+=	pkg-message
 

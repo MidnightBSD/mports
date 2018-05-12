@@ -2,6 +2,7 @@
 
 PORTNAME=	cryptography
 PORTVERSION=	2.1.4
+PORTREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,8 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=2.9.0:devel/py-pytest \
 		${PYTHON_PKGNAMEPREFIX}iso8601>0:devel/py-iso8601
 
 # Python 2.7, 3.4-3.6
-USES=		compiler:env python
-USE_OPENSSL=	yes
+USES=		compiler:env python ssl
 USE_PYTHON=	autoplist concurrent distutils
 
 CFLAGS+=	-I${OPENSSLINC}
