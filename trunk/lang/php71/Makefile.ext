@@ -146,7 +146,7 @@ CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
 		--with-imap-ssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USE_OPENSSL=	yes
+EXTENSIONS+=    ssl
 .endif
 
 .if ${PHP_MODNAME} == "intl"
@@ -206,7 +206,7 @@ CONFIGURE_ARGS+=--enable-odbc \
 CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USE_OPENSSL=	yes
+EXTENSIONS+=    ssl
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
@@ -346,7 +346,7 @@ CONFIGURE_ENV+=	ac_cv_buggy_snprint_value="no"
 
 LIB_DEPENDS+=	libnetsnmp.so:net-mgmt/net-snmp
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-USE_OPENSSL=	yes
+EXTENSIONS+=    ssl
 .endif
 
 .if ${PHP_MODNAME} == "soap"
