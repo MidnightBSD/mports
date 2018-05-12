@@ -2,7 +2,7 @@
 
 PORTNAME=	openhbci
 PORTVERSION=	0.9.17.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	finance
 MASTER_SITES= 	SF/${PORTNAME}/${PORTNAME}/0.9.17
 DISTNAME=	openhbci-0.9.17-2
@@ -12,8 +12,7 @@ COMMENT=	HBCI is a bank-independent homebanking standard
 
 LICENSE=	lgpl
 
-USES=		libtool
-USE_OPENSSL=	yes
+USES=		libtool ssl
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
