@@ -368,7 +368,7 @@ _LOAD_${EXT:tu}_EXT=	yes
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
-		gcc fmake gmake bison local perl5 openssl \
+		gcc fmake gmake bison local perl5 \
 		apache autotools bdb cmake cpe display dos2unix \
 		efl emacs execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
