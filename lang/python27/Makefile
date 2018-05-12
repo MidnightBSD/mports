@@ -2,7 +2,7 @@
 
 PORTNAME=	python27
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 DISTNAME=	Python-${PORTVERSION}
@@ -13,13 +13,12 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline tar:xz
+USES=		cpe ncurses pkgconfig readline ssl tar:xz
 CONFIGURE_ENV=	SVNVERSION="echo midnightbsd"
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --host=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --target=${ARCH}-portbld-midnightbsd${OSREL}
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	python
