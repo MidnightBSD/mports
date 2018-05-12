@@ -2,7 +2,7 @@
 
 PORTNAME=	jabberd
 PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/jabberd2/jabberd2/releases/download/${PORTNAME}-${DISTVERSION}/ \
 		FREEBSD_LOCAL/matthew/${PORTNAME}
@@ -25,9 +25,8 @@ OPTIONS_SUB=	yes
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c11 iconv libtool perl5 tar:xz
+USES=		compiler:c11 iconv libtool perl5 tar:xz ssl
 USE_PERL5=	run
-USE_OPENSSL=	yes
 USE_RC_SUBR=	jabberd
 USE_LDCONFIG=	${PREFIX}/lib/jabberd
 CONFIGURE_ARGS=	--localstatedir=/var \
