@@ -2,7 +2,7 @@
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.33
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	APACHE_HTTPD
 DISTNAME=	httpd-${PORTVERSION}
@@ -84,7 +84,7 @@ SOCACHE_DC_LIB_DEPENDS=		libdistcache.so:${PORTSDIR}/security/distcache
 SSL_CFLAGS=			-I${OPENSSLINC}
 SSL_CONFIGURE_ON=		--with-ssl=${OPENSSLBASE}
 SSL_LDFLAGS=			-L${OPENSSLLIB}
-SSL_USE=			OPENSSL=yes
+SSL_USES=			ssl
 
 .include <bsd.mport.options.mk>
 
