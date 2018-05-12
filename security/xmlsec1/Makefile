@@ -2,7 +2,7 @@
 
 PORTNAME=	xmlsec1
 PORTVERSION=	1.2.20
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 		ftp://ftp.aleksey.com/pub/xmlsec/releases/ \
@@ -27,8 +27,7 @@ NSS_LIB_DEPENDS=	libnss3.so:${PORTSDIR}/security/nss
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool pathfix pkgconfig
-USE_OPENSSL=	yes
+USES=		libtool pathfix pkgconfig ssl
 USE_GNOME=	libxml2 libxslt
 USE_LDCONFIG=	yes
 
