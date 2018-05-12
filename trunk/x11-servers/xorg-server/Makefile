@@ -2,7 +2,7 @@
 
 PORTNAME?=	xorg-server
 PORTVERSION=	1.14.7
-PORTREVISION?=	6
+PORTREVISION?=	7
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -31,7 +31,7 @@ OPTIONS_DEFAULT=SUID DEVD
 
 .include <bsd.mport.options.mk>
 
-USES=		gmake libtool perl5 tar:bzip2
+USES=		gmake libtool perl5 tar:bzip2 ssl
 USE_PERL5=	build
 USE_GL=		gl
 USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
@@ -42,7 +42,6 @@ USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		videoproto compositeproto trapproto recordproto xineramaproto \
 		xinerama evieproto xfont fontenc xkbui pixman pciaccess
 
-USE_OPENSSL=	yes
 CONFIGURE_ARGS?=--disable-dmx --disable-xvfb --disable-xnest \
 		--without-xmlto --disable-docs --disable-devel-docs \
 		--localstatedir=/var --without-dtrace --disable-xephyr \
