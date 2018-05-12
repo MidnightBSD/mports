@@ -11,6 +11,9 @@
 .if !defined(_INCLUDE_BSD_DEFAULT_VERSIONS_MK)
 _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 
+LOCALBASE?=	/usr/local
+MPORT_CMD?=	/usr/sbin/mport
+
 .for lang in APACHE BDB EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT LINUX LUA \
 	MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 PYTHON3 RUBY SSL TCLTK
 .if defined(${lang}_DEFAULT)
@@ -57,19 +60,14 @@ SAMBA_DEFAULT?=		4.4
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
 .  if	!defined(SSL_DEFAULT) && \
-	!exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so) && \
-	exists(${DESTDIR}/usr/include/openssl/opensslv.h)
+	!exists(${LOCALBASE}/lib/libcrypto.so) && \
+	exists(/usr/include/openssl/opensslv.h)
 SSL_DEFAULT=	base
 .  else
-.    if exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so)
+.    if exists(${LOCALBASE}/lib/libcrypto.so)
 .      if defined(MPORT_CMD)
 # find installed port and use it for dependency
 .        if !defined(OPENSSL_INSTALLED)
-.          if defined(DESTDIR)
-PKGARGS=	-c ${DESTDIR}
-.          else
-PKGARGS=
-.          endif
 OPENSSL_INSTALLED!=	${MPORT_CMD} which -qo ${LOCALBASE}/lib/libcrypto.so || :
 .        endif
 .        if defined(OPENSSL_INSTALLED) && !empty(OPENSSL_INSTALLED)
