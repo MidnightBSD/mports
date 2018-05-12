@@ -4,7 +4,7 @@
 
 PORTNAME=	nghttp2
 PORTVERSION=	1.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
@@ -44,8 +44,7 @@ PATHFIX_MAKEFILEIN=	Makefile.am
 USE_CXXSTD=	c++11
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
-USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz
+USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz ssl
 
 PORTDATA=	fetch-ocsp-response
 PORTDOCS=	*
