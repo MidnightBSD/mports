@@ -10,7 +10,7 @@ COMMENT=	Encrypted, secure compressed TCP tunnel
 
 LICENSE=	agg
 
-USE_OPENSSL=	YES
+USES=		ssl
 USE_PERL5_BUILD=YES
 
 MAKE_ENV+=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
