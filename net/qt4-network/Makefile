@@ -3,7 +3,7 @@
 
 PORTNAME=	network
 DISTVERSION=	${QT4_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	net ipv6
 PKGNAMEPREFIX=	qt4-
 
@@ -12,15 +12,15 @@ COMMENT=	Qt network library
 
 LICENSE=	gpl3
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
+USES=		ssl
 USE_QT4=	qmake_build moc_build rcc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
-USE_OPENSSL=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
