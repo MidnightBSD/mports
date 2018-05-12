@@ -2,7 +2,7 @@
 
 PORTNAME=	irssi
 PORTVERSION=	1.1.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES?=	irc
 MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
 
@@ -41,7 +41,7 @@ TRUECOLOR_CONFIGURE_ENABLE=	true-color
 .if defined(WITHOUT_SSL)
 CONFIGURE_ARGS+=	--disable-ssl
 .else
-USE_OPENSSL=	yes
+EXTENSIONS+=	ssl
 .endif
 
 .include <bsd.mport.options.mk>
