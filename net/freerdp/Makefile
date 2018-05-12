@@ -4,7 +4,7 @@
 
 PORTNAME=	freerdp
 DISTVERSION=	2.0.0-rc1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net comms ipv6
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +13,7 @@ COMMENT=	Free implementation of Remote Desktop Protocol
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_OPENSSL=	yes
-USES=		alias cmake:outsource compiler:c++11-lib cpe gettext localbase pathfix pkgconfig
+USES=		alias cmake:outsource compiler:c++11-lib cpe gettext localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 CPE_VENDOR=	freerdp_project
 

@@ -2,18 +2,18 @@
 
 PORTNAME=	openslp
 PORTVERSION=	2.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION}/${PORTVERSION}%20Release
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
+
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		alias libtool
-USE_OPENSSL=	yes
+USES=		alias libtool ssl
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openslp \
 		--localstatedir=/var
