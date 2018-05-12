@@ -17,9 +17,8 @@ GH_ACCOUNT=	libgit2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		cmake pkgconfig python:build
+USES=		cmake pkgconfig python:build ssl
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION} SHLIB_VER=${PORTVERSION:R:E}
 

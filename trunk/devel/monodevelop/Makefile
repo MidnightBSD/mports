@@ -2,6 +2,7 @@
 
 PORTNAME=	monodevelop
 PORTVERSION=	6.1.1.15
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -56,8 +57,7 @@ GH_TUPLE=	mono:${PORTNAME}:${PORTNAME}-${PORTVERSION} \
 		mono:roslyn:16e117c:roslyn \
 		mono:xwt:9ee2853:xwt
 
-USES=		autoreconf desktop-file-utils gettext gmake mono:nuget pathfix shared-mime-info libarchive
-USE_OPENSSL=	yes
+USES=		autoreconf desktop-file-utils gettext gmake mono:nuget pathfix shared-mime-info libarchive ssl
 USE_GNOME=	gtksharp20 gnomesharp20
 INSTALLS_ICONS=	yes
 
