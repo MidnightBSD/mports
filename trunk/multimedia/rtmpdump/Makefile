@@ -15,8 +15,7 @@ FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	librtmp.so:${PORTSDIR}/multimedia/librtmp
 
-USES=		pkgconfig
-USE_OPENSSL=	yes
+USES=		pkgconfig ssl
 MAKE_ENV=	THREADLIB="-lpthread"
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
