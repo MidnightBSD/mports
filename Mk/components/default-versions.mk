@@ -62,7 +62,7 @@ SAMBA_DEFAULT?=		4.4
 SSL_DEFAULT=	base
 .  else
 .    if exists(${DESTDIR}/${LOCALBASE}/lib/libcrypto.so)
-.      if defined(PKG_BIN)
+.      if defined(MPORT_CMD)
 # find installed port and use it for dependency
 .        if !defined(OPENSSL_INSTALLED)
 .          if defined(DESTDIR)
@@ -70,7 +70,7 @@ PKGARGS=	-c ${DESTDIR}
 .          else
 PKGARGS=
 .          endif
-OPENSSL_INSTALLED!=	${PKG_BIN} ${PKGARGS} which -qo ${LOCALBASE}/lib/libcrypto.so || :
+OPENSSL_INSTALLED!=	${MPORT_CMD} which -qo ${LOCALBASE}/lib/libcrypto.so || :
 .        endif
 .        if defined(OPENSSL_INSTALLED) && !empty(OPENSSL_INSTALLED)
 SSL_DEFAULT:=		${OPENSSL_INSTALLED:T}
