@@ -20,9 +20,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
 SLAVEDIRS=	databases/mysql80-client
 USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
-		cpe libedit localbase perl5 shebangfix
+		cpe libedit localbase perl5 shebangfix ssl
 
-USE_OPENSSL=	yes
 USE_PERL5=	run
 
 MY_DBDIR=	/var/db/mysql
