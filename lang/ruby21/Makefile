@@ -44,7 +44,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 # Keep this, else ruby will fail to load libraries dependent of libpthread.
 LIBS+=		-lpthread -L${LOCALBASE}/lib
-USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
 MAKE_ENV+=	LC_ALL=C
@@ -69,7 +68,7 @@ CAPIDOCS_BUILD_DEPENDS=	doxygen>0:${PORTSDIR}/devel/doxygen \
 CAPIDOCS_CONFIGURE_ENABLE=	install-capi
 RDOC_CONFIGURE_ENABLE=	install-rdoc
 
-USES=		execinfo cpe tar:xz autoreconf
+USES=		execinfo cpe tar:xz autoreconf ssl
 
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
