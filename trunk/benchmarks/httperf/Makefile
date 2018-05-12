@@ -2,18 +2,17 @@
 
 PORTNAME=	httperf
 PORTVERSION=	0.9.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks www
 MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A tool for measuring webserver performance
+COMMENT=	Tool for measuring webserver performance
 
 LICENSE=        gpl2
 
-USE_OPENSSL=	yes
+USES=		gmake ssl
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 MAKE_ARGS=	LIBUTIL_OBJS=ssl_writev.o \
 		exec_prefix=${PREFIX}
 
@@ -33,6 +32,5 @@ post-install:
 do-install:
 	@${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.1 ${MAN1PREFIX}/man/man1/
 	@${INSTALL_PROGRAM} ${WRKSRC}/src/${PORTNAME} ${PREFIX}/bin/
-
 
 .include <bsd.port.mk>
