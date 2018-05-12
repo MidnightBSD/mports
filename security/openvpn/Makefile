@@ -2,6 +2,7 @@
 
 PORTNAME=	openvpn
 DISTVERSION=	2.3.6
+PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	http://swupdate.openvpn.net/community/releases/ \
 		http://build.openvpn.net/downloads/releases/
@@ -14,8 +15,7 @@ LICENSE=	gpl2
 CONFLICTS=	openvpn-devel-[0-9]* openvpn-2.0* openvpn-beta-[0-9]*
 
 GNU_CONFIGURE=	yes
-USES=		cpe libtool pkgconfig shebangfix tar:xz
-USE_OPENSSL=	yes
+USES=		cpe libtool pkgconfig shebangfix tar:xz ssl
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS=	--with-lzo-lib=${LOCALBASE}/lib \
 		--with-lzo-headers=${LOCALBASE}/include
@@ -34,9 +34,9 @@ PKCS11_DESC=		Use security/pkcs11-helper
 EASYRSA_DESC=		Install security/easy-rsa RSA helper package
 POLARSSL_DESC=		SSL/TLS support via PolarSSL
 
-EASYRSA_RUN_DEPENDS=	easy-rsa>=0:${PORTSDIR}/security/easy-rsa
+EASYRSA_RUN_DEPENDS=	easy-rsa>=0:security/easy-rsa
 
-PKCS11_LIB_DEPENDS=	libpkcs11-helper.so:${PORTSDIR}/security/pkcs11-helper
+PKCS11_LIB_DEPENDS=	libpkcs11-helper.so:security/pkcs11-helper
 PKCS11_CONFIGURE_ENABLE=	pkcs11
 
 PW_SAVE_CONFIGURE_ENABLE=	password-save
@@ -44,10 +44,9 @@ PW_SAVE_CONFIGURE_ENABLE=	password-save
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPOLARSSL}
-LIB_DEPENDS+=		libpolarssl.so:${PORTSDIR}/security/polarssl
+LIB_DEPENDS+=		libpolarssl.so:security/polarssl
 CONFIGURE_ARGS+=	--with-crypto-library=polarssl
 .else
-USE_OPENSSL=		yes
 CONFIGURE_ARGS+=	--with-crypto-library=openssl
 .endif
 
