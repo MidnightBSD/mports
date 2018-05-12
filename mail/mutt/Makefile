@@ -4,7 +4,7 @@
 
 PORTNAME=	mutt
 PORTVERSION=	1.9.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -37,8 +37,7 @@ CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 		--enable-external-dotlock --enable-pop --enable-imap \
 		--enable-compressed --enable-sidebar
 
-USE_OPENSSL=	yes
-USES+=		cpe ncurses
+USES+=		cpe ncurses ssl
 
 .if defined(MUTT_CONFIGURE_ARGS)
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
