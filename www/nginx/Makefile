@@ -1119,7 +1119,6 @@ GROUPS?=${WWWGRP}
 
 .if defined(NGINX_OPENSSL)
 EXTENSIONS+=	ssl
-USE_OPENSSL=	yes
 WITH_OPENSSL_PORT=yes
 .endif
 

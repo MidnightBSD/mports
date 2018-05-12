@@ -2,7 +2,7 @@
 
 PORTNAME=	libwww
 PORTVERSION=	5.4.0
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	www devel
 MASTER_SITES=	http://www.w3.org/Library/Distribution/
 DISTNAME=	w3c-${PORTNAME}-${PORTVERSION}
@@ -17,10 +17,9 @@ LICENSE_PERMS=	dist-mirror pkg-mirror
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-zlib --with-ssl=${OPENSSLBASE}
-USES=		perl5 gmake libtool tar:tgz
+USES=		perl5 gmake libtool tar:tgz ssl
 USE_PERL5=	build
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/modules/expat/xmlparse/xmlparse.h \
