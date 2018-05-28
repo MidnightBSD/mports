@@ -27,9 +27,10 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 .endif
 
 LICENSE=	iscl
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.10.4-P8
+ISCVERSION=	9.10.7
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -48,7 +49,8 @@ CONFIGURE_ARGS+=	--localstatedir=/var --disable-linux-caps \
 		--disable-symtable \
 		--with-randomdev=/dev/random \
 		--with-libxml2=${LOCALBASE} \
-		--with-readline=-ledit \
+		--with-readline="-L${LOCALBASE}/lib -ledit" \
+		--with-dlopen=yes \
 		--sysconfdir=${ETCDIR}
 .if defined(BIND_TOOLS_SLAVE)
 CONFIGURE_ARGS+=	--disable-shared
@@ -126,7 +128,7 @@ CONFLICTS+=		bind-tools-9.*
 .endif	# BIND_TOOLS_SLAVE
 
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
-SSL_USE=		openssl=yes
+SSL_USE=		ssl=yes
 SSL_CONFIGURE_OFF=	--disable-openssl-version-check --without-openssl
 
 NEWSTATS_CONFIGURE_ENABLE=	newstats
@@ -236,9 +238,6 @@ PKGDEINSTALL=	${PKGINSTALL}
 PORTDOCS=	*
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|readline/readline.h|editline/readline.h|; \
-		s|readline/history.h|histedit.h|' \
-		${WRKSRC}/bin/dig/nslookup.c ${WRKSRC}/bin/nsupdate/nsupdate.c
 .if defined(BIND_TOOLS_SLAVE)
 	@${REINPLACE_CMD} -e 's#^SUBDIRS.*#SUBDIRS = lib bin#' \
 		-e 's#isc-config.sh installdirs#installdirs#' \
@@ -270,8 +269,8 @@ post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
-		${WRKSRC}/HISTORY ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ* \
+		${WRKSRC}/HISTORY ${WRKSRC}/README* ${STAGEDIR}${DOCSDIR}
 .endif
 
 .if ${OPSYS} == DragonFly || (${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100)
