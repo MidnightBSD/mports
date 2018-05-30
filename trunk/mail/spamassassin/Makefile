@@ -2,7 +2,7 @@
 
 PORTNAME=	spamassassin
 PORTVERSION=	3.4.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	mail perl5
 MASTER_SITES=	APACHE/spamassassin/source CPAN/Mail
 DISTNAME=	Mail-SpamAssassin-${PORTVERSION}
@@ -12,14 +12,16 @@ COMMENT?=	Highly efficient mail filter for identifying spam
 
 LICENSE=	apache2
 
-BUILD_DEPENDS=	p5-Encode-Detect>=0:${PORTSDIR}/converters/p5-Encode-Detect \
-		p5-HTML-Parser>=3.46:${PORTSDIR}/www/p5-HTML-Parser \
-		p5-HTTP-Date>=0:${PORTSDIR}/www/p5-HTTP-Date \
-		p5-IO-Socket-IP>=0:${PORTSDIR}/net/p5-IO-Socket-IP \
-		p5-Net-DNS>=0.63:${PORTSDIR}/dns/p5-Net-DNS \
-		p5-NetAddr-IP>=4.010:${PORTSDIR}/net-mgmt/p5-NetAddr-IP
+BUILD_DEPENDS=	p5-Encode-Detect>=0:converters/p5-Encode-Detect \
+		p5-HTML-Parser>=3.46:www/p5-HTML-Parser \
+		p5-HTTP-Date>=0:www/p5-HTTP-Date \
+		p5-Net-DNS>=0.63:dns/p5-Net-DNS \
+		p5-NetAddr-IP>=4.010:net-mgmt/p5-NetAddr-IP
 RUN_DEPENDS:=	${BUILD_DEPENDS} \
-		re2c:${PORTSDIR}/devel/re2c
+		p5-Net-IDN-Encode>=0:textproc/p5-Net-IDN-Encode \
+		p5-Net-LibIDN>=0:dns/p5-Net-LibIDN \
+		p5-URI>=0:net/p5-URI \
+		re2c>=.12.0:devel/re2c
 
 .for dep in DCC DKIM MYSQL PGSQL PYZOR RAZOR RELAY_COUNTRY SPF_QUERY SSL
 TEST_DEPENDS+=	${${dep}_RUN_DEPENDS}
@@ -27,8 +29,8 @@ TEST_DEPENDS+=	${${dep}_RUN_DEPENDS}
 
 CPE_VENDOR=	apache
 
-USES=		cpe
-USE_PERL5=	yes
+USES=		cpe perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
@@ -45,21 +47,19 @@ CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
 		LOCALSTATEDIR="${DBDIR}/spamassassin" \
 		BUILD_SPAMC=yes
 
-OPTIONS_DEFINE=		AS_ROOT SSL UPDATE_AND_COMPILE
+OPTIONS_DEFINE=		AS_ROOT DOCS SSL
 OPTIONS_GROUP=		DATABASE GPG PLUGINS
 OPTIONS_GROUP_DATABASE=	MYSQL PGSQL
 OPTIONS_GROUP_PLUGINS=	DCC DKIM PYZOR RAZOR RELAY_COUNTRY SPF_QUERY
 OPTIONS_SINGLE=		GPG
 OPTIONS_SINGLE_GPG=	GNUPG_NONE GNUPG GNUPG2
-OPTIONS_DEFAULT=	AS_ROOT GNUPG SSL UPDATE_AND_COMPILE
+OPTIONS_DEFAULT=	AS_ROOT DKIM GNUPG SSL SPF_QUERY
 
 AS_ROOT_DESC=		Run spamd as root (recommended)
-SSL_DESC=		Build spamd/spamc with SSL support
-UPDATE_AND_COMPILE_DESC=Download and compile rulesets (recommended)
 
 DATABASE_DESC=		Optional user-config/bayes database backends
 
-GPG_DESC=		GnuPG (for sa-update, optional)
+GPG_DESC=		GnuPG (for sa-update)
 GNUPG_NONE_DESC=	Do not use GnuPG
 GNUPG_DESC=		GnuPG 1 (security/gnupg1)
 GNUPG2_DESC=		GnuPG 2 (security/gnupg)
@@ -74,24 +74,27 @@ SPF_QUERY_DESC=		Verify SPF records (mail/p5-Mail-SPF)
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	SPAMD_OWN="${USERS}:${GROUPS}"
-PLIST_SUB+=	USER=${USERS} GROUP=${GROUPS} PERL5_MAN1=man/man1
+PLIST_SUB+=	USER=${USERS} GROUP=${GROUPS}
 OPTIONS_SUB=	yes
 
-DCC_RUN_DEPENDS=	dcc-dccd>=1.3.111:${PORTSDIR}/mail/dcc-dccd
-DKIM_RUN_DEPENDS=	p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL \
-			p5-Mail-DKIM>=0.37:${PORTSDIR}/mail/p5-Mail-DKIM \
-			p5-Crypt-OpenSSL-RSA>=0.26_1:${PORTSDIR}/security/p5-Crypt-OpenSSL-RSA
-GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:${PORTSDIR}/security/gnupg1
-GNUPG2_RUN_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
-MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
-PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
-PYZOR_RUN_DEPENDS=	pyzor:${PORTSDIR}/mail/pyzor
-RAZOR_RUN_DEPENDS=	razor-agents>=2.84:${PORTSDIR}/mail/razor-agents
-RELAY_COUNTRY_RUN_DEPENDS=	p5-Geo-IP>=0:${PORTSDIR}/net/p5-Geo-IP
-SPF_QUERY_RUN_DEPENDS=	p5-Mail-SPF>=0:${PORTSDIR}/mail/p5-Mail-SPF
+AS_ROOT_SUB_LIST=	RUN_AS_USER="-u ${USERS} -H /var/spool/spamd"
+AS_ROOT_SUB_LIST_OFF=	RUN_AS_USER=
+DCC_RUN_DEPENDS=	dcc-dccd>=1.3.111:mail/dcc-dccd
+DKIM_RUN_DEPENDS=	p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL \
+			p5-Mail-DKIM>=0.37:mail/p5-Mail-DKIM \
+			p5-Crypt-OpenSSL-RSA>=0.26_1:security/p5-Crypt-OpenSSL-RSA
+GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:security/gnupg1
+GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
+MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
+PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
+PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor
+RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents
+RELAY_COUNTRY_RUN_DEPENDS=	p5-Geo-IP>=0:net/p5-Geo-IP \
+			p5-IP-Country>=0:net/p5-IP-Country
+SPF_QUERY_RUN_DEPENDS=	p5-Mail-SPF>=0:mail/p5-Mail-SPF
 
-SSL_USE=		OPENSSL=yes
-SSL_RUN_DEPENDS=	p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL
+SSL_USES=		ssl
+SSL_RUN_DEPENDS=	p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
 SSL_CONFIGURE_ON=	ENABLE_SSL=yes
 SSL_CONFIGURE_OFF=	ENABLE_SSL=no
 
@@ -102,7 +105,6 @@ PYZOR_INITVAR=		Pyzor
 RAZOR_INITVAR=		Razor2
 RELAY_COUNTRY_INITVAR=	RelayCountry
 SPF_QUERY_INITVAR=	SPF
-UPDATE_AND_COMPILE_INITVAR=	Rule2XSBody
 
 DOCS=		CREDITS Changes INSTALL NOTICE PACKAGING README TRADEMARK UPGRADE USAGE procmailrc.example
 DOCSSQL=	README README.awl README.bayes awl_mysql.sql awl_pg.sql bayes_mysql.sql bayes_pg.sql userpref_mysql.sql userpref_pg.sql
@@ -127,18 +129,6 @@ SUB_LIST+=	SQL_FLAG="-Q"
 SUB_LIST+=	SQL_FLAG=""
 .endif
 
-.if empty(PORT_OPTIONS:MAS_ROOT)
-SUB_LIST+=	RUN_AS_USER="-u ${USERS} -H /var/spool/spamd"
-.else
-SUB_LIST+=	RUN_AS_USER=""
-.endif
-
-.if ${PORT_OPTIONS:MUPDATE_AND_COMPILE} && empty(PACKAGE_BUILDING) && empty(BATCH)
-PLIST_SUB+=	UPDATE_ON_INSTALL="yes"
-.else
-PLIST_SUB+=	UPDATE_ON_INSTALL="no"
-.endif
-
 post-patch::
 	${REINPLACE_CMD} -e 's,B_CONFDIR)/local.cf,B_CONFDIR)/local.cf.sample,g' \
 		-e 's,B_CONFDIR)/init.pre,B_CONFDIR)/init.pre.sample,g' \
@@ -153,7 +143,7 @@ post-patch::
 	${REINPLACE_CMD} -e '/^CC =/d; \
 		s|@SSLCFLAGS@|& $${CFLAGS}|g' ${WRKSRC}/spamc/Makefile.in
 
-.for var in ${OPTIONS_GROUP_PLUGINS} UPDATE_AND_COMPILE
+.for var in ${OPTIONS_GROUP_PLUGINS}
 .  if ${PORT_OPTIONS:M${var}}
 	${REINPLACE_CMD} -e '/${${var}_INITVAR}/s/^\#.*loadplugin/loadplugin/' ${WRKSRC}/rules/*.pre
 .  else
