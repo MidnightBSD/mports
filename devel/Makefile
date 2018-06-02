@@ -35,6 +35,7 @@ SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
 SUBDIR += compiler-rt
+SUBDIR += check
 SUBDIR += chrpath
 SUBDIR += cmake
 SUBDIR += cmake-fedora
