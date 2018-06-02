@@ -2,7 +2,7 @@
 
 PORTNAME=	enchant
 PORTVERSION=	1.6.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
@@ -32,23 +32,23 @@ HSPELL_DESC=	Spell checking via Hspell
 HUNSPELL_DESC=	Spell checking via Hunspell
 ZEMBEREK_DESC=	Spell checking via Zemberek
 
-ASPELL_LIB_DEPENDS=	libaspell.so:${PORTSDIR}/textproc/aspell
+ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
 ASPELL_CONFIGURE_ENABLE=	aspell
 ASPELL_CONFIGURE_ON=	--with-aspell-prefix=${LOCALBASE}
 
-HSPELL_BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/hebrew/hspell
+HSPELL_BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:textproc/hspell
 HSPELL_CONFIGURE_ENABLE=	hspell
 HSPELL_CONFIGURE_ON=	--with-hspell-prefix=${LOCALBASE}
 
-HUNSPELL_LIB_DEPENDS=	libhunspell-1.3.so:${PORTSDIR}/textproc/hunspell
+HUNSPELL_LIB_DEPENDS=	libhunspell-1.6.so:textproc/hunspell
 HUNSPELL_CONFIGURE_ENABLE=	myspell
 HUNSPELL_CONFIGURE_ON=	--with-system-myspell=yes \
 			--with-myspell-dir=${LOCALBASE}/share/hunspell
 
-ISPELL_RUN_DEPENDS=	ispell:${PORTSDIR}/textproc/aspell-ispell
+ISPELL_RUN_DEPENDS=	ispell:textproc/aspell-ispell
 ISPELL_CONFIGURE_ENABLE=	ispell
 
-ZEMBEREK_LIb_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+ZEMBEREK_LIb_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib
 ZEMBEREK_CONFIGURE_ENABLE=	zemberek
 
 post-patch:
