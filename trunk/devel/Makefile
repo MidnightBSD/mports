@@ -576,6 +576,7 @@ SUBDIR += sdl20
 SUBDIR += seed
 SUBDIR += silc-toolkit
 SUBDIR += slf4j
+SUBDIR += sparsehash
 SUBDIR += splint
 SUBDIR += st
 SUBDIR += subversion
