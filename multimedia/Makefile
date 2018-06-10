@@ -67,6 +67,7 @@ SUBDIR += libfame
 SUBDIR += libkate
 SUBDIR += libmediaart
 SUBDIR += libmpeg2
+SUBDIR += libmtp
 SUBDIR += libquvi
 SUBDIR += libquvi-scripts
 SUBDIR += libquvi-scripts09
