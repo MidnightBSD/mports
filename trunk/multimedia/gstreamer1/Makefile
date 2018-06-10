@@ -2,11 +2,12 @@
 # $MidnightBSD$
 # $FreeBSD: head/multimedia/gstreamer1/Makefile 393429 2015-08-02 15:03:19Z tijl $
 
-PORTNAME=	gstreamer1
-PORTVERSION=	1.4.5
+PORTNAME=	gstreamer
+PORTVERSION=	1.12.3
 CATEGORIES=	multimedia
-MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/
-DISTNAME=	${PORTNAME:S/1//}-${PORTVERSION}
+MASTER_SITES=	GNOME \
+		http://gstreamer.freedesktop.org/src/gstreamer/
+PKGNAMESUFFIX=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media applications framework
@@ -27,22 +28,15 @@ CONFIGURE_ARGS=	--disable-tests \
 CONFIGURE_ENV=	ac_cv_func_register_printf_function="no"
 INSTALL_TARGET=	install-strip
 PLIST_SUB=	VERSION=${GST10_VERSION} \
-		SOVERSION=0.405.0
+		SOVERSION=0.1203.0
 USE_LDCONFIG=	yes
 GST10_VERSION=	1.0
 
-OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	LIBCHECK
-LIBCHECK_DESC=	Unit tests support
-LIBCHECK_CONFIGURE_ENABLE=	check
-LIBCHECK_LIB_DEPENDS=	libcheck.so:${PORTSDIR}/devel/libcheck
-
 .include <bsd.mport.options.mk>
 
-USE_GCC=	any
-
-BUILD_DEPENDS+=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
-CONFIGURE_ENV+=	FLEX_PATH="${LOCALBASE}/bin/flex"
+.if ${ARCH} == i386 || ${ARCH} == amd64
+LIB_DEPENDS+=	libunwind.so:devel/libunwind
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
