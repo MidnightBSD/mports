@@ -5,7 +5,7 @@ PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
 # When chasing a shared library for a plug-in bump the PORTREVISION in the
 # plug-in port instead, like ${category}/gstreamer1-plugin-${PLUGIN}.
-PORTREVISION?=	2
+PORTREVISION?=	0
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
 		http://gstreamer.freedesktop.org/src/gst-plugins-bad/:bad \
@@ -18,29 +18,31 @@ COMMENT?=	GStreamer written collection of plugins handling several media types
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS+=	gstreamer1>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:${PORTSDIR}/multimedia/gstreamer1 \
-		iso-codes>=0:${PORTSDIR}/misc/iso-codes \
-		orc>=0.4.16:${PORTSDIR}/devel/orc
-LIB_DEPENDS+=	libgstreamer-1.0.so:${PORTSDIR}/multimedia/gstreamer1 \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		liborc-0.4.so:${PORTSDIR}/devel/orc
-RUN_DEPENDS+=	iso-codes>=0:${PORTSDIR}/misc/iso-codes
+BUILD_DEPENDS+=	gstreamer1>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:multimedia/gstreamer1 \
+		iso-codes>=0:misc/iso-codes \
+		orc>=0.4.16:devel/orc
+LIB_DEPENDS+=	libgstreamer-1.0.so:multimedia/gstreamer1 \
+		libfreetype.so:print/freetype2 \
+		liborc-0.4.so:devel/orc
+RUN_DEPENDS+=	iso-codes>=0:misc/iso-codes
 
-BASE_PORTVERSION=	1.4.5
+PORTSCOUT=	limitw:1,even
+
+BASE_PORTVERSION=	1.12.3
 BASE_DISTNAME=		gst-plugins-base-${BASE_PORTVERSION}
 BASE_DISTFILE=		${BASE_DISTNAME}${EXTRACT_SUFX}
-BAD_PORTVERSION=	1.4.5
+BAD_PORTVERSION=	1.12.3
 BAD_DISTNAME=		gst-plugins-bad-${BAD_PORTVERSION}
 BAD_DISTFILE=		${BAD_DISTNAME}${EXTRACT_SUFX}
-GOOD_PORTVERSION=	1.4.5
+GOOD_PORTVERSION=	1.12.3
 GOOD_DISTNAME=		gst-plugins-good-${GOOD_PORTVERSION}
 GOOD_DISTFILE=		${GOOD_DISTNAME}${EXTRACT_SUFX}
-UGLY_PORTVERSION=	1.4.5
+UGLY_PORTVERSION=	1.12.3
 UGLY_DISTNAME=		gst-plugins-ugly-${UGLY_PORTVERSION}
 UGLY_DISTFILE=		${UGLY_DISTNAME}${EXTRACT_SUFX}
 DIST?=		base
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+USES+=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 WANT_GSTREAMER=	yes
 USE_GNOME+=	glib20 introspection:build libxml2
 GNU_CONFIGURE=	yes
@@ -48,7 +50,7 @@ INSTALL_TARGET=	install-strip
 GST_PLUGIN?=	base
 USE_LDCONFIG=	yes
 
-CFLAGS:=	${CFLAGS} -O2 -Wno-format
+CFLAGS+=	-Wno-format
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-lpthread -L${LOCALBASE}/lib ${EXTRA_LIBS}
 
@@ -60,7 +62,7 @@ IGNORE=		DIST not specified
 .endif
 
 VERSION=	1.0
-SOVERSION=	0.405.0
+SOVERSION=	0.1203.0
 PLIST_SUB+=	VERSION="${VERSION}" \
 		SOVERSION="${SOVERSION}"
 
@@ -70,8 +72,8 @@ PLIST_SUB+=	VERSION="${VERSION}" \
 DIST=	base
 NO_GSTREAMER_COMMON=	yes
 .else
-BUILD_DEPENDS+=	gstreamer1-plugins>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:${PORTSDIR}/multimedia/gstreamer1-plugins
-RUN_DEPENDS+=	gstreamer1-plugins>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:${PORTSDIR}/multimedia/gstreamer1-plugins
+BUILD_DEPENDS+=	gstreamer1-plugins>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:multimedia/gstreamer1-plugins
+RUN_DEPENDS+=	gstreamer1-plugins>=${GST1_VERSION}${GST1_MINIMAL_VERSION}:multimedia/gstreamer1-plugins
 .endif
 
 .if ${DIST} == base || ${DIST} == ugly
@@ -134,8 +136,8 @@ post-patch:
 		${WRKSRC}/ext/resindvd/resindvdsrc.c
 .endif
 .if ${DIST} != ugly
-	@${FIND} ${WRKSRC}/ext ${WRKSRC}/sys -name Makefile.in | \
-	${XARGS} -n 10 ${REINPLACE_CMD} -e \
+	@${FIND} ${WRKSRC}/ext ${WRKSRC}/sys \
+	-name Makefile.in | ${XARGS} -n 10 ${REINPLACE_CMD} -e \
 	'/la_DEPENDENCIES/,/am__DEPENDENCIES/s,$$(top_builddir)/gst-libs/.*.la,,' -e \
 	's|$$(top_builddir)/gst-libs/gst/tag/libgsttag-@GST_API_VERSION@.la|-lgsttag-${VERSION}|; \
 	s|$$(top_builddir)/gst-libs/gst/audio/libgstaudio-@GST_API_VERSION@.la|-lgstaudio-${VERSION}|; \
@@ -145,7 +147,10 @@ post-patch:
 	s|$$(top_builddir)/gst-libs/gst/video/libgstbasevideo-@GST_API_VERSION@.la|-lgstbasevideo-${VERSION}|; \
 	s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-@GST_API_VERSION@.la|-lgstvideo-${VERSION}|; \
 	s|$$(top_builddir)/gst-libs/gst/base/libgstbadbase-@GST_API_VERSION@.la|-lgstbadbase-${VERSION}|; \
-	 s|$$(top_builddir)/gst-libs/gst/uridownloader/libgsturidownloader-@GST_API_VERSION@.la|-lgsturidownloader-${VERSION}|; \
+	s|$$(top_builddir)/gst-libs/gst/uridownloader/libgsturidownloader-@GST_API_VERSION@.la|-lgsturidownloader-${VERSION}|; \
+	s|$$(top_builddir)/gst-libs/gst/adaptivedemux/libgstadaptivedemux-@GST_API_VERSION@.la|-lgstadaptivedemux-${VERSION}|; \
+	s|$$(top_builddir)/gst-libs/gst/codecparsers/libgstcodecparsers-@GST_API_VERSION@.la|-lgstcodecparsers-${VERSION}|; \
+	s|$$(top_builddir)/gst-libs/gst/allocators/libgstbadallocators-@GST_API_VERSION@.la|-lgstbadallocators-${VERSION}|; \
 	s|$$(top_builddir)/gst-libs/gst/video/libgstbadvideo-@GST_API_VERSION@.la|-lgstbadvideo-${VERSION}|'
 
 	 @${FIND} ${WRKSRC}/ext ${WRKSRC}/sys -name Makefile.in | \
@@ -160,13 +165,21 @@ post-patch:
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-$$(GST_API_VERSION).la|-lgstvideo-${VERSION}|; \
 	  s|$$(top_builddir)/gst-libs/gst/base/libgstbadbase-$$(GST_API_VERSION).la|-lgstbadbase-${VERSION}|; \
 	  s|$$(top_builddir)/gst-libs/gst/uridownloader/libgsturidownloader-$$(GST_API_VERSION).la|-lgsturidownloader-${VERSION}|; \
+	  s|$$(top_builddir)/gst-libs/gst/adaptivedemux/libgstadaptivedemux-@GST_API_VERSION@.la|-lgstadaptivedemux-${VERSION}|; \
+	  s|$$(top_builddir)/gst-libs/gst/codecparsers/libgstcodecparsers-$$(GST_API_VERSION).la|-lgstcodecparsers-${VERSION}|; \
+	  s|$$(top_builddir)/gst-libs/gst/allocators/libgstbadallocators-$$(GST_API_VERSION).la|-lgstbadallocators-${VERSION}|; \
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstbadvideo-$$(GST_API_VERSION).la|-lgstbadvideo-${VERSION}|'
 .endif
 
-# workaround a crash in clang 3.3 crash llvm bug # 15840
-.if ((${OSVERSION} >= 901504 && ${OSVERSION} < 902502) || \
-     (${OSVERSION} >= 1000037 && ${OSVERSION} < 1000056))
-USE_GCC=	any
+.if ${DIST} == bad
+# Disable X11 support in librfb
+post-configure:
+	@${REINPLACE_CMD} -e 's|HAVE_X11 = yes|HAVE_X11 = no|g' \
+		-e 's|#ifdef HAVE_X11|#ifdef NO_X11|g' \
+		-e 's|$$(X11_CFLAGS) \\|\\|g' \
+		-e 's|$$(X11_LIBS) \\|\\|g' \
+		${WRKSRC}/gst/librfb/Makefile \
+		${WRKSRC}/gst/librfb/gstrfbsrc.c
 .endif
 
 pre-install:
