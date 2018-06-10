@@ -1,0 +1,14 @@
+# $MidnightBSD$
+# $FreeBSD: head/audio/gstreamer1-plugins-mpg123/Makefile 411860 2016-03-25 15:47:45Z kwm $
+
+PORTREVISION=	0
+CATEGORIES=	audio
+
+COMMENT=	GStreamer MPEG Layer 1, 2, and 3 plugin
+
+GST_PLUGIN=	mpg123
+DIST=		ugly
+
+MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
+
+.include "${MASTERDIR}/Makefile"
