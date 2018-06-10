@@ -28,6 +28,8 @@ LIB_DEPENDS=	libmusicbrainz5.so:audio/libmusicbrainz5 \
 		libsoup-gnome-2.4.so:devel/libsoup-gnome \
 		libsecret-1.so:security/libsecret \
 		libtdb.so:databases/tdb
+# needed so gstreamer codecs actually work to play mp3s
+RUN_DEPENDS=	gnome-settings-daemon>=2.91.0:sysutils/gnome-settings-daemon
 
 USES=		desktop-file-utils gmake gnome libtool localbase \
 		pathfix pkgconfig tar:xz
