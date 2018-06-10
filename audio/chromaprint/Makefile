@@ -42,4 +42,7 @@ do-install-DOXYGEN-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${INSTALL_WRKSRC}/doc; ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 
+post-fake:
+	${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig/libchromaprint.pc ${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig/libchromaprint.pc
+
 .include <bsd.port.mk>
