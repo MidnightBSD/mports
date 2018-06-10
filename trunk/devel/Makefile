@@ -190,6 +190,7 @@ SUBDIR += libublio
 SUBDIR += libunicode
 SUBDIR += libuninum
 SUBDIR += libunistring
+SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
