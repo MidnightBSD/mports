@@ -49,6 +49,7 @@ SUBDIR += open-cobol
 SUBDIR += p5-Data-JavaScript
 SUBDIR += p5-Error
 SUBDIR += p5-List-MoreUtils
+SUBDIR += p5-List-MoreUtils-XS
 SUBDIR += p5-Scalar-List-Utils
 SUBDIR += p5-Switch
 SUBDIR += p5-Try-Tiny
