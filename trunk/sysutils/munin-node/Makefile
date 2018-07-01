@@ -22,6 +22,7 @@ RUN_DEPENDS=	p5-Cache-Cache>=0:${PORTSDIR}/devel/p5-Cache-Cache \
 		munin-common>=0:${PORTSDIR}/sysutils/munin-common \
 		p5-Net-Server>=0:${PORTSDIR}/net/p5-Net-Server \
 		p5-Net-CIDR>=0:${PORTSDIR}/net-mgmt/p5-Net-CIDR \
+		p5-libwww>=0:www/p5-libwww \
 		bash:${PORTSDIR}/shells/bash
 
 EXTRA_PATCHES+=	${MUNIN_PATCHES}
