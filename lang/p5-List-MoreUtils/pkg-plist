@@ -1,6 +1,6 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/List/MoreUtils.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/List/MoreUtils/MoreUtils.bs
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/List/MoreUtils/MoreUtils.so
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/List/MoreUtils
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/List
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/List
+%%SITE_PERL%%/List/MoreUtils.pm
+%%SITE_PERL%%/List/MoreUtils/Contributing.pod
+%%SITE_PERL%%/List/MoreUtils/PP.pm
+%%PERL5_MAN3%%/List::MoreUtils.3.gz
+%%PERL5_MAN3%%/List::MoreUtils::Contributing.3.gz
+%%PERL5_MAN3%%/List::MoreUtils::PP.3.gz
