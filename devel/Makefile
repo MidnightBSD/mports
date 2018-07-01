@@ -291,6 +291,7 @@ SUBDIR += p5-Devel-StackTrace-AsHTML
 SUBDIR += p5-Devel-Symdump
 SUBDIR += p5-Dist-CheckConflicts
 SUBDIR += p5-Exception-Class
+SUBDIR += p5-Exporter-Tiny
 SUBDIR += p5-ExtUtils-CBuilder
 SUBDIR += p5-ExtUtils-Depends
 SUBDIR += p5-ExtUtils-MakeMaker
