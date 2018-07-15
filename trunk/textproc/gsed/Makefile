@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sed
-PORTVERSION=	4.1.5
+PORTVERSION=	4.2.2
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -9,7 +9,8 @@ PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU stream editor
-LICENSE=	gpl2
+
+LICENSE=	gpl3
 
 # Global variables
 GNU_CONFIGURE=	yes
