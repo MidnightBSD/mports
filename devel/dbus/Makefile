@@ -2,7 +2,7 @@
 
 PORTNAME=	dbus
 PORTVERSION=	1.10.16
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -19,6 +19,7 @@ USES=		cpe gmake libtool localbase pathfix python:build shebangfix
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
+		--localstatedir=/var \
 		--disable-doxygen-docs \
 		--disable-selinux \
 		--disable-apparmor \
