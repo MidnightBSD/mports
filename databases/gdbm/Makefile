@@ -2,7 +2,7 @@
 
 PORTNAME=	gdbm
 PORTVERSION=	1.13
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	GNU
 
@@ -16,7 +16,7 @@ FAKE_OPTS+=	prefixhack
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USES=		libtool:keepla iconv
+USES=		libtool:keepla iconv readline
 DESTDIRNAME=	INSTALL_ROOT
 
 MAKE_JOBS_UNSAFE=	yes
