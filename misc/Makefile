@@ -10,6 +10,7 @@ SUBDIR += compat5x
 SUBDIR += compat6x
 SUBDIR += compat7x
 SUBDIR += compat8x
+SUBDIR += compat9x
 SUBDIR += cpuid
 SUBDIR += dejagnu
 SUBDIR += dict-de
