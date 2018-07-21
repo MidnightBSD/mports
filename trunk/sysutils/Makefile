@@ -54,6 +54,7 @@ SUBDIR += gnome-power-manager
 SUBDIR += gnome-settings-daemon
 SUBDIR += gnome-system-monitor
 SUBDIR += gnome_subr
+SUBDIR += grub2-bhyve
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
