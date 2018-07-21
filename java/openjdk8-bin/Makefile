@@ -2,17 +2,17 @@
 
 PORTNAME=	openjdk8-bin
 PORTVERSION=	8.112.16.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java
 MASTER_SITES=	http://pkg.freebsd.org/freebsd:9:x86:64/latest/All/
 DISTFILES=	openjdk8-8.112.16_1.txz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	OpenJDK 7 FreeBSD binary
+COMMENT=	OpenJDK 8 FreeBSD binary
 
 LICENSE=	gpl2
 
-CONFLICTS=	openjdk7-1.7*
+CONFLICTS=	openjdk8-1.8*
 
 USES=		tar:xz
 ONLY_FOR_ARCH=	amd64
