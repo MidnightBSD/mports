@@ -55,7 +55,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 
 .if ${PORT_OPTIONS:MCONSOLEKIT}
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
-LIB_DEPENDS+=	libck-connector.so:${PORTSDIR}/sysutils/consolekit
+LIB_DEPENDS+=	libck-connector.so:${PORTSDIR}/sysutils/consolekit2
 .else
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
 .endif

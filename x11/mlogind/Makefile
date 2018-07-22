@@ -2,7 +2,7 @@
 
 PORTNAME=	mlogind
 PORTVERSION=	1.3.7
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -54,7 +54,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 
 .if ${PORT_OPTIONS:MCONSOLEKIT}
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
-LIB_DEPENDS+=	libck-connector.so:sysutils/consolekit
+LIB_DEPENDS+=	libck-connector.so:sysutils/consolekit2
 .else
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
 .endif
