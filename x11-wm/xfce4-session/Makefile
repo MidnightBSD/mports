@@ -2,6 +2,7 @@
 
 PORTNAME=	xfce4-session
 PORTVERSION=	4.12.1
+PORTREVISION=	1
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	XFCE/src/xfce/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
@@ -13,7 +14,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth
 RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
-		console-kit-daemon:${PORTSDIR}/sysutils/consolekit
+		console-kit-daemon:${PORTSDIR}/sysutils/consolekit2
 LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libupower-glib.so:${PORTSDIR}/sysutils/upower \
 		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
