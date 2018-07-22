@@ -2,7 +2,7 @@
 
 PORTNAME?=	xorg-server
 PORTVERSION=	1.14.7
-PORTREVISION?=	7
+PORTREVISION?=	8
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -13,9 +13,9 @@ COMMENT?=	X.Org X server and related programs
 
 LICENSE?=	mit
 
-LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm
-RUN_DEPENDS=	xkeyboard-config>=2.5:${PORTSDIR}/x11/xkeyboard-config \
-		xkbcomp:${PORTSDIR}/x11/xkbcomp
+LIB_DEPENDS=	libdrm.so:graphics/libdrm
+RUN_DEPENDS=	xkeyboard-config>=2.5:x11/xkeyboard-config \
+		xkbcomp:x11/xkbcomp
 
 XORG_CAT=	xserver
 SLAVE_PORT?=	no
@@ -66,7 +66,7 @@ CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 .endif
 
 .if ${PORT_OPTIONS:MHAL}
-LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
+LIB_DEPENDS+=	libhal.so:sysutils/hal
 CONFIGURE_ARGS+=	--enable-config-hal=yes
 .else
 CONFIGURE_ARGS+=	--enable-config-hal=no
@@ -136,10 +136,10 @@ post-configure:
 post-install:
 # The .xorg dir because else the xorg-server might not load the correct
 # libglx module.
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg
+	@${MKDIR} ${PREFIX}/lib/xorg/modules/extensions/.xorg
 	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
-		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+		${PREFIX}/lib/xorg/modules/extensions/.xorg/
+	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
