@@ -2,7 +2,7 @@
 +++ tools/hal-storage-mount.c	2008-10-09 00:54:34.000000000 -0400
 @@ -56,8 +56,9 @@
  
- #ifdef __FreeBSD__
+ #ifdef __MidnightBSD__
  #define MOUNT		"/sbin/mount"
 -#define MOUNT_OPTIONS	"noexec,nosuid"
 +#define MOUNT_OPTIONS	"nosuid"
