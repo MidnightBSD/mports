@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS+=	libapr-1.so:devel/apr1
 
-USES=		scons tar:bzip2 cpe python:2 ssl
+USES=		scons tar:bzip2 cpe python:2 ssl cpe
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCS
