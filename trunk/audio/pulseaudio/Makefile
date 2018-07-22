@@ -2,6 +2,7 @@
 
 PORTNAME=	pulseaudio
 PORTVERSION=	5.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://freedesktop.org/software/pulseaudio/releases/
 
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libsamplerate.so:${PORTSDIR}/audio/libsamplerate \
 		libjson-c.so:${PORTSDIR}/devel/json-c \
 		libdbus-1.so:${PORTSDIR}/devel/dbus \
 		libltdl.so:${PORTSDIR}/devel/libltdl \
-		libck-connector.so:${PORTSDIR}/sysutils/consolekit
+		libck-connector.so:${PORTSDIR}/sysutils/consolekit2
 
 USE_GNOME=	glib20 intltool
 USE_XORG=	x11 sm xtst ice
