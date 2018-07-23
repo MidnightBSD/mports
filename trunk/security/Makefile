@@ -80,6 +80,7 @@ SUBDIR += p5-Authen-SASL
 SUBDIR += p5-Crypt-CBC
 SUBDIR += p5-Crypt-DES
 SUBDIR += p5-Crypt-OpenSSL-Bignum
+SUBDIR += p5-Crypt-OpenSSL-Guess
 SUBDIR += p5-Crypt-OpenSSL-RSA
 SUBDIR += p5-Crypt-OpenSSL-Random
 SUBDIR += p5-Crypt-RC4
