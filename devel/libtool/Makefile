@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libtool
-PORTREVISION=	0
+PORTREVISION=	1
 
 COMMENT=	Generic shared library support script
 
@@ -12,14 +12,11 @@ COMMENT=	Generic shared library support script
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
-RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+BUILD_DEPENDS=	gm4:devel/m4
+RUN_DEPENDS=	gm4:devel/m4
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-ltdl-install \
-		--host=${ARCH}-portbld-freebsd9.1 \
-		--target=${ARCH}-portbld-freebsd9.1 \
-		--build=${ARCH}-portbld-freebsd9.1
+CONFIGURE_ARGS=	--disable-ltdl-install 
 MAKE_ARGS=	MAKEINFOFLAGS=--no-split
 USES+=		makeinfo
 
