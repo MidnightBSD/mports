@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libev
-PORTVERSION=	4.20
+PORTVERSION=	4.24
 CATEGORIES=	devel
 MASTER_SITES=	http://dist.schmorp.de/libev/ \
 		http://dist.schmorp.de/libev/Attic/
@@ -12,6 +12,7 @@ COMMENT=	Full-featured and high-performance event loop library
 LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-static
 INSTALL_TARGET=	install-strip
 USES=		libtool pkgconfig
 USE_LDCONFIG=	yes
