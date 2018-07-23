@@ -25,6 +25,7 @@ SUBDIR += nslint
 SUBDIR += nss_mdns
 SUBDIR += p5-Net-DNS
 SUBDIR += p5-Net-DNS-Resolver-Programmable
+SUBDIR += p5-Net-LibIDN
 SUBDIR += pdnsd
 SUBDIR += py-dns
 SUBDIR += py-dnspython
