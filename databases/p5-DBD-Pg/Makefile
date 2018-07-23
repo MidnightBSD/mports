@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	DBD-Pg
-PORTVERSION=	3.4.0
+PORTVERSION=	3.7.4
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,9 +14,11 @@ LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
 
-BUILD_DEPENDS=	p5-DBI>=1.614:${PORTSDIR}/databases/p5-DBI
+BUILD_DEPENDS=	p5-DBI>=1.614:databases/p5-DBI
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USE_PGSQL=	yes
+USES=	perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
