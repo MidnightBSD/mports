@@ -2,59 +2,42 @@
 # $MidnightBSD$
 
 PORTNAME=	boost-libs
-PORTVERSION=    1.55.0
 PORTREVISION=	2
-CATEGORIES=	devel
-MASTER_SITES=	SF/boost/boost/${PORTVERSION}
-PORTVERSUFFIX=  ${PORTVERSION:C/\.[0-9]+$//}
-DISTNAME=       boost_${PORTVERSION:S/./_/g}
 
-MAINTAINER=     ports@MidnightBSD.org
-COMMENT=	Free portable libraries (without Boost.Python)
+COMMENT=	Free portable C++ libraries (without Boost.Python)
 
 LICENSE=	mit
 
-CONFLICTS+=     boost-python-1* boost-1*
+BROKEN_sparc64=	https://github.com/boostorg/context/commit/f2ef6326b6ed
 
-USES+=          tar:bzip2
+BUILD_DEPENDS+=	bjam:devel/boost-jam
 
-BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
+OPTIONS_DEFINE=		DEBUG OPTIMIZED_CFLAGS
+OPTIONS_MULTI=		LOCALE
+OPTIONS_MULTI_LOCALE=	ICONV ICU
+OPTIONS_DEFAULT=	ICONV ICU
+ICONV_DESC=		Boost.Locale with iconv encoding support
+ICU_DESC=		Boost.Regex/Locale with ICU unicode support
 
-OPTIONS_DEFINE=	VERBOSE_BUILD DEBUG ICU OPTIMIZED_CFLAGS
-OPTIONS_DEFAULT=	ICU
-VERBOSE_BUILD_DESC=	Show compiler messages
-ICU_DESC=		Boost.Regex with ICU unicode support
+ICONV_USES=		iconv
+ICONV_MAKE_ARGS=	-sICONV_PATH=${ICONV_PREFIX}
+ICONV_MAKE_ARGS_OFF=	boost.locale.iconv=off
+ICU_LIB_DEPENDS=	libicuuc.so:devel/icu
+ICU_MAKE_ARGS=		-sICU_PATH=${LOCALBASE}
+ICU_MAKE_ARGS_OFF=	boost.locale.icu=off
+
+.include "${.CURDIR}/../boost-all/common.mk"
 
 .include "${.CURDIR}/../boost-all/compiled.mk"
 
-BJAM_ARGS+=	--without-python
-.if defined(X_BUILD_FOR)
-BJAM_ARGS+=	--without-context --without-coroutine \
-		--without-locale --without-log
-PLIST_SUB+=	COROUTINE="@comment " CONTEXT="@comment " \
-		LOCALE="@comment " LOG="@comment "
-.else
-PLIST_SUB+=	COROUTINE="" CONTEXT="" LOCALE="" LOG=""
-.endif
-
-.if ${PORT_OPTIONS:MICU}
-LIB_DEPENDS+=	libicuuc.so:${PORTSDIR}/devel/icu
-BJAM_ARGS+=	-sICU_PATH=${LOCALBASE}
-.else
-USES+=		iconv
-BJAM_ARGS+=	-sICONV_PATH=${LOCALBASE}
-.endif
-
-do-build:
-	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS} stage
-	#Compatibility layer to avoid rebuilding everything this time
-	@cd ${WRKSRC}/stage/lib && \
-		( for l in lib*.so.*; do ${LN} -sf $${l} $${l%.${PORTVERSION}}.5; done )
+MAKE_ARGS+=	--without-python
+MAKE_ARGS+=	${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}
+MAKE_ARGS_gcc=	xdll-path=${_GCC_RUNTIME}
+ALL_TARGET=	stage
 
 do-install:
-	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${BJAM} --prefix=${STAGEDIR}${PREFIX} ${BJAM_ARGS} install
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
+		${MAKE_ARGS:NDESTDIR=*:S,^--prefix=,&${STAGEDIR},} ${INSTALL_TARGET}
 # For some reasons BJAM forget about the links
 	@cd ${WRKSRC}/stage/ && ${FIND} lib -type l | ${PAX} -rw -p p ${STAGEDIR}${PREFIX}
 
@@ -73,4 +56,4 @@ post-install:
 		-e "s|%%PYTHON_LIBDIR%%|${PYTHON_LIBDIR}|g" \
 		-e "s|%%PYTHON_VERSION%%|${PYTHON_VERSION}|g" ${PKGMESSAGE}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
