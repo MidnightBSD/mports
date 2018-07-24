@@ -2,14 +2,16 @@
 # $MidnightBSD$
 
 PORTNAME=	Class-Inspector
-PORTVERSION=	1.24
+PORTVERSION=	1.32
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides information about classes
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 PERL_CONFIGURE=	yes
 
