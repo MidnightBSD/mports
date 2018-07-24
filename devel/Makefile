@@ -351,6 +351,7 @@ SUBDIR += p5-Package-Variant
 SUBDIR += p5-PadWalker
 SUBDIR += p5-Params-Util
 SUBDIR += p5-Params-Validate
+SUBDIR += p5-Params-ValidationCompiler
 SUBDIR += p5-Parse-CPAN-Meta
 SUBDIR += p5-Parse-Pidl
 SUBDIR += p5-Parse-RecDescent
