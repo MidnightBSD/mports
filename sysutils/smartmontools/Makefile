@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	smartmontools
-PORTVERSION=	6.5
+PORTVERSION=	6.6
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -14,10 +14,11 @@ CONFLICTS=	smartmontools-devel-[0-9]*
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		alias gmake
+USES=		compiler:c++11-lib gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-sample \
+		--with-nvme-devicescan=yes \
 		--with-initscriptdir=${PREFIX}/etc/rc.d
 
 SUB_FILES=	pkg-message smart
