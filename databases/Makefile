@@ -9,6 +9,7 @@ SUBDIR += courier-authlib-userdb
 SUBDIR += db
 SUBDIR += db48
 SUBDIR += db5
+SUBDIR += db6
 SUBDIR += evolution-data-server
 SUBDIR += fortytwo-bdb
 SUBDIR += freetds
