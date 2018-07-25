@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Encode
-PORTVERSION=	2.87
+PORTVERSION=	2.98
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DANKOGAI
@@ -13,21 +13,15 @@ COMMENT=	Provides interfaces between strings and the rest of the system
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
+USE_PERL5=	configure
 USES=		perl5
 PERL_CONFIGURE=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 502200
-PLIST_SUB+=	OLD_PERL=""
-.else
-PLIST_SUB+=	OLD_PERL="@comment "
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|bin/enc2xs||; s|bin/piconv||' ${WRKSRC}/Makefile.PL
-.if ${PERL_LEVEL} >= 502200
 	@${REINPLACE_CMD} -e 's|bin/encguess||' ${WRKSRC}/Makefile.PL
-.endif
 
-.include <bsd.port.post.mk>
+post-install:
+	${FIND} ${PREFIX}/${SITE_ARCH_REL}/auto/Encode/ -name '*.so' -exec ${STRIP_CMD} {} +
+
+.include <bsd.port.mk>
