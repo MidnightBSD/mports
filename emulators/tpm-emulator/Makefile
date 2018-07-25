@@ -4,7 +4,7 @@
 
 PORTNAME=	tpm-emulator
 PORTVERSION=	0.7.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators security
 MASTER_SITES=	SF/${PORTNAME}.berlios
 DISTNAME=	${PORTNAME:S,-,_,}-${PORTVERSION}
@@ -14,7 +14,7 @@ COMMENT=	Trusted Platform Module (TPM) emulator
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:math/gmp
 
 USES=		cmake:outsource
 USE_RC_SUBR=	tpmd
