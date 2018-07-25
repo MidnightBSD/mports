@@ -1,44 +1,43 @@
 # $MidnightBSD$
 
 PORTNAME=	libgd
-PORTVERSION=	2.1.0
-PORTREVISION?=	5
+PORTVERSION=	2.2.4
+PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES+=	graphics
-MASTER_SITES=	https://bitbucket.org/libgd/gd-libgd/downloads/ \
-		http://cdn.bitbucket.org/libgd/gd-libgd/downloads/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/gd-${PORTVERSION}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Graphics library for fast creation of images
 
-LICENSE=	agg
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libtiff.so:graphics/tiff \
+		libpng.so:graphics/png \
+		libfreetype.so:print/freetype2
 
 CONFLICTS=	bazaar-1.*
 
-USES=		tar:xz pkgconfig pathfix libtool:keepla shebangfix
+USES=		tar:xz pkgconfig pathfix libtool:keepla shebangfix jpeg
 SHEBANG_FILES=	${WRKSRC}/src/bdftogd
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 FAKE_OPTS=	trueprefix
 WANT_PERL=	yes
 
-OPTIONS_DEFINE=	FONTCONFIG ICONV VPX XPM
-OPTIONS_DEFAULT=FONTCONFIG
+OPTIONS_DEFINE=	FONTCONFIG ICONV XPM WEBP
+OPTIONS_DEFAULT=FONTCONFIG WEBP
 NO_OPTIONS_SORT=yes
-FONTCONFIG_LIB_DEPENDS+=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+FONTCONFIG_LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig
 FONTCONFIG_CONFIGURE_OFF=	--with-fontconfig=no
 ICONV_USES=	iconv
 ICONV_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
-VPX_LIB_DEPENDS=	libvpx.so:${PORTSDIR}/multimedia/libvpx
-VPX_CONFIGURE_OFF=	--without-vpx
 XPM_USE=	xorg=xpm,x11
 XPM_CONFIGURE_ON=	--with-x
 XPM_CONFIGURE_OFF=	--with-xpm=no
+WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
+WEBP_CONFIGURE_OFF=	--without-webp
 
 .include <bsd.mport.options.mk>
 
@@ -76,7 +75,7 @@ pre-configure:
 .endif
 	# bump shlib version
 	${REINPLACE_CMD} \
-		-e 's|GDLIB_CURRENT=.*|GDLIB_CURRENT=5|' \
+		-e 's|^GDLIB_LT_CURRENT=3|GDLIB_LT_CURRENT=6|' \
 		${WRKSRC}/configure
 	# workaround for broken configure
 .if ! ${PORT_OPTIONS:MICONV}
@@ -103,6 +102,6 @@ pre-build:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/gdhelpers.h \
 		${STAGEDIR}${PREFIX}/include/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgd.so.5
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgd.so.6.0.4
 
 .include <bsd.port.mk>
