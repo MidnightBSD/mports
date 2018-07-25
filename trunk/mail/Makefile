@@ -33,6 +33,7 @@ SUBDIR += msmtp
 SUBDIR += mutt
 SUBDIR += nmh
 SUBDIR += p5-Email-Address
+SUBDIR += p5-Email-Address-XS
 SUBDIR += p5-Email-Date-Format
 SUBDIR += p5-Email-MIME
 SUBDIR += p5-Email-MIME-ContentType
