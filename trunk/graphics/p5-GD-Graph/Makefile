@@ -1,26 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	GD-Graph
-PORTVERSION=	1.44.01
-DISTVERSION=	${PORTVERSION:C/\.(..)$/_\1/}
-PORTREVISION=	3
+PORTVERSION=	1.54
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../by-authors/id/B/BW/BWARFIELD
 PKGNAMEPREFIX=	p5-
-DISTNAME=	GDGraph-${DISTVERSION}
+DISTNAME=	GDGraph-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph plotting module for perl5
-LICENSE=	gpl2
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD \
-		${SITE_PERL}/GD/Text/Align.pm:${PORTSDIR}/graphics/p5-GD-TextUtil
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	p5-GD>=0:graphics/p5-GD \
+		p5-GD-TextUtil>=0:graphics/p5-GD-TextUtil
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-Capture-Tiny>=0:devel/p5-Capture-Tiny \
+		p5-Test-Exception>=0.40:devel/p5-Test-Exception
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
-
-post-patch:
-	@${FIND} ${WRKSRC} -name "*.orig" -print0 | ${XARGS} -0 ${RM} -f
 
 .include <bsd.port.mk>
