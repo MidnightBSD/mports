@@ -99,9 +99,9 @@ post-extract:
 # The docs_urlbase parameter has been removed. If documentation has not been
 # compiled locally, the "Help" links and other documentation links will
 # redirect to bugzilla.readthedocs.org automatically.
-	${RM} -r ${WRKSRC}/docs
-	${RM} -r ${WRKSRC}/.git
-	${RM} ${WRKSRC}/.bzrignore ${WRKSRC}/.gitignore ${WRKSRC}/.gitrev \
+	-${RM} -r ${WRKSRC}/docs
+	-${RM} -r ${WRKSRC}/.git
+	-${RM} ${WRKSRC}/.bzrignore ${WRKSRC}/.gitignore ${WRKSRC}/.gitrev \
 		${WRKSRC}/.travis.yml ${WRKSRC}/Build.PL ${WRKSRC}/MANIFEST.SKIP
 
 post-patch:
@@ -128,16 +128,10 @@ do-install:	.SILENT
 .endfor
 	${TAR} -C ${WRKSRC} -cf - Bugzilla template | ${TAR} --unlink -C ${STAGEDIR}${WWWDIR} -xf -
 	@${MKDIR} ${EMPTY_DIRS_LIST:S!^!${STAGEDIR}${WWWDIR}/!}
-
-do-install-CONTRIB-on:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/contrib
 	(cd ${WRKSRC}/contrib && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/contrib)
-
-do-install-MOREBUGURL-on:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/extensions/MoreBugUrl
 	(cd ${WRKSRC}/extensions/MoreBugUrl && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/extensions/MoreBugUrl)
-
-do-install-VOTING-on:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/extensions/Voting
 	(cd ${WRKSRC}/extensions/Voting && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/extensions/Voting)
 
