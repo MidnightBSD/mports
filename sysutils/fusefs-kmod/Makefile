@@ -26,6 +26,10 @@ SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} >= 10000
+IGNORE=	only for midnightbsd 0.9 and lower
+.endif
+
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-9-fuse_main.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-9-fuse_vfsops.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-9-fuse_vnops.c
