@@ -2,11 +2,10 @@
 # $FreeBSD: head/archivers/libarchive/Makefile 362046 2014-07-16 07:53:29Z bapt $
 
 PORTNAME=	libarchive
-PORTVERSION=	3.2.2
-PORTREVISION=	1
+PORTVERSION=	3.3.2
 PORTEPOCH=	1
 CATEGORIES=	archivers
-MASTER_SITES=	http://libarchive.org/downloads/
+MASTER_SITES=	https://libarchive.org/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to create and read several streaming archive formats
@@ -39,7 +38,7 @@ PLIST_FILES=	bin/bsdcat \
 		lib/libarchive.a \
 		lib/libarchive.so \
 		lib/libarchive.so.13 \
-		lib/libarchive.so.13.2.2 \
+		lib/libarchive.so.1${PORTVERSION} \
 		libdata/pkgconfig/libarchive.pc \
 		man/man1/bsdcat.1.gz \
 		man/man1/bsdcpio.1.gz \
@@ -97,13 +96,16 @@ LZ4_CONFIGURE_WITH=	lz4
 NETTLE_LIB_DEPENDS=	libnettle.so:security/nettle
 NETTLE_CONFIGURE_WITH=	nettle
 NETTLE_CONFIGURE_ON=	--without-openssl
-NETTLE_USE_OFF=		OPENSSL=yes
+NETTLE_USES_OFF=	ssl
 NETTLE_CONFIGURE_OFF=	--with-openssl
 
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 9005
-CONFIGURE_ENV+=	ac_cv_lzma_has_mt=no
+CONFIGURE_ENV+=	ac_cv_lzma_has_mt=no \
+		ac_cv_archive_acl_freebsd=no \
+		ac_cv_archive_acl_freebsd_nfs4=no
+CONFIGURE_ARGS+=	--disable-acl
 .endif
 
 .if empty(ICONV_LIB)
