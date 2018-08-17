@@ -13,7 +13,7 @@
      echo "ja_JP.Shift_JIS SHIFT_JIS"
      echo "ko_KR.EUC EUC-KR"
      ;;
-+  freebsd*)
++  freebsd* | midnightbsd*)
 +	echo "US-ASCII ASCII"
 +	echo "ISO8859-1 ISO-8859-1"
 +	echo "ISO_8859-1 ISO-8859-1"
