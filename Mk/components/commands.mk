@@ -40,6 +40,7 @@ FILE?=		/usr/bin/file
 FIND?=		/usr/bin/find
 FLEX?=		/usr/bin/flex
 FMT?=		/usr/bin/fmt
+FMT_80?=	${FMT} 75 79
 GCPIO?=		${LOCALBASE}/bin/gcpio
 GMAKE?=		${LOCALBASE}/bin/gmake
 GREP?=		/usr/bin/grep
