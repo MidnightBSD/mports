@@ -2,7 +2,7 @@
 
 PORTNAME=	db5
 PORTVERSION=	5.3.28
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases java
 MASTER_SITES=	http://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
@@ -14,7 +14,11 @@ DIST_SUBDIR=	bdb
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Oracle Berkeley DB, revision ${BDBVER}
 
-LICENSE=	bdb
+LICENSE=	SLEEPYCAT
+LICENSE_NAME=	Sleepycat
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_FILE=	${WRKSRC}/../LICENSE
+LICENSE_GROUPS=	FSF GPL OSI
 
 BDBVER=		${PORTVERSION:R}
 BDBMAJ=		${BDBVER:R}
@@ -23,14 +27,19 @@ CONFIGURE_ARGS=	--enable-cxx --enable-stl \
 		--disable-tcl \
 		--includedir=${PREFIX}/include/${PORTNAME} \
 		--libdir=${PREFIX}/lib/${PORTNAME} \
-		--bindir=${PREFIX}/bin/${PORTNAME}
+		--bindir=${PREFIX}/bin/${PORTNAME} \
+		--host=${ARCH}-portbld-midnightbsd${OSREL} \
+		--target=${ARCH}-portbld-midnightbsd${OSREL}
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
 USES=		gmake libtool
 INSTALL_TARGET=	install_include install_lib install_utilities
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
+PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}
 USE_LDCONFIG=	yes
 PLIST_SUB=	BDBMAJ=${BDBMAJ} BDBVER=${BDBVER}
+MAKE_ARGS+=	docdir=${DOCSDIR}
+CFLAGS+=	-Wall -Wextra
 
 OPTIONS_DEFINE=	CRYPTO L10N SQL JAVA DOCS
 OPTIONS_DEFAULT=CRYPTO
@@ -87,7 +96,7 @@ post-patch:
 
 post-install:
 .for i in libdb libdb_cxx libdb_stl ${libdb_sql} ${libdb_java}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
+#	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${i}-${BDBVER}.so.0
 	${LN} -s -f ${PORTNAME}/${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib
 	${LN} -s -f ${PORTNAME}/${i}-${BDBMAJ}.so ${STAGEDIR}${PREFIX}/lib
 	${LN} -s -f ${i}-${BDBVER}.so.0 ${STAGEDIR}${PREFIX}/lib/${i}-${BDBVER}.so
