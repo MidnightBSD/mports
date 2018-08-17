@@ -2,7 +2,7 @@
 
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	11
+PORTREVISION=	13
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
@@ -13,8 +13,11 @@ LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
+		--enable-shared \
 		--disable-nls \
 		--docdir=${DOCSDIR} \
+		--host=${ARCH}-portbld-midnightbsd1.0 \
+		--target=${ARCH}-portbld-midnightbsd1.0 \
 		am_cv_func_iconv=no
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
@@ -43,7 +46,8 @@ PATCH_DIST_STRIP+=	-p1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's:ei_ksc5601:ei_euc_kr:g' ${WRKSRC}/lib/aliases.h
-	@${REINPLACE_CMD} -e 's:gawk:awk:g' ${WRKSRC}/configure \
+	@${REINPLACE_CMD} -e 's:gawk:awk:g'   \
+		${WRKSRC}/configure \
 		${WRKSRC}/libcharset/configure \
 		${WRKSRC}/preload/configure
 
