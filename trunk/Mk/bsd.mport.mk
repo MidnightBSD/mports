@@ -1071,7 +1071,7 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 					-t "${CATEGORIES}"
 
-.if ${OSVERSION} > 6000 && defined(PKG_NOTE_cpe)
+.if defined(PKG_NOTE_cpe)
 MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_cpe}
 .endif
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
@@ -1537,6 +1537,7 @@ PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_CMD?=		./${CONFIGURE_SCRIPT}
+
 .if (${OSVERSION} < 10001)
 CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
 .else
