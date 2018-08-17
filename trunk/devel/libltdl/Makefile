@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/libltdl/Makefile,v 1.6 2010/12/08 19:58:46 ade Exp $
 
 PORTNAME=	libltdl
-PORTREVISION=	1
+PORTREVISION=	2
 
 COMMENT=	System independent dlopen wrapper
 
