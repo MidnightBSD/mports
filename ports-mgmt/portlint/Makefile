@@ -4,7 +4,7 @@
 # This port is self contained in the src directory.
 
 PORTNAME=	portlint
-PORTVERSION=	2.16.4
+PORTVERSION=	2.18.3
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
