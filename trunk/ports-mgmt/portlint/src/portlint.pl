@@ -2232,16 +2232,16 @@ xargs xmkmf
 	#
 	# whole file: check for misuse of STAGE with SITE_PERL and SITE_ARCH
 	#
-	if ($j =~ m'\${FAKE_DESTDIR}\${SITE_PERL}') {
+	if ($j =~ m'\$\{FAKE_DESTDIR\}\${SITE_PERL}') {
 		my $lineno = &linenumber($`);
 		&perror("WARN", $file, $lineno, "\${FAKE_DESTDIR}\${SITE_PERL} should be ".
 			"replaced by \${FAKE_DESTDIR}\${PREFIX}/\${SITE_PERL_REL}.");
 	}
 
-	if ($j =~ m'\$\{STAGEDIR}\$\{SITE_ARCH}') {
+	if ($j =~ m'\$\{FAKE_DESTDIR}\$\{SITE_ARCH}') {
 		my $lineno = &linenumber($`);
-		&perror("WARN", $file, $lineno, "\${STAGEDIR}\${SITE_ARCH} should be ".
-			"replaced by \${STAGEDIR}\${PREFIX}/\${SITE_ARCH_REL}.");
+		&perror("WARN", $file, $lineno, "\${FAKE_DESTDIR}\${SITE_ARCH} should be ".
+			"replaced by \${FAKE_DESTDIR}\${PREFIX}/\${SITE_ARCH_REL}.");
 	}
 
 	#
