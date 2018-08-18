@@ -15,7 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		gmake libtool pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=--disable-gtk-doc
+CONFIGURE_ARGS+=--disable-gtk-doc \
+		--host=${ARCH}-portbld-freebsd10.4 \
+		--build=${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 
 SUBDIRS=	orc orc-test tools
