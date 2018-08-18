@@ -49,6 +49,7 @@ SUBDIR += fontconfig
 SUBDIR += fontsproto
 SUBDIR += fonttosfnt
 SUBDIR += fslsfonts
+SUBDIR += gnu-unifont
 SUBDIR += jmk-x11-fonts
 SUBDIR += libFS
 SUBDIR += libXfont
