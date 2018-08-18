@@ -1,11 +1,11 @@
---- support/shlib-install.orig	2009-10-28 14:30:18.000000000 +0100
-+++ support/shlib-install	2011-11-05 19:06:58.000000000 +0100
-@@ -155,7 +155,7 @@
+--- support/shlib-install.orig	2018-08-18 13:22:02.536256000 -0400
++++ support/shlib-install	2018-08-18 13:22:15.180491000 -0400
+@@ -178,7 +178,7 @@
+ 	fi
+ 	;;
  
- 
- # FreeBSD 3.x and above can have either a.out or ELF shared libraries
--freebsd3*|freebsdaout*)
-+freebsd3.*|freebsdaout*)
- 	if [ -x /usr/bin/objformat ] && [ "`/usr/bin/objformat`" = "elf" ]; then
- 		# libname.so -> libname.so.M
- 		${echo} ${RM} ${INSTALLDIR}/$LINK1
+-freebsd[4-9]*|freebsd1[0-9]*|freebsdelf*|dragonfly*)
++freebsd[4-9]*|freebsd1[0-9]*|freebsdelf*|dragonfly*|midnightbsd*)
+ 	# libname.so -> libname.so.M
+ 	${echo} ${RM} ${INSTALLDIR}/$LINK1
+ 	if [ -z "$uninstall" ]; then
