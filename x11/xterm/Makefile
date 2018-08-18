@@ -21,6 +21,7 @@ USE_XORG=	xft
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
