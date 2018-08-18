@@ -13,6 +13,8 @@ COMMENT=	Xdebug extension for PHP
 LICENSE=	other
 
 CONFIGURE_ARGS=	--enable-xdebug
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+
 USE_PHP=	yes
 USE_PHPEXT=	yes
 USE_PHPIZE=	yes
