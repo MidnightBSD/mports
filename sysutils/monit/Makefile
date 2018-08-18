@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	monit
-PORTVERSION=	5.19.0
-PORTREVISION=	1
+PORTVERSION=	5.20.0
+PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://mmonit.com/monit/dist/
 
