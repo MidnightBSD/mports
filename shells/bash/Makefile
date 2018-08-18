@@ -3,7 +3,7 @@
 PORTNAME=		bash
 PATCHLEVEL=		23
 PORTVERSION=		4.4.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=		1
+PORTREVISION?=		2
 CATEGORIES=		shells
 MASTER_SITES=		GNU
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
@@ -27,6 +27,7 @@ COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
 
 USES=			bison cpe iconv makeinfo pathfix
+USE_GCC=		yes
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
