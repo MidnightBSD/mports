@@ -1,16 +1,19 @@
 # $MidnightBSD$
 
 PORTNAME=	PadWalker
-PORTVERSION=	1.92
+PORTVERSION=	2.3
 CATEGORIES=	devel perl5
-MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../../authors/id/R/RO/ROBIN
+MASTER_SITES=	CPAN:ROBIN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PadWalker - play with Perl lexical variables
-LICENSE=perl
 
-PERL_CONFIGURE=	5.8.0+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
