@@ -17,6 +17,7 @@ TEST_DEPENDS=	p5-Test-Pod>=1:${PORTSDIR}/devel/p5-Test-Pod \
 
 USES=		perl5
 PERL_CONFIGURE=	yes
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
  
 post-patch:
 	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
