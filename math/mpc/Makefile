@@ -14,7 +14,9 @@ LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gmp=${LOCALBASE} \
-		--with-mpfr=${LOCALBASE}
+		--with-mpfr=${LOCALBASE} \
+	 	--host=${ARCH}-portbld-freebsd10.4 \
+		--build=${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 
 INFO=		mpc
