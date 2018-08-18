@@ -16,4 +16,6 @@ USES=		gmake
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
+CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+
 .include <bsd.port.mk>
