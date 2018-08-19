@@ -5,20 +5,21 @@
 # $MidnightBSD$
 
 PORTNAME=	flashback
-PORTVERSION=	1.0
-PORTREVISION=	1
+PORTVERSION=	1.2.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Backup content from any volume to a tarball
+
 LICENSE=	bsd2
 
-MAKE_JOBS_SAFE=	yes
+WRKSRC=		${WRKDIR}/flashback-${PORTVERSION}/src
 
-WRKSRC=		${WRKDIR}/flashback
-
-USE_GMAKE=	yes
+USES=		gmake
+USE_GITHUB=     yes
+GH_COMMIT=      9d2fdec
+GH_PROJECT=     ${PORTNAME}
+GH_ACCOUNT=     laffer1
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/flashback.sh ${PREFIX}/etc/rc.d/flashback
