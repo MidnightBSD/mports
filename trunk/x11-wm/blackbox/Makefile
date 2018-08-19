@@ -14,6 +14,7 @@ LICENSE=	mit
 GNU_CONFIGURE=	yes
 USES=		pathfix pkgconfig iconv
 USE_XORG=	x11 xft
+LDFLAGS+=	${ICONV_LIB}
 
 PORTDOCS=	README.bbtools README.bsetbg
 
