@@ -2,7 +2,7 @@
 
 PORTNAME=	openjdk8-bin
 PORTVERSION=	8.112.16.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java
 MASTER_SITES=	http://pkg.freebsd.org/freebsd:9:x86:64/latest/All/
 DISTFILES=	openjdk8-8.112.16_1.txz
@@ -24,7 +24,7 @@ RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 100001
-RUN_DEPENDS+=   compat9x>=0:misc/compat9x
+IGNORE=		Only for MidnightBSD 0.9 and lower.
 .endif
 
 do-install:
