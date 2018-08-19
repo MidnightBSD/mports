@@ -23,5 +23,6 @@ USE_PHPEXT=	yes
 IGNORE_WITH_PHP=	70
 
 CONFIGURE_ARGS=	--with-fribidi=${LOCALBASE}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .include <bsd.port.mk>
