@@ -12,4 +12,6 @@ OPTIONS_DEFINE=	AP2FILTER
 AP2FILTER_DESC=	Use Apache 2.x filter interface (experimental)
 OPTIONS_EXCLUDE=	CGI CLI FPM EMBED
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 .include "${MASTERDIR}/Makefile"
