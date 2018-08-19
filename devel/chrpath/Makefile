@@ -2,27 +2,31 @@
 # $FreeBSD: ports/devel/chrpath/Makefile,v 1.4 2010/09/20 17:55:49 rene Exp $
 
 PORTNAME=	chrpath
-PORTVERSION=	0.13
+PORTVERSION=	0.16
 CATEGORIES=	devel sysutils
-MASTER_SITES=	http://ftp.tux.org/pub/X-Windows/ftp.hungry.com/chrpath/
+MASTER_SITES=	DEBIAN_POOL
+DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to modify DT_RPATH in existing ELF binaries
 
-LICENSE=	gpl2
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		gmake
 GNU_CONFIGURE=	yes
 
-PLIST_FILES=	bin/chrpath  man/man1/chrpath.1.gz
-
+PLIST_FILES=	bin/chrpath man/man1/chrpath.1.gz
 PORTDOCS=	AUTHORS ChangeLog NEWS README
 
+OPTIONS_DEFINE=	DOCS
+
 post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.	for i in ${PORTDOCS}
-		${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.	endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for i in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+.endfor
 
 .include <bsd.port.mk>
