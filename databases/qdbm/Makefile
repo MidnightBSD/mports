@@ -2,62 +2,44 @@
 
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	databases
 MASTER_SITES=	http://fallabs.com/qdbm/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Quick Database Manager
-LICENSE=        lgpl
+COMMENT=	Quick Database Manager
 
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	liblzo2.so:archivers/lzo2
+
+USES=		iconv
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-.if !defined(SLAVEPORT)
-USES+=		iconv
-CONFIGURE_ARGS=	--enable-zlib \
-		--enable-iconv \
-		--enable-pthread
-CFLAGS+=	${PTHREAD_CFLAGS}
-CPPFLAGS+=	${PTHREAD_CFLAGS} -I${LOCALBASE}/include
-LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
-MAKE_ARGS=	RELCFLAGS="${CFLAGS}" \
-		MYDATADIR="${DOCSDIR}" MYDOCS="${PORTDOCS}"
-.if !defined(NOPORTDOCS)
+CONFIGURE_ENV=	ac_cv_lib_iconv_main=yes
+CONFIGURE_ARGS=	--enable-bzip --enable-lzo --enable-zlib \
+		--enable-iconv --enable-pthread
+CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-fPIC -fsigned-char
+LIBS+=		-L${LOCALBASE}/lib ${ICONV_LIB}
+MAKE_ARGS=	MYDATADIR="${DOCSDIR}" MYDOCS="${PORTDOCS}" \
+		MYPCDIR="${PREFIX}/libdata/pkgconfig"
+INSTALL_TARGET=	install-strip
 PORTDOCS=	ChangeLog NEWS
-.endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|@libdir@/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
-		${WRKSRC}/Makefile.in
+.if defined(WITH_DEBUG)
+	@${REINPLACE_CMD} 's/-DNDEBUG//' ${WRKSRC}/Makefile.in
+.endif
 
 post-build:
-	cd ${WRKSRC}/lab; \
-	${MAKE} CC="${CC}" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib -liconv" fmtcnv031127
+	cd ${WRKSRC}/lab && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS}" \
+	    CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
+	    fmtcnv031127
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lab/fmtcnv031127 ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/lab/fmtcnv031127 ${STAGEDIR}${PREFIX}/bin
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libqdbm.so.14.14.0
 
-.else
-
-LIB_DEPENDS+=	qdbm:${PORTSDIR}/databases/qdbm
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/java|${JAVA_HOME}|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
-.if ${SLAVEPORT}=="ruby"
-	@${FIND} ${WRKSRC} -type f | \
-		${XARGS} -n 10 ${REINPLACE_CMD} -e \
-		's|/usr/bin/ruby -w|${SETENV} ruby|'
-	@${FIND} ${WRKSRC} -name '*.bak' | ${XARGS} ${RM} -f
-.endif
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if !defined(SLAVEPORT) && defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
