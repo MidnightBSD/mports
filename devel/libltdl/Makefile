@@ -17,7 +17,8 @@ BUILD_DEPENDS+= libtool:${PORTSDIR}/devel/libtool \
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ltdl-install
 INSTALL_TARGET=	install-strip
-USES+=		libtool:keepla # .la file used in ltdl.m4
+USES+=		libtool:keepla
+USE_AUTOTOOLS=	aclocal
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	libltdl
 
