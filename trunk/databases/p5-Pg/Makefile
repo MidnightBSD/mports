@@ -19,5 +19,6 @@ USE_PGSQL=	yes
 PERL_CONFIGURE=	yes
 
 CONFIGURE_ENV=	POSTGRES_INCLUDE=${LOCALBASE}/include POSTGRES_LIB=${LOCALBASE}/lib
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .include <bsd.port.mk>
