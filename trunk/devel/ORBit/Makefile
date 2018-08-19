@@ -17,6 +17,7 @@ USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS= --disable-indent
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
