@@ -6,20 +6,27 @@
 #
 
 PORTNAME=	wmbinclock
-PORTVERSION=	0.5
-PORTREVISION=	2
+PORTVERSION=	0.51
 CATEGORIES=	x11-clocks windowmaker
-MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A binary clock in a windowmaker applet
-LICENSE=	gpl2
+COMMENT=	Binary clock in a windowmaker applet
 
-EXTRACT_SUFX=	.tar.bz2
+LICENSE=	gpl2 bsd3
+LICENSE_COMB=	dual
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	engerim42
 
 PLIST_FILES=	bin/wmBinClock
-USE_GMAKE=	yes
-USE_XORG=	x11 xpm
+
+USES=		gmake
+USE_XORG=	xpm x11
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|#include <values.h>||' ${WRKSRC}/wmBinClock.c
+	@${REINPLACE_CMD} -e 's|^CC.*=|CC ?=|' -e 's|^CFLAGS.*=|CFLAGS +=|' \
+		-e 's|/usr/X11R6|${LOCALBASE}|g' ${WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wmBinClock ${PREFIX}/bin
