@@ -19,6 +19,7 @@ USE_XORG=	xextproto xft xpm xrandr
 USES=		gmake pkgconfig
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 PORTDOCS=		AUTHORS ChangeLog NEWS README TODO
 DOCSVERSION=	20060629
