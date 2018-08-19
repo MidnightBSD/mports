@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sudo
-DISTVERSION=	1.8.14p3
+DISTVERSION=	1.8.23
 CATEGORIES=	security
 MASTER_SITES=	SUDO
 
@@ -25,7 +25,8 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-tty-tickets \
 		--with-env-editor \
 		--with-logincap \
-		--with-long-otp-prompt
+		--with-long-otp-prompt \
+		--with-rundir=/var/run/sudo
 
 OPTIONS_DEFINE=	LDAP INSULTS DISABLE_ROOT_SUDO DISABLE_AUTH NOARGS_SHELL \
 		AUDIT OPIE NLS SSSD DOCS
