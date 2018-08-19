@@ -14,7 +14,6 @@ SUBDIR += browser-esr
 SUBDIR += cherokee
 SUBDIR += chromium
 SUBDIR += codeigniter
-SUBDIR += dummyflash
 SUBDIR += drupal7
 SUBDIR += drupal8
 SUBDIR += epiphany
