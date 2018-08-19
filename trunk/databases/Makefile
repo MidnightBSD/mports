@@ -165,6 +165,7 @@ SUBDIR += qt5-sql
 SUBDIR += qt5-sqldrivers-mysql
 SUBDIR += qt5-sqldrivers-odbc
 SUBDIR += qt5-sqldrivers-pgsql
+SUBDIR += qt5-sqldrivers-sqlite2
 SUBDIR += qt5-sqldrivers-sqlite3
 SUBDIR += qt5-sqldrivers-tds
 SUBDIR += redis
