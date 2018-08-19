@@ -13,6 +13,7 @@ XORG_CAT=	app
 USE_XORG=	xmu x11 xau xinerama xpm xdmcp xt xext xaw
 CONFIGURE_ARGS+=	--with-xdmconfigdir=${EXAMPLESDIR} \
 			--with-xdmscriptdir=${EXAMPLESDIR}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 CFFILES=	GiveConsole TakeConsole Xaccess Xreset Xresources \
 		Xservers Xsession Xsetup_0 Xstartup Xwilling xdm-config
