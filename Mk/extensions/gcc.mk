@@ -38,7 +38,7 @@ Gcc_Include_MAINTAINER=		ports@MidnightBSD.org
 
 # All GCC versions supported by the ports framework.  Keep them in
 # ascending order and in sync with the table below. 
-GCCVERSIONS=	040200 040600 040700 040800 040900 050000 060000
+GCCVERSIONS=	040200 040600 040700 040800 040900 050000 060000 070000
 
 # The first field is the OSVERSION in which it disappeared from the base.
 # The second field is the version as USE_GCC would use.
