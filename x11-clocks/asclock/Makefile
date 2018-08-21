@@ -11,16 +11,20 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Afterstep clock with some language extensions
+
 LICENSE=	unknown
 
 CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 
-# clang's cpp destroys whitespace, particularly hard tabs in makefiles,
-# which is fatal for imake.
-USE_GCC=	any
-USE_IMAKE=	yes
+USES=		imake
 USE_XORG=	xpm xext x11
 PLIST_FILES=	bin/asclock man/man1/asclock.1.gz
+
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 9000
+USE_GCC=	any
+.endif
 
 pre-configure:
 	(cd ${WRKSRC}; \
@@ -45,4 +49,4 @@ pre-configure:
 	@${ECHO_MSG} "* Example: \" make ASCLOCK_LANG=1 \"       *"
 	@${ECHO_MSG} "******************************************"
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
