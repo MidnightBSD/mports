@@ -1,15 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-macros
-PORTVERSION=	1.19.0
-PORTREVISION=	2
+PORTVERSION=	1.19.2
 CATEGORIES=	devel x11
-DISTNAME=	util-macros-$(PORTVERSION)
+DISTNAME=	util-macros-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org development aclocal macros
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	util
 
