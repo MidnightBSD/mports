@@ -1,46 +1,35 @@
 # $MidnightBSD$
 
 PORTNAME=	dmenu
-PORTVERSION=	4.5
+PORTVERSION=	4.8
 CATEGORIES=	x11
 MASTER_SITES=	http://dl.suckless.org/tools/ \
 		http://schot.a-eskwadraat.nl/files/
 
-PATCH_SITES=	http://tools.suckless.org/dmenu/patches/ \
-		http://schot.a-eskwadraat.nl/files/
-PATCH_DIST_STRIP=-p1
-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 menu application designed for the dwm window manager
-LICENSE=	mit
 
-OPTIONS_DEFINE=	XINERAMA XFT
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
+
+OPTIONS_DEFINE=	XINERAMA
 OPTIONS_DEFAULT=	XINERAMA
 
-USE_XORG=	x11
+USE_XORG=	x11 xft
+MAKE_ARGS=	CC="${CC}" PREFIX="${PREFIX}" MANPREFIX="${MANPREFIX}/man" \
+		X11INC="${LOCALBASE}/include" X11LIB="${LOCALBASE}/lib" \
+		FREETYPEINC="${LOCALBASE}/include/freetype2"
 
-PLIST_FILES=	bin/dmenu bin/dmenu_run bin/stest \
+PLIST_FILES=	bin/dmenu bin/dmenu_path bin/dmenu_run bin/stest \
 		man/man1/dmenu.1.gz man/man1/stest.1.gz
 
-.include <bsd.mport.options.mk>
+XINERAMA_USE=	XORG=xinerama
+XINERAMA_MAKE_ARGS_OFF=	XINERAMAFLAGS= XINERAMALIBS=
 
-.if ${PORT_OPTIONS:MXINERAMA}
-USE_XORG+=	xinerama
-.endif
-
-.if ${PORT_OPTIONS:MXFT}
-USE_XORG+=	xft
-PATCHFILES+=	${PORTNAME}-${PORTVERSION}-xft.diff
-.endif
-
-post-patch:
-	@${GREP} -Rl '%%[[:alpha:]]\+%%' ${WRKSRC}|${XARGS} ${REINPLACE_CMD} \
-	         -e "s,%%PREFIX%%,${PREFIX},g" \
-	         -e "s,%%LOCALBASE%%,${LOCALBASE},g" \
-	         -e "s,%%MANPREFIX%%,${MANPREFIX},g"
-.if ! ${PORT_OPTIONS:MXINERAMA}
-	@${REINPLACE_CMD} -e 's,$${XINERAMALIBS},,g' \
-	         -e 's,$${XINERAMAFLAGS},,g' ${WRKSRC}/config.mk
-.endif
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/dmenu \
+		${STAGEDIR}${PREFIX}/bin/stest
 
 .include <bsd.port.mk>
