@@ -4,7 +4,7 @@ PORTNAME=	yasm
 PORTVERSION=	1.3.0
 PORTREVISION=	0
 CATEGORIES=	devel lang
-MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
+MASTER_SITES=	https://www.tortall.net/projects/yasm/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Complete rewrite of the NASM assembler
