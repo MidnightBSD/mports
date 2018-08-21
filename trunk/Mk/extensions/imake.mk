@@ -19,7 +19,7 @@ IGNORE=		USES=imake:${imake_ARGS:S/ /,/g} is not a valid argument
 .endif
 .endif
 
-BUILD_DEPENDS+=		imake:${PORTSDIR}/devel/imake
+BUILD_DEPENDS+=		imake:devel/imake
 
 .if defined(USE_GCC)
 IMAKECPP=		${CPP}
@@ -27,7 +27,7 @@ IMAKECPPFLAGS=		-DCppCmd=${CPP} -DCcCmd=${CC} -DCplusplusCmd=${CXX}
 .else
 IMAKECPP=		tradcpp
 IMAKECPPFLAGS=		-DCppCmd=tradcpp -DCcCmd=${CC} -DCplusplusCmd=${CXX}
-BUILD_DEPENDS+=		tradcpp:${PORTSDIR}/devel/tradcpp
+BUILD_DEPENDS+=		tradcpp:devel/tradcpp
 .endif
 MAKE_ENV+=		IMAKECPP=${IMAKECPP} IMAKECPPFLAGS="${IMAKECPPFLAGS}"
 CONFIGURE_ENV+=		IMAKECPP=${IMAKECPP} IMAKECPPFLAGS="${IMAKECPPFLAGS}"
