@@ -1,18 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-r128
-PORTVERSION=	6.9.2
-PORTREVISION=	2
+PORTVERSION=	6.11.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org r128 display driver
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GL=		gl
-
 XORG_CAT=	driver
-USE_XORG=	glproto videoproto xextproto xf86driproto xf86miscproto xineramaproto
+USE_XORG=	xf86miscproto
 
 .include <bsd.port.mk>
