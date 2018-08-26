@@ -79,6 +79,8 @@ CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 USES+=		libtool
 . endif
 
+INSTALL_TARGET=       install-strip
+
 . if ${XORG_CAT} == "font"
 FONTNAME?=	${PORTNAME:C/.*-//g:S/type/Type/:S/ttf/TTF/:S/speedo/Speedo/}
 CONFIGURE_ARGS+=	--with-fontrootdir=${PREFIX}/share/fonts
