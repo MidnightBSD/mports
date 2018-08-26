@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	videoproto
-PORTVERSION=	2.3.1
+PORTVERSION=	2.3.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
