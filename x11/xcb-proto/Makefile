@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xcb-proto
-PORTVERSION=	1.11
+PORTVERSION=	1.13
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
