@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	sessreg
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
