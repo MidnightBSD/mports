@@ -29,7 +29,7 @@ IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
 BUILD_DEPENDS+=		meson:devel/meson
 
 # meson uses ninja
-.include "${EXTENSIONSDIR}/ninja.mk"
+.include "${MPORTEXTENSIONS}/ninja.mk"
 
 # meson might have issues with non-unicode locales
 USE_LOCALE?=	en_US.UTF-8
