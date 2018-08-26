@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xkeyboard-config
-PORTVERSION=	2.13
-PORTREVISION=	1
+PORTVERSION=	2.24
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
