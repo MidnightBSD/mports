@@ -1,6 +1,7 @@
 @(%%DCCUSER%%,%%DCCGROUP%%,4555) bin/cdcc
 %%DCCIFD%%bin/dccif-test
 @(%%DCCUSER%%,%%DCCGROUP%%,4555) bin/dccproc
+dcc/cgi-bin/README
 dcc/cgi-bin/chgpasswd
 dcc/cgi-bin/common
 dcc/cgi-bin/common.pm
@@ -28,7 +29,6 @@ dcc/libexec/dcc-stats-update
 @(%%DCCUSER%%,%%DCCGROUP%%,4555) dcc/libexec/dccsight
 %%IFD_MILT%%dcc/libexec/dns-helper
 dcc/libexec/fetchblack
-dcc/libexec/fetchids
 dcc/libexec/fetch-testmsg-whitelist
 dcc/libexec/fix-map
 dcc/libexec/hackmc
@@ -45,17 +45,6 @@ dcc/libexec/stop-dccd
 dcc/libexec/updatedcc
 dcc/libexec/uninstalldcc
 dcc/libexec/wlist
-man/man8/cdcc.8.gz
-man/man8/dbclean.8.gz
-man/man8/dblist.8.gz
-man/man8/dcc.8.gz
-man/man8/dccd.8.gz
-man/man8/dccifd.8.gz
-man/man8/dccm.8.gz
-man/man8/dccproc.8.gz
-man/man8/dccsight.8.gz
-%%ALT_HOME%%@dir dcc
-%%ALT_HOME%%@cwd /var
 @owner %%DCCUSER%%
 @group %%DCCGROUP%%
 @sample dcc/dcc_conf.sample
@@ -78,8 +67,4 @@ man/man8/dccsight.8.gz
 %%DCCGREY%%@unexec [ -e %D/dcc/grey_flod.map ] && rm -f %D/dcc/grey_flod.map || true
 %%DCCGREY%%@unexec [ -e %D/dcc/grey_clients ] && rm -f %D/dcc/grey_clients || true
 @dir dcc/log
-%%NO_ALT_HOME%%@group wheel
-%%NO_ALT_HOME%%@owner root
 @dir dcc
-%%ALT_HOME%%@group wheel
-%%ALT_HOME%%@owner root
