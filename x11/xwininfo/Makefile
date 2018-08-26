@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xwininfo
-PORTVERSION=	1.1.3
-PORTREVISION=	2
+PORTVERSION=	1.1.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -18,5 +18,6 @@ CPE_PRODUCT=	libxcursor
 CPE_VENDOR=	x
 
 CONFIGURE_ARGS=	--with-icondir=${PREFIX}/lib/X11/icons
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
