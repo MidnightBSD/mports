@@ -340,6 +340,7 @@ SUBDIR += p5-Module-Pluggable
 SUBDIR += p5-Module-Runtime
 SUBDIR += p5-Module-ScanDeps
 SUBDIR += p5-Moo
+SUBDIR += p5-MooX-Types-MooseLike
 SUBDIR += p5-Net-DBus
 SUBDIR += p5-OLE-Storage_Lite
 SUBDIR += p5-PAR-Dist
