@@ -1,11 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xlsatoms
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	List interned atoms defined on a server
+
 LICENSE=	mit
 
 XORG_CAT=	app
