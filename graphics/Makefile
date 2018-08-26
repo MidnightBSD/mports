@@ -56,6 +56,7 @@ SUBDIR += gocr
 SUBDIR += goocanvas
 SUBDIR += goom
 SUBDIR += gozer
+SUBDIR += graphene
 SUBDIR += graphite2
 SUBDIR += graphviz
 SUBDIR += gstreamer-plugins-jpeg
