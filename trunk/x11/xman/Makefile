@@ -2,11 +2,12 @@
 # $MidnightBSD$
 
 PORTNAME=	xman
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manual page display program for X
+
 LICENSE=	mit
 
 XORG_CAT=	app
