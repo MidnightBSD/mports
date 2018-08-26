@@ -12,32 +12,29 @@ COMMENT=	General purpose dynamic array
 
 LICENSE=        lgpl
 
+BROKEN_mips=		fails to compile: unrecognized command line option "-m32"
+BROKEN_mips64=		fails to compile: unrecognized command line option "-m64"
+
+USES=		gmake libtool
 GNU_CONFIGURE=	yes
-
-USES=		gmake
-USE_LDCONFIG=	YES
+USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
+INSTALL_TARGET=	install-strip
 
-WRKSRC=	${WRKDIR}/judy-${PORTVERSION}
+WRKSRC=	${WRKDIR}/${PORTNAME:tl}-${PORTVERSION}
 
-SHLIB_MAJOR=	1
-PLIST_SUB=	SHLIB_MAJOR="${SHLIB_MAJOR}"
-
-LIST_DOCS=	COPYRIGHT README *.htm
-
-post-install:
-.ifndef(NOPORTDOCS)
-	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${LIST_DOCS:S!^!${WRKSRC}/doc/ext/!} ${DOCSDIR}
-.endif
+PORTDOCS=	COPYRIGHT README *.htm
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "i386"
+.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || ${ARCH} == mips || ${ARCH} == powerpc
 CONFIGURE_ARGS+=	--enable-32-bit
-.elif ${ARCH} == "amd64" 
+.else
 CONFIGURE_ARGS+=	--enable-64-bit
 .endif
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S!^!${WRKSRC}/doc/ext/!} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
