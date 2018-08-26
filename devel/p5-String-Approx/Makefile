@@ -6,18 +6,19 @@
 #
 
 PORTNAME=	String-Approx
-PORTVERSION=	3.26
+PORTVERSION=	3.28
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	String
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for approximate matching (fuzzy matching)
+
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
 
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	YES
 
 .include <bsd.port.mk>
