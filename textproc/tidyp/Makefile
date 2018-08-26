@@ -2,41 +2,29 @@
 # $FreeBSD: ports/textproc/tidyp/Makefile,v 1.1 2010/05/16 09:23:35 miwi Exp $
 
 PORTNAME=	tidyp
-PORTVERSION=	1.02
+PORTVERSION=	1.04
 CATEGORIES=	textproc www
-MASTER_SITES=	http://cloud.github.com/downloads/petdance/tidyp/ \
-		http://sunpoet.net/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A library and program to validate and fix HTML
+COMMENT=	Library and program to validate and fix HTML
+
 LICENSE=	unknown
 
+CONFIGURE_ARGS=	--enable-asian --enable-utf16
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
+USES=		autoreconf libtool
 
-OPTIONS=	ACCESS	"Support Accessibility checks" off \
-		ASIAN	"Support Asian encoding" off \
-		DEBUG	"Enable debugging" off \
-		UTF16	"Support UTF-16 encoding" off
+GH_ACCOUNT=	petdance
+USE_GITHUB=	yes
 
-PLIST_SUB+=	TIDYP_VER="${PORTVERSION}"
+OPTIONS_DEFINE=	ACCESS DEBUG
+ACCESS_DESC=	Accessibility checks
 
-.include <bsd.port.pre.mk>
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
-.if defined(WITH_ACCESS)
-CONFIGURE_ARGS+=--enable-debug
-.endif
+ACCESS_CONFIGURE_ENABLE=access
+DEBUG_CONFIGURE_ENABLE=	debug
 
-.if defined(WITH_ASIAN)
-CONFIGURE_ARGS+=--enable-asian
-.endif
-
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=--enable-debug
-.endif
-
-.if defined(WITH_UTF16)
-CONFIGURE_ARGS+=--enable-utf16
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
