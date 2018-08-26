@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xinput
-PORTVERSION=	1.6.1
+PORTVERSION=	1.6.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
