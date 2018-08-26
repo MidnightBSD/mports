@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xprop
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
