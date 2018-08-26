@@ -16,7 +16,7 @@ LICENSE=	agg
 NO_BUILD=	yes
 NO_MTREE=	yes
 
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/dri
 
 # data
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:x11/xbitmaps \
