@@ -9,8 +9,6 @@ COMMENT=	X Keyboard Configuration Database
 
 LICENSE=	mit
 
-MASTER_SITE_SUBDIR=	individual/${XORG_CAT}/${PORTNAME}
-
 BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
 XORG_CAT=	data
 
