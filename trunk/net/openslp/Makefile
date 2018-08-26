@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		alias libtool ssl
+USES=		libtool ssl
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openslp \
 		--localstatedir=/var
