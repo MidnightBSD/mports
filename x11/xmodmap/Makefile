@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xmodmap
-PORTVERSION=	1.0.8
+PORTVERSION=	1.0.9
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
