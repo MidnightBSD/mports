@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xconsole
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
