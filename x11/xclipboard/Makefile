@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xclipboard
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
