@@ -1,12 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	xeyes
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A follow the mouse X demo
+COMMENT=	Follow the mouse X demo
+
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
 USE_XORG=	x11 xt xext xmu xrender
