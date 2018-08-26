@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xterm
-PORTVERSION=	330
+PORTVERSION=	333
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \

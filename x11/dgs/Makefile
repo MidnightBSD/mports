@@ -11,8 +11,8 @@ COMMENT=	Display ghostscript system
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
 
 MAKE_JOBS_UNSAFE=	yes
 

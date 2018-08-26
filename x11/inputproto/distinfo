@@ -1,2 +1,3 @@
-SHA256 (xorg/proto/inputproto-2.3.tar.bz2) = 7d26b193f6699f8e9c1e28bf026844b7ecea33dd644402523471be109152c32f
-SIZE (xorg/proto/inputproto-2.3.tar.bz2) = 195642
+TIMESTAMP = 1534887108
+SHA256 (xorg/proto/inputproto-2.3.2.tar.bz2) = 893a6af55733262058a27b38eeb1edc733669f01d404e8581b167f03c03ef31d
+SIZE (xorg/proto/inputproto-2.3.2.tar.bz2) = 200857
