@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libdmx
-PORTVERSION=	1.1.3
-PORTREVISION=	2
+PORTVERSION=	1.1.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,5 +11,7 @@ LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto dmxproto:both
+USES+=	cpe
+CPE_VENDOR=	x
 
 .include <bsd.port.mk>

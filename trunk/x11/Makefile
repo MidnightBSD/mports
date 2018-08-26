@@ -12,7 +12,6 @@ SUBDIR += damageproto
 SUBDIR += dgs
 SUBDIR += dmenu
 SUBDIR += dmxproto
-SUBDIR += docker
 SUBDIR += dri2proto
 SUBDIR += editres
 SUBDIR += evieext

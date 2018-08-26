@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RenderProto protocol headers
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 
