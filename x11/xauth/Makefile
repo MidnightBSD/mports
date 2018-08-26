@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xauth
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.10
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
