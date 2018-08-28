@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-mga
-PORTVERSION=	1.6.4
+PORTVERSION=	1.6.5
 PORTEPOCH=	3
 CATEGORIES=	x11-drivers
 
