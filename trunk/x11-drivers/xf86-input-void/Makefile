@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-void
-PORTVERSION=	1.4.0
-PORTREVISION=	3
+PORTVERSION=	1.4.1
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
