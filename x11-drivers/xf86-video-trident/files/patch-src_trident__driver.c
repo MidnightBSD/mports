@@ -1,18 +1,13 @@
---- src/trident_driver.c.orig	2012-07-16 02:16:00 UTC
+# Correct a string that should be const
+#
+--- src/trident_driver.c.orig	2015-03-30 17:05:53 UTC
 +++ src/trident_driver.c
-@@ -56,7 +56,6 @@
+@@ -1010,7 +1010,7 @@ TRIDENTPreInit(ScrnInfoPtr pScrn, int fl
+     ClockRangePtr clockRanges;
+     Bool ddcLoaded = FALSE;
+     xf86MonPtr pMon = NULL;
+-    char *s;
++    const char *s;
+     Bool tmp_bool;
  
- #include "mipointer.h"
- 
--#include "mibstore.h"
- #include "shadow.h"
- #include "trident.h"
- #include "trident_regs.h"
-@@ -3037,7 +3036,6 @@ TRIDENTScreenInit(SCREEN_INIT_ARGS_DECL)
-     	TridentAccelInit(pScreen);
-     }
- 
--    miInitializeBackingStore(pScreen);
-     xf86SetBackingStore(pScreen);
- 
-     /* Initialise cursor functions */
+     /* Allocate the TRIDENTRec driverPrivate */
