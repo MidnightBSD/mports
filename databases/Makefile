@@ -97,7 +97,6 @@ SUBDIR += php70-pdo_odbc
 SUBDIR += php70-pdo_pgsql
 SUBDIR += php70-pdo_sqlite
 SUBDIR += php70-pgsql
-SUBDIR += php70-redis
 SUBDIR += php70-sqlite3
 SUBDIR += php71-dba
 SUBDIR += php71-mysqli
