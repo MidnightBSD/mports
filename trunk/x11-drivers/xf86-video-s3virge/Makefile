@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-s3virge
-PORTVERSION=	1.10.6
-PORTREVISION=	1
+PORTVERSION=	1.10.7
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
