@@ -8,6 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fonts extension headers
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 
