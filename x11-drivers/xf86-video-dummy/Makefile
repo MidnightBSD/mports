@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-dummy
-PORTVERSION=	0.3.7
-PORTREVISION=	1
+PORTVERSION=	0.3.8
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
