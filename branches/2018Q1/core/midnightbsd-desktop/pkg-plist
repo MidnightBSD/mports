@@ -1,0 +1,4 @@
+@comment $MidnightBSD$
+share/xsessions/etoile.desktop
+share/xsessions/windowmaker.desktop
+@dir share/xsessions

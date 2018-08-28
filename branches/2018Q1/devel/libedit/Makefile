@@ -1,0 +1,28 @@
+# Created by: jasone
+# $MidnightBSD$
+
+PORTNAME=	libedit
+PORTVERSION=	${EDITVERSION}.${EDITDATE}
+DISTVERSION=	${EDITDATE}-${EDITVERSION}
+PORTREVISION=	1
+CATEGORIES=	devel
+MASTER_SITES=	http://thrysoee.dk/editline/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Command line editor library
+
+LICENSE=	bsd2
+
+USES=		libtool pathfix
+EDITVERSION=	3.1
+EDITDATE=	20150325
+WRKSRC=		${WRKDIR}/${PORTNAME}-${EDITDATE}-${EDITVERSION}
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--enable-widec
+MAKE_ENV=	LC_ALL=C
+
+CONFLICT_INSTALL=	editline-*
+
+.include <bsd.port.mk>

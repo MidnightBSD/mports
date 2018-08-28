@@ -1,0 +1,3 @@
+bin/xcb
+lib/X11/app-defaults/Xcb
+man/man1/xcb.1.gz

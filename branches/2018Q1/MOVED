@@ -1,0 +1,126 @@
+#
+# MOVED - a list of (recently) moved or removed ports
+#
+# $MidnightBSD$
+
+# Each entry consists of a single line containing the following four
+# fields in the order named, separated with the pipe (`|') character:
+#
+#     Port:	A port that was moved (category/portname).
+#     Moved to:	Where the port was moved to, or which port users
+#		can and should migrate to (category/portname).
+#		Blank indicates that the port was deleted.
+#     Date:	When the moving or the removal was done (YYYY-MM-DD,
+#		in EST/EDT).
+#     Why:	The reason why the port was moved or removed.
+#
+# Keep this list sorted in the chronological order.  New entries must
+# be added at the tail.
+#
+# If previously removed port gets restored, make sure to delete the relevant
+# line.  If a port is copied to a new location and the old location is kept
+# (e.g. upgraded to a later version), don't record it here.
+#
+# Port|Moved to|Date|Why
+devel/subversion-perl|devel/p5-subversion|2009-04-08|Renamed
+devel/subversion-python|devel/py-subversion|2009-04-08|Renamed
+security/pecl-hash||2009-05-01|Hash is built into PHP now.
+www/firefox|www/browser|2009-06-27|We must ship unbranded firefox.
+security/ca-roots||2009-12-28|Makes certain false security guarantees
+security/cyrus-sasl||2009-12-28|Old, insecure, and dead.
+shells/mudsh||2009-12-28|Project disappeared from the Internet.
+shells/perlsh|shells/psh|2009-12-28|Correct project name
+www/joomla||2009-12-28|Joomla 1.0.x is too old and insecure
+www/apache20||2010-01-23|Getting old.
+net/ztelnet||2010-01-23|ztelnet is broken on GCC 4.
+devel/gnome-build||2010-01-23|No longer needed for gnome.
+multimedia/libdts|multimedia/libdca|2010-02-28|safer name
+databases/p5-DBD-mysql60||2010-03-12|mysql 6 is gone, so is this
+math/libgmp4|math/gmp|2010-05-07|libgmp4 to gmp 5.0
+lang/gcc42-withgcjawt||2010-05-07|broken
+www/browser|www/browser3|2010-05-08|security and png 1.4.1 incompatibility
+security/xmlsec||2010-05-08|broken on current for years
+deskutils/egroupware||2010-06-04|deleted
+lang/gcc43||2010-07-29|GCC 4.4 replaces it.
+lang/gcc-objc||2010-07-30|no longer necessary
+x11-drivers/xf86-input-elo2300||2010-08-01|not maintained upstream
+www/thttpd-st||2010-08-13|broken on current
+databases/pecl-PDO|php5-pdo|2010-11-10|part of php now
+net-p2p/limewire||2010-11-11|dead software, use frostwire
+devel/cvstrac||2010-11-13|hasn't worked for a long time
+shells/tcsh-bofh||2010-11-13|files not available anymore
+multimedia/x264-gtk||2010-12-14|no longer valid
+lang/python30||2010-12-14|removed.  not backwards compatible and broken
+x11-drivers/xf86-video-cyrix||2010-12-17|Not compatible with current x.org
+net/zniper||2011-05-28|Dead upstream.
+dns/bind96||2011-05-28|Security vulnerability, EOL
+mail/linux-thunderbird3|mail/linux-thunderbird5|2011-08-01|Security update
+net/samba3|net/samba34|2011-08-07|EOL
+net/samba33|net/samba34|2011-08-07|EOL
+net-mgmt/tas||2011-09-5|Not available upstream
+dns/bind97|dns/bind98|2011-09-16|Time to move forward
+www/linux-firefox-devel|www/linux-firefox36|2011-09-16|Move to numbered directory
+www/linux-firefox5|www/linux-firefox6|2011-09-16|it's 6.0 now
+print/ghostscript-gpl|print/ghostscript8|2012-08-08|use version number
+print/ghostscript-gpl-nox11|print/ghostscript8-nox11|2012-08-08|use version
+print/ghostscript-afpl||2012-08-08|old version, not distributable anyway
+audio/libmusicbrainz||2013-07-13|old version, not maintined
+www/eaccelerator||2013-07-16|not working with newer PHP releases
+sysutils/ciso|sysutils/ciso-manager|2014-09-13|go to maintained version
+lang/ruby19|lang/ruby22|2015-06-21|updating to latest ruby release
+sysutils/mport-manager|ports-mgmt/mport-manager|2016-03-01|moving to ports directory
+net/php55-ldap||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-soap||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-sockets||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-xmlrpc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-filter||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-hash||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-mcrypt||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-openssl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+sysutils/php55-fileinfo||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+sysutils/php55-posix||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-ctype||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-dom||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-enchant||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-pspell||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-simplexml||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-wddx||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xml||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xmlreader||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xmlwriter||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xsl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/mod_php55||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-opcache||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-session||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-tidy||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-dba||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-interbase||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mssql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mysql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mysqli||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-odbc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_dblib||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_firebird||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_mysql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_odbc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_pgsql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_sqlite||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pgsql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-redis||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-sqlite3||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-sybase_ct||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-gettext||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-json||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-pcntl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-readline||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-shmop||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-sysvmsg||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-sysvsem||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-bz2||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-phar||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-zip||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-zlib||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-iconv||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-mbstring||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-recode||2016-10-21|Has expired: EOL upstream since 21 Jul 2016

@@ -1,0 +1,31 @@
+GNUstep/System/Library/Headers/netclasses/IRCObject.h
+GNUstep/System/Library/Headers/netclasses/LineObject.h
+GNUstep/System/Library/Headers/netclasses/NetBase.h
+GNUstep/System/Library/Headers/netclasses/NetTCP.h
+GNUstep/System/Library/Frameworks/netclasses.framework/libnetclasses.so
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/libnetclasses.so
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/netclasses
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/libnetclasses.so.%%VERSION%%
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers/NetBase.h
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers/LineObject.h
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers/IRCObject.h
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers/NetTCP.h
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/libnetclasses.so.%%MAJORVERSION%%
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Resources/Info-gnustep.plist
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current/libnetclasses.so
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current/libnetclasses.so.1
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current/libnetclasses.so.1.1.0
+GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current/netclasses
+GNUstep/System/Library/Frameworks/netclasses.framework/netclasses
+GNUstep/System/Library/Libraries/libnetclasses.so
+GNUstep/System/Library/Libraries/libnetclasses.so.1
+GNUstep/System/Library/Libraries/libnetclasses.so.1.1.0
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Headers
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Resources
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Headers
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%/Resources
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Versions/%%MAJORVERSION%%
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Versions/Current
+@dir GNUstep/System/Library/Frameworks/netclasses.framework/Versions
+@dir GNUstep/System/Library/Frameworks/netclasses.framework
+@dir GNUstep/System/Library/Headers/netclasses

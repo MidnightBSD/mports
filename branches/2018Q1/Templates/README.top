@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The MidnightBSD Ports Collection</title>
+    <style type="text/css" media="screen">
+	html,body{ margin:0; padding; 0; height: 100%; }
+	body{ background: #fff; color:#333; font-family: sans-serif; }
+	#globe { width: 850px; margin: 0 auto; border-left: 1px solid #999; border-right: 1px solid #999; padding: 0 2em; }
+	h1 { background: url("http://www.midnightbsd.org/images/ports-tree.png"); padding: 399px 0 0 0; width: 512px; max-width: 100%; height: 0; overflow: hidden; margin: auto; }
+	h2, h2 a { text-align: center; color: #666; }
+	h3, h3 a { text-align: center; color: #999; }
+	a { color: #79c143; }
+	a:hover { color: #a0d07b; }
+	ul { margin: 0; padding: 0; text-align: center; }
+	li { list-style: none; width: auto; background: fff; margin: 1em; text-align: left; height: auto; vertical-align: top; }
+	li a { font-weight: bold;  text-decoration: none; color: #79c143; }
+	blockquote { margin-top: 3em; color: #aaa; font-size: .9em; }
+
+        @media screen and (max-width: 700px) {
+                h1 { padding: 0; width: 95%; height: auto; background: none}
+                #globe { width: 100%; border: none; padding 0; }
+        }
+     </style>
+  </head>
+
+  <body>
+    <div id="globe">
+    <h1>The MidnightBSD Ports Collection</h1>
+    <h2>TOP</h2>
+    <h3>Parent dir</h3>
+
+    <ul>
+%%SUBDIR%%
+    </ul>
+
+    <blockquote>
+    <p>For information on how to use the ports tree, please look at 
+    the <a href="http://www.midnightbsd.org/ports">MidnightBSD mports</a>
+    website.</p>
+
+    <p>If you find a bug in a port, contact the port maintainer or
+    <a href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>. You may 
+    also create a <a href="http://bugreport.midnightbsd.org/">bug report</a>.</p>
+
+    <p>If you would like to contribute a port, contact <a
+    href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>.</p>
+    </blockquote>
+    </div>
+
+    <div style="clear:both;"></div>
+
+  </body>
+</html>

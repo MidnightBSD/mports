@@ -1,0 +1,32 @@
+--- ./Makefile.in.orig	Fri Jan  6 21:24:57 2006
++++ ./Makefile.in	Thu May 10 10:40:31 2007
+@@ -428,16 +428,16 @@
+ 	@list='$(dist_sysconf_DATA)'; for p in $$list; do \
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  f=$(am__strip_dir) \
+-	  echo " $(dist_sysconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(sysconfdir)/$$f'"; \
+-	  $(dist_sysconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(sysconfdir)/$$f"; \
++	  echo " $(dist_sysconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(sysconfdir)/$$f.dist'"; \
++	  $(dist_sysconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(sysconfdir)/$$f.dist"; \
+ 	done
+ 
+ uninstall-dist_sysconfDATA:
+ 	@$(NORMAL_UNINSTALL)
+ 	@list='$(dist_sysconf_DATA)'; for p in $$list; do \
+ 	  f=$(am__strip_dir) \
+-	  echo " rm -f '$(DESTDIR)$(sysconfdir)/$$f'"; \
+-	  rm -f "$(DESTDIR)$(sysconfdir)/$$f"; \
++	  echo " rm -f '$(DESTDIR)$(sysconfdir)/$$f.dist'"; \
++	  rm -f "$(DESTDIR)$(sysconfdir)/$$f.dist"; \
+ 	done
+ 
+ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+@@ -728,7 +728,7 @@
+ 	$(CC) -c $(DEFS) $(ourdefs) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $<
+ 
+ install-exec-hook:
+-	chmod u+s $(libexecdir)/rssh_chroot_helper
++	chmod u+s $(DESTDIR)$(libexecdir)/rssh_chroot_helper
+ 
+ rpm:	dist
+ 	rpmbuild -ta --sign $(base).tar.gz

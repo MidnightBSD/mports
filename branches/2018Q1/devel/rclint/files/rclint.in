@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+#
+
+exec %%PYTHON_CMD%% %%DATADIR%%/rclint.py ${1+"$@"}

@@ -1,0 +1,23 @@
+--- ./Makefile.in.orig	Thu May 10 10:23:54 2007
++++ ./Makefile.in	Thu May 10 10:24:37 2007
+@@ -80,17 +80,11 @@
+ 	$(CC) -c $(CPPFLAGS) $(DEFS) -I. -I$(srcdir) $(CFLAGS) $<
+ 
+ install: installdirs all
+-	$(INSTALL_PROGRAM) $(SHELL_PROG)$(exe_suffix) $(bindir)/`echo $(SHELL_PROG)|sed '$(transform)'`$(exe_suffix)
+-	-$(INSTALL_DATA) $(SHELL_PROG).1 $(mandir)/`echo $(SHELL_PROG)|sed '$(transform)'`.$(manext)
+-	-@prog=$(bindir)/`echo $(SHELL_PROG)|sed '$(transform)'`$(exe_suffix);\
+-	    test -f /etc/shells \
+-	    && (grep "^$$prog\$$" /etc/shells > /dev/null \
+-		|| echo \
+-"NOTE: /etc/shells does not contain $$prog \
+-      you should add it if you want to set your shell to $(SHELL_PROG)")
++	$(INSTALL_PROGRAM) $(SHELL_PROG)$(exe_suffix) $(DESTDIR)$(bindir)/`echo $(SHELL_PROG)|sed '$(transform)'`$(exe_suffix)
++	-$(INSTALL_DATA) $(SHELL_PROG).1 $(DESTDIR)$(mandir)/`echo $(SHELL_PROG)|sed '$(transform)'`.$(manext)
+ 
+ installdirs:
+-	$(srcdir)/mkinstalldirs $(bindir) $(mandir)
++	$(srcdir)/mkinstalldirs $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)
+ 
+ uninstall:
+ 	rm -f $(bindir)/`echo $(SHELL_PROG)|sed '$(transform)'`$(exe_suffix)

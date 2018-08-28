@@ -1,0 +1,16 @@
+# $MidnightBSD$
+
+PORTNAME=	xf86-video-tseng
+PORTVERSION=	1.2.5
+PORTREVISION=	1
+CATEGORIES=	x11-drivers
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	X.Org tseng display driver
+
+LICENSE=	mit
+
+XORG_CAT=	driver
+USE_XORG=	videoproto xextproto
+
+.include <bsd.port.mk>
