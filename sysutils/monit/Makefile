@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	monit
-PORTVERSION=	5.20.0
-PORTREVISION=	0
+PORTVERSION=	5.19.0
 CATEGORIES=	sysutils
-MASTER_SITES=	https://mmonit.com/monit/dist/
+MASTER_SITES=	http://www.mmonit.com/monit/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Unix system management and proactive monitoring
@@ -28,7 +27,7 @@ OPTIONS_DEFINE=	DOCS SSL
 OPTIONS_DEFAULT=SSL
 
 SSL_CONFIGURE_OFF=	--without-ssl
-SSL_USES=		ssl
+SSL_USES=		openssl
 
 post-install:
 	${INSTALL} -m 600 ${WRKSRC}/monitrc ${STAGEDIR}${PREFIX}/etc/monitrc.sample

@@ -12,15 +12,12 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform library for games and multimedia programming
 
-LICENSE=	GIFTWARE
-LICENSE_NAME=	Giftware
-LICENSE_FILE=	${WRKSRC}/docs/txt/license.txt
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	other
 
 LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
 		libvorbis.so:${PORTSDIR}/audio/libvorbis
 
-USES=		cmake makeinfo pkgconfig
+USES=		cmake gmake makeinfo pkgconfig
 USE_XORG=	x11 xpm xext xcursor xxf86vm xxf86dga
 USE_GL=		glu
 USE_LDCONFIG=	yes
@@ -30,10 +27,7 @@ PORTDOCS=	*
 PORTEXAMPLES=	*
 
 PLIST_SUB+=	SHLIB_VER="${SHLIB_VER}"
-CMAKE_ARGS=	-DDOCDIR="${DOCSDIR}" \
-		-DWANT_MODULES=off \
-		-DWANT_LOGG=on \
-		-DWANT_EXAMPLES=off
+CMAKE_ARGS+=	-DDOCDIR="${DOCSDIR}"
 
 SHLIB_VER=	${PORTVERSION}
 

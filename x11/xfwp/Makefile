@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xfwp
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

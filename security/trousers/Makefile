@@ -1,22 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	trousers
-PORTVERSION=	0.3.14
-PORTREVISION=	1
+PORTVERSION=	0.3.13
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Open-source TCG Software Stack
+COMMENT=	The open-source TCG Software Stack
 
-LICENSE=	bsd3
+LICENSE=	CPL
+LICENSE_NAME=	Common Public License
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:${PORTSDIR}/emulators/tpm-emulator
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		dos2unix autoreconf gmake iconv libtool pkgconfig ssl
-NO_WRKSUBDIR=	yes
+USES=		dos2unix alias autoreconf gmake iconv libtool pkgconfig
 DOS2UNIX_GLOB=	*.h *.c
+USE_OPENSSL=	YES
 USE_LDCONFIG=	YES
 USE_RC_SUBR=	tcsd
 INSTALL_TARGET=	install-strip

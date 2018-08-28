@@ -1,25 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	List-MoreUtils
-PORTVERSION=	0.428
+DISTVERSION=	0.33
 CATEGORIES=	lang perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:ADAMK
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide the stuff missing in List::Util
+LICENSE=	perl
 
-LICENSE=	apache2
-LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BUILD_DEPENDS=	p5-Exporter-Tiny>=0.038:devel/p5-Exporter-Tiny \
-		p5-List-MoreUtils-XS>=0.426:lang/p5-List-MoreUtils-XS
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace
-
-NO_ARCH=	yes
-USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

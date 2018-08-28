@@ -19,7 +19,6 @@ USES=		alias libtool:keepla pathfix pkgconfig:both tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 CONFIGURE_ENV=	JW=false
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 
 CONFLICTS=	py*-ro-[0-9]*

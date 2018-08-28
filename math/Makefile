@@ -5,6 +5,7 @@ COMMENT = Mathematics
 SUBDIR += R
 SUBDIR += atlas
 SUBDIR += blas
+SUBDIR += calc
 SUBDIR += cln
 SUBDIR += coinmp
 SUBDIR += djbfft

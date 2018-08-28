@@ -2,7 +2,7 @@
 
 PORTNAME=	python27
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 DISTNAME=	Python-${PORTVERSION}
@@ -13,12 +13,13 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline ssl tar:xz
+USES=		cpe ncurses pkgconfig readline tar:xz
 CONFIGURE_ENV=	SVNVERSION="echo midnightbsd"
 CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --host=${ARCH}-portbld-midnightbsd${OSREL} \
 		  --target=${ARCH}-portbld-midnightbsd${OSREL}
 USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	python
@@ -33,7 +34,7 @@ INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 MAKE_ARGS+=		LIBPC="${PREFIX}/libdata/pkgconfig"			# Until pathfix gets support for files other than Makefile.in
 MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
-OSMAJOR=	${OSREL:C/([0-9]*).*/\1/}
+OSMAJOR=	${OSREL:C/([0-9]*).[0-9]*/\1/}
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			PORTVERSION=${PORTVERSION} \

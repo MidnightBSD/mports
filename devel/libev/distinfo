@@ -1,3 +1,2 @@
-TIMESTAMP = 1532377940
-SHA256 (libev-4.24.tar.gz) = 973593d3479abdf657674a55afe5f78624b0e440614e2b8cb3a07f16d4d7f821
-SIZE (libev-4.24.tar.gz) = 524264
+SHA256 (libev-4.20.tar.gz) = f870334c7fa961e7f31087c7d76abf849f596e3048f8ed2a0aaa983cd73d449e
+SIZE (libev-4.20.tar.gz) = 530091

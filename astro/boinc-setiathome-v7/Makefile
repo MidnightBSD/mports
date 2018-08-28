@@ -2,7 +2,6 @@
 
 PORTNAME=	boinc-setiathome-v7
 PORTVERSION=	7.00
-PORTREVISION=	1
 CATEGORIES=	astro
 MASTER_SITES=	FREEBSD_LOCAL/rene
 DISTNAME=	setiathome-svn-1924 # modified archive, see leftout in top directory

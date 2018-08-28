@@ -11,7 +11,7 @@ COMMENT=	Wrap a bitmap font in a sftn wrapper
 
 LICENSE=	mit
 
-LIB_DEPENDS=	libfreetype.so:print/freetype2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 
 XORG_CAT=	app
 USE_XORG=	xproto fontenc

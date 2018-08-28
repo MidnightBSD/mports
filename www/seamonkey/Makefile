@@ -2,7 +2,7 @@
 
 PORTNAME=	seamonkey
 DISTVERSION=	2.33.1
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES?=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
@@ -16,7 +16,7 @@ LICENSE=	mpl
 
 BUILD_DEPENDS=	nspr>=4.10.6:${PORTSDIR}/devel/nspr \
 		nss>=3.17.4:${PORTSDIR}/security/nss \
-		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
+		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
 		soundtouch>=1.8.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=0.9.34:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.2.4:${PORTSDIR}/graphics/graphite2 \

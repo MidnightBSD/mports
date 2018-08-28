@@ -1,12 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	xkbprint
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility for printing an XKB keyboard description
-
 LICENSE=	mit
 
 XORG_CAT=	app

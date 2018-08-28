@@ -4,7 +4,7 @@ PORTNAME?=	proftpd
 .if !defined(DISTVERSION)
 PORTVERSION?=	${PROFTPD_VERSION}
 .endif
-PORTREVISION?=	5
+PORTREVISION?=	4
 CATEGORIES?=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		https://github.com/downloads/proftpd/proftpd.github.com/ \
@@ -52,7 +52,7 @@ USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 
 .if !defined(_BUILDING_PROFTPD_MODULE)
-EXTENSIONS+=	ssl
+USE_OPENSSL=	yes
 USE_RC_SUBR=	proftpd
 .endif
 

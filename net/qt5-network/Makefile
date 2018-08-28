@@ -11,10 +11,10 @@ COMMENT=	Qt network module
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libproxy.so:net/libproxy
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+LIB_DEPENDS=	libproxy.so:${PORTSDIR}/net/libproxy
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
-USES=		ssl
+USE_OPENSSL=	yes
 USE_QT5=	core qmake_build buildtools_build
 QT_DIST=	base
 HAS_CONFIGURE=	yes

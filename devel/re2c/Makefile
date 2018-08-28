@@ -4,7 +4,7 @@
 PORTNAME=	re2c
 PORTVERSION=	0.14.3
 CATEGORIES=	devel
-MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compile regular expression to C (much faster final code than flex)

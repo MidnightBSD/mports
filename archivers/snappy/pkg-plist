@@ -1,11 +1,11 @@
+include/snappy.h
 include/snappy-c.h
 include/snappy-sinksource.h
 include/snappy-stubs-public.h
-include/snappy.h
 lib/libsnappy.a
+lib/libsnappy.la
 lib/libsnappy.so
-lib/libsnappy.so.1
-lib/libsnappy.so.1.3.0
+lib/libsnappy.so.2
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL
@@ -13,3 +13,4 @@ lib/libsnappy.so.1.3.0
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%%%DOCSDIR%%/format_description.txt
 %%PORTDOCS%%%%DOCSDIR%%/framing_format.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

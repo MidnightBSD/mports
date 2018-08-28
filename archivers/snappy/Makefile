@@ -1,25 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	snappy
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.0
 CATEGORIES=	archivers
+MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Fast compressor/decompressor library
-
+COMMENT=	A fast compressor/decompressor library
 LICENSE=	bsd3
 
-OPTIONS_DEFINE=	DOCS
-
-USES=		pkgconfig autoreconf libtool
-CONFIGURE_ARGS=	--disable-gtest
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CFLAGS+=	-DNDEBUG
-USE_GITHUB=	yes
-GH_ACCOUNT=	google
 
-post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${LOCALBASE}/lib/libsnappy.so.1.3.0
+ONLY_FOR_ARCH=	i386 amd64
+
+post-patch:
+.if defined(NOPORTDOCS)
+	${REINPLACE_CMD} -e \
+		'/^install-data-am:/ s|install-dist_docDATA||' \
+		${WRKSRC}/Makefile.in
+.endif
 
 .include <bsd.port.mk>

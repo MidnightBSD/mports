@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.26
+PORTVERSION=	1.1.25
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/ \
 		FREEBSD_LOCAL/ohauer

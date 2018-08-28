@@ -23,7 +23,8 @@ OPENCT_DESC=	Use OpenCT backend
 CTAPI_DESC=	Use CT-API backend
 SM_DESC=	Enable secure messaging support
 
-USES=		libtool pkgconfig gmake ssl
+USES=		libtool pkgconfig gmake
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip

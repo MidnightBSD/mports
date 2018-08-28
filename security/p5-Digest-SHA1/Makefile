@@ -2,7 +2,6 @@
 
 PORTNAME=	Digest-SHA1
 PORTVERSION=	2.13
-PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,7 +13,6 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

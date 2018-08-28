@@ -11,8 +11,9 @@ COMMENT=	Qt Quick graphical effects
 
 LICENSE=	gpl3
 
-USE_QT5=	buildtools_build core gui quick qml
+USE_QT5=	# empty
 QT_DIST=	${PORTNAME}
 USES=		qmake
+NO_BUILD=	yes
 
 .include <bsd.port.mk>

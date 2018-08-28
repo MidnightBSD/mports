@@ -2,7 +2,6 @@
 
 PORTNAME=	docsis
 PORTVERSION=	0.9.6
-PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -11,11 +10,12 @@ COMMENT=	DOCSIS(tm) binary configuration file encoder/decoder
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	gm4:devel/m4
-LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
+BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 
 GNU_CONFIGURE=	yes
-USES=		bison ssl
+USE_OPENSSL=	yes
+USES=		bison
 
 PLIST_SUB=	MIBS=share/snmp/mibs
 

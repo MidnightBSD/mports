@@ -20,14 +20,13 @@ OPTIONS_DEFINE=	IPV6 KQUEUE
 OPTIONS_DEFAULT=KQUEUE
 KQUEUE_DESC=	Use kqueue(2) support
 
-USES=		compiler:c++11-lang libtool pathfix pkgconfig ssl
 CONFIGURE_ARGS=	--disable-debug
 CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLBASE}/lib -ssl -crypto" OPENSSL_CFLAGS="-I${OPENSSLBASE}/include"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-
-MAKE_ARGS=	LDFLAGS="${LDFLAGS}"
+USE_OPENSSL=	yes
+USES=		compiler:c++11-lang libtool pathfix pkgconfig
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 KQUEUE_CONFIGURE_WITH=	kqueue

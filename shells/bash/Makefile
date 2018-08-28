@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=		bash
-PATCHLEVEL=		23
+PATCHLEVEL=		12
 PORTVERSION=		4.4.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=		2
+PORTREVISION?=		0
 CATEGORIES=		shells
-MASTER_SITES=		GNU
+MASTER_SITES=		GNU/${PORTNAME}
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
 DIST_SUBDIR=		${PORTNAME}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
@@ -26,8 +26,7 @@ OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP NLS
 COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
 
-USES=			bison cpe iconv makeinfo pathfix
-USE_GCC=		yes
+USES=			bison cpe makeinfo pathfix
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
@@ -35,7 +34,7 @@ COLONBREAKSWORDS_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-colonbreakswords
 
 HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext
+NLS_USES=		gettext iconv
 
 INFO=			bash
 
@@ -46,9 +45,7 @@ PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
 
 CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
-			--enable-disabled-builtins \
-			--host=${ARCH}-portbld-freebsd10.4 \
-			--build=${ARCH}-portbld-freebsd10.4
+			--enable-disabled-builtins
 
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
@@ -66,12 +63,11 @@ CFLAGS+=	-DIMPORT_FUNCTIONS_DEF=0
 
 .if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
-LLD_UNSAFE=		yes
 .else
 CONFIGURE_ARGS+=	--disable-static-link
 # Bash symbols must be exported in order to link runtime plugins, i.e.,
 # "enable -f". (Plugins are not supported for bash-static.)
-LDFLAGS+=		-Wl,-export-dynamic
+CFLAGS+=		-Wl,-export-dynamic
 .endif
 
 post-patch:
@@ -100,12 +96,12 @@ pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
 
 post-install:
-	${LN} -sf bash ${PREFIX}/bin/rbash
-	@${MKDIR} ${DOCSDIR}
+	${LN} -sf bash ${STAGEDIR}${PREFIX}/bin/rbash
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/FAQ \
-		${WRKSRC}/doc/INTRO ${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${STAGEDIR}${DOCSDIR}
 	for d in ${PORTDOCS:NFAQ:NINTRO:N*html}; do \
-		${INSTALL_DATA} ${WRKSRC}/$${d} ${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${d} ${STAGEDIR}${DOCSDIR}; \
 	done
 
 regress: build

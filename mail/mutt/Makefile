@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mutt
-PORTVERSION=	1.9.3
+PORTVERSION=	1.9.1
 PORTREVISION?=	1
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
@@ -18,8 +18,10 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
+		https://github.com/aschrab/mutt/compare/dev-base...feature/:ats \
 		http://vc.org.ua/mutt/:vc
 PATCH_DIST_STRIP=	-p1
+PATCHFILES=	date-conditional.diff:ats
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Small but powerful text based program for read/writing e-mail
@@ -37,7 +39,8 @@ CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 		--enable-external-dotlock --enable-pop --enable-imap \
 		--enable-compressed --enable-sidebar
 
-USES+=		cpe ncurses ssl
+USE_OPENSSL=	yes
+USES+=		cpe ncurses
 
 .if defined(MUTT_CONFIGURE_ARGS)
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
@@ -111,7 +114,9 @@ URLVIEW_RUN_DEPENDS=	urlview:textproc/urlview
 PKGNAMESUFFIX=	-lite
 USES+=	ncurses
 PLIST_SUB+=	MAILBOX_MANPAGES=""
+PLIST_SUB+=	COMPRESSED_FOLDERS="@comment "
 PLIST_SUB+=	HTML="@comment "
+PLIST_SUB+=	XML="@comment "
 PLIST_SUB+=	NNTP="@comment "
 # XXX bug in bpm ?
 PLIST_SUB+=	NLS="@comment "
@@ -149,7 +154,7 @@ HCACHE_NONE_CONFIGURE_ON=	--disable-hcache
 HCACHE_NONE_CONFIGURE_OFF=	--enable-hcache --without-qdbm --without-gdbm
 
 HCACHE_BDB_CONFIGURE_WITH=	bdb
-USE_BDB=	42+
+HCACHE_BDB_USES=	bdb:42+
 
 HCACHE_TOKYOCABINET_CONFIGURE_WITH=	tokyocabinet
 HCACHE_TOKYOCABINET_LIB_DEPENDS=	libtokyocabinet.so:databases/tokyocabinet
@@ -202,8 +207,8 @@ DOCS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-doc-ref
 .include <bsd.mport.options.mk>
 
 # un/comment as each VERSION is created for PORTVERSION
-VVV_PATCH_VERSION=	1.9.1
-GREETING_PATCH_VERSION=	1.9.2
+#VVV_PATCH_VERSION=	1.8.3
+GREETING_PATCH_VERSION=	1.9.0
 
 .if !defined(VVV_PATCH_VERSION)
 VVV_PATCH_VERSION=	${PORTVERSION}

@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	wget
-DISTVERSION=	1.19.4
-PORTREVISION=	1
+DISTVERSION=	1.18
+PORTREVISION=	2
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	GNU
-EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
@@ -46,7 +45,7 @@ PCRE_CONFIGURE_ENV_OFF=	ac_cv_header_pcre_h=no
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	ssl
+USE_OPENSSL=	yes
 CONFIGURE_ARGS+=--with-ssl=openssl --with-libssl-prefix=${OPENSSLBASE}
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}

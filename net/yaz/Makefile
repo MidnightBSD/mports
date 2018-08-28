@@ -2,7 +2,6 @@
 
 PORTNAME=	yaz
 PORTVERSION=	4.2.65
-PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/yaz/
 
@@ -13,8 +12,9 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	icuuc:${PORTSDIR}/devel/icu
 
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-USES=		pathfix pkgconfig iconv ssl
+USES=		pathfix pkgconfig iconv
 USE_GNOME=	libxml2 libxslt
 USE_LDCONFIG=	yes
 

@@ -2,32 +2,37 @@
 # $FreeBSD: ports/net/liferea/Makefile,v 1.148 2010/12/04 07:32:56 ade Exp $
 
 PORTNAME=	liferea
-DISTVERSION=	1.12-rc3
+PORTVERSION=	1.6.5
 CATEGORIES=	net gnome
-MASTER_SITES=	https://github.com/lwindolf/liferea/releases/download/v${PORTVERSION:S/.r/-rc/}/
+MASTER_SITES=	SF/${PORTNAME}/Liferea%20Stable/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple RSS/RDF feed reader
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
-LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
-		libpeas-1.0.so:devel/libpeas \
-		libjson-glib-1.0.so:devel/json-glib
-RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas
+LIB_DEPENDS=	libwebkitgtk-1.0.so:www/webkit-gtk2
 
-USES=		desktop-file-utils gettext gmake gnome libtool localbase \
-		pathfix pkgconfig python:3.4+ sqlite tar:bzip2
-USE_GNOME=	cairo dconf:run gtk30 intltool introspection \
-		libxslt libxml2
+USE_GNOME=	gnomeprefix libglade2 gconf2
+USES=	libtool gmake sqlite
 GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--enable-introspection
+CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
+MAKE_JOBS_SAFE=	yes
 
-GLIB_SCHEMAS=	net.sf.liferea.gschema.xml
+GCONF_SCHEMAS=	liferea.schemas
 INSTALLS_ICONS=	yes
 
-.include <bsd.port.mk>
+OPTIONS=	LIBNOTIFY "Enable libnotify support" on
+
+.include <bsd.port.pre.mk>
+
+.ifdef WITHOUT_LIBNOTIFY
+CONFIGURE_ARGS+=--disable-libnotify
+PLIST_SUB+=	NOTIFY="@comment "
+.else
+LIB_DEPENDS+=	notify.1:${PORTSDIR}/devel/libnotify
+PLIST_SUB+=	NOTIFY=""
+.endif
+
+.include <bsd.port.post.mk>

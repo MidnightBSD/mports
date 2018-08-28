@@ -80,7 +80,8 @@ PATCHFILES+=	ucspi-rss.diff:rss
 .endif
 
 .if ${PORT_OPTIONS:MSSL}
-EXTENSIONS+=	ssl
+# we can't use USE_OPENSSL=yes after including bsd.port.pre.mk
+.include "${PORTSDIR}/Mk/bsd.openssl.mk"
 PATCH_SITES+=	http://www.nrg4u.com/qmail/:ssl
 PATCHFILES+=	ucspi-tcp-ssl-20050405.patch.gz:ssl
 .endif

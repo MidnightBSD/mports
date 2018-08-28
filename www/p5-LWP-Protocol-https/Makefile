@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	LWP-Protocol-https
-PORTVERSION=	6.07
+PORTVERSION=	6.06
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -17,8 +17,7 @@ LICENSE_COMB=	dual
 # We remove p5-libwww here to avoid cyclic dependency
 BUILD_DEPENDS=	p5-IO-Socket-SSL>=1.54:${PORTSDIR}/security/p5-IO-Socket-SSL \
 		p5-Mozilla-CA>=20110101:${PORTSDIR}/www/p5-Mozilla-CA \
-		p5-Net-HTTP>=6:${PORTSDIR}/net/p5-Net-HTTP \
-		p5-libwww>=6.06:www/p5-libwww
+		p5-Net-HTTP>=6:${PORTSDIR}/net/p5-Net-HTTP
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes

@@ -6,7 +6,7 @@ USE_PHPEXT=   yes
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	71
 PHP_DEFAULT=	7.1
-IGNORE_WITH_PHP=	56 70
+IGNORE_WITH_PHP=	55 56 70
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
@@ -14,8 +14,6 @@ PATCHDIR=	${.CURDIR}/files
 PLIST=		${NONEXISTENT}
 
 EXTRACT_AFTER_ARGS?=	${EXTSUBDIR}
-
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .if ${PHP_MODNAME} == "bcmath"
 CONFIGURE_ARGS+=--enable-bcmath
@@ -91,7 +89,7 @@ CONFIGURE_ARGS+=--enable-ftp \
 		--with-openssl-dir=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-EXTENSIONS+=    ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "gd"
@@ -148,7 +146,7 @@ CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
 		--with-imap-ssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-EXTENSIONS+=    ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "intl"
@@ -208,7 +206,7 @@ CONFIGURE_ARGS+=--enable-odbc \
 CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
 
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-EXTENSIONS+=    ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
@@ -229,9 +227,7 @@ CONFIGURE_ARGS+=--enable-pdo
 .if ${PHP_MODNAME} == "pdo_dblib"
 CONFIGURE_ARGS+=--with-pdo-dblib=${LOCALBASE}
 
-#USE_PHP=	pdo:build
-USE_PHP=	pdo
-USE_PHP_BUILD=	yes
+USE_PHP=	pdo:build
 
 OPTIONS_DEFINE=	MSSQL
 
@@ -242,18 +238,14 @@ MSSQL_DESC=	Enable Microsoft SQL Server support
 CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
 
 USES+=	firebird
-#USE_PHP=	pdo:build
-USE_PHP=	pdo
-USE_PHP_BUILD=	yes
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_odbc"
 LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
 
-#USE_PHP=       pdo:build
-USE_PHP=        pdo
-USE_PHP_BUILD=  yes
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_mysql"
@@ -262,9 +254,7 @@ OPTIONS_DEFAULT=MYSQLND
 
 MYSQLND_DESC=	Use MySQL Native Driver
 
-#USE_PHP=       pdo:build
-USE_PHP=        pdo
-USE_PHP_BUILD=  yes
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_pgsql"
@@ -272,18 +262,14 @@ USES+=		pgsql
 
 CONFIGURE_ARGS+=--with-pdo-pgsql=${LOCALBASE}
 
-#USE_PHP=       pdo:build
-USE_PHP=        pdo
-USE_PHP_BUILD=  yes
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_sqlite"
 USES+=		sqlite
 CONFIGURE_ARGS+=--with-pdo-sqlite=${LOCALBASE}
 
-#USE_PHP=       pdo:build
-USE_PHP=        pdo
-USE_PHP_BUILD=  yes
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pgsql"
@@ -296,9 +282,7 @@ CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
 CONFIGURE_ARGS+=--enable-phar \
 		--with-pcre-dir=${LOCALBASE}
 
-#USE_PHP=       hash:build
-USE_PHP=        hash
-USE_PHP_BUILD=  yes
+USE_PHP=	hash:build
 .endif
 
 .if ${PHP_MODNAME} == "posix"
@@ -348,7 +332,7 @@ CONFIGURE_ENV+=	ac_cv_buggy_snprint_value="no"
 
 LIB_DEPENDS+=	libnetsnmp.so:net-mgmt/net-snmp
 LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
-EXTENSIONS+=    ssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "soap"
@@ -401,8 +385,7 @@ CONFIGURE_ARGS+=--enable-wddx \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	xml session
-USE_PHP_BUILD=  yes
+USE_PHP=	xml:build session:build
 .endif
 
 .if ${PHP_MODNAME} == "xml"
@@ -418,9 +401,7 @@ CONFIGURE_ARGS+=--enable-xmlreader \
 
 USE_GNOME=	libxml2
 
-#USE_PHP=	dom:build
-USE_PHP=	dom
-USE_PHP_BUILD=  yes
+USE_PHP=	dom:build
 .endif
 
 .if ${PHP_MODNAME} == "xmlrpc"
@@ -433,8 +414,7 @@ USE_GNOME=	libxml2
 
 PHP_HEADER_DIRS=libxmlrpc
 
-USE_PHP=	xml
-USE_PHP_BUILD=  yes
+USE_PHP=	xml:build
 .endif
 
 .if ${PHP_MODNAME} == "xmlwriter"
@@ -448,8 +428,7 @@ USE_GNOME=      libxml2
 CONFIGURE_ARGS+=--with-xsl=${LOCALBASE}
 
 USE_GNOME=	libxslt
-USE_PHP=	dom xml
-USE_PHP_BUILD=  yes
+USE_PHP=	dom:build xml:build
 .endif
 
 .if ${PHP_MODNAME} == "zip"

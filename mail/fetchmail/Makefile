@@ -8,7 +8,7 @@
 
 PORTNAME=	fetchmail
 PORTVERSION=	6.3.26
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF/${PORTNAME}/branch_6.3/ \
 		http://mandree.home.pages.de/${PORTNAME}/
@@ -28,8 +28,9 @@ USE_RC_SUBR=	fetchmail
 FETCHMAILRC=	${PREFIX}/etc/fetchmailrc
 SUB_FILES=	pkg-message
 
-USES=		gmake ssl tar:xz
+USES=		gmake tar:xz
 GNU_CONFIGURE=	yes
+USE_OPENSSL=	yes
 CONFIGURE_ARGS=	--enable-opie --enable-RPA --enable-SDPS \
 		--without-hesiod --enable-fallback=no \
 		--with-ssl=${OPENSSLBASE}

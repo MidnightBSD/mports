@@ -6,7 +6,6 @@
 
 PORTNAME=	ulxmlrpcpp
 PORTVERSION=	1.7.5
-PORTREVISION=	2
 CATEGORIES=	net devel
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -16,18 +15,20 @@ COMMENT=	Ultra lightweight xml-rpc library written in C++
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libexpat.so:textproc/expat2
+LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		tar:bzip2 pathfix iconv libtool ssl
+USES=		tar:bzip2 pathfix iconv libtool
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	PTHREAD_LIBS="-lpthread"
-INSTALL_TARGET=	install-strip
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
+		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+		PTHREAD_LIBS="${PTHREAD_LIBS}"
 USE_LDCONFIG=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS=	-I${LOCALBASE}/include
+LDFLAGS=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e \

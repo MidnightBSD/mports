@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php70
-PORTVERSION=	7.0.31
+PORTVERSION=	7.0.19
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -14,7 +14,8 @@ COMMENT=	PHP Scripting Language
 
 LICENSE=	php
 
-USES+=		autoreconf:build tar:xz cpe
+USES+=		tar:xz cpe
+USE_GCC=	4.8+
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)

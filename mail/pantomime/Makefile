@@ -2,7 +2,6 @@
 
 PORTNAME=	pantomime
 PORTVERSION=	1.2.2
-PORTREVISION=	1
 CATEGORIES=	mail gnustep
 MASTER_SITES=	http://download.gna.org/gnustep-nonfsf/
 DISTNAME=	Pantomime-${PORTVERSION}
@@ -16,7 +15,8 @@ LICENSE=	lgpl2.1
 # it and we end up picking up the header.
 MAKE_ARGS+=	LIBRARIES_DEPEND_UPON='${ICONV_LIB} -lssl'
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-USES=		gnustep iconv ssl
+USES=		gnustep iconv
+USE_OPENSSL=	yes
 USE_GNUSTEP=	back build
 USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 

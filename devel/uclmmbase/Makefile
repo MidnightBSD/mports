@@ -2,7 +2,7 @@
 
 PORTNAME=	uclmmbase
 PORTVERSION=	1.2.18
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	devel ipv6
 MASTER_SITES=	http://aldan.algebra.com/~mi/port-stuff/
 DISTNAME=	common-${PORTVERSION}
@@ -15,8 +15,9 @@ LICENSE=	bsd4
 OPTIONS_DEFINE=	IPV6
 
 WRKSRC=		${WRKDIR}/common
-USES=		uidfix ssl tar:xz
+USES=		uidfix tar:xz
 GNU_CONFIGURE=	yes
+USE_OPENSSL=	yes
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 

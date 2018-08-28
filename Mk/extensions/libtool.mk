@@ -16,31 +16,24 @@
 .if !defined(_INCLUDE_USES_LIBTOOL_MK)
 _INCLUDE_USES_LIBTOOL_MK=	yes
 _USES_POST+=	libtool
+libtool_ARGS:=	${libtool_ARGS:C/,/ /}
 
 .if ${libtool_ARGS:Mbuild}
-BUILD_DEPENDS+=	libtool:devel/libtool
+BUILD_DEPENDS+=	libtool:${PORTSDIR}/devel/libtool
 .endif
 .endif
 
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_LIBTOOL_POST_MK)
 _INCLUDE_USES_LIBTOOL_POST_MK=	yes
 
-_USES_configure+=	480:patch-libtool
 patch-libtool:
 	@${FIND} ${WRKDIR} \( -name configure -or -name ltconfig \)	\
-		-type f | while read i; do ${SED} -i.libtool.bak	\
+		-type f | while read i; do ${SED} -i.bak		\
 		-e '/midnightbsd\*/!s/^ *freebsd\*[ )]/midnightbsd* | &/'	\
 		-e '/gcc_dir=\\`/s/gcc /$$CC /'				\
 		-e '/gcc_ver=\\`/s/gcc /$$CC /'				\
 		-e '/link_all_deplibs[0-9A-Z_]*=/s/=unknown/=no/'	\
-		-e '/archive_expsym_cmds[0-9A-Z_]*=.$$CC.*-retain-/ {	\
-		    s/-retain-symbols-file/-version-script/;		\
-		    s/$$export_symbols/$$lib-ver/;			\
-		    s/$$CC/echo "{ global:" > $$lib-ver~		\
-		    sed -e "s|$$|;|" < $$export_symbols >> $$lib-ver~	\
-		    echo "local: *; };" >> $$lib-ver~&/; }'		\
 		-e '/objformat=/s/echo aout/echo elf/'			\
-		-e '/STRIP -V/s/"GNU strip"/"strip"/'			\
 		-e "/freebsd-elf\\*)/,/;;/ {				\
 		    /deplibs_check_method=/s/=.*/=pass_all/;		\
 		    /library_names_spec=.*\\.so/			\
@@ -52,7 +45,7 @@ patch-libtool:
 			\$$libname\$$release\$$shared_ext\$$major	\
 			\$$libname\$$shared_ext'			\
 		    soname_spec='\$$libname\$$release\$$shared_ext\$$major'/; \
-		    }" $${i} && ${TOUCH} -mr $${i}.libtool.bak $${i}; done
+		    }" $${i} && ${TOUCH} -mr $${i}.bak $${i}; done
 
 	@${FIND} ${WRKDIR} -type f -name ltmain.sh |			\
 		${XARGS} ${REINPLACE_CMD}				\
@@ -65,9 +58,8 @@ patch-libtool:
 		-e '/if.*prog.*linkmode.*relink !=.*mode/s/if.*;/if :;/'\
 		-e '/if.*linkmode.*prog.*mode.* = relink/s/||.*;/;/'	\
 		-e '/if.*prog.*linkmode.*relink = .*mode/s/||.*;/;/'	\
-		-e 's/|-p|-pg|/|-B*|-fstack-protector*|-fuse-ld=*|-p|-pg|/'
+		-e 's/|-p|-pg|/|-B*|-p|-pg|/'
 
-_USES_stage+=	790:patch-lafiles
 patch-lafiles:
 .if ${libtool_ARGS:Mkeepla}
 	@${FIND} ${FAKE_DESTDIR} -type f -name '*.la' |			\

@@ -43,7 +43,7 @@ CONFIGURE_ENV+=	LIBVER="${LIBVER}" PTHREAD_LIBS="${PTHREAD_LIBS}"
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-EXTENSIONS+=    ssl
+USE_OPENSSL=	yes
 .else
 CONFIGURE_ARGS+=	--disable-ssl
 .endif

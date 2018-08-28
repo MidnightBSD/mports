@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-chips
-PORTVERSION=	1.2.7
+PORTVERSION=	1.2.5
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

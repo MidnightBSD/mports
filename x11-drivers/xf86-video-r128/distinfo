@@ -1,3 +1,2 @@
-TIMESTAMP = 1532187421
-SHA256 (xorg/driver/xf86-video-r128-6.11.0.tar.bz2) = 5be571dda925810ab22921f5f97c5ee4e9ec4df52cbe77b0f21e370473e5db6a
-SIZE (xorg/driver/xf86-video-r128-6.11.0.tar.bz2) = 482903
+SHA256 (xorg/driver/xf86-video-r128-6.9.2.tar.bz2) = 8b2d295f1842d07304a75da1cfb9bf139b320a6539970eaf8d5ecc010cd36ee0
+SIZE (xorg/driver/xf86-video-r128-6.9.2.tar.bz2) = 462266

@@ -11,5 +11,5 @@
 _INCLUDE_USES_LIBEDIT_MK=	yes
 .include "${MPORTEXTENSIONS}/localbase.mk"
 
-LIB_DEPENDS+=	libedit.so.0:devel/libedit
+LIB_DEPENDS+=	libedit.so.0:${PORTSDIR}/devel/libedit
 .endif

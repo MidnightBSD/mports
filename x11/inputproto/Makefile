@@ -2,14 +2,12 @@
 # $MidnightBSD$
 
 PORTNAME=	inputproto
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Input extension headers
-
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 

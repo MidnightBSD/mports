@@ -2,7 +2,7 @@
 # $FreeBSD: head/dns/py-idna/Makefile 400660 2015-11-02 16:30:46Z koobs $
 
 PORTNAME=	idna
-PORTVERSION=	2.6
+PORTVERSION=	2.0
 CATEGORIES=	dns python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ COMMENT=	Internationalized Domain Names in Applications (IDNA)
 LICENSE=	python
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist distutils
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test

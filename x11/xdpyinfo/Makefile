@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xdpyinfo
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

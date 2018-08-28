@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tiff
-PORTVERSION=	4.0.9
-PORTREVISION=	1
+PORTVERSION=	4.0.8
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.osgeo.org/libtiff/
 

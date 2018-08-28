@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.60.0
+PORTVERSION=	7.50.3
 CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -51,7 +51,7 @@ INSTALL_TARGET=	install-strip
 TEST_ENV=	${MAKE_ENV} LC_ALL=C
 TEST_TARGET=	test
 USE_PERL5=	build
-USES=		gmake libtool pathfix perl5 tar:xz
+USES=		gmake libtool pathfix perl5 tar:lzma
 
 .if !defined(BUILDING_HIPHOP)
 USE_LDCONFIG=	yes
@@ -136,7 +136,7 @@ OPENSSL_CONFIGURE_OFF=	--without-ssl
 OPENSSL_CONFIGURE_ON=	--with-ssl=${OPENSSLBASE}
 OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
 OPENSSL_LDFLAGS=	-L${OPENSSLLIB}
-OPENSSL_USE=		SSL=yes
+OPENSSL_USE=		OPENSSL=yes
 POLARSSL_CONFIGURE_OFF=	--without-polarssl
 POLARSSL_CONFIGURE_ON=	--with-polarssl=${LOCALBASE}
 POLARSSL_LIB_DEPENDS=	libmbedtls.so.9:${PORTSDIR}/security/polarssl13

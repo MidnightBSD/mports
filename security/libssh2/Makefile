@@ -33,7 +33,7 @@ ZLIB_CONFIGURE_WITH=	libz
 .include <bsd.mport.options.mk>
 
 .if ! ${PORT_OPTIONS:MGCRYPT}
-EXTENSIONS+=	ssl
+USE_OPENSSL=	yes
 .endif
 
 .include <bsd.port.pre.mk>

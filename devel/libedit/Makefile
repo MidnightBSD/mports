@@ -3,29 +3,26 @@
 
 PORTNAME=	libedit
 PORTVERSION=	${EDITVERSION}.${EDITDATE}
-PORTREVISION=	2
-PORTEPOCH=	1
+DISTVERSION=	${EDITDATE}-${EDITVERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	https://thrysoee.dk/editline/
-DISTNAME=	${PORTNAME}-${EDITDATE}-${EDITVERSION}
+MASTER_SITES=	http://thrysoee.dk/editline/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line editor library
 
 LICENSE=	bsd2
 
-USES=		libtool ncurses pathfix
+USES=		libtool pathfix
 EDITVERSION=	3.1
-EDITDATE=	20170329
+EDITDATE=	20150325
+WRKSRC=		${WRKDIR}/${PORTNAME}-${EDITDATE}-${EDITVERSION}
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--enable-widec
-LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_ENV=	LC_ALL=C
 
-CONFLICTS_INSTALL=	editline-*
-
-post-install:
-	${MV} ${STAGEDIR}${PREFIX}/man/man3/history.3 ${STAGEDIR}${PREFIX}/man/man3/el_history.3
+CONFLICT_INSTALL=	editline-*
 
 .include <bsd.port.mk>

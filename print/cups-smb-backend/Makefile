@@ -4,7 +4,7 @@
 
 PORTNAME=	cups-smb-backend
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -14,11 +14,12 @@ COMMENT=	CUPS backend for printing to Windows servers
 
 LICENSE=	unknown
 
-RUN_DEPENDS=	${LOCALBASE}/sbin/cupsd:print/cups
+RUN_DEPENDS=	smbspool:${PORTSDIR}/net/${SAMBA_PORT} \
+		${LOCALBASE}/sbin/cupsd:${PORTSDIR}/print/cups
 
-USES=		samba:run # smbspool
 NO_BUILD=	yes
 PLIST_FILES=	libexec/cups/backend/smb
+SAMBA_PORT?=	samba43
 SUB_FILES=	pkg-message
 
 do-install:

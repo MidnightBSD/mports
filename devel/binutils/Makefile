@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	binutils
-PORTVERSION=	2.30
+PORTVERSION=	2.28
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
@@ -22,8 +22,7 @@ OPTIONS_DEFINE=	NLS
 LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
 
-USES=		bison cpe gmake libtool tar:bzip2 compiler:env
-CPE_VENDOR=	gnu
+USES=		bison gmake libtool tar:bzip2 compiler:env
 GNU_CONFIGURE=	yes
 
 .if defined(PKGNAMEPREFIX)

@@ -2,7 +2,7 @@
 
 PORTNAME=	libimobiledevice
 PORTVERSION=	1.1.6
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES?=	comms
 MASTER_SITES=	http://www.${PORTNAME}.org/downloads/
 
@@ -13,7 +13,8 @@ LICENSE?=	lgpl2.1
 
 SLAVE_PORT?=	no
 
-USES+=		libtool pathfix pkgconfig ssl tar:bzip2
+USES+=		libtool pathfix pkgconfig tar:bzip2
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=openssl_CFLAGS="-I${OPENSSLINC}" \
 		openssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"

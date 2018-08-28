@@ -1,5 +1,5 @@
 --- hald/freebsd/hf-usb2.c.orig	2009-08-24 14:42:29.000000000 +0200
-+++ hald/freebsd/hf-usb2.c	2014-02-06 08:22:11.000000000 +0100
++++ hald/freebsd/hf-usb2.c	2011-06-28 16:18:02.000000000 +0200
 @@ -22,7 +22,7 @@
   **************************************************************************/
  
@@ -9,7 +9,7 @@
  #endif
  
  #include <string.h>
-@@ -42,246 +42,213 @@
+@@ -42,246 +42,200 @@
  static struct libusb20_backend *hf_usb2_be = NULL;
  
  static void
@@ -61,7 +61,7 @@
 +			if (driver) {
 +				if (!strcmp(driver, "ukbd"))
 +					hf_device_set_input(device, "keyboard", "keys", NULL);
-+				else if (!strcmp(driver, "ums") || !strcmp(driver, "atp") || !strcmp(driver, "wsp")) {
++				else if (!strcmp(driver, "ums") || !strcmp(driver, "atp")) {
 +					hf_device_set_input(device, "mouse", NULL, devname);
 +					hf_runner_run_sync(device, 0, "hald-probe-mouse", NULL);
 +				} else if (!strcmp(driver, "uhid")) {
@@ -94,19 +94,6 @@
 +
 +			hf_usb_device_compute_udi(device);
 +			hf_device_add(device);
-+
-+			/*
-+			 * The SCSI bus could already exist; make it a child of
-+			 * this USB interface.
-+			 */
-+			if (driver && !strcmp(driver, "umass")) {
-+				HalDevice *scsi_bus;
-+				scsi_bus = hf_device_store_match(hald_get_gdl(),
-+				    "scsi_host.freebsd.driver", HAL_PROPERTY_TYPE_STRING, driver,
-+				    "scsi_host.freebsd.unit", HAL_PROPERTY_TYPE_INT32, hal_device_property_get_int(device, "freebsd.unit"), NULL);
-+				if (scsi_bus)
-+					hal_device_property_set_string(scsi_bus, "info.parent", hal_device_get_udi(device));
-+			}
 +		}
 +	}
  }

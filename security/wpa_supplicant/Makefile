@@ -3,7 +3,7 @@
 
 PORTNAME=	wpa_supplicant
 PORTVERSION=	2.6
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	security net
 MASTER_SITES=	https://w1.fi/releases/
 PATCH_SITES=	https://w1.fi/security/2017-1/
@@ -23,7 +23,8 @@ COMMENT=	Supplicant (client) for WPA/802.1x protocols
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/README
 
-USES=		cpe gmake readline ssl
+USE_OPENSSL=	yes
+USES=		cpe gmake readline
 BUILD_WRKSRC=	${WRKSRC}/wpa_supplicant
 INSTALL_WRKSRC=	${WRKSRC}/src
 CFLAGS+=	${CPPFLAGS} # USES=readline only augments CPPFLAGS and LDFLAGS

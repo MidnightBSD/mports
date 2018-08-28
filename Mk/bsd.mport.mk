@@ -368,14 +368,14 @@ _LOAD_${EXT:tu}_EXT=	yes
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
-		gcc fmake gmake bison local perl5 \
+		gcc fmake gmake bison local perl5 openssl \
 		apache autotools bdb cmake cpe display dos2unix \
 		efl emacs execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
 		ghostscript gnome gnustep groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
-		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
-		pgsql php python java qt ruby samba scons sdl sqlite ssl \
+		metaport makeself mono motif mysql ncurses objc ocaml openal \
+		pgsql php python java qt ruby scons sdl sqlite \
 		tar tcl tk tex wx xfce zip
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
@@ -559,8 +559,7 @@ PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} \
 SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
-		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR} \
-		SED=${SED} 
+		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
 PLIST_REINPLACE+=	group mode owner stopdaemon rmtry
 PLIST_REINPLACE_RMTRY=s!^@rmtry \(.*\)!@unexec rm -f %D/\1 2>/dev/null || true!
@@ -648,20 +647,6 @@ EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
 .endif
 .if defined(USE_MAKESELF)
 EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
-.endif
-
-_TEST_LD=/usr/bin/ld
-.if defined(LLD_UNSAFE) && ${_TEST_LD:tA} == "/usr/bin/ld.lld"
-LDFLAGS+=       -fuse-ld=bfd
-.  if !defined(USE_BINUTILS)
-.    if exists(/usr/bin/ld.bfd)
-LD=     /usr/bin/ld.bfd
-CONFIGURE_ENV+= LD=${LD}
-MAKE_ENV+=      LD=${LD}
-.    else
-USE_BINUTILS=   yes
-.    endif
-.  endif
 .endif
 
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
@@ -872,6 +857,7 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} \
 			DESTDIR=${DESTDIR} \
 			PREFIX=${PREFIX} \
 			LOCALBASE=${LOCALBASE_REL} \
+			LIBDIR="${LIBDIR}" \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
@@ -1050,7 +1036,6 @@ MPORT_UPDATE?=		/usr/libexec/mport.update
 MPORT_CHECK_OLDER?=	/usr/libexec/mport.check-for-older
 MPORT_INFO?=		/usr/libexec/mport.info
 MPORT_LIST?=		/usr/libexec/mport.list
-MPORT_CMD?=		/usr/sbin/mport
 
 .if defined(DESTDIR)
 MPORT_INSTALL:=		${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
@@ -1061,7 +1046,6 @@ MPORT_UPDATE:=		${CHROOT} ${DESTDIR} ${MPORT_UPDATE}
 MPORT_CHECK_OLDER:=	${CHROOT} ${DESTDIR} ${MPORT_CHECK_OLDER}
 MPORT_INFO:=		${CHROOT} ${DESTDIR} ${MPORT_INFO}
 MPORT_LIST:=		${CHROOT} ${DESTDIR} ${MPORT_LIST}
-MPORT_CMD:=		${CHROOT} ${DESTDIR} ${MPORT_CMD}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
@@ -1071,8 +1055,8 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 					-t "${CATEGORIES}"
 
-.if defined(PKG_NOTE_cpe)
-MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_cpe}
+.if ${OSVERSION} > 6000 && defined(PKG_NOTE_CPE)
+MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_CPE}
 .endif
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
 					
@@ -1502,7 +1486,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	tcl textproc tk \
 	ukrainian vietnamese windowmaker wayland www \
 	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
-	x11-toolkits x11-wm xfce zope
+	x11-toolkits x11-wm xfce
 
 check-categories:
 .for cat in ${CATEGORIES}
@@ -1537,11 +1521,10 @@ PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_CMD?=		./${CONFIGURE_SCRIPT}
-
-.if (${OSVERSION} < 10001)
-CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
+.if (${OSVERSION} < 4016)
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd7.0
 .else
-CONFIGURE_TARGET?=	${ARCH}-portbld-midnightbsd${OSREL}
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
 .endif
 CONFIGURE_TARGET:=      ${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
@@ -1558,36 +1541,26 @@ GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
-.if defined(CROSS_TOOLCHAIN)
-CROSS_HOST=             ${CROSS_TOOLCHAIN:C,-.*$,,}-${OPSYS:tl}
-CONFIGURE_ARGS+=        --host=${CROSS_HOST}
-.endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
 SET_LATE_CONFIGURE_ARGS= \
      _LATE_CONFIGURE_ARGS="" ; \
-        if [ -z "${CONFIGURE_ARGS:M--localstatedir=*:Q}" ] && \
-           ${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- --localstatedir > /dev/null; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--mandir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/man" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--enable-jobserver\[.*\#\]'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --enable-jobserver=${MAKE_JOBS_NUMBER}" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--infodir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${GNU_CONFIGURE_PREFIX}/${INFO_PATH}/${INFO_SUBDIR}" ; \
-        fi ; \
-        if [ -z "`${CONFIGURE_CMD} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
-        else \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
-        fi ;
+	_configure_help="`./${CONFIGURE_SCRIPT} --help 2>&1`"; \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null  && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--mandir' >/dev/null); then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
+	fi ;\
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
+		 _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
+	fi ; \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--infodir' >/dev/null); then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}"; \
+	fi ;\
+	if [ -z "`./${CONFIGURE_SCRIPT} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
+	else \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
+	fi ;
 .endif
 
 # Passed to most of script invocations
@@ -1612,7 +1585,7 @@ INFO_PATH?=	info
 .endif
 
 .if defined(INFO)
-RUN_DEPENDS+=	indexinfo:print/indexinfo
+RUN_DEPENDS+=	indexinfo:${PORTSDIR}/print/indexinfo
 
 . for D in ${INFO:H}
 RD:=	${D}
@@ -2285,20 +2258,19 @@ do-configure:
 	done
 .endif
 .if defined(HAS_CONFIGURE)
-	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@(cd ${CONFIGURE_WRKSRC} && \
 	    ${SET_LATE_CONFIGURE_ARGS} \
 		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
-	    INSTALL="/usr/bin/install -c" \
+	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}"\
+	    INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
 	    INSTALL_DATA="${INSTALL_DATA}" \
 	    INSTALL_LIB="${INSTALL_LIB}" \
 	    INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 	    INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 	    ${CONFIGURE_ENV} ${CONFIGURE_CMD} ${CONFIGURE_ARGS}; then \
 			 ${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-			 (${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT_80} ; \
+			 (${ECHO_MSG} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
 			 ${FALSE}; \
 		fi)
 .endif

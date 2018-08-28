@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xgamma
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

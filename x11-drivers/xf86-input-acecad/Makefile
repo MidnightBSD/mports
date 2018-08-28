@@ -2,7 +2,7 @@
 
 PORTNAME=	xf86-input-acecad
 PORTVERSION=	1.5.0
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

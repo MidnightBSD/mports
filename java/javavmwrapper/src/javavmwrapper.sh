@@ -194,7 +194,7 @@ sortConfiguration () {
                         JAVAVM=
                         continue
                         ;;
-                    linux-sun-jdk*|linux-oracle-jdk*)
+                    diablo-jdk*)
                         case "${_VM}" in
                             open*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
@@ -207,9 +207,35 @@ sortConfiguration () {
                                 ;;
                         esac
                         ;;
-                    linux-sun-jre*|linux-oracle-jre*)
+                    diablo-jre*|jdk*)
                         case "${_VM}" in
-                            open*|linux-sun*|linux-oracle*)
+                            open*|diablo*)
+                                _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
+                                continue
+                                ;;
+                            *)
+                                _JAVAVMS="${_JAVAVMS}:${JAVAVM}:${_JAVAVM}"
+                                JAVAVM=
+                                continue
+                                ;;
+                        esac
+                        ;;
+                    jre*|linux-sun-jdk*)
+                        case "${_VM}" in
+                            open*|diablo*|j*)
+                                _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
+                                continue
+                                ;;
+                            *)
+                                _JAVAVMS="${_JAVAVMS}:${JAVAVM}:${_JAVAVM}"
+                                JAVAVM=
+                                continue
+                                ;;
+                        esac
+                        ;;
+                    linux-sun-jre*)
+                        case "${_VM}" in
+                            open*|diablo*|j*|linux-sun*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
                                 continue
                                 ;;
@@ -501,17 +527,17 @@ setJavaHome() {
         _JAVAVM_VERSION=
         for version in ${JAVA_VERSION}; do
             case "${version}" in
+                1.5)
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6"
+                    ;;
+                1.5+)
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6 1.7"
+                    ;;
                 1.6+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6 1.7 1.8 1.9"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6 1.7"
                     ;;
                 1.7+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.7 1.8 1.9"
-                    ;;
-                1.8+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.8 1.9"
-                    ;;
-                1.9+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.9"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.7"
                     ;;
                 *)
                     _JAVAVM_VERSION="${_JAVAVM_VERSION} ${version}"
@@ -545,7 +571,7 @@ setJavaHome() {
         if [ -n "${JAVA_OS}" ]; then
             _JAVAVM_OS=
             case "${_JAVAVM_VM}" in
-                openjdk*)
+                diablo*|j*|openjdk*)
                     _JAVAVM_OS=native
                     ;;
                 linux*)
@@ -569,11 +595,8 @@ setJavaHome() {
                 openjdk*)
                     _JAVAVM_VENDOR=openjdk
                     ;;
-                linux-sun*)
+                linux*)
                     _JAVAVM_VENDOR=sun
-                    ;;
-                linux-oracle*)
-                    _JAVAVM_VENDOR=oracle
                     ;;
             esac
             for _JAVAVM_REQUESTED_VENDOR in ${JAVA_VENDOR}; do

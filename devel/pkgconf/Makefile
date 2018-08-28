@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	pkgconf
-PORTVERSION=	1.4.2
+PORTVERSION=	1.3.7
 CATEGORIES=	devel
-MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/ \
+MASTER_SITES=	http://rabbit.dereferenced.org/~nenolod/distfiles/ \
 		http://files.etoilebsd.net/pkgconf/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Utility to help to configure compiler and linker flags
 
 LICENSE=	iscl
 
-USES=		tar:xz libtool pathfix
+USES=		tar:xz libtool
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes

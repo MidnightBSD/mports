@@ -1,15 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	fontforge
-PORTVERSION=	20170731
+PORTVERSION=	20161005
+PORTREVISION=	0
 CATEGORIES=	print
-#DISTFILES=	# Empty but needed because of the freetype distfile
-DISTFILES=     ${DISTNAME}${EXTRACT_SUFX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GCC=	4.8+
 
@@ -26,7 +27,7 @@ LIB_DEPENDS=	libuninameslist.so:textproc/libuninameslist \
 
 USE_GITHUB=	yes
 
-USES=		autoreconf:build compiler desktop-file-utils gettext \
+USES=		autoreconf:build compiler desktop-file-utils execinfo gettext \
 		gmake iconv jpeg libtool pkgconfig python readline:port \
 		shared-mime-info shebangfix
 SHEBANG_FILES=	pycontrib/gdraw/__init__.py \
@@ -37,7 +38,7 @@ USE_GNOME=	cairo glib20 gtk20 libxml2 pango
 CONFIGURE_ARGS=	--enable-tile-path --enable-gtk2-use
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV+=	__FreeBSD_version=90100
+MAKE_ENV+=	-D__FreeBSD_version=90100
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -63,7 +64,7 @@ MASTER_SITES+=	http://savannah.nongnu.org/download/freetype/:freetype \
 		http://www.funet.fi/pub/mirrors/ftp.freetype.org/freetype2/:freetype \
 		http://ftp.sunet.se/pub/text-processing/freetype/freetype2/:freetype \
 		ftp://ftp.freetype.org/freetype/freetype2/:freetype
-FREETYPE_VERSION=	2.8
+FREETYPE_VERSION=	2.6.3
 FREETYPE_SRC=	freetype-${FREETYPE_VERSION}.tar.bz2
 DISTFILES+=	${FREETYPE_SRC:C/$/:freetype/}
 CONFIGURE_ARGS+=	--enable-freetype-debugger=${WRKDIR}/freetype-${FREETYPE_VERSION}

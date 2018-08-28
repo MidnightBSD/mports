@@ -117,13 +117,13 @@ include/evolution/e-util/e-category-editor.h
 include/evolution/e-util/e-cell-checkbox.h
 include/evolution/e-util/e-cell-combo.h
 include/evolution/e-util/e-cell-date-edit.h
-include/evolution/e-util/e-cell-date-int.h
 include/evolution/e-util/e-cell-date.h
 include/evolution/e-util/e-cell-hbox.h
 include/evolution/e-util/e-cell-number.h
 include/evolution/e-util/e-cell-percent.h
 include/evolution/e-util/e-cell-pixbuf.h
 include/evolution/e-util/e-cell-popup.h
+include/evolution/e-util/e-cell-renderer-color.h
 include/evolution/e-util/e-cell-size.h
 include/evolution/e-util/e-cell-text.h
 include/evolution/e-util/e-cell-toggle.h
@@ -138,7 +138,6 @@ include/evolution/e-util/e-client-selector.h
 include/evolution/e-util/e-color-chooser-widget.h
 include/evolution/e-util/e-color-combo.h
 include/evolution/e-util/e-config.h
-include/evolution/e-util/e-conflict-search-selector.h
 include/evolution/e-util/e-contact-store.h
 include/evolution/e-util/e-data-capture.h
 include/evolution/e-util/e-dateedit.h
@@ -245,7 +244,6 @@ include/evolution/e-util/e-source-combo-box.h
 include/evolution/e-util/e-source-config-backend.h
 include/evolution/e-util/e-source-config-dialog.h
 include/evolution/e-util/e-source-config.h
-include/evolution/e-util/e-source-conflict-search.h
 include/evolution/e-util/e-source-selector-dialog.h
 include/evolution/e-util/e-source-selector.h
 include/evolution/e-util/e-source-util.h
@@ -440,12 +438,10 @@ include/evolution/mail/e-mail-label-tree-view.h
 include/evolution/mail/e-mail-message-pane.h
 include/evolution/mail/e-mail-migrate.h
 include/evolution/mail/e-mail-paned-view.h
-include/evolution/mail/e-mail-properties.h
 include/evolution/mail/e-mail-print-config-headers.h
 include/evolution/mail/e-mail-printer.h
 include/evolution/mail/e-mail-reader-utils.h
 include/evolution/mail/e-mail-reader.h
-include/evolution/mail/e-mail-remote-content.h
 include/evolution/mail/e-mail-request.h
 include/evolution/mail/e-mail-send-account-override.h
 include/evolution/mail/e-mail-sidebar.h
@@ -508,7 +504,6 @@ lib/evolution/libevolution-util.so
 lib/evolution/libgnomecanvas.so
 lib/evolution/modules/module-addressbook.so
 lib/evolution/modules/module-backup-restore.so
-%%BOGOFILTER%%lib/evolution/modules/module-bogofilter.so
 lib/evolution/modules/module-book-config-google.so
 %%LDAP%%lib/evolution/modules/module-book-config-ldap.so
 lib/evolution/modules/module-book-config-local.so
@@ -544,6 +539,7 @@ lib/evolution/plugins/liborg-gnome-evolution-attachment-reminder.so
 lib/evolution/plugins/liborg-gnome-evolution-bbdb.so
 lib/evolution/plugins/liborg-gnome-external-editor.so
 lib/evolution/plugins/liborg-gnome-face.so
+lib/evolution/plugins/liborg-gnome-itip-formatter.so
 lib/evolution/plugins/liborg-gnome-mail-notification.so
 lib/evolution/plugins/liborg-gnome-mail-to-task.so
 lib/evolution/plugins/liborg-gnome-mailing-list-actions.so
@@ -558,6 +554,7 @@ lib/evolution/plugins/org-gnome-evolution-attachment-reminder.eplug
 lib/evolution/plugins/org-gnome-evolution-bbdb.eplug
 lib/evolution/plugins/org-gnome-external-editor.eplug
 lib/evolution/plugins/org-gnome-face.eplug
+lib/evolution/plugins/org-gnome-itip-formatter.eplug
 lib/evolution/plugins/org-gnome-mail-notification.eplug
 lib/evolution/plugins/org-gnome-mail-to-task.eplug
 lib/evolution/plugins/org-gnome-mailing-list-actions.eplug
@@ -576,7 +573,6 @@ libexec/evolution/evolution-alarm-notify
 libexec/evolution/evolution-backup
 libexec/evolution/killev
 share/GConf/gsettings/evolution.convert
-%%BOGOFILTER%%share/appdata/evolution-bogofilter.metainfo.xml
 %%SPAMASSASSIN%%share/appdata/evolution-spamassassin.metainfo.xml
 share/appdata/evolution.appdata.xml
 share/applications/evolution.desktop
@@ -1028,6 +1024,7 @@ share/gtk-doc/html/evolution-util/ECellNumber.html
 share/gtk-doc/html/evolution-util/ECellPercent.html
 share/gtk-doc/html/evolution-util/ECellPixbuf.html
 share/gtk-doc/html/evolution-util/ECellPopup.html
+share/gtk-doc/html/evolution-util/ECellRendererColor.html
 share/gtk-doc/html/evolution-util/ECellSize.html
 share/gtk-doc/html/evolution-util/ECellText.html
 share/gtk-doc/html/evolution-util/ECellToggle.html

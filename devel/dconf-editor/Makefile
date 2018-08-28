@@ -1,29 +1,18 @@
 # $MidnightBSD$
 
-PORTNAME=	dconf-editor
-PORTVERSION=	3.22.1
-CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+PORTNAME=	dconf
+PORTREVISION=	0
+PKGNAMESUFFIX=	-editor
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Configuration database editor for GNOME
+COMMENT=	configuration editor for dconf
 
-LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
+DCONF_SLAVE=	editor
 
-BUILD_DEPENDS=	dconf>=0.23.2:devel/dconf \
-		vala>=0.18.1:lang/vala
-LIB_DEPENDS=	libdconf.so:devel/dconf
+MASTERDIR=	${.CURDIR}/../dconf
 
-PORTSCOUT=	limitw:1,even
+PLIST=		${.CURDIR}/pkg-plist
 
-USES=		gettext gmake gnome localbase pathfix \
-		pkgconfig tar:xz
-USE_GNOME=	cairo intltool gtk30 libxml2
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
-GLIB_SCHEMAS=	ca.desrt.dconf-editor.gschema.xml
+BUILD_WRKSRC=	${WRKSRC}/editor
+INSTALL_WRKSRC=	${WRKSRC}/editor
 
-.include <bsd.port.mk>
+.include "${MASTERDIR}/Makefile"

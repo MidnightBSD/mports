@@ -8,6 +8,7 @@ SUBDIR += bootstrap-openjdk
 SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
+SUBDIR += diablo-jdk16
 SUBDIR += hamcrest
 SUBDIR += intellij
 SUBDIR += intellij-fsnotifier
@@ -47,7 +48,6 @@ SUBDIR += openjdk6-jre
 SUBDIR += openjdk7
 SUBDIR += openjdk7-bin
 SUBDIR += openjdk8-bin
-SUBDIR += openjdk8-freebsd10
 SUBDIR += springframework
 SUBDIR += xdoclet
 

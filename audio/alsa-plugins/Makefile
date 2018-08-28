@@ -14,7 +14,7 @@ LICENSE=	lgpl2.1
 LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
 
 GNU_CONFIGURE=	yes
-USES=		libtool:keepla localbase pkgconfig tar:bzip2
+USES=		alias libtool:keepla localbase pkgconfig tar:bzip2
 EXTRA_PATCHES+=	${FILESDIR}/alsa-plugins.patch
 INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${.CURDIR}/../alsa-lib/files

@@ -2,7 +2,7 @@
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.85
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF/razor/${PORTNAME}/${PORTVERSION}
 
@@ -26,7 +26,6 @@ USES=		tar:bzip2
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${PERL} -pi -e 's|/etc/razor|${PREFIX}/etc|g'
-	@${REINPLACE_CMD} -e '/MAN5/s,man/man5,${SITE_MAN3_REL:S/3/5/},g' ${WRKSRC}/${CONFIGURE_SCRIPT}
-#	@${PERL} -pi -e 's,share/man,man,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
+	@${PERL} -pi -e 's,share/man,man,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
 .include <bsd.port.mk>

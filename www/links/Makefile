@@ -2,7 +2,7 @@
 
 PORTNAME=	links
 DISTVERSION=	2.13
-PORTREVISION=	1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://links.twibright.com/download/ LOCAL/bf
@@ -20,7 +20,8 @@ CONFIGURE_ARGS+=	--with-ssl --without-pmshell --without-atheos \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-USES=		ssl tar:bzip2
+USE_OPENSSL=	yes
+USES=		tar:bzip2
 
 OPTIONS_DEFINE=	CIPHERSTRING DIRECTFB IPV6 SVGALIB THREADS TRANS UTF8 X11
 

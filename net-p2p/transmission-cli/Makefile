@@ -2,7 +2,7 @@
 
 PORTNAME=	transmission
 PORTVERSION=	2.84
-PORTREVISION?=	3
+PORTREVISION?=	2
 CATEGORIES?=	net-p2p
 #MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 MASTER_SITES=	http://transmission.cachefly.net/
@@ -40,11 +40,12 @@ GEN_LIB_DEPENDS=libcurl.so:${PORTSDIR}/ftp/curl \
 		libminiupnpc.so:${PORTSDIR}/net/miniupnpc \
 		libnatpmp.so:${PORTSDIR}/net/libnatpmp \
 		libutp.so:${PORTSDIR}/net/libutp \
-		libevent.so:${PORTSDIR}/devel/libevent
+		libevent.so:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=transmission-web>=2.84:${PORTSDIR}/www/transmission-web
 
 # This is master port of transmission-*, so don't override USES definition 
-USES+=		gmake iconv libtool pkgconfig ssl
+USES+=		gmake iconv libtool pkgconfig
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include -DWITH_UTP=1
 LDFLAGS+=	-L${LOCALBASE}/lib

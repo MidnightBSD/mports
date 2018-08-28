@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentication Protocol library for X11
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
 USE_XORG=	xproto:both

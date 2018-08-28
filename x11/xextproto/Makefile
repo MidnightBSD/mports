@@ -6,9 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XExt extension headers
-
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 	
 XORG_CAT=	proto
 
