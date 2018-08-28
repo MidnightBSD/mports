@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Damage extension headers
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 

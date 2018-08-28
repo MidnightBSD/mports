@@ -12,8 +12,7 @@ COMMENT=	Interface to processor (CPU) information
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

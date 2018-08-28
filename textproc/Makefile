@@ -75,7 +75,6 @@ SUBDIR += localize
 SUBDIR += lucene
 SUBDIR += makepatch
 SUBDIR += meld
-SUBDIR += minixmlto
 SUBDIR += mythes
 SUBDIR += openjade
 SUBDIR += opensp

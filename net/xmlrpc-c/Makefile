@@ -21,7 +21,6 @@ CONFLICTS=	xmlrpc-epi-0.*
 USES=		gmake tar:tgz
 OPTIONS_SUB=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 MAKEFILE=	GNUmakefile
 MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV+=	INSTALL_SHLIB="${INSTALL_LIB}" \

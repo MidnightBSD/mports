@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libuv
-PORTVERSION=	1.22.0
+PORTVERSION=	1.19.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 #MASTER_SITES=	http://dist.libuv.org/dist/v${PORTVERSION}/
@@ -21,7 +21,6 @@ USE_GITHUB=	yes
 
 USES=		autoreconf libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 

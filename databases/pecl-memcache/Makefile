@@ -22,7 +22,6 @@ PHP_MODNAME=	memcache
 USE_DOS2UNIX=	yes
 
 CONFIGURE_ARGS=	--with-zlib-dir=/usr
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 
 .if !defined(NOPORTEXAMPLES)
 post-install:

@@ -1,3 +1,2 @@
-TIMESTAMP = 1525895942
-SHA256 (xorg/lib/libxcb-1.13.tar.bz2) = 188c8752193c50ff2dbe89db4554c63df2e26a2e47b0fa415a70918b5b851daa
-SIZE (xorg/lib/libxcb-1.13.tar.bz2) = 510453
+SHA256 (xorg/lib/libxcb-1.11.tar.bz2) = 03635d70045b9ede90778e67516135828a57de87ac508f987024f43c03620ff7
+SIZE (xorg/lib/libxcb-1.11.tar.bz2) = 517700

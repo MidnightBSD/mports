@@ -19,10 +19,9 @@ OPTIONS_SUB=	yes
 DOCS_CONFIGURE_ON=	ac_cv_path_LATEX2MAN=${TRUE}
 DOCS_CONFIGURE_OFF=	--disable-documentation
 
-ONLY_FOR_ARCHS=	aarch64 i386 amd64
+ONLY_FOR_ARCHS=	i386 amd64
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 USES=		libtool pathfix pkgconfig

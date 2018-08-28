@@ -2,7 +2,7 @@
 # $FreeBSD: ports/x11/xcb-util-renderutil/Makefile,v 1.1 2012/01/15 12:46:10 garga Exp $
 
 PORTNAME=	xcb-util-renderutil
-PORTVERSION=	0.3.9
+PORTVERSION=	0.3.8
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -18,7 +18,6 @@ USE_XORG=	xcb xorg-macros
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 
 post-patch:
 	@${REINPLACE_CMD} -e \

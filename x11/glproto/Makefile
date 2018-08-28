@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLX extension headers
 
 LICENSE=	sgi
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 

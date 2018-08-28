@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libtool
-PORTREVISION=	3
+PORTREVISION=	1
 
 COMMENT=	Generic shared library support script
 
@@ -24,7 +24,7 @@ INFO=		libtool
 
 post-patch:
 	@${RM} -f ${WRKSRC}/doc/*.info*
-.for f in build-aux/ltmain.sh configure m4/libtool.m4 m4/ltdl.m4  libltdl/configure
+.for f in build-aux/ltmain.sh configure m4/libtool.m4
 	@${TOUCH} -mr ${WRKSRC}/${f}.orig ${WRKSRC}/${f}
 .endfor
 

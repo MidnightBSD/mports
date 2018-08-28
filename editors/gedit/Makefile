@@ -26,11 +26,11 @@ RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py3-libpeas \
 		python2.7:lang/python27
 
-USES=		compiler:c11 desktop-file-utils gettext gmake libtool \
+USES=		desktop-file-utils gettext gmake libtool \
 		pathfix pkgconfig python:3 tar:xz
 USE_GNOME=	gtksourceview3 intlhack introspection:build \
 		libxml2 py3gobject3 glib20
-USE_XORG=	sm x11
+USE_XORG=	sm
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-updater
 CONFIGURE_ARGS+=--disable-zeitgeist \

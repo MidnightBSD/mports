@@ -31,7 +31,6 @@ CPE_VENDOR=	gnu
 CONFIGURE_ARGS=	--disable-werror --localedir=${PREFIX}/share/locale
 CONFIGURE_ENV=	CPP="${CC} -E" \
 		LEX=${LOCALBASE}/bin/flex
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 
 OPTIONS_DEFINE=	MKFONT FUSE
 OPTIONS_SUB=	yes

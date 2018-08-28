@@ -1,7 +1,7 @@
 Index: src/bsd_kbd.c
-@@ -237,6 +237,12 @@
+@@ -205,6 +205,12 @@
  #endif
- 	}
+         }
      }
 +/*
 + * Switch keyboards which are not attached to console in RAW mode

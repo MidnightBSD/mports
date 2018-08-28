@@ -1,17 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	babl
-PORTVERSION=	0.1.48
+PORTVERSION=	0.1.12
 CATEGORIES=	x11
 MASTER_SITES=	GIMP
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic pixel format conversion library
 
-LICENSE=	lgpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl3
 
-USES=		compiler:c11 gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gmake libtool pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

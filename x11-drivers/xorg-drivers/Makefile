@@ -2,126 +2,109 @@
 
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.7
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
-MASTER_SITES=  # none
-DISTFILES=     # none
-EXTRACT_ONLY=  # none
+MASTER_SITES=	# none
+DISTFILES=	# none
+EXTRACT_ONLY=	# none
 
-MAINTAINER=	portsMidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org drivers meta-port
+LICENSE=	agg
 
-LICENSE=	mit
+.MAKE.FreeBSD_UL=	yes
 
-VIDEODIR=	${LOCALBASE}/lib/xorg/modules/drivers
-INPUTDIR=	${LOCALBASE}/lib/xorg/modules/input
+VIDEODIR=	${PREFIX}/lib/xorg/modules/drivers
+INPUTDIR=	${PREFIX}/lib/xorg/modules/input
 
 NO_BUILD=	yes
 
-INPUT_DRIVERS=		acecad \
-			egalax \
+INPUT_DRIVERS=		mouse \
+			keyboard \
+			acecad \
 			elographics \
-			evdev \
-			fpit \
 			hyperpen \
 			joystick \
-			keyboard \
-			libinput \
-			mouse \
+			magictouch \
 			mutouch \
 			penmount \
 			synaptics \
-			void \
-			wacom
+			vmmouse \
+			void
 
-VIDEO_DRIVERS=		apm \
+VIDEO_DRIVERS=		ati \
+			mach64 \
+			nv \
+			r128 \
+			vesa \
+			apm \
 			ark \
-			ast \
 			chips \
-			cirrus \
+			cyrix \
 			dummy \
+			fbdev \
 			glint \
 			i128 \
 			i740 \
-			mach64 \
 			mga \
 			neomagic \
-			nv \
-			openchrome \
-			r128 \
 			rendition \
 			s3 \
 			s3virge \
 			savage \
-			scfb \
 			siliconmotion \
 			sis \
 			tdfx \
 			trident \
 			tseng \
-			vesa \
+			vmware \
 			voodoo
 
-OPTIONS_DEFAULT=	KEYBOARD \
-			MOUSE \
-			SCFB
+OPTIONS_DEFAULT=	MOUSE \
+			KEYBOARD \
+			ATI \
+			MACH64 \
+			NV \
+			R128 \
+			VESA
 
 .for type in input video
-. for a in ${${type:tu}_DRIVERS}
-OPTIONS_DEFINE+=	${a:tu}
-${a:tu}_DESC=		Install ${a} ${type} driver
+. for a in ${${type:U}_DRIVERS}
+OPTIONS_DEFINE+=	${a:U}
+${a:U}_DESC=	Install ${a} ${type} driver
 . endfor
 .endfor
 
-OPTIONS_DEFINE_amd64=	ATI INTEL VMMOUSE VMWARE
-OPTIONS_DEFAULT_amd64=	ATI INTEL NV VMWARE VESA
+OPTIONS_DEFINE_i386=	INTEL OPENCHROME
+OPTIONS_DEFAULT_i386=	INTEL OPENCHROME
 
-OPTIONS_DEFINE_i386:=	${OPTIONS_DEFINE_amd64} GEODE
-OPTIONS_DEFAULT_i386:=	${OPTIONS_DEFAULT_amd64}
+OPTIONS_DEFINE_amd64:=	${OPTIONS_DEFINE_i386}
+OPTIONS_DEFAULT_amd64:=	${OPTIONS_DEFAULT_i386}
 
-OPTIONS_DEFINE_sparc64=	SUNFFB
-OPTIONS_DEFAULT_sparc64=SUNFFB
-
-ATI_DESC=		Install ati (radeon) video driver 
-GEODE_DESC=		Install geode video driver
 INTEL_DESC=		Install intel video driver
-SUNFFB_DESC=		Install sunffb video driver
-VMMOUSE_DESC=		Install vmmouse input driver
-VMWARE_DESC=		Install vmware video driver
+OPENCHROME_DESC=	Install openchrome video driver
 
 # these drivers have a different module name compared to the plugin they install
 QUIRKS=		keyboard:kbd
 
 .include <bsd.mport.options.mk>
 
-# Manual add arch specific drivers so they be added to depend lines.
-.if ${ARCH}==i386 || ${ARCH}==amd64
-INPUT_DRIVERS+= vmmouse
-VIDEO_DRIVERS+=	ati intel vmware
-.endif
-
-.if ${ARCH}==i386
-VIDEO_DRIVERS+= geode
-.endif
-
-.if ${ARCH}==sparc64
-VIDEO_DRIVERS+=	sunffb
-.endif
+VIDEO_DRIVERS+=	intel openchrome
 
 .for type in input video
-. for i in ${${type:tu}_DRIVERS}
-.  if ${PORT_OPTIONS:M${i:tu}} != ""
+. for i in ${${type:U}_DRIVERS}
+.  if ${PORT_OPTIONS:M${i:U}} != ""
 .   if ${QUIRKS:M${i}\:*:C/.*://} != ""
-RUN_DEPENDS+=	${${type:tu}DIR}/${QUIRKS:M${i}\:*:C/.*://}_drv.so:x11-drivers/xf86-${type}-${i}
+RUN_DEPENDS+=	${${type:U}DIR}/${QUIRKS:M${i}\:*:C/.*://}_drv.so:${PORTSDIR}/x11-drivers/xf86-${type}-${i}
 .   else
-RUN_DEPENDS+=	${${type:tu}DIR}/${i}_drv.so:x11-drivers/xf86-${type}-${i}
+RUN_DEPENDS+=	${${type:U}DIR}/${i}_drv.so:${PORTSDIR}/x11-drivers/xf86-${type}-${i}
 .   endif
 .  endif
 . endfor
 .endfor
 
 do-install:
-	${MKDIR} ${PREFIX}/libdata/xorg
-	${TOUCH} ${PREFIX}/libdata/xorg/drivers
+		${MKDIR} ${PREFIX}/libdata/xorg
+		${TOUCH} ${PREFIX}/libdata/xorg/drivers
 
 .include <bsd.port.mk>

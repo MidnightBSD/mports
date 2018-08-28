@@ -24,7 +24,7 @@ RUN_DEPENDS+=	javavm:java/javavmwrapper \
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 100001
-RUN_DEPENDS+=	${LOCALBASE}/lib/compat/libcrypto.so.6:misc/compat9x
+RUN_DEPENDS+=	compat9x>=0:misc/compat9x
 .endif
 
 do-install:

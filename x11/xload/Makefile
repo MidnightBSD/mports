@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xload
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

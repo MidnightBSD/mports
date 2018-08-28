@@ -23,7 +23,6 @@ CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies \
 		--enable-nested-tables --enable-gzip-help \
 		--with-screen=ncursesw
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CPE_VERSION=	${PORTVERSION:R}
 CPE_UPDATE=	rel.${PORTVERSION:E}
 

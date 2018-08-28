@@ -15,11 +15,10 @@ CONFLICTS=	irssi-devel-[0-9]* zh-irssi-[0-9]*
 
 USES=		cpe gettext-runtime gmake libtool ncurses pkgconfig tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 PLIST_SUB+=	SITE_ARCH=${SITE_ARCH_REL}
 
-CONFIGURE_ARGS=	--with-ncurses=${NCURSESBASE} --with-perl-lib=site --without-capsicum
+CONFIGURE_ARGS=	--with-ncurses=${NCURSESBASE} --with-perl-lib=site
 INSTALL_TARGET=	install-strip
 USE_GNOME=	glib20
 

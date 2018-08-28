@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cantarell-fonts
-PORTVERSION=	0.0.25
+PORTVERSION=	0.0.16
 CATEGORIES=	x11-fonts gnome
 MASTER_SITES=	GNOME
 

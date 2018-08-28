@@ -1,6 +1,6 @@
---- Imakefile.orig	2006-11-11 00:52:14.000000000 -0500
-+++ Imakefile	2014-03-04 16:46:47.791670751 -0500
-@@ -13,17 +13,17 @@
+--- ./Imakefile.orig	Mon Sep  5 01:01:30 2005
++++ ./Imakefile	Sun Apr 29 00:59:16 2007
+@@ -13,8 +13,8 @@
        CCOPTIONS = -Aa -D_HPUX_SOURCE
  #endif
  
@@ -11,9 +11,7 @@
  
  PNG_INCLUDES = 
  PNG_LDFLAGS = 
- 
--SYSPATHFILE = $(XAPPLOADDIR)/Xli
-+SYSPATHFILE = $(DESTDIR)$(XAPPLOADDIR)/Xli
+@@ -23,7 +23,7 @@
  DEPLIBS = $(DEPXLIB)
  LOCAL_LIBRARIES = $(XLIB) $(JPEG_LDFLAGS) $(PNG_LDFLAGS) -ljpeg -lpng -lz
  SYS_LIBRARIES = -lm
@@ -22,24 +20,35 @@
  EXTRA_INCLUDES = $(JPEG_INCLUDES) $(PNG_INCLUDES)
  
  SRCS1 = bright.c clip.c cmuwmrast.c compress.c dither.c faces.c fbm.c fill.c  g3.c gif.c halftone.c imagetypes.c img.c mac.c mcidas.c mc_tables.c merge.c misc.c new.c options.c path.c pbm.c pcx.c reduce.c jpeg.c rle.c rlelib.c root.c rotate.c send.c smooth.c sunraster.c  value.c window.c xbitmap.c xli.c xpixmap.c xwd.c zio.c zoom.c ddxli.c tga.c bmp.c pcd.c png.c
-@@ -37,9 +37,8 @@ ComplexProgramTarget_1(xli,$(DEFINES) $(
+@@ -36,21 +36,21 @@
+ ComplexProgramTarget_1(xli,$(DEFINES) $(LOCAL_LIBRARIES),)
  ComplexProgramTarget_2(xlito,,)
  
- install:: $(SYSPATHFILE)
+-install:: $(SYSPATHFILE)
 -	$(RM) $(BINDIR)/xview $(BINDIR)/xsetbg
 -	$(LN) $(BINDIR)/xli $(BINDIR)/xview
 -	$(LN) $(BINDIR)/xli $(BINDIR)/xsetbg
-+	$(LN) $(BINDIR)/xli $(DESTDIR)$(BINDIR)/xview
-+	$(LN) $(BINDIR)/xli $(DESTDIR)$(BINDIR)/xsetbg
++install:: $(DESTDIR)$(SYSPATHFILE)
++	$(RM) $(DESTDIR)$(BINDIR)/xview $(DESTDIR)$(BINDIR)/xsetbg
++	$(LN) $(DESTDIR)$(BINDIR)/xli $(DESTDIR)$(BINDIR)/xview
++	$(LN) $(DESTDIR)$(BINDIR)/xli $(DESTDIR)$(BINDIR)/xsetbg
  
- $(SYSPATHFILE):
+-$(SYSPATHFILE):
++$(DESTDIR)$(SYSPATHFILE):
  	@echo "*** Creating default $(SYSPATHFILE) since you"
-@@ -48,7 +47,7 @@ $(SYSPATHFILE):
+ 	@echo "*** don't have one. This file is used to set up default places"
+ 	@echo "*** and names to look for images.  You probably want to edit"
  	@echo "*** it for your site.  See the xloadimage manual page for"
  	@echo "*** details on the contents of this file."
- 	cp /dev/null $(SYSPATHFILE)
+-	cp /dev/null $(SYSPATHFILE)
 -	echo "path=$(INCDIR)/bitmaps $(INCDIR)/images" \
+-		>> $(SYSPATHFILE)
++	mkdir -p $(DESTDIR)/usr/local/lib/X11/app-defaults; cp /dev/null $(DESTDIR)$(SYSPATHFILE)
 +	echo "path=$(INCDIR)/X11/bitmaps $(INCDIR)/X11/pixmaps" \
- 		>> $(SYSPATHFILE)
++		>> $(DESTDIR)$(SYSPATHFILE)
  	echo "extension=.gif .jpg .rle .csun .msun .sun .face .xbm .bm" \
- 		>>$(SYSPATHFILE)
+-		>>$(SYSPATHFILE)
+-	chmod a+r $(SYSPATHFILE)
++		>> $(DESTDIR)$(SYSPATHFILE)
++	chmod a+r $(DESTDIR)$(SYSPATHFILE)
+ 

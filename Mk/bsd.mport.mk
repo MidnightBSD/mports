@@ -374,7 +374,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gecko gettext gettext-tools gettext-runtime \
 		ghostscript gnome gnustep groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
-		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
+		metaport makeself mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt ruby samba scons sdl sqlite ssl \
 		tar tcl tk tex wx xfce zip
 
@@ -1071,7 +1071,7 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 					-t "${CATEGORIES}"
 
-.if defined(PKG_NOTE_cpe)
+.if ${OSVERSION} > 6000 && defined(PKG_NOTE_cpe)
 MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_cpe}
 .endif
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
@@ -1537,11 +1537,10 @@ PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_CMD?=		./${CONFIGURE_SCRIPT}
-
 .if (${OSVERSION} < 10001)
 CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
 .else
-CONFIGURE_TARGET?=	${ARCH}-portbld-midnightbsd${OSREL}
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd10.4
 .endif
 CONFIGURE_TARGET:=      ${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
@@ -1558,36 +1557,26 @@ GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
-.if defined(CROSS_TOOLCHAIN)
-CROSS_HOST=             ${CROSS_TOOLCHAIN:C,-.*$,,}-${OPSYS:tl}
-CONFIGURE_ARGS+=        --host=${CROSS_HOST}
-.endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
 SET_LATE_CONFIGURE_ARGS= \
      _LATE_CONFIGURE_ARGS="" ; \
-        if [ -z "${CONFIGURE_ARGS:M--localstatedir=*:Q}" ] && \
-           ${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- --localstatedir > /dev/null; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--mandir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/man" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--enable-jobserver\[.*\#\]'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --enable-jobserver=${MAKE_JOBS_NUMBER}" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--infodir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${GNU_CONFIGURE_PREFIX}/${INFO_PATH}/${INFO_SUBDIR}" ; \
-        fi ; \
-        if [ -z "`${CONFIGURE_CMD} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
-        else \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
-        fi ;
+	_configure_help="`./${CONFIGURE_SCRIPT} --help 2>&1`"; \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null  && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--mandir' >/dev/null); then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
+	fi ;\
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
+		 _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
+	fi ; \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--infodir' >/dev/null); then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}"; \
+	fi ;\
+	if [ -z "`./${CONFIGURE_SCRIPT} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
+	else \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
+	fi ;
 .endif
 
 # Passed to most of script invocations
@@ -1612,7 +1601,7 @@ INFO_PATH?=	info
 .endif
 
 .if defined(INFO)
-RUN_DEPENDS+=	indexinfo:print/indexinfo
+RUN_DEPENDS+=	indexinfo:${PORTSDIR}/print/indexinfo
 
 . for D in ${INFO:H}
 RD:=	${D}
@@ -2285,20 +2274,19 @@ do-configure:
 	done
 .endif
 .if defined(HAS_CONFIGURE)
-	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@(cd ${CONFIGURE_WRKSRC} && \
 	    ${SET_LATE_CONFIGURE_ARGS} \
 		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
-	    INSTALL="/usr/bin/install -c" \
+	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}"\
+	    INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
 	    INSTALL_DATA="${INSTALL_DATA}" \
 	    INSTALL_LIB="${INSTALL_LIB}" \
 	    INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 	    INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 	    ${CONFIGURE_ENV} ${CONFIGURE_CMD} ${CONFIGURE_ARGS}; then \
 			 ${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-			 (${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT_80} ; \
+			 (${ECHO_MSG} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
 			 ${FALSE}; \
 		fi)
 .endif

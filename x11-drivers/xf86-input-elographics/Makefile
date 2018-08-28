@@ -3,12 +3,11 @@
 
 PORTNAME=	xf86-input-elographics
 PORTVERSION=	1.4.1
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org elographics input driver
-
 LICENSE=	mit
 
 XORG_CAT=	driver

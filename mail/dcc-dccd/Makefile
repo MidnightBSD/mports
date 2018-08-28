@@ -1,38 +1,56 @@
 # $MidnightBSD$
 
 PORTNAME=	dcc-dccd
-PORTVERSION=	1.3.159
+PORTVERSION=	1.3.158
 CATEGORIES=	mail
 MASTER_SITES=	http://www.dcc-servers.net/dcc/source/old/ \
+		http://www.rhyolite.com/anti-spam/dcc/source/old/ \
 		ftp://ftp.dcc-servers.net/src/dcc/old/ \
-		FREEBSD_LOCAL/mat/${PORTNAME}
+		ftp://ftp.rhyolite.com/src/dcc/old/
 DISTNAME=	dcc-${PORTVERSION}
+EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Checksum Clearinghouse bulk email detector
 
-.if ! defined(PACKAGE_BUILDING)
 LICENSE=	DCC
 LICENSE_NAME=	DCC
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	no-pkg-sell no-dist-mirror no-pkg-mirror no-dist-sell
-.endif
+
+USE_GCC=	any
 
 HAS_CONFIGURE=	yes
 
-USES=		tar:Z
-
-OPTIONS_DEFINE=	DCCIFD DCCD DCCGREY IPV6
+#
+# ALT_HOME -	DCC keeps its config files in its home directory but writes
+#		status and database files there as well.  This latter point
+#		means that the FreeBSD default home directory for DCC,
+#		/usr/local/dcc, cannot be mounted read-only.
+#
+#		DCC's default home dir of /var/dcc breaks FreeBSD hierarchy
+#		conventions, but allows for a read-only /usr.
+#
+#		Setting ALT_HOME on will set DCC's home to /var/dcc, but
+#		keep its binaries in /usr/local/dcc/libexec.  Since this
+#		also means DCC's config files will be in /var/dcc, for
+#		convenience a soft link from /usr/local/etc/dcc to /var/dcc
+#		may be created.
+#
+#		Note also that dccifd's default socket location is DCC's
+#		home, so if /var/dcc is used for the home, then programs
+#		like SpamAssassin may need to be explicitly told where
+#		to find dccifd's socket.
+#
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	DCCIFD DCCM DCCD DCCGREY IPV6 ALT_HOME PORTS_SENDMAIL
 OPTIONS_DEFAULT=	DCCIFD DCCM DCCD DCCGREY
-OPTIONS_GROUP=	MILTER
-OPTIONS_GROUP_MILTER=	DCCM PORTS_MILTER
 DCCIFD_DESC=		DCC interface daemon (for SpamAssassin etc)
-DCCM_DESC=		DCC milter
+DCCM_DESC=		DCC milter (for Sendmail only)
 DCCD_DESC=		DCC server
 DCCGREY_DESC=		DCC greylisting server
-PORTS_MILTER_DESC=	Use ports milter instead of base
-
-OPTIONS_SUB=	yes
+ALT_HOME_DESC=		DCC home in /var/dcc
+PORTS_SENDMAIL_DESC=	Use base Sendmail if off, ports if on
 
 ## User for DCC files and SUID binaries
 #
@@ -42,47 +60,51 @@ DCCGROUP?=	dcc
 USERS=		${DCCUSER}
 GROUPS=		${DCCGROUP}
 
-DCCHOME=	${PREFIX}/dcc
-
-PLIST_SUB+=	DCCUSER="${DCCUSER}" DCCGROUP="${DCCGROUP}"
-SUB_FILES=		pkg-install pkg-message
-SUB_LIST+=		WRKSRC=${WRKSRC} DCCHOME=${DCCHOME} DCCUSER="${DCCUSER}"
+PLIST_SUB+=	DCCUSER="${DCCUSER}"
 
 ## Use the configure script to explicitly set the locations of all files,
 ## in case the standard locations have been locally overridden
-## Also, use a similar hack to USES=desthack.
-CONFIGURE_ARGS=	-q \
-		--with-uid=${DCCUSER} \
-		--bindir=${PREFIX}/bin \
-		--mandir=${FAKE_DESTDIR}${TRUE_PREFIX}/man \
-		--with-installroot=\$${${DESTDIRNAME}} \
-		--with-configsuffix=.sample \
-		--with-make-cmd=${MAKE_CMD} \
-		--with-install-cmd=${BSD_INSTALL_PROGRAM} \
-		--enable-pkg-make \
-		--homedir=${DCCHOME} \
-		--libexecdir=${DCCHOME}/libexec \
-		--with-cgibin=${DCCHOME}/cgi-bin
-
-CONFIGURE_ENV=	ac_cv_header_histedit_h=no	# disable libedit detection
-
-DCCM_CONFIGURE_ENABLE=	dccm
-DCCM_USE=	rc_subr=dccm
-PORTS_MILTER_BUILD_DEPENDS=	${LOCALBASE}/lib/libmilter.a:mail/libmilter
-PORTS_MILTER_CONFIGURE_ON=	--with-sendmail=yes
-DCCIFD_CONFIGURE_ENABLE=	dccifd
-DCCIFD_USE=	rc_subr=dccifd
-DCCD_CONFIGURE_ENABLE=	server
-IPV6_CONFIGURE_OFF=	--disable-IPv6
-DCCD_USE=	rc_subr=dccd
-DCCGREY_USE=	rc_subr=dccgrey
+#
+CONFIGURE_ARGS=	--with-uid=${DCCUSER} --bindir=${PREFIX}/bin --mandir=${MANPREFIX}/man --with-configsuffix=.sample
 
 .include <bsd.mport.options.mk>
 
+SUB_FILES=		pkg-install pkg-message
+SUB_LIST+=		WRKSRC=${WRKSRC} DCCHOME=${DCCHOME}
+
+## /var/dcc home support
+#
+.if ${PORT_OPTIONS:MALT_HOME}
+CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/dcc/libexec --with-cgibin=${PREFIX}/dcc/cgi-bin
+DCCHOME=		/var/dcc
+PLIST_SUB+=		WITH_ALT_HOME=""
+.else
+DCCHOME=		${PREFIX}/dcc
+PLIST_SUB+=		WITH_ALT_HOME="@comment "
+.endif
+
+CONFIGURE_ARGS+=	--homedir=${DCCHOME}
+
 ## dccm milter support
 #
-.if ${PORT_OPTIONS:MPORTS_MILTER}
+.if ${PORT_OPTIONS:MDCCM}
+
+.if !exists(/usr/lib/libmilter.a) && !exists(${LOCALBASE}/lib/libmilter.a)
+IGNORE=		neither base system nor Ports version of Sendmail installed, cannot build milter
+.endif
+.if ! ${PORT_OPTIONS:MPORTS_SENDMAIL} && !exists(/usr/lib/libmilter.a)
+IGNORE=		base system Sendmail not found or too old, rebuild with WITH_PORTS_SENDMAIL=yes or WITHOUT_DCCM=yes
+.endif
+.if ${PORT_OPTIONS:MPORTS_SENDMAIL} && !exists(${LOCALBASE}/lib/libmilter.a)
+IGNORE=		ports Sendmail not found, rebuild with WITHOUT_PORTS_SENDMAIL=yes or WITHOUT_DCCM=yes
+.endif
+
+.if ! ${PORT_OPTIONS:MPORTS_SENDMAIL}
+MILTERBASE=	/usr
+.else
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
 MILTERBASE?=	${LOCALBASE}
+.endif
 
 MILTERINC=	${MILTERBASE}/include
 MILTERLIB=	${MILTERBASE}/lib
@@ -90,40 +112,78 @@ MILTERLIB=	${MILTERBASE}/lib
 CPPFLAGS+=	-I${MILTERINC}
 CFLAGS+=	-I${MILTERINC}
 LDFLAGS+=	-L${MILTERLIB}
+
+CONFIGURE_ARGS+=	--with-sendmail=yes
+
+PLIST_SUB+=	WITH_DCCM=""
+
+USE_RC_SUBR+=	dccm
+
+.else
+CONFIGURE_ARGS+=	--disable-dccm
+PLIST_SUB+=	WITH_DCCM="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MDCCIFD} || ${PORT_OPTIONS:MDCCM}
-PLIST_SUB+=	IFD_MILT=""
+## dccifd client interface daemon support
+#
+.if ! ${PORT_OPTIONS:MDCCIFD}
+CONFIGURE_ARGS+=	--disable-dccifd
+PLIST_SUB+=	WITH_DCCIFD="@comment "
 .else
-PLIST_SUB+=	IFD_MILT="@comment "
+PLIST_SUB+=	WITH_DCCIFD=""
+USE_RC_SUBR+=	dccifd
 .endif
+
+## dccd server support
+#
+.if ! ${PORT_OPTIONS:MDCCD} && ! ${PORT_OPTIONS:MDCCGREY}
+CONFIGURE_ARGS+=	--disable-server
+PLIST_SUB+=	WITH_DCCD="@comment "
+.else
+PLIST_SUB+=	WITH_DCCD=""
+.endif
+
+## IPV6 support
+#
+.if ! ${PORT_OPTIONS:MIPV6}
+CONFIGURE_ARGS+=	--disable-IPv6
+.endif
+
+## Packing list and rcNG script fixups
+#
+.if ! ${PORT_OPTIONS:MDCCIFD} && ! ${PORT_OPTIONS:MDCCM}
+PLIST_SUB+=	WITH_IFD_MILT="@comment "
+.else
+PLIST_SUB+=	WITH_IFD_MILT=""
+.endif
+
+.if ${PORT_OPTIONS:MDCCD}
+USE_RC_SUBR+=	dccd
+.endif
+
+.if ${PORT_OPTIONS:MDCCGREY}
+USE_RC_SUBR+=	dccgrey
+PLIST_SUB+=	WITH_DCCGREY=""
+.else
+PLIST_SUB+=	WITH_DCCGREY="@comment "
+.endif
+
+pre-everything::
+	@${ECHO_MSG} ' '
+	@${ECHO_MSG} "A description of ALT_HOME may be found in the port's Makefile."
+	@${ECHO_MSG} ' '
+
+pre-build:
+	${MKDIR} ${FAKE_DESTDIR}/usr/lib
+	${LN} -sf /usr/lib/libc.a ${FAKE_DESTDIR}/usr/lib/libc.a
+
+pre-fake:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/dcc/libexec
 
 post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/dcc/cgi-bin/footer-dist \
-		${STAGEDIR}${PREFIX}/dcc/cgi-bin/footer.sample
-	@${MV} ${STAGEDIR}${PREFIX}/dcc/cgi-bin/header-dist \
-		${STAGEDIR}${PREFIX}/dcc/cgi-bin/header.sample
-.for sf in bin/dccproc bin/cdcc dcc/libexec/dccsight dcc/libexec/check_ip_range \
-	dcc/libexec/wlist dcc/libexec/ck2ip
-		${STRIP_CMD} ${STAGEDIR}${PREFIX}/${sf}
-.endfor
-.if ${PORT_OPTIONS:MDCCIFD} || ${PORT_OPTIONS:MDCCM}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/dcc/libexec/dns-helper
-.endif
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/dcc/libexec/updatedcc 
 
-post-install-DCCIFD-on:
-.for sf in bin/dccif-test dcc/libexec/dccifd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${sf}
-.endfor
-
-post-install-DCCD-on:
-.for sf in dcc/libexec/dump-clients dcc/libexec/dbclean \
-	dcc/libexec/dblist dcc/libexec/dccd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${sf}
-.endfor
-
-post-install-DCCM-on:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/dcc/libexec/dccm
+## Make certain DCC's config files are owned by DCC's user
+#
+	@${CHOWN} ${DCCUSER} ${DCCHOME}/*
 
 .include <bsd.port.mk>

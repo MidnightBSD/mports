@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xproto
-PORTVERSION=	7.0.31
+PORTVERSION=	7.0.27
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

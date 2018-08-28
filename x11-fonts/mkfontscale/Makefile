@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mkfontscale
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.2
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
