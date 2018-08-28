@@ -37,3 +37,5 @@ libdata/pkgconfig/kbproto.pc
 %%DOCSDIR%%/ch15.xml
 %%DOCSDIR%%/ch16.xml
 %%DOCSDIR%%/xkbproto.xml
+@dirrmtry %%DOCSDIR%%
+@dirrmtry include/X11/extensions

@@ -2,7 +2,6 @@
 
 PORTNAME=	kermit
 PORTVERSION=	9.0.302
-PORTREVISION=	1
 CATEGORIES=	comms ftp net
 MASTER_SITES=	ftp://kermit.columbia.edu/kermit/archives/ \
 		ftp://ftp.icm.edu.pl/pub/kermit/archives/
@@ -10,10 +9,9 @@ DISTNAME=	cku${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Serial and network communications package
-
 LICENSE=	bsd3
 
-USES=		ssl
+USE_OPENSSL=	yes
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
 ALL_TARGET=	freebsd9

@@ -3,7 +3,6 @@
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.7.0
-PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +16,7 @@ BUILD_DEPENDS=	nasm:devel/nasm
 USE_GITHUB=	yes
 GH_ACCOUNT=	webmproject
 
-USE_GCC=	4.8
+USE_GCC=	4.8+
 USES=		cpe gmake perl5 shebangfix
 CPE_VENDOR=	john_koleszar
 HAS_CONFIGURE=	yes

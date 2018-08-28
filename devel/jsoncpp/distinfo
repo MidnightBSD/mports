@@ -1,3 +1,2 @@
-TIMESTAMP = 1525217168
-SHA256 (jsoncpp-1.7.7_GH0.tar.gz) = 087640ebcf7fbcfe8e2717a0b9528fff89c52fcf69fa2a18cc2b538008098f97
-SIZE (jsoncpp-1.7.7_GH0.tar.gz) = 206072
+SHA256 (jsoncpp-src-0.6.0-rc2.tar.gz) = d4d193d163f520b08b9155cba978615892ca1359d77e3fb261fce2f86d09b283
+SIZE (jsoncpp-src-0.6.0-rc2.tar.gz) = 117661

@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	dovecot
-PORTVERSION=	2.2.35
-PORTREVISION=	1
+PORTVERSION=	2.2.33.2
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	https://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
@@ -13,8 +13,9 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
 
-USES=		cpe iconv:translit libtool ssl
+USES=		cpe iconv:translit libtool
 USE_RC_SUBR=	dovecot
+USE_OPENSSL=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd9.1 \

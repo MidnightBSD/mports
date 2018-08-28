@@ -1,14 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	xinit
-PORTVERSION=	1.4.0
+PORTVERSION=	1.3.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Window System initializer
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
 USE_XORG=	x11

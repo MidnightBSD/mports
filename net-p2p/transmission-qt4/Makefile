@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	2
+PORTREVISION=	1
 PKGNAMESUFFIX=	-qt4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,7 @@ SLAVEPORT=	qt4
 
 QT_NONSTANDARD=	yes
 USE_QT4=	moc_build qmake_build rcc_build uic_build gui dbus network
-USES=		compiler:c++11-lib desktop-file-utils
+USES=		desktop-file-utils
 
 EXTRA_CONF_ARGS=--disable-cli \
 		--disable-daemon \

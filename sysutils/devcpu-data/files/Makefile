@@ -1,20 +1,18 @@
-# $FreeBSD: head/sysutils/devcpu-data/files/Makefile 470620 2018-05-22 15:09:38Z sbruno $
-
-INTEL_UCODE=	intel-ucode
+AMD_UCODE_DIR=	amd-ucode
+AMD_UCODE=	$(AMD_UCODE_DIR)/microcode_amd.bin \
+		$(AMD_UCODE_DIR)/microcode_amd_fam15h.bin \
+		$(AMD_UCODE_DIR)/microcode_amd_fam16h.bin
+INTEL_UCODE=	microcode.dat
 OUTPUT_DIR=	mcodes
-
 all:	ucode
-ucode:	ucode-split
+ucode:	ucode-tool
 	mkdir -p $(OUTPUT_DIR)
-	cd ${OUTPUT_DIR} && \
-	for file in \
-	  ../${INTEL_UCODE}/[0-9,a-f][0-9,a-f]-[0-9,a-f][0-9,a-f]-[0-9,a-f][0-9,a-f]; do \
-		../ucode-split $$file; \
-	done
+	./ucode-tool -o $(OUTPUT_DIR) -i $(INTEL_UCODE)
+	./ucode-tool -o $(OUTPUT_DIR) -a $(AMD_UCODE)
 
-# Use the host cc to compile ucode-split in case of cross-compile
-ucode-split: ucode-split.c
-	cc ucode-split.c -o $@
+# Use the host cc to compile ucode-tool in case of cross-compile
+ucode-tool: ucode-tool.c
+	cc ucode-tool.c -o $@
 
 clean:
-	rm -rf $(OUTPUT_DIR) ucode-split
+	rm -rf $(OUTPUT_DIR) ucode-tool

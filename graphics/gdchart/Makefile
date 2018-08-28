@@ -10,14 +10,15 @@ MASTER_SITES=	http://www.fred.net/brv/chart/ \
 DISTNAME=	${PORTNAME}${PORTVERSION}dev
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Easy to use fast C API for creating charts and graphs
+COMMENT=	Easy to use, fast C API for creating charts and graphs
 
 LICENSE=	other
 
-LIB_DEPENDS=	libgd.so:graphics/gd \
-		libfreetype.so:print/freetype2
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libfreetype.so:${PORTSDIR}/print/freetype2
 
-USES=		jpeg uidfix
+USES=		uidfix
 MAKEFILE=	${FILESDIR}/Makefile
 MAKE_ARGS=	PREFIX="${PREFIX}" LOCALBASE="${LOCALBASE}"
 USE_LDCONFIG=	yes

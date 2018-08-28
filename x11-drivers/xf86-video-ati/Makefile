@@ -1,28 +1,35 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-ati
-PORTVERSION=	7.9.0
-PORTREVISION=	1
-PORTEPOCH=	1
+PORTVERSION=	7.5.0
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org ati display driver
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
-
-LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess \
-		libdrm_radeon.so:graphics/libdrm
 
 USE_GL=		gl
 XORG_CAT=	driver
-USE_XORG=	pciaccess
-
-# No Radeon kernel driver on non-x86 and PC98.
-ONLY_FOR_ARCHS=	i386 amd64
-ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86
+USE_XORG=	xf86driproto \
+		xineramaproto \
+		xf86miscproto \
+		glproto \
+		presentproto
+INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS+=--disable-udev
+CONFIGURE_ARGS+=--disable-glamor
+
+.include <bsd.mport.options.mk>
+
+.if (${OSVERSION} >= 903000 && ${OSVERSION} < 1000000)
+RUN_DEPENDS+=	drm-kmod>=9:${PORTSDIR}/x11-drivers/drm-kmod
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|"radeonkms"|"radeonkms_port"|g' \
+		${WRKSRC}/src/radeon_kms.c
+.endif
 
 .include <bsd.port.mk>

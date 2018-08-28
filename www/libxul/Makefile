@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libxul
-DISTVERSION=	45.6.0
+DISTVERSION=	45.4.0
 CATEGORIES?=	www devel
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source \
 		MOZILLA/firefox/candidates/${DISTVERSION}esr-candidates/build2/source
@@ -17,7 +17,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
-		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
+		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
 		soundtouch>=1.9.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=1.1.0:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.3.6:${PORTSDIR}/graphics/graphite2 \

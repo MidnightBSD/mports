@@ -12,8 +12,9 @@ COMMENT=	Validating, recursive, and caching DNS resolver
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES+=		cpe gmake libtool ssl
+USES+=		cpe gmake libtool
 CPE_VENDOR=	nlnetlabs
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE} --with-libexpat=${LOCALBASE}
 USE_LDCONFIG=	yes

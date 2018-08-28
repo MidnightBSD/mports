@@ -1,13 +1,10 @@
-# Correct a string that should be const
-#
---- src/rendition.c.orig	2014-09-30 14:21:44 UTC
+--- src/rendition.c.orig	2012-07-17 05:32:12 UTC
 +++ src/rendition.c
-@@ -480,7 +480,7 @@ renditionPreInit(ScrnInfoPtr pScreenInfo
-     MessageType       From;
-     int               videoRam, Rounding, nModes = 0;
-     renditionPtr      pRendition;
--    char             *in_string;
-+    const char       *in_string;
-     vgaHWPtr          pvgaHW;
-     
- #ifdef DEBUG
+@@ -1173,7 +1173,6 @@ renditionScreenInit(SCREEN_INIT_ARGS_DEC
+     fbPictureInit (pScreen, 0, 0);
+ 
+     xf86SetBlackWhitePixels(pScreen);
+-    miInitializeBackingStore(pScreen);
+    
+     /*********************************************************/
+     /* The actual setup of the driver-specific code          */

@@ -17,4 +17,10 @@ USES=		qmake
 
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
+post-install:
+	${MKDIR} ${FAKE_DESTDIR}/usr/local/share/qtcreator/templates/wizards && \
+	cd ${WRKSRC}/creatortemplates && \
+	${COPYTREE_SHARE} qtcanvas3d ${FAKE_DESTDIR}/usr/local/share/qtcreator/templates/wizards && \
+	${COPYTREE_SHARE} qtcanvas3dthreejs ${FAKE_DESTDIR}/usr/local/share/qtcreator/templates/wizards
+
 .include <bsd.port.mk>

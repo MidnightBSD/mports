@@ -2,7 +2,6 @@
 
 PORTNAME=	siege
 PORTVERSION=	4.0.2
-PORTREVISION=	1
 CATEGORIES=	benchmarks www
 MASTER_SITES=	http://download.joedog.org/siege/ \
 		http://fossies.org/linux/www/
@@ -12,7 +11,8 @@ COMMENT=	HTTP regression testing and benchmarking utility
 
 LICENSE=	gpl2
 
-USES=		autoreconf libtool perl5 ssl
+USES=		autoreconf libtool perl5
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL="${PERL}"
 CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE} --disable-shared \

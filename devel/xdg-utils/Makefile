@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# Created by: Michael Johnson <ahze@FreeBSD.org>
+# $FreeBSD: head/devel/xdg-utils/Makefile 421690 2016-09-10 13:12:11Z amdmi3 $
 
 PORTNAME=	xdg-utils
 PORTVERSION=	1.1.1
-PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://portland.freedesktop.org/download/
 
@@ -12,13 +12,13 @@ COMMENT=	Tools to allow all applications to integrate with the free desktop
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	minixmlto:textproc/minixmlto
-RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme \
-		xprop:x11/xprop \
-		xset:x11/xset
+BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto \
+		lynx:www/lynx
+RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		xprop:${PORTSDIR}/x11/xprop \
+		xset:${PORTSDIR}/x11/xset
 
 USES=		gmake
-CONFIGURE_ENV=	XMLTO=${LOCALBASE}/bin/minixmlto
 GNU_CONFIGURE=	yes
 NO_ARCH=	yes
 

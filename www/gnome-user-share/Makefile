@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-user-share
 PORTVERSION=	3.14.0
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	www deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libunique-1.0.so:x11-toolkits/unique
 RUN_DEPENDS=	${LOCALBASE}/${APACHEMODDIR}/mod_dnssd.so:www/mod_dnssd \
-		console-kit-daemon:sysutils/consolekit2
+		console-kit-daemon:sysutils/consolekit
 
 USES=		gettext gmake libtool pkgconfig tar:xz
 USE_APACHE=	22+

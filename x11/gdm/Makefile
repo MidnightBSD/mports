@@ -2,7 +2,7 @@
 
 PORTNAME=	gdm
 PORTVERSION=	3.16.4
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
 		itstool:${PORTSDIR}/textproc/itstool \
     		iso-codes>=0:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	libck-connector.so:${PORTSDIR}/sysutils/consolekit2 \
+LIB_DEPENDS=	libck-connector.so:${PORTSDIR}/sysutils/consolekit \
 		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libupower-glib.so:${PORTSDIR}/sysutils/upower \
 		libnss3.so:${PORTSDIR}/security/nss \

@@ -2,11 +2,10 @@
 
 PORTNAME=	rgb
 PORTVERSION=	1.0.6
-PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Uncompile an rgb color-name database
+COMMENT=	Uncompile an rgb corl-name database
 
 LICENSE=	mit
 

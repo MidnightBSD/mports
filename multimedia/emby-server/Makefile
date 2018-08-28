@@ -41,11 +41,11 @@ do-build:
 			/p:Platform="Any CPU" MediaBrowser.sln)
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/emby-server
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server
 	(cd ${WRKSRC}/MediaBrowser.Server.Mono/bin/Release\ Mono && \
 		${ECHO_MSG} "Deleting the following non-BSD library files:" && \
 		${FIND} -E . -iregex '(.*\.dylib)' -print -delete && \
 		${FIND} . -type d -empty -print -delete && \
-		${COPYTREE_SHARE} . ${PREFIX}/lib/emby-server)
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/emby-server)
 
 .include <bsd.port.mk>

@@ -17,7 +17,7 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libpeas-1.0.so:devel/libpeas \
 		libjson-glib-1.0.so:devel/json-glib
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR}
 
 USES=		desktop-file-utils gettext gmake gnome libtool localbase \
 		pathfix pkgconfig python:3.4+ sqlite tar:bzip2

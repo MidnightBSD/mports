@@ -22,30 +22,19 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
+CONFLICTS=	gcc5-devel-5.*
 CPE_VENDOR=	gnu
-CPE_VERSION=	${GCC_VERSION}
 
-# DISTVERSION relates to downloads, GCC_VERSION and SUFFIX to names
-# of executables and directories once installed.  A PORTVERSION of
-# Y.2.1.s20140817 results in values of Y-20140817, Y.2.1, and Y
-# for these three.
-DISTVERSION=	${PORTVERSION:C/([0-9]+).*\.s([0-9]+)/\1-\2/}
-GCC_VERSION=	${PORTVERSION:C/(.+)\.s[0-9]{8}/\1/}
+GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}
 USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:bzip2
 USE_BINUTILS=	yes
 USE_PERL5=	build
 SSP_UNSAFE=	yes
 
-OPTIONS_DEFINE=		BOOTSTRAP GRAPHITE
-OPTIONS_DEFINE_i386=	JAVA
-OPTIONS_DEFINE_amd64=	JAVA
+OPTIONS_DEFINE=		BOOTSTRAP
 OPTIONS_DEFAULT=	BOOTSTRAP
-OPTIONS_DEFAULT_i386=	JAVA
-OPTIONS_DEFAULT_amd64=	JAVA
-OPTIONS_EXCLUDE_DragonFly=	JAVA
 BOOTSTRAP_DESC=		Build using a full bootstrap
-GRAPHITE_DESC=		Support for Graphite loop optimizations
 
 .if exists(/usr/lib32/libc.so)
 OPTIONS_DEFINE_powerpc64+=	MULTILIB
@@ -76,6 +65,7 @@ CONFIGURE_ARGS+=--with-build-config=bootstrap-debug
 ALL_TARGET=	bootstrap-lean
 .endif
 CONFIGURE_ARGS+=--disable-nls \
+		--disable-libgcj \
 		--enable-gnu-indirect-function \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
@@ -87,10 +77,7 @@ CONFIGURE_ARGS+=--disable-nls \
 		${ICONV_CONFIGURE_ARG} \
 		--with-pkgversion="MidnightBSD Ports Collection" \
 		--with-system-zlib
-# On FreeBSD 11 and above AWK uses the locale's collating order which
-# runs into a bug in GCC (PR 211742).
-MAKE_ARGS+=	MAKEINFOFLAGS="--no-split" \
-		AWK="${SETENV} LC_ALL=C ${AWK:Q}"
+MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
@@ -101,35 +88,12 @@ INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/gccinstall \
 		gcc${SUFFIX}/gccint \
 		gcc${SUFFIX}/gfortran \
-		gcc${SUFFIX}/libgomp
-# Release tarballs (as opposed to snapshots) always carry this.
-#.if ${ARCH} == "i386" || ${ARCH} == "amd64"
-INFO+=		gcc${SUFFIX}/libquadmath \
-		gcc${SUFFIX}/libitm
-#.endif
+		gcc${SUFFIX}/libgomp \
+		gcc${SUFFIX}/libitm \
+		gcc${SUFFIX}/libquadmath
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
 
-.if ${PORT_OPTIONS:MGRAPHITE}
-LIB_DEPENDS+=	libisl.so:devel/isl
-CONFIGURE_ARGS+=--with-isl=${LOCALBASE}
-.endif
-
-.if ${PORT_OPTIONS:MJAVA}
-ECJ_JAR=	${LOCALBASE}/share/java/ecj-4.5.jar
-BUILD_DEPENDS+=	${ECJ_JAR}:lang/gcc-ecj45 \
-		zip:archivers/zip
-RUN_DEPENDS+=	${ECJ_JAR}:lang/gcc-ecj45
-EXTRA_PATCHES+=	${FILESDIR}/java-patch-hier
-CONFIGURE_ARGS+=--with-ecj-jar=${ECJ_JAR}
-LANGUAGES:=	${LANGUAGES},java
-INFO+=		gcc${SUFFIX}/cp-tools \
-		gcc${SUFFIX}/gcj
-PLIST_SUB+=	JAVA=""
-.else
-CONFIGURE_ARGS+=--disable-libgcj
-PLIST_SUB+=	JAVA="@comment "
-.endif
 CONFIGURE_ARGS+=--enable-languages=${LANGUAGES}
 
 pre-everything::
@@ -147,12 +111,11 @@ full-regression-test: build
 
 post-fake:
 	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man7/*
-	${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/rebuild-gcj-db${SUFFIX} \
-	         ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/rebuild-gcj-db${SUFFIX}.1
+	${RM} -r ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 	-${RM} ${WRKDIR}/PLIST.lib
-.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///} include/gcj include/gnu include/java include/javax
-	cd ${FAKE_DESTDIR}${TRUE_PREFIX} ; if [ -d $d ]; then \
+.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
+	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor

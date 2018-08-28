@@ -2,7 +2,7 @@
 
 PORTNAME=	xf86-input-mutouch
 PORTVERSION=	1.3.0
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

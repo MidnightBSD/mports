@@ -2,7 +2,6 @@
 
 PORTNAME=	gcc
 PORTVERSION=	6.4.0
-PORTREVISION=	1
 CATEGORIES=	lang java
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -36,15 +35,10 @@ OPTIONS_DEFAULT=	BOOTSTRAP JAVA
 BOOTSTRAP_DESC=		Build using a full bootstrap
 GRAPHITE_DESC=		Support for Graphite loop optimizations
 
-JAVA_USES=		python:build shebangfix
+JAVA_USES=		python shebangfix
 SHEBANG_FILES=	libjava/contrib/aot-compile.in
 
-.if exists(/usr/lib32/libc.so)
-MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
-MULTILIB_CONFIGURE_ENABLE=	multilib
-.else
 CONFIGURE_ARGS+=	--disable-multilib
-.endif
 
 .include <bsd.port.pre.mk>
 
@@ -138,7 +132,7 @@ post-fake:
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///} include/gcj include/gnu include/java include/javax
-	cd ${FAKE_DESTDIR}${TRUE_PREFIX} ; if [ -d $d ]; then \
+	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor

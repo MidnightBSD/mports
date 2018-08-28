@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-session
 PORTVERSION=	3.16.0
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
 		libupower-glib.so:${PORTSDIR}/sysutils/upower
-RUN_DEPENDS=	${LOCALBASE}/sbin/console-kit-daemon:${PORTSDIR}/sysutils/consolekit2 \
+RUN_DEPENDS=	${LOCALBASE}/sbin/console-kit-daemon:${PORTSDIR}/sysutils/consolekit \
 		${LOCALBASE}/bin/xdpyinfo:${PORTSDIR}/x11/xdpyinfo
 
 USES=		execinfo gettext gmake pathfix pkgconfig tar:xz

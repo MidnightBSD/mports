@@ -2,7 +2,18 @@ bin/onig-config
 include/oniggnu.h
 include/onigposix.h
 include/oniguruma.h
-lib/libonig.so
-lib/libonig.so.5
-lib/libonig.so.5.0.0
-libdata/pkgconfig/oniguruma.pc
+lib/libonig.a
+%%PORTDOCS%%%%DOCSDIR%%/API
+%%PORTDOCS%%%%DOCSDIR%%/HISTORY
+%%PORTDOCS%%%%DOCSDIR%%/RE
+%%PORTDOCS%%%%DOCSDIR%%/RE.ja
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/encode.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/listcap.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/names.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/posix.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/simple.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/sql.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/syntax.c
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%

@@ -3,7 +3,6 @@
 
 PORTNAME=	libxklavier
 PORTVERSION=	5.3
-PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
@@ -13,9 +12,9 @@ COMMENT=	Utility library to make XKB stuff easier
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes
-RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
-    		iso-codes>=0:misc/iso-codes
+BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes
+RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
+    		iso-codes>=0:${PORTSDIR}/misc/iso-codes
 
 USE_XORG=	x11 xkbfile
 USES=		gmake libtool pathfix pkgconfig tar:xz

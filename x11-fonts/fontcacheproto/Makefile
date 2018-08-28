@@ -7,9 +7,7 @@ CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fontcache extension headers
-
 LICENSE=	bsd2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	proto
 

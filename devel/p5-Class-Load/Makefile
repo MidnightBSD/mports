@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/p5-Class-Load/Makefile,v 1.2 2010/12/19 13:31:27 az Exp $
 
 PORTNAME=	Class-Load
-PORTVERSION=	0.24
+PORTVERSION=	0.22
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -27,7 +27,6 @@ TEST_DEPENDS=	p5-Test-Fatal>=0:${PORTSDIR}/devel/p5-Test-Fatal \
 CONFIGURE_ENV=	PERL_MM_FALLBACK_SILENCE_WARNING=omg # hide warn about bad toolchain
 
 USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

@@ -12,10 +12,11 @@ COMMENT=	Fast and powerful code search and cross-reference engine
 LICENSE=	cddl apache2
 LICENSE_COMB=	multi
 
-RUN_DEPENDS=	exctags:devel/ctags
+RUN_DEPENDS=	exctags:${PORTSDIR}/devel/ctags
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.7+
+JAVA_VERSION=	1.6+
+JAVA_VENDOR?=	freebsd
 SHAREOWN=	www
 SHAREGRP=	www
 NO_BUILD=	yes

@@ -1,3 +1,2 @@
-TIMESTAMP = 1527020087
-SHA256 (xorg/driver/xf86-video-rendition-4.2.7.tar.bz2) = 9511c6595c9d489a022635bd8d91149de0cb3cbf9034739452ca5b9b5d63f87b
-SIZE (xorg/driver/xf86-video-rendition-4.2.7.tar.bz2) = 365454
+SHA256 (xorg/driver/xf86-video-rendition-4.2.5.tar.bz2) = 39b5569338237de6e17b2a2c6be73ac6c405ee596079c41a7028cfd6e54134cb
+SIZE (xorg/driver/xf86-video-rendition-4.2.5.tar.bz2) = 356351

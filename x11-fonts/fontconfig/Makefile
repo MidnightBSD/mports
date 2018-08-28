@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.12.6
-PORTREVISION?=	0
+PORTVERSION=	2.11.1
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
@@ -11,74 +11,55 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-based font configuration API for X Windows
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gperf tar:bzip2
+USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libexpat.so:textproc/expat2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
-USES+=		cpe gmake libtool pathfix pkgconfig
-CPE_VENDOR=	fontconfig_project
 USE_LDCONFIG=	yes
+USES+=		gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
 		--with-templatedir=${PREFIX}/etc/fonts/conf.avail \
 		--with-xmldir=${PREFIX}/etc/fonts \
 		--with-expat-includes=${LOCALBASE}/include \
 		--with-expat-lib=${LOCALBASE}/lib \
-		--with-default-hinting=${PREFERRED_HINTING} \
 		--with-default-fonts=${PREFIX}/share/fonts \
 		--with-add-fonts=${LOCALBASE}/lib/X11/fonts \
 		--with-cache-dir=/var/db/fontconfig \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--disable-docs
-
-# D6155: static linked library linking added to support statically linked
-# 	 applications, e.g. x11/xforward static option
-CONFIGURE_ARGS+=	--enable-static
-# Python is not required, because fc-blanks.h is available in distfile
-CONFIGURE_ENV=	PYTHON=":"
-
+MAKE_ENV=	LC_ALL=C
 PKGINSTALL=	${WRKDIR}/pkg-install
-INSTALL_TARGET=install-strip
 
-PLIST_SUB=	PREFERRED_HINTING=${PREFERRED_HINTING}
+MAN1PAGES=	fc-cache.1 fc-cat.1 fc-list.1 fc-match.1 fc-query.1 fc-scan.1
+MAN5PAGES=	fonts-conf.5
 PORTDOCS=	fontconfig-user.html fontconfig-user.pdf fontconfig-user.txt
 
-OPTIONS_DEFINE=	DOCS NO_BITMAPS
-OPTIONS_DEFAULT=HINTING_SLIGHT
-OPTIONS_SUB=	yes
-
-NO_BITMAPS_DESC=	Reject bitmap fonts by default
-
-OPTIONS_SINGLE=	HINTING
-HINTING_DESC=	Preferred pixel hinting configuration
-.for opt in NONE SLIGHT MEDIUM FULL
-OPTIONS_SINGLE_HINTING+=	HINTING_${opt}
-HINTING_${opt}_DESC=	${opt:tl}
-HINTING_${opt}_VARS=	PREFERRED_HINTING=${opt:tl}
-.endfor
-
-post-patch-NO_BITMAPS-on:
-	@${REINPLACE_CMD} -i '.bitmaps.bak' -e \
-		'/^CONF_LINKS =/s|$$|\${.newline}	70-no-bitmaps.conf \\|' \
-		${WRKSRC}/conf.d/Makefile.in
+.include <bsd.mport.options.mk>
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/fc-*/*.1 \
-		${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doc/*.5 \
-		${STAGEDIR}${PREFIX}/man/man5
-	${INSTALL_DATA} ${WRKSRC}/fonts.conf \
-		${STAGEDIR}${PREFIX}/etc/fonts/fonts.conf.sample
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
+.endif
+	${INSTALL_MAN} ${MAN5PAGES:S|^|${WRKSRC}/doc/|} ${PREFIX}/man/man5
+.for manpage in ${MAN1PAGES}
+	${INSTALL_MAN} ${FILESDIR}/${manpage} ${PREFIX}/man/man1
+.endfor
+	if [ ! -f ${PREFIX}/etc/fonts/fonts.conf ]; then \
+		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf; \
+		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.default; \
+	else \
+		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.default; \
+	fi
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${DOCSDIR}
+	@${STRIP_CMD} ${PREFIX}/lib/libfontconfig.so.1.8.0
 
 .include <bsd.port.mk>
 

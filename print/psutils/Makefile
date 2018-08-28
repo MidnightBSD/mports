@@ -18,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
-LIB_DEPENDS=	libpaper.so:print/libpaper
+LIB_DEPENDS=	libpaper.so:${PORTSDIR}/print/libpaper
 
 USES=		perl5
 USE_PERL5=	build

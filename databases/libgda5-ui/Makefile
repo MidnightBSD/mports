@@ -20,8 +20,8 @@ do-build:
 	@cd ${WRKSRC}/tools/browser && ${SETENV} ${MAKE_ENV}  ${MAKE_CMD}
 
 do-install:
-	@cd ${WRKSRC}/libgda-ui && ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${INSTALL_TARGET}
-	@cd ${WRKSRC}/control-center && ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${INSTALL_TARGET}
-	@cd ${WRKSRC}/tools/browser && ${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${INSTALL_TARGET}
+	@cd ${WRKSRC}/libgda-ui && ${SETENV} ${MAKE_ENV} DESTDIR=${STAGEDIR} ${MAKE_CMD} ${INSTALL_TARGET}
+	@cd ${WRKSRC}/control-center && ${SETENV} ${MAKE_ENV} DESTDIR=${STAGEDIR} ${MAKE_CMD} ${INSTALL_TARGET}
+	@cd ${WRKSRC}/tools/browser && ${SETENV} ${MAKE_ENV} DESTDIR=${STAGEDIR} ${MAKE_CMD} ${INSTALL_TARGET}
 
 .include "${MASTERDIR}/Makefile"

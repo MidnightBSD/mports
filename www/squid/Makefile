@@ -291,7 +291,7 @@ CONFIGURE_ARGS+=	--disable-carp
 # works when it is defined before bsd.port{.pre}.mk is .included.
 # This makes it currently impossible to combine this macro with OPTIONS to
 # conditionally include OpenSSL support.
-EXTENSIONS+=		ssl
+EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--enable-ssl \
 			--with-openssl="${OPENSSLBASE}"
 CFLAGS+=	-I${OPENSSLINC}

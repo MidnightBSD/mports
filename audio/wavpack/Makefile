@@ -15,7 +15,6 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 USES=		pathfix pkgconfig iconv tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

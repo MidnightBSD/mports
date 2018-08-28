@@ -3,27 +3,23 @@
 # $MidnightBSD$
 
 PORTNAME=	hspell
-PORTVERSION=	1.4
+PORTVERSION=	1.1
 CATEGORIES=	textproc hebrew
-MASTER_SITES=	http://hspell.ivrix.org.il/
+MASTER_SITES=	http://hspell.ivrix.org.il/ \
+		FREEBSD_LOCAL/makc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hebrew spellchecker and morphology engine
 
-LICENSE=	agpl
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl2
 
-USES=		gmake perl5 shebangfix
-USE_LDCONFIG=	yes
+USES=		shebangfix gmake perl5
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 CFLAGS+=	-fPIC
-CONFIGURE_ARGS=	--enable-fatverb \
-		--enable-shared
+SHEBANG_FILES=	pmerge multispell
 
 SUB_FILES=	pkg-message
-
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libhspell.so
+SUB_LIST=	PORTSDIR=${PORTSDIR}
 
 .include <bsd.port.mk>

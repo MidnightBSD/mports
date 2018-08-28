@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xfindproxy
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

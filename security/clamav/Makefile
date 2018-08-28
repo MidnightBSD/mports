@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.100.1
+PORTVERSION=	0.99.3
 CATEGORIES=	security
 MASTER_SITES=	http://www.clamav.net/downloads/production/
 
@@ -9,39 +9,35 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
 
 LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libltdl.so:devel/libltdl \
-		libcurl.so:ftp/curl
+LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
+		libcurl.so:${PORTSDIR}/ftp/curl
 
-OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR TESTS MILTER LDAP ICONV STDERR \
-		EXPERIMENTAL DOCS IPV6 DMG_XAR JSON PCRE
+OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR LLVM TESTS MILTER LDAP ICONV STDERR \
+		EXPERIMENTAL DOCS IPV6 DMG_XAR
 
 ARC_DESC=		Enable arch archives support
 ARJ_DESC=		Enable arj archives support
 LHA_DESC=		Enable lha archives support
 UNZOO_DESC=		Enable zoo archives support
+UNRAR_DESC=		Enable rar archives support
+LLVM_DESC=		Enable JIT Bytecode compiler (bundled LLVM)
 TESTS_DESC=		Run compile-time tests (req. python)
 MILTER_DESC=		Compile the milter interface
 STDERR_DESC=		Print logs to stderr instead of stdout
 EXPERIMENTAL_DESC=	Build experimental code
 DMG_XAR_DESC=		Enable DMG and XAR archives support
 
-OPTIONS_DEFAULT=	ARC ARJ UNZOO UNRAR DMG_XAR \
-			JSON PCRE
+OPTIONS_DEFAULT=	ARC ARJ LHA UNZOO UNRAR LLVM DOCS IPV6 DMG_XAR
 
-ARC_RUN_DEPENDS=	arc:archivers/arc
-ARJ_RUN_DEPENDS=	arj:archivers/arj
-LHA_RUN_DEPENDS=	lha:archivers/lha
-UNZOO_RUN_DEPENDS=	unzoo:archivers/unzoo
-JSON_LIB_DEPENDS=	libjson-c.so:devel/json-c
-PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+ARC_RUN_DEPENDS=	arc:${PORTSDIR}/archivers/arc
+ARJ_RUN_DEPENDS=	arj:${PORTSDIR}/archivers/arj
+LHA_RUN_DEPENDS=	lha:${PORTSDIR}/archivers/lha
+UNZOO_RUN_DEPENDS=	unzoo:${PORTSDIR}/archivers/unzoo
 UNRAR_CONFIGURE_ENABLE=	unrar
 MILTER_CONFIGURE_ENABLE=milter
 TESTS_CONFIGURE_ENABLE=	check
-JSON_CONFIGURE_WITH=	libjson
-PCRE_CONFIGURE_WITH=	pcre
-TESTS_BUILD_DEPENDS=	${LOCALBASE}/include/check.h:devel/check
+TESTS_BUILD_DEPENDS=	${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
 ICONV_CONFIGURE_ON=	--with-iconv
 ICONV_CONFIGURE_OFF=	--without-iconv
 ICONV_USES=		iconv
@@ -50,9 +46,9 @@ IPV6_CONFIGURE_ENABLE=	ipv6
 DMG_XAR_CONFIGURE_ENABLE=	xml
 DMG_XAR_USE=		GNOME=libxml2
 
-USES=		cpe gmake libtool ncurses pathfix ssl
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+USES=		cpe gmake libtool ncurses
 INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
 
@@ -78,7 +74,6 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--enable-readdir_r \
 		--enable-gethostbyname_r \
 		--disable-dependency-tracking \
-		--disable-zlib-vcheck \
 		--enable-clamdtop
 CPPFLAGS+=	-I${LOCALBASE}/include
 
@@ -92,7 +87,6 @@ CLAMAVUSER?=	clamav
 CLAMAVGROUP?=	clamav
 
 CLAMAV_CLAMD_SOCKET?=	${RUNDIR}/clamd.sock
-CLAMAV_CLAMD_PIDFILE?=	${RUNDIR}/clamd.pid
 CLAMAV_MILTER_SOCKET?=	${RUNDIR}/clmilter.sock
 
 SUB_FILES=	pkg-deinstall
@@ -104,7 +98,6 @@ SUB_LIST+=	DBDIR=${DBDIR} \
 		CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP} \
 		CLAMAV_CLAMD_SOCKET=${CLAMAV_CLAMD_SOCKET} \
-		CLAMAV_CLAMD_PIDFILE=${CLAMAV_CLAMD_PIDFILE} \
 		CLAMAV_MILTER_SOCKET=${CLAMAV_MILTER_SOCKET}
 
 SED_CONF=	-E -e 's|^\#?(Example)$$|\#\1|' \
@@ -134,9 +127,14 @@ USERS=	clamav
 GROUPS=	clamav mail
 .endif
 
+.if ${PORT_OPTIONS:MLLVM} && ( ${ARCH} == "i386" || ${ARCH} == "amd64" )
+CONFIGURE_ARGS+=--enable-llvm
 . if ${PORT_OPTIONS:MTESTS}
 USES+=		python:build
 . endif
+.else
+CONFIGURE_ARGS+=--disable-llvm
+.endif
 
 .if ${PORT_OPTIONS:MMILTER}
 USE_RC_SUBR+=	clamav-milter
@@ -146,7 +144,7 @@ LDFLAGS+=	-lldap
 . endif
 
 . if !exists(/usr/lib/libmilter.a) || exists(${LOCALBASE}/lib/libmilter.a)
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:mail/sendmail
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
 CONFIGURE_ARGS+=--with-sendmail=${LOCALBASE}/sbin/sendmail
 LDFLAGS+=	-L${LOCALBASE}/lib
 . else
@@ -168,6 +166,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|-lthr|g' \
 			  -e 's|LC_REVISION=22|LC_REVISION=24|' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
+	@${REINPLACE_CMD} -e 's,^\(pkgconfigdir = \).*$$,\1$$\(prefix\)/libdata/pkgconfig,g' \
+		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} ${SED_CONF} \
 		${WRKSRC}/etc/clamd.conf.sample \
 		${WRKSRC}/etc/freshclam.conf.sample \
@@ -175,7 +175,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
 		${WRKSRC}/libclamunrar/unrar.c
 
-.if ${PORT_OPTIONS:MTESTS}
+.if ${PORT_OPTIONS:MLLVM} && ${PORT_OPTIONS:MTESTS}
 pre-configure:
 	@if ! ${PYTHON_CMD} -c "import thread" >/dev/null 2>&1; then \
 		${ECHO_MSG} ""; \
@@ -196,11 +196,12 @@ post-build:
 .endif
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${STAGEDIR}${PREFIX}/include
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html \
-		  ${STAGEDIR}${DBDIR} \
-		  ${STAGEDIR}${LOGDIR} \
-		  ${STAGEDIR}${RUNDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${STAGEDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
+	@${MKDIR} ${DOCSDIR}/html \
+		  ${DBDIR} \
+		  ${LOGDIR} \
+		  ${RUNDIR}
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 
 .include <bsd.port.post.mk>

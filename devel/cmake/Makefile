@@ -1,10 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	cmake
-PORTVERSION=	3.8.2
+PORTVERSION=	3.1.3
 PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v3.8/
+MASTER_SITES=	http://www.cmake.org/files/v3.1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
@@ -27,10 +27,7 @@ OPTIONS_SUB=	yes
 HAS_CONFIGURE=	yes
 
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
-		libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libjsoncpp.so:devel/jsoncpp \
-		libuv.so:devel/libuv \
-		librhash.so:security/rhash
+		libexpat.so:${PORTSDIR}/textproc/expat2
 RUN_DEPENDS=	${LOCALBASE}/share/cmake/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
 
 MANPAGES_BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
@@ -59,7 +56,7 @@ post-patch:
 		${WRKSRC}/Source/cmLocalGenerator.cxx \
 		${WRKSRC}/Source/CPack/cmCPackGenerator.cxx \
 		${WRKSRC}/bootstrap
-	@${REINPLACE_CMD} -e 's,/opt/kde4,${PREFIX},g' \
+	@${REINPLACE_CMD} -e 's,/opt/kde4,${KDE4_PREFIX},g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
 	@${REINPLACE_CMD} -e 's,/usr/include,${LOCALBASE}/include,' \
 	   	${WRKSRC}/Modules/FindDCMTK.cmake

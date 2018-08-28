@@ -1,3 +1,6 @@
+include/c++/v1/CMakeFiles/CMakeDirectoryInformation.cmake
+include/c++/v1/CMakeFiles/progress.marks
+include/c++/v1/Makefile
 include/c++/v1/__bit_reference
 include/c++/v1/__config
 include/c++/v1/__debug

@@ -1,4 +1,4 @@
---- src/bsd_mouse.c.orig	2018-06-19 04:36:21 UTC
+--- src/bsd_mouse.c.orig	2014-08-12 06:36:34 UTC
 +++ src/bsd_mouse.c
 @@ -26,6 +26,24 @@
   * authorization from the copyright holder(s) and author(s).
@@ -59,7 +59,7 @@
  
  #define HUP_GENERIC_DESKTOP     0x0001
  #define HUP_BUTTON              0x0009
-@@ -75,11 +104,13 @@ static const char *FindDevice(InputInfoPtr, const char
+@@ -75,11 +104,13 @@ static const char *FindDevice(InputInfoP
  #define DEFAULT_MOUSE_DEV               "/dev/mouse"
  #define DEFAULT_SYSMOUSE_DEV            "/dev/sysmouse"
  #define DEFAULT_PS2_DEV                 "/dev/psm0"
@@ -113,7 +113,7 @@
      int i;
      mousehw_t hw;
      mousemode_t mode;
-@@ -188,7 +240,13 @@ SetupAuto(InputInfoPtr pInfo, int *protoPara)
+@@ -188,7 +240,13 @@ SetupAuto(InputInfoPtr pInfo, int *proto
      if (pInfo->fd == -1)
          return NULL;
  
@@ -127,7 +127,7 @@
      i = 1;
      ioctl(pInfo->fd, MOUSE_SETLEVEL, &i);
  
-@@ -207,9 +265,18 @@ SetupAuto(InputInfoPtr pInfo, int *protoPara)
+@@ -207,9 +265,18 @@ SetupAuto(InputInfoPtr pInfo, int *proto
                      protoPara[0] = mode.syncmask[0];
                      protoPara[1] = mode.syncmask[1];
                  }
@@ -148,7 +148,7 @@
              }
          }
      }
-@@ -232,41 +299,41 @@ SetSysMouseRes(InputInfoPtr pInfo, const char *protoco
+@@ -232,41 +299,41 @@ SetSysMouseRes(InputInfoPtr pInfo, const
          (protocol && xf86NameCmp(protocol, "SysMouse") == 0)) {
          /*
           * As the FreeBSD sysmouse driver defaults to protocol level 0
@@ -229,7 +229,7 @@
  #endif
          } else {
              /*
-@@ -293,28 +360,32 @@ FindDevice(InputInfoPtr pInfo, const char *protocol, i
+@@ -293,28 +360,32 @@ FindDevice(InputInfoPtr pInfo, const cha
               * the test for whether /dev/sysmouse is usable can be made.
               */
              if (!strcmp(*pdev, DEFAULT_MOUSE_DEV)) {
@@ -275,7 +275,7 @@
                  break;
              }
          }
-@@ -486,30 +557,78 @@ wsconsPreInit(InputInfoPtr pInfo, const char *protocol
+@@ -486,30 +557,78 @@ wsconsPreInit(InputInfoPtr pInfo, const 
  
  #if defined(USBMOUSE_SUPPORT)
  
@@ -362,7 +362,7 @@
  
      switch (what) {
      case DEVICE_INIT:
-@@ -518,40 +637,96 @@ usbMouseProc(DeviceIntPtr pPointer, int what)
+@@ -518,38 +637,96 @@ usbMouseProc(DeviceIntPtr pPointer, int 
          for (nbuttons = 0; nbuttons < MSE_MAXBUTTONS; ++nbuttons)
              map[nbuttons + 1] = nbuttons + 1;
  
@@ -382,7 +382,7 @@
 +	    ? AXIS_LABEL_PROP_ABS_Y : AXIS_LABEL_PROP_REL_Y);
 +	axes_labels[2] = XIGetKnownProperty(AXIS_LABEL_PROP_ABS_PRESSURE);
 +#endif
- 
++
 +	InitButtonClassDeviceStruct(pPointer, min(pMse->buttons, MSE_MAXBUTTONS),
 +#ifdef HAVE_LABELS
 +	    btn_labels,
@@ -401,7 +401,7 @@
 +	    (acol->xmin != acol->xmax || acol->ymin != acol->ymax) ?
 +	     Absolute : Relative);
 +	InitPtrFeedbackClassDeviceStruct(pPointer, pMse->Ctrl);
-+
+ 
          /* X valuator */
 -        xf86InitValuatorAxisStruct(pPointer, 0, 0, -1, 1, 0, 1);
 +	xf86InitValuatorAxisStruct(pPointer, 0,
@@ -458,10 +458,8 @@
 -                pInfo->fd = -1;
 -            } else {
 -                xf86FlushInput(pInfo->fd);
--#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 23
 -                if (!xf86InstallSIGIOHandler (pInfo->fd, usbSigioReadInput,
 -                                              pInfo))
--#endif
 -                    AddEnabledDevice(pInfo->fd);
 -            }
 +	if (pUsbMse->opened++ == 0) {
@@ -478,22 +476,13 @@
 +			xf86FlushInput(pInfo->fd);
 +			if (!xf86InstallSIGIOHandler (pInfo->fd, usbSigioReadInput, 
 +						      pInfo))
-+			    xf86AddEnabledDevice(pInfo);
++			    AddEnabledDevice(pInfo->fd);
 +		    }
 +		}
          }
          pMse->lastButtons = 0;
          pMse->lastMappedButtons = 0;
-@@ -562,7 +737,7 @@ usbMouseProc(DeviceIntPtr pPointer, int what)
-     case DEVICE_OFF:
-     case DEVICE_CLOSE:
-         if (pInfo->fd != -1) {
--            RemoveEnabledDevice(pInfo->fd);
-+            xf86RemoveEnabledDevice(pInfo);
-             if (pUsbMse->packetSize > 8 && pUsbMse->buffer) {
-                 free(pUsbMse->buffer);
-             }
-@@ -573,6 +748,7 @@ usbMouseProc(DeviceIntPtr pPointer, int what)
+@@ -571,6 +748,7 @@ usbMouseProc(DeviceIntPtr pPointer, int 
              xf86CloseSerial(pInfo->fd);
              pInfo->fd = -1;
          }
@@ -501,7 +490,7 @@
          pPointer->public.on = FALSE;
          usleep(300000);
          break;
-@@ -588,45 +764,154 @@ usbReadInput(InputInfoPtr pInfo)
+@@ -586,45 +764,154 @@ usbReadInput(InputInfoPtr pInfo)
  {
      MouseDevPtr pMse;
      UsbMsePtr pUsbMse;
@@ -677,7 +666,7 @@
  }
  
  static void
-@@ -635,14 +920,17 @@ usbSigioReadInput (int fd, void *closure)
+@@ -633,14 +920,17 @@ usbSigioReadInput (int fd, void *closure
      usbReadInput ((InputInfoPtr) closure);
  }
  
@@ -698,22 +687,21 @@
  
      pUsbMse = malloc(sizeof(UsbMseRec));
      if (pUsbMse == NULL) {
-@@ -651,13 +939,8 @@ usbPreInit(InputInfoPtr pInfo, const char *protocol, i
+@@ -649,12 +939,7 @@ usbPreInit(InputInfoPtr pInfo, const cha
          return FALSE;
      }
  
 -    pMse->protocol = protocol;
 -    xf86Msg(X_CONFIG, "%s: Protocol: %s\n", pInfo->name, protocol);
-+    bzero(pUsbMse, sizeof(UsbMseRec));
- 
+-
 -    /* Collect the options, and process the common options. */
 -    COLLECT_INPUT_OPTIONS(pInfo, NULL);
 -    xf86ProcessCommonOptions(pInfo, pInfo->options);
--
++    bzero(pUsbMse, sizeof(UsbMseRec));
+ 
      /* Check if the device can be opened. */
      pInfo->fd = xf86OpenSerial(pInfo->options);
-     if (pInfo->fd == -1) {
-@@ -672,19 +955,134 @@ usbPreInit(InputInfoPtr pInfo, const char *protocol, i
+@@ -670,19 +955,134 @@ usbPreInit(InputInfoPtr pInfo, const cha
      }
      /* Get USB informations */
      reportDesc = hid_get_report_desc(pInfo->fd);
@@ -860,7 +848,7 @@
      /* Allocate buffer */
      if (pUsbMse->packetSize <= 8) {
          pUsbMse->buffer = pMse->protoBuf;
-@@ -694,56 +1092,129 @@ usbPreInit(InputInfoPtr pInfo, const char *protocol, i
+@@ -692,56 +1092,129 @@ usbPreInit(InputInfoPtr pInfo, const cha
      if (pUsbMse->buffer == NULL) {
          xf86Msg(X_ERROR, "%s: cannot allocate buffer\n", pInfo->name);
          free(pUsbMse);
@@ -912,7 +900,7 @@
      pMse->mousePriv = pUsbMse;
 +    return TRUE;
 +}
- 
++
 +/* This function is called when the protocol is "usb". */
 +static Bool
 +usbPreInit(InputInfoPtr pInfo, const char *protocol, int flags)
@@ -988,7 +976,7 @@
 +	pMse->disableXY = TRUE;
 +    pMse->hasZ = acol->hasZ;
 +    pMse->hasW = acol->hasW;
-+
+ 
      /* Process common mouse options (like Emulate3Buttons, etc). */
      pMse->CommonOptions(pInfo);
  
@@ -1027,7 +1015,7 @@
      /* Setup the local procs. */
      pInfo->device_control = usbMouseProc;
      pInfo->read_input = usbReadInput;
-@@ -786,7 +1257,9 @@ OSMouseInit(int flags)
+@@ -784,7 +1257,9 @@ OSMouseInit(int flags)
      p->CheckProtocol = CheckProtocol;
  #if (defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)) && defined(MOUSE_PROTO_SYSMOUSE)
      p->SetupAuto = SetupAuto;

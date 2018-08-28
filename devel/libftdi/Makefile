@@ -7,7 +7,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.intra2net.com/en/developer/libftdi/download/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library (using libusb) to talk to FTDI chips
+COMMENT=	A library (using libusb) to talk to FTDI chips
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
@@ -23,7 +23,7 @@ OPTIONS_DEFAULT=BOOST PYTHON
 OPTIONS_SUB=	yes
 
 BOOST_DESC=		C++ bindings (requires Boost)
-BOOST_LIB_DEPENDS=	libboost_system.so:devel/boost-libs
+BOOST_LIB_DEPENDS=	libboost_system.so:${PORTSDIR}/devel/boost-libs
 BOOST_CMAKE_ON=		-DFTDIPP:BOOL=ON
 BOOST_CMAKE_OFF=	-DFTDIPP:BOOL=OFF
 BOOST_CXXFLAGS=		-I${LOCALBASE}/include
@@ -32,7 +32,7 @@ PYTHON_DESC=		Python bindings
 PYTHON_BUILD_DEPENDS=	swig2.0:${PORTSDIR}/devel/swig20
 PYTHON_CMAKE_ON=	-DPYTHON_BINDINGS:BOOL=ON
 PYTHON_CMAKE_OFF=	-DPYTHON_BINDINGS:BOOL=OFF
-PYTHON_USES=		python:2.7
+PYTHON_USES=		python
 
 .include <bsd.mport.options.mk>
 
@@ -47,9 +47,9 @@ post-patch:
 
 post-install:
 .if ${PORT_OPTIONS:MPYTHON}
-	python2.7 -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
-	python2.7 -O -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
-	python2.7 ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages/_ftdi.so
+	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_ftdi.so
 .endif
 
 .include <bsd.port.mk>

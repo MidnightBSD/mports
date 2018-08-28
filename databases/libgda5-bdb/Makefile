@@ -9,7 +9,6 @@ COMMENT=	Provides Berkeley DB backend for the libgda5 library
 
 LICENSE=	unknown
 
-USE_BDB=	5
 MASTERDIR=	${.CURDIR}/../libgda5
 BUILD_WRKSRC=	${WRKSRC}/providers/bdb/
 INSTALL_WRKSRC=	${BUILD_WRKSRC}

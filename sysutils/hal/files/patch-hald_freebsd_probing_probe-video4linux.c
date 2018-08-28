@@ -1,8 +1,8 @@
---- hald/freebsd/probing/probe-video4linux.c.orig	2014-10-03 22:48:53.887627582 -0300
-+++ hald/freebsd/probing/probe-video4linux.c	2014-10-12 23:37:47.263963719 -0300
-@@ -0,0 +1,218 @@
+--- hald/freebsd/probing/probe-video4linux.c.orig	2010-02-21 14:51:01.000000000 -0500
++++ hald/freebsd/probing/probe-video4linux.c	2010-02-21 14:54:51.000000000 -0500
+@@ -0,0 +1,225 @@
 +/***************************************************************************
-+ * CVSID: $Id$
++ * CVSID: $Id: patch-hald_freebsd_probing_probe-video4linux.c,v 1.1 2011-10-01 01:09:23 laffer1 Exp $
 + *
 + * probe-video4linux.c : Probe video4linux devices
 + * Adapted for FreeBSD by : Joe Marcus Clarke <marcus@FreeBSD.org>
@@ -87,6 +87,17 @@
 +		return -1;
 +	}
 +	g_free (contents);
++
++	len = 4;
++	sysctlnametomib ("kern.proc.pid", mib, &len);
++
++	len = sizeof(struct kinfo_proc);
++	mib[3] = pid;
++
++	/* This is just a rough test. */
++	if (sysctl (mib, 4, NULL, &len, NULL, 0) == -1)
++		return -1;
++
 +	return i;
 +}
 +
@@ -99,7 +110,6 @@
 +	int bus = -1;
 +	int addr = -1;
 +	int intf = -1;
-+	//int i;
 +	char *device_file = NULL;
 +	char *busstr;
 +	char *addrstr;
@@ -107,7 +117,6 @@
 +	struct video_capability v1cap;
 +	struct v4l2_capability v2cap;
 +	LibHalChangeSet *cset;
-+
 +
 +	if (! hfp_init (argc, argv))
 +		goto out;
@@ -125,8 +134,6 @@
 +	bus = atoi (busstr);
 +	addr = atoi (addrstr);
 +	intf = atoi (intfstr);
-+
-+	//g_message("bus:%d, addr=%d, intf=%d",bus,addr,intf);
 +	if (intf != 0)
 +		goto out;
 +

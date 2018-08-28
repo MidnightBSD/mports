@@ -1,12 +1,9 @@
-Make sure only qmake is built, as the rest of Qt is built
-in other ports.
-
---- configure.orig	2016-08-24 08:18:37 UTC
-+++ configure
-@@ -4115,11 +4115,11 @@ if [ '!' -e "$outpath/bin/qmake" ]; then
-         echo "QT_MAJOR_VERSION = $QT_MAJOR_VERSION" >> "$mkfile"
-         echo "QT_MINOR_VERSION = $QT_MINOR_VERSION" >> "$mkfile"
-         echo "QT_PATCH_VERSION = $QT_PATCH_VERSION" >> "$mkfile"
+--- ./configure.orig	2013-10-22 01:49:15.000000000 -0700
++++ ./configure	2013-11-04 07:40:28.945418565 -0800
+@@ -4194,11 +4194,11 @@
+         fi
+         echo "QMAKESPEC = $adjqmakespec" >> "$mkfile"
+         echo "QT_VERSION = $QT_VERSION" >> "$mkfile"
 -        echo "EXTRA_CFLAGS = $EXTRA_CFLAGS" >> "$mkfile"
 -        echo "EXTRA_CXXFLAGS = $EXTRA_CXXFLAGS" >> "$mkfile"
 +        echo "EXTRA_CFLAGS = $EXTRA_CFLAGS $CFLAGS" >> "$mkfile"
@@ -18,11 +15,11 @@ in other ports.
          echo "EXEEXT = $EXEEXT" >> "$mkfile"
          echo "RM_F = rm -f" >> "$mkfile"
          echo "RM_RF = rm -rf" >> "$mkfile"
-@@ -4138,6 +4138,7 @@ if [ '!' -e "$outpath/bin/qmake" ]; then
-             fi
+@@ -4214,6 +4214,7 @@
+ 	    rm "$mkfile.tmp"
          fi
      done
 +    exit 0
  
-     if [ "$OPT_VERBOSE" = yes ]; then
-         # Show the output of make
+     (cd "$outpath/qmake"; "$MAKE") || exit 2
+ fi # Build qmake

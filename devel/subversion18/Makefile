@@ -46,7 +46,6 @@ SVNFSTYPE?=	fsfs
 
 SUB_FILES=	pkg-install \
 		pkg-deinstall
-SUB_LIST+=	SED=${SED}
 		
 .if make(repository)
 WITH_REPOSITORY_CREATION=	yes

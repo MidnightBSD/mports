@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	cmake
-PORTVERSION=	3.8.2
+PORTVERSION=	3.1.3
 CATEGORIES=	devel
-MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
+MASTER_SITES=	http://www.cmake.org/files/v3.1/
 PKGNAMESUFFIX=	-gui
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,16 +11,12 @@ COMMENT=	Qt4 GUI for cmake
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libexpat.so:textproc/expat2 \
-		libjsoncpp.so:devel/jsoncpp \
-		libuv.so:devel/libuv \
-		librhash.so:security/rhash
+BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
+		libexpat.so:${PORTSDIR}/textproc/expat2
 
 USE_QT5=	core gui widgets buildtools_build qmake_build
-USES=		cmake:run desktop-file-utils execinfo \
-		shared-mime-info
+USES=		cmake:run desktop-file-utils shared-mime-info
 CMAKE_ARGS=	-DBUILD_QtDialog:bool=on \
 		-DBUILD_CursesDialog:BOOL=OFF \
 		-DSPHINX_MAN:BOOL=ON \

@@ -19,6 +19,4 @@ USE_PHP=	yes
 USE_PHPEXT=	yes
 USES=		tar:tgz
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
 .include <bsd.port.mk>

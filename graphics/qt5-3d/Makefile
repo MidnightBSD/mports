@@ -11,10 +11,8 @@ COMMENT=	Qt3D module
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libassimp.so.3:multimedia/assimp
-
 # Base GCC fails to build the code, pull in a more recent compiler.
-USES=		compiler:c++0x pkgconfig qmake
+USES=		compiler:c++0x qmake
 USE_QT5=	concurrent core gui qml quick buildtools_build
 QT_DIST=	${PORTNAME}
 

@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xrandr
-PORTVERSION=	1.5.0
+PORTVERSION=	1.4.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

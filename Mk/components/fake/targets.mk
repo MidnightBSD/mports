@@ -61,21 +61,12 @@ fake-post-install:
 
 
 run-fake:
-.if ${MAKE_CMD} == "ninja"
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-		${MAKE_CMD} ${MAKE_ARGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
-.	if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-			${MAKE_CMD} ${MAKE_ARGS} ${MAKEFILE} ${FAKE_MAKEARGS} install.man
-.	endif
-.else
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
 		${MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
-.       if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
+.	if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
 		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
 			${MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
-.       endif
-.endif
+.	endif
 
 
 .if !target(fix-fake-symlinks) 

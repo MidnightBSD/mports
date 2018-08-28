@@ -2,7 +2,7 @@
 
 PORTNAME?=	xorg-server
 PORTVERSION=	1.14.7
-PORTREVISION?=	8
+PORTREVISION?=	6
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -13,9 +13,9 @@ COMMENT?=	X.Org X server and related programs
 
 LICENSE?=	mit
 
-LIB_DEPENDS=	libdrm.so:graphics/libdrm
-RUN_DEPENDS=	xkeyboard-config>=2.5:x11/xkeyboard-config \
-		xkbcomp:x11/xkbcomp
+LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm
+RUN_DEPENDS=	xkeyboard-config>=2.5:${PORTSDIR}/x11/xkeyboard-config \
+		xkbcomp:${PORTSDIR}/x11/xkbcomp
 
 XORG_CAT=	xserver
 SLAVE_PORT?=	no
@@ -31,7 +31,7 @@ OPTIONS_DEFAULT=SUID DEVD
 
 .include <bsd.mport.options.mk>
 
-USES=		gmake libtool perl5 tar:bzip2 ssl
+USES=		gmake libtool perl5 tar:bzip2
 USE_PERL5=	build
 USE_GL=		gl
 USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
@@ -42,6 +42,7 @@ USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		videoproto compositeproto trapproto recordproto xineramaproto \
 		xinerama evieproto xfont fontenc xkbui pixman pciaccess
 
+USE_OPENSSL=	yes
 CONFIGURE_ARGS?=--disable-dmx --disable-xvfb --disable-xnest \
 		--without-xmlto --disable-docs --disable-devel-docs \
 		--localstatedir=/var --without-dtrace --disable-xephyr \
@@ -66,7 +67,7 @@ CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 .endif
 
 .if ${PORT_OPTIONS:MHAL}
-LIB_DEPENDS+=	libhal.so:sysutils/hal
+LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
 CONFIGURE_ARGS+=	--enable-config-hal=yes
 .else
 CONFIGURE_ARGS+=	--enable-config-hal=no
@@ -136,10 +137,10 @@ post-configure:
 post-install:
 # The .xorg dir because else the xorg-server might not load the correct
 # libglx module.
-	@${MKDIR} ${PREFIX}/lib/xorg/modules/extensions/.xorg
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg
 	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
-		${PREFIX}/lib/xorg/modules/extensions/.xorg/
-	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
+		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>

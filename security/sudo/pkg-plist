@@ -1,9 +1,10 @@
-bin/cvtsudoers
 bin/sudo
 bin/sudoedit
 bin/sudoreplay
-@sample etc/sudoers.dist etc/sudoers
-@sample etc/pam.d/sudo.default etc/pam.d/sudo
+@sample etc/sudoers.sample
+@unexec if cmp -s %D/etc/pam.d/sudo.default %D/etc/pam.d/sudo; then rm -f %D/etc/pam.d/sudo ; fi
+etc/pam.d/sudo.default
+@exec if [ ! -f %D/etc/pam.d/sudo ] ; then cp -p %D/%F %B/sudo; fi
 include/sudo_plugin.h
 libexec/sudo/group_file.so
 libexec/sudo/libsudo_util.so
@@ -12,10 +13,8 @@ libexec/sudo/libsudo_util.so.0.0.0
 libexec/sudo/sudo_noexec.so
 libexec/sudo/sudoers.so
 libexec/sudo/system_group.so
-man/man1/cvtsudoers.1.gz
 man/man5/sudo.conf.5.gz
 man/man5/sudoers.5.gz
-man/man5/sudoers_timestamp.5.gz
 %%LDAP%%man/man5/sudoers.ldap.5.gz
 man/man8/sudo.8.gz
 man/man8/sudo_plugin.8.gz
@@ -23,6 +22,7 @@ man/man8/sudoedit.8.gz
 man/man8/sudoreplay.8.gz
 man/man8/visudo.8.gz
 sbin/visudo
+%%LDAP%%bin/sudoers2ldif
 %%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTORS
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/HISTORY
@@ -57,33 +57,24 @@ sbin/visudo
 %%NLS%%share/locale/fi/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/fur/LC_MESSAGES/sudo.mo
-%%NLS%%share/locale/fur/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/gl/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/hr/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/hr/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/hu/LC_MESSAGES/sudo.mo
-%%NLS%%share/locale/hu/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/it/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/it/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/ko/LC_MESSAGES/sudo.mo
-%%NLS%%share/locale/ko/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/nn/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/sk/LC_MESSAGES/sudo.mo
-%%NLS%%share/locale/sk/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/sr/LC_MESSAGES/sudo.mo
@@ -98,8 +89,7 @@ sbin/visudo
 %%NLS%%share/locale/vi/LC_MESSAGES/sudoers.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/sudo.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/sudoers.mo
-%%NLS%%share/locale/zh_TW/LC_MESSAGES/sudo.mo
-@dir etc/sudoers.d
+etc/sudoers.d/.keep-me
 @dir /var/db/sudo/lectured
 @dir /var/db/sudo
 @dir /var/run/sudo

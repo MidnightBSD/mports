@@ -4,7 +4,7 @@
  	CHAMPLAIN_REQUIREMENT=''
  	GEOCLUE_REQUIREMENT=''
  	;;
-+*freebsd*)
++*midnightbsd* | *freebsd*)
 +	os_win32=no
 +	NO_UNDEFINED=''
 +	SOCKET_LIBS=''

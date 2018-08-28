@@ -1,8 +1,8 @@
 # $MidnightBSD$
+# $FreeBSD: head/security/py-cryptography/Makefile 420137 2016-08-12 16:58:34Z swills $
 
 PORTNAME=	cryptography
-PORTVERSION=	2.1.4
-PORTREVISION=	1
+PORTVERSION=	1.4
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,33 +10,32 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cryptographic recipes and primitives for Python developers
 
-LICENSE=		apache2 bsd3
-LICENSE_COMB=		dual
-LICENSE_FILE_apache2=	${WRKSRC}/LICENSE.APACHE
-LICENSE_FILE_bsd3=	${WRKSRC}/LICENSE.BSD
+LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.7:devel/py-cffi
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.4.1:devel/py-six \
-		${PYTHON_PKGNAMEPREFIX}asn1crypto>=0.21.0:devel/py-asn1crypto \
-		${PYTHON_PKGNAMEPREFIX}cffi>=1.7:devel/py-cffi \
-		${PY_ENUM34} ${PY_IPADDRESS} \
-		${PYTHON_PKGNAMEPREFIX}idna>=2.1:dns/py-idna
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=2.9.0:devel/py-pytest \
-		${PYTHON_PKGNAMEPREFIX}iso8601>0:devel/py-iso8601
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.4.1:${PORTSDIR}/devel/py-cffi
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.4.1:${PORTSDIR}/devel/py-six \
+		${PYTHON_PKGNAMEPREFIX}pyasn1>=0.1.8:${PORTSDIR}/devel/py-pyasn1 \
+		${PYTHON_PKGNAMEPREFIX}cffi>=1.1.0:${PORTSDIR}/devel/py-cffi \
+		${PYTHON_PKGNAMEPREFIX}idna>=2.0:${PORTSDIR}/dns/py-idna
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:${PORTSDIR}/devel/py-pytest \
+		${PYTHON_PKGNAMEPREFIX}iso8601>0:${PORTSDIR}/devel/py-iso8601
 
-# Python 2.7, 3.4-3.6
-USES=		compiler:env python ssl
-USE_PYTHON=	autoplist concurrent distutils
+USES=		python
+USE_OPENSSL=	yes
+USE_PYTHON=	autoplist distutils
 
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
 .include <bsd.port.pre.mk>
 
-.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
-post-patch:
-	@${REINPLACE_CMD} -e 's|"-Wno-error=sign-conversion"||' \
-		${WRKSRC}/src/_cffi_src/build_openssl.py
+.if ${PYTHON_REL} < 3300
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ipaddress>0:${PORTSDIR}/net/py-ipaddress
+.endif
+
+.if ${PYTHON_REL} < 3400
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}enum34>0:${PORTSDIR}/devel/py-enum34
 .endif
 
 post-install:

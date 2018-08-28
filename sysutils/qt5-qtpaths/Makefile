@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: head/sysutils/qt5-qtpaths/Makefile 378033 2015-01-28 01:15:22Z rakuco $
 
 PORTNAME=	qtpaths
@@ -20,7 +21,7 @@ PLIST_FILES=	${QT_BINDIR_REL}/qtpaths
 # from the qtpaths directory. If we run it from the top of the source tree, it
 # will look for a lot more dependencies for other tools such as lupdate, which
 # we do not really have to depend on.
-WRKSRC=	${WRKDIR}/qttools-opensource-src-5.6.2/src/${PORTNAME}
+WRKSRC=	${WRKDIR}/qttools-opensource-src-5.5.1/src/${PORTNAME}
 post-patch:
 	${CP} ${WRKSRC}/../../.qmake.conf ${WRKSRC}
 

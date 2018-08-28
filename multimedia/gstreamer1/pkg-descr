@@ -1,3 +1,5 @@
+[ excerpt from developer's site ]
+- What is GStreamer?
 GStreamer allows the construction of graphs of media-handling
 components, ranging from simple mp3 playback to complex audio
 (mixing) and video (non-linear editing) processing. Applications

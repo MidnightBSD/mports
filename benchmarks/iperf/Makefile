@@ -1,9 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	iperf
-PORTVERSION=	2.0.12
+PORTVERSION=	2.0.5
+PORTREVISION=	1
 CATEGORIES=	benchmarks
-MASTER_SITES=	SF/${PORTNAME}2
+MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to measure maximum TCP and UDP bandwidth

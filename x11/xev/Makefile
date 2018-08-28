@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xev
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

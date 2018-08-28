@@ -35,7 +35,7 @@ RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 .endif
 
 .if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	ssl
+USE_OPENSSL=	yes
 CONFIGURE_ARGS+=--with-ssl=openssl
 RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 .endif

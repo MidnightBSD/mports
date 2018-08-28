@@ -2,7 +2,7 @@
 
 PORTNAME=	msmtp
 PORTVERSION=	1.4.32
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF
 
@@ -31,7 +31,7 @@ MSMTPQ_DESC=	Install offline messaging scripts
 LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--with-ssl=gnutls
 .elif ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	ssl
+USE_OPENSSL=	yes
 CONFIGURE_ARGS+=	--with-ssl=openssl
 CONFIGURE_ENV+=		libssl_CFLAGS="-I${OPENSSLINC}" \
 			libssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"

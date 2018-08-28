@@ -12,8 +12,8 @@ COMMENT=	Qt core non-graphical module
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libicui18n.so:devel/icu \
-		libpcre.so:devel/pcre
+LIB_DEPENDS=	libicui18n.so:${PORTSDIR}/devel/icu \
+		libpcre.so:${PORTSDIR}/devel/pcre
 
 USES=		execinfo
 USE_GNOME=	glib20
@@ -42,8 +42,7 @@ QT_CONFIG=	glib icu
 
 post-install:
 # Allow qconfig.h to be customized by single ports.
-	${AWK} 'BEGIN{print "#include <QtCore/qconfig-modules.h>"}{print}' \
-		${STAGEDIR}${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h > ${WRKDIR}/qconfig.h
-	${MV} ${WRKDIR}/qconfig.h ${STAGEDIR}${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h
+	${REINPLACE_CMD} -i "" '1 s|.*|#include <QtCore/qconfig-modules.h>|' \
+		${STAGEDIR}${PREFIX}/${QT_INCDIR_REL}/QtCore/qconfig.h
 
 .include <bsd.port.post.mk>

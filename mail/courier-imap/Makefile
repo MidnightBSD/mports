@@ -2,7 +2,6 @@
 
 PORTNAME=	courier-imap
 PORTVERSION=	4.5.1
-PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}
@@ -14,7 +13,7 @@ LICENSE=	gpl3
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 
-USES=		gmake ssl tar:bzip2
+USES=		gmake tar:bzip2
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
@@ -49,6 +48,7 @@ OPTIONS=	FAM		"Build in fam support for IDLE command"		off \
 CONFDIR?=	${PREFIX}/etc/${PORTNAME}
 USERDB?=	${PREFIX}/etc/userdb
 LIBEXECDIR?=	${PREFIX}/libexec/${PORTNAME}
+USE_OPENSSL=	yes
 PLIST_SUB=	CONFDIR=${CONFDIR:S,^${PREFIX}/,,} \
 		LIBEXECDIR=${LIBEXECDIR:S,^${PREFIX}/,,}
 

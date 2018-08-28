@@ -1,91 +1,116 @@
 # $MidnightBSD$
 
 PORTNAME=	totem
-PORTVERSION=	3.18.1
-PORTREVISION=	3
+PORTVERSION=	2.32.0
+PORTREVISION?=	1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome2
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Gstreamer-based video player for the GNOME 3 Desktop
+MAINTAINER?=	ports@MidnightBSD.org
+COMMENT?=	A gstreamer-based video player for the GNOME 2 Desktop
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
-		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:misc/gnome-icon-theme \
-		pylint:devel/pylint \
-		appstream-glib>=0:devel/appstream-glib \
-		itstool:textproc/itstool \
-		grilo-plugins2>=0:net/grilo-plugins2
-LIB_DEPENDS=	libgdata.so:devel/libgdata \
-		libdbus-glib-1.so:devel/dbus-glib \
-		libclutter-gst-3.0.so:multimedia/clutter-gst3 \
-		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
-		libpeas-1.0.so:devel/libpeas \
-		libtotem-plparser.so:multimedia/totem-pl-parser
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
-		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:misc/gnome-icon-theme \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas \
-		gnome-settings-daemon>=2.91.0:sysutils/gnome-settings-daemon \
-		gnome-icon-theme-symbolic>=2.91.0:x11-themes/gnome-icon-theme-symbolic \
-		grilo-plugins2>=0:net/grilo-plugins2
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+LIB_DEPENDS=	gdata.7:${PORTSDIR}/devel/libgdata \
+		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
+		totem-plparser.17:${PORTSDIR}/multimedia/totem-pl-parser
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
+		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon \
+		${PYTHON_SITELIBDIR}/atom/__init__.py:${PORTSDIR}/devel/py-gdata
 
-PORTSCOUT=	limitw:1,even
+CONFLICTS=	totem-3.[0-9]*
 
-USES=		desktop-file-utils gettext gmake gnome libtool \
-		pathfix pkgconfig python:2.7 tar:xz
-USE_GNOME=	gtk30 intlhack introspection:build libxml2 nautilus3 \
-		pygobject3
-USE_XORG=	x11 xproto xtst ice sm
-USE_GSTREAMER1=	core good bad soup ugly
+USE_PYTHON=	yes
+USE_BZIP2=	yes
+USES=		pathfix gettext desktop-file-utils
+USE_GNOME=	gnomeprefix intlhack nautilus2 \
+		ltverhack pygtk2 gnomehier
+USE_GSTREAMER=	core gconf hal good mpeg2dec soup ugly python gio
 INSTALLS_ICONS=	yes
-GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
-CFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
+INSTALLS_OMF=	yes
+PKGMESSAGE=	${WRKDIR}/pkg-message
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	LIBS="-lXrandr"
+CONFIGURE_ENV=	LIBS="-lXrandr" \
+		BROWSER_PLUGIN_DIR="${WEBPLUGINS_DIR}"
 CONFIGURE_ARGS=	--with-plugins="${TOTEM_PLUGINS}"
-#CONFIGURE_ENV+=	APPDATA_VALIDATE="${LOCALBASE}/bin/appdata-validate --nonet"
-MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
-INSTALL_TARGET=	install-strip
 
-GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
-		org.gnome.totem.gschema.xml \
-		org.gnome.totem.plugins.opensubtitles.gschema.xml
+MAN1=		totem.1 totem-video-thumbnailer.1
+GCONF_SCHEMAS=	totem-handlers.schemas totem-video-thumbnail.schemas \
+		totem.schemas
 
-OPTIONS_DEFINE=	LIRC
+OPTIONS_DEFINE=	LIRC GALAGO BROWSER_PLUGINS PUBLISH TRACKER
+GALAGO_DESC=	Galago support
+BROWSER_PLUGINS_DESC=	Plugins for gecko browser
+PUBLISH_DESC=	Publish (network playlist) plugin
+TRACKER_DESC=	Tracker local search plugin
 
-PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
-
-OPTIONS_DEFAULT=
-
+OPTIONS_DEFAULT=	BROWSER_PLUGINS
 # check configure script for allowed_plugins="..." for new plugins
-TOTEM_PLUGINS=	apple-trailers autoload-subtitles brasero-disc-recorder chapters \
-		dbusservice im-status grilo gromit iplayer media-player-keys \
-		nautilus ontop opensubtitles properties recent \
-		save-file screensaver screenshot sidebar-test skipto vimeo \
-		youtube
+TOTEM_PLUGINS=	thumbnail screensaver ontop gromit media-player-keys \
+		properties skipto youtube opensubtitles screenshot \
+		brasero-disc-recorder coherence_upnp dbus-service iplayer
 
-# pythonconsole samplepython
-# vala sample-vala
-# iplayer zeitgeist-dp grilo
+# Not using:
+# TOTEM_PLUGINS= mythtv bemused jamendo
 
 .include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_PUBLISH)
+LIB_DEPENDS+=	epc-1.0.2:${PORTSDIR}/www/libepc
+PLIST_SUB+=	PUBLISH=""
+TOTEM_PLUGINS:=	${TOTEM_PLUGINS} publish
+.else
+PLIST_SUB+=	PUBLISH="@comment "
+.endif
+
+PLIST_SUB+=	TRACKER="@comment "
 
 .if ${PORT_OPTIONS:MLIRC}
-LIB_DEPENDS+=	liblirc_client.so:comms/lirc
+LIB_DEPENDS+=	lirc_client.2:${PORTSDIR}/comms/lirc
 PLIST_SUB+=	LIRC=""
 TOTEM_PLUGINS:=	${TOTEM_PLUGINS} lirc
 .else
 PLIST_SUB+=	LIRC="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MGALAGO}
+LIB_DEPENDS+=	galago.3:${PORTSDIR}/devel/libgalago
+PLIST_SUB+=	GALAGO=""
+TOTEM_PLUGINS:=	${TOTEM_PLUGINS} galago
+.else
+PLIST_SUB+=	GALAGO="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MBROWSER_PLUGINS}
+CONFIGURE_ARGS+=--enable-browser-plugins \
+		--enable-gmp-plugin \
+		--enable-narrowspace-plugin
+PLIST_SUB+=	BROWSER_PLUGINS=""
+
+USE_WEBPLUGINS=		gecko19 webkit-gtk2
+WEBPLUGINS_FILES=	libtotem-cone-plugin.so libtotem-gmp-plugin.so \
+			libtotem-mully-plugin.so \
+			libtotem-narrowspace-plugin.so
+.include "${PORTSDIR}/www/browser35/Makefile.webplugins"
+.else
+CONFIGURE_ARGS+=--disable-browser-plugins \
+		--disable-basic-plugin \
+		--disable-gmp-plugin \
+		--disable-narrowspace-plugin
+PLIST_SUB+=	BROWSER_PLUGINS="@comment "
+.endif
+
 .if defined(WITH_DVD_DEVICE)
 DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}
 .else
-DEFAULT_DVD_DEVICE=/dev/cd0
+DEFAULT_DVD_DEVICE=/dev/acd0
 .endif
 
 pre-everything::
@@ -93,4 +118,16 @@ pre-everything::
 	@${ECHO_MSG} "===> Define WITH_DVD_DEVICE if you want to change the default"
 	@${ECHO_MSG} "===> For example, 'make WITH_DVD_DEVICE=\"/dev/somedevice\"'"
 
-.include <bsd.port.mk>
+post-patch:
+	@${CP} -f ${FILESDIR}/pkg-message.in ${PKGMESSAGE}
+	@${REINPLACE_CMD} -e 's|/dev/dvd|${DEFAULT_DVD_DEVICE}|' \
+		${WRKSRC}/src/backend/bacon-video-widget-gst-0.10.c
+
+post-install:
+	@-update-desktop-database
+	${MKDIR} ${PREFIX}/share/vala/vapi
+	${INSTALL_DATA} ${WRKSRC}/bindings/vala/totem.vapi ${PREFIX}/share/vala/vapi
+	${INSTALL_DATA} ${WRKSRC}/bindings/vala/totem.deps ${PREFIX}/share/vala/vapi
+	@${CAT} ${PKGMESSAGE}
+
+.include <bsd.port.post.mk>

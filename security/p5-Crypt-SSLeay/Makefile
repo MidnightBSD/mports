@@ -17,9 +17,10 @@ BUILD_DEPENDS=	p5-LWP-Protocol-https>=6.02:${PORTSDIR}/www/p5-LWP-Protocol-https
 		p5-Try-Tiny>=0.19:${PORTSDIR}/lang/p5-Try-Tiny
 RUN_DEPENDS=	p5-LWP-Protocol-https>=6.02:${PORTSDIR}/www/p5-LWP-Protocol-https
 
-USES=		perl5 ssl
+USES=		perl5
 PERL_CONFIGURE=	yes
 USE_PERL5=	configure
+USE_OPENSSL=	yes
 CONFIGURE_ARGS=	--no-live-tests
 
 .include <bsd.port.mk>

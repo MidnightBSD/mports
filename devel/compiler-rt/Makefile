@@ -12,7 +12,7 @@ COMMENT=	Compiler runtime library with Blocks support
 
 LICENSE=	agg
 
-BUILD_DEPENDS=	cmake:devel/cmake
+BUILD_DEPENDS=	cmake:${PORTSDIR}/devel/cmake
 
 CONFIGURE_WRKSRC=	${WRKDIR}/build
 BUILD_WRKSRC=		${WRKDIR}/build
@@ -22,6 +22,7 @@ CMAKE_SOURCE_PATH=	${WRKSRC}
 
 USES=		cmake tar:bzip2
 USE_LDCONFIG=	yes
+MAKE_ARGS=	VERBOSE=1
 
 LLVM_SVN=	http://llvm.org/svn/llvm-project
 
@@ -50,7 +51,7 @@ SVN_REV!=	svn info ${LLVM_SVN}/ | ${GREP} Revision | cut -d' ' -f2
 .endif
 
 .if defined(BOOTSTRAP)
-FETCH_DEPENDS+=	svn:devel/subversion
+FETCH_DEPENDS+=	svn:${PORTSDIR}/devel/subversion
 
 do-fetch:
 	${MKDIR} ${WRKDIR}
