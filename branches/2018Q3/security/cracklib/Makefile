@@ -1,0 +1,26 @@
+# New ports collection makefile for:	cracklib
+# Date created:				12 Oct 2007
+# Whom:					Lucas Holt <luke@midnightbsd.org>
+#
+# $MidnightBSD$
+#
+
+PORTNAME=	cracklib
+PORTVERSION=	2.8.18
+CATEGORIES=	security
+MASTER_SITES=	SF
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Password-checking library
+LICENSE=	lgpl
+
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--with-default-dict=${PREFIX}/libdata/${PORTNAME}
+
+post-install:
+	${INSTALL_MAN} ${FILESDIR}/cracklib.3 ${MAN3PREFIX}/man/man3/
+	@${MKDIR} ${PREFIX}/libdata/${PORTNAME}
+	${INSTALL_DATA} ${FILESDIR}/pw_dict* ${PREFIX}/libdata/${PORTNAME}/
+
+.include <bsd.port.mk>

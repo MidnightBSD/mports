@@ -1,0 +1,5 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 19605 2015-07-16 01:41:42Z laffer1 $
+%%QT_PLUGINDIR%%/sqldrivers/libqsql%%DB%%.so
+@dirrm %%QT_PLUGINDIR%%/sqldrivers
+@dirrm %%QT_PLUGINDIR%%
+@dirrm %%QT_LIBDIR%%

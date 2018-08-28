@@ -1,0 +1,8 @@
+%%PERL5_MAN3%%/XML::SAX::Expat.3.gz
+%%SITE_PERL%%/XML/SAX/Expat.pm
+@dirrmtry %%SITE_PERL%%/XML/SAX
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX/Expat
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/SAX
+@dirrmtry %%SITE_PERL%%/XML
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
+@exec %%PERL%% -MXML::SAX -e "XML::SAX->add_parser(q(XML::SAX::Expat))->save_parsers();" > /dev/null 2>&1

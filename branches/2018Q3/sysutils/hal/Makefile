@@ -1,0 +1,111 @@
+# $MidnightBSD$
+
+PORTNAME=	hal
+DISTVERSION=	0.5.14
+PORTREVISION=	11
+CATEGORIES=	sysutils
+MASTER_SITES=	http://hal.freedesktop.org/releases/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Hardware Abstraction Layer for simplifying device access
+
+LICENSE=	gpl2
+
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
+# keep shared lib ver to avoid polkit confusion
+LIB_DEPENDS=	libpolkit.so.2:sysutils/policykit \
+		libvolume_id.so:devel/libvolume_id \
+		libck-connector.so:sysutils/consolekit2
+RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids \
+		bash:shells/bash
+
+USES=		gettext gmake libtool:keepla pathfix pkgconfig python shebangfix
+USE_GNOME=	intlhack
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--disable-gtk-doc \
+		--with-backend=freebsd \
+		--disable-docbook-docs \
+		--with-pci-ids=${LOCALBASE}/share/pciids \
+		--disable-usb-ids \
+		--without-libpci \
+		--disable-usb \
+		--disable-smbios \
+		--disable-apm \
+		--disable-pmu \
+		--enable-policy-kit \
+		--enable-console-kit \
+		--with-socket-dir=/var/run/hald \
+		--with-eject=/usr/sbin/cdcontrol \
+		--with-pid-file=/var/run/hald/hald.pid \
+		--with-deprecated-keys \
+		--localstatedir=/var
+CONFIGURE_ENV=	GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+SHEBANG_FILES=	tools/hal-*
+
+#HALVERSION=	0.5.10
+#SNAPVERSION=	20080218
+
+USERS=		haldaemon
+GROUPS=		haldaemon
+
+USE_RC_SUBR=	hald
+USE_GNOME_SUBR=	yes
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${DISTVERSION}
+PLIST_SUB=	VERSION=${DISTVERSION}
+
+RC_FILES=	hal.conf:${PREFIX}/etc/dbus-1/system.d
+PLIST_FILES=	${PRIV_FILES:S|^|%%DATADIR%%/dist/|}
+
+SUB_FILES=	pkg-install pkg-deinstall
+SUB_LIST=	RC_FILES="${RC_FILES}"
+
+INSTALL_TARGET=	install-strip
+
+OPTIONS_DEFINE=	FIXED_MOUNTPOINTS DOCS
+FIXED_MOUNTPOINTS_DESC=	use fixed mountpoints
+
+FIXED_MOUNTPOINTS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-tools_hal-storage-mount.c
+
+.include <bsd.port.pre.mk>
+
+.if (${ARCH}=="i386" || ${ARCH}=="amd64" || ${ARCH}=="ia64")
+RUN_DEPENDS+=	dmidecode:sysutils/dmidecode
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's/==/=/g' ${WRKSRC}/tools/hal-luks*
+	@${REINPLACE_CMD} -e '/^scriptdir = /s|[(]libexecdir[)]/scripts|(libexecdir)/hal/scripts|' \
+		${WRKSRC}/tools/Makefile.in \
+		${WRKSRC}/tools/freebsd/Makefile.in
+	@${REINPLACE_CMD} -e 's|[(]libexecdir[)]/scripts|(libexecdir)/hal/scripts|' \
+		${WRKSRC}/hald/Makefile.in \
+		${WRKSRC}/tools/Makefile.in
+	@${REINPLACE_CMD} -e 's|user="0"|group="operator"|g' \
+		${WRKSRC}/hal.conf.in
+	@${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+	    	< ${FILESDIR}/README.fuse > ${WRKDIR}/README.fuse
+
+post-install:
+	${MKDIR} ${DATADIR}/dist
+	${INSTALL_DATA} ${WRKSRC}/hal.conf ${DATADIR}/dist
+	${MKDIR} ${PREFIX}/share/hal/fdi/policy/10osvendor
+	${INSTALL_DATA} ${FILESDIR}/10-mouse-sysmouse.fdi \
+	    	${PREFIX}/share/hal/fdi/policy/10osvendor
+	${INSTALL_SCRIPT} ${FILESDIR}/mount-fuse \
+	    	${PREFIX}/share/hal/mount-fuse
+.if !defined(PACKAGE_BUILDING)
+	@${SETENV} PKG_PREFIX=${PREFIX} \
+		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.endif
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/hald/freebsd/README \
+		${DOCSDIR}/README.freebsd
+	${INSTALL_DATA} ${WRKDIR}/README.fuse \
+	    	${DOCSDIR}/README.fuse
+.endif
+
+.include <bsd.port.post.mk>

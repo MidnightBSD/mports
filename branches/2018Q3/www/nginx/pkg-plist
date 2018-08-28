@@ -1,0 +1,19 @@
+@sample etc/nginx/fastcgi_params
+etc/nginx/koi-utf
+etc/nginx/koi-win
+@sample etc/nginx/scgi_params
+@sample etc/nginx/uwsgi_params
+etc/nginx/win-utf
+@sample etc/nginx/mime.types
+@sample etc/nginx/nginx.conf
+%%WWWDATA%%@exec mkdir -p -m 755 %D/www/nginx-dist
+%%WWWDATA%%@exec if [ ! -d %D/www/nginx/ ] ; then ln -fs %D/www/nginx-dist %D/www/nginx; fi
+%%WWWDATA%%www/nginx-dist/EXAMPLE_DIRECTORY-DONT_ADD_OR_TOUCH_ANYTHING
+%%WWWDATA%%www/nginx-dist/index.html
+%%WWWDATA%%www/nginx-dist/50x.html
+%%WWWDATA%%@exec chmod a-w %D/www/nginx-dist
+%%WWWDATA%%@unexec if [ -L %D/www/nginx ]; then rm -f %D/www/nginx; fi
+sbin/nginx
+@dir %%NGINX_TMPDIR%%
+@dir %%NGINX_LOGDIR%%
+man/man8/nginx.8.gz

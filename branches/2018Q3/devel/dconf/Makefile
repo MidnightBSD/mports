@@ -1,0 +1,45 @@
+# $MidnightBSD$
+
+PORTNAME=	dconf
+PORTVERSION=	0.26.1
+CATEGORIES=	devel gnome
+MASTER_SITES=	GNOME
+DISTNAME=	dconf-${PORTVERSION}
+DIST_SUBDIR=	gnome3
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Configuration database system for GNOME
+
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	vala>=0.18.1:lang/vala \
+		docbook-xsl>=0:textproc/docbook-xsl
+LIB_DEPENDS=	libdbus-1.so:devel/dbus
+
+PORTSCOUT=	limitw:1,even
+
+USES=		gettext gmake gnome localbase pathfix pkgconfig tar:xz
+USE_GNOME=	glib20 libxslt:build
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/etc/|${PREFIX}/etc/|g' \
+		-e 's|"/etc"|"${PREFIX}/etc"|g' \
+		${WRKSRC}/engine/dconf-engine.c \
+		${WRKSRC}/engine/dconf-engine-profile.c \
+		${WRKSRC}/engine/dconf-engine-source-system.c \
+		${WRKSRC}/bin/dconf-update.c \
+		${WRKSRC}/tests/engine.c
+	@${REINPLACE_CMD} -e 's|-Wno-unused-but-set-variable||g' \
+		${WRKSRC}/bin/Makefile.in \
+		${WRKSRC}/client/Makefile.in
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/docs/Makefile.in
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/dconf/db
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/dconf/profile
+
+.include <bsd.port.mk>

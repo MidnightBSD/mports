@@ -1,0 +1,17 @@
+# $FreeBSD: head/devel/bugzilla44/Makefile.common 351542 2014-04-18 15:03:41Z ohauer $
+
+DIST_SUBDIR=	${PORTNAME}
+PKGNAMESUFFIX=	44
+
+CONFLICTS_INSTALL=	\
+		bugzilla4[^4].* \
+		bugzilla-4.[^4].*
+
+PORTSCOUT=	limitw:1,even
+
+WWWDIR=		${PREFIX}/www/bugzilla
+
+BINMODE=	700
+
+NO_BUILD=	yes
+

@@ -1,0 +1,12 @@
+--- Modules/CMakePlatformId.h.in.orig	2013-06-11 20:46:01.000000000 -0400
++++ Modules/CMakePlatformId.h.in	2013-06-11 20:47:24.000000000 -0400
+@@ -17,6 +17,9 @@
+ #elif defined(__FreeBSD__) || defined(__FreeBSD)
+ # define PLATFORM_ID "FreeBSD"
+ 
++#elif defined(__MidnightBSD__) || defined(__MidnightBSD)
++# define PLATFORM_ID "MidnightBSD"
++
+ #elif defined(__NetBSD__) || defined(__NetBSD)
+ # define PLATFORM_ID "NetBSD"
+ 

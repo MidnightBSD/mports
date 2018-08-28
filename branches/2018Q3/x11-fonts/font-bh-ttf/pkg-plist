@@ -1,0 +1,17 @@
+etc/fonts/conf.avail/42-luxi-mono.conf
+etc/fonts/conf.d/42-luxi-mono.conf
+share/fonts/TTF/luximb.ttf
+share/fonts/TTF/luximbi.ttf
+share/fonts/TTF/luximr.ttf
+share/fonts/TTF/luximri.ttf
+share/fonts/TTF/luxirb.ttf
+share/fonts/TTF/luxirbi.ttf
+share/fonts/TTF/luxirr.ttf
+share/fonts/TTF/luxirri.ttf
+share/fonts/TTF/luxisb.ttf
+share/fonts/TTF/luxisbi.ttf
+share/fonts/TTF/luxisr.ttf
+share/fonts/TTF/luxisri.ttf
+@dirrmtry etc/fonts/conf.d
+@dirrmtry etc/fonts/conf.avail
+@dirrmtry etc/fonts

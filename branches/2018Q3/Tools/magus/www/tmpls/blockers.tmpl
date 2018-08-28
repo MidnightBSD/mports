@@ -1,0 +1,30 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<section>
+  <div class="row-fluid">
+     <div class="col-md-10 col-md-offset-1">
+       <h2><TMPL_VAR NAME="title"></h2>
+
+	<p>Top blockers is a list of ports that were blocking the build of other
+	ports.</p>
+
+       <table class="table table-striped table-bordered run-summary">
+<thead>
+<tr>
+	<th>Port</th>
+	<th>Blocking</th>
+</tr>
+</thead>
+
+<TMPL_LOOP NAME="blocks">
+<tr>
+	<td><TMPL_VAR NAME="port"></td>
+	<td><TMPL_VAR NAME="blocking"></td>
+</tr>
+</TMPL_LOOP>
+</table>
+    </div>
+  </div>
+</section>
+
+<TMPL_INCLUDE NAME="footer.tmpl">
