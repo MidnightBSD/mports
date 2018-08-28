@@ -1,0 +1,25 @@
+--- Makefile.orig	2015-11-03 20:01:30 UTC
++++ Makefile
+@@ -88,7 +88,11 @@ LIBS+=-lz $(LIBS_TOOLS)
+ HELPERS-$(CONFIG_LINUX) = qemu-bridge-helper$(EXESUF)
+ 
+ ifdef BUILD_DOCS
++ifdef NOPORTDOCS
++DOCS=qemu.1 qemu-img.1 qemu-nbd.8
++else
+ DOCS=qemu-doc.html qemu-tech.html qemu.1 qemu-img.1 qemu-nbd.8 qmp-commands.txt
++endif
+ ifdef CONFIG_LINUX
+ DOCS+=kvm_stat.1
+ endif
+@@ -390,8 +394,10 @@ endif
+ 
+ install-doc: $(DOCS)
+ 	$(INSTALL_DIR) "$(DESTDIR)$(qemu_docdir)"
++ifndef NOPORTDOCS
+ 	$(INSTALL_DATA) qemu-doc.html  qemu-tech.html "$(DESTDIR)$(qemu_docdir)"
+ 	$(INSTALL_DATA) qmp-commands.txt "$(DESTDIR)$(qemu_docdir)"
++endif
+ ifdef CONFIG_POSIX
+ 	$(INSTALL_DIR) "$(DESTDIR)$(mandir)/man1"
+ 	$(INSTALL_DATA) qemu.1 "$(DESTDIR)$(mandir)/man1"

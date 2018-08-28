@@ -1,0 +1,15 @@
+# $MidnightBSD$
+# $FreeBSD: head/devel/gettext/Makefile.common 373636 2014-11-29 18:22:32Z tijl $
+
+PORTVERSION=	0.19.8.1
+PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
+CATEGORIES=	devel
+MASTER_SITES=	GNU/gettext
+DISTNAME=	gettext-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+
+DISTINFO_FILE=	${.CURDIR}/../gettext/distinfo
+
+DATADIR=	${PREFIX}/share/gettext
+DOCSDIR=	${PREFIX}/share/doc/gettext

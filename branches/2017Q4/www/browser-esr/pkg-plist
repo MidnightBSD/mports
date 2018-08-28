@@ -1,0 +1,63 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
+bin/firefox
+lib/firefox/removed-files
+lib/firefox/components/libdbusservice.so
+lib/firefox/components/components.manifest
+lib/firefox/components/libmozgnome.so
+lib/firefox/omni.ja
+lib/firefox/platform.ini
+lib/firefox/libxul.so
+lib/firefox/application.ini
+lib/firefox/browser/searchplugins/eBay.xml
+lib/firefox/browser/searchplugins/yahoo.xml
+lib/firefox/browser/searchplugins/wikipedia.xml
+lib/firefox/browser/searchplugins/amazondotcom.xml
+lib/firefox/browser/searchplugins/twitter.xml
+lib/firefox/browser/searchplugins/ddg.xml
+lib/firefox/browser/searchplugins/bing.xml
+lib/firefox/browser/searchplugins/google.xml
+lib/firefox/browser/blocklist.xml
+lib/firefox/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/icon.png
+lib/firefox/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
+lib/firefox/browser/chrome.manifest
+lib/firefox/browser/chrome/icons/default/default16.png
+lib/firefox/browser/chrome/icons/default/default32.png
+lib/firefox/browser/chrome/icons/default/default48.png
+lib/firefox/browser/components/libbrowsercomps.so
+lib/firefox/browser/components/components.manifest
+lib/firefox/browser/icons/mozicon128.png
+lib/firefox/browser/omni.ja
+lib/firefox/plugin-container
+lib/firefox/dictionaries/en-US.dic
+lib/firefox/dictionaries/en-US.aff
+lib/firefox/webapprt-stub
+lib/firefox/firefox
+lib/firefox/defaults/pref/channel-prefs.js
+lib/firefox/firefox-bin
+lib/firefox/dependentlibs.list
+lib/firefox/chrome.manifest
+lib/firefox/webapprt/webapprt.ini
+lib/firefox/webapprt/omni.ja
+lib/firefox/run-mozilla.sh
+lib/firefox/libmozalloc.so
+lib/firefox/gmp-clearkey/0.1/libclearkey.so
+lib/firefox/gmp-clearkey/0.1/clearkey.info
+share/applications/firefox.desktop
+share/pixmaps/firefox.png
+@dir lib/firefox/components
+@dir lib/firefox/browser/searchplugins
+@dir lib/firefox/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
+@dir lib/firefox/browser/extensions
+@dir lib/firefox/browser/chrome/icons/default
+@dir lib/firefox/browser/chrome/icons
+@dir lib/firefox/browser/chrome
+@dir lib/firefox/browser/components
+@dir lib/firefox/browser/icons
+@dir lib/firefox/browser
+@dir lib/firefox/dictionaries
+@dir lib/firefox/defaults/pref
+@dir lib/firefox/defaults
+@dir lib/firefox/webapprt
+@dir lib/firefox/gmp-clearkey/0.1
+@dir lib/firefox/gmp-clearkey
+@dir lib/firefox

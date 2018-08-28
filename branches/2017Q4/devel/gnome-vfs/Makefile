@@ -1,0 +1,108 @@
+# $MidnightBSD$
+# $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
+
+PORTNAME=	gnome-vfs
+PORTVERSION=	2.24.4
+PORTREVISION?=	0
+CATEGORIES=	devel gnome
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome2
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNOME Virtual File System
+
+LICENSE=	gpl2
+
+USES=		tar:bzip2
+
+.if !defined(REFERENCE_PORT)
+
+RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
+
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USE_GNOME=	gnomeprefix intlhack gnomemimedata gconf2 \
+		referencehack
+INSTALL_TARGET=	install-strip
+USE_OPENSSL=	yes
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-openssl \
+		--disable-gnutls \
+		--disable-howl \
+		--with-hal-mount=/sbin/mount \
+		--with-hal-umount=/sbin/umount
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+PKGINSTALL=	${WRKDIR}/pkg-install
+PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
+
+GCONF_SCHEMAS=	desktop_default_applications.schemas \
+		desktop_gnome_url_handlers.schemas system_dns_sd.schemas \
+		system_http_proxy.schemas system_smb.schemas
+
+OPTIONS_DEFINE=	SAMBA MDNS HAL
+OPTIONS_DEFAULT=SAMBA MDNS HAL
+SAMBA_DESC=	Enable SMB volume support
+MDNS_DESC=	Enable Bonjour/Rendezvous support
+
+.include <bsd.mport.options.mk>
+
+.if exists(${LOCALBASE}/lib/libfam.so) || !defined(WITHOUT_FAM)
+USES+=		fam
+.endif
+
+.if exists(${LOCALBASE}/lib/libkrb5.so)
+LIB_DEPENDS+=	libkrb5.so:${PORTSDIR}/security/heimdal
+.endif
+
+.if ${PORT_OPTIONS:MHAL}
+CONFIGURE_ARGS+=--enable-hal
+LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
+.else
+CONFIGURE_ARGS+=--disable-hal
+.endif
+
+.if ${PORT_OPTIONS:MSAMBA}
+LIB_DEPENDS+=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
+PLIST_SUB+=	SAMBA=""
+.else
+PLIST_SUB+=	SAMBA="@comment "
+CONFIGURE_ARGS+=--disable-samba
+.endif
+
+.if ${PORT_OPTIONS:MMDNS}
+LIB_DEPENDS+=	libavahi-client.so:${PORTSDIR}/net/avahi-app
+.else
+CONFIGURE_ARGS+=--disable-avahi
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+		${WRKSRC}/libgnomevfs/Makefile.in
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
+		s|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/libgnomevfs/xdgmime.c \
+		${WRKSRC}/libgnomevfs/gnome-vfs-hal-mounts.c
+	@${REINPLACE_CMD} -e 's|-lacl||g ; \
+		s|inotify_support=yes|inotify_support=no|g' \
+			${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|-DG_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/*/Makefile.in
+	@${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		< ${MASTERDIR}/pkg-install.in > ${PKGINSTALL}
+	@${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		< ${MASTERDIR}/pkg-deinstall.in > ${PKGDEINSTALL}
+
+pre-configure:
+.if defined(WITHOUT_KERBEROS)
+	@${ECHO_CMD} "${PKGNAME}: KERBEROS is required."
+	@${FALSE}
+.endif
+
+post-install:
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+
+.include <bsd.port.mk>
+
+.endif

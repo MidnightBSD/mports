@@ -1,0 +1,18 @@
+include/crack.h
+include/packer.h
+lib/libcrack.a
+lib/libcrack.la
+lib/libcrack.so
+lib/libcrack.so.10
+libdata/cracklib/pw_dict.hwm
+libdata/cracklib/pw_dict.pwd
+libdata/cracklib/pw_dict.pwi
+sbin/cracklib-check
+sbin/cracklib-format
+sbin/cracklib-packer
+sbin/cracklib-unpacker
+sbin/create-cracklib-dict
+%%DATADIR%%/cracklib-small
+%%DATADIR%%/cracklib.magic
+@dirrm libdata/cracklib
+@dirrm share/cracklib

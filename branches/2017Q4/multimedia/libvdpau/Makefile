@@ -1,0 +1,45 @@
+# $MidnightBSD$
+# $FreeBSD: ports/multimedia/libvdpau/Makefile,v 1.3 2011/12/26 16:12:26 tabthorpe Exp $
+
+PORTNAME=	libvdpau
+PORTVERSION=	0.9
+CATEGORIES=	multimedia
+MASTER_SITES=	http://cgit.freedesktop.org/~aplattner/libvdpau/snapshot/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	VDPAU wrapper and tracing library
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		autoreconf libtool pkgconfig tar:xz
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-documentation
+USE_XORG=	dri2proto xext
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	DEBUG
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDEBUG}
+CFLAGS+=	-D_DEBUG
+.else
+CFLAGS+=	-DNDEBUG
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if defined(STRIP) && ${STRIP} != ""
+INSTALL_TARGET=	install-strip
+.endif
+
+post-patch:	.SILENT
+	${REINPLACE_CMD} 's|$$(libdir)/\(pkgconfig\)|$$(prefix)/libdata/\1|' \
+		${WRKSRC}/Makefile.am
+	${REINPLACE_CMD} '/^export /d' ${WRKSRC}/doc/Makefile.am
+	cd ${WRKSRC}/src && ${MV} vdpau_wrapper.cfg vdpau_wrapper.cfg.sample
+	${REINPLACE_CMD} 's/vdpau_wrapper.cfg/&.sample/' \
+		${WRKSRC}/src/Makefile.am
+
+.include <bsd.port.post.mk>

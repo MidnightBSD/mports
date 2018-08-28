@@ -1,0 +1,47 @@
+--- configure.orig	2015-06-19 20:47:55 UTC
++++ configure
+@@ -2814,12 +2814,7 @@ target_os_default=$(tolower $(uname -s))
+ host_os=$target_os_default
+ 
+ # machine
+-if test "$target_os_default" = aix; then
+-    arch_default=$(uname -p)
+-    strip_default="strip -X32_64"
+-else
+-    arch_default=$(uname -m)
+-fi
++arch_default=$(uname -p)
+ cpu="generic"
+ intrinsics="none"
+ 
+@@ -5823,7 +5818,7 @@ ifndef MAIN_MAKEFILE
+ SRC_PATH:=\$(SRC_PATH:.%=..%)
+ endif
+ CC_IDENT=$cc_ident
+-ARCH=$arch
++FFMPEG_ARCH=$arch
+ INTRINSICS=$intrinsics
+ CC=$cc
+ CXX=$cxx
+@@ -6035,7 +6030,7 @@ exec_prefix=\${prefix}
+ libdir=$libdir
+ includedir=$incdir
+ 
+-Name: $name
++Name: ${name}${build_suffix}
+ Description: $comment
+ Version: $version
+ Requires: $(enabled shared || echo $requires)
+@@ -6049,10 +6044,10 @@ EOF
+ mkdir -p doc/examples/pc-uninstalled
+ includedir=${source_path}
+ [ "$includedir" = . ] && includedir="\${pcfiledir}/../../.."
+-    cat <<EOF > doc/examples/pc-uninstalled/$name.pc
++    cat <<EOF > doc/examples/pc-uninstalled/${name}${build_suffix}.pc
+ prefix=
+ exec_prefix=
+-libdir=\${pcfiledir}/../../../$name
++libdir=\${pcfiledir}/../../../${name}${build_suffix}
+ includedir=${includedir}
+ 
+ Name: $name

@@ -1,0 +1,17 @@
+Note for MidnightBSD 0.3:
+
+Contrary to Linux, it is not necessary to use airmon-ng to enable the monitor
+mode of your wireless card.  So do not care about what the manpages say about
+airmon-ng, airodump-ng sets monitor mode automatically.
+
+To return from monitor mode, issue the following command:
+
+	ifconfig ${INTERFACE} -mediaopt monitor
+
+
+Note for MidnightBSD 0.4+:
+
+Due to the addition of virtual access points (VAP),  you need to
+create a new wlan device in monitor mode to use with airodump-ng. To do so,
+issue the following command:
+	ifconfig ${VAP_INTERFACE} create wlandev ${INTERFACE} wlanmode monitor

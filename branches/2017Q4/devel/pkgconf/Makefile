@@ -1,0 +1,27 @@
+# $MidnightBSD$
+
+PORTNAME=	pkgconf
+PORTVERSION=	1
+CATEGORIES=	devel
+MASTER_SITES=	http://rabbit.dereferenced.org/~nenolod/distfiles/ \
+		http://files.etoilebsd.net/pkgconf/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Utility to help to configure compiler and linker flags
+
+LICENSE=	iscl
+
+USES=		tar:xz libtool
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
+TEST_TARGET=	check
+CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:/usr/libdata/pkgconfig \
+		--with-system-libdir=/usr/lib \
+		--with-system-includedir=/usr/include
+MAKE_ARGS=	MANDIR="${MAN1PREFIX}/man/man1"
+
+post-install:
+	${LN} -sf pkgconf ${STAGEDIR}${PREFIX}/bin/pkg-config
+
+.include <bsd.port.mk>

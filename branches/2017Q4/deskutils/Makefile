@@ -1,0 +1,59 @@
+# $MidnightBSD$
+
+COMMENT = Things that used to be on the desktop before computers were invented
+
+SUBDIR += affiche
+SUBDIR += appwrapper
+SUBDIR += baobab
+SUBDIR += cartotheque
+SUBDIR += displaycalibrator
+SUBDIR += drivel
+SUBDIR += glabels
+SUBDIR += gnome-clocks
+SUBDIR += gnome-contacts
+SUBDIR += gnome-dictionary
+SUBDIR += gnome-documents
+SUBDIR += gnome-font-viewer
+SUBDIR += gnome-maps
+SUBDIR += gnome-photos
+SUBDIR += gnome-screenshot
+SUBDIR += gnome-search-tool
+SUBDIR += gnome-system-log
+SUBDIR += gnome-utils
+SUBDIR += gnome-weather
+SUBDIR += gnote
+SUBDIR += gnustep-notebook
+SUBDIR += gnustep-wrapper
+SUBDIR += gtkjj
+SUBDIR += gucharmap
+SUBDIR += gworkspace
+SUBDIR += gworkspace-gwmetadata
+SUBDIR += helpviewer
+SUBDIR += hot-babe
+SUBDIR += javajj
+SUBDIR += jjclient
+SUBDIR += jlj
+SUBDIR += libstreamanalyzer
+SUBDIR += libstreams
+SUBDIR += ljclive
+SUBDIR += menumaker
+SUBDIR += notification-daemon
+SUBDIR += orage
+SUBDIR += planner
+SUBDIR += plopfolio
+SUBDIR += preferencepanes
+SUBDIR += preferences
+SUBDIR += simpleagenda
+SUBDIR += strigi
+SUBDIR += strigiclient
+SUBDIR += strigidaemon
+SUBDIR += strigiutils
+SUBDIR += systempreferences
+SUBDIR += toolboxkit
+SUBDIR += vnc2flv
+SUBDIR += xfce4-notifyd
+SUBDIR += xfce4-tumbler
+SUBDIR += xpad
+SUBDIR += xpostit
+
+.include <bsd.port.subdir.mk>

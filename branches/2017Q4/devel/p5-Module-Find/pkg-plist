@@ -1,0 +1,11 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
+%%SITE_PERL%%/Module/Find.pm
+%%PERL5_MAN3%%/Module::Find.3.gz
+@dir %%SITE_PERL%%/Module
+@dir %%SITE_ARCH%%/auto/Module/Find
+@dir %%SITE_ARCH%%/auto/Module
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

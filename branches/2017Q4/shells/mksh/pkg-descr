@@ -1,0 +1,8 @@
+The MirBSD Korn Shell (mksh) is the enhanced version of the Public
+Domain Korn shell (pdksh), a bourne-compatible shell which is largely
+similar to the original AT&T Korn shell.
+
+Documentation is available at:
+http://www.mirbsd.org/MirOS/dist/mir/mksh/mksh.pdf
+
+WWW: http://mirbsd.de/mksh

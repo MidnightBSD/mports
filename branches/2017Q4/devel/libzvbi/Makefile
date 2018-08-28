@@ -1,0 +1,32 @@
+# $MidnightBSD$
+
+PORTNAME=	libzvbi
+PORTVERSION=	0.2.35
+PORTREVISION=	2
+CATEGORIES=	devel
+MASTER_SITES=	SF/zapping/zvbi/${PORTVERSION}
+DISTNAME=	${PORTNAME:S/lib//}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Routines to access raw VBI capture devices
+LICENSE=	gpl2
+
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
+		libunicode.so:${PORTSDIR}/devel/libunicode
+
+USES=		gettext libtool pathfix pkgconfig tar:bzip2
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|#cpu (\([^)]*\))|defined(__\1__)|g' \
+		${WRKSRC}/src/misc.h \
+		${WRKSRC}/src/exp-gfx.c
+	@${REINPLACE_CMD} -e 's|, ts|, \&ts|' ${WRKSRC}/test/date.c
+	@${REINPLACE_CMD} -e 's|zvbi-atsc-cc$$(EXEEXT)||g; \
+		s|zvbi-atsc-cc\.1||g' ${WRKSRC}/contrib/Makefile.in
+
+.include <bsd.port.mk>

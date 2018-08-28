@@ -1,0 +1,4 @@
+man/man8/comservd.8.gz
+sbin/comservd
+etc/comservd.conf.sample
+etc/rc.d/comservd.sh.sample

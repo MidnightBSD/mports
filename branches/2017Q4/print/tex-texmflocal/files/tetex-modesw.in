@@ -1,0 +1,4 @@
+#!/bin/sh
+# $FreeBSD: ports/print/tex-texmflocal/files/tetex-modesw.in,v 1.2 2004/12/21 19:40:35 hrs Exp $
+
+# DO NOTHING
