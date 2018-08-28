@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-i740
-PORTVERSION=	1.3.5
+PORTVERSION=	1.3.6
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
