@@ -1,0 +1,59 @@
+# $MidnightBSD$
+# $FreeBSD: head/security/cyrus-sasl2-saslauthd/Makefile 409943 2016-03-02 14:13:45Z ume $
+
+PKGNAMESUFFIX=	-saslauthd
+PORTREVISION=	3
+
+COMMENT=	SASL authentication server for cyrus-sasl2
+
+LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+
+INSTALL_WRKSRC=	${WRKSRC}/saslauthd
+
+USE_RC_SUBR=	saslauthd
+
+CYRUS_CONFIGURE_ARGS=	--with-saslauthd=${SASLAUTHD_RUNPATH}
+CONFIGURE_ENV+=	andrew_cv_runpath_switch=none
+
+OPTIONS_DEFINE=		DOCS HTTPFORM OPENLDAP
+OPTIONS_RADIO=		GSSAPI SASLDB
+OPTIONS_RADIO_SASLDB=	BDB1 BDB GDBM
+OPTIONS_DEFAULT=	BDB1
+
+HTTPFORM_DESC=		Enable HTTP form authentication
+HTTPFORM_CONFIGURE_ENABLE=httpform
+OPENLDAP_DESC=		Use OpenLDAP
+OPENLDAP_USE=		OPENLDAP=yes
+OPENLDAP_CONFIGURE_ON=	--with-ldap=${LOCALBASE}
+
+SASLDB_DESC=		Experimental SASLdb authentication module
+BDB_USE=		BDB=yes
+BDB_CONFIGURE_ON=	--enable-auth-sasldb \
+			--with-dblib=berkeley \
+			--with-bdb-libdir=${BDB_LIB_DIR} \
+			--with-bdb-incdir=${BDB_INCLUDE_DIR} \
+			--with-bdb=${BDB_LIB_NAME}
+BDB1_CONFIGURE_ON=	--enable-auth-sasldb \
+			--with-dblib=ndbm
+GDBM_CONFIGURE_ON=	--enable-auth-sasldb \
+			--with-dblib=gdbm \
+			--with-gdbm=${LOCALBASE}
+
+.if exists(/usr/lib/libkrb5.a)
+OPTIONS_RADIO_GSSAPI+=	GSSAPI_BASE
+OPTIONS_DEFAULT+=	GSSAPI_BASE
+.endif
+OPTIONS_RADIO_GSSAPI+=	GSSAPI_HEIMDAL GSSAPI_MIT
+GSSAPI_BASE_USES=		gssapi:base
+GSSAPI_BASE_CONFIGURE_ON=	--enable-gssapi="${GSSAPIBASEDIR}" \
+				--with-gss_impl=heimdal
+GSSAPI_HEIMDAL_USES=		gssapi:heimdal,flags
+GSSAPI_HEIMDAL_CONFIGURE_ON=	--enable-gssapi="${GSSAPIBASEDIR}" \
+				--with-gss_impl=heimdal
+GSSAPI_MIT_USES=		gssapi:mit
+GSSAPI_MIT_CONFIGURE_ON=	--enable-gssapi="${GSSAPIBASEDIR}" \
+				--with-gss_impl=mit
+
+DOCS=		AUTHORS COPYING ChangeLog INSTALL LDAP_SASLAUTHD NEWS README
+
+.include "${.CURDIR}/../../security/cyrus-sasl2/Makefile.common"

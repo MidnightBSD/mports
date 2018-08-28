@@ -1,0 +1,12 @@
+--- config.guess.orig	Sat Mar 22 12:14:01 2008
++++ config.guess	Sat Mar 22 12:14:44 2008
+@@ -776,6 +776,9 @@
+     *:FreeBSD:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+ 	exit ;;
++    *:MidnightBSD:*.*)
++        echo ${UNAME_MACHINE}-unknown-midnightbsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
++        exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+ 	exit ;;

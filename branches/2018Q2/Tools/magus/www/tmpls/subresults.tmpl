@@ -1,0 +1,20 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<TMPL_IF NAME="subresults">
+
+<table class="table table-striped port-results">
+<TMPL_LOOP name="subresults">
+<tr class="<TMPL_VAR NAME=type>">
+	<td><TMPL_VAR NAME="type"></td>
+	<td><TMPL_VAR NAME="phase"></td>
+	<td><TMPL_VAR NAME="name"></td>
+</tr>
+<tr class="<TMPL_VAR NAME=type>">
+	<td colspan="3"><TMPL_VAR NAME="msg"></td>
+</tr>
+</TMPL_LOOP>
+</table>
+
+</TMPL_IF>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

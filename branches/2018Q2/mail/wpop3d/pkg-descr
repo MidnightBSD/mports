@@ -1,0 +1,5 @@
+wpop3d is a pop3 server for retrieval of remote mail on a UNIX system. It
+complies to the RFC1939 specification, suppporting options such as virtual
+maildrops and disabling root and system user maildrop access.
+
+WWW: http://www.bsdnexus.com/wpop3d/

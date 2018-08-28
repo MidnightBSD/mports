@@ -1,0 +1,13 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 17427 2014-09-20 15:34:51Z laffer1 $
+share/fonts/Type1/UTB_____.afm
+share/fonts/Type1/fonts.scale
+share/fonts/Type1/UTRG____.pfa
+share/fonts/Type1/UTRG____.afm
+share/fonts/Type1/UTB_____.pfa
+share/fonts/Type1/UTBI____.pfa
+share/fonts/Type1/UTI_____.pfa
+share/fonts/Type1/fonts.dir
+share/fonts/Type1/UTBI____.afm
+share/fonts/Type1/UTI_____.afm
+@dirrm share/fonts/Type1
+@dirrm share/fonts

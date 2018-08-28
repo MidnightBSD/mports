@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# $FreeBSD: head/databases/rrdtool/files/rrdcached.in 340872 2014-01-24 00:14:07Z mat $
+#
+# PROVIDE: rrdcached
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+#
+# Add the following line to /etc/rc.conf to enable rrdcached:
+#
+# rrdcached_enable (bool):	Set to "NO" by default.
+#				Set to "YES" to enable rrdcached
+#
+# rrdcached_flags (str):	Set to "" by default.
+#
+
+. /etc/rc.subr
+
+name=rrdcached
+rcvar=rrdcached_enable
+
+load_rc_config $name
+
+# Set defaults
+: ${rrdcached_enable="NO"}
+: ${rrdcached_flags="-s www -l /var/run/rrdcached.sock -p /var/run/rrdcached.pid"}
+
+pidfile=/var/run/${name}.pid   
+command=%%PREFIX%%/bin/${name}
+
+run_rc_command "$1"   

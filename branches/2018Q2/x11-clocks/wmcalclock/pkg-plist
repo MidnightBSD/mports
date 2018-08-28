@@ -1,0 +1,3 @@
+@comment $MidnightBSD$
+bin/wmCalClock
+man/man1/wmCalClock.1.gz

@@ -1,0 +1,9 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/Apache/ePerl.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/Parse/ePerl.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse/ePerl/autosplit.ix
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse/ePerl/ePerl.so
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse/ePerl/ePerl.bs
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse/ePerl
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Parse
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/Apache

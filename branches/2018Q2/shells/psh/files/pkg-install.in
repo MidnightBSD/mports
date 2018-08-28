@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/shells/psh/files/pkg-install.in,v 1.2 2007/08/13 13:28:10 garga Exp $
+#
+
+PSH="%%PREFIX%%/bin/psh"
+SHELLS="/etc/shells"
+
+case $2 in
+POST-INSTALL)
+  if [ -d "${SHELLS%/*}" ] && ! grep -qs "^$PSH\$" "$SHELLS"; then
+    if [ `id -u` -eq 0 ]; then
+      echo "$PSH" >> "$SHELLS"
+    else
+      echo "Not root, please add $PSH to $SHELLS manually"
+    fi
+  fi
+  ;;
+esac

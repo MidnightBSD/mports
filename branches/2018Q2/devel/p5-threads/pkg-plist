@@ -1,0 +1,3 @@
+%%SITE_ARCH%%/auto/threads/threads.so
+%%SITE_ARCH%%/threads.pm
+%%PERL5_MAN3%%/threads.3.gz
