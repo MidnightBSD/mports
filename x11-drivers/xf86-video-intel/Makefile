@@ -1,45 +1,45 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-video-intel
-PORTVERSION=	2.21.15
-PORTREVISION=	8
+PORTVERSION=	2.99.917.20180512
 CATEGORIES=	x11-drivers
+MASTER_SITES=	http://cgit.freedesktop.org/xorg/${XORG_CAT}/${PORTNAME}/snapshot/
+DISTNAME=	${PORTNAME}-${COMMIT_ID}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for Intel integrated graphics chipsets
-LICENSE=	mit
 
-LIB_DEPENDS=	libxcb-util.so:${PORTSDIR}/x11/xcb-util
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libxcb-util.so:x11/xcb-util \
+		libdrm.so:graphics/libdrm
+
+COMMIT_ID=	359477215092ac1b602ad1e2f17a28963d9224c2
+
+ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS_REASON=	Intel integrated GPU only exists in Intel x86 processors/chipsets
 
 USE_GL=		gl
 
 USE_LDCONFIG=	yes
 XORG_CAT=	driver
-USE_XORG=	glproto \
-		pixman \
-		x11 \
-		xext \
-		xf86driproto \
-		xineramaproto \
-		xrender \
-		xvmc
+USE_XORG=	pciaccess pixman x11 xcb xext xrender xv xvmc
 
-USES+=		cpe
+USES+=		cpe autoreconf
 CPE_VENDOR=	x
 
-CONFIGURE_ENV+=	xorg_cv_cc_flag__Wno_maybe_uninitialized=no
-CONFIGURE_ARGS+=	--enable-sna
-CONFIGURE_ARGS+=	--disable-glamor
-INSTALL_TARGET=	install-strip
+OPTIONS_SINGLE=	ACCEL
+OPTIONS_SINGLE_ACCEL=	SNA UXA
+OPTIONS_DEFAULT=	UXA
 
-.include <bsd.mport.options.mk>
+ACCEL_DESC=	Default AccelMethod (if not specified in xorg.conf)
+SNA_DESC=	SandyBridge's New Acceleration
+UXA_DESC=	Unified Acceleration Architecture
 
-.if (${OSVERSION} >= 903000 && ${OSVERSION} < 1000000)
-RUN_DEPENDS+=	drm-kmod>=9:${PORTSDIR}/x11-drivers/drm-kmod
+CONFIGURE_ARGS+=	--disable-udev
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|"i915kms"|"i915kms_port"|g' \
-		${WRKSRC}/src/intel_device.c
-.endif
+SNA_CONFIGURE_ON=	--with-default-accel=sna
+UXA_CONFIGURE_ON=	--with-default-accel=uxa
 
 .include <bsd.port.mk>
