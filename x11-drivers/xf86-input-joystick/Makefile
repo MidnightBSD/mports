@@ -1,18 +1,17 @@
 # $MidnightBSD$
 
 PORTNAME=	xf86-input-joystick
-PORTVERSION=	1.6.2
-PORTREVISION=	3
+PORTVERSION=	1.6.3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org joystick input driver
+
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	driver
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-		${WRKSRC}/Makefile.in
+USES=		pathfix
 
 .include <bsd.port.mk>
