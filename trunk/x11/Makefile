@@ -13,6 +13,7 @@ SUBDIR += dgs
 SUBDIR += dmenu
 SUBDIR += dmxproto
 SUBDIR += dri2proto
+SUBDIR += dri3proto
 SUBDIR += editres
 SUBDIR += evieext
 SUBDIR += fixesproto
