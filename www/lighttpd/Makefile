@@ -87,7 +87,7 @@ PORTDOCS=	${DOCS}
 .endif
 
 .if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=    ssl
+USE_OPENSSL=		yes
 CONFIGURE_ARGS+=	--with-openssl \
 			--with-openssl-includes=${OPENSSLINC} \
 			--with-openssl-libs=${OPENSSLLIB}

@@ -1,19 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	nettle
-PORTVERSION=	3.4
+PORTVERSION=	2.7.1
 CATEGORIES=	security
-MASTER_SITES=	GNU \
-		http://www.lysator.liu.se/~nisse/archive/
+MASTER_SITES=	${MASTER_SITE_GNU} \
+		http://www.lysator.liu.se/~nisse/archive/:liu \
+		ftp://ftp.lysator.liu.se/pub/security/lsh/:liu
+MASTER_SITE_SUBDIR=	${PORTNAME}/:DEFAULT
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-level cryptographic library
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	libgmp.so:math/gmp
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
-USES=		gmake makeinfo ssl
+USES=		gmake makeinfo
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	M4="/usr/bin/m4 -g"
 CONFIGURE_ARGS=	--enable-shared
@@ -23,17 +27,27 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 
-INFO=		nettle
 PORTDOCS=	NEWS README TODO nettle.html nettle.pdf
 PORTEXAMPLES=	*.c *.h
+INFO=		nettle
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
-post-patch:
-	@${REINPLACE_CMD} -e '/libdir=/ s|lib32|lib|' ${WRKSRC}/configure
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "sparc64"
+CONFIGURE_ENV+=	CCPIC=-fPIC
+.endif
 
 post-install:
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/examples && ${INSTALL_DATA} ${PORTEXAMPLES} \
+		${STAGEDIR}${EXAMPLESDIR}
+.endif
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

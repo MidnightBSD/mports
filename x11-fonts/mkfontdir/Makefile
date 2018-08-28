@@ -10,7 +10,7 @@ COMMENT=	Create an index of X font files in a directory
 
 LICENSE=	mit
 
-RUN_DEPENDS=	mkfontscale:x11-fonts/mkfontscale
+RUN_DEPENDS=	mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 
 XORG_CAT=	app
 

@@ -1,30 +1,32 @@
 # $MidnightBSD$
 
 PORTNAME=	freeglut
-PORTVERSION=	3.0.0
-PORTREVISION=	1
+PORTVERSION=	2.8.1
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	open source implementation of the GLUT library
+COMMENT=	Alternative to the OpenGL Utility Toolkit (GLUT) library
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake pathfix
+CONFLICTS=	libglut-[0-9].*
+
+USES=		libtool:keepla
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_XORG=	ice x11 xi xrandr
-USE_GL=		gl glu
+USE_XORG=	ice xi xxf86vm xrandr
+USE_GL=		glu
+CONFIGURE_ARGS=	--disable-warnings
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lusbhid -lm
-INSTALL_TARGET=	install/strip
+LDFLAGS+=	-L${LOCALBASE}/lib -lusbhid
+USE_LDCONFIG=	yes
 
 DOCS=	download.html freeglut.html freeglut_logo.png		\
 	freeglut_user_interface.html index.html ogl_sm.png	\
 	progress.html structure.html
-BINS=	CallbackMaker Fractals Fractals_random Lorenz One Resizer \
-	multi-touch shapes smooth_opengl3 spaceball subwin timer
+BINS=	CallbackMaker Fractals Fractals_random Lorenz One shapes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
@@ -35,6 +37,10 @@ pre-configure:
 	@${REINPLACE_CMD} -e "s|/usr/local|${PREFIX}|g"		\
 		${WRKSRC}/progs/demos/${fract}
 .endfor
+
+post-build:
+	@${MV} ${WRKSRC}/progs/demos/CallbackMaker/.libs/CallbackMaker	\
+		${WRKSRC}/progs/demos/CallbackMaker/.libs/callbackmaker
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
@@ -48,7 +54,7 @@ post-install:
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/progs/demos/Fractals/fractals.dat ${EXAMPLESDIR}
 .for prog in ${BINS}
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/${prog} ${STAGEDIR}${EXAMPLESDIR}
+	@${INSTALL_PROGRAM} ${WRKSRC}/progs/demos/${prog}/.libs/${prog:tl} ${EXAMPLESDIR}
 .endfor
 	@${ECHO_MSG} "===> Examples installed in ${EXAMPLESDIR}."
 .endif

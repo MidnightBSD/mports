@@ -1,13 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	xkeyboard-config
-PORTVERSION=	2.24
+PORTVERSION=	2.13
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Keyboard Configuration Database
 
 LICENSE=	mit
+
+MASTER_SITE_SUBDIR=	individual/${XORG_CAT}/${PORTNAME}
 
 BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
 XORG_CAT=	data

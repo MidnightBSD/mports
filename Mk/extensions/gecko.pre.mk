@@ -86,23 +86,11 @@ MOZILLA_VER?=	${PORTVERSION}
 MOZILLA_BIN?=	${PORTNAME}-bin
 MOZILLA_EXEC_NAME?=${MOZILLA}
 MOZ_RPATH?=	${MOZILLA}
-USES+=		cpe gmake iconv perl5 pkgconfig \
+USES+=		cpe compiler:c++11-lang gmake iconv perl5 pkgconfig \
 			python:2.7,build desktop-file-utils
 CPE_VENDOR?=mozilla
 USE_PERL5=	build
 USE_XORG=	x11 xcomposite xdamage xext xfixes xrender xt
-
-.if ${MOZILLA_VER:R:R} >= 49
-USES+=		compiler:c++14-lang
-CPPFLAGS+=	-D_GLIBCXX_USE_C99 -D_GLIBCXX_USE_C99_MATH_TR1 \
-		-D_DECLARE_C99_LDBL_MATH # XXX ports/193528
-.else
-USES+=		compiler:c++11-lang
-.endif
-
-.if ${MOZILLA_VER:R:R} >= 50
-USE_XORG+=	xcb
-.endif
 
 .if ${MOZILLA} != "libxul"
 BUNDLE_LIBS=	yes
@@ -171,7 +159,7 @@ cairo_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
 cairo_MOZ_OPTIONS=	--enable-system-cairo
 .endif
 
-event_LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent
+event_LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 event_MOZ_OPTIONS=	--with-system-libevent
 
 ffi_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi

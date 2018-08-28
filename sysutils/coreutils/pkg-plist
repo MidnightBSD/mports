@@ -1,6 +1,4 @@
 bin/g[
-bin/gb2sum
-bin/gbase32
 bin/gbase64
 bin/gbasename
 bin/gcat
@@ -49,9 +47,8 @@ bin/gmv
 bin/gnice
 bin/gnl
 bin/gnohup
-bin/gnproc
 bin/gnumfmt
-bin/gnustat
+bin/gnproc
 bin/god
 bin/gpaste
 bin/gpathchk
@@ -77,6 +74,7 @@ bin/gshuf
 bin/gsleep
 bin/gsort
 bin/gsplit
+bin/gnustat
 bin/gstdbuf
 bin/gstty
 bin/gsum
@@ -103,9 +101,7 @@ bin/gwc
 bin/gwho
 bin/gwhoami
 bin/gyes
-libexec/coreutils/libstdbuf.so
-man/man1/gb2sum.1.gz
-man/man1/gbase32.1.gz
+libexec/coreutils/glibstdbuf.so
 man/man1/gbase64.1.gz
 man/man1/gbasename.1.gz
 man/man1/gcat.1.gz
@@ -222,10 +218,10 @@ man/man1/gyes.1.gz
 %%NLS%%share/locale/da/LC_TIME/coreutils.mo
 %%NLS%%share/locale/de/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/de/LC_TIME/coreutils.mo
-%%NLS%%share/locale/el/LC_MESSAGES/coreutils.mo
-%%NLS%%share/locale/el/LC_TIME/coreutils.mo
 %%NLS%%share/locale/eo/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/eo/LC_TIME/coreutils.mo
+%%NLS%%share/locale/el/LC_MESSAGES/coreutils.mo
+%%NLS%%share/locale/el/LC_TIME/coreutils.mo
 %%NLS%%share/locale/es/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/es/LC_TIME/coreutils.mo
 %%NLS%%share/locale/et/LC_MESSAGES/coreutils.mo
@@ -252,10 +248,10 @@ man/man1/gyes.1.gz
 %%NLS%%share/locale/it/LC_TIME/coreutils.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/ja/LC_TIME/coreutils.mo
-%%NLS%%share/locale/kk/LC_MESSAGES/coreutils.mo
-%%NLS%%share/locale/kk/LC_TIME/coreutils.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/ko/LC_TIME/coreutils.mo
+%%NLS%%share/locale/kk/LC_MESSAGES/coreutils.mo
+%%NLS%%share/locale/kk/LC_TIME/coreutils.mo
 %%NLS%%share/locale/lg/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/lg/LC_TIME/coreutils.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/coreutils.mo
@@ -280,8 +276,6 @@ man/man1/gyes.1.gz
 %%NLS%%share/locale/sk/LC_TIME/coreutils.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/sl/LC_TIME/coreutils.mo
-%%NLS%%share/locale/sr/LC_MESSAGES/coreutils.mo
-%%NLS%%share/locale/sr/LC_TIME/coreutils.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/coreutils.mo
 %%NLS%%share/locale/sv/LC_TIME/coreutils.mo
 %%NLS%%share/locale/tr/LC_MESSAGES/coreutils.mo

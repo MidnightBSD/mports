@@ -3,8 +3,8 @@
 # $MidnightBSD$
 
 PORTNAME=	freerdp
-DISTVERSION=	2.0.0-rc1
-PORTREVISION=	4
+PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	net comms ipv6
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,85 +13,73 @@ COMMENT=	Free implementation of Remote Desktop Protocol
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		alias cmake:outsource compiler:c++11-lib cpe gettext localbase pathfix pkgconfig ssl
+USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-CPE_VENDOR=	freerdp_project
-
+USES=		alias cmake:outsource cpe execinfo pkgconfig compiler:c++11-lib
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeRDP
 GH_PROJECT=	${GH_ACCOUNT}
+GH_TAGNAME=	f5ff6e1
 
-CMAKE_ARGS+=	-DWITH_LIBSYSTEMD=OFF -DWITH_GSTREAMER_0_10=OFF ${CMAKE_ARGS_${ARCH}}
+WRKSRC=		${WRKDIR}/FreeRDP-f5ff6e1
 
-CMAKE_ARGS_aarch64=	-DWITH_NEON=ON
-CFLAGS_aarch64=		-D__ARM_NEON__=__ARM_NEON # clang
+CPE_VENDOR=	freerdp_project
 
-OPTIONS_DEFINE=		ALSA CUPS FFMPEG GSTREAMER ICU KERBEROS MANPAGES \
-			PULSEAUDIO X11
-OPTIONS_DEFAULT=	CUPS GSTREAMER ICU KERBEROS MANPAGES X11
+LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=	-I${WRKSRC}/include -I${WRKSRC}/winpr/include -I${LOCALBASE}/include
+
+OPTIONS_DEFINE=		ALSA CUPS DIRECTFB FFMPEG GSTREAMER PULSEAUDIO SSE X11
+OPTIONS_DEFAULT=	CUPS GSTREAMER X11
 OPTIONS_SUB=		yes
 
-OPTIONS_DEFINE_armv6=	NEON
-OPTIONS_DEFINE_armv7=	NEON
-OPTIONS_DEFINE_amd64=	SSE
-OPTIONS_DEFINE_i386=	SSE
-OPTIONS_DEFAULT_amd64=	SSE
+ALSA_LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib
+ALSA_CMAKE_ON=		-DWITH_ALSA=ON
+ALSA_CMAKE_OFF=		-DWITH_ALSA=OFF
 
-ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
-ALSA_CMAKE_BOOL=	WITH_ALSA
+CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
+CUPS_CMAKE_ON=		-DWITH_CUPS=ON
+CUPS_CMAKE_OFF=		-DWITH_CUPS=OFF
 
-CUPS_LIB_DEPENDS=	libcups.so:print/cups
-CUPS_CMAKE_BOOL=	WITH_CUPS
+# outdated and unmaintained upstream
+DIRECTFB_DESC=		Build FreeRDP DirectFB client (outdated)
+DIRECTFB_LIB_DEPENDS=	libdirectfb.so:${PORTSDIR}/devel/directfb
+DIRECTFB_CMAKE_ON=	-DWITH_DIRECTFB=ON
+DIRECTFB_CMAKE_OFF=	-DWITH_DIRECTFB=OFF
+# currently DirectFB option fails with clang
+DIRECTFB_USE=		gcc=yes
 
-FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
-			libavutil.so:multimedia/ffmpeg
-FFMPEG_CMAKE_BOOL=	WITH_FFMPEG
+FFMPEG_LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg \
+			libavutil.so:${PORTSDIR}/multimedia/ffmpeg
+FFMPEG_CMAKE_ON=	-DWITH_FFMPEG=ON
+FFMPEG_CMAKE_OFF=	-DWITH_FFMPEG=OFF
 
-GSTREAMER_CMAKE_BOOL=	WITH_GSTREAMER_1_0
-GSTREAMER_USE=		gnome=glib20 gstreamer1=yes xorg=x11,xext,xextproto,xrandr
-GSTREAMER_LIB_DEPENDS=	libgstbase-1.0.so:multimedia/gstreamer1
+GSTREAMER_CMAKE_ON=	-DWITH_GSTREAMER_1_0=ON -DWITH_GSTREAMER_0_10=OFF
+GSTREAMER_CMAKE_OFF=	-DWITH_GSTREAMER_1_0=OFF -DWITH_GSTREAMER_0_10=OFF
+GSTREAMER_USE=		gstreamer1=yes xorg=x11,xextproto,xext,xrandr
 
-ICU_LIB_DEPENDS=	libicuuc.so:devel/icu
-ICU_CMAKE_BOOL=		WITH_ICU
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+PULSEAUDIO_CMAKE_ON=	-DWITH_PULSE=ON
+PULSEAUDIO_CMAKE_OFF=	-DWITH_PULSE=OFF
 
-KERBEROS_CMAKE_BOOL=	WITH_GSSAPI_HEIMDAL
-
-MANPAGES_BUILD_DEPENDS=	xmlto:textproc/xmlto
-MANPAGES_CMAKE_BOOL=	WITH_MANPAGES
-MANPAGES_CMAKE_OFF=	-DWITH_MANPAGES=OFF
-
-NEON_DESC=		Enable	Media Processing Engine instructions
-NEON_CMAKE_BOOL=	WITH_NEON
-.if ! ${CFLAGS:M-march*}
-NEON_CFLAGS=		-march=armv7-a
-.endif
-
-PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
-PULSEAUDIO_CMAKE_BOOL=	WITH_PULSE
-
-SSE_CMAKE_BOOL=		WITH_SSE2
+SSE_CMAKE_ON=		-DWITH_SSE2=ON
+SSE_CMAKE_OFF=		-DWITH_SSE2=OFF
 
 X11_DESC=		Build FreeRDP X11 client
-X11_CMAKE_BOOL=		WITH_X11
-X11_CMAKE_OFF=		-DWITH_XKBFILE=OFF
-X11_USE=		xorg=x11,xcursor,xext,xextproto,xfixes,xi,xinerama,xkbfile,xrandr,xrender,xv
+X11_BUILD_DEPENDS=	xmlto:${PORTSDIR}/textproc/xmlto
+X11_CMAKE_ON=		-DWITH_X11=ON
+X11_CMAKE_OFF=		-DWITH_X11=OFF -DWITH_XKBFILE=OFF
+X11_USE=		xorg=x11,xkbfile,xcursor,xextproto,xv,xinerama,xext,xcursor,xrandr,xi,xfixes
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-post-patch:
-	@${REINPLACE_CMD} -e '/CMAKE_INSTALL_RPATH /d' \
+post-extract:
+	${REINPLACE_CMD} -e 's|$${CMAKE_INSTALL_LIBDIR}/pkgconfig|libdata/pkgconfig|' \
+		-e '/CMAKE_INSTALL_RPATH /d' \
 		${WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's/Linux/Linux|FreeBSD/' \
-		${WRKSRC}/winpr/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's/NetBSD__)/NetBSD__) || defined(__FreeBSD__)/' \
+	${REINPLACE_CMD} -e 's|share/man/man1|man/man1|' \
+		${WRKSRC}/client/X11/CMakeLists.txt
+	${REINPLACE_CMD} -e 's/NetBSD__)/NetBSD__) || defined(__MidnightBSD__)/' \
 		${WRKSRC}/winpr/libwinpr/utils/trio/triodef.h
-	@${RM} ${WRKSRC}/cmake/FindOpenSSL.cmake
-	@${REINPLACE_CMD} -e 's|$${CMAKE_INSTALL_LIBDIR}/cmake|$${CMAKE_INSTALL_PREFIX}/share/cmake/Modules|' \
-		${WRKSRC}/client/CMakeLists.txt \
-		${WRKSRC}/winpr/CMakeLists.txt \
-		${WRKSRC}/uwac/CMakeLists.txt \
-		${WRKSRC}/server/CMakeLists.txt \
-		${WRKSRC}/server/shadow/CMakeLists.txt \
-		${WRKSRC}/libfreerdp/CMakeLists.txt
-
-.include <bsd.port.post.mk>
+	${REINPLACE_CMD} -e 's|<malloc.h>|<stdlib.h>|' \
+		${WRKSRC}/channels/drive/client/statvfs.c
+.include <bsd.port.mk>

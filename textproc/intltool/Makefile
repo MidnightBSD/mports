@@ -2,7 +2,6 @@
 
 PORTNAME=	intltool
 PORTVERSION=	0.51.0
-PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	https://launchpad.net/intltool/trunk/$(PORTVERSION)/+download/
 DIST_SUBDIR=	gnome

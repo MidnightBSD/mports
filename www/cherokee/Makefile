@@ -2,7 +2,6 @@
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.104
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 
@@ -16,7 +15,7 @@ GH_ACCOUNT=	${PORTNAME}
 GH_PROJECT=	webserver
 
 USES=		cpe gettext gmake libtool pathfix pkgconfig python:2,build \
-		shebangfix ssl
+		shebangfix
 SHEBANG_FILES=	admin/CTK/CTK-run.pre admin/server.py \
 		admin/upgrade_config.py cherokee/cherokee-admin-launcher \
 		cherokee/cherokee-tweak contrib/tracelor.py \
@@ -26,6 +25,7 @@ SHEBANG_FILES=	admin/CTK/CTK-run.pre admin/server.py \
 		qa/fcgi.py qa/run-tests.py
 python_CMD=	${PYTHON_CMD}
 USE_RC_SUBR=	cherokee
+USE_OPENSSL=	yes
 USE_AUTOTOOLS=	libtoolize aclocal automake autoheader autoconf
 AUTOMAKE_ARGS=	--add-missing --copy --foreign
 GNU_CONFIGURE=	yes

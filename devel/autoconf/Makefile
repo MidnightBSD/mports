@@ -2,9 +2,10 @@
 
 PORTNAME=	autoconf
 PORTVERSION=	2.69
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	devel
-MASTER_SITES=	GNU
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	autoconf
 DISTNAME=	autoconf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,14 +13,14 @@ COMMENT=	Automatically configure source code on many Un*x platforms
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	gm4:devel/m4 \
-		help2man:misc/help2man
-RUN_DEPENDS=	gm4:devel/m4 \
-		autoconf-wrapper:devel/autoconf-wrapper
+BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
+		help2man:${PORTSDIR}/misc/help2man
+RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
+		autoconf-wrapper:${PORTSDIR}/devel/autoconf-wrapper
 
 BUILD_VERSION=	2.69
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
-USES=		gmake makeinfo perl5 tar:xz
+USES=		gmake makeinfo tar:xz
 USE_PERL5=	yes
 INFO=		autoconf
 

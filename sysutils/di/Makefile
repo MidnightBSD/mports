@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	di
-PORTVERSION=	4.44
+PORTVERSION=	4.43
 CATEGORIES=	sysutils
 MASTER_SITES=	https://gentoo.com/di/ \
 		http://www.cyberbotx.com/di/
@@ -11,7 +11,7 @@ MASTER_SITES=	https://gentoo.com/di/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Disk Information Utility
 
-LICENSE=	zlib
+LICENSE=	other
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 MAKE_ENV=	prefix="${PREFIX}"

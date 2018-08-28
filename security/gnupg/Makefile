@@ -1,60 +1,59 @@
 # $MidnightBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	2.2.4
+PORTVERSION=	2.1.2
+#PORTREVISION=	0
 CATEGORIES=	security
-MASTER_SITES=	GNUPG
+MASTER_SITES=	GNUPG/gnupg
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Complete and free PGP implementation
+COMMENT=	The GNU Privacy Guard
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 LICENSE_FILE_gpl3=	${WRKSRC}/COPYING
-LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING.LGPL3
+LICENSE_FILE_lgpl3=	${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	libassuan.so:security/libassuan \
-		libgcrypt.so:security/libgcrypt \
-		libgpg-error.so:security/libgpg-error \
-		libksba.so:security/libksba \
-		libnpth.so:devel/npth
-BUILD_DEPENDS=	libassuan>=2.5.1:security/libassuan \
-		libgpg-error>=1.16:security/libgpg-error
-RUN_DEPENDS=	pinentry:security/pinentry
+LIB_DEPENDS=	libassuan.so:${PORTSDIR}/security/libassuan \
+		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
+		libksba.so:${PORTSDIR}/security/libksba \
+		libnpth.so:${PORTSDIR}/devel/npth
+BUILD_DEPENDS=	libgpg-error>=1.16:${PORTSDIR}/security/libgpg-error
+RUN_DEPENDS=	pinentry>0:${PORTSDIR}/security/pinentry
 
-CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
-CPE_VENDOR=	gnupg
+GNU_CONFIGURE=	YES
+USES=		gmake iconv pkgconfig tar:bzip2
+USE_LDCONFIG=	YES
+CONFIGURE_ARGS+=	--disable-ntbtls --enable-symcryptrun
+CONFLICTS=	gnupg-2.0.* dirmngr-*
 
-USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
-CONFIGURE_ARGS=	--disable-ntbtls --disable-wks-tools \
-		--enable-gpg-is-gpg2 --enable-symcryptrun --disable-scdaemon
-GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
-INFO=		gnupg
-TEST_TARGET=	check
+OPTIONS_DEFINE=		GNUTLS LDAP SCDAEMON KDNS NLS DOCS SUID_GPG
+LDAP_DESC=		LDAP keyserver interface
+SCDAEMON_DESC=		Enable Smartcard daemon (with libusb)
+KDNS_DESC=		Use DNS CERT helper
+SUID_GPG_DESC=		Install GPG with suid
+OPTIONS_DEFAULT=	GNUTLS
+NO_OPTIONS_SORT=	YES
+OPTIONS_SUB=		YES
+# In jail, SUID is required to avoid warning (security.bsd.unprivileged_mlock sysctl is not used in jail).
 
-OPTIONS_DEFINE=	GNUTLS LDAP NLS DOCS SUID_GPG
-OPTIONS_DEFAULT=GNUTLS 
-NO_OPTIONS_SORT=yes
-OPTIONS_SUB=	yes
-
-LDAP_DESC=	LDAP keyserver interface
-SUID_GPG_DESC=	Install GPG with suid
-# In jail, SUID is required to avoid warning
-# (security.bsd.unprivileged_mlock sysctl is not used in jail).
-
+DOCS_CONFIGURE_ENABLE=	doc
+DOCS_INFO=		gnupg
 GNUTLS_CONFIGURE_ENABLE=gnutls
-GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
-
-LDAP_CONFIGURE_WITH=	ldap=${LOCALBASE}
+GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
+KDNS_LIB_DEPENDS=	libadns.so:${PORTSDIR}/dns/adns
+KDNS_CONFIGURE_ON=	--with-adns=${LOCALBASE}
+LDAP_CONFIGURE_ENABLE=	ldap
+LDAP_CONFIGURE_ON=	--with-ldap=${LOCALBASE}
 LDAP_LIBS=		-L${LOCALBASE}/lib
 LDAP_USE=		OPENLDAP=yes
-LDAP_USES=		readline
-
-NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+SCDAEMON_CONFIGURE_ENABLE=	scdaemon
 
-post-install:
-	@${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
+verify:	checksum
+	gpg2 --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.sig
 
 .include <bsd.port.mk>

@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libxul
-DISTVERSION=	45.6.0
+DISTVERSION=	45.4.0
 CATEGORIES?=	www devel
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source \
 		MOZILLA/firefox/candidates/${DISTVERSION}esr-candidates/build2/source
@@ -13,11 +13,11 @@ COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
 LICENSE=	mpl
 
 MAKE_JOBS_UNSAFE=	yes
-#USE_GCC=	4.8+
+USE_GCC=	4.8+
 
 BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		nss>=3.21.1:${PORTSDIR}/security/nss \
-		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
+		libevent2>=2.0.21_2:${PORTSDIR}/devel/libevent2 \
 		soundtouch>=1.9.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=1.1.0:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.3.6:${PORTSDIR}/graphics/graphite2 \
@@ -44,7 +44,7 @@ LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
 MOZ_OPTIONS?=	--enable-application=xulrunner --disable-webrtc \
-		--disable-sandbox --disable-pie
+		--disable-sandbox
 USE_GECKO=	gecko
 CPE_PRODUCT=	firefox_esr
 MOZILLA_EXEC_NAME=xulrunner

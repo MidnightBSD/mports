@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	aria2
-PORTVERSION=	1.33.1
+PORTVERSION=	1.31.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/release-${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
@@ -34,10 +35,9 @@ INSTALL_TARGET=	install-strip
 USE_CXXSTD=	c++11
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
 USE_RC_SUBR=	${PORTNAME}
-USES=		compiler:c++11-lib gnome libtool pathfix pkgconfig tar:xz ssl
-
-CFLAGS+=   -Wl,-rpath=/usr/local/lib/gcc6
+USES=		compiler:c++11-lib libtool pathfix pkgconfig tar:xz
 
 PORTDOCS=	*
 

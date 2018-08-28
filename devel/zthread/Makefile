@@ -11,7 +11,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Platform-independent object-oriented C++ threading library
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake libtool
 GNU_CONFIGURE=	yes

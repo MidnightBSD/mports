@@ -12,8 +12,6 @@ COMMENT=	Perl extensions for keeping data partially sorted
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

@@ -2,7 +2,7 @@
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14
-PORTREVISION=	11
+PORTREVISION=	10
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -11,18 +11,19 @@ COMMENT=	Hardware Abstraction Layer for simplifying device access
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
 # keep shared lib ver to avoid polkit confusion
-LIB_DEPENDS=	libpolkit.so.2:sysutils/policykit \
-		libvolume_id.so:devel/libvolume_id \
-		libck-connector.so:sysutils/consolekit2
-RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids \
-		bash:shells/bash
+LIB_DEPENDS=	libpolkit.so.2:${PORTSDIR}/sysutils/policykit \
+		libvolume_id.so:${PORTSDIR}/devel/libvolume_id \
+		libck-connector.so:${PORTSDIR}/sysutils/consolekit
+RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids \
+		bash:${PORTSDIR}/shells/bash
 
-USES=		gettext gmake libtool:keepla pathfix pkgconfig python shebangfix
+USES=		gettext gmake libtool:keepla pathfix pkgconfig shebangfix
 USE_GNOME=	intlhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+USE_PYTHON=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-backend=freebsd \
 		--disable-docbook-docs \
@@ -71,12 +72,15 @@ FIXED_MOUNTPOINTS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-tools_hal-storage-mount
 
 .include <bsd.port.pre.mk>
 
-.if (${ARCH}=="i386" || ${ARCH}=="amd64" || ${ARCH}=="ia64")
-RUN_DEPENDS+=	dmidecode:sysutils/dmidecode
+RUN_DEPENDS+=	dmidecode:${PORTSDIR}/sysutils/dmidecode
+
+.if ${OSVERSION} >= 5000
+PLIST_SUB+=	USB2=""
+.else
+PLIST_SUB+=	USB2="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/==/=/g' ${WRKSRC}/tools/hal-luks*
 	@${REINPLACE_CMD} -e '/^scriptdir = /s|[(]libexecdir[)]/scripts|(libexecdir)/hal/scripts|' \
 		${WRKSRC}/tools/Makefile.in \
 		${WRKSRC}/tools/freebsd/Makefile.in

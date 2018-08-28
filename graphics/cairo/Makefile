@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.14.12
+PORTVERSION=	1.14.6
 PORTREVISION=	0
 PORTEPOCH?=	2
 CATEGORIES=	graphics
@@ -17,12 +17,12 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libpng.so:graphics/png \
-		libfontconfig.so:x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-USES+=		cpe gnome libtool pathfix pkgconfig
+USES+=		cpe libtool pathfix pkgconfig
 CPE_VENDOR=	cairographics
 USE_XORG=	pixman xrender xext x11
 USE_GNOME=	referencehack glib20
@@ -34,25 +34,25 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-gallium \
 		--disable-glesv2 \
 		--disable-wgl \
+		--disable-egl \
 		--enable-tee \
 		--enable-gobject \
-		--enable-xlib \
-		--enable-png
+		--enable-xlib
 
 OPTIONS_DEFINE=	OPENGL XCB
-OPTIONS_DEFAULT=OPENGL XCB
+OPTIONS_DEFAULT=XCB
 XCB_DESC=	Enable XCB (X C-language Binding) Support
 OPTIONS_SUB=	yes
-OPENGL_USE=	gl=gl,egl xorg=glproto:both,dri2proto:both
-OPENGL_CONFIGURE_ENABLE=gl egl
-XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:x11/xcb-util-renderutil
-XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:x11/xcb-util-renderutil
+OPENGL_USE=	gl=gl xorg=glproto:both,dri2proto:both
+OPENGL_CONFIGURE_ENABLE=gl
+XCB_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
+XCB_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-renderutil.pc:${PORTSDIR}/x11/xcb-util-renderutil
 XCB_CONFIGURE_ENABLE=	xcb
 # this has another option --enable-xlib-xcb=auto but it is buggy.
 
 .include <bsd.mport.options.mk>
 
-PLIST_SUB+=	LIBVER=2.11400.12
+PLIST_SUB+=	LIBVER=2.11400.6
 
 post-patch:
 	@${REINPLACE_CMD} -e '/strings/s/ - / -a /' \

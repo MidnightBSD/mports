@@ -2,7 +2,6 @@
 
 PORTNAME=	tor
 DISTVERSION=	0.2.8.9
-PORTREVISION=	2
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
@@ -32,7 +31,7 @@ TRANSPARENT_DESC=	Transparent proxy support
 
 OPTIONS_DEFAULT=	THREADS TRANSPARENT
 
-USES=		ssl
+USE_OPENSSL=	yes
 
 USE_RC_SUBR=	tor
 SUB_FILES=	pkg-message
@@ -65,7 +64,7 @@ CONFIGURE_ARGS+=	--disable-instrument-downloads
 .endif
 
 .if ${PORT_OPTIONS:MSTATIC_TOR}
-BUILD_DEPENDS +=	${LOCALBASE}/lib/libevent.a:${PORTSDIR}/devel/libevent
+BUILD_DEPENDS +=	${LOCALBASE}/lib/libevent.a:${PORTSDIR}/devel/libevent2
 CONFIGURE_ARGS+=	--enable-static-tor \
 			--with-zlib-dir=/usr/lib --disable-linker-hardening
 TOR_LIBEVENT_LIBS=	${LOCALBASE}/lib/libevent.a
@@ -74,7 +73,7 @@ TOR_LIBEVENT_LIBS:=	${LOCALBASE}/lib/libevent_openssl.a ${TOR_LIBEVENT_LIBS}
 .endif
 .else
 CONFIGURE_ARGS+=	--enable-linker-hardening
-LIB_DEPENDS+=		libevent.so:${PORTSDIR}/devel/libevent
+LIB_DEPENDS+=		libevent.so:${PORTSDIR}/devel/libevent2
 TOR_LIBEVENT_LIBS=	-levent
 .if ${PORT_OPTIONS:MBUFFEREVENTS}
 TOR_LIBEVENT_LIBS:=	-levent_openssl ${TOR_LIBEVENT_LIBS}

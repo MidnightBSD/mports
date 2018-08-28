@@ -29,7 +29,7 @@ RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
 
 USE_GSTREAMER1=	yes
 USE_XORG=	x11 xext ice
-USES=		bison cmake:outsource compiler:c++11-lib gettext gperf jpeg perl5 \
+USES=		bison cmake compiler:c++11-lib gettext gmake gperf jpeg perl5 \
 		pkgconfig python:2 tar:xz
 USE_RUBY=	yes
 RUBY_NO_RUN_DEPENDS=yes
@@ -41,7 +41,6 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-CXXFLAGS+=		-DFIXED_EXECUTABLE_MEMORY_POOL_SIZE_IN_MB=32
 CMAKE_ARGS+=	-DPORT=GTK \
 		-DUSE_LD_GOLD:BOOL=0
 CONFIGURE_ENV+=	XDG_CACHE_HOME=${WRKDIR}

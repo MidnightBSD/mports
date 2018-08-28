@@ -1,9 +1,14 @@
+# New ports collection makefile for:	irssi-themes
+# Date created:				May 9 2008
+# Whom:					Lucas Holt <Luke@midnightbsd.org>
+#
 # $MidnightBSD$
+#
 
 PORTNAME=	irssi-themes
-PORTVERSION=	2016082001
+PORTVERSION=	20101013
 CATEGORIES=	x11-themes irc
-MASTER_SITES=	https://irssi-import.github.io/themes/ \
+MASTER_SITES=	http://www.irssi.org/themefiles/ \
 		FREEBSD_LOCAL/ehaupt/${PORTNAME}
 DIST_SUBDIR=	${PORTNAME}
 

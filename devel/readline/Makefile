@@ -23,8 +23,6 @@ TERMCAP_DESC=	Link against libtermcap
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-CONFIGURE_ARGS+=	--enable-shared
-
 INFO=		readline rluserman history
 
 PATCHES=	1 2 3 4 5 6 7 8
@@ -36,7 +34,6 @@ PATCHLEVEL=	${PATCHES:M1:S/1/./}${PATCHES:Q:S/^/./:S/ /./g:E}
 .include <bsd.mport.options.mk>
 
 pre-configure:
-	${REINPLACE_CMD} -e "s/dragonfly/midnightbsd/g" ${WRKSRC}/shlib/Makefile.in
 .if ${PORT_OPTIONS:MTERMCAP}
 	${REINPLACE_CMD} "s/SHOBJ_LDFLAGS =/SHOBJ_LDFLAGS = -ltermcap/" ${WRKSRC}/shlib/Makefile.in
 .endif

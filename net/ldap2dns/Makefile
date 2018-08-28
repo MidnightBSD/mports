@@ -18,13 +18,11 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 USES=		gmake ldap
 USE_OPENLDAP=	yes
 USE_PERL5=	yes
-MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LD="${CC}" LDFLAGS="${LDFLAGS}"
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bklang
 
 post-patch:
-	@${REINPLACE_CMD} 's|?=|=|' ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/ldap2dns.c
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/ldap2tinydns-conf
 

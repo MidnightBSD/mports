@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xterm
-PORTVERSION=	333
+PORTVERSION=	322
 PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
@@ -21,7 +21,6 @@ USE_XORG=	xft
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib

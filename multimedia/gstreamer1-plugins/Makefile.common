@@ -7,7 +7,6 @@ BASE_GST_ALL_PLUGINS= \
 		ivorbis \
 		libvisual \
 		ogg \
-		opus \
 		pango \
 		theora \
 		vorbis \
@@ -16,97 +15,104 @@ BASE_GST_ALL_PLUGINS= \
 
 BAD_GST_ALL_PLUGINS+= \
 		assrender \
-		bs2b \
-		chromaprint \
 		curl \
-		dash \
-		dtls \
 		dts \
 		faac \
 		faad \
 		flite \
 		gme \
 		gsm \
-		gtk3 \
 		hls \
 		kate \
-		kms \
-		ladspa \
-		libde265 \
 		libmms \
+		librfb \
 		modplug \
 		mpeg2enc \
 		mplex \
-		musepack \
 		neon \
 		ofa \
 		openal \
 		opencv \
-		openexr \
-		opengl \
-		openh264 \
 		openjpeg \
+		opengl \
+		opus \
 		resindvd \
 		rtmp \
-		rsvg \
 		schro \
-		smoothstreaming \
-		sndfile \
 		soundtouch \
 		spandsp \
-		spc \
-		srtp \
-		ttml \
-		vdpau \
-		wayland \
 		webp \
-		webrtcdsp \
-		x265 \
 		zbar \
+
+# plugins not yet ported to the 1.0 API, or not portable
+BAD_GST_ALL_PLUGINS+= \
+		apexsink \
+		chromaprint \
+		decklink \
+		directfb \
+		ladspa \
+		linsys \
+		lv2 \
+		mimic \
+		mpg123 \
+		musepack \
+		mythtv \
+		nas \
+		opensles \
+		pvr \
+		rsvg \
+		sdl \
+		sndfile \
+		sndio \
+		spc \
+		teletextdec \
+		timidity \
+		vdpau \
+		voaacenc \
+		voamrwbenc \
+		wayland \
+		xvid
 
 # --with-egl-window-system=none --disable-opengl --disable-gles2 --disable-egl --disable-glx \
 
-# XXX need to sort these three out.
 BAD_GST_NON_PLUGINS= \
 		--disable-gles2 \
 		--disable-egl \
-		--disable-glx
-BAD_GST_NON_PLUGINS+= \
+		--disable-glx \
+		--disable-wayland \
 		--enable-bz2 \
 		--enable-dvb \
 		--enable-shm \
+		--enable-quicktime \
+		--disable-wgl \
+		--disable-gsettings \
 		--disable-acm \
 		--disable-android_media \
 		--disable-apple_media \
 		--disable-avc \
-		--disable-bluez \
-		--disable-directfb \
+		--disable-dc1394 \
+		--disable-dccp \
 		--disable-direct3d \
+		--disable-directdraw \
 		--disable-directsound \
-		--disable-msdk \
-		--disable-nvenc \
-		--disable-sbc \
-		--disable-tinyalsa \
+		--disable-fbdev \
+		--disable-osx_video \
 		--disable-uvch264 \
 		--disable-vcd \
-		--disable-vulkan \
-		--disable-wasapi \
-		--disable-wgl \
-		--disable-winks \
-		--disable-winscreencap
+		--disable-wildmidi \
+		--disable-wininet
 
 GOOD_GST_ALL_PLUGINS+= \
 		aalib \
 		cairo \
 		flac \
 		gdk_pixbuf \
-		gst_v4l2 \
 		jack \
 		jpeg \
 		libcaca \
 		libdv \
 		libpng \
-		pulse \
+		gst_v4l2 \
 		shout2 \
 		soup \
 		speex \
@@ -114,6 +120,7 @@ GOOD_GST_ALL_PLUGINS+= \
 		vpx \
 		wavpack \
 		x
+#	xxx	pulse \
 
 GOOD_GST_NON_PLUGINS=	\
 		--disable-dv1394 \
@@ -134,8 +141,8 @@ UGLY_GST_ALL_PLUGINS+= \
 		cdio \
 		dvdread \
 		lame \
+		mad \
 		mpeg2dec \
-		mpg123 \
 		sidplay \
 		twolame \
 		x264
@@ -190,77 +197,60 @@ PLIST?=		${NONEXISTENT}
 # ------- plugins ---------
 
 # a52dec
-gst_a52dec_LIB_DEPENDS=	liba52.so:audio/liba52
+gst_a52dec_LIB_DEPENDS=	liba52.so:${PORTSDIR}/audio/liba52
 
 # aalib
-gst_aalib_LIB_DEPENDS=	libaa.so:graphics/aalib
-gst_aalib_USES=		ncurses
+gst_aalib_LIB_DEPENDS=	libaa.so:${PORTSDIR}/graphics/aalib
 gst_aalib_PLIST_FILES=	${GST_LIB_DIR}/libgstaasink.so
 
 # amrnb
-gst_amrnb_LIB_DEPENDS=	libopencore-amrnb.so:audio/opencore-amr
+gst_amrnb_LIB_DEPENDS=	libopencore-amrnb.so:${PORTSDIR}/audio/opencore-amr
 gst_amrnb_PLIST_FILES=	${GST_LIB_DIR}/libgstamrnb.so \
 			share/gstreamer-${VERSION}/presets/GstAmrnbEnc.prs
 
 # amrwb
-gst_amrwb_LIB_DEPENDS=	libopencore-amrwb.so:audio/opencore-amr
+gst_amrwb_LIB_DEPENDS=	libopencore-amrwb.so:${PORTSDIR}/audio/opencore-amr
 gst_amrwb_GST_PLUGIN_DIR=	ext/amrwbdec
 gst_amrwb_PLIST_FILES=	${GST_LIB_DIR}/libgstamrwbdec.so
 
 # assrender
-gst_assrender_LIB_DEPENDS=	libass.so:multimedia/libass
-
-# bs2b
-gst_bs2b_LIB_DEPENDS=	libbs2b.so:audio/libbs2b
+gst_assrender_LIB_DEPENDS=	libass.so:${PORTSDIR}/multimedia/libass
 
 # cairo
 gst_cairo_USE_GNOME=	cairo
 
 # cdparanoia
-gst_cdparanoia_LIB_DEPENDS=	libcdda_interface.so:audio/cdparanoia
+gst_cdparanoia_LIB_DEPENDS=	libcdda_interface.so:${PORTSDIR}/audio/cdparanoia
 
 # cdio
-gst_cdio_LIB_DEPENDS=	libcdio.so:sysutils/libcdio
-
-# chromaprint
-gst_chromaprint_LIB_DEPENDS=	libchromaprint.so:audio/chromaprint
+gst_cdio_LIB_DEPENDS=	libcdio.so:${PORTSDIR}/sysutils/libcdio
 
 # curl
-gst_curl_LIB_DEPENDS=	libcurl.so:ftp/curl \
-			libssh2.so:security/libssh2
-
-# dash
-gst_dash_USE_GNOME=	libxml2
-gst_dash_PLIST_FILES=	${GST_LIB_DIR}/libgstdashdemux.so
-
-# dtls
-gst_dtls_USES=		compiler:c11 ssl
-gst_dtls_CONFIGURE_ENV=	DTLS_CFLAGS="-I${OPENSSLINC}" \
-			DTLS_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
+gst_curl_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
 # dts
-gst_dts_LIB_DEPENDS=	libdca.so:multimedia/libdca
+gst_dts_LIB_DEPENDS=	libdca.so:${PORTSDIR}/multimedia/libdca
 gst_dts_PLIST_FILES=	${GST_LIB_DIR}/libgstdtsdec.so
 
 # libdv
-gst_libdv_LIB_DEPENDS=		libdv.so:multimedia/libdv
+gst_libdv_LIB_DEPENDS=		libdv.so:${PORTSDIR}/multimedia/libdv
 gst_libdv_GST_PLUGIN_DIR=	ext/dv
 gst_libdv_PLIST_FILES=		${GST_LIB_DIR}/libgstdv.so
 
 # dvdread
-gst_dvdread_LIB_DEPENDS=libdvdread.so:multimedia/libdvdread
+gst_dvdread_LIB_DEPENDS=libdvdread.so:${PORTSDIR}/multimedia/libdvdread
 
 # faac
-gst_faac_LIB_DEPENDS=	libfaac.so:audio/faac
+gst_faac_LIB_DEPENDS=	libfaac.so:${PORTSDIR}/audio/faac
 
 # faad
-gst_faad_LIB_DEPENDS=	libfaad.so:audio/faad
+gst_faad_LIB_DEPENDS=	libfaad.so:${PORTSDIR}/audio/faad
 
 # flac
-gst_flac_LIB_DEPENDS=	libFLAC.so:audio/flac
+gst_flac_LIB_DEPENDS=	libFLAC.so:${PORTSDIR}/audio/flac
 
 # flite
-gst_flite_LIB_DEPENDS=	libflite.so:audio/flite
+gst_flite_LIB_DEPENDS=	libflite.so:${PORTSDIR}/audio/flite
 
 # gdk_pixbuf
 gst_gdk_pixbuf_USE_GNOME=	gdkpixbuf2
@@ -268,201 +258,143 @@ gst_gdk_pixbuf_PLIST_FILES=	${GST_LIB_DIR}/libgstgdkpixbuf.so
 
 # gl
 gst_gl_USE_GL=	gl glu glesv2 egl
-gst_gl_LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
 gst_gl_CONFIGURE_ARGS=	--enable-gl --enable-glx \
 			--enable-egl --enable-gles2
-gst_gl_GST_PLUGIN_DIR=	gst-libs/gst/gl ext/gl
 gst_gl_PLIST_FILES=		#
 
 # gme
-gst_gme_LIB_DEPENDS=	libgme.so:audio/libgme
+gst_gme_LIB_DEPENDS=	libgme.so:${PORTSDIR}/audio/libgme
 
 # gsm
-gst_gsm_LIB_DEPENDS=	libgsm.so:audio/gsm
-
-# gtk3
-gst_gtk3_USE_GNOME=	cairo gdkpixbuf2 gtk30
-gst_gtk3_CONFIGURE_ARGS=--enable-gtk3
-gst_gtk3_GST_PLUGIN_DIR=ext/gtk
-gst_gtk3_PLIST_FILES=	${GST_LIB_DIR}/libgstgtk.so
+gst_gsm_LIB_DEPENDS=	libgsm.so:${PORTSDIR}/audio/gsm
 
 # hls
-gst_hls_LIB_DEPENDS=	libnettle.so:security/nettle
+gst_hls_LIB_DEPENDS=	libnettle.so:${PORTSDIR}/security/nettle
+gst_hls_PLIST_FILES=	${GST_LIB_DIR}/libgstfragmented.so
 
 # jack
-gst_jack_LIB_DEPENDS=	libjack.so:audio/jack
+gst_jack_LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack
 
 # jpeg
 gst_jpeg_USES=		jpeg
 
 # kate
-gst_kate_LIB_DEPENDS=	libkate.so:multimedia/libkate
-
-# kms
-gst_kms_LIB_DEPENDS=	libkms.so:graphics/libdrm
-gst_kms_GST_PLUGIN_DIR=	sys/kms
-
-# ladspa
-gst_ladspa_BUILD_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa
+gst_kate_LIB_DEPENDS=	libkate.so:${PORTSDIR}/multimedia/libkate
 
 # lame
-gst_lame_LIB_DEPENDS=	libmp3lame.so:audio/lame
+gst_lame_LIB_DEPENDS=	libmp3lame.so:${PORTSDIR}/audio/lame
 
 # libcaca
-gst_libcaca_LIB_DEPENDS=	libcaca.so:graphics/libcaca
+gst_libcaca_LIB_DEPENDS=	libcaca.so:${PORTSDIR}/graphics/libcaca
 gst_libcaca_PLIST_FILES=	${GST_LIB_DIR}/libgstcacasink.so
 
-# libde265
-gst_libde265_LIB_DEPENDS=	libde265.so:multimedia/libde265
-
 # libmms
-gst_libmms_LIB_DEPENDS=	libmms.so:net/libmms
+gst_libmms_LIB_DEPENDS=	libmms.so:${PORTSDIR}/net/libmms
 gst_libmms_PLIST_FILES=	${GST_LIB_DIR}/libgstmms.so
 
-# librfb
-gst_librfb_USE_XORG=	x11
-
 # png
-gst_libpng_LIB_DEPENDS=	libpng.so:graphics/png
+gst_libpng_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 gst_libpng_PLIST_FILES=	${GST_LIB_DIR}/libgstpng.so
 
 # libvisual
-gst_libvisual_LIB_DEPENDS=	libvisual-0.4.so:graphics/libvisual04
+gst_libvisual_LIB_DEPENDS=	libvisual-0.4.so:${PORTSDIR}/graphics/libvisual04
+
+# mad
+gst_mad_LIB_DEPENDS=	libmad.so:${PORTSDIR}/audio/libmad
 
 # modplug
-gst_modplug_LIB_DEPENDS=	libmodplug.so:audio/libmodplug
+gst_modplug_LIB_DEPENDS=	libmodplug.so:${PORTSDIR}/audio/libmodplug
 
 # mpeg2enc
-gst_mpeg2enc_LIB_DEPENDS=	libmjpegutils.so:multimedia/mjpegtools
+gst_mpeg2enc_LIB_DEPENDS=	libmjpegutils.so:${PORTSDIR}/multimedia/mjpegtools
 
 # mpeg2dec
-gst_mpeg2dec_LIB_DEPENDS=	libmpeg2.so:multimedia/libmpeg2
-
-# mplex
-gst_mplex_LIB_DEPENDS=	libmplex2.so:multimedia/mjpegtools
-
-# mpg123
-gst_mpg123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
-
-# musepack
-gst_musepack_LIB_DEPENDS=libmpcdec.so:audio/musepack
+gst_mpeg2dec_LIB_DEPENDS=	libmpeg2.so:${PORTSDIR}/multimedia/libmpeg2
 
 # neon
-gst_neon_LIB_DEPENDS+=  libneon.so:www/neon
+gst_neon_LIB_DEPENDS+=  libneon.so:${PORTSDIR}/www/neon
 gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.so
 
 # ogg
-gst_ogg_LIB_DEPENDS=	libogg.so:audio/libogg
+gst_ogg_LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
 # opencv
-gst_opencv_LIB_DEPENDS=	libopencv_core.so:graphics/opencv-core \
-			libopencv_highgui.so:graphics/opencv
-gst_opencv_GST_PLUGIN_DIR=	gst-libs/gst/opencv ext/opencv
-gst_opencv_PLIST_FILES=		#
-gst_opencv_USES=	compiler:c++11-lib
-
-# openexr
-gst_openexr_LIB_DEPENDS=libImath-2_2.so:graphics/ilmbase \
-			libIlmImf.so:graphics/OpenEXR
+gst_opencv_LIB_DEPENDS=	libopencv_highgui.so:${PORTSDIR}/graphics/opencv
+gst_opencv_PLIST_FILES=	${GST_LIB_DIR}/libgstopencv.so \
+			share/gst-plugins-bad/${VERSION}/opencv_haarcascades/fist.xml \
+			share/gst-plugins-bad/${VERSION}/opencv_haarcascades/palm.xml
 
 # openjpeg
-gst_openjpeg_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
-
-# openh264
-gst_openh264_LIB_DEPENDS=	libopenh264.so:multimedia/openh264
+gst_openjpeg_LIB_DEPENDS=	libopenjpeg.so:${PORTSDIR}/graphics/openjpeg15
 
 # opus
-gst_opus_LIB_DEPENDS=	libopus.so:audio/opus
+gst_opus_LIB_DEPENDS=	libopus.so:${PORTSDIR}/audio/opus
 
 # pango
-gst_pango_USE_GNOME=	cairo pango
+gst_pango_USE_GNOME=	pango
 
 # pulse
-gst_pulse_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
-gst_pulse_PLIST_FILES=	${GST_LIB_DIR}/libgstpulseaudio.so
+gst_pulse_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 
 # resindvd
-gst_resindvd_BUILD_DEPENDS=	libdvdnav>=4.1.2:multimedia/libdvdnav
-gst_resindvd_LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
-gst_resindvd_RUN_DEPENDS=	libdvdnav>=4.1.2:multimedia/libdvdnav
+gst_resindvd_BUILD_DEPENDS=	libdvdnav>=4.1.2:${PORTSDIR}/multimedia/libdvdnav
+gst_resindvd_RUN_DEPENDS=	libdvdnav>=4.1.2:${PORTSDIR}/multimedia/libdvdnav
 
-# rtmp
-gst_rtmp_LIB_DEPENDS=	librtmp.so:multimedia/librtmp
-
-# rsvg
-gst_rsvg_USE_GNOME=	cairo librsvg2
+# rtmp xxx
+gst_rtmp_LIB_DEPENDS=	librtmp.so.0:${PORTSDIR}/multimedia/librtmp
 
 # shout2
-gst_shout2_LIB_DEPENDS=	libshout.so:audio/libshout
+gst_shout2_LIB_DEPENDS=	libshout.so:${PORTSDIR}/audio/libshout
 
 # sidplay
-gst_sidplay_LIB_DEPENDS=	libsidplay.so:audio/libsidplay
+gst_sidplay_LIB_DEPENDS=	libsidplay.so:${PORTSDIR}/audio/libsidplay
 gst_sidplay_PLIST_FILES=	${GST_LIB_DIR}/libgstsid.so
 
-# smoothstreaming
-gst_smoothstreaming_USE_GNOME=	libxml2
-
-# sndfile
-gst_sndfile_LIB_DEPENDS=	libsndfile.so:audio/libsndfile
-
 # soundtouch
-gst_soundtouch_LIB_DEPENDS=	libSoundTouch.so:audio/soundtouch
+gst_soundtouch_LIB_DEPENDS=	libSoundTouch.so:${PORTSDIR}/audio/soundtouch
 
 # souphttpsrc
-gst_soup_LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
+gst_soup_LIB_DEPENDS=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup
+gst_soup_GST_PLUGIN_DIR=ext/soup
+gst_soup_PLIST_FILES=	${GST_LIB_DIR}/libgstsouphttpsrc.so
 
 # spandsp
-gst_spandsp_LIB_DEPENDS=	libspandsp.so:comms/spandsp
-
-# spc
-gst_spc_LIB_DEPENDS=	libopenspc.so:audio/libopenspc
+gst_spandsp_LIB_DEPENDS=	libspandsp.so:${PORTSDIR}/comms/spandsp
 
 # speex
-gst_speex_LIB_DEPENDS=	libspeex.so:audio/speex
-
-# srtp
-gst_srtp_LIB_DEPENDS=	libsrtp.so:net/libsrtp
+gst_speex_LIB_DEPENDS=	libspeex.so:${PORTSDIR}/audio/speex
 
 # schroedinger or schro for short
-gst_schro_LIB_DEPENDS=		libschroedinger-1.0.so:multimedia/schroedinger
+gst_schro_LIB_DEPENDS=		libschroedinger-1.0.so:${PORTSDIR}/multimedia/schroedinger
 gst_schro_GST_PLUGIN_DIR=	ext/schroedinger
 
 # taglib
-gst_taglib_LIB_DEPENDS=	libtag.so:audio/taglib
+gst_taglib_LIB_DEPENDS=	libtag.so:${PORTSDIR}/audio/taglib
 
 # theora
-gst_theora_LIB_DEPENDS=	libtheora.so:multimedia/libtheora \
-			libogg.so:audio/libogg
-
-# ttml
-gst_ttml_USE_GNOME=	cairo libxml2 pango
-gst_ttml_PLIST_FILES=	${GST_LIB_DIR}/libgstttmlsubs.so
+gst_theora_LIB_DEPENDS=	libtheora.so:${PORTSDIR}/multimedia/libtheora
 
 # twolame
-gst_twolame_LIB_DEPENDS=	libtwolame.so:audio/twolame
+gst_twolame_LIB_DEPENDS=	libtwolame.so:${PORTSDIR}/audio/twolame
 
 # gst_v4l2
-gst_gst_v4l2_BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat
-gst_gst_v4l2_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
-gst_gst_v4l2_RUN_DEPENDS=	webcamd:multimedia/webcamd
+gst_gst_v4l2_BUILD_DEPENDS=	v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat
+gst_gst_v4l2_LIB_DEPENDS=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
+gst_gst_v4l2_RUN_DEPENDS=	webcamd:${PORTSDIR}/multimedia/webcamd
 gst_gst_v4l2_PLIST_FILES=	${GST_LIB_DIR}/libgstvideo4linux2.so
 gst_gst_v4l2_GST_PLUGIN_DIR=	sys/v4l2
 
 # vorbis
 gst_vorbis_USE_GSTREAMER1=	ogg
-gst_vorbis_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
+gst_vorbis_LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 
 # vpx
-gst_vpx_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
+gst_vpx_LIB_DEPENDS=	libvpx.so:${PORTSDIR}/multimedia/libvpx
 gst_vpx_PLIST_FILES=	${GST_LIB_DIR}/libgstvpx.so \
 			share/gstreamer-${VERSION}/presets/GstVP8Enc.prs
 
-# vdpau
-gst_vdpau_LIB_DEPENDS=	libvdpau.so:multimedia/libvdpau
-gst_vdpau_GST_PLUGIN_DIR=	sys/vdpau
-
 # webp
-gst_webp_LIB_DEPENDS=	libwebp.so:graphics/webp
+gst_webp_LIB_DEPENDS=	libwebp.so:${PORTSDIR}/graphics/webp
 
 # X ximage and xvimage sinks aka output
 .if ${DIST} == base
@@ -482,21 +414,18 @@ gst_x_PLIST_FILES=	${GST_LIB_DIR}/libgstximagesrc.so
 .endif
 
 # x264
-gst_x264_LIB_DEPENDS=	libx264.so:multimedia/libx264
+gst_x264_LIB_DEPENDS=	libx264.so:${PORTSDIR}/multimedia/libx264
 gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.so \
 			share/gstreamer-${VERSION}/presets/GstX264Enc.prs
 
-# x265
-gst_x265_LIB_DEPENDS=	libx265.so:multimedia/x265
-
 # xvid
-gst_xvid_LIB_DEPENDS=	libxvidcore.so:multimedia/xvid
+gst_xvid_LIB_DEPENDS=	libxvidcore.so:${PORTSDIR}/multimedia/xvid
 
 # wavpack
-gst_wavpack_LIB_DEPENDS=	libwavpack.so:audio/wavpack
+gst_wavpack_LIB_DEPENDS=	libwavpack.so:${PORTSDIR}/audio/wavpack
 
 # zbar
-gst_zbar_LIB_DEPENDS=	libzbar.so:graphics/zbar
+gst_zbar_LIB_DEPENDS=	libzbar.so:${PORTSDIR}/graphics/zbar
 
 .endif # NO_GSTREAMER_COMMON
 

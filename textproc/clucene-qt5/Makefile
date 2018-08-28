@@ -11,6 +11,9 @@ COMMENT=	Qt bindings for the CLucene full-text search library
 
 LICENSE=	gpl3
 
+DEPRECATED=	This port will be merged with qt5-help in Qt 5.7 ports.
+EXPIRATION_DATE=	2016-08-11
+
 USE_QT5=	core buildtools_build
 QT_DIST=	tools
 USES=		qmake

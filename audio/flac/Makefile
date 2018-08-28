@@ -2,7 +2,7 @@
 
 PORTNAME=	flac
 PORTVERSION=	1.3.1
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 
@@ -13,9 +13,9 @@ LICENSE=	bsd3 gpl2 lgpl2.1
 LICENSE_COMB=	multi
 LICENSE_FILE_bsd3=${WRKSRC}/COPYING.Xiph
 
-LIB_DEPENDS=	libogg.so:audio/libogg
+LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 
-USES=		compiler:gcc-c++11-lib iconv libtool pathfix pkgconfig tar:xz
+USES=		iconv libtool pathfix pkgconfig tar:xz compiler:gcc-c++11-lib
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -34,7 +34,7 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.mport.options.mk>
 
 .if ${ARCH} == "i386"
-BUILD_DEPENDS+=	nasm:devel/nasm
+BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
 .endif
 
 post-install:

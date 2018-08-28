@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons
-PORTVERSION=	3.0.1
+PORTVERSION=	2.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	SF
 
@@ -10,7 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool alternative to make
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 

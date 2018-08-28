@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	bison
-PORTVERSION=	3.0.4
-PORTREVISION=	0
+PORTVERSION=	2.7.1
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
@@ -11,30 +11,35 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parser generator from FSF, (mostly) compatible with Yacc
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	m4>=1.4.16:devel/m4
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+OPTIONS_DEFINE=	EXAMPLES NLS
 
-OPTIONS_DEFINE=	DOCS EXAMPLES NLS
-OPTIONS_SUB=	yes
+BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-CONFIGURE_ARGS=	--disable-yacc
+USES=		charsetfix makeinfo perl5 tar:xz
+USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
-TEST_TARGET=	check
-USE_PERL5=	build
-USES=		charsetfix localbase makeinfo perl5 tar:xz
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+CONFIGURE_ARGS+=--disable-yacc
 
 INFO=		bison
-PORTDATA=	*
-PORTDOCS=	*
-PORTEXAMPLES=	*
 
+NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext
+OPTIONS_SUB=	yes
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|$$(docdir)\(/examples\)|$$(datarootdir)\1/bison|' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's/\(.*\) _Noreturn void/_Noreturn \1 void/' ${WRKSRC}/data/*.c ${WRKSRC}/lib/*.[ch]
+post-extract:
+	@${RM} -f ${WRKSRC}/doc/bison.info*
+	@${REINPLACE_CMD} 's/MANS = yacc.1/MANS =/' ${WRKSRC}/doc/Makefile.in
+
+PORTEXAMPLES=	calc++
+
+post-install:
+	${MKDIR} ${EXAMPLESDIR}/calc++
+	${INSTALL_DATA} ${WRKSRC}/examples/calc++/*.[chly]* \
+		${EXAMPLESDIR}/calc++
 
 .include <bsd.port.mk>

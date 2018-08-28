@@ -44,6 +44,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 # Keep this, else ruby will fail to load libraries dependent of libpthread.
 LIBS+=		-lpthread -L${LOCALBASE}/lib
+USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
 MAKE_ENV+=	LC_ALL=C
@@ -68,7 +69,7 @@ CAPIDOCS_BUILD_DEPENDS=	doxygen>0:${PORTSDIR}/devel/doxygen \
 CAPIDOCS_CONFIGURE_ENABLE=	install-capi
 RDOC_CONFIGURE_ENABLE=	install-rdoc
 
-USES=		execinfo cpe tar:xz autoreconf ssl
+USES=		execinfo cpe tar:xz autoreconf
 
 CPE_VENDOR=	ruby-lang
 CPE_VERSION=	${RUBY_RELVERSION}
@@ -111,8 +112,6 @@ EXTDOCS=	readline/README*		\
 		ripper/README			\
 		stringio/README			\
 		syslog/syslog.txt
-
-OSMAJOR=	${OSREL:C/\..*//}
 
 # Macros to change variables in rbconfig.rb
 RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' --
@@ -212,7 +211,7 @@ post-install:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb22 ${PREFIX}/bin/irb22 \
 		${PREFIX}/bin/rdoc22 ${PREFIX}/bin/ri22 \
-		${PREFIX}/lib/ruby/2.2/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
+		${PREFIX}/lib/ruby/2.2/${ARCH}-midnightbsd0/rbconfig.rb  \
 		${PREFIX}/libdata/pkgconfig/ruby-2.2.pc
 
 regression-test test:

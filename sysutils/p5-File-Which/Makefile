@@ -1,21 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	File-Which
-PORTVERSION=	1.22
+PORTVERSION=	1.21
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Portable implementation of which(1) in Perl
+COMMENT=	Portable implementation of `which' in Perl
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	perl
 
-NO_ARCH=	yes
-USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

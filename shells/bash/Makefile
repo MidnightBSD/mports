@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=		bash
-PATCHLEVEL=		23
-PORTVERSION=		4.4.${PATCHLEVEL:S/^0//g}
+PATCHLEVEL=		42
+PORTVERSION=		4.3.${PATCHLEVEL:S/^0//g}
 PORTREVISION?=		2
 CATEGORIES=		shells
-MASTER_SITES=		GNU
+MASTER_SITES=		GNU/${PORTNAME}
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
 DIST_SUBDIR=		${PORTNAME}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
@@ -17,25 +17,30 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 
 MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		GNU Project's Bourne Again SHell
+COMMENT=		The GNU Project's Bourne Again SHell
 
 LICENSE=		gpl3
 
-OPTIONS_DEFINE=		COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
-OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP NLS
+OPTIONS_DEFINE=		IMPLICITCD COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
+OPTIONS_DEFINE+=	IMPORTFUNCTIONS
+OPTIONS_DEFAULT=	IMPLICITCD COLONBREAKSWORDS HELP NLS
+IMPLICITCD_DESC=	Use directory name alone to cd into it
 COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
+IMPORTFUNCTIONS_DESC=	Import function from env without --import-functions
 
-USES=			bison cpe iconv makeinfo pathfix
-USE_GCC=		yes
+USES=			bison cpe makeinfo
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
+IMPLICITCD_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-implicitcd
 COLONBREAKSWORDS_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-colonbreakswords
+# Always apply this for now. The option will modify the default.
+EXTRA_PATCHES+=			${PATCHDIR}/extrapatch-import-functions
 
 HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=		gettext
+NLS_USES=		gettext iconv
 
 INFO=			bash
 
@@ -46,9 +51,9 @@ PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
 
 CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
-			--enable-disabled-builtins \
-			--host=${ARCH}-portbld-freebsd10.4 \
-			--build=${ARCH}-portbld-freebsd10.4
+			--enable-disabled-builtins
+
+CFLAGS+=		-DUSE_MKTEMP=1 -DUSE_MKSTEMP=1
 
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
@@ -66,12 +71,11 @@ CFLAGS+=	-DIMPORT_FUNCTIONS_DEF=0
 
 .if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
-LLD_UNSAFE=		yes
 .else
 CONFIGURE_ARGS+=	--disable-static-link
 # Bash symbols must be exported in order to link runtime plugins, i.e.,
 # "enable -f". (Plugins are not supported for bash-static.)
-LDFLAGS+=		-Wl,-export-dynamic
+CFLAGS+=		-Wl,-export-dynamic
 .endif
 
 post-patch:
@@ -100,12 +104,12 @@ pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
 
 post-install:
-	${LN} -sf bash ${PREFIX}/bin/rbash
-	@${MKDIR} ${DOCSDIR}
+	${LN} -sf bash ${STAGEDIR}${PREFIX}/bin/rbash
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/FAQ \
-		${WRKSRC}/doc/INTRO ${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${STAGEDIR}${DOCSDIR}
 	for d in ${PORTDOCS:NFAQ:NINTRO:N*html}; do \
-		${INSTALL_DATA} ${WRKSRC}/$${d} ${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${d} ${STAGEDIR}${DOCSDIR}; \
 	done
 
 regress: build

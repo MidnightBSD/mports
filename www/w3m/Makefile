@@ -2,7 +2,7 @@
 
 PORTNAME=	w3m
 PORTVERSION=	0.5.3
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 MASTER_SITES=	SF/w3m/w3m/w3m-${PORTVERSION}
 
@@ -11,11 +11,11 @@ COMMENT?=	Pager/text-based WWW browser
 
 LICENSE=	unknown
 
+USE_OPENSSL=	yes
 LIB_DEPENDS=	libgc.so:${PORTSDIR}/devel/boehm-gc
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		ssl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gc=${LOCALBASE} \
 		ac_cv_path_PERL=${PERL}

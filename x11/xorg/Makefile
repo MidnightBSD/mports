@@ -2,7 +2,7 @@
 
 PORTNAME=	xorg
 PORTVERSION=	7.7
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -16,11 +16,11 @@ LICENSE=	agg
 NO_BUILD=	yes
 NO_MTREE=	yes
 
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/dri
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
 
 # data
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:x11/xbitmaps \
-		${LOCALBASE}/share/icons/handhelds/cursors/X_cursor:x11-themes/xcursor-themes
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \
+		${LOCALBASE}/lib/X11/icons/handhelds/cursors/X_cursor:${PORTSDIR}/x11-themes/xcursor-themes
 
 OPTIONS_DEFINE=	DOCS
 
@@ -28,19 +28,19 @@ OPTIONS_DEFINE=	DOCS
 
 # doc
 .if ${PORT_OPTIONS:MDOCS}
-RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:x11/xorg-docs
+RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:${PORTSDIR}/x11/xorg-docs
 .endif
 
 # app, lib, font, driver
-RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:x11/xorg-apps \
-		${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
-		${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts \
-		${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers
+RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
+		${LOCALBASE}/libdata/xorg/libraries:${PORTSDIR}/x11/xorg-libraries \
+		${LOCALBASE}/libdata/xorg/fonts:${PORTSDIR}/x11-fonts/xorg-fonts \
+		${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers
 
 .if defined(XORG_COMPLETE)
-RUN_DEPENDS+=	Xnest:x11-servers/xorg-nestserver \
-		Xdmx:x11-servers/xorg-dmx \
-		Xvfb:x11-servers/xorg-vfbserver
+RUN_DEPENDS+=	Xnest:${PORTSDIR}/x11-servers/xorg-nestserver \
+		Xdmx:${PORTSDIR}/x11-servers/xorg-dmx \
+		Xvfb:${PORTSDIR}/x11-servers/xorg-vfbserver
 .endif
 
 do-install:	# empty

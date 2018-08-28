@@ -106,7 +106,7 @@ PLIST_SUB+=			AUDIO="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSSL}
-EXTENSIONS+=			ssl
+USE_OPENSSL=			yes
 WITH_OPENSSL_PORT=		yes
 .else
 CONFIGURE_ARGS+=		--with-crypto=none

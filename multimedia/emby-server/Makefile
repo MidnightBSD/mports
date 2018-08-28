@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	emby-server
-PORTVERSION=	3.3.0.0
+PORTVERSION=	3.2.32.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -41,11 +41,11 @@ do-build:
 			/p:Platform="Any CPU" MediaBrowser.sln)
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/emby-server
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server
 	(cd ${WRKSRC}/MediaBrowser.Server.Mono/bin/Release\ Mono && \
 		${ECHO_MSG} "Deleting the following non-BSD library files:" && \
 		${FIND} -E . -iregex '(.*\.dylib)' -print -delete && \
 		${FIND} . -type d -empty -print -delete && \
-		${COPYTREE_SHARE} . ${PREFIX}/lib/emby-server)
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/emby-server)
 
 .include <bsd.port.mk>

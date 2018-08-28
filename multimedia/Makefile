@@ -2,7 +2,6 @@
 
 COMMENT = Multimedia software
 
-SUBDIR += assimp
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
@@ -67,7 +66,6 @@ SUBDIR += libfame
 SUBDIR += libkate
 SUBDIR += libmediaart
 SUBDIR += libmpeg2
-SUBDIR += libmtp
 SUBDIR += libquvi
 SUBDIR += libquvi-scripts
 SUBDIR += libquvi-scripts09

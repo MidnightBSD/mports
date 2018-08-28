@@ -1,11 +1,6 @@
 bin/X
-%%SUID%%@owner root
-%%SUID%%@group wheel
-%%SUID%%@mode 4555
-bin/Xorg
-%%SUID%%@owner root
-%%SUID%%@group wheel
-%%SUID%%@mode
+%%SUID%%@(,,4555) bin/Xorg
+%%NO_SUID%%bin/Xorg
 bin/cvt
 bin/gtf
 include/xorg/BT.h

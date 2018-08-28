@@ -2,7 +2,6 @@
 
 PORTNAME=	rasqal
 PORTVERSION=	0.9.33
-PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/ \
 		SF/librdf/${PORTNAME}/${PORTVERSION}
@@ -16,7 +15,8 @@ LICENSE_COMB=	dual
 LIB_DEPENDS=	libraptor2.so:${PORTSDIR}/textproc/raptor2 \
 		libpcre.so:${PORTSDIR}/devel/pcre
 
-USES=		gmake libtool pathfix perl5 pkgconfig ssl
+USES=		gmake libtool pathfix perl5 pkgconfig
+USE_OPENSSL=	yes
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

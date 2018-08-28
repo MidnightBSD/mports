@@ -4,7 +4,7 @@
 
 PORTNAME?=		${SAMBA4_BASENAME}44
 PORTVERSION?=		${SAMBA4_VERSION}
-PORTREVISION?=		1
+PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=		${SAMBA4_DISTNAME}
@@ -14,11 +14,13 @@ COMMENT?=		Free SMB/CIFS and AD/DC server and client for Unix
 
 LICENSE=		gpl3
 
-CONFLICTS?=		*samba3[2-6]-3.* samba4-4.0.* samba4[1-35-9]-4.* p5-Parse-Pidl-4.*
+CONFLICTS?=		*samba3[2-6]-3.* samba4-4.0.* samba41-4.1.* samba42-4.2.* samba43-4.3.*
+
+#EXTRA_PATCHES=		${PATCHDIR}/extra-patch-security:-p1
 
 SAMBA4_BASENAME=	samba
 SAMBA4_PORTNAME=	${SAMBA4_BASENAME}4
-SAMBA4_VERSION=		4.4.16
+SAMBA4_VERSION=		4.4.8
 SAMBA4_DISTNAME=	${SAMBA4_BASENAME}-${SAMBA4_VERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 WRKSRC?=		${WRKDIR}/${DISTNAME}
@@ -83,9 +85,8 @@ LIB_DEPENDS+=		libsunacl.so:sysutils/libsunacl
 BUILD_DEPENDS+=		libarchive>=3.1.2:archivers/libarchive
 RUN_DEPENDS+=		libarchive>=3.1.2:archivers/libarchive
 # External Samba dependencies
-# Needed for IDL compiler
-BUILD_DEPENDS+=		p5-Parse-Yapp>=0:devel/p5-Parse-Yapp
-PLIST_SUB+=		PIDL="@comment "
+# IDL compiler
+BUILD_DEPENDS+=		p5-Parse-Pidl>=4.3.1:devel/p5-Parse-Pidl
 # External Python modules
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython
@@ -155,6 +156,7 @@ CONFIGURE_ARGS+=	\
 			--disable-rpath \
 			--without-gettext \
 			--with-sendfile-support \
+			--builtin-libraries=smbclient \
 			${ICONV_CONFIGURE_BASE}
 # for libexecinfo: (so that __builtin_frame_address() finds the top of the stack)
 .if ${ARCH} == "amd64"
@@ -253,6 +255,7 @@ CONFIGURE_ARGS+=	--disable-avahi
 .endif
 
 .if ${PORT_OPTIONS:MMDNSRESPONDER}
+LIB_DEPENDS+=		libdns_sd.so:net/mDNSResponder
 CONFIGURE_ARGS+=	--enable-dnssd
 .else
 CONFIGURE_ARGS+=	--disable-dnssd
@@ -384,10 +387,6 @@ SHEBANG_FILES=		${PATCH_WRKSRC}/source4/scripting/bin/*
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
 .endif
-.if ${readline_ARGS} == port
-CFLAGS+=			-D_FUNCTION_DEF
-.endif
-
 CONFIGURE_ENV+=		NOCOLOR=yes WAF_LOG_FORMAT='%(c1)s%(zone)s%(c2)s %(message)s'
 MAKE_ENV+=		NOCOLOR=yes WAF_LOG_FORMAT='%(c1)s%(zone)s%(c2)s %(message)s'
 
@@ -409,7 +408,7 @@ SAMBA_MAN8+=		cifsdd.8 eventlogadm.8 idmap_ad.8 idmap_autorid.8 idmap_hash.8 \
 			idmap_ldap.8 idmap_nss.8 idmap_rfc2307.8 idmap_rid.8 \
 			idmap_tdb.8 idmap_tdb2.8 net.8 nmbd.8 pam_winbind.8 pdbedit.8 \
 			samba-regedit.8 samba-tool.8 samba.8 smbd.8 smbpasswd.8 \
-			smbspool_krb5_wrapper.8 smbspool.8 vfs_acl_tdb.8 vfs_acl_xattr.8 \
+			smbspool_krb5_wrapper.8 smbspool.8 smbta-util.8 vfs_acl_tdb.8 vfs_acl_xattr.8 \
 			vfs_aio_fork.8 vfs_aio_linux.8 vfs_aio_pthread.8 \
 			vfs_audit.8 vfs_cacheprime.8 vfs_cap.8 vfs_catia.8 vfs_ceph.8 \
 			vfs_commit.8 vfs_crossrename.8 vfs_default_quota.8 \
@@ -417,8 +416,8 @@ SAMBA_MAN8+=		cifsdd.8 eventlogadm.8 idmap_ad.8 idmap_autorid.8 idmap_hash.8 \
 			vfs_fruit.8 vfs_full_audit.8 vfs_glusterfs.8 vfs_gpfs.8 vfs_media_harmony.8 \
 			vfs_netatalk.8 vfs_offline.8 vfs_prealloc.8 \
 			vfs_preopen.8 vfs_readahead.8 vfs_readonly.8 \
-			vfs_recycle.8 vfs_shadow_copy.8 \
-			vfs_shadow_copy2.8 vfs_snapper.8 \
+			vfs_recycle.8 vfs_scannedonly.8 vfs_shadow_copy.8 \
+			vfs_shadow_copy2.8 vfs_snapper.8 vfs_smb_traffic_analyzer.8 \
 			vfs_streams_depot.8 vfs_streams_xattr.8 vfs_syncops.8 vfs_time_audit.8 \
 			vfs_tsmsm.8 vfs_worm.8 vfs_xattr_tdb.8 winbindd.8 \
 			vfs_linux_xfs_sgid.8 vfs_btrfs.8 vfs_shell_snap.8 vfs_unityed_media.8
@@ -428,12 +427,13 @@ PORTDOCS=		README.FreeBSD
 IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
 post-extract:
-			@${RM} -r ${WRKSRC}/pidl/lib/Parse/Yapp
+			@${RM} -r ${WRKSRC}/pidl
 
 post-patch:
 			@${REINPLACE_CMD} -e 's|$${PKGCONFIGDIR}|${PKGCONFIGDIR}|g' \
 				${PATCH_WRKSRC}/buildtools/wafsamba/pkgconfig.py
 			@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+				${PATCH_WRKSRC}/buildtools/wafsamba/samba_pidl.py \
 				${PATCH_WRKSRC}/buildtools/wafsamba/wafsamba.py
 			@${REINPLACE_CMD} -e 's|%%GDB_CMD%%|${GDB_CMD}|g' \
 				${PATCH_WRKSRC}/buildtools/scripts/abi_gen.sh
@@ -448,6 +448,13 @@ pre-configure:
 				${ECHO_CMD}; \
 				${FALSE}; \
 			fi
+
+# XXX: Gross hack to allow build newer Samba while old one is installed.
+# This implies that LINKFLAGS_PYEMBED contains flags which are already
+# used in other parts of LINKFLAGS, namely -L${LOCALBASE}/lib and -pthread
+post-configure:
+	-${REINPLACE_CMD} -e 's|LINKFLAGS_PYEMBED.*|LINKFLAGS_PYEMBED = []|' \
+		${CONFIGURE_WRKSRC}/bin/c4che/default.cache.py
 
 pre-build:
 .if ! ${PORT_OPTIONS:MMANPAGES}

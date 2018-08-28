@@ -1,14 +1,15 @@
 # $MidnightBSD$
 # $FreeBSD: ports/x11/xsel/Makefile,v 1.9 2009/01/23 16:28:24 flz Exp $
+#
 
 PORTNAME=	xsel
 PORTVERSION=	0.04.1
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://BSDforge.com/projects/source/x11/xsel/
 
 MAINTAINER=	ports@midnightbsd.org
-COMMENT=	Access X selection buffer from command line
+COMMENT=	Access X selection from command line
 
 LICENSE=	mit
 

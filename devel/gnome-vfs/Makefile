@@ -3,7 +3,7 @@
 
 PORTNAME=	gnome-vfs
 PORTVERSION=	2.24.4
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,31 +11,26 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Virtual File System
 
-LICENSE=	lgpl
-LICENSE_FILE=	${WRKSRC}/COPYING.LIB
-
-BROKEN_SSL=	openssl-devel
-BROKEN_SSL_REASON_openssl-devel=	incomplete definition of type 'struct ssl_st'
+LICENSE=	gpl2
 
 USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS=	update-mime-database:misc/shared-mime-info
-LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
-		libdbus-1.so:devel/dbus
+RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig ssl
-USE_GNOME=	gconf2 gnomemimedata intlhack referencehack
+USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USE_GNOME=	gnomeprefix intlhack gnomemimedata gconf2 \
+		referencehack
 INSTALL_TARGET=	install-strip
+USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-openssl \
 		--disable-gnutls \
 		--disable-howl \
 		--with-hal-mount=/sbin/mount \
-		--with-hal-umount=/sbin/umount \
-		ac_cv_header_sys_inotify_h=no
+		--with-hal-umount=/sbin/umount
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
@@ -58,19 +53,18 @@ USES+=		fam
 .endif
 
 .if exists(${LOCALBASE}/lib/libkrb5.so)
-LIB_DEPENDS+=	libkrb5.so:security/heimdal
+LIB_DEPENDS+=	libkrb5.so:${PORTSDIR}/security/heimdal
 .endif
 
 .if ${PORT_OPTIONS:MHAL}
 CONFIGURE_ARGS+=--enable-hal
-LIB_DEPENDS+=	libhal.so:sysutils/hal
+LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
 .else
 CONFIGURE_ARGS+=--disable-hal
 .endif
 
 .if ${PORT_OPTIONS:MSAMBA}
-CONFIGURE_ARGS+=--with-samba-includes=${SAMBAINCLUDES} --with-samba-libs=${SAMBALIBS}
-USES+=		samba:lib
+LIB_DEPENDS+=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
 PLIST_SUB+=	SAMBA=""
 .else
 PLIST_SUB+=	SAMBA="@comment "
@@ -78,7 +72,7 @@ CONFIGURE_ARGS+=--disable-samba
 .endif
 
 .if ${PORT_OPTIONS:MMDNS}
-LIB_DEPENDS+=	libavahi-client.so:net/avahi-app
+LIB_DEPENDS+=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 .else
 CONFIGURE_ARGS+=--disable-avahi
 .endif

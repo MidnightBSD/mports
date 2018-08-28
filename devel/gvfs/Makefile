@@ -55,9 +55,8 @@ SAMBA_DESC=	Samba support
 FUSE_USES=	fuse
 FUSE_CONFIGURE_ENABLE=	fuse
 
-SAMBA_USES=	samba:lib
+SAMBA_LIB_DEPENDS=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
 SAMBA_CONFIGURE_ENABLE=	samba
-SAMBA_CONFIGURE_WITH=	samba-includes=${SAMBAINCLUDES} samba-libs=${SAMBALIBS}
 
 CDDA_LIB_DEPENDS=	libcdio_paranoia.so:${PORTSDIR}/sysutils/libcdio-paranoia
 CDDA_CONFIGURE_ENABLE=	cdda
@@ -74,7 +73,6 @@ LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
 
 .if ${PORT_OPTIONS:MSAMBA}
 GLIB_SCHEMAS+=	org.gnome.system.smb.gschema.xml
-CONFIGURE_ARGS+= --enable-samba  --with-samba-includes=${SAMBAINCLUDES} --with-samba-libs=${SAMBALIBS}
 .endif
 
 .if ${PORT_OPTIONS:MAVAHI}

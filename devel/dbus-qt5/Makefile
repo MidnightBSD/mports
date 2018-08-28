@@ -11,7 +11,7 @@ COMMENT=	Qt D-Bus inter-process communication module
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libdbus-1.so:devel/dbus
+LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 
 USE_QT5=	core qmake_build buildtools_build
 QT_DIST=	base

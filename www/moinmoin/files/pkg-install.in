@@ -2,7 +2,6 @@
 
 destdir=%%MOINDEST%%
 htdocs=%%HTDOCS%%
-moinver=%%MOINVER%%
 
 case "x$2" in
 
@@ -18,7 +17,7 @@ case "x$2" in
 		echo "add something like that to your Apache configuration."
 		echo ""
 		echo ",-----"
-		echo " Alias /moin_static$moinver/ \"$htdocs/\""
+		echo " Alias /moin_static194/ \"$htdocs/\""
 		echo " <Directory \"$htdocs/\">"
 		echo "     Order deny,allow"
 		echo "     Allow from all"
@@ -43,7 +42,7 @@ case "x$2" in
 		echo ""
 
 		echo ",-----"
-		echo " Alias /moin_static$moinver/ \"$htdocs/\""
+		echo " Alias /moin_static194/ \"$htdocs/\""
 		echo " <Directory \"$htdocs/\">"
 		echo "     Order deny,allow"
 		echo "     Allow from all"
@@ -65,7 +64,7 @@ case "x$2" in
 		echo ""
 
 		echo ",-----"
-		echo " Alias /moin_static$moinver/ \"$htdocs/\""
+		echo " Alias /moin_static194/ \"$htdocs/\""
 		echo " <Directory \"$htdocs/\">"
 		echo "     Order deny,allow"
 		echo "     Allow from all"
@@ -93,7 +92,7 @@ case "x$2" in
 	echo ""
 	echo "If you want to install additional wiki instances"
 	echo "call 'make instance' with appriopriate arguments."
-	echo "E.g.: make MOINTYPE=FCGI MOINDEST=%%PREFIX%%/www/wiki instance"
+	echo "E.g.: make MOINTYPE=FCGI MOINDEST=/usr/local/www/wiki instance"
 	echo "************************************************************"
 
 	;;
@@ -105,7 +104,7 @@ case "x$2" in
 	echo ""
 	echo "If you're installing from ports, just run 'make instance'"
 	echo "with appriopriate arguments."
-	echo "eg. make MOINTYPE=FCGI MOINDEST=%%PREFIX%%/www/wiki instance"
+	echo "eg. make MOINTYPE=FCGI MOINDEST=/usr/local/www/wiki instance"
 	echo ""
 	echo "If you're installing from package, run these commands."
 	echo ""

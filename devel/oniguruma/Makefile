@@ -1,41 +1,49 @@
 # $MidnightBSD$
 
 PORTNAME=	oniguruma
-DISTVERSION=	6.8.2
+PORTVERSION=	2.5.8
+PORTREVISION=	1
 CATEGORIES=	devel textproc
-MASTER_SITES=	https://github.com/kkos/${PORTNAME}/releases/download/v${DISTVERSION}/
-DISTNAME=	onig-${DISTVERSION}
+MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/:onig \
+		http://www.SpringDaemons.com/stas/:ruby
+DISTFILES=	onigd${PORTVERSION:S/./_/g}${EXTRACT_SUFX}:onig \
+		ruby187p72-oniguruma.patch:ruby
+DIST_SUBDIR=	ruby
+EXTRACT_ONLY=	onigd${PORTVERSION:S/./_/g}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Regular expressions library compatible with POSIX/GNU/Perl
-
+COMMENT=	A BSDL Regular Expressions library compatible with POSIX/GNU/Perl
 LICENSE=	bsd2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=			autoreconf pathfix libtool  # configure provided in the tarball breaks: https://github.com/kkos/oniguruma/issues/73
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS=		--disable-static
-PATHFIX_MAKEFILEIN=	Makefile.am
-USE_LDCONFIG=		yes
-INSTALL_TARGET=		install-strip
-TEST_WRKSRC=		${WRKSRC}/test
-TEST_TARGET=		test
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
-OPTIONS_DEFINE=			STATISTICS DOCS EXAMPLES
-STATISTICS_DESC=		Take matching time statistical data (debug feature)
+NO_LATEST_LINK=	yes
+CONFLICTS=	oniguruma-4.*
 
-STATISTICS_CONFIGURE_WITH=	statistics
+FAKE_OPTS=	prefixhack
 
-PORTDOCS=	*
-PORTEXAMPLES=	*
+GNU_CONFIGURE=	yes
+DOCS=		HISTORY README doc/*
 
-post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} HISTORY README ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc && ${INSTALL_DATA} * ${STAGEDIR}${DOCSDIR}
+post-patch:
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/ruby187p72-oniguruma.patch \
+		${WRKSRC}/ruby187.patch
 
-post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/sample && ${INSTALL_DATA} *.c ${STAGEDIR}${EXAMPLESDIR}
+post-configure:
+	${SED} -e 's|%%PREFIX%%|${PREFIX}|' \
+		${FILESDIR}/onig-config > ${WRKSRC}/onig-config
+
+post-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/onig-config ${PREFIX}/bin/
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+.for f in ${DOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
+.endfor
+.endif
+.if !defined(NOPORTEXAMPLES)
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/sample/* ${EXAMPLESDIR}/
+.endif
 
 .include <bsd.port.mk>

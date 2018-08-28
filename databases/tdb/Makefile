@@ -1,7 +1,7 @@
 # $MidnightBSD$
 PORTNAME=		tdb
-PORTVERSION=		1.3.15
-PORTREVISION=		2
+PORTVERSION=		1.3.8
+PORTREVISION=		0
 PORTEPOCH=		1
 CATEGORIES=		databases
 MASTER_SITES=		SAMBA
@@ -16,7 +16,7 @@ CONFLICTS=		*samba3[0-4]-3.*
 USES=			compiler pkgconfig waf
 USE_PYTHON_BUILD=	2
 USE_LDCONFIG=		yes
-WAF_CMD=		buildtools/bin/waf
+WAF_TOOL=		buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
@@ -24,9 +24,7 @@ PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX} \
 			--mandir=${MANPREFIX}/man \
-			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
-			--disable-rpath \
-                        --without-gettext
+			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}
 # Support staging
 DESTDIRNAME=		--destdir
 
@@ -35,53 +33,12 @@ MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
 .include <bsd.mport.options.mk>
 
-TDB_BINS=		bin/tdbbackup \
-			bin/tdbdump \
-			bin/tdbrestore \
-			bin/tdbtool
-
-PLIST_FILES+=		include/tdb.h \
-			${TDB_BINS} \
-			lib/libtdb.so \
-			lib/libtdb.so.1 \
-			%%PKGCONFIGDIR%%/tdb.pc
-
-.if defined(SAMBA4_DEBUG)
-CFLAGS+=		-DTDB_TRACE=1
-.endif
-
 .if defined(NO_PYTHON)
 CONFIGURE_ARGS+=	--disable-python
 USES+=			python:2,build
 .else
-USES+=			python:2.7
-
-PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so \
-			%%PYTHON_SITELIBDIR%%/_tdb_text.py
-# XXX: This is a gross hack to make port use both Python 2.7+ and 3.3+
-# This is not officially supported, use at your own risk
-.if defined(WITH_SAMBA4_PYTHON3) && ${WITH_SAMBA4_PYTHON3:Mpython3\.[0-9]}
-SAMBA4_PYTHON3=		${WITH_SAMBA4_PYTHON3}
-SAMBA4_PYTHON3_VERSION:=${SAMBA4_PYTHON3:S/^python//}
-SAMBA4_PYTHON3_VER:=	${SAMBA4_PYTHON3_VERSION:C/\.//}
-.if !exists(${PORTSDIR}/lang/python${SAMBA4_PYTHON3_VER})
-.error			unsupported or unknown Python version ${SAMBA4_PYTHON3_VERSION}
-.endif
-BUILD_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-RUN_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-# cpython-36m
-SAMBA4_PYTHON3_SO_ABI!=	[ ! -f "${LOCALBASE}/bin/${SAMBA4_PYTHON3}" ] || ${LOCALBASE}/bin/${SAMBA4_PYTHON3} -c 'import sysconfig; print(sysconfig.get_config_var("SOABI") or "")' 2>/dev/null
-SAMBA4_PYTHON3_SITELIBDIR=lib/python${SAMBA4_PYTHON3_VERSION}/site-packages
-
-CONFIGURE_ENV+=		PYTHON3_SO_ABI_FLAG=.${SAMBA4_PYTHON3_SO_ABI}
-CONFIGURE_ARGS+=	--extra-python=${LOCALBASE}/bin/${SAMBA4_PYTHON3}
-
-PLIST_SUB+=		SAMBA4_PYTHON3_SO_ABI=${SAMBA4_PYTHON3_SO_ABI} \
-			SAMBA4_PYTHON3_SITELIBDIR=${SAMBA4_PYTHON3_SITELIBDIR}
-
-PLIST_FILES+=		%%SAMBA4_PYTHON3_SITELIBDIR%%/tdb.%%SAMBA4_PYTHON3_SO_ABI%%.so \
-			%%SAMBA4_PYTHON3_SITELIBDIR%%/_tdb_text.py
-.endif
+USE_PYTHON_RUN=		yes
+PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so
 .endif
 
 .include <bsd.port.pre.mk>
@@ -89,9 +46,19 @@ PLIST_FILES+=		%%SAMBA4_PYTHON3_SITELIBDIR%%/tdb.%%SAMBA4_PYTHON3_SO_ABI%%.so \
 .if ! ${PORT_OPTIONS:MMANPAGES}
 CONFIGURE_ENV+=		XSLTPROC="true"
 .else
-BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
-			xsltproc:textproc/libxslt
+BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
+			xsltproc:${PORTSDIR}/textproc/libxslt
 .endif
+
+PLIST_FILES+=		bin/tdbbackup \
+			bin/tdbdump \
+			bin/tdbrestore \
+			bin/tdbtool \
+			include/tdb.h \
+			lib/libtdb.so \
+			lib/libtdb.so.1 \
+			%%PKGCONFIGDIR%%/tdb.pc
+
 # No fancy color error messages
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
@@ -99,12 +66,23 @@ CFLAGS+=		-fno-color-diagnostics
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
+.if !defined(DISABLE_MAKE_JOBS) && !defined(MAKE_JOBS_UNSAFE)
+CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS_NUMBER}
+_MAKE_JOBS+=		--jobs=${MAKE_JOBS_NUMBER}
+.endif
+
 TDB_MAN8=		man/man8/tdbbackup.8.gz \
 			man/man8/tdbdump.8.gz \
 			man/man8/tdbrestore.8.gz \
 			man/man8/tdbtool.8.gz
 
 PLIST_FILES+=		${TDB_MAN8}
+
+CONFIGURE_TARGET=	configure
+ALL_TARGET=		build
+INSTALL_TARGET=		install
+
+IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
 post-patch:
 			@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
@@ -119,21 +97,42 @@ pre-configure:
 				${FALSE}; \
 			fi
 
-pre-build:
-			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-.for man in ${TDB_MAN8}
-			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
-.endfor
+do-configure:
+			@(cd ${CONFIGURE_WRKSRC} && \
+			    ${SET_LATE_CONFIGURE_ARGS} \
+				if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+					CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+					LDFLAGS="${LDFLAGS}" \
+					INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
+					INSTALL_DATA="${INSTALL_DATA}" \
+					INSTALL_LIB="${INSTALL_LIB}" \
+					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
+					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_TOOL} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
+						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
+						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+						${FALSE}; \
+				fi)
 
-post-install:
-.for lib in ${TDB_BINS} lib/libtdb.so
-			${STRIP_CMD} ${PREFIX}/${lib}
-.endfor
-.if !defined(NO_PYTHON)
-			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/tdb.so
-.if defined(SAMBA4_PYTHON3)
-			${STRIP_CMD} ${PREFIX}/${SAMBA4_PYTHON3_SITELIBDIR}/tdb.${SAMBA4_PYTHON3_SO_ABI}.so
+pre-build:
+.if ! ${PORT_OPTIONS:MMANPAGES}
+			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
+.	for man in ${TDB_MAN8}
+			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
+.	endfor
 .endif
-.endif
+
+do-build:
+			@(cd ${BUILD_WRKSRC}; \
+			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_TOOL} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
+				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
+					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
+					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+				fi; \
+			${FALSE}; \
+			fi)
+
+do-install:
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 
 .include <bsd.port.post.mk>

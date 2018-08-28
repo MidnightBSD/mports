@@ -13,8 +13,4 @@ LICENSE=	mit
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto
 
-BROKEN_aarch64=		error: implicit declaration of function outb is invalid in C99
-BROKEN_armv6=		error: implicit declaration of function outb is invalid in C99
-BROKEN_armv7=		error: implicit declaration of function outb is invalid in C99
-
 .include <bsd.port.mk>

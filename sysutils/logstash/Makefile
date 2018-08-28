@@ -3,19 +3,16 @@
 # $MidnightBSD$
 
 PORTNAME=	logstash
-PORTVERSION=	2.4.1
+PORTVERSION=	2.1.0
 CATEGORIES=	sysutils java
-MASTER_SITES=	http://download.elastic.co/logstash/logstash/ \
-		http://people.midnightbsd.org/~laffer1/:jnr
-DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz \
-		jnr-ffi-2.1.8-SNAPSHOT.jar:jnr
+MASTER_SITES=	http://download.elastic.co/logstash/logstash/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for managing events and logs
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
+RUN_DEPENDS=	${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
 USES=		cpe
 CPE_VENDOR=	elasticsearch

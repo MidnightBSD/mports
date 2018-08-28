@@ -1,13 +1,12 @@
 # $MidnightBSD$
 
 PORTNAME=	data
-PORTVERSION=	1.18
+PORTVERSION=	1.6
 CATEGORIES=	sysutils
-MASTER_SITES=	https://downloadmirror.intel.com/27945/eng/:intel \
-		FREEBSD_LOCAL/sbruno:amd
+MASTER_SITES=	http://downloadmirror.intel.com/25512/eng/:intel \
+		http://www.amd64.org/microcode/:amd
 PKGNAMEPREFIX=	devcpu-
-DISTFILES=	microcode-20180703.tgz:intel \
-		amd64-microcode.20180525.tar.xz:amd
+DISTFILES=	microcode-20151106.tgz:intel amd-ucode-2014-12-01.tar.bz2:amd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Intel and AMD CPUs microcode updates
@@ -15,31 +14,19 @@ COMMENT=	Intel and AMD CPUs microcode updates
 LICENSE=	EULA
 LICENSE_NAME=	Intel Software License Agreement
 LICENSE_FILE=	${FILESDIR}/LICENSE
-LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
+LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell
 
-ONLY_FOR_ARCHS=	amd64 i386
-NO_ARCH=	yes
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/share/cpucontrol
 
 USE_RC_SUBR=	microcode_update
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 10000
-IGNORE=		Most Update to MidnightBSD 1.0 to use this.
-.endif
-
 post-extract:
-	${CP} -p ${FILESDIR}/Makefile ${FILESDIR}/ucode-split.c ${WRKSRC}
+	${CP} -p ${FILESDIR}/Makefile ${FILESDIR}/ucode-tool.c ${WRKSRC}
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam15h.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam16h.bin ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/microcode_amd_fam17h.bin ${STAGEDIR}${DATADIR}/
 	${INSTALL_DATA} ${WRKSRC}/mcodes/* ${STAGEDIR}${DATADIR}/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

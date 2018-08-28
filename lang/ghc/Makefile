@@ -1,40 +1,38 @@
 # $MidnightBSD$
 
 PORTNAME=	ghc
-PORTVERSION=	7.10.2
+PORTVERSION=	7.8.3
 CATEGORIES=	lang haskell
 MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
-		LOCAL/pgj/:boot
+		FREEBSD_LOCAL/pgj/:boot
 DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler for the functional language Haskell
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE
-
-ONLY_FOR_ARCHS=	i386 amd64
 
 MAKE_JOBS_NUMBER_LIMIT=		4
-NO_CCACHE=	yes
 
 GHC_VERSION=		${PORTVERSION}
-HSCOLOUR_VERSION=	1.23
-LLVM_VERSION=		35
+HSCOLOUR_VERSION=	1.20.3
 
 DATADIR=	${PREFIX}/share/ghc-${GHC_VERSION}
 EXAMPLESDIR=	${PREFIX}/share/examples/ghc-${GHC_VERSION}
 
-CONFLICTS=	ghc-7.4.* ghc-7.6.* ghc-7.8.*
+CONFLICTS=	ghc-6.* ghc-7.0.* ghc-7.2.* ghc-7.4.* ghc-7.6.* ghc-7.7.*
 
-LIB_DEPENDS+=	libgmp.so:math/gmp
+LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
 
+USE_AUTOTOOLS=		autoconf autoheader
 USE_PERL5=		build
-USES=			autoreconf gmake iconv:translit ncurses perl5 tar:xz
+USES=			gmake iconv:translit perl5 ncurses tar:bzip2
+USE_BINUTILS=		yes
+USE_GCC=		yes
 
-MAKE_ENV+=	LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-# This is needed on FreeBSD 9.x due to the bootstrap tarball.
-TAR=		env LC_ALL=en_US.UTF-8 /usr/bin/tar
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+MAKE_ENV=	LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # The configure process accepts,filters and canonicalises
 # the CONFIGURE_TARGET variable. You can read the files
@@ -43,16 +41,11 @@ TAR=		env LC_ALL=en_US.UTF-8 /usr/bin/tar
 # You can view below.
 GNU_CONFIGURE=	yes
 
-OPTIONS_DEFINE=			PROFILE DYNAMIC LLVM DOCS
-OPTIONS_SINGLE=			C_Compiler
-OPTIONS_SINGLE_C_Compiler=	GCC PCLANG BCLANG
-
-OPTIONS_DEFAULT=	PROFILE DYNAMIC GCC
+OPTIONS_DEFINE=		PROFILE DYNAMIC LLVM DOCS
+OPTIONS_DEFAULT=	PROFILE DYNAMIC DOCS
 
 BOOT_DESC=		Use installed GHC for bootstrapping
 BOOTH_DESC=		Use installed HsColour for bootstrapping
-PCLANG_DESC=		Build with Clang from ports
-BCLANG_DESC=		Build with Clang from base
 PROFILE_DESC=		Add support for performance profiling
 DYNAMIC_DESC=		Add support for dynamic linking
 LLVM_DESC=		Add support for generating code via LLVM
@@ -72,42 +65,32 @@ OPTIONS_DEFINE+=	BOOTH
 
 .if ${PORT_OPTIONS:MDYNAMIC}
 # The version number is needed as lang/gcc installs a different version
-LIB_DEPENDS+=	libffi.so.6:devel/libffi
+LIB_DEPENDS+=	libffi.so.6:${PORTSDIR}/devel/libffi
 .endif
 
 .if empty(PORT_OPTIONS:MBOOT)
 
-BOOT_GHC_VERSION=	7.10.2
-DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${EXTRACT_SUFX}:boot
+BOOT_GHC_VERSION=	7.6.3
+
+.if ${ARCH} == "i386"
+
+.if ${OSVERSION} >= 4015
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-i386-freebsd9-boot${EXTRACT_SUFX}:boot
+.else
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-i386-freebsd8-boot${EXTRACT_SUFX}:boot
+.endif
+
+.elif ${ARCH} == "amd64"
+
+.if ${OSVERSION} >= 4015
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-amd64-freebsd9-boot${EXTRACT_SUFX}:boot
+.else
+DISTFILES+=	ghc-${BOOT_GHC_VERSION}-amd64-freebsd8-boot${EXTRACT_SUFX}:boot
+.endif
+
+.endif
 
 .endif # MBOOT
-
-.if ${PORT_OPTIONS:MPCLANG}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_VERSION}:lang/clang${LLVM_VERSION}
-RUN_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_VERSION}:lang/clang${LLVM_VERSION}
-CC=		${LOCALBASE}/bin/clang${LLVM_VERSION}
-CXX=		${LOCALBASE}/bin/clang++${LLVM_VERSION}
-CPP=		${LOCALBASE}/bin/clang-cpp${LLVM_VERSION}
-LDFLAGS+=	-B${LOCALBASE}/bin
-CFLAGS+=	-Qunused-arguments
-CONFIGURE_ARGS+=	--with-clang=${CC} --with-gcc=${CC}
-USE_BINUTILS=		yes
-.if empty(PORT_OPTIONS:MBOOT)
-CONFIGURE_ARGS_BOOT+=	--with-clang=${CC} --with-gcc=${CC}
-.endif
-.elif ${PORT_OPTIONS:MBCLANG}
-CC=		/usr/bin/clang
-CXX=		/usr/bin/clang++
-CPP=		/usr/bin/clang-cpp
-CFLAGS+=	-Qunused-arguments
-CONFIGURE_ARGS+=	--with-clang=${CC} --with-gcc=${CC}
-.else # GCC
-USE_GCC=	yes
-CONFIGURE_ARGS+=	--with-gcc=${CC}
-.if empty(PORT_OPTIONS:MBOOT)
-CONFIGURE_ARGS_BOOT+=	--with-gcc=${CC}
-.endif
-.endif
 
 DOCSDIR=	${PREFIX}/share/doc/${DISTNAME}
 GHC_LIBDIR=	${STAGEDIR}${PREFIX}/lib/ghc-${GHC_VERSION}
@@ -117,7 +100,8 @@ PLIST_SUB+=	GHC_VERSION=${GHC_VERSION} GHC_LIBDIR=${GHC_LIBDIR_REL}
 
 HACKAGE_SITE?=		http://hackage.haskell.org/package/
 
-CONFIGURE_ARGS+=	--with-ld=${LD} \
+CONFIGURE_ARGS=		--with-gcc=${CC} \
+			--with-ld=${LD} \
 			--with-gmp-includes=${LOCALBASE}/include \
 			--with-gmp-libraries=${LOCALBASE}/lib
 
@@ -131,11 +115,11 @@ CONFIGURE_ARGS+=	--with-system-libffi \
 .endif
 
 .if ${PORT_OPTIONS:MLLVM}
-BUILD_DEPENDS+=		${LOCALBASE}/bin/opt${LLVM_VERSION}:devel/llvm${LLVM_VERSION}
-RUN_DEPENDS+=		${LOCALBASE}/bin/opt${LLVM_VERSION}:devel/llvm${LLVM_VERSION}
+BUILD_DEPENDS+=		${LOCALBASE}/bin/opt34:${PORTSDIR}/devel/llvm34
+RUN_DEPENDS+=		${LOCALBASE}/bin/opt34:${PORTSDIR}/devel/llvm34
 
-CONFIGURE_ARGS+=	--with-opt=${LOCALBASE}/bin/opt${LLVM_VERSION} \
-			--with-llc=${LOCALBASE}/bin/llc${LLVM_VERSION}
+CONFIGURE_ARGS+=	--with-opt=${LOCALBASE}/bin/opt34 \
+			--with-llc=${LOCALBASE}/bin/llc34
 .endif
 
 .if empty(PORT_OPTIONS:MBOOT)
@@ -147,7 +131,7 @@ BOOT_HSC2HS=	${BOOT_DIR}/bin/hsc2hs
 
 SLAVE_CMD=	${SETENV} PATH=${BOOT_DIR}/bin:${PATH}
 
-CONFIGURE_ARGS_BOOT+=	--prefix=${BOOT_DIR} --with-ld=${LD}
+CONFIGURE_ARGS_BOOT=	--prefix=${BOOT_DIR} --with-gcc=${CC} --with-ld=${LD}
 CONFIGURE_ARGS+=	--with-ghc=${BOOT_GHC}
 
 .else # MBOOT
@@ -165,6 +149,7 @@ CFLAGS+=	-I${LOCALBASE}/include
 # override TMPDIR because /tmp often doesn't have enough space
 # to build some of the larger libraries.
 TMPDIR=		${WRKSRC}/tmp
+MAKE_ENV+=	TMPDIR=${TMPDIR}
 
 # Defining with documentation:
 # An in place installation and registration of hscolour will be
@@ -189,12 +174,13 @@ SLAVES_PREFIX=		${WRKDIR}/slaves_prefix
 SLAVES_WRKDIRPREFIX=	${WRKDIR}/slaves_wrkdirprefix
 
 MAKE_ENV+=	PATH=${SLAVES_PREFIX}/bin:${PATH}
+MAKE_ENV+=	LC_ALL=en_US.UTF-8
 CONFIGURE_ENV+=	PATH=${SLAVES_PREFIX}/bin:${PATH}
 
 .endif # MBOOTH
 
-BUILD_DEPENDS+=	docbook-xsl>0:textproc/docbook-xsl \
-		${LOCALBASE}/bin/xsltproc:textproc/libxslt
+BUILD_DEPENDS+=	docbook-xsl>0:${PORTSDIR}/textproc/docbook-xsl \
+		${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt
 .endif
 
 post-extract:
@@ -224,9 +210,6 @@ post-extract:
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "BSD_PATH_TO_HSC2HS = ${BOOT_HSC2HS}"
 .endif
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "SRC_HC_OPTS += -I${NCURSESINC} -L${NCURSESLIB} -I${LOCALBASE}/include -L${LOCALBASE}/lib"
-.if ${PORT_OPTIONS:MPCLANG}
-	@${ECHO} >> ${WRKSRC}/mk/build.mk "SRC_HC_OPTS += -optl=-B${LOCALBASE}/bin"
-.endif
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "SRC_CC_OPTS += ${CFLAGS}"
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "EXTRA_HSC2HS_OPTS += -I${LOCALBASE}/include --lflag=-L${LOCALBASE}/lib"
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "EXTRA_LD_OPTS += -L${LOCALBASE}/lib"
@@ -234,12 +217,6 @@ post-extract:
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "EXTRA_CABAL_CONFIGURE_FLAGS += --extra-lib-dirs=${LOCALBASE}/lib"
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "libraries/terminfo_CONFIGURE_OPTS += --configure-option=--with-curses-includes=${NCURSESINC} --configure-option=--with-curses-libraries=${NCURSESLIB}"
 	@${ECHO} >> ${WRKSRC}/mk/build.mk "V = 0"
-.if ${PORT_OPTIONS:MBCLANG} || ${PORT_OPTIONS:MPCLANG}
-	@${REINPLACE_CMD} -e 's|@SettingsCCompilerFlags@|& -Qunused-arguments|' ${WRKSRC}/settings.in
-.if empty(PORT_OPTIONS:MBOOT)
-	@${REINPLACE_CMD} -e 's|@SettingsCCompilerFlags@|& -Qunused-arguments|' ${BOOT_DIR}/settings.in
-.endif
-.endif
 
 post-install-script:
 	@${FIND} -ds ${GHC_LIBDIR} -type f -print | ${SED} -E -e \
@@ -252,11 +229,11 @@ post-install-script:
 		's,^${STAGEDIR}${PREFIX}/?,,' >> ${TMPPLIST}
 .if ${PORT_OPTIONS:MDOCS}
 	# Cleanup the indexen created by gen_contents_index
-	@${ECHO} "@unexec ${RM} %D/${DOCSDIR_REL}/html/libraries/doc-index-*.html" >> ${TMPPLIST}
-	@${ECHO} "@unexec ${RM} %D/${DOCSDIR_REL}/html/libraries/index*.html" >> ${TMPPLIST}
-	@${ECHO} "@unexec ${RM} %D/${DOCSDIR_REL}/html/libraries/*.png" >> ${TMPPLIST}
+	@${ECHO} "@unexec ${RM} -f %D/${DOCSDIR_REL}/html/libraries/doc-index-*.html" >> ${TMPPLIST}
+	@${ECHO} "@unexec ${RM} -f %D/${DOCSDIR_REL}/html/libraries/index*.html" >> ${TMPPLIST}
+	@${ECHO} "@unexec ${RM} -f %D/${DOCSDIR_REL}/html/libraries/*.png" >> ${TMPPLIST}
 .endif
-	@${ECHO} '@unexec ${RM} %D/${GHC_LIBDIR_REL}/package.conf.d/package.cache' >>${TMPPLIST}
+	@${ECHO} '@unexec ${RM} -f %D/${GHC_LIBDIR_REL}/package.conf.d/package.cache' >>${TMPPLIST}
 	@${ECHO} "@exec %D/bin/ghc-pkg recache" >>${TMPPLIST}
 .if ${PORT_OPTIONS:MDOCS}
 	@${ECHO} '@exec ${SH} -c "cd %D/${DOCSDIR_REL}/html/libraries && ./gen_contents_index"' >> ${TMPPLIST}
@@ -265,16 +242,20 @@ post-install-script:
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%CC%%|${CC}|; \
 		s|%%AR%%|${AR}|; \
+		s|%%RANLIB%%|${RANLIB}|; \
 		s|%%LD%%|${LD}|' \
 		${WRKSRC}/libraries/Cabal/Cabal/Distribution/Simple/Program/Builtin.hs
 
 pre-configure:
 	@${MKDIR} ${TMPDIR}
 .if empty(PORT_OPTIONS:MBOOT)
-	@(cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_CMD} ${CONFIGURE_ARGS_BOOT})
+	@(cd ${BOOT_DIR} && ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS_BOOT})
 	@(cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install)
 .endif
 
+# Defining with documentation:
+# Defining "SLAVE" in devel/hs-haddock and print/hs-hscolour flips the building process
+# functionally to this port.
 .if ${PORT_OPTIONS:MDOCS} && empty(PORT_OPTIONS:MBOOTH)
 	@${ECHO_MSG} -e "\a"
 	@${ECHO_MSG} "======================================================================"
@@ -298,11 +279,11 @@ pre-configure:
 .endif
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/bin/haddock
+	@${RM} -f ${STAGEDIR}${PREFIX}/bin/haddock
 .if ${PORT_OPTIONS:MDOCS}
 	@${LN} -sf haddock-ghc-${GHC_VERSION} ${STAGEDIR}${PREFIX}/bin/haddock
 .endif
-	@(for f in ${STAGEDIR}${PREFIX}/bin/hp2ps ${GHC_LIBDIR}/unlit \
+	@(for f in ${STAGEDIR}${PREFIX}/bin/hp2ps ${GHC_LIBDIR}/unlit ${GHC_LIBDIR}/mkGmpDerivedConstants \
 	    $$(${FIND} ${GHC_LIBDIR}/bin -type f; ${FIND} ${GHC_LIBDIR} -name '*.so'); do \
 	    ${STRIP_CMD} $$f; done)
 

@@ -3,7 +3,7 @@
 
 PORTNAME=	libmemcached
 PORTVERSION=	1.0.18
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	http://launchpad.net/${PORTNAME}/1.0/${PORTVERSION}/+download/
 
@@ -13,7 +13,7 @@ COMMENT=	C and C++ client library to the memcached server
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS?=	libevent.so:${PORTSDIR}/devel/libevent
+LIB_DEPENDS?=	libevent.so:${PORTSDIR}/devel/libevent2
 TEST_DEPENDS=	memcached:${PORTSDIR}/databases/memcached
 
 USES=		autoreconf execinfo gmake pathfix pkgconfig libtool

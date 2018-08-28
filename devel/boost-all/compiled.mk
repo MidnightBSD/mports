@@ -1,47 +1,63 @@
 USE_LDCONFIG=	yes
 PKGMESSAGE=	${WRKDIR}/pkg-message
-MAKE_CMD=	bjam
-MAKEFILE=	#
-MAKE_FLAGS=	#
-ALL_TARGET=	stage
-USES+=		compiler:c++11-lib
-USE_CXXSTD=	gnu++11
+BJAM=		bjam
+USES+=		compiler:c++11-lang
 
-PLIST_SUB+=	BOOST_SHARED_LIB_VER=${PORTVERSION}
+BUILD_DEPENDS+= ${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
+CPP=    ${LOCALBASE}/bin/clang-cpp34
+CC=     ${LOCALBASE}/bin/clang34
+CXX=    ${LOCALBASE}/bin/clang++34
+
+PLIST_SUB+=	BOOST_SHARED_LIB_VER=${PORTVERSION} COMPAT_LIB_VER=5
 
 PKG_MESSAGE_FILE_THREADS=	${PORTSDIR}/devel/boost-all/pkg-message.threads
 PKG_MESSAGE_FILE_PYTHON=	${PORTSDIR}/devel/boost-all/pkg-message.python
 
-MAKE_ARGS=	--layout=system \
+.include <bsd.port.pre.mk>
+
+BJAM_ARGS=	--layout=system \
 		--prefix=${PREFIX} \
-		-d2
+
+.if ${ARCH} == amd64
+BJAM_ARGS+=	cxxflags=-fPIC
+.endif
 
 # Our compiler-flags will be added AFTER those set by bjam. We remove
 # the optimization level, because Boost sets it itself (to -O3 in case
 # of gcc/g++):
-MAKE_ARGS+=	cxxflags="${CXXFLAGS:N-O*}" cflags="${CFLAGS:N-O*}"
+BJAM_ARGS+=    cxxflags="${CXXFLAGS:N-O*}" cflags="${CFLAGS:N-O*}"
 
-MAKE_ARGS+=	--toolset=${CHOSEN_COMPILER_TYPE} \
+BOOST_TOOLSET=	${CHOSEN_COMPILER_TYPE}
+
+BJAM_ARGS+=	--toolset=${BOOST_TOOLSET} \
 		${_MAKE_JOBS}
 
-DEBUG_MAKE_ARGS=	debug
-DEBUG_MAKE_ARGS_OFF=	release
+.if ${PORT_OPTIONS:MVERBOSE_BUILD}
+BJAM_ARGS+=	-d2
+.endif
 
-MAKE_ARGS+=	threading=multi \
+.if ${PORT_OPTIONS:MDEBUG}
+BJAM_ARGS+=	debug
+.else
+BJAM_ARGS+=	release
+.endif
+
+BJAM_ARGS+=	threading=multi \
 		link=shared,static
 
-MAKE_ARGS+=	optimization=speed
-OPTIMIZED_CFLAGS_MAKE_ARGS=	inlining=full
+BJAM_ARGS+=	optimization=speed
+.if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
+BJAM_ARGS+=	inlining=full
+.endif
 
 # ccache build fails when using precompiled headers, on a cached build.
-#
-# base gcc 4.2.1 fails when using precompiled headers on 11.0+ kernel.
-# https://lists.freebsd.org/pipermail/svn-src-all/2015-March/101722.html
-MAKE_ARGS+=	pch=off
+.if defined(WITH_CCACHE_BUILD)
+BJAM_ARGS+=	pch=off
+.endif
 
 post-patch:
 .if defined(USE_BINUTILS)
-	@${ECHO} "using ${CHOSEN_COMPILER_TYPE} : : ${CXX} : <linkflags>-B${LOCALBASE}/bin ;" >> ${WRKSRC}/tools/build/src/user-config.jam
+	@${ECHO} "using ${BOOST_TOOLSET} : : ${CXX} : <linkflags>-B${LOCALBASE}/bin ;" >> ${WRKSRC}/tools/build/v2/user-config.jam
 .else
-	@${ECHO} "using ${CHOSEN_COMPILER_TYPE} : : ${CXX} ;" >> ${WRKSRC}/tools/build/src/user-config.jam
+	@${ECHO} "using ${BOOST_TOOLSET} : : ${CXX} ;" >> ${WRKSRC}/tools/build/v2/user-config.jam
 .endif

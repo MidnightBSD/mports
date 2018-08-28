@@ -1,3 +1,2 @@
-TIMESTAMP = 1532662672
-SHA256 (coreutils-8.28.tar.xz) = 1117b1a16039ddd84d51a9923948307cfa28c2cea03d1a2438742253df0a0c65
-SIZE (coreutils-8.28.tar.xz) = 5252336
+SHA256 (coreutils-8.23.tar.xz) = ec43ca5bcfc62242accb46b7f121f6b684ee21ecd7d075059bf650ff9e37b82d
+SIZE (coreutils-8.23.tar.xz) = 5375612

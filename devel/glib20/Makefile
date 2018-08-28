@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.50.2
+PORTVERSION=	2.46.2
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -16,12 +16,11 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS+=	libpcre.so:devel/pcre \
-		libffi.so:devel/libffi
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
+		libffi.so:${PORTSDIR}/devel/libffi
 
 GNU_CONFIGURE=	yes
-USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool pathfix \
-		python pkgconfig shebangfix
+USES+=		gettext gmake iconv:wchar_t libtool pathfix python pkgconfig shebangfix
 USE_PYTHON=	py3kplist
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
@@ -36,7 +35,9 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.5000.2
+SHEBANG_FILES=	*/*.pl
+
+LIBVERSION=	0.4600.2
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
@@ -45,8 +46,9 @@ gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 \
 		glib-compile-resources.1 gresource.1 gdbus-codegen.1
 gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
 
-OPTIONS_DEFINE=	COLLATION_FIX DEBUG NLS
+OPTIONS_DEFINE=	COLLATION_FIX DEBUG GDB
 COLLATION_FIX_DESC=	fix string collation
+GDB_DESC=	Install python gdb scripts
 
 .include <bsd.port.pre.mk>
 
@@ -76,15 +78,17 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 #CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
 .endif
 
+.if ${PORT_OPTIONS:MGDB}
+PLIST_SUB+=	GDB=""
+.else
+EXTRA_PATCHES+=	${FILESDIR}/extra-glib_gdbscripts \
+		${FILESDIR}/extra-gobject_gdbscripts
+PLIST_SUB+=	GDB="@comment "
+.endif
+
 .if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	--enable-debug=yes \
 			--disable-silent-rules
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
 .endif
 
 post-patch:

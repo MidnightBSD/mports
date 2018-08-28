@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ilmbase
-PORTVERSION=	2.2.1
+PORTVERSION=	2.2.0
 CATEGORIES=	graphics devel
 MASTER_SITES=	SAVANNAH/openexr/
 DISTNAME=	ilmbase-${PORTVERSION}
@@ -22,7 +22,7 @@ OPTIONS_SUB=	yes
 THREAD_CONFIGURE_ENABLE=	threading
 
 MAJORVER=	2_2
-VER=		23
+VER=		12
 
 PLIST_SUB=	MAJORVER=${MAJORVER}
 PLIST_SUB+=	VER=${VER}
@@ -30,7 +30,7 @@ PLIST_SUB+=	VER=${VER}
 HALF_BIN=	eLut toFloat
 
 regression-test regression test check:	build
-	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
+	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/lib/libHalf.so.${VER}

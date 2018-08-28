@@ -2,7 +2,6 @@
 
 PORTNAME=	liboauth
 PORTVERSION=	1.0.3
-PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}
 
@@ -18,7 +17,8 @@ GNU_CONFIGURE=	yes
 MAKE_ARGS=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
 INSTALL_TARGET=	install-strip
 
-USES=		pkgconfig libtool ssl
+USE_OPENSSL=	yes
+USES=		pkgconfig libtool
 USE_LDCONFIG=	yes
 
 post-patch:

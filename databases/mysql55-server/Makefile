@@ -13,7 +13,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql55-client
-USES=		cmake:noninja readline shebangfix
+USES=		cmake readline shebangfix
 CXXFLAGS+=	${CPPFLAGS}
 NO_OPTIONS_SORT=yes
 
@@ -63,7 +63,8 @@ CMAKE_ARGS+=	-DWITH_FAST_MUTEXES=1
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY)
-USES+=	mysql:55
+USE_MYSQL=	yes
+WANT_MYSQL_VER=	55
 
 CONFLICTS_INSTALL=	mysql5[0-46-9]-server-* \
 			mariadb*-server-* \

@@ -18,9 +18,8 @@ GH_ACCOUNT=	wernerd
 GH_PROJECT=	ZRTPCPP
 WRKSRC=		${WRKDIR}/${GH_PROJECT}-${DISTVERSION}
 
-USES=		cmake:outsource,noninja compiler:c++11-lib
-USE_CXXSTD=	c++11
-CMAKE_ARGS=	-DCORE_LIB:BOOL=ON
+USES=		cmake:outsource
+CMAKE_ARGS=	-DCORE_LIB=true
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

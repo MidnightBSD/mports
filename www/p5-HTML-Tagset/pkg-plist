@@ -1,2 +1,4 @@
 %%SITE_PERL%%/HTML/Tagset.pm
-%%PERL5_MAN3%%/HTML::Tagset.3.gz
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/Tagset
+@dirrmtry %%SITE_PERL%%/HTML
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML

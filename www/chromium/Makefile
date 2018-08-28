@@ -32,7 +32,7 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
 		libcups.so:${PORTSDIR}/print/cups \
-		libevent.so:${PORTSDIR}/devel/libevent \
+		libevent.so:${PORTSDIR}/devel/libevent2 \
 		libexif.so:${PORTSDIR}/graphics/libexif \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libpci.so:${PORTSDIR}/devel/libpci \
@@ -57,12 +57,13 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/a
 
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		bison compiler:c++11-lib cpe desktop-file-utils pkgconfig \
-		perl5 shebangfix ninja tar:xz python:2,build execinfo ssl
+		perl5 shebangfix ninja tar:xz python:2,build execinfo
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
 USE_PERL5=	build
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst
 USE_GNOME=	glib20 gtk20 dconf libxslt
+USE_OPENSSL=	yes # must be from base to prevent a link failure against cups
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes

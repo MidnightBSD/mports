@@ -31,9 +31,6 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/strigidaemon:${PORTSDIR}/deskutils/strigidaemon
 RUN_DEPENDS+=	${LOCALBASE}/bin/xmlindexer:${PORTSDIR}/deskutils/strigiutils
 .endif
 
-do-patch:
-	@${DO_NADA}
-
 do-install:
 	@${DO_NADA}
 

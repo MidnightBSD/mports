@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libXcursor
-PORTVERSION=	1.1.15
+PORTVERSION=	1.1.14
+PORTREVISION=	4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +19,5 @@ CPE_PRODUCT=	libxcursor
 CPE_VENDOR=	x
 
 CONFIGURE_ARGS=	--with-icondir=${PREFIX}/lib/X11/icons
-INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

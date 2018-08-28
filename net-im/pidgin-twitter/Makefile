@@ -2,7 +2,7 @@
 
 PORTNAME=	pidgin-twitter
 PORTVERSION=	0.9.2
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	net-im
 MASTER_SITES=	http://www.honeyplanet.jp/
 
@@ -11,14 +11,15 @@ COMMENT=	Pidgin plugin to help twitting via pidgin
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	pidgin:net-im/pidgin
-RUN_DEPENDS=	pidgin:net-im/pidgin
+BUILD_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
+LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
+RUN_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
 
 FAKE_MAKEARGS+=	PIDGIN_PLUGIN_DIR="${FAKE_DESTDIR}${PREFIX}/lib/pidgin" \
 		PIDGIN_DATA_DIR="${FAKE_DESTDIR}${PREFIX}/share"
 
 USES=		gmake pkgconfig
-USE_GNOME=	glib20 libxml2
+USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	lib/pidgin/pidgin-twitter.so \

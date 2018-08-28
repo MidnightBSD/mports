@@ -13,10 +13,11 @@ COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 LICENSE=	gpl2 bsd3 apache2
 LICENSE_COMB=	dual
 
-USES=		gmake dos2unix ssl
+USES=		gmake dos2unix
 USE_DOS2UNIX=	yes
 DOS2UNIX_FILES=	src/osdep/byteorder.h
 MAKE_ARGS=	unstable=true libnl=false prefix=${PREFIX}
+USE_OPENSSL=	yes
 SUB_FILES=	pkg-message
 
 BIN_FILES=	airdecloak-ng buddy-ng aircrack-ng airdecap-ng ivstools \

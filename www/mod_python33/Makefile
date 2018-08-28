@@ -15,7 +15,7 @@ LICENSE=	apache2
 
 CONFLICTS_INSTALL=	ap2[24]-mod_python3[^3]*
 
-USE_APACHE=	24
+USE_APACHE=	22
 USES=		cpe python:2.7 tar:tgz
 CPE_VENDOR=	apache
 

@@ -38,7 +38,8 @@ LICENSE=		openldap2.8
 
 GNU_CONFIGURE=		yes
 # :keepla because port uses lt_dlopen
-USES=			cpe libtool:keepla ssl
+USES=			cpe libtool:keepla
+USE_OPENSSL=		yes
 .if !defined(CLIENT_ONLY)
 USERS=			ldap
 GROUPS=			ldap

@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	expat
-PORTVERSION=	2.2.1
-PORTREVISION=	0
+PORTVERSION=	2.1.0
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
@@ -13,7 +13,7 @@ LICENSE=	other
 
 GNU_CONFIGURE=	yes
 ALL_TARGET=	default
-USES=		libtool pathfix tar:bzip2
+USES=		libtool pathfix
 USE_LDCONFIG=	yes
 
 post-patch:

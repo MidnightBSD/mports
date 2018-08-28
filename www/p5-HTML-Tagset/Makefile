@@ -3,16 +3,13 @@
 
 PORTNAME=	HTML-Tagset
 PORTVERSION=	3.20
-PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful data table in parsing HTML
-
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

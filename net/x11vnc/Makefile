@@ -2,7 +2,7 @@
 
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.13
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	SF/libvncserver/${PORTNAME}/${PORTVERSION}
 
@@ -20,7 +20,8 @@ USE_XORG=	x11 xcb xdamage xfixes xrandr xinerama xext xtst xau xrender \
 
 # Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
 LDFLAGS+=	-L${LOCALBASE}/lib
-USES=		iconv pkgconfig ssl
+USE_OPENSSL=	yes
+USES=		iconv pkgconfig
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 

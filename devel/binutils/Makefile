@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	binutils
-PORTVERSION=	2.30
+PORTVERSION=	2.27
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
@@ -22,8 +22,7 @@ OPTIONS_DEFINE=	NLS
 LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
 
-USES=		bison cpe gmake libtool tar:bzip2 compiler:env
-CPE_VENDOR=	gnu
+USES=		bison gmake libtool tar:bzip2 compiler:env
 GNU_CONFIGURE=	yes
 
 .if defined(PKGNAMEPREFIX)
@@ -37,8 +36,7 @@ CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-gmp=${LOCALBASE} \
-			--with-mpfr=${LOCALBASE} \
-			--enable-targets=all
+			--with-mpfr=${LOCALBASE}
 INFO=		as \
 		binutils \
 		gprof \
@@ -47,9 +45,7 @@ INFO=		as \
 .endif
 
 CONFIGURE_ARGS+=	--disable-werror \
-			--with-sysroot=/ \
-			--enable-deterministic-archives \
-			--enable-x86-relax-relocations=no
+			--with-sysroot=/
 
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
@@ -74,7 +70,9 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 post-install:
 .if !defined(PKGNAMEPREFIX)
+.if ${OSVERSION} >= 4016
 	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
+.endif
 	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
 		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
 	${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h

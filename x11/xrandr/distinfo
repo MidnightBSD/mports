@@ -1,3 +1,2 @@
-TIMESTAMP = 1535316079
-SHA256 (xorg/app/xrandr-1.5.0.tar.bz2) = c1cfd4e1d4d708c031d60801e527abc9b6d34b85f2ffa2cadd21f75ff38151cd
-SIZE (xorg/app/xrandr-1.5.0.tar.bz2) = 182515
+SHA256 (xorg/app/xrandr-1.4.0.tar.bz2) = a76b004abe6fd7606eba9ad161ac6391fe5c665708cc5fb7c7ea7d36459d9693
+SIZE (xorg/app/xrandr-1.4.0.tar.bz2) = 165459

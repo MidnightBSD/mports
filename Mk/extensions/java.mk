@@ -150,19 +150,19 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 # The complete list of Java versions, os and vendors supported.
 __JAVA_VERSION_LIST=	1.6 1.7 1.8
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
-_JAVA_OS_LIST=			native linux freebsd
+_JAVA_OS_LIST=			native linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
-_JAVA_PORT_NATIVE_OPENJDK_JDK_1_8_BIN_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
-											VERSION=1.8.0	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
 											VERSION=1.7.0	OS=native	VENDOR=openjdk
-_JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=1.7.0	OS=freebsd	VENDOR=openjdk
+_JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_BIN_INFO=	PORT/java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
+											VERSION=1.7.0	OS=native	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_1_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
 											VERSION=1.6.0	OS=native	VENDOR=openjdk
+_JAVA_PORT_NATIVE_FREEBSD_JDK_1_6_INFO=		PORT=java/diablo-jdk16			HOME=${LOCALBASE}/diablo-jdk1.6.0 \
+											VERSION=1.6.0	OS=native	VENDOR=freebsd
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
 											VERSION=1.6.0	OS=native	VENDOR=bsdjava
 _JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
@@ -181,14 +181,13 @@ _JAVA_VENDOR_oracle=		Oracle
 # Verbose description for each OS
 _JAVA_OS_native=	Native
 _JAVA_OS_linux=		Linux
-_JAVA_OS_freebsd=	FreeBSD
 
 # Enforce preferred Java ports according to OS
-.		if (${ARCH} == "amd64")
+.		if (${ARCH} == "amd64") || (${ARCH} == "i386")
 .			if defined(PACKAGE_BUILDING) 
-_JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8
+_JAVA_PREFERRED_PORTS+= JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
 .			else
-_JAVA_PREFERRED_PORTS+=	 JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8
+_JAVA_PREFERRED_PORTS+=	 JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
 NOT_FOR_ARCHS=sparc64
 .			endif
 .		else
@@ -196,8 +195,8 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
 .		endif
 
 # List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7 \
+__JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
+			JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_BIN \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
@@ -286,7 +285,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.5/1.6+/:S/1.5+/1.6+/:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8+/:S/1.8+/1.8/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.5/1.6+/:S/1.5+/1.6+/:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8/:S/1.8+/1.8/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif

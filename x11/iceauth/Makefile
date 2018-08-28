@@ -1,14 +1,14 @@
 # $MidnightBSD$
 
 PORTNAME=	iceauth
-PORTVERSION=	1.0.8
+PORTVERSION=	1.0.6
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ICE authority file utility for X
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
 USE_XORG=	xproto ice

@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	m4
-PORTVERSION=	1.4.18
-PORTEPOCH=	1
+PORTVERSION=	1.4.17
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -10,9 +10,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU m4
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		makeinfo tar:xz
+USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
 		--program-prefix=g

@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.52.2
+PORTVERSION=	2.50.0
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -12,9 +12,9 @@ COMMENT=	SOAP (Simple Object Access Protocol) implementation in C
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
-LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
-RUN_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
+BUILD_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
+LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+RUN_DEPENDS=	glib-networking>=2.29.18:${PORTSDIR}/net/glib-networking
 
 USES=		tar:xz
 
@@ -27,8 +27,7 @@ USE_GNOME=	glib20 intlhack introspection:build \
 USE_SQLITE=	3
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-more-warnings \
-		--disable-vala
+CONFIGURE_ARGS=	--disable-more-warnings
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip

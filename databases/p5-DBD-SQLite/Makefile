@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	DBD-SQLite
-PORTVERSION=	1.58
+PORTVERSION=	1.42
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,29 +9,29 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	Provides access to SQLite3 databases through the DBI
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	perl
 
-BUILD_DEPENDS=	p5-DBI>=1.57:databases/p5-DBI
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+.if exists(/usr/lib/libsqlite3.a)
+SQLITE_LOCATION=	/usr
+CONFIGURE_ARGS+=	LIBS="-lpthread -lsqlite3"
+.else
+BUILD_DEPENDS=		sqlite>=3.9.1:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=		${BUILD_DEPENDS}
+SQLITE_LOCATION= 	${LOCALBASE}
+.endif
 
-PORTSCOUT=	limit:^[0-9\.]*$$
-
-USES=		perl5
-USE_PERL5=	configure
 PERL_CONFIGURE=	yes
+CONFIGURE_ARGS+=	USE_LOCAL_SQLITE=0 
+CONFIGURE_ARGS+=	SQLITE_LOCATION=${SQLITE_LOCATION}
 
-OPTIONS_DEFINE=	BUNDLED_SQLITE
-OPTIONS_DEFAULT=BUNDLED_SQLITE
+.include <bsd.port.pre.mk>
 
-BUNDLED_SQLITE_DESC=		Use bundled SQLite (otherwise, from databases/sqlite3)
-BUNDLED_SQLITE_LIB_DEPENDS_OFF=	libsqlite3.so:databases/sqlite3
-BUNDLED_SQLITE_CONFIGURE_OFF=	USE_LOCAL_SQLITE=0 SQLITE_LOCATION=${LOCALBASE}
+BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
 
-post-patch-BUNDLED_SQLITE-off:
-	${REINPLACE_CMD} -e 's/if ( 0 )/if ( 1 )/' ${WRKSRC}/Makefile.PL
+post-patch:
+	${RM} -f ${WRKSRC}/getsqlite.pl
+	${PERL} -pi -e 's/\$$Config{d_usleep}/1/' ${WRKSRC}/Makefile.PL
+	${PERL} -pi -e '$$_="" if m|getsqlite.pl|' ${WRKSRC}/MANIFEST
 
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DBD/SQLite/SQLite.so
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

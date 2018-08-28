@@ -2,7 +2,6 @@
 
 PORTNAME=	courier
 PORTVERSION=	0.65.3
-PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF
 
@@ -58,7 +57,8 @@ CALENDIR=	/var/spool/calendar
 MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
-USES=		fam gettext gmake libtool perl5 pkgconfig ssl tar:bzip2
+USES=		fam gettext gmake libtool perl5 pkgconfig tar:bzip2
+USE_OPENSSL=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
 

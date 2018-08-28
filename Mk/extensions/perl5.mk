@@ -69,13 +69,6 @@ PERL=			${PERL_PREFIX}/bin/perl
 CPAN_CMD?=		${PERL_PREFIX}/bin/cpan
 .endif
 
-CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL} ac_cv_path_PERL_PATH=${PERL} \
-		PERL_USE_UNSAFE_INC=1
-
-MAKE_ENV+=	PERL_USE_UNSAFE_INC=1
-
-QA_ENV+=	SITE_ARCH_REL=${SITE_ARCH_REL} LIBPERL=libperl.so.${PERL_VER}
-
 .if (${ARCH} == "amd64")
 .if ${OSVERSION} > 4015
 PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
@@ -120,9 +113,7 @@ USE_PERL5= ${PERL_BRANCH}
 #
 # Perl version stuff.
 #
-.if ${OSVERSION} > 9009
-_DEFAULT_PERL_VERSION=	5.26.0
-.elif ${OSVERSION} > 5006
+.if ${OSVERSION} > 5006
 _DEFAULT_PERL_VERSION=  5.18.2
 .elif ${OSVERSION} > 5001
 _DEFAULT_PERL_VERSION=	5.18.1
@@ -206,7 +197,9 @@ ALL_TARGET?=
 PL_BUILD?=		Build
 CONFIGURE_SCRIPT?=	Build.PL
 .if ${PORTNAME} != Module-Build
+.if ${PERL_LEVEL} < 501000
 BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:${PORTSDIR}/devel/p5-Module-Build
+.endif
 .endif
 CONFIGURE_ARGS+= \
 	create_packlist=0 \

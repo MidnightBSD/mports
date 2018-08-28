@@ -3,7 +3,7 @@
 
 PORTNAME=	xar
 PORTVERSION=	1.5.2
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	GOOGLE_CODE GENTOO
 
@@ -14,8 +14,9 @@ LICENSE=	bsd3
 
 USE_LDCONFIG=	yes
 
-USES=		gmake libtool ssl
+USES=		gmake libtool
 USE_GNOME=	libxml2
+USE_OPENSSL=	yes
 
 GNU_CONFIGURE=	yes
 

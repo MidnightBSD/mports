@@ -4,7 +4,6 @@
 
 PORTNAME=	nghttp2
 PORTVERSION=	1.8.0
-PORTREVISION=	2
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
@@ -15,10 +14,10 @@ COMMENT=	HTTP/2.0 C Library
 LICENSE=	mit
 
 BUILD_DEPENDS=	libev>=4.15:${PORTSDIR}/devel/libev \
-		libevent>=2.0.8:${PORTSDIR}/devel/libevent \
+		libevent2>=2.0.8:${PORTSDIR}/devel/libevent2 \
 		spdylay>=1.3.0:${PORTSDIR}/www/spdylay
 LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev \
-		libevent_openssl.so:${PORTSDIR}/devel/libevent \
+		libevent_openssl.so:${PORTSDIR}/devel/libevent2 \
 		libspdylay.so:${PORTSDIR}/www/spdylay
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
@@ -44,7 +43,8 @@ PATHFIX_MAKEFILEIN=	Makefile.am
 USE_CXXSTD=	c++11
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
-USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz ssl
+USE_OPENSSL=	yes
+USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz
 
 PORTDATA=	fetch-ocsp-response
 PORTDOCS=	*

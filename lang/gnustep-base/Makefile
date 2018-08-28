@@ -15,7 +15,7 @@ LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
 LIB_DEPENDS+=	libxml2.so:${PORTSDIR}/textproc/libxml2
 LIB_DEPENDS+=	libxslt.so:${PORTSDIR}/textproc/libxslt
 LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
-LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	libgnutls-openssl.so:${PORTSDIR}/security/gnutls
 LIB_DEPENDS+=	libicuuc.so:${PORTSDIR}/devel/icu
 LIB_DEPENDS+=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
 

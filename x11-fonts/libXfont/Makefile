@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libXfont
-PORTVERSION=	1.5.4
+PORTVERSION=	1.5.1
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 
@@ -10,7 +10,7 @@ COMMENT=	X font library
 
 LICENSE=	bsd4
 
-LIB_DEPENDS=	libfreetype.so:print/freetype2
+LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 
 XORG_CAT=	lib
 USE_XORG=	xproto:both xtrans fontsproto:both fontenc

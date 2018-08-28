@@ -7,8 +7,8 @@
 
 PORTNAME=	LPRng
 PORTVERSION=	3.8.C
-PORTREVISION=	1
-PORTEPOCH=	1
+PORTREVISION=	0
+PORTEPOC=	1
 CATEGORIES=	sysutils print
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}
 DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
@@ -19,9 +19,10 @@ COMMENT=	Enhanced Printer Spooler
 LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libgdbm.so:databases/gdbm
+LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
 
-USES=		gmake ssl
+USES=		gmake
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-config_subdir="" \
 		--with-filterdir=${PREFIX}/libexec/filters \

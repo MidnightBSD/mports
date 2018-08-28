@@ -1,31 +1,28 @@
 # $MidnightBSD$
 
 PORTNAME=	ninja
-PORTVERSION=	1.8.2
+PORTVERSION=	1.5.3
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
-PORTEPOCH=	2
+PORTEPOCH=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ninja is a small build system closest in spirit to Make
 
 LICENSE=	apache2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	ninja-build
+GH_ACCOUNT=	martine
 WRKSRC=		${WRKDIR}/ninja-${PORTVERSION}
 
 CONFLICTS=	irc/ninja-[0-9]*
-USES=		python
+USES=		python:build
 
 PLIST_FILES=	bin/ninja
-PORTDOCS=	HACKING.md README manual.asciidoc
+PORTDOCS=	COPYING HACKING.md README manual.asciidoc
 
 OPTIONS_DEFINE=	DOCS
-
-post-patch:
-	@${REINPLACE_CMD} "s/'-g', //" ${WRKSRC}/configure.py
 
 do-build:
 	@(cd ${WRKSRC} && \
@@ -35,7 +32,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ninja ${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC} && \
-	    ${INSTALL_DATA} HACKING.md README doc/manual.asciidoc \
+	    ${INSTALL_DATA} COPYING HACKING.md README doc/manual.asciidoc \
 	    ${DOCSDIR})
 
 .include <bsd.port.mk>

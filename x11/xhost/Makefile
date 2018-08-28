@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xhost
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
