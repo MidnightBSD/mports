@@ -16,7 +16,7 @@ ONLY_FOR_ARCHS_REASON=	The vmware gfx protocol is only supported on x86-compatib
 
 XORG_CAT=	driver
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == i386
 USE_GCC=	any
