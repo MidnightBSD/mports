@@ -166,6 +166,7 @@ SUBDIR += py-alabaster
 SUBDIR += py-chardet
 SUBDIR += py-docutils
 SUBDIR += py-libxml2
+SUBDIR += py-mako
 SUBDIR += py-markdown
 SUBDIR += py-pygments
 SUBDIR += py-pystemmer
