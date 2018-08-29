@@ -3,6 +3,12 @@
 # Lookup in Makefile.in and configure for common incorrect paths and set them
 # to respect BSD hier
 #
+# Feature:	pathfix
+# Usage:	USES=pathfix
+# Valid ARGS:	does not require args
+#
+# 
+
 .if !defined(_INCLUDE_USES_PATHFIX_MK)
 _INCLUDE_USES_PATHFIX_MK=	yes
 
@@ -11,20 +17,20 @@ IGNORE=	USES=pathfix does not require args
 .endif
 
 PATHFIX_CMAKELISTSTXT?=	CMakeLists.txt
-.if defined(USE_AUTORECONF)
+.if ${USES:Mautoreconf*}
 PATHFIX_MAKEFILEIN?=	Makefile.am Makefile.in
 .else
 PATHFIX_MAKEFILEIN?=	Makefile.in
 .endif
 PATHFIX_WRKSRC?=	${WRKSRC}
 
-pre-patch: pathfix-pre-patch
-
-pathfix-pre-patch:
-.if defined(USE_CMAKE)
+_USES_patch+=	190:pathfix
+pathfix:
+.if ${USES:Mcmake*}
 .for file in ${PATHFIX_CMAKELISTSTXT}
 	@${FIND} ${PATHFIX_WRKSRC} -name "${file}" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[{]CMAKE_INSTALL_LIBDIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
+		s|[{]CMAKE_INSTALL_DATAROOTDIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
 		s|[{]INSTALL_LIB_DIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
 		s|[{]INSTALL_LIBDIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
 		s|[{]LIB_DESTINATION[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
@@ -53,4 +59,5 @@ pathfix-pre-patch:
 		s|[(]libdir[)]/bonobo/servers|(prefix)/libdata/bonobo/servers|g'
 .endfor
 .endif
+
 .endif

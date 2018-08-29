@@ -36,6 +36,7 @@ NCURSESBASE=	/usr
 NCURSESINC=	${NCURSESBASE}/include
 
 .  if exists(${LOCALBASE}/lib/libncurses.so)
+_USES_sanity+=        400:check-depends-ncurses
 check-depends::
 	@${ECHO_CMD} "Dependency error: this port wants the ncurses library from the MidnightBSD"
 	@${ECHO_CMD} "base system. You can't build against it, while a newer"
