@@ -55,7 +55,6 @@
 #	[...]
 #	%%WEBPLUGIN_DIR%%/fooplugin.so
 #	%%WEBPLUGIN_DIR%%/fooplugin.xpi
-#	@dirrmtry %%WEBPLUGIN_DIR%%
 #	------------------------------------------------------
 #
 # Here is what it will look like when it creates the symlinks:
@@ -94,7 +93,6 @@
 #	lib/application/fooplugin.la
 #	lib/application/fooplugin.so
 #	lib/application/fooplugin.xpi
-#	@dir lib/application
 #	------------------------------------------------------
 #
 # Here is what it will look like when it creates symlinks:
@@ -115,19 +113,17 @@ _WEBPLUGIN_APPS_ALL_NATIVE=	gecko opera opera-devel webkit-gtk2
 _WEBPLUGIN_APPS_ALL=		${_WEBPLUGIN_APPS_ALL_LINUX} \
 				${_WEBPLUGIN_APPS_ALL_NATIVE}
 
-webplugin_ARGS?=	all
-_WEBPLUGIN_ARGS=	${webplugin_ARGS:C/,/ /}
 _WEBPLUGIN_TEST=	${_WEBPLUGIN_APPS_ALL}
-.if ${_WEBPLUGIN_ARGS} == all
+.if ${webplugin_ARGS} == all || empty(webplugin_ARGS)
 _WEBPLUGIN_PATTERN=	*
-.elif ${_WEBPLUGIN_ARGS} == native
+.elif ${webplugin_ARGS} == native
 _WEBPLUGIN_PATTERN=	*
 _WEBPLUGIN_TEST=	${_WEBPLUGIN_APPS_ALL_NATIVE}
-.elif ${_WEBPLUGIN_ARGS} == linux
+.elif ${webplugin_ARGS} == linux
 _WEBPLUGIN_PATTERN=	*
 _WEBPLUGIN_TEST=	${_WEBPLUGIN_APPS_ALL_LINUX}
 .else
-_WEBPLUGIN_PATTERN=	${_WEBPLUGIN_ARGS}
+_WEBPLUGIN_PATTERN=	${webplugin_ARGS}
 .endif
 
 .if !defined(WEBPLUGIN_FILES)
@@ -165,18 +161,18 @@ _WEBPLUGIN_LINKFARMS=	${_WEBPLUGIN_APPS} ${_WEBPLUGIN_SLDIRS}
 WEBPLUGIN_DIR?=		${_WEBPLUGIN_LIBDIR:S,^${LOCALBASE}/,${PREFIX}/,}/${WEBPLUGIN_NAME}
 
 PLIST_SUB+=		WEBPLUGIN_DIR="${WEBPLUGIN_DIR:S,^${PREFIX}/,,}"
-
-webplugin-post-install:
-	@${ECHO_CMD} "@cwd ${LOCALBASE}" >> ${TMPPLIST}
 .for d in ${_WEBPLUGIN_LINKFARMS}
-	${INSTALL} -d ${STAGEDIR}${d}
+.for l in ${WEBPLUGIN_FILES}
+PLIST_FILES+=	${d}/${l}
+.endfor
+.endfor
+
+_USES_install+=	600:webplugin-post-install
+webplugin-post-install:
+.for d in ${_WEBPLUGIN_LINKFARMS}
+	${MKDIR} ${STAGEDIR}${d}
 .for l in ${WEBPLUGIN_FILES}
 	${LN} -sf ${l:S,^,${WEBPLUGIN_DIR}/,} ${STAGEDIR}${d}/
-	@${ECHO_CMD} "${d:S,^${LOCALBASE}/,,}/${l:T}" >> ${TMPPLIST}
 .endfor
-	@${ECHO_CMD} "@unexec rmdir ${d:S,^${LOCALBASE},%D,} 2>/dev/null || true" >> ${TMPPLIST}
 .endfor
-	@${ECHO_CMD} "@unexec rmdir ${_WEBPLUGIN_SLDIR:S,^${LOCALBASE},%D,} 2>/dev/null || true" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec rmdir ${_WEBPLUGIN_LIBDIR:S,^${LOCALBASE},%D,} 2>/dev/null || true" >> ${TMPPLIST}
-
 .endif
