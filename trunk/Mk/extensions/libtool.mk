@@ -67,7 +67,7 @@ patch-libtool:
 		-e '/if.*prog.*linkmode.*relink = .*mode/s/||.*;/;/'	\
 		-e 's/|-p|-pg|/|-B*|-fstack-protector*|-fuse-ld=*|-p|-pg|/'
 
-_USES_stage+=	790:patch-lafiles
+_USES_fake+=	790:patch-lafiles
 patch-lafiles:
 .if ${libtool_ARGS:Mkeepla}
 	@${FIND} ${FAKE_DESTDIR} -type f -name '*.la' |			\
