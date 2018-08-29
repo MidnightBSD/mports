@@ -372,8 +372,8 @@ _LOAD_${EXT:tu}_EXT=	yes
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux_rpm linux_apps xorg fortran \
 		gcc fmake gmake bison local perl5 \
-		apache autotools bdb cmake cpe display dos2unix \
-		efl emacs execinfo fam fonts fuse \
+		apache autotools bdb cmake cpe cran display dos2unix \
+		efl emacs erlang execinfo fam fonts fuse \
 		gecko gettext gettext-tools gettext-runtime \
 		ghostscript gnome gnustep groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
