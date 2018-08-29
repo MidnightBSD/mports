@@ -2883,32 +2883,32 @@ ${target}: config-conditional
 .if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
 .  if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-        @cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
+	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
 .  else  # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ}
 .  endif # USE_SUBMAKE
-        @${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
-        @cd ${.CURDIR} && \
-                ${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
-        @${ECHO_MSG} "===>  Returning to user credentials"
-        @${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
+	@cd ${.CURDIR} && \
+		${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
+	@${ECHO_MSG} "===>  Returning to user credentials"
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .else # No SU needed
 .  if defined(USE_SUBMAKE)
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-        @cd ${.CURDIR} && \
-                ${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-        @${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+	@cd ${.CURDIR} && \
+		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .  else # !USE_SUBMAKE
 ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-        @${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .  endif # USE_SUBMAKE
 .endif # SU needed
 
 .else # exists(cookie)
 ${${target:tu}_COOKIE}::
-        @if [ ! -e ${.TARGET} ]; then \
-                cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
-        fi
+	@if [ ! -e ${.TARGET} ]; then \
+		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
+	fi
 .endif # !exists(cookie)
 
 .endfor # foreach(targets)
