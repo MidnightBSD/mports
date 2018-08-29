@@ -2,6 +2,12 @@
 #
 # Lookup in Makefile.in to prevent a package from installing/modifying charset.alias
 #
+# Feature:	charsetfix
+# Usage:	USES=charsetfix
+# Valid ARGS:	does not require args
+#
+# MAINTAINER: ports@MidnightBSD.org
+
 .if !defined(_INCLUDE_USES_CHARSETFIX_MK)
 _INCLUDE_USES_CHARSETFIX_MK=	yes
 
@@ -11,8 +17,7 @@ IGNORE=	USES=charsetfix does not require args
 
 CHARSETFIX_MAKEFILEIN?=	Makefile.in
 
-post-patch: charsetfix-post-patch
-
+_USES_patch+=	600:charsetfix-post-patch
 charsetfix-post-patch:
 	@${FIND} ${WRKSRC} -name "${CHARSETFIX_MAKEFILEIN}" -type f | ${XARGS} ${REINPLACE_CMD} \
 		-e 's|need_charset_alias=true|need_charset_alias=false|g ; \

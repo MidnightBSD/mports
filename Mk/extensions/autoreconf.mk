@@ -1,7 +1,7 @@
 # $MidnightBSD$
 # $FreeBSD: head/Mk/Uses/autoreconf.mk 369909 2014-10-03 15:33:39Z tijl $
 #
-# Run autoreconf in CONFIGURE_WRKSRC to update configure, Makefile.in and
+# Run autoreconf in AUTORECONF_WRKSRC to update configure, Makefile.in and
 # other build scripts.
 #
 # Autoreconf encapsulates the following commands.  Each command applies to a
@@ -55,11 +55,8 @@
 _INCLUDE_USES_AUTORECONF_MK=	yes
 _USES_POST+=	autoreconf
 
-BUILD_DEPENDS+=	autoconf-2.69:devel/autoconf \
-		autoheader-2.69:devel/autoconf \
-		autoreconf-2.69:devel/autoconf \
-		aclocal-1.15:devel/automake \
-		automake-1.15:devel/automake
+BUILD_DEPENDS+=	autoconf>=2.69:devel/autoconf \
+		automake>=1.16.1:devel/automake
 
 .if defined(libtool_ARGS) && empty(libtool_ARGS:Mbuild)
 BUILD_DEPENDS+=	libtoolize:devel/libtool
@@ -73,7 +70,8 @@ AUTORECONF_WRKSRC?=	${WRKSRC}
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_AUTORECONF_POST_MK)
 _INCLUDE_USES_AUTORECONF_POST_MK=	yes
 
-.if ! ${autoreconf_ARGS:Mbuild}
+.if empty(autoreconf_ARGS)
+_USES_configure+=	470:do-autoreconf
 do-autoreconf:
 .for f in AUTHORS ChangeLog INSTALL NEWS README
 # Don't modify time stamps if the files already exist
@@ -87,6 +85,8 @@ do-autoreconf:
 		then ${LOCALBASE}/bin/intltoolize -f -c; fi)
 .endif
 	@(cd ${AUTORECONF_WRKSRC} && ${AUTORECONF} -f -i)
+.elif ! ${autoreconf_ARGS:Mbuild}
+IGNORE= Incorrect 'USES+=autoreconf:${autoreconf_ARGS}' expecting 'USES+=autoreconf[:build]'
 .endif
 
 .endif
