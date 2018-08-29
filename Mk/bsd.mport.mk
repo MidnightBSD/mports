@@ -2872,7 +2872,7 @@ _PHONY_TARGETS+= ${target}
 ${target}: ${${target:tu}_COOKIE}
 .elif !target(${target})
 ${target}: config-conditional
-        @cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
+	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
 .elif target(${target}) && defined(IGNORE)
 .endif
 
