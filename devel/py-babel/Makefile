@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Babel
-PORTVERSION=	2.0
-PORTREVISION=	1
+PORTVERSION=	2.6.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,7 +20,7 @@ PORTDOCS=	docs/*
 
 OPTIONS_DEFINE=	DOCS
 
-post-install:
+do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for docfile in ${PORTDOCS}
 	${CP} -r ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
