@@ -1813,15 +1813,6 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
 		fake install reinstall package 
 
-# LAH
-#.for target in ${_TARGETS}
-#.if !target(${target}) #&& defined(_OPTIONS_OK)
-#_PHONY_TARGETS+= ${target}
-#${target}: ${${target:tu}_COOKIE}
-#	@${IGNORECMD}
-#.endif
-#.endfor # foreach(targets)
-
 .endif
 
 .endif
