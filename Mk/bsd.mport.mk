@@ -2731,188 +2731,6 @@ security-check:
 .endif # !defined(DISABLE_SECURITY_CHECK)
 
 
-################################################################
-# Skeleton targets start here
-#
-# You shouldn't have to change these.  Either add the pre-* or
-# post-* targets/scripts or redefine the do-* targets.  These
-# targets don't do anything other than checking for cookies and
-# call the necessary targets/scripts.
-################################################################
-
-${_PORTS_DIRECTORIES}:
-	@${MKDIR} ${.TARGET}
-
-# Please note that the order of the following targets is important, and
-# should not be modified.
-
-_TARGETS_STAGES=SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE INSTALL UPDATE
-
-_SANITY_SEQ=	100:pre-everything 150:check-makefile \
-				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
-				250:check-categories 300:check-makevars \
-				350:check-desktop-entries 400:check-depends \
-				450:identify-install-conflicts 500:check-deprecated \
-				550:check-vulnerable 600:check-license 700:buildanyway-message \
-				750:options-message ${_USES_sanity}
-
-_PKG_DEP=		check-sanity
-_PKG_SEQ=		500:pkg-depends
-_FETCH_DEP=		pkg
-_FETCH_SEQ=		150:fetch-depends 300:pre-fetch 450:pre-fetch-script \
-				500:do-fetch 550:fetch-specials 700:post-fetch \
-				850:post-fetch-script \
-				${_OPTIONS_fetch} ${_USES_fetch}
-
-_EXTRACT_DEP=	fetch
-_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:extract-depends \
-				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
-				300:pre-extract 450:pre-extract-script 500:do-extract \
-				700:post-extract 850:post-extract-script \
-				${_OPTIONS_extract} ${_USES_extract}${_SITES_extract}
-
-_PATCH_DEP=		extract
-_PATCH_SEQ=		050:ask-license 100:patch-message \
-				150:patch-depends \
-				300:pre-patch 450:pre-patch-script 500:do-patch \
-				700:post-patch 850:post-patch-script \
-				${_OPTIONS_patch} ${_USES_patch}
-
-_CONFIGURE_DEP=	patch
-_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 152:misc-depends 200:configure-message \
-				300:pre-configure 450:pre-configure-script \
-				460:run-autotools 490:do-autoreconf 491:patch-libtool \
-				500:do-configure 700:post-configure 850:post-configure-script \
-				${_OPTIONS_configure} ${_USES_configure}
-
-_BUILD_DEP=		configure
-_BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
-			500:do-build 700:post-build 850:post-build-script \
-			${_OPTIONS_build} ${_USES_build}
-
-_FAKE_DEP=		build
-_FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
-				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
-				500:do-fake 700:fake-post-install \
-				800:post-fake 850:fake-compress-man \
-				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
-				880:install-license 890:install-desktop-entries \
-				900:fix-fake-symlinks 920:finish-tmpplist 930:fix-plist-sequence \
-				${POST_PLIST:C/^/990:/} \
-				${_OPTIONS_install} ${_USES_install} \
-                                ${_OPTIONS_fake} ${_USES_fake}
-
-.if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
-_FAKE_SEQ+=		995:check-fake
-.endif
-
-_PACKAGE_DEP=	fake
-_PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
-				500:do-package 750:post-package 850:post-package-script \
-				${_OPTIONS_package} ${_USES_package}
-
-_INSTALL_DEP=	package
-# Not sure how we want to handle sudo/su.  Will figure out later - triv.
-_INSTALL_SEQ=	100:install-message 150:run-depends 151:lib-depends 500:install-package 700:done-message
-
-
-_UPDATE_DEP=	package
-_UPDATE_SEQ=	100:update-message 150:check-for-older-installed 500:do-update 700:update-upwards-depends 900:done-message
-
-
-# Enforce order for -jN builds
-.for _t in ${_TARGETS_STAGES}
-# Check if the port need to change the default order of some targets...
-.  if defined(TARGET_ORDER_OVERRIDE)
-_tmp_seq:=
-.    for _entry in ${_${_t}_SEQ}
-# for _target because :M${_target} does not work with fmake
-.      for _target in ${_entry:C/^[0-9]+://}
-.        if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
-_tmp_seq:=      ${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
-.        else
-_tmp_seq:=      ${_tmp_seq} ${_entry}
-.        endif
-.      endfor
-.    endfor
-_${_t}_SEQ:=    ${_tmp_seq}
-.  endif
-.  for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
-_PHONY_TARGETS+= ${s}
-.      endif
-_${_t}_REAL_SEQ+=       ${s}
-.    endif
-.  endfor
-.  for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
-.    if target(${s})
-.      if ! ${NOTPHONY:M${s}}
-_PHONY_TARGETS+= ${s}
-.       endif
-_${_t}_REAL_SUSEQ+=     ${s}
-.    endif
-.  endfor
-.ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
-.endfor
-
-# Define all of the main targets which depend on a sequence of other targets.
-# See above *_SEQ and *_DEP. The _DEP will run before this defined target is
-# ran. The _SEQ will run as this target once _DEP is satisfied.
-
-.for target in extract patch configure build fake package install update
-
-# Check if config dialog needs to show and execute it if needed. If is it not
-# needed (_OPTIONS_OK), then just depend on the cookie which is defined later
-# to depend on the *_DEP and execute the *_SEQ.
-# If options are required, execute config-conditional and then re-execute the
-# target noting that config is no longer needed.
-.if !target(${target}) && defined(_OPTIONS_OK)
-_PHONY_TARGETS+= ${target}
-${target}: ${${target:tu}_COOKIE}
-.elif !target(${target})
-${target}: config-conditional
-	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
-.elif target(${target}) && defined(IGNORE)
-.endif
-
-.if !exists(${${target:tu}_COOKIE})
-
-# Define the real target behavior. Depend on the target's *_DEP. Execute
-# the target's *_SEQ. Also handle su and USE_SUBMAKE needs.
-.if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
-.  if defined(USE_SUBMAKE)
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
-.  else  # !USE_SUBMAKE
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ}
-.  endif # USE_SUBMAKE
-	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
-	@cd ${.CURDIR} && \
-		${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
-	@${ECHO_MSG} "===>  Returning to user credentials"
-	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.else # No SU needed
-.  if defined(USE_SUBMAKE)
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
-	@cd ${.CURDIR} && \
-		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  else # !USE_SUBMAKE
-${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
-	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.  endif # USE_SUBMAKE
-.endif # SU needed
-
-.else # exists(cookie)
-${${target:tu}_COOKIE}::
-	@if [ ! -e ${.TARGET} ]; then \
-		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
-	fi
-.endif # !exists(cookie)
-
-.endfor # foreach(targets)
-
 
 
 extract-message:
@@ -4457,6 +4275,184 @@ install-desktop-entries:
 	@${DO_NADA}
 .endif
 .endif
+
+########################################################################################
+# Order of targets run for each stage of the build.
+######################################################################################## 
+
+${_PORTS_DIRECTORIES}:
+	@${MKDIR} ${.TARGET}
+
+# Please note that the order of the following targets is important, and
+# should not be modified.
+
+_TARGETS_STAGES=SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE INSTALL UPDATE
+
+_SANITY_SEQ=	100:pre-everything 150:check-makefile \
+				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
+				250:check-categories 300:check-makevars \
+				350:check-desktop-entries 400:check-depends \
+				450:identify-install-conflicts 500:check-deprecated \
+				550:check-vulnerable 600:check-license 700:buildanyway-message \
+				750:options-message ${_USES_sanity}
+
+_PKG_DEP=		check-sanity
+_PKG_SEQ=		500:pkg-depends
+_FETCH_DEP=		pkg
+_FETCH_SEQ=		150:fetch-depends 300:pre-fetch 450:pre-fetch-script \
+				500:do-fetch 550:fetch-specials 700:post-fetch \
+				850:post-fetch-script \
+				${_OPTIONS_fetch} ${_USES_fetch}
+
+_EXTRACT_DEP=	fetch
+_EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:extract-depends \
+				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
+				300:pre-extract 450:pre-extract-script 500:do-extract \
+				700:post-extract 850:post-extract-script \
+				${_OPTIONS_extract} ${_USES_extract}${_SITES_extract}
+
+_PATCH_DEP=		extract
+_PATCH_SEQ=		050:ask-license 100:patch-message \
+				150:patch-depends \
+				300:pre-patch 450:pre-patch-script 500:do-patch \
+				700:post-patch 850:post-patch-script \
+				${_OPTIONS_patch} ${_USES_patch}
+
+_CONFIGURE_DEP=	patch
+_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 152:misc-depends 200:configure-message \
+				300:pre-configure 450:pre-configure-script \
+				460:run-autotools 490:do-autoreconf 491:patch-libtool \
+				500:do-configure 700:post-configure 850:post-configure-script \
+				${_OPTIONS_configure} ${_USES_configure}
+
+_BUILD_DEP=		configure
+_BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
+			500:do-build 700:post-build 850:post-build-script \
+			${_OPTIONS_build} ${_USES_build}
+
+_FAKE_DEP=		build
+_FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
+				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
+				500:do-fake 700:fake-post-install \
+				800:post-fake 850:fake-compress-man \
+				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
+				880:install-license 890:install-desktop-entries \
+				900:fix-fake-symlinks 920:finish-tmpplist 930:fix-plist-sequence \
+				${POST_PLIST:C/^/990:/} \
+				${_OPTIONS_install} ${_USES_install} \
+                                ${_OPTIONS_fake} ${_USES_fake}
+
+.if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
+_FAKE_SEQ+=		995:check-fake
+.endif
+
+_PACKAGE_DEP=	fake
+_PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
+				500:do-package 750:post-package 850:post-package-script \
+				${_OPTIONS_package} ${_USES_package}
+
+_INSTALL_DEP=	package
+# Not sure how we want to handle sudo/su.  Will figure out later - triv.
+_INSTALL_SEQ=	100:install-message 150:run-depends 151:lib-depends 500:install-package 700:done-message
+
+
+_UPDATE_DEP=	package
+_UPDATE_SEQ=	100:update-message 150:check-for-older-installed 500:do-update 700:update-upwards-depends 900:done-message
+
+
+# Enforce order for -jN builds
+.for _t in ${_TARGETS_STAGES}
+# Check if the port need to change the default order of some targets...
+.  if defined(TARGET_ORDER_OVERRIDE)
+_tmp_seq:=
+.    for _entry in ${_${_t}_SEQ}
+# for _target because :M${_target} does not work with fmake
+.      for _target in ${_entry:C/^[0-9]+://}
+.        if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
+_tmp_seq:=      ${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
+.        else
+_tmp_seq:=      ${_tmp_seq} ${_entry}
+.        endif
+.      endfor
+.    endfor
+_${_t}_SEQ:=    ${_tmp_seq}
+.  endif
+.  for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
+.    if target(${s})
+.      if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.      endif
+_${_t}_REAL_SEQ+=       ${s}
+.    endif
+.  endfor
+.  for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
+.    if target(${s})
+.      if ! ${NOTPHONY:M${s}}
+_PHONY_TARGETS+= ${s}
+.       endif
+_${_t}_REAL_SUSEQ+=     ${s}
+.    endif
+.  endfor
+.ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
+.endfor
+
+# Define all of the main targets which depend on a sequence of other targets.
+# See above *_SEQ and *_DEP. The _DEP will run before this defined target is
+# ran. The _SEQ will run as this target once _DEP is satisfied.
+
+.for target in extract patch configure build fake package install update
+
+# Check if config dialog needs to show and execute it if needed. If is it not
+# needed (_OPTIONS_OK), then just depend on the cookie which is defined later
+# to depend on the *_DEP and execute the *_SEQ.
+# If options are required, execute config-conditional and then re-execute the
+# target noting that config is no longer needed.
+.if !target(${target}) && defined(_OPTIONS_OK)
+_PHONY_TARGETS+= ${target}
+${target}: ${${target:tu}_COOKIE}
+.elif !target(${target})
+${target}: config-conditional
+	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE_${PKGBASE:tu}=1 ${${target:tu}_COOKIE}
+.elif target(${target}) && defined(IGNORE)
+.endif
+
+.if !exists(${${target:tu}_COOKIE})
+
+# Define the real target behavior. Depend on the target's *_DEP. Execute
+# the target's *_SEQ. Also handle su and USE_SUBMAKE needs.
+.if ${UID} != 0 && defined(_${target:tu}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
+.  if defined(USE_SUBMAKE)
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
+	@cd ${.CURDIR} && ${MAKE} ${_${target:tu}_REAL_SEQ}
+.  else  # !USE_SUBMAKE
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ}
+.  endif # USE_SUBMAKE
+	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
+	@cd ${.CURDIR} && \
+		${SU_CMD} "${MAKE} ${_${target:tu}_REAL_SUSEQ}"
+	@${ECHO_MSG} "===>  Returning to user credentials"
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+.else # No SU needed
+.  if defined(USE_SUBMAKE)
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP}
+	@cd ${.CURDIR} && \
+		${MAKE} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+.  else # !USE_SUBMAKE
+${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${target:tu}_REAL_SUSEQ}
+	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
+.  endif # USE_SUBMAKE
+.endif # SU needed
+
+.else # exists(cookie)
+${${target:tu}_COOKIE}::
+	@if [ ! -e ${.TARGET} ]; then \
+		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
+	fi
+.endif # !exists(cookie)
+
+.endfor # foreach(targets)
+
 
 .PHONY: ${_PHONY_TARGETS} check-sanity fetch pkg
 
