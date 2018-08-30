@@ -1,7 +1,7 @@
 # $MidightBSD$
 
 PORTNAME=	pytz
-PORTVERSION=	2015.4
+PORTVERSION=	2018.5
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
@@ -12,7 +12,7 @@ COMMENT=	World Timezone Definitions for Python
 
 LICENSE=	mit
 
-USES=		python tar:bzip2
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-patch:
