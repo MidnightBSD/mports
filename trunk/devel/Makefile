@@ -185,6 +185,7 @@ SUBDIR += libsigc++12
 SUBDIR += libsigc++20
 SUBDIR += libsigsegv
 SUBDIR += libslang2
+SUBDIR += libspice-server
 SUBDIR += libsoup
 SUBDIR += libsoup-gnome
 SUBDIR += libthai
