@@ -596,6 +596,7 @@ SUBDIR += seed
 SUBDIR += silc-toolkit
 SUBDIR += slf4j
 SUBDIR += sparsehash
+SUBDIR += spice-protocol
 SUBDIR += splint
 SUBDIR += st
 SUBDIR += subversion
