@@ -2,36 +2,30 @@
 
 PORTNAME=	libGL
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	${LIBGLREVISION}
+PORTREVISION=	0
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL library that renders using GLX or DRI
 
 LICENSE=	mit
 
-LIB_DEPENDS+=	libdrm.so:${PORTSDIR}/graphics/libdrm \
-		libglapi.so:${PORTSDIR}/graphics/libglapi \
-		libexpat.so:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libdrm.so:graphics/libdrm \
+		libglapi.so:graphics/libglapi \
+		libexpat.so:textproc/expat2
 
-USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto:both \
-		presentproto xshmfence
+USE_XORG=	dri2proto dri3proto glproto presentproto x11 xcb xdamage xext \
+		xfixes xshmfence xxf86vm
 
 .include <bsd.mport.options.mk>
-.include "${.CURDIR}/bsd.mesalib.mk"
+.include "${.CURDIR}/Makefile.common"
 
-.if defined(WITH_NEW_MESA)
-LIBGLREVISION=	0
-.else
-LIBGLREVISION=	4
-.endif
+MESA_BUILD_WRKSRC=	src/mapi src/glx
+MESA_INSTALL_WRKSRC=	src/glx
 
-.if !(${ARCH} == "amd64" || ${ARCH} == "i386")
-CONFIGURE_ARGS+=--disable-gallium-intel
-.endif
+.include "${.CURDIR}/Makefile.targets"
 
 post-install:
-	@${MKDIR} ${PREFIX}/lib/.mesa
-	@${MV} ${PREFIX}/lib/libGL* \
-		${PREFIX}/lib/.mesa/
+	@cd ${WRKSRC}/src && ${SETENV} DESTDIR=${FAKE_DESTDIR} \
+		${MAKE_CMD} ${FAKE_MAKEARGS} install-pkgconfigDATA install-glHEADERS install-glxHEADERS
 
 .include <bsd.port.mk>

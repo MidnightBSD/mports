@@ -34,6 +34,7 @@ SUBDIR += feh
 SUBDIR += fortytwo
 SUBDIR += freeglut
 SUBDIR += frei0r
+SUBDIR += gbm
 SUBDIR += gd
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf
