@@ -169,6 +169,7 @@ SUBDIR += libinotify
 SUBDIR += libixp
 SUBDIR += liblangtag
 SUBDIR += libltdl
+SUBDIR += libmtdev
 SUBDIR += libnotify
 SUBDIR += liboil
 SUBDIR += liboobs
