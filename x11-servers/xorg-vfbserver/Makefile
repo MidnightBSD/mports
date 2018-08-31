@@ -1,58 +1,41 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-vfbserver
-PORTVERSION=	1.14.7
-CATEGORIES=	x11-servers
-MASTER_SITES=	XORG/individual/xserver
-DISTNAME=	xorg-server-${PORTVERSION}
-DIST_SUBDIR=	xorg/xserver
+PORTVERSION=	1.19.1
+PORTEPOCH=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X virtual framebuffer server from X.Org
 
 LICENSE=	mit
 
-USES=		tar:bzip2 pkgconfig
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-dmx \
-		--disable-xephyr \
-		--disable-xnest \
-		--disable-kdrive \
-		--disable-xfbdev \
-		--disable-xfake \
-		--disable-screensaver \
-		--disable-xwin \
-		--disable-xwayland \
-		--disable-xorg \
-		--without-xmlto \
-		--disable-docs \
-		--disable-devel-docs \
-		--localstatedir=/var \
-		--without-dtrace \
-		--without-doxygen \
-		--disable-libpciaccess \
-		--disable-glx \
-		--disable-dri  \
-		--disable-config-hal \
-		--disable-libdrm \
-		--disable-glx-tls \
-		--disable-vbe \
-		--disable-vgahw \
-		--enable-xvfb \
-		--with-fontrootdir=${PREFIX}/share/fonts
+MASTERDIR=	${.CURDIR}/../xorg-server
+DESCR=		${.CURDIR}/pkg-descr
+DISTINFO_FILE=	${.CURDIR}/distinfo
+PATCHDIR=	${.CURDIR}/files
 
-USE_XORG=	pixman x11 fixesproto damageproto xcmiscproto xtrans \
-		bigreqsproto randrproto renderproto xextproto inputproto \
-		videoproto compositeproto recordproto \
-		fontsproto resourceproto xf86driproto glproto \
-		presentproto xineramaproto xkbfile xfont
+SLAVE_PORT=	yes
+OPTIONS_EXCLUDE=DEVD HAL SUID
 
-PLIST_FILES=	bin/Xvfb \
-		man/man1/Xvfb.1.gz
+USE_XORG=	xfont2
 
-.include <bsd.port.pre.mk>
+CONFIGURE_ARGS+=--enable-xvfb --disable-dmx --disable-xephyr --disable-xnest \
+		--disable-xwayland
+
+PLIST_FILES=	bin/Xvfb man/man1/Xvfb.1.gz
+
+EXTRA_PATCHES=	${MASTERDIR}/files/patch-CVE-2017-12176 \
+		${MASTERDIR}/files/patch-CVE-2017-12177 \
+		${MASTERDIR}/files/patch-CVE-2017-12178 \
+		${MASTERDIR}/files/patch-CVE-2017-12179 \
+		${MASTERDIR}/files/patch-CVE-2017-12183 \
+		${MASTERDIR}/files/patch-CVE-2017-1218x \
+		${MASTERDIR}/files/patch-CVE-2017-1218y \
+		${MASTERDIR}/files/patch-CVE-2017-13721 \
+		${MASTERDIR}/files/patch-CVE-2017-13723 \
+		${MASTERDIR}/files/patch-os_io.c
 
 do-install:
 	cd ${WRKSRC}/hw/vfb; ${MAKE} ${FAKE_MAKEARGS} install
 
-.include <bsd.port.post.mk>
+.include "${MASTERDIR}/Makefile"
