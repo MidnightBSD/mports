@@ -3,6 +3,7 @@
 
 PORTNAME=	xcb-util-renderutil
 PORTVERSION=	0.3.9
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -10,14 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convenience functions for the Render extension
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libxcb-util.so:${PORTSDIR}/x11/xcb-util
+LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
-USES=		gmake pkgconfig tar:bzip2
-USE_XORG=	xcb xorg-macros
-USE_LDCONFIG=	yes
+XORG_CAT=	lib
+USES=		gmake
+USE_XORG=	xcb
+INSTALL_TARGET=	install-strip
 
-GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
 
 post-patch:
