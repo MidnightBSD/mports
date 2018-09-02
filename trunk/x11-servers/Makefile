@@ -3,7 +3,6 @@
 COMMENT = X11 servers
 
 SUBDIR += mga_hal
-SUBDIR += wayland
 SUBDIR += x2vnc
 SUBDIR += x2x
 SUBDIR += xephyr
