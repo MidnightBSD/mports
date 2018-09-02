@@ -182,6 +182,7 @@ SUBDIR += svgalib
 SUBDIR += tiff
 SUBDIR += vigra
 SUBDIR += wayland
+SUBDIR += wayland-protocols
 SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += xli
