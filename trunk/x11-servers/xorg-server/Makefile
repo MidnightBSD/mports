@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME?=	xorg-server
-PORTVERSION=	1.14.7
-PORTREVISION?=	8
+PORTVERSION?=	1.18.4
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -11,10 +11,9 @@ DISTNAME=	xorg-server-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	X.Org X server and related programs
 
-LICENSE?=	mit
+LICENSE=	mit
 
-LIB_DEPENDS=	libdrm.so:graphics/libdrm
-RUN_DEPENDS=	xkeyboard-config>=2.5:x11/xkeyboard-config \
+RUN_DEPENDS+=	xkeyboard-config>=2.5:x11/xkeyboard-config \
 		xkbcomp:x11/xkbcomp
 
 XORG_CAT=	xserver
@@ -23,34 +22,47 @@ SLAVE_PORT?=	no
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	SUID
 OPTIONS_RADIO=	CONF
-OPTIONS_RADIO_CONF=	HAL DEVD
-SUID_DESC=	Install the Xorg server with setuid bit set
-HAL_DESC=	Compile with HAL config support
+OPTIONS_RADIO_CONF=	DEVD HAL
 DEVD_DESC=	Use devd for autoconfiguration of input devices
-OPTIONS_DEFAULT=SUID DEVD
+HAL_DESC=	Use hald for autoconfiguration of input devices
+SUID_DESC=	Install the Xorg server with setuid bit set
+OPTIONS_DEFAULT=DEVD SUID
+
+OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
-USES=		gmake libtool perl5 tar:bzip2 ssl
+USES=		gmake libtool perl5 ssl tar:bzip2
 USE_PERL5=	build
-USE_GL=		gl
-USE_XORG?=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
-		xmu xt xpm xext randrproto renderproto fixesproto damageproto \
-		dri2proto xcmiscproto xextproto xproto xtrans xf86miscproto \
-		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
-		resourceproto fontsproto inputproto xf86dgaproto \
-		videoproto compositeproto trapproto recordproto xineramaproto \
-		xinerama evieproto xfont fontenc xkbui pixman pciaccess
-
-CONFIGURE_ARGS?=--disable-dmx --disable-xvfb --disable-xnest \
-		--without-xmlto --disable-docs --disable-devel-docs \
-		--localstatedir=/var --without-dtrace --disable-xephyr \
-		--enable-record=yes
+USE_GL+=	gl
+USE_XORG+=	bigreqsproto compositeproto damageproto dri2proto dri3proto \
+		fixesproto fontsproto glproto inputproto kbproto pixman \
+		presentproto randrproto recordproto renderproto \
+		resourceproto scrnsaverproto videoproto xau \
+		xcmiscproto xdmcp xextproto xf86driproto xfont \
+		xineramaproto xkbfile xproto xshmfence xtrans
+CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
+		--localstatedir=/var --with-shared-memory-dir=/tmp \
+		--disable-config-udev --disable-config-udev-kms \
+		--without-dtrace --enable-glamor
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 
+.if ${SLAVE_PORT} == "no" || ${PORTNAME} == "xephyr" || ${PORTNAME} == "xwayland"
+LIB_DEPENDS+=	libdrm.so:graphics/libdrm \
+		libepoxy.so:graphics/libepoxy
+.else
+BUILD_DEPENDS+=	libepoxy>0:graphics/libepoxy	# only for configure
+.endif
+
 .if ${SLAVE_PORT} == "no"
+USE_GL+=	gbm
+USE_XORG+=	pciaccess xf86dgaproto xf86vidmodeproto
+CONFIGURE_ARGS+=--disable-dmx --disable-xephyr --disable-xnest --disable-xvfb \
+		--disable-xwayland
 SUB_FILES=	pkg-install pkg-deinstall
 .else
+CONFIGURE_ARGS+=--disable-xorg
 # for slave ports we need to overwrite PLIST, so it doesn't overwrite
 # PLIST_FILES, with the masterport plist.
 PLIST=		${.CURDIR}/pkg-plist
@@ -58,7 +70,7 @@ PLIST=		${.CURDIR}/pkg-plist
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_OPENSSL_BASE)
+.if ${SSL_DEFAULT} == base
 # The reason why I use this is cause openssl from base doesn't install a .pc file
 # and configure will fail trying to find it. Setting both of those variables to
 # a *non-empty* value by-passes the pkg-config check.
@@ -67,41 +79,25 @@ CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 
 .if ${PORT_OPTIONS:MHAL}
 LIB_DEPENDS+=	libhal.so:sysutils/hal
-CONFIGURE_ARGS+=	--enable-config-hal=yes
+CONFIGURE_ARGS+=	--enable-config-hal
 .else
-CONFIGURE_ARGS+=	--enable-config-hal=no
+CONFIGURE_ARGS+=	--disable-config-hal
 .endif
 
 # We handle Xorg setuid in the plist. This allows to build xorg-server as a user.
 CONFIGURE_ARGS+=--disable-install-setuid
 
-.if ${ARCH} == armv6
-EXTRA_PATCHES+=	${FILESDIR}/extra-arm-patch-hw__xfree86__os-support__bsd__Makefile.in
-EXTRA_PATCHES+=	${FILESDIR}/extra-arm-patch-include__servermd.h
+.if ${ARCH} == "i386" || ${ARCH} == "amd64"
+LIB_DEPENDS+=	libunwind.so:devel/libunwind
 .endif
 
-.if ${ARCH} == i386
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-i386
-.endif
-
-.if ${ARCH} == ia64
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-ia64
-.endif
-
-.if ${ARCH} == powerpc || ${ARCH} == powerpc64
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-powerpc
-.endif
-
-.if ${ARCH} == sparc64
+.if ${ARCH} == "sparc64"
 PLIST_SUB+=	SPARC64=""
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-sparc64
 .else
 PLIST_SUB+=	SPARC64="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSUID}
-PLIST_SUB+=	NOSUID="@comment "
-
 pre-everything::
 	@${ECHO_MSG} "By default, the X Server installs as a set-user-id root binary. When run by"
 	@${ECHO_MSG} "a normal user, it checks arguments and environment as done in the x11/wrapper"
@@ -109,10 +105,6 @@ pre-everything::
 	@${ECHO_MSG} "of this, but still want to run an X Server (for example using xdm/kdm/gdm,"
 	@${ECHO_MSG} "which will still run the server as root), you can cancel the build and set"
 	@${ECHO_MSG} "xorg-server_UNSET=SUID in /etc/make.conf."
-
-
-.else
-PLIST_SUB+=	NOSUID="" SUID="@comment "
 .endif
 
 post-patch:
@@ -136,10 +128,10 @@ post-configure:
 post-install:
 # The .xorg dir because else the xorg-server might not load the correct
 # libglx module.
-	@${MKDIR} ${PREFIX}/lib/xorg/modules/extensions/.xorg
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg
 	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
-		${PREFIX}/lib/xorg/modules/extensions/.xorg/
-	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
+		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
