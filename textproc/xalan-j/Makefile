@@ -14,7 +14,9 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:${PORTSDIR}/textproc/xerces-j
 
-USES=		zip
+USES=		cpe zip
+CPE_PRODUCT=	xalan-java
+CPE_VENDOR=	apache
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	yes
