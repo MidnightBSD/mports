@@ -13,7 +13,6 @@ COMMENT=	GLib/GTK+ set of document centric objects and utilities
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-#USE_GCC=	any
 USE_GNOME=	gtk30 intlhack introspection:build libgsf librsvg2 libxslt
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 USE_XORG=	xrender xext
