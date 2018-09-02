@@ -1,6 +1,6 @@
---- xkb/Makefile.in.orig	2014-12-12 22:12:45 UTC
+--- xkb/Makefile.in.orig	2017-01-19 15:20:42 UTC
 +++ xkb/Makefile.in
-@@ -790,7 +790,7 @@ info: info-am
+@@ -878,7 +878,7 @@ info: info-am
  
  info-am:
  
