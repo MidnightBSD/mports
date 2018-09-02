@@ -2,7 +2,7 @@
 
 PORTNAME=	libsexy
 PORTVERSION=	0.1.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits devel
 MASTER_SITES=	http://releases.chipx86.com/libsexy/libsexy/
 
@@ -11,8 +11,8 @@ COMMENT=	Extension widgets for GTK+
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+LIB_DEPENDS=	libenchant.so:textproc/enchant
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 GNU_CONFIGURE=	yes
