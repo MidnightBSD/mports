@@ -1,16 +1,16 @@
 # $MidnightBSD$
 
 PORTNAME=	xcursor-themes
-PORTVERSION=	1.0.4
-PORTREVISION=	1
+PORTVERSION=	1.0.5
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org cursors themes
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	xcursorgen:${PORTSDIR}/x11/xcursorgen
+BUILD_DEPENDS=	xcursorgen:x11/xcursorgen
 
 USE_XORG=	xextproto
 
