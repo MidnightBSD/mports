@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xerces-c
-PORTVERSION=	3.1.3
+PORTVERSION=	3.2.0
 CATEGORIES=	textproc
 MASTER_SITES=	APACHE/xerces/c/3/sources
 PKGNAMESUFFIX=	3
@@ -30,6 +30,9 @@ PLIST_SUB=	MAJOR_VER=${PORTVERSION:R}
 
 CPE_PRODUCT=	xerces-c++
 CPE_VENDOR=	apache
+
+post-patch:
+	${REINPLACE_CMD} -e "s,@DEFS@,& -D__STDC_LIMIT_MACROS," ${WRKSRC}/src/Makefile.in
 
 post-install:
 	${LN} -s libxerces-c-${PORTVERSION:R}.so ${STAGEDIR}${PREFIX}/lib/libxerces-c.so.${PORTVERSION:R:R}
