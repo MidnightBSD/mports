@@ -43,7 +43,7 @@ do-build:
 .if defined(MESA_INSTALL_WRKSRC)
 do-install:
 . for dir in ${MESA_INSTALL_WRKSRC}
-	(cd ${WRKSRC}/${dir} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} \
+	(cd ${WRKSRC}/${dir} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 . endfor
 .endif
