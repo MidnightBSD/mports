@@ -8,7 +8,7 @@ CATEGORIES=	x11
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the keyboard using the X Keyboard Extension
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
