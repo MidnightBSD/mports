@@ -17,7 +17,6 @@ SUBDIR += autoconf-wrapper
 SUBDIR += autoconf213
 SUBDIR += autogen
 SUBDIR += automake
-SUBDIR += automake-wrapper
 SUBDIR += automake14
 SUBDIR += automoc4
 SUBDIR += autotools
