@@ -181,6 +181,7 @@ SUBDIR += silgraphite
 SUBDIR += svgalib
 SUBDIR += tiff
 SUBDIR += vigra
+SUBDIR += wayland
 SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += xli
