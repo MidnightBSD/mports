@@ -11,12 +11,9 @@ COMMENT=	Make chained accessors
 
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Class/Accessor.pm:${PORTSDIR}/devel/p5-Class-Accessor
+BUILD_DEPENDS=	${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_MODBUILD=	yes
-
-MAN3=		Class::Accessor::Chained.3 \
-		Class::Accessor::Chained::Fast.3
 
 .include <bsd.port.mk>
