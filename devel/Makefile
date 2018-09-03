@@ -495,6 +495,7 @@ SUBDIR += py-gobject3
 SUBDIR += py-gyp-devel
 SUBDIR += py-hgtools
 SUBDIR += py-jmespath
+SUBDIR += py-jsonref
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
 SUBDIR += py-iso8601
