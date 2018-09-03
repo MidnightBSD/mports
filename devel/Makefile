@@ -526,6 +526,7 @@ SUBDIR += py-six
 SUBDIR += py-subversion
 SUBDIR += py-termcolor
 SUBDIR += py-twisted
+SUBDIR += py-txaio
 SUBDIR += py-virtualenv
 SUBDIR += py-wrapt
 SUBDIR += py-xdg
