@@ -1,29 +1,36 @@
 # $MidnightBSD$
 
 PORTNAME=	exiv2
-PORTVERSION=	0.23
+DISTVERSION=	0.26
+DISTVERSIONSUFFIX=	-trunk
+PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	http://www.exiv2.org/
+MASTER_SITES=	http://www.exiv2.org/builds/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Exif and Iptc metadata manipulation library and tools
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
-USES=		gmake
-USE_GETTEXT=	yes
+USES=		cmake:outsource cpe gettext iconv pathfix
 USE_LDCONFIG=	yes
-ALLTARGET=	all
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' ${WRKSRC}/src/Makefile
+CMAKE_ON=	EXIV2_ENABLE_VIDEO \
+		EXIV2_ENABLE_BUILD_PO
+CMAKE_OFF=	EXIV2_ENABLE_BUILD_SAMPLES \
+		EXIV2_ENABLE_LIBXMP
+
+PATHFIX_CMAKELISTSTXT=	CMakeChecks.txt
+
+CFLAGS_powerpc64=	-mminimal-toc
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-trunk
+
+post-install:
+	${CP} ${FAKE_DESTDIR}/${TRUE_PREFIX}/lib/pkgconfig/exiv2.pc ${PREFIX}/libdata/pkgconfig/
+	${CP} ${FAKE_DESTDIR}/${TRUE_PREFIX}/lib/pkgconfig/exiv2.lsm ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
