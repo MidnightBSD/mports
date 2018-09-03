@@ -11,4 +11,6 @@ DESCR=		${.CURDIR}/pkg-descr
 
 GC_VARIANT=	threaded
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 .include "${MASTERDIR}/Makefile"
