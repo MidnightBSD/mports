@@ -470,6 +470,7 @@ SUBDIR += pth-hard
 SUBDIR += py-Jinja2
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
+SUBDIR += py-attrs
 SUBDIR += py-babel
 SUBDIR += py-backports.functools_lru_cache
 SUBDIR += py-bcdoc
