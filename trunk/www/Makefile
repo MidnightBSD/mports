@@ -110,6 +110,7 @@ SUBDIR += py-autobahn
 SUBDIR += py-beaker
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
+SUBDIR += py-pyjwt
 SUBDIR += py-requests
 SUBDIR += qt5-webchannel
 SUBDIR += qt5-websockets
