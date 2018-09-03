@@ -13,13 +13,14 @@ COMMENT=	Sound library for enlightenment package
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libaudiofile.so:${PORTSDIR}/audio/libaudiofile
+LIB_DEPENDS=	libaudiofile.so:audio/libaudiofile
 
-USES=		alias libtool:keepla pathfix pkgconfig:both tar:bzip2
+USES=		libtool:keepla pathfix pkgconfig:both tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 CONFIGURE_ENV=	JW=false
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+#CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+#CONFIGURE_ARGS+=	--host=${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 
 CONFLICTS=	py*-ro-[0-9]*
