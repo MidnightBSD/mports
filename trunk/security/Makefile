@@ -141,7 +141,6 @@ SUBDIR += sudo
 SUBDIR += tor
 SUBDIR += trousers
 SUBDIR += vlock
-SUBDIR += vlog
 SUBDIR += vnccrack
 SUBDIR += vpnc
 SUBDIR += vuxml
