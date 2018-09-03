@@ -524,6 +524,7 @@ SUBDIR += py-termcolor
 SUBDIR += py-virtualenv
 SUBDIR += py-wrapt
 SUBDIR += py-xdg
+SUBDIR += py-xmltodict
 SUBDIR += py-yaml
 SUBDIR += py-zope.component
 SUBDIR += py-zope.event
