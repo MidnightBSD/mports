@@ -10,8 +10,6 @@ LICENSE=	gpl3
 
 .include "${.CURDIR}/../gettext/Makefile.common"
 
-WRKSRC= ${WRKDIR}/gettext-${PORTVERSION}/gettext-tools
-
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
 GNU_CONFIGURE=	yes
