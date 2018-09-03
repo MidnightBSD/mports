@@ -27,7 +27,6 @@ COLONBREAKSWORDS_DESC=	Colons break words
 HELP_DESC=		Enable builtin help
 
 USES=			bison cpe iconv makeinfo pathfix
-USE_GCC=		yes
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
