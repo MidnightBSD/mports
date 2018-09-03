@@ -14,6 +14,7 @@ LICENSE=	other
 
 OPTIONS_DEFINE=	DOCS
 NO_WRKSUBDIR=	yes
+WRKSRC=		${WRKDIR}
 USES=		zip
 
 do-install:
