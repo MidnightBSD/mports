@@ -239,7 +239,6 @@ SUBDIR += npth
 SUBDIR += nspr
 SUBDIR += oniguruma
 SUBDIR += oniguruma4
-SUBDIR += oniguruma5
 SUBDIR += opengrok
 SUBDIR += orc
 SUBDIR += p5-Algorithm-C3
