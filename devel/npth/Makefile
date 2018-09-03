@@ -14,6 +14,7 @@ LICENSE_COMB=	dual
 USES=		tar:bzip2 libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
