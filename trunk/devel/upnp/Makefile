@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	upnp
-PORTVERSION=	1.6.19
-PORTREVISION=	2
+PORTVERSION=	1.6.22
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/libUPnP%20${PORTVERSION}
@@ -14,30 +13,21 @@ COMMENT=	Universal Plug and Play Software Development Kit
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS=	upnp-1.0.*
-
-USES=		libtool tar:bzip2
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--disable-samples
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+INSTALL_TARGET=	install-strip
+USES=		cpe libtool pathfix tar:bzip2
+CPE_VENDOR=	libupnp_project
+CPE_PRODUCT=	libupnp
 USE_LDCONFIG=	yes
 
-MAKE_ENV=	PTHREAD_LIBS=${PTHREAD_LIBS}
-CONFIGURE_ENV+=	LIBS="-llwres -lcompat"
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=	--with-documentation=${DOCSDIR}
 PORTDOCS=	*
-.else
-CONFIGURE_ARGS+=	--without-documentation
-.endif
 
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug
-.endif
+OPTIONS_DEFINE=	DEBUG DOCS
 
-post-patch:	.SILENT
-	${REINPLACE_CMD} '/^pkgconfigexecdir/s|$$(libdir)|$$(prefix)/libdata|' \
-		${WRKSRC}/Makefile.in
+DEBUG_CONFIGURE_ON=	--enable-debug
+DOCS_CONFIGURE_ON=	--with-documentation=${DOCSDIR}
+DOCS_CONFIGURE_OFF=	--without-documentation
 
 .include <bsd.port.mk>
