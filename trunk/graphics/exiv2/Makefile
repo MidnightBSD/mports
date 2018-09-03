@@ -10,11 +10,13 @@ COMMENT=	Exif and Iptc metadata manipulation library and tools
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
+USES=		gmake
 USE_GETTEXT=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 ALLTARGET=	all
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
