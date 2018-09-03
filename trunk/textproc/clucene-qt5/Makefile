@@ -13,7 +13,7 @@ LICENSE=	gpl3
 
 USE_QT5=	core buildtools_build
 QT_DIST=	tools
-USES=		qmake
+USES=		qmake pathfix
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/assistant/${PORTNAME}
