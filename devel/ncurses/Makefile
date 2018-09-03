@@ -10,6 +10,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for terminal-independent, full-screen output
+
 LICENSE=	mit
 
 CONFLICTS=	ncurses-devel-[0-9]*
@@ -29,6 +30,7 @@ CONFIGURE_ARGS=	--datadir=${PREFIX}/share/misc --disable-overwrite \
 		--without-curses-h --with-termlib --program-prefix= \
 		--enable-rpath --disable-root-environ \
 		--with-manpage-format=gzip --srcdir=../
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	EXTCOLORS TRACE DEBUG
