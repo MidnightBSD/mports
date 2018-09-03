@@ -7,7 +7,6 @@ SUBDIR += aldo
 SUBDIR += atslog
 SUBDIR += bforce
 SUBDIR += bforce-kst
-SUBDIR += cdr_read
 SUBDIR += chu
 SUBDIR += comserv
 SUBDIR += efax
