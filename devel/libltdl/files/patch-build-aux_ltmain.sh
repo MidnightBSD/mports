@@ -1,5 +1,5 @@
---- build-aux/ltmain.sh.orig	2015-02-15 11:15:12.000000000 -0500
-+++ build-aux/ltmain.sh	2018-03-07 23:37:11.000000000 -0500
+--- ../build-aux/ltmain.sh.orig	2015-02-15 11:15:12.000000000 -0500
++++ ../build-aux/ltmain.sh	2018-03-07 23:37:11.000000000 -0500
 @@ -7019,7 +7019,7 @@
  	    # These systems don't actually have a C library (as such)
  	    test X-lc = "X$arg" && continue
