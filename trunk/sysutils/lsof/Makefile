@@ -22,8 +22,11 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}${DISTNAME_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists information about open files (similar to fstat(1))
-LICENSE=	other
-#very bsdish
+
+LICENSE=	lsof
+LICENSE_NAME=	lsof
+LICENSE_FILE=	${FILESDIR}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 #Please leave the below line in for the next clean up.
 FIXUP_RELEASE=	YES
