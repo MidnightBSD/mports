@@ -17,7 +17,7 @@ NO_WRKSUBDIR=	yes
 
 do-install:
 	@${CP} ${FILESDIR}/cvs_server.c ${WRKSRC}
-	@cd ${WRKSRC} && gcc cvs_server.c -o cvs_server
+	@cd ${WRKSRC} && ${CC} cvs_server.c -o cvs_server
 	@${INSTALL_PROGRAM} ${WRKSRC}/cvs_server ${PREFIX}/bin/cvs_server
 
 .include <bsd.port.mk>
