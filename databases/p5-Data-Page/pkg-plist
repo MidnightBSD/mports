@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Data/Page.pm
-@dirrmtry %%SITE_PERL%%/Data
+%%PERL5_MAN3%%/Data::Page.3.gz
