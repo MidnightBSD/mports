@@ -43,10 +43,10 @@ SERIALIZATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}msgpack>=0.4.0:devel/py-msgpac
 
 .include <bsd.port.pre.mk>
 
-.if ${FLAVOR} == python2
+.if ${PYTHON_REL} <= 2999
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.6:devel/py-zope.interface \
 		${PYTHON_PKGNAMEPREFIX}twisted>=12.1:devel/py-twisted
-.elif ${FLAVOR} == python3 && ${PYTHON_REL} <= 3300
+.elif ${PYTHON_REL} <= 3300
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}asyncio>=3.4.3:devel/py-asyncio
 .endif
 
