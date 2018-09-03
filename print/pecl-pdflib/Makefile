@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pdflib
-PORTVERSION=	3.0.4
+PORTVERSION=	4.1.2
 CATEGORIES=	print
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -21,5 +21,6 @@ USE_PHPEXT=	yes
 PHP_MODNAME=	pdf
 
 CONFIGURE_ARGS=	--with-pdflib=${LOCALBASE}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .include <bsd.port.mk>
