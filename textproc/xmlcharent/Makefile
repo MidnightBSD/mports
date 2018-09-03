@@ -10,7 +10,10 @@ MASTER_SITES=	http://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML character entities
 
-LICENSE=	unknown
+LICENSE=	OASIS
+LICENSE_NAME=	OASIS License
+LICENSE_TEXT=	License text is available in all .ent files installed by this port
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
@@ -29,7 +32,7 @@ CATALOG_PORTS_XML=	${TRUE_PREFIX}/share/xml/catalog.ports
 
 do-install:
 	${MKDIR} ${XMLDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.ent\
+	${INSTALL_DATA} ${WRKDIR}/*.ent\
 		${FILESDIR}/catalog ${FILESDIR}/catalog.xml ${XMLDIR}
 
 .include <bsd.port.mk>
