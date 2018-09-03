@@ -37,6 +37,7 @@ COMMENT?=		Open source LDAP server implementation
 LICENSE=		openldap2.8
 
 GNU_CONFIGURE=		yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 # :keepla because port uses lt_dlopen
 USES=			cpe libtool:keepla ssl
 .if !defined(CLIENT_ONLY)
