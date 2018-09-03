@@ -189,7 +189,7 @@ post-install:
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${DOCSDIR}/libcurl/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
-	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.html *.m4 *.pdf ${STAGEDIR}${DOCSDIR}/libcurl/
+	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.m4 ${STAGEDIR}${DOCSDIR}/libcurl/
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
