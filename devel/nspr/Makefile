@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nspr
-DISTVERSION=	4.17
+DISTVERSION=	4.19
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/v${PORTVERSION}/src
 
@@ -16,6 +16,7 @@ CPE_VENDOR=	mozilla
 CPE_PRODUCT=	netscape_portable_runtime
 WRKSRC=		${WRKDIR}/nspr-${DISTVERSION}/nspr
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DEBUG TEST
