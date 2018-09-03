@@ -7,7 +7,6 @@ PORTREVISION=	0
 COMMENT=	GNU gettext development and translation tools
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/../COPYING
 
 .include "${.CURDIR}/../gettext/Makefile.common"
 
