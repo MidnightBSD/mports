@@ -10,8 +10,10 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to handle internationalized domain names
 
-LICENSE=	other
-#bsd 4 ish
+LICENSE=	JPNIC
+LICENSE_NAME=	Japan Network Information Center license
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		iconv libtool
 GNU_CONFIGURE=	yes
