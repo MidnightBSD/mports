@@ -106,6 +106,7 @@ SUBDIR += php71-tidy
 SUBDIR += pmwiki
 SUBDIR += polipo
 SUBDIR += privoxy
+SUBDIR += py-autobahn
 SUBDIR += py-beaker
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
