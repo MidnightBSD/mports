@@ -10,8 +10,7 @@ DISTNAME=		${PORTNAME}-${PORTVERSION:R}
 DIST_SUBDIR=		${PORTNAME}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
 
-PATCH_SITES=		GNU/${PORTNAME}/${DISTNAME}-patches/ \
-			ftp://ftp.cwru.edu/pub/${PORTNAME}/${DISTNAME}-patches/
+PATCH_SITES=		GNU/${PORTNAME}/${DISTNAME}-patches/
 PATCHFILES!=		/usr/bin/jot -s " " -w \
 			${PORTNAME}${PORTVERSION:R:S/.//g}-%03d \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
@@ -20,25 +19,31 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		GNU Project's Bourne Again SHell
 
 LICENSE=		gpl3
+LICENSE_FILE=		${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=		COLONBREAKSWORDS HELP NLS STATIC SYSLOG DOCS
-OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP NLS
+OPTIONS_DEFINE=		COLONBREAKSWORDS FDESCFS HELP NLS STATIC SYSBASHRC SYSLOG DOCS
 COLONBREAKSWORDS_DESC=	Colons break words
+FDESCFS_DESC=		Enable use of /dev/fd
 HELP_DESC=		Enable builtin help
+SYSBASHRC_DESC=		Enable system-wide rc files
+
+OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP
 
 USES=			bison cpe iconv makeinfo pathfix
+GNU_CONFIGURE=		yes
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
 COLONBREAKSWORDS_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-colonbreakswords
+
+FDESCFS_CONFIGURE_ENV_OFF=	bash_cv_dev_fd=absent
+FDESCFS_SUB_FILES=	pkg-message
 
 HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
 INFO=			bash
-
-GNU_CONFIGURE=		yes
 
 PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
 			bash.html bashref.html
@@ -57,12 +62,6 @@ CONFLICTS+=		bash-[0-9]*
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MIMPORTFUNCTIONS}
-CFLAGS+=	-DIMPORT_FUNCTIONS_DEF=1
-.else
-CFLAGS+=	-DIMPORT_FUNCTIONS_DEF=0
-.endif
-
 .if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
 LLD_UNSAFE=		yes
@@ -72,6 +71,9 @@ CONFIGURE_ARGS+=	--disable-static-link
 # "enable -f". (Plugins are not supported for bash-static.)
 LDFLAGS+=		-Wl,-export-dynamic
 .endif
+STANDARD_PATH=		/sbin:/bin:/usr/sbin:/usr/bin
+CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
+			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
 
 post-patch:
 # Ensure y.tab.c is regenerated
@@ -83,28 +85,26 @@ post-patch:
 	    -e "s|/\*.*#define SYSLOG_HISTORY .*\*/|#define SYSLOG_HISTORY|g" \
 	    ${WRKSRC}/config-top.h
 .endif
-.if empty(PORT_OPTIONS:MNLS)
-	@${REINPLACE_CMD} -e "s|@LIBICONV@||g" ${WRKSRC}/Makefile.in
-.endif
+
+post-patch-SYSBASHRC-on:
+	@${REINPLACE_CMD} \
+		-e "s|.*\(#define SYS_BASH.*\)\(/etc/.*\"\).*|\1${PREFIX}\2|" \
+		${WRKSRC}/config-top.h
 
 post-configure:
 	@${FIND} ${WRKSRC} -name Makefile -print0 | ${XARGS} -0 \
 		${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|"
-.if empty(PORT_OPTIONS:MNLS)
-	@${REINPLACE_CMD} -e "s|#define HAVE_ICONV 1|#undef HAVE_ICONV|g" \
-		${WRKSRC}/config.h
-.endif
 
 pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
 
 post-install:
-	${LN} -sf bash ${PREFIX}/bin/rbash
-	@${MKDIR} ${DOCSDIR}
+	${LN} -sf bash ${STAGEDIR}${PREFIX}/bin/rbash
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/FAQ \
-		${WRKSRC}/doc/INTRO ${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${STAGEDIR}${DOCSDIR}
 	for d in ${PORTDOCS:NFAQ:NINTRO:N*html}; do \
-		${INSTALL_DATA} ${WRKSRC}/$${d} ${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${d} ${STAGEDIR}${DOCSDIR}; \
 	done
 
 regress: build
@@ -118,7 +118,7 @@ cklatest:
 	@${ECHO} -n "Currently at: "
 	@${MAKE} -V PATCHLEVEL
 	-ncftpls \
-	    ftp://ftp.cwru.edu/pub/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/\.[0-9a-z]*$//}-patches/ \
+		${PATCH_SITES:Mftp*:Ox:[1]} \
 		| fgrep -v .sig | ${TAIL}
 
 .include <bsd.port.mk>
