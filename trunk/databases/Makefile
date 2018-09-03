@@ -157,6 +157,7 @@ SUBDIR += py-sqlalchemy12
 SUBDIR += py-sqlalchemy-migrate
 SUBDIR += py-sqlite3
 SUBDIR += py-sqlite3dbm
+SUBDIR += py-sqlparse
 SUBDIR += py-sybase
 SUBDIR += qdbm
 SUBDIR += qt4-mysql-plugin
