@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lsof
-PORTVERSION=	4.88G
+PORTVERSION=	4.92B
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
@@ -17,7 +17,7 @@ MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://ftp.sunet.se/pub/unix/admin/lsof/NEW/ \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/  \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/NEW/ \
-		ftp://ftp.tau.ac.il/pub/unix/admin/
+		FREEBSD_LOCAL/ler/lsof
 DISTNAME=	${PORTNAME}_${PORTVERSION}${DISTNAME_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -42,7 +42,10 @@ HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
 CONFIGURE_ENV=	LSOF_CC="${CC}"  LSOF_VERS=7042 FREEBSD_SYS="${SRC_BASE}/sys" LSOF_VSTR="9.1-RELEASE"
-PLIST_FILES=	sbin/lsof man/man8/lsof.8.gz
+
+.if !exists(${SRC_BASE}/sys/kern/kern_lockf.c)
+IGNORE=		requires kernel sources
+.endif
 
 .if !defined(FIXUP_RELEASE)
 post-extract:
