@@ -3,20 +3,8 @@
 PORTNAME=	lsof
 PORTVERSION=	4.92B
 CATEGORIES=	sysutils
-MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
-		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
+MASTER_SITES=	ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/NEW/ \
-		http://www.lerctr.org/lsof/ \
-		ftp://ftp.ayamura.org/pub/lsof/ \
-		ftp://ftp.ayamura.org/pub/lsof/NEW/ \
-		ftp://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
-		ftp://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/NEW/ \
-		ftp://gd.tuwien.ac.at/utils/admin-tools/lsof/ \
-		ftp://gd.tuwien.ac.at/utils/admin-tools/lsof/NEW/ \
-		ftp://ftp.sunet.se/pub/unix/admin/lsof/  \
-		ftp://ftp.sunet.se/pub/unix/admin/lsof/NEW/ \
-		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/  \
-		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/NEW/ \
 		FREEBSD_LOCAL/ler/lsof
 DISTNAME=	${PORTNAME}_${PORTVERSION}${DISTNAME_SUFFIX}
 
@@ -61,12 +49,6 @@ post-extract:
 	)
 	@( cd ${WRKSRC} ; ${ECHO_CMD} "y" | ./Inventory || exit 1 )
 .endif
-
-#pre-patch:
-#	@${ECHO_MSG} "===>  Applying distribution patches for ${PKGNAME}"
-#	@${SED} -e "s|^--- d|--- dialects/freebsd/d|"  \
-#		${DISTDIR}/freebsd_3.0_patch > ${WRKDIR}/p
-#	${PATCH} ${PATCH_DIST_ARGS} < ${WRKDIR}/p
 
 do-install:
 	${INSTALL} ${COPY} ${STRIP} -o ${BINOWN} -m 2755 -g kmem ${WRKSRC}/lsof ${PREFIX}/sbin
