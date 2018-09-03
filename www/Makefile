@@ -112,6 +112,7 @@ SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-pyjwt
 SUBDIR += py-requests
+SUBDIR += py-treq
 SUBDIR += qt5-webchannel
 SUBDIR += qt5-websockets
 SUBDIR += seamonkey
