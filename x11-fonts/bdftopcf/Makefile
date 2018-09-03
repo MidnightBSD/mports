@@ -11,7 +11,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
-USE_XORG=	xfont fontsproto xproto
+USES=		localbase
+USE_XORG=	x11 xfont fontsproto xproto
+
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 PLIST_FILES=	bin/bdftopcf man/man1/bdftopcf.1.gz
 
