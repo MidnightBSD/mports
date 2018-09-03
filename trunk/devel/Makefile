@@ -486,6 +486,7 @@ SUBDIR += py-constantly
 SUBDIR += py-darcsver
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
+SUBDIR += py-decorator
 SUBDIR += py-enum34
 SUBDIR += py-fileutils
 SUBDIR += py-funcsigs
