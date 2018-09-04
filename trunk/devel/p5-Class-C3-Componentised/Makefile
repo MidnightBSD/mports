@@ -1,25 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	Class-C3-Componentised
-PORTVERSION=	1.0010
+PORTVERSION=	1.001002
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION}00
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Load mix-ins or components to your C3-based class
 
 LICENSE=	perl
 
-RUN_DEPENDS=	p5-Class-C3>=0.20:${PORTSDIR}/devel/p5-Class-C3 \
-		p5-MRO-Compat>0:${PORTSDIR}/devel/p5-MRO-Compat \
-		p5-Class-Inspector>=0:${PORTSDIR}/devel/p5-Class-Inspector
-BUILD_DEPENDS:=	${RUN_DEPENDS}
+BUILD_DEPENDS=	p5-Class-C3>=0.20:devel/p5-Class-C3 \
+		p5-Class-Inspector>=1.32:devel/p5-Class-Inspector \
+		p5-MRO-Compat>=0.09:devel/p5-MRO-Compat
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-Test-Exception>=0.31:devel/p5-Test-Exception
 
-PERL_CONFIGURE=	yes
-
-post-extract:
-	@${REINPLACE_CMD} -i '' -e '/Test::/d' ${WRKSRC}/Makefile.PL
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
+PERL_CONFIGURE=       yes
 
 .include <bsd.port.mk>
