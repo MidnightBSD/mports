@@ -16,7 +16,7 @@ LICENSE=	other
 
 GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
-USES=		cpe pathfix shebangfix libtool pkgconfig
+USES=		cpe pathfix shebangfix libtool pkgconfig autoreconf
 USE_RC_SUBR=    ntp
 LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent
 
