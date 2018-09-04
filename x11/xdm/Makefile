@@ -7,49 +7,46 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X display manager
+
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xmu x11 xau xinerama xpm xdmcp xt xext xaw
-CONFIGURE_ARGS+=	--with-xdmconfigdir=${EXAMPLESDIR} \
-			--with-xdmscriptdir=${EXAMPLESDIR}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+USES=		cpe libtool
+USE_LDCONFIG=	yes
+USE_XORG=	x11 xau xaw xdmcp xext xinerama xmu xpm xt
+CPE_PRODUCT=	x_display_manager
+CPE_VENDOR=	x
+
+CONFIGURE_ARGS+=	--with-xdmconfigdir=${PREFIX}/etc/X11/xdm \
+			--with-xdmscriptdir=${PREFIX}/etc/X11/xdm \
+			--with-pixmapdir=${PREFIX}/share/pixmaps \
+			--with-authdir=/var/db/xdm
 
 CFFILES=	GiveConsole TakeConsole Xaccess Xreset Xresources \
 		Xservers Xsession Xsetup_0 Xstartup Xwilling xdm-config
 
-OPTIONS_DEFINE=	XDMSHELL
+OPTIONS_SUB=	yes
+
+OPTIONS_DEFINE=	XDMSHELL XFT
+OPTIONS_DEFAULT=	XFT
 XDMSHELL_DESC=	Install xdmshell
 
-.include <bsd.mport.options.mk>
+XDMSHELL_CONFIGURE_ENABLE=	xdmshell
 
-.if ${PORT_OPTIONS:MXDMSHELL}
-CONFIGURE_ARGS+=--enable-xdmshell
-MAN1+=		xdmshell.1
-PLIST_SUB+=	XDMSHELL=""
-.else
-CONFIGURE_ARGS+=--disable-xdmshell
-PLIST_SUB+=	XDMSHELL="@comment "
-.endif
+XFT_USE=	xorg=xft
+XFT_CONFIGURE_WITH=	xft
+
+INSTALL_TARGET=	install-strip
 
 post-patch:
 	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e "s|XDMCONFIGDIR/|${PREFIX}/lib/X11/xdm/|" \
-		-e "s|XDMSCRIPTDIR/|${PREFIX}/lib/X11/xdm/|" \
-			${WRKSRC}/config/xdm-config.cpp \
-			${WRKSRC}/config/Xstartup.cpp \
-			${WRKSRC}/config/Xreset.cpp
 	@${REINPLACE_CMD} -e "s|@DESTDIR@||" ${WRKSRC}/Makefile.in
-
-post-configure:
-	@${REINPLACE_CMD} -e "s|${EXAMPLESDIR}|${PREFIX}/lib/X11/xdm|" \
-			${WRKSRC}/config.h
 
 post-install:
 .for f in ${CFFILES}
-	${CP} -n ${EXAMPLESDIR}/$f ${PREFIX}/lib/X11/xdm/$f || ${TRUE}
+	@${MV} ${STAGEDIR}${PREFIX}/etc/X11/xdm/${f} ${STAGEDIR}${PREFIX}/etc/X11/xdm/${f}.sample
 .endfor
-	(cd ${PREFIX}/lib/X11/xdm && ${LN} -sf /var/lib/xdm/authdir authdir)
+	@${MKDIR} ${STAGEDIR}/var/db/xdm
 
 .include <bsd.port.mk>
