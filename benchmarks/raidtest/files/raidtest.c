@@ -25,7 +25,7 @@
  */
 
 #include <sys/cdefs.h>
-__MBSDID("$MidnightBSD$");
+__FBSDID("$FreeBSD: head/benchmarks/raidtest/files/raidtest.c 346787 2014-03-02 18:19:48Z mav $");
 
 #include <sys/param.h>
 #include <sys/types.h>
@@ -113,8 +113,8 @@ write_ioreq(int fd, struct ioreq *iorq)
 static void
 raidtest_genfile(int argc, char *argv[])
 {
-	uintmax_t i, nreqs, mediasize, nsectors, nbytes, nrreqs, nwreqs;
-	unsigned secsize, maxsec;
+	uintmax_t i, nreqs, mediasize, nsectors, nbytes, nrreqs, nwreqs, maxsec;
+	unsigned secsize;
 	const char *file = NULL;
 	struct ioreq iorq;
 	int ch, fd, flags, rdonly, wronly;
@@ -189,7 +189,8 @@ raidtest_genfile(int argc, char *argv[])
 		iorq.iorq_length = gen_size(secsize);
 		/* Generate I/O request offset. */
 		maxsec = nsectors - (iorq.iorq_length / secsize);
-		iorq.iorq_offset = (arc4random() % maxsec) * secsize;
+		iorq.iorq_offset = ((((uintmax_t)arc4random() << 32) |
+		    arc4random()) % maxsec) * secsize;
 		/* Generate I/O request type. */
 		if (rdonly)
 			iorq.iorq_type = IO_TYPE_READ;
