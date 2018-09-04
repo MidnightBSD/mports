@@ -26,7 +26,8 @@ PLIST_FILES=	sbin/grub-bhyve
 MAKE_JOBS_UNSAFE=	yes
 CONFIGURE_ARGS=	--with-platform=emu CC=${CC} LEX=${LOCALBASE}/bin/flex \
 		--enable-grub-mount=no --enable-grub-mkfont=no \
-		--enable-grub-emu-sdl=no --disable-nls --disable-werror
+		--enable-grub-emu-sdl=no --disable-nls --disable-werror \
+		--host=${ARCH}-portbld-freebsd10.4 --build=${ARCH}-portbld-freebsd10.4
 
 post-patch:
 	@${REINPLACE_CMD} -e "s/libintl\.h/I_do_not_want_libintl.h/g" ${WRKSRC}/configure
