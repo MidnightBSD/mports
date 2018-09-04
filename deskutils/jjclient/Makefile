@@ -21,7 +21,7 @@ GH_COMMIT=      087a087
 USE_CSTD=	c99
 
 CFLAGS+=	-I/usr/local/include
-LDFLAGS+=	-L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse
+LDFLAGS+=	-L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse -lxmlrpc_util
 
 LIB_DEPENDS=	libxmlrpc.so:${PORTSDIR}/net/xmlrpc-c
 
