@@ -24,7 +24,7 @@ LIB_DEPENDS=	libXp.so:x11/libXp \
 		libpng.so:graphics/png
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include
+CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include -I/usr/local/include -L/usr/local/lib
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_CSTD=	gnu89
 INSTALL_TARGET=	install-strip
