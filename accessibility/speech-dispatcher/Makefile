@@ -17,7 +17,7 @@ LIB_DEPENDS=	libdotconf.so:${PORTSDIR}/devel/dotconf \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile
 
 USE_GNOME=	glib20 intltool
-USES=		alias gettext gmake pathfix pkgconfig libtool
+USES=		gettext gmake pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
