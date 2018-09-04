@@ -1,6 +1,17 @@
---- blkdev.c.orig   Sun Aug  3 16:07:29 2003
-+++ blkdev.c        Sat Mar  5 00:23:40 2005
-@@ -128,6 +128,10 @@
+--- blkdev.c.orig	2009-04-06 02:09:27 UTC
++++ blkdev.c
+@@ -46,7 +46,9 @@
+ 
+ #ifdef HAVE_SYS_DISKLABEL_H
+ # include <sys/disklabel.h>
+-# define BSD_BLKDEV
++# ifdef DIOCGDINFO
++#  define BSD_BLKDEV
++# endif
+ #endif
+ 
+ #ifndef LINUX_BLKDEV
+@@ -141,6 +143,10 @@ public int destroy_blkdev(struct file_s 
    int code;
  
  #ifdef BSD_BLKDEV
@@ -11,7 +22,7 @@
    struct partinfo pinfo;
  #endif
  
-@@ -160,7 +164,7 @@
+@@ -173,7 +179,7 @@ public int destroy_blkdev(struct file_s 
      }
  
  #ifdef BSD_BLKDEV
