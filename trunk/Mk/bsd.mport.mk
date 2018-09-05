@@ -521,10 +521,34 @@ PKG_NOTE_no_provide_shlib=      yes
 .undef NO_PACKAGE
 .endif
 
-WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
-.if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)
-WRKSRC?=                ${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_EXTRACT}
+.if empty(FLAVOR)
+_WRKDIR=	work
+.else
+_WRKDIR=	work-${FLAVOR}
 .endif
+
+WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
+BINARY_LINKDIR= ${WRKDIR}/.bin
+PATH:=                  ${BINARY_LINKDIR}:${PATH}
+.if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
+MAKE_ENV+=                      PATH=${PATH}
+CONFIGURE_ENV+=         PATH=${PATH}
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)
+.if defined(WRKSRC)
+DEV_WARNING+=	"You are using USE_GITHUB and WRKSRC is set which is wrong.  Set GH_PROJECT correctly, set WRKSRC_SUBDIR or remove WRKSRC entirely."
+.endif
+WRKSRC?=	${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_EXTRACT}
+.endif
+
+.if !default(IGNORE_MASTER_SITE_GITLAB) && defined(USE_GITLAB) && empty(USE_GITLAB:Mnodefault)
+WRKSRC?=	${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}-${GL_COMMIT}
+.endif
+
+# If the distname is not extracting into a specific subdirectory, have the
+# ports framework force extract into a subdirectory so that metadata files
+# do not get in the way of the build, and vice-versa.
 .if defined(NO_WRKSUBDIR)
 # Some ports have DISTNAME=PORTNAME, and USE_RC_SUBR=PORTNAME, in those case,
 # the rc file will conflict with WRKSRC, as WRKSRC is artificial, make it the
