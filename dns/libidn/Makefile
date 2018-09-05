@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libidn
-PORTVERSION=	1.33
-PORTREVISION=	0
+DISTVERSION=	1.34
 CATEGORIES=	dns
 MASTER_SITES=	GNU
 
@@ -12,26 +11,19 @@ COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl2 lgpl3
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	 help2man:${PORTSDIR}/misc/help2man \
-		 automake:${PORTSDIR}/devel/automake
+FAKE_OPTS+=	trueprefix
 
-OPTIONS_DEFINE=	DOCS NLS
-
-OPTIONS_SUB=yes
-
+USES=		gmake iconv libtool localbase makeinfo pathfix perl5 pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-USE_AUTOTOOLS=	automake:env
-USES=		gmake iconv libtool makeinfo pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
 INFO=		libidn
 
-.include <bsd.mport.options.mk>
+OPTIONS_DEFINE=	DOCS NLS
+
+OPTIONS_SUB=	yes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
@@ -39,13 +31,11 @@ NLS_USES=		gettext
 post-patch:
 	@${REINPLACE_CMD} -e '/^Libs.private:/s/$$/ @LTLIBINTL@/' \
 		${WRKSRC}/libidn.pc.in
-	${REINPLACE_CMD} -e 's/1.14/1.15/g' ${WRKSRC}/configure.ac
 
-post-install:
-	${MKDIR} ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for i in FAQ NEWS README
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-	${MV} ${PREFIX}/lib/pkgconfig/libidn.pc ${PREFIX}/libdata/pkgconfig/libidn.pc
 
 .include <bsd.port.mk>
