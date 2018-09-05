@@ -36,6 +36,7 @@ SUBDIR += gdome2
 SUBDIR += gnome-doc-utils
 SUBDIR += gnome-spell
 SUBDIR += gnugrep
+SUBDIR += groff
 SUBDIR += gsed
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
