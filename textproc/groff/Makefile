@@ -49,7 +49,7 @@ DATADIR=	${PREFIX}/share/${PORTNAME}/${PORTVERSION}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
 EXAMPLESDIR=	${DOCSDIR}/examples
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ! ${PORT_OPTIONS:MX11}
 CONFIGURE_ARGS+=--without-x
