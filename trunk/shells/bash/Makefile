@@ -30,6 +30,7 @@ SYSBASHRC_DESC=		Enable system-wide rc files
 OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP
 
 USES=			bison cpe iconv makeinfo pathfix
+USE_GCC=		6
 GNU_CONFIGURE=		yes
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
