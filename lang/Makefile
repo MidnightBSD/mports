@@ -7,7 +7,6 @@ SUBDIR += bcc
 SUBDIR += bsh
 SUBDIR += clang33
 SUBDIR += clang34
-SUBDIR += clang36
 SUBDIR += cython
 SUBDIR += erlang
 SUBDIR += expect
