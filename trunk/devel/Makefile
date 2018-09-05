@@ -210,7 +210,6 @@ SUBDIR += linux-f10-nspr
 SUBDIR += linux-f10-sdl12
 SUBDIR += llvm33
 SUBDIR += llvm34
-SUBDIR += llvm36
 SUBDIR += llvm39
 SUBDIR += llvm40
 SUBDIR += llvm60
