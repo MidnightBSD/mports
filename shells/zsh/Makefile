@@ -19,7 +19,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 ZSH_VER=	${PORTVERSION}
 
-USES=		iconv ncurses tar:bzip2
+USES=		iconv ncurses tar:bzip2 groff:build
 GNU_CONFIGURE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include -DBOOL_DEFINED
@@ -100,7 +100,7 @@ post-build:
 	# Fix ".so" macro problem by using "soelim" command.
 	${LN} -sf ${WRKSRC}/Doc ${WRKSRC}/man1
 	${MV} ${WRKSRC}/Doc/zshall.1 ${WRKSRC}/Doc/zshall.1.source
-	cd ${WRKSRC} && /usr/bin/soelim ${WRKSRC}/Doc/zshall.1.source > \
+	cd ${WRKSRC} && soelim ${WRKSRC}/Doc/zshall.1.source > \
 		${WRKSRC}/Doc/zshall.1
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/info
