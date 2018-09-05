@@ -82,7 +82,6 @@ SUBDIR += php56-pdo_odbc
 SUBDIR += php56-pdo_pgsql
 SUBDIR += php56-pdo_sqlite
 SUBDIR += php56-pgsql
-SUBDIR += php56-redis
 SUBDIR += php56-sqlite3
 SUBDIR += php56-sybase_ct
 SUBDIR += php70-dba
