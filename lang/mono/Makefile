@@ -18,7 +18,7 @@ LICENSE=	lgpl mit
 LICENSE_COMB=	dual
 
 
-BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser \
+BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:${PORTSDIR}/shells/bash
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 
@@ -26,6 +26,7 @@ USES=		bison compiler:c11 cpe gettext gmake iconv libtool pathfix perl5 tar:bzip
 USE_GNOME=	glib20
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/mono-${PORTVERSION:R}
 
