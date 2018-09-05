@@ -110,7 +110,7 @@ full-regression-test: build
 
 post-fake:
 	${RM} -f ${PREFIX}/man/man7/*
-	${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
