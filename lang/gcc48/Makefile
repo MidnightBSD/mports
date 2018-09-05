@@ -86,8 +86,8 @@ INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/gccinstall \
 		gcc${SUFFIX}/gccint \
 		gcc${SUFFIX}/gfortran \
-		gcc${SUFFIX}/libgomp
-INFO+=		gcc${SUFFIX}/libquadmath \
+		gcc${SUFFIX}/libgomp \
+		gcc${SUFFIX}/libquadmath \
 		gcc${SUFFIX}/libitm
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
@@ -96,6 +96,11 @@ CONFIGURE_ARGS+=--enable-languages=${LANGUAGES}
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${CONFIGURE_TARGET} [${LANGUAGES}]"
+
+post-patch:
+	@${FIND} ${WRKSRC} -type f -name '*.[ch]' | \
+	    ${XARGS} ${EGREP} -l '"(HOST_WIDE|PLUGIN_COND)' | \
+	    ${XARGS} ${REINPLACE_CMD} -E -e 's/"(HOST_WIDE|PLUGIN_COND)/" \1/g'
 
 pre-configure:
 	cd ${SRCDIR} ; contrib/gcc_update --touch
@@ -110,18 +115,15 @@ full-regression-test: build
 
 post-install:
 	${RM} -f ${PREFIX}/man/man7/*
-	${RM} -f ${PREFIX}/bin/rebuild-gcj-db${SUFFIX} \
-	         ${PREFIX}/man/man1/rebuild-gcj-db${SUFFIX}.1
+	-${RM} -r ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
-.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///} include/gcj include/gnu include/java include/javax
+.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
 	cd ${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
-	    ${FIND} $d -type d | ${SORT} -r \
-	        | ${SED} -e 's/^/@dirrm /g' >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor
-	cd ${WRKDIR} ; ${SED} -i.bak -e 's|.la$$|d|' ${WRKDIR}/PLIST.lib
+	cd ${WRKDIR} ; grep -v '.la$$' ${WRKDIR}/PLIST.lib > ${WRKDIR}/PLIST.lib2; ${MV} ${WRKDIR}/PLIST.lib2 ${WRKDIR}/PLIST.lib
 	cd ${WRKDIR} ; ${SED} -i -e "/PLIST.lib/ r PLIST.lib" ${TMPPLIST}
 
 .include <bsd.port.post.mk>
