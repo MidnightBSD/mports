@@ -29,6 +29,8 @@ SYSBASHRC_DESC=		Enable system-wide rc files
 
 OPTIONS_DEFAULT=	COLONBREAKSWORDS HELP
 
+BUILD_DEPENDS+=		${LOCALBASE}/bin/gcc:lang/gcc
+
 USES=			bison cpe iconv makeinfo pathfix
 USE_GCC=		6
 GNU_CONFIGURE=		yes
