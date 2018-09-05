@@ -5,6 +5,7 @@ PORTVERSION=	1.5
 CATEGORIES=	security
 MASTER_SITES=	http://www.mavetju.org/download/adopted/ \
 		http://mirror.amdmi3.ru/distfiles/${DIST_SUBDIR}/
+#		http://www.cotse.com/sw/WinNT/
 DISTNAME=	lcsrc
 DIST_SUBDIR=	${PORTNAME}
 
@@ -16,35 +17,28 @@ LICENSE_NAME=	l0pthcrack license
 LICENSE_TEXT=	A mix of BSD and GPL code, possibly a violation
 LICENSE_PERMS=	no-pkg-sell no-pkg-mirror
 
-DOCDIR=		share/doc/${PORTNAME}
 RESTRICTED=	uses GNU getopt with BSDish-licensed code from OpenSSL
 NO_WRKSUBDIR=	yes
-PLIST=		${WRKDIR}/pkg-plist
-USE_PERL5_BUILD=yes
-USES=		zip
+USES=		dos2unix perl5 zip
+USE_PERL5=	build
+
+PLIST_FILES=	bin/lc_CLI
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
-	${RM} ${WRKDIR}/*exe
-	${PERL} -pi -e "s:\r::g" ${WRKDIR}/*
-	${PERL} -pi -e "s:ommited:omitted:g" ${WRKDIR}/util.c
+	@${RM} ${WRKSRC}/*exe
+	@${REINPLACE_CMD} -e 's|ommited|omitted|' ${WRKSRC}/util.c
 
 do-build:
-	cd ${WRKDIR} && ${CC} ${CFLAGS} -DMPU8086 *.c -o lc_CLI
-
-pre-install:
-	${ECHO_CMD} bin/lc_CLI > ${PLIST}
-.if !defined(NOPORTDOCS)
-	for i in `${FIND} ${WRKDIR} -name '*txt'`; \
-		do ${ECHO_CMD} ${DOCDIR}/`${BASENAME} $${i}` >> ${PLIST}; \
-	done
-	${ECHO_CMD} @dirrm ${DOCDIR} >> ${PLIST}
-.endif
+	cd ${WRKSRC} && ${CC} ${CFLAGS} -DMPU8086 *.c -o lc_CLI
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/lc_CLI ${PREFIX}/bin
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${PREFIX}/${DOCDIR}
-	cd ${WRKSRC} && ${PAX} -r -w *txt ${PREFIX}/${DOCDIR}
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/lc_CLI ${STAGEDIR}${PREFIX}/bin
+
+do-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.txt ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
