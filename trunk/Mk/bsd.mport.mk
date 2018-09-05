@@ -39,6 +39,10 @@ SRC_BASE?=		/usr/src
 SCRIPTSDIR?=		${PORTSDIR}/Mk/scripts
 LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
 NOTPHONY?=
+FLAVORS?=
+FLAVOR?=
+PORTS_FEATURES+=        FLAVORS
+
 CONFIGURE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 				XDG_CONFIG_HOME=${WRKDIR} \
 				HOME=${WRKDIR}
@@ -58,6 +62,21 @@ MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 
 .include "${MPORTCOMPONENTS}/commands.mk"
+
+.if !empty(FLAVOR)
+.  if empty(FLAVORS)
+IGNORE= FLAVOR is defined while this port does not have FLAVORS.
+.  elif ! ${FLAVORS:M${FLAVOR}}
+IGNORE= Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
+.  endif
+.endif
+
+.if !empty(FLAVORS) && empty(FLAVOR)
+FLAVOR= ${FLAVORS:[1]}
+.endif
+
+# Do not leak flavors to childs make
+.MAKEOVERRIDES:=        ${MAKEOVERRIDES:NFLAVOR=*}
 
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
@@ -507,6 +526,24 @@ _POSTMKINCLUDED=	yes
 PKG_NOTES+=     no_provide_shlib
 PKG_NOTE_no_provide_shlib=      yes
 .endif
+
+.if defined(DEPRECATED)
+PKG_NOTES+=     deprecated
+PKG_NOTE_deprecated=${DEPRECATED}
+.endif
+
+.if defined(EXPIRATION_DATE)
+PKG_NOTES+=     expiration_date
+PKG_NOTE_expiration_date=       ${EXPIRATION_DATE}
+.endif
+
+.if !empty(FLAVOR)
+PKG_NOTES+=     flavor
+PKG_NOTE_flavor=        ${FLAVOR}
+.endif
+
+TEST_ARGS?=             ${MAKE_ARGS}
+TEST_ENV?=              ${MAKE_ENV}
 
 # Integrate with the license auditing framework
 .if !defined (DISABLE_LICENSES)
@@ -2873,18 +2910,62 @@ do-clean:
 .endif
 
 .if !target(clean)
-clean:
+pre-clean: clean-msg
+clean-msg:
+	@${ECHO_MSG} "===>  Cleaning for ${PKGNAME}"
+
+.if empty(FLAVORS)
+CLEAN_DEPENDENCIES=
 .if !defined(NOCLEANDEPENDS)
+CLEAN_DEPENDENCIES+=    limited-clean-depends-noflavor
+limited-clean-depends-noflavor:
 	@cd ${.CURDIR} && ${MAKE} limited-clean-depends
 .endif
-	@${ECHO_MSG} "===>  Cleaning for ${PKGNAME}"
 .if target(pre-clean)
-	@cd ${.CURDIR} && ${MAKE} pre-clean
+CLEAN_DEPENDENCIES+=    pre-clean-noflavor
+pre-clean-noflavor:
+	@cd ${.CURDIR} && ${SETENV} ${MAKE} pre-clean
 .endif
-	@cd ${.CURDIR} && ${MAKE} do-clean
+CLEAN_DEPENDENCIES+=    do-clean-noflavor
+do-clean-noflavor:
+	@cd ${.CURDIR} && ${SETENV} ${MAKE} do-clean
 .if target(post-clean)
-	@cd ${.CURDIR} && ${MAKE} post-clean
+CLEAN_DEPENDENCIES+=    post-clean-noflavor
+post-clean-noflavor:
+	@cd ${.CURDIR} &&  ${SETENV} ${MAKE} post-clean
 .endif
+.ORDER: ${CLEAN_DEPENDENCIES}
+clean: ${CLEAN_DEPENDENCIES}
+.endif
+
+.if !empty(_FLAVOR)
+_CLEANFLAVORS=  ${_FLAVOR}
+.else
+_CLEANFLAVORS=  ${FLAVORS}
+.endif
+.for _f in ${_CLEANFLAVORS}
+CLEAN_DEPENDENCIES=
+.if !defined(NOCLEANDEPENDS)
+CLEAN_DEPENDENCIES+=    limited-clean-depends-${_f}
+limited-clean-depends-${_f}:
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} limited-clean-depends
+.endif
+.if target(pre-clean)
+CLEAN_DEPENDENCIES+=    pre-clean-${_f}
+pre-clean-${_f}:
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} pre-clean
+.endif
+CLEAN_DEPENDENCIES+=    do-clean-${_f}
+do-clean-${_f}:
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} do-clean
+.if target(post-clean)
+CLEAN_DEPENDENCIES+=    post-clean-${_f}
+post-clean-${_f}:
+	@cd ${.CURDIR} &&  ${SETENV} FLAVOR=${_f} ${MAKE} post-clean
+.endif
+.ORDER: ${CLEAN_DEPENDENCIES}
+clean: ${CLEAN_DEPENDENCIES}
+.endfor
 .endif
 
 .if !target(pre-distclean)
@@ -2893,8 +2974,8 @@ pre-distclean:
 .endif
 
 .if !target(distclean)
-distclean: pre-distclean clean
-	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES} ${_PATCHFILES}"
+distclean: clean
+	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES:Q} ${_PATCHFILES:Q}"
 .endif
 
 .if !target(delete-distfiles)
