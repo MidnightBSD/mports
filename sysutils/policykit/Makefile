@@ -29,7 +29,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-polkit-user=polkit \
 		--with-polkit-group=polkit
 CONFIGURE_ENV=	GTKDOC="false"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
