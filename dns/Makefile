@@ -7,6 +7,7 @@ SUBDIR += autotrust
 SUBDIR += bind-tools
 SUBDIR += bind910
 SUBDIR += bind911
+SUBDIR += bind912
 SUBDIR += bindgraph
 SUBDIR += c-ares
 SUBDIR += ddclient
