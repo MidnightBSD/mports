@@ -39,7 +39,7 @@ ALT_COMPILER_TYPE=	gcc
 
 # We do always need clang
 .if (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 34) || ${COMPILER_TYPE} != clang
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:lang/clang34
 CPP=	${LOCALBASE}/bin/clang-cpp34
 CC=	${LOCALBASE}/bin/clang34
 CXX=	${LOCALBASE}/bin/clang++34
@@ -49,7 +49,7 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 .endif
 .endif
 
-LIB_DEPENDS+=	libobjc.so.4.6:${PORTSDIR}/lang/libobjc2
+LIB_DEPENDS+=	libobjc.so.4.6:lang/libobjc2
 OBJCFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV+=	OBJC="${CC}" OBJCFLAGS="${OBJCFLAGS}"
