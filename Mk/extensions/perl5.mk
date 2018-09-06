@@ -175,12 +175,12 @@ PERL_NO_DEPENDS?= NO
 
 .if (${PERL_NO_DEPENDS:tu} == "NO") && !defined(_CORE_PERL)
 .if defined(USE_PERL5_BUILD)
-EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-BUILD_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
+EXTRACT_DEPENDS+=${PERL5}:lang/${PERL_PORT}
+PATCH_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
+BUILD_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 .endif
 .if defined(USE_PERL5) || defined(USE_PERL5_RUN)
-RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
+RUN_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 .endif
 .endif
 
@@ -206,7 +206,7 @@ ALL_TARGET?=
 PL_BUILD?=		Build
 CONFIGURE_SCRIPT?=	Build.PL
 .if ${PORTNAME} != Module-Build
-BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:${PORTSDIR}/devel/p5-Module-Build
+BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:devel/p5-Module-Build
 .endif
 CONFIGURE_ARGS+= \
 	create_packlist=0 \
