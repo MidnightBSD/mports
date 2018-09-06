@@ -98,10 +98,10 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 
 # Set RUN_DEPENDS for wrappers
 . if defined(USE_TCL_WRAPPER)
-RUN_DEPENDS+=		tclsh:${PORTSDIR}/lang/tcl-wrapper
+RUN_DEPENDS+=		tclsh:lang/tcl-wrapper
 . endif
 . if defined(USE_TK_WRAPPER)
-RUN_DEPENDS+=		wish:${PORTSDIR}/x11-toolkits/tk-wrapper
+RUN_DEPENDS+=		wish:x11-toolkits/tk-wrapper
 . endif
 
 # Process USE_TCL_BUILD and USE_TCL_RUN
@@ -276,13 +276,13 @@ TCLSH=			${LOCALBASE}/bin/tclsh${TCL_VER}
 # Add dependencies
 .   if !defined(_TK_ONLY)
 .    if !defined(_TCL_RUN_DEPENDS) && !defined(_TCL_BUILD_DEPENDS)
-LIB_DEPENDS+=	tcl${USE_TCL}:${PORTSDIR}/lang/tcl${USE_TCL}
+LIB_DEPENDS+=	tcl${USE_TCL}:lang/tcl${USE_TCL}
 .    else
 .     if defined(_TCL_BUILD_DEPENDS)
-BUILD_DEPENDS+=	tclsh${TCL_VER}:${PORTSDIR}/lang/tcl${USE_TCL}
+BUILD_DEPENDS+=	tclsh${TCL_VER}:lang/tcl${USE_TCL}
 .     endif
 .     if defined(_TCL_RUN_DEPENDS)
-RUN_DEPENDS+=	tclsh${TCL_VER}:${PORTSDIR}/lang/tcl${USE_TCL}
+RUN_DEPENDS+=	tclsh${TCL_VER}:lang/tcl${USE_TCL}
 .     endif
 .    endif
 .   endif
@@ -301,13 +301,13 @@ USE_TK:=	${USE_TCL}
 TK_VER:=	${USE_TCL:S/8/8./}
 
 .   if !defined(_TK_RUN_DEPENDS) && !defined(_TK_BUILD_DEPENDS)
-LIB_DEPENDS+=	tk${USE_TK}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
+LIB_DEPENDS+=	tk${USE_TK}:x11-toolkits/tk${USE_TK}
 .   else
 .    if defined(_TK_BUILD_DEPENDS)
-BUILD_DEPENDS+=	wish${TK_VER}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
+BUILD_DEPENDS+=	wish${TK_VER}:x11-toolkits/tk${USE_TK}
 .    endif
 .    if defined(_TK_RUN_DEPENDS)
-RUN_DEPENDS+=	wish${TK_VER}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
+RUN_DEPENDS+=	wish${TK_VER}:x11-toolkits/tk${USE_TK}
 .    endif
 .   endif
 
