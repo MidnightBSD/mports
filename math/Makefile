@@ -33,6 +33,7 @@ SUBDIR += p5-Math-BigRat
 SUBDIR += p5-Math-Random-ISAAC
 SUBDIR += p5-Math-Random-ISAAC-XS
 SUBDIR += p5-Math-Round
+SUBDIR += p5-Number-Compare
 SUBDIR += p5-Set-IntSpan
 SUBDIR += p5-bignum
 SUBDIR += php56-bcmath
