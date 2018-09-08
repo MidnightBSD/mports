@@ -114,6 +114,7 @@ SUBDIR += py-hyperlink
 SUBDIR += py-pyjwt
 SUBDIR += py-requests
 SUBDIR += py-treq
+SUBDIR += py-wsaccel
 SUBDIR += qt5-webchannel
 SUBDIR += qt5-websockets
 SUBDIR += seamonkey
