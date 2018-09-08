@@ -19,7 +19,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${PREFIX}/share/sgml/openjade \
 		--disable-doc-build
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
