@@ -13,7 +13,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}incremental>=0:devel/py-incremental
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=0:devel/py-attrs@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=0:devel/py-attrs \
 		${PYTHON_PKGNAMEPREFIX}twisted>=16.4.0:devel/py-twisted \
 		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.1.0:www/py-requests
