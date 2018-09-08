@@ -24,7 +24,7 @@ OPTIONS_DEFAULT=THREADS
 TDS_SUF="=${TDS_VERSION}"
 .else
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 pre-build:
 	@V=`${PKG_INFO} | ${SED} -ne 's/^freetds-0.\(..\).*/\1/p'` ; \
