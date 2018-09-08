@@ -1,0 +1,21 @@
+# $MidnightBSD$
+
+PORTNAME=	hyperlink
+PORTVERSION=	18.0.0
+CATEGORIES=	www python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Featureful, correct URL for Python
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>=2.5:dns/py-idna
+
+NO_ARCH=	yes
+USE_PYTHON=	autoplist concurrent distutils
+USES=		python
+
+.include <bsd.port.mk>
