@@ -1,9 +1,10 @@
 # $MidnightBSD$
 
-PORTNAME=	OpenSP
+PORTNAME=	opensp
 PORTVERSION=	1.5.2
 CATEGORIES=	textproc
 MASTER_SITES=	SF/openjade/${PORTNAME:tl}/${PORTVERSION}
+DISTFILES=	OpenSP-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This package is a collection of SGML/XML tools called OpenSP
@@ -19,6 +20,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${PREFIX}/share/sgml/openjade \
 		--disable-doc-build
+
+WRKSRC=		${WRKDIR}/OpenSP-${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
