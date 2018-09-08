@@ -2350,10 +2350,10 @@ lib/python%%XYDOT%%/pickle.py
 lib/python%%XYDOT%%/pickletools.py
 lib/python%%XYDOT%%/pipes.py
 lib/python%%XYDOT%%/pkgutil.py
-lib/python%%XYDOT%%/plat-midnightbsd0/IN.py
-lib/python%%XYDOT%%/plat-midnightbsd0/__pycache__/IN.cpython-%%XY%%.pyc
-lib/python%%XYDOT%%/plat-midnightbsd0/__pycache__/IN.cpython-%%XY%%.pyo
-lib/python%%XYDOT%%/plat-midnightbsd0/regen
+lib/python%%XYDOT%%/plat-midnightbsd%%OSMAJOR%%/IN.py
+lib/python%%XYDOT%%/plat-midnightbsd%%OSMAJOR%%/__pycache__/IN.cpython-%%XY%%.pyc
+lib/python%%XYDOT%%/plat-midnightbsd%%OSMAJOR%%/__pycache__/IN.cpython-%%XY%%.pyo
+lib/python%%XYDOT%%/plat-midnightbsd%%OSMAJOR%%/regen
 lib/python%%XYDOT%%/platform.py
 lib/python%%XYDOT%%/plistlib.py
 lib/python%%XYDOT%%/poplib.py
