@@ -10,7 +10,7 @@ MASTERDIR=	${.CURDIR}/../wine
 PKGINSTALL=	${.CURDIR}/files/pkg-install
 PKGDEINSTALL=	${PKGINSTALL}
 
-RUN_DEPENDS=	dri>0:${PORTSDIR}/graphics/dri
+RUN_DEPENDS=	dri>0:${PORTSDIR}/graphics/mesa-dri
 
 CONFLICTS_INSTALL=	i386-wine-devel-[0-9]* wine-[0-9]* wine-devel-[0-9]*
 
