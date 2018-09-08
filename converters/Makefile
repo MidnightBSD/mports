@@ -13,6 +13,7 @@ SUBDIR += p5-Convert-BinHex
 SUBDIR += p5-Cpanel-JSON-XS
 SUBDIR += p5-Encode
 SUBDIR += p5-Encode-Detect
+SUBDIR += p5-Encode-JIS2K
 SUBDIR += p5-Encode-Locale
 SUBDIR += p5-JSON
 SUBDIR += p5-JSON-Any
