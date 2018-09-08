@@ -1,8 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	lz4
-PORTVERSION=	131
-DISTVERSIONPREFIX=	r
+PORTVERSION=	1.8.2
+DISTVERSIONPREFIX=	v
+PORTEPOCH=	1
 CATEGORIES=	archivers
 PKGNAMEPREFIX=	lib
 
@@ -12,36 +13,16 @@ COMMENT=	LZ4 compression library, lossless and very fast
 LICENSE=	bsd2 gpl2
 LICENSE_COMB=	multi
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	Cyan4973
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${PORTVERSION}
-
 USES=		gmake pkgconfig
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
+MAKE_ARGS=	PREFIX="${PREFIX}" \
+		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+		MANDIR="${MAN1PREFIX}/man"
 
-ALL_TARGET=	default		# don't remove this
-SO_VER=		1.7.1
-PLIST_SUB+=	SO_VER=${SO_VER} SO_VER_MAJ=${SO_VER:R:R}
-
-post-patch:
-	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} ${REINPLACE_CMD} \
-		-e 's/LIBDIR?=/LOCALLIBDIR=/; s/$$(LIBDIR)/$$(LOCALLIBDIR)/g' \
-		-e 's|$$(LOCALLIBDIR)/pkgconfig|$$(PREFIX)/libdata/pkgconfig|' \
-		-e '/^MANDIR :=/s|share/||' \
-		-e 's/kFreeBSD/& MidnightBSD/' \
-		-e 's|$$(MAKE)|${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS}|'
-	@${REINPLACE_CMD} -e '/^all:/s/$$/ liblz4.pc/' \
-		${WRKSRC}/lib/Makefile
-	@${REINPLACE_CMD} -e '/^all:/s|fullbench.*||' \
+post-extract:
+	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
+		${WRKSRC}/lib/Makefile ${WRKSRC}/Makefile \
 		${WRKSRC}/programs/Makefile
-
-do-install:
-	cd ${WRKSRC} && ${FAKE_MAKEENV} ${MAKE_CMD} install
-
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/lz4*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblz4.so.${SO_VER}
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/libdata/pkgconfig/liblz4.pc
 
 .include <bsd.port.mk>
