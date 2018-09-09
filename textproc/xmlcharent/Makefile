@@ -5,7 +5,8 @@ PORTNAME=	xmlcharent
 PORTVERSION=	0.3
 PORTREVISION=	4
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	http://www.oasis-open.org/docbook/${PORTNAME}/${PORTVERSION}/ \
+		https://library.syr.edu/digital/guides/lavender/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML character entities
@@ -18,7 +19,6 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
 USES=		zip
-NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	XMLDIR=${XMLDIR}
