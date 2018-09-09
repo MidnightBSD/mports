@@ -5,7 +5,6 @@ etc/authlib/authldaprc.dist
 etc/openldap/schema/authldap.schema.default
 @exec [ -f %D/etc/openldap/schema/authldap.schema ] || cp -p %D/etc/openldap/schema/authldap.schema.default %D/etc/openldap/schema/authldap.schema
 lib/courier-authlib/libauthldap.a
-lib/courier-authlib/libauthldap.la
 lib/courier-authlib/libauthldap.so
 lib/courier-authlib/libauthldap.so.0
 %%PORTDOCS%%%%DOCSDIR%%/README.ldap
