@@ -59,28 +59,28 @@ PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 
 .if defined(USE_GNUSTEP)
 .  if ${USE_GNUSTEP:Mbase}
-LIB_DEPENDS+=	libgnustep-base.so:${PORTSDIR}/lang/gnustep-base
+LIB_DEPENDS+=	libgnustep-base.so:lang/gnustep-base
 .  endif
 
 .  if ${USE_GNUSTEP:Mbuild}
 PATH:=	${GNUSTEP_SYSTEM_TOOLS}:${GNUSTEP_LOCAL_TOOLS}:${PATH}
-MAKE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}" GNUSTEP_SYSTEM_ROOT="${GNUSTEP_SYSTEM_ROOT}"
+MAKE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}"
 # All GNUstep things installed from ports should be in the System domain.
 # Things installed from source can then freely live in the Local domain without
 # conflicts.
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-CONFIGURE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}" GNUSTEP_SYSTEM_ROOT="${GNUSTEP_SYSTEM_ROOT}"
-BUILD_DEPENDS+=	gnustep-make>0:${PORTSDIR}/devel/gnustep-make
+CONFIGURE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}"
+BUILD_DEPENDS+=	gnustep-make>0:devel/gnustep-make
 .include "${PORTSDIR}/Mk/extensions/objc.mk"
 .  endif
 
 .  if ${USE_GNUSTEP:Mgui}
-LIB_DEPENDS+=	libgnustep-gui.so:${PORTSDIR}/x11-toolkits/gnustep-gui
+LIB_DEPENDS+=	libgnustep-gui.so:x11-toolkits/gnustep-gui
 .  endif
 
 .  if ${USE_GNUSTEP:Mback}
-BUILD_DEPENDS+=	gnustep-back>0:${PORTSDIR}/x11-toolkits/gnustep-back
-RUN_DEPENDS+=	gnustep-back>0:${PORTSDIR}/x11-toolkits/gnustep-back
+BUILD_DEPENDS+=	gnustep-back>0:x11-toolkits/gnustep-back
+RUN_DEPENDS+=	gnustep-back>0:x11-toolkits/gnustep-back
 .  endif
 
 .endif
