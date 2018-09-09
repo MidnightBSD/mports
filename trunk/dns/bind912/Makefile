@@ -258,30 +258,30 @@ post-patch-PORTREVISION-on:
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}
 .  for i in dynamic master slave working
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
+	@${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/$i
 .  endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${ETCDIR}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${FAKE_DESTDIR}${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${FAKE_DESTDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${FAKE_DESTDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${FAKE_DESTDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${FAKE_DESTDIR}${ETCDIR}/master
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${STAGEDIR}${ETCDIR}/rndc.conf.sample
+		${FAKE_DESTDIR}${ETCDIR}/rndc.conf.sample
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${FAKE_DESTDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGES* ${WRKSRC}/HISTORY.md \
-		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
 .endif	# BIND_TOOLS_SLAVE
 
 # Can't use USE_PYTHON=autoplist
 post-install-PYTHON-on:
-	@${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${STAGEDIR}||' >> ${TMPPLIST}
+	@${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${FAKE_DESTDIR}||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
