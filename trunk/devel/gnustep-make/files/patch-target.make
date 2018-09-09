@@ -1,6 +1,6 @@
---- target.make.orig	2009-02-09 02:04:28 -0500
-+++ target.make	2009-02-09 02:06:35 -0500
-@@ -669,6 +669,63 @@
+--- target.make.orig	2016-11-22 17:43:57.000000000 -0500
++++ target.make	2018-09-09 14:18:20.478316000 -0400
+@@ -681,6 +681,55 @@
  
  ####################################################
  #
@@ -9,7 +9,7 @@
 +ifeq ($(findstring midnightbsd, $(GNUSTEP_TARGET_OS)), midnightbsd)
 +HAVE_SHARED_LIBS        = yes
 +SHARED_LIB_LINK_CMD = \
-+        $(CC) -shared -Wl,-soname,$(LIB_LINK_SONAME_FILE) \
++        $(LD) -shared -Wl,-soname,$(LIB_LINK_SONAME_FILE) \
 +           $(ALL_LDFLAGS) -o $(LIB_LINK_OBJ_DIR)/$(LIB_LINK_VERSION_FILE) $^ \
 +           $(INTERNAL_LIBRARIES_DEPEND_UPON) \
 +           $(SHARED_LD_POSTFLAGS) \
@@ -34,25 +34,17 @@
 +        chown $(CHOWN_TO) $(LIB_LINK_SONAME_FILE); \
 +        chown $(CHOWN_TO) $(LIB_LINK_FILE))
 +OBJ_MERGE_CMD           = \
-+        $(CC) -nostdlib -r $(ALL_LDFLAGS) -o $(GNUSTEP_OBJ_DIR)/$(SUBPROJECT_PRODUCT) $^ ;
++        $(LD) -nostdlib $(OBJ_MERGE_CMD_FLAG) $(ALL_LDFLAGS) -o $(GNUSTEP_OBJ_DIR)/$(SUBPROJECT_PRODUCT) $^ ;
 +
 +SHARED_CFLAGS   += -fPIC
 +SHARED_LIBEXT   = .so
 +
 +HAVE_BUNDLES    = yes
-+BUNDLE_LD       = $(CC)
++BUNDLE_LD       = $(LD)
 +BUNDLE_LDFLAGS  += -shared
 +ADDITIONAL_LDFLAGS += -rdynamic
 +STATIC_LDFLAGS += -static
 +
-+##
-+## The -pthread flag must be passed to all compilation/link commands.
-+##
-+ifeq ($(objc_threaded), -pthread)
-+  INTERNAL_CFLAGS += -pthread
-+  INTERNAL_OBJCFLAGS += -pthread
-+  INTERNAL_LDFLAGS += -pthread
-+endif
 +endif
 +#
 +# end MidnightBSD
