@@ -2,7 +2,7 @@
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 
 PORTNAME=	gnustep-back
-PORTVERSION=	0.24.1
+PORTVERSION=	0.25.1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	GNUSTEP/core
 
@@ -12,12 +12,12 @@ COMMENT=	GNUstep GUI backend
 LICENSE_COMB=	multi
 LICENSE=	gpl3 lgpl3
 
-LIB_DEPENDS+=	libgif.so:${PORTSDIR}/graphics/giflib \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libXft.so:${PORTSDIR}/x11-fonts/libXft \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libcairo.so:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS+=	libgif.so:graphics/giflib \
+		libtiff.so:graphics/tiff \
+		libXft.so:x11-fonts/libXft \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libcairo.so:graphics/cairo
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-tiff-library=${LOCALBASE}/lib \
@@ -36,7 +36,6 @@ USE_GL=		yes
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS} -I${LOCALBASE}/include"
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 BACKVERSION=	${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
 
 CFLAGS+=	-I${LOCALBASE}/include/freetype2
