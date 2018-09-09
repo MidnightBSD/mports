@@ -1,8 +1,7 @@
-# $FreeBSD: head/devel/py27-setuptools/Makefile 436350 2017-03-17 20:05:35Z antoine $
+# $MidnightBSD$
 
 PORTNAME=	setuptools
-PORTVERSION=	32.1.0
-PORTREVISION=	1
+PORTVERSION=	40.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +13,7 @@ COMMENT=	Python packages installer
 LICENSE=	python
 
 NO_ARCH=	yes
-USES?=		python:2.7
+USES?=		python:2.7 zip
 USE_PYTHON=	autoplist concurrent distutils
 
 PYDISTUTILS_SETUP=	${PYSETUP}
