@@ -10,7 +10,9 @@ MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
 
-LICENSE=	unknown
+LICENSE=	GPLv2 BSD2CLAUSE
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
