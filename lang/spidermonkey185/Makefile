@@ -29,6 +29,7 @@ WRKSRC=			${WRKDIR}/js-${PORTVERSION}/js/src
 
 CONFIGURE_ARGS=		--with-pthreads \
 			--with-system-nspr
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 # This comes from bsd.gecko.mk, fixes linking issues on 9.0 and higher.
 post-configure:
