@@ -23,9 +23,9 @@ USE_PYTHON=	distutils py3kplist
 USES=		python
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_version.so \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/block/_block.so \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/frame/_frame.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_version.so \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/block/_block.so \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/frame/_frame.so
 
 .include <bsd.port.pre.mk>
 
