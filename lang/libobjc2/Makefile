@@ -1,40 +1,28 @@
 # $MidnightBSD$
 
 PORTNAME=	libobjc2
-PORTVERSION=	1.7
+PORTVERSION=	1.8.1
+DISTVERSIONPREFIX=	v
 CATEGORIES=	lang devel gnustep
-MASTER_SITES=	http://download.gna.org/gnustep/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement Objective-C runtime supporting Obj-C 2 features
 
 LICENSE=	mit
 
+BROKEN_powerpc=		Does not compile on powerpc: Unsupported relocation type 10
+BROKEN_sparc64=		Does not compile on sparc64: Cannot configure clang properly
+USES=		cmake compiler:c++11-lang objc:compiler
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	gnustep
+
 SSP_UNSAFE=	yes
-
-USES=		cmake tar:bzip2
-
-.include <bsd.mport.options.mk>
-
-_CLANG!=	if [ -f /usr/bin/clang ] ; then  /usr/bin/clang --version | head -1 | \
-		${SED} -e 's/.*clang version \([0-9]\)\.\([0-9]\).*/\1\2/' ; else ${ECHO} 0 ; fi
-
-.if ${_CLANG} < 34
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang34:${PORTSDIR}/lang/clang34
-CC=		${LOCALBASE}/bin/clang34
-CXX=	${LOCALBASE}/bin/clang++34
-.else
-CC=		/usr/bin/clang
-CXX=	/usr/bin/clang++
-.endif
 
 SHLIB_MAJOR=	4
 SHLIB_MINOR=	6
 
 PLIST_SUB+=	SHLIB_MAJOR=${SHLIB_MAJOR} SHLIB_MINOR=${SHLIB_MINOR}
-
-CMAKE_ARGS+=	-DFORCE_LIBOBJCXX=ON
-PLIST_SUB+=	WITH_SEPARATECXX=""
 
 CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib
 CMAKE_ARGS+=	-DTESTS=OFF
@@ -44,6 +32,5 @@ CMAKE_ARGS+=	-DLLVM_OPTS=OFF
 
 post-install:
 	${LN} -sf libobjc.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${STAGEDIR}${PREFIX}/lib/libobjc.so.${SHLIB_MAJOR}
-	${LN} -sf libobjcxx.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${STAGEDIR}${PREFIX}/lib/libobjcxx.so.${SHLIB_MAJOR}
 
 .include <bsd.port.mk>
