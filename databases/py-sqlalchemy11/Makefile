@@ -38,14 +38,14 @@ SQLITE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3
 SYBASE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sybase>=0:databases/py-sybase
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/sqlalchemy/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/sqlalchemy/*.so
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/
-	cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
