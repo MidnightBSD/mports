@@ -81,13 +81,13 @@ post-install:
 	for i in *; do ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBVER} ; done
 
 post-install-JAVA-off:
-	${RM} -r ${STAGEDIR}${DOCSDIR}/java
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/java
 .for i in gsg gsg_db_rep gsg_txn
-	${RM} -r ${STAGEDIR}${DOCSDIR}/${i}/JAVA
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/${i}/JAVA
 .endfor
 
 post-install-SQL-off:
-	${RM} -r ${STAGEDIR}${DOCSDIR}/bdb-sql
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/bdb-sql
 
 post-install-SQL-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/../lang/sql/upgrade61.sh \
