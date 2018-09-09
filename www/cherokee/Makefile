@@ -37,6 +37,7 @@ CONFIGURE_ARGS=	--disable-silent-rules \
 		--with-wwwroot=${WWWDIR} \
 		--with-wwwuser=${CHEROKEE_USER} \
 		--with-wwwgroup=${CHEROKEE_GROUP}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 MAKE_ARGS=	pkgconfigdir=${PREFIX}/libdata/pkgconfig
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
@@ -61,14 +62,14 @@ OPTIONS_SUB=		yes
 ADMIN_DESC=		Build the Admin Interface
 ADMIN_USES=		python:2,run
 ADMIN_CONFIGURE_OFF=	--disable-admin
-FFMPEG_LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
+FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 FFMPEG_CONFIGURE_ON=	--with-ffmpeg=yes
 FFMPEG_CONFIGURE_OFF=	--with-ffmpeg=no
-GEOIP_LIB_DEPENDS=	libGeoIP.so:${PORTSDIR}/net/GeoIP
+GEOIP_LIB_DEPENDS=	libGeoIP.so:net/GeoIP
 GEOIP_CONFIGURE_ON=	--with-geoip=yes
 GEOIP_CONFIGURE_OFF=	--with-geoip=no
 INTPCRE_DESC=		Use internal PCRE library
-INTPCRE_LIB_DEPENDS_OFF=libpcre.so:${PORTSDIR}/devel/pcre
+INTPCRE_LIB_DEPENDS_OFF=libpcre.so:devel/pcre
 INTPCRE_CONFIGURE_ON=	--enable-internal-pcre
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LDAP_USE=		openldap=yes
@@ -78,9 +79,9 @@ MYSQL_USE=		mysql=yes
 MYSQL_CONFIGURE_ON=	--with-mysql=yes
 MYSQL_CONFIGURE_OFF=	--with-mysql=no
 RRDTOOL_DESC=		Usage graphs support
-RRDTOOL_RUN_DEPENDS=	rrdtool:${PORTSDIR}/databases/rrdtool
+RRDTOOL_RUN_DEPENDS=	rrdtool:databases/rrdtool
 UWSGI_DESC=		uWSGI support
-UWSGI_RUN_DEPENDS=	uwsgi:${PORTSDIR}/www/uwsgi
+UWSGI_RUN_DEPENDS=	uwsgi:www/uwsgi
 
 .include <bsd.mport.options.mk>
 
