@@ -5,7 +5,7 @@
   * this is against historical precedent...
   */
 -#if defined(__weak_reference) && !defined(__FreeBSD__)
-+#if defined(__weak_reference) && !defined(__FreeBSD__) && !defined(__DragonFly__)
++#if defined(__weak_reference) && !defined(__FreeBSD__) && !defined(__MidnightBSD__)
  __weakref_visible char *my_get_alias_text(const char *)
      __weak_reference(get_alias_text);
  #endif
@@ -14,7 +14,7 @@
  	 Int c __attribute__((__unused__)))
  {
 -#if defined(__weak_reference) && !defined(__FreeBSD__)
-+#if defined(__weak_reference) && !defined(__FreeBSD__) && !defined(__DragonFly__)
++#if defined(__weak_reference) && !defined(__FreeBSD__) && !defined(__MidnightBSD__)
  	char alias_name[3];
  	char *alias_text;
  
