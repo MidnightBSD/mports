@@ -27,6 +27,7 @@ LIB_DEPENDS+=	libboost_thread.so:devel/boost-libs
 BUILD_DEPENDS+=	${BJAM}:devel/boost-jam
 
 do-build:
+	${MKDIR} ${WRKSRC}/tools/build/v2/
 	@${ECHO_CMD} "using python : " ${PYTHON_VER} " : " ${PYTHON_CMD} " : " ${PYTHON_INCLUDEDIR} ";" >> ${WRKSRC}/tools/build/v2/site-config.jam
 # build the library
 	@cd ${WRKSRC} && \
