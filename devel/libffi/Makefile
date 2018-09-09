@@ -17,6 +17,7 @@ TEST_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
 USES=		libtool pathfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 OPTIONS_DEFINE=	TESTS
 
