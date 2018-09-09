@@ -25,10 +25,8 @@ USE_RC_SUBR=	vpnc
 LEGAL_TEXT=	Redistribution is not allowed if linked against OpenSSL
 
 ALL_TARGET=	all
-SHEBANG_FILES=	makeman.pl
 
 PORTDOCS=	README TODO
-MANPAGE8=	vpnc.8
 
 MAKE_ENV+=	BINS="${EXTRABUILDS}"
 
@@ -68,7 +66,6 @@ do-install:
 	${INSTALL_PROGRAM} -m 751 ${WRKSRC}/vpnc ${STAGEDIR}${PREFIX}/sbin/vpnc
 .if ${PORT_OPTIONS:MDECRYPT}
 	${INSTALL_PROGRAM} ${WRKSRC}/cisco-decrypt ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${MANPAGE1} ${STAGEDIR}${MANPREFIX}/man/man1
 .endif
 	${INSTALL_SCRIPT} -m 751 ${WRKSRC}/vpnc-disconnect \
 		${STAGEDIR}${PREFIX}/sbin/vpnc-disconnect
@@ -77,7 +74,6 @@ do-install:
 .if !exists(${STAGEDIR}${PREFIX}/etc/vpnc.conf)
 	${INSTALL_DATA} -m 600 ${WRKSRC}/vpnc.conf ${STAGEDIR}${PREFIX}/etc
 .endif
-	${INSTALL_MAN} ${WRKSRC}/${MANPAGE8} ${STAGEDIR}${MANPREFIX}/man/man8
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
