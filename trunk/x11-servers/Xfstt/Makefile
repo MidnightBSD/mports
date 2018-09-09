@@ -34,9 +34,9 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/xfstt ${STAGEDIR}${PREFIX}/etc/rc.d/
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for _file in INSTALL THANKS
-	${INSTALL_DATA} ${WRKSRC}/${_file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${_file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
