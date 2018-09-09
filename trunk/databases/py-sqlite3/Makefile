@@ -21,6 +21,8 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
 USES=		python tar:xz
 USE_PYTHON=	autoplist distutils
+USE_GCC=	yes
+
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
