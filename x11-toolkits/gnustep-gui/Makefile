@@ -1,30 +1,32 @@
 # $MidnightBSD$
 
 PORTNAME=	gnustep-gui
-PORTVERSION=	0.24.1
-PORTREVISON=	1
+PORTVERSION=	0.25.1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	GNUSTEP/core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI library
 
-LICENSE_COMB=	multi
 LICENSE=	gpl3 lgpl3
+LICENSE_COMB=	multi
+
+BROKEN_powerpc64=	fails to build: Illegal instruction (core dumped)
+
+LIB_DEPENDS+=	libtiff.so:graphics/tiff
+LIB_DEPENDS+=	libpng.so:graphics/png
+LIB_DEPENDS+=	libgif.so:graphics/giflib
+LIB_DEPENDS+=	libicui18n.so:devel/icu
+LIB_DEPENDS+=	libsndfile.so:audio/libsndfile
+LIB_DEPENDS+=	libao.so:audio/libao
+LIB_DEPENDS+=	libflite.so:audio/flite
 
 OPTIONS_DEFINE=	DOCS CUPS ASPELL
 OPTIONS_DEFAULT=	CUPS
 OPTIONS_SUB=	yes
 
-DOCS_BUILD_DEPENDS=	texi2html:${PORTSDIR}/textproc/texi2html \
-			texi2pdf:${PORTSDIR}/print/texinfo
-
-LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
-LIB_DEPENDS+=	libgif.so:${PORTSDIR}/graphics/giflib
-LIB_DEPENDS+=	libsndfile.so:${PORTSDIR}/audio/libsndfile
-LIB_DEPENDS+=	libao.so:${PORTSDIR}/audio/libao
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libflite.a:${PORTSDIR}/audio/flite
+DOCS_BUILD_DEPENDS=	texi2html:textproc/texi2html \
+			texi2pdf:print/texinfo
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
@@ -43,13 +45,12 @@ EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.patch
 EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.speech.patch
 EXTRA_PATCHES+=	${FILESDIR}/AudioOutputSink.m.patch
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
 
 CUPS_CONFIGURE_ENABLE=		cups
-CUPS_LIB_DEPENDS+=	libcups.so:${PORTSDIR}/print/cups
-ASPELL_LIB_DEPENDS=	libaspell.so:${PORTSDIR}/textproc/aspell
+CUPS_LIB_DEPENDS+=	libcups.so:print/cups
+ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
 ASPELL_CONFIGURE_ENABLE=	aspell
 
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
@@ -63,8 +64,7 @@ pre-configure:
 	@${CP} ${GNUSTEP_PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
 .endfor
 
-do-build:
-	(cd ${WRKSRC}/; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
-                ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+post-install-DOCS-off:
+	@${FIND} -d ${STAGEDIR}${PREFIX}/GNUstep/System/Library/Documentation -type d -empty -delete
 
 .include <bsd.port.mk>
