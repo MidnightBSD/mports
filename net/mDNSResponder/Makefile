@@ -8,14 +8,15 @@ MASTER_SITES=	http://opensource.apple.com/tarballs/${PORTNAME}/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bonjour (zero-configuration networking) by Apple
 
-LICENSE=	agg
-#bsd3 and apache 2
+LICENSE=	bsd3 apache2
+LICENSE_COMB=	dual
 
-CONFLICTS=	avahi-libdns-[0-9]*
+CONFLICTS_INSTALL=	avahi-libdns openmdns
 
 BUILD_WRKSRC=	${WRKSRC}/mDNSPosix
 INSTALL_WRKSRC=	${WRKSRC}/mDNSPosix
 MAKE_ARGS=	LOCALBASE=${PREFIX} MANPATH=${MANPREFIX}/man os=freebsd
+MAKE_JOBS_UNSAFE=	yes
 USES=		cpe bison gmake
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	mdnsd mdnsresponder
