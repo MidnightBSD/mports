@@ -278,7 +278,6 @@ pre-configure:
 		${RM} -f "${WRKDIR}/courier.cache"; \
 	fi
 	@cp ${LOCALBASE}/share/gettext/po/Makefile.in.in ${WRKSRC}/pcp/po
-	@cp ${LOCALBASE}/share/libtool/config/ltmain.sh ${WRKSRC}
 .for oldlt in . bdbobj cgi courier courier/libs courier/filters courier/filters/perlfilter courier/module.dsn courier/module.esmtp courier/module.local courier/module.uucp gdbmobj gpglib http11 imap ldapaddressbook libhmac liblock maildir maildrop makedat md5 numlib pcp random128 rfc822 rfc1035 rfc2045 sha1 tcpd unicode webmail
 	@cd ${WRKSRC}/${oldlt} && ${SETENV} ${SCRIPTS_ENV} ${SH} /usr/local/bin/aclocal
 .endfor
