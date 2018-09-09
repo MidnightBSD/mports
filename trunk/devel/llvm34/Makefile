@@ -36,6 +36,7 @@ LIBNAME=		libLLVM-${DISTVERSION:C/([0-9]\.[0-9]).*/\1/:C/rc[0-9]//}.so
 
 CONFIGURE_ARGS+=	--enable-bindings=none
 CONFIGURE_ARGS+=	--enable-optimized
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-freebsd10.4
 
 OPTIONS_DEFINE=	ASSERTS CMAKE DOCS LIT LTOPLUGIN MANPAGES
 
