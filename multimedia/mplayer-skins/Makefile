@@ -1,10 +1,5 @@
-# New ports collection makefile for:	mplayer gui skins
-# Date created:				Sat Jan 12 10:59:45 BRST 2002
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.44 2007/01/30 01:42:14 rafan Exp $
-#
 
 PORTNAME=	mplayer-skins
 PORTVERSION=	1.1.3
@@ -78,6 +73,7 @@ do-install:
 	@for f in `cd ${WRKDIR} && ${FIND} . -type f ! -name ".*" | ${SORT}` ; do \
 		${INSTALL_DATA} "${WRKDIR}/$${f#./}" ${PREFIX}/${myDATADIR}/$${f#./} ; \
 	done
+	@${LN} -sfh Blue ${STAGEDIR}${PREFIX}/${myDATADIR}/default
 # add marker file
 	@${TOUCH} ${PREFIX}/${myDATADIR}/${PKGNAME}
 
