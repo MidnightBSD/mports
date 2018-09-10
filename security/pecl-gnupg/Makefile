@@ -17,6 +17,7 @@ LIB_DEPENDS=	libgpgme.so:${PORTSDIR}/security/gpgme
 
 CFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--with-gnupg=${LOCALBASE}/include/gpgme
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_PHP=	yes
 USE_PHPEXT=	yes
