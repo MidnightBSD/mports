@@ -1,20 +1,22 @@
 # $MidnightBSD$
 
 PORTNAME=	libzip
-PORTVERSION=	0.11.2
-PORTREVISION=	2
+PORTVERSION=	1.1.3
+PORTREVISION=	1
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.nih.at/libzip/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	C library for reading, creating, and modifying zip archives
+COMMENT=	C library for reading, creating, and modifying ZIP archives
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CPE_VENDOR=	nih
+
 GNU_CONFIGURE=	yes
-MAKE_ENV=	LC_ALL="C"
-USES=		cpe libtool pathfix tar:xz
+USES=		cpe libtool pathfix perl5 tar:xz
+USE_PERL5=	build
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
