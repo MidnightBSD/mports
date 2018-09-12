@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libyaml
-PORTVERSION=	0.1.7
+PORTVERSION=	0.2.1
 CATEGORIES=	textproc
 MASTER_SITES=	http://pyyaml.org/download/libyaml/
 DISTNAME=	yaml-${PORTVERSION}
