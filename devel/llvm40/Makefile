@@ -49,8 +49,8 @@ OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT
 OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD
-OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
-OPTIONS_DEFAULT_i386=	COMPILER_RT
+OPTIONS_DEFAULT_amd64=	GOLD OPENMP
+OPTIONS_DEFAULT_i386=	
 OPTIONS_SUB=	yes
 
 CLANG_DESC=	Build clang
@@ -100,7 +100,7 @@ CMAKE_BUILD_TYPE=	RelWithDebInfo
 STRIP=
 .endif
 
-_CRTLIBDIR=	${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/${LLVM_RELEASE}/lib/freebsd
+_CRTLIBDIR=	${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/${LLVM_RELEASE}/lib/midnightbsd
 
 # Emulate USE_GITHUB's ${WRKSRC_tag} to reduce diffs to ../llvm-devel
 .for option in CLANG COMPILER_RT EXTRAS LLD LLDB OPENMP
@@ -376,8 +376,8 @@ post-install-DOCS-on:
 	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
 	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
 	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
@@ -403,12 +403,12 @@ post-install-COMPILER_RT-on:
 	cd ${WRKDIR}/compiler-rt-build && \
 	    ${MAKE_ENV} ${MAKE_CMD} ${INSTALL_TARGET}
 .if ${ARCH} == "amd64"
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/freebsd/libclang_rt*i386*
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/libclang_rt*i386*
 .endif
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/freebsd/* \
+	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/* \
 	    ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/freebsd
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd
 
 post-install-LIT-on:
 	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/utils/lit/lit.py \
