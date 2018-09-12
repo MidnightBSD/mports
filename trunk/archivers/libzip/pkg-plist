@@ -5,8 +5,8 @@ include/zip.h
 include/zipconf.h
 lib/libzip.a
 lib/libzip.so
-lib/libzip.so.4
-lib/libzip.so.4.0.0
+lib/libzip.so.5
+lib/libzip.so.5.0.0
 libdata/pkgconfig/libzip.pc
 man/man1/zipcmp.1.gz
 man/man1/zipmerge.1.gz
