@@ -2,7 +2,7 @@
 # $FreeBSD: head/archivers/libarchive/Makefile 362046 2014-07-16 07:53:29Z bapt $
 
 PORTNAME=	libarchive
-PORTVERSION=	3.3.2
+PORTVERSION=	3.3.3
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://libarchive.org/downloads/
