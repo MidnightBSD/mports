@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	lz4
-PORTVERSION=	1.8.2
+PORTVERSION=	1.8.3
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	archivers
@@ -22,7 +22,6 @@ MAKE_ARGS=	PREFIX="${PREFIX}" \
 
 post-extract:
 	${REINPLACE_CMD} -e 's|DragonFly|MidnightBSD|g' \
-		${WRKSRC}/lib/Makefile ${WRKSRC}/Makefile \
-		${WRKSRC}/programs/Makefile
+		${WRKSRC}/lib/Makefile
 
 .include <bsd.port.mk>
