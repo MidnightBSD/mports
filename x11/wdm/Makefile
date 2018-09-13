@@ -2,7 +2,7 @@
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
@@ -18,9 +18,9 @@ COMMENT=	WINGs Display Manager; an xdm replacement
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libWINGs.so:${PORTSDIR}/x11-wm/windowmaker
+LIB_DEPENDS=	libWINGs.so:x11-wm/windowmaker
 
-
+NOT_FOR_ARCHS=	sparc64
 
 OPTIONS_DEFINE=	PAM
 OPTIONS_DEFAULT=	PAM
@@ -43,7 +43,7 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
 
 CPPFLAGS+=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
-LIBS+=		-L${LOCALBASE}/lib
+LIBS+=		-L${LOCALBASE}/lib -lintl
 
 DEF_SERVER?=	${LOCALBASE}/bin/X
 XRDB_PATH?=	${LOCALBASE}/bin/xrdb
