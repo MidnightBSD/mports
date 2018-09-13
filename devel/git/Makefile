@@ -1,188 +1,150 @@
 # $MidnightBSD$
 
 PORTNAME=	git
-DISTVERSION=	2.10.1
-PORTREVISION=	1
+DISTVERSION=	2.16.2
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
+		${PORTNAME}-manpages-${DISTVERSION}${EXTRACT_SUFX}
 # We manually extract the htmldocs.
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
+		${PORTNAME}-manpages-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Distributed source code management tool
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS?=	git-subversion-[0-9]*
+CONFLICTS_INSTALL?=	git-gui-[0-9]* git-subversion-[0-9]* git-lite-[0-9]*
 
 USERS=		git_daemon
 GROUPS=		git_daemon
 
 SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 GNU_CONFIGURE=	yes
-USES=		gmake shebangfix ssl tar:xz
+USES=		autoreconf gmake shebangfix ssl tar:xz
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV+=	V=1 XMLTO_EXTRA=--skip-validation 
+MAKE_ARGS+=	DEVELOPER_CFLAGS=
+MAKE_ENV+=	V=1 XMLTO_EXTRA=--skip-validation
 USE_RC_SUBR=	git_daemon
 SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
+		t/*/*/pre t/*/*/post t/Git-SVN/Utils/*.t \
+		git-p4.py \
+		contrib/hg-to-git/hg-to-git.py \
 		contrib/hooks/update-paranoid \
+		contrib/hooks/multimail/post-receive.example \
+		contrib/hooks/multimail/git_multimail.py \
+		contrib/hooks/multimail/migrate-mailhook-config \
+		contrib/fast-import/import-zips.py \
+		contrib/remote-helpers/git-remote-bzr \
+		contrib/remote-helpers/git-remote-hg \
 		contrib/credential/netrc/git-credential-netrc \
-		contrib/diff-highlight/diff-highlight \
 		contrib/buildsystems/generate contrib/contacts/git-contacts \
-		contrib/svn-fe/svnrdump_sim.py
+		contrib/svn-fe/svnrdump_sim.py \
+		templates/hooks--fsmonitor-watchman.sample
+TEST_TARGET=	test
 
 CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
 OPTIONS_DEFINE=	GUI SVN GITWEB CONTRIB P4 CVS HTMLDOCS PERL ICONV CURL \
-		NLS
-OPTIONS_DEFAULT=	CONTRIB P4 CVS PERL ICONV CURL NLS
+		SEND_EMAIL NLS PCRE SUBTREE
+OPTIONS_DEFAULT=	CONTRIB P4 CVS PERL GITWEB ICONV CURL SEND_EMAIL PCRE \
+			SUBTREE
+OPTIONS_SUB=	yes
 
 GITWEB_DESC=	Install gitweb
 CONTRIB_DESC=	Install contributed scripts
 P4_DESC=	Enable Perforce support
 CVS_DESC=	Enable CVS support
 HTMLDOCS_DESC=	Install additional documentation
+SEND_EMAIL_DESC=Enable the git-send-email(1) script
+SUBTREE_DESC=	Install git-subtree
+
+NLS_USES=		gettext
+NLS_MAKE_ARGS_OFF=	NO_GETTEXT=yes
+
+PERL_USES=		perl5
+PERL_CONFIGURE_WITH=	perl=${PERL}
+PERL_BUILD_DEPENDS=	p5-Error>=0:lang/p5-Error
+PERL_RUN_DEPENDS=	p5-Error>=0:lang/p5-Error
+PERL_MAKE_ARGS_OFF=	NO_PERL=1
+
+GITWEB_IMPLIES=		PERL
+
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_CONFIGURE_WITH=	libpcre
+
+SEND_EMAIL_IMPLIES=	PERL
+SEND_EMAIL_RUN_DEPENDS=	p5-Authen-SASL>=0:security/p5-Authen-SASL
+
+ICONV_USES=		iconv
+ICONV_MAKE_ARGS_OFF=	NO_ICONV=1
+
+CURL_MAKE_ENV=		CURLDIR=${LOCALBASE}
+CURL_BUILD_DEPENDS=	curl:ftp/curl
+CURL_RUN_DEPENDS=	curl:ftp/curl
+CURL_LIB_DEPENDS=	libexpat.so:textproc/expat2
+CURL_MAKE_ARGS_OFF=	NO_CURL=1 NO_EXPAT=1
+
+HTMLDOCS_DISTFILES=	${PORTNAME}-htmldocs-${DISTVERSION}${EXTRACT_SUFX}
+
+GUI_USES=		tk
+GUI_MAKE_ARGS=		TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
+GUI_MAKE_ARGS_OFF=	NO_TCLTK=yes
+
+# While this port does not explicity honor WITH_SUBVERSION_VER knob it does
+# depend upon devel/p5-subversion, which does honor that knob. If you want
+# to have git use devel/subversion18 it will be brought in through
+# devel/p5-subversion if you set WITH_SUBVERSION_VER=18. Otherwise
+# devel/subversion will be brought in.
+SVN_RUN_DEPENDS=	p5-Term-ReadKey>=0:devel/p5-Term-ReadKey \
+			p5-subversion>=0:devel/p5-subversion
+
+SUBTREE_BUILD_DEPENDS=	xmlto:textproc/xmlto \
+			asciidoc:textproc/asciidoc \
+			docbook-xml>0:textproc/docbook-xml
+
+CVS_RUN_DEPENDS=	cvsps:devel/cvsps
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-MAKE_ARGS+=	NO_GETTEXT=yes
-.endif
-
 # This is intentionally not exposed as an option.
-.ifndef (WITH_DEBUG)
+.if defined(STRIP) && ${STRIP} != ""
 ALL_TARGET=	all strip
 .endif
 
 .if ${PORT_OPTIONS:MP4} || ${PORT_OPTIONS:MCONTRIB}
-USE_PYTHON=	yes
-PLIST_SUB+=	PYTHON_VER=${PYTHON_VER} PYTHON=""
+USES+=		python
 CONFIGURE_ARGS+=	--with-python=${PYTHON_CMD}
 .else
 CONFIGURE_ARGS+=	--without-python
-PLIST_SUB+=	PYTHON="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MPERL}
-USE_PERL5=	yes
-MAKE_ENV+=	PERL_PATH=${PERL}
-BUILD_DEPENDS+=	p5-Error>=0:${PORTSDIR}/lang/p5-Error
-RUN_DEPENDS+=	p5-Error>=0:${PORTSDIR}/lang/p5-Error \
-		p5-Net-SMTP-SSL>=0:${PORTSDIR}/mail/p5-Net-SMTP-SSL \
-		p5-MIME-Base64>=0:${PORTSDIR}/converters/p5-MIME-Base64 \
-		p5-Authen-SASL>=0:${PORTSDIR}/security/p5-Authen-SASL
-PLIST_SUB+=	PERL=""
-.else
-MAKE_ARGS+=	NO_PERL=1
-PLIST_SUB+=	PERL="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MICONV}
-USES+=		iconv
-.else
-MAKE_ARGS+=	NO_ICONV=1
-.endif
-
-.if ${PORT_OPTIONS:MCURL}
-MAKE_ENV+=	CURLDIR=${LOCALBASE}
-BUILD_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
-RUN_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
-LIB_DEPENDS+=	libexpat.so:${PORTSDIR}/textproc/expat2
-PLIST_SUB+=	CURL=""
-.else
-MAKE_ARGS+=	NO_CURL=1 \
-		NO_EXPAT=1
-PLIST_SUB+=	CURL="@comment "
-.endif
-
-# Always fetch the htmldocs distfile in maintainer mode.
-# Always include it when building distinfo (makesum)
-.if ${PORT_OPTIONS:MHTMLDOCS} || make(makesum) || (defined(MAINTAINER_MODE) && make(fetch))
-DISTFILES+=	${PORTNAME}-htmldocs-${PORTVERSION}${EXTRACT_SUFX}
-PLIST_SUB+=	HTMLDOCS=""
-.else
-PLIST_SUB+=	HTMLDOCS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGUI}
-USES+=		tk
-PLIST_SUB+=	GUI=""
-MAKE_ARGS+=	TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
-.else
+.if empty(PORT_OPTIONS:MGUI)
 RMMAN1+=	git-citool.1 \
 		git-gui.1 \
 		gitk.1
-PLIST_SUB+=	GUI="@comment "
-MAKE_ARGS+=	NO_TCLTK=yes
 .endif
 
-# While this port does not explicity honor WITH_SUBVERSION_VER knob it does
-# depend upon devel/p5-subversion, which does honor that knob. If you want
-# to have git use devel/subversion16 it will be brought in through
-# devel/p5-subversion if you set WITH_SUBVERSION_VER=16. Otherwise
-# devel/subversion will be brought in.
-.if ${PORT_OPTIONS:MSVN}
-RUN_DEPENDS+=	p5-Term-ReadKey>=0:${PORTSDIR}/devel/p5-Term-ReadKey \
-		p5-subversion>=0:${PORTSDIR}/devel/p5-subversion
-PLIST_SUB+=	SVN=""
-.else
-PLIST_SUB+=	SVN="@comment "
+.if empty(PORT_OPTIONS:MSVN)
 RMMAN1+=	git-svn.1
 .endif
 
-.if ${PORT_OPTIONS:MGITWEB}
-PLIST_SUB+=	GITWEB=""
-.else
-PLIST_SUB+=	GITWEB="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGITWEB} && empty(PORT_OPTIONS:MPERL)
-IGNORE=	using GITWEB support requires PERL support
-.endif
-
-.if ${PORT_OPTIONS:MCONTRIB}
-PLIST_SUB+=	CONTRIB=""
-BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto \
-		asciidoc:${PORTSDIR}/textproc/asciidoc \
-		${LOCALBASE}/share/xml/docbook/4.5:${PORTSDIR}/textproc/docbook-xml
-.else
-PLIST_SUB+=	CONTRIB="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MP4}
-PLIST_SUB+=	P4=""
-.else
-PLIST_SUB+=	P4="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MCVS}
-PLIST_SUB+=	CVS=""
-RUN_DEPENDS+=	cvsps:${PORTSDIR}/devel/cvsps
-.else
-PLIST_SUB+=	CVS="@comment "
+.if empty(PORT_OPTIONS:MCVS)
 RMMAN1+=	git-cvsimport.1 \
 		git-cvsexportcommit.1 \
 		git-cvsserver.1
 RMMAN7+=	gitcvs-migration.7
 .endif
 
-post-extract:
-.if ${PORT_OPTIONS:MHTMLDOCS}
+post-extract-HTMLDOCS-on:
 	@${MKDIR} ${WRKDIR}/htmldocs
 	@cd ${WRKDIR}/htmldocs && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
-		${DISTDIR}/${PORTNAME}-htmldocs-${PORTVERSION}${EXTRACT_SUFX} \
+		${DISTDIR}/${PORTNAME}-htmldocs-${DISTVERSION}${EXTRACT_SUFX} \
 		${EXTRACT_AFTER_ARGS}
-.endif
 
 post-patch:
 .for FILE in ${RMMAN1}
@@ -192,65 +154,81 @@ post-patch:
 	@${RM} ${WRKDIR}/man7/${FILE}
 .endfor
 	@${REINPLACE_CMD} -e 's|share/man/man3|man/man3|' ${WRKSRC}/perl/Makefile.PL
-.if empty(PORT_OPTIONS:MCVS)
+
+post-patch-CONTRIB-on:
+	@${REINPLACE_CMD} -e "s,/usr/bin/perl,${PERL}," \
+		${WRKSRC}/contrib/diff-highlight/Makefile
+
+post-patch-CVS-off:
 	@${REINPLACE_CMD} -e '/git-cvsexportcommit.perl/d; \
 		/git-cvsimport.perl/d; \
 		/git-cvsserver.perl/d; \
 		/documented,gitcvs-migration/d; \
 		s/git-cvsserver//' \
 		${WRKSRC}/Makefile
-.endif
-.if empty(PORT_OPTIONS:MSVN)
+
+post-patch-SVN-off:
 	@${REINPLACE_CMD} -e '/git-svn.perl/d' ${WRKSRC}/Makefile
-.endif
-.if empty(PORT_OPTIONS:MGITWEB)
+
+post-patch-GITWEB-off:
 	@${REINPLACE_CMD} -e '/$$(MAKE) -C gitweb install/d' ${WRKSRC}/Makefile
-.endif
-.if empty(PORT_OPTIONS:MP4)
+	@${REINPLACE_CMD} -e "s,/usr/bin/perl,${PERL}," ${WRKSRC}/t/gitweb-lib.sh
+
+post-patch-P4-off:
 	@${REINPLACE_CMD} -e '/^SCRIPT_PYTHON += git-p4.py$$/d' ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|/bin/bash|/bin/sh|' \
 		${WRKSRC}/contrib/subtree/git-subtree.sh
-.endif
 
-post-build:
 .if ${PORT_OPTIONS:MP4} || ${PORT_OPTIONS:MCONTRIB}
+post-build:
 	@${FIND} ${WRKSRC} -name "*.bak" -delete
 .endif
+
+post-build-CONTRIB-on:
+	${SETENV} ${MAKE_ENV} ${MAKE_CMD} -C ${WRKSRC}/contrib/diff-highlight
+	${RM} ${WRKSRC}/contrib/diff-highlight/shebang.perl
 
 post-install:
 	(cd ${WRKDIR}/man1/ && ${COPYTREE_SHARE} . ${STAGEDIR}${MANPREFIX}/man/man1)
 	(cd ${WRKDIR}/man5/ && ${COPYTREE_SHARE} . ${STAGEDIR}${MANPREFIX}/man/man5)
 	(cd ${WRKDIR}/man7/ && ${COPYTREE_SHARE} . ${STAGEDIR}${MANPREFIX}/man/man7)
-.if ${PORT_OPTIONS:MHTMLDOCS}
-	# Manually remove the index.html symlink before installing, and then
-	# recreate it after. This is necessary because the distfile is
-	# extracted with --no-same-owner. If the distfile is extracted as a
-	# non-root user then the symlink will have the incorrect owner.
-	${RM} -f ${WRKDIR}/htmldocs/index.html
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKDIR}/htmldocs/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-	${LN} -s git.html ${STAGEDIR}${DOCSDIR}/index.html
-.endif
-	-${RM} -f ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/mach/perllocal.pod
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git
 	${INSTALL_DATA} ${WRKSRC}/contrib/emacs/git.el \
 		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git/
 	${INSTALL_DATA} ${WRKSRC}/contrib/emacs/git-blame.el \
 		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git/
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/git/git.el    \
-		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git.el
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/git/git-blame.el \
-		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git-blame.el
-.if ${PORT_OPTIONS:MCONTRIB}
-	@${ECHO_MSG} "===> Installing contributed scripts"
-	${MKDIR} ${PREFIX}/share/git-core/contrib
-	${CP} -R ${WRKSRC}/contrib/* ${PREFIX}/share/git-core/contrib
-	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} XMLTO=--skip-validation \
+
+post-install-HTMLDOCS-on:
+	# Manually remove the index.html symlink before installing, and then
+	# recreate it after. This is necessary because the distfile is
+	# extracted with --no-same-owner. If the distfile is extracted as a
+	# non-root user then the symlink will have the incorrect owner.
+	${RM} ${WRKDIR}/htmldocs/index.html
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKDIR}/htmldocs/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR})
+	${LN} -s git.html ${FAKE_DESTDIR}${DOCSDIR}/index.html
+
+post-install-SUBTREE-on:
+	cd ${WRKSRC}/contrib/subtree && ${SETENV} ${MAKE_ENV} \
 		${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} install install-doc
-.endif
-.if ${PORT_OPTIONS:MP4}
-	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${PREFIX}/bin/
-.endif
+
+post-install-CONTRIB-on:
+	@${ECHO_MSG} "===> Installing contributed scripts"
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/git-core/contrib
+	${CP} -R ${WRKSRC}/contrib/* ${FAKE_DESTDIR}${PREFIX}/share/git-core/contrib
+	# Symlink the completions from the contrib directory to where they
+	# will be useful
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d
+	@${LN} -s ../../share/git-core/contrib/completion/git-completion.bash \
+		${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d/git.sh
+
+post-install-CONTRIB-off:
+	# Install the contrib completions anyway
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d
+	@${INSTALL_SCRIPT} ${WRKSRC}/contrib/completion/git-completion.bash \
+		${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d/git.sh
+
+post-install-P4-on:
+	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${FAKE_DESTDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>
