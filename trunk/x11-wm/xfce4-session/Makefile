@@ -29,6 +29,7 @@ USE_XORG=	x11 sm ice
 
 CONFIGURE_ARGS+=--enable-legacy-sm \
 		--with-xsession-prefix=${PREFIX}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 SUB_FILES=	pkg-message
 
