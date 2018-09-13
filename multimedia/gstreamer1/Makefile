@@ -26,6 +26,7 @@ CONFIGURE_ARGS=	--disable-tests \
 		--disable-fatal-warnings \
 		--disable-gtk-doc
 CONFIGURE_ENV=	ac_cv_func_register_printf_function="no"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 PLIST_SUB=	VERSION=${GST10_VERSION} \
 		SOVERSION=0.1203.0
