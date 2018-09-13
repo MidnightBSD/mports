@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.52.2
-PORTREVISION?=	0
+PORTVERSION=	2.54.1
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,10 +17,11 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 RUN_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
 
 USES=		tar:xz
+PORTSCOUT=	limitw:1,even
 
 .if !defined(REFERENCE_PORT)
 
-USES+=		gettext gmake libtool pathfix pkgconfig \
+USES+=		gettext gmake gnome libtool pathfix pkgconfig \
 		python:3:build tar:xz
 USE_GNOME=	glib20 intlhack introspection:build \
 		libxml2 referencehack
@@ -33,12 +34,12 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	1.7.0
+LIBVERSION=	1.8.0
 PLIST_SUB=	VERSION="2.4" LIBVERSION=${LIBVERSION}
 
 .if defined(SOUP_SLAVE)
-USE_SQLITE=	yes
-LIB_DEPENDS+=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup
+USES+=		sqlite
+LIB_DEPENDS+=	libsoup-2.4.so:devel/libsoup
 CONFIGURE_ARGS+=--with-gnome
 .else
 CONFIGURE_ARGS+=--without-gnome
@@ -47,8 +48,10 @@ CONFIGURE_ARGS+=--without-gnome
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
-	 @${REINPLACE_CMD} -e 's|env python|env ${PYTHON_VERSION}|g' \
+	@${REINPLACE_CMD} -e 's|env python|env ${PYTHON_VERSION}|g' \
 		${WRKSRC}/libsoup/tld-parser.py
+	@${REINPLACE_CMD} -e 's|DATADIRNAME=lib|DATADIRNAME=share|g' \
+		${WRKSRC}/configure
 
 .if defined(SOUP_SLAVE)
 do-install:
