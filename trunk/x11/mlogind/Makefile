@@ -2,7 +2,7 @@
 
 PORTNAME=	mlogind
 PORTVERSION=	1.3.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
@@ -52,12 +52,9 @@ CMAKE_ARGS+=	-DUSE_PAM=yes
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 .endif
 
-.if ${PORT_OPTIONS:MCONSOLEKIT}
-CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
-LIB_DEPENDS+=	libck-connector.so:sysutils/consolekit2
-.else
-CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
-.endif
+CONSOLEKIT_CMAKE_ON=    -DUSE_CONSOLEKIT=yes
+CONSOLEKIT_LIB_DEPENDS= libck-connector.so:sysutils/consolekit2
+CONSOLEKIT_CMAKE_OFF=   -DUSE_CONSOLEKIT=no
 
 post-patch:
 	@${CP} ${WRKSRC}/mlogind.conf ${WRKSRC}/mlogind.conf.sample
