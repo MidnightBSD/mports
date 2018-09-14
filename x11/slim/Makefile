@@ -12,11 +12,11 @@ COMMENT=	Graphical login manager for X11, derived from Login.app
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
-		libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libpng.so:graphics/png \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 USES=		cmake jpeg pkgconfig
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
