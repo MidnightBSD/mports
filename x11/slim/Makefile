@@ -2,7 +2,7 @@
 
 PORTNAME=	slim
 PORTVERSION=	1.3.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
@@ -12,7 +12,7 @@ COMMENT=	Graphical login manager for X11, derived from Login.app
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
@@ -53,12 +53,9 @@ PLIST_SUB+=	PAM="@comment "
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 .endif
 
-.if ${PORT_OPTIONS:MCONSOLEKIT}
-CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
-LIB_DEPENDS+=	libck-connector.so:${PORTSDIR}/sysutils/consolekit2
-.else
-CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
-.endif
+CONSOLEKIT_CMAKE_ON=    -DUSE_CONSOLEKIT=yes
+CONSOLEKIT_LIB_DEPENDS= libck-connector.so:sysutils/consolekit2
+CONSOLEKIT_CMAKE_OFF=   -DUSE_CONSOLEKIT=no
 
 post-patch:
 	@${CP} ${WRKSRC}/slim.conf ${WRKSRC}/slim.conf.sample
