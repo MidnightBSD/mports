@@ -12,8 +12,8 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
-		libpthread-stubs.so:devel/libpthread-stubs \
 		libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
