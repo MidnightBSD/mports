@@ -4,6 +4,6 @@
 
 MASTERDIR=	${.CURDIR}/../py27-setuptools
 
-USES=		python:3.3
+USES=		python:3.3 zip
 
 .include "${MASTERDIR}/Makefile"
