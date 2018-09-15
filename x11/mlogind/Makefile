@@ -30,8 +30,7 @@ USE_RC_SUBR=	mlogind
 USE_LDCONFIG=	yes
 SUB_FILES=	pkg-message
 
-CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes \
-	-DBUILD_SLIMLOCK=no \
+CMAKE_ARGS= -DBUILD_SLIMLOCK=no \
 	-DBUILD_SHARED_LIBS=yes
 
 OPTIONS_DEFINE=		UTF8 CONSOLEKIT
@@ -40,8 +39,6 @@ OPTIONS_SUB=	yes
 
 UTF8_DESC=	Support UTF-8 characters
 CONSOLEKIT_DESC=Enable support for consolekit
-
-PLIST_SUB+=	VERSION="${PORTVERSION}"
 
 .include <bsd.mport.options.mk>
 
@@ -52,9 +49,12 @@ CMAKE_ARGS+=	-DUSE_PAM=yes
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
 .endif
 
-CONSOLEKIT_CMAKE_ON=    -DUSE_CONSOLEKIT=yes
-CONSOLEKIT_LIB_DEPENDS= libck-connector.so:sysutils/consolekit2
-CONSOLEKIT_CMAKE_OFF=   -DUSE_CONSOLEKIT=no
+.if ${PORT_OPTIONS:MCONSOLEKIT}
+CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
+LIB_DEPENDS+=	libck-connector.so:sysutils/consolekit2
+.else
+CMAKE_ARGS+=	-DUSE_CONSOLEKIT=no
+.endif
 
 post-patch:
 	@${CP} ${WRKSRC}/mlogind.conf ${WRKSRC}/mlogind.conf.sample
