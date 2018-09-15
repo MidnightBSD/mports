@@ -1166,8 +1166,25 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-t "${CATEGORIES}"
 
 .if defined(PKG_NOTE_cpe)
-MPORT_CREATE_ARGS+=			-e ${PKG_NOTE_cpe}
+MPORT_CREATE_ARGS+=	-e ${PKG_NOTE_cpe}
 .endif
+
+.if defined(PKG_NOTE_deprecated) && (${OSVERSION} > 10000) 
+MPORT_CREATE_ARGS+=	-x ${PKG_NOTE_deprecated}
+.endif
+
+.if defined(PKG_NOTE_expiration_date) && (${OSVERSION} > 10000) 
+MPORT_CREATE_ARGS+=     -E ${PKG_NOTE_expiration_date}
+.endif
+
+.if defined(PKG_NOTE_flavor) && (${OSVERSION} > 10000)
+MPORT_CREATE_ARGS+=     -f ${PKG_NOTE_flavor}
+.endif
+
+.if defined(PKG_NOTE_no_provide_shlib) && (${OSVERSION} > 10000) 
+MPORT_CREATE_ARGS+=     -S ${PKG_NOTE_no_provide_shlib}
+.endif
+
 MPORT_CREATE_ARGS+=			$$_LATE_MPORT_CREATE_ARGS
 					
 .if !defined(NO_MTREE)
