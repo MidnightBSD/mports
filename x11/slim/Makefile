@@ -2,7 +2,7 @@
 
 PORTNAME=	slim
 PORTVERSION=	1.3.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.berlios.de/pub/slim/ \
 		SF/slim.berlios
@@ -25,8 +25,7 @@ USE_RC_SUBR=	slim
 USE_LDCONFIG=	yes
 SUB_FILES=	pkg-message
 
-CMAKE_ARGS=	-DUSE_CONSOLEKIT=yes \
-	-DBUILD_SLIMLOCK=no \
+CMAKE_ARGS=	-DBUILD_SLIMLOCK=no \
 	-DBUILD_SHARED_LIBS=yes
 
 OPTIONS_DEFINE=		PAM UTF8 CONSOLEKIT
@@ -35,8 +34,6 @@ OPTIONS_SUB=	yes
 
 UTF8_DESC=	Support UTF-8 characters
 CONSOLEKIT_DESC=Enable support for consolekit
-
-PLIST_SUB+=	VERSION="${PORTVERSION}"
 
 .include <bsd.mport.options.mk>
 
