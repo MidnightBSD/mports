@@ -523,6 +523,7 @@ SUBDIR += py-pip
 SUBDIR += py-ply
 SUBDIR += py-pkgconfig
 SUBDIR += py-pyasn1
+SUBDIR += py-pyasn1-modules
 SUBDIR += py-pycparser
 SUBDIR += py-pyrfc3339
 SUBDIR += py-pytest-runner
