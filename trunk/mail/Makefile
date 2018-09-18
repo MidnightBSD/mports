@@ -60,7 +60,6 @@ SUBDIR += php71-imap
 SUBDIR += phplist
 SUBDIR += phpmailer
 SUBDIR += pine-pgp-filters
-SUBDIR += postfix
 SUBDIR += postfix211
 SUBDIR += procmail
 SUBDIR += pyzor
