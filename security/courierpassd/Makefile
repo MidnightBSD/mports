@@ -1,27 +1,23 @@
-# New ports collection makefile for:	courierpassd
-# Date created:				26th July 2005
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
 # $FreeBSD: ports/security/courierpassd/Makefile,v 1.9 2006/08/09 06:10:35 ade Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	courierpassd
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
-#MASTER_SITES=	http://www.arda.homeunix.net/store/
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	ade
+MASTER_SITES=	http://www.arda.homeunix.net/software-downloads/ \
+		FREEBSD_LOCAL/ade
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User authentication and password changing daemon utility
-LICENSE=	gpl2
 
-BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
-RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
+RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+USES=		gmake
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' LDFLAGS='${LDFLAGS}'
