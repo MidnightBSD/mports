@@ -468,6 +468,7 @@ SUBDIR += projectcenter
 SUBDIR += protobuf
 SUBDIR += pth
 SUBDIR += pth-hard
+SUBDIR += py-Automat
 SUBDIR += py-Jinja2
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
