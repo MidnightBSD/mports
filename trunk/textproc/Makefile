@@ -172,6 +172,7 @@ SUBDIR += py-libxml2
 SUBDIR += py-mako
 SUBDIR += py-markdown
 SUBDIR += py-markdown2
+SUBDIR += py-m2r
 SUBDIR += py-pygments
 SUBDIR += py-pystemmer
 SUBDIR += py-rdflib
