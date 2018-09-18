@@ -127,6 +127,7 @@ SUBDIR += py-openssl
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto
 SUBDIR += py-rsa
+SUBDIR += py-service_identity
 SUBDIR += rhash
 SUBDIR += seahorse
 SUBDIR += security-advisory-client
