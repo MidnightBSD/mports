@@ -515,6 +515,7 @@ SUBDIR += py-isort
 SUBDIR += py-lxml
 SUBDIR += py-mccabe
 SUBDIR += py-mock
+SUBDIR += py-msgpack
 SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-parsedatetime
