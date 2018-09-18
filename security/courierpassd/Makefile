@@ -17,41 +17,39 @@ BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 GNU_CONFIGURE=	yes
-USES=		gmake
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' LDFLAGS='${LDFLAGS}'
+USES=		gmake localbase
 
 MINUID?=	100
 DELAY?=		3
 CONFIGURE_ARGS+=--with-minuid=${MINUID} --with-badpassdelay=${DELAY}
 
+PLIST_FILES=	sbin/courierpassd man/man8/courierpassd.8.gz
+PORTDOCS=	AUTHORS ChangeLog COPYING INSTALL NEWS README
+
+OPTIONS_DEFINE=	DOCS
+
 pre-everything::
-	@${ECHO} ""
+	@${ECHO}
 	@${ECHO} "###########################################################"
-	@${ECHO} ""
+	@${ECHO}
 	@${ECHO} "The following build options are available:"
-	@${ECHO} "
+	@${ECHO}
 	@${ECHO} "  MINUID=uid"
 	@${ECHO} "	Accounts with uids below this value cannot have"
 	@${ECHO} "	their passwords changed. Default value is 100."
-	@${ECHO} ""
+	@${ECHO}
 	@${ECHO} "  DELAY=sec"
 	@${ECHO} "	Set the delay after a password change failure."
 	@${ECHO} "	Default is 3 seconds."
-	@${ECHO} ""
+	@${ECHO}
 	@${ECHO} "###########################################################"
-	@${ECHO} ""
+	@${ECHO}
 
-post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
+post-patch:
+	@${REINPLACE_CMD} '/chown root/d' ${WRKSRC}/Makefile.in
+
+post-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
