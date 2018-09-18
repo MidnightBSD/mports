@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This package is a collection of SGML/XML tools called OpenSP
 
 LICENSE=	JamesClark
-LICENSE_NAME=	License of James Clark's Software
+LICENSE_NAME=	License of James Clark Software
 LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
