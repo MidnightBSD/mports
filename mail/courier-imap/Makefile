@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	courier-imap
-PORTVERSION=	4.5.1
-PORTREVISION=	1
+PORTVERSION=	4.18.2
 PORTEPOCH=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}
@@ -11,25 +10,25 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IMAP (and POP3) server that provides access to Maildir mailboxes
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
-RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
+BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
+RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base \
+		${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+LIB_DEPENDS=	libcourier-unicode.so:devel/courier-unicode
 
-USES=		gmake ssl tar:bzip2
-USE_PERL5=	yes
+CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
+
+USES=		compiler:c++11-lang gmake localbase:ldflags perl5 ssl tar:bzip2
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
 		courier-imap-pop3d courier-imap-pop3d-ssl
 
-CPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
-CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash \
-		CPPFLAGS='${CPPFLAGS}' \
-		CXXFLAGS='${CPPFLAGS}' \
-		LDFLAGS='${LDFLAGS}'
+CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash
+
 MAKE_ENV:=	${CONFIGURE_ENV}
+ALL_TARGET=	all makeimapaccess makedat
 
 SUB_FILES=	pkg-message
-SUB_LIST+=	CONFDIR=${CONFDIR}
+SUB_LIST=	CONFDIR=${CONFDIR}
 
 #
 # options available:
@@ -37,10 +36,11 @@ SUB_LIST+=	CONFDIR=${CONFDIR}
 # WITH_SYSLOG_FACILITY:         The syslogfacility to use
 #
 
-OPTIONS=	FAM		"Build in fam support for IDLE command"		off \
-		TRASHQUOTA	"Include deleted mails in the quota"		off \
-		GDBM		"Use gdbm db instead of system bdb"		off \
-		IPV6		"Build with IPv6 support"			on
+OPTIONS_DEFINE=	FAM TRASHQUOTA GDBM IPV6 GNUTLS
+FAM_DESC=	Fam support for IDLE command
+TRASHQUOTA_DESC=	Include deleted mails in the quota
+GNUTLS_DESC=	Use GnuTLS instead of OpenSSL (Enables SNI)
+FAM_USES=	fam
 
 .if exists(${.CURDIR}/../../security/courier-authlib/Makefile.opt)
 .include "${.CURDIR}/../../security/courier-authlib/Makefile.opt"
@@ -52,8 +52,8 @@ LIBEXECDIR?=	${PREFIX}/libexec/${PORTNAME}
 PLIST_SUB=	CONFDIR=${CONFDIR:S,^${PREFIX}/,,} \
 		LIBEXECDIR=${LIBEXECDIR:S,^${PREFIX}/,,}
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--sysconfdir=${CONFDIR} \
+		--localstatedir="${PREFIX}/var" \
 		--datadir=${DATADIR} \
 		--libexecdir=${LIBEXECDIR} \
 		--enable-workarounds-for-imap-client-bugs \
@@ -62,93 +62,66 @@ CONFIGURE_ARGS=	--sysconfdir=${CONFDIR} \
 		--with-locking-method=fcntl \
 		COURIERAUTHCONFIG=${PREFIX}/bin/courierauthconfig
 
-.include <bsd.port.pre.mk>
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
+			libgcrypt.so:security/libgcrypt
+GNUTLS_CONFIGURE_WITH=	gnutls
+GNUTLS_USES=		pkgconfig
 
-#does not work with 4.4.0
-#.if defined(WITH_DRAC)
-# move me below .include <bsd.port.pre.mk> when re-enabling
-#PATCH_SITES=	http://www.smalltown.ne.jp/~usata/pub/patch/
-#PATCHFILES=	courier-imap-4.1.0-drac.patch
-#BUILD_DEPENDS+=	${LOCALBASE}/lib/libdrac.a:${PORTSDIR}/mail/drac
-#.endif
+IPV6_CONFIGURE_OFF=	--without-ipv6
+
+TRASHQUOTA_CONFIGURE_ON=--with-trashquota
+
+.include <bsd.port.pre.mk>
 
 .if exists(${.CURDIR}/../../security/courier-authlib/Makefile.dep)
 .include "${.CURDIR}/../../security/courier-authlib/Makefile.dep"
 .endif
 
-.if defined(WITH_SYSLOG_FACILITY)
+.if ${PORT_OPTIONS:MSYSLOG_FACILITY}
 CONFIGURE_ARGS+=--with-syslog=${WITH_SYSLOG_FACILITY}
 .endif
 
-.if defined(WITH_AUTH_USERDB)
-.if defined(WITH_GDBM)
+.if ${PORT_OPTIONS:MAUTH_USERDB}
+.if ${PORT_OPTIONS:MGDBM}
 CONFIGURE_ARGS+=--with-db=gdbm --with-userdb=${USERDB}
-LIB_DEPENDS+=	gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=	libgdbm.so:databases/gdbm
 .else
 CONFIGURE_ARGS+=--with-db=db  --with-userdb=${USERDB}
 .endif
 .endif
 
-.if defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=--without-ipv6
-.endif
+EXTRA_DOCS=	AUTHORS INSTALL NEWS \
+		libs/imap/ChangeLog \
+		libs/imap/README \
+		libs/imap/README.proxy \
+		libs/maildir/README.imapkeywords.html \
+		libs/maildir/README.maildirfilter.html \
+		libs/maildir/README.maildirquota.txt \
+		libs/maildir/README.sharedfolders.txt \
+		libs/tcpd/README.couriertls \
 
-.if defined(WITH_TRASHQUOTA)
-CONFIGURE_ARGS+=--with-trashquota
-.endif
-
-.if defined(WITH_FAM)
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS}"
-LDFLAGS+=	-L${LOCALBASE}/lib
-LIB_DEPENDS+=	fam.0:${PORTSDIR}/devel/fam
-.endif
-
-EXTRA_DOCS=	AUTHORS INSTALL NEWS imap/ChangeLog imap/README \
-		imap/README.proxy maildir/README.imapkeywords.html \
-		maildir/README.maildirfilter.html \
-		maildir/README.maildirquota.txt \
-		maildir/README.sharedfolders.txt tcpd/README.couriertls \
+post-patch-FAM-off:
+	@${REINPLACE_CMD} -e 's|$$LIBFAM||g; s|HAVE_FAM|DO_NOT_HAVE_FAM|g' \
+		${WRKSRC}/libs/maildir/configure
 
 post-patch:
-.if !defined(WITH_FAM)
-	@${REINPLACE_CMD} -e 's|$$LIBFAM||g; s|HAVE_FAM|DO_NOT_HAVE_FAM|g' \
-		${WRKSRC}/maildir/configure
-.endif
 	@${REINPLACE_CMD} -e 's|^case x$$lockmethod in|${TEST} \&\& &|g' \
-		${WRKSRC}/liblock/configure
+		${WRKSRC}/libs/liblock/configure
 	@${REINPLACE_CMD} -e 's|%%INSTALL_MAN%%|${INSTALL_MAN}|' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|@LIBS@|@LIBS@ -rpath=:${LOCALBASE}/lib/courier-authlib|' \
-		${WRKSRC}/imap/Makefile.in
 	@${REINPLACE_CMD} -e 's|TLS_PROTOCOL=SSL3|TLS_PROTOCOL=SSL23|g' \
-		${WRKSRC}/imap/pop3d-ssl.dist.in \
-		${WRKSRC}/imap/imapd-ssl.dist.in
+		${WRKSRC}/libs/imap/pop3d-ssl.dist.in \
+		${WRKSRC}/libs/imap/imapd-ssl.dist.in
 
 post-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/makeimapaccess ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/makedat ${STAGEDIR}${PREFIX}/bin/
 .for i in imapd pop3d
-	${INSTALL_DATA} ${WRKSRC}/imap/${i}.cnf ${CONFDIR}/${i}.cnf.dist
+	${INSTALL_DATA} ${WRKSRC}/libs/imap/${i}.cnf ${STAGEDIR}${CONFDIR}/${i}.cnf.dist
 .endfor
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for a in ${EXTRA_DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${a} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${a} ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
-
-	cd ${WRKSRC} && ( ${GMAKE} install-configure ; cd - )
-
-	@${ECHO_MSG} "In case you use authpam, you should put the following lines"
-	@${ECHO_MSG} "in your /etc/pam.d/imap"
-	@${ECHO_MSG} "auth    required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "account required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "session required    pam_permit.so"
-
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "You will have to run ${DATADIR}/mkimapdcert to create"
-	@${ECHO_MSG} "a self-signed certificate if you want to use imapd-ssl."
-	@${ECHO_MSG} "And you will have to copy and edit the *.dist files to *"
-	@${ECHO_MSG} "in ${CONFDIR}."
-	@${ECHO_MSG} ""
 
 .include <bsd.port.post.mk>
