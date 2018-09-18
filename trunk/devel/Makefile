@@ -509,6 +509,7 @@ SUBDIR += py-jmespath
 SUBDIR += py-jsonref
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
+SUBDIR += py-incremental
 SUBDIR += py-iso8601
 SUBDIR += py-isodate
 SUBDIR += py-isort
