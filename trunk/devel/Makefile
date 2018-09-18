@@ -485,6 +485,7 @@ SUBDIR += py-buildbot-waterfall-view
 SUBDIR += py-buildbot-worker
 SUBDIR += py-buildbot-www
 SUBDIR += py-cffi
+SUBDIR += py-characteristic
 SUBDIR += py-colorama
 SUBDIR += py-configargparse
 SUBDIR += py-configobj
