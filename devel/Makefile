@@ -538,6 +538,7 @@ SUBDIR += py-subversion
 SUBDIR += py-termcolor
 SUBDIR += py-twisted
 SUBDIR += py-txaio
+SUBDIR += py-ujson
 SUBDIR += py-virtualenv
 SUBDIR += py-wrapt
 SUBDIR += py-xdg
