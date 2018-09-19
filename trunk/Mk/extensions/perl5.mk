@@ -188,7 +188,7 @@ RUN_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 # Configure
 # 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
-CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" 
+CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}"
 
 # XXX do we really want to store man pages here?
 .if !defined(_CORE_PERL)
