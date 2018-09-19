@@ -41,6 +41,7 @@ SUBDIR += gsed
 SUBDIR += gtk-doc
 SUBDIR += gtkspell
 SUBDIR += gtkspell3
+SUBDIR += heirloom-doctools
 SUBDIR += highlight
 SUBDIR += hspell
 SUBDIR += html
