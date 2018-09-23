@@ -49,8 +49,8 @@ PGSQL_DEFAULT?=		9.5
 PHP_DEFAULT?=		5.6
 PYTHON_DEFAULT?=	2.7
 PYTHON2_DEFAULT?=	2.7
-# Possible values: 3.3, 3.4, 3.5
-PYTHON3_DEFAULT?=	3.3
+# Possible values: 3.3, 3.4, 3.7
+PYTHON3_DEFAULT?=	3.7
 # Possible values: 2.2, 2.3
 RUBY_DEFAULT?=		2.2
 # Possible values: 4.3, 4.4, 4.5
