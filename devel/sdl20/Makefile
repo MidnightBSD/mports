@@ -17,6 +17,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool localbase:ldflags pathfix pkgconfig
 USE_LDCONFIG=	yes
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 CONFIGURE_ARGS+=	--disable-video-opengles \
 			--disable-altivec \
 			--disable-arts \
