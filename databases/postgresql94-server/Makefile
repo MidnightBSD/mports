@@ -15,4 +15,4 @@ INSTALL_DIRS?=	src/common src/timezone src/backend \
 
 ICU_PATCHFILE=	pg-949-icu-2016-10-02.diff.gz
 
-.include "${.CURDIR}/../postgresql92-server/Makefile"
+.include "${.CURDIR}/../postgresql10-server/Makefile"

@@ -22,4 +22,4 @@ PG_USER?=	pgsql
 PG_GROUP?=	pgsql
 PG_UID?=	70
 
-.include "${.CURDIR}/../postgresql92-server/Makefile"
+.include "${.CURDIR}/../postgresql10-server/Makefile"
