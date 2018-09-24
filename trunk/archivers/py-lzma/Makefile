@@ -30,6 +30,6 @@ post-install-DOCS-on:
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${STAGEDIR}${DOCSDIR}
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}/${PYTHONPREFIX_SITELIBDIR}/pylzma.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}/${PYTHONPREFIX_SITELIBDIR}/pylzma.so
 
 .include <bsd.port.mk>
