@@ -13,4 +13,4 @@ INSTALL_DIRS?=	src/common src/timezone src/backend \
 		src/bin/pg_controldata src/bin/pg_resetxlog src/pl \
 		src/bin/pg_basebackup
 
-.include "${.CURDIR}/../postgresql92-server/Makefile"
+.include "${.CURDIR}/../postgresql10-server/Makefile"
