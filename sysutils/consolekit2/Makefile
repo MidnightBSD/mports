@@ -37,6 +37,7 @@ CONFIGURE_ARGS=	--with-pid-file=/var/run/${PORTNAME}.pid \
 		--disable-libevdev \
 		--disable-libudev \
 		--without-systemdsystemunitdir
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd9.1
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
