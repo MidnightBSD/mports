@@ -25,6 +25,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS+=--disable-alsa --disable-alsatest \
 		--disable-arts --disable-video-directfb --disable-video-ggi
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 EXAMPLES=	test/*.c test/*.bmp test/*.dat test/*.xbm test/*.wav
 DOCS=		BUGS COPYING CREDITS README README-SDL.txt WhatsNew docs.html
