@@ -1,32 +1,19 @@
 # $MidnightBSD$ 
 
-.if defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)
+.if !defined(_INCLUDE_USES_PGSQL_MK)
 
-Pgsql_Post_Include=			pgsql.mk
-Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
+_INCLUDE_USES_PGSQL_MK=	yes
 
-# USE_PGSQL		- Add PostgreSQL client dependency.
-#				  If no version is given (by the maintainer via the port or
-#				  by the user via defined variable), try to find the
-#				  currently installed version.  Fall back to default if
-#				  necessary (PostgreSQL-9.4 = 94).
-# DEFAULT_PGSQL_VER
-#				- PostgreSQL default version. Can be overridden within a port.
-#				  Default: 84.
-# WANT_PGSQL_VER
-#				- Maintainer can set an arbitrary version of PostgreSQL by
-#				  using it.
-# IGNORE_WITH_PGSQL
-#				- This variable can be defined if the ports doesn't support
-#				  one or more versions of PostgreSQL.
-# WITH_PGSQL_VER
-#				- User defined variable to set PostgreSQL version.
+# Variables set by pgsql.mk:
+#
 # PGSQL_VER
 #	Detected PostgreSQL version.  Do *not* use this
 #	to add dependencies; use WANT_PGSQL as explained above
 #
 
-VALID_PGSQL_VER=	9.2 9.3 9.4 9.5 9.6 10
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
+VALID_PGSQL_VER=	9.3 9.4 9.5 9.6 10
 
 # Override non-default LIBVERS like this:
 #PGSQL99_LIBVER=6
@@ -35,8 +22,6 @@ PGSQL_LIBVER=	5
 .for v in ${VALID_PGSQL_VER:S,.,,}
 PGSQL$v_LIBVER?=	${PGSQL_LIBVER}
 .endfor
-
-.include "${PORTSDIR}/Mk/components/default-versions.mk"
 
 .for v in ${PGSQL_DEFAULT}
 .  if ! ${VALID_PGSQL_VER:M$v}
@@ -52,13 +37,13 @@ PGSQL_DEFAULT?=	${$w_PGSQL_VER:C,^.,&.,}
 .  endfor
 
 .  ifdef DEFAULT_PGSQL_VER && WITH_PGSQL_VER
-IGNORE=		will not allow setting both DEFAULT_PGSQL_VER and WITH_PGSQL_VER.  Use DEFAULT_VERSIONS=pgsql=9.0 instead
+IGNORE=		will not allow setting both DEFAULT_PGSQL_VER and WITH_PGSQL_VER.  Use DEFAULT_VERSIONS=pgsql=9.6 instead
 .  endif
 
 # Setting/finding PostgreSQL version we want.
 PG_CONFIG?=	${LOCALBASE}/bin/pg_config
 .  if exists(${PG_CONFIG})
-_PGSQL_VER!=	${PG_CONFIG} --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\.[0-9][0-9]*\)[^0-9].*/\1/p'
+_PGSQL_VER!=	${PG_CONFIG} --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9]\.*[0-9]\).*/\1/p'
 .  endif
 
 # Handle the + and - version stuff
@@ -80,7 +65,7 @@ _WANT_PGSQL_VER?=	${pgsql_ARGS}
 .  endif
 
 # Try to match default version, otherwise just take the first version
-# that matches
+# that matches. Prefer the installed version if it matches
 .  if !empty(_WANT_PGSQL_VER)
 .    for version in ${_WANT_PGSQL_VER}
 .      if ${PGSQL_DEFAULT} == ${version}
@@ -88,7 +73,14 @@ PGSQL_VER=	${version}
 .      endif
 PGSQL_VER?=	${version}
 .    endfor
-.    if !defined(PACKAGE_BUILDING) && defined(_PGSQL_VER) && ${_PGSQL_VER} != ${PGSQL_VER}
+.    if defined(_PGSQL_VER)
+.      for v in ${_PGSQL_VER}
+.        if ${_WANT_PGSQL_VER:M$v} == ${_PGSQL_VER}
+PGSQL_VER=	${_PGSQL_VER}
+.        endif
+.      endfor
+.    endif
+.    if defined(_PGSQL_VER) && ${_PGSQL_VER} != ${PGSQL_VER}
 IGNORE?=	cannot install: the port wants postgresql-client version ${_WANT_PGSQL_VER} and you have version ${_PGSQL_VER} installed
 .    endif
 .  endif
@@ -116,25 +108,25 @@ IGNORE?=		cannot install: does not work with postgresql${PGSQL_VER_NODOT}-client
 .	endfor
 .    endif # IGNORE_WITH_PGSQL
 
-.if !defined(WANT_PGSQL) || ${WANT_PGSQL} == lib
-LIB_DEPENDS+=	libpq.so.${PGSQL${PGSQL_VER_NODOT}_LIBVER}:${PORTSDIR}/databases/postgresql${PGSQL_VER_NODOT}-client
+.if !defined(WANT_PGSQL) || ${WANT_PGSQL:Mlib}
+LIB_DEPENDS+=	libpq.so.${PGSQL${PGSQL_VER_NODOT}_LIBVER}:databases/postgresql${PGSQL_VER_NODOT}-client
 .endif
 
 _USE_PGSQL_DEP=		client contrib docs pgtcl pltcl plperl server
 _USE_PGSQL_DEP_client=	psql
-_USE_PGSQL_DEP_contrib=	pgbench
-_USE_PGSQL_DEP_docs=	postgresql${PGSQL_VER}-docs>0
+_USE_PGSQL_DEP_contrib=	vacuumlo
+_USE_PGSQL_DEP_docs=	postgresql${PGSQL_VER_NODOT}-docs>0
 _USE_PGSQL_DEP_pgtcl=	${LOCALBASE}/lib/pgtcl/pkgIndex.tcl
-_USE_PGSQL_DEP_plperl=	postgresql${PGSQL_VER}-plperl>0
-_USE_PGSQL_DEP_pltcl=	postgresql${PGSQL_VER}-pltcl>0
+_USE_PGSQL_DEP_plperl=	postgresql${PGSQL_VER_NODOT}-plperl>0
+_USE_PGSQL_DEP_pltcl=	postgresql${PGSQL_VER_NODOT}-pltcl>0
 _USE_PGSQL_DEP_server=	postgres
 .    if defined(WANT_PGSQL)
 .      for depend in ${_USE_PGSQL_DEP}
 .        if ${WANT_PGSQL:M${depend}}
-BUILD_DEPENDS+=	${_USE_PGSQL_DEP_${depend}}:${PORTSDIR}/databases/postgresql${PGSQL_VER_NODOT}-${depend}
-RUN_DEPENDS+=	${_USE_PGSQL_DEP_${depend}}:${PORTSDIR}/databases/postgresql${PGSQL_VER_NODOT}-${depend}
+BUILD_DEPENDS+=	${_USE_PGSQL_DEP_${depend}}:databases/postgresql${PGSQL_VER_NODOT}-${depend}
+RUN_DEPENDS+=	${_USE_PGSQL_DEP_${depend}}:databases/postgresql${PGSQL_VER_NODOT}-${depend}
 .        elif ${WANT_PGSQL:M${depend}\:*}
-BUILD_DEPENDS+=	${NONEXISTENT}:${PORTSDIR}/databases/postgresql${PGSQL_VER_NODOT}-${depend}:${WANT_PGSQL:M${depend}\:*:C,^[^:]*\:,,}
+BUILD_DEPENDS+=	${NONEXISTENT}:databases/postgresql${PGSQL_VER_NODOT}-${depend}:${WANT_PGSQL:M${depend}\:*:C,^[^:]*\:,,}
 .        endif
 .      endfor
 .    endif
@@ -145,4 +137,4 @@ IGNORE?=		cannot install: unknown PostgreSQL version: ${PGSQL_VER}
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
-.endif #defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)
+.endif # !defined(_INCLUDE_USES_PGSQL_MK)
