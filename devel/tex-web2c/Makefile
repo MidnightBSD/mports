@@ -15,10 +15,10 @@ COMMENT=	TeX implementation translating WEB to C
 
 LICENSE=	publicdom
 
-LIB_DEPENDS=	libopenjpeg.so:${PORTSDIR}/graphics/openjpeg15 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libzzip.so:${PORTSDIR}/devel/zziplib \
-		libmpfr.so:${PORTSDIR}/math/mpfr
+LIB_DEPENDS=	libopenjpeg.so:graphics/openjpeg15 \
+		libpng.so:graphics/png \
+		libzzip.so:devel/zziplib \
+		libmpfr.so:math/mpfr
 
 USES=		pkgconfig libtool tar:xz iconv
 USE_TEX=	kpathsea ptexenc
@@ -48,7 +48,8 @@ CONFIGURE_ARGS=	--disable-luatex \
 		--with-system-zlib \
 		--with-system-zziplib \
 		--host=${ARCH}-portbld-freebsd9.1 \
-		--build=${ARCH}-portbld-freebsd9.1
+		--build=${ARCH}-portbld-freebsd9.1 \
+		--target=${ARCH}-portbld-freebsd9.1
 .for L in pixman cairo gmp mpfr libpng icu kpathsea ptexenc
 CONFIGURE_ARGS+=--with-system-$L \
 		--with-$L-include=${LOCALBASE}/include \
