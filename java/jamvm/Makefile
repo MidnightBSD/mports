@@ -11,9 +11,10 @@ COMMENT=	Compact Java virtual machine
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${LOCALBASE}/share/classpath/glibj.zip:${PORTSDIR}/java/classpath
+RUN_DEPENDS=	${LOCALBASE}/share/classpath/glibj.zip:java/classpath
 
 CONFIGURE_ARGS=	--with-classpath-install-dir=${LOCALBASE}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
 USES=		compiler gmake libtool pkgconfig
