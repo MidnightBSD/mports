@@ -11,17 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse SGML documents using OpenSP
 LICENSE=	perl
 
-BUILD_DEPENDS=	onsgmls:${PORTSDIR}/textproc/opensp \
-		p5-Class-Accessor>=0:${PORTSDIR}/devel/p5-Class-Accessor \
-		p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception
+BUILD_DEPENDS=	onsgmls:textproc/opensp \
+		p5-Class-Accessor>=0:devel/p5-Class-Accessor \
+		p5-Test-Exception>=0:devel/p5-Test-Exception
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USE_DOS2UNIX=	yes
 PERL_CONFIGURE=	yes
 CC=		${CXX}
 CONFIGURE_ARGS+="INC=-I${LOCALBASE}/include"
-
-MAN3=		SGML::Parser::OpenSP.3 SGML::Parser::OpenSP::Tools.3
 
 post-patch:
 	(cd ${WRKSRC} ; \
