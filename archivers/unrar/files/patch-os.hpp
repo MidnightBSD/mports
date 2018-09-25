@@ -1,12 +1,12 @@
---- os.hpp.orig	2012-04-05 22:20:56.000000000 +0200
-+++ os.hpp	2012-04-05 22:21:36.000000000 +0200
-@@ -193,6 +193,10 @@
- #include <utime.h>
+--- os.hpp.orig	2017-04-28 17:28:46 UTC
++++ os.hpp
+@@ -150,6 +150,10 @@
  #include <locale.h>
+ 
  
 +#ifdef OPENSSL_AES
 +#include <openssl/evp.h>
-+#endif
++#endif // OPENSSL_AES
 +
  #ifdef  S_IFLNK
  #define SAVE_LINKS

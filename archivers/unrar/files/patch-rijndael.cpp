@@ -1,15 +1,15 @@
---- rijndael.cpp.orig	2012-01-09 14:46:08.000000000 +0100
-+++ rijndael.cpp	2012-04-05 23:36:23.000000000 +0200
+--- rijndael.cpp.orig	2017-04-28 17:28:47 UTC
++++ rijndael.cpp
 @@ -7,6 +7,8 @@
-  **************************************************************************/
+  ***************************************************************************/
  #include "rar.hpp"
  
 +#ifndef OPENSSL_AES
 +
- const int uKeyLenInBytes=16, m_uRounds=10;
- 
- static byte S[256],S5[256],rcon[30];
-@@ -54,6 +56,7 @@ inline void Copy128(byte *dest,const byt
+ #ifdef USE_SSE
+ #include <wmmintrin.h>
+ #endif
+@@ -56,6 +58,7 @@ inline void Copy128(byte *dest,const byt
  #endif
  }
  
@@ -17,63 +17,106 @@
  
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // API
-@@ -61,13 +64,21 @@ inline void Copy128(byte *dest,const byt
+@@ -63,14 +66,35 @@ inline void Copy128(byte *dest,const byt
  
  Rijndael::Rijndael()
  {
 +#ifndef OPENSSL_AES
    if (S[0]==0)
      GenerateTables();
-+#endif
++#endif // OPENSSL_AES
+   CBCMode = true; // Always true for RAR.
  }
  
  
- void Rijndael::init(Direction dir,const byte * key,byte * initVector)
+ void Rijndael::Init(bool Encrypt,const byte *key,uint keyLen,const byte * initVector)
  {
 +#ifdef OPENSSL_AES
++  const EVP_CIPHER *cipher;
++  switch(keyLen)
++  {
++    case 128:
++      cipher = EVP_aes_128_cbc();
++      break;
++    case 192:
++      cipher = EVP_aes_192_cbc();
++      break;
++    case 256:
++      cipher = EVP_aes_256_cbc();
++      break;
++  }
++
 +  EVP_CIPHER_CTX_init(&ctx);
-+  EVP_CipherInit_ex(&ctx, EVP_aes_128_cbc(), NULL, key, initVector,
-+    dir == Decrypt ? 0 : 1);
++  EVP_CipherInit_ex(&ctx, cipher, NULL, key, initVector, Encrypt);
 +  EVP_CIPHER_CTX_set_padding(&ctx, 0);
-+#else
-   m_direction = dir;
++#else // OPENSSL_AES
+ #ifdef USE_SSE
+   // Check SSE here instead of constructor, so if object is a part of some
+   // structure memset'ed before use, this variable is not lost.
+@@ -111,6 +135,7 @@ void Rijndael::Init(bool Encrypt,const b
  
-   byte keyMatrix[_MAX_KEY_COLUMNS][4];
-@@ -82,6 +93,7 @@ void Rijndael::init(Direction dir,const 
- 
-   if(m_direction == Decrypt)
+   if(!Encrypt)
      keyEncToDec();
 +#endif // OPENSSL_AES
  }
  
- 
-@@ -91,6 +103,11 @@ size_t Rijndael::blockDecrypt(const byte
-   if (input == 0 || inputLen <= 0)
-     return 0;
+ void Rijndael::blockEncrypt(const byte *input,size_t inputLen,byte *outBuffer)
+@@ -118,6 +143,11 @@ void Rijndael::blockEncrypt(const byte *
+   if (inputLen <= 0)
+     return;
  
 +#ifdef OPENSSL_AES
 +  int outLen;
 +  EVP_CipherUpdate(&ctx, outBuffer, &outLen, input, inputLen);
-+  return outLen;
-+#else
-   byte block[16], iv[4][4];
-   memcpy(iv,m_initVector,16); 
- 
-@@ -113,9 +130,11 @@ size_t Rijndael::blockDecrypt(const byte
-   memcpy(m_initVector,iv,16);
-   
-   return 16*numBlocks;
++  return;
++#else // OPENSSL_AES
+   size_t numBlocks = inputLen/16;
+ #ifdef USE_SSE
+   if (AES_NI)
+@@ -176,6 +206,7 @@ void Rijndael::blockEncrypt(const byte *
+     input += 16;
+   }
+   Copy128(m_initVector,prevBlock);
 +#endif // OPENSSL_AES
  }
  
  
+@@ -217,6 +248,11 @@ void Rijndael::blockDecrypt(const byte *
+   if (inputLen <= 0)
+     return;
+ 
++#ifdef OPENSSL_AES
++  int outLen;
++  EVP_CipherUpdate(&ctx, outBuffer, &outLen, input, inputLen);
++  return;
++#else // OPENSSL_AES
+   size_t numBlocks=inputLen/16;
+ #ifdef USE_SSE
+   if (AES_NI)
+@@ -279,6 +315,8 @@ void Rijndael::blockDecrypt(const byte *
+   }
+ 
+   memcpy(m_initVector,iv,16);
++
++#endif // OPENSSL_AES
+ }
+ 
+ 
+@@ -314,7 +352,7 @@ void Rijndael::blockDecryptSSE(const byt
+ }
+ #endif
+ 
+-
 +#ifndef OPENSSL_AES
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // ALGORITHM
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@@ -296,3 +315,5 @@ void Rijndael::GenerateTables()
+@@ -454,7 +492,7 @@ void Rijndael::GenerateTables()
      U1[b][0]=U2[b][1]=U3[b][2]=U4[b][3]=T5[i][0]=T6[i][1]=T7[i][2]=T8[i][3]=FFmul0e(b);
    }
  }
-+
+-
 +#endif // OPENSSL_AES
+ 
+ #if 0
+ static void TestRijndael();
