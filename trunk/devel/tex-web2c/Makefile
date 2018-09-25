@@ -62,7 +62,10 @@ INFO=	web2c
 pre-configure:
 	for D in libs/xpdf; do \
 		cd ${WRKDIR}/${DISTNAME}/$$D && \
-		${SETENV} ${CONFIGURE_ENV} ${SH} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}; \
+		${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+			CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+			LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
+			${CONFIGURE_ENV} ${SH} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}; \
 	done
 
 .include <bsd.port.mk>
