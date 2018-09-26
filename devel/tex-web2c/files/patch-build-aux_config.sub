@@ -1,0 +1,11 @@
+--- ../../build-aux/config.sub.orig	2018-09-25 21:58:37.534652000 -0400
++++ ../../build-aux/config.sub	2018-09-25 21:59:30.470662000 -0400
+@@ -1396,7 +1396,7 @@
+ 	      | -os2* | -vos* | -palmos* | -uclinux* | -nucleus* \
+ 	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
+ 	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -dragonfly* \
+-	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops* | -es* | -tirtos*)
++	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops* | -es* | -tirtos* | -midnightbsd*)
+ 	# Remember, each alternative MUST END IN *, to match a version number.
+ 		;;
+ 	-qnx*)
