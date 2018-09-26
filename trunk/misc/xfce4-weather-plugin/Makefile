@@ -13,7 +13,7 @@ COMMENT=	Xfce 4 weather module for xfce4-panel
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libsoup-2.so:devel/libsoup
+LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
