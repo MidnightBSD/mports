@@ -13,7 +13,11 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	glebius
 GH_TAGNAME=	7f1e4ac
 
-USES=		autoreconf
-XORG_CAT=	driver
+USES=		autoreconf pkgconfig libtool 
+USE_XORG=       xorg-server xproto randrproto xi renderproto xextproto \
+                inputproto kbproto fontsproto videoproto dri2proto dri3proto \
+                xf86driproto glproto xineramaproto resourceproto \
+                scrnsaverproto presentproto
+#XORG_CAT=	driver
 
 .include <bsd.port.mk>
