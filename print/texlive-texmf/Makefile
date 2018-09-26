@@ -20,7 +20,7 @@ LICENSE=	publicdom
 CONFLICTS_INSTALL=	texlive-base-201[234]* \
 			texlive-texmf-201[234]*
 
-USES=		shebangfix tar:xz
+USES=		python:run shebangfix tar:xz
 USE_TEX=	basic:extract base tlmgr:run texhash
 TEXHASHDIRS=	${TEXMFDIR} ${TEXMFDISTDIR}
 NO_BUILD=	yes
@@ -257,16 +257,16 @@ EXCLUDE_FILES=	\*/doc/man \
 EXTRACT_AFTER_ARGS=| ${TAR} xf - ${EXCLUDE_FILES:S,^,--exclude ${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}/,}
 
 post-extract:
-	cd ${WRKDIR}/latex-base-20150101.2 && \
+	cd ${WRKDIR}/texlive-texmf-20150523/latex-base-20150101.2 && \
 	    ${SETENV} TEXMF=. ${LOCALBASE}/bin/tex -ini unpack.ins && \
 	    ${RM} README *.log *.aux *.pdf *.dtx *.ins *.txt *.ist *.fdd *.err
 
 do-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}${EXTRACT_SUFX} \
-		${EXTRACT_AFTER_ARGS} -C ${PREFIX}/share \
+		${EXTRACT_AFTER_ARGS} -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner
 	${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
-	cd ${WRKDIR}/latex-base-20150101.2 && ${PAX} -rw . \
+	cd ${WRKDIR}/texlive-texmf-20150523/latex-base-20150101.2 && ${PAX} -rw . \
 	    ${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
 	${REINPLACE_CMD} -i '' 's/\\def\\magyar@sugg@ie@low#1#2#3/\\def\\magyar@sugg@ie@low\\protect #1#2#3/' ${PREFIX}/share/texmf-dist/tex/generic/babel-hungarian/magyar.ldf
 	${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/doc
