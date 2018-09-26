@@ -15,11 +15,13 @@ COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 LICENSE=	nvidia
 LICENSE_FILE=	${WRKSRC}/doc/license.txt
 
+ONLY_FOR_ARCHS=i386 amd64
+
 FAKE_OPTS=	trueprefix
 
 ARCH_SUFX=	x86${ARCH:S/i386//:S/amd/_/}
 USES=		kmod uidfix
-USE_XORG=	xorg-server
+USE_XORG=	x11 xorg-server xext
 USE_GL=		gl
 USE_LDCONFIG=	yes
 
