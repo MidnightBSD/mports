@@ -46,10 +46,7 @@ CONFIGURE_ARGS=	--disable-luatex \
 		--with-x=no \
 		--without-mf-x-toolkit \
 		--with-system-zlib \
-		--with-system-zziplib \
-		--host=${ARCH}-portbld-freebsd9.1 \
-		--build=${ARCH}-portbld-freebsd9.1 \
-		--target=${ARCH}-portbld-freebsd9.1
+		--with-system-zziplib
 .for L in pixman cairo gmp mpfr libpng icu kpathsea ptexenc
 CONFIGURE_ARGS+=--with-system-$L \
 		--with-$L-include=${LOCALBASE}/include \
