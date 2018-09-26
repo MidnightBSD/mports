@@ -14,12 +14,12 @@ COMMENT=	C++ version of Tomboy, note taking application
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libgtkspell3-3.so:${PORTSDIR}/textproc/gtkspell3 \
-		libboost_filesystem.so:${PORTSDIR}/devel/boost-libs \
-		libsecret-1.so:${PORTSDIR}/security/libsecret \
-		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libpcre.so:devel/pcre \
+		libgtkspell3-3.so:textproc/gtkspell3 \
+		libboost_filesystem.so:devel/boost-libs \
+		libsecret-1.so:security/libsecret \
+		libuuid.so:misc/e2fsprogs-libuuid
 
 USE_GNOME=	gtk30 gtkmm30 intltool libxml2 libxslt
 USES=		desktop-file-utils compiler:c++11-lib gettext gmake \
@@ -39,8 +39,6 @@ DOCS=		AUTHORS ChangeLog NEWS README TODO
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .include <bsd.mport.options.mk>
-
-EXTRA_PATCHES=	${FILESDIR}/extra-src_base_macros.hpp
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
