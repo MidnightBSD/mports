@@ -1,4 +1,3 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
 include/libgdl-3.0/gdl/gdl.h
 include/libgdl-3.0/gdl/gdl-dock-item.h
 include/libgdl-3.0/gdl/gdl-dock.h
@@ -10,7 +9,6 @@ include/libgdl-3.0/gdl/gdl-dock-bar.h
 include/libgdl-3.0/gdl/gdl-dock-layout.h
 include/libgdl-3.0/gdl/libgdltypebuiltins.h
 lib/girepository-1.0/Gdl-3.typelib
-lib/libgdl-3.la
 lib/libgdl-3.so
 lib/libgdl-3.so.5
 lib/libgdl-3.so.5.0.9
