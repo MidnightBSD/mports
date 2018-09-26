@@ -15,10 +15,6 @@ do-build:
 	cd ${WRKSRC} && ${GMAKE} libcanberra-gtk3.pc
 	cd ${WRKSRC}/src && ${GMAKE} libcanberra-gtk3.la
 	cd ${WRKSRC}/src && ${GMAKE} libcanberra-gtk3-module.la
-# fix the .la file so it doesn't point to the build dir anymore.
-	@${REINPLACE_CMD} -e '/^relink_command/ d' \
-		-e 's|${WRKSRC}/src/libcanberra.la|${LOCALBASE}/lib/libcanberra.la|g' \
-		${WRKSRC}/src/.libs/libcanberra-gtk3.la
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libcanberra-gtk3.pc \
@@ -27,9 +23,7 @@ do-install:
 	${INSTALL_LIB} ${WRKSRC}/src/.libs/libcanberra-gtk3${i} \
 		${PREFIX}/lib/
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/src/.libs/libcanberra-gtk3.la \
-		${PREFIX}/lib/
-	cd ${WRKSRC}/src && ${GMAKE} ${FAKE_MAKEARGS} install-gtk3moduleLTLIBRARIES
+	cd ${WRKSRC}/src && env DESTDIR=${FAKE_DESTDIR} ${GMAKE} ${FAKE_MAKEARGS} install-gtk3moduleLTLIBRARIES
 	${LN} -sf libcanberra-gtk3-module.so \
 		${PREFIX}/lib/gtk-3.0/modules/libcanberra-gtk-module.so
 
