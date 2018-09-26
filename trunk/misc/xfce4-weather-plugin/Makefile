@@ -13,13 +13,16 @@ COMMENT=	Xfce 4 weather module for xfce4-panel
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	soup-2:${PORTSDIR}/devel/libsoup
+LIB_DEPENDS=	libsoup-2.so:devel/libsoup
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USES=		pkgconfig gettext gmake pathfix tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack libxml2
 USE_XFCE=	libmenu libutil panel
+USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 OPTIONS_DEFINE=	UPOWER
 UPOWER_DESC=	Power state support
@@ -27,7 +30,7 @@ UPOWER_DESC=	Power state support
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MUPOWER}
-LIB_DEPENDS+=	upower-glib:${PORTSDIR}/sysutils/upower
+LIB_DEPENDS+=	libupower-glib.so:sysutils/upower
 CONFIGURE_ARGS+=--enable-upower
 .else
 CONFIGURE_ARGS+=--disable-upower
