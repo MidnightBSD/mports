@@ -25,6 +25,7 @@ USE_XORG=	xrandr x11 xext xtst xscrnsaver
 CONFIGURE_ARGS=	--disable-network-manager \
 		--enable-polkit \
 		--enable-xfce4panel
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
