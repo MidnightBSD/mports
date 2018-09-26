@@ -16,7 +16,7 @@ SSP_UNSAFE=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
-USES=		alias gmake libtool pkgconfig gettext-tools xfce tar:bzip2
+USES=		gmake libtool pkgconfig gettext-tools xfce tar:bzip2
 USE_GNOME=	gtk20 glib20 intltool intlhack
 USE_XFCE=	panel
 
