@@ -34,9 +34,6 @@ USE_GITHUB=	yes
 GPERFTOOLS_LIB_DEPENDS=	libtcmalloc.so:devel/google-perftools
 SNAPPY_LIB_DEPENDS=	libsnappy.so:archivers/snappy
 
-post-patch:
-	@${REINPLACE_CMD} -e '/PLATFORM_IS_LITTLE_ENDIAN/ s|__|_|g' ${WRKSRC}/port/port_posix.h
-
 post-patch-GPERFTOOLS-off:
 	@${REINPLACE_CMD} -e 's| -ltcmalloc||' ${WRKSRC}/build_detect_platform
 
