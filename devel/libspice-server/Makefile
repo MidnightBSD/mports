@@ -55,4 +55,8 @@ CONFIGURE_ENV+=	SSL_CFLAGS="${SPICE_SSL_CFLAGS}" SSL_LIBS="${SPICE_SSL_LIBS}" \
 
 INSTALL_TARGET=	install-strip
 
+post-fake:
+	${MKDIR} ${PREFIX}/libdata/pkgconfig
+	${CP} ${PREFIX}/lib/pkgconfig/spice-server.pc ${PREFIX}/libdata/pkgconfig/spice-server.pc
+
 .include <bsd.port.mk>
