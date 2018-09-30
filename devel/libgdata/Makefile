@@ -2,32 +2,28 @@
 # $FreeBSD: ports/devel/libgdata/Makefile,v 1.12 2010/12/12 10:52:35 kwm Exp $
 
 PORTNAME=	libgdata
-PORTVERSION=	0.16.1
+PORTVERSION=	0.17.8
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib based implimentation of the GData protocol
-LICENSE=	lgpl
 
-BUILD_DEPENDS=	ca_root_nss>=0:${PORTSDIR}/security/ca_root_nss \
-		gtkdoc-check:${PORTSDIR}/textproc/gtk-doc \
-		vapigen:${PORTSDIR}/lang/vala
-LIB_DEPENDS=	libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome \
-		libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
-		libuhttpmock-0.0.so:${PORTSDIR}/net/uhttpmock \
-		libgcr-3.so:${PORTSDIR}/security/gcr \
-		liboauth.so:${PORTSDIR}/net/liboauth
-RUN_DEPENDS=	ca_root_nss>=0:${PORTSDIR}/security/ca_root_nss
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	glib20 gnomeprefix intlhack \
-		introspection:build
+BUILD_DEPENDS=	uhttpmock>0:net/uhttpmock
+LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
+		libjson-glib-1.0.so:devel/json-glib \
+		libp11-kit.so:security/p11-kit \
+		libgoa-1.0.so:net/gnome-online-accounts \
+		libgcr-3.so:security/gcr \
+		liboauth.so:net/liboauth
+
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
+USE_GNOME=	glib20 gnomeprefix intltool introspection:build libxml2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS+=--with-ca-certs=${LOCALBASE}/share/certs/ca-root-nss.crt
 
 .include <bsd.port.mk>
