@@ -1,0 +1,56 @@
+--- configure.orig	2018-09-30 17:48:49.423613000 -0400
++++ configure	2018-09-30 17:49:50.956372000 -0400
+@@ -6671,7 +6671,7 @@
+     lt_cv_sys_max_cmd_len=8192;
+     ;;
+ 
+-  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
++  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
+     # This has been around since 386BSD, at least.  Likely further.
+     if test -x /sbin/sysctl; then
+       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
+@@ -7082,7 +7082,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -11458,7 +11458,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++    freebsd* | dragonfly* | midnightbsd*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -12503,7 +12503,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -12522,7 +12522,7 @@
+       need_version=no
+       need_lib_prefix=no
+       ;;
+-    freebsd-*)
++    freebsd-* | midnightbsd-*)
+       library_names_spec='$libname$release$shared_ext$versuffix $libname$shared_ext$versuffix'
+       need_version=yes
+       ;;
+@@ -18482,7 +18482,7 @@
+ 
+   # Need OS tweaks in hal volume monitor backend
+   case "$host" in
+-    *-linux* | *-freebsd* | *-kfreebsd*-gnu)
++    *-linux* | *-freebsd* | *-kfreebsd*-gnu | *-midnightbsd*)
+       use_gphoto2=yes
+       ;;
+     *)
