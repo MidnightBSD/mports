@@ -1,14 +1,9 @@
-# New ports collection makefile for:   preferences.app
-# Date created:         04 Feb 2003
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
 # $FreeBSD: ports/deskutils/preferences.app/Makefile,v 1.10 2006/03/19 04:35:43 dinoex Exp $
 # $MidnightBSD$
-#
 
 PORTNAME=	preferences
 PORTVERSION=	1.2.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	SF/prefsapp/prefsapp/${PORTVERSION}
 DISTNAME=	Preferences-${PORTVERSION}
