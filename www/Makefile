@@ -57,6 +57,7 @@ SUBDIR += nginx
 SUBDIR += npm
 SUBDIR += node
 SUBDIR += node012
+SUBDIR += node6
 SUBDIR += nspluginwrapper
 SUBDIR += p5-Apache-LogFormat-Compiler
 SUBDIR += p5-CGI-Ajax
