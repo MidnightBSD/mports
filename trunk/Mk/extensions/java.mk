@@ -150,12 +150,12 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 # The complete list of Java versions, os and vendors supported.
 __JAVA_VERSION_LIST=	1.6 1.7 1.8
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
-_JAVA_OS_LIST=			native linux freebsd
+_JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
-_JAVA_PORT_NATIVE_OPENJDK_JDK_1_8_BIN_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
 											VERSION=1.8.0	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
 											VERSION=1.7.0	OS=native	VENDOR=openjdk
