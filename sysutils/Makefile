@@ -12,6 +12,7 @@ SUBDIR += bacula-docs
 SUBDIR += bacula-server
 SUBDIR += batmon
 SUBDIR += battmond
+SUBDIR += beats
 SUBDIR += brasero
 SUBDIR += bsd-splash-changer
 SUBDIR += bsdstats
