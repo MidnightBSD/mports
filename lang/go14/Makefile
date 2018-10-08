@@ -12,6 +12,8 @@ COMMENT=	Go programming language
 
 LICENSE=	bsd3
 
+ONLY_FOR_ARCHS=amd64 armv6 armv7 i386
+
 USES=		compiler 
 #shebangfix
 SHEBANG_LANG=	sh
