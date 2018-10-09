@@ -11,7 +11,8 @@ CATEGORIES=	devel
 MASTER_SITES=	http://dl.suckless.org/libs/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A stand-alone client/server 9P library
+COMMENT=	Standalone client/server 9P library
+
 LICENSE=	unknown
 
 USE_LDCONFIG=	yes
@@ -32,7 +33,7 @@ post-patch:
 		${WRKSRC}/cmd/ixpc.c
 
 do-build:
-	cd ${WRKSRC}; ${MAKE};
+	cd ${WRKSRC}; ${MAKE_ENV} ${MAKE};
 
 do-install:
 	@${INSTALL_DATA} ${WRKSRC}/include/ixp.h ${PREFIX}/include
