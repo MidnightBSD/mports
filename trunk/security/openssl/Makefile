@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	openssl
-PORTVERSION=	1.0.2o
+PORTVERSION=	1.0.2p
 PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
