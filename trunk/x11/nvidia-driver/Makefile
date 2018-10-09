@@ -3,7 +3,7 @@
 PORTNAME=	nvidia-driver
 DISTVERSION?=	346.96
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
 # MASTER_SITE_SUBDIR has to be set later because it depends on NVVERSION
@@ -152,13 +152,13 @@ post-patch: .SILENT
 		${WRKSRC}/src/nvidia_linux.c
 .endif
 # Adjust Linux headers #include's after FreeBSD src SVN r246085
-.if ${OSVERSION} > 1000027 && ${NVVERSION} >= 96.04323
+.if ${OSVERSION} > 100001 && ${NVVERSION} >= 96.04323
 	${REINPLACE_CMD} -E '/#include "machine\/\.\.\/linux(32)?\/linux.h"/ \
 		{ x ; s/.*/#include "machine\/..\/..\/compat\/linux\/linux_ioctl.h"/ ; H ; x ; }' \
 			${WRKSRC}/src/nvidia_linux.c
 .endif
 # Adjust vm_object locking after FreeBSD src SVN r248084
-.if ${OSVERSION} > 1000029
+.if ${OSVERSION} > 100001
 	${REINPLACE_CMD} -e '/#include <vm\/vm_object.h>/ \
 		{ x ; s/.*/#include <sys\/rwlock.h>/ ; G ; }' \
 			${WRKSRC}/src/nv-freebsd.h
@@ -166,17 +166,17 @@ post-patch: .SILENT
 		${WRKSRC}/src/nvidia_subr.c
 .endif
 # Adjust kmem(9) calls after FreeBSD src SVN r254025
-.if ${OSVERSION} > 1000040 && ${NVVERSION} < 331.067
+.if ${OSVERSION} > 100001 && ${NVVERSION} < 331.067
 	${REINPLACE_CMD} -e '/kmem_/s/kernel_map/kernel_arena/' \
 		${WRKSRC}/src/nvidia_subr.c
 .endif
 # Argument count of vm_map_find() changed in FreeBSD src SVN r255426
-.if ${OSVERSION} > 1000054 && ${NVVERSION} < 304.123 # < 331.067
+.if ${OSVERSION} > 100001 && ${NVVERSION} < 304.123 # < 331.067
 	${REINPLACE_CMD} -e 's/virtual_address, size,/& 0,/' \
 		${WRKSRC}/src/nvidia_subr.c
 .endif
 # Fix CTLFLAG_* values for SYSCTL_ADD_PROC() after FreeBSD src SVN r273377
-.if ${OSVERSION} > 1100039 || ${OSVERSION} > 1001501 && ${OSVERSION} < 1100000
+.if ${OSVERSION} > 100001
 	${REINPLACE_CMD} -e '/SYSCTL_ADD_PROC/,/;/ \
 		s/^[[:blank:]]*CTLFLAG_RD/CTLTYPE_STRING |&/' \
 			${WRKSRC}/src/nvidia_sysctl.c
