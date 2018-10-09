@@ -4,7 +4,7 @@
 PORTNAME=	node
 PORTVERSION=	6.14.3
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	6
@@ -17,16 +17,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386
 
-OPTIONS_DEFINE=	BUNDLED_SSL DOCS NLS
-OPTIONS_DEFAULT=BUNDLED_SSL
+OPTIONS_DEFINE=	BUNDLED_SSL DOCS
 OPTIONS_SUB=	yes
 
 BUNDLED_SSL_DESC=		Use node.js's bundled OpenSSL implementation #'
 BUNDLED_SSL_USES_OFF=		ssl
 BUNDLED_SSL_CONFIGURE_OFF+=	--shared-openssl
 
-NLS_CONFIGURE_ON=	--with-intl=system-icu
-NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
+# Do not use until icu is updated. causes Error: Cannot convert name to ASCII
+#NLS_CONFIGURE_ON=	--with-intl=system-icu
+#NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
 
 USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 		localbase shebangfix
