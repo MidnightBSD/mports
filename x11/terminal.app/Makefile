@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		gnustep iconv
 USE_GNUSTEP=	back build
 
+MAKE_ARGS+=Terminal_TOOL_LIBS='${ICONV_LIB} -lutil'
+
 post-install:
 	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Terminal.app/Terminal
 
