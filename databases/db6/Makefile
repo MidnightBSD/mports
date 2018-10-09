@@ -100,7 +100,7 @@ post-install-TCL-on:
 
 post-install-TCL-off:
 .for i in api_reference/TCL
-	${RM} -r ${STAGEDIR}${DOCSDIR}/${i}
+	${RM} -r ${FAKE_DESTDIR}${DOCSDIR}/${i}
 .endfor
 
 .include <bsd.port.mk>
