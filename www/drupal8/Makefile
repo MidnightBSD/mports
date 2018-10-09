@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	drupal8
-PORTVERSION=	8.2.7
+PORTVERSION=	8.5.5
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
 DISTNAME=	drupal-${PORTVERSION}
@@ -15,7 +15,8 @@ COMMENT=	Database driven web content management system (CMS)
 LICENSE=	gpl2
 
 USES=		php:web shebangfix
-USE_PHP=	dom filter gd hash json mbstring pcre pdo session simplexml xml
+USE_PHP=	dom filter gd hash json mbstring opcache pcre pdo session \
+		simplexml tokenizer xml
 SHEBANG_FILES=	core/scripts/password-hash.sh
 
 NO_ARCH=	yes
@@ -28,7 +29,6 @@ OPTIONS_DEFINE=		MYSQL SQLITE3 PGSQL DOCS
 OPTIONS_DEFAULT=	MYSQL
 
 SUB_FILES+=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 PGSQL_USES=	pgsql
 PGSQL_USE=	PHP=pdo_pgsql
@@ -43,6 +43,8 @@ post-extract:
 do-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . \
 		${STAGEDIR}${WWWDIR})
+
+do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKDIR}/DOCS && ${COPYTREE_SHARE} . \
 		${STAGEDIR}${DOCSDIR})
