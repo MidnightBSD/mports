@@ -56,6 +56,7 @@ SUBDIR += nghttp2
 SUBDIR += nginx
 SUBDIR += npm
 SUBDIR += npm-node6
+SUBDIR += npm-node8
 SUBDIR += node
 SUBDIR += node6
 SUBDIR += node8
