@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	codeigniter
-PORTVERSION=	3.1.3
+PORTVERSION=	3.1.6
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
