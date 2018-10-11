@@ -114,6 +114,7 @@ SUBDIR += madplay
 SUBDIR += mikmod
 SUBDIR += mpdcon
 SUBDIR += mpg123
+SUBDIR += musescore
 SUBDIR += musicpd
 SUBDIR += nas
 SUBDIR += openal
