@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	fusefs
-PORTVERSION=	2.9.5
+PORTVERSION=	2.9.7
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-libs
 
