@@ -10,7 +10,7 @@ PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	PostgreSQL is the most advanced open-source database available anywhere
 
-LICENSE=	PostgreSQL
+LICENSE=	other
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} == 10
 CONFLICTS+=	${PORTNAME}*-9.*
