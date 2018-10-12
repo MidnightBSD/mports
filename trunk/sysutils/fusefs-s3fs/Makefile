@@ -3,7 +3,7 @@
 
 PORTNAME=	s3fs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.78
+DISTVERSION=	1.84
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	fusefs-
 
@@ -17,6 +17,7 @@ LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	s3fs-fuse
+GH_PROJECT=s3fs-fuse
 
 USES=		autoreconf fuse pkgconfig ssl
 GNU_CONFIGURE=	yes
