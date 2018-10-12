@@ -70,6 +70,7 @@ SUBDIR += p5-SQL-Translator
 SUBDIR += pecl-memcache
 SUBDIR += percona55-client
 SUBDIR += percona55-server
+SUBDIR += pgtcl
 SUBDIR += php56-dba
 SUBDIR += php56-mssql
 SUBDIR += php56-mysql
