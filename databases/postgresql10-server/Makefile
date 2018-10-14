@@ -262,7 +262,7 @@ do-install:
 			${STAGEDIR}${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-local
+	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-local
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${STAGEDIR}${DOCSDIR} ;\
