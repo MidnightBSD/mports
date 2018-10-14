@@ -5,7 +5,8 @@ DISTVERSION?=	10.4
 PORTREVISION?=	1
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
-PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
+SHORT_VER=${PORTVERSION:R}
+PKGNAMESUFFIX?= ${SHORT_VER:S,.,,}${COMPONENT}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	PostgreSQL is the most advanced open-source database available anywhere
