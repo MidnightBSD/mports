@@ -73,6 +73,7 @@ SUBDIR += pecl-memcache
 SUBDIR += percona55-client
 SUBDIR += percona55-server
 SUBDIR += pgtcl
+SUBDIR += pgtune
 SUBDIR += php56-dba
 SUBDIR += php56-mssql
 SUBDIR += php56-mysql
