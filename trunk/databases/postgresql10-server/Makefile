@@ -39,7 +39,9 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 INCLUDES+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
-		--enable-thread-safety
+		--enable-thread-safety \
+		--build=${ARCH}-portbld-freebsd10.4 \
+		--host=${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
 		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
