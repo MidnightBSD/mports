@@ -42,7 +42,7 @@ BUILD_WRKSRC=	${WRKSRC}/src/3rdparty/${PORTNAME}/Source
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 CONFIGURE_ARGS+=	-I../../../../include/Qt -I../../../../include \
-			 -host-little-endian
+			 -host-little-endian -little-endian
 
 OPTIONS_DEFINE=	GSTREAMER
 OPTIONS_DEFAULT=GSTREAMER
