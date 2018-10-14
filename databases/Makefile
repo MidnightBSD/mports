@@ -46,6 +46,7 @@ SUBDIR += mysql57-client
 SUBDIR += mysql57-server
 SUBDIR += mysql80-client
 SUBDIR += mysql80-server
+SUBDIR += mysqltuner
 SUBDIR += ntdb
 SUBDIR += oracle8-client
 SUBDIR += p5-Class-DBI
