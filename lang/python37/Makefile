@@ -116,9 +116,15 @@ DISABLED_EXTENSIONS+=	nis
 PLIST_SUB+=	NO_NIS=""
 .endif
 
+.include <bsd.port.pre.mk>
+
 # python37 fails to build ssl module with base SSL because X509_VERIFY_PARAM_set1_host check fails.
+.if ${SSL_DEFAULT} == base
 PLIST_SUB+=	NO_SSL="@comment "
-WARNING+=	"No SSL support for FreeBSD ${OSREL} with base SSL! OpenSSL must be greater than/equal to 1.0.2"
+WARNING+=	"No SSL support for ${OSREL} with base SSL! OpenSSL must be greater than/equal to 1.0.2"
+.else
+PLIST_SUB+=	NO_SSL=""
+.endif
 
 post-patch:
 # readline shared library is present on base before FreeBSD 11 - r268461
@@ -149,4 +155,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
 		${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
