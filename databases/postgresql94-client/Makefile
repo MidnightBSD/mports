@@ -3,6 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	postgresql
+PKGNAMESUFFIX=	94-client
 
 COMMENT=	PostgreSQL database (client)
 
@@ -10,7 +11,7 @@ MASTERDIR=	${.CURDIR}/../postgresql94-server
 
 BUILD_DIRS=	config src/include src/interfaces src/port \
 		src/bin/pg_dump src/bin/psql src/bin/scripts src/bin/pg_config \
-		doc src/makefiles
+		doc src/makefiles src/test/regress
 INSTALL_DIRS=	${BUILD_DIRS}
 
 CLIENT_ONLY=	yes
