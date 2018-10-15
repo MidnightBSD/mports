@@ -229,9 +229,9 @@ pre-build:
 .if !defined(NO_BUILD) && !target(do-build)
 
 do-build:
-	@ cd ${WRKSRC}/src/backend && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} symlinks
+	@ cd ${WRKSRC}/src/backend && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${FAKE_MAKEARGS} symlinks
 	@ for dir in ${BUILD_DIRS}; do \
-		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD}; \
+		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${FAKE_MAKEARGS}; \
 	done
 
 .  if exists(${FILESDIR}/pkg-message${COMPONENT}.in)
@@ -254,7 +254,7 @@ post-patch:
 do-install:
 	@for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${INSTALL_TARGET}; \
+		${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
 	@ ${MKDIR} ${STAGEDIR}${PREFIX}/share/postgresql ;\
