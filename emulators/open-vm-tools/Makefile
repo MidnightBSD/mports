@@ -46,7 +46,7 @@ GNU_CONFIGURE=		yes
 USES=			pkgconfig kmod libtool autotools:automake
 USE_GNOME=		glib20
 USE_LDCONFIG=		yes
-CPPFLAGS+=		-Wno-deprecated-declarations -D__FreeBSD__=9 -DFreeBSD_version=901000
+CPPFLAGS+=		-Wno-deprecated-declarations -D__FreeBSD__=10 -DFreeBSD_version=1004501
 
 SSP_UNSAFE=		kernel module does not support ssp
 
