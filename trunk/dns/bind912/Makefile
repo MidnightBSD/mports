@@ -282,6 +282,6 @@ post-install-DOCS-on:
 
 # Can't use USE_PYTHON=autoplist
 post-install-PYTHON-on:
-	@${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${FAKE_DESTDIR}||' >> ${TMPPLIST}
+	@${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${FAKE_DESTDIR}${LOCALBASE}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
