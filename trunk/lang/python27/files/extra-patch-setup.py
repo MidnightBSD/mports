@@ -19,7 +19,7 @@
 +                )
 +            libraries = []
 +
-+        elif host_platform in ('freebsd7', 'freebsd8', 'freebsd9', 'freebsd10', 'freebsd11', 'midnightbsd0'):
++        elif host_platform in ('freebsd7', 'freebsd8', 'freebsd9', 'freebsd10', 'freebsd11', 'midnightbsd0', 'midnightbsd1'):
 +            macros = dict(                  # FreeBSD 7+
 +                HAVE_SEM_OPEN=1,
 +                HAVE_SEM_TIMEDWAIT=1,

@@ -64,9 +64,6 @@ LIBS+=		-L${LOCALBASE}/lib -lintl
 
 PYMALLOC_CONFIGURE_WITH=	pymalloc
 
-SEM_CONFIGURE_ENV=	ac_cv_posix_semaphores_enabled=yes
-SEM_CONFIGURE_ENV_OFF=	ac_cv_posix_semaphores_enabled=no
-
 THREADS_CONFIGURE_WITH=	threads
 THREADS_LDFLAGS=	-lpthread
 
@@ -76,8 +73,8 @@ UCS4_CONFIGURE_ON=	--enable-unicode=ucs4
 .include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
 
-# http://bugs.python.org/issue22521
-# http://bugs.python.org/issue23042
+# https://bugs.python.org/issue22521
+# https://bugs.python.org/issue23042
 .if !${PORT_OPTIONS:MLIBFFI} && ${ARCH} == i386
 BROKEN=	You must use libffi from ports on i386. Enable the LIBFFI option
 .endif
@@ -119,6 +116,25 @@ post-patch:
 post-install:
 	for i in ${PREFIX}/lib/python2.7/lib-dynload/*.so; do \
 		${STRIP_CMD} $$i; done						# Strip shared extensions
+# This code block exists for the qemu-user enabled cross build environment.
+# When using this environment in poudriere, CC is not set to the default
+# of /usr/bin/cc and a cross-compile toolchain is used.  We need to hand
+# edit this so that the run time configuration for python matches what the
+# FreeBSD base system provides.  sbruno 02Aug2017
+.if ${CC} == /nxb-bin/usr/bin/cc
+	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
+		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
+		./python -E -m compileall -d ${PREFIX}/lib/python2.7 \
+		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+	@cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC} \
+		./python -E -O -m compileall -d ${PREFIX}/lib/python2.7 \
+		${STAGEDIR}${PREFIX}/lib/python2.7/_sysconfigdata.py
+	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
+		${STAGEDIR}${PREFIX}/lib/python2.7/config/Makefile
+.endif
+	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
+		${STAGEDIR}${PREFIX}/lib/libpython2.7.so.1-gdb.py
 
 regression-test: build
 	@cd ${WRKSRC} && ${MAKE} TESTOPTS=-j${MAKE_JOBS_NUMBER} buildbottest
