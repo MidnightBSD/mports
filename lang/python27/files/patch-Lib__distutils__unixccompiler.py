@@ -1,13 +1,9 @@
-# Description: Some python extensions can't be compiled with clang 3.4
-# Issue ID: http://bugs.python.org/issue20767
-# Submitted by: antoine
-
---- ./Lib/distutils/unixccompiler.py.orig      2013-11-10 07:36:40.000000000 +0000
-+++ ./Lib/distutils/unixccompiler.py   2014-02-19 15:41:48.000000000 +0000
-@@ -228,6 +228,8 @@ class UnixCCompiler(CCompiler):
-         if sys.platform[:6] == "darwin":
-             # MacOSX's linker doesn't understand the -R flag at all
+--- Lib/distutils/unixccompiler.py.orig	2018-04-29 18:47:33.000000000 -0400
++++ Lib/distutils/unixccompiler.py	2018-10-15 17:52:46.714118000 -0400
+@@ -232,6 +232,8 @@
              return "-L" + dir
+         elif sys.platform[:7] == "freebsd":
+             return "-Wl,-rpath=" + dir
 +        elif sys.platform[:7] == "midnightbsd":
 +            return "-Wl,-rpath=" + dir
          elif sys.platform[:5] == "hp-ux":
