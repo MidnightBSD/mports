@@ -11,9 +11,10 @@ WRKSRC=		${WRKDIR}/Allenroids
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Asteroids clone by Allen Smith
+
 LICENSE=	other
 
-USE_GMAKE=	yes
+USES=		gmake
 USE_SDL=	sound
 USE_GL=		glut glu gl
 
