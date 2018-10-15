@@ -13,6 +13,9 @@ LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}
 NO_BUILD=	yes
+NO_STRIP=	yes
+
+ONLY_FOR_ARCHS=	amd64
 
 do-install:
 	${MKDIR} ${PREFIX}/lib/freebsd
