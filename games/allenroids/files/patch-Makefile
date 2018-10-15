@@ -1,7 +1,8 @@
---- Makefile.orig	2009-11-26 17:05:50 -0500
-+++ Makefile	2009-11-26 17:11:02 -0500
+--- Makefile.orig	2003-11-10 14:31:45.000000000 -0500
++++ Makefile	2018-10-15 14:26:50.228934000 -0400
 @@ -1,6 +1,15 @@
- CC = gcc
+-CC = gcc
++CC = cc
 +CFLAGS=	-I/usr/local/include -O2 -L/usr/local/lib
  LIBS = -lglut -lGL -lGLU -lSDL
  SRC= Configure\ Screen.c Title\ Screen.c asteroids.c sound.c
