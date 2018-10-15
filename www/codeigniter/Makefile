@@ -101,12 +101,12 @@ PLIST_SUB+=	CONFDIR=${CONFDIR_REL}
 SUB_FILES+=	${CONF}
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} "${STD_BITS}" ${STAGEDIR}${WWWDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "${STD_BITS}" ${FAKE_DESTDIR}${WWWDIR}
 	for i in ${CI_CONF_FILES}; do \
-		${INSTALL_DATA} ${WRKSRC}/$$i ${STAGEDIR}${WWWDIR}/$$i.sample; \
+		${INSTALL_DATA} ${WRKSRC}/$$i ${FAKE_DESTDIR}${WWWDIR}/$$i.sample; \
 	done
-	@${MKDIR} ${STAGEDIR}${CONFDIR}
-	${CP} ${WRKDIR}/${CONF} ${STAGEDIR}${CONFDIR}/codeigniter.conf;
+	@${MKDIR} ${FAKE_DESTDIR}${CONFDIR}
+	${CP} ${WRKDIR}/${CONF} ${FAKE_DESTDIR}${CONFDIR}/codeigniter.conf;
 	cd ${WRKSRC}/user_guide && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
 	${RM} ${STAGEDIR}${DOCSDIR}/.buildinfo
 	${CP} ${WRKSRC}/readme.rst ${STAGEDIR}${DOCSDIR}/readme.rst
