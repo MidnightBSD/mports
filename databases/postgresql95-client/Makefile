@@ -3,6 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	postgresql
+PKGNAMESUFFIX=	95-client
 
 COMMENT=	PostgreSQL database (client)
 
