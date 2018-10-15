@@ -257,20 +257,20 @@ post-patch-PORTREVISION-on:
 .  endif
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
-	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}
+	${MKDIR} ${PREFIX}/etc/mtree
+	${MKDIR} ${ETCDIR}
 .  for i in dynamic master slave working
-	@${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/$i
+	@${MKDIR} ${ETCDIR}/$i
 .  endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${FAKE_DESTDIR}${ETCDIR}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${FAKE_DESTDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${FAKE_DESTDIR}${ETCDIR}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${FAKE_DESTDIR}${ETCDIR}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${FAKE_DESTDIR}${ETCDIR}/master
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${PREFIX}/etc/mtree/BIND.chroot.dist.sample
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${FAKE_DESTDIR}${ETCDIR}/rndc.conf.sample
+		${ETCDIR}/rndc.conf.sample
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
