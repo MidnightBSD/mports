@@ -101,9 +101,9 @@ PLIST_SUB+=	CONFDIR=${CONFDIR_REL}
 SUB_FILES+=	${CONF}
 
 do-install:
-	cd ${WRKSRC} && ${COPYTREE_SHARE} "${STD_BITS}" ${FAKE_DESTDIR}${WWWDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "${STD_BITS}" ${WWWDIR}
 	for i in ${CI_CONF_FILES}; do \
-		${INSTALL_DATA} ${WRKSRC}/$$i ${FAKE_DESTDIR}${WWWDIR}/$$i.sample; \
+		${INSTALL_DATA} ${WRKSRC}/$$i ${WWWDIR}/$$i.sample; \
 	done
 	@${MKDIR} ${FAKE_DESTDIR}${CONFDIR}
 	${CP} ${WRKDIR}/${CONF} ${FAKE_DESTDIR}${CONFDIR}/codeigniter.conf;
