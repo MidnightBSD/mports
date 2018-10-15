@@ -244,14 +244,14 @@ post-install:
 		${STAGEDIR}${ETCDIR}/rndc.conf.sample
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${FAKE_DESTDIR}${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGES \
-		${WRKSRC}/HISTORY* ${WRKSRC}/README* ${STAGEDIR}${DOCSDIR}
+		${WRKSRC}/HISTORY* ${WRKSRC}/README* ${FAKE_DESTDIR}${DOCSDIR}
 
 # Can't use USE_PYTHON=autoplist
 post-install-PYTHON-on:
-	@${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${STAGEDIR}||' >> ${TMPPLIST}
+	@${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -type f | ${SED} -e 's|${FAKE_DESTDIR}${LOCALBASE}/||' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
