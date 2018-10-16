@@ -45,8 +45,8 @@ do-install:
 		${STAGEDIR}${WWWDIR})
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKDIR}/DOCS && ${COPYTREE_SHARE} . \
-		${STAGEDIR}${DOCSDIR})
+		${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
