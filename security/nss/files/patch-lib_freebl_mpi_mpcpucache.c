@@ -1,9 +1,9 @@
---- lib/freebl/mpi/mpcpucache.c.orig	2010-06-11 22:39:33.000000000 +0200
-+++ lib/freebl/mpi/mpcpucache.c	2010-06-11 22:40:20.000000000 +0200
-@@ -733,6 +733,32 @@ s_mpi_getProcessorLineSize()
+--- lib/freebl/mpi/mpcpucache.c.orig	2018-08-31 12:55:53 UTC
++++ lib/freebl/mpi/mpcpucache.c
+@@ -705,6 +705,32 @@ s_mpi_getProcessorLineSize()
  #endif
  
- #if defined(__ppc64__) 
+ #if defined(__ppc64__)
 +
 +#if defined(__MidnightBSD__)
 +#include <sys/stddef.h>
@@ -17,7 +17,7 @@
 +{
 +	static int cacheline_size = 0;
 +	static int cachemib[] = { CTL_MACHDEP, CPU_CACHELINE };
-+	int clen;
++	size_t clen;
 +	
 +	if (cacheline_size > 0)
 +		return cacheline_size;
@@ -33,7 +33,7 @@
  /*
   *  Sigh, The PPC has some really nice features to help us determine cache
   *  size, since it had lots of direct control functions to do so. The POWER
-@@ -785,6 +811,7 @@ s_mpi_getProcessorLineSize()
+@@ -758,6 +784,7 @@ s_mpi_getProcessorLineSize()
      }
      return 0;
  }

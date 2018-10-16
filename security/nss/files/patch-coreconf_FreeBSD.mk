@@ -1,6 +1,6 @@
---- coreconf/FreeBSD.mk.orig	2009-08-22 07:33:09.000000000 +0200
-+++ coreconf/FreeBSD.mk	2010-03-28 23:01:33.000000000 +0200
-@@ -37,9 +37,9 @@
+--- coreconf/FreeBSD.mk.orig	2018-08-31 12:55:53 UTC
++++ coreconf/FreeBSD.mk
+@@ -5,9 +5,9 @@
  
  include $(CORE_DEPTH)/coreconf/UNIX.mk
  
@@ -13,43 +13,38 @@
  RANLIB			= ranlib
  
  CPU_ARCH		= $(OS_TEST)
-@@ -52,6 +52,13 @@ endif
+@@ -20,7 +20,17 @@ endif
  ifeq ($(CPU_ARCH),amd64)
  CPU_ARCH		= x86_64
  endif
++ifneq (,$(filter arm%, $(CPU_ARCH)))
++CPU_ARCH		= arm
++endif
 +ifneq (,$(filter powerpc%, $(CPU_ARCH)))
 +CPU_ARCH		= ppc
 +endif
-+
+ 
 +ifneq (,$(filter %64, $(OS_TEST)))
 +USE_64			= 1
 +endif
++
+ OS_CFLAGS		= $(DSO_CFLAGS) -Wall -Wno-switch -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
  
- OS_CFLAGS		= $(DSO_CFLAGS) -ansi -Wall -Wno-switch -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
+ DSO_CFLAGS		= -fPIC
+@@ -46,7 +56,11 @@ else
+ DLL_SUFFIX		= so.1.0
+ endif
  
-@@ -70,15 +85,15 @@
- 
- ARCH			= freebsd
- 
--MOZ_OBJFORMAT		:= $(shell test -x /usr/bin/objformat && /usr/bin/objformat || echo elf)
-+ifndef MOZILLA_CLIENT
-+DLL_SUFFIX		= so.1
-+endif
- 
--ifeq ($(MOZ_OBJFORMAT),elf)
--DLL_SUFFIX		= so
+-MKSHLIB			= $(CC) $(DSO_LDOPTS)
 +ifneq (,$(filter alpha ia64,$(OS_TEST)))
 +MKSHLIB			= $(CC) -Wl,-Bsymbolic -lc $(DSO_LDOPTS)
- else
--DLL_SUFFIX		= so.1.0
++else
 +MKSHLIB			= $(CC) -Wl,-Bsymbolic $(DSO_LDOPTS)
- endif
--
--MKSHLIB			= $(CC) $(DSO_LDOPTS)
++endif
  ifdef MAPFILE
  	MKSHLIB += -Wl,--version-script,$(MAPFILE)
  endif
-@@ -87,4 +100,5 @@
+@@ -55,4 +69,5 @@ PROCESS_MAP_FILE = grep -v ';-' $< | \
  
  G++INCLUDES		= -I/usr/include/g++
  
