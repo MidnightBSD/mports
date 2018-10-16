@@ -8,15 +8,13 @@ include/xfce4/libxfprint/printer.h
 include/xfce4/libxfprint/printer-list-window.h
 include/xfce4/libxfprint/printer-queue-window.h
 include/xfce4/libxfprint/printing-system.h
-lib/libxfprint.so.0
-lib/libxfprint.so
-lib/libxfprint.la
 lib/libxfprint.a
+lib/libxfprint.so
+lib/libxfprint.so.0
+lib/libxfprint.so.0.0.1
 %%LPR%%lib/xfce4/xfprint-plugins/bsdlpr_plugin.a
-%%LPR%%lib/xfce4/xfprint-plugins/bsdlpr_plugin.la
 %%LPR%%lib/xfce4/xfprint-plugins/bsdlpr_plugin.so
 %%CUPS%%lib/xfce4/xfprint-plugins/cups_plugin.a
-%%CUPS%%lib/xfce4/xfprint-plugins/cups_plugin.la
 %%CUPS%%lib/xfce4/xfprint-plugins/cups_plugin.so
 libdata/pkgconfig/xfprint-1.0.pc
 share/applications/xfprint.desktop
@@ -112,24 +110,3 @@ share/xfce4/doc/fr/images/xfprint_prettyprinting.png
 share/xfce4/doc/fr/images/xfprint_sheets.png
 share/xfce4/doc/fr/images/xfprint_virtualpages.png
 share/xfce4/doc/fr/xfprint.html
-@dirrm include/xfce4/libxfprint
-@dirrmtry include/xfce4
-@dirrmtry lib/xfce4/mcs-plugins
-@dirrmtry lib/xfce4/xfprint-plugins
-@dirrmtry lib/xfce4
-@dirrmtry share/applications
-@dirrm share/gtk-doc/html/libxfprint
-@dirrmtry share/gtk-doc/html
-@dirrmtry share/gtk-doc
-@dirrmtry share/locale/bn_IN/LC_MESSAGES
-@dirrmtry share/locale/bn_IN
-@dirrmtry share/locale/mr/LC_MESSAGES
-@dirrmtry share/locale/mr
-@dirrmtry share/locale/nb_NO/LC_MESSAGES
-@dirrmtry share/locale/nb_NO
-@dirrmtry share/xfce4/doc/C/images
-@dirrmtry share/xfce4/doc/C
-@dirrmtry share/xfce4/doc/fr/images
-@dirrmtry share/xfce4/doc/fr
-@dirrmtry share/xfce4/doc
-@dirrmtry share/xfce4
