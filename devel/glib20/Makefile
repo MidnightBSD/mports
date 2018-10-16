@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.50.2
+PORTVERSION=	2.50.3
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -36,7 +36,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.5000.2
+LIBVERSION=	0.5000.3
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
@@ -53,7 +53,7 @@ COLLATION_FIX_DESC=	fix string collation
 CONFIGURE_ARGS+=--disable-dtrace
 
 .if empty(ICONV_LIB)
-CONFIGURE_ARGS+=	--with-libiconv=native
+CONFIGURE_ARGS+=	--with-libiconv=no
 .else
 CONFIGURE_ARGS+=	--with-libiconv=gnu
 .endif
