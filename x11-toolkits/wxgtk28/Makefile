@@ -35,6 +35,7 @@ CONFIGURE_ARGS=	--with-libpng=sys\
 		--disable-backtrace\
 		--enable-graphics_ctx
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 PLIST=		${.CURDIR}/pkg-plist
