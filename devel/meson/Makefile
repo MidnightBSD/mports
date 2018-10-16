@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	meson
-PORTVERSION=	0.46.1
+PORTVERSION=	0.48.0
 CATEGORIES=	devel python
 MASTER_SITES=	https://github.com/mesonbuild/${PORTNAME}/releases/download/${PORTVERSION}/
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	ninja:devel/ninja
 
-USES=		python:3.4+
+USES=		python:3.5+
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 
