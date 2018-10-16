@@ -1,26 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	1.50.0
-PORTREVISION=	1
+PORTVERSION=	1.56.1
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate interface introspection data for GObject libraries
 
- MAKE_JOBS_UNSAFE=yes
-
-LICENSE=	gpl2
-# well it could be agg, but gpl2 is worst case
+LICENSE=	gpl2 lgpl
+LICENSE_COMB=	multi
 
 # we need cairo otherwise the generated Cairo gir is broken
 BUILD_DEPENDS=	cairo-trace:graphics/cairo
 LIB_DEPENDS=	libffi.so:devel/libffi
 
 USES=		bison gettext gmake gnome libtool pathfix pkgconfig \
-		python:2 tar:xz
+		python:3.4+ tar:xz
 GNU_CONFIGURE=	yes
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
@@ -31,9 +29,5 @@ INSTALL_TARGET=	install-strip
 
 # Force it to put the .cache in ${WRKSRC} instead of ~/.cache.
 MAKE_ENV=	HOME=${WRKDIR}
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|'gcc'|'cc'|g' \
-		${WRKSRC}/giscanner/dumper.py
 
 .include <bsd.port.mk>
