@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glib
-PORTVERSION=	2.50.3
+PORTVERSION=	2.56.1
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -36,11 +36,11 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.5000.3
+LIBVERSION=	0.5600.1
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
-gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 \
+gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
 		glib-compile-schemas.1 gapplication.1 \
 		glib-compile-resources.1 gresource.1 gdbus-codegen.1
 gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
