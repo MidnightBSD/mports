@@ -16,6 +16,7 @@ BROKEN_powerpc64=	fails to build: KeyError: 'action'
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
 
 OPTIONS_DEFINE=		BUNDLED_SSL DOCS 
+OPTIONS_DEFAULT=	BUNDLED_SSL
 OPTIONS_SUB=		yes
 
 BUNDLED_SSL_DESC=		Use node.js's bundled OpenSSL implementation
@@ -35,6 +36,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--shared-cares \
 		--shared-libuv \
 		--shared-zlib \
+		--openssl-no-asm \
 		--dest-os=freebsd
 
 SHEBANG_FILES=	tools/specialize_node_d.py tools/genv8constants.py
