@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pkgconf
-PORTVERSION=	1.4.2
+PORTVERSION=	1.5.3
 CATEGORIES=	devel
 MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/ \
 		http://files.etoilebsd.net/pkgconf/
