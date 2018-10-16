@@ -65,6 +65,7 @@ CONFIGURE_ARGS+=--with-system-pinerc=${PREFIX}/etc/alpine.conf \
 .endif
 CONFIGURE_ARGS+=--with-debug-level=2 \
 		--enable-background-post --without-krb5 --without-tcl
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 
 MAKE_ARGS+=	CC="${CC}" CXX="${CXX}" GCCCFLAGS="${CFLAGS}"
 
