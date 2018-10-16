@@ -16,7 +16,7 @@ USES=		python
 USE_PYTHON=	autoplist distutils
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/msgpack/_packer.so
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/msgpack/_unpacker.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_packer.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/msgpack/_unpacker.so
 
 .include <bsd.port.mk>
