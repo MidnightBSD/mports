@@ -9,7 +9,8 @@
 PORTNAME=	nss_ldap
 PORTVERSION=	1.${NSS_LDAP_VERSION}
 CATEGORIES=	net
-MASTER_SITES=	http://www.padl.com/download/ 
+MASTER_SITES=	http://www.padl.com/download/ \
+		FREEBSD_LOCAL/martymac
 DISTNAME=	${PORTNAME}-${NSS_LDAP_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,36 +18,69 @@ COMMENT=	RFC 2307 NSS module
 
 LICENSE=	gpl2
 
-NSS_LDAP_VERSION=257
+NSS_LDAP_VERSION=265
 
-USES=		gmake ldap
+USES=		autoreconf gmake perl5 ldap
+USE_PERL5=	build
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_OPENLDAP=	yes
 
-PLIST_FILES=	etc/nss_ldap.conf.sample lib/nss_ldap.so.1
+OPTIONS_DEFINE=	LCLASS KERBEROS SASL
+OPTIONS_DEFAULT=LCLASS KERBEROS
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -Wl,-rpath,${LOCALBASE}/lib"
+LCLASS_DESC=	Enable login classes via the loginClass attribute
+
+SASL_DESC=	Use the SASL-enabled version of OpenLDAP
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -Wl,-rpath,${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--with-ldap-conf-file=${PREFIX}/etc/nss_ldap.conf \
 		--with-ldap-secret-file=${PREFIX}/etc/nss_ldap.secret \
 		--enable-rfc2307bis \
-		--enable-schema-mapping \
-		--enable-paged-results \
-		--enable-configurable-krb5-ccname-env
+		--enable-paged-results
 
-MAN5=	nss_ldap.5
+SUB_FILES=	pkg-message
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MKERBEROS}
+CONFIGURE_ARGS+=--enable-configurable-krb5-ccname-gssapi \
+		--enable-configurable-krb5-keytab
+.endif
+
+.if ${PORT_OPTIONS:MLCLASS}
+CFLAGS+="-DHAVE_LOGIN_CLASSES"
+.endif
+
+.if ${PORT_OPTIONS:MSASL}
+WANT_OPENLDAP_SASL=	 yes
+.endif
 
 post-extract:
 	${CP} ${FILESDIR}/bsdnss.c ${WRKSRC}
 
+post-patch:
+	@${REINPLACE_CMD} -e 's,/etc/ldap\.,${PREFIX}/etc/nss_ldap.,g' \
+		-e 's,/etc/openldap/ldap\.,${PREFIX}/etc/openldap/ldap.,g' \
+		${WRKSRC}/ldap.conf
+	@${REINPLACE_CMD} 's,#!/usr/bin/perl,#!${PERL},' \
+		${WRKSRC}/vers_string
+	@${REINPLACE_CMD} 's,/etc/ldap\.,${PREFIX}/etc/nss_ldap.,g' \
+		${WRKSRC}/nss_ldap.5
+
+# XXX: newer autoconf's rely on the compiler result, not the preprocessor
+#      for checking headers, so the configure.in needs to be fixed upstream
+#      to properly include dependencies
+post-configure:
+	@${ECHO} "#define HAVE_NETINET_IF_ETHER_H 1" >> ${WRKSRC}/config.h
+	@${ECHO} "#define HAVE_NET_ROUTE_H 1" >> ${WRKSRC}/config.h
+	@${ECHO} "#define HAVE_RESOLV_H 1" >> ${WRKSRC}/config.h
+
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nss_ldap.so ${PREFIX}/lib/nss_ldap.so.1
-	${INSTALL_DATA} ${WRKSRC}/ldap.conf ${PREFIX}/etc/nss_ldap.conf.sample
-	@${REINPLACE_CMD} 's,/etc/ldap.,${PREFIX}/etc/nss_ldap.,g' \
-		${WRKSRC}/${MAN5}
-	${INSTALL_MAN} ${WRKSRC}/${MAN5} ${MAN5PREFIX}/man/man5
+	${INSTALL_PROGRAM} ${WRKSRC}/nss_ldap.so ${STAGEDIR}/${PREFIX}/lib/nss_ldap.so.1
+	${INSTALL_DATA} ${WRKSRC}/ldap.conf ${STAGEDIR}/${PREFIX}/etc/nss_ldap.conf.sample
+	${INSTALL_MAN} ${WRKSRC}/nss_ldap.5 ${STAGEDIR}/${MAN5PREFIX}/man/man5
 
 .include <bsd.port.mk>
