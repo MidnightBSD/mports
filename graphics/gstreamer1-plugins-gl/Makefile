@@ -3,20 +3,25 @@
 PORTREVISION=	1
 CATEGORIES=	graphics
 
-COMMENT=	Gstreamer GL graphics plugin
+COMMENT=	GStreamer GL graphics plugin
 
 GST_PLUGIN=	gl
 DIST=		bad
 
+GL_GST_DIRS=	gst-libs/gst/allocators
 PLIST=		${.CURDIR}/pkg-plist
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 pre-build:
-	@cd ${WRKSRC}/gst-libs/gst/gl && ${GMAKE} ${FAKE_MAKEARGS}
+.for dir in ${GL_GST_DIRS}
+	@(cd ${BUILD_WRKSRC}/${dir}; ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET})
+.endfor
 
 post-install:
-	@cd ${WRKSRC}/gst-libs/gst/gl && ${SETENV} DESTDIR=${FAKE_DESTDIR} \
-		INSTALL_TARGET=${INSTALL_TARGET} ${GMAKE} ${FAKE_MAKEARGS} install
+	${INSTALL_DATA} ${WRKSRC}/pkgconfig/gstreamer-gl.pc \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/gstreamer-gl-1.0.pc
 
 .include "${MASTERDIR}/Makefile"
