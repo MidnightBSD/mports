@@ -133,5 +133,4 @@ lib/nss/libnssutil3.so
 lib/nss/libsmime3.so
 lib/nss/libsoftokn3.so
 lib/nss/libssl3.so
-lib/libnss3.so
 libdata/pkgconfig/nss.pc
