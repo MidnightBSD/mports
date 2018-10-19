@@ -13,19 +13,20 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		itstool:${PORTSDIR}/textproc/itstool \
-		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
+		nss-config:security/nss
 LIB_DEPENDS=	libwebkit2gtk-4.0.so:${PORTSDIR}/www/webkit2-gtk3 \
 		libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome \
 		libgcr-3.so:${PORTSDIR}/security/gcr \
 		libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
-		libnss3.so:${PORTSDIR}/security/nss \
 		libavahi-gobject.so:${PORTSDIR}/net/avahi-app \
 		libnotify.so:${PORTSDIR}/devel/libnotify \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
 RUN_DEPENDS=	iso-codes>=0:${PORTSDIR}/misc/iso-codes \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		gnome-icon-theme-symbolic>=0:${PORTSDIR}/x11-themes/gnome-icon-theme-symbolic \
-		gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme
+		gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		nss-config:security/nss
 
 PORTSCOUT=	limitw:1,even
 
