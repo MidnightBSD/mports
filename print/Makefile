@@ -34,6 +34,7 @@ SUBDIR += gspdf
 SUBDIR += gutenprint-base
 SUBDIR += gv
 SUBDIR += harfbuzz
+SUBDIR += harfbuzz-icu
 SUBDIR += hs-hscolour
 SUBDIR += indexinfo
 SUBDIR += libgnomecups
