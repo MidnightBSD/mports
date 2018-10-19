@@ -106,5 +106,6 @@ do-install:
 	    	${TAR} -cf - *.so | ${TAR} --unlink -C ${PREFIX}/lib/nss -xf -
 	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
+	${LN} -sf ${PREFIX}/lib/nss/libnss3.so ${PREFIX}/lib/libnss3.so
 
 .include <bsd.port.mk>
