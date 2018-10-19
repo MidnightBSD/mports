@@ -91,21 +91,16 @@ post-patch:
 do-install:
 	${MKDIR} ${PREFIX}/include/nss/nss ${PREFIX}/lib/nss
 	${FIND} ${DIST}/public/nss -type l \
-	    	-exec ${INSTALL_DATA} {} ${PREFIX}/include/nss/nss \;
-	${LN} -sf ${DIST}/${OPSYS}${OSREL}-RELEASE_OPT.OBJ ${BINS}
-	${LN} -sf ${DIST}/${OPSYS}${OSREL}-CURRENT_OPT.OBJ ${BINS}
-	${INSTALL_DATA} ${BINS}/lib/*.so.1 \
-		${PREFIX}/lib/nss
+		-exec ${INSTALL_DATA} {} ${STAGEDIR}${PREFIX}/include/nss/nss \;
+	${INSTALL_LIB} ${BINS}/lib/*.so \
+		${STAGEDIR}${PREFIX}/lib/nss
 	${INSTALL_DATA} ${BINS}/lib/libcrmf.a \
-	    	${PREFIX}/lib/nss
+		${STAGEDIR}${PREFIX}/lib/nss
 .for bin in ${INSTALL_BINS}
 	${INSTALL_PROGRAM} ${BINS}/bin/${bin} \
-		${PREFIX}/bin
+		${STAGEDIR}${PREFIX}/bin
 .endfor
-	cd ${BINS}/lib && \
-	    	${TAR} -cf - *.so | ${TAR} --unlink -C ${PREFIX}/lib/nss -xf -
-	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
-	${LN} -sf ${PREFIX}/lib/nss/libnss3.so ${PREFIX}/lib/libnss3.so
+	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${WRKDIR}/nss.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>
