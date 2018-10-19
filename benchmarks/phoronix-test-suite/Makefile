@@ -1,22 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	phoronix-test-suite
-PORTVERSION=	7.8.0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	8.2.0
 CATEGORIES=	benchmarks
-MASTER_SITES=	http://www.phoronix-test-suite.com/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Phoronix Benchmarking Suite
 
 LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
+
+RUN_DEPENDS=	sudo:security/sudo
 
 USES=		php:cli,build python
-USE_GCC=	any
-USE_PHP=	ctype curl dom filter gd hash json openssl pcntl posix \
-		session simplexml sockets sqlite3 zip zlib
+USE_GITHUB=	yes
+USE_PHP=	curl dom gd json openssl pcntl posix simplexml zip zlib
 NO_BUILD=	yes
-WRKSRC=		${WRKDIR}/phoronix-test-suite
 
 RUN_DEPENDS+=	fpdf>0:print/fpdf
 RUN_DEPENDS+=	cmake:devel/cmake
