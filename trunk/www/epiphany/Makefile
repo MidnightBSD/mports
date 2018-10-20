@@ -43,7 +43,7 @@ INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=\
-		--with-distributor-name="FreeBSD GNOME Project"
+		--with-distributor-name="MidnightBSD"
 #		--with-ca-file=${LOCALBASE}/share/certs/ca-root-nss.crt
 INSTALL_TARGET=	install-strip
 
