@@ -21,7 +21,6 @@ SUBDIR += fstobdf
 SUBDIR += gdm
 SUBDIR += glproto
 SUBDIR += gnome-desktop
-SUBDIR += gnome-desktop-reference
 SUBDIR += gnome-menus
 SUBDIR += gnome-session
 SUBDIR += gnome-shell
