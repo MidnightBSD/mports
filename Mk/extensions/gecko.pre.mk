@@ -171,24 +171,24 @@ cairo_LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
 cairo_MOZ_OPTIONS=	--enable-system-cairo
 .endif
 
-event_LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent
+event_LIB_DEPENDS=	libevent.so:devel/libevent
 event_MOZ_OPTIONS=	--with-system-libevent
 
-ffi_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
+ffi_LIB_DEPENDS=	libffi.so:devel/libffi
 ffi_MOZ_OPTIONS=	--enable-system-ffi
 
 .if exists(${FILESDIR}/patch-bug847568)
-graphite_LIB_DEPENDS=	libgraphite2.so:${PORTSDIR}/graphics/graphite2
+graphite_LIB_DEPENDS=	libgraphite2.so:graphics/graphite2
 graphite_MOZ_OPTIONS=	--with-system-graphite2
 
-harfbuzz_LIB_DEPENDS=	libharfbuzz.so:${PORTSDIR}/print/harfbuzz
+harfbuzz_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 harfbuzz_MOZ_OPTIONS=	--with-system-harfbuzz
 .endif
 
-hunspell_LIB_DEPENDS=	libhunspell-1.3.so:${PORTSDIR}/textproc/hunspell
+hunspell_LIB_DEPENDS=	libhunspell-1.6.so:textproc/hunspell
 hunspell_MOZ_OPTIONS=	--enable-system-hunspell
 
-icu_LIB_DEPENDS=		libicui18n.so:${PORTSDIR}/devel/icu
+icu_LIB_DEPENDS=		libicui18n.so:devel/icu
 icu_MOZ_OPTIONS=		--with-system-icu --with-intl-api
 
 -jpeg_BUILD_DEPENDS=yasm:${PORTSDIR}/devel/yasm
@@ -197,53 +197,53 @@ icu_MOZ_OPTIONS=		--with-system-icu --with-intl-api
 jpeg_USES=		jpeg
 jpeg_MOZ_OPTIONS=	--with-system-jpeg=${LOCALBASE}
 
-nspr_LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
+nspr_LIB_DEPENDS=	libnspr4.so:devel/nspr
 nspr_MOZ_OPTIONS=	--with-system-nspr
 
-nss_LIB_DEPENDS=	libnss3.so:${PORTSDIR}/security/nss
+nss_LIB_DEPENDS=	libnss3.so:security/nss
 nss_MOZ_OPTIONS=	--with-system-nss
 
 .if exists(${FILESDIR}/patch-z-bug517422)
-opus_LIB_DEPENDS=	libopus.so:${PORTSDIR}/audio/opus
+opus_LIB_DEPENDS=	libopus.so:audio/opus
 opus_MOZ_OPTIONS=	--with-system-opus
 .endif
 
-pixman_LIB_DEPENDS=	libpixman-1.so:${PORTSDIR}/x11/pixman
+pixman_LIB_DEPENDS=	libpixman-1.so:x11/pixman
 pixman_MOZ_OPTIONS=	--enable-system-pixman
 
-png_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+png_LIB_DEPENDS=	libpng.so:graphics/png
 png_MOZ_OPTIONS=	--with-system-png=${LOCALBASE}
 
 .if exists(${FILESDIR}/patch-z-bug517422)
-soundtouch_LIB_DEPENDS=	libSoundTouch.so:${PORTSDIR}/audio/soundtouch
+soundtouch_LIB_DEPENDS=	libSoundTouch.so:audio/soundtouch
 soundtouch_MOZ_OPTIONS=	--with-system-soundtouch
 .endif
 
-sqlite_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+sqlite_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 sqlite_MOZ_OPTIONS=	--enable-system-sqlite
 
 .if exists(${FILESDIR}/patch-z-bug517422)
 # XXX disabled: update to 1.2.x or review backported fixes
-theora_LIB_DEPENDS=	libtheora.so:${PORTSDIR}/multimedia/libtheora
+theora_LIB_DEPENDS=	libtheora.so:multimedia/libtheora
 theora_MOZ_OPTIONS=	--with-system-theora
 
-tremor_LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg libvorbisidec.so:${PORTSDIR}/audio/libtremor
+tremor_LIB_DEPENDS=	libogg.so:audio/libogg libvorbisidec.so:audio/libtremor
 tremor_MOZ_OPTIONS=	--with-system-tremor --with-system-ogg
 
-vorbis_LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg libvorbis.so:${PORTSDIR}/audio/libvorbis
+vorbis_LIB_DEPENDS=	libogg.so:audio/libogg libvorbis.so:audio/libvorbis
 vorbis_MOZ_OPTIONS=	--with-system-vorbis --with-system-ogg
 .endif
 
--vpx_BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm
-vpx_LIB_DEPENDS=	libvpx.so:${PORTSDIR}/multimedia/libvpx
+-vpx_BUILD_DEPENDS=	yasm:devel/yasm
+vpx_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
 vpx_MOZ_OPTIONS=	--with-system-libvpx
 
 .for use in ${USE_MOZILLA}
 ${use:S/-/_WITHOUT_/}=	${TRUE}
 .endfor
 
-LIB_DEPENDS+=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
 
 .for dep in ${_ALL_DEPENDS} ${USE_MOZILLA:M+*:S/+//}
 .if !defined(_WITHOUT_${dep})
@@ -301,7 +301,7 @@ MOZ_TOOLKIT=	cairo-gtk3
 .endif
 
 .if ${MOZ_TOOLKIT:Mcairo-gtk3}
-BUILD_DEPENDS+=	gtk3>=3.14.6:${PORTSDIR}/x11-toolkits/gtk30
+BUILD_DEPENDS+=	gtk3>=3.14.6:x11-toolkits/gtk30
 USE_GNOME+=	gdkpixbuf2 gtk30
 . if ${MOZILLA_VER:R:R} >= 32
 USE_GNOME+= gtk20 # bug 624422
@@ -319,13 +319,13 @@ MOZ_OPTIONS+=	--disable-optimize
 .endif
 
 .if ${PORT_OPTIONS:MCANBERRA}
-RUN_DEPENDS+=	libcanberra>0:${PORTSDIR}/audio/libcanberra
+RUN_DEPENDS+=	libcanberra>0:audio/libcanberra
 .endif
 
 .if ${PORT_OPTIONS:MDBUS}
-BUILD_DEPENDS+=	libnotify>0:${PORTSDIR}/devel/libnotify
-LIB_DEPENDS+=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-				libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
+BUILD_DEPENDS+=	libnotify>0:devel/libnotify
+LIB_DEPENDS+=	libdbus-glib-1.so:devel/dbus-glib \
+				libstartup-notification-1.so:x11/startup-notification
 MOZ_OPTIONS+=	--enable-startup-notification
 .else
 MOZ_OPTIONS+=	--disable-dbus --disable-libnotify
@@ -333,11 +333,11 @@ MOZ_OPTIONS+=	--disable-dbus --disable-libnotify
 
 .if ${PORT_OPTIONS:MFFMPEG}
 # dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
-RUN_DEPENDS+=	ffmpeg>=0.8,1:${PORTSDIR}/multimedia/ffmpeg
+RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
 .endif
 
 .if ${PORT_OPTIONS:MGSTREAMER}
-RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:${PORTSDIR}/multimedia/gstreamer1-libav
+RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:multimedia/gstreamer1-libav
 USE_GSTREAMER1?=good libav
 MOZ_OPTIONS+=	--enable-gstreamer=1.0
 .else
@@ -367,7 +367,7 @@ MOZ_OPTIONS+=	--disable-gnomeui
 .endif
 
 .if ${PORT_OPTIONS:MLIBPROXY}
-LIB_DEPENDS+=	libproxy.so:${PORTSDIR}/net/libproxy
+LIB_DEPENDS+=	libproxy.so:net/libproxy
 MOZ_OPTIONS+=	--enable-libproxy
 .else
 MOZ_OPTIONS+=	--disable-libproxy
@@ -382,18 +382,18 @@ MOZ_EXPORT+=MOZ_OPTIMIZE_FLAGS="-Os" MOZ_PGO_OPTIMIZE_FLAGS="${CFLAGS:M-O*}"
 .endif
 
 .if ${PORT_OPTIONS:MALSA}
-LIB_DEPENDS+=	libasound.so:${PORTSDIR}/audio/alsa-lib
-RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
-RUN_DEPENDS+=	alsa-lib>=1.1.1_1:${PORTSDIR}/audio/alsa-lib
+LIB_DEPENDS+=	libasound.so:audio/alsa-lib
+RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
+RUN_DEPENDS+=	alsa-lib>=1.1.1_1:audio/alsa-lib
 MOZ_OPTIONS+=	--enable-alsa
 .endif
 
 .if ${PORT_OPTIONS:MPULSEAUDIO}
 . if ${PORT_OPTIONS:MALSA}
-BUILD_DEPENDS+=	pulseaudio>0:${PORTSDIR}/audio/pulseaudio
+BUILD_DEPENDS+=	pulseaudio>0:audio/pulseaudio
 . else
 # pull pulse package if we cannot fallback to another backend
-LIB_DEPENDS+=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+LIB_DEPENDS+=	libpulse.so:audio/pulseaudio
 . endif
 MOZ_OPTIONS+=	--enable-pulseaudio
 .else
