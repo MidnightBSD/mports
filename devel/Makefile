@@ -39,6 +39,7 @@ SUBDIR += cmake
 SUBDIR += cmake-fedora
 SUBDIR += cmake-gui
 SUBDIR += cmake-modules
+SUBDIR += courier-unicode
 SUBDIR += cppunit
 SUBDIR += cscope
 SUBDIR += ctags
