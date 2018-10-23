@@ -18,6 +18,7 @@ USES=		tar:xz
 
 LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libffi.so:devel/libffi
+RUN_DEPENDS=    python2.7:lang/python27
 
 GNU_CONFIGURE=	yes
 USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool pathfix \
