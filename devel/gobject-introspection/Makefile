@@ -14,8 +14,10 @@ LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
 
 # we need cairo otherwise the generated Cairo gir is broken
-BUILD_DEPENDS=	cairo-trace:graphics/cairo
+BUILD_DEPENDS=	cairo-trace:graphics/cairo \
+		python2.7:lang/python27
 LIB_DEPENDS=	libffi.so:devel/libffi
+RUN_DEPENDS=	python2.7:lang/python27
 
 USES=		bison gettext gmake gnome libtool pathfix pkgconfig \
 		python:3.4+ tar:xz
