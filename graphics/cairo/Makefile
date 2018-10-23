@@ -20,6 +20,7 @@ USES=		tar:xz
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig
+RUN_DEPENDS=    python2.7:lang/python27
 
 PORTSCOUT=	skipv:5c-1.1,5c-1.2,5c-1.5
 
