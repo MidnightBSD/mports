@@ -2,14 +2,14 @@
 
 PORTNAME=	postgresql
 CATEGORIES=	databases tcl
-PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
+PKGNAMESUFFIX?=	${WANT_PGSQL_VER:S/.//}${COMPONENT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module for using Tcl to write SQL functions
 
 MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
 
-WANT_PGSQL_VER?=9.6
+WANT_PGSQL_VER=9.6
 
 USES+=		tcl pgsql:${WANT_PGSQL_VER}
 WANT_PGSQL=	server
