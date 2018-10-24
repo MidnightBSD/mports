@@ -13,7 +13,8 @@ IGNORE=	Incorrect 'USES+= ninja:${ninja_ARGS}' ninja takes no arguments
 
 #MAKE_ARGS+=	-v
 
-BUILD_DEPENDS+=	ninja:devel/ninja
+BUILD_DEPENDS+=	ninja:devel/ninja \
+		python2.7:lang/python27
 
 CMAKE_ARGS+=	-GNinja
 MAKEFILE=
