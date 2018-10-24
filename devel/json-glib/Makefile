@@ -12,6 +12,9 @@ COMMENT=	JSON (RFC 4627) interface for Glib
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+# for magus ninja 
+PATCH_DEPENDS=	python2.7:lang/python27
+
 USES=		gettext localbase meson pkgconfig tar:xz
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
