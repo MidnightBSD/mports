@@ -3,7 +3,7 @@
 
 PORTNAME=	texlive
 PORTVERSION=	20150521
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	TEX_CTAN/systems/texlive/Source/
 PKGNAMESUFFIX=	-base
@@ -23,6 +23,7 @@ LIB_DEPENDS=	libicuio.so:${PORTSDIR}/devel/icu \
 		libgraphite2.so:${PORTSDIR}/graphics/graphite2 \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
+		libharfbuzz-icu.so:print/harfbuzz-icu \
 		libttf.so:${PORTSDIR}/print/freetype \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libzzip.so:${PORTSDIR}/devel/zziplib \
