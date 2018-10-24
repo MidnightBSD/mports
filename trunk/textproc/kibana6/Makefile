@@ -34,7 +34,7 @@ do-install:
 	${CHMOD} +x ${STAGEDIR}${WWWDIR}/bin/*
 
 post-install:
-	${ECHO} "@sample ${ETCDIR}/kibana.yml.sample" >> ${TMPPLIST}
+	${ECHO} "@sample etc/kibana/kibana.yml.sample" >> ${TMPPLIST}
 	${FIND} -s ${STAGEDIR}${WWWDIR} -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR}/data" >> ${TMPPLIST}
