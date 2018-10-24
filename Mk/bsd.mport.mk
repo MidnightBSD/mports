@@ -844,9 +844,12 @@ RUN_DEPENDS+=	${LINUX_BASE_PORT}
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
 _GL_gbm_LIB_DEPENDS=		libgbm.so:graphics/mesa-libs
-_GL_glesv2_LIB_DEPENDS=		libGLESv2.so:graphics/mesa-libs
-_GL_egl_LIB_DEPENDS=		libEGL.so:graphics/mesa-libs
-_GL_gl_LIB_DEPENDS=		libGL.so:graphics/mesa-libs
+_GL_glesv2_BUILD_DEPENDS=	${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
+_GL_glesv2_RUN_DEPENDS=		${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
+_GL_egl_BUILD_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
+_GL_egl_RUN_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
+_GL_gl_BUILD_DEPENDS=		${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
+_GL_gl_RUN_DEPENDS=		${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
 _GL_gl_USE_XORG=		glproto dri2proto dri3proto
 _GL_glew_LIB_DEPENDS=		libGLEW.so:graphics/glew
 _GL_glu_LIB_DEPENDS=		libGLU.so:graphics/libGLU
