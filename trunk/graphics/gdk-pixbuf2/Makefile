@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PATCH_DEPENDS=	python2.7:lang/python27
 
-BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl
+BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl \
+		python3:lang/python3
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
 		python:3.4+,build shared-mime-info tar:xz
