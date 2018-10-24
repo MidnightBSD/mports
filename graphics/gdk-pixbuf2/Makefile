@@ -13,6 +13,8 @@ COMMENT=	Graphic library for GTK+
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+PATCH_DEPENDS=	python2.7:lang/python27
+
 BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
