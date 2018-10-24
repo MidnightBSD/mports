@@ -3,4 +3,6 @@
 
 WANT_PGSQL_VER=	9.4
 
+PGSQL_VER=	9.4
+
 .include "${.CURDIR}/../postgresql96-pltcl/Makefile"
