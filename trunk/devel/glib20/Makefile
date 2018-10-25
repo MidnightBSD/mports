@@ -2,7 +2,8 @@
 
 PORTNAME=	glib
 PORTVERSION=	2.56.1
-PORTREVISION?=	0
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -13,6 +14,7 @@ COMMENT=	Some useful routines of C programming (current stable version)
 LICENSE=	lgpl
 
 USES=		tar:xz
+PORTSCOUT=	limitw:1,even
 
 .if !defined(REFERENCE_PORT)
 
@@ -21,20 +23,21 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 RUN_DEPENDS=    python2.7:lang/python27
 
 GNU_CONFIGURE=	yes
-USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool pathfix \
-		python pkgconfig shebangfix
-USE_PYTHON=	py3kplist
 USE_LDCONFIG=	yes
-USE_PERL5=	yes
-CONFIGURE_ARGS= --disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
+# iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
+# (wchar_t is used by glibmm, rawtherapee triggered this)
+USES+=		compiler:c11 gettext gmake gnome iconv:wchar_t libtool \
+		pathfix perl5 pkgconfig python shebangfix
+USE_PYTHON=	py3kplist
+CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
 		--disable-dtrace \
 		--enable-static=yes \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=     -I${LOCALBASE}/include                                          
+LDFLAGS+=      -L${LOCALBASE}/lib             
 INSTALL_TARGET=	install-strip
 
 LIBVERSION=	0.5600.1
@@ -47,16 +50,31 @@ gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
 gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
 
 OPTIONS_DEFINE=	COLLATION_FIX DEBUG NLS
-COLLATION_FIX_DESC=	fix string collation
+OPTIONS_SUB=	yes
+# libc collation was fixed by https://svnweb.freebsd.org/changeset/base/290494
+COLLATION_FIX_DESC=	Use ICU for UTF-8 string collation (if libc is broken)
+
+DEBUG_CONFIGURE_ON=	--enable-debug=yes
+
+COLLATION_FIX_LIB_DEPENDS+=	libicui18n.so:devel/icu
+COLLATION_FIX_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
+		${FILESDIR}/extra-patch-glib_gunicollate.c
+# Disable it until someone can figure why it causes net-im/pidgin crashed.
+#COLLATION_FIX_CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
 
 .include <bsd.port.pre.mk>
 
+# doesn't build yet
 CONFIGURE_ARGS+=--disable-dtrace
 
 .if empty(ICONV_LIB)
 CONFIGURE_ARGS+=	--with-libiconv=no
 .else
 CONFIGURE_ARGS+=	--with-libiconv=gnu
+.endif
+
+.if ${ARCH} == powerpc64
+EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
 .endif
 
 # Let glib use asm code for implementing atomic ops on i386 and amd64.
@@ -67,26 +85,7 @@ GLIB_ARCH=	x86_64
 .else
 GLIB_ARCH=	${ARCH}
 .endif
-CONFIGURE_TARGET=${GLIB_ARCH}-portbld-freebsd9.1
-
-.if ${PORT_OPTIONS:MCOLLATION_FIX}
-LIB_DEPENDS+=	libicui18n.so:${PORTSDIR}/devel/icu
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
-		${FILESDIR}/extra-patch-glib_gunicollate.c
-# Disable it until someone can figure why it causes net-im/pidgin crashed.
-#CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug=yes \
-			--disable-silent-rules
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-.endif
+CONFIGURE_TARGET=${GLIB_ARCH}-portbld-freebsd10.4
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
