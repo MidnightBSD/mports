@@ -2,8 +2,7 @@
 # $FreeBSD: head/devel/libgit2/Makefile 391072 2015-07-01 15:09:52Z kwm $
 
 PORTNAME=	libgit2
-PORTVERSION=	0.25.1
-PORTREVISION=	1
+PORTVERSION=	0.27.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -17,7 +16,7 @@ GH_ACCOUNT=	libgit2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		cmake pkgconfig python:build ssl
+USES=		cmake pathfix pkgconfig python:build ssl
 USE_LDCONFIG=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION} SHLIB_VER=${PORTVERSION:R:E}
@@ -43,7 +42,7 @@ post-patch:
 		/LIBGIT2_PC_REQUIRES.*zlib/ d" ${WRKSRC}/CMakeLists.txt
 .if defined(WITH_OPENSSL_BASE)
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
-		${WRKSRC}/CMakeLists.txt
+		${WRKSRC}/src/CMakeLists.txt
 .endif
 
 .include <bsd.port.post.mk>
