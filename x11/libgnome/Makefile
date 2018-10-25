@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libgnome
-PORTVERSION=	2.32.0
-PORTREVISION?=	3
+PORTVERSION=	2.32.1
+PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,11 +17,12 @@ USES=		tar:bzip2
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
-LIB_DEPENDS=	libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra
+LIB_DEPENDS=	libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra \
+		libpopt.so:devel/popt
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 INSTALL_TARGET=	install-strip
-USE_GNOME=	gnomeprefix intlhack esound libbonobo \
+USE_GNOME=	gnomeprefix intlhack libbonobo \
 		gnomevfs2 referencehack
 USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig
 USE_XORG=	xpm
