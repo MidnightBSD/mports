@@ -2,7 +2,7 @@
 
 PORTNAME=	webkit
 PORTVERSION=	2.4.11
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
 PKGNAMESUFFIX=	-gtk2
@@ -20,6 +20,7 @@ LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libsecret-1.so:${PORTSDIR}/security/libsecret \
 		libicutu.so:${PORTSDIR}/devel/icu \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
+		libharfbuzz-icu.so:${PORTSDIR}/print/harfbuzz-icu \
 		libwebp.so:${PORTSDIR}/graphics/webp \
 		libcurl.so:${PORTSDIR}/ftp/curl \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
