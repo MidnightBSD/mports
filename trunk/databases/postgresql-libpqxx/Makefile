@@ -2,10 +2,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libpqxx
-PORTVERSION=	4.0.1
-PORTREVISION=	2
+PORTVERSION=	6.1.0
 CATEGORIES=	databases
-MASTER_SITES=	http://pqxx.org/download/software/libpqxx/
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	postgresql
 
@@ -14,16 +12,17 @@ COMMENT=	New C++ interface for PostgreSQL
 
 LICENSE=        bsd3
 
-CONFLICTS=	postgresql-libpqxx-3.* postgresql-libpqxx3-3.*
-PORTSCOUT=	limit:^2\.
+CONFLICTS=	postgresql-libpqxx-[1-5].* postgresql-libpqxx3-3.* \
+		postgresql-libpqxx4-4.*
 
-USE_GCC=	yes
-USES+=		gmake libtool pathfix pgsql python:build shebangfix
-USE_PGSQL=	yes
+USES=		compiler:c++11-lang gmake libtool pathfix pgsql python:2.7,build shebangfix
+USE_GITHUB=	yes
+GH_ACCOUNT=	jtv
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-PLIST_SUB=	PORTVERSION=${PORTVERSION:R}
 SHEBANG_FILES=	${WRKSRC}/tools/splitconfig
+INSTALL_TARGET=	install-strip
+PLIST_SUB=	PORTVERSION=${PORTVERSION:R}
 
 CONFIGURE_ARGS=	--enable-shared \
 		--disable-dependency-tracking
