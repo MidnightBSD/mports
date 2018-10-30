@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnome-power-manager
-PORTVERSION=	3.16.1
+PORTVERSION=	3.26.0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -11,33 +11,31 @@ COMMENT=	Power management system for the GNOME Desktop
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libupower-glib.so:${PORTSDIR}/sysutils/upower
+BUILD_DEPENDS=	appstream-builder:devel/appstream-glib
+LIB_DEPENDS=	libupower-glib.so:sysutils/upower
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		gettext gnome localbase:ldflags meson pathfix pkgconfig tar:xz
 INSTALLS_ICONS=	yes
-USE_GNOME=	gtk30 intlhack
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-doc-dir=${PREFIX}/share/doc \
-		--disable-docbook-docs
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+USE_GNOME=	cairo gtk30 intlhack
+MESON_ARGS=	-Denable-tests=false
 
 GLIB_SCHEMAS=	org.gnome.power-manager.gschema.xml
 
 OPTIONS_DEFINE=	MANPAGES
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+MANPAGES_BUILD_DEPENDS=	docbook2html:textproc/docbook-utils \
+			docbook-sgml>0:textproc/docbook-sgml
 
-.if ${PORT_OPTIONS:MMANPAGES} || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS+=	docbook2html:${PORTSDIR}/textproc/docbook-utils \
-		docbook-sgml>0:${PORTSDIR}/textproc/docbook-sgml
-PLIST_SUB+=	MAN=""
-.else
-PLIST_SUB+=	MAN="@comment "
+post-patch-MANPAGES-off:
+	@${REINPLACE_CMD} -e "s|subdir('man')||g" \
+		${WRKSRC}/meson.build
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|2MAN_TRUE=$$|2MAN_TRUE='#'|g ; \
-		s|2MAN_FALSE='#'|2MAN_FALSE=|g" ${WRKSRC}/configure
-.endif
+	@${REINPLACE_CMD} -e 's|share/man/man1|man/man1|g' \
+		${WRKSRC}/man/meson.build
 
 .include <bsd.port.mk>
+
