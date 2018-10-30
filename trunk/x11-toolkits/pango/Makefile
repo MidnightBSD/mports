@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	pango
-PORTVERSION=	1.38.0
-PORTREVISION?=	0
+PORTVERSION=	1.42.4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,47 +10,39 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source framework for the layout and rendering of i18n text
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz
+BUILD_DEPENDS=	help2man:misc/help2man
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfribidi.so:converters/fribidi
+RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
+		${FONTENCOD}:x11-fonts/encodings
 
-.if !defined(REFERENCE_PORT)
+PORTSCOUT=	limitw:1,even
 
-BUILD_DEPENDS=	fontconfig>=2.10.91:${PORTSDIR}/x11-fonts/fontconfig \
-		cairo>=1.12.10,2:${PORTSDIR}/graphics/cairo
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	xorg-fonts-truetype>0:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
-		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
-
-USES+=		gettext gmake libtool pathfix pkgconfig
+USES=		gettext gnome localbase meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USE_GNOME=	cairo glib20 introspection:build referencehack
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
+USE_GNOME=	cairo glib20 introspection:build
 
 VERSION=	1.8.0
-LIBVERSION=	0.3800.0
+LIBVERSION=	0.4200.3
 PLIST_SUB+=     VERSION=${VERSION} LIBVERSION=${LIBVERSION}
 
 FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
 FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
-OPTIONS_DEFINE=	X11
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	X11 GTKDOC
 OPTIONS_DEFAULT=X11
 
-.include <bsd.mport.options.mk>
+GTKDOC_DESC=		Build and install gtk-doc generated documentation
+GTKDOC_MESON_TRUE=	enable_docs
+GTKDOC_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
 
-.if ${PORT_OPTIONS:MX11}
-USE_XORG+=	xft xrender
-#CONFIGURE_ARGS+=--with-xft
-PLIST_SUB+=	X11=""
-.else
-CONFIGURE_ARGS+=--without-xft
-PLIST_SUB+=	X11="@comment "
-.endif
+X11_MESON_TRUE=	xft
+X11_USE=	XORG=x11,xft,xrender
 
 pre-configure:
 # .if !exists() evaluates too early before cairo has a chance to be installed
@@ -60,6 +51,8 @@ pre-configure:
 		${FALSE}; \
 	fi
 
-.include <bsd.port.mk>
+post-fake:
+	${MKDIR}  ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig
+	${CP} ${FAKE_DESTDIR}${PREFIX}/lib/pkgconfig/* ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/
 
-.endif
+.include <bsd.port.mk>
