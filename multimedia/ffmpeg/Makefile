@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	ffmpeg
-PORTVERSION=	2.8.10
+PORTVERSION=	2.8.12
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
