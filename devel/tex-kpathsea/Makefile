@@ -3,6 +3,7 @@
 
 PORTNAME=	kpathsea
 PORTVERSION=	6.2.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-
@@ -14,7 +15,7 @@ COMMENT=	Path searching library for TeX
 
 LICENSE=	publicdom
 
-USES=		tar:xz libtool
+USES=		tar:xz pathfix libtool
 USE_LDCONFIG=	yes
 USE_TEX=	yes
 EXTRACT_AFTER_ARGS=	${EXTRACT_FILES:S,^,${DISTNAME}/,}
