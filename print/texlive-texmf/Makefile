@@ -1,21 +1,19 @@
-# $MidnightBSD$
+# $FreeBSD: head/print/texlive-texmf/Makefile 439220 2017-04-23 11:03:22Z miwi $
 
 PORTNAME=	texlive
 PORTVERSION=	20150523
-PORTREVISION=	0
+PORTREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	ftp://ftp.tug.org/historic/systems/texlive/2015/:texmf \
-		FREEBSD_LOCAL/hrs:latex
+		LOCAL/hrs:latex
 PKGNAMESUFFIX=	-texmf
 DISTFILES=	${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}${EXTRACT_SUFX}:texmf \
 		latex-base-20150101.2${EXTRACT_SUFX}:latex
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=	latex-base-20150101.2${EXTRACT_SUFX}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	TeX Live Typesetting System, texmf Tree
-
-LICENSE=	publicdom
 
 CONFLICTS_INSTALL=	texlive-base-201[234]* \
 			texlive-texmf-201[234]*
@@ -26,6 +24,7 @@ TEXHASHDIRS=	${TEXMFDIR} ${TEXMFDISTDIR}
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 NO_ARCH=	yes
+PKG_CREATE_VERBOSE=	yes
 
 EXCLUDE_FILES=	\*/doc/man \
 	texmf-dist/ls-R \
@@ -257,29 +256,32 @@ EXCLUDE_FILES=	\*/doc/man \
 EXTRACT_AFTER_ARGS=| ${TAR} xf - ${EXCLUDE_FILES:S,^,--exclude ${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}/,}
 
 post-extract:
-	cd ${WRKDIR}/texlive-texmf-20150523/latex-base-20150101.2 && \
+	cd ${WRKSRC}/latex-base-20150101.2 && \
 	    ${SETENV} TEXMF=. ${LOCALBASE}/bin/tex -ini unpack.ins && \
 	    ${RM} README *.log *.aux *.pdf *.dtx *.ins *.txt *.ist *.fdd *.err
 
 do-install:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${PORTVERSION}${PKGNAMESUFFIX}${EXTRACT_SUFX} \
-		${EXTRACT_AFTER_ARGS} -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
+		${EXTRACT_AFTER_ARGS} -C ${STAGEDIR}${PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner
-	${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
-	cd ${WRKDIR}/texlive-texmf-20150523/latex-base-20150101.2 && ${PAX} -rw . \
-	    ${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
-	${REINPLACE_CMD} -i '' 's/\\def\\magyar@sugg@ie@low#1#2#3/\\def\\magyar@sugg@ie@low\\protect #1#2#3/' ${PREFIX}/share/texmf-dist/tex/generic/babel-hungarian/magyar.ldf
-	${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/doc
-	${TOUCH} ${PREFIX}/${TEXMFDISTDIR}/doc/.keep_me
-	${MKDIR} ${PREFIX}/${TEXMFDISTDIR}/source
-	${TOUCH} ${PREFIX}/${TEXMFDISTDIR}/source/.keep_me
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
+	cd ${WRKSRC}/latex-base-20150101.2 && ${PAX} -rw . \
+	    ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/tex/latex/base
+	${REINPLACE_CMD} -i '' 's/\\def\\magyar@sugg@ie@low#1#2#3/\\def\\magyar@sugg@ie@low\\protect #1#2#3/' ${STAGEDIR}${PREFIX}/share/texmf-dist/tex/generic/babel-hungarian/magyar.ldf
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/doc
+	${TOUCH} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/doc/.keep_me
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/source
+	${TOUCH} ${STAGEDIR}${PREFIX}/${TEXMFDISTDIR}/source/.keep_me
 
 post-install:
-	@${REINPLACE_CMD} -i '' -e '1s|${bash_OLD_CMD}|${bash_CMD}|' \
-		${PREFIX}/share/texmf-dist/scripts/logicpuzzle/createlpsudoku \
-		${PREFIX}/share/texmf-dist/scripts/logicpuzzle/lpsmag \
-		${PREFIX}/share/texmf-dist/scripts/shipunov/biokey2html.sh
-	@${REINPLACE_CMD} -i '' -e '1s|${perl_OLD_CMD}|${perl_CMD}|' \
-		${PREFIX}/share/texmf-dist/scripts/mycv/mycv_split_contents.pl
+	@${REINPLACE_CMD} -i '' -e '1s|/bin/bash|${bash_CMD}|' \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/scripts/logicpuzzle/createlpsudoku \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/scripts/logicpuzzle/lpsmag \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/scripts/shipunov/biokey2html.sh
+	@${REINPLACE_CMD} -i '' -e '1s|/usr/bin/perl|${perl_CMD}|' \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/scripts/mycv/mycv_split_contents.pl
+	@${REINPLACE_CMD} -i '' -e '1s|/usr/bin/env python|${python_CMD}|' \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/asymptote/GUI/*.py \
+		${STAGEDIR}${PREFIX}/share/texmf-dist/scripts/*/*.py
 
 .include <bsd.port.mk>
