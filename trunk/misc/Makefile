@@ -60,6 +60,7 @@ SUBDIR += susv3
 SUBDIR += susv4
 SUBDIR += tvbrowser
 SUBDIR += unclutter
+SUBDIR += unicode-emoji
 SUBDIR += usbids
 SUBDIR += wmScoreBoard
 SUBDIR += wmcalendar
