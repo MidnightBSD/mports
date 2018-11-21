@@ -5,6 +5,7 @@ COMMENT = Miscellaneous utilities
 SUBDIR += brs
 SUBDIR += chef
 SUBDIR += chmlib
+SUBDIR += cldr-emoji-annotation
 SUBDIR += compat4x
 SUBDIR += compat5x
 SUBDIR += compat6x
