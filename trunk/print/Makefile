@@ -66,5 +66,6 @@ SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
 SUBDIR += ttf2pt1
 SUBDIR += xfce4-print
+SUBDIR += xpdfopen
 
 .include <bsd.port.subdir.mk>
