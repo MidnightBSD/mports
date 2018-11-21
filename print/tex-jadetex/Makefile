@@ -3,6 +3,7 @@
 
 PORTNAME=	jadetex
 PORTVERSION=	3.13
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-
@@ -18,7 +19,7 @@ LICENSE=	gpl2
 USES=		tar:xz
 USE_TEX=	texmf pdftex xmltex fmtutil
 TEXHASHDIRS=	${TEXMFDISTDIR} ${TEXMFVARDIR}
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${STAGEDIR}${PREFIX}/share \
+EXTRACT_AFTER_ARGS=| ${TAR} -xf - -C ${FAKE_DESTDIR}${TRUE_PREFIX}/share \
 		--strip-components 1 --no-same-permission --no-same-owner \
 		${EXTRACT_FILES:S,^,${DISTNAME}/,}
 EXTRACT_FILES= \
@@ -30,6 +31,7 @@ NO_BUILD=	yes
 TEX_FORMATS=	jadetex
 
 pre-install:
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} \
 	    ${EXTRACT_AFTER_ARGS}
 
