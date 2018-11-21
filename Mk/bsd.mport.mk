@@ -4450,6 +4450,7 @@ _FAKE_DEP=		build
 _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
 				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
 				500:do-fake 700:fake-post-install \
+				750:post-install-script \
 				800:post-fake 850:fake-compress-man \
 				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
