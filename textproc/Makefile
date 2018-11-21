@@ -2,6 +2,7 @@
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 
+SUBDIR += UCD
 SUBDIR += agrep
 SUBDIR += asciidoc
 SUBDIR += aspell
