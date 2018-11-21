@@ -3,6 +3,7 @@
 
 PORTNAME=	formats
 PORTVERSION=	20150521
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	#empty
 PKGNAMEPREFIX=	tex-
@@ -10,7 +11,7 @@ DISTFILES=	#empty
 EXTRACT_ONLY=	#empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Formats for Basic TeX engines
+COMMENT=	Formats for Basic TeX engines and the latex command
 
 LICENSE=	unknown
 
