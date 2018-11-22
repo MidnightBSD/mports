@@ -25,6 +25,7 @@ LIB_DEPENDS+=		libapr-1.so:devel/apr1 \
 CONFIGURE_ARGS+=	--without-swig \
 			--with-sqlite=/usr/ \
 			--with-expat=${LOCALBASE}/include:${LOCALBASE}/lib:expat
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .if defined(SVN_BUILD_ADDONS)
 CONFLICTS_BUILD+=	${PORTNAME}-1.[^9].[0-9]*
