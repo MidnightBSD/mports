@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.60.0
+PORTVERSION=	7.61.1
 CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -65,7 +65,7 @@ CPE_VENDOR=	haxx
 DOCS=		BUGS CODE_OF_CONDUCT.md CODE_STYLE.md CONTRIBUTE.md FAQ \
 		FEATURES HISTORY.md HTTP-COOKIES.md HTTP2.md INSTALL \
 		INTERNALS.md KNOWN_BUGS LICENSE-MIXING.md MAIL-ETIQUETTE \
-		MANUAL RELEASE-PROCEDURE RESOURCES ROADMAP.md \
+		MANUAL RESOURCES ROADMAP.md \
 		SECURITY-PROCESS.md SSL-PROBLEMS.md SSLCERTS.md THANKS TODO \
 		TheArtOfHttpScripting VERSIONS
 .endif
@@ -183,15 +183,10 @@ post-patch:
 
 .if !defined(BUILDING_HIPHOP)
 post-install:
-	${LN} -s libcurl.so.4 ${STAGEDIR}${PREFIX}/lib/libcurl.so.7
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
-
-post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${DOCSDIR}/libcurl/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
 	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.m4 ${STAGEDIR}${DOCSDIR}/libcurl/
-
-post-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
 	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${STAGEDIR}${EXAMPLESDIR}/
 .endif
