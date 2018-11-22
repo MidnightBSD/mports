@@ -12,7 +12,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	xcursorgen:x11/xcursorgen
 
-USE_XORG=	xextproto
+CONFIGURE_ARGS+=--with-cursordir=${PREFIX}/share/icons  
+
+USE_XORG=	xorgproto
 
 XORG_CAT=	data
 
