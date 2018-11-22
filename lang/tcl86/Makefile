@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	tcl
-PORTVERSION=	8.6.4
+PORTVERSION=	8.6.8
 CATEGORIES=	lang
 MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION} \
 		TCLTK/tcl8_6
@@ -16,16 +16,18 @@ LICENSE_NAME=	Tcl/Tk License
 LICENSE_FILE=	${WRKSRC}/../license.terms
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-OPTIONS_DEFINE=	TCLMAN TZDATA MODULES THREADS
-OPTIONS_DEFAULT=MODULES THREADS
+OPTIONS_DEFINE=	TCLMAN TZDATA THREADS DEBUG
+OPTIONS_DEFAULT=THREADS
 TCLMAN_DESC=	Install Tcl function manpages
 TZDATA_DESC=	Install Tcl timezone data
-MODULES_DESC=	Install Tcl common modules
+OPTIONS_SUB=	yes
 
+PATCH_WRKSRC=	${WRKDIR}/${PORTNAME}${PORTVERSION}
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
 
 ALL_TARGET=	all
-INSTALL_TARGET=	install-strip install-libraries
+INSTALL_TARGET=	install-strip install-libraries install-modules
+TEST_TARGET=	test-tcl
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -45,34 +47,12 @@ MAKE_ENV=	SHORT_TCL_VER=${SHORT_TCL_VER} \
 PLIST_SUB=	TCL_VER=${TCL_VER} \
 		SHORT_TCL_VER=${SHORT_TCL_VER}
 
+TCLMAN_INSTALL_TARGET=	install-doc
+TZDATA_INSTALL_TARGET=	install-tzdata
+THREADS_CONFIGURE_ENABLE=	threads
+DEBUG_CONFIGURE_ENABLE=	symbols
+
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MTCLMAN}
-INSTALL_TARGET+=install-doc
-PLIST_SUB+=	MAN=""
-.else
-PLIST_SUB+=	MAN="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTZDATA}
-PLIST_SUB+=	TZDATA=""
-INSTALL_TARGET+=install-tzdata
-.else
-PLIST_SUB+=	TZDATA="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MMODULES}
-PLIST_SUB+=	MODULES=""
-INSTALL_TARGET+=install-modules
-.else
-PLIST_SUB+=	MODULES="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTHREADS}
-CONFIGURE_ARGS+=--enable-threads
-.else
-CONFIGURE_ARGS+=--disable-threads
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e \
@@ -90,8 +70,5 @@ post-configure:
 	${REINPLACE_CMD} \
 		-e 's,-DNO_MEMMOVE=1,,' -e 's,-DNO_STRING_H=1,,' \
 		-e 's,^COMPAT_OBJS.*,,' ${WRKSRC}/Makefile
-
-regression-test:	build
-	cd ${WRKSRC} && LC_ALL=C ${MAKE} test
 
 .include <bsd.port.mk>
