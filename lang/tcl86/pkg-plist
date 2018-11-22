@@ -1,8 +1,8 @@
 bin/tclsh%%TCL_VER%%
 lib/libtcl%%SHORT_TCL_VER%%.a
 lib/libtcl%%SHORT_TCL_VER%%.so
-lib/libtcl8.6.so
-lib/libtclstub8.6.a
+lib/libtcl%%SHORT_TCL_VER%%.so.1
+lib/libtclstub%%SHORT_TCL_VER%%.a
 include/tcl%%TCL_VER%%/generic/regcustom.h
 include/tcl%%TCL_VER%%/generic/regerrs.h
 include/tcl%%TCL_VER%%/generic/regex.h
