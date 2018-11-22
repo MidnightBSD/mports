@@ -3,7 +3,7 @@
 
 PORTNAME=	impress
 PORTVERSION=	1.1b9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors tk
 MASTER_SITES=	http://www.ntlug.org/~ccox/impress/
 DISTNAME=	imp${PORTVERSION}
