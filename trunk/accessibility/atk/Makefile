@@ -1,35 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	atk
-PORTVERSION=	2.16.0
-PORTREVISION?=	3
+PORTVERSION=	2.28.1
+PORTREVISION?=	0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME accessibility toolkit (ATK)
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz
-
-.if !defined(REFERENCE_PORT)
+PORTSCOUT=	limitw:1,even
 
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USES+=		gettext gmake libtool pathfix pkgconfig
-USE_GNOME=	glib20 introspection:build referencehack
-CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
-CONFIGURE_ENV=	AUTOCONF=${TRUE} AUTOMAKE=${TRUE}
-INSTALL_TARGET=	install-strip
+USES=		gettext gnome localbase meson pkgconfig tar:xz
+USE_GNOME=	glib20 introspection:build
 
-post-patch:
-	@${REINPLACE_CMD} -e "/^SUBDIRS =/s/tests docs//" \
-		${WRKSRC}/Makefile.in
+post-install:
+	${MKDIR} ${PREFIX}/libdata/pkgconfig
+	${CP} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
-
-.endif
