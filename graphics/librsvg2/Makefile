@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	librsvg
-PORTVERSION=	2.40.6
-PORTREVISION=	1
+PORTVERSION=	2.40.20
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -13,26 +12,27 @@ COMMENT=	Library for parsing and rendering SVG vector-graphic files
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libcroco-0.6.so:${PORTSDIR}/textproc/libcroco
-RUN_DEPENDS=	gtk-engines2>=2.7.5_1:${PORTSDIR}/x11-themes/gtk-engines2
+PORTSCOUT=	limit:^2\.40\.
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gnomeprefix libgsf gtk20 introspection:build
+BUILD_DEPENDS=	valac:lang/vala
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libpng.so:graphics/png \
+		libcroco-0.6.so:textproc/libcroco
+
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
+USE_GNOME=	cairo gnomeprefix libgsf gdkpixbuf2 introspection:build \
+		libxml2 pango
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS=	--with-svgz \
-		--disable-vala \
-		--with-croco \
-		--disable-Bsymbolic \
-		--enable-gtk-theme
+CONFIGURE_ARGS=	--enable-vala \
+		--disable-Bsymbolic
+
+PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|GTK3_REQUIRED=3.[0-9].[0-9]|GTK3_REQUIRED=9.90.0|g' \
+	@${REINPLACE_CMD} -e 's|GTK3_REQUIRED=3.[0-9][0-9].[0-9]|GTK3_REQUIRED=9.90.0|g' \
 		${WRKSRC}/configure
 
 .include <bsd.port.mk>
