@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	jupp
-PORTVERSION=	3.1.28
-PORTREVISION=	1
+PORTVERSION=	3.1.36
 CATEGORIES=	editors
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/jupp/ \
 		http://pub.allbsd.org/MirOS/dist/jupp/
