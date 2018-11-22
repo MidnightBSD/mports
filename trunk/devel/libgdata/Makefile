@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/libgdata/Makefile,v 1.12 2010/12/12 10:52:35 kwm Exp $
 
 PORTNAME=	libgdata
-PORTVERSION=	0.17.8
+PORTVERSION=	0.17.9
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -12,7 +12,8 @@ COMMENT=	GLib based implimentation of the GData protocol
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	uhttpmock>0:net/uhttpmock
+BUILD_DEPENDS=	uhttpmock>0:net/uhttpmock \
+		valac:lang/vala
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libjson-glib-1.0.so:devel/json-glib \
 		libp11-kit.so:security/p11-kit \
