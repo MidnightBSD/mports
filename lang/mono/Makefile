@@ -1,70 +1,96 @@
 # Created by: Yukihiro Nakai <nakai@FreeBSD.org>
-# $FreeBSD: head/lang/mono/Makefile 420322 2016-08-17 08:23:37Z romain $
-# $MidnightBSD$
+# $FreeBSD: head/lang/mono/Makefile 478685 2018-09-01 13:03:19Z feld $
 
 PORTNAME=	mono
-PORTVERSION=	4.6.1.5
+PORTVERSION=	5.10.1.57
+PORTREVISION=	0
 CATEGORIES=	lang
-MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
+MASTER_SITES=	https://download.mono-project.com/sources/mono/
+DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
-PATCHFILES=
-PATCH_SITES=	https://github.com/mono/mono/commit/
-PATCH_DIST_STRIP=-p1
-
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	mono@FreeBSD.org
 COMMENT=	Open source implementation of .NET Development Framework
 
-LICENSE=	lgpl mit
-LICENSE_COMB=	dual
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
+ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386 powerpc
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
-		bash:${PORTSDIR}/shells/bash
+		bash:shells/bash \
+		cmake>0:devel/cmake
 LIB_DEPENDS=	libinotify.so:devel/libinotify
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow \
+		ca_root_nss>=0:security/ca_root_nss
 
-USES=		bison compiler:c11 cpe gettext gmake iconv libtool pathfix perl5 tar:bzip2
-USE_GNOME=	glib20
+CONFLICTS_INSTALL=	czmq-3*
+
+OPTIONS_DEFINE=		MONOLITE NLS X11
+OPTIONS_DEFAULT=	MONOLITE X11
+OPTIONS_SUB=	yes
+
+MONOLITE_DESC=		Use monolite to bootstrap mcs (otherwise use installed mcs)
+MONOLITE_DISTFILES=	monolite-linux-${MONOLITE_VERSION}-latest.tar.gz:monolite
+MONOLITE_MASTER_SITES=	http://download.mono-project.com/monolite/:monolite
+MONOLITE_VERSION=	1051000004
+
+NLS_CONFIGURE_OFF=	--disable-nls
+NLS_USES=	gettext
+
+X11_USES=	display:test
+
+USES=	autoreconf bison compiler:c11 cpe gmake iconv libtool \
+	pathfix perl5 python:2.7 shebangfix tar:bzip2
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/mono-${PORTVERSION:R}
+SHEBANG_FILES=	scripts/mono-heapviz mono/mini/genmdesc.py mono/tests/test_lldb.py
+BINARY_ALIAS=	python=${PYTHON_CMD}
 
-CONFIGURE_ARGS=	--disable-dtrace
-
+CONFIGURE_ARGS=	--disable-dtrace --enable-btls
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
-# Set location for .wapi creation.
-MONO_SHARED_DIR=${WRKDIR}
-
-# LC_ALL is set in order to work around issues people are having when using
-# other languages.  This has shown itself in build fails and possibly other
-# strange crashes.
-MAKE_ENV=	MONO_SHARED_DIR="${MONO_SHARED_DIR}" \
+MAKE_ENV=	MONO_SHARED_DIR="${WRKDIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
-		LC_ALL=C TZ=UTC
+		TZ=UTC
 
-.include <bsd.port.pre.mk>
+TEST_ARGS=	-k
+TEST_TARGET=	check
+
+PORTSCOUT=	limit:^\d+\.\d+\.[1-9]\d*
+
+LOCALBASE?=	/usr/local
+.if !exists(${LOCALBASE}/bin/mcs)
+OPTIONS_SLAVE=	MONOLITE
+.endif
+
+post-extract-MONOLITE-on:
+	${MKDIR} ${WRKSRC}/mcs/class/lib/monolite-linux
+	${MV} ${WRKDIR}/monolite-linux-${MONOLITE_VERSION}-latest ${WRKSRC}/mcs/class/lib/monolite-linux/${MONOLITE_VERSION}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|^#!/bin/bash|#!/usr/bin/env bash|g' \
+	${REINPLACE_CMD} -e 's|^#!/bin/bash|#!/usr/bin/env bash|g' \
 		${WRKSRC}/scripts/mono-find-provides.in \
 		${WRKSRC}/scripts/mono-find-requires.in \
 		${WRKSRC}/scripts/mono-test-install
-	@${FIND} ${WRKSRC} -name '*.sh' | ${XARGS} ${REINPLACE_CMD} \
+	${FIND} ${WRKSRC} -name '*.sh' | ${XARGS} ${REINPLACE_CMD} \
 		-e 's|^#!/bin/bash|#!/bin/sh|g'
-	@${REINPLACE_CMD} 's/isinf (1)/isinf (1.0)/g' ${WRKSRC}/configure
-
-tests: build
-	@${ECHO_MSG} "===> Running mono regression tests"
-	@(cd ${WRKSRC}/mono/tests && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
-		${MAKE_FLAGS} Makefile ${MAKE_ARGS} check)
+	${SED} 's/tarball/${PORTVERSION}/' ${WRKSRC}/mono/mini/Makefile.am.in \
+		> ${WRKSRC}/mono/mini/Makefile.am
+	${REINPLACE_CMD} -e 's|/usr/share|${PREFIX}|g' \
+		${WRKSRC}/mcs/class/corlib/System/Environment.cs \
+		${WRKSRC}/external/corefx/src/System.Runtime.Extensions/src/System/Environment.Unix.cs
+	${REINPLACE_CMD} -e 's|/usr/share/.mono|${PREFIX}/share/mono|g' \
+		${WRKSRC}/man/mono-configuration-crypto.1 \
+		${WRKSRC}/man/mono.1 \
+		${WRKSRC}/man/mozroots.1
 
 post-configure:
-	@${REINPLACE_CMD} -e 's|share\/man|man|g' \
+	${REINPLACE_CMD} -e 's|share\/man|man|g' \
 		${WRKSRC}/mcs/jay/Makefile
 
-	@${REINPLACE_CMD} 's/^#define HAVE_LOCALCHARSET_H 1/#undef HAVE_LOCALCHARSET_H/' \
-		${WRKSRC}/eglib/config.h
+post-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/mono
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
