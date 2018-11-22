@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mono-basic
-PORTVERSION=	4.6
-PORTREVISION=	1
+PORTVERSION=	4.7
 CATEGORIES=	lang
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/ \
 		http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
