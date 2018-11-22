@@ -1,2 +1,3 @@
-SHA256 (libssh2-1.4.3.tar.gz) = eac6f85f9df9db2e6386906a6227eb2cd7b3245739561cad7d6dc1d5d021b96d
-SIZE (libssh2-1.4.3.tar.gz) = 685712
+TIMESTAMP = 1481730876
+SHA256 (libssh2-1.8.0.tar.gz) = 39f34e2f6835f4b992cafe8625073a88e5a28ba78f83e8099610a7b3af4676d4
+SIZE (libssh2-1.8.0.tar.gz) = 854916
