@@ -1,37 +1,31 @@
 # $MidnightBSD$
 
 PORTNAME=	libsoup
-PORTVERSION=	2.54.1
-PORTREVISION=	0
+PORTVERSION=	2.62.2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SOAP (Simple Object Access Protocol) implementation in C
 
-LICENSE=	gpl2
+LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 RUN_DEPENDS=	glib-networking>=2.29.18:net/glib-networking
 
-USES=		tar:xz
 PORTSCOUT=	limitw:1,even
 
-.if !defined(REFERENCE_PORT)
-
-USES+=		gettext gmake gnome libtool pathfix pkgconfig \
-		python:3:build tar:xz
+USES=		gettext gmake gnome libtool localbase pathfix \
+		pkgconfig python:3.6+,build sqlite ssl tar:xz
 USE_GNOME=	glib20 intlhack introspection:build \
 		libxml2 referencehack
-USE_SQLITE=	3
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-more-warnings \
 		--disable-vala
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 LIBVERSION=	1.8.0
@@ -48,19 +42,19 @@ CONFIGURE_ARGS+=--without-gnome
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|env python|env ${PYTHON_VERSION}|g' \
+	@${REINPLACE_CMD} -e 's|env python3|env ${PYTHON_VERSION}|g' \
 		${WRKSRC}/libsoup/tld-parser.py
 	@${REINPLACE_CMD} -e 's|DATADIRNAME=lib|DATADIRNAME=share|g' \
 		${WRKSRC}/configure
 
 .if defined(SOUP_SLAVE)
 do-install:
-	@${MKDIR} ${PREFIX}/share/gir-1.0/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.gir ${PREFIX}/share/gir-1.0/
-	@${MKDIR} ${PREFIX}/lib/girepository-1.0/
-	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.typelib ${PREFIX}/lib/girepository-1.0/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
-	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/gir-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.gir ${STAGEDIR}${PREFIX}/share/gir-1.0/
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
+	${INSTALL_DATA} ${WRKSRC}/libsoup/SoupGNOME-2.4.typelib ${STAGEDIR}${PREFIX}/lib/girepository-1.0/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${STAGEDIR}${PREFIX}/lib/
 	${INSTALL_PROGRAM} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.${LIBVERSION} ${STAGEDIR}${PREFIX}/lib/
 	cd ${WRKSRC}/libsoup && DESTDIR=${FAKE_DESTDIR} ${GMAKE} install-libsoupgnomeincludeHEADERS
 .endif
@@ -76,5 +70,3 @@ post-install:
 .endif
 
 .include <bsd.port.mk>
-
-.endif
