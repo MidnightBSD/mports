@@ -1,234 +1,149 @@
+# $MidnightBSD$
 #
-# 	$MidnightBSD$
-#	$FreeBSD: ports/Mk/bsd.emacs.mk,v 1.59 2006/08/14 13:24:18 erwin Exp $
+# Provide support for ports requiring Emacs.  This includes flavors with proper
+# dependencies and useful variables.
 #
-#	bsd.emacs.mk - 19990829 Shigeyuki Fukushima.
+# Feature:	emacs
+# Usage:	USES=emacs or USES=emacs:args
+# Valid ARGS:	build, run, noflavors
 #
-
-.if !defined(_POSTMKINCLUDED) && !defined(Emacs_Pre_Include)
-
-Emacs_Pre_Include=			emacs.mk		
-Emacs_Include_MAINTAINER=	ports@MidnightBSD.org
-
+# build		Indicates that Emacs is required at build time.
+# run		Indicates that Emacs is required at run time.
+# noflavors	Prevents flavors.  This is implied when there is no run
+#               dependency on Emacs.
 #
-# This file for ports which depend on emacs family.
-# Define EMACS_PORT_NAME variable before bsd.port.[pre.]mk
-# and it will automatically include this file.
+# If build and run are omitted from the argument list, Emacs will be added to
+# BUILD_DEPENDS and RUN_DEPENDS.  EMACS_NO_DEPENDS can be set to prevent both
+# dependencies.
 #
-# This file exports the following common variables:
+# Variables, which can be set in make.conf:
+# DEFAULT_VERSIONS+=          The default flavor for Emacs ports (ports with
+#                             USES=emacs, but not the Emacs ports themselves)
+#                             can be added to DEFAULT_VERSIONS.  For example,
+#                             DEFAULT_VERSIONS+= emacs=nox
+#                             Valid flavors: full canna nox devel_full devel_nox
+#                             Flavors specified on the command line take
+#                             precedence.
 #
-# EMACS_NAME:
-#		emacsen's command-line basename.
-#		ex.) "emacs" when emacsen is a emacs-20.6.
+# Variables, which can be set by ports:
+# EMACS_FLAVORS_EXCLUDE:      Do NOT build these Emacs flavors.
+#                             If EMACS_FLAVORS_EXCLUDE is not defined and
+#                               - there is a run dependency on Emacs
+#                               - the noflavors argument is not specified
+#                             then all valid Emacs flavors are assumed.
 #
-# EMACS_VER:
-#		emacsen's version.
-#		ex.) "20.6" when emacsen is a emacs-20.6.
+# EMACS_NO_DEPENDS:           Do NOT add build or run dependencies on Emacs.
+#                             This will prevent flavors.
 #
-# EMACS_MAJOR_VER:
-#		emacsen's major version.
-#		ex.) "20" when emacsen is a emacs-20.6.
-#
-# EMACS_LIBDIR:
-#		emacsen's library directory name without ${PREFIX}.
-#		ex.) "share/emacs" when emacsen is a emacs-20.6.
-#
-# EMACS_LIBDIR_WITH_VER:
-#		emacsen's version specific library directory name
-#		without ${PREFIX}.
-#		ex.) "share/emacs/20.6" when emacsen is a emacs-20.6.
-#
-# EMACS_CMD:
-#		emacsen's command-line filename. (full path)
-#		ex.) "/usr/local/bin/emacs-20.6" when emacsen is a
-#		     emacs-20.6 and ${PREFIX} is "/usr/local".
-#
-# EMACS_SITE_LISPDIR:
-#		emacsen's site-lisp directory name without ${PREFIX}.
-#		ex.) "share/emacs/site-lisp" when emacsen is a emacs-20.6.
-#
-# EMACS_VERSION_SITE_LISPDIR:
-#		emacsen's version specific site-lisp directory name
-#		without	${PREFIX}.
-#		ex.) "share/emacs/20.6/site-lisp" when emacsen is a
-#		emacs-20.6.
-#
-# EMACS_NO_BUILD_DEPENDS:
-#		If set "YES" to this variable, port does not
-#		build-depend on EMACS_PORT_NAME's emacsen.
-#
-# EMACS_NO_RUN_DEPENDS:
-#		If set "YES" to this variable, port does not
-#		run-depend on EMACS_PORT_NAME's emacsen.
+# Variables, which can be read by ports:
+# EMACS_CMD:                  Emacs command with full path (e.g. /usr/local/bin/emacs-26.1)
+# EMACS_FLAVOR:               Used for dependencies (e.g. BUILD_DEPENDS= dash.el${EMACS_PKGNAMESUFFIX}>0:devel/dash@${EMACS_FLAVOR})
+# EMACS_LIBDIR:               Emacs Library directory without ${PREFIX} (e.g. share/emacs)
+# EMACS_LIBDIR_WITH_VER:      Library directory without ${PREFIX} including version (e.g. share/emacs/26.1)
+# EMACS_MAJOR_VER:            Emacs major version (e.g. 26)
+# EMACS_PKGNAMESUFFIX:        PKGNAMESUFFIX to distinguish Emacs flavors
+# EMACS_SITE_LISPDIR:         Emacs site-lisp directory without ${PREFIX} (e.g. share/emacs/site-lisp)
+# EMACS_VER:                  Emacs version (e.g. 26.1)
+# EMACS_VERSION_SITE_LISPDIR: Include version (e.g. share/emacs/26.1/site-lisp)
+#-------------------------------------------------------------------------------
 #
 
-EMACS_MASTERDIR_PKGFILES?=	NO
+.if !defined(_INCLUDE_USES_EMACS_MK)
+_INCLUDE_USES_EMACS_MK=	yes
 
-# Emacs-22.x
-.if (${EMACS_PORT_NAME} == "emacs22")
-EMACS_NAME=		emacs
-EMACS_VER=		22.2
-EMACS_MAJOR_VER=	22
-EMACS_LIBDIR?=		share/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=			${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=			${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
+# Make sure that no dependency or some other environment variable
+# pollutes the build/run dependency detection
+.undef _EMACS_BUILD_DEP
+.undef _EMACS_RUN_DEP
+.undef _EMACS_NOFLAVORS
+_EMACS_ARGS=		${emacs_ARGS:S/,/ /g}
+.if ${_EMACS_ARGS:Mbuild}
+_EMACS_BUILD_DEP=	yes
+_EMACS_ARGS:=		${_EMACS_ARGS:Nbuild}
+.endif
+.if ${_EMACS_ARGS:Mrun}
+_EMACS_RUN_DEP=		yes
+_EMACS_ARGS:=		${_EMACS_ARGS:Nrun}
+.endif
+.if ${_EMACS_ARGS:Mnoflavors}
+_EMACS_NOFLAVORS=	yes
+_EMACS_ARGS:=		${_EMACS_ARGS:Nnoflavors}
 .endif
 
-# Mule-19.x
-.elif (${EMACS_PORT_NAME} == "mule")
-EMACS_NAME=		mule
-EMACS_VER=		19.34
-EMACS_MAJOR_VER=	19
-EMACS_LIBDIR?=		share/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/mule
-EMACS_COMMON_PORT=	YES
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	YES
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
+# If the port does not specify a build or run dependency, and does not define
+# EMACS_NO_DEPENDS, assume both dependencies are required.
+.if !defined(_EMACS_BUILD_DEP) && !defined(_EMACS_RUN_DEP) && \
+	!defined(EMACS_NO_DEPENDS)
+_EMACS_BUILD_DEP=	yes
+_EMACS_RUN_DEP=		yes
 .endif
 
-# XEmacs-21.x
-.elif (${EMACS_PORT_NAME} == "xemacs21")
-EMACS_NAME=		xemacs
-EMACS_VER=		21.4.19
-EMACS_MAJOR_VER=	21
-EMACS_LIBDIR?=		lib/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	lib/${EMACS_NAME}-${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/xemacs
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		NO
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
+# Only set FLAVORS when...
+.if defined(_EMACS_RUN_DEP) && !defined(_EMACS_NOFLAVORS)
+FLAVORS=	full canna nox devel_full devel_nox
+.for flavor in ${EMACS_FLAVORS_EXCLUDE}
+FLAVORS:=	${FLAVORS:N${flavor}}
+.endfor
 .endif
 
-# XEmacs-21.x with Mule
-.elif (${EMACS_PORT_NAME} == "xemacs21-mule")
-EMACS_NAME=		xemacs
-EMACS_VER=		21.4.19
-EMACS_MAJOR_VER=	21
-EMACS_LIBDIR?=		lib/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	lib/${EMACS_NAME}-${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/xemacs21-mule
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
-.endif
-
-# XEmacs-21 development version
-.elif (${EMACS_PORT_NAME} == "xemacs-devel")
-EMACS_NAME=		xemacs
-EMACS_VER=		21.5-b27
-EMACS_MAJOR_VER=	21
-EMACS_LIBDIR?=		lib/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	lib/${EMACS_NAME}-${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/xemacs-devel
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		NO
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
-.endif
-
-# XEmacs-21 development version with Mule
-.elif (${EMACS_PORT_NAME} == "xemacs-devel-mule") || \
-	(${EMACS_PORT_NAME} == "xemacs-mule-xft")
-EMACS_NAME=		xemacs
-EMACS_VER=		21.5-b27
-EMACS_MAJOR_VER=	21
-EMACS_LIBDIR?=		lib/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	lib/${EMACS_NAME}-${EMACS_VER}
-.if ${EMACS_PORT_NAME} == "xemacs-mule-xft"
-EMACS_PORTSDIR=		${PORTSDIR}/editors/xemacs-devel-mule-xft
+# Only set FLAVOR when...
+.if defined(_EMACS_RUN_DEP) && !defined(_EMACS_NOFLAVORS) && empty(FLAVOR)
+.if defined(EMACS_DEFAULT)
+FLAVOR=	${EMACS_DEFAULT}
 .else
-EMACS_PORTSDIR=		${PORTSDIR}/editors/xemacs-devel-mule
-.endif
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
-.endif
+FLAVOR=	${FLAVORS:[1]}
+.endif # defined(EMACS_DEFAULT)
+.endif # !defined(_EMACS_NOFLAVORS) && defined(_EMACS_RUN_DEP) && empty(FLAVOR)
 
+.if !empty(FLAVOR)
+EMACS_FLAVOR=	${FLAVOR}
 .else
-check-makevars::
-	@${ECHO} "Makefile error: Bad value of EMACS_PORT_NAME: ${EMACS_PORT_NAME}."
-	@${ECHO} "Valid values are:"
-	@${ECHO} "	Emacs  family: emacs19 mule emacs20 emacs21 emacs22"
-	@${ECHO} "	XEmacs family: xemacs xemacs20 xemacs21 xemacs21-mule"
-	@${ECHO} "	               xemacs-devel xemacs-devel-mule xemacs-mule-xft"
-	@${FALSE}
+EMACS_FLAVOR=	full
 .endif
 
-
-#
-# Common Definitions
-#
-
-# find where emacsen is installed
-# look for it in PREEFIX first and fall back to LOCALBASE then
-.if exists(${TARGETDIR}/bin/${EMACS_NAME}-${EMACS_VER})
-EMACS_BASE?=			${TARGETDIR}
+.if ${FLAVOR:Mdevel*}
+EMACS_VER=			27.0.50
+EMACS_PORTDIR=		editors/emacs-devel
 .else
-EMACS_BASE?=			${LOCALBASE}
+EMACS_VER=			26.1
+EMACS_PORTDIR=		editors/emacs
 .endif
-# emacsen command-line filename
-EMACS_CMD?=			${EMACS_BASE}/bin/${EMACS_NAME}-${EMACS_VER}
-# emacsen core elisp filename
-EMACS_CORE_DIR=			${EMACS_LIBDIR_WITH_VER}/lisp/${EMACS_CORE_SUBDIR}
-EMACS_COREEL=			${EMACS_BASE}/${EMACS_CORE_DIR}/startup.el
-# emacsen libdir without ${LOCALBASE}
-EMACS_SITE_LISPDIR?=		${EMACS_LIBDIR}/site-lisp
-EMACS_VERSION_SITE_LISPDIR?=	${EMACS_LIBDIR_WITH_VER}/site-lisp
 
-# build&run-dependency
-EMACS_NO_BUILD_DEPENDS?=	NO
-EMACS_NO_RUN_DEPENDS?=		NO
-.if (${EMACS_NO_BUILD_DEPENDS} == "NO")
-BUILD_DEPENDS+=		${EMACS_CMD}:${EMACS_PORTSDIR}
-.endif
-.if (${EMACS_NO_RUN_DEPENDS} == "NO")
-.if defined(EMACS_COMMON_PORT) && (${EMACS_COMMON_PORT} == "YES")
-RUN_DEPENDS+=	${EMACS_COREEL}:${EMACS_PORTSDIR}-common
+EMACS_MAJOR_VER=	${EMACS_VER:C/\..*//}
+EMACS_LIBDIR=		share/emacs
+EMACS_LIBDIR_WITH_VER=	share/emacs/${EMACS_VER}
+EMACS_PORT_NAME=	emacs${EMACS_MAJOR_VER}
+
+.if ${FLAVOR:M*nox}
+EMACS_PKGNAMESUFFIX=		-${EMACS_PORT_NAME}_nox
+.elif ${FLAVOR:Mcanna}
+EMACS_PKGNAMESUFFIX=		-${EMACS_PORT_NAME}_canna
 .else
-RUN_DEPENDS+=	${EMACS_CMD}:${EMACS_PORTSDIR}
-.endif
+EMACS_PKGNAMESUFFIX=		-${EMACS_PORT_NAME}
 .endif
 
-# environments for build
-MAKE_ARGS+=	EMACS=${EMACS_CMD} XEMACS=${EMACS_CMD}
+EMACS_CMD=	${PREFIX}/bin/emacs-${EMACS_VER}
+EMACS_SITE_LISPDIR=	${EMACS_LIBDIR}/site-lisp
+EMACS_VERSION_SITE_LISPDIR=	${EMACS_LIBDIR_WITH_VER}/site-lisp
+
+.if defined(_EMACS_BUILD_DEP)
+BUILD_DEPENDS+=		${EMACS_CMD}:${EMACS_PORTDIR}
+.endif
+.if defined(_EMACS_RUN_DEP)
+RUN_DEPENDS+=	${EMACS_CMD}:${EMACS_PORTDIR}
+.endif
+
+MAKE_ARGS+=	EMACS=${EMACS_CMD}
 SCRIPTS_ENV+=	EMACS_LIBDIR=${EMACS_LIBDIR} \
 		EMACS_VER=${EMACS_VER} \
 		EMACS_LIBDIR_WITH_VER=${EMACS_LIBDIR_WITH_VER} \
 		EMACS_SITE_LISPDIR=${EMACS_SITE_LISPDIR} \
 		EMACS_VERSION_SITE_LISPDIR=${EMACS_VERSION_SITE_LISPDIR}
-# pkg/PLIST substrings
+
 PLIST_SUB+=	EMACS_LIBDIR=${EMACS_LIBDIR} \
 		EMACS_VER=${EMACS_VER} \
 		EMACS_LIBDIR_WITH_VER=${EMACS_LIBDIR_WITH_VER} \
 		EMACS_SITE_LISPDIR=${EMACS_SITE_LISPDIR} \
 		EMACS_VERSION_SITE_LISPDIR=${EMACS_VERSION_SITE_LISPDIR}
 
-
-.endif #!defined(_POSTMKINCLUDED) && !defined(Emacs_Pre_Include)
+.endif # _INCLUDE_USES_EMACS_MK
