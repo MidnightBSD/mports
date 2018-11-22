@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libsndfile
-PORTVERSION=	1.0.25
-PORTREVISION=	3
+PORTVERSION=	1.0.28
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/libsndfile/files/
 
@@ -11,49 +11,37 @@ COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF)
 
 LICENSE=	lgpl2.1
 
-USES=		gmake libtool:keepla pathfix pkgconfig
+USES=		cpe gmake libtool localbase pkgconfig
+CPE_VENDOR=	${CPE_PRODUCT}_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-gcc-pipe \
 		--disable-sqlite \
 		--disable-alsa \
-		--disable-octave
-CPPFLAGS+=	-isystem /usr/include -isystem ${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+		--disable-octave \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 USE_LDCONFIG=	yes
-
-PORTDOCS=	AUTHORS ChangeLog NEWS README libsndfile.css \
-		new_file_type.HOWTO libsndfile.jpg *.html
+TEST_TARGET=	check
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	CPU_CLIP EXTERNAL DOCS
 OPTIONS_DEFAULT=	EXTERNAL
 CPU_CLIP_DESC=	Allow machine-dependent clipping
 EXTERNAL_DESC=	Enable FLAC and Ogg Vorbis support
 
-.include <bsd.mport.options.mk>
+CPU_CLIP_VARS=	MANUAL_PACKAGE_BUILD="WITH_CPU_CLIP may customize the package for the build machine"
+CPU_CLIP_CONFIGURE_OFF=	--disable-cpu-clip
 
-.if ${PORT_OPTIONS:MCPU_CLIP}
-MANUAL_PACKAGE_BUILD=	WITH_CPU_CLIP may customize the package for the build machine
-.else
-CONFIGURE_ARGS+=	--disable-cpu-clip
-.endif
-
-.if ${PORT_OPTIONS:MEXTERNAL}
-LIB_DEPENDS+=	libFLAC.so:${PORTSDIR}/audio/flac \
-		libvorbis.so:${PORTSDIR}/audio/libvorbis
-.else
-CONFIGURE_ARGS+=--disable-external-libs
-.endif
+EXTERNAL_LIB_DEPENDS=	libFLAC.so:audio/flac \
+			libogg.so:audio/libogg \
+			libvorbis.so:audio/libvorbis
+EXTERNAL_CONFIGURE_OFF=	--disable-external-libs
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/ doc / /g' ${WRKSRC}/Makefile.in
 
-check regression-test test: build
-	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} ${MAKE_ARGS} \
-	check
-
 post-install:
-	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@${TAR} -C ${WRKSRC}/doc --exclude "*Makefile*" --exclude "*.in" \
-		-cf - . | ${TAR} -C ${DOCSDIR} --unlink -xf -
+		-cf - . | ${TAR} -C ${STAGEDIR}${DOCSDIR} --unlink -xf -
 
 .include <bsd.port.mk>
