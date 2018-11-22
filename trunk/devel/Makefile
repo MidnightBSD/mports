@@ -89,6 +89,7 @@ SUBDIR += gettext-runtime
 SUBDIR += gettext-tools
 SUBDIR += git
 SUBDIR += git-gui
+SUBDIR += git-lfs
 SUBDIR += git-lite
 SUBDIR += git-subversion
 SUBDIR += github-backup-utils
