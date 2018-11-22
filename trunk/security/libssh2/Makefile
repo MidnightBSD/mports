@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	libssh2
-PORTVERSION=	1.4.3
-PORTEPOCH=	2
+PORTVERSION=	1.8.0
+PORTEPOCH=	3
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.libssh2.org/download/ \
 		FREEBSD_LOCAL/sbz
@@ -23,27 +23,24 @@ OPTIONS_DEFAULT=	ZLIB
 TRACE_DESC=	Enable debug packet traces
 
 TRACE_CONFIGURE_ENABLE=	debug
-GCRYPT_LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
-GCRYPT_CONFIGURE_ON=	--with-libgcrypt --without-openssl
-GCRYPT_CONFIGURE_OFF=	--without-libgcrypt --with-openssl
+GCRYPT_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
+GCRYPT_CONFIGURE_ON=	--with-libgcrypt
+GCRYPT_CONFIGURE_OFF=	--with-openssl
 GCRYPT_CPPFLAGS=	-I${LOCALBASE}/include
 GCRYPT_LIBS=		-L${LOCALBASE}/lib
+GCRYPT_USES_OFF=	ssl
 ZLIB_CONFIGURE_WITH=	libz
-
-.include <bsd.mport.options.mk>
-
-.if ! ${PORT_OPTIONS:MGCRYPT}
-EXTENSIONS+=	ssl
-.endif
 
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e '/Libs:/s/@LDFLAGS@//' -e '/Libs:/s/@LIBS@//' \
+	@${REINPLACE_CMD} -e '/Libs:/s/@LIBS@//' \
 		${WRKSRC}/libssh2.pc.in
-.if defined(WITH_OPENSSL_BASE)
+.if ! ${PORT_OPTIONS:MGCRYPT}
+.  if ${SSL_DEFAULT} == base
 	@${REINPLACE_CMD} -e 's/LIBSREQUIRED=libssl,libcrypto/LIBS="$$LIBS -lssl -lcrypto"/' \
 		${WRKSRC}/configure
+.  endif
 .endif
 
 .include <bsd.port.post.mk>
