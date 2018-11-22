@@ -1,24 +1,26 @@
 # $MidnightBSD$
 
 PORTNAME=	openjpeg
-PORTVERSION=	2.1.2
+PORTVERSION=	2.3.0
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source JPEG 2000 codec
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+BUILD_DEPENDS=	cmake>=3:devel/cmake
+LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
 
 USE_LDCONFIG=	yes
 USES=		cmake cpe pkgconfig
 
-PLIST_SUB=	VER=${PORTVERSION:R}
+PLIST_SUB=	PORTVERSION=${PORTVERSION} VER=${PORTVERSION:R}
 
 GH_ACCOUNT=	uclouvain
 USE_GITHUB=	yes
