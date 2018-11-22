@@ -340,6 +340,15 @@ DISTNAME?=	${PORTNAME}-${DISTVERSIONFULL}
 
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
+PACKAGES?=              ${PORTSDIR}/Packages/${ARCH}
+TEMPLATES?=             ${PORTSDIR}/Templates
+KEYWORDS?=              ${PORTSDIR}/Keywords
+
+PATCHDIR?=              ${MASTERDIR}/files
+FILESDIR?=              ${MASTERDIR}/files
+SCRIPTDIR?=             ${MASTERDIR}/scripts
+PKGDIR?=                ${MASTERDIR} 
+
 PKGCOMPATDIR?=	${LOCALBASE}/lib/compat/pkg
 
 #
@@ -441,15 +450,6 @@ EXTRACT_SUFX?=			.run
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
-
-PACKAGES?=		${PORTSDIR}/Packages/${ARCH}
-TEMPLATES?=		${PORTSDIR}/Templates
-KEYWORDS?=		${PORTSDIR}/Keywords
-
-PATCHDIR?=		${MASTERDIR}/files
-FILESDIR?=		${MASTERDIR}/files
-SCRIPTDIR?=		${MASTERDIR}/scripts
-PKGDIR?=		${MASTERDIR}
 
 .if defined(USE_LINUX_PREFIX)
 _LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
