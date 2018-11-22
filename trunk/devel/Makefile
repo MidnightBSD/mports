@@ -648,6 +648,7 @@ SUBDIR += valgrind
 SUBDIR += viewvc
 SUBDIR += websvn
 SUBDIR += wizardkit
+SUBDIR += woff2
 SUBDIR += xdg-utils
 SUBDIR += xorg-macros
 SUBDIR += yajl
