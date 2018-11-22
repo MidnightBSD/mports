@@ -1,14 +1,13 @@
 # $MidnightBSD$
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.9.4-3
+DISTVERSION=	6.9.9-28
 PORTEPOCH=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	http://www.imagemagick.org/download/ \
 		http://www.imagemagick.org/download/legacy/ \
 		http://servingzone.com/mirrors/ImageMagick/ \
 		http://mirror.checkdomain.de/imagemagick/ \
-		http://image_magick.veidrodis.com/image_magick/ \
 		http://imagemagick.spd.co.il/ \
 		http://www.champground.com/imagemagick/ \
 		http://ftp.surfnet.nl/pub/ImageMagick/ \
@@ -34,41 +33,38 @@ COMMENT=	Image processing tools
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS=	libltdl.so:devel/libltdl
 
-CONFLICTS_INSTALL=	execline-[0-9]* # bin/import
+PORTSCOUT?=	limit:^6\.9\.
+
+CONFLICTS_INSTALL=	ImageMagick7 ImageMagick7-nox11 # bin/Magick++-config
 
 # This port uses .la files, keep libtool:keepla! (magick/module.c)
-USES=		cpe gmake libtool:keepla pathfix perl5 pkgconfig:both shebangfix tar:xz
-USE_PERL5=	yes
+USES=		compiler:c++11-lang cpe gettext-runtime gmake gnome libtool:keepla \
+		localbase pathfix perl5 pkgconfig:both shebangfix tar:xz
 CPE_PRODUCT=	imagemagick
 CPE_VENDOR=	imagemagick
 SHEBANG_FILES=	www/source/examples.pl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKE=${MAKE_CMD}
-CONFIGURE_ARGS=	--without-dps \
-		--without-lcms
+CONFIGURE_ARGS=	--without-dps
 USE_LDCONFIG=	yes
 USE_GNOME=	libxml2
 
-# make sure LOCALBASE is placed at the end of the compiler lookup so the configure
-# script can find openjpeg2 headers before the openjpeg15 headers
-CPPFLAGS+=	-isystem${LOCALBASE}/include
-LDFLAGS+=	-Wl,-Y${LOCALBASE}/lib
-
 SAMPLE_FILES=	coder.xml colors.xml delegates.xml log.xml magic.xml mime.xml \
 		policy.xml quantization-table.xml thresholds.xml type-apple.xml \
-		type-dejavu.xml type-ghostscript.xml type-windows.xml type.xml
+		type-dejavu.xml type-ghostscript.xml type-urw-base35.xml \
+		type-windows.xml type.xml
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION:R}
 
 OPTIONS_DEFINE=	BZIP2 DOCS DJVU FFTW FONTCONFIG FPX FREETYPE \
 		GRAPHVIZ GSLIB JPEG2000 JBIG JPEG LCMS2 LZMA LQR MODULES \
 		OPENEXR OPENMP PANGO PDF PERL PNG SVG TESTS TIFF WEBP WMF \
-		THREADS X11 16BIT_PIXEL HDRI
-OPTIONS_DEFAULT=	16BIT_PIXEL BZIP2 FFTW FONTCONFIG FPX FREETYPE \
+		THREADS X11 16BIT_PIXEL HDRI RAW
+OPTIONS_DEFAULT=	16BIT_PIXEL BZIP2 FFTW FONTCONFIG FREETYPE \
 		JPEG2000 JBIG JPEG LCMS2 LZMA LQR MODULES PDF PERL PNG SVG \
-		TIFF WEBP WMF THREADS X11
+		TIFF WEBP WMF THREADS X11 RAW
 
 16BIT_PIXEL_DESC=	16bit pixel support
 JPEG2000_DESC=		OpenJPEG 2000 support via openjpeg
@@ -80,6 +76,12 @@ SVG_DESC=		SVG vector image format support (via librsvg)
 TESTS_DESC=		Run bundled self-tests after build
 #SIMD_CONFIGURE_WITH=	gcc-arch
 CONFIGURE_ARGS+=	--without-gcc-arch
+
+# libraw is by default liked to lcms2, whichs also ends up in IM regardless
+# of the IM LCMS option.
+RAW_CONFIGURE_WITH=	raw
+RAW_LIB_DEPENDS=	libraw_r.so:graphics/libraw \
+			liblcms2.so:graphics/lcms2
 
 .include <bsd.mport.options.mk>
 
@@ -176,7 +178,8 @@ PLIST_SUB+=		MODULES='@comment '
 . if ${_IMAGEMAGICK_THREADS} == "no"
 IGNORE=OpenEXR requires threads. ${_IMAGEMAGICK_THREADS_IGNORE_MSG}
 . else
-LIB_DEPENDS+=		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR
+LIB_DEPENDS+=		libIlmImf.so:graphics/openexr \
+			libImath.so:graphics/ilmbase
 PLIST_SUB+=		OPENEXR=""
 . endif
 .else
@@ -188,7 +191,7 @@ PLIST_SUB+=		OPENEXR="@comment "
 . if ${_IMAGEMAGICK_THREADS} == "no"
 IGNORE=DjVu requires threads${_IMAGEMAGICK_THREADS_IGNORE_MSG}
 . endif
-LIB_DEPENDS+=		libdjvulibre.so:${PORTSDIR}/graphics/djvulibre
+LIB_DEPENDS+=		libdjvulibre.so:graphics/djvulibre
 PLIST_SUB+=		DJVU=""
 .else
 CONFIGURE_ARGS+=	--without-djvu
@@ -196,7 +199,7 @@ PLIST_SUB+=		DJVU="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=		libjpeg.so:${PORTSDIR}/graphics/jpeg
+USES+=			jpeg
 PLIST_SUB+=		JPEG=""
 .else
 CONFIGURE_ARGS+=	--without-jpeg
@@ -204,7 +207,7 @@ PLIST_SUB+=		JPEG="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=		libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		libpng.so:graphics/png
 PLIST_SUB+=		PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
@@ -212,7 +215,7 @@ PLIST_SUB+=		PNG="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MTIFF}
-LIB_DEPENDS+=		libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=		libtiff.so:graphics/tiff
 PLIST_SUB+=		TIFF=""
 .else
 CONFIGURE_ARGS+=	--without-tiff
@@ -221,21 +224,26 @@ PLIST_SUB+=		TIFF="@comment "
 
 .if ${PORT_OPTIONS:MGSLIB}
 CONFIGURE_ARGS+=	--with-gslib
-USE_GHOSTSCRIPT=	yes
+. if ${PORT_OPTIONS:MX11}
+USES+=		ghostscript:x11
+. else
+USES+=		ghostscript
+. endif
 .else
 CONFIGURE_ARGS+=	--without-gslib
 .endif
 
 .if ${PORT_OPTIONS:MLQR}
 CONFIGURE_ARGS+=	--with-lqr
-LIB_DEPENDS+=		liblqr-1.so:${PORTSDIR}/graphics/liblqr-1
+LIB_DEPENDS+=		liblqr-1.so:graphics/liblqr-1
+USE_GNOME+=		glib20
 .else
 CONFIGURE_ARGS+=	--without-lqr
 .endif
 
 .if ${PORT_OPTIONS:MFFTW}
 CONFIGURE_ARGS+=	--with-fftw
-LIB_DEPENDS+=		libfftw3.so:${PORTSDIR}/math/fftw3
+LIB_DEPENDS+=		libfftw3.so:math/fftw3
 .else
 CONFIGURE_ARGS+=	--without-fftw
 .endif
@@ -247,7 +255,7 @@ CONFIGURE_ARGS+=	--without-bzlib
 
 # FPX (FlashPIX) images
 .if ${PORT_OPTIONS:MFPX}
-LIB_DEPENDS+=		libfpx.so:${PORTSDIR}/graphics/libfpx
+LIB_DEPENDS+=		libfpx.so:graphics/libfpx
 CONFIGURE_ARGS+=	--with-fpx
 PLIST_SUB+=		FPX=""
 .else
@@ -257,7 +265,7 @@ PLIST_SUB+=		FPX="@comment "
 
 # JBIG images (lossless compression for bi-level images)
 .if ${PORT_OPTIONS:MJBIG}
-LIB_DEPENDS+=		libjbig.so:${PORTSDIR}/graphics/jbigkit
+LIB_DEPENDS+=		libjbig.so:graphics/jbigkit
 PLIST_SUB+=		JBIG=""
 .else
 CONFIGURE_ARGS+=	--without-jbig
@@ -266,7 +274,7 @@ PLIST_SUB+=		JBIG="@comment "
 
 # JPEG2000 images (wavelet-based lossy compression)
 .if ${PORT_OPTIONS:MJPEG2000}
-LIB_DEPENDS+=		libopenjp2.so:${PORTSDIR}/graphics/openjpeg
+LIB_DEPENDS+=		libopenjp2.so:graphics/openjpeg
 PLIST_SUB+=		JPEG2000=""
 .else
 CONFIGURE_ARGS+=	--without-openjp2
@@ -275,7 +283,7 @@ PLIST_SUB+=		JPEG2000="@comment "
 
 # GraphViz dot graphs
 .if ${PORT_OPTIONS:MGRAPHVIZ}
-LIB_DEPENDS+=		libgvc.so:${PORTSDIR}/graphics/graphviz
+LIB_DEPENDS+=		libgvc.so:graphics/graphviz
 CFLAGS+=		-I${LOCALBASE}/include/graphviz
 LDFLAGS+=		-L${LOCALBASE}/lib/graphviz
 .else
@@ -290,14 +298,14 @@ CONFIGURE_ARGS+=	--without-lzma
 
 # LCMS (Little CMS) color management version 2 and 1 (mutually exclusive)
 .if ${PORT_OPTIONS:MLCMS2}
-LIB_DEPENDS+=		liblcms2.so:${PORTSDIR}/graphics/lcms2
+LIB_DEPENDS+=		liblcms2.so:graphics/lcms2
 .else
-CONFIGURE_ARGS+=	--without-lcms2
+CONFIGURE_ARGS+=	--without-lcms
 .endif
 
 # Freetype (TrueType Font) support
 .if ${PORT_OPTIONS:MFREETYPE}
-LIB_DEPENDS+=		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=		libfreetype.so:print/freetype2
 CONFIGURE_ARGS+=	--with-freetype
 .else
 CONFIGURE_ARGS+=	--without-freetype
@@ -305,7 +313,7 @@ CONFIGURE_ARGS+=	--without-freetype
 
 # Webp support
 .if ${PORT_OPTIONS:MWEBP}
-LIB_DEPENDS+=		libwebp.so:${PORTSDIR}/graphics/webp
+LIB_DEPENDS+=		libwebp.so:graphics/webp
 CONFIGURE_ARGS+=	--with-webp
 PLIST_SUB+=		WEBP=""
 .else
@@ -315,7 +323,7 @@ PLIST_SUB+=		WEBP="@comment "
 
 # Fontconfig support
 .if ${PORT_OPTIONS:MFONTCONFIG}
-LIB_DEPENDS+=		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS+=		libfontconfig.so:x11-fonts/fontconfig
 CONFIGURE_ARGS+=	--with-fontconfig
 .else
 CONFIGURE_ARGS+=	--without-fontconfig
@@ -324,9 +332,9 @@ CONFIGURE_ARGS+=	--without-fontconfig
 # WMF (Windows Meta File) images
 .if ${PORT_OPTIONS:MWMF}
 . if ${PORT_OPTIONS:MX11}
-LIB_DEPENDS+=		libwmf.so:${PORTSDIR}/graphics/libwmf
+LIB_DEPENDS+=		libwmf.so:graphics/libwmf
 . else
-LIB_DEPENDS+=		libwmf.so:${PORTSDIR}/graphics/libwmf-nox11
+LIB_DEPENDS+=		libwmf.so:graphics/libwmf-nox11
 . endif
 CONFIGURE_ARGS+=	--with-wmf=yes
 PLIST_SUB+=		WMF=""
@@ -337,7 +345,8 @@ PLIST_SUB+=		WMF="@comment "
 
 # SVG (Scalable Vector Graphics) requires both libxml2 and X11
 .if ${PORT_OPTIONS:MSVG} && ${PORT_OPTIONS:MX11}
-LIB_DEPENDS+=		librsvg-2.so:${PORTSDIR}/graphics/librsvg2
+LIB_DEPENDS+=		librsvg-2.so:graphics/librsvg2
+USE_GNOME+=		cairo gdkpixbuf2
 CONFIGURE_ARGS+=	--with-rsvg
 .else
 CONFIGURE_ARGS+=	--without-rsvg
@@ -363,11 +372,11 @@ USES+=			ghostscript
 
 .if ! ${PORT_OPTIONS:MX11}
 CONFIGURE_ARGS+=	--without-x
-CONFLICTS+=		ImageMagick-6*
+CONFLICTS_INSTALL+=	ImageMagick-6*
 PLIST_SUB+=		X11='@comment '
 PKGNAMESUFFIX=		-nox11
 .else
-CONFLICTS+=		ImageMagick-nox11-6*
+CONFLICTS_INSTALL+=	ImageMagick-nox11-6*
 CONFLICTS+=		display-[0-9]*
 CONFIGURE_ARGS+=	--with-x
 USE_XORG=		sm ice x11 xext xt
@@ -415,15 +424,15 @@ pre-configure:
 	@${ECHO_CMD} NOTICE: SVG format support disabled, requires X11
 .endif
 
-post-install: test
+post-install:
 .for i in ${SAMPLE_FILES}
 	@${MV} ${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i} \
 		${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i}.sample
 .endfor
 
-test check:
-.if ${PORT_OPTIONS:MTESTS}
-	-cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} limits -m 20m ${MAKE} check
-.endif
+post-install-TESTS-on: test
+
+do-test:
+	-cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} limits -m 20m ${MAKE} ${_MAKE_JOBS} check
 
 .include <bsd.port.mk>
