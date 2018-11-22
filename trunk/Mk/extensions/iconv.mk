@@ -11,7 +11,7 @@
 .if !defined(_INCLUDE_USES_ICONV_MK)
 _INCLUDE_USES_ICONV_MK=	yes
 
-iconv_ARGS:=   ${iconv_ARGS:S/,/ /g}
+#iconv_ARGS:=   ${iconv_ARGS:S/,/ /g}
 
 .if ${iconv_ARGS:Mwchar_t} || ${iconv_ARGS:Mtranslit} || ${OSVERSION} < 8000 || defined(PACKAGE_BUILDING) || !exists(/usr/include/iconv.h) || !exists(/usr/lib/libiconv.so)
 
@@ -28,7 +28,7 @@ BUILD_DEPENDS+=	${ICONV_CMD}:converters/libiconv
 .elif ${iconv_ARGS:Mpatch}
 PATCH_DEPENDS+=	${ICONV_CMD}:converters/libiconv
 .else
-LIB_DEPENDS+=	libiconv.so:converters/libiconv
+LIB_DEPENDS+=	${ICONV_LIB_PATH}:converters/libiconv
 .endif
 
 .else
