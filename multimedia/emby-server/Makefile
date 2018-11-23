@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	emby-server
-PORTVERSION=	3.3.0.0
+PORTVERSION=	3.5.2.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ COMMENT=	Home media server built using mono and other open source technologies
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	referenceassemblies-pcl>=0:lang/referenceassemblies-pcl
+BUILD_DEPENDS=	msbuild:devel/msbuild
 LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg
 
 CONFLICTS_INSTALL=	mediabrowser
@@ -37,15 +37,12 @@ X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick-nox11
 
 do-build:
 	(cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/xbuild /t:build /p:Configuration="Release Mono" \
+		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/msbuild /t:build /p:Configuration="Release Mono" \
 			/p:Platform="Any CPU" MediaBrowser.sln)
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/emby-server
-	(cd ${WRKSRC}/MediaBrowser.Server.Mono/bin/Release\ Mono && \
-		${ECHO_MSG} "Deleting the following non-BSD library files:" && \
-		${FIND} -E . -iregex '(.*\.dylib)' -print -delete && \
-		${FIND} . -type d -empty -print -delete && \
-		${COPYTREE_SHARE} . ${PREFIX}/lib/emby-server)
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server
+	(cd ${WRKSRC}/MediaBrowser.Server.Mono/bin/Release && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/emby-server)
 
 .include <bsd.port.mk>
