@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libunistring
-PORTVERSION=	0.9.4
+PORTVERSION=	0.9.10
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -18,5 +18,11 @@ INSTALL_TARGET=	install-strip
 INFO=		${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
+CONFIGURE_ARGS=	--disable-static
+
+.ifdef QEMU_EMULATING
+# XXX bug 224740: configure hangs: GSlice: failed to allocate 496 bytes (alignment: 512)
+CONFIGURE_ENV+=	gl_cv_func_printf_enomem=no
+.endif
 
 .include <bsd.port.mk>
