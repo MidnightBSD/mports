@@ -2,6 +2,7 @@
 
 PORTNAME=	v8
 PORTVERSION=	3.18.5
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	FREEBSD_LOCAL/vanilla
 
@@ -10,11 +11,17 @@ COMMENT=	Open source JavaScript engine by Google
 
 LICENSE=	bsd3
 
+CONFLICTS_INSTALL=	v8-devel-[0-9]*
+
+ONLY_FOR_ARCHS=	i386 amd64
+
+PORTSCOUT=	limit:^3.18.*
+
 ALL_TARGET=	native
 MAKE_ARGS=	library=shared
 MAKE_ENV=	CC.host=${CC} CXX.host=${CXX} LINK.host=${CXX} LINK.target=${CXX}
 USE_LDCONFIG=	yes
-USES=		compiler cpe execinfo gmake python:2 shebangfix tar:xz
+USES=		compiler cpe gmake python:2.7 shebangfix tar:xz
 
 CPE_VENDOR=	google
 
@@ -31,6 +38,10 @@ CXXFLAGS+=	-Wno-unused-const-variable
 CXXFLAGS+=	-Wno-tautological-undefined-compare
 .if ${COMPILER_VERSION} >= 36
 CXXFLAGS+=	-Wno-unused-local-typedef
+.if ${COMPILER_VERSION} >= 60
+CXXFLAGS+=	-Wno-null-pointer-arithmetic -Wno-vexing-parse
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-src-stub-cache.cc
+.endif
 .endif
 .endif
 .endif
