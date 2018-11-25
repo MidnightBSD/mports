@@ -49,6 +49,8 @@ OPTIONS_DEFAULT=	AVAHI DBUS GNUTLS LIBPAPER
 OPTIONS_SUB=		yes
 
 AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
+AVAHI_RUN_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
+AVAHI_BUILD_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
 AVAHI_CONFIGURE_ENABLE=	avahi
 AVAHI_SUB_LIST=		AVAHI_DAEMON=avahi_daemon
 AVAHI_SUB_LIST_OFF=	AVAHI_DAEMON=
