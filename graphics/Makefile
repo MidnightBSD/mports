@@ -102,6 +102,7 @@ SUBDIR += libmng
 SUBDIR += libopenraw
 SUBDIR += libpotrace
 SUBDIR += libqrencode
+SUBDIR += libraw
 SUBDIR += librsvg2
 SUBDIR += libspiro
 SUBDIR += libsvg
