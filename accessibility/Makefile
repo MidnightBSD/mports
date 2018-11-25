@@ -8,7 +8,6 @@ SUBDIR += atk
 SUBDIR += atkmm
 SUBDIR += caribou
 SUBDIR += eflite
-SUBDIR += gok
 SUBDIR += linux-f10-atk
 SUBDIR += mousetweaks
 SUBDIR += orca
