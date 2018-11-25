@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	lcms2
-PORTVERSION=	2.6
-PORTREVISON=	1
+PORTVERSION=	2.9
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lcms/lcms/${PORTVERSION} \
-		http://www.littlecms.com/
+		http://www.littlecms.com/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accurate, fast, and small-footprint color management engine
@@ -18,27 +18,24 @@ OPTIONS_SUB=	yes
 JPEGICC_DESC=	Build color profile applier for JPEG
 TIFFICC_DESC=	Build color profile applier for TIFF
 
-CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		libtool:keepla pathfix
+USES=		libtool localbase:ldflags pathfix
 
 PORTDOCS=	*
 
-JPEGICC_CONFIGURE_OFF=	--without-jpeg
-JPEGICC_CONFIGURE_ON=	--with-jpeg=${LOCALBASE}
-JPEGICC_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-TIFFICC_CONFIGURE_OFF=	--without-tiff
-TIFFICC_CONFIGURE_ON=	--with-tiff=${LOCALBASE}
-TIFFICC_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
+JPEGICC_CONFIGURE_WITH=	jpeg
+JPEGICC_USES=		jpeg
+TIFFICC_CONFIGURE_WITH=	tiff
+TIFFICC_LIB_DEPENDS=	libtiff.so:graphics/tiff
 
 post-install:
 	cd ${WRKSRC}/utils/ && ${INSTALL_MAN} linkicc/linkicc.1 psicc/psicc.1 transicc/transicc.1 ${STAGEDIR}${PREFIX}/man/man1/
+
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${STAGEDIR}${DOCSDIR}/
-
-regression-test test: build
-	cd ${WRKSRC}/testbed/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include <bsd.port.mk>
