@@ -7,7 +7,6 @@ SUBDIR += at-spi2-core
 SUBDIR += atk
 SUBDIR += atkmm
 SUBDIR += caribou
-SUBDIR += dasher
 SUBDIR += eflite
 SUBDIR += gok
 SUBDIR += linux-f10-atk
