@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gdb
-PORTVERSION=	7.6
-PORTREVISION=	1
+PORTVERSION=	8.2
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -10,119 +9,136 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU GDB of newer version than comes with the system
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING3
 
+# untested on sparc64, might work
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 mips powerpc powerpc64
+
+LIB_DEPENDS=	libmpfr.so:math/mpfr
+TEST_DEPENDS=	runtest:misc/dejagnu
+
+TEST_TARGET=	check
+# XXX: This should be compiler:c++11-lib as GDB doesn't really require
+# C++14.  However, clang in 1.0 crashes while building this port.
+# Requiring C++14 forces 1.0 to use an external version of clang
+USES=		compiler:c++14-lang cpe gettext-runtime gmake libtool tar:xz
 USE_CSTD=	gnu89
-USE_GMAKE=	yes
-USES=		iconv tar:bzip2
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
+		--enable-targets=all --enable-64-bit-bfd \
 		--with-gdb-datadir=${PREFIX}/share/gdb${PORTVERSION:S/.//g} \
+		--with-separate-debug-dir=/usr/lib/debug \
 		${ICONV_CONFIGURE_ARG} \
-		--without-libunwind-ia64 \
-		--enable-targets=all
+		--with-expat=yes --with-libexpat-prefix=${LOCALBASE} \
+		--without-libunwind-ia64 --with-system-zlib
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
-CFLAGS+=	-DRL_NO_COMPAT
+CFLAGS+=	-DRL_NO_COMPAT -Wno-unused-function -Wno-unused-variable
+CFLAGS+=	-Wno-unknown-warning-option
 EXCLUDE=	dejagnu expect sim texinfo intl
 EXTRACT_AFTER_ARGS=	${EXCLUDE:S/^/--exclude /}
-VER=	${PORTVERSION:S/.//g}
+EXTRA_PATCHES=	${FILESDIR}/commit-8aa0243d54
+LIB_DEPENDS+=	libexpat.so:textproc/expat2
+
+VER=		${PORTVERSION:S/.//g}
 PLIST_SUB=	VER=${VER}
 
-OPTIONS_DEFINE=	DEBUG EXPAT PYTHON THREADS TUI GDB_LINK
-OPTIONS_SINGLE_READLINE=	BASE_READLINE BUNDLED_READLINE PORT_READLINE
-OPTIONS_SINGLE=	READLINE
-BASE_READLINE_DESC=	from base system(EXPERIMENTAL)
+OPTIONS_DEFINE=	DEBUG GDB_LINK GUILE KGDB PYTHON TUI
+
+OPTIONS_DEFAULT=	GDB_LINK KGDB PYTHON TUI PORT_READLINE PORT_ICONV SYSTEM_ZLIB
+
+OPTIONS_SINGLE=	READLINE ICONV ZLIB
+OPTIONS_SINGLE_READLINE=	BUNDLED_READLINE PORT_READLINE
+OPTIONS_SINGLE_ICONV=	PORT_ICONV SYSTEM_ICONV
+OPTIONS_SINGLE_ZLIB=	BUNDLED_ZLIB SYSTEM_ZLIB
+
+GDB_LINK_DESC=		Create ${PREFIX}/bin/gdb symlink
+KGDB_DESC=		Kernel Debugging Support
 BUNDLED_READLINE_DESC=	from gdb distfile
+BUNDLED_ZLIB_DESC=	from gdb distfile
 PORT_READLINE_DESC=	from devel/readline port
-GDB_LINK_DESC=	Create the gdb link
-TUI_DESC=	Text User Interface enabled
-OPTIONS_DEFAULT=	THREADS TUI GDB_LINK PORT_READLINE
+PORT_ICONV_DESC=	use libiconv, with wider charset support
+SYSTEM_ICONV_DESC=	use libc iconv, with no wchar support
+SYSTEM_ZLIB_DESC=	use system zlib
+TUI_DESC=		Text User Interface enabled
 
-.include <bsd.mport.options.mk>
+OPTIONS_SUB=	yes
 
-.if ${PORT_OPTIONS:MGDB_LINK}
-PLIST_SUB+=	GDB_LINK=""
-.else
-PLIST_SUB+=	GDB_LINK="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTUI}
-CONFIGURE_ARGS+=	--enable-tui
-PLIST_SUB+=	TUI_LINK=""
-.else
-CONFIGURE_ARGS+=	--disable-tui
-PLIST_SUB+=	TUI_LINK="@comment "
-.endif
-
-.if empty(PORT_OPTIONS:MBUNDLED_READLINE)
-EXCLUDE+=	readline
-CONFIGURE_ARGS+=	--with-system-readline
-.endif
-
-.if ${PORT_OPTIONS:MBASE_READLINE}
-CFLAGS+=	-D_rl_echoing_p=readline_echoing_p
-USES+=		readline
-.endif
-
-.if ${PORT_OPTIONS:MPORT_READLINE}
-USES+=		readline:port
-.endif
-
-.if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	2.5-2.7
-CONFIGURE_ARGS+=	--with-python=${PYTHON_CMD}
-PLIST_SUB+=		PYTHON=""
-.else
-CONFIGURE_ARGS+=	--without-python
-PLIST_SUB+=		PYTHON="@comment "
-.endif
+BUNDLED_READLINE_CONFIGURE_OFF=	--with-system-readline
+DEBUG_CFLAGS=		-g
+GUILE_CONFIGURE_WITH=	guile
+GUILE_USES=		pkgconfig
+GUILE_LIB_DEPENDS=	libguile-2.0.so:lang/guile2
+PORT_READLINE_USES=	readline:port
+PORT_ICONV_USES=	iconv:wchar_t
+PYTHON_CONFIGURE_ON=	--with-python=${PYTHON_CMD}
+PYTHON_CONFIGURE_OFF=	--without-python
+PYTHON_USES=		python
+SYSTEM_ICONV_USES=	iconv
+SYSTEM_ZLIB_WITH=	system-zlib
+TUI_CONFIGURE_ENABLE=	tui
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MTHREADS}
-EXTRA_PATCHES=	${FILESDIR}/extrapatch-gdb-configure.tgt ${FILESDIR}/extrapatch-gdb-Makefile.in
+.if ! ${PORT_OPTIONS:MBUNDLED_READLINE}
+EXCLUDE+=	readline
 .endif
 
-.if ${PORT_OPTIONS:MDEBUG}
-CFLAGS+=	-g
-.endif
-
-.if ${PORT_OPTIONS:MEXPAT}
-LIB_DEPENDS+=	expat:${PORTSDIR}/textproc/expat2
-CONFIGURE_ARGS+=	--with-expat=yes
-.else
-CONFIGURE_ARGS+=	--without-expat
+.if ! ${PORT_OPTIONS:MBUNDLED_ZLIB}
+EXCLUDE+=	zlib
 .endif
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
+.endif
+
+.if ${COMPILER_TYPE} == "clang"
+CFLAGS+=	-Wno-extended-offsetof
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/$$/ [GDB v${PORTVERSION} for FreeBSD]/' \
+	@${REINPLACE_CMD} -e 's|$$| [GDB v${PORTVERSION} for MidnightBSD]|' \
 		${WRKSRC}/gdb/version.in
-.if ${PORT_OPTIONS:MTHREADS}
-	@${CP} ${FILESDIR}/fbsd-threads.c ${WRKSRC}/gdb/
-.endif
+
+post-patch-KGDB-on:
+	@${CP} -r ${FILESDIR}/kgdb/*.[ch] ${WRKSRC}/gdb/
+	@${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} < ${FILESDIR}/extrapatch-kgdb
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/gdb/gdb ${PREFIX}/bin/gdb${VER}
-	${INSTALL_MAN} ${WRKSRC}/gdb/gdb.1 ${MAN1PREFIX}/man/man1/gdb${VER}.1
-.if ${PORT_OPTIONS:MTUI}
-	${LN} -sf ${PREFIX}/bin/gdb${VER} ${PREFIX}/bin/gdbtui${VER}
-.endif
-.if ${PORT_OPTIONS:MGDB_LINK}
-	${LN} -sf gdb${VER} ${PREFIX}/bin/gdb
-.endif
-.if ${PORT_OPTIONS:MPYTHON}
-	(cd ${WRKSRC}/gdb; ${GMAKE} install-python )
-	(cd ${WRKSRC}/gdb/data-directory; ${GMAKE} install-python )
+	${INSTALL_PROGRAM} ${WRKSRC}/gdb/gdb \
+		${STAGEDIR}${PREFIX}/bin/gdb${VER}
+	${INSTALL_MAN} ${WRKSRC}/gdb/doc/gdb.1 \
+		${STAGEDIR}${MAN1PREFIX}/man/man1/gdb${VER}.1
+	(cd ${WRKSRC}/gdb/data-directory ; \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-syscalls )
+
+do-install-KGDB-on:
+	${INSTALL_PROGRAM} ${WRKSRC}/gdb/kgdb \
+		${FAKE_DESTDIR}${PREFIX}/bin/kgdb${VER}
+	${INSTALL_MAN} ${FILESDIR}/kgdb/kgdb.1 \
+		${FAKE_DESTDIR}${MAN1PREFIX}/man/man1/kgdb${VER}.1
+
+do-install-TUI-on:
+	${LN} -sf gdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/gdbtui${VER}
+
+do-install-GDB_LINK-on:
+	${LN} -sf gdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/gdb
+.if ${PORT_OPTIONS:MKGDB}
+	${LN} -sf kgdb${VER} ${FAKE_DESTDIR}${PREFIX}/bin/kgdb
 .endif
 
-post-install:
-.if ${PORT_OPTIONS:MPYTHON}
-	${CHMOD} u+w ${PREFIX}/share/gdb${VER}/python/gdb/*.py*
-	${CHMOD} u+w ${PREFIX}/share/gdb${VER}/python/gdb/command/*.py*
-.endif
+do-install-PYTHON-on:
+	(cd ${WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-python )
+	(cd ${WRKSRC}/gdb/data-directory ; \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-python )
+. for f in gdb gdb/command gdb/function gdb/printer
+	@(cd ${STAGEDIR}${PREFIX}/share/gdb${VER}/python/${f} ; ${CHMOD} 644 *.py* )
+. endfor
+
+do-install-GUILE-on:
+	(cd ${WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
+	(cd ${WRKSRC}/gdb/data-directory ; \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-guile )
 
 .include <bsd.port.post.mk>
