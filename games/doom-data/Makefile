@@ -70,7 +70,7 @@ do-install:
 	@${MKDIR} ${DATADIR}
 .for f in ${LIST}
 .   if defined(WITH_${f}) || !defined(WITHOUT_${f})
-	${INSTALL_DATA} ${WRKSRC}/${${f}_WAD} ${DATADIR}
+	${INSTALL_DATA} ${WRKDIR}/${${f}_WAD} ${DATADIR}
 .   endif
 .endfor
 
