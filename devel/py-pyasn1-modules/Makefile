@@ -29,8 +29,6 @@ TOOLS=		cmcdump.py cmpdump.py crldump.py crmfdump.py ocspclient.py \
 
 post-install:
 	${INSTALL_SCRIPT} ${TOOLS:S|^|${WRKSRC}/tools/|} ${STAGEDIR}${PREFIX}/bin
-
-post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
