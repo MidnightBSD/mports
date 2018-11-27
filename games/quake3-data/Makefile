@@ -46,11 +46,11 @@ PLIST_SUB+=	TEAMARENA="@comment "
 
 do-install:
 	@${MKDIR} ${FAKE_DESTDIR}${DATADIR}
-	@${CP} -R ${WRKSRC}/baseq3 ${FAKE_DESTDIR}${DATADIR}
+	@${CP} -R ${WRKDIR}/baseq3 ${FAKE_DESTDIR}${DATADIR}
 	@${MKDIR} ${PREFIX}/share/pixmaps
-	@${INSTALL_DATA} ${WRKSRC}/quake3.xpm ${PREFIX}/share/pixmaps
+	@${INSTALL_DATA} ${WRKDIR}/quake3.xpm ${PREFIX}/share/pixmaps
 .if !defined(WITHOUT_TEAMARENA)
-	@${CP} -R ${WRKSRC}/missionpack ${FAKE_DESTDIR}${DATADIR}
+	@${CP} -R ${WRKDIR}/missionpack ${FAKE_DESTDIR}${DATADIR}
 .endif
 
 .include <bsd.port.post.mk>
