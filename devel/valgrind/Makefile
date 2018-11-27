@@ -50,8 +50,7 @@ PORTDOCS=	html
 WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
 
 CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL}
-
-USE_GCC=	yes
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
 
 .include <bsd.mport.options.mk>
 
