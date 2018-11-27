@@ -1,11 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	daq
-PORTVERSION=	2.0.6
-PORTREVISION=	1
+PORTVERSION=	2.2.2
+PORTREVISION=	0
 CATEGORIES=	net
-MASTER_SITES=	https://snort.org/downloads/snort/ \
-		http://mirrors.rit.edu/zi/
+MASTER_SITES=	https://snort.org/downloads/snortplus/ \
+		ZI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data Acquisition abstraction library for snort 2.9+
@@ -13,10 +13,9 @@ COMMENT=	Data Acquisition abstraction library for snort 2.9+
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet \
-		libpcap.so.1:${PORTSDIR}/net/libpcap
-BUILD_DEPENDS=	flex:${PORTSDIR}/textproc/flex \
-		${LOCALBASE}/lib/libpcap.so:${PORTSDIR}/net/libpcap
+LIB_DEPENDS=	libdnet.so:net/libdnet \
+		libpcap.so.1:net/libpcap	# avoid base libpcap
+BUILD_DEPENDS=	flex:textproc/flex
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
