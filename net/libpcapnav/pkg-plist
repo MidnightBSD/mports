@@ -1,8 +1,8 @@
 bin/pcapnav-config
 include/pcapnav.h
 lib/libpcapnav.so.0
+lib/libpcapnav.so.0.0.0
 lib/libpcapnav.so
-lib/libpcapnav.la
 lib/libpcapnav.a
 %%PORTDOCS%%%%DOCSDIR%%/images/caution.gif
 %%PORTDOCS%%%%DOCSDIR%%/images/note.gif
