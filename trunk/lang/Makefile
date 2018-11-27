@@ -70,7 +70,6 @@ SUBDIR += python37
 SUBDIR += python27
 SUBDIR += qt5-qml
 SUBDIR += referenceassemblies-pcl
-SUBDIR += ruby21
 SUBDIR += ruby22
 SUBDIR += ruby23
 SUBDIR += spidermonkey170
