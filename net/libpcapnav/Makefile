@@ -7,13 +7,16 @@ CATEGORIES=	net
 MASTER_SITES=	SF/netdude/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A libpcap wrapper library
+COMMENT=	libpcap wrapper library
+
 LICENSE=	mit
 
-USES=	libtool
+USES=		libtool
 CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${DOCSDIR}
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|DOC_MODULE = pcapnav|DOC_MODULE =|' \
 	${WRKSRC}/docs/Makefile.in
