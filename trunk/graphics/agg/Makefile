@@ -4,37 +4,26 @@ PORTNAME=	agg
 PORTVERSION=	2.5
 PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	http://www.antigrain.com/ \
-		http://freebsd.unixfreunde.de/sources/
+MASTER_SITES=	http://distfiles.alpinelinux.org/distfiles/ \
+		http://distfiles.lesslinux.org/ \
+		http://gentoo.netnitco.net/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A High Quality Rendering Engine for C++
+COMMENT=	High Quality Rendering Engine for C++
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/copying
 
-LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libfreetype.so:print/freetype2
 
+GNU_CONFIGURE=	yes
+USES=		autoreconf gmake libtool pathfix pkgconfig
 USE_XORG=	x11
-USES=	pathfix pkgconfig
 USE_SDL=	sdl
-USE_GMAKE=	yes
-USE_AUTOTOOLS=	aclocal autoheader autoconf libtoolize automake
-ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
-AUTOMAKE_ARGS=	--foreign --add-missing --ignore-deps
-MAKE_ENV=	C="${CC}" AGGCXXFLAGS="${CXXFLAGS}"
 USE_LDCONFIG=	yes
-MAKE_JOBS_UNSAFE=	yes
-
-CXXFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -I../include -L./
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not compile
-.endif
+INSTALL_TARGET=	install-strip
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-	${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} 's/_LDFLAGS/_LDADD/' ${WRKSRC}/examples/Makefile.am
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
