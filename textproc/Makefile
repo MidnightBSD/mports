@@ -196,7 +196,6 @@ SUBDIR += raptor2
 SUBDIR += rarian
 SUBDIR += rasqal
 SUBDIR += redland
-SUBDIR += ruby-deplate
 SUBDIR += rubygem-asciidoctor
 SUBDIR += sassc
 SUBDIR += scr2txt
