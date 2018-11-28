@@ -11,7 +11,7 @@ COMMENT=	Open-source TCG Software Stack
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:${PORTSDIR}/emulators/tpm-emulator
+BUILD_DEPENDS=	tpm-emulator>=0.7.4_1:emulators/tpm-emulator
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		dos2unix autoreconf gmake iconv libtool pkgconfig ssl
@@ -29,6 +29,8 @@ CONFIGURE_ARGS=	--with-gui=none --enable-static \
 		RANLIB=:
 MAKE_ENV=	ICONV_LIB=${ICONV_LIB} \
 		ICONV_PREFIX=${ICONV_PREFIX}
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
 SUB_FILES=	pkg-message
 SUB_LIST=	USERS="${USERS}" GROUPS="${GROUPS}"
 PLIST_SUB=	USERS="${USERS}" GROUPS="${GROUPS}"
