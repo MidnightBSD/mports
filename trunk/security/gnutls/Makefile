@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gnutls
-PORTVERSION=	3.5.18
+PORTVERSION=	3.5.19
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
