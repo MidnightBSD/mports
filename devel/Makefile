@@ -121,6 +121,7 @@ SUBDIR += gstreamer-plugins-gnomevfs
 SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gtkparasite
 SUBDIR += gvfs
+SUBDIR += hadoop
 SUBDIR += highlighterkit
 SUBDIR += hs-haddock
 SUBDIR += hwloc
