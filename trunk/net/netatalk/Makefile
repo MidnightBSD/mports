@@ -1,44 +1,48 @@
 # $MidnightBSD$
 
 PORTNAME=	netatalk
-PORTVERSION=	2.2.4
+PORTVERSION=	2.2.5
 PORTEPOCH=	1
 CATEGORIES=	net print
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File server for Mac OS X
-LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 
-USES=	libtool tar:bzip2 iconv gmake
-USE_BDB=	48+
+USES=		bdb gmake iconv libtool perl5 tar:bzip2
 GNU_CONFIGURE=	yes
-USE_PERL5=	yes
-WANT_GNOME=	yes
+CPPFLAGS+=	-D_IPP_PRIVATE_STRUCTURES
+INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	netatalk
 
 CONFIGURE_ARGS+=	--with-tcp-wrappers \
 			--with-pkgconfdir=${PREFIX}/etc \
-			--with-libiconv=${LOCALBASE} \
+			${ICONV_CONFIGURE_BASE} \
 			--with-libgcrypt-dir=${LOCALBASE} \
-			--with-uams-path=${LOCALBASE}/libexec/netatalk-uams \
-			--with-bdb=${LOCALBASE} --program-prefix=''
+			--with-uams-path=${PREFIX}/libexec/netatalk-uams \
+			--with-bdb=${LOCALBASE}
 
-OPTIONS_DEFINE=	APPLETALK SRVLOC PAM TIMELORD KRB5 ZEROCONF LDAP SENDFILE
-OPTIONS_DEFAULT=	APPLETALK
-APPLETALK_DESC=	AppleTalk protocol support
+OPTIONS_DEFINE=	SRVLOC PAM KRB5 ZEROCONF LDAP SENDFILE
 SRVLOC_DESC=	Service Location Protocol support
-TIMELORD_DESC=	Timelord network time service
 KRB5_DESC=	Kerberos V UAM
 ZEROCONF_DESC=	Zeroconf (Bonjour) support
 SENDFILE_DESC=	sendfile support
 
-FILES=		AppleVolumes.default AppleVolumes.system afpd.conf netatalk.conf
+FILES=		AppleVolumes.default AppleVolumes.system afp_ldap.conf \
+		afpd.conf netatalk.conf
 LINKS=		unbin unhex unsingle hqx2bin single2bin macbinary \
 		binheader nadheader
+
 CONFLICTS=	bigloo-2.* cap-6.0.* tct-1.* netatalk-1* yudit-[0-9]*
+
+.if exists(/usr/include/netatalk/ddp.h)
+OPTIONS_DEFINE+=APPLETALK TIMELORD
+OPTIONS_DEFAULT=APPLETALK
+APPLETALK_DESC=	AppleTalk protocol support
+TIMELORD_DESC=	Timelord network time service
+.endif
 
 .include <bsd.mport.options.mk>
 
@@ -67,7 +71,7 @@ PLIST_SUB+=		NETATALKPAM="@comment "
 
 .if ${PORT_OPTIONS:MSRVLOC}
 CONFIGURE_ARGS+=	--enable-srvloc=${LOCALBASE}
-LIB_DEPENDS+=		slp.1:${PORTSDIR}/net/openslp
+LIB_DEPENDS+=		libslp.so:net/openslp
 SUB_LIST+=		SRVLOC="slpd"
 .else
 SUB_LIST+=		SRVLOC=""
@@ -83,8 +87,8 @@ PLIST_SUB+=		TIMELORD="@comment "
 .if ${PORT_OPTIONS:MZEROCONF}
 CONFIGURE_ARGS+=	--enable-zeroconf=${LOCALBASE}
 CFLAGS+=		-I${LOCALBASE}/include -L${LOCALBASE}/lib
-LIB_DEPENDS+=		avahi-client.3:${PORTSDIR}/net/avahi-app
-USE_GNOME+=		pkgconfig
+LIB_DEPENDS+=		libavahi-client.so:net/avahi-app
+USES+=			pkgconfig
 SUB_LIST+=		ZEROCONF="avahi_daemon"
 .else
 CONFIGURE_ARGS+=	--disable-zerconf
@@ -107,22 +111,18 @@ CONFIGURE_ARGS+=	--disable-sendfile
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%DB_NAME%%|${BDB_INCLUDE_DIR:T}| ; \
-	    	s|%%DB_LIB%%|-l${BDB_LIB_NAME}|g ; \
+		s|%%DB_LIB%%|-l${BDB_LIB_NAME}|g ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 
 post-install:
-	@${RM} -f ${PREFIX}/bin/nu ${PREFIX}/bin/lp2pap.sh \
-		${PREFIX}/bin/test_parse_mtab \
-		${PREFIX}/bin/afpd-mtab.pl
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/macusers/macusers \
-		${PREFIX}/bin/macusers
+		${STAGEDIR}${PREFIX}/bin/macusers
 .for i in ${FILES}
-	[ -f ${PREFIX}/etc/${i} ] || \
-		${INSTALL_DATA} -c ${PREFIX}/etc/${i}.dist ${PREFIX}/etc/${i}
+	${MV} ${PREFIX}/etc/${i}.dist ${STAGEDIR}${PREFIX}/etc/${i}.sample
 .endfor
 .for i in ${LINKS}
-	( cd ${PREFIX}/bin && ${LN} -sf megatron ${i} )
+	${LN} -sf megatron ${STAGEDIR}${PREFIX}/bin/${i}
 .endfor
 
 .include <bsd.port.mk>
