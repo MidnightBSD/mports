@@ -1,8 +1,3 @@
-MD5 (oolite-1.65-src.tar.gz) = d2c36dc886919547543ee4baedfba4a4
-SHA256 (oolite-1.65-src.tar.gz) = ece90f42f3f176330c6af4815521ca769f81ba308974005040185474e0c207d7
-RMD160 (oolite-1.65-src.tar.gz) = cfdd518283adcd4a1188c2d631d682dbd485ae10
-SIZE (oolite-1.65-src.tar.gz) = 1077489
-MD5 (oolite-1.65-data.tar.gz) = 321538d43ea21a8dea637a720a8d3076
-SHA256 (oolite-1.65-data.tar.gz) = eed8c4864dcf508a043d2c4e58906c91042ae5fb4310f8aff3cf11aef9bdce21
-RMD160 (oolite-1.65-data.tar.gz) = a537539decdb1057e37e1ebe38a03efe90cef57c
-SIZE (oolite-1.65-data.tar.gz) = 16815628
+TIMESTAMP = 1508936871
+SHA256 (oolite/oolite-source-1.86.tar.bz2) = 9f99c72f433fbbad972abdac5104775b29994d73c0b35f05130b31522b70ec9a
+SIZE (oolite/oolite-source-1.86.tar.bz2) = 144561828
