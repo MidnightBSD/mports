@@ -1,0 +1,81 @@
+--- SConstruct.orig	2018-07-02 00:44:42.000000000 -0400
++++ SConstruct	2018-12-25 16:32:18.641149000 -0500
+@@ -51,6 +51,8 @@
+         running_os = 'linux'
+     elif running_os.startswith('freebsd'):
+         running_os = 'freebsd'
++    elif running_os.startswith('midnightbsd'):
++        running_os = 'freebsd'
+     elif running_os.startswith('openbsd'):
+         running_os = 'openbsd'
+     elif running_os == 'sunos5':
+@@ -936,9 +938,9 @@
+     print env_vars.GenerateHelpText(env)
+     Exit(0)
+ 
+-unknown_vars = env_vars.UnknownVariables()
+-if unknown_vars:
+-    env.FatalError("Unknown variables specified: {0}", ", ".join(unknown_vars.keys()))
++#unknown_vars = env_vars.UnknownVariables()
++#if unknown_vars:
++#    env.FatalError("Unknown variables specified: {0}", ", ".join(unknown_vars.keys()))
+ 
+ def set_config_header_define(env, varname, varval = 1):
+     env['CONFIG_HEADER_DEFINES'][varname] = varval
+@@ -1557,7 +1559,7 @@
+             # If runtime hardening is requested, then build anything
+             # destined for an executable with the necessary flags for PIE.
+             env.AppendUnique(
+-                PROGCCFLAGS=['-fPIE'],
++                PROGCCFLAGS=['-fpic'],
+                 PROGLINKFLAGS=['-pie'],
+             )
+ 
+@@ -1571,7 +1573,7 @@
+                          "-Wno-unknown-pragmas",
+                          "-Winvalid-pch"] )
+     # env.Append( " -Wconversion" ) TODO: this doesn't really work yet
+-    if env.TargetOSIs('linux', 'osx', 'solaris'):
++    if env.TargetOSIs('linux', 'osx', 'solaris', 'freebsd'):
+         if not has_option("disable-warnings-as-errors"):
+             env.Append( CCFLAGS=["-Werror"] )
+ 
+@@ -1599,19 +1601,19 @@
+         env.Append( CCFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
+         env.Append( LINKFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
+ 
+-    if optBuild:
+-        env.Append( CCFLAGS=["-O2"] )
+-    else:
+-        env.Append( CCFLAGS=["-O0"] )
++    #if optBuild:
++    #    env.Append( CCFLAGS=["-O2"] )
++    #else:
++    #    env.Append( CCFLAGS=["-O0"] )
+ 
+     # Promote linker warnings into errors. We can't yet do this on OS X because its linker considers
+     # noall_load obsolete and warns about it.
+-    if not env.TargetOSIs('osx'):
+-        env.Append(
+-            LINKFLAGS=[
+-                "-Wl,--fatal-warnings",
+-            ],
+-        )
++    #if not env.TargetOSIs('osx'):
++    #    env.Append(
++    #        LINKFLAGS=[
++    #            "-Wl,--fatal-warnings",
++    #        ],
++    #    )
+ 
+ mmapv1 = False
+ if get_option('mmapv1') == 'auto':
+@@ -2468,7 +2470,7 @@
+         }}
+         """.format(storage_class)
+         context.Message('Checking for storage class {0} '.format(storage_class))
+-        ret = context.TryLink(textwrap.dedent(test_body), ".cpp")
++        ret = context.TryCompile(textwrap.dedent(test_body), ".cpp")
+         context.Result(ret)
+         return ret
+ 

@@ -35,6 +35,7 @@ SUBDIR += mariadb55-server
 SUBDIR += mdbtools
 SUBDIR += memcached
 SUBDIR += mongodb
+SUBDIR += mongodb34
 SUBDIR += mysql-connector-java
 SUBDIR += mysql2pgsql
 SUBDIR += mysql55-client
