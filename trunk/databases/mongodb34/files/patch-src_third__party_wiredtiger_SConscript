@@ -1,0 +1,20 @@
+--- src/third_party/wiredtiger/SConscript.orig	2018-07-02 00:44:42.000000000 -0400
++++ src/third_party/wiredtiger/SConscript	2018-12-25 16:28:07.423768000 -0500
+@@ -64,6 +64,8 @@
+     env.Append(CPPDEFINES=["__EXTENSIONS__"])
+ elif env.TargetOSIs('freebsd'):
+     env.Append(CPPPATH=["build_freebsd"])
++elif env.TargetOSIs('midnightbsd'):
++    env.Append(CPPPATH=["build_midnightbsd"])
+ elif env.TargetOSIs('openbsd'):
+     env.Append(CPPPATH=["build_openbsd"])
+ elif env.TargetOSIs('linux'):
+@@ -169,7 +171,7 @@
+ # If not available at runtime, we fall back to software in some cases.
+ #
+ # On zSeries we may disable because SLES 11 kernel doe not support the instructions.
+-if not (env['TARGET_ARCH'] == 's390x' and get_option("use-s390x-crc32") == "off"):
++if not (env['TARGET_ARCH'] == 's390x' and get_option("use-s390x-crc32") == "off") and not (env['TARGET_ARCH'] == 'aarch64'):
+     env.Append(CPPDEFINES=["HAVE_CRC32_HARDWARE"])
+ 
+ wtlib = env.Library(
