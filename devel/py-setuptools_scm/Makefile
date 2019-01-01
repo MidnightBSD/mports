@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/py-setuptools_scm/Makefile 423782 2016-10-11 16:54:50Z wg $
 
 PORTNAME=	setuptools_scm
-PORTVERSION=	1.13.1
+PORTVERSION=	1.17.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
