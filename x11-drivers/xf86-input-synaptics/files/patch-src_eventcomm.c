@@ -9,7 +9,7 @@
      if (res)
          *res = abs->resolution;
  #endif
-+#elif defined(__FreeBSD__) || defined(__DragonFly__)
++#elif defined(__FreeBSD__) || defined(__DragonFly__) || defined(__MidnightBSD__)
 +    if (res)
 +        *res = abs->resolution;
 +#endif

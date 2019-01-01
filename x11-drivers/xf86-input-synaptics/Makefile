@@ -14,6 +14,8 @@ USES=		pathfix
 USE_XORG=	x11 xtst
 XORG_CAT=	driver
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 OPTIONS_DEFINE=	EVDEV
 EVDEV_DESC=	Use evdev for input events (requires kernel support)
 
