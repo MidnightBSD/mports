@@ -3,7 +3,7 @@
 # $FreeBSD: head/devel/py-six/Makefile 390642 2015-06-26 14:46:40Z koobs $
 
 PORTNAME=	six
-PORTVERSION=	1.9.0
+PORTVERSION=	1.12.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:${PORTSDIR}/devel/py-pytest
 
-USES=		python
+USES?=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 regression-test: build
