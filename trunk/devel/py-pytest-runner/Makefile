@@ -14,7 +14,7 @@ LICENSE=	mit
 
 BUILD_DEPENDS?=	${PYTHON_PKGNAMEPREFIX}hgtools>=0:devel/py-hgtools
 
-USES?=		python zip
+USES?=		python:2 zip
 USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
 
