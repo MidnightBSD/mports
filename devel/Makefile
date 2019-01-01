@@ -562,6 +562,7 @@ SUBDIR += py3-libpeas
 SUBDIR += py3-xdg
 SUBDIR += py34-setuptools
 SUBDIR += py37-setuptools
+SUBDIR += py37-six
 SUBDIR += pydbus-common
 SUBDIR += pygobject3-common
 SUBDIR += pylint
