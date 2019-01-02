@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 PORTSCOUT=	limitw:1,even
 
 USE_LDCONFIG=	yes
-USES=		gettext gnome localbase meson pkgconfig tar:xz
+USES=		gettext gnome localbase meson pkgconfig tar:xz python:build
 USE_GNOME=	glib20 introspection:build
 
 post-install:
