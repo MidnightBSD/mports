@@ -56,6 +56,7 @@ SUBDIR += rar
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
 SUBDIR += snappy
+SUBDIR += snappy-java
 SUBDIR += squeeze
 SUBDIR += torrentzip
 SUBDIR += ucl
