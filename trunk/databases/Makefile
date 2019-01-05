@@ -5,6 +5,7 @@ COMMENT = Databases
 SUBDIR += adodb
 SUBDIR += cassandra
 SUBDIR += cassandra2
+SUBDIR += cassandra-cpp-driver
 SUBDIR += couchdb
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
