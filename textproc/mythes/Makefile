@@ -12,7 +12,7 @@ COMMENT=	Simple thesaurus library
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libhunspell-1.3.so:${PORTSDIR}/textproc/hunspell
+LIB_DEPENDS=	libhunspell-1.6.so:textproc/hunspell
 
 USES=	libtool pathfix pkgconfig shebangfix
 SHEBANG_FILES=	th_gen_idx.pl
