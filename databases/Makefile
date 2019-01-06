@@ -149,6 +149,7 @@ SUBDIR += postgresql96-server
 SUBDIR += py-MySQLdb
 SUBDIR += py-bsddb
 SUBDIR += py-bsddb3
+SUBDIR += py-cassandra-driver
 SUBDIR += py-gdbm
 SUBDIR += py-mysql2pgsql
 SUBDIR += py-postgresql
