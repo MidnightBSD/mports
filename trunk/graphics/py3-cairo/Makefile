@@ -1,56 +1,27 @@
 # $MidnightBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.10.0
+PORTVERSION=	1.14.1
 CATEGORIES=	graphics python
-MASTER_SITES=	http://cairographics.org/releases/
+MASTER_SITES=	https://github.com/pygobject/pycairo/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	py${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python 3 bindings for Cairo
 
-LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	lgpl
 
-BUILD_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27
+PORTSCOUT=	limitw:1,even
 
-USES=		pkgconfig python:3 shebangfix tar:bzip2
+USES=		gnome pkgconfig python:3
+USE_PYTHON=	distutils py3kplist
 USE_GNOME=	cairo
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
-python_OLD_CMD?=	/usr/bin/env python
-python_CMD?=		${LOCALBASE}/bin/python${PYTHON_VER}
-SHEBANG_FILES=		examples/*.py examples/*/*.py test/*.py
-
-PLIST_SUB+=	PYTVER=${PYTHON_VER:S/.//}
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|python %s|${PYTHON_CMD} %s|g' \
-		${WRKSRC}/test/examples_test.py
-
-do-configure:
-# Run waf configure twice, once to extract waflib and patch and then actual configure
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
-		./waf configure || :
-	@cd ${WRKSRC}/.waf3-1.6.4-e3c1e08604b18a10567cfcd2d02eb6e6/ && \
-		${PATCH} -p1 < ${FILESDIR}/pycairo-1.10.0-waf-py3_4.patch
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
-		./waf configure
-
-do-build:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf
-
-do-install:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ./waf install --destdir=${FAKE_DESTDIR}
+PLIST_SUB=	PORTVER=${PORTVERSION}
 
 post-install:
-	@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/__init__.py[co]
-	cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
-	cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${TRUE_PREFIX}/;;}
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
+	${CP} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
