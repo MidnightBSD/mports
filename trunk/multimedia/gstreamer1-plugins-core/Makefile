@@ -2,7 +2,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gstreamer1-plugins-core
-PORTVERSION=	${GST1_VERSION}${GST1_MINIMAL_VERSION}
+PORTVERSION=	1.14
 PORTREVISION=	0
 CATEGORIES=	multimedia audio
 MASTER_SITES=	# empty
@@ -27,7 +27,7 @@ DVD_DESC=	Include DVD related plugins
 .include <bsd.mport.options.mk>
 
 # Audio plugins
-USE_GSTREAMER1+=	mad ogg vorbis
+USE_GSTREAMER1+=	mpg123 ogg vorbis
 
 # Graphics plugins
 USE_GSTREAMER1+=	png
