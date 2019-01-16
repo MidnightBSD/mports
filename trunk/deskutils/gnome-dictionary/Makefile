@@ -3,7 +3,7 @@
 # $FreeBSD: head/deskutils/gnome-dictionary/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gnome-dictionary
-PORTVERSION=	3.16.2
+PORTVERSION=	3.26.1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -11,19 +11,20 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 3 dictionary lookup application
 
-LICENSE=	gpl2
+LICENSE=gpl2 lgpl2.1
+LICENSE_COMB=		multi
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.libs
 
-BUILD_DEPENDS=	gtkdoc-check:${PORTSDIR}/textproc/gtk-doc \
-		itstool:${PORTSDIR}/textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		docbook-xsl>=0:textproc/docbook-xsl
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	intlhack introspection:build gtk30
+PORTSCOUT=	limitw:1,even
+
+USES=		gettext gnome localbase meson pkgconfig tar:xz
+USE_GNOME=	cairo gtk30 introspection:build libxslt:build
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.gnome.dictionary.gschema.xml
 
