@@ -55,7 +55,6 @@ SUBDIR += p5-Mail-Sendmail
 SUBDIR += p5-Mail-Tools
 SUBDIR += p5-Net-SMTP-SSL
 SUBDIR += pantomime
-SUBDIR += php56-imap
 SUBDIR += php70-imap
 SUBDIR += php71-imap
 SUBDIR += phplist
