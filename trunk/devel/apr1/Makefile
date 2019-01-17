@@ -20,7 +20,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--build=${ARCH}-midnightbsd-freebsd10.4
 
-APR_VERSION=	1.6.3
+APR_VERSION=	1.6.5
 APU_VERSION=	1.6.1
 
 CPE_VENDOR=	apache
