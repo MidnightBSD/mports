@@ -1,2 +1,3 @@
-SHA256 (jenkins/1.626/jenkins.war) = e6df4d44f1110d1095b4e05c0d574f1120ac4f7bf943fba99c22edff0127c110
-SIZE (jenkins/1.626/jenkins.war) = 62885591
+TIMESTAMP = 1539756999
+SHA256 (jenkins/2.147/jenkins.war) = 8176efb85393bd48479515c75f37d5b277120d8db373765ce0802a405593e4f2
+SIZE (jenkins/2.147/jenkins.war) = 75921242
