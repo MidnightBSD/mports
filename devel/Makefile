@@ -441,6 +441,7 @@ SUBDIR += p5-version
 SUBDIR += patch
 SUBDIR += pccts
 SUBDIR += pcre
+SUBDIR += pcre2
 SUBDIR += pcsc-lite
 SUBDIR += pear
 SUBDIR += pecl-intl
