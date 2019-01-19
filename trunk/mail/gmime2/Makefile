@@ -2,7 +2,7 @@
 
 PORTNAME=	gmime
 PORTVERSION=	2.2.27
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	mail
 MASTER_SITES=	GNOME
 
@@ -15,7 +15,7 @@ LICENSE=	lgpl
 SLAVEDIRS=	mail/gmime2-sharp
 
 USE_GNOME?=	glib20
-USES=		gmake pathfix pkgconfig iconv
+USES=		gmake libtool pathfix pkgconfig iconv
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=	--with-libiconv=${LOCALBASE} \
