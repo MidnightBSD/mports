@@ -465,6 +465,7 @@ SUBDIR += pkgconf
 SUBDIR += popt
 SUBDIR += projectcenter
 SUBDIR += protobuf
+SUBDIR += protobuf-c
 SUBDIR += protobuf25
 SUBDIR += pth
 SUBDIR += pth-hard
