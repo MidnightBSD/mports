@@ -98,11 +98,10 @@ my @files = qw(
   /var/empty
   /var/games
   /var/heimdal
-  /var/named
   /var/preserve
-  /var/run/named
   /var/run/ppp
   /var/tmp/vi.recover
+  /var/unbound
   /var/yp/Makefile
   /var/yp/Makefile.dist
 );
