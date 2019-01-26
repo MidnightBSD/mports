@@ -12,10 +12,15 @@ COMMENT=	Clone - recursively copy Perl datatypes
 LICENSE=	gpl artistic
 LICENSE_COMB=	dual
 
+USES=		perl5
+USE_PERL5=	configure
 PERL_CONFIGURE=	yes
 
 post-patch:
-	${PERL} -pi -e 'm.OPTIMIZE.&&s,.,,sg' ${WRKSRC}/Makefile.PL
+	@${REINPLACE_CMD} -e '/OPTIMIZE/d' ${WRKSRC}/Makefile.PL
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/${SITE_ARCH_REL}/auto/Clone/Clone.so
 
 .include <bsd.port.mk>
 
