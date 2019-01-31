@@ -71,6 +71,7 @@ SUBDIR += e_dbus
 SUBDIR += efl
 SUBDIR += eggdbus
 SUBDIR += epm
+SUBDIR += evdev-proto
 SUBDIR += fam
 SUBDIR += ffcall
 SUBDIR += fmake
