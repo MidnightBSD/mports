@@ -19,4 +19,8 @@ USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 BUILD_WRKSRC=	${WRKSRC}/src/assistant/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/src/assistant/${PORTNAME}
 
+post-install:
+	-${MKDIR} ${PREFIX}/libdata/pkgconfig
+	@${CP} ${PREFIX}/lib/pkgconfig/Qt5CLucene.pc ${PREFIX}/libdata/pkgconfig/Qt5CLucene.pc
+
 .include <bsd.port.mk>
