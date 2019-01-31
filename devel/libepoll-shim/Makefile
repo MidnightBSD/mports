@@ -4,6 +4,7 @@
 
 PORTNAME=	libepoll-shim
 PORTVERSION=	0.0.20161220
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,6 +23,10 @@ USE_LDCONFIG=	yes
 
 USES=		uidfix
 MAKE_ARGS=	LIBDIR=${PREFIX}/lib INCLUDEDIR=${PREFIX}/include
+
+post-patch:
+	# -Weverything is not recognized by GCC
+	@${REINPLACE_CMD} -e 's|Weverything|Wall|' ${WRKSRC}/Makefile
 
 pre-install:
 	@${MKDIR} ${PREFIX}/include/libepoll-shim/sys
