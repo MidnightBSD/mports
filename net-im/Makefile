@@ -2,6 +2,7 @@
 
 COMMENT = Instant messaging
 
+SUBDIR += ekiga
 SUBDIR += farstream
 SUBDIR += farsight2
 SUBDIR += finch
