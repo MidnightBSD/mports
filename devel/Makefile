@@ -448,7 +448,6 @@ SUBDIR += pear
 SUBDIR += pecl-intl
 SUBDIR += performance
 SUBDIR += perltidy
-SUBDIR += php-xdebug
 SUBDIR += php70-gettext
 SUBDIR += php70-intl
 SUBDIR += php70-json
