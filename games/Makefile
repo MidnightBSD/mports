@@ -32,6 +32,7 @@ SUBDIR += gtypist
 SUBDIR += jigsaw
 SUBDIR += lapispuzzle
 SUBDIR += libggz
+SUBDIR += lightsoff
 SUBDIR += lincity
 SUBDIR += linux-enemyterritory
 SUBDIR += linux-enemyterritory-etpro
