@@ -2,8 +2,11 @@
 # $MidnightBSD$
 
 PORTNAME=	boost-all
+MASTER_SITES=   #
+DISTFILES=      #
+EXTRACT_ONLY=   #
 
-USES=		metaport
+NO_BUILD=	yes
 
 COMMENT?=	The "meta-port" for boost libraries
 
@@ -20,5 +23,9 @@ JAM_RUN_DEPENDS=	${LOCALBASE}/bin/bjam:devel/boost-jam
 PYTHON_RUN_DEPENDS=	${LOCALBASE}/lib/${PY_BOOST}
 PYTHON_USES=		python:env
 DOCS_RUN_DEPENDS=	${LOCALBASE}/share/doc/boost/doc/html/index.html:devel/boost-docs
+
+do-install:
+	${MKDIR} ${WRKSRC}
+	${TOUCH} ${PREFIX}/share/boost-all
 
 .include <bsd.port.mk>
