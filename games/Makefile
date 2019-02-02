@@ -5,6 +5,7 @@ COMMENT = Games
 SUBDIR += aisleriot
 SUBDIR += allenroids
 SUBDIR += aop
+SUBDIR += atomix
 SUBDIR += bass
 SUBDIR += battalion
 SUBDIR += cowsay
