@@ -2,7 +2,7 @@
 
 PORTNAME=	atslog
 PORTVERSION=	2.1.1
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	comms
 MASTER_SITES=	BERLIOS
 
@@ -12,9 +12,7 @@ COMMENT=	Software for collecting and analyzing calls from different PBX models
 LICENSE=	gpl2
 
 OPTIONS_DEFINE=	LIBWRAP WWW WWWGD DOCS
-OPTIONS_DEFAULT=	LIBWRAP MYSQL WWW WWWGF
-OPTIONS_MULTI=	DB
-OPTIONS_MULTI_DB=	PGSQL MYSQL
+OPTIONS_DEFAULT=	LIBWRAP WWW WWWGF
 LIBWRAP_DESC=	Enable TCP wrapper support
 WWW_DESC=	Install web interface
 WWWGD_DESC=	Graphic reports
@@ -36,27 +34,14 @@ PLIST_SUB+=	WWW=""
 .if ${PORT_OPTIONS:MWWWGD}
 USE_PHP+=	gd
 .endif
-.if ${PORT_OPTIONS:MMYSQL}
-USE_PHP+=	mysql
-.endif
-.if ${PORT_OPTIONS:MPGSQL}
 USE_PHP+=	pgsql
-.endif
 .else
 PLIST_SUB+=	WWW="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MMYSQL}
-USE_MYSQL=	yes
-BUILD_DEPENDS+=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
-RUN_DEPENDS+=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
-.endif
-
-.if ${PORT_OPTIONS:MPGSQL}
 USE_PGSQL=	yes
 BUILD_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
 RUN_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
-.endif
 
 .if ! ${PORT_OPTIONS:MLIBWRAP}
 CONFIGURE_ARGS+=--disable-libwrap
