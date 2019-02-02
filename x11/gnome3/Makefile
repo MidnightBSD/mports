@@ -53,7 +53,6 @@ RUN_DEPENDS+=	epiphany>=3.0.0:${PORTSDIR}/www/epiphany \
 		gedit>=3.0.0:${PORTSDIR}/editors/gedit \
 		gedit-plugins>=3.0.0:${PORTSDIR}/editors/gedit-plugins \
 		gnome-terminal>=3.0.0:${PORTSDIR}/x11/gnome-terminal \
-		mousetweaks>=3.0.0:${PORTSDIR}/accessibility/mousetweaks \
 		brasero>=3.0.0:${PORTSDIR}/sysutils/brasero \
 		gnome-utils>=3.6.0:${PORTSDIR}/deskutils/gnome-utils \
 		file-roller>=3.0.0:${PORTSDIR}/archivers/file-roller \
