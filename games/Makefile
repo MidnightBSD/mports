@@ -16,6 +16,7 @@ SUBDIR += fotaq
 SUBDIR += ggz-client-libs
 SUBDIR += gmastermind
 SUBDIR += gmines
+SUBDIR += gnome-games
 SUBDIR += gnugo
 SUBDIR += gnustep-ladder
 SUBDIR += gnustep-sudoku
