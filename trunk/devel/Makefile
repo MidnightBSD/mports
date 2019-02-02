@@ -634,7 +634,6 @@ SUBDIR += subversion
 SUBDIR += subversion18
 SUBDIR += svndelta
 SUBDIR += svnkit
-SUBDIR += swig20
 SUBDIR += swig30
 SUBDIR += sysconftool
 SUBDIR += t1lib
