@@ -9,7 +9,6 @@ SUBDIR += atkmm
 SUBDIR += caribou
 SUBDIR += eflite
 SUBDIR += linux-f10-atk
-SUBDIR += mousetweaks
 SUBDIR += orca
 SUBDIR += py-atspi
 SUBDIR += py3-atspi
