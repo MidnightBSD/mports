@@ -25,14 +25,6 @@ TDS_SUF="=${TDS_VERSION}"
 .else
 
 .include <bsd.mport.options.mk>
-
-pre-build:
-	@V=`${PKG_INFO} | ${SED} -ne 's/^freetds-0.\(..\).*/\1/p'` ; \
-	if [ $$V -le 60 ]; then \
-		${ECHO_MSG} "Suggest you update your FreeTDS port to at least version 0.61" ; \
-		${ECHO_MSG} "Otherwise, you will need to add TDS_VERSION=$$V to the Make command" ; \
-		exit 1 ;\
-	fi
 .endif	# defined(TDS_VERSION)
 
 MAKE_ENV+=	SYBASE=${LOCALBASE}
