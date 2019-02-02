@@ -29,6 +29,7 @@ SUBDIR += grubik
 SUBDIR += gshisen
 SUBDIR += gtkpool
 SUBDIR += gtypist
+SUBDIR += iagno
 SUBDIR += jigsaw
 SUBDIR += lapispuzzle
 SUBDIR += libggz
