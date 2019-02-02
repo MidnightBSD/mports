@@ -12,6 +12,7 @@ SUBDIR += file-roller
 SUBDIR += freetar
 SUBDIR += gcab
 SUBDIR += gcpio
+SUBDIR += gnome-autoar
 SUBDIR += gtar
 SUBDIR += gzip
 SUBDIR += gzrecover
