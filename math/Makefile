@@ -17,6 +17,7 @@ SUBDIR += fftw3-float
 SUBDIR += fftw3-long
 SUBDIR += gmm++
 SUBDIR += gmp
+SUBDIR += gnome-calculator
 SUBDIR += gnumeric
 SUBDIR += gnuplot
 SUBDIR += gsl
