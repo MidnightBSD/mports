@@ -17,7 +17,7 @@ IGNORE=	USES=pathfix does not require args
 .endif
 
 PATHFIX_CMAKELISTSTXT?=	CMakeLists.txt
-.if defined(USE_AUTORECONF)
+.if ${USES:Mautoreconf*}
 PATHFIX_MAKEFILEIN?=	Makefile.am Makefile.in
 .else
 PATHFIX_MAKEFILEIN?=	Makefile.in
@@ -26,7 +26,7 @@ PATHFIX_WRKSRC?=	${WRKSRC}
 
 _USES_patch+=	190:pathfix
 pathfix:
-.if defined(USE_CMAKE)
+.if ${USES:Mcmake*}
 .for file in ${PATHFIX_CMAKELISTSTXT}
 	@${FIND} ${PATHFIX_WRKSRC} -name "${file}" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[{]CMAKE_INSTALL_LIBDIR[}]/pkgconfig|{CMAKE_INSTALL_PREFIX}/libdata/pkgconfig|g ; \
