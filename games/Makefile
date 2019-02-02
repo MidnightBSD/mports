@@ -16,6 +16,7 @@ SUBDIR += dopewars
 SUBDIR += five-or-more
 SUBDIR += fortunate
 SUBDIR += fotaq
+SUBDIR += four-in-a-row
 SUBDIR += ggz-client-libs
 SUBDIR += gmastermind
 SUBDIR += gmines
