@@ -591,6 +591,16 @@ TEST_DEPENDS+=	python${_WANTS_META_PORT}:${_PYTHON_RELPORTDIR}${_WANTS_META_PORT
 .endif
 .endif
 
+CMAKE_ARGS+=	-DBOOST_PYTHON_SUFFIX:STRING=${PYTHON_SUFFIX}
+PY_BOOST_LIB=	boost_python${PYTHON_SUFFIX}
+PY_BOOST=	lib${PY_BOOST_LIB}.so:devel/boost-python-libs
+# dependencies
+.for _stage in PATCH BUILD RUN TEST
+.  if defined(_PYTHON_${_stage}_DEP)
+${_stage}_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
+.  endif
+.endfor
+
 # set $PREFIX as Python's one
 .if defined(_PYTHON_FEATURE_PYTHONPREFIX)
 PREFIX=		${PYTHONBASE}
