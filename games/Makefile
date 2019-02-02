@@ -2,6 +2,7 @@
 
 COMMENT = Games
 
+SUBDIR += aisleriot
 SUBDIR += allenroids
 SUBDIR += aop
 SUBDIR += bass
