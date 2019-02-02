@@ -12,6 +12,7 @@ SUBDIR += eflite
 SUBDIR += linux-f10-atk
 SUBDIR += orca
 SUBDIR += py-atspi
+SUBDIR += py-speech-dispatcher
 SUBDIR += py3-atspi
 SUBDIR += qt4-accessible
 SUBDIR += speech-dispatcher
