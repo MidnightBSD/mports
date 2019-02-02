@@ -2,6 +2,7 @@
     
 COMMENT = Ports to help disabled users
 
+SUBDIR += accerciser
 SUBDIR += at-spi2-atk
 SUBDIR += at-spi2-core
 SUBDIR += atk
