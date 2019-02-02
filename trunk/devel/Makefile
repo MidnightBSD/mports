@@ -613,6 +613,7 @@ SUBDIR += qt5-scripttools
 SUBDIR += qt5-testlib
 SUBDIR += qt5-uitools
 SUBDIR += qtcreator
+SUBDIR += ragel
 SUBDIR += rclint
 SUBDIR += rcs57
 SUBDIR += re2
