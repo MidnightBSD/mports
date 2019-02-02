@@ -55,6 +55,7 @@ SUBDIR += quake3
 SUBDIR += quake3-data
 SUBDIR += scummvm
 SUBDIR += supertux
+SUBDIR += tali
 SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
