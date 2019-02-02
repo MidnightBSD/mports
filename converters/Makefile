@@ -28,7 +28,6 @@ SUBDIR += p5-Unicode-Map
 SUBDIR += p5-Unicode-Map8
 SUBDIR += p5-Unicode-MapUTF8
 SUBDIR += p5-Unicode-String
-SUBDIR += pecl-fribidi
 SUBDIR += php70-iconv
 SUBDIR += php70-mbstring
 SUBDIR += php70-recode
