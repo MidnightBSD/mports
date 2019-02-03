@@ -32,7 +32,8 @@ XTERM_DESC=		Build with Xterm scrollbar
 CONFIGURE_ARGS=	--enable-ttygid \
 		--with-xpm --enable-xpm-background \
 		--with-xpm-includes=${LOCALBASE}/include/X11 \
-		--with-xpm-library=${LOCALBASE}/lib
+		--with-xpm-library=${LOCALBASE}/lib \
+		--disable-utmp --disable-wtmp
 PLIST_FILES=	bin/rxvt man/man1/${PORTNAME}.1.gz
 
 BIG5_CONFIGURE_ON=	--enable-big5
@@ -51,13 +52,6 @@ XIM_CONFIGURE_ON=	--enable-xim
 XTERM_CONFIGURE_ON=	--enable-xterm-scroll
 
 .include <bsd.port.pre.mk>
-
-# fails to build with new utmpx
-.if ${OSVERSION} > 4015
-CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp
-.else
-CONFIGURE_ARGS+=	--enable-utmp --enable-wtmp
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|getpt()|posix_openpt(0)|' ${WRKSRC}/configure
