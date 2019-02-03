@@ -28,9 +28,8 @@ BROKEN_armv6=		fails to build: maven-assembly-plugin: Failed to retrieve numeric
 #GH_ACCOUNT=	xerial
 #GH_PROJECT=	snappy-java
 
-# This works with java 8, but cassandra 2 requires java 7
 USE_JAVA=	yes
-JAVA_VERSION=	1.7
+JAVA_VERSION=	1.7+
 USES=		gmake
 USE_LDCONFIG=	yes
 MAKE_ARGS+=	Default_CXX=${CXX}

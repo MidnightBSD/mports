@@ -1,15 +1,15 @@
---- native/arguments.c.orig	2017-11-02 13:10:04 UTC
-+++ native/arguments.c
-@@ -157,7 +157,7 @@ static arg_data *parse(int argc, char *a
+--- native/arguments.c.orig	2012-02-24 00:24:02.000000000 +0100
++++ native/arguments.c	2012-06-13 13:15:57.000000000 +0200
+@@ -158,7 +158,7 @@
      args->help    = false;        /* Don't display help */
      args->chck    = false;        /* Don't do a check-only startup */
      args->stop    = false;        /* Stop a running jsvc */
 -    args->wait    = 0;            /* Wait until jsvc has started the JVM */
 +    args->wait    = 10;           /* Wait until jsvc has started the JVM */
-     args->restarts = -1;          /* Infinite restarts by default */
      args->install = false;        /* Don't install as a service */
      args->remove  = false;        /* Don't remove the installed service */
-@@ -270,10 +270,6 @@ static arg_data *parse(int argc, char *a
+     args->service = false;        /* Don't run as a service */
+@@ -262,10 +262,6 @@
              temp = optional(argc, argv, x++);
              if (temp)
                  args->wait = atoi(temp);
@@ -18,5 +18,5 @@
 -                return NULL;
 -            }
          }
-         else if (!strcmp(argv[x], "-restarts")) {
+         else if (!strcmp(argv[x], "-umask")) {
              temp = optional(argc, argv, x++);

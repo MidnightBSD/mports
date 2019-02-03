@@ -64,7 +64,6 @@ SUBDIR += texinfo
 SUBDIR += texlive-base
 SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
-SUBDIR += transfig
 SUBDIR += ttf2pt1
 SUBDIR += xfce4-print
 SUBDIR += xpdfopen

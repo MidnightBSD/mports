@@ -2,7 +2,7 @@
 
 PORTNAME=	lash
 PORTVERSION=	0.5.4
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SAVANNAH
 
@@ -12,22 +12,18 @@ COMMENT=	Session management system for JACK audio applications
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libjack.so:audio/jack \
-		libdssialsacompat.so:audio/libdssialsacompat \
-		libfreetype.so:print/freetype2 \
-		libfontconfig.so:x11-fonts/fontconfig \
-		libuuid.so:misc/e2fsprogs-libuuid
+LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack \
+		libdssialsacompat.so:${PORTSDIR}/audio/libdssialsacompat \
+		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
 
 OPTIONS_DEFINE=	READLINE DOCS
 OPTIONS_DEFAULT=READLINE
 
-USES=		gmake pathfix pkgconfig libtool
-USE_GNOME=	gtk20 libxml2 gdkpixbuf2 cairo
+USES=		gmake pathfix pkgconfig
+USE_GNOME=	gtk20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alsa-midi
 USE_LDCONFIG=	yes
-LIBS=		-luuid
-INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include/dssi -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -43,7 +39,7 @@ PLIST_SUB+=	READLINE="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS+=	texi2html:textproc/texi2html
+BUILD_DEPENDS+=	texi2html:${PORTSDIR}/textproc/texi2html
 .else
 CONFIGURE_ENV+=	ac_cv_prog_lash_texi2html=no
 .endif

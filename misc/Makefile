@@ -20,7 +20,6 @@ SUBDIR += e2fsprogs-libblkid
 SUBDIR += e2fsprogs-libuuid
 SUBDIR += findutils
 SUBDIR += getopt
-SUBDIR += gnome-getting-started-docs
 SUBDIR += gnome-icon-theme
 SUBDIR += gnome-icon-theme-extras
 SUBDIR += gnome-mime-data

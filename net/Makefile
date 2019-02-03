@@ -72,7 +72,6 @@ SUBDIR += netclasses
 SUBDIR += nload
 SUBDIR += nss_ldap
 SUBDIR += ntp
-SUBDIR += opal
 SUBDIR += openldap24-client
 SUBDIR += openldap24-sasl-client
 SUBDIR += openldap24-server

@@ -16,6 +16,7 @@ SUBDIR += p5-NSNMP
 SUBDIR += p5-SNMP_Session
 SUBDIR += php70-snmp
 SUBDIR += php71-snmp
+SUBDIR += phpip
 SUBDIR += net-snmp
 SUBDIR += softflowd
 SUBDIR += subcalc

@@ -119,7 +119,6 @@ SUBDIR += uif2iso
 SUBDIR += upower
 SUBDIR += upsd
 SUBDIR += userboot-freebsd
-SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
 SUBDIR += warden
 SUBDIR += wmbsdbatt
