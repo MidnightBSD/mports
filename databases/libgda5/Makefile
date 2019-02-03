@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libgda
-PORTVERSION?=	5.2.5
+PORTVERSION?=	5.2.4
 PORTREVISION?=	0
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libjson-glib-1.0.so:devel/json-glib
 
 USES+=		gettext gmake libtool localbase pathfix pkgconfig
-USE_GNOME=	glib20 libxslt intlhack introspection:build referencehack
+USE_GNOME=	glib20 libxslt intlhack referencehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -45,10 +45,8 @@ USE_GNOME+=	libgda5
 .endif
 
 .if ${LIBGDA5_SLAVE}==ui
-LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
-		libgpg-error.so:security/libgpg-error
 CONFIGURE_ARGS+=--with-ui
-USE_GNOME+=	cairo gtk30
+USE_GNOME+=	gtk30 gnomedocutils
 INSTALLS_ICONS=	yes
 .else
 CONFIGURE_ARGS+=--without-ui

@@ -5,32 +5,32 @@ Changed paths:
 
 Apply class-imposed login restrictions.
 
---- auth2.c.orig	2018-10-16 17:01:20.000000000 -0700
-+++ auth2.c	2018-11-10 11:35:07.816193000 -0800
-@@ -48,6 +48,7 @@
- #include "sshkey.h"
+--- auth2.c.orig	2012-12-02 16:53:20.000000000 -0600
++++ auth2.c	2013-05-22 17:21:37.979631466 -0500
+@@ -46,6 +46,7 @@
+ #include "key.h"
  #include "hostfile.h"
  #include "auth.h"
 +#include "canohost.h"
  #include "dispatch.h"
  #include "pathnames.h"
- #include "sshbuf.h"
-@@ -258,7 +259,14 @@ input_userauth_request(int type, u_int32_t seq, struct
+ #include "buffer.h"
+@@ -216,6 +217,14 @@ input_userauth_request(int type, u_int32
+ 	Authmethod *m = NULL;
  	char *user, *service, *method, *style = NULL;
  	int authenticated = 0;
- 	double tstart = monotime_double();
 +#ifdef HAVE_LOGIN_CAP
++	struct ssh *ssh = active_state; /* XXX */
 +	login_cap_t *lc;
 +	const char *from_host, *from_ip;
- 
++
 +	from_host = auth_get_canonical_hostname(ssh, options.use_dns);
 +	from_ip = ssh_remote_ipaddr(ssh);
 +#endif
-+
+ 
  	if (authctxt == NULL)
  		fatal("input_userauth_request: no authctxt");
- 
-@@ -307,6 +315,27 @@ input_userauth_request(int type, u_int32_t seq, struct
+@@ -262,6 +271,27 @@ input_userauth_request(int type, u_int32
  		    "(%s,%s) -> (%s,%s)",
  		    authctxt->user, authctxt->service, user, service);
  	}
@@ -56,5 +56,5 @@ Apply class-imposed login restrictions.
 +#endif  /* HAVE_LOGIN_CAP */
 +
  	/* reset state */
- 	auth2_challenge_stop(ssh);
+ 	auth2_challenge_stop(authctxt);
  

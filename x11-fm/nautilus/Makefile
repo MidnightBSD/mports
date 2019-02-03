@@ -1,34 +1,41 @@
 # $MidnightBSD$
 
 PORTNAME=	nautilus
-PORTVERSION=	3.28.1
-PORTREVISION=	2
+PORTVERSION=	3.16.2
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
 
-LICENSE=	gpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	gpl2
 
-LIB_DEPENDS=	libgnome-autoar-0.so:archivers/gnome-autoar \
-		libgexiv2.so:graphics/gexiv2 \
-		libtracker-sparql-2.0.so:sysutils/tracker
+BUILD_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libexif.so:${PORTSDIR}/graphics/libexif \
+		libnotify.so:${PORTSDIR}/devel/libnotify \
+		libexempi.so:${PORTSDIR}/textproc/exempi
+RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
+		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
 
-PORTSCOUT=	limitw:1,even
-
-USES=		compiler:c11 desktop-file-utils gettext gnome \
-		localbase meson pkgconfig python:3.4+,build tar:xz
-USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3
-INSTALLS_ICONS=	yes
+USES=		desktop-file-utils gettext gmake libtool pathfix \
+		pkgconfig tar:xz
+USE_GNOME=	intlhack gnomedesktop3 libxml2 gvfs introspection:build
 USE_LDCONFIG=	yes
-USE_XORG=	x11
-MESON_ARGS=	-Denable-packagekit=false \
-		-Denable-selinux=false
-BINARY_ALIAS=	python3=${PYTHON_VERSION}
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--disable-packagekit
+INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
+
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	TRACKER
+OPTIONS_DEFAULT=TRACKER
+TRACKER_DESC=	Tracker support
+TRACKER_LIB_DEPENDS=	libtracker-control-1.0.so:${PORTSDIR}/sysutils/tracker
+TRACKER_CONFIGURE_ENABLE=	tracker
 
 .include <bsd.port.mk>

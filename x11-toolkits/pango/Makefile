@@ -22,7 +22,7 @@ RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:2 tar:xz
+USES=		gettext gnome localbase meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo glib20 introspection:build
 

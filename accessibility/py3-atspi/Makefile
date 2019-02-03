@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	atspi
-PORTVERSION=	2.26.0
+PORTVERSION=	2.18.0
 CATEGORIES=	accessibility x11-toolkits python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pyatspi/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -15,7 +15,7 @@ COMMENT=	Python3 API for the D-BUS based SPI framework
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:accessibility/at-spi2-core
+RUN_DEPENDS=	${LOCALBASE}/libexec/at-spi2-registryd:${PORTSDIR}/accessibility/at-spi2-core
 
 # ugh magus issues. this is needed by glib20 up the chain
 BUILD_DEPENDS+=	python2.7:${PORTSDIR}/lang/python27

@@ -1,4 +1,0 @@
-When using the cqsh, you must set env VAR CQLSH_NO_BUNDLED=TRUE
-to work with python 2.7.11+
-
-Additionally you will need the python cassandra driver installed.

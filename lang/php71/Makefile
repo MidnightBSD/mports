@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	php71
-PORTVERSION=	7.1.26
+PORTVERSION=	7.1.20
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions

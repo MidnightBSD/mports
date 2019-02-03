@@ -2,10 +2,9 @@
 # $FreeBSD: ports/graphics/webp/Makefile,v 1.10 2011/11/09 15:25:35 miwi Exp $
 
 PORTNAME=	webp
-PORTVERSION=	1.0.1
+PORTVERSION=	0.4.3
 CATEGORIES=	graphics
-MASTER_SITES=	http://downloads.webmproject.org/releases/webp/ \
-		https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
+MASTER_SITES=	http://downloads.webmproject.org/releases/webp/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +13,7 @@ COMMENT=	Google WebP image format conversion tool
 LICENSE=	bsd3
 
 LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff
 
@@ -29,7 +29,7 @@ CONFIGURE_ARGS=	-with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--enable-libwebpdemux  \
 		--enable-libwebpmux
 USE_LDCONFIG=	yes
-USES=		compiler:c11 jpeg libtool
+USES=		libtool
 
 X11_CONFIGURE_OFF=	build_vwebp=no
 X11_CONFIGURE_ON=	build_vwebp=yes

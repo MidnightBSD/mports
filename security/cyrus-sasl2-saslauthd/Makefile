@@ -35,7 +35,6 @@ BDB_CONFIGURE_ON=	--enable-auth-sasldb \
 			--with-bdb=${BDB_LIB_NAME}
 BDB1_CONFIGURE_ON=	--enable-auth-sasldb \
 			--with-dblib=ndbm
-GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 GDBM_CONFIGURE_ON=	--enable-auth-sasldb \
 			--with-dblib=gdbm \
 			--with-gdbm=${LOCALBASE}

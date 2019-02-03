@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2018.12.03
+PORTVERSION=	2016.12.12
 CATEGORIES=	www
 MASTER_SITES=	https://yt-dl.org/downloads/${PORTVERSION}/
 DISTNAME=	youtube-dl-${PORTVERSION}
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
 ALL_TARGET=	youtube-dl
 MAKE_ARGS=	PYTHON=${PYTHON_CMD}
-USES=		gmake python
+USES=		python
 NO_ARCH=	yes
 WRKSRC=		${WRKDIR}/youtube-dl
 

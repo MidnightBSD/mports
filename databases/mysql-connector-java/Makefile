@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.47
+PORTVERSION=	5.1.38
 CATEGORIES=	databases java
 MASTER_SITES=	MYSQL/Connector-J
 
@@ -10,63 +10,62 @@ COMMENT=	MySQL Connector/J: JDBC interface for MySQL
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:devel/log4j
-
-# 6.0 is currently in beta.
-PORTSCOUT=	limit:^5\.1\..*
+RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
 
 USES=		cpe
 CPE_VENDOR=	oracle
 CPE_PRODUCT=	mysql_connector_j
 
-NO_ARCH=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.6 1.7 1.8
+JAVA_VERSION=	1.6 1.7
 BUILDDIR=	${WRKDIR}/${DISTNAME}
 APIDOCSDIR=	${DOCSDIR}/javadoc
 SRCDIR=		${WRKDIR}/${DISTNAME}/src
 JAVADOCDIR=	${WRKDIR}/${DISTNAME}/javadoc
 DESTJARFILE=	${PORTNAME}.jar
-EXTRADOCS=	CHANGES
+EXTRADOCS=	CHANGES docs/connector-j.html docs/connector-j.pdf
 JARFILE=	${DISTNAME}-bin.jar
 JDCLASSPATH=	${SRCDIR}:${CLASSPATH}
 
 PLIST_FILES=	%%JAVAJARDIR%%/${DESTJARFILE}
 
-OPTIONS_DEFINE=	DOCS
+.include <bsd.mport.options.mk>
 
+.if ${PORT_OPTIONS:MDOCS}
 PORTDOCS=	*
-
-.include <bsd.port.pre.mk>
+.endif
 
 do-build:
-	@${DO_NADA}
-
-do-build-DOCS-on:
-.if ${JAVA_PORT_VERSION:M1.8.*}
-	@${ECHO_MSG} "NOTE>>> Generating javadoc is broken with JDK 1.8+"
-.else
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${JAVADOCDIR} && (cd ${SRCDIR};               \
 	    ${JAVADOC} -quiet -breakiterator -encoding utf8     \
 	    -d ${JAVADOCDIR} -package -classpath ${JDCLASSPATH}	\
 	    com.mysql.jdbc org.gjt.mm.mysql)
 .endif
 
-do-install:
+do-install: do-install-jar do-install-apidocs
+
+do-install-jar:
 	@${ECHO_MSG} -n ">> Installing .jar files..."
-	${INSTALL_DATA} ${BUILDDIR}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}/${DESTJARFILE}
+	@${INSTALL_DATA} ${BUILDDIR}/${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
 	@${ECHO_MSG} " [ DONE ]"
 
-do-install-DOCS-on:
+do-install-apidocs:
+.if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@for extradoc in ${EXTRADOCS} ; do                          \
-	  ${INSTALL_DATA} ${INSTALL_WRKSRC}/$$extradoc ${STAGEDIR}${DOCSDIR} ; \
+	@${MKDIR} ${APIDOCSDIR}
+	@cd ${JAVADOCDIR} && for src in $$( ${FIND} . ) ; do \
+	    dst=${APIDOCSDIR}$${src#.} ; \
+	    if ${TEST} -d $$src ; then \
+	        ${MKDIR} $$dst ; \
+	    else \
+	        ${INSTALL_DATA} $$src $$dst ; \
+	    fi \
 	done
-.if ${JAVA_PORT_VERSION:N1.8.*}
-	@${MKDIR} ${STAGEDIR}${APIDOCSDIR}
-	@cd ${JAVADOCDIR} && ${COPYTREE_SHARE} . ${APIDOCSDIR}
-.endif
+	@for extradoc in ${EXTRADOCS} ; do                          \
+	  ${INSTALL_DATA} ${INSTALL_WRKSRC}/$$extradoc ${DOCSDIR} ; \
+	done
 	@${ECHO_MSG} " [ DONE ]"
+.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

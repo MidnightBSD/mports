@@ -27,4 +27,4 @@
 %%QT_LIBDIR%%/libQt5CLucene.so.%%FULLVER%%
 %%DEBUG%%%%QT_LIBDIR%%/libQt5CLucene.so.%%FULLVER%%.debug
 %%QT_MKSPECDIR%%/modules/qt_lib_clucene_private.pri
-@comment libdata/pkgconfig/Qt5CLucene.pc
+libdata/pkgconfig/Qt5CLucene.pc

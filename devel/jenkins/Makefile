@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/jenkins/Makefile 371803 2014-10-31 11:08:44Z rea $
 
 PORTNAME=	jenkins
-PORTVERSION=	2.147
+PORTVERSION=	1.626
 CATEGORIES=	devel java
 MASTER_SITES=	http://mirrors.jenkins-ci.org/war/${PORTVERSION}/
 DISTNAME=	jenkins
@@ -18,7 +18,6 @@ LICENSE=	mit
 CONFLICTS=	jenkins-lts-[0-9]*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.8+
 
 NO_BUILD=	yes
 

@@ -2,10 +2,11 @@
 # $FreeBSD: ports/sysutils/cdrdao/Makefile,v 1.62 2010/06/06 20:39:20 naddy Exp $
 
 PORTNAME?=	cdrdao
-PORTVERSION=	1.2.4
-PORTREVISION?=	0
+PORTVERSION=	1.2.3
+PORTREVISION?=	1
 CATEGORIES=	sysutils audio
-MASTER_SITES=	SF/cdrdao
+MASTER_SITES=	SF
+MASTER_SITE_SUBDIR=	cdrdao/cdrdao/${PORTVERSION}
 DISTNAME=	cdrdao-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,13 +14,12 @@ COMMENT?=	Record CD-R[W]s in disk-at-once mode
 
 LICENSE=	gpl2
 
-USES=		compiler:c++11-lang gmake tar:bzip2
+USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
-USE_CXXSTD=	c++11
 
-MP3OGG_LIB_DEPENDS=	libao.so:audio/libao \
-			libmad.so:audio/libmad \
-			libvorbis.so:audio/libvorbis
+MP3OGG_LIB_DEPENDS=	libao.so:${PORTSDIR}/audio/libao \
+			libmad.so:${PORTSDIR}/audio/libmad \
+			libvorbis.so:${PORTSDIR}/audio/libvorbis
 
 .if ${PORTNAME} == "cdrdao"
 OPTIONS_DEFINE=		DOCS TOC2MP3 MP3OGG
@@ -33,18 +33,18 @@ TOC2MP3_DESC=		Build with toc2mp3 (requires audio/lame)
 
 .if ${PORTNAME} == "gcdmaster"
 USES+=			pkgconfig shared-mime-info
+WANT_GNOME=		yes
 GCONF_SCHEMAS=		gcdmaster.schemas
 LIB_DEPENDS+=		${MP3OGG_LIB_DEPENDS} \
-			libgnomeuimm-2.6.so:x11-toolkits/libgnomeuimm26
-RUN_DEPENDS+=		${LOCALBASE}/bin/cdrdao:sysutils/cdrdao \
-			${LOCALBASE}/share/mime/packages/freedesktop.org.xml:misc/shared-mime-info
+			libgnomeuimm-2.6.so:${PORTSDIR}/x11-toolkits/libgnomeuimm26
+RUN_DEPENDS+=		${LOCALBASE}/bin/cdrdao:${PORTSDIR}/sysutils/cdrdao \
+			${LOCALBASE}/share/mime/packages/freedesktop.org.xml:${PORTSDIR}/misc/shared-mime-info
 CONFIGURE_ARGS+=	--with-lame=no
 .else
-CONFIGURE_ARGS+=	--with-gcdmaster=no
+CONFIGURE_ARGS+=	--with-xdao=no
 .if ${PORT_OPTIONS:MTOC2MP3}
-LIB_DEPENDS+=		libmp3lame.so:audio/lame
-CONFIGURE_ARGS+=	--disable-lame-test \
-			--with-lame-include=${LOCALBASE}/include \
+LIB_DEPENDS+=		libmp3lame.so:${PORTSDIR}/audio/lame
+CONFIGURE_ARGS+=	--with-lame-include=${LOCALBASE}/include \
 			--with-lame-lib=${LOCALBASE}/lib
 PLIST_SUB+=		TOC2MP3=""
 .else
@@ -65,20 +65,18 @@ CONFIGURE_ARGS+=	--with-mp3-support=no --with-ogg-support=no
 .endif
 .endif
 
-.include <bsd.port.pre.mk>
-
 CONFIGURE_ARGS+=	--without-pcctsbin --without-pcctsinc \
 			--with-posix-threads=no --with-scglib
-MAKE_ENV=		CCOM=cc
-SCSILIBXARCH!=		${UNAME} -m
+MAKE_ENV=		CCOM=cc LANG=C
+SCSILIBTARGET=		${ARCH}-freebsd-cc
+
+.include <bsd.port.pre.mk>
 
 post-extract:
-	@(cd ${WRKSRC}/scsilib/RULES && ${CP} -p os-freebsd.id os-midnightbsd.id)
-.if ${SCSILIBXARCH} != "i386"
-	${LN} -sf ${WRKSRC}/scsilib/RULES/i386-freebsd-cc.rul \
-		${WRKSRC}/scsilib/RULES/${SCSILIBXARCH}-${OPSYS:tl}-cc.rul
-	${LN} -sf ${WRKSRC}/scsilib/RULES/i386-freebsd-cc.rul \
-		${WRKSRC}/scsilib/RULES/${SCSILIBXARCH}-freebsd-cc.rul
+	@(cd ${WRKSRC}/scsilib/RULES && ${CP} os-freebsd.id os-midnightbsd.id)
+.if ${SCSILIBTARGET} != "i386-freebsd-cc"
+	@${LN} -sf ${WRKSRC}/scsilib/RULES/i386-freebsd-cc.rul \
+		${WRKSRC}/scsilib/RULES/${SCSILIBTARGET}.rul
 .endif
 
 post-patch:
@@ -87,18 +85,21 @@ post-patch:
 	55readcd 55scgcheck 55scgskeleton 55rscsi 85man
 	@${RM} ${WRKSRC}/scsilib/TARGETS/${i}
 .endfor
+.for i in include/schily.h libschily/fexec.c
+	@${REINPLACE_CMD} -e 's|fexecve|js_fexecve|g' ${WRKSRC}/scsilib/${i}
+.endfor
 .if ${PORTNAME} == "gcdmaster"
 	@${REINPLACE_CMD} -E -e 's|(^SUBDIRS.+) utils|\1|' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -E -e 's|(^gladedir.+=).+|\1 ${DATADIR}|' \
-		${WRKSRC}/gcdmaster/Makefile.in
+		${WRKSRC}/xdao/Makefile.in
 	@${REINPLACE_CMD} -E -e \
 		's|(SET_CDRDAO_PATH.+path=)(cdrdao)|\1${LOCALBASE}\/bin\/\2|g' \
-		${WRKSRC}/gcdmaster/Settings.cc
+		${WRKSRC}/xdao/Settings.cc
 	@${REINPLACE_CMD} -E -e \
 		's|(icon-filename=).+(gcdmaster-doc.png)|\1${LOCALBASE}\/share\/pixmaps\/document-icons\/\2|g' \
-		${WRKSRC}/gcdmaster/gcdmaster.keys
+		${WRKSRC}/xdao/gcdmaster.keys
 	@${REINPLACE_CMD} -e 's|connect(SigC::slot|connect(sigc::ptr_fun|g' \
-		${WRKSRC}/gcdmaster/xcdrdao.cc
+		${WRKSRC}/xdao/xcdrdao.cc
 .else
 .for i in cdrdao.man main.cc
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/dao/${i}
@@ -110,58 +111,56 @@ post-patch:
 .endfor
 .endif
 
-.if ${PORTNAME} == "gcdmaster"
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/gcdmaster/gcdmaster \
-		${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/gcdmaster/gcdmaster.man \
+.if ${PORTNAME} == "gcdmaster"
+	@${INSTALL_PROGRAM} ${WRKSRC}/xdao/gcdmaster ${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/xdao/gcdmaster.man \
 		${STAGEDIR}${PREFIX}/man/man1/gcdmaster.1
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/share/pixmaps/document-icons
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster-doc.png \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster-doc.png \
 		${STAGEDIR}${LOCALBASE}/share/pixmaps/document-icons
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/share/application-registry
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.applications \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.applications \
 		${STAGEDIR}${LOCALBASE}/share/application-registry
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.desktop \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.desktop \
 		${STAGEDIR}${LOCALBASE}/share/applications
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/share/mime-info
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.keys \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.keys \
 		${STAGEDIR}${LOCALBASE}/share/mime-info
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.mime \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.mime \
 		${STAGEDIR}${LOCALBASE}/share/mime-info
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.png \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.png \
 		${STAGEDIR}${LOCALBASE}/share/pixmaps
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/etc/gconf/schemas
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.schemas \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.schemas \
 		${STAGEDIR}${LOCALBASE}/etc/gconf/schemas
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/share/mime/packages
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/gcdmaster.xml \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.xml \
 		${STAGEDIR}${LOCALBASE}/share/mime/packages
 	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/glade/Preferences.glade \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/glade/Preferences.glade \
 		${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/gcdmaster/glade/ProjectChooser.glade \
+	@${INSTALL_DATA} ${WRKSRC}/xdao/glade/ProjectChooser.glade \
 		${STAGEDIR}${DATADIR}
 .else
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/dao/cdrdao ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/dao/cdrdao.man \
+	@${INSTALL_PROGRAM} ${WRKSRC}/dao/cdrdao ${STAGEDIR}${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/dao/cdrdao.man \
 		${STAGEDIR}${PREFIX}/man/man1/cdrdao.1
-	${INSTALL_PROGRAM} ${WRKSRC}/utils/cue2toc ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/utils/cue2toc.1 ${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_PROGRAM} ${WRKSRC}/utils/toc2cddb ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/utils/toc2cddb.1 ${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_PROGRAM} ${WRKSRC}/utils/toc2cue ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/utils/toc2cue.1 ${STAGEDIR}${PREFIX}/man/man1
+	@${INSTALL_PROGRAM} ${WRKSRC}/utils/cue2toc ${STAGEDIR}${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/utils/cue2toc.1 ${STAGEDIR}${PREFIX}/man/man1
+	@${INSTALL_PROGRAM} ${WRKSRC}/utils/toc2cddb ${STAGEDIR}${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/utils/toc2cddb.1 ${STAGEDIR}${PREFIX}/man/man1
+	@${INSTALL_PROGRAM} ${WRKSRC}/utils/toc2cue ${STAGEDIR}${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/utils/toc2cue.1 ${STAGEDIR}${PREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/dao/cdrdao.drivers \
+	@${INSTALL_DATA} ${WRKSRC}/dao/cdrdao.drivers \
 		${STAGEDIR}${DATADIR}/drivers
 .if ${PORT_OPTIONS:MTOC2MP3}
 	@${INSTALL_PROGRAM} ${WRKSRC}/utils/toc2mp3 ${STAGEDIR}${PREFIX}/bin
 .endif
 	@${MKDIR} ${DOCSDIR}
 .for i in CREDITS ChangeLog README README.PlexDAE
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 

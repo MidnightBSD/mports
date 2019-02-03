@@ -11,10 +11,8 @@ COMMENT=	Optimizations for speeding up vector operations
 
 LICENSE=	mit
 
-BUILD_DEPENDS+=	python2.7:lang/python27
-
-USES=		gnome meson pkgconfig python:3 shebangfix tar:xz
-USE_GNOME=	glib20 py3gobject3
+USES=		gnome meson pkgconfig python:3.4+ shebangfix tar:xz
+USE_GNOME=	glib20 pygobject3
 USE_LDCONFIG=	yes
 
 OPTIONS_SUB=	yes
