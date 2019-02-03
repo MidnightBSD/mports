@@ -201,6 +201,7 @@ SUBDIR += tidyp
 SUBDIR += txt2man
 SUBDIR += unoconv
 SUBDIR += urlview
+SUBDIR += utf8proc
 SUBDIR += wv
 SUBDIR += wv2
 SUBDIR += xalan-j
