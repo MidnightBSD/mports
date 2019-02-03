@@ -1,0 +1,38 @@
+# $MidnightBSD$
+
+PORTNAME=	libevent
+PORTVERSION=	2.1.8
+DISTVERSIONPREFIX=	release-
+DISTVERSIONSUFFIX=	-stable
+PORTREVISION=	2
+CATEGORIES=	devel
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	API for executing callback functions on events or timeouts
+
+LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	${GH_PROJECT}
+#GH_PROJECT=	${PORTNAME:S/2$//}
+WRKSRC=		${WRKDIR}/libevent-release-${PORTVERSION}-stable
+
+GNU_CONFIGURE=	yes
+USES=		autoreconf libtool pathfix
+PATHFIX_MAKEFILEIN=Makefile.am
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	OPENSSL THREADS
+OPTIONS_DEFAULT=	OPENSSL THREADS
+OPTIONS_SUB=	yes
+INSTALL_TARGET=	install-strip
+
+OPENSSL_USE=	ssl=yes
+OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
+OPENSSL_LDFLAGS=	-L${OPENSSLLIB}
+OPENSSL_CONFIGURE_ENABLE=	openssl
+
+THREADS_CONFIGURE_ENABLE=	thread-support
+
+.include <bsd.port.mk>

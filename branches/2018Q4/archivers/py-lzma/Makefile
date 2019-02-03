@@ -1,0 +1,35 @@
+# $MidnightBSD$
+
+PORTNAME=	lzma
+PORTVERSION=	0.4.9
+CATEGORIES=	archivers python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	py${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python binding for the LZMA compression library
+
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+ONLY_FOR_ARCHS=	amd64 i386
+USES=		dos2unix python
+USE_PYTHON=	concurrent distutils autoplist
+
+DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
+
+PORTDOCS=	USAGE.md
+
+INSTALL_TARGET=	install-strip
+
+OPTIONS_DEFINE=	DOCS
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install:
+	@${STRIP_CMD} ${FAKE_DESTDIR}/${PYTHONPREFIX_SITELIBDIR}/pylzma.so
+
+.include <bsd.port.mk>

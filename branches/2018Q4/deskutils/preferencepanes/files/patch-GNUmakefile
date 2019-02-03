@@ -1,0 +1,9 @@
+--- ./GNUmakefile.orig	Fri Aug  3 15:50:07 2007
++++ ./GNUmakefile	Fri Aug  3 15:50:14 2007
+@@ -1,5 +1,5 @@
+ 
+-GNUSTEP_INSTALLATION_DIR = $(GNUSTEP_SYSTEM_ROOT)
++GNUSTEP_INSTALLATION_DOMAIN = SYSTEM
+ 
+ include $(GNUSTEP_MAKEFILES)/common.make
+ include Version

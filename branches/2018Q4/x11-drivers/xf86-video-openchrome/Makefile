@@ -1,0 +1,35 @@
+# $MidnightBSD$
+
+PORTNAME=	xf86-video-openchrome
+PORTVERSION=	0.6.0
+PORTREVISION=	1
+CATEGORIES=	x11-drivers
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	X.Org openChrome display driver
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libdrm.so:graphics/libdrm
+
+USE_GL=		gl
+
+XORG_CAT=	driver
+USE_XORG=	x11 xext xv
+
+# Override pkg-config to prevent linking against libudev
+CONFIGURE_ENV+=	LIBUDEV_LIBS="-L${LOCALBASE}"
+MAKE_ARGS+=	drivermandir=${LOCALBASE}/man/man4
+
+.include <bsd.mport.options.mk>
+
+# XvMC is only supported by this driver on x86
+.if ${ARCH} == "i386" || ${ARCH} == "amd64"
+USE_XORG+=	xvmc
+PLIST_SUB+=	XVMC=""
+.else
+PLIST_SUB+=	XVMC="@comment "
+.endif
+
+.include <bsd.port.mk>

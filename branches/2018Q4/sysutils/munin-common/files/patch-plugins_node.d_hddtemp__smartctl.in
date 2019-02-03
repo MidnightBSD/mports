@@ -1,0 +1,14 @@
+--- plugins/node.d/hddtemp_smartctl.in.orig	2014-11-24 16:46:24.000000000 -0500
++++ plugins/node.d/hddtemp_smartctl.in	2016-09-11 09:45:17.000000000 -0400
+@@ -160,9 +160,9 @@
+   # Get list of all drives we found
+   @drives=(@drivesIDE,@drivesSCSI);
+   
+-} elsif ($^O eq 'freebsd') {
++} elsif ($^O eq 'midnightbsd') {
+   opendir(DEV, '/dev');
+-  @drives = grep /^ad[0-9]+$/, readdir DEV;
++  @drives = grep /^ad[0-9]+$|^ada[0-9]+$/, readdir DEV;
+   closedir(DEV);
+ } elsif ($^O eq 'solaris') {
+   @drives = map { s@.*/@@ ; $_ } glob '/dev/rdsk/c*t*d*s2';

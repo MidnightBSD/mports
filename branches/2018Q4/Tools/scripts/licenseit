@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+#
+
+LINENUM=`grep -n COMMENT Makefile | cut -f 1 -d :`
+LINENUM=`expr 1 + $LINENUM`
+PORT=$PWD
+
+make BATCH=1 extract
+cd `make -V WRKSRC` && ls && $SHELL
+cd $PORT
+$EDITOR +$LINENUM Makefile
+
+if make FATAL_LICENSE_CHECK=1 check-license; then
+	svn ci -m "license" Makefile
+fi
+
+rm -r work/

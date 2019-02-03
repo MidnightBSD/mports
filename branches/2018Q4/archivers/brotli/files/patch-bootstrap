@@ -1,0 +1,11 @@
+--- bootstrap.orig	2018-11-22 15:37:46.993285000 -0500
++++ bootstrap	2018-11-22 15:37:55.140026000 -0500
+@@ -2,7 +2,7 @@
+ 
+ REQUIRED='is required, but not installed.'
+ bc -v >/dev/null 2>&1 || { echo >&2 "'bc' $REQUIRED"; exit 1; }
+-if [ `uname -s` != "FreeBSD" ]; then
++if [ `uname -s` != "MidnightBSD" ]; then
+ sed --version >/dev/null 2>&1 || { echo >&2 "'sed' $REQUIRED"; exit 1; }
+ fi
+ autoreconf --version >/dev/null 2>&1 || { echo >&2 "'autoconf' $REQUIRED"; exit 1; }

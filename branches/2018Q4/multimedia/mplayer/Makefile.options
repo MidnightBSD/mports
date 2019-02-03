@@ -1,0 +1,153 @@
+# Contains non-trivial handling of option variables
+# and build environment. Must be included after
+# bsd.port.pre.mk
+#
+# Some of the knobs are not tunable by the OPTIONS framework. These are
+# explained here in detail.
+#
+# $FreeBSD: head/multimedia/mplayer/Makefile.options 377337 2015-01-18 17:00:48Z riggs $
+#
+# Feature options:
+# These options influence some general behaviour of mplayer. Almost all of the featues,
+# for example all the codecs, are selected via the OPTIONS framework.
+# The following options WITH_DVD_DEVICE, WITH_CDROM_DEVICE, are *not*
+# selected via the options framework and must be set via make.conf or by passing
+# the variable to make during build, e.g. make WITH_DVD_DEVICE=/dev/cd0
+#
+# WITH_DVD_DEVICE=/path/to/desired/device
+# default: /dev/cd0
+# This option changes the default device where mplayer looks for
+# a DVD medium
+#
+# WITH_CDROM_DEVICE=/path/to/desired/device
+# default: /dev/cd0
+# This option changes the default cdrom device, maybe useful for VCDs
+
+# Non-OPTIONS knob handling
+# =========================
+
+.if defined(WITH_DVD_DEVICE)
+DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}
+.else
+DEFAULT_DVD_DEVICE=/dev/cd0
+.endif
+
+.if defined(WITH_CDROM_DEVICE)
+DEFAULT_CDROM_DEVICE=${WITH_CDROM_DEVICE}
+.else
+DEFAULT_CDROM_DEVICE=/dev/cd0
+.endif
+
+.if defined(WITH_KERN_HZ)
+DEFAULT_KERN_HZ=${WITH_KERN_HZ}
+.else
+DEFAULT_KERN_HZ=1024
+.endif
+
+
+# Non-simplified OPTIONS handling
+# ===============================
+
+.if ${PORT_OPTIONS:MIPV6}
+CATEGORIES+=	ipv6
+.else
+CONFIGURE_ARGS+=	--disable-inet6
+.endif
+
+.if ${PORT_OPTIONS:MRTMP}
+LIB_DEPENDS+=		librtmp.so:${PORTSDIR}/multimedia/librtmp
+CONFIGURE_ARGS+=	--enable-librtmp
+EXTRA_LIBS+=		-lrtmp
+.else
+CONFIGURE_ARGS+=	--disable-librtmp
+.endif
+
+.if ${PORT_OPTIONS:MSDL}
+USE_SDL=	sdl
+LIB_DEPENDS+=		libaa.so:${PORTSDIR}/graphics/aalib
+.else
+CONFIGURE_ARGS+=	--disable-sdl
+.endif
+
+.if ${PORT_OPTIONS:MV4L}
+BUILD_DEPENDS+=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
+LIB_DEPENDS+=		libv4l2.so:${PORTSDIR}/multimedia/libv4l
+CONFIGURE_ARGS+=	--enable-tv-v4l1 \
+			--enable-tv-v4l2
+EXTRA_LIBS+=		-lv4l1 -lv4l2
+.else
+CONFIGURE_ARGS+=	--disable-tv-v4l1 \
+			--disable-tv-v4l2
+.endif
+
+
+# Build system handling (including OPTIONS)
+# =========================================
+
+# Supported architectures for runtime CPU detection
+.if ${ARCH} == "amd64" || ${ARCH} == "i386" || ${ARCH} == "ppc"
+MPLAYER_RTCPU_SUPPORTED_ARCH=	yes
+.endif
+
+# Unsupported architectures for inline assembly
+.if ${ARCH} == "ppc"
+CONFIGURE_ARGS+=	--disable-asm
+.endif
+
+# Unsupported architectures
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not compile on sparc64
+.endif
+
+.if ${PORT_OPTIONS:MRTCPU} \
+	&& defined(MPLAYER_RTCPU_SUPPORTED_ARCH)
+CONFIGURE_ARGS+=--enable-runtime-cpudetection
+.endif
+
+.if ${CHOSEN_COMPILER_TYPE} == clang
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang-version
+# Require 16 byte stack realignment on i386 to interface
+# properly with hand crafted assembler code in ffmpeg
+.if ${ARCH} == "i386"
+CFLAGS+=	-mstack-alignment=16 -mstackrealign
+.endif # ${ARCH} == "i386"
+.endif # ${CHOSEN_COMPILER_TYPE} == clang
+
+.if ${ARCH} == "armv6"
+CFLAGS_armv6+=	-no-integrated-as
+.endif
+
+# Extra build options for debugging and optimised CFLAGS
+# ======================================================
+
+.if ${PORT_OPTIONS:MDEBUG}
+WITH_DEBUG=	yes
+CONFIGURE_ARGS+=	--enable-debug=3
+.else
+.if ${PORT_OPTIONS:MOCFLAGS}
+CFLAGS+=	-O3 -fomit-frame-pointer -ffast-math
+.endif #OCFLAGS
+.endif #DEBUG
+
+# Edge case: binary codecs on i386, mostly superseded by internal ffmpeg
+# ======================================================================
+
+.if ${ARCH} == "i386" || ${ARCH} == "amd64"
+.if ${PORT_OPTIONS:MWIN32} && !defined(PACKAGE_BUILDING) && ${ARCH} == "i386"
+RUN_DEPENDS+=	${CODEC_DETECTION_FILE}:${CODEC_PORT}
+CONFIGURE_ARGS+=	--codecsdir=${LOCALBASE}/lib/win32
+CODEC_PORT=	${PORTSDIR}/multimedia/win32-codecs
+CODEC_DETECTION_FILE!=	${MAKE} -f ${CODEC_PORT}/Makefile -V CODEC_DETECTION_FILE
+.else
+CONFIGURE_ARGS+=	--disable-win32dll \
+			--disable-qtx
+.endif
+.endif # ARCH == i386/amd64
+
+
+# Additional extra libraries handling
+# ===================================
+
+.if defined(EXTRA_LIBS)
+CONFIGURE_ARGS+=	--extra-libs="${EXTRA_LIBS}"
+.endif

@@ -1,0 +1,85 @@
+# Created by: Simon Barner <barner@gmx.de>
+# $FreeBSD: head/devel/valgrind/Makefile 382021 2015-03-23 18:35:45Z bdrewery $
+# $MidnightBSD$
+
+PORTNAME=	valgrind
+DISTVERSIONPREFIX=	freebsd-
+PORTVERSION=	3.10.0.20150126
+PORTREVISION=	1
+PORTEPOCH=	1
+CATEGORIES=	devel
+MASTER_SITES=	https://bitbucket.org/${BB_ACCOUNT}/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/ \
+		http://mirror.shatow.net/freebsd/${PORTNAME}/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Memory debugging and profiling tool
+
+BB_COMMIT=	963c4a777573
+BB_ACCOUNT=	stass
+BB_PROJECT=	valgrind-freebsd
+
+LICENSE=	gpl2
+
+CONFLICTS=	valgrind-devel-[0-9]*
+
+LIB32_PATH?=	${DESTDIR}/usr/lib32/libc.so
+
+BUILD_DEPENDS+=		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
+			xsltproc:${PORTSDIR}/textproc/libxslt
+
+OPTIONS_DEFINE=		MPI DOCS
+OPTIONS_DEFINE_amd64=	32BIT
+.if exists(${LIB32_PATH})
+OPTIONS_DEFAULT_amd64=	32BIT
+.endif
+32BIT_DESC=	Enable debugging of 32-bit programs (requires lib32)
+MPI_DESC=	Enable build of MPI wrappers
+
+MPI_LIB_DEPENDS=	libmpich.so:${PORTSDIR}/net/mpich2
+
+OPTIONS_SUB=	yes
+USES=		pathfix pkgconfig gmake perl5 shebangfix autoreconf
+PATHFIX_MAKEFILEIN=	Makefile.am
+USE_PERL5=	build
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+SHEBANG_FILES=	callgrind/callgrind_annotate.in callgrind/callgrind_control.in
+
+PORTDOCS=	html
+
+WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
+
+CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL}
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == "amd64"
+PLIST_SUB+=	AMD64="" ARCH=amd64
+. if !${PORT_OPTIONS:M32BIT}
+CONFIGURE_ARGS+=	--enable-only64bit
+PLIST_SUB+=	X86="@comment "
+. else
+.  if !exists(${LIB32_PATH})
+IGNORE=The lib32 distribution was not found. Please install the lib32\
+distribution or run 'make config' and uncheck 32BIT option
+.  endif
+PLIST_SUB+=	X86=""
+. endif
+.else
+PLIST_SUB+=	X86="" ARCH=x86
+PLIST_SUB+=	AMD64="@comment "
+.endif
+
+.if !${PORT_OPTIONS:MDOCS}
+post-patch:
+	@${RM} -rf ${WRKSRC}/docs/html
+.endif
+
+post-build:
+	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} man-pages
+.if ${PORT_OPTIONS:MDOCS}
+	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} html-docs
+.endif
+
+.include <bsd.port.mk>

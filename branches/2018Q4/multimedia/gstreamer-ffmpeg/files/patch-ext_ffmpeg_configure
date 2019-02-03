@@ -1,0 +1,12 @@
+--- gst-libs/ext/ffmpeg/configure.orig	2010-02-27 17:02:23 -0500
++++ gst-libs/ext/ffmpeg/configure	2010-02-27 17:02:52 -0500
+@@ -1527,6 +1527,9 @@
+     freebsd)
+         disable need_memalign
+         ;;
++    midnightbsd)
++	disable need_memalign
++	;;
+     bsd/os)
+         osextralibs="-lpoll -lgnugetopt"
+         strip="strip -d"

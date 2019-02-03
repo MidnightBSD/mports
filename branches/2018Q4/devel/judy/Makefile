@@ -1,0 +1,40 @@
+# $FreeBSD: ports/devel/judy/Makefile,v 1.12 2008/05/13 09:36:54 skv Exp $
+# $MidnightBSD$
+
+PORTNAME=	Judy
+PORTVERSION=	1.0.5
+PORTREVISION=	2
+CATEGORIES=	devel
+MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	General purpose dynamic array
+
+LICENSE=        lgpl
+
+BROKEN_mips=		fails to compile: unrecognized command line option "-m32"
+BROKEN_mips64=		fails to compile: unrecognized command line option "-m64"
+
+USES=		gmake libtool
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
+INSTALL_TARGET=	install-strip
+
+WRKSRC=	${WRKDIR}/${PORTNAME:tl}-${PORTVERSION}
+
+PORTDOCS=	COPYRIGHT README *.htm
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || ${ARCH} == mips || ${ARCH} == powerpc
+CONFIGURE_ARGS+=	--enable-32-bit
+.else
+CONFIGURE_ARGS+=	--enable-64-bit
+.endif
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S!^!${WRKSRC}/doc/ext/!} ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.post.mk>

@@ -1,0 +1,56 @@
+# $MidnightBSD$
+
+PORTNAME=	file-roller
+PORTVERSION=	3.16.3
+PORTEPOCH=	1
+CATEGORIES=	archivers gnome
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome3
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Archive manager for zip files, tar, etc
+
+LICENSE=	gpl2
+
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
+RUN_DEPENDS=	gtar:${PORTSDIR}/archivers/gtar \
+    		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
+
+USES=		desktop-file-utils gettext gmake libarchive libtool \
+		pathfix pkgconfig tar:xz
+USE_GNOME=	gtk30 intlhack introspection:build
+USE_XORG=	sm
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--disable-packagekit
+INSTALL_TARGET=	install-strip
+
+PORTDOCS=	AUTHORS NEWS README TODO ChangeLog
+GLIB_SCHEMAS=	org.gnome.FileRoller.gschema.xml
+
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	NAUTILUS
+OPTIONS_DEFAULT=NAUTILUS
+NAUTILUS_DESC=	Enable Nautilus extension
+NAUTILUS_USE=	GNOME=nautilus3
+NAUTILUS_CONFIGURE_ENABLE=	nautilus-actions
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/src/fr-command-tar.c \
+		${WRKSRC}/src/fr-command-zip.c
+
+.include <bsd.mport.options.mk>
+
+post-install:
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${DOCSDIR}
+.endfor
+.endif
+
+.include <bsd.port.mk>

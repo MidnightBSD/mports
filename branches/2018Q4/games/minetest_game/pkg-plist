@@ -1,0 +1,450 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 19605 2015-07-16 01:41:42Z laffer1 $
+%%DOCSDIR%%/README.txt
+%%DATADIR%%/menu/header.png
+%%DATADIR%%/menu/icon.png
+%%DATADIR%%/game.conf
+%%DATADIR%%/mods/creative/depends.txt
+%%DATADIR%%/mods/creative/README.txt
+%%DATADIR%%/mods/creative/init.lua
+%%DATADIR%%/mods/screwdriver/readme.txt
+%%DATADIR%%/mods/screwdriver/textures/screwdriver.png
+%%DATADIR%%/mods/screwdriver/init.lua
+%%DATADIR%%/mods/default/aliases.lua
+%%DATADIR%%/mods/default/mapgen.lua
+%%DATADIR%%/mods/default/sounds/default_grass_footstep.3.ogg
+%%DATADIR%%/mods/default/sounds/default_snow_footstep.3.ogg
+%%DATADIR%%/mods/default/sounds/default_place_node.1.ogg
+%%DATADIR%%/mods/default/sounds/default_dirt_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_cool_lava.1.ogg
+%%DATADIR%%/mods/default/sounds/default_dig_choppy.ogg
+%%DATADIR%%/mods/default/sounds/default_hard_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_sand_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_dig_cracky.ogg
+%%DATADIR%%/mods/default/sounds/default_gravel_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_snow_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_place_node_hard.1.ogg
+%%DATADIR%%/mods/default/sounds/default_grass_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_break_glass.1.ogg
+%%DATADIR%%/mods/default/sounds/default_dig_dig_immediate.ogg
+%%DATADIR%%/mods/default/sounds/default_dig_crumbly.ogg
+%%DATADIR%%/mods/default/sounds/default_wood_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_hard_footstep.3.ogg
+%%DATADIR%%/mods/default/sounds/default_dug_node.1.ogg
+%%DATADIR%%/mods/default/sounds/default_wood_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_cool_lava.3.ogg
+%%DATADIR%%/mods/default/sounds/default_dug_node.2.ogg
+%%DATADIR%%/mods/default/sounds/default_gravel_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_place_node.3.ogg
+%%DATADIR%%/mods/default/sounds/default_snow_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_place_node_hard.2.ogg
+%%DATADIR%%/mods/default/sounds/default_break_glass.2.ogg
+%%DATADIR%%/mods/default/sounds/default_grass_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_dig_oddly_breakable_by_hand.ogg
+%%DATADIR%%/mods/default/sounds/default_dirt_footstep.2.ogg
+%%DATADIR%%/mods/default/sounds/default_cool_lava.2.ogg
+%%DATADIR%%/mods/default/sounds/default_sand_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_hard_footstep.1.ogg
+%%DATADIR%%/mods/default/sounds/default_glass_footstep.ogg
+%%DATADIR%%/mods/default/sounds/default_break_glass.3.ogg
+%%DATADIR%%/mods/default/sounds/default_place_node.2.ogg
+%%DATADIR%%/mods/default/sounds/default_gravel_footstep.4.ogg
+%%DATADIR%%/mods/default/sounds/default_gravel_footstep.3.ogg
+%%DATADIR%%/mods/default/player.lua
+%%DATADIR%%/mods/default/craftitems.lua
+%%DATADIR%%/mods/default/textures/default_mossycobble.png
+%%DATADIR%%/mods/default/textures/default_nc_rb.png
+%%DATADIR%%/mods/default/textures/default_ice.png
+%%DATADIR%%/mods/default/textures/default_rail_curved.png
+%%DATADIR%%/mods/default/textures/default_rail_t_junction.png
+%%DATADIR%%/mods/default/textures/player_back.png
+%%DATADIR%%/mods/default/textures/default_tool_steelaxe.png
+%%DATADIR%%/mods/default/textures/default_cactus_top.png
+%%DATADIR%%/mods/default/textures/default_snowball.png
+%%DATADIR%%/mods/default/textures/default_fence_overlay.png
+%%DATADIR%%/mods/default/textures/default_steel_ingot.png
+%%DATADIR%%/mods/default/textures/default_tool_woodaxe.png
+%%DATADIR%%/mods/default/textures/default_nc_front.png
+%%DATADIR%%/mods/default/textures/default_tool_bronzeshovel.png
+%%DATADIR%%/mods/default/textures/default_clay_brick.png
+%%DATADIR%%/mods/default/textures/default_furnace_top.png
+%%DATADIR%%/mods/default/textures/default_pine_needles.png
+%%DATADIR%%/mods/default/textures/default_wood.png
+%%DATADIR%%/mods/default/textures/default_tool_mesepick.png
+%%DATADIR%%/mods/default/textures/default_chest_lock.png
+%%DATADIR%%/mods/default/textures/default_clay.png
+%%DATADIR%%/mods/default/textures/default_gravel.png
+%%DATADIR%%/mods/default/textures/default_bronze_block.png
+%%DATADIR%%/mods/default/textures/default_desert_cobble.png
+%%DATADIR%%/mods/default/textures/default_dirt.png
+%%DATADIR%%/mods/default/textures/default_torch_on_ceiling.png
+%%DATADIR%%/mods/default/textures/default_torch_on_floor_animated.png
+%%DATADIR%%/mods/default/textures/default_stone.png
+%%DATADIR%%/mods/default/textures/default_junglewood.png
+%%DATADIR%%/mods/default/textures/default_tool_steelpick.png
+%%DATADIR%%/mods/default/textures/default_grass_side.png
+%%DATADIR%%/mods/default/textures/default_tool_woodshovel.png
+%%DATADIR%%/mods/default/textures/default_dry_shrub.png
+%%DATADIR%%/mods/default/textures/default_jungletree_top.png
+%%DATADIR%%/mods/default/textures/default_tool_mesesword.png
+%%DATADIR%%/mods/default/textures/default_tool_woodsword.png
+%%DATADIR%%/mods/default/textures/default_tool_steelsword.png
+%%DATADIR%%/mods/default/textures/default_snow_side.png
+%%DATADIR%%/mods/default/textures/default_snow.png
+%%DATADIR%%/mods/default/textures/default_chest_top.png
+%%DATADIR%%/mods/default/textures/default_water_flowing_animated.png
+%%DATADIR%%/mods/default/textures/default_cobble.png
+%%DATADIR%%/mods/default/textures/default_lava.png
+%%DATADIR%%/mods/default/textures/default_obsidian_shard.png
+%%DATADIR%%/mods/default/textures/default_rail.png
+%%DATADIR%%/mods/default/textures/default_tool_diamondpick.png
+%%DATADIR%%/mods/default/textures/default_tool_diamondshovel.png
+%%DATADIR%%/mods/default/textures/default_tnt_bottom.png
+%%DATADIR%%/mods/default/textures/default_water_source_animated.png
+%%DATADIR%%/mods/default/textures/default_water.png
+%%DATADIR%%/mods/default/textures/default_torch.png
+%%DATADIR%%/mods/default/textures/default_diamond_block.png
+%%DATADIR%%/mods/default/textures/default_desert_sand.png
+%%DATADIR%%/mods/default/textures/gui_formbg.png
+%%DATADIR%%/mods/default/textures/default_junglesapling.png
+%%DATADIR%%/mods/default/textures/default_grass_footsteps.png
+%%DATADIR%%/mods/default/textures/default_sign.png
+%%DATADIR%%/mods/default/textures/default_furnace_side.png
+%%DATADIR%%/mods/default/textures/default_bookshelf.png
+%%DATADIR%%/mods/default/textures/default_furnace_fire_fg.png
+%%DATADIR%%/mods/default/textures/default_tnt_side.png
+%%DATADIR%%/mods/default/textures/crack_anylength.png
+%%DATADIR%%/mods/default/textures/default_pinetree.png
+%%DATADIR%%/mods/default/textures/default_jungleleaves.png
+%%DATADIR%%/mods/default/textures/default_copper_block.png
+%%DATADIR%%/mods/default/textures/bubble.png
+%%DATADIR%%/mods/default/textures/default_tool_stoneshovel.png
+%%DATADIR%%/mods/default/textures/gui_furnace_arrow_bg.png
+%%DATADIR%%/mods/default/textures/default_papyrus.png
+%%DATADIR%%/mods/default/textures/default_mese_crystal.png
+%%DATADIR%%/mods/default/textures/default_paper.png
+%%DATADIR%%/mods/default/textures/default_grass_1.png
+%%DATADIR%%/mods/default/textures/default_tool_stoneaxe.png
+%%DATADIR%%/mods/default/textures/default_junglegrass.png
+%%DATADIR%%/mods/default/textures/default_desert_stone_brick.png
+%%DATADIR%%/mods/default/textures/default_gold_block.png
+%%DATADIR%%/mods/default/textures/default_mineral_mese.png
+%%DATADIR%%/mods/default/textures/default_book.png
+%%DATADIR%%/mods/default/textures/default_furnace_fire_bg.png
+%%DATADIR%%/mods/default/textures/default_sand.png
+%%DATADIR%%/mods/default/textures/default_tree_top.png
+%%DATADIR%%/mods/default/textures/gui_furnace_arrow_fg.png
+%%DATADIR%%/mods/default/textures/default_tnt_top.png
+%%DATADIR%%/mods/default/textures/default_sign_wall.png
+%%DATADIR%%/mods/default/textures/default_torch_on_ceiling_animated.png
+%%DATADIR%%/mods/default/textures/default_glass_detail.png
+%%DATADIR%%/mods/default/textures/default_grass_2.png
+%%DATADIR%%/mods/default/textures/default_copper_lump.png
+%%DATADIR%%/mods/default/textures/default_grass_5.png
+%%DATADIR%%/mods/default/textures/default_tool_meseaxe.png
+%%DATADIR%%/mods/default/textures/default_apple.png
+%%DATADIR%%/mods/default/textures/default_cloud.png
+%%DATADIR%%/mods/default/textures/default_tool_woodpick.png
+%%DATADIR%%/mods/default/textures/default_mineral_iron.png
+%%DATADIR%%/mods/default/textures/default_tool_diamondsword.png
+%%DATADIR%%/mods/default/textures/wieldhand.png
+%%DATADIR%%/mods/default/textures/default_torch_on_floor.png
+%%DATADIR%%/mods/default/textures/default_sandstone.png
+%%DATADIR%%/mods/default/textures/default_furnace_front.png
+%%DATADIR%%/mods/default/textures/player.png
+%%DATADIR%%/mods/default/textures/default_pinewood.png
+%%DATADIR%%/mods/default/textures/default_mineral_gold.png
+%%DATADIR%%/mods/default/textures/default_nc_side.png
+%%DATADIR%%/mods/default/textures/default_mineral_diamond.png
+%%DATADIR%%/mods/default/textures/default_stone_brick.png
+%%DATADIR%%/mods/default/textures/default_leaves.png
+%%DATADIR%%/mods/default/textures/default_sapling.png
+%%DATADIR%%/mods/default/textures/default_glass.png
+%%DATADIR%%/mods/default/textures/default_pine_sapling.png
+%%DATADIR%%/mods/default/textures/default_gold_lump.png
+%%DATADIR%%/mods/default/textures/default_copper_ingot.png
+%%DATADIR%%/mods/default/textures/default_pinetree_top.png
+%%DATADIR%%/mods/default/textures/default_coal_lump.png
+%%DATADIR%%/mods/default/textures/default_brick.png
+%%DATADIR%%/mods/default/textures/default_ladder.png
+%%DATADIR%%/mods/default/textures/default_diamond.png
+%%DATADIR%%/mods/default/textures/default_stick.png
+%%DATADIR%%/mods/default/textures/gui_hotbar.png
+%%DATADIR%%/mods/default/textures/default_gold_ingot.png
+%%DATADIR%%/mods/default/textures/default_torch_animated.png
+%%DATADIR%%/mods/default/textures/default_tool_steelshovel.png
+%%DATADIR%%/mods/default/textures/default_iron_lump.png
+%%DATADIR%%/mods/default/textures/default_tool_bronzepick.png
+%%DATADIR%%/mods/default/textures/default_obsidian_glass.png
+%%DATADIR%%/mods/default/textures/default_clay_lump.png
+%%DATADIR%%/mods/default/textures/default_sandstone_brick.png
+%%DATADIR%%/mods/default/textures/default_coal_block.png
+%%DATADIR%%/mods/default/textures/default_tool_stonepick.png
+%%DATADIR%%/mods/default/textures/default_grass_4.png
+%%DATADIR%%/mods/default/textures/default_mineral_copper.png
+%%DATADIR%%/mods/default/textures/default_tool_meseshovel.png
+%%DATADIR%%/mods/default/textures/default_jungletree.png
+%%DATADIR%%/mods/default/textures/default_grass_3.png
+%%DATADIR%%/mods/default/textures/default_furnace_bottom.png
+%%DATADIR%%/mods/default/textures/default_nc_back.png
+%%DATADIR%%/mods/default/textures/default_tool_bronzesword.png
+%%DATADIR%%/mods/default/textures/default_mineral_coal.png
+%%DATADIR%%/mods/default/textures/default_obsidian_brick.png
+%%DATADIR%%/mods/default/textures/default_obsidian.png
+%%DATADIR%%/mods/default/textures/default_tool_diamondaxe.png
+%%DATADIR%%/mods/default/textures/default_tool_bronzeaxe.png
+%%DATADIR%%/mods/default/textures/default_steel_block.png
+%%DATADIR%%/mods/default/textures/default_mese_crystal_fragment.png
+%%DATADIR%%/mods/default/textures/default_tree.png
+%%DATADIR%%/mods/default/textures/default_tool_stonesword.png
+%%DATADIR%%/mods/default/textures/gui_hotbar_selected.png
+%%DATADIR%%/mods/default/textures/default_lava_source_animated.png
+%%DATADIR%%/mods/default/textures/default_chest_side.png
+%%DATADIR%%/mods/default/textures/default_bronze_ingot.png
+%%DATADIR%%/mods/default/textures/heart.png
+%%DATADIR%%/mods/default/textures/default_furnace_front_active.png
+%%DATADIR%%/mods/default/textures/default_mese_block.png
+%%DATADIR%%/mods/default/textures/default_cactus_side.png
+%%DATADIR%%/mods/default/textures/default_lava_flowing_animated.png
+%%DATADIR%%/mods/default/textures/default_desert_stone.png
+%%DATADIR%%/mods/default/textures/default_rail_crossing.png
+%%DATADIR%%/mods/default/textures/default_grass.png
+%%DATADIR%%/mods/default/textures/default_chest_front.png
+%%DATADIR%%/mods/default/textures/gui_hb_bg.png
+%%DATADIR%%/mods/default/furnace.lua
+%%DATADIR%%/mods/default/init.lua
+%%DATADIR%%/mods/default/nodes.lua
+%%DATADIR%%/mods/default/tools.lua
+%%DATADIR%%/mods/default/legacy.lua
+%%DATADIR%%/mods/default/models/character.x
+%%DATADIR%%/mods/default/models/character.blend
+%%DATADIR%%/mods/default/models/character.png
+%%DATADIR%%/mods/default/functions.lua
+%%DATADIR%%/mods/default/crafting.lua
+%%DATADIR%%/mods/default/README.txt
+%%DATADIR%%/mods/default/trees.lua
+%%DATADIR%%/mods/xpanes/README.txt
+%%DATADIR%%/mods/xpanes/textures/xpanes_bar.png
+%%DATADIR%%/mods/xpanes/textures/xpanes_white.png
+%%DATADIR%%/mods/xpanes/textures/xpanes_grey.png
+%%DATADIR%%/mods/xpanes/textures/xpanes_space.png
+%%DATADIR%%/mods/xpanes/textures/xpanes_pane_half.png
+%%DATADIR%%/mods/xpanes/depends.txt
+%%DATADIR%%/mods/xpanes/init.lua
+%%DATADIR%%/mods/boats/depends.txt
+%%DATADIR%%/mods/boats/init.lua
+%%DATADIR%%/mods/boats/models/boat.x
+%%DATADIR%%/mods/boats/textures/boat_inventory.png
+%%DATADIR%%/mods/boats/textures/boat_wield.png
+%%DATADIR%%/mods/boats/README.txt
+%%DATADIR%%/mods/vessels/textures/vessels_glass_fragments.png
+%%DATADIR%%/mods/vessels/textures/vessels_steel_bottle.png
+%%DATADIR%%/mods/vessels/textures/vessels_drinking_glass_inv.png
+%%DATADIR%%/mods/vessels/textures/vessels_glass_bottle_inv.png
+%%DATADIR%%/mods/vessels/textures/vessels_steel_bottle_inv.png
+%%DATADIR%%/mods/vessels/textures/alternates/vessels_glass_bottle.png
+%%DATADIR%%/mods/vessels/textures/alternates/vessels_drinking_glass.png
+%%DATADIR%%/mods/vessels/textures/alternates/vessels_steel_bottle.png
+%%DATADIR%%/mods/vessels/textures/vessels_glass_bottle.png
+%%DATADIR%%/mods/vessels/textures/vessels_drinking_glass.png
+%%DATADIR%%/mods/vessels/README.txt
+%%DATADIR%%/mods/vessels/depends.txt
+%%DATADIR%%/mods/vessels/init.lua
+%%DATADIR%%/mods/farming/textures/farming_cotton.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_seed.png
+%%DATADIR%%/mods/farming/textures/farming_bread.png
+%%DATADIR%%/mods/farming/textures/farming_tool_woodhoe.png
+%%DATADIR%%/mods/farming/textures/farming_straw.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_3.png
+%%DATADIR%%/mods/farming/textures/farming_flour.png
+%%DATADIR%%/mods/farming/textures/farming_tool_steelhoe.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_2.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_5.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_4.png
+%%DATADIR%%/mods/farming/textures/farming_soil.png
+%%DATADIR%%/mods/farming/textures/farming_desert_sand_soil.png
+%%DATADIR%%/mods/farming/textures/farming_tool_stonehoe.png
+%%DATADIR%%/mods/farming/textures/farming_desert_sand_soil_wet_side.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_4.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_5.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_2.png
+%%DATADIR%%/mods/farming/textures/farming_soil_wet.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_3.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_8.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_1.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_7.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_6.png
+%%DATADIR%%/mods/farming/textures/farming_desert_sand_soil_wet.png
+%%DATADIR%%/mods/farming/textures/farming_soil_wet_side.png
+%%DATADIR%%/mods/farming/textures/farming_tool_diamondhoe.png
+%%DATADIR%%/mods/farming/textures/farming_tool_bronzehoe.png
+%%DATADIR%%/mods/farming/textures/farming_tool_mesehoe.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_seed.png
+%%DATADIR%%/mods/farming/textures/farming_wheat.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_6.png
+%%DATADIR%%/mods/farming/textures/farming_cotton_7.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_1.png
+%%DATADIR%%/mods/farming/textures/farming_wheat_8.png
+%%DATADIR%%/mods/farming/hoes.lua
+%%DATADIR%%/mods/farming/API.txt
+%%DATADIR%%/mods/farming/init.lua
+%%DATADIR%%/mods/farming/nodes.lua
+%%DATADIR%%/mods/farming/README.txt
+%%DATADIR%%/mods/farming/api.lua
+%%DATADIR%%/mods/farming/depends.txt
+%%DATADIR%%/mods/give_initial_stuff/depends.txt
+%%DATADIR%%/mods/give_initial_stuff/init.lua
+%%DATADIR%%/mods/tnt/init.lua
+%%DATADIR%%/mods/tnt/depends.txt
+%%DATADIR%%/mods/tnt/README.txt
+%%DATADIR%%/mods/tnt/sounds/tnt_gunpowder_burning.ogg
+%%DATADIR%%/mods/tnt/sounds/tnt_ignite.ogg
+%%DATADIR%%/mods/tnt/sounds/tnt_explode.ogg
+%%DATADIR%%/mods/tnt/textures/tnt_top_burning_animated.png
+%%DATADIR%%/mods/tnt/textures/tnt_top_burning.png
+%%DATADIR%%/mods/tnt/textures/tnt_gunpowder.png
+%%DATADIR%%/mods/tnt/textures/tnt_gunpowder_inventory.png
+%%DATADIR%%/mods/tnt/textures/tnt_gunpowder_burning.png
+%%DATADIR%%/mods/tnt/textures/tnt_bottom.png
+%%DATADIR%%/mods/tnt/textures/tnt_boom.png
+%%DATADIR%%/mods/tnt/textures/tnt_gunpowder_burning_animated.png
+%%DATADIR%%/mods/tnt/textures/tnt_top.png
+%%DATADIR%%/mods/tnt/textures/tnt_smoke.png
+%%DATADIR%%/mods/tnt/textures/tnt_side.png
+%%DATADIR%%/mods/dye/README.txt
+%%DATADIR%%/mods/dye/init.lua
+%%DATADIR%%/mods/dye/depends.txt
+%%DATADIR%%/mods/dye/textures/dye_brown.png
+%%DATADIR%%/mods/dye/textures/dye_green.png
+%%DATADIR%%/mods/dye/textures/dye_orange.png
+%%DATADIR%%/mods/dye/textures/dye_dark_grey.png
+%%DATADIR%%/mods/dye/textures/dye_violet.png
+%%DATADIR%%/mods/dye/textures/dye_red.png
+%%DATADIR%%/mods/dye/textures/dye_cyan.png
+%%DATADIR%%/mods/dye/textures/dye_blue.png
+%%DATADIR%%/mods/dye/textures/dye_grey.png
+%%DATADIR%%/mods/dye/textures/dye_white.png
+%%DATADIR%%/mods/dye/textures/dye_pink.png
+%%DATADIR%%/mods/dye/textures/dye_dark_green.png
+%%DATADIR%%/mods/dye/textures/dye_yellow.png
+%%DATADIR%%/mods/dye/textures/dye_black.png
+%%DATADIR%%/mods/dye/textures/dye_magenta.png
+%%DATADIR%%/mods/bones/textures/bones_top.png
+%%DATADIR%%/mods/bones/textures/bones_bottom.png
+%%DATADIR%%/mods/bones/textures/bones_side.png
+%%DATADIR%%/mods/bones/textures/bones_rear.png
+%%DATADIR%%/mods/bones/textures/bones_front.png
+%%DATADIR%%/mods/bones/depends.txt
+%%DATADIR%%/mods/bones/README.txt
+%%DATADIR%%/mods/bones/init.lua
+%%DATADIR%%/mods/flowers/depends.txt
+%%DATADIR%%/mods/flowers/README.txt
+%%DATADIR%%/mods/flowers/init.lua
+%%DATADIR%%/mods/flowers/mapgen.lua
+%%DATADIR%%/mods/flowers/textures/flowers_geranium.png
+%%DATADIR%%/mods/flowers/textures/flowers_tulip.png
+%%DATADIR%%/mods/flowers/textures/flowers_rose.png
+%%DATADIR%%/mods/flowers/textures/flowers_viola.png
+%%DATADIR%%/mods/flowers/textures/flowers_dandelion_yellow.png
+%%DATADIR%%/mods/flowers/textures/flowers_dandelion_white.png
+%%DATADIR%%/mods/wool/depends.txt
+%%DATADIR%%/mods/wool/textures/wool_cyan.png
+%%DATADIR%%/mods/wool/textures/wool_orange.png
+%%DATADIR%%/mods/wool/textures/wool_green.png
+%%DATADIR%%/mods/wool/textures/wool_grey.png
+%%DATADIR%%/mods/wool/textures/wool_blue.png
+%%DATADIR%%/mods/wool/textures/wool_violet.png
+%%DATADIR%%/mods/wool/textures/wool_brown.png
+%%DATADIR%%/mods/wool/textures/wool_dark_green.png
+%%DATADIR%%/mods/wool/textures/wool_red.png
+%%DATADIR%%/mods/wool/textures/wool_white.png
+%%DATADIR%%/mods/wool/textures/wool_magenta.png
+%%DATADIR%%/mods/wool/textures/wool_dark_grey.png
+%%DATADIR%%/mods/wool/textures/wool_black.png
+%%DATADIR%%/mods/wool/textures/wool_yellow.png
+%%DATADIR%%/mods/wool/textures/wool_pink.png
+%%DATADIR%%/mods/wool/init.lua
+%%DATADIR%%/mods/wool/README.txt
+%%DATADIR%%/mods/sethome/init.lua
+%%DATADIR%%/mods/stairs/README.txt
+%%DATADIR%%/mods/stairs/init.lua
+%%DATADIR%%/mods/stairs/depends.txt
+%%DATADIR%%/mods/doors/init.lua
+%%DATADIR%%/mods/doors/sounds/doors_door_close.ogg
+%%DATADIR%%/mods/doors/sounds/doors_door_open.ogg
+%%DATADIR%%/mods/doors/depends.txt
+%%DATADIR%%/mods/doors/README.txt
+%%DATADIR%%/mods/doors/textures/doors_wood_b.png
+%%DATADIR%%/mods/doors/textures/doors_obsidian_glass_b.png
+%%DATADIR%%/mods/doors/textures/doors_wood.png
+%%DATADIR%%/mods/doors/textures/doors_obsidian_glass_side.png
+%%DATADIR%%/mods/doors/textures/doors_glass.png
+%%DATADIR%%/mods/doors/textures/doors_steel_b.png
+%%DATADIR%%/mods/doors/textures/doors_glass_a.png
+%%DATADIR%%/mods/doors/textures/doors_trapdoor.png
+%%DATADIR%%/mods/doors/textures/doors_brown.png
+%%DATADIR%%/mods/doors/textures/doors_steel_a.png
+%%DATADIR%%/mods/doors/textures/doors_grey.png
+%%DATADIR%%/mods/doors/textures/doors_steel.png
+%%DATADIR%%/mods/doors/textures/doors_glass_b.png
+%%DATADIR%%/mods/doors/textures/doors_glass_side.png
+%%DATADIR%%/mods/doors/textures/doors_obsidian_glass.png
+%%DATADIR%%/mods/doors/textures/doors_obsidian_glass_a.png
+%%DATADIR%%/mods/doors/textures/doors_wood_a.png
+%%DATADIR%%/mods/doors/textures/doors_trapdoor_side.png
+%%DATADIR%%/mods/bucket/textures/bucket_lava.png
+%%DATADIR%%/mods/bucket/textures/bucket.png
+%%DATADIR%%/mods/bucket/textures/bucket_water.png
+%%DATADIR%%/mods/bucket/README.txt
+%%DATADIR%%/mods/bucket/depends.txt
+%%DATADIR%%/mods/bucket/init.lua
+%%DATADIR%%/mods/fire/README.txt
+%%DATADIR%%/mods/fire/init.lua
+%%DATADIR%%/mods/fire/textures/fire_basic_flame.png
+%%DATADIR%%/mods/fire/textures/fire_basic_flame_animated.png
+%%DATADIR%%/mods/fire/sounds/fire_small.ogg
+%%DATADIR%%/mods/fire/sounds/fire_large.ogg
+@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%/menu
+@dirrm %%DATADIR%%/mods/creative
+@dirrm %%DATADIR%%/mods/screwdriver/textures
+@dirrm %%DATADIR%%/mods/screwdriver
+@dirrm %%DATADIR%%/mods/default/sounds
+@dirrm %%DATADIR%%/mods/default/textures
+@dirrm %%DATADIR%%/mods/default/models
+@dirrm %%DATADIR%%/mods/default
+@dirrm %%DATADIR%%/mods/xpanes/textures
+@dirrm %%DATADIR%%/mods/xpanes
+@dirrm %%DATADIR%%/mods/boats/models
+@dirrm %%DATADIR%%/mods/boats/textures
+@dirrm %%DATADIR%%/mods/boats
+@dirrm %%DATADIR%%/mods/vessels/textures/alternates
+@dirrm %%DATADIR%%/mods/vessels/textures
+@dirrm %%DATADIR%%/mods/vessels
+@dirrm %%DATADIR%%/mods/farming/textures
+@dirrm %%DATADIR%%/mods/farming
+@dirrm %%DATADIR%%/mods/give_initial_stuff
+@dirrm %%DATADIR%%/mods/tnt/sounds
+@dirrm %%DATADIR%%/mods/tnt/textures
+@dirrm %%DATADIR%%/mods/tnt
+@dirrm %%DATADIR%%/mods/dye/textures
+@dirrm %%DATADIR%%/mods/dye
+@dirrm %%DATADIR%%/mods/bones/textures
+@dirrm %%DATADIR%%/mods/bones
+@dirrm %%DATADIR%%/mods/flowers/textures
+@dirrm %%DATADIR%%/mods/flowers
+@dirrm %%DATADIR%%/mods/wool/textures
+@dirrm %%DATADIR%%/mods/wool
+@dirrm %%DATADIR%%/mods/sethome
+@dirrm %%DATADIR%%/mods/stairs
+@dirrm %%DATADIR%%/mods/doors/sounds
+@dirrm %%DATADIR%%/mods/doors/textures
+@dirrm %%DATADIR%%/mods/doors
+@dirrm %%DATADIR%%/mods/bucket/textures
+@dirrm %%DATADIR%%/mods/bucket
+@dirrm %%DATADIR%%/mods/fire/textures
+@dirrm %%DATADIR%%/mods/fire/sounds
+@dirrm %%DATADIR%%/mods/fire
+@dirrm %%DATADIR%%/mods
+@dirrm %%DATADIR%%
+@dirrm share/minetest/games
+@dirrm share/minetest

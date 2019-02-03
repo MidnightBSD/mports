@@ -1,0 +1,135 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<div class="row">
+
+<section>
+<div class="col-md-6 col-md-offset-1">
+  <div class="jumbotron">
+    <div class="media">
+      <span class="media-left" style="padding: 10px">
+        <img src="/art/logo/MidnightBSDLogo64x64.png" width="64" height="64">
+      </span>
+      <div class="media-body">
+        <p class="lead">Magus, the MidnightBSD package cluster, is responsible for building software packages.</p>
+	<p>You can view current or past runs, or search for specific ports
+	to see if they are available.
+      </div>
+    </div>
+  </div>
+
+  <h3>Latest Results</h3>
+  <table class="result-list">
+        <thead>
+        <tr>
+                <th>Port</th>
+                <th>Version</th>
+                <th>Summary</th>
+                <th>OSVersion</th>
+                <th>Arch</th>
+        </tr>
+        </thead>
+        <tbody>
+        <TMPL_LOOP NAME=results>
+        <tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
+                <td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+                <td><TMPL_VAR NAME=version></td>
+                <td><TMPL_VAR NAME=summary></td>
+                <td><TMPL_VAR NAME=osversion></td>
+                <td><TMPL_VAR NAME=arch></td>
+        </tr>
+        </TMPL_LOOP>
+        </tbody>
+</table>
+</div>
+</section>
+
+<section>
+<div class="col-md-3 col-md-offset-1">
+<TMPL_IF NAME="locks">
+<h3>Currently Building</h3>
+<table class="table table-striped locks">
+<thead>
+<tr>
+	<th>Port</th>
+	<th>Machine</th>
+	<th>Arch</th>
+	<th>OSVersion</th>
+	<th>Run</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP NAME="locks">
+<tr>
+	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
+	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+	<td><TMPL_VAR name="arch"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+
+<TMPL_IF name="runs">
+<h3>Active Runs</h3>
+<table class="table table-striped locks">
+<thead> 
+<tr>
+        <th>Run</th>
+        <th>Arch</th>
+        <th>OSVersion</th>
+	<th>Created</th>
+	<th>Blessed</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP NAME="runs">
+<tr>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
+        <td><TMPL_VAR name="arch"></td>
+        <td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="created"></td>
+	<td><TMPL_VAR NAME="blessed"></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+
+<TMPL_IF name="cats">
+<h3>Browse</h3>
+
+<p class="cats">
+<TMPL_LOOP NAME="cats">
+	<a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="category">"><TMPL_VAR NAME="category"></a>
+	<TMPL_UNLESS NAME="__last__">&middot;</TMPL_UNLESS>
+</TMPL_LOOP>
+</p>
+</TMPL_IF>
+
+<h3>Compare Runs</h3>
+<form class="form" id="compareruns" action="<TMPL_VAR NAME=root>/compare/" method="get">
+	<fieldset>
+	<div class="form-group">
+	<label for="run1">Run 1 ID</label>
+        <input class="form-control" placeholder="Run ID 1" type="number" name="run1" value="">
+	</div>
+
+	<div class="form-group">
+	<label for="run2">Run 2 ID</label>
+        <input class="form-control" placeholder="Run ID 2" type="number" name="run2" value="">
+	</div>
+        <input class="btn btn-default" type="submit" value="Compare">
+	</fieldset>
+</form>
+
+</div>
+</section>
+
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

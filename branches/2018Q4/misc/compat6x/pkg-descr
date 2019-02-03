@@ -1,0 +1,13 @@
+This package allows you to install the FreeBSD 6.x compat libraries 
+on your system.  These libraries allow you to run FreeBSD 6.x
+programs.
+
+Ports usage example: (for developers)
+
+--
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 3000
+LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
+.endif
+--

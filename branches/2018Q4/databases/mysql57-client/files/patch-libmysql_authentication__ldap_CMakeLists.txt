@@ -1,0 +1,22 @@
+--- libmysql/authentication_ldap/CMakeLists.txt.orig	2018-03-04 08:40:40.000000000 -0500
++++ libmysql/authentication_ldap/CMakeLists.txt	2018-10-14 23:46:46.052955000 -0400
+@@ -19,7 +19,7 @@
+ 
+ INCLUDE(CheckIncludeFiles)
+ 
+-IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   INCLUDE_DIRECTORIES(SYSTEM /usr/local/include)
+   LIST(APPEND CMAKE_REQUIRED_INCLUDES "/usr/local/include")
+ ENDIF()
+@@ -53,8 +53,8 @@
+ # IF someone like can build the cyrus sasl library on windows and build LDAP authentication sasl client as well.
+ IF (CMAKE_SYSTEM_NAME MATCHES "SunOS")
+   SET(SASL_LIBRARY "sasl")
+-ELSEIF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+-  SET(SASL_LIBRARY "-L/usr/local/lib -R/usr/local/lib -lsasl2")
++ELSEIF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
++  SET(SASL_LIBRARY "-L/usr/local/lib -rpath /usr/local/lib -lsasl2")
+ ELSE()
+   SET(SASL_LIBRARY "sasl2")
+ ENDIF ()

@@ -1,0 +1,2 @@
+  Do not forget to add COMPAT_FREEBSD5 into
+  your kernel configuration (enabled by default).

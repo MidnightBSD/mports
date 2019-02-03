@@ -1,0 +1,17 @@
+--- plugins/node.d.freebsd/cpu.in.orig	2016-09-11 09:26:26.000000000 -0400
++++ plugins/node.d.freebsd/cpu.in	2016-09-11 09:26:44.000000000 -0400
+@@ -34,13 +34,7 @@
+ fi
+ 
+ if [ "$1" = "config" ]; then
+-
+-	OSV=`$SYSCTL_BIN -n kern.osrelease | cut -f1 -d.`
+-	if [ "$OSV" = "4" ]; then
+-		STATUNITS=`$SYSCTL_BIN -n kern.clockrate | cut -f16 -d' '`
+-	elif [ "$OSV" -ge "5" ]; then
+-		STATUNITS=`$SYSCTL_BIN -n kern.clockrate | cut -f13 -d' '`
+-	fi
++	STATUNITS=`$SYSCTL_BIN -n kern.clockrate | cut -f13 -d' '`
+ 	PERCENT=`$SYSCTL_BIN -n hw.ncpu | awk '{print ($1)*100}'`
+ 	NCPU=`$SYSCTL_BIN -n hw.ncpu`
+ 	if [ "$scaleto100" = yes ]; then

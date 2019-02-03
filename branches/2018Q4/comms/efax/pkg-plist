@@ -1,0 +1,17 @@
+bin/fax
+bin/efax
+bin/efix
+etc/efax.rc.sample
+etc/efax.rc.sample.ja
+man/man1/fax.1.gz
+man/man1/efax.1.gz
+man/man1/efix.1.gz
+share/doc/efax/COPYING
+share/doc/efax/README
+share/doc/efax/efax.html
+share/doc/efax/fax.html
+share/doc/efax/printcap.sample
+@dirrm share/doc/efax
+@unexec /bin/rm /var/spool/fax/outgoing/lock
+@unexec /bin/rmdir /var/spool/fax/incoming
+@unexec /bin/rmdir /var/spool/fax/outgoing
