@@ -1,26 +1,21 @@
 # $MidnightBSD$
 
 PORTNAME=	gentoo
-PORTVERSION=	0.19.13
-PORTREVISION=	1
+PORTVERSION=	0.20.7
 CATEGORIES=	x11-fm
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}/ \
-		http://mirror.4bit.ws/
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ based, file manager inspired by DirectoryOpus
 
 LICENSE=	gpl2
 
-OPTIONS_DEFINE=	FAM DOCS
-
-USE_GNOME=	gtk20
+USE_GNOME=	gtk30
 USES=		gettext gmake pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+OPTIONS_DEFINE=	FAM DOCS
 
 FAM_USES=		fam
 FAM_CONFIGURE_ENABLE=	fam
@@ -41,7 +36,7 @@ post-install:
 	TODO
 	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
 .endfor
-	cd ${WRKSRC}/docs; ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
-	${RM} -f ${STAGEDIR}${DOCSDIR}/gentoo.1x
+	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	${RM} ${STAGEDIR}${DOCSDIR}/gentoo.1x
 
 .include <bsd.port.mk>
