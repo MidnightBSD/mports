@@ -1,0 +1,108 @@
+# $MidnightBSD$
+
+PORTNAME=	webkit
+PORTVERSION=	2.4.11
+PORTREVISION=	1
+CATEGORIES=	www
+MASTER_SITES=	http://webkitgtk.org/releases/
+PKGNAMESUFFIX=	-gtk2
+DISTNAME=	${PORTNAME}gtk-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Opensource browser engine using the GTK+ 2 toolkit
+
+LICENSE=	lgpl
+
+BUILD_DEPENDS=	gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
+		p5-Switch>0:${PORTSDIR}/lang/p5-Switch \
+		geoclue>=0:${PORTSDIR}/net/geoclue
+LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
+		libsecret-1.so:${PORTSDIR}/security/libsecret \
+		libicutu.so:${PORTSDIR}/devel/icu \
+		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
+		libharfbuzz-icu.so:${PORTSDIR}/print/harfbuzz-icu \
+		libwebp.so:${PORTSDIR}/graphics/webp \
+		libcurl.so:${PORTSDIR}/ftp/curl \
+		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
+RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
+
+USE_GSTREAMER1=	yes
+USE_XORG=	xt xdamage xcomposite
+USES=		bison compiler:c++11-lib gettext gmake gperf libtool \
+		perl5 pkgconfig shebangfix tar:xz
+USE_RUBY=	yes
+RUBY_NO_RUN_DEPENDS=yes
+USE_GNOME=	cairo gdkpixbuf2 gtk20 introspection:build libxslt
+USE_GL=		gl
+USE_SQLITE=	3
+USE_PERL5=	build
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	ac_cv_path_DOLT_BASH=""
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--with-gtk=2.0 \
+		--enable-svg-fonts \
+		--enable-geolocation \
+		--enable-introspection \
+		--disable-webkit2 \
+		--with-html-dir=${PREFIX}/share/gtk-doc/html/webkit1
+MAKEFILE=	GNUmakefile
+MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
+
+CONFIGURE_ARGS+=--disable-egl \
+		--disable-gles2
+SHEBANG_FILES= \
+	Source/JavaScriptCore/create_hash_table \
+	Source/JavaScriptCore/inspector/scripts/xxd.pl \
+	Source/WebCore/css/*.pl \
+	Source/WebCore/dom/*.pl \
+	Source/WebCore/make-hash-tools.pl \
+	Source/WebCore/page/make_settings.pl \
+	Source/WebCore/platform/text/mac/make-charset-table.pl \
+	Source/WebKit2/Scripts/generate-forwarding-headers.pl \
+	Source/WebCore/bindings/scripts/*.p[lm] \
+	Source/JavaScriptCore/create_hash_table
+
+BROWSER_PLUGINS_DIR?=  ${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk2
+#_BROWSER_PLUGINS_DIR=	${BROWSER_PLUGINS_DIR:S|^/|"|:S|/|", "|g}",
+
+OPTIONS_DEFINE=	DEBUG FULLDEBUG
+DEBUG_DESC=	Just enable debug symbols
+FULLDEBUG_DESC=	Enable asserts and other debug support
+
+FULLDEBUG_CONFIGURE_ENABLE=	debug
+DEBUG_CONFIGURE_ON=	--enable-debug-symbols=yes
+DEBUG_CONFIGURE_OFF=	--disable-debug-symbols
+
+.include <bsd.mport.options.mk>
+
+# Shutup warning spam
+CXXFLAGS+=	-Wno-c++11-extensions
+
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} >= 501400
+BUILD_DEPENDS+=	p5-Switch>0:${PORTSDIR}/lang/p5-Switch
+.endif
+
+BUILD_DEPENDS+=	flex>=0:${PORTSDIR}/textproc/flex
+CONFIGURE_ENV+=	FLEX="${LOCALBASE}/bin/flex"
+
+.if ${CHOSEN_COMPILER_TYPE} == clang
+CXXFLAGS+=	-Qunused-arguments
+.endif
+
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%BROWSER_PLUGINS_DIR%%|${BROWSER_PLUGINS_DIR}|' \
+		${WRKSRC}/Source/WebCore/plugins/PluginDatabase.cpp
+	@${FIND} ${WRKSRC} -name GNUmakefile.in | ${XARGS} ${REINPLACE_CMD} -e \
+		's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g'
+
+post-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/Programs/GtkLauncher \
+		${PREFIX}/bin/GtkLauncher-1
+
+.include <bsd.port.post.mk>

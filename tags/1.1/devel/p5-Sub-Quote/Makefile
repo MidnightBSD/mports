@@ -1,0 +1,27 @@
+# Created by: Adam Weinberger <adamw@FreeBSD.org>
+# $FreeBSD: head/devel/p5-Sub-Quote/Makefile 467980 2018-04-22 08:55:09Z sunpoet $
+# $MidnightBSD$
+
+PORTNAME=	Sub-Quote
+PORTVERSION=	2.005001
+CATEGORIES=	devel perl5
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:HAARG
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Efficient generation of subroutines via string eval
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+TEST_DEPENDS=	p5-Test-Fatal>=0.003:devel/p5-Test-Fatal
+
+CONFLICTS_INSTALL=	p5-Moo-[01]* p5-Moo-2.00[0-2]*
+
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
+PERL_CONFIGURE=	yes
+
+.include <bsd.port.mk>

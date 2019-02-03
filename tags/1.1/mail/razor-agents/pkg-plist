@@ -1,0 +1,49 @@
+bin/razor-admin
+bin/razor-check
+bin/razor-client
+bin/razor-report
+bin/razor-revoke
+%%SITE_ARCH%%/Razor2/Client/Version.pm
+%%SITE_ARCH%%/Razor2/Client/Config.pm
+%%SITE_ARCH%%/Razor2/Client/Engine.pm
+%%SITE_ARCH%%/Razor2/Client/Agent.pm
+%%SITE_ARCH%%/Razor2/Client/Core.pm
+%%SITE_ARCH%%/Razor2/Engine/VR8.pm
+%%SITE_ARCH%%/Razor2/Preproc/deHTML.pm
+%%SITE_ARCH%%/Razor2/Preproc/deHTML_comment.pm
+%%SITE_ARCH%%/Razor2/Preproc/Manager.pm
+%%SITE_ARCH%%/Razor2/Preproc/deNewline.pm
+%%SITE_ARCH%%/Razor2/Preproc/deBase64.pm
+%%SITE_ARCH%%/Razor2/Preproc/enBase64.pm
+%%SITE_ARCH%%/Razor2/Preproc/deQP.pm
+%%SITE_ARCH%%/Razor2/Preproc/deHTMLxs.pm
+%%SITE_ARCH%%/Razor2/Signature/Ephemeral.pm
+%%SITE_ARCH%%/Razor2/Signature/Whiplash.pm
+%%SITE_ARCH%%/Razor2/Errorhandler.pm
+%%SITE_ARCH%%/Razor2/Logger.pm
+%%SITE_ARCH%%/Razor2/Syslog.pm
+%%SITE_ARCH%%/Razor2/String.pm
+%%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/deHTMLxs.so
+%%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs/autosplit.ix
+%%SITE_ARCH%%/auto/Razor2/Syslog/autosplit.ix
+%%PERL5_MAN3%%/Razor2::Errorhandler.3.gz
+%%PERL5_MAN3%%/Razor2::Syslog.3.gz
+%%PERL5_MAN3%%/Razor2::Preproc::deHTMLxs.3.gz
+@dir %%SITE_ARCH%%/Razor2/Client
+@dir %%SITE_ARCH%%/Razor2/Engine
+@dir %%SITE_ARCH%%/Razor2/Preproc
+@dir %%SITE_ARCH%%/Razor2/Signature
+@dir %%SITE_ARCH%%/Razor2
+@dir %%SITE_ARCH%%/auto/Razor2/Preproc/deHTMLxs
+@dir %%SITE_ARCH%%/auto/Razor2/Preproc
+@dir %%SITE_ARCH%%/auto/Razor2/Syslog
+@dir %%SITE_ARCH%%/auto/Razor2
+@dir %%SITE_ARCH%%/auto/razor-agents
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
+@dir %%PERL5_MAN1%%
+@dir share/licenses/razor-agents-2.85_1
+@dir share/licenses

@@ -1,0 +1,69 @@
+--- configure.orig	2003-03-10 23:53:20 UTC
++++ configure
+@@ -762,14 +762,14 @@ yes)
+ 	libiconv=$prefix
+     fi
+     ICONVINC="-I$libiconv/include"
+-    ICONVLIB="-L$libiconv/lib -R$libiconv/lib -liconv"
++    ICONVLIB="-L$libiconv/lib -liconv"
+     ;;
+ *)
+     if test "$liteonly" = yes ; then
+ 	{ echo "configure: error: you can't set iconv options at all when you set value \"yes\" to --enable-liteonly, because lite library does not have iconv support." 1>&2; exit 1; }
+     fi
+     ICONVINC="-I$libiconv/include"
+-    ICONVLIB="-L$libiconv/lib -R$libiconv/lib -liconv"
++    ICONVLIB="-L$libiconv/lib -liconv"
+     ;;
+ esac
+ 
+@@ -2633,7 +2633,37 @@ fi
+   ac_cv_flavor_gethostbyaddr=unknown
+ else
+   cat > conftest.$ac_ext <<EOF
+-#line 2637 "configure"
++#line 2648 "configure"
++#include "confdefs.h"
++
++    #include <stddef.h>
++    #include <sys/types.h>
++    #include <sys/socket.h>
++    #include <netdb.h>
++    struct hostent *gethostbyaddr(const void *addr, int len, int type) {
++	return NULL;
++    }
++    int main() {
++	(void)gethostbyaddr(NULL, 0, 0);
++	return 0;
++    }
++    
++EOF
++if { (eval echo configure:2664: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
++then
++  ac_cv_flavor_gethostbyaddr=freebsd6
++else
++  echo "configure: failed program was:" >&5
++  cat conftest.$ac_ext >&5
++fi
++rm -fr conftest*
++fi
++
++    if test "$cross_compiling" = yes; then
++  ac_cv_flavor_gethostbyaddr=unknown
++else
++  cat > conftest.$ac_ext <<EOF
++#line 2678 "configure"
+ #include "confdefs.h"
+ 
+     #include <stddef.h>
+@@ -2675,6 +2705,10 @@ echo "$ac_t""$ac_cv_flavor_gethostbyaddr
+ 	ac_cv_type_ghba_addr_t='const char *'
+ 	ac_cv_type_ghba_addrlen_t='size_t'
+ 	;;
++    freebsd6)
++	ac_cv_type_ghba_addr_t='const void *'
++	ac_cv_type_ghba_addrlen_t='int'
++	;;
+     traditional | none)
+ 	ac_cv_type_ghba_addr_t='const char *'
+ 	ac_cv_type_ghba_addrlen_t='int'

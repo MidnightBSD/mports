@@ -1,0 +1,21 @@
+--- Makefile.orig	2003-11-10 14:31:45.000000000 -0500
++++ Makefile	2018-10-15 20:27:44.495953000 -0400
+@@ -1,6 +1,15 @@
+-CC = gcc
+-LIBS = -lglut -lGL -lGLU -lSDL
++CC = cc
++CFLAGS=	-I/usr/local/include -O2 -L/usr/local/lib
++LIBS = -lglut -lGL -lGLU -lSDL -lm
+ SRC= Configure\ Screen.c Title\ Screen.c asteroids.c sound.c
+ 
++all: clean allenroids
++
+ allenroids: $(SRC)
+-	$(CC) -o allenroids $(SRC) $(LIBS)
++	$(CC) ${CFLAGS} -o allenroids $(SRC) $(LIBS)
++
++install:
++	install allenroids ${PREFIX}/bin
++
++clean:
++	rm -f allenroids

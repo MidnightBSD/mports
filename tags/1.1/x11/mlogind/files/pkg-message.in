@@ -1,0 +1,17 @@
+*************************************************************************
+
+It is possible to start mlogind from /etc/ttys.
+Please see %%PREFIX%%/etc/rc.d/mlogind for instructions on how to do that.
+
+Alternatively, just put
+
+mlogind_enable=yes
+
+into /etc/rc.conf
+
+You need to put session files in the directory specified by option
+"sessiondir". They should be xdg-style .desktop files.
+The "Name" entry in the session file would be used as session name.
+The "Exec" entry would replace %session in login_cmd.
+
+*************************************************************************

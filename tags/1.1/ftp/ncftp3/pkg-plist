@@ -1,0 +1,13 @@
+lib/libStrn.so
+lib/libStrn.so.1
+lib/libncftp.so
+lib/libncftp.so.3
+lib/libsio.so
+lib/libsio.so.5
+bin/%%NCFTP%%
+bin/ncftpbatch
+bin/ncftpget
+bin/ncftpls
+bin/ncftpput
+bin/ncftpbookmarks
+bin/ncftpspooler

@@ -1,0 +1,8 @@
+bin/perltidy
+%%SITE_PERL%%/Perl/Tidy.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Perl/Tidy/.packlist
+man/man1/perltidy.1.gz
+man/man3/Perl::Tidy.3.gz
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Perl/Tidy
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Perl
+@dirrmtry %%SITE_PERL%%/Perl

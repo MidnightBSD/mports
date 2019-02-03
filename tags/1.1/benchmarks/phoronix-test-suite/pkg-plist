@@ -1,0 +1,603 @@
+share/icons/hicolor/64x64/mimetypes/application-x-openbenchmarking.png
+share/icons/hicolor/48x48/apps/phoronix-test-suite.png
+share/applications/phoronix-test-suite-launcher.desktop
+share/applications/phoronix-test-suite.desktop
+share/mime/magic
+share/mime/packages/openbenchmarking-mime.xml
+share/mime/globs2
+share/mime/generic-icons
+share/mime/subclasses
+share/mime/globs
+share/mime/aliases
+share/mime/XMLnamespaces
+share/mime/treemagic
+share/mime/types
+share/mime/application/x-openbenchmarking.xml
+share/mime/mime.cache
+share/mime/icons
+share/mime/version
+%%DATADIR%%/deploy/deb-package/build-package-deb.php
+%%DATADIR%%/deploy/phoromatic-systemd/phoromatic-server.service
+%%DATADIR%%/deploy/phoromatic-systemd/phoromatic-client.service
+%%DATADIR%%/deploy/phoromatic-upstart/phoromatic-server.conf
+%%DATADIR%%/deploy/phoromatic-upstart/phoromatic-client.conf
+%%DATADIR%%/deploy/phoromatic-upstart/phoromatic-client.alt.conf
+%%DATADIR%%/deploy/phoromatic-rcd/phoromatic-client
+%%DATADIR%%/deploy/phoromatic-initd/phoromatic-client
+%%DATADIR%%/deploy/deployments.md
+%%DATADIR%%/deploy/farm-system-customizations/radeon-xorg-headless.conf
+%%DATADIR%%/deploy/farm-system-customizations/ubuntu-initial-setup.sh
+%%DATADIR%%/deploy/farm-system-customizations/intel-xorg-headless.conf
+%%DATADIR%%/deploy/rpm-package/build-package-rpm.php
+%%DATADIR%%/pts-core/web-interface/html/benchmark.html
+%%DATADIR%%/pts-core/web-interface/html/test_queue.html
+%%DATADIR%%/pts-core/web-interface/html/early.html
+%%DATADIR%%/pts-core/web-interface/html/about.html
+%%DATADIR%%/pts-core/web-interface/html/settings.html
+%%DATADIR%%/pts-core/web-interface/favicon.ico
+%%DATADIR%%/pts-core/web-interface/index.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_component.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_result.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_main.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_results.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_system.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_search.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_intro.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_test.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_tests.php
+%%DATADIR%%/pts-core/web-interface/web-interfaces/pts_webui_loader.php
+%%DATADIR%%/pts-core/web-interface/js/pts-web-interface.js
+%%DATADIR%%/pts-core/web-interface/js/pts-web-functions.js
+%%DATADIR%%/pts-core/web-interface/js/pts-web-socket.js
+%%DATADIR%%/pts-core/web-interface/assets/pts-web-logo.png
+%%DATADIR%%/pts-core/web-interface/assets/pts-web-interface.css
+%%DATADIR%%/pts-core/web-interface/assets/background.png
+%%DATADIR%%/pts-core/web-interface/assets/pts-mobile-interface.css
+%%DATADIR%%/pts-core/pts-core.php
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-alpine-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-solus-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-optware-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-macports-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-lede-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-brew-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-midnightbsd-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-void-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-netbsd-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-pclinuxos-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-openindiana-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-arch-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-angstrom-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-fedora-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-opensuse-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-pardus-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-termux-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-zenwalk-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-ubuntu-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-opensolaris-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-gentoo-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-mandrivalinux-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-debian-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/scripts/install-dragonfly-packages.sh
+%%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers/arch_dependency_handler.php
+%%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers/ubuntu_dependency_handler.php
+%%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers/fedora_dependency_handler.php
+%%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers/microsoft_dependency_handler.php
+%%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers/opensuse_dependency_handler.php
+%%DATADIR%%/pts-core/external-test-dependencies/xml/angstrom-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/ubuntu-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/openindiana-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/optware-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/xsl/pts-exdep-viewer.xsl
+%%DATADIR%%/pts-core/external-test-dependencies/xml/xsl/pts-generic-exdep-viewer.xsl
+%%DATADIR%%/pts-core/external-test-dependencies/xml/pclinuxos-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/solus-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/fedora-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/pardus-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/zenwalk-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/gentoo-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/midnightbsd-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/opensolaris-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/alpine-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/netbsd-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/brew-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/void-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/microsoft-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/lede-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/macports-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/dragonfly-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/arch-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/generic-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/opensuse-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/mandrivalinux-packages.xml
+%%DATADIR%%/pts-core/external-test-dependencies/xml/termux-packages.xml
+%%DATADIR%%/pts-core/commands/remove_result.php
+%%DATADIR%%/pts-core/commands/start_phoromatic_event_server.php
+%%DATADIR%%/pts-core/commands/upload_test_suite.php
+%%DATADIR%%/pts-core/commands/result_file_to_pdf.php
+%%DATADIR%%/pts-core/commands/start_remote_gui_server.php
+%%DATADIR%%/pts-core/commands/list_modules.php
+%%DATADIR%%/pts-core/commands/result_file_to_suite.php
+%%DATADIR%%/pts-core/commands/commands.php
+%%DATADIR%%/pts-core/commands/test_module.php
+%%DATADIR%%/pts-core/commands/start_phoromatic_server.php
+%%DATADIR%%/pts-core/commands/list_unsupported_tests.php
+%%DATADIR%%/pts-core/commands/debug_websocket_server.php
+%%DATADIR%%/pts-core/commands/list_all_tests.php
+%%DATADIR%%/pts-core/commands/install_dependencies.php
+%%DATADIR%%/pts-core/commands/user_config_set.php
+%%DATADIR%%/pts-core/commands/run_random_tests.php
+%%DATADIR%%/pts-core/commands/debug_render_test.php
+%%DATADIR%%/pts-core/commands/list_cached_tests.php
+%%DATADIR%%/pts-core/commands/refresh_graphs.php
+%%DATADIR%%/pts-core/commands/upload_test_profile.php
+%%DATADIR%%/pts-core/commands/default_run.php
+%%DATADIR%%/pts-core/commands/network_setup.php
+%%DATADIR%%/pts-core/commands/enterprise_setup.php
+%%DATADIR%%/pts-core/commands/list_installed_dependencies.php
+%%DATADIR%%/pts-core/commands/gui.php
+%%DATADIR%%/pts-core/commands/install_test.php
+%%DATADIR%%/pts-core/commands/result_file_to_json.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_login.php
+%%DATADIR%%/pts-core/commands/pts_version.php
+%%DATADIR%%/pts-core/commands/list_installed_suites.php
+%%DATADIR%%/pts-core/commands/dump_openbenchmarking_indexes.php
+%%DATADIR%%/pts-core/commands/extract_from_result_file.php
+%%DATADIR%%/pts-core/commands/ob_test_profile_analyze.php
+%%DATADIR%%/pts-core/commands/validate_test_suite.php
+%%DATADIR%%/pts-core/commands/rename_result_file.php
+%%DATADIR%%/pts-core/commands/build_suite.php
+%%DATADIR%%/pts-core/commands/module_setup.php
+%%DATADIR%%/pts-core/commands/list_possible_dependencies.php
+%%DATADIR%%/pts-core/commands/analyze_all_runs.php
+%%DATADIR%%/pts-core/commands/benchmark.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_uploads.php
+%%DATADIR%%/pts-core/commands/internal_run.php
+%%DATADIR%%/pts-core/commands/dump_core_storage.php
+%%DATADIR%%/pts-core/commands/list_available_virtual_suites.php
+%%DATADIR%%/pts-core/commands/debug_install.php
+%%DATADIR%%/pts-core/commands/dump_possible_options.php
+%%DATADIR%%/pts-core/commands/list_saved_results.php
+%%DATADIR%%/pts-core/commands/reorder_result_file.php
+%%DATADIR%%/pts-core/commands/validate_test_profile.php
+%%DATADIR%%/pts-core/commands/start_ws_server.php
+%%DATADIR%%/pts-core/commands/user_config_reset.php
+%%DATADIR%%/pts-core/commands/list_installed_tests.php
+%%DATADIR%%/pts-core/commands/batch_benchmark.php
+%%DATADIR%%/pts-core/commands/run_tests_in_suite.php
+%%DATADIR%%/pts-core/commands/debug_benchmark.php
+%%DATADIR%%/pts-core/commands/auto_compare.php
+%%DATADIR%%/pts-core/commands/batch_run.php
+%%DATADIR%%/pts-core/commands/dump_file_info.php
+%%DATADIR%%/pts-core/commands/rename_identifier_in_result_file.php
+%%DATADIR%%/pts-core/commands/merge_results.php
+%%DATADIR%%/pts-core/commands/network_info.php
+%%DATADIR%%/pts-core/commands/winners_and_losers.php
+%%DATADIR%%/pts-core/commands/list_recommended_tests.php
+%%DATADIR%%/pts-core/commands/shell.php
+%%DATADIR%%/pts-core/commands/interactive.php
+%%DATADIR%%/pts-core/commands/create_test_profile.php
+%%DATADIR%%/pts-core/commands/diagnostics.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_refresh.php
+%%DATADIR%%/pts-core/commands/module_info.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_changes.php
+%%DATADIR%%/pts-core/commands/debug_self_test.php
+%%DATADIR%%/pts-core/commands/remove_installed_test.php
+%%DATADIR%%/pts-core/commands/php_conf.php
+%%DATADIR%%/pts-core/commands/dump_phodevi_properties.php
+%%DATADIR%%/pts-core/commands/clone_openbenchmarking_result.php
+%%DATADIR%%/pts-core/commands/list_not_installed_tests.php
+%%DATADIR%%/pts-core/commands/auto_load_module.php
+%%DATADIR%%/pts-core/commands/result_file_to_csv.php
+%%DATADIR%%/pts-core/commands/debug_result_parser.php
+%%DATADIR%%/pts-core/commands/auto_sort_result_file.php
+%%DATADIR%%/pts-core/commands/dump_phodevi_smart_cache.php
+%%DATADIR%%/pts-core/commands/unload_module.php
+%%DATADIR%%/pts-core/commands/batch_setup.php
+%%DATADIR%%/pts-core/commands/show_result.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_launcher.php
+%%DATADIR%%/pts-core/commands/debug_websocket_client.php
+%%DATADIR%%/pts-core/commands/upload_result.php
+%%DATADIR%%/pts-core/commands/debug_test_download_links.php
+%%DATADIR%%/pts-core/commands/dump_tests_to_git.php
+%%DATADIR%%/pts-core/commands/openbenchmarking_repositories.php
+%%DATADIR%%/pts-core/commands/system_sensors.php
+%%DATADIR%%/pts-core/commands/list_available_suites.php
+%%DATADIR%%/pts-core/commands/run_test.php
+%%DATADIR%%/pts-core/commands/dump_documentation.php
+%%DATADIR%%/pts-core/commands/edit_result_file.php
+%%DATADIR%%/pts-core/commands/default_benchmark.php
+%%DATADIR%%/pts-core/commands/info.php
+%%DATADIR%%/pts-core/commands/force_install.php
+%%DATADIR%%/pts-core/commands/list_available_tests.php
+%%DATADIR%%/pts-core/commands/make_openbenchmarking_cache.php
+%%DATADIR%%/pts-core/commands/estimate_run_time.php
+%%DATADIR%%/pts-core/commands/remove_from_result_file.php
+%%DATADIR%%/pts-core/commands/dump_suites_to_git.php
+%%DATADIR%%/pts-core/commands/inspect_test_profile.php
+%%DATADIR%%/pts-core/commands/stress_run.php
+%%DATADIR%%/pts-core/commands/make_download_cache.php
+%%DATADIR%%/pts-core/commands/result_file_to_text.php
+%%DATADIR%%/pts-core/commands/list_missing_dependencies.php
+%%DATADIR%%/pts-core/commands/system_info.php
+%%DATADIR%%/pts-core/commands/finish_run.php
+%%DATADIR%%/pts-core/commands/help.php
+%%DATADIR%%/pts-core/commands/debug_dependency_handler.php
+%%DATADIR%%/pts-core/commands/validate_result_file.php
+%%DATADIR%%/pts-core/commands/download_test_files.php
+%%DATADIR%%/pts-core/commands/batch_install.php
+%%DATADIR%%/pts-core/commands/search.php
+%%DATADIR%%/pts-core/commands/list_test_usage.php
+%%DATADIR%%/pts-core/hooks/startup/template.sh
+%%DATADIR%%/pts-core/objects/pts_html_template.php
+%%DATADIR%%/pts-core/objects/FPDF.php
+%%DATADIR%%/pts-core/objects/pts_virtual_test_suite.php
+%%DATADIR%%/pts-core/objects/pts_phoroql.php
+%%DATADIR%%/pts-core/objects/pts_result_file_output.php
+%%DATADIR%%/pts-core/objects/pts_input_type_restrictions.php
+%%DATADIR%%/pts-core/objects/pts_openbenchmarking.php
+%%DATADIR%%/pts-core/objects/pts_render.php
+%%DATADIR%%/pts-core/objects/pts_result_file_analyzer.php
+%%DATADIR%%/pts-core/objects/pts_result_file.php
+%%DATADIR%%/pts-core/objects/pts_test_run_options.php
+%%DATADIR%%/pts-core/objects/pts_result_file_system.php
+%%DATADIR%%/pts-core/objects/pts_test_result_buffer_item.php
+%%DATADIR%%/pts-core/objects/pts_strings.php
+%%DATADIR%%/pts-core/objects/pts_test_file_download.php
+%%DATADIR%%/pts-core/objects/pts_result_merge_select.php
+%%DATADIR%%/pts-core/objects/pts_test_profile_results_definition.php
+%%DATADIR%%/pts-core/objects/pts_svg_dom_html.php
+%%DATADIR%%/pts-core/objects/pts_md_template.php
+%%DATADIR%%/pts-core/objects/pts_element_node.php
+%%DATADIR%%/pts-core/objects/pts_exdep_platform_parser.php
+%%DATADIR%%/pts-core/objects/pts_test_suite.php
+%%DATADIR%%/pts-core/objects/pts_pdf_template.php
+%%DATADIR%%/pts-core/objects/pts_math.php
+%%DATADIR%%/pts-core/objects/pts_search.php
+%%DATADIR%%/pts-core/objects/pts_web_socket.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_disk.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_audio.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_memory.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_motherboard.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_network.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_gpu.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_monitor.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_system.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_chipset.php
+%%DATADIR%%/pts-core/objects/phodevi/components/phodevi_cpu.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_solaris_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_osx_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_windows_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_linux_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_bsd_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/parsers/phodevi_parser.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_sensor.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_voltage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/hdd_read_speed.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_fanspeed.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/hdd_write_speed.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cgroup_cpu_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_freq.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_power.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/sys_iowait.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/sys_voltage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_memory_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_power.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/swap_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/hdd_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/gpu_fanspeed.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/sys_fanspeed.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_freq.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/sys_power.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/memory_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/network_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/sys_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/cpu_voltage.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/ambient_temp.php
+%%DATADIR%%/pts-core/objects/phodevi/sensors/memory_usage.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_device_property.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_base.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_device_interface.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_vfs.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_cache.php
+%%DATADIR%%/pts-core/objects/phodevi/phodevi_sensor_monitor.php
+%%DATADIR%%/pts-core/objects/pts_web_socket_user.php
+%%DATADIR%%/pts-core/objects/pts_exdep_generic_parser.php
+%%DATADIR%%/pts-core/objects/phoromatic/pts_phoromatic_event_server.php
+%%DATADIR%%/pts-core/objects/phoromatic/phoromatic_client_comm_backend.php
+%%DATADIR%%/pts-core/objects/phoromatic/phoromatic_client_comm_ws.php
+%%DATADIR%%/pts-core/objects/phoromatic/phoromatic_server.php
+%%DATADIR%%/pts-core/objects/phoromatic/pts_web_socket_server_phoromatic.php
+%%DATADIR%%/pts-core/objects/pts_test_profile_parser.php
+%%DATADIR%%/pts-core/objects/pts_storage_object.php
+%%DATADIR%%/pts-core/objects/pts_test_option.php
+%%DATADIR%%/pts-core/objects/pts_virtual_test_queue.php
+%%DATADIR%%/pts-core/objects/pts_svg_dom_gd.php
+%%DATADIR%%/pts-core/objects/pts_test_result_buffer_active.php
+%%DATADIR%%/pts-core/objects/client/pts_test_execution.php
+%%DATADIR%%/pts-core/objects/client/pts_test_install_request.php
+%%DATADIR%%/pts-core/objects/client/pts_download_speed_manager.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_basic_display_mode.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_web_display_mode.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_websocket_display_mode.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_display_mode_interface.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_short_display_mode.php
+%%DATADIR%%/pts-core/objects/client/display_modes/pts_concise_display_mode.php
+%%DATADIR%%/pts-core/objects/client/pts_module.php
+%%DATADIR%%/pts-core/objects/client/pts_module_option.php
+%%DATADIR%%/pts-core/objects/client/pts_argument_check.php
+%%DATADIR%%/pts-core/objects/client/pts_module_manager.php
+%%DATADIR%%/pts-core/objects/client/pts_test_run_manager.php
+%%DATADIR%%/pts-core/objects/client/pts_test_installer.php
+%%DATADIR%%/pts-core/objects/client/pts_client.php
+%%DATADIR%%/pts-core/objects/client/pts_tests.php
+%%DATADIR%%/pts-core/objects/client/pts_documentation.php
+%%DATADIR%%/pts-core/objects/client/pts_stress_run_manager.php
+%%DATADIR%%/pts-core/objects/client/pts_option_interface.php
+%%DATADIR%%/pts-core/objects/client/pts_logger.php
+%%DATADIR%%/pts-core/objects/client/pts_external_dependencies.php
+%%DATADIR%%/pts-core/objects/client/pts_web_socket_server_gui.php
+%%DATADIR%%/pts-core/objects/client/pts_installed_test.php
+%%DATADIR%%/pts-core/objects/client/pts_test_install_manager.php
+%%DATADIR%%/pts-core/objects/client/pts_openbenchmarking_client.php
+%%DATADIR%%/pts-core/objects/client/pts_config.php
+%%DATADIR%%/pts-core/objects/client/pts_module_interface.php
+%%DATADIR%%/pts-core/objects/client/pts_phoroscript_interpreter.php
+%%DATADIR%%/pts-core/objects/pts_image.php
+%%DATADIR%%/pts-core/objects/pts_types.php
+%%DATADIR%%/pts-core/objects/pts_network.php
+%%DATADIR%%/pts-core/objects/pts_webui.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_OverviewGraph.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_lines.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_core.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_box_plot.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_vertical_bars.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_iqc.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_horizontal_bars.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_ir_value.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_passfail.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_graph_scatter_plot.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_ResultFileSystemsTable.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_DetailedSystemComponentTable.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_RadarOverviewGraph.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_ResultFileTable.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_ResultFileCompactSystemsTable.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_SideViewTable.php
+%%DATADIR%%/pts-core/objects/pts_Graph/pts_Table.php
+%%DATADIR%%/pts-core/objects/pts_svg_dom.php
+%%DATADIR%%/pts-core/objects/pts_user_io.php
+%%DATADIR%%/pts-core/objects/pts_test_result_parser.php
+%%DATADIR%%/pts-core/objects/pts_arrays.php
+%%DATADIR%%/pts-core/objects/nye_Xml/pts_config_nye_XmlReader.php
+%%DATADIR%%/pts-core/objects/nye_Xml/nye_XmlWriter.php
+%%DATADIR%%/pts-core/objects/nye_Xml/nye_XmlReader.php
+%%DATADIR%%/pts-core/objects/pts_compression.php
+%%DATADIR%%/pts-core/objects/pts_test_result.php
+%%DATADIR%%/pts-core/objects/pts_dependency_handler.php
+%%DATADIR%%/pts-core/objects/pts_sys_graph.php
+%%DATADIR%%/pts-core/objects/pts_test_result_regression_marker.php
+%%DATADIR%%/pts-core/objects/pts_test_result_buffer.php
+%%DATADIR%%/pts-core/objects/pts_web_socket_client.php
+%%DATADIR%%/pts-core/objects/pts_file_io.php
+%%DATADIR%%/pts-core/objects/pts_validation.php
+%%DATADIR%%/pts-core/objects/pts_test_profile.php
+%%DATADIR%%/pts-core/modules/linux_perf.php
+%%DATADIR%%/pts-core/modules/perf_per_dollar.php
+%%DATADIR%%/pts-core/modules/timed_screenshot.php
+%%DATADIR%%/pts-core/modules/use_wine.php
+%%DATADIR%%/pts-core/modules/report_test_run_times.php
+%%DATADIR%%/pts-core/modules/pushover_net.php
+%%DATADIR%%/pts-core/modules/html_results_export.php
+%%DATADIR%%/pts-core/modules/update_checker.php
+%%DATADIR%%/pts-core/modules/results_custom_export.php
+%%DATADIR%%/pts-core/modules/system_monitor.php
+%%DATADIR%%/pts-core/modules/flamegrapher.php
+%%DATADIR%%/pts-core/modules/backup.php
+%%DATADIR%%/pts-core/modules/pgo.php
+%%DATADIR%%/pts-core/modules/graphics_override.php
+%%DATADIR%%/pts-core/modules/phoromatic.php
+%%DATADIR%%/pts-core/modules/log_exporter.php
+%%DATADIR%%/pts-core/modules/toggle_screensaver.php
+%%DATADIR%%/pts-core/modules/watchdog.php
+%%DATADIR%%/pts-core/modules/result_notifier.php
+%%DATADIR%%/pts-core/modules/dummy_module.php
+%%DATADIR%%/pts-core/modules/perf_tips.php
+%%DATADIR%%/pts-core/modules/ob_auto_compare.php
+%%DATADIR%%/pts-core/modules/matisk.php
+%%DATADIR%%/pts-core/phoronix-test-suite.php
+%%DATADIR%%/pts-core/user-agreement.txt
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/test-profile-downloads.xsd
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/test-suite.xsd
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/types.xsd
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/result-file.xsd
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/test-profile.xsd
+%%DATADIR%%/pts-core/openbenchmarking.org/schemas/results-parser.xsd
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/images/ob.png
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/images/pts.png
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/images/phoromatic.png
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/index.php
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/phoromatic-export-viewer.css
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/phoromatic-export-viewer-config.php.config
+%%DATADIR%%/pts-core/phoromatic/export-public-viewer/favicon.ico
+%%DATADIR%%/pts-core/phoromatic/phoromatic_functions.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/ping.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/result_upload.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/tick.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/list_results.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/stress_log_upload.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/error_report.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/clone_result.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/start.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/user_context_log.php
+%%DATADIR%%/pts-core/phoromatic/communication-resources/update_system_status.php
+%%DATADIR%%/pts-core/phoromatic/public_html/favicon.ico
+%%DATADIR%%/pts-core/phoromatic/public_html/public.php
+%%DATADIR%%/pts-core/phoromatic/public_html/about.php
+%%DATADIR%%/pts-core/phoromatic/public_html/download-cache.php
+%%DATADIR%%/pts-core/phoromatic/public_html/images/phoromatic_logo.png
+%%DATADIR%%/pts-core/phoromatic/public_html/images/rss.png
+%%DATADIR%%/pts-core/phoromatic/public_html/images/ob-white-logo.png
+%%DATADIR%%/pts-core/phoromatic/public_html/images/phoromatic-graph.jpg
+%%DATADIR%%/pts-core/phoromatic/public_html/phoromatic.php
+%%DATADIR%%/pts-core/phoromatic/public_html/phoromatic.css
+%%DATADIR%%/pts-core/phoromatic/public_html/openbenchmarking-cache.php
+%%DATADIR%%/pts-core/phoromatic/public_html/event.php
+%%DATADIR%%/pts-core/phoromatic/public_html/server.php
+%%DATADIR%%/pts-core/phoromatic/public_html/index.php
+%%DATADIR%%/pts-core/phoromatic/public_html/phoromatic.js
+%%DATADIR%%/pts-core/phoromatic/public_html/rss.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_create_test.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_r_add_test_details.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_caches.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_welcome.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_admin_data.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_maintenance_table.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_schedules.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_tracker.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_systems.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_result.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_users.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_sched.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_testing.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_admin.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_system_claim.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_password.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_tests.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_build_suite.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_settings.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_component_table.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_admin_config.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_benchmark.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_dashboard.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_local_suites.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_account_activity.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_logs.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_results.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_r_add_test_build_suite_details.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_main.php
+%%DATADIR%%/pts-core/phoromatic/pages/phoromatic_search.php
+%%DATADIR%%/pts-core/static/short-description.txt
+%%DATADIR%%/pts-core/static/phoromatic-client.desktop
+%%DATADIR%%/pts-core/static/certificates/openbenchmarking-server.pem
+%%DATADIR%%/pts-core/static/certificates/phoromatic-com.pem
+%%DATADIR%%/pts-core/static/xsl/pts-user-config-viewer.xsl
+%%DATADIR%%/pts-core/static/xsl/pts-test-profile-viewer.xsl
+%%DATADIR%%/pts-core/static/xsl/pts-test-installation-viewer.xsl
+%%DATADIR%%/pts-core/static/phoronix-test-suite.appdata.xml
+%%DATADIR%%/pts-core/static/root-access.sh
+%%DATADIR%%/pts-core/static/user-config-defaults.xml
+%%DATADIR%%/pts-core/static/images/phoronix-test-suite.png
+%%DATADIR%%/pts-core/static/images/ob-10x16.png
+%%DATADIR%%/pts-core/static/images/pts-158x82.jpg
+%%DATADIR%%/pts-core/static/images/pts-icon.png
+%%DATADIR%%/pts-core/static/images/pts-106x55.png
+%%DATADIR%%/pts-core/static/images/pts-80x42.png
+%%DATADIR%%/pts-core/static/images/ob-fulltext-183x32.png
+%%DATADIR%%/pts-core/static/images/pts-308x160.png
+%%DATADIR%%/pts-core/static/images/pts-158x82.png
+%%DATADIR%%/pts-core/static/images/phoromatic-390x56.png
+%%DATADIR%%/pts-core/static/images/pts-77x40-white.png
+%%DATADIR%%/pts-core/static/images/pts-308x160-t.png
+%%DATADIR%%/pts-core/static/images/pts-80x42-white.png
+%%DATADIR%%/pts-core/static/images/pts-160x83.png
+%%DATADIR%%/pts-core/static/basic-template.html
+%%DATADIR%%/pts-core/static/result-viewer.html
+%%DATADIR%%/pts-core/static/sample-pts-client-update-script.sh
+share/appdata/phoronix-test-suite.appdata.xml
+%%DOCSDIR%%/phoronix-test-suite.html
+%%DOCSDIR%%/phoromatic.md
+%%DOCSDIR%%/phoronix-test-suite.md
+%%DOCSDIR%%/ChangeLog
+%%DOCSDIR%%/phoronix-test-suite-windows.html
+%%DOCSDIR%%/TODO
+%%DOCSDIR%%/stubs/99_development_credits.html
+%%DOCSDIR%%/stubs/downloads.html
+%%DOCSDIR%%/stubs/40_configuration.html
+%%DOCSDIR%%/stubs/59_component_testing.html
+%%DOCSDIR%%/stubs/60_phoromatic.html
+%%DOCSDIR%%/stubs/00_zmodule_options.html
+%%DOCSDIR%%/stubs/00_user_options.html
+%%DOCSDIR%%/stubs/readme-basics.txt
+%%DOCSDIR%%/stubs/02_external_dependencies.html
+%%DOCSDIR%%/stubs/50_general_information.html
+%%DOCSDIR%%/stubs/00_overview.html
+%%DOCSDIR%%/stubs/01_install.html
+%%DOCSDIR%%/stubs/55_virtual_suites.html
+%%DOCSDIR%%/stubs/69_creating_tests.html
+%%DOCSDIR%%/phoromatic.html
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/COPYING
+%%DOCSDIR%%/includes/pts-documentation.png
+%%DOCSDIR%%/includes/pts-documentation.css
+%%DOCSDIR%%/phoronix-test-suite-window.md
+share/licenses/phoronix-test-suite-8.2.0/LICENSE
+share/licenses/phoronix-test-suite-8.2.0/catalog.mk
+share/licenses/phoronix-test-suite-8.2.0/gpl3
+bin/phoronix-test-suite
+man/man1/phoronix-test-suite.1.gz
+@dir share/icons/hicolor/64x64/mimetypes
+@dir share/icons/hicolor/64x64
+@dir share/icons/hicolor/48x48/apps
+@dir share/icons/hicolor/48x48
+@dir share/icons/hicolor
+@dir share/icons
+@dir share/mime/packages
+@dir share/mime/application
+@dir share/mime
+@dir %%DATADIR%%/deploy/deb-package
+@dir %%DATADIR%%/deploy/phoromatic-systemd
+@dir %%DATADIR%%/deploy/phoromatic-upstart
+@dir %%DATADIR%%/deploy/phoromatic-rcd
+@dir %%DATADIR%%/deploy/phoromatic-initd
+@dir %%DATADIR%%/deploy/farm-system-customizations
+@dir %%DATADIR%%/deploy/rpm-package
+@dir %%DATADIR%%/deploy
+@dir %%DATADIR%%/pts-core/web-interface/html
+@dir %%DATADIR%%/pts-core/web-interface/web-interfaces
+@dir %%DATADIR%%/pts-core/web-interface/js
+@dir %%DATADIR%%/pts-core/web-interface/assets
+@dir %%DATADIR%%/pts-core/web-interface
+@dir %%DATADIR%%/pts-core/external-test-dependencies/scripts
+@dir %%DATADIR%%/pts-core/external-test-dependencies/dependency-handlers
+@dir %%DATADIR%%/pts-core/external-test-dependencies/xml/xsl
+@dir %%DATADIR%%/pts-core/external-test-dependencies/xml
+@dir %%DATADIR%%/pts-core/external-test-dependencies
+@dir %%DATADIR%%/pts-core/commands
+@dir %%DATADIR%%/pts-core/hooks/startup
+@dir %%DATADIR%%/pts-core/hooks
+@dir %%DATADIR%%/pts-core/objects/phodevi/components
+@dir %%DATADIR%%/pts-core/objects/phodevi/parsers
+@dir %%DATADIR%%/pts-core/objects/phodevi/sensors
+@dir %%DATADIR%%/pts-core/objects/phodevi
+@dir %%DATADIR%%/pts-core/objects/phoromatic
+@dir %%DATADIR%%/pts-core/objects/client/display_modes
+@dir %%DATADIR%%/pts-core/objects/client
+@dir %%DATADIR%%/pts-core/objects/pts_Graph
+@dir %%DATADIR%%/pts-core/objects/nye_Xml
+@dir %%DATADIR%%/pts-core/objects
+@dir %%DATADIR%%/pts-core/modules
+@dir %%DATADIR%%/pts-core/openbenchmarking.org/schemas
+@dir %%DATADIR%%/pts-core/openbenchmarking.org
+@dir %%DATADIR%%/pts-core/phoromatic/export-public-viewer/images
+@dir %%DATADIR%%/pts-core/phoromatic/export-public-viewer
+@dir %%DATADIR%%/pts-core/phoromatic/communication-resources
+@dir %%DATADIR%%/pts-core/phoromatic/public_html/images
+@dir %%DATADIR%%/pts-core/phoromatic/public_html
+@dir %%DATADIR%%/pts-core/phoromatic/pages
+@dir %%DATADIR%%/pts-core/phoromatic
+@dir %%DATADIR%%/pts-core/static/certificates
+@dir %%DATADIR%%/pts-core/static/xsl
+@dir %%DATADIR%%/pts-core/static/images
+@dir %%DATADIR%%/pts-core/static
+@dir %%DATADIR%%/pts-core
+@dir %%DATADIR%%
+@dir share/appdata
+@dir %%DOCSDIR%%/stubs
+@dir %%DOCSDIR%%/includes
+@dir %%DOCSDIR%%
+@dir share/licenses/phoronix-test-suite-8.2.0
+@dir share/licenses

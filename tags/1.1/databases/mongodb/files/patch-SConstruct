@@ -1,0 +1,102 @@
+--- SConstruct.orig	2016-03-21 12:09:46.000000000 -0400
++++ SConstruct	2018-03-24 22:06:12.320048942 -0400
+@@ -60,6 +60,7 @@
+ darwin = False
+ windows = False
+ freebsd = False
++midnightbsd = False
+ openbsd = False
+ solaris = False
+ 
+@@ -73,6 +74,8 @@
+     solaris = True
+ elif platform.startswith( "freebsd" ):
+     freebsd = True
++elif platform.startswith( "midnightbsd" ):
++    midnightbsd = True
+ elif platform.startswith( "openbsd" ):
+     openbsd = True
+ elif "win32" == platform:
+@@ -483,10 +486,10 @@
+                    )
+ 
+ # Report any unknown variables as an error.
+-unknown_vars = env_vars.UnknownVariables()
+-if unknown_vars:
+-    print "Unknown variables specified: {0}".format(", ".join(unknown_vars.keys()))
+-    Exit(1)
++#unknown_vars = env_vars.UnknownVariables()
++#if unknown_vars:
++#    print "Unknown variables specified: {0}".format(", ".join(unknown_vars.keys()))
++#    Exit(1)
+ 
+ if has_option("cache"):
+     EnsureSConsVersion( 2, 3, 0 )
+@@ -544,6 +547,8 @@
+     env['PYSYSPLATFORM'] = 'linux2'
+ if 'freebsd' in env['PYSYSPLATFORM']:
+     env['PYSYSPLATFORM'] = 'freebsd'
++if 'midnightbsd' in env['PYSYSPLATFORM']:
++    env['PYSYSPLATFORM'] = 'midnightbsd'
+ 
+ if os.sys.platform == 'win32':
+     env['OS_FAMILY'] = 'win'
+@@ -572,7 +577,7 @@
+ if has_option( "ld" ):
+     env["LINK"] = get_option( "ld" )
+ 
+-if env['PYSYSPLATFORM'] in ('linux2', 'freebsd'):
++if env['PYSYSPLATFORM'] in ('linux2', 'freebsd', 'midnightbsd'):
+     env['LINK_LIBGROUP_START'] = '-Wl,--start-group'
+     env['LINK_LIBGROUP_END'] = '-Wl,--end-group'
+     env['RELOBJ_LIBDEPS_START'] = '--whole-archive'
+@@ -703,6 +708,13 @@
+     env.Append( CPPDEFINES=[ "__freebsd__" ] )
+     env.Append( CCFLAGS=[ "-fno-omit-frame-pointer" ] )
+ 
++elif midnightbsd:
++    env.Append( LIBS=[ "kvm" ] )
++    env.Append( EXTRACPPPATH=[ "/usr/local/include" ] )
++    env.Append( EXTRALIBPATH=[ "/usr/local/lib" ] )
++    env.Append( CPPDEFINES=[ "__freebsd__" ] )
++    env.Append( CCFLAGS=[ "-fno-omit-frame-pointer" ] )
++
+ elif openbsd:
+     env.Append( EXTRACPPPATH=[ "/usr/local/include" ] )
+     env.Append( EXTRALIBPATH=[ "/usr/local/lib" ] )
+@@ -867,7 +879,7 @@
+     env.Append( LIBS=[] )
+ 
+     #make scons colorgcc friendly
+-    for key in ('HOME', 'TERM'):
++    for key in ('HOME', 'TERM', 'PATH', 'CCACHE_DIR'):
+         try:
+             env['ENV'][key] = os.environ[key]
+         except KeyError:
+@@ -879,7 +891,7 @@
+         env.Append( LINKFLAGS=" -fprofile-arcs -ftest-coverage " )
+ 
+     if optBuild:
+-        env.Append( CCFLAGS=["-O3"] )
++        env.Append( CCFLAGS="-O2 -pipe -fno-strict-aliasing" )
+     else:
+         env.Append( CCFLAGS=["-O0"] )
+ 
+@@ -1419,7 +1431,7 @@
+         Exit(1)
+ 
+     # requires ports devel/libexecinfo to be installed
+-    if freebsd or openbsd:
++    if freebsd or openbsd or midnightbsd:
+         if not conf.CheckLib("execinfo"):
+             Exit(1)
+ 
+@@ -1718,7 +1730,7 @@
+ Export("has_option use_system_version_of_library")
+ Export("mongoCodeVersion")
+ Export("usev8")
+-Export("darwin windows solaris linux freebsd nix")
++Export("darwin windows solaris linux midnightbsd freebsd nix")
+ Export('module_sconscripts')
+ Export("debugBuild optBuild")
+ Export("enforce_glibc")

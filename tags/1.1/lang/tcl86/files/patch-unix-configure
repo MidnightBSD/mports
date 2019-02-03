@@ -1,0 +1,28 @@
+--- unix/configure.orig	2017-12-21 13:16:25.000000000 -0500
++++ unix/configure	2018-11-21 23:16:10.161501000 -0500
+@@ -7575,7 +7575,7 @@
+ fi
+ 
+ 	    ;;
+-	FreeBSD-*)
++	FreeBSD-*|MidnightBSD-*)
+ 	    # This configuration from FreeBSD Ports.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="${CC} -shared"
+@@ -7598,15 +7598,11 @@
+ 		LDFLAGS="$LDFLAGS $PTHREAD_LIBS"
+ fi
+ 
+-	    case $system in
+-	    FreeBSD-3.*)
+ 		# Version numbers are dot-stripped by system policy.
+ 		TCL_TRIM_DOTS=`echo ${VERSION} | tr -d .`
+ 		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so'
++		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so.1'
+ 		TCL_LIB_VERSIONS_OK=nodots
+-		;;
+-	    esac
+ 	    ;;
+ 	Darwin-*)
+ 	    CFLAGS_OPTIMIZE="-Os"

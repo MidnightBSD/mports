@@ -1,0 +1,37 @@
+# $MidnightBSD$
+
+PORTNAME=	commons-logging
+PORTVERSION=	1.2
+CATEGORIES=	java devel
+MASTER_SITES=	${MASTER_SITE_APACHE_COMMONS_BINARIES}
+MASTER_SITE_SUBDIR=	${PORTNAME:S,commons-,,}
+PKGNAMEPREFIX=	jakarta-
+DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Generic logging wrapper library
+
+LICENSE=	apache2
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+OPTIONS_DEFINE=	DOCS
+
+USE_JAVA=	yes
+JAVA_VERSION=	1.7+
+NO_BUILD=	yes
+
+JARFILE=	${PORTNAME}-${PORTVERSION}.jar
+
+.include <bsd.port.pre.mk>
+
+PORTDOCS=	*
+PLIST_FILES=	%%JAVAJARDIR%%/${PORTNAME}.jar \
+		%%JAVAJARDIR%%/${JARFILE}
+
+do-install:
+	${INSTALL_DATA} ${WRKSRC}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}
+	${LN} -sf ${JARFILE} ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+	(cd ${WRKSRC}/apidocs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+
+.include <bsd.port.post.mk>

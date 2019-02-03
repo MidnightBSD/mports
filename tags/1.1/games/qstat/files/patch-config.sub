@@ -1,0 +1,11 @@
+--- config.sub.orig	Sat Mar 22 12:14:05 2008
++++ config.sub	Sat Mar 22 12:16:03 2008
+@@ -1174,7 +1174,7 @@
+ 	      | -aos* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+-	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* | -openbsd* \
++	      | -hiux* | -386bsd* | -knetbsd* | -midnightbsd* | -mirbsd* | -netbsd* | -openbsd* \
+ 	      | -ekkobsd* | -kfreebsd* | -freebsd* | -riscix* | -lynxos* \
+ 	      | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
+ 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \

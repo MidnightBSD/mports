@@ -1,0 +1,10 @@
+--- ./sgmlfmt/Makefile.orig	Tue Sep 15 17:05:39 1998
++++ ./sgmlfmt/Makefile	Mon May  7 21:39:49 2007
+@@ -15,6 +15,6 @@
+ 
+ afterinstall:
+ 	${INSTALL} -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${FILES} \
+-		${BINDIR}
++		${DESTDIR}${BINDIR}
+ 
+ .include <bsd.prog.mk>

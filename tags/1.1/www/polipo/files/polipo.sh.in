@@ -1,0 +1,44 @@
+#!/bin/sh
+# $MidnightBSD: mports/www/polipo/files/polipo.sh.in,v 1.1 2008/04/13 02:21:49 laffer1 Exp $
+
+# PROVIDE: polipo
+# REQUIRE: NETWORK
+# KEYWORD: shutdown
+
+. %%RC_SUBR%%
+
+name=polipo
+rcvar=`set_rcvar`
+polipo_enable=${polipo_enable:-"NO"}
+polipo_flags=${polipo_flags:-""}
+polipo_user=%%USER%%
+polipo_group=%%GROUP%%
+pidfile=%%PPIDFILE%%
+config_file=%%PCONFIGDIR%%config
+required_files=$config_file
+
+command="%%TRUE_PREFIX%%/bin/polipo"
+config_args="-c ${config_file}"
+command_args="$config_args daemonise=true pidFile=${pidfile}"
+start_precmd="rm -f ${pidfile}"
+
+extra_commands=expire
+
+expire_cmd=expire_cmd
+expire_cmd () {
+	if [ $rc_pid ]; then
+        	kill -USR1 $rc_pid
+		# allow polipo to write out all files
+		sleep 5
+	fi
+        su -m ${polipo_user} -c "${command} ${config_args} -x"
+	if [ $rc_pid ]; then
+        	kill -USR2 $rc_pid
+	fi
+}
+
+
+load_rc_config $name
+
+run_rc_command "$1"
+

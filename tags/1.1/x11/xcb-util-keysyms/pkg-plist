@@ -1,0 +1,5 @@
+include/xcb/xcb_keysyms.h
+lib/libxcb-keysyms.a
+lib/libxcb-keysyms.so
+lib/libxcb-keysyms.so.1
+libdata/pkgconfig/xcb-keysyms.pc

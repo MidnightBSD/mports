@@ -1,0 +1,32 @@
+--- configure.ac.orig	2009-02-09 02:03:06 -0500
++++ configure.ac	2009-02-09 02:03:51 -0500
+@@ -110,7 +110,7 @@
+ # specific target_os options
+ #--------------------------------------------------------------------
+ case "$target_os" in
+-  freebsd* | openbsd* )	
++  freebsd* | midnightbsd* | openbsd* )	
+ 	        INCLUDES="$INCLUDES -I/usr/local/include"
+ 		LIB_DIR="$LIB_DIR -L/usr/local/lib";;
+   netbsd*)	INCLUDES="$INCLUDES -I/usr/pkg/include"
+@@ -1115,6 +1115,20 @@
+     AC_TRY_RUN([#include "config_thread.m"], objc_threaded="-lpcthread",
+ 	objc_threaded="", objc_threaded="-lpcthread")
+   fi
++elif test "`echo $host_os|sed 's/[[0-9]].*//'|sed s/elf//`" = midnightbsd; then
++  LIBS="-pthread -lobjc"
++  AC_TRY_RUN([#include "config_thread.m"], objc_threaded="-pthread",
++       objc_threaded="", objc_threaded="-pthread")
++  if test x"$objc_threaded" = x""; then
++    LIBS="-lpthread -lobjc"
++    AC_TRY_RUN([#include "config_thread.m"], objc_threaded="-lpthread",
++        objc_threaded="", objc_threaded="-lpthread")
++  fi
++  if test x"$objc_threaded" = x""; then
++    LIBS="-lobjc -lpcthread"
++    AC_TRY_RUN([#include "config_thread.m"], objc_threaded="-lpcthread",
++        objc_threaded="", objc_threaded="-lpcthread")
++  fi
+ elif test "$MINGW32" = yes; then
+   # Mingw doesn't need anything extra for threads
+   LIBS="-lobjc $LIBS"

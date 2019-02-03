@@ -1,0 +1,39 @@
+--- support/shobj-conf.orig	2014-02-23 21:06:29.000000000 -0500
++++ support/shobj-conf	2018-08-18 13:17:57.475358000 -0400
+@@ -132,7 +132,7 @@
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)$(SHLIB_MINOR)'
+ 	;;
+ 
+-freebsd2*)
++freebsd2.*)
+ 	SHOBJ_CFLAGS=-fpic
+ 	SHOBJ_LD=ld
+ 	SHOBJ_LDFLAGS='-x -Bshareable'
+@@ -142,25 +142,18 @@
+ 	;;
+ 
+ # FreeBSD-3.x ELF
+-freebsd3*|freebsdaout*)
++freebsd3.*|freebsdaout*)
+ 	SHOBJ_CFLAGS=-fPIC
+ 	SHOBJ_LD='${CC}'
+ 
+-	if [ -x /usr/bin/objformat ] && [ "`/usr/bin/objformat`" = "elf" ]; then
+ 		SHOBJ_LDFLAGS='-shared -Wl,-soname,$@'
+ 
+ 		SHLIB_XLDFLAGS='-Wl,-rpath,$(libdir)'
+ 		SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+-	else
+-		SHOBJ_LDFLAGS='-shared'
+-
+-		SHLIB_XLDFLAGS='-R$(libdir)'
+-		SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)$(SHLIB_MINOR)'
+-	fi
+ 	;;
+ 
+ # FreeBSD-4.x and later have only ELF
+-freebsd[4-9]*|freebsd1[0-9]*|freebsdelf*|dragonfly*)
++freebsd[4-9]*|freebsd1[0-9]*|freebsdelf*|dragonfly*|midnightbsd*)
+ 	SHOBJ_CFLAGS=-fPIC
+ 	SHOBJ_LD='${CC}'
+ 

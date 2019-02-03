@@ -1,0 +1,17 @@
+# $MidnightBSD$
+
+PORTNAME=	xwd
+PORTVERSION=	1.0.7
+CATEGORIES=	x11
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Dump an image of an X window
+
+LICENSE=	mit
+
+XORG_CAT=	app
+USE_XORG=	x11 xkbfile
+
+PLIST_FILES=	bin/xwd man/man1/xwd.1.gz
+
+.include <bsd.port.mk>
