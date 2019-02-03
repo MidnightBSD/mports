@@ -1,25 +1,23 @@
 # $MidnightBSD$
 
 PORTNAME=	expat
-PORTVERSION=	2.2.1
-PORTREVISION=	0
+PORTVERSION=	2.2.6
+PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	SF
+MASTER_SITES=	https://github.com/libexpat/libexpat/releases/download/R_${PORTVERSION:S|.|_|g}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C
 
-LICENSE=	other
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-ALL_TARGET=	default
-USES=		libtool pathfix tar:bzip2
+USES=		libtool pathfix tar:bz2
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--without-docbook
+INSTALL_TARGET=	install-strip
 
-post-patch:
-	@${REINPLACE_CMD} -e '/^DESTDIR =/d' ${WRKSRC}/Makefile.in
-
-post-install:
-	${LN} -s libexpat.so.1 ${STAGEDIR}${PREFIX}/lib/libexpat.so.6
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>
