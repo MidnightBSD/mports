@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mako
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 CATEGORIES=	textproc www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,6 +20,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}beaker>=1.1:www/py-beaker \
 		${PYTHON_PKGNAMEPREFIX}Babel>0:devel/py-babel
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>
