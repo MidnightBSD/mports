@@ -1,0 +1,25 @@
+--- build_detect_platform.orig	2017-03-01 19:08:02.000000000 -0500
++++ build_detect_platform	2018-09-26 19:56:37.401729000 -0400
+@@ -110,6 +110,13 @@
+         PORT_FILE=port/port_posix.cc
+         PORT_SSE_FILE=port/port_posix_sse.cc
+         ;;
++    MidnightBSD)
++        PLATFORM=OS_MIDNIGHTBSD
++        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_MIDNIGHTBSD"
++        PLATFORM_LIBS="-lpthread"
++        PORT_FILE=port/port_posix.cc
++        PORT_SSE_FILE=port/port_posix_sse.cc
++        ;;
+     NetBSD)
+         PLATFORM=OS_NETBSD
+         COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_NETBSD"
+@@ -224,7 +231,7 @@
+     rm -f $CXXOUTPUT 2>/dev/null
+ 
+     # Test if gcc SSE 4.2 is supported
+-    $CXX $CXXFLAGS -x c++ - -o $CXXOUTPUT -msse4.2 2>/dev/null  <<EOF
++    $CXX $CXXFLAGS -x c++ -Werror - -o $CXXOUTPUT -msse4.2 2>/dev/null  <<EOF
+       int main() {}
+ EOF
+     if [ "$?" = 0 ]; then

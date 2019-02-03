@@ -1,0 +1,1905 @@
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.15 2010/12/30 02:12:13 laffer1 Exp $
+
+=head1 NAME
+
+bsd.mport.mk - Ports Tree Master Makefile
+
+=head1 SYNOPSIS
+
+.include <bsd.mport.mk>
+
+bsd.mport.mk is the master makefile for the ports tree.  This man pages
+documents the public targets and variables used by users and individual
+ports.
+
+=head1 TARGETS
+
+Default targets and their behaviors:
+
+=over 4
+
+=item fetch			-
+
+Retrieves ${DISTFILES} (and ${PATCHFILES} if defined) into ${DISTDIR} as
+necessary.
+
+=item fetch-list
+
+Show list of files that would be retrieved by fetch.
+
+=item fetch-recursive
+
+Retrieves ${DISTFILES} (and ${PATCHFILES} if defined), for port and
+dependencies into ${DISTDIR} as necessary.
+
+=item fetch-recursive-list
+
+Show list of files that would be retrieved by fetch-recursive.
+
+=item fetch-required-list
+
+Show list of files that would be retrieved by fetch-required.
+
+=item fetch-required
+
+Retrieves ${DISTFILES} (and ${PATCHFILES} if defined), for port and
+dependencies that are not already installed into ${DISTDIR}.
+
+=item all-depends-list
+
+Show all directories which are dependencies for this port.
+
+=item build-depends-list
+
+Show all directories which are build-dependencies for this port.
+
+=item package-depends-list
+
+Show all directories which are package-dependencies for this port.
+
+=item run-depends-list
+
+Show all directories which are run-dependencies for this port.
+
+=item extract
+
+Unpacks ${DISTFILES} into ${WRKDIR}.
+
+=item patch
+
+Apply any provided patches to the source.
+
+=item configure
+
+Runs either GNU configure, one or more local configure scripts or nothing,
+depending on what's available.
+
+=item build
+
+Actually compile the sources.
+
+=item fake
+
+Install the results of the build into a temporary directory.
+
+=item refake
+
+Delete the temporary directory and run make fake again.
+
+=item check-fake
+
+Run basic tests to see if the files were installed in the right location,
+and do not include the fake temporary directory.
+
+=item package
+
+Create a package from the contents of the temporary directory.
+
+=item install
+
+Install the package.
+
+=item reinstall
+
+Install the results of a build, ignoring "already installed" flag.
+
+=item deinstall
+
+Remove the installation.
+
+=item deinstall-all
+
+Remove all installations with the same PKGORIGIN.
+
+=item describe
+
+Generate a one-line description for each port for use in INDEX files and the
+like.
+
+=item describe-yaml
+
+Generate a description for the port in the YAML markup language.
+
+=item checkpatch	
+
+Do a "patch -C" instead of a "patch".  Note that it may give incorrect
+results if multiple patches deal with the same file. 
+
+=item checksum
+
+Use distinfo to ensure that your distfiles are valid. 
+
+=item checksum-recursive
+
+Run checksum in this port and all dependencies.
+
+=item makesum
+
+Generate distinfo (only do this for your own ports!).
+
+=item clean
+
+Remove ${WRKDIR} and other temporary files used for building for this
+port and its dependencies.
+
+=item config
+
+Configure options for this port (using ${DIALOG}). Automatically run prior
+to extract, patch, configure, build, install, and package.
+
+=item config-recursive
+
+Configure options for this port for this port and all dependencies.
+
+=item showconfig
+
+Display options config for this port.
+
+=item rmconfig	
+
+Remove the options config for this port.
+
+=item rmconfig-recursive
+
+Remove the options config for this port and all dependencies.
+
+=item makeplist
+
+Attempt to construct a plist from the contents of a faked install.  This
+generated plist will need editing before it can be used.
+
+=back
+
+Default sequence for "all" is:
+
+    check-sanity fetch checksum extract patch configure build
+
+Please read the comments in the targets section below; you
+should be able to use the pre-* or post-* targets/scripts
+(which are available for every stage except checksum) or
+override the do-* targets to do pretty much anything you want.
+
+Many of the do-* targets are wrappers around run-* targets.
+run-* targets cannot be overridden, they are the default action for the given
+do-* target.  This way, you can override do-foo, twiddle some variables
+and then call 'make run-foo'.
+
+B<NEVER> override the "regular" targets unless you want to open
+a major can of worms.
+
+=head1 VARIABLES
+
+=head2 Global Knobs
+
+The following change globals behavoirs for the mports system.
+
+=over 4
+
+=item PACKAGE_BUILDING
+
+If set, the mport system goes into package building mode.  The options
+framework is disabled, and the defaults for OPTIONS are used instead.  Some
+ports may define extra depends in order to create a complete install. 
+Probing of the system for versions of installed software (such as apache or
+perl) is disabled.
+
+=item USE_MPORT_TOOLS
+
+If set, the mport system will use libmport to make and install mport
+archives.  The mport binary system will also be used as the package
+database.
+
+=item MPORT_MAINTAINER_MODE
+
+If set, the mports system will perform checks to see if several steps are
+successfully completed.
+
+=back
+
+=head2 Meta Variables
+
+These are meta-variables that are automatically set to the system
+you are running on.  These are provided in case you need to take
+different actions for different values.
+
+=over 4
+
+=item ARCH
+
+The architecture of the target machine, such as would be returned by "uname
+-p".  (Note: Ports should test against ARCH, and not the host machine's
+architecture which is MACHINE_ARCH, to enable ports to be cross-built.)
+
+=item OPSYS
+
+Portability clause.  This is the operating system the makefile is being used
+on.  Automatically set to "MidnightBSD", "FreeBSD," "NetBSD," or "OpenBSD"
+as appropriate.
+
+=item OSREL
+
+The release version (numeric) of the operating system.
+
+=item OSVERSION
+
+The value of __MidnightBSD_version.
+
+=item PORTOBJFORMAT
+
+The object format ("aout" or "elf").
+
+=back
+
+=head2 Fundemental Variables
+
+This is the beginning of the list of all variables that need to be
+defined in a port, listed in order that they should be included
+to fit in with existing conventions.  (Exception: MAINTAINER actually
+should appear after EXTRACT_ONLY and before MASTER_SITE_BACKUP).
+
+These variables are used to identify your port.
+
+=over 4
+
+=item PORTNAME
+
+Name of software.  Mandatory.
+
+=item PORTVERSION
+
+Version of software.  Mandatory when no DISTVERSION is given.
+
+=item PORTREVISION
+
+Version of port.  Optional.  Commonly used to indicate that an update has
+happened that affects the port framework itself, but not the distributed
+software (e.g., local patches or Makefile changes).
+
+=item PORTEPOCH
+
+Optional.  In certain odd cases, the PORTREVISION logic can be fooled by
+ports that appear to go backwards numerically (e.g. if port-0.3 is newer
+than port-1998). In this case, incrementing PORTEPOCH forces the revision.
+
+Default: 0 (no effect).
+
+=item PKGBASE
+
+Defined as ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+
+Do not define this in your Makefile.
+
+=item PKGNAME
+
+Defined as ${PKGSUBNAME}-${PORTVERSION}
+
+Do not define this or PKGSUBNAME  in your Makefile.
+
+=item PKGNAMEPREFIX
+
+Prefix to specify that port is language-specific, etc. Optional.
+
+=item PKGNAMESUFFIX
+
+Suffix to specify compilation options.  Optional.
+
+=item PKGVERSION
+
+Always defined as ${PORTVERSION}[_${PKGREVISION}][,${PORTEPOCH}]
+
+Do not define this in your Makefile.
+
+=item UNIQUENAME
+
+A name for your port that is globally unique.  
+
+Default: ${LATEST_LINK} when LATEST_LINK is set, ${PKGNAMEPREFIX}${PORTNAME}
+otherwise.
+
+=item DISTVERSION
+
+Vendor version of the distribution. 
+
+Default: ${PORTVERSION}
+
+=item DISTNAME
+
+Name of port or distribution used in generating WRKSRC and DISTFILES below.
+
+Default: ${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
+
+=item CATEGORIES
+
+A list of descriptive categories into which this port falls. Mandatory.
+
+=back
+
+=head2 Path Variables
+
+Various directory definitions and variables to control them.
+You rarely need to redefine any of these except WRKSRC and NO_WRKSUBDIR.
+
+=over 4
+
+=item DESTDIR
+
+The path to the environment we are installing to.  This is only used during
+the final package install, at which point mport.install is run chroot'ed
+into the DESTDIR.
+
+=item LOCALBASE	
+
+Where almost all  ports install things.
+
+Default: /usr/local
+
+=item LINUXBASE
+
+Where Linux ports install things.
+
+Default: /compat/linux
+
+=item PREFIX
+
+Where B<this> port installs its files.
+
+Default: ${LINUXBASE} if USE_LINUX_PREFIX is set, otherwise ${LOCALBASE}
+
+=item IGNORE_PATH_CHECKS
+
+There are some sanity checks against PREFIX and DESTDIR. You can diasble
+these checks with defining this variable, but this is not recommended! Only
+do this if you really know what you are doing.  These sanity checks are the
+following:
+
+=over 8
+
+=item DESTDIR can't be /.  
+
+Just leave it undefined if you want to install to /.
+
+=item DESTDIR has to be an absolute path.
+
+=item DESTDIR can't have a trailing slash.
+
+=item PREFIX has to be an absolute path.
+
+=item PREFIX can't have a trailing slash.
+
+=back
+
+=item MASTERDIR
+
+Where the port finds patches, package files, etc.  Define this is you have
+two or more ports that share most of the files.
+
+Default: ${.CURDIR}
+
+=item PORTSDIR
+
+The root of the ports tree.
+
+Default: /usr/mports
+
+=item DISTDIR
+
+Where to search for and store copies of original sources
+
+Default: ${PORTSDIR}/Distfiles
+
+=item PACKAGES
+
+A top level directory where all packages go (rather than going locally to
+each port). Default: ${PORTSDIR}/Packages/${ARCH}
+
+=item WRKDIRPREFIX
+
+The place to root the temporary working directory hierarchy.
+
+Default: none
+
+=item WRKDIR
+
+A temporary working directory that gets B<clobbered> on clean
+
+Default: ${WRKDIRPREFIX}${.CURDIR}/work
+
+=item WRKSRC
+
+A subdirectory of ${WRKDIR} where the distribution actually unpacks to.
+
+Default: ${WRKDIR}/${DISTNAME} unless NO_WRKSUBDIR is set, in which case
+simply ${WRKDIR}
+
+=item NO_WRKSUBDIR
+
+Assume port unpacks directly into ${WRKDIR}.
+
+=item PATCHDIR
+
+A directory containing any additional patches you made to port this software
+to MidnightBSD.
+
+Default: ${MASTERDIR}/files
+
+=item SCRIPTDIR
+
+A directory containing any auxiliary scripts
+
+Default: ${MASTERDIR}/scripts
+
+=item FILESDIR
+
+A directory containing any miscellaneous additional files.
+
+Default: ${MASTERDIR}/files
+
+=item PKGDIR
+
+A directory containing any package creation files.
+
+Default: ${MASTERDIR}
+
+=back
+
+=head2 Distfile Variables
+
+These variable describe how to fetch files required for building the port.
+
+=over 4
+
+=item DISTFILES
+
+Name(s) of archive file(s) containing distribution. Set this to an empty
+string if the port doesn't require it. 
+
+Default: ${DISTNAME}${EXTRACT_SUFX}
+
+=item EXTRACT_SUFX 
+
+Suffix for archive names. You never have to set both DISTFILES and
+EXTRACT_SUFX.
+
+Default: .tar.bz2 if USE_BZIP2 is set, .zip if USE_ZIP is set,
+.tar.xz if USE_XZ is set, .tar.gz otherwise.
+
+=item MASTER_SITES
+
+Primary location(s) for distribution files if not found locally.  See
+sites.mk for common choices for MASTER_SITES.
+
+=item MASTER_SITE_SUBDIR
+
+Subdirectory of MASTER_SITES. Will sometimes need to be set to ${PORTNAME}
+for (e.g.) MASTER_SITE_SOURCEFORGE. Only guaranteed to work for choices of
+${MASTER_SITES} defined in sites.mk.
+
+Default: not set.
+
+=item PATCHFILES
+
+Name(s) of additional files that contain distribution patches. Make will
+look for them at PATCH_SITES (see below). They will automatically be
+uncompressed before patching if the names end with ".gz", ".bz2" or ".Z".
+
+Default: not set.
+
+=item PATCH_SITES
+
+Primary location(s) for distribution patch files if not found locally.
+
+=item DIST_SUBDIR	
+
+Suffix to ${DISTDIR}.  If set, all ${DISTFILES} and ${PATCHFILES} will be
+put in this subdirectory of ${DISTDIR} (see below).  Also they will be
+fetched in this subdirectory from FreeBSD mirror sites.
+
+=item ALLFILES
+
+All of ${DISTFILES} and ${PATCHFILES}.
+
+=item IGNOREFILES
+
+If set, don't perform checksum checks on these files.
+
+=item NOFETCHFILES
+
+If set, don't download these files from the ${MASTER_SITES} or
+${MASTER_SITE_BACKUP} (but do from ${MASTER_SITE_OVERRIDE})
+
+=item EXTRACT_ONLY
+
+If set, a subset of ${DISTFILES} you want to actually extract.
+
+=item ALWAYS_KEEP_DISTFILES
+
+If set, the package building cluster will save the distfiles along with the
+packages. This may be required to comply with some licenses, e.g. GPL in
+some cases. 
+
+Default: not set.
+
+=back
+
+(NOTE: by convention, the MAINTAINER entry (see above) should go here.)
+
+These variables are typically set in /etc/make.conf to indicate
+the user's preferred location to fetch files from.  You should
+rarely need to set these.
+
+=over 4
+
+=item MASTER_SITE_BACKUP
+
+Backup location(s) for distribution files and patch files if not found
+locally and ${MASTER_SITES}/${PATCH_SITES}
+
+Default: ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
+
+=item MASTER_SITE_OVERRIDE
+
+If set, override the MASTER_SITES setting with this value.
+
+=item MASTER_SITE_FREEBSD
+
+If set, only use ${MASTER_SITE_BACKUP} for MASTER_SITES.
+
+=item CD_MOUNTPTS
+
+List of CDROM mountpoints to look for distfiles under. This variable
+supercedes CD_MOUNTPT, which is obsolete.
+
+=item DISABLE_SECURITY_CHECK
+
+Speed up port installation on old hardware by not running security checks.
+Not recommended.
+
+=back
+
+=head2 Licenses And Restrictions
+
+Set these if your port should not be built under certain circumstances.
+These are string variables; you should set them to the reason why
+they are necessary.  Over time, many of the variables will be replaced
+by the LICENSE variable.
+
+=over 4
+
+=item LICENSE
+
+The license of the third-party software.  This variable is required. Run
+'make license-list' to see the list of valid licenses.
+
+=item RESTRICTED
+
+Prevent the distribution of distfiles and packages to the FTP sites or on
+CDROM (e.g. forbidden by license considerations).
+
+=item NO_CDROM
+
+Packages and distfiles may not go on CDROM (e.g. must not be re-sold) but
+can go on FTP sites.
+
+=item NO_PACKAGE
+
+Port should not be packaged for ftp sites or CDROMs, but distfiles can be
+put on ftp sites and CDROMs.
+
+=item FORBIDDEN
+
+Package build should not be attempted because of security vulnerabilities.
+
+=item IGNORE
+
+Package build should be skipped entirely (e.g. because of serious unfixable
+problems in the build, because it cannot be manually fetched, etc).  Minimal
+error logs will appear on magus, so this should be used sparingly.
+
+=item BROKEN
+
+Port is believed to be broken.  Packaage builds will still be attempted on
+the magus build cluster to test this assumption.
+
+=item DEPRECATED
+
+Port is deprecated to install. Advisory only.
+
+=item EXPIRATION_DATE
+
+If DEPRECATED is set, determines a date when the port is planed to remove.
+The date format is ISO 8601 (YYYY-MM-DD).
+
+=item DISABLE_VULNERABILITIES
+
+If set, do not check if the port is listed in the vulnerabilities database.
+
+=back
+
+In addition to RESTRICTED or NO_CDROM, if only a subset of distfiles or
+patchfiles have redistribution restrictions, set the following to the list
+of such files.
+
+=over 4
+
+=item RESTRICTED_FILES
+
+List of files that cannot be redistributed. Default: "${DISTFILES}
+${PATCHFILES}" if RESTRICTED or NO_CDROM is set, empty otherwise.
+
+These variables are booleans, so you don't need to set them to the reason.
+
+=item IS_INTERACTIVE
+
+Set this if your port needs to interact with the user during any step in a
+package build.  User can then decide to skip this port by setting ${BATCH},
+or compiling only the interactive ports by setting ${INTERACTIVE}.
+
+Default: not set.
+
+=back 
+
+Set these if your port only makes sense to certain architectures.
+They are lists containing names for them (e.g., "amd64 i386").
+(Defaults: not set.)
+
+=over 4
+
+=item ONLY_FOR_ARCHS
+
+Only build ports if ${ARCH} matches one of these.
+
+=item NOT_FOR_ARCHS
+
+Only build ports if ${ARCH} doesn't match one of these.
+
+=item ONLY_FOR_ARCHS_REASON
+=item ONLY_FOR_ARCHS_REASON_${ARCH}
+
+Reason why it's only for ${ONLY_FOR_ARCHS}s.
+
+=item NOT_FOR_ARCHS_REASON
+=item NOT_FOR_ARCHS_REASON_${ARCH}
+
+Reason why it's not for ${NOT_FOR_ARCHS}s.
+
+=item IA32_BINARY_PORT	
+
+Set this instead of ONLY_FOR_ARCHS if the given port fetches and installs
+compiled i386 binaries.
+
+=back
+
+=head2 Dependency Variables
+
+Dependency checking.  Use these if your port requires another port
+not in the list below.  (Default: empty.)
+
+=over 4
+
+=item EXTRACT_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends on
+in the "extract" stage.  "path" is the name of a file if it starts with a
+slash (/), an executable otherwise.  make will test for the existence (if it
+is a full pathname) or search for it in your $PATH (if it is an executable)
+and go into "dir" to do a "make all install" if it's not found.  If the
+third field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item PATCH_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends on
+in the "patch" stage.  "path" is the name of a file if it starts with a
+slash (/), an executable otherwise.  make will test for the existence (if it
+is a full pathname) or search for it in your $PATH (if it is an executable)
+and go into "dir" to do a "make all install" if it's not found.  If the
+third field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item FETCH_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends in
+the "fetch" stage.  "path" is the name of a file if it starts with a slash
+(/), an executable otherwise.  make will test for the existence (if it is a
+full pathname) or search for it in your $PATH (if it is an executable) and
+go into "dir" to do a "make all install" if it's not found.  If the third
+field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item BUILD_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends to
+build (between the "extract" and "build" stages, inclusive).  The test done
+to determine the existence of the dependency is the same as FETCH_DEPENDS. 
+If the third field ("target") exists, it will be used instead of
+${DEPENDS_TARGET}.
+
+=item RUN_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends to
+run.  The test done to determine the existence of the dependency is the same
+as FETCH_DEPENDS.  This will be checked during the "install" stage and the
+name of the dependency will be put into the package as well.  If the third
+field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item LIB_DEPENDS
+
+A list of "lib:dir[:target]" tuples of other ports this package depends on. 
+"lib" is the name of a shared library. make will use "ldconfig -r" to search
+for the library. lib can contain extended regular expressions.
+
+=item DEPENDS
+
+A list of "dir[:target]" tuples of other ports this package depends on being
+made first.  Use this only for things that don't fall into the above four
+categories. If the second field ("target") exists, it will be used instead
+of ${DEPENDS_TARGET}.
+
+=item DEPENDS_TARGET
+
+The default target to execute when a port is calling a dependency.
+
+Default: cached-install
+
+=item NO_DEPENDS
+
+Don't verify build of dependencies.
+
+=item USE_PACKAGE_DEPENDS
+
+Install dependencies from existing packages instead of building the port
+from scratch.
+
+
+=back
+
+=head2 Built-In Depends
+
+These variables control options about how a port gets built and/or
+are shorthand notations for common sets of dependencies.
+Use these if your port uses some of the common software packages. By
+convention these should be set to 'yes', although they only need to be
+defined. Defaults: not set, unless explicitly indicated below.
+
+This approach to built-in dependencies is going away in the future.  Soon a
+declaration like:
+
+ USE_GHOSTSCRIPT_RUN=yes
+
+will be replaced by
+
+RUN_DEPENDS +=	@ghostscript
+
+However, some of these so called "depends" actually change the behavoir of 
+the mports system.  For example, USE_GMAKE not only add a dependcy for gmake,
+but it uses gmake instead of make to build and install the software.  Options
+like USE_GMAKE will remain; as USE_* variable will be variables that add 
+functionality to the system.  See extensions for more information.
+
+B<NOTE>:  These ideas are still in maturation.  Changes expected!
+
+Note: the distinction between the USE_* and WANT_* variables, and the
+WITH_* and WITHOUT_* variables, are that the former are restricted to
+usage inside the ports framework, and the latter are reserved for user-
+settable options.  (Setting USE_* in /etc/make.conf is always wrong).
+
+=over 4
+
+=item USE_ICONV	
+
+If set, this port uses libiconv.
+
+=item USE_GETTEXT
+
+If set, this port uses GNU gettext (libintl).
+
+=item USE_GHOSTSCRIPT
+
+If set, this port needs ghostscript to both build and run.
+
+=item USE_GHOSTSCRIPT_BUILD
+
+If set, this port needs ghostscript to build.
+
+=item USE_GHOSTSCRIPT_RUN
+
+If set, this port needs ghostscript to run.
+
+=item GHOSTSCRIPT_PORT
+
+The port that provides postscript functionality. Some installations may wish
+to override the default to specify a version without X11 and/or localized
+versions for their nationality.
+
+=item WITH_GHOSTSCRIPT_GPL
+
+If set, this port uses the GPL version of the ghostscript software instead
+of the GNU version, which is used otherwise.
+
+=item WITH_GHOSTSCRIPT_AFPL
+
+If set, this port uses the AFPL version of the ghostscript software instead
+of the GNU version, which is used otherwise.
+
+=item USE_BISON
+
+If set to build, adds a build dependancy on bison. run implies a run
+depends, both adds a build and run depends.  The legacy option yes is
+deprecated (but implies build for now).
+
+=item USE_XLIB
+
+If set, this port uses the X libraries. In the USE_LINUX
+case the linux X libraries are referenced.  In general this is deprecated
+in favor of USE_XORG.
+
+=item USE_FREETYPE
+
+If set, this port uses the freetype print libraries.
+
+=item USE_GL 
+
+If set, this port uses libGL.
+
+=item USE_MOTIF
+
+If set, this port uses a Motif toolkit.
+
+=item NO_OPENMOTIF
+
+If set, this port uses a custom Motif toolkit instead of Openmotif.  Used
+only when USE_MOTIF is set.
+
+=item WANT_LESSTIF
+
+If set, this port uses Lesstif as Motif toolkit.  Used only when USE_MOTIF
+is set.  Implies NO_OPENMOTIF.
+
+=item USE_CSTD
+
+If set, overrides the -std= c standard in effect for the mport.  This
+might be useful if we have multiple system compilers to force a
+version like c89 or c99 always with a port.
+
+=back
+
+=head2 Extension Variables
+
+Extensions are additional logic that some ports need to function.  Some
+extensions are in the mport system core, while others are in the extensions
+directory.
+
+For the larger extensions, the code is located in the extentions
+directory. See the extension files sectio for details.
+
+=over 4
+
+=item EXTENSIONS
+
+A list of extension files to pull in.  These files are in
+${PORTSDIR}/Mk/extension, and are named in a format like L<lt>extL<gt>.mk. 
+Loading an extension in this manner should not cause the extension to
+perform any actions.
+
+Example:
+
+ EXTENSIONS+=	perl5 python
+
+This would load perl5.mk and python.mk from the extensions directory.
+
+=item USE_BZIP2
+
+If set, this port tarballs use bzip2, not gzip, for compression.
+
+=item USE_XZ
+
+If set, this port tarballs use xz (lzma), not gzip, for compression.
+
+=item USE_ZIP
+
+If set, this port distfile uses zip, not tar w/[bg]zip for compression.
+
+=item USE_DOS2UNIX
+
+If set to "YES", remove the ^M from all files under ${WRKSRC}. If set to a
+string, remove in all files under ${WRKSRC} with one of these names the ^Ms.
+
+=item USE_GCC	
+
+If set, this port requires this version of gcc, either in the system or
+installed from a port.  Loads gcc.mk from the extensions directory.
+
+=item USE_GCPIO
+
+If set, uses GNU cpio.  Changes the value of ${CPIO}.
+
+=item USE_GMAKE
+
+If set, this port uses gmake.
+
+=item GMAKE
+
+Set to path of GNU make if not in $PATH.
+
+Default: gmake
+
+=item USE_IMAKE
+
+If set, this port uses imake.  Implies USE_X_PREFIX 
+
+=item XMKMF
+
+Set to path of `xmkmf' if not in $PATH
+
+Default: xmkmf -a
+
+=item USE_SDL
+
+If set, this port uses the sdl libraries.  Loads the sdl extension.  See
+sdl.mk for more information.
+
+=item USE_XFCE
+
+If set, this port uses the XFCE libraries.  Loads the xfce extension.  See
+xfce.mk for more information.
+
+=item USE_OPENSSL
+
+If set, this port relies on the OpenSSL package.  Loads the openssl
+extension.  See openssl.mk for more information.
+
+=item USE_OPENLDAP
+
+If set, this port uses the OpenLDAP libraries.
+
+Implies: WANT_OPENLDAP_VER?=23
+
+=item WANT_OPENLDAP_VER
+
+Legal values are: 22, 23, 24
+
+If set to an unkown value, the port is marked BROKEN.
+
+=item WANT_OPENLDAP_SASL
+
+If set, the system should use OpenLDAP libraries with SASL support.
+
+=item USE_FAM
+
+If set, this port uses the File Alteration Monitor.
+
+=item WANT_FAM_SYSTEM
+
+Legal values are: gamin (default),fam
+
+If set to an unknown value, the port is marked IGNORE.
+
+=item USE_AUTOTOOLS
+
+If set, this port uses various GNU autotools (libtool, autoconf, autoheader,
+automake et al.) Loads the autotools extension. See autotools.mk for more
+details.
+
+=item USE_SCONS
+
+If set, this port uses the Python-based SCons build system.  Loads the scons
+extension.  See scons.mk for more details.
+
+=item USE_JAVA
+
+If set, this port relies on the Java language. Implies inclusion of
+java.mk.  (Also see that file for more information on USE_JAVA_*).
+
+=item USE_PYTHON
+
+If set, this port relies on the Python language.  Implies inclusion of
+python.mk. (Also see that file for more information on USE_PYTHON_* and
+USE_PYDISTUTILS).
+
+=item USE_RUBY
+
+If set, this port relies on the Ruby language. Implies inclusion of
+ruby.mk.  (Also see that file for more information on USE_RUBY_*).
+
+=item USE_GNUSTEP
+
+If set, this port relies on the GNUstep system. Implies the inclusion of
+bsd.gnustep.mk. (Also see that file for more information on USE_GNUSTEP_*).
+
+=item USE_GNOME
+
+A list of the Gnome dependencies the port has (e.g., glib12, gtk12). Implies
+that the port needs Gnome. Implies inclusion of gnome.mk.  See gnome.mk or
+http://www.FreeBSD.org/gnome/docs/porting.html for more details.
+
+=item USE_WX
+
+If set, this port uses the WxWidgets library and related components.  See
+wx.mk for more details.
+
+=item USE_KDEBASE_VER
+
+Set to 3 to use the KDE windowing system. Implies inclusion of kde.mk.
+
+=item USE_KDELIBS_VER
+
+Set to 3 to use the KDE libraries. Implies inclusion of bsd.kde.mk.
+
+=item USE_QT_VER
+
+Set to 3 to use the QT3 libraries which implies kde.mk.
+
+Set to 4 to use QT4 which implies qt.mk.
+
+=item USE_LINUX		
+
+Set to yes to say the port needs the default linux base port. Set to value
+E<lt>XE<gt>, if the port needs emulators/linux_base-<X>. If set to "7", a dependency
+is registered to emulators/linux_base. Implies appropriate settings for
+STRIP and STRIP_CMD.
+
+=item USE_LINUX_PREFIX
+
+Controls the action of PREFIX (see below). Only use this if the port is a
+linux infrastructure port (e.g. contains libs or a sound server which
+supports the FreeBSD native one), use the default or the X11 prefix if it's
+a leaf port (e.g. a game or program).
+
+Implies NO_MTREE=yes, and if INSTALLS_SHLIB is defined then USE_LINUX=yes
+and an appropriate invocation of the Linux ldconfig is also implied.
+
+=item USE_LINUX_RPM
+
+Set to yes to pull in variables and targets useful to Linux RPM ports.
+Implies inclusion of linux-rpm.mk.
+
+=item AUTOMATIC_PLIST
+
+Set to yes to enable automatic packing list generation. Currently has no
+effect unless USE_LINUX_RPM is set.
+
+=item OVERRIDE_LINUX_BASE_PORT
+
+This specifies the default linux base to use, for valid values have a look
+at the description of USE_LINUX. This is an user-only variable. Don't use it
+in any port, it's meant to be used in make.conf.
+
+=item LINUX_BASE_PORT
+
+This is a read-only variable, it gets set to a value which is usable in
+*_DEPENDS (e.g. BUILD_DEPENDS=${LINUX_BASE_PORT}). It honors USE_LINUX=foo
+and OVERRIDE_LINUX_BASE_PORT.
+
+=item USE_XORG
+
+Set to a list of xorg module dependancies.  Implies includsion of xorg.mk
+
+=item USE_RC_SUBR
+
+If set, the ports startup/shutdown script uses the common routines found in
+etc/rc.subr and may need to depend on the sysutils/rc_subr port. If this is
+set to a list of files, these files will be automatically added to
+${SUB_FILES}, some %%VAR%%'s will automatically be expanded, they will be
+installed in ${PREFIX}/etc/rc.d and added to the packing list.
+
+=item USE_RCORDER
+
+ List of rc.d startup scripts to be called early in the boot process. This
+acts exactly like USE_RC_SUBR except that scripts are installed in
+/etc/rc.d.
+
+=item RC_SUBR
+
+Set to path of rc.subr.
+
+Default: ${LOCALBASE}/etc/rc.subr.
+
+=item USE_APACHE
+
+If set, this port relies on an apache webserver.  Loads the apache
+extension.  See apache.mk for more information.
+
+=back
+
+=head2 Conflict checking.  
+
+Use if your port cannot be installed at the same time as
+another package.
+
+=over 4
+
+=item CONFLICTS
+
+A list of package name patterns that the port conflicts with, separated by
+blanks.  The names may include shell pattern meta-characters "*", "?", "[",
+"]", and "!". Example: apache*-1.2* apache*-1.3.[012345] apache-*+ssl_*
+
+=back
+
+=head2 Fake System
+
+The following are used by the fake system.  The fake system installs a dist's files into
+a temporary directory before final installatioin.
+
+=over 4
+
+=item FAKE_OPTS
+
+Set options for fake.  Available options:
+
+=over 8
+
+=item libs
+
+Fake targets need access to the port's shared libs.
+
+=item bin
+
+Fake targets need the port's binaries in $PATH
+
+=item trueprefix
+
+Set this when the dist's makefile correctly honors PREFIX and DESTDIR. (Note
+case)
+
+=item prefixhack
+
+overide prefix, mandir and infodir at fake time.
+
+=back
+
+=item FAKE_INSTALLDIR
+
+A relative directory used to by fake. An install is "faked" into this dir.
+
+Default: "fake-inst-${ARCH}"
+
+=item FAKE_DESTDIR
+
+The absolute fake directory.  Thou shalt not set this, but it can
+be useful for targets like do-install or post-install.
+
+Default: ${WRKDIR}/${FAKE_INSTALLDIR}
+
+=item FAKE_MAKEARGS
+
+Arguments passed to the dist's makefile by the default fake target.
+
+Default: ${DESTDIRNAME}=${FAKE_DESTDIR}                               
+
+=item FAKE_TARGET
+
+When fake runs the dist's makefile, this is the target used.
+
+Default: ${INSTALL_TARGET}
+
+=item FAKE_SETUP
+
+A list of environment variables used to create the fake environment,
+suitable for use with env.  This variable should be considered read- only.
+It is documented because often it is useful for calling make in
+{pre,post}-install.
+
+=item SKIP_FAKE_CHECK
+
+If MPORT_MAINTAINER_MODE is set, then each file in the plist will checked to
+see if it contains ${FAKE_DESTDIR}.  Sometimes this produces false positives
+(a file contains the fake destdir, but its presence is harmless).  This
+variable is a list of files that will not be checked.
+
+=back
+
+=head2 Install Programs
+
+Variables that serve as convenient "aliases" for your *-install targets.
+Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
+
+=over 4
+
+=item INSTALL_PROGRAM
+
+A command to install binary executables.  (By default, also strips them,
+unless ${STRIP} is overridden to be the empty string).
+
+=item INSTALL_KLD
+
+Same as INSTALL_PROGRAM, but without the STRIP.
+
+=item INSTALL_SCRIPT
+
+A command to install executable scripts.
+
+=item INSTALL_DATA
+
+A command to install sharable data.
+
+=item INSTALL_MAN
+
+A command to install manpages.  May or not compress, depending on the value
+of MANCOMPRESSED (see below).
+
+=back
+
+=head2 Port Docs
+
+=over 4
+
+=item NO_INSTALL_MANPAGES
+
+If set, this port doesn't want to install any manpages.
+Default: not set, i.e. manpages are installed by default.
+
+=back
+
+Set the following to specify all manpages that your port installs.
+These manpages will be automatically listed in ${PLIST}.  Depending
+on the setting of NOMANCOMPRESS, the make rules will compress the
+manpages for you.
+
+=over 4
+
+=item MANE<lt>sectE<gt>
+
+A list of manpages, categorized by section.  For example, if your port has
+"man/man1/foo.1" and "man/mann/bar.n", set "MAN1=foo.1" and "MANN=bar.n".
+The available sections chars are "123456789LN".
+
+=item MLINKS
+
+A list of E<lt>source, targetE<gt> tuples for creating links for manpages. 
+For example, "MLINKS= a.1 b.1 c.3 d.3" will do an "ln -sf a.1 b.1" and "ln
+-sf c.3 d.3" in appropriate directories.  (Use this even if the port
+installs its own manpage links so they will show up correctly in ${PLIST}.)
+
+
+=item MANPREFIX
+
+The directory prefix for ${MANE<lt>sectE<gt>} and ${MLINKS}.
+
+Default: ${PREFIX}
+
+=item MANE<lt>sectE<gt>PREFIX
+
+If manual pages of some sections install in different locations than others,
+use these.
+
+Default: ${MANPREFIX}
+
+=item MANCOMPRESSED
+
+This variable can take values "yes", "no" or "maybe".  "yes" means manpages
+are installed compressed; "no" means they are not; "maybe" means it changes
+depending on the value of NOMANCOMPRESS. Default: "yes" if USE_IMAKE is set
+and NO_INSTALL_MANPAGES is not set, and "no" otherwise.
+
+=item INFO
+
+A list of .info files (omitting the trailing ".info"); only one entry per
+document!
+
+=item INFO_PATH
+
+Path, where all .info files will be installed by your port, relative to
+${PREFIX}
+
+Default: "share/info" if ${PREFIX} is equal to /usr and "info" otherwise.
+
+=item PORTDOCS
+
+A list of files and directories relative to DOCSDIR. Shell glob patterns can
+be used, directories include the entire subtree of contained files and
+directories. Should not be set when no documentation files are installed
+(for example because NOPORTDOCS is defined). Useful for dynamically
+generated documentation.
+
+=back
+
+=head2 Skipping Steps
+
+Set these variables if your port doesn't need some of the steps.
+Note that there are no NO_PATCH or NO_CONFIGURE variables because
+those steps are empty by default.  NO_EXTRACT is not allowed anymore
+since we need to at least create ${WRKDIR}.  Also, NO_CHECKSUM is a user
+variable and is not to be set in a port's Makefile.  See above for NO_PACKAGE.
+
+=over 4
+
+=item NO_BUILD
+
+Use a dummy (do-nothing) build target.
+
+=item NO_INSTALL
+
+Use a dummy (do-nothing) fake target.  This may sound confusing, but
+typically this will do what you want.
+
+=back
+
+=head2 Target Specific Variables
+
+=head3 config
+
+=over 4
+
+=item OPTIONS
+
+List  of what WITH_<option> options this port accept.  The
+format is <option> "<description>" [on|off]
+
+Example:
+    FLEXRESP "Flexible response to events" off
+
+Which tells that an option WITH_FLEXRESP exists for this port, that by
+default it is not defined, and that the description to show to a user in the
+config dialog is "Flexible response to events".  If you have more than one
+option, just chain them into a single variable.  NOTE: To make options work,
+you need to include bsd.port.pre.mk or bsd.mport.options.mk before you start
+testing the WITH_xyz and WITHOUT_xyz variables.
+
+=item PORT_DBDIR
+
+Where port configuration options are recorded.
+
+Default: ${DESTDIR}/var/db/ports
+
+=back
+
+=head3 fetch
+
+=over 4
+
+=item FETCH_CMD
+
+Full path to ftp/http fetch command if not in $PATH.
+
+Default: "/usr/bin/fetch -ARr"
+
+=item FETCH_BEFORE_ARGS
+
+Arguments to ${FETCH_CMD} before filename.
+
+Default: none
+
+=item FETCH_AFTER_ARGS
+
+Arguments to ${FETCH_CMD} following filename.
+
+Default: none
+
+=item FETCH_ENV
+
+Environment to pass to ${FETCH_CMD}.
+
+Default: none
+
+=item FETCH_REGET
+
+Times to retry fetching of files on checksum errors.
+
+Default: 1
+
+=item DISABLE_SIZE
+
+Do not check the size of a distfile even if the SIZE field has been
+specified in distinfo.  This is useful when using an alternate FETCH_CMD.
+
+=item CHECKSUM_ALGORITHMS
+
+Different checksum algorithms to check for verifying the integrity of the
+distfiles. The absence of the algorithm in distinfo doesn't make it fail.
+
+Default: md5 sha256 rmd160
+
+=item NO_CHECKSUM
+
+Don't verify the checksum.  Typically used when when you noticed the
+distfile you just fetched has a different checksum and you intend to verify
+if the port still works with it.
+
+
+=back 
+
+=head3 extract
+
+=over 4
+
+=item EXTRACT_CMD
+
+Command for extracting archive: "bzip2" if USE_BZIP2 is set, "unzip" if
+USE_ZIP is set, "gzip" otherwise.
+
+=item EXTRACT_BEFORE_ARGS
+
+Arguments to ${EXTRACT_CMD} before filename.
+
+Default: "-dc"
+
+=item EXTRACT_AFTER_ARGS
+
+Arguments to ${EXTRACT_CMD} following filename.
+
+Default: "| tar -xf -"
+
+=item EXTRACT_PRESERVE_OWNERSHIP
+
+Normally, when run as "root", the extract stage will change the owner and
+group of all files under ${WRKDIR} to 0:0.  Set this variable if you want to
+turn off this feature.
+
+=back
+
+=head3 makesum
+
+=over 4
+
+=item NO_SIZE
+
+Don't record size data in distinfo, needed when the master site does not
+report file sizes, or when multiple valid versions of a distfile, having
+different sizes, exist.
+
+=back
+
+=head3 patch
+
+=over 4 
+
+=item EXTRA_PATCHES
+
+Define this variable if you have patches not in ${PATCHDIR}.  This usually
+happens when you need to do some pre-processing before some distribution
+patches can be applied.  In that case, fetch them as extra distfiles, put
+the processed results in ${WRKDIR}, then point EXTRA_PATCHES to them. The
+patches specified by this variable will be applied after the normal
+distribution patches but before those in ${PATCHDIR}.
+
+=item PATCH_WRKSRC
+
+Directory to apply patches in.
+
+Default: ${WRKSRC}
+
+=item PATCH_DEBUG
+
+If set, print out more information about the patches as it attempts to apply
+them.
+
+=back
+
+=head3 configure 
+
+=over 4
+
+=item HAS_CONFIGURE
+
+If set, this port has its own configure script.  The configure stage will
+not do anything if this is not set.
+
+=item GNU_CONFIGURE
+
+If set, you are using GNU configure (optional).  Implies HAS_CONFIGURE.
+
+=item PERL_CONFIGURE
+
+Configure using Perl's MakeMaker.  Implies USE_PERL5.  
+
+=item CONFIGURE_WRKSRC
+
+Directory to run configure in.
+
+Default: ${WRKSRC}
+
+=item CONFIGURE_SCRIPT
+
+Name of configure script, relative to ${CONFIGURE_WRKSRC}.
+
+Default: configure
+
+=item CONFIGURE_TARGET
+
+The name of target to call when GNU_CONFIGURE is defined.
+
+Default: ${ARCH}-portbld-freebsd${OSREL}
+
+=item CONFIGURE_ARGS
+
+Pass these args to configure if ${HAS_CONFIGURE} is set. Default if
+GNU_CONFIGURE is set:
+
+ "--prefix=${PREFIX} ${CONFIGURE_TARGET}"
+
+If supported by the configure script, the following will also be in the
+default:
+
+ "--mandir=${MANPREFIX}/man --infodir=${PREFIX}/${INFO_PATH}"
+
+If GNU_CONFIGURE is not set, CONFIGURE_ARGS defaults to empty.
+
+=item CONFIGURE_ENV
+
+Pass these env (shell-like) to configure if ${HAS_CONFIGURE} is set.
+
+=item CONFIGURE_LOG
+
+The name of configure log file. It will be printed to the screen if
+configure fails.
+
+Default: config.log
+
+=item CONFIGURE_FAIL_MESSAGE
+
+A message displayed to users when configure fails (note: this assumes the
+do-configure target has not been overwritten).  This message will be passed
+through /usr/bin/fmt before being shown to the user.
+
+=back
+
+=head3 build
+
+=over 4
+
+=item MAKEFILE
+
+Name of the makefile.
+
+Default: Makefile
+
+=item ALL_TARGET
+
+Default target for dist's makefile in build stage.
+
+Default: all
+
+=item BUILD_WRKSRC
+
+Directory to do build in (default: ${WRKSRC}).
+
+=item MAKE_ENV
+
+Additional environment vars passed to make process in build
+and fake stages.
+
+=item MAKE_ARGS
+
+Any extra arguments to sub-make in build and install stages.
+
+Default: none
+
+=item MAKE_JOBS_SAFE
+
+This port can be built on multiple CPUs in parallel. Make will
+be invoked with -jX parameter where X is the MAKE_JOBS_NUMBER
+set.
+
+=item MAKE_JOBS_UNSAFE
+
+Disallow multiple jobs even when a global override is in affect
+to work around broken ports.
+
+=item DISABLE_MAKE_JOBS
+
+Set to disable multiple jobs feature.  This is a user defined
+setting.
+
+=item FORCE_MAKE_JOBS
+
+Set to enable multiple jobs for all ports except those marked
+unsafe with MAKE_JOBS_UNSAFE
+
+=item MAKE_JOBS_NUMBER
+
+The number of make jobs to be used; the make -jX setting that
+defaults to the number of CPU cores present from 
+the sysctl kern.smp.cpus
+
+=back
+
+=head3 fake
+
+=over 4
+
+=item INSTALL_WRKSRC
+
+Directory to install from.
+
+Default: ${WRKSRC}
+
+=item NO_MTREE
+
+If set, will not invoke mtree from bsd.mport.mk for the "fake" target.
+
+=item MTREE_FILE
+
+The name of the mtree file.
+
+Default: /etc/mtree/BSD.local.dist 
+
+=item PLIST_DIRS
+
+Directories to be added to packing list
+
+=item PLIST_FILES
+
+Files and symbolic links to be added to packing list
+
+=item PLIST
+
+Name of the `packing list' file. Change this to ${WRKDIR}/PLIST or something
+if you need to write to it.  (It is not a good idea for a port to write to
+any file outside ${WRKDIR} during a normal build.)
+
+Default: ${PKGDIR}/pkg-plist
+
+=item TMPPLIST
+
+Name of the `packing list' file after processing
+
+Default: ${WRKDIR}/.PLIST.mktmp
+
+=item PLIST_SUB
+
+List of "variable=value" pair for substitution in ${PLIST}
+
+=item SUB_FILES		
+
+Files that should be passed through sed and redirected to ${WRKDIR}.
+
+=over 8
+
+=item *
+
+For each file specified in SUB_FILES, there must be a corresponding file in
+${FILESDIR} whose suffix is ".in". For instance, if the Makefile specifies
+"SUB_FILES= pkg-message" then there must be a file called pkg-message.in in
+${FILESDIR}.
+
+=item *
+
+The substitution process is the same as PLIST_FILES, as described below
+except that any line beginning with @comment is deleted.
+
+=back
+
+=item SUB_LIST
+
+List of "variable=value" pair for substitution in ${SUB_FILES}
+
+Some pairs are added by default: eg. PREFIX=${PREFIX}
+
+=item INSTALLS_SHLIB
+
+B<deprecated>.  Use USE_LDCONFIG instead.
+
+If set, bsd.mport.mk will automatically run ldconfig commands
+from post-install and also add appropriate @exec/@unexec
+directives to directories listed in LDCONFIG_DIRS. 
+
+If USE_LINUX_PREFIX is defined, the Linux version of ldconfig
+will be used instead of the native FreeBSD version (in such
+case, LDCONFIG_DIRS is ignored).
+
+=item LDCONFIG_DIRS
+
+List of directories to run ldconfig if INSTALLS_SHLIB is set. Note that this
+is passed through sed just like the rest of PLIST, so ${PLIST_SUB}
+substitutions also apply here.  It is recommended that you use
+%%PREFIX%% for ${PREFIX}, %%LOCALBASE%% for
+${LOCALBASE_REL} and %%X11BASE%% for ${X11BASE_REL}.
+Default: %%PREFIX%%/lib
+
+=item USE_LDCONFIG
+
+If set to "yes", it replaces the old variable INSTALLS_SHLIB. Otherwise, it
+can be set to a list of directories to be added to
+${PREFIX}/libdata/ldconfig/${UNIQUENAME}. Note that this directory is used
+by ldconfig startup script, it is meant to replace ldconfig scripts
+installed by some ports as (sometimes) 000.${UNQUENAME}.sh.  If
+USE_LINUX_PREFIX is defined, then the Linux version of ldconfig will be used
+instead (and LDCONFIG_DIRS is ignored).
+
+=item USE_LDCONFIG32
+
+Same as USE_LDCONFIG but the target file is
+${PREFIX}/libdata/ldconfig32/${UNIQUENAME} instead.
+
+Note: that should only be used on 64-bit architectures.
+
+=item DOCSDIR
+
+Name of the directory to install the packages docs in.
+
+Default: ${PREFIX}/share/doc/${PORTNAME}
+
+=item EXAMPLESDIR
+
+Name of the directory to install the packages examples in.
+
+Default: ${PREFIX}/share/examples/${PORTNAME}
+
+=item DATADIR
+
+Name of the directory to install the packages shared data in.
+
+Default: ${PREFIX}/share/${PORTNAME}
+
+=item WWWDIR
+
+Name of the directory to install the packages www data in.
+
+Default: ${PREFIX}/www/${PORTNAME}
+
+=item ETCDIR
+
+Name of the directory to install the packages etc data in.
+
+Default: ${PREFIX}/etc/${PORTNAME}
+
+=item DESKTOPDIR
+
+Name of the directory to install ${DESKTOP_ENTRIES} in.
+
+Default: ${PREFIX}/share/applications
+
+=item DESKTOP_ENTRIES
+
+List of desktop entry files to generate and install in ${DESKTOPDIR}. The
+format is"Name" "Comment" "Icon" "Exec" "Categories" StartupNotify
+
+Rules:
+
+=over 8
+
+=item * 
+
+Only add desktop entries for applications which do not require a terminal
+(ie. X applications).
+
+=item * 
+
+If the upstream distribution already installs .desktop files, you do not
+need to use this.
+
+=item * 
+
+If you require a more elaborate .desktop file than this variable permits,
+write it yourself and install it in ${DESKTOPDIR}.
+
+=back
+
+Notes:
+
+=over 8
+
+=item * 
+
+Comment and Icon may be empty strings (""). Categories may be an empty
+string in some cases (see below). The other fields are mandatory.
+
+=item * 
+
+If Categories is an empty string, bsd.port.mk will try to deduce a default
+value using the CATEGORIES variable. If the deduction fails, you will have
+to set Categories manually. You should check the generated value using "make
+desktop-categories", and override it if necessary.
+
+=item * 
+
+Exec will also be used to name the .desktop file.
+
+=item * 
+
+The files will be automatically added to ${PLIST}.
+
+Example:
+ "X Window Information" \
+ "Get information about X windows" \
+ "wininfo.png" \
+ "wininfo" \
+ "Application;System;" \
+ true
+
+See http://standards.freedesktop.org/desktop-entry-spec/ for an explanation
+of the fields. If you need to create more than one file, just chain them
+into a single variable.
+
+=back
+
+=back
+
+Note that the fake target will automatically add manpages (see above) and
+also substitute special sequences of characters (delimited by "%%") as
+defined in PLIST_SUB to generate ${TMPPLIST}.  For instance,
+"OSREL=${OSREL}" in PLIST_SUB causes all occurrences of "%%OSREL%%" in
+${PLIST} to be substituted by the value of OSREL. ${TMPPLIST} is generated
+before the do-install stage.  If you are generating the packing list
+on-the-fly, make sure it's generated before do-install is called!
+
+=head3 package
+
+=over 4
+
+=item NO_LATEST_LINK
+
+Do not install the "Latest" link for package.  Define this if this port is a
+beta version of another stable port which is also in the tree.
+
+=item LATEST_LINK
+
+Install the "Latest" link for the package as ___.  Define this if the
+"Latest" link name will be incorrectly determined.
+
+=back
+
+=head2 Miscellaneous Variables
+
+=over 4
+
+=item SCRIPTS_ENV
+
+Additional environment vars passed to scripts in ${SCRIPTDIR} executed by
+bsd.mport.mk.
+
+Default: see below
+
+=item ECHO_MSG
+
+Used to print all the '===>' style prompts - override this to turn them off.
+
+Default: ${ECHO_CMD}
+
+
+=item USE_SUBMAKE
+
+Set this if you want that each of the port's main 6 targets (extract, patch,
+configure, build, install and package) to be executed in a separate make(1)
+process. Useful when one of the stages needs to influence make(1) variables
+of the later stages using ${WRKDIR}/Makefile.inc generated on the fly.
+
+Default: not set.
+
+
+=item WITH_DEBUG
+
+If set, debugging flags are added to CFLAGS and the binaries don't get
+stripped by INSTALL_PROGRAM. Besides, individual ports might add their
+specific to produce binaries for debugging purposes. You can override the
+debug flags that are passed to the compiler by setting DEBUG_FLAGS. It is
+set to "-g" at default.
+
+=back
+
+=head1 HISTORY
+
+bsd.mport.mk is based on bsd.port.mk from FreeBSD 6.0.  It diverged when the fake
+framework was introduced.  The fake framekwork was greatly influenced by OpenBSD's
+port system.
+
+After the fake framework was introduced work has concentrated on standardizing
+the behavoirs of the various extensions and reorganizing the makefiles that 
+comprise the mports framework.
+
+=head1 SEE ALSO
+
+L<pkg_add(1)>, L<pkg_create(1)>
+
+=head1 BUGS 
+
+Many.
+

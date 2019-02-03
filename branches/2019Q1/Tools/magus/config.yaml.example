@@ -1,0 +1,11 @@
+---
+DBHost: 127.0.0.1
+DBName: magus
+DBUser: magus
+DBPass: changeme
+
+Machine: vm-current
+DoneWaitPeriod: 600
+ChrootTarBall: /usr/magus/0.2-CURRENT-20070901.tar
+PkgfilesRoot: /usr/magus/packages
+PkgExtension: tbz

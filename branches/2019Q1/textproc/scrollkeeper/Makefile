@@ -1,0 +1,49 @@
+# $MidnightBSD$
+
+PORTNAME=	scrollkeeper
+PORTVERSION=	0.3.14
+PORTREVISION=	12
+PORTEPOCH=	1
+CATEGORIES=	textproc gnome
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome2
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Open Document Cataloging Project
+LICENSE=        lgpl
+
+BUILD_DEPENDS=	intltool-extract:${PORTSDIR}/textproc/intltool \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
+		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
+RUN_DEPENDS=	intltool-extract:${PORTSDIR}/textproc/intltool \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
+		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
+
+DOCBOOK_VERSION=4.2
+
+CONFLICTS_INSTALL=	rarian-[0-9]*
+
+USES=		bison pathfix gettext gmake tar:bzip2 libtool
+USE_GNOME=	libxslt intlhack
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir=/var --datadir=${PREFIX}/share \
+		--with-omfdirs=${PREFIX}/share/omf \
+		--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib -lintl
+PLIST_SUB=	LOCALBASE=${LOCALBASE}
+INSTALL_TARGET=	install-strip
+
+post-patch:
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e   \
+		's|[(]LN_S[)] -f -n|(LN_S) -f|g'
+	@${REINPLACE_CMD} -e 's|/usr/share/locale|${PREFIX}/share/locale|g' \
+		${WRKSRC}/libs/scrollkeeper.h.in
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/extract/dtds/Makefile.in
+
+post-install:
+	@${RM} ${STAGEDIR}/var/log/scrollkeeper.log
+
+.include <bsd.port.mk>

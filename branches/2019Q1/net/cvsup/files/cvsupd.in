@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+
+# PROVIDE: cvsupd
+# REQUIRE: LOGIN
+# BEFORE:  securelevel
+# KEYWORD: shutdown
+
+# Add the following line to /etc/rc.conf to enable `cvsupd':
+#
+#cvsupd_enable="YES"
+#
+#
+
+. "/etc/rc.subr"
+
+name="cvsupd"
+rcvar=`set_rcvar`
+
+command="/usr/local/sbin/cvsupd"
+command_args="-C 5 -l /var/log/cvsupd"
+pidfile="/var/run/$name.pid"
+#required_files="/usr/local/etc/$name.conf"
+
+# read configuration and set defaults
+load_rc_config "$name"
+: ${cvsupd_enable="NO"}
+: ${cvsupd_flags=""}
+
+run_rc_command "$1"

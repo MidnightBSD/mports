@@ -1,0 +1,53 @@
+# $MidnightBSD$
+# $FreeBSD: ports/sysutils/synergy/Makefile,v 1.14 2007/07/25 01:25:03 kevlo Exp $
+
+PORTNAME=	synergy
+PORTVERSION=	1.7.5
+CATEGORIES=	sysutils
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Mouse and keyboard sharing utility
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cmake cpe
+CPE_VENDOR=	synergy-foss
+USE_XORG=	ice xtst x11 sm
+USE_GITHUB=	yes
+GH_COMMIT=	c734bab
+GH_PROJECT=     ${PORTNAME}
+GH_ACCOUNT=     symless
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-stable
+
+DISTVERSIONPREFIX=	v
+DISTVERSIONSUFFIX=	-stable
+
+LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+
+MAKE_JOBS_UNSAFE=yes
+
+CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
+
+PLIST_FILES=    bin/synergyc bin/synergyd bin/synergys \
+		man/man1/synergyc.1.gz man/man1/synergys.1.gz
+PORTEXAMPLES=	synergy.conf.example synergy.conf.example-basic \
+		synergy.conf.example-advanced
+
+OPTIONS_DEFINE=	EXAMPLES
+
+do-install:
+.for f in synergyc synergyd synergys
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/${f} ${PREFIX}/bin
+.endfor
+	${INSTALL_MAN} ${WRKSRC}/doc/synergyc.man \
+		${STAGEDIR}${MANPREFIX}/man/man1/synergyc.1
+	${INSTALL_MAN} ${WRKSRC}/doc/synergys.man \
+		${STAGEDIR}${MANPREFIX}/man/man1/synergys.1
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+.for f in ${PORTEXAMPLES}
+	${INSTALL_DATA} ${WRKSRC}/doc/${f} ${STAGEDIR}${EXAMPLESDIR}
+.endfor
+
+.include <bsd.port.mk>

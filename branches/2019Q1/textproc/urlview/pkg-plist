@@ -1,0 +1,3 @@
+bin/url_handler.sh
+bin/urlview
+man/man1/urlview.1.gz

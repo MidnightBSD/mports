@@ -1,0 +1,24 @@
+--- libmonit/configure.orig	2016-11-17 19:08:38.000000000 -0500
++++ libmonit/configure	2016-11-17 19:09:37.000000000 -0500
+@@ -5196,7 +5196,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -12118,6 +12118,12 @@
+ 
+ $as_echo "#define LINUX 1" >>confdefs.h
+ 
++elif test "$architecture" = "MidnightBSD"
++then
++   CFLAGS="$CFLAGS -D _REENTRANT"
++
++$as_echo "#define FREEBSD 1" >>confdefs.h
++
+ elif test "$architecture" = "FreeBSD"
+ then
+    CFLAGS="$CFLAGS -D _REENTRANT"

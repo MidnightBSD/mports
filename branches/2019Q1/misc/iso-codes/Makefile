@@ -1,0 +1,16 @@
+# $MidnightBSD$
+
+PORTNAME=	iso-codes
+PORTVERSION=	3.69
+CATEGORIES=	misc
+MASTER_SITES=	http://pkg-isocodes.alioth.debian.org/downloads/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Lists of the country, language, and currency iso names
+
+LICENSE=	lgpl2.1
+
+USES=		gettext gmake pathfix python:3,build tar:xz
+GNU_CONFIGURE=	yes
+
+.include <bsd.port.mk>

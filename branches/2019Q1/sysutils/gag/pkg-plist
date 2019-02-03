@@ -1,0 +1,26 @@
+@comment $MidnightBSD$
+%%PORTDOCS%%share/doc/gag/index.html
+%%PORTDOCS%%share/doc/gag/faq.html
+%%PORTDOCS%%share/doc/gag/instructions.html
+%%PORTDOCS%%share/doc/gag/install1.png
+%%PORTDOCS%%share/doc/gag/install2.png
+%%PORTDOCS%%share/doc/gag/install3.png
+%%PORTDOCS%%share/doc/gag/install4.png
+%%PORTDOCS%%share/doc/gag/copying.html
+%%PORTDOCS%%share/doc/gag/instruc2.html
+%%PORTDOCS%%share/doc/gag/config1.png
+%%PORTDOCS%%share/doc/gag/config2.png
+%%PORTDOCS%%share/doc/gag/config3.png
+%%PORTDOCS%%share/doc/gag/config4.png
+%%PORTDOCS%%share/doc/gag/config5.png
+%%PORTDOCS%%share/doc/gag/config6.png
+%%PORTDOCS%%share/doc/gag/config7.png
+%%PORTDOCS%%share/doc/gag/technical.html
+%%PORTDOCS%%share/doc/gag/font.png
+%%PORTDOCS%%share/doc/gag/icons.png
+%%PORTDOCS%%share/doc/gag/recompiling.html
+%%PORTDOCS%%share/doc/gag/uninstall.html
+share/gag/cdrom.iso
+share/gag/disk.dsk
+%%PORTDOCS%%@dirrm share/doc/gag
+@dirrm share/gag

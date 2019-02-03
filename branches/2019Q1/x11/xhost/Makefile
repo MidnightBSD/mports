@@ -1,0 +1,17 @@
+# $MidnightBSD$
+
+PORTNAME=	xhost
+PORTVERSION=	1.0.7
+CATEGORIES=	x11
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Server access control program for X
+
+LICENSE=	mit
+
+XORG_CAT=	app
+USE_XORG=	x11 xmuu xau
+
+PLIST_FILES=	bin/xhost man/man1/xhost.1.gz
+
+.include <bsd.port.mk>

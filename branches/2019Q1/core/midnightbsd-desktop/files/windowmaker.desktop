@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=WindowMaker
+Comment=WindowMaker login
+Exec=/usr/local/bin/wmaker
+TryExec=/usr/local/bin/wmaker
+Icon=
+Type=Application

@@ -1,0 +1,18 @@
+This is the portable version of JOE's Own Editor, which is currently 
+developed at sourceforge, licenced under the GNU General Public License, 
+Version 1, using autoconf/automake. This version has been enhanced by 
+several functions intended for programmers or other professional users, 
+and has a lot of bugs fixed. It is based upon an older version of joe 
+because these behave better overall.
+
+jupp also does come with the editor flavours known from joe, 
+specifically, jmacs, joe, jpico, jstar, and rjoe. Not all features 
+of jupp are available for these though (but all the bugfixes, and 
+syntax highlighting is still enabled by default for these, while it 
+is not auto-enabled in jupp).
+
+Kudos to Joe H. Allen for bringing me a better WordStar?-compatible 
+editor than Intergalactic Digital Research, DR Editor R2.00, 
+DR DOS 5 (and its predecessor from DR DOS 3.41).
+
+WWW: http://www.mirbsd.org/jupp.htm

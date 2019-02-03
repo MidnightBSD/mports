@@ -1,0 +1,7 @@
+GCC, the GNU Compiler Collection, supports a number of languages.  This
+port pulls in gcc5 (or another version-specific port) and defines symlinks
+called gcc, g++, and gfortran.
+
+WWW: https://gcc.gnu.org
+
+Gerald Pfeifer <gerald@FreeBSD.org>

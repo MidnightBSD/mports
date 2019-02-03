@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>The MidnightBSD Ports Collection (%%CATEGORY%%)</title>
+    <style type="text/css" media="screen">
+        html,body{ margin: 30px; }
+        body{ background: #fff; color:#333; font-family: sans-serif; font-size: 15px }
+        h2, h2 a { text-align: center; color: #666; }
+        h3, h3 a { text-align: center; color: #999; }
+        a { color: #79c143; }
+        a:hover { color: #a0d07b; }
+        ul { margin: 0; padding: 0; text-align: center; }
+        li { list-style: none; width: auto; background: fff; margin: 1em; text-align: left; height: auto; vertical-align: top; }
+        li a { font-weight: bold;  text-decoration: none; color: #79c143; }
+        blockquote { margin-top: 3em; color: #aaa; font-size: .9em; }
+	pre { line-height: 1.5 }
+     </style>
+  </head>
+
+  <body>
+    <h1>The MidnightBSD Ports Collection ("%%CATEGORY%%")</h1>
+
+    <p>You are now in the directory "%%CATEGORY%%".</p>
+
+    <p>This is the one-line description for this category:</p>
+
+    <p>
+%%COMMENT%%
+    </p>
+
+    <p>
+%%DESCR%%
+    </p>
+
+    <p>Here are the one-line descriptions for each items in this
+    directory:</p>
+<ul>
+%%SUBDIR%%
+</ul>
+    <a href="../README.html">Go to parent directory</a>
+  </body>
+</html>

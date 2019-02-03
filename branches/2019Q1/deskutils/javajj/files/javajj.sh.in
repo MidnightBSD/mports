@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+
+export J2SE_PREEMPTCLOSE=1
+export JAVA_VERSION="1.6+"
+
+cd "%%JAVAJARDIR%%" && exec "%%LOCALBASE%%/bin/java" -jar javajj-1.1.jar "$@"

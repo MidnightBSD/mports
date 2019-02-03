@@ -1,0 +1,51 @@
+# $MidnightBSD$
+
+PORTNAME=	sqlalchemy
+PORTVERSION=	1.2.8
+CATEGORIES=	databases python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	12
+DISTNAME=	SQLAlchemy-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python SQL toolkit and Object Relational Mapper 1.2.x
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock \
+		${PYTHON_PKGNAMEPREFIX}pytest>=2.5.2:devel/py-pytest \
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=0:devel/py-pytest-xdist
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy1[01]
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_MULTI=	BACKEND
+OPTIONS_MULTI_BACKEND=	MSSQL MYSQL PGSQL SQLITE SYBASE
+OPTIONS_DEFAULT=SQLITE
+
+USE_PYTHON=	autoplist concurrent distutils
+USES=		python
+
+PORTDOCS=	*
+PORTEXAMPLES=	*
+
+MSSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pymssql>=0:databases/py-pymssql
+MYSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pymysql>=0:databases/py-pymysql
+PGSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psycopg2>=2.5.0:databases/py-psycopg2
+SQLITE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3
+SYBASE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sybase>=0:databases/py-sybase
+
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/sqlalchemy/*.so
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/doc/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
+
+.include <bsd.port.mk>

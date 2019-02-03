@@ -1,0 +1,109 @@
+@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
+bin/seamonkey
+lib/seamonkey/libmozalloc.so
+lib/seamonkey/defaults/profile/panels.rdf
+lib/seamonkey/defaults/profile/mimeTypes.rdf
+lib/seamonkey/defaults/profile/chrome/userContent-example.css
+lib/seamonkey/defaults/profile/chrome/userChrome-example.css
+lib/seamonkey/defaults/pref/channel-prefs.js
+lib/seamonkey/defaults/messenger/mailViews.dat
+lib/seamonkey/run-mozilla.sh
+lib/seamonkey/dictionaries/en-US.aff
+lib/seamonkey/dictionaries/en-US.dic
+lib/seamonkey/libxul.so
+lib/seamonkey/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+lib/seamonkey/extensions/modern@themes.mozilla.org.xpi
+lib/seamonkey/components/libmozgnome.so
+lib/seamonkey/components/components.manifest
+lib/seamonkey/components/libdbusservice.so
+lib/seamonkey/components/libsuite.so
+lib/seamonkey/seamonkey-bin
+lib/seamonkey/application.ini
+lib/seamonkey/omni.ja
+lib/seamonkey/seamonkey
+lib/seamonkey/license.txt
+lib/seamonkey/blocklist.xml
+lib/seamonkey/searchplugins/wikipedia.xml
+lib/seamonkey/searchplugins/duckduckgo.xml
+lib/seamonkey/searchplugins/google.xml
+lib/seamonkey/searchplugins/yahoo.xml
+lib/seamonkey/chrome/icons/default/messengerWindow.png
+lib/seamonkey/chrome/icons/default/default16.png
+lib/seamonkey/chrome/icons/default/addressbookWindow48.png
+lib/seamonkey/chrome/icons/default/main-window48.png
+lib/seamonkey/chrome/icons/default/msgcomposeWindow16.png
+lib/seamonkey/chrome/icons/default/findBookmarkWindow48.png
+lib/seamonkey/chrome/icons/default/messengerWindow16.png
+lib/seamonkey/chrome/icons/default/history-window16.png
+lib/seamonkey/chrome/icons/default/editorWindow48.png
+lib/seamonkey/chrome/icons/default/findBookmarkWindow.png
+lib/seamonkey/chrome/icons/default/main-window.png
+lib/seamonkey/chrome/icons/default/default.png
+lib/seamonkey/chrome/icons/default/editorWindow16.png
+lib/seamonkey/chrome/icons/default/downloadManager.png
+lib/seamonkey/chrome/icons/default/messengerWindow48.png
+lib/seamonkey/chrome/icons/default/history-window48.png
+lib/seamonkey/chrome/icons/default/findBookmarkWindow16.png
+lib/seamonkey/chrome/icons/default/ablistWindow.png
+lib/seamonkey/chrome/icons/default/seamonkey.png
+lib/seamonkey/chrome/icons/default/main-window16.png
+lib/seamonkey/chrome/icons/default/editorWindow.png
+lib/seamonkey/chrome/icons/default/msgcomposeWindow48.png
+lib/seamonkey/chrome/icons/default/addressbookWindow16.png
+lib/seamonkey/chrome/icons/default/JSConsoleWindow.png
+lib/seamonkey/chrome/icons/default/default48.png
+lib/seamonkey/chrome/icons/default/JSConsoleWindow16.png
+lib/seamonkey/chrome/icons/default/abcardWindow48.png
+lib/seamonkey/chrome/icons/default/msgcomposeWindow.png
+lib/seamonkey/chrome/icons/default/bookmarkproperties.png
+lib/seamonkey/chrome/icons/default/bookmarkproperties48.png
+lib/seamonkey/chrome/icons/default/findHistoryWindow16.png
+lib/seamonkey/chrome/icons/default/ablistWindow16.png
+lib/seamonkey/chrome/icons/default/downloadManager48.png
+lib/seamonkey/chrome/icons/default/addressbookWindow.png
+lib/seamonkey/chrome/icons/default/places16.png
+lib/seamonkey/chrome/icons/default/places48.png
+lib/seamonkey/chrome/icons/default/ablistWindow48.png
+lib/seamonkey/chrome/icons/default/downloadManager16.png
+lib/seamonkey/chrome/icons/default/findHistoryWindow48.png
+lib/seamonkey/chrome/icons/default/places.png
+lib/seamonkey/chrome/icons/default/bookmarkproperties16.png
+lib/seamonkey/chrome/icons/default/JSConsoleWindow48.png
+lib/seamonkey/chrome/icons/default/abcardWindow16.png
+lib/seamonkey/chrome/icons/default/abcardWindow.png
+lib/seamonkey/chrome/icons/default/history-window.png
+lib/seamonkey/chrome/icons/default/findHistoryWindow.png
+lib/seamonkey/init.d/moz_pis_S50cleanhome
+lib/seamonkey/distribution/extensions/{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}.xpi
+lib/seamonkey/distribution/extensions/inspector@mozilla.org.xpi
+lib/seamonkey/platform.ini
+lib/seamonkey/isp/movemail.rdf
+lib/seamonkey/isp/Bogofilter.sfd
+lib/seamonkey/isp/POPFile.sfd
+lib/seamonkey/isp/DSPAM.sfd
+lib/seamonkey/isp/SpamAssassin.sfd
+lib/seamonkey/isp/SpamPal.sfd
+lib/seamonkey/isp/rss.rdf
+lib/seamonkey/removed-files
+lib/seamonkey/plugin-container
+lib/seamonkey/chrome.manifest
+lib/seamonkey/dependentlibs.list
+share/applications/seamonkey.desktop
+share/pixmaps/seamonkey.png
+@dir lib/seamonkey/defaults/profile/chrome
+@dir lib/seamonkey/defaults/profile
+@dir lib/seamonkey/defaults/pref
+@dir lib/seamonkey/defaults/messenger
+@dir lib/seamonkey/defaults
+@dir lib/seamonkey/dictionaries
+@dir lib/seamonkey/extensions
+@dir lib/seamonkey/components
+@dir lib/seamonkey/searchplugins
+@dir lib/seamonkey/chrome/icons/default
+@dir lib/seamonkey/chrome/icons
+@dir lib/seamonkey/chrome
+@dir lib/seamonkey/init.d
+@dir lib/seamonkey/distribution/extensions
+@dir lib/seamonkey/distribution
+@dir lib/seamonkey/isp
+@dir lib/seamonkey

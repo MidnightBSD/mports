@@ -1,0 +1,157 @@
+h1 a {
+	color: white;
+}
+
+h1 a:visited {
+	color: white;
+}
+
+h2 {
+	color: #555;
+}
+
+h3 { 
+	color: #555;
+}
+
+a {
+	color: #204a87;
+}
+
+table th {
+	border-bottom: solid 1px #888;
+	text-align: left;
+	padding-left: 8px;
+}
+
+tr.details {
+	display: none;
+}
+
+.fail {
+	color: #a40000;
+}
+
+.warn {
+	color: #c4a000;
+}
+
+.internal {
+	color: blue;
+}
+
+.pass {
+	color: #4e9a06;
+}
+
+.skip {
+	color: #555753;
+}
+
+.untested {
+	color: #75507b;
+}
+
+.info {
+	color: #2e3436;
+}
+
+.locks, .cats {
+	font-size: .8em;
+}
+
+div.right {
+	position: absolute;
+	top: 60px;
+	right: 10px;
+	width: 19%;
+}
+
+div.full {
+	width: 100%;
+	max-width: 100%;
+}
+
+div.left {
+	width: 75%;
+	max-width: 75%;	
+}
+
+table.run-summary, table.result-list, table.port-results, table.event-list, table.machine-summary {
+	width: 100%;
+}
+
+pre.log {
+	border: solid 1px #ddd;
+	margin: 4px;
+	padding: 4px;
+	overflow: auto;
+}
+
+ul.depends li {
+	list-style: none;
+}
+
+ul.depends {
+	padding: 0px;
+}
+
+#tophead {
+	background: #204a87;
+	color: white;
+	margin: 0;
+	padding: 4px 4px 8px;	
+}
+
+#topsearch {
+	position: absolute;
+	top: 24px;
+	right: 16px;
+	color: black;
+}	
+
+ul.stats {
+	list-style: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+ul.stats li {
+	display: inline;
+	padding-right: 12px;
+}
+
+ul.stats a.pass {
+	color: #91E588;
+}
+
+ul.stats a.fail {
+	color: #F27D86;
+}
+
+ul.stats a.skip {
+	color: #bbb;
+}
+
+/* stuff for the edit mojo */
+a.edit {
+	color: #777;
+	text-decoration: none;
+	padding-bottom: 0px;
+	border-bottom: #777 dashed 1px;
+}
+
+a.edit:after {
+	content: url(/magus/elements/pencil-icon.gif);
+	position: relative;
+	top: 3px;
+}
+
+@media (max-width: 980px) {
+    /* Enable use of floated navbar text */
+    .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+    }
+}

@@ -1,0 +1,116 @@
+# $MidnightBSD$
+
+PORTNAME=	glib
+PORTVERSION=	2.56.3
+PORTEPOCH=	1
+CATEGORIES=	devel
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome2
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Some useful routines of C programming (current stable version)
+
+LICENSE=	lgpl
+
+USES=		tar:xz
+PORTSCOUT=	limitw:1,even
+
+.if !defined(REFERENCE_PORT)
+
+LIB_DEPENDS+=	libpcre.so:devel/pcre \
+		libffi.so:devel/libffi
+RUN_DEPENDS=    python2.7:lang/python27
+
+GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+# iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
+# (wchar_t is used by glibmm, rawtherapee triggered this)
+USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool \
+		localbase pathfix pkgconfig python shebangfix
+USE_PYTHON=	py3kplist
+USE_PERL5=	build
+CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
+		--enable-static=yes \
+		--with-pcre=system \
+		--disable-fam
+CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
+INSTALL_TARGET=	install-strip
+
+SHEBANG_FILES=	*/*.pl
+
+LIBVERSION=	0.5600.3
+PLIST_SUB+=	LIBVERSION=${LIBVERSION}
+
+glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
+gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
+		glib-compile-schemas.1 gapplication.1 \
+		glib-compile-resources.1 gresource.1 gdbus-codegen.1
+gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
+
+OPTIONS_DEFINE=	DEBUG MANPAGES NLS
+OPTIONS_SUB=	yes
+
+DEBUG_CONFIGURE_ON=	--enable-debug=yes
+
+MANPAGES_BUILD_DEPENDS=		docbook-xml>4.1.2:textproc/docbook-xml \
+				docbook-xsl>0:textproc/docbook-xsl
+MANPAGES_USE=			GNOME=libxslt:build
+MANPAGES_CONFIGURE_ENABLE=	man
+MANPAGES_CONFIGURE_ON=		--with-xml-catalog=${LOCALBASE}/share/xml/catalog
+
+.include <bsd.port.pre.mk>
+
+# doesn't build yet
+CONFIGURE_ARGS+=--disable-dtrace
+
+.if empty(ICONV_LIB)
+CONFIGURE_ARGS+=	--with-libiconv=no
+.else
+CONFIGURE_ARGS+=	--with-libiconv=gnu
+.endif
+
+.if ${ARCH} == powerpc64
+EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
+.endif
+
+# Let glib use asm code for implementing atomic ops on i386 and amd64.
+.if ${ARCH} == "i386"
+GLIB_ARCH=	i486
+.elif ${ARCH} == "amd64"
+GLIB_ARCH=	x86_64
+.else
+GLIB_ARCH=	${ARCH}
+.endif
+CONFIGURE_TARGET=${GLIB_ARCH}-portbld-freebsd10.4
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
+		s|/usr/share/locale/locale|${LOCALBASE}/share/locale/locale|g' \
+			${WRKSRC}/glib/gutils.c
+	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
+		${WRKSRC}/gio/gdbusaddress.c ${WRKSRC}/gio/gdbusprivate.c \
+		${WRKSRC}/po/*.po
+	@${REINPLACE_CMD} -e 's|inotify_support=yes|inotify_support=no| ; \
+		s|-Werror|| ; \
+		s|#define HAVE_SYS_INOTIFY_H 1||' ${WRKSRC}/configure
+
+do-build-MANPAGES-on:
+.for m in glib gio gobject
+. for file in ${${m}_MAN}
+	cd ${WRKSRC}/docs/reference/${m} && ${GMAKE} ${file}
+. endfor
+.endfor
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/GConf/gsettings
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gio/modules
+
+post-install-MANPAGES-on:
+.for m in glib gio gobject
+	${INSTALL_MAN} ${${m}_MAN:S|^|${WRKSRC}/docs/reference/${m}/|} \
+		${STAGEDIR}${PREFIX}/man/man1
+.endfor
+
+.include <bsd.port.post.mk>
+
+.endif
