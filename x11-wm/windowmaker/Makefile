@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	windowmaker
-PORTVERSION=	0.95.7
+PORTVERSION=	0.95.8
 PORTREVISION=	0
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	http://windowmaker.org/pub/source/release/
@@ -12,18 +12,21 @@ COMMENT=	GNUstep-compliant NeXTstep window manager clone
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjbig.so:${PORTSDIR}/graphics/jbigkit \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libwebp.so:${PORTSDIR}/graphics/webp \
-		libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick \
-		libwraster.so.5:${PORTSDIR}/x11-wm/libwraster
-RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
+LIB_DEPENDS=	libgif.so:graphics/giflib \
+		libpng.so:graphics/png \
+		libjbig.so:graphics/jbigkit \
+		libtiff.so:graphics/tiff \
+		libwebp.so:graphics/webp \
+		libMagickWand-6.so:graphics/ImageMagick \
+		libwraster.so.6:x11-wm/libwraster \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libexif.so:graphics/libexif
+RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons
 
 USES=		jpeg libtool shebangfix pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
-USE_XORG=	xft xinerama xmu xpm
+USE_XORG=	x11 xext xft xinerama xmu xpm
 SHEBANG_FILES=	util/wkdemenu.pl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no \
