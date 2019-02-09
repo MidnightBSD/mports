@@ -25,7 +25,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
-USES=		libtool:keepla pathfix
+USES=		libtool pathfix
 
 PORTDOCS=	*
 
