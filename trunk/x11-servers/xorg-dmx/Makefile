@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-dmx
-PORTREVISION=	0
+PORTREVISION=	1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Multihead X from X.Org
@@ -10,18 +10,12 @@ LICENSE=	mit
 
 MASTERDIR=	${.CURDIR}/../xorg-server
 DESCR=		${.CURDIR}/pkg-descr
-USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
-		dri2proto damageproto xcmiscproto xextproto xf86miscproto \
-		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
-		resourceproto fontsproto xf86dgaproto videoproto \
-		compositeproto trapproto recordproto resourceproto \
-		xineramaproto xinerama evieproto xkbfile xfont fontenc xkbui \
-		xxf86misc xxf86vm xaw7 xmu xpm xext xrender xfixes xi dmxproto \
-		xau dmx xtst xres pixman xtrans
+USE_XORG=	dmx xorgproto x11 xaw7 xext xfixes xi xmu xpm xrender xres xt xtst   
 
-CONFIGURE_ARGS=	--disable-xvfb --disable-xnest \
+CONFIGURE_ARGS=	--disable-xephyr --disable-xvfb --disable-xnest \
 		--without-xmlto	--disable-docs --disable-devel-docs \
-		--enable-dmx --localstatedir=/var --without-dtrace
+		--enable-dmx --localstatedir=/var --without-dtrace \
+		--disable-xwayland
 
 SLAVE_PORT=	yes
 

@@ -1,11 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	x2vnc
-PORTVERSION=	1.72
-PORTREVISION=	3
+PORTVERSION=	1.7.2
+PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://fredrik.hubbe.net/x2vnc/
-DISTNAME=	${PORTNAME}-1.7.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to link multiple X and VNC servers together
