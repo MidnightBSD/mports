@@ -26,6 +26,7 @@ SUBDIR += qt5-connectivity
 SUBDIR += qt5-sensors
 SUBDIR += qt5-serialbus
 SUBDIR += qt5-serialport
+SUBDIR += spandsp
 SUBDIR += tits
 SUBDIR += usbmuxd
 SUBDIR += zssh
