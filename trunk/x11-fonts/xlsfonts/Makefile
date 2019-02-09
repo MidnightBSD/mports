@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xlsfonts
-PORTVERSION=	1.0.4
-PORTREVISION=	2
+PORTVERSION=	1.0.6
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
