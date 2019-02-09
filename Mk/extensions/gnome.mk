@@ -543,7 +543,7 @@ gnome-post-omf:
 .if defined(INSTALLS_ICONS)
 _USES_install+=	690:gnome-post-icons
 gnome-post-icons:
-	@${RM} ${TMPPLIST}.icons1
+	-${RM} ${TMPPLIST}.icons1
 	@for i in `${GREP} "^share/icons/.*/" ${TMPPLIST} | ${CUT} -d / -f 1-3 | ${SORT} -u`; do \
 		${ECHO_CMD} "@rmtry $${i}/icon-theme.cache" \
 			>> ${TMPPLIST}.icons1; \
