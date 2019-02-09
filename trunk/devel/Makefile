@@ -468,6 +468,7 @@ SUBDIR += protobuf-c
 SUBDIR += protobuf25
 SUBDIR += pth
 SUBDIR += pth-hard
+SUBDIR += ptlib
 SUBDIR += py-Automat
 SUBDIR += py-Jinja2
 SUBDIR += py-asn1crypto
