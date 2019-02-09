@@ -65,6 +65,7 @@ SUBDIR += moon-buggy
 SUBDIR += nextgo
 SUBDIR += oolite
 SUBDIR += pvpgn
+SUBDIR += qqwing
 SUBDIR += qstat
 SUBDIR += quadra
 SUBDIR += quadrapassel
