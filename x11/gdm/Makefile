@@ -98,7 +98,7 @@ OPTIONS_DEFINE=	IPV6
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
