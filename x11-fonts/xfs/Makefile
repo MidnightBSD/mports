@@ -2,16 +2,18 @@
 
 PORTNAME=	xfs
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org font server
+
 LICENSE=	mit
 
 XORG_CAT=	app
 USES=		gmake
-USE_XORG=	libfs xfont2 xtrans
+USE_XORG=	libfs xfont2 xorgproto xtrans
 USE_RC_SUBR=	xfs
 CONFIGURE_ARGS=	--without-xmlto --without-fop
 
