@@ -1,2 +1,3 @@
-SHA256 (postfix/postfix-2.11.5.tar.gz) = 0a4cc61f6d6c57eee676d4e78a42b2d29f8b0f406277d350bc0928f51efa3187
-SIZE (postfix/postfix-2.11.5.tar.gz) = 4036256
+TIMESTAMP = 1549752418
+SHA256 (postfix/postfix-2.11.11.tar.gz) = 4cf79888465a5da75a887ad2bd22cffbc98b3f0a967c79cadff3fb27f6ca0bd7
+SIZE (postfix/postfix-2.11.11.tar.gz) = 4034155
