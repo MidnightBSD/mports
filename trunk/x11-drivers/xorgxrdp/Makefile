@@ -2,10 +2,15 @@
 # $FreeBSD: head/x11-drivers/xorgxrdp/Makefile 465777 2018-03-28 03:38:52Z meta $
 
 PORTNAME=	xorgxrdp
-PORTVERSION=	0.2.6
+PORTVERSION=	0.2.7
+PORTREVISION=	1
+CATEGORIES=	x11-drivers
 DISTVERSIONPREFIX=	v
 CATEGORIES=	x11-drivers
 DIST_SUBDIR=	xrdp
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES=	cad9094.patch:-p1 fa3e738.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org driver enabling use through an RDP session with xrdp
@@ -16,14 +21,12 @@ RUN_DEPENDS=	xauth:x11/xauth
 BUILD_DEPENDS=	nasm:devel/nasm
 
 USES=		autoreconf libtool:build pkgconfig
-USE_XORG=	dri2proto dri3proto glproto inputproto presentproto randrproto \
-		renderproto resourceproto scrnsaverproto xf86driproto xineramaproto \
-		xorg-server
+USE_XORG=	xorgproto xorg-server
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	neutrinolabs
 GH_PROJECT=	xrdp:xrdp
-GH_TAGNAME=	v0.9.6:xrdp
+GH_TAGNAME=	v0.9.7:xrdp
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
