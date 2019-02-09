@@ -21,7 +21,6 @@ bin/clearspd
 bin/convolutions
 bin/copypix
 bin/copytex
-bin/corender
 bin/createwin
 bin/cubemap
 bin/cuberender
@@ -45,7 +44,14 @@ bin/drawelements-large
 bin/drawoverhead
 bin/drawpix
 bin/drawrange
+bin/eglgears_x11
+bin/eglinfo
+bin/eglkms
+bin/egltri_x11
 bin/engine
+bin/es2_info
+bin/es2gears_x11
+bin/es2tri
 bin/fbo_firecube
 bin/fbobind
 bin/fbotexture
@@ -70,6 +76,7 @@ bin/geom-stipple-lines
 bin/geom-wide-lines
 bin/glinfo
 bin/gloss
+bin/glsl-compile-time
 bin/glslstateschange
 bin/glsync
 bin/gltestperf
@@ -127,6 +134,7 @@ bin/overlay
 bin/paltex
 bin/pbdemo
 bin/pbinfo
+bin/peglgears
 bin/pgon-mode
 bin/pixeltest
 bin/point
@@ -245,6 +253,7 @@ bin/tri-stipple
 bin/tri-tex
 bin/tri-tex-1d
 bin/tri-tex-3d
+bin/tri-tex-stipple
 bin/tri-tri
 bin/tri-unfilled
 bin/tri-unfilled-clip
@@ -303,6 +312,8 @@ bin/vp-unfilled
 bin/vsraytrace
 bin/wincopy
 bin/winpos
+bin/xeglgears
+bin/xeglthreads
 bin/xfont
 bin/xrotfontdemo
 %%DATADIR%%/arch.rgb
