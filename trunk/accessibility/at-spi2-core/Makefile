@@ -1,26 +1,29 @@
 # $MidnightBSD$
 
 PORTNAME=	at-spi2-core
-PORTVERSION=	2.16.0
+PORTVERSION=	2.28.0
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Assistive Technology Service Provider Interface
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libxkbcommon.so:x11/libxkbcommon
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	glib20 intlhack introspection:build
-USE_XORG=	x11 xi xtst xext
+PORTSCOUT=	limitw:1,even
+
+USES=		gettext gnome localbase meson pkgconfig tar:xz
+USE_GNOME=	glib20 introspection:build
+USE_XORG=	ice sm x11 xi xtst xext
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-xevie
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
+
+post-install:
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
+	${MKDIR} ${PREFIX}/libdata/pkgconfig
+	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
