@@ -2,6 +2,7 @@
 
 PORTNAME=	bdftopcf
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
 USES=		localbase
-USE_XORG=	x11 xfont fontsproto xproto
+USE_XORG=	xorgproto
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
