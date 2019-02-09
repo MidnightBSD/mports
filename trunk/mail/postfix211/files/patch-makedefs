@@ -6,7 +6,7 @@
  		;;
 +  FreeBSD.10*)	SYSTYPE=FREEBSD10
 +		;;
-+  MidnightBSD.0*)	SYSTYPE=FREEBSD9
++  MidnightBSD.*)	SYSTYPE=FREEBSD9
 +		;;
    OpenBSD.2*)	SYSTYPE=OPENBSD2
  		;;
