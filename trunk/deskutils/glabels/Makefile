@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	glabels
-PORTVERSION=	2.2.8
-PORTREVISION=	1
+PORTVERSION=	3.4.1
 CATEGORIES=	deskutils
 MASTER_SITES=	GNOME
 
@@ -10,31 +9,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program to create labels and business cards
 
 LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libsecret-1.so:security/libsecret \
+		libsoup-2.4.so:devel/libsoup
 
 USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
-		shared-mime-info tar:bzip2
-USE_GNOME=	gnomeprefix libgnomeui gnomedocutils intlhack
-WANT_GNOME=	yes
-INSTALLS_OMF=	yes
+		shared-mime-info tar:xz
+USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool librsvg2
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-update-desktopdb --disable-update-mimedb
-CPPFLAGS+=	-I${LOCALBASE}/include -DGLIB_COMPILATION
-LDFLAGS+=	-L${LOCALBASE}/lib
 
-.include <bsd.port.pre.mk>
+GLIB_SCHEMAS=	org.gnome.glabels-3.gschema.xml
 
-.if ${HAVE_GNOME:Mevolutiondataserver}!=""
-USE_GNOME+=		evolutiondataserver
-CONFIGURE_ARGS+=	--with-libebook
-.else
-CONFIGURE_ARGS+=	--without-libebook
-.endif
+OPTIONS_DEFINE=	EVOLUTION
+EVOLUTION_DESC=	Support evolution data server
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|malloc\.h|stdlib\.h|g' \
-		${WRKSRC}/iec16022-0.2.1/*.c
-	@${REINPLACE_CMD} 's/_LDADD =/& -lm/' ${WRKSRC}/src/Makefile.in
+EVOLUTION_USE=	GNOME=evolutiondataserver3
+EVOLUTION_CONFIGURE_WITH=	libebook
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
