@@ -2,12 +2,12 @@
 # $MidnightBSD$
 
 PORTNAME=	oclock
-PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-clocks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Round clock application for X
+
 LICENSE=	mit
 
 XORG_CAT=	app
