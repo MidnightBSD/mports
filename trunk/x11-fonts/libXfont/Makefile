@@ -2,20 +2,22 @@
 
 PORTNAME=	libXfont
 PORTVERSION=	1.5.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X font library
 
-LICENSE=	bsd4
+LICENSE=	mit bsd2 bsd3
+LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
+USES=		cpe
 XORG_CAT=	lib
-USE_XORG=	xproto:both xtrans fontsproto:both fontenc
+USE_XORG=	xorgproto xtrans fontenc
 INSTALL_TARGET=	install-strip
-USES+=	cpe
 CPE_PRODUCT=	libxfont
 CPE_VENDOR=	x
 
