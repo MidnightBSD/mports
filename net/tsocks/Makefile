@@ -6,7 +6,7 @@
 
 PORTNAME=	tsocks
 DISTVERSION=	1.8.b5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.8%20beta%205 \
 		http://ftp1.sourceforge.net/tsocks/ \
