@@ -2,6 +2,7 @@
 
 PORTNAME=	libFS
 PORTVERSION=	1.0.7
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +11,7 @@ COMMENT=	The FS library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	fontsproto:both xproto:both xtrans
+USE_XORG=	xorgproto xtrans
 USES+=	cpe
 CPE_PRODUCT=	libfs
 CPE_VENDOR=	x
