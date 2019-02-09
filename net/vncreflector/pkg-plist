@@ -1,3 +1,4 @@
+@dir etc/vncreflector
 bin/vncreflector
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
