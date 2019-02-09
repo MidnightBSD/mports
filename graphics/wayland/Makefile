@@ -1,19 +1,15 @@
 # $MidnightBSD$
 
 PORTNAME=	wayland
-PORTVERSION=	1.14.0
+PORTVERSION=	1.16.0
 CATEGORIES=	graphics wayland
-MASTER_SITES=	http://wayland.freedesktop.org/releases/
+MASTER_SITES=	https://wayland.freedesktop.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wayland composite "server"
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_mips=		fails to compile: tests/test-runner.c:349: undefined reference to prctl
-BROKEN_mips64=		fails to compile: tests/test-runner.c:349: undefined reference to prctl
-BROKEN_powerpc64=	fails to compile: tests/test-runner.c:349: undefined reference to prctl
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libffi.so:devel/libffi \
@@ -23,7 +19,7 @@ CFLAGS+=	"-I${LOCALBASE}/include/libepoll-shim"
 
 WITH_DEBUG=	1
 
-USES=		autoreconf gmake libtool localbase pathfix pkgconfig tar:xz
+USES=		autoreconf gmake gnome libtool localbase pathfix pkgconfig tar:xz
 USE_GNOME=	libxslt:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
