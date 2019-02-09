@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	xsetroot
-PORTVERSION=	1.1.1
-PORTREVISION=	3
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

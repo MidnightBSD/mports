@@ -2,7 +2,7 @@
 
 PORTNAME=	libXcomposite
 PORTVERSION=	0.4.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +12,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	compositeproto:both x11 xfixes xext fixesproto xproto:both
+USE_XORG=	x11 xfixes xext xorgproto
 
 .include <bsd.port.mk>

@@ -3,7 +3,7 @@
 
 PORTNAME=	libxshmfence
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Shared memory 'SyncFence' synchronization primitive
 
 LICENSE=	mit
 
-USE_XORG=	xproto
+USE_XORG=	xorgproto
 XORG_CAT=	lib
 
 CONFIGURE_ARGS=	--with-shared-memory-dir=/tmp

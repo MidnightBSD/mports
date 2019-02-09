@@ -2,7 +2,7 @@
 
 PORTNAME=	XScreenSaver.App
 PORTVERSION=	2.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	SF/xscreensaverapp/${PORTNAME}/${PORTVERSION}
 
@@ -11,7 +11,7 @@ COMMENT=	WindowMaker dockapp to control XScreenSaver
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libdockapp.so:${PORTSDIR}/x11-wm/libdockapp
+LIB_DEPENDS=	libdockapp.so:x11-wm/libdockapp
 
 PLIST_FILES=	bin/XScreenSaver.App
 GNU_CONFIGURE=	yes

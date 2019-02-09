@@ -69,10 +69,6 @@ NEXTAW_LIB_DEPENDS=		libneXtaw.so:${PORTSDIR}/x11-toolkits/neXtaw
 USE_XORG+=	xaw
 .endif
 
-.if ${OSVERSION} < 4015
-LIB_DEPENDS+=	libutempter.so:${PORTSDIR}/sysutils/libutempter
-.endif
-
 post-extract:
 	@${CP} ${WRKDIR}/bsd-xterm-icons-1/*.png \
 		${WRKDIR}/bsd-xterm-icons-1/*.xpm \

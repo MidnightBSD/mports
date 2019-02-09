@@ -1,4 +1,4 @@
-bin/xscreensaver
+@(,,4755) bin/xscreensaver
 bin/xscreensaver-command
 bin/xscreensaver-demo
 bin/xscreensaver-getimage
@@ -17,6 +17,7 @@ bin/xscreensaver-hacks/atlantis
 bin/xscreensaver-hacks/attraction
 bin/xscreensaver-hacks/atunnel
 bin/xscreensaver-hacks/barcode
+bin/xscreensaver-hacks/binaryring
 bin/xscreensaver-hacks/blaster
 bin/xscreensaver-hacks/blinkbox
 bin/xscreensaver-hacks/blitspin
@@ -35,15 +36,19 @@ bin/xscreensaver-hacks/carousel
 bin/xscreensaver-hacks/ccurve
 bin/xscreensaver-hacks/celtic
 bin/xscreensaver-hacks/circuit
+bin/xscreensaver-hacks/cityflow
 bin/xscreensaver-hacks/cloudlife
 bin/xscreensaver-hacks/companioncube
 bin/xscreensaver-hacks/compass
 bin/xscreensaver-hacks/coral
 bin/xscreensaver-hacks/crackberg
+bin/xscreensaver-hacks/crumbler
 bin/xscreensaver-hacks/crystal
 bin/xscreensaver-hacks/cube21
 bin/xscreensaver-hacks/cubenetic
+bin/xscreensaver-hacks/cubestack
 bin/xscreensaver-hacks/cubestorm
+bin/xscreensaver-hacks/cubetwist
 bin/xscreensaver-hacks/cubicgrid
 bin/xscreensaver-hacks/cwaves
 bin/xscreensaver-hacks/cynosure
@@ -52,17 +57,22 @@ bin/xscreensaver-hacks/decayscreen
 bin/xscreensaver-hacks/deco
 bin/xscreensaver-hacks/deluxe
 bin/xscreensaver-hacks/demon
+bin/xscreensaver-hacks/discoball
 bin/xscreensaver-hacks/discrete
 bin/xscreensaver-hacks/distort
 bin/xscreensaver-hacks/drift
+bin/xscreensaver-hacks/dymaxionmap
 bin/xscreensaver-hacks/endgame
+bin/xscreensaver-hacks/energystream
 bin/xscreensaver-hacks/engine
 bin/xscreensaver-hacks/epicycle
 bin/xscreensaver-hacks/eruption
+bin/xscreensaver-hacks/esper
 bin/xscreensaver-hacks/euler2d
 bin/xscreensaver-hacks/extrusion
 bin/xscreensaver-hacks/fadeplot
 bin/xscreensaver-hacks/fiberlamp
+bin/xscreensaver-hacks/filmleader
 bin/xscreensaver-hacks/fireworkx
 bin/xscreensaver-hacks/flame
 bin/xscreensaver-hacks/flipflop
@@ -76,11 +86,14 @@ bin/xscreensaver-hacks/fontglide
 bin/xscreensaver-hacks/fuzzyflakes
 bin/xscreensaver-hacks/galaxy
 bin/xscreensaver-hacks/gears
+bin/xscreensaver-hacks/geodesic
+bin/xscreensaver-hacks/geodesicgears
 bin/xscreensaver-hacks/gflux
 bin/xscreensaver-hacks/glblur
 bin/xscreensaver-hacks/glcells
 bin/xscreensaver-hacks/gleidescope
 bin/xscreensaver-hacks/glhanoi
+bin/xscreensaver-hacks/glitchpeg
 bin/xscreensaver-hacks/glknots
 bin/xscreensaver-hacks/glmatrix
 bin/xscreensaver-hacks/glplanet
@@ -95,8 +108,10 @@ bin/xscreensaver-hacks/halftone
 bin/xscreensaver-hacks/halo
 bin/xscreensaver-hacks/helix
 bin/xscreensaver-hacks/hexadrop
+bin/xscreensaver-hacks/hexstrut
 bin/xscreensaver-hacks/hilbert
 bin/xscreensaver-hacks/hopalong
+bin/xscreensaver-hacks/hydrostat
 bin/xscreensaver-hacks/hypertorus
 bin/xscreensaver-hacks/hypnowheel
 bin/xscreensaver-hacks/ifs
@@ -108,8 +123,8 @@ bin/xscreensaver-hacks/jigglypuff
 bin/xscreensaver-hacks/jigsaw
 bin/xscreensaver-hacks/juggler3d
 bin/xscreensaver-hacks/julia
-bin/xscreensaver-hacks/kaleidocycle
 bin/xscreensaver-hacks/kaleidescope
+bin/xscreensaver-hacks/kaleidocycle
 bin/xscreensaver-hacks/klein
 bin/xscreensaver-hacks/kumppa
 bin/xscreensaver-hacks/lament
@@ -120,6 +135,7 @@ bin/xscreensaver-hacks/lockward
 bin/xscreensaver-hacks/loop
 bin/xscreensaver-hacks/m6502
 bin/xscreensaver-hacks/maze
+bin/xscreensaver-hacks/maze3d
 bin/xscreensaver-hacks/memscroller
 bin/xscreensaver-hacks/menger
 bin/xscreensaver-hacks/metaballs
@@ -137,6 +153,7 @@ bin/xscreensaver-hacks/noof
 bin/xscreensaver-hacks/noseguy
 bin/xscreensaver-hacks/pacman
 bin/xscreensaver-hacks/pedal
+bin/xscreensaver-hacks/peepers
 bin/xscreensaver-hacks/penetrate
 bin/xscreensaver-hacks/penrose
 bin/xscreensaver-hacks/petri
@@ -150,15 +167,19 @@ bin/xscreensaver-hacks/polyominoes
 bin/xscreensaver-hacks/polytopes
 bin/xscreensaver-hacks/pong
 bin/xscreensaver-hacks/popsquares
+bin/xscreensaver-hacks/projectiveplane
 bin/xscreensaver-hacks/providence
 bin/xscreensaver-hacks/pulsar
 bin/xscreensaver-hacks/pyro
 bin/xscreensaver-hacks/qix
 bin/xscreensaver-hacks/quasicrystal
 bin/xscreensaver-hacks/queens
+bin/xscreensaver-hacks/raverhoop
+bin/xscreensaver-hacks/razzledazzle
 bin/xscreensaver-hacks/rd-bomb
 bin/xscreensaver-hacks/ripples
 bin/xscreensaver-hacks/rocks
+bin/xscreensaver-hacks/romanboy
 bin/xscreensaver-hacks/rorschach
 bin/xscreensaver-hacks/rotzoomer
 bin/xscreensaver-hacks/rubik
@@ -170,9 +191,13 @@ bin/xscreensaver-hacks/sierpinski3d
 bin/xscreensaver-hacks/skytentacles
 bin/xscreensaver-hacks/slidescreen
 bin/xscreensaver-hacks/slip
+%%SETUID_HACKS%%@mode 4755
 bin/xscreensaver-hacks/sonar
+%%SETUID_HACKS%%@mode
 bin/xscreensaver-hacks/speedmine
 bin/xscreensaver-hacks/spheremonics
+bin/xscreensaver-hacks/splitflap
+bin/xscreensaver-hacks/splodesic
 bin/xscreensaver-hacks/spotlight
 bin/xscreensaver-hacks/sproingies
 bin/xscreensaver-hacks/squiral
@@ -186,6 +211,7 @@ bin/xscreensaver-hacks/superquadrics
 bin/xscreensaver-hacks/surfaces
 bin/xscreensaver-hacks/swirl
 bin/xscreensaver-hacks/tangram
+bin/xscreensaver-hacks/tessellimage
 bin/xscreensaver-hacks/thornbird
 bin/xscreensaver-hacks/timetunnel
 bin/xscreensaver-hacks/topblock
@@ -193,13 +219,18 @@ bin/xscreensaver-hacks/triangle
 bin/xscreensaver-hacks/tronbit
 bin/xscreensaver-hacks/truchet
 bin/xscreensaver-hacks/twang
+bin/xscreensaver-hacks/unicrud
 bin/xscreensaver-hacks/unknownpleasures
 bin/xscreensaver-hacks/vermiculate
+bin/xscreensaver-hacks/vfeedback
 bin/xscreensaver-hacks/vidwhacker
+bin/xscreensaver-hacks/vigilance
 bin/xscreensaver-hacks/voronoi
 bin/xscreensaver-hacks/wander
 bin/xscreensaver-hacks/webcollage
+bin/xscreensaver-hacks/webcollage-helper
 bin/xscreensaver-hacks/whirlwindwarp
+bin/xscreensaver-hacks/winduprobot
 bin/xscreensaver-hacks/wormhole
 bin/xscreensaver-hacks/xanalogtv
 bin/xscreensaver-hacks/xflame
@@ -211,7 +242,7 @@ bin/xscreensaver-hacks/xspirograph
 bin/xscreensaver-hacks/zoom
 bin/xscreensaver-text
 %%PAM%%etc/pam.d/xscreensaver
-@comment lib/X11/app-defaults/XScreenSaver
+lib/X11/app-defaults/XScreenSaver
 man/man1/xscreensaver-command.1.gz
 man/man1/xscreensaver-demo.1.gz
 man/man1/xscreensaver-getimage-file.1.gz
@@ -231,6 +262,7 @@ man/man6/atlantis.6.gz
 man/man6/attraction.6.gz
 man/man6/atunnel.6.gz
 man/man6/barcode.6.gz
+man/man6/binaryring.6.gz
 man/man6/blaster.6.gz
 man/man6/blinkbox.6.gz
 man/man6/blitspin.6.gz
@@ -249,15 +281,19 @@ man/man6/carousel.6.gz
 man/man6/ccurve.6.gz
 man/man6/celtic.6.gz
 man/man6/circuit.6.gz
+man/man6/cityflow.6.gz
 man/man6/cloudlife.6.gz
 man/man6/companioncube.6.gz
 man/man6/compass.6.gz
 man/man6/coral.6.gz
 man/man6/crackberg.6.gz
+man/man6/crumbler.6.gz
 man/man6/crystal.6.gz
 man/man6/cube21.6.gz
 man/man6/cubenetic.6.gz
+man/man6/cubestack.6.gz
 man/man6/cubestorm.6.gz
+man/man6/cubetwist.6.gz
 man/man6/cubicgrid.6.gz
 man/man6/cwaves.6.gz
 man/man6/cynosure.6.gz
@@ -266,17 +302,22 @@ man/man6/decayscreen.6.gz
 man/man6/deco.6.gz
 man/man6/deluxe.6.gz
 man/man6/demon.6.gz
+man/man6/discoball.6.gz
 man/man6/discrete.6.gz
 man/man6/distort.6.gz
 man/man6/drift.6.gz
+man/man6/dymaxionmap.6.gz
 man/man6/endgame.6.gz
+man/man6/energystream.6.gz
 man/man6/engine.6.gz
 man/man6/epicycle.6.gz
 man/man6/eruption.6.gz
+man/man6/esper.6.gz
 man/man6/euler2d.6.gz
 man/man6/extrusion.6.gz
 man/man6/fadeplot.6.gz
 man/man6/fiberlamp.6.gz
+man/man6/filmleader.6.gz
 man/man6/fireworkx.6.gz
 man/man6/flame.6.gz
 man/man6/flipflop.6.gz
@@ -290,11 +331,14 @@ man/man6/fontglide.6.gz
 man/man6/fuzzyflakes.6.gz
 man/man6/galaxy.6.gz
 man/man6/gears.6.gz
+man/man6/geodesic.6.gz
+man/man6/geodesicgears.6.gz
 man/man6/gflux.6.gz
 man/man6/glblur.6.gz
 man/man6/glcells.6.gz
 man/man6/gleidescope.6.gz
 man/man6/glhanoi.6.gz
+man/man6/glitchpeg.6.gz
 man/man6/glknots.6.gz
 man/man6/glmatrix.6.gz
 man/man6/glplanet.6.gz
@@ -308,8 +352,11 @@ man/man6/greynetic.6.gz
 man/man6/halftone.6.gz
 man/man6/halo.6.gz
 man/man6/helix.6.gz
+man/man6/hexadrop.6.gz
+man/man6/hexstrut.6.gz
 man/man6/hilbert.6.gz
 man/man6/hopalong.6.gz
+man/man6/hydrostat.6.gz
 man/man6/hypertorus.6.gz
 man/man6/hypnowheel.6.gz
 man/man6/ifs.6.gz
@@ -321,6 +368,8 @@ man/man6/jigglypuff.6.gz
 man/man6/jigsaw.6.gz
 man/man6/juggler3d.6.gz
 man/man6/julia.6.gz
+man/man6/kaleidescope.6.gz
+man/man6/kaleidocycle.6.gz
 man/man6/klein.6.gz
 man/man6/kumppa.6.gz
 man/man6/lament.6.gz
@@ -330,6 +379,7 @@ man/man6/ljlatest.6.gz
 man/man6/lockward.6.gz
 man/man6/loop.6.gz
 man/man6/maze.6.gz
+man/man6/maze3d.6.gz
 man/man6/memscroller.6.gz
 man/man6/menger.6.gz
 man/man6/metaballs.6.gz
@@ -347,6 +397,7 @@ man/man6/noof.6.gz
 man/man6/noseguy.6.gz
 man/man6/pacman.6.gz
 man/man6/pedal.6.gz
+man/man6/peepers.6.gz
 man/man6/penetrate.6.gz
 man/man6/penrose.6.gz
 man/man6/petri.6.gz
@@ -359,14 +410,19 @@ man/man6/polyhedra.6.gz
 man/man6/polyominoes.6.gz
 man/man6/polytopes.6.gz
 man/man6/pong.6.gz
+man/man6/projectiveplane.6.gz
 man/man6/providence.6.gz
 man/man6/pulsar.6.gz
 man/man6/pyro.6.gz
 man/man6/qix.6.gz
+man/man6/quasicrystal.6.gz
 man/man6/queens.6.gz
+man/man6/raverhoop.6.gz
+man/man6/razzledazzle.6.gz
 man/man6/rd-bomb.6.gz
 man/man6/ripples.6.gz
 man/man6/rocks.6.gz
+man/man6/romanboy.6.gz
 man/man6/rorschach.6.gz
 man/man6/rotzoomer.6.gz
 man/man6/rubik.6.gz
@@ -381,6 +437,8 @@ man/man6/slip.6.gz
 man/man6/sonar.6.gz
 man/man6/speedmine.6.gz
 man/man6/spheremonics.6.gz
+man/man6/splitflap.6.gz
+man/man6/splodesic.6.gz
 man/man6/spotlight.6.gz
 man/man6/sproingies.6.gz
 man/man6/squiral.6.gz
@@ -394,6 +452,7 @@ man/man6/superquadrics.6.gz
 man/man6/surfaces.6.gz
 man/man6/swirl.6.gz
 man/man6/tangram.6.gz
+man/man6/tessellimage.6.gz
 man/man6/thornbird.6.gz
 man/man6/timetunnel.6.gz
 man/man6/topblock.6.gz
@@ -401,12 +460,17 @@ man/man6/triangle.6.gz
 man/man6/tronbit.6.gz
 man/man6/truchet.6.gz
 man/man6/twang.6.gz
+man/man6/unicrud.6.gz
+man/man6/unknownpleasures.6.gz
 man/man6/vermiculate.6.gz
+man/man6/vfeedback.6.gz
 man/man6/vidwhacker.6.gz
+man/man6/vigilance.6.gz
 man/man6/voronoi.6.gz
 man/man6/wander.6.gz
 man/man6/webcollage.6.gz
 man/man6/whirlwindwarp.6.gz
+man/man6/winduprobot.6.gz
 man/man6/wormhole.6.gz
 man/man6/xanalogtv.6.gz
 man/man6/xflame.6.gz
@@ -422,6 +486,28 @@ share/applications/xscreensaver-lock.desktop
 share/applications/xscreensaver-properties.desktop
 share/applications/xscreensaver-start.desktop
 share/applications/xscreensaver-stop.desktop
+%%NLS%%share/locale/da/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/de/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/es/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/et/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/it/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/ko/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/nb/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/vi/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/wa/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/xscreensaver.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/xscreensaver.mo
 share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/README
 %%DATADIR%%/config/abstractile.xml
@@ -436,6 +522,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/attraction.xml
 %%DATADIR%%/config/atunnel.xml
 %%DATADIR%%/config/barcode.xml
+%%DATADIR%%/config/binaryring.xml
 %%DATADIR%%/config/blaster.xml
 %%DATADIR%%/config/blinkbox.xml
 %%DATADIR%%/config/blitspin.xml
@@ -454,15 +541,19 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/ccurve.xml
 %%DATADIR%%/config/celtic.xml
 %%DATADIR%%/config/circuit.xml
+%%DATADIR%%/config/cityflow.xml
 %%DATADIR%%/config/cloudlife.xml
-%%DATADIR%%/config/compass.xml
 %%DATADIR%%/config/companioncube.xml
+%%DATADIR%%/config/compass.xml
 %%DATADIR%%/config/coral.xml
 %%DATADIR%%/config/crackberg.xml
+%%DATADIR%%/config/crumbler.xml
 %%DATADIR%%/config/crystal.xml
 %%DATADIR%%/config/cube21.xml
 %%DATADIR%%/config/cubenetic.xml
+%%DATADIR%%/config/cubestack.xml
 %%DATADIR%%/config/cubestorm.xml
+%%DATADIR%%/config/cubetwist.xml
 %%DATADIR%%/config/cubicgrid.xml
 %%DATADIR%%/config/cwaves.xml
 %%DATADIR%%/config/cynosure.xml
@@ -471,17 +562,22 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/deco.xml
 %%DATADIR%%/config/deluxe.xml
 %%DATADIR%%/config/demon.xml
+%%DATADIR%%/config/discoball.xml
 %%DATADIR%%/config/discrete.xml
 %%DATADIR%%/config/distort.xml
 %%DATADIR%%/config/drift.xml
+%%DATADIR%%/config/dymaxionmap.xml
 %%DATADIR%%/config/endgame.xml
+%%DATADIR%%/config/energystream.xml
 %%DATADIR%%/config/engine.xml
 %%DATADIR%%/config/epicycle.xml
 %%DATADIR%%/config/eruption.xml
+%%DATADIR%%/config/esper.xml
 %%DATADIR%%/config/euler2d.xml
 %%DATADIR%%/config/extrusion.xml
 %%DATADIR%%/config/fadeplot.xml
 %%DATADIR%%/config/fiberlamp.xml
+%%DATADIR%%/config/filmleader.xml
 %%DATADIR%%/config/fireworkx.xml
 %%DATADIR%%/config/flame.xml
 %%DATADIR%%/config/flipflop.xml
@@ -495,11 +591,14 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/fuzzyflakes.xml
 %%DATADIR%%/config/galaxy.xml
 %%DATADIR%%/config/gears.xml
+%%DATADIR%%/config/geodesic.xml
+%%DATADIR%%/config/geodesicgears.xml
 %%DATADIR%%/config/gflux.xml
 %%DATADIR%%/config/glblur.xml
 %%DATADIR%%/config/glcells.xml
 %%DATADIR%%/config/gleidescope.xml
 %%DATADIR%%/config/glhanoi.xml
+%%DATADIR%%/config/glitchpeg.xml
 %%DATADIR%%/config/glknots.xml
 %%DATADIR%%/config/glmatrix.xml
 %%DATADIR%%/config/glplanet.xml
@@ -514,8 +613,10 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/halo.xml
 %%DATADIR%%/config/helix.xml
 %%DATADIR%%/config/hexadrop.xml
+%%DATADIR%%/config/hexstrut.xml
 %%DATADIR%%/config/hilbert.xml
 %%DATADIR%%/config/hopalong.xml
+%%DATADIR%%/config/hydrostat.xml
 %%DATADIR%%/config/hypertorus.xml
 %%DATADIR%%/config/hypnowheel.xml
 %%DATADIR%%/config/ifs.xml
@@ -527,8 +628,8 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/jigsaw.xml
 %%DATADIR%%/config/juggler3d.xml
 %%DATADIR%%/config/julia.xml
-%%DATADIR%%/config/kaleidocycle.xml
 %%DATADIR%%/config/kaleidescope.xml
+%%DATADIR%%/config/kaleidocycle.xml
 %%DATADIR%%/config/klein.xml
 %%DATADIR%%/config/kumppa.xml
 %%DATADIR%%/config/lament.xml
@@ -538,6 +639,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/loop.xml
 %%DATADIR%%/config/m6502.xml
 %%DATADIR%%/config/maze.xml
+%%DATADIR%%/config/maze3d.xml
 %%DATADIR%%/config/memscroller.xml
 %%DATADIR%%/config/menger.xml
 %%DATADIR%%/config/metaballs.xml
@@ -555,6 +657,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/noseguy.xml
 %%DATADIR%%/config/pacman.xml
 %%DATADIR%%/config/pedal.xml
+%%DATADIR%%/config/peepers.xml
 %%DATADIR%%/config/penetrate.xml
 %%DATADIR%%/config/penrose.xml
 %%DATADIR%%/config/petri.xml
@@ -568,15 +671,19 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/polytopes.xml
 %%DATADIR%%/config/pong.xml
 %%DATADIR%%/config/popsquares.xml
+%%DATADIR%%/config/projectiveplane.xml
 %%DATADIR%%/config/providence.xml
 %%DATADIR%%/config/pulsar.xml
 %%DATADIR%%/config/pyro.xml
 %%DATADIR%%/config/qix.xml
 %%DATADIR%%/config/quasicrystal.xml
 %%DATADIR%%/config/queens.xml
+%%DATADIR%%/config/raverhoop.xml
+%%DATADIR%%/config/razzledazzle.xml
 %%DATADIR%%/config/rd-bomb.xml
 %%DATADIR%%/config/ripples.xml
 %%DATADIR%%/config/rocks.xml
+%%DATADIR%%/config/romanboy.xml
 %%DATADIR%%/config/rorschach.xml
 %%DATADIR%%/config/rotzoomer.xml
 %%DATADIR%%/config/rubik.xml
@@ -591,6 +698,8 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/sonar.xml
 %%DATADIR%%/config/speedmine.xml
 %%DATADIR%%/config/spheremonics.xml
+%%DATADIR%%/config/splitflap.xml
+%%DATADIR%%/config/splodesic.xml
 %%DATADIR%%/config/spotlight.xml
 %%DATADIR%%/config/sproingies.xml
 %%DATADIR%%/config/squiral.xml
@@ -604,6 +713,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/surfaces.xml
 %%DATADIR%%/config/swirl.xml
 %%DATADIR%%/config/tangram.xml
+%%DATADIR%%/config/tessellimage.xml
 %%DATADIR%%/config/thornbird.xml
 %%DATADIR%%/config/timetunnel.xml
 %%DATADIR%%/config/topblock.xml
@@ -611,28 +721,32 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/tronbit.xml
 %%DATADIR%%/config/truchet.xml
 %%DATADIR%%/config/twang.xml
+%%DATADIR%%/config/unicrud.xml
 %%DATADIR%%/config/unknownpleasures.xml
 %%DATADIR%%/config/vermiculate.xml
+%%DATADIR%%/config/vfeedback.xml
 %%DATADIR%%/config/vidwhacker.xml
+%%DATADIR%%/config/vigilance.xml
 %%DATADIR%%/config/voronoi.xml
 %%DATADIR%%/config/wander.xml
 %%DATADIR%%/config/webcollage.xml
 %%DATADIR%%/config/whirlwindwarp.xml
+%%DATADIR%%/config/winduprobot.xml
 %%DATADIR%%/config/wormhole.xml
 %%DATADIR%%/config/xanalogtv.xml
+%%DATADIR%%/config/xaos.xml
+%%DATADIR%%/config/xdaliclock.xml
+%%DATADIR%%/config/xearth.xml
 %%DATADIR%%/config/xflame.xml
 %%DATADIR%%/config/xjack.xml
 %%DATADIR%%/config/xlyap.xml
 %%DATADIR%%/config/xmatrix.xml
-%%DATADIR%%/config/xrayswarm.xml
-%%DATADIR%%/config/xspirograph.xml
-%%DATADIR%%/config/zoom.xml
-%%DATADIR%%/config/xaos.xml
-%%DATADIR%%/config/xdaliclock.xml
-%%DATADIR%%/config/xearth.xml
 %%DATADIR%%/config/xmountains.xml
 %%DATADIR%%/config/xplanet.xml
+%%DATADIR%%/config/xrayswarm.xml
 %%DATADIR%%/config/xsnow.xml
+%%DATADIR%%/config/xspirograph.xml
+%%DATADIR%%/config/zoom.xml
 %%DATADIR%%/glade/screensaver-cmndln.png
 %%DATADIR%%/glade/screensaver-colorselector.png
 %%DATADIR%%/glade/screensaver-diagnostic.png
@@ -640,52 +754,3 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/glade/screensaver-power.png
 %%DATADIR%%/glade/screensaver-snap.png
 %%DATADIR%%/glade/xscreensaver-demo.glade2
-@dirrmtry bin/xscreensaver-hacks
-@dirrmtry share/locale/ca/LC_MESSAGES
-@dirrmtry share/locale/ca
-@dirrmtry share/locale/da/LC_MESSAGES
-@dirrmtry share/locale/da
-@dirrmtry share/locale/de/LC_MESSAGES
-@dirrmtry share/locale/de
-@dirrmtry share/locale/es/LC_MESSAGES
-@dirrmtry share/locale/es
-@dirrmtry share/locale/et/LC_MESSAGES
-@dirrmtry share/locale/et
-@dirrmtry share/locale/fi/LC_MESSAGES
-@dirrmtry share/locale/fi
-@dirrmtry share/locale/fr/LC_MESSAGES
-@dirrmtry share/locale/fr
-@dirrmtry share/locale/hu/LC_MESSAGES
-@dirrmtry share/locale/hu
-@dirrmtry share/locale/it/LC_MESSAGES
-@dirrmtry share/locale/it
-@dirrmtry share/locale/ja/LC_MESSAGES
-@dirrmtry share/locale/ja
-@dirrmtry share/locale/ko/LC_MESSAGES
-@dirrmtry share/locale/ko
-@dirrmtry share/locale/nb/LC_MESSAGES
-@dirrmtry share/locale/nb
-@dirrmtry share/locale/nl/LC_MESSAGES
-@dirrmtry share/locale/nl
-@dirrmtry share/locale/pl/LC_MESSAGES
-@dirrmtry share/locale/pt
-@dirrmtry share/locale/pt_BR/LC_MESSAGES
-@dirrmtry share/locale/pt_BR
-@dirrmtry share/locale/ru/LC_MESSAGES
-@dirrmtry share/locale/ru
-@dirrmtry share/locale/sk/LC_MESSAGES
-@dirrmtry share/locale/sk
-@dirrmtry share/locale/sv/LC_MESSAGES
-@dirrmtry share/locale/sv
-@dirrmtry share/locale/vi/LC_MESSAGES
-@dirrmtry share/locale/vi
-@dirrmtry share/locale/wa/LC_MESSAGES
-@dirrmtry share/locale/wa
-@dirrmtry share/locale/zh_CN/LC_MESSAGES
-@dirrmtry share/locale/zh_CN
-@dirrmtry share/locale/zh_TW/LC_MESSAGES
-@dirrmtry share/locale/zh_TW
-@dirrmtry share/locale
-@dirrmtry %%DATADIR%%/config
-@dirrm %%DATADIR%%/glade
-@dirrmtry %%DATADIR%%

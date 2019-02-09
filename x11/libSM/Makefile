@@ -2,7 +2,7 @@
 
 PORTNAME=	libSM
 PORTVERSION=	1.2.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -12,7 +12,7 @@ COMMENT=	Session Management library for X11
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	ice xproto:both xtrans
+USE_XORG=	ice xorgproto xtrans
 
 CONFIGURE_ARGS+=--disable-docs --without-xmlto
 

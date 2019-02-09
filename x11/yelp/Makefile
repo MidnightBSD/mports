@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	yelp
-PORTVERSION=	3.16.1
-PORTREVISION=	0
+PORTVERSION=	3.28.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -13,26 +12,38 @@ COMMENT=	Help browser for the GNOME 3 desktop
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	yelp-xsl>=0:${PORTSDIR}/textproc/yelp-xsl \
-		itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libwebkitgtk-3.0.so:${PORTSDIR}/www/webkit-gtk3
-RUN_DEPENDS=	yelp-xsl>=0:${PORTSDIR}/textproc/yelp-xsl
+BUILD_DEPENDS=	yelp-xsl>=0:textproc/yelp-xsl \
+		itstool:textproc/itstool
+LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
+		libgcrypt.so:security/libgcrypt \
+		libgpg-error.so:security/libgpg-error \
+		libsoup-2.4.so:devel/libsoup
+RUN_DEPENDS=	yelp-xsl>=0:textproc/yelp-xsl
 
-USES=		desktop-file-utils gettext gmake libtool pathfix \
-		pkgconfig tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		compiler:c11 desktop-file-utils gettext gmake gnome \
+		libtool pathfix pkgconfig sqlite tar:xz
 USE_XORG=	x11 ice
-USE_GNOME=	gtk30 intlhack libxml2 libxslt
+USE_GNOME=	cairo gtk30 intlhack libxml2 libxslt
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 GLIB_SCHEMAS=	org.gnome.yelp.gschema.xml
 INSTALL_TARGET=	install-strip
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
+.if !exists(/usr/libdata/pkgconfig/liblzma.pc)
 CONFIGURE_ENV+=	YELP_LZMA_CFLAGS="-I/usr/include" \
 		YELP_LZMA_LIBS="-L/usr/lib -llzma"
+.endif
 
-.include <bsd.port.post.mk>
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LIBEXECDIR%%|${PREFIX}/libexec|g' \
+		${WRKSRC}/libyelp/yelp-man-parser.c
+
+post-install:
+	${INSTALL_SCRIPT} ${FILESDIR}/yelp-groff ${STAGEDIR}${PREFIX}/libexec
+
+.include <bsd.port.mk>

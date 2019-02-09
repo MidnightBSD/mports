@@ -5,7 +5,8 @@ PORTVERSION=	1.0.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Recomputes the list of available printers.
+COMMENT=	Recomputes the list of available printers
+
 LICENSE=	mit
 
 XORG_CAT=	app
