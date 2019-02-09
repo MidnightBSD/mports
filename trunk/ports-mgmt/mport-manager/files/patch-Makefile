@@ -1,0 +1,11 @@
+--- Makefile.orig	2019-02-09 18:35:27.399227000 -0500
++++ Makefile	2019-02-09 18:35:34.398519000 -0500
+@@ -5,7 +5,7 @@
+ LDFLAGS= -L/usr/lib -L/usr/local/lib \
+ 	-lmd -larchive -lbz2 -llzma -lz -lfetch -lsqlite3 -lmport \
+ 	-lpthread -ldispatch -lBlocksRuntime \
+-	`pkg-config --libs gtk+-3.0`
++	`pkg-config --libs gtk+-3.0` -lX11
+ PREFIX=	/usr/local
+ DATADIR=/usr/local/share/mport
+ 

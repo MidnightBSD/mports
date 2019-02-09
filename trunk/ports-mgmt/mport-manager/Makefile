@@ -2,6 +2,7 @@
 
 PORTNAME=	mport-manager
 PORTVERSION=	0.1.5
+PORTREVISION=	1
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -19,6 +20,7 @@ GH_TAGNAME=     ${PORTVERSION}
 GH_COMMIT=      b7486c0
 USE_CSTD=       c99
 
+USE_XORG=	x11
 USE_GNOME=	gtk30
 WANT_GNOME=	yes
 
