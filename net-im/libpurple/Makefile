@@ -2,7 +2,7 @@
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.12.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -98,10 +98,8 @@ PLIST_SUB+=		TCL:="@comment not installed: "
 .include <bsd.port.pre.mk>
 
 .if !defined(PIDGIN_SLAVE)
-.if ${HAVE_GNOME:Mgconf2}!="" || exists(${LOCALBASE}/bin/gconftool-2)
 USE_GNOME+=	gconf2
 GCONF_SCHEMAS=	purple.schemas
-.endif
 .endif
 
 #.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
