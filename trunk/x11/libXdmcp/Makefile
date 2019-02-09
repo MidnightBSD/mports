@@ -2,6 +2,7 @@
 
 PORTNAME=	libXdmcp
 PORTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +11,7 @@ COMMENT=	X Display Manager Control Protocol library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	xproto:both
+USE_XORG=	xorgproto:both
 
 CONFIGURE_ARGS+=--disable-docs --without-xmlto
 

@@ -1,51 +1,51 @@
 # $MidnightBSD$
 
 PORTNAME=	gdm
-PORTVERSION=	3.16.4
-PORTREVISION=	1
+PORTVERSION=	3.28.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME 3 version of xdm display manager
+COMMENT=	GNOME 3 display manager
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
-		itstool:${PORTSDIR}/textproc/itstool \
-    		iso-codes>=0:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	libck-connector.so:${PORTSDIR}/sysutils/consolekit2 \
-		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libupower-glib.so:${PORTSDIR}/sysutils/upower \
-		libnss3.so:${PORTSDIR}/security/nss \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libaccountsservice.so:${PORTSDIR}/sysutils/accountsservice \
-		libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3
-RUN_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
-		gnome-shell>=3.15.92:${PORTSDIR}/x11/gnome-shell \
-		gnome-settings-daemon>=3.0.0:${PORTSDIR}/sysutils/gnome-settings-daemon \
-		gnome-keyring-3:${PORTSDIR}/security/gnome-keyring \
-		gnome-session>=3.0.0:${PORTSDIR}/x11/gnome-session \
-		gnome-icon-theme-symbolic>=0:${PORTSDIR}/x11-themes/gnome-icon-theme-symbolic \
-		polkit-gnome>=0.105:${PORTSDIR}/sysutils/polkit-gnome \
-		at-spi2-core>=0:${PORTSDIR}/accessibility/at-spi2-core \
-		iso-codes>=0:${PORTSDIR}/misc/iso-codes
+BUILD_DEPENDS=	zenity>=3.0.0:x11/zenity \
+		itstool:textproc/itstool \
+		iso-codes>=0:misc/iso-codes
+LIB_DEPENDS=	libck-connector.so:sysutils/consolekit2 \
+		libaccountsservice.so:sysutils/accountsservice \
+		libcanberra.so:audio/libcanberra \
+		libcanberra-gtk3.so:audio/libcanberra-gtk3
+RUN_DEPENDS=	zenity>=3.0.0:x11/zenity \
+		gnome-shell>=3.15.92:x11/gnome-shell \
+		gnome-settings-daemon>=3.0.0:sysutils/gnome-settings-daemon \
+		gnome-keyring-3:security/gnome-keyring \
+		gnome-session>=3.0.0:x11/gnome-session \
+		gnome-icon-theme-symbolic>=0:x11-themes/gnome-icon-theme-symbolic \
+		polkit-gnome>=0.105:sysutils/polkit-gnome \
+		at-spi2-core>=0:accessibility/at-spi2-core \
+		iso-codes>=0:misc/iso-codes
 # used in scripts
-RUN_DEPENDS+=	xrdb:${PORTSDIR}/x11/xrdb \
-		setxkbmap:${PORTSDIR}/x11/setxkbmap \
-		xmodmap:${PORTSDIR}/x11/xmodmap \
-		xterm:${PORTSDIR}/x11/xterm
+RUN_DEPENDS+=	xrdb:x11/xrdb \
+		setxkbmap:x11/setxkbmap \
+		xsetroot:x11/xsetroot \
+		xhost:x11/xhost \
+		xmodmap:x11/xmodmap \
+		xterm:x11/xterm
 
 USERS=		gdm
-GROUPS=		gdm
+GROUPS=		gdm video
 
-USES=		cpe execinfo gettext gmake libtool pathfix pkgconfig tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		cpe gettext gmake gnome libtool pathfix pkgconfig tar:xz
 CPE_VENDOR=	gnome
 CPE_VENDOR=	gnome_display_manager
-USE_GNOME=	dconf intlhack introspection librsvg2
+USE_GNOME=	cairo dconf gtk30 intltool introspection
 USE_LDCONFIG=	yes
-USE_XORG=	dmx dmxproto
+USE_XORG=	x11 xau xcb xdmcp xorgproto
 INSTALLS_ICONS=	yes
 USE_RC_SUBR=	gdm
 USE_GNOME_SUBR=	yes
@@ -59,6 +59,8 @@ CONFIGURE_ARGS=	--disable-static \
 		--with-dbus-sys=${PREFIX}/etc/dbus-1/system.d \
 		--with-log-dir=/var/log/gdm \
 		--localstatedir=/var \
+		--without-selinux \
+		--without-libaudit \
 		--with-console-kit \
 		--with-working-directory=${PREFIX}/etc/gdm/home \
 		--with-sysconfsubdir=gdm \
@@ -67,9 +69,11 @@ CONFIGURE_ARGS=	--disable-static \
 		--with-screenshot-dir=/var/run/gdm/greeter \
 		--enable-authentication-scheme=pam \
 		--without-plymouth \
+		--without-systemd \
 		--with-user=gdm \
 		--with-group=gdm \
- 		--with-initial-vt=09 \
+		--with-initial-vt=09 \
+		--enable-gdm-xsession \
 		--disable-wayland-support \
 		--with-systemd=no
 
@@ -90,44 +94,37 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 
 GNOME_LOCALSTATEDIR=	/var
 
-OPTIONS_DEFINE=	IPV6 KEYRING
-OPTIONS_DEFAULT=KEYRING
-KEYRING_DESC=	Gnomekeyring/PAM integration
-KEYRING_LIB_DEPENDS=	libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
+OPTIONS_DEFINE=	IPV6
+
 IPV6_CONFIGURE_ENABLE=	ipv6
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.options.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.if ${PORT_OPTIONS:MKEYRING}
-SUB_LIST+=	PAM_KEYRING=
-.else
-SUB_LIST+=	PAM_KEYRING=\#
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|root:root|root:wheel|g' \
 		${WRKSRC}/data/Makefile.in
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-	    	-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-	    	${WRKSRC}/daemon/gdm-session-worker.c
+		-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		-e 's|/bin/bash|/bin/sh|g' \
+		${WRKSRC}/daemon/gdm-session-worker.c
 	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|g' \
 		-e 's|/usr/bin/X|${LOCALBASE}/bin/X|g' \
 		-e 's|/usr/bin/Xorg|${LOCALBASE}/bin/Xorg|g' \
 		${WRKSRC}/configure ${WRKSRC}/daemon/*.c ${WRKSRC}/po/*.po
 	@${REINPLACE_CMD} -e 's|/at-spi-registryd|/at-spi2-registryd|g' \
-		${WRKSRC}/gui/simple-chooser/gdm-host-chooser.c \
-		${WRKSRC}/gui/simple-chooser/chooser-main.c
+		${WRKSRC}/chooser/gdm-host-chooser.c \
+		${WRKSRC}/chooser/chooser-main.c
 	@${REINPLACE_CMD} -e 's|/etc/X11|${LOCALBASE}/etc/X11|g' \
 		${WRKSRC}/data/Init.in \
 		${WRKSRC}/data/PostLogin \
 		${WRKSRC}/data/PostSession.in \
 		${WRKSRC}/data/PreSession.in \
 		${WRKSRC}/data/Xsession.in
-	-${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
+	@${RM}	${WRKSRC}/data/applications/gdm-simple-greeter.desktop \
 		${WRKSRC}/data/applications/gdm-simple-greeter.desktop.in \
 		${WRKSRC}/data/applications/gnome-shell.desktop \
 
@@ -147,20 +144,24 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/gdm/home
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/gdm/home/.pulse/
 
-	${INSTALL_DATA} ${WRKDIR}/gdm-autologin ${STAGEDIR}${PREFIX}/etc/pam.d/gdm-autologin
-	${INSTALL_DATA} ${WRKDIR}/gdm-launch-environment ${STAGEDIR}${PREFIX}/etc/pam.d/gdm-launch-environment
-	${INSTALL_DATA} ${WRKDIR}/gdm-password ${STAGEDIR}${PREFIX}/etc/pam.d/gdm-password
+	${INSTALL_DATA} ${WRKDIR}/gdm-autologin \
+		${STAGEDIR}${PREFIX}/etc/pam.d/gdm-autologin
+	${INSTALL_DATA} ${WRKDIR}/gdm-launch-environment \
+		${STAGEDIR}${PREFIX}/etc/pam.d/gdm-launch-environment
+	${INSTALL_DATA} ${WRKDIR}/gdm-password \
+		${STAGEDIR}${PREFIX}/etc/pam.d/gdm-password
 
-	${INSTALL_DATA} ${WRKDIR}/client.conf ${STAGEDIR}${PREFIX}/etc/gdm/home/.pulse/
+	${INSTALL_DATA} ${WRKDIR}/client.conf \
+		${STAGEDIR}${PREFIX}/etc/gdm/home/.pulse/client.conf.sample
 
-	${INSTALL_DATA} ${WRKDIR}/locale.conf ${STAGEDIR}${PREFIX}/etc/gdm/
+	${INSTALL_DATA} ${WRKDIR}/locale.conf \
+		${STAGEDIR}${PREFIX}/etc/gdm/locale.conf.sample
+
+	@${RM} ${STAGEDIR}${PREFIX}/lib/udev/rules.d/61-gdm.rules
+	@${RMDIR} ${STAGEDIR}${PREFIX}/lib/udev/rules.d
+	@${RMDIR} ${STAGEDIR}${PREFIX}/lib/udev
 
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' < ${PKGDIR}/pkg-message \
 		| /usr/bin/fmt 75 79 > ${PKGMESSAGE}
-
-# logwtmp lives here.
-.if ${OSVERSION} < 4015
-CONFIGLIBS+=	-lutil
-.endif
 
 .include <bsd.port.mk>

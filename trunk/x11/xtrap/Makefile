@@ -12,6 +12,6 @@ COMMENT=	XTrap sample clients for X
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xtrap
+USE_XORG=	x11 xt xtrap
 
 .include <bsd.port.mk>

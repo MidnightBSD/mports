@@ -1,15 +1,15 @@
---- driver/XScreenSaver.ad.in.orig	2013-12-09 12:01:40.000000000 +0100
-+++ driver/XScreenSaver.ad.in	2013-12-17 19:34:28.222008084 +0100
+--- driver/XScreenSaver.ad.in.orig	2016-05-24 18:02:30 UTC
++++ driver/XScreenSaver.ad.in
 @@ -56,7 +56,7 @@
  *splashDuration:	0:00:05
  *visualID:		default
  *captureStderr: 	True
 -*ignoreUninstalledPrograms: False
 +*ignoreUninstalledPrograms: True
+ *authWarningSlack:	20
  
  *textMode:		file
- *textLiteral:		XScreenSaver
-@@ -122,7 +122,7 @@
+@@ -123,7 +123,7 @@ GetViewPortIsFullOfLies: False
  
  ! The format used for printing the date and time in the password dialog box
  ! (see the strftime(3) manual page for details.)
@@ -18,7 +18,7 @@
  ! To show the time only:
  ! *dateFormat:		%I:%M %p
  ! For 24 hour time:
-@@ -156,6 +156,18 @@
+@@ -158,6 +158,18 @@ GetViewPortIsFullOfLies: False
  ! screen savers interactively.
  !
  *programs:								      \
@@ -37,19 +37,11 @@
  				maze -root				    \n\
  @GL_KLUDGE@ GL: 				superquadrics -root			    \n\
  				attraction -root			    \n\
-@@ -251,7 +263,6 @@
- 				xspirograph -root			    \n\
- @GL_KLUDGE@ GL: 				circuit -root				    \n\
- @GL_KLUDGE@ GL: 				dangerball -root			    \n\
--- GL: 				dnalogo -root				    \n\
- @GL_KLUDGE@ GL: 				engine -root				    \n\
- @GL_KLUDGE@ GL: 				flipscreen3d -root			    \n\
- @GL_KLUDGE@ GL: 				gltext -root				    \n\
-@@ -449,7 +460,6 @@
+@@ -465,7 +477,6 @@ XScreenSaver.bourneShell:		/bin/sh
  *hacks.cwaves.name:         CWaves
  *hacks.dangerball.name:     DangerBall
  *hacks.decayscreen.name:    DecayScreen
 -*hacks.dnalogo.name:        DNA Logo
+ *hacks.dymaxionmap.name:    DymaxionMap
+ *hacks.energystream.name:   EnergyStream
  *hacks.euler2d.name:        Euler2D
- *hacks.fadeplot.name:       FadePlot
- *hacks.flipflop.name:       FlipFlop

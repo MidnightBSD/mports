@@ -2,7 +2,7 @@
 
 PORTNAME=	libXau
 PORTVERSION=	1.0.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +12,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	xproto:both
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>
