@@ -330,8 +330,8 @@ pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:devel/py-gobject
 pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:devel/py-gobject
 pygobject_USE_GNOME_IMPL=	glib20
 
-pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
-pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
+pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3
+pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3
 pygobject3_USE_GNOME_IMPL=	glib20
 
 pygtk2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2
