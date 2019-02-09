@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libdrm
-PORTVERSION=	2.4.92
+PORTVERSION=	2.4.93
 PORTEPOCH=	1
 CATEGORIES=	graphics x11
 MASTER_SITES=	http://dri.freedesktop.org/libdrm/
