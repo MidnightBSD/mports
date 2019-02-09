@@ -31,6 +31,7 @@ SUBDIR += gnome-robots
 SUBDIR += gnome-sudoku
 SUBDIR += gnome-taquin
 SUBDIR += gnome-tetravex
+SUBDIR += gnu-chess
 SUBDIR += gnugo
 SUBDIR += gnustep-ladder
 SUBDIR += gnustep-sudoku
