@@ -1,60 +1,43 @@
 # $MidnightBSD$
 
 PORTNAME=	xorg-nestserver
-PORTVERSION=	1.14.7
-PORTREVISION=	2
-PORTEPOCH=	1
-CATEGORIES=	x11-servers
-MASTER_SITES=	XORG/individual/xserver
-DISTNAME=	xorg-server-${PORTVERSION}
-DIST_SUBDIR=	xorg/xserver
+PORTVERSION=	1.19.1
+PORTEPOCH=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nesting X server from X.Org
+
 LICENSE=	mit
 
-USES=		tar:bzip2 pkgconfig
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS= --disable-dmx \
-		--disable-xephyr \
-		--enable-xnest \
-		--disable-xfbdev \
-		--disable-kdrive \
-		--disable-xfake \
-		--disable-screensaver \
-		--disable-xwin \
-		--disable-xwayland \
-		--disable-xorg \
-		--without-xmlto \
-		--disable-docs \
-		--disable-devel-docs \
-		--localstatedir=/var \
-		--without-dtrace \
-		--without-doxygen \
-		--disable-libpciaccess \
-		--disable-glx \
-		--disable-dri  \
-		--disable-config-hal \
-		--disable-libdrm \
-		--disable-glx-tls \
-		--disable-vbe \
-		--disable-vgahw \
-		--disable-xvfb \
-		--with-fontrootdir=${PREFIX}/share/fonts
+MASTERDIR=	${.CURDIR}/../xorg-server
+DESCR=		${.CURDIR}/pkg-descr
+DISTINFO_FILE=	${.CURDIR}/distinfo
+PATCHDIR=	${.CURDIR}/files
 
-USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
-		damageproto xcmiscproto xextproto xf86miscproto inputproto \
-		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
-		dri2proto resourceproto fontsproto xf86dgaproto videoproto \
-		compositeproto trapproto recordproto resourceproto \
-		xineramaproto xinerama evieproto xkbfile xfont fontenc xkbui \
-		xxf86misc xxf86vm xaw7 xmu xpm xext pixman xtrans
+RUN_DEPENDS=	xkeyboard-config>=2.5:x11/xkeyboard-config
 
-PLIST_FILES=	bin/Xnest \
-		man/man1/Xnest.1.gz
+SLAVE_PORT=	yes
+OPTIONS_EXCLUDE=DEVD HAL SUID
+
+USE_XORG=	x11 xext xfont2
+
+CONFIGURE_ARGS+=--enable-xnest --disable-dmx --disable-xephyr --disable-xvfb \
+		--disable-xwayland
+
+PLIST_FILES=	bin/Xnest man/man1/Xnest.1.gz
+
+EXTRA_PATCHES=	${MASTERDIR}/files/patch-CVE-2017-12176 \
+		${MASTERDIR}/files/patch-CVE-2017-12177 \
+		${MASTERDIR}/files/patch-CVE-2017-12178 \
+		${MASTERDIR}/files/patch-CVE-2017-12179 \
+		${MASTERDIR}/files/patch-CVE-2017-12183 \
+		${MASTERDIR}/files/patch-CVE-2017-1218x \
+		${MASTERDIR}/files/patch-CVE-2017-1218y \
+		${MASTERDIR}/files/patch-CVE-2017-13721 \
+		${MASTERDIR}/files/patch-CVE-2017-13723 \
+		${MASTERDIR}/files/patch-os_io.c
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/hw/xnest/Xnest ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/hw/xnest/man/Xnest.1 ${STAGEDIR}${PREFIX}/man/man1/
+	cd ${WRKSRC}/hw/xnest; DESTDIR=${FAKE_DESTDIR} ${MAKE} ${FAKE_MAKEARGS} install
 
-.include <bsd.port.mk>
+.include "${MASTERDIR}/Makefile"
