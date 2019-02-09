@@ -37,7 +37,7 @@ BRE_DESC=	breton
 FR_DESC=	french
 CZ_DESC=	czech
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDE}
 ASCLOCK_LANG=	german
