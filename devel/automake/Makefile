@@ -10,8 +10,8 @@ COMMENT=	GNU Standards-compliant Makefile generator
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	autoconf-2.69:devel/autoconf
-RUN_DEPENDS=	autoconf-2.69:devel/autoconf
+BUILD_DEPENDS=	autoconf>=2.69:devel/autoconf
+RUN_DEPENDS=	autoconf>=2.69:devel/autoconf
 
 BUILD_VERSION=	1.16
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
