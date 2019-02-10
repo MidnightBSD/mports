@@ -4,6 +4,7 @@
 
 PORTNAME=	awesome
 PORTVERSION=	3.5.6
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://awesome.naquadah.org/download/
@@ -18,7 +19,6 @@ BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
 		pango>=1.19.3:${PORTSDIR}/x11-toolkits/pango \
 		xmlto:${PORTSDIR}/textproc/xmlto \
 		xcb-util>=0.3.8:${PORTSDIR}/x11/xcb-util \
-		xproto>=7.0.11:${PORTSDIR}/x11/xproto \
 		${LUA_MODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:${PORTSDIR}/devel/lua-lgi \
 		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
 RUN_DEPENDS=	${LUA_MODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:${PORTSDIR}/devel/lua-lgi
@@ -37,7 +37,7 @@ USES=		cmake execinfo iconv pkgconfig lua tar:xz
 CMAKE_ARGS+=	-DSYSCONFDIR=${PREFIX}/etc
 USE_GNOME=	glib20 pango gdkpixbuf2
 USE_XORG=	pixman x11 xau xcb xdmcp xext xft xinerama xrandr xrender \
-		xproto
+		xorgproto
 LDFLAGS+=	${ICONV_LIB}
 
 PORTDOCS=	AUTHORS BUGS LICENSE README
