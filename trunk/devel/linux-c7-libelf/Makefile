@@ -1,0 +1,23 @@
+# $MidnightBSD$
+
+PORTNAME=	elfutils
+PORTVERSION=	0.168
+CATEGORIES=	devel
+PKGNAMESUFFIX=	-libelf
+LIB_DISTNAMES=	${LINUXNAME}-${DISTVERSIONFULL}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	ELF file handling library (CentOS ${LINUX_DIST_VER})
+
+LICENSE=	unknown
+
+LINUXNAME=	${PORTNAME}${PKGNAMESUFFIX}
+RPMVERSION=	8.el7
+USES=		linux:c7
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+.include <bsd.port.mk>
