@@ -203,6 +203,7 @@ SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
+SUBDIR += linux-c6-dbus-glib
 SUBDIR += linux-c6-dbus-libs
 SUBDIR += linux-c6-devtools
 SUBDIR += linux-c6-icu
