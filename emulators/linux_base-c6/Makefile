@@ -1,256 +1,160 @@
-# $MidnightBSD$
+# Created by: Svyatoslav Lempert <svyatoslav.lempert@gmail dot com>
+# $FreeBSD: head/emulators/linux_base-c6/Makefile 460331 2018-01-29 20:12:47Z tijl $
 
 PORTNAME=	c6
-PORTVERSION=	6.6
+PORTVERSION=	${LINUX_DIST_VER}
+PORTREVISION=	6
 CATEGORIES=	emulators linux
-MASTER_SITES=	http://mirror.centos.org/centos/6/os/i386/Packages/ \
-		http://mirror.centos.org/centos/6/updates/i386/Packages/
 PKGNAMEPREFIX=	linux_base-
-DISTFILES=	${PRE_BIN_DISTFILES} ${BIN_DISTFILES} ${SRC_DISTFILES}
-EXTRACT_ONLY=	${BIN_DISTFILES}
+BIN_DISTNAMES=	bash-4.1.2-48.el6 \
+		bzip2-1.0.5-7.el6_0 \
+		centos-release-6-10.el6.centos.12.3 \
+		coreutils-8.4-47.el6 \
+		e2fsprogs-1.41.12-24.el6 \
+		elfutils-0.164-2.el6 \
+		findutils-4.4.2-9.el6 \
+		glibc-common-2.12-1.212.el6 \
+		grep-2.20-6.el6 \
+		info-4.13a-8.el6 \
+		keyutils-1.4-5.el6 \
+		less-436-13.el6 \
+		ncurses-5.7-4.20090207.el6 \
+		ncurses-base-5.7-4.20090207.el6 \
+		sed-4.2.1-10.el6 \
+		setserial-2.17-25.el6 \
+		which-2.19-6.el6 \
+		filesystem-2.4.30-3.el6
+LIB_DISTNAMES=	bzip2-libs-1.0.5-7.el6_0 \
+		compat-db43-4.3.29-17.el6 \
+		compat-libstdc++-33-3.2.3-69.el6 \
+		db4-4.7.25-22.el6 \
+		e2fsprogs-libs-1.41.12-24.el6 \
+		freetype-2.3.11-17.el6 \
+		gamin-0.1.10-9.el6 \
+		gdbm-1.8.0-39.el6 \
+		glib2-2.28.8-10.el6 \
+		glibc-2.12-1.212.el6 \
+		gmp-4.3.1-13.el6 \
+		keyutils-libs-1.4-5.el6 \
+		krb5-libs-1.10.3-65.el6 \
+		libacl-2.2.49-7.el6_9.1 \
+		libattr-2.4.44-7.el6 \
+		libblkid-2.17.2-12.28.el6_9.2 \
+		libcap-2.16-5.5.el6 \
+		libcom_err-1.41.12-24.el6 \
+		libgcc-4.4.7-23.el6 \
+		libidn-1.18-2.el6 \
+		libselinux-2.0.94-7.el6 \
+		libsepol-2.0.41-4.el6 \
+		libstdc++-4.4.7-23.el6 \
+		libuuid-2.17.2-12.28.el6_9.2 \
+		ncurses-libs-5.7-4.20090207.el6 \
+		nss-softokn-freebl-3.14.3-23.3.el6_8 \
+		pcre-7.8-7.el6 \
+		popt-1.13-7.el6 \
+		readline-6.0-4.el6 \
+		redhat-lsb-core-4.0-7.el6.centos \
+		slang-2.2.1-1.el6 \
+		util-linux-ng-2.17.2-12.28.el6_9.2 \
+		zlib-1.2.3-29.el6
+SHARE_DISTNAMES=basesystem-10.0-4.el6 \
+		setup-2.8.14-23.el6
+SRC_DISTFILES=	acl-2.2.49-7.el6_9.1${SRC_SUFX}:SOURCE \
+		attr-2.4.44-7.el6${SRC_SUFX}:SOURCE \
+		basesystem-10.0-4.el6${SRC_SUFX}:SOURCE \
+		bash-4.1.2-48.el6${SRC_SUFX}:SOURCE \
+		bzip2-1.0.5-7.el6_0${SRC_SUFX}:SOURCE \
+		centos-release-6-10.el6.centos.12.3${SRC_SUFX}:SOURCE \
+		compat-db-4.6.21-17.el6${SRC_SUFX}:SOURCE \
+		compat-gcc-296-2.96-144.el6${SRC_SUFX}:SOURCE \
+		compat-gcc-32-3.2.3-69.el6${SRC_SUFX}:SOURCE \
+		coreutils-8.4-47.el6${SRC_SUFX}:SOURCE \
+		db4-4.7.25-22.el6${SRC_SUFX}:SOURCE \
+		e2fsprogs-1.41.12-24.el6${SRC_SUFX}:SOURCE \
+		elfutils-0.164-2.el6${SRC_SUFX}:SOURCE \
+		filesystem-2.4.30-3.el6${SRC_SUFX}:SOURCE \
+		findutils-4.4.2-9.el6${SRC_SUFX}:SOURCE \
+		freetype-2.3.11-17.el6${SRC_SUFX}:SOURCE \
+		gamin-0.1.10-9.el6${SRC_SUFX}:SOURCE \
+		gcc-4.4.7-23.el6${SRC_SUFX}:SOURCE \
+		gdbm-1.8.0-39.el6${SRC_SUFX}:SOURCE \
+		glib2-2.28.8-10.el6${SRC_SUFX}:SOURCE \
+		glibc-2.12-1.212.el6${SRC_SUFX}:SOURCE \
+		gmp-4.3.1-13.el6${SRC_SUFX}:SOURCE \
+		grep-2.20-6.el6${SRC_SUFX}:SOURCE \
+		keyutils-1.4-5.el6${SRC_SUFX}:SOURCE \
+		krb5-1.10.3-65.el6${SRC_SUFX}:SOURCE \
+		less-436-13.el6${SRC_SUFX}:SOURCE \
+		libcap-2.16-5.5.el6${SRC_SUFX}:SOURCE \
+		libidn-1.18-2.el6${SRC_SUFX}:SOURCE \
+		libselinux-2.0.94-7.el6${SRC_SUFX}:SOURCE \
+		libsepol-2.0.41-4.el6${SRC_SUFX}:SOURCE \
+		ncurses-5.7-4.20090207.el6${SRC_SUFX}:SOURCE \
+		nss-softokn-3.14.3-23.3.el6_8${SRC_SUFX}:SOURCE \
+		pcre-7.8-7.el6${SRC_SUFX}:SOURCE \
+		popt-1.13-7.el6${SRC_SUFX}:SOURCE \
+		readline-6.0-4.el6${SRC_SUFX}:SOURCE \
+		redhat-lsb-4.0-7.el6.centos${SRC_SUFX}:SOURCE \
+		sed-4.2.1-10.el6${SRC_SUFX}:SOURCE \
+		setserial-2.17-25.el6${SRC_SUFX}:SOURCE \
+		setup-2.8.14-23.el6${SRC_SUFX}:SOURCE \
+		slang-2.2.1-1.el6${SRC_SUFX}:SOURCE \
+		texinfo-4.13a-8.el6${SRC_SUFX}:SOURCE \
+		util-linux-ng-2.17.2-12.28.el6_9.2${SRC_SUFX}:SOURCE \
+		which-2.19-6.el6${SRC_SUFX}:SOURCE \
+		zlib-1.2.3-29.el6${SRC_SUFX}:SOURCE
 
-MAINTAINER=	ports@MIdnightBSD.org
-COMMENT=	Base set of packages needed in Linux mode for i386/amd64 (Linux CentOS 6)
+MAINTAINER=	emulation@FreeBSD.org
+COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	agg
+PLIST_SUB=	LINUXBASE=${LINUXBASE} SYSCTLMIB=${SYSCTLMIB}
+USES=		linux:c6
+USE_LINUX=	# empty
+USE_LINUX_RPM=	yes
 
-LINUX_DIST=	centos
-LINUX_DIST_VER=6.6
-DIST_SUBDIR=	rpm/${LINUX_RPM_ARCH}/${LINUX_DIST}/${LINUX_DIST_VER}
+OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
-# these get extracted from pre-extract, then some directory permissions
-# get fixed up
-PRE_BIN_DISTFILES=	filesystem-2.4.30-3.el6.${LINUX_RPM_ARCH}.rpm  \
-			setup-2.8.14-20.el6_4.1.noarch.rpm
-
-BIN_DISTFILES=	basesystem-10.0-4.el6.noarch.rpm \
-		bash-4.1.2-29.el6.${LINUX_RPM_ARCH}.rpm \
-		bzip2-1.0.5-7.el6_0.${LINUX_RPM_ARCH}.rpm \
-		bzip2-libs-1.0.5-7.el6_0.${LINUX_RPM_ARCH}.rpm \
-		compat-db43-4.3.29-15.el6.${LINUX_RPM_ARCH}.rpm \
-		compat-libstdc++-33-3.2.3-69.el6.${LINUX_RPM_ARCH}.rpm \
-		compat-libstdc++-296-2.96-144.el6.${LINUX_RPM_ARCH}.rpm \
-		coreutils-8.4-37.el6.${LINUX_RPM_ARCH}.rpm \
-		db4-4.7.25-18.el6_4.${LINUX_RPM_ARCH}.rpm \
-		e2fsprogs-1.41.12-21.el6.${LINUX_RPM_ARCH}.rpm \
-		e2fsprogs-libs-1.41.12-21.el6.${LINUX_RPM_ARCH}.rpm \
-		elfutils-0.158-3.2.el6.${LINUX_RPM_ARCH}.rpm \
-		centos-release-6-6.el6.centos.12.2.${LINUX_RPM_ARCH}.rpm \
-		findutils-4.4.2-6.el6.${LINUX_RPM_ARCH}.rpm \
-		freetype-2.3.11-14.el6_3.1.${LINUX_RPM_ARCH}.rpm \
-		gamin-0.1.10-9.el6.${LINUX_RPM_ARCH}.rpm \
-		gdbm-1.8.0-36.el6.${LINUX_RPM_ARCH}.rpm \
-		glib2-2.28.8-4.el6.${LINUX_RPM_ARCH}.rpm \
-		glibc-2.12-1.149.el6_6.5.${LINUX_RPM_ARCH}.rpm \
-		glibc-common-2.12-1.149.el6_6.5.${LINUX_RPM_ARCH}.rpm \
-		gmp-4.3.1-7.el6_2.2.${LINUX_RPM_ARCH}.rpm \
-		grep-2.6.3-6.el6.${LINUX_RPM_ARCH}.rpm \
-		info-4.13a-8.el6.${LINUX_RPM_ARCH}.rpm \
-		keyutils-1.4-5.el6.${LINUX_RPM_ARCH}.rpm \
-		keyutils-libs-1.4-5.el6.${LINUX_RPM_ARCH}.rpm \
-		krb5-libs-1.10.3-33.el6.${LINUX_RPM_ARCH}.rpm \
-		less-436-13.el6.${LINUX_RPM_ARCH}.rpm \
-		libacl-2.2.49-6.el6.${LINUX_RPM_ARCH}.rpm \
-		libattr-2.4.44-7.el6.${LINUX_RPM_ARCH}.rpm \
-		libcom_err-1.41.12-21.el6.${LINUX_RPM_ARCH}.rpm \
-		libcap-2.16-5.5.el6.${LINUX_RPM_ARCH}.rpm \
-		libgcc-4.4.7-11.el6.${LINUX_RPM_ARCH}.rpm \
-		libidn-1.18-2.el6.${LINUX_RPM_ARCH}.rpm \
-		libselinux-2.0.94-5.8.el6.${LINUX_RPM_ARCH}.rpm \
-		libsepol-2.0.41-4.el6.${LINUX_RPM_ARCH}.rpm \
-		libstdc++-4.4.7-11.el6.${LINUX_RPM_ARCH}.rpm \
-		libuuid-2.17.2-12.18.el6.${LINUX_RPM_ARCH}.rpm \
-		ncurses-5.7-3.20090208.el6.${LINUX_RPM_ARCH}.rpm \
-		ncurses-libs-5.7-3.20090208.el6.${LINUX_RPM_ARCH}.rpm \
-		pcre-7.8-6.el6.${LINUX_RPM_ARCH}.rpm \
-		popt-1.13-7.el6.${LINUX_RPM_ARCH}.rpm \
-		readline-6.0-4.el6.${LINUX_RPM_ARCH}.rpm \
-		redhat-lsb-core-4.0-7.el6.centos.${LINUX_RPM_ARCH}.rpm \
-		sed-4.2.1-10.el6.${LINUX_RPM_ARCH}.rpm \
-		setserial-2.17-25.el6.${LINUX_RPM_ARCH}.rpm \
-		slang-2.2.1-1.el6.${LINUX_RPM_ARCH}.rpm \
-		util-linux-ng-2.17.2-12.18.el6.${LINUX_RPM_ARCH}.rpm \
-		which-2.19-6.el6.${LINUX_RPM_ARCH}.rpm \
-		zlib-1.2.3-29.el6.${LINUX_RPM_ARCH}.rpm
-
-.if defined(PACKAGE_BUILDING)
-MASTER_SITES+=	http://vault.centos.org/${LINUX_DIST_VER}/os/Source/SPackages/ \
-		http://vault.centos.org/${LINUX_DIST_VER}/updates/Source/SPackages/:updates
-
-SRC_DISTFILES=	basesystem-10.0-4.el6.src.rpm \
-		bash-4.1.2-29.el6.src.rpm \
-		bzip2-1.0.5-7.el6_0.src.rpm \
-		coreutils-8.4-37.el6.src.rpm \
-		compat-db-4.6.21-15.el6.src.rpm \
-		compat-gcc-296-2.96-144.el6.src.rpm \
-		compat-gcc-32-3.2.3-69.el6.src.rpm \
-		db4-4.7.25-18.el6_4.src.rpm \
-		e2fsprogs-1.41.12-21.el6.src.rpm \
-		elfutils-0.158-3.2.el6.src.rpm \
-		centos-release-6-6.el6.centos.12.2.src.rpm \
-		filesystem-2.4.30-3.el6.src.rpm \
-		findutils-4.4.2-6.el6.src.rpm \
-		freetype-2.3.11-14.el6_3.1.src.rpm \
-		gamin-0.1.10-9.el6.src.rpm \
-		gdbm-1.8.0-36.el6.src.rpm \
-		glib2-2.28.8-4.el6.src.rpm \
-		glibc-2.12-1.149.el6.src.rpm \
-		gmp-4.3.1-7.el6_2.2.src.rpm \
-		grep-2.6.3-6.el6.src.rpm \
-		texinfo-4.13a-8.el6.src.rpm \
-		keyutils-1.4-5.el6.src.rpm \
-		krb5-1.10.3-33.el6.src.rpm \
-		less-436-13.el6.src.rpm \
-		acl-2.2.49-6.el6.src.rpm \
-		attr-2.4.44-7.el6.src.rpm \
-		libcap-2.16-5.5.el6.src.rpm \
-		gcc-4.4.7-11.el6.src.rpm \
-		libidn-1.18-2.el6.src.rpm \
-		libselinux-2.0.94-5.8.el6.src.rpm \
-		libsepol-2.0.41-4.el6.src.rpm \
-		ncurses-5.7-3.20090208.el6.src.rpm \
-		pcre-7.8-6.el6.src.rpm \
-		popt-1.13-7.el6.src.rpm \
-		readline-6.0-4.el6.src.rpm \
-		redhat-lsb-4.0-7.el6.centos.src.rpm \
-		sed-4.2.1-10.el6.src.rpm \
-		setserial-2.17-25.el6.src.rpm \
-		setup-2.8.14-20.el6_4.1.src.rpm \
-		slang-2.2.1-1.el6.src.rpm \
-		util-linux-ng-2.17.2-12.18.el6.src.rpm \
-		which-2.19-6.el6.src.rpm \
-		zlib-1.2.3-29.el6.src.rpm
-
-ALWAYS_KEEP_DISTFILES=	yes
-.endif
-
-CONFLICTS=		linux_base-gentoo* linux_base-f10-[0-9]* linux-glib2-*
-
-LINUX_RPM_ARCH=		i686
-USE_LINUX_PREFIX=	yes
-NO_WRKSUBDIR=		yes
-DISTINFO_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
-PLIST_SUB=		GLIBCVER="2.12" LINUXBASE=${LINUXBASE}
-USES=	shebangfix
-SHEBANG_FILES=	bin/redhat_lsb_init sbin/mount.tmpfs
-# bash scripts need to work in chroot /compat/linux, so use env instead.
-bash_CMD=	/usr/bin/env bash
-
-# TODO:
-# - move master sites to bsd.sites.mk
-# - add 2-3 mirrors from each country (http://www.centos.org/modules/tinycontent/index.php?id=31)
-# - look for updates in the updates folder of the CentOS mirrors
-
-EXTRACT_ONLY=		${BIN_DISTFILES}
+REMOVE_DIRS=	boot home media mnt proc root sys tmp var/log var/run var/tmp
+REMOVE_FILES=	bin/df bin/su etc/exports etc/group etc/gshadow etc/motd \
+		etc/passwd etc/printcap etc/protocols etc/services etc/shadow
 
 .include <bsd.port.pre.mk>
 
-.if !defined(PACKAGE_BUILDING) || (defined(PACKAGE_BUILDING) && !defined(LINUX_OSRELEASE) )
-LINUX_OSRELEASE!=	${ECHO_CMD} `${SYSCTL} -n compat.linux.osrelease 2>/dev/null`
-.endif
-
-.if ${LINUX_OSRELEASE}x == "x"
-IGNORE=			linuxulator is not (kld)loaded
-.elif ${LINUX_OSRELEASE} == "2.6.16"
-IGNORE=			compat.linux.osrelease: ${LINUX_OSRELEASE} is not supported, please use 2.6.18, BEWARE this is highly experimental
-.endif
-
-REMOVE_DIRS=		boot dev etc/fonts home initrd media root tmp var/log var/run var/tmp \
-			usr/local usr/tmp
-REMOVE_FILES=		bin/df bin/su etc/exports etc/group etc/localtime \
-			etc/motd etc/passwd etc/printcap etc/services \
-			etc/protocols
-ADD_DIRS=		usr/X11R6/share usr/X11R6/man usr/X11R6/lib/tls \
-			usr/X11R6/include usr/X11R6/bin
-ADD_FILES=		#empty
-
-.if (${MACHINE_ARCH} == "amd64")
-FALLBACK_ELF_MIB=	kern.elf32.fallback_brand
+.if ${LINUX_ARCH} == x86_64 && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100105
+SYSCTLMIB=	kern.features.linux64
 .else
-FALLBACK_ELF_MIB=	kern.fallback_elf_brand
+SYSCTLMIB=	compat.linux.osrelease
 .endif
 
-.if (${ARCH} == "amd64")
-LATEST_LINK:=		${PKGBASE:C/linux/linux32/}
-ARCH=			i386
-.endif
-
-pre-extract:
-	@for file in ${PRE_BIN_DISTFILES}; do \
-	    if ! (cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
-	    then \
-	        exit 1; \
-	    fi; \
-	done
-	# now fix up broken permissions
-	@${CHMOD} -R u+rwX ${WRKDIR}/bin ${WRKDIR}/lib ${WRKDIR}/sbin ${WRKDIR}/usr/bin ${WRKDIR}/usr/lib ${WRKDIR}/usr/sbin
-	@${CHMOD} 400 ${WRKDIR}/etc/*shadow
-
-do-build:
-	@for D in ${REMOVE_DIRS}; do \
-		${RM} -rf ${WRKSRC}/$$D; \
-	done
-	@for F in ${REMOVE_FILES}; do \
-		${RM} -f ${WRKSRC}/$$F; \
-	done
-	@for F in ${ADD_DIRS}; do \
-		${MKDIR} ${WRKSRC}/$$F; \
-	done
-	@for F in ${ADD_FILES}; do \
-		${TOUCH} ${WRKSRC}/$$F; \
-	done
-#
-# Create a good ld.so.conf and touch ld.so.cache
-#
-	@${ECHO_CMD} -e '/lib\n/usr/lib\n${X11BASE}/lib' >> \
-		${WRKSRC}/etc/ld.so.conf
-	@${TOUCH} ${WRKSRC}/etc/ld.so.cache
-#
-# Create yp.conf as a hint to NIS users and make sure there's a
-# mtab in etc, albeit an empty one. This is needed in a couple of
-# cases. Most notably staroffice6. If yp.conf exists install only
-# yp.conf.sample
-#
-	@${INSTALL} ${COPY} -m 644 ${FILESDIR}/yp.conf.sample ${WRKSRC}/etc
-	@${TOUCH} ${WRKSRC}/etc/mtab
-#
-# If ${PREFIX}/etc/krb5.conf exists, don't touch it
-#
-	@${MV} ${WRKSRC}/etc/krb5.conf ${WRKSRC}/etc/krb5.conf.sample
-
-# Fix usr/bin/*db4* permissions to allow "portupgrade -s"
-#	@${CHMOD} u+w ${WRKSRC}/usr/bin/*db4*
-
-	@${FIND} ${WRKSRC}/bin ${WRKSRC}/sbin/ ${WRKSRC}/usr/bin \
-		${WRKSRC}/usr/sbin -type f -print0 | ${XARGS} -0 ${FILE} \
-		| ${GREP} ELF | ${CUT} -d : -f 1 \
-		| ${XARGS} ${BRANDELF} -t Linux
+post-patch:
+	@${RM} -r ${REMOVE_DIRS:S|^|${WRKSRC}/|}
+	@${RM} ${REMOVE_FILES:S|^|${WRKSRC}/|}
+	@${FIND} ${WRKSRC}/lib -type d -empty -delete
+	@${FIND} ${WRKSRC}/usr -type d -empty -delete
 	@${BRANDELF} -t Linux ${WRKSRC}/lib/ld-2.12.so
+.if ${LINUX_ARCH} == x86_64
+	@${FIND} ${WRKSRC}/lib64 -type d -empty -delete
+	@${BRANDELF} -t Linux ${WRKSRC}/lib64/ld-2.12.so
+.endif
 
-# Restore the status quo for usr/bin/*db4* files
-#	@${CHMOD} u-w ${WRKSRC}/usr/bin/*db4*
-
-# Install locales
-	@${MV} ${WRKSRC}/usr/lib/locale/locale-archive.tmpl \
-		${WRKSRC}/usr/lib/locale/locale-archive
-
-do-install:
-#
-# Do install without using linux rpm system
-#
-	@cd ${WRKSRC} && ${FIND} * ! -path "fake*" -type d -exec ${MKDIR} "${PREFIX}/{}" \;
-	@cd ${WRKSRC} && ${FIND} * ! -path "fake*/*" ! -type d \
-		| ${CPIO} -pm -R root:wheel ${PREFIX}
-
-	@${LN} -sf /var/tmp ${PREFIX}/usr/tmp
-	@${LN} -sf ../usr/bin/[ ${PREFIX}/bin/[
-	@${LN} -sf ../usr/bin/expr ${PREFIX}/bin/expr
-	@${LN} -sf ../usr/bin/test ${PREFIX}/bin/test
-	@${LN} -sf ../usr/bin/uuidgen ${PREFIX}/bin/uuidgen
-	@${CHMOD} 755 ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
-#
-# Let some linux applications (e.g. print/acroread8) print with default settings
-#
-	@${INSTALL_SCRIPT} ${FILESDIR}/lp ${PREFIX}/usr/bin
+post-install:
+	${TOUCH} ${STAGEDIR}${PREFIX}/etc/mtab
+	${MV} ${STAGEDIR}${PREFIX}/etc/krb5.conf \
+		${STAGEDIR}${PREFIX}/etc/krb5.conf.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/nsswitch.conf \
+		${STAGEDIR}${PREFIX}/etc/nsswitch.conf.sample
+	${MV} ${STAGEDIR}${PREFIX}/usr/lib/locale/locale-archive.tmpl \
+		${STAGEDIR}${PREFIX}/usr/lib/locale/locale-archive
+	${LN} -sfh centos-release-6 \
+		${STAGEDIR}${PREFIX}/usr/share/doc/redhat-release
+	${LN} -sf ${LOCALBASE}/share/icons ${STAGEDIR}${PREFIX}/usr/share/icons
+	${LN} -sfh /var/tmp ${STAGEDIR}${PREFIX}/usr/tmp
+	${LN} -sf usr/bin ${STAGEDIR}${PREFIX}
+	${LN} -sf usr/lib ${STAGEDIR}${PREFIX}
+	${LN} -sf usr/sbin ${STAGEDIR}${PREFIX}
+.if ${LINUX_ARCH} == x86_64
+	${LN} -sf usr/lib64 ${STAGEDIR}${PREFIX}
+.endif
 
 .include <bsd.port.post.mk>
