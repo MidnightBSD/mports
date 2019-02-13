@@ -42,6 +42,13 @@ FPC_DEFAULT?=		3.0.4
 # Possible values: 4.9, 5, 6, 7
 GCC_DEFAULT?=		6
 GHOSTSCRIPT_DEFAULT?=	9
+.if ${ARCH} == amd64                                                            
+# Possible values: c6, c6_64, c7                                                
+LINUX_DEFAULT?=         c6_64                                                   
+.else                                                                           
+# Possible values: c6                                                           
+LINUX_DEFAULT?=         c6                                                      
+.endif        
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.6
 PERL5_DEFAULT?=		5.26

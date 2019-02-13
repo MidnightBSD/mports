@@ -398,7 +398,7 @@ _LOAD_${EXT:tu}_EXT=	yes
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
-		linux_rpm linux_apps xorg fortran \
+		linux xorg fortran \
 		gcc fmake gmake bison local perl5 \
 		apache autotools bdb cmake cpe cran display dos2unix \
 		efl emacs erlang execinfo fam fonts fuse \
