@@ -203,6 +203,7 @@ SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
+SUBDIR += linux-c6-libsigc++20
 SUBDIR += linux-c6-libsoup
 SUBDIR += linux-c6-libthai
 SUBDIR += linux-c6-libunwind
