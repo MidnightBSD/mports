@@ -1,0 +1,22 @@
+# $MidnightBSD$
+
+PORTNAME=	avahi
+PORTVERSION=	0.6.25
+PORTREVISION=	5
+CATEGORIES=	net linux
+PKGNAMESUFFIX=	-libs
+LIB_DISTNAMES=	${LINUXNAME}-${DISTVERSIONFULL}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Libraries for Avahi (Linux CentOS ${LINUX_DIST_VER})
+
+LICENSE=	gpl2
+
+DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
+LINUXNAME=	${PORTNAME}${PKGNAMESUFFIX}
+RPMVERSION=	17.el6
+USES=		linux:c6
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+
+.include <bsd.port.mk>
