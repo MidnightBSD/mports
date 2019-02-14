@@ -1,0 +1,20 @@
+# $MidnightBSD$
+
+PORTNAME=	p11-kit
+PORTVERSION=	0.23.5
+CATEGORIES=	security linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Library for loading and enumerating of PKCS\#11 modules (Linux CentOS ${LINUX_DIST_VER})
+
+LICENSE=	bsd3
+
+DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
+RPMVERSION=	3.el7
+USES=		linux:c7
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>
