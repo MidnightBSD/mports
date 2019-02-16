@@ -1,0 +1,46 @@
+--- configure.orig	2018-11-23 15:50:12.590006000 -0500
++++ configure	2018-11-23 15:51:15.353080000 -0500
+@@ -6704,13 +6704,15 @@
+     PR_MD_CSRCS=dgux.c
+     ;;
+ 
+-*-freebsd*)
++*-midnightbsd*)
+     if test -z "$USE_NSPR_THREADS"; then
+         USE_PTHREADS=1
+     fi
+     $as_echo "#define XP_UNIX 1" >>confdefs.h
+ 
+     $as_echo "#define FREEBSD 1" >>confdefs.h
++    
++    $as_echo "#define MIDNIGHTBSD 1" >>confdefs.h
+ 
+     $as_echo "#define HAVE_BSD_FLOCK 1" >>confdefs.h
+ 
+@@ -8334,7 +8336,7 @@
+ 	if test -z "`egrep -i '(unrecognize|unknown)' conftest.out | grep pthread`" && test -z "`egrep -i '(error|incorrect)' conftest.out`" ; then
+ 	    ac_cv_have_dash_pthread=yes
+ 		case "$target_os" in
+-	    freebsd*)
++	    freebsd*|midnightbsd*)
+ # Freebsd doesn't use -pthread for compiles, it uses them for linking
+             ;;
+ 	    *)
+@@ -8372,7 +8374,7 @@
+             _PTHREAD_LDFLAGS=
+         fi
+ 	    ;;
+-    *-freebsd*)
++    *-freebsd*|*-midnightbsd*)
+ 	    $as_echo "#define _REENTRANT 1" >>confdefs.h
+ 
+ 	    $as_echo "#define _THREAD_SAFE 1" >>confdefs.h
+@@ -8462,7 +8464,7 @@
+ 
+     fi
+     ;;
+-*-freebsd*)
++*-freebsd*|*-midnightbsd*)
+     if test -n "$USE_NSPR_THREADS"; then
+         $as_echo "#define _PR_LOCAL_THREADS_ONLY 1" >>confdefs.h
+ 
