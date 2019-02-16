@@ -7,7 +7,7 @@ CATEGORIES=	audio linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced Linux Sound Architecture utilities (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 RPMVERSION=	10.el6
