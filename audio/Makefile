@@ -124,6 +124,7 @@ SUBDIR += linux-c7-sdl_mixer
 SUBDIR += linux-laudio
 SUBDIR += linux-skype_oss_wrapper
 SUBDIR += linuxsampler
+SUBDIR += lv2
 SUBDIR += madplay
 SUBDIR += mikmod
 SUBDIR += mpdcon

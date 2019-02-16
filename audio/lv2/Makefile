@@ -1,0 +1,45 @@
+# $MidnightBSD$
+
+PORTNAME=	lv2
+PORTVERSION=	1.14.0
+CATEGORIES=	audio
+MASTER_SITES=	http://lv2plug.in/spec/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Open standard for audio plugins (successor to LADSPA)
+
+LICENSE=	isc mit
+LICENSE_COMB=	multi
+# Only lv2specgen.py is under MIT
+LICENSE_FILE_isc=	${WRKSRC}/COPYING
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml \
+		${PYTHON_PKGNAMEPREFIX}pygments>0:textproc/py-pygments \
+		${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib
+
+CONFLICTS_INSTALL=	lv2core
+
+USES=		python shebangfix tar:bzip2 waf
+SHEBANG_FILES=	lv2specgen/lv2specgen.py
+
+OPTIONS_DEFINE=	DOCS DOXYGEN EXAMPLES
+OPTIONS_SUB=	yes
+
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \
+			${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib
+DOXYGEN_CONFIGURE_ON=	--docs
+DOXYGEN_PORTDOCS=	*
+DOXYGEN_IMPLIES=	DOCS
+
+EXAMPLES_CONFIGURE_OFF=	--no-plugins
+EXAMPLES_LIB_DEPENDS=	libsndfile.so:audio/libsndfile
+EXAMPLES_USES=		pkgconfig
+EXAMPLES_USE=		GNOME=cairo,gtk20
+EXAMPLES_CONFIGURE_ENV=	CC='${CC} -Wl,--as-needed' # Gtk deps
+
+post-install:
+# Waf doesn't have built-in strip support
+	@${FIND} ${STAGEDIR}${PREFIX}/lib/${PORTNAME} \
+		-name '*.so' -exec ${STRIP_CMD} {} +
+
+.include <bsd.port.mk>
