@@ -262,7 +262,7 @@ EXTRACT_AFTER_ARGS=	| ${TAR} xf - --no-same-owner --no-same-permissions
 .endif
 
 .if ${USE_LINUX_RPM} != noarch
-PLIST?=			${PKGDIR}/pkg-plist.${LINUX_ARCH:S/x86_64/amd64/}
+PLIST=			${PKGDIR}/pkg-plist.${LINUX_ARCH:S/x86_64/amd64/}
 .endif
 
 .if !target(do-install)
