@@ -11,7 +11,6 @@ COMMENT=	Tool Command Language (Linux CentOS ${LINUX_DIST_VER})
 LICENSE=	other
 
 DATADIR=	${PREFIX}/usr/share/tcl${PORTVERSION:R}
-DESCR=		${.CURDIR}/../${PORTNAME}${PKGNAMESUFFIX}/pkg-descr
 RPMVERSION=	6.el6
 USES=		linux:c6
 USE_LDCONFIG=	yes
