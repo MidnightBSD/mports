@@ -2,7 +2,9 @@
 
 PORTNAME=	linux-c6
 PORTVERSION=	${LINUX_DIST_VER}
+MASTER_SITES=	#
 CATEGORIES=	emulators linux
+DISTFILES=	#
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port for all things CentOS ${LINUX_DIST_VER}
@@ -11,7 +13,6 @@ LICENSE=	other
 
 NO_BUILD=       yes                                                             
 NO_MTREE=       yes                                                             
-NO_INSTALL=     yes 
 
 RUN_DEPENDS=	linux-c6-libasyncns>0:dns/linux-c6-libasyncns \
 		linux-c6-tk85>0:x11-toolkits/linux-c6-tk85 \
@@ -78,5 +79,9 @@ RUN_DEPENDS=	linux-c6-libasyncns>0:dns/linux-c6-libasyncns \
 		linux-c6-cairo>0:graphics/linux-c6-cairo
 
 USES=		linux:c6
+
+do-install:
+	${MKDIR} ${PREFIX} 
+	${TOUCH} ${PREFIX}/c6
 
 .include <bsd.port.mk>
