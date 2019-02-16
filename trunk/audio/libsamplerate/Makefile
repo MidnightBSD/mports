@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libsamplerate
-PORTVERSION=	0.1.8
-PORTREVISION=	1
+PORTVERSION=	0.1.9
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/SRC/
 
@@ -11,8 +10,9 @@ COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
 
 LICENSE=	gpl2
 
-USES=		libtool pathfix pkgconfig
+USES=		cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+CPE_VENDOR=	${CPE_PRODUCT}_project
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
@@ -30,15 +30,15 @@ CONFIGURE_ARGS+=	--disable-cpu-clip
 .endif
 
 .if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS +=	${LOCALBASE}/lib/libfftw3.so:${PORTSDIR}/math/fftw3
+BUILD_DEPENDS +=	${LOCALBASE}/lib/libfftw3.so:math/fftw3
 .else
 CONFIGURE_ARGS+=	--disable-fftw
 .endif
 
 .if ${PORT_OPTIONS:MEXAMPLES}
-LIB_DEPENDS+=	libsndfile.so:${PORTSDIR}/audio/libsndfile
+LIB_DEPENDS+=	libsndfile.so:audio/libsndfile
 .elif defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS +=	libsndfile>=0:${PORTSDIR}/audio/libsndfile
+BUILD_DEPENDS +=	libsndfile>=0:audio/libsndfile
 .else
 CONFIGURE_ARGS+=	--disable-sndfile
 .endif
