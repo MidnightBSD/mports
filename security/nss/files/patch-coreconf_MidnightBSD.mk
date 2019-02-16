@@ -1,6 +1,6 @@
---- /dev/null	2013-07-15 22:04:14.000000000 -0400
-+++ coreconf/MidnightBSD.mk	2013-07-15 22:06:54.000000000 -0400
-@@ -0,0 +1,66 @@
+--- /dev/null	2019-02-15 20:11:00.000000000 -0500
++++ coreconf/MidnightBSD.mk	2019-02-15 20:13:51.391126000 -0500
+@@ -0,0 +1,73 @@
 +#
 +# This Source Code Form is subject to the terms of the Mozilla Public
 +# License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -23,6 +23,9 @@
 +ifeq ($(CPU_ARCH),amd64)
 +CPU_ARCH		= x86_64
 +endif
++ifneq (,$(filter arm%, $(CPU_ARCH)))
++CPU_ARCH		= arm
++endif
 +ifneq (,$(filter powerpc%, $(CPU_ARCH)))
 +CPU_ARCH		= ppc
 +endif
@@ -31,7 +34,7 @@
 +USE_64			= 1
 +endif
 +
-+OS_CFLAGS		= $(DSO_CFLAGS) -Wall -Wno-switch -DFREEBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
++OS_CFLAGS		= $(DSO_CFLAGS) -Wall -Wno-switch -DMIDNIGHTBSD -DHAVE_STRERROR -DHAVE_BSD_FLOCK
 +
 +DSO_CFLAGS		= -fPIC
 +DSO_LDOPTS		= -shared -Wl,-soname -Wl,$(notdir $@)
@@ -48,8 +51,12 @@
 +
 +ARCH			= midnightbsd
 +
-+ifndef MOZILLA_CLIENT
-+DLL_SUFFIX		= so.1
++MOZ_OBJFORMAT		:= $(shell test -x /usr/bin/objformat && /usr/bin/objformat || echo elf)
++
++ifeq ($(MOZ_OBJFORMAT),elf)
++DLL_SUFFIX		= so
++else
++DLL_SUFFIX		= so.1.0
 +endif
 +
 +ifneq (,$(filter alpha ia64,$(OS_TEST)))

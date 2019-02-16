@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	nss
-PORTVERSION=	3.39
+PORTVERSION=	3.40
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -11,12 +11,12 @@ COMMENT=	Libraries to support development of security-enabled applications
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		nspr>=4.10.8:${PORTSDIR}/devel/nspr \
-		sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
-LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr \
-		libsqlite3.so:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=	sqlite3>=3.7.15:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=	zip:archivers/zip \
+		nspr>=4.10.8:devel/nspr \
+		sqlite3>=3.7.15:databases/sqlite3
+LIB_DEPENDS=	libnspr4.so:devel/nspr \
+		libsqlite3.so:databases/sqlite3
+RUN_DEPENDS=	sqlite3>=3.7.15:databases/sqlite3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/nss
 
@@ -32,6 +32,7 @@ MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 		NSS_DISABLE_GTESTS=1 \
 		NSS_USE_SYSTEM_SQLITE=1
 CFLAGS+=	-I${LOCALBASE}/include/nspr
+#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 SUB_FILES=	nss-config nss.pc
 SUB_LIST=	PORTVERSION=${PORTVERSION}
