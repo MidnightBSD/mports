@@ -17,7 +17,7 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 		libnss3.so:security/nss
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		alias bdb gmake libarchive libtool lua:51 pathfix pkgconfig \
+USES=		bdb gmake libarchive libtool lua:51 pathfix pkgconfig \
 		shebangfix tar:bzip2
 INVALID_BDB_VER=51
 USE_LDCONFIG=	yes
