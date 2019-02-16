@@ -9,7 +9,6 @@ COMMENT=	Advanced Linux Sound Architecture utilities (Linux CentOS ${LINUX_DIST_
 
 LICENSE=	gpl3
 
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 RPMVERSION=	10.el6
 USES=		linux:c6
 USE_LINUX=	alsalib alsa-plugins-oss
