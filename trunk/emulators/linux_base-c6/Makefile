@@ -1,9 +1,7 @@
-# Created by: Svyatoslav Lempert <svyatoslav.lempert@gmail dot com>
-# $FreeBSD: head/emulators/linux_base-c6/Makefile 460331 2018-01-29 20:12:47Z tijl $
+# $MidnightBSD$
 
 PORTNAME=	c6
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	6
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
 BIN_DISTNAMES=	bash-4.1.2-48.el6 \
@@ -104,8 +102,10 @@ SRC_DISTFILES=	acl-2.2.49-7.el6_9.1${SRC_SUFX}:SOURCE \
 		which-2.19-6.el6${SRC_SUFX}:SOURCE \
 		zlib-1.2.3-29.el6${SRC_SUFX}:SOURCE
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VER})
+
+LICENSE=	agg
 
 PLIST_SUB=	LINUXBASE=${LINUXBASE} SYSCTLMIB=${SYSCTLMIB}
 USES=		linux:c6
@@ -121,11 +121,7 @@ REMOVE_FILES=	bin/df bin/su etc/exports etc/group etc/gshadow etc/motd \
 
 .include <bsd.port.pre.mk>
 
-.if ${LINUX_ARCH} == x86_64 && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100105
-SYSCTLMIB=	kern.features.linux64
-.else
 SYSCTLMIB=	compat.linux.osrelease
-.endif
 
 post-patch:
 	@${RM} -r ${REMOVE_DIRS:S|^|${WRKSRC}/|}
