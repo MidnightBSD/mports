@@ -27,6 +27,6 @@ USE_LINUX_RPM=	yes
 
 post-install:
 	@${RM} ${STAGEDIR}${PREFIX}/usr/lib/libGL.so.1
-	@${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libGL.so.1
+	-${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libGL.so.1
 
 .include <bsd.port.mk>
