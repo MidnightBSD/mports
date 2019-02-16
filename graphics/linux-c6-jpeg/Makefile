@@ -10,7 +10,6 @@ COMMENT=	SIMD-accelerated JPEG codec (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	other
 
-DESCR=		${.CURDIR}/../${PORTNAME}-turbo/pkg-descr
 DOCSDIR=	${PREFIX}/usr/share/doc/${LINUXNAME}-${PORTVERSION}
 LINUXNAME=	libjpeg-turbo
 RPMVERSION=	3.el6_5
