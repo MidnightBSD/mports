@@ -44,10 +44,10 @@ GCC_DEFAULT?=		6
 GHOSTSCRIPT_DEFAULT?=	9
 .if ${ARCH} == amd64
 # Possible values: c6, c6_64, c7
-LINUX_DEFAULT?=         c6
+LINUX_DEFAULT?=		c6_64
 .else
 # Possible values: c6
-LINUX_DEFAULT?=         c6
+LINUX_DEFAULT?=		c6
 .endif
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.6
