@@ -1,11 +1,3 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 20146 2015-08-30 16:57:21Z laffer1 $
 %%SITE_PERL%%/namespace/clean.pm
+%%SITE_PERL%%/namespace/clean/_Util.pm
 %%PERL5_MAN3%%/namespace::clean.3.gz
-@dir %%SITE_ARCH%%/auto/namespace/clean
-@dir %%SITE_ARCH%%/auto/namespace
-@dir %%SITE_ARCH%%/auto
-@dir %%SITE_ARCH%%
-@dir %%SITE_PERL%%/namespace
-@dir %%SITE_PERL%%
-@dir lib/perl5/site_perl
-@dir lib/perl5
