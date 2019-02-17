@@ -55,15 +55,9 @@ PREFIX=			${QT_PREFIX}
 . endif
 
 MASTER_SITES=	${MASTER_SITE_QT}
-# Useless, as it must be defined before including bsd.port.pre.mk (at least
-# because of bsd.options.mk).
-#PKGNAMEPREFIX?=	${_QT_RELNAME}-
 DISTINFO_FILE=	${.CURDIR:H:H}/devel/${_QT_RELNAME}/distinfo
 
-# Can go after a while.
-CONFLICTS_BUILD=qt-3.* qt-copy-3.*
-
-LICENSE?=		LGPL21
+LICENSE?=		lgpl2.1
 
 . if !exists(${PKGDIR}/pkg-descr)
 DESCR?=			${.CURDIR:H:H}/devel/${_QT_RELNAME}/pkg-descr
