@@ -2634,6 +2634,10 @@ check-umask:
 	fi
 .endif
 
+.if !target(install-mtree)
+install-mtree:
+.endif
+
 
 .if !defined(DISABLE_SECURITY_CHECK)
 .if !target(security-check)
@@ -3858,24 +3862,23 @@ generate-plist:
 		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dir ,' >> ${TMPPLIST}
 .	endfor
 
-.	if defined(USE_LDCONFIG)
-.		if !defined(INSTALL_AS_USER)
-			@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}"     >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" >> ${TMPPLIST}
-.		else
-			@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}" || ${TRUE}     >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" || ${TRUE} >> ${TMPPLIST}
-.		endif
-.	endif
-.	if defined(USE_LDCONFIG32)
-.		if !defined(INSTALL_AS_USER)
-			@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32}" >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R" >> ${TMPPLIST}
-.		else
-			@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32} || ${TRUE}" >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R || ${TRUE}" >> ${TMPPLIST}
-.		endif
-.	endif
+.if defined(USE_LINUX_PREFIX)
+.if defined(USE_LDCONFIG)
+	@${ECHO_CMD} '@preexec [ -n "`/sbin/sysctl -q compat.linux.osrelease`" ] || ( echo "Cannot install package: kernel missing Linux support"; exit 1 ) ' >> ${TMPPLIST}
+	@${ECHO_CMD} "@postexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
+	@${ECHO_CMD} "@postunexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
+.endif
+.else
+.if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
+.if !defined(INSTALL_AS_USER)
+	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
+	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
+.else
+	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
+	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
+.endif
+.endif
+.endif
 # End of generate-plist
 .endif 
 
@@ -3979,21 +3982,53 @@ install-rc-script:
 #
 .if !target(install-ldconfig-file)
 install-ldconfig-file:
-.	if defined(USE_LDCONFIG) 
-.		if (${USE_LDCONFIG} != ${PREFIX}/lib && ${USE_LDCONFIG} != %D/lib)
-			@${ECHO_MSG} "===>   Installing ldconfig configuration file."
-			@${ECHO_CMD} ${USE_LDCONFIG:S/%D/${PREFIX}/g} | ${TR} ' ' '\n' \
-				> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
-			@${ECHO_CMD} ${LDCONFIG_DIR}/${UNIQUENAME} >> ${TMPPLIST}
-.		endif
-.	elif defined(USE_LDCONFIG32)
-		@${ECHO_CMD} ${USE_LDCONFIG32} | ${TR} ' ' '\n' \
-			> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG32_DIR}/${UNIQUENAME}
-		@${ECHO_CMD} ${LDCONFIG32_DIR}/${UNIQUENAME} >> ${TMPPLIST}
-.	else
-		@${DO_NADA}
-.	endif
+.  if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
+.    if defined(USE_LDCONFIG)
+.      if !defined(USE_LINUX_PREFIX)
+.        if ${USE_LDCONFIG} != "${LOCALBASE}/lib" && !defined(INSTALL_AS_USER)
+	@${ECHO_MSG} "===>   Installing ldconfig configuration file"
+.          if defined(NO_MTREE) || ${PREFIX} != ${LOCALBASE}
+	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG_DIR}
+.          endif
+	@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
+                > ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG_DIR}/${PKGBASE}
+	@${ECHO_CMD} ${LOCALBASE}/${LDCONFIG_DIR}/${PKGBASE} >> ${TMPPLIST}
+.          if ${PREFIX} != ${LOCALBASE}
+	@${ECHO_CMD} "@dir ${LOCALBASE}/${LDCONFIG_DIR}" >> ${TMPPLIST}
+.          endif
+.        endif
+.      endif
+.    endif
+.    if defined(USE_LDCONFIG32)
+.      if !defined(INSTALL_AS_USER)
+	@${ECHO_MSG} "===>   Installing 32-bit ldconfig configuration file"
+.        if defined(NO_MTREE) || ${PREFIX} != ${LOCALBASE}
+	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG32_DIR}
+.        endif
+	@${ECHO_CMD} ${USE_LDCONFIG32} | ${TR} ' ' '\n' \
+		> ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG32_DIR}/${PKGBASE}
+	@${ECHO_CMD} ${LOCALBASE}/${LDCONFIG32_DIR}/${PKGBASE} >> ${TMPPLIST}
+.        if ${PREFIX} != ${LOCALBASE}
+	@${ECHO_CMD} "@dir ${LOCALBASE}/${LDCONFIG32_DIR}" >> ${TMPPLIST}
+.        endif
+.      endif
+.    endif
+.  endif
 .endif
+
+.if !defined(USE_LINUX_PREFIX)
+.  if !target(fixup-lib-pkgconfig)
+fixup-lib-pkgconfig:
+	@if [ -d ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig ]; then \
+		if [ -z "$$(${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig -maxdepth 0 -empty)" ]; then \
+			${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig; \
+			${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig/* ${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig; \
+		fi; \
+		${RMDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig; \
+	fi
+.  endif
+.endif
+
 
 .if !target(create-users-groups)
 create-users-groups:
@@ -4449,7 +4484,7 @@ _BUILD_SEQ=		100:build-message 300:pre-build 450:pre-build-script \
 _FAKE_DEP=		build
 _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-pre-install \
 				400:generate-plist 450:fake-pre-su-install 475:create-users-groups \
-				500:do-fake 700:fake-post-install \
+				500:do-fake 600:fixup-lib-pkgconfig 700:fake-post-install \
 				750:post-install-script \
 				800:post-fake 850:fake-compress-man \
 				851:compress-man 860:install-rc-script 870:install-ldconfig-file \
