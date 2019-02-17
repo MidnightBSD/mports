@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rest
-PORTVERSION=	0.7.92
+PORTVERSION=	0.7.93
 CATEGORIES=	devel www
 MASTER_SITES=	GNOME
 
@@ -9,8 +9,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy access to RESTful web services
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	ca_root_nss>0:${PORTSDIR}/security/ca_root_nss
+BUILD_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		gmake libtool pathfix pkgconfig tar:xz
@@ -18,15 +19,16 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 intlhack libxml2 introspection:build
+TEST_TARGET=	check
 
 PORTEXAMPLES=	*.c
 
 OPTIONS_DEFINE=	GNOME EXAMPLES
 OPTIONS_DEFAULT=	GNOME
 
-GNOME_LIB_DEPENDS=	libsoup-gnome-2.4.so:${PORTSDIR}/devel/libsoup-gnome
+GNOME_LIB_DEPENDS=	libsoup-gnome-2.4.so:devel/libsoup-gnome
 GNOME_CONFIGURE_OFF=	--without-gnome
-GNOME_LIB_DEPENDS_OFF=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup
+GNOME_LIB_DEPENDS_OFF=	libsoup-2.4.so:devel/libsoup
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

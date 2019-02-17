@@ -664,7 +664,6 @@ SUBDIR += tex-kpathsea
 SUBDIR += tex-web2c
 SUBDIR += tmake
 SUBDIR += tradcpp
-SUBDIR += uclmmbase
 SUBDIR += upnp
 SUBDIR += uthash
 SUBDIR += valgrind
