@@ -133,7 +133,7 @@ do-install-PYTHON-on:
 	(cd ${WRKSRC}/gdb/data-directory ; \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-python )
 . for f in gdb gdb/command gdb/function gdb/printer
-	@(cd ${STAGEDIR}${PREFIX}/share/gdb${VER}/python/${f} ; ${CHMOD} 644 *.py* )
+	@(cd ${FAKE_DESTDIR}${PREFIX}/share/gdb${VER}/python/${f} ; ${CHMOD} 644 *.py* )
 . endfor
 
 do-install-GUILE-on:
