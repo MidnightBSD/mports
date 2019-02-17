@@ -3,7 +3,7 @@
 
 PORTNAME=	enemyterritory
 PORTVERSION=	2.60b
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games linux
 MASTER_SITES=		${MASTER_SITE_IDSOFTWARE:S|$|et/:patch|} \
 			${MASTER_SITE_IDSOFTWARE:S|$|et/linux/:full|}
@@ -19,13 +19,12 @@ LICENSE_NAME=	id Software License
 LICENSE_FILE=	${WRKSRC}/Docs/EULA_Wolfenstein_Enemy_Territory.txt
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
-USES=		zip:infozip
-USE_LINUX=	f10
+USES=		linux zip:infozip
+USE_LINUX=	dri xorglibs
 NO_CDROM=	Redistribution is limited, see license
 ETDIR=		${PREFIX}/lib/${PORTNAME}
 INSTALL_DIR=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
 PATCH_260B_DIR=	Enemy Territory 2.60b
-USE_LINUX_APPS=	xorglibs dri
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
