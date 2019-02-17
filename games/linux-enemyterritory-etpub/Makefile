@@ -1,10 +1,5 @@
-# New ports collection makefile for:	etpub
-# Date created:				7 May 2006
-# Whom:					alepulver
-#
 # $MidnightBSD$
 # $FreeBSD: ports/games/linux-enemyterritory-etpub/Makefile,v 1.10 2008/02/19 13:20:30 alepulver Exp $
-#
 
 PORTNAME=	etpub
 PORTVERSION=	0.8.1
@@ -20,11 +15,10 @@ COMMENT=	ET Pub - An Enemy Territory Modification
 
 LICENSE=	other
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-USES=		zip
-USE_LINUX=	f10
+USES=		linux zip
 
 RESTRICTED=	do not redistribute
 
@@ -39,7 +33,7 @@ PLIST_SUB=	CLIENT_PK3="${CLIENT_PK3}"
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_OMNIBOT)
-RUN_DEPENDS+=	et-omni-bot:${PORTSDIR}/games/linux-enemyterritory-omni-bot
+RUN_DEPENDS+=	et-omni-bot:games/linux-enemyterritory-omni-bot
 .endif
 
 pre-patch:

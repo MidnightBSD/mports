@@ -2,7 +2,7 @@
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games linux
 MASTER_SITES=	${MASTER_SITE_IDSOFTWARE:S|$|quake3/linux/:data|} \
 		${MASTER_SITE_IDSOFTWARE:S|$|quake3/:patch|}
@@ -19,8 +19,7 @@ LICENSE_NAME=	Loki Software License
 LICENSE_FILE=	${WRKDIR}/Q3A_EULA.txt
 LICENSE_PERMS=
 
-USES=		zip:infozip
-USE_LINUX=	f10
+USES=		linux zip:infozip
 NO_WRKSUBDIR=	yes
 
 RESTRICTED=	Restrictive license by Loki Software

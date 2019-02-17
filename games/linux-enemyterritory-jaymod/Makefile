@@ -3,6 +3,7 @@
 
 PORTNAME=	jaymod
 PORTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	games linux
 MASTER_SITES=	http://jaymod.clanfu.org/lib/downloads/ \
 		http://www.zenenterprises.biz/bud/jaymod/
@@ -10,11 +11,12 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jaymod - An Enemy Territory Modification
+
 LICENSE=	other
 
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+RUN_DEPENDS=	et:games/linux-enemyterritory
 
-USE_LINUX=	yes
+USES=		linux
 
 OPTIONS_DEFINE=	DOCS OMNIBOT
 OMNIBOT_DESC=	Install Omni-Bot for bot support

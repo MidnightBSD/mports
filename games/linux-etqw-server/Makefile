@@ -26,8 +26,8 @@ RESTRICTED=	cannot distribute
 NO_CDROM=	Redistribution is limited
 NO_BUILD=	yes
 
-USE_LINUX=	yes
-USES=		zip:infozip
+ONLY_FOR_ARCHS=	i386 amd64
+USES=		linux zip:infozip
 
 ETQWDIR=	${PREFIX}/lib/${PORTNAME}${PKGNAMESUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}

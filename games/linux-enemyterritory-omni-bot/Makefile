@@ -3,6 +3,7 @@
 
 PORTNAME=	omni-bot
 PORTVERSION=	0.66
+PORTREVISION=	1
 CATEGORIES=	games linux
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	alepulver
@@ -13,13 +14,12 @@ COMMENT=	Omni-Bot is a bot for Enemy Territory
 
 LICENSE=	other
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:games/linux-enemyterritory
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 RESTRICTED=	mods are not redistributable
 
-USES=		zip
-USE_LINUX=	f10
+USES=		linux zip
 NO_WRKSUBDIR=	yes
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
