@@ -18,11 +18,10 @@ COMMENT=	ET Pro - The Enemy Territory Competition Mod
 
 LICENSE=	other
 
-BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:games/linux-enemyterritory
+RUN_DEPENDS=	et:games/linux-enemyterritory
 
-USES=		zip
-USE_LINUX=	f10
+USES=		linux zip
 NO_WRKSUBDIR=	yes
 
 RESTRICTED=	license does not allow redistribution
