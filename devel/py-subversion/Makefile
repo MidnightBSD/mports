@@ -7,26 +7,23 @@ COMMENT=	Python bindings for version control system
 
 LICENSE=	agg
 
-MASTERDIR=	${.CURDIR}/../../devel/subversion
-PKGDIR=		${.CURDIR}
-
 USES+=		python
+USE_PYTHON=	flavors py3kplist
+
+PORTREVISION_111=	0
+PORTREVISION_19=	0
 
 SVN_BUILD_BINDINGS=	yes
-SVN_BUILD_ADDONS=	yes
 
-.include "${MASTERDIR}/Makefile.common"
-.include <bsd.mport.options.mk>
+.include "${.CURDIR}/../../devel/subversion/Makefile.addons"
+
 CATEGORIES+=	python
 
 CONFIGURE_ARGS+=	--without-gnome-keyring \
 			--without-kwallet \
 			--with-apxs=no
 
-do-build:
-	cd ${WRKSRC} ; ${MAKE} ${FAKE_MAKEARGS} swig-py-lib ; ${MAKE} ${FAKE_MAKEARGS} swig-py
-
-do-install:
-	cd ${WRKSRC} ; ${MAKE} ${FAKE_MAKEARGS} install-swig-py
+ALL_TARGET=	swig-py-lib swig-py
+INSTALL_TARGET=	install-swig-py
 
 .include <bsd.port.post.mk>
