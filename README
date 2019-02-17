@@ -1,0 +1,43 @@
+This is the MidnightBSD Ports Collection.
+
+	https://www.MidnightBSD.org/mports
+
+For documentation, consult:
+
+	The ports(7) manual page (man ports).
+
+	MidnightBSD website https://www.midnightbsd.org/
+
+If you would like to search for a port, you can do so easily by
+saying (in /usr/mports):
+
+
+	make search name="<name>"
+	or:
+	make search key="<keyword>"
+
+which will generate a list of all ports matching <name> or <keyword>.
+make search also supports wildcards, such as:
+
+	make search name="gtk*"
+
+To use packages instead, use the mport command to install. You can find
+out what pacakges are available on the midnightbsd app store
+http://app.midnightbsd.org/
+
+You can also learn about package builds and their progress
+https://www.midnightbsd.org/magus/
+
+To create packages, one must use the magus software, which is included
+in Tools/magus Tools/lib and so on.  
+
+If you wish to contribute to mports, submit via github on
+https://github.com/MidnightBSD/mports
+
+NOTE:  This tree will GROW significantly in size during normal usage!
+The distribution tar files can and do accumulate in /usr/mports/Distfiles,
+and the individual mports will also use up lots of space in their work
+subdirectories unless you remember to "make clean" after you're done
+building a given port.  /usr/mports/Distfiles can also be periodically
+cleaned without ill-effect.
+
