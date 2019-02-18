@@ -11,7 +11,7 @@ COMMENT=	Locate available proxy services
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	x11 ice xt xproxymngproto
+USE_XORG=	x11 ice xt xorgproto
 
 PLIST_FILES=	bin/xfindproxy man/man1/xfindproxy.1.gz
 
