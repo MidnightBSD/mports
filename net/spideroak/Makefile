@@ -32,9 +32,8 @@ REINPLACE_ARGS=	-e 's,%%PREFIX%%,${PREFIX},1' \
 SUB_LIST=	LINUXBASE=${LINUXBASE}
 SUB_FILES=	pkg-message
 
-USE_LINUX=	f10
-USE_LINUX_APPS=	xorglibs
-USES=		desktop-file-utils python:2 tar:tgz
+USE_LINUX=	xorglibs
+USES=		desktop-file-utils linux python:2 tar:tgz
 
 .include <bsd.mport.options.mk>
 
