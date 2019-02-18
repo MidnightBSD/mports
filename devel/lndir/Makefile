@@ -7,7 +7,7 @@
 
 PORTNAME=	lndir
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ LICENSE=	unknown
 # The license is not cleary stated.
 
 XORG_CAT=	util
-USE_XORG=	xproto
+USE_XORG=	xorgproto
 USES=		pkgconfig
 
 PLIST_FILES=	bin/lndir \
