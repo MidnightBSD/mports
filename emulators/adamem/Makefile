@@ -2,7 +2,7 @@
 
 PORTNAME=	adamem
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.komkon.org/~dekogel/files/coleco/
 DISTNAME=	${PORTNAME}
@@ -19,7 +19,7 @@ RESTRICTED=	yes
 NO_CDROM=	yes
 
 NO_WRKSUBDIR=	yes
-USE_XORG=	sm x11 xau xextproto xext xfixes xi xrandr
+USE_XORG=	sm x11 xau xext xfixes xi xrandr
 ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}
