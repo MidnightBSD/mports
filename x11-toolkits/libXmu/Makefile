@@ -12,6 +12,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	xproto:both x11 xt xext
+USE_XORG=	xorgproto:both x11 xt xext
 
 .include <bsd.port.mk>
