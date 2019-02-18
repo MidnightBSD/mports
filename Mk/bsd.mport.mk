@@ -251,11 +251,11 @@ GID_OFFSET?=	0
 
 # predefined accounts from src/etc/master.passwd
 # alpha numeric sort order
-USERS_BLACKLIST=	_dhcp _ntp _pflogd auditdistd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
+USERS_BLACKLIST=	_dhcp _ntp _pflogd _ypldap auditdistd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty unbound uucp www
 
 # predefined accounts from src/etc/group
 # alpha numeric sort order
-GROUPS_BLACKLIST=	_dhcp _pflogd audit authpf bin bind daemon dialer ftp games guest hast kmem mail mailnull man network news nobody nogroup operator proxy smmsp sshd staff sys tty uucp wheel www
+GROUPS_BLACKLIST=	_dhcp _pflogd _ypldap audit authpf bin bind daemon dialer ftp games guest hast kmem mail mailnull man network news nobody nogroup operator proxy smmsp sshd staff sys tty unbound uucp wheel www
 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
@@ -302,7 +302,7 @@ _PREMKINCLUDED=		yes
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
 .endif
 .if defined(DISTVERSION)
-DEV_WARNING+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one and let the framework create the other one"
+DEV_ERROR+=	"Defining both PORTVERSION and DISTVERSION is wrong, only set one and let the framework create the other one"
 .endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
 .elif defined(DISTVERSION)
