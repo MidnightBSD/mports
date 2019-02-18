@@ -55,6 +55,7 @@ SUBDIR += qt4-qtdemo
 SUBDIR += qt5-doc
 SUBDIR += qt5-examples
 SUBDIR += qt5-l10n
+SUBDIR += qtchooser
 SUBDIR += shared-mime-info
 SUBDIR += shc
 SUBDIR += susv2
