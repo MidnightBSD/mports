@@ -11,6 +11,6 @@ COMMENT=	The XTrap library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	trapproto:both x11 xext xextproto xt
+USE_XORG=	x11 xext xorgproto xt
 
 .include <bsd.port.mk>
