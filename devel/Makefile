@@ -465,7 +465,6 @@ SUBDIR += pcre
 SUBDIR += pcre2
 SUBDIR += pcsc-lite
 SUBDIR += pear
-SUBDIR += pecl-intl
 SUBDIR += performance
 SUBDIR += perltidy
 SUBDIR += php70-gettext
