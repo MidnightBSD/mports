@@ -10,8 +10,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	${LOCALBASE}/lib/libtxc_dxtn.so:graphics/s2tc
 
-USE_XORG=	dri2proto dri3proto glproto presentproto x11 xdamage xext \
-		xfixes xshmfence xv xvmc
+USE_XORG=	xorgproto x11 xdamage xext xfixes xshmfence xv xvmc
 
 OPTIONS_DEFINE=	TEXTURE VAAPI VDPAU
 OPTIONS_DEFAULT=TEXTURE
