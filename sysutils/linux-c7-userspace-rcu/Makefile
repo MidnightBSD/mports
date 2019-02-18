@@ -1,13 +1,14 @@
-# Created by: David Naylor <dbn@FreeBSD.org>
-# $FreeBSD: head/sysutils/linux-c7-userspace-rcu/Makefile 460527 2018-01-31 20:39:20Z tijl $
+# $MidnightBSD$
 
 PORTNAME=	userspace-rcu
 PORTVERSION=	0.7.16
 CATEGORIES=	sysutils linux
 MASTER_SITES=	EPEL7/u
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace read-copy-update (RCU) data synchronization library (CentOS ${LINUX_DIST_VER})
+
+LICENSE=	lgpl2.1
 
 DESCR=		${.CURDIR}/../liburcu/pkg-descr
 ONLY_FOR_ARCHS=	amd64

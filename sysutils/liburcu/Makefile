@@ -1,5 +1,4 @@
-# Created by: Leo Vandewoestijne <freebsd@dns-lab.com>
-# $FreeBSD: head/sysutils/liburcu/Makefile 479406 2018-09-10 13:14:50Z mat $
+# $MidnightBSD$
 
 PORTNAME=	liburcu
 PORTVERSION=	0.10.0
@@ -7,10 +6,10 @@ CATEGORIES=	sysutils
 MASTER_SITES=	http://lttng.org/files/urcu/
 DISTNAME=	userspace-rcu-${PORTVERSION}
 
-MAINTAINER=	mmokhi@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace read-copy-update (RCU) data synchronization library
 
-LICENSE=	LGPL21
+LICENSE=	lgpl2.1
 
 BROKEN_aarch64=	Fails to build: Cannot build: unrecognized architecture detected
 BROKEN_mips=	Fails to build: undefined reference to `__sync_bool_compare_and_swap_4

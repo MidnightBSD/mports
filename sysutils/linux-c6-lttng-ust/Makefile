@@ -1,13 +1,14 @@
-# Created by: David Naylor <dbn@FreeBSD.org>
-# $FreeBSD: head/sysutils/linux-c6-lttng-ust/Makefile 460532 2018-01-31 21:03:35Z tijl $
+# $MidnightBSD$
 
 PORTNAME=	lttng-ust
 PORTVERSION=	2.4.1
 CATEGORIES=	sysutils linux
 MASTER_SITES=	EPEL/l
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to instrument and trace user applications (CentOS ${LINUX_DIST_VER})
+
+LICENSE=	unknown
 
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}
