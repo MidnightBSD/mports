@@ -73,6 +73,7 @@ SUBDIR += libcddb
 SUBDIR += libdiscid
 SUBDIR += libdssialsacompat
 SUBDIR += libechonest
+SUBDIR += libgig
 SUBDIR += libgpod
 SUBDIR += libgme
 SUBDIR += libid3tag
