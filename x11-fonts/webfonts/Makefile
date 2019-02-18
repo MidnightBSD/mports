@@ -27,6 +27,8 @@ USES=		fonts
 NO_BUILD=	yes
 RESTRICTED=	Restrictive license - cannot sell for profit or distribute in modified form
 
+PLIST_SUB+=	FONTSDIR_REL=share/fonts/webfonts
+
 EXTRACT_CMD=		${LOCALBASE}/bin/cabextract
 EXTRACT_BEFORE_ARGS=	-qLF '[a-uw-z]*.ttf' -d ${WRKSRC}
 EXTRACT_AFTER_ARGS=
@@ -69,6 +71,6 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/licen.txt ${STAGEDIR}${DOCSDIR}/LICENSE
 
 post-install-CLEARTYPE-on:
-	${INSTALL_DATA} ${WRKSRC}/eula.txt ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/eula.txt ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
