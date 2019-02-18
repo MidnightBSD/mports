@@ -11,7 +11,7 @@ COMMENT=	The XprintUtil library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	printproto:both x11 xau xp xt
+USE_XORG=	xorgproto:both x11 xau xp xt
 USES=		libtool
 
 .include <bsd.port.mk>
