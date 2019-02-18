@@ -11,6 +11,6 @@ COMMENT=	The xkbui library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	x11 xt xkbfile kbproto:both
+USE_XORG=	x11 xt xkbfile xorgproto
 
 .include <bsd.port.mk>
