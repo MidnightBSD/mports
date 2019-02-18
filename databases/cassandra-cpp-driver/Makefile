@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	cassandra-cpp-driver
-PORTVERSION=	2.7.0
+PORTVERSION=	2.9.0
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -30,9 +30,5 @@ PLIST_FILES=	include/cassandra.h \
 		lib/libcassandra_static.a \
 		libdata/pkgconfig/cassandra.pc \
 		libdata/pkgconfig/cassandra_static.pc
-
-post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${MV} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
