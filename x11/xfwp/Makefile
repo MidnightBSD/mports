@@ -10,7 +10,7 @@ COMMENT=	X firewall proxy
 LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	x11 ice xproxymngproto
+USE_XORG=	x11 ice xorgproto
 
 PLIST_FILES=	bin/xfwp man/man1/xfwp.1.gz
 
