@@ -8,7 +8,7 @@ COMMENT=	OpenGL libraries that support GLX and EGL clients
 
 LICENSE=	mit
 
-USE_XORG=	dri2proto dri3proto glproto presentproto x11 xcb xdamage xext \
+USE_XORG=	xorgproto x11 xcb xdamage xext \
 		xfixes xshmfence xxf86vm
 
 OPTIONS_DEFINE=	WAYLAND
