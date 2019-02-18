@@ -11,7 +11,7 @@ COMMENT=	GNOME Symbolic Icons
 
 LICENSE=	ccasa3
 
-BUILD_DEPENDS=	icon-naming-utils>=0.8.7:${PORTSDIR}/x11-themes/icon-naming-utils
+BUILD_DEPENDS=	icon-naming-utils>=0.8.7:x11-themes/icon-naming-utils
 
 INSTALLS_ICONS=	yes
 USES=		gmake pathfix pkgconfig tar:xz
