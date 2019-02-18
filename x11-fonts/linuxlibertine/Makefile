@@ -28,6 +28,8 @@ LICENSE_PERMS_OFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 WRKSRC=		${WRKDIR}/LinLibertine
 NO_BUILD=	yes
 
+PLIST_SUB+=	FONTSDIR_REL=share/fonts/linuxlibertine
+
 PORTDOCS=	Bugs.txt \
 		ChangeLog.txt \
 		Readme.txt \
