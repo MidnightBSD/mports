@@ -11,7 +11,7 @@ COMMENT=	X11 Xinerama library
 LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto xineramaproto:both
+USE_XORG=	x11 xext xorgproto
 USES+=	cpe
 CPE_PRODUCT=	libxinerama
 CPE_VENDOR=	x
