@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-mga
 PORTVERSION=	1.6.5
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	x11-drivers
 
@@ -13,6 +14,5 @@ LICENSE=	mit
 USE_GL=		gl
 
 XORG_CAT=	driver
-USE_XORG=	xf86driproto videoproto xextproto glproto
 
 .include <bsd.port.mk>

@@ -12,6 +12,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	driver
-USE_XORG=	kbproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>

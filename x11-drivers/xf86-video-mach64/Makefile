@@ -2,6 +2,7 @@
 
 PORTNAME=	xf86-video-mach64
 PORTVERSION=	6.9.6
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,6 +13,5 @@ LICENSE=	mit
 USE_GL=		gl
 
 XORG_CAT=	driver
-USE_XORG=	glproto videoproto xextproto xf86driproto xf86miscproto xineramaproto
 
 .include <bsd.port.mk>
