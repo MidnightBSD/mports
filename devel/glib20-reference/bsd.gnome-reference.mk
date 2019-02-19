@@ -21,9 +21,6 @@ DISTNAME:=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 MASTER_SITE_SUBDIR:=	${MASTER_SITE_SUBDIR}
 .endif
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-reference
-.if defined(LATEST_LINK)
-LATEST_LINK:=	${LATEST_LINK}-reference
-.endif
 
 COMMENT=	Programming reference for ${REFERENCE_PORT}
 
@@ -33,6 +30,7 @@ REFERENCE_SRC?=	${WRKSRC}/docs/reference
 BOOKS?=		.
 
 PORTDOCS?=	*
+OPTIONS_DEFINE+=	DOCS
 
 .if !target(do-build)
 do-build:
