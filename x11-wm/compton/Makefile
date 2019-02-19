@@ -25,7 +25,7 @@ WRKSRC=		${WRKDIR}/compton-d7f95b5
 MAKE_JOBS_UNSAFE=	yes
 
 USES=		gmake pkgconfig
-USE_XORG=	xcomposite xdamage xrandr xrender xinerama
+USE_XORG=	x11 xcomposite xdamage xext xfixes xrandr xrender
 
 MAKE_ARGS=	COMPTON_VERSION=git-${PORTVERSION}-${GH_TAGNAME} \
 		XDGDIR=${LOCALBASE}/etc/xdg
