@@ -1,10 +1,11 @@
---- mquery.c.orig	2009-06-07 15:09:37 -0400
-+++ mquery.c	2009-06-07 15:09:51 -0400
-@@ -3,6 +3,7 @@
- #include <netinet/in.h>
- #include <fcntl.h>
- #include <errno.h>
-+#include <strings.h>
+--- mquery.c.orig	2017-11-22 13:47:51 UTC
++++ mquery.c
+@@ -10,6 +10,8 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <time.h>
++#include <sys/socket.h>
++#include <netinet/in.h>
  
- #include "mdnsd.h"
+ #include <libmdnsd/mdnsd.h>
  
