@@ -7,7 +7,7 @@
 
 PORTNAME=	ia64sim
 PORTVERSION=	0.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.boo.net/~jasonp/
 DISTNAME=	${PORTNAME}
@@ -22,7 +22,6 @@ USES=		gmake zip
 
 EXTRACT_BEFORE_ARGS=	-qLa
 WRKSRC=		${WRKDIR}/home/chuck/ia64simcc
-USE_GMAKE=	yes
 MAKEFILE=	makefile.unx
 
 PLIST_FILES=	bin/ia64sim
