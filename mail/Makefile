@@ -25,7 +25,6 @@ SUBDIR += gnumail
 SUBDIR += hashcash
 SUBDIR += libspf
 SUBDIR += libspf2
-SUBDIR += linux-thunderbird
 SUBDIR += mailutils
 SUBDIR += metamail
 SUBDIR += milter-greylist
