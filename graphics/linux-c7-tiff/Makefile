@@ -7,6 +7,8 @@ CATEGORIES=	graphics linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library routines for working with TIFF images (Linux CentOS ${LINUX_DIST_VER})
 
+LICENSE=	bsd3
+
 CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
 
 DESCR=		${.CURDIR}/../tiff/pkg-descr
