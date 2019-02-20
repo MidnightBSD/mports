@@ -16,8 +16,6 @@ LICENSE=	python
 
 USE_PYTHON=	distutils autoplist
 USES=		python tar:xz tk
-USE_TCL=	86
-USE_TK=		86
 
 CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
 

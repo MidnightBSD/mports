@@ -2,7 +2,7 @@
 
 PORTNAME=	dirdiff
 PORTVERSION=	2.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils tcl tk
 MASTER_SITES=	ftp://ftp.samba.org/pub/paulus/
 
@@ -12,9 +12,7 @@ COMMENT=	Graphical diff tool
 LICENSE=	gpl2 # (or later)
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tk
-USE_TCL=	yes
-USE_TK=		yes
+USES+=		tk
 USE_LDCONFIG=	yes
 
 PLIST_FILES=	bin/dirdiff lib/libfilecmp.so.0.0
