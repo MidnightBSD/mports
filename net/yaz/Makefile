@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	yaz
-PORTVERSION=	4.2.65
-PORTREVISION=	1
+DISTVERSION=	5.26.1
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/yaz/
 
@@ -10,35 +9,44 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Z39.50/SR client and API library
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	icuuc:${PORTSDIR}/devel/icu
+LIB_DEPENDS=	libicuuc.so:devel/icu \
+		libgnutls.so:security/gnutls
 
+USES=		iconv libtool ncurses pathfix pkgconfig readline \
+		shebangfix tcl
+SHEBANG_FILES=	util/yaz-asncomp
 GNU_CONFIGURE=	yes
-USES=		pathfix pkgconfig iconv ssl
 USE_GNOME=	libxml2 libxslt
 USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
 
-CONFIGURE_ARGS+=--enable-shared --with-openssl=${OPENSSLBASE} \
-		--with-iconv=${LOCALBASE} --with-xml2=${LOCALBASE} \
-		--with-xslt=${LOCALBASE} --with-icu=${LOCALBASE} \
-		--enable-tcpd
+CONFIGURE_ARGS=	--enable-shared --with-iconv=${ICONV_PREFIX} \
+		--with-xml2=${LOCALBASE} --with-xslt=${LOCALBASE} \
+		--with-icu=${LOCALBASE} --enable-tcpd
+LDFLAGS+=	-L${LOCALBASE}/lib
+LIBS+=		-lexecinfo
 
-MAN1=		yaz-asncomp.1 yaz-client.1 yaz-config.1 yaz-iconv.1 \
-		yaz-json-parse.1 yaz-marcdump.1 \
-		zoomsh.1 yaz-icu.1 yaz-illclient.1 yaz-url.1
-MAN7=		bib1-attr.7 yaz-log.7 yaz.7
-MAN8=		yaz-ztest.8
+PORTDOCS=	*
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS MEMCACHED REDIS
 
-.include <bsd.mport.options.mk>
+MEMCACHED_DESC=		Memcached distributed cache system support
+MEMCACHED_CONFIGURE_WITH=	memcached
+MEMCACHED_LIB_DEPENDS=	libmemcached.so:databases/libmemcached
 
-.if !${PORT_OPTIONS:MDOCS}
-EXTRA_PATCHES+=	${FILESDIR}/extrapatch-doc__Makefile.in
-.endif
+REDIS_CONFIGURE_WITH=	redis
+REDIS_LIB_DEPENDS=	libhiredis.so:databases/hiredis
+
+post-patch:
+	@${REINPLACE_CMD} 's|tclsh |tclsh8.6 |' ${WRKSRC}/configure
 
 post-configure:
 	@${REINPLACE_CMD} -e 's,[$$]{datarootdir}/man,${PREFIX}/man,' \
 		${WRKSRC}/doc/Makefile
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.*
 
 .include <bsd.port.mk>
