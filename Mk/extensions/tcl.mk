@@ -1,350 +1,225 @@
-# -*- tab-width: 4; -*-
-# ex: ts=4
-#
 # $MidnightBSD$
-# $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.11 2009/07/07 07:34:31 mm Exp $
+# $FreeBSD: head/Mk/Uses/tcl.mk 454756 2017-11-23 12:11:41Z gahr $
+#
+# vim: ts=8 noexpandtab
+#
+# Provide support to use Tcl/Tk
+#
+# Variables set by this file:
+#
+# TCL_VER		- Major.Minor version of Tcl
+#
+# TCLSH			- Set to full path of the Tcl interpreter
+#
+# TCL_LIBDIR		- Path where the Tcl libraries can be found
+#
+# TCL_INCLUDEDIR	- Path where the Tcl C headers can be found
+#
+#
+# TK_VER		- Major.Minor version of Tk
+#
+# WISH			- Set to full path of the Tk interpreter
+#
+# TK_LIBDIR		- Path where the Tk libraries can be found
+#
+# TK_INCLUDEDIR		- Path where the Tk C headers can be found
+#
+#
+#
+# Usage:
+#
+# USES+=	PORT[:(VERSION|wrapper),build,run,tea]
+#
+# where PORT is one of:
+#
+# - tcl			- Depend on Tcl
+# - tk			- Depend on both Tk and Tcl (Tk itself depends on Tcl)
+#
+# and VERSION is in one of the following formats:
+#
+# - (empty)		- Depend on any installed version of PORT. If none
+#   			  is installed, bring in the default version. See
+#   			  ${_TCLTK_DEFAULT_VERSION} below.
+#
+# - 86, 87		- Depend on a specific version series of PORT. Multiple
+#   			  values are OK. The highest version available is
+#   			  picked.
+#
+# - 86+, 87+	- Depend on any installed version greater or equal to
+#   			  the specified version.
+#
+# If wrapper is specified, an additional dependency on tcl-wrapper or
+# tk-wrapper is added. It is NOT possible to select a specific version of
+# Tcl/Tk when using the wrapper.
+#
+# Build-time / Run-time only dependencies can be specified with build or run.
+#
+# Tea can be used for Tcl/Tk extensions that use the Tcl Extension Architecture
+# [http://www.tcl.tk/doc/tea] and allows to set common autoconf parameters.
 #
 
-.if !defined(_POSTMKINCLUDED) && !defined(Tcl_Pre_Include)
-
-Tcl_Pre_Include=		tcl.mk
-Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
-
-# USE_TCL		- Add library dependency on Tcl. If no version is given by the maintainer
-#			  via the port or by the user via defined variable try to find the highest
-#			  stable installed version.
-#			  Available values: yes 86+ 85+ 84+ 85 84
-#			  NOTE: - default value 86 is used in case of USE_TCL=yes
-#
-# USE_TCL_BUILD		- Add buildtime dependency on Tcl (tclsh).
-#			  Available values: see USE_TCL
-#			  NOTE: - has no effect if USE_TCL is defined
-#
-# USE_TCL_RUN		- Add runtime dependency on Tcl (tclsh).
-#			  Available values: see USE_TCL
-#			  NOTE: - has no effect if USE_TCL is defined
-#				- value is implied by USE_TCL_BUILD (if defined)
-#
-# USE_TCL_WRAPPER	- Depend on the tclsh wrapper to run. Ports that do not explicitly require
-#			  a specific tclsh version may use this.
-#			  The tclsh wrapper script installs into ${LOCALBASE}/bin/tclsh
-#			  NOTE: - USE_TCL_WRAPPER and USE_TCL can be used together
-#			        - ports using the wrapper should support default Tcl (8.6)
-##
-# INVALID_TCL_VER	- This variable contains a list of Tcl versions not supported by the port.
-#			  This setting is effective only when USE_TCL is set to a range (e.g. 85+)
-# WITH_TCL_VER		- User defined global variable to set Tcl version
-#			  This variable is effective only if USE_TCL is set to a range (e.g. 85+)
-#			  and WITH_TCL_VER points inside that range.
-#			  NOTE: INVALID_TCL_VER takes precedence
-# <UNIQUENAME>_WITH_TCL_VER	- User defined port specific variable to set Tcl version
-##
-# TCL_VER		- Detected by bsd.tcl.mk. Contains the version number of Tcl to be used.
-#
-##
-# USE_TK		- Add library dependency on Tk. If no version is given by the maintainer
-#			  via the port or by the user via defined variable try to find the highest
-#			  stable installed version.
-#			  Avaliable values: yes 86+ 85+ 84+ 85 84
-#			  NOTE: - overrides USE_TCL
-#			        - default value 86 is used in case of USE_TK=yes
-#
-# USE_TK_BUILD		- Add buildtime dependency on Tk (wish).
-#			  Available values: see USE_TK
-#			  NOTE: - has no effect if USE_TK is defined
-#
-# USE_TK_RUN		- Add runtime dependency on Tk (wish).
-#			  Available values: see USE_TK
-#			  NOTE: - has no effect if USE_TK is defined
-#				- value is implied by USE_TK_BUILD (if defined)
-#
-# USE_TK_WRAPPER	- Depend on the wish wrapper to run. Ports that do not explicitly require
-#			  a specific wish version may use this.
-#			  The wish wrapper script installs into ${LOCALBASE}/bin/wish
-#			  NOTE: - USE_TK_WRAPPER and USE_TK can be used together.
-#			        - ports using the wrapper should support default Tk (8.6)
-##
-# INVALID_TK_VER	- This variable contains a list of Tk versions not supported by the port
-#			  This setting is effective only when USE_TK is set to a range (e.g. 85+)
-# WITH_TK_VER		- User defined global variable to set Tk version.
-#			  This variable is effective only if USE_TK is set to a range (e.g. 85+)
-#			  and WITH_TK_VER points inside that range.
-#			  NOTE: overrides WITH_TCL_VER.
-# <UNIQUENAME>_WITH_TK_VER	- User defined port specific variable to set Tk version
-#			  NOTE: overrides <UNIQUENAME>_WITH_TCL_VER.
-##
-# TCL_LIBDIR		- Path where tcl libraries can be found
-#
-# TCL_INCLUDEDIR	- Path where tcl C headers can be found
-##
-# TK_LIBDIR		- Path where tk libraries can be found
-#
-# TK_INCLUDEDIR 	- Path where tk C headers can be found
-##
-# TCLSH			- Path to tclsh executable respecting Tcl version
-#			  or to the tclsh wrapper if USE_TCL_WRAPPER is set
-#
-# WISH			- Path to wish executable respecting Tk version
-#			  or to the wish wrapper if USE_TK_WRAPPER is set
-#
-##
-# PATCH_TCL_SCRIPTS	- List of tcl scripts that need to be patched to replace
-# 			  tclsh calls with tclsh${TK_VER} calls. Also note that
-# 			  post-patch target is used.
-#
-# PATCH_TK_SCRIPTS	- List of tcl scripts that need to be patched to replace
-# 			  wish calls with wish${TK_VER} calls. Also note that
-# 			  post-patch target is used.
-
-# Set RUN_DEPENDS for wrappers
-. if defined(USE_TCL_WRAPPER)
-RUN_DEPENDS+=		tclsh:lang/tcl-wrapper
-. endif
-. if defined(USE_TK_WRAPPER)
-RUN_DEPENDS+=		wish:x11-toolkits/tk-wrapper
-. endif
-
-# Process USE_TCL_BUILD and USE_TCL_RUN
-.if !defined(USE_TCL)
-. if defined(USE_TCL_RUN)
-USE_TCL:=	${USE_TCL_RUN}
-_TCL_RUN_DEPENDS=	yes
-. endif
-. if defined(USE_TCL_BUILD)
-USE_TCL:=	${USE_TCL_BUILD}
-_TCL_BUILD_DEPENDS=	yes
-. endif
+.if ${USES:Mtk} || ${USES:Mtk\:*}
+.if !defined(_TCLTK_PORT)
+_TCLTK_IGNORE=	yes
+.endif
 .endif
 
-# Process USE_TK_BUILD and USE_TK_RUN
-.if !defined(USE_TK)
-. if defined(USE_TK_RUN)
-USE_TK:=	${USE_TK_RUN}
-_TK_RUN_DEPENDS=	yes
-. endif
-. if defined(USE_TK_BUILD)
-USE_TK:=	${USE_TK_BUILD}
-_TK_BUILD_DEPENDS=	yes
-. endif
+.if !defined(_INCLUDE_USES_TCL_MK) && !defined(_TCLTK_IGNORE)
+_INCLUDE_USES_TCL_MK=	yes
+
+#
+# List the currently available versions.
+#
+# When adding a version, please keep the comment in
+# Mk/bsd.default-versions.mk in sync.
+_TCLTK_VALID_VERSIONS=	86 87
+
+#
+# Bring in the default and check that the specified version is in the list of
+# valid versions.
+#
+_TCLTK_DEFAULT_VERSION=	${TCLTK_DEFAULT:S/.//}
+.if ! ${_TCLTK_VALID_VERSIONS:M${_TCLTK_DEFAULT_VERSION}}
+IGNORE=	Invalid tcltk version ${TCLTK_DEFAULT}
 .endif
 
-# Override the global WITH_TCL_VER or WITH_TK_VER with the
-# port specific <UNIQUENAME>_WITH_TCL_VER or <UNIQUENAME>_WITH_TK_VER
-. if defined(${UNIQUENAME:tu:S,-,_,}_WITH_TCL_VER)
-WITH_TCL_VER:=	${${UNIQUENAME:tu:S,-,_,}_WITH_TCL_VER}
-. endif
-. if defined(${UNIQUENAME:tu:S,-,_,}_WITH_TK_VER)
-WITH_TK_VER:=	${${UNIQUENAME:tu:S,-,_,}_WITH_TK_VER}
-. endif
-
-# If USE_TK, WITH_TK_VER, INVALID_TK_VER is defined,
-# set USE_TCL, WITH_TCL_VER, INVALID_TCL_VER to identical values
-# we require the same version of Tcl for Tk
-. if defined(USE_TK)
-.  if !defined(USE_TCL)
-_TK_ONLY=	yes
-.  endif
-USE_TCL:=	${USE_TK}
-. endif
-. if defined(WITH_TK_VER)
-WITH_TCL_VER:=	${WITH_TK_VER}
-. endif
-. if defined(INVALID_TK_VER)
-INVALID_TCL_VER:=	${INVALID_TK_VER}
-. endif
+#
+# _TCLTK_PORT tells us whether we're depending on Tcl or Tk. When using
+# USES+=tk, the included file tk.mk sets this before including this file.
+#
+_TCLTK_PORT?=	tcl
 
 #
-# Tcl part
+# Parse a ver+ argument.
 #
-. if defined(USE_TCL)
+.if ${tcl_ARGS:M*+}
+_TCLTK_MIN_VERSION:=	${tcl_ARGS:M*+:S/+//}
+_TCLTK_WANTED_VERSIONS:=${_TCLTK_DEFAULT_VERSION}
+.endif
 
-_TCL_DEFAULT_VERSION=		86
-_TCL_VERSIONS=			86 85 84
-_TCL_RANGE_VERSIONS= 		86+ 85+ 84+
+#
+# Parse one or more ver arguments.
+#
+.if ${tcl_ARGS:M8[5-7]}
+_TCLTK_WANTED_VERSIONS:=${tcl_ARGS:M8[5-7]}
+.endif
 
-# For specifying [85, 84, ..]+
-_TCL_84P=	84 85 86
-_TCL_85P=	85 86
-_TCL_86P=	86
+#
+# It makes little sense to specify both the wrapper and a specific version.
+#
+.if ${tcl_ARGS:Mwrapper} && defined(_TCLTK_WANTED_VERSIONS)
+IGNORE=	USES=${_TCLTK_PORT}: it is not possible to specify both a version and the wrapper: ${tcl_ARGS}
+.endif
 
-# Set the default Tcl version and check if USE_TCL=yes was given
-.  if ${USE_TCL} == "yes"
-USE_TCL=	${_TCL_DEFAULT_VERSION}
-.  endif
+#
+# If no version was specified with any of the ver or ver+ arguments, set the
+# default version.
+#
+.if !defined(_TCLTK_WANTED_VERSIONS)
+_TCLTK_WANTED_VERSIONS=	${_TCLTK_DEFAULT_VERSION}
+.endif
 
-_TCL_VER=	no
-
-# Check if we have user-defined WITH_TCL_VER and if it matches
-# the range specified in port's USE_TCL or USE_TK
-.  if defined(WITH_TCL_VER)
-.   for ver in ${_TCL_RANGE_VERSIONS}
-.    if ${USE_TCL} == "${ver}" && ${_TCL_VER} == "no"
-_MATCHED_TCL_VER:=	${USE_TCL:S/+//}
-.     for tcl in ${_TCL_${_MATCHED_TCL_VER}P}
-.      if ${WITH_TCL_VER} == ${tcl}
-#  Check if user supplied WITH_TCL is in the INVALID_TCL_VER list
-_BRKTCL=	no
-.       for iver in ${INVALID_TCL_VER}
-.        if ${WITH_TCL_VER} == ${iver}
-_BRKTCL=	yes
-.	 endif
-.       endfor
-#  If WITH_TCL is not in the INVALID_TCL_VER list, use it
-#  otherwise take default from port
-.       if ${_BRKTCL} == "no"
-_TCL_VER=	${WITH_TCL_VER}
-USE_TCL=	${_TCL_VER}
-.       endif
-.      endif
-.     endfor
+# 
+# Resolve minimum versions (ver+). Append anything greater or equal than the
+# specified minimum version to the list of wanted versions.
+#
+.if defined(_TCLTK_MIN_VERSION)
+.  for _v in ${_TCLTK_VALID_VERSIONS}
+.    if ${_TCLTK_MIN_VERSION} <= ${_v}
+_TCLTK_WANTED_VERSIONS+=${_v}
 .    endif
-.   endfor
-.  endif
-
-# Check for highest installed Tcl (if e.g. 84+ is specified)
-# The default version of Tcl counts as the highest
-.  if ${_TCL_VER} == "no"
-.   for ver in ${_TCL_RANGE_VERSIONS}
-.    if ${USE_TCL} == "${ver}" && ${_TCL_VER} == "no"
-_MATCHED_TCL_VER:=	${USE_TCL:S/+//}
-.     for tcl in ${_TCL_${_MATCHED_TCL_VER}P}
-#  Skip versions we are incompatible with
-_BRKTCL=	no
-.      for iver in ${INVALID_TCL_VER}
-_INVALID_VER=	${iver}
-.       if ${_INVALID_VER} == ${tcl}
-_BRKTCL=	yes
-.	endif
-.      endfor
-.      if ${_BRKTCL} == "no"
-#  We have matched a supported version
-_TCL_VER_MATCH=${tcl}
-#  Check if the default version is supported
-.	if ${_TCL_VER_MATCH} == ${_TCL_DEFAULT_VERSION}
-_TCL_SUPPORT_DEFAULT=	yes
-.	endif
-#  Look for installed versions
-.       if exists(${LOCALBASE}/include/tcl${tcl:S/8/8./}/tcl.h)
-_TCL_INST_VER=${tcl}
-#  Check if the default version is installed
-.        if ${_TCL_INST_VER} == ${_TCL_DEFAULT_VERSION}
-_TCL_HAVE_DEFAULT=	yes
-.        endif
-.	endif
-.      endif
-.     endfor
-.    endif
-.   endfor
-.   if defined(_MATCHED_TCL_VER)
-.    if defined(_TCL_INST_VER)
-#  Default version is installed
-.     if defined(_TCL_HAVE_DEFAULT)
-USE_TCL=	${_TCL_DEFAULT_VERSION}
-.     else
-#  Default version is not installed, but another supported version is installed
-USE_TCL=	${_TCL_INST_VER}
-.     endif
-#  No supported version is installed, we want to install the default version
-.    elif defined(_TCL_SUPPORT_DEFAULT)
-USE_TCL=	${_TCL_DEFAULT_VERSION}
-.    elif defined(_TCL_VER_MATCH)
-#  Default version is not wanted, select next best match
-USE_TCL=	${_TCL_VER_MATCH}
-.    else
-#  INVALID_[TCL|TK]_VER removes all choices from the USE_[TCL|TK] range
-IGNORE=		selection of a Tcl/Tk version is not possible. Please check USE_[TCL|TK] and INVALID_[TCL|TK]_VER
-.    endif
-.   endif
-.  endif
-
-TCL_VER:=	${USE_TCL:S/8/8./}
-
-# Check if a correct Tcl/Tk version was specified
-_FOUND=		no
-.  for ver in ${_TCL_VERSIONS}
-.   if ${USE_TCL} == "${ver}" && ${_FOUND} == "no"
-_FOUND=		yes
-.   endif
 .  endfor
+.endif
 
-.  if ${_FOUND} == "yes"
-
-TCL_INCLUDEDIR=		${LOCALBASE}/include/tcl${TCL_VER}
-TCL_LIBDIR=		${LOCALBASE}/lib/tcl${TCL_VER}
-TCLSH=			${LOCALBASE}/bin/tclsh${TCL_VER}
-
-# Add dependencies
-.   if !defined(_TK_ONLY)
-.    if !defined(_TCL_RUN_DEPENDS) && !defined(_TCL_BUILD_DEPENDS)
-LIB_DEPENDS+=	tcl${USE_TCL}:lang/tcl${USE_TCL}
-.    else
-.     if defined(_TCL_BUILD_DEPENDS)
-BUILD_DEPENDS+=	tclsh${TCL_VER}:lang/tcl${USE_TCL}
-.     endif
-.     if defined(_TCL_RUN_DEPENDS)
-RUN_DEPENDS+=	tclsh${TCL_VER}:lang/tcl${USE_TCL}
-.     endif
-.    endif
-.   endif
-
-.  elif !defined(IGNORE)
-IGNORE=		unknown Tcl/Tk version specified: ${USE_TCL}
+#
+# Right now we have built a list of potential versions that we may depend on.
+# Let's sort them and remove any duplicates. We then locate the highest one
+# already installed, if any.
+#
+.for _v in ${_TCLTK_WANTED_VERSIONS:O:u}
+_TCLTK_HIGHEST_VERSION:=${_v}
+.  if exists(${LOCALBASE}/lib/lib${_TCLTK_PORT}${_v}.so)
+_TCLTK_WANTED_VERSION:=	${_v}
 .  endif
+.endfor
 
 #
-# Tk part
+# If we couldn't find any wanted version installed, depend on the default or the highest one.
+.if !defined(_TCLTK_WANTED_VERSION)
+.  if ${_TCLTK_WANTED_VERSIONS:M${_TCLTK_DEFAULT_VERSION}}
+_TCLTK_WANTED_VERSION:=	${_TCLTK_DEFAULT_VERSION}
+.  else
+_TCLTK_WANTED_VERSION:= ${_TCLTK_HIGHEST_VERSION}
+.  endif
+.endif
+
 #
-.  if defined(USE_TK)
+# Exported variables
+#
+TCL_VER:=	${_TCLTK_WANTED_VERSION:S/8/8./}
+TCL_SHLIB_VER:=	${_TCLTK_WANTED_VERSION}
+TCLSH:=		${LOCALBASE}/bin/tclsh${TCL_VER}
+TCL_LIBDIR:=	${LOCALBASE}/lib/tcl${TCL_VER}
+TCL_INCLUDEDIR:=${LOCALBASE}/include/tcl${TCL_VER}
 
-# We now read the version numbers from the Tcl part
-USE_TK:=	${USE_TCL}
-TK_VER:=	${USE_TCL:S/8/8./}
+.if ${_TCLTK_PORT} == "tk"
+TK_VER:=	${_TCLTK_WANTED_VERSION:S/8/8./}
+TK_SHLIB_VER:=	${_TCLTK_WANTED_VERSION}
+WISH:=		${LOCALBASE}/bin/wish${TCL_VER}
+TK_LIBDIR:=	${LOCALBASE}/lib/tk${TK_VER}
+TK_INCLUDEDIR:=	${LOCALBASE}/include/tk${TK_VER}
+.endif
 
-.   if !defined(_TK_RUN_DEPENDS) && !defined(_TK_BUILD_DEPENDS)
-LIB_DEPENDS+=	tk${USE_TK}:x11-toolkits/tk${USE_TK}
-.   else
-.    if defined(_TK_BUILD_DEPENDS)
-BUILD_DEPENDS+=	wish${TK_VER}:x11-toolkits/tk${USE_TK}
-.    endif
-.    if defined(_TK_RUN_DEPENDS)
-RUN_DEPENDS+=	wish${TK_VER}:x11-toolkits/tk${USE_TK}
-.    endif
-.   endif
+#
+# Dependencies
+#
+_TCLTK_BUILD_DEPENDS=
+_TCLTK_RUN_DEPENDS=
+_TCLTK_LIB_DEPENDS=
 
-TK_INCLUDEDIR=		${LOCALBASE}/include/tk${TK_VER}
-TK_LIBDIR=		${LOCALBASE}/lib/tk${TK_VER}
-WISH=			${LOCALBASE}/bin/wish${TK_VER}
+# Construct the correct dependency lines (wrapper)
+.if ${tcl_ARGS:Mwrapper}
+.  if ${_TCLTK_PORT} == "tcl"
+_TCLTK_WRAPPER_PORT=	tclsh:lang/tcl-wrapper
+.  elif ${_TCLTK_PORT} == "tk"
+_TCLTK_WRAPPER_PORT=	wish:x11-toolkits/tk-wrapper
+.  endif
+.endif
 
-.  endif # defined(USE_TK)
-. endif # defined(USE_TCL)
+# Construct the correct dependency lines (Tcl/Tk)
+.if ${_TCLTK_PORT} == "tcl"
+_TCLTK_EXE_LINE=	tclsh${TCL_VER}:lang/tcl${_TCLTK_WANTED_VERSION}
+_TCLTK_LIB_LINE=	libtcl${TCL_SHLIB_VER}.so:lang/tcl${_TCLTK_WANTED_VERSION}
+.elif ${_TCLTK_PORT} == "tk"
+_TCLTK_EXE_LINE=	wish${TK_VER}:x11-toolkits/tk${_TCLTK_WANTED_VERSION}
+_TCLTK_LIB_LINE=	libtk${TK_SHLIB_VER}.so:x11-toolkits/tk${_TCLTK_WANTED_VERSION} \
+			libtcl${TCL_SHLIB_VER}.so:lang/tcl${_TCLTK_WANTED_VERSION}
+.endif
 
-# (Re)set WISH and TCLSH to the wrapper, if defined
-. if defined(USE_TCL_WRAPPER)
-TCLSH=			${LOCALBASE}/bin/tclsh
-. endif
-. if defined(USE_TK_WRAPPER)
-WISH=			${LOCALBASE}/bin/wish
-. endif
+.if ${tcl_ARGS:Mbuild}
+BUILD_DEPENDS+=	${_TCLTK_WRAPPER_PORT} \
+		${_TCLTK_EXE_LINE}
+.elif ${tcl_ARGS:Mrun}
+RUN_DEPENDS+=	${_TCLTK_WRAPPER_PORT} \
+		${_TCLTK_EXE_LINE}
+.else
+RUN_DEPENDS+=	${_TCLTK_WRAPPER_PORT}
+LIB_DEPENDS+=	${_TCLTK_LIB_LINE}
+.endif
 
-.endif # !defined(_POSTMKINCLUDED) && !defined(Tcl_Pre_Include)
+# Setup TEA stuff
+.if ${tcl_ARGS:Mtea}
+GNU_CONFIGURE=	yes
+TCL_PKG?=	${PORTNAME:C/^tcl(-?)//:C/(-?)tcl\$//}${PORTVERSION}
+PLIST_SUB+=	TCL_PKG=${TCL_PKG}
+CONFIGURE_ARGS+=--exec-prefix=${PREFIX} \
+		--with-tcl=${TCL_LIBDIR} \
+		--with-tclinclude=${TCL_INCLUDEDIR}
+.  if ${_TCLTK_PORT} == "tk"
+CONFIGURE_ARGS+=--with-tk=${TK_LIBDIR} --with-tkinclude=${TK_INCLUDEDIR}
+.  endif
+.endif
 
-.if defined(_POSTMKINCLUDED) && !defined(Tcl_Post_Include)
+.endif # defined(_INCLUDE_USES_TCL_MK)
 
-Tcl_Post_Include=	tcl.mk
-
-. if defined(PATCH_TCL_SCRIPTS) || defined (PATCH_TK_SCRIPTS)
-.  if !target(post-patch)
-post-patch:
-.   if defined(PATCH_TCL_SCRIPTS) && defined(TCLSH)
-.    for tcl_script in ${PATCH_TCL_SCRIPTS}
-	@${REINPLACE_CMD} -e 's,tclsh,${TCLSH},' ${WRKSRC}/${tcl_script}
-.    endfor
-.   endif
-.   if defined(PATCH_TK_SCRIPTS) && defined(WISH)
-.    for tk_script in ${PATCH_TK_SCRIPTS}
-	@${REINPLACE_CMD} -e 's,wish,${WISH},' ${WRKSRC}/${tk_script}
-.    endfor
-.   endif
-.  endif # !target(post-patch)
-. endif # defined(PATCH_TCL_SCRIPTS) || defined (PATCH_TK_SCRIPTS)
-.endif # defined(_POSTMKINCLUDED) && !defined(Tcl_Post_Include)
+.undef _TCLTK_IGNORE

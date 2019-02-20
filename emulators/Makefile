@@ -9,7 +9,6 @@ SUBDIR += bochs
 SUBDIR += dgen-sdl
 SUBDIR += dosbox
 SUBDIR += extract-xiso
-SUBDIR += hyperv-is
 SUBDIR += i386-wine
 SUBDIR += ia64sim
 SUBDIR += kqemu-kmod
