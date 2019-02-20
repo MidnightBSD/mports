@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	dejagnu
-PORTVERSION=	1.5.1
-PORTREVISION=	1
+PORTVERSION=	1.6.1
 CATEGORIES=	misc tcl tk
 MASTER_SITES=	GNU
 
@@ -11,11 +10,9 @@ COMMENT=	Automated program/system tester
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libexpect.so:${PORTSDIR}/lang/expect
+LIB_DEPENDS=	libexpect.so:lang/expect
 
-USE_GMAKE=	yes
+USES+=		gmake tcl:86+
 GNU_CONFIGURE=	yes
-
-USE_TCL=	yes
 
 .include <bsd.port.mk>
