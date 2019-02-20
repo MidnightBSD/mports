@@ -3,12 +3,10 @@
 # $MidnightBSD$
 
 PORTNAME=		open-vm-tools
-PORTVERSION=		${BUILD_VER}
-PORTREVISION=		12
-PORTEPOCH=		1
+PORTVERSION=		${RELEASE_VER}
+DISTVERSIONPREFIX=	stable-
+PORTEPOCH=		2
 CATEGORIES=		emulators
-MASTER_SITES=		SF/${PORTNAME}/${PORTNAME}/stable-9.4.x
-DISTNAME=		open-vm-tools-${RELEASE_VER}-${BUILD_VER}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Open VMware tools for FreeBSD VMware guests
@@ -16,48 +14,62 @@ COMMENT?=		Open VMware tools for FreeBSD VMware guests
 LICENSE=		lgpl2.1
 LICENSE_FILE=		${WRKSRC}/COPYING
 
-RELEASE_VER=		9.4.0
-BUILD_VER=		1280544
+ONLY_FOR_ARCHS=		amd64 i386
 
-OPTIONS_DEFINE=		X11 LIBNOTIFY UNITY FUSE DNET ICU
-OPTIONS_DEFAULT=	X11 LIBNOTIFY FUSE DNET ICU
+LIB_DEPENDS=		libmspack.so:archivers/libmspack
+
+RELEASE_VER=		10.3.0
+BUILD_VER=		8931395
+
+OPTIONS_DEFINE=		DNET LIBNOTIFY OPENSSL X11
+OPTIONS_DEFAULT=	DNET LIBNOTIFY OPENSSL X11
+
 OPTIONS_SUB=
 
 DNET_DESC=		libdnet support
 LIBNOTIFY_DESC=		Desktop notification support
-UNITY_DESC=		liburiparser support
 
 X11_CONFIGURE_WITH=	x gtk2 gtkmm
-X11_LDFLAGS=		-L${LOCALBASE}/lib
-X11_USE=		xorg=x11,ice,sm,xext,xineramaproto,xinerama,xrandr,xrender,xtst \
-			gnome=gtk20,gtkmm24
-X11_USES=		fuse
-LIBNOTIFY_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
-UNITY_CONFIGURE_ENV=	CUSTOM_URIPARSER_CPPFLAGS="-I${LOCALBASE}/include/uriparser"
-UNITY_LIB_DEPENDS=	liburiparser.so:${PORTSDIR}/net/uriparser
-UNITY_CONFIGURE_ENABLE=	unity
+X11_USE=		xorg=ice,sm,x11,xext,xi,xinerama,xorgproto,xrandr,xrender,xtst \
+			gnome=gdkpixbuf2,gtk20,gtkmm24
+X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+			libfreetype.so:print/freetype2
+LIBNOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 DNET_CONFIGURE_WITH=	dnet
-DNET_LIB_DEPENDS=	libdnet.so:${PORTSDIR}/net/libdnet
-ICU_CONFIGURE_WITH=	icu
-ICU_LIB_DEPENDS=	libicuuc.so:${PORTSDIR}/devel/icu
+DNET_LIB_DEPENDS=	libdnet.so:net/libdnet
+OPENSSL_CONFIGURE_WITH=	ssl
 
-WRKSRC=			${WRKDIR}/open-vm-tools-${RELEASE_VER}-${BUILD_VER}
+WRKSRC_SUBDIR=		open-vm-tools
+
+CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd${OSREL}
+CONFIGURE_ARGS+=	--host=${ARCH}-portbld-midnightbsd${OSREL}
 GNU_CONFIGURE=		yes
-USES=			pkgconfig kmod libtool autotools:automake
+USES=			autoreconf fuse gettext-runtime kmod libtool localbase pathfix pkgconfig gnome
 USE_GNOME=		glib20
+
+USE_GITHUB=		yes
+GH_ACCOUNT=		vmware
+
 USE_LDCONFIG=		yes
-CPPFLAGS+=		-Wno-deprecated-declarations -D__FreeBSD__=10 -DFreeBSD_version=1004501
+CPPFLAGS+=		-Wno-deprecated-declarations
 
 SSP_UNSAFE=		kernel module does not support ssp
 
-CONFIGURE_ARGS+=	--without-procps --sysconfdir=${LOCALBASE}/etc
+CONFIGURE_ARGS+=	--without-icu \
+			--disable-vgauth \
+			--sysconfdir=${PREFIX}/etc
 
 CONFLICTS+=		vmware-guestd[0-9]* vmware-tools[0-9]*
-SUB_FILES=		pkg-message
 
 USE_RC_SUBR=		vmware-guestd vmware-kmod
 
+INSTALL_TARGET=		install-strip
+
 .include <bsd.mport.options.mk>
+
+
+CFLAGS+=		-Wno-unknown-warning-option
+
 
 .if ${PORT_OPTIONS:MX11}
 CONFLICTS=		open-vm-tools-nox11-[0-9]*
@@ -65,21 +77,26 @@ CONFLICTS=		open-vm-tools-nox11-[0-9]*
 CONFLICTS=		open-vm-tools-[0-9]*
 .endif
 
+CONFIGURE_ENV+=		SYSDIR=${SRC_BASE}/sys
+
 .include <bsd.port.pre.mk>
 
+post-patch:
+	@${REINPLACE_CMD} -e "s@%%PREFIX%%@${PREFIX}@"\
+		${WRKSRC}/lib/guestApp/guestApp.c
+
 post-build:
-	cd ${WRKSRC} && make MODULES=vmhgfs && make MODULES=vmblock && make MODULES=vmmemctl && make MODULES=vmxnet
-	cd ${WRKSRC}/modules && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} 
+	cd ${WRKSRC}/modules && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS}
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/input
+	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmblock.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
 	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmmemctl.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
 	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmxnet.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmxnet.ko
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmhgfs.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmhgfs.ko
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmblock.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/vmware/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/tests/
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rc.conf.d
 
 .include <bsd.port.post.mk>
