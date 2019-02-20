@@ -1,27 +1,25 @@
 # $MidnightBSD$
 
 PORTNAME=	postgresql-plruby
-PORTVERSION=	0.5.4
-PORTREVISION=	3
+PORTVERSION=	0.5.7
 CATEGORIES=	databases ruby
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PL/Ruby procedural language for the PostgreSQL database system
 
-LICENSE=	unknown
+LICENSE=     	bsd2 ruby 
+LICENSE_COMB= dual
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	CraigCottingham
-GH_TAGNAME=	${GH_COMMIT}
-GH_COMMIT=	f8d9ced
-WRKSRC=		${WRKDIR}/postgresql-plruby-${GH_COMMIT}
+BROKEN_powerpc64=	fails to build: ruby.h:628:35: call to 'ruby_safe_level_2_error' declared with attribute error: $SAFE=2 to 4 are obsolete
 
-USES+=		uidfix pgsql pkgconfig
+USES=		uidfix pgsql pkgconfig
 WANT_PGSQL=	server
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
-USE_RUBY_RDOC=		yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	devrimgunduz
 
 POSTGRESQL_PORT?=	databases/postgresql${PGSQL_VER_NODOT}-server
 PGSQL_PORTDIR?=		${PORTSDIR}/${POSTGRESQL_PORT}
@@ -48,22 +46,18 @@ post-fetch:
 post-build:
 	${SED} 's,!!PLRUBY_SO!!,${RUBY_SITEARCHLIBDIR}/plruby.so,' \
 		${FILESDIR}/createlang.sql > ${WRKDIR}/createlang.sql
-.if ${PORT_OPTIONS:MDOCS}
+
+post-build-DOCS-on:
 	cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} rdoc
-.endif
 
 post-install:
-	@${MKDIR} ${RUBY_MODEXAMPLESDIR}/
-	${INSTALL_DATA} ${WRKDIR}/createlang.sql ${RUBY_MODEXAMPLESDIR}/
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${RUBY_MODDOCDIR}
-	cd ${WRKSRC}/ && ${COPYTREE_SHARE} docs/doc ${RUBY_MODDOCDIR}/ README.markdown && ${INSTALL_DATA} ${DOCS} ${RUBY_MODDOCDIR}/
-	${FIND} -ds ${RUBY_MODDOCDIR} -type f -print | ${SED} -E -e \
-		's,^${PREFIX}/?,,' >> ${TMPPLIST}
-	${FIND} -ds ${RUBY_MODDOCDIR} -type d -print | ${SED} -E -e \
-		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
-	${ECHO_CMD} "@unexec rmdir %D/share/doc/ruby19/ 2>/dev/null || true" \
-		>> ${TMPPLIST}
-.endif
+	@${MKDIR} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}/
+	${INSTALL_DATA} ${WRKDIR}/createlang.sql ${STAGEDIR}${RUBY_MODEXAMPLESDIR}/
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${RUBY_MODDOCDIR}
+	cd ${WRKSRC}/ && ${COPYTREE_SHARE} docs/doc ${FAKE_DESTDIR}${RUBY_MODDOCDIR}/ README.markdown && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${RUBY_MODDOCDIR}/
+	${FIND} -ds ${FAKE_DESTDIR}${RUBY_MODDOCDIR} -type f -print | ${SED} -E -e \
+		's,^${FAKE_DESTDIR}${PREFIX}/?,,' >> ${TMPPLIST}
 
 .include <bsd.port.mk>
