@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	expect
-PORTVERSION=	5.45
-PORTREVISION=	1
+PORTVERSION=	5.45.4
 CATEGORIES=	lang tcl tk
 MASTER_SITES=	SF/expect/Expect/${PORTVERSION}
 DISTNAME=	${PORTNAME}${PORTVERSION}
@@ -10,34 +9,28 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sophisticated scripter based on Tcl/Tk
 
-LICENSE=	unknown
+LICENSE=	publicdom
+LICENSE_FILE=	${WRKSRC}/license.terms
 
-LIBEXPECT_VER=	${PORTVERSION:S/.//}
+#FAKE_OPTS+=	prefixhack
 
-WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}
-
-FAKE_OPTS+=	prefixhack
-
-USE_GCC=	any
-USES=		tcl
-USE_TCL=	yes
+USES=		tcl:tea autoreconf
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared \
 		--exec-prefix=${PREFIX} \
-		--datadir=${DATADIR} \
-		--with-tclconfig=${TCL_LIBDIR} \
-		--with-tclinclude=${TCL_INCLUDEDIR}
-PLIST_SUB+=	EXPECT_VER=${PORTVERSION} \
-		LIBEXPECT_VER=${LIBEXPECT_VER}
+		--datadir=${DATADIR}
+#--with-tclconfig=${TCL_LIBDIR} \
+#--with-tclinclude=${TCL_INCLUDEDIR}
+PLIST_SUB+=	PORTVERSION=${PORTVERSION}
+TEST_TARGET=	test
+
+WRKSRC=               ${WRKDIR}/${DISTNAME}
 
 post-install:
-	${LN} -sf expect${PORTVERSION}/libexpect${LIBEXPECT_VER}.so \
+	${LN} -sf expect${PORTVERSION}/libexpect${PORTVERSION}.so \
 	    	${STAGEDIR}${PREFIX}/lib/libexpect.so.1
 	${LN} -sf libexpect.so.1 \
 		${STAGEDIR}${PREFIX}/lib/libexpect.so
-
-regression-test: build
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} test
 
 .include <bsd.port.mk>
