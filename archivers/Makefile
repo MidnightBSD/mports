@@ -25,6 +25,7 @@ SUBDIR += libmspack
 SUBDIR += libunrar
 SUBDIR += libzip
 SUBDIR += lzip
+SUBDIR += lzma
 SUBDIR += lzo2
 SUBDIR += lzop
 SUBDIR += minizip

@@ -407,7 +407,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt ruby samba scons sdl sqlite ssl \
-		tar tcl tk tex wx xfce zip
+		tar tcl tk tex wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)

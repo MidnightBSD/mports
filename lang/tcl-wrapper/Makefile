@@ -10,9 +10,10 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shell wrapper for ${TX_SHELL} (${TX_PORT_U})
+
 LICENSE=	unknown
 
-BUILD_DEPENDS=	shc:${PORTSDIR}/misc/shc
+BUILD_DEPENDS=	shc:misc/shc
 
 SUB_FILES=	wrapper conf.sample pkg-message pkg-install pkg-deinstall
 
@@ -29,10 +30,10 @@ TX_SHELL=	wish
 TX_PORT=	tk
 TX_PORT_U=	Tk
 TX_CAT=		x11-toolkits
-USE_TK_RUN=	yes
+USES+=		tk:run
 CATEGORIES=	x11-toolkits tk
 .else
-USE_TCL_RUN=	yes
+USES+=		tcl:run
 .endif
 
 TX_CONF=	${TX_SHELL}.conf
