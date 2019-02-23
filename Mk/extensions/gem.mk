@@ -68,7 +68,7 @@ GEMFILES=	${DISTFILES:C/:[^:]+$//}
 GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
 . endif
 
-RUBYGEM_ARGS=-l --no-update-sources --install-dir ${STAGEDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER} --ignore-dependencies --bindir=${STAGEDIR}${PREFIX}/bin
+RUBYGEM_ARGS=-l --no-update-sources --install-dir ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/ruby/gems/${RUBY_VER} --ignore-dependencies --bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin
 
 .if ${PORT_OPTIONS:MDOCS}
 RUBYGEM_ARGS+=	--rdoc --ri
@@ -102,14 +102,14 @@ do-build:
 .if !target(do-install)
 do-install:
 	(cd ${BUILD_WRKSRC}; ${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${GEMFILES} -- --build-args ${CONFIGURE_ARGS})
-	${RM} -r ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR}/build_info/
-	${FIND} ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
-	${FIND} ${STAGEDIR}${PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete
-	${RM} -r ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR}/ext \
-		${STAGEDIR}${PREFIX}/${CACHE_DIR} 2> /dev/null || ${TRUE}
-	${RMDIR} ${STAGEDIR}${PREFIX}/${EXT_DIR} 2> /dev/null || ${TRUE}
+	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR}/build_info/
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEMS_BASE_DIR} -type f \( -name mkmf.log -or -name gem_make.out \) -delete
+	${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR}/ext \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/${CACHE_DIR} 2> /dev/null || ${TRUE}
+	${RMDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} 2> /dev/null || ${TRUE}
 .if !${PORT_OPTIONS:MDOCS}
-	-@${RMDIR} ${STAGEDIR}${PREFIX}/${DOC_DIR}
+	-@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/${DOC_DIR}
 .endif
 .endif
 
@@ -118,14 +118,14 @@ _USES_install+=	820:gem-autoplist
 gem-autoplist:
 	@${ECHO} ${GEM_SPEC} >> ${TMPPLIST}
 .if ${PORT_OPTIONS:MDOCS}
-	@${FIND} -ds ${STAGEDIR}${PREFIX}/${DOC_DIR} -type f -print | ${SED} -E -e \
-		's,^${STAGEDIR}${PREFIX}/?,,' >> ${TMPPLIST}
+	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${DOC_DIR} -type f -print | ${SED} -E -e \
+		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
 .endif
-	@${FIND} -ds ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR} -type f -print | ${SED} -E -e \
-		's,^${STAGEDIR}${PREFIX}/?,,' >> ${TMPPLIST}
-	@if [ -d ${STAGEDIR}${PREFIX}/${EXT_DIR} ]; then \
-		${FIND} -ds ${STAGEDIR}${PREFIX}/${EXT_DIR} -type f -print | ${SED} -E -e \
-		's,^${STAGEDIR}${PREFIX}/?,,' >> ${TMPPLIST} ; \
+	@${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${GEM_LIB_DIR} -type f -print | ${SED} -E -e \
+		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST}
+	@if [ -d ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} ]; then \
+		${FIND} -ds ${FAKE_DESTDIR}${TRUE_PREFIX}/${EXT_DIR} -type f -print | ${SED} -E -e \
+		's,^${FAKE_DESTDIR}${TRUE_PREFIX}/?,,' >> ${TMPPLIST} ; \
 	fi
 .endif
 
