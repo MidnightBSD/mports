@@ -7,7 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	https://kore.io/releases/
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web application framework for writing web APIs in C
 
 LICENSE=	iscl
