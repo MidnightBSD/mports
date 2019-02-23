@@ -3704,38 +3704,21 @@ fetch-required: fetch
 
 .if !target(fetch-required-list)
 fetch-required-list: fetch-list
-.for deptype in EXTRACT PATCH FETCH BUILD RUN
-.if defined(${deptype}_DEPENDS)
 .if !defined(NO_DEPENDS)
-	@for i in ${${deptype}_DEPENDS}; do \
-		prog=`${ECHO_CMD} $$i | ${CUT} -f 1 -d ':'`; \
-		dir=`${ECHO_CMD} $$i | ${CUT} -f 2-999 -d ':'`; \
-		if ${EXPR} "$$dir" : '.*:' > /dev/null; then \
-			dir=`${ECHO_CMD} $$dir | ${CUT} -f 1 -d ':'`; \
-			if ${EXPR} "$$prog" : \\/ >/dev/null; then \
-				if [ ! -e "$$prog" ]; then \
-					(cd $$dir; ${MAKE} fetch-list); \
-				fi; \
-			fi; \
-		else \
-			(cd $$dir; \
-			tmp=`${MAKE} -V PKGNAME`; \
-			if [ ! -d ${PKG_DBDIR}/$${tmp} ]; then \
-				${MAKE} fetch-list; \
-			fi );  \
-		fi; \
-	done
-.endif
+.for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
+.if defined(${deptype}_DEPENDS)
+	@targ=fetch-list; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
 .endif
 .endfor
+.endif
 .endif
 
 .if !target(checksum-recursive)
 checksum-recursive:
 	@${ECHO_MSG} "===> Fetching and checking checksums for ${PKGNAME} and dependencies"
-	@for dir in ${.CURDIR} $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} checksum); \
-	done
+	@recursive_cmd="checksum"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
 .endif
 
 # Dependency lists: build and runtime.  Print out directory names.
@@ -3745,36 +3728,10 @@ build-depends-list:
 	@${BUILD-DEPENDS-LIST}
 .endif
 
-BUILD-DEPENDS-LIST= \
-	for dir in $$(${ECHO_CMD} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}" | ${SED} -E -e 's,([^: ]*):([^: ]*)(:[^ ]*)?,\2,g' -e 'y/ /\n/'| ${SORT} -u); do \
-		case $$dir in \
-		/*) pdir=$$dir ;; \
-		*) pdir=${PORTSDIR}/$$dir ;; \
-		esac ; \
-		if [ -d $$pdir ]; then \
-			${ECHO_CMD} $$pdir; \
-		else \
-			${ECHO_MSG} "${PKGNAME}: \"$$pdir\" non-existent -- dependency list incomplete" >&2; \
-		fi; \
-	done | ${SORT} -u
-
 run-depends-list:
-.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS) || defined(DEPENDS)
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${RUN-DEPENDS-LIST}
 .endif
-
-RUN-DEPENDS-LIST= \
-	for dir in $$(${ECHO_CMD} "${_LIB_RUN_DEPENDS:C,.*:([^:]*).*,\1,}" | ${SED} -e 'y/ /\n/' | ${SORT} -u); do \
-		case $$dir in \
-		/*) pdir=$$dir ;; \
-		*) pdir=${PORTSDIR}/$$dir ;; \
-		esac ; \
-		if [ -d $$pdir ]; then \
-			${ECHO_CMD} $$pdir; \
-		else \
-			${ECHO_MSG} "${PKGNAME}: \"$$pdir\" non-existent -- dependency list incomplete" >&2; \
-		fi; \
-	done | ${SORT} -u
 
 test-depends-list:
 .if defined(TEST_DEPENDS)
@@ -3796,13 +3753,20 @@ PACKAGE-DEPENDS-LIST?= \
 	for depend in `${ECHO_CMD} "${_LIB_RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':'`; \
+		unset flavor; \
+		case $${dir} in \
+		*@*) \
+			flavor=$${dir\#*@}; \
+			dir=$${dir%@*}; \
+			;; \
+		esac; \
 		case "$$dir" in \
 		/*) ;; \
 		*) dir=${PORTSDIR}/$$dir ;; \
 		esac ; \
 		dir=$$(${REALPATH} $$dir); \
 		if [ -d $$dir ]; then \
-			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
+			meta=`cd $$dir; ${SETENV} FLAVOR=$${flavor} ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
 			if [ -z "$$version" ]; then \
 				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
 			else \
