@@ -413,7 +413,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 
 # setup empty variables for USES targets
 .for target in sanity fetch extract patch configure build install test package fake
-_USES_${target}?=               
+_USE
 .endfor
 
 # Loading features - USES directive
@@ -429,7 +429,64 @@ USE_${f:tu}=yes
 .endif
 .include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
 .endfor
+.if !empty(FLAVORS)
+.  if ${FLAVORS:Mall}
+DEV_ERROR+=		"FLAVORS cannot contain 'all', it is a reserved value"
+.  endif
+.  for f in ${FLAVORS}
+.    if ${f:C/[[:lower:][:digit:]_]//g}
+_BAD_FLAVOR_NAMES+=		${f}
+.    endif
+.  endfor
+.  if !empty(_BAD_FLAVOR_NAMES)
+DEV_ERROR+=		"FLAVORS contains flavors that are not all [a-z0-9_]: ${_BAD_FLAVOR_NAMES}"
+.  endif
+.endif
 
+.if !empty(FLAVOR)
+.  if empty(FLAVORS)
+IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS.
+.  elif ! ${FLAVORS:M${FLAVOR}}
+IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
+.  endif
+.endif
+
+.if !empty(FLAVORS) && empty(FLAVOR)
+FLAVOR=	${FLAVORS:[1]}
+.endif
+
+# Reorder FLAVORS so the default is first if set by the port.
+.if empty(_FLAVOR) && !empty(FLAVORS) && !empty(FLAVOR)
+FLAVORS:=	${FLAVOR} ${FLAVORS:N${FLAVOR}}
+.endif
+
+.if !empty(FLAVOR) && !defined(_DID_FLAVORS_HELPERS)
+_DID_FLAVORS_HELPERS=	yes
+_FLAVOR_HELPERS_OVERRIDE=	DESCR PLIST PKGNAMEPREFIX PKGNAMESUFFIX
+_FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
+							PKG_DEPENDS EXTRACT_DEPENDS PATCH_DEPENDS \
+							FETCH_DEPENDS BUILD_DEPENDS LIB_DEPENDS \
+							RUN_DEPENDS TEST_DEPENDS
+# These overwrite the current value
+.for v in ${_FLAVOR_HELPERS_OVERRIDE}
+.if defined(${FLAVOR}_${v})
+${v}=	${${FLAVOR}_${v}}
+.endif
+.endfor
+
+# These append to the current value
+.for v in ${_FLAVOR_HELPERS_APPEND}
+.if defined(${FLAVOR}_${v})
+${v}+=	${${FLAVOR}_${v}}
+.endif
+.endfor
+
+.for v in BROKEN IGNORE
+.if defined(${FLAVOR}_${v})
+${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
+.endif
+.endfor
+.endif # defined(${FLAVOR})
 
 .if defined(USE_GCPIO)
 EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
@@ -451,10 +508,10 @@ EXTRACT_SUFX?=			.tar.gz
 _LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
 LDCONFIG_PLIST_EXEC_CMD?=	${_LINUX_LDCONFIG}
 LDCONFIG_PLIST_UNEXEC_CMD?=	${_LINUX_LDCONFIG}
-DATADIR?=		${PREFIX}/usr/share/${PORTNAME}
-DOCSDIR?=		${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
+DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
+DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
 NO_LICENSES_INSTALL=	yes
-NO_MTREE=		yes
+NO_MTREE=				yes
 .endif
 
 
@@ -520,27 +577,27 @@ check-makefile::
 _POSTMKINCLUDED=	yes
 
 .if defined(BUNDLE_LIBS)
-PKG_NOTES+=     no_provide_shlib
-PKG_NOTE_no_provide_shlib=      yes
+PKG_NOTES+=	no_provide_shlib
+PKG_NOTE_no_provide_shlib=	yes
 .endif
 
 .if defined(DEPRECATED)
-PKG_NOTES+=     deprecated
+PKG_NOTES+=	deprecated
 PKG_NOTE_deprecated=${DEPRECATED}
 .endif
 
 .if defined(EXPIRATION_DATE)
-PKG_NOTES+=     expiration_date
-PKG_NOTE_expiration_date=       ${EXPIRATION_DATE}
+PKG_NOTES+=	expiration_date
+PKG_NOTE_expiration_date=	${EXPIRATION_DATE}
 .endif
 
 .if !empty(FLAVOR)
-PKG_NOTES+=     flavor
-PKG_NOTE_flavor=        ${FLAVOR}
+PKG_NOTES+=	flavor
+PKG_NOTE_flavor=	${FLAVOR}
 .endif
 
-TEST_ARGS?=             ${MAKE_ARGS}
-TEST_ENV?=              ${MAKE_ENV}
+TEST_ARGS?=		${MAKE_ARGS}
+TEST_ENV?=		${MAKE_ENV}
 
 # Integrate with the license auditing framework
 .if !defined (DISABLE_LICENSES)
@@ -562,22 +619,22 @@ _WRKDIR=	work-${FLAVOR}
 .endif
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
-BINARY_LINKDIR= ${WRKDIR}/.bin
-PATH:=                  ${BINARY_LINKDIR}:${PATH}
+BINARY_LINKDIR=	${WRKDIR}/.bin
+PATH:=			${BINARY_LINKDIR}:${PATH}
 .if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
-MAKE_ENV+=		PATH=${PATH}
-CONFIGURE_ENV+=         PATH=${PATH}
+MAKE_ENV+=			PATH=${PATH}
+CONFIGURE_ENV+=		PATH=${PATH}
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)
 .if defined(WRKSRC)
 DEV_WARNING+=	"You are using USE_GITHUB and WRKSRC is set which is wrong.  Set GH_PROJECT correctly, set WRKSRC_SUBDIR or remove WRKSRC entirely."
 .endif
-WRKSRC?=	${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_EXTRACT}
+WRKSRC?=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_EXTRACT}
 .endif
 
 .if !default(IGNORE_MASTER_SITE_GITLAB) && defined(USE_GITLAB) && empty(USE_GITLAB:Mnodefault)
-WRKSRC?=	${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}-${GL_COMMIT}
+WRKSRC?=		${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}-${GL_COMMIT}
 .endif
 
 # If the distname is not extracting into a specific subdirectory, have the
@@ -587,28 +644,29 @@ WRKSRC?=	${WRKDIR}/${GL_PROJECT}-${GL_COMMIT}-${GL_COMMIT}
 # Some ports have DISTNAME=PORTNAME, and USE_RC_SUBR=PORTNAME, in those case,
 # the rc file will conflict with WRKSRC, as WRKSRC is artificial, make it the
 # most unlikely to conflict as we can.
-WRKSRC?=		${WRKDIR}/${PKGNAME}
-EXTRACT_WRKDIR:=	${WRKSRC}
+WRKSRC?=			${WRKDIR}/${PKGNAME}
+EXTRACT_WRKDIR:=		${WRKSRC}
 .else
 WRKSRC?=		${WRKDIR}/${DISTNAME}
-EXTRACT_WRKDIR:=	${WRKDIR}
+EXTRACT_WRKDIR:=		${WRKDIR}
 .endif
 .if defined(WRKSRC_SUBDIR)
-WRKSRC:=                ${WRKSRC}/${WRKSRC_SUBDIR}
+WRKSRC:=		${WRKSRC}/${WRKSRC_SUBDIR}
 .endif
 
 .if defined(CONFIGURE_OUTSOURCE)
-CONFIGURE_CMD?=         ${WRKSRC}/${CONFIGURE_SCRIPT}
-CONFIGURE_WRKSRC?=      ${WRKDIR}/.build
-BUILD_WRKSRC?=          ${CONFIGURE_WRKSRC}
-INSTALL_WRKSRC?=        ${CONFIGURE_WRKSRC}
-TEST_WRKSRC?=           ${CONFIGURE_WRKSRC}
+CONFIGURE_CMD?=		${WRKSRC}/${CONFIGURE_SCRIPT}
+CONFIGURE_WRKSRC?=	${WRKDIR}/.build
+BUILD_WRKSRC?=		${CONFIGURE_WRKSRC}
+INSTALL_WRKSRC?=	${CONFIGURE_WRKSRC}
+TEST_WRKSRC?=		${CONFIGURE_WRKSRC}
 .endif
 
 PATCH_WRKSRC?=	${WRKSRC}
 CONFIGURE_WRKSRC?=	${WRKSRC}
 BUILD_WRKSRC?=	${WRKSRC}
 INSTALL_WRKSRC?=${WRKSRC}
+TEST_WRKSRC?=	${WRKSRC}
 
 DESCR?=			${PKGDIR}/pkg-descr
 PLIST?=			${PKGDIR}/pkg-plist
@@ -669,9 +727,9 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 
 .if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
 .if !defined(INSTALL_STRIPPED)
-STRIP=  #none
-MAKE_ENV+=      DONTSTRIP=yes
-STRIP_CMD=      ${TRUE}
+STRIP=	#none
+MAKE_ENV+=	DONTSTRIP=yes
+STRIP_CMD=	${TRUE}
 .endif
 DEBUG_FLAGS?=	-g
 CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
@@ -843,7 +901,7 @@ EXTENSIONS+=xorg
 
 # FreeBSD compatibility: Loading features
 .for f in ${_USES_POST}
-_f:=	${f:C/\:.*//}
+_f:=		${f:C/\:.*//}
 .if !defined(${_f}_ARGS)
 ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
@@ -853,8 +911,8 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endfor
 
 .if defined(USE_LOCALE)
-CONFIGURE_ENV+= LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-MAKE_ENV+=              LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 .endif
 
 .if defined(USE_XORG)
@@ -880,8 +938,8 @@ USE_MPORT_TOOLS=	yes
 
 # Set up the cdrtools.
 .if defined(USE_CDRTOOLS)
-BUILD_DEPENDS+=	cdrecord:${PORTSDIR}/sysutils/cdrtools
-RUN_DEPENDS+=	cdrecord:${PORTSDIR}/sysutils/cdrtools
+BUILD_DEPENDS+=	cdrecord:sysutils/cdrtools
+RUN_DEPENDS+=	cdrecord:sysutils/cdrtools
 .endif
 
 # Macro for doing in-place file editing using regexps
@@ -1607,6 +1665,7 @@ CONFIGURE_LOG?=		config.log
 # A default message to print if do-configure fails.
 CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer] and attach the \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\" including the output of the failure of your make command. Also, it might be a good idea to provide an overview of all packages installed on your system (e.g. an \`ls ${PKG_DBDIR}\`)."
 
+CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 .if defined(GNU_CONFIGURE)
 # Maximum command line length
 .if !defined(CONFIGURE_MAX_CMD_LEN)
@@ -1615,11 +1674,10 @@ CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
-CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 .if defined(CROSS_TOOLCHAIN)
-CROSS_HOST=             ${CROSS_TOOLCHAIN:C,-.*$,,}-${OPSYS:tl}
-CONFIGURE_ARGS+=        --host=${CROSS_HOST}
+CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
+CONFIGURE_ARGS+=	--host=${CROSS_HOST}
 .endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
@@ -4479,7 +4537,7 @@ _${_t}_SEQ:=    ${_tmp_seq}
 .      if ! ${NOTPHONY:M${s}}
 _PHONY_TARGETS+= ${s}
 .      endif
-_${_t}_REAL_SEQ+=       ${s}
+_${_t}_REAL_SEQ+=	${s}
 .    endif
 .  endfor
 .  for s in ${_${_t}_SUSEQ:O:C/^[0-9]+://}
@@ -4487,7 +4545,7 @@ _${_t}_REAL_SEQ+=       ${s}
 .      if ! ${NOTPHONY:M${s}}
 _PHONY_TARGETS+= ${s}
 .       endif
-_${_t}_REAL_SUSEQ+=     ${s}
+_${_t}_REAL_SUSEQ+=	${s}
 .    endif
 .  endfor
 .ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
@@ -4550,17 +4608,16 @@ ${${target:tu}_COOKIE}::
 
 .endfor # foreach(targets)
 
-
 .PHONY: ${_PHONY_TARGETS} check-sanity fetch pkg
 
 .if !target(check-sanity)
 check-sanity: ${_SANITY_REAL_SEQ}
 .endif
-                
+
 .if !target(fetch)
 fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
 .endif
-                
+
 .if !target(pkg)
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 .endif
