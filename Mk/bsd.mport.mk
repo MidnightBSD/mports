@@ -3555,105 +3555,151 @@ lib-depends:
 
 # Dependency lists: both build and runtime, recursive.  Print out directory names.
 
-_UNIFIED_DEPENDS=${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS} ${RUN_DEPENDS}
+_UNIFIED_DEPENDS=${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS} ${RUN_DEPENDS} ${TEST_DEPENDS}
 _DEPEND_SPECIALS=	${_UNIFIED_DEPENDS:M*\:*\:*:C,^[^:]*:([^:]*):.*$,\1,}
+
+.for d in ${_UNIFIED_DEPENDS:M*\:/*}
+_PORTSDIR_STR=	$${PORTSDIR}/
+DEV_WARNING+=	"It looks like the ${d} depends line has an absolute port origin, make sure to remove \$${_PORTSDIR_STR} from it."
+.endfor
 
 all-depends-list:
 	@${ALL-DEPENDS-LIST}
 
-ALL-DEPENDS-LIST= \
-	${SETENV} dp_ALLDEPENDS="${_UNIFIED_DEPENDS}" \
-			dp_PORTSDIR="${PORTSDIR}" \
-			dp_MAKE="${MAKE}" \
-			dp_PKGNAME="${PKGNAME}" \
-			dp_PKGINFO="${MPORT_QUERY}" \
-			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-			${SH} ${SCRIPTSDIR}/all-depends-list.sh
+_FLAVOR_RECURSIVE_SH= \
+	if [ -z "$${recursive_cmd}" ]; then \
+		${ECHO_MSG} "_FLAVOR_RECURSIVE_SH requires recursive_cmd to be set to the recursive make target to run." >&2; \
+		${FALSE}; \
+	fi; \
+	if [ "$${recursive_dirs-null}" = "null" ]; then \
+		${ECHO_MSG} "_FLAVOR_RECURSIVE_SH requires recursive_dirs to be set to the directories to recurse." >&2; \
+		${FALSE}; \
+	fi; \
+	for dir in $${recursive_dirs}; do \
+		unset flavor; \
+		case $${dir} in \
+			*@*) \
+				flavor=$${dir\#*@}; \
+				dir=$${dir%@*}; \
+				;; \
+		esac; \
+		case $$dir in \
+		/*) ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac; \
+		(cd $$dir; ${SETENV} FLAVOR=$${flavor} ${MAKE} $${recursive_cmd}); \
+	done
 
-CLEAN-DEPENDS-LIST= \
-	${SETENV} dp_ALLDEPENDS="${_UNIFIED_DEPENDS}" \
-			dp_PORTSDIR="${PORTSDIR}" \
+DEPENDS-LIST= \
+	${SETENV} \
+			PORTSDIR="${PORTSDIR}" \
 			dp_MAKE="${MAKE}" \
 			dp_PKGNAME="${PKGNAME}" \
-			dp_PKGINFO="${MPORT_QUERY}" \
+			dp_PKG_INFO="${MPORT_QUERY}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-			${SH} ${SCRIPTSDIR}/clean-depends-list.sh
+			${SH} ${SCRIPTSDIR}/depends-list.sh \
+			${DEPENDS_SHOW_FLAVOR:D-f}
+
+ALL-DEPENDS-LIST=			${DEPENDS-LIST} -r ${_UNIFIED_DEPENDS:Q}
+ALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:Q}
+MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
+BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}"
+RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS} ${RUN_DEPENDS}"
+TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS:Q}
+
+CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q} 
+CLEAN-DEPENDS-LIMITED-LIST=	${DEPENDS-LIST} -w ${_UNIFIED_DEPENDS:Q}
 
 .if !target(clean-depends)
 clean-depends:
-	@for dir in $$(${CLEAN-DEPENDS-LIST} full); do \
+	@for dir in $$(${CLEAN-DEPENDS-LIST}); do \
 		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
 	done
 .endif
 
 .if !target(limited-clean-depends)
 limited-clean-depends:
-	@for dir in $$(${CLEAN-DEPENDS-LIST} limited); do \
+	@for dir in $$(${CLEAN-DEPENDS-LIMITED-LIST}); do \
 		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
 	done
 .endif
 
 .if !target(deinstall-depends)
 deinstall-depends:
-	@for dir in $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} deinstall); \
-	done
+	@recursive_cmd="deinstall"; \
+	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
 .endif
 
 .if !target(fetch-specials)
 fetch-specials:
 	@${ECHO_MSG} "===> Fetching all distfiles required by ${PKGNAME} for building"
-	@for dir in ${_DEPEND_SPECIALS}; do \
-		case $$dir in \
-		/*) ;; \
-		*) dir=${PORTSDIR}/$$dir ;; \
-		esac; \
-		(cd $$dir; ${MAKE} fetch); \
-	done
+	@recursive_cmd="fetch"; \
+	    recursive_dirs="${_DEPEND_SPECIALS}"; \
+		${_FLAVOR_RECURSIVE_SH}
 .endif
 
 .if !target(fetch-recursive)
 fetch-recursive:
 	@${ECHO_MSG} "===> Fetching all distfiles for ${PKGNAME} and dependencies"
-	@for dir in ${.CURDIR} $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} fetch); \
-	done
+	@recursive_cmd="fetch"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
 .endif
 
 .if !target(fetch-recursive-list)
 fetch-recursive-list:
-	@for dir in ${.CURDIR} $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} fetch-list); \
-	done
+	@recursive_cmd="fetch-list"; \
+	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		${_FLAVOR_RECURSIVE_SH}
 .endif
+
+# Used by fetch-required and fetch-required list, this script looks
+# at each of the dependencies. If 3 items are specified in the tuple,
+# such as foo:graphics/foo:extract, the first item (foo)
+# is examined. Only if it begins with a / and does not exist on the
+# file-system will ``make targ'' proceed.
+# For more usual (dual-item) dependency tuples, the ``make targ''
+# proceeds, if the exact package, which the directory WOULD'VE installed,
+# is not yet installed.
+# This is the exact behaviour of the old code, and it may need
+# revisiting. For example, the entire first case seems dubious, and in
+# the second case we, probably, should be satisfied with _any_ (earlier)
+# package, with the same origin as that of the dir.
+#
+#	-mi
+FETCH_LIST?=	for i in $$deps; do \
+		prog=$${i%%:*}; dir=$${i\#*:}; \
+		case $$dir in \
+		/*) ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac; \
+		case $$dir in	\
+		*:*) if [ $$prog != $${prog\#/} -o ! -e $$prog ]; then	\
+				dir=$${dir%%:*};	\
+			else	\
+				continue;	\
+			fi;;	\
+		*) if [ -d ${PKG_DBDIR}/$$(cd $$dir; ${MAKE} -V PKGNAME) ]; then \
+				continue;	\
+			fi;;	\
+		esac;	\
+		echo cd $$dir; cd $$dir; ${MAKE} $$targ; \
+	done
 
 .if !target(fetch-required)
 fetch-required: fetch
+.if defined(NO_DEPENDS)
+	@${ECHO_MSG} "===> NO_DEPENDS is set, not fetching any other distfiles for ${PKGNAME}"
+.else
 	@${ECHO_MSG} "===> Fetching all required distfiles for ${PKGNAME} and dependencies"
 .for deptype in EXTRACT PATCH FETCH BUILD RUN
 .if defined(${deptype}_DEPENDS)
-.if !defined(NO_DEPENDS)
-	@for i in ${${deptype}_DEPENDS}; do \
-		prog=`${ECHO_CMD} $$i | ${CUT} -f 1 -d ':'`; \
-		dir=`${ECHO_CMD} $$i | ${CUT} -f 2-999 -d ':'`; \
-		if ${EXPR} "$$dir" : '.*:' > /dev/null; then \
-			dir=`${ECHO_CMD} $$dir | ${CUT} -f 1 -d ':'`; \
-			if ${EXPR} "$$prog" : \\/ >/dev/null; then \
-				if [ ! -e "$$prog" ]; then \
-					(cd $$dir; ${MAKE} fetch); \
-				fi; \
-			fi; \
-		else \
-			(cd $$dir; \
-			tmp=`${MAKE} -V PKGNAME`; \
-			if [ ! -d ${PKG_DBDIR}/$${tmp} ]; then \
-				${MAKE} fetch; \
-			fi );  \
-		fi; \
-	done
-.endif
+	@targ=fetch; deps="${${deptype}_DEPENDS}"; ${FETCH_LIST}
 .endif
 .endfor
+.endif
+
 .endif
 
 .if !target(fetch-required-list)
@@ -3729,6 +3775,11 @@ RUN-DEPENDS-LIST= \
 			${ECHO_MSG} "${PKGNAME}: \"$$pdir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done | ${SORT} -u
+
+test-depends-list:
+.if defined(TEST_DEPENDS)
+	@${TEST-DEPENDS-LIST}
+.endif
 
 # Package (recursive runtime) dependency list.  Print out both directory names
 # and package names.
@@ -4195,7 +4246,7 @@ compress-man:
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
 # the habit of typing `make depend all install' as a matter of course.
-
+# Same goes for tags
 .for _t in depend tags
 .if !target(${_t})
 ${_t}:
@@ -4204,9 +4255,8 @@ ${_t}:
 
 .if !defined(NOPRECIOUSMAKEVARS)
 # These won't change, so we can pass them through the environment
-_EXPORTED_VARS=	ARCH OPSYS OPREL OSVERSION
 .for var in ${_EXPORTED_VARS}
-.if empty(.MAKEFLAGS:M${var}=*)
+.if empty(.MAKEFLAGS:M${var}=*) && !empty(${var})
 .MAKEFLAGS:	${var}=${${var}:Q}
 .endif
 .endfor
@@ -4455,7 +4505,8 @@ _EXTRACT_SEQ=	010:check-build-conflicts 050:extract-message 100:checksum 150:ext
 				190:clean-wrkdir 200:${EXTRACT_WRKDIR} \
 				300:pre-extract 450:pre-extract-script 500:do-extract \
 				700:post-extract 850:post-extract-script \
-				${_OPTIONS_extract} ${_USES_extract}${_SITES_extract}
+				999:extract-fixup-modes \
+				${_OPTIONS_extract} ${_USES_extract} ${_SITES_extract}
 
 _PATCH_DEP=		extract
 _PATCH_SEQ=		050:ask-license 100:patch-message \
@@ -4465,7 +4516,7 @@ _PATCH_SEQ=		050:ask-license 100:patch-message \
 				${_OPTIONS_patch} ${_USES_patch}
 
 _CONFIGURE_DEP=	patch
-_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 152:misc-depends 200:configure-message \
+_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 200:configure-message \
 				300:pre-configure 450:pre-configure-script \
 				460:run-autotools 490:do-autoreconf 491:patch-libtool \
 				500:do-configure 700:post-configure 850:post-configure-script \
