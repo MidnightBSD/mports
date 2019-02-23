@@ -2,7 +2,7 @@
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
 #   Based on:
-#		bsd.port.mk - 940820 Jordan K. Hubbard.
+#	bsd.port.mk - 940820 Jordan K. Hubbard.
 #	This file is in the public domain.
 #
 # Please view me with 4 column tabs!
@@ -260,11 +260,7 @@ GROUPS_BLACKLIST=	_dhcp _pflogd _ypldap audit authpf bin bind daemon dialer ftp 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
-.if defined(LATEST_LINK)
-UNIQUENAME?=	${LATEST_LINK}
-.else
 UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-.endif
 
 .endif  # end of options before pre-makefile starts
 
@@ -402,7 +398,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake gmake bison local perl5 \
 		apache autotools bdb cmake cpe cran display dos2unix \
 		efl emacs erlang execinfo fam fonts fuse \
-		gecko gettext gettext-tools gettext-runtime \
+		gecko gem gettext gettext-tools gettext-runtime \
 		ghostscript gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
@@ -569,7 +565,7 @@ WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
 BINARY_LINKDIR= ${WRKDIR}/.bin
 PATH:=                  ${BINARY_LINKDIR}:${PATH}
 .if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
-MAKE_ENV+=                      PATH=${PATH}
+MAKE_ENV+=		PATH=${PATH}
 CONFIGURE_ENV+=         PATH=${PATH}
 .endif
 
@@ -1011,6 +1007,7 @@ PATCH_DIST_ARGS+=	--batch
 
 # Prevent breakage with VERSION_CONTROL=numbered
 PATCH_ARGS+=	-V simple
+PATCH_DIST_ARGS+=	-V simple
 
 .if defined(PATCH_CHECK_ONLY)
 PATCH_ARGS+=	-C
@@ -1034,7 +1031,7 @@ EXTRACT_CMD?=		${UNMAKESELF_CMD}
 EXTRACT_BEFORE_ARGS?=
 EXTRACT_AFTER_ARGS?=
 .else
-EXTRACT_CMD?=		${TAR}
+EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
 .if defined(EXTRACT_PRESERVE_OWNERSHIP)
 EXTRACT_AFTER_ARGS?=
@@ -1059,18 +1056,12 @@ _MANOWNGRP=
 .endif
 
 # A few aliases for *-install targets
-INSTALL_PROGRAM= \
-	${INSTALL} ${COPY} ${STRIP} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_KLD= \
-	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_LIB= \
-	${INSTALL} ${COPY} ${STRIP} ${_SHROWNGRP} -m ${SHAREMODE}
-INSTALL_SCRIPT= \
-	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
-INSTALL_DATA= \
-	${INSTALL} ${COPY} ${_SHROWNGRP} -m ${SHAREMODE}
-INSTALL_MAN= \
-	${INSTALL} ${COPY} ${_MANOWNGRP} -m ${MANMODE}
+INSTALL_PROGRAM=	${INSTALL} ${COPY} ${STRIP} ${_BINOWNGRP} -m ${BINMODE}
+INSTALL_KLD=	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
+INSTALL_LIB=	${INSTALL} ${COPY} ${STRIP} ${_SHROWNGRP} -m ${SHAREMODE}
+INSTALL_SCRIPT=	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
+INSTALL_DATA=	${INSTALL} ${COPY} ${_SHROWNGRP} -m ${SHAREMODE}
+INSTALL_MAN=	${INSTALL} ${COPY} ${_MANOWNGRP} -m ${MANMODE}
 
 INSTALL_MACROS=	BSD_INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 			BSD_INSTALL_LIB="${INSTALL_LIB}" \
@@ -1599,8 +1590,7 @@ PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
 
 # The "latest version" link -- ${PKGNAME} minus everthing after the last '-'
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
-LATEST_LINK?=		${PKGBASE}
-PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
+PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${PKGBASE}${PKG_SUFX}
 
 
 CONFIGURE_SCRIPT?=	configure
@@ -1611,7 +1601,7 @@ CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
 .else
 CONFIGURE_TARGET?=	${ARCH}-portbld-midnightbsd${OSREL}
 .endif
-CONFIGURE_TARGET:=      ${CONFIGURE_TARGET:S/--build=//}
+CONFIGURE_TARGET:=	${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
 
 # A default message to print if do-configure fails.
@@ -1622,6 +1612,7 @@ CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer
 .if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 .endif
+_EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
