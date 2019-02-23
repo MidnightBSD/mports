@@ -3285,7 +3285,7 @@ package-noinstall:
 ################################################################
 
 .if !target(depends)
-depends: pkg-depends extract-depends patch-depends lib-depends misc-depends fetch-depends build-depends run-depends
+depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
 
 .if defined(ALWAYS_BUILD_DEPENDS)
 _DEPEND_ALWAYS=	1
@@ -3535,35 +3535,6 @@ lib-depends:
 	done
 .endif
 
-misc-depends:
-.if defined(DEPENDS)
-.if !defined(NO_DEPENDS)
-	@for dir in ${DEPENDS}; do \
-		if ${EXPR} "$$dir" : '.*:' > /dev/null; then \
-			target=`${ECHO_CMD} $$dir | ${SED} -e 's/.*://'`; \
-			dir=`${ECHO_CMD} $$dir | ${SED} -e 's/:.*//'`; \
-		else \
-			target="${DEPENDS_TARGET}"; \
-			depends_args="${DEPENDS_ARGS}"; \
-		fi; \
-		${ECHO_MSG} "===>   ${PKGNAME} depends on: $$dir"; \
-		${ECHO_MSG} "===>    Verifying $$target for $$dir"; \
-		if [ ! -d $$dir ]; then \
-			${ECHO_MSG} "     => No directory for $$dir.  Skipping.."; \
-		else \
-			(cd $$dir; ${MAKE} $$target $$depends_args) ; \
-		fi \
-	done
-	@if [ -z "${DESTDIR}" ] ; then \
-		${ECHO_MSG} "===>   Returning to build of ${PKGNAME}"; \
-	else \
-		${ECHO_MSG} "===>   Returning to build of ${PKGNAME} for ${DESTDIR}"; \
-	fi
-.endif
-.else
-	@${DO_NADA}
-.endif
-
 .endif
 
 # Dependency lists: both build and runtime, recursive.  Print out directory names.
@@ -3579,6 +3550,7 @@ ALL-DEPENDS-LIST= \
 			dp_PORTSDIR="${PORTSDIR}" \
 			dp_MAKE="${MAKE}" \
 			dp_PKGNAME="${PKGNAME}" \
+			dp_PKGINFO="${MPORT_QUERY}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
 			${SH} ${SCRIPTSDIR}/all-depends-list.sh
 
@@ -3587,6 +3559,7 @@ CLEAN-DEPENDS-LIST= \
 			dp_PORTSDIR="${PORTSDIR}" \
 			dp_MAKE="${MAKE}" \
 			dp_PKGNAME="${PKGNAME}" \
+			dp_PKGINFO="${MPORT_QUERY}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
 			${SH} ${SCRIPTSDIR}/clean-depends-list.sh
 
