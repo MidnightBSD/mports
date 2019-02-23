@@ -82,6 +82,7 @@ SUBDIR += jasper
 SUBDIR += jbig2dec
 SUBDIR += jbigkit
 SUBDIR += jpeg
+SUBDIR += jpeg-turbo
 SUBDIR += laternamagica
 SUBDIR += lcms
 SUBDIR += lcms2
