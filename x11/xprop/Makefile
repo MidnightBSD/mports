@@ -2,6 +2,7 @@
 
 PORTNAME=	xprop
 PORTVERSION=	1.2.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +10,7 @@ COMMENT=	Property displayer for X
 
 LICENSE=	mit
 
+USES=		xorg
 XORG_CAT=	app
 USE_XORG=	xmuu x11
 
