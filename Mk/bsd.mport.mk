@@ -4625,5 +4625,5 @@ test: ${_TEST_REAL_SEQ}
 .endif
 .endif
 
-
+.endif
 # End of post-makefile section.
