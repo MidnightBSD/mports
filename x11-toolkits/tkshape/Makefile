@@ -2,17 +2,18 @@
 
 PORTNAME=	tkshape
 PORTVERSION=	0.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/ \
 		http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
 DISTNAME=	shape${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A Tk library to access to X Shaped Window Extension
+COMMENT=	Tk library to access to X Shaped Window Extension
+
 LICENSE=	other
 
-USE_TK=		yes
+USES=		gmake tk:85+ xorg
 USE_XORG=	x11 xext
 
 PLIST_SUB=	PORTNAME="${PORTNAME}"
@@ -30,7 +31,6 @@ MANN=		shape.n
 
 WRKSRC=		${WRKDIR}/${PORTNAME:C/^tk//1}${PORTVERSION}
 
-USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--with-tclconf=${TCL_LIBDIR} \
 			--with-tkconf=${TK_LIBDIR}
