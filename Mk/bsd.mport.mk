@@ -2923,8 +2923,8 @@ deinstall:
 	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN} from ${DESTDIR}"
 .endif
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@${ECHO_MSG} "===>   Running ${SUDO} ${MPORT_DELETE} -o ${PKGORIGIN}
-	@${SUDO} ${MPORT_DELETE} -f -o ${PKGORIGIN}
+	@${ECHO_MSG} "===>   Running ${DOAS} ${MPORT_DELETE} -o ${PKGORIGIN}
+	@${DOAS} ${MPORT_DELETE} -f -o ${PKGORIGIN}
 .else
 	@${MPORT_DELETE} -f -o ${PKGORIGIN}
 .endif
