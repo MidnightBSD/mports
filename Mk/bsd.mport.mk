@@ -413,12 +413,12 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 
 # setup empty variables for USES targets
 .for target in sanity fetch extract patch configure build install test package fake
-_USE
+_USES_${target}?=
 .endfor
 
 # Loading features - USES directive
 .for f in ${USES}
-_f:=	${f:C/\:.*//}
+_f:=		${f:C/\:.*//}
 .if !defined(${_f}_ARGS)
 ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
