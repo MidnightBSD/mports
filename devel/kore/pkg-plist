@@ -1,0 +1,11 @@
+bin/kodev%%SUFFIX%%
+bin/kore%%SUFFIX%%
+include/kore%%SUFFIX%%/kore/http.h
+include/kore%%SUFFIX%%/kore/jsonrpc.h
+include/kore%%SUFFIX%%/kore/kore.h
+include/kore%%SUFFIX%%/kore/pgsql.h
+include/kore%%SUFFIX%%/kore/python_api.h
+include/kore%%SUFFIX%%/kore/python_methods.h
+include/kore%%SUFFIX%%/kore/tasks.h
+man/man1/kodev%%SUFFIX%%.1.gz
+%%DATADIR%%/features

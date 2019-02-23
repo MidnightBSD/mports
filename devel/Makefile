@@ -137,6 +137,7 @@ SUBDIR += json-glib
 SUBDIR += jsoncpp
 SUBDIR += judy
 SUBDIR += kBuild
+SUBDIR += kore
 SUBDIR += lemon
 SUBDIR += libIDL
 SUBDIR += libatomic_ops
