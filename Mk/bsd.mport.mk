@@ -599,6 +599,8 @@ PKG_NOTE_flavor=	${FLAVOR}
 TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
 
+PKG_ENV+=		PORTSDIR=${PORTSDIR}
+
 # Integrate with the license auditing framework
 .if !defined (DISABLE_LICENSES)
 .include "${MPORTCOMPONENTS}/licenses.mk"
@@ -618,7 +620,7 @@ _WRKDIR=	work
 _WRKDIR=	work-${FLAVOR}
 .endif
 
-WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
+WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/${_WRKDIR}
 BINARY_LINKDIR=	${WRKDIR}/.bin
 PATH:=			${BINARY_LINKDIR}:${PATH}
 .if !${MAKE_ENV:MPATH=*} && !${CONFIGURE_ENV:MPATH=*}
