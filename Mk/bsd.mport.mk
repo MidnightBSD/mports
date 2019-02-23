@@ -2918,15 +2918,15 @@ refake:
 .if !target(deinstall)
 deinstall:
 .if !defined(DESTDIR)
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN}"
+	@${ECHO_MSG} "===>  Deinstalling for ${PKGBASE}"
 .else
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN} from ${DESTDIR}"
+	@${ECHO_MSG} "===>  Deinstalling for ${PKGBASE} from ${DESTDIR}"
 .endif
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@${ECHO_MSG} "===>   Running ${DOAS} ${MPORT_DELETE} -o ${PKGORIGIN}
-	@${DOAS} ${MPORT_DELETE} -f -o ${PKGORIGIN}
+	@${ECHO_MSG} "===>   Running ${DOAS} ${MPORT_DELETE} -o ${PKGBASE}
+	@${DOAS} ${MPORT_DELETE} -f -n ${PKGBASE}
 .else
-	@${MPORT_DELETE} -f -o ${PKGORIGIN}
+	@${MPORT_DELETE} -f -n ${PKGBASE}
 .endif
 	@${RM} -f ${INSTALL_COOKIE}
 .endif # !target(deinstall)
