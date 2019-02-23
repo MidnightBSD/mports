@@ -1686,27 +1686,27 @@ HAS_CONFIGURE=		yes
 
 SET_LATE_CONFIGURE_ARGS= \
      _LATE_CONFIGURE_ARGS="" ; \
-        if [ -z "${CONFIGURE_ARGS:M--localstatedir=*:Q}" ] && \
-           ${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- --localstatedir > /dev/null; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--mandir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/man" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--enable-jobserver\[.*\#\]'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --enable-jobserver=${MAKE_JOBS_NUMBER}" ; \
-        fi ; \
-        if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--infodir'`" ]; then \
-            _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${GNU_CONFIGURE_PREFIX}/${INFO_PATH}/${INFO_SUBDIR}" ; \
-        fi ; \
-        if [ -z "`${CONFIGURE_CMD} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
-        else \
-                _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
-        fi ;
+	if [ -z "${CONFIGURE_ARGS:M--localstatedir=*:Q}" ] && \
+	   ${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- --localstatedir > /dev/null; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --localstatedir=/var" ; \
+	fi ; \
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--mandir'`" ]; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${GNU_CONFIGURE_MANPREFIX}/man" ; \
+	fi ; \
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--disable-silent-rules'`" ]; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --disable-silent-rules" ; \
+	fi ; \
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--enable-jobserver\[.*\#\]'`" ]; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --enable-jobserver=${MAKE_JOBS_NUMBER}" ; \
+	fi ; \
+	if [ ! -z "`${CONFIGURE_CMD} --help 2>&1 | ${GREP} -- '--infodir'`" ]; then \
+	    _LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${GNU_CONFIGURE_PREFIX}/${INFO_PATH}/${INFO_SUBDIR}" ; \
+	fi ; \
+	if [ -z "`${CONFIGURE_CMD} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
+	else \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}" ; \
+	fi ;
 .endif
 
 # Passed to most of script invocations
@@ -1818,9 +1818,9 @@ __ARCH_OK?=		1
 
 .if !defined(__ARCH_OK)
 .if defined(ONLY_FOR_ARCHS)
-IGNORE=		is only for ${ONLY_FOR_ARCHS},
+IGNORE=		is only for ${ONLY_FOR_ARCHS:O},
 .else # defined(NOT_FOR_ARCHS)
-IGNORE=		does not run on ${NOT_FOR_ARCHS},
+IGNORE=		does not run on ${NOT_FOR_ARCHS:O},
 .endif
 IGNORE+=	while you are running ${ARCH}
 
@@ -1848,9 +1848,21 @@ IGNORE=		is not an interactive port
 IGNORE=		may not be placed on a CDROM: ${NO_CDROM}
 .elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
 IGNORE=		is restricted: ${RESTRICTED}
+.elif defined(IGNORE_${ARCH})
+IGNORE=		${IGNORE_${ARCH}}
+.elif defined(IGNORE_${OPSYS}_${OSREL:R}_${ARCH})
+IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}_${ARCH}}
+.elif defined(IGNORE_${OPSYS}_${OSREL:R})
+IGNORE=		${IGNORE_${OPSYS}_${OSREL:R}}
+.elif defined(IGNORE_${OPSYS})
+IGNORE=		${IGNORE_${OPSYS}}
 .elif defined(BROKEN)
 .if !defined(TRYBROKEN)
 IGNORE=		is marked as broken: ${BROKEN}
+.endif
+.elif defined(BROKEN_${ARCH})
+.if !defined(TRYBROKEN)
+IGNORE=		is marked as broken on ${ARCH}: ${BROKEN_${ARCH}}
 .endif
 .elif defined(BROKEN_${OPSYS}_${OSREL:R}_${ARCH})
 .if !defined(TRYBROKEN)
@@ -1863,10 +1875,6 @@ IGNORE=		is marked as broken on ${OPSYS} ${OSREL}: ${BROKEN_${OPSYS}_${OSREL:R}}
 .elif defined(BROKEN_${OPSYS})
 .if !defined(TRYBROKEN)
 IGNORE=		is marked as broken on ${OPSYS}: ${BROKEN_${OPSYS}}
-.endif
-.elif defined(BROKEN_${ARCH})
-.if !defined(TRYBROKEN)
-IGNORE=		is marked as broken on ${ARCH}: ${BROKEN_${ARCH}}
 .endif
 .elif defined(FORBIDDEN)
 IGNORE=		is forbidden: ${FORBIDDEN}
@@ -1897,7 +1905,7 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 .endif
 
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
-		fake install reinstall package 
+		fake install reinstall test package 
 
 .endif
 
@@ -2841,7 +2849,7 @@ done-message:
 # Empty pre-* and post-* targets
 
 .for stage in pre post
-.for name in pkg check-sanity fetch extract patch configure build fake install package 
+.for name in pkg check-sanity fetch extract patch configure build fake install package
 
 .if !target(${stage}-${name})
 ${stage}-${name}:
@@ -2923,10 +2931,8 @@ deinstall:
 	@${RM} -f ${INSTALL_COOKIE}
 .endif # !target(deinstall)
 
-
-#
 # Cleaning up
-#
+
 .if !target(do-clean)
 do-clean:
 	@if [ -d ${WRKDIR} ]; then \
@@ -2946,20 +2952,20 @@ clean-msg:
 .if empty(FLAVORS)
 CLEAN_DEPENDENCIES=
 .if !defined(NOCLEANDEPENDS)
-CLEAN_DEPENDENCIES+=    limited-clean-depends-noflavor
+CLEAN_DEPENDENCIES+=	limited-clean-depends-noflavor
 limited-clean-depends-noflavor:
 	@cd ${.CURDIR} && ${MAKE} limited-clean-depends
 .endif
 .if target(pre-clean)
-CLEAN_DEPENDENCIES+=    pre-clean-noflavor
+CLEAN_DEPENDENCIES+=	pre-clean-noflavor
 pre-clean-noflavor:
 	@cd ${.CURDIR} && ${SETENV} ${MAKE} pre-clean
 .endif
-CLEAN_DEPENDENCIES+=    do-clean-noflavor
+CLEAN_DEPENDENCIES+=	do-clean-noflavor
 do-clean-noflavor:
 	@cd ${.CURDIR} && ${SETENV} ${MAKE} do-clean
 .if target(post-clean)
-CLEAN_DEPENDENCIES+=    post-clean-noflavor
+CLEAN_DEPENDENCIES+=	post-clean-noflavor
 post-clean-noflavor:
 	@cd ${.CURDIR} &&  ${SETENV} ${MAKE} post-clean
 .endif
@@ -2968,27 +2974,27 @@ clean: ${CLEAN_DEPENDENCIES}
 .endif
 
 .if !empty(_FLAVOR)
-_CLEANFLAVORS=  ${_FLAVOR}
+_CLEANFLAVORS=	${_FLAVOR}
 .else
-_CLEANFLAVORS=  ${FLAVORS}
+_CLEANFLAVORS=	${FLAVORS}
 .endif
 .for _f in ${_CLEANFLAVORS}
 CLEAN_DEPENDENCIES=
 .if !defined(NOCLEANDEPENDS)
-CLEAN_DEPENDENCIES+=    limited-clean-depends-${_f}
+CLEAN_DEPENDENCIES+=	limited-clean-depends-${_f}
 limited-clean-depends-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} limited-clean-depends
 .endif
 .if target(pre-clean)
-CLEAN_DEPENDENCIES+=    pre-clean-${_f}
+CLEAN_DEPENDENCIES+=	pre-clean-${_f}
 pre-clean-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} pre-clean
 .endif
-CLEAN_DEPENDENCIES+=    do-clean-${_f}
+CLEAN_DEPENDENCIES+=	do-clean-${_f}
 do-clean-${_f}:
 	@cd ${.CURDIR} && ${SETENV} FLAVOR=${_f} ${MAKE} do-clean
 .if target(post-clean)
-CLEAN_DEPENDENCIES+=    post-clean-${_f}
+CLEAN_DEPENDENCIES+=	post-clean-${_f}
 post-clean-${_f}:
 	@cd ${.CURDIR} &&  ${SETENV} FLAVOR=${_f} ${MAKE} post-clean
 .endif
@@ -3251,6 +3257,16 @@ checksum: fetch check-checksum-algorithms
 	fi
 .endif
 
+# Some port's archives contains files modes that are a bit too restrictive for
+# some usage.  For example:
+# BUILD_DEPENDS=		${NONEXISTENT}:foo/bar:configure
+# When building as a regular user, dependencies are installed/built as root, so
+# if the archive contains files that have a mode of, say, 600, they will not be
+# readable by the port requesting the dependency.
+# This will also fix broken distribution files where directories don't have the
+# executable bit on.
+extract-fixup-modes:
+	@${CHMOD} -R u+w,a+rX ${WRKDIR}
 ################################################################
 # The special package-building targets
 # You probably won't need to touch these
@@ -3318,7 +3334,7 @@ _INSTALL_DEPENDS=	\
 			${ECHO_MSG} "===>   Returning to build of ${PKGNAME} for ${DESTDIR}"; \
 		fi;
 
-.for deptype in PKG EXTRACT PATCH FETCH BUILD RUN
+.for deptype in PKG EXTRACT PATCH FETCH BUILD RUN TEST
 .if !target(${deptype:tl}-depends)
 ${deptype:tl}-depends:
 .if defined(${deptype}_DEPENDS)
@@ -4195,6 +4211,7 @@ _EXPORTED_VARS=	ARCH OPSYS OPREL OSVERSION
 .endif
 .endfor
 .endif
+PORTS_ENV_VARS+=	${_EXPORTED_VARS}
 
 desktop-categories:
 	@categories=""; \
@@ -4475,6 +4492,10 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		995:check-fake
 .endif
+_TEST_DEP=		fake
+_TEST_SEQ=		100:test-message 150:test-depends 300:pre-test 500:do-test \
+				800:post-test \
+				${_OPTIONS_test} ${_USES_test}
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
@@ -4499,13 +4520,13 @@ _tmp_seq:=
 # for _target because :M${_target} does not work with fmake
 .      for _target in ${_entry:C/^[0-9]+://}
 .        if ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
-_tmp_seq:=      ${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
+_tmp_seq:=	${_tmp_seq} ${TARGET_ORDER_OVERRIDE:M*\:${_target}}
 .        else
-_tmp_seq:=      ${_tmp_seq} ${_entry}
+_tmp_seq:=	${_tmp_seq} ${_entry}
 .        endif
 .      endfor
 .    endfor
-_${_t}_SEQ:=    ${_tmp_seq}
+_${_t}_SEQ:=	${_tmp_seq}
 .  endif
 .  for s in ${_${_t}_SEQ:O:C/^[0-9]+://}
 .    if target(${s})
@@ -4597,6 +4618,11 @@ fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 .endif
 
+.if !target(test)
+test: ${_TEST_DEP}
+.if !defined(NO_TEST)
+test: ${_TEST_REAL_SEQ}
+.endif
 .endif
 
 
