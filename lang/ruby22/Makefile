@@ -16,9 +16,9 @@ LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
-LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
-BUILD_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
-RUN_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
+LIB_DEPENDS=	libyaml.so:textproc/libyaml
+BUILD_DEPENDS=	libffi>=0:devel/libffi
+RUN_DEPENDS=	libffi>=0:devel/libffi
 
 FAKE_OPTS=	trueprefix
 

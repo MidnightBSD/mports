@@ -406,9 +406,11 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.	if defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
+.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python")
+# we have to skip these as ${EXT}_ARGS won't be defined right
+.  elif defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT) || defined(USE_${EXT})
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
-.	endif
+.  endif
 .endfor
 
 # setup empty variables for USES targets
