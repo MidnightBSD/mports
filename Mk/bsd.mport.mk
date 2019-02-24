@@ -406,7 +406,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
+.	if defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
 .	endif
 .endfor
@@ -424,9 +424,9 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${USES}
-.if !defined(USE_${f:tu})
-USE_${f:tu}=yes
-.endif
+#.if !defined(USE_${f:tu})
+#USE_${f:tu}=yes
+#.endif
 .include "${MPORTEXTENSIONS}/${f:C/\:.*//}.mk"
 .endfor
 .if !empty(FLAVORS)
