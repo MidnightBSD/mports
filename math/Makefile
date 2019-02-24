@@ -41,7 +41,10 @@ SUBDIR += php70-bcmath
 SUBDIR += php70-gmp
 SUBDIR += php71-bcmath
 SUBDIR += php71-gmp
+SUBDIR += py-gmpy
+SUBDIR += py-mpmath
 SUBDIR += py-numeric
+SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
 
