@@ -1,0 +1,28 @@
+PORTNAME=	flake8
+PORTVERSION=	3.5.0
+CATEGORIES=	devel python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Code checking using pep8 and pyflakes
+
+LICENSE=	mit
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-runner>=0:devel/py-pytest-runner@${PY_FLAVOR}
+RUN_DEPENDS=	${PY_ENUM34} \
+		${PYTHON_PKGNAMEPREFIX}mccabe>=0.6.0:devel/py-mccabe@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pycodestyle>=2.0.0:devel/py-pycodestyle@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyflakes>=1.5.0:devel/py-pyflakes@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+NO_ARCH=	yes
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 3200
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}configparser>0:devel/py-configparser@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
