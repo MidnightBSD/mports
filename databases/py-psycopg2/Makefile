@@ -1,37 +1,35 @@
 # $MidnightBSD$
 
 PORTNAME=	psycopg2
-PORTVERSION=	2.6.1
+PORTVERSION=	2.7.5
 CATEGORIES=	databases python
-MASTER_SITES=	http://initd.org/psycopg/tarballs/PSYCOPG-2-5/ \
-		CHEESESHOP
+MASTER_SITES=	CHEESESHOP \
+		http://initd.org/psycopg/tarballs/PSYCOPG-${PORTVERSION:R:S|.|-|}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance Python adapter for PostgreSQL
 
 LICENSE=	lgpl3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/doc/COPYING.LESSER
 
-USES=		python pgsql
-USE_PYTHON=	distutils autoplist
-USE_PGSQL=	yes
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
-DOCSDIR=	${PREFIX}/share/doc/py-psycopg2
-EXAMPLESDIR=	${PREFIX}/share/examples/py-psycopg2
+USE_PYTHON=	autoplist concurrent distutils
+USES=		pgsql python
 
-PORTEXAMPLES=	binary.py copy_from.py copy_to.py cursor.py dialtone.py \
-		dict.py dt.py encoding.py fetch.py lastrowid.py lobject.py \
-		mogrify.py myfirstrecipe.py notify.py simple.py somehackers.jpg \
-		threads.py typecast.py tz.py usercast.py whereareyou.jpg
-
-PORTDOCS=	AUTHORS INSTALL NEWS PKG-INFO
+PORTDOCS=	AUTHORS INSTALL NEWS PKG-INFO README.rst
+PORTEXAMPLES=	*
 
 post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/examples/,} ${EXAMPLESDIR}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/psycopg2/_psycopg.so
 
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}/
+
+post-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.mk>

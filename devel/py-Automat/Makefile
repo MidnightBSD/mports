@@ -12,10 +12,10 @@ COMMENT=	Finite-state machines in Python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm \
-		${PYTHON_PKGNAMEPREFIX}m2r>0:textproc/py-m2r
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=16.1.0:devel/py-attrs \
-		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}m2r>0:textproc/py-m2r@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=16.1.0:devel/py-attrs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils

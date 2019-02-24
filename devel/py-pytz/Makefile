@@ -11,9 +11,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	World Timezone Definitions for Python
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		python
 USE_PYTHON=	autoplist distutils
+
+NO_ARCH=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|=True|=False|' ${WRKSRC}/${PYSETUP}

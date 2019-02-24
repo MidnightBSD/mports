@@ -1,13 +1,13 @@
 # $MidnightBSD$
 
-PORTREVISION=	1
+PORTREVISION=	2
 
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=
 
-COMMENT=	Python2 bindings for the D-BUS messaging system
+COMMENT=	Python bindings for the D-BUS messaging system
 
-SLAVE_PORT=	python2
+SLAVE_PORT=	python
 
 MASTERDIR=	${.CURDIR}/../../devel/pydbus-common
 PLIST=		${.CURDIR}/pkg-plist

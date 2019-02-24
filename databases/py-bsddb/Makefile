@@ -2,10 +2,9 @@
 
 PORTNAME=	bsddb
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases python
-MASTER_SITES=	PYTHON
-MASTER_SITE_SUBDIR=	ftp/python/${PORTVERSION}
+MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Python-${PORTVERSION}
 
@@ -16,7 +15,7 @@ LICENSE=	python
 
 USE_BDB=	48+
 USE_PYTHON=	distutils autoplist
-USES=		python tar:xz
+USES=		bdb python:2.7 tar:xz
 
 DIST_SUBDIR=	python
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
@@ -27,10 +26,6 @@ PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
 MAKE_ENV=	BSDDB_VERSION=${BDB_LIB_NAME}
 
 .include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} >= 3000
-IGNORE=	bsddb package was removed from core standard library since 3.0, use databases/py-bsddb3 instead
-.endif
 
 post-extract:
 	@${CP} ${FILESDIR}/setup.py ${WRKSRC}

@@ -10,34 +10,34 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	py3?-dbus>=0:devel/py3-dbus \
-		py3?-xdg>=0:devel/py3-xdg \
-		py3?-cairo>=0:graphics/py3-cairo \
+BUILD_DEPENDS=	py3?-dbus>=0:devel/py-dbus@${PY_FLAVOR} \
+		py3?-xdg>=0:devel/py-xdg@${PY_FLAVOR} \
+		py3?-cairo>=0:graphics/py-cairo@${PY_FLAVOR} \
 		itstool:textproc/itstool
 LIB_DEPENDS=	libatspi.so:accessibility/at-spi2-core
-RUN_DEPENDS=	py3?-dbus>=0:devel/py3-dbus \
-		py3?-atspi>=0:accessibility/py3-atspi \
-		py3?-speech-dispatcher>=0:accessibility/py-speech-dispatcher \
-		py3?-xdg>=0:devel/py3-xdg \
-		py3?-cairo>=0:graphics/py3-cairo
+RUN_DEPENDS=	py3?-dbus>=0:devel/py-dbus@${PY_FLAVOR} \
+		py3?-speech-dispatcher>=0:accessibility/py-speech-dispatcher@${PY_FLAVOR} \
+		py3?-atspi>=0:accessibility/py-atspi@${PY_FLAVOR} \
+		py3?-xdg>=0:devel/py-xdg@${PY_FLAVOR} \
+		py3?-cairo>=0:graphics/py-cairo@${PY_FLAVOR}
 
 # conflict with py*-json-py because orca uses the json from python itself
 # and py*-json-py shadows this.
 CONFLICTS=	py*-json-py-[0-9]*
+PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake pathfix pkgconfig python:3 tar:xz
-USE_GNOME=	gtk30 py3gobject3 intlhack
+NO_ARCH=	yes
+USES=		gettext gmake gnome localbase pathfix pkgconfig \
+		python:3.4+ tar:xz
+USE_GNOME=	gtk30 pygobject3 intlhack
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-	    	${WRKSRC}/src/orca/orca_i18n.py
+		${WRKSRC}/src/orca/orca_i18n.py
 
 .include <bsd.port.mk>

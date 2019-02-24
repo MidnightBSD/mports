@@ -12,7 +12,7 @@ COMMENT=	XML parser that returns python dictionaries
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=0:devel/py-nose
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=0:devel/py-nose@${PY_FLAVOR}
 
 NO_ARCH=	yes
 USES=		python

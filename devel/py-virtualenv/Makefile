@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/py-virtualenv/Makefile 393810 2015-08-09 17:16:13Z nivit $
 
 PORTNAME=	virtualenv
-PORTVERSION=	13.1.0
+PORTVERSION=	16.0.0
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -11,31 +11,27 @@ COMMENT=	Tool for creating isolated Python environments
 
 LICENSE=	mit
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:${PORTSDIR}/devel/py-pytest \
-		${PYTHON_PKGNAMEPREFIX}mock>0:${PORTSDIR}/devel/py-mock
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.1.3:textproc/py-sphinx@${PY_FLAVOR}
+DOCS_PORTDOCS=	*
+DOCS_VARS=	PYDISTUTILS_BUILD_TARGET+=build_sphinx
+
+GH_ACCOUNT=	pypa
+
+NO_ARCH=	yes
 
 OPTIONS_DEFINE=	DOCS
-
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.1.3:${PORTSDIR}/textproc/py-sphinx
 
 USES=		python
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist concurrent distutils
 
-GH_ACCOUNT=	pypa
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
-DOCSDIR=			${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
-PORTDOCS=			*
-PYDISTUTILS_BUILD_TARGET+=	build_sphinx
-
-post-install:
-	@${MKDIR} ${DOCSDIR}
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/build/sphinx/html && \
-	${COPYTREE_SHARE} . ${DOCSDIR} "! -name .buildinfo -or -name objects.inv")
-.endif
+	${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} "! -name .buildinfo -or -name objects.inv")
 
 regression-test: build
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test

@@ -1,2 +1,3 @@
-SHA256 (virtualenv-13.1.0_GH0.tar.gz) = 504e705d73251a7f248e0e88d9054a1b4baf5f276a237f8de0830fd0e1661d63
-SIZE (virtualenv-13.1.0_GH0.tar.gz) = 1705046
+TIMESTAMP = 1531728288
+SHA256 (pypa-virtualenv-16.0.0_GH0.tar.gz) = 5a597f845cf785d46c3ae39d6cb18ef0b6af4ca366da40682364f78f7fe00d22
+SIZE (pypa-virtualenv-16.0.0_GH0.tar.gz) = 1968312

@@ -14,12 +14,14 @@ COMMENT=	Python 2 and 3 compatibility utilities
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:${PORTSDIR}/devel/py-pytest
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
-USES?=		python
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
-regression-test: build
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v
+NO_ARCH=	yes
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -rs -v
 
 .include <bsd.port.mk>
