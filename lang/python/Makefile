@@ -2,7 +2,7 @@
 
 PORTNAME=	python
 PORTVERSION=	${PYTHON_DEFAULT}
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	# empty
@@ -10,12 +10,13 @@ DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The "meta-port" for the default version of Python interpreter
+COMMENT=	"meta-port" for the default version of Python interpreter
 
 LICENSE=	python
 
-USES=			python:run
-NO_BUILD=		yes
+USES=		python:run
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 PLIST_FILES=	bin/2to3 \
 		bin/idle \
