@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/py-cffi/Makefile 420385 2016-08-18 05:41:51Z marino $
 
 PORTNAME=	cffi
-PORTVERSION=	1.7.0
+PORTVERSION=	1.11.5
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,20 +13,21 @@ COMMENT=	Foreign Function Interface for Python calling C code
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=2.10:${PORTSDIR}/devel/py-pycparser
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:${PORTSDIR}/devel/py-pytest
+LIB_DEPENDS=	libffi.so:devel/libffi
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=2.10:devel/py-pycparser@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
 # Actually 2.6-2.7,3.2-3.5
-USES=		localbase python
+USES=		localbase python compiler
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.pre.mk>
 
-# Tests assume gcc, and fail on pure clang systems
-# Fixed in https://bitbucket.org/cffi/cffi/issues/271
-post-patch:
-	${REINPLACE_CMD} -e 's|gcc|${CC}|g' ${WRKSRC}/testing/cffi0/test_ownlib.py
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100000
+.if ${COMPILER_TYPE:Mclang}
+CFLAGS+=	-Wno-shift-negative-value
+.endif
+.endif
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/_cffi_backend.so
