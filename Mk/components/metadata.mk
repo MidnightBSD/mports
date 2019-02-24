@@ -13,74 +13,47 @@
 #  patch-depends|fetch-depends|build-depends|run-depends|www site
 
 .if !target(describe)
-describe:
-	@${ECHO_CMD} -n "${PKGNAME}|${.CURDIR}|${PREFIX}|"
-.if defined(COMMENT)
-	@${ECHO_CMD} -n ${COMMENT:Q}
-.else
-	@${ECHO_CMD} -n '** No Description'
-.endif
-	@perl -e ' \
-		if ( -f q{${DESCR}} ) { \
-			print q{|${DESCR}}; \
-		} else { \
-			print q{|/dev/null}; \
-		} \
-		print q{|${MAINTAINER}|${CATEGORIES}|}; \
-		@edirs = map((split /:/)[1], split(q{ }, q{${EXTRACT_DEPENDS}})); \
-		@pdirs = map((split /:/)[1], split(q{ }, q{${PATCH_DEPENDS}})); \
-		@fdirs = map((split /:/)[1], split(q{ }, q{${FETCH_DEPENDS}})); \
-		@bdirs = map((split /:/)[1], split(q{ }, q{${BUILD_DEPENDS}})); \
-		@rdirs = map((split /:/)[1], split(q{ }, q{${RUN_DEPENDS}})); \
-		@ddirs = map((split /:/)[0], split(q{ }, q{${DEPENDS}})); \
-		@ldirs = map((split /:/)[1], split(q{ }, q{${LIB_DEPENDS}})); \
-		@pkgdirs = map((split /:/)[1], split(q{ }, q{${PKG_DEPENDS}})); \
-		for my $$i (\@edirs, \@pdirs, \@fdirs, \@bdirs, \@rdirs, \@ddirs, \@ldirs, \@pkgdirs) { \
-			my @dirs = @$$i; \
-			@$$i = (); \
-			for (@dirs) { \
-				if (index($$_, "/usr/mports/") == -1) { \
-					$$_ = "/usr/mports/" . $$_; \
-				} \
-				if (-d $$_) { \
-					push @$$i, $$_; \
-				} else { \
-					print STDERR qq{${PKGNAME}: \"$$_\" non-existent -- dependency list incomplete\n}; \
-					exit(1); \
-				} \
-			} \
-		} \
-		for (@edirs, @ddirs) { \
-			$$xe{$$_} = 1; \
-		} \
-		print join(q{ }, sort keys %xe), q{|}; \
-		for (@pdirs, @ddirs) { \
-			$$xp{$$_} = 1; \
-		} \
-		print join(q{ }, sort keys %xp), q{|}; \
-		for (@fdirs, @ddirs) { \
-			$$xf{$$_} = 1; \
-		} \
-		print join(q{ }, sort keys %xf), q{|}; \
-		for (@bdirs, @ddirs, @ldirs) { \
-			$$xb{$$_} = 1; \
-		} \
-		print join(q{ }, sort keys %xb), q{|}; \
-		for (@rdirs, @ddirs, @ldirs) { \
-			$$xr{$$_} = 1; \
-		} \
-		print join(q{ }, sort keys %xr), q{|}; \
-		if (open(DESCR, q{${DESCR}})) { \
-			while (<DESCR>) { \
-				if (/^WWW:\s+(\S+)/) { \
-					print $$1; \
-					last; \
-				} \
-			} \
-		} \
-		print qq{\n};'
-.endif
+_EXTRACT_DEPENDS=${EXTRACT_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_PATCH_DEPENDS=${PATCH_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_FETCH_DEPENDS=${FETCH_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_LIB_DEPENDS=${LIB_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_BUILD_DEPENDS=${BUILD_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
+_RUN_DEPENDS=${RUN_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
+. if exists(${DESCR})
+_DESCR=${DESCR}
+. else
+_DESCR=/dev/null
+. endif
 
+.  if defined(BUILDING_INDEX) && defined(INDEX_PORTS)
+INDEX_OUT=${INDEX_TMPDIR}/${INDEXFILE}.desc.aggr
+.  else
+INDEX_OUT=/dev/stdout
+.  endif
+
+.  if empty(FLAVORS) || defined(_DESCRIBE_WITH_FLAVOR)
+describe:
+	@(${ECHO_CMD} -n "${PKGNAME}|${.CURDIR}|${PREFIX}|"; \
+	${ECHO_CMD} -n ${COMMENT:Q}; \
+	${ECHO_CMD} -n "|${_DESCR}|${MAINTAINER}|${CATEGORIES}|${_EXTRACT_DEPENDS}|${_PATCH_DEPENDS}|${_FETCH_DEPENDS}|${_BUILD_DEPENDS:O:u}|${_RUN_DEPENDS:O:u}|"; \
+	while read one two discard; do \
+		case "$$one" in \
+		WWW:)   case "$$two" in \
+			https://*|http://*|ftp://*) ${ECHO_CMD} -n "$$two" ;; \
+			*) ${ECHO_CMD} -n "http://$$two" ;; \
+			esac; \
+			break; \
+			;; \
+		esac; \
+	done < ${DESCR}; ${ECHO_CMD}) >>${INDEX_OUT}
+.  else # empty(FLAVORS)
+describe: ${FLAVORS:S/^/describe-/}
+.   for f in ${FLAVORS}
+describe-${f}:
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -D_DESCRIBE_WITH_FLAVOR describe
+.   endfor
+.  endif # empty(FLAVORS)
+. endif
 
 #
 # describe-yaml
@@ -113,7 +86,6 @@ describe-yaml:
 		$$depends{fetch}   = [ uniq map((split /:/)[1], qw{${FETCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
 		$$depends{build}   = [ uniq map((split /:/)[1], qw{${BUILD_DEPENDS:S|${PORTSDIR}/||}})   ]; \
 		$$depends{run}     = [ uniq map((split /:/)[1], qw{${RUN_DEPENDS:S|${PORTSDIR}/||}})     ]; \
-		$$depends{misc}	   = [ uniq map((split /:/)[0], qw{${DEPENDS:S|${PORTSDIR}/||}})         ]; \
 		$$depends{lib}     = [ uniq map((split /:/)[1], qw{${LIB_DEPENDS:S|${PORTSDIR}/||}})     ]; \
 		$$port{depends}  = \%depends; \
 		open(my $$desc, q(<), q(${DESCR})) || die qq(Could not open ${DESCR}: $$!\n); \
