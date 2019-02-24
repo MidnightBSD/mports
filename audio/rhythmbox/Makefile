@@ -2,6 +2,7 @@
 
 PORTNAME=	rhythmbox
 PORTVERSION=	3.4.2
+PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -35,7 +36,7 @@ USES=		desktop-file-utils gmake gnome libtool localbase \
 		pathfix pkgconfig tar:xz
 USE_GNOME=	cairo intlhack glib20 gnomeprefix gtk30 introspection \
 		pygobject3 libxml2
-USE_XORG=	ice x11 xproto
+USE_XORG=	ice x11 xorgproto
 GNU_CONFIGURE=	yes
 USE_GSTREAMER1=	flac lame jpeg cdparanoia vorbis
 CONFIGURE_ARGS=	--enable-vala \
@@ -79,7 +80,7 @@ NOTIFY_CONFIGURE_ENABLE=	libnotify
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 PYTHON_CONFIGURE_ENABLE=	python
 PYTHON_USES=		python:3.3+
-PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py3-libpeas
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|{MOZILLA_PLUGINDIR|{MOZILLA_PLUGINDIR}|g' \
