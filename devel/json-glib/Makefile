@@ -32,7 +32,5 @@ GIR_MESON_TRUE=	introspection
 post-install:
 	@${RM} -r ${STAGEDIR}${PREFIX}/libexec/installed-tests
 	@${RM} -r ${STAGEDIR}${PREFIX}/share/installed-tests
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
