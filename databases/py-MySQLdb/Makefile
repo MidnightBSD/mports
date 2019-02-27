@@ -1,44 +1,43 @@
 # $MidnightBSD$
 
 PORTNAME=	MySQLdb
-DISTVERSION=	1.2.3
-PORTREVISION=	2
+PORTVERSION=	1.2.5
+PORTREVISION=	1
+DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	databases python
-MASTER_SITES=	SF/mysql-python/mysql-python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	MySQL-python-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Access a MySQL database through Python
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/GPL-2.0
 
-USES=		python:2
-USE_PYTHON=	distutils autoplist
-PYDISTUTILS_AUTOPLIST=	yes
-USE_MYSQL=		yes
+USES=		mysql python:2.7
+USE_PYTHON=	autoplist distutils
+USE_GITHUB=	yes
+GH_ACCOUNT=	farcepest
+GH_PROJECT=	${PORTNAME}1
 
-CONFLICTS=	py*-MySQLdb-[0-9]* py*-MySQLdb5[0-9]-[0-9]*
+CONFLICTS=	${PYTHON_PKGNAMEPREFIX}-MySQLdb5[0-9]-[0-9]* \
+		${PYTHON_PKGNAMEPREFIX}-mysqlclient-[0-9]*
 
 PORTDOCS=	*
-DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
+DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
 
-OPTIONSFILE=	${PORT_DBDIR}/${PORTNAME}/options
 OPTIONS_DEFINE=		DOCS MYSQLCLIENT_R
-OPTIONS_DEFAULT=	DOCS MYSQLCLIENT_R
+OPTIONS_DEFAULT=	MYSQLCLIENT_R
 MYSQLCLIENT_R_DESC=	Use libmysqlclient_r (thread safe)
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MMYSQLCLIENT_R}
-pre-configure:
-	@${REINPLACE_CMD} -E -e "s|(threadsafe.*)True|\1 False|" \
-		${WRKSRC}/site.cfg
-.endif
+pre-configure-MYSQLCLIENT_R-on:
+	${REINPLACE_CMD} -e '/threadsafe = / s|True|False|' ${WRKSRC}/site.cfg
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/* ${DOCSDIR}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_mysql.so
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

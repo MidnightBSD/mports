@@ -10,7 +10,10 @@ DISTNAME=	py${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python 2 bindings for Cairo
 
-LICENSE=	lgpl
+LICENSE=	lgpl mpl
+LICENSE_COMB=	multi
+LICENSE_FILE_LGPL21=  ${WRKSRC}/COPYING-LGPL-2.1
+LICENSE_FILE_MPL11=   ${WRKSRC}/COPYING-MPL-1.1
 
 PORTSCOUT=	limitw:1,even
 
@@ -22,6 +25,5 @@ PLIST_SUB=	PORTVER=${PORTVERSION}
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/cairo/_cairo.so
-	${CP} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>

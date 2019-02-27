@@ -117,6 +117,7 @@ SUBDIR += linux-c7-alsa-plugins-pulseaudio
 SUBDIR += linux-c7-alsa-utils
 SUBDIR += linux-c7-audiofile
 SUBDIR += linux-c7-flac
+SUBDIR += linux-c7-libogg
 SUBDIR += linux-c7-libsndfile
 SUBDIR += linux-c7-libvorbis
 SUBDIR += linux-c7-openal-soft

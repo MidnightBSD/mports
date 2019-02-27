@@ -11,8 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setuptools plugin to manage your versions by scm tags
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		python
-USE_PYTHON=	distutils autoplist
+USES=		python
+USE_PYTHON=	autoplist distutils
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

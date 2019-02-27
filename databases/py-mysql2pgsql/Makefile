@@ -3,31 +3,27 @@
 
 PORTNAME=	mysql2pgsql
 PORTVERSION=	0.1.6
+DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	databases python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	py-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for migrating/converting from MySQL to PostgreSQL
 
 LICENSE=	mit
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=1.2.3:${PORTSDIR}/databases/py-MySQLdb \
-		${PYTHON_PKGNAMEPREFIX}psycopg2>=2.4.2:${PORTSDIR}/databases/py-psycopg2 \
-		${PYTHON_PKGNAMEPREFIX}termcolor>=1.1.0:${PORTSDIR}/devel/py-termcolor \
-		${PYTHON_PKGNAMEPREFIX}yaml>=3.10.0:${PORTSDIR}/devel/py-yaml \
-		${PYTHON_PKGNAMEPREFIX}pytz>0:${PORTSDIR}/devel/py-pytz
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=1.2.3:databases/py-MySQLdb@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}psycopg2>=2.4.2:databases/py-psycopg2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}termcolor>=1.1.0:devel/py-termcolor@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}yaml>=3.10.0:devel/py-yaml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR}
 
-USES=		python:2
+USES=		python:2.7
 USE_PYTHON=	distutils autoplist
-USE_PYDISTUTILS=	easy_install
-PYDISTUTILS_PKGNAME=	py_${PORTNAME}
-PYDISTUTILS_AUTOPLIST=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	philipsoutham
-GH_COMMIT=	250cb1c
 GH_PROJECT=	py-${PORTNAME}
-GH_TAGNAME=	v${PORTVERSION}
 
 .include <bsd.port.mk>

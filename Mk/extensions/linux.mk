@@ -25,7 +25,9 @@ _INCLUDE_USES_LINUX_MK=	yes
 _USES_POST+=		linux
 
 .if empty(linux_ARGS)
-.if exists(${LINUXBASE}/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6)
+.if defined(MAGUS)
+linux_ARGS=             ${LINUX_DEFAULT:S/_64//}
+.elif exists(${LINUXBASE}/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6)
 linux_ARGS=		c6
 .elif exists(${LINUXBASE}/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7)
 linux_ARGS=		c7
@@ -300,7 +302,7 @@ DISTFILES=		${DISTFILES_${LINUX_ARCH:S/x86_64/amd64/}}
 EXTRACT_ONLY?=		${DISTFILES_${LINUX_ARCH:S/x86_64/amd64/}:C/:[^:]+$//}
 .endif
 .endif
-.if !empty(SRC_DISTFILES) && (make(makesum) || defined(PACKAGE_BUILDING))
+.if !empty(SRC_DISTFILES) && (make(makesum) || defined(MAGUS) || defined(PACKAGE_BUILDING))
 DISTFILES+=		${SRC_DISTFILES}
 .endif
 

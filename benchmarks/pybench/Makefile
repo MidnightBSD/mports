@@ -2,7 +2,7 @@
 
 PORTNAME=	pybench
 PORTVERSION=	2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	benchmarks python
 MASTER_SITES=	http://downloads.egenix.com/python/
 
@@ -13,7 +13,7 @@ LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		python zip
+USES=		python:2.7 zip
 
 PORTDOCS=	README
 

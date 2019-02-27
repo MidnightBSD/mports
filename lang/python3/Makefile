@@ -2,18 +2,19 @@
 
 PORTNAME=	python3
 PORTVERSION=	3
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=
 DISTFILES=
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The "meta-port" for version 3 of the Python interpreter
+COMMENT=	"meta-port" for version 3 of the Python interpreter
 
 LICENSE=	bsd2
 
 USES=		python:run
-PYTHON_VERSION=	${PYTHON3_DEFAULT_VERSION}
+PYTHON_VERSION=	python${PYTHON3_DEFAULT}
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/2to3-${PYTHON_MAJOR_VER} \
