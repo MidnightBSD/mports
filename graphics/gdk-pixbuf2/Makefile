@@ -47,9 +47,7 @@ X11_MESON_TRUE=		x11
 X11_USE=		xorg=x11
 
 post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
 	${RM} -rf ${STAGEDIR}${PREFIX}/libexec/installed-tests
 	${RM} -rf ${STAGEDIR}${PREFIX}/share/installed-tests
-	${CP} ${PREFIX}/lib/pkgconfig/* ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
