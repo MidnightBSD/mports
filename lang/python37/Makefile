@@ -134,8 +134,6 @@ post-patch:
 		${WRKSRC}/setup.py
 
 post-install:
-	${CP} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig/python-3.7.pc ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/pkgconfig/python-3.7m.pc \
-		${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig
 .if ! ${PORT_OPTIONS:MDEBUG}
 	${RM} ${STAGEDIR}${PREFIX}/lib/libpython3.so						# Upstream Issue: https://bugs.python.org/issue17975
 .endif
