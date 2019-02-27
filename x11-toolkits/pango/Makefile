@@ -51,8 +51,4 @@ pre-configure:
 		${FALSE}; \
 	fi
 
-post-fake:
-	${MKDIR}  ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig
-	${CP} ${FAKE_DESTDIR}${PREFIX}/lib/pkgconfig/* ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/
-
 .include <bsd.port.mk>
