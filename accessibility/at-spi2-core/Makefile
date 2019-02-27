@@ -23,7 +23,5 @@ USE_LDCONFIG=	yes
 
 post-install:
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
