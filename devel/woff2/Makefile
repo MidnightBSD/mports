@@ -20,8 +20,4 @@ USE_LDCONFIG=	yes
 
 PLIST_SUB=	SHLIBVER=${DISTVERSION}
 
-post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
-
 .include <bsd.port.mk>
