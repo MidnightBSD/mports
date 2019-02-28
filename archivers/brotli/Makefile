@@ -27,8 +27,4 @@ OPTIONS_DEFINE=	DOCS
 pre-configure:
 	(cd ${WRKSRC} && ./bootstrap)
 
-post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig/
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
-
 .include <bsd.port.mk>
