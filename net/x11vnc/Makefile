@@ -2,7 +2,7 @@
 
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.13
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	SF/libvncserver/${PORTNAME}/${PORTVERSION}
 
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs
 
 USE_XORG=	x11 xcb xdamage xfixes xrandr xinerama xext xtst xau xrender \
-		xdmcp recordproto
+		xdmcp xorgproto
 
 # Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
 LDFLAGS+=	-L${LOCALBASE}/lib
