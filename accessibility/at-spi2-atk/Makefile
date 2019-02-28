@@ -22,8 +22,4 @@ USE_GNOME=	atk glib20 intlhack
 USE_LDCONFIG=	yes
 CPE_VENDOR=	gnome
 
-post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
-
 .include <bsd.port.mk>
