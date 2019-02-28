@@ -27,7 +27,7 @@ PLIST_FILES=	lib/skype_oss_wrapper/libpulse.so.0
 LIB_DIR=	${PREFIX}/lib/${PORTNAME}
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/skype_oss
-	${RMDIR} ${STAGEDIR}${PREFIX}/bin
+	-${RM} ${PREFIX}/bin/skype_oss
+	-${RMDIR} ${PREFIX}/bin
 
 .include <bsd.port.mk>
