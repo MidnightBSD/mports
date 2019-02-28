@@ -67,7 +67,7 @@ PLIST_SUB+=	I386="@comment "
 gst_base_DIST=	base
 NO_GSTREAMER_COMMON=	yes
 USE_LDCONFIG=	yes
-USE_XORG=	x11 xv xext videoproto xextproto
+USE_XORG=	x11 xv xext videoproto xorgproto
 PLIST_SUB+=	VERSION="${VERSION}" \
 		SHLIB_VERSION="${SHLIB_VERSION}"
 SHEBANG_FILES=	tools/gst-visualise-m.m
