@@ -48,6 +48,8 @@ USE_LDCONFIG=	yes
 
 MAKE_ENV+=	LC_ALL=C
 
+OSMAJOR=        ${OSREL:C/\..*//}
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${RUBY_DISTVERSION}
 
 RUBY_VER=		2.3
@@ -211,7 +213,7 @@ post-install:
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 		${PREFIX}/bin/erb23 ${PREFIX}/bin/irb23 \
 		${PREFIX}/bin/rdoc23 ${PREFIX}/bin/ri23 \
-		${PREFIX}/lib/ruby/2.3/${ARCH}-midnightbsd0/rbconfig.rb  \
+		${PREFIX}/lib/ruby/2.3/${ARCH}-midnightbsd${OSMAJOR}/rbconfig.rb  \
 		${PREFIX}/libdata/pkgconfig/ruby-2.3.pc
 
 regression-test test:
