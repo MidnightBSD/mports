@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	beaker
-PORTVERSION=	1.9.0
+PORTVERSION=	1.10.0
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +19,7 @@ NO_ARCH=	yes
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} <= 3200
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}funcsigs>=1.0.2:devel/py-funcsigs
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}funcsigs>=1.0.2:devel/py-funcsigs@${PY_FLAVOR}
 .endif
 
 .include <bsd.port.post.mk>
