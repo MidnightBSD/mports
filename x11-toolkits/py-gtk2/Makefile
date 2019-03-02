@@ -2,10 +2,9 @@
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits python
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	2
 DISTNAME=	pygtk-${PORTVERSION}
@@ -14,16 +13,13 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of Python bindings for GTK+
 
-LICENSE=	gpl2
+BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:graphics/py-cairo@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:graphics/py-cairo@${PY_FLAVOR}
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
-
-USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gettext gmake libtool pathfix pkgconfig python:2.7 tar:bzip2
 USE_GNOME=	libglade2 pygobject
-USE_PYTHON=	2
+USE_PYTHON=	flavors
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	PYTHON="${PYTHON_VERSION}"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-docs
@@ -53,8 +49,7 @@ CONFIGURE_ARGS+=--disable-numpy
 #
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--enable-thread
-CFLAGS+=		${PTHREAD_CFLAGS}
-LDFLAGS+=		${PTHREAD_LIBS}
+LDFLAGS+=		-lpthread
 .else
 CONFIGURE_ARGS+=	--disable-thread
 .endif
