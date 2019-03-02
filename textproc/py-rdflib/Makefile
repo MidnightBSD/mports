@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	rdflib
-PORTVERSION=	4.2.1
+PORTVERSION=	4.2.2
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,10 +11,10 @@ COMMENT=	Python library for RDF manipulation
 
 LICENSE=	bsd3
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}isodate>=0:${PORTSDIR}/devel/py-isodate \
-	${PYTHON_PKGNAMEPREFIX}parsing>=2.0.1:${PORTSDIR}/devel/py-parsing \
-	${PYTHON_PKGNAMEPREFIX}sparqlwrapper>=1.5.2:${PORTSDIR}/textproc/py-sparqlwrapper \
-	${PYTHON_PKGNAMEPREFIX}html5lib>0:${PORTSDIR}/www/py-html5lib
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}isodate>=0:devel/py-isodate@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.1:devel/py-pyparsing@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}sparqlwrapper>=1.5.2:textproc/py-sparqlwrapper@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	distutils autoplist
