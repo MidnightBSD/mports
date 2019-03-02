@@ -169,6 +169,7 @@ SUBDIR += preview
 SUBDIR += price
 SUBDIR += prison
 SUBDIR += py-cairo
+SUBDIR += py-imagesize
 SUBDIR += py-pillow
 SUBDIR += py3-cairo
 SUBDIR += qt4-iconengines
