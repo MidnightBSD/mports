@@ -589,6 +589,7 @@ SUBDIR += py-termcolor
 SUBDIR += py-tox
 SUBDIR += py-twisted
 SUBDIR += py-txaio
+SUBDIR += py-typing
 SUBDIR += py-ujson
 SUBDIR += py-virtualenv
 SUBDIR += py-wrapt
