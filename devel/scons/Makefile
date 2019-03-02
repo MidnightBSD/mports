@@ -3,6 +3,7 @@
 
 PORTNAME=	scons
 PORTVERSION=	3.0.1
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	SF
 
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USES=		python:2
+USES=		python:2.7
 USE_PYTHON=	distutils autoplist
 
 PLIST_SUB+=	SCONS_VER=${PORTVERSION}
