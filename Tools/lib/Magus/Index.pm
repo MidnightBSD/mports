@@ -94,10 +94,18 @@ sub sync {
     }
 
    foreach my $flav (@{$dump{'flavors'}}) {
+     print "Flavor: $flav\n";
+     if ($flav eq $primaryFlavor) {
+       print "Default flavor $flav processed.\n";
+       next;
+     }
      $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
+    eval {
+      %dump = %{ Load($yaml) };
+    };
       if ($@) {
         warn "Unable to parse yaml for $_[0]: $@\n";
-        continue;
+        next;
       }
       
       $port = Magus::Port->insert({ 
