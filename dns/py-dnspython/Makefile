@@ -2,6 +2,7 @@
 
 PORTNAME=	dnspython
 PORTVERSION=	1.15.0
+PORTREVISION=	1
 CATEGORIES=	dns python
 MASTER_SITES=	http://www.dnspython.org/kits/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,12 +14,12 @@ LICENSE=	iscl
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
-USES?=		python:2.7+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	EXAMPLES PYCRYPTO
 PYCRYPTO_DESC=	Enable pycrypto (part of dnssec needs it)
-PYCRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto
+PYCRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${PY_FLAVOR}
 
 PORTEXAMPLES=	ddns.py e164.py mx.py name.py reverse.py reverse_name.py \
 		xfr.py zonediff.py
