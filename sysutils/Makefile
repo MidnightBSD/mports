@@ -108,6 +108,7 @@ SUBDIR += polkit
 SUBDIR += polkit-gnome
 SUBDIR += polkit-qt
 SUBDIR += py-execnet
+SUBDIR += py-ptyprocess
 SUBDIR += qt5-qtpaths
 SUBDIR += qzeitgeist
 SUBDIR += scan_ffs

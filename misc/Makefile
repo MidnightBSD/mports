@@ -48,6 +48,7 @@ SUBDIR += pciids
 SUBDIR += phone-de
 SUBDIR += php70-calendar
 SUBDIR += php71-calendar
+SUBDIR += py-pexpect
 SUBDIR += qt4-doc
 SUBDIR += qt4-l10n
 SUBDIR += qt4-qtconfig
