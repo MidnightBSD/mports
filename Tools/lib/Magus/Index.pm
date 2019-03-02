@@ -93,7 +93,7 @@ sub sync {
       $port->set_result_skip("Port is marked as interactive.");
     }
 
-   foreach my $flav (@$flavors) {
+   foreach my $flav (@{$dump{'flavors'}}) {
      $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
       if ($@) {
         warn "Unable to parse yaml for $_[0]: $@\n";
