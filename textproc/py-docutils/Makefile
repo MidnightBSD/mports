@@ -1,37 +1,34 @@
 # $MidnightBSD$
 
 PORTNAME=	docutils
-PORTVERSION=	0.12
-PORTREVISION=	1
+PORTVERSION=	0.14
+PORTREVISION=	3
 CATEGORIES=	textproc python
-MASTER_SITES=	SF \
-		CHEESESHOP
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Documentation Utilities
 
-LICENSE=	publicdom
+LICENSE=	bsd2 gpl3 publicdom python
+LICENSE_COMB=	multi
 
-USES=	python
-USE_PYTHON=	distutils autoplist
+PORTSCOUT=	limit:^[0-9\.]*$$
+
+NO_ARCH=	yes
+USE_PYTHON=	autoplist concurrent distutils
+USES=		python
 
 OPTIONS_DEFINE=	PYGMENTS
 PYGMENTS_DESC=	Syntax highlighting
+PYGMENTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=1.6:textproc/py-pygments@${PY_FLAVOR}
 
-BIN_SCRIPTS=	rst2html.py rst2s5.py rst2latex.py rst2xetex.py \
-	rst2man.py rst2xml.py rst2pseudoxml.py rstpep2html.py \
-	rst2odt.py rst2odt_prepstyles.py
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MPYGMENTS}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygments>=1.6:${PORTSDIR}/textproc/py-pygments
-.endif
+SCRIPTS=	rst2html rst2latex rst2man rst2odt rst2odt_prepstyles \
+		rst2pseudoxml rst2s5 rst2xetex rst2xml rstpep2html
 
 post-install:
-.for script in ${BIN_SCRIPTS}
-	@cd ${PREFIX}/bin && ${LN} -sf ${script} ${script:C/\.py//}
+.for script in ${SCRIPTS}
+	${LN} -s ${script}.py-${PYTHON_VER} ${STAGEDIR}${PREFIX}/bin/${script}
 .endfor
 
 .include <bsd.port.mk>

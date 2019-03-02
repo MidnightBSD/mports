@@ -26,10 +26,7 @@ _INCLUDE_USES_MESON_MK=	yes
 IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
 .endif
 
-BUILD_DEPENDS+=		meson:devel/meson \
-			python2.7:lang/python27
-
-RUN_DEPENDS+=		python2.7:lang/python27
+BUILD_DEPENDS+=		meson:devel/meson
 
 # meson uses ninja
 .include "${PORTSDIR}/Mk/extensions/ninja.mk"
