@@ -501,6 +501,7 @@ SUBDIR += py-atomiclong
 SUBDIR += py-atomicwrites
 SUBDIR += py-attrs
 SUBDIR += py-babel
+SUBDIR += py-backports
 SUBDIR += py-backports.functools_lru_cache
 SUBDIR += py-bcdoc
 SUBDIR += py-boto
