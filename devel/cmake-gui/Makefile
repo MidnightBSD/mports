@@ -37,7 +37,7 @@ DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
 
 # CMake >= 3.1.0 needs libarchive3 because it calls
 # archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000009
+.if ${OSVERSION} < 9999
 LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
 .endif
 
