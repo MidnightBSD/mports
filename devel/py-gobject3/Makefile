@@ -5,7 +5,7 @@ PKGNAMESUFFIX=	3
 
 COMMENT=	Python 2 bindings for GObject
 
-SLAVE_PORT=	python2
+SLAVE_PORT=	python
 
 MAKE_JOBS_UNSAFE=	yes
 
