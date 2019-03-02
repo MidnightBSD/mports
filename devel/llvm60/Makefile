@@ -90,6 +90,15 @@ LIT_DESC=		Install lit and FileCheck test tools
 LIT_VARS=		_USES_PYTHON=python:2.7
 LLD_DESC=		Install lld, the LLVM linker
 LLD_DISTFILES=		lld-${DISTVERSION}.src${EXTRACT_SUFX}
+LLDB_BUILD_DEPENDS=   swig3.0:devel/swig30 \
+                      ${PY_ENUM34}
+LLDB_DESC=            Install lldb, the LLVM debugger
+LLDB_DISTFILES=               lldb-${DISTVERSION}.src${EXTRACT_SUFX}
+LLDB_IMPLIES=         CLANG
+LLDB_VARS=            _USES_PYTHON=python:2.7
+OPENMP_DESC=          Install libomp, the LLVM OpenMP runtime library
+OPENMP_DISTFILES=     openmp-${DISTVERSION}.src${EXTRACT_SUFX}
+OPENMP_EXTRA_PATCHES= ${PATCHDIR}/openmp
 
 .if defined(WITH_DEBUG)
 CMAKE_BUILD_TYPE=	RelWithDebInfo
