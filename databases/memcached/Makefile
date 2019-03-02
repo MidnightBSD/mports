@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.5.5
+PORTVERSION=	1.5.10
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -12,23 +12,18 @@ COMMENT=	High-performance distributed memory object cache system
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_mips=		fails to link: failed to merge target specific data of file /usr/lib/dtrace/drti.o
+BROKEN_mips64=		fails to link: failed to merge target specific data of file /usr/lib/dtrace/drti.o
+
 LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	memcached-1.2*
 
-# Dtrace option disabled until it is fixed upstream
-OPTIONS_DEFINE=		SASL DOCS DTRACE
-OPTIONS_DEFAULT=	SASL
-
-DTRACE_DESC=	Enable dtrace probes
-SASL_DESC=	Enable SASL Authentication
+USES=		cpe shebangfix autoreconf
+SHEBANG_FILES=	scripts/memcached-tool
 
 USE_RC_SUBR=	memcached
 SUB_LIST+=	RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
-
-USES=		cpe shebangfix autoreconf:build
-USE_AUTOTOOLS=	aclocal
-SHEBANG_FILES=	scripts/memcached-tool
 
 USE_CSTD=	c99
 GNU_CONFIGURE=	yes
@@ -36,10 +31,25 @@ CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} \
 		--program-prefix= \
 		--disable-coverage
 
+# Dtrace option disabled until it is fixed upstream
+OPTIONS_DEFINE=		SASL DOCS
+OPTIONS_DEFAULT=	SASL
+
+.if !exists(/usr/sbin/dtrace)
+OPTIONS_EXCLUDE+=	DTRACE
+.endif
+
+OPTIONS_EXCLUDE_i386=		DTRACE
+# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
+OPTIONS_EXCLUDE_aarch64=	DTRACE
+OPTIONS_EXCLUDE_armv6=		DTRACE
+OPTIONS_EXCLUDE_armv7=		DTRACE
+
+DTRACE_DESC=	Enable dtrace probes
+SASL_DESC=	Enable SASL Authentication
+
 DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc
 DOCS_CONFIGURE_ENABLE=	docs
-
-DTRACE_CONFIGURE_ENABLE=	dtrace
 
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_CONFIGURE_ENABLE=	sasl
@@ -57,10 +67,12 @@ CONFIGURE_ARGS+=	--enable-64bit
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${DOCSDIR}
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for i in protocol-binary-range.txt protocol-binary.txt protocol.txt \
 		readme.txt threads.txt
-	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 regression-test: test
