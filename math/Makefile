@@ -48,5 +48,6 @@ SUBDIR += py-numpy
 SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5
+SUBDIR += suitesparse
 
 .include <bsd.port.subdir.mk>
