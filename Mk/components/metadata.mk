@@ -79,6 +79,7 @@ describe-yaml:
 			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
 			restricted     => q(${RESTRICTED}) ? 1 : 0, \
 			flavor         => q(${FLAVOR}), \
+			flavors        => [qw(${FLAVORS})] \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
