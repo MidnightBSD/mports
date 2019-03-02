@@ -14,8 +14,8 @@ COMMENT=	Python interface to the OpenSSL library
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=2.1.4:security/py-cryptography \
-		${PYTHON_PKGNAMEPREFIX}six>=1.5.2:devel/py-six
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=2.1.4:security/py-cryptography@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}six>=1.5.2:devel/py-six@${PY_FLAVOR}
 
 OPTIONS_DEFINE=	EXAMPLES
 
