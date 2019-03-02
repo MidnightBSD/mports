@@ -44,6 +44,7 @@ SUBDIR += cppunit
 SUBDIR += cscope
 SUBDIR += ctags
 SUBDIR += cunit
+SUBDIR += cvs
 SUBDIR += cvs2svn
 SUBDIR += cvsbook
 SUBDIR += cvschangelogbuilder
