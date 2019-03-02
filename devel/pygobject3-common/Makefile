@@ -4,12 +4,11 @@ PORTNAME=	gobject
 PORTVERSION=	3.28.3
 PORTREVISION?=	0
 CATEGORIES=	devel python
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX?=	py
 PKGNAMESUFFIX?=	3-common
 DISTNAME=	pygobject-${PORTVERSION}
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common files for the Python bindings for GObject
@@ -34,8 +33,10 @@ PLIST_SUB=	ARCH=${ARCH} UNAME_R=${UNAME_R} VERSION=${PORTVERSION} \
 MAKE_ARGS=	PYTHON_VERSION=${PYTHON_VER}
 
 .if ${SLAVE_PORT} == no
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
-USES+=		python:build
+PORTSCOUT?=	limitw:1,even
+
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
+USES+=		gnome python:build
 USE_GNOME=	glib20:build introspection:build
 NO_BUILD=	yes
 
@@ -44,28 +45,25 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/gi/pygobject.h \
 		${PREFIX}/include/pygobject-3.0/pygobject.h
 	${INSTALL_DATA} ${WRKSRC}/pygobject-3.0.pc \
-		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
-.else 
-USE_GNOME+=	glib20 introspection
-LIB_DEPENDS+=	libffi.so:${PORTSDIR}/devel/libffi
-RUN_DEPENDS+=	pygobject3-common>=0:${PORTSDIR}/devel/pygobject3-common
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+.else
+PORTSCOUT=	ignore:1
 
-.if ${SLAVE_PORT} == python2
-USES+=		python:2
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pycairo.pc:${PORTSDIR}/graphics/py-cairo
-.endif
+USES+=		gettext-runtime gnome
+USE_GNOME+=	cairo glib20 introspection
+LIB_DEPENDS+=	libffi.so:devel/libffi
+RUN_DEPENDS+=	pygobject3-common>=0:devel/pygobject3-common
 
-.if ${SLAVE_PORT} == python3
-USES+=		python:3
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/py3cairo.pc:${PORTSDIR}/graphics/py3-cairo
-PLIST_SUB+=	PYTVER=${PYTHON_VER:S/.//}
+.if ${SLAVE_PORT} == python
+USES+=		python
+USE_PYTHON=	flavors py3kplist
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
 .endif
 
 post-install:
-	@${RM} -rf ${PREFIX}/include/pygobject-3.0 \
-		${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
+	@${RM} -r ${STAGEDIR}${PREFIX}/include/pygobject-3.0 \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/pygobject-3.0.pc
 .endif
 
 .include <bsd.port.pre.mk>
