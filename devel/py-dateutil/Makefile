@@ -3,11 +3,11 @@
 # $MidnightBSD$
 
 PORTNAME=	dateutil
-PORTVERSION=	2.4.2
+PORTVERSION=	2.7.3
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	python-dateutil-${PORTVERSION}
+DISTNAME=	python-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensions to the standard Python datetime module
@@ -15,14 +15,18 @@ COMMENT=	Extensions to the standard Python datetime module
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:${PORTSDIR}/devel/py-six
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>0:devel/py-setuptools_scm@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.5:devel/py-six@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}freezegun>0:devel/py-freezegun@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hypothesis>=3.30:devel/py-hypothesis@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist distutils
 
-NO_ARCH=	yes	
+NO_ARCH=	yes
 
 do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest
 
 .include <bsd.port.mk>
