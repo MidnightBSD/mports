@@ -80,8 +80,15 @@ sub sync {
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
 	my %dependsItem;
-	$dependsItem{name} = $dep;
+	my @deporigin = split /@/, $dep;
+	$dependsItem{name} = $deporigin[0];
 	$dependsItem{type} = $type;
+	my $len = @deporigin;
+	if ($len > 1) {
+	  $dependsItem{flavor} = $deporigin[1];
+	} else {
+	  $dependsItem{flavor} = "";
+        }
 	push(@{$depends{$port->id}}, \%dependsItem);
       }
     }
@@ -124,8 +131,15 @@ sub sync {
     while (my ($type, $deps) = each %{$dump{'depends'}}) {
       foreach my $dep (@$deps) {
         my %dependsItem;
-        $dependsItem{name} = $dep;
+	my @deporigin = split /@/, $dep;
+        $dependsItem{name} = $deporigin[0];
         $dependsItem{type} = $type;
+        my $len = @deporigin;
+        if ($len > 1) {
+          $dependsItem{flavor} = $deporigin[1];
+        } else {
+          $dependsItem{flavor} = "";
+        }
         push(@{$depends{$port->id}}, \%dependsItem);
       }
     }
@@ -147,8 +161,12 @@ sub sync {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
 
     foreach my $item (@$depends) {
-      my $depend = Magus::Port->retrieve(run => $run, name => $item->{name});
-      
+      my $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => $item->{flavor});
+     
+      if (!$depend) {
+		$depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => "");
+      }
+ 
       if (!$depend) {
         warn "\tMissing depend for $port: $item->{name}\n";
         $port->set_result_fail(qq(depend "$item->{name}" does not exist.));
