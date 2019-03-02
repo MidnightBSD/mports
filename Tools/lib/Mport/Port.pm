@@ -8,7 +8,7 @@ use warnings;
 use base 'Mport::DBI';
 
 __PACKAGE__->table('ports');
-__PACKAGE__->columns(All => qw(name version description license pkgname));
+__PACKAGE__->columns(All => qw(name version description license pkgname license status updated restricted flavor));
 __PACKAGE__->has_many(depends => 'Mport::Depend' => 'port');
 
 

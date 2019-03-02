@@ -61,7 +61,9 @@ sub sync {
       warn "Unable to parse yaml for $_[0]: $@\n";
       return;
     }
-      
+
+    my $primaryFlavor = $dump{flavor};
+
     my $port = Magus::Port->insert({ 
       run         => $run,
       name        => $dump{name}, 
@@ -71,6 +73,7 @@ sub sync {
       restricted  => $dump{restricted},
       www         => $dump{www},
       pkgname     => $dump{pkgname},
+      flavor      => $dump{flavor},
     });     
 
     $depends{$port->id} = [];
@@ -89,6 +92,43 @@ sub sync {
       print "\n\tIGNORE set.  Marking as skippped.";
       $port->set_result_skip("Port is marked as interactive.");
     }
+
+   foreach my $flav (@$flavors) {
+     $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml FLAVOR=$flav`;
+      if ($@) {
+        warn "Unable to parse yaml for $_[0]: $@\n";
+        continue;
+      }
+      
+      $port = Magus::Port->insert({ 
+      run         => $run,
+      name        => $dump{name}, 
+      version     => $dump{version},
+      description => $dump{description},
+      license     => join(" ", @{$dump{'license'}}),
+      restricted  => $dump{restricted},
+      www         => $dump{www},
+      pkgname     => $dump{pkgname},
+      flavor      => $dump{flavor},
+    }); 
+
+    $depends{$port->id} = [];
+    while (my ($type, $deps) = each %{$dump{'depends'}}) {
+      foreach my $dep (@$deps) {
+        my %dependsItem;
+        $dependsItem{name} = $dep;
+        $dependsItem{type} = $type;
+        push(@{$depends{$port->id}}, \%dependsItem);
+      }
+    }
+
+    $class->sync_categories(\%dump, $port, $arch);
+
+    if ($dump{is_interactive}) {
+      print "\n\tIGNORE set.  Marking as skippped.";
+      $port->set_result_skip("Port is marked as interactive.");
+    }
+   }
     
     print "done.\n";
   } root    => $root, nochdir => sub { warn "ERROR: no such port $_[0]\n" };

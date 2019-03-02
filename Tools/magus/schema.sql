@@ -136,6 +136,7 @@ CREATE TABLE  "ports" (
    "www"   text, 
    "status"   varchar(32) NOT NULL default 'untested',
    "updated"   timestamp NOT NULL default CURRENT_TIMESTAMP , 
+   "flavor" character varying(128),
    primary key ("id")
 )  ;
  CREATE OR REPLACE FUNCTION update_ports() RETURNS trigger AS '
