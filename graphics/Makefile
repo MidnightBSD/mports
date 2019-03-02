@@ -171,7 +171,6 @@ SUBDIR += prison
 SUBDIR += py-cairo
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
-SUBDIR += py3-cairo
 SUBDIR += qt4-iconengines
 SUBDIR += qt4-imageformats
 SUBDIR += qt4-opengl
