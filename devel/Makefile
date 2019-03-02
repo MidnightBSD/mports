@@ -494,6 +494,7 @@ SUBDIR += pth-hard
 SUBDIR += ptlib
 SUBDIR += py-Automat
 SUBDIR += py-Jinja2
+SUBDIR += py-apipkg
 SUBDIR += py-appdirs
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
