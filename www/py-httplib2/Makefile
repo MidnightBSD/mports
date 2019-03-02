@@ -1,9 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	httplib2
-PORTVERSION=	0.9.1
-DISTVERSIONPREFIX=	v
+PORTVERSION=	0.11.3
 CATEGORIES=	www python
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,8 +14,5 @@ LICENSE=	mit
 NO_ARCH=	yes
 USE_PYTHON=	autoplist distutils
 USES=		python
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	jcgregorio
 
 .include <bsd.port.mk>
