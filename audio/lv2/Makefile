@@ -2,6 +2,7 @@
 
 PORTNAME=	lv2
 PORTVERSION=	1.14.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://lv2plug.in/spec/
 
@@ -13,9 +14,9 @@ LICENSE_COMB=	multi
 # Only lv2specgen.py is under MIT
 LICENSE_FILE_isc=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml \
-		${PYTHON_PKGNAMEPREFIX}pygments>0:textproc/py-pygments \
-		${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygments>0:textproc/py-pygments@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib@${PY_FLAVOR}
 
 CONFLICTS_INSTALL=	lv2core
 
@@ -26,7 +27,7 @@ OPTIONS_DEFINE=	DOCS DOXYGEN EXAMPLES
 OPTIONS_SUB=	yes
 
 DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \
-			${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib
+			${PYTHON_PKGNAMEPREFIX}rdflib>0:textproc/py-rdflib@${PY_FLAVOR}
 DOXYGEN_CONFIGURE_ON=	--docs
 DOXYGEN_PORTDOCS=	*
 DOXYGEN_IMPLIES=	DOCS
