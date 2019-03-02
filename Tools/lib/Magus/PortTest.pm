@@ -117,7 +117,7 @@ sub run {
   $self->check_for_skip(\%results) && return \%results;
 
   
-  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall)) {
+  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall test)) {
     if (!$self->_run_make($target)) {
       my $error_code = $? >> 8;
       push(@{$results{errors}}, {
@@ -195,8 +195,10 @@ sub check_for_skip {
 sub _run_make {
   my ($self, $target) = @_;
 
+  my $flavor =  $self->{port}->{flavor};
+
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
-  return system("$MAKE $target >$self->{logdir}/$target 2>&1") == 0;
+  return system("$MAKE $target >$self->{logdir}/$target FLAVOR=$flavor 2>&1") == 0;
 }  
 
 
