@@ -2,7 +2,7 @@
 
 PORTNAME=	gnome-doc-utils
 PORTVERSION=	0.20.10
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -11,13 +11,13 @@ COMMENT=	GNOME doc utils
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
-		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2
-RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
-		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2 \
-		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
+BUILD_DEPENDS=	rarian-sk-config:textproc/rarian \
+		${PYTHON_SITELIBDIR}/libxml2mod.so:textproc/py-libxml2@${PY_FLAVOR}
+RUN_DEPENDS=	rarian-sk-config:textproc/rarian \
+		${PYTHON_SITELIBDIR}/libxml2mod.so:textproc/py-libxml2@${PY_FLAVOR} \
+		docbook-xml>0:textproc/docbook-xml
 
-USES=		gettext-tools:build,run gmake pathfix pkgconfig python:2 tar:xz
+USES=		gettext-tools:build,run gmake pathfix pkgconfig python:2.7 tar:xz
 USE_GNOME=	libxslt intlhack
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
