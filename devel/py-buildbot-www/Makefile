@@ -11,13 +11,13 @@ COMMENT=	Continuous Integration Framework (WWW)
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot>=${PORTVERSION}:devel/py-buildbot \
-		${PYTHON_PKGNAMEPREFIX}buildbot-pkg>=${PORTVERSION}:devel/py-buildbot-pkg \
-		${PYTHON_PKGNAMEPREFIX}mock>0.8.0:devel/py-mock
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-console-view>=${PORTVERSION}:devel/py-buildbot-console-view \
-		${PYTHON_PKGNAMEPREFIX}buildbot-grid-view>=${PORTVERSION}:devel/py-buildbot-grid-view \
-		${PYTHON_PKGNAMEPREFIX}buildbot-waterfall-view>=${PORTVERSION}:devel/py-buildbot-waterfall-view \
-		${PYTHON_PKGNAMEPREFIX}service_identity>=16.0.0:security/py-service_identity
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot>=${PORTVERSION}:devel/py-buildbot@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}buildbot-pkg>=${PORTVERSION}:devel/py-buildbot-pkg@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mock>0.8.0:devel/py-mock@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-console-view>=${PORTVERSION}:devel/py-buildbot-console-view@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}buildbot-grid-view>=${PORTVERSION}:devel/py-buildbot-grid-view@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}buildbot-waterfall-view>=${PORTVERSION}:devel/py-buildbot-waterfall-view@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}service_identity>=16.0.0:security/py-service_identity@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist distutils
