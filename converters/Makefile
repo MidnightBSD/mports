@@ -35,6 +35,7 @@ SUBDIR += php71-iconv
 SUBDIR += php71-mbstring
 SUBDIR += php71-recode
 SUBDIR += psiconv
+SUBDIR += py-webencodings
 SUBDIR += recode
 SUBDIR += ruby-dump.rb
 SUBDIR += unix2dos
