@@ -11,11 +11,12 @@ COMMENT=	Python interface to the Avahi mDNS system
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm \
-		${PYTHON_SITELIBDIR}/dbus/_dbus.py:${PORTSDIR}/devel/py-dbus
-LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm \
-		${PYTHON_SITELIBDIR}/dbus/_dbus.py:${PORTSDIR}/devel/py-dbus
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR} \
+		${PYTHON_SITELIBDIR}/dbus/_dbus.py:devel/py-dbus@${PY_FLAVOR}
+LIB_DEPENDS=	libavahi-client.so:net/avahi-app
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR} \
+		${PYTHON_SITELIBDIR}/dbus/_dbus.py:devel/py-dbus@${PY_FLAVOR} \
+		avahi-gtk>=0.7:net/avahi-gtk
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-python
@@ -25,19 +26,21 @@ PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	python
 
-USES+=		python:2
-USE_GNOME=	pygtk2
+USE_GNOME=	pygobject3 pygtk2 gtk30
+USES=		python:2.7
+USE_PYTHON=	flavors
+MANPAGES=	avahi-bookmarks.1 avahi-discover.1
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@pkglibdir@|${DATADIR}|' \
-	    	${WRKSRC}/avahi-python/avahi/ServiceTypeDatabase.py.in
+		${WRKSRC}/avahi-python/avahi/ServiceTypeDatabase.py.in
 
 pre-build:
-	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
-	    	Makefile ${MAKE_ARGS} clean
+	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
+		Makefile ${MAKE_ARGS} clean
 
 post-build:
-	@cd ${WRKSRC}/service-type-database && ${SETENV} ${MAKE_ENV} ${GMAKE} \
+	@cd ${WRKSRC}/service-type-database && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${ALL_TARGET}
 
 post-install:
