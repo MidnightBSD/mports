@@ -236,7 +236,6 @@ SUBDIR += linux-c7-qt
 SUBDIR += linux-c7-sdl12
 SUBDIR += linux-c7-sdl20
 SUBDIR += linux_libusb
-SUBDIR += llvm34
 SUBDIR += llvm39
 SUBDIR += llvm40
 SUBDIR += llvm60

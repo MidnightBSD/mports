@@ -5,7 +5,6 @@ COMMENT = Programming languages
 SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += bsh
-SUBDIR += clang34
 SUBDIR += cython
 SUBDIR += erlang
 SUBDIR += expect
