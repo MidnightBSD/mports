@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	boto
-PORTVERSION=	2.38.0
+PORTVERSION=	2.48.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,8 +15,8 @@ LICENSE=	mit
 
 NO_ARCH=	yes
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
-CONFLICTS=	p5-Net-Amazon-Route53-[0-9]*
+CONFLICTS_INSTALL=	p5-Net-Amazon-Route53-[0-9]*
 
 .include <bsd.port.mk>
