@@ -12,7 +12,7 @@ COMMENT=	Python Build Reasonableness
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
 
 NO_ARCH=	yes
 
