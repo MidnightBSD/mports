@@ -1,9 +1,10 @@
 # $MidnightBSD$
 
 PORTNAME=	libtorrent
-PORTVERSION=	0.13.6
+PORTVERSION=	0.13.7
+PORTREVISION=	1
 CATEGORIES=	net-p2p
-MASTER_SITES=	http://rtorrent.net/downloads/
+MASTER_SITES=	https://rtorrent.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BitTorrent Library
@@ -12,44 +13,37 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		does not build
+BROKEN_SSL=	openssl-devel
 
-CONFLICTS_INSTALL=	rblibtorrent-[0-9]* rblibtorrent-devel-[0-9]*
+USES=		autoreconf:build compiler:c++11-lang libtool pathfix pkgconfig ssl autotools
+#USE_AUTOTOOLS=	aclocal
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-debug
+CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto" OPENSSL_CFLAGS="-I\
+								${OPENSSLINC}"
+USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	IPV6 KQUEUE
+OPTIONS_DEFINE=	KQUEUE
 OPTIONS_DEFAULT=KQUEUE
 KQUEUE_DESC=	Use kqueue(2) support
 
-USES=		compiler:c++11-lang libtool pathfix pkgconfig ssl
-CONFIGURE_ARGS=	--disable-debug
-CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLBASE}/lib -ssl -crypto" OPENSSL_CFLAGS="-I${OPENSSLBASE}/include"
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
-
+# This makes sure that /usr/local/lib appears before /usr/lib when
+# linking libtorrent to avoid linking with base's libcrypto.
 MAKE_ARGS=	LDFLAGS="${LDFLAGS}"
 
-IPV6_CONFIGURE_ENABLE=	ipv6
 KQUEUE_CONFIGURE_WITH=	kqueue
 
 .include <bsd.port.pre.mk>
 
-# Disable amd64 atomic ops on i386 when using gcc
-# undefined reference to __sync_add_and_fetch_8
-# undefined reference to __sync_fetch_and_and_8
-.if ${ARCH} == "i386" && ${COMPILER_TYPE} == "gcc"
+# Disable instrumentation, which requires 64-bit atomic ops, on i386 (when
+# using gcc) and powerpc to avoid linking errors:
+# /usr/local/lib/libtorrent.so: undefined reference to `__sync_add_and_fetch_8'
+# /usr/local/lib/libtorrent.so: undefined reference to `__sync_fetch_and_and_8'
+.if ${ARCH} == i386 && ${CHOSEN_COMPILER_TYPE} == gcc || ${ARCH} == powerpc
 CONFIGURE_ARGS+=--disable-instrumentation
 .endif
 
-.if ${OSVERSION} >= 8000
-BUILD_DEPENDS+=	clang34:${PORTSDIR}/lang/clang34
-USE_CXXSTD=	c++11
-EXTRA_PATCHES+=	${FILESDIR}/extra-clang
-.endif
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|-O3|${CFLAGS}|' ${WRKSRC}/configure
-.if ${OSVERSION} >= 8000
 	@${FIND} ${WRKSRC} \( -name '*.h' -o -name '*.cc' \) -type f \
 		-exec ${REINPLACE_CMD} -e 's/tr1::/std::/g' {} \; \
 		-exec ${REINPLACE_CMD} -e 's/std::std::/std::/g' {} \; \
@@ -58,6 +52,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/\.assign/.fill/' \
 		${WRKSRC}/src/torrent/utils/extents.h \
 		${WRKSRC}/src/torrent/utils/log.cc
-.endif
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtorrent.so.20.0.0
 
 .include <bsd.port.post.mk>
