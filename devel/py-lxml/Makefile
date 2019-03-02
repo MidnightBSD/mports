@@ -3,7 +3,7 @@
 # $FreeBSD: head/devel/py-lxml/Makefile 377589 2015-01-21 12:16:36Z wg $
 
 PORTNAME=	lxml
-PORTVERSION=	3.6.0
+PORTVERSION=	4.1.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,9 +12,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2 \
-		libxslt.so:${PORTSDIR}/textproc/libxslt
+LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
+		libxslt.so:textproc/libxslt
 
 USES=		python uniquefiles:dirs
 USE_PYTHON=	autoplist concurrent distutils
@@ -26,9 +27,13 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOCS_FILES:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${FAKE_DESTDIR}${DOCSDIR}
+
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_MAN} ${DOCS_FILES:S,^,${WRKSRC}/,} ${DOCSDIR}
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${DOCSDIR}
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} \
+	-name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
