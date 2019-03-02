@@ -16,7 +16,7 @@ RUN_DEPENDS=	ninja:devel/ninja \
 		python2.7:lang/python27
 
 USES=		python:3.5+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist distutils noflavors
 NO_ARCH=	yes
 
 .include <bsd.port.mk>
