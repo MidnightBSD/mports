@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	oauth2
-PORTVERSION=	1.5.211
-PORTREVISION=	2
+DISTVERSION=	1.9.0.post1
 CATEGORIES=	net python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,10 +11,20 @@ COMMENT=	Python library for OAuth version 1.0
 
 LICENSE=	mit
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httplib2>0:${PORTSDIR}/www/py-httplib2
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httplib2>0:www/py-httplib2@${PY_FLAVOR}
+TEST_DEPENDS:=	${RUN_DEPENDS} \
+		${PYTHON_PKGNAMEPREFIX}coverage>0:devel/py-coverage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
-USES=		python:2
-USE_PYTHON=	distutils autoplist
+OPTIONS_DEFINE=		TESTS
+TESTS_DESC=		Install test suite requirements
+TESTS_BUILD_DEPENDS=	${TEST_DEPENDS}
+
+NO_ARCH=	yes
+USES=		python
+USE_PYTHON=	autoplist distutils
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
