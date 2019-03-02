@@ -1,10 +1,11 @@
---- setup.py.orig	2014-11-08 10:14:31.000000000 +0100
-+++ setup.py	2014-11-08 10:17:37.000000000 +0100
-@@ -96,26 +96,13 @@
+--- setup.py.orig	2016-12-09 14:36:08 UTC
++++ setup.py
+@@ -149,27 +149,14 @@ setup(
  		'bin/fail2ban-client',
  		'bin/fail2ban-server',
  		'bin/fail2ban-regex',
 -		'bin/fail2ban-testcases',
+ 		# 'bin/fail2ban-python', -- link (binary), will be installed via install_scripts_f2b wrapper
  	],
  	packages = [
  		'fail2ban',
@@ -27,14 +28,3 @@
  	},
  	data_files = [
  		('/etc/fail2ban',
-@@ -136,10 +123,6 @@
- 		),
- 		('/var/lib/fail2ban',
- 			''
--		),
--		('/usr/share/doc/fail2ban',
--			['README.md', 'README.Solaris', 'DEVELOP', 'FILTERS',
--			 'doc/run-rootless.txt']
- 		)
- 	],
- 	**setup_extra
