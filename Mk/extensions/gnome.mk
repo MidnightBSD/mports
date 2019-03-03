@@ -326,20 +326,20 @@ gtksourceview4_USE_GNOME_IMPL=gtk30 libxml2
 libgsf_LIB_DEPENDS=	libgsf-1.so:devel/libgsf
 libgsf_USE_GNOME_IMPL=	glib20 libxml2
 
-pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:devel/py-gobject
-pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:devel/py-gobject
+pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:devel/py-gobject@${PY_FLAVOR}
+pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:devel/py-gobject@${PY_FLAVOR}
 pygobject_USE_GNOME_IMPL=	glib20
 
-pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3
-pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3
+pygobject3_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
+pygobject3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
 pygobject3_USE_GNOME_IMPL=	glib20
 
-pygtk2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2
-pygtk2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2
+pygtk2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2@${PY_FLAVOR}
+pygtk2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2@${PY_FLAVOR}
 pygtk2_USE_GNOME_IMPL=	libglade2 pygobject
 
-pygnome2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2
-pygnome2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2
+pygnome2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2@${PY_FLAVOR}
+pygnome2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2@${PY_FLAVOR}
 pygnome2_USE_GNOME_IMPL=libgnomeui pygtk2
 
 intltool_BUILD_DEPENDS=	${LOCALBASE}/bin/intltool-extract:textproc/intltool
@@ -385,8 +385,8 @@ gnomesharp20_USE_GNOME_IMPL=	gnomevfs2 gtkhtml3 gtksharp20 librsvg2 vte
 libgnomekbd_LIB_DEPENDS=	libgnomekbd.so:x11/libgnomekbd
 libgnomekbd_USE_GNOME_IMPL=	gtk30 libxml2
 
-pygtksourceview_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview
-pygtksourceview_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview
+pygtksourceview_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview@${PY_FLAVOR}
+pygtksourceview_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview@${PY_FLAVOR}
 pygtksourceview_USE_GNOME_IMPL=	gtksourceview2 pygtk2
 
 gvfs_BUILD_DEPENDS=	gvfs>=0:devel/gvfs
