@@ -24,6 +24,7 @@ SUBDIR += gsl
 SUBDIR += lapack
 SUBDIR += ldouble
 SUBDIR += libqalculate
+SUBDIR += metis
 SUBDIR += mpc
 SUBDIR += mpfr
 SUBDIR += p5-Bit-Vector

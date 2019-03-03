@@ -1,0 +1,23 @@
+--- libmetis/CMakeLists.txt.orig	2013-03-30 16:24:45 UTC
++++ libmetis/CMakeLists.txt
+@@ -2,8 +2,13 @@
+ include_directories(.)
+ # Find sources.
+ file(GLOB metis_sources *.c)
++# Borrowed from metis-edf
++file(GLOB libmetis_h *.h)
+ # Build libmetis.
+ add_library(metis ${METIS_LIBRARY_TYPE} ${GKlib_sources} ${metis_sources})
++if(SHARED)
++  set_target_properties(metis PROPERTIES SOVERSION ${SHLIB_MAJOR})
++endif()
+ if(UNIX)
+   target_link_libraries(metis m)
+ endif()
+@@ -13,4 +18,6 @@ if(METIS_INSTALL)
+     LIBRARY DESTINATION lib
+     RUNTIME DESTINATION lib
+     ARCHIVE DESTINATION lib)
++#   Borrowed from metis-edf
++    install(FILES ${libmetis_h} DESTINATION include/libmetis)
+ endif()
