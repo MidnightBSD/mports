@@ -49,9 +49,7 @@ GALLIUM_DRIVERS+=	RADEONSI
 .if ${ARCH} == amd64 || ${ARCH} == i386
 DRI_DRIVERS+=		I915 I965
 GALLIUM_DRIVERS+=	SVGA
-. if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
 EXTRA_PATCHES+=	${PATCHDIR}/extra-src_mesa_drivers_dri_i965_intel__screen.c
-. endif
 .elif ${ARCH} == armv6 || ${ARCH} == aarch64
 GALLIUM_DRIVERS+=	FREEDRENO VC4
 . if ${ARCH} == armv6
