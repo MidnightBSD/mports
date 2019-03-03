@@ -44,12 +44,12 @@ PLIST_SUB=	INSTDIR=${INSTDIR}
 
 .include <bsd.mport.options.mk>
 
-RUN_DEPENDS+=	${LOCALBASE}/bin/pygmentize:${PORTSDIR}/textproc/py-pygments
+RUN_DEPENDS+=	${LOCALBASE}/bin/pygmentize:textproc/py-pygments@${PY_FLAVOR}
 
 # viewvc supports CVS and SVN, controlled with the parameter
 # cvs_roots (for CVS), svn_roots (for Subversion) in viewvc.conf
 .if ${PORT_OPTIONS:MSVN}
-RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/svn/__init__.py:${PORTSDIR}/devel/py-subversion
+RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/svn/__init__.py:devel/py-subversion@${PY_FLAVOR}
 .endif
 
 .if ${PORT_OPTIONS:MAPACHE}
@@ -57,22 +57,22 @@ USE_APACHE_RUN=	22+
 .endif
 
 .if ${PORT_OPTIONS:MLIGHTTPD}
-RUN_DEPENDS+=	lighttpd:${PORTSDIR}/www/lighttpd
+RUN_DEPENDS+=	lighttpd:www/lighttpd
 .endif
 
 .if ${PORT_OPTIONS:MMODPYTHON3}
-RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_python>=3.3:${PORTSDIR}/www/mod_python3
+RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_python>=3.3:www/mod_python3
 .endif
 
 .if ${PORT_OPTIONS:MMODWSGI3}
-RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_wsgi>=3.3:${PORTSDIR}/www/mod_wsgi3
+RUN_DEPENDS+=	${APACHE_PKGNAMEPREFIX}mod_wsgi>=3.3:www/mod_wsgi3
 .endif
 
 # This feature is a clone of the Mozilla Project's Bonsai database.
 # It catalogs every commit in the CVS or Subversion repository into a MYSQL database.
 # In fact, the databases are 100% compatible.
 .if ${PORT_OPTIONS:MMYSQL}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=0:${PORTSDIR}/databases/py-MySQLdb
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}MySQLdb>=0:databases/py-MySQLdb@${PY_FLAVOR}
 .endif
 
 pre-everything::
