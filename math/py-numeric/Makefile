@@ -2,7 +2,7 @@
 
 PORTNAME=	numeric
 PORTVERSION=	24.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	math python
 MASTER_SITES=	http://numpy.scipy.org/:doc \
 		SF/numpy/Old%20Numeric/${PORTVERSION}:source
@@ -16,7 +16,7 @@ COMMENT=	The Numeric Extension to Python
 
 LICENSE=	mit
 
-USES=		python
+USES=		python:2.7
 USE_PYTHON=	distutils autoplist
 
 WRKSRC=		${WRKDIR}/Numeric-${PORTVERSION}
