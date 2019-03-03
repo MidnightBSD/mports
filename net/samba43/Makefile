@@ -59,7 +59,7 @@ CONFIGURE_ARGS+=	--mandir="${MANPREFIX}/man" \
 # Flags
 CONFIGURE_ENV+=		PTHREAD_LDFLAGS="-lpthread"
 
-USES=			cpe compiler waf pkgconfig perl5 python:2 \
+USES=			cpe compiler waf pkgconfig perl5 python:2.7 \
 			execinfo readline iconv shebangfix
 USE_PERL5=		build
 USE_LDCONFIG=		${SAMBA4_LIBDIR}
@@ -71,45 +71,45 @@ PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 # XXX: Unconditional dependencies which can't be switched off(if present
 # in the system)
 # popt
-LIB_DEPENDS+=		libpopt.so:${PORTSDIR}/devel/popt
+LIB_DEPENDS+=		libpopt.so:devel/popt
 # inotify
-LIB_DEPENDS+=		libinotify.so:${PORTSDIR}/devel/libinotify
+LIB_DEPENDS+=		libinotify.so:devel/libinotify
 # SASL
-LIB_DEPENDS+=		libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
 # GNUTLS
-LIB_DEPENDS+=		libgcrypt.so:${PORTSDIR}/security/libgcrypt
-LIB_DEPENDS+=		libgnutls.so:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		libgcrypt.so:security/libgcrypt
+LIB_DEPENDS+=		libgnutls.so:security/gnutls
 # NFS4 ACL glue
-LIB_DEPENDS+=		libsunacl.so:${PORTSDIR}/sysutils/libsunacl
+LIB_DEPENDS+=		libsunacl.so:sysutils/libsunacl
 # Libarchive
-BUILD_DEPENDS+=		libarchive>=3.1.2:${PORTSDIR}/archivers/libarchive
-RUN_DEPENDS+=		libarchive>=3.1.2:${PORTSDIR}/archivers/libarchive
+BUILD_DEPENDS+=		libarchive>=3.1.2:archivers/libarchive
+RUN_DEPENDS+=		libarchive>=3.1.2:archivers/libarchive
 # External Samba dependencies
 # IDL compiler
-BUILD_DEPENDS+=		p5-Parse-Pidl>=4.3.1:${PORTSDIR}/devel/p5-Parse-Pidl
+BUILD_DEPENDS+=		p5-Parse-Pidl>=4.3.1:devel/p5-Parse-Pidl
 #
-BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
-RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython@${PY_FLAVOR}
+RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:dns/py-dnspython@${PY_FLAVOR}
 PLIST_SUB+=		PY_DNSPYTHON="@comment "
 #
-BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:${PORTSDIR}/devel/py-iso8601
-RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:${PORTSDIR}/devel/py-iso8601
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
+RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
 PLIST_SUB+=		PY_ISO8601="@comment "
 # talloc
-BUILD_DEPENDS+=		talloc>=2.1.5:${PORTSDIR}/devel/talloc
-RUN_DEPENDS+=		talloc>=2.1.5:${PORTSDIR}/devel/talloc
+BUILD_DEPENDS+=		talloc>=2.1.5:devel/talloc
+RUN_DEPENDS+=		talloc>=2.1.5:devel/talloc
 SAMBA4_BUNDLED_LIBS+=	!talloc
 # tevent
-BUILD_DEPENDS+=		tevent>=0.9.25:${PORTSDIR}/devel/tevent
-RUN_DEPENDS+=		tevent>=0.9.25:${PORTSDIR}/devel/tevent
+BUILD_DEPENDS+=		tevent>=0.9.25:devel/tevent
+RUN_DEPENDS+=		tevent>=0.9.25:devel/tevent
 SAMBA4_BUNDLED_LIBS+=	!tevent
 # tdb
-BUILD_DEPENDS+=		tdb>=1.3.8:${PORTSDIR}/databases/tdb
-RUN_DEPENDS+=		tdb>=1.3.8:${PORTSDIR}/databases/tdb
+BUILD_DEPENDS+=		tdb>=1.3.8:databases/tdb
+RUN_DEPENDS+=		tdb>=1.3.8:databases/tdb
 SAMBA4_BUNDLED_LIBS+=	!tdb
 # ldb
-BUILD_DEPENDS+=		ldb>=1.1.24:${PORTSDIR}/databases/ldb
-RUN_DEPENDS+=		ldb>=1.1.24:${PORTSDIR}/databases/ldb
+BUILD_DEPENDS+=		ldb>=1.1.24:databases/ldb
+RUN_DEPENDS+=		ldb>=1.1.24:databases/ldb
 SAMBA4_BUNDLED_LIBS+=	!ldb
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=	com_err
