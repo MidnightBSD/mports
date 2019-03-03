@@ -3,56 +3,30 @@
 # $MidnightBSD$
 
 PORTNAME=	rabbitmq-c
-PORTVERSION=	0.0.1
+PORTVERSION=	0.8.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	net
-MASTER_SITES=	http://hg.rabbitmq.com/rabbitmq-c/archive/:c \
-		http://hg.rabbitmq.com/rabbitmq-codegen/archive/:codegen
-DISTNAME=	${PORTNAME}-4e789c776a45
-DISTFILES=	4e789c776a45.tar.bz2:c \
-		821f5ee7b040.tar.bz2:codegen
-DIST_SUBDIR=	rabbitmq
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RabbitMQ C AMQP client library
 
-LICENSE=	gpl2 mpl
-LICENSE_COMB=	dual
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE-MIT
 
-BUILD_DEPENDS=	python:${PORTSDIR}/lang/python \
-		${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:${PORTSDIR}/devel/py-simplejson
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:devel/py-simplejson@${PY_FLAVOR}
 
 CONFLICTS=	rabbitmq-c-devel-[0-9]*
 
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-USES=		autoreconf gmake libtool python tar:bzip2
+USES=		cmake pathfix python tar:bzip2
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
+GH_ACCOUNT=	alanxz
 
-OPTIONS_DEFINE=	64BIT POPT
-64BIT_DESC=	Produce 64-bit library
+OPTIONS_DEFINE=	POPT
+OPTIONS_SUB=	yes
 POPT_DESC=	Popt support in tools
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:M64BIT}
-ONLY_FOR_ARCHS=		amd64
-ONLY_FOR_ARCHS_REASON=	64BIT option is set
-CONFIGURE_ARGS+=	--enable-64-bit
-.endif
-
-.if ${PORT_OPTIONS:MPOPT}
-LIB_DEPENDS+=	libpopt.so:${PORTSDIR}/devel/popt
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-PLIST_SUB+=	POPT=''
-CONFIGURE_ARGS+=	--with-popt
-.else
-PLIST_SUB+=	POPT='@comment '
-CONFIGURE_ARGS+=	--without-popt
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|rabbitmq-codegen|rabbitmq-codegen-821f5ee7b040|g' ${WRKSRC}/configure.ac
+POPT_LIB_DEPENDS=	libpopt.so:devel/popt
+POPT_CFLAGS=	-I${LOCALBASE}/include
+POPT_LDFLAGS=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
