@@ -12,13 +12,12 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
-USE_GNOME+=	libxml2
-USES+=		python:2
+USE_GNOME=	libxml2
+USES=		python gettext-runtime
 USE_PYTHON=	autoplist distutils
 
-PYTHON_VERSION= python2.7
-CPPFLAGS+=	`${PYTHON_VERSION}-config --cflags`
-LDFLAGS+=	-L${LOCALBASE}/lib `${PYTHON_VERSION}-config --libs`
+CPPFLAGS+=	`${PYTHON_CMD}-config --cflags`
+LDFLAGS+=	-L${LOCALBASE}/lib `${PYTHON_CMD}-config --libs`
 CONFIGURE_ARGS=	--with-iconv=${ICONV_PREFIX} \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-html-subdir=${PORTNAME} \
