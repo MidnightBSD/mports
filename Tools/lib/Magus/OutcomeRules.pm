@@ -164,6 +164,7 @@ use base qw(Magus::OutcomeRules::Base);
 = cut
 
 package Magus::OutcomeRules::test;
+
 use base qw(Magus::OutcomeRules::Base);
     
 
