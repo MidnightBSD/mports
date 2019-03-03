@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	meld
-PORTVERSION=	3.14.0
+PORTVERSION=	3.18.2
 CATEGORIES=	textproc devel python
 MASTER_SITES=	GNOME
 
@@ -9,18 +9,25 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME visual diff and merge tool
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-RUN_DEPENDS=	gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+BUILD_DEPENDS=	itstool:textproc/itstool
+RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		desktop-file-utils gettext python:2 shared-mime-info \
+USES=		desktop-file-utils gettext python:3.4+ shared-mime-info \
 		shebangfix tar:xz
 SHEBANG_FILES=	bin/meld
-USE_PYTHON=	distutils
-USE_GNOME=	gtksourceview3 pygobject3 intltool
+USE_PYTHON=	distutils noflavors
+USE_GNOME=	gtksourceview3 intltool libxml2:build pygobject3
 GLIB_SCHEMAS=	org.gnome.meld.gschema.xml
-PYDISTUTILS_INSTALLNOSINGLE=	yes
 PYDISTUTILS_INSTALL_TARGET=	--no-update-icon-cache --no-compile-schemas install
 INSTALLS_ICONS=	yes
+NO_ARCH=	yes
 
-.include <bsd.port.mk>
+PLIST_SUB=	PORTVER=${PORTVERSION}
+
+.include <bsd.port.pre.mk>
+
+PYDISTUTILS_INSTALLARGS=	-c -O1 --prefix=${TRUE_PREFIX} --root=${FAKE_DESTDIR}
+
+.include <bsd.port.post.mk>
