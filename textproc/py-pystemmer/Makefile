@@ -4,6 +4,7 @@
 
 PORTNAME=	pystemmer
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP \
 		http://snowball.tartarus.org/wrappers/
@@ -17,7 +18,7 @@ LICENSE=	mit bsd3
 LICENSE_COMB=	dual
 
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	cython distutils autoplist
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/Stemmer.so
