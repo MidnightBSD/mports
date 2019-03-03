@@ -511,7 +511,7 @@ vpx_IMPL=	good
 #      but without USE_PYTHON.
 PYTHON_PKGNAMEPREFIX?=	py*-
 
-python_DEPENDS=	multimedia/py-gstreamer
+python_DEPENDS=	multimedia/py-gstreamer@${PY_FLAVOR}
 python_NAME=	gstreamer
 python_GST_PREFIX=      ${PYTHON_PKGNAMEPREFIX}
 python_GST_SUFX=        # empty
