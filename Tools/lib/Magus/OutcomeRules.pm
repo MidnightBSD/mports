@@ -159,7 +159,12 @@ package Magus::OutcomeRules::reinstall;
 use base qw(Magus::OutcomeRules::Base);
 
 
+=head1 test rules
 
+= cut
+
+package Magus::OutcomeRules::test;
+use base qw(Magus::OutcomeRules::Base);
     
 
 1;
