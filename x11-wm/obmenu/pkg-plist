@@ -9,6 +9,4 @@ bin/obmenu
 %%DATADIR%%/mnu16.png
 %%DATADIR%%/mnu48.png
 %%DATADIR%%/obmenu.glade
-@dirrm %%DATADIR%%
-@dirrmtry %%PYTHON_SITELIBDIR%%
-@dirrmtry %%PYTHON_LIBDIR%%
+share/pixmaps/obmenu.png
