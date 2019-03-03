@@ -56,7 +56,7 @@ GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
 # https://github.com/mesonbuild/meson/issues/1994
 MAKE_JOBS_UNSAFE=yes
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH} == i386 || ${OSVERSION} <= 1100000
 MESON_ARGS=	-Denable-vala=no
