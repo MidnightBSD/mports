@@ -28,6 +28,7 @@ SUBDIR += libqalculate
 SUBDIR += metis
 SUBDIR += mpc
 SUBDIR += mpfr
+SUBDIR += openblas
 SUBDIR += p5-Bit-Vector
 SUBDIR += p5-Graph
 SUBDIR += p5-Math-Base36
