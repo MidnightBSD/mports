@@ -13,7 +13,7 @@ COMMENT=	RabbitMQ is an implementation of AMQP
 LICENSE=	mpl
 
 BUILD_DEPENDS=	erl:lang/erlang \
-		${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:devel/py-simplejson \
+		${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:devel/py-simplejson@${PY_FLAVOR} \
 		xmlto:textproc/xmlto \
 		zip:archivers/zip \
 		rsync:net/rsync
