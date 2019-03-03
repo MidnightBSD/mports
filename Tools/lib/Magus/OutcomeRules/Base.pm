@@ -95,7 +95,7 @@ sub warning :ATTR(CODE) {
   $class->warning_rules($rules);
 }
 
-sub test {
+sub execute {
   my ($class, $output) = @_;
   
   my %result = (

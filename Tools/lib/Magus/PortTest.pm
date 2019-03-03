@@ -117,7 +117,7 @@ sub run {
   $self->check_for_skip(\%results) && return \%results;
 
   
-  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall)) {
+  foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall test)) {
     if (!$self->_run_make($target)) {
       my $error_code = $? >> 8;
       push(@{$results{errors}}, {
@@ -139,7 +139,7 @@ sub run {
     
     my $testclass = "Magus::OutcomeRules::$target";
     
-    my $presults = $testclass->test(\$log);
+    my $presults = $testclass->execute(\$log);
     
     # update the summary if the phase results is worse than what we had.
     if ($results{summary} eq 'pass' || ($results{summary} eq 'warn' && $presults->{'summary'} ne 'pass')) {
