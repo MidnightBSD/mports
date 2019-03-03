@@ -1,6 +1,6 @@
 # $MidnightBSD$
 
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -15,10 +15,11 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
-USES=		python
-USE_GNOME=	vte pygtk2 intltool
+USES=		python:2.7
+USE_GNOME=	intltool pygtk2 vte
+USE_PYTHON=	flavors
 CONFIGURE_ARGS=	--enable-python \
-		--disable-freetypetest \
-		--disable-Bsymbolic
+		--disable-Bsymbolic \
+		--disable-freetypetest
 
 .include "${MASTERDIR}/Makefile"
