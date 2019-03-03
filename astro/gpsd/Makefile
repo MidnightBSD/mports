@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gpsd
-PORTVERSION=	3.14
+PORTVERSION=	3.17
 CATEGORIES=	astro geography
 MASTER_SITES=	SAVANNAH
 
@@ -11,28 +11,30 @@ COMMENT=	Daemon that monitors one or more GPSes attached to a host computer
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS+=	docbook-xsl>=0:textproc/docbook-xsl \
-		xsltproc:textproc/libxslt
-
-USES=		cpe pathfix pkgconfig python:2.7 scons
+USES=		cpe pathfix pkgconfig python:2.7 scons shebangfix
 CPE_VENDOR=	gpsd_project
 USE_PYTHON=	flavors
 USE_RC_SUBR=	gpsd
+SHEBANG_FILES=	*.py gps/*.py gegps xgps gpscat xgpsspeed gpsprof \
+		gpsfake
 
-MAKE_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig"
-MAKE_ENV=	DESTDIR="${FAKE_DESTDIR}"
+MAKE_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig" \
+		manbuild=no target_python="${PYTHON_CMD}"
+MAKE_ENV=	DESTDIR="${STAGEDIR}"
+PLIST_SUB=	PYTHON_EGGINFO=gps-${PORTVERSION}.egg-info
 
 OPTIONS_DEFINE=	AIVDM ASHTECH CPPBIND DBUS EARTHMATE EVERMORE FURY FV18 GARMIN \
 		GARMINTXT GEOSTAR GPSCLOCK IPV6 ITRAX MTK NAVCOM NCURSES \
 		NETFEED NMEA0183 NTP NTPSHM NTRIP OCEANSERVER ONCORE \
 		PASSTHROUGH PPS PROFILING RECONFIGURE RTCM104V2 RTCM104V3 \
 		SHMEXPORT SIRF SOCKEXPORT SUPERSTARII TIMING TNT TRIPMATE \
-		TSIP QTBIND UBLOX USB
+		TSIP QTBIND UBLOX USB X11
 OPTIONS_DEFAULT= AIVDM ASHTECH CPPBIND EARTHMATE EVERMORE FURY FV18 GARMIN \
 		GARMINTXT GEOSTAR GPSCLOCK ITRAX NAVCOM NCURSES NETFEED \
 		NMEA0183 NTP NTPSHM NTRIP OCEANSERVER ONCORE PASSTHROUGH \
 		RECONFIGURE RTCM104V2 RTCM104V3 SHMEXPORT SIRF SOCKEXPORT \
-		SUPERSTARII TIMING TNT TRIPMATE TSIP UBLOX USB
+		SUPERSTARII TIMING TNT TRIPMATE TSIP UBLOX USB X11
+OPTIONS_SUB=	yes
 
 AIVDM_DESC=		Aivdm support
 ASHTECH_DESC=		Ashtech support
@@ -107,12 +109,13 @@ RTCM104V3_MAKE_ARGS_OFF=	rtcm104v3=no
 NTP_MAKE_ARGS_OFF=	ntp=no
 NTPSHM_MAKE_ARGS_OFF=	ntpshm=no
 PPS_MAKE_ARGS_OFF=	pps=no
-PPS_IMPLIES=	NTPSHM
+PPS_IMPLIES=		NTPSHM
 
 # Export methods
 SOCKEXPORT_MAKE_ARGS_OFF=	socket_export=no
 DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
-DBUS_MAKE_ARGS=	dbus_export=yes
+DBUS_MAKE_ARGS=		dbus_export=yes
+DBUS_MAKE_ARGS_OFF=	dbus_export=no
 SHMEXPORT_MAKE_ARGS_OFF=	shm_export=no
 
 # Communication
@@ -126,25 +129,24 @@ TIMING_MAKE_ARGS_OFF=	timing=no
 
 # Client-side options
 NCURSES_MAKE_ARGS_OFF=	ncurses=no
-QTBIND_USE=	QT4=network
+NCURSES_USES=		ncurses
+QTBIND_USES=		qt:4
+QTBIND_USE=		QT=network,corelib
 QTBIND_MAKE_ARGS=	qt=yes
 QTBIND_MAKE_ARGS_OFF=	qt=no
 QTBIND_PLIST_SUB=	QTBIND=""
 QTBIND_PLIST_SUB_OFF=	QTBIND="@comment "
 RECONFIGURE_MAKE_ARGS_OFF=	reconfigure=no
 CPPBIND_MAKE_ARGS_OFF=	libgpsmm=no
+X11_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${PY_FLAVOR}
+#X11_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR}
+X11_USE=	GNOME=gtk30
 
 # Build control
 PROFILING_MAKE_ARGS=	profiling=yes
 
-# generates .py[co] files for installed modules
-# if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
-# with these files when module is imported from root user
-post-install:
-	(cd ${PREFIX} && \
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} && \
-	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
+do-install:
+	cd ${WRKSRC} && env DESTDIR=${FAKE_DESTDIR} scons install
 
 .include <bsd.port.mk>
