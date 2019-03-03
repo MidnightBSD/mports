@@ -14,9 +14,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	cups-config:${PORTSDIR}/print/cups
 RUN_DEPENDS=	cancel:${PORTSDIR}/print/cups \
-		${PYTHON_PKGNAMEPREFIX}pycups>0:${PORTSDIR}/print/py-pycups \
+		${PYTHON_PKGNAMEPREFIX}pycups>0:print/py-pycups@${PY_FLAVOR} \
 		bash:${PORTSDIR}/shells/bash \
-		${PYTHON_PKGNAMEPREFIX}httplib2>0:${PORTSDIR}/www/py-httplib2
+		${PYTHON_PKGNAMEPREFIX}httplib2>0:www/py-httplib2@${PY_FLAVOR}
 
 NO_ARCH=	yes
 NO_BUILD=	yes
