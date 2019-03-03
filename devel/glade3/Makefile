@@ -4,6 +4,7 @@
 
 PORTNAME=	glade3
 PORTVERSION=	3.8.5
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,17 +12,22 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User interface builder for GTK+/GNOME
 
-LICENSE=	gpl2
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	multi
+LICENSE_FILE_gpl2=	${WRKSRC}/COPYING.GPL
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LGPL
+
+CONFLICTS=	glade-3.*
+PORTSCOUT=	ignore
 
 INSTALLS_ICONS=	yes
 USE_GNOME=	gtk20 intltool libxml2 gnomedocutils
-USES=		gmake gettext libtool pathfix desktop-file-utils pkgconfig tar:xz
+USES=		gmake gettext libtool pathfix desktop-file-utils \
+		localbase:ldflags pkgconfig tar:xz
 INSTALLS_OMF=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 DOCSDIR=	${PREFIX}/share/doc/gladeui
 
@@ -34,7 +40,7 @@ GNOME_CONFIGURE_ENABLE=	gnome
 GNOME_USE=	GNOME=libgnomeui
 PYTHON_CONFIGURE_ENABLE=	python
 PYTHON_USE=	GNOME=pygtk2
-PUTHON_USES=	python:2
+PYTHON_USES=	python:2.7
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/glade3/bindings
