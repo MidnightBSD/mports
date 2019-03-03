@@ -2,10 +2,9 @@
 
 PORTNAME=	gtksourceview
 PORTVERSION=	2.10.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnome python
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/pygtksourceview/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/pygtksourceview/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pygtksourceview-${PORTVERSION}
 
@@ -14,7 +13,7 @@ COMMENT=	Python bindings for the version 2 of the GtkSourceView library
 
 LICENSE=	lgpl
 
-USES=		gmake libtool:keepla pathfix pkgconfig python tar:bzip2
+USES=		gmake libtool:keepla pathfix pkgconfig python:2.7 tar:bzip2
 USE_GNOME=	gnomeprefix gtksourceview2 pygtk2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-docs

@@ -14,7 +14,7 @@ COMMENT=	Python bindings to the Tk widget set
 
 LICENSE=	python
 
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	distutils autoplist allflavors
 USES=		python tar:xz tk
 
 CFLAGS+=	-I${LOCALBASE}/include/tcl8.6/generic/
