@@ -2015,6 +2015,18 @@ fake: build
 	@${TOUCH} ${TOUCH_FLAGS} ${INSTALL_COOKIE}
 .endif
 
+.if !target(do-test) && defined(TEST_TARGET)
+DO_MAKE_TEST?=  ${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
+do-test:
+        @(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
+                if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
+                        ${ECHO_MSG} "===> Tests failed unexpectedly."; \
+                        (${ECHO_CMD} "${TEST_FAIL_MESSAGE}") | ${FMT_80} ; \
+                        fi; \
+                ${FALSE}; \
+                fi)
+.endif
+
 # Disable package
 .if defined(NO_PACKAGE) && !target(package)
 package:
