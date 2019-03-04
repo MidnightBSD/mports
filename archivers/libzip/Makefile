@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libzip
-PORTVERSION=	1.3.2
+PORTVERSION=	1.5.1
 CATEGORIES=	archivers devel
 MASTER_SITES=	https://libzip.org/download/
 
@@ -13,10 +13,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CPE_VENDOR=	nih
 
-GNU_CONFIGURE=	yes
-USES=		cpe libtool pathfix perl5 tar:xz
-USE_PERL5=	build
+USES=		cmake:outsource cpe perl5 ssl tar:xz
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
+USE_PERL5=	test
+TEST_TARGET=	test
+
+CMAKE_OFF=	ENABLE_COMMONCRYPTO ENABLE_GNUTLS
 
 .include <bsd.port.mk>
