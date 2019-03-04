@@ -161,13 +161,18 @@ sub sync {
     my $port = Magus::Port->retrieve($id) || die "Got an invalid port in the depends list! ($id)";
 
     foreach my $item (@$depends) {
-      my $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => $item->{flavor});
+      my $fl = $item->{flavor};
+      if (length $fl < 1) {
+        $fl = "";
+      }
+      my $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => $fl);
      
-      if (!$depend) {
-		$depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => "");
+      if (!defined($depend) && length $fl) {
+        warn "\tMissing flavor for $port: $item->{name} with flavor: $fl\n");
+        $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => "");
       }
  
-      if (!$depend) {
+      if (!defined($depend)) {
         warn "\tMissing depend for $port: $item->{name}\n";
         $port->set_result_fail(qq(depend "$item->{name}" does not exist.));
         next PORT;
