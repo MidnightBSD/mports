@@ -29,7 +29,7 @@ _OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
 			install:300:pre install:500:do install:700:post  \
 			test:300:pre test:500:do test:700:post  \
 			package:300:pre package:500:do package:700:post \
-			stage:800:post
+			fake:800:post
 
 # Set the default values for the global options
 .if !defined(NOPORTDOCS) || defined(PACKAGE_BUILDING)
@@ -71,7 +71,8 @@ OPTIONS_DEFINE+=	${opt}
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
 _ALL_EXCLUDE=	${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} \
-		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}}
+		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}} \
+		${OPTIONS_EXCLUDE_${OPSYS}_${OSREL:R}}
 
 .for opt in ${OPTIONS_DEFINE:O:u}
 .  if !${_ALL_EXCLUDE:M${opt}}

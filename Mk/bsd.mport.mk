@@ -277,6 +277,44 @@ MAKE_ENV+=	TMPDIR="${TMPDIR}"
 CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
 .endif # defined(TMPDIR)
 
+QA_ENV+=                FAKE_DESTDIR=${FAKE_DESTDIR} \
+                                PREFIX=${TRUE_PREFIX} \
+                                LINUXBASE=${LINUXBASE} \
+                                LOCALBASE=${LOCALBASE} \
+                                "STRIP=${STRIP}" \
+                                TMPPLIST=${TMPPLIST} \
+                                CURDIR='${.CURDIR}' \
+                                FLAVOR=${FLAVOR} \
+                                FLAVORS='${FLAVORS}' \
+                                BUNDLE_LIBS=${BUNDLE_LIBS} \
+                                LDCONFIG_DIR="${LDCONFIG_DIR}" \
+                                PKGORIGIN=${PKGORIGIN} \
+                                LIB_RUN_DEPENDS='${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}' \
+                                UNIFIED_DEPENDS=${_UNIFIED_DEPENDS:C,([^:]*:[^:]*):?.*,\1,:O:u:Q} \
+                                PKGBASE=${PKGBASE} \
+                                LICENSE="${LICENSE}" \
+                                LICENSE_PERMS="${_LICENSE_PERMS}" \
+                                DISABLE_LICENSES="${DISABLE_LICENSES:Dyes}" \
+                                PORTNAME=${PORTNAME} \
+                                NO_ARCH=${NO_ARCH} \
+                                "NO_ARCH_IGNORE=${NO_ARCH_IGNORE}" \
+                                USE_RUBY=${USE_RUBY}
+.if !empty(USES:Mssl)
+QA_ENV+=                USESSSL=yes
+.endif
+.if !empty(USES:Mdesktop-file-utils)
+QA_ENV+=                USESDESKTOPFILEUTILS=yes
+.endif
+.if !empty(USES:Mlibtool*)
+QA_ENV+=                USESLIBTOOL=yes
+.endif
+.if !empty(USES:Mshared-mime-info)
+QA_ENV+=                USESSHAREDMIMEINFO=yes
+.endif
+.if !empty(USES:Mterminfo)
+QA_ENV+=                USESTERMINFO=yes
+.endif
+
 # Reset value from bsd.own.mk.
 .if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
 STRIP=	#none
@@ -2018,13 +2056,13 @@ fake: build
 .if !target(do-test) && defined(TEST_TARGET)
 DO_MAKE_TEST?=  ${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
 do-test:
-        @(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
-                if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
-                        ${ECHO_MSG} "===> Tests failed unexpectedly."; \
-                        (${ECHO_CMD} "${TEST_FAIL_MESSAGE}") | ${FMT_80} ; \
-                        fi; \
-                ${FALSE}; \
-                fi)
+	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
+		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
+			${ECHO_MSG} "===> Tests failed unexpectedly."; \
+			(${ECHO_CMD} "${TEST_FAIL_MESSAGE}") | ${FMT_80} ; \
+		fi; \
+		${FALSE}; \
+		fi)
 .endif
 
 # Disable package
@@ -2852,6 +2890,8 @@ install-message:
 .else
 	@${ECHO_MSG} -e "\033[1m===>  Installing ${PKGFILE} into ${DESTDIR}\033[0m"
 .endif
+test-message:
+	@${ECHO_MSG} -e "\033[1m===>  Testing for ${PKGNAME}\033[0m"
 package-message:
 	@${ECHO_MSG} -e "\033[1m===>  Building package for ${PKGNAME}\033[0m"
 update-message:
@@ -4220,6 +4260,33 @@ compress-man:
 .endif
 .endif
 
+.if !target(fake-qa)
+fake-qa:
+	@${ECHO_MSG} "====> Running Q/A tests (fake-qa)"
+	@${SETENV} ${QA_ENV} ${SH} ${SCRIPTSDIR}/qa.sh
+.if !defined(DEVELOPER)
+	@${ECHO_MSG} "/!\\ To run fake-qa automatically add DEVELOPER=yes to your environment /!\\"
+.endif
+.endif
+
+pretty-flavors-package-names: .PHONY
+.if empty(FLAVORS)
+	@${ECHO_CMD} "no flavor: ${PKGNAME}"
+.else
+.for f in ${FLAVORS}
+	@${ECHO_CMD} -n "${f}: "
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
+.endfor
+.endif
+
+flavors-package-names: .PHONY
+.if empty(FLAVORS)
+	@${ECHO_CMD} "${PKGNAME}"
+.else
+.for f in ${FLAVORS}
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -V PKGNAME
+.endfor
+.endif
 
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
@@ -4460,7 +4527,7 @@ ${_PORTS_DIRECTORIES}:
 # Please note that the order of the following targets is important, and
 # should not be modified.
 
-_TARGETS_STAGES=SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE INSTALL UPDATE
+_TARGETS_STAGES=SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD FAKE PACKAGE TEST INSTALL UPDATE
 
 _SANITY_SEQ=	100:pre-everything 150:check-makefile \
 				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
@@ -4520,6 +4587,11 @@ _FAKE_SEQ=		050:fake-message 100:fake-dir 200:apply-slist 250:pre-fake 300:fake-
 
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		995:check-fake
+.endif
+.if defined(DEVELOPER)
+_FAKE_SEQ+=    996:fake-qa
+.else
+fake-qa: fake
 .endif
 _TEST_DEP=		fake
 _TEST_SEQ=		100:test-message 150:test-depends 300:pre-test 500:do-test \
