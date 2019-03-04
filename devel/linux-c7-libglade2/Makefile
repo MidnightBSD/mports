@@ -8,7 +8,7 @@ CATEGORIES=	devel linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME glade library (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/usr/share/doc/${PORTNAME}-${PORTVERSION}/COPYING
 
 CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
