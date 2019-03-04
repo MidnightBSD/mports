@@ -3551,6 +3551,12 @@ lib-depends:
 		pattern="`${ECHO_CMD} $$lib | ${SED} -E -e 's/\./\\\\./g' -e 's/(\\\\)?\+/\\\\+/g'`"\
 		dir=$${i#*:}; \
 		target=$${i##*:}; \
+		case $${dir} in \
+                        *@*) \
+                                flavor=$${dir\#*@}; \
+                                dir=$${dir%@*}; \
+                                ;; \
+                esac; \
 		case $$dir in \
                 /*) pdir=$$dir ;; \
                 *) pdir=${PORTSDIR}/$$dir ;; \
