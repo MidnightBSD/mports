@@ -348,7 +348,7 @@ sub port_page {
   }
 
   $tmpl->param(
-    name      => $port->name,
+    port      => $port->name,
     flavor    => $port->flavor,
     pkgname   => $port->pkgname, 
     id        => $port->id,
