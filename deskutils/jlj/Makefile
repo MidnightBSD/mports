@@ -1,10 +1,5 @@
-# New ports collection makefile for:	jlj
-# Date created:				29 April 2001
-# Whom:					Pete Fritchman <petef@databits.net>
-#
 # $MidnightBSD$
 # $FreeBSD: ports/deskutils/jlj/Makefile,v 1.14 2006/09/30 18:05:59 bsam Exp $
-#
 
 PORTNAME=	jlj
 PORTVERSION=	2.12
@@ -15,11 +10,13 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jerry's command-line LiveJournal.com entry system
+
 LICENSE=	publicdom
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_PERL5_RUN=	yes
+USES=		perl5
+USE_PERL5=	run
 NO_BUILD=	yes
 SUB_FILES=	pkg-message
 
