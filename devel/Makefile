@@ -439,6 +439,7 @@ SUBDIR += p5-Test-Taint
 SUBDIR += p5-Test-Tester
 SUBDIR += p5-Test-Warn
 SUBDIR += p5-Test-YAML
+SUBDIR += p5-Test-YAML-Valid
 SUBDIR += p5-Test-utf8
 SUBDIR += p5-Test2-Harness
 SUBDIR += p5-Test2-Plugin-NoWarnings
