@@ -1,34 +1,27 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/rpm2cpio/Makefile,v 1.15 2004/02/06 13:10:42 trevor Exp $
+# Created by: Juergen Lock <nox@jelal.kn-bremen.de>
 
 PORTNAME=	rpm2cpio
-PORTVERSION=	1.3
-PORTREVISION=	0
+PORTVERSION=	1.4
 CATEGORIES=	archivers
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Convert .rpm files for extraction with gcpio, needs just perl
+COMMENT=	Convert .rpm files to cpio format
 
-LICENSE=	other
-#bsdish
+LICENSE=	bsd2
 
-NO_WRKSUBDIR=	yes
+CONFLICTS_INSTALL=	rpm4-*
 
-USE_GCPIO=	yes
-USE_PERL5=	yes
 NO_BUILD=	yes
-PLIST_FILES=	bin/rpm2cpio.pl
+NO_ARCH=	yes
 
-do-fetch:
-	@${DO_NADA}
-
-do-extract:
-	@${MKDIR} ${WRKSRC}
-	${PERL5} -p -e "if (1 .. 1) {s-^#!/usr/bin/perl-#!${PERL}-;}" ${FILESDIR}/${PORTNAME} >${WRKDIR}/${PORTNAME}
+PLIST_FILES=	bin/rpm2cpio.pl \
+		bin/rpm2cpio
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${PREFIX}/bin/${PORTNAME}.pl
+	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+# Also install as rpm2cpio.pl to not break existing scripts
+	${LN} -f ${STAGEDIR}${PREFIX}/bin/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}.pl
 
 .include <bsd.port.mk>
