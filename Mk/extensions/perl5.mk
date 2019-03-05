@@ -155,9 +155,6 @@ PERL_LEVEL=0
 
 # XXX parse USE_PERL=5.8 5.10+
 
-#
-# dependancies
-#
 PERL_NO_DEPENDS?= NO
 
 .if (${PERL_NO_DEPENDS:tu} == "NO") && !defined(_CORE_PERL)
@@ -171,9 +168,6 @@ RUN_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 .endif
 .endif
 
-#
-# Configure
-# 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}"
 
@@ -190,10 +184,10 @@ CONFIGURE_ENV+=	PERL_MM_USE_DEFAULT="YES"
 
 .if defined(PERL_MODBUILD)
 ALL_TARGET?=
-PL_BUILD?=		Build
+PL_BUILD?=	Build
 CONFIGURE_SCRIPT?=	Build.PL
 .if ${PORTNAME} != Module-Build
-BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:devel/p5-Module-Build
+BUILD_DEPENDS+=	${SITE_PERL}/Module/Build.pm:devel/p5-Module-Build
 .endif
 CONFIGURE_ARGS+= \
 	create_packlist=0 \
@@ -237,8 +231,8 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
-.if !target(do-configure)
-do-configure:	
+.    if !target(do-configure)
+do-configure:
 	@cd ${CONFIGURE_WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} \
 		${PERL5} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
@@ -249,22 +243,16 @@ do-configure:
 .endif
 .endif # defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 
-#
-# Build
-#
 .if defined(PERL_MODBUILD) && !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} ${ALL_TARGET})
 .endif
 
 
-#
-# Install
-#	
+
 .if defined(PERL_MODBUILD) && !target(do-install)
 do-install:
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
-		${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .endif
 
 #
@@ -292,5 +280,4 @@ check-latest:
 	fi
 .endif	
 
-.endif      # defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
-
+.endif # defined(_POSTMKINCLUDED)
