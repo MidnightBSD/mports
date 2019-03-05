@@ -1,19 +1,19 @@
-# Created by: Sergey Skvortsov <skv@protey.ru>
+# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
-PORTNAME=	Test-Taint
-PORTVERSION=	1.06
+PORTNAME=	Test-utf8
+PORTVERSION=	1.01
 PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Tools to test taintedness
+COMMENT=	Handy UTF-8 tests
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USES=		perl5
 USE_PERL5=	configure
+USES=		perl5
 
 .include <bsd.port.mk>

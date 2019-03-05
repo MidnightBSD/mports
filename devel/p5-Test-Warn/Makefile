@@ -1,17 +1,17 @@
-# Created by: Shell Hung <shell@shellhung.org>
-
-PORTNAME=	Test-Simple
-PORTVERSION=	1.302140
+PORTNAME=	Test-Warn
+PORTVERSION=	0.36
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Basic utilities for writing tests in perl
+COMMENT=	Perl extension to test methods for warnings
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
-LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Sub-Uplevel>=0.12:devel/p5-Sub-Uplevel
 
 NO_ARCH=	yes
 USES=		perl5

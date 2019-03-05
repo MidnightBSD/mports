@@ -437,6 +437,7 @@ SUBDIR += p5-Test-Simple
 SUBDIR += p5-Test-SubCalls
 SUBDIR += p5-Test-Taint
 SUBDIR += p5-Test-Tester
+SUBDIR += p5-Test-Warn
 SUBDIR += p5-Test-YAML
 SUBDIR += p5-Tie-IxHash
 SUBDIR += p5-Tie-Simple
