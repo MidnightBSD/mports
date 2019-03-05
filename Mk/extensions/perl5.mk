@@ -42,18 +42,6 @@ USE_PERL5?=	run build
 
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=		perl${PERL_BRANCH}
-# use true_prefix so that PERL will be right in faked targets.
-# this is historical.
-
-PERL_PREFIX?=		${LOCALBASE}
-SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=		${PERL_PREFIX}/${SITE_PERL_REL}
-SITE_ARCH_REL?=		${SITE_PERL_REL}/${PERL_ARCH}
-SITE_ARCH?=		${LOCALBASE}/${SITE_ARCH_REL}
-SITE_MAN3_REL?=		${SITE_PERL_REL}/man/man3
-SITE_MAN3?=		${PREFIX}/${SITE_MAN3_REL}
-SITE_MAN1_REL?=		${SITE_PERL_REL}/man/man1
-SITE_MAN1?=		${PREFIX}/${SITE_MAN1_REL}
 
 .if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
 PERL=			/usr/bin/perl
@@ -71,23 +59,13 @@ MAKE_ENV+=	PERL_USE_UNSAFE_INC=1
 
 QA_ENV+=	SITE_ARCH_REL=${SITE_ARCH_REL} LIBPERL=libperl.so.${PERL_VER}
 
-.if (${ARCH} == "amd64")
-.if ${OSVERSION} > 4015
-PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
-.else
-PERL_ARCH?=		${ARCH}-midnightbsd
-.endif
-.else
-.if (${ARCH} == "i386" && ${OSVERSION} > 4015)
+.if ${ARCH} == "i386"
 PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi-64int
 .else
-PERL_ARCH?=		${ARCH}-midnightbsd-64int
-.endif
+PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
 .endif
 
 PERL5=			${PERL}${PERL_VERSION}
-PERL_TEST_TARGET?=	test
-
 
 
 # PERL_CONFIGURE implies USE_PERL5
@@ -152,8 +130,18 @@ PERL_LEVEL=0
 .  endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
 
+# use true_prefix so that PERL will be right in faked targets.
+# this is historical.
+PERL_PREFIX?=		${LOCALBASE}
+SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
+SITE_PERL?=	${PERL_PREFIX}/${SITE_PERL_REL}
+SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}
+SITE_ARCH?=	${LOCALBASE}/${SITE_ARCH_REL}
+SITE_MAN3_REL?=	${SITE_PERL_REL}/man/man3
+SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
+SITE_MAN1_REL?=	${SITE_PERL_REL}/man/man1
+SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
 
-# XXX parse USE_PERL=5.8 5.10+
 
 PERL_NO_DEPENDS?= NO
 
@@ -254,7 +242,41 @@ do-build:
 do-install:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .endif
+PACKLIST_DIR?=	${PREFIX}/${SITE_ARCH_REL}/auto
 
+# In all those, don't use - before the command so that the user does
+# not wonder what has been ignored by this message "*** Error code 1 (ignored)"
+_USES_install+=	560:fix-perl-things
+fix-perl-things:
+# Remove FAKE_DESTDIR from .packlist and add the file to the plist.
+	@(if [ -d ${FAKE_DESTDIR}${PACKLIST_DIR} ] ; then \
+		${FIND} ${FAKE_DESTDIR}${PACKLIST_DIR} -name .packlist | while read f ; do \
+			${SED} -i '' 's|^${FAKE_DESTDIR}||' "$$f"; \
+			${ECHO} $$f | ${SED} -e 's|^${FAKE_DESTDIR}||' >> ${TMPPLIST}; \
+		done \
+	fi) || :
+
+# Starting with perl 5.20, the empty bootstrap files are not installed any more
+# by ExtUtils::MakeMaker.  As we don't need them anyway, remove them.
+# Module::Build continues to install them, so remove the files unconditionally.
+	@${FIND} ${FAKE_DESTDIR} -name '*.bs' -size 0 -delete || :
+
+# Some ports use their own way of building perl modules and generate
+# perllocal.pod, remove it here so that those ports don't include it
+# by mistake in their plists.  It is sometime compressed, so use a
+# shell glob for the removal.  Also, remove the directories that
+# contain it to not leave orphans directories around.
+	@${RM} ${FAKE_DESTDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/perllocal.pod* || :
+	@${RMDIR} -p ${FAKE_DESTDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH} 2>/dev/null || :
+# Starting at ExtUtils::MakeMaker 7.06 and Perl 5.25.1, the base README.pod is
+# no longer manified into a README.3, as the README.pod is installed and can be
+# read with perldoc, remove the README.3 files that may be generated.
+	@[ -d "${FAKE_DESTDIR}${SITE_MAN3}" ] && \
+		${FIND} ${FAKE_DESTDIR}${SITE_MAN3} -name '*::README.3' -delete || :
+# Starting at ExtUtils::MakeMaker 7.31_06 and Perl 5.27.1, the base README.pod is
+# no longer installed. So remove any that can be there.
+	@[ -d "${FAKE_DESTDIR}${PREFIX}/${SITE_PERL_REL}" ] && \
+		${FIND} ${FAKE_DESTDIR}${PREFIX}/${SITE_PERL_REL} -name README.pod -delete || :
 
 .  if !target(do-test) && (!empty(USE_PERL5:Mmodbuild*) || !empty(USE_PERL5:Mconfigure))
 TEST_TARGET?=	test
