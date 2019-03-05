@@ -168,7 +168,7 @@ sub sync {
       my $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => $fl);
      
       if (!defined($depend) && length $fl) {
-        warn "\tMissing flavor for $port: $item->{name} with flavor: $fl\n");
+        warn "\tMissing flavor for $port: $item->{name} with flavor: $fl\n";
         $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => "");
       }
  
