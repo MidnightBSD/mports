@@ -255,18 +255,17 @@ do-install:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .endif
 
-#
-# Convenience target for testing.
-#
-.if !target(test)
-.if (PERL_MODBUILD)
-test: build
-	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${PERL_TEST_TARGET}
-.else
-test: build
-	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} make ${PERL_TEST_TARGET}
-.endif
-.endif
+
+.  if !target(do-test) && (!empty(USE_PERL5:Mmodbuild*) || !empty(USE_PERL5:Mconfigure))
+TEST_TARGET?=	test
+TEST_WRKSRC?=	${BUILD_WRKSRC}
+do-test:
+.    if ${USE_PERL5:Mmodbuild*}
+	@cd ${TEST_WRKSRC}/ && ${SETENV} ${TEST_ENV} ${PERL5} ${PL_BUILD} ${TEST_TARGET} ${TEST_ARGS}
+.    elif ${USE_PERL5:Mconfigure}
+	@cd ${TEST_WRKSRC}/ && ${SETENV} ${TEST_ENV} ${MAKE_CMD} ${TEST_ARGS} ${TEST_TARGET}
+.    endif # USE_PERL5:Mmodbuild*
+.  endif # do-test
 
 
 .if !target(check-latest)
