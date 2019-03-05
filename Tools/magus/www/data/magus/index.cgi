@@ -348,7 +348,9 @@ sub port_page {
   }
 
   $tmpl->param(
-    port      => $port->name, 
+    name      => $port->name,
+    flavor    => $port->flavor,
+    pkgname   => $port->pkgname, 
     id        => $port->id,
     title     => "Magus // $port",
     desc      => $port->description,
@@ -493,6 +495,8 @@ sub search {
   my @results = map {{
     summary   => $_->status,
     port      => $_->name,
+    flavor    => $_->flavor,
+    pkgname   => $_->pkgname,
     version   => $_->version,
     arch      => $_->run->arch,
     id        => $_->id,
@@ -555,6 +559,8 @@ sub async_run_port_stats {
   my @results = map {{
     summary   => $_->status,
     port      => $_->name,
+    flavor    => $_->flavor,
+    pkgname   => $_->pkgname,
     version   => $_->version,
     arch      => $_->run->arch,
     id        => $_->id,

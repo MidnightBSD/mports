@@ -9,6 +9,7 @@
     <table class="table port-results">
     <thead>
     <tr>
+        <th>Flavor</th>
         <th>Version</th>
         <th>Run</th>
         <th>OSVersion</th>
@@ -21,6 +22,7 @@
     </thead>
 
     <tr class="<TMPL_VAR NAME=status>">
+        <td><TMPL_VAR NAME="flavor"></td>
         <td><TMPL_VAR NAME="version"></td>
         <td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
         <td><TMPL_VAR NAME="osversion"></td>
@@ -77,7 +79,8 @@
 <div class="col-md-3 col-md-offset-1">
 <h3>Links</h3>
 <ul class="depends">
-<li><a href="http://svnweb.midnightbsd.org/mports/trunk/<TMPL_VAR NAME=port>/" target="_blank">ViewVC</a></li>
+<li><a href="http://svnweb.midnightbsd.org/mports/trunk/<TMPL_VAR NAME=port>/" target="_blank">ViewVC (legacy)</a></li>
+<li><a href="https://github.com/midnightbsd/mports/tree/<TMPL_VAR NAME=port>/" target="_blank">GitHub</a></li>
 <TMPL_IF NAME="www">
 <li><a title="<TMPL_VAR NAME="www">" href="<TMPL_VAR NAME="www">" target="_blank">Homepage</a></li>
 <TMPL_ELSE>

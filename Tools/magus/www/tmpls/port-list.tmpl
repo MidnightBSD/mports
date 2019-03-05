@@ -1,8 +1,10 @@
 <table class="table table-striped result-list">
     <thead>
 	<tr>
-		<th>Port</th>
+		<th>Origin</th>
+                <th>Flavor</th>
 		<th>Version</th>
+                <th>Package Name</th>
 		<th>Status</th>
 		<th>Run</th>
 		<th>OSVersion</th>
@@ -14,8 +16,10 @@
     <tbody>
 	<TMPL_LOOP NAME=results>
 	<tr class="<TMPL_VAR NAME=summary>">
-		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></td>
+		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="name"></a></td>
+		<td><TMPL_VAR NAME=flavor></td>
 		<td><TMPL_VAR NAME=version></td>
+		<td><TMPL_VAR NAME=pkgname></td>
 		<td><TMPL_VAR NAME=summary></td>
 		<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME=run></a></td>
 		<td><TMPL_VAR NAME=osversion></td>
