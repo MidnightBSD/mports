@@ -2,6 +2,7 @@
 
 PORTNAME=	pkgconf
 PORTVERSION=	1.5.3
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/ \
 		http://files.etoilebsd.net/pkgconf/
@@ -10,6 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to help to configure compiler and linker flags
 
 LICENSE=	iscl
+
+TEST_DEPENDS=	kyua:devel/kyua
 
 USES=		tar:xz libtool pathfix
 GNU_CONFIGURE=	yes
@@ -20,6 +23,8 @@ CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:${PREFIX}/lib/
 		--with-system-libdir=/usr/lib \
 		--with-system-includedir=/usr/include
 MAKE_ARGS=	MANDIR="${MAN1PREFIX}/man/man1"
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${LN} -sf pkgconf ${STAGEDIR}${PREFIX}/bin/pkg-config
