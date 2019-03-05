@@ -101,18 +101,25 @@ sub create_db {
   my $dbh = $class->connect_db();
   $dbh->do(<<END_O_SQL);
 CREATE TABLE ports (
-  name text primary key,
-  version text,
+  id int primary key,
+  run int not null,
+  name varchar(128) not null,
+  pkgname varchar(128),
+  version varchar(32) not null,
   description text,
-  license text,
-  pkgname text
+  license varchar(64),
+  www text,
+  status varchar(32) not null default 'untested',
+  updated timestamp without time zone not null default now(),
+  restricted boolean not null default false,
+  flavor varchar(128)
 )
 END_O_SQL
   $dbh->do(<<END_O_SQL);
 CREATE TABLE depends (
-  port text, 
-  type text,
-  dependency text
+  port int, 
+  type int,
+  dependency varchar(10)
 );
 END_O_SQL
   $dbh->do(<<END_O_SQL);
