@@ -1,20 +1,26 @@
-# $MidnightBSD$
+# Created by: Anton Berezin <tobez@FreeBSD.org>
 
 PORTNAME=	Test-Base
-PORTVERSION=	0.60
+PORTVERSION=	0.89
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Test::Base - A Data Driven Testing Framework
-LICENSE=	perl
+COMMENT=	Data Driven Testing Framework
 
-BUILD_DEPENDS=	p5-Spiffy>=0.30:${PORTSDIR}/devel/p5-Spiffy \
-		p5-Test-Simple>=0.86:${PORTSDIR}/devel/p5-Test-Simple \
-		p5-Test-Deep>0:${PORTSDIR}/devel/p5-Test-Deep
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Spiffy>=0.40:devel/p5-Spiffy \
+		p5-Text-Diff>=0.35:textproc/p5-Text-Diff
+TEST_DEPENDS=	p5-Test-Deep>0:devel/p5-Test-Deep \
+		p5-YAML>=0:textproc/p5-YAML
+
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
