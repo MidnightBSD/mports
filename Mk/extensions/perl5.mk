@@ -43,56 +43,6 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=		perl${PERL_BRANCH}
 
-.if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
-PERL=			/usr/bin/perl
-CPAN_CMD?= 		/usr/bin/cpan
-_CORE_PERL=		yes
-.else
-PERL=			${PERL_PREFIX}/bin/perl
-CPAN_CMD?=		${PERL_PREFIX}/bin/cpan
-.  endif
-
-CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL} ac_cv_path_PERL_PATH=${PERL} \
-		PERL_USE_UNSAFE_INC=1
-
-MAKE_ENV+=	PERL_USE_UNSAFE_INC=1
-
-QA_ENV+=	SITE_ARCH_REL=${SITE_ARCH_REL} LIBPERL=libperl.so.${PERL_VER}
-
-.if ${ARCH} == "i386"
-PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi-64int
-.else
-PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
-.endif
-
-PERL5=			${PERL}${PERL_VERSION}
-
-
-# PERL_CONFIGURE implies USE_PERL5
-.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
-USE_PERL5=	yes
-.endif
-
-
-# USE_PERL5_(RUN|BUILD) implies USE_PERL5, USE_PERL5 => USE_PERL5_*
-.if defined(USE_PERL5_BUILD)
-USE_PERL5= ${USE_PERL5_BUILD}
-.elif defined(USE_PERL5_RUN)
-USE_PERL5= ${USE_PERL5_RUN}
-.elif defined(USE_PERL5)
-USE_PERL5_RUN=yes
-USE_PERL5_BUILD=yes
-.endif
-
-
-.if defined(USE_PERL) && ${USE_PERL5:tl} == "yes"
-USE_PERL5= ${PERL_BRANCH}
-.endif
-
-
-#
-# Perl version stuff.
-#
 .if ${OSVERSION} > 101001
 _DEFAULT_PERL_VERSION=	5.28.0
 .elif ${OSVERSION} > 9009
@@ -129,6 +79,11 @@ PERL_LEVEL=	${perl_major}${perl_minor}${perl_patch}
 PERL_LEVEL=0
 .  endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
+.if ${ARCH} == "i386"
+PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi-64int
+.else
+PERL_ARCH?=	${ARCH}-midnightbsd-thread-multi
+.endif
 
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
@@ -142,6 +97,68 @@ SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
 SITE_MAN1_REL?=	${SITE_PERL_REL}/man/man1
 SITE_MAN1?=	${PREFIX}/${SITE_MAN1_REL}
 
+.if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/cpan)
+PERL=		/usr/bin/perl
+CPAN_CMD?= 	/usr/bin/cpan
+_CORE_PERL=	yes
+.else
+PERL=		${PERL_PREFIX}/bin/perl
+CPAN_CMD?=	${PERL_PREFIX}/bin/cpan
+.  endif
+PERL5=		${PERL}${PERL_VERSION}
+CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL} ac_cv_path_PERL_PATH=${PERL} \
+		PERL_USE_UNSAFE_INC=1
+
+MAKE_ENV+=	PERL_USE_UNSAFE_INC=1
+
+QA_ENV+=	SITE_ARCH_REL=${SITE_ARCH_REL} LIBPERL=libperl.so.${PERL_VER}
+
+# Define the want perl first if defined
+.  if ${USE_PERL5:M5*}
+want_perl_sign=		${USE_PERL5:M5*:C|^[0-9.]+||}
+want_perl_ver=		${USE_PERL5:M5*:S|${want_perl_sign}$||}
+want_perl_major=	${want_perl_ver:C|\..*||}
+_want_perl_minor=	${want_perl_ver:S|^${want_perl_major}||:S|^.||:C|\..*||}
+_want_perl_patch=	${want_perl_ver:S|^${want_perl_major}||:S|^.${_want_perl_minor}||:S|^.||:C|\..*||}
+want_perl_minor=	${_want_perl_minor:S|^|000|:C|.*(...)|\1|}
+want_perl_patch=	${_want_perl_patch:S|^|00|:C|.*(..)|\1|}
+USE_PERL5_LEVEL=	${want_perl_major}${want_perl_minor}${want_perl_patch}
+.  endif
+
+# All but version
+_USE_PERL5=	${USE_PERL5:N5*}
+
+# Mask unspecified components. E.g. this way "5" will match any "5.x.x".
+.  if empty(_want_perl_minor)
+masked_PERL_LEVEL=	${PERL_LEVEL:C|(.....)$|00000|}
+.  elif empty(_want_perl_patch)
+masked_PERL_LEVEL=	${PERL_LEVEL:C|(..)$|00|}
+.  else
+masked_PERL_LEVEL=	${PERL_LEVEL}
+.  endif
+
+.  if defined(want_perl_sign)
+.    if ${want_perl_sign} == "+"
+.      if ${USE_PERL5_LEVEL} > ${masked_PERL_LEVEL}
+USE_PERL5_REASON?=	requires Perl ${want_perl_ver} or later, install lang/perl${want_perl_major}.${want_perl_minor:C|^0||} and try again
+IGNORE=	${USE_PERL5_REASON}
+.      endif # ${USE_PERL5_LEVEL} > ${masked_PERL_LEVEL}
+.    elif ${want_perl_sign} == ""
+.      if ${USE_PERL5_LEVEL} != ${masked_PERL_LEVEL}
+USE_PERL5_REASON?=	requires Perl ${want_perl_ver} exactly
+IGNORE=	${USE_PERL5_REASON}
+.      endif # ${USE_PERL5_LEVEL} != ${masked_PERL_LEVEL}
+.    elif ${want_perl_sign} == "-"
+.      if ${USE_PERL5_LEVEL} <= ${masked_PERL_LEVEL}
+USE_PERL5_REASON?=	requires a Perl version earlier than ${want_perl_ver}
+IGNORE=	${USE_PERL5_REASON}
+.      endif # ${USE_PERL5_LEVEL} <= ${masked_PERL_LEVEL}
+.    else # wrong suffix
+IGNORE=	improper use of USE_PERL5
+.    endif
+.  endif
+
+_USES_POST+=	perl5
 
 PERL_NO_DEPENDS?= NO
 
@@ -155,6 +172,28 @@ BUILD_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 RUN_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
 .endif
 .endif
+.endif
+
+.if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PERL5_POST_MK)
+_INCLUDE_USES_PERL5_POST_MK=	yes
+
+
+PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
+		PERL_VER=${PERL_VER} \
+		PERL_ARCH=${PERL_ARCH} \
+		PERL5_MAN1=man/man1 \
+		PERL5_MAN3=man/man3 \
+		SITE_PERL=${SITE_PERL_REL} \
+		SITE_ARCH=${SITE_ARCH_REL}
+
+SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
+				PERL_VER=${PERL_VER} \
+				PERL_ARCH=${PERL_ARCH} \
+				SITE_PERL=${SITE_PERL_REL} \
+				SITE_ARCH=${SITE_ARCH_REL} \
+				PERL5_MAN1=man/man1 \
+				PERL5_MAN3=man/man3 \
+				PERL=${PERL}
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}"
@@ -162,6 +201,8 @@ CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}"
 # XXX do we really want to store man pages here?
 .if !defined(_CORE_PERL)
 MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
+
+
 .endif
 
 .undef HAS_CONFIGURE
@@ -195,27 +236,10 @@ SKIP_FAKE_CHECK= 	.*\.packlist
 
 
 
-.endif      # !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
-.if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
-Perl_Post_Include=	perl.mk
 
-PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
-				PERL_VER=${PERL_VER} \
-				PERL_ARCH=${PERL_ARCH} \
-				PERL5_MAN1=man/man1 \
-				PERL5_MAN3=man/man3 \
-				SITE_PERL=${SITE_PERL_REL} \
-				SITE_ARCH=${SITE_ARCH_REL}
 
-SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
-				PERL_VER=${PERL_VER} \
-				PERL_ARCH=${PERL_ARCH} \
-				SITE_PERL=${SITE_PERL_REL} \
-				SITE_ARCH=${SITE_ARCH_REL} \
-				PERL5_MAN1=man/man1 \
-				PERL5_MAN3=man/man3 \
-				PERL=${PERL}
+
 
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
@@ -238,10 +262,10 @@ do-build:
 
 
 
-.if defined(PERL_MODBUILD) && !target(do-install)
+.    if defined(PERL_MODBUILD) && !target(do-install)
 do-install:
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
-.endif
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET})
+.  endif
 PACKLIST_DIR?=	${PREFIX}/${SITE_ARCH_REL}/auto
 
 # In all those, don't use - before the command so that the user does
@@ -252,7 +276,7 @@ fix-perl-things:
 	@(if [ -d ${FAKE_DESTDIR}${PACKLIST_DIR} ] ; then \
 		${FIND} ${FAKE_DESTDIR}${PACKLIST_DIR} -name .packlist | while read f ; do \
 			${SED} -i '' 's|^${FAKE_DESTDIR}||' "$$f"; \
-			${ECHO} $$f | ${SED} -e 's|^${FAKE_DESTDIR}||' >> ${TMPPLIST}; \
+			${ECHO} $$f | ${SED} -e 's|^${FAKE_DESTDIR}${PREFIX}||' >> ${TMPPLIST}; \
 		done \
 	fi) || :
 
