@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	IO-Compress
-PORTVERSION=	2.068
+PORTVERSION=	2.081
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:PMQS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,28 +12,16 @@ COMMENT=	Perl5 compression modules (bzip2, deflate, gzip, zlib, zip)
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-Compress-Raw-Bzip2>=2.068:${PORTSDIR}/archivers/p5-Compress-Raw-Bzip2 \
-		p5-Compress-Raw-Zlib>=2.068:${PORTSDIR}/archivers/p5-Compress-Raw-Zlib
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-Test-Pod>=1:${PORTSDIR}/devel/p5-Test-Pod
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Compress-Raw-Bzip2>=${PORTVERSION}:archivers/p5-Compress-Raw-Bzip2 \
+		p5-Compress-Raw-Zlib>=${PORTVERSION}:archivers/p5-Compress-Raw-Zlib
+TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod
 
-CONFLICTS=	p5-Compress-Zlib-2* p5-IO-Compress-Base-2* p5-IO-Compress-Zlib-2* p5-IO-Compress-Bzip2-2*
-
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
 USE_PERL5=	configure
 USES=		perl5
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} >= 501600
-PLIST_SUB+=	EXE_FILES="@comment "
-.else
-PLIST_SUB+=	EXE_FILES=""
-.endif
-
 post-patch:
-.if ${PERL_LEVEL} >= 501600
 	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
