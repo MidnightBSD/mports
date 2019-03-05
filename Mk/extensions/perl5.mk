@@ -299,7 +299,7 @@ fix-perl-things:
 	@(if [ -d ${FAKE_DESTDIR}${PACKLIST_DIR} ] ; then \
 		${FIND} ${FAKE_DESTDIR}${PACKLIST_DIR} -name .packlist | while read f ; do \
 			${SED} -i '' 's|^${FAKE_DESTDIR}||' "$$f"; \
-			${ECHO} $$f | ${SED} -e 's|^${FAKE_DESTDIR}${PREFIX}||' >> ${TMPPLIST}; \
+			${ECHO} $$f | ${SED} -e 's|^${FAKE_DESTDIR}${PREFIX}/||' >> ${TMPPLIST}; \
 		done \
 	fi) || :
 
