@@ -12,12 +12,12 @@ COMMENT=	version of JDK's `jar' command written entirely in C
 
 LICENSE=	gpl2
 
-USES=		gmake makeinfo tar:bzip2
+USES=		gmake makeinfo perl5 tar:bzip2
+USES_PERL5=	build
 WRKSRC=		${WRKDIR}/${PORTNAME}
 GNU_CONFIGURE=	yes
 PORTDOCS=	CHANGES ChangeLog NEWS README
 PLIST_FILES=	bin/fastjar bin/grepjar
-USE_PERL5_BUILD=	yes
 
 INFO=		fastjar
 
