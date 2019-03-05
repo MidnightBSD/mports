@@ -20,6 +20,8 @@ NO_BUILD=	yes
 
 WRKSRC=	${WRKDIR}/${FONTNAME}
 
+PLIST_SUB+=	FONTSDIR_REL=share/fonts/LinLibertineG
+
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}
 	cd ${WRKSRC} &&	\
