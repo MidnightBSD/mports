@@ -114,16 +114,16 @@ post-install:
 
 post-install-DCCIFD-on:
 .for sf in bin/dccif-test dcc/libexec/dccifd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${sf}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${sf}
 .endfor
 
 post-install-DCCD-on:
 .for sf in dcc/libexec/dump-clients dcc/libexec/dbclean \
 	dcc/libexec/dblist dcc/libexec/dccd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${sf}
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${sf}
 .endfor
 
 post-install-DCCM-on:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/dcc/libexec/dccm
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/dcc/libexec/dccm
 
 .include <bsd.port.mk>
