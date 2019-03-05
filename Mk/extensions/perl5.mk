@@ -159,24 +159,10 @@ IGNORE=	improper use of USE_PERL5
 .  endif
 
 _USES_POST+=	perl5
-
-PERL_NO_DEPENDS?= NO
-
-.if (${PERL_NO_DEPENDS:tu} == "NO") && !defined(_CORE_PERL)
-.if defined(USE_PERL5_BUILD)
-EXTRACT_DEPENDS+=${PERL5}:lang/${PERL_PORT}
-PATCH_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
-BUILD_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
-.endif
-.if defined(USE_PERL5) || defined(USE_PERL5_RUN)
-RUN_DEPENDS+=	${PERL5}:lang/${PERL_PORT}
-.endif
-.endif
 .endif
 
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PERL5_POST_MK)
 _INCLUDE_USES_PERL5_POST_MK=	yes
-
 
 PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 		PERL_VER=${PERL_VER} \
@@ -195,77 +181,114 @@ SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL5_MAN3=man/man3 \
 				PERL=${PERL}
 
-.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
-CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}"
-
 # XXX do we really want to store man pages here?
 .if !defined(_CORE_PERL)
 MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
-
-
 .endif
 
+.  if ${_USE_PERL5:Mmodbuild} || ${_USE_PERL5:Mmodbuildtiny}
+_USE_PERL5+=	configure
+ALL_TARGET?=	# empty
+CONFIGURE_ARGS+=--install_path lib="${TARGETDIR}/${SITE_PERL_REL}" \
+		--install_path arch="${TARGETDIR}/${SITE_PERL_REL}/${PERL_ARCH}" \
+		--install_path script="${TARGETDIR}/bin" \
+		--install_path bin="${TARGETDIR}/bin" \
+		--install_path libdoc="${MAN3PREFIX}/man/man3" \
+		--install_path bindoc="${MAN1PREFIX}/man/man1"
+CONFIGURE_SCRIPT?=	Build.PL
+PL_BUILD?=	Build
+CONFIGURE_ARGS+=--destdir ${FAKE_DESTDIR}
+DESTDIRNAME=	--destdir
+.    if ${_USE_PERL5:Mmodbuild}
+CONFIGURE_ARGS+=--perl="${PERL}"
+.      if ${PORTNAME} != Module-Build
+BUILD_DEPENDS+=	p5-Module-Build>=0.4206:devel/p5-Module-Build
+.      endif
+CONFIGURE_ARGS+=--create_packlist 1
+.    endif
+.    if ${_USE_PERL5:Mmodbuildtiny}
+.      if ${PORTNAME} != Module-Build-Tiny
+BUILD_DEPENDS+=	p5-Module-Build-Tiny>=0.039:devel/p5-Module-Build-Tiny
+.      endif
+CONFIGURE_ARGS+=--create_packlist 1
+.    endif
+.  elif ${_USE_PERL5:Mconfigure}
+CONFIGURE_ARGS+=INSTALLDIRS="site"
+.  endif # modbuild
+
+.  if ${_USE_PERL5:Mconfigure}
+_USE_PERL5+=	build run
+# Disable AutoInstall from attempting to install from CPAN directly in
+# the case of missing dependencies.  This causes the build to loop on
+# the build cluster asking for interactive input.
+CONFIGURE_ENV+= PERL_EXTUTILS_AUTOINSTALL="--skipdeps"
+.    if defined(BATCH) && !defined(IS_INTERACTIVE)
+CONFIGURE_ENV+=	PERL_MM_USE_DEFAULT="YES"
+.    endif # defined(BATCH) && !defined(IS_INTERACTIVE)
+.  endif # configure
+
+PERL_NO_DEPENDS?= NO
+
+.if (${PERL_NO_DEPENDS:tu} == "NO") && !defined(_CORE_PERL)
+.  if ${_USE_PERL5:Mextract}
+EXTRACT_DEPENDS+=	${PERL5_DEPEND}:lang/${PERL_PORT}
+.  endif
+
+.  if ${_USE_PERL5:Mpatch}
+PATCH_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
+.  endif
+
+.  if ${_USE_PERL5:Mbuild}
+BUILD_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
+.  endif
+
+.  if ${_USE_PERL5:Mrun}
+RUN_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
+.  endif
+
+.  if ${_USE_PERL5:Mtest}
+TEST_DEPENDS+=		${PERL5_DEPEND}:lang/${PERL_PORT}
+.  endif
+.endif
+
+.  if ${_USE_PERL5:Mconfigure}
+CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" LD="${CC}" PREFIX="${PREFIX}" \
+			INSTALLPRIVLIB="${PREFIX}/lib" INSTALLARCHLIB="${PREFIX}/lib"
+CONFIGURE_SCRIPT?=	Makefile.PL
+MAN3PREFIX?=		${PREFIX}/${SITE_PERL_REL}
+MAN1PREFIX?=		${PREFIX}/${SITE_PERL_REL}
 .undef HAS_CONFIGURE
 
-.if (defined(BATCH) && !defined(IS_INTERACTIVE))
-CONFIGURE_ENV+=	PERL_MM_USE_DEFAULT="YES"
-.endif
-
-.if defined(PERL_MODBUILD)
-ALL_TARGET?=
-PL_BUILD?=	Build
-CONFIGURE_SCRIPT?=	Build.PL
-.if ${PORTNAME} != Module-Build
-BUILD_DEPENDS+=	${SITE_PERL}/Module/Build.pm:devel/p5-Module-Build
-.endif
-CONFIGURE_ARGS+= \
-	create_packlist=0 \
-	install_path=lib="${TARGETDIR}/${SITE_PERL_REL}" \
-	install_path=arch="${TARGETDIR}/${SITE_PERL_REL}/${PERL_ARCH}" \
-	install_path=script="${TARGETDIR}/bin" \
-	install_path=bin="${TARGETDIR}/bin" \
-	install_path=libdoc="${MAN3PREFIX}/man/man3" \
-	install_path=bindoc="${MAN1PREFIX}/man/man1" 
-.else
-CONFIGURE_SCRIPT?=	Makefile.PL
-CONFIGURE_ARGS+=	INSTALLDIRS="site"
-SKIP_FAKE_CHECK= 	.*\.packlist
-.endif 
-.endif # defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
-
-
-
-
-
-
-
-
-
-
-.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 .    if !target(do-configure)
 do-configure:
+	@if [ -f ${SCRIPTDIR}/configure ]; then \
+		cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
+		${SCRIPTDIR}/configure; \
+	fi
 	@cd ${CONFIGURE_WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} \
-		${PERL5} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
-.if !defined(PERL_MODBUILD)
+		${PERL5} ${CONFIGURE_CMD} ${CONFIGURE_ARGS}
+.      if !${_USE_PERL5:Mmodbuild*}
 	@cd ${CONFIGURE_WRKSRC} && \
 		${PERL5} -pi -e 's/ doc_(perl|site|\$$\(INSTALLDIRS\))_install$$//' Makefile
-.endif
-.endif
-.endif # defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.      endif # ! modbuild
+.    endif # !target(do-configure)
+.  endif # configure
 
-.if defined(PERL_MODBUILD) && !target(do-build)
+.  if ${_USE_PERL5:Mmodbuild*}
+.    if !target(do-build)
 do-build:
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} ${ALL_TARGET})
-.endif
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${ALL_TARGET} ${MAKE_ARGS})
+.    endif # !target(do-build)
 
-
-
-.    if defined(PERL_MODBUILD) && !target(do-install)
+.    if !${USES:Mgmake}
+.      if !target(do-install)
 do-install:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET})
-.  endif
+.      endif # !target(do-install)
+.    endif # ! USES=gmake
+.  endif # modbuild
+
 PACKLIST_DIR?=	${PREFIX}/${SITE_ARCH_REL}/auto
 
 # In all those, don't use - before the command so that the user does
@@ -323,6 +346,6 @@ check-latest:
 	else \
 		${ECHO_MSG} "Cannot check for latest CPAN version: ${CPAN_CMD} not installed"; \
 	fi
-.endif	
+.endif
 
 .endif # defined(_POSTMKINCLUDED)
