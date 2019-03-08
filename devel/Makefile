@@ -594,6 +594,7 @@ SUBDIR += py-pytest-cov
 SUBDIR += py-pytest-flake8
 SUBDIR += py-pytest-mock
 SUBDIR += py-pytest-runner
+SUBDIR += py-pytest-xdist
 SUBDIR += py-pytz
 SUBDIR += py-ramlfications
 SUBDIR += py-setuptools
