@@ -9,8 +9,14 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to extract data from Macintosh BinHex files
 
-LICENSE=	gpl2
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+TEST_DEPENDS=	p5-File-Slurp>=0:devel/p5-File-Slurp \
+		p5-Test-Most>=0:devel/p5-Test-Most
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
