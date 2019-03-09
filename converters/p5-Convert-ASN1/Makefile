@@ -7,6 +7,7 @@
 
 PORTNAME=	Convert-ASN1
 PORTVERSION=	0.27
+PORTREVISION=	1
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -17,7 +18,7 @@ COMMENT=	Perl5 module to encode and decode ASN.1 data structures
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USES=	perl5
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
