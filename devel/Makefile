@@ -597,6 +597,7 @@ SUBDIR += py-pyflakes
 SUBDIR += py-pyrfc3339
 SUBDIR += py-pytest
 SUBDIR += py-pytest-cache
+SUBDIR += py-pytest-capturelog
 SUBDIR += py-pytest-cov
 SUBDIR += py-pytest-flake8
 SUBDIR += py-pytest-mock
