@@ -10,16 +10,16 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl class that implements conversion between arbitrary charsets
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=      artistic gpl
+LICENSE_COMB= dual
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Unicode/Map.pm:${PORTSDIR}/converters/p5-Unicode-Map \
-		${SITE_PERL}/${PERL_ARCH}/Unicode/String.pm:${PORTSDIR}/converters/p5-Unicode-String \
-		${SITE_PERL}/${PERL_ARCH}/Unicode/Map8.pm:${PORTSDIR}/converters/p5-Unicode-Map8 \
-		${SITE_PERL}/Jcode.pm:${PORTSDIR}/converters/p5-Jcode
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	ja-p5-Jcode>=0:japanese/p5-Jcode \
+		p5-Unicode-Map>=0:converters/p5-Unicode-Map \
+		p5-Unicode-Map8>=0:converters/p5-Unicode-Map8 \
+		p5-Unicode-String>=0:converters/p5-Unicode-String
 
-USE_PERL5=	yes
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
