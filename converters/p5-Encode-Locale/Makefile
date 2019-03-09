@@ -13,6 +13,7 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
