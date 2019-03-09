@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/comms/p5-Device-SerialPort/Makefile,v 1.9 2008/04/17 14:24:14 araujo Exp $
+# Created by: Nick Sayer <nsayer@FreeBSD.org>
 
 PORTNAME=	Device-SerialPort
 PORTVERSION=	1.040000
@@ -11,8 +10,13 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/0+$//}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for simple serial port control
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Device/SerialPort/SerialPort.so
 
 .include <bsd.port.mk>
