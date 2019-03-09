@@ -93,6 +93,7 @@ SUBDIR += p5-PPIx-Regexp
 SUBDIR += p5-PPIx-Utilities
 SUBDIR += p5-Parse-Syslog
 SUBDIR += p5-Perl-Critic
+SUBDIR += p5-Perl-MinimumVersion
 SUBDIR += p5-Pod-Escapes
 SUBDIR += p5-Pod-Markdown
 SUBDIR += p5-Pod-POM

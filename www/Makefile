@@ -87,6 +87,7 @@ SUBDIR += p5-HTTP-Message
 SUBDIR += p5-HTTP-Negotiate
 SUBDIR += p5-LWP-MediaTypes
 SUBDIR += p5-LWP-Protocol-https
+SUBDIR += p5-Mojolicious
 SUBDIR += p5-Mozilla-CA
 SUBDIR += p5-Plack
 SUBDIR += p5-Router-Simple
