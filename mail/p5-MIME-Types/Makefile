@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	MIME-Types
-PORTVERSION=	2.13
+PORTVERSION=	2.17
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,6 +10,10 @@ COMMENT=	Perl extension for determining MIME types
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+TEST_DEPENDS=	p5-Mojolicious>=0:www/p5-Mojolicious
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
