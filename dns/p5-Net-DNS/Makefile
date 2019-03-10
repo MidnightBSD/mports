@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: James FitzGibbon <jfitz@FreeBSD.org>
 
 PORTNAME=	Net-DNS
-PORTVERSION=	1.07
+PORTVERSION=	1.18
+PORTEPOCH=	1
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,33 +12,36 @@ COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
 
 LICENSE=	mit
 
-BUILD_DEPENDS=	p5-Digest-HMAC>=1.03:${PORTSDIR}/security/p5-Digest-HMAC
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-Digest-BubbleBabble>=0:${PORTSDIR}/security/p5-Digest-BubbleBabble \
-		p5-Test-Pod>=0:${PORTSDIR}/devel/p5-Test-Pod
+TEST_DEPENDS=	p5-Digest-BubbleBabble>=0:security/p5-Digest-BubbleBabble \
+		p5-Test-Pod>=0:devel/p5-Test-Pod
 
-OPTIONS_DEFINE=	GOST IDN IPV6 SSHFP
-GOST_DESC=	GOST support
+OPTIONS_DEFINE=	IDN IDN2 IPV6 SSHFP TSIG
+OPTIONS_DEFAULT=TSIG
+IDN_DESC=	International Domain Names support via Net::LibIDN
+IDN2_DESC=	International Domain Names support via Net::LibIDN2
 SSHFP_DESC=	SSH2 Fingerprint support
+TSIG_DESC=	Transaction Signature Support
+
+USES=		perl5
+USE_PERL5=	configure
 
 CONFIGURE_ARGS=	--no-IPv6-tests --no-online-tests
 NO_ARCH=	yes
-USES=		perl5
-USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
-GOST_BUILD_DEPENDS=	p5-Digest-GOST>=0.06:${PORTSDIR}/security/p5-Digest-GOST
-GOST_RUN_DEPENDS=	p5-Digest-GOST>=0.06:${PORTSDIR}/security/p5-Digest-GOST
-IDN_BUILD_DEPENDS=	p5-Net-LibIDN>=0.12:${PORTSDIR}/dns/p5-Net-LibIDN
-IDN_RUN_DEPENDS=	p5-Net-LibIDN>=0.12:${PORTSDIR}/dns/p5-Net-LibIDN
-SSHFP_BUILD_DEPENDS=	p5-Digest-BubbleBabble>=0.01:${PORTSDIR}/security/p5-Digest-BubbleBabble
-SSHFP_RUN_DEPENDS=	p5-Digest-BubbleBabble>=0.01:${PORTSDIR}/security/p5-Digest-BubbleBabble
+IDN_BUILD_DEPENDS=	p5-Net-LibIDN>=0.12:dns/p5-Net-LibIDN
+IDN_RUN_DEPENDS=	p5-Net-LibIDN>=0.12:dns/p5-Net-LibIDN
+IDN2_BUILD_DEPENDS=	p5-Net-LibIDN2>=1:dns/p5-Net-LibIDN2
+IDN2_RUN_DEPENDS=	p5-Net-LibIDN2>=1:dns/p5-Net-LibIDN2
+SSHFP_BUILD_DEPENDS=	p5-Digest-BubbleBabble>=0.01:security/p5-Digest-BubbleBabble
+SSHFP_RUN_DEPENDS=	p5-Digest-BubbleBabble>=0.01:security/p5-Digest-BubbleBabble
+TSIG_BUILD_DEPENDS=	p5-Digest-HMAC>=1.03:security/p5-Digest-HMAC
+TSIG_RUN_DEPENDS=	p5-Digest-HMAC>=1.03:security/p5-Digest-HMAC
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MIPV6} && ${PERL_LEVEL} < 502200
-BUILD_DEPENDS+=	p5-IO-Socket-IP>=0.32:${PORTSDIR}/net/p5-IO-Socket-IP
-RUN_DEPENDS+=	p5-IO-Socket-IP>=0.32:${PORTSDIR}/net/p5-IO-Socket-IP
+.if ${PORT_OPTIONS:MIPV6} && ${PERL_LEVEL} < 502504
+BUILD_DEPENDS+=	p5-IO-Socket-IP>=0.38:net/p5-IO-Socket-IP
+RUN_DEPENDS+=	p5-IO-Socket-IP>=0.38:net/p5-IO-Socket-IP
 .endif
 
 .include <bsd.port.post.mk>
