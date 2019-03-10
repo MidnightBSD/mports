@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: James FitzGibbon <jfitz@FreeBSD.org>
 
 PORTNAME=	Storable
-PORTVERSION=	2.51
-PORTREVISION=	0
+PORTVERSION=	3.11
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,10 +12,10 @@ COMMENT=	Persistency for perl data structures
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USE_PERL5=	yes
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-post-patch:
-	@${PERL} -pi -e '$$_="" if /MAN3PODS|INSTALLDIRS/' ${WRKSRC}/Makefile.PL
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Storable/Storable.so
 
 .include <bsd.port.mk>
