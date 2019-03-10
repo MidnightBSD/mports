@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	Class-Accessor
-PORTVERSION=	0.34
-PORTREVISION=	1
+PORTVERSION=	0.51
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,7 +12,8 @@ COMMENT=	Automated accessor generation
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
-
