@@ -1,19 +1,33 @@
-# $MidnightBSD$
+# Created by: Anton Berezin <tobez@FreeBSD.org>
 
 PORTNAME=	GSSAPI
 PORTVERSION=	0.28
 PORTREVISION=	1
 CATEGORIES=	security perl5
-MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	LWP/AGROLMS
+MASTER_SITES=	CPAN/LWP/AGROLMS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension providing access to the GSSAPIv2 library
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
+
+OPTIONS_DEFAULT=	GSSAPI_BASE
+OPTIONS_SINGLE=		GSSAPI
+OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
+
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal
+GSSAPI_MIT_USES=	gssapi:mit
+GSSAPI_MIT_VARS=	KRB5CONF=${KRB5_HOME}/bin/krb5-config
+GSSAPI_MIT_VARS_OFF=	KRB5CONF=${HEIMDAL_HOME}/bin/krb5-config
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%KRB5CONF%%|${KRB5CONF}|g' \
+	    ${WRKSRC}/Makefile.PL
 
 .include <bsd.port.mk>
