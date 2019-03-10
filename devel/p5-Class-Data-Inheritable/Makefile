@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-Class-Data-Inheritable/Makefile,v 1.8 2006/10/02 17:51:05 skv Exp $
+# Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	Class-Data-Inheritable
 PORTVERSION=	0.08
@@ -14,7 +13,8 @@ COMMENT=	Inheritable, overridable class data
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-USES=	perl5
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
