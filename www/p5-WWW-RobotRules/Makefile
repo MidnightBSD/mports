@@ -1,22 +1,23 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-WWW-RobotRules/Makefile,v 1.2 2011/04/19 17:50:25 culot Exp $
+# Created by: Frederic Culot <culot@FreeBSD.org>
 
 PORTNAME=	WWW-RobotRules
 PORTVERSION=	6.02
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ports@MidnightBSD>org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of robots.txt-derived permissions
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-URI>=1.10:${PORTSDIR}/net/p5-URI
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-URI>=1.10:net/p5-URI
 
-CONFLICTS=	p5-libwww-5*
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

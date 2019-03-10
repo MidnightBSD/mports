@@ -9,7 +9,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-level MVC web framework written in Perl
 
-LICENSE=	artistic
+LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	p5-Role-Tiny>=2.000001:devel/p5-Role-Tiny \

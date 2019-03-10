@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-LWP-MediaTypes/Makefile,v 1.2 2011/04/19 17:50:24 culot Exp $
+# Created by: Frederic Culot <culot@FreeBSD.org>
 
 PORTNAME=	LWP-MediaTypes
 PORTVERSION=	6.02
@@ -11,11 +10,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Guess media type for a file or a URL
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-CONFLICTS=	p5-libwww-5*
-
-USES=	perl5
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/p5-Mozilla-CA/Makefile 378550 2015-02-06 18:47:46Z pi $
-
 PORTNAME=	Mozilla-CA
-PORTVERSION=	20160104
+PORTVERSION=	20180117
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,6 +10,7 @@ COMMENT=	Perl extension for Mozilla CA cert bundle in PEM format
 LICENSE=	mpl
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

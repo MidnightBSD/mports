@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: clive
 
 PORTNAME=	Template-Toolkit
-PORTVERSION=	2.26
-PORTREVISION=	1
+PORTVERSION=	2.28
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	CPAN \
 		http://www.template-toolkit.org/download/
@@ -11,44 +10,41 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensive Toolkit for template processing
 
-LICENSE=	gpl artistic
-LICENSE_COMB=	multi
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	\
-		${SITE_PERL}/AppConfig.pm:${PORTSDIR}/devel/p5-AppConfig
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-AppConfig>=1.56:devel/p5-AppConfig
+TEST_DEPENDS=	p5-Image-Size>=0:graphics/p5-Image-Size \
+		p5-Pod-POM>=0:textproc/p5-Pod-POM
 
-OPTIONS=IMAGE_INFO	"With Image::Info Plugin"		off \
-	IMAGE_SIZE	"With Image::Size Plugin"		off \
-	DATE_CALC	"With Date::Calc Plugin"		off \
-	POD_POM		"With Pod::POM Plugin"			off
+USES=		perl5
 
-PERL_CONFIGURE=	yes
-CONFIGURE_ARGS+=	TT_ACCEPT=y
+USE_PERL5=	configure
+CONFIGURE_ARGS=	TT_ACCEPT=y
 
-MASTER_SITE_BACKUP+=	http://www.template-toolkit.org/download/
+OPTIONS_DEFINE=	DATE_CALC IMAGE_INFO IMAGE_SIZE POD_POM
+DATE_CALC_DESC=	Include Date::Calc Plugin
+IMAGE_INFO_DESC=Include Image::Info Plugin
+IMAGE_SIZE_DESC=Include Image::Size Plugin
+POD_POM_DESC=	Include Pod::POM Plugin
 
-.include <bsd.port.pre.mk>
+DATE_CALC_BUILD_DEPENDS=	p5-Date-Calc>=0:devel/p5-Date-Calc
+DATE_CALC_RUN_DEPENDS=		p5-Date-Calc>=0:devel/p5-Date-Calc
 
-.if defined(WITH_IMAGE_INFO)
-BUILD_DEPENDS+=${SITE_PERL}/Image/Info.pm:${PORTSDIR}/graphics/p5-Image-Info
-.endif
-.if defined(WITH_IMAGE_SIZE)
-BUILD_DEPENDS+=${SITE_PERL}/Image/Size.pm:${PORTSDIR}/graphics/p5-Image-Size
-.endif
-.if defined(WITH_DATE_CALC)
-BUILD_DEPENDS+=${SITE_PERL}/${PERL_ARCH}/Date/Calc.pm:${PORTSDIR}/devel/p5-Date-Calc
-.endif
-.if defined(WITH_POD_POM)
-BUILD_DEPENDS+=${SITE_PERL}/Pod/POM.pm:${PORTSDIR}/textproc/p5-Pod-POM
-.endif
+IMAGE_INFO_BUILD_DEPENDS=	p5-Image-Info>=0:graphics/p5-Image-Info
+IMAGE_INFO_RUN_DEPENDS=		p5-Image-Info>=0:graphics/p5-Image-Info
 
-.if defined(BATCH)
-CONFIGURE_ENV=	|
-.endif
+IMAGE_SIZE_BUILD_DEPENDS=	p5-Image-Size>=0:graphics/p5-Image-Size
+IMAGE_SIZE_RUN_DEPENDS=		p5-Image-Size>=0:graphics/p5-Image-Size
+
+POD_POM_BUILD_DEPENDS=	p5-Pod-POM>=0:textproc/p5-Pod-POM
+POD_POM_RUN_DEPENDS=	p5-Pod-POM>=0:textproc/p5-Pod-POM
 
 post-patch:
-	${PERL} -pi -e 's,/usr/local/tt2,${TARGETDIR}/share/tt2,g' \
-		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
+	@${REINPLACE_CMD} -e '/PREFIX/ s|/usr/local|${PREFIX}/share|' ${WRKSRC}/Makefile.PL
 
-.include <bsd.port.post.mk>
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Template/Stash/XS/XS.so
+
+.include <bsd.port.mk>
