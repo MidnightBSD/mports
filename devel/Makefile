@@ -444,6 +444,7 @@ SUBDIR += p5-Test-Differences
 SUBDIR += p5-Test-Exception
 SUBDIR += p5-Test-Fatal
 SUBDIR += p5-Test-Harness
+SUBDIR += p5-Test-LeakTrace
 SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-MockModule
 SUBDIR += p5-Test-Needs
