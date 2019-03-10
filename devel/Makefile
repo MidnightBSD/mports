@@ -446,6 +446,7 @@ SUBDIR += p5-Test-Fatal
 SUBDIR += p5-Test-Harness
 SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-MockModule
+SUBDIR += p5-Test-Needs
 SUBDIR += p5-Test-NoWarnings
 SUBDIR += p5-Test-Pod
 SUBDIR += p5-Test-Pod-Coverage
