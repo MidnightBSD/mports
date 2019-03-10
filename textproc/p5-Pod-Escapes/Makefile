@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Mathieu Arnold <m@absolight.net>
 
 PORTNAME=	Pod-Escapes
-PORTVERSION=	1.04
+PORTVERSION=	1.07
 CATEGORIES=	textproc devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,8 +9,10 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	For resolving Pod E<...> sequences
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
