@@ -1,16 +1,14 @@
-$FreeBSD$
-
---- Makefile.PL.orig	Fri May 24 17:51:36 2002
-+++ Makefile.PL	Fri May 24 17:52:52 2002
-@@ -5,6 +5,7 @@
- 
- require "./lib/Getopt/Long.pm";
- my $version = $Getopt::Long::VERSION_STRING || $Getopt::Long::VERSION;
+--- Makefile.PL.orig	2017-05-27 10:13:51 UTC
++++ Makefile.PL
+@@ -12,6 +12,7 @@ use ExtUtils::MakeMaker 5.0;
+ use lib "./lib";
+ use Getopt::Long;
+ my $version = "2.50";
 +my $leave_alone = 1;
  
- sub MY::postamble {
-     my $ret = "";
-@@ -18,7 +19,7 @@
+ my $mm_version = $ExtUtils::MakeMaker::VERSION;
+ if ($mm_version =~ /_/) {
+@@ -32,7 +33,7 @@ This manual page has a wrong name, and s
  I can add instructions to the Makefile to remove it when you
  install this version.
  EOD
@@ -19,7 +17,7 @@ $FreeBSD$
  	if ( $ans =~ /^y/i ) {
  	    $ret .= <<EOD;
  install ::
-@@ -37,7 +38,7 @@
+@@ -51,7 +52,7 @@ These should be removed.
  I can add instructions to the Makefile to remove them when you
  install this version.
  EOD
@@ -28,12 +26,3 @@ $FreeBSD$
  	if ( $ans =~ /^y/i ) {
  	    $ret .= <<EOD;
  install ::
-@@ -68,7 +69,7 @@
-         ABSTRACT => 'Module to handle parsing command line options',
-         ),
- 
--	INSTALLDIRS => 'perl',
-+	INSTALLDIRS => ($leave_alone ? 'site' : 'perl'),
- 	PM 	  => { "lib/newgetopt.pl"  => '$(INST_LIB)/newgetopt.pl',
- 		       "lib/Getopt/Long.pm" => '$(INST_LIB)/Getopt/Long.pm',
- #		       "perlcmdline.pod" => '$(INST_LIB)/pod/perlcmdline.pod',
