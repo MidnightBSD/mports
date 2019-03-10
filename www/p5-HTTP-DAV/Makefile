@@ -1,20 +1,23 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-HTTP-DAV/Makefile,v 1.5 2006/08/04 12:34:50 erwin Exp $
+# Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	HTTP-DAV
-PORTVERSION=	0.31
+PORTVERSION=	0.48
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	HTTP
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WebDAV client library
-LICENSE=        gpl2
-BUILD_DEPENDS=	${SITE_PERL}/XML/DOM.pm:${PORTSDIR}/textproc/p5-XML-DOM \
-		${SITE_PERL}/LWP.pm:${PORTSDIR}/www/p5-libwww
-RUN_DEPENDS=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-URI>0:net/p5-URI \
+		p5-XML-DOM>0:textproc/p5-XML-DOM \
+		p5-libwww>=5.48:www/p5-libwww
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

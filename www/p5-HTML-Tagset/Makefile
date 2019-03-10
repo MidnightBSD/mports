@@ -14,6 +14,8 @@ COMMENT=	Some useful data table in parsing HTML
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

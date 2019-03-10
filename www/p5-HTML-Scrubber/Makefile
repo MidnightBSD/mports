@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-HTML-Scrubber/Makefile,v 1.3 2004/05/28 02:10:57 foxfair Exp $
+# Created by: Foxfair Hu <foxfair@FreeBSD.org>
 
 PORTNAME=	HTML-Scrubber
-PORTVERSION=	0.15
+PORTVERSION=	0.17
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,11 +11,18 @@ COMMENT=	Perl extension for scrubbing/sanitizing html
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
-		${SITE_PERL}/${PERL_ARCH}/HTML/Parser.pm:${PORTSDIR}/www/p5-HTML-Parser
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-HTML-Parser>=3.47:www/p5-HTML-Parser
+TEST_DEPENDS=	p5-Test-CPAN-Meta>=0:devel/p5-Test-CPAN-Meta \
+		p5-Test-Differences>=0:devel/p5-Test-Differences \
+		p5-Test-EOL>=0:devel/p5-Test-EOL \
+		p5-Test-Memory-Cycle>=0:devel/p5-Test-Memory-Cycle \
+		p5-Test-NoTabs>=0:devel/p5-Test-NoTabs
 
-USE_PERL5=	yes
-PERL_MODBUILD=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

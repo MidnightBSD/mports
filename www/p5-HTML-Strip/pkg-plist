@@ -1,6 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/HTML/Strip.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/Strip/Strip.so
+%%SITE_ARCH%%/HTML/Strip.pm
+%%SITE_ARCH%%/auto/HTML/Strip/Strip.so
 %%PERL5_MAN3%%/HTML::Strip.3.gz
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/Strip
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/HTML
