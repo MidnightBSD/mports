@@ -1,26 +1,26 @@
-# $MidnightBSD$
+# Created by: Lars Eggert <lars.eggert@gmx.net>
 
 PORTNAME=	Net-XMPP
-DISTVERSION=	1.05
+PORTVERSION=	1.05
+PORTREVISION=	1
 CATEGORIES=	net-im perl5
 MASTER_SITES=	CPAN
-#MASTER_SITE_SUBDIR=	CPAN:DAPATRICK
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Net::XMPP provides Perl Developer access to the XMPP protocol
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-Authen-SASL>=2.12:${PORTSDIR}/security/p5-Authen-SASL \
-		p5-Digest-SHA>=5.95:${PORTSDIR}/security/p5-Digest-SHA \
-		p5-XML-Stream>=1.24:${PORTSDIR}/textproc/p5-XML-Stream
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-LWP-Online>=1.07:${PORTSDIR}/www/p5-LWP-Online \
-		p5-YAML-Tiny>=1.41:${PORTSDIR}/textproc/p5-YAML-Tiny
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Authen-SASL>=2.12:security/p5-Authen-SASL \
+		p5-XML-Stream>=1.24:textproc/p5-XML-Stream
+TEST_DEPENDS=	p5-LWP-Online>=1.07:www/p5-LWP-Online \
+		p5-YAML-Tiny>=1.41:textproc/p5-YAML-Tiny
 
+NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	modbuild
-PERL_MODBUILD=	yes
 
 .include <bsd.port.mk>
