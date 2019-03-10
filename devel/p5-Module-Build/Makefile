@@ -22,7 +22,6 @@ PORTSCOUT=	skipv:0.31011,0.31012
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	modbuild
-PERL_MODBUILD=        yes
 
 post-patch:
 	@${RM} ${WRKSRC}/bin/config_data
