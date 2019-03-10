@@ -1,5 +1,4 @@
-# $FreeBSD: ports/devel/p5-Class-Inspector/Makefile,v 1.13 2006/05/24 07:03:23 skv Exp $
-# $MidnightBSD$
+# Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	Class-Inspector
 PORTVERSION=	1.32
@@ -12,7 +11,10 @@ COMMENT=	Provides information about classes
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
