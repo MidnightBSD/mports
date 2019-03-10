@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-IO-stringy/Makefile,v 1.25 2005/02/15 16:57:53 skv Exp $
+# Created by: Eivind Eklund <eivind@FreeBSD.org>
 
 PORTNAME=	IO-stringy
 PORTVERSION=	2.111
@@ -12,7 +11,10 @@ COMMENT=	Use IO handles with non-file objects
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-PERL_CONFIGURE=	YES
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
