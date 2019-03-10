@@ -602,6 +602,7 @@ SUBDIR += py-pip
 SUBDIR += py-pluggy
 SUBDIR += py-ply
 SUBDIR += py-pkgconfig
+SUBDIR += py-pretend
 SUBDIR += py-py
 SUBDIR += py-pyasn1
 SUBDIR += py-pyasn1-modules
