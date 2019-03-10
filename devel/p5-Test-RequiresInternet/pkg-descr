@@ -1,0 +1,3 @@
+Test::RequiresInternet tests network connectivity before functional tests.
+
+WWW: https://metacpan.org/release/Test-RequiresInternet

@@ -1,0 +1,19 @@
+# Created by: Frederic Culot <culot@FreeBSD.org>
+
+PORTNAME=	Test-Weaken
+PORTVERSION=	3.022000
+PORTREVISION=	1
+CATEGORIES=	devel perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Test that freed memory objects were, indeed, freed
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
+
+.include <bsd.port.mk>
