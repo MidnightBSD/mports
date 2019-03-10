@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	CGI.pm
-PORTVERSION=	3.63
-PORTREVISION=	1
+PORTVERSION=	3.65
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
@@ -15,9 +12,13 @@ COMMENT=	Simple Common Gateway Interface Class for Perl
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+CONFLICTS_INSTALL=	p5-CGI p5-CGI-Fast
 
-.if !defined(NOPORTEXAMPLES)
+USES=		perl5
+USE_PERL5=	configure
+
+NO_ARCH=	yes
+
 EXAMPLES=	examples/caution.xbm examples/clickable_image.cgi \
 		examples/cookie.cgi examples/crash.cgi examples/customize.cgi \
 		examples/diff_upload.cgi examples/dna.small.gif \
@@ -29,19 +30,10 @@ EXAMPLES=	examples/caution.xbm examples/clickable_image.cgi \
 		examples/popup.cgi examples/save_state.cgi \
 		examples/tryit.cgi examples/wilogo.gif
 
-post-install:
-	@${MKDIR} ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${EXAMPLESDIR}
-	@${ECHO_MSG} "===> Examples installed in ${EXAMPLESDIR}."
-.endif
+OPTIONS_DEFINE=	EXAMPLES
 
-post-patch:
-	@${REINPLACE_CMD} -e '/require 5\.6/d; /INSTALLDIRS/d' ${WRKSRC}/Makefile.PL
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${EXAMPLES} ${FAKE_DESTDIR}${EXAMPLESDIR}
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 501400
-TEST_DEPENDS+=	p5-Test-Simple>=0.96:${PORTSDIR}/devel/p5-Test-Simple
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

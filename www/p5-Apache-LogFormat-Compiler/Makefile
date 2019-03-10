@@ -24,6 +24,5 @@ TEST_DEPENDS=	\
 USES=		perl5
 USE_PERL5=	modbuildtiny
 NO_ARCH=	YES
-PERL_MODBUILD=	yes
 
 .include <bsd.port.mk>
