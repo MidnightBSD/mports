@@ -1,19 +1,22 @@
-# $MidnightBSD$
+# Created by: mat
 
 PORTNAME=	DateTime-HiRes
 PORTVERSION=	0.01
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create DateTime objects with sub-second current time resolution
-LICENSE=	perl
 
-BUILD_DEPENDS:=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-DateTime>=0:${PORTSDIR}/devel/p5-DateTime \
-		p5-Time-HiRes>=0:${PORTSDIR}/devel/p5-Time-HiRes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_MODBUILD=	yes
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-DateTime>=0:devel/p5-DateTime
+
+USES=		perl5
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>
