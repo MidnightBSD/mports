@@ -21,7 +21,8 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 PLIST_SUB=	VERSION=${PORTVERSION:R}
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 USES=		charsetfix cpe gettext-runtime iconv libtool tar:xz
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	gettext-tools
@@ -31,7 +32,6 @@ CPE_VENDOR=	gnu
 
 OPTIONS_DEFINE=	DOCS THREADS
 OPTIONS_DEFAULT=THREADS
-OPTIONS_EXCLUDE_DragonFly=	THREADS
 
 DOCS_INFO=	gettext
 
