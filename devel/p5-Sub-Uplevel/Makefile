@@ -1,17 +1,20 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-Sub-Uplevel/Makefile,v 1.15 2008/02/18 15:48:28 erwin Exp $
-#
+# Created by: Erwin Lansing <erwin@FreeBSD.org>
 
 PORTNAME=	Sub-Uplevel
-PORTVERSION=	0.2002
+PORTVERSION=	0.2800
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Sub::Uplevel - apparently run a function in a higher stack frame
-LICENSE=	perl
+COMMENT=	Appear to run a function in a higher stack frame
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

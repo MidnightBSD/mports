@@ -21,6 +21,8 @@ USE_LDCONFIG=	yes
 PLATFORM=	linux-gcc-FreeBSD
 MAKE_ARGS=	platform=${PLATFORM}
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 33 || \
