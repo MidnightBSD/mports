@@ -624,6 +624,7 @@ SUBDIR += py-simplejson
 SUBDIR += py-singledispatch
 SUBDIR += py-six
 SUBDIR += py-subversion
+SUBDIR += py-sure
 SUBDIR += py-termcolor
 SUBDIR += py-tox
 SUBDIR += py-twisted
