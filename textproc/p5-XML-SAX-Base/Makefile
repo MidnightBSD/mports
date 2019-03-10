@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	XML-SAX-Base
-PORTVERSION=	1.08
+PORTVERSION=	1.09
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -9,10 +9,13 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base class SAX Drivers and Filters
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-CONFLICTS=	p5-XML-SAX-0.[0-8]* p5-XML-SAX-0.9[0-8]*
+CONFLICTS_INSTALL=	p5-XML-SAX-0.[0-8]* p5-XML-SAX-0.9[0-8]*
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USE_PERL5=	configure
+USES=		perl5
 
 .include <bsd.port.mk>
