@@ -1,21 +1,19 @@
-# New ports collection makefile for:	Algorithm::Diff
-# Date created:				04 Nov 2000
-# Whom:					will
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-Algorithm-Diff/Makefile,v 1.8 2006/09/22 10:08:39 tobez Exp $
-#
+# Created by: will
 
 PORTNAME=	Algorithm-Diff
-PORTVERSION=	1.1902
+PORTVERSION=	1.1903
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interface to compute differences between two objects
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
