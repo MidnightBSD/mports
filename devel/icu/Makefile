@@ -27,7 +27,8 @@ CONFIGURE_ARGS+=--with-data-packaging=archive \
 		--enable-static
 CPPFLAGS+=	-DICU_NO_USER_DATA_OVERRIDE
 MAKE_ARGS=	VERBOSE=1
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 USES+=		compiler:c++11-lib gmake pathfix tar:tgz
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/icu/source
