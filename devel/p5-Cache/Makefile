@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: Lars Thegler <lth@FreeBSD.org>
 
 PORTNAME=	Cache
 PORTVERSION=	2.11
@@ -17,7 +17,6 @@ RUN_DEPENDS=	p5-File-NFSLock>=1.2:devel/p5-File-NFSLock \
 		p5-IO-String>=1.02:devel/p5-IO-String \
 		p5-TimeDate>=2.24:devel/p5-TimeDate
 
-PERL_MODBUILD=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 
