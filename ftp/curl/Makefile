@@ -3,7 +3,7 @@
 PORTNAME=	curl
 PORTVERSION=	7.61.1
 CATEGORIES=	ftp www
-MASTER_SITES=	http://curl.haxx.se/download/ \
+MASTER_SITES=	https://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER?=	ports@MidnightBSD.org
