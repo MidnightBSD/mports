@@ -346,6 +346,7 @@ SUBDIR += p5-File-NFSLock
 SUBDIR += p5-File-Remove
 SUBDIR += p5-File-ShareDir
 SUBDIR += p5-File-ShareDir-Install
+SUBDIR += p5-File-Slurp
 SUBDIR += p5-File-Tail
 SUBDIR += p5-File-Temp
 SUBDIR += p5-Filesys-Notify-Simple
