@@ -11,7 +11,7 @@ COMMENT=	Qt4 GUI for cmake
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
+BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libexpat.so:textproc/expat2 \
 		libjsoncpp.so:devel/jsoncpp \
