@@ -1,16 +1,19 @@
-# $MidnightBSD$
+# Created by: Peter van Heusden <pvh@egenetics.com>
 
 PORTNAME=	Error
-PORTVERSION=	0.17024
+PORTVERSION=	0.17026
 CATEGORIES=	lang perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Perl module to provide Error/exception support for perl: Error
+COMMENT=	Error/exception handling in object-oriented programming style
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
