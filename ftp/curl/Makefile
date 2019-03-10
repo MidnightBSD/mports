@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.61.1
+PORTVERSION=	7.64.0
 CATEGORIES=	ftp www
 MASTER_SITES=	https://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
