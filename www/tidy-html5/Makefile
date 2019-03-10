@@ -1,14 +1,13 @@
 # Created by: Thierry Thomas <thierry@pompo.net>
-# $FreeBSD: head/www/tidy-html5/Makefile 454920 2017-11-26 20:44:33Z thierry $
 
 PORTNAME=	tidy-html5
 PORTVERSION=	5.6.0
 CATEGORIES=	www
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tidy tidies HTML and XML documents
 
-LICENSE=	MIT
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/README/LICENSE.md
 
 USE_GITHUB=	yes
