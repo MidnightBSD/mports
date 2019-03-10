@@ -445,6 +445,7 @@ SUBDIR += p5-Test-Pod
 SUBDIR += p5-Test-Pod-Coverage
 SUBDIR += p5-Test-Requires
 SUBDIR += p5-Test-RequiresInternet
+SUBDIR += p5-Test-Roo
 SUBDIR += p5-Test-Simple
 SUBDIR += p5-Test-SubCalls
 SUBDIR += p5-Test-Taint
