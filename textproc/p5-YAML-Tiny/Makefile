@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Yuan-Chung Hsiao <ychsiao@ychsiao.org>
 
 PORTNAME=	YAML-Tiny
-PORTVERSION=	1.69
+PORTVERSION=	1.73
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,7 +15,5 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
-
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
