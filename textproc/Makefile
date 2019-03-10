@@ -173,6 +173,7 @@ SUBDIR += py-markdown2
 SUBDIR += py-mistune
 SUBDIR += py-pygments
 SUBDIR += py-pystemmer
+SUBDIR += py-pytidylib
 SUBDIR += py-rdflib
 SUBDIR += py-snowballstemmer
 SUBDIR += py-sparqlwrapper

@@ -127,6 +127,7 @@ SUBDIR += squid
 SUBDIR += thttpd
 SUBDIR += tidy
 SUBDIR += tidy-devel
+SUBDIR += tidy-html5
 SUBDIR += tidy-lib
 SUBDIR += tomcat6
 SUBDIR += tomcat7
