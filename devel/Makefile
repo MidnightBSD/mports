@@ -617,6 +617,7 @@ SUBDIR += py-pytest-runner
 SUBDIR += py-pytest-xdist
 SUBDIR += py-pytz
 SUBDIR += py-ramlfications
+SUBDIR += py-scripttest
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools_darcs
 SUBDIR += py-setuptools_hg
