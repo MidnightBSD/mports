@@ -1,5 +1,2 @@
 %%SITE_PERL%%/Task/Weaken.pm
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Task/Weaken
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Task
-@dirrmtry %%SITE_PERL%%/Task/Weaken
-@dirrmtry %%SITE_PERL%%/Task
+%%PERL5_MAN3%%/Task::Weaken.3.gz
