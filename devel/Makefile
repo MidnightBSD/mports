@@ -346,6 +346,7 @@ SUBDIR += p5-ExtUtils-ParseXS
 SUBDIR += p5-File-Copy-Recursive
 SUBDIR += p5-File-Find-Object
 SUBDIR += p5-File-Find-Rule
+SUBDIR += p5-File-Find-Rule-Perl
 SUBDIR += p5-File-HomeDir
 SUBDIR += p5-File-NFSLock
 SUBDIR += p5-File-Remove

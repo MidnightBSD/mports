@@ -131,6 +131,7 @@ SUBDIR += p5-XML-SAX
 SUBDIR += p5-XML-SAX-Base
 SUBDIR += p5-XML-SAX-Expat
 SUBDIR += p5-XML-SAX-Writer
+SUBDIR += p5-XML-SemanticDiff
 SUBDIR += p5-XML-Simple
 SUBDIR += p5-XML-Stream
 SUBDIR += p5-XML-TreePP
