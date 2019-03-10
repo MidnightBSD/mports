@@ -1,8 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-HTTP-Negotiate/Makefile,v 1.2 2011/04/19 17:50:24 culot Exp $
+# Created by: Frederic Culot <culot@FreeBSD.org>
 
 PORTNAME=	HTTP-Negotiate
 PORTVERSION=	6.01
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,14 +10,14 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the HTTP content negotiation algorithm
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-HTTP-Message>=6:${PORTSDIR}/www/p5-HTTP-Message
-BUILD_DEPENDS:=	${RUN_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-HTTP-Message>=6:www/p5-HTTP-Message
 
-CONFLICTS=	p5-libwww-5*
-
-USES=	perl5
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

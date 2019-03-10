@@ -1,8 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/p5-HTTP-Date/Makefile,v 1.2 2011/04/19 17:50:24 culot Exp $
+# Created by: Frederic Culot <culot@FreeBSD.org>
 
 PORTNAME=	HTTP-Date
 PORTVERSION=	6.02
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,9 +13,8 @@ COMMENT=	Conversion routines for the HTTP protocol date formats
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-CONFLICTS=	p5-libwww-5*
-
-USES=	perl5
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
