@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: nork@cityfujisawa.ne.jp
 
 PORTNAME=	Digest-HMAC
 PORTVERSION=	1.03
@@ -10,9 +10,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to HMAC Message-Digest Algorithms
 
-LICENSE=        perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+NO_ARCH=	yes
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

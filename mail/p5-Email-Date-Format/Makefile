@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: Anton Yuzhaninov <citrin@rambler-co.ru>
 
 PORTNAME=	Email-Date-Format
 PORTVERSION=	1.005
@@ -12,6 +12,7 @@ COMMENT=	Produce RFC 2822 date strings
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
