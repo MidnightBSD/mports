@@ -149,6 +149,7 @@ SUBDIR += py-sqlite3
 SUBDIR += py-sqlite3dbm
 SUBDIR += py-sqlparse
 SUBDIR += py-sybase
+SUBDIR += pymongo
 SUBDIR += qdbm
 SUBDIR += qt4-mysql-plugin
 SUBDIR += qt4-odbc-plugin
