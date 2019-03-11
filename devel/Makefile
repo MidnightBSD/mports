@@ -459,6 +459,7 @@ SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-MockModule
 SUBDIR += p5-Test-Needs
 SUBDIR += p5-Test-NoWarnings
+SUBDIR += p5-Test-Output
 SUBDIR += p5-Test-Pod
 SUBDIR += p5-Test-Pod-Coverage
 SUBDIR += p5-Test-Requires
