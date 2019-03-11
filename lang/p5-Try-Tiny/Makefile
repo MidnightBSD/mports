@@ -12,6 +12,7 @@ COMMENT=	Minimal try/catch with proper localization of $$@
 
 LICENSE=	mit
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
