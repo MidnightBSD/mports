@@ -8,9 +8,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Run perl standard test scripts with statistics
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 
 PLIST_SUB=	P5_PREFIX="p5"
 

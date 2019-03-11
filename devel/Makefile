@@ -518,7 +518,6 @@ SUBDIR += pcre2
 SUBDIR += pcsc-lite
 SUBDIR += pear
 SUBDIR += performance
-SUBDIR += perltidy
 SUBDIR += php70-gettext
 SUBDIR += php70-intl
 SUBDIR += php70-json
