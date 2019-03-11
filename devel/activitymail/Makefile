@@ -9,9 +9,11 @@ MASTER_SITE_SUBDIR=	CPAN:DWHEELER/activitymail
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	Program for sending email messages for CVS repository commits
 
-LICENSE=        perl
+LICENSE=        artistic gpl
+LICENSE_COMB=	dual
 
-PERL_MODBUILD=	yes
+USES=		perl5
+USE_PERL5=	modbuild
 
 PLIST_FILES=	bin/activitymail \
 		man/man1/activitymail.1.gz
