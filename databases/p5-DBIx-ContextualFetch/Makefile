@@ -12,12 +12,14 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Add contextual fetches to DBI
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:databases/p5-DBI
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
 
