@@ -546,6 +546,7 @@ SUBDIR += py-apipkg
 SUBDIR += py-appdirs
 SUBDIR += py-asn1crypto
 SUBDIR += py-astroid
+SUBDIR += py-asyncio
 SUBDIR += py-atomiclong
 SUBDIR += py-atomicwrites
 SUBDIR += py-attrs
