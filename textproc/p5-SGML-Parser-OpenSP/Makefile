@@ -9,15 +9,19 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse SGML documents using OpenSP
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	onsgmls:textproc/opensp \
 		p5-Class-Accessor>=0:devel/p5-Class-Accessor \
 		p5-Test-Exception>=0:devel/p5-Test-Exception
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+
+USES=		perl5
 USE_DOS2UNIX=	yes
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 CC=		${CXX}
 CONFIGURE_ARGS+="INC=-I${LOCALBASE}/include"
 
