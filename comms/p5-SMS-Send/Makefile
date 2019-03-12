@@ -8,12 +8,15 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver-based API for sending SMS messages
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-Class-Adapter>=1.05:${PORTSDIR}/devel/p5-Class-Adapter \
-		p5-Params-Util>=1.00:${PORTSDIR}/devel/p5-Params-Util
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	p5-Class-Adapter>=1.05:devel/p5-Class-Adapter \
+		p5-Params-Util>=1.00:/devel/p5-Params-Util
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
