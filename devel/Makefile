@@ -387,6 +387,7 @@ SUBDIR += p5-Log-Any
 SUBDIR += p5-Log-Log4perl
 SUBDIR += p5-MRO-Compat
 SUBDIR += p5-Module-Build
+SUBDIR += p5-Module-Build-Tiny
 SUBDIR += p5-Module-CPANTS-Analyse
 SUBDIR += p5-Module-Find
 SUBDIR += p5-Module-Implementation
