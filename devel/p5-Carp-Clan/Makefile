@@ -8,10 +8,13 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Report errors from perspective of caller of a "clan" of modules
-LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Test/Exception.pm:${PORTSDIR}/devel/p5-Test-Exception
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	${SITE_PERL}/Test/Exception.pm:devel/p5-Test-Exception
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
