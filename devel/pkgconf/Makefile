@@ -12,13 +12,15 @@ COMMENT=	Utility to help to configure compiler and linker flags
 
 LICENSE=	iscl
 
-TEST_DEPENDS=	kyua:devel/kyua
+# circular dependency
+#TEST_DEPENDS=	kyua:devel/kyua
 
 USES=		tar:xz libtool pathfix
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 CONFIGURE_ARGS=	--with-pkg-config-dir=${PREFIX}/libdata/pkgconfig:${PREFIX}/lib/pkgconfig:/usr/libdata/pkgconfig \
 		--with-system-libdir=/usr/lib \
 		--with-system-includedir=/usr/include
