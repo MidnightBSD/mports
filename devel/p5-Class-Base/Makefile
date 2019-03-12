@@ -11,6 +11,7 @@ COMMENT=	Useful base class for deriving other modules
 
 LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
