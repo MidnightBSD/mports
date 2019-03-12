@@ -7,11 +7,13 @@ MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/J/JR/JROCKWAY
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Run code after a subroutine call, preserving the context the subroutine
 
-LICENSE=perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
