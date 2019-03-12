@@ -3,7 +3,7 @@
 
 PORTNAME=	Socket6
 PORTVERSION=	0.28
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,7 +13,8 @@ COMMENT=	IPv6 related part of the C socket.h defines and structure manipulators
 
 LICENSE=	bsd3
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 PLIST_FILES=	%%PERL5_MAN3%%/Socket6.3.gz \
 		%%SITE_PERL%%/%%PERL_ARCH%%/Socket6.pm \
