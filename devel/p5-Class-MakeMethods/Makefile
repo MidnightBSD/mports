@@ -9,9 +9,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/.$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate common types of methods
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 
 post-extract:
 		@${RM} ${WRKSRC}/benchmark.pl
