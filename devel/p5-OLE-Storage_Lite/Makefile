@@ -8,11 +8,14 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for OLE document interface
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-IO-stringy>=0:${PORTSDIR}/devel/p5-IO-stringy
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	p5-IO-stringy>=0:devel/p5-IO-stringy
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE= yes
+USES=		perl
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
