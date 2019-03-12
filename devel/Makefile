@@ -643,6 +643,7 @@ SUBDIR += py-subversion
 SUBDIR += py-sure
 SUBDIR += py-termcolor
 SUBDIR += py-tox
+SUBDIR += py-trollius
 SUBDIR += py-twisted
 SUBDIR += py-txaio
 SUBDIR += py-typing
