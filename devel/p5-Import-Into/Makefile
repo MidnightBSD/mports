@@ -16,12 +16,11 @@ COMMENT=	Import packages into other packages
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-Module-Runtime>=0:${PORTSDIR}/devel/p5-Module-Runtime
+BUILD_DEPENDS=	p5-Module-Runtime>=0:devel/p5-Module-Runtime
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
