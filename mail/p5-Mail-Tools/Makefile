@@ -10,11 +10,13 @@ DISTNAME=	MailTools-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules for dealing with Internet e-mail messages
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-TimeDate>=0:${PORTSDIR}/devel/p5-TimeDate
+RUN_DEPENDS=	p5-TimeDate>=0:devel/p5-TimeDate
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
