@@ -8,11 +8,14 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Figure out the names of variables passed into subroutines
-LICENSE=perl
 
-BUILD_DEPENDS=	p5-PadWalker>=0:${PORTSDIR}/devel/p5-PadWalker
-RUN_DEPENDS=	p5-PadWalker>=0:${PORTSDIR}/devel/p5-PadWalker
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	p5-PadWalker>=0:devel/p5-PadWalker
+RUN_DEPENDS=	p5-PadWalker>=0:devel/p5-PadWalker
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
