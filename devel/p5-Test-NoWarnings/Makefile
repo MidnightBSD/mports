@@ -8,9 +8,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hide and store warnings while running test scripts
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 
 OPTIONS_DEFINE=	DEVEL_STACKTRACE
 DEVEL_STACKTRACE_DESC=	Stack trace support
@@ -18,8 +21,8 @@ DEVEL_STACKTRACE_DESC=	Stack trace support
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDEVEL_STACKTRACE}
-BUILD_DEPENDS+=	p5-Devel-StackTrace>=0:${PORTSDIR}/devel/p5-Devel-StackTrace
-RUN_DEPENDS+=	p5-Devel-StackTrace>=0:${PORTSDIR}/devel/p5-Devel-StackTrace
+BUILD_DEPENDS+=	p5-Devel-StackTrace>=0:devel/p5-Devel-StackTrace
+RUN_DEPENDS+=	p5-Devel-StackTrace>=0:devel/p5-Devel-StackTrace
 .endif
 
 .include <bsd.port.mk>
