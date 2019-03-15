@@ -13,6 +13,6 @@ COMMENT=	NSNMP - fast, flexible, low-level, pure-Perl SNMP library
 LICENSE=	bsd3
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
