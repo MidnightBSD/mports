@@ -16,6 +16,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	MAKEINFO='makeinfo --no-split'
 INSTALL_TARGET=	install-strip
 
+NO_TEST=	yes
+
 INFO=		gsl-ref
 
 post-extract:

@@ -9,9 +9,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Module for merging hierarchies using the C3 algorithm
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_MODBUILD=	yes
+USES=		perl5
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>
 

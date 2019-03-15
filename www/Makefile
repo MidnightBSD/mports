@@ -108,6 +108,7 @@ SUBDIR += polipo
 SUBDIR += privoxy
 SUBDIR += py-autobahn
 SUBDIR += py-beaker
+SUBDIR += py-boto3
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
 SUBDIR += py-hyperlink

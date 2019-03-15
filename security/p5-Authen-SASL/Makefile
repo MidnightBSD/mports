@@ -13,13 +13,13 @@ COMMENT=	Perl5 module for SASL authentication
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	\
-	p5-Digest-MD5>0:${PORTSDIR}/security/p5-Digest-MD5 \
-	p5-Digest-HMAC>0:${PORTSDIR}/security/p5-Digest-HMAC
+BUILD_DEPENDS=	p5-Digest-MD5>0:security/p5-Digest-MD5 \
+	p5-Digest-HMAC>0:security/p5-Digest-HMAC
 
 OPTIONS=	KERBEROS "Enable Kerberos support" On
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 CONFIGURE_ENV+=	AUTOMATED_TESTING=yes
 
 .include <bsd.port.pre.mk>

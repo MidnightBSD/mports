@@ -13,9 +13,10 @@ COMMENT=	Get home directory for self or other users
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-File-Which>=0:${PORTSDIR}/sysutils/p5-File-Which
+RUN_DEPENDS=	p5-File-Which>=0:sysutils/p5-File-Which
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

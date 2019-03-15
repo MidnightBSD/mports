@@ -13,6 +13,7 @@ COMMENT=	Perl module to access BSD resource limit and priority functions
 LICENSE=	gpl artistic
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

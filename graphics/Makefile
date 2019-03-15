@@ -139,6 +139,7 @@ SUBDIR += mesa-dri
 SUBDIR += mesa-libs
 SUBDIR += ming
 SUBDIR += netpbm
+SUBDIR += nvidia-texture-tools
 SUBDIR += ocrad
 SUBDIR += opencv
 SUBDIR += opencv-core

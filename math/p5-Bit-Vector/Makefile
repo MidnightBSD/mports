@@ -8,11 +8,14 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of advanced math functions that includes a Perl OO module
-LICENSE=	perl
 
-RUN_DEPENDS=	${SITE_PERL}/Carp/Clan.pm:${PORTSDIR}/devel/p5-Carp-Clan
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+RUN_DEPENDS=	${SITE_PERL}/Carp/Clan.pm:devel/p5-Carp-Clan
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

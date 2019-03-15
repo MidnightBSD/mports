@@ -16,9 +16,10 @@ COMMENT=	Generate world unique message-ids
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	${SITE_PERL}/Email/Address.pm:${PORTSDIR}/mail/p5-Email-Address
+BUILD_DEPENDS=	${SITE_PERL}/Email/Address.pm:mail/p5-Email-Address
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

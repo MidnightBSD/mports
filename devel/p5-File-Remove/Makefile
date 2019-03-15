@@ -14,6 +14,7 @@ COMMENT=	Perl5 module to easily removes files and directories
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	YES
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

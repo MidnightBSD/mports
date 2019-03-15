@@ -11,11 +11,11 @@ COMMENT=	Perl5 interface to the MD5 algorithm
 
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Digest.pm:${PORTSDIR}/security/p5-Digest
+BUILD_DEPENDS=	${SITE_PERL}/Digest.pm:security/p5-Digest
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.pre.mk>
 

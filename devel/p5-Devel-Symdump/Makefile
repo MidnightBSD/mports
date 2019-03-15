@@ -10,9 +10,12 @@ PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-2.08
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A perl5 module that dumps symbol names or the symbol table
-LICENSE=	perl
+COMMENT=	perl5 module that dumps symbol names or the symbol table
 
-PERL_CONFIGURE=	YES
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

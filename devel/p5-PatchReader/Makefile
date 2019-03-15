@@ -19,13 +19,13 @@ COMMENT=	Perl module with utilities to read and manipulate patches and CVS
 LICENSE=	perl
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
+BUILD_DEPENDS+=	${SITE_PERL}/File/Temp.pm:devel/p5-File-Temp
+RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:devel/p5-File-Temp
 .endif
 
 .include <bsd.port.post.mk>

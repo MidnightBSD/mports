@@ -16,6 +16,7 @@ LICENSE_COMB=	dual
 RUN_DEPENDS=	p5-threads>=1.75:${PORTSDIR}/devel/p5-threads
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

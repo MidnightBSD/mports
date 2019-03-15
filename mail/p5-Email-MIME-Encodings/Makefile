@@ -17,9 +17,10 @@ COMMENT=	Unified interface to MIME encoding and decoding
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-MIME-Base64>3.05:${PORTSDIR}/converters/p5-MIME-Base64
+RUN_DEPENDS=	p5-MIME-Base64>3.05:converters/p5-MIME-Base64
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
