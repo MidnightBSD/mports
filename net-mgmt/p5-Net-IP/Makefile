@@ -12,7 +12,8 @@ COMMENT=	Perl extension for manipulating IPv4/IPv6 addresses
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 
 post-configure:
