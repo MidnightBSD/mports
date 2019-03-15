@@ -1,0 +1,77 @@
+diff --git build/m4/aircrack_ng_os_detect.m4 b/build/m4/aircrack_ng_os_detect.m4
+index 835d8f5b..7dd3e87c 100644
+--- build/m4/aircrack_ng_os_detect.m4
++++ build/m4/aircrack_ng_os_detect.m4
+@@ -54,7 +54,7 @@ case "$host_os" in
+     openbsd* | OpenBSD*)
+         OS=openbsd
+         ;;
+-    freebsd* | FreeBSD* | hardenedbsd* | hbsd* | dragonfly* | DragonFly* | trueos* | TrueOS*)
++    freebsd* | FreeBSD* | hardenedbsd* | hbsd* | dragonfly* | DragonFly* | trueos* | TrueOS* | midnightbsd* | MidnightBSD*)
+         OS=freebsd
+         ;;
+     *)
+diff --git src/aircrack-ng.h b/src/aircrack-ng.h
+index b523931d..b59ad8b6 100644
+--- src/aircrack-ng.h
++++ src/aircrack-ng.h
+@@ -41,7 +41,7 @@
+ #include <stdio.h>
+ #include <time.h>
+ #include <sys/time.h>
+-#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
+ #include <unistd.h>
+ #endif
+ #include "aircrack-ptw-lib.h"
+diff --git src/aircrack-osdep/freebsd.c b/src/aircrack-osdep/freebsd.c
+index 4fbf6877..f9ed45b4 100644
+--- src/aircrack-osdep/freebsd.c
++++ src/aircrack-osdep/freebsd.c
+@@ -622,7 +622,7 @@ struct wif * wi_open_osdep(char * iface) { return fbsd_open(iface); }
+ 
+ EXPORT int get_battery_state(void)
+ {
+-#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
++#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__MidnightBSD__)
+ 	int value;
+ 	size_t len;
+ 
+diff --git src/aircrack-util/common.c b/src/aircrack-util/common.c
+index 04a1f624..7e0a44d9 100644
+--- src/aircrack-util/common.c
++++ src/aircrack-util/common.c
+@@ -48,7 +48,7 @@
+ 
+ #include <common.h>
+ 
+-#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__MidnightBSD__)
+ #include <sys/sysctl.h>
+ #include <sys/user.h>
+ #endif
+@@ -183,7 +183,7 @@ int is_string_number(const char * str)
+ int get_ram_size(void)
+ {
+ 	int ret = -1;
+-#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
+ 	int mib[] = {CTL_HW, HW_PHYSMEM};
+ 	size_t len;
+ 	unsigned long physmem;
+@@ -357,7 +357,7 @@ int get_nb_cpus(void)
+ 
+ 		fclose(f);
+ 	}
+-#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__MidnightBSD__)
+ 	// Not sure about defined(__DragonFly__) || defined(__NetBSD__) ||
+ 	// defined(__OpenBSD__) || defined(__APPLE__)
+ 	int mib[] = {CTL_HW, HW_NCPU};
+@@ -702,4 +702,4 @@ int station_compare(const void * a, const void * b)
+ 	REQUIRE(b != NULL);
+ 
+ 	return (memcmp(a, b, ETHER_ADDR_LEN));
+-}
+\ No newline at end of file
++}

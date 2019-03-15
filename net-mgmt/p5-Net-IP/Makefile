@@ -2,6 +2,7 @@
 
 PORTNAME=	Net-IP
 PORTVERSION=	1.26
+PORTREVISION=	1
 CATEGORIES=	net-mgmt perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,12 +16,7 @@ LICENSE_COMB=	dual
 USES=		perl5
 USE_PERL5=	configure
 
-
-post-configure:
-	${PERL} -pi -e 's/-I\S+PERL\S+ //g if m{PERL_DL_NONLAZY}' ${WRKSRC}/Makefile
-
 post-patch:
-	${REINPLACE_CMD} "1853s#\\s+#\s*#g" ${WRKSRC}/IP.pm
-	${REINPLACE_CMD} "76s#count#count   = 0#" ${WRKSRC}/ipcount
+	@${REINPLACE_CMD} -e 's|my $$count|& = 0|' ${WRKSRC}/ipcount
 
 .include <bsd.port.mk>

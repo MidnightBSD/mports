@@ -1,11 +1,9 @@
-# $MidnightBSD$
+# Created by: Lars Engels <lars.engels@0x20.net>
 
 PORTNAME=	aircrack-ng
-DISTVERSION=	1.2-beta3
-PORTREVISION=	1
+DISTVERSION=	1.5.2
 CATEGORIES=	net-mgmt security
-MASTER_SITES=	http://download.aircrack-ng.org/ \
-		http://bsd-geek.de/FreeBSD/distfiles/
+MASTER_SITES=	http://download.aircrack-ng.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 WEP and WPA-PSK keys cracking program
@@ -13,51 +11,42 @@ COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 LICENSE=	gpl2 bsd3 apache2
 LICENSE_COMB=	dual
 
-USES=		gmake dos2unix ssl
-USE_DOS2UNIX=	yes
-DOS2UNIX_FILES=	src/osdep/byteorder.h
-MAKE_ARGS=	unstable=true libnl=false prefix=${PREFIX}
-SUB_FILES=	pkg-message
+BROKEN_aarch64=		fails to configure: _AX_COMPILER_VERSION_GNU unknown gcc major
+BROKEN_armv6=		fails to configure: _AX_COMPILER_VERSION_GNU unknown gcc major
+BROKEN_armv7=		fails to configure: _AX_COMPILER_VERSION_GNU unknown gcc major
+BROKEN_powerpc64=	fails to compile: sse-intrinsics.c: error: emmintrin.h: No such file or directory
 
-BIN_FILES=	airdecloak-ng buddy-ng aircrack-ng airdecap-ng ivstools \
-		makeivs-ng packetforge-ng wpaclean kstats
-SBIN_FILES=	airtun-ng besside-ng airbase-ng easside-ng airodump-ng \
-		aireplay-ng wesside-ng airserv-ng tkiptun-ng
+USES=		autoreconf cpe dos2unix gmake libtool ssl
+USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	SQLITE
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-experimental
+CPE_VERSION=	${DISTVERSION:C/-.*//}
+CPE_UPDATE=	${DISTVERSION:C/^[^-]*$//:C/.*-//}
+DOS2UNIX_FILES=	src/aircrack-osdep/byteorder.h
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
+# Don't call 'strip' target with WITH_DEBUG set
+#INSTALL_TARGET=	${STRIP:S/-s/strip/} install
+
+OPTIONS_DEFINE=	PCRE SQLITE
+OPTIONS_DEFAULT=PCRE SQLITE
 OPTIONS_SUB=	yes
+
+PCRE_DESC=	Use Perl Compatible Regular Expressions for wesside
+PCRE_MAKE_ARGS=	pcre=true
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_USES=	pkgconfig
+
 SQLITE_DESC=	Use SQLite for storing pre-computed key tables
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MSQLITE}
-USE_SQLITE=	yes
-MAKE_ARGS+=	SQLITE=true
-BIN_FILES+=	airolib-ng
-.endif
-
-pre-patch: dos2unix
+SQLITE_USES=	sqlite
+SQLITE_MAKE_ARGS=	sqlite=true
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e 's|-I/usr/local|-I${LOCALBASE}|' \
-		-e 's|share/\(man/man[1-9]\)|\1|' \
-		-e 's|^CC[[:blank:]]*|&?|' \
-		-e 's|^AR[[:blank:]]*|&?|' \
-			${WRKSRC}/common.mak
-# Do not install scripts (Linux-specific) and their manpages
-	@${REINPLACE_CMD} \
-		-E '/scripts|@echo/d' \
-			${WRKSRC}/Makefile
-	@${REINPLACE_CMD} \
-		-E 's/air(driver|mon)-ng\.1 //' \
-			${WRKSRC}/manpages/Makefile
-	@${REINPLACE_CMD} \
-		-e 's|-lpthread|${PTHREAD_LIBS}|' \
-			${WRKSRC}/src/Makefile
+		-e 's|%%ETCDIR%%|${ETCDIR}|' ${WRKSRC}/scripts/airodump-ng-oui-update
 
 post-install:
-	@${STRIP_CMD} ${BIN_FILES:S,^,${PREFIX}/bin/,} \
-		${SBIN_FILES:S,^,${PREFIX}/sbin/,}
+	${MKDIR} ${STAGEDIR}${ETCDIR}
 
 .include <bsd.port.mk>
