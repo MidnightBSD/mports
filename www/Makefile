@@ -85,6 +85,7 @@ SUBDIR += p5-HTTP-DAV
 SUBDIR += p5-HTTP-Headers-Fast
 SUBDIR += p5-HTTP-Message
 SUBDIR += p5-HTTP-Negotiate
+SUBDIR += p5-HTTP-Server-Simple
 SUBDIR += p5-LWP-MediaTypes
 SUBDIR += p5-LWP-Protocol-https
 SUBDIR += p5-Mojolicious
