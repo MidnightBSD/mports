@@ -13,6 +13,8 @@ COMMENT=	Perl extension for merging IPv4 or IPv6 CIDR addresses
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
