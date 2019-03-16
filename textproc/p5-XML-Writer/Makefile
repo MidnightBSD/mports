@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# Created by: Adam Herzog <adam@herzogdesigns.com>
 
 PORTNAME=	XML-Writer
 PORTVERSION=	0.625
@@ -11,11 +11,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Perl module for writing XML documents
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	publicdom
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
