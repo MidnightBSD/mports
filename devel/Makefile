@@ -345,6 +345,7 @@ SUBDIR += p5-Eval-Closure
 SUBDIR += p5-Exception-Class
 SUBDIR += p5-Exporter-Tiny
 SUBDIR += p5-ExtUtils-CBuilder
+SUBDIR += p5-ExtUtils-Config
 SUBDIR += p5-ExtUtils-Depends
 SUBDIR += p5-ExtUtils-MakeMaker
 SUBDIR += p5-ExtUtils-ParseXS
