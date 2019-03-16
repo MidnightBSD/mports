@@ -13,6 +13,5 @@ LICENSE=	gpl2
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
