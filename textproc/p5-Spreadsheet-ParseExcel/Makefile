@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Spreadsheet-ParseExcel
 PORTVERSION=	0.65
 CATEGORIES=	textproc perl5
@@ -12,16 +10,15 @@ COMMENT=	Get information from Excel file
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-OLE-Storage_Lite>=0.19:${PORTSDIR}/devel/p5-OLE-Storage_Lite \
-		p5-Crypt-RC4>=0:${PORTSDIR}/security/p5-Crypt-RC4 \
-		p5-Digest-Perl-MD5>=0:${PORTSDIR}/security/p5-Digest-Perl-MD5
+BUILD_DEPENDS=	p5-OLE-Storage_Lite>=0.19:devel/p5-OLE-Storage_Lite \
+		p5-Crypt-RC4>=0:security/p5-Crypt-RC4 \
+		p5-Digest-Perl-MD5>=0:security/p5-Digest-Perl-MD5
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5 shebangfix
 SHEBANG_FILES=	sample/parse.pl \
 		sample/xls2csv.pl
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	EXAMPLES

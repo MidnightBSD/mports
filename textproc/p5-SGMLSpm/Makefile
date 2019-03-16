@@ -16,9 +16,10 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}ii
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for postprocessing the output from sgmls and nsgmls
+
 LICENSE=	gpl2
 
-USE_PERL5_RUN=	yes
+USE_PERL5=	run
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
