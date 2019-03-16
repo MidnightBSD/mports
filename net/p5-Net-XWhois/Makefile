@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Net-XWhois
 PORTVERSION=	0.90
 PORTREVISION=	5
@@ -13,7 +11,8 @@ COMMENT=	Whois Client Interface for Perl5
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	YES
+USES=		perl5
+USE_PERL5=	configure
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f -name "*.orig" -delete
