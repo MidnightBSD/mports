@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Text-Balanced
 PORTVERSION=	2.03
 CATEGORIES=	textproc perl5
@@ -9,8 +7,10 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract delimited text sequences from strings
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
