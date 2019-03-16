@@ -388,6 +388,7 @@ SUBDIR += p5-List-AllUtils
 SUBDIR += p5-Locale-gettext
 SUBDIR += p5-Log-Any
 SUBDIR += p5-Log-Log4perl
+SUBDIR += p5-MCE
 SUBDIR += p5-MRO-Compat
 SUBDIR += p5-Module-Build
 SUBDIR += p5-Module-Build-Tiny
