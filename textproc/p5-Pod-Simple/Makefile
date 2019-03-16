@@ -1,22 +1,21 @@
-# $MidnightBSD$
+# Created by: Mathieu Arnold <m@absolight.net>
 
 PORTNAME=	Pod-Simple
-PORTVERSION=	3.14
+PORTVERSION=	3.35
 CATEGORIES=	textproc devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for parsing Pod
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-.include <bsd.port.pre.mk>
+PORTSCOUT=	limit:^[0-9\.]*$$
 
-.if ${PERL_LEVEL} < 500903
-RUN_DEPENDS+=	p5-Pod-Escapes>=1.04:${PORTSDIR}/textproc/p5-Pod-Escapes
-BUILD_DEPENDS+=	p5-Pod-Escapes>=1.04:${PORTSDIR}/textproc/p5-Pod-Escapes
-.endif
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

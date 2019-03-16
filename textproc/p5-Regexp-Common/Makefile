@@ -1,9 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: head/textproc/p5-Regexp-Common/Makefile 373448 2014-11-26 13:08:24Z mat $
+# Created by: Anton Berezin <tobez@FreeBSD.org>
 
 PORTNAME=	Regexp-Common
-PORTVERSION=	2013031301
-PORTREVISION=	1
+PORTVERSION=	2017060201
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,11 +9,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Regexp::Common - Provide commonly requested regular expressions
 
-LICENSE=	artistic mit bsd3
+LICENSE=	artistic artistic2 bsd mit
 LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

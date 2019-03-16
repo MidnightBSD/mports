@@ -28,9 +28,25 @@
 %%SITE_PERL%%/Pod/Simple/TranscodeSmart.pm
 %%SITE_PERL%%/Pod/Simple/XHTML.pm
 %%SITE_PERL%%/Pod/Simple/XMLOutStream.pm
-%%SITE_PERL%%/perlpod.pod
-%%SITE_PERL%%/perlpodspec.pod
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod/Simple
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod
-@dirrm %%SITE_PERL%%/Pod/Simple
-@dirrmtry %%SITE_PERL%%/Pod
+%%PERL5_MAN3%%/Pod::Simple.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Checker.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Debug.3.gz
+%%PERL5_MAN3%%/Pod::Simple::DumpAsText.3.gz
+%%PERL5_MAN3%%/Pod::Simple::DumpAsXML.3.gz
+%%PERL5_MAN3%%/Pod::Simple::HTML.3.gz
+%%PERL5_MAN3%%/Pod::Simple::HTMLBatch.3.gz
+%%PERL5_MAN3%%/Pod::Simple::LinkSection.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Methody.3.gz
+%%PERL5_MAN3%%/Pod::Simple::PullParser.3.gz
+%%PERL5_MAN3%%/Pod::Simple::PullParserEndToken.3.gz
+%%PERL5_MAN3%%/Pod::Simple::PullParserStartToken.3.gz
+%%PERL5_MAN3%%/Pod::Simple::PullParserTextToken.3.gz
+%%PERL5_MAN3%%/Pod::Simple::PullParserToken.3.gz
+%%PERL5_MAN3%%/Pod::Simple::RTF.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Search.3.gz
+%%PERL5_MAN3%%/Pod::Simple::SimpleTree.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Subclassing.3.gz
+%%PERL5_MAN3%%/Pod::Simple::Text.3.gz
+%%PERL5_MAN3%%/Pod::Simple::TextContent.3.gz
+%%PERL5_MAN3%%/Pod::Simple::XHTML.3.gz
+%%PERL5_MAN3%%/Pod::Simple::XMLOutStream.3.gz

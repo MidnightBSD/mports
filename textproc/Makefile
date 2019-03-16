@@ -114,6 +114,7 @@ SUBDIR += p5-Text-ParseWords
 SUBDIR += p5-Text-Patch
 SUBDIR += p5-Text-RecordParser
 SUBDIR += p5-Text-Reform
+SUBDIR += p5-Text-Soundex
 SUBDIR += p5-Text-TabularDisplay
 SUBDIR += p5-Text-Tabs+Wrap
 SUBDIR += p5-Text-WordDiff
