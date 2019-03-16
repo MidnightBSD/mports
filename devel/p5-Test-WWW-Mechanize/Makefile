@@ -1,5 +1,4 @@
 # Created by: aturetta@commit.it
-# $FreeBSD: head/devel/p5-Test-WWW-Mechanize/Makefile 481365 2018-10-06 13:06:42Z des $
 
 PORTNAME=	Test-WWW-Mechanize
 PORTVERSION=	1.50
@@ -7,10 +6,10 @@ CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Testing-specific WWW::Mechanize subclass
 
-LICENSE=	ART20
+LICENSE=	artistic2
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Carp-Assert-More>=0:devel/p5-Carp-Assert-More \
