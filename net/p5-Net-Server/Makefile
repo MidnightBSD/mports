@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Net-Server
-PORTVERSION=	2.008
+PORTVERSION=	2.009
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,15 +11,20 @@ COMMENT=	Configurable base class for writing internet servers in Perl
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-IO-Multiplex>=1.01:${PORTSDIR}/devel/p5-IO-Multiplex
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-Multiplex>=1.05:devel/p5-IO-Multiplex
 
 OPTIONS_DEFINE=	IPV6
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-IPV6_BUILD_DEPENDS=	p5-Socket6>=0.23:${PORTSDIR}/net/p5-Socket6
-IPV6_RUN_DEPENDS=	p5-Socket6>=0.23:${PORTSDIR}/net/p5-Socket6
+IPV6_BUILD_DEPENDS=	p5-IO-Socket-INET6>=0:net/p5-IO-Socket-INET6 \
+			p5-Socket6>=0.23:net/p5-Socket6
+IPV6_RUN_DEPENDS=	p5-IO-Socket-INET6>=0:net/p5-IO-Socket-INET6 \
+			p5-Socket6>=0.23:net/p5-Socket6
 
 .include <bsd.port.mk>
