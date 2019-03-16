@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	Dist-CheckConflicts
-PORTVERSION=	0.02
+PORTVERSION=	0.11
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DOY
@@ -9,17 +8,14 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Declare version conflicts for your dist
-LICENSE=	perl
 
-USE_PERL=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-List-MoreUtils>=0.12:${PORTSDIR}/lang/p5-List-MoreUtils \
-		p5-Sub-Exporter>=0:${PORTSDIR}/devel/p5-Sub-Exporter
+RUN_DEPENDS=	p5-Module-Runtime>=0.009:devel/p5-Module-Runtime
+TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal
 
-TEST_DEPENDS=	p5-Test-Fatal>=0:${PORTSDIR}/devel/p5-Test-Fatal
-
-.include <bsd.mport.options.mk>
-
-PERL_CONFIGURE=	YES
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

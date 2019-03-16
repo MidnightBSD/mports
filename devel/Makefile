@@ -378,6 +378,7 @@ SUBDIR += p5-IO-stringy
 SUBDIR += p5-IPC-Run
 SUBDIR += p5-IPC-ShareLite
 SUBDIR += p5-IPC-Signal
+SUBDIR += p5-IPC-System-Simple
 SUBDIR += p5-Import-Into
 SUBDIR += p5-Inline
 SUBDIR += p5-Inline-Files

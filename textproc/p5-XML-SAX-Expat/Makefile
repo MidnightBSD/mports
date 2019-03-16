@@ -7,33 +7,25 @@
 #
 
 PORTNAME=	XML-SAX-Expat
-PORTVERSION=	0.38
+PORTVERSION=	0.51
 PORTREVISION=	1
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple API for XML
-LICENSE=        perl
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
-		${SITE_PERL}/XML/SAX.pm:${PORTSDIR}/textproc/p5-XML-SAX \
-		${SITE_PERL}/XML/NamespaceSupport.pm:${PORTSDIR}/textproc/p5-XML-NamespaceSupport
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
+		p5-XML-SAX>=0:textproc/p5-XML-SAX \
+		p5-XML-NamespaceSupport>=0:textproc/p5-XML-NamespaceSupport
 
-PERL_CONFIGURE=	yes
-
-PLIST_SUB+=     PERL=${PERL}
-
-post-patch:
-		@${PERL} -pi -e "s/(?<=XML::SAX::Base          => ')1\.00(?=')/0.25/;" ${WRKSRC}/Makefile.PL
-
-#pre-install:
-#	@${SETENV} PKG_PREFIX=${PREFIX} ${PERL} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
-#post-install:
-#	@${SETENV} PKG_PREFIX=${PREFIX} ${PERL} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+USES=		perl5 dos2unix
+USE_PERL5=	configure
+CONFIGURE_ENV=	SKIP_SAX_INSTALL=yes
 
 .include <bsd.port.mk>

@@ -1,22 +1,25 @@
-# $MidnightBSD$
+# Created by: Sergey Skvortsov <skv@protey.ru>
 
 PORTNAME=	XML-SAX-Writer
-PORTVERSION=	0.50
+PORTVERSION=	0.57
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SAX2 XML Writer
-LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/XML/SAX/Exception.pm:${PORTSDIR}/textproc/p5-XML-SAX \
-		${SITE_PERL}/XML/NamespaceSupport.pm:${PORTSDIR}/textproc/p5-XML-NamespaceSupport \
-		${SITE_PERL}/${PERL_ARCH}/Text/Iconv.pm:${PORTSDIR}/converters/p5-Text-Iconv \
-		${SITE_PERL}/XML/Filter/BufferText.pm:${PORTSDIR}/textproc/p5-XML-Filter-BufferText
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-XML-Filter-BufferText>=1.00:textproc/p5-XML-Filter-BufferText \
+		p5-XML-NamespaceSupport>=1.00:textproc/p5-XML-NamespaceSupport \
+		p5-XML-SAX-Base>=1.01:textproc/p5-XML-SAX-Base
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
