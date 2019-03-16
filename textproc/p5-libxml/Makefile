@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-libxml
-# Date created:		13 March 2001
-# Whom:	      		Johann Visagie <johann@egenetics.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-libxml/Makefile,v 1.7 2005/01/21 09:27:22 tobez Exp $
-#
+# Created by: Johann Visagie <johann@egenetics.com>
 
 PORTNAME=	libxml
 PORTVERSION=	0.08
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN/XML
 PKGNAMEPREFIX=	p5-
@@ -16,11 +11,14 @@ DISTNAME=	libxml-perl-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of Perl5 modules for working with XML
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
 
-PERL_CONFIGURE=	YES
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
