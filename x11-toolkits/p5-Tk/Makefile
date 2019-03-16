@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: James FitzGibbon <jfitz@FreeBSD.org>
 
 PORTNAME=	Tk
-PORTVERSION=	804.033
-PORTREVISION=	2
+PORTVERSION=	804.034
 CATEGORIES=	x11-toolkits tk perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,12 +9,11 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Re-port of a perl5 interface to Tk8.4
 
-LICENSE=	artistic gpl
-LICENSE_COMB=	dual
+LICENSE=	artistic
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 OPTIONS_DEFINE=	XFT
 OPTIONS_DEFAULT=	XFT
@@ -23,7 +21,10 @@ XFT_DESC=	Client-side fonts via libXft
 
 CONFIGURE_ARGS=	X11INC=${LOCALBASE}/include X11LIB=${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
-PERL_CONFIGURE=	yes
+USES=		jpeg perl5 shebangfix
+SHEBANG_FILES=	pTk/Tcl-pTk \
+		pTk/mkVFunc
+USE_PERL5=	configure
 USE_XORG=	x11
 
 .include <bsd.mport.options.mk>
@@ -50,12 +51,12 @@ post-configure:
 		`${FIND} ${WRKSRC} -name Makefile`
 
 post-install:
-	@${RM} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk/extralibs.ld
-	@${RMDIR} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/Tk.so
+	@${RM} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk/extralibs.ld
+	@${RMDIR} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/pTk
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/Tk.so
 .for i in Canvas Compound Entry Event HList IO InputO JPEG Listbox Menubutton Mwm NBFrame PNG Pixmap Scale Scrollbar TList Text TixGrid WinPhoto X Xlib
 		${STRIP_CMD} \
-		    ${PREFIX}/${SITE_ARCH_REL}/auto/Tk/${i}/${i}.so
+		    ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Tk/${i}/${i}.so
 .endfor
 
 .include <bsd.port.mk>
