@@ -1,22 +1,22 @@
-# $FreeBSD: ports/devel/p5-Exception-Class/Makefile,v 1.25 2006/07/15 08:22:10 erwin Exp $
-# $MidnightBSD$
-
 PORTNAME=	Exception-Class
-PORTVERSION=	1.32
+PORTVERSION=	1.44
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
-COMMENT=	A module that allows you to declare real exception classes in Perl
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Real exception classes in Perl
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${SITE_PERL}/Devel/StackTrace.pm:${PORTSDIR}/devel/p5-Devel-StackTrace \
-		${SITE_PERL}/Class/Data/Inheritable.pm:${PORTSDIR}/devel/p5-Class-Data-Inheritable
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Class-Data-Inheritable>=0.02:devel/p5-Class-Data-Inheritable \
+		p5-Devel-StackTrace>=2.00:devel/p5-Devel-StackTrace
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
-
