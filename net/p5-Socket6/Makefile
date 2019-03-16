@@ -2,7 +2,7 @@
 # $FreeBSD: ports/net/p5-Socket6/Makefile,v 1.15 2006/06/13 16:17:15 ume Exp $
 
 PORTNAME=	Socket6
-PORTVERSION=	0.28
+PORTVERSION=	0.29
 PORTREVISION=	2
 CATEGORIES=	net perl5 ipv6
 MASTER_SITES=	CPAN

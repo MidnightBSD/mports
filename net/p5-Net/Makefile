@@ -29,6 +29,5 @@ CONFIGURE_ENV=	PERL5_CPAN_IS_RUNNING=1
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
