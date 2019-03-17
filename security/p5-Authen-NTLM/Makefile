@@ -1,20 +1,24 @@
-# $MidnightBSD$
-# $FreeBSD: ports/security/p5-Authen-NTLM/Makefile,v 1.8 2011/10/08 19:15:53 sunpoet Exp $
+# Created by: James Thomason <james@divide.org>
 
 PORTNAME=	Authen-NTLM
 PORTVERSION=	1.09
+PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME:C/.*-//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An NTLM authentication module
-LICENSE=	perl
+COMMENT=	Perl5 NTLM authentication module
 
-BUILD_DEPENDS=	p5-Digest-HMAC>=0:${PORTSDIR}/security/p5-Digest-HMAC
-RUN_DEPENDS=	p5-Digest-HMAC>=0:${PORTSDIR}/security/p5-Digest-HMAC
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	p5-Digest-HMAC>=0:security/p5-Digest-HMAC
+RUN_DEPENDS=	p5-Digest-HMAC>=0:security/p5-Digest-HMAC
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
