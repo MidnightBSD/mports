@@ -21,6 +21,5 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5 pkgconfig
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
