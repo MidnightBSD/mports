@@ -10,7 +10,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Loads one of several alternate underlying implementations for a module
 
-LICENSE=	artitsic2
+LICENSE=	artistic2
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Module-Runtime>=0.012:devel/p5-Module-Runtime \
