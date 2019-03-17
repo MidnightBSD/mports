@@ -11,11 +11,13 @@ DISTNAME=	GDTextUtil-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text utilities for use with GD drawing package
-LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD
+LICENSE=	artistic gpl gpl2
+LICENSE_COMB=	dual
 
-MAKE_JOBS_SAFE=  yes
-PERL_CONFIGURE=	YES
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:graphics/p5-GD
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	Chart
 PORTVERSION=	2.4.10
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:CHARTGRP
@@ -17,6 +16,6 @@ BUILD_DEPENDS=	p5-GD>=2:graphics/p5-GD
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
