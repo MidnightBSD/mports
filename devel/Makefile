@@ -416,6 +416,7 @@ SUBDIR += p5-Moose
 SUBDIR += p5-Mouse
 SUBDIR += p5-Net-DBus
 SUBDIR += p5-OLE-Storage_Lite
+SUBDIR += p5-Opcodes
 SUBDIR += p5-PAR-Dist
 SUBDIR += p5-POSIX-strftime-Compiler
 SUBDIR += p5-POSIX-strptime
