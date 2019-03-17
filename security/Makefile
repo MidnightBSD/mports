@@ -124,7 +124,6 @@ SUBDIR += php71-openssl
 SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
-SUBDIR += polarssl
 SUBDIR += py-acme
 SUBDIR += py-bcrypt
 SUBDIR += py-certbot

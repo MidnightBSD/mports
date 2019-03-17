@@ -177,6 +177,7 @@ SUBDIR += libical
 SUBDIR += libinotify
 SUBDIR += libixp
 SUBDIR += liblangtag
+SUBDIR += liblockfile
 SUBDIR += libltdl
 SUBDIR += libmtdev
 SUBDIR += libnotify

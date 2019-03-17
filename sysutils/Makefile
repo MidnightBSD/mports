@@ -77,6 +77,7 @@ SUBDIR += linux-c7-userspace-rcu
 SUBDIR += linux-crashplan
 SUBDIR += linuxfdisk
 SUBDIR += lmmon
+SUBDIR += lockfile-progs
 SUBDIR += logstash6
 SUBDIR += lscpu
 SUBDIR += lsof
