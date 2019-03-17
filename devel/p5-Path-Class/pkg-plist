@@ -1,8 +1,21 @@
-%%PERL5_MAN3%%/Path::Class.3.gz
-%%PERL5_MAN3%%/Path::Class::Dir.3.gz
-%%PERL5_MAN3%%/Path::Class::Entity.3.gz
-%%PERL5_MAN3%%/Path::Class::File.3.gz
-%%SITE_PERL%%/Path/Class.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/Path::Class::Dir.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Path::Class::File.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Path::Class.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Path::Class::Entity.3
 %%SITE_PERL%%/Path/Class/Dir.pm
-%%SITE_PERL%%/Path/Class/Entity.pm
 %%SITE_PERL%%/Path/Class/File.pm
+%%SITE_PERL%%/Path/Class/Entity.pm
+%%SITE_PERL%%/Path/Class.pm
+@dir share/licenses/p5-Path-Class-0.37
+@dir share/licenses
+@dir %%SITE_ARCH%%/auto/Path/Class
+@dir %%SITE_ARCH%%/auto/Path
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/Path/Class
+@dir %%SITE_PERL%%/Path
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

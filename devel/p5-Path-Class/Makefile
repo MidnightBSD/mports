@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Elvis Chiang <elvis@sslab.cs.ccu.edu.tw>
 
 PORTNAME=	Path-Class
-PORTVERSION=	0.35
+PORTVERSION=	0.37
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:KWILLIAMS
@@ -15,6 +15,6 @@ LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	modbuild
-PERL_MODBUILD=	yes
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
