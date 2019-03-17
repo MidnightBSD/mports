@@ -1,31 +1,34 @@
-# $MidnightBSD$
+# Created by: Mathieu Arnold <m@absolight.net>
 
 PORTNAME=	DateTime
-PORTVERSION=	1.10
+PORTVERSION=	1.50
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:DROLSKY
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Date and time object
 
 LICENSE=	artistic2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
-		p5-DateTime-TimeZone>=1.09:${PORTSDIR}/devel/p5-DateTime-TimeZone \
-		p5-Params-Validate>=0.76:${PORTSDIR}/devel/p5-Params-Validate
+# Do not add p5-DateTime-Format-Strptime>=1.20.00 to TEST_DEPENDS to avoid cyclic dependency
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-DateTime-Locale>=1.06:devel/p5-DateTime-Locale \
+		p5-DateTime-TimeZone>=2.02:devel/p5-DateTime-TimeZone \
+		p5-Params-Validate>=1.03:devel/p5-Params-Validate \
+		p5-Params-ValidationCompiler>=0.26:devel/p5-Params-ValidationCompiler \
+		p5-Specio>=0:devel/p5-Specio \
+		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
+		p5-namespace-autoclean>=0.19:devel/p5-namespace-autoclean
+TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal \
+		p5-CPAN-Meta-Check>=0.011:devel/p5-CPAN-Meta-Check \
+		p5-Test-Warnings>=0.005:devel/p5-Test-Warnings
 
-PERL_MODBUILD=	yes
-
-.if !defined(NOPORTDOCS)
-PORTDOCS=	CREDITS Changes TODO
+USES=		perl5
+USE_PERL5=	configure
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
-	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
-.endif
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/DateTime/DateTime.so
 
 .include <bsd.port.mk>

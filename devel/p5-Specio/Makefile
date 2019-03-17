@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Specio
-PORTVERSION=	0.42
+PORTVERSION=	0.43
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DROLSKY
@@ -30,6 +30,5 @@ TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal \
 NO_ARCH=	yes
 USE_PERL5=	configure
 USES=		perl5
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
