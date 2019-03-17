@@ -1,20 +1,21 @@
-# $MidnightBSD$
-
 PORTNAME=	Class-Accessor-Chained
 PORTVERSION=	0.01
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Make chained accessors
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	p5-Class-Accessor>=0:devel/p5-Class-Accessor
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		perl5
-USE_PERL5=	modbuild
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

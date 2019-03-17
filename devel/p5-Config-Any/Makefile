@@ -23,7 +23,6 @@ GENERAL_DESC=	Generic Config format support
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 GENERAL_BUILD_DEPENDS=	p5-Config-General>=2.47:devel/p5-Config-General
 GENERAL_RUN_DEPENDS=	p5-Config-General>=2.47:devel/p5-Config-General

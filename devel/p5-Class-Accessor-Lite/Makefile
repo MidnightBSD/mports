@@ -13,11 +13,8 @@ COMMENT=	Minimalistic variant of p5-Class-Accessor
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	${SITE_PERL}/Module/Install.pm:devel/p5-Module-Install
-
 NO_ARCH=	yes
 USE_PERL5=	configure
 USES=		perl5
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
