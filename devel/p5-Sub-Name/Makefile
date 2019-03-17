@@ -1,15 +1,26 @@
-# $MidnightBSD$
+# Created by: Anton Berezin <tobez@FreeBSD.org>
 
 PORTNAME=	Sub-Name
-PORTVERSION=	0.05
+PORTVERSION=	0.21
+PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sub::Name - (re)name a sub
-LICENSE=	perl
 
-PERL_CONFIGURE=	5.6.0+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENCE
+
+TEST_DEPENDS=	p5-B-C>=1.48:devel/p5-B-C \
+		p5-Devel-CheckBin>=0:devel/p5-Devel-CheckBin
+
+USES=		perl5
+USE_PERL5=	configure
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sub/Name/Name.so
 
 .include <bsd.port.mk>
