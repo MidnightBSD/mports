@@ -1,17 +1,22 @@
-%%PERL5_MAN3%%/Attribute::Params::Validate.3.gz
-%%PERL5_MAN3%%/Params::Validate.3.gz
-%%SITE_PERL%%/%%PERL_ARCH%%/Attribute/Params/Validate.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/Validate.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/Validate/Constants.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/Validate/PP.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/Validate/XS.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/ValidatePP.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/Params/ValidateXS.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Params/Validate/XS/XS.so
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Params/Validate/XS
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Params/Validate
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Params
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Params/Validate
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Params
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Attribute/Params
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Attribute
+%%SITE_PERL%%/%%PERL5_MAN3%%/Params::Validate.3
+%%SITE_ARCH%%/auto/Params/Validate/XS/XS.so
+%%SITE_ARCH%%/Params/Validate/Constants.pm
+%%SITE_ARCH%%/Params/Validate/XS.pm
+%%SITE_ARCH%%/Params/Validate/PP.pm
+%%SITE_ARCH%%/Params/Validate.pm
+%%SITE_ARCH%%/Params/ValidatePP.pm
+%%SITE_ARCH%%/Params/ValidateXS.pm
+@dir share/licenses/p5-Params-Validate-1.29
+@dir share/licenses
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/Params/Validate/XS
+@dir %%SITE_ARCH%%/auto/Params/Validate
+@dir %%SITE_ARCH%%/auto/Params
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%/Params/Validate
+@dir %%SITE_ARCH%%/Params
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
