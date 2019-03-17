@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
 
 PORTNAME=	Sub-Exporter
 PORTVERSION=	0.987
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,12 +13,12 @@ COMMENT=	Sophisticated exporter for custom-built routines
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	p5-Sub-Install>=0.92:${PORTSDIR}/devel/p5-Sub-Install \
-		p5-Data-OptList>=0.100:${PORTSDIR}/devel/p5-Data-OptList \
-		p5-Params-Util>=0.14:${PORTSDIR}/devel/p5-Params-Util
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Data-OptList>=0.100:devel/p5-Data-OptList \
+		p5-Params-Util>=0.14:devel/p5-Params-Util \
+		p5-Sub-Install>=0.920:devel/p5-Sub-Install
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

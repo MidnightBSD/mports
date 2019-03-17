@@ -1,20 +1,25 @@
-# $MidnightBSD$
+# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
 
 PORTNAME=	B-Hooks-EndOfScope
-PORTVERSION=	0.12
+PORTVERSION=	0.24
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Execute code after a scope finished compilation
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-Module-Implementation>=0.05:${PORTSDIR}/devel/p5-Module-Implementation \
-		p5-Module-Runtime>=0.012:${PORTSDIR}/devel/p5-Module-Runtime \
-		p5-Sub-Exporter-Progressive>=0.001.006:${PORTSDIR}/devel/p5-Sub-Exporter-Progressive
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENCE
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Module-Implementation>=0.05:devel/p5-Module-Implementation \
+		p5-Sub-Exporter-Progressive>=0.001006:devel/p5-Sub-Exporter-Progressive \
+		p5-Variable-Magic>=0.48:devel/p5-Variable-Magic
+
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
