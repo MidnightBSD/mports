@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Vsevolod Stakhov <vsevolod@FreeBSD.org>
 
 PORTNAME=	libressl
-PORTVERSION=	2.6.3
+PORTVERSION=	2.8.3
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
@@ -20,7 +20,7 @@ NC_DESC=	Install TLS-enabled netcat
 
 CONFLICTS_INSTALL=	libressl-devel-[0-9]* \
 			openssl-[0-9]* \
-			openssl-devel-[0-9]*
+			openssl111-[0-9]*
 
 NC_CONFIGURE_ENABLE=	nc
 
@@ -29,12 +29,13 @@ USES=		cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 OPTIONS_SUB=	yes
 CFLAGS+=	-fpic -DPIC -Wl,-rpath,${PREFIX}/lib -Wl,--as-needed
+LDFLAGS+=	-pthread
 
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
 post-patch-MAN3-off:
-	${REINPLACE_CMD} -e 's/^install-man: install-man3/install-man:/' \
+	${REINPLACE_CMD} -e '/^install-man:/s/install-man3//' \
 		-e '/$$(MAKE) $$(AM_MAKEFLAGS) install-data-hook/d' \
 		${WRKSRC}/man/Makefile.in
 
