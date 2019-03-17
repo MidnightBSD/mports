@@ -15,11 +15,7 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 NO_ARCH=	yes
-USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
-
-regression-test:
-	cd ${WRKSRC} && ${MAKE} test
+USES=		perl5
 
 .include <bsd.port.mk>

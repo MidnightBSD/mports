@@ -15,6 +15,8 @@ LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/threads/threads.so
 
 .include <bsd.port.mk>
