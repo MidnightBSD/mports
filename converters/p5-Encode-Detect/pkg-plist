@@ -1,5 +1,19 @@
-%%SITE_ARCH%%/Encode/Detect.pm
-%%SITE_ARCH%%/Encode/Detect/Detector.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/Encode::Detect::Detector.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/Encode::Detect.3
 %%SITE_ARCH%%/auto/Encode/Detect/Detector/Detector.so
-%%PERL5_MAN3%%/Encode::Detect.3.gz
-%%PERL5_MAN3%%/Encode::Detect::Detector.3.gz
+%%SITE_ARCH%%/Encode/Detect/Detector.pm
+%%SITE_ARCH%%/Encode/Detect.pm
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/Encode/Detect/Detector
+@dir %%SITE_ARCH%%/auto/Encode/Detect
+@dir %%SITE_ARCH%%/auto/Encode
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%/Encode/Detect
+@dir %%SITE_ARCH%%/Encode
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
+@dir share/licenses/p5-Encode-Detect-1.01_4
+@dir share/licenses
