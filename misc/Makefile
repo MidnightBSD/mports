@@ -43,6 +43,7 @@ SUBDIR += nut
 SUBDIR += ossp-uuid
 SUBDIR += p5-Geography-Countries
 SUBDIR += p5-List-Compare
+SUBDIR += p5-Locale-US
 SUBDIR += patchutils
 SUBDIR += pciids
 SUBDIR += phone-de
