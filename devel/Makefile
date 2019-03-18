@@ -326,6 +326,7 @@ SUBDIR += p5-Data-Compare
 SUBDIR += p5-Data-Dumper
 SUBDIR += p5-Data-Dumper-Concise
 SUBDIR += p5-Data-OptList
+SUBDIR += p5-Data-Section-Simple
 SUBDIR += p5-Data-UUID
 SUBDIR += p5-Date-Calc
 SUBDIR += p5-Date-Manip
