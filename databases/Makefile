@@ -65,6 +65,7 @@ SUBDIR += p5-DBD-mysql55
 SUBDIR += p5-DBI
 SUBDIR += p5-DBIx-Class
 SUBDIR += p5-DBIx-ContextualFetch
+SUBDIR += p5-DBM-Deep
 SUBDIR += p5-Data-Page
 SUBDIR += p5-Ima-DBI
 SUBDIR += p5-MLDBM

@@ -381,6 +381,7 @@ SUBDIR += p5-File-Tail
 SUBDIR += p5-File-Temp
 SUBDIR += p5-File-chdir
 SUBDIR += p5-File-pushd
+SUBDIR += p5-FileHandle-Fmode
 SUBDIR += p5-Filesys-Notify-Simple
 SUBDIR += p5-Filter
 SUBDIR += p5-FreezeThaw
