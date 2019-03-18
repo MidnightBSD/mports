@@ -1,25 +1,21 @@
-# $MidnightBSD$
-
 PORTNAME=	bignum
-PORTVERSION=	0.32
+PORTVERSION=	0.51
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:FLORA
+MASTER_SITE_SUBDIR=	CPAN:PJACKLAM
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Transparent BigNumber/BigRational support for Perl
-LICENSE=        perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-.include <bsd.port.pre.mk>
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Math-BigInt>=1.999812:math/p5-Math-BigInt
 
-.if ${PERL_LEVEL} < 501000
-BUILD_DEPENDS+=	p5-Math-BigInt>=1.880:${PORTSDIR}/math/p5-Math-BigInt \
-		p5-Math-BigRat>=0.21:${PORTSDIR}/math/p5-Math-BigRat
-RUN_DEPENDS+=	p5-Math-BigInt>=1.880:${PORTSDIR}/math/p5-Math-BigInt \
-		p5-Math-BigRat>=0.21:${PORTSDIR}/math/p5-Math-BigRat
-.endif
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
