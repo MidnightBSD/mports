@@ -416,6 +416,7 @@ SUBDIR += p5-Module-Implementation
 SUBDIR += p5-Module-Install
 SUBDIR += p5-Module-Pluggable
 SUBDIR += p5-Module-Runtime
+SUBDIR += p5-Module-Runtime-Conflicts
 SUBDIR += p5-Module-ScanDeps
 SUBDIR += p5-Moo
 SUBDIR += p5-MooX-Types-MooseLike
