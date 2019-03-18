@@ -1,2 +1,16 @@
+%%SITE_PERL%%/%%PERL5_MAN3%%/Module::Build::Tiny.3
 %%SITE_PERL%%/Module/Build/Tiny.pm
-%%PERL5_MAN3%%/Module::Build::Tiny.3.gz
+@dir share/licenses/p5-Module-Build-Tiny-0.039_2
+@dir share/licenses
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/Module/Build/Tiny
+@dir %%SITE_ARCH%%/auto/Module/Build
+@dir %%SITE_ARCH%%/auto/Module
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/Module/Build
+@dir %%SITE_PERL%%/Module
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

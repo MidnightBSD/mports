@@ -284,7 +284,11 @@ do-build:
 .    if !${USES:Mgmake}
 .      if !target(do-install)
 do-install:
+.if ${_USE_PERL5:Mmodbuildtiny}
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${INSTALL_TARGET} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR})
+.else
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET})
+.endif
 .      endif # !target(do-install)
 .    endif # ! USES=gmake
 .  endif # modbuild
