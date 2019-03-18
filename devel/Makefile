@@ -330,6 +330,7 @@ SUBDIR += p5-Data-UUID
 SUBDIR += p5-Date-Calc
 SUBDIR += p5-Date-Manip
 SUBDIR += p5-DateTime
+SUBDIR += p5-DateTime-Calendar-Mayan
 SUBDIR += p5-DateTime-Format-Builder
 SUBDIR += p5-DateTime-Format-Mail
 SUBDIR += p5-DateTime-Format-MySQL
