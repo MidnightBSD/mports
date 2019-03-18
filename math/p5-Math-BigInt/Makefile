@@ -1,17 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	Math-BigInt
-PORTVERSION=	1.997
+PORTVERSION=	1.999816
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:PJACKLAM
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Math::BigInt - Arbitrary size integer math package
-LICENSE=	perl
+COMMENT=	Arbitrary size integer math perl package
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
-
