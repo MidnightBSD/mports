@@ -1,8 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	spamassassin
-PORTVERSION=	3.4.1
-PORTREVISION?=	1
+PORTVERSION=	3.4.2
+PORTREVISION?=	0
 CATEGORIES?=	mail perl5
 MASTER_SITES=	APACHE/spamassassin/source CPAN/Mail
 DISTNAME=	Mail-SpamAssassin-${PORTVERSION}
@@ -18,20 +18,22 @@ BUILD_DEPENDS=	p5-Encode-Detect>=0:converters/p5-Encode-Detect \
 		p5-Net-DNS>=0.63:dns/p5-Net-DNS \
 		p5-NetAddr-IP>=4.010:net-mgmt/p5-NetAddr-IP
 RUN_DEPENDS:=	${BUILD_DEPENDS} \
+		p5-Net-CIDR-Lite>=0:net/p5-Net-CIDR-Lite \
 		p5-Net-IDN-Encode>=0:textproc/p5-Net-IDN-Encode \
 		p5-Net-LibIDN>=0:dns/p5-Net-LibIDN \
 		p5-URI>=0:net/p5-URI \
-		re2c>=0.12.0:devel/re2c
+		re2c>=.12.0:devel/re2c
 
-.for dep in DCC DKIM MYSQL PGSQL PYZOR RAZOR RELAY_COUNTRY SPF_QUERY SSL
+.for dep in DCC DKIM MYSQL PGSQL PYZOR RAZOR RELAY_COUNTRY RLIMIT SPF_QUERY SSL
 TEST_DEPENDS+=	${${dep}_RUN_DEPENDS}
 .endfor
+
+CONFLICTS?=	ja-spamassassin-[0-9]*
 
 CPE_VENDOR=	apache
 
 USES=		cpe perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 DATADIR=	${PREFIX}/share/spamassassin
@@ -50,7 +52,7 @@ CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
 OPTIONS_DEFINE=		AS_ROOT DOCS SSL
 OPTIONS_GROUP=		DATABASE GPG PLUGINS
 OPTIONS_GROUP_DATABASE=	MYSQL PGSQL
-OPTIONS_GROUP_PLUGINS=	DCC DKIM PYZOR RAZOR RELAY_COUNTRY SPF_QUERY
+OPTIONS_GROUP_PLUGINS=	DCC DKIM PYZOR RAZOR RELAY_COUNTRY RLIMIT SPF_QUERY
 OPTIONS_SINGLE=		GPG
 OPTIONS_SINGLE_GPG=	GNUPG_NONE GNUPG GNUPG2
 OPTIONS_DEFAULT=	AS_ROOT DKIM GNUPG SSL SPF_QUERY
@@ -69,7 +71,8 @@ DCC_DESC=		DCC digest list support (mail/dcc-dccd)
 DKIM_DESC=		Verify DKIM records (mail/p5-Mail-DKIM)
 PYZOR_DESC=		Pyzor digest list support (mail/pyzor)
 RAZOR_DESC=		Vipul's Razor digest list support (mail/razor-agents)
-RELAY_COUNTRY_DESC=	Location-based scoring (net/p5-Geo-IP)
+RELAY_COUNTRY_DESC=	Location-based scoring (net/p5-GeoIP2)
+RLIMIT_DESC=		Resource limits (devel/p5-BSD-Resource)
 SPF_QUERY_DESC=		Verify SPF records (mail/p5-Mail-SPF)
 
 SUB_FILES=	pkg-message
@@ -88,8 +91,10 @@ GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
 MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
 PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor
-RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents
-RELAY_COUNTRY_RUN_DEPENDS=	p5-Geo-IP>=0:net/p5-Geo-IP \
+RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents \
+			p5-Digest-SHA1>=2.13:security/p5-Digest-SHA1
+RLIMIT_RUN_DEPENDS=	p5-BSD-Resource>=1.2911:devel/p5-BSD-Resource
+RELAY_COUNTRY_RUN_DEPENDS=	p5-GeoIP2>=0:net/p5-GeoIP2 \
 			p5-IP-Country>=0:net/p5-IP-Country
 SPF_QUERY_RUN_DEPENDS=	p5-Mail-SPF>=0:mail/p5-Mail-SPF
 
@@ -104,6 +109,7 @@ DKIM_INITVAR=		DKIM
 PYZOR_INITVAR=		Pyzor
 RAZOR_INITVAR=		Razor2
 RELAY_COUNTRY_INITVAR=	RelayCountry
+RLIMIT_INITVAR=		ResourceLimit
 SPF_QUERY_INITVAR=	SPF
 
 DOCS=		CREDITS Changes INSTALL NOTICE PACKAGING README TRADEMARK UPGRADE USAGE procmailrc.example
@@ -138,6 +144,7 @@ post-patch::
 		-e 's,B_CONFDIR)/v330.pre,B_CONFDIR)/v330.pre.sample,g' \
 		-e 's,B_CONFDIR)/v340.pre,B_CONFDIR)/v340.pre.sample,g' \
 		-e 's,B_CONFDIR)/v341.pre,B_CONFDIR)/v341.pre.sample,g' \
+		-e 's,B_CONFDIR)/v342.pre,B_CONFDIR)/v342.pre.sample,g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
 	${REINPLACE_CMD} -e '/^CC =/d; \
