@@ -341,6 +341,7 @@ SUBDIR += p5-Devel-ArgNames
 SUBDIR += p5-Devel-Caller
 SUBDIR += p5-Devel-CheckBin
 SUBDIR += p5-Devel-CheckLib
+SUBDIR += p5-Devel-Cycle
 SUBDIR += p5-Devel-GlobalDestruction
 SUBDIR += p5-Devel-LexAlias
 SUBDIR += p5-Devel-StackTrace
