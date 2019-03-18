@@ -417,6 +417,7 @@ SUBDIR += p5-Module-Find
 SUBDIR += p5-Module-Implementation
 SUBDIR += p5-Module-Install
 SUBDIR += p5-Module-Pluggable
+SUBDIR += p5-Module-Refresh
 SUBDIR += p5-Module-Runtime
 SUBDIR += p5-Module-Runtime-Conflicts
 SUBDIR += p5-Module-ScanDeps
