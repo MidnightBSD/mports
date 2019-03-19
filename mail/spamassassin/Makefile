@@ -22,7 +22,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS} \
 		p5-Net-IDN-Encode>=0:textproc/p5-Net-IDN-Encode \
 		p5-Net-LibIDN>=0:dns/p5-Net-LibIDN \
 		p5-URI>=0:net/p5-URI \
-		re2c>=.12.0:devel/re2c
+		re2c>=0:devel/re2c
 
 .for dep in DCC DKIM MYSQL PGSQL PYZOR RAZOR RELAY_COUNTRY RLIMIT SPF_QUERY SSL
 TEST_DEPENDS+=	${${dep}_RUN_DEPENDS}
