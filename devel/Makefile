@@ -414,6 +414,7 @@ SUBDIR += p5-Lexical-SealRequireHints
 SUBDIR += p5-List-AllUtils
 SUBDIR += p5-List-SomeUtils
 SUBDIR += p5-List-SomeUtils-XS
+SUBDIR += p5-List-UtilsBy
 SUBDIR += p5-Locale-gettext
 SUBDIR += p5-Log-Any
 SUBDIR += p5-Log-Log4perl
