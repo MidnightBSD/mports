@@ -19,10 +19,9 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 MAKE_JOBS_UNSAFE=	yes
 
-PERL_CONFIGURE=	yes
-
 MAKE_ARGS+=	PERLPREFIX=${PREFIX}
-USES=		tar:bzip2
+USES=		tar:bzip2 perl5
+USE_PERL5=	configure
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${PERL} -pi -e 's|/etc/razor|${PREFIX}/etc|g'
