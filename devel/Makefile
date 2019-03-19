@@ -508,6 +508,7 @@ SUBDIR += p5-Test-Memory-Cycle
 SUBDIR += p5-Test-MockModule
 SUBDIR += p5-Test-Needs
 SUBDIR += p5-Test-NoWarnings
+SUBDIR += p5-Test-Number-Delta
 SUBDIR += p5-Test-Object
 SUBDIR += p5-Test-Output
 SUBDIR += p5-Test-Pod
