@@ -8,6 +8,7 @@ SUBDIR += flow-tools
 SUBDIR += kismet
 SUBDIR += p5-Cflow
 SUBDIR += p5-Cisco-Reconfig
+SUBDIR += p5-Data-Validate-IP
 SUBDIR += p5-Mon
 SUBDIR += p5-Net-CIDR
 SUBDIR += p5-Net-IP
