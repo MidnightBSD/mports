@@ -690,6 +690,7 @@ SUBDIR += py-pycodeexport
 SUBDIR += py-pycompilation
 SUBDIR += py-pycparser
 SUBDIR += py-pyflakes
+SUBDIR += py-pyparsing
 SUBDIR += py-pyrfc3339
 SUBDIR += py-pytest
 SUBDIR += py-pytest-cache
