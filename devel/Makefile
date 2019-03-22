@@ -506,6 +506,7 @@ SUBDIR += p5-Test-DependentModules
 SUBDIR += p5-Test-Differences
 SUBDIR += p5-Test-Exception
 SUBDIR += p5-Test-Fatal
+SUBDIR += p5-Test-File
 SUBDIR += p5-Test-File-ShareDir
 SUBDIR += p5-Test-Harness
 SUBDIR += p5-Test-Kwalitee
