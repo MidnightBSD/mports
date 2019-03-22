@@ -508,6 +508,7 @@ SUBDIR += p5-Test-LeakTrace
 SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-Memory-Cycle
 SUBDIR += p5-Test-MockModule
+SUBDIR += p5-Test-MockTime
 SUBDIR += p5-Test-Most
 SUBDIR += p5-Test-Needs
 SUBDIR += p5-Test-NoWarnings
