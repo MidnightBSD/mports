@@ -441,6 +441,7 @@ SUBDIR += p5-Module-ScanDeps
 SUBDIR += p5-Moo
 SUBDIR += p5-MooX-StrictConstructor
 SUBDIR += p5-MooX-Types-MooseLike
+SUBDIR += p5-MooX-Types-MooseLike-Numeric
 SUBDIR += p5-Moose
 SUBDIR += p5-Mouse
 SUBDIR += p5-Net-DBus
