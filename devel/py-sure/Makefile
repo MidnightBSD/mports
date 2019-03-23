@@ -1,5 +1,3 @@
-# Created by: Kubilay Kocak <koobs@FreeBSD.org>
-
 PORTNAME=	sure
 PORTVERSION=	1.2.24
 CATEGORIES=	devel python

@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	libgd
-PORTVERSION=	2.2.4
+PORTVERSION=	2.2.5
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES+=	graphics
@@ -24,7 +24,7 @@ SHEBANG_FILES=	${WRKSRC}/src/bdftogd
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 FAKE_OPTS=	trueprefix
-WANT_PERL=	yes
+TEST_TARGET=	check
 
 OPTIONS_DEFINE=	FONTCONFIG ICONV XPM WEBP
 OPTIONS_DEFAULT=FONTCONFIG WEBP
@@ -77,22 +77,11 @@ pre-configure:
 	${REINPLACE_CMD} \
 		-e 's|^GDLIB_LT_CURRENT=3|GDLIB_LT_CURRENT=6|' \
 		${WRKSRC}/configure
-	# workaround for broken configure
-.if ! ${PORT_OPTIONS:MICONV}
+
+pre-configure-ICONV-off:
 	${REINPLACE_CMD} \
 		-e 's|iconv|noiconv|' \
 		${WRKSRC}/configure
-.endif
-.if ! ${PORT_OPTIONS:MXPM}
-	${REINPLACE_CMD} \
-		-e 's|xpm|noxpm|' \
-		${WRKSRC}/configure
-.endif
-.if ! ${PORT_OPTIONS:MFONTCONFIG}
-	${REINPLACE_CMD} \
-		-e 's|fontconfig|nofontconfig|' \
-		${WRKSRC}/configure
-.endif
 
 .if defined(GD_FONTS)
 pre-build:
@@ -102,6 +91,6 @@ pre-build:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/gdhelpers.h \
 		${STAGEDIR}${PREFIX}/include/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgd.so.6.0.4
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgd.so.6*
 
 .include <bsd.port.mk>
