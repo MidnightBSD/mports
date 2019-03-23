@@ -402,6 +402,7 @@ SUBDIR += p5-Hash-MultiValue
 SUBDIR += p5-Heap
 SUBDIR += p5-Hook-LexWrap
 SUBDIR += p5-IO
+SUBDIR += p5-IO-Capture
 SUBDIR += p5-IO-CaptureOutput
 SUBDIR += p5-IO-HTML
 SUBDIR += p5-IO-Handle-Util
