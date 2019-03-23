@@ -374,6 +374,7 @@ SUBDIR += p5-ExtUtils-MakeMaker
 SUBDIR += p5-ExtUtils-ParseXS
 SUBDIR += p5-ExtUtils-PkgConfig
 SUBDIR += p5-File-Copy-Recursive
+SUBDIR += p5-File-Copy-Recursive-Reduced
 SUBDIR += p5-File-Find-Object
 SUBDIR += p5-File-Find-Rule
 SUBDIR += p5-File-Find-Rule-Perl
