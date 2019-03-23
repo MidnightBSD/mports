@@ -29,6 +29,7 @@ SUBDIR += lzma
 SUBDIR += lzo2
 SUBDIR += lzop
 SUBDIR += minizip
+SUBDIR += p5-Archive-Any-Lite
 SUBDIR += p5-Archive-Extract
 SUBDIR += p5-Archive-Tar
 SUBDIR += p5-Archive-Zip

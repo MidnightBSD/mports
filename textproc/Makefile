@@ -105,6 +105,7 @@ SUBDIR += p5-SGML-Parser-OpenSP
 SUBDIR += p5-SGMLSpm
 SUBDIR += p5-Spreadsheet-ParseExcel
 SUBDIR += p5-String-Format
+SUBDIR += p5-String-RewritePrefix
 SUBDIR += p5-Test-Perl-Critic
 SUBDIR += p5-Text-Autoformat
 SUBDIR += p5-Text-Balanced
