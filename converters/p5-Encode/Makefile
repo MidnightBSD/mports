@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	Encode
-PORTVERSION=	2.98
+PORTVERSION=	3.01
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DANKOGAI
@@ -15,7 +15,6 @@ LICENSE_COMB=	dual
 
 USE_PERL5=	configure
 USES=		perl5
-PERL_CONFIGURE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|bin/enc2xs||; s|bin/piconv||' ${WRKSRC}/Makefile.PL

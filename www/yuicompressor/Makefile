@@ -2,10 +2,10 @@
 
 PORTNAME=	yuicompressor
 PORTVERSION=	2.4.8
+PORTREVISION=	1
 CATEGORIES=	www java
 #MASTER_SITES=	http://tml.github.io/yui/
-MASTER_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	az
+MASTER_SITES+=	FREEBSD_LOCAL/az
 DISTNAME=	${PORTNAME}-${PORTVERSION}.jar
 EXTRACT_SUFX=	# empty
 EXTRACT_ONLY=	# empty
@@ -13,7 +13,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Yahoo! JavaScript and CSS Compressor
 
-LICENSE=	unknown
+LICENSE=	bsd3 mpl
+LICENSE_COMB=	multi
 
 NO_WRKSUBDIR=	yes
 
