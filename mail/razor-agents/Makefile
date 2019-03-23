@@ -28,4 +28,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/MAN5/s,man/man5,${SITE_MAN3_REL:S/3/5/},g' ${WRKSRC}/${CONFIGURE_SCRIPT}
 #	@${PERL} -pi -e 's,share/man,man,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
+post-fake:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${SITE_PERL}/${PERL_ARCH}/auto/razor-agents/.packlist
+
 .include <bsd.port.mk>
