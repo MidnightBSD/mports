@@ -103,6 +103,7 @@ SUBDIR += p5-Crypt-SmbHash
 SUBDIR += p5-Digest
 SUBDIR += p5-Digest-BubbleBabble
 SUBDIR += p5-Digest-HMAC
+SUBDIR += p5-Digest-JHash
 SUBDIR += p5-Digest-MD5
 SUBDIR += p5-Digest-Perl-MD5
 SUBDIR += p5-Digest-SHA
