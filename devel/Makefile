@@ -435,6 +435,7 @@ SUBDIR += p5-Module-Build-Tiny
 SUBDIR += p5-Module-Build-XSUtil
 SUBDIR += p5-Module-CPANTS-Analyse
 SUBDIR += p5-Module-CPANfile
+SUBDIR += p5-Module-ExtractUse
 SUBDIR += p5-Module-Find
 SUBDIR += p5-Module-Implementation
 SUBDIR += p5-Module-Install
