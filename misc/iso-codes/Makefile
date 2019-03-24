@@ -1,16 +1,22 @@
-# $MidnightBSD$
-
 PORTNAME=	iso-codes
-PORTVERSION=	3.69
+PORTVERSION=	4.1
 CATEGORIES=	misc
-MASTER_SITES=	http://pkg-isocodes.alioth.debian.org/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists of the country, language, and currency iso names
 
 LICENSE=	lgpl2.1
 
-USES=		gettext gmake pathfix python:3,build tar:xz
+USES=		gettext-tools gmake pathfix python:3.4+,build tar:xz
+
 GNU_CONFIGURE=	yes
+NO_ARCH=	yes
+
+USE_GITLAB=	yes
+GL_SITE=	https://salsa.debian.org
+GL_ACCOUNT=	iso-codes-team
+GL_COMMIT=	164802d5fd8c7a8167816fd86a62b286680619f0
+
+BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 .include <bsd.port.mk>
