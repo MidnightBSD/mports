@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Geography-Countries
 PORTVERSION=	2009041301
 CATEGORIES=	misc perl5
@@ -8,9 +6,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Handle ISO-3166 country codes
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 CONFIGURE_ARGS+=	INSTALLDIRS='site'
 
 .include <bsd.port.mk>
