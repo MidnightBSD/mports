@@ -10,7 +10,7 @@ DISTNAME=	${PORTNAME:C/.*-//}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Message handling functions
 
-LICENSE=	artistic gpl
+LICENSE=	artistic gpl2
 LICENSE_COMB=	dual
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
