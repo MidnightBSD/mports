@@ -485,6 +485,7 @@ SUBDIR += p5-Role-Tiny
 SUBDIR += p5-SDL
 SUBDIR += p5-SUPER
 SUBDIR += p5-Scope-Guard
+SUBDIR += p5-Set-Scalar
 SUBDIR += p5-Specio
 SUBDIR += p5-Spiffy
 SUBDIR += p5-Storable
