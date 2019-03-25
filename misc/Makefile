@@ -46,6 +46,7 @@ SUBDIR += p5-Geography-Countries
 SUBDIR += p5-List-Compare
 SUBDIR += p5-Locale-US
 SUBDIR += p5-Software-License
+SUBDIR += p5-Software-License-CCpack
 SUBDIR += patchutils
 SUBDIR += pciids
 SUBDIR += phone-de
