@@ -120,6 +120,7 @@ SUBDIR += p5-Text-Reform
 SUBDIR += p5-Text-Soundex
 SUBDIR += p5-Text-TabularDisplay
 SUBDIR += p5-Text-Tabs+Wrap
+SUBDIR += p5-Text-Template
 SUBDIR += p5-Text-WordDiff
 SUBDIR += p5-XML-DOM
 SUBDIR += p5-XML-Filter-BufferText
