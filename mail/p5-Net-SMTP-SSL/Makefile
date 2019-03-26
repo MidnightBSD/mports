@@ -15,6 +15,7 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${SITE_PERL}/IO/Socket/SSL.pm:security/p5-IO-Socket-SSL
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
