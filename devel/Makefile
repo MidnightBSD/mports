@@ -414,6 +414,7 @@ SUBDIR += p5-IO-String
 SUBDIR += p5-IO-Tty
 SUBDIR += p5-IO-stringy
 SUBDIR += p5-IPC-Run
+SUBDIR += p5-IPC-Run3
 SUBDIR += p5-IPC-ShareLite
 SUBDIR += p5-IPC-Signal
 SUBDIR += p5-IPC-System-Simple
