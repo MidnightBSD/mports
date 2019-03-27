@@ -528,6 +528,7 @@ SUBDIR += p5-Test-File-ShareDir
 SUBDIR += p5-Test-Harness
 SUBDIR += p5-Test-Kwalitee
 SUBDIR += p5-Test-LeakTrace
+SUBDIR += p5-Test-LongString
 SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-Memory-Cycle
 SUBDIR += p5-Test-MockModule
