@@ -326,6 +326,7 @@ SUBDIR += p5-Config-Tiny
 SUBDIR += p5-Context-Preserve
 SUBDIR += p5-Cwd-Guard
 SUBDIR += p5-Data-Compare
+SUBDIR += p5-Data-Dump
 SUBDIR += p5-Data-Dumper
 SUBDIR += p5-Data-Dumper-Concise
 SUBDIR += p5-Data-IEEE754
