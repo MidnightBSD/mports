@@ -68,6 +68,7 @@ SUBDIR += p5-Cookie-Baker
 SUBDIR += p5-FCGI
 SUBDIR += p5-HTML-Breadcrumbs
 SUBDIR += p5-HTML-Encoding
+SUBDIR += p5-HTML-Form
 SUBDIR += p5-HTML-Mason
 SUBDIR += p5-HTML-Pager
 SUBDIR += p5-HTML-Parser
