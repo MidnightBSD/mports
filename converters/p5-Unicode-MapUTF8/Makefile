@@ -14,7 +14,7 @@ LICENSE=      artistic gpl
 LICENSE_COMB= dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	ja-p5-Jcode>=0:converters/p5-Jcode \
+RUN_DEPENDS=	p5-Jcode>=0:converters/p5-Jcode \
 		p5-Unicode-Map>=0:converters/p5-Unicode-Map \
 		p5-Unicode-Map8>=0:converters/p5-Unicode-Map8 \
 		p5-Unicode-String>=0:converters/p5-Unicode-String
