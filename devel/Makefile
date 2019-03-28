@@ -333,6 +333,7 @@ SUBDIR += p5-Data-Dumper
 SUBDIR += p5-Data-Dumper-Concise
 SUBDIR += p5-Data-IEEE754
 SUBDIR += p5-Data-OptList
+SUBDIR += p5-Data-Perl
 SUBDIR += p5-Data-Printer
 SUBDIR += p5-Data-Section
 SUBDIR += p5-Data-Section-Simple
