@@ -1,42 +1,35 @@
-# $MidnightBSD$
-
 PORTNAME=	bzr
-PORTVERSION=	2.5.1
+PORTVERSION=	2.7.0
 CATEGORIES=	devel
-MASTER_SITES=	https://launchpadlibrarian.net/106470036/
+MASTER_SITES=	CHEESESHOP
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed version control system by Canonical
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-# Often not needed, but it's cheap insurance
-BUILD_DEPENDS=	cython:${PORTSDIR}/lang/cython
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}testtools>=0:devel/py-testtools@${PY_FLAVOR}
 
 OPTIONS_DEFINE=	SFTP CA_BUNDLE
 SFTP_DESC=	Paramiko for SFTP support
 CA_BUNDLE_DESC=	Include CA bundle for SSL cert validation
 OPTIONS_DEFAULT=	SFTP CA_BUNDLE
 
-USE_PYTHON=	2.6+
-USE_PYDISTUTILS=	yes
+SFTP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}paramiko>=0:security/py-paramiko@${PY_FLAVOR}
+CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+USES=		gettext python:2.7 shebangfix
+SHEBANG_FILES=	bzr
+USE_PYTHON=	distutils cython
 PYDISTUTILS_PKGNAME=	bzr
-USES=		gettext
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MSFTP}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}paramiko>=0:${PORTSDIR}/security/py-paramiko
-.endif
-
-.if ${PORT_OPTIONS:MCA_BUNDLE}
-RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-.endif
+MAKE_ENV=	BZR_LOG=/dev/null
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/bzr.1 ${MAN1PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/bzr.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/bzrlib/*.so
 
-test:	build
+do-test:
 	cd ${WRKSRC} && ./bzr selftest
 
 .include <bsd.port.mk>
