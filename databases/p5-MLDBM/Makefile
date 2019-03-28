@@ -2,6 +2,7 @@
 
 PORTNAME=	MLDBM
 PORTVERSION=	2.05
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,10 +13,11 @@ COMMENT=	Store multi-level hash structure in single level tied hash
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-FreezeThaw>=0:${PORTSDIR}/devel/p5-FreezeThaw
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-FreezeThaw>=0:devel/p5-FreezeThaw
 
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
