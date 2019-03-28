@@ -545,6 +545,7 @@ SUBDIR += p5-Test-Manifest
 SUBDIR += p5-Test-Memory-Cycle
 SUBDIR += p5-Test-MockModule
 SUBDIR += p5-Test-MockObject
+SUBDIR += p5-Test-MockRandom
 SUBDIR += p5-Test-MockTime
 SUBDIR += p5-Test-Most
 SUBDIR += p5-Test-Needs
