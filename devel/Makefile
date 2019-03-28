@@ -518,6 +518,7 @@ SUBDIR += p5-Stream-Buffered
 SUBDIR += p5-String-Approx
 SUBDIR += p5-String-Ediff
 SUBDIR += p5-Sub-Exporter
+SUBDIR += p5-Sub-Exporter-ForMethods
 SUBDIR += p5-Sub-Exporter-Progressive
 SUBDIR += p5-Sub-Name
 SUBDIR += p5-Sub-Identify
