@@ -85,6 +85,7 @@ SUBDIR += p5-HTTP-Date
 SUBDIR += p5-HTTP-DAV
 SUBDIR += p5-HTTP-Entity-Parser
 SUBDIR += p5-HTTP-Headers-Fast
+SUBDIR += p5-HTTP-Lite
 SUBDIR += p5-HTTP-Message
 SUBDIR += p5-HTTP-MultiPartParser
 SUBDIR += p5-HTTP-Negotiate
