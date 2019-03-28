@@ -13,6 +13,7 @@ COMMENT=	Perl subroutines that would be nice to have in the perl core
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

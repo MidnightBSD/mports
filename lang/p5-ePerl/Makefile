@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	eperl
 PORTVERSION=	2.2.14
 PORTREVISION=	4
@@ -11,12 +9,13 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Modules of ePerl package: Parse::ePerl, Apache::ePerl
 
-LICENSE=	gpl2
+LICENSE=	artistic gpl2
+LICENSE_COMB=	dual
 
 MAKE_JOBS_UNSAFE=	yes
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-MAN3=		Parse::ePerl.3 Apache::ePerl.3
 
 .include <bsd.port.mk>

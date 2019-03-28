@@ -14,7 +14,6 @@ COMMENT=	Provide compiled List::MoreUtils functions
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-PERL_CONFIGURE=	yes
 USE_PERL5=	configure
 USES=		perl5
 
