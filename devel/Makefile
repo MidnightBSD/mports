@@ -457,6 +457,7 @@ SUBDIR += p5-MooX-Types-MooseLike
 SUBDIR += p5-MooX-Types-MooseLike-Numeric
 SUBDIR += p5-Moose
 SUBDIR += p5-MooseX-Params-Validate
+SUBDIR += p5-MooseX-StrictConstructor
 SUBDIR += p5-Mouse
 SUBDIR += p5-Net-DBus
 SUBDIR += p5-OLE-Storage_Lite
