@@ -89,6 +89,7 @@ SUBDIR += p5-HTML-Tidy
 SUBDIR += p5-Hash-Merge
 SUBDIR += p5-Net-IDN-Encode
 SUBDIR += p5-PPI
+SUBDIR += p5-PPIx-QuoteLike
 SUBDIR += p5-PPIx-Regexp
 SUBDIR += p5-PPIx-Utilities
 SUBDIR += p5-Parse-Syslog
