@@ -143,6 +143,7 @@ SUBDIR += nvidia-texture-tools
 SUBDIR += ocrad
 SUBDIR += opencv
 SUBDIR += opencv-core
+SUBDIR += openexr
 SUBDIR += openjpeg
 SUBDIR += openjpeg15
 SUBDIR += p5-GD
