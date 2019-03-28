@@ -13,6 +13,8 @@ COMMENT=	Data::JavaScript - Dump perl structures to JavaScript code
 LICENSE=	perl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-PERL_CONFIGURE=	yes
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
