@@ -91,6 +91,7 @@ SUBDIR += p5-HTTP-MultiPartParser
 SUBDIR += p5-HTTP-Negotiate
 SUBDIR += p5-HTTP-Server-Simple
 SUBDIR += p5-LWP-MediaTypes
+SUBDIR += p5-LWP-Online
 SUBDIR += p5-LWP-Protocol-https
 SUBDIR += p5-Mojolicious
 SUBDIR += p5-Mozilla-CA
