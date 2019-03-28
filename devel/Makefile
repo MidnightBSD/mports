@@ -455,6 +455,7 @@ SUBDIR += p5-Module-Runtime
 SUBDIR += p5-Module-Runtime-Conflicts
 SUBDIR += p5-Module-ScanDeps
 SUBDIR += p5-Moo
+SUBDIR += p5-MooX-HandlesVia
 SUBDIR += p5-MooX-StrictConstructor
 SUBDIR += p5-MooX-Types-MooseLike
 SUBDIR += p5-MooX-Types-MooseLike-Numeric
