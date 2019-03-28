@@ -505,6 +505,7 @@ SUBDIR += p5-Sub-Exporter
 SUBDIR += p5-Sub-Exporter-Progressive
 SUBDIR += p5-Sub-Name
 SUBDIR += p5-Sub-Identify
+SUBDIR += p5-Sub-Info
 SUBDIR += p5-Sub-Install
 SUBDIR += p5-Sub-Quote
 SUBDIR += p5-Sub-Uplevel
