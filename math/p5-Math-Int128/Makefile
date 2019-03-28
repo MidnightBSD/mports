@@ -1,6 +1,3 @@
-# Created by: Kurt Jaeger <fbsd-ports@opsec.eu>
-# $FreeBSD: head/math/p5-Math-Int128/Makefile 487272 2018-12-12 01:35:33Z gerald $
-
 PORTNAME=	Math-Int128
 PORTVERSION=	0.22
 PORTREVISION=	5
@@ -8,10 +5,10 @@ CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	pi@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manipulate 128 bits integers in Perl
 
-LICENSE=	ART10
+LICENSE=	artistic
 
 BUILD_DEPENDS=	p5-Math-Int64>=0.51:math/p5-Math-Int64
 RUN_DEPENDS=	p5-Math-Int64>=0.51:math/p5-Math-Int64
