@@ -4,14 +4,17 @@
 PORTNAME=	Hook-LexWrap
 PORTVERSION=	0.20
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Hook
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lexically scoped subroutine wrappers for Perl
-LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
