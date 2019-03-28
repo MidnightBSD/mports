@@ -582,6 +582,7 @@ SUBDIR += p5-Time-Local
 SUBDIR += p5-Time-modules
 SUBDIR += p5-TimeDate
 SUBDIR += p5-Throwable
+SUBDIR += p5-Type-Tie
 SUBDIR += p5-Type-Tiny
 SUBDIR += p5-Types-Serialiser
 SUBDIR += p5-UNIVERSAL-can
