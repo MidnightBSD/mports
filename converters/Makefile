@@ -25,6 +25,7 @@ SUBDIR += p5-JSON1
 SUBDIR += p5-Jcode
 SUBDIR += p5-MIME-Base32
 SUBDIR += p5-MIME-Base64
+SUBDIR += p5-Sereal-Decoder
 SUBDIR += p5-Text-Iconv
 SUBDIR += p5-Unicode-Map
 SUBDIR += p5-Unicode-Map8
