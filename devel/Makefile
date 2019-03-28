@@ -319,6 +319,7 @@ SUBDIR += p5-Class-Tiny
 SUBDIR += p5-Class-Trigger
 SUBDIR += p5-Class-XSAccessor
 SUBDIR += p5-Clone
+SUBDIR += p5-Clone-Choose
 SUBDIR += p5-Clone-PP
 SUBDIR += p5-Config-Any
 SUBDIR += p5-Config-General
