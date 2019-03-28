@@ -13,12 +13,12 @@ LICENSE_NAME=	NODE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-TEST_DEPENDS=	gyp:devel/py-gyp	\
+TEST_DEPENDS=	gyp:devel/py-gyp@${PY_FLAVOR}	\
 		gmake:devel/gmake
 
 USE_GITHUB=	yes
 
-USES=		autoreconf libtool pathfix pkgconfig python:test shebangfix
+USES=		autoreconf libtool pathfix pkgconfig python:build,test shebangfix
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
