@@ -98,6 +98,7 @@ SUBDIR += p5-Net-HTTP
 SUBDIR += p5-Net-Libdnet
 SUBDIR += p5-Net-RabbitMQ
 SUBDIR += p5-Net-Server
+SUBDIR += p5-Net-Works
 SUBDIR += p5-Net-XWhois
 SUBDIR += p5-RPC-XML
 SUBDIR += p5-SOAP-Lite
