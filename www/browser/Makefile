@@ -16,7 +16,7 @@ LICENSE=	mpl
 BUILD_DEPENDS=	nspr>=4.10.8:devel/nspr \
 		nss>=3.19.2:security/nss \
 		libevent>=2.0.21_2:devel/libevent \
-		soundtouch>=1.8.0audio/soundtouch \
+		soundtouch>=1.8.0:audio/soundtouch \
 		harfbuzz>=0.9.34:print/harfbuzz \
 		graphite2>=1.2.4:graphics/graphite2 \
 		libvorbis>=1.3.5:audio/libvorbis \
