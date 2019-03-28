@@ -1,6 +1,6 @@
---- utils/llvm-build/llvmbuild/main.py.orig
+--- utils/llvm-build/llvmbuild/main.py.orig	2015-10-02 16:42:59 UTC
 +++ utils/llvm-build/llvmbuild/main.py
-@@ -660,7 +660,17 @@
+@@ -747,7 +747,17 @@ def add_magic_target_components(parser, 
  
      # We handle a few special cases of target names here for historical
      # reasons, as these are the names configure currently comes up with.

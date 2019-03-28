@@ -2,7 +2,7 @@
 # $FreeBSD: head/databases/py-cassandra-driver/Makefile 485533 2018-11-21 19:38:13Z swills $
 
 PORTNAME=	cassandra-driver
-DISTVERSION=	3.16.0
+DISTVERSION=	3.17.0
 PORTREVISION=	0
 CATEGORIES=	databases python
 MASTER_SITES=	CHEESESHOP
@@ -22,7 +22,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=0:devel/py-nose@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sure>0:devel/py-sure@${PY_FLAVOR}
 
-USES=		python
+USES=		python:2.7
 USE_PYTHON=	autoplist cython distutils
 
 OPTIONS_DEFINE=	LIBEV MURMUR3
