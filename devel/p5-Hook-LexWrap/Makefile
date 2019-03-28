@@ -2,7 +2,7 @@
 # $FreeBSD: ports/devel/p5-Hook-LexWrap/Makefile,v 1.2 2007/09/08 00:57:29 linimon Exp $
 
 PORTNAME=	Hook-LexWrap
-PORTVERSION=	0.20
+PORTVERSION=	0.26
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
