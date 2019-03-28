@@ -507,6 +507,7 @@ SUBDIR += p5-SDL
 SUBDIR += p5-SUPER
 SUBDIR += p5-Safe-Isa
 SUBDIR += p5-Scope-Guard
+SUBDIR += p5-Set-Object
 SUBDIR += p5-Set-Scalar
 SUBDIR += p5-Specio
 SUBDIR += p5-Spiffy
