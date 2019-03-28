@@ -98,6 +98,7 @@ SUBDIR += p5-Router-Simple
 SUBDIR += p5-Template-GD
 SUBDIR += p5-Template-Toolkit
 SUBDIR += p5-WWW-Curl
+SUBDIR += p5-WWW-Form-UrlEncoded
 SUBDIR += p5-WWW-Mechanize
 SUBDIR += p5-WWW-RobotRules
 SUBDIR += p5-libwww
