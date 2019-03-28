@@ -485,6 +485,7 @@ SUBDIR += p5-PatchReader
 SUBDIR += p5-Path-Class
 SUBDIR += p5-Path-Tiny
 SUBDIR += p5-PathTools
+SUBDIR += p5-Perl-Tidy
 SUBDIR += p5-Pod-Coverage
 SUBDIR += p5-Pod-Tests
 SUBDIR += p5-Proc-WaitStat
