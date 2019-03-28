@@ -7,9 +7,12 @@ MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
-COMMENT=	A simple interface to access shared memory
-LICENSE=	perl
+COMMENT=	Simple interface to access shared memory
 
-PERL_CONFIGURE=	yes
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
