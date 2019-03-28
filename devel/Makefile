@@ -401,6 +401,7 @@ SUBDIR += p5-Filter
 SUBDIR += p5-FreezeThaw
 SUBDIR += p5-Getopt-ArgvFile
 SUBDIR += p5-Getopt-Long
+SUBDIR += p5-Getopt-Long-Descriptive
 SUBDIR += p5-Hash-FieldHash
 SUBDIR += p5-Hash-MoreUtils
 SUBDIR += p5-Hash-MultiValue
