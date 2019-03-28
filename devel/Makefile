@@ -281,6 +281,7 @@ SUBDIR += p5-B-Hooks-OP-Check
 SUBDIR += p5-B-Keywords
 SUBDIR += p5-BSD-Resource
 SUBDIR += p5-CHI
+SUBDIR += p5-CPAN-Changes
 SUBDIR += p5-CPAN-DistnameInfo
 SUBDIR += p5-CPAN-Meta
 SUBDIR += p5-CPAN-Meta-Check
