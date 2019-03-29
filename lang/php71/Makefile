@@ -19,6 +19,8 @@ USE_GCC=        4.8
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 
+NO_TEST=	yes
+
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 #NOTE: libtools ends with Version mismatch error
