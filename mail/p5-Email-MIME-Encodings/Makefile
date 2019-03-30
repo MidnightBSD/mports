@@ -19,6 +19,7 @@ LICENSE_COMB=	dual
 
 RUN_DEPENDS=	p5-MIME-Base64>3.05:converters/p5-MIME-Base64
 BUILD_DEPENDS=	${RUN_DEPENDS}
+TEST_DEPENDS=	p5-Capture-Tiny>=0:devel/p5-Capture-Tiny
 
 USES=		perl5
 USE_PERL5=	configure
