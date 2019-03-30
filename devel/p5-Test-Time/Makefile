@@ -11,6 +11,8 @@ COMMENT=	Perl extension to override time()/sleep() core functions for testing
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
+TEST_DEPENDS=	p5-File-Slurp>=0:devel/p5-File-Slurp
+
 USES=		perl5
 USE_PERL5=	configure
 
