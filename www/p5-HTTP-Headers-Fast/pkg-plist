@@ -1,2 +1,14 @@
 %%SITE_PERL%%/HTTP/Headers/Fast.pm
-%%PERL5_MAN3%%/HTTP::Headers::Fast.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Headers::Fast.3
+@dir %%SITE_PERL%%/HTTP/Headers
+@dir %%SITE_PERL%%/HTTP
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/HTTP/Headers/Fast
+@dir %%SITE_ARCH%%/auto/HTTP/Headers
+@dir %%SITE_ARCH%%/auto/HTTP
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
