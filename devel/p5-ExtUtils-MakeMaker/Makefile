@@ -10,7 +10,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Designed to write a Makefile for an extension module
 LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+
+NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 
