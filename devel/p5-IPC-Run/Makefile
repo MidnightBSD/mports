@@ -1,26 +1,22 @@
-# $FreeBSD: ports/devel/p5-IPC-Run/Makefile,v 1.8 2006/05/11 08:34:41 tobez Exp $
-# $MidnightBSD$
-#
-
 PORTNAME=	IPC-Run
-PORTVERSION=	0.80
+PORTVERSION=	0.99
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	IPC
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPC::Run - Run subprocesses with piping and redirection
-LICENSE=	perl
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE_ART10=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-Tty>=1.08:devel/p5-IO-Tty
+TEST_DEPENDS=	p5-Readonly>=0:devel/p5-Readonly
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} >= 500800
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/IO/Tty.pm:${PORTSDIR}/devel/p5-IO-Tty
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
