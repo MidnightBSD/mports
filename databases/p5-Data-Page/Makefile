@@ -3,19 +3,23 @@
 
 PORTNAME=	Data-Page
 PORTVERSION=	2.02
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
-COMMENT=	Module for paging thru result sets
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Pager utility for Class::DBI
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	${SITE_PERL}/Class/Accessor/Chained.pm:devel/p5-Class-Accessor-Chained
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Class-Accessor-Chained>=0:devel/p5-Class-Accessor-Chained
+TEST_DEPENDS=	p5-Test-Exception>=0:devel/p5-Test-Exception
 
-PERL_MODBUILD=	yes
+USES=		perl5
+USE_PERL5=	modbuild
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
