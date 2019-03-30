@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	Test-Differences
-PORTVERSION=	0.610
+PORTVERSION=	0.640
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
@@ -10,19 +8,18 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/0$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test::Differences - Test strings and data structures for differences
-LICENSE=	perl
 
-BUILD_DEPENDS=	p5-Text-Diff>=0.35:${PORTSDIR}/textproc/p5-Text-Diff
-RUN_DEPENDS=	p5-Text-Diff>=0.35:${PORTSDIR}/textproc/p5-Text-Diff
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Text-Diff>=1.43:textproc/p5-Text-Diff
+TEST_DEPENDS=	p5-Capture-Tiny>=0.24:devel/p5-Capture-Tiny
 
 PORTSCOUT=	skipv:0.4801
 
-PERL_CONFIGURE=	yes
+NO_ARCH=	yes
+USES=		perl5
+USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 501400
-RUN_DEPENDS+=	p5-Data-Dumper>=2.126:${PORTSDIR}/devel/p5-Data-Dumper
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
