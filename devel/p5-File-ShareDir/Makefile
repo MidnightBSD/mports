@@ -14,7 +14,8 @@ LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-Class-Inspector>=1.12:devel/p5-Class-Inspector
+RUN_DEPENDS=	p5-Class-Inspector>=1.12:devel/p5-Class-Inspector \
+		p5-File-ShareDir-Install>=0.13:devel/p5-File-ShareDir-Install
 
 USES=		perl5
 USE_PERL5=	configure
