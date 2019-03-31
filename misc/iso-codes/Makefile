@@ -9,6 +9,8 @@ LICENSE=	lgpl2.1
 
 USES=		gettext-tools gmake pathfix python:3.4+,build tar:xz
 
+BUILD_DEPENDS+=	python3:lang/python3
+
 GNU_CONFIGURE=	yes
 NO_ARCH=	yes
 
