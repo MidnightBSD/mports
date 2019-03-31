@@ -9,7 +9,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure Python Expect-like module
 
-LICENSE=	isc
+LICENSE=	iscl
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ptyprocess>=0:sysutils/py-ptyprocess@${PY_FLAVOR}
 
