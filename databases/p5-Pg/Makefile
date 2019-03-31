@@ -17,6 +17,8 @@ USES=		perl5 pgsql
 USE_PGSQL=	yes
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 CONFIGURE_ENV=	POSTGRES_INCLUDE=${LOCALBASE}/include POSTGRES_LIB=${LOCALBASE}/lib
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
