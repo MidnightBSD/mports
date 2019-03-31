@@ -13,7 +13,8 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-Class-Adapter>=1.05:devel/p5-Class-Adapter \
-		p5-Params-Util>=1.00:devel/p5-Params-Util
+		p5-Params-Util>=1.00:devel/p5-Params-Util \
+		p5-Module-Pluggable>=0:devel/p5-Module-Pluggable
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
