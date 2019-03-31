@@ -6,7 +6,7 @@ MASTER_SITES=	https://download.libsodium.org/libsodium/releases/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to build higher-level cryptographic tools
 
-LICENSE=	isc
+LICENSE=	iscl
 
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix pkgconfig
