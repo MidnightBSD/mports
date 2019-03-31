@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Run a subprocess in a pseudo terminal
 
-LICENSE=	isc
+LICENSE=	iscl
 
 USES=		python
 USE_PYTHON=	distutils autoplist
