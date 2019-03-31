@@ -1,17 +1,17 @@
-# $MidnightBSD$
-
 PORTNAME=	Module-Find
 PORTVERSION=	0.13
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lets you find and use modules in categories
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
 
