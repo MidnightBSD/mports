@@ -1,8 +1,5 @@
-# $FreeBSD: ports/devel/p5-String-Ediff/Makefile,v 1.4 2005/11/11 21:36:28 mnag Exp $
-# $MidnightBSD$
-
 PORTNAME=	String-Ediff
-PORTVERSION=	0.08
+PORTVERSION=	0.09
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,8 +7,10 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to produce common sub-string indices for two strings
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
