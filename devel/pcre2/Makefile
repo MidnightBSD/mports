@@ -81,7 +81,7 @@ CONFIGURE_ARGS+=	--with-parens-nest-limit=${WITH_PARENS_NEST_LIMIT}
 
 #prevent regression test coredumps from causing failures on the
 #package-building cluster:
-.ifndef(MAINTAINER_MODE)
+.ifndef(MAGUS)
 CORELIMIT?=	/usr/bin/limits -Sc 0
 .endif
 TESTLOGS?=	RunGrepTest RunTest pcre_jit_test pcre_scanner_unittest \
