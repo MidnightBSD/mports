@@ -3407,14 +3407,9 @@ ${deptype:tl}-depends:
 			target="${DEPENDS_TARGET}"; \
 			depends_args="${DEPENDS_ARGS}"; \
 		fi; \
-		case $${dir} in \
-			*@*) \
-				flavor=$${dir\#*@}; \
-				dir=$${dir%@*}; \
-				;; \
-		esac; \
 		case $$dir in \
 		/*) dir=$$dir ;; \
+		*@*) dir=${PORTSDIR}/$${dir%@*} ;; \
 		*) dir=${PORTSDIR}/$$dir ;; \
 		esac ; \
 		if ${EXPR} "$$prog" : \\/ >/dev/null; then \
