@@ -3357,260 +3357,33 @@ package-noinstall:
 .if !target(depends)
 depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
 
-.if defined(ALWAYS_BUILD_DEPENDS)
-_DEPEND_ALWAYS=	1
-.else
-_DEPEND_ALWAYS=	0
-.endif
-
-_INSTALL_DEPENDS=	\
-		if [ X${USE_PACKAGE_DEPENDS} != "X" ]; then \
-			subpkgfile=`(cd $$dir; ${MAKE} $$depends_args -V PKGFILE)`; \
-			if [ -r "$${subpkgfile}" -a "$$target" = "${DEPENDS_TARGET}" ]; then \
-				if [ -z "${DESTDIR}" ] ; then \
-					${ECHO_MSG} "===>   Installing existing package $${subpkgfile}"; \
-					${MPORT_INSTALL} $${subpkgfile}; \
-				else \
-					${ECHO_MSG} "===>   Installing existing package $${subpkgfile} into ${DESTDIR}"; \
-					${MPORT_INSTALL} $${subpkgfile}; \
-				fi; \
-			else \
-				(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
-				(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS clean) ; \
-			fi; \
-		else \
-			(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
-			(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS clean) ; \
-		fi; \
-		if [ -z "${DESTDIR}" ] ; then \
-			${ECHO_MSG} "===>   Returning to build of ${PKGNAME}"; \
-		else \
-			${ECHO_MSG} "===>   Returning to build of ${PKGNAME} for ${DESTDIR}"; \
-		fi;
-
-.for deptype in PKG EXTRACT PATCH FETCH BUILD RUN TEST
-.if !target(${deptype:tl}-depends)
+.for deptype in PKG EXTRACT PATCH FETCH BUILD LIB RUN TEST
 ${deptype:tl}-depends:
-.if defined(${deptype}_DEPENDS)
-.if !defined(NO_DEPENDS)
-	@for i in `${ECHO_CMD} "${${deptype}_DEPENDS}"`; do \
-		prog=`${ECHO_CMD} $$i | ${SED} -e 's/:.*//'`; \
-		if [ -z "$$prog" ]; then \
-			${ECHO_MSG} "Error: there is an empty port dependency in ${deptype}_DEPENDS."; \
-			break; \
-		fi; \
-		dir=`${ECHO_CMD} $$i | ${SED} -e 's/[^:]*://'`; \
-		if ${EXPR} "$$dir" : '.*:' > /dev/null; then \
-			target=`${ECHO_CMD} $$dir | ${SED} -e 's/.*://'`; \
-			dir=`${ECHO_CMD} $$dir | ${SED} -e 's/:.*//'`; \
-		else \
-			target="${DEPENDS_TARGET}"; \
-			depends_args="${DEPENDS_ARGS}"; \
-		fi; \
-		case $$dir in \
-		/*) dir=$$dir ;; \
-		*@*) dir=${PORTSDIR}/$${dir%@*} ;; \
-		*) dir=${PORTSDIR}/$$dir ;; \
-		esac ; \
-		if ${EXPR} "$$prog" : \\/ >/dev/null; then \
-			if [ -e "$$prog" ]; then \
-				if [ "$$prog" = "${NONEXISTENT}" ]; then \
-					${ECHO_MSG} "Error: ${NONEXISTENT} exists.  Please remove it, and restart the build."; \
-					${FALSE}; \
-				else \
-					if [ -z "${DESTDIR}" ] ; then \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on file: $$prog - found"; \
-					else \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on file in ${DESTDIR}: $$prog - found"; \
-					fi; \
-					if [ ${_DEPEND_ALWAYS} = 1 ]; then \
-						${ECHO_MSG} "       (but building it anyway)"; \
-						notfound=1; \
-					else \
-						notfound=0; \
-					fi; \
-				fi; \
-			else \
-				if [ -z "${DESTDIR}" ] ; then \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on file: $$prog - not found"; \
-				else \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on file in ${DESTDIR}: $$prog - not found"; \
-				fi; \
-				notfound=1; \
-			fi; \
-		else \
-			case $${prog} in \
-				*\>*|*\<*|*=*)	pkg=yes;; \
-				*)		pkg="";; \
-			esac; \
-			if [ "$$pkg" != "" ]; then \
-				_version=`${ECHO_CMD} "$$prog" | ${SED} -E 's/^[^><=]*//'`; \
-				_name=`${ECHO_CMD} "$$prog" | ${SED} -E 's/[><=]+.*//'`; \
-				if ${MPORT_QUERY} -q name=$$_name version$$_version; then \
-					if [ -z "${DESTDIR}" ] ; then \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$prog - found"; \
-					else \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on package in ${DESTDIR}: $$prog - found"; \
-					fi; \
-					if [ ${_DEPEND_ALWAYS} = 1 ]; then \
-						${ECHO_MSG} "       (but building it anyway)"; \
-						notfound=1; \
-					else \
-						notfound=0; \
-					fi; \
-				else \
-					if [ -z "${DESTDIR}" ] ; then \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$prog - not found"; \
-					else \
-						${ECHO_MSG} "===>   ${PKGNAME} depends on package in ${DESTDIR}: $$prog - not found"; \
-					fi; \
-					notfound=1; \
-				fi; \
-				if [ $$notfound != 0 ]; then \
-					inverse_dep=`${ECHO_CMD} $$_version | ${SED} \
-						-e 's/<=/=gt=/; s/</=ge=/; s/>=/=lt=/; s/>/=le=/' \
-						-e 's/=gt=/>/; s/=ge=/>=/; s/=lt=/</; s/=le=/<=/'`; \
-					bad_version=`${MPORT_QUERY} -q name=$$_name version$$_version || ${TRUE}`; \
-					if [ "$$pkg_info" != "" ]; then \
-						${ECHO_MSG} "===>   Found $$pkg_info, but you need to upgrade to $$prog."; \
-						exit 1; \
-					fi; \
-				fi; \
-			elif ${WHICH} "$$prog" > /dev/null 2>&1 ; then \
-				if [ -z "${PREFIX}" ] ; then \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on executable: $$prog - found"; \
-				else \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on executable in ${DESTDIR}: $$prog - found"; \
-				fi; \
-				if [ ${_DEPEND_ALWAYS} = 1 ]; then \
-					${ECHO_MSG} "       (but building it anyway)"; \
-					notfound=1; \
-				else \
-					notfound=0; \
-				fi; \
-			else \
-				if [ -z "${DESTDIR}" ] ; then \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on executable: $$prog - not found"; \
-				else \
-					${ECHO_MSG} "===>   ${PKGNAME} depends on executable in ${DESTDIR}: $$prog - not found"; \
-				fi; \
-				notfound=1; \
-			fi; \
-		fi; \
-		if [ $$notfound != 0 ]; then \
-			${ECHO_MSG} "===>  Verifying $$target for $$prog in $$dir"; \
-			if [ ! -d "$$dir" ]; then \
-				${ECHO_MSG} "     => No directory for $$prog.  Skipping.."; \
-			else \
-				${_INSTALL_DEPENDS} \
-			fi; \
-		fi; \
-	done
-.endif
-.else
-	@${DO_NADA}
-.endif
+.if defined(${deptype}_DEPENDS) && !defined(NO_DEPENDS)
+	@${SETENV} \
+                dp_RAWDEPENDS="${${deptype}_DEPENDS}" \
+                dp_DEPTYPE="${deptype}_DEPENDS" \
+                dp_DEPENDS_TARGET="${DEPENDS_TARGET}" \
+                dp_DEPENDS_PRECLEAN="${DEPENDS_PRECLEAN}" \
+                dp_DEPENDS_CLEAN="${DEPENDS_CLEAN}" \
+                dp_DEPENDS_ARGS="${DEPENDS_ARGS}" \
+                dp_USE_PACKAGE_DEPENDS="${USE_PACKAGE_DEPENDS}" \
+                dp_USE_PACKAGE_DEPENDS_ONLY="${USE_PACKAGE_DEPENDS_ONLY}" \
+                dp_PKG_ADD="${MPORT_INSTALL}" \
+                dp_PKG_INFO="${MPORT_QUERY}" \
+                dp_WRKDIR="${WRKDIR}" \
+                dp_PKGNAME="${PKGNAME}" \
+                dp_STRICT_DEPENDS="${STRICT_DEPENDS}" \
+                dp_LOCALBASE="${LOCALBASE}" \
+                dp_LIB_DIRS="${LIB_DIRS}" \
+                dp_SH="${SH}" \
+                dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+                PORTSDIR="${PORTSDIR}" \
+                dp_MAKE="${MAKE}" \
+                dp_MAKEFLAGS='${.MAKEFLAGS}' \
+                ${SH} ${SCRIPTSDIR}/do-depends.sh
 .endif
 .endfor
-
-lib-depends:
-.if defined(LIB_DEPENDS) && !defined(NO_DEPENDS)
-	@set -e ; \
-	for i in ${LIB_DEPENDS:M*.so*\:*}; do \
-		lib=$${i%%:*} ; \
-		dir=$${i#*:}  ; \
-		target="${DEPENDS_TARGET}"; \
-		depends_args="${DEPENDS_ARGS}"; \
-		${ECHO_MSG}  -n "===>   ${PKGNAME} depends on shared library: $${lib}" ; \
-		found=0 ; \
-		dirs="${LIB_DIRS} `${CAT} ${LOCALBASE}/libdata/ldconfig/* 2>/dev/null || : `" ; \
-		case $$dir in \
-                /*) dir=$$dir ;; \
-                *) dir=${PORTSDIR}/$$dir ;; \
-                esac ; \
-		for libdir in $$dirs; do \
-			test -f $${libdir}/$${lib} || continue; \
-			if [ -x /usr/bin/file ]; then \
-				_LIB_FILE=`realpath $${libdir}/$${lib}`; \
-				[ `file -b -L --mime-type $${_LIB_FILE}` = "application/x-sharedlib" ] || continue ; \
-			fi ; \
-			found=1 ; \
-			${ECHO_MSG} " - found"; \
-		done ; \
-		if [ $${found} -eq 0 ]; then \
-			${ECHO_MSG} " - not found"; \
-			${ECHO_MSG} "===>    Verifying for $$lib in $$dir"; \
-			if [ ! -d "$$dir" ] ; then \
-				${ECHO_MSG} "    => No directory for $$lib.  Skipping.."; \
-			else \
-				${_INSTALL_DEPENDS} \
-			fi ; \
-		fi ; \
-	done
-	@set -e ; for i in ${LIB_DEPENDS:N*.so*\:*}; do \
-		lib=$${i%%:*}; \
-		pattern="`${ECHO_CMD} $$lib | ${SED} -E -e 's/\./\\\\./g' -e 's/(\\\\)?\+/\\\\+/g'`"\
-		dir=$${i#*:}; \
-		target=$${i##*:}; \
-		case $${dir} in \
-                        *@*) \
-                                flavor=$${dir\#*@}; \
-                                dir=$${dir%@*}; \
-                                ;; \
-                esac; \
-		case $$dir in \
-                /*) pdir=$$dir ;; \
-                *) pdir=${PORTSDIR}/$$dir ;; \
-                esac ; \
-		if ${TEST} $$dir = $$target; then \
-			target="${DEPENDS_TARGET}"; \
-			depends_args="${DEPENDS_ARGS}"; \
-		else \
-			dir=$${dir%%:*}; \
-		fi; \
-		if [ -z "${DESTDIR}" ] ; then \
-			${ECHO_MSG} -n "===>   ${PKGNAME} depends on shared library: $$lib"; \
-			if ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
-				${ECHO_MSG} " - found"; \
-				if [ ${_DEPEND_ALWAYS} = 1 ]; then \
-					${ECHO_MSG} "       (but building it anyway)"; \
-					notfound=1; \
-				else \
-					notfound=0; \
-				fi; \
-			else \
-				${ECHO_MSG} " - not found"; \
-				notfound=1; \
-			fi; \
-		else \
-			${ECHO_MSG} -n "===>   ${PKGNAME} depends on shared library in ${DESTDIR}: $$lib"; \
-			if ${CHROOT} ${DESTDIR} ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
-				${ECHO_MSG} " - found"; \
-				if [ ${_DEPEND_ALWAYS} = 1 ]; then \
-					${ECHO_MSG} "       (but building it anyway)"; \
-					notfound=1; \
-				else \
-					notfound=0; \
-				fi; \
-			else \
-				${ECHO_MSG} " - not found"; \
-				notfound=1; \
-			fi; \
-		fi; \
-		if [ $$notfound != 0 ]; then \
-			${ECHO_MSG} "===>    Verifying $$target for $$lib in $$dir"; \
-			if [ ! -d "$$dir" ]; then \
-				${ECHO_MSG} "     => No directory for $$lib.  Skipping.."; \
-			else \
-				${_INSTALL_DEPENDS} \
-				if ! ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
-					${ECHO_MSG} "Error: shared library \"$$lib\" does not exist"; \
-					${FALSE}; \
-				fi; \
-			fi; \
-		fi; \
-	done
-.endif
 
 .endif
 
