@@ -1,0 +1,21 @@
+PORTNAME=	Net-DNS-Resolver-Mock
+PORTVERSION=	1.20171219
+CATEGORIES=	dns perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Mock a DNS Resolver object for testing
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Net-DNS>=0:dns/p5-Net-DNS
+
+NO_ARCH=	yes
+USE_PERL5=	configure
+USES=		perl5
+
+.include <bsd.port.mk>
