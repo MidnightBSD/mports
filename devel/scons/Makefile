@@ -3,7 +3,7 @@
 
 PORTNAME=	scons
 PORTVERSION=	3.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	SF
 
@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	gm4:devel/m4
 
-USES=		python:2.7
+USES=		python:2.7 shebangfix
+SHEBANG_FILES=	script/scons*
 USE_PYTHON=	distutils autoplist noflavors
 
 PLIST_SUB+=	SCONS_VER=${PORTVERSION}
