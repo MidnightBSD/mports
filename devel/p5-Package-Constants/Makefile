@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Package-Constants
 PORTVERSION=	0.06
 CATEGORIES=	devel perl5
@@ -9,8 +7,10 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	List all constants declared in a package
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
