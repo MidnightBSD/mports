@@ -195,7 +195,7 @@ sub check_for_skip {
 sub _run_make {
   my ($self, $target) = @_;
 
-  my $flavor =  $self->{port}->{flavor};
+  my $flavor =  $self->{port}->flavor;
 
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
 
