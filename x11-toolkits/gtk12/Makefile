@@ -16,7 +16,7 @@ LICENSE=	lgpl
 
 USES+=		libtool pathfix
 USE_PERL5_BUILD=	yes
-USE_XORG=	x11 ice xext sm inputproto xi xpm
+USE_XORG=	x11 ice xext sm xorgproto xi xpm
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
