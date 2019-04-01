@@ -14,8 +14,7 @@ USES=		python
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest
+# test depends on pytest but pytest depends on this
+NO_TEST=	yes
 
 .include <bsd.port.mk>
