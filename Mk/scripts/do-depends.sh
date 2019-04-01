@@ -45,7 +45,7 @@ find_package()
 	dp=$1;
 	_version=`/bin/echo "$dp" | /usr/bin/sed -E 's/^[^><=]*//'`; \
 	_name=`/bin/echo "$dp" | /usr/bin/sed -E 's/[><=]+.*//'`; \
-	if ${dp_PKG_INFO} -q name=$_name version$_version; >/dev/null 2>&1; then
+	if ${dp_PKG_INFO} -q name=$_name version$_version; then
 		echo "===>   ${dp_PKGNAME} depends on package: $1 - found"
 		return 0
 	fi
