@@ -16,7 +16,7 @@ NO_ARCH=	yes
 USE_PYTHON=	autoplist concurrent distutils
 USES=		python
 
-do-test:
-	cd ${WRKSRC}/ && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+# test does external site call and SSL cert won't validate
+NO_TEST=	yes
 
 .include <bsd.port.mk>
