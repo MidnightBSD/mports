@@ -36,6 +36,9 @@ EXTERNAL_LIB_DEPENDS=	libFLAC.so:audio/flac \
 			libvorbis.so:audio/libvorbis
 EXTERNAL_CONFIGURE_OFF=	--disable-external-libs
 
+# blows up on magus
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/ doc / /g' ${WRKSRC}/Makefile.in
 
