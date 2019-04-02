@@ -22,8 +22,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	sixohsix
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+NO_TEST=	yes
 
 .include <bsd.port.mk>
