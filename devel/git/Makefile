@@ -45,7 +45,9 @@ SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
 		contrib/buildsystems/generate contrib/contacts/git-contacts \
 		contrib/svn-fe/svnrdump_sim.py \
 		templates/hooks--fsmonitor-watchman.sample
-TEST_TARGET=	test
+#TEST_TARGET=	test
+# magus issues
+NO_TEST=	yes
 
 CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
