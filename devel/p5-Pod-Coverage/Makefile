@@ -15,6 +15,8 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	${SITE_PERL}/Pod/Parser.pm:${PORTSDIR}/textproc/p5-Pod-Parser \
 		${SITE_PERL}/Devel/Symdump.pm:${PORTSDIR}/devel/p5-Devel-Symdump
 
+USES=		perl5
+USE_PERL5=	modbuild
 PERL_MODBUILD=	yes
 
 .if !defined(NOPORTDOCS)
