@@ -1,2 +1,12 @@
-%%PERL5_MAN3%%/Cookie::Baker.3.gz
 %%SITE_PERL%%/Cookie/Baker.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/Cookie::Baker.3
+@dir %%SITE_PERL%%/Cookie
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/Cookie/Baker
+@dir %%SITE_ARCH%%/auto/Cookie
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5
