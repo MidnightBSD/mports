@@ -15,7 +15,7 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 USES=		perl5
-PERL_CONFIGURE=	YES
+USE_PERL5=	configure
 
 post-install:
 	@${MKDIR} ${DOCSDIR}/tutorial
