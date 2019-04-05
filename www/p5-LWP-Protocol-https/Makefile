@@ -25,4 +25,6 @@ NO_ARCH=	yes
 USE_PERL5=	configure
 USES=		perl5
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
