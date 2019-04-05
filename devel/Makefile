@@ -553,6 +553,7 @@ SUBDIR += p5-Test-Fatal
 SUBDIR += p5-Test-File
 SUBDIR += p5-Test-File-ShareDir
 SUBDIR += p5-Test-Harness
+SUBDIR += p5-Test-Inter
 SUBDIR += p5-Test-Kwalitee
 SUBDIR += p5-Test-LeakTrace
 SUBDIR += p5-Test-LongString
