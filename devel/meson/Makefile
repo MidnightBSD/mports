@@ -11,7 +11,9 @@ COMMENT=	High performance build system
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	ninja:devel/ninja \
+BUILD_DEPENDS+=	ninja:devel/ninja \
+		python2.7:lang/python27
+RUN_DEPENDS+=	ninja:devel/ninja \
 		python2.7:lang/python27
 
 USES=		python:3.5+
