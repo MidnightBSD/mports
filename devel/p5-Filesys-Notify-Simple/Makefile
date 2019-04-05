@@ -12,11 +12,13 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSDBSD.org
 COMMENT=	Perl extension for simple and dumb file system watcher
 
-LICENSE=	unknown
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=	perl5
+USES=		perl5
 USE_PERL5=	configure
 
-PERL_CONFIGURE=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
