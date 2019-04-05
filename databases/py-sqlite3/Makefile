@@ -19,6 +19,7 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
+USE_GCC=	yes
 USES=		python tar:xz
 USE_PYTHON=	autoplist distutils allflavors
 
