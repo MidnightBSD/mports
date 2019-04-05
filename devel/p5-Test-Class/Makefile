@@ -19,4 +19,7 @@ NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
 
+# not magus compatible.
+NO_TEST=	yes1
+
 .include <bsd.port.mk>
