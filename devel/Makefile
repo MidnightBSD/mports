@@ -538,6 +538,7 @@ SUBDIR += p5-Sub-Uplevel
 SUBDIR += p5-Task-Weaken
 SUBDIR += p5-Term-ANSIColor
 SUBDIR += p5-Term-ReadKey
+SUBDIR += p5-Term-ReadLine-Gnu
 SUBDIR += p5-Term-Table
 SUBDIR += p5-Test-API
 SUBDIR += p5-Test-Base
