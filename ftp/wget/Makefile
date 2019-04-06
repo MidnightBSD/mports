@@ -12,8 +12,10 @@ COMMENT=	Retrieve files from the Net via HTTP(S) and FTP
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-TEST_DEPENDS=	p5-HTTP-Daemon>=0:www/p5-HTTP-Daemon \
-		p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
+#TEST_DEPENDS=	p5-HTTP-Daemon>=0:www/p5-HTTP-Daemon \
+#		p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
+
+NO_TEST=	yes
 
 USES=		charsetfix cpe iconv tar:xz
 CPE_VENDOR=	gnu
@@ -79,7 +81,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=--without-ssl
 .endif
 
-TEST_TARGET=	check
+#TEST_TARGET=	check
 
 # Executed regardless of whether DOCS is ON or OFF.
 post-patch:
