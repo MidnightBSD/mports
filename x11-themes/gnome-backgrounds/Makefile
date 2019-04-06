@@ -16,6 +16,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 PORTSCOUT=	limitw:1,even
 
 NO_ARCH=	yes
-USES=		gettext meson tar:xz
+USES=		gettext meson python:2.7,build tar:xz
 
 .include <bsd.port.mk>
