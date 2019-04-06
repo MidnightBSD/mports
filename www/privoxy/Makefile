@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Privoxy is a web proxy with advanced filtering capabilities
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:devel/pcre
 
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
