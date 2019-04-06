@@ -34,6 +34,8 @@ MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 CFLAGS+=	-I${LOCALBASE}/include/nspr
 #CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
+NO_TEST=	yes
+
 SUB_FILES=	nss-config nss.pc
 SUB_LIST=	PORTVERSION=${PORTVERSION}
 
