@@ -1,22 +1,20 @@
-# $MidnightBSD$
-
 PORTNAME=	Test-Exception
-PORTVERSION=	0.31
+PORTVERSION=	0.43
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Test::Exception - test functions for exception based code
-LICENSE=	perl
+COMMENT=	Test functions for exception based code
 
-BUILD_DEPENDS=	${SITE_PERL}/Test/Builder/Tester.pm:devel/p5-Test-Simple \
-		p5-Sub-Uplevel>=0.18:devel/p5-Sub-Uplevel
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Sub-Uplevel>=0.18:devel/p5-Sub-Uplevel
+
+NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>
