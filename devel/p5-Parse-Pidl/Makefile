@@ -11,7 +11,7 @@ PKGNAMESUFFIX=
 COMMENT=		IDL compiler written in Perl
 LICENSE=		gpl3
 
-BUILD_DEPENDS=		p5-Parse-Yapp>=0:${PORTSDIR}/devel/p5-Parse-Yapp
+BUILD_DEPENDS=		p5-Parse-Yapp>=0:devel/p5-Parse-Yapp
 RUN_DEPENDS:=		${BUILD_DEPENDS}
 
 CONFLICTS=
@@ -22,7 +22,8 @@ SAMBA4_SUBPORT=		yes
 MASTERDIR=		${.CURDIR}/../../net/${SAMBA4_PORT}
 PKGDIR=			${.CURDIR}
 
-PERL_CONFIGURE=		yes
+USES+=			perl5
+USE_PERL5=		configure
 PATCH_WRKSRC=		${WRKDIR}/${DISTNAME}
 WRKSRC=			${WRKDIR}/${DISTNAME}/pidl
 
