@@ -57,16 +57,16 @@ FLAGS_SHARED ?=	${PICFLAG}
 
 .if ${PORT_OPTIONS:MSHARED}
 PLIST_FILES+=	lib/libcblas_pic.a lib/libcblas.so lib/libcblas.so.${SVERSION}
-TESTS ?=	test-shared
+#TESTS ?=	test-shared
 USE_LDCONFIG=	yes
 .endif
 .if ${PORT_OPTIONS:MSTATIC}
 PLIST_FILES+=	lib/libcblas.a
-TESTS ?=	test-static
+#TESTS ?=	test-static
 .endif
 .if ${PORT_OPTIONS:MPROFILE}
 PLIST_FILES+=	lib/libcblas_p.a
-TESTS ?=	test-profile
+#TESTS ?=	test-profile
 .endif
 
 post-patch:
@@ -105,20 +105,6 @@ post-build:
 BLAS?=			-L${LOCALBASE}/lib -lblas
 BUILD_DEPENDS +=	${LOCALBASE}/lib/libblas.so:math/blas
 MAKE_ENV+=		BLLIB="${BLAS}"
-
-check regression-test test: ${TESTS}
-
-.for o in PROFILE SHARED STATIC
-test-${o:tl}: build-${o:tl}
-.if ${PORT_OPTIONS:M${o}}
-	@${PRINTF} "\n\nTesting ${o:tl} libraries:\n\n\n"
-	@cd ${WRKSRC_${o}}/testing; ${SETENV} ${MAKE_ENV} EXTRAFLAGS="${FLAGS_${o}}" \
-	${MAKE} ${_MAKE_JOBS} ${MAKE_ARGS} all run
-	@${CAT} ${WRKSRC_${o}}/testing/*.out
-
-.endif
-.endfor
-.endif
 
 do-install:
 	@${INSTALL_DATA} ${WRKSRC}/include/*.h ${STAGEDIR}${PREFIX}/include
