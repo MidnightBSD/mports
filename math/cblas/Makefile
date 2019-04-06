@@ -57,16 +57,13 @@ FLAGS_SHARED ?=	${PICFLAG}
 
 .if ${PORT_OPTIONS:MSHARED}
 PLIST_FILES+=	lib/libcblas_pic.a lib/libcblas.so lib/libcblas.so.${SVERSION}
-#TESTS ?=	test-shared
 USE_LDCONFIG=	yes
 .endif
 .if ${PORT_OPTIONS:MSTATIC}
 PLIST_FILES+=	lib/libcblas.a
-#TESTS ?=	test-static
 .endif
 .if ${PORT_OPTIONS:MPROFILE}
 PLIST_FILES+=	lib/libcblas_p.a
-#TESTS ?=	test-profile
 .endif
 
 post-patch:
@@ -105,6 +102,7 @@ post-build:
 BLAS?=			-L${LOCALBASE}/lib -lblas
 BUILD_DEPENDS +=	${LOCALBASE}/lib/libblas.so:math/blas
 MAKE_ENV+=		BLLIB="${BLAS}"
+.endif
 
 do-install:
 	@${INSTALL_DATA} ${WRKSRC}/include/*.h ${STAGEDIR}${PREFIX}/include
