@@ -68,20 +68,6 @@ USE_BINUTILS=	# intel-gcm.s
 CC+=	-B${LOCALBASE}/bin
 .endif
 
-check regression-test test:
-	cd ${WRKSRC}/tests;	\
-		${SETENV} PATH="${BINS}/bin:${PATH}" \
-		    LD_LIBRARY_PATH="${BINS}/lib" \
-		    ${MAKE_ENV}	\
-			./all.sh
-	@if ${GREP} -Fh '>Failed<'	\
-	    ${WRKSRC:H}/tests_results/security/*/results.html; then	\
-		echo "Some tests have failed. Let ${MAINTAINER} know.";	\
-		exit 1;	\
-	else	\
-		echo "All tests succeeded. Good news.";	\
-	fi
-
 post-patch:
 	@${REINPLACE_CMD} '/NSS_DEFAULT_SYSTEM/s,/etc,${PREFIX}&,' \
 		${WRKSRC}/lib/sysinit/nsssysinit.c
