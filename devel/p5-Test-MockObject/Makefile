@@ -22,4 +22,6 @@ USE_PERL5=	configure
 INSTALL_TARGET=	pure_install
 NO_ARCH=	YES
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
