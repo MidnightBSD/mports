@@ -104,7 +104,7 @@ POSTFIX_CCARGS+=	\$$(WARN) \
 _REQUIRE=		LOGIN cleanvar
 
 .if ${PORT_OPTIONS:MPCRE}
-LIB_DEPENDS+=		pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=		libpcre.so:devel/pcre
 POSTFIX_CCARGS+=	-DHAS_PCRE -I${LOCALBASE}/include
 POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -lpcre
 .else
@@ -112,7 +112,7 @@ POSTFIX_CCARGS+=	-DNO_PCRE
 .endif
 
 .if ${PORT_OPTIONS:MSASL2}
-LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
 POSTFIX_CCARGS+=	-DUSE_SASL_AUTH -DUSE_CYRUS_SASL -I${LOCALBASE}/include -I${LOCALBASE}/include/sasl
 POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -lsasl2 -lpam -lcrypt
 .endif
@@ -132,7 +132,7 @@ POSTFIX_AUXLIBS+=	-lkrb5 ${KRB5_EXTR} -lcrypto -lcrypt -lcom_err -lasn1 -lroken
 .endif
 
 .if ${PORT_OPTIONS:MSASLKMIT}
-LIB_DEPENDS+=		krb5:${PORTSDIR}/security/krb5
+LIB_DEPENDS+=		libkrb5.so:security/krb5
 POSTFIX_AUXLIBS+=	-Wl,--rpath,$${KRB5_HOME:-${LOCALBASE}}/lib -lkrb5 -lcrypto -lcrypt -lcom_err
 .endif
 
@@ -143,7 +143,7 @@ POSTFIX_AUXLIBS+=	-L${OPENSSLLIB} ${LDFLAGS} -lssl -lcrypto
 .endif
 
 .if ${PORT_OPTIONS:MSPF}
-LIB_DEPENDS+=		spf2:${PORTSDIR}/mail/libspf2
+LIB_DEPENDS+=		libspf2.so:mail/libspf2
 PATCH_SITES+=		${MASTER_SITE_LOCAL}
 PATCH_SITE_SUBDIR=	mm
 PATCHFILES+=		postfix-2.8.0-libspf2-1.2.x-0.patch.gz
@@ -192,14 +192,14 @@ POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -lldap -llber
 _REQUIRE+=		slapd
 .if ${PORT_OPTIONS:MLDAP_SASL}
 .if ! ${PORT_OPTIONS:MSASL2}
-LIB_DEPENDS+=		sasl2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
 .endif
 POSTFIX_CCARGS+=	-I${LOCALBASE}/include/sasl -DUSE_LDAP_SASL
 .endif
 .endif
 
 .if ${PORT_OPTIONS:MCDB}
-LIB_DEPENDS+=		cdb:${PORTSDIR}/databases/tinycdb
+LIB_DEPENDS+=		libcdb.so:${PORTSDIR}/databases/tinycdb
 POSTFIX_CCARGS+=	-DHAS_CDB -I${LOCALBASE}/include
 POSTFIX_AUXLIBS+=	-L${LOCALBASE}/lib -lcdb
 .endif
