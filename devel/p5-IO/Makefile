@@ -17,4 +17,6 @@ USES=		perl5
 USE_PERL5=	configure
 CONFIGURE_ARGS=	INSTALLDIRS=site POLLUTE=1
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
