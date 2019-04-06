@@ -25,13 +25,10 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 SHEBANG_FILES=	gyp_uv.py
 
+NO_TEST=	yes
+
 pre-configure:
 	${ECHO_CMD} "m4_define([UV_EXTRA_AUTOMAKE_FLAGS], [ serial-tests])" \
 		> ${WRKSRC}/m4/libuv-extra-automake-flags.m4
-
-do-test:
-	(cd ${WRKSRC} && ./gyp_uv.py -f make &&	\
-	${SETENV} ${MAKE_ENV} ${GMAKE} -C out && \
-	./out/Debug/run-tests)
 
 .include <bsd.port.mk>
