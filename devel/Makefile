@@ -370,6 +370,7 @@ SUBDIR += p5-Devel-Refcount
 SUBDIR += p5-Devel-StackTrace
 SUBDIR += p5-Devel-StackTrace-AsHTML
 SUBDIR += p5-Devel-Symdump
+SUBDIR += p5-Dir-Self
 SUBDIR += p5-Dist-CheckConflicts
 SUBDIR += p5-EV
 SUBDIR += p5-Eval-Closure
