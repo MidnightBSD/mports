@@ -37,8 +37,8 @@ TOOLS_DESC=		Install several tools
 # Patches required for use with the FreeBSD Project repository only
 SVNSERVE_WRAPPER_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-svnserve-wrapper
 
-USES+=			shebangfix
-python_CMD=		${LOCALBASE}/bin/python2
+USES+=			shebangfix python:2.7,env
+python_CMD=		${LOCALBASE}/bin/python2.7
 python_OLD_CMD+=	"/bin/env python"
 SHEBANG_REGEX=		./tools/.*
 
@@ -62,7 +62,7 @@ PLIST_SUB+=	NO_SVNSERVE_WRAPPER=""
 .endif
 
 .if ${PORT_OPTIONS:MTEST}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 .endif
 
 .if ${PORT_OPTIONS:MSTATIC}
@@ -225,7 +225,7 @@ _mkrepos:	.USE
 
 svn-build-outputs-hack:
 	(cd ${WRKSRC} && ${PATCH} ${PATCH_DIST_ARGS} -p0 < ${PATCHDIR}/extra-patch-build.conf)
-	(cd ${WRKSRC} && python2 gen-make.py --release --installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_fs_x,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc)
+	(cd ${WRKSRC} && python2.7 gen-make.py --release --installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_fs_x,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc)
 	${MV} ${WRKSRC}/build-outputs.mk ${FILESDIR}/build-outputs.mk.addons
 
 .include <bsd.port.post.mk>
