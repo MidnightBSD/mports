@@ -27,6 +27,8 @@ STATIC_DESC=	Build (non-PIC) archives
 PLIST_FILES=	include/cblas.h include/cblas_f77.h
 PLIST_SUB=	SVERSION="${SVERSION}"
 
+NO_TEST=	yes
+
 SVERSION=	2
 
 WRKSRC=			${WRKDIR}/CBLAS
