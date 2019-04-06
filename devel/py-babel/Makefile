@@ -21,9 +21,9 @@ PORTDOCS=	docs/*
 OPTIONS_DEFINE=	DOCS
 
 do-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for docfile in ${PORTDOCS}
-	${CP} -r ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
+	${CP} -r ${WRKSRC}/${docfile} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
