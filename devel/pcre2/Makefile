@@ -83,6 +83,8 @@ CONFIGURE_ARGS+=	--with-parens-nest-limit=${WITH_PARENS_NEST_LIMIT}
 #package-building cluster:
 .ifndef(MAGUS)
 CORELIMIT?=	/usr/bin/limits -Sc 0
+.else
+NO_TEST=	yes
 .endif
 TESTLOGS?=	RunGrepTest RunTest pcre_jit_test pcre_scanner_unittest \
 		pcre_stringpiece_unittest pcrecpp_unittest
