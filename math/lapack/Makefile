@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME?=	lapack
 PORTVERSION=	3.5.0
 PORTREVISION=	0
@@ -33,6 +31,8 @@ WRKSRC_PROFILE=		${WRKSRC}_PROFILE
 WRKSRC_SHARED=		${WRKSRC}_SHARED
 WRKSRC_STATIC=		${WRKSRC}
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 .if defined(BLAS_SLAVEPORT)
@@ -41,14 +41,13 @@ BLASLIB=		../../libblas.a
 LIBS=			blas
 PLIST_SUB+=		BLAS="" LAPACK="@comment " XLAPACK="@comment " LAPACKE="@comment "
 SVERSION=		2
-TEST_TARGET=		blas_testing
 .elif defined(LAPACKE_SLAVEPORT)
 ALL_TARGET=		lapackelib
 LAPACKELIB=		liblapacke.a
 LAPACKETMGLIB=		liblapacke_tmg.a
 MAKE_ENV+=	LAPACKELIB="${LAPACKELIB}" LAPACKETMGLIB="${LAPACKETMGLIB}"
-LIB_DEPENDS+=		libblas.so:${PORTSDIR}/math/blas \
-			liblapack.so:${PORTSDIR}/math/lapack
+LIB_DEPENDS+=		libblas.so:math/blas \
+			liblapack.so:math/lapack
 LIBS=			lapacke lapacke_tmg
 INCLS=			lapacke lapacke_utils lapacke_mangling
 PLIST_SUB+=		BLAS="@comment " LAPACK="@comment " XLAPACK="@comment " LAPACKE=""
@@ -56,10 +55,9 @@ SVERSION=		1
 .else
 ALL_TARGET=		lib
 BLASLIB?=		-L${LOCALBASE}/lib -lblas
-LIB_DEPENDS+=		libblas.so:${PORTSDIR}/math/blas
+LIB_DEPENDS+=		libblas.so:math/blas
 LIBS=			lapack tmglib
 SVERSION=		4
-TEST_TARGET=		lapack_testing
 .if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
 S=			${PYTHON_CMD}
 USES+=			python:build
@@ -67,7 +65,7 @@ USES+=			python:build
 S=			\#
 .endif
 .if defined(XLAPACK_SLAVEPORT)
-LIB_DEPENDS+=		libxblas.so:${PORTSDIR}/math/xblas
+LIB_DEPENDS+=		libxblas.so:math/xblas
 MAKE_ENV+=		USEXBLAS=yes XBLASLIB="${XBLASLIB}"
 P=			x
 PLIST_SUB+=		BLAS="@comment " LAPACK="@comment " XLAPACK="" LAPACKE="@comment "
@@ -76,7 +74,7 @@ XBLASLIB?=		-L${LOCALBASE}/lib -lxblas
 PLIST_FILES+=		${MAN3L:S|^|man/man3/|:S|$|.gz|}
 PLIST_SUB+=		BLAS="@comment " LAPACK="" XLAPACK="@comment " LAPACKE="@comment "
 .if defined(MAINTAINER_MODE)
-BUILD_DEPENDS +=	doxygen:${PORTSDIR}/devel/doxygen
+BUILD_DEPENDS +=	doxygen:devel/doxygen
 MAN_TARGET=		build-manpages
 .endif
 .endif
@@ -155,29 +153,6 @@ post-build:
 	cd ${WRKSRC_SHARED} ; ${FC} ${FFLAGS} ${FFLAGS_SHARED} ${LDFLAGS} -shared \
 	-o lib${P}${L}.so.${SVERSION} -Wl,-x -Wl,-soname,lib${P}${L}.so.${SVERSION} \
 	-Wl,--whole-archive lib${L}.a -Wl,--no-whole-archive
-.endfor
-.endif
-
-.if ${PORT_OPTIONS:MSHARED}
-TESTS ?=	test-shared
-.elif ${PORT_OPTIONS:MSTATIC}
-TESTS ?=	test-static
-.elif ${PORT_OPTIONS:MPROFILE}
-TESTS ?=	test-profile
-.endif
-
-.if !defined(LAPACKE_SLAVEPORT)
-check regression-test test: ${TESTS}
-.for o in PROFILE SHARED STATIC
-test-${o:tl}: build-${o:tl}
-.if ${PORT_OPTIONS:M${o}}
-	@${PRINTF} "\n\nTesting ${o:tl} libraries:\n\n\n"
-	@cd ${WRKSRC_${o}}; ${SETENV} ${MAKE_ENV} EXTRAFLAGS="${FFLAGS_${o}}" \
-	${MAKE} ${_MAKE_JOBS} ${MAKE_ARGS} ARCH="${AR}" ${TEST_TARGET}
-.if defined(BLAS_SLAVEPORT)
-	@${CAT} ${WRKSRC_${o}}/BLAS/*.out
-.endif
-.endif
 .endfor
 .endif
 
