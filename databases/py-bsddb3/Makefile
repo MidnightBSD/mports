@@ -13,6 +13,7 @@ LICENSE=	bsd3
 
 USES=		bdb python
 USE_PYTHON=	distutils autoplist
+USE_GCC=	yes
 
 PYDISTUTILS_CONFIGUREARGS=--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
 PYDISTUTILS_BUILDARGS=	--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
