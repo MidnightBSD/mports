@@ -38,6 +38,10 @@ PY2TO3_ARGS=	--fix=all --no-diffs --nobackups --verbose --write
 
 .include <bsd.port.pre.mk>
 
+.if ${PYTHON_PKGNAMEPREFIX} == "py27-"
+PORTVERSION=    2.8
+.endif
+
 .if ${PKGNAMESUFFIX} == "-doc"
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.1.3:textproc/py-sphinx@${PY_FLAVOR}
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
