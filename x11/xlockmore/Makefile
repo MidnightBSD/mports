@@ -23,7 +23,7 @@ CONFIGURE_ARGS=	--without-motif --without-ttf --without-editres \
 USE_GNOME=	#
 USE_XORG=	x11 xaw ice
 
-LIB_DEPENDS+=	freetype:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
 
 PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock man/man1/xlock.1.gz
 
@@ -127,7 +127,7 @@ CONFIGURE_ARGS+=	--enable-customization
 .endif
 
 .if ${PORT_OPTIONS:MMAGICK}
-LIB_DEPENDS+=	MagickCore:${PORTSDIR}/graphics/ImageMagick
+LIB_DEPENDS+=	libMagickCore-6.so:graphics/ImageMagick6
 .else
 CONFIGURE_ARGS+=	--without-magick
 .endif
