@@ -11,8 +11,8 @@ COMMENT=	Place launch icons and background directly on your desktop
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	imlib2-config:${PORTSDIR}/graphics/imlib2
-LIB_DEPENDS=	Xft:${PORTSDIR}/x11-fonts/libXft
+LIB_DEPENDS=	libXft.so:x11-fonts/libXft \
+		libImlib2.so:graphics/imlib2
 
 USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
@@ -40,7 +40,7 @@ CONFIGURE_ARGS+=	--disable-shape
 .endif
 
 .if ${PORT_OPTIONS:MSN}
-LIB_DEPENDS+=	startup-notification:${PORTSDIR}/x11/startup-notification
+LIB_DEPENDS+=	libstartup-notification.so:x11/startup-notification
 CONFIGURE_ARGS+=	--enable-libsn
 .endif
 
