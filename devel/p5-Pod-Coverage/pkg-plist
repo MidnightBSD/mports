@@ -1,16 +1,9 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/pod_cover
+%%PERL5_MAN3%%/Pod::Coverage.3.gz
+%%PERL5_MAN3%%/Pod::Coverage::CountParents.3.gz
+%%PERL5_MAN3%%/Pod::Coverage::ExportOnly.3.gz
+%%PERL5_MAN3%%/Pod::Coverage::Overloader.3.gz
+%%SITE_PERL%%/Pod/Coverage.pm
 %%SITE_PERL%%/Pod/Coverage/CountParents.pm
 %%SITE_PERL%%/Pod/Coverage/ExportOnly.pm
 %%SITE_PERL%%/Pod/Coverage/Overloader.pm
-%%SITE_PERL%%/Pod/Coverage.pm
-%%DOCSDIR%%/Changes
-%%EXAMPLESDIR%%/check_installed
-%%EXAMPLESDIR%%/script-covered
-@dirrm %%SITE_PERL%%/Pod/Coverage
-@dirrm %%SITE_PERL%%/Pod
-@dirrm %%SITE_PERL%%
-@dirrm lib/perl5/site_perl
-@dirrm lib/perl5
-@dirrm %%DOCSDIR%%
-@dirrm %%EXAMPLESDIR%%
