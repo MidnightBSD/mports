@@ -12,7 +12,7 @@ COMMENT=	Framework for window manager implementation
 
 LICENSE=	mit
 
-LIB_DEPENDS=	xcb-util:${PORTSDIR}/x11/xcb-util
+LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
 USES=		gmake pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
