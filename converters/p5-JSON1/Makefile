@@ -11,10 +11,12 @@ COMMENT=	Perl extension to convert to JSON (JavaScript Object Notation)
 
 LICENSE=	perl
 
-RUN_DEPENDS=	${SITE_PERL}/HTTP/Request.pm:${PORTSDIR}/www/p5-libwww
+RUN_DEPENDS=	p5-libwww>=0:www/p5-libwww
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 CONFLICTS=	p5-JSON-2.*
-PERL_CONFIGURE=	yes
+
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
