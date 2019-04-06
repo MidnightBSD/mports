@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/p5-Image-Info/Makefile,v 1.13 2006/12/03 12:45:57 demon Exp $
-
 PORTNAME=	Image-Info
 PORTVERSION=	1.41
 CATEGORIES=	graphics perl5
@@ -10,13 +7,16 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for getting image information
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/IO/String.pm:${PORTSDIR}/devel/p5-IO-String \
-		${SITE_PERL}/XML/Simple.pm:${PORTSDIR}/textproc/p5-XML-Simple \
-		p5-XML-LibXML>0:${PORTSDIR}/textproc/p5-XML-LibXML
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-String>=0:devel/p5-IO-String \
+		p5-XML-LibXML>=0:textproc/p5-XML-LibXML \
+		p5-XML-Simple>=0:textproc/p5-XML-Simple
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
