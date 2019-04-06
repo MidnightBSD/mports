@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	Term-ShellUI
 PORTVERSION=	0.92
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	shells perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,22 +8,22 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fully-featured shell-like command line environment
 
-LICENSE=	perl
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/Term/ReadLine/Perl.pm:${PORTSDIR}/devel/p5-ReadLine-Perl
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Term-ReadLine-Gnu>=0:devel/p5-Term-ReadLine-Gnu
 
-PERL_CONFIGURE=	yes
+USES=		perl5 shebangfix
+SHEBANG_FILES=	examples/*
+USE_PERL5=	configure
+NO_ARCH=	yes
 
-SAMPLESDIR=	${WRKSRC}/examples
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-
-.if !defined(NOPORTDOCS)
-	@${ECHO_MSG} "===>   Installing examples for ${PKGNAME}"
-	@${MKDIR} ${EXAMPLESDIR}
-.for file in fileman-example synopsis synopsis-big tui-sample
-	    @${INSTALL_SCRIPT} ${SAMPLESDIR}/${file}	${EXAMPLESDIR}
-.endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/examples/ && ${INSTALL_SCRIPT} \
+		fileman-example synopsis synopsis-big tui-sample ${STAGEDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>
