@@ -1,19 +1,21 @@
-# $MidnightBSD$
-
 PORTNAME=	Graph
-PORTVERSION=	0.96
+PORTVERSION=	0.9704
+PORTEPOCH=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph, the Perl module for graph operations
-LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Heap.pm:${PORTSDIR}/devel/p5-Heap \
-		${SITE_PERL}/${PERL_ARCH}/List/Util.pm:${PORTSDIR}/lang/p5-Scalar-List-Utils
-RUN_DEPENDS=	${BUILD_DEPENDS}
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Heap>=0:devel/p5-Heap
+
+USES=		perl5
+USE_PERL5=	configure
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
