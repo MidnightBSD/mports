@@ -19,4 +19,6 @@ CONFLICTS=	p5-JSON-2.*
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
