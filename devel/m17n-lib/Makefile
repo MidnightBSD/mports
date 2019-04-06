@@ -13,14 +13,14 @@ COMMENT=	Library for multilingual text handling
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS=	bison:${PORTSDIR}/devel/bison \
-		m17n-db>=1.6.2:${PORTSDIR}/devel/m17n-db
-LIB_DEPENDS=	fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
-		freetype:${PORTSDIR}/print/freetype2 \
-		fribidi:${PORTSDIR}/converters/fribidi \
-		gd:${PORTSDIR}/graphics/gd \
-		otf:${PORTSDIR}/print/libotf
-RUN_DEPENDS=	m17n-db>=1.6.2:${PORTSDIR}/devel/m17n-db
+BUILD_DEPENDS=	bison:devel/bison \
+		m17n-db>=1.6.2:devel/m17n-db
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libfribidi.so:converters/fribidi \
+		libgd.so:graphics/gd \
+		libotf.so:print/libotf
+RUN_DEPENDS=	m17n-db>=1.6.2:devel/m17n-db
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -40,14 +40,14 @@ CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--without-anthy
 
 .if defined(WITH_ISPELL)
-BUILD_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
-RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
+BUILD_DEPENDS+=	ispell:textproc/ispell
+RUN_DEPENDS+=	ispell:textproc/ispell
 .else
 CONFIGURE_ENV+=	HAVE_ISPELL=no
 .endif
 
 .if defined(WITH_THAI)
-LIB_DEPENDS+=	thai.0:${PORTSDIR}/devel/libthai
+LIB_DEPENDS+=	libthai.so:devel/libthai
 .else
 CONFIGURE_ARGS+=	--without-libthai
 .endif
