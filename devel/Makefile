@@ -282,6 +282,7 @@ SUBDIR += p5-B-Flags
 SUBDIR += p5-B-Hooks-EndOfScope
 SUBDIR += p5-B-Hooks-OP-Check
 SUBDIR += p5-B-Keywords
+SUBDIR += p5-B-Utils
 SUBDIR += p5-BSD-Resource
 SUBDIR += p5-CHI
 SUBDIR += p5-CPAN-Changes
