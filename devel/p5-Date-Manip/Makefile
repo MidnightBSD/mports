@@ -14,9 +14,9 @@ COMMENT=	Perl5 module containing date manipulation routines
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-TEST_DEPENDS=	p5-Test-Inter>=0:devel/p5-Test-Inter
-
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
