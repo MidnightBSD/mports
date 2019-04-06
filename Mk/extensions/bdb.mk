@@ -1,97 +1,101 @@
-# -*- mode: Makefile; tab-width: 4; -*-
-# ex: ts=4
+# Provide support for Berkeley DB
+# Feature:	bdb
+# Usage:	USES=	bdb[:version]
 #
-# $MidnightBSD$ 
-# $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
-#
-
-.if defined(_POSTMKINCLUDED) && !defined(Bdb_Post_Include)
-
-Bdb_Post_Include=		bdb.mk
-Bdb_Include_MAINTAINER=	ports@MidnightBSD.org
-
-##
-# USE_BDB		- Add Berkeley DB library dependency.
-#				  If no version is given (by the maintainer via the port or
-#				  by the user via defined variable), try to find the
-#				  currently installed version.  Fall back to default if
-#				  necessary (db41+).
+#			  If no version is given (by the maintainer via the port or
+#			  by the user via defined variable), try to find the
+#			  currently installed version.  Fall back to default if
+#			  necessary (db5 if compatible).
+#			  This adds a "debug-bdb" make target which will dump the
+#			  related data.
 # INVALID_BDB_VER
-#				- This variable can be defined when the port doesn't
-#				  support one or more versions of Berkeley DB.
-# WANT_BDB_VER	- Maintainer can set a version of Berkeley DB to always
-#				  build this port with (overrides WITH_BDB_VER).
-# WITH_BDB_VER	- User defined global variable to set Berkeley DB version
-# <UNIQUENAME>_WITH_BDB_VER
-#				- User defined port specific variable to set
-#				  Berkeley DB version
+#			- This variable can be defined when the port does not
+#			  support one or more versions of Berkeley DB.
+# <BDB_UNIQUENAME>_WITH_BDB_VER
+#			- User defined port specific variable to set Berkeley DB
+#			  version.
 # WITH_BDB_HIGHEST
-#				- Use the highest installed version of Berkeley DB
-# BDB_LIB_NAME	- This variable is automatically set to the name of the
-#				  Berkeley DB library (default: db41)
+#			- Use the highest installed version of Berkeley DB.
+# WITH_BDB6_PERMITTED
+# 			- If defined, BerkeleyDB 6 is added to the
+# 			  default version set, making it eligible even
+# 			  if not already installed. This is due to its
+# 			  stricter Affero GNU Public License.
+#
+# These variables will then be filled in by this .mk file:
+#
+# BDB_LIB_NAME
+#			- This variable is automatically set to the name of the
+#			  Berkeley DB library (default: db41).
 # BDB_LIB_CXX_NAME
-#				- This variable is automatically set to the name of the
-#				  Berkeley DB c++ library (default: db41_cxx)
+#			- This variable is automatically set to the name of the
+#			  Berkeley DB C++ library (default: db41_cxx).
 # BDB_INCLUDE_DIR
-#				- This variable is automatically set to the location of
-#				  the Berkeley DB include directory.
-#				  (default: ${LOCALBASE}/include/db41)
-# BDB_LIB_DIR	- This variable is automatically set to the location of
-#				  the Berkeley DB library directory.
-# BDB_VER		- Detected Berkeley DB version.
+#			- This variable is automatically set to the location of
+#			  the Berkeley DB include directory (default:
+#			  ${LOCALBASE}/include/db41).
+# BDB_LIB_DIR
+#			- This variable is automatically set to the location of
+#			  the Berkeley DB library directory.
+# BDB_VER
+#			- Detected Berkeley DB version.
+#
 
+.if !defined(_INCLUDE_USES_BDB_MK)
+_INCLUDE_USES_BDB_MK=	yes
 
-.include "${PORTSDIR}/Mk/components/default-versions.mk"
+.if !empty(bdb_ARGS)
+_bdb_ARGS:=	${bdb_ARGS}
+.endif
+_bdb_ARGS?=	yes
 
-_USE_BDB_save:=${USE_BDB}
-_WITH_BDB_VER_save:=${WITH_BDB_VER}
+# TODO: avoid malformed conditional with invalid _bdb_ARGS/BDB_DEFAULT
+# check if + works properly from test builds 01h12m23s
 
-_DB_PORTS=	48 5 6
-_DB_DEFAULTS=	48 5    # does not include 6 due to different licensing
-#       but user can re-add it through WITH_BDB6_PERMITTED
+BDB_UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}
+
+_BDB_DEFAULT_save:=${BDB_DEFAULT}
+
+_DB_PORTS=		48 5 6
+_DB_DEFAULTS=	48 5	# does not include 6 due to different licensing
+#	but user can re-add it through WITH_BDB6_PERMITTED
 . if defined(WITH_BDB6_PERMITTED)
 _DB_DEFAULTS+=	6
 . endif
 
 # Dependency lines for different db versions
-db48_DEPENDS=	libdb-4.8.so:${PORTSDIR}/databases/db48
-db5_DEPENDS=	libdb-5.3.so:${PORTSDIR}/databases/db5
-db6_DEPENDS=	libdb-6.1.so:${PORTSDIR}/databases/db6
+db48_DEPENDS=	libdb-4.8.so:databases/db48
+db5_DEPENDS=	libdb-5.3.so:databases/db5
+db6_DEPENDS=	libdb-6.2.so:databases/db6
 # Detect db versions by finding some files
 db48_FIND=	${LOCALBASE}/include/db48/db.h
 db5_FIND=	${LOCALBASE}/include/db5/db.h
 db6_FIND=	${LOCALBASE}/include/db6/db.h
 
-# Override the global WITH_BDB_VER with the
-# port specific <UNIQUENAME>_WITH_BDB_VER
-.if defined(${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER)
-WITH_BDB_VER=	${${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}
+# Override the global BDB_DEFAULT with the
+# port specific <BDB_UNIQUENAME>_WITH_BDB_VER
+.if defined(${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER)
+BDB_DEFAULT=	${${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}
 .endif
 
-# Override USE_BDB with global WITH_BDB_VER
-.if defined(WITH_BDB_VER)
-. if ${WITH_BDB_VER} != 1
-USE_BDB=	${WITH_BDB_VER}
+# Override _bdb_ARGS with global BDB_DEFAULT if the maintainer did not
+# ask for a more specific version.
+. if ${_bdb_ARGS} == yes
+.  if ${BDB_DEFAULT} != 1
+_bdb_ARGS=	${BDB_DEFAULT}
+.  else
+_bdb_ARGS:=	48+
+.  endif
 . endif
-.endif
-
-# Override USE_BDB with maintainer's WANT_BDB_VER
-.if defined(WANT_BDB_VER)
-USE_BDB=	${WANT_BDB_VER}
-.endif
 
 # Compatiblity hack:
 # upgrade older plussed versions to 48+
 _BDB_OLDPLUSVERS=4+ 40+ 41+ 42+ 43+ 44+ 45+ 46+ 47+
-.for i in ${USE_BDB}
+.for i in ${_bdb_ARGS}
 . if ${_BDB_OLDPLUSVERS:M${i}}
-USE_BDB:=	48+
+_bdb_ARGS:=	48+
 . endif
 .endfor
-
-.if ${USE_BDB} == yes
-USE_BDB:=	48+
-.endif
 
 # 1. detect installed versions
 _INST_BDB_VER=
@@ -102,17 +106,17 @@ _INST_BDB_VER+=${bdb}
 .endfor
 
 # 2. parse supported versions:
-# 2a. build list from USE_BDB
+# 2a. build list from _bdb_ARGS
 _SUPP_BDB_VER=
-_USE_BDB:=${USE_BDB:C,\+$,,:C/(.)(.)$/\1.\2/}
-.if !empty(USE_BDB:M*+)
+__bdb_ARGS:=${_bdb_ARGS:C,\+$,,:C/(.)(.)$/\1.\2/}
+.if !empty(_bdb_ARGS:M*+)
 . for bdb in ${_DB_PORTS:C/(.)(.)$/\1.\2/}
-.  if ${_USE_BDB} <= ${bdb}
+.  if ${__bdb_ARGS} <= ${bdb}
 _SUPP_BDB_VER+=${bdb:C/\.//}
 .  endif
 . endfor
 .else
-_SUPP_BDB_VER=${USE_BDB}
+_SUPP_BDB_VER=${_bdb_ARGS}
 .endif
 # 2b. expand INVALID_BDB_VER if given with "+":
 .if !empty(INVALID_BDB_VER:M*+)
@@ -135,7 +139,7 @@ _SUPP_BDB_VER:=${_SUPP_BDB_VER:N${unsupp}}
 # is a usable installed version
 .for i in ${_INST_BDB_VER}
 . if empty(_SUPP_BDB_VER:M${i})
-_INST_BDB_VER:= ${_INST_BDB_VER:N${i}}
+_INST_BDB_VER:=	${_INST_BDB_VER:N${i}}
 . endif
 .endfor
 _ELIGIBLE_BDB_VER:=${_INST_BDB_VER}
@@ -147,7 +151,7 @@ _DFLT_BDB_VER:=${_DB_DEFAULTS}
 _WITH_BDB_HIGHEST=yes
 . for i in ${_DFLT_BDB_VER}
 .  if empty(_SUPP_BDB_VER:M${i})
-_DFLT_BDB_VER:= ${_DFLT_BDB_VER:N${i}}
+_DFLT_BDB_VER:=	${_DFLT_BDB_VER:N${i}}
 .  endif
 . endfor
 _ELIGIBLE_BDB_VER:=${_DFLT_BDB_VER}
@@ -163,7 +167,7 @@ _BDB_VER:=${i}
 
 # 5. catch errors or set variables
 .if empty(_BDB_VER)
-IGNORE=		cannot install: no eligible BerkeleyDB version. Requested: ${USE_BDB}, incompatible: ${_INV_BDB_VER}. Try: make debug-bdb
+IGNORE=		cannot install: no eligible BerkeleyDB version. Requested: ${_bdb_ARGS}, incompatible: ${_INV_BDB_VER}. Try: make debug-bdb
 .else
 . if defined(BDB_BUILD_DEPENDS)
 BUILD_DEPENDS+=	${db${_BDB_VER}_FIND}:${db${_BDB_VER}_DEPENDS:C/^libdb.*://}
@@ -179,8 +183,8 @@ BDB_LIB_NAME=		db-5.3
 BDB_LIB_CXX_NAME=	db_cxx-5.3
 BDB_LIB_DIR=		${LOCALBASE}/lib/db5
 . elif ${_BDB_VER} == 6
-BDB_LIB_NAME=		db-6.1
-BDB_LIB_CXX_NAME=	db_cxx-6.1
+BDB_LIB_NAME=		db-6.2
+BDB_LIB_CXX_NAME=	db_cxx-6.2
 BDB_LIB_DIR=		${LOCALBASE}/lib/db6
 . endif
 BDB_LIB_NAME?=		db${_BDB_VER}
@@ -188,22 +192,21 @@ BDB_LIB_CXX_NAME?=	db${_BDB_VER}_cxx
 BDB_INCLUDE_DIR?=	${LOCALBASE}/include/db${_BDB_VER}
 BDB_LIB_DIR?=		${LOCALBASE}/lib
 .endif
-BDB_VER=		${_BDB_VER}
+BDB_VER=	${_BDB_VER}
 
 debug-bdb:
 	@${ECHO_CMD} "--INPUTS----------------------------------------------------"
-	@${ECHO_CMD} "${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER: ${${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}"
-	@${ECHO_CMD} "WITH_BDB_VER: ${_WITH_BDB_VER_save}"
-	@${ECHO_CMD} "WANT_BDB_VER: ${WANT_BDB_VER}"
+	@${ECHO_CMD} "${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER: ${${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}"
+	@${ECHO_CMD} "BDB_DEFAULT: ${_BDB_DEFAULT_save}"
 	@${ECHO_CMD} "BDB_BUILD_DEPENDS: ${BDB_BUILD_DEPENDS}"
-	@${ECHO_CMD} "USE_BDB (original): ${_USE_BDB_save}"
+	@${ECHO_CMD} "bdb_ARGS (original): ${bdb_ARGS}"
 	@${ECHO_CMD} "WITH_BDB_HIGHEST (original): ${WITH_BDB_HIGHEST}"
 	@${ECHO_CMD} "--PROCESSING------------------------------------------------"
 	@${ECHO_CMD} "supported versions: ${_SUPP_BDB_VER}"
 	@${ECHO_CMD} "invalid versions: ${_INV_BDB_VER}"
 	@${ECHO_CMD} "installed versions: ${_INST_BDB_VER}"
 	@${ECHO_CMD} "eligible versions: ${_ELIGIBLE_BDB_VER}"
-	@${ECHO_CMD} "USE_BDB (effective): ${USE_BDB}"
+	@${ECHO_CMD} "bdb_ARGS (effective): ${_bdb_ARGS}"
 	@${ECHO_CMD} "WITH_BDB_HIGHEST (override): ${_WITH_BDB_HIGHEST}"
 	@${ECHO_CMD} "--OUTPUTS---------------------------------------------------"
 	@${ECHO_CMD} "IGNORE=${IGNORE}"
@@ -226,7 +229,7 @@ BAD_VAR+=	${var},
 .  endif
 . endfor
 . if defined(BAD_VAR)
-_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use WITH_BDB_VER or ${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
+_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use DEFAULT_VERSIONS or ${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
 .  if defined(IGNORE)
 IGNORE+= ${_IGNORE_MSG}
 .  else
@@ -235,4 +238,5 @@ IGNORE=	${_IGNORE_MSG}
 . endif
 .endif
 
-.endif #defined(_POSTMKINCLUDED) && !defined(Bdb_Post_Include)
+
+.endif
