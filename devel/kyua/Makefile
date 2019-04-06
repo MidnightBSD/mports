@@ -11,7 +11,6 @@ COMMENT=	Testing framework for infrastructure software
 LICENSE=	bsd3
 
 LIB_DEPENDS=	liblutok.so:devel/lutok
-LIB_DEPENDS+=	libsqlite3.so:databases/sqlite3
 
 CONFLICTS=	kyua-atf-compat-[0-9]* kyua-cli-[0-9]* kyua-testers-[0-9]*
 
