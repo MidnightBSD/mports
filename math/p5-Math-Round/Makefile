@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Math-Round
 PORTVERSION=	0.07
 CATEGORIES=	math perl5
@@ -12,6 +10,7 @@ COMMENT=	Perl extension for rounding numbers
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
+USES=		perl5
 
 .include <bsd.port.mk>
