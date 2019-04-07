@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Crypt-SmbHash
 PORTVERSION=	0.12
 CATEGORIES=	security perl5
@@ -12,6 +10,7 @@ COMMENT=	Perl module implementing lanman and nt md4 hash functions
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-PERL_CONFIGURE=	yes
+USES=		perl5
+USE_PERL5=	configure
 
 .include <bsd.port.mk>
