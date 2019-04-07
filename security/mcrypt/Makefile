@@ -3,7 +3,7 @@
 
 PORTNAME=	mcrypt
 PORTVERSION=	2.6.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/MCrypt/${PORTVERSION} \
 		ftp://argeas.cs-net.gr/pub/unix/mcrypt/attic/ \
@@ -15,8 +15,8 @@ COMMENT=	Replacement for crypt(1)
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	mcrypt:${PORTSDIR}/security/libmcrypt \
-		mhash:${PORTSDIR}/security/mhash
+LIB_DEPENDS=	libmcrypt.so:security/libmcrypt \
+		libmhash.so:security/mhash
 
 USES=		gettext
 GNU_CONFIGURE=	yes
