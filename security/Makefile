@@ -93,6 +93,7 @@ SUBDIR += p5-Authen-Simple
 SUBDIR += p5-Authen-Simple-Passwd
 SUBDIR += p5-Crypt-CBC
 SUBDIR += p5-Crypt-DES
+SUBDIR += p5-Crypt-PasswdMD5
 SUBDIR += p5-Crypt-OpenSSL-Bignum
 SUBDIR += p5-Crypt-OpenSSL-Guess
 SUBDIR += p5-Crypt-OpenSSL-RSA
