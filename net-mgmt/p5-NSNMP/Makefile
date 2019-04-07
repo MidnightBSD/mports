@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	NSNMP
 PORTVERSION=	0.5
 CATEGORIES=	net-mgmt perl5
@@ -14,5 +12,7 @@ LICENSE=	bsd3
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
