@@ -1,6 +1,4 @@
 # Created by: jkh
-# $MidnightBSD$
-# $FreeBSD: head/devel/swig30/Makefile 394080 2015-08-13 17:31:40Z sunpoet $
 
 PORTNAME=	swig
 PORTVERSION=	3.0.12
@@ -25,7 +23,8 @@ CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:R} \
 		--with-luaincl=${LUA_INCDIR} \
 		--with-lualib=${LUA_LIBDIR}
 GNU_CONFIGURE=	yes
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 USES=		gmake lua
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
