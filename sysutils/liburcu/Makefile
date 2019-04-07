@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	liburcu
-PORTVERSION=	0.10.0
+PORTVERSION=	0.10.1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://lttng.org/files/urcu/
 DISTNAME=	userspace-rcu-${PORTVERSION}
@@ -23,7 +21,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
