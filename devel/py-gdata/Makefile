@@ -2,8 +2,9 @@
 
 PORTNAME=	gdata
 PORTVERSION=	2.0.18
+PORTREVISION=	1
 CATEGORIES=	devel python
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,9 +12,8 @@ COMMENT=	GData Python Client Library
 
 LICENSE=	apache2
 
-PROJECTHOST=	gdata-python-client
-USES=	python:2
-USE_PYTHON=	distutils
+USES=		python:2.7
+USE_PYTHON=	autoplist distutils
 
 OPTIONS_DEFINE=	GMPY M2CRYPTO PYCRYPTO EXAMPLES
 
@@ -26,23 +26,13 @@ OPTIONSFILE?=	${PORT_DBDIR}/py-${PORTNAME}/options
 
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
 
-.include <bsd.mport.options.mk>
+M2CRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}m2crypto>=0.20:security/py-m2crypto@${PY_FLAVOR}
+PYCRYPTO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${PY_FLAVOR}
+GMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gmpy>0:math/py-gmpy@${PY_FLAVOR}
 
-.if ${PORT_OPTIONS:MM2CRYPTO}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}m2crypto>=0.20:${PORTSDIR}/security/py-m2crypto
-.endif
-.if ${PORT_OPTIONS:MPYCRYPTO}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:${PORTSDIR}/security/py-pycrypto
-.endif
-.if ${PORT_OPTIONS:MGMPY}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gmpy>0:${PORTSDIR}/math/py-gmpy
-.endif
-
-post-install:
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
 	@cd ${WRKSRC}/samples && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
-.endif
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
