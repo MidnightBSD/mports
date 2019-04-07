@@ -11,13 +11,12 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
 NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	autoplist distutils
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest
+# circular depends on pytest 
+NO_TEST=	yes
 
 .include <bsd.port.mk>
