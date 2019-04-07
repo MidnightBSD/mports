@@ -25,7 +25,7 @@ BUILD_DEPENDS=	nspr>=4.12:${PORTSDIR}/devel/nspr \
 		libvorbis>=1.3.5,3:${PORTSDIR}/audio/libvorbis \
 		libvpx>=1.5.0:${PORTSDIR}/multimedia/libvpx \
 		sqlite3>=3.9.1:${PORTSDIR}/databases/sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3 \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3@${PY_FLAVOR} \
 		v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat \
 		autoconf-2.13:${PORTSDIR}/devel/autoconf213 \
 		yasm:${PORTSDIR}/devel/yasm \
