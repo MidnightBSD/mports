@@ -1,35 +1,32 @@
-# $MidnightBSD$
-# $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
-
 PORTNAME=	Net-DNS-Resolver-Programmable
-PORTVERSION=	0.003
+PORTVERSION=	0.009
 CATEGORIES=	dns net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable DNS resolver for off-line testing
 
-LICENSE=	gpl2
+LICENSE=	artistic gpl2
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	p5-Net-DNS>=1.05:${PORTSDIR}/dns/p5-Net-DNS
 BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Net-DNS>=0.69:dns/p5-Net-DNS
 
+NO_ARCH=	yes
 USES=		perl5
-PERL_MODBUILD=	yes
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
-
+PORTDOCS=	CHANGES README TODO
 DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS-Resolver-Programmable
 
-post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for doc in CHANGES README TODO
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
-.endfor
-.endif
+OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.post.mk>
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
+
+.include <bsd.port.mk>
