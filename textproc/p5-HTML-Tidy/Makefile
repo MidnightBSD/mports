@@ -22,6 +22,8 @@ USE_PERL5=	configure
 
 PORTDOCS=	Changes README.markdown
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/Makefile.PL
 
