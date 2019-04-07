@@ -89,6 +89,7 @@ SUBDIR += openvpn
 SUBDIR += p11-kit
 SUBDIR += p5-Authen-NTLM
 SUBDIR += p5-Authen-SASL
+SUBDIR += p5-Authen-Simple
 SUBDIR += p5-Authen-Simple-Passwd
 SUBDIR += p5-Crypt-CBC
 SUBDIR += p5-Crypt-DES
