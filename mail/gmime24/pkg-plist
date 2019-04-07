@@ -48,7 +48,6 @@ include/gmime-2.4/gmime/gmime-utils.h
 include/gmime-2.4/gmime/gmime.h
 include/gmime-2.4/gmime/internet-address.h
 lib/libgmime-2.4.a
-lib/libgmime-2.4.la
 lib/libgmime-2.4.so
 lib/libgmime-2.4.so.6
 libdata/pkgconfig/gmime-2.4.pc

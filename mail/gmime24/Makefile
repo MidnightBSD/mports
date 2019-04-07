@@ -1,15 +1,13 @@
-# $MidnightBSD$
-# $FreeBSD: ports/mail/gmime24/Makefile,v 1.11 2011/08/11 19:19:39 kwm Exp $
-
 PORTNAME=	gmime
 PORTVERSION=	2.4.33
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	mail
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	-24
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Library (written in C) for parsing and creating messages using MIME
+
 LICENSE=	lgpl2.1
 
 CONFLICTS=	gmime-1.0.*
@@ -24,10 +22,9 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--enable-mono=no \
 		--program-transform-name="s/uuencode/gmime-uuencode/;s/uudecode/gmime-uudecode/;"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
 CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-
-LATEST_LINK?=	${PORTNAME}24
 
 OPTIONS_DEFINE=	DOCS
 
