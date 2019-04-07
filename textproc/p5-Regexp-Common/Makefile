@@ -9,7 +9,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Regexp::Common - Provide commonly requested regular expressions
 
-LICENSE=	artistic artistic2 bsd mit
+LICENSE=	artistic artistic2 mit
 LICENSE_COMB=	dual
 
 USES=		perl5
