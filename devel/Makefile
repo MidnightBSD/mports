@@ -34,6 +34,7 @@ SUBDIR += boost-python-libs
 SUBDIR += bugzilla44
 SUBDIR += bugzilla50
 SUBDIR += bullet
+SUBDIR += bzr
 SUBDIR += compiler-rt
 SUBDIR += check
 SUBDIR += chrpath

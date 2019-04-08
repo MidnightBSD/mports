@@ -37,7 +37,7 @@ WRKSRC:=	${WRKDIR}/firefox-${DISTVERSION}esr
 CONFLICTS_INSTALL=	libxul-1.9.*
 
 USE_GL=		gl
-USES=		pathfix tar:xz
+USES=		pathfix tar:xz python:2.7,build
 MAKE_ENV=	SKIP_GRE_REGISTRATION=1 mozappdir=${PREFIX}/lib/${MOZILLA} \
 		__FreeBSD__=9
 LDFLAGS+=	-Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
