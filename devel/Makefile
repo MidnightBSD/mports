@@ -479,6 +479,7 @@ SUBDIR += p5-MooseX-Types
 SUBDIR += p5-MooseX-Types-Common
 SUBDIR += p5-MooseX-Types-JSON
 SUBDIR += p5-Mouse
+SUBDIR += p5-MouseX-Types
 SUBDIR += p5-Net-DBus
 SUBDIR += p5-OLE-Storage_Lite
 SUBDIR += p5-Opcodes
