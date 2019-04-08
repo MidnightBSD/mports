@@ -552,6 +552,7 @@ SUBDIR += p5-Test-Base
 SUBDIR += p5-Test-Bits
 SUBDIR += p5-Test-CPAN-Meta
 SUBDIR += p5-Test-CPAN-Meta-YAML
+SUBDIR += p5-Test-CheckDeps
 SUBDIR += p5-Test-Class
 SUBDIR += p5-Test-ClassAPI
 SUBDIR += p5-Test-CleanNamespaces
