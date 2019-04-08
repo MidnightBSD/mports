@@ -436,8 +436,8 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		gcc fmake gmake bison local perl5 \
 		apache autotools bdb cmake cpe cran display dos2unix \
 		efl emacs erlang execinfo fam fonts fuse \
-		gecko gem gettext gettext-tools gettext-runtime \
-		ghostscript gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
+		gecko gem gettext gettext-tools gettext-runtime ghostscript \
+		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
 		ldap libarchive libedit libtool localbase lua \
 		metaport makeself meson mono motif mysql ncurses objc ocaml openal \
 		pgsql php python java qt ruby samba scons sdl sqlite ssl \
