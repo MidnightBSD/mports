@@ -1,7 +1,3 @@
-# Created by: Wen Heping <wenheping@gmail.com>
-# $FreeBSD: head/devel/py-setuptools_darcs/Makefile 412346 2016-04-01 14:00:51Z mat $
-# $MidnightBSD$
-
 PORTNAME=	setuptools_darcs
 PORTVERSION=	1.2.11
 PORTREVISION=	3
@@ -14,7 +10,7 @@ COMMENT=	Setuptools plugin for darcs
 
 LICENSE=	unknown
 
-BUILD_DEPENDS=		darcsver:devel/py-darcsver
+BUILD_DEPENDS=	darcsver:devel/py-darcsver@${PY_FLAVOR}
 
 USES=		python:2.7
 USE_PYTHON=	distutils autoplist
