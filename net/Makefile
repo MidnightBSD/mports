@@ -70,7 +70,6 @@ SUBDIR += liveMedia
 SUBDIR += mDNSResponder
 SUBDIR += miniupnpc
 SUBDIR += nanomsg
-SUBDIR += netatalk
 SUBDIR += netatalk3
 SUBDIR += netcat
 SUBDIR += netclasses
