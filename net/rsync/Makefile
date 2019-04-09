@@ -27,7 +27,6 @@ GNU_CONFIGURE=	yes
 USE_RC_SUBR=	rsyncd
 SUB_LIST=	NAME=rsyncd
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
 
 CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
 		--with-rsyncd-conf=${ETCDIR}/rsyncd.conf
