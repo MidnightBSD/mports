@@ -1,11 +1,6 @@
-# Ports collection makefile for:  rsync
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/rsync/Makefile,v 1.131 2008/04/08 19:24:06 ehaupt Exp $
-#
-
 PORTNAME=	rsync
-PORTVERSION=	3.1.3
+DISTVERSION=	3.1.3
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
@@ -21,7 +16,8 @@ COMMENT=	Network file distribution/synchronization utility
 
 LICENSE=	gpl3
 
-USES=		cpe
+USES=		cpe shebangfix
+SHEBANG_FILES=	support/rrsync
 
 CPE_VENDOR=	samba
 CPE_PRODUCT=	rsync
@@ -30,6 +26,8 @@ PATCH_STRIP=	-p1
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	rsyncd
 SUB_LIST=	NAME=rsyncd
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
 		--with-rsyncd-conf=${ETCDIR}/rsyncd.conf
@@ -51,11 +49,11 @@ PTS_DESC=	Functionality provided by third party patches
 TIMELIMIT_DESC=	Time limit patch
 RENAMED_DESC=	Add support for renamed file detection
 FLAGS_DESC=	File system flags support patch, adds --fileflags
-ATIMES_DESC=	Preserve access times, adds --atimes
+ATIMES_DESC=	Preserve access times, adds --atimes (BROKEN)
 ACL_DESC=	Add backward-compatibility for the --acls option
 
 # define default options
-OPTIONS_DEFAULT=SSH FLAGS
+OPTIONS_DEFAULT=SSH ICONV FLAGS
 
 ZLIB_BASE_CONFIGURE_ON=	--with-included-zlib=no
 TIMELIMIT_EXTRA_PATCHES=	${WRKSRC}/patches/time-limit.diff
@@ -63,17 +61,18 @@ ATIMES_EXTRA_PATCHES=		${WRKSRC}/patches/atimes.diff
 FLAGS_EXTRA_PATCHES=		${WRKSRC}/patches/fileflags.diff \
 				${FILESDIR}/extrapatch-main.c
 RENAMED_EXTRA_PATCHES=		${WRKSRC}/patches/detect-renamed.diff
-ACL_EXTRA_PATCHES=		${WRKSRC}/patches/acls.diff
+ACL_EXTRA_PATCHES=		${WRKSRC}/patches/acls.diff \
+				${FILESDIR}/extrapatch-acl
 
-ICONV_USES=	iconv
+ICONV_USES=	iconv:translit
 ICONV_CPPFLAGS=	-I${LOCALBASE}/include
 ICONV_LDFLAGS=	-L${LOCALBASE}/lib
 ICONV_CONFIGURE_ENABLE=	iconv iconv-open
 
-POPT_PORT_LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt
+POPT_PORT_LIB_DEPENDS=	libpopt.so:devel/popt
 POPT_PORT_CPPFLAGS=	-I${LOCALBASE}/include
 POPT_PORT_LDFLAGS=	-L${LOCALBASE}/lib
-POPT_CONFIGURE_WITH=	included-popt
+POPT_PORT_CONFIGURE_OFF=	--with-included-popt
 
 SSH_CONFIGURE_ON=	--with-rsh=ssh
 SSH_CONFIGURE_OFF=	--with-rsh=rsh
@@ -86,7 +85,7 @@ DISTFILES+=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
 
 .include <bsd.port.pre.mk>
 
-.if empty(ICONV_LIB)
+.if empty(ICONV_LIB) || ! ${PORT_OPTIONS:MICONV}
 CONFIGURE_ARGS+=ac_cv_search_libiconv_open=no
 .endif
 
@@ -94,15 +93,13 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|perl.*|${DO_NADA}|' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's:/etc/:${ETCDIR}/:g'  \
 		${WRKSRC}/rsync.h ${WRKSRC}/rsync.1 ${WRKSRC}/rsyncd.conf.5
+	@${REINPLACE_CMD} -e 's|/usr/bin/rsync|${PREFIX}/bin/rsync|g' ${WRKSRC}/support/rrsync
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rsync
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${STAGEDIR}${ETCDIR}/
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
-
-test: build
-	@(cd ${WRKSRC} && ${MAKE_CMD} check)
+	${INSTALL_SCRIPT} ${WRKSRC}/support/rrsync ${STAGEDIR}${PREFIX}/sbin
 
 .include <bsd.port.post.mk>
