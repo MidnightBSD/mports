@@ -7,14 +7,15 @@ COMMENT=	Perl bindings for Version control system
 
 LICENSE=	other
 
+USES=		perl5
+USE_PERL5=	build run
+
 .if defined(WITH_SUBVERSION_VER) && ${WITH_SUBVERSION_VER} == 18
 MASTERDIR=	${.CURDIR}/../../devel/subversion18
 .else
 MASTERDIR=	${.CURDIR}/../../devel/subversion
 .endif
 PKGDIR=		${.CURDIR}
-
-USE_PERL5=	yes
 
 SVN_BUILD_BINDINGS=	yes
 SVN_BUILD_ADDONS=	yes
