@@ -22,6 +22,7 @@
         <thead>
         <tr>
                 <th>Port</th>
+		<th>Flavor</th>
                 <th>Version</th>
                 <th>Summary</th>
                 <th>OSVersion</th>
@@ -32,6 +33,7 @@
         <TMPL_LOOP NAME=results>
         <tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
                 <td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+                <td><TMPL_VAR NAME=flavor></td>
                 <td><TMPL_VAR NAME=version></td>
                 <td><TMPL_VAR NAME=summary></td>
                 <td><TMPL_VAR NAME=osversion></td>

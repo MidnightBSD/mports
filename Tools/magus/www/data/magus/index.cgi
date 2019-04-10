@@ -117,6 +117,7 @@ sub api_run_port_stats {
   my @results;
   foreach my $port (@ports) {
      push(@results, { version => $port->{version}, summary => $port->{status}, port => $port->{name},
+      flavor    => $port->{flavor}
       arch      => $port->run->arch, 
       id        => $port->{id},
     osversion => $port->run->osversion,
