@@ -70,6 +70,7 @@ SUBDIR += p5-CGI
 SUBDIR += p5-CGI.pm
 SUBDIR += p5-Cookie-Baker
 SUBDIR += p5-FCGI
+SUBDIR += p5-FCGI-ProcManager
 SUBDIR += p5-HTML-Breadcrumbs
 SUBDIR += p5-HTML-Encoding
 SUBDIR += p5-HTML-Form
