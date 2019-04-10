@@ -100,6 +100,7 @@ SUBDIR += libfpx
 SUBDIR += libgnomecanvas
 SUBDIR += libgphoto2
 SUBDIR += libgxps
+SUBDIR += libiptcdata
 SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libopenraw

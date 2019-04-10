@@ -125,6 +125,7 @@ SUBDIR += system-tools-backends
 SUBDIR += tarsnap
 SUBDIR += timemon
 SUBDIR += tracker
+SUBDIR += tracker-miners
 SUBDIR += ucspi-tcp
 SUBDIR += ufs_copy
 SUBDIR += uif2iso
