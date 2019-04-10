@@ -584,6 +584,7 @@ SUBDIR += p5-Test-MockModule
 SUBDIR += p5-Test-MockObject
 SUBDIR += p5-Test-MockRandom
 SUBDIR += p5-Test-MockTime
+SUBDIR += p5-Test-More-UTF8
 SUBDIR += p5-Test-Most
 SUBDIR += p5-Test-Needs
 SUBDIR += p5-Test-NoTabs
