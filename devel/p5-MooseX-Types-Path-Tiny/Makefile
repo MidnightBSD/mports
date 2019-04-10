@@ -1,15 +1,13 @@
-# $FreeBSD: head/devel/p5-MooseX-Types-Path-Tiny/Makefile 470367 2018-05-19 07:54:21Z joneum $
-
 PORTNAME=	MooseX-Types-Path-Tiny
 PORTVERSION=	0.012
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	kuriyama@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension of Path::Tiny types and coercions for Moose
 
-LICENSE=	APACHE20
+LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
 RUN_DEPENDS=	p5-Moose>=2:devel/p5-Moose \

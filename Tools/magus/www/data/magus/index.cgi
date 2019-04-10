@@ -117,7 +117,7 @@ sub api_run_port_stats {
   my @results;
   foreach my $port (@ports) {
      push(@results, { version => $port->{version}, summary => $port->{status}, port => $port->{name},
-      flavor    => $port->{flavor}
+      flavor    => $port->{flavor},
       arch      => $port->run->arch, 
       id        => $port->{id},
     osversion => $port->run->osversion,
@@ -220,6 +220,7 @@ sub summary_page {
     port      => $_->name,
     port_id   => $_->id,
     version   => $_->version,
+    flavor    => $_->flavor,
     osversion => $_->run->osversion,
     arch      => $_->run->arch, 
   }} Magus::Port->search_last_twenty;

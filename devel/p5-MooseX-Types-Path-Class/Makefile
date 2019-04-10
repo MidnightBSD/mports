@@ -1,16 +1,13 @@
-# Created by: Lars Balker Rasmussen <lbr@FreeBSD.org>
-# $FreeBSD: head/devel/p5-MooseX-Types-Path-Class/Makefile 474242 2018-07-09 08:40:17Z mat $
-
 PORTNAME=	MooseX-Types-Path-Class
 PORTVERSION=	0.09
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Path::Class type library for Moose
 
-LICENSE=	ART10 GPLv1+
+LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
