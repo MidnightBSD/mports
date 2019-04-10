@@ -479,6 +479,7 @@ SUBDIR += p5-Moose
 SUBDIR += p5-MooseX-ConfigFromFile
 SUBDIR += p5-MooseX-Getopt
 SUBDIR += p5-MooseX-Params-Validate
+SUBDIR += p5-MooseX-Role-Parameterized
 SUBDIR += p5-MooseX-SimpleConfig
 SUBDIR += p5-MooseX-StrictConstructor
 SUBDIR += p5-MooseX-Types
