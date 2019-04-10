@@ -75,6 +75,7 @@ SUBDIR += p5-SQL-Abstract
 SUBDIR += p5-SQL-Abstract-Limit
 SUBDIR += p5-SQL-Statement
 SUBDIR += p5-SQL-Translator
+SUBDIR += p5-Time-Piece-MySQL
 SUBDIR += percona55-client
 SUBDIR += percona55-server
 SUBDIR += pgtcl

@@ -65,7 +65,6 @@ PORTSCOUT=	limit:^[0-9\.]*$$
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 CONFIGURE_ENV=	DBICTEST_NO_SQLITE_CHECK=1
 
 SQLT_RUN_DEPENDS=	p5-SQL-Translator>=0.09.004:databases/p5-SQL-Translator

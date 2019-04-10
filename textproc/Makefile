@@ -117,6 +117,7 @@ SUBDIR += p5-String-Tagged-Terminal
 SUBDIR += p5-Test-Perl-Critic
 SUBDIR += p5-Text-Autoformat
 SUBDIR += p5-Text-Balanced
+SUBDIR += p5-Text-CSV
 SUBDIR += p5-Text-Diff
 SUBDIR += p5-Text-Glob
 SUBDIR += p5-Text-ParseWords
