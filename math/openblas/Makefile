@@ -6,14 +6,14 @@ DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	math
 MASTER_SITES=	NL/lapack/timing/:lapack_tmg
-DISTFILES=	large.tgz:lapack_tmg timing.tgz:lapack_tmg
+DISTFILES=	large.tgz:lapack_tmg timing.tgz:lapack_tmg \
+		xianyi-OpenBLAS-v0.2.20_GH0.tar.gz
 DIST_SUBDIR=	openblas
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Optimized BLAS library based on GotoBLAS2
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_powerpc64=	fails to compile: gemm.c:403: 'SGEMM_DEFAULT_Q' undeclared (first use in this function)
 
@@ -27,6 +27,8 @@ TIMING_FILE=	timing.tgz
 
 USE_LDCONFIG=	yes
 USE_PERL5=	build
+
+BUILDFLAGS=	FCOMMON_OPT=-frecursive MAKE_NB_JOBS=-1
 
 OPENBLAS_SUFX=	r${PORTVERSION}
 OPENBLAS_LIBS=	libopenblas libopenblasp
@@ -56,7 +58,7 @@ AVX2_DESC=		Support Advanced Vector Extensions 2 (AVX2)
 BUILDFLAGS+=	TARGET=${TARGET_CPU_ARCH}
 .endif
 
-MAXTHREADS?=	8
+MAXTHREADS?=	64
 BUILDFLAGS_THREAD+=	NUM_THREADS=${MAXTHREADS} USE_THREAD=1
 
 .if ${ARCH:M*64} == ""
@@ -91,6 +93,7 @@ BUILDFLAGS+=	NO_AVX2=1
 .endif
 
 post-extract:
+	${MKDIR} ${WRKSRC}
 	cd ${DISTDIR}/${DIST_SUBDIR} ; \
 	${CP} ${LARGE_FILE} ${TIMING_FILE} ${WRKSRC}
 	${MKDIR} ${WRKDIR}/lib
