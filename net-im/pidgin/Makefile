@@ -28,6 +28,6 @@ CONFIGURE_ARGS=	--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//}
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/pidgin.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/pidgin.1 ${MAN1PREFIX}/man/man1
 
 .include "${MASTERDIR}/Makefile"

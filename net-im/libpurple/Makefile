@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME?=	libpurple
-PORTVERSION=	2.12.0
-PORTREVISION?=	1
+PORTVERSION=	2.13.0
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -12,7 +9,7 @@ COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
 
 LICENSE=	gpl2
 
-USES=		cpe gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES+=		cpe gettext gmake libtool localbase pathfix pkgconfig tar:bzip2
 USE_GNOME?=	gnomeprefix intltool glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
@@ -20,19 +17,17 @@ CONFIGURE_ARGS?=--disable-gtkui \
 		--with-dynamic-prpls=${PRPL_MODULES:S/,$//} \
 		--enable-static \
 		--disable-nm
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 .if !defined(PIDGIN_SLAVE)
 # Pidgin slave ports that require the following functionality, must explicitly
 # set these macros themselves.
-USES+=		iconv python
+USES+=		iconv python:2.7 shebangfix
 USE_LDCONFIG=	yes
-WANT_GNOME=	yes
+SHEBANG_FILES=	libpurple/purple-remote \
+		libpurple/purple-url-handler
 
 .if defined(PACKAGE_BUILDING)
-.undef WITHOUT_GNOME
 WITH_GNOME=	yes
 .endif
 
@@ -42,12 +37,15 @@ PRPL_MODULES=
 
 CPE_VENDOR=	pidgin
 
-OPTIONS_DEFINE=	BONJOUR DBUS GNUTLS NSS SASL GSTREAMER VV IDN PERL TCLTK \
-		SAMETIME SILC GG IRC JABBER MSN MYSPACE NOVELL OSCAR QQ \
-		SIMPLE YAHOO ZEPHYR
+OPTIONS_DEFINE=	DBUS SASL GSTREAMER VV IDN PERL TCLTK
+OPTIONS_GROUP=		PROTOCOLS
+OPTIONS_RADIO=	TLS
+OPTIONS_RADIO_TLS=	NSS GNUTLS
+OPTIONS_GROUP_PROTOCOLS=BONJOUR GG SAMETIME SILC IRC JABBER \
+			NOVELL OSCAR QQ SIMPLE ZEPHYR
 OPTIONS_DEFAULT=	BONJOUR DBUS NSS GSTREAMER VV IDN GG IRC JABBER \
 			NOVELL OSCAR QQ SIMPLE ZEPHYR
-BONJOUR_DESC=	mDNS support
+BONJOUR_DESC=	mDNS support and Bonjour protocol
 GNUTLS_DESC=	Use GNUTLS for encryption support
 NSS_DESC=	Use Mozilla NSS for encryption support
 SASL_DESC=	Cyrus SASL support (for jabberd)
@@ -59,7 +57,7 @@ GG_DESC=	The Gadu-Gadu chat protocol
 IRC_DESC=	The Internet Relay Chat protocol
 JABBER_DESC=	The Jabber/XMPP/Google Talk protocol
 NOVELL_DESC=	The Novell GroupWise chat protocol
-OSCAR_DESC=	The AIM/ICQ/Oscar protocol
+OSCAR_DESC=	The ICQ/Oscar protocol
 QQ_DESC=	The Tercent QQ chat protocol
 SIMPLE_DESC=	The SIMPLE chat protocol
 ZEPHYR_DESC=	The Zephyr chat protocol
@@ -75,6 +73,8 @@ PLIST_SUB+=	GTKUI="@comment not installed: "
 .endif
 
 .if defined(WITH_CONSOLEUI)
+OPTIONS_DEFINE+=NCURSES
+NCURSES_DESC=	Build with ncurses from ports
 PLIST_SUB+=	CONSOLEUI=""
 .else
 PLIST_SUB+=	CONSOLEUI="@comment not installed: "
@@ -95,14 +95,34 @@ CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		TCL:="@comment not installed: "
 .endif
 
-.include <bsd.port.pre.mk>
+.if ${PORT_OPTIONS:MNCURSES}
+USES+=		ncurses:port
+CONFIGURE_ARGS+=--with-ncurses-headers=${LOCALBASE}/include/ncurses/
+.else
+USES+=		ncurses
+.endif
 
-.if !defined(PIDGIN_SLAVE)
+.if ${PORT_OPTIONS:MPERL}
+USES+=			perl5
+CONFIGURE_ARGS+=	--with-perl-lib=site
+PLIST_SUB+=		PERL:=""
+.if !defined(PIDGIN_SLAVE) || defined(WITH_GTKUI)
+PLIST_SUB+=		PERLMAN:=""
+.else
+PLIST_SUB+=		PERLMAN:="@comment not installed: "
+.endif
+.else
+CONFIGURE_ARGS+=	--disable-perl
+PLIST_SUB+=		PERL:="@comment not installed: " \
+			PERLMAN:="@comment not installed: "
+.endif
+
+.if defined(WITH_GTKUI) && !defined(PIDGIN_SLAVE)
 USE_GNOME+=	gconf2
 GCONF_SCHEMAS=	purple.schemas
 .endif
 
-#.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
+#.if defined(WITH_GTKUI)
 #USE_GNOME+=		evolutiondataserver
 #PLIST_SUB+=		EVO=""
 #CONFIGURE_ARGS+=	--enable-gevolution
@@ -112,14 +132,14 @@ PLIST_SUB+=		EVO="@comment not installed: "
 #.endif
 
 .if ${PORT_OPTIONS:MGSTREAMER}
-USE_GSTREAMER1+=	core good
+USE_GSTREAMER1+=core good
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
 .if ${PORT_OPTIONS:MVV} && ${PORT_OPTIONS:MGSTREAMER}
 LIB_DEPENDS+=	libfarstream-0.2.so:net-im/farstream
-USE_GSTREAMER1+=	v4l2
+USE_GSTREAMER1+=v4l2
 PLIST_SUB+=	VV=""
 .else
 CONFIGURE_ARGS+=--disable-vv
@@ -186,28 +206,13 @@ CONFIGURE_ARGS+=	--disable-gtkspell
 .if ${PORT_OPTIONS:MDBUS}
 LIB_DEPENDS+=		libdbus-glib-1.so:devel/dbus-glib
 .if !defined(PIDGIN_SLAVE)
-RUN_DEPENDS+=		${PYTHON_SITELIBDIR}/dbus/__init__.py:devel/py-dbus
+RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR}
 .endif
 CONFIGURE_ARGS+=	--enable-dbus
 PLIST_SUB+=		DBUS=""
 .else
 CONFIGURE_ARGS+=	--disable-dbus
 PLIST_SUB+=		DBUS="@comment not installed: "
-.endif
-
-.if ${PORT_OPTIONS:MPERL}
-USES+=			perl5
-CONFIGURE_ARGS+=	--with-perl-lib=site
-PLIST_SUB+=		PERL:=""
-.if !defined(PIDGIN_SLAVE)
-PLIST_SUB+=		PERLMAN:=""
-.else
-PLIST_SUB+=		PERLMAN:="@comment not installed: "
-.endif
-.else
-CONFIGURE_ARGS+=	--disable-perl
-PLIST_SUB+=		PERL:="@comment not installed: " \
-			PERLMAN:="@comment not installed: "
 .endif
 
 .if ${PORT_OPTIONS:MSAMETIME}
@@ -292,17 +297,19 @@ pre-everything::
 
 post-patch:
 	@${REINPLACE_CMD} \
-		-e 's|-lsilc -lsilcclient -lpthread $$LIBDL|-lsilc -lsilcclient -lpthread ${ICONV_LIB}|' \
-			${WRKSRC}/configure
+		-e 's|-lpthread $$LIBDL|-lpthread ${ICONV_LIB}|' \
+		${WRKSRC}/configure
 .if defined(PIDGIN_SLAVE)
 	@${FIND} ${BUILD_WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 		's|$$(top_builddir)/libpurple/libpurple.la|-lpurple|'
+	@${REINPLACE_CMD} -e 's|gconftool-2|gconftool-disabled|g' \
+		${WRKSRC}/configure
 .endif
 
 .if !defined(PIDGIN_SLAVE) && ${PORT_OPTIONS:MPERL}
 post-install:
-	@${SED} -i '' -e 's|^${FAKE_DESTDIR}||g' \
-		${PREFIX}/lib/purple-2/perl/auto/Purple/.packlist
+	@${SED} -i '' -e 's|^${STAGEDIR}||g' \
+		${STAGEDIR}${PREFIX}/lib/purple-2/perl/auto/Purple/.packlist
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
