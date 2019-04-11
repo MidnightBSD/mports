@@ -577,6 +577,7 @@ SUBDIR += p5-Test-Fatal
 SUBDIR += p5-Test-File
 SUBDIR += p5-Test-File-ShareDir
 SUBDIR += p5-Test-Harness
+SUBDIR += p5-Test-HexDifferences
 SUBDIR += p5-Test-Identity
 SUBDIR += p5-Test-Inter
 SUBDIR += p5-Test-Kwalitee
