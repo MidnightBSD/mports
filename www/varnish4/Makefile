@@ -13,7 +13,7 @@ COMMENT=	High-performance HTTP accelerator
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rst2man:textproc/py-docutils
+BUILD_DEPENDS=	rst2man:textproc/py-docutils@${PY_FLAVOR}
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFLICTS=	varnish-2.* varnish-3.*
