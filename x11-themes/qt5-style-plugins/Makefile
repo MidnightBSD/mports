@@ -14,12 +14,13 @@ LICENSE=	lgpl2.1
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		compiler:c++11-lang gettext-runtime pkgconfig qmake qt:5
+USES=		compiler:c++11-lang gettext-runtime gl pkgconfig qmake qt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	qt
 GH_PROJECT=	qtstyleplugins
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango
 USE_QT=		core dbus gui widgets buildtools_build
+USE_QT5=	yes
 USE_GL=		gl
 USE_XORG=	x11 xext
 
