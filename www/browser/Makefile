@@ -48,8 +48,8 @@ FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default4
 MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/' \
 		--enable-application=browser \
 		--disable-official-branding
-MAKE_ENV+=	__FreeBSD__=9 __FreeBSD__version=90004
-FAKE_MAKEENV+=	__FreeBSD__=9 __FreeBSD__version=90004
+MAKE_ENV+=	__FreeBSD__=10 __FreeBSD__version=1004501
+FAKE_MAKEENV+=	__FreeBSD__=10 __FreeBSD__version=1004501
 
 OPTIONS_EXCLUDE=	LOGGING
 OPTIONS_DEFAULT=	GTK2
