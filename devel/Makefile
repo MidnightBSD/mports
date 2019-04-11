@@ -312,6 +312,7 @@ SUBDIR += p5-Class-C3-XS
 SUBDIR += p5-Class-Container
 SUBDIR += p5-Class-Data-Inheritable
 SUBDIR += p5-Class-Factory-Util
+SUBDIR += p5-Class-Forward
 SUBDIR += p5-Class-Gomor
 SUBDIR += p5-Class-ISA
 SUBDIR += p5-Class-Inner
