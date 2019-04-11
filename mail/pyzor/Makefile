@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pyzor
 PORTVERSION=	1.0.0
 CATEGORIES=	mail python

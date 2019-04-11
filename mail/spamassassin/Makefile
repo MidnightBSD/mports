@@ -90,7 +90,7 @@ GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:security/gnupg1
 GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
 MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
-PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor
+PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor@${PY_FLAVOR}
 RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents \
 			p5-Digest-SHA1>=2.13:security/p5-Digest-SHA1
 RLIMIT_RUN_DEPENDS=	p5-BSD-Resource>=1.2911:devel/p5-BSD-Resource
