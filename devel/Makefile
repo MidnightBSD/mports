@@ -277,6 +277,7 @@ SUBDIR += orc
 SUBDIR += p5-Algorithm-C3
 SUBDIR += p5-Algorithm-Diff
 SUBDIR += p5-Alien-SDL
+SUBDIR += p5-Any-Moose
 SUBDIR += p5-AppConfig
 SUBDIR += p5-B-C
 SUBDIR += p5-B-Flags
