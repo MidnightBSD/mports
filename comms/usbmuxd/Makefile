@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	usbmuxd
 DISTVERSION=	1.1.0
 CATEGORIES=	comms
@@ -11,8 +9,8 @@ COMMENT=	Daemon for multiplexing connections over USB to iPhone/iPod Touch
 LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libplist.so:${PORTSDIR}/devel/libplist \
-		libimobiledevice.so:${PORTSDIR}/comms/libimobiledevice
+LIB_DEPENDS=	libplist.so:devel/libplist \
+		libimobiledevice.so:comms/libimobiledevice
 
 USES=		autoreconf cpe libtool pathfix pkgconfig tar:bzip2
 CPE_VENDOR=	nikias_bassen
@@ -21,8 +19,8 @@ CONFIGURE_ARGS=	--without-systemd \
 		libusb_CFLAGS="-I/usr/include" \
 		libusb_LIBS="-lusb"
 
-PLIST_FILES=	man/man1/${PORTNAME}.1.gz \
-		sbin/${PORTNAME}
+PLIST_FILES=	man/man1/usbmuxd.1.gz \
+		sbin/usbmuxd
 
 PORTDOCS=	AUTHORS NEWS README
 
