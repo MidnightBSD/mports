@@ -19,7 +19,7 @@ LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	memcached-1.2*
 
-USES=		cpe shebangfix autoreconf
+USES=		cpe shebangfix autoreconf python:2.7,build
 SHEBANG_FILES=	scripts/memcached-tool
 
 USE_RC_SUBR=	memcached
@@ -48,7 +48,7 @@ OPTIONS_EXCLUDE_armv7=		DTRACE
 DTRACE_DESC=	Enable dtrace probes
 SASL_DESC=	Enable SASL Authentication
 
-DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc
+DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc@${PY_FLAVOR}
 DOCS_CONFIGURE_ENABLE=	docs
 
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
