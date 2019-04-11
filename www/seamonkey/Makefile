@@ -14,23 +14,23 @@ COMMENT=	The open source, standards compliant web browser
 
 LICENSE=	mpl
 
-BUILD_DEPENDS=	nspr>=4.10.6:${PORTSDIR}/devel/nspr \
-		nss>=3.17.4:${PORTSDIR}/security/nss \
-		libevent>=2.0.21_2:${PORTSDIR}/devel/libevent \
-		soundtouch>=1.8.0:${PORTSDIR}/audio/soundtouch \
-		harfbuzz>=0.9.34:${PORTSDIR}/print/harfbuzz \
-		graphite2>=1.2.4:${PORTSDIR}/graphics/graphite2 \
-		libvorbis>=1.3.5:${PORTSDIR}/audio/libvorbis \
-		opus>=1.1:${PORTSDIR}/audio/opus \
-		libvpx>=1.3.0:${PORTSDIR}/multimedia/libvpx \
-		sqlite3>=3.8.7.4:${PORTSDIR}/databases/sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3 \
-		v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat \
-		autoconf-2.13:${PORTSDIR}/devel/autoconf213 \
-		zip:${PORTSDIR}/archivers/zip \
-		unzip:${PORTSDIR}/archivers/unzip
+BUILD_DEPENDS=	nspr>=4.10.6:devel/nspr \
+		nss>=3.17.4:security/nss \
+		libevent>=2.0.21_2:devel/libevent \
+		soundtouch>=1.8.0:audio/soundtouch \
+		harfbuzz>=0.9.34:print/harfbuzz \
+		graphite2>=1.2.4:graphics/graphite2 \
+		libvorbis>=1.3.5:audio/libvorbis \
+		opus>=1.1:audio/opus \
+		libvpx>=1.3.0:multimedia/libvpx \
+		sqlite3>=3.8.7.4:databases/sqlite3 \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
+		v4l_compat>0:multimedia/v4l_compat \
+		autoconf-2.13:devel/autoconf213 \
+		zip:archivers/zip \
+		unzip:archivers/unzip
 
-LIB_DEPENDS=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
+LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
 EM_VERSION=	1.8.2
 L_VERSION=	3.8
@@ -48,7 +48,7 @@ MOZ_EXTENSIONS=	default
 MOZ_OPTIONS+=	--program-transform-name='s/seamonkey/${MOZILLA}/' \
 		--enable-application=suite
 
-MAKE_ENV+=    __FreeBSD_=9 __FREEBSD_version=90100
+MAKE_ENV+=    __FreeBSD_=10 __FREEBSD_version=1004501
 
 USE_MOZILLA=	# empty
 MOZ_PKGCONFIG_FILES=
