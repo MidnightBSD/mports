@@ -38,8 +38,8 @@ use base 'Magus::DBI';
 
 __PACKAGE__->table('ports');
 
-__PACKAGE__->columns(Essential => qw(id run name version status pkgname));
-__PACKAGE__->columns(All       => qw(description license restricted www updated flavor));
+__PACKAGE__->columns(Essential => qw(id run name version status pkgname flavor));
+__PACKAGE__->columns(All       => qw(description license restricted www updated));
 __PACKAGE__->columns(Stringify => qw(name));
 
 __PACKAGE__->has_a(run => 'Magus::Run');
