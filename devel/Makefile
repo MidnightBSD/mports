@@ -419,6 +419,7 @@ SUBDIR += p5-Getopt-ArgvFile
 SUBDIR += p5-Getopt-Long
 SUBDIR += p5-Getopt-Long-Descriptive
 SUBDIR += p5-Hash-FieldHash
+SUBDIR += p5-Hash-Flatten
 SUBDIR += p5-Hash-MoreUtils
 SUBDIR += p5-Hash-MultiValue
 SUBDIR += p5-Heap
