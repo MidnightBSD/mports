@@ -20,7 +20,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 
 USE_QT5=	core gui widgets buildtools_build qmake_build
 USES=		cmake:run desktop-file-utils execinfo \
-		shared-mime-info
+		python:2.7,build shared-mime-info
 CMAKE_ARGS=	-DBUILD_QtDialog:bool=on \
 		-DBUILD_CursesDialog:BOOL=OFF \
 		-DSPHINX_MAN:BOOL=ON \
@@ -38,7 +38,7 @@ DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
 # CMake >= 3.1.0 needs libarchive3 because it calls
 # archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
 .if ${OSVERSION} < 9999
-LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
+LIB_DEPENDS+=	libarchive.so.13:archivers/libarchive
 .endif
 
 post-patch:
