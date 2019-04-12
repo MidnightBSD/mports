@@ -16,10 +16,10 @@ COMMENT=	The New Numeric Extension to Python
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
-
 USES=		fortran python zip
 USE_PYTHON=	allflavors autoplist concurrent cython distutils
+
+NO_TEST=	yes
 
 GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e s/libgfortran.so//
 LDFLAGS+=	-shared
@@ -67,8 +67,5 @@ post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${PORTNAME}-ref-${PORTVERSION}.pdf ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${PORTNAME}-user-${PORTVERSION}.pdf ${FAKE_DESTDIR}${DOCSDIR}
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} runtests.py
 
 .include <bsd.port.mk>
