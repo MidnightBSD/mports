@@ -96,6 +96,7 @@ SUBDIR += p5-HTTP-MultiPartParser
 SUBDIR += p5-HTTP-Negotiate
 SUBDIR += p5-HTTP-Request-AsCGI
 SUBDIR += p5-HTTP-Server-Simple
+SUBDIR += p5-HTTP-Server-Simple-PSGI
 SUBDIR += p5-LWP-MediaTypes
 SUBDIR += p5-LWP-Online
 SUBDIR += p5-LWP-Protocol-https
