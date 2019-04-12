@@ -551,6 +551,7 @@ SUBDIR += p5-Sub-Exporter-Lexical
 SUBDIR += p5-Sub-Exporter-Progressive
 SUBDIR += p5-Sub-Name
 SUBDIR += p5-Sub-Identify
+SUBDIR += p5-Sub-Infix
 SUBDIR += p5-Sub-Info
 SUBDIR += p5-Sub-Install
 SUBDIR += p5-Sub-Quote
