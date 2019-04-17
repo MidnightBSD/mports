@@ -21,6 +21,7 @@ SUBDIR += fcgi
 SUBDIR += furl
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
+SUBDIR += googler
 SUBDIR += gstreamer-plugins-neon
 SUBDIR += gstreamer1-plugins-neon
 SUBDIR += gtkhtml3
