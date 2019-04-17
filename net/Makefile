@@ -20,6 +20,7 @@ SUBDIR += cvsup-without-gui
 SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
+SUBDIR += dictd
 SUBDIR += fping
 SUBDIR += freerdp
 SUBDIR += geoclue
