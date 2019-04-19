@@ -25,6 +25,7 @@ SUBDIR += awscli
 SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += bmake
+SUBDIR += bmkdep
 SUBDIR += boehm-gc
 SUBDIR += boehm-gc-threaded
 SUBDIR += boost-all
