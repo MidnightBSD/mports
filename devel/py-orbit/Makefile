@@ -3,7 +3,7 @@
 
 PORTNAME=	orbit
 PORTVERSION=	2.24.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pyorbit/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -18,7 +18,8 @@ LICENSE=	lgpl
 
 CONFLICTS=	py*-omniorb-[0-9]*
 
-USES=		gmake libtool pathfix pkgconfig python tar:bzip2
+USES=		gmake libtool pathfix pkgconfig python:2.7 tar:bzip2
+USE_PYTHON=	flavors
 USE_GNOME=	orbit2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

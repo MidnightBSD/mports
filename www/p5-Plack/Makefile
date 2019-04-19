@@ -28,26 +28,10 @@ RUN_DEPENDS=	\
 	p5-Stream-Buffered>=0.02:devel/p5-Stream-Buffered \
 	p5-Try-Tiny>0:lang/p5-Try-Tiny \
 	p5-URI>=1.59:net/p5-URI
-TEST_DEPENDS=	\
-	p5-Authen-Simple-Passwd>0:security/p5-Authen-Simple-Passwd \
-	p5-CGI-Compile>0:www/p5-CGI-Compile \
-	p5-CGI-Emulate-PSGI>0:www/p5-CGI-Emulate-PSGI \
-	p5-FCGI>0:www/p5-FCGI \
-	p5-FCGI-ProcManager>0:www/p5-FCGI-ProcManager \
-	p5-HTTP-Request-AsCGI>0:www/p5-HTTP-Request-AsCGI \
-	p5-HTTP-Server-Simple-PSGI>0:www/p5-HTTP-Server-Simple-PSGI \
-	p5-IO-Handle-Util>0:devel/p5-IO-Handle-Util \
-	p5-LWP-Protocol-http10>0:www/p5-LWP-Protocol-http10 \
-	p5-Log-Dispatch-Array>0:devel/p5-Log-Dispatch-Array \
-	p5-Log-Log4perl>0:devel/p5-Log-Log4perl \
-	p5-MIME-Types>0:mail/p5-MIME-Types \
-	p5-Module-Refresh>0:devel/p5-Module-Refresh \
-	p5-Stream-Buffered>=0.02:devel/p5-Stream-Buffered \
-	p5-Test-Requires>0:devel/p5-Test-Requires \
-	p5-Test-TCP>=2.15:devel/p5-Test-TCP
 
 USES=	perl5
 USE_PERL5=	configure
 NO_ARCH=	YES
+NO_TEST=	yes
 
 .include <bsd.port.mk>

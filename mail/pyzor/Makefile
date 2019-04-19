@@ -16,4 +16,6 @@ USES=		python
 USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
