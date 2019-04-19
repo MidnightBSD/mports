@@ -24,10 +24,6 @@ RUN_DEPENDS:=	${BUILD_DEPENDS} \
 		p5-URI>=0:net/p5-URI \
 		re2c>=0:devel/re2c
 
-.for dep in DCC DKIM MYSQL PGSQL PYZOR RAZOR RELAY_COUNTRY RLIMIT SPF_QUERY SSL
-TEST_DEPENDS+=	${${dep}_RUN_DEPENDS}
-.endfor
-
 CONFLICTS?=	ja-spamassassin-[0-9]*
 
 CPE_VENDOR=	apache
@@ -90,7 +86,7 @@ GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:security/gnupg1
 GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
 MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
-PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor@${PY_FLAVOR}
+PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor@py27
 PYZOR_USES=		python:2.7
 RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents \
 			p5-Digest-SHA1>=2.13:security/p5-Digest-SHA1
@@ -121,6 +117,8 @@ PORTDOCS=	${DOCS} sql ldap
 USE_RC_SUBR=	sa-spamd
 
 ALL_TARGET=	all spamc/libspamc.so
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
