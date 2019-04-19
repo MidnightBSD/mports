@@ -3,7 +3,6 @@
 COMMENT = Development utilities
 
 SUBDIR += 9base
-SUBDIR += ORBit
 SUBDIR += ORBit2
 SUBDIR += activitymail
 SUBDIR += allegro
