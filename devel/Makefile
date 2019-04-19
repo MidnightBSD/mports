@@ -565,6 +565,7 @@ SUBDIR += p5-Term-ReadKey
 SUBDIR += p5-Term-ReadLine-Gnu
 SUBDIR += p5-Term-Table
 SUBDIR += p5-Test-API
+SUBDIR += p5-Test-Assertions
 SUBDIR += p5-Test-Base
 SUBDIR += p5-Test-Bits
 SUBDIR += p5-Test-CPAN-Meta
