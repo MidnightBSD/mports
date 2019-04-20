@@ -21,6 +21,7 @@ USE_PYTHON=	autoplist distutils
 USE_RC_SUBR=	fail2ban
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 SHEBANG_FILES=	config/filter.d/ignorecommands/apache-fakegooglebot
 SHEBANG_LANG=	fail2ban-python
@@ -75,10 +76,7 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/man/jail.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5/fail2ban-jail.conf.5
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.post.mk>
