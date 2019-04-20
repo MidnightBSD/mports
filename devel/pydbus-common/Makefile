@@ -71,9 +71,9 @@ USES+=		python
 USE_PYTHON=	flavors py3kplist
 
 post-install:
-	@${RM} -r ${STAGEDIR}${PREFIX}/include/dbus-1.0 \
+	-${RM} -r ${STAGEDIR}${PREFIX}/include/dbus-1.0 \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/dbus-python.pc
-	@${RM} -r ${STAGEDIR}/${DOCSDIR}
+	-${RM} -r ${STAGEDIR}/${DOCSDIR}
 .endif # end of slaving block
 
 .include <bsd.port.mk>
