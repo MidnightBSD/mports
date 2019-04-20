@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
-OPTIONS_DEFINE=	DOCS
-
 USES=		python:patch shebangfix
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist distutils
@@ -29,8 +27,6 @@ SHEBANG_LANG=	fail2ban-python
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 PYDISTUTILS_INSTALLARGS+=	--install-data=${ETCDIR}
-
-PORTDOCS=	README.md DEVELOP
 
 FILES=		${WRKSRC}/bin/fail2ban-client \
 		${WRKSRC}/fail2ban/client/configreader.py \
@@ -74,9 +70,5 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/man/${file}.1 ${STAGEDIR}${MANPREFIX}/man/man1
 .endfor
 	${INSTALL_MAN} ${WRKSRC}/man/jail.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5/fail2ban-jail.conf.5
-
-post-install-DOCS-on:
-	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	(cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.post.mk>
