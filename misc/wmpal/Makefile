@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	wmpal
 PORTVERSION=	0.6.1
 PORTREVISION=	4
@@ -11,9 +9,9 @@ COMMENT=	One of the most useless dockapps in the world
 
 LICENSE=        gpl2
 
-LIB_DEPENDS=	dockapp.2:${PORTSDIR}/x11-wm/libdockapp
+LIB_DEPENDS=	libdockapp.so:x11-wm/libdockapp
 
-USE_XORG=	xpm
+USE_XORG=	x11 xpm
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lX11
