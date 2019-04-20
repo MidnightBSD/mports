@@ -15,7 +15,7 @@ LICENSE=	bsd2
 WRKSRC=		${WRKDIR}/files
 
 NO_FETCH=	yes
-USE_LINUX=	yes	# because of ${DEVDIR}
+USES=		kmod linux uidfix
 
 KMODDIR=	${PREFIX}/modules
 

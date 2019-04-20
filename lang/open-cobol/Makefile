@@ -11,7 +11,7 @@ COMMENT=	Open-source COBOL compiler
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:math/gmp
 
 GNU_CONFIGURE=	yes
 USES=		gmake libtool

@@ -20,9 +20,14 @@ NO_CDROM=	yes
 
 NO_WRKSUBDIR=	yes
 USE_XORG=	sm x11 xau xext xfixes xi xrandr
+MAKE_ARGS=	CC="${CC}" LD="${CC}"
 ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}
+
+post-patch:
+	@${REINPLACE_CMD} -e "s,%%DATADIR%%,${DATADIR}," ${WRKSRC}/ADAMEm.c \
+		${WRKSRC}/Coleco.c
 
 do-install:
 	${MKDIR} ${PROGDIR}
