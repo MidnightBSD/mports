@@ -1,0 +1,11 @@
+--- Makefile.orig	2019-04-20 13:09:02.575235000 -0400
++++ Makefile	2019-04-20 13:09:15.950754000 -0400
+@@ -64,7 +64,7 @@
+ 	SO_LDFLAGS := -Wl,-soname,lib$(LIB_NAME).$(LIB_EXT)
+ 	LINKED_LIB_EXT := so
+ endif
+-ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),FreeBSD NetBSD OpenBSD))
++ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),FreeBSD MidnightBSD NetBSD OpenBSD))
+ 	LIB_EXT := so
+ 	LIB_CFLAGS := -shared -fPIC
+ endif

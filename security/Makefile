@@ -34,6 +34,7 @@ SUBDIR += gsasl
 SUBDIR += ipsec-tools
 SUBDIR += krb5
 SUBDIR += l0phtcrack
+SUBDIR += libargon2
 SUBDIR += libassuan
 SUBDIR += libcryptui
 SUBDIR += libgcrypt
