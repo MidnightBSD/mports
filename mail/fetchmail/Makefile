@@ -12,6 +12,8 @@ PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF/${PORTNAME}/branch_6.3/ \
 		http://mandree.home.pages.de/${PORTNAME}/
+PATCH_SITES=	https://src.fedoraproject.org/rpms/fetchmail/raw/master/f/:fedora
+PATCHFILES=	fetchmail-6.3.26-ssl-backport.patch:-p1:fedora
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
