@@ -28,9 +28,9 @@ BUNDLED_NACL_LIB_DEPENDS_OFF=	libsodium.so:security/libsodium
 BUNDLED_NACL_MAKE_ENV_OFF=	SODIUM_INSTALL=system
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/nacl/_sodium*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/nacl/_sodium*.so
 
 do-test:
-	@cd ${WRKSRC} && ${SETENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} -m pytest -rs tests
+	@cd ${WRKSRC} && ${SETENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} -m pytest -rs tests
 
 .include <bsd.port.mk>
