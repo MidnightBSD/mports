@@ -1,0 +1,5 @@
+# $FreeBSD: head/lang/groovy/files/set-groovy_home.sed.in 340872 2014-01-24 00:14:07Z mat $
+14i\
+: ${GROOVY_HOME="%%DATADIR%%"}
+14i\
+[ -z "${JAVA_HOME}" ] && JAVA_HOME="`env JAVAVM_DRYRUN=yes %%LOCALBASE%%/bin/java | grep '^JAVA_HOME' | cut -c11-`"

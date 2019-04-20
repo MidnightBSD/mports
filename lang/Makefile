@@ -25,6 +25,7 @@ SUBDIR += gjs
 SUBDIR += gnustep-base
 SUBDIR += go
 SUBDIR += go14
+SUBDIR += groovy
 SUBDIR += gscheme
 SUBDIR += guile
 SUBDIR += guile2
