@@ -83,6 +83,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s@%%PREFIX%%@${PREFIX}@"\
 		 ${WRKSRC}/lib/guestApp/guestApp.c
 	${LN} -sf ${WRKSRC}/scripts/freebsd ${WRKSRC}/scripts/midnightbsd
+	${LN} -sf ${WRKSRC}/modules/freebsd ${WRKSRC}/modules/midnightbsd
 
 post-build:
 	cd ${WRKSRC}/modules && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS}
@@ -90,9 +91,9 @@ post-build:
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/input
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmblock.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmmemctl.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmxnet.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmxnet.ko
+	${INSTALL_DATA} ${WRKSRC}/modules/midnightbsd/vmblock.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
+	${INSTALL_DATA} ${WRKSRC}/modules/midnightbsd/vmmemctl.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
+	${INSTALL_DATA} ${WRKSRC}/modules/midnightbsd/vmxnet.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmxnet.ko
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/vmware/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/tests/

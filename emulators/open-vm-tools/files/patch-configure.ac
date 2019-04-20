@@ -1,5 +1,5 @@
 --- configure.ac.orig	2018-07-13 14:54:23.000000000 -0400
-+++ configure.ac	2019-04-20 09:50:27.287309000 -0400
++++ configure.ac	2019-04-20 11:07:18.011925000 -0400
 @@ -117,6 +117,9 @@
     [linux*])
        os="linux"
@@ -71,17 +71,21 @@
 +if test "$os" == "midnightbsd"; then
 +   LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
 +   MODULES_DIR="/boot/modules"
-+   MODULES="$MODULES vmblock"
++   MODULES="$MODULES vmblock vmmemctl vmxnet"
 +fi
 +
  if test "$os" = "freebsd" || test "$os" = "kfreebsd-gnu"; then
     LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
     MODULES_DIR="/boot/modules"
-@@ -1461,6 +1494,7 @@
+@@ -1461,8 +1494,11 @@
  AM_CONDITIONAL(LINUX, test "$os" = "linux")
  AM_CONDITIONAL(SOLARIS, test "$os" = "solaris")
  AM_CONDITIONAL(FREEBSD, test "$os" = "freebsd" -o "$os" = "kfreebsd-gnu")
 +AM_CONDITIONAL(MIDNIGHTBSD, test "$os" = "midnightbsd")
  AM_CONDITIONAL(FREEBSD_CUSTOM_SYSDIR,
                 test \( "$os" = "freebsd" -o "$os" = "kfreebsd-gnu" \) -a -n "$SYSDIR")
++AM_CONDITIONAL(MIDNIGHTBSD_CUSTOM_SYSDIR,
++               test \( "$os" = "midnightbsd" \) -a -n "$SYSDIR")
  AM_CONDITIONAL(THIRTY_TWO_BIT_USERSPACE, test "$userSpaceBitness" = "32")
+ AM_CONDITIONAL(HAVE_X11, test "$have_x" = "yes")
+ AM_CONDITIONAL(HAVE_ICU, test "$with_icu" = "yes")
