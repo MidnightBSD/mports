@@ -1,5 +1,3 @@
-# $FreeBSD: head/devel/p5-Hash-Flatten/Makefile 469142 2018-05-05 17:21:55Z sunpoet $
-
 PORTNAME=	Hash-Flatten
 PORTVERSION=	1.19
 PORTREVISION=	2
@@ -7,16 +5,15 @@ CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flatten, unflatten complex data hashes
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-TEST_DEPENDS=	p5-Log-Trace>0:devel/p5-Log-Trace \
-		p5-Test-Assertions>0:devel/p5-Test-Assertions
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
