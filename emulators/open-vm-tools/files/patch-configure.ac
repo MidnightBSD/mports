@@ -1,0 +1,87 @@
+--- configure.ac.orig	2018-07-13 14:54:23.000000000 -0400
++++ configure.ac	2019-04-20 09:50:27.287309000 -0400
+@@ -117,6 +117,9 @@
+    [linux*])
+       os="linux"
+       ;;
++   [midnightbsd*])
++      os="midnightbsd"
++      ;;
+    [freebsd*])
+       os="freebsd"
+       ;;
+@@ -190,6 +193,17 @@
+             AC_MSG_ERROR([FreeBSD kernel tree not found. Please install the kernel sources (or provide the location using SYSDIR) or configure using --without-kernel-modules.])
+          fi
+          ;;
++      midnightbsd)
++         midnightbsd_sysdir=/usr/src/sys
++         if test -n "$SYSDIR"; then
++            midnightbsd_sysdir="$SYSDIR"
++         fi
++         if test ! -f "$midnightbsd_sysdir/conf/kmod.mk"; then
++            AC_MSG_ERROR([MidnightBSD kernel tree not found. Please install the kernel so
++urces (or provide the location using SYSDIR) or configure using --without-kernel-modu
++les.])
++         fi
++         ;;
+    esac
+ fi
+ 
+@@ -900,6 +914,15 @@
+ 
+ AC_CHECK_FUNC([mkdtemp], [have_mkdtemp=yes])
+ 
++if test "$os" = "midnightbsd" -a "$osVersion" -ge 1000; then
++   AC_CHECK_LIB(
++      [thr],
++      [pthread_mutex_init],
++      [THREAD_LIBS=-lthr],
++      [AC_MSG_ERROR(
++         [Unable to locate required threading library libthr.])])
++fi
++
+ if test "$os" = "freebsd" -a "$osVersion" -ge 600000; then
+    AC_CHECK_LIB(
+       [thr],
+@@ -921,7 +944,8 @@
+ 	    [AS_HELP_STRING([--with-pam-prefix],
+ 		[specifies where pam files go. Default is $(sysconfdir)])],
+ 	    [PAM_PREFIX="$withval"],
+-	    [if test "$os" = "freebsd" ; then PAM_PREFIX='$(sysconfdir)'; else PAM_PREFIX='/etc'; fi])
++	    [if test "$os" = "freebsd" ; then PAM_PREFIX='$(sysconfdir)'; else PAM_PREFIX='/etc'; fi],
++	    [if test "$os" = "midnightbsd" ; then PAM_PREFIX='$(sysconfdir)'; else PAM_PREFIX='/etc'; fi])
+ 
+ AC_ARG_WITH([dnet],
+ 	    [AS_HELP_STRING([--without-dnet],
+@@ -1171,6 +1195,9 @@
+ if test "$os" = "freebsd"; then
+    ac_cv_header_unwind_h="no"
+ fi
++if test "$os" = "midnightbsd"; then
++   ac_cv_header_unwind_h="no"
++fi
+ AC_CHECK_HEADERS([unwind.h])
+ 
+ AC_CHECK_HEADER(
+@@ -1363,6 +1390,12 @@
+    fi
+ fi
+ 
++if test "$os" == "midnightbsd"; then
++   LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
++   MODULES_DIR="/boot/modules"
++   MODULES="$MODULES vmblock"
++fi
++
+ if test "$os" = "freebsd" || test "$os" = "kfreebsd-gnu"; then
+    LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
+    MODULES_DIR="/boot/modules"
+@@ -1461,6 +1494,7 @@
+ AM_CONDITIONAL(LINUX, test "$os" = "linux")
+ AM_CONDITIONAL(SOLARIS, test "$os" = "solaris")
+ AM_CONDITIONAL(FREEBSD, test "$os" = "freebsd" -o "$os" = "kfreebsd-gnu")
++AM_CONDITIONAL(MIDNIGHTBSD, test "$os" = "midnightbsd")
+ AM_CONDITIONAL(FREEBSD_CUSTOM_SYSDIR,
+                test \( "$os" = "freebsd" -o "$os" = "kfreebsd-gnu" \) -a -n "$SYSDIR")
+ AM_CONDITIONAL(THIRTY_TWO_BIT_USERSPACE, test "$userSpaceBitness" = "32")
