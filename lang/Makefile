@@ -76,6 +76,7 @@ SUBDIR += qt5-qml
 SUBDIR += referenceassemblies-pcl
 SUBDIR += ruby22
 SUBDIR += ruby23
+SUBDIR += scala
 SUBDIR += spidermonkey170
 SUBDIR += spidermonkey185
 SUBDIR += spidermonkey24
