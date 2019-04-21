@@ -35,6 +35,8 @@ USES+=		${_USES_PYTHON}
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in
 
+NO_TEST=	yes
+
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
@@ -448,15 +450,6 @@ post-install-LIT-on:
 	    ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/
 	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/FileCheck \
 	    ${FAKE_DESTDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
-
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
-do-test:
-	if [ `${ID} -u` = 0 ]; then \
-		${CHOWN} -R nobody ${WRKSRC}/test; \
-		su -m nobody -c ${TEST_CMD}; \
-	else \
-		${SH} -c ${TEST_CMD}; \
-	fi
 
 build-plist:
 	${RM} ${PLIST} ${PLIST}.tmp
