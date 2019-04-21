@@ -15,15 +15,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.6.1:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}txaio>=2.2.0:devel/py-txaio@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=2.7.2:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>=1.3.0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}trollius>0:devel/py-trollius@${PY_FLAVOR} # Not really a depends, but the test doesnt skip
 
 USES=		python
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 GH_ACCOUNT=	crossbario
 GH_PROJECT=	autobahn-python
@@ -49,8 +47,5 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.6:devel/py-zope.interface
 .elif ${FLAVOR} == python3 && ${PYTHON_REL} <= 3300
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}asyncio>=3.4.3:devel/py-asyncio@${PY_FLAVOR}
 .endif
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest autobahn
 
 .include <bsd.port.post.mk>
