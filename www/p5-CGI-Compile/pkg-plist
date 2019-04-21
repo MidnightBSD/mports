@@ -1,2 +1,2 @@
 %%SITE_PERL%%/CGI/Compile.pm
-%%PERL5_MAN3%%/CGI::Compile.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/CGI::Compile.3

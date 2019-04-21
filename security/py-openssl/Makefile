@@ -27,11 +27,10 @@ CPE_PRODUCT=	py${PORTNAME}
 
 PORTEXAMPLES=	*
 
+NO_TEST=	yes
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-
-do-test:
-	@(cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test)
 
 .include <bsd.port.mk>

@@ -21,5 +21,6 @@ USES=		perl5 shebangfix
 SHEBANG_FILES=	TestLister.pl
 USE_PERL5=	configure
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>

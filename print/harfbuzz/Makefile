@@ -16,7 +16,7 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 
 USE_LDCONFIG=	yes
 USES=		compiler:c++11-lib gettext-runtime gmake gnome libtool \
-		pathfix pkgconfig tar:bzip2
+		pathfix pkgconfig python:2.7,build tar:bzip2
 USE_GNOME=	cairo glib20 introspection:build
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-graphite2 --with-gobject=yes

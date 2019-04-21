@@ -1,1 +1,3 @@
-# Sample
+# Your fetchmail configuration goes here.
+#
+# See fetchmail(1), and/or use fetchmailconf (a separate port)
