@@ -71,7 +71,6 @@ SUBDIR += php72-extensions
 SUBDIR += python
 SUBDIR += python2
 SUBDIR += python3
-SUBDIR += python33
 SUBDIR += python34
 SUBDIR += python37
 SUBDIR += python27
