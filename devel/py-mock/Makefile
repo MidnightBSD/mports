@@ -16,6 +16,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 TESTS_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tox>0:devel/py-tox@${PY_FLAVOR}
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
@@ -24,8 +25,5 @@ USE_PYTHON=	autoplist concurrent distutils
 .if ${PYTHON_REL} < 3300
 RUN_DEPENDS+=  ${PYTHON_PKGNAMEPREFIX}funcsigs>=0:devel/py-funcsigs@${PY_FLAVOR}
 .endif
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>
