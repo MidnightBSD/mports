@@ -13,15 +13,12 @@ COMMENT=	Python SQL toolkit and Object Relational Mapper 1.0.x
 
 LICENSE=	mit
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
-
 USES=		python
 USE_PYTHON=	distutils autoplist
 
 PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
 PY2TO3_ARGS=	--no-diffs --nobackups --verbose --write
-TEST_TARGET=	do-test
+NO_TEST=	yes
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy0[6789]* ${PYTHON_PKGNAMEPREFIX}sqlalchemy1[12]
 
@@ -70,11 +67,5 @@ post-install-DOCS-on:
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/examples/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
-
-do-test:
-.if ${PYTHON_REL} >= 3000
-	${PY2TO3_CMD} ${PY2TO3_ARGS} ${WRKSRC}/test
-.endif
-	@(cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest)
 
 .include <bsd.port.post.mk>
