@@ -11,9 +11,6 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	mesa-libs>=0:graphics/mesa-libs
-TEST_DEPENDS=	convert:graphics/ImageMagick \
-		nvcompress:graphics/nvidia-texture-tools \
-		wget:ftp/wget
 
 USES=		autoreconf libtool pathfix
 USE_GITHUB=	yes
@@ -24,9 +21,8 @@ GH_TAGNAME=	f6ec862
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
-CPPFLAGS+=	-I${LOCALBASE}/include
+NO_TEST=	yes
 
-do-test:
-	(cd ${WRKSRC}/tests; ${SETENV} use_external=false use_nvcompress=true ${SH} test.sh)
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 .include <bsd.port.mk>
