@@ -1,7 +1,3 @@
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/sdl_ttf/Makefile,v 1.36 2007/05/19 20:10:48 flz Exp $
-
 PORTNAME=	sdl_ttf
 PORTVERSION=	2.0.11
 PORTREVISION=	2
@@ -20,9 +16,9 @@ USES=		gmake iconv libtool pathfix pkgconfig
 USE_SDL=	sdl
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd10.4
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib -liconv
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=		OPENGL
