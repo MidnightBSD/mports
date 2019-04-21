@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Network management tools
 
 SUBDIR += aircrack-ng
@@ -16,8 +14,8 @@ SUBDIR += p5-Net-SNMP
 SUBDIR += p5-NetAddr-IP
 SUBDIR += p5-NSNMP
 SUBDIR += p5-SNMP_Session
-SUBDIR += php70-snmp
 SUBDIR += php71-snmp
+SUBDIR += php72-snmp
 SUBDIR += net-snmp
 SUBDIR += softflowd
 SUBDIR += subcalc
