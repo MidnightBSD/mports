@@ -1,19 +1,26 @@
-# $FreeBSD: head/graphics/gstreamer1-plugins-gl/Makefile 393429 2015-08-02 15:03:19Z tijl $
+# $FreeBSD: head/graphics/gstreamer1-plugins-gl/Makefile 484788 2018-11-11 23:54:06Z jbeich $
 
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 COMMENT=	GStreamer GL graphics plugin
 
 GST_PLUGIN=	gl
-DIST=		bad
+DIST=		base
 
-GL_GST_DIRS=	gst-libs/gst/allocators
+GL_GST_DIRS=	gst-libs/gst/allocators gst-libs/gst/video
 PLIST=		${.CURDIR}/pkg-plist
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
+OPTIONS_DEFINE=	WAYLAND
+OPTIONS_DEFAULT=WAYLAND
+OPTIONS_SUB=	yes
+
+WAYLAND_CONFIGURE_ENABLE=	wayland
+WAYLAND_LIB_DEPENDS=		libwayland-egl.so:graphics/wayland
 
 pre-build:
 .for dir in ${GL_GST_DIRS}
