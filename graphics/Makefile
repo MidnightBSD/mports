@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Graphics tools and libraries
 
 SUBDIR += GraphicsMagick
@@ -158,10 +156,10 @@ SUBDIR += p5-Image-Size
 SUBDIR += p5-Chart
 SUBDIR += p5-Convert-Color
 SUBDIR += p5-Convert-Color-XTerm
-SUBDIR += php70-exif
-SUBDIR += php70-gd
 SUBDIR += php71-exif
 SUBDIR += php71-gd
+SUBDIR += php72-exif
+SUBDIR += php72-gd
 SUBDIR += pixen
 SUBDIR += plotutils
 SUBDIR += png

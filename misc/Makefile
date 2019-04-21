@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Miscellaneous utilities
 
 SUBDIR += brs
@@ -50,8 +48,8 @@ SUBDIR += p5-Software-License-CCpack
 SUBDIR += patchutils
 SUBDIR += pciids
 SUBDIR += phone-de
-SUBDIR += php70-calendar
 SUBDIR += php71-calendar
+SUBDIR += php72-calendar
 SUBDIR += py-pexpect
 SUBDIR += qt4-doc
 SUBDIR += qt4-l10n
