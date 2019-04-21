@@ -1,6 +1,4 @@
 # Created by: Pawel Worach <pawel.worach@gmail.com>
-# $MidnightBSD$
-# $FreeBSD: head/lang/gjs/Makefile 385016 2015-04-29 22:13:10Z truckman $
 
 PORTNAME=	gjs
 PORTVERSION=	1.43.3
@@ -14,11 +12,11 @@ COMMENT=	GNOME Javascript binding
 LICENSE=	mpl gpl2 lgpl2.1 mit
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libmozjs-24.so:${PORTSDIR}/lang/spidermonkey24
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
+		libmozjs-24.so:lang/spidermonkey24
 
 USES=		gettext gmake libtool pathfix pkgconfig \
-		python:build tar:xz
+		python:2.7,build tar:xz
 USE_GNOME=	cairo glib20 gnomeprefix introspection:build \
 		intlhack
 GNU_CONFIGURE=	yes
