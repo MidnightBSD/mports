@@ -22,8 +22,8 @@ QT_DIST=	yes
 HAS_CONFIGURE=	yes
 USES=		pkgconfig
 USE_LDCONFIG=	${PREFIX}/lib/qt4
-USE_XORG=	xrender xrandr xinerama inputproto xfixes \
-		sm xcursor xext x11 ice xi xt
+USE_XORG=       xrender xrandr xinerama xorgproto xfixes \
+                sm xcursor xext x11 ice xi xt
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
