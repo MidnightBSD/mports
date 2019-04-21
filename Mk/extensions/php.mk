@@ -264,6 +264,7 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 _USE_PHP_VER56=	${_USE_PHP_ALL} mssql mysql sybase_ct
 _USE_PHP_VER70=	${_USE_PHP_ALL}
 _USE_PHP_VER71=	${_USE_PHP_ALL}
+_USE_PHP_VER72=	${_USE_PHP_ALL}
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 .if ${PHP_VER} == 70 || ${PHP_VER} == 71 || ${PHP_VER} == 72

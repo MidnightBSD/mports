@@ -1,7 +1,3 @@
-# Created by: Alex Dupre <ale@FreeBSD.org>
-# $FreeBSD: head/lang/php70-extensions/Makefile 408945 2016-02-15 16:24:04Z miwi $
-# $MidnightBSD$
-
 PORTNAME=	php70
 PORTVERSION=	1.1
 CATEGORIES=	lang
@@ -18,7 +14,7 @@ EXTRACT_ONLY=	# none
 
 USE_PHP=	yes
 PHP_DEFAULT=	7.0
-IGNORE_WITH_PHP=	55 56 71
+IGNORE_WITH_PHP=	55 56 71 72
 USE_PHP_BUILD=	yes
 NO_BUILD=	yes
 NO_MTREE=	yes
