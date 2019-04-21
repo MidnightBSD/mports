@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/liferea/Makefile,v 1.148 2010/12/04 07:32:56 ade Exp $
-
 PORTNAME=	liferea
-PORTVERSION=	1.12.3
+DISTVERSION=	1.12.6
+PORTREVISION=	1
+DISTVERSIONSUFFIX=b
 CATEGORIES=	net gnome
 MASTER_SITES=	https://github.com/lwindolf/liferea/releases/download/v${PORTVERSION:S/.r/-rc/}/
 
@@ -17,9 +16,10 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libpeas-1.0.so:devel/libpeas \
 		libjson-glib-1.0.so:devel/json-glib
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR}
 
-USES=		compiler:c++11-lang desktop-file-utils gettext gmake gnome libtool localbase \
+USES=		compiler:c++11-lang desktop-file-utils gettext \
+		gmake gnome libtool localbase \
 		pathfix pkgconfig python:3.4+ sqlite tar:bzip2
 USE_GNOME=	cairo dconf:run gtk30 intltool introspection \
 		libxslt libxml2
