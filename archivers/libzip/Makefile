@@ -16,7 +16,7 @@ CPE_VENDOR=	nih
 USES=		cmake:outsource cpe perl5 ssl tar:xz
 USE_LDCONFIG=	yes
 USE_PERL5=	test
-TEST_TARGET=	test
+NO_TEST=	yes
 
 CMAKE_OFF=	ENABLE_COMMONCRYPTO ENABLE_GNUTLS
 
