@@ -21,7 +21,7 @@ USE_GNOME=	cairo glib20 introspection:build
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-graphite2 --with-gobject=yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+NO_TEST=	yes
 
 PLIST_SUB+=	LIBVER=0.10900.0
 
