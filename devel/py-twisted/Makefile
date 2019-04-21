@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	twisted
 PORTVERSION=	17.9.0
 CATEGORIES=	devel net python
@@ -23,10 +21,9 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 USES=		python tar:bzip2
 USE_PYTHON=	autoplist concurrent distutils
 
-post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/ -name '*.so' -exec ${STRIP_CMD} {} +
+NO_TEST=yes
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m twisted.trial -e twisted
+post-install:
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
