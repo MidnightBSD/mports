@@ -28,7 +28,8 @@ IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
 
 BUILD_DEPENDS+=		meson:devel/meson \
 			python3.7:lang/python37 \
-			python2.7:lang/python27
+			python2.7:lang/python27 \
+			py-setuptools>=0:devel/py-setuptools
 
 # meson uses ninja
 .include "${PORTSDIR}/Mk/extensions/ninja.mk"
