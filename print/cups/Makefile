@@ -92,7 +92,7 @@ PLIST_SUB+=	USB="@comment "
 .if empty(ICONV_LIB)
 CONFIGURE_ARGS+=ac_cv_search_libiconv_open=no
 .else
-LDFLAGS+=	-liconv
+LDFLAGS+=	-L/usr/local/lib/ -liconv
 .endif
 
 post-patch:
