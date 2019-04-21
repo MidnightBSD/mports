@@ -31,9 +31,9 @@ do-install:
 	${LN} -s lockfile-progs.1 ${STAGEDIR}${MANPREFIX}/man/man1/lockfile-create.1
 
 do-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for f in TODO debian/changelog
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
