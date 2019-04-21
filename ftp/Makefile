@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = File Transfer Protocol 
 
 SUBDIR += curl
@@ -10,10 +8,10 @@ SUBDIR += linux-c6-curl
 SUBDIR += linux-c7-curl
 SUBDIR += ncftp3
 SUBDIR += ncftpd
-SUBDIR += php70-curl
-SUBDIR += php70-ftp
 SUBDIR += php71-curl
 SUBDIR += php71-ftp
+SUBDIR += php72-curl
+SUBDIR += php72-ftp
 SUBDIR += proftpd
 SUBDIR += tnftp
 SUBDIR += tnftpd
