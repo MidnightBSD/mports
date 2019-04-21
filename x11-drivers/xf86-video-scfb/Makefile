@@ -5,6 +5,7 @@
 PORTNAME=	xf86-video-scfb
 PORTVERSION=	0.0.4
 CATEGORIES=	x11-drivers
+DISTFILES=	xf86-video-scfb-0.0.4_GH0.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org syscons display driver
