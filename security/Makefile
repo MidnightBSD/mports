@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Security tools
 
 SUBDIR += aide
@@ -118,14 +116,14 @@ SUBDIR += p5-Net-SSLeay
 SUBDIR += pam_helper
 SUBDIR += pam_ldap
 SUBDIR += pecl-gnupg
-SUBDIR += php70-filter
-SUBDIR += php70-hash
-SUBDIR += php70-mcrypt
-SUBDIR += php70-openssl
 SUBDIR += php71-filter
 SUBDIR += php71-hash
 SUBDIR += php71-mcrypt
 SUBDIR += php71-openssl
+SUBDIR += php72-filter
+SUBDIR += php72-hash
+SUBDIR += php72-mcrypt
+SUBDIR += php72-openssl
 SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
