@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		python
 USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
+# magus incompatible
+NO_TEST=	yes
 
 OPTIONS_DEFAULT=TIDYHTML5
 OPTIONS_SINGLE=	BACKEND
@@ -30,8 +32,5 @@ TIDYHTML5_LIB_DEPENDS=	libtidy5.so:www/tidy-html5
 post-patch-TIDYHTML5-on:
 	@${REINPLACE_CMD} -e '/LIB_NAMES/ s|\[.*\]|["libtidy5.so"]|' \
 		${WRKSRC}/tidylib/tidy.py
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
