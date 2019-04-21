@@ -21,7 +21,8 @@ USES=		autoreconf libtool localbase pathfix python \
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+# magus incomatibility
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
