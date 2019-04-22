@@ -12,6 +12,6 @@ LICENSE=	mit
 USE_GL=		gl
 
 XORG_CAT=	driver
-USE_XORG=	xf86driproto videoproto xextproto xf86dgaproto glproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>
