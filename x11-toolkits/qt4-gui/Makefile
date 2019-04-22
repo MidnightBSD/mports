@@ -54,7 +54,7 @@ FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
 
 .if ${QT4_OPTIONS:MCUPS}
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libcups.a:${PORTSDIR}/print/cups
+LIB_DEPENDS+=	libcups.so:print/cups
 CONFIGURE_ARGS+=-cups -L${LOCALBASE}/lib -I. -I${LOCALBASE}/include
 .endif
 
