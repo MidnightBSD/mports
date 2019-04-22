@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-ast
 PORTVERSION=	1.1.5
 CATEGORIES=	x11-drivers
@@ -11,7 +9,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	driver
-USE_XORG=	xf86driproto glproto
+USE_XORG=	xorgproto
 INSTALL_TARGET=	install-strip
 
 PLIST_FILES=	lib/xorg/modules/drivers/ast_drv.so
