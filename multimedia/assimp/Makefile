@@ -24,7 +24,5 @@ PLIST_SUB=	SHL3=${DISTVERSION} VER2=${DISTVERSION:R} SHL1=${DISTVERSION:R:R}
 
 post-install: # rm the third-party lib installed by mistake: https://github.com/assimp/assimp/issues/1650
 	@${RM} ${STAGEDIR}${PREFIX}/lib/libIrrXML.a
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
