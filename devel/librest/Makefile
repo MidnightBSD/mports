@@ -19,7 +19,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 intlhack libxml2 introspection:build
-TEST_TARGET=	check
+
+NO_TEST=	yes
 
 PORTEXAMPLES=	*.c
 
@@ -35,9 +36,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/*.c ${STAGEDIR}${EXAMPLESDIR}
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librest-0.7.so.0
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librest-extras-0.7.so.0
-
-regression-test:
-	(cd ${WRKSRC}/tests &&  \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} check)
 
 .include <bsd.port.mk>
