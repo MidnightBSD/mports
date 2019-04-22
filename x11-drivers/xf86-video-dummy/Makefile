@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-dummy
 PORTVERSION=	0.3.8
 CATEGORIES=	x11-drivers
@@ -10,6 +8,6 @@ COMMENT=	X.Org dummy display driver
 LICENSE=	mit
 
 XORG_CAT=	driver
-USE_XORG=	videoproto xf86dgaproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>
