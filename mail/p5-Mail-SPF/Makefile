@@ -27,8 +27,8 @@ OPTIONS_DEFINE=	DOCS
 
 CONFIGURE_ARGS=	--install_path sbin=${PREFIX}/sbin
 PERL_MODBUILD=	yes
-USE_PERL5=	yes
-USES=		shebangfix
+USE_PERL5=	modbuild
+USES=		perl5 shebangfix
 
 DOCSDIR=	${PREFIX}/share/doc/p5-Mail-SPF
 PORTDOCS=	CHANGES README TODO
