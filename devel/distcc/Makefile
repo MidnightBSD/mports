@@ -34,7 +34,7 @@ OPTIONS=	GNOME	"Build GUI monitor based on GNOME"	Off \
 .if defined(WITHOUT_AVAHI)
 CONFIGURE_ARGS+=	--without-avahi
 .else
-LIB_DEPENDS+=	avahi-glib.1:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=	libavahi-glib.so:${PORTSDIR}/net/avahi-app
 .endif
 
 .if defined(WITHOUT_RFC2553)
