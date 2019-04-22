@@ -16,7 +16,7 @@ LIB_DEPENDS=	libspice-server.so:devel/libspice-server
 
 USES=		localbase:ldflags pkgconfig python:2.7 shebangfix
 
-USE_XORG=	xf86dgaproto xfont
+USE_XORG=	xorgproto xfont
 XORG_CAT=	driver
 
 CONFIGURE_ARGS+=--enable-xspice
