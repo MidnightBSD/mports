@@ -25,6 +25,8 @@ CMAKE_OFF=	EXIV2_ENABLE_BUILD_SAMPLES \
 
 PATHFIX_CMAKELISTSTXT=	CMakeChecks.txt
 
+NO_TEST=	yes
+
 CFLAGS_powerpc64=	-mminimal-toc
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-trunk
