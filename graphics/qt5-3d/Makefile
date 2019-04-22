@@ -11,7 +11,7 @@ COMMENT=	Qt3D module
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libassimp.so.3:multimedia/assimp
+LIB_DEPENDS=	libassimp.so:multimedia/assimp
 
 # Base GCC fails to build the code, pull in a more recent compiler.
 USES=		compiler:c++0x pkgconfig qmake
