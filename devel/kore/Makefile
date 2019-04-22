@@ -1,9 +1,5 @@
-# Created by: Tobias Kortkamp <t@tobik.me>
-# $FreeBSD: head/devel/kore/Makefile 475355 2018-07-26 09:16:09Z tobik $
-
 PORTNAME=	kore
-PORTVERSION=	3.1.0
-PORTREVISION=	1
+PORTVERSION=	3.2.2
 CATEGORIES=	devel www
 MASTER_SITES=	https://kore.io/releases/
 
@@ -18,7 +14,9 @@ BROKEN_powerpc64=	fails to compile: cc1: error: -Werror=c11-extensions: No optio
 FLAVORS=	default notls
 notls_PKGNAMESUFFIX=	-notls
 
-USES=		compiler gmake ssl
+BUILD_DEPENDS+=	python3-config:lang/python3
+
+USES=		compiler:c11 gmake ssl
 
 CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}} -I${OPENSSLINC}
 CFLAGS_clang=	-Wno-error=c11-extensions # 12.0 + -pedantic
