@@ -70,7 +70,7 @@ PLIST_SUB+=	GMPLAYER="@comment "
 .endif #GUI && X11
 
 .if ${PORT_OPTIONS:MX11}
-USE_XORG=	x11 xproto xscrnsaver
+USE_XORG=	x11 xorgproto xscrnsaver
 .if ${PORT_OPTIONS:MXVIDEO}
 USE_XORG+=	xv
 .else
