@@ -18,6 +18,8 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/rabbitmqctl:net/rabbitmq
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-patch:
 	@${RM} ${WRKSRC}/._*
 
