@@ -21,8 +21,6 @@ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
-
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.7 2013/03/17 17:08:40 laffer1 Exp $
 */
 
 #include <iostream>
@@ -271,7 +269,7 @@ load_depends(sqlite3 *db, connection & C, int runid, const char *pkg_name, const
 
 	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
 
-	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s'",
+	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s' and d.type in ('run','lib', 'pkg')",
 		runid, runid, pkg_name, version); 
 
 if (C.is_open()) {
