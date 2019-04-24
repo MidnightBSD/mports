@@ -1,22 +1,17 @@
-# $MidnightBSD$
-
 PORTNAME=	kismet
-DISTVERSION=	2013-03-R1b
+DISTVERSION=	2016-07-R1
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
-MASTER_SITES=	http://www.kismetwireless.net/code/:1 \
-		http://anonsvn.wireshark.org/wireshark/trunk/:2
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:1
-DIST_SUBDIR=	${PORTNAME}
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	http://www.kismetwireless.net/code/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
 
 LICENSE=	gpl2
 
-GNU_CONFIGURE=	yes
 USES=		gmake tar:xz
+
+GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
@@ -29,8 +24,7 @@ WRKSRC=	${WRKDIR}/${DISTNAME:S/a$$//}
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDOCS}
-PORTDOCS=	README manuf
-DISTFILES+=	manuf:2
+PORTDOCS=	README
 .endif
 
 .if ${PORT_OPTIONS:MEXAMPLES}
@@ -39,7 +33,7 @@ PORTEXAMPLES=	*
 
 .if ${PORT_OPTIONS:MPCRE}
 CONFIGURE_ARGS+=--enable-pcre
-LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libpcre.so:devel/pcre
 .else
 CONFIGURE_ARGS+=--disable-pcre
 .endif
@@ -60,10 +54,13 @@ PLIST_SUB+=	SUID="@comment " SUIDGROUP=""
 .if ${PORT_OPTIONS:MPLUGINS}
 ALL_TARGET=	depend all all-plugins
 INSTALL_TARGET+=	all-plugins-install
+USES+=	ssl
 PLIST_SUB+=	PLUGINS=""
 .else
 PLIST_SUB+=	PLUGINS="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e "/gps=/s/true/false/" \
@@ -79,23 +76,26 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f -name 'Makefile' -print0 | ${XARGS} -0 \
 		${REINPLACE_CMD} -E \
 		'/C(XX)?FLAGS[[:blank:]]*\+=/s/ -g / /'
+	@${FIND} ${WRKSRC} -type f \( -name Makefile -o -name Makefile.in \) -print0 | ${XARGS} -0 \
+		${REINPLACE_CMD} -e 's,-o $$(INSTUSR) -g $$(INSTGRP),,' \
+		-e 's,-o $$(INSTUSR) -g $$(MANGRP),,' \
+		-e 's,-o $$(INSTUSR) -g $$(SUIDGROUP) -m 4550,,'
 
 post-build:
-	@cd ${WRKSRC}; ${STRIP_CMD} kismet_client kismet_drone kismet_server */*.so
+	cd ${WRKSRC}; ${STRIP_CMD} kismet_client kismet_drone kismet_server */*.so
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/manuf ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/ruby/* ${EXAMPLESDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/ruby/* ${STAGEDIR}${EXAMPLESDIR}
 .endif
-	@${INSTALL_DATA} ${WRKSRC}/conf/kismet.conf \
-		${PREFIX}/etc/kismet.conf.sample
-	@${INSTALL_DATA} ${WRKSRC}/conf/kismet_drone.conf \
-		${PREFIX}/etc/kismet_drone.conf.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/kismet.conf \
+		${STAGEDIR}${PREFIX}/etc/kismet.conf.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/kismet_drone.conf \
+		${STAGEDIR}${PREFIX}/etc/kismet_drone.conf.sample
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
