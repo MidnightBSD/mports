@@ -24,9 +24,10 @@ GNU_CONFIGURE=	yes
 # fused-src python tests are only useful for bundling. There's no point in
 # running them before installing system-wide without source files.
 CONFIGURE_ENV=	ac_cv_path_PYTHON=":"
-TEST_TARGET=	check
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
+
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} '/acx_pthread.m4/d' ${WRKSRC}/configure.ac
