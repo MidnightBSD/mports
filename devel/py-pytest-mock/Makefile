@@ -14,10 +14,9 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
 NO_ARCH=	yes
+NO_TEST=	yes
+
 USES+=		python
 USE_PYTHON=	autoplist concurrent distutils
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest
 
 .include <bsd.port.mk>
