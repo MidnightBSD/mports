@@ -12,11 +12,9 @@ COMMENT=	Check the correct line endings in your project
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-TEST_DEPENDS=	p5-Pod-Coverage>=1.08:devel/p5-Pod-Coverage \
-		p5-Pod-Coverage-TrustPod>=0:devel/p5-Pod-Coverage-TrustPod \
-		p5-Test-Pod>=1.41:devel/p5-Test-Pod
-
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
