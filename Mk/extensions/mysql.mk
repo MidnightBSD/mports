@@ -167,7 +167,9 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/mysql/libmysqld.a:${_MYSQL_SERVER}
 .endif
 .if defined(_WANT_MYSQL_CLIENT) || \
 	!(defined(_WANT_MYSQL_SERVER) || defined(_WANT_MYSQL_EMBEDDED))
-LIB_DEPENDS+=	${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
+# lib depends won't check sub directory
+BUILD_DEPENDS+= ${LOCALBASE}/lib/mysql/${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
+RUN_DEPENDS+= ${LOCALBASE}/lib/mysql/${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
 .endif
 .else
 IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
