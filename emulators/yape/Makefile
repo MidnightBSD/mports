@@ -23,9 +23,7 @@ post-extract:
 	@${REINPLACE_CMD} -e 's/[[:cntrl:]]*$$//' ${WRKSRC}/Makefile
 
 post-patch:
-.if ${COMPILER_TYPE} == clang
 	@${REINPLACE_CMD} -e "s|-frerun-loop-opt||" ${WRKSRC}/Makefile
-.endif
 	@${REINPLACE_CMD} -e "s|sdl-config|${SDL_CONFIG}|" ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e "s|TAP::TAP|TAP|" ${WRKSRC}/tape.h
 
