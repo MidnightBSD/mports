@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	dovecot
-PORTVERSION=	2.2.35
-PORTREVISION=	1
+PORTVERSION=	2.3.5.2
 CATEGORIES=	mail ipv6
-MASTER_SITES=	https://www.dovecot.org/releases/${PORTVERSION:R}/
+MASTER_SITES=	https://www.dovecot.org/releases/2.3/
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,8 +14,8 @@ USES=		cpe iconv:translit libtool ssl
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd9.1 \
-		 --host=${MACHINE_ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4 \
+		 --host=${MACHINE_ARCH}-portbld-freebsd10.4
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-statedir=/var/db/dovecot \
 		--without-shadow \
@@ -137,6 +134,10 @@ post-patch:
 	@${REINPLACE_CMD} -e '/^exampledir =/s|\$$(docdir)|${ETCDIR}|' \
 		${WRKSRC}/doc/example-config/Makefile.in \
 		${WRKSRC}/doc/example-config/conf.d/Makefile.in
+
+post-patch-LUA-on:
+	@${REINPLACE_CMD} -e '/^libdovecot_lua_la_DEPENDENCIES =/ s|LUA_LIBS|true|' \
+		${WRKSRC}/src/lib-lua/Makefile.in
 
 post-configure:
 	${REINPLACE_CMD} 's|#define HAVE_CLEARENV 1||g' ${WRKSRC}/config.h
