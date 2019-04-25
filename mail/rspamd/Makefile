@@ -34,7 +34,6 @@ OPTIONS_RADIO_NEURAL_NETWORK=	FANN TORCH
 CGP_DESC=		Install Communigate Pro(tm) helper
 GD_DESC=		Enable libgd support for images fuzzy hashes
 GPERF_DESC=		Google perf-tools profiling
-HYPERSCAN_DESC=		Use hyperscan optimizations (amd64 only)
 FANN_DESC=		Use Fast Artificial Neural Network Library (FANN)
 TORCH_DESC=		Machine learning support using torch
 TORCH_BLAS_DESC=	Build torch with OpenBLAS
@@ -64,9 +63,6 @@ GD_LIB_DEPENDS=	libgd.so:graphics/gd
 GPERF_CMAKE_ON=	-DENABLE_GPERF_TOOLS=ON
 GPERF_LIB_DEPENDS=	libprofiler.so:devel/google-perftools
 
-HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
-HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
-
 FANN_CMAKE_ON=	-DENABLE_FANN=ON
 FANN_LIB_DEPENDS=libfann.so:math/fann
 
@@ -90,18 +86,18 @@ USE_GCC=	yes
 
 post-install:
 	@${MKDIR} \
-		${STAGEDIR}/var/log/rspamd \
-		${STAGEDIR}/var/db/rspamd \
-		${STAGEDIR}/var/run/rspamd
+		${FAKE_DESTDIR}/var/log/rspamd \
+		${FAKE_DESTDIR}/var/db/rspamd \
+		${FAKE_DESTDIR}/var/run/rspamd
 	# Linux specific
-	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.systemd.conf
+	-${RM} ${ETCDIR}/rspamd.systemd.conf
 	# No need, since rspamd.conf.sample is a same
-	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.sysvinit.conf
+	-${RM} ${ETCDIR}/rspamd.sysvinit.conf
 	# No examples installed by the port
-	${RMDIR} ${STAGEDIR}/${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${STAGEDIR}${ETCDIR}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
-	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
-	${INSTALL_SCRIPT} ${WRKSRC}/utils/cgp_rspamd.pl ${STAGEDIR}${PREFIX}/bin/rspamd-cgp-helper
+	${RMDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${ETCDIR}
+	@${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
+	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_SCRIPT} ${WRKSRC}/utils/cgp_rspamd.pl ${PREFIX}/bin/rspamd-cgp-helper
 
 .include <bsd.port.mk>
