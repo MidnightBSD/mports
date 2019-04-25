@@ -16,6 +16,8 @@ LICENSE=	bsd2
 USES=		python
 USE_PYTHON=	distutils autoplist
 
+NO_ARCH=	yes
+
 OPTIONS_DEFINE=	PYSTEMMER
 OPTIONS_DEFAULT=PYSTEMMER
 PYSTEMMER_DESC=	Use PyStemmer to accelerate
