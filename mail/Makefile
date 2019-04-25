@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Electronic mail utilities
 
 SUBDIR += abook
@@ -26,6 +24,7 @@ SUBDIR += hashcash
 SUBDIR += libspf
 SUBDIR += libspf2
 SUBDIR += mailutils
+SUBDIR += mb2md
 SUBDIR += metamail
 SUBDIR += milter-greylist
 SUBDIR += mime-construct
