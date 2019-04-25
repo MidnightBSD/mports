@@ -12,6 +12,7 @@ SUBDIR += couriergraph
 SUBDIR += chk4mail
 SUBDIR += dcc-dccd
 SUBDIR += dovecot
+SUBDIR += dovecot-pigeonhole
 SUBDIR += evolution
 SUBDIR += evolution-ews
 SUBDIR += faces
