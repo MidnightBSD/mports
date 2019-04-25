@@ -10,7 +10,7 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
 
-USES=		cpe iconv:translit libtool ssl
+USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
@@ -19,7 +19,8 @@ CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4 \
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-statedir=/var/db/dovecot \
 		--without-shadow \
-		--with-docs
+		--with-docs \
+		--with-ssl=openssl \
 
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
 INSTALL_TARGET=	install-strip
@@ -27,8 +28,8 @@ INSTALL_TARGET=	install-strip
 USERS=		dovecot dovenull
 GROUPS=		${USERS}
 
-OPTIONS_DEFINE=	KQUEUE LIBWRAP LZ4 SSL VPOPMAIL DOCS EXAMPLES
-OPTIONS_DEFAULT=KQUEUE SSL GSSAPI_NONE
+OPTIONS_DEFINE=	LIBSODIUM LIBWRAP LUA LZ4 VPOPMAIL DOCS EXAMPLES
+OPTIONS_DEFAULT=GSSAPI_NONE LIBWRAP
 OPTIONS_SUB=	yes
 
 OPTIONS_GROUP=		DB FTS
@@ -38,7 +39,6 @@ OPTIONS_GROUP_FTS=	ICU LUCENE SOLR TEXTCAT
 OPTIONS_SINGLE=		GSSAPI
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_NONE GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
 
-KQUEUE_DESC=	kqueue(2) support
 LZ4_DESC=	LZ4 compression support
 VPOPMAIL_DESC=	vpopmail support
 
@@ -56,8 +56,15 @@ GSSAPI_BASE_DESC=	Use GSSAPI from base
 GSSAPI_HEIMDAL_DESC=	Use Heimdal GSSAPI from security/heimdal
 GSSAPI_MIT_DESC=	Use MIT GSSAPI from security/krb5
 
-CDB_CONFIGURE_WITH=	cdb
-CDB_LIB_DEPENDS=	libcdb.so:${PORTSDIR}/databases/tinycdb
+# General options
+LIBSODIUM_DESC=		support libsodium based crypts (ARGON2I/ARGON2ID)
+LIBSODIUM_LIB_DEPENDS=	libsodium.so:security/libsodium
+LIBSODIUM_CONFIGURE_WITH=	sodium
+
+LIBWRAP_CONFIGURE_WITH=	libwrap
+
+LZ4_CONFIGURE_WITH=	lz4
+LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 
 GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
 GSSAPI_BASE_USES=		gssapi
@@ -71,18 +78,18 @@ ICU_CONFIGURE_WITH=	icu
 ICU_LIB_DEPENDS=	libicui18n.so:${PORTSDIR}/devel/icu
 ICU_USES=		pkgconfig
 
-KQUEUE_CONFIGURE_OFF=	--with-ioloop=poll --with-notify=none
-KQUEUE_CONFIGURE_ON=	--with-ioloop=kqueue --with-notify=kqueue
+LUA_CONFIGURE_WITH=	lua
+LUA_USES=		lua
+
+# Databases
+CDB_CONFIGURE_WITH=	cdb
+CDB_LIB_DEPENDS=	libcdb.so:databases/tinycdb
 
 LDAP_USE=		OPENLDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
 
-LIBWRAP_CONFIGURE_WITH=	libwrap
-
 LUCENE_CONFIGURE_WITH=	lucene
-LUCENE_LIB_DEPENDS=	libclucene-core.so:${PORTSDIR}/textproc/clucene
-
-LZ4_LIB_DEPENDS=	liblz4.so:${PORTSDIR}/archivers/liblz4
+LUCENE_LIB_DEPENDS=	libclucene-core.so:textproc/clucene
 
 MYSQL_USE=		MYSQL=yes
 MYSQL_CONFIGURE_WITH=	mysql
@@ -91,21 +98,19 @@ PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
 
 SOLR_CONFIGURE_WITH=	solr
-SOLR_BUILD_DEPENDS=	curl:${PORTSDIR}/ftp/curl
-SOLR_LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+SOLR_BUILD_DEPENDS=	curl:ftp/curl
+SOLR_LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 SQLITE_USE=		SQLITE=3
 SQLITE_CONFIGURE_WITH=	sqlite
 
-SSL_CONFIGURE_WITH=	ssl=openssl
-
 TEXTCAT_CONFIGURE_WITH=	textcat
-TEXTCAT_LIB_DEPENDS=	libtextcat.so:${PORTSDIR}/textproc/libtextcat
+TEXTCAT_LIB_DEPENDS=	libtextcat.so:textproc/libtextcat
 
-VPOPMAIL_BUILD_DEPENDS=	${LOCALBASE}/vpopmail/bin/vchkpw:${PORTSDIR}/mail/vpopmail
+VPOPMAIL_BUILD_DEPENDS=	${LOCALBASE}/vpopmail/bin/vchkpw:mail/vpopmail
 VPOPMAIL_CONFIGURE_WITH=vpopmail
 
-DOCS=		AUTHORS COPYING COPYING.LGPL COPYING.MIT INSTALL NEWS TODO README
+DOCS=		AUTHORS COPYING INSTALL NEWS TODO README
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
