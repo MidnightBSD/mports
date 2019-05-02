@@ -1,40 +1,27 @@
-# $MidnightBSD$
-
 PORTNAME=	sshguard
-PORTVERSION=	1.5
-PORTREVISION=	2
+PORTVERSION=	2.3.1
 CATEGORIES=	security
-MASTER_SITES=	SF/sshguard/sshguard/sshguard-${PORTVERSION}
+MASTER_SITES=	SF/sshguard/sshguard/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Protect hosts from brute force attacks against ssh and other services
+COMMENT=	Protect hosts from brute-force attacks against SSH and other services
 
-LICENSE=	gpl2
-#author says bsdl on site, but can't find it. There seems to be GPL code.
-
-CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9]*
-
-USES=		tar:bzip2
+LICENSE=	bsd2
 
 USE_RC_SUBR=	sshguard
-MAKE_ARGS+=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-firewall=${SSHGUARDFW}
 
-SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}
+GNU_CONFIGURE=	yes
 SUB_FILES=	pkg-message
 
-# backend type in { hosts, ipfw, pf }
-SSHGUARDFW?=	hosts
+post-patch:
+	@${REINPLACE_CMD} -e 's|%PREFIX%|${PREFIX}|' \
+		${WRKSRC}/doc/sshguard.8.rst
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' \
+		${WRKSRC}/examples/sshguard.conf.sample
 
-.if ${SSHGUARDFW} == pf
-PKGMSG_FWBLOCK="  To activate or configure PF see http://sshguard.sf.net/doc/setup/blockingpf.html"
-.elif ${SSHGUARDFW} == ipfw
-PKGMSG_FWBLOCK="  Verify that IPFW is active with \"ipfw show\"."
-.elif ${SSHGUARDFW} == hosts
-PKGMSG_FWBLOCK="  Sshguard is going to use /etc/hosts.allow. Please remember to touch /etc/hosts.allow\!"
-.elif ${SSHGUARDFW} == ipfilter
-PKGMSG_FWBLOCK="  Sshguard will use /etc/ipf.rules as ruleset."
-.endif
+post-install:
+	${INSTALL} -d ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_DATA} ${WRKSRC}/examples/sshguard.conf.sample \
+		${STAGEDIR}${PREFIX}/etc
 
 .include <bsd.port.mk>

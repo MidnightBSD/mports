@@ -1,16 +1,14 @@
-  Sshguard installed successfully.
+To enable SSHGuard at startup, add the following line to your 'rc.conf':
+sshguard_enable="YES"
 
-%%PKGMSG_FWBLOCK%%
+Starting SSHGuard through syslogd(8) is discouraged and not supported.
 
-  If you would like to use sshguard via syslogd, add an entry to your
-  /etc/syslog.conf like the following:
+Configure SSHGuard by editing BACKEND in '%%PREFIX%%/etc/sshguard.conf'. See
+sshguard-setup(7) for instructions on setting up your firewall.
 
-    auth.info;authpriv.info     |exec %%PREFIX%%/sbin/sshguard
+Please note that a few rc script parameters have been renamed to
+better reflect the documentation:
 
-  and use "/etc/rc.d/syslogd reload" to activate it. Note, you can add
-  additional arguments to the sshguard command if you so desire.
-
-  Alternatively, you can also start sshguard as a daemon by using the
-  rc.d script installed at %%PREFIX%%/etc/rc.d/sshguard .
-  
-  See sshguard(8) and http://sshguard.sourceforge.net for additional info.
+sshguard_safety_thresh -> sshguard_danger_thresh
+sshguard_pardon_min_interval -> sshguard_release_interval
+sshguard_prescribe_interval -> sshguard_reset_interval
