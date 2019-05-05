@@ -54,6 +54,7 @@ ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 CONFLICTS=	php56-* php70-* php71-* php73-*
 
 DESTDIRNAME=	INSTALL_ROOT
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -161,9 +162,6 @@ post-build:
 	@${ECHO_CMD} "PHP_EXT_INC=pcre spl" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} -n "PHP_EXT_DIR=" >> ${WRKDIR}/php.conf
 	@${SH} ${WRKSRC}/scripts/php-config --extension-dir | ${SED} -ne 's,^${PREFIX}/lib/php/,,p' >> ${WRKDIR}/php.conf
-
-test: build
-	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
