@@ -1,14 +1,14 @@
---- configure.py.orig	2018-10-15 20:54:50.164894000 -0400
-+++ configure.py	2018-10-15 20:56:00.366593000 -0400
-@@ -46,6 +46,8 @@
-             self._platform = 'freebsd'
-         elif self._platform.startswith('gnukfreebsd'):
-             self._platform = 'freebsd'
+--- configure.py.orig	2019-05-07 21:03:31.268580000 -0400
++++ configure.py	2019-05-07 21:15:42.452106000 -0400
+@@ -52,6 +52,8 @@
+             self._platform = 'solaris'
+         elif self._platform.startswith('mingw'):
+             self._platform = 'mingw'
 +        elif self._platform.startswith('midnightbsd'):
 +            self._platform = 'midnightbsd'
-         elif self._platform.startswith('openbsd'):
-             self._platform = 'openbsd'
-         elif self._platform.startswith('solaris') or self._platform == 'sunos5':
+         elif self._platform.startswith('win'):
+             self._platform = 'msvc'
+         elif self._platform.startswith('bitrig'):
 @@ -67,7 +69,7 @@
      def known_platforms():
        return ['linux', 'darwin', 'freebsd', 'openbsd', 'solaris', 'sunos5',
@@ -22,8 +22,8 @@
          return self._platform == 'aix'
  
      def uses_usr_local(self):
--        return self._platform in ('freebsd', 'openbsd', 'bitrig', 'dragonfly')
-+        return self._platform in ('freebsd', 'openbsd', 'bitrig', 'dragonfly', 'midnightbsd')
+-        return self._platform in ('freebsd', 'openbsd', 'bitrig', 'dragonfly', 'netbsd')
++        return self._platform in ('freebsd', 'openbsd', 'bitrig', 'dragonfly', 'netbsd', 'midnightbsd')
  
      def supports_ppoll(self):
          return self._platform in ('freebsd', 'linux', 'openbsd', 'bitrig',
