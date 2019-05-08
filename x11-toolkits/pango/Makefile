@@ -12,7 +12,9 @@ COMMENT=	Open-source framework for the layout and rendering of i18n text
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	help2man:misc/help2man
+BUILD_DEPENDS=	help2man:misc/help2man \
+		python3.7:lang/python37 \
+		py37-setuptools>=0:devel/py-setuptools@py37
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libfontconfig.so:x11-fonts/fontconfig \
