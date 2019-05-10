@@ -9,7 +9,7 @@ MASTER_SITES=	http://lv2plug.in/spec/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open standard for audio plugins (successor to LADSPA)
 
-LICENSE=	isc mit
+LICENSE=	iscl mit
 LICENSE_COMB=	multi
 # Only lv2specgen.py is under MIT
 LICENSE_FILE_isc=	${WRKSRC}/COPYING
