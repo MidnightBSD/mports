@@ -13,25 +13,22 @@ LIB_DEPENDS=	libplist.so:devel/libplist \
 		libtag.so:audio/taglib \
 		libsgutils2.so:sysutils/sg3_utils
 
-USE_GNOME=	gdkpixbuf gtk20 intltool libxml2
-USE_SQLITE=	3
-USES=		compiler:c++11-lang gettext gmake pkgconfig tar:bzip2 
+USES=		compiler:c++11-lang gettext gmake libtool localbase pathfix \
+		pkgconfig sqlite:3 tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules --disable-udev --without-hal \
 		--with-html-dir="${DOCSDIR:H}"
 USE_CSTD=	gnu89
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+USE_GNOME=	gdkpixbuf2 gtk20 intltool libxml2
+INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	IMOBILE MONO PYTHON
+OPTIONS_DEFINE=	DOCS IMOBILE PYTHON MONO
 OPTIONS_DEFAULT=IMOBILE
 OPTIONS_EXCLUDE?=	MONO
 OPTIONS_SUB=	yes
 
 IMOBILE_DESC=	Apple iPhone/iPod Touch support
-
-PORTDOCS=	ChangeLog NEWS README*
 
 IMOBILE_LIB_DEPENDS=	libimobiledevice.so:comms/libimobiledevice
 IMOBILE_CONFIGURE_WITH=	libimobiledevice
@@ -47,23 +44,27 @@ PYTHON_USES=		python:2.7
 PYTHON_CONFIGURE_ENV=	SWIG="${LOCALBASE}/bin/swig3.0"
 PYTHON_CONFIGURE_WITH=	python
 
+PORTDOCS=	ChangeLog NEWS README*
+
 .include <bsd.mport.options.mk>
 
-post-patch:
-	@${REINPLACE_CMD} -e 's,libdir)/pkgconfig,prefix)/libdata/pkgconfig,' \
-		${WRKSRC}/Makefile.in \
-		${WRKSRC}/bindings/mono/libgpod-sharp/Makefile.in
-# Allow to build tools without HAL
-	@${REINPLACE_CMD} -e '/noinst_PROGRAMS =/ s,^,@HAVE_HAL_TRUE@,' \
-		${WRKSRC}/tools/Makefile.in
-.if ! ${PORT_OPTIONS:MDOCS}
-	@${REINPLACE_CMD} -e 's, docs,,' \
-		${WRKSRC}/Makefile.in
+.if ${PORT_OPTIONS:MIMOBILE}
+COMMENT:=	${COMMENT:S,iPod,&/iPhone,}
 .endif
 
+post-patch-MONO-on:
+	${REINPLACE_CMD} 's/gmcs/mcs/g' ${WRKSRC}/configure ${WRKSRC}/m4/mono.m4
+
+.if ${SLAVE_PORT} == no
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/ipod-time-sync \
+		${PREFIX}/bin
 .endif
+
+post-install-MONO-off:
+	@${RM} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/libgpod-sharp.pc
+
+post-install-DOCS-on:
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

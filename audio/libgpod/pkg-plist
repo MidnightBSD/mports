@@ -1,18 +1,13 @@
 bin/ipod-read-sysinfo-extended
+bin/ipod-time-sync
 include/gpod-1.0/gpod/itdb.h
 lib/libgpod.a
-lib/libgpod.la
 lib/libgpod.so
-lib/libgpod.so.7
-%%MONO%%lib/libgpod/libgpod-sharp-test.exe
-%%MONO%%lib/libgpod/libgpod-sharp-test.exe.mdb
-%%MONO%%lib/libgpod/libgpod-sharp.dll
-%%MONO%%lib/libgpod/libgpod-sharp.dll.config
-%%MONO%%lib/libgpod/libgpod-sharp.dll.mdb
+lib/libgpod.so.4
+lib/libgpod.so.4.3.2
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/__init__.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/__init__.pyc
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/__init__.pyo
-%%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/_gpod.la
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/_gpod.so
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/gpod.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/gpod.pyc
@@ -24,7 +19,6 @@ lib/libgpod.so.7
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/ipod.pyc
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/gpod/ipod.pyo
 libdata/pkgconfig/libgpod-1.0.pc
-libdata/pkgconfig/libgpod-sharp.pc
 %%PORTDOCS%%%%DOCSDIR%%/ch01.html
 %%PORTDOCS%%%%DOCSDIR%%/home.png
 %%PORTDOCS%%%%DOCSDIR%%/index.html
@@ -42,6 +36,7 @@ libdata/pkgconfig/libgpod-sharp.pc
 %%PORTDOCS%%%%DOCSDIR%%/libgpod-The-Itdb-iTunesDB-structure.html
 %%PORTDOCS%%%%DOCSDIR%%/libgpod-Time-handling.html
 %%PORTDOCS%%%%DOCSDIR%%/libgpod-Tracks.html
+%%PORTDOCS%%%%DOCSDIR%%/libgpod.devhelp2
 %%PORTDOCS%%%%DOCSDIR%%/photodb.html
 %%PORTDOCS%%%%DOCSDIR%%/right.png
 %%PORTDOCS%%%%DOCSDIR%%/style.css
@@ -55,7 +50,3 @@ share/locale/ja/LC_MESSAGES/libgpod.mo
 share/locale/ro/LC_MESSAGES/libgpod.mo
 share/locale/sv/LC_MESSAGES/libgpod.mo
 share/locale/zh_CN/LC_MESSAGES/libgpod.mo
-%%PYTHON%%@dirrm %%PYTHON_SITELIBDIR%%/gpod
-%%MONO%%@dirrm lib/libgpod
-@dirrm include/gpod-1.0/gpod
-@dirrm include/gpod-1.0

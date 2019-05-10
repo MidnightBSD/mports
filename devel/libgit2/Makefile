@@ -1,8 +1,7 @@
-# $MidnightBSD$
 # $FreeBSD: head/devel/libgit2/Makefile 391072 2015-07-01 15:09:52Z kwm $
 
 PORTNAME=	libgit2
-PORTVERSION=	0.27.5
+PORTVERSION=	0.27.8
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -38,9 +37,8 @@ CURL_CMAKE_OFF=		-DCURL=OFF
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|/pkgconfig|/../libdata/pkgconfig|; \
-		/LIBGIT2_PC_REQUIRES.*zlib/ d" ${WRKSRC}/CMakeLists.txt
-.if defined(WITH_OPENSSL_BASE)
+	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*zlib/ d" ${WRKSRC}/CMakeLists.txt
+.if ${SSL_DEFAULT} == base
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
 		${WRKSRC}/src/CMakeLists.txt
 .endif
