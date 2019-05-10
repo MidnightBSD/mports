@@ -26,8 +26,6 @@ ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 and aarch64 (i386 deprecated in 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libsnappy.so:archivers/snappy \
 		libboost_system.so:devel/boost-libs
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>=3.11:devel/py-yaml@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pymongo>=3.0:databases/pymongo@${PY_FLAVOR}
 
 CONFLICTS_BUILD=	mongo-cxx-driver
 
@@ -58,12 +56,13 @@ SASL_MAKE_ARGS=		--use-sasl-client
 SSL_USES=	ssl
 SSL_MAKE_ARGS=	--ssl
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
 
 ALL_TARGET=	core
-TEST_TARGET=	unittests
 
 PORTSCOUT=	limitw:1,even
 
@@ -80,11 +79,5 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
 .endfor
 	${CP} ${WRKSRC}/rpm/mongod.conf ${STAGEDIR}${PREFIX}/etc/mongodb.conf.sample
-
-do-test:
-	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${TEST_TARGET} &&\
-		${PYTHON_CMD} ${BUILD_WRKSRC}/buildscripts/resmoke.py\
-		--suites=unittests --jobs=${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.mk>
