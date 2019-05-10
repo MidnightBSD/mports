@@ -46,6 +46,8 @@ TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
 X11_MESON_TRUE=		x11
 X11_USE=		xorg=x11
 
+NO_TEST=	yes
+
 post-install:
 	${RM} -rf ${STAGEDIR}${PREFIX}/libexec/installed-tests
 	${RM} -rf ${STAGEDIR}${PREFIX}/share/installed-tests
