@@ -5,6 +5,7 @@
 PORTNAME=	xf86-video-scfb
 PORTVERSION=	0.0.4
 CATEGORIES=	x11-drivers
+MASTER_SITES=	https://codeload.github.com/${GH_ACCOUNT}/xf86-video-scfb/tar.gz/${GH_TAGNAME}?dummy=/
 DISTFILES=	xf86-video-scfb-0.0.4_GH0.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
