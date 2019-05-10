@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libgpod
 PORTVERSION=	0.8.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	SF/gtkpod/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 
@@ -11,13 +9,13 @@ COMMENT=	Library for direct access to iPod contents
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libplist.so:${PORTSDIR}/devel/libplist \
-		libtag.so:${PORTSDIR}/audio/taglib \
-		libsgutils2.so:${PORTSDIR}/sysutils/sg3_utils
+LIB_DEPENDS=	libplist.so:devel/libplist \
+		libtag.so:audio/taglib \
+		libsgutils2.so:sysutils/sg3_utils
 
-USE_GNOME=	gdkpixbuf gtk20 intltool
+USE_GNOME=	gdkpixbuf gtk20 intltool libxml2
 USE_SQLITE=	3
-USES=		gettext gmake pkgconfig tar:bzip2 
+USES=		compiler:c++11-lang gettext gmake pkgconfig tar:bzip2 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules --disable-udev --without-hal \
 		--with-html-dir="${DOCSDIR:H}"
@@ -28,43 +26,28 @@ USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	IMOBILE MONO PYTHON
 OPTIONS_DEFAULT=IMOBILE
+OPTIONS_EXCLUDE?=	MONO
+OPTIONS_SUB=	yes
 
 IMOBILE_DESC=	Apple iPhone/iPod Touch support
 
 PORTDOCS=	ChangeLog NEWS README*
 
+IMOBILE_LIB_DEPENDS=	libimobiledevice.so:comms/libimobiledevice
+IMOBILE_CONFIGURE_WITH=	libimobiledevice
+
+MONO_USE=		GNOME=gtksharp20
+MONO_CONFIGURE_WITH=	mono
+
+PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30 \
+			${PYTHON_PKGNAMEPREFIX}mutagen>0:audio/py-mutagen@${PY_FLAVOR}
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mutagen>0:audio/py-mutagen@${PY_FLAVOR}
+PYTHON_USE=		GNOME=pygobject
+PYTHON_USES=		python:2.7
+PYTHON_CONFIGURE_ENV=	SWIG="${LOCALBASE}/bin/swig3.0"
+PYTHON_CONFIGURE_WITH=	python
+
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MMONO}
-USE_GNOME+=	gtksharp20
-CONFIGURE_ARGS+=--with-mono
-PLIST_SUB+=	MONO=""
-.else
-CONFIGURE_ARGS+=--without-mono
-PLIST_SUB+=	MONO="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MPYTHON}
-BUILD_DEPENDS+=	swig2.0:${PORTSDIR}/devel/swig20 \
-		${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
-USE_GNOME+=	pygobject
-USE_PYTHON=	yes
-PLIST_SUB+=	PYTHON=""
-.else
-CONFIGURE_ARGS+=--without-python
-PLIST_SUB+=	PYTHON="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${PORT_OPTIONS:MIMOBILE} && (${OSVERSION} > 4000)
-COMMENT:=	${COMMENT:S,iPod,&/iPhone,}
-LIB_DEPENDS+=	imobiledevice:${PORTSDIR}/comms/libimobiledevice
-CONFIGURE_ENV+=	LIBUSB_CFLAGS=" " LIBUSB_LIBS="-lusb"
-.else
-CONFIGURE_ARGS+=--without-libimobiledevice
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,libdir)/pkgconfig,prefix)/libdata/pkgconfig,' \
@@ -83,4 +66,4 @@ post-install:
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
