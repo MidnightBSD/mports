@@ -74,8 +74,9 @@ BUILD_DEPENDS+=	gnustep-make>0:devel/gnustep-make
 .include "${PORTSDIR}/Mk/extensions/objc.mk"
 
 do-build:
-	@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \	 
+	@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+
 .  endif
 
 .  if ${USE_GNUSTEP:Mgui}
