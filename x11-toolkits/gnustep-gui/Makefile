@@ -65,7 +65,7 @@ pre-configure:
 .endfor
 
 do-build:
-	(cd ${WRKSRC}/; ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+	(cd ${WRKSRC}/;. ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 post-install-DOCS-off:
