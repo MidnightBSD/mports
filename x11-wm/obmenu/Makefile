@@ -24,7 +24,7 @@ SUB_FILES=	pkg-message
 PORTDOCS=	README
 
 DESKTOP_ENTRIES="Obmenu" "Menu manager for Openbox" ${PORTNAME} \
-		"${PORTNAME}" "Settings;" ""
+		"${PORTNAME}" "Settings;" false
 
 OPTIONS_DEFINE=	DOCS
 
