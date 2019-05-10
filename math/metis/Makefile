@@ -66,6 +66,11 @@ pre-configure:
 	${WRKSRC}/GKlib/GKlibSystem.cmake
 	@${REINPLACE_CMD} -e "\|/home/karypis/|d" \
 	${WRKSRC}/programs/CMakeLists.txt
+.if ((${ARCH}=="amd64") || (${ARCH}=="aarch64") || (${ARCH}=="sparc64") || (${ARCH}=="powerpc64"))
+	@${REINPLACE_CMD}-e \
+		's|IDXTYPEWIDTH 32|IDXTYPEWIDTH 64|' \
+		${WRKSRC}/include/metis.h
+.endif
 .for o in SHARED #PROFILE
 .if ${PORT_OPTIONS:M${o}}
 	@${CP} -R ${WRKSRC} ${WRKSRC_${o}}
@@ -106,7 +111,7 @@ do-install:
 .if ${PORT_OPTIONS:M${o}}
 	@${PRINTF} "\n\nInstalling ${o}:\n\n\n"
 	@cd ${INSTALL_WRKSRC_${o}}; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} \
-	${MAKE_ARGS} install
+	${MAKE_ARGS} ${FAKE_MAKEARGS} install
 .endif
 .endfor
 
