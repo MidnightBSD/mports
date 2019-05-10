@@ -11,11 +11,11 @@ COMMENT=	Compiz Composite/Window Manager
 
 LICENSE=	agg
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
-		libgtop-2.0.so:${PORTSDIR}/devel/libgtop \
-		libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification
-RUN_DEPENDS=	glxinfo:${PORTSDIR}/graphics/mesa-demos \
-		nvidia-settings:${PORTSDIR}/x11/nvidia-settings
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libgtop-2.0.so:devel/libgtop \
+		libstartup-notification-1.so:x11/startup-notification
+RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
+		nvidia-settings:x11/nvidia-settings
 
 XORG_CAT=	app
 GNU_CONFIGURE=	yes
@@ -23,7 +23,7 @@ INSTALL_TARGET=	install-strip
 USES=		gettext gmake libtool pathfix tar:bzip2
 USE_GL=		glu
 USE_GNOME=	gconf2 libxslt intltool
-USE_XORG=	glproto ice sm x11 xcomposite xdamage xext xfixes xinerama \
+USE_XORG=	xorgproto ice sm x11 xcomposite xdamage xext xfixes xinerama \
 		xrandr xrender
 USE_LDCONFIG=	yes
 
