@@ -11,8 +11,8 @@ COMMENT=	Assistive Technology Service Provider Interface
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS+=	ninja:devel/ninja \
-		python2.7:lang/python27
+BUILD_DEPENDS+=	python2.7:lang/python27 \
+		ninja:devel/ninja
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxkbcommon.so:x11/libxkbcommon
 
