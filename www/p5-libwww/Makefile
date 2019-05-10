@@ -1,5 +1,3 @@
-# Created by: James FitzGibbon <jfitz@FreeBSD.org>
-
 PORTNAME=	libwww
 PORTVERSION=	6.36
 DISTVERSIONPREFIX=	perl-
@@ -39,5 +37,6 @@ USE_PERL5=	configure
 
 CONFIGURE_ARGS=	--aliases
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>
