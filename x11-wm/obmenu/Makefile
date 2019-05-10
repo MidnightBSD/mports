@@ -9,7 +9,7 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Menu manager for Openbox supporting both static and pipe menus
 
-LICENSE=	bpl2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		python:2.7 shebangfix
