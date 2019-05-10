@@ -24,8 +24,6 @@ USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${LOCALBASE}/bin/pytest-${PYTHON_VER} -v -n ${MAKE_JOBS_NUMBER}
+NO_TEST=	yes
 
 .include <bsd.port.mk>
