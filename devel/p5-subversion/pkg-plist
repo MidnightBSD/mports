@@ -1,6 +1,7 @@
 lib/libsvn_swig_perl-1.a
 lib/libsvn_swig_perl-1.so
 lib/libsvn_swig_perl-1.so.0
+lib/libsvn_swig_perl-1.so.0.0.0
 %%PERL5_MAN3%%/SVN::Base.3.gz
 %%PERL5_MAN3%%/SVN::Client.3.gz
 %%PERL5_MAN3%%/SVN::Core.3.gz
@@ -9,27 +10,18 @@ lib/libsvn_swig_perl-1.so.0
 %%PERL5_MAN3%%/SVN::Ra.3.gz
 %%PERL5_MAN3%%/SVN::Repos.3.gz
 %%PERL5_MAN3%%/SVN::Wc.3.gz
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Base.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Client.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Core.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Delta.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Fs.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Ra.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Repos.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/SVN/Wc.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Client/_Client.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Core/_Core.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Delta/_Delta.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Fs/_Fs.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Ra/_Ra.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Repos/_Repos.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Wc/_Wc.so
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Wc
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Repos
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Ra
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Fs
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Delta
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Core
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/_Client
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/SVN
+%%SITE_ARCH%%/SVN/Base.pm
+%%SITE_ARCH%%/SVN/Client.pm
+%%SITE_ARCH%%/SVN/Core.pm
+%%SITE_ARCH%%/SVN/Delta.pm
+%%SITE_ARCH%%/SVN/Fs.pm
+%%SITE_ARCH%%/SVN/Ra.pm
+%%SITE_ARCH%%/SVN/Repos.pm
+%%SITE_ARCH%%/SVN/Wc.pm
+%%SITE_ARCH%%/auto/SVN/_Client/_Client.so
+%%SITE_ARCH%%/auto/SVN/_Core/_Core.so
+%%SITE_ARCH%%/auto/SVN/_Delta/_Delta.so
+%%SITE_ARCH%%/auto/SVN/_Fs/_Fs.so
+%%SITE_ARCH%%/auto/SVN/_Ra/_Ra.so
+%%SITE_ARCH%%/auto/SVN/_Repos/_Repos.so
+%%SITE_ARCH%%/auto/SVN/_Wc/_Wc.so

@@ -1,30 +1,19 @@
-# $MidnightBSD$
+# Created by: Autrijus Tang <autrijus@autrijus.org>
 
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl bindings for Version control system
 
-LICENSE=	other
-
 USES=		perl5
 USE_PERL5=	build run
 
-.if defined(WITH_SUBVERSION_VER) && ${WITH_SUBVERSION_VER} == 18
-MASTERDIR=	${.CURDIR}/../../devel/subversion18
-.else
-MASTERDIR=	${.CURDIR}/../../devel/subversion
-.endif
-PKGDIR=		${.CURDIR}
+PORTREVISION_111=	0
+PORTREVISION_19=	0
 
 SVN_BUILD_BINDINGS=	yes
-SVN_BUILD_ADDONS=	yes
 
-MAKE_JOBS_UNSAFE=	yes
-
-.include "${MASTERDIR}/Makefile.common"
-
-.include <bsd.mport.options.mk>
+.include "${.CURDIR}/../../devel/subversion/Makefile.addons"
 
 CATEGORIES+=	perl5
 
