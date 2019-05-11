@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	at-spi2-atk
 PORTVERSION=	2.26.2
 CATEGORIES=	accessibility x11-toolkits
@@ -21,5 +19,7 @@ USES=		cpe gettext-runtime gnome localbase meson pkgconfig tar:xz
 USE_GNOME=	atk glib20 intlhack
 USE_LDCONFIG=	yes
 CPE_VENDOR=	gnome
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
