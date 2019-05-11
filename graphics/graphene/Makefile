@@ -42,6 +42,5 @@ post-patch:
 post-install:
 	@${RM} -rf ${STAGEDIR}${PREFIX}/libexec/installed-tests
 	@${RM} -rf ${STAGEDIR}${PREFIX}/share/installed-tests
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>
