@@ -1,0 +1,4 @@
+bin/activitymail
+%%SITE_PERL%%/%%PERL5_MAN1%%/activitymail.1
+@dir %%SITE_ARCH%%/auto/activitymail
+@dir %%SITE_ARCH%%/auto
