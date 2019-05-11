@@ -1,10 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	doxygen
 PORTVERSION=	1.8.9.1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
-		http://ftp.stack.nl/pub/users/dimitri/
+		http://ftp.stack.nl/pub/users/dimitri/ \
+		http://doxygen.nl/files/
 EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,11 +12,11 @@ COMMENT=	Documentation system for C, C++ and other languages
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake \
-		${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+BUILD_DEPENDS=	tmake:devel/tmake \
+		${LOCALBASE}/bin/flex:textproc/flex
+LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		bison gmake iconv perl5 python:2
+USES=		bison gmake iconv perl5 python
 ALL_TARGET=	all
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
@@ -41,7 +40,7 @@ QT4_DESC=	Install Doxywizard GUI
 HTMLDOCS_DESC=	Install documentation in HTML format
 PDFDOCS_DESC=	Install documentation in PDF format
 
-GRAPHVIZ_RUN_DEPENDS=	dot:${PORTSDIR}/graphics/graphviz
+GRAPHVIZ_RUN_DEPENDS=	dot:graphics/graphviz
 
 LATEX_USE=	TEX=base,dvipsk,pdftex
 
