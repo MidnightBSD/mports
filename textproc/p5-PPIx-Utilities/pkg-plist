@@ -1,8 +1,13 @@
-%%PERL5_MAN3%%/PPIx::Utilities.3.gz
-%%PERL5_MAN3%%/PPIx::Utilities::Exception::Bug.3.gz
-%%PERL5_MAN3%%/PPIx::Utilities::Node.3.gz
-%%PERL5_MAN3%%/PPIx::Utilities::Statement.3.gz
-%%SITE_PERL%%/PPIx/Utilities.pm
 %%SITE_PERL%%/PPIx/Utilities/Exception/Bug.pm
 %%SITE_PERL%%/PPIx/Utilities/Node.pm
 %%SITE_PERL%%/PPIx/Utilities/Statement.pm
+%%SITE_PERL%%/PPIx/Utilities.pm
+%%SITE_PERL%%/%%PERL5_MAN3%%/PPIx::Utilities.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/PPIx::Utilities::Exception::Bug.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/PPIx::Utilities::Node.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/PPIx::Utilities::Statement.3
+@dir %%SITE_PERL%%/PPIx/Utilities/Exception
+@dir %%SITE_PERL%%/PPIx/Utilities
+@dir %%SITE_PERL%%/PPIx
+@dir %%SITE_ARCH%%/auto/PPIx/Utilities
+@dir %%SITE_ARCH%%/auto/PPIx
