@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	tin
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.2
 PORTREVISION?=	1 # keep for chinese/tin
 CATEGORIES+=	news ipv6
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
@@ -70,7 +68,7 @@ CONFIGURE_ARGS+=--with-nntp-default-server=news \
 		${ICONV_CONFIGURE_ARG} \
 		--with-mime-default-charset=US-ASCII \
 		--enable-ipv6
-MAKE_ARGS+=	MAKE=${MAKE_CMD}
+MAKE_ARGS+=	MAKE=${MAKE_CMD} -D__BSD_VISIBLE=1
 CFLAGS+=	-DNNTP_SERVER_FILE=\\\"${PREFIX}/etc/nntpserver\\\"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
