@@ -20,10 +20,9 @@ USES=		tar:xz
 .if !defined(REFERENCE_PORT)
 
 RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		python:${PORTSDIR}/lang/python
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-USES+=		gettext gmake libtool pathfix perl5 pkgconfig
+USES+=		gettext gmake libtool localbase:ldflags pathfix perl5 python:run pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	atk pango gdkpixbuf2 introspection:build \
 		gtk-update-icon-cache
