@@ -14,6 +14,9 @@ LICENSE_COMB=	dual
 
 CONFLICTS_INSTALL=	p5-CGI p5-CGI-Fast
 
+DEPRECATED=	Use www/p5-CGI instead
+EXPIRATION_DATE=2019-04-30
+
 USES=		perl5
 USE_PERL5=	configure
 
