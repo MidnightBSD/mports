@@ -66,6 +66,7 @@ SUBDIR += p5-Apache-LogFormat-Compiler
 SUBDIR += p5-CGI-Ajax
 SUBDIR += p5-CGI-Compile
 SUBDIR += p5-CGI-Emulate-PSGI
+SUBDIR += p5-CGI-Fast
 SUBDIR += p5-CGI
 SUBDIR += p5-CGI.pm
 SUBDIR += p5-Cookie-Baker
