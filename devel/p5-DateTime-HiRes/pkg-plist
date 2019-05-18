@@ -1,3 +1,8 @@
-%%PERL5_MAN3%%/DateTime::HiRes.3.gz
 %%SITE_PERL%%/DateTime/HiRes.pm
 %%SITE_PERL%%/DateTime/HiRes.pod
+%%SITE_PERL%%/%%PERL5_MAN3%%/DateTime::HiRes.3
+@dir %%SITE_PERL%%/DateTime
+@dir %%SITE_ARCH%%/auto/DateTime/HiRes
+@dir %%SITE_ARCH%%/auto/DateTime
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
