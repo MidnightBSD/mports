@@ -43,6 +43,7 @@ SUBDIR += mediawiki128
 SUBDIR += midori
 SUBDIR += minio
 SUBDIR += minio-client
+SUBDIR += mod_dav_svn
 SUBDIR += mod_dnssd
 SUBDIR += mod_fastcgi
 SUBDIR += mod_perl2
