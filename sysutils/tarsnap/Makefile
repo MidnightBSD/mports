@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	tarsnap
 PORTVERSION=	1.0.39
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.tarsnap.com/download-http/
 DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
@@ -16,7 +14,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_PERMS=	dist-mirror pkg-mirror
 
 GNU_CONFIGURE=	yes
-USES=		gmake tar:tgz
+USES=		gmake tar:tgz ssl
+
+CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
+		LDFLAGS="-L${OPENSSLLIB} ${LDFLAGS}"
 
 .include <bsd.mport.options.mk>
 
