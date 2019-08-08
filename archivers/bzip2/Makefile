@@ -1,18 +1,17 @@
-# $MidnightBSD$
-
 PORTNAME=	bzip2
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.7
 PORTREVISION=	0
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.bzip.org/${PORTVERSION}/
+MASTER_SITES=	https://sourceware.org/pub/bzip2/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Block-sorting file compressor
 
 LICENSE=	bzip2
 
+USES=		cpe
+CPE_VENDOR=	bzip
 USE_LDCONFIG=	yes
-PATCH_STRIP=	-p3
 
 OPTIONS_DEFINE=	DOCS
 
