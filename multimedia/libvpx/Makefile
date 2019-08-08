@@ -65,9 +65,9 @@ post-patch:
 		${WRKSRC}/build/make/version.sh
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vpx*
+	@${STRIP_CMD} ${PREFIX}/bin/vpx*
 
 post-install-SHARED-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libvpx.so.*.*.*
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libvpx.so.*.*.*
 
 .include <bsd.port.mk>

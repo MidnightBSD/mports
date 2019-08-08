@@ -108,7 +108,6 @@ pre-configure:
 
 post-install:
 	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-4.0/jsc \
 		${STAGEDIR}${PREFIX}/bin/jsc-4
 	@${RLN} ${STAGEDIR}${PREFIX}/libexec/webkit2gtk-4.0/MiniBrowser \

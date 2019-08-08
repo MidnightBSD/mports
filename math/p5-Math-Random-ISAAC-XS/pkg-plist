@@ -1,3 +1,10 @@
+%%SITE_PERL%%/%%PERL5_MAN3%%/Math::Random::ISAAC::XS.3
 %%SITE_ARCH%%/Math/Random/ISAAC/XS.pm
 %%SITE_ARCH%%/auto/Math/Random/ISAAC/XS/XS.so
-%%PERL5_MAN3%%/Math::Random::ISAAC::XS.3.gz
+@dir %%SITE_ARCH%%/Math/Random/ISAAC
+@dir %%SITE_ARCH%%/Math/Random
+@dir %%SITE_ARCH%%/Math
+@dir %%SITE_ARCH%%/auto/Math/Random/ISAAC/XS
+@dir %%SITE_ARCH%%/auto/Math/Random/ISAAC
+@dir %%SITE_ARCH%%/auto/Math/Random
+@dir %%SITE_ARCH%%/auto/Math

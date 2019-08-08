@@ -24,7 +24,4 @@ NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
 
-PLIST_FILES=	${SITE_PERL_REL}/Test/CleanNamespaces.pm \
-		${SITE_MAN3_REL}/Test::CleanNamespaces.3.gz
-
 .include <bsd.port.mk>

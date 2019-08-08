@@ -12,13 +12,15 @@ COMMENT=	OpenGL based interactive canvas library
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
-		libcogl.so:${PORTSDIR}/graphics/cogl
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libcogl.so:graphics/cogl
 
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME=	gtk30 introspection:build
 USE_GL=		gl egl
-USE_XORG=	glproto x11 xfixes xdamage xcomposite xi
+USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-x --enable-conformance=no \

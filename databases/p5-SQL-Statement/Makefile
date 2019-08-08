@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/databases/p5-SQL-Statement/Makefile,v 1.21 2006/03/15 08:51:38 lth Exp $
-
 PORTNAME=	SQL-Statement
-PORTVERSION=	1.15
+PORTVERSION=	1.412
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -13,7 +10,13 @@ COMMENT=	Perl5 module for SQL parsing and processing
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Clone>=0.30:devel/p5-Clone \
+		p5-Module-Runtime>=0:devel/p5-Module-Runtime \
+		p5-Params-Util>=1.00:devel/p5-Params-Util
+
+NO_ARCH=	yes
 USES=		perl5
-USE_PERL5=	modbuild
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

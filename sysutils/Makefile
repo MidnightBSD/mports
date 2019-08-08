@@ -109,6 +109,7 @@ SUBDIR += policykit-gnome
 SUBDIR += polkit
 SUBDIR += polkit-gnome
 SUBDIR += polkit-qt
+SUBDIR += powerdxx
 SUBDIR += py-execnet
 SUBDIR += py-psutil
 SUBDIR += py-ptyprocess

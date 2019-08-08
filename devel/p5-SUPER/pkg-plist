@@ -1,2 +1,10 @@
+%%SITE_PERL%%/%%PERL5_MAN3%%/SUPER.3
 %%SITE_PERL%%/SUPER.pm
-%%PERL5_MAN3%%/SUPER.3.gz
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_ARCH%%/auto/SUPER
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

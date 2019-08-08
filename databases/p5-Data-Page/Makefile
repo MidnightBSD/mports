@@ -1,6 +1,3 @@
-# $FreeBSD: ports/databases/p5-Data-Page/Makefile,v 1.9 2007/08/31 13:37:05 mat Exp $
-# $MidnightBSD$
-
 PORTNAME=	Data-Page
 PORTVERSION=	2.02
 PORTREVISION=	1

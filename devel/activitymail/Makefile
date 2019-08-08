@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	activitymail
 PORTVERSION=	1.26
 CATEGORIES=	devel perl5
@@ -14,8 +12,5 @@ LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	modbuild
-
-PLIST_FILES=	bin/activitymail \
-		man/man1/activitymail.1.gz
 
 .include <bsd.port.mk>
