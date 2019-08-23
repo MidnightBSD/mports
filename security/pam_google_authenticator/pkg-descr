@@ -1,0 +1,4 @@
+The PAM module can add a two-factor authentication
+step to any PAM-enabled application.
+
+WWW: https://github.com/google/google-authenticator-libpam

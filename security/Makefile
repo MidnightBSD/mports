@@ -50,6 +50,7 @@ SUBDIR += libsodium
 SUBDIR += libssh
 SUBDIR += libssh2
 SUBDIR += libtasn1
+SUBDIR += libyubikey
 SUBDIR += libzrtpcppcore
 SUBDIR += linux-c6-cyrus-sasl2
 SUBDIR += linux-c6-gnutls
@@ -113,8 +114,10 @@ SUBDIR += p5-Digest-SHA1
 SUBDIR += p5-GSSAPI
 SUBDIR += p5-IO-Socket-SSL
 SUBDIR += p5-Net-SSLeay
+SUBDIR += pam_google_authenticator
 SUBDIR += pam_helper
 SUBDIR += pam_ldap
+SUBDIR += pam_yubico
 SUBDIR += pecl-gnupg
 SUBDIR += php71-filter
 SUBDIR += php71-hash
@@ -164,6 +167,8 @@ SUBDIR += xinetd
 SUBDIR += xmlsec1
 SUBDIR += xspy
 SUBDIR += yafic
+SUBDIR += ykclient
+SUBDIR += ykpers
 SUBDIR += zebedee
 
 .include <bsd.port.subdir.mk>
