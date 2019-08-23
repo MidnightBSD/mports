@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xfce4-settings
 PORTVERSION=	4.12.0
 CATEGORIES=	sysutils xfce
@@ -12,15 +10,17 @@ COMMENT=	Xfce 4 settings application
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-	libxklavier.so:${PORTSDIR}/x11/libxklavier
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libxklavier.so:x11/libxklavier
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_XFCE=	garcon libexo
-USE_XORG=	inputproto x11 xcursor xi xrandr
+USE_XORG=	xorgproto x11 xcursor xi xrandr
 USES=		libtool pkgconfig gmake gettext-tools xfce tar:bzip2
 
 CONFIGURE_ARGS=--enable-debug=yes \
@@ -31,11 +31,11 @@ OPTIONS_DEFAULT=	NOTIFY NLS
 
 UPOWER_DESC=	Power management tasks
 
-NOTIFY_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
+NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_CONFIGURE_ENABLE=	libnotify
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext-runtime
-UPOWER_LIB_DEPENDS=	libupower-glib.so:${PORTSDIR}/sysutils/upower
+UPOWER_LIB_DEPENDS=	libupower-glib.so:sysutils/upower
 UPOWER_CONFIGURE_ENABLE=	upower-glib
 OPTIONS_SUB=	yes
 
