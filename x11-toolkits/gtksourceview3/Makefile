@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $FreeBSD: head/x11-toolkits/gtksourceview3/Makefile 487272 2018-12-12 01:35:33Z gerald $
 
 PORTNAME=	gtksourceview
-PORTVERSION=	3.16.1
+PORTVERSION=	3.24.8
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -10,26 +10,36 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text widget that adds syntax highlighting to the GtkTextView widget
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl3
 
-USES=		tar:xz
+USES=		compiler:c11 tar:xz
+
+PORTSCOUT=	limitw:1,even
 
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	vala:${PORTSDIR}/lang/vala
+BUILD_DEPENDS=	vala:lang/vala
+LIB_DEPENDS=	libfribidi.so:converters/fribidi
 
-USES+=		gettext gmake libtool pathfix pkgconfig
-USE_GNOME=	gnomeprefix gtk30 intlhack introspection:build \
-		libxml2 referencehack
+USES+=		gettext gmake gnome libtool pathfix pkgconfig
+USE_CSTD=	c11
+USE_GNOME=	cairo gdkpixbuf2 gnomeprefix gtk30 intlhack \
+		introspection:build libxml2 referencehack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-compile-warnings=no --enable-glade-catalog=no \
+CONFIGURE_ARGS=	--enable-compile-warnings=no \
+		--enable-glade-catalog=no \
+		--with-pkgconfigdir=${TRUE_PREFIX}/libdata/pkgconfig \
 		--enable-introspection
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
+OPTIONS_DEFINE=	DOCS
+
 post-patch:
+	@${REINPLACE_CMD} -e 's|tests testsuite||g' \
+		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|--warn-all||g' \
 		${WRKSRC}/gtksourceview/Makefile.in
 
