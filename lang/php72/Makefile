@@ -15,6 +15,7 @@ LICENSE=	php
 USES+=		tar:xz cpe
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
+NO_TEST=	yes
 
 .if !defined(PKGNAMESUFFIX)
 LIB_DEPENDS=	libpcre.so:devel/pcre \
