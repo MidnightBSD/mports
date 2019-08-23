@@ -13,7 +13,8 @@ COMMENT=	Opensource browser engine using the GTK+ 3 toolkit
 LICENSE=	gpl2 bsd2
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	python3:lang/python3
+BUILD_DEPENDS+=	python3:lang/python3 \
+		python:lang/python
 LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig \
