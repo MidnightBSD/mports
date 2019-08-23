@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	glade
-PORTVERSION=	3.18.3
+PORTVERSION=	3.22.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -11,24 +9,36 @@ COMMENT=	User interface builder for GTK+ 3
 
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2 =	${WRKSRC}/COPYING.GPL
+LICENSE_FILE_lgpl2.1 =	${WRKSRC}/COPYING.LGPL
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 
 CONFLICTS=	glade3-3.*
 PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gmake libtool \
-		localbase:ldflags pathfix pkgconfig python:3.4+ tar:xz
-USE_GNOME=	gtk30 gnomedocutils intlhack pygobject3
-#		introspection:build
-# temp disable, introspection generation crashes with GNOME 3.15
-CONFIGURE_ARGS=	--disable-introspection --enable-python
+USES=		compiler:c11 desktop-file-utils gettext gmake gnome libtool \
+		localbase:ldflags pathfix pkgconfig tar:xz
+USE_GNOME=	cairo gtk30 gnomedocutils intlhack \
+		introspection:build
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-Wno-error=format-nonliteral
 INSTALL_TARGET=	install-strip
 
 DOCSDIR=	${PREFIX}/share/doc/gladeui-2
+
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	PYTHON WEBKIT
+OPTIONS_DEFAULT=PYTHON WEBKIT
+
+PYTHON_CONFIGURE_ENABLE=	python
+PYTHON_USES=	python:3.4+
+PYTHON_USE=	GNOME=pygobject3
+
+WEBKIT_DESC=	Webkit glade support
+WEBKIT_CONFIGURE_ENABLE=	webkit2gtk
+WEBKIT_LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
+			libwebkit2gtk-4.0.so:www/webkit2-gtk3
 
 .include <bsd.port.mk>
