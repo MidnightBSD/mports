@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/databases/gnats4/Makefile,v 1.11 2006/01/28 02:11:06 linimon Exp $
-
 PORTNAME=	gnats
 PORTVERSION=	4.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases devel
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	4
@@ -44,8 +41,9 @@ PORTDOCS=	NEWS UPGRADING
 OPTIONS_DEFINE=	DOCS EMACS SERVER
 OPTIONS_DEFAULT=SERVER
 OPTIONS_SUB=	yes
-EMACS_USE=	EMACS=yes
-EMACS_DESC=	Add support for default version of EMACS
+EMACS_USES=	emacs
+EMACS_DESC=	Install Emacs Lisp support file
+EMACS_VARS=	EMACS_NO_DEPENDS=yes
 SERVER_DESC=	Install the gnats server too
 
 .include <bsd.mport.options.mk>
