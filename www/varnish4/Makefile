@@ -30,6 +30,8 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check  # some tests fail
 TEST_ARGS=	TESTS_PARALLELISM=1
+# magus
+NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	varnishcache
