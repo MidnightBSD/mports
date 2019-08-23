@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/wmcalendar/Makefile,v 1.12 2007/01/17 06:37:42 xride Exp $
-
 PORTNAME=	wmcalendar
 PORTVERSION=	0.5.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	SF
 
@@ -16,6 +13,7 @@ LIB_DEPENDS=	libical.so:devel/libical
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 
+USES=		pkgconfig
 USE_XORG=	xpm
 USE_GNOME=	gtk20
 MAKE_ARGS=	CC="${CC}" \
