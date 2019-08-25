@@ -12,6 +12,9 @@ LICENSE=	agg
 
 GST_PLUGIN=	pango
 
+LIB_DEPENDS+=	libpango-1.0.so:x11-toolkits/pango \
+		libcairo.so:graphics/cairo
+
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer-plugins
 
 .include "${MASTERDIR}/Makefile"
