@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	6
+PORTREVISION?=	7
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
@@ -55,7 +53,7 @@ CFLAGS+=	-I${LOCALBASE}/include
 DEFAULT_AUDIOSINK?=	osssink
 DEFAULT_AUDIOSRC?=	osssrc
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if ${ARCH}=="i386"
 PLIST_SUB+=	I386=""
@@ -156,7 +154,4 @@ post-patch:
         	-e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
 
-# workaround a crash in clang 3.3 crash llvm bug # 15840
-USE_GCC=	any
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
