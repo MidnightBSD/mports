@@ -1,6 +1,3 @@
-SHA256 (Readonly-1.03.tar.gz) = 53c46815dea724e29ceabb5d39471b0e6f2ebbb3cf1fe2a23d881a2855f713ea
-RMD160 (Readonly-1.03.tar.gz) = 734555fa17b8d1dc9326c0998da1c561c4443bab
-SIZE (Readonly-1.03.tar.gz) = 13677
-SHA256 (Readonly-XS-1.04.tar.gz) = 3dce369ffcdaccd37e7ae65ce5a1dcda33dc99d91f8b8629265cf300898c41a4
-RMD160 (Readonly-XS-1.04.tar.gz) = aad55174f4731336d43f6c30178e0e216fdbac17
-SIZE (Readonly-XS-1.04.tar.gz) = 9092
+TIMESTAMP = 1465667597
+SHA256 (Readonly-2.05.tar.gz) = 4b23542491af010d44a5c7c861244738acc74ababae6b8838d354dfb19462b5e
+SIZE (Readonly-2.05.tar.gz) = 28877
