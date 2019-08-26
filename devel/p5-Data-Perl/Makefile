@@ -21,4 +21,7 @@ RUN_DEPENDS=	p5-Class-Method-Modifiers>=0:devel/p5-Class-Method-Modifiers \
 USES=		perl5
 USE_PERL5=	configure
 
+#magus issues
+NO_TEST=	yes
+
 .include <bsd.port.mk>
