@@ -79,7 +79,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_nvidia-modeset_nvidia-modeset-freebs
 
 OPTIONS_DEFINE=	ACPI_PM LINUX WBINVD DOCS
 OPTIONS_DEFINE_i386=	PAE
-OPTIONS_DEFAULT=	LINUX
+#OPTIONS_DEFAULT=	LINUX
 OPTIONS_SUB=		yes
 
 ACPI_PM_DESC=		ACPI Power Management support
