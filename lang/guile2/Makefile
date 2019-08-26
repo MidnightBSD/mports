@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	guile
 PORTVERSION=	2.0.14
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
 PKGNAMESUFFIX=	2
@@ -23,7 +21,7 @@ CONFLICTS_INSTALL=	guile-[0-9]*
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		charsetfix gmake libtool makeinfo ncurses pathfix pkgconfig \
+USES=		charsetfix gmake iconv libtool makeinfo ncurses pathfix pkgconfig \
 		readline
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
