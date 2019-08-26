@@ -15,7 +15,8 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
 		p5-Switch>0:${PORTSDIR}/lang/p5-Switch \
-		geoclue>=0:${PORTSDIR}/net/geoclue
+		geoclue>=0:${PORTSDIR}/net/geoclue \
+		python:lang/python
 LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
 		libsecret-1.so:${PORTSDIR}/security/libsecret \
 		libicutu.so:${PORTSDIR}/devel/icu \
@@ -28,7 +29,7 @@ RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
 USE_GSTREAMER1=	yes
 USE_XORG=	xt xdamage xcomposite
 USES=		bison compiler:c++11-lib gettext gmake gperf libtool perl5 \
-		pkgconfig shebangfix tar:xz
+		pkgconfig python:2,build shebangfix tar:xz
 USE_RUBY=	yes
 RUBY_NO_RUN_DEPENDS=yes
 USE_GNOME=	cairo gtk20 gtk30 introspection:build libxslt
