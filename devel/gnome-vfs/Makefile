@@ -25,7 +25,7 @@ RUN_DEPENDS=	update-mime-database:misc/shared-mime-info
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 		libdbus-1.so:devel/dbus
 
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig ssl
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig ssl
 USE_GNOME=	gconf2 gnomemimedata intlhack referencehack
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
@@ -47,7 +47,7 @@ GCONF_SCHEMAS=	desktop_default_applications.schemas \
 		system_http_proxy.schemas system_smb.schemas
 
 OPTIONS_DEFINE=	SAMBA MDNS HAL
-OPTIONS_DEFAULT=SAMBA MDNS HAL
+OPTIONS_DEFAULT=MDNS HAL
 SAMBA_DESC=	Enable SMB volume support
 MDNS_DESC=	Enable Bonjour/Rendezvous support
 
