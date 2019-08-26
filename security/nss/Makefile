@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	nss
 PORTVERSION=	3.43
 CATEGORIES=	security
@@ -13,7 +11,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		nspr>=4.10.8:devel/nspr \
-		sqlite3>=3.7.15:databases/sqlite3
+		sqlite3>=3.7.15:databases/sqlite3 \
+		clang60:devel/llvm60
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
 RUN_DEPENDS=	sqlite3>=3.7.15:databases/sqlite3
