@@ -1,60 +1,52 @@
 # $MidnightBSD$
 
 PORTNAME=	bluefish
-PORTVERSION=	2.2.7
+PORTVERSION=	2.2.10
 PORTREVISION=	1
 CATEGORIES=	www editors
 MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
-		http://bluefish.mrball.net/stable/source/ \
-		SF
+		http://bluefish.mrball.net/stable/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libenchant.so:${PORTSDIR}/textproc/enchant
+LIB_DEPENDS=	libpcre.so:devel/pcre \
+		libenchant.so:textproc/enchant
 
-INSTALLS_ICONS=	yes
-USE_LDCONFIG=	yes
-
-USES=		gmake pkgconfig desktop-file-utils shared-mime-info \
-		tar:bzip2 libtool
-USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata intltool
-WANT_GNOME=	yes
+USES=		desktop-file-utils gettext gmake libtool localbase pkgconfig python:2.7 \
+		shared-mime-info shebangfix tar:bzip2
+SHEBANG_FILES=	data/css_decompressor data/cssmin.py data/jsbeautify \
+		data/jsmin.py data/lorem-ipsum-generator
+python_OLD_CMD=	/usr/bin/python2.7
+USE_GNOME=	cairo intltool libxml2
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--with-gtk2 \
-		--with-freedesktop_org-menu=${PREFIX}/share/applications \
+CONFIGURE_ARGS=	--with-freedesktop_org-menu=${PREFIX}/share/applications \
 		--with-freedesktop_org-mime=${PREFIX}/share/mime \
 		--with-icon-path=${PREFIX}/share/pixmaps
 INSTALL_TARGET=	install-strip
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	DEBUG NLS TIDY WEBLINT EXAMPLES
-
-DEBUG_DESC=	Enable debugging output
-TIDY_DESC=	Include Tidy HTML cleanup program
-WEBLINT_DESC=	Include Weblint syntax and style checker
-
-OPTIONS_DEFAULT=WEBLINT
-
+OPTIONS_DEFINE=	DEBUG DOCS TIDY WEBLINT
+OPTIONS_SINGLE=	TOOLKIT
+OPTIONS_SINGLE_TOOLKIT=	GTK2 GTK3
+OPTIONS_DEFAULT=GTK3 WEBLINT
 OPTIONS_SUB=	yes
 
-NLS_USES=		gettext
-NLS_CONFIGURE_OFF=	--disable-nls
+TOOLKIT_DESC=		GTK+ toolkit
+WEBLINT_DESC=		Weblint HTML checker support
 
-DEBUG_CONFIGURE_ON=	--with-debugging-output
-LIBGNOME_USE=		GNOME=libgnomeui
-TIDY_RUN_DEPENDS=	tidy4:${PORTSDIR}/www/tidy
-WEBLINT_RUN_DEPENDS=	weblint:${PORTSDIR}/www/weblint
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^bflangsampledir = /s|$$(docdir)/bflang|${EXAMPLESDIR}|' \
-		${WRKSRC}/data/bflang/Makefile.in
-
-pre-install:
-	@${MKDIR} ${PREFIX}/share/mime
+DEBUG_CONFIGURE_ENABLE=	debugging-output
+GTK2_USE=		gnome=gtk20
+GTK2_CONFIGURE_ON=	--with-gtk2=yes
+GTK2_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+			libfreetype.so:print/freetype2
+GTK3_LIB_DEPENDS=	libgucharmap_2_90.so:deskutils/gucharmap
+GTK3_USE=		gnome=gtk30
+TIDY_RUN_DEPENDS=	tidy4:www/tidy
+WEBLINT_RUN_DEPENDS=	weblint:www/weblint
 
 .include <bsd.port.mk>
