@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME?=	dotnet-runtime
 DISTVERSION?=	2.0.7
 DISTVERSIONSUFFIX=	-linux-x64
@@ -16,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 ONLY_FOR_ARCHS=	amd64
 
 .if ${PORTNAME} != dotnet-cli
-RUN_DEPENDS=	dotnet:lang/linux-dotnet-cli
+BUILD_DPEENDS+=	dontnet:lang/linux-dotnet-cli
+RUN_DEPENDS+=	dotnet:lang/linux-dotnet-cli
 .endif
 
 USES=		linux:c7
