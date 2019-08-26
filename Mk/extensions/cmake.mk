@@ -54,7 +54,8 @@ IGNORE=	Incorrect 'USES+= cmake:${cmake_ARGS}' usage: argument [${arg}] is not r
 .endfor
 
 CMAKE_BIN=		${LOCALBASE}/bin/cmake
-BUILD_DEPENDS+=		${CMAKE_BIN}:devel/cmake
+BUILD_DEPENDS+=		${CMAKE_BIN}:devel/cmake \
+			${LOCALBASE}/lib/libuv.so:devel/libuv
 
 .if ${cmake_ARGS:Mrun}
 RUN_DEPENDS+=		${CMAKE_BIN}:devel/cmake
