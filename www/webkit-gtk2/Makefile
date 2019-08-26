@@ -13,23 +13,25 @@ COMMENT=	Opensource browser engine using the GTK+ 2 toolkit
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	gtkdoc-rebase:${PORTSDIR}/textproc/gtk-doc \
-		p5-Switch>0:${PORTSDIR}/lang/p5-Switch \
-		geoclue>=0:${PORTSDIR}/net/geoclue
-LIB_DEPENDS=	libenchant.so:${PORTSDIR}/textproc/enchant \
-		libsecret-1.so:${PORTSDIR}/security/libsecret \
-		libicutu.so:${PORTSDIR}/devel/icu \
-		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
-		libharfbuzz-icu.so:${PORTSDIR}/print/harfbuzz-icu \
-		libwebp.so:${PORTSDIR}/graphics/webp \
-		libcurl.so:${PORTSDIR}/ftp/curl \
-		libsoup-2.4.so:${PORTSDIR}/devel/libsoup
-RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
+BUILD_DEPENDS=	gtkdoc-rebase:textproc/gtk-doc \
+		p5-Switch>0:lang/p5-Switch \
+		geoclue>=0:net/geoclue \
+		python:lang/python \
+		p5-Switch>0:${PORTSDIR}/lang/p5-Switch
+LIB_DEPENDS=	libenchant.so:textproc/enchant \
+		libsecret-1.so:security/libsecret \
+		libicutu.so:devel/icu \
+		libharfbuzz.so:print/harfbuzz \
+		libharfbuzz-icu.so:print/harfbuzz-icu \
+		libwebp.so:graphics/webp \
+		libcurl.so:ftp/curl \
+		libsoup-2.4.so:devel/libsoup
+RUN_DEPENDS=	geoclue>=0:net/geoclue
 
 USE_GSTREAMER1=	yes
 USE_XORG=	xt xdamage xcomposite
 USES=		bison compiler:c++11-lib gettext gmake gperf libtool \
-		perl5 pkgconfig shebangfix tar:xz
+		perl5 pkgconfig python:2,build shebangfix tar:xz
 USE_RUBY=	yes
 RUBY_NO_RUN_DEPENDS=yes
 USE_GNOME=	cairo gdkpixbuf2 gtk20 introspection:build libxslt
@@ -83,11 +85,7 @@ CXXFLAGS+=	-Wno-c++11-extensions
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} >= 501400
-BUILD_DEPENDS+=	p5-Switch>0:${PORTSDIR}/lang/p5-Switch
-.endif
-
-BUILD_DEPENDS+=	flex>=0:${PORTSDIR}/textproc/flex
+BUILD_DEPENDS+=	flex>=0:textproc/flex
 CONFIGURE_ENV+=	FLEX="${LOCALBASE}/bin/flex"
 
 .if ${CHOSEN_COMPILER_TYPE} == clang
