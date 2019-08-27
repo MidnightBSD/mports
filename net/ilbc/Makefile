@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	ilbc
 DISTVERSION=	rfc3951
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://simon.morlat.free.fr/download/1.2.x/source/
 
@@ -13,6 +12,7 @@ LICENSE=	unknown
 CONFLICTS=	libilbc-[0-9]*
 
 USES=	libtool
+INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
