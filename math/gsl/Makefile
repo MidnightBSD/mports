@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gsl
-PORTVERSION=	1.16
+PORTVERSION=	2.5
 CATEGORIES=	math
 MASTER_SITES=	GNU
 
@@ -10,13 +8,12 @@ COMMENT=	The GNU Scientific Library - mathematical libs
 
 LICENSE=	gpl3
 
-USES=		libtool makeinfo pathfix
+USES=		libtool pathfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	MAKEINFO='makeinfo --no-split'
 INSTALL_TARGET=	install-strip
 
-NO_TEST=	yes
+NO_TESTS=	yes
 
 INFO=		gsl-ref
 
@@ -28,9 +25,5 @@ post-extract:
 .ifndef(MAINTAINER_MODE)
 CORELIMIT?=	/usr/bin/limits -Sc 0
 .endif
-
-check regression-test test: build
-	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS} \
-	${MAKE_ARGS} check)
 
 .include <bsd.port.mk>
