@@ -31,10 +31,9 @@ RUN_DEPENDS=	p5-B-Keywords>=1.05:devel/p5-B-Keywords \
 		p5-String-Format>=1.13:textproc/p5-String-Format \
 		p5-Task-Weaken>=0:devel/p5-Task-Weaken \
 		perltidy:devel/p5-Perl-Tidy
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-Memory-Cycle>=0:devel/p5-Test-Memory-Cycle
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 
