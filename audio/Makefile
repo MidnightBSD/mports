@@ -78,7 +78,6 @@ SUBDIR += libgig
 SUBDIR += libgpod
 SUBDIR += libgme
 SUBDIR += libid3tag
-SUBDIR += liblastfm
 SUBDIR += liblo
 SUBDIR += libmad
 SUBDIR += libmikmod
