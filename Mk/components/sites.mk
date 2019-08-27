@@ -136,6 +136,10 @@ MASTER_SITE_CRAN+= \
 MASTER_SITE_CRAN_ARCHIVE+= ${MASTER_SITE_CRAN:S,$,Archive/${PORTNAME}/,}
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_CRATESIO)
+MASTER_SITE_CRATESIO+=	https://crates.io/api/v1/crates/%SUBDIR%/download?dummy=/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
 MASTER_SITE_DEBIAN+= \
 	http://cdn.debian.net/debian/%SUBDIR%/ \
@@ -1084,7 +1088,7 @@ MASTER_SITE_RUBY+= \
 # See http://rubygems.org/pages/about
 .if !defined(IGNORE_MASTER_SITE_RUBYGEMS)
 MASTER_SITE_RUBYGEMS+= \
-	https://rubygems.global.ssl.fastly.net/gems/%SUBDIR%/
+	https://rubygems.org/downloads/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SAMBA)
@@ -1092,7 +1096,7 @@ MASTER_SITE_SAMBA+= \
 	https://ftp.samba.org/pub/%SUBDIR%/
 .endif
 
-# List:	http://download.savannah.gnu.org/mirmon/
+# List:	https://download.savannah.gnu.org/mirmon/
 .if !defined(IGNORE_MASTER_SITE_SAVANNAH)
 MASTER_SITE_SAVANNAH+= \
 	https://download.savannah.gnu.org/releases/%SUBDIR%/ \
@@ -1182,7 +1186,7 @@ MASTER_SITE_TEX_CTAN+= \
 # Derived from: https://www.torproject.org/getinvolved/mirrors.html.en
 .if !defined(IGNORE_MASTER_SITE_TOR)
 MASTER_SITE_TOR+= \
-		https://www.torproject.org/dist/%SUBDIR%/ \
+		https://dist.torproject.org/%SUBDIR%/ \
 		https://archive.torproject.org/tor-package-archive/%SUBDIR%/ \
 		ftp://ftp.bit.nl/mirror/tor/%SUBDIR%/ \
 		https://cyberside.net.ee/tor/%SUBDIR%/ \
@@ -1239,37 +1243,29 @@ MASTER_SITE_XCONTRIB+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XFCE)
+_XFCE_PATH=	${DISTNAME:S/-${DISTVERSIONFULL}//:tl}/${DISTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 MASTER_SITE_XFCE+= \
-	https://mirror.netcologne.de/xfce/%SUBDIR%/ \
-	http://ftp.udc.es/xfce/%SUBDIR%/ \
-	http://xfce.mirror.uber.com.au/%SUBDIR%/ \
-	https://archive.be.xfce.org/%SUBDIR%/ \
-	http://archive.be2.xfce.org/%SUBDIR%/ \
-	https://archive.al-us.xfce.org/%SUBDIR%/ \
-	http://mirrors.tummy.com/pub/archive.xfce.org/%SUBDIR%/ \
-	http://mirror.perldude.de/archive.xfce.org/%SUBDIR%/
+	https://archive.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/ \
+	https://mirror.netcologne.de/xfce/src/%SUBDIR%/${_XFCE_PATH}/ \
+	https://ftp.cixug.es/xfce/src/%SUBDIR%/${_XFCE_PATH}/ \
+	https://archive.be.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/ \
+	https://archive.al-us.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/ \
+	http://mirror.perldude.de/archive.xfce.org/src/%SUBDIR%/${_XFCE_PATH}/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XORG)
 MASTER_SITE_XORG+= \
 	https://xorg.freedesktop.org/releases/%SUBDIR%/ \
-	http://xorg.mirrors.pair.com/%SUBDIR%/ \
-	http://mirror.us.leaseweb.net/xorg/%SUBDIR%/ \
 	https://mirror.csclub.uwaterloo.ca/x.org/%SUBDIR%/ \
 	https://artfiles.org/x.org/pub/%SUBDIR%/ \
 	https://ftp.gwdg.de/pub/x11/x.org/pub/%SUBDIR%/ \
 	https://mi.mirror.garr.it/mirrors/x.org/%SUBDIR%/ \
-	http://mirror.switch.ch/ftp/mirror/X11/pub/%SUBDIR%/ \
 	https://mirrors.ircam.fr/pub/x.org/%SUBDIR%/ \
 	https://www.mirrorservice.org/sites/ftp.x.org/pub/%SUBDIR%/ \
-	http://www.portal-to-web.de/pub/mirrors/x.org/%SUBDIR%/ \
-	http://x.cybermirror.org/%SUBDIR%/ \
-	https://x.europnews.de/pub/%SUBDIR%/ \
-	http://xorg.mirror.solnet.ch/pub/%SUBDIR%/ \
 	https://mirror.nl.leaseweb.net/xorg/%SUBDIR%/ \
-	http://mirror.de.leaseweb.net/xorg/%SUBDIR%/ \
-	http://mirrors.go-part.com/xorg/%SUBDIR%/ \
 	https://ftp.yz.yamagata-u.ac.jp/pub/X11/x.org/%SUBDIR%/ \
+	http://piotrkosoft.net/pub/mirrors/ftp.x.org/pub/%SUBDIR%/ \
+	http://xorg.mirrors.pair.com/%SUBDIR%/ \
 	http://ftp.kaist.ac.kr/x.org/%SUBDIR%/
 .endif
 
@@ -1303,6 +1299,7 @@ MASTER_SITES_SUBDIRS=	APACHE_COMMONS_BINARIES:${PORTNAME:S,commons-,,} \
 			APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
 			BERLIOS:${PORTNAME:tl}.berlios \
 			CHEESESHOP:source/${DISTNAME:C/(.).*/\1/}/${DISTNAME:S/-${DISTVERSIONFULL}$//} \
+			CRATESIO:${PORTNAME}/${DISTVERSIONFULL} \
 			DEBIAN:pool/main/${PORTNAME:C/^((lib)?.).*$/\1/}/${PORTNAME} \
 			FARSIGHT:${PORTNAME} \
 			FESTIVAL:${PORTVERSION} \
@@ -1325,7 +1322,7 @@ MASTER_SITES_SUBDIRS=	APACHE_COMMONS_BINARIES:${PORTNAME:S,commons-,,} \
 			SAMBA:${PORTNAME} \
 			SAVANNAH:${PORTNAME:tl} \
 			SOURCEFORGE:${PORTNAME:tl}/${PORTNAME:tl}/${PORTVERSION} \
-			XFCE:xfce/${XFCE_MASTER_SITE_VER}/src
+			XFCE:xfce
 
 .if defined(MASTER_SITES) && ${MASTER_SITES:N*\:/*}
 
