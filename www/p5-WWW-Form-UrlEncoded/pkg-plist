@@ -1,3 +1,14 @@
-%%SITE_ARCH%%/WWW/Form/UrlEncoded.pm
 %%SITE_ARCH%%/WWW/Form/UrlEncoded/PP.pm
+%%SITE_ARCH%%/WWW/Form/UrlEncoded.pm
 %%SITE_ARCH%%/auto/WWW/Form/UrlEncoded/XS/.keep
+%%SITE_PERL%%/%%PERL5_MAN3%%/WWW::Form::UrlEncoded::PP.3
+%%SITE_PERL%%/%%PERL5_MAN3%%/WWW::Form::UrlEncoded.3
+@dir %%SITE_ARCH%%/WWW/Form/UrlEncoded
+@dir %%SITE_ARCH%%/WWW/Form
+@dir %%SITE_ARCH%%/WWW
+@dir %%SITE_ARCH%%/auto/WWW/Form/UrlEncoded/XS
+@dir %%SITE_ARCH%%/auto/WWW/Form/UrlEncoded
+@dir %%SITE_ARCH%%/auto/WWW/Form
+@dir %%SITE_ARCH%%/auto/WWW
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
