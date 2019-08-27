@@ -16,10 +16,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Authen-SASL>=2.12:security/p5-Authen-SASL \
 		p5-XML-Stream>=1.24:textproc/p5-XML-Stream
-TEST_DEPENDS=	p5-LWP-Online>=1.07:www/p5-LWP-Online \
-		p5-YAML-Tiny>=1.41:textproc/p5-YAML-Tiny
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 
