@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	ldap2dns
 PORTVERSION=	0.4.2
 CATEGORIES=	net
@@ -10,14 +8,14 @@ COMMENT=	Maintain DNS zones using an LDAP directory
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS \
-		p5-perl-ldap>=0:${PORTSDIR}/net/p5-perl-ldap
+RUN_DEPENDS=	p5-Net-DNS>=0:dns/p5-Net-DNS \
+		p5-perl-ldap>=0:net/p5-perl-ldap
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
-USES=		gmake ldap
+USES=		gmake ldap localbase:ldflags perl5 
 USE_OPENLDAP=	yes
-USE_PERL5=	yes
+USE_PERL5=	run
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LD="${CC}" LDFLAGS="${LDFLAGS}"
 
 USE_GITHUB=	yes
