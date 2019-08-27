@@ -1,2 +1,11 @@
-%%PERL5_MAN3%%/Apache::LogFormat::Compiler.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Apache::LogFormat::Compiler.3
 %%SITE_PERL%%/Apache/LogFormat/Compiler.pm
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/Apache/LogFormat
+@dir %%SITE_PERL%%/Apache
+@dir %%SITE_ARCH%%/auto/Apache/LogFormat/Compiler
+@dir %%SITE_ARCH%%/auto/Apache/LogFormat
+@dir %%SITE_ARCH%%/auto/Apache
+@dir %%SITE_ARCH%%/auto
+@dir share/licenses/p5-Apache-LogFormat-Compiler-0.35
