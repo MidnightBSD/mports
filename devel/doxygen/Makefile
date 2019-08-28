@@ -13,7 +13,8 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	tmake:devel/tmake \
-		${LOCALBASE}/bin/flex:textproc/flex
+		${LOCALBASE}/bin/flex:textproc/flex \
+		python:lang/python
 LIB_DEPENDS=	libpng.so:graphics/png
 
 USES=		bison gmake iconv perl5 python
