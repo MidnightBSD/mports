@@ -28,7 +28,6 @@ USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
 		xrender xt
 USE_RC_SUBR=	mlogind
 USE_LDCONFIG=	yes
-SUB_FILES=	pkg-message
 
 CMAKE_ARGS= -DBUILD_SLIMLOCK=no \
 	-DBUILD_SHARED_LIBS=yes
