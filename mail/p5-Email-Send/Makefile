@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Email-Send
 PORTVERSION=	2.201
 CATEGORIES=	mail perl5
@@ -18,10 +16,13 @@ BUILD_DEPENDS=	p5-Class-Accessor>=0.19:${PORTSDIR}/devel/p5-Class-Accessor \
 		${SITE_PERL}/UNIVERSAL/require.pm:${PORTSDIR}/devel/p5-UNIVERSAL-require \
 		p5-Net>0:${PORTSDIR}/net/p5-Net
 RUN_DEPENDS=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-MIME-Tools>=0:mail/p5-MIME-Tools \
+		p5-Mail-Tools>=0:mail/p5-Mail-Tools
 
 USES=		perl5
 USE_PERL5=	configure
 
 NO_TEST=	yes
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
