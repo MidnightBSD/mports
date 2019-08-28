@@ -11,12 +11,11 @@
 # ARM contributions   ARM
 # md5 contributions   PD
 
-LICENSE=	ARM bsd3 LLVM mit publicdom REGEX
+LICENSE=	ARM LLVM mit publicdom REGEX
 LICENSE_COMB=	multi
 
 LICENSE_DIR?=		${WRKSRC}
 LICENSE_FILE_ARM=	${LICENSE_DIR}/lib/Target/ARM/LICENSE.TXT
-LICENSE_FILE_bsd3=	${LICENSE_DIR}/utils/unittest/googletest/LICENSE.TXT
 LICENSE_FILE_LLVM=	${LICENSE_DIR}/LICENSE.TXT
 LICENSE_FILE_mit=	${LICENSE_DIR}/test/YAMLParser/LICENSE.txt
 LICENSE_FILE_REGEX=	${LICENSE_DIR}/lib/Support/COPYRIGHT.regex
