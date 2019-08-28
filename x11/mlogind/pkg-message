@@ -1,7 +1,7 @@
 *************************************************************************
 
 It is possible to start mlogind from /etc/ttys.
-Please see %%PREFIX%%/etc/rc.d/mlogind for instructions on how to do that.
+Please see /usr/local/etc/rc.d/mlogind for instructions on how to do that.
 
 Alternatively, just put
 
