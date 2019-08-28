@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	json-glib
 PORTVERSION=	1.4.2
 PORTREVISION=	0
@@ -13,7 +11,8 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 # for magus ninja 
-PATCH_DEPENDS=	python2.7:lang/python27
+PATCH_DEPENDS=	python2.7:lang/python27 \
+		py37-setuptools>0:devel/py-setuptools@py37
 
 USES=		gettext localbase meson pkgconfig tar:xz
 USE_GNOME=	glib20
