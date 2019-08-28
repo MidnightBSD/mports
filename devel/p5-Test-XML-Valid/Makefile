@@ -19,4 +19,6 @@ RUN_DEPENDS=	p5-XML-LibXML>0:textproc/p5-XML-LibXML \
 USES=		perl5
 USE_PERL5=	modbuild
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
