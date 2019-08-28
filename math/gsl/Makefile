@@ -13,7 +13,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
-NO_TESTS=	yes
+NO_TEST=	yes
 
 INFO=		gsl-ref
 
