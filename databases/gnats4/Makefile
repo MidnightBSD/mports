@@ -11,7 +11,7 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USES=		cpe gmake makeinfo
-USE_GCC=	any
+USE_GCC=	6+
 USERS=		gnats
 CPE_VENDOR=	gnu
 
