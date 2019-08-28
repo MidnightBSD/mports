@@ -17,6 +17,7 @@ GNU_CONFIGURE=	yes
 USES=		libtool pkgconfig
 USE_LDCONFIG=	yes
 TEST_TARGET=	check
+NO_TEST=	yes
 
 PLIST_FILES=	bin/ykclient \
 		include/ykclient.h \
