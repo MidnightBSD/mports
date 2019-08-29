@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gdk-pixbuf2
 PORTVERSION=	2.36.5
 CATEGORIES=	graphics linux
@@ -7,7 +5,7 @@ CATEGORIES=	graphics linux
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK+ (Linux CentOS ${LINUX_DIST_VER})
 
-LICENSE=	lpgl
+LICENSE=	lgpl
 
 CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
 
