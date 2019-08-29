@@ -45,6 +45,7 @@ USE_GNOME=	cairo gnomedesktop3 intlhack libwnck3 libxml2 libxslt
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
+CFLAGS+=	-I/usr/local/include/nss/ -L/usr/local/lib/nss/
 MESON_ARGS=	-Ddistributor_name="GNOME Web by the MidnightBSD Project" \
 		-Dunit_tests=false
 GLIB_SCHEMAS=	org.gnome.Epiphany.enums.xml \
