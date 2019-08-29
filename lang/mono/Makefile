@@ -25,7 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow@${PY_FLAVOR} \
 
 CONFLICTS_INSTALL=	czmq-3*
 
-OPTIONS_DEFINE=		MONOLITE NLS X11
+OPTIONS_DEFINE=		MONOLITE X11
 OPTIONS_DEFAULT=	MONOLITE X11
 OPTIONS_SUB=	yes
 
@@ -34,8 +34,8 @@ MONOLITE_DISTFILES=	monolite-linux-${MONOLITE_VERSION}-latest.tar.gz:monolite
 MONOLITE_MASTER_SITES=	http://download.mono-project.com/monolite/:monolite
 MONOLITE_VERSION=	1051000004
 
-NLS_CONFIGURE_OFF=	--disable-nls
-NLS_USES=	gettext
+#NLS_CONFIGURE_OFF=	--disable-nls
+#NLS_USES=	gettext
 
 X11_USES=	display:test
 
@@ -47,7 +47,7 @@ USE_LDCONFIG=	yes
 SHEBANG_FILES=	scripts/mono-heapviz mono/mini/genmdesc.py mono/tests/test_lldb.py
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-CONFIGURE_ARGS=	--disable-dtrace --enable-btls
+CONFIGURE_ARGS=	--disable-dtrace --enable-btls --disable-nls
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
