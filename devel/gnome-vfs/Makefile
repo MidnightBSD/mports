@@ -47,7 +47,7 @@ GCONF_SCHEMAS=	desktop_default_applications.schemas \
 		system_http_proxy.schemas system_smb.schemas
 
 OPTIONS_DEFINE=	SAMBA MDNS HAL
-OPTIONS_DEFAULT=MDNS HAL
+OPTIONS_DEFAULT=SAMBA MDNS HAL
 SAMBA_DESC=	Enable SMB volume support
 MDNS_DESC=	Enable Bonjour/Rendezvous support
 
@@ -72,6 +72,7 @@ CONFIGURE_ARGS+=--disable-hal
 CONFIGURE_ARGS+=--with-samba-includes=${SAMBAINCLUDES} --with-samba-libs=${SAMBALIBS}
 USES+=		samba:lib
 PLIST_SUB+=	SAMBA=""
+CFLAGS+=	-I${SAMBAINCLUDES} -L${SAMBALIBS}
 .else
 PLIST_SUB+=	SAMBA="@comment "
 CONFIGURE_ARGS+=--disable-samba

@@ -75,6 +75,7 @@ GOOGLE_LIB_DEPENDS=	libgdata.so:devel/libgdata \
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MSAMBA}
+CFLAGS+= -I${SAMBAINCLUDES} -L${SAMBALIBS}
 GLIB_SCHEMAS+=	org.gnome.system.smb.gschema.xml
 .endif
 

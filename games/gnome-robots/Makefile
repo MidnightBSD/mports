@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-robots
 PORTVERSION=	3.22.3
 CATEGORIES=	games gnome
@@ -9,7 +7,7 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome robots
 
-LICENSE=	GPLv3
+LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
