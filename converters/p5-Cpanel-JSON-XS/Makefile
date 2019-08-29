@@ -1,7 +1,7 @@
 # Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	Cpanel-JSON-XS
-PORTVERSION=	4.09
+PORTVERSION=	4.11
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:RURBAN
@@ -13,18 +13,9 @@ COMMENT=	JSON::XS for Cpanel, fast and correct serialising
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-TEST_DEPENDS=	p5-JSON>=0:converters/p5-JSON \
-		p5-JSON-XS>=0:converters/p5-JSON-XS \
-		p5-Mojolicious>=6.11:www/p5-Mojolicious \
-		p5-Perl-MinimumVersion>=1.20:textproc/p5-Perl-MinimumVersion \
-		p5-Test-CPAN-Meta>=0.12:devel/p5-Test-CPAN-Meta \
-		p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace \
-		p5-Test-Pod>=1:devel/p5-Test-Pod \
-		p5-Test-Pod-Coverage>=1.04:devel/p5-Test-Pod-Coverage \
-		p5-common-sense>=3.50:devel/p5-common-sense
-
 PORTSCOUT=	limit:^[0-9\.]*$$
 
+NO_TEST=	yes
 USE_PERL5=	configure
 USES=		perl5
 
