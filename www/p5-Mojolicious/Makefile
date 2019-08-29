@@ -12,10 +12,10 @@ COMMENT=	High-level MVC web framework written in Perl
 LICENSE=	artistic2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Role-Tiny>=2.000001:devel/p5-Role-Tiny \
-		${JSONXS_BUILD_DEPENDS}
 
 NO_ARCH=	yes
+NO_TEST=	yes
+# magus circular loop with tests enabled.
 USES=		perl5
 USE_PERL5=	configure
 
