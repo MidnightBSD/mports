@@ -1,6 +1,4 @@
 # Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $FreeBSD: head/devel/p5-Specio/Makefile 453563 2017-11-05 21:16:09Z sunpoet $
-# $MidnightBSD$
 
 PORTNAME=	Specio
 PORTVERSION=	0.43
@@ -23,11 +21,9 @@ BUILD_DEPENDS=	p5-Devel-StackTrace>=0:devel/p5-Devel-StackTrace \
 		p5-Sub-Quote>=0:devel/p5-Sub-Quote \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-Test-Fatal>=0:devel/p5-Test-Fatal \
-		p5-Test-Needs>=0:devel/p5-Test-Needs \
-		p5-namespace-autoclean>=0:devel/p5-namespace-autoclean
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USE_PERL5=	configure
 USES=		perl5
 
