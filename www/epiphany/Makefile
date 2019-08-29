@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	epiphany
-PORTVERSION=	3.28.3.1
+PORTVERSION=	3.28.5
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -47,7 +45,8 @@ INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CFLAGS+=	-I/usr/local/include/nss/ -L/usr/local/lib/nss/
 MESON_ARGS=	-Ddistributor_name="GNOME Web by the MidnightBSD Project" \
-		-Dunit_tests=false
+		-Dunit_tests=false \
+		-Db_lundef=false
 GLIB_SCHEMAS=	org.gnome.Epiphany.enums.xml \
 		org.gnome.epiphany.gschema.xml
 SHEBANG_FILES=	post_install.py
