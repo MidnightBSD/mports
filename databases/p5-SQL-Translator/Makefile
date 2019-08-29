@@ -30,9 +30,6 @@ BUILD_DEPENDS=	p5-Carp-Clan>=0:${PORTSDIR}/devel/p5-Carp-Clan \
 		p5-XML-LibXML>=1.69:${PORTSDIR}/textproc/p5-XML-LibXML \
 		p5-YAML>=0.66:${PORTSDIR}/textproc/p5-YAML
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-TEST_DEPENDS=	p5-HTML-Parser>=0:${PORTSDIR}/www/p5-HTML-Parser \
-		p5-Test-Differences>=0.61:${PORTSDIR}/devel/p5-Test-Differences \
-		p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception
 
 OPTIONS_DEFINE=	DIAGRAM
 DIAGRAM_DESC=	Diagram generation support
@@ -40,7 +37,7 @@ DIAGRAM_DESC=	Diagram generation support
 REINPLACE_ARGS=	-i ''
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
+NO_TEST=	yes
 
 DIAGRAM_BUILD_DEPENDS=	p5-GD>=0:${PORTSDIR}/graphics/p5-GD \
 			p5-Graph>=0:${PORTSDIR}/math/p5-Graph \
