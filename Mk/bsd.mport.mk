@@ -3830,13 +3830,13 @@ install-ldconfig-file:
 .      if !defined(USE_LINUX_PREFIX)
 .        if ${USE_LDCONFIG} != "${LOCALBASE}/lib" && !defined(INSTALL_AS_USER)
 	@${ECHO_MSG} "===>   Installing ldconfig configuration file"
-.          if defined(NO_MTREE) || ${PREFIX} != ${LOCALBASE}
+.          if defined(NO_MTREE) || ${TRUE_PREFIX} != ${LOCALBASE}
 	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG_DIR}
 .          endif
 	@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
                 > ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG_DIR}/${PKGBASE}
-	@${ECHO_CMD} ${LOCALBASE}/${LDCONFIG_DIR}/${PKGBASE} >> ${TMPPLIST}
-.          if ${PREFIX} != ${LOCALBASE}
+	@${ECHO_CMD} ${LDCONFIG_DIR}/${PKGBASE} >> ${TMPPLIST}
+.          if ${TRUE_PREFIX} != ${LOCALBASE}
 	@${ECHO_CMD} "@dir ${LOCALBASE}/${LDCONFIG_DIR}" >> ${TMPPLIST}
 .          endif
 .        endif
@@ -3845,13 +3845,13 @@ install-ldconfig-file:
 .    if defined(USE_LDCONFIG32)
 .      if !defined(INSTALL_AS_USER)
 	@${ECHO_MSG} "===>   Installing 32-bit ldconfig configuration file"
-.        if defined(NO_MTREE) || ${PREFIX} != ${LOCALBASE}
+.        if defined(NO_MTREE) || ${TRUE_PREFIX} != ${LOCALBASE}
 	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG32_DIR}
 .        endif
 	@${ECHO_CMD} ${USE_LDCONFIG32} | ${TR} ' ' '\n' \
 		> ${FAKE_DESTDIR}${LOCALBASE}/${LDCONFIG32_DIR}/${PKGBASE}
-	@${ECHO_CMD} ${LOCALBASE}/${LDCONFIG32_DIR}/${PKGBASE} >> ${TMPPLIST}
-.        if ${PREFIX} != ${LOCALBASE}
+	@${ECHO_CMD} ${LDCONFIG32_DIR}/${PKGBASE} >> ${TMPPLIST}
+.        if ${TRUE_PREFIX} != ${LOCALBASE}
 	@${ECHO_CMD} "@dir ${LOCALBASE}/${LDCONFIG32_DIR}" >> ${TMPPLIST}
 .        endif
 .      endif
