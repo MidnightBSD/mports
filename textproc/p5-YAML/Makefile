@@ -11,12 +11,11 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-YAML>=1.05:devel/p5-Test-YAML
-
 USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+NO_TEST=	yes
+# test yaml depends on this and vice versa causing a loop. we wont test this
 
 .include <bsd.port.mk>
