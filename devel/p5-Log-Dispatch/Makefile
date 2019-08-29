@@ -18,9 +18,6 @@ RUN_DEPENDS=	p5-Devel-GlobalDestruction>=0:devel/p5-Devel-GlobalDestruction \
 		p5-Specio>=0.32:devel/p5-Specio \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
 		p5-namespace-autoclean>=0:devel/p5-namespace-autoclean
-TEST_DEPENDS=	p5-IPC-Run3>=0:devel/p5-IPC-Run3 \
-		p5-Test-Fatal>=0:devel/p5-Test-Fatal \
-		p5-Test-Requires>=0:devel/p5-Test-Requires
 
 OPTIONS_DEFINE=		APACHELOG MIMELITE MAILSEND MAILSENDER MAILSENDMAIL
 OPTIONS_DEFAULT=	MAILSENDMAIL
@@ -31,6 +28,7 @@ MAILSENDER_DESC=	Mail::Sender support
 MAILSENDMAIL_DESC=	Mail::Sendmail support
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
