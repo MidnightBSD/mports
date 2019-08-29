@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 CPE_VENDOR=	gnupg
 
 USES=		charsetfix compiler cpe gmake readline tar:bzip2
+USE_GCC=	6+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-camellia \
 		--enable-noexecstack
