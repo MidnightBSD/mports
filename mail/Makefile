@@ -4,6 +4,7 @@ SUBDIR += abook
 SUBDIR += addresses
 SUBDIR += addresses-goodies
 SUBDIR += alpine
+SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += courier
 SUBDIR += courier-imap
