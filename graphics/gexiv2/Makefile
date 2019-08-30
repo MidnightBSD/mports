@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	gexiv2
-PORTVERSION=	0.10.9
+PORTVERSION=	0.12.0
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -23,7 +23,7 @@ USE_LDCONFIG=	yes
 OPTIONS_DEFINE=		DOCS
 OPTIONS_SUB=		yes
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
-DOCS_CONFIGURE_ON=	-Denable-gtk-doc=true
+DOCS_CONFIGURE_ON=	-Dgtk_doc=true
 
 .include <bsd.mport.options.mk>
 
