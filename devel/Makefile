@@ -894,7 +894,6 @@ SUBDIR += ruby-gems
 SUBDIR += scons
 SUBDIR += sdl12
 SUBDIR += sdl20
-SUBDIR += seed
 SUBDIR += silc-toolkit
 SUBDIR += slf4j
 SUBDIR += sparsehash
