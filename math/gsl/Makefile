@@ -17,9 +17,6 @@ NO_TEST=	yes
 
 INFO=		gsl-ref
 
-post-extract:
-	@${RM} -f ${WRKSRC}/doc/gsl-ref.info*
-
 #prevent regression test coredumps from causing failures on the
 #package-building cluster:
 .ifndef(MAINTAINER_MODE)
