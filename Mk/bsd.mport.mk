@@ -4301,7 +4301,7 @@ install-desktop-entries:
 .if !target(create-binary-alias)
 create-binary-alias: ${BINARY_LINKDIR}
 .for target src in ${BINARY_ALIAS:C/=/ /}
-        @${RLN} `which ${src}` ${BINARY_LINKDIR}/${target}
+	@${RLN} `which ${src}` ${BINARY_LINKDIR}/${target}
 .endfor
 .endif
 .endif
