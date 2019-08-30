@@ -53,7 +53,7 @@ MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
-                                   ${FAKE_DESTDIR}${TRUE_PREFIX}
+                                   ${FAKE_DESTDIR}${TRUE_PREFIX} ${BINARY_LINKDIR}
 
 # make sure bmake treats -V as expected
 .MAKE.EXPAND_VARIABLES= yes
@@ -4297,6 +4297,15 @@ install-desktop-entries:
 .endif
 .endif
 
+.if !empty(BINARY_ALIAS)
+.if !target(create-binary-alias)
+create-binary-alias: ${BINARY_LINKDIR}
+.for target src in ${BINARY_ALIAS:C/=/ /}
+        @${RLN} `which ${src}` ${BINARY_LINKDIR}/${target}
+.endfor
+.endif
+.endif
+
 ########################################################################################
 # Order of targets run for each stage of the build.
 ######################################################################################## 
@@ -4341,7 +4350,7 @@ _PATCH_SEQ=		050:ask-license 100:patch-message \
 				${_OPTIONS_patch} ${_USES_patch}
 
 _CONFIGURE_DEP=	patch
-_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 200:configure-message \
+_CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias 200:configure-message \
 				300:pre-configure 450:pre-configure-script \
 				460:run-autotools 490:do-autoreconf 491:patch-libtool \
 				500:do-configure 700:post-configure 850:post-configure-script \
