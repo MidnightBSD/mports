@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	evolution-ews
-PORTVERSION=	3.18.5
+PORTVERSION=	3.28.5
+PORTREVISION=	1
 CATEGORIES=	mail gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -9,26 +8,25 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Evolution Microsoft Exchange plugin through Exchange Web Services
 
-LICENSE=	gpl3
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	evolution>=3.0.0:mail/evolution
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
+		libfribidi.so:converters/fribidi \
+		libicuuc.so:devel/icu \
 		libmspack.so:archivers/libmspack \
+		libsecret-1.so:security/libsecret \
+		libnspr4.so:devel/nspr \
+		libnss3.so:security/nss \
+		libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 		libical.so:devel/libical
 RUN_DEPENDS=	evolution>=3.0.0:mail/evolution
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bdb:5 gettext gmake gnome libtool pathfix pkgconfig sqlite tar:xz
-USE_GNOME=	intltool
-GNU_CONFIGURE=	yes
-USE_OPENLDAP=	yes
-USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--datarootdir=${PREFIX}/share \
-		--localedir=${PREFIX}/share/locale \
-		--prefix=${PREFIX}
-INSTALL_TARGET=	install-strip
+USES=		bdb:5 compiler:c11 cmake gettext gnome localbase pathfix \
+		pkgconfig sqlite tar:xz
+USE_GNOME=	cairo gdkpixbuf2 evolutiondataserver3 intltool
 
 .include <bsd.port.mk>

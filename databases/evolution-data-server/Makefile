@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	evolution-data-server
-PORTVERSION=	3.28.3
+PORTVERSION=	3.28.5
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
