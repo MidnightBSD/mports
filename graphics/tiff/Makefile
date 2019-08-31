@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	tiff
-PORTVERSION=	4.0.9
-PORTREVISION=	1
+PORTVERSION=	4.0.10
 CATEGORIES=	graphics
-MASTER_SITES=	http://download.osgeo.org/libtiff/
+MASTER_SITES=	https://download.osgeo.org/libtiff/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
@@ -22,7 +19,10 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 			--with-jpeg-lib-dir=${LOCALBASE}/lib \
-			--without-x
+			--without-x \
+			--disable-webp \
+			--disable-zstd
+
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
@@ -108,7 +108,6 @@ pre-configure:
 		-e 's|man html|man|' ${WRKSRC}/Makefile.in
 
 post-install:
-	${LN} -s libtiff.so.5 ${STAGEDIR}${PREFIX}/lib/libtiff.so.4
 	( cd ${STAGEDIR}${PREFIX}/man/man3 && ${__pmlinks3} )
 .if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/images ${STAGEDIR}${DOCSDIR}/man
