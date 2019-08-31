@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	giflib
-PORTVERSION=	5.1.4
+PORTVERSION=	5.1.9
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}
 
@@ -9,40 +8,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with GIF images
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	libungif-[0-9]*
+TEST_DEPENDS=	ghead:sysutils/coreutils
 
-USES=		tar:bzip2 libtool
-GNU_CONFIGURE=	yes
+USES=		gmake
 USE_LDCONFIG=	yes
+CFLAGS+=	-DHAVE_REALLOCARRAY
+MAKE_ARGS=	CC=${CC} LDFLAGS="${LDFLAGS}" MANDIR=${MANPREFIX}/man OFLAGS="${CFLAGS}" PREFIX="${PREFIX}"
 
-OPTIONS_DEFINE=	DOCBOOK DOCS
-OPTIONS_SUB=	yes
-DOCBOOK_DESC=	Generate API documentation (requires DOCS)
-INSTALL_TARGET=	install-strip
+OPTIONS_DEFINE=	DOCS
+TEST_TARGET=	check
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDOCBOOK} && ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto \
-		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
-.else
-CONFIGURE_ENV+=	have_xmlto=no
-.endif
-
-post-patch:
-.if ! ${PORT_OPTIONS:MDOCBOOK} || ! ${PORT_OPTIONS:MDOCS}
-	${REINPLACE_CMD} \
-		-e 's|SUBDIRS = lib util doc pic|SUBDIRS = lib util pic|' \
-		${WRKSRC}/Makefile.in
-.endif
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} "! ( -name Makefile -o -name *\.1 -o -name *\.in -o -name *\.xml )"
 
 post-install:
-	@${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/man/man1/
-.if ${PORT_OPTIONS:MDOCBOOK} && ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${STAGEDIR}${DOCSDIR}/
-.endif
+	${STRIP_CMD} ${PREFIX}/bin/*
+	${STRIP_CMD} --strip-unneeded ${PREFIX}/lib/libgif.so.7.1.0
 
 .include <bsd.port.mk>
