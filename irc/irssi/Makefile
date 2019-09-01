@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	irssi
-PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTVERSION=	1.2.1
 CATEGORIES?=	irc
 MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
 
