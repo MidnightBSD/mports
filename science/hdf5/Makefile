@@ -1,25 +1,22 @@
-# $MidnightBSD$
-
 PORTNAME=	hdf5
-PORTVERSION=	1.8.15
-DISTVERSIONSUFFIX=	-patch1
+PORTVERSION=	1.10.5
 CATEGORIES=	science archivers graphics
-MASTER_SITES=	http://www.hdfgroup.org/ftp/HDF5/current/src/ \
-		ftp://ftp.hdfgroup.org/HDF5/current/src/ \
-		http://www.hdfgroup.org/ftp/HDF5/releases/${DISTNAME}/src/ \
-		ftp://ftp.hdfgroup.org/HDF5/releases/${DISTNAME}/src/ \
+MASTER_SITES=	https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-${PORTVERSION:R}/${DISTNAME}/src/ \
 		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hierarchical Data Format library (from NCSA)
 
 LICENSE=	bsd4
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS_INSTALL=	hdf-4.[0-9]* hdf5-1.6.[0-9]*
 
 OPTIONS_DEFINE=	DEBUG EXAMPLES FORTRAN SZIP
 OPTIONS_DEFAULT=SZIP
 OPTIONS_SUB=	yes
+
+USES=		compiler:c11 libtool localbase tar:bzip2
 
 CONFIGURE_ARGS=	--enable-cxx \
 		--enable-hl \
@@ -28,19 +25,18 @@ CONFIGURE_ARGS=	--enable-cxx \
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		libtool tar:bzip2
 
 PORTEXAMPLES=	*
 
-DEBUG_CONFIGURE_OFF=	--enable-production
-DEBUG_CONFIGURE_ON=	--disable-production --enable-debug=all
+DEBUG_CONFIGURE_OFF=	--enable-build-mode=production
+DEBUG_CONFIGURE_ON=	--enable-build-mode=debug
+FORTRAN_CONFIGURE_ENABLE=	fortran
 FORTRAN_CONFIGURE_ENV=	F9X=${FC}
-FORTRAN_CONFIGURE_OFF=	--disable-fortran --disable-fortran2003
-FORTRAN_CONFIGURE_ON=	--enable-fortran --enable-fortran2003
 FORTRAN_USES=		fortran
 SZIP_CONFIGURE_ON=	--with-szlib=${LOCALBASE}
-SZIP_LIB_DEPENDS=	libsz.so:${PORTSDIR}/science/szip
+SZIP_LIB_DEPENDS=	libsz.so:science/szip
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3||g' ${WRKSRC}/config/gnu-flags
@@ -50,8 +46,5 @@ post-patch:
 		-e 's|(INSTALL)|(INSTALL_DATA)|' \
 			`${FIND} ${WRKSRC} -regex '.*/examples/Makefile.in'`
 	@${REINPLACE_CMD} -e 's|\[ -a|\[ -f|g' `${FIND} ${WRKSRC} -name \*.sh\*`
-
-regression-test test: build
-	cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include <bsd.port.mk>
