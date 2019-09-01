@@ -5,7 +5,6 @@ lib/libvorbis.a
 lib/libvorbis.so
 lib/libvorbis.so.0
 lib/libvorbis.so.0.4.8
-lib/libvorbis.so.4
 lib/libvorbisenc.a
 lib/libvorbisenc.so
 lib/libvorbisenc.so.2
@@ -14,12 +13,11 @@ lib/libvorbisfile.a
 lib/libvorbisfile.so
 lib/libvorbisfile.so.3
 lib/libvorbisfile.so.3.3.7
-lib/libvorbisfile.so.6
 libdata/pkgconfig/vorbis.pc
 libdata/pkgconfig/vorbisenc.pc
 libdata/pkgconfig/vorbisfile.pc
 share/aclocal/vorbis.m4
-@comment %%PORTDOCS%%%%DOCSDIR%%/doxygen-build.stamp
+%%PORTDOCS%%%%DOCSDIR%%/doxygen-build.stamp
 %%PORTDOCS%%%%DOCSDIR%%/eightphase.png
 %%PORTDOCS%%%%DOCSDIR%%/fish_xiph_org.png
 %%PORTDOCS%%%%DOCSDIR%%/floor1_inverse_dB_table.html
