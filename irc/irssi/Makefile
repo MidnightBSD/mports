@@ -1,5 +1,6 @@
 PORTNAME=	irssi
 PORTVERSION=	1.2.1
+PORTEPOCH=	1
 CATEGORIES?=	irc
 MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
 
