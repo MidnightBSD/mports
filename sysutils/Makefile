@@ -20,6 +20,7 @@ SUBDIR += cdircmp
 SUBDIR += cdrdao
 SUBDIR += cdrtools
 SUBDIR += ciso-maker
+SUBDIR += cmocka
 SUBDIR += consolekit2
 SUBDIR += consolehm
 SUBDIR += coreutils
