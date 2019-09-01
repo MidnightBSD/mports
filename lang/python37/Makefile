@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	python
 PORTVERSION=	${PYTHON_PORTVERSION}
 CATEGORIES=	lang python ipv6
@@ -13,14 +11,13 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
-USES=		cpe ncurses pkgconfig readline:port shebangfix ssl tar:xz
+USES=		cpe ncurses pathfix pkgconfig readline:port shebangfix ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 python_CMD=	${PREFIX}/bin/python${PYTHON_PORTVERSION:R}
 SHEBANG_FILES=	Lib/*.py Lib/*/*.py Lib/*/*/*.py Lib/*/*/*/*.py
 
-# Duplicate python.mk variables. TODO: Let lang/python?? ports use python.mk bits.
 PYTHON_VER=		${PYTHON_PORTVERSION:R}
 PYTHON_VERSION=		python${PYTHON_VER}
 PYTHON_SUFFIX=		${PYTHON_VER:S/.//g}
@@ -31,12 +28,11 @@ CONFIGURE_ENV+=		OPT="" DISABLED_EXTENSIONS="${DISABLED_EXTENSIONS}"	# Null out 
 
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
 
-NO_TEST=		yes
-#TEST_TARGET=		buildbottest
-#TEST_ARGS=		TESTOPTS=-j${MAKE_JOBS_NUMBER}
+TEST_TARGET=		buildbottest
+TEST_ARGS=		TESTOPTS=-j${MAKE_JOBS_NUMBER}
+NO_TEST=	yes
 
 MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
-MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
 SUB_FILES=		pkg-message
 SUB_LIST=		PYTHON_SUFFIX=${PYTHON_SUFFIX}
@@ -47,8 +43,8 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 			XYZDOT=${PORTVERSION} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 
-OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC THREADS
-OPTIONS_DEFAULT=	LIBFFI PYMALLOC THREADS
+OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC
+OPTIONS_DEFAULT=	LIBFFI PYMALLOC
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
@@ -79,9 +75,6 @@ NLS_LIBS=		-L${LOCALBASE}/lib -lintl
 NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
 
 PYMALLOC_CONFIGURE_WITH=	pymalloc
-
-THREADS_CONFIGURE_WITH=	threads
-THREADS_LDFLAGS=	-lpthread
 
 .include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
@@ -117,41 +110,26 @@ DISABLED_EXTENSIONS+=	nis
 PLIST_SUB+=	NO_NIS=""
 .endif
 
-.include <bsd.port.pre.mk>
-
-# python37 fails to build ssl module with base SSL because X509_VERIFY_PARAM_set1_host check fails.
-.if ${SSL_DEFAULT} == base
-PLIST_SUB+=	NO_SSL="@comment "
-WARNING+=	"No SSL support for ${OSREL} with base SSL! OpenSSL must be greater than/equal to 1.0.2"
-.else
-PLIST_SUB+=	NO_SSL=""
-.endif
-
 post-patch:
-# readline shared library is present on base before FreeBSD 11 - r268461
-# force setup.py ignore base and use readline from ports
-	@${REINPLACE_CMD} -e \
-		"s|lib_dirs,\ \'readline\'|[\'${LOCALBASE}/lib\',\ \'.\'],\ \'readline\'|" \
-		${WRKSRC}/setup.py
+# disable the detection of includes and library from e2fsprogs-libuuid,
+# which introduces hidden dependency and breaks build
+	@${REINPLACE_CMD} -e 's|uuid/uuid.h|ignore_&|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e '/find_library_file/ s|uuid|ignore_&|' ${WRKSRC}/setup.py
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
 	${RM} ${STAGEDIR}${PREFIX}/lib/libpython3.so						# Upstream Issue: https://bugs.python.org/issue17975
 .endif
-# This code block exists for the qemu-user enabled cross build environment.
-# When using this environment in poudriere, CC is not set to the default
-# of /usr/bin/cc and a cross-compile toolchain is used.  We need to hand
-# edit this so that the run time configuration for python matches what the
-# FreeBSD base system provides.  sbruno 02Aug2017
 .if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_m_midnightbsd${OSREL:R}_.py
+		${PREFIX}/lib/python${PYTHON_VER}/_sysconfigdata_m_midnightbsd${OSREL:R}_.py
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
-		${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/config-${PYTHON_VER}m/Makefile
+		${PREFIX}/lib/python${PYTHON_VER}/config-${PYTHON_VER}m/Makefile
 .endif
 	for i in ${STAGEDIR}${PREFIX}/lib/python${PYTHON_VER}/lib-dynload/*.so; do \
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
-		${STAGEDIR}${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
+		${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
+	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

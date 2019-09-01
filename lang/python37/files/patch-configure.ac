@@ -1,0 +1,47 @@
+--- configure.ac.orig	2019-07-08 14:03:50.000000000 -0400
++++ configure.ac	2019-08-31 23:22:03.456479000 -0400
+@@ -1141,7 +1141,7 @@
+ 	      PY3LIBRARY=libpython3.so
+ 	  fi
+           ;;
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*)
++    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*|MidnightBSD*)
+ 	  LDLIBRARY='libpython$(LDVERSION).so'
+ 	  BLDLIBRARY='-L. -lpython$(LDVERSION)'
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+@@ -2614,7 +2614,7 @@
+ 	Linux*|GNU*|QNX*)
+ 		LDSHARED='$(CC) -shared'
+ 		LDCXXSHARED='$(CXX) -shared';;
+-	FreeBSD*)
++	FreeBSD*|MidnightBSD*)
+ 		if [[ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]]
+ 		then
+ 			LDSHARED='$(CC) -shared'
+@@ -2679,7 +2679,7 @@
+ 		 fi;;
+ 	Linux-android*) ;;
+ 	Linux*|GNU*) CCSHARED="-fPIC";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
+ 	OpenUNIX*|UnixWare*)
+ 		if test "$GCC" = "yes"
+ 		then CCSHARED="-fPIC"
+@@ -2722,7 +2722,7 @@
+ 	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
+ 	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
+ 	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
+ 		if [[ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]]
+ 		then
+ 			LINKFORSHARED="-Wl,--export-dynamic"
+@@ -2960,6 +2960,8 @@
+ 
+ PKG_PROG_PKG_CONFIG
+ 
++AC_SUBST(DISABLED_EXTENSIONS)
++
+ # Check for use of the system expat library
+ AC_MSG_CHECKING(for --with-system-expat)
+ AC_ARG_WITH(system_expat,
