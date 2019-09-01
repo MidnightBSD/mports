@@ -1,55 +1,51 @@
-# $MidnightBSD$
-
 PORTNAME=	openbabel
-PORTVERSION=	2.3.2
+PORTVERSION=	2.4.1
 CATEGORIES=	science
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Chemistry file translation program
+COMMENT=	Chemical toolbox designed to speak the many languages of chemical data
 
 LICENSE=	gpl2
-
-BUILD_DEPENDS=	${LOCALBASE}/include/eigen3/Eigen/Eigen:${PORTSDIR}/math/eigen3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS_INSTALL=	babel-*
 
+USES=		compiler:c++11-lang cmake eigen:3 gnome
+USE_CXXSTD=	gnu++98
 USE_GNOME=	libxml2
-USES=		cmake:outsource
-CMAKE_ARGS=	-DBUILD_GUI=off
 USE_LDCONFIG=	yes
 
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
-OPTIONS_DEFINE=	CAIRO PYTHON
-OPTIONS_DEFAULT=	PYTHON
+OPTIONS_DEFINE=	CAIRO PYTHON GUI
+OPTIONS_DEFAULT=	PYTHON GUI
+OPTIONS_SUB=	yes
+
 CAIRO_DESC=	PNG support via cairo library
+CAIRO_USES=	pkgconfig
+CAIRO_USE=	GNOME=cairo
 
-.include <bsd.mport.options.mk>
+PYTHON_USES=	python
+PYTHON_CMAKE_BOOL=	PYTHON_BINDINGS
 
-.if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=	cairo:${PORTSDIR}/graphics/cairo
-PLIST_SUB+=	CAIRO=""
-.else
-PLIST_SUB+=	CAIRO="@comment "
-.endif
+GUI_CMAKE_BOOL=	BUILD_GUI
+GUI_CMAKE_ON=	-DwxWidgets_CONFIG_EXECUTABLE:STRING=${WX_CONFIG}
+GUI_USE=	WX=3.0
 
-.if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	yes
-CMAKE_ARGS+=	-DPYTHON_BINDINGS=on
-PLIST_SUB+=	PYTHON=""
-.else
-PLIST_SUB+=	PYTHON="@comment "
+.if exists(/usr/lib/libstdc++.so)
+CXXFLAGS+=	-Wno-narrowing
+USE_CXXSTD=	c++11
 .endif
 
 post-patch:
-.if !${PORT_OPTIONS:MCAIRO}
-	${REINPLACE_CMD} -e '/find_package(Cairo)/d' \
-		${WRKSRC}/CMakeLists.txt
-.endif
 	${REINPLACE_CMD} -e '/pkgconfig/s,$${LIB_INSTALL_DIR},libdata,' \
 		${WRKSRC}/CMakeLists.txt
-	${REINPLACE_CMD} -e 's,share/man,man,' \
+	${REINPLACE_CMD} -e 's,man/man1,../man/man1,' \
 		${WRKSRC}/doc/CMakeLists.txt
+
+post-patch-CAIRO-off:
+	${REINPLACE_CMD} -e '/find_package(Cairo)/d' \
+		${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
