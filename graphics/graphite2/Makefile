@@ -1,21 +1,21 @@
-# MidnightBSD$
-
 PORTNAME=	graphite2
-PORTVERSION=	1.3.8
+PORTVERSION=	1.3.13
 CATEGORIES=	graphics print
-MASTER_SITES=	SF/silgraphite/${PORTNAME}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rendering capabilities for complex non-Roman writing systems
 
-LICENSE=	lgpl2.1
+LICENSE=	gpl2 lgpl2.1
+LICENSE_COMB=	dual
 
-USES=		cmake iconv
+USES=		cmake compiler:c++11-lib
 USE_LDCONFIG=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	silnrsi
+GH_PROJECT=	graphite
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,/pkgconfig,data/pkgconfig,g' ${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -e 's|/pkgconfig|data&|' ${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
