@@ -1,36 +1,27 @@
-# $MidnightBSD$
-
 PORTNAME=	szip
-PORTVERSION=	2.1
+PORTVERSION=	2.1.1
 CATEGORIES=	science archivers
-MASTER_SITES=	http://www.hdfgroup.org/ftp/lib-external/${PORTNAME}/${PORTVERSION}/src/:src \
-		http://www.hdfgroup.org/doc_resource/SZIP/:doc \
-		FREEBSD_LOCAL/sunpoet:src,doc
+MASTER_SITES=	https://support.hdfgroup.org/ftp/lib-external/szip/${PORTVERSION}/src/ \
+		https://support.hdfgroup.org/ftp/lib-external/szip/previous/${PORTVERSION}/src/ \
+		FREEBSD_LOCAL/sunpoet
 PKGNAMEPREFIX=	hdf-
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src \
-		${PORTDOCS}:doc
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lossless compression library for scientific data
 
-LICENSE=	other
+LICENSE=	SZIP
+LICENSE_NAME=	SZIP License
+LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
-OPTIONS_DEFINE=	DOCS
+CONFLICTS_INSTALL=	libaec
+
+USES=		libtool
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 LIBS+=		-lm
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		libtool
-
-PORTDOCS=	Release_notes_2_0.pdf
-
-post-install:
-	${MKDIR} ${DOCSDIR}/
-	${INSTALL_DATA} ${DISTDIR}/${PORTDOCS} ${DOCSDIR}/
-
-regression-test test: build
-	cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include <bsd.port.mk>
