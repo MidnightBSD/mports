@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libpcap
 PORTVERSION=	1.9.0
 CATEGORIES=	net ipv6

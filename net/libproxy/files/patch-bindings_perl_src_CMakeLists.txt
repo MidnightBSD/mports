@@ -1,10 +1,24 @@
---- bindings/perl/src/CMakeLists.txt.orig	2010-09-01 20:23:34 UTC
+As the library is only built in the master port, and therfore missing in the
+build directory for the slave ports, find it via pkg-config and link against it,
+when building a slave.
+
+--- bindings/perl/src/CMakeLists.txt.orig	2018-06-03 17:39:41 UTC
 +++ bindings/perl/src/CMakeLists.txt
-@@ -12,6 +12,7 @@ set(Libproxy_LIB_SRCS Libproxy.c)
+@@ -4,7 +4,7 @@ include_directories( ${PERL_INCLUDE_PATH} ${CMAKE_SOUR
+ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/Libproxy.c
+                    COMMAND ${PERL_EXECUTABLE} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/doxsubpp.pl
+                            ${PERL_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Libproxy.xs ${CMAKE_CURRENT_BINARY_DIR}/Libproxy.c
+-                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Libproxy.xs libproxy
++                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Libproxy.xs
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
  
- set(CMAKE_C_COMPILER ${CMAKE_CXX_COMPILER})
- set(CMAKE_C_FLAGS ${PERL_CXX_FLAGS} )
-+SET(CMAKE_INSTALL_RPATH ${PERL_INCLUDE_DIR})
- 
+ set(Libproxy_LIB_SRCS Libproxy.c)
+@@ -12,7 +12,7 @@ set(Libproxy_LIB_SRCS Libproxy.c)
  set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/perl/blib/arch/auto/Net)
  add_library(PLlibproxy SHARED ${Libproxy_LIB_SRCS})
+ 
+-set(PLlibproxy_LIB_DEPENDENCIES libproxy pthread)
++set(PLlibproxy_LIB_DEPENDENCIES PkgConfig::LIBPROXY pthread)
+ if(PERL_LINK_LIBPERL)
+   set(PLlibproxy_LIB_DEPENDENCIES ${PERL_LIBRARY} ${PLlibproxy_LIB_DEPENDENCIES})
+ endif()
