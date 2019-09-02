@@ -1,14 +1,14 @@
-# $MidnightBSD$
-
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.39.12
+PORTVERSION=	1.51.03
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 
-MAINTAINER=	luke@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
 
 LICENSE=	bsd3
+
+USES=		gmake pkgconfig tar:tgz
 
 OPTIONS_DEFINE=	DEBUG CURL LIBWWW CPLUSPLUS
 OPTIONS_DEFAULT=CURL LIBWWW CPLUSPLUS
@@ -18,10 +18,9 @@ CPLUSPLUS_DESC=	Build xmlrpc-c c++ libs and tools
 
 CONFLICTS=	xmlrpc-epi-0.*
 
-USES=		gmake tar:tgz
 OPTIONS_SUB=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=       ${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKEFILE=	GNUmakefile
 MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV+=	INSTALL_SHLIB="${INSTALL_LIB}" \
@@ -30,7 +29,9 @@ USE_LDCONFIG=	yes
 
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 CURL_CONFIGURE_ENABLE=	curl-client
-LIBWWW_LIB_DEPENDS=	libwwwcore.so:www/libwww
+LIBWWW_USES=	ssl
+LIBWWW_LIB_DEPENDS=	libwwwcore.so:www/libwww \
+		libexpat.so:textproc/expat2
 LIBWWW_CONFIGURE_ENABLE=libwww-client
 LIBWWW_CONFIGURE_WITH=	libwww-ssl
 CPLUSPLUS_CONFIGURE_ENABLE=	cplusplus
@@ -60,7 +61,5 @@ post-patch:
 		${WRKSRC}/src/xmlrpc_server_abyss.c
 	@${REINPLACE_CMD} -e 's,sys/unistd.h,unistd.h,' \
 		${WRKSRC}/test/cpp/server_abyss.cpp
-	@${REINPLACE_CMD} -e '/^INSTALL_/s/=/\?=/' \
-		${WRKSRC}/config.mk.in
 
 .include <bsd.port.post.mk>
