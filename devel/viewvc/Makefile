@@ -1,10 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	viewvc
-PORTVERSION=	1.1.26
+PORTVERSION=	1.1.27
 CATEGORIES=	devel python
-MASTER_SITES=	http://www.viewvc.org/ \
-		FREEBSD_LOCAL/ohauer
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
@@ -27,6 +23,7 @@ MODWSGI3_DESC=	Enable mod_wsgi3 support
 MODPYTHON3_DESC=Enable mod_python3 support
 
 USES=		cpe
+USE_GITHUB=	yes
 CPE_VENDOR=	viewvc
 CPE_PRODUCT=	viewvc
 
@@ -79,6 +76,20 @@ pre-everything::
 .if ${PORT_OPTIONS:MAPMOD} && empty(PORT_OPTIONS:MAPACHE)
 IGNORE=	apache module needs Apache server, please re-run 'make config' then choose WEBSRV and APACHE
 . endif
+
+post-patch:
+.for i in cvsgraph.conf mimetypes.conf viewvc.conf
+	${MV} ${WRKSRC}/conf/${i}.dist ${WRKSRC}/conf/${i}.sample
+	${REINPLACE_CMD} -e '/"${i}"/d' ${WRKSRC}/viewvc-install
+.endfor
+	${REINPLACE_CMD} -e 's/conf.dist/conf.sample/g' \
+              ${WRKSRC}/viewvc-install \
+              ${WRKSRC}/bin/standalone.py
+# to much files, use own shebangfix
+	${FIND} ${WRKSRC} -type f | ${GREP} -v -e 'png' -e 'images' \
+             | ${XARGS} ${SED} -i '' \
+              -e '1s|^\#![[:space:]]*/usr/bin/env python|\#!${PYTHON_CMD}|' \
+              -e '1s|^\#![[:space:]]*/usr/bin/python|\#!${PYTHON_CMD}|'
 
 do-install:
 #in a perfect world, we could use destdir, but some parts don't honor it
