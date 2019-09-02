@@ -19,10 +19,13 @@ ONLY_FOR_ARCHS=	amd64
 
 RUN_DEPENDS=	mono:lang/mono
 LIB_DEPENDS=	libass.so:multimedia/libass \
+		ibdrm.so:graphics/libdrm \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libfribidi.so:converters/fribidi \
+		libgmp.so:math/gmp \
 		libgnutls.so:security/gnutls \
+		libogg.so:audio/libogg \
 		libopus.so:audio/opus \
 		libsmbclient.so:net/samba46 \
 		libsqlite3.so:databases/sqlite3 \
@@ -31,6 +34,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libvorbis.so:audio/libvorbis \
 		libwebp.so:graphics/webp \
 		libx264.so:multimedia/libx264 \
+		libx265.so:multimedia/x265 \
 		libzvbi.so:devel/libzvbi
 
 USES=		iconv:wchar_t tar:xz
