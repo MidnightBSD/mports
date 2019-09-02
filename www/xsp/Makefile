@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/xsp/Makefile 419884 2016-08-08 18:06:59Z romain $
-
 PORTNAME=	xsp
-PORTVERSION=	4.2
+PORTVERSION=	4.5
 CATEGORIES=	www
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
