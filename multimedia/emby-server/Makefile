@@ -1,9 +1,8 @@
 # Created by: Ben Woods <woodsb02@FreeBSD.org>
-# $FreeBSD: head/multimedia/emby-server/Makefile 421111 2016-08-30 12:44:27Z woodsb02 $
-# $MidnightBSD$
 
 PORTNAME=	emby-server
 PORTVERSION=	3.5.3.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/MediaBrowser/Emby.Releases/releases/download/${PORTVERSION}/
 DISTNAME=	emby-server-freebsd_${PORTVERSION}_amd64
@@ -25,7 +24,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libfribidi.so:converters/fribidi \
 		libgnutls.so:security/gnutls \
 		libopus.so:audio/opus \
-		libsmbclient.so:net/samba44 \
+		libsmbclient.so:net/samba46 \
 		libsqlite3.so:databases/sqlite3 \
 		libtheora.so:multimedia/libtheora \
 		libva.so:multimedia/libva \
