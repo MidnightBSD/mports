@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xdg-utils
-PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTVERSION=	1.1.3
 CATEGORIES=	devel
 MASTER_SITES=	http://portland.freedesktop.org/download/
 
