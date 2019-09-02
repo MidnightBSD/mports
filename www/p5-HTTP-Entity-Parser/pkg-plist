@@ -3,11 +3,6 @@
 %%SITE_PERL%%/HTTP/Entity/Parser/OctetStream.pm
 %%SITE_PERL%%/HTTP/Entity/Parser/MultiPart.pm
 %%SITE_PERL%%/HTTP/Entity/Parser.pm
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Entity::Parser::MultiPart.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Entity::Parser::UrlEncoded.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Entity::Parser.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Entity::Parser::OctetStream.3
-%%SITE_PERL%%/%%PERL5_MAN3%%/HTTP::Entity::Parser::JSON.3
 @dir %%SITE_ARCH%%/auto/HTTP/Entity/Parser
 @dir %%SITE_ARCH%%/auto/HTTP/Entity
 @dir %%SITE_ARCH%%/auto/HTTP
