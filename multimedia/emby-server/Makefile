@@ -96,8 +96,8 @@ LAME_LIB_DEPENDS=	libmp3lame.so:audio/lame
 SMB_CONFIGURE_ENABLE=	libsmbclient
 SMB_USES=		samba:lib
 
-X11_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick
-X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick-nox11
+X11_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6
+X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick6-nox11
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/system
