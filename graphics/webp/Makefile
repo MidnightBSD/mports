@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/webp/Makefile,v 1.10 2011/11/09 15:25:35 miwi Exp $
-
 PORTNAME=	webp
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	graphics
 MASTER_SITES=	http://downloads.webmproject.org/releases/webp/ \
 		https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
