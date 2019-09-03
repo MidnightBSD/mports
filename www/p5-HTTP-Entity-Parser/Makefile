@@ -18,6 +18,7 @@ RUN_DEPENDS=	p5-JSON-MaybeXS>=0:converters/p5-JSON-MaybeXS \
 		p5-Stream-Buffered>=0:devel/p5-Stream-Buffered
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuildtiny
 
