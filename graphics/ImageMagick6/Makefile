@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	ImageMagick
 DISTVERSION=	6.9.9-28
 PORTEPOCH=	1
@@ -26,7 +24,7 @@ MASTER_SITES=	http://www.imagemagick.org/download/ \
 		ftp://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/ \
 		ftp://ftp.is.co.za/pub/imagemagick/ \
 		ftp://ftp.fifi.org/pub/ImageMagick/
-
+PKGNAMESUFFIX=        6
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image processing tools
 

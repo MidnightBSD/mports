@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	monit
-PORTVERSION=	5.20.0
+PORTVERSION=	5.25.3
 PORTREVISION=	0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://mmonit.com/monit/dist/
@@ -12,7 +10,8 @@ COMMENT=	Unix system management and proactive monitoring
 LICENSE=	agpl
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd9.1
+CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd10.4
+CFLAGS+=	-lkvm -ldevstat
 USES=		bison gmake
 USE_RC_SUBR=	${PORTNAME}
 
