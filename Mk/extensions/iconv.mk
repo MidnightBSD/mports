@@ -13,7 +13,7 @@ _INCLUDE_USES_ICONV_MK=	yes
 
 #iconv_ARGS:=   ${iconv_ARGS:S/,/ /g}
 
-.if ${iconv_ARGS:Mwchar_t} || ${iconv_ARGS:Mtranslit} || ${OSVERSION} < 8000 || defined(PACKAGE_BUILDING) || !exists(/usr/include/iconv.h) || !exists(/usr/lib/libiconv.so)
+.if ${iconv_ARGS:Mwchar_t} || ${iconv_ARGS:Mtranslit} || ${OSVERSION} < 8000 || !exists(/usr/include/iconv.h) || !exists(/usr/lib/libiconv.so)
 
 ICONV_CMD=	${LOCALBASE}/bin/iconv
 ICONV_LIB=	-liconv
