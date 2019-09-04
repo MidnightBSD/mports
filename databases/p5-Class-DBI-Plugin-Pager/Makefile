@@ -17,9 +17,10 @@ RUN_DEPENDS=	p5-Class-DBI>=0:databases/p5-Class-DBI \
 		p5-UNIVERSAL-require>=0:devel/p5-UNIVERSAL-require \
 		p5-Data-Page>=0:databases/p5-Data-Page \
 		p5-Class-DBI-Plugin-AbstractCount>=0:databases/p5-Class-DBI-Plugin-AbstractCount
-TEST_DEPENDS=	p5-Text-Exception>=0:devel/p5-Test-Exception
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
