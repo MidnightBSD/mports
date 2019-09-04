@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-settings-daemon
 PORTVERSION=	3.28.1
 CATEGORIES=	sysutils gnome
@@ -29,7 +27,8 @@ PORTSCOUT=	limitw:1,even
 USE_XORG=	x11 xext xi xtst
 USE_GNOME=	cairo gnomedesktop3 gtk30
 USES=		gettext gnome localbase:ldflags meson \
-		pkgconfig python:3.6+,build tar:xz
+		perl5 pkgconfig python:3.6+,build tar:xz
+USE_PERL5=	build
 INSTALLS_ICONS=	yes
 #		-Dnssdb_dir=${LOCALBASE}/share/certs/ca-root-nss.crt
 MESON_ARGS=	-Dnssdb_dir=${LOCALBASE}/share/certs/ \
@@ -71,7 +70,5 @@ GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/org.gnome.settings-daemon.plugins.power.gschema.xml.override \
 		${STAGEDIR}${PREFIX}/share/glib-2.0/schemas/
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${CP} ${PREFIX}/lib/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.mk>
