@@ -23,6 +23,8 @@ INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dglade_catalog=false
 
+NO_TEST=	yes
+
 GLIB_SCHEMAS=	org.gnome.GWeather.enums.xml \
 		org.gnome.GWeather.gschema.xml
 
