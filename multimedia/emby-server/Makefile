@@ -82,7 +82,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-libwebp \
 		--enable-libx264 \
 		--enable-libx265 \
-		--enable-libzvbi \
+		--disable-libzvbi \
 		--enable-static \
 		--enable-vaapi \
 		--enable-version3
