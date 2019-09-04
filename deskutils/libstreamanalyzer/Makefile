@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libstreamanalyzer
 PORTVERSION=	${STRIGI_VERSION}
 PORTREVISION=	4
@@ -16,7 +14,7 @@ LIB_DEPENDS=	libavcodec${FFMPEG_SUFFIX}.so:multimedia/ffmpeg${FFMPEG_SUFFIX} \
 		libexiv2.so:graphics/exiv2 \
 		libstreams.so:deskutils/libstreams
 
-USES=		pkgconfig iconv tar:bzip2
+USES=		jpeg pkgconfig iconv tar:bzip2
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 
