@@ -71,7 +71,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-gmp \
 		--enable-gnutls \
 		--enable-gpl \
-		--enable-iconv \
+		--disable-iconv \
 		--enable-libass \
 		--enable-libdrm \
 		--enable-libfreetype \
