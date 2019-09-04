@@ -32,6 +32,6 @@ pre-install:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgexiv2.so
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/python*
+	-${RM} -r ${STAGEDIR}${PREFIX}/lib/python*
 
 .include <bsd.port.mk>
