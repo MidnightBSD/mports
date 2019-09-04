@@ -1,50 +1,50 @@
-# $MidnightBSD$
-
 PORTNAME=	clamav-unofficial-sigs
-PORTVERSION=	3.7.2
+PORTVERSION=	5.6.2
 CATEGORIES=	security
-MASTER_SITES=	SF/unofficial-sigs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update script for third-party ClamAV databases
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	clamscan:${PORTSDIR}/security/clamav \
-		rsync:${PORTSDIR}/net/rsync \
-		curl:${PORTSDIR}/ftp/curl \
-		gpg:${PORTSDIR}/security/gnupg
+COMMON_DEPENDS=	clamscan:security/clamav \
+		rsync:net/rsync \
+		curl:ftp/curl \
+		gpg:security/gnupg \
+		bash:shells/bash
+BUILD_DEPENDS=	${COMMON_DEPENDS}
+RUN_DEPENDS=	${COMMON_DEPENDS}
 
-USES=		perl5
+USES=		perl5 shebangfix
+USE_GITHUB=	yes
+GH_ACCOUNT=	extremeshok
+SHEBANG_FILES=	clamav-unofficial-sigs.sh
 USE_PERL5=	run
-NO_BUILD=	yes
 
 SUB_FILES=	pkg-message
 
-SED_CONF=	-e 's|%%CLAM_DBS%%|/var/db/clamav|g' \
-		-e 's|%%CLAMD_PID%%|/var/run/clamav/clamd.pid|g' \
-		-e 's|%%CLAMD_SOCKET%%|/var/run/clamav/clamd.sock|g' \
-		-e 's|%%START_CLAMD%%|${PREFIX}/etc/rc.d/clamav-clamd start|g' \
-		-e 's|%%WORK_DIR%%|/var/db/clamav-unofficial-sigs|g'
-
-OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
+	@${CP} ${FILESDIR}/manpage.conf ${WRKSRC}
+	@${REINPLACE_CMD} -e 's|%%WRKSRC%%|${WRKSRC}|g' ${WRKSRC}/manpage.conf
+
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/clamav-unofficial-sigs.sh
-	@${REINPLACE_CMD} ${SED_CONF} ${WRKSRC}/clamav-unofficial-sigs.conf
-	@${REINPLACE_CMD} ${SED_CONF} ${WRKSRC}/clamd-status.sh
+
+do-build:
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/bash ./clamav-unofficial-sigs.sh -c manpage.conf --install-man)
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/clamav-unofficial-sigs.sh ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/clamav-unofficial-sigs.8 ${STAGEDIR}${MANPREFIX}/man/man8
-	${INSTALL_DATA} ${WRKSRC}/clamav-unofficial-sigs.conf ${STAGEDIR}${PREFIX}/etc/clamav-unofficial-sigs.conf.sample
+
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/config/master.conf ${STAGEDIR}${ETCDIR}/master.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/config/os.freebsd.conf ${STAGEDIR}${ETCDIR}/os.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/config/user.conf ${STAGEDIR}${ETCDIR}/user.conf.sample
 
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} CHANGELOG INSTALL LICENSE README ${STAGEDIR}${DOCSDIR})
-
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/clamav-unofficial-sigs-cron ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/clamav-unofficial-sigs-logrotate ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/clamd-status.sh ${STAGEDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} INSTALL LICENSE README.md ${STAGEDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
