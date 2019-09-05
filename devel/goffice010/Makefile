@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/goffice010/Makefile 384250 2015-04-18 19:17:32Z kwm $
-
 PORTNAME=	goffice
-PORTVERSION=	0.10.34
+PORTVERSION=	0.10.43
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	010
@@ -13,7 +10,7 @@ COMMENT=	GLib/GTK+ set of document centric objects and utilities
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GNOME=	gtk30 intlhack introspection:build libgsf librsvg2 libxslt
+USE_GNOME=	cairo gtk30 intlhack introspection:build libgsf librsvg2 libxslt
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 USE_XORG=	xrender xext
 GNU_CONFIGURE=	yes
