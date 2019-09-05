@@ -1,2 +1,3 @@
-SHA256 (gstreamer-editing-services-1.4.0.tar.xz) = cc20b90fb7bcec257b2afda7474664d493b1acece66da675d7df584588808bb3
-SIZE (gstreamer-editing-services-1.4.0.tar.xz) = 915420
+TIMESTAMP = 1539380544
+SHA256 (gstreamer-editing-services-1.14.4.tar.xz) = 53d1d25b356009505ae0d22c218d6c6b1215399d9f6e3fe5d7b88e156531b35f
+SIZE (gstreamer-editing-services-1.14.4.tar.xz) = 1066636
