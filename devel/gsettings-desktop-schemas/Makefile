@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gsettings-desktop-schemas
-PORTVERSION=	3.28.0
+PORTVERSION=	3.28.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -14,10 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-RUN_DEPENDS=	${LOCALBASE}/etc/fonts/conf.avail/31-cantarell.conf:x11-fonts/cantarell-fonts
-
 # keep python here for gnome-desktop
-USES=		gettext gmake pathfix perl5 pkgconfig tar:xz python:2
+USES=		gettext gmake gnome localbase pathfix perl5 pkgconfig tar:xz python:2
 USE_PERL5=	build
 USE_GNOME=	intltool glib20 introspection:build
 GNU_CONFIGURE=	yes

@@ -1,7 +1,8 @@
-etc/fonts/conf.avail/31-cantarell.conf
-share/fonts/cantarell/Cantarell-Bold.otf
-share/fonts/cantarell/Cantarell-Regular.otf
-%%FONTSDIR%%/Cantarell-BoldOblique.otf
-%%FONTSDIR%%/Cantarell-Oblique.otf
+%%FONTSDIR%%/Cantarell-Bold.otf
+%%FONTSDIR%%/Cantarell-ExtraBold.otf
+%%FONTSDIR%%/Cantarell-Light.otf
+%%FONTSDIR%%/Cantarell-Regular.otf
+%%FONTSDIR%%/Cantarell-Thin.otf
+share/metainfo/org.gnome.cantarell.metainfo.xml
 @exec %D/bin/fc-cache -f -v %D/%%FONTSDIR%%
 @unexec %D/bin/fc-cache -f -v %D/%%FONTSDIR%%

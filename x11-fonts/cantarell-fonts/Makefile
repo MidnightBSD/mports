@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	cantarell-fonts
-PORTVERSION=	0.0.25
+PORTVERSION=	0.101
 CATEGORIES=	x11-fonts gnome
 MASTER_SITES=	GNOME
 
@@ -9,13 +7,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cantarell, a Humanist sans-serif font family
 
 LICENSE=	other
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+BUILD_DEPENDS=	appstream-util:devel/appstream-glib
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
 
-USES=		gmake pkgconfig tar:xz
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.avail
+USES=		gettext-tools fonts meson tar:xz
 FONTSDIR=	share/fonts/cantarell
-PLIST_SUB=	FONTSDIR=${FONTSDIR}
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
