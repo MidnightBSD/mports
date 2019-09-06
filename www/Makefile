@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Ports related to the World Wide Web
 
 SUBDIR += analog
@@ -159,6 +157,7 @@ SUBDIR += webkit2-gtk3
 SUBDIR += webkit-qt4
 SUBDIR += webkit-qt5
 SUBDIR += weblint
+SUBDIR += wordpress
 SUBDIR += xsp
 SUBDIR += youtube_dl
 SUBDIR += yuicompressor
