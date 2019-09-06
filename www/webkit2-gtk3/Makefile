@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	webkit
-PORTVERSION=	2.20.5
+PORTVERSION=	2.21.5
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
 PKGNAMESUFFIX=	2-gtk3
