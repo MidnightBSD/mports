@@ -1,11 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/appstream-glib/Makefile 385521 2015-05-06 15:16:53Z mat $
-
 PORTNAME=	appstream-glib
-PORTVERSION=	0.4.1
+PORTVERSION=	0.7.8
 CATEGORIES=	devel
 MASTER_SITES=	http://people.freedesktop.org/~hughsient/appstream-glib/releases/
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to help with AppStream metadata
@@ -13,43 +10,34 @@ COMMENT=	Library to help with AppStream metadata
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gtkdoc-check:${PORTSDIR}/textproc/gtk-doc \
-		gcab:${PORTSDIR}/archivers/gcab
-LIB_DEPENDS=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
-		libyaml.so:${PORTSDIR}/textproc/libyaml \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2
-RUN_DEPENDS=	gcab:${PORTSDIR}/archivers/gcab
+BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc \
+		gcab:archivers/gcab
+LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
+		libjson-glib-1.0.so:devel/json-glib \
+		libyaml.so:textproc/libyaml \
+		libuuid.so:misc/e2fsprogs-libuuid \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
+RUN_DEPENDS=	gcab:archivers/gcab
 
-USES=		gettext gperf gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gdkpixbuf2 glib20 gtk30 intlhack introspection:build \
+CONFLICTS_BUILD=	appstream-glib-0.5.*
+
+USES=		compiler:c11 gettext gperf gnome libarchive meson \
+		pkgconfig sqlite tar:xz
+USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 introspection:build \
 		libxml2:build pango
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-USE_SQLITE=	3
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--with-xml-catalog=${LOCALBASE}/share/xml/catalog \
-		--disable-rpm \
-		--disable-ostree
-INSTALL_TARGET=	install-strip
+MESON_ARGS=	-Drpm=false \
+		-Dalpm=false \
+		-Dstemmer=false
 
 OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
-MANPAGES_CONFIGURE_ENABLE=	man
-MANPAGE_BUILD_DEPENDS=	docbook-xml>=0:${PORTSDIR}/textproc/docbook-xml \
-		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
+
+MANPAGES_MESON_TRUE=	man
+MANPAGE_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
+		docbook-xsl>=0:textproc/docbook-xsl
 MANPAGES_USE=	GNOME=libxslt:build
-
-.include <bsd.mport.options.mk>
-
-.if !exists(/usr/libdata/pkgconfig/libarchive.pc)
-LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
-.endif
-
-post-patch:
-	${REINPLACE_CMD} -e 's|-Wtype-limits||g' \
-		${WRKSRC}/configure
 
 .include <bsd.port.mk>
