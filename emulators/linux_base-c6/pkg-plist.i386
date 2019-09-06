@@ -1,5 +1,5 @@
+@preexec /bin/mkdir -p /compat/linux
 @preexec [ -n "`/sbin/sysctl -q %%SYSCTLMIB%%`" ] || ( echo "Cannot install package: kernel missing Linux support" >&2; exit 1 )
-@comment The commands below may be removed after FreeBSD 10.3 EoL 2018-04-30
 @preexec [ ! -e %D/bin -o -L %D/bin ] || ( cd %D && find bin | cpio -dumpl --quiet usr && rm -r bin )
 @preexec [ ! -e %D/lib -o -L %D/lib ] || ( cd %D && find lib | cpio -dumpl --quiet usr && rm -r lib )
 @preexec [ ! -e %D/sbin -o -L %D/sbin ] || ( cd %D && find sbin | cpio -dumpl --quiet usr && rm -r sbin )

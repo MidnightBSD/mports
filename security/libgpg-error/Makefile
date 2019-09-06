@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libgpg-error
-PORTVERSION=	1.27
+PORTVERSION=	1.36
 CATEGORIES=	security devel
 MASTER_SITES=	GNUPG
 

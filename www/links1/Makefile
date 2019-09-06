@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/www/links1/Makefile,v 1.5 2006/05/14 02:04:43 edwin Exp $
-
 PORTNAME=	links
 PORTVERSION=	1.03
 PORTEPOCH=	1
@@ -17,5 +14,7 @@ GNU_CONFIGURE=	yes
 
 USES=		ssl
 CONFLICTS=	links-2*
+
+CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
 
 .include <bsd.port.mk>

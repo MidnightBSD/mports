@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Ports related to the World Wide Web
 
 SUBDIR += analog
@@ -39,7 +37,7 @@ SUBDIR += linux-libgtkembedmoz
 SUBDIR += linux-opera
 SUBDIR += lynx
 SUBDIR += man2web
-SUBDIR += mediawiki128
+SUBDIR += mediawiki133
 SUBDIR += midori
 SUBDIR += minio
 SUBDIR += minio-client
@@ -159,6 +157,7 @@ SUBDIR += webkit2-gtk3
 SUBDIR += webkit-qt4
 SUBDIR += webkit-qt5
 SUBDIR += weblint
+SUBDIR += wordpress
 SUBDIR += xsp
 SUBDIR += youtube_dl
 SUBDIR += yuicompressor

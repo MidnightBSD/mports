@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libgcrypt
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.4
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -11,8 +9,8 @@ COMMENT=	General purpose crypto library based on code used in GnuPG
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	libgpg-error>=1.25:security/libgpg-error
-RUN_DEPENDS=	libgpg-error>=1.25:security/libgpg-error
+BUILD_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
+RUN_DEPENDS=	libgpg-error>=1.32:security/libgpg-error
 
 USES=		cpe libtool makeinfo tar:bzip2
 CPE_VENDOR=	gnupg

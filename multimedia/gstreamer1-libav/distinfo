@@ -1,2 +1,3 @@
-SHA256 (gst-libav-1.4.5.tar.xz) = 605c62624604f3bb5c870844cc1f2711779cc533b004c2aa1d8c0d58557afbbc
-SIZE (gst-libav-1.4.5.tar.xz) = 5220508
+TIMESTAMP = 1539380450
+SHA256 (gst-libav-1.14.4.tar.xz) = dfd78591901df7853eab7e56a86c34a1b03635da0d3d56b89aa577f1897865da
+SIZE (gst-libav-1.14.4.tar.xz) = 9036732

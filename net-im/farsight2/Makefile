@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	farsight2
 PORTVERSION=	0.0.31
 PORTREVISION=	4
@@ -12,7 +10,7 @@ COMMENT=	Collection of GStreamer modules and libraries for videoconferencing
 
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	py-gobject>=0:devel/py-gobject@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_FLAVOR}-gobject>=0:devel/py-gobject@${PY_FLAVOR}
 LIB_DEPENDS=	libnice.so:net-im/libnice
 RUN_DEPENDS=	libnice-gst010>=0:net-im/libnice-gst010
 
