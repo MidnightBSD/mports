@@ -1,9 +1,6 @@
-# Created by: Yukihiro Nakai <nakai@FreeBSD.org>
-# $FreeBSD: head/lang/mono/Makefile 478685 2018-09-01 13:03:19Z feld $
-
 PORTNAME=	mono
 PORTVERSION=	5.10.1.57
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
@@ -39,7 +36,7 @@ MONOLITE_VERSION=	1051000004
 
 X11_USES=	display:test
 
-USES=	autoreconf bison compiler:c11 cpe gmake iconv libtool \
+USES=	autoreconf bison compiler:c11 cpe gettext-runtime gmake iconv libtool \
 	pathfix perl5 python:2.7 shebangfix tar:bzip2
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
@@ -47,13 +44,14 @@ USE_LDCONFIG=	yes
 SHEBANG_FILES=	scripts/mono-heapviz mono/mini/genmdesc.py mono/tests/test_lldb.py
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-CONFIGURE_ARGS=	--disable-dtrace --enable-btls --disable-nls
-CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no
+CONFIGURE_ARGS=	--disable-dtrace --enable-btls --enable-nls
+CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no ac_cv_lib_charset_locale_charset=yes
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
+CFLAGS+=	-lgettextlib -L/usr/local/lib -L/usr/local/lib/gettext -I/usr/local/include
 MAKE_ENV=	MONO_SHARED_DIR="${WRKDIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
-		TZ=UTC
+		TZ=UTC __FreeBSD__=10
 
 TEST_ARGS=	-k
 TEST_TARGET=	check

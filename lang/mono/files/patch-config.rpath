@@ -1,0 +1,20 @@
+--- config.rpath.orig	2019-09-04 19:23:17.890056000 -0400
++++ config.rpath	2019-09-04 19:23:42.216654000 -0400
+@@ -368,7 +368,7 @@
+       hardcode_direct=yes
+       hardcode_minus_L=yes
+       ;;
+-    freebsd* | dragonfly*)
++    freebsd* | dragonfly* | midnightbsd*)
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+       ;;
+@@ -536,7 +536,7 @@
+     ;;
+   freebsd1*)
+     ;;
+-  freebsd* | dragonfly*)
++  freebsd* | dragonfly* | midnightbsd*)
+     case "$host_os" in
+       freebsd[123]*)
+         library_names_spec='$libname$shrext$versuffix' ;;

@@ -1,20 +1,60 @@
---- configure.ac.orig	2018-04-18 10:51:42.000000000 +0300
-+++ configure.ac	2018-06-24 02:38:19.860780000 +0300
-@@ -3271,6 +3271,8 @@
+--- configure.ac.orig	2018-08-24 11:19:14.000000000 -0400
++++ configure.ac	2019-09-04 19:20:52.070042000 -0400
+@@ -180,7 +180,7 @@
+ 		use_sigposix=yes
+ 		with_sgen_default_concurrent=yes
+ 		;;
+-	*-*-*freebsd*)
++	*-*-*freebsd*|*-*-*midnightbsd*)
+ 		if test "x$PTHREAD_CFLAGS" = "x"; then
+ 			CPPFLAGS="$CPPFLAGS -DGC_FREEBSD_THREADS"
+ 			libmono_cflags=
+@@ -1737,7 +1737,7 @@
+ 	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket")
+ 
+ 	case "$host" in
+-		*-*-*freebsd*)
++		*-*-*freebsd*|*-*-*midnightbsd*)
+ 			dnl *****************************
+ 			dnl *** Checks for libinotify ***
+ 			dnl *****************************
+@@ -2122,7 +2122,7 @@
+ 			dnl Haiku has pthread in libroot (libc equiv)
+ 			AC_CHECK_LIB(pthread, main, LIBS="$LIBS")
+ 		;;
+-		*-*-*freebsd*)
++		*-*-*freebsd* | *-*-*midnightbsd*)
+ 			AC_CHECK_LIB(pthread, main, LIBS="$LIBS -pthread")
+ 		;;
+ 		*-*-*openbsd*)
+@@ -3297,7 +3297,9 @@
+ 			BTLS_SUPPORTED=yes
  			BTLS_PLATFORM=i386
  			;;
- 		  openbsd*|freebsd*|kfreebsd-gnu*)
+-		  openbsd*|freebsd*|kfreebsd-gnu*)
++		  openbsd*|midnightbsd*|freebsd*|kfreebsd-gnu*)
 +			BTLS_SUPPORTED=yes
 +			BTLS_PLATFORM=i386
  		        ;;
  		esac
  		;;
-@@ -3295,6 +3297,8 @@
+@@ -3321,7 +3323,9 @@
+ 			BTLS_PLATFORM=x86_64
  			boehm_supported=false
  			;;
- 		  openbsd*|freebsd*|kfreebsd-gnu*)
+-		  openbsd*|freebsd*|kfreebsd-gnu*)
++		  openbsd*|midnightbsd*|freebsd*|kfreebsd-gnu*)
 +                        BTLS_SUPPORTED=yes
 +                        BTLS_PLATFORM=x86_64
  			;;
  		  mingw*)
  			;;
+@@ -3805,7 +3809,7 @@
+ 	INTL="libc.so.0.1"
+ 	X11="libX11.so.6"
+ 	;;
+-    *-*-*freebsd*)
++    *-*-*freebsd* | *-*-*midnightbsd*)
+     	LIBC="libc.so.7"
+ 	INTL="libintl.so"
+ 	SQLITE="libsqlite.so"
