@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.43
+PORTVERSION=	3.45
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		nspr>=4.10.8:devel/nspr \
-		sqlite3>=3.7.15:databases/sqlite3 \
+		sqlite3>=3.7.15:databases/sqlite3  \
 		clang60:devel/llvm60
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
@@ -30,7 +30,7 @@ MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib" \
 		FREEBL_LOWHASH=1 \
 		NSS_DISABLE_GTESTS=1 \
 		NSS_USE_SYSTEM_SQLITE=1
-CFLAGS+=	-I${LOCALBASE}/include/nspr
+CFLAGS+=	-I${LOCALBASE}/include/nspr  -Wno-everything
 #CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 NO_TEST=	yes
