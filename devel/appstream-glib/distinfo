@@ -1,2 +1,3 @@
-SHA256 (gnome3/appstream-glib-0.4.1.tar.xz) = e999383cd7ab1875b345f738789cb0fe55faa5caebdf4de6507aead649592ada
-SIZE (gnome3/appstream-glib-0.4.1.tar.xz) = 1822324
+TIMESTAMP = 1567789093
+SHA256 (gnome/appstream-glib-0.7.8.tar.xz) = eb0e2cfd5a6070615efea4c87b1fc539f4566085aa5f5b41945f679d9d61dd4c
+SIZE (gnome/appstream-glib-0.7.8.tar.xz) = 2244652
