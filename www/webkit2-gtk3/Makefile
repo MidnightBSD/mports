@@ -1,5 +1,5 @@
 PORTNAME=	webkit
-PORTVERSION=	2.22.0
+PORTVERSION=	2.22.7
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/releases/
 PKGNAMESUFFIX=	2-gtk3
