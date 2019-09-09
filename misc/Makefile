@@ -51,6 +51,7 @@ SUBDIR += phone-de
 SUBDIR += php71-calendar
 SUBDIR += php72-calendar
 SUBDIR += py-pexpect
+SUBDIR += py-tqdm
 SUBDIR += qt4-doc
 SUBDIR += qt4-l10n
 SUBDIR += qt4-qtconfig
