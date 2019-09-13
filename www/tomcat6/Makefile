@@ -1,15 +1,14 @@
-# $MidnightBSD$
-
-PORTNAME=	apache-tomcat
-PORTVERSION=	6.0.44
+PORTNAME=	tomcat
+PORTVERSION=	6.0.53
 CATEGORIES=	www java
-MASTER_SITES=	${MASTER_SITE_APACHE}
-MASTER_SITE_SUBDIR=	tomcat/tomcat-6/v${PORTVERSION}/bin
+MASTER_SITES=	APACHE/tomcat/tomcat-6/v${PORTVERSION}/bin
+DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 6.x branch
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe
 CPE_VENDOR=	apache
@@ -17,48 +16,49 @@ CPE_VENDOR=	apache
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	YES
+NO_ARCH=	YES
 
-USE_RC_SUBR=	tomcat6.sh
-SUB_FILES=	pkg-install pkg-deinstall
+USE_RC_SUBR=	tomcat6
+SUB_FILES=	pkg-install
 
 MAJOR_VER=	${PORTVERSION:R}
-APP_HOME?=	${PREFIX}/${PKGBASE}${PORTVERSION:R}
+APP_HOME?=	${PREFIX}/${DISTNAME:R}
 LOG_DIR=	${APP_HOME}/logs
-APP_TITLE=	Apache Tomcat
-APP_SHORTNAME=	tomcat${MAJOR_VER:S/.//}
+APP_SHORTNAME=	${PORTNAME}${MAJOR_VER:S/.//}
 TOMCAT_USER?=	www
 TOMCAT_GROUP?=	www
-PW?=		/usr/sbin/pw
 HTTP_PORT?=	8180
 SHUTDOWN_PORT?=	8005
 AJP_1_3_PORT?=	8009
 STDOUT_LOG=	${LOG_DIR}/stdout.log
 STDERR_LOG=	${LOG_DIR}/stderr.log
-PID_FILE=	/var/run/${APP_SHORTNAME}.pid
-WRKDIR?=	${WRKDIRPREFIX}${.CURDIR}/work
-WRKSRC=		${WRKDIR}/apache-tomcat-${PORTVERSION}
-REPLACE_FILES=	${WRKSRC}/conf/server.xml
-REPLACE_LIST_TEMP=	${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
 JAR_FILE=	bin/bootstrap.jar
-PLIST_SUB+=	T=${APP_HOME:S/^${PREFIX}\///} WWWOWN=${TOMCAT_USER} WWWGRP=${TOMCAT_GROUP}
-LATEST_LINK=	${APP_SHORTNAME}
-CONF_EXT=	sample
-PLIST_SUB+=	CONF_EXT=${CONF_EXT}
-
+TOMCAT_SUBDIR?=	${DISTNAME:R}
+TOMCAT_HOME=	${PREFIX}/${TOMCAT_SUBDIR}
+PLIST_SUB=	T=${TOMCAT_SUBDIR} \
+		WWWOWN=${TOMCAT_USER} WWWGRP=${TOMCAT_GROUP}
 SUB_LIST=	AJP_1_3_PORT=${AJP_1_3_PORT} \
 		APP_HOME=${APP_HOME} \
 		APP_SHORTNAME=${APP_SHORTNAME} \
-		APP_TITLE="${APP_TITLE}" \
 		GROUP=${TOMCAT_GROUP} \
 		HTTP_PORT=${HTTP_PORT} \
 		JAR_FILE=${JAR_FILE} \
-		PID_FILE=${PID_FILE} \
 		SHUTDOWN_PORT=${SHUTDOWN_PORT} \
 		STDERR_LOG=${STDERR_LOG} \
 		STDOUT_LOG=${STDOUT_LOG} \
 		TOMCAT_HOME=${APP_HOME} \
 		TOMCAT_VERSION=${MAJOR_VER:S/.//} \
 		USER=${TOMCAT_USER}
+
+OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT
+OPTIONS_DEFAULT=	HOST_MANAGER MANAGER ROOT
+OPTIONS_SUB=		yes
+
+DOCS_DESC=		Install Documentation web application
+EXAMPLES_DESC=		Install Examples web application
+HOST_MANAGER_DESC=	Install Host Manager application
+MANAGER_DESC=		Install Manager web application
+ROOT_DESC=		Install default ROOT web application
 
 .include <bsd.port.pre.mk>
 
@@ -75,45 +75,54 @@ pre-patch:
 	@${ECHO_MSG} "   Logfile stderr:           ${STDERR_LOG}"
 
 post-patch:
-	@${RM} -f `${FIND} ${WRKSRC} -name '*.bat'` `${FIND} ${WRKSRC} -name '*.orig'` `${FIND} ${WRKSRC} -name '*.exe'`
-
-.for file in ${REPLACE_FILES}
-	@${ECHO_MSG} -n ">> Customizing `basename ${file}`..."
-	@${SED} ${REPLACE_LIST_TEMP} ${file} > ${WRKDIR}/`basename ${file}`
-	@${ECHO_MSG} " [ DONE ]"
-.endfor
-
-pre-install:
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+	@${REINPLACE_CMD} ${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${WRKSRC}/conf/server.xml
+	@${FIND} ${WRKSRC} -type f \( -name '*.bak' -or -name '*.bat' -or -name '*.dll' -or -name '*.exe' -or -name '*.orig' \) -delete
 
 do-install:
+	@${ECHO_MSG} -n ">> Creating destination directory..."
 	@${MKDIR} ${APP_HOME}
-	@${MKDIR} ${LOG_DIR}
+	@${MKDIR} ${FAKE_DESTDIR}${LOG_DIR}
+	@${MKDIR} ${APP_HOME}/endorsed
+	${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps
+	@${ECHO_MSG} " [ DONE ]"
 
-	@${CP} ${WRKDIR}/server.xml ${WRKSRC}/conf/
-	@(cd ${WRKSRC};${FIND} conf -type f | ${SED} -e '/${CONF_EXT}/d') \
-		| while read a; do \
-			${MV} ${WRKSRC}/$$a ${WRKSRC}/$$a.${CONF_EXT}; \
-			if [ ! -e "${APP_HOME}/$$a" ]; then \
-				${ECHO_MSG} "	Installing local configuration file: ${APP_HOME}/$$a"; \
-				${CP} ${WRKSRC}/$$a.${CONF_EXT} ${WRKSRC}/$$a; \
-			else \
-				${ECHO_MSG} "	Preserving local configuration file: ${APP_HOME}/$$a"; \
-			fi; \
-		done
-	@${CP} -R ${WRKSRC}/* ${APP_HOME}
+	@${ECHO_MSG} -n ">> Copying files to destination directory..."
+	${CP} -R ${WRKSRC}/* ${APP_HOME}
+	@${ECHO_MSG} " [ DONE ]"
 
-	@${INSTALL} -m 664 -o ${TOMCAT_USER} -g ${TOMCAT_GROUP} /dev/null ${STDOUT_LOG}
-	@${INSTALL} -m 664 -o ${TOMCAT_USER} -g ${TOMCAT_GROUP} /dev/null ${STDERR_LOG}
-
-	@${LN} -sf ${JAVA_HOME}/lib/tools.jar ${APP_HOME}/lib/tools.jar
-
-	@${CHOWN} -R ${TOMCAT_USER}:${TOMCAT_GROUP} ${APP_HOME}/conf ${APP_HOME}/logs \
-		${APP_HOME}/temp ${APP_HOME}/work
-
-	@${CHMOD} 755 `${FIND} ${APP_HOME} -type d`
+	@${ECHO_MSG} -n ">> Fixing permissions..."
+	@${FIND} ${APP_HOME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${ECHO_MSG} " [ DONE ]"
 
 post-install:
-	@${ECHO_MSG} "${APP_TITLE} ${PORTVERSION} has been installed in ${APP_HOME}."
+	(cd ${TOMCAT_HOME}/conf &&\
+		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-on:
+	${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/host-manager
+
+post-install-MANAGER-on:
+	${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in manager/META-INF/context.xml manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/manager
+
+post-install-DOCS-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/docs
+
+post-install-EXAMPLES-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/examples
+
+post-install-ROOT-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/ROOT
 
 .include <bsd.port.post.mk>
