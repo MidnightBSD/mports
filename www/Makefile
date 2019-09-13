@@ -148,6 +148,7 @@ SUBDIR += tidy-html5
 SUBDIR += tidy-lib
 SUBDIR += tomcat6
 SUBDIR += tomcat7
+SUBDIR += tomcat8
 SUBDIR += transmission-web
 SUBDIR += validator
 SUBDIR += varnish4
