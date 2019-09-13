@@ -1,10 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	tomcat
-PORTVERSION=	7.0.65
+PORTVERSION=	7.0.92
+PORTREVISION=	0
 CATEGORIES=	www java
-MASTER_SITES=	APACHE
-MASTER_SITE_SUBDIR=	tomcat/tomcat-7/v${PORTVERSION}/bin
+MASTER_SITES=	APACHE/tomcat/tomcat-7/v${PORTVERSION}/bin
+PKGNAMESUFFIX=	7
 DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +11,7 @@ COMMENT=	Open-source Java web server by Apache, 7.x branch
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	jsvc:${PORTSDIR}/devel/jakarta-commons-daemon
+RUN_DEPENDS=	jsvc:devel/jakarta-commons-daemon
 
 USES=		cpe
 CPE_VENDOR=	apache
@@ -20,22 +19,27 @@ CPE_VENDOR=	apache
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	yes
+NO_ARCH=	yes
 
-APP_SHORTNAME=	tomcat7
-
-USE_RC_SUBR=	${APP_SHORTNAME}
+USE_RC_SUBR=	${PKGBASE}
 
 TOMCAT_SUBDIR?=	${DISTNAME:R}
 TOMCAT_HOME=	${PREFIX}/${TOMCAT_SUBDIR}
-TOMCAT_CONF_FILES=	catalina.policy catalina.properties context.xml logging.properties server.xml tomcat-users.xml web.xml
-CONF_EXT=	sample
-PLIST_SUB=	T=${TOMCAT_SUBDIR} CONF_EXT=${CONF_EXT} \
+PLIST_SUB=	T=${TOMCAT_SUBDIR} \
 		WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
-LATEST_LINK=	${APP_SHORTNAME}
-
 SUB_LIST=	TOMCAT_HOME=${TOMCAT_HOME} \
 		TOMCAT_USER=${WWWOWN} \
 		JAVA_HOME=${JAVA_HOME}
+
+OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT
+OPTIONS_DEFAULT=	HOST_MANAGER MANAGER ROOT
+OPTIONS_SUB=		yes
+
+DOCS_DESC=		Install Documentation web application
+EXAMPLES_DESC=		Install Examples web application
+HOST_MANAGER_DESC=	Install Host Manager application
+MANAGER_DESC=		Install Manager web application
+ROOT_DESC=		Install default ROOT web application
 
 .include <bsd.port.pre.mk>
 
@@ -45,41 +49,48 @@ pre-patch:
 	@${ECHO_MSG} "   Location of JDK:          ${JAVA_HOME}"
 	@${ECHO_MSG} "   Location of Java port:    ${JAVA_PORT}"
 
-post-patch:
-	@${FIND} ${WRKSRC} -name '*.bat' -delete
-.for f in ${TOMCAT_CONF_FILES}
-	@${MV} ${WRKSRC}/conf/${f} ${WRKSRC}/conf/${f}.${CONF_EXT}
-.endfor
-
 do-install:
 	@${ECHO_MSG} -n ">> Creating destination directory..."
-	@${MKDIR} ${TOMCAT_HOME}/logs
-	@${MKDIR} ${TOMCAT_HOME}/endorsed
+	@${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/logs
+	@${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/endorsed
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Copying files to destination directory..."
-	@${CP} -R ${WRKSRC}/* ${TOMCAT_HOME}
-	@${ECHO_MSG} " [ DONE ]"
-
-.for f in ${TOMCAT_CONF_FILES}
-.	if !exists(${TOMCAT_HOME}/conf/${f})
-		@${CP} ${TOMCAT_HOME}/conf/${f}.${CONF_EXT} ${TOMCAT_HOME}/conf/${f}
-.	else
-		@${ECHO_MSG} ">> Preserving local configuration file: ${f} [ DONE ]"
-.	endif
-.endfor
-
-	@${ECHO_MSG} -n ">> Creating symlink to tools.jar..."
-	@${LN} -sf ${JAVA_HOME}/lib/tools.jar ${TOMCAT_HOME}/lib/tools.jar
-	@${ECHO_MSG} " [ DONE ]"
-
-	@${ECHO_MSG} -n ">> Fixing ownership settings..."
-	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${TOMCAT_HOME}/conf ${TOMCAT_HOME}/logs \
-		${TOMCAT_HOME}/temp ${TOMCAT_HOME}/webapps ${TOMCAT_HOME}/work
+	@${CP} -R ${WRKSRC}/* ${FAKE_DESTDIR}${TOMCAT_HOME}
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Fixing permissions..."
-	@${FIND} ${TOMCAT_HOME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${FIND} ${FAKE_DESTDIR}${TOMCAT_HOME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
 	@${ECHO_MSG} " [ DONE ]"
+
+post-install:
+	@${RM} ${FAKE_DESTDIR}${TOMCAT_HOME}/bin/*.bat
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/conf &&\
+		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-on:
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/host-manager
+
+post-install-MANAGER-on:
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in manager/META-INF/context.xml manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/manager
+
+post-install-DOCS-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/docs
+
+post-install-EXAMPLES-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/examples
+
+post-install-ROOT-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/ROOT
 
 .include <bsd.port.post.mk>

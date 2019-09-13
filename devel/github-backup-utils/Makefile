@@ -1,9 +1,5 @@
-# Created by: Ryan Steinmetz <zi@FreeBSD.org>
-# $FreeBSD: head/devel/github-backup-utils/Makefile 387778 2015-05-28 22:22:59Z mat $
-# $MidnightBSD$
-
 PORTNAME=	github-backup-utils
-PORTVERSION=	2.2.0
+PORTVERSION=	2.8.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -11,12 +7,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GitHub Enterprise Backup Utilities
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
-WRKSRC=		${WRKDIR}/${GH_PROJECT}-${PORTVERSION}
+RUN_DEPENDS=	git>0:devel/git \
+		rsync>0:net/rsync
 
-RUN_DEPENDS=	git>0:${PORTSDIR}/devel/git \
-		rsync>0:${PORTSDIR}/net/rsync
+USES=	shebangfix
+SHEBANG_FILES=	share/github-backup-utils/*
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	github
