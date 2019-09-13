@@ -1,9 +1,5 @@
-# Created by: Greg Larkin <glarkin@FreeBSD.org>
-# $FreeBSD: head/www/codeigniter/Makefile 435489 2017-03-05 16:39:25Z junovitch $
-# $MidnightBSD$
-
 PORTNAME=	codeigniter
-PORTVERSION=	3.1.6
+PORTVERSION=	3.1.10
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
