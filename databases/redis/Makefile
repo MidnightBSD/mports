@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	redis
-DISTVERSION=	3.2.11
+DISTVERSION=	4.0.14
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
@@ -23,10 +23,16 @@ TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
 .include <bsd.mport.options.mk>
 
+.if ${ARCH} == i386 && ! ${CFLAGS:M-march=*}
+# Needed for __atomic_fetch_add_8
+USE_GCC=	yes
+CFLAGS+=	-march=i586
+.endif
+
 .if ${PORT_OPTIONS:MTRIB}
 CATEGORIES+=	ruby
 USE_RUBY=	yes
-RUN_DEPENDS=	rubygem-redis>=2.2:${PORTSDIR}/databases/rubygem-redis
+RUN_DEPENDS=	rubygem-redis>=2.2:databases/rubygem-redis
 .endif
 
 .if ${PORT_OPTIONS:MLUA}
@@ -35,7 +41,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-src-Makefile.lua
 .endif
 
 .if ${PORT_OPTIONS:MLUAJIT}
-LIB_DEPENDS+=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
+LIB_DEPENDS+=	libluajit-5.1.so:lang/luajit
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-src-Makefile.luajit
 .endif
 
@@ -51,15 +57,13 @@ USES+=		tcl:build
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis-devel-3.*
+CONFLICTS?=	redis-devel-5.*
 
 USES+=		gmake
 MAKE_ENV=	"V=yo"
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
 		redis-cli redis-sentinel redis-server
-
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 USERS=	redis
 GROUPS=	redis
@@ -91,17 +95,17 @@ post-build:
 		${WRKSRC}/redis.conf > ${WRKDIR}/redis.conf
 
 do-install:
-	${INSTALL_PROGRAM} ${BIN_FILES:C!^!${WRKSRC}/src/!} ${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${BIN_FILES:C!^!${WRKSRC}/src/!} ${STAGEDIR}${PREFIX}/bin/
 .if ${PORT_OPTIONS:MTRIB}
-	${INSTALL_SCRIPT} ${WRKSRC}/src/redis-trib.rb ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/src/redis-trib.rb ${STAGEDIR}${PREFIX}/bin/
 .endif
-	${INSTALL_DATA} ${WRKDIR}/redis.conf ${PREFIX}/etc/redis.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/sentinel.conf ${PREFIX}/etc/sentinel.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/redis.conf ${STAGEDIR}${PREFIX}/etc/redis.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/sentinel.conf ${STAGEDIR}${PREFIX}/etc/sentinel.conf.sample
 	${MKDIR} ${STAGEDIR}${REDIS_LOGDIR} \
 		${STAGEDIR}${REDIS_DBDIR} \
 		${STAGEDIR}${REDIS_RUNDIR}
 
-regression-test: build
+do-test:
 	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
 
 .include <bsd.port.mk>
