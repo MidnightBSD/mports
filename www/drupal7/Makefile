@@ -1,9 +1,5 @@
-# Created by: Nick Hilliard <nick@foobar.org>
-# $FreeBSD: head/www/drupal7/Makefile 395015 2015-08-22 06:58:32Z delphij $
-# $MidnightBSD$
-
 PORTNAME=	drupal7
-PORTVERSION=	7.54
+PORTVERSION=	7.65
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
 DISTNAME=	drupal-${PORTVERSION}
