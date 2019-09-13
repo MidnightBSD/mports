@@ -1,0 +1,83 @@
+PORTNAME=	tomcat
+PORTVERSION=	8.5.39
+CATEGORIES=	www java
+MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
+PKGNAMESUFFIX=	85
+DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Open-source Java web server by Apache, 8.5.x branch
+
+LICENSE=	apache2
+
+RUN_DEPENDS=	jsvc:devel/jakarta-commons-daemon
+
+USES=		cpe
+CPE_VENDOR=	apache
+USE_JAVA=	yes
+JAVA_VERSION=	1.7+
+USE_RC_SUBR=	${PKGBASE:C/-/_/}
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+PLIST_SUB=	T=${TOMCAT_SUBDIR} \
+		WWWOWN=${WWWOWN} \
+		WWWGRP=${WWWGRP}
+SUB_LIST=	TOMCAT_HOME=${TOMCAT_HOME} \
+		TOMCAT_USER=${WWWOWN} \
+		JAVA_HOME=${JAVA_HOME}
+
+OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT
+OPTIONS_DEFAULT=	HOST_MANAGER MANAGER ROOT
+OPTIONS_SUB=		yes
+
+DOCS_DESC=		Install Documentation web application
+EXAMPLES_DESC=		Install Examples web application
+HOST_MANAGER_DESC=	Install Host Manager application
+MANAGER_DESC=		Install Manager web application
+ROOT_DESC=		Install default ROOT web application
+
+TOMCAT_SUBDIR?=	${DISTNAME:R}
+TOMCAT_HOME=	${PREFIX}/${TOMCAT_SUBDIR}
+
+post-patch:
+	@${RM} ${WRKSRC}/bin/commons-daemon-native.tar.gz ${WRKSRC}/bin/commons-daemon.jar ${WRKSRC}/bin/tomcat-native.tar.gz
+	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g; s|%%JAVAJARDIR%%|${JAVAJARDIR}|g' ${WRKSRC}/bin/daemon.sh
+	@${FIND} ${WRKSRC} -name '*.bak' -delete -o -name '*.orig' -delete
+
+do-install:
+	@${MKDIR} ${TOMCAT_HOME}/logs
+	@${MKDIR} ${TOMCAT_HOME}/endorsed
+	${CP} -R ${WRKSRC}/* ${TOMCAT_HOME}
+
+post-install:
+	@${RM} ${TOMCAT_HOME}/bin/*.bat
+	(cd ${TOMCAT_HOME}/conf &&\
+		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-on:
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-HOST_MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/host-manager
+
+post-install-MANAGER-on:
+	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
+		for f in manager/META-INF/context.xml manager/WEB-INF/web.xml; do \
+			${MV} $$f $$f.sample; done)
+
+post-install-MANAGER-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/manager
+
+post-install-DOCS-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/docs
+
+post-install-EXAMPLES-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/examples
+
+post-install-ROOT-off:
+	@${RM} -R ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps/ROOT
+
+.include <bsd.port.mk>
