@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	rspamd
-PORTVERSION=	1.8.0
+PORTVERSION=	1.9.1
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
