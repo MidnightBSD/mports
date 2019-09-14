@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	Email-Sender
 PORTVERSION=	1.300031
+PORTREVISION=	1
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:RJBS
@@ -29,6 +28,5 @@ TEST_DEPENDS=	p5-Capture-Tiny>=0.08:devel/p5-Capture-Tiny
 NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>
