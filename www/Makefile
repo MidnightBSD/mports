@@ -150,6 +150,7 @@ SUBDIR += tomcat6
 SUBDIR += tomcat7
 SUBDIR += tomcat8
 SUBDIR += tomcat85
+SUBDIR += tomcat9
 SUBDIR += transmission-web
 SUBDIR += validator
 SUBDIR += varnish4
