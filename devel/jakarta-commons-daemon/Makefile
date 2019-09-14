@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	commons-daemon
 PORTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	APACHE_COMMONS_SOURCE:src \
 		APACHE_COMMONS_BINARIES:bin
@@ -9,7 +8,7 @@ PKGNAMEPREFIX=	jakarta-
 DISTFILES=	${PORTNAME}-${PORTVERSION}-native-src${EXTRACT_SUFX}:src \
 		${PORTNAME}-${PORTVERSION}-bin${EXTRACT_SUFX}:bin
 
-MAINTAINER=	ale@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper code to start/stop a Java application as a daemon
 
 LICENSE=	apache2
@@ -18,7 +17,7 @@ OPTIONS_DEFINE=	DOCS
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
-JAVA_OS=	native
+JAVA_OS=	freebsd
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-java=${JAVA_HOME}
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
