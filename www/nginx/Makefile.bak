@@ -318,48 +318,48 @@ pre-configure-SMALL_LIGHT-on:
 	( cd ${WRKSRC_small_light} && ./setup )
 
 do-install:
-	${MKDIR} ${ETCDIR}
-	${MKDIR} ${NGINX_TMPDIR}
-	${MKDIR} ${NGINX_LOGDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/objs/nginx ${PREFIX}/sbin
+	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${STAGEDIR}${NGINX_TMPDIR}
+	${MKDIR} ${STAGEDIR}${NGINX_LOGDIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/objs/nginx ${STAGEDIR}${PREFIX}/sbin
 .for i in koi-utf koi-win win-utf
-	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${STAGEDIR}${ETCDIR}
 .endfor
 .for i in fastcgi_params mime.types scgi_params uwsgi_params
-	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${ETCDIR}/${i}-dist
+	${INSTALL_DATA} ${WRKSRC}/conf/${i} ${STAGEDIR}${ETCDIR}/${i}-dist
 .endfor
 
 do-install-HTTP_PERL-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
+	${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
 	${INSTALL_PROGRAM} ${WRKSRC}/objs/src/http/modules/perl/blib/arch/auto/nginx/nginx.so \
-		${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
+		${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/nginx
 	${INSTALL_DATA} ${WRKSRC}/objs/src/http/modules/perl/blib/lib/nginx.pm \
-		${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/
+		${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/
 
 # Install dynamic modules
 do-install-DSO-on:
-	${MKDIR} ${FAKE_DESTDIR}${MODULESDIR}
+	${MKDIR} ${STAGEDIR}${MODULESDIR}
 	(cd ${WRKSRC}/objs/ && ${FIND} . -name '*.so' -maxdepth 1 -type f \
-		-exec ${INSTALL_PROGRAM} {} ${FAKE_DESTDIR}${MODULESDIR} \;)
+		-exec ${INSTALL_PROGRAM} {} ${STAGEDIR}${MODULESDIR} \;)
 
 do-install-FASTDFS-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/fdfs
-	${INSTALL_DATA} ${WRKSRC_fastdfs}/src/mod_fastdfs.conf ${FAKE_DESTDIR}${PREFIX}/etc/fdfs/mod_fastdfs.conf.sample
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fdfs
+	${INSTALL_DATA} ${WRKSRC_fastdfs}/src/mod_fastdfs.conf ${STAGEDIR}${PREFIX}/etc/fdfs/mod_fastdfs.conf.sample
 
 do-install-NAXSI-on:
 	${INSTALL_DATA} \
 	${WRKDIR}/naxsi-${NAXSI_NGINX_VER}/naxsi_config/naxsi_core.rules \
-	${FAKE_DESTDIR}${ETCDIR}
+	${STAGEDIR}${ETCDIR}
 
 post-install:
-	${MKDIR} ${PREFIX}/share/vim/vimfiles
-	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${PREFIX}/share/vim/vimfiles
-	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${MAN8PREFIX}/man/man8
-	${CAT} ${WRKSRC}/conf/nginx.conf >> ${ETCDIR}/nginx.conf-dist
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	cd ${WRKSRC}/contrib/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${STAGEDIR}${MAN8PREFIX}/man/man8
+	${CAT} ${WRKSRC}/conf/nginx.conf >> ${STAGEDIR}${ETCDIR}/nginx.conf-dist
 
 post-install-WWW-on:
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist
-	(cd ${WRKSRC}/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist && \
-	${TOUCH} ${FAKE_DESTDIR}${PREFIX}/www/nginx-dist/EXAMPLE_DIRECTORY-DONT_ADD_OR_TOUCH_ANYTHING)
+	${MKDIR} ${STAGEDIR}${PREFIX}/www/nginx-dist
+	(cd ${WRKSRC}/html && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/www/nginx-dist && \
+	${TOUCH} ${STAGEDIR}${PREFIX}/www/nginx-dist/EXAMPLE_DIRECTORY-DONT_ADD_OR_TOUCH_ANYTHING)
 
 .include <bsd.port.post.mk>
