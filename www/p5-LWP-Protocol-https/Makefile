@@ -1,10 +1,6 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $FreeBSD: head/www/p5-LWP-Protocol-https/Makefile 373448 2014-11-26 13:08:24Z mat $
-# $MidnightBSD$
-
 PORTNAME=	LWP-Protocol-https
 PORTVERSION=	6.07
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
