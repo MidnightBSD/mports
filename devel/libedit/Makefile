@@ -1,6 +1,3 @@
-# Created by: jasone
-# $MidnightBSD$
-
 PORTNAME=	libedit
 PORTVERSION=	${EDITVERSION}.${EDITDATE}
 PORTREVISION=	2
@@ -16,7 +13,7 @@ LICENSE=	bsd2
 
 USES=		libtool ncurses pathfix
 EDITVERSION=	3.1
-EDITDATE=	20170329
+EDITDATE=	20181209
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
