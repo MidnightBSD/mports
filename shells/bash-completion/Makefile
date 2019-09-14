@@ -1,49 +1,71 @@
 # $MidnightBSD$
 
 PORTNAME=	bash-completion
-PORTVERSION=	2.1
+PORTVERSION=	2.8
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	shells
-MASTER_SITES=	http://bash-completion.alioth.debian.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable completion library for Bash
-LICENSE=	unknown
 
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LICENSE=	gpl2
 
-CONFLICTS=	bash-completion-classic-[0-9]*
+BROKEN_armv6=	fails to build: gmake: install-recursive: Error 1
+BROKEN_armv7=	fails to build: gmake: install-recursive: Error 1
 
-USES=		gmake tar:bzip2
+TEST_DEPENDS=	runtest:misc/dejagnu \
+		${LOCALBASE}/lib/tcllib/cmdline/cmdline.tcl:devel/tcllib
+
+PORTSCOUT=	limit:^[0-9\.]*$$
+
+OPTIONS_DEFINE=	CMAKE_MODULES DOCS
+OPTIONS_SINGLE=	BASH
+OPTIONS_SINGLE_BASH=	BASH_SHARED BASH_STATIC
+OPTIONS_DEFAULT=BASH_SHARED CMAKE_MODULES
+OPTIONS_SUB=	yes
+BASH_SHARED_DESC=	Use shells/bash as backend
+BASH_STATIC_DESC=	Use shells/bash-static as backend
+CMAKE_MODULES_DESC=	Install bash-completion modules for cmake
+FREEBSD_DESC=		Install completion functions for FreeBSD programs
+
+NO_ARCH=	yes
 GNU_CONFIGURE=	yes
+USES=		autoreconf gmake pathfix
 
 SUB_FILES=	pkg-message
-SUB_LIST+=	RUNFILE=${DATADIR}/bash_completion.sh
-PORTDOCS=	*
+SUB_LIST=	RUNFILE=${DATADIR}/bash_completion.sh
 
-.include <bsd.mport.options.mk>
+GH_ACCOUNT=	scop
+USE_GITHUB=	yes
+
+BASH_SHARED_RUN_DEPENDS=bash:shells/bash
+BASH_STATIC_RUN_DEPENDS=bash:shells/bash-static
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g; \
-		s|/etc/bash_completion|${PREFIX}&|g; \
-		s|/usr\(/sbin/postconf\)|${PREFIX}\1|g; \
-		s|/usr\(/lib/rpm/macros\)|${PREFIX}\1|g; \
-		s|/usr/share\(/ssl/openssl.cnf\)|/etc\1|g; \
-		s|/usr/ports|${PORTSDIR}|g; \
-		s|/usr/lib\(/aspell\)|${PREFIX}/share\1|g; \
-		s|/usr/share/info|&:${PREFIX}/info|g; \
-		s|\$$(sysconfdir)/profile.d|${PREFIX}/bin|g; \
-		s|FLAC|&\|flv\|FLV|; \
-		s|\(profiledir = \)${PREFIX}/bin|\1${DATADIR}|g; \
-		s|\$$(datadir)/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
-		${WRKSRC}/bash_completion ${WRKSRC}/Makefile.in \
-		${WRKSRC}/completions/*
+	@${REINPLACE_CMD} \
+		-e '/^profiledir =/ s|(sysconfdir)/profile.d|(prefix)/share/bash-completion|' \
+		-e 's|\((datadir)/cmake\)|\1/Modules|' \
+			${WRKSRC}/Makefile.am
 
-post-install:
-	@${MKDIR} ${DOCSDIR}
-.for i in README doc/bash_completion.txt doc/bashrc doc/inputrc
-	${INSTALL_DATA} ${WRKSRC}/$i ${DOCSDIR}
+post-configure:
+	@${REINPLACE_CMD} \
+		-e 's|/etc/ssl/openssl.cnf|${PREFIX}& &|g' \
+		-e 's|/usr/lib\(/aspell\)|${PREFIX}/share\1|g' \
+		-e 's|/usr/local|${PREFIX}|g' \
+		-e 's|/usr/ports|${PORTSDIR}|g' \
+		-e 's|/usr\(/sbin/postconf\)|${PREFIX}\1|g' \
+		-e 's|/usr/share/info|&:${PREFIX}/info|g' \
+		-e 's|/var\(/lib/rpm/macros\)|${PREFIX}\1|g' \
+			${WRKSRC}/completions/*
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} CHANGES README.md doc/bash_completion.txt doc/bashrc doc/inputrc ${FAKE_DESTDIR}${DOCSDIR}/
+
+do-test:
+.for test in runCompletion runInstall runUnit
+	-cd ${WRKSRC}/test && bash ${test}
 .endfor
-
 
 .include <bsd.port.mk>

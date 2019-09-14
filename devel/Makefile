@@ -910,6 +910,7 @@ SUBDIR += swig30
 SUBDIR += sysconftool
 SUBDIR += t1lib
 SUBDIR += talloc
+SUBDIR += tcllib
 SUBDIR += tevent
 SUBDIR += tex-kpathsea
 SUBDIR += tex-web2c
