@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-PORTVERSION=	1.0.2s
+PORTVERSION=	1.0.2t
 PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
