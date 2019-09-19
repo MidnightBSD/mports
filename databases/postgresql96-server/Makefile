@@ -2,7 +2,7 @@
 # $FreeBSD: head/databases/postgresql96-server/Makefile 424765 2016-10-27 14:04:55Z girgen $
 # $MidnightBSD$
 
-DISTVERSION?=	9.6.13
+DISTVERSION?=	9.6.14
 
 MAINTAINER?=	ports@MidnightBSD.org
 
