@@ -12,7 +12,7 @@ include/curl/urlapi.h
 lib/libcurl.a
 lib/libcurl.so
 lib/libcurl.so.4
-lib/libcurl.so.4.5.0
+lib/libcurl.so.4.6.0
 libdata/pkgconfig/libcurl.pc
 man/man1/curl-config.1.gz
 man/man1/curl.1.gz
