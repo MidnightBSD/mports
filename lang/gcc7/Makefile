@@ -1,9 +1,5 @@
-# Created by: Gerald Pfeifer <gerald@FreeBSD.org>
-# $FreeBSD: head/lang/gcc7/Makefile 450008 2017-09-17 17:51:24Z gerald $
-# $MidnightBSD$
-
 PORTNAME=	gcc
-PORTVERSION=	7.2.0
+PORTVERSION=	7.4.0
 CATEGORIES=	lang
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -42,9 +38,9 @@ CONFIGURE_ARGS+=	--disable-multilib
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran

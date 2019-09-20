@@ -1,9 +1,7 @@
 # Created by: Torsten Zuehlsdorff <tz@FreeBSD.org>
-# $FreeBSD: head/lang/php71/Makefile 440914 2017-05-15 10:01:40Z tz $
-# $MidnightBSD$
 
 PORTNAME=	php71
-PORTVERSION=	7.1.26
+PORTVERSION=	7.1.32
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -15,7 +13,7 @@ COMMENT=	PHP Scripting Language
 LICENSE=	php
 
 USES+=		tar:xz cpe
-USE_GCC=        4.8
+#USE_GCC=        4.8
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 

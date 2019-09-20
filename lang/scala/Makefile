@@ -1,5 +1,5 @@
 PORTNAME=	scala
-PORTVERSION=	2.12.8
+PORTVERSION=	2.13.0
 CATEGORIES=	lang java
 MASTER_SITES=	http://www.scala-lang.org/files/archive/
 
