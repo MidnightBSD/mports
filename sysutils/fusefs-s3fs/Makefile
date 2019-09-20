@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/sysutils/fusefs-s3fs/Makefile 412349 2016-04-01 14:25:16Z mat $
-
 PORTNAME=	s3fs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.84
+DISTVERSION=	1.85
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	fusefs-
 
