@@ -27,7 +27,7 @@ _l=		${lang:C/=.*//g}
 ${_l:tu}_DEFAULT=	${lang:C/.*=//g}
 .endfor
 
-# Possible values: 2.2, 2.4
+# Possible values: 2.4
 APACHE_DEFAULT?=	2.4
 # Possible values: 48, 5, 6
 BDB_DEFAULT?=		5
@@ -50,7 +50,7 @@ LINUX_DEFAULT?=		c6_64
 LINUX_DEFAULT?=		c6
 .endif
 LUA_DEFAULT?=		5.2
-MYSQL_DEFAULT?=		5.6
+MYSQL_DEFAULT?=		5.7
 PERL5_DEFAULT?=		5.26
 PGSQL_DEFAULT?=		9.6
 PHP_DEFAULT?=		7.1
