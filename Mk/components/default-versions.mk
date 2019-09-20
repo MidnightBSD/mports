@@ -40,7 +40,7 @@ FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
 # Possible values: 4.9, 5, 6, 7
-GCC_DEFAULT?=		6
+GCC_DEFAULT?=		7
 GHOSTSCRIPT_DEFAULT?=	9
 .if ${ARCH} == amd64
 # Possible values: c6, c6_64, c7
