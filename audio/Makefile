@@ -27,6 +27,7 @@ SUBDIR += gstreamer-plugins-faac
 SUBDIR += gstreamer-plugins-faad
 SUBDIR += gstreamer-plugins-flac
 SUBDIR += gstreamer-plugins-fluendo-mp3
+SUBDIR += gstreamer-plugins-mad
 SUBDIR += gstreamer-plugins-mp3
 SUBDIR += gstreamer-plugins-ogg
 SUBDIR += gstreamer-plugins-vorbis
