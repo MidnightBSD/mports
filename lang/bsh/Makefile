@@ -1,26 +1,23 @@
 # Created by: Kimura Fuyuki <fuyuki@mj.0038.net>
-# $FreeBSD: head/lang/bsh/Makefile 386097 2015-05-11 18:34:57Z mat $
-# $MidnightBSD$
 
 PORTNAME=	bsh
-DISTVERSION=	2.0b5
+DISTVERSION=	2.0b6
 CATEGORIES=	lang java
-MASTER_SITES=	http://svn.codespot.com/a/apache-extras.org/beanshell/src_releases/
-DISTNAME=	${PORTNAME}-${DISTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java scripting language
 
 LICENSE=	apache2
 
-USES=		zip
+USE_GITHUB=	yes
+GH_ACCOUNT=	beanshell
+GH_PROJECT=	beanshell
+
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 
 USE_ANT=	yes
 ALL_TARGET=	jarall
-
-WRKSRC=		${WRKDIR}/BeanShell-${PORTVERSION:S/.b/b/}
 
 SUB_FILES=	${PORTNAME}.sh
 SUB_LIST=	JARNAME=${PORTNAME}.jar
