@@ -2,4 +2,4 @@ GCC, the GNU Compiler Collection, supports a number of languages.  This
 port installs the C, C++, Fortran front ends as gcc48, g++48, and
 gfortran48.
 
-WWW: http://gcc.gnu.org/
+WWW: https://gcc.gnu.org/
