@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Programming languages
 
 SUBDIR += alisp
@@ -13,7 +11,6 @@ SUBDIR += fsharp
 SUBDIR += f2c
 SUBDIR += gawk
 SUBDIR += gcc
-SUBDIR += gcc47
 SUBDIR += gcc48
 SUBDIR += gcc49
 SUBDIR += gcc5

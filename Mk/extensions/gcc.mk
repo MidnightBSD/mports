@@ -26,8 +26,6 @@
 #
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
-#
-# $MidnightBSD$
 
 .if defined(_POSTMKINCLUDED) && !defined(Gcc_Post_Include)
 
@@ -38,13 +36,11 @@ Gcc_Include_MAINTAINER=		ports@MidnightBSD.org
 
 # All GCC versions supported by the ports framework.  Keep them in
 # ascending order and in sync with the table below. 
-GCCVERSIONS=	040200 040600 040700 040800 040900 050000 060000 070000
+GCCVERSIONS=	040200 040800 040900 050000 060000 070000 080000 090000
 
 # The first field is the OSVERSION in which it disappeared from the base.
 # The second field is the version as USE_GCC would use.
 GCCVERSION_040200=	9999999 4.2
-GCCVERSION_040600=	      0 4.6
-GCCVERSION_040700=	      0 4.7
 GCCVERSION_040800=	      0 4.8
 GCCVERSION_040900=	      0 4.9
 GCCVERSION_050000=	      0 5
