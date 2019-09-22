@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	binutils
-PORTVERSION=	2.30
+PORTVERSION=	2.32
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
@@ -12,6 +10,7 @@ COMMENT=	GNU binary tools
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 
+EXTRA_PATCHES=	${FILESDIR}/binutils-do-not-provide-shared-section-symbols.patch:-p1
 BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:${PORTSDIR}/math/gmp \
 		${LOCALBASE}/lib/libmpfr.so:${PORTSDIR}/math/mpfr
 
@@ -38,7 +37,9 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-gmp=${LOCALBASE} \
 			--with-mpfr=${LOCALBASE} \
-			--enable-targets=all
+			--enable-targets=all \
+			--enable-threads=yes \
+				--enable-relro=no
 INFO=		as \
 		binutils \
 		gprof \
@@ -50,6 +51,8 @@ CONFIGURE_ARGS+=	--disable-werror \
 			--with-sysroot=/ \
 			--enable-deterministic-archives \
 			--enable-x86-relax-relocations=no
+MAKE_ENV+=	ac_cv_func_sbrk=0
+MAKE_ARGS+=	LIBDL=""
 
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
@@ -58,18 +61,19 @@ NLS_CONFIGURE_ENABLE=	nls
 .include <bsd.port.pre.mk>
 
 # Actual earliest version may differ slightly
-.if ${OSVERSION} >= 8000 && !defined(PKGNAMEPREFIX) && (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 34 || ${COMPILER_TYPE} == gcc)
-CONFIGURE_ARGS+=	--enable-gold --enable-plugins
-PLIST_SUB+=	GOLD=""
-.else
+#.if ${OSVERSION} >= 98000 && !defined(PKGNAMEPREFIX) && (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 34 || ${COMPILER_TYPE} == gcc)
+#CONFIGURE_ARGS+=	--enable-gold --enable-plugins
+#CXXFLAGS+=	-Wno-c++11-narrowing
+#PLIST_SUB+=	GOLD=""
+#.else
 PLIST_SUB+=	GOLD="@comment "
-.endif
+#.endif
 
 CONFIGURE_ARGS+=      --disable-initfini-array
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
 post-install:
