@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	1.9.1
+PORTVERSION=	1.9.4
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -48,7 +48,8 @@ CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
 		-DCMAKE_INSTALL_PREFIX=${PREFIX} \
 		-DBUILD_PORT=yes \
 		-DLIBDIR=${PREFIX}/lib/rspamd \
-		-DNO_SHARED=ON
+		-DNO_SHARED=ON \
+		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	vstakhov
@@ -79,7 +80,7 @@ CGP_RUN_DEPENDS+=	\
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MTORCH_BLAS}
-USE_GCC=	yes
+USE_GCC=	6
 .endif
 
 post-install:
