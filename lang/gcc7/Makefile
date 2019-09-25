@@ -1,7 +1,8 @@
 PORTNAME=	gcc
 PORTVERSION=	7.4.0
+PORTREVISION=	1
 CATEGORIES=	lang
-MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
+MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,13 +28,22 @@ USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:xz
 USE_BINUTILS=	yes
 USE_PERL5=	build
 SSP_UNSAFE=	yes
+CFLAGS:=	${CFLAGS:N-mretpoline}
+CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
 OPTIONS_DEFINE=		BOOTSTRAP GRAPHITE
 OPTIONS_DEFAULT=	BOOTSTRAP
 BOOTSTRAP_DESC=		Build using a full bootstrap
 GRAPHITE_DESC=		Support for Graphite loop optimizations
 
+.if exists(/usr/lib32/libc.so)
+OPTIONS_DEFINE_powerpc64+=	MULTILIB
+OPTIONS_DEFAULT_powerpc64+=	MULTILIB
+MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
+MULTILIB_CONFIGURE_ENABLE=	multilib
+.else
 CONFIGURE_ARGS+=	--disable-multilib
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -45,6 +55,7 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 LANGUAGES:=	c,c++,objc,fortran
 TARGLIB=	${PREFIX}/lib/gcc${SUFFIX}
+TARGLIB32=	${PREFIX}/lib32	# The version information is added later
 LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
@@ -53,6 +64,10 @@ CONFIGURE_ARGS+=--disable-bootstrap
 .else
 CONFIGURE_ARGS+=--with-build-config=bootstrap-debug
 ALL_TARGET=	bootstrap-lean
+.endif
+INSTALL_TARGET=	install-strip
+.if ${UID} != 0
+BINMODE=	755
 .endif
 CONFIGURE_ARGS+=--disable-nls \
 		--enable-gnu-indirect-function \
@@ -68,7 +83,7 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-system-zlib
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
-PLIST_SUB=	GCC_VERSION=${GCC_VERSION} \
+PLIST_SUB+=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
 		SUFFIX=${SUFFIX}
 INFO=		gcc${SUFFIX}/cpp \
@@ -108,9 +123,15 @@ post-fake:
 	${RM} -f ${PREFIX}/man/man7/*
 	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
-	${RM} -f ${WRKDIR}/PLIST.lib
-.for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
-	cd ${PREFIX} ; if [ -d $d ]; then \
+	${RM} ${WRKDIR}/PLIST.lib
+
+.if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MMULTILIB}
+	${MKDIR} ${STAGEDIR}${TARGLIB32}
+	${MV} ${STAGEDIR}${PREFIX}/lib/lib32 ${STAGEDIR}${TARGLIB32}/gcc${SUFFIX}
+.endif
+
+.for d in ${TARGLIB:S/^${PREFIX}\///} ${TARGLIB32:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
+	cd ${STAGEDIR}${PREFIX} ; if [ -d $d ]; then \
 	    ${FIND} $d -type f -o -type l >>${WRKDIR}/PLIST.lib ;\
 	fi
 .endfor
