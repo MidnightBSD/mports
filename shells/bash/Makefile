@@ -26,8 +26,10 @@ SYSBASHRC_DESC=		Enable system-wide rc files
 
 OPTIONS_DEFAULT=	HELP
 
-USES=			bison cpe iconv makeinfo pathfix localbase
+USES=			bison compiler cpe iconv makeinfo pathfix localbase
+USE_GCC=	6
 GNU_CONFIGURE=		yes
+CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd${OSREL}
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
@@ -47,7 +49,6 @@ CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
 			--enable-disabled-builtins \
 			--with-libiconv-prefix=${ICONV_PREFIX}
-
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
 .else
@@ -66,8 +67,8 @@ CONFIGURE_ARGS+=	--disable-static-link
 LDFLAGS+=		-Wl,-export-dynamic
 .endif
 STANDARD_PATH=		/sbin:/bin:/usr/sbin:/usr/bin
-CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
-			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
+#CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
+#			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
 
 post-patch:
 # Ensure y.tab.c is regenerated

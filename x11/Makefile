@@ -120,6 +120,7 @@ SUBDIR += xcb-util-image
 SUBDIR += xcb-util-keysyms
 SUBDIR += xcb-util-renderutil
 SUBDIR += xcb-util-wm
+SUBDIR += xcb-util-xrm
 SUBDIR += xclip
 SUBDIR += xclipboard
 SUBDIR += xcmsdb

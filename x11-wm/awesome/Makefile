@@ -1,10 +1,8 @@
 # Created by: Nikos Ntarmos <ntarmos@ceid.upatras.gr>
-# $MidnightBSD$
-# $FreeBSD: head/x11-wm/awesome/Makefile 377770 2015-01-23 22:50:49Z antoine $
 
 PORTNAME=	awesome
 PORTVERSION=	3.5.6
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://awesome.naquadah.org/download/
@@ -15,7 +13,7 @@ COMMENT=	Highly configurable, next generation framework window manager
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
-		convert:${PORTSDIR}/graphics/ImageMagick \
+		convert:${PORTSDIR}/graphics/ImageMagick6 \
 		pango>=1.19.3:${PORTSDIR}/x11-toolkits/pango \
 		xmlto:${PORTSDIR}/textproc/xmlto \
 		xcb-util>=0.3.8:${PORTSDIR}/x11/xcb-util \
