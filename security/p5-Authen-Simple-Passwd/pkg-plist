@@ -1,2 +1,11 @@
-%%PERL5_MAN3%%/Authen::Simple::Passwd.3.gz
+%%SITE_PERL%%/%%PERL5_MAN3%%/Authen::Simple::Passwd.3
 %%SITE_PERL%%/Authen/Simple/Passwd.pm
+@dir %%SITE_PERL%%/%%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/Authen/Simple
+@dir %%SITE_PERL%%/Authen
+@dir %%SITE_ARCH%%/auto/Authen/Simple/Passwd
+@dir %%SITE_ARCH%%/auto/Authen/Simple
+@dir %%SITE_ARCH%%/auto/Authen
+@dir lib/perl5/site_perl
+@dir lib/perl5
