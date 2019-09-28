@@ -1,6 +1,6 @@
 PORTNAME=	gcc
 PORTVERSION=	7.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -123,7 +123,6 @@ post-fake:
 	${RM} -f ${PREFIX}/man/man7/*
 	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
-	${RM} ${WRKDIR}/PLIST.lib
 
 .if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MMULTILIB}
 	${MKDIR} ${STAGEDIR}${TARGLIB32}
