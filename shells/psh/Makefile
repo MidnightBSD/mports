@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	psh
 PORTVERSION=	1.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	shells perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:GREGOR
@@ -12,7 +10,10 @@ COMMENT=	New shell made entirely out of a Perl script
 
 LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+RUN_DEPENDS=	${SITE_PERL}/Term/ReadLine/Perl.pm:devel/p5-Term-ReadLine-Perl
+
+USES=		perl5
+USE_PERL5=	configure
 
 SUB_FILES=	pkg-install pkg-deinstall
 
