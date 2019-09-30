@@ -48,8 +48,10 @@ CONFIGURE_ARGS+=	--disable-multilib
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
+ARCH_64=
 CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
+ARCH_64=@comment
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
@@ -85,7 +87,8 @@ MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB+=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
-		SUFFIX=${SUFFIX}
+		SUFFIX=${SUFFIX} \
+		ARCH_64=${ARCH_64}
 INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/cppinternals \
 		gcc${SUFFIX}/gcc \
