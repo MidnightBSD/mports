@@ -192,7 +192,6 @@
 %%PERL5_MAN1%%/perlaix.1.gz
 %%PERL5_MAN1%%/json_pp.1.gz
 %%PERL5_MAN1%%/perlvms.1.gz
-%%PERL5_MAN1%%/perlfaq%%OSREL%%.gz
 %%PERL5_MAN1%%/perlcall.1.gz
 %%PERL5_MAN1%%/perlhaiku.1.gz
 %%PERL5_MAN1%%/perl5262delta.1.gz
