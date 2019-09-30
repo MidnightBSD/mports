@@ -27,6 +27,7 @@ INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
 TEST_TARGET=	check
 USE_LDCONFIG=	yes
+NO_TEST=	yes
 
 PORTEXAMPLES=	*
 
