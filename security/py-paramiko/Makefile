@@ -23,6 +23,10 @@ USE_PYTHON=	autoplist distutils
 CONFLICTS_INSTALL=	py??-paramiko1-*
 NO_ARCH=		yes
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 do-test: extract
 	@(cd ${WRKSRC} && ${PYTHON_CMD} -m unittest discover .)
 
