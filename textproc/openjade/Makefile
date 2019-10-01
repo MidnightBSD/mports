@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	openjade
 PORTVERSION=	1.3.3p1
 PORTREVISION=	1
@@ -16,7 +14,7 @@ LIB_DEPENDS=	libosp.so:${PORTSDIR}/textproc/opensp
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
 USES=		gettext gmake libtool
-USE_GCC=	any
+USE_GCC=	7
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
