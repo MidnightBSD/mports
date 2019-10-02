@@ -77,9 +77,8 @@ NVSRC=		nvidia
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_nvidia-modeset_nvidia-modeset-freebsd.c
 .endif
 
-OPTIONS_DEFINE=	ACPI_PM LINUX WBINVD DOCS
+OPTIONS_DEFINE=	ACPI_PM WBINVD DOCS
 OPTIONS_DEFINE_i386=	PAE
-OPTIONS_DEFAULT=	LINUX
 OPTIONS_SUB=		yes
 
 ACPI_PM_DESC=		ACPI Power Management support
@@ -87,9 +86,16 @@ LINUX_DESC=		Linux compatibility support
 PAE_DESC=		Physical Address Extensions support
 WBINVD_DESC=		Flush CPU caches directly with WBINVD
 
+.if ${NVVERSION} > 310.014
+OPTIONS_DEFINE+=	LINUX
+OPTIONS_DEFAULT+= LINUX
+.endif
+
 .if ${NVVERSION} < 310.014
 OPTIONS_DEFINE+=	FREEBSD_AGP
 FREEBSD_AGP_DESC=	Use FreeBSD AGP GART driver
+LINUX="@comment "
+PLIST_SUB+=	LINUX=${LINUX}
 .endif
 
 LINUX_MASTER_SITES=NVIDIA/XFree86/Linux-${LINUX_ARCH_SUFX}/${DISTVERSION}/:linux
@@ -370,7 +376,8 @@ PLIST_RE+=	'\,${LINUXBASE}/etc/vulkan,d'
 PLIST_SUB+=	LINUXBASE=${LINUXBASE} \
 		LINUX_LIBDIR=${LINUX_LIBDIR} \
 		SHLIB_VERSION=${PORTVERSION} \
-		MODULESDIR=${MODULESDIR}
+		MODULESDIR=${MODULESDIR} \
+		ICD=${ICD}
 
 .include <bsd.port.pre.mk>
 
@@ -378,8 +385,12 @@ PLIST_SUB+=	LINUXBASE=${LINUXBASE} \
 LINUX32_LIBS+=	libnvcuvid.so.${PORTVERSION}
 LINUX32_LINKS+=	libnvcuvid.so.${PORTVERSION} libnvcuvid.so.1 \
 		libnvcuvid.so.${PORTVERSION} libnvcuvid.so
+ICD=""
 .elif "${LINUX_ARCH}" == "x86_64"
 PLIST_RE+=	'\,${LINUXBASE}/usr/lib/libnvcuvid\.so,d'
+ICD="@comment "
+.else
+ICD="@comment "
 .endif
 
 .if "${LINUX_ARCH}" == "x86_64"
