@@ -31,6 +31,8 @@ MESON_ARGS=	-Drpm=false \
 		-Dalpm=false \
 		-Dstemmer=false
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
