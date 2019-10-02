@@ -31,4 +31,6 @@ BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.nautilus.gschema.xml
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
