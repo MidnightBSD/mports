@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	colord
-PORTVERSION=	1.2.11
+PORTVERSION=	1.3.5
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.freedesktop.org/software/colord/releases/
 
@@ -32,7 +30,8 @@ CONFIGURE_ARGS=	--disable-udev \
 		--disable-gusb \
 		--disable-sane \
 		--with-daemon-user=colord \
-		--disable-systemd-login
+		--disable-systemd-login \
+		--enable-libcolordcompat
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	USB_CFLAGS="-I/usr/include" \
