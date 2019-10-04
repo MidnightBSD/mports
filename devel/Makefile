@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Development utilities
 
 SUBDIR += 9base
@@ -121,7 +119,6 @@ SUBDIR += googlemock
 SUBDIR += googletest
 SUBDIR += gorm
 SUBDIR += gperf
-SUBDIR += grantlee
 SUBDIR += gsettings-desktop-schemas
 SUBDIR += gstreamer-plugins-gconf
 SUBDIR += gstreamer-plugins-gio
