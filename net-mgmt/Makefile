@@ -6,6 +6,7 @@ SUBDIR += flow-tools
 SUBDIR += kismet
 SUBDIR += nagios
 SUBDIR += nagios-plugins
+SUBDIR += nagios4
 SUBDIR += p5-Cflow
 SUBDIR += p5-Cisco-Reconfig
 SUBDIR += p5-Data-Validate-IP
