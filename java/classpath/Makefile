@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	classpath
 PORTVERSION=	0.99
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	GNU \
 		SAVANNAH
@@ -18,7 +16,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5_BUILD=yes
-USE_XORG=	x11 ice xtst xaw xproto xext
+USE_XORG=	x11 ice xtst xaw xorgproto xext
 WANT_GNOME=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
