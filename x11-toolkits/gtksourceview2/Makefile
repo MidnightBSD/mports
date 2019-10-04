@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gtksourceview2
 PORTVERSION=	2.10.5
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
@@ -14,7 +12,7 @@ COMMENT=	Widget that adds syntax highlighting to the GtkTextView
 LICENSE=	gpl2
 
 USES=		tar:bzip2
-USE_GCC=	any
+USE_GCC=	7
 
 .if !defined(REFERENCE_PORT)
 
