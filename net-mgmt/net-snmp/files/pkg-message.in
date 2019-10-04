@@ -1,3 +1,6 @@
+[
+{ type: install
+  message: <<EOM
 **** This port installs snmpd, header files and libraries but does not
      start snmpd by default.
      If you want to auto-start snmpd and snmptrapd:, add the following to
@@ -11,7 +14,7 @@
 
 **** You may also specify the following make variables:
 
-	NET_SNMP_SYS_CONTACT=""
+	NET_SNMP_SYS_CONTACT="zi@FreeBSD.org"
 	NET_SNMP_SYS_LOCATION="USA"
 	DEFAULT_SNMP_VERSION=3
 	NET_SNMP_MIB_MODULES="host smux mibII/mta_sendmail ucd-snmp/diskio"
@@ -25,3 +28,6 @@
      You may also define the following to avoid all interactive configuration:
 
 	BATCH="yes"
+EOM
+}
+]
