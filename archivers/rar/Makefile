@@ -1,11 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	rar
-PORTVERSION=	5.2.1
+PORTVERSION=	5.7.1
 PORTEPOCH=	3
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.rarlab.com/rar/
-DISTNAME=	rarbsd-${PORTVERSION}
+MASTER_SITES=	https://rarlab.com/rar/
+DISTNAME=	rarbsd${ARCH:S|amd64|-x64|:S|i386||}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver (binary port)
@@ -15,35 +13,25 @@ LICENSE_NAME=	RAR license
 LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+ONLY_FOR_ARCHS=	amd64 i386
 RESTRICTED=	only unmodified original package can be distributed
+
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/rar
+
 PLIST_FILES=	bin/rar lib/default.sfx etc/rarfiles.lst man/cat1/rar.1.gz
-PORTDOCS=	license.txt whatsnew.txt order.htm readme.txt
-
-OPTIONS_DEFINE=	DOCS
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "amd64"
-.if !defined(HAVE_COMPAT_IA32_KERN)
-HAVE_COMPAT_IA32_KERN!=	if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then ${ECHO_CMD} YES; fi
-.endif
-.if !defined(HAVE_COMPAT_IA32_KERN)
-IGNORE=	requires a kernel with compiled-in IA32 compatibility
-.endif
-.endif
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/rar_static ${PREFIX}/bin/rar
-	${INSTALL_MAN} ${WRKSRC}/rar.txt ${PREFIX}/man/cat1/rar.1
-	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${PREFIX}/etc
-	${INSTALL_DATA} ${WRKSRC}/default.sfx ${PREFIX}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/rar ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/rar.txt ${STAGEDIR}${PREFIX}/man/cat1/rar.1
+	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_DATA} ${WRKSRC}/default.sfx ${STAGEDIR}${PREFIX}/lib
 
-post-install:
-	@${MKDIR} ${DOCSDIR}
-.for i in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
-.endfor
+# maintainer section:
 
-.include <bsd.port.post.mk>
+.if defined(MAINTAINER_MODE)
+DISTFILES=	rarbsd-${PORTVERSION}.tar.gz \
+		rarbsd-x64-${PORTVERSION}.tar.gz
+.endif
+
+.include <bsd.port.mk>
