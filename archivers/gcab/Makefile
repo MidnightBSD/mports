@@ -1,8 +1,7 @@
 # Created by: kwm@FreeBSD.org
-# $MidnightBSD$
 
 PORTNAME=	gcab
-PORTVERSION=	0.6
+PORTVERSION=	1.0
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
 
@@ -11,11 +10,11 @@ COMMENT=	GObject library to create cabinet files
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS=	vala:${PORTSDIR}/lang/vala
+BUILD_DEPENDS=	vala:lang/vala \
+		gtkdoc-scan:textproc/gtk-doc
 
-USES=		cpe gettext gmake libtool pathfix pkgconfig tar:xz
-GNU_CONFIGURE=	yes
-USE_GNOME=	glib20 intlhack introspection:build
+USES=		cpe gettext meson pkgconfig tar:xz
+USE_GNOME=	glib20 introspection:build
 CPE_VENDOR=	gnome
 
 .include <bsd.port.mk>
