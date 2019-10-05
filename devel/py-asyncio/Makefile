@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		python:3.3+
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
+NO_TEST=	yes
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test

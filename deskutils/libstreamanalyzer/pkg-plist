@@ -32,7 +32,6 @@ lib/libstreamanalyzer.so.0
 lib/libstreamanalyzer.so.%%SHLIB_VER%%
 lib/strigi/strigiea_digest.so
 lib/strigi/strigiea_ffmpeg.so
-lib/strigi/strigiea_jpeg.so
 lib/strigi/strigiea_riff.so
 lib/strigi/strigiindex_cluceneng.so
 lib/strigi/strigila_cpp.so

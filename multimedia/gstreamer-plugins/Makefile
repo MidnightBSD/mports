@@ -1,6 +1,6 @@
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	7
+PORTREVISION?=	8
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
@@ -14,11 +14,11 @@ COMMENT?=	GStreamer written collection of plugins handling several media types
 
 LICENSE?=	gpl2
 
-BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:${PORTSDIR}/multimedia/v4l_compat \
-		gstreamer>=0.10.36:${PORTSDIR}/multimedia/gstreamer \
-		orc>=0.4.14:${PORTSDIR}/devel/orc
-LIB_DEPENDS+=	libgstreamer-0.10.so:${PORTSDIR}/multimedia/gstreamer \
-		liborc-0.4.so:${PORTSDIR}/devel/orc
+BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:multimedia/v4l_compat \
+		gstreamer>=0.10.36:multimedia/gstreamer \
+		orc>=0.4.14:devel/orc
+LIB_DEPENDS+=	libgstreamer-0.10.so:multimedia/gstreamer \
+		liborc-0.4.so:devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
@@ -40,7 +40,7 @@ SHLIB_VERSION=	1
 VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
 USE_GNOME+=	introspection:build
-USES=		gettext gmake libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
+USES=		gettext gmake gnome libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
 GNU_CONFIGURE=	yes
 GST_PLUGIN?=	base
 INSTALL_TARGET=	install-strip

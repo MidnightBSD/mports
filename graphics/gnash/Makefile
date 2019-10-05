@@ -1,69 +1,75 @@
 # Created by: Dmitry Marakasov <amdmi3@amdmi3.ru>
-# $FreeBSD: head/graphics/gnash/Makefile 368356 2014-09-17 07:38:15Z tijl $
-# $MidnightBSD$
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.10
+PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	GNU/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	http://git.savannah.gnu.org/cgit/gnash.git/snapshot/
+DISTNAME=	gnash-2b3bdede0305c4fc3ad21a0a4197330606c9b880
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Flash movie player
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs \
-		libltdl.so:${PORTSDIR}/devel/libltdl \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libcurl.so:${PORTSDIR}/ftp/curl \
-		libgif.so:${PORTSDIR}/graphics/giflib \
-		libspeex.so:${PORTSDIR}/audio/speex \
-		libnspr4.so:${PORTSDIR}/devel/nspr
+LIB_DEPENDS=	libltdl.so:devel/libltdl \
+		libnspr4.so:devel/nspr \
+		libgif.so:graphics/giflib \
+		libpng.so:graphics/png \
+		libcurl.so:ftp/curl \
+		libspeex.so:audio/speex \
+		libspeexdsp.so:audio/speexdsp \
+		libboost_thread.so:devel/boost-libs \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 CONFLICTS=	gnash-devel-[0-9]*
 
-USES=		tar:bzip2 pkgconfig gmake libtool
+USES=		cpe tar:bzip2 compiler:c++11-lang autoreconf gmake libtool \
+		pkgconfig jpeg gnome gl desktop-file-utils
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
-WANT_SDL=	yes
-USE_GCC=	any
 WANT_GSTREAMER=	yes
-USE_GNOME=	libxml2
+USE_GNOME=	atk gconf2 gtk20 libxml2 pango
 USE_XORG=	x11 xau xdmcp xext xi xinerama ice sm xv
+USE_GL=		egl
 INSTALLS_ICONS=	yes
 SYSCONFIGDIR=	${PREFIX}/etc
 
+# jemalloc leads to infinite recursion on FreeBSD
+CFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-boost-incl="${LOCALBASE}/include" \
 		--with-boost-lib="${LOCALBASE}/lib" \
-		--disable-testsuite \
 		--with-plugins-install=prefix \
 		--sysconfdir="${SYSCONFIGDIR}" \
+		--enable-gui=gtk \
+		--disable-testsuite \
 		--disable-kparts3 \
-		--disable-jemalloc \
-		--disable-silent-rules
+		--disable-jemalloc
 
-GNASHVER=	${PORTVERSION}
+GNASHVER=	0.8.11dev
 CONFIG_FILES=	gnashpluginrc gnashrc
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GNASHVER}
+WRKSRC=		${WRKDIR}/${DISTNAME}
 PLIST_SUB+=	GNASHVER="${GNASHVER}"
 
 USE_LDCONFIG=	${PREFIX}/lib/gnash
 
-OPTIONS_DEFINE=	PLUGIN CYGNAL VAAPI DOCS
-OPTIONS_SINGLE=	MEDIA GUI RENDERER
-OPTIONS_SINGLE_MEDIA=	FFMPEG FFMPEG2 GSTREAMER
+OPTIONS_DEFINE=	CYGNAL VAAPI DOCS NLS
+OPTIONS_SINGLE=	MEDIA RENDERER
+OPTIONS_SINGLE_MEDIA=	FFMPEG GSTREAMER
 OPTIONS_SINGLE_RENDERER=AGG OPENGL CAIRO
-OPTIONS_DEFAULT=PLUGIN AGG FFMPEG VAAPI
+OPTIONS_DEFAULT=AGG FFMPEG VAAPI
 
 NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
-PLUGIN_DESC=	browser plugin
 CYGNAL_DESC=	Cygnal media server
 AGG_DESC=	AGG renderer
-OPENGL_DESC=	OpenGL renderer
-CAIRO_DESC=	Cairo renderer (experimental)
-FFMPEG_DESC=	ffmpeg0 media handler
-FFMPEG2_DESC=	ffmpeg2 media handler (broken)
+OPENGL_DESC=	OpenGL renderer (experimental)
+CAIRO_DESC=	Cairo renderer
+FFMPEG_DESC=	ffmpeg media handler
 GSTREAMER_DESC=	GStreamer media handler
 VAAPI_DESC=	VAAPI support (requires FFMPEG)
 
@@ -85,35 +91,7 @@ CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-#
-# Plugin configuration
-#
-.if ${PORT_OPTIONS:MPLUGIN}
-USES+=	webplugin:native
-WEBPLUGIN_NAME=		gnash
-WEBPLUGIN_FILES=	libgnashplugin.so
-WEBPLUGIN_DIR=${_WEBPLUGIN_LIBDIR:S,^${LOCALBASE}/,${PREFIX}/,}/${WEBPLUGIN_NAME}
-PLIST_SUB+=	NPAPI=""
-CONFIGURE_ARGS+=--with-npapi-plugindir="${WEBPLUGIN_DIR}"
-BUILD_DEPENDS+=	${LOCALBASE}/bin/xulrunner:${PORTSDIR}/www/libxul
-RUN_DEPENDS+=	${LOCALBASE}/bin/xulrunner:${PORTSDIR}/www/libxul
-.else
-PLIST_SUB+=	NPAPI="@comment "
-CONFIGURE_ARGS+=	--disable-npapi
-.endif
-
-PLIST_SUB+=	KPARTS4="@comment "
-CONFIGURE_ARGS+=	--disable-kparts4
-
-#
-# GUI options processing
-#
-GNASH_GUIS=
-
-USE_GNOME+=	gtk20 atk gconf2
-GNASH_GUIS+=	gtk
-
-CONFIGURE_ARGS+=--enable-gui=`${ECHO} ${GNASH_GUIS} | ${TR} ' ' ,`
+CONFIGURE_ARGS+=	--disable-npapi --disable-kparts4
 
 #
 # Renderer options processing
@@ -121,18 +99,21 @@ CONFIGURE_ARGS+=--enable-gui=`${ECHO} ${GNASH_GUIS} | ${TR} ' ' ,`
 GNASH_RENDERERS=
 
 .if ${PORT_OPTIONS:MAGG}
-LIB_DEPENDS+=		libagg.so:${PORTSDIR}/graphics/agg
+LIB_DEPENDS+=		libagg.so:graphics/agg
 GNASH_RENDERERS+=	agg
 .endif
 
 .if ${PORT_OPTIONS:MOPENGL}
-USE_GL=			yes
+IGNORE=		support for OpenGL is currently broken, use option AGG
 GNASH_RENDERERS+=	ogl
-LIB_DEPENDS+=		libgdkglext-x11-1.0.so:${PORTSDIR}/x11-toolkits/gtkglext
+LIB_DEPENDS+=		libgdkglext-x11-1.0.so:x11-toolkits/gtkglext
+. if ${PORT_OPTIONS:MVAAPI}
+LIB_DEPENDS+=		libva-glx.so:multimedia/libva-glx
+. endif
 .endif
 
 .if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=		libcairo.so:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS+=		libcairo.so:graphics/cairo
 GNASH_RENDERERS+=	cairo
 .endif
 
@@ -140,40 +121,37 @@ GNASH_RENDERERS+=	cairo
 IGNORE=			needs at least one renderer enabled. Please rerun 'make config' and enable AGG, OPENGL or CAIRO
 .endif
 
-CONFIGURE_ARGS+=	--enable-renderer=`${ECHO} ${GNASH_RENDERERS} | ${TR} ' ' ,`
+CONFIGURE_ARGS+=	--enable-renderer=${GNASH_RENDERERS:S/^ //W:S/ /,/gW}
 
 #
 # Hardware acceleration options processing
 #
 .if ${PORT_OPTIONS:MVAAPI}
-.if empty(PORT_OPTIONS:MFFMPEG) && empty(PORT_OPTIONS:MFFMPEG2)
-IGNORE=			VAAPI currently works only with FFMPEG. Please rerun 'make config' and enable FFMPEG
+.if empty(PORT_OPTIONS:MFFMPEG)
+IGNORE=			option VAAPI currently works only with FFMPEG. Please rerun 'make config' and enable FFMPEG
 .endif
-LIB_DEPENDS+=		libva.so:${PORTSDIR}/multimedia/libva
+LIB_DEPENDS+=		libva.so:multimedia/libva
+CONFIGURE_ARGS+=	--enable-device=egl,x11,vaapi
 .else
 CONFIGURE_ARGS+=	--enable-hwaccel=none # XVideo
+CONFIGURE_ARGS+=	--enable-device=egl,x11
 .endif
 
 #
 # Media handler options processing
 #
-.if ${PORT_OPTIONS:MFFMPEG2} && empty(PORT_OPTIONS:MFFMPEG) && empty(PORT_OPTIONS:MGSTREAMER)
-LIB_DEPENDS+=		libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
+.if ${PORT_OPTIONS:MFFMPEG} && empty(PORT_OPTIONS:MGSTREAMER)
+LIB_DEPENDS+=		libavcodec.so:multimedia/ffmpeg \
+			libtheora.so:multimedia/libtheora \
+			libogg.so:audio/libogg \
+			libvorbis.so:audio/libvorbis
 CONFIGURE_ARGS+=	--enable-media=ffmpeg \
 			--with-ffmpeg-incl=${LOCALBASE}/include/libavcodec \
 			--with-ffmpeg-lib=${LOCALBASE}/lib
 USE_SDL+=		sdl
 MAKE_ARGS+=		INCLUDES="-I${LOCALBASE}/include/ffmpeg"
-.elif ${PORT_OPTIONS:MFFMPEG} && empty(PORT_OPTIONS:MFFMPEG2) && empty(PORT_OPTIONS:MGSTREAMER)
-EXTRA_PATCHES+=		${FILESDIR}/ffmpeg0.patch
-LIB_DEPENDS+=		libavcodec0.so:${PORTSDIR}/multimedia/ffmpeg0
-CONFIGURE_ARGS+=	--enable-media=ffmpeg \
-			--with-ffmpeg-incl=${LOCALBASE}/include/ffmpeg0/libavcodec \
-			--with-ffmpeg-lib=${LOCALBASE}/lib/ffmpeg0
-USE_SDL+=		sdl
-MAKE_ARGS+=		INCLUDES="-I${LOCALBASE}/include/ffmpeg0"
-.elif ${PORT_OPTIONS:MGSTREAMER} && empty(PORT_OPTIONS:MFFMPEG) && empty(PORT_OPTIONS:MFFMPEG2)
-USE_GSTREAMER=		yes
+.elif ${PORT_OPTIONS:MGSTREAMER} && empty(PORT_OPTIONS:MFFMPEG)
+USE_GSTREAMER=		ffmpeg mad vorbis
 CONFIGURE_ARGS+=	--enable-media=gst
 USE_SDL+=		sdl
 .else
@@ -183,31 +161,20 @@ IGNORE=			can't be built with multiple media handlers enabled. Please rerun 'mak
 
 .include <bsd.port.pre.mk>
 
-pre-everything::
-.if ${PORT_OPTIONS:MOPENGL}
-	@${ECHO_CMD} "OpenGL support is currently broken (Gnash hangs using 100% CPU). Use at your own risk"
-	@sleep 3
-.endif
-
 post-patch:
-	${REINPLACE_CMD} -e '/^PTHREAD_[LC][IF]*=/ d; s|-lpthread|${PTHREAD_LIBS}|' \
-		-e '/KDE4_APPSDATADIR=/ s|share/kde4|share|' \
-		-e 's|/usr/local|${LOCALBASE}|g; \
-		s|/lib64|/lib|g; \
-		s|/usr/X11R6|${LOCALBASE}|g' ${WRKSRC}/configure \
-		${WRKSRC}/macros/libslist ${WRKSRC}/macros/incllist
-	${REINPLACE_CMD} -e '/^pkgconfigdir =/ s|libdir)|exec_prefix)/libdata|' \
-		${WRKSRC}/Makefile.in
-	${REINPLACE_CMD} -e '/^man1dir =/ s|=.*|= ${MAN1PREFIX}/man/man1|' \
-		${WRKSRC}/doc/C/Makefile.in
+	${REINPLACE_CMD} -e 's|lib64|lib|g' -e 's|lib32|lib|g' \
+		${WRKSRC}/macros/libslist
+	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+			-e 's|/usr/X11R6|${LOCALBASE}|g' \
+		${WRKSRC}/macros/incllist
+	${REINPLACE_CMD} -e 's|CODEC_ID_|AV_CODEC_ID_|' \
+		${WRKSRC}/libmedia/ffmpeg/VideoDecoderFfmpegVaapi.cpp
 
 post-install:
+	# eglinfo conflicts with mesa-demos
+	${MV} ${STAGEDIR}/${PREFIX}/bin/eglinfo ${STAGEDIR}/${PREFIX}/bin/eglinfo-gnash
 .for conf in ${CONFIG_FILES}
 	${MV} ${STAGEDIR}/${SYSCONFIGDIR}/${conf} ${STAGEDIR}${SYSCONFIGDIR}/${conf}.dist
 .endfor
-.if ${PORT_OPTIONS:MPLUGIN}
-	cd ${INSTALL_WRKSRC}/plugin && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-plugin
-.endif
 
 .include <bsd.port.post.mk>

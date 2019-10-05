@@ -22,11 +22,12 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		iconv gmake zip:infozip
+USES=		compiler iconv gmake zip:infozip
 USE_XORG+=	x11 xext xi xrender xt xtst
-MAKE_ARGS=	CC=${CC} CXX=${CXX} HOST_CC=${CC}
+MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
 MAKE_JOBS_UNSAFE=	yes
-USE_GCC=	6+
+USE_GCC=	7
+CSTD=	gnu99
 
 OPTIONS_DEFINE=		DEBUG POLICY TZUPDATE
 OPTIONS_DEFAULT=	POLICY TZUPDATE
@@ -80,6 +81,7 @@ MAKE_ENV+=	LANG="C" \
 		JAVACMD=${BOOTSTRAPJDKDIR}/bin/java \
 		X11DIR="${LOCALBASE}" \
 		LOCALDIR="${LOCALBASE}" \
+		COMPILER_WARNINGS_FATAL="false" \
 		NO_DOCS="true" \
 		SKIP_COMPARE_IMAGES="true" \
 		SKIP_FASTDEBUG_BUILD="true" \
@@ -134,11 +136,15 @@ BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
 .endif
 
 .if ${OSVERSION} < 4015
-PATCH_DEPENDS+=	gpatch:${PORTSDIR}/devel/patch
+PATCH_DEPENDS+=	gpatch:devel/patch
 PATCH=		gpatch
 .endif
 
 .include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == gcc
+MAKE_ENV+=    USE_PRECOMPILED_HEADER=0
+.endif
 
 .if empty(ICONV_LIB)
 MAKE_ENV+=      EXTRA_CFLAGS=-DLIBICONV_PLUG

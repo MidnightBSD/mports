@@ -26,6 +26,10 @@ GH_ACCOUNT=	boto
 
 NO_ARCH=	yes
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 # setup.py test runs integration tests which fail
 # https://github.com/boto/s3transfer/issues/41
 # Note: this is an AWS python package wide issue

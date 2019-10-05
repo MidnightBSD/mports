@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	redis
 DISTVERSION=	4.0.14
 CATEGORIES=	databases
@@ -12,13 +10,12 @@ LICENSE=	bsd3
 
 USES=		execinfo
 
-OPTIONS_DEFINE=	TESTS TRIB
+OPTIONS_DEFINE=	TRIB
 OPTIONS_RADIO=	EXTLUA
 OPTIONS_RADIO_EXTLUA=	LUA LUAJIT
 OPTIONS_SUB=	yes
 LUA_DESC=	Use lang/lua instead of builtin lua
 LUAJIT_DESC=	Use lang/luajit instead of builtin lua
-TESTS_DESC=	Install lang/tcl for redis unit tests
 TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
 .include <bsd.mport.options.mk>
@@ -50,10 +47,6 @@ CFLAGS+=	-fPIC
 LDFLAGS+=	-Wl,-E
 .endif
 
-.if ${PORT_OPTIONS:MTESTS}
-USES+=		tcl:build
-.endif
-
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -lm -lexecinfo
 
@@ -64,6 +57,8 @@ MAKE_ENV=	"V=yo"
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
 		redis-cli redis-sentinel redis-server
+
+NO_TEST=	yes
 
 USERS=	redis
 GROUPS=	redis
@@ -104,8 +99,5 @@ do-install:
 	${MKDIR} ${STAGEDIR}${REDIS_LOGDIR} \
 		${STAGEDIR}${REDIS_DBDIR} \
 		${STAGEDIR}${REDIS_RUNDIR}
-
-do-test:
-	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
 
 .include <bsd.port.mk>

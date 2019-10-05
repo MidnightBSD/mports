@@ -27,7 +27,7 @@ SYSBASHRC_DESC=		Enable system-wide rc files
 OPTIONS_DEFAULT=	HELP
 
 USES=			bison compiler cpe iconv makeinfo pathfix localbase
-USE_GCC=	6
+USE_GCC=	7
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd${OSREL}
 OPTIONS_SUB=		yes

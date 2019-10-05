@@ -32,6 +32,9 @@ MAKE_ENV=	MAKEINFOFLAGS=--no-split
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
+# 32 bit test fail on magus. seems to be compiler related.
+NO_TEST=	yes
+
 OPTIONS_DEFINE=		DANE EXAMPLES IDN NLS P11KIT TPM
 OPTIONS_DEFAULT=	IDN P11KIT TPM
 OPTIONS_SUB=		yes

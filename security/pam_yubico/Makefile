@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pam_yubico
 PORTVERSION=	2.26
 CATEGORIES=	security
@@ -17,6 +15,7 @@ LIB_DEPENDS=	libykclient.so:security/ykclient \
 GNU_CONFIGURE=	yes
 USES=		libtool localbase pkgconfig
 TEST_TARGET=	check
+NO_TEST=yes
 
 PLIST_FILES=	lib/security/pam_yubico.so \
 		man/man8/pam_yubico.8.gz

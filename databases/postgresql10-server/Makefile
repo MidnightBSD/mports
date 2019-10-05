@@ -162,6 +162,10 @@ SUB_LIST+=	PG_GROUP=${PG_GROUP} \
 
 .include <bsd.mport.options.mk>
 
+.if ${ARCH} == i386
+USE_GCC=	6
+.endif
+
 .if !defined(SLAVE_ONLY)
 .if ${DISTVERSION:C/([0-9]*).*/\1/} != 10
 .  if ( defined(SERVER_ONLY) && ${PORT_OPTIONS:MICU} ) || make(makesum)

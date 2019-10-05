@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Databases
 
 SUBDIR += adodb
@@ -17,6 +15,7 @@ SUBDIR += fortytwo-bdb
 SUBDIR += freetds
 SUBDIR += gdbm
 SUBDIR += gnats4
+SUBDIR += gom
 SUBDIR += ldb
 SUBDIR += leveldb
 SUBDIR += libgda5

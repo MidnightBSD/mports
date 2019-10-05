@@ -37,12 +37,12 @@ nvidia.ko
 nvidia-modeset.ko
 %%LINUX%%@cwd %%LINUXBASE%%
 %%LINUX%%etc/OpenCL/vendors/nvidia.icd
-%%LINUX%%etc/vulkan/icd.d/nvidia_icd.json
+%%ICD%%%%LINUX%%etc/vulkan/icd.d/nvidia_icd.json
 %%LINUX%%usr/bin/nvidia-bug-report.sh
-%%LINUX%%usr/bin/nvidia-cuda-mps-control
-%%LINUX%%usr/bin/nvidia-cuda-mps-server
+%%ICD%%%%LINUX%%usr/bin/nvidia-cuda-mps-control
+%%ICD%%%%LINUX%%usr/bin/nvidia-cuda-mps-server
 %%LINUX%%usr/bin/nvidia-debugdump
-%%LINUX%%usr/bin/nvidia-persistenced
+%%ICD%%%%LINUX%%usr/bin/nvidia-persistenced
 %%LINUX%%usr/bin/nvidia-settings
 %%LINUX%%usr/bin/nvidia-smi
 %%LINUX%%usr/bin/nvidia-xconfig

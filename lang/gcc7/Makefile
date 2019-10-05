@@ -1,6 +1,6 @@
 PORTNAME=	gcc
 PORTVERSION=	7.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
@@ -48,8 +48,10 @@ CONFIGURE_ARGS+=	--disable-multilib
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
+ARCH_64=
 CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
+ARCH_64=@comment
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
@@ -85,7 +87,8 @@ MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB+=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
-		SUFFIX=${SUFFIX}
+		SUFFIX=${SUFFIX} \
+		ARCH_64=${ARCH_64}
 INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/cppinternals \
 		gcc${SUFFIX}/gcc \
@@ -123,7 +126,6 @@ post-fake:
 	${RM} -f ${PREFIX}/man/man7/*
 	-${RM} -fr ${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
 	# Add target libraries and include files to packaging list.
-	${RM} ${WRKDIR}/PLIST.lib
 
 .if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MMULTILIB}
 	${MKDIR} ${STAGEDIR}${TARGLIB32}

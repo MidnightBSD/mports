@@ -1,0 +1,11 @@
+--- configure.orig	2019-10-04 10:30:25.136927000 -0400
++++ configure	2019-10-04 10:31:13.892414000 -0400
+@@ -8464,7 +8464,7 @@
+     lt_cv_sys_max_cmd_len=8192;
+     ;;
+ 
+-  netbsd* | freebsd* | openbsd* | darwin* | dragonfly*)
++  netbsd* | freebsd* | openbsd* | darwin* | dragonfly* | midnightbsd*)
+     # This has been around since 386BSD, at least.  Likely further.
+     if test -x /sbin/sysctl; then
+       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`

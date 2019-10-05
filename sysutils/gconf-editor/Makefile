@@ -1,23 +1,19 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/gconf-editor/Makefile,v 1.42 2007/08/27 17:33:13 marcus Exp $
-
 PORTNAME=	gconf-editor
-PORTVERSION=	2.32.0
-PORTREVISION=	1
+PORTVERSION=	3.0.1
 PORTEPOCH=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A gconf database editor for the GNOME 2 environment
+COMMENT=	Gconf database editor for the GNOME 3 environment
 
 LICENSE=	gpl2
 
-USES=		gettext gmake tar:bzip2
+USES=		gettext gmake pathfix pkgconfig tar:xz
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-USE_GNOME=	gnomeprefix intlhack libgnomeui gnomedocutils
+USE_GNOME=	gnomeprefix intlhack gtk30 gconf2 gnomedocutils
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

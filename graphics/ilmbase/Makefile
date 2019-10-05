@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	ilmbase
 PORTVERSION=	2.2.1
 CATEGORIES=	graphics devel
@@ -29,8 +27,7 @@ PLIST_SUB+=	VER=${VER}
 
 HALF_BIN=	eLut toFloat
 
-regression-test regression test check:	build
-	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
+NO_TEST=yes
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/lib/libHalf.so.${VER}

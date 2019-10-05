@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = System utilities
 
 SUBDIR += 915resolution
@@ -94,6 +92,7 @@ SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += nvclock
 SUBDIR += obliterate
+SUBDIR += openipmi
 SUBDIR += openupsd
 SUBDIR += p5-File-Listing
 SUBDIR += p5-File-Which
