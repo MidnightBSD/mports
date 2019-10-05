@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Text processing utilities (does not include desktop publishing)
 
 SUBDIR += UCD
@@ -10,7 +8,6 @@ SUBDIR += aspell-ispell
 SUBDIR += bsdgrep
 SUBDIR += cdiff
 SUBDIR += clucene
-SUBDIR += clucene-qt4
 SUBDIR += clucene-qt5
 SUBDIR += diffutils
 SUBDIR += docbook
@@ -198,9 +195,6 @@ SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-websupport
-SUBDIR += qt4-xml
-SUBDIR += qt4-xmlpatterns
-SUBDIR += qt4-xmlpatterns-tool
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
 SUBDIR += raptor

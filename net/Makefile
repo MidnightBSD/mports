@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
@@ -13,7 +11,6 @@ SUBDIR += avahi-gtk
 SUBDIR += avahi-gtk3
 SUBDIR += avahi-header
 SUBDIR += avahi-libdns
-SUBDIR += avahi-qt4
 SUBDIR += boinc-client
 SUBDIR += cvsup
 SUBDIR += cvsup-without-gui
@@ -132,7 +129,6 @@ SUBDIR += py-s3transfer
 SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
 SUBDIR += py-urllib3
-SUBDIR += qt4-network
 SUBDIR += qt5-network
 SUBDIR += rabbitmq
 SUBDIR += rabbitmq-c

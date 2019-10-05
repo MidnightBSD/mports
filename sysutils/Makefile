@@ -31,6 +31,7 @@ SUBDIR += dvd+rw-tools
 SUBDIR += dvdbackup
 SUBDIR += e2fsprogs
 SUBDIR += ec2-scripts
+SUBDIR += etc_os-release
 SUBDIR += extipl
 SUBDIR += ezjail
 SUBDIR += ffs2recov
