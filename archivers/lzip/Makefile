@@ -1,9 +1,7 @@
 # Created by: Sylvio Cesar <sylvio@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/archivers/lzip/Makefile 346728 2014-03-02 01:40:36Z gerald $
 
 PORTNAME=	lzip
-PORTVERSION=	1.15
+PORTVERSION=	1.21
 CATEGORIES=	archivers
 MASTER_SITES=	SAVANNAH/lzip
 
