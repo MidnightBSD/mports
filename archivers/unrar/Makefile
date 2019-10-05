@@ -1,14 +1,11 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/unrar/Makefile,v 1.46 2006/08/17 01:46:32 ache Exp $
-
 PORTNAME=	unrar
-PORTVERSION=	5.50
+PORTVERSION=	5.71
 PORTREVISION=	0
 PORTEPOCH=	5
 CATEGORIES+=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/ \
 		FREEBSD_LOCAL/sunpoet
-DISTNAME=	unrarsrc-5.5.8
+DISTNAME=	unrarsrc-5.7.5
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test RAR archives
