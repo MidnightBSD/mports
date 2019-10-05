@@ -4,6 +4,7 @@ SUBDIR += curl
 SUBDIR += ftpcopy
 SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
+SUBDIR += lftp
 SUBDIR += linux-c6-curl
 SUBDIR += linux-c7-curl
 SUBDIR += ncftp3

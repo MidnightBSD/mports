@@ -1,20 +1,15 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/qt5-assistant/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-
 PORTNAME=	assistant
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 5 documentation browser
 
-LICENSE=	gpl3
-
-USE_QT5=	core gui help network printsupport sql webkit widgets \
+USES=		compiler:c++11-lang qmake qt-dist:5,tools
+USE_QT=		core gui help network printsupport sql widgets \
 		buildtools_build sql-sqlite3_run
-QT_DIST=	tools
-USES=		qmake
 
 DESKTOP_ENTRIES="Qt 5 Assistant" "" \
 		"${PREFIX}/share/pixmaps/assistant-qt5.png" \

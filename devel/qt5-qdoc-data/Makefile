@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 # While this port is part of the Qt distribution itself, we do not set
 # QT_DIST=yes because it brings in several patches and targets that are not
 # needed; this port only installs some static files.
@@ -9,7 +7,7 @@ DISTVERSION=	${QT5_VERSION}
 CATEGORIES=	devel textproc
 MASTER_SITES=	QT/official_releases/qt/${QT5_VERSION:R}/${QT5_VERSION}/submodules/
 PKGNAMEPREFIX=	qt5-
-DISTNAME=	qtbase-opensource-src-${QT5_VERSION}
+DISTNAME=	qtbase-everywhere-src-${QT5_VERSION}
 DIST_SUBDIR=	KDE/Qt/${QT5_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,8 +16,8 @@ COMMENT=	QDoc configuration files
 LICENSE=	gfdl
 LICENSE_FILE=	${WRKSRC}/LICENSE.FDL
 
-USES=		tar:xz
-USE_QT5=	# empty
+USES=		qt:5 tar:xz
+USE_QT=		# empty
 
 EXTRACT_AFTER_ARGS=	--include ${DISTNAME}/LICENSE.FDL \
 			--include ${DISTNAME}/doc

@@ -1,30 +1,23 @@
 Only enter the directories we want to build, otherwise we might fail due to
 missing dependencies.
 
-clucene/ is built in textproc/clucene-qt5, assistant/ is built in
-devel/qt5-assistant.
+assistant/ is built in devel/qt5-assistant.
 
---- src/assistant/assistant.pro
+--- src/assistant/assistant.pro.orig	2019-01-15 05:20:10 UTC
 +++ src/assistant/assistant.pro
-@@ -1,20 +1,15 @@
- TEMPLATE = subdirs
+@@ -3,7 +3,6 @@ TEMPLATE = subdirs
  
--SUBDIRS += clucene \
--           help \
+ SUBDIRS += \
+            help \
 -           assistant \
-+SUBDIRS += help \
             qhelpgenerator \
-            qcollectiongenerator \
-            qhelpconverter
+            qcollectiongenerator
  
--help.depends = clucene
--assistant.depends = help
+@@ -11,7 +10,6 @@ assistant.depends = help
  qhelpgenerator.depends = help
- qcollectiongenerator.depends = help
- qhelpconverter.depends = help
  
  qtNomakeTools( \
 -    assistant \
      qhelpgenerator \
      qcollectiongenerator \
-     qhelpconverter \
+ )

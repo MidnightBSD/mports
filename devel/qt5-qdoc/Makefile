@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/qt5-qdoc/Makefile 418653 2016-07-16 20:47:42Z rakuco $
-
 PORTNAME=	qdoc
 DISTVERSION=	${QT5_VERSION}
 PORTREVISION=	1
@@ -10,15 +7,17 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt documentation generator
 
-LICENSE=	gpl3
+BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT}
+RUN_DEPENDS=	llvm${LLVM_DEFAULT}>=0:devel/llvm${LLVM_DEFAULT}
 
-USE_QT5=	core qml buildtools_build qdoc-data_run
-QT_DIST=	tools
-USES=		qmake
+USES=		compiler:c++11-lang qmake qt-dist:5,tools
+USE_QT=		core declarative buildtools_build qdoc-data_run
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-PLIST_FILES=	lib/qt5/bin/qdoc
+PLIST_FILES=	${QT_BINDIR}/qdoc
+
+CONFIGURE_ENV=	LLVM_INSTALL_DIR=${LOCALBASE}/llvm${LLVM_DEFAULT}
 
 .include <bsd.port.mk>

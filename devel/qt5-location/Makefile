@@ -1,19 +1,15 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/qt5-location/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-
-PORTNAME=  	location
+PORTNAME=	location
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt location module
 
-LICENSE=	gpl3
-
-USE_QT5=	core dbus gui network qml quick buildtools_build
-QT_DIST=	${PORTNAME}
-USES=		qmake
+USES=		compiler:c++11-lang qmake:norecursive qt-dist:5,location
+USE_QT=		concurrent core dbus declarative gui network serialport \
+		buildtools_build
 
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 

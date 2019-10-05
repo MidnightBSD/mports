@@ -53,6 +53,7 @@ SUBDIR += liboauth
 SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
+SUBDIR += librsync2
 SUBDIR += libsrtp
 SUBDIR += libutp
 SUBDIR += libvncserver
