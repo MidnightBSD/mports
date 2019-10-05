@@ -4,9 +4,9 @@
 #
 # Feature:		cmake
 # Usage:		USES=cmake or USES=cmake:ARGS
-# Valid ARGS:		outsource, run, noninja
+# Valid ARGS:		insource, run, noninja
 # ARGS description:
-# outsource		perform an out-of-source build
+# insource		perform an in source build
 # noninja		don't use ninja instead of make
 #			Setting this should be an exception, and hints to an issue
 #			inside the ports build system.
@@ -44,7 +44,7 @@
 .if !defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_CMAKE_MK)
 _INCLUDE_USES_CMAKE_MK=	yes
 
-_valid_ARGS=		outsource run noninja
+_valid_ARGS=		insource run noninja
 
 # Sanity check
 .for arg in ${cmake_ARGS}
@@ -110,7 +110,7 @@ CMAKE_ARGS+=		-DCMAKE_COLOR_MAKEFILE:BOOL=OFF
 _CMAKE_MSG=		"===>  Performing in-source build"
 CMAKE_SOURCE_PATH?=	${WRKSRC}
 
-.if ${cmake_ARGS:Moutsource}
+.if empty(cmake_ARGS:Minsource)
 _CMAKE_MSG=		"===>  Performing out-of-source build"
 CONFIGURE_WRKSRC?=	${WRKDIR}/.build
 BUILD_WRKSRC?=		${CONFIGURE_WRKSRC}
