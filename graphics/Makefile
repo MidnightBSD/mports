@@ -171,7 +171,6 @@ SUBDIR += poppler-glib
 SUBDIR += poppler-utils
 SUBDIR += preview
 SUBDIR += price
-SUBDIR += prison
 SUBDIR += py-cairo
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
