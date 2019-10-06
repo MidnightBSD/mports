@@ -760,6 +760,7 @@ SUBDIR += py-jsonref
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
 SUBDIR += py-linecache2
+SUBDIR += py-llfuse
 SUBDIR += py-logfury
 SUBDIR += py-incremental
 SUBDIR += py-iso8601

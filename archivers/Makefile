@@ -46,6 +46,7 @@ SUBDIR += php72-bz2
 SUBDIR += php72-phar
 SUBDIR += php72-zip
 SUBDIR += php72-zlib
+SUBDIR += py-borgbackup
 SUBDIR += py-bz2file
 SUBDIR += py-lz4
 SUBDIR += py-lzma
@@ -69,6 +70,7 @@ SUBDIR += xar
 SUBDIR += zip
 SUBDIR += zipper
 SUBDIR += zoo
+SUBDIR += zstd
 SUBDIR += zutils
 
 .include <bsd.port.subdir.mk>
