@@ -1,8 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-games
 PORTVERSION=	3.24.0
 CATEGORIES=	games gnome
+MASTER_SITES=   # empty
+DISTFILES=      # empty
+EXTRACT_ONLY=   # empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome games meta port
@@ -10,6 +11,7 @@ COMMENT=	Gnome games meta port
 LICENSE=	agg
 
 NO_BUILD=	yes
+NO_MTREE=       yes
 
 RUN_DEPENDS=	five-or-more:games/five-or-more \
 		atomix:games/atomix \
