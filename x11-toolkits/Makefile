@@ -64,7 +64,6 @@ SUBDIR += qt5-datavis3d
 SUBDIR += qt5-declarative
 SUBDIR += qt5-gamepad
 SUBDIR += qt5-gui
-SUBDIR += qt5-quick
 SUBDIR += qt5-quickcontrols
 SUBDIR += qt5-quickcontrols2
 SUBDIR += qt5-uiplugin
