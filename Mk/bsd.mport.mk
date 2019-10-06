@@ -408,10 +408,6 @@ _LOAD_TCL_EXT=		yes
 _LOAD_APACHE_EXT=	yes
 .endif
 
-.if (defined (USE_QT_VER) && ${USE_QT_VER:tl} == 4) || defined(USE_QT4) || defined(USE_QT5)
-_LOAD_QT_EXT=		yes
-.endif
-
 .if defined(USE_GTK)
 _LOAD_GNOME_EXT=	yes
 .endif
@@ -444,7 +440,7 @@ _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		tar tcl tk tex uniquefiles wx xfce zip 7z
 
 .for EXT in ${_ALL_EXT:S/python//g:tu}
-.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python")
+.  if (${EXT:tl} == "linux" || ${EXT:tl} == "python" || ${EXT:tl} == "qt")
 # we have to skip these as ${EXT}_ARGS won't be defined right
 .  elif defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT) || defined(USE_${EXT})
 .		include "${MPORTEXTENSIONS}/${EXT:tl}.mk"
