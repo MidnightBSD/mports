@@ -58,7 +58,6 @@ SUBDIR += cvsps-devel
 SUBDIR += cvsweb3
 SUBDIR += dbus
 SUBDIR += dbus-glib
-SUBDIR += dbus-qt5
 SUBDIR += dconf
 SUBDIR += dconf-editor
 SUBDIR += dee
