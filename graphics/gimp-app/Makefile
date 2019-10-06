@@ -21,8 +21,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
 GNU_CONFIGURE=	yes
-USES+=	cpe	desktop-file-utils gettext gmake jpeg libtool pathfix \
-		pkgconfig tar:bzip2
+USES+=	cpe desktop-file-utils execinfo gettext gmake jpeg libtool \
+	pathfix pkgconfig tar:bzip2
 USE_XORG=	xpm xmu xext
 USE_GNOME+=	intlhack gtk20
 USE_LDCONFIG=	yes
@@ -40,8 +40,7 @@ CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc/gimp \
 		--docdir=${PREFIX}/share/doc/gimp \
 		--enable-default-binary
 CONFIGURE_ENV=	GIMP_THREAD_LIBS=-lpthread
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+LIBS+=	-lexecinfo
 CPE_PRODUCT=	gimp
 CPE_VENDOR=	gnu
 
@@ -163,9 +162,6 @@ PLIST_SUB+=		WMF="@comment "
 .endif
 
 .endif
-
-LIB_DEPENDS+=	libexecinfo.so:devel/libexecinfo
-LIBS+=-lexecinfo
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%GIMP_LIBS%%|${GIMP_LIBS}|; \
