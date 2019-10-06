@@ -68,6 +68,7 @@ SUBDIR += qt5-quick
 SUBDIR += qt5-quickcontrols
 SUBDIR += qt5-quickcontrols2
 SUBDIR += qt5-uiplugin
+SUBDIR += qt5-virtualkeyboard
 SUBDIR += qt5-widgets
 SUBDIR += sdl_pango
 SUBDIR += shared-desktop-ontologies
