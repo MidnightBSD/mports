@@ -52,6 +52,7 @@ OPTIONS_DEFINE?=	AA DBUS LIBEXIF GHOSTSCRIPT GVFS JASPER \
 			LIBMNG LIBRSVG2 POPPLER SIMD WMF
 OPTIONS_DEFAULT=	AA DBUS LIBEXIF GVFS LIBMNG LIBRSVG2 \
 			POPPLER WMF
+OPTIONS_SUB=	yes
 AA_DESC=		Ascii-art Plug-in
 
 .endif
@@ -68,98 +69,44 @@ LIB_DEPENDS+=	libgimp-2.0.so:graphics/gimp-app
 
 .else
 
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug
-.endif
+DEBUG_CONFIGURE_ON=     --enable-debug
 
-.if ${PORT_OPTIONS:MAA}
-LIB_DEPENDS+=		libaa.so:graphics/aalib
-PLIST_SUB+=		AA=""
-.else
-CONFIGURE_ARGS+=	--without-aa
-PLIST_SUB+=		AA="@comment "
-.endif
+AA_LIB_DEPENDS=         libaa.so:graphics/aalib
+AA_CONFIGURE_OFF=       --without-aa
 
-.if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=		libdbus-glib-1.so:devel/dbus-glib
-CONFIGURE_ARGS+=	--with-dbus
-.else
-CONFIGURE_ARGS+=	--without-dbus
-.endif
+DBUS_LIB_DEPENDS=       libdbus-glib-1.so:devel/dbus-glib
+DBUS_CONFIGURE_WITH=	dbus
 
-.if ${PORT_OPTIONS:MGHOSTSCRIPT}
-USES+=	ghostscript
-CONFIGURE_ARGS+=	--with-gs
-PLIST_SUB+=		GS=""
-.else
-CONFIGURE_ARGS+=	--without-gs
-PLIST_SUB+=		GS="@comment "
-.endif
+GHOSTSCRIPT_USES=		ghostscript
+GHOSTSCRIPT_CONFIGURE_WITH=	gs
 
-.if ${PORT_OPTIONS:MGVFS}
-USE_GNOME+=		gvfs
-.else
-LIB_DEPENDS+=		libcurl.so:ftp/curl
-CONFIGURE_ARGS+=	--without-gvfs
-.endif
+GVFS_USE=		GNOME=gvfs
+GVFS_LIB_DEPENDS_OFF=	libcurl.so:ftp/curl
+GVFS_CONFIGURE_OFF=	--without-gvfs
 
-CONFIGURE_ARGS+=	--without-webkit
+JASPER_LIB_DEPENDS=	libjasper.so:graphics/jasper
+JASPER_CONFIGURE_WITH=	libjasper
 
-.if ${PORT_OPTIONS:MJASPER}
-LIB_DEPENDS+=		libjasper.so:graphics/jasper
-CONFIGURE_ARGS+=	--with-libjasper
-PLIST_SUB+=		JASPER=""
-.else
-CONFIGURE_ARGS+=		--without-libjasper
-PLIST_SUB+=		JASPER="@comment "
-.endif
+LIBEXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
+LIBEXIF_CONFIGURE_OFF=	--without-libexif
 
-.if ${PORT_OPTIONS:MLIBEXIF}
-LIB_DEPENDS+=		libexif.so:graphics/libexif
-PLIST_SUB+=		EXIF=""
-.else
-CONFIGURE_ARGS+=	--without-libexif
-PLIST_SUB+=		EXIF="@comment "
-.endif
+LIBMNG_LIB_DEPENDS=	libmng.so:graphics/libmng
+LIBMNG_CONFIGURE_OFF=	--without-libmng
 
-.if ${PORT_OPTIONS:MLIBMNG}
-LIB_DEPENDS+=		libmng.so:graphics/libmng
-PLIST_SUB+=		MNG=""
-.else
-CONFIGURE_ARGS+=	--without-libmng
-PLIST_SUB+=		MNG="@comment "
-.endif
+LIBRSVG2_USE= 		GNOME=librsvg2
+LIBRSVG2_CONFIGURE_WITH=librsvg
 
-.if ${PORT_OPTIONS:MLIBRSVG2}
-USE_GNOME+=		librsvg2
-CONFIGURE_ARGS+=	--with-librsvg
-PLIST_SUB+=		SVG=""
-.else
-CONFIGURE_ARGS+=	--without-librsvg
-PLIST_SUB+=		SVG="@comment "
-.endif
+POPPLER_LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib
+POPPLER_CONFIGURE_OFF=	--without-poppler
 
-.if ${PORT_OPTIONS:MPOPPLER}
-LIB_DEPENDS+=		libpoppler-glib.so:graphics/poppler-glib
-PLIST_SUB+=		POPPLER=""
-.else
-CONFIGURE_ARGS+=	--without-poppler
-PLIST_SUB+=		POPPLER="@comment "
-.endif
-
-.if !${PORT_OPTIONS:MSIMD}
-CONFIGURE_ARGS+=	--disable-mmx \
+SIMD_CONFIGURE_OFF=	--disable-mmx \
 			--disable-sse \
 			--disable-altivec
-.endif
 
-.if ${PORT_OPTIONS:MWMF}
-LIB_DEPENDS+=		libwmf.so:graphics/libwmf
-PLIST_SUB+=		WMF=""
-.else
-CONFIGURE_ARGS+=	--without-wmf
-PLIST_SUB+=		WMF="@comment "
-.endif
+WMF_LIB_DEPENDS=	libwmf.so:graphics/libwmf
+WMF_CONFIGURE_OFF=	--without-wmf
+
+CONFIGURE_ARGS+=	--without-webkit
 
 .endif
 
