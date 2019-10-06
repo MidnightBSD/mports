@@ -1,11 +1,9 @@
-# $FreeBSD: head/devel/qt5/Makefile.sqldrivers 482034 2018-10-14 08:01:13Z tcberner $
-
 PORTNAME?=	${DB:tl}
 DISTVERSION?=	${QT5_VERSION}
 CATEGORIES?=	databases
 PKGNAMEPREFIX?=	qt5-sqldrivers-
 
-MAINTAINER?=	kde@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Qt ${DB_DESC} database plugin
 
 USES+=		compiler:c++11-lang qmake:no_env qt-dist:5,base
