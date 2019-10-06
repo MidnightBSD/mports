@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/qt5-printsupport/Makefile 412348 2016-04-01 14:16:16Z mat $
-
 PORTNAME=	printsupport
 DISTVERSION=	${QT5_VERSION}
 PORTREVISION=	1
@@ -10,10 +7,8 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt print support module
 
-LICENSE=	gpl3
-
-USE_QT5=	core gui widgets qmake_build buildtools_build
-QT_DIST=	base
+USES=		compiler:c++11-lang qmake:no_env qt-dist:5,base
+USE_QT=		core gui widgets qmake_build buildtools_build
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
@@ -33,16 +28,17 @@ CUPS_LIB_DEPENDS=	libcups.so:print/cups
 .if ${PORT_OPTIONS:MCUPS}
 QT_DEFINES+=	CUPS
 QT_CONFIG+=	cups
+MORE_WRKSRCS+=	src/plugins/printsupport
 .else
 QT_DEFINES+=	-CUPS
 QT_CONFIG+=	-cups
 .endif
 
 post-configure:
-.if ${PORT_OPTIONS:MCUPS}
-	@cd ${WRKSRC}/src/plugins/${PORTNAME}/cups && \
-		${SETENV} ${QMAKE_ENV} ${WRKSRC}/bin/qmake ${QMAKE_ARGS}
-.endif
+.for d in src/printsupport ${MORE_WRKSRCS}
+	${MKDIR} ${WRKSRC}/${d}
+	cd ${WRKSRC}/${d} && ${SETENV} ${QMAKE_ENV} ${_QMAKE} ${QMAKE_ARGS} ${WRKSRC}/${d}
+.endfor
 
 post-build:
 .if ${PORT_OPTIONS:MCUPS}
