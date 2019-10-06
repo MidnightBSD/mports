@@ -1,45 +1,61 @@
 Only enter the directories we want to build, otherwise we might fail due to
 missing dependencies.
 
---- src/src.pro.orig	2016-02-04 10:42:47 UTC
+--- src/src.pro.orig	2019-03-18 18:28:15 UTC
 +++ src/src.pro
-@@ -1,38 +1,3 @@
+@@ -1,54 +1,3 @@
  TEMPLATE = subdirs
  
 -qtHaveModule(widgets) {
 -    no-png {
 -        message("Some graphics-related tools are unavailable without PNG support")
 -    } else {
--        SUBDIRS = assistant \
--                  pixeltool \
--                  qtestlib \
--                  designer
+-        QT_FOR_CONFIG += widgets
+-        qtConfig(pushbutton):qtConfig(toolbutton) {
+-            SUBDIRS = assistant \
+-                      designer \
+-                      pixeltool
 -
--        linguist.depends = designer
+-            linguist.depends = designer
+-        }
+-        qtHaveModule(quick):qtConfig(thread):qtConfig(toolbutton): SUBDIRS += distancefieldgenerator
 -    }
 -}
 -
 -SUBDIRS += linguist \
--    qdoc \
--    qtplugininfo
--if(!android|android_app):!ios: SUBDIRS += qtpaths
+-    qtattributionsscanner
 -
--mac {
--    SUBDIRS += macdeployqt
+-qtConfig(library) {
+-    !android|android_app: SUBDIRS += qtplugininfo
 -}
 -
--android {
--    SUBDIRS += androiddeployqt
+-include($$OUT_PWD/qdoc/qtqdoc-config.pri)
+-QT_FOR_CONFIG += qdoc-private
+-qtConfig(qdoc): qtConfig(thread): SUBDIRS += qdoc
+-
+-!android|android_app: SUBDIRS += qtpaths
+-
+-macos {
+-    SUBDIRS += macdeployqt
 -}
 -
 -qtHaveModule(dbus): SUBDIRS += qdbus
 -
 -win32|winrt:SUBDIRS += windeployqt
 -winrt:SUBDIRS += winrtrunner
--qtHaveModule(gui):!android:!ios:!qnx:!wince*:!winrt*:SUBDIRS += qtdiag
+-qtHaveModule(gui):!wasm:!android:!uikit:!qnx:!winrt: SUBDIRS += qtdiag
 -
 -qtNomakeTools( \
+-    distancefieldgenerator \
 -    pixeltool \
--    macdeployqt \
 -)
+-
+-# This is necessary to avoid a race condition between toolchain.prf
+-# invocations in a module-by-module cross-build.
+-cross_compile:isEmpty(QMAKE_HOST_CXX.INCDIRS) {
+-    qdoc.depends += qtattributionsscanner
+-    windeployqt.depends += qtattributionsscanner
+-    winrtrunner.depends += qtattributionsscanner
+-    linguist.depends += qtattributionsscanner
+-}
 +SUBDIRS = pixeltool
