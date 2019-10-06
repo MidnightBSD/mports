@@ -20,7 +20,6 @@ SQLITE_VER=	${_SQLITE_VER}
 .elif ${SQLITE_VER} == 2
 LIB_DEPENDS+=	libsqlite.so:databases/sqlite${SQLITE_VER}
 .else
-.else
 IGNORE=	cannot install: unknown sqlite version: ${_SQLITE_VER}
 .endif
 
