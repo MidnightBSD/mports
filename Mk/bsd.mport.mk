@@ -1649,7 +1649,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad comms converters core databases \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
-	ipv6 irc japanese java kld korean lang linux lisp lua \
+	ipv6 irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp lua \
 	mail mate math misc multimedia net net-im net-mgmt net-p2p news \
 	palm parallel pear perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \

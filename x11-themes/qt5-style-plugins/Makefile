@@ -1,7 +1,7 @@
 PORTNAME=	qt5-style-plugins
 DISTVERSIONPREFIX=	v
 DISTVERSION=	5.0.0-23
-PORTREVISION=	2
+PORTREVISION=	3
 DISTVERSIONSUFFIX=	-g335dbe
 CATEGORIES=	x11-themes
 DIST_SUBDIR=	KDE/Qt/addons
@@ -20,7 +20,6 @@ GH_ACCOUNT=	qt
 GH_PROJECT=	qtstyleplugins
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango
 USE_QT=		core dbus gui widgets buildtools_build
-USE_QT5=	yes
 USE_GL=		gl
 USE_XORG=	x11 xext
 
