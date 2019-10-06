@@ -1,38 +1,34 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/phonon-gstreamer/Makefile,v 1.13 2011/03/25 10:14:53 avilla Exp $
-
 PORTNAME=	phonon
-PORTVERSION=	4.8.2
-PORTREVISION=	1
-CATEGORIES=	multimedia
-MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTNAME}-backend${PKGNAMESUFFIX}/${PORTVERSION}/src
-PKGNAMESUFFIX=	-gstreamer
-DISTNAME=	${PORTNAME}-backend${PKGNAMESUFFIX}-${PORTVERSION}
-DIST_SUBDIR=	KDE
+DISTVERSION=	4.10.0
+CATEGORIES=	multimedia kde
+MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTNAME}-backend-${PHONON_PLUGIN}/${DISTVERSION}
+DISTNAME=	${PORTNAME}-backend-${PHONON_PLUGIN}-${DISTVERSION}
+DIST_SUBDIR=	KDE/phonon
+PKGNAMESUFFIX=	-${PHONON_PLUGIN}-qt5
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The GStreamer backend for Phonon
+COMMENT=	GStreamer backend for Phonon
 
 LICENSE=	lgpl2.1
 
+USES=		cmake compiler:c++11-lang gl gnome kde:5 pkgconfig qt:5 tar:xz
 USE_GL=		gl
 USE_GNOME=	glib20 libxml2
 USE_GSTREAMER1=	yes
-USE_KDE4=	automoc4
-USE_QT4=	corelib gui opengl phonon \
-		qmake_build moc_build rcc_build uic_build
+USE_KDE=	ecm
+USE_QT=		core gui opengl phonon4 widgets x11extras \
+		buildtools_build qmake_build
 USE_XORG=	x11
-USES=		cmake pkgconfig tar:xz
+
+CMAKE_ON=	PHONON_BUILD_PHONON4QT5
 
 SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=	GST_PLUGINS
 GST_PLUGINS_DESC=	Install GStreamer plugins
-GST_PLUGINS_RUN_DEPENDS=	gstreamer1-plugins-all>=0:${PORTSDIR}/multimedia/gstreamer1-plugins-all
+GST_PLUGINS_RUN_DEPENDS=	gstreamer1-plugins-all>=0:multimedia/gstreamer1-plugins-all
 
-post-install:
-	${MKDIR} ${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend
-	${LN} -sf ${PREFIX}/lib/kde4/plugins/phonon_backend/phonon_gstreamer.so \
-		${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
+PHONON_PLUGIN=	gstreamer
+WRKSRC=		${WRKDIR}/${PORTNAME}-backend-${PHONON_PLUGIN}-${DISTVERSION}
 
 .include <bsd.port.mk>
