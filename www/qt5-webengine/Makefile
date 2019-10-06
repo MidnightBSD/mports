@@ -23,11 +23,14 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt 5 library to render web content
 
+BROKEN=	currently not building
+
 BUILD_DEPENDS=	bison:devel/bison \
 		ninja:devel/ninja \
 		yasm:devel/yasm \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
-		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		clang60:devel/llvm60
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libdbus-1.so:devel/dbus \
 		libevent.so:devel/libevent \
@@ -68,10 +71,13 @@ SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 SNDIO_VARS=		QMAKE_CONFIGURE_ARGS+=-sndio
 SNDIO_VARS_OFF=		QMAKE_CONFIGURE_ARGS+=-no-sndio
 
+CC=	clang60
+CXX=	clang60
+
 # We pass `norecursive' to USES=qmake because src/plugins/plugins.pro checks
 # whether webenginewidgets is available, which fails when qmake processes all
 # .pro files at once.
-USES=		gl gnome gperf jpeg python:2.7,build pkgconfig \
+USES=		compiler:c++17-lib gl gnome gperf jpeg python:2.7,build pkgconfig \
 		qmake:norecursive,outsource qt-dist:5,webengine shebangfix
 USE_GL=		gl
 USE_GNOME=	glib20 libxml2 libxslt
