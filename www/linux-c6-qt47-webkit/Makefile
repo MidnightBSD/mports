@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	qt47-webkit
 PORTVERSION=	4.7.2
 PORTREVISION=	4
@@ -13,7 +11,7 @@ COMMENT=	Qt WebKit implementation (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl3
 
-DESCR=		${.CURDIR}/../../devel/qt4/pkg-descr
+DESCR=		${.CURDIR}/../../devel/linux-c6-qt47/pkg-descr
 RPMVERSION=	1_18.el6
 USES=		linux:c6
 USE_LDCONFIG=	yes
