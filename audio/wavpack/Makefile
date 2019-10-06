@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	wavpack
 PORTVERSION=	5.1.0
 PORTREVISION=	1
