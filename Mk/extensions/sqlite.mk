@@ -12,7 +12,7 @@ SQLITE_VER?=	3
 
 
 # USE_SQLITE is specified incorrectly, so mark this as IGNORE
-.if ${_SQLITE_VER} == "3"
+.if ${SQLITE_VER} == 3
 .	if ${OSVERSION} < 2000
 LIB_DEPENDS+=	sqlite${_SQLITE_VER}:databases/sqlite${_SQLITE_VER}
 SQLITE_VER=	${_SQLITE_VER}
