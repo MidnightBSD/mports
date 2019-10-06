@@ -1,5 +1,5 @@
 PORTNAME?=	gimp-app
-PORTVERSION=	2.8.14
+PORTVERSION=	2.8.16
 PORTREVISION?=	3
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
@@ -7,7 +7,7 @@ MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
 DISTNAME=	gimp-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A GNU Image Manipulation Program
+COMMENT=	GNU Image Manipulation Program
 
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
@@ -45,7 +45,7 @@ LIBS+=		-L${LOCALBASE}/lib
 CPE_PRODUCT=	gimp
 CPE_VENDOR=	gnu
 
-PLIST_SUB+=	LIBVER=0.800.14
+PLIST_SUB+=	LIBVER=0.800.16
 
 .if !defined(GIMP_SLAVE)
 
