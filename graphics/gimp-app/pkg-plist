@@ -371,7 +371,6 @@ libexec/gimp/2.2/plug-ins/gradient-map
 libexec/gimp/2.2/plug-ins/grid
 libexec/gimp/2.2/plug-ins/guillotine
 libexec/gimp/2.2/plug-ins/help
-%%HELPBROWSER%%libexec/gimp/2.2/plug-ins/help-browser
 libexec/gimp/2.2/plug-ins/hot
 libexec/gimp/2.2/plug-ins/ifs-compose
 libexec/gimp/2.2/plug-ins/illusion
@@ -437,7 +436,6 @@ libexec/gimp/2.2/plug-ins/video
 libexec/gimp/2.2/plug-ins/warp
 libexec/gimp/2.2/plug-ins/waves
 libexec/gimp/2.2/plug-ins/web-browser
-%%HELPBROWSER%%libexec/gimp/2.2/plug-ins/web-page
 libexec/gimp/2.2/plug-ins/whirl-pinch
 libexec/gimp/2.2/plug-ins/wind
 man/man1/gimp-2.8.1.gz
