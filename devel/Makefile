@@ -856,6 +856,7 @@ SUBDIR += qt5-qdoc
 SUBDIR += qt5-qdoc-data
 SUBDIR += qt5-script
 SUBDIR += qt5-scripttools
+SUBDIR += qt5-scxml
 SUBDIR += qt5-testlib
 SUBDIR += qt5-uitools
 SUBDIR += qtcreator
