@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/accessibility/speech-dispatcher/Makefile 371241 2014-10-20 08:12:20Z marino $
-
 PORTNAME=	speech-dispatcher
-PORTVERSION=	0.8.6
+PORTVERSION=	0.8.8
 CATEGORIES=	accessibility audio
 MASTER_SITES=	http://devel.freebsoft.org/pub/projects/speechd/
 
