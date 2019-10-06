@@ -76,6 +76,7 @@ SUBDIR += listres
 SUBDIR += luit
 SUBDIR += lumina
 SUBDIR += lumina-core
+SUBDIR += lumina-coreutils
 SUBDIR += mkcomposecache
 SUBDIR += mlogind
 SUBDIR += numlockx
