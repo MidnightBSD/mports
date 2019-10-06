@@ -80,7 +80,7 @@ CGP_RUN_DEPENDS+=	\
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MTORCH_BLAS}
-USE_GCC=	6
+USE_GCC=	7
 .endif
 
 post-install:
