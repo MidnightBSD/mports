@@ -1,15 +1,14 @@
-PORTNAME=	canvas3d
+PORTNAME=	gamepad
 DISTVERSION=	${QT5_VERSION}
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt canvas3d module
+COMMENT=	Qt 5 Gamepad Module
 
-USES=		compiler:c++11-lang qmake qt-dist:5,canvas3d
-USE_QT=		core declarative gui network buildtools_build
-
+USES=		compiler:c++11-lang qmake:norecursive qt-dist:5,gamepad
+USE_QT=		core declarative gui buildtools_build
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 .include <bsd.port.mk>

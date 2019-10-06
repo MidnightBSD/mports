@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/hunspell/Makefile,v 1.30 2011/11/09 15:25:45 miwi Exp $
-
 PORTNAME=	hunspell
-PORTVERSION=	1.6.2
+PORTVERSION=	1.7.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 DIST_SUBDIR=	${PORTNAME}
