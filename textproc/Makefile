@@ -8,7 +8,6 @@ SUBDIR += aspell-ispell
 SUBDIR += bsdgrep
 SUBDIR += cdiff
 SUBDIR += clucene
-SUBDIR += clucene-qt5
 SUBDIR += diffutils
 SUBDIR += docbook
 SUBDIR += docbook-sgml
