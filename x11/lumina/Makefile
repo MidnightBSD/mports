@@ -15,8 +15,6 @@ RUN_DEPENDS=	lumina-core>=0:x11/lumina-core \
 		lumina-calculator>=0:deskutils/lumina-calculator \
 		lumina-fileinfo>=0:deskutils/lumina-fileinfo \
 		lumina-fm>=0:deskutils/lumina-fm \
-		lumina-mediaplayer>=0:deskutils/lumina-mediaplayer \
-		lumina-pdf>=0:deskutils/lumina-pdf \
 		lumina-screenshot>=0:deskutils/lumina-screenshot \
 		lumina-textedit>=0:deskutils/lumina-textedit
 
