@@ -7,6 +7,8 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for reporting diagnostic information about Qt and its environment
 
+LICENSE=	lgpl3
+
 USES=		compiler:c++11-lang qmake:outsource qt-dist:5,tools
 USE_QT=		core gui
 
