@@ -37,6 +37,7 @@ SUBDIR += jlj
 SUBDIR += ljclive
 SUBDIR += lumina-archiver
 SUBDIR += lumina-calculator
+SUBDIR += lumina-fileinfo
 SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += orage
