@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
