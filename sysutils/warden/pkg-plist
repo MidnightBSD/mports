@@ -1,40 +1,37 @@
-@dir warden
-@exec ln -fs /usr/local/warden/bin/warden /usr/local/bin/warden
-@exec ln -fs /usr/mports /usr/local/warden/ports
-@exec ln -fs /usr/local/warden/scripts/rc.d/wardenrc /usr/local/etc/rc.d/wardenrc
-warden/bin/warden
-warden/bin/warden-gui
-warden/conf/warden.conf
-warden/scripts/warden.sh
-warden/scripts/init-warden.sh
-warden/scripts/managejails.sh
-warden/scripts/newjailmenu.sh
-warden/scripts/rc.d/shutdown.sh
-warden/scripts/rc.d/wardenrc
-warden/scripts/rc.d/startup.sh
-warden/scripts/importjailmenu.sh
-warden/scripts/backend/setupusers.sh
-warden/scripts/backend/createjail.sh
-warden/scripts/backend/chrootjail.sh
-warden/scripts/backend/checkstatus.sh
-warden/scripts/backend/installinmate.sh
-warden/scripts/backend/deleteinmate.sh
-warden/scripts/backend/exportjail.sh
-warden/scripts/backend/mkinmate.sh
-warden/scripts/backend/deletejail.sh
-warden/scripts/backend/listjails.sh
-warden/scripts/backend/startjail.sh
-warden/scripts/backend/listpkgs.sh
-warden/scripts/backend/stopjail.sh
-warden/scripts/backend/importjail.sh
-@dirrm warden/bin
-@dirrm warden/conf
-@dirrmtry warden/export
-@dirrmtry warden/inmates
-@dirrmtry warden/jails
-@dirrm warden/scripts/backend
-@dirrm warden/scripts/rc.d
-@dirrm warden/scripts
-@dirrmtry warden/tmp
-@dirrmtry warden/worlds
-@dirrmtry warden
+bin/warden
+etc/warden.conf.dist
+etc/rc.d/wardenrc
+%%DATADIR%%/agent.png
+%%DATADIR%%/warden.png
+%%DATADIR%%/scripts/rc.d/wardenrc
+%%DATADIR%%/scripts/rc.d/startup.sh
+%%DATADIR%%/scripts/rc.d/shutdown.sh
+%%DATADIR%%/scripts/backend/checkupdates.sh
+%%DATADIR%%/scripts/backend/createjail.sh
+%%DATADIR%%/scripts/backend/createtemplate.sh
+%%DATADIR%%/scripts/backend/zfslistsnap.sh
+%%DATADIR%%/scripts/backend/zfsrevertsnap.sh
+%%DATADIR%%/scripts/backend/details.sh
+%%DATADIR%%/scripts/backend/zfsmksnap.sh
+%%DATADIR%%/scripts/backend/startjail.sh
+%%DATADIR%%/scripts/backend/chrootjail.sh
+%%DATADIR%%/scripts/backend/listjails.sh
+%%DATADIR%%/scripts/backend/listpbis.sh
+%%DATADIR%%/scripts/backend/cronsnap.sh
+%%DATADIR%%/scripts/backend/setupusers.sh
+%%DATADIR%%/scripts/backend/checkstatus.sh
+%%DATADIR%%/scripts/backend/functions.sh
+%%DATADIR%%/scripts/backend/fbsdupdate.sh
+%%DATADIR%%/scripts/backend/fbsdupgrade.sh
+%%DATADIR%%/scripts/backend/pkgupdate.sh
+%%DATADIR%%/scripts/backend/importjail.sh
+%%DATADIR%%/scripts/backend/stopjail.sh
+%%DATADIR%%/scripts/backend/zfsrmsnap.sh
+%%DATADIR%%/scripts/backend/zfsrmsnapdate.sh
+%%DATADIR%%/scripts/backend/listpkgs.sh
+%%DATADIR%%/scripts/backend/exportjail.sh
+%%DATADIR%%/scripts/backend/deletejail.sh
+%%DATADIR%%/scripts/backend/zfsclone.sh
+%%DATADIR%%/scripts/backend/zfscronsnap.sh
+%%DATADIR%%/linux-installs/debian-7-wheezy
+%%DATADIR%%/linux-installs/gentoo-stage3-i486

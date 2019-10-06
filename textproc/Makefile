@@ -208,7 +208,6 @@ SUBDIR += scrollkeeper
 SUBDIR += sdocbook-xml
 SUBDIR += sgmlformat
 SUBDIR += sgmls
-SUBDIR += soprano
 SUBDIR += sphinxsearch
 SUBDIR += teckit
 SUBDIR += texi2html

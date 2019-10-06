@@ -5,7 +5,6 @@ SUBDIR += apache24
 SUBDIR += aria2
 SUBDIR += awstats
 SUBDIR += bluefish
-SUBDIR += bookmarkbridge
 SUBDIR += bozohttpd
 SUBDIR += browser
 SUBDIR += browser-esr
