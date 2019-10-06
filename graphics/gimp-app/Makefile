@@ -14,7 +14,6 @@ LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 LIB_DEPENDS=	libpng.so:graphics/png \
-		libjpeg.so:graphics/jpeg \
 		libtiff.so:graphics/tiff \
 		liblcms2.so:graphics/lcms2 \
 		libgegl-0.2.so:graphics/gegl \
@@ -22,7 +21,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
 GNU_CONFIGURE=	yes
-USES+=	cpe	desktop-file-utils gettext gmake libtool pathfix \
+USES+=	cpe	desktop-file-utils gettext gmake jpeg libtool pathfix \
 		pkgconfig tar:bzip2
 USE_XORG=	xpm xmu xext
 USE_GNOME+=	intlhack gtk20
