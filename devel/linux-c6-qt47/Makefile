@@ -12,7 +12,6 @@ COMMENT=	Cross-platform application and UI framework (Linux CentOS ${LINUX_DIST_
 
 LICENSE=	gpl2
 
-DESCR=		${.CURDIR}/../qt4/pkg-descr
 RPMVERSION=	1_18.el6
 USES=		linux:c6
 USE_LDCONFIG=	yes
