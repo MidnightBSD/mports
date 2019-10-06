@@ -846,6 +846,7 @@ SUBDIR += qt5-assistant
 SUBDIR += qt5-buildtools
 SUBDIR += qt5-concurrent
 SUBDIR += qt5-core
+SUBDIR += qt5-dbus
 SUBDIR += qt5-designer
 SUBDIR += qt5-help
 SUBDIR += qt5-linguist
