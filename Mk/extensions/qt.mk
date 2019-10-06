@@ -130,9 +130,6 @@ _USE_QT_ALL=		assistant dbus declarative designer doc gui help \
 			scripttools sql sql-mysql sql-odbc sql-pgsql \
 			sql-sqlite2 sql-sqlite3 svg testlib webkit \
 			xml xmlpatterns
-.if ${ARCH} == amd64 || ${ARCH} == i386
-_USE_QT_ALL+=	sql-ibase
-.endif
 
 _USE_QT5_ONLY=		3d buildtools canvas3d charts concurrent connectivity \
 			core datavis3d diag examples gamepad \
@@ -297,7 +294,7 @@ qt-sql-pgsql_PATH=	${LOCALBASE}/${QT_PLUGINDIR_REL}/sqldrivers/libqsqlpsql.so
 
 qt-sql-sqlite3_PATH=	${LOCALBASE}/${QT_PLUGINDIR_REL}/sqldrivers/libqsqlite.so
 
-.  for db in ibase mysql odbc pgsql sqlite2 sqlite3 tds
+.  for db in mysql odbc pgsql sqlite2 sqlite3 tds
 qt-sql-${db}_PORT=	databases/${_QT_RELNAME}-sqldrivers-${db}
 qt-sql-${db}_PATH?=	${LOCALBASE}/${QT_PLUGINDIR_REL}/sqldrivers/libqsql${db:C/^sql//}.so
 .  endfor
