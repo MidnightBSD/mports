@@ -1,19 +1,14 @@
-# $MidnightBSD$
-# $FreeBSD: head/comms/qt5-sensors/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-
-PORTNAME= 	sensors
+PORTNAME=	sensors
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	comms
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt sensors module
 
-LICENSE=	gpl3
-
-USE_QT5=	core qml quick buildtools_build
-QT_DIST=	${PORTNAME}
-USES=		qmake
+USES=		compiler:c++11-lang qmake:norecursive qt-dist:5,sensors
+USE_QT=		core declarative buildtools_build
 
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 

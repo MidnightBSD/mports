@@ -1,5 +1,3 @@
-# $MidnightBSD$
-    
 COMMENT = Ports to support the X window system
 
 SUBDIR += appres
@@ -77,7 +75,7 @@ SUBDIR += linux-c7-xorg-libs
 SUBDIR += listres
 SUBDIR += luit
 SUBDIR += lumina
-SUBDIR += lumina-i18n
+SUBDIR += lumina-core
 SUBDIR += mkcomposecache
 SUBDIR += mlogind
 SUBDIR += numlockx
