@@ -37,7 +37,6 @@ SUBDIR += hinfo
 SUBDIR += hostapd
 SUBDIR += hping
 SUBDIR += htpdate
-SUBDIR += hupnp
 SUBDIR += ilbc
 SUBDIR += jags
 SUBDIR += jrdesktop

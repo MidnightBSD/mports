@@ -1,42 +1,37 @@
-# $MidnightBSD$
-
 PORTNAME=	qjson
-PORTVERSION=	0.8.1
+DISTVERSION=	0.9.0
 CATEGORIES=	devel
-MASTER_SITES=	SF
+PKGNAMESUFFIX=	-qt5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to manage JSON objects with Qt
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.lib
 
-USE_QT4=	corelib moc_build qmake_build rcc_build uic_build
-USES=		cmake tar:bzip2
+USES=		cmake compiler:c++11-lang pathfix qt:5
+USE_GITHUB=	yes
+GH_ACCOUNT=	flavio
 USE_LDCONFIG=	yes
+USE_QT=		core buildtools_build qmake_build
+CMAKE_OFF=	QT4_BUILD
+QT_SUFFIX=	-qt5
 
-PORTDOCS=	*
+_DOCSDIR=	${DOCSDIR}${QT_SUFFIX}
+DOCSDIR_REL=	${_DOCSDIR:S,^${PREFIX}/,,}
+PLIST_SUB+=	QT_SUFFIX="${QT_SUFFIX}" \
+		PORTVERSION="${PORTVERSION}"
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOXYGEN
+OPTIONS_SUB=	yes
 
-.include <bsd.mport.options.mk>
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
 
-.if ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's,/pkgconfig,/../libdata/pkgconfig,' \
-		${WRKSRC}/CMakeLists.txt
-
-post-build:
-.if ${PORT_OPTIONS:MDOCS}
+post-build-DOXYGEN-on:
 	cd ${WRKSRC}/doc && doxygen
-.endif
 
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} \* ${DOCSDIR}
-.endif
+post-install-DOXYGEN-on:
+	${MKDIR} ${STAGEDIR}${_DOCSDIR}
+	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${STAGEDIR}${_DOCSDIR}
 
 .include <bsd.port.mk>

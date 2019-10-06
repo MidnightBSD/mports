@@ -1,30 +1,19 @@
-#
-# $MidnightBSD$
-#
-
 PORTNAME=	qgit
-PORTVERSION=	2.3
-PORTREVISION=	1
+DISTVERSIONPREFIX=	${PORTNAME}-
+DISTVERSION=	2.8
+PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}4/${PORTVERSION}
-PKGNAMESUFFIX=	-qt4
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A graphical interface to git repositories
+COMMENT=	Graphical interface to git repositories
+
 LICENSE=	gpl2
 
-USES=		qmake tar:bzip2
-USE_QT4=	corelib gui moc_build rcc_build uic_build
-MAKE_JOBS_UNSAFE=	yes
+USES=		cmake compiler:c++11-lang qt:5
+USE_QT=		core gui widgets \
+		buildtools_build qmake_build
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
-
-PLIST_FILES=	bin/${PORTNAME}
-
-do-configure:
-	@cd ${WRKSRC} && ${QMAKE} ${PORTNAME}.pro
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/${PORTNAME} ${PREFIX}/bin
+USE_GITHUB=	yes
+GH_ACCOUNT=	tibirna
 
 .include <bsd.port.mk>

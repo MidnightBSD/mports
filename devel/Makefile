@@ -16,7 +16,6 @@ SUBDIR += autoconf-wrapper
 SUBDIR += autoconf213
 SUBDIR += autogen
 SUBDIR += automake
-SUBDIR += automoc4
 SUBDIR += autotools
 SUBDIR += awscli
 SUBDIR += b2
