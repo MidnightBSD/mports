@@ -9,6 +9,8 @@ COMMENT=	Zstandard - Fast real-time compression algorithm
 LICENSE=	bsd3 gpl2
 LICENSE_COMB=	dual
 
+FAKE_OPTS=	trueprefix
+
 OPTIONS_DEFINE=	LZ4
 OPTIONS_DEFAULT=LZ4
 
@@ -26,7 +28,9 @@ USE_GITHUB=	yes
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 LZ4_USES=		localbase:ldflags
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|INSTALL_|BSD_&|' ${WRKSRC}/lib/Makefile ${WRKSRC}/programs/Makefile
+post-extract:
+	@${REINPLACE_CMD} -e 's|INSTALL_|BSD_&|' -e 's|DragonFly|MidnightBSD|g' \
+		 ${WRKSRC}/lib/Makefile ${WRKSRC}/programs/Makefile
+	
 
 .include <bsd.port.mk>
