@@ -124,7 +124,7 @@ CONFIGURE_ARGS+=--disable-pinentry-tty
 .endif
 
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
+	-${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
 		${STAGEDIR}${PREFIX}/share/info/pinentry.info
 
 .endif # !defined(PINENTRY_GUI)
