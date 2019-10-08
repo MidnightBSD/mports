@@ -48,7 +48,10 @@ PHP_EXT_DIR!=	${PHPBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${PHPBA
 DEFAULT_PHP_VER?=	${PHP_DEFAULT:S/.//}
 
 PHP_VER?=	${DEFAULT_PHP_VER}
-.    if ${PHP_VER} == 72
+.    if ${PHP_VER} == 73
+PHP_EXT_DIR=   20180731
+PHP_EXT_INC=    pcre spl
+.    elif ${PHP_VER} == 72
 PHP_EXT_DIR=   20170718
 PHP_EXT_INC=    pcre spl
 .    elif ${PHP_VER} == 71
