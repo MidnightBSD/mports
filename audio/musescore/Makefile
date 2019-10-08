@@ -16,7 +16,7 @@ LIB_DEPENDS=	libmp3lame.so:audio/lame \
 		libsndfile.so:audio/libsndfile \
 		libvorbis.so:audio/libvorbis
 
-USES=		cmake:outsource compiler:c++11-lib desktop-file-utils \
+USES=		cmake compiler:c++11-lib desktop-file-utils \
 		pkgconfig shared-mime-info zip
 USE_QT5=	concurrent declarative designer help network scripttools svg \
 		webkit xml xmlpatterns \
