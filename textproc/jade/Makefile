@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	jade
 PORTVERSION=	1.2.1
 PORTREVISION=	13
@@ -19,7 +17,7 @@ LICENSE=	mit
 
 CONFLICTS=	sp-1.*
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
 USES=		desthack libtool gmake
 GNU_CONFIGURE=	yes

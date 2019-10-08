@@ -1086,12 +1086,12 @@ PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 .if defined(PATCH_DEBUG)
 PATCH_DEBUG_TMP=	yes
-PATCH_ARGS?=	-d ${PATCH_WRKSRC} -E ${PATCH_STRIP}
-PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -d ${PATCH_WRKSRC} -E ${PATCH_DIST_STRIP}
+PATCH_ARGS?=	-E ${PATCH_STRIP}
+PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
 .else
 PATCH_DEBUG_TMP=	no
-PATCH_ARGS?=	-d ${PATCH_WRKSRC} --forward --quiet -E ${PATCH_STRIP}
-PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -d ${PATCH_WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP}
+PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
+PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
 .endif
 .if !defined(QUIET)
 PATCH_SILENT=		PATCH_SILENT=yes
@@ -1508,8 +1508,10 @@ _PATCH_SITES_ALL+=	${_PATCH_SITES_${_group}}
 .		endfor
 .	endif
 _PATCHFILES:=	${_PATCHFILES} ${_P_file}
-.	if !empty(_P_strip)
-_PATCH_DIST_STRIP_CASES:=	${_PATCH_DIST_STRIP_CASES} ("${_P_file}") printf %s "${_P_strip}" ;;
+.	if empty(_P_strip)
+_PATCHFILES2:=	${_PATCHFILES2} ${_P_file}
+.	else
+_PATCHFILES2:=	${_PATCHFILES2} ${_P_file}:${_P_strip}
 .	endif
 .endfor
 _P_groups=
@@ -1587,13 +1589,13 @@ _MASTER_SITES_ENV+=	_MASTER_SITES_${_group}="${_MASTER_SITES_${_group}}"
 .		endfor
 .	endif
 .endfor
-_PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT="${_PATCH_SITES_DEFAULT}"
+_PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT=${_PATCH_SITES_DEFAULT:Q}
 .for _F in ${PATCHFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
 .	if !empty(_F_TEMP)
 .		for _group in ${_F_TEMP:S/,/ /g}
 .			if defined(_PATCH_SITES_${_group})
-_PATCH_SITES_ENV+=	_PATCH_SITES_${_group}="${_PATCH_SITES_${_group}}"
+_PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
 .			endif
 .		endfor
 .	endif
