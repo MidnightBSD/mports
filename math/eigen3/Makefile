@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	eigen
 DISTVERSION=	3.3.5
 CATEGORIES=	math
@@ -16,7 +14,7 @@ LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING.LGPL
 LICENSE_FILE_mpl=	${WRKSRC}/COPYING.MPL2
 
 CMAKE_ARGS=	-DPKGCONFIG_INSTALL_DIR:PATH="${PREFIX}/libdata/pkgconfig"
-USES=		cmake:outsource tar:bzip2
+USES=		cmake tar:bzip2
 NO_BUILD=	yes
 NO_ARCH=	yes
 
