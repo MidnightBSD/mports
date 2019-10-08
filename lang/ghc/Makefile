@@ -42,6 +42,7 @@ TAR=		env LC_ALL=en_US.UTF-8 /usr/bin/tar
 # This is better fixed in the ${WRKSRC}/mk/build.mk.
 # You can view below.
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 OPTIONS_DEFINE=			PROFILE DYNAMIC LLVM DOCS
 OPTIONS_SINGLE=			C_Compiler
