@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	yajl
 PORTVERSION=	2.1.0
 PORTREVISION=	2
@@ -18,7 +16,7 @@ WRKSRC=		${WRKDIR}/yajl-2.1.0
 CFLAGS+=	-g -O0
 
 USE_LDCONFIG=	yes
-USES=		cmake:outsource
+USES=		cmake
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
