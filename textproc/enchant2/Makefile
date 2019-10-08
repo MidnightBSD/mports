@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	enchant
 PORTVERSION=	2.2.3
 CATEGORIES=	textproc gnome
@@ -37,7 +35,7 @@ HSPELL_LIB_DEPENDS=	libhspell.so.0:hebrew/hspell
 HSPELL_CONFIGURE_WITH=	hspell
 HSPELL_CONFIGURE_ON=	--with-hspell-dir=${LOCALBASE}/share/hspell
 
-HUNSPELL_LIB_DEPENDS=	libhunspell-1.6.so:textproc/hunspell
+HUNSPELL_LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell
 HUNSPELL_CONFIGURE_WITH=	hunspell
 HUNSPELL_CONFIGURE_ON=	--with-hunspell-dir=${LOCALBASE}/share/hunspell
 
