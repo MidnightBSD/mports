@@ -11,7 +11,6 @@ WRKSRC_SUBDIR=	src-sh/libsh
 USES=		pkgconfig
 NO_BUILD=	yes
 NO_ARCH=	yes
-MAKE_ARGS=	PREFIX=${STAGEDIR}${PREFIX}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	pcbsd
