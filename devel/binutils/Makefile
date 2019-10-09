@@ -10,9 +10,9 @@ COMMENT=	GNU binary tools
 LICENSE=	gpl3 lgpl3
 LICENSE_COMB=	multi
 
-EXTRA_PATCHES=	${FILESDIR}/binutils-do-not-provide-shared-section-symbols.patch:-p1
-BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:${PORTSDIR}/math/gmp \
-		${LOCALBASE}/lib/libmpfr.so:${PORTSDIR}/math/mpfr
+#EXTRA_PATCHES=	${FILESDIR}/binutils-do-not-provide-shared-section-symbols.patch:-p1
+BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:math/gmp \
+		${LOCALBASE}/lib/libmpfr.so:math/mpfr
 
 CONFLICTS=	libbfd-[0-9]*
 
@@ -39,7 +39,7 @@ CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-mpfr=${LOCALBASE} \
 			--enable-targets=all \
 			--enable-threads=yes \
-				--enable-relro=no
+			--enable-relro=yes
 INFO=		as \
 		binutils \
 		gprof \
@@ -57,17 +57,18 @@ MAKE_ARGS+=	LIBDL=""
 OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
+STATIC_LDFLAGS+=      -all-static
 
 .include <bsd.port.pre.mk>
 
 # Actual earliest version may differ slightly
-#.if ${OSVERSION} >= 98000 && !defined(PKGNAMEPREFIX) && (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 34 || ${COMPILER_TYPE} == gcc)
-#CONFIGURE_ARGS+=	--enable-gold --enable-plugins
-#CXXFLAGS+=	-Wno-c++11-narrowing
-#PLIST_SUB+=	GOLD=""
-#.else
+.if ${OSVERSION} >= 98000 && !defined(PKGNAMEPREFIX) && (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 34 || ${COMPILER_TYPE} == gcc)
+CONFIGURE_ARGS+=	--enable-gold --enable-plugins
+CXXFLAGS+=	-Wno-c++11-narrowing
+PLIST_SUB+=	GOLD=""
+.else
 PLIST_SUB+=	GOLD="@comment "
-#.endif
+.endif
 
 CONFIGURE_ARGS+=      --disable-initfini-array
 .if ${ARCH} == "amd64"
