@@ -20,7 +20,7 @@ post-patch:
 	@${REINPLACE_CMD} '/setup_requires/d' ${WRKSRC}/${PYSETUP}
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_cffi__*.so
+	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_cffi__*.so
 
 do-test:
 	@(cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest)
