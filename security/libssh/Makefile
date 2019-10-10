@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libssh
 DISTVERSION=	0.7.5
 CATEGORIES=	security devel
@@ -20,7 +18,7 @@ OPTIONS_RADIO_CRYPTO=	GCRYPT OPENSSL
 OPTIONS_DEFAULT=	OPENSSL STATIC
 OPTIONS_SUB=	yes
 
-USES=		cmake:outsource cpe tar:xz ssl
+USES=		cmake cpe tar:xz ssl
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DWITH_EXAMPLES:BOOL=OFF \
