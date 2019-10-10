@@ -42,6 +42,7 @@ PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
 TIFF_MESON_TRUE=	tiff
 TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
+TIFF_USES=		jpeg
 
 X11_MESON_TRUE=		x11
 X11_USE=		xorg=x11
