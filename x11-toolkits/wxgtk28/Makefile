@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	wx
 PORTVERSION=	2.8.12
 PORTREVISION?=	1
@@ -13,12 +11,12 @@ COMMENT?=	The wxWidgets GUI toolkit with GTK+ bindings
 
 LICENSE=	lgpl
 
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png\
-		libjpeg.so:${PORTSDIR}/graphics/jpeg\
-		libtiff.so:${PORTSDIR}/graphics/tiff\
-		libexpat.so:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libpng.so:graphics/png\
+		libtiff.so:graphics/tiff\
+		libexpat.so:textproc/expat2
 
-USES=		compiler iconv gmake pkgconfig tar:bzip2
+USES=		compiler:c++11-lang gl iconv gmake jpeg localbase pkgconfig tar:bzip2
+USE_CXXSTD=	gnu++98
 USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		glu
 USE_GNOME=	gtk20 pangox-compat
@@ -35,9 +33,7 @@ CONFIGURE_ARGS=	--with-libpng=sys\
 		--disable-backtrace\
 		--enable-graphics_ctx
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 PLIST=		${.CURDIR}/pkg-plist
 
 WXGTK_FLAVOR?=	gtk2
@@ -60,13 +56,13 @@ PLIST_SUB+=     GSTREAMER="@comment "
 
 .if ${PORT_OPTIONS:MMSPACK}
 CONFIGURE_ARGS+=--with-libmspack
-LIB_DEPENDS+=	libmspack.so:${PORTSDIR}/archivers/libmspack
+LIB_DEPENDS+=	libmspack.so:archivers/libmspack
 .else
 CONFIGURE_ARGS+=--without-libmspack
 .endif
 
 .if ${WXGTK_FLAVOR} != "gtk2-common"
-RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/wx.h:${PORTSDIR}/x11-toolkits/wxgtk28-common
+RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/wx.h:x11-toolkits/wxgtk28-common
 .endif
 
 .if ${WXGTK_FLAVOR:M*-common} != ""
@@ -83,7 +79,7 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 .if ${WXGTK_FLAVOR} != "gtk2-contrib-common"
 USE_WX=		2.8
-RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/stc/stc.h:${PORTSDIR}/x11-toolkits/wxgtk28-contrib-common
+RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/stc/stc.h:x11-toolkits/wxgtk28-contrib-common
 
 .if ${WXGTK_FLAVOR:M*-unicode*} != ""
 WX_UNICODE=	yes
