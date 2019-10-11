@@ -103,6 +103,7 @@ SUBDIR += glib12
 SUBDIR += glib20
 SUBDIR += glib20-reference
 SUBDIR += glibmm
+SUBDIR += glog
 SUBDIR += gmake
 SUBDIR += gnome-common
 SUBDIR += gnome-js-common
