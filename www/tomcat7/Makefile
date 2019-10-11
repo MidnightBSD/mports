@@ -51,24 +51,25 @@ pre-patch:
 
 do-install:
 	@${ECHO_MSG} -n ">> Creating destination directory..."
-	@${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/logs
-	@${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/endorsed
+	@${MKDIR} ${TOMCAT_HOME}/logs
+	@${MKDIR} ${TOMCAT_HOME}/endorsed
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Copying files to destination directory..."
-	@${CP} -R ${WRKSRC}/* ${FAKE_DESTDIR}${TOMCAT_HOME}
+	@${CP} -R ${WRKSRC}/* ${TOMCAT_HOME}
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Fixing permissions..."
-	@${FIND} ${FAKE_DESTDIR}${TOMCAT_HOME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${FIND} ${TOMCAT_HOME} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
 	@${ECHO_MSG} " [ DONE ]"
 
 post-install:
-	@${RM} ${FAKE_DESTDIR}${TOMCAT_HOME}/bin/*.bat
-	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/conf &&\
+	@${RM} ${TOMCAT_HOME}/bin/*.bat
+	(cd ${TOMCAT_HOME}/conf &&\
 		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-on:
+	${MKDIR} ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps
 	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
 		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
 			${MV} $$f $$f.sample; done)
