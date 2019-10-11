@@ -3,16 +3,17 @@
 
 PORTNAME=	lcms
 PORTVERSION=	1.19
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION} \
-		http://www.littlecms.com/
+MASTER_SITES=	SF \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light Color Management System -- a color management library
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	DOCS JPEGICC TIFFICC
 OPTIONS_DEFAULT=JPEGICC TIFFICC
@@ -20,21 +21,18 @@ OPTIONS_SUB=	yes
 JPEGICC_DESC=	Build color profile applier for JPEG
 TIFFICC_DESC=	Build color profile applier for TIFF
 
-CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-LDFLAGS+=	-L${LOCALBASE}/lib
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		libtool pathfix
+USES=		libtool localbase:ldflags pathfix
 
 PORTDOCS=	*
 
-JPEGICC_CONFIGURE_OFF=	--without-jpeg
-JPEGICC_CONFIGURE_ON=	--with-jpeg=${LOCALBASE}
-JPEGICC_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-TIFFICC_CONFIGURE_OFF=	--without-tiff
-TIFFICC_CONFIGURE_ON=	--with-tiff=${LOCALBASE}
-TIFFICC_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
+JPEGICC_CONFIGURE_WITH=	jpeg
+JPEGICC_USES=		jpeg
+TIFFICC_CONFIGURE_WITH=	tiff
+TIFFICC_LIB_DEPENDS=	libtiff.so:graphics/tiff
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| python samples||' ${WRKSRC}/Makefile.in
