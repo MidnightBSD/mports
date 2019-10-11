@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/databases/percona55-server/Makefile 461609 2018-02-12 18:31:47Z flo $
-
 PORTNAME?=	percona
 DISTVERSION=	5.5.59-38.11
 PORTREVISION?=	0
@@ -16,7 +13,8 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 SLAVEDIRS=	databases/percona55-client
-USES=		bison cmake:noninja readline shebangfix
+USES=		bison cmake:insource,noninja compiler:c11 readline shebangfix
+USE_CXXSTD=	gnu++98
 
 CXXFLAGS+=	${CPPFLAGS}
 
@@ -54,6 +52,7 @@ SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 .if ${PORT_OPTIONS:MOPENSSL}
 CMAKE_ARGS+=	-DWITH_SSL=system
 OPENSSL_USES=	ssl
+EXTENSIONS+=	ssl
 .endif
 .if ${PORT_OPTIONS:MFASTMTX}
 CMAKE_ARGS+=	-DWITH_FAST_MUTEXES=1
