@@ -320,6 +320,7 @@ QA_ENV+=                USESTERMINFO=yes
 STRIP=	#none
 .endif
 
+.include "${MPORTCOMPONENTS}/default-versions.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
 
 # Start of pre-makefile section.
@@ -328,8 +329,6 @@ STRIP=	#none
 .include "${MPORTCOMPONENTS}/sanity.mk"
 
 _PREMKINCLUDED=		yes
-
-.include "${MPORTCOMPONENTS}/default-versions.mk"
 
 .if defined(PORTVERSION)
 .if ${PORTVERSION:M*[-_,]*}x != x
