@@ -25,8 +25,6 @@
 # RUN_DEPENDS		- are added if needed
 #
 
-.include "${PORTSDIR}/Mk/components/default-versions.mk"
-
 .if !defined(_INCLUDE_USES_SSL_MK)
 _INCLUDE_USES_SSL_MK=	yes
 
