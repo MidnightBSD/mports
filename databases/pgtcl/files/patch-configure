@@ -1,6 +1,6 @@
---- configure.orig	2014-09-12 22:03:04 UTC
-+++ configure
-@@ -4261,20 +4261,7 @@ $as_echo "#define AC_APPLE_UNIVERSAL_BUILD 1" >>confde
+--- configure.orig	2014-09-12 18:03:04.000000000 -0400
++++ configure	2019-10-10 22:36:37.845454000 -0400
+@@ -4261,20 +4261,7 @@
   esac
  
      if test "${TEA_PLATFORM}" = "unix" ; then
@@ -21,3 +21,21 @@
  
      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lieee" >&5
  $as_echo_n "checking for main in -lieee... " >&6; }
+@@ -5836,7 +5823,7 @@
+ 	    UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+ 	    TCL_LIB_VERSIONS_OK=nodots
+ 	    ;;
+-	FreeBSD-*)
++	MidnightBSD-*|FreeBSD-*)
+ 	    # FreeBSD 3.* and greater have ELF.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="ld -Bshareable -x"
+@@ -6302,7 +6289,7 @@
+ 		    ;;
+ 		IRIX*)
+ 		    ;;
+-		NetBSD-*|FreeBSD-*)
++		NetBSD-*|FreeBSD-*|MidnightBSD-*)
+ 		    ;;
+ 		Darwin-*)
+ 		    ;;
