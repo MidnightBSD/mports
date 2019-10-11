@@ -83,9 +83,9 @@ CONFIGURE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}"
 BUILD_DEPENDS+=	gnustep-make>0:devel/gnustep-make
 .include "${PORTSDIR}/Mk/extensions/objc.mk"
 
-do-build:
-	@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+#do-build:
+#@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+#		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 .  endif
 
