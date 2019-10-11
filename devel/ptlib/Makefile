@@ -20,6 +20,8 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
+NO_TEST=	yes
+
 CONFIGURE_ARGS+=--enable-audio \
 		--enable-ipv6 \
 		--enable-exceptions \
