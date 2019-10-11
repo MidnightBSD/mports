@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME?=	mariadb
-PORTVERSION=	5.5.59
-PORTREVISION?=	1
+PORTVERSION=	5.5.65
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
 		http://mirrors.supportex.net/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
