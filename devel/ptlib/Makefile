@@ -13,7 +13,6 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 CONFLICTS=	pwlib-1.*
 
-USE_GCC=	7
 USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
 		pathfix pkgconfig ssl tar:xz
 GNU_CONFIGURE=	yes
