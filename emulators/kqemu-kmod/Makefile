@@ -18,7 +18,7 @@ COMMENT=	Kernel Accelerator for QEMU CPU Emulator
 LICENSE=	gpl2
 
 HAS_CONFIGURE=	yes
-USE_GCC=	any
+USE_GCC=	7
 USES=		gmake
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 
