@@ -1,37 +1,34 @@
-# $MidnightBSD$
-
 PORTNAME=	phoronix-test-suite
 DISTVERSIONPREFIX=	v
-DISTVERSION=	8.2.0
+DISTVERSION=	9.0.1
 CATEGORIES=	benchmarks
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Phoronix Benchmarking Suite
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	sudo:security/sudo
 
-USES=		php:cli,build python
+USES=		php:cli,build,flavors python
 USE_GITHUB=	yes
 USE_PHP=	curl dom gd json openssl pcntl posix simplexml zip zlib
 NO_BUILD=	yes
-
-RUN_DEPENDS+=	fpdf>0:print/fpdf
-RUN_DEPENDS+=	cmake:devel/cmake
 
 PORTDATA=	*
 PORTDOCS=	*
 
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=	BASH_COMPLETIONS X11 DOCS
+OPTIONS_DEFINE=	BASH_COMPLETIONS DOCS X11
 OPTIONS_DEFAULT=	X11
 OPTIONS_SUB=	yes
 
 BASH_COMPLETIONS_DESC=	Install bash completions
 BASH_COMPLETIONS_CONFIGURE_ON=	WITH_BASH_COMPLETIONS=yes
-X11_DESC=		Install X11 icons and mimetypes
+X11_DESC=	Install X11 icons and mimetypes
 X11_USES=	desktop-file-utils shared-mime-info
 X11_CONFIGURE_OFF=	WITHOUT_X11=yes
 
