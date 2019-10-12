@@ -1,5 +1,6 @@
 PORTNAME=	viewvc
 DISTVERSION=	1.1.27
+PORTREVISION=	1
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
