@@ -1,11 +1,13 @@
 PORTNAME=	viewvc
-PORTVERSION=	1.1.27
+DISTVERSION=	1.1.27
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
 
 LICENSE=	bsd2
+
+USES=		cpe python:2.7
 
 NO_OPTIONS_SORT=	yes
 OPTIONS_DEFINE=		WEBSRV APMOD SVN MYSQL
@@ -22,14 +24,12 @@ APMOD_DESC=	depend on optional Apache module
 MODWSGI3_DESC=	Enable mod_wsgi3 support
 MODPYTHON3_DESC=Enable mod_python3 support
 
-USES=		cpe
 USE_GITHUB=	yes
 CPE_VENDOR=	viewvc
 CPE_PRODUCT=	viewvc
 
 NO_BUILD=	yes
 USE_RC_SUBR=	viewvc
-USE_PYTHON=	2
 SUB_FILES=	pkg-message
 SUB_LIST=	INSTDIR="${PREFIX}/${INSTDIR}" \
 		PYTHON_CMD=${PYTHON_CMD} \
