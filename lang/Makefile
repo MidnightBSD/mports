@@ -71,7 +71,6 @@ SUBDIR += python3
 SUBDIR += python34
 SUBDIR += python37
 SUBDIR += python27
-SUBDIR += qt5-qml
 SUBDIR += referenceassemblies-pcl
 SUBDIR += ruby22
 SUBDIR += ruby23
