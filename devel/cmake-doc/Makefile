@@ -15,7 +15,7 @@ BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
 
 NO_ARCH=	yes
-USES=		cmake qt:5
+USES=		cmake qt:5 python:2.7
 USE_QT=		help_build
 USE_LOCALE=	en_US.UTF-8
 
