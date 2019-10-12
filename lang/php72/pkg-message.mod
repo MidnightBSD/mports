@@ -12,8 +12,3 @@ You should add the following to your Apache configuration file:
 </FilesMatch>
 
 *********************************************************************
-
-If you are building PHP-based ports in poudriere(8) with ZTS enabled,
-add WITH_MPM=event to /etc/make.conf to prevent build failures.
-
-*********************************************************************

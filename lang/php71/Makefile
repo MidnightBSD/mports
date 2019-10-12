@@ -13,7 +13,6 @@ COMMENT=	PHP Scripting Language
 LICENSE=	php
 
 USES+=		tar:xz cpe
-#USE_GCC=        4.8
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 
@@ -84,7 +83,7 @@ CONFIGURE_ARGS+=--enable-fpm \
 .if defined(PKGNAMEPREFIX)
 USES+=	php
 PHP_VER=	71
-IGNORE_WITH_PHP=	55 56 70
+IGNORE_WITH_PHP=	72 73
 USE_APACHE=	22+
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
