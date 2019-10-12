@@ -42,6 +42,7 @@ SUBDIR += cmake-doc
 SUBDIR += cmake-fedora
 SUBDIR += cmake-gui
 SUBDIR += cmake-modules-webos
+SUBDIR += concurrencykit
 SUBDIR += courier-unicode
 SUBDIR += cppunit
 SUBDIR += cscope
