@@ -119,6 +119,7 @@ SUBDIR += pam_helper
 SUBDIR += pam_ldap
 SUBDIR += pam_yubico
 SUBDIR += pecl-gnupg
+SUBDIR += pecl-mcrypt
 SUBDIR += php71-filter
 SUBDIR += php71-hash
 SUBDIR += php71-mcrypt
