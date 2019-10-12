@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # Provide support for MySQL
 # Feature:	mysql
 # Usage:	USES=mysql or USES=mysql:args
@@ -24,8 +22,6 @@
 
 .if !defined(_INCLUDE_USES_MYSQL_MK)
 _INCLUDE_USES_MYSQL_MK=	yes
-
-.include "${PORTSDIR}/Mk/components/default-versions.mk"
 
 .if !empty(mysql_ARGS)
 .undef _WANT_MYSQL_VER
@@ -74,9 +70,10 @@ MYSQL57p_LIBVER=	20
 MYSQL80_LIBVER=		21
 MYSQL102m_LIBVER=	3
 MYSQL103m_LIBVER=	3
+MYSQL104m_LIBVER=	3
 
 # Setting/finding MySQL version we want.
-.if exists(${LOCALBASE}/bin/mysql) && !defined(PACKAGE_BUILDING)
+.if exists(${LOCALBASE}/bin/mysql) && !defined(MAGUS)
 _MYSQL!=	${LOCALBASE}/bin/mysql_config --version | ${SED} -e 's/\([0-9]\{1,2\}\)\.\([0-9]*\).*/\1\2/'
 _PERCONA!=	${LOCALBASE}/bin/mysql --version | ${GREP} Percona | wc -l
 _MARIADB!=	${LOCALBASE}/bin/mysql --version | ${GREP} MariaDB | wc -l
