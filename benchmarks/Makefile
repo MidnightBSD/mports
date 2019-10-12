@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Benchmarking tools
 
 SUBDIR += blogbench
@@ -25,5 +23,7 @@ SUBDIR += raidtest
 SUBDIR += ramspeed
 SUBDIR += scimark2c
 SUBDIR += siege
+SUBDIR += webbench
+SUBDIR += wrk
 
 .include <bsd.port.subdir.mk>
