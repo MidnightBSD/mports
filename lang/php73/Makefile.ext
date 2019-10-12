@@ -1,5 +1,3 @@
-# $FreeBSD: head/lang/php73/Makefile.ext 489349 2019-01-05 15:47:56Z rene $
-
 COMMENT=	The ${PHP_MODNAME} shared extension for php
 
 USES+=	php:ext,noflavors
@@ -13,6 +11,8 @@ PATCHDIR=	${.CURDIR}/files
 PLIST=		${NONEXISTENT}
 
 EXTRACT_AFTER_ARGS?=	${EXTSUBDIR}
+
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
 
 .if ${PHP_MODNAME} == "bcmath"
 CONFIGURE_ARGS+=--enable-bcmath
@@ -449,7 +449,7 @@ CONFIGURE_ARGS+=--enable-zip \
 CONFIGURE_ARGS+=--with-zlib=/usr
 .endif
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PHP_MODNAME} == "dba"
 .	if empty(PORT_OPTIONS:MCDB)
