@@ -126,7 +126,6 @@ SUBDIR += py-oauth2
 SUBDIR += py-pysocks
 SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
-SUBDIR += py-twitter
 SUBDIR += py-twitter-tools
 SUBDIR += py-urllib3
 SUBDIR += qt5-network
