@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	vpnc-scripts
-PORTVERSION=	20150318
+PORTVERSION=	20190611
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.infradead.org/pub/${PORTNAME}/ \
-		http://mirrors.rit.edu/zi/
+		ZI
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of scripts to setup routes and other changes for a VPN
