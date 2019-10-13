@@ -11,10 +11,10 @@ COMMENT=	Shell front end for the duplicity backup tool
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/gpl-2.0.txt
 
-RUN_DEPENDS=	duplicity:sysutils/duplicity \
+RUN_DEPENDS=	duplicity:sysutils/duplicity@${PY_FLAVOR} \
 		bash:shells/bash
 
-USES=		python tar:tgz
+USES=		python:2.7 tar:tgz
 
 NO_ARCH=	yes
 NO_BUILD=	yes
