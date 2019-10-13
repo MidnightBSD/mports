@@ -155,8 +155,8 @@ post-build:
 	@${ECHO_CMD} -n "PHP_EXT_DIR=" >> ${WRKDIR}/php.conf
 	@${SH} ${WRKSRC}/scripts/php-config --extension-dir | ${SED} -ne 's,^${PREFIX}/lib/php/,,p' >> ${WRKDIR}/php.conf
 
-test: build
-	@(cd ${WRKSRC} && ${MAKE} test)
+#test: build
+#	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
