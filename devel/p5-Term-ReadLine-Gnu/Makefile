@@ -15,6 +15,8 @@ USE_PERL5=	configure
 
 CFLAGS+=	${CPPFLAGS}
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Term/ReadLine/Gnu/Gnu.so
 
