@@ -14,6 +14,8 @@ USES+=		tar:xz cpe gnome
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 
+NO_TEST=	yes
+
 .if !defined(PKGNAMESUFFIX)
 LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 		libargon2.so:security/libargon2
