@@ -74,6 +74,7 @@ SUBDIR += python27
 SUBDIR += referenceassemblies-pcl
 SUBDIR += ruby22
 SUBDIR += ruby23
+SUBDIR += ruby26
 SUBDIR += scala
 SUBDIR += spidermonkey170
 SUBDIR += spidermonkey185
