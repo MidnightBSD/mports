@@ -183,11 +183,11 @@ post-install-WX-off:
 	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/wx-*
 
 post-fake:
-	${FIND} ${PREFIX}/lib/${ERLANG_LIB}/* -type d -empty -delete
-	@cd ${PREFIX}; ${FIND} lib/${ERLANG_LIB}/* ${DATADIR_REL}/* -type f -o -type l \
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/${ERLANG_LIB}/* -type d -empty -delete
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} lib/${ERLANG_LIB}/* ${DATADIR_REL}/* -type f -o -type l \
 		| ${SORT} >> ${TMPPLIST}
 	if [ -d ${DOCSDIR} ]; then \
-		@cd ${PREFIX}; ${FIND} ${DOCSDIR_REL}/* -name \*.pdf \
+		@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} ${DOCSDIR_REL}/* -name \*.pdf \
 			| ${SORT} >> ${TMPPLIST}; \
 	fi
 
