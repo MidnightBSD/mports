@@ -19,6 +19,8 @@ USES=		cpe ncurses:base pathfix pkgconfig readline:port tar:xz iconv ssl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
+NO_TEST=	yes
+
 CPE_VENDOR=	python
 CPE_PRODUCT=	${CPE_VENDOR}
 CPE_VERSION=	${PORTVERSION}
