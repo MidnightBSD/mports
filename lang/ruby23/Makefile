@@ -14,9 +14,9 @@ LICENSE=	bsd2 ruby
 LICENSE_COMB=	dual
 
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
-LIB_DEPENDS=	libyaml.so:${PORTSDIR}/textproc/libyaml
-BUILD_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
-RUN_DEPENDS=	libffi>=0:${PORTSDIR}/devel/libffi
+LIB_DEPENDS=	libyaml.so:textproc/libyaml
+BUILD_DEPENDS=	libffi>=0:devel/libffi
+RUN_DEPENDS=	libffi>=0:devel/libffi
 
 FAKE_OPTS=	trueprefix
 
@@ -92,8 +92,8 @@ CONFIGURE_ENV=	debugflags=
 
 MAKE_JOBS_UNSAFE=	yes
 
-BUILD_DEPENDS+=	readline>=0:${PORTSDIR}/devel/readline
-RUN_DEPENDS+=	readline>=0:${PORTSDIR}/devel/readline
+BUILD_DEPENDS+=	readline>=0:devel/readline
+RUN_DEPENDS+=	readline>=0:devel/readline
 CONFIGURE_ARGS+=	--disable-libedit --with-readline-prefix=${LOCALBASE}
 
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
