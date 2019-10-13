@@ -1,72 +1,56 @@
-# $MidnightBSD$
-
 PORTNAME=	ncftp
-PORTVERSION=	3.2.5
-PORTREVISION?=	1
-CATEGORIES=	ftp ipv6
+PORTVERSION=	3.2.6
+PORTREVISION?=	0
+CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/ \
 		ftp://ftp.mirrorservice.org/sites/ftp.ncftp.com/ncftp/
 DISTNAME=	ncftp-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	ftp replacement with advanced user interface
+COMMENT=	FTP client with advanced user interface
 
-LICENSE=	clartistic
-LICENSE_NAME=	The Clarified Artistic License
+LICENSE=	artistic
 LICENSE_FILE=	${WRKSRC}/doc/LICENSE.txt
-LICENSE_PERMS=	pkg-mirror dist-mirror
 
-USES=	tar:bzip2
+USES=		ncurses tar:xz
 
-.include <bsd.port.pre.mk>
-
-.if defined(INSTALL_AS_NCFTP3)
-LATEST_LINK=	ncftp3
-.else
-LATEST_LINK=	ncftp
-.endif
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-ncurses
-CONFIGURE_ENV=	TAR=/usr/bin/tar
-PLIST_SUB=	NCFTP=${LATEST_LINK}
-MAN1=		${LATEST_LINK}.1 ncftpbatch.1 ncftpget.1 ncftpls.1 ncftpput.1 \
-		ncftpspooler.1
-MAN3=		Strn.3
+CONFIGURE_ENV+=	ac_cv_header_ncurses_h=yes
+
+PORTDOCS=	*
 
 LIBNCFTP=	libncftp.so.3
 LIBSIO=		libsio.so.5
 LIBSTRN=	libStrn.so.1
 
-pre-fetch:
-	@${ECHO} ""
-	@${ECHO} "Use INSTALL_AS_NCFTP3=yes to install ncftp v3 as ${PREFIX}/bin/ncftp3"
-	@${ECHO} ""
+OPTIONS_DEFINE=	LIBS DOCS
+OPTIONS_DEFAULT=LIBS
+LIBS_DESC=	Install optional libraries
+OPTIONS_SUB=	yes
 
-pre-build:
-	cd ${WRKSRC}/Strn ; make so
-	cd ${WRKSRC}/libncftp ; make so
-	cd ${WRKSRC}/sio; make so
+pre-build-LIBS-on:
+.for dir in Strn libncftp sio
+	${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} -C ${WRKSRC}/${dir} so
+.endfor
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/bin/ncftp ${PREFIX}/bin/${LATEST_LINK}
-	@cd ${WRKSRC}/bin ; ${INSTALL_PROGRAM} \
-		ncftpbatch ncftpbookmarks ncftpget ncftpls ncftpput \
-		${PREFIX}/bin
-	@cd ${PREFIX}/bin && ${LN} -f ncftpbatch ncftpspooler
-	@cd ${WRKSRC} && ${INSTALL_DATA} \
-		Strn/${LIBSTRN} libncftp/${LIBNCFTP} sio/${LIBSIO} \
-		${PREFIX}/lib
-	@cd ${PREFIX}/lib \
-		&& ${LN} -sf ${LIBSTRN} libStrn.so \
-		&& ${LN} -sf ${LIBNCFTP} libncftp.so \
-		&& ${LN} -sf ${LIBSIO} libsio.so
-	@${INSTALL_MAN} ${WRKSRC}/doc/man/ncftp.1 \
-		${PREFIX}/man/man1/${LATEST_LINK}.1
-	@cd ${WRKSRC}/doc/man ; ${INSTALL_MAN} \
-		ncftpbatch.1 ncftpget.1 ncftpls.1 ncftpput.1 ncftpspooler.1 \
-		${PREFIX}/man/man1
-	@${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${PREFIX}/man/man3
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/* ${STAGEDIR}${PREFIX}/bin
+	${LN} -sf ncftpbatch ${STAGEDIR}${PREFIX}/bin/ncftpspooler
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/Strn/Strn.3 ${STAGEDIR}${MANPREFIX}/man/man3
 
-.include <bsd.port.post.mk>
+do-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	-${RM} -r ${STAGEDIR}${DOCSDIR}/man
+
+do-install-LIBS-on:
+	${INSTALL_LIB} ${WRKSRC}/Strn/${LIBSTRN} ${FAKE_DESTDIR}${PREFIX}/lib
+.for lib in libncftp/${LIBNCFTP} sio/${LIBSIO} Strn/${LIBSTRN}
+	${INSTALL_LIB} ${WRKSRC}/${lib} ${FAKE_DESTDIR}${PREFIX}/lib
+	${LN} -sf ${lib:T} ${FAKE_DESTDIR}${PREFIX}/lib/${lib:T:R}
+.endfor
+
+.include <bsd.port.mk>
