@@ -112,7 +112,7 @@ PHPBASE?=	${LOCALBASE}
 _ALL_PHP_VERSIONS=	71 72 73
 
 # Make the already installed PHP the default one.
-.  if exists(${PHPBASE}/etc/php.conf) && !defined(MAGUS)
+.  if exists(${PHPBASE}/etc/php.conf) && !defined(INDEXING)
 .include "${PHPBASE}/etc/php.conf"
 .    if !defined(PHP_EXT_DIR)
 PHP_EXT_DIR!=	${PHPBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${PHPBASE}/lib/php/\(.*\),\1,p'
