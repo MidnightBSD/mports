@@ -1,21 +1,20 @@
-# New ports collection makefile for:	menumaker
-# Date created:				2007-03-21
-# Whom:					alepulver
-# 
-# $MidnightBSD$
-# $FreeBSD: ports/deskutils/menumaker/Makefile,v 1.1 2007/03/23 00:31:58 alepulver Exp $
-#
-
 PORTNAME=	menumaker
-PORTVERSION=	0.99.7
+PORTVERSION=	0.99.11
 CATEGORIES=	deskutils
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Menu generator for X Window Managers and desktop environments
-LICENSE=        unknown
-USE_PYTHON=	yes
+
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		gmake python
+
 GNU_CONFIGURE=	yes
+NO_ARCH=	yes
+
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 INFO=		mmaker
 
