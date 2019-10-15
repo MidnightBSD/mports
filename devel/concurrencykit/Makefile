@@ -30,7 +30,7 @@ CONFIGURE_ARGS+=	--mandir=${PREFIX}/man
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 TEST_TARGET=	check
-
+NO_TEST=	yes
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 post-extract:
