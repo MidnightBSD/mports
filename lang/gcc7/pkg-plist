@@ -55,7 +55,7 @@ lib/gcc%%SUFFIX%%/libgomp.a
 lib/gcc%%SUFFIX%%/libcilkrts.a
 lib/gcc%%SUFFIX%%/libstdc++.so.6
 lib/gcc%%SUFFIX%%/libssp.a
-lib/gcc%%SUFFIX%%/libatomic.so.%%OSREL%%.0
+lib/gcc%%SUFFIX%%/libatomic.so.1.2.0
 lib/gcc%%SUFFIX%%/libgfortran.so.4.0.0
 lib/gcc%%SUFFIX%%/libitm.so.1
 lib/gcc%%SUFFIX%%/libcilkrts.so.5.0.0
