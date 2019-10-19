@@ -6,6 +6,7 @@ SUBDIR += bsh
 SUBDIR += cython
 SUBDIR += erlang
 SUBDIR += erlang-man
+SUBDIR += erlang19-runtime
 SUBDIR += expect
 SUBDIR += ezm3
 SUBDIR += fsharp
