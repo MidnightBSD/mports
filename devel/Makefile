@@ -880,6 +880,7 @@ SUBDIR += rcs57
 SUBDIR += re2
 SUBDIR += re2c
 SUBDIR += readline
+SUBDIR += rebar
 SUBDIR += ruby-gems
 SUBDIR += scons
 SUBDIR += sdl12
