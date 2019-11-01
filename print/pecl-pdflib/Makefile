@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pdflib
 PORTVERSION=	4.1.2
 CATEGORIES=	print
@@ -13,11 +11,10 @@ COMMENT=	PECL extension to create PDF on the fly
 
 LICENSE=	php
 
-LIB_DEPENDS=	libpdf.so:${PORTSDIR}/print/pdflib
+LIB_DEPENDS=	libpdf.so:print/pdflib
 
-USE_PHP=	gd
-USE_PHP_BUILD=	yes
-USE_PHPEXT=	yes
+USES=		php:pecl
+USE_PHP=	gd:build
 PHP_MODNAME=	pdf
 
 CONFIGURE_ARGS=	--with-pdflib=${LOCALBASE}
