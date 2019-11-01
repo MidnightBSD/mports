@@ -341,8 +341,8 @@ _USES_fake+=	899:add-plist-phpext
 add-plist-phpext:
 	@${ECHO_CMD} "lib/php/${PHP_EXT_DIR}/${PHP_MODNAME}.so" \
 		>> ${TMPPLIST}
-	@${FIND} -P ${STAGEDIR}${PREFIX}/include/php/ext/${PHP_MODNAME} ! -type d 2>/dev/null | \
-		${SED} -ne 's,^${STAGEDIR}${PREFIX}/,,p' >> ${TMPPLIST}
+	@${FIND} -P ${FAKE_DESTDIR}${PREFIX}/include/php/ext/${PHP_MODNAME} ! -type d 2>/dev/null | \
+		${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,,p' >> ${TMPPLIST}
 	@${ECHO_CMD} "@postexec echo \#include \\\"ext/${PHP_MODNAME}/config.h\\\" >> %D/include/php/ext/php_config.h" \
 		>> ${TMPPLIST}
 	@${ECHO_CMD} "@preunexec cp %D/include/php/ext/php_config.h %D/include/php/ext/php_config.h.orig" \
