@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD: head/www/apache24/files/pkg-install.in 378215 2015-01-31 15:22:51Z ohauer $
+#
 
 # Note:
 # We have to use grep or wc after awk, else
@@ -40,7 +41,7 @@ cat > ${MPM_FALLBACK} << _EOF
 # After activating one of the mpm_modules in httpd.conf it is save
 # to deactivate the "LoadModule" line in this file.
 #
-# In case mod_(php|perl|python|...) modules from the official BSD
+# In case mod_(php|perl|python|...) modules from the official FreeBSD
 # package repo are installed please use the mpm_prefork module, else
 # feel free to test mpm_event (preferred) or mpm_worker.
 #

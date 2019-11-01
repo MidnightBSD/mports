@@ -1,65 +1,77 @@
-# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $FreeBSD: head/www/nghttp2/Makefile 394075 2015-08-13 17:31:14Z sunpoet $
-# $MidnightBSD$
-
 PORTNAME=	nghttp2
-PORTVERSION=	1.8.0
-PORTREVISION=	2
+PORTVERSION=	1.39.2
+DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www net
-MASTER_SITES=	https://github.com/tatsuhiro-t/${PORTNAME}/releases/download/v${PORTVERSION}/ \
-		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP/2.0 C Library
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	libev>=4.15:${PORTSDIR}/devel/libev \
-		libevent>=2.0.8:${PORTSDIR}/devel/libevent \
-		spdylay>=1.3.0:${PORTSDIR}/www/spdylay
-LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev \
-		libevent_openssl.so:${PORTSDIR}/devel/libevent \
-		libspdylay.so:${PORTSDIR}/www/spdylay
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	libnghttp2>=${PORTVERSION}:www/libnghttp2
+LIB_DEPENDS=	libnghttp2.so:www/libnghttp2
 
-OPTIONS_DEFINE=	ASIO DOCS HPACK
-OPTIONS_DEFAULT=HPACK
+OPTIONS_DEFINE=	APP ASIO DOCS EXAMPLES HPACK
+OPTIONS_DEFAULT=APP HPACK
 OPTIONS_SUB=	yes
+APP_DESC=	Build h2load, nghttp, nghttpd and nghttpx
 
-CONFIGURE_ARGS=	--disable-python-bindings \
-		--enable-app \
-		--enable-examples \
-		--with-spdylay
-CONFIGURE_ENV=	LIBEV_CFLAGS="-I${LOCALBASE}/include" \
-		LIBEV_LIBS="-L${LOCALBASE}/lib -lev" \
-		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
-		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl" \
-		ZLIB_CFLAGS="-I${INCLUDEDIR}" \
-		ZLIB_LIBS="-L${LIBDIR} -lz"
-CPPFLAGS+=	-I${LOCALBASE}/include
+USES=		autoreconf compiler:c++14-lang gmake libtool localbase pathfix pkgconfig ssl
+
+CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
+CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
+		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-LIBS+=		-L${LOCALBASE}/lib -lev
-PATHFIX_MAKEFILEIN=	Makefile.am
-USE_CXXSTD=	c++11
-USE_GNOME=	libxml2
+USE_CXXSTD=	c++14
 USE_LDCONFIG=	yes
-USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig tar:xz ssl
+USE_RC_SUBR=	nghttpx
 
 PORTDATA=	fetch-ocsp-response
 PORTDOCS=	*
+PORTEXAMPLES=	*
 
-ASIO_BUILD_DEPENDS=	boost-libs>=1.54.0:${PORTSDIR}/devel/boost-libs
+USE_GITHUB=	yes
+
+APP_BUILD_DEPENDS=	c-ares>=1.7.5:dns/c-ares \
+			libev>=4.11:devel/libev
+APP_CONFIGURE_ENABLE=	app
+APP_CONFIGURE_OFF=	--without-libxml2
+APP_LIB_DEPENDS=	libcares.so:dns/c-ares \
+			libev.so:devel/libev
+APP_USE=		GNOME=libxml2
+APP_USES=		gnome
+ASIO_BUILD_DEPENDS=	boost-libs>=1.54.0:devel/boost-libs
 ASIO_CONFIGURE_OFF=	--with-boost=no
-ASIO_CONFIGURE_ON=	--enable-asio-lib --with-boost=${LOCALBASE} --with-boost-asio --with-boost-system --with-boost-thread
-ASIO_LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs
-ASIO_RUN_DEPENDS=	boost-libs>=1.54.0:${PORTSDIR}/devel/boost-libs
+ASIO_CONFIGURE_ON=	--enable-asio-lib --with-boost-asio --with-boost-system --with-boost-thread
+ASIO_LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
+EXAMPLES_CONFIGURE_ENABLE=	examples
+EXAMPLES_BUILD_DEPENDS=	libevent>=2.0.8:devel/libevent
+EXAMPLES_LIB_DEPENDS=	libevent_openssl.so:devel/libevent
+HPACK_BUILD_DEPENDS=	jansson>=2.5:devel/jansson
 HPACK_CONFIGURE_ENABLE=	hpack-tools
-HPACK_LIB_DEPENDS=	libjansson.so:${PORTSDIR}/devel/jansson
-HPACK_BUILD_DEPENDS=	${LOCALBASE}/lib/libjansson.so:${PORTSDIR}/devel/jansson
+HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 
-.include <bsd.port.pre.mk>
+post-patch:
+	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| lib||' ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e 's|$$[({]top_builddir[})]/lib/libnghttp2.la|-lnghttp2|' ${WRKSRC}/*/Makefile.am
+	@${REINPLACE_CMD} -e '1d' ${WRKSRC}/script/fetch-ocsp-response
 
-CPPFLAGS+=	-D_GLIBCXX_USE_C99
+# lib/libnghttp2.* are not available until configure phase
+post-configure:
+	@${MKDIR} ${WRKSRC}/lib/.libs/
+	@${CP} ${LOCALBASE}/lib/libnghttp2.so* ${WRKSRC}/lib/.libs/
+	@cd ${WRKSRC}/lib/.libs/ && ${AR} x ${LOCALBASE}/lib/libnghttp2.a
 
-.include <bsd.port.post.mk>
+post-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/nghttpx/
+	${INSTALL_DATA} ${FILESDIR}/nghttpx.conf.sample ${STAGEDIR}${PREFIX}/etc/nghttpx/nghttpx.conf.sample
+
+post-install-EXAMPLES-on:
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
+	${INSTALL_DATA} ${WRKSRC}/examples/*.c* ${STAGEDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/examples/ && ${INSTALL_PROGRAM} client deflate libevent-client libevent-server ${STAGEDIR}${EXAMPLESDIR}/
+
+.include <bsd.port.mk>
