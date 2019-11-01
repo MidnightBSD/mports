@@ -1,10 +1,6 @@
 PORTNAME=	pdflib
-PORTVERSION=	4.1.2
+PORTVERSION=	4.1.3
 CATEGORIES=	print
-MASTER_SITES=	http://pecl.php.net/get/
-PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
-DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PECL extension to create PDF on the fly
