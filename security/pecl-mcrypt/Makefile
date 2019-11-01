@@ -14,4 +14,6 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 
 USES=	php:pecl
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 .include <bsd.port.mk>
