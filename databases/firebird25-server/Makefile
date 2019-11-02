@@ -56,6 +56,8 @@ LD=	${CC}
 # Don't strip binary files
 STRIP=
 
+NO_TEST=	yes
+
 ONLY_FOR_ARCHS=	i386 amd64
 # sparc64 fails due to lack of valid AtomicCounter implementation in
 # src/common/classes/fb_atomic.h; presumably other tier-2s would as well
