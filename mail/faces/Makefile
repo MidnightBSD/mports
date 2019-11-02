@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/mail/faces/Makefile,v 1.40 2008/03/30 09:36:45 dinoex Exp $
-
 PORTNAME=	faces
 PORTVERSION=	1.7.7
 PORTREVISION=	1
@@ -13,38 +10,28 @@ COMMENT=	Visual mail, user, and print face server
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	X11 DOCS NLS AUDIO
-OPTIONS_DEFAULT=	X11
+OPTIONS_DEFINE=	DOCS NLS AUDIO
 OPTIONS_SINGLE=		AUDIO
 OPTIONS_SINGLE_AUDIO=	NAS RPLAY SOX
 AUDIO_DESC=	Audio support
-X11_DESC=	X11/GTK support
 RPLAY_DESC=	rplay audio support
 SOX_DESC=	Sox audio support
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
-OPTIONS_SUB=	X11
-
-X11_USE=	GNOME=gtk12
-X11_CPPFLAGS=	-I../compface -I${LOCALBASE}/include
-X11_LDFLAGS=	-L../compface -L${LOCALBASE}/lib
-X11_CONFIGURE_ON=	--enable-imap --enable-pop \
-		--enable-name-unknown --with-spooldir=/var/mail \
-		--with-facedir=${DATADIR}
-X11_CONFIGURE_WITH=	x
+OPTIONS_SUB=	yes
 
 AUDIO_CONFIGURE_ENABLE=	audio
 
 NAS_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/auplay
-NAS_RUN_DEPENDS=	auplay:${PORTSDIR}/audio/nas
+NAS_RUN_DEPENDS=	auplay:audio/nas
 
 SOX_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/play
-SOX_RUN_DEPENDS=	play:${PORTSDIR}/audio/sox
+SOX_RUN_DEPENDS=	play:audio/sox
 
 RPLAY_CONFIGURE_ON=	--with-audio-cmd=${LOCALBASE}/bin/rplay
-RPLAY_RUN_DEPENDS=	rplay:${PORTSDIR}/audio/rplay
+RPLAY_RUN_DEPENDS=	rplay:audio/rplay
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -76,10 +63,6 @@ post-patch:
 do-build:
 	cd ${WRKSRC}/compface && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
 		${FILESDIR}/Makefile.compface ${MAKE_ARGS} ${ALL_TARGET}
-.if ${PORT_OPTIONS:MX11}
-	cd ${WRKSRC}/faces && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \
-		${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET}
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/compface/compface ${STAGEDIR}${PREFIX}/bin
@@ -94,11 +77,6 @@ do-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/xbm2ikon ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${FILESDIR}/xbmcut48 ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${FILESDIR}/xbmsize48 ${PREFIX}/bin
-.if ${PORT_OPTIONS:MX11}
-	${INSTALL_PROGRAM} ${WRKSRC}/faces/faces ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/faces/faces.1 ${MANPREFIX}/man/man1
-	${INSTALL_DATA} ${WRKSRC}/faces/Faces.ad ${FAKE_DESTDIR}${LOCALBASE}/lib/X11/app-defaults/Faces
-.endif
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 
