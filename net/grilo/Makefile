@@ -27,4 +27,6 @@ UI_DESC=	Enable testing UI
 UI_MESON_TRUE=	enable-test-ui
 UI_USE=		GNOME=cairo,gdkpixbuf2,gtk30
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
