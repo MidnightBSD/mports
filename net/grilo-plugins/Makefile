@@ -28,6 +28,8 @@ USE_GNOME=	glib20 intlhack libxml2
 USE_GSTREAMER1=	chromaprint
 MESON_ARGS=	-Denable-lua-factory=no
 
+NO_TEST=	yes
+
 OPTIONS_SUB=			yes
 OPTIONS_DEFINE=			TRACKER DMAP
 OPTIONS_DEFAULT=		TRACKER
