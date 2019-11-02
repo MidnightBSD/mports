@@ -4,6 +4,7 @@ SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += bsh
 SUBDIR += cython
+SUBDIR += elixir
 SUBDIR += erlang
 SUBDIR += erlang-man
 SUBDIR += erlang-runtime19
