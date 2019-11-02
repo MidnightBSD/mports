@@ -31,6 +31,8 @@ INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 post-patch:
 # fix sections
 	@${FIND} ${WRKSRC}/doc/man/man1 -name '*.1' -maxdepth 1 | \
