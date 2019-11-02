@@ -45,7 +45,7 @@ do-install:
 		${STAGEDIR}${DRUPAL_DIR}/sites/default/default.settings.php.sample
 
 do-install-DOCS-on:
-	@${MKDIR} ${FAKE_DESTDIRDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
