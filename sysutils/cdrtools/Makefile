@@ -37,6 +37,9 @@ MAKE_JOBS_UNSAFE=	yes
 
 NO_TEST=	yes
 
+PATCH_DEPENDS+=	gmake:devel/gmake
+TEST_DEPENDS+=	gmake:devel/gmake
+
 .if defined(WITH_CDDA2MP3)
 MAN1+=		cdda2mp3.1
 PLIST_SUB+=	CDDA2MP3=""
