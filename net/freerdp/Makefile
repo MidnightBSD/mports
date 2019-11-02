@@ -1,7 +1,3 @@
-# Created by: Alexander Logvinov <avl@FreeBSD.org>
-# $FreeBSD: head/net/freerdp/Makefile 390743 2015-06-28 08:24:14Z antoine $
-# $MidnightBSD$
-
 PORTNAME=	freerdp
 DISTVERSION=	2.0.0-rc4
 CATEGORIES=	net comms ipv6
@@ -14,7 +10,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
 
-USES=		alias cmake compiler:c++11-lib cpe gettext localbase pathfix pkgconfig ssl
+USES=		cmake compiler:c++11-lib cpe gettext localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 CPE_VENDOR=	freerdp_project
 
