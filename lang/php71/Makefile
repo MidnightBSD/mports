@@ -31,6 +31,7 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-pcre-regex=${LOCALBASE} \
 		--program-prefix=""
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
