@@ -1,5 +1,6 @@
 PORTNAME=	openexr
 PORTVERSION=	2.3.0
+PORTREVISION=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${PORTVERSION}/:dist \
 		FREEBSD_LOCAL/mandree/:test
@@ -19,6 +20,7 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 USES=		compiler:c++14-lang gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-ilmbasetest --enable-imfexamples
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 TEST_TARGET=	check
 
@@ -63,27 +65,25 @@ post-patch:
 		-e 's|$$(EXTRA_DIST)||' \
 		${WRKSRC}/doc/Makefile.am ${WRKSRC}/doc/Makefile.in
 
-# too many reports about compilation failures, so sanity check C++
-# library
-_ilm_libcxx=${COMPILER_FEATURES:Mlib*c++}
-pre-configure:
-	@${READELF} -d ${LOCALBASE}/lib/libImath.so \
-	| ${EGREP} -q '\<NEEDED\>.*\[${_ilm_libcxx:C/\+/\\+/g}\.' \
-	|| {	${ECHO_CMD} "*** Your ilmbase package uses a different C++ standard library than ***" ; \
-		${ECHO_CMD} "*** OpenEXR would. Please recompile and reinstall ilmbase with the  ***" ; \
-		${ECHO_CMD} "*** same C++ std. library before trying to build OpenEXR.  Abort.   ***" ; \
-		exit 1; }
-
 post-install:
 	${STRIP_CMD} \
 		${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER} \
 		${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${VER}
+
+post-install-EXAMPLES-on:
 	${MV} \
-		${STAGEDIR}${PREFIX}/share/doc/${PORTNAME}/examples/ ${STAGEDIR}${EXAMPLESDIR}
-	@${RMDIR} ${STAGEDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
-	${RM} -R ${STAGEDIR}${PREFIX}/share/doc/${PORTNAME}/examples/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${STAGEDIR}${DOCSDIR}
+		${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME}/examples/ ${FAKE_DESTDIR}${EXAMPLESDIR}
+	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
+
+post-install-EXAMPLES-off:
+	${RM} -R ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME}/examples/
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-DOCS-off:
+	@${RMDIR} ${FAKE_DESTDIR}${PREFIX}/share/doc/${PORTNAME} 2>/dev/null || :
 
 .include <bsd.port.post.mk>
