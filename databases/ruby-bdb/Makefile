@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bdb
 PORTVERSION=	0.6.6
 PORTREVISION=	1
@@ -37,7 +35,7 @@ SHAREMODE=	0644
 PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/bdb.so
 PORTDOCS=	*
 PORTEXAMPLES=	*
-USES=		shebangfix tar:bzip2
+USES=		bdb shebangfix tar:bzip2
 SHEBANG_FILES=	examples/record.rb \
 		examples/recno.rb \
 		examples/zeroc.rb \
@@ -57,11 +55,9 @@ SHEBANG_FILES=	examples/record.rb \
 		examples/basic.rb \
 		examples/lock.rb
 
-.include <bsd.port.pre.mk>
+NO_TEST=	yes
 
-.if ${RUBY_VER} == 2.1
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-21
-.endif
+.include <bsd.port.pre.mk>
 
 .if ${RUBY_VER} >= 2.2
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-22 \
