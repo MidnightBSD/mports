@@ -42,7 +42,7 @@ PLIST_SUB+=	CHECK="@comment "
 .endif
 
 # workaround a crash in clang 3.3 crash llvm bug # 15840
-USE_GCC=	any
+USE_GCC=	6
 
 BUILD_DEPENDS+=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 CONFIGURE_ENV+=	FLEX_PATH="${LOCALBASE}/bin/flex"
