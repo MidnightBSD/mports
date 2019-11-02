@@ -19,6 +19,8 @@ USES=		bison:build cmake:noninja compiler:c11 compiler:c++11-lib \
 
 USE_PERL5=	run
 
+NO_TEST=	yes
+
 MY_DBDIR=	/var/db/mysql
 MY_SECDIR=	/var/db/mysql_secure
 MY_TMPDIR=	/var/db/mysql_tmpdir
