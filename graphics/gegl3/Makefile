@@ -78,7 +78,7 @@ LCMS2_CONFIGURE_WITH=	lcms
 LUA_USES=		lua
 LUA_CONFIGURE_WITH=	lua
 
-OPENEXR_LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR
+OPENEXR_LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/openexr
 OPENEXR_CONFIGURE_WITH=	openexr
 
 OPENRAW_LIB_DEPENDS=	libopenraw.so:${PORTSDIR}/graphics/libopenraw

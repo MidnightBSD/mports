@@ -37,7 +37,7 @@ CMAKE_ARGS+=	-DWITH_HDF5=0
 
 .if ${PORT_OPTIONS:MOPENEXR}
 CMAKE_ARGS+=	-DWITH_OPENEXR=1
-LIB_DEPENDS+=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR
+LIB_DEPENDS+=	libIlmImf.so:${PORTSDIR}/graphics/openexr
 .else
 CMAKE_ARGS+=	-DWITH_OPENEXR=0
 .endif
