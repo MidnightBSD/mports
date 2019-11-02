@@ -20,6 +20,9 @@ APP_DESC=	Build h2load, nghttp, nghttpd and nghttpx
 
 USES=		autoreconf compiler:c++14-lang gmake libtool localbase pathfix pkgconfig ssl
 
+# stupid thing won't link with system compiler
+USE_GCC=7
+
 CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
 CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
