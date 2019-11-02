@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
@@ -12,15 +10,14 @@ COMMENT=	Multiple-image Network Graphics (MNG) reference library
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		liblcms.so:${PORTSDIR}/graphics/lcms
+LIB_DEPENDS=	liblcms.so:${PORTSDIR}/graphics/lcms
 
 OPTIONS_DEFINE=	MNG_OPTIMIZE
 MNG_OPTIMIZE_DESC=	Use vendor's new optimization flags
 
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 
-USES=		uidfix
+USES=		jpeg uidfix
 USE_LDCONFIG=	yes
 
 MNG_OPTIMIZE_MAKE_ARGS=	WITH_MNG_OPTIMIZE=true
