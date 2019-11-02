@@ -31,6 +31,31 @@ MAKE_ENV+=	INSTALL_STRIP_FLAG="${STRIP}"
 
 OPTIONS_DEFINE=	JPEG PNG TIFF GIF ID3 X11
 OPTIONS_DEFAULT=	JPEG PNG TIFF GIF ID3 X11
+OPTIONS_SUB=	yes
+
+X11_USE=		XORG=x11,sm,xcb,xext
+X11_CONFIGURE_ON=	--with-x --with-x-shm-fd
+X11_CONFIGURE_OFF=	--without-x --without-x-shm-fd
+
+JPEG_USES=		jpeg
+JPEG_CONFIGURE_ON=	--with-jpeg
+JPEG_CONFIGURE_OFF=	--without-jpeg
+
+PNG_LIB_DEPENDS=	libpng.so:graphics/png
+PNG_CONFIGURE_ON=	--with-png
+PNG_CONFIGURE_OFF=	--without-png
+
+TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
+TIFF_CONFIGURE_ON=	--with-tiff
+TIFF_CONFIGURE_OFF=	--without-tiff
+
+GIF_LIB_DEPENDS=	libgif.so:graphics/giflib
+GIF_CONFIGURE_ON=	--with-gif
+GIF_CONFIGURE_OFF=	--without-gif
+
+ID3_LIB_DEPENDS=	libid3tag.so:audio/libid3tag
+ID3_CONFIGURE_ON=	--with-id3
+ID3_CONFIGURE_OFF=	--without-id3
 
 .include <bsd.mport.options.mk>
 
@@ -44,54 +69,6 @@ CONFIGURE_ARGS+=	--disable-mmx
 CONFIGURE_ARGS+=	--enable-amd64
 .else
 CONFIGURE_ARGS+=	--disable-amd64
-.endif
-
-.if ! ${PORT_OPTIONS:MX11}
-CONFIGURE_ARGS+=	--without-x
-PLIST_SUB=	X11="@comment "
-.else
-USE_XORG=	x11 sm xext
-PLIST_SUB=	X11=""
-.endif
-
-.if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-PLIST_SUB+=	JPEG=""
-.else
-CONFIGURE_ARGS+=	--without-jpeg
-PLIST_SUB+=	JPEG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
-PLIST_SUB+=	PNG=""
-.else
-CONFIGURE_ARGS+=	--without-png
-PLIST_SUB+=	PNG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MTIFF}
-LIB_DEPENDS+=	libtiff.so:${PORTSDIR}/graphics/tiff
-PLIST_SUB+=	TIFF=""
-.else
-CONFIGURE_ARGS+=	--without-tiff
-PLIST_SUB+=	TIFF="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGIF}
-LIB_DEPENDS+=	libgif.so:${PORTSDIR}/graphics/giflib
-PLIST_SUB+=	GIF=""
-.else
-CONFIGURE_ARGS+=	--without-gif
-PLIST_SUB+=	GIF="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MID3}
-LIB_DEPENDS+=	libid3tag.so:${PORTSDIR}/audio/libid3tag
-PLIST_SUB+=	ID3=""
-.else
-CONFIGURE_ARGS+=	--without-id3
-PLIST_SUB+=	ID3="@comment "
 .endif
 
 .if ! ${PORT_OPTIONS:MX11}
