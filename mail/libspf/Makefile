@@ -17,6 +17,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 MAKE_JOBS_UNSAFE=yes
 
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 USES=		autoreconf libtool tar:bzip2
 USE_LDCONFIG=	yes
@@ -27,25 +28,14 @@ OPTIONS_DEFINE=	RFC_RECURSION LOGFILE_STATS DEBUG DOCS EXAMPLES
 RFC_RECURSION_DESC=	Change SPF recursion to 20 (as per RFC)
 LOGFILE_STATS_DESC=	Enables logfile stats
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MRFC_RECURSION}
-CONFIGURE_ARGS+=	--enable-rfc-recursion
-.endif
-
-.if ${PORT_OPTIONS:MLOGFILE_STATS}
-CONFIGURE_ARGS+=	--enable-logfile-stats
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=	--enable-debug
-.endif
+RFC_RECURSION_CONFIGURE_ON=   --enable-rfc-recursion
+LOGFILE_STATS_CONFIGURE_ON=   --enable-logfile-stats
+DEBUG_CONFIGURE_ON=   --enable-debug
 
 post-extract:
 	@${CHMOD} u+w ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${DOCSDIR}
 	@${FIND} ${WRKSRC}/docs -type d -name CVS | ${XARGS} ${RM} -rf
 .for i in docs docs/API docs/API/doxygen docs/API/doxygen/html docs/RFC docs/qmail \
@@ -57,7 +47,6 @@ post-install:
 		${INSTALL_DATA} $${f} ${DOCSDIR}/${i}; \
 	done
 .endfor
-.endif
 	@${MKDIR} ${EXAMPLESDIR}
 	@${FIND} ${WRKSRC}/examples -type d -name CVS | ${XARGS} ${RM} -rf
 .for i in examples/qmail examples/qmail/control examples/Sendmail
