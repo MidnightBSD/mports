@@ -1,4 +1,3 @@
-%%UI%%bin/grilo-test-ui-0.3
 bin/grl-inspect-0.3
 bin/grl-launch-0.3
 include/grilo-0.3/grilo.h
@@ -38,7 +37,6 @@ lib/libgrlpls-0.3.so.0.307.0
 libdata/pkgconfig/grilo-0.3.pc
 libdata/pkgconfig/grilo-net-0.3.pc
 libdata/pkgconfig/grilo-pls-0.3.pc
-%%UI%%man/man1/grilo-test-ui-0.3.1.gz
 man/man1/grl-inspect-0.3.1.gz
 man/man1/grl-launch-0.3.1.gz
 share/gir-1.0/Grl-0.3.gir
