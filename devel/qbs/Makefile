@@ -49,8 +49,7 @@ pre-configure:
 	${MKDIR} ${CONFIGURE_WRKSRC}
 	${ECHO_CMD} 'QMAKE_LIBDIR_FLAGS = -L${CONFIGURE_WRKSRC}/lib' >> ${CONFIGURE_WRKSRC}/.qmake.cache
 
-# The file in question is not used on FreeBSD. To silence stage-qa, remove it from stage-dir.
 post-install:
-	${RM} ${STAGEDIR}${DATADIR}/modules/bundle/update-specs.sh
+	-${RM} ${STAGEDIR}${DATADIR}/modules/bundle/update-specs.sh
 
 .include <bsd.port.mk>
