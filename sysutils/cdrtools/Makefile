@@ -1,16 +1,14 @@
-# $MidnightBSD$
-
 PORTNAME=	cdrtools
 PORTVERSION=	3.00
 PORTREVISION=	2
 CATEGORIES=	sysutils audio
-MASTER_SITES=	ftp://ftp.berlios.de/pub/cdrecord/ \
-		http://ftp.berlios.de/pub/cdrecord/ \
-		ftp://ftp.cs.tu-berlin.de/pub/misc/cdrecord/
+MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD/BluRay and ISO-9660 image creation and extraction tools
-LICENSE=	other
+
+LICENSE=	bsd2 cddl gpl2 lgpl2.1
+LICENSE_COMB=	multi   
 
 CONFLICTS=	cdrkit-* cdrtools-devel-* cjk-cdrtools-*
 
@@ -37,17 +35,19 @@ USES=		gmake tar:bzip2
 SUB_FILES=	pkg-message
 MAKE_JOBS_UNSAFE=	yes
 
+NO_TEST=	yes
+
 .if defined(WITH_CDDA2MP3)
 MAN1+=		cdda2mp3.1
 PLIST_SUB+=	CDDA2MP3=""
-RUN_DEPENDS+=	lame:${PORTSDIR}/audio/lame
+RUN_DEPENDS+=	lame:audio/lame
 .else
 PLIST_SUB+=	CDDA2MP3="@comment "
 .endif
 .if defined(WITH_CDDA2OGG)
 MAN1+=		cdda2ogg.1
 PLIST_SUB+=	CDDA2OGG=""
-RUN_DEPENDS+=	oggenc:${PORTSDIR}/audio/vorbis-tools
+RUN_DEPENDS+=	oggenc:audio/vorbis-tools
 .else
 PLIST_SUB+=	CDDA2OGG="@comment "
 .endif
