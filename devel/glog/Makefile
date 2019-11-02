@@ -23,6 +23,8 @@ TEST_TARGET=	check
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 GH_ACCOUNT=	google
 USE_GITHUB=	yes
 
