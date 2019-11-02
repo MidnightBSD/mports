@@ -5,7 +5,6 @@ SUBDIR += Hermes
 SUBDIR += ImageMagick6
 SUBDIR += ImageMagick6-nox11
 SUBDIR += ImageMagick7
-SUBDIR += OpenEXR
 SUBDIR += aalib
 SUBDIR += agg
 SUBDIR += argyllcms
