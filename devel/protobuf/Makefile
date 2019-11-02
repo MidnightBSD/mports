@@ -13,9 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_sparc64=	fails to compile: no atomic ops available
 
-TEST_DEPENDS=	googlemock>=0:devel/googlemock \
-		googletest>=0:devel/googletest
-
 USES=		compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
 
 CFLAGS+=	-D_THREAD_SAFE -DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
@@ -27,11 +24,10 @@ CONFIGURE_ENV=	CC_FOR_BUILD="${CC}" \
 		LDFLAGS_FOR_BUILD="${LDFLAGS}"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_ARGS=	${MAKE_ARGS} ${_MAKE_JOBS}
-TEST_TARGET=	check
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^check-local:|disabled-&|' ${WRKSRC}/Makefile.in
