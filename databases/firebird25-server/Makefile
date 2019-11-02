@@ -25,6 +25,8 @@ USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
+NO_TEST=	yes
+
 CONFIGURE_ARGS=	--with-system-icu \
 		--prefix=${LOCALSTATEDIR} \
 		--exec-prefix=${PREFIX} \
@@ -55,8 +57,6 @@ LD=	${CC}
 
 # Don't strip binary files
 STRIP=
-
-NO_TEST=	yes
 
 ONLY_FOR_ARCHS=	i386 amd64
 # sparc64 fails due to lack of valid AtomicCounter implementation in
