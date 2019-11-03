@@ -17,6 +17,7 @@ RUN_DEPENDS=	p5-DateTime>=0:devel/p5-DateTime \
 		p5-Params-Validate>=0:devel/p5-Params-Validate
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 
