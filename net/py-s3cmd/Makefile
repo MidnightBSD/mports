@@ -1,6 +1,4 @@
 # Created by: Gea-Suan Lin <gslin@gslin.org>
-# $FreeBSD: head/net/py-s3cmd/Makefile 412985 2016-04-10 21:32:30Z bofh $
-# $MidnightBSD$
 
 PORTNAME=	s3cmd
 DISTVERSION=	2.0.2
@@ -15,8 +13,8 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dateutil>0:devel/py-dateutil@${PY_FLAVOR}
 
-USES=		python:2.7
-USE_PYTHON=	autoplist distutils
+USES=		python
+USE_PYTHON=	autoplist distutils flavors
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	DOCS
