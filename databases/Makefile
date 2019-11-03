@@ -5,6 +5,7 @@ SUBDIR += cassandra
 SUBDIR += cassandra2
 SUBDIR += cassandra-cpp-driver
 SUBDIR += couchdb
+SUBDIR += couchdb2
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
 SUBDIR += db48
