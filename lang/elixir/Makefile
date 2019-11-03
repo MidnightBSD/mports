@@ -33,6 +33,8 @@ OPTIONS_DEFAULT=SRC
 
 SRC_DESC=	Install source code
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 post-install-SRC-on:
@@ -42,8 +44,5 @@ post-install-SRC-on:
 		cd ${WRKSRC}/lib/$${lib}/lib && \
 			${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
-
-do-test:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} test
 
 .include <bsd.port.mk>
