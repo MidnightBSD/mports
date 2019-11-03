@@ -30,7 +30,6 @@ SUBDIR += net-im
 SUBDIR += net-mgmt
 SUBDIR += net-p2p
 SUBDIR += news
-SUBDIR += palm
 SUBDIR += ports-mgmt
 SUBDIR += print
 SUBDIR += science
