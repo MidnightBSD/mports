@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gdb
 PORTVERSION=	8.2
 CATEGORIES=	devel
@@ -33,6 +31,7 @@ CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
 		${ICONV_CONFIGURE_ARG} \
 		--with-expat=yes --with-libexpat-prefix=${LOCALBASE} \
 		--without-libunwind-ia64 --with-system-zlib
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
 CFLAGS+=	-DRL_NO_COMPAT -Wno-unused-function -Wno-unused-variable
 CFLAGS+=	-Wno-unknown-warning-option
