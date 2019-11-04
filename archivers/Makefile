@@ -34,6 +34,7 @@ SUBDIR += p5-Archive-Tar
 SUBDIR += p5-Archive-Zip
 SUBDIR += p5-Compress-Raw-Bzip2
 SUBDIR += p5-Compress-Raw-Zlib
+SUBDIR += p5-Gzip-Faster
 SUBDIR += p5-IO-Compress
 SUBDIR += p5-IO-Zlib
 SUBDIR += p7zip
