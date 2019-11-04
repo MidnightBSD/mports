@@ -13,9 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING3
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 mips powerpc powerpc64
 
 LIB_DEPENDS=	libmpfr.so:math/mpfr
-TEST_DEPENDS=	runtest:misc/dejagnu
 
-TEST_TARGET=	check
 # XXX: This should be compiler:c++11-lib as GDB doesn't really require
 # C++14.  However, clang in 1.0 crashes while building this port.
 # Requiring C++14 forces 1.0 to use an external version of clang
