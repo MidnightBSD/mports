@@ -77,8 +77,8 @@ CXX=	clang60
 # We pass `norecursive' to USES=qmake because src/plugins/plugins.pro checks
 # whether webenginewidgets is available, which fails when qmake processes all
 # .pro files at once.
-USES=		compiler:c++17-lib gl gnome gperf jpeg python:2.7,build pkgconfig \
-		qmake:norecursive,outsource qt-dist:5,webengine shebangfix
+USES=		compiler:c++17-lang gl gnome gperf jpeg python:2.7,build pkgconfig \
+		qmake:norecursive,outsource qt-dist:5,webengine shebangfix xorg
 USE_GL=		gl
 USE_GNOME=	glib20 libxml2 libxslt
 USE_QT=		core declarative designer gui location network webchannel \
