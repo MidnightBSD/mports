@@ -125,27 +125,27 @@ post-install:
 .endfor
 
 post-install-MANAGER-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc
 .for name in 16 32 48
 	${INSTALL_DATA} ${WRKSRC}/packages/generic/sea/boincmgr.${name}x${name}.png \
-	    ${STAGEDIR}${PREFIX}/share/pixmaps
+	    ${FAKE_DESTDIR}${PREFIX}/share/pixmaps
 .endfor
 .if ${PORT_OPTIONS:MSKINS}
 	(cd ${WRKSRC}/clientgui && \
-	${COPYTREE_SHARE} skins ${STAGEDIR}${PREFIX}/share/boinc/ )
+	${COPYTREE_SHARE} skins ${FAKE_DESTDIR}${PREFIX}/share/boinc/ )
 .else
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc/skins
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins
 	(cd ${WRKSRC}/clientgui/skins && \
-	${COPYTREE_SHARE} Default ${STAGEDIR}${PREFIX}/share/boinc/skins/ )
+	${COPYTREE_SHARE} Default ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins/ )
 .endif
 
 post-install-X11-on:
 .for name in api/boinc_gl.h api/graphics_api.h api/graphics_data.h \
 	api/ttfont.h
-	${INSTALL_DATA} ${WRKSRC}/${name} ${STAGEDIR}${PREFIX}/include/boinc
+	${INSTALL_DATA} ${WRKSRC}/${name} ${FAKE_DESTDIR}${PREFIX}/include/boinc
 .endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc/ttf
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf
 	(cd ${WRKSRC}/api/ttf/liberation-fonts-ttf-2.00.0 && \
-	    ${COPYTREE_SHARE} \*.ttf ${STAGEDIR}${PREFIX}/share/boinc/ttf/ )
+	    ${COPYTREE_SHARE} \*.ttf ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf/ )
 
 .include <bsd.port.mk>
