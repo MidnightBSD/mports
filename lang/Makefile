@@ -16,7 +16,6 @@ SUBDIR += f2c
 SUBDIR += gawk
 SUBDIR += gcc
 SUBDIR += gcc48
-SUBDIR += gcc5
 SUBDIR += gcc6
 SUBDIR += gcc7
 SUBDIR += gcc-ecj45

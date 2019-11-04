@@ -760,6 +760,7 @@ SUBDIR += py-freezegun
 SUBDIR += py-funcsigs
 SUBDIR += py-future
 SUBDIR += py-futures
+SUBDIR += py-game
 SUBDIR += py-gdata
 SUBDIR += py-gobject
 SUBDIR += py-gobject3
