@@ -158,6 +158,7 @@ SUBDIR += postgresql96-plperl
 SUBDIR += postgresql96-plpython
 SUBDIR += postgresql96-pltcl
 SUBDIR += postgresql96-server
+SUBDIR += postgresqltuner
 SUBDIR += py-MySQLdb
 SUBDIR += py-bsddb
 SUBDIR += py-bsddb3
