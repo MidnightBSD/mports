@@ -27,7 +27,7 @@ CONFIGURE_ARGS=	--disable-static
 # having an effect (at least with clang). Make sure we also pass -lpthread so
 # we do link against libthr.so.
 CONFIGURE_ENV+=	PTHREAD_LIBS="-pthread -lpthread"
-TEST_TARGET=	check
+NO_TEST=	yes
 
 PORTDOCS=	AUTHORS ChangeLog README.md
 OPTIONS_DEFINE=		DOCS LARGE_STACK
@@ -45,8 +45,6 @@ PLIST_SUB=	MAJORVER=${MAJORVER}
 PLIST_SUB+=	VER=${VER}
 
 HALF_BIN=	eLut toFloat
-
-regression-test regression check::	test
 
 post-configure:
 	${REINPLACE_CMD} -e 's/#define HAVE_UCONTEXT_H 1/#undef HAVE_UCONTEXT_H/' ${WRKSRC}/config/IlmBaseConfig.h

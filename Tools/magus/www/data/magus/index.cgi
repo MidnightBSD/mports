@@ -10,6 +10,7 @@ use CGI::Fast;
 use HTML::Template;
 use JSON::XS;
 use DateTime::Format::Pg;
+use Gzip::Faster;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -41,7 +42,13 @@ END_OF_ERROR
 
 sub main {
   my ($p) = @_;
-  
+ 
+  my $gzip_ok;
+  my $accept_encoding = $ENV{HTTP_ACCEPT_ENCODING};
+  if ($accept_encoding && $accept_encoding =~ /\bgzip\b/) {
+    $gzip_ok = 1;
+  }
+ 
   my $path = $p->path_info;
 
   if ($path eq '' || $path eq '/') {
@@ -61,7 +68,7 @@ sub main {
   } elsif ($path =~ m:^/ports/(.*):) {
     port_page($p, $1);
   } elsif ($path =~ m:^/api/runs:) {
-    api_runs($p);
+    api_runs($p, $gzip_ok);
   } elsif ($path =~ m:^/api/run-ports-list:) {
     api_run_port_stats($p);
   } elsif ($path =~ m:^/async/run-ports-list:) {
@@ -86,7 +93,7 @@ sub main {
 }
 
 sub api_runs {
-  my ($p) = @_;
+  my ($p, $gzip_ok) = @_;
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
   my @runOut;
@@ -96,7 +103,14 @@ sub api_runs {
      push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $dt->strftime('%FT%TZ'),  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
   }
 
-    print $p->header(-type => 'application/json'), encode_json(\@runOut);
+  print $p->header(-type => 'application/json');
+
+  if ($gzip_ok) {
+    print $p->header(-encoding => 'gzip'); 
+    print gzip(encode_json(\@runOut));
+  } else {
+	print encode_json(\@runOut);
+  }
 }
 
 sub api_run_port_stats { 
@@ -133,7 +147,7 @@ sub api_run_port_stats {
 
 
 sub run_index {
-  my ($p) = @_;
+  my ($p, $gzip_ok) = @_;
   my $tmpl = template($p, 'runlist.tmpl');
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
@@ -141,8 +155,13 @@ sub run_index {
   $tmpl->param(
     runs       => \@runs,
   );
-   
-  print $p->header, $tmpl->output;
+  
+  if ($gzip_ok) {  
+    print $p->header(-encoding => 'gzip');        
+    print $p->header, gzip($tmpl->output); 
+  } else { 
+    print $p->header, $tmpl->output; 
+  }
 }
 
 sub compare_runs {
