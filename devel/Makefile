@@ -201,6 +201,7 @@ SUBDIR += libslang2
 SUBDIR += libspice-server
 SUBDIR += libsoup
 SUBDIR += libsoup-gnome
+SUBDIR += libstatgrab
 SUBDIR += libthai
 SUBDIR += libtool
 SUBDIR += libublio

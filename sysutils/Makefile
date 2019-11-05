@@ -40,6 +40,7 @@ SUBDIR += ezjail
 SUBDIR += ffs2recov
 SUBDIR += flashback
 SUBDIR += flock
+SUBDIR += freecolor
 SUBDIR += fusefs-curlftpfs
 SUBDIR += fusefs-httpfs
 SUBDIR += fusefs-kmod

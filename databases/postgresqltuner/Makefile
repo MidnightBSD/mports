@@ -10,7 +10,8 @@ COMMENT=	Simple script to analyse your PostgreSQL database configuration, and gi
 
 LICENSE=	gpl3
 
-RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
+RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg \
+		freecolor:sysutils/freecolor
 
 USES=		perl5
 
