@@ -227,6 +227,11 @@ xxf86dga_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xxf86dga.pc:x11/libXxf86
 xxf86misc_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xxf86misc.pc:x11/libXxf86misc
 xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86vm
 
+# Add explicit X options to avoid problems with false positives in configure
+.  if defined(GNU_CONFIGURE)
+CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
+.  endif
+
 .for _module in ${USE_XORG:M*\:both:C/\:.*//g}
 . if ${XORG_MODULES:M${_module}} == ""
 IGNORE=				requires unknown xorg module (${_module})
@@ -242,7 +247,7 @@ LIB_PC_DEPENDS+=		${${_module}_LIB_PC_DEPENDS}
 BUILD_DEPENDS+=			${${_module}_BUILD_DEPENDS}
 .endfor
 
-RUN_DEPENDS+=			${LIB_PC_DEPENDS}
-BUILD_DEPENDS+=			${LIB_PC_DEPENDS}
+RUN_DEPENDS+=	${LIB_PC_DEPENDS}
+BUILD_DEPENDS+=	${LIB_PC_DEPENDS}
 
 .endif
