@@ -65,6 +65,7 @@ SUBDIR += mkfontscale
 SUBDIR += p5-type1inst
 SUBDIR += showfont
 SUBDIR += webfonts
+SUBDIR += wqy
 SUBDIR += xfontsel
 SUBDIR += xfs
 SUBDIR += xfsinfo

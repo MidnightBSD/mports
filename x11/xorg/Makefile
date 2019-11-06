@@ -45,13 +45,6 @@ RUN_DEPENDS+=	Xnest:x11-servers/xorg-nestserver \
 
 do-install:	# empty
 
-pre-everything::
-	@${ECHO_MSG} "This is a meta-port, meaning that it just depends on its subparts of the port."
-	@${ECHO_MSG} "It won't build and install all the parts until you have typed make install"
-	@${ECHO_MSG} "This port does not ensure things are upgraded; use portupgrade if you want to"
-	@${ECHO_MSG} "upgrade X.Org.  If you simply type 'make install' it may use over 2GB to build"
-	@${ECHO_MSG} "all of the subports.  You can install the ports singly if you are low on space."
-
 .include <bsd.port.pre.mk>
 
 .if make(package)
