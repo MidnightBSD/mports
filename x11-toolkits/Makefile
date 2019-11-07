@@ -1,7 +1,6 @@
 COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
-SUBDIR += elementary
 SUBDIR += fltk
 SUBDIR += gdl
 SUBDIR += gnome-pty-helper
