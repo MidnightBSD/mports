@@ -1,7 +1,7 @@
 PORTNAME=	python27
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	2
-CATEGORIES=	lang python ipv6
+PORTREVISION=	0
+CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 DISTNAME=	Python-${PORTVERSION}
 DIST_SUBDIR=	python
@@ -97,7 +97,7 @@ PLIST_SUB+=	NO_NIS=""
 
 post-patch:
 	${CP} -r ${WRKSRC}/Lib/plat-freebsd8 \
-		${WRKSRC}/Lib/plat-midnightbsd0
+		${WRKSRC}/Lib/plat-midnightbsd${OSMAJOR}
 	@${REINPLACE_CMD} -e \
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
 		${PATCH_WRKSRC}/Lib/pydoc.py

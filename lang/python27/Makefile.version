@@ -1,2 +1,2 @@
 # Mk/Uses/python.mk includes this file, don't remove it!
-PYTHON_PORTVERSION=	2.7.16
+PYTHON_PORTVERSION=	2.7.17
