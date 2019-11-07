@@ -1,6 +1,6 @@
 PORTNAME=	wx
 PORTVERSION=	2.8.12
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/${PORTVERSION}
 PKGNAMESUFFIX=	28-${WXGTK_FLAVOR}
@@ -81,10 +81,6 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 USE_WX=		2.8
 RUN_DEPENDS=	${LOCALBASE}/include/wx-2.8/wx/stc/stc.h:x11-toolkits/wxgtk28-contrib-common
 
-.if ${WXGTK_FLAVOR:M*-unicode*} != ""
-WX_UNICODE=	yes
-.endif
-
 pre-configure:
 	@${FIND} ${BUILD_WRKSRC} -name Makefile.in -print0 | ${XARGS} -0 ${REINPLACE_CMD} \
 		-e "s|@CXXFLAGS@|${CFLAGS} `${WX_CONFIG} --cxxflags`|" \
@@ -94,9 +90,7 @@ pre-configure:
 .endif # !gtk2-contrib-common
 .endif # *-contrib*
 
-.if ${WXGTK_FLAVOR:M*-unicode*} != ""
 CONFIGURE_ARGS+=--enable-unicode
-.endif
 
 .include <bsd.port.pre.mk>
 
