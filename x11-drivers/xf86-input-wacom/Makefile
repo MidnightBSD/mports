@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-input-wacom
-PORTVERSION=	0.36.1
+PORTVERSION=	0.38.0
 CATEGORIES=	x11-drivers
 MASTER_SITES=	https://github.com/linuxwacom/${PORTNAME}/releases/download/${DISTNAME}/
 
@@ -10,12 +8,11 @@ COMMENT=	X.Org Wacom tablet driver
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	v4l_compat>=1.0.20110603:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 RUN_DEPENDS=	webcamd>=3.1.0.1:multimedia/webcamd
 
-USES=		gmake pathfix
+USES=		gmake pathfix xorg xorg-cat:driver
 USE_XORG=	x11 xext xinerama xrandr
-XORG_CAT=	driver
 LDFLAGS+=	-Wl,--as-needed # Xext
 USE_RC_SUBR=	wacom
 SUB_FILES=	pkg-message
