@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = X11 fonts and font utilities
 
 SUBDIR += bdftopcf
@@ -64,6 +62,7 @@ SUBDIR += mkfontdir
 SUBDIR += mkfontscale
 SUBDIR += p5-type1inst
 SUBDIR += showfont
+SUBDIR += ubuntu-font
 SUBDIR += webfonts
 SUBDIR += wqy
 SUBDIR += xfontsel
