@@ -5,6 +5,7 @@ SUBDIR += agrep
 SUBDIR += asciidoc
 SUBDIR += aspell
 SUBDIR += aspell-ispell
+SUBDIR += augeas
 SUBDIR += bsdgrep
 SUBDIR += cdiff
 SUBDIR += clucene
