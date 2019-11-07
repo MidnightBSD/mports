@@ -61,6 +61,7 @@ SUBDIR += linuxlibertine-g
 SUBDIR += mkfontdir
 SUBDIR += mkfontscale
 SUBDIR += p5-type1inst
+SUBDIR += roboto-fonts-ttf
 SUBDIR += showfont
 SUBDIR += ubuntu-font
 SUBDIR += webfonts
