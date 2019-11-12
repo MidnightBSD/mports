@@ -1,6 +1,4 @@
 # Created by: Tom Judge <tj@FreeBSD.org>
-# $FreeBSD: head/textproc/elasticsearch2/Makefile 407192 2016-01-25 06:37:37Z pi $
-# $MidnightBSD$
 
 PORTNAME=	elasticsearch
 PORTVERSION=	2.1.1
