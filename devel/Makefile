@@ -138,6 +138,7 @@ SUBDIR += jam
 SUBDIR += jansson
 SUBDIR += jech-dht
 SUBDIR += jenkins
+SUBDIR += jna
 SUBDIR += json-c
 SUBDIR += json-glib
 SUBDIR += jsoncpp
