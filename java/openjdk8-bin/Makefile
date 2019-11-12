@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	openjdk8-bin
 PORTVERSION=	${VER}
 PORTREVISION=	4
@@ -38,5 +36,6 @@ COMPONENT=	.9
 
 do-install:
 	${MV} ${WRKDIR}/usr/local/openjdk8 ${FAKE_DESTDIR}/${LOCALBASE}/
+	cd ${PREFIX}/openjdk8/include && ${LN} -sf freebsd midnightbsd
 
 .include <bsd.port.post.mk>
