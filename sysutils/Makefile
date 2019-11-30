@@ -3,6 +3,7 @@ COMMENT = System utilities
 SUBDIR += 915resolution
 SUBDIR += LPRng
 SUBDIR += accountsservice
+SUBDIR += amazon-ssm-agent
 SUBDIR += apachetop
 SUBDIR += bacula-client
 SUBDIR += bacula-client-static
