@@ -1,19 +1,19 @@
---- ./lib/localcharset.c.orig	2012-10-05 10:28:29.000000000 -0400
-+++ ./lib/localcharset.c	2012-10-05 10:38:42.000000000 -0400
-@@ -122,7 +122,7 @@
+--- ./lib/localcharset.c.orig	2018-02-03 12:42:20 UTC
++++ ./lib/localcharset.c
+@@ -129,7 +129,7 @@ get_charset_aliases (void)
    cp = charset_aliases;
    if (cp == NULL)
      {
 -#if !(defined DARWIN7 || defined VMS || defined WINDOWS_NATIVE || defined __CYGWIN__ || defined OS2)
-+#if !(defined DARWIN7 || defined VMS || defined WINDOWS_NATIVE || defined __CYGWIN__ || defined OS2 || defined __FreeBSD__ || defined __MidnightBSD__ )
++#if !(defined DARWIN7 || defined VMS || defined WINDOWS_NATIVE || defined __CYGWIN__ || defined OS2 || defined __MidnightBSD__)
+       char *malloc_dir = NULL;
        const char *dir;
        const char *base = "charset.alias";
-       char *file_name;
-@@ -249,6 +249,86 @@
+@@ -259,6 +259,86 @@ get_charset_aliases (void)
  
  #else
  
-+# if defined __FreeBSD__
++# if defined __MidnightBSD__
 +      /* To avoid the trouble of installing a file that is shared by many
 +         GNU packages -- many packaging systems have problems with this --,
 +         simply inline the aliases here.  */
