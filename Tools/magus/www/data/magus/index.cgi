@@ -43,12 +43,6 @@ END_OF_ERROR
 sub main {
   my ($p) = @_;
  
-  my $gzip_ok;
-  my $accept_encoding = $ENV{HTTP_ACCEPT_ENCODING};
-  if ($accept_encoding && $accept_encoding =~ /\bgzip\b/) {
-    $gzip_ok = 1;
-  }
- 
   my $path = $p->path_info;
 
   if ($path eq '' || $path eq '/') {
@@ -68,7 +62,7 @@ sub main {
   } elsif ($path =~ m:^/ports/(.*):) {
     port_page($p, $1);
   } elsif ($path =~ m:^/api/runs:) {
-    api_runs($p, $gzip_ok);
+    api_runs($p);
   } elsif ($path =~ m:^/api/run-ports-list:) {
     api_run_port_stats($p);
   } elsif ($path =~ m:^/async/run-ports-list:) {
@@ -93,7 +87,7 @@ sub main {
 }
 
 sub api_runs {
-  my ($p, $gzip_ok) = @_;
+  my ($p) = @_;
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
   my @runOut;
@@ -105,12 +99,7 @@ sub api_runs {
 
   print $p->header(-type => 'application/json');
 
-  if ($gzip_ok) {
-    print $p->header(-encoding => 'gzip'); 
-    print gzip(encode_json(\@runOut));
-  } else {
-	print encode_json(\@runOut);
-  }
+  print encode_json(\@runOut);
 }
 
 sub api_run_port_stats { 
