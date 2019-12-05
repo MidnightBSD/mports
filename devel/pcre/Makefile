@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	pcre
-PORTVERSION=	8.42
+PORTVERSION=	8.43
 CATEGORIES=	devel
 MASTER_SITES=	SF \
 		ftp://ftp.csx.cam.ac.uk/pub/software/programming/${PORTNAME}/ \
