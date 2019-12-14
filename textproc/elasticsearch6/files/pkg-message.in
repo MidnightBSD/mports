@@ -28,6 +28,9 @@ e.g., after installing X-Pack you will have to correct:
 %%ETCDIR%%/elasticsearch.keystore file to be owned by elasticsearch:elasticsearch
 %%ETCDIR%%/x-pack directory/files to be owned by elasticsearch:elasticsearch
 
+You will need to set  xpack.ml.enabled: false in elasticsearch.yml because it does
+not work on midnightbsd.
+
 !!! PLUGINS NOTICE !!!
 EOM
 }
