@@ -51,7 +51,7 @@ PLIST_FILES+=		include/tdb.h \
 			${TDB_BINS} \
 			lib/libtdb.so \
 			lib/libtdb.so.1 \
-			${PKGCONFIGDIR}/tdb.pc
+			libdata/pkgconfig/tdb.pc
 
 
 .if defined(NO_PYTHON)
