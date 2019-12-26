@@ -4,6 +4,7 @@ SUBDIR += aircrack-ng
 SUBDIR += docsis
 SUBDIR += flow-tools
 SUBDIR += kismet
+SUBDIR += libsmi
 SUBDIR += nagios
 SUBDIR += nagios-plugins
 SUBDIR += nagios4
