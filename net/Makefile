@@ -139,7 +139,6 @@ SUBDIR += rabbitmq-c
 SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
-SUBDIR += samba44
 SUBDIR += samba46
 SUBDIR += samba48
 SUBDIR += sambasentinel
