@@ -141,6 +141,7 @@ SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba44
 SUBDIR += samba46
+SUBDIR += samba48
 SUBDIR += sambasentinel
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools

@@ -1,8 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
-# $MidnightBSD$
 
 PORTNAME=	common-services
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -14,7 +13,7 @@ LICENSE=	agg
 
 RUN_DEPENDS=	${LOCALBASE}/sbin/named:${PORTSDIR}/dns/bind912 \
 		${LOCALBASE}/sbin/sendmail:${PORTSDIR}/mail/sendmail \
-		smbd:${PORTSDIR}/net/samba44 \
+		smbd:${PORTSDIR}/net/samba48 \
 		cupsd:${PORTSDIR}/print/cups
 
 NO_WRKSUBDIR=	YES
