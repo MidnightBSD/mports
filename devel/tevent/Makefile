@@ -54,10 +54,10 @@ PLIST_FILES+=		include/tevent.h \
 USES+=			python:2.7+,build,test
 CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:3.4+
+USES+=			python:3.7
 
-PLIST_FILES+=		${PYTHON_SITELIBDIR}/_tevent.so \
-			${PYTHON_SITELIBDIR}/tevent.py
+PLIST_FILES+=		lib/python3.7/site-packages/_tevent.so \
+			lib/python3.7/site-packages/tevent.py
 .endif
 
 .include <bsd.port.pre.mk>
