@@ -2,10 +2,10 @@
 # $FreeBSD: head/devel/evdev-proto/Makefile 487799 2018-12-19 14:44:12Z zeising $
 
 PORTNAME=	evdev-proto
-PORTVERSION=	4.19
+PORTVERSION=	5.3
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/torvalds/linux/raw/v${PORTVERSION}/include/uapi/linux/
-DISTFILES=	input.h input-event-codes.h uinput.h
+DISTFILES=	input.h input-event-codes.h joystick.h uinput.h
 DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -47,6 +47,7 @@ post-patch:
 		/#define/ s/_IOW(.*), *int/_IOWINT\1/ ; \
 		/#define/ s/_IOW(.*), *char\*/_IO\1/ ; \
 		/#define/ s/_IOC_READ/IOC_OUT/' \
+		${WRKSRC}/joystick.h \
 		${WRKSRC}/uinput.h
 
 do-install:

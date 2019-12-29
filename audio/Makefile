@@ -145,6 +145,7 @@ SUBDIR += py-mutagen
 SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
+SUBDIR += sdl2_mixer
 SUBDIR += sonata
 SUBDIR += sound-juicer
 SUBDIR += soundtouch
