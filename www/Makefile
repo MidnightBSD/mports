@@ -147,7 +147,6 @@ SUBDIR += seamonkey
 SUBDIR += serf
 SUBDIR += selfhtml-de
 SUBDIR += spawn-fcgi
-SUBDIR += spdylay
 SUBDIR += squid
 SUBDIR += thttpd
 SUBDIR += tidy
