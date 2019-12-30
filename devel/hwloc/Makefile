@@ -1,9 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/hwloc/Makefile 343246 2014-02-07 14:03:38Z decke $
-
 PORTNAME=	hwloc
-PORTVERSION=	1.11.7
-PORTREVISION=	2
+PORTVERSION=	1.11.11
 CATEGORIES=	devel
 MASTER_SITES=	http://www.open-mpi.org/software/hwloc/v${PORTVERSION:R}/downloads/ \
 		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION:R}/downloads/
@@ -14,7 +10,13 @@ COMMENT=	Portable Hardware Locality software package
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
+ONLY_FOR_ARCHS_REASON=	has not been ported to this architecture
+
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
+
+USES=		iconv libtool gnome pathfix pkgconfig tar:bzip2
+USE_GNOME=	libxml2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
@@ -23,9 +25,7 @@ CONFIGURE_ARGS=	--enable-static \
 		--disable-nvml \
 		--disable-gl
 INSTALL_TARGET=	install-strip
-USES=		iconv libtool pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-USE_GNOME=	libxml2
 
 PORTDOCS=	*
 
@@ -35,10 +35,11 @@ OPTIONS_SUB=	yes
 CAIRO_CONFIGURE_OFF=	--disable-cairo --without-x
 CAIRO_CONFIGURE_ON=	--enable-cairo --with-x
 CAIRO_LIB_DEPENDS=	libcairo.so:graphics/cairo
+CAIRO_USES=		xorg
 CAIRO_USE=		XORG=x11
 
-post-install:
-	@${MKDIR} ${DOCSDIR}/html
-	${INSTALL_DATA} ${WRKSRC}/doc/doxygen-doc/html/* ${DOCSDIR}/html/.
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/doc/doxygen-doc/html/* ${FAKE_DESTDIR}${DOCSDIR}/html/
 
 .include <bsd.port.mk>
