@@ -112,6 +112,7 @@ SUBDIR += libsvg
 SUBDIR += libvisual04
 SUBDIR += libwmf
 SUBDIR += libwmf-nox11
+SUBDIR += libxatracker
 SUBDIR += linux-c6-cairo
 SUBDIR += linux-c6-dri
 SUBDIR += linux-c6-gdk-pixbuf2
