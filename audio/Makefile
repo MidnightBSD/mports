@@ -138,6 +138,7 @@ SUBDIR += openal
 SUBDIR += openal-soft
 SUBDIR += opencore-amr
 SUBDIR += opus
+SUBDIR += opusfile
 SUBDIR += portaudio
 SUBDIR += pulseaudio
 SUBDIR += py-mpd
