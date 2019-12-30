@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pear
 PORTVERSION=	1.10.6
 PORTREVISION=	0
@@ -17,6 +15,7 @@ USES=		cpe php:cli,flavors tar:bzip2
 CPE_VENDOR=	php
 NO_BUILD=	yes
 NO_ARCH=	yes
+NO_TEST=	yes
 
 USE_PHP=	pcre:build xml:build zlib:build
 
