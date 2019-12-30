@@ -22,7 +22,7 @@ OPTIONS_SUB=	yes
 
 HELP_DESC=		Generate QtHelp documentation for installed modules
 
-SPHINX_DEP=		sphinx-build:textproc/py-sphinx
+SPHINX_DEP=		sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 DOCS_BUILD_DEPENDS=	${SPHINX_DEP}
 HELP_BUILD_DEPENDS=	${SPHINX_DEP}
 MANPAGES_BUILD_DEPENDS=	${SPHINX_DEP}
