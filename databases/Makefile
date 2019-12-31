@@ -126,7 +126,6 @@ SUBDIR += phpmyadmin
 SUBDIR += phppgadmin
 SUBDIR += postgresql-jdbc
 SUBDIR += postgresql-libpqxx
-SUBDIR += postgresql-plruby
 SUBDIR += postgresql10-client
 SUBDIR += postgresql10-contrib
 SUBDIR += postgresql10-docs
