@@ -28,7 +28,11 @@ PLIST_FILES=	%%JAVAJARDIR%%/jna-platform.jar \
 		%%JAVAJARDIR%%/jna.jar
 
 ALL_TARGET=	native jar
+.if defined(MAGUS)
+NO_TEST=	yes
+.else
 TEST_TARGET=	test
+.endif
 
 OPTIONS_DEFINE=	DOCS
 
