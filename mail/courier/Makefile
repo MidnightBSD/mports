@@ -2,8 +2,8 @@
 
 PORTNAME=	courier
 PORTVERSION=	0.65.3
-PORTREVISION=	2
-CATEGORIES=	mail ipv6
+PORTREVISION=	3
+CATEGORIES=	mail
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,7 +23,7 @@ RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base \
 
 CONFLICTS=	courier-imap-2.* couriermlm-0.* \
 		exim-4.* maildrop-1.* \
-		postfix-1.* postfix-2.* \
+		panda-imap-201* postfix-1.* postfix-2.* \
 		qmail-*-1.* qmail-1.* \
 		sendmail-*-8.* sendmail-8.* \
 		smail-3.* sqwebmail-3.* \
@@ -298,6 +298,10 @@ post-patch:
 		${WRKSRC}/courier/perms.sh.in
 	@${REINPLACE_CMD} '/^courieresmtp_LDADD =/s/$$/ -lcourierauth/' \
 		${WRKSRC}/courier/module.esmtp/Makefile.in
+# Avoid conflict with C++20 <version> by adding .txt suffix
+	@${REINPLACE_CMD} -i .c++20 's/>version$$/&.txt/' ${WRKSRC}/configure
+	@${FIND} ${WRKSRC} -name configure -exec ${REINPLACE_CMD} \
+		-i .c++20 '/^version.*cat/s,/version,&.txt,' {} +
 
 post-build:
 	@${PERL} -pi -e 's|^(auth)\s+(required).*|$$1\t\t$$2\tpam_unix.so\ttry_first_pass|g;' \
