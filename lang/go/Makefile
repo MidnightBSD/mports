@@ -35,6 +35,10 @@ GO387_DESC=	Do not generate code with SSE2 (for old x86 CPU)
 
 .include <bsd.port.pre.mk>
 
+.if defined(MAGUS)
+NO_TEST=yes
+.endif
+
 .if ${ARCH} == i386
 GOARCH=386
 .elif ${ARCH} == "amd64"
