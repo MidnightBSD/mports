@@ -884,6 +884,7 @@ SUBDIR += re2c
 SUBDIR += readline
 SUBDIR += rebar
 SUBDIR += ruby-gems
+SUBDIR += rubygem-rdoc
 SUBDIR += scons
 SUBDIR += sdl12
 SUBDIR += sdl20
