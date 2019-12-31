@@ -20,7 +20,7 @@ LIB_DEPENDS=	libgnutls.so:security/gnutls \
 
 CONFLICTS=	knot-1.* knot1-[0-6].*
 
-USES=		alias compiler:c11 libedit libtool localbase ncurses pkgconfig python tar:xz
+USES=		compiler:c11 libedit libtool localbase ncurses pkgconfig python tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-recvmmsg=no \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
