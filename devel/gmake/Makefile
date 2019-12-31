@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gmake
 PORTVERSION=	4.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNU/make
 DISTNAME=	make-${PORTVERSION}
@@ -23,9 +21,9 @@ CPE_VENDOR=	gnu
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext-runtime iconv
-NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG} \
-			--with-libintl-prefix=${LOCALBASE}
+NLS_USES=	gettext-runtime
+#NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG} \
+#		--with-libintl-prefix=${LOCALBASE}
 NLS_CONFIGURE_ENABLE=	nls
 
 INFO=		make
