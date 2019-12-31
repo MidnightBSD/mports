@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
-
 PORTNAME=	desktop-file-utils
-PORTVERSION=	0.22
+PORTVERSION=	0.24
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/releases/
 
