@@ -9,7 +9,7 @@ COMMENT=	Module for using Tcl to write SQL functions
 
 LICENSE=	pgsql
 
-MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
+MASTERDIR=	${.CURDIR}/../../databases/postgresql12-server
 
 WANT_PGSQL_VER?=12
 
