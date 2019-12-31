@@ -5,7 +5,7 @@
  		append_var LIBS "-lnds9"
  		;;
 -	freebsd*)
-+	dragonfly*|freebsd*)
++	dragonfly*|freebsd*|midnightbsd*)
  		append_var LDFLAGS "-L/usr/local/lib"
  		append_var CXXFLAGS "-I/usr/local/include"
  		;;
@@ -13,7 +13,7 @@
  	android | beos* | bsd* | darwin* | freebsd* | gnu* | gph-linux | haiku* | hpux* | iphone | ios7 | irix*| k*bsd*-gnu* | linux* | maemo | mint* | netbsd* | openbsd* | solaris* | sunos* | uclinux* | webos)
  		_posix=yes
  		;;
-+	dragonfly*)
++	dragonfly*|midnightbsd*)
 +		_posix=yes
 +		;;
  	os2-emx*)

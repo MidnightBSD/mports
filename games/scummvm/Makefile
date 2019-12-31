@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	scummvm
-PORTVERSION=	2.0.0
+PORTVERSION=	2.1.0
 CATEGORIES=	games emulators
 MASTER_SITES=	http://www.scummvm.org/frs/scummvm/${PORTVERSION}/
 
@@ -16,7 +14,8 @@ LIB_DEPENDS=	libtheoradec.so:multimedia/libtheora \
 		libmpeg2.so:multimedia/libmpeg2 \
 		libfreetype.so:print/freetype2
 
-USES=		gmake jpeg tar:xz
+USE_GCC=	7
+USES=		gmake gnome iconv jpeg sdl tar:xz
 HAS_CONFIGURE=	yes
 USE_SDL=	sdl2
 INSTALLS_ICONS=	yes
