@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 ONLY_FOR_ARCHS=	amd64
 
 .if ${PORTNAME} != dotnet-cli
-BUILD_DPEENDS+=	dotnet:lang/linux-dotnet-cli
+#BUILD_DPEENDS+=	dotnet:lang/linux-dotnet-cli
 RUN_DEPENDS+=	dotnet:lang/linux-dotnet-cli
 .endif
 
