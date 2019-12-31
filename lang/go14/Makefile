@@ -18,6 +18,8 @@ SHEBANG_GLOB=	*.bash *.pl *.cgi
 
 WRKSRC=		${WRKDIR}/go
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == i386
