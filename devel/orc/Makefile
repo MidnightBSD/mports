@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	orc
-PORTVERSION=	0.4.25
+PORTVERSION=	0.4.28
 CATEGORIES=	devel
 MASTER_SITES= 	http://gstreamer.freedesktop.org/data/src/orc/
 
