@@ -1,29 +1,30 @@
-# $MidnightBSD$
-
 PORTNAME=	libglade2
 PORTVERSION=	2.6.4
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/..$//}
+MASTER_SITES=	GNOME/sources/${PORTNAME:S/2$//}/${PORTVERSION:C/..$//}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME glade library
 
-LICENSE=	gpl2
+LICENSE=	lgpl
+
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS=	xmlcatmgr:${PORTSDIR}/textproc/xmlcatmgr
+RUN_DEPENDS=	xmlcatmgr:textproc/xmlcatmgr
+
+USES+=		gmake gnome libtool:keepla pathfix pkgconfig
+USE_GNOME=	cairo gdkpixbuf2 libxml2 gtk20 referencehack
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-USES+=		gmake libtool:keepla pathfix pkgconfig
-USE_GNOME=	libxml2 gtk20 referencehack
-USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc \
 		--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
@@ -39,15 +40,19 @@ OPTIONS_DEFAULT=PYTHON
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MPYTHON}
-USE_PYTHON=	2
+USES+=		python:2.7
 PLIST_SUB+=	PYTHON=""
 .else
 PLIST_SUB+=	PYTHON="@comment "
+.endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|glib-2.0|gmodule-2.0 glib-2.0|g' \
+		${WRKSRC}/configure
+
+post-patch-PYTHON-off:
 	@${REINPLACE_CMD} -E 's/in (python.*)+ none/in none/' \
 		${WRKSRC}/configure
-.endif
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/libglade/2.0

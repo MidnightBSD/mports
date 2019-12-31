@@ -1,10 +1,6 @@
-# Created by: Nicola Vitale <nivit@FreeBSD.org>
-# $FreeBSD: head/audio/libechonest/Makefile 435573 2017-03-06 23:50:09Z jhale $
-# $MidnightBSD$
-
 PORTNAME=	libechonest
 PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTREVISION=	6
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,20 +9,21 @@ COMMENT=	Collection of C++/Qt classes designed to use the APIs of The Echo Nest
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libqjson.so:devel/qjson
+LIB_DEPENDS=	libqjson-qt5.so:devel/qjson
 
+USES=		cmake compiler:c++11-lang pkgconfig qt:5
+USE_LDCONFIG=	yes
+USE_GITHUB=	yes
 GH_ACCOUNT=	lfranchi
 
-OPTIONS_DEFINE=	TEST
+USE_QT=		core buildtools_build qmake_build network xml
+CMAKE_OFF+=	BUILD_WITH_QT4
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
-TEST_CMAKE_BOOL=ECHONEST_BUILD_TESTS
-TEST_USE=	qt4=qtestlib_build,xml_build
+OPTIONS_DEFINE=	TEST
 
-USES=		cmake pkgconfig
-USE_GITHUB=	yes
-USE_LDCONFIG=	yes
-USE_QT4=	corelib qmake_build moc_build network rcc_build
+TEST_USE=	QT5=testlib_build
+TEST_CMAKE_BOOL=ECHONEST_BUILD_TESTS
 
 .include <bsd.port.mk>

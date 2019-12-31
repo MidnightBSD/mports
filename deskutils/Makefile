@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Things that used to be on the desktop before computers were invented
 
 SUBDIR += affiche
@@ -36,9 +34,15 @@ SUBDIR += hot-babe
 SUBDIR += javajj
 SUBDIR += jjclient
 SUBDIR += jlj
-SUBDIR += libstreamanalyzer
-SUBDIR += libstreams
 SUBDIR += ljclive
+SUBDIR += lumina-archiver
+SUBDIR += lumina-calculator
+SUBDIR += lumina-fileinfo
+SUBDIR += lumina-fm
+SUBDIR += lumina-notify
+SUBDIR += lumina-screenshot
+SUBDIR += lumina-textedit
+SUBDIR += lumina-xdg-entry
 SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += orage
@@ -47,10 +51,6 @@ SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
 SUBDIR += simpleagenda
-SUBDIR += strigi
-SUBDIR += strigiclient
-SUBDIR += strigidaemon
-SUBDIR += strigiutils
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += vnc2flv

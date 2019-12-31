@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	netpbm
 PORTVERSION=	10.35.98
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/netpbm/super_stable/${PORTVERSION} \
 		${MASTER_SITE_FREEBSD_LOCAL:S/$/:man/}
@@ -16,13 +15,12 @@ LICENSE=	other
 FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libjbig.so:${PORTSDIR}/graphics/jbigkit \
 		libjasper.so:${PORTSDIR}/graphics/jasper \
 		libxml2.so:${PORTSDIR}/textproc/libxml2
 
-USES=		tar:tgz gmake perl5 shebangfix
+USES=		tar:tgz gmake jpeg perl5 shebangfix
 CFLAGS+=	-DPNG_DEPSTRUCT= -Iutil
 MAKE_ENV=	LN="${LN}" RANLIB="${RANLIB}"
 MAKEFILE=	GNUmakefile

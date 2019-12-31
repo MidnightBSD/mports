@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	scimark2c
 DISTVERSION=	2_1
 PORTREVISION=	2
@@ -10,7 +8,7 @@ DISTNAME=	${PORTNAME:S/2/${DISTVERSION}/}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ANSI C version of the SciMark2 benchmark
 
-LICENSE=	unknown
+LICENSE=	publicdom
 
 PLIST_FILES=	bin/scimark2
 WRKSRC=		${WRKDIR}

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	elasticsearch
 PORTVERSION=	0.90.0
 CATEGORIES=	textproc java devel
@@ -8,6 +6,7 @@ MASTER_SITES=	http://download.elasticsearch.org/${PORTNAME}/${PORTNAME}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-text search engine for Java
+
 LICENSE=	apache2
 
 USE_JAVA=	yes

@@ -1,2 +1,3 @@
-SHA256 (enlightenment/efl-1.15.0.tar.xz) = 5d9580e9ba961fc64222d54a73849c730477c209dde89cc123dde14f22d532bc
-SIZE (enlightenment/efl-1.15.0.tar.xz) = 43130156
+TIMESTAMP = 1520808862
+SHA256 (enlightenment/efl-1.20.7.tar.xz) = b0a9b765bcd7b012f1072da1d491fc8671aa089473f746901d93f5807a2c76fe
+SIZE (enlightenment/efl-1.20.7.tar.xz) = 65509444

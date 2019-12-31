@@ -10,7 +10,7 @@ COMMENT=	Amazon S3 Transfer Manager for Python
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.3.0:devel/py-botocore@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.12.36:devel/py-botocore@${PY_FLAVOR} \
 		${PY_FUTURES}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=1.3.3:devel/py-nose@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>=1.3.0:devel/py-mock@${PY_FLAVOR}
@@ -20,6 +20,7 @@ USES=		python
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 # setup.py test runs integration tests which fail
 # https://github.com/boto/s3transfer/issues/41

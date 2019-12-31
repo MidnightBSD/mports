@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	mythes
 PORTVERSION=	1.2.4
 CATEGORIES=	textproc
@@ -12,11 +10,12 @@ COMMENT=	Simple thesaurus library
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libhunspell-1.6.so:textproc/hunspell
+LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell
 
-USES=	libtool pathfix pkgconfig shebangfix
+USES=		compiler:c++11-lib libtool pathfix perl5 pkgconfig shebangfix
 SHEBANG_FILES=	th_gen_idx.pl
 USE_LDCONFIG=	yes
+USE_PERL5=	run
 INSTALL_TARGET=	install-strip
 
 GNU_CONFIGURE=	yes

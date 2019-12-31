@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	classpath
 PORTVERSION=	0.99
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	GNU \
 		SAVANNAH
@@ -18,7 +16,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool perl5 pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5_BUILD=yes
-USE_XORG=	x11 ice xtst xaw xproto xext
+USE_XORG=	x11 ice xtst xaw xorgproto xext
 WANT_GNOME=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -34,14 +32,13 @@ INFO=		cp-hacking cp-tools cp-vmintegration
 
 CONFLICTS=	sablevm-classpath-1.13 sablevm-classpath-1.13_[1-9]
 
-OPTIONS_DEFINE=	CAIRO ECJ GCONF GJDOC GMP GTK2 QT4 EXAMPLES
+OPTIONS_DEFINE=	CAIRO ECJ GCONF GJDOC GMP GTK2 EXAMPLES
 OPTIONS_DEFAULT=GMP GJDOC GTK2
 CAIRO_DESC=	Use Gtk+ Cairo based Graphics2D
 ECJ_DESC=	Embed ECJ as com.sun.tools.javac
 GJDOC_DESC=	Build javadoc replacement
 GMP_DESC=	Enable native java.math.BigInteger
 GTK2_DESC=	Enable Gtk+ AWT peer
-QT4_DESC=	Enable Qt AWT peer
 
 .include <bsd.mport.options.mk>
 
@@ -104,17 +101,7 @@ IGNORE=you need to enable the Gtk+ AWT peer in order to use Cairo based Graphics
 .endif
 .endif
 
-.if ${PORT_OPTIONS:MQT4}
-CONFIGURE_ARGS+=	--enable-qt-peer
-.if empty(PORT_OPTIONS:MGTK2)
-CONFIGURE_ARGS+=	--enable-default-toolkit=gnu.java.awt.peer.qt.QtToolkit
-.endif
-CONFIGURE_ENV+=		MOC="${LOCALBASE}/bin/moc-qt4"
-USE_QT4=		moc_build corelib gui
-PLIST_SUB+=		QT4=""
-.else
 PLIST_SUB+=		QT4="@comment "
-.endif
 
 .if !defined(WITH_GCJ) && (${ARCH} == "amd64" || ${ARCH} == "i386")
 BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk/bin/javac:${PORTSDIR}/java/bootstrap-openjdk

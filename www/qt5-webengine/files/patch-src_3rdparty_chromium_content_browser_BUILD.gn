@@ -1,0 +1,14 @@
+--- src/3rdparty/chromium/content/browser/BUILD.gn.orig	2018-11-13 18:25:11 UTC
++++ src/3rdparty/chromium/content/browser/BUILD.gn
+@@ -1799,11 +1799,6 @@ jumbo_source_set("browser") {
+       "tracing/cros_tracing_agent.cc",
+       "tracing/cros_tracing_agent.h",
+     ]
+-  } else {
+-    sources += [
+-      "memory/memory_monitor_linux.cc",
+-      "memory/memory_monitor_linux.h",
+-    ]
+   }
+ 
+   if (is_chromeos || is_android || is_chromecast) {

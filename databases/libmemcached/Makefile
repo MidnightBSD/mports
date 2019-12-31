@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/databases/libmemcached/Makefile 412346 2016-04-01 14:00:51Z mat $
-
 PORTNAME=	libmemcached
 PORTVERSION=	1.0.18
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases
 MASTER_SITES=	http://launchpad.net/${PORTNAME}/1.0/${PORTVERSION}/+download/
 
@@ -13,10 +10,10 @@ COMMENT=	C and C++ client library to the memcached server
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS?=	libevent.so:${PORTSDIR}/devel/libevent
-TEST_DEPENDS=	memcached:${PORTSDIR}/databases/memcached
+LIB_DEPENDS?=	libevent.so:devel/libevent
+TEST_DEPENDS=	memcached:databases/memcached
 
-USES=		autoreconf execinfo gmake pathfix pkgconfig libtool
+USES=		autoreconf execinfo gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -25,7 +22,7 @@ CONFIGURE_ARGS=	--without-memcached \
 		--enable-libmemcachedprotocol
 
 LIBS+=		-L${LOCALBASE}/lib -lexecinfo
-CXXFLAGS+=	-D__STDC_CONSTANT_MACROS
+CXXFLAGS+=	-D__STDC_CONSTANT_MACROS -pthread
 
 OPTIONS_DEFINE=		DEBUG DTRACE MEMASLAP SASL
 OPTIONS_DEFAULT=	MEMASLAP SASL MURMUR FNV64
@@ -46,7 +43,7 @@ HSIEH_CONFIGURE_ENABLE=		hsieh_hash
 MURMUR_CONFIGURE_ENABLE=	murmur_hash
 
 SASL_CONFIGURE_ENABLE=	sasl
-SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
 PATHFIX_MAKEFILEIN=	include.am
 

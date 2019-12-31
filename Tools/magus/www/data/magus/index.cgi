@@ -10,6 +10,7 @@ use CGI::Fast;
 use HTML::Template;
 use JSON::XS;
 use DateTime::Format::Pg;
+use Gzip::Faster;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -41,7 +42,7 @@ END_OF_ERROR
 
 sub main {
   my ($p) = @_;
-  
+ 
   my $path = $p->path_info;
 
   if ($path eq '' || $path eq '/') {
@@ -96,7 +97,9 @@ sub api_runs {
      push(@runOut, {"blessed", $r->{blessed}, "status", $r->{status}, "created", $dt->strftime('%FT%TZ'),  "osversion", $r->{osversion}, "arch", $r->{arch}, "id", $r->{id}});
   }
 
-    print $p->header(-type => 'application/json'), encode_json(\@runOut);
+  print $p->header(-type => 'application/json');
+
+  print encode_json(\@runOut);
 }
 
 sub api_run_port_stats { 
@@ -133,7 +136,7 @@ sub api_run_port_stats {
 
 
 sub run_index {
-  my ($p) = @_;
+  my ($p, $gzip_ok) = @_;
   my $tmpl = template($p, 'runlist.tmpl');
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
@@ -141,8 +144,13 @@ sub run_index {
   $tmpl->param(
     runs       => \@runs,
   );
-   
-  print $p->header, $tmpl->output;
+  
+  if ($gzip_ok) {  
+    print $p->header(-encoding => 'gzip');        
+    print $p->header, gzip($tmpl->output); 
+  } else { 
+    print $p->header, $tmpl->output; 
+  }
 }
 
 sub compare_runs {

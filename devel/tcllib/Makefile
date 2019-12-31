@@ -21,6 +21,8 @@ CONFIGURE_ENV+=	ac_cv_path_tclsh="${TCLSH}"
 TEST_TARGET=	test
 TEST_ENV=	${MAKE_ENV} DISPLAY= TZ=utc
 
+NO_TEST=	yes
+
 .if ${OPTIONS_DEFINE:MDOCS}
 PORTDOCS=	*
 .endif

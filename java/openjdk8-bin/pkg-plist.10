@@ -347,6 +347,8 @@ openjdk8/ASSEMBLY_EXCEPTION
 openjdk8/LICENSE
 openjdk8/include/freebsd/jni_md.h
 openjdk8/include/freebsd/jawt_md.h
+openjdk8/include/midnightbsd/jni_md.h
+openjdk8/include/midnightbsd/jawt_md.h
 openjdk8/include/jni.h
 openjdk8/include/jawt.h
 openjdk8/include/jvmti.h

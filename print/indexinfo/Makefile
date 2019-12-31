@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	indexinfo
-PORTVERSION=	0.2.6
+PORTVERSION=	0.3.1
 CATEGORIES=	print ports-mgmt
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,6 +7,8 @@ COMMENT=	Utility to regenerate the GNU info page index
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+USE_CSTD=	gnu99
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 

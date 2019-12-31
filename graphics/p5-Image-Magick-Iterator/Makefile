@@ -1,5 +1,6 @@
 PORTNAME=	Image-Magick-Iterator
 PORTVERSION=	0.01
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,7 +11,7 @@ COMMENT=	Sequentially read Image::Magick object from a filehandle
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Image/Magick.pm:graphics/ImageMagick \
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Image/Magick.pm:graphics/ImageMagick6 \
 		${SITE_PERL}/Image/PBMlib.pm:graphics/p5-Image-PBMlib
 
 USES=	perl5

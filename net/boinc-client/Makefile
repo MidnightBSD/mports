@@ -1,30 +1,32 @@
-# $MidnightBSD$
-
 PORTNAME=	boinc-client
-PORTVERSION=	7.2.33
+PORTVERSION=	7.8.6
+DISTVERSIONPREFIX=	client_release/7.8/
+PORTREVISION=	0
 CATEGORIES=	net
-MASTER_SITES=	FREEBSD_LOCAL/rene
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Berkeley Open Infrastructure for Network Computing client
 
-LICENSE=	gpl2
+LICENSE=	lgpl3
 
-INSTALL_TARGET=       install-strip
-USES=		autoreconf gmake libtool pkgconfig tar:xz
+USES=		autoreconf compiler:c++11-lang dos2unix gettext gmake \
+		libtool pkgconfig ssl tar:xz
+INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
+USE_GITHUB=	yes
+GH_ACCOUNT=	BOINC
+GH_PROJECT=	boinc
 USE_LDCONFIG=	yes
-USE_DOS2UNIX=	yes
-DOS2UNIX_GLOB=        *.xpm
+DOS2UNIX_GLOB=	*.xpm
 
-USERS=                boinc
-GROUPS=               boinc
+USERS=		boinc
+GROUPS=		boinc
 
 BOINC_CLIENT_USER?=	boinc
 BOINC_CLIENT_GROUP?=	boinc
 BOINC_CLIENT_HOME?=	/var/db/boinc
 
-SUB_FILES=	pkg-install
+SUB_FILES=	pkg-install pkg-deinstall
 SUB_LIST=	BOINC_CLIENT_HOME="${BOINC_CLIENT_HOME}" \
 		BOINC_CLIENT_USER="${BOINC_CLIENT_USER}" \
 		BOINC_CLIENT_GROUP="${BOINC_CLIENT_GROUP}" \
@@ -33,7 +35,7 @@ SUB_LIST=	BOINC_CLIENT_HOME="${BOINC_CLIENT_HOME}" \
 CONFIGURE_ARGS=	--disable-server
 CONFIGURE_ENV=	OBJCXX="${CXX}"
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo
 
 OPTIONS_DEFINE=		CLIENT MANAGER NLS X11 LINUX USER SKINS
 OPTIONS_DEFAULT=	CLIENT MANAGER X11 USER
@@ -51,36 +53,38 @@ NO_NET_INFO_DESC=	Do not send host address and name to servers
 
 OPTIONS_SUB=		yes
 
-MANAGER_USES=		iconv
-MANAGER_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
-MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=/usr
+MANAGER_LIB_DEPENDS=	libnotify.so:devel/libnotify \
+			libfontconfig.so:x11-fonts/fontconfig \
+			libsqlite3.so:databases/sqlite3 \
+			libxcb-util.so:x11/xcb-util
+MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=${LOCALBASE}
 MANAGER_CONFIGURE_OFF=	--with-wx-config=false --without-x
 MANAGER_CONFIGURE_ENABLE=manager
-MANAGER_USE=		XORG=x11,xext,xscrnsaver WX=2.8
+MANAGER_USES=		gnome iconv
+MANAGER_USE=		GNOME=cairo,gdkpixbuf2,glib20,gtk20,pango \
+			XORG=xcb,x11,xext,xscrnsaver WX=3.0
 
 CLIENT_CONFIGURE_ENABLE=client
-CLIENT_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
-CLIENT_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+CLIENT_LIB_DEPENDS=	libcurl.so:ftp/curl \
+			libfreetype.so:print/freetype2
+CLIENT_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 CLIENT_USE=		RC_SUBR=boinc-client
 
 LINUX_CONFIGURE_ON=	--with-boinc-alt-platform=i686-pc-linux-gnu
-LINUX_USE=		LINUX=yes
+LINUX_USES=		linux
 
-X11_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-X11_USE=		GL=glut XORG=xmu,xi
-X11_CONFIGURE_OFF=	ax_cv_check_glut_libglut=no
+X11_USES=		jpeg gl
+X11_USE=		GL=glut XORG=x11,xscrnsaver,xmu,xi
+X11_CONFIGURE_OFF=	--without-x ax_cv_check_glut_libglut=no
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MMANAGER}
 WX_CONF_ARGS=	absolute
-WX_UNICODE=	yes
-. if ${OSVERSION} < 4016
-CPPFLAGS+=	-DNO_PER_THREAD_LOCALE
-. endif
 SUB_LIST+=	OPTION_MANAGER="true"
 .else
 SUB_LIST+=	OPTION_MANAGER=""
+CONFIGURE_ARGS+=	--disable-manager
 .endif
 
 .if ${PORT_OPTIONS:MCLIENT}
@@ -94,14 +98,10 @@ SUB_LIST+=	OPTION_USER="true"
 SUB_LIST+=	OPTION_USER=""
 .endif
 
-post-extract: dos2unix
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|@PREFIX@|${PREFIX}|' \
 		${WRKSRC}/client/hostinfo_unix.cpp
 	@${REINPLACE_CMD} -e 's|client/scripts||' ${WRKSRC}/Makefile.am
-	@${REINPLACE_CMD} -e 's|$$$$mydir/$$$$ldir|&/LC_MESSAGES|' \
-		${WRKSRC}/locale/Makefile.am
 # avoid build conflict with archivers/libzip
 	@${MV} ${WRKSRC}/zip/unzip/zip.h ${WRKSRC}/zip/unzip/boinczip.h
 	@${MV} ${WRKSRC}/zip/zip/zip.h ${WRKSRC}/zip/zip/boinczip.h
@@ -115,36 +115,37 @@ post-patch:
 	    ${WRKSRC}/zip/zip/zip.c ${WRKSRC}/zip/zip/zipfile.c \
 	    ${WRKSRC}/zip/zip/zipup.c
 
+post-patch-X11-off:
+	@${REINPLACE_CMD} -e 's|enable_xss="yes"|enable_xss="no"|' ${WRKSRC}/configure.ac
+
 post-install:
-.if ${PORT_OPTIONS:MMANAGER} || ${PORT_OPTIONS:MX11}
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc
-.endif
-.if ${PORT_OPTIONS:MMANAGER}
-. for name in 16 32 48
-	${INSTALL_DATA} ${WRKSRC}/clientgui/res/boincmgr.${name}x${name}.png \
-	    ${STAGEDIR}${PREFIX}/share/pixmaps
-. endfor
-. if ${PORT_OPTIONS:MSKINS}
+.for name in config.h project_specific_defines.h api/reduce.h \
+	lib/opencl_boinc.h lib/shmem.h lib/std_fixes.h lib/str_replace.h
+	${INSTALL_DATA} ${WRKSRC}/${name} ${STAGEDIR}${PREFIX}/include/boinc
+.endfor
+
+post-install-MANAGER-on:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc
+.for name in 16 32 48
+	${INSTALL_DATA} ${WRKSRC}/packages/generic/sea/boincmgr.${name}x${name}.png \
+	    ${FAKE_DESTDIR}${PREFIX}/share/pixmaps
+.endfor
+.if ${PORT_OPTIONS:MSKINS}
 	(cd ${WRKSRC}/clientgui && \
-	${COPYTREE_SHARE} skins ${STAGEDIR}${PREFIX}/share/boinc/ )
-. else
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc/skins
+	${COPYTREE_SHARE} skins ${FAKE_DESTDIR}${PREFIX}/share/boinc/ )
+.else
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins
 	(cd ${WRKSRC}/clientgui/skins && \
-	${COPYTREE_SHARE} Default ${STAGEDIR}${PREFIX}/share/boinc/skins/ )
-. endif
+	${COPYTREE_SHARE} Default ${FAKE_DESTDIR}${PREFIX}/share/boinc/skins/ )
 .endif
-. for name in config.h project_specific_defines.h api/reduce.h \
-	lib/opencl_boinc.h lib/shmem.h lib/std_fixes.h
-	${INSTALL_DATA} ${WRKSRC}/${name} ${STAGEDIR}${PREFIX}/include/boinc
-. endfor
-.if ${PORT_OPTIONS:MX11}
-. for name in api/boinc_gl.h api/graphics_api.h api/graphics_data.h \
+
+post-install-X11-on:
+.for name in api/boinc_gl.h api/graphics_api.h api/graphics_data.h \
 	api/ttfont.h
-	${INSTALL_DATA} ${WRKSRC}/${name} ${STAGEDIR}${PREFIX}/include/boinc
-. endfor
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/boinc/ttf
+	${INSTALL_DATA} ${WRKSRC}/${name} ${FAKE_DESTDIR}${PREFIX}/include/boinc
+.endfor
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf
 	(cd ${WRKSRC}/api/ttf/liberation-fonts-ttf-2.00.0 && \
-	    ${COPYTREE_SHARE} \*.ttf ${STAGEDIR}${PREFIX}/share/boinc/ttf/ )
-.endif
+	    ${COPYTREE_SHARE} \*.ttf ${FAKE_DESTDIR}${PREFIX}/share/boinc/ttf/ )
 
 .include <bsd.port.mk>

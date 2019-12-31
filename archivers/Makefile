@@ -34,6 +34,7 @@ SUBDIR += p5-Archive-Tar
 SUBDIR += p5-Archive-Zip
 SUBDIR += p5-Compress-Raw-Bzip2
 SUBDIR += p5-Compress-Raw-Zlib
+SUBDIR += p5-Gzip-Faster
 SUBDIR += p5-IO-Compress
 SUBDIR += p5-IO-Zlib
 SUBDIR += p7zip
@@ -46,6 +47,11 @@ SUBDIR += php72-bz2
 SUBDIR += php72-phar
 SUBDIR += php72-zip
 SUBDIR += php72-zlib
+SUBDIR += php73-bz2
+SUBDIR += php73-phar
+SUBDIR += php73-zip
+SUBDIR += php73-zlib
+SUBDIR += py-borgbackup
 SUBDIR += py-bz2file
 SUBDIR += py-lz4
 SUBDIR += py-lzma
@@ -69,6 +75,7 @@ SUBDIR += xar
 SUBDIR += zip
 SUBDIR += zipper
 SUBDIR += zoo
+SUBDIR += zstd
 SUBDIR += zutils
 
 .include <bsd.port.subdir.mk>

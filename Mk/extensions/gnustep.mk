@@ -42,6 +42,16 @@ MAKE_ENV+=	ADDITIONAL_${a}="${ADDITIONAL_${a}}"
 .endfor
 MAKE_ARGS+=messages=yes
 
+# BFD ld can't link Objective-C programs for some reason.  Most things are fine
+# with LLD, but the things that don't (e.g. sope) need gold.
+.if defined(LLD_UNSAFE)
+MAKE_ARGS+=LDFLAGS='-fuse-ld=gold'
+BUILD_DEPENDS+=         ${LOCALBASE}/bin/ld.gold:devel/binutils
+.else
+MAKE_ARGS+=LDFLAGS='-fuse-ld=${OBJC_LLD}'
+.endif
+
+
 MAKEFILE=	GNUmakefile
 #MAKE_ENV+=	GNUSTEP_CONFIG_FILE=${PORTSDIR}/devel/gnustep-make/files/GNUstep.conf
 GNU_CONFIGURE_PREFIX=	${GNUSTEP_PREFIX}
@@ -73,9 +83,9 @@ CONFIGURE_ENV+=	PATH="${PATH}" GNUSTEP_MAKEFILES="${GNUSTEP_MAKEFILES}"
 BUILD_DEPENDS+=	gnustep-make>0:devel/gnustep-make
 .include "${PORTSDIR}/Mk/extensions/objc.mk"
 
-do-build:
-	@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
+#do-build:
+#@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+#		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
 .  endif
 

@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	lzo2
-PORTVERSION=	2.09
+PORTVERSION=	2.10
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		FREEBSD_LOCAL/mandree
@@ -14,7 +12,7 @@ LICENSE=	gpl2
 
 USES=		libtool
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared --docdir=${DOCSDIR}
+CONFIGURE_ARGS=	--enable-shared --docdir=${DOCSDIR} --with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES

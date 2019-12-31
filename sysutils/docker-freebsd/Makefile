@@ -1,6 +1,4 @@
 # Created by: kmoore@FreeBSD.org
-# $FreeBSD: head/sysutils/docker-freebsd/Makefile 407239 2016-01-25 20:23:57Z rakuco $
-# $MidnightBSD$
 
 PORTNAME=	docker-freebsd
 PORTVERSION=	20150625
@@ -12,12 +10,12 @@ COMMENT=	Docker containment system
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	go>=1.4:${PORTSDIR}/lang/go \
-		bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/bin/sqlite3:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=	go>=1.4:lang/go \
+		bash:shells/bash \
+		${LOCALBASE}/bin/sqlite3:databases/sqlite3
 RUN_DEPENDS=	go>=1.4:${PORTSDIR}/lang/go \
 		bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/bin/sqlite3:${PORTSDIR}/databases/sqlite3
+		${LOCALBASE}/bin/sqlite3:databases/sqlite3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kvasdopil

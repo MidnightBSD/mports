@@ -9,32 +9,11 @@
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
 .if !target(makepatch)
-PATCH_PATH_SEPARATOR=	_
 makepatch:
-	@${MKDIR} ${PATCHDIR}
-	@(cd ${PATCH_WRKSRC}; \
-		for f in `${FIND} -s . -type f -name '*.orig'`; do \
-			ORIG=$${f#./}; \
-			NEW=$${ORIG%.orig}; \
-			cmp -s $${ORIG} $${NEW} && continue; \
-			! for _lps in `${ECHO} _ - + | ${SED} -e \
-			's|${PATCH_PATH_SEPARATOR}|__|'`; do \
-                           	PATCH=`${ECHO} $${NEW} | ${SED} -e "s|/|$${_lps}|g"`; \
-				test -f "${PATCHDIR}/patch-$${PATCH}" && break; \
-			done || ${ECHO} $${_SEEN} | ${GREP} -q /$${PATCH} && { \
-				PATCH=`${ECHO} $${NEW} | ${SED} -e \
-                                        's|${PATCH_PATH_SEPARATOR}|&&|g' -e \
-                                        's|/|${PATCH_PATH_SEPARATOR}|g'`; \
-                                _SEEN=$${_SEEN}/$${PATCH}; \
-                        }; \
-                        OUT=${PATCHDIR}/patch-$${PATCH}; \
-                        ${ECHO} ${DIFF} -udp $${ORIG} $${NEW} '>' $${OUT}; \
-                        TZ=UTC ${DIFF} -udp $${ORIG} $${NEW} | ${SED} -e \
-                                '/^---/s|\.[0-9]* +0000$$| UTC|' -e \
-                                '/^+++/s|\([[:blank:]][-0-9:.+]*\)*$$||' \
-                                        > $${OUT} || ${TRUE}; \
-		done \
-	)
+	@${SETENV} WRKDIR=${WRKDIR} PATCHDIR=${PATCHDIR} \
+		PATCH_WRKSRC=${PATCH_WRKSRC} \
+		STRIP_COMPONENTS="${PATCH_STRIP:S/-p//}" \
+		${SH} ${SCRIPTSDIR}/smart_makepatch.sh
 .endif
 
 

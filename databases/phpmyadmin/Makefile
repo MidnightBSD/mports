@@ -1,5 +1,5 @@
 PORTNAME=	phpMyAdmin
-DISTVERSION=	4.9.0.1
+DISTVERSION=	4.9.1
 CATEGORIES=	databases www
 MASTER_SITES=	https://files.phpmyadmin.net/${PORTNAME}/${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
@@ -9,11 +9,11 @@ COMMENT=	Set of PHP-scripts to manage MySQL over the web
 
 LICENSE=	gpl2
 
-USES=		cpe shebangfix tar:xz
+USES=		cpe php:web,flavors shebangfix tar:xz
 CPE_PRODUCT=	${PORTNAME:tl}
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-USE_PHP=	ctype session filter mbstring json spl mysqli
+USE_PHP=	ctype filter hash json mysqli session spl xml
 .endif
 
 # Note: default settings will pull in X11 client support.  If you don't

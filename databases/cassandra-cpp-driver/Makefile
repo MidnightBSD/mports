@@ -17,7 +17,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	datastax
 GH_PROJECT=	cpp-driver
 
-USES=		cmake:outsource pkgconfig pathfix ssl
+USES=		cmake pkgconfig pathfix ssl
 CMAKE_ARGS=	-DCMAKE_INSTALL_LIBDIR:STRING=lib \
 		-DCASS_BUILD_STATIC:BOOL=ON
 

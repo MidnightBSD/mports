@@ -1,7 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	qt
-PORTVERSION=	4.8.5
+PORTVERSION=	4.8.7
+DISTVERSIONSUFFIX=	-3.el7_6
+PORTREVISION=	2
 CATEGORIES=	devel linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,15 +9,14 @@ COMMENT=	RPM of QT4 (Linux CentOS ${LINUX_DIST_VER})
 
 LICENSE=	gpl2
 
-CONFLICTS=	linux-c6-${PORTNAME}47-[0-9]*
-
-DATADIR=	${PREFIX}/usr/share/${PORTNAME}4
-DESCR=		${.CURDIR}/../../devel/${PORTNAME}4/pkg-descr
-RPMVERSION=	15.el7_4
 USES=		linux:c7
 USE_LDCONFIG=	yes
-USE_LINUX=	fontconfig png dbuslibs sqlite3 openssl
+USE_LINUX=	fontconfig png dbuslibs sqlite3
 USE_LINUX_RPM=	yes
+
+CONFLICTS=	linux-c6-${PORTNAME}47-[0-9]*
+DATADIR=	${PREFIX}/usr/share/${PORTNAME}4
+DESCR=		${.CURDIR}/../../devel/linux-c6-qt47/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
 

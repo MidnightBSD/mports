@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/libwmf/Makefile,v 1.41 2007/02/01 02:41:41 kris Exp $
-
 PORTNAME=	libwmf
 PORTVERSION=	0.2.8.4
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	graphics
 MASTER_SITES=	SF/wvware/${PORTNAME}/${PORTVERSION}
 
@@ -13,9 +10,8 @@ COMMENT=	Tools and library for converting Microsoft WMF (windows metafile)
 LICENSE=	gpl2 # or later
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libfreetype.so:print/freetype2
 
 CONFLICTS?=	libwmf-nox11-[0-9]*
 
@@ -24,7 +20,7 @@ CONFIGURE_ARGS=	--with-sys-gd=no \
 		--with-png=${LOCALBASE} --with-jpeg=${LOCALBASE} \
 		--with-gsfontdir=${LOCALBASE}/share/ghostscript/fonts
 INSTALL_TARGET=	install-strip
-USES=		libtool
+USES=		gnome jpeg libtool
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 

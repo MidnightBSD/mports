@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	qtwebkit
 PORTVERSION=	2.3.4
 CATEGORIES=	www linux
@@ -12,7 +10,7 @@ LICENSE=	gpl3
 
 CONFLICTS=	linux-c6-qt47-webkit-[0-9]*
 
-DESCR=		${.CURDIR}/../../devel/qt4/pkg-descr
+DESCR=		${.CURDIR}/../../devel/linux-c6-qt47/pkg-descr
 ONLY_FOR_ARCHS=	amd64
 RPMVERSION=	6.el7
 USES=		linux:c7

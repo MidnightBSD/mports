@@ -1,6 +1,6 @@
 PORTNAME=	knot
-DISTVERSION=	2.7.6
-CATEGORIES=	dns ipv6
+DISTVERSION=	2.9.1
+CATEGORIES=	dns
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/ \
 		https://dns.company/downloads/knot-dns/
 PKGNAMESUFFIX?=	2
@@ -15,12 +15,11 @@ NOT_FOR_ARCHS_REASON_i386=Uses 64 bit atomics that clang cannot generate on i386
 
 LIB_DEPENDS=	libgnutls.so:security/gnutls \
 		liblmdb.so:databases/lmdb \
-		libnettle.so:security/nettle \
 		liburcu.so:sysutils/liburcu
 
 CONFLICTS=	knot-1.* knot1-[0-6].*
 
-USES=		alias compiler:c11 libedit libtool localbase ncurses pkgconfig python tar:xz
+USES=		compiler:c11 libedit libtool localbase ncurses pkgconfig python tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-recvmmsg=no \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig

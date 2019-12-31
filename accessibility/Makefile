@@ -1,5 +1,3 @@
-# $MidnightBSD$
-    
 COMMENT = Ports to help disabled users
 
 SUBDIR += accerciser
@@ -14,7 +12,7 @@ SUBDIR += linux-c7-atk
 SUBDIR += orca
 SUBDIR += py-atspi
 SUBDIR += py-speech-dispatcher
-SUBDIR += qt4-accessible
+SUBDIR += qt5-speech
 SUBDIR += speech-dispatcher
 SUBDIR += yasr
 

@@ -1,9 +1,5 @@
-# Created by: Brad Lanam <bll@gentoo.com>
-# $FreeBSD: head/sysutils/di/Makefile 419323 2016-07-30 15:52:46Z pawel $
-# $MidnightBSD$
-
 PORTNAME=	di
-PORTVERSION=	4.44
+PORTVERSION=	4.47.1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://gentoo.com/di/ \
 		http://www.cyberbotx.com/di/

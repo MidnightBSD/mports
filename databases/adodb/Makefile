@@ -1,11 +1,3 @@
-# New ports collection makefile for: adodb
-# Date created:		4 May 2001
-# Whom:			abgoeree@uwnet.nl
-#
-# $MidnightBSD$
-# $FreeBSD: ports/databases/adodb/Makefile,v 1.46 2007/04/05 13:19:01 mm Exp $
-#
-
 PORTNAME=	adodb
 PORTVERSION=	4.99.2
 CATEGORIES=	databases www
@@ -15,15 +7,18 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database library for PHP
-LICENSE=	bsd4
-#dual bsd4 / gpl2.. we choose the better of the two
 
+LICENSE=	bsd4 gpl2
+LICENSE_COMB=	dual
+
+USES=		php tar:tgz
 USE_PHP=	pcre
 
 CONFLICTS=	adodb-5.*
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 NO_BUILD=	YES
+NO_ARCH=	YES
 
 ADODB_DIR?=	share/adodb
 PLIST_SUB=	ADODB_DIR=${ADODB_DIR}
@@ -68,6 +63,5 @@ post-install:
 	@cd ${WRKSRC}; ${FIND} cute_icons_for_site -type f \
 		-exec ${INSTALL_MAN} ${WRKSRC}/{} ${DOCSDIR}/{} \;
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-    
 COMMENT = Ports to support the X window system
 
 SUBDIR += appres
@@ -77,7 +75,8 @@ SUBDIR += linux-c7-xorg-libs
 SUBDIR += listres
 SUBDIR += luit
 SUBDIR += lumina
-SUBDIR += lumina-i18n
+SUBDIR += lumina-core
+SUBDIR += lumina-coreutils
 SUBDIR += mkcomposecache
 SUBDIR += mlogind
 SUBDIR += numlockx
@@ -87,8 +86,6 @@ SUBDIR += nvidia-settings
 SUBDIR += nvidia-xconfig
 SUBDIR += pixman
 SUBDIR += qimageblitz
-SUBDIR += qt4-graphicssystems-opengl
-SUBDIR += qt4-inputmethods
 SUBDIR += qt5-qev
 SUBDIR += qt5-x11extras
 SUBDIR += rgb
@@ -120,6 +117,7 @@ SUBDIR += xcb-util-image
 SUBDIR += xcb-util-keysyms
 SUBDIR += xcb-util-renderutil
 SUBDIR += xcb-util-wm
+SUBDIR += xcb-util-xrm
 SUBDIR += xclip
 SUBDIR += xclipboard
 SUBDIR += xcmsdb

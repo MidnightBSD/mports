@@ -1,11 +1,6 @@
-# New ports collection makefile for:	afterstep
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
-
 PORTNAME=	afterstep
 PORTVERSION=	2.2.12
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-wm afterstep
 MASTER_SITES=	AFTERSTEP/stable
 DISTNAME=	AfterStep-${PORTVERSION}
@@ -15,16 +10,15 @@ COMMENT=	Window manager originally based on the Bowman NeXTstep clone
 
 LICENSE=	mit
 
-LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libgif.so:${PORTSDIR}/graphics/giflib \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libgif.so:graphics/giflib \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
 RUN_DEPENDS=	xli:${PORTSDIR}/graphics/xli
 
-USES=		execinfo gmake pkgconfig shebangfix tar:bzip2
+USES=		execinfo gmake pkgconfig jpeg shebangfix tar:bzip2
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 librsvg2 pango
 USE_XORG+=	ice sm x11 xcomposite xcursor xdamage xext xfixes xi xinerama \
 		xrandr xrender

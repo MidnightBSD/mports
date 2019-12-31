@@ -1,25 +1,28 @@
-# $MidnighitBSD$
-
 PORTNAME=	libmusicbrainz
-PORTVERSION=	5.0.1
-PORTREVISION=	1
+PORTVERSION=	5.1.0
+DISTVERSIONPREFIX=	release-
 CATEGORIES=	audio
-MASTER_SITES=	https://cloud.github.com/downloads/metabrainz/${PORTNAME}/
+PKGNAMESUFFIX=	5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MusicBrainz client library for audio metadata lookup
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libneon.so:${PORTSDIR}/www/neon
+LIB_DEPENDS=	libneon.so:www/neon
 
-USES=		cmake
+USES=		cmake:insource compiler:c++11-lang iconv:build pathfix
+USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	metabrainz
+
 post-patch:
-	${REINPLACE_CMD} -e '/pkgconfig/s|$${LIB_INSTALL_DIR}|libdata|' \
-		 ${WRKSRC}/CMakeLists.txt
+	${REINPLACE_CMD} -e 's|%%ICONV_PREFIX%%|${ICONV_PREFIX}|g' \
+		 ${WRKSRC}/src/CMakeLists.txt
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		 ${WRKSRC}/cmake/modules/*.cmake
+	${RM} ${WRKSRC}/cmake/modules/FindLibXml2.cmake
 
 .include <bsd.port.mk>

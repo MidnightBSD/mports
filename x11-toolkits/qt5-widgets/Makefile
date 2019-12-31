@@ -1,18 +1,14 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-toolkits/qt5-widgets/Makefile 416056 2016-05-28 17:27:21Z pi $
-
 PORTNAME=	widgets
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt C++ widgets module
 
-LICENSE=	gpl3
-
-USE_QT5=	core gui qmake_build buildtools_build
-QT_DIST=	base
+USES=		compiler:c++11-lang qmake:no_env qt-dist:5,base
+USE_QT=		core gui qmake_build buildtools_build
 USE_XORG=	x11
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
@@ -20,44 +16,52 @@ USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-MORE_WRKSRCS=	src/tools/uic \
-		src/plugins/platformthemes
+MORE_WRKSRCS=	src/tools/uic
 
 QT_DEFINES=	ACCESSIBILITY WIDGETS XSYNC
 QT_CONFIG=	accessibility accessibility-atspi-bridge xlib
 
-OPTIONS_DEFINE=	GTK2
-OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	GTK3
+OPTIONS_SUB=	YES
 
-GTK2_DESC=	GTK+-based Qt theme
-GTK2_USE=	GNOME=gtk20
-GTK2_CONFIGURE_ON=	-gtkstyle
-GTK2_CONFIGURE_OFF=	-no-gtkstyle
+GTK3_DESC=	GTK+-based Qt theme
+GTK3_USE=	GNOME=gtk30 QT=dbus
+GTK3_CONFIGURE_ON=	-gtk
+GTK3_CONFIGURE_OFF=	-no-gtk
 
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MGTK2}
+.if ${PORT_OPTIONS:MGTK3}
 QT_DEFINES+=	STYLE_GTK
-QT_CONFIG+=	gtkstyle
+QT_CONFIG+=	gtk
+MORE_WRKSRCS+=	src/plugins/platformthemes
 .else
 QT_DEFINES+=	-STYLE_GTK
-QT_CONFIG+=	-gtkstyle
+QT_CONFIG+=	-gtk
 .endif
 
-# libQt5PlatformSupport.a is installed by qt5-core but needed for the gtk style plugin
 post-configure:
-	${LN} -s ${QT_LIBDIR}/libQt5PlatformSupport.a \
-		${WRKSRC}/lib/libQt5PlatformSupport.a
+.for d in src/tools/uic src/widgets ${MORE_WRKSRCS}
+	${MKDIR} ${WRKSRC}/${d}
+	cd ${WRKSRC}/${d} && ${SETENV} ${QMAKE_ENV} ${_QMAKE} ${QMAKE_ARGS} ${WRKSRC}/${d}
+.endfor
 
 pre-build:
-	@cd ${WRKSRC}/src/tools/uic && \
+	cd ${WRKSRC}/src/tools/uic && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
-		${_MAKE_JOBS} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET}
+		${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}
 
-post-install:
+post-build:
 .for d in ${MORE_WRKSRCS}
 	@cd ${WRKSRC}/${d} && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
+		${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}
+.endfor
+
+post-install:
+.for d in src/tools/uic ${MORE_WRKSRCS}
+	@cd ${WRKSRC}/${d} && \
+		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
 	${INSTALL_DATA} ${BUILD_WRKSRC}/dialogs/images/qtlogo-64.png \

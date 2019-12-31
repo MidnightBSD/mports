@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bdb
 PORTVERSION=	0.6.6
 PORTREVISION=	1
@@ -15,6 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Oracle Berkeley DB revision 2 or later
 
 LICENSE=	ruby
+
+BUILD_DEPENDS=	rubygem-rdoc>=0.a:devel/rubygem-rdoc
 
 USE_BDB=	yes
 
@@ -37,7 +37,7 @@ SHAREMODE=	0644
 PLIST_FILES=	%%RUBY_SITEARCHLIBDIR%%/bdb.so
 PORTDOCS=	*
 PORTEXAMPLES=	*
-USES=		shebangfix tar:bzip2
+USES=		bdb shebangfix tar:bzip2
 SHEBANG_FILES=	examples/record.rb \
 		examples/recno.rb \
 		examples/zeroc.rb \
@@ -57,17 +57,14 @@ SHEBANG_FILES=	examples/record.rb \
 		examples/basic.rb \
 		examples/lock.rb
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
-.if ${RUBY_VER} == 2.1
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-21
-.endif
 
-.if ${RUBY_VER} >= 2.2
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src-common.c-22 \
-			${FILESDIR}/extra-patch-src-recnum.c-22 \
-			${FILESDIR}/extra-patch-src-cursor.c-22
-.endif
+post-patch:
+	@${RM} ${WRKSRC}/docs/*.orig
+
 post-build:
 	(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} \
 	${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} rdoc)

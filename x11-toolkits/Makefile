@@ -1,10 +1,6 @@
-# $MidnightBSD$
-
 COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
-SUBDIR += attica
-SUBDIR += elementary
 SUBDIR += fltk
 SUBDIR += gdl
 SUBDIR += gnome-pty-helper
@@ -60,15 +56,16 @@ SUBDIR += py-gtk2
 SUBDIR += py-gtksourceview
 SUBDIR += py-tkinter
 SUBDIR += py-vte
-SUBDIR += qt4-declarative
-SUBDIR += qt4-gui
 SUBDIR += qt5-canvas3d
+SUBDIR += qt5-charts
+SUBDIR += qt5-datavis3d
 SUBDIR += qt5-declarative
+SUBDIR += qt5-gamepad
 SUBDIR += qt5-gui
-SUBDIR += qt5-quick
 SUBDIR += qt5-quickcontrols
 SUBDIR += qt5-quickcontrols2
 SUBDIR += qt5-uiplugin
+SUBDIR += qt5-virtualkeyboard
 SUBDIR += qt5-widgets
 SUBDIR += sdl_pango
 SUBDIR += shared-desktop-ontologies
@@ -82,8 +79,6 @@ SUBDIR += wxgtk28
 SUBDIR += wxgtk28-common
 SUBDIR += wxgtk28-contrib
 SUBDIR += wxgtk28-contrib-common
-SUBDIR += wxgtk28-unicode
-SUBDIR += wxgtk28-unicode-contrib
 SUBDIR += wxgtk30
 
 .include <bsd.port.subdir.mk>

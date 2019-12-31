@@ -10,13 +10,15 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	astrand
 
-USES=		autoreconf gmake iconv
+USES=		autoreconf gmake iconv:wchar_t
 USE_XORG=	x11 xmu
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	ac_cv_header_X11_Xmu_Atoms_h=yes \
 		ac_cv_header_X11_Intrinsic_h=yes \
 		ac_cv_lib_Xmu_XmuClientWindow=yes
+CFLAGS+=	-I/usr/local/include -liconv -L/usr/local/lib
+LDFLAGS+=	-L/usr/local/lib 
 
 PLIST_FILES=	bin/xclip bin/xclip-copyfile bin/xclip-cutfile \
 		bin/xclip-pastefile \

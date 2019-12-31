@@ -49,19 +49,20 @@ LINUX_DEFAULT?=		c6_64
 # Possible values: c6
 LINUX_DEFAULT?=		c6
 .endif
+LLVM_DEFAULT?=		60
 LUA_DEFAULT?=		5.2
 MYSQL_DEFAULT?=		5.7
 PERL5_DEFAULT?=		5.26
-PGSQL_DEFAULT?=		9.6
+PGSQL_DEFAULT?=		11
 PHP_DEFAULT?=		7.1
 PYTHON_DEFAULT?=	2.7
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.3, 3.4, 3.7
 PYTHON3_DEFAULT?=	3.7
-# Possible values: 2.2, 2.3
-RUBY_DEFAULT?=		2.2
+# Possible values: 2.2, 2.3, 2.4, 2.6
+RUBY_DEFAULT?=		2.6
 # Possible values: 4.3, 4.4, 4.5
-SAMBA_DEFAULT?=		4.6
+SAMBA_DEFAULT?=		4.10
 # Possible values: base, openssl, openssl-devel, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version

@@ -1,19 +1,13 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/qt5-buildtools/Makefile 372179 2014-11-05 09:39:21Z rakuco $
-
 PORTNAME=	buildtools
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt build tools
 
-LICENSE=	gpl3
-
-USE_QT5=	qmake_build
-QT_DIST=	base
-USES=		perl5
+USES=		compiler:c++11-lang libtool perl5 qmake:no_env qt-dist:5,base
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-no-gui -no-xcb
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
@@ -25,26 +19,26 @@ MORE_WRKSRCS=	src/tools/moc \
 		src/tools/rcc
 
 post-configure:
-.for d in ${MORE_WRKSRCS}
-	@cd ${WRKSRC}/${d} && \
-		${SETENV} ${QMAKE_ENV} ${WRKSRC}/bin/qmake ${QMAKE_ARGS}
+.for d in src/tools/bootstrap ${MORE_WRKSRCS}
+	${MKDIR} ${WRKSRC}/${d}
+	cd ${WRKSRC}/${d} && ${SETENV} ${QMAKE_ENV} ${_QMAKE} ${QMAKE_ARGS} ${FAKE_MAKEARGS} ${WRKSRC}/${d}
 .endfor
-	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${QT_BINDIR_REL}
 
 post-build:
 .for d in ${MORE_WRKSRCS}
 	@cd ${WRKSRC}/${d} && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
-		${_MAKE_JOBS} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET}
+		${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}
 .endfor
 
 post-install:
 .for d in ${MORE_WRKSRCS}
 	@cd ${WRKSRC}/${d} && \
-		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
+		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
+	${MKDIR} ${PREFIX}/${QT_BINDIR_REL}
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/syncqt.pl \
-		${PREFIX}/${QT_BINDIR_REL}/syncqt.pl
+		${STAGEDIR}${PREFIX}/${QT_BINDIR_REL}/syncqt.pl
 
 .include <bsd.port.mk>

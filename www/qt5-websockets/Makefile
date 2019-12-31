@@ -1,19 +1,14 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/qt5-websockets/Makefile 406217 2016-01-16 12:51:05Z rakuco $
-
 PORTNAME=	websockets
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt implementation of WebSocket protocol
 
-LICENSE=	gpl3
-
-USE_QT5=	buildtools_build core network qml quick
-QT_DIST=	${PORTNAME}
-USES=		qmake
+USES=		compiler:c++11-lang qmake:norecursive qt-dist:5,websockets
+USE_QT=		buildtools_build core network
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 .include <bsd.port.mk>

@@ -1,8 +1,7 @@
+bin/eglinfo-gnash
 bin/gnash
-%%GTK2%%bin/gnash-gtk-launcher
-%%GTK2%%bin/gtk-gnash
-%%KDE4%%bin/gnash-qt-launcher
-%%KDE4%%bin/kde4-gnash
+bin/gnash-gtk-launcher
+bin/gtk-gnash
 bin/gprocessor
 bin/rtmpget
 %%GSTREAMER%%bin/findmicrophones
@@ -10,16 +9,9 @@ bin/rtmpget
 %%CYGNAL%%bin/cygnal
 %%CYGNAL%%bin/flvdumper
 %%CYGNAL%%bin/soldumper
-%%NPAPI%%%%WEBPLUGIN_DIR%%/libgnashplugin.so
-%%CYGNAL%%@unexec if cmp -s %D/etc/cygnalrc.dist %D/etc/cygnalrc; then rm -f %D/etc/cygnalrc; fi
-%%CYGNAL%%etc/cygnalrc.dist
-%%CYGNAL%%@exec if [ ! -f %B/cygnalrc ]; then cp -p %D/%F %B/cygnalrc; fi
-@unexec if cmp -s %D/etc/gnashpluginrc.dist %D/etc/gnashpluginrc; then rm -f %D/etc/gnashpluginrc; fi
-etc/gnashpluginrc.dist
-@exec if [ ! -f %B/gnashpluginrc ]; then cp -p %D/%F %B/gnashpluginrc; fi
-@unexec if cmp -s %D/etc/gnashrc.dist %D/etc/gnashrc; then rm -f %D/etc/gnashrc; fi
-etc/gnashrc.dist
-@exec if [ ! -f %B/gnashrc ]; then cp -p %D/%F %B/gnashrc; fi
+%%CYGNAL%%@sample etc/cygnalrc.dist etc/cygnalrc
+@sample etc/gnashpluginrc.dist etc/gnashpluginrc
+@sample etc/gnashrc.dist etc/gnashrc
 include/gnash/AMF.h
 include/gnash/BevelFilter_as.h
 include/gnash/BitmapData_as.h
@@ -157,24 +149,20 @@ include/gnash/asobj/movie_root.h
 include/gnash/asobj/namedStrings.h
 include/gnash/display_pkg.h
 include/gnash/dsodefs.h
-include/gnash/extension.h
+%%CYGNAL%%include/gnash/extension.h
 include/gnash/external_pkg.h
 include/gnash/filters_pkg.h
 include/gnash/geom_pkg.h
 include/gnash/getclocktime.hpp
 include/gnash/gettext.h
 include/gnash/gmemory.h
-include/gnash/jemalloc.h
-include/gnash/jemalloc_gnash.h
-include/gnash/jemalloc_rb.h
-include/gnash/jemalloc_types.h
 include/gnash/log.h
 include/gnash/net_pkg.h
 include/gnash/noseek_fd_adapter.h
 include/gnash/parser/movie_definition.h
 include/gnash/rc.h
 include/gnash/ref_counted.h
-include/gnash/sharedlib.h
+%%CYGNAL%%include/gnash/sharedlib.h
 include/gnash/snappingrange.h
 include/gnash/string_table.h
 include/gnash/text_pkg.h
@@ -190,10 +178,6 @@ include/gnash/vm/SafeStack.h
 include/gnash/vm/VM.h
 include/gnash/vm/fn_call.h
 include/gnash/zlib_adapter.h
-%%KPARTS4%%kde4/share/apps/klash/pluginsinfo
-%%KPARTS4%%kde4/share/apps/klash/klashpartui.rc
-%%KPARTS4%%kde4/share/kde4/services/klash_part.desktop
-%%KPARTS4%%kde4/lib/kde4/libklashpart.so
 %%CYGNAL%%lib/cygnal/plugins/echo.so
 %%CYGNAL%%lib/cygnal/plugins/oflaDemo.so
 %%CYGNAL%%lib/gnash/libgnashamf-%%GNASHVER%%.so
@@ -212,9 +196,10 @@ lib/gnash/libgnashrender-%%GNASHVER%%.so
 lib/gnash/libgnashrender.so
 lib/gnash/libgnashsound-%%GNASHVER%%.so
 lib/gnash/libgnashsound.so
+%%VAAPI%%lib/gnash/libgnashvaapi-%%GNASHVER%%.so
+%%VAAPI%%lib/gnash/libgnashvaapi.so
 libdata/pkgconfig/gnash.pc
-%%GTK2%%share/applications/gnash.desktop
-%%KDE4%%share/applications/klash.desktop
+share/applications/gnash.desktop
 man/man1/cygnal.1.gz
 man/man1/findmicrophones.1.gz
 man/man1/findwebcams.1.gz
@@ -223,18 +208,15 @@ man/man1/gnash.1.gz
 man/man1/gprocessor.1.gz
 man/man1/rtmpget.1.gz
 man/man1/soldumper.1.gz
-%%GTK2%%man/man1/gnash-gtk-launcher.1.gz
-%%GTK2%%man/man1/gtk-gnash.1.gz
-%%KDE4%%man/man1/gnash-qt-launcher.1
-%%KDE4%%man/man1/kde4-gnash.1
+man/man1/gnash-gtk-launcher.1.gz
+man/man1/gtk-gnash.1.gz
 %%DATADIR%%/GnashG.png
 %%DATADIR%%/gnash-splash.swf
 %%DATADIR%%/gnash_128_96.ico
 %%PORTDOCS%%%%DOCSDIR%%/gnashref.html
 %%PORTDOCS%%%%DOCSDIR%%/gnashuser.html
 %%PORTDOCS%%%%DOCSDIR%%/images/rtmp.png
-%%GTK2%%share/icons/hicolor/32x32/apps/gnash.xpm
-%%KDE4%%share/icons/hicolor/32x32/apps/klash.xpm
+share/icons/hicolor/32x32/apps/gnash.xpm
 share/locale/cs/LC_MESSAGES/gnash.mo
 share/locale/da/LC_MESSAGES/gnash.mo
 share/locale/de/LC_MESSAGES/gnash.mo
@@ -246,24 +228,8 @@ share/locale/fr/LC_MESSAGES/gnash.mo
 share/locale/it/LC_MESSAGES/gnash.mo
 share/locale/ja/LC_MESSAGES/gnash.mo
 share/locale/km/LC_MESSAGES/gnash.mo
+share/locale/nb/LC_MESSAGES/gnash.mo
 share/locale/ne/LC_MESSAGES/gnash.mo
 share/locale/ru/LC_MESSAGES/gnash.mo
+share/locale/zh_CN/LC_MESSAGES/gnash.mo
 share/locale/zh_TW/LC_MESSAGES/gnash.mo
-@dirrmtry share/locale/km/LC_MESSAGES
-@dirrmtry share/locale/km
-@dirrmtry share/icons/hicolor/32x32/apps
-@dirrmtry share/icons/hicolor/32x32
-@dirrmtry share/icons/hicolor
-@dirrmtry share/icons
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/images
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm %%DATADIR%%
-@dirrm lib/gnash
-%%CYGNAL%%@dirrmtry lib/cygnal/plugins
-%%CYGNAL%%@dirrmtry lib/cygnal
-@dirrm include/gnash/vm
-@dirrm include/gnash/parser
-@dirrm include/gnash/asobj
-@dirrm include/gnash
-%%KPARTS4%%@dirrm kde4/share/apps/klash
-%%NPAPI%%@dirrmtry %%WEBPLUGIN_DIR%%

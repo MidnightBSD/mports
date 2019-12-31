@@ -1,50 +1,53 @@
-# $MidnightBSD$
-
 PORTNAME=	enlightenment
-PORTVERSION=	0.19.9
+PORTVERSION=	0.22.4
 PORTEPOCH=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://download.enlightenment.org/rel/apps/${PORTNAME}/
+DIST_SUBDIR=	enlightenment
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Artistic X window manager
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	libefl.so:${PORTSDIR}/devel/efl \
-		libelementary.so:${PORTSDIR}/x11-toolkits/elementary \
-		libedbus.so:${PORTSDIR}/devel/e_dbus \
-		libxcb-keysyms.so:${PORTSDIR}/x11/xcb-util-keysyms
-RUN_DEPENDS=	${LOCALBASE}/lib/evas/utils/evas_image_loader.svg:${PORTSDIR}/graphics/evas_generic_loaders-svg
+LIB_DEPENDS=	libefl.so:devel/efl \
+		libxcb-keysyms.so:x11/xcb-util-keysyms
 
-DIST_SUBDIR=	enlightenment
+BROKEN_sparc64=		Does not install on sparc64: signal 10
+
 GNU_CONFIGURE=	yes
-USES=		alias autoreconf desktop-file-utils execinfo libtool pathfix \
-		iconv gmake pkgconfig tar:xz
+USES=		autoreconf compiler:c11 desktop-file-utils gettext-tools \
+		gmake iconv libtool pathfix pkgconfig tar:xz
+USE_XORG=	xcb
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS=	--with-profile=MEDIUM_PC \
 		--disable-connman --disable-bluez4 \
-		--disable-device-udev --disable-mount-udisks
-
-CPPFLAGS+=	-I${LOCALBASE}/include/e_dbus-1
+		--disable-device-udev --disable-mount-udisks \
+		--host=${ARCH}-portbld-freebsd10.4 \
+		--build=${ARCH}-portbld-freebsd10.4 \
+		--target=${ARCH}-portbld-freebsd10.4
 
 .include "Makefile.plist"
 
-OPTIONS_DEFINE=	NLS
-OPTIONS_SUB=	yes
+OPTIONS_DEFINE=		NLS
+OPTIONS_GROUP=		MIXER
+OPTIONS_GROUP_MIXER=	ALSA PULSEAUDIO
+OPTIONS_DEFAULT=	ALSA
+OPTIONS_SUB=		yes
 
-NLS_USES=		gettext
+NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
-PLIST_SUB+=	ARCH=${ARCH}
-
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's/\(setuid_root_mode = a=rx,u+x\)s/\1/g' \
-		${WRKSRC}/src/bin/Makefile.mk \
-		${WRKSRC}/src/modules/Makefile_cpufreq.mk
-
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
+# why is setuid deactivated? "enlightenment_ckpasswd" i.e. does not work without setuid
+#post-patch:
+#	@${REINPLACE_CMD} -e \
+#		's/\(setuid_root_mode = a=rx,u+x\)s/\1/g' \
+#		${WRKSRC}/src/bin/Makefile.mk \
+#		${WRKSRC}/src/modules/Makefile_cpufreq.mk
+#
 .include <bsd.port.mk>

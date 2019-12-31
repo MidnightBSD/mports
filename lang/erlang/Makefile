@@ -1,271 +1,196 @@
-# $MidnightBSD$
-# $FreeBSD: head/lang/erlang/Makefile 424411 2016-10-21 12:51:40Z mat $
-
 PORTNAME=	erlang
-PORTVERSION=	19.2.3
-PORTEPOCH=	3
+DISTVERSIONPREFIX=	OTP-
+DISTVERSION=	21.3.8.7
+PORTEPOCH=	4
 CATEGORIES=	lang parallel java
-MASTER_SITES=	http://www.erlang.org/download/:erlangorg		\
-		http://erlang.stacken.kth.se/download/:erlangorg	\
-		http://www.csd.uu.se/ftp/mirror/erlang/download/:erlangorg \
-		http://www.erlang.se/doc/:erlangse			\
-		http://www.erlang.se/publications/:publications		\
-		http://www.sics.se/~joe/thesis/:joe			\
-		FREEBSD_LOCAL/olgeni:local
-DISTNAME=	otp_src_${ERL_RELEASE}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:erlangorg	\
-		${ERLANG_MAN}:erlangorg
 DIST_SUBDIR=	erlang
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
-
-PATCH_SITES=	http://olgeni.olgeni.com/~olgeni/distfiles/ \
-		FREEBSD_LOCAL/olgeni
-PATCHFILES=	patch-otp-19.2.1 patch-otp-19.2.2 patch-otp-19.2.3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language from Ericsson
 
 LICENSE=	apache2
 
-WRKSRC=		${WRKDIR}/otp_src_${ERL_RELEASE}
+BROKEN_sparc64=	Fails to build: error: fp_except undeclared
 
-ERLANG_LIB=	${PORTNAME}
+USES=		autoreconf:build gmake ncurses perl5
+USE_GITHUB=	nodefault
+GH_ACCOUNT=	erlang:otp,corba
+GH_PROJECT=	otp:otp corba:corba
+GH_TAGNAME=	4.5.2:corba
+USE_PERL5=	build
+USE_RC_SUBR=	epmd
 
-SUB_FILES=	pkg-message
-SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
-PLIST_SUB=	ERLANG_LIB=${ERLANG_LIB}
+WRKSRC=		${WRKSRC_otp}
 
+GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=yes
 
-OPTIONS_DEFINE=	DIRTY DOCS DTRACE GS HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP SMP THREADS WX
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
-DIRTY_DESC=	Enable Dirty schedulers (experimental)
-DTRACE_DESC=	Enable DTrace support
-GS_DESC=	Enable GS application (deprecated)
+OPTIONS_SUB=	yes
+SUB_FILES=	pkg-message
+SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
+
+ERLANG_LIB=	${PORTNAME}
+EI_VSN=		3.11.3
+SNMP_VSN=	5.2.12
+TOOLS_VSN=	3.1.0.1
+
+# On Erlang 22, native code generation does not currently work for all modules
+# due to new BEAM instructions not supported by HiPE the native compiler.
+# Remove HIPE from OPTIONS_DEFAULT if this is still the case when the port is
+# upgraded to such version.
+
+OPTIONS_DEFINE=	CORBA DIRTY FOP HIPE JAVA KQUEUE MANPAGES NATIVE ODBC OPENSSL PDF SCTP THREADS WX
+OPTIONS_DEFAULT=CORBA DIRTY HIPE KQUEUE MANPAGES OPENSSL SCTP THREADS
+
+CORBA_DESC=	Enable Corba support
+DIRTY_DESC=	Enable Dirty schedulers
+FOP_DESC=	Build full documentation with Apache FOP
 HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
 NATIVE_DESC=	Enable native libraries
+PDF_DESC=	Build PDF documentation
 SCTP_DESC=	Enable SCTP support
-SMP_DESC=	Enable SMP support
 WX_DESC=	Enable WX application
 
+FOP_PREVENTS=	MANPAGES
 NATIVE_IMPLIES=	HIPE
-
-OPTIONS_DEFAULT=HIPE KQUEUE OPENSSL SCTP SMP THREADS
-
-ERL_RELEASE=	19.2
-
-USES=		gmake ncurses perl5
-USE_PERL5=	build
-USE_RC_SUBR=	epmd
-GNU_CONFIGURE=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-EI_VSN=		3.9.2
-SNMP_VSN=	5.2.4
-TOOLS_VSN=	2.9
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
-DISTFILES+=	${ERLANG_DOCS}:erlangorg		\
-		${DOC_DISTFILES}
-DOC_DISTFILES=	armstrong_thesis_2003.pdf:joe		\
-		bjarnelic.pdf:publications		\
-		erlang-book-part1.pdf:erlangorg		\
-		master_thesis_patterns.pdf:local	\
-		mnesia_overview.pdf:publications	\
-		programming_rules.pdf:erlangse
-.endif
+PDF_IMPLIES=	FOP
 
 # If you run Erlang and get a message resembling "WARNING: number of
 # probes fixed does not match the number of defined probes (54 != 132,
 # respectively)" you probably misconfigured DTrace in some way.
 
-.if ${ARCH} == "amd64" && ${PORT_OPTIONS:MDTRACE}
-IGNORE=		support for DTrace broken
-.endif
+CONFIGURE_ENABLE=	smp-support
 
-.if ${PORT_OPTIONS:MDTRACE}
-CONFIGURE_ARGS+=--with-dynamic-trace=dtrace
-CFLAGS+=	-fno-omit-frame-pointer
-STRIP=
-.else
-CONFIGURE_ARGS+=--without-dynamic-trace
-.endif
+DIRTY_CONFIGURE_ENABLE=	dirty-schedulers
+FOP_BUILD_DEPENDS=	fop:textproc/fop \
+			xsltproc:textproc/libxslt
+HIPE_CONFIGURE_ENABLE=	hipe
+JAVA_CONFIGURE_ENV=	ac_cv_prog_JAVAC="${JAVAC}"
+JAVA_CONFIGURE_WITH=	javac
+JAVA_VARS=		USE_JAVA=yes
+KQUEUE_CONFIGURE_ENABLE=kernel-poll
+MANPAGES_RUN_DEPENDS=	${LOCALBASE}/etc/man.d/erlang.conf:lang/erlang-man
+NATIVE_CONFIGURE_ENABLE=native-libs
+ODBC_CONFIGURE_WITH=	odbc
+ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
+OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
+OPENSSL_USES=		ssl
+SCTP_CONFIGURE_ENABLE=	sctp
+THREADS_CONFIGURE_ENABLE=	threads
+WX_CONFIGURE_WITH=	wx-config=${WX_CONFIG}
+WX_USES=		gl
+WX_VARS=		USE_WX=2.8+ WX_COMPS="wx contrib" USE_GL="gl glu"
 
-.if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=	openssl
-CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE}
-.else
-CONFIGURE_ARGS+=--without-ssl
-.endif
+.include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MJAVA}
-USE_JAVA=	yes
-CONFIGURE_ARGS+=--with-javac
-CONFIGURE_ENV+=	ac_cv_prog_JAVAC="${JAVAC}"
-.else
-CONFIGURE_ARGS+=--without-javac
-.endif
-
-.if ${PORT_OPTIONS:MHIPE}
-CONFIGURE_ARGS+=--enable-hipe
-.else
-CONFIGURE_ARGS+=--disable-hipe
-.endif
-
-.if ${PORT_OPTIONS:MNATIVE}
-CONFIGURE_ARGS+=--enable-native-libs
-.else
-CONFIGURE_ARGS+=--disable-native-libs
-.endif
-
-.if ${PORT_OPTIONS:MKQUEUE}
-CONFIGURE_ARGS+=--enable-kernel-poll
-.else
-CONFIGURE_ARGS+=--disable-kernel-poll
-.endif
-
-.if ${PORT_OPTIONS:MGS}
-USES+=		tk:run
-.endif
-
-.if ${PORT_OPTIONS:MWX}
-USE_WX=		2.8+
-WX_COMPS=	wx contrib
-CONFIGURE_ARGS+=--with-wx-config=${WX_CONFIG}
-USE_GL+=	gl glu
-.endif
-
-.if ${PORT_OPTIONS:MODBC}
-CONFIGURE_ARGS+=--with-odbc
-LIB_DEPENDS+=	libodbc.so:databases/unixODBC
-.else
-CONFIGURE_ARGS+=--without-odbc
-.endif
-
-ERLANG_MAN=	otp_doc_man_${ERL_RELEASE}.tar.gz
-ERLANG_DOCS=	otp_doc_html_${ERL_RELEASE}.tar.gz
-
-.if ${PORT_OPTIONS:MTHREADS}
-CONFIGURE_ARGS+=--enable-threads
-.else
-CONFIGURE_ARGS+=--disable-threads
-.endif
-
-.if ${PORT_OPTIONS:MSCTP}
-CONFIGURE_ARGS+=--enable-sctp
-.else
-CONFIGURE_ARGS+=--disable-sctp
-.endif
-
-# enabling --enable-smp-support crashes the OS when
-# net_kernel:start([node_name, shortnames]) invoked repeatedly
-# TODO verify if it still applies
-
-.if ${PORT_OPTIONS:MSMP}
-CONFIGURE_ARGS+=--enable-smp-support
-.else
-CONFIGURE_ARGS+=--disable-smp-support
-.endif
-
-.if ${PORT_OPTIONS:MDIRTY}
-CONFIGURE_ARGS+=--enable-dirty-schedulers
+.if ${OPSYS} == FreeBSD
+CFLAGS+=	-DMAP_NORESERVE=0
 .endif
 
 .if ${ARCH} == i386
 MAKE_ARGS+=	ARCH=x86
 .endif
 
+.if ${ARCH} == armv6 || ${ARCH} == armv7
+MAKE_ARGS+=	ARCH=arm
+.endif
+
+pre-configure:
+	@if [ ! $$(${CAT} ${WRKSRC}/lib/erl_interface/vsn.mk | ${GREP} "EI_VSN *=" | ${CUT} -w -f3) = ${EI_VSN} ]; then \
+		${ECHO_MSG} "===>  EI_VSN (${EI_VSN}) in Makefile does not match value in lib/erl_interface/vsn.mk"; exit 1; \
+	fi
+	@if [ ! $$(${CAT} ${WRKSRC}/lib/tools/vsn.mk | ${GREP} "TOOLS_VSN *=" | ${CUT} -w -f3) = ${TOOLS_VSN} ]; then \
+		${ECHO_MSG} "===>  TOOLS_VSN (${TOOLS_VSN}) in Makefile does not match value in lib/tools/vsn.mk"; exit 1; \
+	fi
+	@if [ ! $$(${CAT} ${WRKSRC}/lib/snmp/vsn.mk | ${GREP} -E "SNMP_VSN *=" | ${CUT} -w -f3) = ${SNMP_VSN} ]; then \
+		${ECHO_MSG} "===>  SNMP_VSN (${SNMP_VSN}) in Makefile does not match value in lib/snmp/vsn.mk"; exit 1; \
+	fi
+	@cd ${WRKSRC} && ./otp_build autoconf
+
+pre-configure-WX-off:
+	echo "disabled by port options" > ${WRKSRC}/lib/debugger/SKIP
+	echo "disabled by port options" > ${WRKSRC}/lib/et/SKIP
+	echo "disabled by port options" > ${WRKSRC}/lib/observer/SKIP
+	echo "disabled by port options" > ${WRKSRC}/lib/wx/SKIP
+
+post-configure-ODBC-on:
+	${RM} ${WRKSRC}/lib/odbc/SKIP
+
+pre-build-NATIVE-on:
+	@cd ${WRKSRC} && ${MAKE_CMD} clean
+
+post-build-CORBA-on:
+	cd ${WRKSRC_corba} \
+		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} ${MAKE_CMD}
+
+post-install-CORBA-on:
+	cd ${WRKSRC_corba} \
+		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
+			${MAKE_CMD} release RELEASE_ROOT=${FAKE_DESTDIR}${PREFIX}/lib/${ERLANG_LIB}
+
+# The man-pages are put (in spite of FreeBSD's port convention) in a private
+# subdir. This is to avoid cluttering up the man page name space. Also the
 # Erlang man pages are more of internal documentation using the man format than
 # actual system man pages. (erl.1 and epmd.1 perhaps being the exception).
 
-# Install documentation. (HTML docs need to be in same dir as the
-# rest, not in share/doc/erlang as it should, because of relative
-# links in the documentation.
-
-post-patch:
-	@${ECHO_CMD} "MANPATH ${PREFIX}/lib/erlang/man" > ${WRKDIR}/erlang.conf
-
-pre-configure:
-.if ${PORT_OPTIONS:MDTRACE}
-	@if ! /sbin/kldstat | ${GREP} dtraceall >/dev/null 2>&1; then \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "DTRACE option requires kernel module \"dtraceall\" to be loaded."; \
-		${ECHO_CMD}; \
-		exit 1; \
-	fi
-.endif
-.if ! ${PORT_OPTIONS:MWX}
-	echo "disabled by port options" > ${WRKSRC}/lib/wx/SKIP
-.endif
-
-post-configure:
-.if ${PORT_OPTIONS:MODBC}
-	${RM} ${WRKSRC}/lib/odbc/SKIP
-.endif
-
-.if ${PORT_OPTIONS:MNATIVE}
-pre-build:
-	@cd ${WRKSRC} && ${MAKE_CMD} clean
+post-build-FOP-on:
+	@cd ${WRKSRC} && ${MAKE_CMD} docs
+.if ${PORT_OPTIONS:MCORBA}
+	cd ${WRKSRC_corba} \
+		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} ${MAKE_CMD} docs
 .endif
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${STAGEDIR}${PREFIX}/etc/man.d/erlang.conf
-	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call ${STAGEDIR}${PREFIX}/bin/erl_call
+	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call ${PREFIX}/bin/erl_call
+	${LN} -sf ../lib/${ERLANG_LIB}/lib/snmp-${SNMP_VSN}/bin/snmpc ${PREFIX}/bin/snmpc
+
+post-install-FOP-on:
+	@${ECHO_CMD} "MANPATH ${PREFIX}/lib/erlang/man" > ${WRKDIR}/erlang.conf
+	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${FAKE_DESTDIR}${PREFIX}/etc/man.d/erlang.conf
 	for SECTION in 1 3 4 6 7; do \
-		${TAR} --unlink -xzpf ${DISTDIR}/${DIST_SUBDIR}/${ERLANG_MAN} \
-			-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB} \
-			"man/man$${SECTION}/*.$${SECTION}" || ${TRUE}; \
+		${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man$${SECTION}; \
+	  	${FIND} ${WRKSRC}/erts ${WRKSRC}/lib -type f | ${GREP} doc/man$${SECTION} \
+			| ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man$${SECTION}; \
 	done
-	-${RM} -r ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/man/cat?
-.if ${PORT_OPTIONS:MDOCS}
-	${TAR} --unlink -xzpf ${DISTDIR}/${DIST_SUBDIR}/${ERLANG_DOCS} \
-		-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}
-
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2.2
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.2
-
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.3
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.14.2
-
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.4/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.5
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.4
-
-	${INSTALL_DATA} ${WRKSRC}/lib/dialyzer/doc/*.txt \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-*/doc/
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for FILE in ${DOC_DISTFILES}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/$$(expr ${FILE} : '\([^:]*\)') ${STAGEDIR}/${DOCSDIR}
-.endfor
+.if ${PORT_OPTIONS:MCORBA}
+	${FIND} ${WRKSRC_corba}/lib -type f | ${GREP} doc/man3 \
+		| ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${PREFIX}/lib/erlang/man/man3
 .endif
-.if ! ${PORT_OPTIONS:MGS}
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/gs-*
-.endif
-.if ! ${PORT_OPTIONS:MJAVA}
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/jinterface-*
-.endif
-.if ! ${PORT_OPTIONS:MODBC}
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/odbc-*
-.endif
-.if ! ${PORT_OPTIONS:MOPENSSL}
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/crypto-*
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/ssh-*
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/ssl-*
-.endif
-.if ! ${PORT_OPTIONS:MWX}
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/wx-*
-.endif
-	${FIND} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/* -type d -empty -delete
 
-	${LN} -s ../lib/erlang/lib/snmp-${SNMP_VSN}/bin/snmpc ${STAGEDIR}${PREFIX}/bin/snmpc
+post-install-PDF-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${FIND} ${WRKSRC} -name \*.pdf | ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${DOCSDIR}
+.if ${PORT_OPTIONS:MCORBA}
+	${FIND} ${WRKSRC_corba} -name \*.pdf | ${XARGS} -J % ${CP} -v % ${FAKE_DESTDIR}${DOCSDIR}
+.endif
 
-	@cd ${STAGEDIR}${PREFIX}; ${FIND} lib/${ERLANG_LIB}/* -type f -o -type l \
-		| ${SORT} \
-		>> ${TMPPLIST}
+post-install-JAVA-off:
+	-1${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/jinterface-*
 
-.include <bsd.port.mk>
+post-install-ODBC-off:
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/odbc-*
+
+post-install-OPENSSL-off:
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/crypto-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/ssh-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/ssl-*
+
+post-install-WX-off:
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/debugger-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/et-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/observer-*
+	-${RM} -r ${FAKE_DESTDIR}${PREFIX}/lib/erlang/lib/wx-*
+
+post-fake:
+	${FIND} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/${ERLANG_LIB}/* -type d -empty -delete
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} lib/${ERLANG_LIB}/* ${DATADIR_REL}/* -type f -o -type l \
+		| ${SORT} >> ${TMPPLIST}
+	if [ -d ${DOCSDIR} ]; then \
+		@cd ${FAKE_DESTDIR}${TRUE_PREFIX}; ${FIND} ${DOCSDIR_REL}/* -name \*.pdf \
+			| ${SORT} >> ${TMPPLIST}; \
+	fi
+
+.include <bsd.port.post.mk>

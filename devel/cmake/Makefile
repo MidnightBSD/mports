@@ -1,26 +1,24 @@
-# $MidnightBSD$
-
 PORTNAME=	cmake
-PORTVERSION=	3.8.2
+DISTVERSION=	3.15.3
 PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v3.8/
+MASTER_SITES=	http://www.cmake.org/files/v3.15/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
-USE_KDE4=	# env
+USES=		compiler:c++11-lang ncurses
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \
 		--docdir="/${DOCSDIR_REL}" \
 		--system-libs \
 		--parallel=${MAKE_JOBS_NUMBER} \
-		--init="${PATCHDIR}/InitialCache.cmake"
+		--init="${WRKSRC}/InitialCache.cmake"
 
-.if !defined(CMAKE_MODULES)
 OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
@@ -31,12 +29,12 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjsoncpp.so:devel/jsoncpp \
 		libuv.so:devel/libuv \
 		librhash.so:security/rhash
-RUN_DEPENDS=	${LOCALBASE}/share/cmake/Modules/CMake.cmake:devel/cmake-modules
 
 MANPAGES_USES=		python:env
 MANPAGES_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 MANPAGES_CONFIGURE_ON=	--sphinx-man
-.endif
+
+CONFLICTS_INSTALL=	cmake-modules-*
 
 .include <bsd.port.pre.mk>
 
@@ -44,11 +42,9 @@ MANPAGES_CONFIGURE_ON=	--sphinx-man
 INSTALL_TARGET=	install/strip
 .endif
 
-.if !defined(CMAKE_MODULES)
 # CMake >= 3.1.0 needs libarchive3 because it calls
 # archive_entry_copy_sourcepath_w and archive_write_set_format_7zip.
 LIB_DEPENDS+=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
-.endif  # !defined(CMAKE_MODULES)
 
 post-patch:
 	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
@@ -70,9 +66,8 @@ post-patch:
 # prevent it from being built/installed by devel/cmake.
 	@${RM} ${WRKSRC}/Help/manual/cmake-gui.1.rst
 
-.if !defined(CMAKE_MODULES)
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/Auxiliary/cmake-mode.el ${PREFIX}/share/emacs/site-lisp
-.endif
+	@${FIND} ${STAGEDIR}${PREFIX} -name ".NoDartCoverage" -delete
 
 .include <bsd.port.post.mk>

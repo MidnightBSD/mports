@@ -1,14 +1,13 @@
-# $MidnightBSD$
-
 PORTNAME=	pinentry
-PORTVERSION=	0.9.5
+PORTVERSION=	1.1.0
 CATEGORIES=	security
 MASTER_SITES=	GNUPG/pinentry
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	collection of simple PIN or passphrase entry dialogs
+COMMENT?=	Collection of simple PIN or passphrase entry dialogs
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:bzip2
 
@@ -19,34 +18,34 @@ NO_BUILD=	yes
 PLIST_FILES=	bin/pinentry
 
 OPTIONS_SINGLE=	FRONTEND
-OPTIONS_SINGLE_FRONTEND=	TTY NCURSES GTK2 QT4 GNOME3
+OPTIONS_SINGLE_FRONTEND=	TTY NCURSES FLTK GTK2 QT5 GNOME3
 OPTIONS_DEFAULT=	TTY
 
 FRONTEND_DESC=	Default frontend
 
 TTY_DESC=	Console version
 PINENTRY_TTY=	pinentry-tty
-TTY_RUN_DEPENDS=	${PINENTRY_TTY}:${PORTSDIR}/security/pinentry-tty
+TTY_RUN_DEPENDS=	${PINENTRY_TTY}:security/pinentry-tty
 
 NCURSES_DESC=	Curses frontend
 PINENTRY_NCURSES=	pinentry-curses
-NCURSES_RUN_DEPENDS=	${PINENTRY_NCURSES}:${PORTSDIR}/security/pinentry-curses
+NCURSES_RUN_DEPENDS=	${PINENTRY_NCURSES}:security/pinentry-curses
+
+FLTK_DESC=	FLTK frontend
+PINENTRY_FLTK=	pinentry-fltk
+FLTK_RUN_DEPENDS=	${PINENTRY_FLTK}:security/pinentry-fltk
 
 GTK2_DESC=	Gtk+ 2 frontend
 PINENTRY_GTK2=	pinentry-gtk-2
-GTK2_RUN_DEPENDS=	${PINENTRY_GTK2}:${PORTSDIR}/security/pinentry-gtk2
+GTK2_RUN_DEPENDS=	${PINENTRY_GTK2}:security/pinentry-gtk2
 
-.if exists(/usr/lib/libc++.so)
-QT4_DESC=	Qt 4 frontend (broken)
-.else
-QT4_DESC=	Qt 4 frontend
-.endif
-PINENTRY_QT4=	pinentry-qt4
-QT4_RUN_DEPENDS=	${PINENTRY_QT4}:${PORTSDIR}/security/pinentry-qt4
+QT5_DESC=	Qt 5 frontend
+PINENTRY_QT5=	pinentry-qt5
+QT5_RUN_DEPENDS=	${PINENTRY_QT5}:security/pinentry-qt5
 
 GNOME3_DESC=	GNOME 3 frontend
 PINENTRY_GNOME3=	pinentry-gnome3
-GNOME3_RUN_DEPENDS=	${PINENTRY_GNOME3}:${PORTSDIR}/security/pinentry-gnome3
+GNOME3_RUN_DEPENDS=	${PINENTRY_GNOME3}:security/pinentry-gnome3
 
 .include <bsd.mport.options.mk>
 
@@ -62,42 +61,38 @@ do-install:
 
 .else # !defined(PINENTRY_GUI)
 PKGNAMESUFFIX=	-${PINENTRY_GUI}
-LIB_DEPENDS=	libassuan.so:${PORTSDIR}/security/libassuan \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
-		libksba.so:${PORTSDIR}/security/libksba
+LIB_DEPENDS=	libassuan.so:security/libassuan \
+		libgpg-error.so:security/libgpg-error
 
-USES+=		iconv gmake pkgconfig
+USES+=		gmake iconv localbase ncurses pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-pinentry-emacs
-
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-Wl,--as-needed
 
 OPTIONS_DEFINE=	LIBSECRET
 
 LIBSECRET_DESC=	Saving the passphrase with libsecret
 LIBSECRET_CONFIGURE_ENABLE=	libsecret
-LIBSECRET_LIB_DEPENDS=	libsecret-1.so:${PORTSDIR}/security/libsecret
+LIBSECRET_LIB_DEPENDS=	libsecret-1.so:security/libsecret
+LIBSECRET_USE=		GNOME=glib20
 
 .if ${PINENTRY_GUI} == "gnome3"
-OPTIONS_DEFAULT=	LIBSECRET
+OPTIONS_SLAVE=	LIBSECRET
 USE_GNOME+=	gtk20
-LIB_DEPENDS+=	libgcr-base-3.so:${PORTSDIR}/security/gcr
+LIB_DEPENDS+=	libgcr-base-3.so:security/gcr
 PLIST_FILES=	bin/pinentry-gnome3
 .else
 CONFIGURE_ARGS+=--disable-pinentry-gnome3
 .endif
 
-.if ${PINENTRY_GUI} == "qt4"
-USES+=		compiler:c++11-lib
-USE_CXXSTD=	c++11
-. if exists(/usr/lib/libc++.so)
-IGNORE=		does not compile with libc++
-. endif
-USE_QT4=	gui moc_build
-PLIST_FILES=	bin/pinentry-qt4
+.if ${PINENTRY_GUI} == "qt5"
+USES+=		compiler:c++11-lib qt:5
+USE_QT=		core gui widgets buildtools_build
+PLIST_FILES=	bin/pinentry-qt5
+CONFIGURE_ARGS+=--enable-pinentry-qt5 \
+		--program-suffix=5
 .else
-CONFIGURE_ARGS+=--disable-pinentry-qt4
+CONFIGURE_ARGS+=--disable-pinentry-qt --disable-pinentry-qt5
 .endif
 
 .if ${PINENTRY_GUI} == "gtk2"
@@ -107,8 +102,15 @@ PLIST_FILES=	bin/pinentry-gtk-2
 CONFIGURE_ARGS+=--disable-pinentry-gtk2
 .endif
 
+.if ${PINENTRY_GUI} == "fltk"
+USES+=		compiler:c++11-lib
+LIB_DEPENDS+=	libfltk.so:x11-toolkits/fltk
+PLIST_FILES=	bin/pinentry-fltk
+.else
+CONFIGURE_ARGS+=--disable-pinentry-fltk
+.endif
+
 .if ${PINENTRY_GUI} == "curses"
-USES+=		ncurses
 PLIST_FILES=	bin/pinentry-curses
 .else
 CONFIGURE_ARGS+=--disable-pinentry-curses
@@ -121,17 +123,9 @@ CONFIGURE_ARGS+=--enable-pinentry-tty
 CONFIGURE_ARGS+=--disable-pinentry-tty
 .endif
 
-pre-configure:
-.if ${PINENTRY_GUI} == "qt4"
-	cd ${WRKSRC}/qt4 && \
-		${MOC} pinentrydialog.h > pinentrydialog.moc && \
-		${MOC} qsecurelineedit.h > qsecurelineedit.moc && \
-		${MOC} pinentryconfirm.h > pinentryconfirm.moc
-.endif
-
 post-install:
-	${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
-		${STAGEDIR}${PREFIX}/info/pinentry.info
+	-${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
+		${STAGEDIR}${PREFIX}/share/info/pinentry.info
 
 .endif # !defined(PINENTRY_GUI)
 

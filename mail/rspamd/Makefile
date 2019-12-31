@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	1.9.1
+PORTVERSION=	1.9.4
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,7 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 BUILD_DEPENDS=	ragel:devel/ragel
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
 
-USES=		cmake:outsource compiler:c11 gnome perl5 pkgconfig \
+USES=		cmake compiler:c11 gnome perl5 pkgconfig \
 		sqlite ssl
 USE_LDCONFIG=	yes
 USE_PERL5=	build run
@@ -48,7 +48,8 @@ CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
 		-DCMAKE_INSTALL_PREFIX=${PREFIX} \
 		-DBUILD_PORT=yes \
 		-DLIBDIR=${PREFIX}/lib/rspamd \
-		-DNO_SHARED=ON
+		-DNO_SHARED=ON \
+		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	vstakhov
@@ -79,7 +80,7 @@ CGP_RUN_DEPENDS+=	\
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MTORCH_BLAS}
-USE_GCC=	yes
+USE_GCC=	7
 .endif
 
 post-install:

@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	gcc
-PORTVERSION=	6.4.0
-PORTREVISION=	1
+PORTVERSION=	6.5.0
 CATEGORIES=	lang java
-MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
+MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -30,6 +27,8 @@ USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:xz
 USE_BINUTILS=	yes
 USE_PERL5=	build
 SSP_UNSAFE=	yes
+CFLAGS:=      ${CFLAGS:N-mretpoline}
+CXXFLAGS:=    ${CXXFLAGS:N-mretpoline}
 
 OPTIONS_DEFINE=		BOOTSTRAP GRAPHITE JAVA
 OPTIONS_DEFAULT=	BOOTSTRAP JAVA
@@ -49,9 +48,9 @@ CONFIGURE_ARGS+=	--disable-multilib
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
 LANGUAGES:=	c,c++,objc,fortran

@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME?=	proftpd
 .if !defined(DISTVERSION)
 PORTVERSION?=	${PROFTPD_VERSION}
 .endif
-PORTREVISION?=	5
+PORTREVISION?=	0
 CATEGORIES?=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		https://github.com/downloads/proftpd/proftpd.github.com/ \
@@ -21,11 +19,11 @@ LICENSE?=	gpl2
 LICENSE_FILE?=	${WRKSRC}/COPYING
 
 .if defined(_BUILDING_PROFTPD_MODULE)
-BUILD_DEPENDS+=	${LOCALBASE}/sbin/proftpd:${PORTSDIR}/ftp/proftpd
-RUN_DEPENDS+=	${LOCALBASE}/sbin/proftpd:${PORTSDIR}/ftp/proftpd
+BUILD_DEPENDS+=	${LOCALBASE}/sbin/proftpd:ftp/proftpd
+RUN_DEPENDS+=	${LOCALBASE}/sbin/proftpd:ftp/proftpd
 .endif
 
-PROFTPD_VERSION=	1.3.5a
+PROFTPD_VERSION=	1.3.6
 
 .if defined(_BUILDING_PROFTPD_MODULE)
 DISTFILES+=	${DISTNAME}${EXTRACT_SUFX}
@@ -36,6 +34,7 @@ EXTRACT_ONLY+=	${_PROFTPD_MODULE_EXTRACT_ONLY}
 . endif
 . if defined(_PROFTPD_MODULE_DISTFILES)
 DISTFILES+=	${_PROFTPD_MODULE_DISTFILES}
+DISTINFO_FILE=	${.CURDIR}/distinfo
 . endif
 . if defined(_PROFTPD_MODULE_MASTER_SITES)
 MASTER_SITES+=	${_PROFTPD_MODULE_MASTER_SITES}
@@ -48,11 +47,10 @@ PORTDOCS=	*
 
 MAKE_JOBS_UNSAFE=	yes
 USES+=		cpe gmake libtool
-USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 
 .if !defined(_BUILDING_PROFTPD_MODULE)
-EXTENSIONS+=	ssl
+USES+=		ssl
 USE_RC_SUBR=	proftpd
 .endif
 
@@ -85,17 +83,17 @@ PLIST_FILES+=	libexec/proftpd/${m}.a \
 		libexec/proftpd/${m}.so
 .endfor
 .else
-OPTIONS_DEFINE=	DOCS HTMLDOCS IPV6 NLS MEMCACHE PCRE
-OPTIONS_DEFAULT=	IPV6 NLS PCRE
+OPTIONS_DEFINE=	DOCS HTMLDOCS IPV6 NLS MEMCACHE PCRE REDIS
+OPTIONS_DEFAULT=	PCRE
 
 HTMLDOCS_DESC=		Include HTML documentation
 MEMCACHE_DESC=		Memcache support using libmemcached
+REDIS_DESC=		Redis support using hiredis
 
 PLIST_SUB+=	LOCALSTATEDIR="${LOCALSTATEDIR}"
+OPTIONS_SUB=	yes
 
 .endif #!defined(_BUILDING_PROFTPD_MODULE)
-
-.include <bsd.mport.options.mk>
 
 .if !defined(_BUILDING_PROFTPD_MODULE)
 CPPFLAGS+=	-DHAVE_OPENSSL -I${OPENSSLINC}
@@ -141,38 +139,25 @@ MODULES+=	mod_ban \
 		mod_wrap2_file \
 		mod_wrap2_sql
 
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
+IPV6_CONFIGURE_ENABLE=ipv6
 
-.if ${PORT_OPTIONS:MNLS}
-CONFIGURE_ARGS+=	--enable-nls
-USES+=	gettext iconv
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-.endif
+NLS_CONFIGURE_ON=	--enable-nls
+NLS_USES=		gettext iconv
 
-.if ${PORT_OPTIONS:MPCRE}
-LIB_DEPENDS+=		libpcre.so:${PORTSDIR}/devel/pcre
-CONFIGURE_ARGS+=	--enable-pcre
-.else
-CONFIGURE_ARGS+=	--disable-pcre
-.endif
+PCRE_CONFIGURE_ENABLE=	pcre
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 
-.if ${PORT_OPTIONS:MMEMCACHE}
-MODULES+=		mod_memcache \
-			mod_tls_memcache
-LIB_DEPENDS+=		libmemcached.so:${PORTSDIR}/databases/libmemcached
-CONFIGURE_ARGS+=	--enable-memcache
-LIBS+=			-L${LOCALBASE}/lib -lmemcached -lmemcachedutil
-PLIST_SUB+=	MEMCACHE=""
-.else
-CONFIGURE_ARGS+=	--disable-memcache
-PLIST_SUB+=	MEMCACHE="@comment "
-.endif
+MEMCACHE_LIB_DEPENDS=	libmemcached.so:databases/libmemcached
+MEMCACHE_CONFIGURE_ENABLE=	memcache
+MEMCACHE_VARS=		MODULES+="mod_memcache mod_tls_memcache" \
+			LIBS+="-L${LOCALBASE}/lib -lmemcached -lmemcachedutil"
+
+REDIS_LIB_DEPENDS=	libhiredis.so:databases/hiredis
+REDIS_CONFIGURE_ENABLE=		redis
+REDIS_VARS=		MODULES+="mod_redis mod_tls_redis mod_wrap2_redis" \
+			LIBS+="-L${LOCALBASE}/lib -lhiredis"
+
+.include <bsd.mport.options.mk>
 
 # Generate modules configuration string
 .for m in ${MODULES}
@@ -191,7 +176,7 @@ CONFIGURE_ARGS+=	--with-libraries=${LIBDIRS}
 
 .if !defined(_BUILDING_PROFTPD_MODULE)
 
-.if empty(ICONV_LIB)
+.if empty(ICONV_PREFIX)
 CONFIGURE_ARGS+=	ac_cv_lib_iconv_iconv_open=no \
 			ac_cv_lib_iconv_libiconv_open=no
 .endif

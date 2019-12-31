@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
-		mit modula3 mpl npl nvidia openldap2.8 opera owl \
+		mit modula3 mpl npl nvidia openldap2.8 opera owl OFL10 OFL11 \
 		perl pgsql php python ruby sgi subversion x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
@@ -278,8 +276,8 @@ _LICENSE_GROUPS_other=
 _LICENSE_NAME_owl=	Open Works License (owl.apotheon.org)
 _LICENSE_GROUPS_owl=	COPYFREE
 
-_LICENSE_NAME_pgsql=	PostgreSQL Licence (PostgreSQL)
-_LICENSE_GROUPS_pqgsql=	OSI COPYFREE
+_LICENSE_NAME_pgsql=	PostgreSQL Licence
+_LICENSE_GROUPS_pgsql=     FSF GPL OSI COPYFREE
 
 _LICENSE_NAME_php=	PHP License version 3.01
 _LICENSE_GROUPS_php=	FSF OSI

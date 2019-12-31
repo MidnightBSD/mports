@@ -38,7 +38,6 @@ SUBDIR += gnustep-sudoku
 SUBDIR += goonies
 SUBDIR += grubik
 SUBDIR += gshisen
-SUBDIR += gtkpool
 SUBDIR += gtypist
 SUBDIR += hitori
 SUBDIR += iagno
@@ -78,5 +77,10 @@ SUBDIR += tali
 SUBDIR += tuxracer
 SUBDIR += vitetris
 SUBDIR += wesnoth
+SUBDIR += xminesweep
+SUBDIR += zephulor
+SUBDIR += zhlt
+SUBDIR += zoom
+SUBDIR += ztrack
 
 .include <bsd.port.subdir.mk>

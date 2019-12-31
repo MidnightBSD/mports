@@ -1,8 +1,6 @@
-# $MidnightBSD$ 
-
 PORTNAME=	ptlib
 PORTVERSION=	2.10.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -11,18 +9,18 @@ COMMENT=	Cross platform C++ library, used by OPAL
 
 LICENSE=	mpl
 
-BROKEN_SSL=	openssl-devel
-BROKEN_SSL_REASON_openssl-devel=	use of undeclared identifier 'BIO_s_file_internal'
-
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 CONFLICTS=	pwlib-1.*
 
-USES=		autoreconf:build bison gmake pathfix pkgconfig ssl tar:xz
+USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
+		pathfix pkgconfig ssl tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${OPENSSLINC} -I${LOCALBASE}/include
-LDFLAGS+=	-L${OPENSSLLIB} -L${LOCALBASE}/lib
+CPPFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
+
+NO_TEST=	yes
 
 CONFIGURE_ARGS+=--enable-audio \
 		--enable-ipv6 \
@@ -37,6 +35,8 @@ CONFIGURE_ARGS+=--disable-lua \
 CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl"
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 OPTIONS_DEFINE=	BSDVIDEO DEBUG ODBC ALSA JABBER V4L SDL LDAP PULSEAUDIO
 OPTIONS_DEFAULT=BSDVIDEO SDL V4L JABBER
 
@@ -44,6 +44,12 @@ BSDVIDEO_DESC=	BSD video support
 DEBUG_DESC=	Install debug library
 
 .include <bsd.mport.options.mk>
+
+.if ${SSL_DEFAULT} == openssl111
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx-openssl111
+.else
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx
+.endif
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION} \
 		PVERSION_MAJOR=${PVERSION_MAJOR} \

@@ -1,5 +1,5 @@
 PORTNAME=	protobuf
-PORTVERSION=	3.9.1
+PORTVERSION=	3.9.2
 DISTVERSIONPREFIX=	all-
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -13,9 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_sparc64=	fails to compile: no atomic ops available
 
-TEST_DEPENDS=	googlemock>=0:devel/googlemock \
-		googletest>=0:devel/googletest
-
 USES=		compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
 
 CFLAGS+=	-D_THREAD_SAFE -DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
@@ -27,15 +24,13 @@ CONFIGURE_ENV=	CC_FOR_BUILD="${CC}" \
 		LDFLAGS_FOR_BUILD="${LDFLAGS}"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_ARGS=	${MAKE_ARGS} ${_MAKE_JOBS}
-TEST_TARGET=	check
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^check-local:|disabled-&|' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|$$(GOOGLETEST_BUILD_DIR)/lib/libgtest\.la|-lgtest|' ${WRKSRC}/src/Makefile.in
-	@${REINPLACE_CMD} -e 's|$$(GOOGLEMOCK_BUILD_DIR)/lib/libgmock\(.*\)\.la|-lgmock\1|' ${WRKSRC}/src/Makefile.in
+	@${REINPLACE_CMD} -Ee 's,[^ 	]*lib(gtest|gmock.*)\.la,-l\1,' ${WRKSRC}/src/Makefile.in
 
 .include <bsd.port.mk>

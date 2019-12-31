@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.36.12
+PORTVERSION=	2.38.1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -13,10 +11,7 @@ COMMENT=	Graphic library for GTK+
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PATCH_DEPENDS=	python2.7:lang/python27
-
-BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl \
-		python3:lang/python3
+BUILD_DEPENDS=	docbook-xsl>0:textproc/docbook-xsl
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
 		python:3.4+,build shared-mime-info tar:xz
@@ -42,6 +37,7 @@ PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
 TIFF_MESON_TRUE=	tiff
 TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
+TIFF_USES=		jpeg
 
 X11_MESON_TRUE=		x11
 X11_USE=		xorg=x11

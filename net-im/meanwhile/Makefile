@@ -12,7 +12,7 @@ COMMENT=	Open Source implementation of the Lotus Sametime protocol
 LICENSE=	lgpl
 
 USES=		gmake libtool pathfix pkgconfig
-USE_GCC=	6+
+USE_GCC=	7
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

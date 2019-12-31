@@ -1,0 +1,71 @@
+--- Run.orig	2017-09-04 20:35:19 UTC
++++ Run
+@@ -91,10 +91,10 @@ chomp($BASEDIR);
+ my $BINDIR = getDir('UB_BINDIR', $BASEDIR . "/pgms");
+ 
+ # Temp directory, for temp files.
+-my $TMPDIR = getDir('UB_TMPDIR', $BASEDIR . "/tmp");
++my $TMPDIR = "/tmp";
+ 
+ # Directory to put results in.
+-my $RESULTDIR = getDir('UB_RESULTDIR', $BASEDIR . "/results");
++my $RESULTDIR = "/tmp";
+ 
+ # Directory where the tests are executed.
+ my $TESTDIR = getDir('UB_TESTDIR', $BASEDIR . "/testdir");
+@@ -735,12 +735,10 @@ sub getSystemInfo {
+ 
+     # Get the language info.
+     my $lang = getCmdOutput("printenv LANG");
+-    my $map = getCmdOutput("locale -k LC_CTYPE | grep charmap");
++    my $map = getCmdOutput("locale -k | grep charmap");
+     $map =~ s/.*=//;
+-    my $coll = getCmdOutput("locale -k LC_COLLATE | grep collate-codeset");
+-    $coll =~ s/.*=//;
+-    $info->{'language'} = sprintf "%s (charmap=%s, collate=%s)",
+-                                   $lang, $map, $coll;
++    $info->{'language'} = sprintf "%s (charmap=%s)",
++                                   $lang, $map;
+ 
+     # Get details on the CPUs, if possible.
+     my $cpus = getCpuInfo();
+@@ -750,10 +748,9 @@ sub getSystemInfo {
+     }
+ 
+     # Get graphics hardware info.
+-    $info->{'graphics'} = getCmdOutput("3dinfo | cut -f1 -d\'(\'");
++    # $info->{'graphics'} = getCmdOutput("3dinfo | cut -f1 -d\'(\'");
+ 
+     # Get system run state, load and usage info.
+-    $info->{'runlevel'} = getCmdOutput("runlevel | cut -f2 -d\" \"");
+     $info->{'load'} = getCmdOutput("uptime");
+     $info->{'numUsers'} = getCmdOutput("who | wc -l");
+ 
+@@ -781,6 +778,7 @@ sub abortRun {
+ 
+ # Do checks that everything's ready for testing.
+ sub preChecks {
++    return;
+     # Set the language.
+     $ENV{'LANG'} = $language;
+ 
+@@ -1386,7 +1384,7 @@ sub displaySystem {
+     }
+ 
+     # Display system load and usage info.
+-    printf $fd "   %s; runlevel %s\n\n", $info->{'load'}, $info->{'runlevel'};
++    printf $fd "   %s; \n\n", $info->{'load'};
+ }
+ 
+ 
+@@ -1603,8 +1601,8 @@ sub displaySystemHtml {
+     # Display system runlevel, load and usage info.
+     printf $fd "<tr>\n";
+     printf $fd "   <td><b>Uptime:</b></td>\n";
+-    printf $fd "   <td colspan=2>%s; runlevel %s</td>\n",
+-                   $info->{'load'}, $info->{'runlevel'};
++    printf $fd "   <td colspan=2>%s</td>\n",
++                   $info->{'load'};
+     printf $fd "</tr>\n";
+ 
+     printf $fd "</table></p>\n\n";

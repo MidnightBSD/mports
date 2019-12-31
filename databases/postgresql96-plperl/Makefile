@@ -11,8 +11,6 @@ COMMENT=	Write SQL functions for PostgreSQL using Perl5
 
 RUN_DEPENDS=	postgres:${PORTSDIR}/databases/postgresql${WANT_PGSQL_VER:S/.//}-server
 
-MASTERDIR=	${.CURDIR}/../../databases/postgresql${WANT_PGSQL_VER:S/.//}-server
-
 WANT_PGSQL_VER?=9.6
 
 USES+=		perl5 readline
@@ -23,4 +21,5 @@ INSTALL_DIRS=	src/pl/plperl
 SLAVE_ONLY=	yes
 COMPONENT=	-plperl
 
-.include "${MASTERDIR}/Makefile"
+.include "${.CURDIR}/../postgresql12-plperl/Makefile"
+

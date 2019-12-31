@@ -39,8 +39,11 @@ INCLUDES+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
 		--enable-thread-safety \
-		--build=${ARCH}-portbld-freebsd10.4 \
-		--host=${ARCH}-portbld-freebsd10.4
+		--with-template=freebsd
+
+#		--build=${ARCH}-portbld-freebsd10.4 \
+#		--host=${ARCH}-portbld-freebsd10.4 \
+#--target=${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
 		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
@@ -161,6 +164,10 @@ SUB_LIST+=	PG_GROUP=${PG_GROUP} \
 		PG_UID=${PG_UID}
 
 .include <bsd.mport.options.mk>
+
+.if ${ARCH} == i386
+USE_GCC=	6
+.endif
 
 .if !defined(SLAVE_ONLY)
 .if ${DISTVERSION:C/([0-9]*).*/\1/} != 10

@@ -1,44 +1,68 @@
-# Created by: MANTANI Nobutaka <nobutaka@nobutaka.com>
-# $FreeBSD: head/editors/emacs/Makefile 475857 2018-07-29 22:18:44Z gerald $
-
 PORTNAME=	emacs
-DISTVERSION=	${EMACS_VER}
-PORTREVISION=	1
+DISTVERSION=	26.3
 PORTEPOCH=	3
 CATEGORIES=	editors ipv6
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros
+.if ${FLAVOR:U} == nox
+COMMENT+=	(No X flavor)
+.endif
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FLAVORS=		full nox
+full_CONFLICTS_INSTALL=	emacs-nox
+nox_CONFLICTS_INSTALL=	emacs
+nox_PKGNAMESUFFIX=	-nox
+
 USES=		cpe gmake localbase:ldflags makeinfo ncurses pkgconfig tar:xz
-USES+=		desktop-file-utils
+.if ${FLAVOR:U} != nox
+USES+=		desktop-file-utils gnome xorg
+INSTALLS_ICONS=	yes
 USE_XORG=	ice sm x11 xcb xext xfixes xinerama xmu xrandr xt
+.endif
 CPE_VENDOR=	gnu
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CONFIGURE_ARGS=	--disable-build-details \
 		--localstatedir=/var \
-		--with-gameuser=games:games
+		--without-gpm
+.if ${FLAVOR:U} == nox
+CONFIGURE_ARGS+=	--with-sound=no --without-cairo --without-dbus \
+			--without-gconf --without-gif --without-gsettings \
+			--with-x-toolkit=no --without-jpeg --without-lcms2 \
+			--without-m17n-flt --without-imagemagick \
+			--without-libotf --without-png \
+			--without-toolkit-scroll-bars --without-rsvg \
+			--without-tiff --without-x --without-xim --without-xpm \
+			--without-xwidgets
+.else
 CONFIGURE_ARGS+=	--with-x
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+.endif
 # See r468320 to determine if/when the next line can be removed
 CONFIGURE_ENV=		ac_cv_header_sys_sysinfo_h=no
 CONFLICTS_INSTALL=	emacs-devel emacs-devel-nox
 GNU_CONFIGURE=		yes
+INFO=		ada-mode auth autotype bovine calc ccmode cl dbus dired-x \
+		ebrowse ede ediff edt efaq eieio eintr elisp emacs emacs-gnutls \
+		emacs-mime epa erc ert eshell eudc eww flymake forms gnus \
+		htmlfontify idlwave ido info mairix-el message mh-e newsticker \
+		nxml-mode octave-mode org pcl-cvs pgg rcirc reftex remember \
+		sasl sc semantic ses sieve smtpmail speedbar srecode todo-mode \
+		tramp url vhdl-mode vip viper widget wisent woman
 INFO_PATH=	${DATADIR_REL}/info
-INSTALLS_ICONS=	yes
-PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
+PLIST_SUB=	EMACS_VER=${DISTVERSION} GNU_HOST=${CONFIGURE_TARGET}
 SUB_FILES=	sources.el
-SUB_LIST=	EMACS_VER=${EMACS_VER} # sources.el
+SUB_LIST=	EMACS_VER=${DISTVERSION} # sources.el
 
-OPTIONS_DEFINE=	ACL DBUS GCONF GNUTLS GSETTINGS JSON LCMS2 M17N MAILUTILS \
-		MODULES OTF SCROLLBARS SOURCES THREADS XFT XIM XML XWIDGETS
-OPTIONS_DEFAULT=	ACL DBUS GCONF GIF GNUTLS GSETTINGS GTK3 JPEG JSON \
-		KQUEUE LCMS2 M17N MAGICK MAILUTILS MODULES OSS OTF PNG \
-		SCROLLBARS SOURCES SVG THREADS TIFF XFT XIM XML XPM
+OPTIONS_DEFINE=	ACL DBUS GCONF GNUTLS GSETTINGS LCMS2 M17N MAILUTILS MODULES \
+		OTF SCROLLBARS SOURCES THREADS XFT XIM XML XWIDGETS
+OPTIONS_DEFAULT=	ACL DBUS GCONF GIF GNUTLS GSETTINGS GTK3 JPEG KQUEUE \
+		LCMS2 M17N MAGICK MAILUTILS MODULES OSS OTF PNG SCROLLBARS \
+		SOURCES SVG THREADS TIFF XFT XIM XML XPM
 OPTIONS_GROUP=	GRAPHICS
 OPTIONS_GROUP_GRAPHICS=	CAIRO GIF JPEG MAGICK PNG SVG TIFF XPM
 OPTIONS_RADIO=	FILENOTIFY SOUND X11TOOLKIT
@@ -46,29 +70,33 @@ OPTIONS_RADIO_FILENOTIFY=	GFILE KQUEUE
 OPTIONS_RADIO_SOUND=	ALSA OSS
 OPTIONS_RADIO_X11TOOLKIT=	GTK2 GTK3 MOTIF XAW XAW3D
 
+.if ${FLAVOR:U} == nox
+OPTIONS_EXCLUDE=	ALSA CAIRO DBUS GCONF GFILE GIF GSETTINGS GTK2 GTK3 \
+			JPEG LCMS2 M17N MAGICK MOTIF OSS OTF PNG SCROLLBARS SVG \
+			TIFF XAW XAW3D XFT XIM XPM XWIDGETS
+.endif
 OPTIONS_SUB=	YES
 
 ACL_DESC=	Access control list support
-CAIRO_DESC=	Experimental Cairo library support     (implies PNG, XFT)
+CAIRO_DESC=	Experimental Cairo library support  [implies PNG, XFT]
 FILENOTIFY_DESC=	File notification support
 GFILE_DESC=	File notification via gfile
 GRAPHICS_DESC=	Graphics support
 GSETTINGS_DESC=	GSettings API for application settings
 KQUEUE_DESC=	File notification via kqueue
 #LTO_DESC=	Enable link-time optimization
-M17N_DESC=	M17N support for text-shaping (implies XFT)
-MAGICK_DESC=	ImageMagick image processing support
+M17N_DESC=	M17N support for text-shaping       [implies XFT]
 MAILUTILS_DESC=	Mail framework via GNU Mailutils
 MODULES_DESC=	Dynamic modules support
-OTF_DESC=	Opentype fonts                         (implies XFT)
+OTF_DESC=	Opentype fonts                      [implies XFT]
 SCROLLBARS_DESC=	Toolkit scroll-bars
 SOURCES_DESC=	Install sources
-SVG_DESC=	Scalable vector graphics support       (implies PNG)
+SVG_DESC=	Scalable vector graphics support    [implies PNG]
 X11TOOLKIT_DESC=	X11 toolkit
 XAW3D_DESC=	Athena3D widgets
 XAW_DESC=	Athena widgets
 XIM_DESC=	X Input Method
-XWIDGETS_DESC=	Experimental GTK widgets               (requires GTK3)
+XWIDGETS_DESC=	Experimental GTK widgets            [implies GTK3]
 
 ACL_CONFIGURE_ENABLE=	acl
 ALSA_CONFIGURE_ON=	--with-sound=alsa
@@ -97,8 +125,6 @@ GTK3_USE=		GNOME=cairo,gtk30
 GTK3_CONFIGURE_ON=	--with-x-toolkit=gtk3
 JPEG_USES=		jpeg
 JPEG_CONFIGURE_WITH=	jpeg
-JSON_CONFIGURE_WITH=	json
-JSON_LIB_DEPENDS=	libjansson.so:devel/jansson
 KQUEUE_CONFIGURE_ON=	--with-file-notification=kqueue
 LCMS2_CONFIGURE_WITH=	lcms2
 LCMS2_LIB_DEPENDS=	liblcms2.so:graphics/lcms2
@@ -137,6 +163,7 @@ XFT_CONFIGURE_WITH=	xft
 XFT_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2
 XIM_CONFIGURE_WITH=	xim
+XML_USES=		gnome # portlint complains, but necessary for nox flavor
 XML_USE=		GNOME=libxml2
 XML_CONFIGURE_WITH=	xml2
 XPM_USE=		XORG=xpm
@@ -146,8 +173,6 @@ XWIDGETS_CONFIGURE_WITH=	xwidgets
 XWIDGETS_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 			libsoup-2.4.so:devel/libsoup
 XWIDGETS_IMPLIES=	GTK3
-
-EMACS_VER=		26.1
 
 .include <bsd.mport.options.mk>
 
@@ -161,14 +186,25 @@ USES+=	compiler:openmp
 CONFIGURE_ARGS+=	--with-x-toolkit=no
 .endif
 
+.if ${FLAVOR} == nox
+# With a desktop entry stage-qa will give a warning about requiring
+# desktop-file-utils and portlint -C will give a warning about INSTALLS_ICONS,
+# but don't pull in those dependencies with the nox flavor.
+post-patch:
+	@${REINPLACE_CMD} -e 's/^Terminal=.*$$/Terminal=true/' ${WRKSRC}/etc/emacs.desktop
+.endif
+
 post-install-MAILUTILS-on:
-	${LN} -sf ${PREFIX}/bin/movemail \
-		${FAKE_DESTDIR}${PREFIX}/libexec/emacs/${EMACS_VER}/${CONFIGURE_TARGET}
+	cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${LN} -sf bin/movemail \
+		libexec/emacs/${DISTVERSION}/${CONFIGURE_TARGET}
+
+post-install-SOURCES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${DISTVERSION}/src
+	${INSTALL_DATA} ${WRKSRC}/src/*.[ch] ${FAKE_DESTDIR}${DATADIR}/${DISTVERSION}/src
+#	${INSTALL_DATA} ${WRKDIR}/sources.el ${STAGEDIR}${DATADIR}/${DISTVERSION}/site-lisp/site-start.el
 
 post-install:
-	@${MKDIR} ${DATADIR}/${EMACS_VER}/src
-	${INSTALL_DATA} ${WRKSRC}/src/*.[ch] ${DATADIR}/${EMACS_VER}/src
-	${INSTALL_DATA} ${WRKDIR}/sources.el ${DATADIR}/${EMACS_VER}/site-lisp/site-start.el
-	${RM} -r ${PREFIX}/lib/systemd
+	@${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
+	${CP} ${WRKSRC}/info/* ${PREFIX}/share/emacs/info/
 
 .include <bsd.port.mk>

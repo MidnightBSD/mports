@@ -1,0 +1,18 @@
+--- configure.orig	2019-09-21 18:05:58.463559000 -0400
++++ configure	2019-09-21 18:07:21.627147000 -0400
+@@ -2877,6 +2877,7 @@
+ #mips-irix6*)	opt_bash_malloc=no ;;	# needs 8-byte alignment
+ #*-freebsd*-gnu)	opt_bash_malloc=no ;;	# there's some undetermined problem here
+ #*-freebsd*)	opt_bash_malloc=no ;;	# they claim it's better; I disagree
++#*-midnightbsd*)	opt_bash_malloc=no ;;	# they claim it's better; I disagree
+ #*-openbsd*)	opt_bash_malloc=no ;;	# they claim it needs eight-bit alignment
+ #*-mirbsd*)	opt_bash_malloc=no ;;	# they claim it needs eight-bit alignment
+ esac
+@@ -16341,6 +16342,7 @@
+ 		fi ;;
+ freebsdelf*)	LOCAL_LDFLAGS=-rdynamic ;;	# allow dynamic loading
+ dragonfly*)	LOCAL_LDFLAGS=-rdynamic ;;	# allow dynamic loading
++midnightbsd*)   LOCAL_LDFLAGS=-rdynamic ;;      # allow dynamic loading
+ esac
+ 
+ case "$host_cpu" in

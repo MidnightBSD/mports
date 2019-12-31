@@ -14,6 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Optimized BLAS library based on GotoBLAS2
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_powerpc64=	fails to compile: gemm.c:403: 'SGEMM_DEFAULT_Q' undeclared (first use in this function)
 
@@ -51,6 +52,8 @@ INTERFACE64_DESC=	Use 8 byte integers on 64-bit architectures
 OPENMP_DESC=		Use OpenMP for threading
 AVX_DESC=		Support Advanced Vector Extensions (AVX)
 AVX2_DESC=		Support Advanced Vector Extensions 2 (AVX2)
+
+NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 

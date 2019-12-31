@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.36
 PORTREVISION=	3
@@ -42,7 +40,7 @@ PLIST_SUB+=	CHECK="@comment "
 .endif
 
 # workaround a crash in clang 3.3 crash llvm bug # 15840
-USE_GCC=	any
+USE_GCC=	7
 
 BUILD_DEPENDS+=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 CONFIGURE_ENV+=	FLEX_PATH="${LOCALBASE}/bin/flex"

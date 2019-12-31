@@ -27,6 +27,8 @@ USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
 USE_GNOME=	glib20
 MESON_ARGS=	-Dca_certificates_path="${LOCALBASE}/share/certs/ca-root-nss.crt"
 
+NO_TEST=	yes
+
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 post-install:

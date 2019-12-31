@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 COMMENT = Emulators for other operating systems
 
 SUBDIR += adamem
 SUBDIR += aftp
-SUBDIR += basiliskII
 SUBDIR += bochs
 SUBDIR += dgen-sdl
 SUBDIR += dosbox

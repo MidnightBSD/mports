@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-JSON-RPC/Makefile,v 1.3 2010/01/28 23:45:30 kuriyama Exp $
-
 PORTNAME=	JSON-RPC
 PORTVERSION=	1.06
 PORTREVISION=	1
@@ -27,5 +24,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 USES=		perl5
 USE_PERL5=	modbuild
 PERL_MODBUILD=	yes
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>

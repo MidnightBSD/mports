@@ -21,10 +21,9 @@ USE_LDCONFIG=	yes
 CMAKE_ARGS=	-DENABLE_TESTS=on -DPLATFORM_LIBS=md
 EXTRACT_AFTER_ARGS+=	--exclude "md5*"
 
-WRKSRC=		${WRKDIR}/multicoreware-${PORTNAME}-1d3b6e448e01/source
+NO_TEST=	yes
 
-do-test:
-	${WRKSRC}/test/TestBench
+WRKSRC=		${WRKDIR}/multicoreware-${PORTNAME}-1d3b6e448e01/source
 
 post-install:
 	-${CP} ${PREFIX}/lib/pkgconfig/x265.pc ${PREFIX}/libdata/pkgconfig/

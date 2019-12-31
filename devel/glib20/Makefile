@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	glib
 PORTVERSION=	2.56.3
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -25,8 +24,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 # iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
 # (wchar_t is used by glibmm, rawtherapee triggered this)
-USES+=		compiler:c11 gettext gmake iconv:wchar_t libtool \
-		localbase pathfix pkgconfig python shebangfix
+USES+=		compiler:c11 gettext gmake gnome iconv:wchar_t libtool \
+		localbase pathfix perl5 pkgconfig python shebangfix
 USE_PYTHON=	py3kplist
 USE_PERL5=	build
 CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
@@ -34,6 +33,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
+SSP_CFLAGS?=	-fstack-protector # XXX -strong crashes qemu-user-static
 INSTALL_TARGET=	install-strip
 
 SHEBANG_FILES=	*/*.pl
@@ -48,6 +48,7 @@ gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
 gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
 
 OPTIONS_DEFINE=	DEBUG MANPAGES NLS
+OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=	yes
 
 DEBUG_CONFIGURE_ON=	--enable-debug=yes
@@ -70,7 +71,7 @@ CONFIGURE_ARGS+=	--with-libiconv=gnu
 .endif
 
 .if ${ARCH} == powerpc64
-EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-powerpc64
 .endif
 
 # Let glib use asm code for implementing atomic ops on i386 and amd64.
@@ -97,7 +98,7 @@ post-patch:
 do-build-MANPAGES-on:
 .for m in glib gio gobject
 . for file in ${${m}_MAN}
-	cd ${WRKSRC}/docs/reference/${m} && ${GMAKE} ${file}
+	cd ${WRKSRC}/docs/reference/${m} && ${FAKE_MAKEENV} ${GMAKE} ${FAKE_MAKEARGS} ${file}
 . endfor
 .endfor
 
@@ -108,7 +109,7 @@ post-install:
 post-install-MANPAGES-on:
 .for m in glib gio gobject
 	${INSTALL_MAN} ${${m}_MAN:S|^|${WRKSRC}/docs/reference/${m}/|} \
-		${STAGEDIR}${PREFIX}/man/man1
+		${FAKE_DESTDIR}${PREFIX}/man/man1
 .endfor
 
 .include <bsd.port.post.mk>

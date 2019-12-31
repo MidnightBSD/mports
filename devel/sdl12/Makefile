@@ -1,11 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	sdl
 PORTVERSION=	1.2.15
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	2
 CATEGORIES=	devel
-MASTER_SITES=	http://www.libsdl.org/release/
+MASTER_SITES=	https://www.libsdl.org/release/
 DISTNAME=	SDL-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,13 +13,10 @@ LICENSE=	lgpl2.1
 
 BUILD_DEPENDS=	nasm:devel/nasm
 
-USES=		gmake iconv libtool pathfix pkgconfig
+USES=		gmake iconv libtool localbase:ldflags pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_libusbhid_h=no
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS+=--disable-alsa --disable-alsatest \
 		--disable-arts --disable-video-directfb --disable-video-ggi
@@ -47,7 +42,8 @@ ESOUND_CONFIGURE_ENABLE=	esd esdtest
 NAS_CONFIGURE_ENABLE=		nas
 NAS_LIB_DEPENDS=		libaudio.so:audio/nas
 OPENGL_CONFIGURE_ENABLE=	video-opengl
-OPENGL_USE=			GL=yes
+OPENGL_USES=			gl
+OPENGL_USE=			GL=glu
 OSS_CONFIGURE_ENABLE=		oss
 PULSEAUDIO_CONFIGURE_ENABLE=	pulseaudio
 PULSEAUDIO_LIB_DEPENDS=		libpulse-simple.so:audio/pulseaudio

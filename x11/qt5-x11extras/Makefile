@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11/qt5-x11extras/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-
 PORTNAME=	x11extras
 DISTVERSION=	${QT5_VERSION}
 CATEGORIES=	x11
@@ -9,11 +6,10 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt platform-specific features for X11-based systems
 
-LICENSE=	gpl3
+LICENSE=	lgpl3
 
-USE_QT5=	core gui
-QT_DIST=	x11extras
-USES=		qmake
+USES=		compiler:c++11-lang qmake qt-dist:5,x11extras perl5
+USE_QT=		core gui
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 .include <bsd.port.mk>

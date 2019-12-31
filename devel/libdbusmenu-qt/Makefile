@@ -1,37 +1,40 @@
-# $MidnightBSD$
-
 PORTNAME=	libdbusmenu-qt
 PORTVERSION=	${MAJOR_VER}.${SNAPSHOT_VER:S/.//g}
+PORTREVISION=	10
 CATEGORIES=	devel
-MASTER_SITES=	http://archive.ubuntu.com/ubuntu/pool/main/libd/${PORTNAME}/
+MASTER_SITES=	http://archive.ubuntu.com/ubuntu/pool/main/libd/${PORTNAME}/ \
+		LOCAL/tcberner/${PORTNAME}/${PORTVERSION}
+PKGNAMESUFFIX=	5
 DISTNAME=	${PORTNAME}_${MAJOR_VER}+${SNAPSHOT_VER}.orig
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt4 implementation of the DBusMenu protocol
+COMMENT=	Qt5 implementation of the DBusMenu protocol
 
 LICENSE=	lgpl
 
-MAJOR_VER=	0.9.3
-SNAPSHOT_VER=	15.10.20150604
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${MAJOR_VER}+${SNAPSHOT_VER}
-
-USE_QT4=	corelib dbus gui moc_build qmake_build rcc_build uic_build
-USES=		compiler:c++11-lib cmake:outsource
-CMAKE_ARGS=	-DUSE_QT4:BOOL=TRUE -DUSE_QT5:BOOL=FALSE
-
+USES=		compiler:c++11-lib cmake qt:5
 USE_LDCONFIG=	yes
+USE_QT=		core dbus gui widgets \
+		buildtools_build qmake_build
+CMAKE_ON=	USE_QT5
+CMAKE_OFF=	USE_QT4
+QTVER_SUFFIX=	5
 
 OPTIONS_DEFINE=		DOXYGEN
 OPTIONS_SUB=		YES
 DOXYGEN_DESC=		Build documentation (requires doxygen)
-DOXYGEN_CMAKE_ON=	-DWITH_DOC:BOOL=TRUE
-DOXYGEN_CMAKE_OFF=	-DWITH_DOC:BOOL=FALSE
-DOXYGEN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+DOXYGEN_CMAKE_BOOL=	WITH_DOC
+DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
 
-.if defined(PACKAGE_BUILDING)
-OPTIONS_DEFAULT+=      DOXYGEN
-.endif
+.  if defined(PACKAGE_BUILDING)
+OPTIONS_DEFAULT+=	DOXYGEN
+.  endif
+
+MAJOR_VER=	0.9.3
+SNAPSHOT_VER=	16.04.20160218
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${MAJOR_VER}+${SNAPSHOT_VER}
+PLIST_SUB=	QTVER_SUFFIX="${QTVER_SUFFIX}"
 
 post-patch:
 	@${REINPLACE_CMD} -e '/add_subdirectory(tests)/ d' \

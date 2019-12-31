@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	open-motif
 PORTVERSION=	2.3.8
 CATEGORIES=	x11-toolkits
@@ -16,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	lesstif-[0-9]*
 
-USES=		autoreconf gmake iconv jpeg libtool:keepla pkgconfig
+USES=		autoreconf gmake iconv jpeg libtool:keepla pkgconfig xorg
 USE_XORG=	x11 xaw xbitmaps xext xft xt xmu xrender sm ice
 LIB_DEPENDS=	libXp.so:x11/libXp \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -24,12 +22,16 @@ LIB_DEPENDS=	libXp.so:x11/libXp \
 		libpng.so:graphics/png
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include -I/usr/local/include -L/usr/local/lib
+CONFIGURE_ARGS=	--enable-printing=no
+CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI -I${PREFIX}/include -I/usr/local/include -L/usr/local/lib -liconv
+LDFLAGS+=	-L/usr/local/lib -liconv
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_CSTD=	gnu89
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
+
+NO_TEST=	yes
 
 post-patch:
 # fix sections

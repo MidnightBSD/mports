@@ -1,5 +1,5 @@
 PORTNAME=	lxml
-PORTVERSION=	4.3.1
+PORTVERSION=	4.3.4
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +10,7 @@ COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-USES=		gnome python uniquefiles:dirs
+USES=		compiler gnome python uniquefiles:dirs
 USE_GNOME=	libxml2 libxslt
 USE_PYTHON=	autoplist concurrent distutils
 

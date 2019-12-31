@@ -1,56 +1,65 @@
-# $MidnightBSD$
-
 PORTNAME=	file-roller
-PORTVERSION=	3.16.3
+PORTVERSION=	3.28.1
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive manager for zip files, tar, etc
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-RUN_DEPENDS=	gtar:${PORTSDIR}/archivers/gtar \
-    		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libnotify.so:devel/libnotify
+RUN_DEPENDS=	gtar:archivers/gtar
 
-USES=		desktop-file-utils gettext gmake libarchive libtool \
-		pathfix pkgconfig tar:xz
-USE_GNOME=	gtk30 intlhack introspection:build
-USE_XORG=	sm
+PORTSCOUT=	limitw:1,even
+
+USES=		desktop-file-utils gettext gnome libarchive localbase \
+		meson pkgconfig python:3.5+,build tar:xz
+USE_GNOME=	cairo gtk30
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ARGS=	--disable-packagekit
-INSTALL_TARGET=	install-strip
+MESON_ARGS=	-Dpackagekit=false
+BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
-PORTDOCS=	AUTHORS NEWS README TODO ChangeLog
 GLIB_SCHEMAS=	org.gnome.FileRoller.gschema.xml
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	NAUTILUS
 OPTIONS_DEFAULT=NAUTILUS
-NAUTILUS_DESC=	Enable Nautilus extension
+
+OPTIONS_GROUP=	FORMATS
+OPTIONS_GROUP_FORMATS=	7ZIP ARJ LZO RAR ZIP
+
+FORMATS_DESC=	Additional compression formats support
+
+7ZIP_DESC=	7zip archive support
+7ZIP_RUN_DEPENDS=	7z:archivers/p7zip
+
+ARJ_DESC=	ARJ archive support
+ARJ_RUN_DEPENDS=	arj:archivers/arj
+
+LZO_DESC=	LZO compression support
+LZO_RUN_DEPENDS=	lzop:archivers/lzop
+
+RAR_DESC=	RAR archive support
+RAR_RUN_DEPENDS=	rar:archivers/rar \
+			unrar:archivers/unrar
+
+ZIP_DESC=	ZIP archive support
+ZIP_RUN_DEPENDS=	zip:archivers/zip
+
+NAUTILUS_DESC=	Nautilus context menu actions
 NAUTILUS_USE=	GNOME=nautilus3
-NAUTILUS_CONFIGURE_ENABLE=	nautilus-actions
+NAUTILUS_MESON_TRUE=	nautilus-actions
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/src/fr-command-tar.c \
 		${WRKSRC}/src/fr-command-zip.c
-
-.include <bsd.mport.options.mk>
-
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}/${DOCSDIR}
-.endfor
-.endif
 
 .include <bsd.port.mk>

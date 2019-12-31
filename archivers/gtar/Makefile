@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gtar
-PORTVERSION=	1.29
+PORTVERSION=	1.32
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	GNU
 MASTER_SITE_SUBDIR=	tar
@@ -19,7 +17,7 @@ WRKSRC=		${WRKDIR}/tar-${PORTVERSION}
 
 INFO=		tar
 
-USES=		charsetfix cpe iconv:${STATIC_ARGS} makeinfo tar:xz
+USES=		charsetfix cpe iconv:${STATIC_ARGS} localbase tar:xz
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
@@ -40,19 +38,9 @@ NLS_CONFIGURE_ENABLE=	nls
 STATIC_LDFLAGS=	-static
 STATIC_CONFIGURE_ENV=	SHLIBEXT=""
 
-.include <bsd.mport.options.mk>
+STATIC_VARS=	STATIC_ARGS=build
+STATIC_VARS_OFF=	STATIC_ARGS=lib
 
-.if ${PORT_OPTIONS:MSTATIC}
-STATIC_ARGS=	build
-.else
-STATIC_ARGS=	lib
-.endif
-
-# Tests 161 163 are known to fail because path resolution of ".."
-# in a removed directory fails.
-
-# do not rebuild tar.info
-post-patch:
-	${TOUCH} -r ${WRKSRC}/doc/stamp-vti ${WRKSRC}/configure
+NO_TEST=	yes
 
 .include <bsd.port.mk>

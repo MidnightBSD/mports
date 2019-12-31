@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	11
+PORTREVISION=	12
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
@@ -16,9 +14,10 @@ COMMENT=	An extremely fast program for analysing WWW logfiles
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libgd.so:graphics/gd \
+		libpng.so:graphics/png
+
+USES=		jpeg
 
 LIMGDIR?=	www/data/images
 IMGDIR=		${PREFIX}/${LIMGDIR}

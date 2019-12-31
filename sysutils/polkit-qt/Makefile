@@ -1,29 +1,22 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/polkit-qt/Makefile,v 1.4 2011/03/25 10:22:45 avilla Exp $
-
-PORTNAME=	polkit-qt
-PORTVERSION=	0.112.0
-DISTVERSIONPREFIX=	1-
+PORTNAME=	polkit-qt-1
+DISTVERSION=	0.113.0
 CATEGORIES=	sysutils
-MASTER_SITES=	KDE/stable/apps/KDE4.x/admin/
+MASTER_SITES=	KDE/stable/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt4 frontend to PolKit-1
+COMMENT=	Qt5 wrapper around Polkit libraries
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpolkit-agent-1.so:${PORTSDIR}/sysutils/polkit
+LIB_DEPENDS=	libpolkit-agent-1.so:sysutils/polkit
 
-CMAKE_ARGS=	-DBUILD_EXAMPLES:BOOL=OFF \
-		-DBUILD_TEST:BOOL=OFF \
-		-DUSE_QT4:BOOL=ON
-
+USES=		cmake compiler:c++11-lang gnome pkgconfig qt:5 tar:xz
 USE_GNOME=	glib20
-USE_KDE4=	automoc4
-USE_QT4=	corelib dbus gui \
-		qmake_build moc_build rcc_build uic_build
-USES=		cmake:outsource tar:bzip2
+USE_QT=		core dbus gui widgets buildtools_build qmake_build
+CMAKE_OFF=	BUILD_EXAMPLES  \
+		BUILD_TEST
+
 USE_LDCONFIG=	yes
 
 post-patch:

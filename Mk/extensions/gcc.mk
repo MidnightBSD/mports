@@ -26,8 +26,6 @@
 #
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
-#
-# $MidnightBSD$
 
 .if defined(_POSTMKINCLUDED) && !defined(Gcc_Post_Include)
 
@@ -38,18 +36,17 @@ Gcc_Include_MAINTAINER=		ports@MidnightBSD.org
 
 # All GCC versions supported by the ports framework.  Keep them in
 # ascending order and in sync with the table below. 
-GCCVERSIONS=	040200 040600 040700 040800 040900 050000 060000 070000
+GCCVERSIONS=	040200 040800 050000 060000 070000 080000 090000
 
 # The first field is the OSVERSION in which it disappeared from the base.
 # The second field is the version as USE_GCC would use.
 GCCVERSION_040200=	9999999 4.2
-GCCVERSION_040600=	      0 4.6
-GCCVERSION_040700=	      0 4.7
 GCCVERSION_040800=	      0 4.8
-GCCVERSION_040900=	      0 4.9
 GCCVERSION_050000=	      0 5
 GCCVERSION_060000=	      0 6
 GCCVERSION_070000=	      0 7
+GCCVERSION_080000=	      0 8
+GCCVERSION_090000=	      0 9
 
 # No configurable parts below this. ####################################
 #
@@ -154,9 +151,16 @@ CC:=			gcc${V}
 CXX:=			g++${V}
 CPP:=			cpp${V}
 _GCC_RUNTIME:=		${LOCALBASE}/lib/gcc${V}
+.   if ${PORTNAME} == gcc
+# We don't want the rpath stuff while building GCC itself
+# so we do not set the FLAGS as done in the else part.
+# When building a GCC, we want the target libraries to be used and not the
+# host GCC libraries.
+.   else
 CFLAGS+=		-Wl,-rpath=${_GCC_RUNTIME}
 CXXFLAGS+=		-Wl,-rpath=${_GCC_RUNTIME}
 LDFLAGS+=		-Wl,-rpath=${_GCC_RUNTIME} -L${_GCC_RUNTIME}
+.   endif
 .  else # Use GCC in base.
 CC:=			gcc
 CXX:=			g++
@@ -169,6 +173,10 @@ CPP:=			cpp
 . endif # ${_USE_GCC} == ${_GCCVERSION_${v}_V}
 .endfor
 .undef V
+
+# Now filter unsupported flags for CC and CXX.
+CFLAGS:=		${CFLAGS:N-mretpoline}
+CXXFLAGS:=		${CXXFLAGS:N-mretpoline}
 
 .if defined(_GCC_PORT_DEPENDS)
 BUILD_DEPENDS+=	${_GCC_PORT_DEPENDS}:lang/${_GCC_PORT}
@@ -201,7 +209,9 @@ test-gcc:
 .endfor
 	@echo Using GCC version ${_USE_GCC}
 .endif
-	@echo CC=${CC} - CXX=${CXX} - CPP=${CPP} - CFLAGS=\"${CFLAGS}\"
+	@echo CC=${CC} - CXX=${CXX} - CPP=${CPP}
+	@echo CFLAGS=\"${CFLAGS}\"
+	@echo CXXFLAGS=\"${CXXFLAGS}\"
 	@echo LDFLAGS=\"${LDFLAGS}\"
 	@echo "BUILD_DEPENDS=${BUILD_DEPENDS}"
 	@echo "RUN_DEPENDS=${RUN_DEPENDS}"

@@ -5,43 +5,62 @@
 #
 # Feature:	pear
 # Usage:	USES=pear
-# Valid ARGS:	none
+# Valid ARGS:	env
 #
-# MAINTAINER=	ports@MidnightBSD.org
+#	- env : Only provide the environment variables, no fetch/build/install
+#		targets.
+#
+# 
 
 .if !defined(_INCLUDE_USES_PEAR_MK)
 _INCLUDE_USES_PEAR_MK=	yes
 _USES_POST+=	pear
 
-.if !empty(pear_ARGS)
-IGNORE+=	USES=pear takes not arguments
-.endif
+_valid_pear_ARGS=		env
 
+# Sanity check
+.  for arg in ${pear_ARGS}
+.    if empty(_valid_pear_ARGS:M${arg})
+IGNORE=	Incorrect 'USES+= pear:${pear_ARGS}' usage: argument [${arg}] is not recognized
+.    endif
+.  endfor
+
+php_ARGS+=	flavors
+.include "${MPORTEXTENSIONS}/php.mk"
+
+.  if empty(pear_ARGS:Menv)
 MASTER_SITES?=	http://pear.php.net/get/
 
 EXTRACT_SUFX?=	.tgz
 DIST_SUBDIR?=	PEAR
 
-BUILD_DEPENDS+=	pear:devel/pear
-RUN_DEPENDS+=	pear:devel/pear
-
-.if !defined(USE_PHPIZE)
+.    if empty(php_ARGS:Mphpize)
 NO_BUILD=	yes
-.endif
+.    endif
+.  endif
 
-.if defined(PEAR_CHANNEL) && ${PEAR_CHANNEL} != ""
-PKGNAMEPREFIX?=	pear-${PEAR_CHANNEL}-
+BUILD_DEPENDS+=	pear:devel/pear@${PHP_FLAVOR}
+RUN_DEPENDS+=	pear:devel/pear@${PHP_FLAVOR}
+
+PEAR_PKGNAMEPREFIX=	php${PHP_VER}-pear-
+
+.  if defined(PEAR_CHANNEL) && ${PEAR_CHANNEL} != ""
+PEAR_${PEAR_CHANNEL:tu}_PKGNAMEPREFIX=	php${PHP_VER}-pear-${PEAR_CHANNEL}-
+PKGNAMEPREFIX?=	${PEAR_${PEAR_CHANNEL:tu}_PKGNAMEPREFIX}
 PEARPKGREF=	${PEAR_CHANNEL}/${PORTNAME}
-.else
-PKGNAMEPREFIX?=	pear-
+PEAR_CHANNEL_VER?=	>=0
+BUILD_DEPENDS+=	${PEAR_PKGNAMEPREFIX}channel-${PEAR_CHANNEL}${PEAR_CHANNEL_VER}:devel/pear-channel-${PEAR_CHANNEL}@${PHP_FLAVOR}
+RUN_DEPENDS+=	${PEAR_PKGNAMEPREFIX}channel-${PEAR_CHANNEL}${PEAR_CHANNEL_VER}:devel/pear-channel-${PEAR_CHANNEL}@${PHP_FLAVOR}
+.  else
+PKGNAMEPREFIX?=	${PEAR_PKGNAMEPREFIX}
 PEARPKGREF=	${PORTNAME}
-.endif
+.  endif
 
-.if exists(${LOCALBASE}/bin/php-config)
+.  if exists(${LOCALBASE}/bin/php-config)
 PHP_BASE!=	${LOCALBASE}/bin/php-config --prefix
-.else
+.  else
 PHP_BASE=	${LOCALBASE}
-.endif
+.  endif
 PEAR=		${LOCALBASE}/bin/pear
 LPEARDIR=	share/pear
 LPKGREGDIR=	${LPEARDIR}/packages/${PKGNAME}
@@ -59,31 +78,36 @@ EXAMPLESDIR=	${PHP_BASE}/${LEXAMPLESDIR}
 SQLSDIR=	${PHP_BASE}/${LSQLSDIR}
 SCRIPTFILESDIR=	${LOCALBASE}/bin
 TESTSDIR=	${PHP_BASE}/${LTESTSDIR}
-.if defined(CATEGORY) && !empty(CATEGORY)
+.  if defined(CATEGORY) && !empty(CATEGORY)
 LINSTDIR=	${LPEARDIR}/${CATEGORY}
-.else
+.  else
 LINSTDIR=	${LPEARDIR}
-.endif
+.  endif
 INSTDIR=	${PHP_BASE}/${LINSTDIR}
 
 SUB_LIST+=	PKG_NAME=${PEARPKGREF}
 
-.if !defined(USE_PHPIZE) && !exists(${.CURDIR}/pkg-plist)
+.  if empty(pear_ARGS:Menv)
+.    if empty(php_ARGS:Mphpize) && !exists(${.CURDIR}/pkg-plist)
 PLIST=		${WRKDIR}/PLIST
-.endif
+.    endif
+PKGINSTALL?=	${PORTSDIR}/devel/pear/pear-install
+PKGDEINSTALL?=	${WRKDIR}/pear-deinstall
+.  endif
+
 PLIST_SUB+=	PEARDIR=${LPEARDIR} PKGREGDIR=${LPKGREGDIR} \
 		TESTSDIR=${LTESTSDIR} INSTDIR=${LINSTDIR} SQLSDIR=${LSQLSDIR} \
 		SCRIPTFILESDIR=${LCRIPTSDIR}
-
-PKGINSTALL?=	${PORTSDIR}/devel/pear/pear-install
-PKGDEINSTALL?=	${WRKDIR}/pear-deinstall
 
 .endif
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_PEAR_POST_MK)
 _INCLUDE_USES_PEAR_POST_MK=	yes
 
+.  if empty(pear_ARGS:Menv)
+
+_USES_install+=	250:pear-pre-install
 pear-pre-install:
-.if exists(${LOCALBASE}/lib/php.DIST_PHP)	\
+.    if exists(${LOCALBASE}/lib/php.DIST_PHP)	\
 	|| exists(${PHP_BASE}/lib/php.DIST_PHP)	\
 	|| exists(${LOCALBASE}/.PEAR.pkg)	\
 	|| exists(${PHP_BASE}/.PEAR.pkg)
@@ -92,7 +116,7 @@ pear-pre-install:
 	@${ECHO_MSG} "	Please deinstall your installed pear- ports."
 	@${ECHO_MSG} ""
 	@${FALSE}
-.endif
+.    endif
 
 DIRFILTER=	${SED} -En '\:^.*/[^/]*$$:s:^(.+)/[^/]*$$:\1:p' \
 		    | ( while read r; do \
@@ -108,45 +132,47 @@ DIRFILTER=	${SED} -En '\:^.*/[^/]*$$:s:^(.+)/[^/]*$$:\1:p' \
 	            done \
 	      ) | ${SORT} -ur
 
-.if !defined(USE_PHPIZE)
-do-autogenerate-plist: patch
+.    if empty(php_ARGS:Mphpize)
+_USES_install+=	260:do-autogenerate-plist
+do-autogenerate-plist:
 	@${ECHO_MSG} "===>   Generating packing list with pear"
 	@${LN} -sf ${WRKDIR}/package.xml ${WRKSRC}/package.xml
-	cd ${WRKSRC} && ${PEAR} install -n -f -P ${WRKDIR}/inst package.xml > /dev/null 2> /dev/null
-.for R in .channels .depdb .depdblock .filemap .lock .registry
-	${RM} -rf ${WRKDIR}/inst/${TRUE_PREFIX}/${LPEARDIR}/${R}
-	${RM} -rf ${WRKDIR}/inst/${R}
-.endfor
-	FILES=`cd ${WRKDIR}/inst && ${FIND} . -type f | ${CUT} -c 2- | \
-	${GREP} -v -E "^${TRUE_PREFIX}/"` || exit 0; \
+	@cd ${WRKSRC} && ${PEAR} install -n -f -P ${WRKDIR}/inst package.xml > /dev/null 2> /dev/null
+.      for R in .channels .depdb .depdblock .filemap .lock .registry
+	@${RM} -r ${WRKDIR}/inst/${TRUE_PREFIX}/${LPEARDIR}/${R}
+	@${RM} -r ${WRKDIR}/inst/${R}
+.      endfor
+	@FILES=`cd ${WRKDIR}/inst && ${FIND} . -type f | ${CUT} -c 2- | \
+	${GREP} -v -E "^${PREFIX}/"` || exit 0; \
 	${ECHO_CMD} $${FILES}; if ${TEST} -n "$${FILES}"; then \
 	${ECHO_CMD} "Cannot generate packing list: package files outside PREFIX"; \
 	exit 1; fi;
-	${ECHO_CMD} "${LPKGREGDIR}/package.xml" > ${PLIST}
+	@${ECHO_CMD} "${LPKGREGDIR}/package.xml" > ${PLIST}
 # pkg_install needs to escape $ in directory name while pkg does not
-	cd ${WRKDIR}/inst/${TRUE_PREFIX} && ${FIND} . -type f | ${SORT} \
+	@cd ${WRKDIR}/inst/${TRUE_PREFIX} && ${FIND} . -type f | ${SORT} \
 	| ${CUT} -c 3- >> ${PLIST}
 
-pre-install:	pear-pre-install do-autogenerate-plist do-generate-deinstall-script
-do-install:	do-auto-install pear-post-install
-
-do-auto-install:
+do-install:
 	@cd ${WRKSRC} && ${PEAR} install -n -f -P ${FAKE_DESTDIR} package.xml
 # Clean up orphans re-generated by pear-install
-.for R in .channels .depdb .depdblock .filemap .lock .registry
-	@${RM} -rf ${FAKE_DESTDIR}${TRUE_PREFIX}/${LPEARDIR}/${R}
-	@${RM} -rf ${FAKE_DESTDIR}/${R}
-.endfor
-.endif
+.      for R in .channels .depdb .depdblock .filemap .lock .registry
+	@${RM} -r ${FAKE_DESTDIR}${TRUE_PREFIX}/${LPEARDIR}/${R}
+	@${RM} -r ${FAKE_DESTDESTDIR}/${R}
+.      endfor
+.    endif
 
+_USES_install+=	270:do-generate-deinstall-script
 do-generate-deinstall-script:
 	@${SED} ${_SUB_LIST_TEMP} -e '/^@comment /d' ${PORTSDIR}/devel/pear/pear-deinstall.in > ${WRKDIR}/pear-deinstall
 
+_USES_install+=	550:pear-post-install
 pear-post-install:
 	@${MKDIR} ${FAKE_DESTDIR}${PKGREGDIR}
 	@${INSTALL_DATA} ${WRKDIR}/package.xml ${FAKE_DESTDIR}${PKGREGDIR}
 
 show-depends: patch
 	@${PEAR} package-dependencies ${WRKDIR}/package.xml
+
+.  endif
 
 .endif

@@ -1,19 +1,14 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/qt5-linguisttools/Makefile 408682 2016-02-11 10:34:38Z rakuco $
-
 PORTNAME=	linguisttools
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt localization tools
 
-LICENSE=	gpl3
-
-USE_QT5=	core xml buildtools_build qml_build
-QT_DIST=	tools
-USES=		qmake
+USES=		compiler:c++11-lang qmake qt-dist:5,tools
+USE_QT=		core xml buildtools_build declarative_build
 
 BUILD_WRKSRC=	${WRKSRC}/src/linguist
 INSTALL_WRKSRC=	${WRKSRC}/src/linguist

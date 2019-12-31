@@ -1,38 +1,47 @@
---- kBuild/header.kmk.orig	2016-03-27 15:16:48.883550275 -0400
-+++ kBuild/header.kmk	2016-03-27 15:17:30.389555353 -0400
-@@ -188,7 +188,7 @@
+--- kBuild/header.kmk.orig	2017-11-28 16:27:32.000000000 -0500
++++ kBuild/header.kmk	2019-11-03 12:41:41.361323000 -0500
+@@ -196,7 +196,7 @@
  # this keyword namespace is shared between OSes, architectures, cpus and
  # build types. (PORTME)
  #
--KBUILD_OSES      := darwin dos dragonfly freebsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
-+KBUILD_OSES      := darwin dos dragonfly freebsd haiku l4 linux midnightbsd netbsd nt openbsd os2 solaris win os-agnostic
- KBUILD_ARCHES    := x86 amd64 sparc32 sparc64 s390 s390x ppc32 ppc64 mips32 mips64 ia64 hppa32 hppa64 arm alpha
- KBUILD_ARCHES_64 := amd64 sparc64 s390x ppc64 mips64 ia64 hppa64 alpha
- KBUILD_ARCHES_32 := x86 sparc32 s390 ppc32 mips32 hppa32 arm
-@@ -553,7 +553,7 @@
- EXEC_X86_WIN32      := innopec.exe
+-KBUILD_OSES      := darwin dos dragonfly freebsd gnuhurd gnukfbsd gnuknbsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
++KBUILD_OSES      := darwin dos dragonfly midnightbsd freebsd gnuhurd gnukfbsd gnuknbsd haiku l4 linux netbsd nt openbsd os2 solaris win os-agnostic
+ KBUILD_ARCHES    := x86 amd64 noarch alpha arm32 arm64 hppa32 hppa64 ia64 m68k mips32 mips64 ppc32 ppc64 s390 s390x sh32 sh64 sparc32 sparc64 x32
+ KBUILD_ARCHES_64 := amd64 alpha arm64 hppa64 ia64 mips64 ppc64 s390x sh64 sparc64 x32
+ KBUILD_ARCHES_32 := x86 arm32 hppa32 m68k mips32 ppc32 s390 sh32 sparc32
+@@ -211,6 +211,8 @@
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.darwin.amd64    = x86_64-apple-darwin* amd64-apple-darwin*
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.freebsd.x86     = i?86-*freebsd*
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.freebsd.amd64   = x86_64-*freebsd* amd64-*freebsd*
++KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.midnightbsd.x86     = i?86-*midnightbsd*
++KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.midnightsd.amd64   = x86_64-*midnightbsd* amd64-*midnightbsd*
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.linux.x86       = i?86-*linux-gnu
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.linux.amd64     = x86_64-*linux-gnu amd64-*linux-gnu
+ KBUILD_OSARCH_2_GNU_SYSTEM_TYPES.netbsd.x86      = i?86-*netbsd*
+@@ -602,7 +604,7 @@
  HOSTSUFF_EXE        := .exe
+ HOST_PATH_SEP       := $(SEMICOLON)
  
--else if1of ($(KBUILD_HOST), freebsd dragonfly linux openbsd netbsd)
-+else if1of ($(KBUILD_HOST), freebsd dragonfly linux midnightbsd openbsd netbsd)
+-else if1of ($(KBUILD_HOST), dragonfly freebsd gnukfbsd gnuknbsd linux openbsd netbsd)
++else if1of ($(KBUILD_HOST), dragonfly midnightbsd freebsd gnukfbsd gnuknbsd linux openbsd netbsd)
  # Unix (like) systems with wine.
  EXEC_X86_WIN32      := wine
  HOSTSUFF_EXE        :=
-@@ -597,7 +597,7 @@
+@@ -648,7 +650,7 @@
  SUFF_LIB    := .a
  SUFF_DLL    := .so
  SUFF_EXE    :=
-- if1of ($(KBUILD_TARGET), dragonfly freebsd linux netbsd openbsd) ## @todo check netbsd and openbsd.
-+ if1of ($(KBUILD_TARGET), dragonfly freebsd linux midnightbsd netbsd openbsd) ## @todo check netbsd and openbsd.
+- if1of ($(KBUILD_TARGET), dragonfly freebsd gnukfbsd gnuknbsd linux netbsd openbsd) ## @todo check netbsd, gnuknbsd and openbsd.
++ if1of ($(KBUILD_TARGET), dragonfly midnightbsd freebsd gnukfbsd gnuknbsd linux netbsd openbsd) ## @todo check netbsd, gnuknbsd and openbsd.
  SUFF_SYS    := .ko
   else
  SUFF_SYS    :=
-@@ -1268,7 +1268,7 @@
+@@ -1382,7 +1384,7 @@
  	/Developer/usr/
   KBUILD_LIB_SEARCH_SUBS  := lib/
  
--else if1of ($(KBUILD_TARGET), freebsd netbsd openbsd dragonfly)
-+else if1of ($(KBUILD_TARGET), freebsd netbsd midnightbsd openbsd dragonfly)
+-else if1of ($(KBUILD_TARGET), freebsd openbsd dragonfly)
++else if1of ($(KBUILD_TARGET), midnightbsd freebsd openbsd dragonfly)
   KBUILD_LIB_SEARCH_ROOTS := \
  	/ \
  	/usr/ \

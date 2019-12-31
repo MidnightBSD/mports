@@ -1,5 +1,5 @@
 PORTNAME=	pycompilation
-DISTVERSION=	0.4.5
+DISTVERSION=	0.4.6
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils cython cython_run autoplist
+USE_PYTHON=	distutils cython_run autoplist
 
 NO_ARCH=	yes
 

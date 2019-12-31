@@ -1,25 +1,22 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11/qt5-qev/Makefile 372179 2014-11-05 09:39:21Z rakuco $
-
 PORTNAME=	qev
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt QWidget events introspection tool
 
-LICENSE=	gpl3
+LICENSE=	lgpl3
 
-USE_QT5=	core widgets
-QT_DIST=	tools
-USES=		qmake
+USES=		compiler:c++11-lang qmake qt-dist:5,tools
+USE_QT=		core widgets
 
-WRKSRC=	${WRKDIR}/qttools-opensource-src-${QT5_VERSION}/src/${PORTNAME}
+WRKSRC_SUBDIR=	src/${PORTNAME}
 
-# qev is not connected to qttool's build system, so we cannot just run qmake
+# qev is not connected to qttool's build system, so we cannot just run qmake qt-dist:5,tools
 # and set {BUILD,INSTALL}_WRKSRC.
-# Instead, we run qmake from src/${PORTNAME} but need to copy .qmake.conf to
+# Instead, we run qmake qt-dist:5,tools from src/${PORTNAME} but need to copy .qmake qt-dist:5,tools.conf to
 # it for all required variables to be set (MODULE_VERSION etc).
 post-patch:
 	${CP} ${WRKSRC}/../../.qmake.conf ${WRKSRC}

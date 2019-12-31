@@ -1,3 +1,4 @@
+include/epoxy/common.h
 include/epoxy/egl.h
 include/epoxy/egl_generated.h
 include/epoxy/gl.h

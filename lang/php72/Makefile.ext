@@ -3,8 +3,6 @@
 COMMENT=	The ${PHP_MODNAME} shared extension for php
 
 USES+=	php:ext,noflavors
-USE_PHP=	yes
-USE_PHPEXT=	yes
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	72
 IGNORE_WITH_PHP= 71 73
@@ -149,6 +147,7 @@ USES+=	iconv:translit
 .endif
 
 .if ${PHP_MODNAME} == "imap"
+PHP_MOD_PRIO=	30
 OPTIONS_DEFINE=	PANDA
 PANDA_DESC=	Uses the forked panda-cclient instead of the original cclient
 
@@ -237,7 +236,7 @@ CONFIGURE_ARGS+=--enable-pdo
 .if ${PHP_MODNAME} == "pdo_dblib"
 CONFIGURE_ARGS+=--with-pdo-dblib=${LOCALBASE}
 
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 
 OPTIONS_DEFINE=	MSSQL
 
@@ -248,14 +247,14 @@ MSSQL_DESC=	Enable Microsoft SQL Server support
 CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
 
 USES+=	firebird
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_odbc"
 LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
 
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_mysql"
@@ -264,7 +263,7 @@ OPTIONS_DEFAULT=MYSQLND
 
 MYSQLND_DESC=	Use MySQL Native Driver
 
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_pgsql"
@@ -272,14 +271,14 @@ USES+=		pgsql
 
 CONFIGURE_ARGS+=--with-pdo-pgsql=${LOCALBASE}
 
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pdo_sqlite"
 USES+=		sqlite
 CONFIGURE_ARGS+=--with-pdo-sqlite=${LOCALBASE}
 
-USE_PHP=	pdo
+USE_PHP=	pdo:build
 .endif
 
 .if ${PHP_MODNAME} == "pgsql"
@@ -292,7 +291,7 @@ CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
 CONFIGURE_ARGS+=--enable-phar \
 		--with-pcre-dir=${LOCALBASE}
 
-USE_PHP=	hash
+USE_PHP=	hash:build
 .endif
 
 .if ${PHP_MODNAME} == "posix"
@@ -394,7 +393,7 @@ CONFIGURE_ARGS+=--enable-wddx \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	xml session
+USE_PHP=	xml:build session:build
 .endif
 
 .if ${PHP_MODNAME} == "xml"
@@ -410,7 +409,7 @@ CONFIGURE_ARGS+=--enable-xmlreader \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	dom
+USE_PHP=	dom:build
 .endif
 
 .if ${PHP_MODNAME} == "xmlrpc"
@@ -423,7 +422,7 @@ USE_GNOME=	libxml2
 
 PHP_HEADER_DIRS=libxmlrpc
 
-USE_PHP=	xml
+USE_PHP=	xml:build
 .endif
 
 .if ${PHP_MODNAME} == "xmlwriter"
@@ -437,7 +436,7 @@ USE_GNOME=      libxml2
 CONFIGURE_ARGS+=--with-xsl=${LOCALBASE}
 
 USE_GNOME=	libxslt
-USE_PHP=	dom xml
+USE_PHP=	dom:build xml:build
 .endif
 
 .if ${PHP_MODNAME} == "zip"

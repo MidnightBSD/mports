@@ -1,26 +1,17 @@
-# $MidnightBSD$
-# $FreeBSD: head/graphics/libepoxy/Makefile 385633 2015-05-07 15:17:32Z mat $
-
 PORTNAME=	libepoxy
-PORTVERSION=	1.2
-DISTVERSIONPREFIX=	v
+PORTVERSION=	1.5.2
 CATEGORIES=	graphics
+MASTER_SITES=	https://github.com/anholt/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to handle OpenGL function pointer management
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	anholt
-
-WRKSRC=		${WRKDIR}/libepoxy-1.2
-
-USES=		autoreconf libtool pathfix pkgconfig python:build
-USE_XORG=	xorg-macros x11
-USE_GL=		egl glesv2
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-PATHFIX_MAKEFILEIN=	Makefile.am
+USES=		gl localbase meson pkgconfig python:3.3+,build tar:xz xorg
+USE_XORG=	x11
+USE_GL=		gl glesv2 egl
+USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

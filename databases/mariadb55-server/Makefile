@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME?=	mariadb
-PORTVERSION=	5.5.59
-PORTREVISION?=	1
+PORTVERSION=	5.5.65
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
 		http://mirrors.supportex.net/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
@@ -24,7 +22,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 SLAVEDIRS=	databases/mariadb55-client
-USES+=		cmake:noninja shebangfix ssl
+USES+=		cmake:insource,noninja compiler:c++11-lang shebangfix ssl
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 SHEBANG_FILES=	scripts/*.sh sql-bench/[a-km-z]*
 

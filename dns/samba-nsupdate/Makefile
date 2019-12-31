@@ -1,21 +1,19 @@
-# $MidnightBSD$
-
 PORTNAME=		nsupdate
-PORTVERSION=		9.13.3
-CATEGORIES=		dns net ipv6
+PORTVERSION=		9.14.2
+CATEGORIES=		dns net
 MASTER_SITES=		ISC/bind9/${ISCVERSION}
 PKGNAMEPREFIX=		samba-
 DISTNAME=		bind-${ISCVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		An nsupdate utility with GSS-TSIG support
+COMMENT=		nsupdate utility with GSS-TSIG support
 
 LICENSE=		mpl
 LICENSE_FILE=		${WRKSRC}/COPYRIGHT
 
 USES=			compiler:c11 cpe libedit autoreconf libtool pkgconfig ssl
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=		9.13.3
+ISCVERSION=		9.14.2
 
 CPE_VENDOR=		isc
 CPE_VERSION=		${ISCVERSION:C/-.*//}
@@ -32,13 +30,14 @@ CONFIGURE_ARGS+=	\
 			--enable-largefile \
 			--enable-threads \
 			--disable-linux-caps \
+			--disable-shared \
 			--disable-symtable \
 			--with-dlopen=yes \
 			--with-readline="-L${LOCALBASE}/lib -ledit" \
 			--with-openssl=${OPENSSLBASE} \
-			--disable-shared \
 			--without-libxml2 \
 			--without-iconv \
+			--without-python \
 			--without-idn
 
 CONFIGURE_ENV+=		STD_CDEFINES="-DDIG_SIGCHASE=1" ACLOCAL_AMFLAGS="-I m4"

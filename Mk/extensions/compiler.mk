@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # Allows to determine the compiler being used
 #
 # Feature:	compiler
@@ -9,6 +7,7 @@
 # c++0x:	The port needs a compiler understanding C++0X
 # c++11-lang:	The port needs a compiler understanding C++11
 # c++14-lang:	The port needs a compiler understanding C++14
+# c++17-lang:	The port needs a compiler understanding C++17
 # gcc-c++11-lib:The port needs g++ compiler with a C++11 library
 # c++11-lib:	The port needs a compiler understanding C++11 and with a C++11 ready standard library
 # c11:		The port needs a compiler understanding C11
@@ -34,6 +33,9 @@ compiler_ARGS=	env
 .endif
 
 VALID_ARGS=	c++11-lib c++11-lang c++14-lang c++17-lang c11 features openmp env nestedfct c++0x gcc-c++11-lib
+
+_CC_hash:=	${CC:hash}
+_CXX_hash:=	${CXX:hash}
 
 .if ${compiler_ARGS} == gcc-c++11-lib
 _COMPILER_ARGS+=	features gcc-c++11-lib
@@ -174,7 +176,7 @@ CHOSEN_COMPILER_TYPE=	clang
 .if ${_COMPILER_ARGS:Mc++14-lang}
 .if !${COMPILER_FEATURES:Mc++14}
 .if (defined(FAVORITE_COMPILER) && ${FAVORITE_COMPILER} == gcc) || (${ARCH} != amd64 && ${ARCH} != i386) # clang not always supported on Tier-2
-USE_GCC=	5+
+USE_GCC=	6+
 CHOSEN_COMPILER_TYPE=	gcc
 .elif (${COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 35) || ${COMPILER_TYPE} == gcc
 .if ${ALT_COMPILER_TYPE} == clang && ${ALT_COMPILER_VERSION} >= 35

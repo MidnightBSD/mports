@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-PORTVERSION=	1.8.4
+PORTVERSION=	1.8.5
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -20,7 +20,9 @@ CONFIGURE_ARGS=	--disable-drng-support --enable-static=yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
-TEST_TARGET=	check
+#TEST_TARGET=	check
+# magus issues
+NO_TEST=	yes
 
 DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS THANKS TODO \
 		doc/HACKING doc/README.apichanges

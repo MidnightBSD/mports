@@ -1,5 +1,5 @@
 PORTNAME=		tdb
-PORTVERSION=		1.3.16
+PORTVERSION=		1.4.2
 PORTREVISION=		2
 PORTEPOCH=		1
 CATEGORIES=		databases
@@ -10,10 +10,18 @@ COMMENT=		Trivial Database
 
 LICENSE=		gpl3
 
-CONFLICTS=		*samba3[0-4]-3.*
+IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
-USES=			compiler pkgconfig waf
-USE_PYTHON_BUILD=	2
+CONFLICTS_INSTALL=	tdb1-*
+
+#FLAVORS=		default nopython debug
+#nopython_PKGNAMESUFFIX=	-nopython
+#debug_PKGNAMESUFFIX=	-debug
+#nopython_CONFLICTS=	tdb tdb-debug
+#debug_CONFLICTS=	tdb tdb-nopython
+#default_CONFLICTS=	tdb-nopython tdb-debug
+
+USES=			compiler gettext-runtime pkgconfig waf 
 USE_LDCONFIG=		yes
 WAF_CMD=		buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
@@ -21,16 +29,16 @@ CONFIGURE_LOG=		bin/config.log
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX} \
-			--mandir=${MANPREFIX}/man \
-			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
+CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
 			--disable-rpath \
-                        --without-gettext
-# Support staging
-DESTDIRNAME=		--destdir
+			--without-gettext
 
-OPTIONS_DEFINE=		MANPAGES
+OPTIONS_DEFINE=		MANPAGES DEBUG
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
+
+DEBUG_CONFIGURE_ON=	--verbose --enable-debug
+DEBUG_MAKE_ARGS=	--verbose
+DEBUG_FLAGS=		-g -ggdb3 -O0 -DTDB_TRACE=1
 
 .include <bsd.mport.options.mk>
 
@@ -43,44 +51,17 @@ PLIST_FILES+=		include/tdb.h \
 			${TDB_BINS} \
 			lib/libtdb.so \
 			lib/libtdb.so.1 \
-			%%PKGCONFIGDIR%%/tdb.pc
+			libdata/pkgconfig/tdb.pc
 
-.if defined(SAMBA4_DEBUG)
-CFLAGS+=		-DTDB_TRACE=1
-.endif
 
 .if defined(NO_PYTHON)
+USES+=			python:2.7+,build,test
 CONFIGURE_ARGS+=	--disable-python
-USES+=			python:2,build
 .else
-USES+=			python:2.7
+USES+=			python:3.4+
 
-PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/tdb.so \
-			%%PYTHON_SITELIBDIR%%/_tdb_text.py
-# XXX: This is a gross hack to make port use both Python 2.7+ and 3.3+
-# This is not officially supported, use at your own risk
-.if defined(WITH_SAMBA4_PYTHON3) && ${WITH_SAMBA4_PYTHON3:Mpython3\.[0-9]}
-SAMBA4_PYTHON3=		${WITH_SAMBA4_PYTHON3}
-SAMBA4_PYTHON3_VERSION:=${SAMBA4_PYTHON3:S/^python//}
-SAMBA4_PYTHON3_VER:=	${SAMBA4_PYTHON3_VERSION:C/\.//}
-.if !exists(${PORTSDIR}/lang/python${SAMBA4_PYTHON3_VER})
-.error			unsupported or unknown Python version ${SAMBA4_PYTHON3_VERSION}
-.endif
-BUILD_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-RUN_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-# cpython-36m
-SAMBA4_PYTHON3_SO_ABI!=	[ ! -f "${LOCALBASE}/bin/${SAMBA4_PYTHON3}" ] || ${LOCALBASE}/bin/${SAMBA4_PYTHON3} -c 'import sysconfig; print(sysconfig.get_config_var("SOABI") or "")' 2>/dev/null
-SAMBA4_PYTHON3_SITELIBDIR=lib/python${SAMBA4_PYTHON3_VERSION}/site-packages
-
-CONFIGURE_ENV+=		PYTHON3_SO_ABI_FLAG=.${SAMBA4_PYTHON3_SO_ABI}
-CONFIGURE_ARGS+=	--extra-python=${LOCALBASE}/bin/${SAMBA4_PYTHON3}
-
-PLIST_SUB+=		SAMBA4_PYTHON3_SO_ABI=${SAMBA4_PYTHON3_SO_ABI} \
-			SAMBA4_PYTHON3_SITELIBDIR=${SAMBA4_PYTHON3_SITELIBDIR}
-
-PLIST_FILES+=		%%SAMBA4_PYTHON3_SITELIBDIR%%/tdb.%%SAMBA4_PYTHON3_SO_ABI%%.so \
-			%%SAMBA4_PYTHON3_SITELIBDIR%%/_tdb_text.py
-.endif
+PLIST_FILES+=		lib/python3.7/site-packages/tdb.so \
+			lib/python3.7/site-packages/_tdb_text.py
 .endif
 
 .include <bsd.port.pre.mk>
@@ -118,7 +99,7 @@ pre-configure:
 				${FALSE}; \
 			fi
 
-pre-build:
+pre-build-MANPAGES-off:
 			-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
 .for man in ${TDB_MAN8}
 			${INSTALL_MAN} ${FILESDIR}/`basename ${man} .gz` ${BUILD_WRKSRC}/bin/default/man
@@ -126,13 +107,10 @@ pre-build:
 
 post-install:
 .for lib in ${TDB_BINS} lib/libtdb.so
-			${STRIP_CMD} ${PREFIX}/${lib}
+			${STRIP_CMD} ${STAGEDIR}${PREFIX}/${lib}
 .endfor
 .if !defined(NO_PYTHON)
 			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/tdb.so
-.if defined(SAMBA4_PYTHON3)
-			${STRIP_CMD} ${PREFIX}/${SAMBA4_PYTHON3_SITELIBDIR}/tdb.${SAMBA4_PYTHON3_SO_ABI}.so
-.endif
 .endif
 
 .include <bsd.port.post.mk>

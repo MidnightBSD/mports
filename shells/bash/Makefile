@@ -1,5 +1,5 @@
 PORTNAME=		bash
-PATCHLEVEL=		7
+PATCHLEVEL=		11
 PORTVERSION=		5.0.${PATCHLEVEL:S/^0//g}
 PORTREVISION?=		2
 CATEGORIES=		shells
@@ -26,11 +26,10 @@ SYSBASHRC_DESC=		Enable system-wide rc files
 
 OPTIONS_DEFAULT=	HELP
 
-BUILD_DEPENDS+=		${LOCALBASE}/bin/gcc:lang/gcc
-
-USES=			bison cpe iconv makeinfo pathfix
-USE_GCC=		6
+USES=			bison compiler cpe iconv makeinfo pathfix localbase
+USE_GCC=	7
 GNU_CONFIGURE=		yes
+CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd${OSREL}
 OPTIONS_SUB=		yes
 CPE_VENDOR=		gnu
 
@@ -49,9 +48,7 @@ PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
 CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
 			--enable-disabled-builtins \
-			--host=${ARCH}-portbld-freebsd10.4 \
-			--build=${ARCH}-portbld-freebsd10.4
-
+			--with-libiconv-prefix=${ICONV_PREFIX}
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
 .else
@@ -70,8 +67,8 @@ CONFIGURE_ARGS+=	--disable-static-link
 LDFLAGS+=		-Wl,-export-dynamic
 .endif
 STANDARD_PATH=		/sbin:/bin:/usr/sbin:/usr/bin
-CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
-			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
+#CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
+#			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
 
 post-patch:
 # Ensure y.tab.c is regenerated
@@ -81,6 +78,7 @@ post-patch:
 .if ${PORT_OPTIONS:MSYSLOG}
 	@${REINPLACE_CMD} \
 	    -e "s|/\*.*#define SYSLOG_HISTORY .*\*/|#define SYSLOG_HISTORY|g" \
+	    -e "s|/\*.*#define SYSLOG_SHOPT .*\*/|#define SYSLOG_SHOPT 1|g" \
 	    ${WRKSRC}/config-top.h
 .endif
 
@@ -91,7 +89,7 @@ post-patch-SYSBASHRC-on:
 
 post-configure:
 	@${FIND} ${WRKSRC} -name Makefile -print0 | ${XARGS} -0 \
-		${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|"
+		${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${FAKE_DESTDIR}|"
 
 pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
@@ -106,7 +104,7 @@ post-install:
 	done
 
 regress: build
-	cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} test
+	cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE} ${MAKE_ARGS} ${FAKE_MAKEARGS} test
 
 ckp:
 	${MAKE} -DPATCH_DEBUG clean patch

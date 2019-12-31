@@ -1,2 +1,3 @@
-SHA256 (lzip-1.15.tar.gz) = 7cd3fcda68fc9900efcf7784313e3bdd1303fef1a0546db9723f5e5564dd05b6
-SIZE (lzip-1.15.tar.gz) = 97409
+TIMESTAMP = 1570293280
+SHA256 (lzip-1.21.tar.gz) = e48b5039d3164d670791f9c5dbaa832bf2df080cb1fbb4f33aa7b3300b670d8b
+SIZE (lzip-1.21.tar.gz) = 105558

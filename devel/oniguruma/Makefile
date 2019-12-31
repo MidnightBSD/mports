@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	oniguruma
-DISTVERSION=	6.8.2
+DISTVERSION=	6.9.3
 CATEGORIES=	devel textproc
 MASTER_SITES=	https://github.com/kkos/${PORTNAME}/releases/download/v${DISTVERSION}/
 DISTNAME=	onig-${DISTVERSION}

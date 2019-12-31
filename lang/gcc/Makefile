@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gcc
 PORTVERSION=	${GCC_DEFAULT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	# not applicable
 DISTFILES=	# not applicable

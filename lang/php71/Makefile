@@ -1,7 +1,7 @@
 # Created by: Torsten Zuehlsdorff <tz@FreeBSD.org>
 
 PORTNAME=	php71
-PORTVERSION=	7.1.32
+PORTVERSION=	7.1.33
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -13,17 +13,13 @@ COMMENT=	PHP Scripting Language
 LICENSE=	php
 
 USES+=		tar:xz cpe
-#USE_GCC=        4.8
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 
 NO_TEST=	yes
 
 .if !defined(PKGNAMESUFFIX)
-USE_AUTOTOOLS=	autoconf
-#NOTE: libtools ends with Version mismatch error
-#USES+=		autoreconf gmake
-#GNU_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
 
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
@@ -32,34 +28,46 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--enable-libxml \
-		--enable-mysqlnd \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-pcre-regex=${LOCALBASE} \
 		--program-prefix=""
-
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
-OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG DTRACE IPV6 LINKTHR ZTS
-OPTIONS_DEFAULT=CLI CGI FPM LINKTHR
+# PR230207 Allow relocations against read-only segments (override lld default)
+LDFLAGS_i386=	-Wl,-z,notext
 
+OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG IPV6 MAILHEAD MYSQLND LINKTHR ZTS
+OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR
 OPTIONS_SUB=	yes
 
 CLI_DESC=	Build CLI version
 CGI_DESC=	Build CGI version
 FPM_DESC=	Build FPM version
 EMBED_DESC=	Build embedded library
-DEBUG_DESC=	Enable debug
 PHPDBG_DESC=	Interactive PHP debugger
-DTRACE_DESC=	Enable DTrace support
-IPV6_DESC=	Enable ipv6 support
+MAILHEAD_DESC=	Enable mail header patch
+MYSQLND_DESC=	Build with MySQL Native Driver
 LINKTHR_DESC=	Link thread lib (for threaded extensions)
 ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 
-CONFLICTS=	php56-* php70-*
+CONFLICTS=	php56-* php70-* php72-* php73-*
 
 DESTDIRNAME=	INSTALL_ROOT
 
 .include <bsd.port.pre.mk>
+
+PATCH_DIST_STRIP=	-p1
+
+.if ${PORT_OPTIONS:MMAILHEAD}
+PATCHFILES+=	php-7.1.x-mail-header.patch:mail
+PATCH_SITES+=	http://choon.net/opensource/php/:mail
+.endif
+
+.if ${PORT_OPTIONS:MMYSQLND}
+CONFIGURE_ARGS+=--enable-mysqlnd
+.endif
 
 .if ${PORT_OPTIONS:MCLI}
 PHP_SAPI+=	cli
@@ -82,10 +90,8 @@ CONFIGURE_ARGS+=--enable-fpm \
 .endif
 
 .if defined(PKGNAMEPREFIX)
-USES+=	php
-PHP_VER=	71
-IGNORE_WITH_PHP=	55 56 70
-USE_APACHE=	22+
+USES+=		apache:2.2+
+.include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
 .else
@@ -131,15 +137,10 @@ CONFIGURE_ARGS+=--enable-debug
 .if ${PORT_OPTIONS:MZTS}
 CONFIGURE_ARGS+=--enable-maintainer-zts
 CONFIGURE_ENV+=	pthreads_working="yes"
-USES=	localhost
 .endif
 
-.if ${PORT_OPTIONS:MDTRACE}
-CONFIGURE_ARGS+=--enable-dtrace
-PLIST_SUB+=	DTRACE=""
-.else
+CONFIGURE_ARGS+=--disable-dtrace
 PLIST_SUB+=	DTRACE="@comment "
-.endif
 
 .if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
@@ -153,12 +154,8 @@ post-patch:
 		${WRKSRC}/sapi/fpm/php-fpm.conf.in
 .endif
 
-# Work around issues with newer (>=2.64) autoconf
 pre-configure:
-	@${REINPLACE_CMD} -E 's:^((m4_)?divert)[(]([0-9]*)[)]:\1(600\3):' \
-		${WRKSRC}/configure.in `${FIND} ${WRKSRC} -name '*.m4'`
-	@${RM} ${WRKSRC}/configure
-	@${CAT} ${WRKSRC}/acinclude.m4 ${WRKSRC}/build/libtool.m4 > ${WRKSRC}/aclocal.m4
+	@(cd ${WRKSRC} && ${SETENV} MAKE=${MAKE_CMD} ./buildconf --force)
 
 .if !defined(PKGNAMEPREFIX)
 post-build:

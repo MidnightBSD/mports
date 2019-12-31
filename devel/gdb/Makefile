@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gdb
 PORTVERSION=	8.2
 CATEGORIES=	devel
@@ -15,9 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING3
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 mips powerpc powerpc64
 
 LIB_DEPENDS=	libmpfr.so:math/mpfr
-TEST_DEPENDS=	runtest:misc/dejagnu
 
-TEST_TARGET=	check
 # XXX: This should be compiler:c++11-lib as GDB doesn't really require
 # C++14.  However, clang in 1.0 crashes while building this port.
 # Requiring C++14 forces 1.0 to use an external version of clang
@@ -33,6 +29,7 @@ CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
 		${ICONV_CONFIGURE_ARG} \
 		--with-expat=yes --with-libexpat-prefix=${LOCALBASE} \
 		--without-libunwind-ia64 --with-system-zlib
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
 CFLAGS+=	-DRL_NO_COMPAT -Wno-unused-function -Wno-unused-variable
 CFLAGS+=	-Wno-unknown-warning-option
@@ -43,6 +40,8 @@ LIB_DEPENDS+=	libexpat.so:textproc/expat2
 
 VER=		${PORTVERSION:S/.//g}
 PLIST_SUB=	VER=${VER}
+
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DEBUG GDB_LINK GUILE KGDB PYTHON TUI
 

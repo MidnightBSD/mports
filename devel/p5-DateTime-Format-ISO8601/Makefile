@@ -17,6 +17,7 @@ RUN_DEPENDS=	p5-DateTime>=0.18:devel/p5-DateTime \
 		p5-DateTime-Format-Builder>=0.77:devel/p5-DateTime-Format-Builder
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuild
 

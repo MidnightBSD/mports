@@ -1,0 +1,47 @@
+--- src/3rdparty/chromium/build/toolchain/gcc_toolchain.gni.orig	2018-11-13 18:25:11 UTC
++++ src/3rdparty/chromium/build/toolchain/gcc_toolchain.gni
+@@ -11,6 +11,13 @@ import("//build/toolchain/clang_static_analyzer.gni")
+ import("//build/toolchain/goma.gni")
+ import("//build/toolchain/toolchain.gni")
+ 
++declare_args() {
++  extra_cxxflags = ""
++  extra_ldflags = ""
++}
++
++
++
+ if (is_nacl) {
+   # To keep NaCl variables out of builds that don't include NaCl, all
+   # variables defined in nacl/config.gni referenced here should be protected by
+@@ -604,13 +611,23 @@ template("clang_toolchain") {
+   }
+ 
+   gcc_toolchain(target_name) {
+-    prefix = rebase_path("$clang_base_path/bin", root_build_dir)
+-    cc = "$prefix/clang"
+-    cxx = "$prefix/clang++"
+-    ld = cxx
+-    readelf = "${toolprefix}readelf"
+-    ar = "${prefix}/llvm-ar"
+-    nm = "${toolprefix}nm"
++    if (is_bsd) {
++      cc = "${toolprefix}clang"
++      cxx = "${toolprefix}clang++"
++      ld = cxx
++      readelf = "readelf"
++      ar = "${toolprefix}ar"
++      nm = "${toolprefix}nm"
++    } else {
++      prefix = rebase_path("$clang_base_path/bin", root_build_dir)
++      cc = "$prefix/clang"
++      cxx = "$prefix/clang++"
++      ld = cxx
++
++      readelf = "${toolprefix}readelf"
++      ar = "${prefix}/llvm-ar"
++      nm = "${toolprefix}nm"
++    }
+ 
+     forward_variables_from(invoker,
+                            [

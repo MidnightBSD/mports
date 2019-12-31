@@ -11,8 +11,8 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql56-client
-USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
-		cpe libedit localbase perl5 shebangfix
+USES=		bison:build cmake:noninja compiler:c11 compiler:c++11-lib \
+		cpe libedit localbase perl5 shebangfix ssl
 
 LIB_DEPENDS+=	libevent.so:devel/libevent \
 		liblz4.so:archivers/liblz4

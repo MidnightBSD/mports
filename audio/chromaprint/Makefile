@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/audio/chromaprint/Makefile 461213 2018-02-08 11:28:36Z jhale $
-
 PORTNAME=	chromaprint
 PORTVERSION=	1.4.3
 CATEGORIES=	audio
@@ -15,7 +12,7 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 
-USES=		cmake:outsource compiler:c++11-lib pathfix
+USES=		cmake compiler:c++11-lib pathfix
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DBUILD_TOOLS:BOOL=true \

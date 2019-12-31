@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/security/libzrtpcppcore/Makefile 376798 2015-01-11 19:25:27Z tijl $
-
 PORTNAME=	libzrtpcppcore
 DISTVERSIONPREFIX=	V
-DISTVERSION=	4.3.1
+DISTVERSION=	4.6.6
 CATEGORIES=	security
 MASTER_SITES=	GHR
 
@@ -18,7 +15,7 @@ GH_ACCOUNT=	wernerd
 GH_PROJECT=	ZRTPCPP
 WRKSRC=		${WRKDIR}/${GH_PROJECT}-${DISTVERSION}
 
-USES=		cmake:outsource,noninja compiler:c++11-lib
+USES=		cmake:noninja compiler:c++11-lib
 USE_CXXSTD=	c++11
 CMAKE_ARGS=	-DCORE_LIB:BOOL=ON
 USE_LDCONFIG=	yes

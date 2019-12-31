@@ -11,7 +11,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql55-client
-USES=		cmake:noninja readline shebangfix
+USES=		cmake:insource,noninja compiler:c++11-lang readline shebangfix
 CXXFLAGS+=	${CPPFLAGS}
 NO_OPTIONS_SORT=yes
 

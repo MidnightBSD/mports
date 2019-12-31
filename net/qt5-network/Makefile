@@ -1,22 +1,16 @@
-# $MidnightBSD$
-# $FreeBSD: head/net/qt5-network/Makefile 412348 2016-04-01 14:16:16Z mat $
-
 PORTNAME=	network
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt network module
 
-LICENSE=	gpl3
-
-LIB_DEPENDS=	libproxy.so:net/libproxy
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		ssl
-USE_QT5=	core qmake_build buildtools_build
-QT_DIST=	base
+USES=		compiler:c++11-lang qmake:no_env qt-dist:5,base ssl
+USE_QT=		core buildtools_build
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-no-gui -no-xcb
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
@@ -24,26 +18,29 @@ USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-QT_DEFINES=	LIBPROXY OPENSSL SSL
-QT_CONFIG=	libproxy openssl
+QT_DEFINES=	OPENSSL SSL
+QT_CONFIG=	openssl
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${BUILD_WRKSRC}/ssl/qsslsocket_openssl.cpp \
+		${BUILD_WRKSRC}/ssl/qsslsocket_openssl.cpp
+	@${REINPLACE_CMD} -e 's|%%OPENSSLLIB%%|${OPENSSLLIB}|g' \
 		${BUILD_WRKSRC}/ssl/qsslsocket_openssl_symbols.cpp
 
 post-configure:
-	@cd ${WRKSRC}/src/plugins/bearer/generic && \
-		${SETENV} ${QMAKE_ENV} ${WRKSRC}/bin/qmake ${QMAKE_ARGS}
+.for d in src/network src/plugins/bearer/generic
+	${MKDIR} ${WRKSRC}/${d}
+	cd ${WRKSRC}/${d} && ${SETENV} ${QMAKE_ENV} ${_QMAKE} ${QMAKE_ARGS} ${WRKSRC}/${d}
+.endfor
 
 post-build:
 	@cd ${WRKSRC}/src/plugins/bearer/generic && \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
-		${_MAKE_JOBS} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${ALL_TARGET}
+		${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}
 
 post-install:
 	@cd ${WRKSRC}/src/plugins/bearer/generic && \
-		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} \
+		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
 .include <bsd.port.mk>

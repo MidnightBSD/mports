@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	mksh
-DISTVERSION=	R56c
+DISTVERSION=	R57
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/

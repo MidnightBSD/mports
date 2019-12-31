@@ -105,16 +105,16 @@ PLIST_SUB+=	PREFIX=${PREFIX} \
 		SASLDB=${SASLDB}
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} \
 		"! ( -path */html/_sources* -o -name .buildinfo \
 		-o -name Makefile -o -name Makefile.in \
 		-o -name Makefile.in.bak -o -name Makefile.am \
 		-o -name NTMakefile -o -name .cvsignore )"
 .for f in ${DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${FAKE_DESTDIR}${DOCSDIR}
 
 .elif ${CYRUS_BUILD_TARGET} == "saslauthd"
 

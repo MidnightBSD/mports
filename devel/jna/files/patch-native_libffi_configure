@@ -1,0 +1,29 @@
+--- native/libffi/configure.ac.orig	2019-11-12 16:21:49.409586000 -0500
++++ native/libffi/configure.ac	2019-11-12 16:22:55.903706000 -0500
+@@ -91,7 +91,7 @@
+ 	TARGET=ARM; TARGETDIR=arm
+ 	;;
+ 
+-  amd64-*-freebsd* | amd64-*-openbsd*)
++  amd64-*-freebsd* | amd64-*-openbsd* | amd64-*-midnightbsd*)
+ 	TARGET=X86_64; TARGETDIR=x86
+   	;;
+ 
+@@ -129,7 +129,7 @@
+ 	TARGET=PA_HPUX; TARGETDIR=pa
+ 	;;
+ 
+-  i?86-*-freebsd* | i?86-*-openbsd*)
++  i?86-*-freebsd* | i?86-*-openbsd* | i?86-*-midnightbsd*)
+ 	TARGET=X86_FREEBSD; TARGETDIR=x86
+ 	;;
+   i?86-win32* | i?86-*-cygwin* | i?86-*-mingw* | i?86-*-os2* | i?86-*-interix*)
+@@ -460,7 +460,7 @@
+                  [Cannot use PROT_EXEC on this target, so, we revert to
+                    alternative means])
+      ;;
+-     *-apple-darwin1* | *-*-freebsd* | *-*-kfreebsd* | *-*-openbsd* | *-pc-solaris*)
++     *-apple-darwin1* | *-*-freebsd* | *-*-kfreebsd* | *-*-midnightbsd* | *-*-openbsd* | *-pc-solaris*)
+        AC_DEFINE(FFI_MMAP_EXEC_WRIT, 1,
+                  [Cannot use malloc on this target, so, we revert to
+                    alternative means])

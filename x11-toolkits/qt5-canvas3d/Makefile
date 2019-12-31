@@ -1,19 +1,14 @@
-# $FreeBSD: head/x11-toolkits/qt5-canvas3d/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-# $MidnightBSD$
-
-PORTNAME=  	canvas3d
+PORTNAME=	canvas3d
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt canvas3d module
 
-LICENSE=	gpl3
-
-USE_QT5=	core gui network qml quick buildtools_build
-QT_DIST=	${PORTNAME}
-USES=		qmake
+USES=		compiler:c++11-lang qmake qt-dist:5,canvas3d
+USE_QT=		core declarative gui network buildtools_build
 
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 

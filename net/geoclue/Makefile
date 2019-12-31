@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	geoclue
-PORTVERSION=	2.4.3
+PORTVERSION=	2.4.7
 PORTREVISION=	1
 CATEGORIES=	net devel gnome
 MASTER_SITES=	http://www.freedesktop.org/software/geoclue/releases/2.1/

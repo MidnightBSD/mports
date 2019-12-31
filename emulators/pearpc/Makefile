@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pearpc
 PORTVERSION=	0.4
 PORTREVISION=	6
@@ -8,6 +6,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PowerPC emulator
+
 LICENSE=	gpl2
 
 USE_XORG=	x11
@@ -16,8 +15,6 @@ SUB_FILES=	pkg-message
 
 USE_GCC=	yes
 USE_CXXSTD=	gnu++03
-
-MAN1=		ppc.1
 
 PLIST_FILES=	bin/ppc etc/ppccfg.example %%DATADIR%%/video.x
 PLIST_DIRS=	%%DATADIR%%

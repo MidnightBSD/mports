@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-PORTVERSION=	1.0.2t
+PORTVERSION=	1.0.2u
 PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
@@ -52,7 +52,7 @@ SSL2_DESC=	SSLv2 protocol support
 SSL3_DESC=	SSLv3 protocol support
 ZLIB_DESC=	zlib compression support
 
-USES=		cpe perl5
+USES=		compiler cpe perl5
 USE_PERL5=	build
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
 MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=

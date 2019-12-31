@@ -57,6 +57,7 @@ SUBDIR += p5-Net-SMTP-SSL
 SUBDIR += pantomime
 SUBDIR += php71-imap
 SUBDIR += php72-imap
+SUBDIR += php73-imap
 SUBDIR += phplist
 SUBDIR += phpmailer
 SUBDIR += pine-pgp-filters

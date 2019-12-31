@@ -21,6 +21,7 @@ USES=		python
 USE_PYTHON=	distutils autoplist concurrent optsuffix
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Backblaze

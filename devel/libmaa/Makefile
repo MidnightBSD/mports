@@ -1,5 +1,5 @@
 PORTNAME=	libmaa
-PORTVERSION=	1.4.3
+PORTVERSION=	1.4.4
 PORTEPOCH=	1
 CATEGORIES=	devel
 
@@ -20,6 +20,8 @@ USE_LDCONFIG=	yes
 
 GH_ACCOUNT=	cheusov
 USE_GITHUB=	yes
+
+FAKE_OPTS=	trueprefix
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^FILES *=/ s|LICENSE||' ${WRKSRC}/doc/Makefile

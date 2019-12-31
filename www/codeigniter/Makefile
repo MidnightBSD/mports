@@ -1,5 +1,5 @@
 PORTNAME=	codeigniter
-PORTVERSION=	3.1.10
+PORTVERSION=	3.1.11
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 USES=		php:web
 USE_PHP=	mcrypt pcre session
-PLIST_SUB=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
+PLIST_SUB=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP} DOCSDIR=${DOCSDIR_REL}
 
 CI_SYS_DIR=	system
 CI_CONF_DIR=	application/config

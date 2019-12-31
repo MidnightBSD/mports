@@ -1,26 +1,28 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-toolkits/qt5-declarative/Makefile 407169 2016-01-24 18:10:14Z rakuco $
-
 PORTNAME=	declarative
 DISTVERSION=	${QT5_VERSION}
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt 4-compatible declarative UI framework
+COMMENT=	Qt declarative framework for dynamic user interfaces
 
-LICENSE=	gpl3
-
-USE_QT5=	core designer gui network opengl script sql webkit \
+USES=		compiler:c++11-lang gl python:build qmake:norecursive \
+		qt-dist:5
+USE_GL=		gl
+USE_QT=		core gui network sql testlib \
 		widgets xmlpatterns buildtools_build
-QT_DIST=	quick1
-USES=		qmake
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
-# qt5logo.png is installed by qt5-widgets.
-DESKTOP_ENTRIES="Qt 5 QML viewer" "" \
-		"${QT_PREFIX}/share/pixmaps/qt5logo.png" \
-		"${PREFIX}/${QT_BINDIR_REL}/qmlviewer" \
-		"Development;Qt;" true
+CONFLICTS=	qt5-declarative-render2d-* qt5-qml qt5-quick
+
+QT_DEFINES=	ACCESSIBILITY
+QT_CONFIG=	accessibility accessibility-atspi-bridge
+
+post-patch:
+# qtdeclarative.pro wants to run python, replace that with PYTHON_CMD
+	${REINPLACE_CMD} '/py_out/s#python#${PYTHON_CMD}#g' \
+		${WRKSRC}/qtdeclarative.pro
+	${REINPLACE_CMD} 's,python,${PYTHON_CMD},g' \
+		${WRKSRC}/src/3rdparty/masm/masm.pri
 
 .include <bsd.port.mk>

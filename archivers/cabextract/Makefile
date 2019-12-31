@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/cabextract/Makefile,v 1.18 2007/08/07 18:21:25 sobomax Exp $
-
 PORTNAME=	cabextract
-PORTVERSION=	1.6
+PORTVERSION=	1.9.1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/
 
