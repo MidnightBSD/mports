@@ -1,3 +1,3 @@
-TIMESTAMP = 1534737656
-SHA256 (libupnp-1.6.25.tar.bz2) = c5a300b86775435c076d58a79cc0d5a977d76027d2a7d721590729b7f369fa43
-SIZE (libupnp-1.6.25.tar.bz2) = 722731
+TIMESTAMP = 1577812986
+SHA256 (upnp-release-1.10.0_GH0.tar.gz) = f97f0c0cda1aa873b05cd515e925df21686e7e7d536e776fc13ea4c7735bfafa
+SIZE (upnp-release-1.10.0_GH0.tar.gz) = 786215
