@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/samba.mk 456595 2017-12-18 07:00:10Z antoine $
+# $FreeBSD: head/Mk/Uses/samba.mk 520186 2019-12-15 17:20:10Z rene $
 #
 # Handle dependency on samba
 #
@@ -24,7 +23,11 @@ IGNORE=		USES=samba has invalid arguments: ${samba_ARGS:Nbuild:Nenv:Nlib:Nrun}
 
 SAMBAPORT=	net/samba${SAMBA_DEFAULT:S/.//}
 SAMBAINCLUDES=	${LOCALBASE}/include/samba4
+.if ${SAMBA_DEFAULT} == 4.10
 SAMBALIBS=	${LOCALBASE}/lib/samba4
+.else
+IGNORE=		Invalid version of samba: ${SAMBA_DEFAULT}
+.endif
 
 .if ${samba_ARGS:Mbuild}
 BUILD_DEPENDS+=	smbd:${SAMBAPORT}
