@@ -186,7 +186,6 @@ SUBDIR += qt5-sqldrivers-tds
 SUBDIR += redis
 SUBDIR += rrdtool
 SUBDIR += ruby-bdb
-SUBDIR += ruby-gdbm
 SUBDIR += sqlclient
 SUBDIR += sqlite2
 SUBDIR += sqlite3
