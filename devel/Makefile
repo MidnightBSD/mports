@@ -213,6 +213,7 @@ SUBDIR += libunistring
 SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvolume_id
+SUBDIR += libzookeeper
 SUBDIR += libzvbi
 SUBDIR += linux-c6-dbus-glib
 SUBDIR += linux-c6-dbus-libs
@@ -919,6 +920,7 @@ SUBDIR += xdg-utils
 SUBDIR += xorg-macros
 SUBDIR += yajl
 SUBDIR += yasm
+SUBDIR += zookeeper
 SUBDIR += zthread
 SUBDIR += zziplib
 
