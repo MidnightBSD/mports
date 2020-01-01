@@ -2,7 +2,7 @@
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -23,12 +23,11 @@ LICENSE_FILE=	${WRKSRC}/copyright.h
 LICENSE_PERMS=	
 # non commericial use only
 
-LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libtiff.so:${PORTSDIR}/graphics/tiff \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjasper.so:${PORTSDIR}/graphics/jasper
+LIB_DEPENDS=	libtiff.so:graphics/tiff \
+		libpng.so:graphics/png \
+		libjasper.so:graphics/jasper
 
-USES=		imake
+USES=		imake jpeg
 USE_XORG=	xext x11 xt
 
 OPTIONS_DEFINE=	M17N DOCS
@@ -48,7 +47,7 @@ DESCR=	${FILESDIR}/pkg-descr
 .endif
 
 pre-patch:
-	${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/xv-3.10a-jumbo-fix-enh-patch-20070520.txt
+	${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} -p1 < ${WRKDIR}/xv-3.10a-jumbo-fix-enh-patch-20070520.txt
 
 post-patch:
 	${REINPLACE_CMD} -e "s@%%LOCALBASE%%@${LOCALBASE}@" \
