@@ -216,6 +216,7 @@ SUBDIR += rasqal
 SUBDIR += redland
 SUBDIR += rubygem-asciidoctor
 SUBDIR += rubygem-rdiscount
+SUBDIR += rubygem-ronn
 SUBDIR += sassc
 SUBDIR += scr2txt
 SUBDIR += scrollkeeper
