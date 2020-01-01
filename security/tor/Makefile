@@ -1,5 +1,5 @@
 PORTNAME=	tor
-DISTVERSION=	0.4.1.5
+DISTVERSION=	0.4.2.5
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
@@ -39,6 +39,8 @@ GROUPS=		_tor
 USERS=		_tor
 
 CONFLICTS=	tor-devel-[0-9]*
+
+NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 

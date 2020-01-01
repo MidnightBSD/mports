@@ -171,6 +171,7 @@ SUBDIR += png
 SUBDIR += poppler
 SUBDIR += poppler-data
 SUBDIR += poppler-glib
+SUBDIR += poppler-qt5
 SUBDIR += poppler-utils
 SUBDIR += preview
 SUBDIR += price
