@@ -63,7 +63,6 @@ SUBDIR += gnome_subr
 SUBDIR += grub2
 SUBDIR += grub2-bhyve
 SUBDIR += grub2-efi
-SUBDIR += grub2-pcbsd
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
