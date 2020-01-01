@@ -37,7 +37,7 @@ do-configure:
 	@ cd ${WRKSRC}/ && ./configure ${CONFIGURE_ARGS}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/grub-core/grub-emu ${STAGEDIR}${LOCALBASE}/sbin/grub-bhyve
+	${INSTALL_PROGRAM} ${WRKSRC}/grub-core/grub-emu ${FAKE_DESTDIR}${LOCALBASE}/sbin/grub-bhyve
 
 .include <bsd.port.mk>
 
