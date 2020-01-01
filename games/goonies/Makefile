@@ -1,48 +1,38 @@
-# $MidnightBSD$
-
 PORTNAME=	goonies
-PORTVERSION=	1.0.1
-PORTREVISION=	2
+PORTVERSION=	1.4.1528
+PORTREVISION=	1
 CATEGORIES=	games
-MASTER_SITES=	http://goonies.jorito.net/download/ \
+MASTER_SITES=	http://braingames.jorito.net/goonies/downloads/ \
 		http://mirror.amdmi3.ru/distfiles/
-DISTNAME=	${PORTNAME}_r${PORTVERSION:C/\./-/g}
-EXTRACT_SUFX=	.tgz
+DISTNAME=	${PORTNAME}.src_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remake of the 8 bit classic game 'The Goonies'
-LICENSE=	unknown
 
-USES=		gmake
+LICENSE=	other
+
+USES=		gl gmake sdl tar:tgz
 USE_SDL=	sdl mixer image
-USE_GL=		yes
-USE_GCC=	any
+USE_GL=		gl glu
+USE_CXXSTD=	c++98
 
-BUILD_WRKSRC=	${WRKSRC}/src
-MAKEFILE=	../build/linux/Makefile
-MAKE_ENV=	DATADIR="${DATADIR}"
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-DATADIRS=	sound graphics maps
-PORTDOCS=	*
-
-.include <bsd.port.pre.mk>
+PORTDATA=	*
 
 post-patch:
-#	@${REINPLACE_CMD} -e 's|__APPLE__|__MidnightBSD__|' \
-#		${WRKSRC}/src/SFXManager.cpp
 	@${REINPLACE_CMD} -e 's|sound/|${DATADIR}/sound/|g' \
-		${WRKSRC}/src/SFXManager.cpp
-	@${REINPLACE_CMD} -e 's|graphics/|${DATADIR}/graphics/|g' \
+		${WRKSRC}/src/SoundManager.cpp
+	@${REINPLACE_CMD} -e 's|graphics/|${DATADIR}/graphics/|g; \
+		s|"graphics"|"${DATADIR}/graphics"|' \
 		${WRKSRC}/src/GLTManager.cpp ${WRKSRC}/src/TheGooniesApp.cpp
 	@${REINPLACE_CMD} -e 's|maps/|${DATADIR}/maps/|g' \
 		${WRKSRC}/src/TheGoonies.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/goonies ${PREFIX}/bin
-	cd ${WRKSRC} && \
-		${FIND} ${DATADIRS} -type d -exec ${MKDIR} ${DATADIR}/{} \; ;\
-		${FIND} ${DATADIRS} -type f -exec ${INSTALL_DATA} {} ${DATADIR}/{} \;
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/* ${DOCSDIR}/
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} 'graphics maps sound' ${STAGEDIR}${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.png ${STAGEDIR}${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/build/linux/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
