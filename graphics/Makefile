@@ -33,7 +33,6 @@ SUBDIR += freeglut
 SUBDIR += frei0r
 SUBDIR += gd
 SUBDIR += gdchart
-SUBDIR += gdk-pixbuf
 SUBDIR += gdk-pixbuf2
 SUBDIR += gegl
 SUBDIR += gegl3
