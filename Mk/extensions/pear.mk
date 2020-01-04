@@ -139,8 +139,8 @@ do-autogenerate-plist:
 	@${LN} -sf ${WRKDIR}/package.xml ${WRKSRC}/package.xml
 	@cd ${WRKSRC} && ${PEAR} install -n -f -P ${WRKDIR}/inst package.xml > /dev/null 2> /dev/null
 .      for R in .channels .depdb .depdblock .filemap .lock .registry
-	@${RM} -r ${WRKDIR}/inst/${TRUE_PREFIX}/${LPEARDIR}/${R}
-	@${RM} -r ${WRKDIR}/inst/${R}
+	-${RM} -r ${WRKDIR}/inst/${TRUE_PREFIX}/${LPEARDIR}/${R}
+	-${RM} -r ${WRKDIR}/inst/${R}
 .      endfor
 	@FILES=`cd ${WRKDIR}/inst && ${FIND} . -type f | ${CUT} -c 2- | \
 	${GREP} -v -E "^${PREFIX}/"` || exit 0; \
