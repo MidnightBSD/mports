@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xerces-j
-PORTVERSION=	2.11.0
+PORTVERSION=	2.12.0
 CATEGORIES=	textproc java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	xerces/j
@@ -14,7 +12,6 @@ LICENSE=	apache2
 CONFLICTS=	xml4j-4.*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/xerces-${PORTVERSION:S/./_/g}
