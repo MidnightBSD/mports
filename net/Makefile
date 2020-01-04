@@ -65,7 +65,6 @@ SUBDIR += linux-c6-tcp_wrappers-libs
 SUBDIR += linux-c7-avahi-libs
 SUBDIR += linux-c7-openldap
 SUBDIR += linux-c7-tcp_wrappers-libs
-SUBDIR += linuxigd
 SUBDIR += liveMedia
 SUBDIR += mDNSResponder
 SUBDIR += miniupnpc
