@@ -1,10 +1,8 @@
 # Created by: nectar@FreeBSD.org
-# $FreeBSD: head/security/krb5/Makefile 364798 2014-08-13 18:32:02Z cy $
-# $MidnightBSD$
 
 PORTNAME=		krb5
 PORTVERSION=		1.13.2
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		security
 MASTER_SITES=		http://web.mit.edu/kerberos/dist/${PORTNAME}/${PORTVERSION:C/^[0-9]*\.[0-9]*/&X/:C/X\.[0-9]*$//:C/X//}/
 DISTNAME=		${PORTNAME}-${PORTVERSION}-signed
@@ -32,6 +30,7 @@ USES=			cpe gettext gmake perl5 libtool:build \
 CONFIGURE_ARGS?=	--enable-shared --without-system-verto \
 			--disable-rpath --localstatedir="${PREFIX}/var"
 CONFIGURE_ENV=		INSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}" YACC="${YACC}"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKE_ARGS=		INSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}"
 
 CPE_VENDOR=		mit
