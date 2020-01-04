@@ -15,6 +15,7 @@ SUBDIR += faac
 SUBDIR += faad
 SUBDIR += flac
 SUBDIR += flite
+SUBDIR += fluidsynth
 SUBDIR += freealut
 SUBDIR += freedesktop-sound-theme
 SUBDIR += gnustep-cdplayer
