@@ -520,7 +520,7 @@ BUILD_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .endif
 
 .if defined(_PYTHON_FEATURE_CYTHON_RUN)
-RUN_DEPENDS+=	cython-${PYTHON_VER}>=0:lang/cython@${PY_FLAVOR}
+RUN_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .endif
 
 .if defined(_PYTHON_FEATURE_CONCURRENT)
