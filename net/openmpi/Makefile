@@ -1,13 +1,8 @@
-# $MidnightBSD$
-
-# TODO:
-# fix man pages
-#  - etc/*.sample support
-
 PORTNAME=	openmpi
-DISTVERSION=	1.6.1
+PORTVERSION=	1.10.7
+PORTREVISION=	7
 CATEGORIES=	net parallel
-MASTER_SITES=	http://www.open-mpi.org/software/ompi/v1.6/downloads/
+MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High Performance Message Passing Library
@@ -15,17 +10,20 @@ COMMENT=	High Performance Message Passing Library
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo \
-		hwloc:${PORTSDIR}/devel/hwloc \
-		ltdl:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS=	libhwloc.so:devel/hwloc \
+		libltdl.so:devel/libltdl \
+		libevent.so:devel/libevent
 
-USES=		tar:bzip2 gmake
 HAS_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+# :keepla because port uses lt_dlopen
+USES=		compiler:c11 fortran gmake libtool:keepla perl5 pkgconfig \
+		tar:bzip2
+USE_PERL5=	build
 
 MPIBASE?=	mpi
-MPIDIR?=	${MPIBASE}/${UNIQUENAME}
+MPIDIR?=	${MPIBASE}/${PKGBASE}
 
-PLIST_SUB+=	CONFIGURE_TARGET=${CONFIGURE_TARGET}
 PLIST_SUB+=	MPIBASE=${MPIBASE}
 PLIST_SUB+=	MPIDIR=${MPIDIR}
 
@@ -34,83 +32,52 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}/${MPIDIR} \
 			--program-prefix= \
 			--with-hwloc=${LOCALBASE} \
 			--with-libltdl=${LOCALBASE} \
-		 	${CONFIGURE_TARGET}
+			--enable-mpi-fortran=usempi \
+			--with-libevent=external \
+			--with-wrapper-ldflags=-Wl,-rpath=-Wl,-rpath=${LOCALBASE}/lib/gcc${_GCC_VER} \
+			ompi_cv_fortran_ignore_tkr_data=0
 
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib \
 		${PREFIX}/${MPIDIR}/lib/openmpi
 
 MANPREFIX=	${PREFIX}/${MPIDIR}
-.include "${.CURDIR}/Makefile.man"
 
-OPTIONS_DEFINE=	IPV6 TORQUE
-
+OPTIONS_DEFINE=	IPV6 SLURM TORQUE VT
 TORQUE_DESC=	Enable Torque support
+SLURM_DESC=	Enable SLURM support
+VT_DESC=		Enable VampirTrace support
+OPTIONS_DEFAULT=	SLURM
+OPTIONS_SUB=	yes
 
-OPTIONS_DEFAULT=	IPV6
+IPV6_CONFIGURE_ENABLE=	ipv6
 
-.include <bsd.mport.options.mk>
+TORQUE_CONFIGURE_ON=	--with-tm=${LOCALBASE}
+TORQUE_CONFIGURE_OFF=	--without-tm
+TORQUE_LIB_DEPENDS=	libtorque.so:sysutils/torque
+TORQUE_PLIST_FILES=	${MPIDIR}/lib/openmpi/mca_plm_tm.so \
+			${MPIDIR}/lib/openmpi/mca_plm_tm.la \
+			${MPIDIR}/lib/openmpi/mca_ras_tm.la \
+			${MPIDIR}/lib/openmpi/mca_ras_tm.so \
+			${MPIDIR}/lib/openmpi/mca_ess_tm.so \
+			${MPIDIR}/lib/openmpi/mca_ess_tm.la \
+			${MPIDIR}/share/openmpi/help-plm-tm.txt \
+			${MPIDIR}/share/openmpi/help-ras-tm.txt
 
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
+SLURM_CONFIGURE_WITH=	slurm
+SLURM_LIB_DEPENDS=	libslurm.so:sysutils/slurm-wlm
+SLURM_PLIST_FILES=	${MPIDIR}/lib/openmpi/mca_ess_slurm.la \
+			${MPIDIR}/lib/openmpi/mca_ess_slurm.so \
+			${MPIDIR}/lib/openmpi/mca_plm_slurm.la \
+			${MPIDIR}/lib/openmpi/mca_plm_slurm.so \
+			${MPIDIR}/lib/openmpi/mca_ras_slurm.la \
+			${MPIDIR}/lib/openmpi/mca_ras_slurm.so \
+			${MPIDIR}/share/openmpi/help-plm-slurm.txt \
+			${MPIDIR}/share/openmpi/help-ras-slurm.txt
 
-CONFIGURE_ARGS+=	--without-sge
+VT_CONFIGURE_OFF=	--enable-contrib-no-build=vt --disable-vt
+VT_USE=			JAVA=yes
 
-.if ${PORT_OPTIONS:MTORQUE}
-LIB_DEPENDS+=	torque:${PORTSDIR}/sysutils/torque
-CONFIGURE_ARGS+=	--with-tm=${LOCALBASE}
-PLIST_FILES+=	${MPIDIR}/lib/openmpi/mca_plm_tm.so \
-		${MPIDIR}/lib/openmpi/mca_plm_tm.la \
-		${MPIDIR}/lib/openmpi/mca_ras_tm.la \
-		${MPIDIR}/lib/openmpi/mca_ras_tm.so \
-		${MPIDIR}/share/openmpi/help-plm-tm.txt \
-		${MPIDIR}/share/openmpi/help-ras-tm.txt
-.else
-CONFIGURE_ARGS+=	--without-tm
-.endif
+BROKEN_sparc64=		Does not compile on sparc64
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not compile on sparc64
-.endif
-
-USE_FORTRAN=	yes
-
-#######################################################################
-# The following targets are for the port maintainer.  Use at your own #
-# risk, no user-serviceable parts inside.                             #
-#                                                                     #
-# XXX: we should generate MLINKS programaticaly, but it would take    #
-# some effort and there's only one entry at this time.                #
-#######################################################################
-build-plist:
-	${RM} -f ${PLIST}
-	${FIND} ${PREFIX}/${MPIDIR} -name man -prune -o -type f -print | \
-	    ${SED} -e 's|${PREFIX}/${MPIDIR}|%%MPIDIR%%|' \
-	        -e 's|${CONFIGURE_TARGET}|%%CONFIGURE_TARGET%%|' | \
-	    ${SORT} >> ${PLIST}
-	${FIND} ${PREFIX}/${MPIDIR} -name man -prune -o -type l -print | \
-	    ${SED} -e 's|${PREFIX}/${MPIDIR}|%%MPIDIR%%|' \
-	        -e 's|${CONFIGURE_TARGET}|%%CONFIGURE_TARGET%%|' | \
-	    ${SORT} >> ${PLIST}
-	${FIND} ${PREFIX}/${MPIDIR} -type d | \
-	    ${EGREP} -v "${PREFIX}/${MPIDIR}$$" | \
-	    ${SED} -e 's|${PREFIX}/${MPIDIR}|@dirrm %%MPIDIR%%|' | \
-	    ${SORT} -r >> ${PLIST}
-	${ECHO} "@dirrmtry %%MPIDIR%%" \
-	    >> ${PLIST}
-	${ECHO} "@dirrmtry %%MPIBASE%%" \
-	    >> ${PLIST}
-	@echo "# Do not edit!  Auto-generated file." > ${.CURDIR}/Makefile.man
-	@echo "# See build-plist target in Makefile." >> ${.CURDIR}/Makefile.man
-	@echo "#" >> ${.CURDIR}/Makefile.man
-	@echo "MLINKS+=mpic++.1 mpiCC.1" >> ${.CURDIR}/Makefile.man
-	@echo "MLINKS+=ortec++.1 orteCC.1" >> ${.CURDIR}/Makefile.man
-	${FIND} ${PREFIX}/${MPIDIR}/man -type f | \
-	    ${SED} -e 's|.*man\([0-9LN]\)/\(.*\)|MAN\1+=\2|' -e 's/\.gz$$//' | \
-	    ${SORT} >> ${.CURDIR}/Makefile.man
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

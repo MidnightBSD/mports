@@ -8,7 +8,6 @@ SUBDIR += bluefish
 SUBDIR += bozohttpd
 SUBDIR += browser
 SUBDIR += browser-esr
-SUBDIR += cherokee
 SUBDIR += chromium
 SUBDIR += codeigniter
 SUBDIR += drupal7

@@ -75,6 +75,7 @@ SUBDIR += linux-pam-docs
 SUBDIR += logcheck
 SUBDIR += mcrypt
 SUBDIR += mhash
+SUBDIR += munge
 SUBDIR += nmap
 SUBDIR += nettle
 SUBDIR += nss

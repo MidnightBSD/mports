@@ -123,6 +123,7 @@ SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie
 SUBDIR += sg3_utils
+SUBDIR += slurm-wlm
 SUBDIR += smartmontools
 SUBDIR += synergy
 SUBDIR += system-tools-backends

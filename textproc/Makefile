@@ -82,6 +82,7 @@ SUBDIR += linuxdoc-tools
 SUBDIR += localize
 SUBDIR += lucene
 SUBDIR += makepatch
+SUBDIR += man2html
 SUBDIR += meld
 SUBDIR += minixmlto
 SUBDIR += mythes
