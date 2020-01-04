@@ -26,20 +26,13 @@ CONFIGURE_ARGS=		--prefix=${PREFIX} --with-md5-passwords \
 
 ETCOLD=			${PREFIX}/etc
 
-FLAVORS=			default hpn gssapi x509
-default_CONFLICTS_INSTALL=	openssh-portable-hpn openssh-portable-gssapi \
-				openssh-portable-x509
-hpn_CONFLICTS_INSTALL=		openssh-portable openssh-portable-gssapi \
-				openssh-portable-x509
+FLAVORS=			default hpn gssapi
+default_CONFLICTS_INSTALL=	openssh-portable-hpn openssh-portable-gssapi
+hpn_CONFLICTS_INSTALL=		openssh-portable openssh-portable-gssapi
 hpn_PKGNAMESUFFIX=		-portable-hpn
-gssapi_CONFLICTS_INSTALL=	openssh-portable openssh-portable-hpn \
-				openssh-portable-x509
+gssapi_CONFLICTS_INSTALL=	openssh-portable openssh-portable-hpn
 gssapi_PKGNAMESUFFIX=		-portable-gssapi
-x509_CONFLICTS_INSTALL=		openssh-portable openssh-portable-hpn \
-				openssh-portable-gssapi
-x509_PKGNAMESUFFIX=		-portable-x509
 
-x509_BROKEN=		X509 not yet updated for ${DISTVERSION}
 OPTIONS_DEFINE=		DOCS PAM TCP_WRAPPERS LIBEDIT BSM \
 			HPN X509 KERB_GSSAPI \
 			LDNS NONECIPHER XMSS
@@ -50,9 +43,6 @@ OPTIONS_DEFAULT+=	HPN NONECIPHER
 .if ${FLAVOR:U} == gssapi
 OPTIONS_DEFAULT+=	KERB_GSSAPI MIT
 .endif
-.if ${FLAVOR:U} == x509
-OPTIONS_DEFAULT+=	X509
-.endif
 OPTIONS_RADIO=		KERBEROS
 OPTIONS_RADIO_KERBEROS=	MIT HEIMDAL HEIMDAL_BASE
 TCP_WRAPPERS_DESC=	tcp_wrappers support
@@ -60,7 +50,6 @@ BSM_DESC=		OpenBSM Auditing
 KERB_GSSAPI_DESC=	Kerberos/GSSAPI patch (req: GSSAPI)
 HPN_DESC=		HPN-SSH patch
 LDNS_DESC=		SSHFP/LDNS support
-X509_DESC=		x509 certificate patch
 HEIMDAL_DESC=		Heimdal Kerberos (security/heimdal)
 HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
 MIT_DESC=		MIT Kerberos (security/krb5)
@@ -80,12 +69,6 @@ LDNS_CONFIGURE_ON=	--with-ldflags='-L${LOCALBASE}/lib'
 HPN_CONFIGURE_WITH=		hpn
 NONECIPHER_CONFIGURE_WITH=	nonecipher
 
-# See http://www.roumenpetrov.info/openssh/
-X509_VERSION=		11.5
-X509_PATCH_SITES=	http://www.roumenpetrov.info/openssh/x509-${X509_VERSION}/:x509
-X509_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-x509-glue
-X509_PATCHFILES=	${PORTNAME}-7.9p1+x509-${X509_VERSION}.diff.gz:-p1:x509
-
 MIT_LIB_DEPENDS=		libkrb5.so.3:security/krb5
 HEIMDAL_LIB_DEPENDS=		libkrb5.so.26:security/heimdal
 
@@ -100,12 +83,7 @@ ETCDIR?=		${PREFIX}/etc/ssh
 
 .include <bsd.port.pre.mk>
 
-PATCH_SITES+=	http://mirror.shatow.net/freebsd/${PORTNAME}/:DEFAULT,x509,hpn,gsskex
-
-# X509 patch includes TCP Wrapper support already
-.if ${PORT_OPTIONS:MX509}
-EXTRA_PATCHES:=		${EXTRA_PATCHES:N${TCP_WRAPPERS_EXTRA_PATCHES}}
-.endif
+PATCH_SITES+=	http://mirror.shatow.net/freebsd/${PORTNAME}/:DEFAULT,hpn,gsskex
 
 # Must add this patch before HPN due to conflicts
 .if ${PORT_OPTIONS:MKERB_GSSAPI}
