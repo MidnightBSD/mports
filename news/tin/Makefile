@@ -1,7 +1,6 @@
 PORTNAME=	tin
-PORTVERSION=	2.4.2
-PORTREVISION?=	1 # keep for chinese/tin
-CATEGORIES+=	news ipv6
+PORTVERSION=	2.4.3
+CATEGORIES+=	news
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/v${PORTVERSION:R}/ \
 		ftp://ftp.sunet.se/pub/news/readers/tin/v${PORTVERSION:R}/ \
 		ftp://sunsite.icm.edu.pl/pub/unix/news/tin/v${PORTVERSION:R}/ \
@@ -68,7 +67,8 @@ CONFIGURE_ARGS+=--with-nntp-default-server=news \
 		${ICONV_CONFIGURE_ARG} \
 		--with-mime-default-charset=US-ASCII \
 		--enable-ipv6
-MAKE_ARGS+=	MAKE=${MAKE_CMD} -D__BSD_VISIBLE=1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+MAKE_ARGS+=	MAKE=${MAKE_CMD}
 CFLAGS+=	-DNNTP_SERVER_FILE=\\\"${PREFIX}/etc/nntpserver\\\"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
