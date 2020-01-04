@@ -190,6 +190,8 @@ EMPTYDIR=		/var/empty
 
 USE_RC_SUBR=		openssh
 
+NO_TEST=	yes
+
 # After all
 CONFIGURE_ARGS+=	--sysconfdir=${ETCDIR} --with-privsep-path=${EMPTYDIR}
 .if !empty(CONFIGURE_LIBS)
@@ -229,15 +231,5 @@ post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/HPN-README ${STAGEDIR}${DOCSDIR}
 .endif
-
-test: build
-	cd ${WRKSRC} && ${SETENV} -i \
-		OBJ=${WRKDIR} ${MAKE_ENV} \
-		TEST_SHELL=${SH} \
-		SUDO="${SUDO}" \
-		LOGNAME="${LOGNAME}" \
-		TEST_SSH_TRACE=yes \
-		PATH=${WRKSRC}:${PREFIX}/bin:${PREFIX}/sbin:${PATH} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} tests
 
 .include <bsd.port.post.mk>
