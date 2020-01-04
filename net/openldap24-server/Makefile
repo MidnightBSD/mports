@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=		openldap
 DISTVERSION=		2.4.45
 PORTREVISION=		${OPENLDAP_PORTREVISION}
@@ -20,6 +18,7 @@ PKGNAMESUFFIX=		-client
 .endif
 .else
 PKGNAMESUFFIX?=		-server
+PLIST_SUB=		ETCDIR=etc/openldap
 .endif
 
 MAINTAINER=		ports@MidnightBSD.org
