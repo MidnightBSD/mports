@@ -2,6 +2,7 @@
 
 PORTNAME=	zsync
 PORTVERSION=	0.6.2
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://zsync.moria.org.uk/download/
 
@@ -10,21 +11,25 @@ COMMENT=	A file transfer program
 
 LICENSE=	artistic2
 
-USES=		tar:bzip2
+USES=		autoreconf tar:bzip2
 GNU_CONFIGURE=	yes
-PLIST_FILES=	bin/zsync \
-		bin/zsyncmake
+
+PORTDOCS=	INSTALL NEWS README
+PLIST_FILES=	bin/zsync bin/zsyncmake \
+		man/man1/zsync.1.gz man/man1/zsyncmake.1.gz
+
+MANPAGE=	zsync.1 zsyncmake.1
 BINS=		zsync zsyncmake
-PORTDOCS=	COPYING INSTALL NEWS README
-MAN1=		zsync.1 \
-		zsyncmake.1
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
-	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${PREFIX}/bin
-	${INSTALL_MAN} ${MAN1:S,^,${WRKSRC}/doc/,} ${MAN1PREFIX}/man/man1
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
-.endif
+	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${MANPAGE:S,^,${WRKSRC}/doc/,} \
+		${STAGEDIR}${MANPREFIX}/man/man1
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
