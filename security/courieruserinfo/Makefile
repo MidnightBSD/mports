@@ -1,35 +1,29 @@
-# $MidnightBSD$
-
 PORTNAME=	courieruserinfo
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
-MASTER_SITES=	http://www.arda.homeunix.net/store/
+MASTER_SITES=	http://www.arda.homeunix.net/software-downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User account information retrieval utility
+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
-RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
+BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base
+RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' LDFLAGS='${LDFLAGS}'
+USES=		gmake localbase
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd10.4
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+PORTDOCS=	AUTHORS ChangeLog INSTALL NEWS README
 
-post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-.endif
-	@${CAT} ${PKGMESSAGE}
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} '/chown root/d' ${WRKSRC}/Makefile.in
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

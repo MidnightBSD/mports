@@ -1,6 +1,3 @@
-# $FreeBSD: ports/security/courierpassd/Makefile,v 1.9 2006/08/09 06:10:35 ade Exp $
-# $MidnightBSD$
-
 PORTNAME=	courierpassd
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
@@ -49,7 +46,7 @@ post-patch:
 	@${REINPLACE_CMD} '/chown root/d' ${WRKSRC}/Makefile.in
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
