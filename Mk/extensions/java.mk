@@ -184,16 +184,11 @@ _JAVA_OS_linux=		Linux
 _JAVA_OS_freebsd=	FreeBSD
 
 # Enforce preferred Java ports according to OS
-.		if (${ARCH} == "amd64")
-.			if defined(PACKAGE_BUILDING) 
+.if (${ARCH} == "amd64") && defined(PACKAGE_BUILDING)
 _JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8
-.			else
-_JAVA_PREFERRED_PORTS+=	 JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8
-NOT_FOR_ARCHS=sparc64
-.			endif
-.		else
+.else
 _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_OPENJDK_JDK_1_7
-.		endif
+.endif
 
 # List all JDK ports
 __JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8 \
