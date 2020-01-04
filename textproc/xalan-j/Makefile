@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xalan-j
-PORTVERSION=	2.7.1
+PORTVERSION=	2.7.2
 CATEGORIES=	textproc java
 MASTER_SITES=	${MASTER_SITE_APACHE_XML}
 MASTER_SITE_SUBDIR=	${PORTNAME}/binaries
@@ -12,13 +10,12 @@ COMMENT=	Apache XSLT processor for transforming XML documents
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:${PORTSDIR}/textproc/xerces-j
+RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:textproc/xerces-j
 
 USES=		cpe zip
 CPE_PRODUCT=	xalan-java
 CPE_VENDOR=	apache
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION:S/./_/g}
