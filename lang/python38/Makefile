@@ -80,6 +80,8 @@ NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
 
 PYMALLOC_CONFIGURE_WITH=	pymalloc
 
+NO_TEST=	yes
+
 .include "${.CURDIR}/Makefile.version"
 .include <bsd.mport.options.mk>
 
