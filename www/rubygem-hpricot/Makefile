@@ -18,5 +18,7 @@ pre-build:
 post-fake:
 	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html \
 		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/hpricot-0.8.6/rdoc/ext/hpricot_scan/Makefile.html
+	-${RM} ${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/hpricot-0.8.6/rdoc/ext/hpricot_scan/Makefile.html.bak \
+		${FAKE_DESTDIR}${PREFIX}/lib/ruby/gems/2.6/doc/hpricot-0.8.6/rdoc/ext/fast_xs/Makefile.html.bak
 
 .include <bsd.port.mk>
