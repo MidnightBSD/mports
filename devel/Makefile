@@ -203,6 +203,7 @@ SUBDIR += libspice-server
 SUBDIR += libsoup
 SUBDIR += libsoup-gnome
 SUBDIR += libstatgrab
+SUBDIR += libsysinfo
 SUBDIR += libthai
 SUBDIR += libtool
 SUBDIR += libublio
