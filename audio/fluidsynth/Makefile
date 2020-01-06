@@ -61,4 +61,8 @@ SNDIO_CMAKE_BOOL=	enable-sndio
 post-patch:
 	${CP} ${FILESDIR}/fluid_sndio.c ${WRKSRC}/src/drivers/
 
+pre-build:
+	-${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib
+	${LN} -sf ${FAKE_DESTDIR}${PREFIX}/lib ${FAKE_DESTDIR}${PREFIX}/lib64
+
 .include <bsd.port.mk>
