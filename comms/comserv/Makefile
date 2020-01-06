@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	comserv
 PORTVERSION=	1.4.4
 CATEGORIES=	comms net
@@ -9,6 +7,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide network access to local serial ports and make remote ports appear local
 
 LICENSE=	bsd2
+
+FAKE_OPTS=	trueprefix
 
 USES=		tar:xz
 
