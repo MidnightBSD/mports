@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/evince/Makefile,v 1.33 2008/02/26 18:35:39 ahze Exp $
-
 PORTNAME=	evince
-PORTVERSION=	3.16.1
+PORTVERSION=	3.28.5
+PORTREVISION=	9
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -11,28 +9,32 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GNOME 3 multi-format document viewer
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
-		itstool:${PORTSDIR}/textproc/itstool \
-		adwaita-icon-theme>=0:${PORTSDIR}/x11-themes/adwaita-icon-theme \
-		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
-LIB_DEPENDS=	libpoppler-glib.so:${PORTSDIR}/graphics/poppler-glib \
-		libspectre.so:${PORTSDIR}/print/libspectre
-RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme \
-		adwaita-icon-theme>=0:${PORTSDIR}/x11-themes/adwaita-icon-theme \
-		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
+		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib \
+		libfribidi.so:converters/fribidi \
+		libspectre.so:print/libspectre \
+		libtiff.so:graphics/tiff
+RUN_DEPENDS=	adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
+		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
+PORTSCOUT=	limitw:1,even
 SLAVEPORT?=	no
 
-USES=		compiler:c++11-lib desktop-file-utils gettext gmake libtool \
-		pathfix pkgconfig tar:xz
-USE_GNOME=	gtk30 intlhack
+USES=		compiler:c++11-lib desktop-file-utils gettext gmake \
+		gnome libarchive libtool localbase pathfix pkgconfig tar:xz xorg
+USE_GNOME=	cairo gtk30 intlhack
+USE_GSTREAMER1=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_XORG=	ice
 INSTALLS_ICONS=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
-LIBS+=		-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--enable-compile-warnings=minimum \
+		--enable-ps \
+		--with-systemduserunitdir=no
 INSTALL_TARGET=	install-strip
 
 .if ${SLAVEPORT} == lite
@@ -40,6 +42,7 @@ CONFIGURE_ARGS+=--disable-introspection \
 		--disable-libgnome-desktop \
 		--disable-thumbnailer \
 		--disable-previewer
+USE_GNOME+=	libxml2
 .else
 USE_GNOME+=	introspection:build
 CONFIGURE_ARGS+=	--enable-introspection
@@ -49,88 +52,42 @@ GLIB_SCHEMAS=	org.gnome.Evince.gschema.xml
 
 PLIST_SUB=	VERSION=3.0
 
-OPTIONS_DEFINE=	COMICS DJVU DVI KEYRING NAUTILUS T1LIB XPS
-OPTIONS_DEFAULT=COMICS KEYRING NAUTILUS XPS
-DVI_DESC=	DVI viewer support
-T1LIB_DESC=	T1LIB for TYPE1 fonts to DVI (Enables DVI)
-NAUTILUS_DESC=	Nautilus plugin
-KEYRING_DESC=	Keyring support
-COMICS_DESC=	Comic book archives support
-DJVU_DESC=	DJVU support
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	COMICS DBUS DJVU DVI KEYRING NAUTILUS T1LIB XPS
+OPTIONS_DEFAULT=COMICS DBUS DJVU KEYRING NAUTILUS XPS
+
+COMICS_DESC=			Comic book archives support
+COMICS_CONFIGURE_ENABLE=	comics
+
+DJVU_DESC=		DJVU support
+DJVU_LIB_DEPENDS=	libdjvulibre.so:graphics/djvulibre
+DJVU_CONFIGURE_ENABLE=	djvu
+
+DBUS_CONFIGURE_ENABLE=	dbus
+DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
+
+DVI_DESC=		DVI viewer support
+DVI_USE=		tex=latex,kpathsea
+DVI_CONFIGURE_ENABLE=	dvi
+
+KEYRING_DESC=			Keyring support
+KEYRING_LIB_DEPENDS=		libsecret-1.so:security/libsecret
+KEYRING_CONFIGURE_WITH=		keyring
+
+NAUTILUS_DESC=			Nautilus plugin
+NAUTILUS_USE=			gnome=nautilus3
+NAUTILUS_CONFIGURE_ENABLE=	nautilus
+
+T1LIB_DESC=		Support TYPE1 fonts to DVI (Enables DVI)
+T1LIB_LIB_DEPENDS=	libt1.so:devel/t1lib
+T1LIB_CONFIGURE_ENABLE=	t1lib
+T1LIB_IMPLIES=		DVI
+
 XPS_DESC=	XPS support
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:NDBUS} && ${SLAVEPORT} == lite
-CONFIGURE_ARGS+=--disable-dbus
-.else
-CONFIGURE_ARGS+=--enable-dbus
-.endif
-
-.if ${PORT_OPTIONS:MDVI} || ${PORT_OPTIONS:MT1LIB}
-USE_TEX=	latex
-
-CONFIGURE_ARGS+=	--enable-dvi
-PLIST_SUB+=		DVI=""
-. if ${PORT_OPTIONS:MT1LIB}
-LIB_DEPENDS+=	libt1.so:${PORTSDIR}/devel/t1lib
-CONFIGURE_ARGS+=	--enable-t1lib
-. else
-CONFIGURE_ARGS+=	--disable-t1lib
-. endif
-.else
-CONFIGURE_ARGS+=	--disable-dvi
-PLIST_SUB+=		DVI="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MKEYRING}
-LIB_DEPENDS+=	libsecret-1.so:${PORTSDIR}/security/libsecret
-.else
-CONFIGURE_ARGS+=--without-keyring
-.endif
-
-.if ${PORT_OPTIONS:MNAUTILUS}
-USE_GNOME+=		nautilus3
-CONFIGURE_ARGS+=	--enable-nautilus
-PLIST_SUB+=		NAUTILUS=""
-.else
-BUILD_DEPENDS+=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
-RUN_DEPENDS+=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
-CONFIGURE_ARGS+=	--disable-nautilus
-PLIST_SUB+=		NAUTILUS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MXPS}
-LIB_DEPENDS+=		libgxps.so:${PORTSDIR}/graphics/libgxps
-CONFIGURE_ARGS+=	--enable-xps
-PLIST_SUB+=		XPS=""
-.else
-CONFIGURE_ARGS+=	--disable-xps
-PLIST_SUB+=		XPS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDJVU}
-LIB_DEPENDS+=		libdjvulibre.so:${PORTSDIR}/graphics/djvulibre
-CONFIGURE_ARGS+=	--enable-djvu
-PLIST_SUB+=		DJVU=""
-.else
-CONFIGURE_ARGS+=	--disable-djvu
-PLIST_SUB+=		DJVU="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MCOMICS}
-CONFIGURE_ARGS+=	--enable-comics
-PLIST_SUB+=		COMICS=""
-.else
-CONFIGURE_ARGS+=	--disable-comics
-PLIST_SUB+=		COMICS="@comment "
-.endif
+XPS_LIB_DEPENDS=	libgxps.so:graphics/libgxps
+XPS_CONFIGURE_ENABLE=	xps
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|execinfo.h|#|g' \
-		-e 's|" == "|" = "|g' \
-		-e 's|-Werror||g' \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e '/^DOC_MODULE_VERSION/d' \
 		${WRKSRC}/help/reference/libdocument/Makefile.in \
 		${WRKSRC}/help/reference/libview/Makefile.in
