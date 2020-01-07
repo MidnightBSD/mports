@@ -131,6 +131,8 @@ LASTBIND_DESC=		With lastbind overlay
 KQUEUE_DESC=		With kqueue support (experimental)
 .endif
 
+NO_TEST=	yes
+
 .if defined(CLIENT_ONLY)
 OPENLDAP_PORTREVISION=	${PORTREVISION_CLIENT}
 OPENLDAP_PKGFILESUFX=	.client
@@ -563,10 +565,6 @@ pre-configure:
 .endif
 
 .if !defined(CLIENT_ONLY)
-test: build
-	@(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
-
 post-build:
 	@${DO_NADA}
 .if ${PORT_OPTIONS:MSMBPWD}
