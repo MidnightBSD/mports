@@ -1,8 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
-# $MidnightBSD$
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.2
+PORTVERSION=	2.3
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,20 +14,20 @@ LICENSE=	bsd2
 # needs firefox ?
 # gimp:${PORTSDIR}/graphics/gimp-app \
 
-RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
-		bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/etc/rc.d/bsdstats:${PORTSDIR}/sysutils/bsdstats \
-		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:${PORTSDIR}/x11-themes/midnightbsd-backgrounds \
-		midori:${PORTSDIR}/www/midori \
-		common-services>=1.0:${PORTSDIR}/core/common-services \
-		${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server \
-		${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
-                ${LOCALBASE}/libdata/xorg/libraries:${PORTSDIR}/x11/xorg-libraries \
-                ${LOCALBASE}/libdata/xorg/fonts:${PORTSDIR}/x11-fonts/xorg-fonts
+RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
+		bash:shells/bash \
+		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
+		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
+		midori:www/midori \
+		common-services>=1.0:core/common-services \
+		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server \
+		${LOCALBASE}/libdata/xorg/apps:x11/xorg-apps \
+                ${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
+                ${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts
  \
-                ${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers \
-		mport-manager:${PORTSDIR}/ports-mgmt/mport-manager \
-		mlogind:${PORTSDIR}/x11/mlogind
+                ${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
+		mport-manager:ports-mgmt/mport-manager \
+		mlogind:x11/mlogind
 
 
 USE_PERL5_RUN=	yes
