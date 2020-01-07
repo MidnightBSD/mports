@@ -8,7 +8,7 @@ COMMENT=	Extra modules and scripts for CMake
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING-CMAKE-SCRIPTS
 
-USES=		cmake kde:5 qt:5 tar:xz
+USES=		cmake kde:5 qt:5 tar:xz python
 USE_QT=		linguisttools buildtools_build qmake_build
 
 HELP_USE=	QT=help_build  # qt5-help is only used to build a .qch file.
