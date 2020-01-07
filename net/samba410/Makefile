@@ -347,6 +347,7 @@ ADS_CONFIGURE_WITH=		ads dnsupdate
 LDAP_CONFIGURE_WITH=		ldap
 LDAP_CONFIGURE_ON=		--with-openldap=${LOCALBASE}
 LDAP_USE=			OPENLDAP=yes
+LDAP_USES=			ldap
 LDAP_VARS=			SAMBA4_MODULES+=idmap_ldap
 
 GSSAPI_MIT_CONFIGURE_ON=	--with-system-mitkrb5 ${GSSAPIBASEDIR} \
