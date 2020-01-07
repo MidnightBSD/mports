@@ -20,6 +20,7 @@ SUBDIR += cogl
 SUBDIR += colord
 SUBDIR += colord-gtk
 SUBDIR += dia
+SUBDIR += djvulibre
 SUBDIR += eog
 SUBDIR += eog-plugins
 SUBDIR += evas_generic_loaders-svg
