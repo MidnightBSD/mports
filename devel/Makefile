@@ -83,7 +83,6 @@ SUBDIR += gamin
 SUBDIR += gccmakedep
 SUBDIR += gconf2
 SUBDIR += gdb
-SUBDIR += gdb66
 SUBDIR += geany
 SUBDIR += gettext
 SUBDIR += gettext-lint
