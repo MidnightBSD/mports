@@ -30,6 +30,8 @@ CONFIGURE_ARGS+=--with-lasergnu \
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=	CAIRO DOCS EXAMPLES GD GRIDBOX PDF PLOT THINSPLINES WX X11
 GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
 PLOT_DESC=		Enable plot support
@@ -97,8 +99,5 @@ post-install:
 		gnuplot.ps ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${STAGEDIR}${DOCSDIR}/psdoc
 .endif
-
-check test: build
-	@( cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} check ; )
 
 .include <bsd.port.mk>
