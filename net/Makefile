@@ -140,7 +140,6 @@ SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba48
 SUBDIR += samba410
-SUBDIR += sambasentinel
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
 SUBDIR += spideroak
