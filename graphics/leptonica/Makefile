@@ -40,21 +40,8 @@ WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_CONFIGURE_WITH=	libwebp
 ZLIB_CONFIGURE_WITH=	zlib
 
-TESTS?=	generate compare
-.if defined(MAINTAINER_MODE) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS+=	${LOCALBASE}/bin/gnuplot:math/gnuplot
-.endif
-#the display portion of the regression tests is interactive,
-#and requires the use of xv, xli or xzgv as an image viewer
-.if defined(MAINTAINER_MODE) && !defined(BATCH)
-TESTS+=	display
-.endif
+NO_TEST=	yes
 
-do-test:
-.for c in ${TESTS}
-	@cd ${WRKSRC}/prog; ${SETENV} \
-	LD_LIBRARY_PATH="${WRKSRC}/src/.libs:${LOCALBASE}/lib" \
-	${WRKSRC}/prog/alltests_reg ${c}
-.endfor
+BUILD_DEPENDS+=	${LOCALBASE}/bin/gnuplot:math/gnuplot
 
 .include <bsd.port.mk>
