@@ -9,4 +9,6 @@ BUILD_DEPENDS+=	python2.7:lang/python27
 
 OPTIONS_EXCLUDE=	GUI
 
+NO_TEST=	yes
+
 .include "${MASTERDIR}/Makefile"
