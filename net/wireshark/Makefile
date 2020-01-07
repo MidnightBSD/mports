@@ -39,6 +39,8 @@ LIB_DEPENDS+=	libgpg-error.so:security/libgpg-error \
 #CFLAGS+=	-funit-at-a-time
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
+NO_TEST=	yes
+
 .for x in capinfos editcap mergecap rawshark text2pcap dftest randpkt \
     reordercap captype randpktdump udpdump sharkd
 .if defined(LITE)
