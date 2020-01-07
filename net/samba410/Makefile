@@ -240,14 +240,8 @@ SAMBA4_BUNDLED_LIBS+=		replace
 .endif
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=		com_err
-# Set the test environment variables
-TEST_USES=			python
-TEST_ENV+=			PYTHON="${PYTHON_CMD}" \
-				SHA1SUM=/sbin/sha1 \
-				SHA256SUM=/sbin/sha256 \
-				MD5SUM=/sbin/md5
-TEST_DEPENDS+=			bash:shells/bash \
-				tshark:net/tshark
+
+NO_TEST=	yes
 ##############################################################################
 CONFIGURE_ARGS+=		\
 				--with-pam \
@@ -305,7 +299,7 @@ PICKY_DEVELOPER_IMPLIES=	DEVELOPER
 PICKY_DEVELOPER_CONFIGURE_ON=	--picky-developer
 
 DEVELOPER_IMPLIES=		NTVFS
-DEVELOPER_CONFIGURE_ON=		--enable-developer --enable-selftest --abi-check-disable
+DEVELOPER_CONFIGURE_ON=		--enable-developer --disable-selftest --abi-check-disable
 DEVELOPER_RUN_DEPENDS=		${SAMBA4_LMDB_DEPENDS}
 DEVELOPER_BUILD_DEPENDS=	${GDB_CMD}:devel/gdb \
 				${SAMBA4_LMDB_DEPENDS}
