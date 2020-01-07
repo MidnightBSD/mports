@@ -25,4 +25,6 @@ MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
 LDFLAGS+=	-lpthread
 INSTALL_TARGET=	install-strip
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
