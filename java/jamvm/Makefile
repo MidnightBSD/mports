@@ -20,7 +20,7 @@ OPTIONS_SUB=	yes
 USES=		compiler gmake libtool pkgconfig
 
 # temporary clang 3.3 in base 0.8/0.9 crashes
-USE_GCC=	any
+USE_GCC=	4.8
 
 OPTIONS_DEFINE=	FFI ZIP
 OPTIONS_DEFAULT=FFI ZIP
