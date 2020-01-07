@@ -18,6 +18,8 @@ OPTIONS_DEFINE=		MANPAGES
 OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=		yes
 
+NO_TEST=	yes
+
 MANPAGES_BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
 
 post-build-MANPAGES-on:
