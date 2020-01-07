@@ -8,7 +8,7 @@ CATEGORIES=	net-im
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	library to aggregates people from multiple sources
+COMMENT=	Library to aggregates people from multiple sources
 
 LICENSE=	lgpl2.1
 
@@ -41,7 +41,7 @@ TRACKER_DESC=	Tracker backend
 SOCIALWEB_CONFIGURE_ENABLE=	libsocialweb-backend
 SOCIALWEB_LIB_DEPENDS=	libsocialweb.so:www/libsocialweb
 TRACKER_CONFIGURE_ENABLE=	tracker-backend
-TRACKER_LIB_DEPENDS=	libtracker-control-1.0.so:sysutils/tracker
+TRACKER_LIB_DEPENDS=	libtracker-control-2.0.so:sysutils/tracker
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|--fatal-warnings||g' \
