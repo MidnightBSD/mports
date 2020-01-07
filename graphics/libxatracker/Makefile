@@ -4,6 +4,8 @@ CATEGORIES=	graphics
 
 COMMENT=	Mesa XA state tracker
 
+LICENSE=	mit
+
 USE_XORG=	xorgproto
 
 .include <bsd.mport.options.mk>
