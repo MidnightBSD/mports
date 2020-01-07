@@ -35,7 +35,6 @@ SUBDIR += gd
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf2
 SUBDIR += gegl
-SUBDIR += gegl3
 SUBDIR += gexiv2
 SUBDIR += giblib
 SUBDIR += giflib
