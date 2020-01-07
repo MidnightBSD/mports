@@ -1,6 +1,4 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/net-im/folks/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	folks
 PORTVERSION=	0.11.4
@@ -19,11 +17,11 @@ LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libzeitgeist-2.0.so:sysutils/zeitgeist \
 		libtelepathy-glib.so:net-im/telepathy-glib
 
-CONFLICTS=	folks-0.4.[0-9]*
-
 USE_LDCONFIG=	yes
-USES=		gettext gmake libtool localbase pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
+		readline sqlite tar:xz
 USE_GNOME=	evolutiondataserver3 intlhack introspection:build
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-bluez-backend
 CONFIGURE_ENV+=	ac_cv_path_EGREP=${LOCALBASE}/bin/egrep
