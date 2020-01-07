@@ -138,7 +138,6 @@ SUBDIR += rabbitmq-c
 SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
-SUBDIR += samba48
 SUBDIR += samba410
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
