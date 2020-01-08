@@ -1,11 +1,9 @@
-# $MidnightBSD$
-
 PORTNAME=	win32-codecs
 DISTVERSION=	20110131
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
-MASTER_SITES=	MPLAYERHQ/releases/codecs \
+MASTER_SITES=	http://www.mplayerhq.hu/MPlayer/releases/codecs/ \
 		http://ftp.lug.udel.edu/MPlayer/releases/codecs/ \
 		ftp://ftp.lug.udel.edu/MPlayer/releases/codecs/
 DISTFILES=	all-${DISTVERSION}.tar.bz2 \
