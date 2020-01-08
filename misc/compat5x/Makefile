@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
-
 # NOTE: libc.so.5 is built with _PATH_LOCALE defined to
 # "/usr/local/share/compat/locale" in src/include/paths.h so data installed by
 # misc/localedata works out of the box if installed in default PREFIX.
@@ -29,7 +26,7 @@ USE_LDCONFIG=	${TARGET_DIR}
 
 .include <bsd.port.pre.mk>
 
-RUN_DEPENDS+=	${LOCALBASE}/share/compat/locale/UTF-8/LC_CTYPE:${PORTSDIR}/misc/localedata
+RUN_DEPENDS+=	${LOCALBASE}/share/compat/locale/UTF-8/LC_CTYPE:misc/localedata
 
 .if ${ARCH} == amd64
 PLIST_SUB+=	AMD64=""
