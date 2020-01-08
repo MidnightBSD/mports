@@ -17,6 +17,7 @@ RUN_DEPENDS=	p5-Moose>=2:devel/p5-Moose \
 		p5-Path-Class>=0.16:devel/p5-Path-Class
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuildtiny
 
