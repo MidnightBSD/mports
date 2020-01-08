@@ -1,8 +1,7 @@
 PORTNAME=	xalan-j
 PORTVERSION=	2.7.2
 CATEGORIES=	textproc java
-MASTER_SITES=	${MASTER_SITE_APACHE_XML}
-MASTER_SITE_SUBDIR=	${PORTNAME}/binaries
+MASTER_SITES=	APACHE/xalan/xalan-j/binaries
 DISTNAME=	${PORTNAME}_${PORTVERSION:S/./_/g}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +11,7 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:textproc/xerces-j
 
-USES=		cpe zip
+USES=		cpe
 CPE_PRODUCT=	xalan-java
 CPE_VENDOR=	apache
 USE_JAVA=	yes
