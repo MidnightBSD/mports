@@ -6,6 +6,8 @@ openjdk8/include/jvmticmlr.h
 openjdk8/include/jdwpTransport.h
 openjdk8/include/freebsd/jni_md.h
 openjdk8/include/freebsd/jawt_md.h
+openjdk8/include/midnightbsd/jni_md.h
+openjdk8/include/midnightbsd/jawt_md.h
 openjdk8/src.zip
 openjdk8/demo/scripting/jconsole-plugin/jconsole-plugin.jar
 openjdk8/demo/scripting/jconsole-plugin/README.txt
