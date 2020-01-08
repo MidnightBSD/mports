@@ -28,17 +28,11 @@ RUN_DEPENDS=	p5-Data-Dumper-Concise>=0:devel/p5-Data-Dumper-Concise \
 		p5-Sereal-Encoder>=3.002:converters/p5-Sereal-Encoder \
 		p5-Test-Deep>=0:devel/p5-Test-Deep \
 		p5-namespace-autoclean>=0:devel/p5-namespace-autoclean
-TEST_DEPENDS=	p5-Data-Printer>=0:devel/p5-Data-Printer \
-		p5-Devel-Refcount>=0:devel/p5-Devel-Refcount \
-		p5-List-AllUtils>=0:devel/p5-List-AllUtils \
-		p5-Test-Bits>=0:devel/p5-Test-Bits \
-		p5-Test-Fatal>=0:devel/p5-Test-Fatal \
-		p5-Test-HexDifferences>=0:devel/p5-Test-HexDifferences \
-		p5-Test-Requires>=0:devel/p5-Test-Requires \
-		p5-Test-Warnings>=0:devel/p5-Test-Warnings
 
 USE_PERL5=	modbuild
 USES=		perl5
+
+NO_TEST=	yes
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/MaxMind/DB/Writer/Tree/Tree.so
