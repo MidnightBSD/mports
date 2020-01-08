@@ -7,7 +7,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Computer Vision library
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NOT_FOR_ARCHS=	sparc64
 NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
@@ -314,9 +313,16 @@ CMAKE_ARGS+=	-DBUILD_opencv_${module}:BOOL=OFF
 CMAKE_ARGS+=	-DBUILD_JAVA:BOOL=OFF
 .endif
 
+post-extract:
+	${MKDIR} ${WRKSRC}
+	cd ${WRKDIR} && ${TAR} xzf ${DISTDIR}/opencv-3.4.1_GH0.tar.gz
+
 post-extract-EXTRA_MODULES-on:
+	${MKDIR} ${WRKSRC}/doc/tutorials
 	@${MV} ${WRKSRC_extra_mod}/doc/tutorials/* ${WRKSRC}/doc/tutorials/
+	${MKDIR} ${WRKSRC}/modules/
 	@${MV} ${WRKSRC_extra_mod}/modules/* ${WRKSRC}/modules/
+	${MKDIR} ${WRKSRC}/samples/
 	@${CP} -RpP ${WRKSRC_extra_mod}/samples/* ${WRKSRC}/samples/
 	@${MKDIR} ${CONFIGURE_WRKSRC}/3rdparty/tinydnn/tiny-dnn-1.0.0a3/
 	@${MV} ${WRKSRC_extra_mod_3rdparty_tiny_dnn}/* ${CONFIGURE_WRKSRC}/3rdparty/tinydnn/tiny-dnn-1.0.0a3/
