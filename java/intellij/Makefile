@@ -17,12 +17,12 @@ COMMENT=	IntelliJ IDEA Community Edition
 
 LICENSE=	apache2
 
+BUILD_DEPENDS=	${DEPEND_JAVA}
 RUN_DEPENDS=	intellij-fsnotifier>0:${PORTSDIR}/java/intellij-fsnotifier \
 		intellij-pty4j>0:${PORTSDIR}/java/intellij-pty4j
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.7+
-JAVA_BUILD=	yes
 JAVA_RUN=	yes
 
 NO_ARCH=	yes
