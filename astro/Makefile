@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 COMMENT = Astronomical ports
 
 SUBDIR += boinc-astropulse
-SUBDIR += boinc-setiathome-v7
+SUBDIR += boinc-setiathome
 SUBDIR += gpsd
 SUBDIR += libnova
 SUBDIR += luna

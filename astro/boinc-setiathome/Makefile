@@ -1,9 +1,11 @@
-PORTNAME=	boinc-setiathome-v7
-PORTVERSION=	7.00
-PORTREVISION=	1
+# Created by: rene
+
+PORTNAME=	boinc-setiathome
+PORTVERSION=	8.00
 CATEGORIES=	astro
-MASTER_SITES=	FREEBSD_LOCAL/rene
-DISTNAME=	setiathome-svn-1924 # modified archive, see leftout in top directory
+MASTER_SITES=	FREEBSD_LOCAL/ler/setiathome \
+		http://www.lerctr.org/setiathome/
+DISTNAME=	setiathome-svn-3727  # no releases available, snapshot
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setiathome Enhanced for BOINC
@@ -11,26 +13,29 @@ COMMENT=	Setiathome Enhanced for BOINC
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:math/fftw3 \
-		gm4:devel/m4 \
-		${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
-RUN_DEPENDS=	boinc_client:net/boinc-client \
-		${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
+BROKEN_aarch64=		fails to link: vector/analyzeFuncs_vector.cpp:(.data+0x38): undefined symbol 'vfp_GetPowerSpectrum(float (*) [2], float*, int)'
+BROKEN_armv6=		fails to compile: vector/analyzeFuncs_neon.S:178:17: invalid instruction, did you mean: neg?
+BROKEN_armv7=		fails to compile: vector/analyzeFuncs_neon.S:178:17: invalid instruction, did you mean: neg?
+
+BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:math/fftw3
+RUN_DEPENDS=	boinc_client:net/boinc-client
 LIB_DEPENDS=	libfftw3f.so:math/fftw3-float
 
-USES=		tar:xz gmake pkgconfig
-USE_AUTOTOOLS=	autoconf:env automake:env
+USES=		autoreconf compiler:c++11-lang gmake gnome libtool pkgconfig \
+		tar:xz
+
 GNU_CONFIGURE=	yes
 
 CFLAGS+=	-O2 -I${LOCALBASE}/include/boinc -I${LOCALBASE}/include \
 		-L${LOCALBASE}/lib
+LDFLAGS+=	-lexecinfo
 .if defined(CPUTYPE)
 CFLAGS+=	-march=${CPUTYPE}
 .endif
 
 # these must match settings in ${PORTSDIR}/net/boinc-client/Makefile
 BOINC_CLIENT_USER?=	boinc
-BOINC_CLIENT_GROUP?=	nobody
+BOINC_CLIENT_GROUP?=	boinc
 BOINC_CLIENT_HOME?=	/var/db/boinc
 
 OPTIONS_DEFINE=	X11
@@ -39,21 +44,26 @@ X11_DESC=	Build screensaver (requires net/boinc-client with X11)
 
 OPTIONS_SUB=	yes
 
-X11_BUILD_DEPENDS=	${LOCALBASE}/lib/libboinc_graphics2.a:${PORTSDIR}/net/boinc-client
-X11_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+X11_BUILD_DEPENDS=	${LOCALBASE}/lib/libboinc_graphics2.a:net/boinc-client
+X11_USES=		gl jpeg xorg
 X11_USE=		GL=gl,glu,glut \
 			XORG=ice,sm,x11,xau,xcb,xext,xi,xdamage,xdmcp,xfixes,xmu,xt,xxf86vm
-X11_USES=		xorg
 X11_CONFIGURE_ENABLE=	graphics
 
-.include <bsd.mport.options.mk>
+X11_BUILD_DEPENDS_OFF=	${LOCALBASE}/include/boinc/std_fixes.h:net/boinc-client
 
-.if ! ${PORT_OPTIONS:MX11}
-BUILD_DEPENDS+=	${LOCALBASE}/include/boinc/std_fixes.h:net/boinc-client
+CFLAGS_i386=	-mtune=native
+CFLAGS_amd64=	-mtune=native
+
+.if !empty(MACHINE_CPU:Maltivec)
+CONFIGURE_ARGS+=	--enable-altivec
 .endif
 
-# comment out if world is built with clang and port with gcc
-CFLAGS+=	-mtune=native
+.include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} == 60
+CFLAGS+=	-Wno-reserved-user-defined-literal -Wno-unused-command-line-argument
+.endif
 
 CONFIGURE_ENV+=	BOINCDIR="${NONEXISTENT}"
 
@@ -78,8 +88,6 @@ PLIST_SUB+=	PREFIX=${PREFIX} \
 		BOINC_CLIENT_USER=${BOINC_CLIENT_USER} \
 		BOINC_CLIENT_GROUP=${BOINC_CLIENT_GROUP}
 
-# str_replace.h is included in newer versions of net/boinc-client,
-# but it is not needed on BSD
 post-patch:
 	${REINPLACE_CMD} -E -e "s|#include \"str_replace.h\"||" \
 		${WRKSRC}/client/main.cpp \
@@ -88,17 +96,14 @@ post-patch:
 		${WRKSRC}/client/timecvt.cpp \
 		${WRKSRC}/db/xml_util.cpp
 
-pre-configure:
-	${REINPLACE_CMD} -e 's/m4/gm4/g' ${WRKSRC}/_autosetup
-	(cd ${WRKSRC} ; ./_autosetup)
-
 do-install:
-	${INSTALL} -d ${STAGEDIR}${BOINC_CLIENT_HOME}/projects
-	${INSTALL} -d ${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}
+	${INSTALL} -d ${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects
+	${INSTALL} -d ${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}
 	${INSTALL_PROGRAM} ${WRKSRC}/client/${SETI_BINARY} \
-	    ${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
-.if ${PORT_OPTIONS:MX11}
+	    ${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
+
+do-install-X11-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/client/seti_graphics \
-	    ${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
-.endif
-.include <bsd.port.mk>
+	    ${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
+
+.include <bsd.port.post.mk>
