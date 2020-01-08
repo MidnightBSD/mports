@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	boinc-setiathome-v7
 PORTVERSION=	7.00
 PORTREVISION=	1
@@ -13,10 +11,12 @@ COMMENT=	Setiathome Enhanced for BOINC
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
-		gm4:${PORTSDIR}/devel/m4
-RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
-LIB_DEPENDS=	libfftw3f.so:${PORTSDIR}/math/fftw3-float
+BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:math/fftw3 \
+		gm4:devel/m4 \
+		${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
+RUN_DEPENDS=	boinc_client:net/boinc-client \
+		${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
+LIB_DEPENDS=	libfftw3f.so:math/fftw3-float
 
 USES=		tar:xz gmake pkgconfig
 USE_AUTOTOOLS=	autoconf:env automake:env
@@ -43,12 +43,13 @@ X11_BUILD_DEPENDS=	${LOCALBASE}/lib/libboinc_graphics2.a:${PORTSDIR}/net/boinc-c
 X11_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 X11_USE=		GL=gl,glu,glut \
 			XORG=ice,sm,x11,xau,xcb,xext,xi,xdamage,xdmcp,xfixes,xmu,xt,xxf86vm
+X11_USES=		xorg
 X11_CONFIGURE_ENABLE=	graphics
 
 .include <bsd.mport.options.mk>
 
 .if ! ${PORT_OPTIONS:MX11}
-BUILD_DEPENDS+=	${LOCALBASE}/include/boinc/std_fixes.h:${PORTSDIR}/net/boinc-client
+BUILD_DEPENDS+=	${LOCALBASE}/include/boinc/std_fixes.h:net/boinc-client
 .endif
 
 # comment out if world is built with clang and port with gcc
