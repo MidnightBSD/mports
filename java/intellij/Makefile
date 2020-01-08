@@ -22,6 +22,8 @@ RUN_DEPENDS=	intellij-fsnotifier>0:${PORTSDIR}/java/intellij-fsnotifier \
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.7+
+JAVA_BUILD=	yes
+JAVA_RUN=	yes
 
 NO_ARCH=	yes
 NO_BUILD=	yes
