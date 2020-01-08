@@ -42,5 +42,7 @@ post-install:
 		${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${FAKE_MAKEFLAGS} ${MAKEFILE} \
 		${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .endfor
+	${REINPLACE_CMD} 's|/usr/include/qt5|/usr/local/include/qt5|g' \
+		${PREFIX}/lib/cmake/Qt5DBus/Qt5DBusConfig.cmake
 
 .include <bsd.port.mk>
