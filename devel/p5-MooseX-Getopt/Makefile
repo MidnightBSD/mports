@@ -19,16 +19,9 @@ RUN_DEPENDS=	p5-Getopt-Long-Descriptive>=0.081:devel/p5-Getopt-Long-Descriptive 
 		p5-MooseX-Role-Parameterized>=1.01:devel/p5-MooseX-Role-Parameterized \
 		p5-Try-Tiny>=0:lang/p5-Try-Tiny \
 		p5-namespace-autoclean>=0:devel/p5-namespace-autoclean
-TEST_DEPENDS=	p5-MooseX-SimpleConfig>=0.07:devel/p5-MooseX-SimpleConfig \
-		p5-Module-Runtime>=0:devel/p5-Module-Runtime \
-		p5-Path-Tiny>=0.009:devel/p5-Path-Tiny \
-		p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-Fatal>=0.003:devel/p5-Test-Fatal \
-		p5-Test-Needs>=0:devel/p5-Test-Needs \
-		p5-Test-Trap>=0:devel/p5-Test-Trap \
-		p5-Test-Warnings>=0:devel/p5-Test-Warnings
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	modbuildtiny
 
