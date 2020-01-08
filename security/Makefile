@@ -136,6 +136,7 @@ SUBDIR += php73-sodium
 SUBDIR += pinentry
 SUBDIR += pinentry-gnome3
 SUBDIR += pinentry-tty
+SUBDIR += pulledpork
 SUBDIR += py-acme
 SUBDIR += py-bcrypt
 SUBDIR += py-certbot
