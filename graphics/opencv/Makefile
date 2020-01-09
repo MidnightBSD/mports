@@ -14,6 +14,7 @@ NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
 .if defined(OCV_CORE)
 BUILD_DEPENDS=	protoc:devel/protobuf
 .else
+DISTFILES+=	opencv-3.4.1_GH0.tar.gz
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf \
 		libtesseract.so:graphics/tesseract
 .endif
@@ -312,10 +313,6 @@ CMAKE_ARGS+=	-DBUILD_opencv_${module}:BOOL=OFF
 .if !defined(OCV_JAVA)
 CMAKE_ARGS+=	-DBUILD_JAVA:BOOL=OFF
 .endif
-
-post-extract:
-	${MKDIR} ${WRKSRC}
-	cd ${WRKDIR} && ${TAR} xzf ${DISTDIR}/opencv-3.4.1_GH0.tar.gz
 
 post-extract-EXTRA_MODULES-on:
 	${MKDIR} ${WRKSRC}/doc/tutorials
