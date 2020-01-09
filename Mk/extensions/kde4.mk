@@ -4,7 +4,7 @@
 
 # Please make sure all changes to this file are past through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
-Kde_Include_MAINTAINER=	kde@FreeBSD.org
+Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 Kde_Pre_Include=	bsd.kde4.mk
 
 #
