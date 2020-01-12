@@ -7,7 +7,6 @@ SUBDIR += dgen-sdl
 SUBDIR += dosbox
 SUBDIR += extract-xiso
 SUBDIR += i386-wine
-SUBDIR += ia64sim
 SUBDIR += kqemu-kmod
 SUBDIR += linux-c6
 SUBDIR += linux-c7
