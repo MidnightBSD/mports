@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libtiff.so:graphics/tiff
 
-USES=		cpe gmake iconv jpeg libtool
+USES=		cpe gmake iconv:wchar_t jpeg libtool
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	djvulibre_project
