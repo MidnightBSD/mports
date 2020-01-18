@@ -1,6 +1,4 @@
 #!/bin/sh 
-#
-# $MidnightBSD$
 
 # PROVIDE: bsdstats
 # REQUIRE: LOGIN
