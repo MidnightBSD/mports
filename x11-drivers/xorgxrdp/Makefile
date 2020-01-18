@@ -9,6 +9,8 @@ COMMENT=	X.Org driver enabling use through an RDP session with xrdp
 
 LICENSE=	mit
 
+WRKSRC=		${WRKDIR}/xrdp-0.9.11
+
 RUN_DEPENDS=	xauth:x11/xauth
 BUILD_DEPENDS=	nasm:devel/nasm
 
