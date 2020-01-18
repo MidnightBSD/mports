@@ -139,7 +139,6 @@ SUBDIR += upsd
 SUBDIR += userboot-freebsd
 SUBDIR += vm-bhyve
 SUBDIR += vpnc-scripts
-SUBDIR += warden
 SUBDIR += wmbsdbatt
 SUBDIR += xfce4-battery-plugin
 SUBDIR += xfce4-power-manager
