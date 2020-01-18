@@ -34,9 +34,9 @@ OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.mk>
