@@ -17,6 +17,8 @@ SLAVEDIRS=	databases/mysql57-client
 USES=		bison:build cmake:noninja compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
 
+USE_GCC=	7
+
 USE_PERL5=	run
 
 NO_TEST=	yes
