@@ -2,7 +2,7 @@
 
 PORTNAME=	rhythmbox
 PORTVERSION=	3.4.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libmusicbrainz5.so:audio/libmusicbrainz5 \
 RUN_DEPENDS=	gnome-settings-daemon>=2.91.0:sysutils/gnome-settings-daemon
 
 USES=		desktop-file-utils gmake gnome libtool localbase \
-		pathfix pkgconfig tar:xz
+		pathfix pkgconfig tar:xz xorg
 USE_GNOME=	cairo intlhack glib20 gnomeprefix gtk30 introspection \
 		pygobject3 libxml2
 USE_XORG=	ice x11 xorgproto
@@ -51,7 +51,7 @@ INSTALL_TARGET=	install-strip
 GLIB_SCHEMAS=	org.gnome.rhythmbox.gschema.xml
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	BRASERO DAAP GRILO IPOD LIRC MTP NLS NOTIFY PYTHON
+OPTIONS_DEFINE=	BRASERO DAAP DOCS GRILO IPOD LIRC MTP NLS NOTIFY PYTHON
 OPTIONS_DEFAULT=BRASERO NOTIFY PYTHON
 BRASERO_DESC=	Brasero disc burning support
 BRASERO_CONFIGURE_WITH=	brasero
