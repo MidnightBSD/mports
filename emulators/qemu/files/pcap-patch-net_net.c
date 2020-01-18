@@ -1,132 +1,8 @@
---- configure.orig	2015-08-11 19:11:05 UTC
-+++ configure
-@@ -338,6 +338,9 @@ libssh2=""
- vhdx=""
- numa=""
- tcmalloc="no"
-+pcap="no"
-+pcap_create="no"
-+bpf="no"
- 
- # parse CC options first
- for opt do
-@@ -896,6 +899,10 @@ for opt do
-   ;;
-   --enable-vnc-png) vnc_png="yes"
-   ;;
-+  --enable-pcap) pcap="yes"
-+  ;;
-+  --disable-pcap) pcap="no"
-+  ;;
-   --disable-slirp) slirp="no"
-   ;;
-   --disable-uuid) uuid="no"
-@@ -2354,6 +2361,51 @@ EOF
- fi
- 
- ##########################################
-+# pcap probe
-+
-+if test "$pcap" = "yes" -a "$pcap" != "no"; then
-+  cat > $TMPC << EOF
-+#include <pcap.h>
-+int main(void) { return (pcap_lib_version() == (char *)0 ? 1 : 0); }
-+EOF
-+  if test "$mingw32" = "no" ; then
-+    libpcap=-lpcap
-+  else
-+    libpcap=-lwpcap
-+  fi
-+  if compile_prog "" "$libpcap" ; then
-+    :
-+  else
-+    echo
-+    echo "Error: Could not find pcap"
-+    echo "Make sure to have the pcap libs and headers installed."
-+    echo
-+    exit 1
-+  fi
-+  cat > $TMPC << EOF
-+#include <pcap.h>
-+int main(void)
-+{
-+  char errbuf[PCAP_ERRBUF_SIZE];
-+  return (pcap_create("foo", errbuf) == (pcap_t *)0 ? 1 : 0);
-+}
-+EOF
-+  if compile_prog "" "$libpcap" ; then
-+    pcap_create="yes"
-+  fi
-+  cat > $TMPC << EOF
-+#define PCAP_DONT_INCLUDE_PCAP_BPF_H
-+#include <pcap.h>
-+#include <net/bpf.h>
-+int main(void) { return (BPF_MAJOR_VERSION); }
-+EOF
-+  if compile_prog ; then
-+    bpf="yes"
-+  fi
-+  libs_softmmu="$libpcap $libs_softmmu"
-+fi # test "$pcap"
-+
-+##########################################
- # VNC TLS/WS detection
- if test "$vnc" = "yes" -a "$vnc_tls" != "no" ; then
-   cat > $TMPC <<EOF
-@@ -4515,6 +4567,7 @@ echo "Audio drivers     $audio_drv_list"
- echo "Block whitelist (rw) $block_drv_rw_whitelist"
- echo "Block whitelist (ro) $block_drv_ro_whitelist"
- echo "VirtFS support    $virtfs"
-+echo "pcap support      $pcap"
- echo "VNC support       $vnc"
- if test "$vnc" = "yes" ; then
-     echo "VNC TLS support   $vnc_tls"
-@@ -4692,6 +4745,15 @@ fi
- if test "$profiler" = "yes" ; then
-   echo "CONFIG_PROFILER=y" >> $config_host_mak
- fi
-+if test "$pcap" = "yes" ; then
-+  echo "CONFIG_PCAP=y" >> $config_host_mak
-+  if test "$pcap_create" = "yes" ; then
-+    echo "CONFIG_PCAP_CREATE=y" >> $config_host_mak
-+  fi
-+  if test "$bpf" = "yes" ; then
-+    echo "CONFIG_BPF=y" >> $config_host_mak
-+  fi
-+fi
- if test "$slirp" = "yes" ; then
-   echo "CONFIG_SLIRP=y" >> $config_host_mak
-   echo "CONFIG_SMBD_COMMAND=\"$smbd\"" >> $config_host_mak
---- net/clients.h.orig	2015-08-11 19:11:09 UTC
-+++ net/clients.h
-@@ -49,6 +49,12 @@ int net_init_bridge(const NetClientOptio
- 
- int net_init_l2tpv3(const NetClientOptions *opts, const char *name,
-                     NetClientState *peer, Error **errp);
-+
-+#ifdef CONFIG_PCAP
-+int net_init_pcap(const NetClientOptions *opts, const char *name,
-+                  NetClientState *peer);
-+#endif
-+
- #ifdef CONFIG_VDE
- int net_init_vde(const NetClientOptions *opts, const char *name,
-                  NetClientState *peer, Error **errp);
---- net/hub.c.orig	2015-08-11 19:11:09 UTC
-+++ net/hub.c
-@@ -322,6 +322,7 @@ void net_hub_check_clients(void)
-             case NET_CLIENT_OPTIONS_KIND_SOCKET:
-             case NET_CLIENT_OPTIONS_KIND_VDE:
-             case NET_CLIENT_OPTIONS_KIND_VHOST_USER:
-+            case NET_CLIENT_OPTIONS_KIND_PCAP:
-                 has_host_dev = 1;
-                 break;
-             default:
---- net/net.c.orig	2015-08-11 19:11:09 UTC
+--- net/net.c.orig	2018-04-24 16:30:47 UTC
 +++ net/net.c
-@@ -45,6 +45,11 @@
- #include "qapi/dealloc-visitor.h"
- #include "sysemu/sysemu.h"
+@@ -52,6 +52,11 @@
+ #include "net/filter.h"
+ #include "qapi/string-output-visitor.h"
  
 +#include <sys/ioctl.h>
 +#ifdef __FreeBSD__
@@ -136,7 +12,7 @@
  /* Net bridge is currently not supported for W32. */
  #if !defined(_WIN32)
  # define CONFIG_NET_BRIDGE
-@@ -880,6 +885,221 @@ static int net_init_nic(const NetClientO
+@@ -929,7 +934,225 @@ static int net_init_nic(const Netdev *netdev, const ch
      return idx;
  }
  
@@ -146,7 +22,7 @@
 +#include <net/bpf.h>
 +#endif
 +#include <pcap.h>
-+
+ 
 +struct PCAPState {
 +    NetClientState     nc;
 +    pcap_t            *handle;
@@ -199,7 +75,7 @@
 +}
 +
 +static NetClientInfo net_pcap_info = {
-+    .type = NET_CLIENT_OPTIONS_KIND_PCAP,
++    .type = NET_CLIENT_DRIVER_PCAP,
 +    .size = sizeof(struct PCAPState),
 +    .receive = pcap_receive,
 +//    .receive_raw = pcap_receive_raw,
@@ -211,9 +87,10 @@
 + * ... -net pcap,ifname="..."
 + */
 +
-+int net_init_pcap(const NetClientOptions *opts, const char *name, NetClientState *peer)
++int net_init_pcap(const Netdev *netdev,
++    const char *name, NetClientState *peer, Error **errp)
 +{
-+    const NetdevPcapOptions *pcap_opts = opts->pcap;
++    const NetdevPcapOptions *pcap_opts;
 +    NetClientState *nc;
 +    struct PCAPState *s;
 +    const char *ifname;
@@ -223,6 +100,8 @@
 +#endif
 +    int i;
 +
++    assert(netdev->type == NET_CLIENT_DRIVER_PCAP);
++    pcap_opts = &netdev->u.pcap;
 +    if (!pcap_opts->has_ifname)
 +        return -1;
 +
@@ -236,13 +115,13 @@
 +        fprintf(stderr, "qemu: pcap_create: %s\n", errbuf);
 +        goto fail;
 +    }
-+
++ 
 +#ifdef __FreeBSD__
 +    /*
 +     * We want to avoid passing oversize packets to the guest, which
 +     * at least on FreeBSD can happen if the host interface uses tso
 +     * (seen with an em(4) in this case) - so find out the host
-+     * interface's mtu and assume the guest is configured the same.
++    * interface's mtu and assume the guest is configured the same.
 +     */
 +    s->max_eth_frame_size = 1514;
 +    i = socket(AF_INET, SOCK_DGRAM, 0);
@@ -270,7 +149,7 @@
 +        pcap_perror(s->handle, (char *)"qemu: pcap_set_promisc:");
 +        goto fail;
 +    }
-+    if (pcap_activate(s->handle) != 0) {
++   if (pcap_activate(s->handle) != 0) {
 +        pcap_perror(s->handle, (char *)"qemu: pcap_activate:");
 +        goto fail;
 +    }
@@ -355,37 +234,17 @@
 +}
 +
 +#endif
- 
- static int (* const net_client_init_fun[NET_CLIENT_OPTIONS_KIND_MAX])(
-     const NetClientOptions *opts,
-@@ -901,6 +1121,9 @@ static int (* const net_client_init_fun[
- #ifdef CONFIG_NET_BRIDGE
-         [NET_CLIENT_OPTIONS_KIND_BRIDGE]    = net_init_bridge,
++ 
+ static int (* const net_client_init_fun[NET_CLIENT_DRIVER__MAX])(
+     const Netdev *netdev,
+     const char *name,
+@@ -955,6 +1178,9 @@ static int (* const net_client_init_fun[NET_CLIENT_DRI
  #endif
-+#ifdef CONFIG_PCAP
-+	[NET_CLIENT_OPTIONS_KIND_PCAP]      = net_init_pcap,
+ #ifdef CONFIG_L2TPV3
+         [NET_CLIENT_DRIVER_L2TPV3]    = net_init_l2tpv3,
 +#endif
-         [NET_CLIENT_OPTIONS_KIND_HUBPORT]   = net_init_hubport,
- #ifdef CONFIG_VHOST_NET_USED
-         [NET_CLIENT_OPTIONS_KIND_VHOST_USER] = net_init_vhost_user,
---- qapi-schema.json.orig	2015-08-11 19:11:09 UTC
-+++ qapi-schema.json
-@@ -2423,6 +2423,10 @@
-     '*br':     'str',
-     '*helper': 'str' } }
++#ifdef CONFIG_PCAP
++	[NET_CLIENT_DRIVER_PCAP]      = net_init_pcap,
+ #endif
+ };
  
-+{ 'struct': 'NetdevPcapOptions',
-+  'data': {
-+    '*ifname':     'str' } }
-+
- ##
- # @NetdevHubPortOptions
- #
-@@ -2490,6 +2494,7 @@
-     'user':     'NetdevUserOptions',
-     'tap':      'NetdevTapOptions',
-     'l2tpv3':   'NetdevL2TPv3Options',
-+    'pcap':     'NetdevPcapOptions',
-     'socket':   'NetdevSocketOptions',
-     'vde':      'NetdevVdeOptions',
-     'dump':     'NetdevDumpOptions',
