@@ -1,7 +1,0 @@
-@cwd /
-boot/modules/vboxdrv.ko
-%%DEBUG%%boot/modules/vboxdrv.ko.symbols
-boot/modules/vboxnetadp.ko
-%%DEBUG%%boot/modules/vboxnetadp.ko.symbols
-boot/modules/vboxnetflt.ko
-%%DEBUG%%boot/modules/vboxnetflt.ko.symbols

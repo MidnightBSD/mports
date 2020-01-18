@@ -1,7 +1,9 @@
 COMMENT = Emulators for other operating systems
 
 SUBDIR += adamem
+SUBDIR += advancemame
 SUBDIR += aftp
+SUBDIR += atari800
 SUBDIR += bochs
 SUBDIR += dgen-sdl
 SUBDIR += dosbox
@@ -20,10 +22,7 @@ SUBDIR += qemu
 SUBDIR += rtc
 SUBDIR += snes9x
 SUBDIR += tpm-emulator
-SUBDIR += vMac
 SUBDIR += vba
-SUBDIR += virtio-kmod
-SUBDIR += virtualbox-ose-kmod
 SUBDIR += vxtools
 SUBDIR += wine
 SUBDIR += wine-gecko
