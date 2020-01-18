@@ -27,6 +27,8 @@ INSTALL_TARGET=	install-strip
 
 CFLAGS+=	-I${LOCALBASE}/include
 LIBS=		-I${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd10.4 \
+			--host=${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV=	XRDP_CFLAGS=-I${WRKSRC_xrdp}/common
 
 OPTIONS_DEFINE=	DEBUG
