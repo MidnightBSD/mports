@@ -208,6 +208,7 @@ SUBDIR += py-sparqlwrapper
 SUBDIR += py-sphinx
 SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-websupport
+SUBDIR += py-toml
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
 SUBDIR += raptor
