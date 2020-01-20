@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff \
 		liblcms2.so:graphics/lcms2 \
-		libgegl-0.2.so:graphics/gegl \
+		libgegl-0.4.so:graphics/gegl \
 		libbabl-0.1.so:x11/babl
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
