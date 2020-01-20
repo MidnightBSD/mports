@@ -10,7 +10,6 @@ SUBDIR += erlang-man
 SUBDIR += erlang-runtime19
 SUBDIR += erlang-runtime21
 SUBDIR += expect
-SUBDIR += ezm3
 SUBDIR += fsharp
 SUBDIR += f2c
 SUBDIR += gawk
