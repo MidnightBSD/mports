@@ -52,7 +52,7 @@ OPTIONS_SUB=	yes
 CURL_CONFIGURE_OFF=	--disable-curl
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 DOCS_BUILD_DEPENDS=	texi2html:textproc/texi2html \
-			sphinx-build:textproc/py-sphinx
+			sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 DOCS_MAKE_ARGS_OFF=	NOPORTDOCS=1
 DOCS_USES=		makeinfo
 GNUTLS_CONFIGURE_OFF=	--disable-gnutls
