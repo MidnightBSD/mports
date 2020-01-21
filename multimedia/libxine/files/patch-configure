@@ -23,7 +23,7 @@
      if test x"$enable_dvb" != x"no"; then
          case "$host_os" in
 -            linux*) have_dvb=yes ;;
-+            linux*|freebsd*) have_dvb=yes ;;
++            linux*|freebsd*|midnightbsd*) have_dvb=yes ;;
              *) have_dvb=no ;;
          esac
          if test x"$hard_enable_dvb" = x"yes" && test x"$have_dvb" != x"yes"; then
