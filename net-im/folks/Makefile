@@ -1,6 +1,4 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/net-im/folks/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	folks
 PORTVERSION=	0.11.4
@@ -8,7 +6,7 @@ CATEGORIES=	net-im
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	library to aggregates people from multiple sources
+COMMENT=	Library to aggregates people from multiple sources
 
 LICENSE=	lgpl2.1
 
@@ -19,11 +17,11 @@ LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libzeitgeist-2.0.so:sysutils/zeitgeist \
 		libtelepathy-glib.so:net-im/telepathy-glib
 
-CONFLICTS=	folks-0.4.[0-9]*
-
 USE_LDCONFIG=	yes
-USES=		gettext gmake libtool localbase pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
+		readline sqlite tar:xz
 USE_GNOME=	evolutiondataserver3 intlhack introspection:build
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-bluez-backend
 CONFIGURE_ENV+=	ac_cv_path_EGREP=${LOCALBASE}/bin/egrep
@@ -41,10 +39,12 @@ TRACKER_DESC=	Tracker backend
 SOCIALWEB_CONFIGURE_ENABLE=	libsocialweb-backend
 SOCIALWEB_LIB_DEPENDS=	libsocialweb.so:www/libsocialweb
 TRACKER_CONFIGURE_ENABLE=	tracker-backend
-TRACKER_LIB_DEPENDS=	libtracker-control-1.0.so:sysutils/tracker
+TRACKER_LIB_DEPENDS=	libtracker-control-2.0.so:sysutils/tracker
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|--fatal-warnings||g' \
 		${WRKSRC}/configure
+	# Until after when the bundled gir is updated >= 0.11.4
+	@${RM} ${WRKSRC}/backends/tracker/lib/FolksTracker-0.6.gir
 
 .include <bsd.port.mk>

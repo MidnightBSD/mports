@@ -17,14 +17,13 @@ RUN_DEPENDS=	p5-Cache-Cache>=1:devel/p5-Cache-Cache \
 		p5-HTML-Parser>=0:www/p5-HTML-Parser \
 		p5-Log-Any>=0.08:devel/p5-Log-Any \
 		p5-Params-Validate>=0.70:devel/p5-Params-Validate
-TEST_DEPENDS=	p5-CHI>=0.210:devel/p5-CHI \
-		p5-Test-Deep>=0:devel/p5-Test-Deep \
-		p5-Test-Memory-Cycle>=0:devel/p5-Test-Memory-Cycle
 
 OPTIONS_DEFINE=	MODPERL
 
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 MODPERL_BUILD_DEPENDS=	p5-libapreq2>=0:www/p5-libapreq2
 MODPERL_RUN_DEPENDS=	p5-libapreq2>=0:www/p5-libapreq2

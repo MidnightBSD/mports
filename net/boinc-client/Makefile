@@ -57,6 +57,8 @@ MANAGER_LIB_DEPENDS=	libnotify.so:devel/libnotify \
 			libfontconfig.so:x11-fonts/fontconfig \
 			libsqlite3.so:databases/sqlite3 \
 			libxcb-util.so:x11/xcb-util
+MANAGER_BUILD_DEPENDS=  ${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3	
+MANAGER_RUN_DEPENDS=  ${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3	
 MANAGER_CONFIGURE_ON=	--with-sqlite3-prefix=${LOCALBASE}
 MANAGER_CONFIGURE_OFF=	--with-wx-config=false --without-x
 MANAGER_CONFIGURE_ENABLE=manager
@@ -73,7 +75,7 @@ CLIENT_USE=		RC_SUBR=boinc-client
 LINUX_CONFIGURE_ON=	--with-boinc-alt-platform=i686-pc-linux-gnu
 LINUX_USES=		linux
 
-X11_USES=		jpeg gl
+X11_USES=		jpeg gl xorg
 X11_USE=		GL=glut XORG=x11,xscrnsaver,xmu,xi
 X11_CONFIGURE_OFF=	--without-x ax_cv_check_glut_libglut=no
 

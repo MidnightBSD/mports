@@ -1,248 +1,128 @@
-# $MidnightBSD$
-
 PORTNAME=	gegl
-PORTVERSION=	0.2.0
-PORTREVISION=	4
+PORTVERSION=	0.4.18
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.2/
+MASTER_SITES=	GIMP
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph based image processing framework
 
-LICENSE=	gpl3
+LICENSE=	bsd3 gpl3 lgpl3
+LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libbabl-0.1.so:${PORTSDIR}/x11/babl
+BUILD_DEPENDS=	bash:shells/bash
+LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
+		libjson-glib-1.0.so:devel/json-glib \
+		libfribidi.so:converters/fribidi \
+		libpng.so:graphics/png
 
-OPTIONS_DEFINE=	CAIRO ENSCRIPT EXIV2 FFMPEG PIXBUF GRAPHVIZ JASPER JPEG \
-		LUA OPENEXR OPENRAW SIMD PANGO PNG LIBRSVG2 SDL SPIRO V4L \
-		DOCS EXAMPLES
-OPTIONS_DEFAULT=CAIRO ENSCRIPT EXIV2 PIXBUF GRAPHVIZ JASPER JPEG LUA \
-		OPENEXR OPENRAW PANGO PNG LIBRSVG2 SDL SPIRO V4L
+USES=		compiler:c++14-lang cpe gettext gnome jpeg libtool localbase \
+		meson pathfix pkgconfig shebangfix uniquefiles tar:xz
+USE_GNOME=	glib20 intltool introspection:build
+USE_LDCONFIG=	yes
+MESON_ARGS=	-Ddocs=false \
+		-Dworkshop=false \
+		-Dintrospection=true \
+		-Dvapigen=disabled \
+		-Dlensfun=disabled \
+		-Dlibjpeg=enabled \
+		-Dlibpng=enabled \
+		-Dmrg=disabled \
+		-Dpygobject=disabled \
+		-Dvapigen=disabled \
+		-Dlua=disabled
+
+NO_TEST=	yes
+
+GEGL_MINOR=	417
+GEGL_VER=	0.4
+PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}" GEGL_VER=${GEGL_VER}
+
+SHEBANG_FILES=	tools/xml_insert.sh
+
+OPTIONS_SUB=	yes
+OPTIONS_DEFINE=	CAIRO ENSCRIPT FFMPEG PIXBUF GRAPHVIZ JASPER \
+		OPENEXR RAW PANGO LIBRSVG2 SDL SPIRO V4L \
+		LCMS2 WEBP TIFF GEXIV2
+OPTIONS_DEFAULT=CAIRO ENSCRIPT GEXIV2 PIXBUF GRAPHVIZ JASPER LCMS2 \
+		OPENEXR RAW PANGO LIBRSVG2 SDL SPIRO V4L WEBP TIFF
 
 ENSCRIPT_DESC=	Enscript support
 SPIRO_DESC=	Spiro support
 #UMFPACK_DESC=	UMFpack support
+GEXIV2_DESC=	EXIF and IPTC metadata support via gexiv2
 
-USES=		gettext gmake libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
-USE_GNOME=	glib20 intltool
-USE_LDCONFIG=	${PREFIX}/lib/gegl-0.2
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	ac_cv_header_execinfo_h=no
-CONFIGURE_ARGS+=	--without-vala --disable-docs
-INSTALL_TARGET=	install-strip
+PIXBUF_USE=	GNOME=gdkpixbuf2
+PIXBUF_MESON_ENABLED=	gdk-pixbuf
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+CAIRO_USE=	GNOME=cairo
+CAIRO_MESON_ENABLED=	cairo
 
-GEGL_MINOR=	199
-GEGL_VER=	0.2
-PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}" GEGL_VER=${GEGL_VER}
+PANGO_USE=	GNOME=pango
+PANGO_MESON_ENABLED=	pango
 
-EXAMPLES=	2geglbuffer csugar float-lookup \
-		gegl-convert gegl-slicer geglbuffer-add-image \
-		geglbuffer-clock hello-world-video hello-world
+ENSCRIPT_BUILD_DEPENDS=	enscript:print/enscript-a4
 
-SHEBANG_FILES=	tools/xml_insert.sh
+FFMPEG_LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg
+FFMPEG_MESON_ENABLED=	libav
 
-.include <bsd.mport.options.mk>
+GRAPHVIZ_LIB_DEPENDS=	libcgraph.so:graphics/graphviz
+GRAPHVIZ_MESON_ENABLED=	graphviz
 
-.if ${PORT_OPTIONS:MPIXBUF}
-USE_GNOME+=	gdkpixbuf2
-PLIST_SUB+=	GDK=""
-.else
-CONFIGURE_ARGS+=--without-gdk-pixbuf
-PLIST_SUB+=	GDK="@comment "
-.endif
+JASPER_LIB_DEPENDS=	libjasper.so:graphics/jasper
+JASPER_MESON_ENABLED=	jasper
 
-.if ${PORT_OPTIONS:MCAIRO}
-LIB_DEPENDS+=	libcairo.so:${PORTSDIR}/graphics/cairo
-PLIST_SUB+=	CAIRO=""
-.else
-CONFIGURE_ARGS+=--without-cairo
-PLIST_SUB+=	CAIRO="@comment "
-.endif
+LCMS2_LIB_DEPENDS=	liblcms2.so:graphics/lcms2
+LCMS2_MESON_ENABLED=	lcms
 
-.if ${PORT_OPTIONS:MPANGO}
-USE_GNOME+=	pango
-PLIST_SUB+=	PANGO=""
-.else
-CONFIGURE_ARGS+=--without-pango
-PLIST_SUB+=	PANGO="@comment "
-.endif
+OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr \
+			libImath.so:graphics/ilmbase
+OPENEXR_MESON_ENABLED=	openexr
+
+RAW_LIB_DEPENDS=	libraw.so:graphics/libraw
+RAW_MESON_ENABLED=	libraw
+
+LIBRSVG2_USE=		GNOME=librsvg2
+LIBRSVG2_MESON_ENABLED=	librsvg
+
+SDL_USE=		SDL=sdl2
+SDL_USES=		sdl
+SDL_MESON_ENABLED=	sdl2
+
+SPIRO_LIB_DEPENDS=	libspiro.so:graphics/libspiro
+SPIRO_MESON_ENABLED=	libspiro
+
+V4L_BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
+V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
+V4L_MESON_ENABLED=	libv4l2
+
+WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
+WEBP_MESON_ENABLED=	webp
+
+# UMFPACK has two "problems"
+# 1) it build with port gcc 2) needed libs aren't recorded in the libraries.
+#UMFPACK_LIB_DEPENDS=	libumfpack.so:math/suitesparse
+#UMFPACK_MESON_ENABLED=	umfpack
+MESON_ARGS+=		-Dumfpack=disabled
+
+GEXIV2_LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2
+GEXIV2_MESON_ENABLED=	gexiv2
+
+TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
+TIFF_MESON_ENABLED=	libtiff
+
+.include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MPANGO} && ${PORT_OPTIONS:MCAIRO}
 PLIST_SUB+=	PANGOCAIRO=""
+MESON_ARGS+=	-Dpangocairo=enabled
 .else
-CONFIGURE_ARGS+=--without-pangocairo
+MESON_ARGS+=	-Dpangocairo=disabled
 PLIST_SUB+=	PANGOCAIRO="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MENSCRIPT}
-BUILD_DEPENDS+=	enscript:${PORTSDIR}/print/enscript-a4
-.endif
-
-.if ${PORT_OPTIONS:MFFMPEG}
-LIB_DEPENDS+=	libavformat.so:${PORTSDIR}/multimedia/ffmpeg
-PLIST_SUB+=	FFMPEG=""
-.else
-CONFIGURE_ARGS+=--without-libavformat
-PLIST_SUB+=	FFMPEG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGRAPHVIZ}
-LIB_DEPENDS+=	libcgraph.so:${PORTSDIR}/graphics/graphviz
-.else
-CONFIGURE_ARGS+=--without-graphviz
-.endif
-
-.if ${PORT_OPTIONS:MJASPER}
-LIB_DEPENDS+=	libjasper.so:${PORTSDIR}/graphics/jasper
-PLIST_SUB+=	JP2=""
-.else
-CONFIGURE_ARGS+=--without-jasper
-PLIST_SUB+=	JP2="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MJPEG}
-LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
-PLIST_SUB+=	JPEG=""
-.else
-CONFIGURE_ARGS+=--without-libjpeg
-PLIST_SUB+=	JPEG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MLUA}
-USES+=		lua
-.else
-CONFIGURE_ARGS+=--without-lua
-.endif
-
-.if ${PORT_OPTIONS:MOPENEXR}
-LIB_DEPENDS+=	libIlmImf.so:${PORTSDIR}/graphics/openexr
-PLIST_SUB+=	OPENEXR=""
-.else
-CONFIGURE_ARGS+=--without-openexr
-PLIST_SUB+=	OPENEXR="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MOPENRAW}
-LIB_DEPENDS+=	libopenraw.so:${PORTSDIR}/graphics/libopenraw
-PLIST_SUB+=	OPENRAW=""
-.else
-CONFIGURE_ARGS+=--without-libopenraw
-PLIST_SUB+=	OPENRAW="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSIMD}
-CONFIGURE_ARGS+=--disable-mmx \
-		--disable-sse
-.endif
-
-.if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=	libpng.so:graphics/png
-PLIST_SUB+=	PNG=""
-.else
-CONFIGURE_ARGS+=--without-libpng
-PLIST_SUB+=	PNG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MLIBRSVG2}
-LIB_DEPENDS+=	librsvg-2.so:${PORTSDIR}/graphics/librsvg2
-PLIST_SUB+=	RSVG=""
-.else
-CONFIGURE_ARGS+=--without-librsvg
-PLIST_SUB+=	RSVG="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSDL}
-USE_SDL=	sdl
-PLIST_SUB+=	SDL=""
-.else
-CONFIGURE_ARGS+=--without-sdl
-PLIST_SUB+=	SDL="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MSPIRO}
-LIB_DEPENDS+=	libspiro.so:${PORTSDIR}/graphics/libspiro
-.else
-CONFIGURE_ARGS+=--without-libspiro
-.endif
-
-.if ${PORT_OPTIONS:MV4L}
-BUILD_DEPENDS+=	${LOCALBASE}/include/linux/videodev.h:${PORTSDIR}/multimedia/v4l_compat
-PLIST_SUB+=	V4L=""
-.else
-CONFIGURE_ARGS+=--without-libv4l
-PLIST_SUB+=	V4L="@comment "
-.endif
-
-# umfpack library is broken
-#.if ${PORT_OPTIONS:MUMFPACK}
-#LIB_DEPENDS+=	umfpack:${PORTSDIR}/math/suitesparse
-#PLIST_SUB+=	UMFPACK=""
-#.else
-CONFIGURE_ARGS+=--without-umfpack
-PLIST_SUB+=	UMFPACK="@comment "
-#.endif
-
-.if ${PORT_OPTIONS:MEXIV2}
-LIB_DEPENDS+=	libexiv2.so:${PORTSDIR}/graphics/exiv2
-PLIST_SUB+=	EXIV2=""
-.else
-CONFIGURE_ARGS+=--without-exiv2
-PLIST_SUB+=	EXIV2="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS+=	a2x:${PORTSDIR}/textproc/asciidoc \
-		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash \
-		vimdot:${PORTSDIR}/graphics/graphviz
-USE_RUBY=	yes
-RUBY_NO_RUN_DEPENDS=yes
-.else
-CONFIGURE_ARGS+=--disable-docs
-.endif
-
 post-patch:
-	${REINPLACE_CMD} "s/lua >/lua-${LUA_VER} >/g" ${WRKSRC}/configure
-.if ! ${PORT_OPTIONS:MDOCS}
-	${REINPLACE_CMD} -e 's|tools examples|tools|g' \
-		${WRKSRC}/Makefile.in
-.endif
-	${REINPLACE_CMD} -e 's|\(lua\)\(5\.1\)|\1-\2|g ; s|x86_64|amd64|g' \
-		${WRKSRC}/configure
-
-.if ${PORT_OPTIONS:MDOCS}
-pre-configure:
-.if !exists(${LOCALBASE}/bin/vimdot)
-	@${ECHO_CMD} "${PKGNAME}: Needs graphics/graphviz with PANGOCAIRO support enabled."
-	@${FALSE}
-.endif
+.if ${CHOSEN_COMPILER_TYPE} == clang
+	${REINPLACE_CMD} -e '/altivec.h/d' ${WRKSRC}/gegl/opencl/cl_platform.h
 .endif
 
-post-build:
-.if ${PORT_OPTIONS:MDOCS}
-	cd ${WRKSRC}/docs && ${MAKE_CMD} index.html
-	cd ${WRKSRC}/docs/gallery && ${MAKE_CMD} index.html
-.endif
-
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}/gallery
-	(cd ${WRKSRC}/docs && \
-	    ${COPYTREE_SHARE} \*.html ${DOCSDIR} && \
-	    ${INSTALL_DATA} ChangeLog gegl.css gegl.devhelp devhelp.css ${DOCSDIR} && \
-	    ${INSTALL_DATA} gallery/OpenRaster* ${DOCSDIR}/gallery && \
-	    ${INSTALL_DATA} gallery/clones* ${DOCSDIR}/gallery && \
-	    ${INSTALL_DATA} gallery/index.html ${DOCSDIR}/gallery )
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${EXAMPLESDIR}/data
-	${INSTALL_DATA} ${WRKSRC}/examples/data/surfer.png ${EXAMPLESDIR}/data
-.for ex in ${EXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/examples/${ex}.c ${EXAMPLESDIR}
-.endfor
-.endif
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gegl-0.2/*.so
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

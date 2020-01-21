@@ -1,6 +1,4 @@
 # Created by: Kubilay Kocak <koobs@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/lang/spidermonkey24/Makefile 386312 2015-05-14 10:15:04Z mat $
 
 PORTNAME=		spidermonkey24
 PORTVERSION=		24.2.0
@@ -15,8 +13,8 @@ COMMENT=		Standalone JavaScript based from Mozilla 24-esr
 LICENSE=		gpl2 mpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=		libnspr4.so:${PORTSDIR}/devel/nspr
+BUILD_DEPENDS=		zip:archivers/zip
+LIB_DEPENDS=		libnspr4.so:devel/nspr
 
 CONFLICTS=		njs-[0-9]*
 

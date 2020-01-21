@@ -23,7 +23,7 @@ CONFLICTS_INSTALL?=	wireshark-lite-[0-9]* tshark-[0-9]* tshark-lite-[0-9]*
 DATADIR_NAME=	wireshark
 DATADIR=	${PREFIX}/share/${DATADIR_NAME}
 
-USES=		alias cmake cpe compiler:c++11-lang gettext-runtime \
+USES=		cmake cpe compiler:c++11-lang gettext-runtime \
 		libtool localbase pathfix localbase:ldflags \
 		perl5 pkgconfig python:3.4+ ssl tar:xz
 USE_PERL5=	build
@@ -38,6 +38,8 @@ LIB_DEPENDS+=	libgpg-error.so:security/libgpg-error \
 
 #CFLAGS+=	-funit-at-a-time
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
+
+NO_TEST=	yes
 
 .for x in capinfos editcap mergecap rawshark text2pcap dftest randpkt \
     reordercap captype randpktdump udpdump sharkd

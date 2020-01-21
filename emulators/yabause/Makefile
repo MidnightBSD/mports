@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	yabause
 PORTVERSION=	0.9.14
 CATEGORIES=	emulators
@@ -22,16 +20,13 @@ SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=		SDL2
 OPTIONS_SINGLE=		GUI
-OPTIONS_SINGLE_GUI=	GTK2 QT4 QT5
-OPTIONS_DEFAULT=	QT4
+OPTIONS_SINGLE_GUI=	GTK2 QT5
+OPTIONS_DEFAULT=	QT5
 
 GTK2_LIB_DEPENDS=	libgtkglext-x11-1.0.so:${PORTSDIR}/x11-toolkits/gtkglext
 GTK2_USE=		gnome=gtk20
 GTK2_CMAKE_ON=		-DYAB_PORTS:STRING=gtk
 GTK2_CMAKE_OFF=		-DYAB_PORTS:STRING=qt
-QT4_USE=		qt4=corelib,gui,opengl \
-			qt4=moc_build,qmake_build,rcc_build,uic_build
-QT4_CMAKE_ON=		-DQt5_FOUND:BOOL=OFF
 QT5_USE=		qt5=core,gui,opengl \
 			qt5=buildtools_build,qmake_build
 SDL2_DESC=		SDL2 libraries support

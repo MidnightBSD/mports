@@ -1,7 +1,7 @@
 # Created by: Fukang Chen <loader@FreeBSD.org>
 
 PORTNAME=	pytest-timeout
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.3
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,9 +20,6 @@ USES=		python
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
-
-TEST_ENV+=	PYTHONPATH=${TEST_WRKSRC}
-do-test:
-	@(cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest)
+NO_TEST=	yes
 
 .include <bsd.port.mk>

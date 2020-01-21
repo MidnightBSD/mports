@@ -1,10 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	asciidoc
-PORTVERSION=	8.6.9
-PORTREVISION=	2
+PORTVERSION=	8.6.10
 CATEGORIES=	textproc
-MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text document format for writing short documents and man pages
@@ -12,41 +8,28 @@ COMMENT=	Text document format for writing short documents and man pages
 LICENSE=	gpl2 mit
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
+
+USES=		autoreconf gmake gnome python:2.7 shebangfix
+USE_GNOME=	libxml2 libxslt
+
 GNU_CONFIGURE=	yes
-USES=		gmake python:2 shebangfix
+NO_ARCH=	yes
 
-CONF_FILES=	asciidoc.conf docbook45.conf filters/code/code-filter.conf \
-		filters/graphviz/graphviz-filter.conf \
-		filters/latex/latex-filter.conf \
-		filters/music/music-filter.conf \
-		filters/source/source-highlight-filter.conf help.conf \
-		html4.conf html5.conf lang-cs.conf lang-de.conf lang-el.conf \
-		lang-en.conf lang-es.conf lang-fr.conf lang-hu.conf \
-		lang-it.conf lang-nl.conf lang-pt-BR.conf lang-ro.conf \
-		lang-ru.conf lang-uk.conf latex.conf slidy.conf text.conf \
-		xhtml11.conf xhtml11-quirks.conf
+USE_GITHUB=	yes
 
-SHEBANG_FILES=	a2x.py \
-		asciidoc.py \
-		asciidocapi.py \
-		filters/latex/latex2png.py \
-		filters/graphviz/graphviz2png.py \
-		filters/music/music2png.py \
-		filters/code/code-filter.py
+SHEBANG_GLOB=	*.py
+SHEBANG_LANG=	python2
+python2_CMD=	${PYTHON_CMD}
 
 post-patch:
-	@${REINPLACE_CMD} -e '/^INSTALL_PROG/ s|INSTALL_PROGRAM|INSTALL_SCRIPT|; s|\.conf|&.sample|' ${WRKSRC}/Makefile.in
-.for conf_file in ${CONF_FILES}
-	@cd ${WRKSRC}/ && ${MV} ${conf_file} ${conf_file}.sample
-.endfor
+	@${REINPLACE_CMD} -e '/^INSTALL_PROG/ s|INSTALL_PROGRAM|INSTALL_SCRIPT|; s|\.conf|&.sample|; s|python\( a2x.py\)|${PYTHON_CMD}\1|' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/a2x.py
+	@${FIND} ${WRKSRC} -name '*.conf' | ${XARGS} -I % ${LN} % %.sample
 
 post-install:
 	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/
 	${INSTALL_DATA} ${WRKSRC}/asciidocapi.py ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/
-.for conf_file in ${CONF_FILES}
-	@if [ ! -f ${ETCDIR}/${conf_file} ]; then \
-		${CP} -p ${STAGEDIR}${ETCDIR}/${conf_file}.sample ${ETCDIR}/${conf_file}; \
-	fi
-.endfor
 
 .include <bsd.port.mk>

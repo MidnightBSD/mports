@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # Make sure that your configuration DOES NOT set ANY gcc-related
 # variables.  ksh93 will not compile if you set even the seemingly
 # most unrelated variable related to gcc configuration.  This means
@@ -35,6 +33,8 @@ KSHVERSION=	2012-08-01
 
 STATIC_MAKE_ENV=	LDFLAGS+=-static
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lpthread|-pthread|' \
 		${WRKSRC}/bin/package ${WRKSRC}/src/cmd/INIT/package.sh
@@ -47,9 +47,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/ksh93.1
 	${MKDIR} ${EXAMPLESDIR}/
 	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${EXAMPLESDIR}/
-
-test: build
-	@cd ${WRKSRC}/src/cmd/ksh93/tests/ && \
-		${SETENV} SHELL=${WRKSRC}/bin/ksh ${WRKSRC}/bin/ksh shtests
 
 .include <bsd.port.mk>

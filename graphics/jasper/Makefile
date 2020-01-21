@@ -1,33 +1,39 @@
-# $MidnightBSD$
-
 PORTNAME=	jasper
-PORTVERSION=	1.900.1
-PORTREVISION=	17
+PORTVERSION=	2.0.16
+PORTREVISION=	1
+DISTVERSIONPREFIX=	version-
 CATEGORIES=	graphics
-MASTER_SITES=	https://www.ece.uvic.ca/~frodo/jasper/software/ \
-		ftp://ftp.imagemagick.org/pub/ImageMagick/delegates/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the codec specified in the JPEG-2000 standard
 
-LICENSE=	mit
+LICENSE=	JASPER
+LICENSE_NAME=	JasPer License Version 2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-OPTIONS_DEFINE=	OPENGL UUID DOCS
-OPTIONS_DEFAULT=UUID
+OPTIONS_DEFINE=	OPENGL DOCS
+OPTIONS_DEFAULT=	OPENGL
 OPTIONS_SUB=	yes
-UUID_DESC=	UUID support (required by GDAL)
 
-CONFIGURE_ARGS=	--enable-shared --enable-static
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		jpeg libtool:keepla localbase zip
+USES=		cmake jpeg localbase
 
-OPENGL_CONFIGURE_ENABLE=opengl
-OPENGL_USE=		GL=glut XORG=x11,xext,xi,xmu
-UUID_EXTRA_PATCHES=	${PATCHDIR}/uuid.patch
+USE_GITHUB=	yes
 
-post-install-DOCS-on:
-	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}/
+GH_ACCOUNT=	mdadams
+
+OPENGL_CMAKE_BOOL=	JAS_ENABLE_OPENGL
+OPENGL_USES=		gl xorg
+OPENGL_USE=		GL=gl,glu,glut XORG=x11,xext,xi,xmu
+
+CMAKE_ARGS=	-DJAS_ENABLE_JPEG=true \
+		-DJAS_ENABLE_AUTOMATIC_DEPENDENCIES=false \
+		-DCMAKE_SKIP_RPATH=true
+
+DOCSDIR=	${PREFIX}/share/doc/JasPer
+
+post-install-DOCS-off:
+	rm -rf ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

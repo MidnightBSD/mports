@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/mod_security/Makefile 451586 2017-10-09 08:54:42Z pizzamig $
-
 PORTNAME=	mod_security
-PORTVERSION=	2.9.2
+PORTVERSION=	2.9.3
 CATEGORIES=	www security
 MASTER_SITES=	http://www.modsecurity.org/tarball/${PORTVERSION}/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
@@ -20,8 +17,7 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-USES=		perl5 pkgconfig shebangfix bdb
-USE_APACHE=	22+
+USES=		apache:2.4+ bdb gnome perl5 pkgconfig shebangfix
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 SHEBANG_FILES=	tools/rules-updater.pl.in mlogc/mlogc-batch-load.pl.in

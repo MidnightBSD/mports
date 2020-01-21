@@ -1,0 +1,35 @@
+PORTNAME=	rust-bin
+PORTVERSION=	1.30.0
+CATEGORIES=	java
+MASTER_SITES=	http://pkg.freebsd.org/${FBSD_PATH}/latest/All/
+DISTFILES=      rust-1.30.0.txz
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=        Language with a focus on memory safety and concurrency (FreeBSD version)
+
+LICENSE=        apache2 mit
+LICENSE_COMB=   dual
+
+USES=		pkgconfig python:3.3+,build ssl tar:xz
+ONLY_FOR_ARCH=	amd64
+NO_BUILD=	yes
+
+LIB_DEPENDS=    libcurl.so:ftp/curl \
+                libgit2.so:devel/libgit2 \
+                libssh2.so:security/libssh2
+
+PLIST=          ${PKGDIR}/pkg-plist
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+FBSD_PATH=	FreeBSD:10:amd64
+.else
+FBSD_PATH=      FreeBSD:10:i386
+.endif
+
+do-install:
+	${MKDIR} ${FAKE_DESTDIR}
+	${CP} -R ${WRKDIR}/usr ${FAKE_DESTDIR}/
+
+.include <bsd.port.post.mk>

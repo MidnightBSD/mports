@@ -26,7 +26,7 @@ post-extract:
 
 do-install:
 	${MKDIR} ${PREFIX}/${FONTSDIR}
-	cd ${WRKDIR} && \
+	cd ${WRKSRC} && \
 		${TAR} cf - ${INSTDIRS} | \
 		(cd ${PREFIX}/${FONTSDIR} && ${TAR} xf - )
 

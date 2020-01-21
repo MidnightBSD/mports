@@ -12,6 +12,7 @@ LIB_DEPENDS=	libhal.so:sysutils/hal
 
 USES=		gmake xorg-cat:driver
 CONFIGURE_ARGS=	--with-hal-callouts-dir=${PREFIX}/libexec/hal/scripts
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	The vmmouse protocol is only supported on x86-compatible architectures.

@@ -1,30 +1,32 @@
-PORTNAME=	git-lfs
+PORTNAME=		git-lfs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.7.2
-CATEGORIES=	devel
+DISTVERSION=		2.9.1
+CATEGORIES=		devel
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidightBSD.org
 COMMENT=	Git extension for versioning large files
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	bash:shells/bash
-RUN_DEPENDS=	bash:shells/bash \
-		git:devel/git
+RUN_DEPENDS=	git:devel/git
 
 USES=		go:modules
 USE_GITHUB=	yes
-PLIST_FILES=	bin/git-lfs
 
-GO_PKGNAME=	github.com/${PORTNAME}/${PORTNAME}
+OPTIONS_DEFINE=		MANPAGES
+OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_SUB=		yes
 
-# see https://github.com/git-lfs/git-lfs/wiki/Installation
+NO_TEST=	yes
 
-do-build:
-	cd ${WRKSRC} && ${MKDIR} ${WRKSRC}/.tmp && TMPDIR=${WRKSRC}/.tmp script/bootstrap
+MANPAGES_BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
 
-pre-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/git-lfs ${STAGEDIR}${PREFIX}/bin/git-lfs
+post-build-MANPAGES-on:
+	cd ${GO_WRKSRC}/docs/man && ${LOCALBASE}/bin/ronn -r *.ronn
+
+post-install-MANPAGES-on:
+	${INSTALL_MAN} ${GO_WRKSRC}/docs/man/*.1 ${FAKE_DESTDIR}${LOCALBASE}/man/man1
+	${INSTALL_MAN} ${GO_WRKSRC}/docs/man/*.5 ${FAKE_DESTDIR}${LOCALBASE}/man/man5
 
 .include <bsd.port.mk>

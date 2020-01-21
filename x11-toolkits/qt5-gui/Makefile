@@ -1,19 +1,21 @@
-# $FreeBSD: head/x11-toolkits/qt5-gui/Makefile 507372 2019-07-26 20:46:53Z gerald $
-
 PORTNAME=	gui
 DISTVERSION=	${QT5_VERSION}
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits graphics
 PKGNAMEPREFIX=	qt5-
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt graphical user interface module
+
+LICENSE=	gpl3
 
 BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libevdev.so:devel/libevdev \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
+		libinput.so:x11/libinput \
 		libpng.so:graphics/png \
 		libxcb.so:x11/libxcb \
 		libxcb-image.so:x11/xcb-util-image \
@@ -23,7 +25,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxkbcommon.so:x11/libxkbcommon
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USES=		compiler:c++17-lang jpeg localbase qmake:no_env qt-dist:5,base
+USES=		compiler:c++17-lang jpeg localbase qmake:no_env qt-dist:5,base \
+		xorg
 USE_GL=		gl egl
 USE_GNOME=	glib20
 USE_QT=		core dbus network qmake_build buildtools_build

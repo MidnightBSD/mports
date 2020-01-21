@@ -8,7 +8,7 @@ CATEGORIES=	games linux
 MASTER_SITES=	http://ftp.4players.de/pub/hosted/wolfenstein/users/etqw/server/ \
 		ftp://ftp0.uk.multiplay.co.uk/pub/games/fps/enemyterritory_quakewars/server/linux/ \
 		ftp://ftp0.nl.multiplay.co.uk/pub/games/fps/enemyterritory_quakewars/server/linux/ \
-		${MASTER_SITE_IDSOFTWARE:S|$|etqw/|}
+		IDSOFTWARE/etqw
 PKGNAMEPREFIX=	linux-
 PKGNAMESUFFIX=	-server
 DISTNAME=	ETQW${PKGNAMESUFFIX}-1.5-full.x86
@@ -46,21 +46,21 @@ post-patch:
 do-install:
 	@${MKDIR} ${STAGEDIR}${ETQWDIR}
 
-	${INSTALL_PROGRAM} ${WRKSRC}/etqwded ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/etqwded ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/data/etqwded.x86 ${STAGEDIR}${ETQWDIR}
 	@cd ${WRKSRC}/data && \
 		${FIND} -E . -type f -iregex ".*\.so\.[0-9]+" \
-			-exec ${INSTALL_DATA} "{}" "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
 
 	@${MKDIR} ${STAGEDIR}${ETQWDIR}/base/bots
 	@cd ${WRKSRC}/data && \
 		${FIND} base -type f \
-			-exec ${INSTALL_DATA} "{}" "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
 
 	@${MKDIR} ${STAGEDIR}${ETQWDIR}/pb/htm
 	@cd ${WRKSRC}/data && \
 		${FIND} pb -type f \
-			-exec ${INSTALL_DATA} "{}" "${STAGEDIR}${ETQWDIR}/{}" \;
+			-exec ${INSTALL_DATA} {} "${STAGEDIR}${ETQWDIR}/{}" \;
 
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for FILE in EULA.txt README.txt copyrights.txt etqwtv.txt readme_1_5_patch.txt server_readme.txt pb/PBEULA.txt

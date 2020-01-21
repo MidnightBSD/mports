@@ -1,35 +1,40 @@
-# Created by: Martin Wilke <miwi@FreeBSD.org>
-# $FreeBSD: head/multimedia/clutter-gst3/Makefile 412348 2016-04-01 14:16:16Z mat $
-# $MidnightBSD$
-
 PORTNAME=	clutter-gst
-PORTVERSION=	3.0.14
+PORTVERSION=	3.0.26
 CATEGORIES=	multimedia
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clutter GStreamer integration
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libclutter-1.0.so:graphics/clutter
+LIB_DEPENDS=	libclutter-1.0.so:graphics/clutter \
+		libcogl-path.so:graphics/cogl \
+		libfribidi.so:converters/fribidi \
+		libjson-glib-1.0.so:devel/json-glib
 
-USES=		gmake gnome libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gnomeprefix introspection:build
+USES=		gettext-runtime gl gmake gnome libtool localbase pathfix \
+		pkgconfig tar:xz xorg
+USE_GNOME=	atk cairo gdkpixbuf2 gnomeprefix introspection:build pango
 GNU_CONFIGURE=	yes
-USE_GL=		gl
+USE_GL=		gl egl
 USE_GSTREAMER1=	yes
-USE_XORG=	xp x11
+USE_XORG=	xcomposite xdamage xext xfixes xi xrandr x11
 USE_LDCONFIG=	yes
 MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
+CONFIGURE_ARGS=	--disable-udev
 
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+CPPFLAGS+=	${PTHREAD_CFLAGS}
+LDFLAGS+=	${PTHREAD_LIBS}
 INSTALL_TARGET=	install-strip
 
+NO_TEST=	yes
+
 # The clutter-gst gstreamer plugin is not parrallel installable with
-# the 2.0 version. Don't install it (see @comment in plist) until
-# all users can be ported (upstream task) to the 3.0 version.
+# the 2.0 version. But we install it anyway since all GNOME users
+# are switched.
 
 .include <bsd.port.mk>

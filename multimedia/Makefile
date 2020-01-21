@@ -73,6 +73,7 @@ SUBDIR += libtheora
 SUBDIR += librtmp
 SUBDIR += libv4l
 SUBDIR += libva
+SUBDIR += libva-glx
 SUBDIR += libvdpau
 SUBDIR += libvpx
 SUBDIR += libx264

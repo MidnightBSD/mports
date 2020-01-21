@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	linuxfdisk
 PORTVERSION=	2.11z
 CATEGORIES=	sysutils
@@ -10,6 +8,10 @@ DISTNAME=	util-linux-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fdisk, a partition tables manipulator, from util-linux
+
+LICENSE=	gpl2
+
+FAKE_OPTS=	trueprefix
 
 WRKSRC=		${WRKDIR}/util-linux-${PORTVERSION}/fdisk
 USES=		tar:bzip2

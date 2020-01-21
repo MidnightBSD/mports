@@ -18,6 +18,8 @@ RUN_DEPENDS=	p5-Moose>=0.35:devel/p5-Moose \
 USES=		perl5
 USE_PERL5=	configure
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e '/auto_install/d' -e '/Test::More/d' \
 		${WRKSRC}/Makefile.PL

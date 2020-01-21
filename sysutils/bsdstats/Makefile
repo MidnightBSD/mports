@@ -1,7 +1,5 @@
-# $MidnightBSD$ 
-
 PORTNAME=	bsdstats
-PORTVERSION=	6.0
+PORTVERSION=	6.1
 CATEGORIES=	sysutils
 DISTFILES=
 

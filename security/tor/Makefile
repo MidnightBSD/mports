@@ -1,5 +1,5 @@
 PORTNAME=	tor
-DISTVERSION=	0.4.1.5
+DISTVERSION=	0.4.2.5
 CATEGORIES=	security net ipv6
 MASTER_SITES=	TOR
 
@@ -39,6 +39,8 @@ GROUPS=		_tor
 USERS=		_tor
 
 CONFLICTS=	tor-devel-[0-9]*
+
+NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 
@@ -107,10 +109,4 @@ post-configure:
 	@${REINPLACE_CMD} -e '\|^nodist_man1_MANS =|s|$$|$$(install_mans:=.1)|' \
 		${WRKSRC}/Makefile
 
-.if ! ${PORT_OPTIONS:MTOR2WEB}
-check regression-test test: build
-	@cd ${BUILD_WRKSRC} ; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
-	${MAKE_ARGS} check
-
-.endif
 .include <bsd.port.mk>

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	localize
 PORTVERSION=	0.0.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Localize/files/
 DISTNAME=	Localize-20040424

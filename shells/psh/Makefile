@@ -17,6 +17,8 @@ USE_PERL5=	configure
 
 SUB_FILES=	pkg-install pkg-deinstall
 
+NO_TEST=	yes
+
 post-install:
 	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 

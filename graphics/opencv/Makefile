@@ -7,7 +7,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Computer Vision library
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NOT_FOR_ARCHS=	sparc64
 NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
@@ -15,6 +14,7 @@ NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
 .if defined(OCV_CORE)
 BUILD_DEPENDS=	protoc:devel/protobuf
 .else
+DISTFILES+=	opencv-3.4.1_GH0.tar.gz
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf \
 		libtesseract.so:graphics/tesseract
 .endif
@@ -266,6 +266,7 @@ OPENGL_LIB_DEPENDS=	${PORT_OPTIONS:MGTK2:C,.+,libgtkglext-x11-1.0.so:x11-toolkit
 
 # GUI
 
+GTK2_USES=		gnome
 GTK2_USE=		GNOME=cairo,gdkpixbuf2,gtk20
 GTK2_CMAKE_BOOL=	WITH_GTK
 GTK2_LIB_DEPENDS=	libfreetype.so:print/freetype2 \
@@ -314,8 +315,11 @@ CMAKE_ARGS+=	-DBUILD_JAVA:BOOL=OFF
 .endif
 
 post-extract-EXTRA_MODULES-on:
+	${MKDIR} ${WRKSRC}/doc/tutorials
 	@${MV} ${WRKSRC_extra_mod}/doc/tutorials/* ${WRKSRC}/doc/tutorials/
+	${MKDIR} ${WRKSRC}/modules/
 	@${MV} ${WRKSRC_extra_mod}/modules/* ${WRKSRC}/modules/
+	${MKDIR} ${WRKSRC}/samples/
 	@${CP} -RpP ${WRKSRC_extra_mod}/samples/* ${WRKSRC}/samples/
 	@${MKDIR} ${CONFIGURE_WRKSRC}/3rdparty/tinydnn/tiny-dnn-1.0.0a3/
 	@${MV} ${WRKSRC_extra_mod_3rdparty_tiny_dnn}/* ${CONFIGURE_WRKSRC}/3rdparty/tinydnn/tiny-dnn-1.0.0a3/

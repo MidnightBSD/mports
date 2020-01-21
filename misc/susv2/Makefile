@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/susv2/Makefile,v 1.4 2006/01/14 10:07:33 sem Exp $
-
 PORTNAME=	susv2
-PORTVERSION=	1.0
+PORTVERSION=	1.0.20010716
 CATEGORIES=	misc
 MASTER_SITES=	#
 DISTNAME=	susv2

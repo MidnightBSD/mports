@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libdispatch
 PORTVERSION=	210
 PORTREVISION=	3
@@ -11,7 +9,8 @@ COMMENT=	Grand Central Dispatch API support library
 
 LICENSE=	apache2
 
-USES=		tar:bzip2
+CONFIGURE_ARGS=	--disable-static
+USES=		libtool tar:bzip2
 USE_AUTOTOOLS=	aclocal autoconf
 ACLOCAL_ARGS=	-Im4
 GNU_CONFIGURE=	yes

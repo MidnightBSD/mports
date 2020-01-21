@@ -20,6 +20,7 @@ SUBDIR += gnome-screenshot
 SUBDIR += gnome-search-tool
 SUBDIR += gnome-system-log
 SUBDIR += gnome-tweaks
+SUBDIR += gnome-todo
 SUBDIR += gnome-utils
 SUBDIR += gnome-weather
 SUBDIR += gnote

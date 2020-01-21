@@ -40,6 +40,7 @@ CONFIGURE_ARGS=	--with-ldap-conf-file=${PREFIX}/etc/nss_ldap.conf \
 		--with-ldap-secret-file=${PREFIX}/etc/nss_ldap.secret \
 		--enable-rfc2307bis \
 		--enable-paged-results
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 SUB_FILES=	pkg-message
 

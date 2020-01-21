@@ -9,10 +9,12 @@ COMMENT=	X.Org driver enabling use through an RDP session with xrdp
 
 LICENSE=	mit
 
+WRKSRC=		${WRKDIR}/xrdp-0.9.11
+
 RUN_DEPENDS=	xauth:x11/xauth
 BUILD_DEPENDS=	nasm:devel/nasm
 
-USES=		autoreconf libtool:build pkgconfig
+USES=		autoreconf libtool:build pkgconfig xorg
 USE_XORG=	xorgproto xorg-server
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
@@ -25,6 +27,8 @@ INSTALL_TARGET=	install-strip
 
 CFLAGS+=	-I${LOCALBASE}/include
 LIBS=		-I${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd10.4 \
+			--host=${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV=	XRDP_CFLAGS=-I${WRKSRC_xrdp}/common
 
 OPTIONS_DEFINE=	DEBUG

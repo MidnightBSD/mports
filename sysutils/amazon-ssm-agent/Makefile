@@ -33,6 +33,8 @@ PLIST_FILES=	etc/amazon/ssm/amazon-ssm-agent.json.template	\
 
 USE_RC_SUBR=	amazon-ssm-agent
 
+NO_TEST=	yes
+
 post-patch:
 	${LN} -s ${WRKSRC}/vendor/src/* ${WRKSRC}/vendor/
 

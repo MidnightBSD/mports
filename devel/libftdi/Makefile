@@ -1,6 +1,6 @@
 PORTNAME=	libftdi
 PORTVERSION=	0.20
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.intra2net.com/en/developer/libftdi/download/
 
@@ -22,19 +22,15 @@ OPTIONS_SUB=	yes
 
 BOOST_DESC=		C++ bindings (requires Boost)
 BOOST_LIB_DEPENDS=	libboost_system.so:devel/boost-libs
-BOOST_CMAKE_ON=		-DFTDIPP:BOOL=ON
-BOOST_CMAKE_OFF=	-DFTDIPP:BOOL=OFF
+BOOST_CMAKE_BOOL=	FTDIPP
 BOOST_CXXFLAGS=		-I${LOCALBASE}/include
 
 PYTHON_DESC=		Python bindings
-PYTHON_BUILD_DEPENDS=	swig3.0:${PORTSDIR}/devel/swig30
-PYTHON_CMAKE_ON=	-DPYTHON_BINDINGS:BOOL=ON
-PYTHON_CMAKE_OFF=	-DPYTHON_BINDINGS:BOOL=OFF
-PYTHON_USES=		python:2.7
-
-NO_TEST=	yes
-
-.include <bsd.mport.options.mk>
+PYTHON_BINARY_ALIAS=	swig=swig3.0
+PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30
+PYTHON_CMAKE_BOOL=	PYTHON_BINDINGS
+PYTHON_USES=		python
+PYTHON_USE=		PYTHON=py3kplist
 
 post-patch:
 	@${REINPLACE_CMD} \
@@ -45,11 +41,9 @@ post-patch:
 	@${REINPLACE_CMD} 's|SITEPACKAGE.*ABSOLUTE|SITEPACKAGE ${PYTHON_SITELIBDIR} ABSOLUTE|' \
 		${WRKSRC}/bindings/CMakeLists.txt
 
-post-install:
-.if ${PORT_OPTIONS:MPYTHON}
-	python2.7 -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
-	python2.7 -O -m compileall -d ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages
-	python2.7 ${FAKE_DESTDIR}/usr/local/lib/python2.7/site-packages/_ftdi.so
-.endif
+post-install-PYTHON-on:
+	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_ftdi.so
 
 .include <bsd.port.mk>

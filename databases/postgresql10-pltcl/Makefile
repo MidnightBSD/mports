@@ -1,6 +1,29 @@
-# Created by: Palle Girgensohn <girgen@partitur.se>
-# $FreeBSD: head/databases/postgresql10-pltcl/Makefile 448139 2017-08-17 16:19:35Z mat $
+PORTNAME=	postgresql
+# Keep the ?=, it is used by the other pltcl ports.
+PORTREVISION?=	0
+CATEGORIES=	databases tcl
+PKGNAMESUFFIX?=	10${COMPONENT}
 
-WANT_PGSQL_VER=	10
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Module for using Tcl to write SQL functions
 
-.include "${.CURDIR}/../postgresql96-pltcl/Makefile"
+LICENSE=	pgsql
+
+MASTERDIR=	${.CURDIR}/../../databases/postgresql10-server
+
+USES+=		tcl pgsql:10
+WANT_PGSQL=	server
+
+CONFIGURE_ARGS=	--with-tcl --without-tk \
+		--with-tclconfig="${TCL_LIBDIR}" \
+		--with-includes="${TCL_INCLUDEDIR}"
+
+CONFIGURE_ENV+=	TCLSH="${TCLSH}"
+MAKE_ENV+=	TCL_INCDIR="${TCL_INCLUDEDIR}"
+
+BUILD_DIRS=	src/backend src/pl/tcl
+INSTALL_DIRS=	src/pl/tcl
+SLAVE_ONLY=	yes
+COMPONENT=	-pltcl
+
+.include "${MASTERDIR}/Makefile"

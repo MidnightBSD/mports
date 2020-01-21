@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=		openldap
 DISTVERSION=		2.4.45
 PORTREVISION=		${OPENLDAP_PORTREVISION}
@@ -20,6 +18,7 @@ PKGNAMESUFFIX=		-client
 .endif
 .else
 PKGNAMESUFFIX?=		-server
+PLIST_SUB=		ETCDIR=etc/openldap
 .endif
 
 MAINTAINER=		ports@MidnightBSD.org
@@ -131,6 +130,8 @@ OUTLOOK_DESC=		Force caseIgnoreOrderingMatch on name attribute (experimental)
 LASTBIND_DESC=		With lastbind overlay
 KQUEUE_DESC=		With kqueue support (experimental)
 .endif
+
+NO_TEST=	yes
 
 .if defined(CLIENT_ONLY)
 OPENLDAP_PORTREVISION=	${PORTREVISION_CLIENT}
@@ -564,10 +565,6 @@ pre-configure:
 .endif
 
 .if !defined(CLIENT_ONLY)
-test: build
-	@(cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} test)
-
 post-build:
 	@${DO_NADA}
 .if ${PORT_OPTIONS:MSMBPWD}

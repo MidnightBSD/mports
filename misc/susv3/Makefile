@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/misc/susv3/Makefile,v 1.5 2006/01/14 10:07:33 sem Exp $
-
 PORTNAME=	susv3
-PORTVERSION=	1.2
+PORTVERSION=	1.2.20050121
 CATEGORIES=	misc
 MASTER_SITES=	#
 DISTNAME=	susv3
@@ -17,6 +14,9 @@ RESTRICTED=	Redistribution of the documents is not permitted
 USES=		tar:bzip2
 NO_BUILD=	yes
 PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SLAVE=	DOCS
 
 .include <bsd.port.pre.mk>
 

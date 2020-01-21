@@ -82,6 +82,7 @@ CONFIGURE_ARGS+=--enable-fpm \
 
 .if defined(PKGNAMEPREFIX)
 USES+=		apache:2.2+
+.include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${PORT_OPTIONS:MAP2FILTER}
 CONFIGURE_ARGS+=--with-apxs2filter=${APXS}
 .else

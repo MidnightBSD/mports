@@ -15,6 +15,9 @@ readline_ARGS=	port
 .endif
 
 .if ${readline_ARGS} == port
+# magus freaks out because system readline is 8
+BUILD_DEPENDS+=		/usr/local/lib/libreadline.so.8:devel/readline
+RUN_DEPENDS+=		/usr/local/lib/libreadline.so.8:devel/readline
 LIB_DEPENDS+=		libreadline.so.8:devel/readline
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib

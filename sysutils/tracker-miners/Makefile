@@ -30,6 +30,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libtracker-miner-2.0.so:sysutils/tracker
 #		libhal.so:sysutils/hal \
 
+NO_TEST=	yes
 PORTSCOUT=	limitw:1,even
 
 USES=		gettext gnome jpeg localbase:ldflags meson \
