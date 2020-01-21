@@ -1,6 +1,3 @@
-# Whom:			Lucas Holt
-# $MidnightBSD$
-
 PORTNAME=	javajj
 PORTVERSION=	1.1
 PORTREVISION=	1
@@ -13,7 +10,7 @@ COMMENT=	Just Journal for Java blogging app
 
 LICENSE=	unknown
 
-BUILD_DEPENDS+=	mvn:${PORTSDIR}/java/maven3
+BUILD_DEPENDS+=	mvn:java/maven3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	laffer1
