@@ -4,7 +4,7 @@
  	endif()
  endif()
  
-+if(${CMAKE_SYSTEM_NAME} MATCHES "DragonFly")
++if(${CMAKE_SYSTEM_NAME} MATCHES "MidnightBSD")
 +	set(BSD TRUE)
 +	set(FREEBSD TRUE)
 +endif()
