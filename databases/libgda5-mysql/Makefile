@@ -14,4 +14,6 @@ PLIST=		${.CURDIR}/pkg-plist
 
 LIBGDA5_SLAVE=	mysql
 
+USE_GCC=	7
+
 .include "${MASTERDIR}/Makefile"

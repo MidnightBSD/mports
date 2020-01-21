@@ -21,6 +21,8 @@ CONFLICTS_INSTALL?=	p5-DBD-mysql[45][0-9]-[0-9]*
 USES=		mysql perl5
 USE_PERL5=	configure
 
+USE_GCC=	7
+
 NO_TEST=	yes
 
 OPTIONS_DEFINE=	SSL
