@@ -7,7 +7,7 @@ PKGNAMESUFFIX=	-lite
 
 COMMENT=	GNOME 3 multi-format document viewer without the GNOME dependancies
 
-OPTIONS_EXCLUDE=	NAUTILUS
+OPTIONS_EXCLUDE=	NAUTILUS DBUS
 
 MASTERDIR=      ${.CURDIR}/../../graphics/evince
 SLAVEPORT=      lite
