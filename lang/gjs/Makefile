@@ -1,7 +1,7 @@
 # Created by: Pawel Worach <pawel.worach@gmail.com>
 
 PORTNAME=	gjs
-PORTVERSION=	1.43.3
+PORTVERSION=	1.52.4
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,21 +12,17 @@ COMMENT=	GNOME Javascript binding
 LICENSE=	mpl gpl2 lgpl2.1 mit
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
-		libmozjs-24.so:lang/spidermonkey24
+LIB_DEPENDS=	libmozjs-52.so:lang/spidermonkey52 \
+		libffi.so:devel/libffi
 
-USES=		gettext gmake libtool pathfix pkgconfig \
-		python:2.7,build tar:xz
-USE_GNOME=	cairo glib20 gnomeprefix introspection:build \
-		intlhack
+USES=		compiler:c++11-lib gettext gmake gnome libtool \
+		localbase pathfix pkgconfig python:build readline tar:xz xorg
+USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection
+USE_XORG=	x11 xext
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
+CONFIGURE_ARGS+=--disable-profiler
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-
-.include <bsd.mport.options.mk>
-
-USES+=	compiler:c++11-lib
 
 .include <bsd.port.mk>
