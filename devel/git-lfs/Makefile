@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/git-lfs/Makefile 452431 2017-10-19 17:20:29Z tcberner $
-
 PORTNAME=	git-lfs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.3.4
+DISTVERSION=	2.7.2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,9 +10,10 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	bash:shells/bash
-RUN_DEPENDS=	bash:shells/bash
+RUN_DEPENDS=	bash:shells/bash \
+		git:devel/git
 
-USES=		go
+USES=		go:modules
 USE_GITHUB=	yes
 PLIST_FILES=	bin/git-lfs
 
