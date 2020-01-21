@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/clutter/Makefile,v 1.17 2011/09/23 22:23:05 amdmi3 Exp $
+# Created by: Martin Wilke <miwi@FreeBSD.org>
 
 PORTNAME=	clutter
-PORTVERSION=	1.22.4
+PORTVERSION=	1.26.2
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -17,19 +16,21 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 		libfreetype.so:print/freetype2 \
 		libcogl.so:graphics/cogl
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gtk30 introspection:build
-USE_GL=		gl egl
+PORTSCOUT=	limit:1,even
+
+USES=		gettext gl gmake gnome libtool localbase pathfix pkgconfig \
+		tar:xz xorg
+USE_GNOME=	atk cairo gdkpixbuf2 pango introspection:build
+USE_GL=		egl
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-x --enable-conformance=no \
+		--disable-evdev-input \
 		--enable-egl-backend=yes \
 		--enable-x11-backend=yes \
 		--enable-gdk-backend=no \
 		--enable-wayland-compositor=no
-CPPFLAGS+=	-I${LOCALBASE}/include -fno-omit-frame-pointer
-LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
