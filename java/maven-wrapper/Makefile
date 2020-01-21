@@ -1,8 +1,6 @@
-# $FreeBSD: ports/devel/maven-wrapper/Makefile,v 1.2 2011/10/15 19:24:30 pav Exp $
-# $MidnightBSD$
-
 PORTNAME=	maven-wrapper
 PORTVERSION=	1
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	# none
 DISTFILES=	# none
