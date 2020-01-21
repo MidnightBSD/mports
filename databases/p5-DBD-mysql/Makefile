@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	DBD-mysql
 PORTVERSION=	4.048
 CATEGORIES=	databases perl5
@@ -17,12 +15,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${RUN_DEPENDS} \
 		p5-Devel-CheckLib>=1.09:devel/p5-Devel-CheckLib
 RUN_DEPENDS=	p5-DBI>=1.08:databases/p5-DBI
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep
 
 CONFLICTS_INSTALL?=	p5-DBD-mysql[45][0-9]-[0-9]*
 
 USES=		mysql perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	SSL
 SSL_RUN_DEPENDS=	p5-Crypt-SSLeay>=0:security/p5-Crypt-SSLeay
