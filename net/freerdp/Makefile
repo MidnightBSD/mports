@@ -141,9 +141,9 @@ X11_USE=		xorg=x11,xcursor,xext,xorgproto,xfixes,xi,xinerama,xkbfile,xrandr,xren
 post-patch:
 	@${REINPLACE_CMD} -e '/CMAKE_INSTALL_RPATH /d' \
 		${WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's/Linux/Linux|FreeBSD/' \
+	@${REINPLACE_CMD} -e 's/Linux/Linux|MidnightBSD|FreeBSD/' \
 		${WRKSRC}/winpr/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's/NetBSD__)/NetBSD__) || defined(__FreeBSD__)/' \
+	@${REINPLACE_CMD} -e 's/NetBSD__)/NetBSD__) || defined(__MidnightBSD__)/' \
 		${WRKSRC}/winpr/libwinpr/utils/trio/triodef.h
 	@${RM} ${WRKSRC}/cmake/FindOpenSSL.cmake
 	@${REINPLACE_CMD} -e 's|$${CMAKE_INSTALL_LIBDIR}/cmake|$${CMAKE_INSTALL_PREFIX}/share/cmake/Modules|' \
