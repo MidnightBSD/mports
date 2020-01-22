@@ -99,7 +99,7 @@ pre-configure:
 	fi
 
 pre-build:
-	@-${RM} -r ${WRKSRC}/docs/gtk.info*
+	@-${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/modules
