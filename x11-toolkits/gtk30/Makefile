@@ -1,8 +1,10 @@
-# $MidnightBSD$
+# Created by: Vanilla I. Shu <vanilla@MinJe.com.TW>
+# $FreeBSD: head/x11-toolkits/gtk30/Makefile 517000 2019-11-07 18:36:55Z zeising $
+# Please keep gtk30 in sync with the following x11-themes ports:
+# adwaita-icon-theme, gnome-themes-standard and mate-themes
 
 PORTNAME=	gtk
-PORTVERSION=	3.22.30
-PORTREVISION=	2
+PORTVERSION=	3.24.10
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	3
@@ -18,6 +20,7 @@ PORTSCOUT=	limit:1,even
 
 BUILD_DEPENDS+=	at-spi2-atk>=0:accessibility/at-spi2-atk
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
+		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz
@@ -30,19 +33,17 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango
-#gtk-update-icon-cache
 USES=		compiler:c11 gettext gmake gnome libtool localbase \
-		pathfix perl5 pkgconfig tar:xz
+		pathfix perl5 pkgconfig tar:xz xorg
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 CONFIGURE_ARGS=	--enable-x11-backend \
-		--disable-wayland-backend \
 		--enable-introspection
 CPPFLAGS+=	-fno-omit-frame-pointer
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.2200.30
+LIBVERSION=	0.2404.6
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
@@ -51,8 +52,8 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.EmojiChooser.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
 
-OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY
-OPTIONS_DEFAULT=CUPS COLORD BROADWAY
+OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND
+OPTIONS_DEFAULT=CUPS COLORD BROADWAY WAYLAND
 OPTIONS_SUB=	yes
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
@@ -72,10 +73,18 @@ CLOUDPRINT_LIB_DEPENDS=	librest-0.7.so:devel/librest \
 			libsoup-2.4.so:devel/libsoup \
 			libjson-glib-1.0.so:devel/json-glib
 
-# don't explicitly disable debug, this causes segfaults. ports r437293
+# don't explicitly disable debug, this causes segfaults. See ports r437293
 DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
-.include <bsd.mport.options.mk>
+WAYLAND_DESC=		GDK Wayland backend
+WAYLAND_CONFIGURE_ENABLE=	wayland-backend
+WAYLAND_BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols \
+			v4l_compat>=0:multimedia/v4l_compat
+WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
+			libxkbcommon.so:x11/libxkbcommon
+WAYLAND_RUN_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols
+WAYLAND_USES=		gl
+WAYLAND_USE=		GL=egl
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
@@ -89,13 +98,13 @@ pre-configure:
 	fi
 
 pre-build:
-	@${RM} -rf ${WRKSRC}/docs/gtk.info*
+	@-${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/modules
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
-	@${MKDIR} ${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/modules
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/engines
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/${GTK3_VERSION}/loaders
 	${INSTALL_MAN} ${WRKSRC}/docs/reference/gtk/gtk-query-immodules-3.0.1 \
-		${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/man/man1
 
 .include <bsd.port.mk>
