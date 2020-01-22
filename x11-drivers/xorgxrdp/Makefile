@@ -14,7 +14,7 @@ WRKSRC=		${WRKDIR}/xrdp-0.9.11
 RUN_DEPENDS=	xauth:x11/xauth
 BUILD_DEPENDS=	nasm:devel/nasm
 
-USES=		autoreconf libtool:build pkgconfig xorg
+USES=		autoreconf libtool:build pkgconfig ssl xorg
 USE_XORG=	xorgproto xorg-server
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
