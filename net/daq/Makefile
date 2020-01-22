@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	daq
 PORTVERSION=	2.2.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://snort.org/downloads/snortplus/ \
 		ZI
@@ -19,13 +17,12 @@ BUILD_DEPENDS=	flex:textproc/flex
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		bison gmake libtool
+USES=		bison gmake libtool localbase
 USE_LDCONFIG=	yes
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 MAKE_JOBS_UNSAFE=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+CONFLICTS=	libdaq-3*
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/lib/*.so.* ${PREFIX}/lib/daq/*.so
