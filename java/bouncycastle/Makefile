@@ -22,6 +22,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf \
 
 CPE_PRODUCT=	legion-of-the-bouncy-castle-java-crytography-api
 CPE_VENDOR=	${PORTNAME}
+USES=		cpe
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 JDKMVERSION=	1.6 # ${JAVA_PORT_VERSION:C/^([0-9]\.[0-9])(.*)$/\1/}
@@ -39,6 +40,8 @@ PORTDOCS=	*
 post-patch:
 	@${REINPLACE_CMD} s/BERConstructedOctetString/DEROctetString/ \
 		${WRKSRC}/src/org/bouncycastle/cms/CMS*DataGenerator.java
+	@${REINPLACE_CMD} 's/<javac/<javac encoding="UTF-8"/;s/<javadoc/<javadoc encoding="UTF-8"/' \
+		${WRKSRC}/bc-build.xml ${WRKSRC}/common.xml
 
 do-install:
 	@${MKDIR} ${DATADIR}

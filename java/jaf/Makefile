@@ -1,12 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/java/jaf/Makefile,v 1.19 2012/01/17 01:42:10 jgh Exp $
-#
-
 PORTNAME=	jaf
 PORTVERSION=	1.1.1
 PORTREVISION=	1
 CATEGORIES=	java devel
-MASTER_SITES=	http://central.maven.org/maven2/javax/activation/activation/1.1.1/
+MASTER_SITES=	https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/
 DISTFILES=	activation-1.1.1.jar
 EXTRACT_ONLY=
 

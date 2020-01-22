@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	maven3
-DISTVERSION=	3.0.4
+DISTVERSION=	3.0.5
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	maven/binaries
@@ -12,8 +10,11 @@ COMMENT=	Java project management tool, 3.x branch
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	mvn:${PORTSDIR}/java/maven-wrapper
+RUN_DEPENDS=	mvn:java/maven-wrapper
 
+USES=		cpe
+CPE_PRODUCT=	maven
+CPE_VENDOR=	apache
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 NO_BUILD=	yes
@@ -21,7 +22,7 @@ DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 WRKSRC=		${WRKDIR}/apache-maven-${DISTVERSION}
 SUB_FILES=	mvn.sh
 SUB_LIST=	CLASSWORLDS_JAR=plexus-classworlds-2.4.jar
-INSTANCE_FILE=	030004-${PORTNAME}-${PORTVERSION}
+INSTANCE_FILE=	030005-${PORTNAME}-${PORTVERSION}
 INSTANCES_DIR=	etc/maven-wrapper/instances.d/
 PLIST_FILES=	${INSTANCES_DIR}/${INSTANCE_FILE}
 

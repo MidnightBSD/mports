@@ -748,6 +748,7 @@ SUBDIR += py-configargparse
 SUBDIR += py-configobj
 SUBDIR += py-configparser
 SUBDIR += py-constantly
+SUBDIR += py-contextlib2
 SUBDIR += py-coverage
 SUBDIR += py-darcsver
 SUBDIR += py-dateutil

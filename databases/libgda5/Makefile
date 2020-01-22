@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libgda
 PORTVERSION?=	5.2.5
 PORTREVISION?=	0
@@ -20,11 +18,11 @@ SHEBANG_FILES=	libgda-report/RML/*/*.py
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	itstool:textproc/itstool
-LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
+LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 		libsoup-2.4.so:devel/libsoup \
 		libjson-glib-1.0.so:devel/json-glib
 
-USES+=		gettext gmake libtool localbase pathfix pkgconfig
+USES+=		gettext gmake gnome libtool localbase pathfix pkgconfig
 USE_GNOME=	glib20 libxslt intlhack introspection:build referencehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

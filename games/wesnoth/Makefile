@@ -25,6 +25,7 @@ PORTSCOUT=	limitw:1,even
 
 USES=		cmake compiler:c++11-lang cpe pkgconfig \
 		python:2.7,run readline:port shebangfix ssl tar:bzip2
+USE_GCC=	7
 USE_SDL=	image2 mixer2 ttf2
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo pango

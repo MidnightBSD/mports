@@ -32,6 +32,8 @@ BUNDLED_SSL_CONFIGURE_OFF+=	--shared-openssl
 USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 		localbase shebangfix
 
+NO_TEST=	yes
+
 HAS_CONFIGURE=	yes
 
 CONFLICTS_INSTALL=	node[458]-[0-9]* node-[0-9]*

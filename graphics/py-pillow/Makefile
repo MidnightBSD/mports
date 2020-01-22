@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pillow
 PORTVERSION=	5.2.0
 CATEGORIES=	graphics python
@@ -13,8 +11,7 @@ LICENSE_NAME=	Standard PIL License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-runner>0:devel/py-pytest-runner@${PY_FLAVOR}
+NO_TEST=	yes
 
 OPTIONS_DEFINE=		FREETYPE JPEG JPEG2000 LCMS PNG TIFF TKINTER WEBP
 OPTIONS_DEFAULT=	FREETYPE JPEG JPEG2000 PNG TKINTER WEBP
@@ -71,8 +68,5 @@ PYDISTUTILS_BUILDARGS+=		saveopts
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PIL/*.so
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>

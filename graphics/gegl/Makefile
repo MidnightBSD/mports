@@ -31,6 +31,8 @@ MESON_ARGS=	-Ddocs=false \
 		-Dvapigen=disabled \
 		-Dlua=disabled
 
+NO_TEST=	yes
+
 GEGL_MINOR=	417
 GEGL_VER=	0.4
 PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}" GEGL_VER=${GEGL_VER}

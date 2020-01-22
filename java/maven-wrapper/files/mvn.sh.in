@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
-# $FreeBSD: ports/devel/maven-wrapper/files/mvn.sh.in,v 1.1 2011/09/21 06:57:23 hq Exp $
+# $FreeBSD: head/devel/maven-wrapper/files/mvn.sh.in 340872 2014-01-24 00:14:07Z mat $
 
 set -e
 
@@ -27,4 +26,4 @@ if [ -z "${M2_HOME}" ] ; then
 fi
 
 export M2_HOME
-exec "${M2_HOME}/bin/mvn" $@
+exec "${M2_HOME}/bin/mvn" "$@"
