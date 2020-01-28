@@ -915,6 +915,7 @@ SUBDIR += upnp
 SUBDIR += uthash
 SUBDIR += valgrind
 SUBDIR += viewvc
+SUBDIR += vulkan-headers
 SUBDIR += websvn
 SUBDIR += wizardkit
 SUBDIR += woff2

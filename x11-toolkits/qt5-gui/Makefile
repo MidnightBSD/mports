@@ -9,7 +9,9 @@ COMMENT=	Qt graphical user interface module
 
 LICENSE=	gpl3
 
-BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core
+BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core \
+		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
+		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libevdev.so:devel/libevdev \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -23,10 +25,11 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxcb-render-util.so:x11/xcb-util-renderutil \
 		libxcb-icccm.so:x11/xcb-util-wm \
 		libxkbcommon.so:x11/libxkbcommon
-RUN_DEPENDS=	xdg-open:devel/xdg-utils
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
 
-USES=		compiler:c++17-lang jpeg localbase qmake:no_env qt-dist:5,base \
-		xorg
+USES=		compiler:c++17-lang gl gnome jpeg localbase qmake:no_env \
+		qt-dist:5,base xorg
 USE_GL=		gl egl
 USE_GNOME=	glib20
 USE_QT=		core dbus network qmake_build buildtools_build
