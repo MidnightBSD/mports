@@ -1,18 +1,17 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11/libxkbcommon/Makefile 384234 2015-04-18 15:34:36Z kwm $
-
 PORTNAME=	libxkbcommon
-PORTVERSION=	0.8.0
+PORTVERSION=	0.8.4
 CATEGORIES=	x11
-MASTER_SITES=	http://xkbcommon.org/download/
+MASTER_SITES=	https://xkbcommon.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Keymap handling library for toolkits and window systems
 
 LICENSE=	mit
 
+RUN_DEPENDS=	xkeyboard-config>0:x11/xkeyboard-config
+
 XORG_CAT=	lib
-USES=		gmake bison tar:xz
+USES=		gmake bison tar:xz xorg xorg-cat:lib
 
 USE_XORG=	xcb
 INSTALL_TARGET=	install-strip
