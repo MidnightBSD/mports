@@ -8,7 +8,7 @@ options or default behaviors differ.
 Zipinfo lists technical information about files in a ZIP archive, most
 commonly found on MS-DOS systems.  Such information includes file access
 permissions, encryption status, type of compression, version and operating
-system or file system of compressing program, and the like.  
+system or file system of compressing program, and the like.
 
 Funzip acts as a filter; that is, it assumes that a ZIP archive is
 being piped into standard input, and it extracts the first member from
@@ -18,4 +18,4 @@ from the specified file instead of from stdin.
 Unzipsfx may be used to create self-extracting ZIP archives from previously
 created ZIP archives.
 
-WWW: http://www.info-zip.org/UnZip.html
+WWW: https://www.info-zip.org/UnZip.html
