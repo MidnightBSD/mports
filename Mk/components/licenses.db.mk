@@ -2,7 +2,7 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
-		mit modula3 mpl npl nvidia openldap2.8 opera owl OFL10 OFL11 \
+		mit modula3 mpl ncsa npl nvidia openldap2.8 opera owl OFL10 OFL11 \
 		perl pgsql php python ruby sgi subversion x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
@@ -254,6 +254,9 @@ _LICENSE_GROUPS_modula3=
 
 _LICENSE_NAME_mpl=	Mozilla Public License
 _LICENSE_GROUPS_mpl=	FSF OSI
+
+_LICENSE_NAME_ncsa=     University of Illinois/NCSA Open Source License
+_LICENSE_GROUPS_ncsa=   COPYFREE FSF GPL OSI
 
 _LICENSE_NAME_nvidia= NVIDIA License
 _LICENSE_GROUPS_nvidia=
