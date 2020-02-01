@@ -1,8 +1,7 @@
 # Created by: Martin Wilke <miwi@FreeBSD.org>
-# $MidnightBSD$
 
 PORTNAME=	clutter-gtk
-PORTVERSION=	1.6.2
+PORTVERSION=	1.8.4
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -11,16 +10,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK+ Integration library for Clutter
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libclutter-1.0.so:${PORTSDIR}/graphics/clutter
+LIB_DEPENDS=	libcogl.so:graphics/cogl \
+		libclutter-1.0.so:graphics/clutter \
+		libjson-glib-1.0.so:devel/json-glib
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-GNU_CONFIGURE=	yes
-USE_GNOME=	gnomeprefix gtk30 introspection
-USE_XORG=	xp x11
+USES=		gettext gl gnome localbase meson pkgconfig tar:xz xorg
+USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build
+USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
+USE_GL=		egl
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

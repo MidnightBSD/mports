@@ -19,7 +19,7 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libmunge.so:security/munge \
 		liblz4.so:archivers/liblz4
 
-USES=		compiler:c11 gmake gnome libtool lua pkgconfig python:build \
+USES=		compiler:c11 gmake gnome libtool lua perl5 pkgconfig python:build \
 		readline:port shebangfix tar:bz2
 USE_LDCONFIG=	yes
 USE_PERL5=	configure

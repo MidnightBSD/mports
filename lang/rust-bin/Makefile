@@ -1,6 +1,6 @@
 PORTNAME=	rust-bin
 PORTVERSION=	1.30.0
-CATEGORIES=	java
+CATEGORIES=	lang
 MASTER_SITES=	http://pkg.freebsd.org/${FBSD_PATH}/latest/All/
 DISTFILES=      rust-1.30.0.txz
 

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
 .if defined(BIND_TOOLS_SLAVE)
@@ -34,7 +32,7 @@ LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
 USES=	cpe libedit
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.12.4-P1
+ISCVERSION=	9.12.4-P2
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}

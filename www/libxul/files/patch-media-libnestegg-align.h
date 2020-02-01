@@ -1,6 +1,15 @@
---- media/libnestegg/src/align.h.orig	2019-10-02 10:57:13.955624000 -0400
-+++ media/libnestegg/src/align.h	2019-10-02 11:01:33.187412000 -0400
-@@ -39,7 +39,9 @@
+--- media/libnestegg/src/align.h.orig	2016-05-12 13:09:57.000000000 -0400
++++ media/libnestegg/src/align.h	2020-01-26 12:58:42.832617000 -0500
+@@ -12,6 +12,8 @@
+  *	http://www.opensource.org/licenses/bsd-license.php
+  */
+ 
++#include <stddef.h>
++
+ #ifndef _LIBP_ALIGN_H_
+ #define _LIBP_ALIGN_H_
+ 
+@@ -39,7 +41,9 @@
  	void (*q)(void);
  };
  

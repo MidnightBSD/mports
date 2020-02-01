@@ -1,5 +1,5 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.7.2
+PORTVERSION=	2.3.9.2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	https://www.dovecot.org/releases/2.3/
 PKGNAMESUFFIX=	2
@@ -10,7 +10,7 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
 
-USES=		cpe iconv libtool pkgconfig ssl
+USES=		cpe iconv libtool pkgconfig ssl:base
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
@@ -19,8 +19,8 @@ CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4 \
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-statedir=/var/db/dovecot \
 		--without-shadow \
-		--with-docs \
 		--with-ssl=openssl \
+		--with-docs
 
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
 INSTALL_TARGET=	install-strip
@@ -63,23 +63,14 @@ LIBSODIUM_CONFIGURE_WITH=	sodium
 
 LIBWRAP_CONFIGURE_WITH=	libwrap
 
+LUA_CONFIGURE_WITH=	lua
+LUA_USES=		lua
+
 LZ4_CONFIGURE_WITH=	lz4
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 
-GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
-GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_CONFIGURE_ON=	--with-gssapi ${GSSAPI_CONFIGURE_ARGS}
-GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-gssapi ${GSSAPI_CONFIGURE_ARGS}
-GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_CONFIGURE_ON=	--with-gssapi ${GSSAPI_CONFIGURE_ARGS}
-
-ICU_CONFIGURE_WITH=	icu
-ICU_LIB_DEPENDS=	libicui18n.so:${PORTSDIR}/devel/icu
-ICU_USES=		pkgconfig
-
-LUA_CONFIGURE_WITH=	lua
-LUA_USES=		lua
+VPOPMAIL_BUILD_DEPENDS=	vpopmail>=0:mail/vpopmail
+VPOPMAIL_CONFIGURE_WITH=vpopmail
 
 # Databases
 CDB_CONFIGURE_WITH=	cdb
@@ -88,27 +79,35 @@ CDB_LIB_DEPENDS=	libcdb.so:databases/tinycdb
 LDAP_USE=		OPENLDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
 
-LUCENE_CONFIGURE_WITH=	lucene
-LUCENE_LIB_DEPENDS=	libclucene-core.so:textproc/clucene
-
-MYSQL_USE=		MYSQL=yes
+MYSQL_USES=		mysql
 MYSQL_CONFIGURE_WITH=	mysql
 
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
 
-SOLR_CONFIGURE_WITH=	solr
-SOLR_BUILD_DEPENDS=	curl:ftp/curl
-SOLR_LIB_DEPENDS=	libexpat.so:textproc/expat2
-
-SQLITE_USE=		SQLITE=3
+SQLITE_USES=		sqlite
 SQLITE_CONFIGURE_WITH=	sqlite
+
+# FTS
+ICU_CONFIGURE_WITH=	icu
+ICU_LIB_DEPENDS=	libicui18n.so:devel/icu
+
+LUCENE_CONFIGURE_WITH=	lucene
+LUCENE_LIB_DEPENDS=	libclucene-core.so:textproc/clucene
+
+SOLR_CONFIGURE_WITH=	solr
+SOLR_LIB_DEPENDS=	libcurl.so:ftp/curl \
+			libexpat.so:textproc/expat2
 
 TEXTCAT_CONFIGURE_WITH=	textcat
 TEXTCAT_LIB_DEPENDS=	libtextcat.so:textproc/libtextcat
 
-VPOPMAIL_BUILD_DEPENDS=	${LOCALBASE}/vpopmail/bin/vchkpw:mail/vpopmail
-VPOPMAIL_CONFIGURE_WITH=vpopmail
+# GSSAPI
+GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
+GSSAPI_NONE_CONFIGURE_OFF=	--with-gssapi ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_BASE_USES=		gssapi
+GSSAPI_HEIMDAL_USES=		gssapi:heimdal
+GSSAPI_MIT_USES=		gssapi:mit
 
 DOCS=		AUTHORS COPYING INSTALL NEWS TODO README
 PORTDOCS=	*
@@ -121,13 +120,11 @@ LDAP_VARS=	_REQUIRE+=slapd
 MYSQL_VARS=	_REQUIRE+=mysql
 PGSQL_VARS=	_REQUIRE+=postgresql
 
-.include <bsd.mport.options.mk>
-
 SUB_LIST+=	REQUIRE="${_REQUIRE}"
 SUB_FILES+=	pkg-message
 
 CPPFLAGS+=	-I${LOCALBASE}/include -I${OPENSSLINC}
-LDFLAGS+=	-L${LOCALBASE}/lib -I${OPENSSLLIB}
+LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dovecot,${PREFIX}/etc/dovecot,g; \
@@ -135,24 +132,27 @@ post-patch:
 		${WRKSRC}/doc/example-config/*.conf ${WRKSRC}/doc/example-config/conf.d/*
 	@${REINPLACE_CMD} -e '/^LIBS =/s/$$/ @LTLIBICONV@/' \
 		${WRKSRC}/src/lib-mail/Makefile.in
-	# Install the sample config files into ETCDIR/example-config/
+# Install the sample config files into ETCDIR/example-config/
 	@${REINPLACE_CMD} -e '/^exampledir =/s|\$$(docdir)|${ETCDIR}|' \
 		${WRKSRC}/doc/example-config/Makefile.in \
 		${WRKSRC}/doc/example-config/conf.d/Makefile.in
+	@${REINPLACE_CMD} -e 's|/usr/bin|${LOCALBASE}/bin|' \
+		${WRKSRC}/src/plugins/fts/decode2text.sh
+
+post-configure:
+	${REINPLACE_CMD} 's|#define HAVE_CLEARENV 1||g' ${WRKSRC}/config.h
 
 post-patch-LUA-on:
 	@${REINPLACE_CMD} -e '/^libdovecot_lua_la_DEPENDENCIES =/ s|LUA_LIBS|true|' \
 		${WRKSRC}/src/lib-lua/Makefile.in
 
-post-configure:
-	${REINPLACE_CMD} 's|#define HAVE_CLEARENV 1||g' ${WRKSRC}/config.h
-	@${REINPLACE_CMD} -e '/^[^#]/s|/usr|${LOCALBASE}|' \
-		${WRKSRC}/src/plugins/fts/decode2text.sh
-
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${STAGEDIR}${DOCSDIR}/dovecot-openssl.cnf ${STAGEDIR}${EXAMPLESDIR}
 	${MV} ${STAGEDIR}${DOCSDIR}/mkcert.sh ${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR})
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DIR}${DOCSDIR})
 
 .include <bsd.port.mk>

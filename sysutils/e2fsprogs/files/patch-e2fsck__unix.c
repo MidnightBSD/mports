@@ -1,5 +1,5 @@
---- ./e2fsck/unix.c.orig	2013-12-29 05:18:02.000000000 +0100
-+++ ./e2fsck/unix.c	2014-01-06 23:26:48.000000000 +0100
+--- e2fsck/unix.c.orig	2019-07-15 01:03:14 UTC
++++ e2fsck/unix.c
 @@ -9,8 +9,6 @@
   * %End-Header%
   */
@@ -9,7 +9,7 @@
  #include "config.h"
  #include <stdio.h>
  #ifdef HAVE_STDLIB_H
-@@ -37,7 +35,7 @@
+@@ -37,7 +35,7 @@ extern int optind;
  #include <sys/ioctl.h>
  #endif
  #ifdef HAVE_MALLOC_H
@@ -18,7 +18,7 @@
  #endif
  #ifdef HAVE_SYS_TYPES_H
  #include <sys/types.h>
-@@ -584,6 +582,24 @@
+@@ -602,6 +600,24 @@ static int e2fsck_update_progress(e2fsck_t ctx, int pa
  	return 0;
  }
  
@@ -43,7 +43,7 @@
  #define PATH_SET "PATH=/sbin"
  
  /*
-@@ -616,6 +632,17 @@
+@@ -635,6 +651,17 @@ static void signal_progress_on(int sig EXT2FS_ATTR((un
  	ctx->progress = e2fsck_update_progress;
  }
  
@@ -61,12 +61,14 @@
  static void signal_progress_off(int sig EXT2FS_ATTR((unused)))
  {
  	e2fsck_t ctx = e2fsck_global_ctx;
-@@ -995,6 +1022,8 @@
+@@ -1111,6 +1138,10 @@ static errcode_t PRS(int argc, char *argv[], e2fsck_t 
  	sigaction(SIGUSR1, &sa, 0);
  	sa.sa_handler = signal_progress_off;
  	sigaction(SIGUSR2, &sa, 0);
 +	sa.sa_handler = signal_progress_now;
-+	sigaction(SIGINFO, &sa, 0);
++	if (!getenv("e2fsprogs_inhibit_SIGINFO")) {
++		sigaction(SIGINFO, &sa, 0);
++	}
  #endif
  
  	/* Update our PATH to include /sbin if we need to run badblocks  */

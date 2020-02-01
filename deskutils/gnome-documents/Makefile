@@ -8,7 +8,7 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Document manager application designed to work with GNOME 3
 
-LICENSE=	GPLv2
+LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
@@ -26,6 +26,8 @@ RUN_DEPENDS=	gnome-online-miners>=0:net/gnome-online-miners \
 		tracker-miners>=0:sysutils/tracker-miners
 
 PORTSCOUT=	limitw:1,even
+
+NO_TEST=	yes
 
 USES=		compiler:c++11-lib desktop-file-utils gettext gnome localbase \
 		meson pkgconfig python:3.6+,build tar:xz

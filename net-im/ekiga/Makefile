@@ -18,7 +18,7 @@ LIB_DEPENDS=	libopal.so:net/opal \
 RUN_DEPENDS=	gnome-icon-theme>=3.0.0:misc/gnome-icon-theme
 
 GNU_CONFIGURE=	yes
-CONFIGUGRE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USES=		compiler:c++11-lang cpe gettext gmake libtool localbase \
 		pathfix perl5 pkgconfig tar:xz
 USE_XORG=	xv

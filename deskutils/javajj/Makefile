@@ -1,9 +1,6 @@
-# Whom:			Lucas Holt
-# $MidnightBSD$
-
 PORTNAME=	javajj
 PORTVERSION=	1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils java
 #MASTER_SITES=	http://www.justjournal.com/software/
 #DISTFILES=	justjournal-${PORTVERSION}${EXTRACT_SUFX}
@@ -13,7 +10,7 @@ COMMENT=	Just Journal for Java blogging app
 
 LICENSE=	unknown
 
-BUILD_DEPENDS+=	mvn:${PORTSDIR}/java/maven3
+BUILD_DEPENDS+=	mvn:java/maven33
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	laffer1

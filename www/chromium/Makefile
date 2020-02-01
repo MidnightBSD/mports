@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	chromium
 PORTVERSION=	36.0.1985.143
 PORTREVISION=	1
@@ -15,45 +13,45 @@ LICENSE_COMB=	multi
 
 CFLAGS+=	-fno-stack-protector
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
-		bash:${PORTSDIR}/shells/bash \
-		yasm:${PORTSDIR}/devel/yasm \
-		flock:${PORTSDIR}/sysutils/flock \
-		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat \
-		${LOCALBASE}/share/usbids/usb.ids:${PORTSDIR}/misc/usbids
+BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:devel/gperf \
+		bash:shells/bash \
+		yasm:devel/yasm \
+		flock:sysutils/flock \
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		${LOCALBASE}/share/usbids/usb.ids:misc/usbids
 
-LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
-		libdbus-1.so:${PORTSDIR}/devel/dbus \
-		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libasound.so:${PORTSDIR}/audio/alsa-lib \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libnss3.so:${PORTSDIR}/security/nss \
-		libFLAC.so:${PORTSDIR}/audio/flac \
-		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
-		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
-		libcups.so:${PORTSDIR}/print/cups \
-		libevent.so:${PORTSDIR}/devel/libevent \
-		libexif.so:${PORTSDIR}/graphics/libexif \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
-		libpci.so:${PORTSDIR}/devel/libpci \
-		libdrm.so:${PORTSDIR}/graphics/libdrm \
-		libicuuc.so:${PORTSDIR}/devel/icu \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libjsoncpp.so:${PORTSDIR}/devel/jsoncpp \
-		libminizip.so:${PORTSDIR}/archivers/minizip \
-		libnspr4.so:${PORTSDIR}/devel/nspr \
-		libprotobuf.so:${PORTSDIR}/devel/protobuf \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libre2.so:${PORTSDIR}/devel/re2 \
-		libsnappy.so:${PORTSDIR}/archivers/snappy \
-		libspeechd.so:${PORTSDIR}/accessibility/speech-dispatcher \
-		libspeex.so:${PORTSDIR}/audio/speex \
-		libxml2.so:${PORTSDIR}/textproc/libxml2 \
-		libwebp.so:${PORTSDIR}/graphics/webp
+LIB_DEPENDS=	libcairo.so:graphics/cairo \
+		libdbus-1.so:devel/dbus \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libasound.so:audio/alsa-lib \
+		libfreetype.so:print/freetype2 \
+		libnss3.so:security/nss \
+		libFLAC.so:audio/flac \
+		libgnome-keyring.so:security/libgnome-keyring \
+		libharfbuzz.so:print/harfbuzz \
+		libcups.so:print/cups \
+		libevent.so:devel/libevent \
+		libexif.so:graphics/libexif \
+		libgcrypt.so:security/libgcrypt \
+		libpci.so:devel/libpci \
+		libdrm.so:graphics/libdrm \
+		libicuuc.so:devel/icu \
+		libjpeg.so:graphics/jpeg \
+		libjsoncpp.so:devel/jsoncpp \
+		libminizip.so:archivers/minizip \
+		libnspr4.so:devel/nspr \
+		libprotobuf.so:devel/protobuf \
+		libpng.so:graphics/png \
+		libre2.so:devel/re2 \
+		libsnappy.so:archivers/snappy \
+		libspeechd.so:accessibility/speech-dispatcher \
+		libspeex.so:audio/speex \
+		libxml2.so:textproc/libxml2 \
+		libwebp.so:graphics/webp
 
-RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins \
-		${LOCALBASE}/lib/X11/fonts/Droid/fonts.dir:${PORTSDIR}/x11-fonts/droid-fonts-ttf \
-		xdg-open:${PORTSDIR}/devel/xdg-utils
+RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins \
+		${LOCALBASE}/lib/X11/fonts/Droid/fonts.dir:x11-fonts/droid-fonts-ttf \
+		xdg-open:devel/xdg-utils
 
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		bison compiler:c++11-lib cpe desktop-file-utils pkgconfig \
@@ -147,7 +145,7 @@ CODECS_DESC=	Compile and enable patented codecs like H.264
 OPTIONS_DEFAULT=	CODECS GCONF
 
 GCONF_USE=	GNOME=gconf2
-PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 
 TEST_DISTFILES=	${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX}
 

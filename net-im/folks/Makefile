@@ -2,6 +2,7 @@
 
 PORTNAME=	folks
 PORTVERSION=	0.11.4
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	GNOME
 
@@ -15,15 +16,22 @@ BUILD_DEPENDS=	vapigen:lang/vala \
 LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libgcr-3.so:security/gcr \
 		libzeitgeist-2.0.so:sysutils/zeitgeist \
-		libtelepathy-glib.so:net-im/telepathy-glib
+		libtelepathy-glib.so:net-im/telepathy-glib \
+		libnspr4.so:devel/nspr \
+		libssl3.so:security/nss \
+		libsecret-1.so:security/libsecret \
+		libsoup-2.4.so:devel/libsoup \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libdbus-1.so:devel/dbus
 
-USE_LDCONFIG=	yes
 USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
 		readline sqlite tar:xz
 USE_GNOME=	evolutiondataserver3 intlhack introspection:build
 USE_LDCONFIG=	yes
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-bluez-backend
+CONFIGURE_ARGS=	--disable-bluez-backend \
+		--disable-libsocialweb-backend
 CONFIGURE_ENV+=	ac_cv_path_EGREP=${LOCALBASE}/bin/egrep
 INSTALL_TARGET=	install-strip
 
@@ -32,12 +40,10 @@ GLIB_SCHEMAS=	org.freedesktop.folks.gschema.xml
 PLIST_SUB=	LIBVER=25 VERSION=43 LIBVERLONG=25.18.4
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	SOCIALWEB TRACKER
-OPTIONS_DEFAULT=SOCIALWEB TRACKER
-SOCIALWEB_DESC=	Social web backend
+OPTIONS_DEFINE=	TRACKER
+OPTIONS_DEFAULT=TRACKER
 TRACKER_DESC=	Tracker backend
-SOCIALWEB_CONFIGURE_ENABLE=	libsocialweb-backend
-SOCIALWEB_LIB_DEPENDS=	libsocialweb.so:www/libsocialweb
+
 TRACKER_CONFIGURE_ENABLE=	tracker-backend
 TRACKER_LIB_DEPENDS=	libtracker-control-2.0.so:sysutils/tracker
 

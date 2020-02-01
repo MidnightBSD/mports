@@ -77,7 +77,6 @@ lib/libxine.so.2.7.0
 %%PLUGINSDIR%%/xineplug_decode_spucmml.so
 %%PLUGINSDIR%%/xineplug_decode_spudvb.so
 %%PLUGINSDIR%%/xineplug_decode_spuhdmv.so
-%%PLUGINSDIR%%/xineplug_decode_vdpau.so
 %%PLUGINSDIR%%/xineplug_dmx_asf.so
 %%PLUGINSDIR%%/xineplug_dmx_audio.so
 %%PLUGINSDIR%%/xineplug_dmx_fli.so
@@ -101,7 +100,6 @@ lib/libxine.so.2.7.0
 %%PLUGINSDIR%%/xineplug_inp_rtp.so
 %%SMB%%%%PLUGINSDIR%%/xineplug_inp_smb.so
 %%PLUGINSDIR%%/xineplug_inp_vcd.so
-%%PLUGINSDIR%%/xineplug_inp_vcdo.so
 %%PLUGINSDIR%%/xineplug_nsf.so
 %%PLUGINSDIR%%/xineplug_sputext.so
 %%PLUGINSDIR%%/xineplug_vdr.so
@@ -112,7 +110,6 @@ lib/libxine.so.2.7.0
 %%PLUGINSDIR%%/xineplug_vo_out_raw.so
 %%PLUGINSDIR%%/xineplug_vo_out_sdl.so
 %%VAAPI%%%%PLUGINSDIR%%/xineplug_vo_out_vaapi.so
-%%PLUGINSDIR%%/xineplug_vo_out_vdpau.so
 %%PLUGINSDIR%%/xineplug_vo_out_xcbshm.so
 %%PLUGINSDIR%%/xineplug_vo_out_xcbxv.so
 %%PLUGINSDIR%%/xineplug_vo_out_xshm.so

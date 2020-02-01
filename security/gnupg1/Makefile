@@ -18,6 +18,7 @@ USE_GCC=	6
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-camellia \
 		--enable-noexecstack
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 INFO=		gnupg1
 DOCSDIR=	${PREFIX}/share/doc/gnupg1
