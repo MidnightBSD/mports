@@ -1,13 +1,13 @@
-# $MidnightBSD$
-
 COMMENT = Multimedia software
 
+SUBDIR += aom
 SUBDIR += assimp
 SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
 SUBDIR += clutter-gst3
 SUBDIR += cuse4bsd-kmod
+SUBDIR += dav1d
 SUBDIR += dirac
 SUBDIR += emby-server
 SUBDIR += ffmpeg
