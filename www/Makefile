@@ -15,6 +15,7 @@ SUBDIR += drupal8
 SUBDIR += epiphany
 SUBDIR += fcgi
 SUBDIR += furl
+SUBDIR += gitea
 SUBDIR += gnome-user-share
 SUBDIR += google-sitemapgen
 SUBDIR += googler
