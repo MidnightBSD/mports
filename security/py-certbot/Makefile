@@ -33,14 +33,13 @@ USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|/etc/|${LOCALBASE}/etc/|' \
 		-e 's|/var/lib|/var/db|' \
 		${WRKSRC}/${PORTNAME}/constants.py
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include "${.CURDIR}/../py-acme/version.mk"
 .include <bsd.port.mk>
