@@ -1,9 +1,7 @@
 # Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $FreeBSD: head/dns/libidn2/Makefile 449040 2017-08-31 15:31:36Z sunpoet $
-# $MidnightBSD$
 
 PORTNAME=	libidn2
-PORTVERSION=	2.0.4
+PORTVERSION=	2.3.0
 CATEGORIES=	dns
 MASTER_SITES=	GNU/libidn
 
@@ -21,11 +19,14 @@ CONFIGURE_ARGS=	--disable-nls \
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-USES=		charsetfix gmake iconv libtool localbase pathfix
+USES=		charsetfix iconv libtool localbase pathfix
 
 INFO=		libidn2
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^TMPDIR = /d' ${WRKSRC}/Makefile.in
+
+post-configure:
+	@${REINPLACE_CMD} -e '/HAVE_SYMVER_ALIAS_SUPPORT/d' ${WRKSRC}/config.h
 
 .include <bsd.port.mk>
