@@ -44,7 +44,7 @@ CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
 		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
-LDFLAGS+=	-lpthread
+LDFLAGS+=	-lpthread -ldns_sd
 MAKE_ENV=	MAKELEVEL=0
 
 PLIST=		${PKGDIR}/pkg-plist${COMPONENT}
