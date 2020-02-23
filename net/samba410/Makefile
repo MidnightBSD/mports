@@ -609,7 +609,7 @@ post-install: post-install-rm-junk post-install-fix-manpages
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_BINDDNSDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_PRIVATEDIR}"
 .for dir in			auth bind9 gensec gpext idmap ldb nss_info pdb perfcount process_model service vfs
-					${INSTALL} -d -m 0755 "{SAMBA4_MODULEDIR}/${dir}"
+					${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}/${dir}"
 .endfor
 
 post-install-FRUIT-off:
