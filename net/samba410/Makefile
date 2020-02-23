@@ -1,6 +1,6 @@
 PORTNAME=			${SAMBA4_BASENAME}410
 PORTVERSION=			${SAMBA4_VERSION}
-PORTREVISION=			1
+PORTREVISION=			2
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
@@ -602,13 +602,14 @@ post-install-fix-manpages:
 post-install: post-install-rm-junk post-install-fix-manpages
 				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man5/smb4.conf.5.gz
 # Run post-install script
-.for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR} ${SAMBA4_MODULEDIR}
+.for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR}
 					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${dir}"
 .endfor
+				${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_BINDDNSDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_PRIVATEDIR}"
 .for dir in			auth bind9 gensec gpext idmap ldb nss_info pdb perfcount process_model service vfs
-					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/${dir}"
+					${INSTALL} -d -m 0755 "{SAMBA4_MODULEDIR}/${dir}"
 .endfor
 
 post-install-FRUIT-off:
