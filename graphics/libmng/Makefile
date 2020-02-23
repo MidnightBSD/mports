@@ -10,7 +10,7 @@ COMMENT=	Multiple-image Network Graphics (MNG) reference library
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	liblcms.so:${PORTSDIR}/graphics/lcms
+LIB_DEPENDS=	liblcms.so:graphics/lcms
 
 OPTIONS_DEFINE=	MNG_OPTIMIZE
 MNG_OPTIMIZE_DESC=	Use vendor's new optimization flags
