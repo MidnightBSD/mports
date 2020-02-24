@@ -280,6 +280,7 @@ AVAHI_VARS=			SAMBA4_SERVICES+=avahi_daemon
 
 MDNSRESPONDER_CONFIGURE_ENABLE=	dnssd
 MDNSRESPONDER_VARS=		SAMBA4_SERVICES+=mdnsd
+MDNSRESPONDER_LDFLAGS+=         -Ddns_sd
 ##############################################################################
 BIND911_RUN_DEPENDS=		bind911>=9.11.0.0:dns/bind911
 BIND914_RUN_DEPENDS=		bind914>=9.14.0.0:dns/bind914
