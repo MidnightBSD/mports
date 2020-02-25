@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/dns/bind911/Makefile 467580 2018-04-17 08:26:49Z mat $
-
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
 PKGNAMESUFFIX=	911
@@ -15,12 +12,15 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	mpl
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
+DEPRECATED=   End of life, please migrate to a newer version of BIND9
+EXPIRATION_DATE=      2021-12-31
+
 LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
 USES=	cpe libedit
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.11.10
+ISCVERSION=	9.11.16
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
