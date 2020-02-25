@@ -4,7 +4,6 @@ SUBDIR += ares
 SUBDIR += autotrust
 SUBDIR += bind-tools
 SUBDIR += bind911
-SUBDIR += bind912
 SUBDIR += bind914
 SUBDIR += bindgraph
 SUBDIR += c-ares
