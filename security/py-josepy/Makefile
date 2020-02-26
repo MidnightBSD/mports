@@ -1,9 +1,5 @@
-# Created by: Carlos J Puga Medina <cpm@FreeBSD.org>
-# $FreeBSD: head/security/py-josepy/Makefile 461672 2018-02-12 23:11:38Z cpm $
-# $MidnightBSD$
-
 PORTNAME=	josepy
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
