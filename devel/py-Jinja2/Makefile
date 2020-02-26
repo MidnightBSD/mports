@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	Jinja2
-PORTVERSION=	2.10
+PORTVERSION=	2.10.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -37,10 +35,6 @@ PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
 PY2TO3_ARGS=	--fix=all --no-diffs --nobackups --verbose --write
 
 .include <bsd.port.pre.mk>
-
-.if ${PYTHON_PKGNAMEPREFIX} == "py27-"
-PORTVERSION=    2.8
-.endif
 
 .if ${PKGNAMESUFFIX} == "-doc"
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.1.3:textproc/py-sphinx@${PY_FLAVOR}

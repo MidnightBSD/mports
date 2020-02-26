@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	MarkupSafe
-PORTVERSION=	1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implements a XML/HTML/XHTML Markup safe string for Python
 
 LICENSE=	bsd3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 USE_PYTHON=	autoplist concurrent distutils
 USES=		python

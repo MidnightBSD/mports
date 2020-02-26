@@ -1,9 +1,5 @@
-# Created by: Cheng-Lung Sung <clsung@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/devel/py-six/Makefile 390642 2015-06-26 14:46:40Z koobs $
-
 PORTNAME=	six
-PORTVERSION=	1.12.0
+PORTVERSION=	1.13.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
