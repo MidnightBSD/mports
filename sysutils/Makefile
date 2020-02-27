@@ -116,6 +116,7 @@ SUBDIR += polkit
 SUBDIR += polkit-gnome
 SUBDIR += polkit-qt
 SUBDIR += powerdxx
+SUBDIR += py-distro
 SUBDIR += py-execnet
 SUBDIR += py-filelock
 SUBDIR += py-psutil
