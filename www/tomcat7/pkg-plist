@@ -64,7 +64,6 @@
 %%ROOT%%%%T%%/webapps/ROOT/asf-logo-wide.svg
 %%ROOT%%%%T%%/webapps/ROOT/bg-button.png
 %%ROOT%%%%T%%/webapps/ROOT/bg-middle.png
-%%ROOT%%%%T%%/webapps/ROOT/bg-nav-item.png
 %%ROOT%%%%T%%/webapps/ROOT/bg-nav.png
 %%ROOT%%%%T%%/webapps/ROOT/bg-upper.png
 %%ROOT%%%%T%%/webapps/ROOT/favicon.ico
@@ -214,7 +213,6 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/HelloWorldExample.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/HelloWorldExample.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings.properties
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_en.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_es.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_fr.properties
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/LocalStrings_pt.properties
