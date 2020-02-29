@@ -1,17 +1,16 @@
-# $MidnightBSD$
-
 PORTNAME=	spawn-fcgi
 PORTVERSION=	1.6.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spawns fastcgi applications
 
-LICENSE=	bsd3
+LICENSE=      bsd3
 
-GNU_CONFIGURE=	yes
+USES=		cmake
+CMAKE_ARGS=	-DCMAKE_MAN_DIR:string=${MANPREFIX}/man
 USE_RC_SUBR=	spawn-fcgi
 
 CFLAGS+=	-I${LOCALBASE}/include
