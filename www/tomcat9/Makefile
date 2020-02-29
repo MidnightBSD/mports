@@ -1,5 +1,5 @@
 PORTNAME=	tomcat
-PORTVERSION=	9.0.24
+PORTVERSION=	9.0.31
 PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
@@ -11,7 +11,7 @@ COMMENT=	Open-source Java web server by Apache, 9.0.x branch
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	jsvc:devel/jakarta-commons-daemon
+RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 
 USES=		cpe
 CPE_VENDOR=	apache
@@ -53,8 +53,8 @@ do-install:
 
 post-install:
 	@${RM} ${TOMCAT_HOME}/bin/*.bat
-	(cd ${TOMCAT_HOME}/conf &&\
-		for f in $$(find . -type f); do ${MV} $$f $$f.sample; done)
+	@(cd ${TOMCAT_HOME}/conf &&\
+		for f in $$(find . -type f -not -name '*.xsd'); do ${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-on:
 	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
