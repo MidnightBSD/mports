@@ -1,6 +1,6 @@
 PORTNAME=	tomcat
 PORTVERSION=	7.0.92
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/tomcat/tomcat-7/v${PORTVERSION}/bin
 PKGNAMESUFFIX=	7
@@ -11,7 +11,7 @@ COMMENT=	Open-source Java web server by Apache, 7.x branch
 
 LICENSE=	apache2
 
-RUN_DEPENDS=	jsvc:devel/jakarta-commons-daemon
+RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 
 USES=		cpe
 CPE_VENDOR=	apache
