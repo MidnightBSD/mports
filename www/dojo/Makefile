@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	dojo
 PORTVERSION=	1.12.2
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/
 DISTNAME=	dojo-release-${PORTVERSION}
@@ -21,7 +20,7 @@ OPTIONS_SUB=		yes
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MAPACHE}
-USE_APACHE_RUN=		22+
+USES=			apache:run,2.4+
 CONFDIR=		${PREFIX}/${CONFDIR_REL}
 CONFDIR_REL=		${APACHEETCDIR}/Includes
 PLIST_SUB+=		CONFDIR=${CONFDIR_REL}

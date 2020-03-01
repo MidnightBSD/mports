@@ -1,8 +1,8 @@
 PORTNAME=	links
 DISTVERSION=	2.16
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
-CATEGORIES=	www ipv6
+CATEGORIES=	www
 MASTER_SITES=	http://links.twibright.com/download/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -43,6 +43,7 @@ NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	gettext-runtime
 
 SVG_CONFIGURE_WITH=	librsvg
+SVG_USES=		gnome
 SVG_USE=		gnome=librsvg2,glib20,gdkpixbuf2,cairo
 
 SVGALIB_LIB_DEPENDS=	libvga.so:graphics/svgalib
@@ -55,6 +56,7 @@ TRANS_EXTRA_PATCHES=	${FILESDIR}/extra-terminal.c.diff
 
 UTF8_CONFIGURE_ENABLE=	utf8
 
+X11_USES=		xorg
 X11_USE=		xorg=x11,xorgproto
 X11_LIB_DEPENDS=	libevent.so:devel/libevent \
 			libfontconfig.so:x11-fonts/fontconfig

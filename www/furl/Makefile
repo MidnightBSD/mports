@@ -1,8 +1,6 @@
 # New ports collection makefile for:	furl
 # Date created:				3 January 2007
 # Whom:					Phil Pereira <phil@bsdnexus.com>
-#
-# $MidnightBSD$
 
 PORTNAME=	furl
 PORTVERSION=	2.1
