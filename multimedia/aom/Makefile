@@ -1,8 +1,9 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
 # XXX Switch to release after https://bugs.chromium.org/p/aomedia/issues/detail?id=2545
-DISTVERSION=	1.0.0-2964
-DISTVERSIONSUFFIX=	-g37d6a4b69
+DISTVERSION=	1.0.0-3149
+DISTVERSIONSUFFIX=	-gb43603d76
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,10 +24,12 @@ GH_ACCOUNT=	jbeich # mirror
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	ENABLE_DOCS ENABLE_TESTS
 
+USE_GCC=	7
+
 OPTIONS_DEFINE=	VMAF
 
 VMAF_DESC=		Encoding tuning for VMAF
-VMAF_BUILD_DEPENDS=	${LOCALBASE}/lib/libvmaf.a:multimedia/vmaf
+VMAF_LIB_DEPENDS=	libvmaf.so:multimedia/vmaf
 VMAF_USES=		localbase:ldflags
 VMAF_CMAKE_ON=		-DCONFIG_TUNE_VMAF:STRING=1
 
