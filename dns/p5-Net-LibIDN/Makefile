@@ -20,7 +20,6 @@ LIB_DEPENDS=	libidn.so:dns/libidn
 
 USES=		perl5
 USE_PERL5=	configure
-PERL_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libidn=${LOCALBASE}/lib \
 		--with-libidn-inc=${LOCALBASE}/include
 

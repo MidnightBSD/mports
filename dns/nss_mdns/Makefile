@@ -1,10 +1,9 @@
 # Created by: Bruce M. Simpson <bms@FreeBSD.org>
-# $MidnightBSD$
 
 PORTNAME=	nss_mdns
 PORTVERSION=	0.10
-PORTREVISION=	2
-CATEGORIES=	dns ipv6
+PORTREVISION=	3
+CATEGORIES=	dns
 MASTER_SITES=	http://0pointer.de/lennart/projects/nss-mdns/
 DISTNAME=	nss-mdns-${PORTVERSION}
 
@@ -14,7 +13,7 @@ COMMENT=	NSS module implementing multicast DNS name resolution
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-client.so:net/avahi-app
 
 CONFLICTS_INSTALL=	mDNSResponder_nss-[0-9]*
 
