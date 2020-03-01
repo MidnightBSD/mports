@@ -17,9 +17,9 @@ USES=		python
 USE_GITHUB=	yes
 USE_PYTHON=	distutils py3kplist
 
-GH_ACCOUNT=	hercules-team
+USE_LDCONFIG=	yes
 
-MAKE_ENV+=	LD_LIBRARY_PATH="/usr/local/lib"
+GH_ACCOUNT=	hercules-team
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${WRKSRC}/test/test_augeas.py
