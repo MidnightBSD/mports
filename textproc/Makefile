@@ -201,6 +201,7 @@ SUBDIR += py-mistune
 SUBDIR += py-pygments
 SUBDIR += py-pypa-docs-theme
 SUBDIR += py-pystemmer
+SUBDIR += py-python-augeas
 SUBDIR += py-python-docs-theme
 SUBDIR += py-pytidylib
 SUBDIR += py-rdflib
