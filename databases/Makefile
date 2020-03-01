@@ -63,7 +63,6 @@ SUBDIR += p5-Class-DBI-Plugin-Pager
 SUBDIR += p5-DBD-Pg
 SUBDIR += p5-DBD-SQLite
 SUBDIR += p5-DBD-mysql
-SUBDIR += p5-DBD-mysql55
 SUBDIR += p5-DBI
 SUBDIR += p5-DBIx-Class
 SUBDIR += p5-DBIx-ContextualFetch

@@ -1,5 +1,5 @@
 PORTNAME=	DBD-mysql
-PORTVERSION=	4.048
+PORTVERSION=	4.050
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:CAPTTOFU
@@ -18,7 +18,9 @@ RUN_DEPENDS=	p5-DBI>=1.08:databases/p5-DBI
 
 CONFLICTS_INSTALL?=	p5-DBD-mysql[45][0-9]-[0-9]*
 
-USES=		mysql perl5
+USES=		compiler:c11 mysql perl5
+CONFIGURE_ARGS=	${CONFIGURE_ARGS_${CHOSEN_COMPILER_TYPE}}
+CONFIGURE_ARGS_gcc=	--libs="-L${PREFIX}/lib/gcc${GCC_DEFAULT} `mysql_config --libs | ${SED} 's/-pthread //'`"
 USE_PERL5=	configure
 
 USE_GCC=	7
