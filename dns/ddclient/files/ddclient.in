@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/dns/ddclient/files/ddclient.in,v 1.5 2012/01/14 08:55:36 dougb Exp $
+# $FreeBSD: head/dns/ddclient/files/ddclient.in 340872 2014-01-24 00:14:07Z mat $
 #
 # PROVIDE: ddclient
 # REQUIRE: LOGIN

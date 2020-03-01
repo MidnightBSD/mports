@@ -1,40 +1,37 @@
-# $MidnightBSD$
+# Created by: Dirk Froemberg <dirk@FreeBSD.org>
 
 PORTNAME=	ddclient
-PORTVERSION=	3.8.3
+DISTVERSIONPREFIX=	v
+DISTVERSION=	3.9.0
 CATEGORIES=	dns
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update dynamic DNS entries
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:bzip2
-USE_PERL5_RUN=	yes
-NO_BUILD=	yes
+RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP
+
+USES=		perl5 tar:bzip2
+USE_GITHUB=	yes
+USE_PERL5=	run
 USE_RC_SUBR=	${PORTNAME}
 
-OPTIONS_DEFINE=	SSL
-OPTIONS_DEFAULT=SSL
-
-.include <bsd.mport.options.mk>
-
-RUN_DEPENDS=	p5-JSON-Any>=0:${PORTSDIR}/converters/p5-JSON-Any
-
+NO_ARCH=	yes
+NO_BUILD=	yes
 SUB_FILES=	pkg-message ddclient_force
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS_DEFINE=	SSL
+OPTIONS_DEFINE=	SSL DOCS
 OPTIONS_DEFAULT=SSL
 
-SSL_RUN_DEPENDS=ca_root_nss>0:${PORTSDIR}/security/ca_root_nss \
-		p5-IO-Socket-SSL>0:${PORTSDIR}/security/p5-IO-Socket-SSL
+SSL_RUN_DEPENDS=ca_root_nss>0:security/ca_root_nss \
+		p5-IO-Socket-SSL>0:security/p5-IO-Socket-SSL
 
 PORTDOCS=	COPYRIGHT ChangeLog README.cisco README.ssl README.md \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
 		sample-etc_dhcpc_dhcpcd-eth0.exe sample-etc_ppp_ip-up.local
-PLIST_FILES=	etc/ddclient.conf.sample etc/periodic/daily/ddclient_force \
+PLIST_FILES=	"@sample(,,600) etc/ddclient.conf.sample" etc/periodic/daily/ddclient_force \
 		sbin/ddclient
 
 post-patch:
@@ -42,6 +39,8 @@ post-patch:
 		's|/usr|${PREFIX}|g'
 	@${REINPLACE_CMD} -e 's|%%ETCDIR%%|${PREFIX}/etc| ; \
 		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/ddclient
+	@${REINPLACE_CMD} -e '/^\#\!\/usr\/local\/local/d' \
+		${WRKSRC}/ddclient
 
 do-install:
 	(cd ${WRKSRC} && ${INSTALL_DATA} sample-etc_ddclient.conf \

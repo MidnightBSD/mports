@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	autotrust
 PORTVERSION=	0.3.1
 PORTREVISION=	2
@@ -11,8 +9,8 @@ COMMENT=	Tool to automatically update DNSSEC trust anchors
 
 LICENSE=	bsd3
 
-LIB_DEPENDS+=	libldns.so:${PORTSDIR}/dns/ldns \
-		libunbound.so:${PORTSDIR}/dns/unbound
+LIB_DEPENDS+=	libldns.so:dns/ldns \
+		libunbound.so:dns/unbound
 
 GNU_CONFIGURE=	yes
 CFLAGS=		-I${LOCALBASE}/include
