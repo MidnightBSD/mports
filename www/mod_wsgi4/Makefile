@@ -1,21 +1,17 @@
-# $MidnightBSD$
-# $FreeBSD: head/www/mod_wsgi4/Makefile 432447 2017-01-25 16:32:15Z sunpoet $
-
 PORTNAME=	mod_wsgi
-PORTVERSION=	4.5.14
+PORTVERSION=	4.7.0
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
-PKGNAMESUFFIX=	4
+PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python WSGI adapter module for Apache
 
 LICENSE=	apache2
 
-CONFLICTS_INSTALL=${PKGNAMEPREFIX}mod_wsgi3.* mod_wsgi3.*
-
-USE_APACHE=	24
-USES=		gettext python
+#USE_APACHE=	24
+USES=		apache:2.4+ gettext python
+USE_PYTHON=	flavors
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-apxs="${APXS}" --with-python="${PYTHON_CMD}"
