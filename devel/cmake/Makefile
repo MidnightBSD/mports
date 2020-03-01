@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.16.2
+DISTVERSION=	3.16.3
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v3.16/
