@@ -1,5 +1,5 @@
 PORTNAME=	poppler
-DISTVERSION=	0.80.0
+DISTVERSION=	0.82.0
 PORTREVISION?=	1
 CATEGORIES=	graphics print
 MASTER_SITES=	https://poppler.freedesktop.org/
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=	poppler-data>0:graphics/poppler-data
 
-USES=		compiler:c++11-lang cpe cmake:insource,noninja gnome jpeg libtool \
+USES=		compiler:c++11-lang cpe cmake:insource gnome jpeg libtool \
 		localbase pathfix pkgconfig tar:xz
 CPE_VENDOR=	freedesktop
 USE_GNOME=	cairo libxml2
@@ -32,6 +32,7 @@ CMAKE_ON=	ENABLE_LIBJPEG  \
 		ENABLE_NSS \
 		ENABLE_SPLASH
 
+USE_GCC=	7
 
 # Slave ports.
 _POPPLER_SLAVES=	library glib qt5 utils
