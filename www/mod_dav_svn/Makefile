@@ -6,14 +6,13 @@ CATEGORIES=	www
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache module for subversion serving
 
-#USES=		apache:2.2+
+USES=		apache:2.4+
 
 PORTREVISION_111=	1
 PORTREVISION_19=	0
 
 .include "${.CURDIR}/../../devel/subversion/Makefile.addons"
 
-USE_APACHE=   22+
 CONFIGURE_ARGS+=	--with-apxs=${APXS} \
 			--with-apache-libexecdir \
 			--without-gnome-keyring \
