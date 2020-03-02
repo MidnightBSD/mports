@@ -1,8 +1,8 @@
 PORTNAME=	cmake
-DISTVERSION=	3.15.5
+DISTVERSION=	3.16.3
 PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v3.15/
+MASTER_SITES=	http://www.cmake.org/files/v3.16/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Cross-platform Makefile generator
