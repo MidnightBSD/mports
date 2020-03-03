@@ -1,2 +1,3 @@
-SHA256 (openvpn-2.3.6.tar.xz) = adae2ef34c9225347a844683b88caa87cde0979b7f2390fd1776db0eb51510ed
-SIZE (openvpn-2.3.6.tar.xz) = 809348
+TIMESTAMP = 1572606331
+SHA256 (openvpn-2.4.8.tar.xz) = fb8ca66bb7807fff595fbdf2a0afd085c02a6aa47715c9aa3171002f9f1a3f91
+SIZE (openvpn-2.4.8.tar.xz) = 952444

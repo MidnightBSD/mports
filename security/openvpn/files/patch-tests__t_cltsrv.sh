@@ -1,5 +1,5 @@
---- ./tests/t_cltsrv.sh.orig	2013-05-31 14:00:07.000000000 +0200
-+++ ./tests/t_cltsrv.sh	2014-01-27 18:51:13.000000000 +0100
+--- tests/t_cltsrv.sh.orig	2016-08-23 13:10:22 UTC
++++ tests/t_cltsrv.sh
 @@ -1,7 +1,7 @@
  #! /bin/sh
  #
@@ -9,7 +9,7 @@
  #
  # This program is free software; you can redistribute it and/or
  # modify it under the terms of the GNU General Public License
-@@ -22,8 +22,9 @@
+@@ -22,8 +22,9 @@ set -e
  srcdir="${srcdir:-.}"
  top_srcdir="${top_srcdir:-..}"
  top_builddir="${top_builddir:-..}"
@@ -21,7 +21,7 @@
  addopts=
  case `uname -s` in
      FreeBSD)
-@@ -45,18 +46,38 @@
+@@ -45,18 +46,38 @@ esac
  # make sure that the --down script is executable -- fail (rather than
  # skip) test if it isn't.
  downscript="../tests/t_cltsrv-down.sh"
@@ -37,10 +37,10 @@
 +    exit 77
 +fi
 +if [ "inet6" = "$1" ] ; then
-+    add='proto udp6'
++    add='proto udp6 '
 +fi
 +for i in server client ; do
-+    sed -e "s/localhost/$2/" -e "/^remote/a\\
++    sed -e "s/localhost/$2/" -e "/^remote /a\\
 +$add" ${root}/sample-config-files/loopback-$i \
 +    >${root}/sample-config-files/loopback-$i.test
 +done
