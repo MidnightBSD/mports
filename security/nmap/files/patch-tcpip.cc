@@ -1,6 +1,6 @@
---- tcpip.cc.orig	Fri Dec  8 04:01:19 2006
-+++ tcpip.cc	Wed Jan  3 17:15:05 2007
-@@ -133,6 +133,8 @@
+--- tcpip.cc.orig	2017-06-07 12:32:38 UTC
++++ tcpip.cc
+@@ -151,6 +151,8 @@
  #endif /* NETINET_IF_ETHER_H */
  #endif /* HAVE_NETINET_IF_ETHER_H */
  
@@ -8,4 +8,4 @@
 +
  extern NmapOps o;
  
- #ifdef WIN32
+ static PacketCounter PktCt;

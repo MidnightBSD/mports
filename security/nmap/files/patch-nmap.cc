@@ -1,10 +1,10 @@
---- nmap.cc.orig	Sat Dec 22 07:32:03 2007
-+++ nmap.cc	Thu Jan 10 20:41:30 2008
-@@ -99,6 +99,7 @@
+--- nmap.cc.orig	2017-07-31 16:56:48 UTC
++++ nmap.cc
+@@ -130,6 +130,7 @@
  
- /* $Id: nmap.cc 6633 2007-12-22 06:32:03Z fyodor $ */
+ /* $Id: nmap.cc 36896 2017-07-31 16:56:48Z dmiller $ */
  
 +#include <getopt.h>
  #include "nmap.h"
  #include "osscan.h"
- #include "osscan2.h"
+ #include "scan_engine.h"

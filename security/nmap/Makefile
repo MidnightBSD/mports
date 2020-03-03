@@ -1,50 +1,46 @@
-# $MidnightBSD$
-
 PORTNAME=	nmap
-DISTVERSION=	6.47
-CATEGORIES=	security ipv6
-MASTER_SITES=	http://nmap.org/dist/ \
+DISTVERSION=	7.70
+PORTREVISION=	0
+CATEGORIES=	security
+MASTER_SITES=	https://nmap.org/dist/ \
 		FREEBSD_LOCAL/ohauer
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Port scanning utility for large networks
+MAINTAINER?=	ports@MidnightBSD.org
+COMMENT?=	Port scanning utility for large networks
 
 # nmap-6.47 => svn.nmap.org/nmap-releases/nmap-6.47 (r33605)
-# http://nmap.org/book/man-legal.html
+# https://nmap.org/book/man-legal.html
 # Install the nmap modified license because of
 # http://insecure.org/news/download-com-fiasco.html
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
+.if !defined(MASTERDIR)
 
-USES=		tar:bzip2 gmake cpe compiler
+LIB_DEPENDS=	libpcre.so:devel/pcre
+
+USES=		tar:bzip2 gmake cpe
 GNU_CONFIGURE=	yes
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	DOCS IPV6 SSL
-OPTIONS_DEFAULT=IPV6 SSL
+OPTIONS_DEFINE=	DOCS PCAP SSH2 SSL
+OPTIONS_DEFAULT=PCAP SSH2 SSL
 
-SSL_USE=		OPENSSL=yes
+PCAP_DESC=		Build with libpcap from nmap
+SSH2_DESC=		SSH2 protocol support
+
+PCAP_CONFIGURE_ON=	--with-libpcap=included
+SSH2_CONFIGURE_ON=	--with-libssh2=included
+SSH2_CONFIGURE_OFF=	--without-libssh2
+SSH2_IMPLIES=		SSL
+SSL_USES=		ssl
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
 SSL_CONFIGURE_OFF=	--without-openssl
 SSL_CFLAGS=		-I${OPENSSLINC}
+SSL_VARS=		STRIP_FILES+=ncat
 
-IPV6_CONFIGURE_OFF=	--with-libpcap=${LOCALBASE}/IPv6
-
-.include <bsd.mport.options.mk>
-
-# PR: ports/159376  Workaround if OS is build with WITHOUT_INET6
-.if ! ${PORT_OPTIONS:MIPV6}
-LIB_DEPENDS+=		libpcap.so:${PORTSDIR}/net/libpcap
-.endif
-
-PORTDOCS=	CHANGELOG HACKING
-STRIP_FILES=	nmap nping
-
-.if ${PORT_OPTIONS:MSSL}
-STRIP_FILES+=	ncat
-.endif
+DOCS=	CHANGELOG HACKING
+STRIP_FILES+=	nmap nping
 
 CONFIGURE_ARGS+=--without-localdirs \
 		--without-zenmap \
@@ -52,19 +48,11 @@ CONFIGURE_ARGS+=--without-localdirs \
 		--with-libpcre=${LOCALBASE} \
 		--with-liblua=included \
 		--without-nmap-update
-
-.include <bsd.port.pre.mk>
-
-# fix for gcc from ports
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-GCCLIBDIR_CMDS=	${CC} -print-file-name=libstdc++.so | ${SED} -e 's/libstdc++.so//'
-CONFIGURE_ARGS+=LDFLAGS="-L$$(${GCCLIBDIR_CMDS})"
-NOT_BASE_CC=	true
-.endif
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 # XXX limit results if we do a grep in the sources!
 post-extract:
-	@${RM} -rf ${WRKSRC}/mswin32
+	@${RM} -r ${WRKSRC}/mswin32
 
 post-configure:
 	@${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|" ${WRKSRC}/Makefile
@@ -74,12 +62,11 @@ pre-install:
 
 post-install:
 	${STRIP_CMD} ${STRIP_FILES:S|^|${STAGEDIR}${PREFIX}/bin/|}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
-# gcc from ports is in use
-.if defined(NOT_BASE_CC)
-	@${ECHO_MSG} do not forget to adjust libnmap.conf
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
