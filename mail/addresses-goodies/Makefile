@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/mail/addresses-goodies/Makefile,v 1.4 2007/01/31 18:18:04 dinoex Exp $
-
 PORTNAME=	addresses
 PORTVERSION=	0.4.8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	mail gnustep
 MASTER_SITES=	SAVANNAH/gap
 PKGNAMESUFFIX=	-goodies${PKGNAMESUFFIX2}
@@ -17,8 +14,8 @@ LICENSE=	lgpl2.1
 USES=		gnustep
 USE_GNUSTEP=	back build
 
-LIB_DEPENDS=	libInspector.so:${PORTSDIR}/deskutils/gworkspace \
-		libAddresses.so:${PORTSDIR}/mail/addresses
+LIB_DEPENDS=	libInspector.so:deskutils/gworkspace \
+		libAddresses.so:mail/addresses
 USE_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}

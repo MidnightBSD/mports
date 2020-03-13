@@ -6,9 +6,8 @@
 #
 
 PORTNAME?=	alpine
-DISTVERSION=	2.21.9999
-PORTREVISION?=	0
-CATEGORIES?=	mail news ipv6
+DISTVERSION=	2.22
+CATEGORIES?=	mail news
 MASTER_SITES=	http://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,6 +16,7 @@ COMMENT=	Mail and news client descended from Pine
 LICENSE=	apache2
 
 USES+=			ssl libtool ncurses gettext-runtime
+
 GNU_CONFIGURE=		yes
 MAKE_JOBS_UNSAFE=	yes
 CONFIGURE_ARGS+=	--with-debug-level=2 \
@@ -35,8 +35,8 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKE_ARGS+=		CC="${CC}" CXX="${CXX}" GCCCFLAGS="${CFLAGS}"
 # When you update please double check that the commit corresponds to
 # the actual version you've set in PORTVERSION.
-GIT_COMMIT=		d3e6f3932f2af9deca8eed09e30a55e9bd524362
-GIT_COMMIT_SHORT=	d3e6f39
+GIT_COMMIT=		99948a254e2c2352547b962cbd1c23738e7af6b3
+GIT_COMMIT_SHORT=	${GIT_COMMIT:C/^(.......).*/\1/}
 WRKSRC=			${WRKDIR}/alpine-${GIT_COMMIT_SHORT}
 
 OPTIONS_DEFINE=		ASPELL CONS25 DOCS IPV6 LDAP MAILDIR MOUSE NLS NTLM PASSFILE THREADS
@@ -46,6 +46,7 @@ OPTIONS_EXCLUDE=	CONS25 IPV6 LDAP PASSFILE
 .endif
 
 CONS25_DESC=	Add a patch to support color for default console
+MAILDIR_DESC=	Add a patch to support maildir
 NTLM_DESC=	Support for Windows NT Lan Manager authentication
 PASSFILE_DESC=	Support for a stored password file
 
@@ -65,9 +66,11 @@ IPV6_CONFIGURE_WITH=		ipv6
 LDAP_USE=			openldap=yes
 LDAP_CONFIGURE_WITH=		ldap
 LDAP_CONFIGURE_ON=		--with-ldap-dir=${LOCALBASE}
+LDAP_CFLAGS=			-I${LOCALBASE}/include
+LDAP_LDFLAGS=			-L${LOCALBASE}/lib
 
 # Option MAILDIR
-MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/patches/alpine-2.21/
+MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/alpha/patches/alpine-2.21.99999/
 MAILDIR_PATCHFILES+=		maildir.patch.gz:-p1
 
 # Option MOUSE
