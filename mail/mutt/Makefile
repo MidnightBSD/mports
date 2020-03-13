@@ -1,43 +1,39 @@
-# Created by: Udo Schweigert
-# $FreeBSD: head/mail/mutt/Makefile 435416 2017-03-04 16:03:08Z adamw $
-# $MidnightBSD$
-
 PORTNAME=	mutt
-PORTVERSION=	1.9.3
-PORTREVISION?=	1
-CATEGORIES+=	mail ipv6
+DISTVERSION=	1.13.4
+CATEGORIES+=	mail
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
 		https://bitbucket.org/mutt/mutt/downloads/ \
 		ftp://ftp.demon.co.uk/pub/mirrors/mutt/ \
 		http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	mutt
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://vc.org.ua/mutt/:vc
-PATCH_DIST_STRIP=	-p1
+#PATCH_DIST_STRIP=	-p1
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Small but powerful text based program for read/writing e-mail
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Small but powerful text based program for read/writing e-mail
 
 LICENSE=	gpl2
 
-CONFLICTS?=	ja-mutt-[0-9]* ja-mutt-devel-[0-9]* mutt-1.4* mutt-devel-lite-[0-9]* mutt-lite-[0-9]* zh-mutt-devel-[0-9]*
+RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:misc/mime-support
 
-DOCSDIR?=	${PREFIX}/share/doc/mutt
-EXAMPLESDIR?=	${PREFIX}/share/examples/mutt
-DATADIR?=	${PREFIX}/share/mutt
-CONFIGURE_ENV=	CC="${CC} -I${LOCALBASE}/include"
+USES=		cpe shebangfix ssl
+
+CONFLICTS=	ja-mutt-[0-9]* ja-mutt-devel-[0-9]* mutt-1.4* mutt-devel-lite-[0-9]* mutt-lite-[0-9]* zh-mutt-devel-[0-9]*
+
 CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 		--with-docdir=${DOCSDIR} --sysconfdir=${PREFIX}/etc \
 		--enable-external-dotlock --enable-pop --enable-imap \
 		--enable-compressed --enable-sidebar
 
-USES+=		cpe ncurses ssl
+INFO=	${PORTNAME}
+
+SHEBANG_FILES=	doc/gen-map-doc smime_keys.pl contrib/smime_keys_test.pl
 
 .if defined(MUTT_CONFIGURE_ARGS)
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
@@ -47,14 +43,10 @@ GNU_CONFIGURE=	yes
 
 OPTIONS_SUB=	yes
 
-.if defined (MUTT_LITE)
-OPTIONS_EXCLUDE=	NLS DOCS EXAMPLES
-.else
-OPTIONS_DEFINE=	SASL DEBUG DOCS EXAMPLES FLOCK \
-		FORCEBASE64 GPGME GREETING_PATCH HTML ICONV IDN IFDEF_PATCH \
-		LOCALES_FIX MAILBOX_MANPAGES MAILDIR_MTIME_PATCH \
-		NLS NNTP QUOTE_PATCH REVERSE_REPLY_PATCH SMART_DATE \
-		SMIME_OUTLOOK_COMPAT SMTP URLVIEW XML
+OPTIONS_DEFINE=	AUTOCRYPT DEBUG DOCS EXAMPLES FLOCK FORCEBASE64 GPGME \
+		GREETING_PATCH HTML ICONV IDN IFDEF_PATCH LOCALES_FIX \
+		MAILBOX_MANPAGES MAILDIR_MTIME_PATCH NLS QUOTE_PATCH NNTP \
+		REVERSE_REPLY_PATCH SASL SMART_DATE SMTP URLVIEW XML
 
 OPTIONS_SINGLE=	GSSAPI HCACHE SCREEN
 OPTIONS_RADIO=	SPELL
@@ -63,12 +55,17 @@ OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_SINGLE_HCACHE=	HCACHE_BDB HCACHE_TOKYOCABINET HCACHE_KYOTOCABINET HCACHE_NONE
 OPTIONS_SINGLE_SCREEN=	NCURSES SLANG
 
-SASL_DESC=	SASL authentication
+AUTOCRYPT_DESC=	Convenient End-to-End Encryption
 DEBUG_DESC=	Debugging capabilities
 FLOCK_DESC=	flock() usage
 FORCEBASE64_DESC=	Option to force base64 encoding for compose
 GPGME_DESC=	Gpgme interface
 GREETING_PATCH_DESC=	Greeting support
+HCACHE_BDB_DESC=	Use Berkeley DB (BDB)
+HCACHE_DESC=	Header Cache support
+HCACHE_KYOTOCABINET_DESC=	Use Kyoto Cabinet
+HCACHE_NONE_DESC=	Disable Header Cache
+HCACHE_TOKYOCABINET_DESC=	Use Tokyo Cabinet
 HTML_DESC=	HTML documentation
 IDN_DESC=	International Domain Names (implies ICONV)
 IFDEF_PATCH_DESC=	ifdef feature
@@ -79,49 +76,36 @@ NCURSES_DESC=	Ncurses support
 NLS_DESC=	Native language support (implies ICONV)
 QUOTE_PATCH_DESC=	Extended quoting
 REVERSE_REPLY_PATCH_DESC=	Reverse_reply
+SASL_DESC=	SASL authentication
 SLANG_DESC=	SLANG support
 SMART_DATE_DESC=	Dynamic date formatting with "%@"
-SMIME_OUTLOOK_COMPAT_DESC=	SMIME outlook compatibility
 SMTP_DESC=	SMTP relay support
-HCACHE_DESC=	Header Cache support
-HCACHE_BDB_DESC=	Use Berkeley DB (BDB)
-HCACHE_TOKYOCABINET_DESC=	Use Tokyo Cabinet
-HCACHE_KYOTOCABINET_DESC=	Use Kyoto Cabinet
-HCACHE_NONE_DESC=	Disable Header Cache
 URLVIEW_DESC=	Use urlview for the URL selector menu
 XML_DESC=	Use XML tools for rebuilding documentation
 
-OPTIONS_DEFAULT=	GPGME HTML HCACHE_BDB ICONV IDN \
-		IFDEF_PATCH LOCALES_FIX MAILBOX_MANPAGES MAILDIR_MTIME_PATCH \
-		NLS NCURSES QUOTE_PATCH REVERSE_REPLY_PATCH SMART_DATE \
-		SMIME_OUTLOOK_COMPAT SASL SMTP URLVIEW XML GSSAPI_NONE
+OPTIONS_DEFAULT=	AUTOCRYPT GPGME GSSAPI_NONE HCACHE_BDB HTML ICONV IDN \
+		IFDEF_PATCH LOCALES_FIX MAILBOX_MANPAGES MAILDIR_MTIME_PATCH NCURSES \
+		NLS REVERSE_REPLY_PATCH SASL SMART_DATE SMTP URLVIEW XML
+
+.ifmake makesum # for optional distfiles patchfiles
+OPTIONS_OVERRIDE=	${OPTIONS_DEFINE} ${OPTIONS_DEFAULT}
+.MAKEOVERRIDES+=	OPTIONS_OVERRIDE
 .endif
 
-RUN_DEPENDS+=	${LOCALBASE}/etc/mime.types:misc/mime-support
+AUTOCRYPT_CONFIGURE_ENABLE=	autocrypt
+AUTOCRYPT_IMPLIES=		GPGME IDN
+AUTOCRYPT_USES=			sqlite:3
+AUTOCRYPT_CONFIGURE_WITH=	sqlite3=${LOCALBASE}
+AUTOCRYPT_DEPENDS=		gnupg>=2.1:security/gnupg \
+				gpgme>=1.8:security/gpgme
+AUTOCRYPT_BUILD_DEPENDS=	${AUTOCRYPT_DEPENDS}
+AUTOCRYPT_RUN_DEPENDS=		${AUTOCRYPT_DEPENDS}
 
-.if !defined (MUTT_LITE)
 ASPELL_BUILD_DEPENDS=	aspell:textproc/aspell
 ASPELL_RUN_DEPENDS=	aspell:textproc/aspell
 ISPELL_BUILD_DEPENDS=	ispell:textproc/aspell-ispell
 ISPELL_RUN_DEPENDS=	ispell:textproc/aspell-ispell
 URLVIEW_RUN_DEPENDS=	urlview:textproc/urlview
-.endif
-
-.if defined (MUTT_LITE)
-PKGNAMESUFFIX=	-lite
-USES+=	ncurses
-PLIST_SUB+=	MAILBOX_MANPAGES=""
-PLIST_SUB+=	HTML="@comment "
-PLIST_SUB+=	NNTP="@comment "
-# XXX bug in bpm ?
-PLIST_SUB+=	NLS="@comment "
-CONFIGURE_ARGS+=	--disable-nls --disable-iconv --without-idn
-.endif
-
-.ifmake makesum # for optional distfiles patchfiles
-PORT_DBDIR=		/dev/null
-OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
-.endif
 
 DEBUG_CONFIGURE_ON=	--enable-debug
 
@@ -148,34 +132,33 @@ GSSAPI_NONE_CONFIGURE_ON=	--without-gss
 HCACHE_NONE_CONFIGURE_ON=	--disable-hcache
 HCACHE_NONE_CONFIGURE_OFF=	--enable-hcache --without-qdbm --without-gdbm
 
-HCACHE_BDB_CONFIGURE_WITH=	bdb
-USE_BDB=	42+
+HCACHE_BDB_CONFIGURE_WITH=	bdb=${LOCALBASE}
+HCACHE_BDB_USES=	bdb:42+
 
-HCACHE_TOKYOCABINET_CONFIGURE_WITH=	tokyocabinet
+HCACHE_TOKYOCABINET_CONFIGURE_WITH=	tokyocabinet=${LOCALBASE}
 HCACHE_TOKYOCABINET_LIB_DEPENDS=	libtokyocabinet.so:databases/tokyocabinet
 
-HCACHE_KYOTOCABINET_CONFIGURE_WITH=	kyotocabinet
+HCACHE_KYOTOCABINET_CONFIGURE_WITH=	kyotocabinet=${LOCALBASE}
 HCACHE_KYOTOCABINET_LIB_DEPENDS=	libkyotocabinet.so:databases/kyotocabinet
 
 ICONV_USES=	iconv:translit
 ICONV_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
 ICONV_CONFIGURE_OFF=	--disable-iconv
 
-ASPELL_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-aspell
 REVERSE_REPLY_PATCH_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-reverse_reply
 
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_CONFIGURE_ON=	--with-sasl=${LOCALBASE}
 
-SMIME_OUTLOOK_COMPAT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-smime-outlook
 SMART_DATE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-smartdate
 
 FLOCK_CONFIGURE_ENABLE=	flock
 
 LOCALES_FIX_CONFIGURE_ON=	--enable-locales-fix
 
-IDN_LIB_DEPENDS=	libidn.so:dns/libidn
-IDN_CONFIGURE_WITH=	idn
+IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2 \
+			libunistring.so:devel/libunistring
+IDN_CONFIGURE_WITH=	idn2=${LOCALBASE}
 IDN_IMPLIES=	ICONV
 
 IFDEF_PATCH_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ifdef
@@ -189,47 +172,48 @@ SMTP_CONFIGURE_ENABLE=	smtp
 
 GREETING_PATCH_PATCHFILES=	mutt-${GREETING_PATCH_VERSION}.vc.greeting:vc
 
-QUOTE_PATCH_PATCHFILES=	patch-${VVV_PATCH_VERSION}.vvv.initials.gz:vvv \
-			patch-${VVV_PATCH_VERSION}.vvv.quote.gz:vvv
-
-NNTP_PATCHFILES=	patch-${VVV_PATCH_VERSION}.vvv.nntp.gz:-p1:vvv
+NNTP_EXTRA_PATCHES=	${PATCHDIR}/extra-nntp-depfiles
 NNTP_CONFIGURE_ON=	--enable-nntp
 NNTP_VARS=	XML_NEEDED=yes
 NNTP_CATEGORIES=	news
+NNTP_USES=	perl5
 
 DOCS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-doc-ref
 
 .include <bsd.mport.options.mk>
 
 # un/comment as each VERSION is created for PORTVERSION
-VVV_PATCH_VERSION=	1.9.1
-GREETING_PATCH_VERSION=	1.9.2
-
-.if !defined(VVV_PATCH_VERSION)
-VVV_PATCH_VERSION=	${PORTVERSION}
-.endif
-.if !defined(GREETING_PATCH_VERSION)
-GREETING_PATCH_VERSION=	${PORTVERSION}
-.endif
-
-LDFLAGS+=		-L${LOCALBASE}/lib -Wl,-rpath=${LOCALBASE}/lib:/usr/lib -ltinfow
+VVV_PATCH_VERSION=	1.12.1
+GREETING_PATCH_VERSION=	1.13.2
 
 post-patch-NNTP-on:
 # Restore timestamps for autotools sources
 	@${TOUCH} -r ${WRKSRC}/configure.ac.orig ${WRKSRC}/configure.ac
 	@${TOUCH} -r ${WRKSRC}/Makefile.am.orig ${WRKSRC}/Makefile.am
 .if ${PORT_OPTIONS:MMAILDIR_MTIME_PATCH}
+.if 	defined(${PATCH_DEBUG})
+		@${ECHO} "===>  Applying ${.TARGET} extra-patch-maildir-mtime-nntp"
+.endif
 	@${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} -p1 < ${PATCHDIR}/extra-patch-maildir-mtime-nntp
 .endif
 .if ${PORT_OPTIONS:MFORCEBASE64}
+.if 	defined(PATCH_DEBUG)
+		@${ECHO} "===>  Applying ${.TARGET} extra-patch-forcebase64-nntp"
+.endif
 	@${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} -p1 < ${PATCHDIR}/extra-patch-forcebase64-nntp
 .endif
 
 post-patch-NNTP-off:
 .if ${PORT_OPTIONS:MMAILDIR_MTIME_PATCH}
+.if 	defined(PATCH_DEBUG)
+		@${ECHO} "===>  Applying ${.TARGET} extra-patch-maildir-mtime"
+.endif
 	@${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} -p1 < ${PATCHDIR}/extra-patch-maildir-mtime
 .endif
 .if ${PORT_OPTIONS:MFORCEBASE64}
+.if 	defined(PATCH_DEBUG)
+		@${ECHO} "===>  Applying ${.TARGET} extra-patch-forcebase64"
+.endif
 	@${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS} -p1 < ${PATCHDIR}/extra-patch-forcebase64
 .endif
 
@@ -237,15 +221,11 @@ post-install:
 	${INSTALL_MAN} ${FILESDIR}/mailcap.5 ${STAGEDIR}${MANPREFIX}/man/man5
 
 post-install-NNTP-on:
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog.nntp ${STAGEDIR}${DOCSDIR}
-
-WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
+	${INSTALL_DATA} ${WRKSRC}/ChangeLog.nntp ${FAKE_DESTDIR}${DOCSDIR}
 
 pre-configure::
 	@${REINPLACE_CMD} -e 's,?eimdal\*),?eimdal*|\"FreeBSD heimdal\"*),' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
-	@${REINPLACE_CMD} -e 's,/usr/bin/gpg,${LOCALBASE}/bin/gpg,g' \
-		${WRKSRC}/contrib/gpg.rc
 	@${REINPLACE_CMD} -e 's,pgp6,pgp,g' \
 		${WRKSRC}/contrib/pgp6.rc
 	@${REINPLACE_CMD} -E -e 's#(/samples|samples/)#share/examples/mutt#g' \
@@ -258,6 +238,11 @@ pre-configure::
 	@${REINPLACE_CMD} -e 's#$$(docdir)/samples#${EXAMPLESDIR}#g' \
 		${WRKSRC}/contrib/Makefile.in
 
+pre-configure-ASPELL-on:
+	@${REINPLACE_CMD} -e '/^# append-hook/p' \
+		-e 's/^# append-hook.*$$/set ispell="aspell --mode=email check"/' \
+	${WRKSRC}/doc/Muttrc.head
+
 pre-configure-HCACHE_BDB-on:
 	@${REINPLACE_CMD} -E -e 's/BDB_VERSIONS="/&${BDB_LIB_NAME} db${BDB_VER} /' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
@@ -269,7 +254,7 @@ BUILD_DEPENDS+=	xsltproc:textproc/libxslt \
 .else
 pre-build::
 	@${REINPLACE_CMD} \
-		-e 's,manual.html stamp-doc-rc stamp-doc-chunked manual.txt,stamp-doc-rc,' \
+		-e '/^BUILD_DOC_TARGETS/s/=.*/=/' \
 		${WRKSRC}/doc/Makefile
 .endif
 
