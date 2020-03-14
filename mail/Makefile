@@ -72,6 +72,7 @@ SUBDIR += spamass-rules
 SUBDIR += spamassassin
 SUBDIR += spamd
 SUBDIR += squirrelmail
+SUBDIR += textmail
 SUBDIR += vrfy
 SUBDIR += wpop3d
 
