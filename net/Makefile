@@ -159,6 +159,7 @@ SUBDIR += xmlrpc-epi
 SUBDIR += yaz
 SUBDIR += zebra
 SUBDIR += zebra-server
+SUBDIR += zerotier
 SUBDIR += zillion
 SUBDIR += zsync
 
