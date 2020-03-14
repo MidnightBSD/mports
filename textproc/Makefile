@@ -7,6 +7,7 @@ SUBDIR += aspell
 SUBDIR += aspell-ispell
 SUBDIR += augeas
 SUBDIR += bsdgrep
+SUBDIR += catdoc
 SUBDIR += cdiff
 SUBDIR += clucene
 SUBDIR += diffutils
