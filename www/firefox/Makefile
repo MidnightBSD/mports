@@ -15,6 +15,8 @@ LIB_DEPENDS+=	libicui18n.so:devel/icu \
 
 USES=	tar:xz
 
+ONLY_FOR_ARCHS=	amd64
+
 NO_BUILD=	yes
 
 do-extract:
