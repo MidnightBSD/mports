@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.3
+PORTVERSION=	2.4
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -27,8 +27,8 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
  \
                 ${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
 		mport-manager:ports-mgmt/mport-manager \
-		mlogind:x11/mlogind
-
+		mlogind:x11/mlogind \
+		git:devel/git
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
