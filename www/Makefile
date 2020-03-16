@@ -14,6 +14,7 @@ SUBDIR += drupal7
 SUBDIR += drupal8
 SUBDIR += epiphany
 SUBDIR += fcgi
+SUBDIR += firefox
 SUBDIR += furl
 SUBDIR += gitea
 SUBDIR += gnome-user-share
