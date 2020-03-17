@@ -63,7 +63,6 @@ bin/xxd
 %%NLS%%man/de.UTF-8/man1/rview.1.gz
 %%NLS%%man/de.UTF-8/man1/rvim.1.gz
 %%NLS%%man/de.UTF-8/man1/vim.1.gz
-%%DEFAULT_VIMRC%%@sample %%ETCDIR%%/gvimrc.sample
 %%DEFAULT_VIMRC%%@sample %%ETCDIR%%/vimrc.sample
 %%GUI%%%%NLS%%man/fr/man1/eview.1.gz
 %%NLS%%man/fr/man1/evim.1.gz
@@ -239,5 +238,4 @@ man/man1/xxd.1.gz
 %%DESKTOP%%share/icons/hicolor/48x48/apps/gvim.png
 %%DESKTOP%%share/icons/locolor/16x16/apps/gvim.png
 %%DESKTOP%%share/icons/locolor/32x32/apps/gvim.png
-share/vim/vim81/syntax/syntax.vim
 %%NO_NLS%%@dir %%DATADIR%%/%%VIM_VER%%/lang
