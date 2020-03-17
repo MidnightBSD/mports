@@ -1,0 +1,31 @@
+--- configure.orig	2019-10-21 08:56:21.000000000 -0400
++++ configure	2020-03-16 21:38:17.913847000 -0400
+@@ -57,7 +57,7 @@
+ #include "apple.h"
+ #elif defined(__linux__)
+ #include "util.h"
+-#elif defined(__FreeBSD__)
++#elif defined(__FreeBSD__) || defined(__MidnightBSD__)
+ #include <libutil.h>
+ #else
+ #include <util.h>
+@@ -339,6 +339,10 @@
+     cflags="$cflags -D__dead=__dead2 -DLOGIN_NAME_MAX=MAXLOGNAME"
+     libs="$libs -lutil"
+     ;;
++  "xMidnightBSD")
++    cflags="$cflags -D__dead=__dead2 -DLOGIN_NAME_MAX=MAXLOGNAME"
++    libs="$libs -lutil"
++    ;;
+   "xOpenBSD")
+     libs="$libs -lutil"
+     ;;
+@@ -360,7 +364,7 @@
+ #include "linux.h"
+ #elif defined(__APPLE__)
+ #include "apple.h"
+-#elif defined(__FreeBSD__)
++#elif defined(__FreeBSD__) || defined(__MidnightBSD__)
+ #include "freebsd.h"
+ #elif defined(__NetBSD__)
+ #include "netbsd.h"

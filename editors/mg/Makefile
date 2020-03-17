@@ -1,29 +1,24 @@
-# $MidnightBSD$
-
 PORTNAME=	mg
-PORTVERSION=	20150323
+PORTVERSION=	6.6
+PORTEPOCH=	1
 CATEGORIES=	editors
-MASTER_SITES=	http://homepage.boetes.org/software/mg/
+MASTER_SITES=	https://github.com/ibara/mg/releases/download/mg-${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, fast Emacs-like editor
 
 LICENSE=	publicdom
 
+USES=		ncurses
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	--prefix=${PREFIX}
 PLIST_FILES=	bin/mg man/man1/mg.1.gz
-PORTDOCS=	README tutorial
+PORTDOCS=	README-Mg README.md tutorial
 
 OPTIONS_DEFINE=	DOCS
 
-pre-configure:
-	@${REINPLACE_CMD} -e 's|__dead|__dead2|' ${WRKSRC}/main.c
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN}  ${WRKSRC}/${PORTNAME}.1 ${MAN1PREFIX}/man/man1
-	${MKDIR} ${DOCSDIR}
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
-.endfor
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
