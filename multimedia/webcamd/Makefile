@@ -1,12 +1,10 @@
 # Created by: Andrew Thompson <thompsa@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/multimedia/webcamd/Makefile 382254 2015-03-25 17:36:47Z marino $
 
 PORTNAME=	webcamd
-PORTVERSION=	3.18.0.1
+PORTVERSION=	4.20.0.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
-		http://home.selasky.org:8192/distfiles/
+		http://home.selasky.org/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port of Linux USB webcam and DVB drivers into userspace
@@ -71,8 +69,8 @@ MAKE_ARGS+=	HAVE_WEBCAM_DRV="YES"
 .if ${PORT_OPTIONS:MHAL}
 MAKE_ARGS+=	HAVE_HAL="YES"
 LIBHAL=		${LIBDIR}/libhal.so:${LIBDIR}/libdbus-1.so:
-LIB_DEPENDS+=	libhal.so:${PORTSDIR}/sysutils/hal
-LIB_DEPENDS+=	libdbus-1.so:${PORTSDIR}/devel/dbus
+LIB_DEPENDS+=	libhal.so:sysutils/hal
+LIB_DEPENDS+=	libdbus-1.so:devel/dbus
 .else
 LIBHAL=
 .endif
@@ -101,7 +99,7 @@ post-patch:
 
 pre-install:
 	${SED} -i .orig \
-		-e "s|%%PREFIX%%|${PREFIX}|g" \
+		-e "s|%%PREFIX%%|${TRUE_PREFIX}|g" \
 		-e "s|%%LIBHAL%%|${LIBHAL}|g" \
 		-e "s|%%LIBCUSE%%|${LIBCUSE}|g" \
 		${WRKDIR}/webcamd
