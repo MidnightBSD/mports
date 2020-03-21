@@ -2,6 +2,7 @@
 
 PORTNAME=	webcamd
 PORTVERSION=	4.20.0.1
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 		http://home.selasky.org/distfiles/
@@ -18,7 +19,7 @@ USES=		pkgconfig tar:bzip2 uidfix
 USE_RC_SUBR=	webcamd
 USE_LDCONFIG=	yes
 
-LIBDIR=		${PREFIX}/lib
+LIBDIR=		${TRUE_PREFIX}/lib
 
 OPTIONS_DEFINE=	CUSE DEBUG HAL VT_CLIENT VT_SERVER DVB INPUT RADIO WEBCAM
 OPTIONS_DEFAULT=DVB HAL INPUT RADIO WEBCAM
