@@ -1,6 +1,6 @@
 PORTNAME=	ntp
-PORTVERSION=	4.2.8p13
-PORTREVISION=	2
+PORTVERSION=	4.2.8p14
+PORTREVISION=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
 		http://archive.ntp.org/ntp4/ntp-4.2/ \
