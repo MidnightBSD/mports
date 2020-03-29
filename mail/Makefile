@@ -33,6 +33,7 @@ SUBDIR += mime-construct
 SUBDIR += msmtp
 SUBDIR += mutt
 SUBDIR += nmh
+SUBDIR += opendkim
 SUBDIR += p5-Email-Abstract
 SUBDIR += p5-Email-Address
 SUBDIR += p5-Email-Address-XS
