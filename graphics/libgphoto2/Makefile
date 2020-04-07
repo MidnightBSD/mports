@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libgphoto2
-PORTVERSION=	2.5.16
+PORTVERSION=	2.5.23
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
@@ -44,6 +42,7 @@ LIBEXIF_CONFIGURE_OFF=	--with-libexif=no
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 XML_USE=		GNOME=libxml2
+XML_USES=		gnome
 XML_CONFIGURE_OFF=	--with-libxml-2.0=no
 
 post-patch:
