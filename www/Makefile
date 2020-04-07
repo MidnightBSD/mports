@@ -52,6 +52,7 @@ SUBDIR += mod_php73
 SUBDIR += mod_security
 SUBDIR += mod_wsgi4
 SUBDIR += moinmoin
+SUBDIR += mrparse
 SUBDIR += nanoblogger
 SUBDIR += neon
 SUBDIR += nghttp2
