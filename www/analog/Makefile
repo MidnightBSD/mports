@@ -3,14 +3,11 @@ PORTVERSION=	6.0
 PORTREVISION=	12
 PORTEPOCH=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.analog.cx/ \
-		http://analog.gsp.com/ \
-		http://fossies.org/unix/www/ \
-		ftp://ftp.polytechnic.edu.na/pub/analog/ \
-		http://analog.tzone.it/
+MASTER_SITES=	http://analog.gsp.com/ \
+		http://fossies.org/unix/www/
 
 MAINTAINER=	luke@MidnightBSD.org
-COMMENT=	An extremely fast program for analysing WWW logfiles
+COMMENT=	Extremely fast program for analysing WWW logfiles
 
 LICENSE=	gpl2
 
