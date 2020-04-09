@@ -1,5 +1,5 @@
 PORTNAME=	clamav-unofficial-sigs
-PORTVERSION=	5.6.2
+PORTVERSION=	6.1.1
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -41,10 +41,10 @@ do-install:
 
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/master.conf ${STAGEDIR}${ETCDIR}/master.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/config/os.freebsd.conf ${STAGEDIR}${ETCDIR}/os.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/config/os/os.freebsd.conf ${STAGEDIR}${ETCDIR}/os.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/config/user.conf ${STAGEDIR}${ETCDIR}/user.conf.sample
 
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} INSTALL LICENSE README.md ${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} INSTALL.md LICENSE README.md ${STAGEDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
