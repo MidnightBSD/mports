@@ -133,6 +133,7 @@ SUBDIR += hadoop
 SUBDIR += highlighterkit
 SUBDIR += hs-haddock
 SUBDIR += hwloc
+SUBDIR += hyperscan
 SUBDIR += icu
 SUBDIR += imake
 SUBDIR += jam

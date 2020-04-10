@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	1.9.4
+PORTVERSION=	2.4
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,11 +9,12 @@ LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
-		libevent.so:devel/libevent \
-		libluajit-5.1.so:lang/luajit \
-		libicui18n.so:devel/icu
-BUILD_DEPENDS=	ragel:devel/ragel
-RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
+		libicui18n.so:devel/icu \
+		libsodium.so:security/libsodium
+BUILD_DEPENDS=	ragel:devel/ragel \
+		clang60:devel/llvm60
+RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss \
+		clang60:devel/llvm60
 
 USES=		cmake compiler:c11 gnome perl5 pkgconfig \
 		sqlite ssl
@@ -21,21 +22,27 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build run
 USE_GNOME=	glib20
 
-OPTIONS_DEFINE=		GPERF GD CGP TORCH_BLAS
-OPTIONS_DEFINE_amd64=	HYPERSCAN
-OPTIONS_DEFAULT_amd64=	TORCH
+CC=		clang60
+CXX=		clang++60
+
+CONFLICTS_INSTALL=	rspamd-devel
+
+USERS=		rspamd
+GROUPS=		rspamd
+
+OPTIONS_DEFINE=			BLAS CGP GPERF LUAJIT
+OPTIONS_DEFINE_amd64=		HYPERSCAN
+OPTIONS_DEFAULT_amd64=		LUAJIT
+OPTIONS_DEFAULT_armv7=		LUAJIT
+OPTIONS_DEFAULT_i386=		LUAJIT
+OPTIONS_DEFAULT_powerpc=	LUAJIT
 OPTIONS_SUB=	yes
 
-OPTIONS_RADIO=	NEURAL_NETWORK
-OPTIONS_RADIO_NEURAL_NETWORK=	FANN TORCH
-
-CGP_DESC=		Install Communigate Pro(tm) helper
-GD_DESC=		Enable libgd support for images fuzzy hashes
-GPERF_DESC=		Google perf-tools profiling
-FANN_DESC=		Use Fast Artificial Neural Network Library (FANN)
-TORCH_DESC=		Machine learning support using torch
-TORCH_BLAS_DESC=	Build torch with OpenBLAS
-TORCH_BLAS_IMPLIES=	TORCH
+BLAS_DESC=	Use OpenBLAS to accelerate KANN
+CGP_DESC=	Install Communigate Pro(tm) helper
+GPERF_DESC=	Google perf-tools profiling
+HYPERSCAN_DESC=	Use hyperscan optimizations (amd64 only)
+LUAJIT_DESC=	Use LuaJIT instead of standard Lua
 
 SUB_FILES=	pkg-message rspamd.newsyslog.conf.sample
 PLIST_SUB+=	ETCDIR=etc/rspamd \
@@ -47,29 +54,23 @@ CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
 		-DMANDIR=${MANPREFIX}/man \
 		-DCMAKE_INSTALL_PREFIX=${PREFIX} \
 		-DBUILD_PORT=yes \
-		-DLIBDIR=${PREFIX}/lib/rspamd \
-		-DNO_SHARED=ON \
-		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
+		-DLIBDIR=${PREFIX}/lib/rspamd
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	vstakhov
 
 USE_RC_SUBR=	rspamd
 
-GD_CMAKE_ON=	-DENABLE_GD=ON
-GD_LIB_DEPENDS=	libgd.so:graphics/gd
+BLAS_CMAKE_ON=	-DENABLE_BLAS=ON
+BLAS_USES=	blaslapack:openblas
 
 GPERF_CMAKE_ON=	-DENABLE_GPERF_TOOLS=ON
 GPERF_LIB_DEPENDS=	libprofiler.so:devel/google-perftools
 
-FANN_CMAKE_ON=	-DENABLE_FANN=ON
-FANN_LIB_DEPENDS=libfann.so:math/fann
+HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
+HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 
-TORCH_CMAKE_ON=	-DENABLE_TORCH=ON
-TORCH_CMAKE_OFF=-DENABLE_TORCH=OFF
-
-TORCH_BLAS_USES=	blaslapack:openblas
-TORCH_BLAS_CMAKE_ON=	-DWITH_BLAS=open
+LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
+LUAJIT_USES_OFF=	lua:51
 
 CGP_RUN_DEPENDS+=	\
 	p5-AnyEvent-HTTP>=0:www/p5-AnyEvent-HTTP \
@@ -77,26 +78,15 @@ CGP_RUN_DEPENDS+=	\
 	p5-EV>=0:devel/p5-EV \
 	p5-JSON-XS>=0:converters/p5-JSON-XS
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MTORCH_BLAS}
-USE_GCC=	7
-.endif
-
 post-install:
 	@${MKDIR} \
 		${FAKE_DESTDIR}/var/log/rspamd \
 		${FAKE_DESTDIR}/var/db/rspamd \
 		${FAKE_DESTDIR}/var/run/rspamd
-	# Linux specific
-	-${RM} ${ETCDIR}/rspamd.systemd.conf
-	# No need, since rspamd.conf.sample is a same
-	-${RM} ${ETCDIR}/rspamd.sysvinit.conf
-	# No examples installed by the port
-	${RMDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${ETCDIR}
 	@${MKDIR} ${PREFIX}/etc/newsyslog.conf.d
 	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${PREFIX}/etc/newsyslog.conf.d
-	${INSTALL_SCRIPT} ${WRKSRC}/utils/cgp_rspamd.pl ${PREFIX}/bin/rspamd-cgp-helper
+post-install-CGP-on:
+	${INSTALL_SCRIPT} ${WRKSRC}/utils/cgp_rspamd.pl ${FAKE_DESTDIR}${PREFIX}/bin/rspamd-cgp-helper
 
 .include <bsd.port.mk>
