@@ -1,5 +1,3 @@
-# Created by: Daichi GOTO <daichi@FreeBSD.org>
-
 PORTNAME=	gyp
 PORTVERSION=	20160504
 CATEGORIES=	devel python
