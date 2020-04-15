@@ -11,9 +11,6 @@ LICENSE_NAME=	NODE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-TEST_DEPENDS=	gyp:devel/py-gyp@${PY_FLAVOR}	\
-		gmake:devel/gmake
-
 USE_GITHUB=	yes
 
 USES=		autoreconf libtool pathfix pkgconfig python:build,test shebangfix
