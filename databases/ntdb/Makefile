@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/databases/ntdb/Makefile 412346 2016-04-01 14:00:51Z mat $
-
 PORTNAME=		ntdb
 PORTVERSION=		1.0
-PORTREVISION=		0
+PORTREVISION=		1
 PORTEPOCH=		0
 CATEGORIES=		databases
 MASTER_SITES=		SAMBA/tdb
@@ -36,7 +33,7 @@ MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 .if defined(NO_PYTHON)
 CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:2
+USES+=			python:2.7
 PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/ntdb.so
 .endif
 
@@ -45,8 +42,8 @@ PLIST_FILES+=		%%PYTHON_SITELIBDIR%%/ntdb.so
 .if ! ${PORT_OPTIONS:MMANPAGES}
 CONFIGURE_ENV+=		XSLTPROC="true"
 .else
-BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
-			xsltproc:${PORTSDIR}/textproc/libxslt
+BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
+			xsltproc:textproc/libxslt
 .endif
 
 PLIST_FILES+=		bin/ntdbbackup \
