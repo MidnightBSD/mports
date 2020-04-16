@@ -2,7 +2,7 @@
 
 PORTNAME=	nginx
 PORTVERSION=	1.16.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -363,6 +363,9 @@ do-install-NAXSI-on:
 	${INSTALL_DATA} \
 	${WRKDIR}/naxsi-${NAXSI_NGINX_VER}/naxsi_config/naxsi_core.rules \
 	${FAKE_DESTDIR}${ETCDIR}
+
+do-install-NJS-on:
+	${INSTALL_PROGRAM} ${WRKSRC_njs}/build/njs ${FAKE_DESTDIR}${PREFIX}/sbin
 
 post-install:
 	${MKDIR} ${PREFIX}/share/vim/vimfiles
