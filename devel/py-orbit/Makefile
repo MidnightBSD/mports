@@ -18,7 +18,9 @@ LICENSE=	lgpl
 
 CONFLICTS=	py*-omniorb-[0-9]*
 
-USES=		gmake libtool pathfix pkgconfig python:2.7 tar:bzip2
+BUILD_DEPENDS+=	python3.7:lang/python37
+
+USES=		gmake gnome libtool pathfix pkgconfig python:2.7 tar:bzip2
 USE_PYTHON=	flavors
 USE_GNOME=	orbit2
 GNU_CONFIGURE=	yes
