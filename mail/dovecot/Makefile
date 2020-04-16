@@ -1,8 +1,7 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.9.3
+PORTVERSION=	2.3.10
 CATEGORIES=	mail
 MASTER_SITES=	https://www.dovecot.org/releases/2.3/
-PKGNAMESUFFIX=	2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure, fast and powerful IMAP and POP3 server
@@ -10,7 +9,7 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
 
-USES=		cpe iconv libtool pkgconfig ssl:base
+USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
@@ -153,6 +152,6 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
