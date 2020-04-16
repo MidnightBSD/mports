@@ -1,9 +1,8 @@
 # Created by: Kubilay Kocak <koobs@FreeBSD.org>
-# $FreeBSD: head/lang/spidermonkey185/Makefile 424875 2016-10-28 17:55:30Z danfe $
-# $MidnightBSD$
 
 PORTNAME=		spidermonkey185
 PORTVERSION=		1.8.5
+PORTREVISION=		1
 CATEGORIES=		lang
 MASTER_SITES=		MOZILLA/js
 DISTNAME=		js185-1.0.0
@@ -14,13 +13,13 @@ COMMENT=		Standalone JavaScript (1.8.5) interpreter from Mozilla
 LICENSE=		gpl2 mpl
 LICENSE_COMB=		dual
 
-BUILD_DEPENDS=		zip:${PORTSDIR}/archivers/zip \
-			autoconf-2.13:${PORTSDIR}/devel/autoconf213
-LIB_DEPENDS=		libnspr4.so:${PORTSDIR}/devel/nspr
+BUILD_DEPENDS=		zip:archivers/zip \
+			autoconf-2.13:devel/autoconf213
+LIB_DEPENDS=		libnspr4.so:devel/nspr
 
 CONFLICTS=		njs-[0-9]*
 
-USES=			gmake pathfix perl5 pkgconfig python:2,build
+USES=			gmake pathfix perl5 pkgconfig python:2.7,build
 GNU_CONFIGURE=		yes
 USE_LDCONFIG=		yes
 USE_PERL5=		build
@@ -29,7 +28,7 @@ WRKSRC=			${WRKDIR}/js-${PORTVERSION}/js/src
 
 CONFIGURE_ARGS=		--with-pthreads \
 			--with-system-nspr
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 # This comes from bsd.gecko.mk, fixes linking issues on 9.0 and higher.
 post-configure:
