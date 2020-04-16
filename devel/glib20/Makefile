@@ -18,7 +18,8 @@ PORTSCOUT=	limitw:1,even
 
 LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libffi.so:devel/libffi
-RUN_DEPENDS=    python2.7:lang/python27
+RUN_DEPENDS=    python2.7:lang/python27 \
+		python3.7:lang/python37
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
