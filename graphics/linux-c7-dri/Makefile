@@ -34,9 +34,9 @@ USE_LINUX_RPM=	yes
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	@${RM} ${STAGEDIR}${PREFIX}/usr/lib/libEGL.so.1
-	@${RM} ${STAGEDIR}${PREFIX}/usr/lib/libGL.so.1
-	@${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libEGL.so.1
-	@${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libGL.so.1
+	-${RM} ${STAGEDIR}${PREFIX}/usr/lib/libEGL.so.1
+	-${RM} ${STAGEDIR}${PREFIX}/usr/lib/libGL.so.1
+	-${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libEGL.so.1
+	-${RM} ${STAGEDIR}${PREFIX}/usr/lib64/libGL.so.1
 
 .include <bsd.port.mk>

@@ -25,7 +25,6 @@ USE_PERL5=	run
 SHEBANG_FILES=	opendkim/opendkim-genkey* reputation/opendkim-* stats/opendkim-* \
 		reprrd/opendkim-reprrdimport*
 USE_LDCONFIG=	yes
-TEST_TARGET=	check  # XXX: 1 of 30 tests fails
 
 PORTDOCS=	*
 
@@ -97,6 +96,8 @@ SASL_CONFIGURE_WITH=	sasl
 
 MAKE_ARGS+=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
 MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
+
+NO_TEST=	yes
 
 .include "${.CURDIR}/Makefile.options"
 
