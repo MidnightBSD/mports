@@ -623,7 +623,7 @@ add-plist-python:
 		/^@dirrmtry / {d = substr($$0, 11); if (d in dirs) {print $$0 "/" pc}; print $$0; next} \
 		{print} \
 		' \
-		pc="__pycache__" mt="$$(${PYMAGICTAG})" pyo="${PYTHON_PYOEXTENSION}" \
+		pc="__pycache__" mt="$$(${PYMAGICTAG})" pyo="opt-1.pyc" \
 		${TMPPLIST} > ${TMPPLIST}.pyc_tmp
 	@${MV} ${TMPPLIST}.pyc_tmp ${TMPPLIST}
 .endif # ${PYTHON_REL} >= 3200 && defined(_PYTHON_FEATURE_PY3KPLIST)
@@ -639,6 +639,12 @@ CMAKE_ARGS+=	-DPython_ADDITIONAL_VERSIONS=${PYTHON_VER}
 # Python 3rd-party modules
 PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game@${PY_FLAVOR}
 PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR}
+
+.if ${PYTHON_REL} < 3500
+PY_TYPING=	${PYTHON_PKGNAMEPREFIX}typing>=3.7.4:devel/py-typing@${PY_FLAVOR}
+.else
+PY_TYPING=
+.endif
 
 # Common Python modules that can be needed but only for some versions of Python.
 .if ${PYTHON_REL} < 3400
@@ -685,7 +691,6 @@ PREFIX=		${PYTHONBASE}
 PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_LIBDIR=${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_PLATFORM=${PYTHON_PLATFORM} \
-		PYTHON_PYOEXTENSION=${PYTHON_PYOEXTENSION} \
 		PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
 		PYTHON_SUFFIX=${PYTHON_SUFFIX} \
 		PYTHON_VER=${PYTHON_VER} \

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -11,19 +9,19 @@ COMMENT=	OMF help system based on the Freedesktop specification
 
 LICENSE=        gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-    		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml \
-		bash:${PORTSDIR}/shells/bash
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
-    		${LOCALBASE}/bin/getopt:${PORTSDIR}/misc/getopt \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
-		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml
+BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
+    		docbook-xml>0:textproc/docbook-xml \
+		bash:shells/bash
+RUN_DEPENDS=	bash:shells/bash \
+    		${LOCALBASE}/bin/getopt:misc/getopt \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
+		docbook-xml>0:textproc/docbook-xml
 
 DOCBOOK_VERSION=4.2
 
 CONFLICTS=	scrollkeeper-[0-9]*
 
-USES=		gmake libtool pathfix python tar:bzip2
+USES=		gmake libtool pathfix python:3.7 tar:bzip2
 USE_GNOME=	libxslt
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
