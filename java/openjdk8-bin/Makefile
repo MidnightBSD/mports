@@ -38,7 +38,7 @@ COMPONENT=	.9
 VER=    8.181.13
 DISTFILES=      openjdk8-8.181.13.txz
 FBSD_PATH=      FreeBSD:10:i386
-COMPONENT=.10
+COMPONENT=.10.${ARCH}
 .endif
 
 do-install:
