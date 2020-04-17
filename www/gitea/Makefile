@@ -35,6 +35,8 @@ CERT_VARS=	GO_TAGS+=cert
 PAM_VARS=	GO_TAGS+=pam
 SQLITE_VARS=	GO_TAGS+="sqlite sqlite_unlock_notify"
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 DAEMONARGS=	-S -l \$${gitea_facility} -s \$${gitea_priority} -T \$${name}
