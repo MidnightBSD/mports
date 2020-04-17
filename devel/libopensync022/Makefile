@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libopensync022/Makefile,v 1.18 2007/07/04 10:00:00 lofi Exp $
-
 PORTNAME=	libopensync
 PORTVERSION=	0.22
 PORTREVISION=	5
@@ -15,11 +12,11 @@ LICENSE=	lgpl
 
 CONFLICTS=	libopensync-0.[3-9]*
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
+RUN_DEPENDS=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 SWIG_LANGUAGES=	python
 GNU_CONFIGURE=	yes
-USES=		libtool pathfix pkgconfig python tar:bzip2
+USES=		libtool pathfix pkgconfig python:2.7 tar:bzip2
 USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
