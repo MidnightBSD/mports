@@ -15,6 +15,8 @@ USES=		tar:xz
 ONLY_FOR_ARCH=	amd64 i386
 NO_BUILD=	yes
 
+DISTINFO_FILE=  ${.CURDIR}/distinfo.${ARCH}
+
 RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
 		dejavu>=2.35:${PORTSDIR}/x11-fonts/dejavu
 
