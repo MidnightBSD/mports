@@ -60,7 +60,7 @@ CFLAGS+=	-DCISCO_PATCH_VERSION
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/config.c
 	@${REINPLACE_CMD} -e 's|\(/etc/vpnc\)|${PREFIX}\1|' \
-		${WRKSRC}/${MANPAGE8}.template
+		${WRKSRC}/vpnc.8.template
 
 do-install:
 	${INSTALL_PROGRAM} -m 751 ${WRKSRC}/vpnc ${STAGEDIR}${PREFIX}/sbin/vpnc
