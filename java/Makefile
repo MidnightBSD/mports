@@ -39,7 +39,6 @@ SUBDIR += linux-oracle-jre18
 SUBDIR += linux-sun-jre17
 SUBDIR += maven-ant-tasks
 SUBDIR += maven-wrapper
-SUBDIR += maven2
 SUBDIR += maven3
 SUBDIR += maven33
 SUBDIR += netbeans
