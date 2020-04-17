@@ -11,8 +11,6 @@ COMMENT=	Helper to test command-line scripts
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
-
 USES=		python
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
@@ -20,7 +18,6 @@ NO_ARCH=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	pypa
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+NO_TEST=	yes
 
 .include <bsd.port.mk>
