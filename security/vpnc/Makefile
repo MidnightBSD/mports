@@ -74,7 +74,12 @@ do-install:
 .if !exists(${STAGEDIR}${PREFIX}/etc/vpnc.conf)
 	${INSTALL_DATA} -m 600 ${WRKSRC}/vpnc.conf ${STAGEDIR}${PREFIX}/etc
 .endif
+	${INSTALL_MAN} ${WRKSRC}/vpnc.8 ${STAGEDIR}${MANPREFIX}/man/man8
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+
+do-install-DECRYPT-on:
+	${INSTALL_PROGRAM} ${WRKSRC}/cisco-decrypt ${FAKE_DESTDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/cisco-decrypt.1 ${FAKE_DESTDIR}${MANPREFIX}/man/man1
 
 .include <bsd.port.mk>
