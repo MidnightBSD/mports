@@ -24,7 +24,6 @@ SUBDIR += intellij-fsnotifier
 SUBDIR += intellij-pty4j
 SUBDIR += jaf
 SUBDIR += jai
-SUBDIR += jakarta-bcel
 SUBDIR += jakarta-commons-cli
 SUBDIR += jakarta-commons-codec
 SUBDIR += jakarta-commons-httpclient
