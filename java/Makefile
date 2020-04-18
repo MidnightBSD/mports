@@ -1,10 +1,20 @@
-# $MidnightBSD$
-
 COMMENT = Java 
 
+SUBDIR += apache-bcel
+SUBDIR += apache-commons-cli
+SUBDIR += apache-commons-codec
+SUBDIR += apache-commons-collections
+SUBDIR += apache-commons-dbcp
+SUBDIR += apache-commons-httpclient
+SUBDIR += apache-commons-lang
+SUBDIR += apache-commons-lang3
+SUBDIR += apache-commons-logging
+SUBDIR += apache-commons-pool
+SUBDIR += apache-commons-primitives
 SUBDIR += berkeley-db
 SUBDIR += bluej
-SUBDIR += bootstrap-openjdk
+SUBDIR += bootstrap-openjdk6
+SUBDIR += bootstrap-openjdk8
 SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
