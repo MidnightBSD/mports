@@ -97,7 +97,7 @@ MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
 BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
 		${LOCALBASE}/openjdk6 \
-		${LOCALBASE}/bootstrap-openjdk
+		${LOCALBASE}/bootstrap-openjdk6
 
 SECURITY_ICONS= security-icon-bw16.png \
 		security-icon-bw24.png \
@@ -131,8 +131,8 @@ BOOTSTRAPJDKDIR=	${BJDK}
 
 # if no valid jdk found, set dependency
 .if !defined(BOOTSTRAPJDKDIR) || defined(INDEXING) || defined(MAGUS) || defined(PACKAGE_BUILDING)
-BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
+BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk6
+BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk6
 .endif
 
 .if ${OSVERSION} < 4015
