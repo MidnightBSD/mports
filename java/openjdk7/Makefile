@@ -22,8 +22,22 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		compiler iconv gmake zip:infozip
-USE_XORG+=	x11 xext xi xrender xt xtst
+USES=		compiler dos2unix iconv gmake zip
+# Even when not building with X11 support, openjdk7 requires Xrender, X11, and
+# Xt headers.
+X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/x11.pc:x11/libX11
+X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xext.pc:x11/libXext
+X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xrender.pc:x11/libXrender
+X11_BUILD_DEPENDS_OFF+=       ${LOCALBASE}/libdata/pkgconfig/xt.pc:x11-toolkits/libXt
+# Add more X11 build deps and runtime deps when X11 is enabled
+X11_LIB_DEPENDS+=     libX11.so.6:x11/libX11
+X11_LIB_DEPENDS+=     libXext.so.6:x11/libXext
+X11_LIB_DEPENDS+=     libXi.so.6:x11/libXi
+X11_LIB_DEPENDS+=     libXrender.so.1:x11/libXrender
+X11_LIB_DEPENDS+=     libXt.so.6:x11-toolkits/libXt
+X11_LIB_DEPENDS+=     libXtst.so.6:x11/libXtst
+X11_MAKE_ENV_OFF=     BUILD_HEADLESS_ONLY=1
+
 MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
 MAKE_JOBS_UNSAFE=	yes
 USE_GCC=	7
@@ -135,12 +149,12 @@ BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk6
 BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk6
 .endif
 
-.if ${OSVERSION} < 4015
-PATCH_DEPENDS+=	gpatch:devel/patch
-PATCH=		gpatch
-.endif
-
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == i386
+# Fix the build for i386 when WITH_LLD_IS_LD is set
+MAKE_ENV+=	LFLAGS="-Wl,-z,notext"
+.endif
 
 .if ${COMPILER_TYPE} == gcc
 MAKE_ENV+=    USE_PRECOMPILED_HEADER=0

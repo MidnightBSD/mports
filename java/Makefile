@@ -54,6 +54,7 @@ SUBDIR += netbeans
 SUBDIR += openjdk6
 SUBDIR += openjdk6-jre
 SUBDIR += openjdk7
+SUBDIR += openjdk7-jre
 SUBDIR += openjdk7-bin
 SUBDIR += openjdk8-bin
 SUBDIR += springframework
