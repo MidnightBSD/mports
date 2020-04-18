@@ -328,47 +328,6 @@ openjdk8/jre/bin/rmiregistry
 openjdk8/jre/bin/servertool
 openjdk8/jre/bin/tnameserv
 openjdk8/jre/bin/unpack200
-openjdk8/jre/lib/amd64/jexec
-openjdk8/jre/lib/amd64/jli/libjli.so
-openjdk8/jre/lib/amd64/jspawnhelper
-openjdk8/jre/lib/amd64/jvm.cfg
-openjdk8/jre/lib/amd64/libattach.so
-openjdk8/jre/lib/amd64/libawt.so
-openjdk8/jre/lib/amd64/libawt_headless.so
-openjdk8/jre/lib/amd64/libawt_xawt.so
-openjdk8/jre/lib/amd64/libdt_socket.so
-openjdk8/jre/lib/amd64/libfontmanager.so
-openjdk8/jre/lib/amd64/libhprof.so
-openjdk8/jre/lib/amd64/libinstrument.so
-openjdk8/jre/lib/amd64/libj2gss.so
-openjdk8/jre/lib/amd64/libj2pcsc.so
-openjdk8/jre/lib/amd64/libj2pkcs11.so
-openjdk8/jre/lib/amd64/libjaas_unix.so
-openjdk8/jre/lib/amd64/libjava.so
-openjdk8/jre/lib/amd64/libjava_crw_demo.so
-openjdk8/jre/lib/amd64/libjawt.so
-openjdk8/jre/lib/amd64/libjdwp.so
-openjdk8/jre/lib/amd64/libjpeg.so
-openjdk8/jre/lib/amd64/libjsdt.so
-openjdk8/jre/lib/amd64/libjsig.so
-openjdk8/jre/lib/amd64/libjsound.so
-openjdk8/jre/lib/amd64/libjsoundalsa.so
-openjdk8/jre/lib/amd64/liblcms.so
-openjdk8/jre/lib/amd64/libmanagement.so
-openjdk8/jre/lib/amd64/libmlib_image.so
-openjdk8/jre/lib/amd64/libnet.so
-openjdk8/jre/lib/amd64/libnio.so
-openjdk8/jre/lib/amd64/libnpt.so
-openjdk8/jre/lib/amd64/libsaproc.so
-openjdk8/jre/lib/amd64/libsctp.so
-openjdk8/jre/lib/amd64/libsplashscreen.so
-openjdk8/jre/lib/amd64/libsunec.so
-openjdk8/jre/lib/amd64/libunpack.so
-openjdk8/jre/lib/amd64/libverify.so
-openjdk8/jre/lib/amd64/libzip.so
-openjdk8/jre/lib/amd64/server/Xusage.txt
-openjdk8/jre/lib/amd64/server/libjsig.so
-openjdk8/jre/lib/amd64/server/libjvm.so
 openjdk8/jre/lib/calendars.properties
 openjdk8/jre/lib/charsets.jar
 openjdk8/jre/lib/classlist
@@ -394,6 +353,47 @@ openjdk8/jre/lib/flavormap.properties
 openjdk8/jre/lib/fontconfig.bfc
 openjdk8/jre/lib/fontconfig.properties.src
 openjdk8/jre/lib/hijrah-config-umalqura.properties
+openjdk8/jre/lib/i386/jexec
+openjdk8/jre/lib/i386/jli/libjli.so
+openjdk8/jre/lib/i386/jspawnhelper
+openjdk8/jre/lib/i386/jvm.cfg
+openjdk8/jre/lib/i386/libattach.so
+openjdk8/jre/lib/i386/libawt.so
+openjdk8/jre/lib/i386/libawt_headless.so
+openjdk8/jre/lib/i386/libawt_xawt.so
+openjdk8/jre/lib/i386/libdt_socket.so
+openjdk8/jre/lib/i386/libfontmanager.so
+openjdk8/jre/lib/i386/libhprof.so
+openjdk8/jre/lib/i386/libinstrument.so
+openjdk8/jre/lib/i386/libj2gss.so
+openjdk8/jre/lib/i386/libj2pcsc.so
+openjdk8/jre/lib/i386/libj2pkcs11.so
+openjdk8/jre/lib/i386/libjaas_unix.so
+openjdk8/jre/lib/i386/libjava.so
+openjdk8/jre/lib/i386/libjava_crw_demo.so
+openjdk8/jre/lib/i386/libjawt.so
+openjdk8/jre/lib/i386/libjdwp.so
+openjdk8/jre/lib/i386/libjpeg.so
+openjdk8/jre/lib/i386/libjsdt.so
+openjdk8/jre/lib/i386/libjsig.so
+openjdk8/jre/lib/i386/libjsound.so
+openjdk8/jre/lib/i386/libjsoundalsa.so
+openjdk8/jre/lib/i386/liblcms.so
+openjdk8/jre/lib/i386/libmanagement.so
+openjdk8/jre/lib/i386/libmlib_image.so
+openjdk8/jre/lib/i386/libnet.so
+openjdk8/jre/lib/i386/libnio.so
+openjdk8/jre/lib/i386/libnpt.so
+openjdk8/jre/lib/i386/libsaproc.so
+openjdk8/jre/lib/i386/libsctp.so
+openjdk8/jre/lib/i386/libsplashscreen.so
+openjdk8/jre/lib/i386/libsunec.so
+openjdk8/jre/lib/i386/libunpack.so
+openjdk8/jre/lib/i386/libverify.so
+openjdk8/jre/lib/i386/libzip.so
+openjdk8/jre/lib/i386/server/Xusage.txt
+openjdk8/jre/lib/i386/server/libjsig.so
+openjdk8/jre/lib/i386/server/libjvm.so
 openjdk8/jre/lib/images/cursors/cursors.properties
 openjdk8/jre/lib/images/cursors/invalid32x32.gif
 openjdk8/jre/lib/images/cursors/motif_CopyDrop32x32.gif
@@ -429,11 +429,11 @@ openjdk8/jre/lib/security/policy/unlimited/local_policy.jar
 openjdk8/jre/lib/sound.properties
 openjdk8/jre/lib/tzdb.dat
 openjdk8/jre/lib/zi
-openjdk8/lib/amd64/jexec
-openjdk8/lib/amd64/jli/libjli.so
-openjdk8/lib/amd64/libjawt.so
 openjdk8/lib/ct.sym
 openjdk8/lib/dt.jar
+openjdk8/lib/i386/jexec
+openjdk8/lib/i386/jli/libjli.so
+openjdk8/lib/i386/libjawt.so
 openjdk8/lib/ir.idl
 openjdk8/lib/jconsole.jar
 openjdk8/lib/orb.idl
@@ -666,7 +666,7 @@ openjdk8/sample/try-with-resources/src/CustomAutoCloseableSample.java
 openjdk8/sample/try-with-resources/src/Unzip.java
 openjdk8/sample/try-with-resources/src/ZipCat.java
 openjdk8/src.zip
-@dir share/licenses/openjdk8-bin-8.181.13_5
+@dir share/licenses/openjdk8-bin-8.181.13_6
 @dir share/licenses
 @dir openjdk8/bin
 @dir openjdk8/demo/applets/ArcTest
@@ -763,11 +763,11 @@ openjdk8/src.zip
 @dir openjdk8/include/midnightbsd
 @dir openjdk8/include
 @dir openjdk8/jre/bin
-@dir openjdk8/jre/lib/amd64/jli
-@dir openjdk8/jre/lib/amd64/server
-@dir openjdk8/jre/lib/amd64
 @dir openjdk8/jre/lib/cmm
 @dir openjdk8/jre/lib/ext
+@dir openjdk8/jre/lib/i386/jli
+@dir openjdk8/jre/lib/i386/server
+@dir openjdk8/jre/lib/i386
 @dir openjdk8/jre/lib/images/cursors
 @dir openjdk8/jre/lib/images
 @dir openjdk8/jre/lib/management
@@ -778,8 +778,8 @@ openjdk8/src.zip
 @dir openjdk8/jre/lib/applet
 @dir openjdk8/jre/lib
 @dir openjdk8/jre
-@dir openjdk8/lib/amd64/jli
-@dir openjdk8/lib/amd64
+@dir openjdk8/lib/i386/jli
+@dir openjdk8/lib/i386
 @dir openjdk8/lib
 @dir openjdk8/man/ja
 @dir openjdk8/man/ja_JP.UTF-8/man1
@@ -842,5 +842,3 @@ openjdk8/src.zip
 @dir openjdk8/sample/try-with-resources
 @dir openjdk8/sample
 @dir openjdk8
-@exec /usr/local/bin/registervm '/usr/local/openjdk8/bin/java'
-@unexec /usr/local/bin/unregistervm '/usr/local/openjdk8/bin/java'
