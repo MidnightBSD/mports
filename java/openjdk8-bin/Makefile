@@ -18,8 +18,8 @@ NO_BUILD=	yes
 
 DISTINFO_FILE=  ${.CURDIR}/distinfo.${ARCH}
 
-RUN_DEPENDS+=	javavm:${PORTSDIR}/java/javavmwrapper \
-		dejavu>=2.35:${PORTSDIR}/x11-fonts/dejavu
+RUN_DEPENDS+=	javavm:java/javavmwrapper \
+		dejavu>=2.35:x11-fonts/dejavu
 
 PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
 
