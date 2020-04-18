@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	postgresql
 PORTVERSION=	9.2.1004
 DISTVERSIONSUFFIX=.src
@@ -14,6 +12,9 @@ COMMENT=	The Java JDBC implementation for PostgreSQL
 LICENSE=	bsd3
 
 DIST_SUBDIR=	postgresql
+
+BUILD_DEPENDS+=	javavm:java/javavmwrapper 
+RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 USE_ANT=	yes
 USE_JAVA=	yes
