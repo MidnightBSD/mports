@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	openssh
-DISTVERSION=	8.1p1
+DISTVERSION=	8.2p1
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security
@@ -27,14 +25,17 @@ CONFIGURE_ARGS=		--prefix=${PREFIX} --with-md5-passwords \
 ETCOLD=			${PREFIX}/etc
 
 FLAVORS=			default hpn gssapi
-default_CONFLICTS_INSTALL=	openssh-portable-hpn openssh-portable-gssapi
-hpn_CONFLICTS_INSTALL=		openssh-portable openssh-portable-gssapi
+default_CONFLICTS_INSTALL=	openssh-portable-hpn openssh-portable-gssapi \
+				openssh-portable-x509
+hpn_CONFLICTS_INSTALL=		openssh-portable openssh-portable-gssapi \
+				openssh-portable-x509
 hpn_PKGNAMESUFFIX=		-portable-hpn
-gssapi_CONFLICTS_INSTALL=	openssh-portable openssh-portable-hpn
+gssapi_CONFLICTS_INSTALL=	openssh-portable openssh-portable-hpn \
+				openssh-portable-x509
 gssapi_PKGNAMESUFFIX=		-portable-gssapi
 
 OPTIONS_DEFINE=		DOCS PAM TCP_WRAPPERS LIBEDIT BSM \
-			HPN X509 KERB_GSSAPI \
+			HPN KERB_GSSAPI \
 			LDNS NONECIPHER XMSS
 OPTIONS_DEFAULT=	LIBEDIT PAM TCP_WRAPPERS LDNS
 .if ${FLAVOR:U} == hpn
@@ -94,7 +95,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-1
+GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-4
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
@@ -123,17 +124,6 @@ CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp --disable-wtmpx --without-lastlog
 
 # Keep this last
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-version-addendum
-
-.if ${PORT_OPTIONS:MX509}
-.  if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
-BROKEN=		X509 patch and HPN patch do not apply cleanly together
-.  endif
-
-.  if ${PORT_OPTIONS:MKERB_GSSAPI}
-BROKEN=		X509 patch incompatible with KERB_GSSAPI patch
-.  endif
-
-.endif
 
 .if ${PORT_OPTIONS:MHEIMDAL_BASE} && ${PORT_OPTIONS:MKERB_GSSAPI}
 BROKEN=		KERB_GSSAPI Requires either MIT or HEMIDAL, does not build with base Heimdal currently
