@@ -59,6 +59,7 @@ SUBDIR += pantomime
 SUBDIR += php71-imap
 SUBDIR += php72-imap
 SUBDIR += php73-imap
+SUBDIR += php74-imap
 SUBDIR += phplist
 SUBDIR += phpmailer
 SUBDIR += pine-pgp-filters
