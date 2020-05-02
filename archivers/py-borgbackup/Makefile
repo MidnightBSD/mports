@@ -17,6 +17,8 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 USES=		python:3.7+ ssl
 USE_PYTHON=	autoplist distutils
 
+NO_TEST=	yes
+
 OPTIONS_DEFINE=		FUSE
 OPTIONS_DEFAULT=	FUSE
 
@@ -24,7 +26,7 @@ FUSE_DESC=	Support to mount locally borg backup files
 FUSE_RUN_DEPENDS=	${PYTHONPREFIX_SITELIBDIR}/llfuse.so:devel/py-llfuse@${PY_FLAVOR}
 
 post-install:
-	@${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
+	@${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/borg/ -name "*.so" \
 		-exec ${STRIP_CMD} {} \;
 
 .include <bsd.port.mk>
