@@ -160,5 +160,6 @@ SUBDIR += zfs-stats
 SUBDIR += zfsnap
 SUBDIR += zfstools
 SUBDIR += zrep
+SUBDIR += zxfer
 
 .include <bsd.port.subdir.mk>
