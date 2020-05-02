@@ -1,17 +1,18 @@
 PORTNAME=		talloc
-PORTVERSION=		2.3.0
+PORTVERSION=		2.1.14
 PORTREVISION=		0
 CATEGORIES=		devel
 MASTER_SITES=		SAMBA
+PKGNAMESUFFIX=		1
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Hierarchical pool based memory allocator
 
 LICENSE=		lgpl3
 
-IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be built with THREADS support
+IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
-CONFLICTS_INSTALL=	talloc1-*
+CONFLICTS_INSTALL=	talloc-*
 
 #FLAVORS=		default nopython
 #nopython_PKGNAMESUFFIX=	-nopython
@@ -30,31 +31,53 @@ CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
 			--disable-rpath \
 			--without-gettext
 
-OPTIONS_DEFINE=		MANPAGES DEBUG
+OPTIONS_DEFINE=		MANPAGES
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
-
-DEBUG_CONFIGURE_ON=	--verbose --enable-debug
-DEBUG_MAKE_ARGS=	--verbose
-DEBUG_FLAGS=		-g -ggdb3 -O0
 
 .include <bsd.mport.options.mk>
 
 PLIST_FILES+=		include/talloc.h \
 			lib/libtalloc.so \
 			lib/libtalloc.so.2 \
-			libdata/pkgconfig/talloc.pc
+			${PKGCONFIGDIR}/talloc.pc
 
 .if defined(NO_PYTHON)
-USES+=			python:2.7+,build,test
+USES+=			python:2.7,build
 CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:3.4+
+USES+=			python:2.7
 
 PLIST_FILES+=		include/pytalloc.h \
 			lib/libpytalloc-util.so \
 			lib/libpytalloc-util.so.2 \
 			${PYTHON_SITELIBDIR}/talloc.so \
-			libdata/pkgconfig/pytalloc-util.pc
+			${PKGCONFIGDIR}/pytalloc-util.pc
+# XXX: This is a gross hack to make port use both Python 2.7+ and 3.3+
+# This is not officially supported, use at your own risk
+.if defined(WITH_SAMBA4_PYTHON3) && ${WITH_SAMBA4_PYTHON3:M3\.[0-9]}
+SAMBA4_PYTHON3_VERSION=	${WITH_SAMBA4_PYTHON3}
+SAMBA4_PYTHON3=		python${SAMBA4_PYTHON3_VERSION}
+SAMBA4_PYTHON3_VER=	${SAMBA4_PYTHON3_VERSION:C/\.//}
+.if !exists(${PORTSDIR}/lang/python${SAMBA4_PYTHON3_VER})
+.error			unsupported or unknown Python version ${SAMBA4_PYTHON3_VERSION}
+.endif
+BUILD_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
+RUN_DEPENDS+=		${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
+# cpython-36m
+SAMBA4_PYTHON3_SO_ABI!=	[ ! -f "${LOCALBASE}/bin/${SAMBA4_PYTHON3}" ] || ${LOCALBASE}/bin/${SAMBA4_PYTHON3} -c 'import sysconfig; print(sysconfig.get_config_var("SOABI") or "")' 2>/dev/null
+SAMBA4_PYTHON3_SITELIBDIR=lib/python${SAMBA4_PYTHON3_VERSION}/site-packages
+
+CONFIGURE_ENV+=		PYTHON3_SO_ABI_FLAG=.${SAMBA4_PYTHON3_SO_ABI}
+CONFIGURE_ARGS+=	--extra-python=${LOCALBASE}/bin/${SAMBA4_PYTHON3}
+
+PLIST_SUB+=		SAMBA4_PYTHON3_SO_ABI=${SAMBA4_PYTHON3_SO_ABI} \
+			SAMBA4_PYTHON3_SITELIBDIR=${SAMBA4_PYTHON3_SITELIBDIR}
+
+PLIST_FILES+=		lib/libpytalloc-util.${SAMBA4_PYTHON3_SO_ABI}.so \
+			lib/libpytalloc-util.${SAMBA4_PYTHON3_SO_ABI}.so.2 \
+			${SAMBA4_PYTHON3_SITELIBDIR}/talloc.${SAMBA4_PYTHON3_SO_ABI}.so \
+			${PKGCONFIGDIR}/pytalloc-util.${SAMBA4_PYTHON3_SO_ABI}.pc
+.endif
 .endif
 
 .include <bsd.port.pre.mk>
@@ -96,10 +119,14 @@ pre-build-MANPAGES-off:
 .endfor
 
 post-install:
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so
+			${STRIP_CMD} ${PREFIX}/lib/libtalloc.so
 .if !defined(NO_PYTHON)
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util.so
+			${STRIP_CMD} ${PREFIX}/lib/libpytalloc-util.so
 			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/talloc.so
+.if defined(SAMBA4_PYTHON3)
+			${STRIP_CMD} ${PREFIX}/lib/libpytalloc-util.${SAMBA4_PYTHON3_SO_ABI}.so
+			${STRIP_CMD} ${PREFIX}/${SAMBA4_PYTHON3_SITELIBDIR}/talloc.${SAMBA4_PYTHON3_SO_ABI}.so
+.endif
 .endif
 
 .include <bsd.port.post.mk>
