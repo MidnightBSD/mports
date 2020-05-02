@@ -433,7 +433,7 @@ CONFIGURE_ARGS+=--with-zlib=/usr
 USES+=		pkgconfig
 .endif
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if ${PHP_MODNAME} == "dba"
 .	if empty(PORT_OPTIONS:MCDB)
