@@ -1,29 +1,32 @@
-# $FreeBSD: head/sysutils/zrep/Makefile 338574 2014-01-03 19:28:01Z vg $
+# $FreeBSD: head/sysutils/zrep/Makefile 517943 2019-11-19 08:17:31Z meta $
 
 PORTNAME=	zrep
-PORTVERSION=	1.0.1
+PORTVERSION=	1.8.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.bolthole.com/solaris/zrep/ \
-		http://www.bsdstore.ru/downloads/
-DISTNAME=	${PORTNAME}
-EXTRACT_SUFX=
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	neel@neelc.org
 COMMENT=	ZFS based replication and failover solution
 
-LICENSE=	unknown
+LICENSE=	bolthole
+LICENSE_NAME=	bolthole
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell
+
+#RUN_DEPENDS=	ksh93:shells/ksh93
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	bolthole
 
 PLIST_FILES=	bin/zrep
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
-.include <bsd.mport.options.mk>
-
-do-extract:
-	@${MKDIR} ${WRKSRC}
-	@${CP} -p ${DISTDIR}/${PORTNAME} ${WRKSRC}
+#post-patch:
+#	@${REINPLACE_CMD} -e 's|#!/bin/ksh -p|#!${LOCALBASE}/bin/ksh93 -p|' ${WRKSRC}/zrep
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin
 
 .include <bsd.port.mk>
