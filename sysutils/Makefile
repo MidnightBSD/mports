@@ -88,7 +88,6 @@ SUBDIR += lttng-ust
 SUBDIR += mbmon
 SUBDIR += mcelog
 SUBDIR += mdf2iso
-SUBDIR += memtest
 SUBDIR += memtest86
 SUBDIR += monit
 SUBDIR += munin-common
