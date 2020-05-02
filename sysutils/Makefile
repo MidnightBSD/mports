@@ -126,6 +126,7 @@ SUBDIR += py-ptyprocess
 SUBDIR += qt5-qtdiag
 SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
+SUBDIR += restic
 SUBDIR += scan_ffs
 SUBDIR += screen
 SUBDIR += screenie
