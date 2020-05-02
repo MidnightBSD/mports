@@ -1,23 +1,38 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/flock/Makefile,v 1.10 2011/08/08 20:02:03 pav Exp $
-#
+# Created by: Andrey Zonov <andrey@zonov.org>
 
 PORTNAME=	flock
-PORTVERSION=	2.19
-PORTREVISION=	1
+PORTVERPREFIX=	2.30
+PORTVERSION=	${PORTVERPREFIX}.1
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.zonov.org/${PORTNAME}/
+MASTER_SITES=	KERNEL_ORG/linux/utils/util-linux/v${PORTVERPREFIX}/
+DISTNAME=	util-linux-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage locks from shell scripts
 
-LICENSE=	mit
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-PLIST_FILES=	bin/${PORTNAME} \
-		man/man1/${PORTNAME}.1.gz
+GNU_CONFIGURE=	yes
+USES=		libtool pkgconfig
+
+OPTIONS_DEFINE=	NLS
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	autoreconf gettext
+
+PLIST_FILES=	bin/flock man/man1/flock.1.gz \
+		etc/bash_completion.d/flock
+
+do-build:
+	# skip building unneeded utils
+	${MAKE} -C ${WRKSRC} flock
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/flock ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/sys-utils/flock.1 \
+		${STAGEDIR}${MANPREFIX}/man/man1
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/bash-completion/flock ${STAGEDIR}${PREFIX}/etc/bash_completion.d
 
 .include <bsd.port.mk>
