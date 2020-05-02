@@ -202,6 +202,7 @@ SUBDIR += sqlclient
 SUBDIR += sqlite2
 SUBDIR += sqlite3
 SUBDIR += tdb
+SUBDIR += tdb1
 SUBDIR += tinycdb
 SUBDIR += unixODBC
 
