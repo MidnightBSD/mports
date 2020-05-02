@@ -2,7 +2,7 @@
 
 PORTNAME=	nvclock
 DISTVERSION=	0.8b4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/0.8%20%28beta4%29
 DISTNAME=	nvclock${DISTVERSION}
@@ -24,19 +24,15 @@ NVCONTROL_DESC=	NV-CONTROL support (for OpenGL settings)
 X11_DESC=	Build GUI program (requires GTK+ 2.x)
 
 NVCONTROL_USE=		XORG=xext
-NVCONTROL_USES=		pkgconfig
+NVCONTROL_USES=		pkgconfig xorg
 NVCONTROL_CONFIGURE_OFF=	--disable-nvcontrol
 
+X11_USES=		gnome
 X11_USE=		GNOME=gtk20
+X11_CONFIGURE_OFF=	--disable-gtk
+X11_VARS=		INSTALLS_ICONS=yes
 X11_PLIST_FILES=	bin/nvclock_gtk share/applications/nvclock.desktop \
 			share/icons/hicolor/48x48/apps/nvclock.png
-X11_CONFIGURE_OFF=	--disable-gtk
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MX11}
-INSTALLS_ICONS=	yes
-.endif
 
 post-patch:
 # Uphold our C[XX]FLAGS except for backend part, it must be compiled with -O0
