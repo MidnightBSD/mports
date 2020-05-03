@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Instant messaging
 
 SUBDIR += ekiga
@@ -22,6 +20,7 @@ SUBDIR += pidgin-twitter
 SUBDIR += purple-discord
 SUBDIR += purple-facebook
 SUBDIR += sendxmpp
+SUBDIR += slack-term
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
 
