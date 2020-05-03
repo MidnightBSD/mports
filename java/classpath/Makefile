@@ -104,10 +104,10 @@ IGNORE=you need to enable the Gtk+ AWT peer in order to use Cairo based Graphics
 PLIST_SUB+=		QT4="@comment "
 
 .if !defined(WITH_GCJ) && (${ARCH} == "amd64" || ${ARCH} == "i386")
-BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk/bin/javac:${PORTSDIR}/java/bootstrap-openjdk
-JAR?=			${LOCALBASE}/bootstrap-openjdk/bin/jar
-JAVA?=			${LOCALBASE}/bootstrap-openjdk/bin/java
-JAVAC?=			${LOCALBASE}/bootstrap-openjdk/bin/javac
+BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk8/bin/javac:${PORTSDIR}/java/bootstrap-openjdk8
+JAR?=			${LOCALBASE}/bootstrap-openjdk8/bin/jar
+JAVA?=			${LOCALBASE}/bootstrap-openjdk8/bin/java
+JAVAC?=			${LOCALBASE}/bootstrap-openjdk8/bin/javac
 .else
 USE_BINUTILS=		yes
 USE_GCC=		yes
