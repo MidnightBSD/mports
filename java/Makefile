@@ -51,6 +51,7 @@ SUBDIR += maven-wrapper
 SUBDIR += maven3
 SUBDIR += maven33
 SUBDIR += netbeans
+SUBDIR += netty
 SUBDIR += openjdk6
 SUBDIR += openjdk6-jre
 SUBDIR += openjdk7
