@@ -31,7 +31,7 @@ PORTDOCS=	*
 PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar \
 		${JAVAJARDIR}/${JARFILE}
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/${JARFILE} ${STAGEDIR}${JAVAJARDIR}
