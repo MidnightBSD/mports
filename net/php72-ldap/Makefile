@@ -8,4 +8,6 @@ PKGNAMESUFFIX=	-ldap
 
 TEST_TARGET=    test
 
+USES+=		ldap
+
 .include "${MASTERDIR}/Makefile"
