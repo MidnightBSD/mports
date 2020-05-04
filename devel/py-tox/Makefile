@@ -19,21 +19,15 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}py>=1.4.17,<2:devel/py-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}filelock>=3.0.0,<4:sysutils/py-filelock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}virtualenv>=1.11.2:devel/py-virtualenv@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}toml>=0.9.4:textproc/py-toml@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=3.0.0,<5:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-mock>=1.10.0,<2:devel/py-pytest-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=1.22.2,<2:devel/py-pytest-xdist@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}freezegun>=0.3.11,<1:devel/py-freezegun@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 # tox.ini clobbers our pytest arguments
 post-extract:
 	${RM} ${WRKSRC}/tox.ini
-
-do-test:
-	@cd ${WRKSRC} && PYTHONPATH=${WRKSRC}/src ${PYTHON_CMD} -m pytest -v -rs -n ${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.mk>
