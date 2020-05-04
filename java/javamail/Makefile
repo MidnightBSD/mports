@@ -11,6 +11,8 @@ COMMENT=	Reference Implementation of JSR 919
 LICENSE=	gpl2 cddl
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS+=	java:java/javavmwrapper
+
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 USES=		cpe
