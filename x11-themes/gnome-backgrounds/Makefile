@@ -14,6 +14,7 @@ PORTSCOUT=	limitw:1,even
 
 BUILD_DEPENDS+=	ninja:devel/ninja \
 		python2.7:lang/python27 \
+		python3.7:lang/python37 \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools@${PY_FLAVOR}
 
 NO_ARCH=	yes
