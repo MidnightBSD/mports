@@ -25,12 +25,12 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}acme>=${ACME_VERSION},1:security/py-acme@${P
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.component>0:devel/py-zope.component@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>0:devel/py-zope.interface@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 SUB_FILES=	500.certbot
 PLIST_FILES=	etc/periodic/weekly/500.certbot
 
@@ -41,9 +41,6 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
 	${INSTALL_SCRIPT} ${WRKDIR}/500.certbot \
 		${STAGEDIR}${PREFIX}/etc/periodic/weekly
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include "${.CURDIR}/../py-acme/version.mk"
 .include <bsd.port.mk>
