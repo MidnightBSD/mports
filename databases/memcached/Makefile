@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	memcached
-PORTVERSION=	1.5.12
+PORTVERSION=	1.5.19
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -48,7 +46,7 @@ OPTIONS_EXCLUDE_armv7=		DTRACE
 DTRACE_DESC=	Enable dtrace probes
 SASL_DESC=	Enable SASL Authentication
 
-DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	xml2rfc:textproc/xml2rfc
 DOCS_CONFIGURE_ENABLE=	docs
 
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
