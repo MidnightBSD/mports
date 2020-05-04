@@ -11,7 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ANother Tool for Language Recognition
 LICENSE=	other
 
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
+BUILD_DEPENDS+=	java:java/javavmwrapper
+RUN_DEPENDS+=	java:java/javavmwrapper
 
 CONFLICTS=	pccts-[0-9]*
 
