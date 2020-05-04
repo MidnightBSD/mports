@@ -10,7 +10,9 @@ COMMENT=	Just Journal for Java blogging app
 
 LICENSE=	unknown
 
-BUILD_DEPENDS+=	mvn:java/maven33
+BUILD_DEPENDS+=	mvn:java/maven33 \
+		java:java/javavmwrapper
+RUN_DEPENDS+=	java:java/javavmwrapper
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	laffer1
