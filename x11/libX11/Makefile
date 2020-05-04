@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libX11
-PORTVERSION=	1.6.6
-PORTREVISION=	1
+PORTVERSION=	1.6.9
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -11,8 +8,7 @@ COMMENT=	X11 library
 
 LICENSE=	mit
 
-USES=		cpe perl5
-XORG_CAT=	lib
+USES=		cpe perl5 xorg xorg-cat:lib
 USE_XORG=	xau xdmcp xtrans xorgproto xcb
 USE_PERL5=	build
 CPE_VENDOR=	x
