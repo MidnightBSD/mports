@@ -1,6 +1,6 @@
 PORTNAME=	javajj
 PORTVERSION=	1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils java
 #MASTER_SITES=	http://www.justjournal.com/software/
 #DISTFILES=	justjournal-${PORTVERSION}${EXTRACT_SUFX}
@@ -10,7 +10,7 @@ COMMENT=	Just Journal for Java blogging app
 
 LICENSE=	unknown
 
-BUILD_DEPENDS+=	mvn:java/maven33 \
+BUILD_DEPENDS+=	mvn:java/maven \
 		java:java/javavmwrapper
 RUN_DEPENDS+=	java:java/javavmwrapper
 
