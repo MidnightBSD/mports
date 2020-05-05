@@ -14,6 +14,8 @@ USES=		pkgconfig python:3.3+,build ssl tar:xz
 ONLY_FOR_ARCH=	amd64
 NO_BUILD=	yes
 
+DISTINFO_FILE=	distinfo.${ARCH}
+
 LIB_DEPENDS=    libcurl.so:ftp/curl \
                 libgit2.so:devel/libgit2 \
                 libssh2.so:security/libssh2
