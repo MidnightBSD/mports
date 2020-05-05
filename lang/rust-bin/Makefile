@@ -1,7 +1,8 @@
 PORTNAME=	rust-bin
 PORTVERSION=	1.30.0
 CATEGORIES=	lang
-MASTER_SITES=	http://pkg.freebsd.org/${FBSD_PATH}/latest/All/
+MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/distfiles/rust/${ARCH}/ \
+		http://pkg.freebsd.org/${FBSD_PATH}/latest/All/
 DISTFILES=      rust-1.30.0.txz
 
 MAINTAINER=	ports@MidnightBSD.org
