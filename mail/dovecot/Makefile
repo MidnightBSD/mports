@@ -1,7 +1,7 @@
 PORTNAME=	dovecot
 PORTVERSION=	2.3.10
 CATEGORIES=	mail
-MASTER_SITES=	https://www.dovecot.org/releases/2.3/
+MASTER_SITES=	https://dovecot.org/releases/2.3/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure, fast and powerful IMAP and POP3 server
