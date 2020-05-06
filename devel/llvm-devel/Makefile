@@ -9,7 +9,7 @@ COMMENT=	LLVM and Clang
 
 .include "Makefile.LICENSE"
 LICENSE+=	LLVM2
-LICENSE_FILE_LLVM2=	${WRKSRC}/LICENSE.TXT
+LICENSE_FILE_LLVM2=	${WRKDIR}/openmp-2b135c5afc8ffa96cebe7a9ce9ae3e7251b1fadc/LICENSE.txt
 LICENSE_NAME_LLVM2= 	Apache License 2.0 with LLVM Exceptions
 LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE:=	${LICENSE:NARM}
