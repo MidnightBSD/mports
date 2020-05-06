@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	fop
 PORTVERSION=	1.0
 PORTREVISION=	1
@@ -13,9 +11,12 @@ EXTRACT_ONLY=	${DISTNAME}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Print formatter driven by XSL formatting
+
 LICENSE=	apache2
 
-EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
+EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:archivers/unzip
+BUILD_DEPENDS+=	javavm:java/javavmwrapper
+RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
