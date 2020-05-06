@@ -1,6 +1,5 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.6.9
-PORTREVISION=	1
+PORTVERSION=	3.6.13
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
@@ -109,9 +108,7 @@ post-patch:
 		${WRKSRC}/doc/stamp_functions
 
 post-install:
-	@${RM} ${STAGEDIR}${DOCSDIR}/*.png
-	@${RMDIR} ${STAGEDIR}${DOCSDIR}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/examples/*.[ch] ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
