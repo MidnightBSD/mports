@@ -160,7 +160,6 @@ SUBDIR += libconfuse
 SUBDIR += libdaemon
 SUBDIR += libdatrie
 SUBDIR += libdevq
-SUBDIR += libdispatch
 SUBDIR += libdbusmenu-qt
 SUBDIR += libdlna
 SUBDIR += libedit
