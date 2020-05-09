@@ -26,6 +26,7 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
 USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
