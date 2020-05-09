@@ -63,6 +63,8 @@ sub sync {
     }
 
     my $primaryFlavor = $dump{flavor};
+    my $defaultFlavor = false;
+
 
     my $port = Magus::Port->insert({ 
       run         => $run,
@@ -74,6 +76,7 @@ sub sync {
       www         => $dump{www},
       pkgname     => $dump{pkgname},
       flavor      => $dump{flavor},
+      default_flavor => 1,
     });     
 
     $depends{$port->id} = [];
@@ -125,6 +128,7 @@ sub sync {
       www         => $dump{www},
       pkgname     => $dump{pkgname},
       flavor      => $dump{flavor},
+      default_flavor => 0,
     }); 
 
     $depends{$port->id} = [];
@@ -174,7 +178,7 @@ sub sync {
  
       if (!defined($depend)) {
         warn "\tMissing depend for $port: $item->{name}\n";
-        $port->set_result_fail(qq(depend "$item->{name}" does not exist.));
+        $port->set_result_fail(qq(depend "$item->{name}" with flavor: "$fl" does not exist.));
         next PORT;
       }
       

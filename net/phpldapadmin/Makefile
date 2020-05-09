@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	phpldapadmin
-PORTVERSION=	1.2.0.5
+PORTVERSION=	1.2.3
 PORTEPOCH=	1
 CATEGORIES=	net www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-php5/${PORTVERSION}
@@ -10,10 +8,14 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to administer LDAP over the web
+
 LICENSE=	gpl2
 
-NO_BUILD=	yes
 USE_PHP=	gettext ldap openssl pcre session xml iconv hash
+
+NO_ARCH=      yes
+NO_BUILD=     yes
+CPE_VENDOR=   deon_george
 
 .include <bsd.mport.options.mk>
 
