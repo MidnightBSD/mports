@@ -1,8 +1,6 @@
-Fix syntax for sh (get rid of bash-isms)
-
---- libbeat/scripts/Makefile.orig	2019-10-15 21:08:29 UTC
-+++ libbeat/scripts/Makefile
-@@ -35,7 +35,7 @@ GOFILES = $(shell find . -type f -name '*.go')
+--- libbeat/scripts/Makefile.orig	2019-12-10 18:17:20.000000000 -0500
++++ libbeat/scripts/Makefile	2020-05-09 12:59:27.281447000 -0400
+@@ -35,7 +35,7 @@
  GOFILES_NOVENDOR = $(shell find . -type f -name '*.go' -not -path "*/vendor/*")
  GOFILES_ALL = $(GOFILES) $(shell find $(ES_BEATS) -type f -name '*.go')
  GOPACKAGES_STRESSTESTS=$(shell find . -name '*.go' | xargs awk 'FNR>1 {nextfile} /\+build.*stresstest/ {print FILENAME; nextfile}' | xargs dirname | uniq)
@@ -11,7 +9,16 @@ Fix syntax for sh (get rid of bash-isms)
  ES_HOST?="elasticsearch"
  PWD=$(shell pwd)
  BUILD_DIR?=$(shell pwd)/build
-@@ -108,7 +108,7 @@ ${BEAT_NAME}.test: $(GOFILES_ALL)
+@@ -63,7 +63,7 @@
+ SYSTEM_TESTS?=false ## @testing if true, "make test" and "make testsuite" run unit tests and system tests
+ STRESS_TESTS?=false ## @testing if true, "make test" and "make testsuite" run also run the stress tests
+ STRESS_TEST_OPTIONS?=-timeout=20m -race -v
+-GOX_OS?=linux darwin windows freebsd netbsd openbsd ## @Building List of all OS to be supported by "make crosscompile".
++GOX_OS?=linux darwin windows midnightbsd freebsd netbsd openbsd ## @Building List of all OS to be supported by "make crosscompile".
+ GOX_OSARCH?=!darwin/arm !darwin/arm64 !darwin/386 ## @building Space separated list of GOOS/GOARCH pairs to build by "make crosscompile".
+ GOX_FLAGS?= ## @building Additional flags to append to the gox command used by "make crosscompile".
+ # XXX: Should be switched back to `snapshot` once the Elasticsearch
+@@ -108,7 +108,7 @@
  .PHONY: crosscompile
  crosscompile: ## @build Cross-compile beat for the OS'es specified in GOX_OS variable. The binaries are placed in the build/bin directory.
  crosscompile: $(GOFILES)
@@ -20,7 +27,7 @@ Fix syntax for sh (get rid of bash-isms)
  	go get github.com/mitchellh/gox
  	mkdir -p ${BUILD_DIR}/bin
  	gox -output="${BUILD_DIR}/bin/{{.Dir}}-{{.OS}}-{{.Arch}}" -os="$(strip $(GOX_OS))" -osarch="$(strip $(GOX_OSARCH))" ${GOX_FLAGS}
-@@ -338,7 +338,7 @@ ifeq ($(BEAT_REF_YAML),true)
+@@ -338,7 +338,7 @@
  	@chmod 0640 ${BEAT_NAME}.reference.yml
  endif
  
