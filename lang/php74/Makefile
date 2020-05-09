@@ -32,20 +32,11 @@ USE_GNOME=	libxml2
 # PR230207 Allow relocations against read-only segments (override lld default)
 LDFLAGS_i386=	-Wl,-z,notext
 
-OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG DTRACE IPV6 MYSQLND LINKTHR ZTS
-OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR DTRACE
-OPTIONS_EXCLUDE_DragonFly=	DTRACE
-# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
-OPTIONS_EXCLUDE_aarch64=	DTRACE
-OPTIONS_EXCLUDE_powerpc=	DTRACE
-OPTIONS_EXCLUDE_powerpc64=	DTRACE
-# dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
-OPTIONS_EXCLUDE_armv6=		DTRACE
-OPTIONS_EXCLUDE_armv7=		DTRACE
+OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG IPV6 MYSQLND LINKTHR ZTS
+OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR
 # Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=		DTRACE FPM
-OPTIONS_EXCLUDE_mips64=		DTRACE FPM
-OPTIONS_EXCLUDE_sparc64=	DTRACE
+OPTIONS_EXCLUDE_mips=		FPM
+OPTIONS_EXCLUDE_mips64=		FPM
 OPTIONS_SUB=	yes
 
 CLI_DESC=	Build CLI version
@@ -137,12 +128,8 @@ CONFIGURE_ARGS+=--enable-maintainer-zts
 CONFIGURE_ENV+=	pthreads_working="yes"
 .endif
 
-.if ${PORT_OPTIONS:MDTRACE}
-CONFIGURE_ARGS+=--enable-dtrace
-PLIST_SUB+=	DTRACE=""
-.else
+CONFIGURE_ARGS+=--disable-dtrace
 PLIST_SUB+=	DTRACE="@comment "
-.endif
 
 .if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
