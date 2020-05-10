@@ -210,5 +210,6 @@ SUBDIR += wmicons
 SUBDIR += xli
 SUBDIR += xv
 SUBDIR += zbar
+SUBDIR += zphoto
 
 .include <bsd.port.subdir.mk>
