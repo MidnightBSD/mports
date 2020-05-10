@@ -33,7 +33,7 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 OPTIONS_DEFINE=	SSL SASL TEST
 OPTIONS_DEFAULT=SSL
 
-USES=		cpe scons python:2,build
+USES=		cpe scons python:build
 MAKE_ARGS+=	--prefix=${FAKE_DESTDIR}${TRUE_PREFIX} --cc=${CC} --cxx=${CXX} \
 		--use-system-pcre --use-system-snappy --use-system-v8
 
