@@ -11,6 +11,8 @@ COMMENT=	Open source distributed database management system
 
 LICENSE=	apache2
 
+RUN_DEPENDS+=	javavm:java/javavmwrapper
+
 NO_BUILD=	yes
 JAVA_VERSION=	6
 JAVA_VENDOR=	openjdk
