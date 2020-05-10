@@ -22,8 +22,8 @@ _LUA_WANTED_VERSION:=	${_LUA_DEFAULT_VERSION}
 #
 # Parse one or more ver arguments
 #
-.if defined(lua_ARGS) && ${lua_ARGS:M5[1-2]}
-_LUA_WANTED_VERSIONS:=	${lua_ARGS:M5[1-2]}
+.if defined(lua_ARGS) && ${lua_ARGS:M5[1-3]}
+_LUA_WANTED_VERSIONS:=	${lua_ARGS:M5[1-3]}
 .endif
 
 #
@@ -90,11 +90,11 @@ MAKE_ENV+=	LUA_MODLIBDIR=${LUA_MODLIBDIR} \
 		LUA_LIBDIR=${LUA_LIBDIR}
 
 .if defined(lua_ARGS) && ${lua_ARGS:Mbuild}
-BUILD_DEPENDS+=	${LUA_CMD}:${PORTSDIR}/lang/lua${LUA_VER_STR}
+BUILD_DEPENDS+=	${LUA_CMD}:lang/lua${LUA_VER_STR}
 .elfif defined(lua_ARGS) && ${lua_ARGS:Mrun}
-RUN_DEPENDS+=	${LUA_CMD}:${PORTSDIR}/lang/lua${LUA_VER_STR}
+RUN_DEPENDS+=	${LUA_CMD}:lang/lua${LUA_VER_STR}
 .else
-LIB_DEPENDS+=	liblua-${LUA_VER}.so:${PORTSDIR}/lang/lua${LUA_VER_STR}
+LIB_DEPENDS+=	liblua-${LUA_VER}.so:lang/lua${LUA_VER_STR}
 .endif
 
 .endif
