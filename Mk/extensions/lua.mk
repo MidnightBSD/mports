@@ -1,11 +1,9 @@
-# $MidnightBSD$
-#
 # Provide support for lua
 
 .if !defined(_INCLUDE_USES_LUA_MK)
 _INCLUDE_USES_LUA_MK=	yes
 
-_LUA_VALID_VERSIONS=	52 51
+_LUA_VALID_VERSIONS=	53 52 51
 
 .include "${PORTSDIR}/Mk/components/default-versions.mk"
 _LUA_DEFAULT_VERSION=	${LUA_DEFAULT:S/.//}
