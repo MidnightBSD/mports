@@ -77,5 +77,9 @@ SUBDIR += squirrelmail
 SUBDIR += textmail
 SUBDIR += vrfy
 SUBDIR += wpop3d
+SUBDIR += xmail
+SUBDIR += xmailbox
+SUBDIR += xmailwatcher
+SUBDIR += xpbiff
 
 .include <bsd.port.subdir.mk>
