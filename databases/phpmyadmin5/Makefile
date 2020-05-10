@@ -1,9 +1,9 @@
 PORTNAME=	phpMyAdmin
-DISTVERSION=	4.9.5
+DISTVERSION=	5.0.2
 CATEGORIES=	databases www
 MASTER_SITES=	https://files.phpmyadmin.net/${PORTNAME}/${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
-PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
+PKGNAMESUFFIX=	5${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of PHP-scripts to manage MySQL over the web
@@ -11,7 +11,7 @@ COMMENT=	Set of PHP-scripts to manage MySQL over the web
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS_INSTALL=	phpmyadmin5
+CONFLICTS_INSTALL=	phpmyadmin
 
 USES=		cpe php:web,flavors tar:xz
 CPE_PRODUCT=	${PORTNAME:tl}
@@ -51,8 +51,6 @@ ZLIB_DESC=	PHP ZLIB support
 
 .include <bsd.mport.options.mk>
 
-WANT_PHP_WEB=	yes
-
 GROUPS?=	${WWWGRP}
 CFG_FILE=	config.inc.php
 
@@ -77,9 +75,6 @@ USE_PHP+=	${opt:tl}
 
 post-patch:
 	cd ${WRKSRC} ; \
-	for emptydir in $$( ${FIND} . -type d -empty -print ) ; do \
-	    ${TOUCH} $${emptydir}/.keep-me ; \
-	done ; \
 	${CP} ${FILESDIR}/${CFG_FILE}.sample ${WRKSRC}/${CFG_FILE}.sample ; \
 	${FIND} . ! -type d ! -name ${CFG_FILE}.sample ! -name '*.bak' | \
 	    ${SORT} | ${SED} -e "s,^\.,%%WWWDIR%%,"   >${PLIST} ; \
