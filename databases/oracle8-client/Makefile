@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	oracle8-client
 PORTVERSION=	0.2.0
 PORTREVISION=	4
