@@ -14,15 +14,23 @@ IGNORE=	Invalid lua version ${LUA_DEFAULT}
 #
 # Parse a ver+ argument
 #
-.if defined(lua_ARGS) && ${lua_ARGS:M*+}
+.if ${lua_ARGS:M*+}
 _LUA_MIN_VERSION:=	${lua_ARGS:M*+:S/+//}
-_LUA_WANTED_VERSION:=	${_LUA_DEFAULT_VERSION}
+#
+# Resolve minimum versions (ver+). Append anything greater or equal than the
+# specified minimum version to the list of wanted versions.
+#
+.  for _v in ${_LUA_VALID_VERSIONS}
+.    if ${_LUA_MIN_VERSION} <= ${_v}
+_LUA_WANTED_VERSIONS+=${_v}
+.    endif
+.  endfor
 .endif
 
 #
 # Parse one or more ver arguments
 #
-.if defined(lua_ARGS) && ${lua_ARGS:M5[1-3]}
+.if ${lua_ARGS:M5[1-3]}
 _LUA_WANTED_VERSIONS:=	${lua_ARGS:M5[1-3]}
 .endif
 
@@ -35,18 +43,6 @@ _LUA_WANTED_VERSIONS=	${_LUA_DEFAULT_VERSION}
 .endif
 
 #
-# Resolve minimum versions (ver+). Append anything greater or equal than the
-# specified minimum version to the list of wanted versions.
-#
-.if defined(_LUA_MIN_VERSION)
-.  for _v in ${_LUA_VALID_VERSIONS}
-.    if ${_LUA_MIN_VERSION} <= ${_v}
-_LUA_WANTED_VERSIONS+=${_v}
-.    endif
-.  endfor
-.endif
-
-#
 # Right now we have built a list of potential versions that we may depend on.
 # Let's sort them and remove any duplicates. We then locate the highest one
 # already installed, if any.
@@ -54,14 +50,20 @@ _LUA_WANTED_VERSIONS+=${_v}
 .for _v in ${_LUA_WANTED_VERSIONS:O:u}
 _LUA_HIGHEST_VERSION:=${_v}
 .  if exists(${LOCALBASE}/bin/lua${_v})
-_LUA_WANTED_VERSION:=	${_v}
+_LUA_HIGHEST_INSTALLED_VERSION:=	${_v}
 .  endif
 .endfor
 
 #
-# If we couldn't find any wanted version installed, depend on the highest one.
-.if !defined(_LUA_WANTED_VERSION)
-_LUA_WANTED_VERSION:= ${_LUA_HIGHEST_VERSION}
+# Depend on the default version if it fits, or the highest installed version,
+# or the highest version.
+#
+.if ${_LUA_WANTED_VERSIONS:M${_LUA_DEFAULT_VERSION}}
+_LUA_WANTED_VERSION:=	${_LUA_DEFAULT_VERSION}
+.elif defined(_LUA_HIGHEST_INSTALLED_VERSION)
+_LUA_WANTED_VERSION:=	${_LUA_HIGHEST_INSTALLED_VERSION}
+.else
+_LUA_WANTED_VERSION:=	${_LUA_HIGHEST_VERSION}
 .endif
 
 #
@@ -89,9 +91,9 @@ MAKE_ENV+=	LUA_MODLIBDIR=${LUA_MODLIBDIR} \
 		LUA_INCDIR=${LUA_INCDIR} \
 		LUA_LIBDIR=${LUA_LIBDIR}
 
-.if defined(lua_ARGS) && ${lua_ARGS:Mbuild}
+.if ${lua_ARGS:Mbuild}
 BUILD_DEPENDS+=	${LUA_CMD}:lang/lua${LUA_VER_STR}
-.elfif defined(lua_ARGS) && ${lua_ARGS:Mrun}
+.elif ${lua_ARGS:Mrun}
 RUN_DEPENDS+=	${LUA_CMD}:lang/lua${LUA_VER_STR}
 .else
 LIB_DEPENDS+=	liblua-${LUA_VER}.so:lang/lua${LUA_VER_STR}
