@@ -75,6 +75,7 @@ SUBDIR += spamassassin
 SUBDIR += spamd
 SUBDIR += squirrelmail
 SUBDIR += textmail
+SUBDIR += thunderbird
 SUBDIR += vrfy
 SUBDIR += wpop3d
 SUBDIR += xmail
