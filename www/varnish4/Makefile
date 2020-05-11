@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	varnish
 PORTVERSION=	4.1.10
 DISTVERSIONPREFIX=	varnish-
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 PKGNAMESUFFIX=	4
 
@@ -13,7 +11,7 @@ COMMENT=	High-performance HTTP accelerator
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rst2man:textproc/py-docutils@${PY_FLAVOR}
+BUILD_DEPENDS=	rst2man-${PYTHON_VER}:textproc/py-docutils@${PY_FLAVOR}
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFLICTS=	varnish-2.* varnish-3.*
@@ -25,11 +23,9 @@ python_OLD_CMD=	/usr/bin/env python
 CPE_VENDOR=	varnish-cache
 CFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--localstatedir=${PREFIX} --enable-tests
+CONFIGURE_ARGS=	--localstatedir=${PREFIX} --disable-tests --with-rst2man=${LOCALBASE}/bin/rst2man-${PYTHON_VER}
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check  # some tests fail
-TEST_ARGS=	TESTS_PARALLELISM=1
 # magus
 NO_TEST=	yes
 
