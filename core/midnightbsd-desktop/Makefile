@@ -28,7 +28,8 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
                 ${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
 		mport-manager:ports-mgmt/mport-manager \
 		mlogind:x11/mlogind \
-		git:devel/git
+		git:devel/git \
+		wifimgr:net-mgmt/wifimgr
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
