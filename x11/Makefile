@@ -180,6 +180,7 @@ SUBDIR += xvinfo
 SUBDIR += xwd
 SUBDIR += xwininfo
 SUBDIR += xwud
+SUBDIR += yalias
 SUBDIR += yeahconsole
 SUBDIR += yelp
 SUBDIR += zenity
