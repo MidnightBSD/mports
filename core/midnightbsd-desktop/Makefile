@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.4
+PORTVERSION=	2.5
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
