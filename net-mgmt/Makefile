@@ -26,7 +26,7 @@ SUBDIR += subcalc
 SUBDIR += sysmon
 SUBDIR += tcpreplay
 SUBDIR += tcptrack
-SUBDIR += weplab
 SUBDIR += whatmask
+SUBDIR += wifimgr
 
 .include <bsd.port.subdir.mk>
