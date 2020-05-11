@@ -50,7 +50,6 @@ SUBDIR += jmk-x11-fonts
 SUBDIR += libFS
 SUBDIR += libXfont
 SUBDIR += libXfont2
-SUBDIR += libXfontcache
 SUBDIR += libXft
 SUBDIR += liberation-fonts-ttf
 SUBDIR += libfontenc

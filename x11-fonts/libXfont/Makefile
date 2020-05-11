@@ -13,7 +13,6 @@ LICENSE_COMB=	multi
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
 USES=		cpe xorg xorg-cat:lib
-XORG_CAT=	lib
 USE_XORG=	xorgproto xtrans fontenc
 INSTALL_TARGET=	install-strip
 CPE_PRODUCT=	libxfont

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xfs
 PORTVERSION=	1.2.0
 PORTREVISION=	1
@@ -11,8 +9,9 @@ COMMENT=	X.Org font server
 
 LICENSE=	mit
 
-XORG_CAT=	app
-USES=		gmake
+USES=		cpe gmake xorg xorg-cat:app
+CPE_VENDOR=	x
+CPE_PRODUCT=	x_font_server
 USE_XORG=	libfs xfont2 xorgproto xtrans
 USE_RC_SUBR=	xfs
 CONFIGURE_ARGS=	--without-xmlto --without-fop
