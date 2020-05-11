@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libXpm
-PORTVERSION=	3.5.12
-PORTREVISION=	2
+PORTVERSION=	3.5.13
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +7,7 @@ COMMENT=	X Pixmap library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	xorgproto x11 xext xt
 LDFLAGS+=	-L${LOCALBASE}/lib
 
