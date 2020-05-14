@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	jdom
 PORTVERSION=	1.1.1
 PORTEPOCH=	1
@@ -8,10 +6,11 @@ MASTER_SITES=	http://www.jdom.org/dist/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for accessing and manipulating XML documents
+
 LICENSE=	other
 # very simliar to bsd license.
 
-RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:${PORTSDIR}/java/jaxen
+RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:java/jaxen
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
