@@ -1,11 +1,11 @@
 # Created by: Vsevolod Stakhov <vsevolod@FreeBSD.org>
 
 PORTNAME=	libressl
-PORTVERSION=	2.8.3
+PORTVERSION=	3.0.2
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD>org
 COMMENT=	Free version of the SSL/TLS protocol forked from OpenSSL
 
 LICENSE=	bsd4
@@ -19,8 +19,7 @@ MAN3_DESC=	Install API manpages (section 3)
 NC_DESC=	Install TLS-enabled netcat
 
 CONFLICTS_INSTALL=	libressl-devel-[0-9]* \
-			openssl-[0-9]* \
-			openssl111-[0-9]*
+			openssl-[0-9]*
 
 NC_CONFIGURE_ENABLE=	nc
 

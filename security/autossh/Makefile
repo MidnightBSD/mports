@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	autossh
-PORTVERSION=	1.4e
+PORTVERSION=	1.4g
 CATEGORIES=	security
 MASTER_SITES=	http://www.harding.motd.ca/autossh/
 EXTRACT_SUFX=	.tgz

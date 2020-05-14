@@ -1,26 +1,19 @@
---- config.orig	2014-01-06 08:47:42.000000000 -0500
-+++ config	2014-03-09 12:35:57.656124774 -0400
-@@ -197,7 +197,7 @@
- 	echo "${MACHINE}-whatever-bsdi"; exit 0
- 	;;
- 
--    FreeBSD:*:*:*386*)
-+    MidnightBSD:*:*:*386*)
-         VERS=`echo ${RELEASE} | sed -e 's/[-(].*//'`
-         MACH=`sysctl -n hw.model`
-         ARCH='whatever'
-@@ -214,7 +214,7 @@
-         echo "${MACH}-${ARCH}-freebsd${VERS}"; exit 0
-         ;;
- 
--    FreeBSD:*)
-+    MidnightBSD:*)
+--- config.orig	2019-09-10 09:13:07.000000000 -0400
++++ config	2020-02-03 13:38:51.103907000 -0500
+@@ -205,6 +205,10 @@
  	echo "${MACHINE}-whatever-freebsd"; exit 0
  	;;
  
-@@ -734,14 +734,8 @@
-   sparc64-*-*bsd*)	OUT="BSD-sparc64" ;;
++    MidnightBSD:*)
++	echo "${MACHINE}-whatever-midnightbsd"; exit 0
++	;;
++
+     Haiku:*)
+ 	echo "${MACHINE}-whatever-haiku"; exit 0
+ 	;;
+@@ -711,14 +715,8 @@
    ia64-*-*bsd*)		OUT="BSD-ia64" ;;
+   x86_64-*-dragonfly*)  OUT="BSD-x86_64" ;;
    amd64-*-*bsd*)	OUT="BSD-x86_64" ;;
 -  *86*-*-*bsd*)		# mimic ld behaviour when it's looking for libc...
 -			if [ -L /usr/lib/libc.so ]; then	# [Free|Net]BSD
@@ -35,12 +28,3 @@
  			*ELF*)	OUT="BSD-x86-elf" ;;
  			*)	OUT="BSD-x86"; options="$options no-sse2" ;;
  			esac ;;
-@@ -880,7 +874,7 @@
- fi
- 
- case "$GUESSOS" in
--  i386-*) options="$options 386" ;;
-+  i386-*) options="$options" ;;
- esac
- 
- for i in aes bf camellia cast des dh dsa ec hmac idea md2 md5 mdc2 rc2 rc4 rc5 ripemd rsa seed sha
