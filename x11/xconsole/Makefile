@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xconsole
 PORTVERSION=	1.0.7
 CATEGORIES=	x11
@@ -9,7 +7,7 @@ COMMENT=	Monitor system console messages with X
 
 LICENSE=	mit
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	xt xaw
 
 .include <bsd.port.mk>

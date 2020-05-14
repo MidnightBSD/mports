@@ -10,7 +10,7 @@ LICENSE=	gpl2
 USE_GITHUB=	yes
 GH_ACCOUNT=	astrand
 
-USES=		autoreconf gmake iconv:wchar_t
+USES=		autoreconf gmake iconv:wchar_t xorg
 USE_XORG=	x11 xmu
 
 GNU_CONFIGURE=	yes

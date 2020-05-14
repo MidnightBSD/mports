@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libdmx
 PORTVERSION=	1.1.4
 PORTREVISION=	1
@@ -10,9 +8,8 @@ COMMENT=	DMX extension library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
 USE_XORG=	x11 xext xorgproto
-USES+=	cpe
+USES=	cpe xorg xorg-cat:lib
 CPE_VENDOR=	x
 
 .include <bsd.port.mk>
