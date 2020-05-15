@@ -1,6 +1,6 @@
 PORTNAME=	phoronix-test-suite
 DISTVERSIONPREFIX=	v
-DISTVERSION=	9.2.0
+DISTVERSION=	9.4.1
 CATEGORIES=	benchmarks
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
@@ -11,7 +11,7 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	sudo:security/sudo \
-		bash:shells/bash
+	bash:shells/bash
 
 USES=		php:cli,build,flavors python shebangfix
 USE_GITHUB=	yes
@@ -22,11 +22,17 @@ PORTDATA=	*
 PORTDOCS=	*
 
 NO_ARCH=	yes
-
-SHEBANG_FILES=	ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/install.sh \
+SHEBANG_FILES=	ob-cache/test-profiles/pts/shadowofthetombraider-1.0.0/install.sh \
+				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.0/interim.sh \
+				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.0/pre.sh \
+				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.0/post.sh \
+				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/install.sh \
 				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/interim.sh \
 				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/pre.sh \
-				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/post.sh
+				ob-cache/test-profiles/pts/shadowofthetombraider-1.0.1/post.sh \
+				ob-cache/test-profiles/pts/csgo-1.5.1/pre_linux.sh \
+				ob-cache/test-profiles/pts/dota2-1.2.2/pre_linux.sh \
+				ob-cache/test-profiles/pts/portal-1.1.1/pre_linux.sh
 
 OPTIONS_DEFINE=	BASH_COMPLETIONS DOCS X11
 OPTIONS_DEFAULT=	X11
