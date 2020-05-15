@@ -14,7 +14,6 @@ SUBDIR += camera
 SUBDIR += camerakit
 SUBDIR += cenon
 SUBDIR += clutter
-SUBDIR += clutter-gtk
 SUBDIR += clutter-gtk3
 SUBDIR += cogl
 SUBDIR += colord
