@@ -18,7 +18,6 @@ SUBDIR += netpipe
 SUBDIR += nttcp
 SUBDIR += pathrate
 SUBDIR += phoronix-test-suite
-SUBDIR += pybench
 SUBDIR += raidtest
 SUBDIR += ramspeed
 SUBDIR += scimark2c
