@@ -169,6 +169,7 @@ SUBDIR += xset
 SUBDIR += xsetroot
 SUBDIR += xsm
 SUBDIR += xterm
+SUBDIR += xtitle
 SUBDIR += xtrans
 SUBDIR += xvidtune
 SUBDIR += xvinfo

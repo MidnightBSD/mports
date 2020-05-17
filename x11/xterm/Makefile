@@ -1,8 +1,8 @@
 PORTNAME=	xterm
-PORTVERSION=	351
+PORTVERSION=	356
 PORTREVISION=	0
 CATEGORIES=	x11
-MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
+MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
 		https://invisible-mirror.net/archives/xterm/:src1 \
 		FREEBSD_LOCAL/ehaupt:src1 FREEBSD_LOCAL/ehaupt:src2
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src1 \
