@@ -1,29 +1,26 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11/libgnomekbd/Makefile,v 1.7 2007/05/28 23:22:29 mezz Exp $
+# Created by: Michael Johnson <ahze@FreeBSD.org>
 
 PORTNAME=	libgnomekbd
-PORTVERSION=	3.6.0
-PORTREVISION=	1
+PORTVERSION=	3.26.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME keyboard shared library
-LICENSE=	lgpl
 
-BUILD_DEPENDS=	libxklavier>=5.2:${PORTSDIR}/x11/libxklavier
-LIB_DEPENDS=	libxklavier.so:${PORTSDIR}/x11/libxklavier
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
-USE_GNOME=	gnomeprefix gtk30 intltool introspection:build \
-		libxml2
+LIB_DEPENDS=	libxklavier.so:x11/libxklavier
+
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
+		tar:xz xorg
+USE_GNOME=	cairo gtk30 introspection:build
 GNU_CONFIGURE=	yes
-USE_XORG=	ice
+USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.gnome.libgnomekbd.desktop.gschema.xml \
