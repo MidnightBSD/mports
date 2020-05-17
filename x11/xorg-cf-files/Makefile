@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xorg-cf-files
 PORTVERSION=	1.0.6
 PORTREVISION=	1
@@ -10,7 +8,7 @@ COMMENT=	X.org cf files for use with imake builds
 
 LICENSE=	mit
 
-XORG_CAT=	util
+USES=		xorg-cat:util
 
 .include <bsd.port.pre.mk>
 

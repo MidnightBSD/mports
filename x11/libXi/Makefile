@@ -8,7 +8,6 @@ COMMENT=	X Input extension library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
 USE_XORG=	x11 xext xfixes xorgproto
 INSTALL_TARGET=	install-strip
 USES+=	cpe xorg xorg-cat:lib
