@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF
 DIST_SUBDIR=	gnome2
@@ -14,7 +12,7 @@ LICENSE=	lgpl2.1 # or later
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 GNU_CONFIGURE=	yes
-USES=		gettext gmake iconv libtool pathfix pkgconfig tar:bzip2
+USES=		gettext gmake gnome gl iconv libtool pathfix pkgconfig tar:bzip2 xorg
 USE_GL=		glu
 USE_GNOME=	gtk20 pangox-compat
 USE_LDCONFIG=	yes

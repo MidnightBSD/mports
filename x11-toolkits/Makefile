@@ -12,7 +12,6 @@ SUBDIR += gstreamer1-plugins-pango
 SUBDIR += gtk-sharp-beans
 SUBDIR += gtk-sharp20
 SUBDIR += gtk-sharp30
-SUBDIR += gtk12
 SUBDIR += gtk20
 SUBDIR += gtk30
 SUBDIR += gtkglext
@@ -79,5 +78,8 @@ SUBDIR += wxgtk28-common
 SUBDIR += wxgtk28-contrib
 SUBDIR += wxgtk28-contrib-common
 SUBDIR += wxgtk30
+SUBDIR += xbae
+SUBDIR += xforms
+SUBDIR += xmhtml
 
 .include <bsd.port.subdir.mk>

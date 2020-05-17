@@ -1,34 +1,35 @@
-# $MidnightBSD$
-
 PORTNAME=	fltk
-PORTVERSION=	1.3.3
+PORTVERSION=	1.3.5
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	http://fltk.org/pub/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	https://www.fltk.org/pub/${PORTNAME}/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ graphical user interface toolkit
 
-LICENSE=	lgpl
+LICENSE=	lgpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libpng.so:graphics/png \
+		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		pkgconfig
-USE_XORG=	xft
-USE_GL=		glu
+USES=		gl jpeg localbase pkgconfig tar:bz2 xorg
+USE_XORG=	x11 xcursor xext xfixes xft xinerama xrender
+USE_GL=		gl glu
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared
+CONFIGURE_ENV=	NROFF=echo
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES
+
+post-extract:
+	@${MV} ${WRKSRC}/test/help.cxx ${WRKSRC}/test/help_dialog.cxx
+	@${MV} ${WRKSRC}/test/help-test.html ${WRKSRC}/test/help_dialog.html
 
 post-patch: .SILENT
 	prefix="${PREFIX}" ; plength=$$(($${#prefix}+10)) ; \
@@ -41,9 +42,11 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E \
 		's,(.*)LDFLAGS(.*)LINKSHARED(.*),\1LINKSHARED\2LDFLAGS\3,' \
 			${WRKSRC}/fluid/Makefile
-	${REINPLACE_CMD} -e '/Fl_XFont_On_Demand/s,class,& FL_EXPORT,' \
-		${WRKSRC}/FL/x.H
-	${REINPLACE_CMD} -e 's,result = 0;,fl_open_display(); &,' \
-		${WRKSRC}/src/Fl_x.cxx
+
+post-install:
+.for x in fltk fltk_forms fltk_gl fltk_images
+	${LN} -sf lib${x}.so.${PORTVERSION:R} \
+		${STAGEDIR}${PREFIX}/lib/lib${x}.so.1
+.endfor
 
 .include <bsd.port.mk>
