@@ -158,7 +158,6 @@ SUBDIR += xorg-docs
 SUBDIR += xorg-libraries
 SUBDIR += xorg-minimal
 SUBDIR += xorgproto
-SUBDIR += xplsprinters
 SUBDIR += xpr
 SUBDIR += xprop
 SUBDIR += xrandr

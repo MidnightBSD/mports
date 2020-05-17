@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
 PORTREVISION=	13
@@ -10,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display ghostscript system
 
 LICENSE=	gpl2
+
+DEPRECATED=	no longer updated
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff

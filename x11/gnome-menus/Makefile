@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-menus
 PORTVERSION=	3.13.3
 CATEGORIES=	x11 gnome
@@ -11,7 +9,7 @@ COMMENT=	Implementation of the FreeDesktop Desktop Menu Spec
 
 LICENSE=	gpl2
 
-USES=		gettext gmake libtool pathfix pkgconfig python tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig python tar:xz
 USE_GNOME=	glib20 gnomeprefix intlhack \
 		introspection:build
 GNU_CONFIGURE=	yes
