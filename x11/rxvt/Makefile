@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
-
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
 PORTREVISION=	10
@@ -11,6 +8,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low memory usage xterm replacement that supports color
 
 LICENSE=	gpl2
+
+DEPRECATED=	this seems to be a dead project. 
 
 USE_XORG=	xpm
 GNU_CONFIGURE=	yes

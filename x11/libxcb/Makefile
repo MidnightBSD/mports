@@ -2,7 +2,7 @@ PORTNAME=	libxcb
 PORTVERSION=	1.13.1
 PORTREVISION=	1
 CATEGORIES=	x11 python
-MASTER_SITES=	http://xcb.freedesktop.org/dist/
+MASTER_SITES=	https://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The X protocol C-language Binding (XCB) library
