@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	vte
 PORTVERSION=	0.28.2
 PORTREVISION?=	2
