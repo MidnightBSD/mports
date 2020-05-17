@@ -51,7 +51,6 @@ SUBDIR += libexo
 SUBDIR += libgnome
 SUBDIR += libgnomekbd
 SUBDIR += libinput
-SUBDIR += liboldX
 SUBDIR += libwacom
 SUBDIR += libxcb
 SUBDIR += libxdg-basedir
