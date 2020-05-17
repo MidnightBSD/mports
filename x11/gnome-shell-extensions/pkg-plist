@@ -59,6 +59,7 @@ share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.
 share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/prefs.js
 share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/stylesheet.css
 share/gnome-shell/modes/classic.json
+share/gnome-shell/theme/calendar-today.svg
 share/gnome-shell/theme/classic-process-working.svg
 share/gnome-shell/theme/classic-toggle-off-intl.svg
 share/gnome-shell/theme/classic-toggle-off-us.svg
@@ -70,6 +71,7 @@ share/locale/af/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/an/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/ar/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/as/LC_MESSAGES/gnome-shell-extensions.mo
+share/locale/be/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/bg/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/bn_IN/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/bs/LC_MESSAGES/gnome-shell-extensions.mo
@@ -88,10 +90,12 @@ share/locale/fa/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/fi/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/fr/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/fur/LC_MESSAGES/gnome-shell-extensions.mo
+share/locale/gd/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/gl/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/gu/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/he/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/hi/LC_MESSAGES/gnome-shell-extensions.mo
+share/locale/hr/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/hu/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/id/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/is/LC_MESSAGES/gnome-shell-extensions.mo

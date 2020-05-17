@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gsynaptics
 PORTVERSION=	0.9.16
 PORTREVISION=	1
@@ -13,8 +11,8 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	xf86-input-synaptics>0:x11-drivers/xf86-input-synaptics
 
-USES=		gettext gmake pathfix pkgconfig
-USE_GNOME=	gconf2 libglade2 gnomedocutils intltool
+USES=		gettext gmake gnome pathfix pkgconfig
+USE_GNOME=	gconf2 libglade2 intltool
 GNU_CONFIGURE=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include

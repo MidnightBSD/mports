@@ -1,9 +1,7 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/x11/gnome-shell-extensions/Makefile 382383 2015-03-27 09:24:39Z kwm $
 
 PORTNAME=	gnome-shell-extensions
-PORTVERSION=	3.16.2
+PORTVERSION=	3.28.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,17 +10,20 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME desktop shell extensions
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgtop-2.0.so:${PORTSDIR}/devel/libgtop
-RUN_DEPENDS=	gnome-shell>=3.12.0:${PORTSDIR}/x11/gnome-shell
+BUILD_DEPENDS=	sassc:textproc/sassc
+LIB_DEPENDS=	libgjs.so:lang/gjs
+RUN_DEPENDS=	gnome-shell>=3.28.0:x11/gnome-shell
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake pathfix pkgconfig tar:xz
+NO_ARCH=	yes
+USES=		gettext gnome meson pkgconfig tar:xz
 USE_GNOME=	glib20 gnomedesktop3 intlhack
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-extensions=all
+MESON_ARGS=	-Dextension_set=all \
+		-Dclassic_mode=true
 
 GLIB_SCHEMAS=	org.gnome.shell.extensions.auto-move-windows.gschema.xml \
 		org.gnome.shell.extensions.classic-overrides.gschema.xml \
