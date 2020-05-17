@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xcursorgen
-PORTVERSION=	1.0.6
-PORTREVISION=	2
+PORTVERSION=	1.0.7
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +9,7 @@ LICENSE=	mit
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xcursor xorgproto
 INSTALL_TARGET=	install-strip
 

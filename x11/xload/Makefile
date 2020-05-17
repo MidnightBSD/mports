@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xload
 PORTVERSION=	1.1.3
 CATEGORIES=	x11
@@ -9,7 +7,7 @@ COMMENT=	System load average display for X
 
 LICENSE=	mit
 
-XORG_CAT=	app
-USE_XORG=	xt xaw
+USES=		xorg xorg-cat:app
+USE_XORG=	x11 xt xaw xmu
 
 .include <bsd.port.mk>

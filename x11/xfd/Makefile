@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xfd
-PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,9 +11,7 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2
 BUILD_DEPENDS=	fc-cache:x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:x11-fonts/fontconfig
 
-XORG_CAT=	app
-USE_XORG=	xft xt xaw
-
-BROKEN_aarch64=		Fails to build: exec(xgettext) failed (No such file or directory)
+USES=		xorg xorg-cat:app
+USE_XORG=	x11 xft xkbfile xmu xrender xt xaw
 
 .include <bsd.port.mk>
