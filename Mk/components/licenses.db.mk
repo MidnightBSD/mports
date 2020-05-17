@@ -3,7 +3,7 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
 		mit modula3 mpl ncsa npl nvidia openldap2.8 opera owl OFL10 OFL11 \
-		perl pgsql php python ruby sgi subversion x11 zlib zpl2.1 \
+		perl pgsql php python ruby sgi subversion unlicense x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
 
@@ -290,6 +290,9 @@ _LICENSE_GROUPS_publicdom=
 
 _LICENSE_NAME_python=	Python Software Foundation License
 _LICENSE_GROUPS_python=	FSF GPL OSI
+
+_LICENSE_NAME_unlicense=      The Unlicense                                                                                                                             
+_LICENSE_GROUPS_unlicense=    COPYFREE FSF GPL
 
 _LICENSE_NAME_ruby=	Ruby License
 _LICENSE_GROUPS_ruby=	FSF
