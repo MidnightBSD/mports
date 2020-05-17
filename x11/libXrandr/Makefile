@@ -1,19 +1,20 @@
-# $MidnightBSD$
+# Created by: Eric Anholt <anholt@FreeBSD.org>
 
 PORTNAME=	libXrandr
-PORTVERSION=	1.5.1
-PORTREVISION=	2
+PORTVERSION=	1.5.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Resize and Rotate extension library
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	lib
+USES=		cpe xorg xorg-cat:lib
 USE_XORG=	x11 xext xrender xorgproto
-USES+=	cpe
-CPE_PRODUCT=	libxrandr
 CPE_VENDOR=	x
+CPE_PRODUCT=	libxrandr
+
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

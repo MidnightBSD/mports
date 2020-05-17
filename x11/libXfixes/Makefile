@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libXfixes
 PORTVERSION=	5.0.3
 PORTREVISION=	3
@@ -10,9 +8,8 @@ COMMENT=	X Fixes extension library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
+USES=	cpe xorg xorg-cat:lib
 USE_XORG=	x11 xorgproto
-USES+=	cpe
 CPE_PRODUCT=	libxfixes
 CPE_VENDOR=	x
 

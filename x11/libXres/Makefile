@@ -10,7 +10,7 @@ LICENSE=	mit
 
 USE_XORG=	x11 xext xorgproto
 INSTALL_TARGET=	install-strip
-USES=	cpe xorg xorg-cat:lib
+USES=		cpe xorg xorg-cat:lib
 CPE_PRODUCT=	libxres
 CPE_VENDOR=	x
 
