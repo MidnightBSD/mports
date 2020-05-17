@@ -1,28 +1,27 @@
-# $MidnightBSD$
-
 PORTNAME=	xkeyboard-config
-PORTVERSION=	2.24
+PORTVERSION=	2.29
 CATEGORIES=	x11
+MASTER_SITES=	XORG/individual/data/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Keyboard Configuration Database
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
-XORG_CAT=	data
+BUILD_DEPENDS=	xkbcomp:x11/xkbcomp
+
+USES=		gmake gnome localbase pathfix perl5 python:3.5+,build \
+		shebangfix xorg-cat:data
 
 NO_ARCH=	yes
-USES=		gmake pathfix tar:bzip2
-USE_GNOME=	intlhack libxslt:build
-USE_PERL5_BUILD=yes
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
+USE_GNOME=	libxslt:build
+USE_PERL5=	build
+SHEBANG_FILES=	rules/merge.py \
+		rules/compat/map-variants.py
 
 CONFIGURE_ARGS=	--with-xkb-base=${PREFIX}/share/X11/xkb \
 		--with-xkb-rules-symlink=xorg
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	ETERSOFT
 ETERSOFT_DESC=	Add pre-1918 Russian letters to typographic layout
@@ -39,12 +38,8 @@ PLIST_SUB+=	NLS=""
 #PLIST_SUB+=	NLS="@comment "
 #.endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|/bin/bash|/bin/sh|g' -e 's|==|=|g' \
-		${WRKSRC}/rules/merge.sh
-
 post-install:
-	${MKDIR} /var/lib/xkb
-	${LN} -sf /var/lib/xkb ${PREFIX}/share/X11/xkb/compiled
+	@${MKDIR} ${FAKE_DESTDIR}/var/lib/xkb
+	@${LN} -sf /var/lib/xkb ${PREFIX}/share/X11/xkb/compiled
 
 .include <bsd.port.mk>
