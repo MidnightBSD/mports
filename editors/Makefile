@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Editors
 
 SUBDIR += 2bsd-vi
@@ -12,7 +10,6 @@ SUBDIR += jedit
 SUBDIR += joe
 SUBDIR += jupp
 SUBDIR += linux-openoffice3
-SUBDIR += manedit
 SUBDIR += mg
 SUBDIR += mousepad
 SUBDIR += nano
