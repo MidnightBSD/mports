@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xloadimage
 PORTVERSION=	4.1.24
 CATEGORIES=	x11 graphics
@@ -27,7 +25,7 @@ PATCH_STRIP=	-p1
 VERSION=	${PORTVERSION:R}
 REVISION=	${PORTVERSION:E}
 
-USES=		jpeg
+USES=		jpeg xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 

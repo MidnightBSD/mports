@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xbitmaps
 PORTVERSION=	1.1.2
 CATEGORIES=	x11
@@ -9,8 +7,6 @@ COMMENT=	X.Org bitmaps data
 
 LICENSE=	mit
 
-USES=		pathfix
-
-XORG_CAT=	data
+USES=		pathfix xorg-cat:data
 
 .include <bsd.port.mk>

@@ -83,7 +83,6 @@ SUBDIR += qimageblitz
 SUBDIR += qt5-qev
 SUBDIR += qt5-x11extras
 SUBDIR += rgb
-SUBDIR += rstart
 SUBDIR += rxvt
 SUBDIR += scripts
 SUBDIR += sessreg
