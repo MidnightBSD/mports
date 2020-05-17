@@ -57,7 +57,7 @@ PORTDOCS=	README.xvt ${PORTDOCS1}
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MIMLOCALE_FIX}
-PATCH_DEPENDS+=	p5-Encode-HanExtra>=0:chinese/p5-Encode-HanExtra \
+PATCH_DEPENDS+=	p5-Encode-HanExtra>=0:converters/p5-Encode-HanExtra \
 		p5-Encode-JIS2K>=0:converters/p5-Encode-JIS2K
 .endif
 
