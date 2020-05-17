@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xorg-apps
 PORTVERSION=	7.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -13,14 +11,13 @@ COMMENT=	X.org apps meta-port
 
 LICENSE=	mit
 
-COMPONENTS=	appres bitmap xf86dga:dga iceauth luit \
-		x11-fonts/mkfontdir:mkfontdir \
+COMPONENTS=	appres bitmap xf86dga:dga iceauth \
 		x11-fonts/mkfontscale:mkfontscale sessreg \
 		setxkbmap smproxy x11perf xauth xbacklight xcalc \
 		xcmsdb xconsole xcursorgen xdpyinfo xdriinfo xev xgamma xgc \
 		xhost xinput xkbcomp xkbevd xkbutils:xkbvleds xkill \
 		xlsatoms xlsclients xmodmap xpr xprop xrandr xrdb \
-		xrefresh xset xsetmode xsetroot xvinfo xwd xwininfo \
+		xrefresh xset xsetroot xvinfo xwd xwininfo \
 		xwud xmessage
 
 # These three are added for convenience purposes only.
@@ -52,7 +49,7 @@ check=${comp:C/.*://}
 .  if ${port:M*/*}==""
 port:=x11/${port}
 .  endif
-RUN_DEPENDS:=	${RUN_DEPENDS} ${check}:${PORTSDIR}/${port}
+RUN_DEPENDS:=	${RUN_DEPENDS} ${check}:${port}
 . endif
 .endfor
 
