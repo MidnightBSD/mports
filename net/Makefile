@@ -36,7 +36,6 @@ SUBDIR += hostapd
 SUBDIR += hping
 SUBDIR += htpdate
 SUBDIR += ilbc
-SUBDIR += jags
 SUBDIR += jrdesktop
 SUBDIR += ldap2dns
 SUBDIR += ldapdiff

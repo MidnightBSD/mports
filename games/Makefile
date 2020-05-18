@@ -12,7 +12,6 @@ SUBDIR += cowsay
 SUBDIR += doom-data
 SUBDIR += doom-freedoom
 SUBDIR += doomlegacy
-SUBDIR += dopewars
 SUBDIR += five-or-more
 SUBDIR += fortunate
 SUBDIR += fotaq
