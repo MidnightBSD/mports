@@ -1,5 +1,5 @@
 PORTNAME=	memcached
-PORTVERSION=	1.5.19
+PORTVERSION=	1.6.5
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	memcached-1.2*
 
-USES=		cpe shebangfix autoreconf python:2.7,build
+USES=		cpe shebangfix autoreconf
 SHEBANG_FILES=	scripts/memcached-tool
 
 USE_RC_SUBR=	memcached
