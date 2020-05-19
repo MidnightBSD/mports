@@ -45,7 +45,6 @@ SUBDIR += php74-iconv
 SUBDIR += php74-mbstring
 SUBDIR += php74-recode
 SUBDIR += psiconv
-SUBDIR += psiconv
 SUBDIR += py-webencodings
 SUBDIR += recode
 SUBDIR += ruby-dump.rb
