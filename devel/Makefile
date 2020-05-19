@@ -857,6 +857,7 @@ SUBDIR += py-testtools
 SUBDIR += py-tox
 SUBDIR += py-traceback2
 SUBDIR += py-trollius
+SUBDIR += py-ttystatus
 SUBDIR += py-twisted
 SUBDIR += py-txaio
 SUBDIR += py-typing
