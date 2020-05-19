@@ -63,7 +63,7 @@ sub sync {
     }
 
     my $primaryFlavor = $dump{flavor};
-    my $defaultFlavor = false;
+    my $defaultFlavor = 0;
 
 
     my $port = Magus::Port->insert({ 
@@ -172,8 +172,13 @@ sub sync {
       my $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => $fl);
      
       if (!defined($depend) && length $fl) {
-        warn "\tMissing flavor for $port: $item->{name} with flavor: $fl\n";
+        warn "\tMissing flavor for $port: $item->{name} with flavor: $fl. Trying no flavor.\n";
         $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, flavor => "");
+      }
+
+      if (!defined($depend)) {
+	warn "\tMissing flavor for $port: $item->{name} , falling back to default flavor.\n";
+        $depend = Magus::Port->retrieve(run => $run, name => $item->{name}, default_flavor => 1); 
       }
  
       if (!defined($depend)) {
