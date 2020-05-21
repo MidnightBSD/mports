@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-drivers/xf86-input-libinput/Makefile 435963 2017-03-11 21:26:06Z rezny $
-
 PORTNAME=	xf86-input-libinput
-PORTVERSION=	0.28.2
+PORTVERSION=	0.29.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

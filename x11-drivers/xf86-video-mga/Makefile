@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-mga
-PORTVERSION=	1.6.5
+PORTVERSION=	2.0.0
 PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	x11-drivers
@@ -11,8 +9,7 @@ COMMENT=	X.Org mga display driver
 
 LICENSE=	mit
 
+USES=		gl xorg-cat:driver
 USE_GL=		gl
-
-XORG_CAT=	driver
 
 .include <bsd.port.mk>

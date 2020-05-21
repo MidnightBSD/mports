@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-sis
-PORTVERSION=	0.10.9
+PORTVERSION=	0.12.0
 PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
@@ -10,8 +8,7 @@ COMMENT=	X.Org sis display driver
 
 LICENSE=	mit
 
+USES=		gl xorg-cat:driver
 USE_GL=		gl
-
-XORG_CAT=	driver
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	xf86-input-vmmouse
 PORTVERSION=	13.1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org

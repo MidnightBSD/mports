@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-drivers/xf86-video-sunffb/Makefile 441503 2017-05-23 05:03:14Z rezny $
-
 PORTNAME=	xf86-video-sunffb
 PORTVERSION=	1.2.2
 PORTREVISION=	8
@@ -11,8 +8,8 @@ COMMENT=	X.Org sunffb display driver
 
 LICENSE=	mit
 
+USES=		gl xorg-cat:driver
 USE_GL=		gl
-XORG_CAT=	driver
 
 ONLY_FOR_ARCHS=	sparc64
 

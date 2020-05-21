@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-drivers
 MASTER_SITES=  # none
 DISTFILES=     # none
@@ -18,18 +16,13 @@ INPUTDIR=	${LOCALBASE}/lib/xorg/modules/input
 
 NO_BUILD=	yes
 
-INPUT_DRIVERS=		acecad \
-			egalax \
+INPUT_DRIVERS=		egalax \
 			elographics \
 			evdev \
-			fpit \
-			hyperpen \
 			joystick \
 			keyboard \
 			libinput \
 			mouse \
-			mutouch \
-			penmount \
 			synaptics \
 			void \
 			wacom
@@ -51,18 +44,17 @@ VIDEO_DRIVERS=		apm \
 			r128 \
 			rendition \
 			s3 \
-			s3virge \
 			savage \
 			scfb \
 			siliconmotion \
 			sis \
 			tdfx \
 			trident \
-			tseng \
 			vesa \
 			voodoo
 
 OPTIONS_DEFAULT=	KEYBOARD \
+			LIBINPUT \
 			MOUSE \
 			SCFB
 
@@ -73,7 +65,7 @@ ${a:tu}_DESC=		Install ${a} ${type} driver
 . endfor
 .endfor
 
-OPTIONS_DEFINE_amd64=	ATI INTEL VMMOUSE VMWARE
+OPTIONS_DEFINE_amd64=	AMDGPU ATI INTEL VMMOUSE VMWARE
 OPTIONS_DEFAULT_amd64=	ATI INTEL NV VMWARE VESA
 
 OPTIONS_DEFINE_i386:=	${OPTIONS_DEFINE_amd64} GEODE
@@ -82,6 +74,7 @@ OPTIONS_DEFAULT_i386:=	${OPTIONS_DEFAULT_amd64}
 OPTIONS_DEFINE_sparc64=	SUNFFB
 OPTIONS_DEFAULT_sparc64=SUNFFB
 
+AMDGPU_DESC=		Install amdgpu video driver
 ATI_DESC=		Install ati (radeon) video driver 
 GEODE_DESC=		Install geode video driver
 INTEL_DESC=		Install intel video driver
@@ -97,7 +90,7 @@ QUIRKS=		keyboard:kbd
 # Manual add arch specific drivers so they be added to depend lines.
 .if ${ARCH}==i386 || ${ARCH}==amd64
 INPUT_DRIVERS+= vmmouse
-VIDEO_DRIVERS+=	ati intel vmware
+VIDEO_DRIVERS+=	amdgpu ati intel vmware
 .endif
 
 .if ${ARCH}==i386
