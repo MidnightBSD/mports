@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bdftopcf
 PORTVERSION=	1.1
 PORTREVISION=	1
@@ -11,8 +9,7 @@ COMMENT=	Convert X font from BDF to PCF
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	app
-USES=		localbase
+USES=		localbase xorg xorg-cat:app
 USE_XORG=	xorgproto
 
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
