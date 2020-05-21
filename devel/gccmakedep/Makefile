@@ -1,6 +1,3 @@
-# $FreeBSD: ports/devel/gccmakedep/Makefile,v 1.1 2007/05/19 20:02:32 flz Exp $
-# $MidnightBSD$
-
 PORTNAME=	gccmakedep
 PORTVERSION=	1.0.3
 CATEGORIES=	devel
@@ -10,7 +7,7 @@ COMMENT=	Create dependencies in makefiles using 'gcc -M'
 
 LICENSE=	unknown
 
-XORG_CAT=	util
+USES=		xorg-cat:util
 
 BUILD_DEPENDS=	tradcpp:devel/tradcpp
 
