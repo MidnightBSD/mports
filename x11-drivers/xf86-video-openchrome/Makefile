@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-openchrome
 PORTVERSION=	0.6.0
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,9 +11,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libdrm.so:graphics/libdrm
 
+USES=		gl xorg xorg-cat:driver
 USE_GL=		gl
 
-XORG_CAT=	driver
 USE_XORG=	x11 xext xv
 
 # Override pkg-config to prevent linking against libudev
