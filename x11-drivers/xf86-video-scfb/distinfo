@@ -1,3 +1,5 @@
-TIMESTAMP = 1555880801
-SHA256 (xorg/driver/xf86-video-scfb-0.0.4_GH0.tar.gz) = b5bf6611ed31ecfc4d7abbcd95aa2d3f6df285696541d3283a13ef85905a48f8
-SIZE (xorg/driver/xf86-video-scfb-0.0.4_GH0.tar.gz) = 345252
+TIMESTAMP = 1590102177
+SHA256 (xorg/driver/xf86-video-scfb-0.0.5_GH0.tar.bz2) = 58b330f4dff599cb7252dd4235a4a3d8c6e66c8d589cab4107b30236792a3c42
+SIZE (xorg/driver/xf86-video-scfb-0.0.5_GH0.tar.bz2) = 345835
+SHA256 (xorg/driver/080491f.patch) = 539ed63428ef711825919b4d82fb8ca43e7bba3ed32582e599894ca22790d743
+SIZE (xorg/driver/080491f.patch) = 2016
