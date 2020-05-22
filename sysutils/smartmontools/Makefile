@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	smartmontools
-PORTVERSION=	6.6
+PORTVERSION=	7.1
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -20,7 +18,7 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-sample \
 		--with-nvme-devicescan=yes \
 		--with-initscriptdir=${PREFIX}/etc/rc.d
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 SUB_FILES=	pkg-message smart
 USE_RC_SUBR=	smartd
 
