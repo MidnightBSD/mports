@@ -5,7 +5,7 @@ CATEGORIES=	sysutils
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hardware Probe Tool
 
-LICENSE=	bsd2
+LICENSE=	lgpl2.1
 
 RUN_DEPENDS+=	dmidecode:sysutils/dmidecode \
 		smartctl:sysutils/smartmontools \
