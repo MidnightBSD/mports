@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	patchutils
 PORTVERSION=	0.3.4
 CATEGORIES=	misc
@@ -10,7 +8,7 @@ COMMENT=	Small collection of programs that operate on patch files
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+RUN_DEPENDS=	bash:shells/bash
 
 USES=		perl5 shebangfix tar:xz
 USE_PERL5=	run build patch
