@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
 PORTREVISION=	4
@@ -13,8 +11,7 @@ COMMENT=	Script that helps install Postscript fonts in X Window System
 LICENSE=	gpl2
 
 .if !defined(WITHOUT_X11)
-RUN_DEPENDS=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
-		${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
+RUN_DEPENDS+=	${LOCALBASE}/bin/mkfontscale:x11-fonts/mkfontscale
 .endif
 
 USE_PERL5=	yes
