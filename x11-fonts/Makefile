@@ -57,7 +57,6 @@ SUBDIR += linux-c6-fontconfig
 SUBDIR += linux-c7-fontconfig
 SUBDIR += linuxlibertine
 SUBDIR += linuxlibertine-g
-SUBDIR += mkfontdir
 SUBDIR += mkfontscale
 SUBDIR += p5-type1inst
 SUBDIR += raleway
