@@ -23,11 +23,9 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/src
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MX11}
-BUILD_DEPENDS+=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
-		mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale \
-		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
-RUN_DEPENDS+=	xloadimage:${PORTSDIR}/x11/xloadimage \
-		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
+BUILD_DEPENDS+=	bdftopcf:x11-fonts/bdftopcf \
+		mkfontscale:x11-fonts/mkfontscale
+RUN_DEPENDS+=	xloadimage:x11/xloadimage
 USE_XORG=	x11
 PLIST_SUB+=	X11=""
 .else
