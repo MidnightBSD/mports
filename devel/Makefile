@@ -457,6 +457,7 @@ SUBDIR += p5-List-SomeUtils
 SUBDIR += p5-List-SomeUtils-XS
 SUBDIR += p5-List-UtilsBy
 SUBDIR += p5-Locale-gettext
+SUBDIR += p5-Locale-libintl
 SUBDIR += p5-Log-Any
 SUBDIR += p5-Log-Dispatch
 SUBDIR += p5-Log-Dispatch-Array
