@@ -12,6 +12,7 @@ LICENSE=	mit
 USES=		gmake libtool pathfix pkgconfig tar:bzip2 xorg xorg-cat:lib
 USE_LDCONFIG=	yes
 USE_XORG=	xau xcb xdmcp
+INSTALL_TARGET=	install-strip
 
 GNU_CONFIGURE=	yes
 
