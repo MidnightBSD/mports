@@ -111,8 +111,6 @@ SUBDIR += x264
 SUBDIR += x265
 SUBDIR += xanim
 SUBDIR += xine
-SUBDIR += xmms
-SUBDIR += xmms-skins
 SUBDIR += xvid
 
 .include <bsd.port.subdir.mk>
