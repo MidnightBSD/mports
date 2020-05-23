@@ -1,5 +1,5 @@
 bin/t1embed
 bin/type1inst
 man/man1/type1inst.1.gz
-%%PORTDOCS%%%%DOCSDIR%%/README.type1inst
+%%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
