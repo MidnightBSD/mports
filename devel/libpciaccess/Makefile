@@ -6,6 +6,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic PCI access library
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
