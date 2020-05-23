@@ -197,6 +197,7 @@ SUBDIR += sdl2_ttf
 SUBDIR += shaderc
 SUBDIR += silgraphite
 SUBDIR += svgalib
+SUBDIR += sxiv
 SUBDIR += tesseract
 SUBDIR += tesseract-data
 SUBDIR += tiff
