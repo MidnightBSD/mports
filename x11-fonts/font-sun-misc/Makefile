@@ -1,14 +1,15 @@
-# $FreeBSD: ports/x11-fonts/font-sun-misc/Makefile,v 1.1 2007/05/19 20:29:20 flz Exp $
-# $MidnightBSD$
+# Created by: Pawel Worach
 
 PORTNAME=	font-sun-misc
 PORTVERSION=	1.0.3
+PORTREVISION=	4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org miscellaneous Sun fonts
+
 LICENSE=	mit
 
-XORG_CAT=	font
+USES=		xorg-cat:font
 
 .include <bsd.port.mk>
