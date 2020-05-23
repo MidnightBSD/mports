@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11-fonts/droid-fonts-ttf/Makefile,v 1.3 2011/07/18 00:34:55 sunpoet Exp $
-
 PORTNAME=	droid-fonts-ttf
 PORTVERSION=	20131024
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-fonts
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet/
 
@@ -12,8 +9,7 @@ COMMENT=	The Droid typeface family
 
 LICENSE=	apache2
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
-		${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
+BUILD_DEPENDS=	${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 
 USES=		tar:xz
 
