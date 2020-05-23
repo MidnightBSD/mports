@@ -1,8 +1,8 @@
-share/fonts/Type1/cour.afm
-share/fonts/Type1/cour.pfa
-share/fonts/Type1/courb.afm
-share/fonts/Type1/courb.pfa
-share/fonts/Type1/courbi.afm
-share/fonts/Type1/courbi.pfa
-share/fonts/Type1/couri.afm
-share/fonts/Type1/couri.pfa
+%%FONTSDIR%%/cour.afm
+%%FONTSDIR%%/cour.pfa
+%%FONTSDIR%%/courb.afm
+%%FONTSDIR%%/courb.pfa
+%%FONTSDIR%%/courbi.afm
+%%FONTSDIR%%/courbi.pfa
+%%FONTSDIR%%/couri.afm
+%%FONTSDIR%%/couri.pfa
