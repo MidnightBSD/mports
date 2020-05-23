@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	cvsgraph
 PORTVERSION=	1.7.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
 
@@ -11,9 +9,11 @@ COMMENT=	Graph the life story of a file under CVS or RCS
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
+LIB_DEPENDS=	libgd.so:graphics/gd
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+USES=		localbase:ldflags
 
 DOCDIR=		share/doc/${PORTNAME}
 DOCS=		ChangeLog README
@@ -23,9 +23,9 @@ MORE_EXAMPLES=	README.Automatic_documentation checkoutlist commit_action.sh \
 PLIST=		${WRKDIR}/pkg-plist
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes
+LDFLAGS+=	-lm
 CONFIGURE_ARGS=	--with-gd-inc=${LOCALBASE}/include \
-		--with-gd-lib=${LOCALBASE}/lib CFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${PREFIX}/lib"
+		--with-gd-lib=${LOCALBASE}/lib
 REINPLACE_ARGS=	-i ""
 
 pre-patch:
