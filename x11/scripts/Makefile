@@ -8,8 +8,7 @@ COMMENT=	Various X related scripts
 
 LICENSE=	unknown
 
-USES=		xorg xorg-cat:app
+USES=		xorg xorg-cat:app shebangfix
 USE_XORG=	x11
-USES=		shebangfix
 
 .include <bsd.port.mk>
