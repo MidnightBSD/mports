@@ -1,35 +1,40 @@
-# $MidnightBSD$
-# $FreeBSD: head/security/doas/Makefile 423070 2016-10-01 15:10:14Z pawel $
-
 PORTNAME=	doas
-PORTVERSION=	5.9p6
+PORTVERSION=	6.2p4
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple sudo alternative to run commands as another user
 
-LICENSE=	iscl
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	slicer69
-GH_PROJECT=	doas
-GH_TAGNAME=	045f56f
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
+LICENSE=	bsd2 iscl
+LICENSE_COMB=	multi
+LICENSE_FILE_bsd2=	${WRKSRC}/LICENSE
+LICENSE_FILE_iscl=		${WRKSRC}/LICENSE
 
 USES=	gmake
+USE_GITHUB=	yes
+GH_ACCOUNT=	slicer69
+
+MAKE_ENV+=	TARGETPATH=-DGLOBAL_PATH='\"${_GLOBAL_PATH}\"'
 
 BINMODE=	4755
-ETCDIR=	${PREFIX}/etc
 
 SUB_FILES=	pkg-message
 PLIST_FILES=	bin/doas \
 		man/man5/doas.conf.5.gz \
 		man/man1/doas.1.gz
 
+# These are upstream's default paths that are set for the GLOBAL_PATH variable
+# in doas.h since the 6.1 release. Those paths are then used for target user's
+# PATH variable instead of those of the original user.
+#
+# See also:
+#  * https://github.com/slicer69/doas/blob/6.1/doas.h#L36
+#  * https://github.com/slicer69/doas/releases/tag/6.1
+_GLOBAL_PATH?=	${LOCALBASE}/sbin:${LOCALBASE}/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doas.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/doas.conf.5 ${STAGEDIR}${MAN5PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKSRC}/doas.1.final ${STAGEDIR}${MAN1PREFIX}/man/man1/doas.1
+	${INSTALL_MAN} ${WRKSRC}/doas.conf.5.final ${STAGEDIR}${MAN5PREFIX}/man/man5/doas.conf.5
 
 .include <bsd.port.mk>
