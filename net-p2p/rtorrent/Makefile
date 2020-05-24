@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	rtorrent
-PORTVERSION=	0.9.6
-PORTREVISION=	1
+PORTVERSION=	0.9.8
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://rtorrent.net/downloads/
 
@@ -22,8 +19,8 @@ XMLRPC_DESC=	Compile with xmlrpc-c support
 
 CONFIGURE_ARGS=	--disable-debug
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-pthread
 USES=		compiler:c++11-lang ncurses pkgconfig
+LDFLAGS+=	-lexecinfo -pthread
 
 PLIST_FILES=	bin/rtorrent
 PORTDOCS=	README
@@ -36,11 +33,6 @@ XMLRPC_CONFIGURE_ON=	--with-xmlrpc-c
 XMLRPC_LIB_DEPENDS=	libxmlrpc.so:net/xmlrpc-c
 
 .include <bsd.mport.options.mk>
-
-.if ${OSVERSION} >= 8000
-USE_CXXSTD=	c++11
-EXTRA_PATCHES+=	${FILESDIR}/extra-clang
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3|${CFLAGS}|' ${WRKSRC}/configure
