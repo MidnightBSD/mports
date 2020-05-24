@@ -143,14 +143,14 @@ post-install:
 			${STRIP_CMD} ${STAGEDIR}${PREFIX}/${lib}
 .endfor
 .if !defined(NO_PYTHON)
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpyldb-util.so
-			${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
+			${STRIP_CMD} ${PREFIX}/lib/libpyldb-util.so
+			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
 .else
 .for f in		include/pyldb.h \
 			lib/libpyldb-util.so \
 			lib/libpyldb-util.so.1 \
 			lib/ldb/libpytalloc-util.so.2
-				${RM} ${STAGEDIR}${PREFIX}/${f}
+				${RM} ${PREFIX}/${f}
 .endfor
 .for f in		${PYTHON_SITELIBDIR}/ldb.so \
 			${PYTHON_SITELIBDIR}/_ldb_text.py \
@@ -160,10 +160,10 @@ post-install:
 			${PYTHON_SITELIBDIR}/tdb.so \
 			${PYTHON_SITELIBDIR}/tevent.py \
 			${PKGCONFIGDIR}/pyldb-util.pc
-				${RM} ${STAGEDIR}/${f}
+				${RM} ${FAKE_DESTDIR}/${f}
 .endfor
-			${RMDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}
-			${RMDIR} ${STAGEDIR}${PYTHON_LIBDIR}
+			${RMDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+			${RMDIR} ${FAKE_DESTDIR}${PYTHON_LIBDIR}
 .endif
 
 .include <bsd.port.post.mk>
