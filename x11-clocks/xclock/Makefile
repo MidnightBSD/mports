@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xclock
-PORTVERSION=	1.0.7
-PORTREVISION=	2
+PORTVERSION=	1.0.9
 CATEGORIES=	x11-clocks
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,8 +7,7 @@ COMMENT=	Analog and digital clock for X
 
 LICENSE=	mit
 
-XORG_CAT=	app
-USE_XORG=	xrender xft xkbfile xt xaw
-USES=		iconv
+USES=		iconv xorg xorg-cat:app
+USE_XORG=	x11 xaw xft xkbfile xmu xrender xt
 
 .include <bsd.port.mk>
