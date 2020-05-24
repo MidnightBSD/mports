@@ -8,9 +8,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program for downloading videos from YouTube.com
 
 LICENSE=	unlicense
-LICENSE_NAME=	The Unlicense
-LICENSE_FILE=	${WRKSRC}/LICENSE
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 FAKE_OPTS+=	trueprefix
 
