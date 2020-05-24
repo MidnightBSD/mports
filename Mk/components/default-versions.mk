@@ -1,5 +1,3 @@
-# $MidnightBSD$ 
-#
 # Provide default versions for ports with multiple versions selectable
 # by the user.
 #
