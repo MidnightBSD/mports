@@ -26,11 +26,11 @@ TEST_DEPENDS=	p5-Module-Implementation>=0:devel/p5-Module-Implementation \
 		p5-Test-Number-Delta>=0:devel/p5-Test-Number-Delta \
 		p5-Test-Requires>=0:devel/p5-Test-Requires
 
-USES=		compiler:c11 perl5
+USES=		compiler:c11 perl5 localbase
 USE_PERL5=	modbuild
 
 NO_TEST=	yes
-CONFIGURE_ENV=	CC=${CC}
+CONFIGURE_ENV=	CC=${CC} CFLAGS="${CFLAGS}"
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/MaxMind/DB/Reader/XS/XS.so
