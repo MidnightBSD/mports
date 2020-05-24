@@ -1,24 +1,24 @@
---- ltmain.sh.orig	2019-03-02 15:51:46.450766000 -0500
-+++ ltmain.sh	2019-03-02 15:52:31.374561000 -0500
-@@ -5609,7 +5609,7 @@
+--- ltmain.sh.orig	2019-07-19 07:44:17.000000000 -0400
++++ ltmain.sh	2020-05-24 13:52:58.276234000 -0400
+@@ -7019,7 +7019,7 @@
  	    # These systems don't actually have a C library (as such)
- 	    test "X$arg" = "X-lc" && continue
+ 	    test X-lc = "X$arg" && continue
  	    ;;
--	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly*)
-+	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-midnightbsd*)
+-	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-bitrig*)
++	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-bitrig* | *-*-midnightbsd*)
  	    # Do not include libc due to us having libc/libc_r.
- 	    test "X$arg" = "X-lc" && continue
+ 	    test X-lc = "X$arg" && continue
  	    ;;
-@@ -5629,7 +5629,7 @@
+@@ -7039,7 +7039,7 @@
  	  esac
- 	elif test "X$arg" = "X-lc_r"; then
+ 	elif test X-lc_r = "X$arg"; then
  	 case $host in
--	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly*)
-+	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-midnightbsd*)
+-	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-bitrig*)
++	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-bitrig* | *-*-midnightbsd*)
  	   # Do not include libc_r directly, use -pthread flag.
  	   continue
  	   ;;
-@@ -7636,7 +7636,7 @@
+@@ -9124,7 +9124,7 @@
  	  *-*-netbsd*)
  	    # Don't link with libc until the a.out ld.so is fixed.
  	    ;;

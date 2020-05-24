@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libtorrent
-PORTVERSION=	0.13.7
-PORTREVISION=	1
+PORTVERSION=	0.13.8
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://rtorrent.net/downloads/
 
@@ -13,10 +10,8 @@ LICENSE=	gpl2 gpl3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_SSL=	openssl-devel
+USES=		autoreconf compiler:c++11-lang libtool localbase:ldflags pathfix pkgconfig ssl
 
-USES=		autoreconf:build compiler:c++11-lang libtool pathfix pkgconfig ssl autotools
-#USE_AUTOTOOLS=	aclocal
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-debug
 CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto" OPENSSL_CFLAGS="-I\
@@ -43,17 +38,7 @@ KQUEUE_CONFIGURE_WITH=	kqueue
 CONFIGURE_ARGS+=--disable-instrumentation
 .endif
 
-post-patch:
-	@${FIND} ${WRKSRC} \( -name '*.h' -o -name '*.cc' \) -type f \
-		-exec ${REINPLACE_CMD} -e 's/tr1::/std::/g' {} \; \
-		-exec ${REINPLACE_CMD} -e 's/std::std::/std::/g' {} \; \
-		-exec ${REINPLACE_CMD} -e '/namespace tr1/d' {} \; \
-		-exec ${REINPLACE_CMD} -e '/include/s,tr1/,,' {} \;
-	@${REINPLACE_CMD} -e 's/\.assign/.fill/' \
-		${WRKSRC}/src/torrent/utils/extents.h \
-		${WRKSRC}/src/torrent/utils/log.cc
-
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtorrent.so.20.0.0
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtorrent.so.21.0.0
 
 .include <bsd.port.post.mk>
