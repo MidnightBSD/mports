@@ -18,6 +18,8 @@ MESON_ARGS=	-Denable-docs=false \
 		-Denable-wayland=false \
 		-Dx-locale-root="${PREFIX}/lib/X11/locale"
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 MESON_ARGS+=	-Ddefault-rules=xorg
