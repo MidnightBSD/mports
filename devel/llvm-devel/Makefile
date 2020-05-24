@@ -7,6 +7,7 @@ PKGNAMESUFFIX=	-devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LLVM and Clang
 
+LICENSE_DIR=	${WRKSRC}/llvm
 .include "Makefile.LICENSE"
 LICENSE:=	${LICENSE:NARM}
 
