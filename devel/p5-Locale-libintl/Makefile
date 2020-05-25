@@ -23,6 +23,6 @@ NLS_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-Makefile.PL
 NLS_USES=		gettext
 
 post-install-NLS-on:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Locale/gettext_xs/gettext_xs.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Locale/gettext_xs/gettext_xs.so
 
 .include <bsd.port.mk>
