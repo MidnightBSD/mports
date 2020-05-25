@@ -1,0 +1,37 @@
+# Created by: Nicola Vitale	<nivit@email.it>
+
+PORTNAME=	pyscript
+PORTVERSION=	0.6.1
+PORTREVISION=	5
+CATEGORIES=	print graphics python
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python module for producing high quality PostScript graphics
+
+LICENSE=	gpl2
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-08-15
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+PYSCRIPT_MANUAL=doc/manual/pyscript.pdf
+
+USES=		python:2.7
+USE_PYTHON=	distutils
+USE_TEX=	latex dvipsk
+
+.include <bsd.port.options.mk>
+
+post-install:
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@(cd ${WRKSRC}/doc/examples; \
+	${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR} "! -name Makefile")
+.endif
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PYSCRIPT_MANUAL}  ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.mk>
