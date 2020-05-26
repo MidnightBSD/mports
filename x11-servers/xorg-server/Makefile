@@ -14,7 +14,6 @@ LICENSE=	mit
 RUN_DEPENDS+=	xkeyboard-config>=2.5:x11/xkeyboard-config \
 		xkbcomp:x11/xkbcomp
 
-XORG_CAT=	xserver
 SLAVE_PORT?=	no
 
 OPTIONS_SUB=	yes
@@ -30,7 +29,7 @@ OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
-USES=		gmake libtool perl5 ssl tar:bzip2
+USES=		gmake libtool perl5 ssl xorg xorg-cat:xserver tar:bzip2
 USE_PERL5=	build
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont xkbfile xorgproto xshmfence xtrans
