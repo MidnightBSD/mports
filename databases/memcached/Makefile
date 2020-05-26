@@ -15,6 +15,8 @@ BROKEN_mips64=		fails to link: failed to merge target specific data of file /usr
 
 LIB_DEPENDS=	libevent.so:devel/libevent
 
+NO_TEST=	yes
+
 CONFLICTS=	memcached-1.2*
 
 USES=		cpe shebangfix autoreconf
