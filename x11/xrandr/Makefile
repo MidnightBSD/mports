@@ -7,7 +7,7 @@ COMMENT=	Primitive command line interface to the RandR extension
 
 LICENSE=	mit
 
-USES=		xorg xorg-cat:app
+USES=		tar:xz xorg xorg-cat:app
 USE_XORG=	xrandr xrender x11
 
 PLIST_FILES=	bin/xrandr \

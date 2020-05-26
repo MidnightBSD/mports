@@ -17,6 +17,7 @@ CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-csharp --disable-java --with-included-gettext \
 		ac_cv_lib_rt_sched_yield=no
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 WRKSRC_SUBDIR=	gettext-runtime
