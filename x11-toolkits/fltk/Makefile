@@ -7,7 +7,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform C++ graphical user interface toolkit
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png \
