@@ -19,6 +19,7 @@ SUBDIR += proftpd
 SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += waiho
+SUBDIR += weex
 SUBDIR += wget
 SUBDIR += wput
 SUBDIR += yafc
