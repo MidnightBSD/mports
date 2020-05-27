@@ -20,5 +20,7 @@ SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += waiho
 SUBDIR += wget
+SUBDIR += wput
+SUBDIR += yafc
 
 .include <bsd.port.subdir.mk>
