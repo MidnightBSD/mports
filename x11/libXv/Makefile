@@ -14,4 +14,6 @@ USES+=	cpe xorg xorg-cat:lib
 CPE_PRODUCT=	libxv
 CPE_VENDOR=	x
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 .include <bsd.port.mk>
