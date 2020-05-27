@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	dosbox
-PORTVERSION=	0.74
+PORTVERSION=	0.74-3
 PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	SF
@@ -11,9 +9,10 @@ COMMENT=	Emulator of a PC with DOS
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
 GNU_CONFIGURE=	yes
+USES=		sdl
 USE_SDL=	sdl net sound
 PORTDOCS=	NEWS README
 
