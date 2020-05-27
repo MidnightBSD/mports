@@ -1,9 +1,8 @@
 # Created by: Alexander Best <arundel@gmx.net>
-# $FreeBSD: head/emulators/vba/Makefile 412346 2016-04-01 14:00:51Z mat $
-# $MidnightBSD$
 
 PORTNAME=	vba
 PORTVERSION=	1.7.2
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/VisualBoyAdvance/${PORTVERSION}
 DISTNAME=	VisualBoyAdvance-src-${PORTVERSION}
@@ -13,10 +12,10 @@ COMMENT=	Open source Gameboy Advance emulator
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+BUILD_DEPENDS=	nasm:devel/nasm
+LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		gettext gmake
+USES=		gettext gmake sdl
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl
 
@@ -35,7 +34,7 @@ OPTIONS_SUB=	yes
 PROFILING_DESC=	Enable profiling
 
 GTK2_CONFIGURE_ON=	--enable-gtk=2.4
-GTK2_LIB_DEPENDS=	libglademm-2.4.so:${PORTSDIR}/devel/libglademm24
+GTK2_LIB_DEPENDS=	libglademm-2.4.so:devel/libglademm24
 GTK2_USES=		pkgconfig
 PROFILING_CONFIGURE_ENABLE=	profiling
 
@@ -49,8 +48,6 @@ GTK2_DATA_FILES=	${WRKSRC}/src/gtk/vba.glade
 post-patch:
 	@${REINPLACE_CMD} -e '/for(int i = 0; i < 16; i++/s| i|&_|g' \
 		${WRKSRC}/src/sdl/debugger.cpp
-	@${REINPLACE_CMD} -e '/^namespace std/ { x; \
-		s|^|#include <sys/types.h>|; H; x; }' ${WRKSRC}/src/expr.cpp
 
 do-install:
 	${INSTALL_PROGRAM} ${PROG_FILES} ${STAGEDIR}${PREFIX}/bin
