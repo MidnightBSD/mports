@@ -1,5 +1,6 @@
 PORTNAME=	hw-probe
 PORTVERSION=	1.6-beta
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
