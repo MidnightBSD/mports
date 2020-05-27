@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Audio tools
 
 SUBDIR += alsa-lib
@@ -140,6 +138,7 @@ SUBDIR += openal-soft
 SUBDIR += opencore-amr
 SUBDIR += opus
 SUBDIR += opusfile
+SUBDIR += pavucontrol
 SUBDIR += portaudio
 SUBDIR += pulseaudio
 SUBDIR += py-mpd
