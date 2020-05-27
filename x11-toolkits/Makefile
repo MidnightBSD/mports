@@ -45,6 +45,7 @@ SUBDIR += linux-c7-openmotif
 SUBDIR += linux-c7-pango
 SUBDIR += linux-c7-qt-x11
 SUBDIR += linux-c7-tk85
+SUBDIR += neXtaw
 SUBDIR += open-motif
 SUBDIR += p5-Tk
 SUBDIR += pango
