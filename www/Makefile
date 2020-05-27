@@ -70,7 +70,6 @@ SUBDIR += p5-CGI-Compile
 SUBDIR += p5-CGI-Emulate-PSGI
 SUBDIR += p5-CGI-Fast
 SUBDIR += p5-CGI
-SUBDIR += p5-CGI.pm
 SUBDIR += p5-Cookie-Baker
 SUBDIR += p5-FCGI
 SUBDIR += p5-FCGI-ProcManager
