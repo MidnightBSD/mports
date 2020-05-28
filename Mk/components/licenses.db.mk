@@ -180,6 +180,9 @@ _LICENSE_GROUPS_CC-BY-SA-3.0=   # empty
 _LICENSE_NAME_CC-BY-SA-4.0=     Creative Commons Attribution Share Alike 4.0
 _LICENSE_GROUPS_CC-BY-SA-4.0=   # empty
 
+_LICENSE_NAME_CC-BY-4.0=        Creative Commons Attribution 4.0
+_LICENSE_GROUPS_CC-BY-4.0=      # empty
+
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
 
