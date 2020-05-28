@@ -26,6 +26,7 @@ GNU_CONFIGURE=	yes
 LDFLAGS+=	-lm
 CONFIGURE_ARGS=	--with-gd-inc=${LOCALBASE}/include \
 		--with-gd-lib=${LOCALBASE}/lib
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 REINPLACE_ARGS=	-i ""
 
 pre-patch:
