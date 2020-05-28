@@ -81,6 +81,7 @@ DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 WAYLAND_DESC=		GDK Wayland backend
 WAYLAND_CONFIGURE_ENABLE=	wayland-backend
+NLS_CONFIGURE_OFF=	--disable-wayland-backend
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols \
 			v4l_compat>=0:multimedia/v4l_compat
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
