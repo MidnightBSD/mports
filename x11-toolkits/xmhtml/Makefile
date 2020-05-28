@@ -6,7 +6,7 @@ MASTER_SITES=	SF/${PORTNAME:tl}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif widget set for displaying HTML 3.2 documents
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libpng.so:graphics/png
