@@ -1,6 +1,6 @@
 PORTNAME=	thunderbird
 PORTVERSION=	60.2.1
-CATEGORIES=	www
+CATEGORIES=	mail
 MASTER_SITES=	https://pkg.freebsd.org/FreeBSD:10:amd64/latest/All/
 DISTFILES=	thunderbird-60.2.1_3.txz \
 		hunspell-1.6.2_1.txz
