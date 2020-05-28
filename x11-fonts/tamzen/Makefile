@@ -28,7 +28,7 @@ do-install:
 		${WRKSRC}/pcf/*.pcf ${STAGEDIR}${FONTSDIR}
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
