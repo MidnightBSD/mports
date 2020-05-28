@@ -8,6 +8,8 @@ COMMENT=	Outputs X window titles
 LICENSE=	unlicense
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS+=	trueprefix
+
 LIB_DEPENDS=	libxcb-ewmh.so:x11/xcb-util-wm
 
 USES=		gmake localbase:ldflags xorg
