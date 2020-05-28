@@ -120,6 +120,7 @@ SUBDIR += py-execnet
 SUBDIR += py-filelock
 SUBDIR += py-psutil
 SUBDIR += py-ptyprocess
+SUBDIR += py-scandir
 SUBDIR += qt5-qtdiag
 SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
