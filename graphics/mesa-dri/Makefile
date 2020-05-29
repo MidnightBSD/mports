@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	mesa-dri
 PORTVERSION=	${MESAVERSION}
 CATEGORIES=	graphics
@@ -10,6 +8,7 @@ LICENSE=	mit
 
 RUN_DEPENDS=	${LOCALBASE}/lib/libtxc_dxtn.so:graphics/s2tc
 
+USES=		xorg
 USE_XORG=	xorgproto x11 xdamage xext xfixes xshmfence xv xvmc
 
 OPTIONS_DEFINE=	TEXTURE VAAPI VDPAU
