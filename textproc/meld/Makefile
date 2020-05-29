@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	meld
-PORTVERSION=	3.18.2
+PORTVERSION=	3.20.1
 CATEGORIES=	textproc devel python
 MASTER_SITES=	GNOME
 
@@ -14,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	itstool:textproc/itstool
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		desktop-file-utils gettext python:3.4+ shared-mime-info \
+USES=		desktop-file-utils gettext gnome python:3.4+ shared-mime-info \
 		shebangfix tar:xz
 SHEBANG_FILES=	bin/meld
 USE_PYTHON=	distutils noflavors
