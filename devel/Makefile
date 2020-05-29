@@ -846,6 +846,7 @@ SUBDIR += py-setuptools
 SUBDIR += py-setuptools_darcs
 SUBDIR += py-setuptools_hg
 SUBDIR += py-setuptools_scm
+SUBDIR += py-setuptools_scm_git_archive
 SUBDIR += py-simplejson
 SUBDIR += py-singledispatch
 SUBDIR += py-six
