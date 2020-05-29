@@ -8,7 +8,7 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library used for writing pagers and taskslists
 
-LICENSE=	lgpl2
+LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz
