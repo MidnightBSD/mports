@@ -1,15 +1,14 @@
-# $MidnightBSD$
-
 PORTNAME=	compiz
 PORTVERSION=	0.8.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 
-LICENSE=	agg
+LICENSE=	gpl2 lgpl2.1 mit
+LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libgtop-2.0.so:devel/libgtop \
@@ -17,15 +16,14 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
 		nvidia-settings:x11/nvidia-settings
 
-XORG_CAT=	app
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gettext gmake libtool pathfix tar:bzip2
+USES=		gettext gl gmake libtool pathfix tar:bzip2 xorg xorg-cat:app
 USE_GL=		glu
 USE_GNOME=	gconf2 libxslt intltool
-USE_XORG=	xorgproto ice sm x11 xcomposite xdamage xext xfixes xinerama \
-		xrandr xrender
 USE_LDCONFIG=	yes
+USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama \
+		xorgproto xrandr xrender
 
 GCONF_SCHEMAS=	gwd.schemas \
 		compiz-annotate.schemas \
