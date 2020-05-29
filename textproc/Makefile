@@ -190,6 +190,7 @@ SUBDIR += php74-xmlreader
 SUBDIR += php74-xmlwriter
 SUBDIR += php74-xsl
 SUBDIR += popup
+SUBDIR += pugixml
 SUBDIR += py-CommonMark
 SUBDIR += py-MarkupSafe
 SUBDIR += py-Tempita
