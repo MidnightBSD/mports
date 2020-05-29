@@ -1,6 +1,7 @@
 COMMENT = File Transfer Protocol 
 
 SUBDIR += curl
+SUBDIR += filezilla
 SUBDIR += ftpcopy
 SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
