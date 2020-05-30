@@ -24,9 +24,9 @@ PORTDOCS=	*.pdf
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${FAKE_DESTDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
 	${FIND} ${WRKSRC}/Fonts -type f -name \*.otf | while read f; do \
-		${INSTALL_DATA} $$f ${FAKE_DESTDIR}${FONTSDIR} ; done
+		${INSTALL_DATA} $$f ${FONTSDIR} ; done
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
