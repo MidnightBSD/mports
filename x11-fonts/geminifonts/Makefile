@@ -24,7 +24,7 @@ FONTNAME=	koi8-u-gemini
 
 post-patch:
 	${REINPLACE_CMD} -e 's/\.Z/.gz/g' \
-	    -e 's|DESTDIR =.*|MDESTDIR=${STAGEDIR}${FONTSDIR}|' \
+	    -e 's|DESTDIR =.*|MDESTDIR=${FAKE_DESTDIR}${FONTSDIR}|' \
 	${WRKSRC}/Makefile
 
 # This will  allow one to  use just this  fonts for both,  the Ukrainian
