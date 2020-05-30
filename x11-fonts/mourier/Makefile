@@ -23,7 +23,7 @@ NO_BUILD=	yes
 PLIST_FILES=	${FONTSDIR}/Mourier.otf
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/Mourier.otf ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/Mourier.otf ${FAKE_DESTDIR}${FONTSDIR}
 
 .include <bsd.port.mk>
