@@ -24,7 +24,7 @@ do-install:
 	${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR}
 
 do-install-DOCS-on:
-	@${MKDIR} ${FAKE_DESTDDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
