@@ -34,6 +34,7 @@ SUBDIR += expat2
 SUBDIR += fixrtf
 SUBDIR += flex
 SUBDIR += fop
+SUBDIR += fzf
 SUBDIR += gdome2
 SUBDIR += gnome-doc-utils
 SUBDIR += gnome-spell
