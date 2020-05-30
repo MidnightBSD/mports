@@ -24,14 +24,14 @@ PORTDOCS=	*.pdf
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${FONTSDIR}
 	${FIND} ${WRKSRC}/Fonts -type f -name \*.otf | while read f; do \
-		${INSTALL_DATA} $$f ${STAGEDIR}${FONTSDIR} ; done
+		${INSTALL_DATA} $$f ${FAKE_DESTDIR}${FONTSDIR} ; done
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Technical\ Report\ PDF/*.pdf ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/Technical\ Report\ PDF/*.pdf ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/FiraGO_FiraSans_Comparison.pdf \
-		${STAGEDIR}${DOCSDIR}
+		${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
