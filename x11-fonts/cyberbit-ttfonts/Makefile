@@ -33,7 +33,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/Cyberbit.ttf ${STAGEDIR}${FONTSDIR}
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S,^,${_DISTDIR}/,} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${_DISTDIR}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
