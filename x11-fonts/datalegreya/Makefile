@@ -24,7 +24,7 @@ PLIST_FILES=	%%FONTSDIR%%/Datalegreya-Dot.otf	\
 		%%FONTSDIR%%/Datalegreya-Thin.otf
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${WRKSRC}/font-files && ${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR}
+	${MKDIR} ${FONTSDIR}
+	cd ${WRKSRC}/font-files && ${INSTALL_DATA} *.otf ${FONTSDIR}
 
 .include <bsd.port.mk>
