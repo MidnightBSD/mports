@@ -1,5 +1,6 @@
 PORTNAME=	indexinfo
 PORTVERSION=	0.3.1
+PORTREVISION=	1
 CATEGORIES=	print ports-mgmt
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,5 +19,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	bapt
 INSTALL_TARGET=	install-strip
 PLIST_FILES=	bin/indexinfo
+
+.if exists(/usr/include/sys/capsicum.h)
+CFLAGS+=	-DHAVE_CAPSICUM
+.endif
 
 .include <bsd.port.mk>

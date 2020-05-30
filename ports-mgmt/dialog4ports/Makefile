@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	dialog4ports
 PORTVERSION=	0.1.6
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://m1cro.me/dialog4ports/ \
 		http://files.etoilebsd.net/dialog4ports/ \

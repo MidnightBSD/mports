@@ -1,7 +1,7 @@
 # Created by: Peter van Heusden <pvh@egenetics.com>
 
 PORTNAME=	Error
-PORTVERSION=	0.17027
+PORTVERSION=	0.17029
 CATEGORIES=	lang perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
