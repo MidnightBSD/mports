@@ -817,6 +817,7 @@ SUBDIR += py-orbit
 SUBDIR += py-parsedatetime
 SUBDIR += py-parsing
 SUBDIR += py-pbr
+SUBDIR += py-pyicu
 SUBDIR += py-pip
 SUBDIR += py-pluggy
 SUBDIR += py-ply
