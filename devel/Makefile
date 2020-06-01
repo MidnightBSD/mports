@@ -163,6 +163,7 @@ SUBDIR += libdevq
 SUBDIR += libdbusmenu-qt
 SUBDIR += libdlna
 SUBDIR += libedit
+SUBDIR += libelf
 SUBDIR += libepoll-shim
 SUBDIR += libev
 SUBDIR += libevdev
