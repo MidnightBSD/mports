@@ -1,5 +1,3 @@
-# $FreeBSD: head/devel/llvm70/Makefile.COMMANDS 495005 2019-03-07 23:52:08Z brooks $
-
 LLVM_COMMANDS=	\
 		bugpoint \
 		dsymutil \

@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	libdrm
-PORTVERSION=	2.4.93
+PORTVERSION=	2.4.99
 PORTEPOCH=	1
 CATEGORIES=	graphics x11
-MASTER_SITES=	http://dri.freedesktop.org/libdrm/
+MASTER_SITES=	https://dri.freedesktop.org/libdrm/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Userspace interface to kernel Direct Rendering Module services
@@ -14,11 +12,8 @@ LICENSE=	mit
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
 
-USES=		libtool pkgconfig tar:bzip2
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+USES=		gnome meson pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	MANPAGES TESTS
 OPTIONS_SUB=	yes
@@ -29,14 +24,14 @@ TESTS_DESC=	Install test programs (which are always built)
 OPTIONS_DEFAULT+=	MANPAGES
 .endif
 
-MANPAGES_CONFIGURE_ENABLE=	manpages
 MANPAGES_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl
 MANPAGES_USE=		GNOME=libxslt:build
+MANPAGES_MESON_TRUE=	man-pages
 
-TESTS_CONFIGURE_ENABLE=	install-test-programs
+TESTS_MESON_TRUE=	install-test-programs
 
 # avoid circular dependency in case cairo supports OpenGL (cairo->mesa-libs->libdrm->cairo)
-CONFIGURE_ARGS+=	--disable-cairo-tests
+CONFIGURE_ARGS+=	-Dcairo-tests=false
 
 .include <bsd.mport.options.mk>
 
@@ -67,10 +62,5 @@ PLIST_SUB+=	RADEON_DRIVERS="@comment "
 .if !defined(LIBDRM_SKIP_RETURN_PATCH)
 EXTRA_PATCHES+=	${FILESDIR}/extra-xf86drm.c
 .endif
-
-pre-patch:
-	@${REINPLACE_CMD} 's|{libdir}/pkgconfig|{prefix}/libdata/pkgconfig|g; \
-			   s,i?86|x86_64),i?86|amd64|x86_64),g' \
-		${WRKSRC}/configure
 
 .include <bsd.port.mk>
