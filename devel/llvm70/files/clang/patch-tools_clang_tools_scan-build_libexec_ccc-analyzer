@@ -4,7 +4,7 @@
    if (-x "/usr/bin/xcrun") {
      $UseXCRUN = 1;
    }
-+} elsif (`uname -s` eq "FreeBSD\n") {
++} elsif (`uname -s` eq "MidnightBSD\n") {
 +  $DefaultCCompiler = 'cc';
 +  $DefaultCXXCompiler = 'c++';
  } else {
