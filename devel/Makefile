@@ -859,6 +859,7 @@ SUBDIR += py-smmap2
 SUBDIR += py-sortedcontainers
 SUBDIR += py-subversion
 SUBDIR += py-sure
+SUBDIR += py-tabulate
 SUBDIR += py-termcolor
 SUBDIR += py-testtools
 SUBDIR += py-tox
