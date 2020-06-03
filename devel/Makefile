@@ -824,6 +824,7 @@ SUBDIR += py-pluggy
 SUBDIR += py-ply
 SUBDIR += py-pkgconfig
 SUBDIR += py-pretend
+SUBDIR += py-protobuf
 SUBDIR += py-py
 SUBDIR += py-pyudev
 SUBDIR += py-pyasn1
