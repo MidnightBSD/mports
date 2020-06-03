@@ -1,8 +1,9 @@
 PORTNAME=	node
-PORTVERSION=	13.13.0
+PORTVERSION=	10.20.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
+PKGNAMESUFFIX=	10
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
@@ -11,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=		libressl libressl-devel
-BROKEN_SSL_REASON=	Node.js 12.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
+BROKEN_SSL_REASON=	Node.js 10.x LTS requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
 
 OPTIONS_DEFINE=		BUNDLED_SSL DOCS NLS
@@ -27,14 +28,12 @@ NLS_CONFIGURE_ON=	--with-intl=system-icu
 NLS_BUILD_DEPENDS=	icu>=64.2:devel/icu
 NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
 
-DTRACE_CONFIGURE_ON=	--with-dtrace
-
 USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 		localbase shebangfix
 
 HAS_CONFIGURE=	yes
 
-CONFLICTS_INSTALL=	node[68]-[0-9]* node10-[0-9]* node12-[0-9]*
+CONFLICTS_INSTALL=	node[68]-[0-9]* node12-[0-9]* node-[0-9]*
 
 CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--without-npm \
@@ -53,8 +52,8 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 		LINK.host=${CXX} LDFLAGS.host="${LDFLAGS}"
 
 BUILD_DEPENDS+=	c-ares>=1.15.0:dns/c-ares\
-		libuv>=1.35.0:devel/libuv \
-		libnghttp2>=1.40.0:www/libnghttp2 \
+		libuv>=1.34.2:devel/libuv \
+		libnghttp2>=1.39.2:www/libnghttp2 \
 		objdump:devel/binutils
 LIB_DEPENDS+=	libcares.so:dns/c-ares\
 		libuv.so:devel/libuv \
@@ -62,23 +61,15 @@ LIB_DEPENDS+=	libcares.so:dns/c-ares\
 
 .include <bsd.mport.options.mk>
 
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
-EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
-.endif
-
-.if ${ARCH} == armv6 || ${ARCH} == armv7
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
-.endif
-
 BROKEN_SSL+=	base
 
-.if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
+.if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64 && ${ARCH} != i386
 CONFIGURE_ARGS+=--openssl-no-asm
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/tools/v8_gypfiles/v8.gyp
+		${WRKSRC}/deps/v8/gypfiles/v8.gyp
 
 post-configure:
 	# Post-process Makefile and *.mk files created by node-gyp and remove
