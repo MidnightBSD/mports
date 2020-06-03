@@ -146,7 +146,6 @@ SUBDIR += qt5-websockets
 SUBDIR += qt5-websockets-qml
 SUBDIR += qt5-webview
 SUBDIR += rubygem-hpricot
-SUBDIR += seamonkey
 SUBDIR += serf
 SUBDIR += selfhtml-de
 SUBDIR += spawn-fcgi
