@@ -846,6 +846,7 @@ SUBDIR += py-pytest-runner
 SUBDIR += py-pytest-timeout
 SUBDIR += py-pytest-xdist
 SUBDIR += py-pytz
+SUBDIR += py-qt5-core
 SUBDIR += py-ramlfications
 SUBDIR += py-scripttest
 SUBDIR += py-setuptools
