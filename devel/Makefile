@@ -889,6 +889,7 @@ SUBDIR += qbs
 SUBDIR += qca
 SUBDIR += qgit
 SUBDIR += qjson
+SUBDIR += qscintilla2-qt5
 SUBDIR += qt5
 SUBDIR += qt5-assistant
 SUBDIR += qt5-buildtools
