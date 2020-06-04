@@ -33,6 +33,8 @@ SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
+MAKE_ENV+=	DESTDIR=${FAKE_DESTDIR}
+
 CMAKE_INSTALL_PREFIX=	${LLVM_PREFIX}
 CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON 
 #-DLLVM_LINK_LLVM_DYLIB=ON
@@ -54,8 +56,9 @@ OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
 OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD LLDB
-OPTIONS_DEFAULT_amd64=	COMPILER_RT OPENMP
-OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
+# not faking right yet
+#OPTIONS_DEFAULT_amd64=	COMPILER_RT OPENMP
+#OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
 OPTIONS_SUB=	yes
 
 CLANG_DESC=	Build clang
@@ -335,10 +338,10 @@ post-build-COMPILER_RT-on:
 	${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} \
 	    -DLLVM_CONFIG_PATH=${CONFIGURE_WRKSRC}/bin/llvm-config \
 	    ${WRKSRC_compiler_rt} && \
-	    ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD}
+	    ${MAKE_ENV} ${FAKE_MAKEENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${FAKE_MAKEARGS}
 
 post-install:
-	${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
+	-${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
 	    ${PREFIX}/bin/${FIRST_COMMAND}${LLVM_SUFFIX}
 .for command in ${COMMANDS:C/^/XXXX/1:NXXXX*}
@@ -353,21 +356,21 @@ post-install-DOCS-on:
 	    ${FAKE_DESTDIR}${MANPREFIX}/man/man1/${_man:R}${LLVM_SUFFIX}.1
 .endfor
 .if ! ${PORT_OPTIONS:MLIT}
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/lit.1
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 
 .if ${PORT_OPTIONS:MCLANG}
 post-install-DOCS-off:
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/scan-build.1
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/man1/
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/share/man/
 .endif
 
 post-install-LLD-on:
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/BinaryFormat/WasmRelocs
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/BinaryFormat/WasmRelocs
 
 post-install-CLANG-on:
 	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/clang \
@@ -377,14 +380,14 @@ post-install-CLANG-on:
 
 post-install-COMPILER_RT-on:
 	cd ${WRKDIR}/compiler-rt-build && \
-	    ${MAKE_ENV} ${FAKE_MAKEENV} ${MAKE_CMD} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	    ${MAKE_ENV} ${FAKE_MAKEENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 .if ${ARCH} == "amd64"
-	${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/libclang_rt*i386*
+	-${RM} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/libclang_rt*i386*
 .endif
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/* \
+	-${MKDIR} ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
+	-${MV} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd/* \
 	    ${FAKE_DESTDIR}${PREFIX}/${_CRTLIBDIR}
-	${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd
+	-${RMDIR} ${FAKE_DESTDIR}${LLVM_PREFIX}/lib/midnightbsd
 
 post-install-LIT-on:
 	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/utils/lit/lit.py \
@@ -409,15 +412,6 @@ post-install-LIT-on:
 	${LN} -f ${FAKE_DESTDIR}${LLVM_PREFIX}/bin/FileCheck \
 	    ${FAKE_DESTDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
 
-TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
-do-test:
-	if [ `${ID} -u` = 0 ]; then \
-		${CHOWN} -R nobody ${WRKSRC}/test; \
-		su -m nobody -c ${TEST_CMD}; \
-	else \
-		${SH} -c ${TEST_CMD}; \
-	fi
-
 build-plist:
 	${RM} ${PLIST} ${PLIST}.tmp
 	${ECHO_CMD} "@comment >>>>> GENERATED FILE, DO NOT EDIT <<<<<" >> ${PLIST}.tmp
@@ -441,8 +435,8 @@ build-plist:
 	    -e 's|${LLVM_SUFFIX:C/\./\\./g}|%%LLVM_SUFFIX%%|' \
 	    -e 's|${LLVM_MAJOR}|%%LLVM_MAJOR%%|' \
 	    | ${SORT} >> ${PLIST}.tmp
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
-	    ${SED} -e 's|${STAGEDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
+	    ${SED} -e 's|${FAKE_DESTDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
 	    -e 's|${LLVM_SUFFIX:C/\./\\./g}|%%LLVM_SUFFIX%%|' \
 	    -e 's|${LLVM_MAJOR}|%%LLVM_MAJOR%%|' \
