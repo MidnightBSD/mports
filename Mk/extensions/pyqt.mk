@@ -66,7 +66,7 @@ SIP_DISTNAME=		sip-${SIP_VERSION}
 PYQT5_DISTNAME=		PyQt5_gpl-${PYQT5_VERSION}
 PYQT5_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 QSCI2_DISTNAME=		QScintilla-${QSCI2_VERSION}
-PYQT5_LICENSE=		GPLv3
+PYQT5_LICENSE=		gpl3
 
 # Keep these synchronized with OPTIONS_DEFINE in devel/py-qt5
 # PyQt components split up into pyqt5/...
