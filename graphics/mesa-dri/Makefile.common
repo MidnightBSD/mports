@@ -47,6 +47,7 @@ USES+=		compiler:c++11-lib bison gettext-tools gmake libtool \
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--enable-autotools
+CONFIGURE_TARGET=${ARCH}-portbld-freebsd10.4
 
 # only have one port to check with portscout.
 .if ${PORTNAME} != mesa-dri
