@@ -855,6 +855,7 @@ SUBDIR += py-setuptools_scm
 SUBDIR += py-setuptools_scm_git_archive
 SUBDIR += py-simplejson
 SUBDIR += py-singledispatch
+SUBDIR += py-sip
 SUBDIR += py-six
 SUBDIR += py-smmap2
 SUBDIR += py-sortedcontainers
