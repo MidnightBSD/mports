@@ -1,5 +1,6 @@
 PORTNAME=	json-c
 PORTVERSION=	0.13.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://s3.amazonaws.com/json-c_releases/releases/ \
 		FREEBSD_LOCAL/sunpoet
@@ -10,7 +11,7 @@ COMMENT=	JSON (JavaScript Object Notation) implementation in C
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf cpe gmake libtool pathfix pkgconfig
+USES=		autoreconf compiler:c11 cpe gmake libtool pathfix pkgconfig
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
