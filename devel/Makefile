@@ -806,6 +806,7 @@ SUBDIR += py-isodate
 SUBDIR += py-isort
 SUBDIR += py-intervaltree
 SUBDIR += py-lxml
+SUBDIR += py-magic
 SUBDIR += py-mccabe
 SUBDIR += py-mimeparse
 SUBDIR += py-mock
