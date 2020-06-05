@@ -28,6 +28,15 @@ WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
+USES+=	compiler:c++17-lang
+CC=     clang70                                                                                                                                                           
+MAKE_ENV+=      CC=clang70 __FreeBSD__=10
+LLVM_DEFAULT=   70
+BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
+LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib  
+
 ALL_DRI_DRIVERS=	I915 I965 RADEON R200 SWRAST
 ALL_GALLIUM_DRIVERS=	FREEDRENO R300 R600 RADEONSI SVGA SWRAST VC4
 ALL_VULKAN_DRIVERS=	INTEL RADEON
@@ -80,6 +89,7 @@ CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
 CONFIGURE_ARGS+=	--with-dri-drivers="${DRI_DRIVERS:tl}" \
 			--with-gallium-drivers="${GALLIUM_DRIVERS:tl}" \
 			--with-vulkan-drivers="${VULKAN_DRIVERS:tl}"
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .for _d in ${ALL_DRI_DRIVERS}
 . if ${DRI_DRIVERS:M${_d}}

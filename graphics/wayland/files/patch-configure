@@ -1,0 +1,54 @@
+--- configure.orig	2020-06-03 18:55:57.350447000 -0400
++++ configure	2020-06-03 18:57:02.083522000 -0400
+@@ -5615,7 +5615,7 @@
+     lt_cv_sys_max_cmd_len=8192;
+     ;;
+ 
+-  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
++  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
+     # This has been around since 386BSD, at least.  Likely further.
+     if test -x /sbin/sysctl; then
+       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
+@@ -6026,13 +6026,13 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++freebsd* | dragonfly* | midnightbsd*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+       # Not sure whether the presence of OpenBSD here was a mistake.
+       # Let's accept both of them until this is cleared up.
+-      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
++      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly|MidnightBSD)/i[3-9]86 (compact )?demand paged shared library'
+       lt_cv_file_magic_cmd=/usr/bin/file
+       lt_cv_file_magic_test_file=`echo /usr/lib/libc.so.*`
+       ;;
+@@ -10568,7 +10568,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++    midnightbsd* | freebsd* | dragonfly*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -11614,7 +11614,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -12778,7 +12778,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+       ;;
+-    freebsd*)
++    midnightbsd* | freebsd*)
+       if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
+         old_striplib="$STRIP --strip-debug"
+         striplib="$STRIP --strip-unneeded"

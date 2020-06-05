@@ -1,34 +1,42 @@
 # Created by: Johannes Lundberg <johalun0@gmail.com>
-# $FreeBSD: head/devel/libepoll-shim/Makefile 432404 2017-01-24 23:27:25Z bapt $
-# $MidnightBSD$
 
 PORTNAME=	libepoll-shim
-PORTVERSION=	0.0.20161220
-PORTREVISION=	1
+PORTVERSION=	0.0.20200602
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	epoll shim implemented using kevent
+COMMENT=	Small epoll implementation using kqueue
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	FreeBSDDesktop
-GH_PROJECT=	epoll-shim
-GH_TAGNAME=	c04b26b
-
-WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}
-
+USES=		cmake compiler:c11,c++17-lang
 USE_LDCONFIG=	yes
+USE_GITHUB=	yes
+GH_ACCOUNT=	jiixyj
+GH_PROJECT=	epoll-shim
+GH_TAGNAME=	3840e9c
 
-USES=		uidfix
-MAKE_ARGS=	LIBDIR=${PREFIX}/lib INCLUDEDIR=${PREFIX}/include
+CC=	clang70
+MAKE_ENV+=	CC=clang70
+LLVM_DEFAULT=   70                                                                                                                                                        
+BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
+LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib   
 
-post-patch:
-	# -Weverything is not recognized by GCC
-	@${REINPLACE_CMD} -e 's|Weverything|Wall|' ${WRKSRC}/Makefile
-
-pre-install:
-	@${MKDIR} ${PREFIX}/include/libepoll-shim/sys
+do-test:
+	# Exclude certain tests in resource restricted environments
+	@(if [ `ulimit -n` -lt 20100 ]; then \
+	    ${ECHO} "Skipping test perf-many-fds.perf_many_fds__perf"; \
+	    SKIP_TESTS="-E ^(perf-many-fds.perf_many_fds__perf"; \
+	    if [ `ulimit -n` -lt 1100 ]; then \
+	        ${ECHO} "Skipping test timerfd-test.timerfd__many_timers"; \
+	        SKIP_TESTS=$$SKIP_TESTS"|timerfd-test.timerfd__many_timers"; \
+	    fi; \
+	    SKIP_TESTS=$$SKIP_TESTS")$$"; \
+	fi; \
+	cd ${TEST_WRKSRC} && \
+	${SETENV} ${TEST_ENV} ctest -C ${CMAKE_BUILD_TYPE} $$SKIP_TESTS)
 
 .include <bsd.port.mk>
