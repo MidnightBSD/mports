@@ -177,6 +177,7 @@ SUBDIR += price
 SUBDIR += py-cairo
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
+SUBDIR += py-pycha
 SUBDIR += qt5-3d
 SUBDIR += qt5-graphicaleffects
 SUBDIR += qt5-imageformats
