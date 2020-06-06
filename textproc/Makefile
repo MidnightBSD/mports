@@ -198,6 +198,7 @@ SUBDIR += py-Tempita
 SUBDIR += py-alabaster
 SUBDIR += py-chardet
 SUBDIR += py-docutils
+SUBDIR += py-genshi
 SUBDIR += py-libxml2
 SUBDIR += py-m2r
 SUBDIR += py-mako
