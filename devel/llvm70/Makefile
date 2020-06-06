@@ -334,6 +334,7 @@ post-patch-CLANG-on:
 
 post-patch-COMPILER_RT-on:
 	cd ${WRKSRC_compiler_rt} && patch < ${PATCHDIR}/compiler_rt/patch-rt_cmake_config-ix.cmake
+	cd ${WRKSRC_compiler_rt) && patch < ${PATCHDIR}/compiler_rt/patch-rt_lib_sanitizer_common_sanitizer_platform.h
 
 post-build-COMPILER_RT-on:
 	${MKDIR} ${WRKDIR}/compiler-rt-build
