@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Desktop publishing
 
 SUBDIR += a2ps
@@ -90,6 +88,7 @@ SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
 SUBDIR += transfig
 SUBDIR += ttf2pt1
+SUBDIR += ttfautohint
 SUBDIR += xfce4-print
 SUBDIR += xpdfopen
 

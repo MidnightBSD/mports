@@ -1,6 +1,6 @@
 PORTNAME=	jansson
 PORTVERSION=	2.12
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.digip.org/jansson/releases/
 
@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		cpe pathfix pkgconfig gmake tar:bzip2 libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 CPE_VENDOR=	jansson_project
 
 .include <bsd.port.mk>
