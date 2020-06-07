@@ -1,6 +1,6 @@
 PORTNAME=	Encode-HanConvert
 PORTVERSION=	0.35
-CATEGORIES=	converters chinese perl5
+CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
