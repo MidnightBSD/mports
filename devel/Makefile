@@ -874,6 +874,7 @@ SUBDIR += py-ttystatus
 SUBDIR += py-twisted
 SUBDIR += py-txaio
 SUBDIR += py-typing
+SUBDIR += py-typing-extensions
 SUBDIR += py-ujson
 SUBDIR += py-unicodedata2
 SUBDIR += py-unittest2
