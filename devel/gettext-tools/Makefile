@@ -23,8 +23,8 @@ CONFIGURE_ARGS=	--disable-csharp --disable-java --disable-openmp \
 		--with-included-libunistring --with-included-libxml \
 		--without-emacs --without-git ac_cv_lib_rt_sched_yield=no
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
 WRKSRC_SUBDIR=	gettext-tools
+NO_TEST=	yes
 
 DATADIR=	${PREFIX}/share/gettext
 DOCSDIR=	${PREFIX}/share/doc/gettext
