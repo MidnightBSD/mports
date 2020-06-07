@@ -758,6 +758,7 @@ SUBDIR += py-characteristic
 SUBDIR += py-cliapp
 SUBDIR += py-cmdtest
 SUBDIR += py-colorama
+SUBDIR += py-commandlines
 SUBDIR += py-configargparse
 SUBDIR += py-configobj
 SUBDIR += py-configparser
