@@ -118,6 +118,7 @@ SUBDIR += xcursorgen
 SUBDIR += xdesktopwaves
 SUBDIR += xditview
 SUBDIR += xdm
+SUBDIR += xdotool
 SUBDIR += xdpyinfo
 SUBDIR += xdriinfo
 SUBDIR += xedit
