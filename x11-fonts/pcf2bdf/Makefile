@@ -12,6 +12,8 @@ LICENSE=	mit
 USE_GITHUB=	yes
 GH_ACCOUNT=	ganaware
 
+FAKE_OPTS=	trueprefix
+
 MAKEFILE=	Makefile.gcc
 MAKE_ENV=	MANPATH="${MANPREFIX}/man/man1" \
 		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
