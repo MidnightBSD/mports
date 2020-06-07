@@ -332,13 +332,17 @@ post-patch-CLANG-on:
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format-sublime.py \
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/git-clang-format
 
+post-patch-COMPILER_RT-on:
+	cd ${WRKSRC_compiler_rt} && patch < ${PATCHDIR}/compiler_rt/patch-rt_cmake_config-ix.cmake
+	cd ${WRKSRC_compiler_rt) && patch < ${PATCHDIR}/compiler_rt/patch-rt_lib_sanitizer_common_sanitizer_platform.h
+
 post-build-COMPILER_RT-on:
 	${MKDIR} ${WRKDIR}/compiler-rt-build
 	cd ${WRKDIR}/compiler-rt-build && \
 	${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} \
 	    -DLLVM_CONFIG_PATH=${CONFIGURE_WRKSRC}/bin/llvm-config \
 	    ${WRKSRC_compiler_rt} && \
-	    ${MAKE_ENV} ${FAKE_MAKEENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD} ${FAKE_MAKEARGS}
+	    ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} ${MAKE_CMD}
 
 post-install:
 	-${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
