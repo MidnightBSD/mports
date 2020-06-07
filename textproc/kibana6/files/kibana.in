@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-# $FreeBSD: head/textproc/kibana6/files/kibana.in 464527 2018-03-14 19:20:29Z feld $
-#
 
 # PROVIDE: kibana
 # REQUIRE: DAEMON
@@ -22,6 +19,9 @@ load_rc_config $name
 
 export BABEL_DISABLE_CACHE=1
 export NODE_ENV=production
+# ml and reporting modules not supported on BSD
+export XPACK_ML_ENABLED=false
+export XPACK_REPORTING_ENABLED=false
 
 required_files="${kibana_config}"
 pidfile="/var/run/${name}/${name}.pid"
