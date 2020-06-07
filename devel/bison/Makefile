@@ -24,7 +24,8 @@ USE_PERL5=	build
 CONFIGURE_ARGS=	--disable-yacc --enable-relocatable
 GNU_CONFIGURE=	yes
 LIBS+=		-lm
-TEST_TARGET=	check
+
+NO_TEST=	yes
 
 INFO=		bison
 
