@@ -175,6 +175,7 @@ SUBDIR += poppler-utils
 SUBDIR += preview
 SUBDIR += price
 SUBDIR += py-cairo
+SUBDIR += py-cairocffi
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
 SUBDIR += py-pycha
