@@ -36,6 +36,8 @@ METRICBEAT_VARS=GO_TARGETS+=metricbeat
 HEARTBEAT_DESC=	Heartbeat
 HEARTBEAT_VARS=	GO_TARGETS+=heartbeat
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 do-build:
