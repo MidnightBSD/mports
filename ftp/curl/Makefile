@@ -50,8 +50,9 @@ CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
 		ac_cv_func_SSLv2_client_method=no
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	test
 USE_LDCONFIG=	yes
+
+NO_TEST=	yes
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -157,19 +158,12 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${DOCSDIR}/libcurl/
-	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} *.md ${STAGEDIR}${DOCSDIR}/
-	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.m4 ${STAGEDIR}${DOCSDIR}/libcurl/
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/ ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
+	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} *.md ${FAKE_DESTDIR}${DOCSDIR}/
+	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.m4 ${FAKE_DESTDIR}${DOCSDIR}/libcurl/
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${STAGEDIR}${EXAMPLESDIR}/
-
-pre-test-PROXY-off:
-	@${ECHO_MSG} "******************************************"
-	@${ECHO_MSG} "* You have disabled curl proxy support.  *"
-	@${ECHO_MSG} "* Some tests SHALL FAIL!                 *"
-	@${ECHO_MSG} "* This is being addressed.               *"
-	@${ECHO_MSG} "******************************************"
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.post.mk>
