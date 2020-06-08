@@ -275,7 +275,7 @@ post-install:
 	${MV} ${STAGEDIR}${PREFIX}/man/man1/compile_et.1 ${STAGEDIR}${PREFIX}/man/man1/e2fsprogs-compile_et.1
 	${MKDIR} ${STAGEDIR}${DATADIR}/et/
 	${MV} ${STAGEDIR}${PREFIX}/share/et/* ${STAGEDIR}${DATADIR}/et/
-	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${DATADIR}/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
+	${REINPLACE_CMD} -e 's}^DIR=.*$$}DIR=${LOCALBASE}/share/e2fsprogs/et}' -i '' ${STAGEDIR}${PREFIX}/bin/e2fsprogs-compile_et
 	${RMDIR} ${STAGEDIR}${PREFIX}/share/et
 
 #
