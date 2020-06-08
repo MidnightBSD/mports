@@ -18,11 +18,12 @@ USES=		python:2.7
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 POST_PLIST=	trim-backports-namespace
 
 post-install:
-	@${RM} ${STAGEDIR}${PYTHON_SITELIBDIR}/backports/__init__.py*
+	@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports/__init__.py*
 
 trim-backports-namespace:
 	@${REINPLACE_CMD} '/backports\/__init__.py*/d' ${TMPPLIST}
