@@ -20,14 +20,13 @@ BABEL_DESC=	I18n support through the Babel plugin
 
 BABEL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=0.8:devel/py-babel@${PY_FLAVOR}
 
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_VER} < 3.3
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/genshi/*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/genshi/*.so
 .else
 NO_ARCH=	yes
 .endif
