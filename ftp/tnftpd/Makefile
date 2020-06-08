@@ -1,17 +1,15 @@
-# $MidnightBSD$
-
 PORTNAME=	tnftpd
 PORTVERSION=	20130325
-PORTREVISION=	0
-CATEGORIES=	ftp ipv6
+PORTREVISION=	1
+CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Enhanced ftp server from NetBSD
+COMMENT=	Enhanced FTP server from NetBSD
 
 LICENSE=	bsd4
 
-USES=		libtool
+USES=		autoreconf libtool
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	aclocal automake
 AUTOMAKE_ARGS=	--add-missing
@@ -25,9 +23,8 @@ CFLAGS+=	-DSUPPORT_UTMPX
 CFLAGS+=	-DSUPPORT_UTMP
 .endif
 
-MAN5=		ftpd.conf.5 ftpusers.5
-MAN8=		tnftpd.8
-PLIST_FILES=	libexec/tnftpd
+PLIST_FILES=	libexec/tnftpd \
+		man/man5/ftpd.conf.5.gz man/man5/ftpusers.5.gz man/man8/tnftpd.8.gz
 PORTDOCS=	ChangeLog NEWS README THANKS COPYING
 PORTEXAMPLES=	ftpd.conf ftpusers
 
