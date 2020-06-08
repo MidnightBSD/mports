@@ -1,5 +1,5 @@
 PORTNAME=	libuv
-PORTVERSION=	1.34.1
+PORTVERSION=	1.37.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -13,12 +13,11 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USE_GITHUB=	yes
 
-USES=		autoreconf libtool pathfix pkgconfig python:build,test shebangfix
+USES=		autoreconf libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-SHEBANG_FILES=	gyp_uv.py
 
 NO_TEST=	yes
 
