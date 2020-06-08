@@ -41,6 +41,8 @@ CJK_DESC=	Adobe CMaps
 CJK_RUN_DEPENDS=	${LOCALBASE}/share/fonts/adobe-cmaps/ac15/cid2code.txt:print/adobe-cmaps
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%DISTDIR%%|${DISTDIR}|' \
 			  -e 's|%%PFBFER%%|${PFBFER}|' \
@@ -54,7 +56,7 @@ post-patch-DOCS-on:
 .endfor
 
 post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
+	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
 
 post-install-DOCS-on:
 	@cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
