@@ -772,6 +772,7 @@ SUBDIR += py-dateutil
 SUBDIR += py-dbus
 SUBDIR += py-ddt
 SUBDIR += py-decorator
+SUBDIR += py-defusedxml
 SUBDIR += py-enum34
 SUBDIR += py-evdev
 SUBDIR += py-extras
