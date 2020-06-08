@@ -24,6 +24,7 @@ SANITY_DESC=	Avoid loading invalid ELF files
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-shared --disable-compat
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 USE_LDCONFIG=	yes
 USES=		desthack pathfix
 
