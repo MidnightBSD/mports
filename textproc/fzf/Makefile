@@ -8,7 +8,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blazing fast command-line fuzzy finder
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		compiler go:modules
 
