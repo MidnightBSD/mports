@@ -34,9 +34,9 @@ do-install:
 		${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/build/docs && \
-		${COPYTREE_SHARE} apidocs ${STAGEDIR}${DOCSDIR})
-	${INSTALL_DATA} ${OTHERDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+		${COPYTREE_SHARE} apidocs ${FAKE_DESTDIR}${DOCSDIR})
+	${INSTALL_DATA} ${OTHERDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
