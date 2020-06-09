@@ -208,6 +208,7 @@ SUBDIR += py-markdown2
 SUBDIR += py-mistune
 SUBDIR += py-pygments
 SUBDIR += py-pypa-docs-theme
+SUBDIR += py-pyphen
 SUBDIR += py-pystemmer
 SUBDIR += py-python-augeas
 SUBDIR += py-python-docs-theme
