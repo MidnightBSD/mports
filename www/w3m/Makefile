@@ -16,7 +16,7 @@ BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fa
 
 LIB_DEPENDS=	libgc.so:devel/boehm-gc
 
-USES=		iconv pkgconfig perl5 ssl
+USES=		iconv:wchar_t pkgconfig perl5 ssl
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	tats
