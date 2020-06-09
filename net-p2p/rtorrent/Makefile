@@ -1,7 +1,7 @@
 PORTNAME=	rtorrent
 PORTVERSION=	0.9.8
 CATEGORIES=	net-p2p
-MASTER_SITES=	http://rtorrent.net/downloads/
+MASTER_SITES=	https://rtorrent.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BitTorrent Client written in C++
