@@ -24,11 +24,11 @@ NO_BUILD=	yes
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${FAKE_DESTDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/ttf/* ${FAKE_DESTDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/otf/* ${FAKE_DESTDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/web/* ${FAKE_DESTDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/fonts/variable/* ${FAKE_DESTDIR}${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/ttf/* ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/otf/* ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/web/* ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/fonts/variable/* ${FONTSDIR}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
