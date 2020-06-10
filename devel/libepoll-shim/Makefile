@@ -10,7 +10,7 @@ COMMENT=	Small epoll implementation using kqueue
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake compiler:c11,c++14-lang
+USES=		cmake compiler:c++17-lang
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	jiixyj
