@@ -10,6 +10,8 @@ COMMENT=	Programs to make BDF font bold/italic
 
 LICENSE=	unknown
 
+FAKE_OPTS=	trueprefix
+
 CONFLICTS=	mkbold-[0-9]* mkitalic-[0-9]*
 
 PLIST_FILES=	bin/mkbold bin/mkitalic bin/mkbolditalic
