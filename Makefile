@@ -128,7 +128,7 @@ ${INDEXDIR}/${INDEXFILE}:
 		sed -e 's|${.CURDIR}|${PORTSDIR}|g' | \
 		(cd ${.CURDIR} ; ${MAKE_INDEX}) | \
 		sed -e 's/  */ /g' -e 's/|  */|/g' -e 's/  *|/|/g' -e 's./..g' | \
-		sort -t '|' +1 -2 | \
+		sort -t '|' -k 2,3 | \
 		sed -Ee 's../.g' -e ':a' -e 's|/[^/]+/\.\.||; ta' \
 		-e 's|${PORTSDIR}|/usr/mports|g' \
 		-e 's|${.CURDIR}|/usr/mports|g' > ${INDEXDIR}/${INDEXFILE}.tmp; \
@@ -154,6 +154,8 @@ SVN=   ${_P}/${_S}
 . endfor
 .endif
 RSYNC?= rsync
+PORTSNAP?= portsnap
+PORTSNAP_FLAGS?= -p ${.CURDIR}
 .if !target(update)
 update:
 .if exists(${.CURDIR}/.svn)
@@ -162,14 +164,33 @@ update:
 	@echo "--------------------------------------------------------------"
 	cd ${.CURDIR}; ${SVN} update
 .elif exists(${.CURDIR}/.git)
+.  if exists(${.CURDIR}/.git/svn)
 	@echo "--------------------------------------------------------------"
 	@echo ">>> Updating ${.CURDIR} from git+svn repository"
 	@echo "--------------------------------------------------------------"
 	cd ${.CURDIR}; ${GIT} svn rebase
+.  else
+	@echo "--------------------------------------------------------------"
+	@echo ">>> Updating ${.CURDIR} from git repository"
+	@echo "--------------------------------------------------------------"
+	cd ${.CURDIR}; ${GIT} pull
+.  endif
 .elif defined(RSYNC_UPDATE) && defined(PORTS_RSYNC_SOURCE)
 	@echo "--------------------------------------------------------------"
 	@echo ">>> Updating with ${RSYNC} from ${PORTS_RSYNC_SOURCE}"
 	@echo "--------------------------------------------------------------"
 	@${RSYNC} ${RSYNC_FLAGS} ${PORTS_RSYNC_SOURCE}/ ${.CURDIR}/
+.else
+	@echo "--------------------------------------------------------------"
+	@echo ">>> Running ${PORTSNAP}"
+	@echo "--------------------------------------------------------------"
+.if !exists(${PORTSDIR}/.portsnap.INDEX)
+	@echo "Error: 'make update' uses portsnap(8) by default and"
+	@echo "needs ${PORTSDIR} to be created by portsnap on its first run."
+	@echo "Please run 'portsnap fetch extract' first."
+.else
+	@${PORTSNAP} ${PORTSNAP_FLAGS} fetch
+	@${PORTSNAP} ${PORTSNAP_FLAGS} update
+.endif
 .endif
 .endif
