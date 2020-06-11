@@ -6,7 +6,7 @@
  #define ElfW(type) Elf_##type
  #endif
  
-+#if defined(__FreeBSD__) && __FreeBSD__ < 12
++#if defined(__MidnightBSD__) || defined(__FreeBSD__) && __FreeBSD__ < 12
 +typedef Elf_Note Elf_Nhdr;
 +#endif
 +

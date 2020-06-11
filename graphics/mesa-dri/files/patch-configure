@@ -5,7 +5,7 @@
      android=yes
      ;;
 -linux*|*-gnu*|gnu*|cygwin*)
-+linux*|*-gnu*|gnu*|cygwin*|freebsd*)
++linux*|*-gnu*|gnu*|cygwin*|freebsd*|midnightbsd*)
      DEFINES="$DEFINES -D_GNU_SOURCE"
      ;;
  solaris*)
@@ -31,7 +31,7 @@
  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */
  
-+    #if  defined(__DragonFly__) || defined(__FreeBSD__)
++    #if  defined(__DragonFly__) || defined(__FreeBSD__) || defined(__MidnightBSD__)
 +    #include <pthread_np.h>
 +    #else
      #define _GNU_SOURCE
@@ -69,7 +69,7 @@
  
  case "$host_os" in
 -linux*)
-+linux* | freebsd*)
++linux* | freebsd* | midnightbsd*)
      dri3_default=yes
      ;;
  *)

@@ -7,7 +7,7 @@
  
  #ifdef HAVE_PTHREAD
  #include <signal.h>
-+#if defined(__DragonFly__) || defined(__FreeBSD__) || defined(__OpenBSD__)
++#if defined(__DragonFly__) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__MidnightBSD__)
 +#include <pthread_np.h>
 +# if !defined(__DragonFly__)
 +#  define cpu_set_t cpuset_t
@@ -24,7 +24,7 @@
     pthread_setname_np(pthread_self(), name);
 +#  elif defined(__sun)
 +   pthread_setname_np(pthread_self(), name);
-+#  elif defined(__DragonFly__) || defined(__FreeBSD__) || defined(__OpenBSD__)
++#  elif defined(__DragonFly__) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__MidnightBSD__)
 +   pthread_set_name_np(pthread_self(), name);
 +#  elif defined(__NetBSD__)
 +   pthread_setname_np(pthread_self(), "%s", (void*)name);
