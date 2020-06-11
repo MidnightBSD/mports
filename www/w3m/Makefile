@@ -14,6 +14,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fault) - core dumped
 
+PATCH_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
 BUILD_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
 LIB_DEPENDS=	libgc.so:devel/boehm-gc
 RUN_DEPENDS+=   ${LOCALBASE}/bin/iconv:converters/libiconv

@@ -25,18 +25,6 @@ RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}
 CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
 LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib   
 
-do-test:
-	# Exclude certain tests in resource restricted environments
-	@(if [ `ulimit -n` -lt 20100 ]; then \
-	    ${ECHO} "Skipping test perf-many-fds.perf_many_fds__perf"; \
-	    SKIP_TESTS="-E ^(perf-many-fds.perf_many_fds__perf"; \
-	    if [ `ulimit -n` -lt 1100 ]; then \
-	        ${ECHO} "Skipping test timerfd-test.timerfd__many_timers"; \
-	        SKIP_TESTS=$$SKIP_TESTS"|timerfd-test.timerfd__many_timers"; \
-	    fi; \
-	    SKIP_TESTS=$$SKIP_TESTS")$$"; \
-	fi; \
-	cd ${TEST_WRKSRC} && \
-	${SETENV} ${TEST_ENV} ctest -C ${CMAKE_BUILD_TYPE} $$SKIP_TESTS)
+NO_TEST=	yes
 
 .include <bsd.port.mk>
