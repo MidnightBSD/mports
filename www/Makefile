@@ -79,6 +79,7 @@ SUBDIR += p5-HTML-Mason
 SUBDIR += p5-HTML-Pager
 SUBDIR += p5-HTML-Parser
 SUBDIR += p5-HTML-Scrubber
+SUBDIR += p5-HTML-SimpleLinkExtor 
 SUBDIR += p5-HTML-Strip
 SUBDIR += p5-HTML-Table
 SUBDIR += p5-HTML-Tagset
