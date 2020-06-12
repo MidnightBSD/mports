@@ -1,7 +1,8 @@
 PORTNAME=	hw-probe
-PORTVERSION=	1.6-beta
+DISTVERSION=	1.6beta
 PORTREVISION=	1
 CATEGORIES=	sysutils
+DISTFILES=	hw-probe-1.6-beta_GH0.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hardware Probe Tool
@@ -13,8 +14,12 @@ RUN_DEPENDS+=	dmidecode:sysutils/dmidecode \
 		cpuid:misc/cpuid \
 		curl:ftp/curl
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxhw
+GH_PROJECT=	hw-probe 
+GH_TAGNAME=		1.6-beta 
 
 NO_BUILD=	yes
 
