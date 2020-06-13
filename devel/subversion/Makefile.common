@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/subversion/Makefile.common 447762 2017-08-11 14:02:22Z lev $
-
 PORTNAME?=	subversion
-PORTVERSION=	1.11.1
+PORTVERSION=	1.13.0
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	APACHE/subversion
@@ -28,11 +25,6 @@ CONFIGURE_ARGS+=	--without-swig \
 			--with-sqlite=/usr/ \
 			--with-expat=${LOCALBASE}/include:${LOCALBASE}/lib:expat
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
-.if defined(SVN_BUILD_BINDINGS)
-BUILD_DEPENDS+=		swig3.0:devel/swig30
-CONFIGURE_ARGS+=	--with-swig=${LOCALBASE}/bin/swig3.0
-.endif
 
 # ===============================================================
 OPTIONS_SUB=			yes
