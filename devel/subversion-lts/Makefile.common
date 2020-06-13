@@ -1,5 +1,4 @@
 # Created by: rooneg@electricjellyfish.net
-# $FreeBSD: head/devel/subversion-lts/Makefile.common 527673 2020-03-03 12:56:15Z mat $
 
 PORTNAME?=	subversion
 PORTVERSION=	1.10.6
@@ -12,7 +11,7 @@ USES+=		cpe libtool pathfix pkgconfig shebangfix tar:bzip2
 SHEBANG_FILES=	tools/server-side/svnpubsub/rc.d/svnpubsub.solaris \
 		tools/server-side/svnpubsub/rc.d/svnwcsub.solaris
 
-LICENSE=	APACHE20
+LICENSE=	apache2
 
 CPE_VENDOR=	apache
 
@@ -55,7 +54,7 @@ GPG_AGENT_RUN_DEPENDS=		gpg-agent:security/gnupg
 STATIC_CONFIGURE_ON=		--enable-all-static PKG_CONFIG="${LOCALBASE}/bin/pkg-config --static"
 
 # ===============================================================
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-maintainer-mode --enable-debug
