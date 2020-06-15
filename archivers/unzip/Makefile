@@ -65,7 +65,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-iconv-patch-unix_unix.c \
 .endif
 
 .if ${PORT_OPTIONS:MCHINESE}
-CATEGORES+=	chinese
 EXTRA_PATCHES+=	${FILESDIR}/extra-zh-patch-fileio.c
 .endif
 
