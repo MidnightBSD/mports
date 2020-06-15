@@ -1,6 +1,6 @@
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
 		FREEBSD_LOCAL/jkim \
@@ -19,12 +19,14 @@ CONFLICTS=	nspluginwrapper-1.3.*
 BINBUILD=	1
 BINFILE=	${PORTNAME}-i386-${PORTVERSION}-${BINBUILD}${EXTRACT_SUFX}
 
+ONLY_FOR_ARCHS=	i386 amd64
+
 HAS_CONFIGURE=	yes
 USE_GNOME=	glib20 gtk20
 USE_LDCONFIG=	yes
 USE_LINUX=	gtk2
 USE_XORG=	x11 xext xt
-USES=		gmake gnome linux pkgconfig
+USES=		gmake gnome linux pkgconfig xorg
 
 CFLAGS+=	-std=c99
 
