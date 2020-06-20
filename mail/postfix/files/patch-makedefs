@@ -1,0 +1,36 @@
+--- makedefs.orig	2019-03-10 23:42:59 UTC
++++ makedefs
+@@ -298,6 +298,33 @@ case "$SYSTEM.$RELEASE" in
+ 		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
+ 		: ${PLUGIN_LD="${CC} -shared"}
+ 		;;
++  MidnightBSD.1*)	SYSTYPE=FREEBSD10
++		: ${CC=cc}
++		: ${SHLIB_SUFFIX=.so}
++		: ${SHLIB_CFLAGS=-fPIC}
++		: ${SHLIB_LD="${CC} -shared"' -Wl,-soname,${LIB}'}
++		: ${SHLIB_RPATH='-Wl,-rpath,${SHLIB_DIR}'}
++		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
++		: ${PLUGIN_LD="${CC} -shared"}
++		;;
++  FreeBSD.12*)	SYSTYPE=FREEBSD12
++		: ${CC=cc}
++		: ${SHLIB_SUFFIX=.so}
++		: ${SHLIB_CFLAGS=-fPIC}
++		: ${SHLIB_LD="${CC} -shared"' -Wl,-soname,${LIB}'}
++		: ${SHLIB_RPATH='-Wl,-rpath,${SHLIB_DIR}'}
++		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
++		: ${PLUGIN_LD="${CC} -shared"}
++		;;
++  FreeBSD.13*)	SYSTYPE=FREEBSD13
++		: ${CC=cc}
++		: ${SHLIB_SUFFIX=.so}
++		: ${SHLIB_CFLAGS=-fPIC}
++		: ${SHLIB_LD="${CC} -shared"' -Wl,-soname,${LIB}'}
++		: ${SHLIB_RPATH='-Wl,-rpath,${SHLIB_DIR}'}
++		: ${SHLIB_ENV="LD_LIBRARY_PATH=`pwd`/lib"}
++		: ${PLUGIN_LD="${CC} -shared"}
++		;;
+  DragonFly.*)	SYSTYPE=DRAGONFLY
+ 		;;
+   OpenBSD.2*)	SYSTYPE=OPENBSD2
