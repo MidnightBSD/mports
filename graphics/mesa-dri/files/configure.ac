@@ -39,7 +39,7 @@
  
  case "$host_os" in
 -linux*)
-+linux* | freebsd*)
++linux* | freebsd* | midnightbsd*)
      dri3_default=yes
      ;;
  *)
