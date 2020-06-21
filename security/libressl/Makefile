@@ -1,7 +1,7 @@
 # Created by: Vsevolod Stakhov <vsevolod@FreeBSD.org>
 
 PORTNAME=	libressl
-PORTVERSION=	3.0.2
+PORTVERSION=	3.1.1
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 

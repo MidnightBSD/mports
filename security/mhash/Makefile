@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	mhash
 PORTVERSION=	0.9.9.9
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -16,7 +14,6 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-static \
 			--with-gnu-ld
-NSTALL_TARGET=	install-strip
 
 PORTDOCS=	example.c skid2-authentication
 
