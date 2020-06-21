@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 CONFIGURE_ARGS=	--with-pam=${PREFIX}/lib/security --sysconfdir=${PREFIX}/etc \
 		--docdir=${DOCSDIR} --includedir=${PREFIX}/include/${PORTNAME}
-
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix ssl
 USE_LDCONFIG=	yes
