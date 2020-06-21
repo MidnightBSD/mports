@@ -10,6 +10,8 @@ auth	required	%%PREFIX%%/lib/security/pam_duo.so
 
 Additionally, you must edit %%PREFIX%%/etc/pam_duo.conf
 
+Be sure to adjust permissions to 600 on the config files.
+
 duo headers have been installed to %%PREFIX%%/include/duo
 EOM
 }
