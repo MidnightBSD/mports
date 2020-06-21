@@ -1,6 +1,302 @@
---- configure.orig	2019-01-17 11:26:29 UTC
-+++ configure
-@@ -20767,7 +20767,7 @@ case "$host_os" in
+--- configure.orig	2019-01-17 06:26:29.000000000 -0500
++++ configure	2020-06-21 17:26:42.919952000 -0400
+@@ -2043,7 +2043,7 @@
+ 
+   --enable-gallium-llvm   DEPRECATED: use --enable-llvm instead
+   --enable-llvm           build with LLVM support [default=enabled on
+-                          x86/x86_64]
++                          x86/amd64]
+   --enable-valgrind       Build mesa with valgrind support (default: auto)
+ 
+ Optional Packages:
+@@ -8943,7 +8943,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -10258,7 +10258,7 @@
+   rm -rf conftest*
+   ;;
+ 
+-x86_64-*kfreebsd*-gnu|x86_64-*linux*|powerpc*-*linux*| \
++amd64-*kfreebsd*-gnu|x86_64-*linux*|powerpc*-*linux*| \
+ s390*-*linux*|s390*-*tpf*|sparc*-*linux*)
+   # Find out what ABI is being produced by ac_compile, and set linker
+   # options accordingly.  Note that the listed cases only cover the
+@@ -10275,13 +10275,13 @@
+     case `/usr/bin/file conftest.o` in
+       *32-bit*)
+ 	case $host in
+-	  x86_64-*kfreebsd*-gnu)
++	  amd64-*kfreebsd*-gnu)
+ 	    LD="${LD-ld} -m elf_i386_fbsd"
+ 	    ;;
+-	  x86_64-*linux*)
++	  amd64-*linux*)
+ 	    case `/usr/bin/file conftest.o` in
+ 	      *x86-64*)
+-		LD="${LD-ld} -m elf32_x86_64"
++		LD="${LD-ld} -m elf32_amd64"
+ 		;;
+ 	      *)
+ 		LD="${LD-ld} -m elf_i386"
+@@ -10304,11 +10304,11 @@
+ 	;;
+       *64-bit*)
+ 	case $host in
+-	  x86_64-*kfreebsd*-gnu)
+-	    LD="${LD-ld} -m elf_x86_64_fbsd"
++	  amd64-*kfreebsd*-gnu)
++	    LD="${LD-ld} -m elf_amd64_fbsd"
+ 	    ;;
+-	  x86_64-*linux*)
+-	    LD="${LD-ld} -m elf_x86_64"
++	  amd64-*linux*)
++	    LD="${LD-ld} -m elf_amd64"
+ 	    ;;
+ 	  powerpcle-*linux*)
+ 	    LD="${LD-ld} -m elf64lppc"
+@@ -10390,8 +10390,8 @@
+       case $lt_cv_prog_gnu_ld in
+       yes*)
+         case $host in
+-        i?86-*-solaris*|x86_64-*-solaris*)
+-          LD="${LD-ld} -m elf_x86_64"
++        i?86-*-solaris*|amd64-*-solaris*)
++          LD="${LD-ld} -m elf_amd64"
+           ;;
+         sparc*-*-solaris*)
+           LD="${LD-ld} -m elf64_sparc"
+@@ -12100,7 +12100,7 @@
+ 
+     linux* | k*bsd*-gnu | kopensolaris*-gnu | gnu*)
+       case $cc_basename in
+-      # old Intel for x86_64, which still supported -KPIC.
++      # old Intel for amd64, which still supported -KPIC.
+       ecc*)
+ 	lt_prog_compiler_wl='-Wl,'
+ 	lt_prog_compiler_pic='-KPIC'
+@@ -12543,7 +12543,7 @@
+   hardcode_minus_L=no
+   hardcode_shlibpath_var=unsupported
+   inherit_rpath=no
+-  link_all_deplibs=unknown
++  link_all_deplibs=no
+   module_cmds=
+   module_expsym_cmds=
+   old_archive_from_new_cmds=
+@@ -12843,7 +12843,7 @@
+ 	wlarc=
+       else
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       fi
+       ;;
+ 
+@@ -12862,7 +12862,7 @@
+ _LT_EOF
+       elif $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -12891,7 +12891,7 @@
+ 	  if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	    hardcode_libdir_flag_spec='$wl-rpath $wl$libdir'
+ 	    archive_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	    archive_expsym_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	    archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 	  else
+ 	    ld_shlibs=no
+ 	  fi
+@@ -12909,7 +12909,7 @@
+     *)
+       if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -13347,7 +13347,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++midnightbsd* |     freebsd* | dragonfly*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -13557,7 +13557,7 @@
+ 	hardcode_direct_absolute=yes
+ 	if test -z "`echo __ELF__ | $CC -E - | $GREP __ELF__`"; then
+ 	  archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+-	  archive_expsym_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-retain-symbols-file,$export_symbols'
++	  archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-version-script,$lib-ver'
+ 	  hardcode_libdir_flag_spec='$wl-rpath,$libdir'
+ 	  export_dynamic_flag_spec='$wl-E'
+ 	else
+@@ -14393,7 +14393,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -14407,7 +14407,7 @@
+   version_type=freebsd-$objformat
+   case $version_type in
+     freebsd-elf*)
+-      library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
++      library_names_spec='$libname$release$shared_ext$versuffix  $libname$release$shared_ext$major	 $libname$shared_ext'			 soname_spec='$libname$release$shared_ext$major'
+       soname_spec='$libname$release$shared_ext$major'
+       need_version=no
+       need_lib_prefix=no
+@@ -15543,7 +15543,7 @@
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+ else
+-  if $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
++  if $STRIP -V 2>&1 | $GREP "strip" >/dev/null; then
+     old_striplib="$STRIP --strip-debug"
+     striplib="$STRIP --strip-unneeded"
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+@@ -15557,7 +15557,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+       ;;
+-    freebsd*)
++midnightbsd* |     freebsd*)
+       if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
+         old_striplib="$STRIP --strip-debug"
+         striplib="$STRIP --strip-unneeded"
+@@ -15802,7 +15802,7 @@
+ inherit_rpath_CXX=no
+ module_cmds_CXX=
+ module_expsym_cmds_CXX=
+-link_all_deplibs_CXX=unknown
++link_all_deplibs_CXX=no
+ old_archive_cmds_CXX=$old_archive_cmds
+ reload_flag_CXX=$reload_flag
+ reload_cmds_CXX=$reload_cmds
+@@ -16013,7 +16013,7 @@
+       # archiving commands below assume that GNU ld is being used.
+       if test yes = "$with_gnu_ld"; then
+         archive_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-        archive_expsym_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++        archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 
+         hardcode_libdir_flag_spec_CXX='$wl-rpath $wl$libdir'
+         export_dynamic_flag_spec_CXX='$wl--export-dynamic'
+@@ -16503,7 +16503,7 @@
+         archive_cmds_need_lc_CXX=no
+         ;;
+ 
+-      freebsd* | dragonfly*)
++midnightbsd* |       freebsd* | dragonfly*)
+         # FreeBSD 3 and later use GNU C++ and GNU ld with standard ELF
+         # conventions
+         ld_shlibs_CXX=yes
+@@ -16706,7 +16706,7 @@
+ 	    case `$CC -V 2>&1` in
+ 	      *"Version 7."*)
+ 	        archive_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-		archive_expsym_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++		archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 		;;
+ 	      *)  # Version 8.0 or newer
+ 	        tmp_idyn=
+@@ -16714,7 +16714,7 @@
+ 		  ia64*) tmp_idyn=' -i_dynamic';;
+ 		esac
+ 	        archive_cmds_CXX='$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-		archive_expsym_cmds_CXX='$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++		archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 		;;
+ 	    esac
+ 	    archive_cmds_need_lc_CXX=no
+@@ -16746,7 +16746,7 @@
+ 	      ;;
+ 	    *) # Version 6 and above use weak symbols
+ 	      archive_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-	      archive_expsym_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	      archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 	      ;;
+ 	    esac
+ 
+@@ -16757,7 +16757,7 @@
+ 	  cxx*)
+ 	    # Compaq C++
+ 	    archive_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-	    archive_expsym_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname  -o $lib $wl-retain-symbols-file $wl$export_symbols'
++	    archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname  -o $lib $wl-version-script $wl$lib-ver'
+ 
+ 	    runpath_var=LD_RUN_PATH
+ 	    hardcode_libdir_flag_spec_CXX='-rpath $libdir'
+@@ -16791,7 +16791,7 @@
+ 	      # Sun C++ 5.9
+ 	      no_undefined_flag_CXX=' -zdefs'
+ 	      archive_cmds_CXX='$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+-	      archive_expsym_cmds_CXX='$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-retain-symbols-file $wl$export_symbols'
++	      archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-version-script $wl$lib-ver'
+ 	      hardcode_libdir_flag_spec_CXX='-R$libdir'
+ 	      whole_archive_flag_spec_CXX='$wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
+ 	      compiler_needs_object_CXX=yes
+@@ -16859,7 +16859,7 @@
+ 	  archive_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags -o $lib'
+ 	  hardcode_libdir_flag_spec_CXX='$wl-rpath,$libdir'
+ 	  if test -z "`echo __ELF__ | $CC -E - | grep __ELF__`"; then
+-	    archive_expsym_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-retain-symbols-file,$export_symbols -o $lib'
++	    archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-version-script,$lib-ver -o $lib'
+ 	    export_dynamic_flag_spec_CXX='$wl-E'
+ 	    whole_archive_flag_spec_CXX=$wlarc'--whole-archive$convenience '$wlarc'--no-whole-archive'
+ 	  fi
+@@ -17443,7 +17443,7 @@
+ 	    ;;
+ 	esac
+ 	;;
+-      freebsd* | dragonfly*)
++midnightbsd* |       freebsd* | dragonfly*)
+ 	# FreeBSD uses GNU C++
+ 	;;
+       hpux9* | hpux10* | hpux11*)
+@@ -17494,7 +17494,7 @@
+ 	    lt_prog_compiler_pic_CXX='-fPIC'
+ 	    ;;
+ 	  ecpc* )
+-	    # old Intel C++ for x86_64, which still supported -KPIC.
++	    # old Intel C++ for amd64, which still supported -KPIC.
+ 	    lt_prog_compiler_wl_CXX='-Wl,'
+ 	    lt_prog_compiler_pic_CXX='-KPIC'
+ 	    lt_prog_compiler_static_CXX='-static'
+@@ -18367,7 +18367,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -18381,7 +18381,7 @@
+   version_type=freebsd-$objformat
+   case $version_type in
+     freebsd-elf*)
+-      library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
++      library_names_spec='$libname$release$shared_ext$versuffix  $libname$release$shared_ext$major	 $libname$shared_ext'			 soname_spec='$libname$release$shared_ext$major'
+       soname_spec='$libname$release$shared_ext$major'
+       need_version=no
+       need_lib_prefix=no
+@@ -20767,7 +20767,7 @@
  *-android*)
      android=yes
      ;;
@@ -9,7 +305,56 @@
      DEFINES="$DEFINES -D_GNU_SOURCE"
      ;;
  solaris*)
-@@ -22648,12 +22648,13 @@ case "$host_os" in
+@@ -21807,7 +21807,7 @@
+ 	for ac_word in $CC $CFLAGS $CPPFLAGS $LDFLAGS; do
+ 	 if test -n "$ac_prev"; then
+ 	   case $ac_word in
+-	     i?86 | x86_64 | ppc | ppc64)
++	     i?86 | amd64 | ppc | ppc64)
+ 	       if test -z "$ac_arch" || test "$ac_arch" = "$ac_word"; then
+ 		 ac_arch=$ac_word
+ 	       else
+@@ -22345,10 +22345,10 @@
+ $as_echo_n "checking whether to enable assembly... " >&6; }
+ test "x$enable_asm" = xno && { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+-# disable if cross compiling on x86/x86_64 since we must run gen_matypes
++# disable if cross compiling on x86/amd64 since we must run gen_matypes
+ if test "x$enable_asm" = xyes -a "x$cross_compiling" = xyes; then
+     case "$host_cpu" in
+-    i?86 | x86_64 | amd64)
++    i?86 | amd64 | amd64)
+         if test "x$host_cpu" != "x$target_cpu"; then
+             enable_asm=no
+             { $as_echo "$as_me:${as_lineno-$LINENO}: result: no, cross compiling" >&5
+@@ -22367,10 +22367,10 @@
+             ;;
+         esac
+         ;;
+-    x86_64|amd64)
++    amd64|amd64)
+         case "$host_os" in
+         linux* | *freebsd* | dragonfly* | *netbsd* | openbsd*)
+-            asm_arch=x86_64
++            asm_arch=amd64
+             ;;
+         esac
+         ;;
+@@ -22410,10 +22410,10 @@
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes, x86" >&5
+ $as_echo "yes, x86" >&6; }
+         ;;
+-    x86_64|amd64)
++    amd64|amd64)
+         DEFINES="$DEFINES -DUSE_X86_64_ASM"
+-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes, x86_64" >&5
+-$as_echo "yes, x86_64" >&6; }
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes, amd64" >&5
++$as_echo "yes, amd64" >&6; }
+         ;;
+     sparc)
+         DEFINES="$DEFINES -DUSE_SPARC_ASM"
+@@ -22648,12 +22648,13 @@
  darwin*)
      ;;
  *)
@@ -27,7 +372,7 @@
  _ACEOF
   CLOCK_LIB=
  else
-@@ -23319,8 +23320,12 @@ $as_echo_n "checking whether pthread_setaffinity_np is
+@@ -23319,8 +23320,12 @@
  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */
  
@@ -40,7 +385,7 @@
      int main() {
         void *a = (void*) &pthread_setaffinity_np;
         long b = (long) a;
-@@ -23339,11 +23344,20 @@ rm -f core conftest.err conftest.$ac_objext \
+@@ -23339,11 +23344,20 @@
      conftest$ac_exeext conftest.$ac_ext
  LIBS="$save_LIBS"
  
@@ -64,7 +409,7 @@
  
  
  # Check whether --enable-selinux was given.
-@@ -24241,7 +24255,7 @@ fi
+@@ -24241,7 +24255,7 @@
  
  
  case "$host_os" in
@@ -73,7 +418,7 @@
      dri3_default=yes
      ;;
  *)
-@@ -26542,31 +26556,11 @@ fi
+@@ -26542,31 +26556,11 @@
  	# Put the nasty error message in config.log where it belongs
  	echo "$XCB_RANDR_PKG_ERRORS" >&5
  
@@ -107,7 +452,7 @@
  else
  	XCB_RANDR_CFLAGS=$pkg_cv_XCB_RANDR_CFLAGS
  	XCB_RANDR_LIBS=$pkg_cv_XCB_RANDR_LIBS
-@@ -26634,31 +26628,11 @@ fi
+@@ -26634,31 +26628,11 @@
  	# Put the nasty error message in config.log where it belongs
  	echo "$XLIB_RANDR_PKG_ERRORS" >&5
  
@@ -141,7 +486,16 @@
  else
  	XLIB_RANDR_CFLAGS=$pkg_cv_XLIB_RANDR_CFLAGS
  	XLIB_RANDR_LIBS=$pkg_cv_XLIB_RANDR_LIBS
-@@ -28694,9 +28668,6 @@ rm -f core conftest.err conftest.$ac_objext conftest.$
+@@ -27499,7 +27473,7 @@
+ if test "x$enable_llvm" = xauto -a "x$FOUND_LLVM" = xyes; then
+     if test "x$FOUND_LLVM" = xyes; then
+         case "$host_cpu" in
+-        i*86|x86_64|amd64) enable_llvm=yes;;
++        i*86|amd64|amd64) enable_llvm=yes;;
+         *) enable_llvm=no;;
+         esac
+     else
+@@ -28694,9 +28668,6 @@
          CLANG_LIBDIR=${LLVM_LIBDIR}
      fi
      CLANG_RESOURCE_DIR=$CLANG_LIBDIR/clang/${LLVM_VERSION}
@@ -151,3 +505,46 @@
  fi
   if test "x$enable_opencl" = xyes; then
    HAVE_CLOVER_TRUE=
+@@ -28831,7 +28802,7 @@
+ r300_require_llvm() {
+     case "$host" in *gnux32) return;; esac
+     case "$host_cpu" in
+-    i*86|x86_64|amd64) require_llvm $1
++    i*86|amd64|amd64) require_llvm $1
+         ;;
+     esac
+ }
+@@ -30002,6 +29973,7 @@
+                         LLVM_SO_NAME=LLVM-`$LLVM_CONFIG --version`
+     if test -f "$LLVM_LIBDIR/lib$LLVM_SO_NAME.$IMP_LIB_EXT"; then :
+   llvm_have_one_so=yes
++  echo ${llvm_have_one_so};
+ fi
+ 
+     if test "x$llvm_have_one_so" = xyes; then
+@@ -30028,6 +30000,7 @@
+     LLVM_LDFLAGS=`$LLVM_CONFIG --ldflags`
+     LLVM_CFLAGS=$LLVM_CPPFLAGS   # CPPFLAGS seem to be sufficient
+     LLVM_CXXFLAGS=`strip_unwanted_llvm_flags "$LLVM_CONFIG --cxxflags"`
++    LLVM_LIBS=-lLLVM
+ 
+ 
+     if test $LLVM_VERSION_MAJOR -ge 4 -o $LLVM_VERSION_MAJOR -eq 3 -a $LLVM_VERSION_MINOR -ge 9; then
+@@ -30404,7 +30377,7 @@
+ fi
+ 
+ 
+- if test "x$asm_arch" = xx86 -o "x$asm_arch" = xx86_64; then
++ if test "x$asm_arch" = xx86 -o "x$asm_arch" = xamd64; then
+   HAVE_X86_ASM_TRUE=
+   HAVE_X86_ASM_FALSE='#'
+ else
+@@ -30412,7 +30385,7 @@
+   HAVE_X86_ASM_FALSE=
+ fi
+ 
+- if test "x$asm_arch" = xx86_64; then
++ if test "x$asm_arch" = xamd64; then
+   HAVE_X86_64_ASM_TRUE=
+   HAVE_X86_64_ASM_FALSE='#'
+ else

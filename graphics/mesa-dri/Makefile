@@ -28,14 +28,14 @@ WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 .include <bsd.mport.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-USES+=	compiler:c++17-lang
-CC=     clang70                                                                                                                                                           
-MAKE_ENV+=      CC=clang70 __FreeBSD__=10
-LLVM_DEFAULT=   70
-BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
-RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
-CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
-LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib  
+#USES+=	compiler:c++17-lang
+#CC=     clang60
+#MAKE_ENV+=      CC=clang60 __FreeBSD__=10
+#LLVM_DEFAULT=   60
+#BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+#RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+#CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
+#LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib -lLLVM -L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib
 
 ALL_DRI_DRIVERS=	I915 I965 RADEON R200 SWRAST
 ALL_GALLIUM_DRIVERS=	FREEDRENO R300 R600 RADEONSI SVGA SWRAST VC4
@@ -52,8 +52,8 @@ VULKAN_DRIVERS=		#
 .if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 \
  || ${ARCH} == powerpc || ${ARCH} == powerpc64
 DRI_DRIVERS+=		RADEON R200
-GALLIUM_DRIVERS+=	R300 R600 RADEONSI
-VULKAN_DRIVERS+=	RADEON
+#GALLIUM_DRIVERS+=	R300 R600 RADEONSI
+#VULKAN_DRIVERS+=	RADEON
 .endif
 .if ${ARCH} == amd64 || ${ARCH} == i386
 DRI_DRIVERS+=		I915 I965
@@ -88,7 +88,12 @@ CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
 
 CONFIGURE_ARGS+=	--with-dri-drivers="${DRI_DRIVERS:tl}" \
 			--with-gallium-drivers="${GALLIUM_DRIVERS:tl}" \
-			--with-vulkan-drivers="${VULKAN_DRIVERS:tl}"
+			--with-vulkan-drivers="${VULKAN_DRIVERS:tl}" \
+			--host=${ARCH}-portbld-freebsd10.4 \
+			--build=${ARCH}-portbld-freebsd10.4 \
+			--target=${ARCH}-portbld-freebsd10.4 \
+			--enable-llvm-shared-libs \
+			--with-llvm-prefix=${LOCALBASE}/llvm${LLVM_DEFAULT}
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .for _d in ${ALL_DRI_DRIVERS}
@@ -116,8 +121,5 @@ PLIST_SUB+=	${_vd}_VDRIVER="@comment "
 .endfor
 
 .include "${MASTERDIR}/Makefile.targets"
-
-post-install:
-	@${RM} -r ${STAGEDIR}/etc/OpenCL
 
 .include <bsd.port.post.mk>

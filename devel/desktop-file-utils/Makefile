@@ -8,13 +8,11 @@ COMMENT=	Couple of command line utilities for working with desktop entries
 
 LICENSE=	gpl2
 
-USES=		gmake pkgconfig gettext tar:xz
+USES=		gettext gmake gnome localbase:ldflags pkgconfig tar:xz
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-lispdir
 CONFIGURE_ENV=	EMACS="no" LIBS="-lintl"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
