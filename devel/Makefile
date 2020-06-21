@@ -850,6 +850,7 @@ SUBDIR += py-pytest-cache
 SUBDIR += py-pytest-capturelog
 SUBDIR += py-pytest-cov
 SUBDIR += py-pytest-flake8
+SUBDIR += py-pytest-isort
 SUBDIR += py-pytest-mock
 SUBDIR += py-pytest-runner
 SUBDIR += py-pytest-timeout
