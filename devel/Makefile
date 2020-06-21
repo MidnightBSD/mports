@@ -858,6 +858,7 @@ SUBDIR += py-pytz
 SUBDIR += py-qt5-core
 SUBDIR += py-ramlfications
 SUBDIR += py-scripttest
+SUBDIR += py-setproctitle
 SUBDIR += py-setuptools
 SUBDIR += py-setuptools_darcs
 SUBDIR += py-setuptools_hg
