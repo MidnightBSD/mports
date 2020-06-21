@@ -33,6 +33,7 @@ SUBDIR += py-aiodns
 SUBDIR += py-dns
 SUBDIR += py-dnspython
 SUBDIR += py-idna
+SUBDIR += py-idna_ssl
 SUBDIR += py-py3dns
 SUBDIR += py-pycares
 SUBDIR += py3-dnspython
