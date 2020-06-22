@@ -20,4 +20,6 @@ GH_ACCOUNT=	linuxwacom
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
