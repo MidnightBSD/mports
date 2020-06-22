@@ -23,10 +23,9 @@ IDNA_DESC=	IDNA support
 IDNA_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>0:dns/py-idna@${PY_FLAVOR}
 IDNA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>0:dns/py-idna@${PY_FLAVOR}
 
+NO_TEST=	yes
+
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_cares.so
-
-do-test:
-	cd ${WRKSRC} && ${SETENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} tests/tests.py
 
 .include <bsd.port.mk>
