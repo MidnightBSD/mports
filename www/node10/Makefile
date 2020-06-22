@@ -41,7 +41,8 @@ CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--shared-libuv \
 		--shared-nghttp2 \
 		--shared-zlib \
-		--dest-os=freebsd
+		--dest-os=freebsd \
+		--openssl-no-asm
 
 SHEBANG_FILES=	tools/specialize_node_d.py tools/genv8constants.py
 
