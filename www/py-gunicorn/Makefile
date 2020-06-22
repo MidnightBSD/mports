@@ -12,8 +12,6 @@ COMMENT=	WSGI HTTP Server for UNIX
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
-
 OPTIONS_DEFINE=		PROCTITLE
 OPTIONS_DEFAULT=	PROCTITLE
 OPTIONS_GROUP=		WORKERS
@@ -38,6 +36,7 @@ USE_PYTHON=		autoplist concurrent distutils
 GH_ACCOUNT=	benoitc
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -46,15 +45,11 @@ NO_ARCH=	yes
 BROKEN=	GAIOHTTP requires Python 3.3+ but this port is building with Python ${PYTHON_VER}. \
 	Disable the GAIOHTTP option or change the version of Python to build with, using DEFAULT_VERSIONS
 .endif
-TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 .endif
 
 .if ${PYTHON_REL} > 3000 && ${PORT_OPTIONS:MGEVENT}
 BROKEN=	GEVENT requires Python < 3.x but this port is building with Python ${PYTHON_VER}. \
 	Disable the GEVENT option of change the version of Python to build with, using DEFAULT_VERSIONS
 .endif
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>
