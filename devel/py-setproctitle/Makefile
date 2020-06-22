@@ -20,14 +20,13 @@ PORTDOCS=	HISTORY.rst README.rst
 
 OPTIONS_DEFINE=	DOCS
 
+NO_TEST=	yes
+
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/setproctitle.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
-
-do-test:
-	@cd ${WRKSRC}/tests && ${PYTHON_CMD} ${WRKSRC}/tests/setproctitle_test.py
 
 .include <bsd.port.mk>
