@@ -1,5 +1,6 @@
 PORTNAME=	libinput
 PORTVERSION=	1.15.5
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
@@ -16,7 +17,8 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \
 		libmtdev.so:devel/libmtdev
 
-USES=		localbase meson pkgconfig python:3.4+,run shebangfix tar:xz
+USES=		gnome localbase meson pkgconfig python:3.4+,run shebangfix tar:xz
+USE_GNOME=	gtk30 glib20 cairo
 USE_LDCONFIG=	yes
 
 MESON_ARGS+=	-Ddocumentation=false -Dtests=false
@@ -36,7 +38,8 @@ DEBUG_GUI_DESC=	Build the GUI event viewer
 LIBWACOM_DESC=	Libwacom support
 
 DEBUG_GUI_USES=		gnome
-DEBUG_GUI_USE=		GNOME=gtk30,glib20,cairo
+# always required?
+#DEBUG_GUI_USE=		GNOME=gtk30,glib20,cairo
 DEBUG_GUI_MESON_TRUE=	debug-gui
 LIBWACOM_LIB_DEPENDS=	libwacom.so:x11/libwacom
 LIBWACOM_MESON_TRUE=	libwacom
