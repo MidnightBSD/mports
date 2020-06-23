@@ -80,9 +80,9 @@ LLVM_DEFAULT=	40
 
 .if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH:Marm*} || ${ARCH} == i386 || ${ARCH:Mmips*} || ${ARCH:Mpowerpc*}
 BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}
-.if ${COMPONENT} != libs
+#.if ${COMPONENT} != libs
 RUN_DEPENDS+=	llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}
-.endif
+#.endif
 CONFIGURE_ENV+=	LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT} LLVM_LIBS="-lLLVM  -L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib"
 LDFLAGS+=	-L${LOCALBASE}/llvm${LLVM_DEFAULT}/lib -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib  -lLLVM
 CONFIGURE_ARGS+=	--enable-llvm
