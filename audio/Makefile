@@ -21,7 +21,6 @@ SUBDIR += gsm
 SUBDIR += gsound
 SUBDIR += gstreamer-plugins-a52dec
 SUBDIR += gstreamer-plugins-cdparanoia
-SUBDIR += gstreamer-plugins-esound
 SUBDIR += gstreamer-plugins-faac
 SUBDIR += gstreamer-plugins-faad
 SUBDIR += gstreamer-plugins-flac
