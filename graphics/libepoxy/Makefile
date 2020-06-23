@@ -14,4 +14,6 @@ USE_XORG=	x11
 USE_GL=		gl glesv2 egl
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
