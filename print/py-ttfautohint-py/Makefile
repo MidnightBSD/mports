@@ -19,6 +19,7 @@ USES=		gmake python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 GH_ACCOUNT=	fonttools
 USE_GITHUB=	yes
