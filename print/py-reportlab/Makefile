@@ -50,7 +50,7 @@ post-patch:
 
 post-patch-DOCS-on:
 .for f in genAll.py userguide/genuserguide.py
-	@${REINPLACE_CMD} -e 's|%%STAGEDIR%%|${STAGEDIR}|' \
+	@${REINPLACE_CMD} -e 's|%%STAGEDIR%%|${FAKE_DESTDIR}|' \
 			  -e 's|%%PYTHON_SITELIBDIR%%|${PYTHON_SITELIBDIR}|' \
 				${WRKSRC}/docs/${f}
 .endfor
