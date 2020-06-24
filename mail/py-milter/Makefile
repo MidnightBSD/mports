@@ -24,7 +24,9 @@ GH_ACCOUNT=	sdgathman
 GH_PROJECT=	py${PORTNAME}
 USE_PYTHON=	distutils autoplist flavors
 
+NO_TEST=	yes
+
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/milter.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/milter.so
 
 .include <bsd.port.mk>
