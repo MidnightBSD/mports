@@ -10,6 +10,8 @@ COMMENT=	Programmatically simulate keyboard input or mouse activity
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
+FAKE_OPTS=	trueprefix
+
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
 USE_GITHUB=	yes
@@ -29,7 +31,7 @@ post-patch:
 		${WRKSRC}/Makefile
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/xdotool \
-		${STAGEDIR}${PREFIX}/lib/libxdo.so.3
+	@${STRIP_CMD} ${PREFIX}/bin/xdotool \
+		${PREFIX}/lib/libxdo.so.3
 
 .include <bsd.port.mk>
