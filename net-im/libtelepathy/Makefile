@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libtelepathy
 PORTVERSION=	0.3.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/${PORTNAME}/
 
@@ -11,10 +9,10 @@ COMMENT=	Flexible Communications Framework
 
 LICENSE=	lgpl
 
-LIB_DEPENDS=	libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
-		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	libtelepathy-glib.so:net-im/telepathy-glib \
+		libdbus-glib-1.so:devel/dbus-glib
 
-USES=		gmake libtool pathfix pkgconfig python:build
+USES=		gmake gnome libtool pathfix pkgconfig python:2.7,build
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 libxslt:build
 GNU_CONFIGURE=	yes
