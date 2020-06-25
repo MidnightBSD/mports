@@ -139,6 +139,7 @@ SUBDIR += mesa-dri
 SUBDIR += mesa-libs
 SUBDIR += ming
 SUBDIR += mypaint-brushes
+SUBDIR += mypaint-brushes2
 SUBDIR += netpbm
 SUBDIR += nvidia-texture-tools
 SUBDIR += ocrad
