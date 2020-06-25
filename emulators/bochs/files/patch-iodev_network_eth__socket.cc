@@ -14,7 +14,7 @@
  #include <netinet/in.h>
  #include <net/ethernet.h>
  #include <net/if.h>
-+#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
 +#include <sys/types.h>
 +#else
 +#include <netpacket/packet.h>
