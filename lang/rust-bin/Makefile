@@ -34,5 +34,8 @@ FBSD_PATH=      FreeBSD:10:i386
 do-install:
 	${MKDIR} ${FAKE_DESTDIR}
 	${CP} -R ${WRKDIR}/usr ${FAKE_DESTDIR}/
+	@${FIND} ${PREFIX} -not -type d | \
+                ${SED} -E -e 's,^${PREFIX}/,,' \
+                        -e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
