@@ -31,6 +31,8 @@ DTRACE_CONFIGURE_ON=	--with-dtrace
 
 USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 		localbase shebangfix
+# needs gcc 6 or clang 8
+USE_GCC=	6+
 
 HAS_CONFIGURE=	yes
 
