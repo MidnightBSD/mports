@@ -152,14 +152,14 @@ post-install:	${MKREPOS_TARGET}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 post-install-STATIC-off:
-	-@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so
+	-@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/*.so
 
 post-install-SVNSERVE_WRAPPER-on:
-	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${STAGEDIR}${PREFIX}/bin/svnserve.sample
+	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${FAKE_DESTDIR}${PREFIX}/bin/svnserve.sample
 
 post-install-TOOLS-on:
-	@${MAKE} -C ${WRKSRC} install-tools ${MAKE_ARGS}
-	-@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+	@${MAKE} -C ${WRKSRC} install-tools ${MAKE_ARGS} ${FAKE_MAKEARGS}
+	-@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/*
 
 # ===============================================================================
 repository:	_mkrepos
