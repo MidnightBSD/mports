@@ -33,6 +33,7 @@ SNA_DESC=	SandyBridge's New Acceleration
 UXA_DESC=	Unified Acceleration Architecture
 
 CONFIGURE_ARGS+=	--disable-udev
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 SNA_CONFIGURE_ON=	--with-default-accel=sna
 UXA_CONFIGURE_ON=	--with-default-accel=uxa
