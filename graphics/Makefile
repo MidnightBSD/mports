@@ -138,6 +138,7 @@ SUBDIR += mesa-demos
 SUBDIR += mesa-dri
 SUBDIR += mesa-libs
 SUBDIR += ming
+SUBDIR += mypaint
 SUBDIR += mypaint-brushes
 SUBDIR += mypaint-brushes2
 SUBDIR += netpbm
