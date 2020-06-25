@@ -19,4 +19,6 @@ EVDEV_CONFIGURE_ENV=	BUILD_EVENTCOMM=yes
 EVDEV_BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 EVDEV_LIB_DEPENDS=	libevdev.so:devel/libevdev
 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+
 .include <bsd.port.mk>
