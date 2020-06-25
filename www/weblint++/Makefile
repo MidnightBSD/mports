@@ -9,7 +9,7 @@ MASTER_SITE_SUBDIR=	CPAN:BDFOY
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML validator and sanity checker
 
-LICENSE=	artisitc gpl
+LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-ConfigReader-Simple>=1.15:devel/p5-ConfigReader-Simple \
