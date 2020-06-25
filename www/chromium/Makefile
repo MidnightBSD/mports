@@ -55,7 +55,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-pl
 
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		bison compiler:c++11-lib cpe desktop-file-utils pkgconfig \
-		perl5 shebangfix ninja tar:xz python:2,build execinfo ssl
+		perl5 shebangfix ninja tar:xz python:2.7,build execinfo ssl
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
 USE_PERL5=	build
