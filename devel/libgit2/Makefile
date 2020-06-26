@@ -1,44 +1,43 @@
+# Also update devel/libgit2-glib, devel/rubygem-rugged, devel/py-pygit2
+# Make sure you bump revision of depending ports, if SONAME changes
+# objdump -p libgit2.so |grep SONAME
+# Tools/scripts/search_lib_depends_and_bump.sh devel/libgit2
+
 PORTNAME=	libgit2
-PORTVERSION=	0.28.4
-DISTVERSIONPREFIX=	v
+PORTVERSION=	1.0.0
 CATEGORIES=	devel
+MASTER_SITES=	https://github.com/libgit2/libgit2/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable, pure C implementation of the Git core
 
 LICENSE=	gpl2
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	libgit2
+LIB_DEPENDS=	libpcre.so:devel/pcre
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-USES=		cmake pathfix pkgconfig python:build ssl
+USES=		cmake pkgconfig ssl
 USE_LDCONFIG=	yes
+CMAKE_OFF=	BUILD_CLAR
 
-PLIST_SUB=	PORTVERSION=${PORTVERSION} SHLIB_VER=${PORTVERSION:R:E}
+PLIST_SUB=	PORTVERSION=${PORTVERSION} \
+		SHLIB_VER=${PORTVERSION:R}
 
-OPTIONS_DEFINE=	SSH THREADS CURL
-OPTIONS_DEFAULT=SSH THREADS CURL
+OPTIONS_DEFINE=	SSH THREADS
+OPTIONS_DEFAULT=SSH THREADS
 SSH_DESC=	Enable SSH support through libssh2
-CURL_DESC=	Enable HTTP support through cURL
 
 SSH_LIB_DEPENDS=	libssh2.so:security/libssh2
-SSH_CMAKE_ON=		-DUSE_SSH=ON
-SSH_CMAKE_OFF=		-DUSE_SSH=OFF
-THREADS_CMAKE_ON=	-DTHREADSAFE=ON
-THREADS_CMAKE_OFF=	-DTHREADSAFE=OFF
-CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
-CURL_CMAKE_ON=		-DCURL=ON
-CURL_CMAKE_OFF=		-DCURL=OFF
+SSH_CMAKE_BOOL=		USE_SSH
+THREADS_CMAKE_BOOL=	THREADSAFE
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
-post-patch:
-	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*zlib/ d" ${WRKSRC}/CMakeLists.txt
 .if ${SSL_DEFAULT} == base
+post-patch:
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
-		${WRKSRC}/src/CMakeLists.txt
+		${WRKSRC}/cmake/Modules/SelectHTTPSBackend.cmake
 .endif
 
 .include <bsd.port.post.mk>
