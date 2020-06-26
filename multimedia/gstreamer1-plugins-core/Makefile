@@ -1,8 +1,7 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
-# $MidnightBSD$
 
 PORTNAME=	gstreamer1-plugins-core
-PORTVERSION=	1.14
+PORTVERSION=	1.16
 PORTREVISION=	0
 CATEGORIES=	multimedia audio
 MASTER_SITES=	# empty
