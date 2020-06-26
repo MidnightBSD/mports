@@ -1,6 +1,6 @@
-# $FreeBSD: head/devel/php74-intl/Makefile 516111 2019-10-30 22:42:21Z tz $
-
 CATEGORIES=	devel
+
+PORTREVISION=1
 
 MASTERDIR=	${.CURDIR}/../../lang/php74
 
