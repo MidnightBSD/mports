@@ -23,6 +23,8 @@ USE_LDCONFIG=	yes
 
 MESON_ARGS+=	-Ddocumentation=false -Dtests=false
 
+NO_TEST=	yes
+
 python_OLD_CMD=	"/usr/bin/env python3"
 SHEBANG_FILES=	tools/libinput-measure-fuzz.py \
 		tools/libinput-measure-touch-size.py \
