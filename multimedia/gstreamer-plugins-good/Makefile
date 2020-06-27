@@ -1,7 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/gstreamer-plugins-good/Makefile,v 1.7 2007/06/19 12:55:04 ahze Exp $
-
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 COMMENT=	Good gstreamer-plugins
