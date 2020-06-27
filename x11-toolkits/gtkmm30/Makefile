@@ -1,9 +1,7 @@
 # Created by: Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
-# $MidnightBSD$
-# $FreeBSD: head/x11-toolkits/gtkmm30/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gtkmm
-PORTVERSION=	3.16.0
+PORTVERSION=	3.22.2
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -17,18 +15,19 @@ LICENSE=	lgpl2.1
 
 USES+=		tar:xz
 
+PORTSCOUT=	limitw:1,even
+
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
-
-USES+=		gettext gmake libtool pathfix pkgconfig
-USE_GNOME=	gtk30 glibmm cairomm atkmm pangomm
+USES+=		gettext gmake gnome libtool pathfix pkgconfig \
+		compiler:c++11-lang
+USE_CXXSTD=	c++11
+USE_GNOME=	gdkpixbuf2 gtk30 glibmm cairomm atkmm pangomm
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-documentation
 INSTALL_TARGET=	install-strip
+BINARY_WRAPPERS=	gm4
 
 PLIST_SUB=	API_VERSION="3.0"
 
