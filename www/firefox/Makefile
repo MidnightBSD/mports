@@ -1,5 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	63.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://pkg.freebsd.org/FreeBSD:10:amd64/latest/All/
 DISTFILES=	firefox-63.0_3,1.txz
@@ -11,7 +12,9 @@ LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
 
 LIB_DEPENDS+=	libicui18n.so:devel/icu \
-		libvpx.so:multimedia/libvpx
+		libvpx.so:multimedia/libvpx \
+		libevent.so:devel/libevent \
+		libstartup-notification-1.so:x11/startup-notification
 
 USES=	tar:xz
 
