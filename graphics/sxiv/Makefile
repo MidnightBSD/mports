@@ -22,7 +22,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	muennich
 USE_XORG=	x11 xft
 
-MAKE_ARGS=	PREFIX=${PREFIX}
+MAKE_ARGS=	PREFIX=${TRUE_PREFIX}
 MAKE_ENV=	LDLIBS=-linotify
 
 post-install:
