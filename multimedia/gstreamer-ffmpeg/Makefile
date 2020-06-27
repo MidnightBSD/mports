@@ -1,56 +1,82 @@
-# $MidnightBSD$
+# Created by: Koop Mast <kwm@rainbow-runner.nl>
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.11
-PORTREVISION=	7
+PORTVERSION=	0.10.13
 CATEGORIES=	multimedia
-MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
+MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/:ffmpeg \
+		http://libav.org/releases/:libav
 PKGNAMESUFFIX=	-ffmpeg
-DISTNAME=	gst-ffmpeg-${PORTVERSION}
+DISTFILES=	gst-ffmpeg-${PORTVERSION}.tar.bz2:ffmpeg \
+		libav-${LIBAV_VERSION}.tar.xz:libav
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 
-LICENSE=        gpl2
+LICENSE=	gpl2
 
-LIB_DEPENDS=	liborc-0.4.so:${PORTSDIR}/devel/orc
+BUILD_DEPENDS=	yasm:devel/yasm
+LIB_DEPENDS=	liborc-0.4.so:devel/orc
 
-CFLAGS:=	${CFLAGS} -O2 -Wno-format
-USES=		gmake pkgconfig tar:bzip2
-USE_GCC=	any
+PORTSCOUT=	limit:0\.10\..*
+
+LIBAV_VERSION=	0.7.7
+WRKSRC=		${WRKDIR}/gst-ffmpeg-${PORTVERSION}
+USES=		compiler:features gmake libtool pkgconfig
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd9.1
-FFMPEG_CONFIG=        --cc=${CC} \
-              --enable-runtime-cpudetect \
-              --enable-pic
-LDFLAGS+=     -Wl,-Bsymbolic
-CFLAGS+=      -fno-force-addr
-PLIST_SUB=	VERSION="${GST_VERSION}"
-WITHOUT_CPU_CFLAGS=	yes
+CONFIGURE_ARGS=	--without-system-ffmpeg \
+		--with-ffmpeg-extra-configure="${FFMPEG_CONFIG}"
+PLIST_SUB=	VERSION="${PORTVERSION:R}"
 
-GST_VERSION=${PORTVERSION:C/..$//}
+LDFLAGS+=	-Wl,-Bsymbolic
+LDFLAGS_armv6=	-Wl,-znotext
+LDFLAGS_armv7=	-Wl,-znotext
+LDFLAGS_i386=	-Wl,-znotext
+
+NOPRECIOUSMAKEVARS=	yes # ARCH
+
+FFMPEG_CONFIG=	--cc=${CC} \
+		--enable-runtime-cpudetect \
+		--enable-pic
+
+# sse hardware vector support
+.if defined(MACHINE_CPU) && (${MACHINE_CPU:Msse} == "sse" || ${MACHINE_CPU:Mamd64} == "amd64")
+WITH_BUILTIN_VECTOR=	yes
+.else
+FFMPEG_CONFIG+=	--disable-sse
+.endif
+
+# mmx support
+.if defined(MACHINE_CPU) && ${MACHINE_CPU:Mmmx} == "" && ${MACHINE_CPU:Mamd64} == ""
+FFMPEG_CONFIG+=	--disable-mmx
+WITHOUT_BUILTIN_VECTOR=	yes
+.endif
+
+# builtin vector, requires mmx and sse
+.if !defined(WITHOUT_BUILTIN_VECTOR) && defined(WITH_BUILTIN_VECTOR)
+CFLAGS+=	-msse
+.endif
 
 .include <bsd.port.pre.mk>
 
-CONFIGURE_ARGS+=      --with-ffmpeg-extra-configure="${FFMPEG_CONFIG}"
+.if ${ARCH} == powerpc64
+FFMPEG_CONFIG+=	--arch=ppc64
+.endif
+
+.if ${COMPILER_TYPE} == "gcc"
+CFLAGS+=	-fno-force-addr
+.endif
+
+post-extract:
+	@${MV} ${WRKSRC}/gst-libs/ext/libav ${WRKSRC}/gst-libs/ext/libav.old
+	@${MV} ${WRKDIR}/libav-${LIBAV_VERSION} ${WRKSRC}/gst-libs/ext/libav
+	@${CP} ${WRKSRC}/gst-libs/ext/libav.old/config.* \
+		${WRKSRC}/gst-libs/ext/libav/
 
 post-patch:
-	${CP} ${FILESDIR}/config.sub ${FILESDIR}/config.guess \
-		${WRKSRC}
-	@${REINPLACE_CMD} -e \
-		's|make|${GMAKE}|' \
-		${WRKSRC}/gst-libs/ext/Makefile.in
-	@${REINPLACE_CMD} -e 's|/usr/bin|${LOCALBASE}/bin|g'\
-		${WRKSRC}/gst-libs/ext/ffmpeg/doc/texi2pod.pl
-	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
+	@${REINPLACE_CMD} -Ee '/sleep 15/d; /PKG_CONFIG/\
+		s/lib(av(format|codec|util)|postproc|swscale)/&0/g' \
 		${WRKSRC}/configure
-	@cd ${WRKSRC}/gst-libs/ext/ffmpeg/libavcodec && \
-		${LN} -s x86 i386 && ${LN} -s x86 amd64
 
-.if ${OSVERSION} < 4015
-BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
-MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
-.endif
 .include <bsd.port.post.mk>
