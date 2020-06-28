@@ -2816,7 +2816,7 @@ lib/python%%XYDOT%%/lib-dynload/mmap.so
 lib/python%%XYDOT%%/lib-dynload/ossaudiodev.so
 lib/python%%XYDOT%%/lib-dynload/parser.so
 lib/python%%XYDOT%%/lib-dynload/pyexpat.so
-@comment lib/python%%XYDOT%%/lib-dynload/readline.so
+lib/python%%XYDOT%%/lib-dynload/readline.so
 lib/python%%XYDOT%%/lib-dynload/resource.so
 lib/python%%XYDOT%%/lib-dynload/select.so
 lib/python%%XYDOT%%/lib-dynload/syslog.so
