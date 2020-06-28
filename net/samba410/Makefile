@@ -62,7 +62,7 @@ CONFIGURE_ARGS+=		--mandir="${MANPREFIX}/man" \
 				--with-privatedir="${SAMBA4_PRIVATEDIR}" \
 				--with-logfilebase="${SAMBA4_LOGDIR}"
 # XXX: Flags
-CONFIGURE_ENV+=			PTHREAD_LDFLAGS="-lpthread"
+CONFIGURE_ENV+=			PTHREAD_LDFLAGS="-lpthread" LC_MESSAGES=C
 
 USES+=				compiler:c++11-lang iconv localbase:ldflags \
 				perl5 pkgconfig shebangfix ssl waf gettext-runtime
