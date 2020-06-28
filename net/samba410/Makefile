@@ -16,6 +16,8 @@ CONFLICTS_INSTALL?=		samba4-4.0.* samba4[1-9]-4.* p5-Parse-Pidl-4.*
 
 USES=				cpe
 
+MAKE_JOBS_UNSAFE=		yes
+
 EXTRA_PATCHES+=			${PATCHDIR}/0001-Zfs-provision-1.patch:-p1
 EXTRA_PATCHES+=			${PATCHDIR}/0001-provision-use-ASCII-quotes.patch:-p1
 
@@ -60,7 +62,8 @@ CONFIGURE_ARGS+=		--mandir="${MANPREFIX}/man" \
 				--with-cachedir="${SAMBA4_LOCKDIR}" \
 				--with-bind-dns-dir=${SAMBA4_BINDDNSDIR} \
 				--with-privatedir="${SAMBA4_PRIVATEDIR}" \
-				--with-logfilebase="${SAMBA4_LOGDIR}"
+				--with-logfilebase="${SAMBA4_LOGDIR}" \
+				--jobs 1
 # XXX: Flags
 CONFIGURE_ENV+=			PTHREAD_LDFLAGS="-lpthread" LC_MESSAGES=C
 
