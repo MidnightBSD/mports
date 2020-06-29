@@ -318,13 +318,13 @@ do-install:
 	@(cd ${WRKSRC} && ${MAKE} non-interactive-package \
 		install_root=${FAKE_DESTDIR} tempdir=${WRKDIR} \
 		shlib_directory=${SHLIB_DIRECTORY} \
-		config_directory=${TRUE_PREFIX}${ETCDIR_REL} \
+		config_directory=${TRUE_PREFIX}/${ETCDIR_REL} \
 		command_directory=${TRUE_PREFIX}/sbin \
 		daemon_directory=${DAEMONDIR} \
 		meta_directory=${META_DIRECTORY} \
 		html_directory=${READMEDIR} \
 		mailq_path=${TRUE_PREFIX}/bin/mailq \
-		manpage_directory=${MANPREFIX}/man \
+		manpage_directory=${TRUE_PREFIX}/man \
 		newaliases_path=${TRUE_PREFIX}/bin/newaliases \
 		readme_directory=${READMEDIR} \
 		sendmail_path=${TRUE_PREFIX}/sbin/sendmail )
