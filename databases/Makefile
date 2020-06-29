@@ -171,6 +171,7 @@ SUBDIR += py-hiredis
 SUBDIR += py-mysql2pgsql
 SUBDIR += py-postgresql
 SUBDIR += py-psycopg2
+SUBDIR += py-qt5-sql
 SUBDIR += py-sqlalchemy10
 SUBDIR += py-sqlalchemy11
 SUBDIR += py-sqlalchemy12
