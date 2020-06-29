@@ -118,8 +118,8 @@ READMEDIR=	no
 .endif
 
 # dynamic direcory location
-DAEMONDIR=	${PREFIX}/libexec/postfix
-SHLIB_DIRECTORY=${PREFIX}/lib/postfix
+DAEMONDIR=	${TRUE_PREFIX}/libexec/postfix
+SHLIB_DIRECTORY=${TRUE_PREFIX}/lib/postfix
 # new proposed location is ETCDIR (see README_FILES/INSTALL)
 # keep compatiblity with Postfix 2.6 .. 2.11 and use DAEMOMDIR
 META_DIRECTORY=	${DAEMONDIR}
@@ -318,7 +318,7 @@ do-install:
 	@(cd ${WRKSRC} && ${MAKE} non-interactive-package \
 		install_root=${FAKE_DESTDIR} tempdir=${WRKDIR} \
 		shlib_directory=${SHLIB_DIRECTORY} \
-		config_directory=${ETCDIR} \
+		config_directory=${TRUE_PREFIX}${ETCDIR_REL} \
 		command_directory=${TRUE_PREFIX}/sbin \
 		daemon_directory=${DAEMONDIR} \
 		meta_directory=${META_DIRECTORY} \
