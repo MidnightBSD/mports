@@ -132,6 +132,7 @@ SUBDIR += py-ec2-cli-tools
 SUBDIR += py-ipaddress
 SUBDIR += py-oauth2
 SUBDIR += py-pysocks
+SUBDIR += py-qt5-network
 SUBDIR += py-s3cmd
 SUBDIR += py-s3transfer
 SUBDIR += py-twitter-tools

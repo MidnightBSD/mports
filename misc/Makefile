@@ -53,6 +53,7 @@ SUBDIR += php72-calendar
 SUBDIR += php73-calendar
 SUBDIR += php74-calendar
 SUBDIR += py-pexpect
+SUBDIR += py-qt5-demo
 SUBDIR += py-tqdm
 SUBDIR += qt5-doc
 SUBDIR += qt5-examples
