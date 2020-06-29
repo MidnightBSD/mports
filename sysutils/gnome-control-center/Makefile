@@ -54,7 +54,7 @@ GLIB_SCHEMAS=	org.gnome.ControlCenter.gschema.xml
 OPTIONS_SUB=	yes
 
 OPTIONS_DEFINE=	WAYLAND CHEESE
-OPTIONS_DEFAULT=CHEESE
+OPTIONS_DEFAULT=WAYLAND CHEESE
 
 CHEESE_DESC=	Cheese webcam support
 CHEESE_LIB_DEPENDS=	libcheese.so:multimedia/cheese
