@@ -24,7 +24,7 @@ USE_XORG=	sm
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-LIBS=	-m
+LIBS=		-lm
 
 .include <bsd.port.mk>
 
