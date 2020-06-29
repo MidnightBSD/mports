@@ -63,6 +63,8 @@ CHEESE_MESON_TRUE=	cheese
 WAYLAND_MESON_TRUE=	wayland
 WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
 
+NO_TEST=	yes
+
 
 .include <bsd.port.pre.mk>
 RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release

@@ -18,8 +18,10 @@ USE_QT=		core declarative buildtools_build qdoc-data_run
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
-PLIST_FILES=	${QT_BINDIR_REL}/qdoc
+PLIST_FILES=	${QT_BINDIR}/qdoc
 
 CONFIGURE_ENV=	LLVM_INSTALL_DIR=${LOCALBASE}/llvm${LLVM_DEFAULT}
+
+QT_BINARIES=	yes
 
 .include <bsd.port.mk>
