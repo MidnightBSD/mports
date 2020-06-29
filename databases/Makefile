@@ -110,7 +110,6 @@ SUBDIR += php73-pdo_pgsql
 SUBDIR += php73-pdo_sqlite
 SUBDIR += php73-pgsql
 SUBDIR += php73-sqlite3
-SUBDIR += php74-interbase
 SUBDIR += php74-mysqli
 SUBDIR += php74-odbc
 SUBDIR += php74-pdo
