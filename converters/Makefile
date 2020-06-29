@@ -40,7 +40,6 @@ SUBDIR += php73-mbstring
 SUBDIR += php73-recode
 SUBDIR += php74-iconv
 SUBDIR += php74-mbstring
-SUBDIR += php74-recode
 SUBDIR += psiconv
 SUBDIR += py-webencodings
 SUBDIR += recode
