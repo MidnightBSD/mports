@@ -340,10 +340,10 @@
 %%NO_GSTREAMER%%%%DEBUG%%%%QT_PLUGINDIR%%/mediaservice/libqtmedia_audioengine.so.debug
 %%QT_PLUGINDIR%%/playlistformats/libqtmultimedia_m3u.so
 %%DEBUG%%%%QT_PLUGINDIR%%/playlistformats/libqtmultimedia_m3u.so.debug
-%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so
-%%OPENAL%%%%DEBUG%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so.debug
-%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/plugins.qmltypes
-%%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/qmldir
+@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so
+@comment %%OPENAL%%%%DEBUG%%%%QT_QMLDIR%%/QtAudioEngine/libdeclarative_audioengine.so.debug
+@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/plugins.qmltypes
+@comment %%OPENAL%%%%QT_QMLDIR%%/QtAudioEngine/qmldir
 %%QT_QMLDIR%%/QtMultimedia/Video.qml
 %%QT_QMLDIR%%/QtMultimedia/libdeclarative_multimedia.so
 %%DEBUG%%%%QT_QMLDIR%%/QtMultimedia/libdeclarative_multimedia.so.debug
