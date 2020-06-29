@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Shells
 
 SUBDIR += 44bsd-csh
@@ -19,6 +17,7 @@ SUBDIR += pdksh
 SUBDIR += psh
 SUBDIR += rc
 SUBDIR += rssh
+SUBDIR += rush
 SUBDIR += sash
 SUBDIR += scponly
 SUBDIR += tcshrc
