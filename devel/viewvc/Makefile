@@ -1,6 +1,5 @@
 PORTNAME=	viewvc
-DISTVERSION=	1.1.27
-PORTREVISION=	2
+DISTVERSION=	1.2.1
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -64,8 +63,7 @@ post-patch:
 	${REINPLACE_CMD} -e '/"${i}"/d' ${WRKSRC}/viewvc-install
 .endfor
 	${REINPLACE_CMD} -e 's/conf.dist/conf.sample/g' \
-		${WRKSRC}/viewvc-install \
-		${WRKSRC}/bin/standalone.py
+		${WRKSRC}/viewvc-install
 # to much files, use own shebangfix
 	${FIND} ${WRKSRC} -type f | ${GREP} -v -e 'png' -e 'images' \
 		| ${XARGS} ${SED} -i '' \
