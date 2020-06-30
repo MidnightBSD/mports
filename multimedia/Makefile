@@ -97,6 +97,7 @@ SUBDIR += plexwatch
 SUBDIR += poe
 SUBDIR += py-gstreamer
 SUBDIR += py-qt5-multimedia
+SUBDIR += py-qt5-multimediawidgets 
 SUBDIR += qt5-multimedia
 SUBDIR += quvi
 SUBDIR += rtmpdump
