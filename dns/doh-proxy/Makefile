@@ -12,6 +12,10 @@ COMMENT=	DNS-over-HTTP server proxy
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+LIB_DEPENDS=    libcurl.so:ftp/curl \
+                libgit2.so:devel/libgit2 \
+                libssh2.so:security/libssh2
+
 USES=		cargo
 
 PLIST_FILES=	bin/doh-proxy
