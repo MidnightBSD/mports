@@ -16,4 +16,6 @@ USES=		gmake meson pkgconfig tar:xz
 
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
