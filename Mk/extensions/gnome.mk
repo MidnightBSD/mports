@@ -64,25 +64,22 @@ IGNORE=	USES=gnome takes no arguments
 .endif
 
 # non-version specific components
-_USE_GNOME_ALL= esound intlhack intltool introspection \
+_USE_GNOME_ALL= intlhack intltool introspection \
 		referencehack gnomemimedata \
 		gnomeprefix
-
-# GNOME 1 components
-_USE_GNOME_ALL+= gdkpixbuf glib12 gtk12
 
 # GNOME 2 components
 _USE_GNOME_ALL+= atk cairo \
 		gdkpixbuf2 gconf2 glib20 \
-		gnomedocutils gnomesharp20 \
+		gnomesharp20 \
 		gnomevfs2 gtk-update-icon-cache gtk20 gtkhtml3 \
-		gtksharp20 gtksourceview gtksourceview2 gvfs libartlgpl2 libbonobo \
+		gtksharp20 gtksourceview2 gvfs libartlgpl2 libbonobo \
 		libbonoboui libglade2 libgnome \
-		libgnomecanvas libgnomekbd libgnomeprint libgnomeprintui \
+		libgnomecanvas libgnomekbd \
 		libgnomeui libgsf libgtkhtml libidl librsvg2 libwnck \
 		libxml2 libxslt \
-		orbit2 pango pangox-compat pygnome2 pygobject pygtk2 \
-		pygtksourceview vte
+		orbit2 pango pangox-compat pygobject pygtk2 \
+		vte
 
 # GNOME 3 components
 _USE_GNOME_ALL+=dconf evolutiondataserver3 gnomecontrolcenter3 gnomedesktop3 \
@@ -165,28 +162,6 @@ libsigc++20_LIB_DEPENDS=	libsigc-2.0.so:devel/libsigc++20
 pangomm_LIB_DEPENDS=	libpangomm-1.4.so:x11-toolkits/pangomm
 pangomm_USE_GNOME_IMPL=	pango glibmm cairomm
 
-ESD_CONFIG?=		${LOCALBASE}/bin/esd-config
-esound_LIB_DEPENDS=	libesd.so:audio/esound
-esound_CONFIGURE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
-esound_MAKE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
-
-GLIB_CONFIG?=		${LOCALBASE}/bin/glib-config
-glib12_LIB_DEPENDS=	libglib.so:devel/glib12
-glib12_CONFIGURE_ENV=	GLIB_CONFIG="${GLIB_CONFIG}"
-glib12_MAKE_ENV=	GLIB_CONFIG="${GLIB_CONFIG}"
-
-GTK_CONFIG?=		${LOCALBASE}/bin/gtk-config
-gtk12_LIB_DEPENDS=	libgtk.so:x11-toolkits/gtk12
-gtk12_CONFIGURE_ENV=	GTK_CONFIG="${GTK_CONFIG}"
-gtk12_MAKE_ENV=		GTK_CONFIG="${GTK_CONFIG}"
-gtk12_USE_GNOME_IMPL=	glib12
-
-GDK_PIXBUF_CONFIG?=	${LOCALBASE}/bin/gdk-pixbuf-config
-gdkpixbuf_LIB_DEPENDS=	libgdk_pixbuf.so:graphics/gdk-pixbuf
-gdkpixbuf_CONFIGURE_ENV=GDK_PIXBUF_CONFIG="${GDK_PIXBUF_CONFIG}"
-gdkpixbuf_MAKE_ENV=	GDK_PIXBUF_CONFIG="${GDK_PIXBUF_CONFIG}"
-gdkpixbuf_USE_GNOME_IMPL=gtk12
-
 gnomemimedata_BUILD_DEPENDS=${LOCALBASE}/libdata/pkgconfig/gnome-mime-data-2.0.pc:misc/gnome-mime-data
 gnomemimedata_RUN_DEPENDS=${LOCALBASE}/libdata/pkgconfig/gnome-mime-data-2.0.pc:misc/gnome-mime-data
 
@@ -260,12 +235,6 @@ libgnomecanvas_USE_GNOME_IMPL=	libglade2 libartlgpl2
 
 libartlgpl2_LIB_DEPENDS=	libart_lgpl_2.so:graphics/libart_lgpl
 
-libgnomeprint_LIB_DEPENDS=	libgnomeprint-2-2.so:print/libgnomeprint
-libgnomeprint_USE_GNOME_IMPL=	libbonobo libartlgpl2 gtk20
-
-libgnomeprintui_LIB_DEPENDS=	libgnomeprintui-2-2.so:x11-toolkits/libgnomeprintui
-libgnomeprintui_USE_GNOME_IMPL=	libgnomeprint libgnomecanvas
-
 libgnome_LIB_DEPENDS=	libgnome-2.so:x11/libgnome
 libgnome_USE_GNOME_IMPL=gnomevfs2 libbonobo
 
@@ -311,9 +280,6 @@ libgda5_USE_GNOME_IMPL=	glib20 libxslt
 libgda5-ui_LIB_DEPENDS=	libgda-ui-5.0.so:databases/libgda5-ui
 libgda5-ui_USE_GNOME_IMPL=glib20 libxslt libgda5
 
-gtksourceview_LIB_DEPENDS=	libgtksourceview-1.0.so:x11-toolkits/gtksourceview
-gtksourceview_USE_GNOME_IMPL=libgnome libgnomeprintui
-
 gtksourceview2_LIB_DEPENDS=	libgtksourceview-2.0.so:x11-toolkits/gtksourceview2
 gtksourceview2_USE_GNOME_IMPL=gtk20 libxml2
 
@@ -337,10 +303,6 @@ pygobject3_USE_GNOME_IMPL=	glib20
 pygtk2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2@${PY_FLAVOR}
 pygtk2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc:x11-toolkits/py-gtk2@${PY_FLAVOR}
 pygtk2_USE_GNOME_IMPL=	libglade2 pygobject
-
-pygnome2_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2@${PY_FLAVOR}
-pygnome2_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-python-2.0.pc:x11-toolkits/py-gnome2@${PY_FLAVOR}
-pygnome2_USE_GNOME_IMPL=libgnomeui pygtk2
 
 intltool_BUILD_DEPENDS=	${LOCALBASE}/bin/intltool-extract:textproc/intltool
 
@@ -366,10 +328,6 @@ gnomemenus3_BUILD_DEPENDS=	gnome-menus>=3.2.0:x11/gnome-menus
 gnomemenus3_RUN_DEPENDS=	gnome-menus>=3.2.0:x11/gnome-menus
 gnomemenus3_USE_GNOME_IMPL=	glib20
 
-gnomedocutils_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-doc-utils.pc:textproc/gnome-doc-utils
-gnomedocutils_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-doc-utils.pc:textproc/gnome-doc-utils
-gnomedocutils_USE_GNOME_IMPL=	libxslt
-
 gtksharp10_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gtk-sharp.pc:x11-toolkits/gtk-sharp10
 gtksharp10_RUN_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/gtk-sharp.pc:x11-toolkits/gtk-sharp10
 gtksharp10_USE_GNOME_IMPL=	gtk20
@@ -384,10 +342,6 @@ gnomesharp20_USE_GNOME_IMPL=	gnomevfs2 gtkhtml3 gtksharp20 librsvg2 vte
 
 libgnomekbd_LIB_DEPENDS=	libgnomekbd.so:x11/libgnomekbd
 libgnomekbd_USE_GNOME_IMPL=	gtk30 libxml2
-
-pygtksourceview_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview@${PY_FLAVOR}
-pygtksourceview_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc:x11-toolkits/py-gtksourceview@${PY_FLAVOR}
-pygtksourceview_USE_GNOME_IMPL=	gtksourceview2 pygtk2
 
 gvfs_BUILD_DEPENDS=	gvfs>=0:devel/gvfs
 gvfs_RUN_DEPENDS=	gvfs>=0:devel/gvfs
@@ -422,11 +376,6 @@ _USE_GNOME+=	${${component}_USE_GNOME_IMPL} ${component}
 # and theme engines.
 PLIST_SUB+=			GTK2_VERSION="${GTK2_VERSION}" \
 				GTK3_VERSION="${GTK3_VERSION}"
-
-# Set USE_CSTD for all ports that depend on glib12
-.if defined(_USE_GNOME) && !empty(_USE_GNOME:Mglib12)
-USE_CSTD=	gnu89
-.endif
 
 .if defined(_USE_GNOME) && empty(_USE_GNOME:Mglib20:u) && defined(GLIB_SCHEMAS)
 IGNORE=		GLIB_SCHEMAS is set, but needs USE_GNOME=glib20 to work
