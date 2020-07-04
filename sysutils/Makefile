@@ -158,6 +158,7 @@ SUBDIR += zfs-snapshot-mgmt
 SUBDIR += zfs-stats
 SUBDIR += zfsnap
 SUBDIR += zfstools
+SUBDIR += znapzend
 SUBDIR += zrep
 SUBDIR += zxfer
 
