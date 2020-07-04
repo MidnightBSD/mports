@@ -56,7 +56,7 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND
 OPTIONS_DEFAULT=CUPS COLORD BROADWAY
 # seems to break on i386 in some cases
-OPTIONS_DEFAULT_amd64=	WAYLAND
+#OPTIONS_DEFAULT_amd64=	WAYLAND
 OPTIONS_SUB=	yes
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
