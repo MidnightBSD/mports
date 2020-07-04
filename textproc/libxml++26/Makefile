@@ -1,16 +1,16 @@
-# $MidnightBSD$
-
 PORTNAME=	libxml++
-PORTVERSION=	2.34.2
-PORTREVISION?=	1
+PORTVERSION=	2.40.1
+PORTREVISION?=	0
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML API for C++
+
 LICENSE=	lgpl
 
-USES+=		tar:xz
+USES+=		compiler:c++11-langi tar:xz
+USE_CXXSTD=	c++11
 
 PLIST_SUB=	VERSION="2.6" API_VERSION="2.6"
 
@@ -18,12 +18,13 @@ PLIST_SUB=	VERSION="2.6" API_VERSION="2.6"
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USES+=		gmake libtool pathfix pkgconfig
+USES+=		gmake gnome libtool pathfix pkgconfig
 USE_GNOME=	glibmm libxml2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --disable-documentation
 INSTALL_TARGET=	install-strip
+BINARY_WRAPPERS=	gm4
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/examples//' \
