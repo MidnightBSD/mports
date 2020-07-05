@@ -9,7 +9,7 @@ COMMENT=	XML API for C++
 
 LICENSE=	lgpl
 
-USES+=		compiler:c++11-langi tar:xz
+USES+=		tar:xz compiler:c++11-lang
 USE_CXXSTD=	c++11
 
 PLIST_SUB=	VERSION="2.6" API_VERSION="2.6"
