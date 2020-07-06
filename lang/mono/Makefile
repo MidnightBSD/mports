@@ -54,8 +54,10 @@ MAKE_ENV=	MONO_SHARED_DIR="${WRKDIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
 		TZ=UTC __FreeBSD__=10
 
-TEST_ARGS=	-k
-TEST_TARGET=	check
+# magus has issues with tests.
+#TEST_ARGS=	-k
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 PORTSCOUT=	limit:^\d+\.\d+\.[1-9]\d*
 

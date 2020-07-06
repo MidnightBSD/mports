@@ -5,7 +5,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl bindings for Version control system
 
-USES=		perl5
+USES=		perl5 sqlite:3
 USE_PERL5=	build run
 
 PORTREVISION_113=	0
@@ -19,9 +19,13 @@ MAKE_JOBS_UNSAFE=	yes
 
 CATEGORIES+=	perl5
 
+LIB_DEPENDS+=	libsqlite3.so:databases/sqlite3
+BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
+
 CONFIGURE_ARGS+=	--without-gnome-keyring \
 			--without-kwallet \
-			--with-apxs=no
+			--with-apxs=no \
+			-with-sqlite=/usr/local
 
 ALL_TARGET=	swig-pl-lib swig-pl
 INSTALL_TARGET=	install-swig-pl
