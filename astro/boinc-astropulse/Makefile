@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	boinc-astropulse
 PORTVERSION=	6.01
 PORTREVISION=	11
@@ -69,12 +67,12 @@ X11_CONFIGURE_ENABLE=	graphics
 X11_BUILD_DEPENDS_OFF=	${LOCALBASE}/include/boinc/std_fixes.h:net/boinc-client
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}
+	@${MKDIR} ${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}
 	${INSTALL_PROGRAM} ${WRKSRC}/${AP_BINARY} \
-		${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
+		${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
 
 do-install-X11-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/ap_graphics \
-		${STAGEDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
+		${FAKE_DESTDIR}${BOINC_CLIENT_HOME}/projects/${SETI_SITE}/
 
 .include <bsd.port.mk>
