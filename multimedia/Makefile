@@ -13,7 +13,6 @@ SUBDIR += emby-server
 SUBDIR += ffmpeg
 SUBDIR += ffmpeg0
 SUBDIR += gmp-api
-SUBDIR += gnustep-mplayer
 SUBDIR += gpac-libgpac
 SUBDIR += gstreamer
 SUBDIR += gstreamer-ffmpeg
