@@ -19,8 +19,9 @@ MAKE_JOBS_UNSAFE=	yes
 
 CATEGORIES+=	perl5
 
-LIB_DEPENDS+=	libsqlite3.so:databases/sqlite3
+# requires sqlite3 from ports
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
+RUN_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 
 CONFIGURE_ARGS+=	--without-gnome-keyring \
 			--without-kwallet \
