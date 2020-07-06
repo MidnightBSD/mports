@@ -1,6 +1,6 @@
---- configure.orig	2014-12-17 22:02:44.000000000 +0100
-+++ configure	2015-01-24 17:13:38.903362604 +0100
-@@ -646,7 +646,7 @@
+--- configure.orig	2019-05-27 20:02:12 UTC
++++ configure
+@@ -654,7 +654,7 @@ armthumb=auto
  _iwmmxt=auto
  _mtrr=auto
  _altivec=auto
@@ -9,7 +9,7 @@
  _ranlib=ranlib
  _windres=windres
  _cc=cc
-@@ -988,7 +988,7 @@
+@@ -1000,7 +1000,7 @@ for ac_option do
      ld_static=''
      ;;
    --enable-profile)
@@ -18,7 +18,7 @@
      ;;
    --disable-profile)
      _profile=
-@@ -1459,7 +1459,6 @@
+@@ -1466,7 +1466,6 @@ for ac_option do
  
    *)
      echo "Unknown parameter: $ac_option"
@@ -26,7 +26,48 @@
      ;;
  
    esac
-@@ -1712,7 +1711,7 @@
+@@ -1504,40 +1503,6 @@ rm -f "$TMPLOG"
+ echo configuration: $configuration > "$TMPLOG"
+ echo >> "$TMPLOG"
+ 
+-
+-# local FFmpeg checkout handling
+-if test -e ffmpeg/.svn ; then
+-    echo "You have an outdated FFmpeg SVN checkout in ffmpeg/, please (re)move or replace it"
+-    exit 1
+-fi
+-
+-FFBRANCH=master
+-test -e FFBRANCH && FFBRANCH=$(cat FFBRANCH)
+-
+-if test -e ffmpeg/mp_auto_pull ; then
+-    echo "Updating FFmpeg, (re)move ffmpeg/mp_auto_pull to disable"
+-    (cd ffmpeg && git checkout $FFBRANCH)
+-    if ! (cd ffmpeg && git pull --rebase --ff-only) ; then
+-        echo "git pull failed, (re)move ffmpeg/mp_auto_pull to disable pulling"
+-        exit 1
+-    fi
+-fi
+-
+-if test "$ffmpeg_a" != "no" && ! test -e ffmpeg ; then
+-    echo "No FFmpeg checkout, press enter to download one with git or CTRL+C to abort"
+-    read tmp
+-    if ! git clone -b $FFBRANCH --depth 1 git://source.ffmpeg.org/ffmpeg.git ffmpeg ; then
+-        rm -rf ffmpeg
+-        echo "Failed to get a FFmpeg checkout"
+-        echo "Please try again or put FFmpeg source code copy into ffmpeg/ manually."
+-        echo "Nightly snapshot: http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2"
+-        echo "To use a github mirror via http (e.g. because a firewall blocks git):"
+-        echo "git clone --depth 1 https://github.com/FFmpeg/FFmpeg ffmpeg; touch ffmpeg/mp_auto_pull"
+-        exit 1
+-    fi
+-    touch ffmpeg/mp_auto_pull
+-fi
+-
+ list_subparts() {
+   test ! -e ffmpeg/libav${3} && return 1
+   pattern="s/^[^#]*${1}.*([^ ,]*, *\([^ ,)]*\).*/\1_${2}/p"
+@@ -1755,7 +1720,7 @@ if test -z "$_target" ; then
    case "$1" in
        x86_64|amd64|i[3-9]86*|i86pc|x86|x86pc|k5|k6|k6_2|k6_3|k6-2|k6-3|pentium*|athlon*|i586_i686|i586-i686) host_arch=i386 ;;
        ia64) host_arch=ia64 ;;
@@ -35,7 +76,7 @@
        alpha) host_arch=alpha ;;
        sun4*|sparc*) host_arch=sparc ;;
        parisc*|hppa*|9000*) host_arch=hppa ;;
-@@ -1834,7 +1833,11 @@
+@@ -1880,7 +1845,11 @@ echocheck "working compiler"
  cflag_check "" || die "Compiler is not functioning correctly. Check your installation and custom CFLAGS $CFLAGS ."
  echo "yes"
  
@@ -48,7 +89,7 @@
  
  if test -z "$_target" ; then
    cat > $TMPC << EOF
-@@ -3164,6 +3167,13 @@
+@@ -3251,6 +3220,13 @@ if arm ; then
    fi
    echores "$setend"
  
@@ -62,58 +103,50 @@
    echocheck "softfloat ABI"
    softfloat=yes
    cpp_condition_check '' 'defined(__ARM_PCS_VFP) || (!defined(__ARM_PCS) && !defined(__SOFTFP__))' && softfloat=no
-@@ -3798,17 +3808,17 @@
- echores "$aligned_malloc"
- 
- 
--echocheck "memalign()"
-+echocheck "aligned_alloc()"
- # XXX restrict to x86 ? extend to other CPUs/cacheline sizes ?
--def_memalign_hack='#define CONFIG_MEMALIGN_HACK 0'
-+def_memalign='#define HAVE_MEMALIGN 0'
- _memalign=no
--statement_check malloc.h 'memalign(64, sizeof(char))' && _memalign=yes
-+statement_check stdlib.h 'aligned_alloc(32, 32*sizeof(char))' && _memalign=yes
- if test "$_memalign" = yes ; then
--  def_memalign='#define HAVE_MEMALIGN 1'
-+  def_map_memalign='#define memalign(a, b) aligned_alloc(a, b)'
-+  def_memalign_hack='#define CONFIG_MEMALIGN_HACK 0'
- else
--  def_memalign='#define HAVE_MEMALIGN 0'
-   def_map_memalign='#define memalign(a, b) malloc(b)'
--  darwin || def_memalign_hack='#define CONFIG_MEMALIGN_HACK 1'
-+  def_memalign_hack='#define CONFIG_MEMALIGN_HACK 1'
- fi
- echores "$_memalign"
- 
-@@ -3914,7 +3924,7 @@
+@@ -4080,7 +4056,7 @@ echocheck "pthread"
  if linux ; then
    THREAD_CFLAGS=-D_REENTRANT
  elif freebsd || netbsd || openbsd || bsdos ; then
 -  THREAD_CFLAGS=-D_THREAD_SAFE
-+  THREAD_CFLAGS=${PTHREAD_CFLAGS}
++  THREAD_CFLAGS=
  fi
  if test "$_pthreads" = auto ; then
  cat > $TMPC << EOF
-@@ -3924,7 +3934,7 @@
+@@ -4090,7 +4066,7 @@ int main(void) { pthread_t tid; return pthread_create(
  EOF
  _pthreads=no
  if ! hpux ; then
 -  for ld_tmp in "-lpthreadGC2" "" "-lpthread" "-pthread" ; do
-+  for ld_tmp in ${PTHREAD_LIBS} ; do
++  for ld_tmp in "-lpthread" "-pthread" ; do
      # for crosscompilation, we cannot execute the program, be happy if we can link statically
      cc_check $THREAD_CFLAGS $ld_tmp && (tmp_run || test "$ld_static") && ld_pthread="$ld_tmp" && _pthreads=yes && break
    done
-@@ -4076,7 +4086,7 @@
-   # NOTE: -L/usr/lib is a hack to avoid issues due to a
-   # broken libiconv that e.g. macports installs into /opt/local/lib
-   # which might get addded to the search path later by e.g. SDL
--  for ld_tmp in "" "-L/usr/lib -liconv" "-liconv" "-liconv $ld_dl" ; do
+@@ -4239,7 +4215,7 @@ int main(void) {
+ }
+ EOF
+   _iconv=no
+-  for ld_tmp in "" "-liconv" "-liconv $ld_dl" ; do
 +  for ld_tmp in "" "-L$_prefix/lib -liconv" "-L%%LOCALBASE%%/lib -liconv" "-liconv" "-liconv $ld_dl" ; do
      cc_check $ld_tmp && extra_ldflags="$extra_ldflags $ld_tmp" &&
        ld_iconv="$ld_tmp" && _iconv=yes && break
    done
-@@ -6046,7 +6056,7 @@
+@@ -5685,15 +5661,6 @@ EOF
+       break
+     fi
+   done
+-  if test "$_x11" = yes && cc_check -DGL_EGL_X11 -lEGL ; then
+-    _gl=yes
+-    _gl_egl_x11=yes
+-    libs_mplayer="$libs_mplayer -lEGL $ld_dl"
+-  elif cc_check -DGL_EGL_ANDROID -lEGL ; then
+-    _gl=yes
+-    _gl_egl_android=yes
+-    libs_mplayer="$libs_mplayer -lEGL $ld_dl"
+-  fi
+   if win32 && cc_check -DGL_WIN32 -lopengl32 ; then
+     _gl=yes
+     _gl_win32=yes
+@@ -6257,7 +6224,7 @@ elif darwin ; then
  elif dragonfly ; then
    default_cdrom_device="/dev/cd0"
  elif freebsd ; then
@@ -122,7 +155,7 @@
  elif openbsd ; then
    default_cdrom_device="/dev/rcd0c"
  elif sunos ; then
-@@ -6059,7 +6069,7 @@
+@@ -6270,7 +6237,7 @@ else
    default_cdrom_device="/dev/cdrom"
  fi
  
@@ -131,18 +164,7 @@
    default_dvd_device=$default_cdrom_device
  elif darwin ; then
    default_dvd_device="/dev/rdiskN"
-@@ -6133,8 +6143,8 @@
-         cat > $TMPC << EOF
- #include <stdio.h>
- #include <cdio/version.h>
--#include <cdio/cdda.h>
--#include <cdio/paranoia.h>
-+#include <cdio/paranoia/cdda.h>
-+#include <cdio/paranoia/paranoia.h>
- int main(void) {
-     void *test = cdda_verbose_set;
-     printf("%s\n", CDIO_VERSION);
-@@ -6566,7 +6576,7 @@
+@@ -6788,7 +6755,7 @@ echores "$_speex"
  echocheck "libgsm"
  if test "$_libgsm" = auto ; then
    _libgsm=no
@@ -151,7 +173,7 @@
  fi
  if test "$_libgsm" = yes ; then
    def_libgsm='#define CONFIG_LIBGSM 1'
-@@ -7051,6 +7061,16 @@
+@@ -7264,6 +7231,16 @@ if test "$_librtmp" = yes && test "$networking" = yes;
    nolibrtmp=no
    def_librtmp='#define CONFIG_LIBRTMP 1'
    inputmodules="librtmp $inputmodules"
@@ -168,7 +190,7 @@
  else
    nolibrtmp=yes
    _librtmp=no
-@@ -7450,7 +7470,7 @@
+@@ -7594,7 +7571,7 @@ echores "$_mp3lame"
  echocheck "mencoder"
  if test "$_mencoder" = no ; then
    # mpeg1video for vf_lavc, snow for vf_uspp / vf_mcdeint,
@@ -177,12 +199,12 @@
  fi
  echores "$_mencoder"
  
-@@ -8329,7 +8349,7 @@
- EXESUF      = $_exesuf
- EXESUFS_ALL = .exe
+@@ -8200,7 +8177,7 @@ libs_mplayer=$ld_tmp
  
--ARCH = $arch
-+MPLAYER_ARCH = $arch
- $(mak_enable "$arch_all"    "$arch"    ARCH)
- $(mak_enable "$subarch_all" "$subarch" ARCH)
- $(mak_enable "$cpuexts_all" "$cpuexts" HAVE)
+ #############################################################################
+ 
+-CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
++CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+ 
+ CXXFLAGS=" $CFLAGS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS"
+ 
