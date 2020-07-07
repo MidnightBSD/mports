@@ -1,5 +1,6 @@
 PORTNAME=	mpfr
 PORTVERSION=	4.0.2
+PORTREVISION=	1
 CATEGORIES=	math devel
 MASTER_SITES=	https://www.mpfr.org/mpfr-${PORTVERSION}/ \
 		GNU

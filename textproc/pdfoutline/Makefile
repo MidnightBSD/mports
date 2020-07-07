@@ -22,7 +22,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/pdfoutline \
-		share/man/man1/pdfoutline.1.gz
+		share/man/man1/pdfoutline.1
 
 GH_ACCOUNT=	eugmes
 GH_PROJECT=	fntsample
@@ -35,6 +35,7 @@ post-patch:
 	@${SED} -e 's|@DATE@|2018-12-26|' ${WRKSRC}/pdfoutline.1.in > ${WRKSRC}/pdfoutline.1
 
 do-install:
+	${MKDIR} ${PREFIX}/share/man/man1/
 	${INSTALL_SCRIPT} ${WRKSRC}/pdfoutline ${STAGEDIR}${PREFIX}/bin/
 	${INSTALL_MAN} ${WRKSRC}/pdfoutline.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 

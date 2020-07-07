@@ -28,12 +28,9 @@ USE_GITHUB=	yes
 SHEBANG_FILES=	tests/*.sh
 bash_CMD=	${SH}
 
+NO_TEST=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/meson.build
-
-do-test:
-	${SETENV} top_builddir=${BUILD_WRKSRC} top_srcdir=${WRKSRC} ${SH} ${WRKSRC}/tests/test_bad_fonts.sh
-	${SETENV} top_builddir=${BUILD_WRKSRC} top_srcdir=${WRKSRC} ${SH} ${WRKSRC}/tests/test_fuzzed_fonts.sh
-	${SETENV} top_builddir=${BUILD_WRKSRC} top_srcdir=${WRKSRC} ${SH} ${WRKSRC}/tests/test_good_fonts.sh
 
 .include <bsd.port.mk>

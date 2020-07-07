@@ -55,13 +55,9 @@ NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == i386
+# upstream broke vala
 MESON_ARGS=	-Denable-vala=no
 PLIST_SUB+=	VALA="@comment "
-.else
-BUILD_DEPENDS+=	valac:lang/vala
-PLIST_SUB+=	VALA=""
-.endif
 
 .if defined(WITH_DVD_DEVICE)
 DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}

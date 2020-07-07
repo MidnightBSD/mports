@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 EXTRACT_DEPENDS=  ${LOCALBASE}/bin/bsdtar:archivers/libarchive
 BUILD_DEPENDS=	mono>=3.0:lang/mono \
-		referenceassemblies-pcl>=4.6-1:lang/referenceassemblies-pcl
+		referenceassemblies-pcl>=4.6:lang/referenceassemblies-pcl
 RUN_DEPENDS=	mono>=3.0:lang/mono
 
 NUGET_DEPENDS=	FSharp.Compiler.Tools=4.0.1.3 \

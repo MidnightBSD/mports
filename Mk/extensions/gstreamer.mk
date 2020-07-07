@@ -98,14 +98,12 @@ _GSTREAMER_PLUGINS= \
 		pango \
 		pulse \
 		resindvd \
-		schroedinger \
 		shout2 \
 		sndfile \
 		sndio \
 		sidplay \
 		soundtouch \
 		soup \
-		spc \
 		speex \
 		taglib \
 		theora \
@@ -122,7 +120,6 @@ _GSTREAMER_PLUGINS+= \
 		bz2 \
 		cdaudio \
 		dvd \
-		esound \
 		ffmpeg \
 		fluendo-mp3 \
 		fluendo-mpegdemux \
@@ -136,7 +133,8 @@ _GSTREAMER_PLUGINS+= \
 		mp3 \
 		nas \
 		python \
-		qt4 \
+		schroedinger \
+		spc \
 		sdl \
 		vdpau \
 		vp8 \
@@ -146,6 +144,7 @@ _GSTREAMER_PLUGINS+= \
 # plugins only in 1.0
 .if defined(USE_GSTREAMER1)
 _GSTREAMER_PLUGINS+= \
+		aom \
 		assrender \
 		bs2b \
 		chromaprint \
@@ -160,13 +159,16 @@ _GSTREAMER_PLUGINS+= \
 		kms \
 		libav \
 		libde265 \
+		lv2 \
 		modplug \
 		mpg123 \
 		mplex \
 		openexr \
 		openh264 \
 		openjpeg \
+		openmpt \
 		png \
+		qt \
 		rsvg \
 		rtmp \
 		smoothstreaming \
@@ -174,12 +176,14 @@ _GSTREAMER_PLUGINS+= \
 		srtp \
 		ttml \
 		vpx \
+		vulkan \
 		webp \
+		webrtcdsp \
 		x \
 		x265 \
 		ximagesrc \
 		zbar
-# vaapi webrtcdsp
+# vaapi
 .endif # USE_GSTREAMER1
 
 # other plugins
@@ -222,9 +226,6 @@ cdparanoia_IMPL=	#
 chromaprint_DEPENDS=	audio/gstreamer-plugins-chromaprint
 chromeprint_IMPL=	bad
 
-esound_DEPENDS=	audio/gstreamer-plugins-esound
-esound_IMPL=	good
-
 faac_DEPENDS=	audio/gstreamer-plugins-faac
 faac_IMPL=	bad
 
@@ -257,6 +258,9 @@ ladspa_IMPL=	bad
 
 lame_DEPENDS=	audio/gstreamer-plugins-lame
 lame_IMPL=	ugly
+
+lv2_DEPENDS=	audio/gstreamer-plugins-lv2
+lv2_IMPL=	bad
 
 mad_DEPENDS=	audio/gstreamer-plugins-mad
 mad_IMPL=	ugly
@@ -321,6 +325,9 @@ vorbis_IMPL=	#
 wavpack_DEPENDS=	audio/gstreamer-plugins-wavpack
 wavpack_IMPL=		good
 
+webrtcdsp_DEPENDS=	audio/gstreamer-plugins-webrtcdsp
+webrtcdsp_IMPL=		bad
+
 #-- comms plugin section --------------------------------------------------#
 
 spandsp_DEPENDS=	comms/gstreamer-plugins-spandsp
@@ -355,6 +362,9 @@ aalib_IMPL=	good
 
 annodex_DEPENDS=	multimedia/gstreamer-plugins-annodex
 annodex_IMPL=		good
+
+aom_DEPENDS=	multimedia/gstreamer-plugins-aom
+aom_IMPL=	bad
 
 assrender_DEPENDS=	multimedia/gstreamer-plugins-assrender
 assrender_IMPL=		bad
@@ -392,8 +402,14 @@ openexr_IMPL=		bad
 openjpeg_DEPENDS=	graphics/gstreamer-plugins-openjpeg
 openjpeg_IMPL=		bad
 
+openmpt_DEPENDS=	audio/gstreamer-plugins-openmpt
+openmpt_IMPL=		bad
+
 png_DEPENDS=	graphics/gstreamer-plugins-png
 png_IMPL=	good
+
+qt_DEPENDS=	graphics/gstreamer-plugins-qt
+qt_IMPL=	good
 
 rsvg_DEPENDS=	graphics/gstreamer-plugins-rsvg
 rsvg_IMPL=	bad
@@ -481,10 +497,6 @@ mplex_IMPL=	bad
 openh264_DEPENDS=	multimedia/gstreamer-plugins-openh264
 openh264_IMPL=		bad
 
-qt4_DEPENDS=	multimedia/gstreamer-qt4
-qt4_GST_PREFIX=	gstreamer-
-qt4_IMPL=	#
-
 rtmp_DEPENDS=	multimedia/gstreamer-plugins-rtmp
 rtmp_IMPL=	bad
 
@@ -507,11 +519,14 @@ vp8_IMPL=	bad
 vpx_DEPENDS=	multimedia/gstreamer-plugins-vpx
 vpx_IMPL=	good
 
+vulkan_DEPENDS=	graphics/gstreamer-plugins-vulkan
+vulkan_IMPL=	bad
+
 # XXX: This is a quick solution for ports with USE_GSTREAMER=python
 #      but without USE_PYTHON.
 PYTHON_PKGNAMEPREFIX?=	py*-
 
-python_DEPENDS=	multimedia/py-gstreamer@${PY_FLAVOR}
+python_DEPENDS=	multimedia/py-gstreamer
 python_NAME=	gstreamer
 python_GST_PREFIX=      ${PYTHON_PKGNAMEPREFIX}
 python_GST_SUFX=        # empty
@@ -532,9 +547,6 @@ ugly_IMPL=	#
 
 vdpau_DEPENDS=	multimedia/gstreamer-plugins-vdpau
 vdpau_IMPL=	bad
-
-webrtcdsp_DEPENDS=	multimedia/gstreamer-plugins-webrtcdsp
-webrtcdsp_IMPL=		bad
 
 x264_DEPENDS=	multimedia/gstreamer-plugins-x264
 x264_IMPL=	ugly

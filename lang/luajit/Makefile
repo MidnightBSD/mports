@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	luajit
-DISTVERSION=	2.0.3
+DISTVERSION=	2.0.5
 CATEGORIES=	lang
 MASTER_SITES=	http://luajit.org/download/
 DISTNAME=	LuaJIT-${DISTVERSION}

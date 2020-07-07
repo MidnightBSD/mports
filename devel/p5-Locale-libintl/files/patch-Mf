@@ -1,0 +1,11 @@
+--- Makefile.PL.orig	2020-07-04 13:29:16.306457000 -0400
++++ Makefile.PL	2020-07-04 13:30:56.047947000 -0400
+@@ -117,6 +117,8 @@
+ sub ac_try_link {
+     my ($c_code, $msg, @options) = @_;
+ 
++	print STDERR $Config{ccflags};
++
+ 	print STDERR "$msg ... ";
+     local *HANDLE;
+     open HANDLE, ">gettest.c" or die "cannot create file 'gettest.c': $!\n";

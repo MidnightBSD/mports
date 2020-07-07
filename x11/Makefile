@@ -79,6 +79,7 @@ SUBDIR += nvidia-driver-304
 SUBDIR += nvidia-settings
 SUBDIR += nvidia-xconfig
 SUBDIR += pixman
+SUBDIR += py-qt5-opengl
 SUBDIR += py-xcffib
 SUBDIR += qimageblitz
 SUBDIR += qt5-qev

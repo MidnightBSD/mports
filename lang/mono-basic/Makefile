@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	mono-basic
 PORTVERSION=	4.7
 CATEGORIES=	lang
@@ -16,9 +14,6 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
 USES=		gmake mono tar:bzip2
 
-do-test:
-	@(cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} MONO_PATH=${WRKSRC}/class/lib/net_4_5 ${MAKE_CMD} \
-			${MAKE_FLAGS} Makefile ${MAKE_ARGS} test)
+NO_TEST=	yes
 
 .include <bsd.port.mk>

@@ -182,6 +182,7 @@ SUBDIR += py-cairosvg
 SUBDIR += py-imagesize
 SUBDIR += py-pillow
 SUBDIR += py-pycha
+SUBDIR += py-qt5-svg
 SUBDIR += qt5-3d
 SUBDIR += qt5-graphicaleffects
 SUBDIR += qt5-imageformats

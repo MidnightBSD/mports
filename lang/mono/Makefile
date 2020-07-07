@@ -16,7 +16,8 @@ ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386 powerpc
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:shells/bash \
 		cmake>0:devel/cmake
-LIB_DEPENDS=	libinotify.so:devel/libinotify
+LIB_DEPENDS=	libinotify.so:devel/libinotify \
+		libgettextlib.so:devel/gettext-tools
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow@${PY_FLAVOR} \
 		ca_root_nss>=0:security/ca_root_nss
 
@@ -53,8 +54,10 @@ MAKE_ENV=	MONO_SHARED_DIR="${WRKDIR}" \
 		INSTALL_STRIP_FLAG="${STRIP}" \
 		TZ=UTC __FreeBSD__=10
 
-TEST_ARGS=	-k
-TEST_TARGET=	check
+# magus has issues with tests.
+#TEST_ARGS=	-k
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 PORTSCOUT=	limit:^\d+\.\d+\.[1-9]\d*
 

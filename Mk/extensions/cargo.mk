@@ -43,6 +43,9 @@ DISTFILES+=	${CARGO_DIST_SUBDIR}/${_crate}.tar.gz:cargo_${_crate:C/[^a-zA-Z0-9_]
 CARGO_BUILDDEP?=	yes
 .if ${CARGO_BUILDDEP:tl} == "yes"
 BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.30.0:lang/${RUST_DEFAULT}
+LIB_DEPENDS+=    libcurl.so:ftp/curl \
+                libgit2.so:devel/libgit2 \
+                libssh2.so:security/libssh2
 .endif
 
 # Location of cargo binary (default to lang/rust's Cargo binary)

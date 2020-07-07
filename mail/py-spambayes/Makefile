@@ -64,7 +64,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${DBDIR}
 
 post-install-DOCS-on:
-	@${MKDIR} ${FAK_DESTDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for file in ${PORTDOCS}
 	@if [ -f ${WRKSRC}/${file} ]; then \
 		${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR} ; \

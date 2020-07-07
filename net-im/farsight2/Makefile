@@ -10,11 +10,14 @@ COMMENT=	Collection of GStreamer modules and libraries for videoconferencing
 
 LICENSE=	lgpl
 
+DEPRECATED=   Uses deprecated version of python
+EXPIRATION_DATE=      2020-08-15
+
 BUILD_DEPENDS=	${PY_FLAVOR}-gobject>=0:devel/py-gobject@${PY_FLAVOR}
 LIB_DEPENDS=	libnice.so:net-im/libnice
 RUN_DEPENDS=	libnice-gst010>=0:net-im/libnice-gst010
 
-USES=		gettext libtool gmake pathfix pkgconfig python:2.7
+USES=		gettext gmake gnome libtool pathfix pkgconfig python:2.7
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20
 USE_GSTREAMER=	core good bad python
@@ -23,5 +26,9 @@ GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
+
+post-patch:
+	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} \
+		'/foreach/s/\\#include/#include/' {} +
 
 .include <bsd.port.mk>

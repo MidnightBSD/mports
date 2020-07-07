@@ -1,6 +1,6 @@
 PORTNAME=	ptlib
 PORTVERSION=	2.10.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -45,7 +45,7 @@ DEBUG_DESC=	Install debug library
 
 .include <bsd.mport.options.mk>
 
-.if ${SSL_DEFAULT} == openssl111
+.if ${SSL_DEFAULT} == openssl
 EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx-openssl111
 .else
 EXTRA_PATCHES+= ${FILESDIR}/extra-patch-src_ptclib_pssl.cxx
@@ -123,6 +123,7 @@ PLIST_SUB+=	VIDEODIR="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSDL}
+USES+=		sdl
 USE_SDL+=	sdl
 CONFIGURE_ARGS+=--enable-sdl
 .else

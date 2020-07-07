@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gtk-sharp
 PORTVERSION=	2.99.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	30
@@ -19,8 +17,8 @@ RUN_DEPENDS=	p5-XML-LibXML>=0:textproc/p5-XML-LibXML
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo gdkpixbuf2 gtk30
-USES=		gettext-runtime gmake libtool mono pathfix perl5 pkgconfig shebangfix tar:xz
-SHEBANG_FILES=	parser/*.pl
+USES=		gettext-runtime gmake gnome libtool mono pathfix perl5 \
+		pkgconfig tar:xz
 USE_PERL5=	run
 MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
 
