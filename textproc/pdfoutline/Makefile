@@ -22,7 +22,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/pdfoutline \
-		share/man/man1/pdfoutline.1.gz
+		share/man/man1/pdfoutline.1
 
 GH_ACCOUNT=	eugmes
 GH_PROJECT=	fntsample
