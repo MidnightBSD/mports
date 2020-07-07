@@ -40,7 +40,7 @@ do-install:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${INSTALLDIR}
 	@cd ${WRKSRC} && ${COPYTREE_BIN} "bin jre/bin" ${INSTALLDIR}
 	${MKDIR} ${PREFIX}/${JDK_ROOT}/include/midnightbsd
-	cd ${PREFIX} && ln -s ${JDK_ROOT}/include/freebsd/jni_md.h ${JDK_ROOT}/include/midnightbsd/jni_md.h
+	cd ${PREFIX} && ${CP} ${JDK_ROOT}/include/freebsd/jni_md.h ${JDK_ROOT}/include/midnightbsd/jni_md.h
 
 update:
 	@${MAKE} -f ${.CURDIR}/Makefile.update \
