@@ -1,6 +1,13 @@
+bin/munin-get
 bin/munindoc
 @sample %%ETCDIR%%/munin-node.conf.sample
-@sample %%ETCDIR%%/plugin-conf.d/plugins.conf.sample
+@dir %%ETCDIR%%/plugin-conf.d
+@sample %%ETCDIR%%/plugins.conf.sample %%ETCDIR%%/plugin-conf.d/plugins.conf
+@comment the directory exists in STAGEDIR because it is present in
+@comment BSD.local.dist but if not registered here, it will not exist in PREFIX
+@comment when the package is installed.
+@dir etc/newsyslog.conf.d
+@sample %%ETCDIR%%/munin-node.newsyslog etc/newsyslog.conf.d/munin-node.conf
 %%SITE_PERL%%/Munin/Node/Config.pm
 %%SITE_PERL%%/Munin/Node/Configure/Debug.pm
 %%SITE_PERL%%/Munin/Node/Configure/History.pm
@@ -9,7 +16,6 @@ bin/munindoc
 %%SITE_PERL%%/Munin/Node/Configure/PluginList.pm
 %%SITE_PERL%%/Munin/Node/Logger.pm
 %%SITE_PERL%%/Munin/Node/OS.pm
-%%SITE_PERL%%/Munin/Node/ProxySpooler.pm
 %%SITE_PERL%%/Munin/Node/SNMPConfig.pm
 %%SITE_PERL%%/Munin/Node/Server.pm
 %%SITE_PERL%%/Munin/Node/Service.pm
@@ -20,10 +26,10 @@ bin/munindoc
 %%SITE_PERL%%/Munin/Plugin.pm
 %%SITE_PERL%%/Munin/Plugin/Pgsql.pm
 %%SITE_PERL%%/Munin/Plugin/SNMP.pm
+man/man1/munin-get.1.gz
 man/man1/munin-node-configure.1.gz
 man/man1/munin-node.1.gz
 man/man1/munin-run.1.gz
-man/man1/munin-sched.1.gz
 man/man1/munindoc.1.gz
 man/man3/Munin::Node::Config.3.gz
 man/man3/Munin::Node::Configure::Debug.3.gz
@@ -33,7 +39,6 @@ man/man3/Munin::Node::Configure::Plugin.3.gz
 man/man3/Munin::Node::Configure::PluginList.3.gz
 man/man3/Munin::Node::Logger.3.gz
 man/man3/Munin::Node::OS.3.gz
-man/man3/Munin::Node::ProxySpooler.3.gz
 man/man3/Munin::Node::SNMPConfig.3.gz
 man/man3/Munin::Node::Server.3.gz
 man/man3/Munin::Node::Service.3.gz
@@ -49,7 +54,6 @@ man/man8/munin.8.gz
 sbin/munin-node
 sbin/munin-node-configure
 sbin/munin-run
-sbin/munin-sched
 %%DATADIR%%/munin-async
 %%DATADIR%%/munin-asyncd
 %%JAVA%%%%DATADIR%%/munin-jmx-plugins.jar
@@ -59,14 +63,6 @@ sbin/munin-sched
 %%DATADIR%%/plugins/apache_volume
 %%DATADIR%%/plugins/apc_envunit_
 %%DATADIR%%/plugins/apc_nis
-%%DATADIR%%/plugins/asterisk_channels
-%%DATADIR%%/plugins/asterisk_channelstypes
-%%DATADIR%%/plugins/asterisk_codecs
-%%DATADIR%%/plugins/asterisk_meetme
-%%DATADIR%%/plugins/asterisk_meetmeusers
-%%DATADIR%%/plugins/asterisk_sipchannels
-%%DATADIR%%/plugins/asterisk_sippeers
-%%DATADIR%%/plugins/asterisk_voicemail
 %%DATADIR%%/plugins/bind9
 %%DATADIR%%/plugins/bind9_rndc
 %%DATADIR%%/plugins/cmc_tc_sensor_
@@ -109,7 +105,7 @@ sbin/munin-sched
 %%DATADIR%%/plugins/iostat
 %%DATADIR%%/plugins/ipac-ng
 %%DATADIR%%/plugins/ipmi_
-%%DATADIR%%/plugins/ipmi_sensor_
+%%PYTHON%%%%DATADIR%%/plugins/ipmi_sensor_
 %%DATADIR%%/plugins/ircu
 %%JAVA%%%%DATADIR%%/plugins/jmx_
 %%JAVA%%%%DATADIR%%/plugins/jmx_tomcat_dbpools
@@ -194,7 +190,7 @@ sbin/munin-sched
 %%DATADIR%%/plugins/slapd_
 %%DATADIR%%/plugins/slapd_bdb_cache_
 %%PERL%%%%DATADIR%%/plugins/slony_lag_
-%%DATADIR%%/plugins/smart_
+%%PYTHON%%%%DATADIR%%/plugins/smart_
 %%SNMP%%%%DATADIR%%/plugins/snmp__cpuload
 %%SNMP%%%%DATADIR%%/plugins/snmp__df
 %%SNMP%%%%DATADIR%%/plugins/snmp__df_ram
@@ -250,6 +246,7 @@ sbin/munin-sched
 %%DATADIR%%/plugins/users
 %%PERL%%%%DATADIR%%/plugins/varnish_
 %%DATADIR%%/plugins/vmstat
+%%DATADIR%%/plugins/zfs_arc_compression
 %%DATADIR%%/plugins/zfs_compress
 %%DATADIR%%/plugins/zimbra_
 %%DATADIR%%/plugins/zpool_chksum
