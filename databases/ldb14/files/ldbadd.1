@@ -1,13 +1,13 @@
 '\" t
-.\"     Title: ldbsearch
+.\"     Title: ldbadd
 .\"    Author: [see the "AUTHOR" section]
-.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
-.\"      Date: 01/02/2017
+.\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
+.\"      Date: 12/11/2018
 .\"    Manual: System Administration tools
 .\"    Source: LDB 1.1
 .\"  Language: English
 .\"
-.TH "LDBSEARCH" "1" "01/02/2017" "LDB 1\&.1" "System Administration tools"
+.TH "LDBADD" "1" "12/11/2018" "LDB 1\&.1" "System Administration tools"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -28,13 +28,15 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH "NAME"
-ldbsearch \- Search for records in a LDB database
+ldbadd \- Command\-line utility for adding records to an LDB
 .SH "SYNOPSIS"
-.HP \w'\fBldbsearch\fR\ 'u
-\fBldbsearch\fR [\-h] [\-s\ base|one|sub] [\-b\ basedn] [\-i] [\-H\ LDB\-URL] [expression] [attributes]
+.HP \w'\fBldbadd\fR\ 'u
+\fBldbadd\fR [\-h] [\-H\ LDB\-URL] [ldif\-file1] [ldif\-file2] [\&.\&.\&.]
 .SH "DESCRIPTION"
 .PP
-ldbsearch searches a LDB database for records matching the specified expression (see the ldapsearch(1) manpage for a description of the expression format)\&. For each record, the specified attributes are printed\&.
+ldbadd adds records to an ldb(3) database\&. It reads the ldif(5) files specified on the command line and adds the records from these files to the LDB database, which is specified by the \-H option or the LDB_URL environment variable\&.
+.PP
+If \- is specified as a ldb file, the ldif input is read from standard input\&.
 .SH "OPTIONS"
 .PP
 \-h
@@ -45,21 +47,6 @@ Show list of available options\&.
 \-H <ldb\-url>
 .RS 4
 LDB URL to connect to\&. See ldb(3) for details\&.
-.RE
-.PP
-\-s one|sub|base
-.RS 4
-Search scope to use\&. One\-level, subtree or base\&.
-.RE
-.PP
-\-i
-.RS 4
-Read search expressions from stdin\&.
-.RE
-.PP
-\-b basedn
-.RS 4
-Specify Base DN to use\&.
 .RE
 .SH "ENVIRONMENT"
 .PP
@@ -72,7 +59,7 @@ LDB URL to connect to (can be overrided by using the \-H command\-line option\&.
 This man page is correct for version 1\&.1 of LDB\&.
 .SH "SEE ALSO"
 .PP
-ldb(3), ldbedit(1)
+ldb(3), ldbmodify, ldbdel, ldif(5)
 .SH "AUTHOR"
 .PP
 ldb was written by
@@ -87,5 +74,5 @@ This manpage was written by Jelmer Vernooij\&.
 .IP " 1." 4
 Andrew Tridgell
 .RS 4
-\%http://samba.org/~tridge/
+\%https://www.samba.org/~tridge/
 .RE

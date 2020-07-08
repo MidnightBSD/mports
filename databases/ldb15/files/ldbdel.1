@@ -1,13 +1,13 @@
 '\" t
-.\"     Title: ldbadd
+.\"     Title: ldbdel
 .\"    Author: [see the "AUTHOR" section]
-.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
-.\"      Date: 01/02/2017
+.\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
+.\"      Date: 12/11/2018
 .\"    Manual: System Administration tools
 .\"    Source: LDB 1.1
 .\"  Language: English
 .\"
-.TH "LDBADD" "1" "01/02/2017" "LDB 1\&.1" "System Administration tools"
+.TH "LDBDEL" "1" "12/11/2018" "LDB 1\&.1" "System Administration tools"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -28,15 +28,15 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH "NAME"
-ldbadd \- Command\-line utility for adding records to an LDB
+ldbdel \- Command\-line program for deleting LDB records
 .SH "SYNOPSIS"
-.HP \w'\fBldbadd\fR\ 'u
-\fBldbadd\fR [\-h] [\-H\ LDB\-URL] [ldif\-file1] [ldif\-file2] [\&.\&.\&.]
+.HP \w'\fBldbdel\fR\ 'u
+\fBldbdel\fR [\-h] [\-H\ LDB\-URL] [dn] [\&.\&.\&.]
 .SH "DESCRIPTION"
 .PP
-ldbadd adds records to an ldb(3) database\&. It reads the ldif(5) files specified on the command line and adds the records from these files to the LDB database, which is specified by the \-H option or the LDB_URL environment variable\&.
+ldbdel deletes records from an ldb(3) database\&. It deletes the records identified by the dn\*(Aqs specified on the command\-line\&.
 .PP
-If \- is specified as a ldb file, the ldif input is read from standard input\&.
+ldbdel uses either the database that is specified with the \-H option or the database specified by the LDB_URL environment variable\&.
 .SH "OPTIONS"
 .PP
 \-h
@@ -59,7 +59,7 @@ LDB URL to connect to (can be overrided by using the \-H command\-line option\&.
 This man page is correct for version 1\&.1 of LDB\&.
 .SH "SEE ALSO"
 .PP
-ldb(3), ldbmodify, ldbdel, ldif(5)
+ldb(3), ldbmodify, ldbadd, ldif(5)
 .SH "AUTHOR"
 .PP
 ldb was written by
@@ -69,10 +69,12 @@ If you wish to report a problem or make a suggestion then please see the
 \m[blue]\fB\%http://ldb.samba.org/\fR\m[]
 web site for current contact and maintainer information\&.
 .PP
+ldbdel was written by Andrew Tridgell\&.
+.PP
 This manpage was written by Jelmer Vernooij\&.
 .SH "NOTES"
 .IP " 1." 4
 Andrew Tridgell
 .RS 4
-\%http://samba.org/~tridge/
+\%https://www.samba.org/~tridge/
 .RE

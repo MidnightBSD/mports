@@ -1,13 +1,13 @@
 '\" t
-.\"     Title: ldbrename
+.\"     Title: ldbsearch
 .\"    Author: [see the "AUTHOR" section]
-.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
-.\"      Date: 01/02/2017
+.\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
+.\"      Date: 12/11/2018
 .\"    Manual: System Administration tools
 .\"    Source: LDB 1.1
 .\"  Language: English
 .\"
-.TH "LDBRENAME" "1" "01/02/2017" "LDB 1\&.1" "System Administration tools"
+.TH "LDBSEARCH" "1" "12/11/2018" "LDB 1\&.1" "System Administration tools"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -28,13 +28,13 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH "NAME"
-ldbrename \- Edit LDB databases using your favorite editor
+ldbsearch \- Search for records in a LDB database
 .SH "SYNOPSIS"
-.HP \w'\fBldbrename\fR\ 'u
-\fBldbrename\fR [\-h] [\-o\ options] {olddn} {newdn}
+.HP \w'\fBldbsearch\fR\ 'u
+\fBldbsearch\fR [\-h] [\-s\ base|one|sub] [\-b\ basedn] [\-i] [\-H\ LDB\-URL] [expression] [attributes]
 .SH "DESCRIPTION"
 .PP
-ldbrename is a utility that allows you to rename trees in an LDB database based by DN\&. This utility takes two arguments: the original DN name of the top element and the DN to change it to\&.
+ldbsearch searches a LDB database for records matching the specified expression (see the ldapsearch(1) manpage for a description of the expression format)\&. For each record, the specified attributes are printed\&.
 .SH "OPTIONS"
 .PP
 \-h
@@ -47,9 +47,19 @@ Show list of available options\&.
 LDB URL to connect to\&. See ldb(3) for details\&.
 .RE
 .PP
-\-o options
+\-s one|sub|base
 .RS 4
-Extra ldb options, such as modules\&.
+Search scope to use\&. One\-level, subtree or base\&.
+.RE
+.PP
+\-i
+.RS 4
+Read search expressions from stdin\&.
+.RE
+.PP
+\-b basedn
+.RS 4
+Specify Base DN to use\&.
 .RE
 .SH "ENVIRONMENT"
 .PP
@@ -62,7 +72,7 @@ LDB URL to connect to (can be overrided by using the \-H command\-line option\&.
 This man page is correct for version 1\&.1 of LDB\&.
 .SH "SEE ALSO"
 .PP
-ldb(3), ldbmodify, ldbdel, ldif(5)
+ldb(3), ldbedit(1)
 .SH "AUTHOR"
 .PP
 ldb was written by
@@ -77,5 +87,5 @@ This manpage was written by Jelmer Vernooij\&.
 .IP " 1." 4
 Andrew Tridgell
 .RS 4
-\%http://samba.org/~tridge/
+\%https://www.samba.org/~tridge/
 .RE

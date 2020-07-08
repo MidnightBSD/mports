@@ -1,9 +1,10 @@
 PORTNAME=		ldb
-PORTVERSION=		1.1.29
-PORTREVISION=		3
+PORTVERSION=		1.5.6
+PORTREVISION=		0
 PORTEPOCH=		0
 CATEGORIES=		databases
 MASTER_SITES=		SAMBA
+PKGNAMESUFFIX?=		15
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		LDAP-like embedded database
@@ -15,38 +16,43 @@ IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with 
 BUILD_DEPENDS=		${LDB_DEPENDS}
 RUN_DEPENDS=		${LDB_DEPENDS}
 
-LDB_DEPENDS=		talloc1>=2.1.8:devel/talloc1 \
-			tevent1>=0.9.31:devel/tevent1 \
-			tdb1>=1.3.12,1:databases/tdb1 \
+LDB_DEPENDS=		talloc>=2.2.0:devel/talloc \
+			tevent>=0.10.0:devel/tevent \
+			tdb>=1.4.0:databases/tdb \
+			lmdb>=0.9.23:databases/lmdb \
+			cmocka>=1.1.3:sysutils/cmocka \
 			popt>=0:devel/popt
 
-CONFLICTS_INSTALL=	ldb1[2-6]-1.*
+CONFLICTS_INSTALL=	ldb-1.1.* ldb1[2-46]-1.*
 
 #FLAVORS=		default nopython
 #nopython_PKGNAMESUFFIX=	-nopython
 #nopython_CONFLICTS=	ldb
 #default_CONFLICTS=	ldb-nopython
 
-USES=			compiler ldap pkgconfig waf
+USES=			compiler pkgconfig waf
 USE_LDCONFIG=		yes
-WAF_CMD=		buildtools/bin/waf
-CONFIGURE_LOG=		bin/config.log
+WAF_CMD=		${BUILD_WRKSRC}/buildtools/bin/waf
+CONFIGURE_LOG=		${BUILD_WRKSRC}/bin/config.log
 
 USE_OPENLDAP=		yes
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
-CONFIGURE_ARGS+=	--bundled-libraries=!talloc,!tevent,!tdb,!popt \
+CONFIGURE_ARGS+=	--bundled-libraries=!talloc,!tevent,!tdb,!popt,!cmocka \
 			--with-modulesdir=${PREFIX}/lib/shared-modules \
-			--with-privatelibdir=${PREFIX}/lib/ldb
-
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
+			--with-privatelibdir=${PREFIX}/lib/ldb \
+			--mandir=${MANPREFIX}/man \
 			--with-openldap=${LOCALBASE} \
 			--disable-rpath \
 			--without-gettext
 
-OPTIONS_DEFINE=		MANPAGES
+OPTIONS_DEFINE=		MANPAGES DEBUG
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
+
+DEBUG_CONFIGURE_ON=	--verbose --enable-debug
+DEBUG_MAKE_ARGS=	--verbose
+DEBUG_FLAGS=		-g -ggdb3 -O0
 
 .include <bsd.mport.options.mk>
 
@@ -59,16 +65,24 @@ LDB_BINS=		bin/ldbedit \
 
 LDB_LIBS=		lib/libldb.so \
 			lib/libldb.so.1 \
+			lib/ldb/libldb-tdb-int.so \
+			lib/ldb/libldb-tdb-err-map.so \
+			lib/ldb/libldb-key-value.so \
 			lib/ldb/libldb-cmdline.so \
-			lib/shared-modules/ldb/asq.so \
-			lib/shared-modules/ldb/ldap.so \
-			lib/shared-modules/ldb/paged_results.so \
-			lib/shared-modules/ldb/paged_searches.so \
-			lib/shared-modules/ldb/rdn_name.so \
-			lib/shared-modules/ldb/sample.so \
-			lib/shared-modules/ldb/server_sort.so \
 			lib/shared-modules/ldb/skel.so \
+			lib/shared-modules/ldb/server_sort.so \
+			lib/shared-modules/ldb/sample.so \
+			lib/shared-modules/ldb/rdn_name.so \
+			lib/shared-modules/ldb/paged_searches.so \
+			lib/shared-modules/ldb/ldb.so \
+			lib/shared-modules/ldb/ldap.so \
+			lib/shared-modules/ldb/asq.so \
 			lib/shared-modules/ldb/tdb.so
+# Only for 64-bit architectures
+.if ${ARCH} != armv6 && ${ARCH} != armv7 && ${ARCH} != i386 && ${ARCH} != mips && ${ARCH} != powerpc && ${ARCH} != powerpcspe
+LDB_LIBS+=		lib/ldb/libldb-mdb-int.so \
+			lib/shared-modules/ldb/mdb.so
+.endif
 
 PLIST_FILES=		include/ldb_version.h \
 			include/ldb_handlers.h \
@@ -80,10 +94,10 @@ PLIST_FILES=		include/ldb_version.h \
 			${PKGCONFIGDIR}/ldb.pc
 
 .if defined(NO_PYTHON)
-USES+=			python:2.7,build
-#CONFIGURE_ARGS+=	--disable-python
+USES+=			python:build,test
+CONFIGURE_ARGS+=	--disable-python
 .else
-USES+=			python:2.7
+USES+=			python:3.4+
 
 PLIST_FILES+=		include/pyldb.h \
 			lib/libpyldb-util.so \
@@ -101,6 +115,8 @@ CONFIGURE_ENV+=		XSLTPROC="true"
 BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
 			xsltproc:textproc/libxslt
 .endif
+CONFIGURE_ENV+=		CFLAGS=-I${LOCALBASE}/include LDFLAGS=-L${LOCALBASE}/lib
+
 # No fancy color error messages
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
@@ -140,30 +156,11 @@ pre-build-MANPAGES-off:
 
 post-install:
 .for lib in ${LDB_BINS} ${LDB_LIBS}
-			${STRIP_CMD} ${STAGEDIR}${PREFIX}/${lib}
+		${STRIP_CMD} ${STAGEDIR}${PREFIX}/${lib}
 .endfor
 .if !defined(NO_PYTHON)
-			${STRIP_CMD} ${PREFIX}/lib/libpyldb-util.so
-			${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
-.else
-.for f in		include/pyldb.h \
-			lib/libpyldb-util.so \
-			lib/libpyldb-util.so.1 \
-			lib/ldb/libpytalloc-util.so.2
-				${RM} ${PREFIX}/${f}
-.endfor
-.for f in		${PYTHON_SITELIBDIR}/ldb.so \
-			${PYTHON_SITELIBDIR}/_ldb_text.py \
-			${PYTHON_SITELIBDIR}/_tdb_text.py \
-			${PYTHON_SITELIBDIR}/_tevent.so \
-			${PYTHON_SITELIBDIR}/talloc.so \
-			${PYTHON_SITELIBDIR}/tdb.so \
-			${PYTHON_SITELIBDIR}/tevent.py \
-			${PKGCONFIGDIR}/pyldb-util.pc
-				${RM} ${FAKE_DESTDIR}/${f}
-.endfor
-			${RMDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
-			${RMDIR} ${FAKE_DESTDIR}${PYTHON_LIBDIR}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpyldb-util.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ldb.so
 .endif
 
 .include <bsd.port.post.mk>
