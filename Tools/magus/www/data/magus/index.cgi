@@ -1,7 +1,9 @@
 #!/usr/bin/perl
 
+use v5.28;
 use strict;
 use warnings;
+use feature qw(signatures);
 
 use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
@@ -10,7 +12,6 @@ use CGI::Fast;
 use HTML::Template;
 use JSON::XS;
 use DateTime::Format::Pg;
-use Gzip::Faster;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -136,7 +137,7 @@ sub api_run_port_stats {
 
 
 sub run_index {
-  my ($p, $gzip_ok) = @_;
+  my ($p) = @_;
   my $tmpl = template($p, 'runlist.tmpl');
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
@@ -145,12 +146,7 @@ sub run_index {
     runs       => \@runs,
   );
   
-  if ($gzip_ok) {  
-    print $p->header(-encoding => 'gzip');        
-    print $p->header, gzip($tmpl->output); 
-  } else { 
-    print $p->header, $tmpl->output; 
-  }
+  print $p->header, $tmpl->output; 
 }
 
 sub compare_runs {
@@ -322,7 +318,7 @@ sub run_page {
 
   my $tmpl = template($p, "run.tmpl");
   $tmpl->param(title => "Run $run");
-  $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
+  $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id blessed));
   
   my $dbh = Magus::Run->db_Main();  
   
