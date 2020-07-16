@@ -198,6 +198,7 @@ SUBDIR += sqlite3
 SUBDIR += tdb
 SUBDIR += tdb1
 SUBDIR += tinycdb
+SUBDIR += tuning-primer
 SUBDIR += unixODBC
 
 .include <bsd.port.subdir.mk>
