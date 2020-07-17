@@ -13,6 +13,7 @@ COMMENT=	Enlightenment Foundation Libraries
 LICENSE=	bsd2 lgpl2.1
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS=	clang60:devel/llvm60
 LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff \
@@ -20,6 +21,11 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libdbus-1.so:devel/dbus \
 		libsndfile.so:audio/libsndfile
+RUN_DEPENDS=	clang60:devel/llvm60
+
+CPP=    ${LOCALBASE}/bin/clang-cpp60
+CC=     ${LOCALBASE}/bin/clang60
+CXX=    ${LOCALBASE}/bin/clang++60
 
 # lib/libeio.so.1
 CONFLICTS_INSTALL=	libeio
