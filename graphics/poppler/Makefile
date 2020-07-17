@@ -1,6 +1,6 @@
 PORTNAME=	poppler
 DISTVERSION=	0.90.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics print
 MASTER_SITES=	https://poppler.freedesktop.org/
 
@@ -10,6 +10,8 @@ COMMENT?=	PDF rendering library
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+# will not build with base LLVM from 1.2 or lower
+BUILD_DEPENDS=	clang60:devel/llvm60
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		liblcms2.so:graphics/lcms2 \
 		libpng.so:graphics/png \
@@ -17,7 +19,8 @@ LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libfreetype.so:print/freetype2 \
 		libnss3.so:security/nss \
 		libfontconfig.so:x11-fonts/fontconfig
-RUN_DEPENDS=	poppler-data>0:graphics/poppler-data
+RUN_DEPENDS=	poppler-data>0:graphics/poppler-data \
+		clang60:devel/llvm60
 
 USES=		compiler:c++11-lang cpe cmake:insource gnome jpeg libtool \
 		localbase pathfix pkgconfig tar:xz
@@ -33,7 +36,9 @@ CMAKE_ON=	ENABLE_LIBJPEG  \
 		ENABLE_SPLASH
 CMAKE_OFF=	BUILD_GTK_TESTS
 
-USE_GCC=	6
+CPP=    ${LOCALBASE}/bin/clang-cpp60
+CC=     ${LOCALBASE}/bin/clang60
+CXX=    ${LOCALBASE}/bin/clang++60
 
 # Slave ports.
 _POPPLER_SLAVES=	library glib qt5 utils
