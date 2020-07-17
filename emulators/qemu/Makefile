@@ -2,7 +2,7 @@
 
 PORTNAME=	qemu
 PORTVERSION=	4.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -12,7 +12,9 @@ COMMENT?=	QEMU CPU Emulator
 
 LICENSE=	gpl2
 
-LIB_DEPENDS?=	libnettle.so:security/nettle \
+BUILD_DEPENDS+=  ${LOCALBASE}/lib/libpcap.so:net/libpcap
+LIB_DEPENDS+=   libpcap.so:net/libpcap \
+		libnettle.so:security/nettle \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libepoxy.so:graphics/libepoxy \
