@@ -21,6 +21,7 @@ SUBDIR += dirmngr
 SUBDIR += doas
 SUBDIR += duo
 SUBDIR += easy-rsa
+SUBDIR += fakeroot
 SUBDIR += firewalk
 SUBDIR += gcr
 SUBDIR += gnome-keyring

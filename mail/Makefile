@@ -26,6 +26,7 @@ SUBDIR += hashcash
 SUBDIR += libmilter
 SUBDIR += libspf
 SUBDIR += libspf2
+SUBDIR += mailman
 SUBDIR += mailutils
 SUBDIR += mb2md
 SUBDIR += metamail
