@@ -1,5 +1,5 @@
 PORTNAME=	git
-DISTVERSION=	2.16.6
+DISTVERSION=	2.17.5
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -19,10 +19,10 @@ CONFLICTS_INSTALL?=	git-gui-[0-9]* git-subversion-[0-9]* git-lite-[0-9]*
 USERS=		git_daemon
 GROUPS=		git_daemon
 
-SUB_FILES=	pkg-message
+SUB_FILES=	pkg-message gitweb.conf
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf gmake shebangfix ssl tar:xz
+USES=		autoreconf gmake iconv shebangfix ssl tar:xz
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ARGS+=	DEVELOPER_CFLAGS=
@@ -57,6 +57,7 @@ OPTIONS_SUB=	yes
 
 GITWEB_DESC=	Install gitweb
 CONTRIB_DESC=	Install contributed scripts
+CURL_DESC=	Install curl support (provides HTTPS transport)
 P4_DESC=	Enable Perforce support
 CVS_DESC=	Enable CVS support
 HTMLDOCS_DESC=	Install additional documentation
@@ -73,12 +74,14 @@ PERL_RUN_DEPENDS=	p5-Error>=0:lang/p5-Error
 PERL_MAKE_ARGS_OFF=	NO_PERL=1
 
 GITWEB_IMPLIES=		PERL
+GITWEB_RUN_DEPENDS=	p5-CGI>=0:www/p5-CGI
 
 PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 PCRE_CONFIGURE_WITH=	libpcre
 
 SEND_EMAIL_IMPLIES=	PERL
-SEND_EMAIL_RUN_DEPENDS=	p5-Authen-SASL>=0:security/p5-Authen-SASL
+SEND_EMAIL_RUN_DEPENDS=	p5-Authen-SASL>=0:security/p5-Authen-SASL \
+			p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
 
 ICONV_USES=		iconv
 ICONV_MAKE_ARGS_OFF=	NO_ICONV=1
@@ -153,7 +156,7 @@ post-patch:
 .for FILE in ${RMMAN7}
 	@${RM} ${WRKDIR}/man7/${FILE}
 .endfor
-	@${REINPLACE_CMD} -e 's|share/man/man3|man/man3|' ${WRKSRC}/perl/Makefile.PL
+	@${REINPLACE_CMD} -e "s,%%SITE_PERL%%,${SITE_PERL},g" ${WRKSRC}/Makefile
 
 post-patch-CONTRIB-on:
 	@${REINPLACE_CMD} -e "s,/usr/bin/perl,${PERL}," \
@@ -230,5 +233,10 @@ post-install-CONTRIB-off:
 
 post-install-P4-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${FAKE_DESTDIR}${PREFIX}/bin/
+
+post-install-GITWEB-on:
+	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKDIR}/gitweb.conf \
+		${FAKE_DESTDIR}${ETCDIR}/gitweb.conf.sample
 
 .include <bsd.port.mk>
