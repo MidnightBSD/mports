@@ -1,6 +1,5 @@
 PORTNAME=	git
-DISTVERSION=	2.19.5
-PORTREVISION=	1
+DISTVERSION=	2.20.3
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -26,7 +25,7 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf gmake iconv shebangfix ssl tar:xz
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ARGS+=	DEVELOPER_CFLAGS=
+MAKE_ARGS+=	DEVELOPER=
 MAKE_ENV+=	V=1 XMLTO_EXTRA=--skip-validation
 USE_RC_SUBR=	git_daemon
 SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
