@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	snappy-java
 PORTVERSION=	1.0.4.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	archivers java
 MASTER_SITES=	http://pkgs.fedoraproject.org/repo/pkgs/snappy/snappy-1.0.4.tar.gz/b69151652e82168bc5c643bcd6f07162/:source2 \
 		FREEBSD_LOCAL/jgh/archivers/${PORTNAME}/:source3 \
@@ -30,7 +28,7 @@ BROKEN_armv6=		fails to build: maven-assembly-plugin: Failed to retrieve numeric
 
 # This works with java 8, but cassandra 2 requires java 7
 USE_JAVA=	yes
-JAVA_VERSION=	1.7
+JAVA_VERSION=	7
 USES=		gmake
 USE_LDCONFIG=	yes
 MAKE_ARGS+=	Default_CXX=${CXX}

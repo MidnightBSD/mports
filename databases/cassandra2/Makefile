@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	cassandra
 PORTVERSION=	2.1.1
 CATEGORIES=	databases java

@@ -1,0 +1,83 @@
+--- SConstruct.orig	2019-12-31 20:31:27.000000000 -0500
++++ SConstruct	2020-07-28 21:51:34.260591000 -0400
+@@ -811,7 +811,7 @@
+                         "-Wl,-compatibility_version,%s" % libgps_version,
+                         "-Wl,-install_name,%s/$TARGET" %
+                         installdir('libdir', add_destdir=False)]
+-    elif sys.platform.startswith('freebsd'):
++    elif sys.platform.startswith('midnightbsd'):
+         # for isascii(), putenv(), nice(), strptime()
+         confdefs.append('#if !defined(_XOPEN_SOURCE)')
+         confdefs.append('#define _XOPEN_SOURCE 700')
+@@ -878,7 +878,7 @@
+             ncurseslibs = ['!ncurses5-config --libs --cflags']
+         elif WhereIs('ncursesw5-config'):
+             ncurseslibs = ['!ncursesw5-config --libs --cflags']
+-        elif sys.platform.startswith('freebsd'):
++        elif sys.platform.startswith('midnightbsd'):
+             ncurseslibs = ['-lncurses']
+         elif sys.platform.startswith('openbsd'):
+             ncurseslibs = ['-lcurses']
+@@ -898,7 +898,7 @@
+                 announce("pkg_config is confused about the state "
+                          "of libusb-1.0.")
+                 usbflags = []
+-        elif sys.platform.startswith("freebsd"):
++        elif sys.platform.startswith("midnightbsd"):
+             confdefs.append("#define HAVE_LIBUSB 1\n")
+             usbflags = ["-lusb"]
+         else:
+@@ -1267,32 +1267,32 @@
+             config.env['aiogps'] = True
+ 
+         # check for pyserial
+-        try:
+-            imp.find_module('serial')
+-            announce("Python module serial (pyserial) found.")
+-        except ImportError:
+-            # no pycairo, don't build xgps, xgpsspeed
+-            announce("WARNING: Python module serial (pyserial) not found.")
+-            config.env['xgps'] = False
++        #try:
++        #    imp.find_module('serial')
++        #    announce("Python module serial (pyserial) found.")
++        #except ImportError:
++        #    # no pycairo, don't build xgps, xgpsspeed
++        #    announce("WARNING: Python module serial (pyserial) not found.")
++        #    config.env['xgps'] = False
+ 
+         if config.env['xgps']:
+             # check for pycairo
+-            try:
+-                imp.find_module('cairo')
+-                announce("Python module cairo (pycairo) found.")
+-            except ImportError:
+-                # no pycairo, don't build xgps, xgpsspeed
+-                announce("WARNING: Python module cairo (pycairo) not found.")
+-                config.env['xgps'] = False
++            #try:
++            #    imp.find_module('cairo')
++            #    announce("Python module cairo (pycairo) found.")
++            #except ImportError:
++            #    # no pycairo, don't build xgps, xgpsspeed
++            #    announce("WARNING: Python module cairo (pycairo) not found.")
++            #    config.env['xgps'] = False
+ 
+             # check for pygobject
+-            try:
+-                imp.find_module('gi')
+-                announce("Python module gi (pygobject) found.")
+-            except ImportError:
+-                # no pygobject, don't build xgps, xgpsspeed
+-                announce("WARNING: Python module gi (pygobject) not found.")
+-                config.env['xgps'] = False
++            #try:
++            #    imp.find_module('gi')
++            #    announce("Python module gi (pygobject) found.")
++            #except ImportError:
++            #    # no pygobject, don't build xgps, xgpsspeed
++            #    announce("WARNING: Python module gi (pygobject) not found.")
++            #    config.env['xgps'] = False
+ 
+             if not config.CheckPKG('gtk+-3.0'):
+                 config.env['xgps'] = False
