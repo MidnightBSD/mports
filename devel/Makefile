@@ -835,6 +835,7 @@ SUBDIR += py-pkgconfig
 SUBDIR += py-pretend
 SUBDIR += py-protobuf
 SUBDIR += py-py
+SUBDIR += py-python-dbusmock
 SUBDIR += py-pyudev
 SUBDIR += py-pyasn1
 SUBDIR += py-pyasn1-modules
