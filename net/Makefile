@@ -17,6 +17,7 @@ SUBDIR += dhcp6
 SUBDIR += dhcpdump
 SUBDIR += dictd
 SUBDIR += dual-dhclient
+SUBDIR += empty
 SUBDIR += fping
 SUBDIR += freerdp
 SUBDIR += geoclue
