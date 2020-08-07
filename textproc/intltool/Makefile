@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	intltool
 PORTVERSION=	0.51.0
 PORTREVISION=	1
@@ -12,11 +10,10 @@ COMMENT=	Tools to internationalize various kinds of data files
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
-RUN_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
+BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
+RUN_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
 
-USES=		gmake iconv
-USE_PERL5=	yes
+USES=		gmake iconv perl5
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir="${PREFIX}/libdata"
 
