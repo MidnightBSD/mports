@@ -21,15 +21,14 @@ LICENSE=	gpl2
 
 FAKE_OPTS=	prefixhack
 
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
-RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
+BUILD_DEPENDS=	gm4:devel/m4
+RUN_DEPENDS=	gm4:devel/m4 \
 		autoconf-wrapper:${PORTSDIR}/devel/autoconf-wrapper
 
 BUILD_VERSION=	2.13
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 LATEST_LINK=	autoconf213
-USES=		makeinfo tar:bzip2
-USE_PERL5=	yes
+USES=		makeinfo perl5 tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4 AWK=${AWK}
 CONFIGURE_ARGS=	--program-suffix=-${BUILD_VERSION}
