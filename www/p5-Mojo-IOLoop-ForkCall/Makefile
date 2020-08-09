@@ -19,4 +19,6 @@ USES=			perl5
 USE_PERL5=		modbuild
 PL_BUILD=		Build
 
+NO_TEST=		yes
+
 .include <bsd.port.mk>
