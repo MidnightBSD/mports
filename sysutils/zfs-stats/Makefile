@@ -1,10 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: head/sysutils/zfs-stats/Makefile 326572 2013-09-07 06:13:27Z az $
-
 PORTNAME=	zfs-stats
-PORTVERSION=	1.2.2
+PORTVERSION=	1.3.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://cloud.github.com/downloads/mmatuska/zfs-stats/
+MASTER_SITES=	GH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display human-readable ZFS statistics
@@ -12,6 +9,8 @@ COMMENT=	Display human-readable ZFS statistics
 LICENSE=	bsd2
 
 USES=		perl5
+USE_GITHUB=	yes
+GH_ACCOUNT=	mmatuska
 
 NO_BUILD=	yes
 
