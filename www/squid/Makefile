@@ -120,8 +120,7 @@ SQUID_STABLE_VER=	9
 
 CONFLICTS=	squid-2.[^7]* squid-3.* cacheboy-[0-9]*
 GNU_CONFIGURE=	yes
-USES=		tar:bzip2
-USE_PERL5=	yes
+USES=		perl5 tar:bzip2
 USE_RC_SUBR=	squid
 
 SQUID_UID?=	squid
