@@ -1,5 +1,3 @@
-# $MidnightBSD$
-#
 # If you need SOCKS support, define SOCKS_SERVER with
 # the name of your SOCKS proxy and remove the '#'.
 # You should also check the default port and DNS
@@ -21,15 +19,16 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small (150k), fast, perl-based IRC client
-LICENSE=	gpl2
 
-USE_PERL5=	yes
+LICENSE=	gpl2
 
 OPTIONS_DEFINE=	IPV6 SIRC_SCRIPTS SOCKS
 OPTIONS_DEFAULT=IPV6 SIRC_SCRIPTS
 IPV6_DESC=		Support for IPv6 transport
 SIRC_SCRIPTS_DESC= 	Additional scripts for the clien
 SOCKS_DESC=		Support for IRCing through a SOCKS proxy
+
+USES=		perl5
 
 SUB_FILES=	sirc
 
