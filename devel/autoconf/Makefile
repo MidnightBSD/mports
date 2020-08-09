@@ -18,7 +18,6 @@ RUN_DEPENDS=	gm4:devel/m4 \
 BUILD_VERSION=	2.69
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 USES=		gmake makeinfo perl5 tar:xz
-USE_PERL5=	yes
 INFO=		autoconf
 
 GNU_CONFIGURE=	yes
