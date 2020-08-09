@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/irc/irssi-scripts/Makefile,v 1.4 2007/02/27 00:04:45 linimon Exp $
-
 PORTNAME=	irssi-scripts
 PORTVERSION=	20100512
 CATEGORIES=	irc
@@ -9,13 +6,14 @@ DISTFILES=	${PORTNAME}_${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of useful scripts for the irssi IRC-client
+
 LICENSE=	unknown
 
-RUN_DEPENDS=	irssi:${PORTSDIR}/irc/irssi
+RUN_DEPENDS=	irssi:irc/irssi
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USE_PERL5=	yes
+USES=		perl5
 NO_BUILD=	yes
 
 do-install:

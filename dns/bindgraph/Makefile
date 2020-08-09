@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bindgraph
 PORTVERSION=	0.3
 PORTREVISION=	0
@@ -12,12 +10,11 @@ COMMENT=	RRDtool frontend for BIND statistics
 
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/databases/rrdtool	\
-		${SITE_PERL}/File/Tail.pm:${PORTSDIR}/devel/p5-File-Tail
+RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:databases/rrdtool	\
+		${SITE_PERL}/File/Tail.pm:devel/p5-File-Tail
 
 NO_BUILD=	yes
-USE_PERL5=	yes
-USES=		tar:tgz
+USES=		perl5 tar:tgz
 
 CGIDIR?=	${PREFIX}/www/cgi-bin
 DATADIR?=	/var/db/bindgraph

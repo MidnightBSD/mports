@@ -16,10 +16,11 @@ MASTER_SITE_SUBDIR=	scop
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WWW CGI script to browse CVS repository trees version 3
+
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${SITE_PERL}/IPC/Run.pm:${PORTSDIR}/devel/p5-IPC-Run \
-		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI
+RUN_DEPENDS=	${SITE_PERL}/IPC/Run.pm:devel/p5-IPC-Run \
+		${SITE_PERL}/URI.pm:net/p5-URI
 
 # The following extra dependencies are optional, but CVSweb works the
 # best with them.
@@ -35,7 +36,7 @@ LATEST_LINK=	cvsweb3
 CONFLICTS=	cvsweb-2.*
 
 NO_BUILD=	yes
-USE_PERL5=	yes
+USES=		perl5
 
 .include <bsd.port.pre.mk>
 

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	engine
 PORTVERSION=	4.0.12
 PORTEPOCH=	2
@@ -18,7 +16,6 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
-USE_PERL5=	yes
 USE_GNOME=	libxml2
 USES=		gmake perl5
 GNU_CONFIGURE=	yes

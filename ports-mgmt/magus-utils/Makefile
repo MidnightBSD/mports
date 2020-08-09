@@ -1,5 +1,4 @@
 # Created by: Lucas Holt
-# $MidnightBSD$
 
 PORTNAME=	magus-utils
 PORTVERSION=	1.6
@@ -12,13 +11,13 @@ COMMENT=        Magus runtime utilities for build cluster
 
 LICENSE=	agg
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:${PORTSDIR}/databases/p5-DBD-Pg \
-		${SITE_PERL}/YAML.pm:${PORTSDIR}/textproc/p5-YAML \
-		${SITE_PERL}/Class/DBI.pm:${PORTSDIR}/databases/p5-Class-DBI \
-		${SITE_PERL}/Class/Accessor.pm:${PORTSDIR}/devel/p5-Class-Accessor \
-		svn:${PORTSDIR}/devel/subversion
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:databases/p5-DBD-Pg \
+		${SITE_PERL}/YAML.pm:textproc/p5-YAML \
+		${SITE_PERL}/Class/DBI.pm:databases/p5-Class-DBI \
+		${SITE_PERL}/Class/Accessor.pm:devel/p5-Class-Accessor \
+		svn:devel/subversion
 
-USE_PERL5=	yes
+USES=		perl5
 USE_PGSQL=	yes
 
 NO_WRKSUBDIR=	YES

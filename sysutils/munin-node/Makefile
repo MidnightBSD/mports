@@ -26,7 +26,6 @@ RUN_DEPENDS=	p5-Cache-Cache>=0:devel/p5-Cache-Cache \
 		bash:shells/bash
 
 EXTRA_PATCHES+=	${MUNIN_PATCHES}
-USE_PERL5=	yes
 USES=		gmake perl5 cpe
 PKGMESSAGE=	${WRKDIR}/pkg-message
 REINPLACE_ARGS=	-i ""

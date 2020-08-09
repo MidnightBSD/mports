@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libbonobo
 PORTVERSION=	2.32.0
 PORTREVISION?=	4
@@ -18,10 +16,9 @@ USES+=		tar:bzip2
 
 LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt
 
-USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		bison gettext gmake libtool:keepla pathfix pkgconfig perl5
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_PERL5=	yes
 USE_GNOME=	intlhack libxml2 orbit2 referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc

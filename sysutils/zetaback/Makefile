@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/sysutils/zetaback/Makefile 326573 2013-09-07 06:47:20Z az $
-
 PORTNAME=	zetaback
 PORTVERSION=	1.0.7
 CATEGORIES=	sysutils
@@ -11,7 +8,7 @@ COMMENT=	Zetaback ZFS backup and recovery management system
 
 LICENSE=	bsd3
 
-USE_PERL5=	yes
+USES=		perl5
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	autoconf
 

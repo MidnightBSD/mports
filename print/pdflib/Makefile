@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	pdflib
 PORTVERSION=	7.0.5
 PORTREVISION=	2
@@ -16,7 +14,7 @@ LICENSE_PERMS=	dist-mirror pkg-mirror
 LICENSE_TEXT=	Free for private or research use, and for open source use
 
 USE_LDCONFIG=	yes
-USES=		gmake libtool
+USES=		gmake libtool perl5
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-py=no --with-ruby=no --with-tcl=no \
 		--enable-shared=yes --enable-static=yes
@@ -33,7 +31,6 @@ CONFIGURE_ARGS+=--enable-64bit
 .endif
 
 .if defined(WITH_PERL)
-USE_PERL5=	yes
 PLIST_SUB=	PERL=""
 CONFIGURE_ARGS+=--with-perl=${PERL}
 .else

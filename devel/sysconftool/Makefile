@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	sysconftool
 PORTVERSION=	0.17
 CATEGORIES=	devel
@@ -10,8 +8,7 @@ COMMENT=	Helps to install application configuration files
 
 LICENSE=	gpl3
 
-USES=		tar:bzip2
-USE_PERL5=	yes
+USES=		perl5 tar:bzip2
 GNu_CONFIGURE=	yes
 
 USE_AUTOTOOLS=	automake aclocal autoconf

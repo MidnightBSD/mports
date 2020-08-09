@@ -1,10 +1,6 @@
 # New ports collection makefile for:	mailgraph
 # Date created:			11 September 2005
 # Whom:				Xavier Beaudouin (kiwi@oav.net)
-#
-# $FreeBSD: ports/mail/couriergraph/Makefile,v 1.3 2006/08/08 15:11:44 clsung Exp $
-# $MidnightBSD$
-#
 
 PORTNAME=	couriergraph
 PORTVERSION=	20060202
@@ -14,12 +10,13 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A RRDtool frontend for Courier statistics
+
 LICENSE=	gpl
 
-USE_PERL5=	yes
+USES=		perl5
 
-RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/databases/rrdtool	\
-		${SITE_PERL}/File/Tail.pm:${PORTSDIR}/devel/p5-File-Tail
+RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:databases/rrdtool	\
+		${SITE_PERL}/File/Tail.pm:devel/p5-File-Tail
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
