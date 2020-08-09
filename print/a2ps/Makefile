@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	a2ps
 PORTVERSION=	4.13b
 PORTREVISION=	6
@@ -11,10 +9,9 @@ COMMENT=	Formats an ASCII file for printing on a postscript printer
 
 LICENSE=	gpl2
 
-LIB_DEPENDS=	libpaper.so:${PORTSDIR}/print/libpaper
+LIB_DEPENDS=	libpaper.so:print/libpaper
 
-USES=		cpe
-USE_PERL5=	yes
+USES=		cpe perl5
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -30,7 +27,7 @@ LIBS+=		-L${LOCALBASE}/lib
 
 PAPERSIZE?=
 .if ${PAPERSIZE:tl} == a4
-RUN_DEPENDS+=	${LOCALBASE}/etc/papersize:${PORTSDIR}/print/papersize-default-a4
+RUN_DEPENDS+=	${LOCALBASE}/etc/papersize:print/papersize-default-a4
 .endif
 
 OPTIONS_DEFINE=NLS I18N EMACS
