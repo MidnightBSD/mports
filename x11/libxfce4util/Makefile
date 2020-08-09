@@ -15,10 +15,9 @@ LICENSE=	gpl2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		gmake libtool pathfix pkgconfig gettext-tools \
-	xfce tar:bzip2
+	xfce tar:bzip2 perl5
 USE_GNOME=	glib20 intltool intlhack
 USE_LDCONFIG=	yes
-USE_PERL5=	yes
 
 CONFIGURE_ARGS=--without-html-dir
 
