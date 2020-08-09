@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	perl
 PORTVERSION=	5.26.2
 CATEGORIES=	lang devel perl5
@@ -18,9 +16,8 @@ PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
 
 PERL_NO_DEPENDS=	yes
-USE_PERL5=		yes
 
-USES=			tar:bzip2
+USES=			perl5 tar:bzip2
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \

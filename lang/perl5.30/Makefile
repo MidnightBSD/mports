@@ -16,9 +16,8 @@ PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
 
 PERL_NO_DEPENDS=	yes
-USE_PERL5=		yes
 
-USES=			tar:xz
+USES=			perl5 tar:xz
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
