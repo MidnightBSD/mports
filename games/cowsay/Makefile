@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/games/cowsay/Makefile,v 1.6 2004/12/09 03:01:44 kris Exp $
-
 PORTNAME=	cowsay
 PORTVERSION=	3.03
 PORTREVISION=	2
@@ -9,9 +6,10 @@ MASTER_SITES=	http://www.nog.net/~tony/warez/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable talking characters in ASCII art
+
 LICENSE=	artistic
 
-USE_PERL5=	yes
+USES=		perl5
 
 NO_BUILD=	# defined
 
