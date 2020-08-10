@@ -101,7 +101,7 @@ PLIST_SUB+=	BMAN="share/"
 PLIST_SUB+=	BMAN=""
 .endif
 
-PLIST_SUB+=	PFETC=${ETCDIR}
+PLIST_SUB+=	PFETC=etc/postfix/
 
 # check if mailwrapper supports $LOCALBASE
 .if ${OPSYS} == FreeBSD
