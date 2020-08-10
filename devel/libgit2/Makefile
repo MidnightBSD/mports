@@ -5,6 +5,7 @@
 
 PORTNAME=	libgit2
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/libgit2/libgit2/releases/download/v${PORTVERSION}/
 
@@ -39,5 +40,8 @@ post-patch:
 	@${REINPLACE_CMD} -e "/LIBGIT2_PC_REQUIRES.*openssl/ d" \
 		${WRKSRC}/cmake/Modules/SelectHTTPSBackend.cmake
 .endif
+
+post-install:
+	cd ${PREFIX}/lib/; ${LN} -sf libgit2.so.${PORTVERSION} libgit2.so.27
 
 .include <bsd.port.post.mk>
