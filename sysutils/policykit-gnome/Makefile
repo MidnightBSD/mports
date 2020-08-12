@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/policykit-gnome/Makefile,v 1.3 2008/05/01 00:57:08 marcus Exp $
-
 PORTNAME=	policykit-gnome
 PORTVERSION=	0.9.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-gnome-${PORTVERSION}
@@ -14,10 +11,10 @@ COMMENT=	GNOME frontend to the PolicyKit framework
 LICENSE=	lgpl gpl2
 LICENSE_COMB=	dual
 
-LIB_DEPENDS=	libpolkit.so:${PORTSDIR}/sysutils/policykit
+LIB_DEPENDS=	libpolkit.so:sysutils/policykit
 
-USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
-USE_GNOME=	intlhack gnomedocutils gconf2
+USES=		gettext gmake gnome libtool:keepla pathfix pkgconfig tar:bzip2
+USE_GNOME=	intlhack gconf2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
