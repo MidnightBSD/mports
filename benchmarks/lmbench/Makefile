@@ -18,11 +18,7 @@ USE_PERL5=	run
 SHEBANG_FILES=	scripts/getresults
 PLIST_SUB=	LMBENCH_OS=${ARCH}-${OPSYS:tl}${OSREL}
 
-test: build
-	@(cd ${WRKSRC}; make results)
-
-retest: build
-	@(cd ${WRKSRC}; make rerun)
+NO_TEST=	yes
 
 # This version seems to think that it's checked out directly from
 # bitkeeper.  It wants to look in ../SCCS/s.ChangeSet to find
