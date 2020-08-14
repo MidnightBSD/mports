@@ -9,7 +9,7 @@ COMMENT=	Benchmarks compilation speeds
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python:3,run
+USES=		python:3.7,run
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	nordlow
