@@ -5,7 +5,6 @@ SUBDIR += appwrapper
 SUBDIR += baobab
 SUBDIR += cartotheque
 SUBDIR += displaycalibrator
-SUBDIR += drivel
 SUBDIR += glabels
 SUBDIR += gnome-calendar
 SUBDIR += gnome-characters
