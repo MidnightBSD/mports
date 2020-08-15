@@ -4,7 +4,6 @@ SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
 SUBDIR += bitmap
-SUBDIR += dgs
 SUBDIR += dmenu
 SUBDIR += editres
 SUBDIR += fstobdf
