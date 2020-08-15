@@ -99,7 +99,6 @@ SUBDIR += git-lfs
 SUBDIR += git-lite
 SUBDIR += github-backup-utils
 SUBDIR += glade
-SUBDIR += glade3
 SUBDIR += glib12
 SUBDIR += glib20
 SUBDIR += glib20-reference
