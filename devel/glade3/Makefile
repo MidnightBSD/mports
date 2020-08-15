@@ -1,7 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
-#   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
-
 PORTNAME=	glade3
 PORTVERSION=	3.8.5
 PORTREVISION=	1
@@ -21,7 +17,7 @@ CONFLICTS=	glade-3.*
 PORTSCOUT=	ignore
 
 INSTALLS_ICONS=	yes
-USE_GNOME=	gtk20 intltool libxml2 gnomedocutils
+USE_GNOME=	gtk20 intltool libxml2
 USES=		gmake gettext libtool pathfix desktop-file-utils \
 		localbase:ldflags pkgconfig tar:xz
 INSTALLS_OMF=	yes
