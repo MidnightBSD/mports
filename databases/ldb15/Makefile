@@ -30,7 +30,7 @@ CONFLICTS_INSTALL=	ldb-1.1.* ldb1[2-46]-1.*
 #nopython_CONFLICTS=	ldb
 #default_CONFLICTS=	ldb-nopython
 
-USES=			compiler pkgconfig waf
+USES=			compiler pkgconfig ldap waf
 USE_LDCONFIG=		yes
 WAF_CMD=		${BUILD_WRKSRC}/buildtools/bin/waf
 CONFIGURE_LOG=		${BUILD_WRKSRC}/bin/config.log
