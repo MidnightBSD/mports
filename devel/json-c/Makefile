@@ -1,6 +1,5 @@
 PORTNAME=	json-c
-PORTVERSION=	0.14
-PORTREVISION=	1
+PORTVERSION=	0.15
 CATEGORIES=	devel
 MASTER_SITES=	https://s3.amazonaws.com/json-c_releases/releases/ \
 		FREEBSD_LOCAL/sunpoet
