@@ -22,6 +22,6 @@ PLIST_FILES=	bin/benchmark
 .include <bsd.port.pre.mk>
 
 do-install:
-	${INSTALL_SCRIPT}  work/compiler-benchmark-64745c3/benchmark ${PREFIX}/bin/benchmark
+	${INSTALL_SCRIPT}  ${WRKSRC}/benchmark ${PREFIX}/bin/benchmark
 
 .include <bsd.port.post.mk>
