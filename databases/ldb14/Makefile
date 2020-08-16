@@ -28,7 +28,7 @@ CONFLICTS_INSTALL=	ldb-1.1.* ldb1[23]-1.*
 #nopython_CONFLICTS=	ldb
 #default_CONFLICTS=	ldb-nopython
 
-USES=			compiler pkgconfig waf
+USES=			compiler pkgconfig ldap waf
 USE_LDCONFIG=		yes
 WAF_CMD=		buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
@@ -139,6 +139,7 @@ CONFIGURE_ENV+=		XSLTPROC="true"
 BUILD_DEPENDS+=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
 			xsltproc:textproc/libxslt
 .endif
+CONFIGURE_ENV+=               CFLAGS=-I${LOCALBASE}/include LDFLAGS=-L${LOCALBASE}/lib
 # No fancy color error messages
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
