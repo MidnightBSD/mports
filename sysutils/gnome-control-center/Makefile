@@ -61,8 +61,8 @@ CHEESE_LIB_DEPENDS=	libcheese.so:multimedia/cheese
 CHEESE_MESON_TRUE=	cheese
 
 WAYLAND_MESON_TRUE=	wayland
-WAYLAND_MESON_FALSE=	wayland
 WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
+WAYLAND_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-nowayland
 
 NO_TEST=	yes
 
