@@ -1,5 +1,6 @@
 PORTNAME=	cmake
 DISTVERSION=	3.16.3
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-doc
@@ -10,12 +11,12 @@ COMMENT=	HTML and Qt Creator helpfiles for CMake
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 
 DISTINFO_FILE=	${.CURDIR}/../cmake/distinfo
 
 NO_ARCH=	yes
-USES=		cmake qt:5 python:2.7
+USES=		cmake qt:5 python
 USE_QT=		help_build
 USE_LOCALE=	en_US.UTF-8
 
