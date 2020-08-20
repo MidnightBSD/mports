@@ -1,5 +1,5 @@
 PORTNAME=	clamav
-PORTVERSION=	0.102.3
+PORTVERSION=	0.102.4
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
@@ -74,20 +74,22 @@ UNZOO_DESC=		Enable zoo archives support
 
 ARC_RUN_DEPENDS=	arc:archivers/arc
 ARJ_RUN_DEPENDS=	arj:archivers/arj
-DMG_XAR_CONFIGURE_ENABLE=	xml
+DMG_XAR_CONFIGURE_WITH=	xml=${LOCALBASE}
 DMG_XAR_USE=		GNOME=libxml2
 EXPERIMENTAL_CONFIGURE_ENABLE=	experimental
 ICONV_CONFIGURE_WITH=	iconv
 ICONV_USES=		iconv
 IPV6_CONFIGURE_ENABLE=	ipv6
-JSON_CONFIGURE_WITH=	libjson
+JSON_CONFIGURE_WITH=	libjson=${LOCALBASE}
 JSON_LIB_DEPENDS=	libjson-c.so:devel/json-c
-LDAP_LDFLAGS=		-lldap
+LDAP_LDFLAGS=		-lldap -L${LOCALBASE}/lib
 LDAP_USE=		OPENLDAP=yes
 LHA_RUN_DEPENDS=	lha:archivers/lha
 MILTER_CONFIGURE_WITH=	sendmail=/usr/sbin/sendmail
 MILTER_CONFIGURE_ENABLE=milter
 .if !exists(/usr/lib/libmilter.so)
+MILTER_CFLAGS=		-I${LOCALBASE}/include
+MILTER_LDFLAGS=		-L${LOCALBASE}/lib
 MILTER_LIB_DEPENDS+=	libmilter.so:mail/libmilter
 .endif
 MILTER_USE=		RC_SUBR=clamav-milter
