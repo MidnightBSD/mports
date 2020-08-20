@@ -1,6 +1,6 @@
 PORTNAME=	vuxml
 PORTVERSION=	1.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security textproc
 MASTER_SITES=	http://www.vuxml.org/dtd/vuxml-1/
 DISTFILES=	vuxml-10.dtd  vuxml-model-10.mod \
@@ -13,9 +13,9 @@ COMMENT=	Vulnerability and eXposure Markup Language DTD
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr \
-		${LOCALBASE}/share/xml/dtd/xhtml-modularization/VERSION:${PORTSDIR}/textproc/xhtml-modularization \
-		${LOCALBASE}/share/xml/dtd/xhtml-basic/xhtml-basic10.dtd:${PORTSDIR}/textproc/xhtml-basic
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr \
+		${LOCALBASE}/share/xml/dtd/xhtml-modularization/VERSION:textproc/xhtml-modularization \
+		${LOCALBASE}/share/xml/dtd/xhtml-basic/xhtml-basic10.dtd:textproc/xhtml-basic
 
 USES=		python:run
 

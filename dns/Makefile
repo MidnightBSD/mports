@@ -1,5 +1,6 @@
 COMMENT = Domain Name Service tools
 
+SUBDIR += adns
 SUBDIR += ares
 SUBDIR += autotrust
 SUBDIR += bind-tools
@@ -39,5 +40,7 @@ SUBDIR += py3-dnspython
 SUBDIR += samba-nsupdate
 SUBDIR += udns
 SUBDIR += unbound
+SUBDIR += whoseip
+SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>
