@@ -70,8 +70,4 @@ do-install:
 .endfor
 .endif
 
-post-install:
-	@${ECHO_CMD} " "
-	@${CAT} ${PKGMESSAGE}
-
 .include <bsd.port.mk>
