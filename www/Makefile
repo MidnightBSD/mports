@@ -154,6 +154,7 @@ SUBDIR += py-requests-toolbelt
 SUBDIR += py-soupsieve
 SUBDIR += py-tornado
 SUBDIR += py-treq
+SUBDIR += py-websocket-client
 SUBDIR += py-wsaccel
 SUBDIR += py-yarl
 SUBDIR += qt5-webchannel
