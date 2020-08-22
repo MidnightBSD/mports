@@ -746,6 +746,7 @@ SUBDIR += py-babel
 SUBDIR += py-backports
 SUBDIR += py-backports.functools_lru_cache
 SUBDIR += py-backports.os
+SUBDIR += py-backports_abc
 SUBDIR += py-bcdoc
 SUBDIR += py-boto
 SUBDIR += py-botocore
