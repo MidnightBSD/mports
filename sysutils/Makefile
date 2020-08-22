@@ -118,6 +118,7 @@ SUBDIR += powerdxx
 SUBDIR += py-distro
 SUBDIR += py-execnet
 SUBDIR += py-filelock
+SUBDIR += py-pkginfo
 SUBDIR += py-psutil
 SUBDIR += py-ptyprocess
 SUBDIR += py-scandir

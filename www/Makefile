@@ -134,6 +134,7 @@ SUBDIR += py-aiohttp2
 SUBDIR += py-autobahn
 SUBDIR += py-beaker
 SUBDIR += py-beautifulsoup
+SUBDIR += py-bleach
 SUBDIR += py-boto3
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
