@@ -71,6 +71,7 @@ SUBDIR += dmake
 SUBDIR += dmalloc
 SUBDIR += dotconf
 SUBDIR += doxygen
+SUBDIR += dulwich
 SUBDIR += e2fsprogs-libss
 SUBDIR += e_dbus
 SUBDIR += efl
