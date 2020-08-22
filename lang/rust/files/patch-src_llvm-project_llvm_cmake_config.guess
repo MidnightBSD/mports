@@ -1,0 +1,19 @@
+--- src/llvm-project/llvm/cmake/config.guess.orig	2020-08-22 02:21:06.196043000 -0400
++++ src/llvm-project/llvm/cmake/config.guess	2020-08-22 02:22:37.041652000 -0400
+@@ -791,13 +791,13 @@
+     *:BSD/OS:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit ;;
+-    *:FreeBSD:*:*)
++    *:MidnightBSD:*:*)
+ 	UNAME_PROCESSOR=`/usr/bin/uname -p`
+ 	case ${UNAME_PROCESSOR} in
+ 	    amd64)
+-		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo x86_64-unknown-freebsd10.4 ;;
+ 	    *)
+-		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo ${UNAME_PROCESSOR}-unknown-freebsd10.4 ;;
+ 	esac
+ 	exit ;;
+     i*:CYGWIN*:*)

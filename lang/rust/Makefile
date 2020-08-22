@@ -33,15 +33,13 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 ONLY_FOR_ARCHS?=	aarch64 amd64 armv6 armv7 i386
 ONLY_FOR_ARCHS_REASON=	requires prebuilt bootstrap compiler
 
-BROKEN=	work in progress
-
 BUILD_DEPENDS=	cmake:devel/cmake \
 		libgit2>=1.0.0:devel/libgit2 \
-		clang60:devel/llvm60
+#		clang70:devel/llvm70
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libgit2.so:devel/libgit2 \
 		libssh2.so:security/libssh2
-RUN_DEPENDS=	clang60:devel/llvm60
+#RUN_DEPENDS=	clang70:devel/llvm70
 
 USES=		pkgconfig python:3.3+,build ssl tar:xz
 
@@ -50,9 +48,9 @@ CONFLICTS_INSTALL?=	rust-nightly
 PLIST_FILES=	lib/rustlib/components \
 		lib/rustlib/rust-installer-version
 
-CPP=    ${LOCALBASE}/bin/clang-cpp60
-CC=     ${LOCALBASE}/bin/clang60
-CXX=    ${LOCALBASE}/bin/clang++60
+#CPP=    ${LOCALBASE}/bin/clang-cpp70
+#CC=     ${LOCALBASE}/bin/clang70
+#CXX=    ${LOCALBASE}/bin/clang++70
 
 MAKE_ENV=     LIBGIT2_SYS_USE_PKG_CONFIG=1 \
               LIBSSH2_SYS_USE_PKG_CONFIG=1 \
