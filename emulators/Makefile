@@ -17,6 +17,7 @@ SUBDIR += linux_base-c7
 SUBDIR += mtools
 SUBDIR += open-vm-tools
 SUBDIR += open-vm-tools-nox11
+SUBDIR += pcem
 SUBDIR += qemu
 SUBDIR += rtc
 SUBDIR += snes9x
