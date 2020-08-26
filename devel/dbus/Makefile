@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	dbus
-PORTVERSION=	1.10.16
-PORTREVISION=	1
+PORTVERSION=	1.12.16
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -45,6 +42,7 @@ X11_DESC=	Support X11 Desktop Environments
 MANPAGES_CONFIGURE_ENV=	XMLTO=${LOCALBASE}/bin/minixmlto
 MANPAGES_BUILD_DEPENDS=	minixmlto:textproc/minixmlto
 MANPAGES_CONFIGURE_ENABLE=	xml-docs
+X11_USES=	xorg
 X11_USE=	xorg=ice,sm,x11
 X11_CONFIGURE_WITH=	x
 
@@ -57,5 +55,9 @@ post-install:
 	${MKDIR} ${EXAMPLESDIR}
 	${MV} ${DOCSDIR}/examples/* ${EXAMPLESDIR}
 	${RM} -r ${DOCSDIR}
+.for file in session.conf system.conf
+	@cd ${STAGEDIR}${ETCDIR}-1/ && \
+		${MV} ${file} ${file}.sample
+.endfor
 
 .include <bsd.port.mk>
