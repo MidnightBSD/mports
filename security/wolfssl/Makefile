@@ -1,10 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: head/security/wolfssl/Makefile 385058 2015-04-30 19:41:38Z johans $
-
 PORTNAME=	wolfssl
-PORTVERSION=	4.3.0
+PORTVERSION=	4.5.0
 CATEGORIES=	security devel
-MASTER_SITES=	https://www.wolfssl.com/
+MASTER_SITES=	https://www.wolfssl.com/ \
+		FREEBSD_LOCAL/fox
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embedded SSL C-Library
