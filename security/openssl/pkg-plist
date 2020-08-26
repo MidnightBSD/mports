@@ -111,6 +111,7 @@ lib/libcrypto.a
 %%SHARED%%lib/libcrypto.so.%%SHLIBVER%%
 lib/libssl.a
 %%SHARED%%lib/libssl.so
+%%SHARED%%lib/libssl.so.7
 %%SHARED%%lib/libssl.so.%%SHLIBVER%%
 libdata/pkgconfig/libcrypto.pc
 libdata/pkgconfig/libssl.pc

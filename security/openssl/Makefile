@@ -3,7 +3,7 @@
 PORTNAME=	openssl
 PORTVERSION=	1.1.1g
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
@@ -159,5 +159,6 @@ post-install-SHARED-on:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/openssl
+	cd ${PREFIX}/lib && ${LN} -sf libssl.so libssl.so.7
 
 .include <bsd.port.post.mk>
