@@ -1,6 +1,6 @@
 PORTNAME?=	xorg-server
 PORTVERSION?=	1.18.4
-PORTREVISION?=	4
+PORTREVISION?=	5
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -29,6 +29,19 @@ OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
+FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
+FONTPATHD?=	${TRUE_PREFIX}/etc/X11/fontpath.d
+DEFAULT_FONTPATH_LIST= \
+	${FONTPATH_ROOT}/misc/  \
+	${FONTPATH_ROOT}/TTF/ \
+	${FONTPATH_ROOT}/OTF/ \
+	${FONTPATH_ROOT}/Type1/ \
+	${FONTPATH_ROOT}/100dpi/ \
+	${FONTPATH_ROOT}/75dpi/ \
+	catalogue:${FONTPATHD}
+DEFAULT_FONTPATH_CMD=${ECHO_CMD} ${DEFAULT_FONTPATH_LIST} | ${TR} ' ' ,
+PLIST_SUB+=	FONTPATHD="${FONTPATHD:S,^${PREFIX}/,,}"
+
 USES=		gmake libtool perl5 ssl xorg xorg-cat:xserver tar:bzip2
 USE_PERL5=	build
 USE_GL+=	gl
@@ -39,6 +52,7 @@ CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
 		--without-dtrace --enable-glamor
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
+CPE_VENDOR=	x.org
 
 .if ${SLAVE_PORT} == "no" || ${PORTNAME} == "xephyr" || ${PORTNAME} == "xwayland"
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm \
@@ -120,10 +134,12 @@ post-configure:
 post-install:
 # The .xorg dir because else the xorg-server might not load the correct
 # libglx module.
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg
+	@${MKDIR} ${PREFIX}/lib/xorg/modules/extensions/.xorg
 	${INSTALL_LIB} ${WRKSRC}/hw/xfree86/dixmods/.libs/libglx.so \
-		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+		${PREFIX}/lib/xorg/modules/extensions/.xorg/
+	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
+	@${MKDIR} ${FAKE_DESTDIR}${FONTPATHD}
+	@${MKDIR} ${PREFIX}/share/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
