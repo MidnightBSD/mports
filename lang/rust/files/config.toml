@@ -28,6 +28,7 @@ default-linker = "%CC%"
 
 [llvm]
 ccache = %CCACHE%
+targets = "X86"
 #targets = "X86;ARM;AArch64;Mips;PowerPC;SystemZ;JSBackend;MSP430;Sparc;NVPTX;Hexagon"
 #experimental-targets = "WebAssembly;RISCV"
 

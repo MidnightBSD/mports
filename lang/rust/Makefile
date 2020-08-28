@@ -6,9 +6,9 @@ PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://static.rust-lang.org/dist/:rust_bootstrap \
-		LOCAL/tobik/rust:rust_bootstrap \
+		FREEBSD_LOCAL/tobik/rust:rust_bootstrap \
 		https://static.rust-lang.org/dist/:cargo_bootstrap \
-		LOCAL/tobik/rust:cargo_bootstrap \
+		FREEBSD_LOCAL/tobik/rust:cargo_bootstrap \
 		https://releases.llvm.org/${COMPILER_RT_VERSION}/:compiler_rt \
 		https://github.com/llvm/llvm-project/releases/download/llvmorg-${COMPILER_RT_VERSION}/:compiler_rt
 DISTNAME?=	${PORTNAME}c-${PORTVERSION}-src
@@ -102,7 +102,8 @@ X_PY_ENV=	HOME="${WRKDIR}" \
 		LIBGIT2_SYS_USE_PKG_CONFIG=1 \
 		LIBSSH2_SYS_USE_PKG_CONFIG=1 \
 		OPENSSL_DIR="${OPENSSLBASE}" \
-		LLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=1
+		LLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=1 \
+		RUST_BACKTRACE=1
 X_PY_CMD=	${PYTHON_CMD} ${WRKSRC}/x.py
 
 post-extract:
