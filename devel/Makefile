@@ -98,6 +98,7 @@ SUBDIR += git
 SUBDIR += git-gui
 SUBDIR += git-lfs
 SUBDIR += git-lite
+SUBDIR += git-sync
 SUBDIR += github-backup-utils
 SUBDIR += glade
 SUBDIR += glib12
