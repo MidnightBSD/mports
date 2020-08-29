@@ -1,5 +1,5 @@
 PORTNAME=	git-sync
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	ctubbsii
 GH_PROJECT=	git-sync
-GH_TAGNAME=	067ec32
+GH_TAGNAME=	38cb886
 
 RUN_DEPENDS=	bash:shells/bash \
 		git:devel/git
