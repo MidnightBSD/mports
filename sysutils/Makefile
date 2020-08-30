@@ -66,6 +66,7 @@ SUBDIR += hal-info
 SUBDIR += hw-probe
 SUBDIR += isc-cron
 SUBDIR += jailme
+SUBDIR += javaservicewrapper
 SUBDIR += less
 SUBDIR += libcdio
 SUBDIR += libcdio-paranoia
