@@ -1,6 +1,5 @@
 PORTNAME=	sendmail
-PORTVERSION=	8.15.2
-PORTREVISION=	4
+PORTVERSION=	8.16.1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -38,7 +37,7 @@ PKGMESSAGE=	${WRKSRC}/pkg-message
 MILTER_SOVER?=	6
 
 OPTIONS_DEFINE?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD LDAP BDB \
-			SOCKETMAP CYRUSLOOKUP SMTPUTF8 PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL DOCS
+			SOCKETMAP CYRUSLOOKUP PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL DOCS
 OPTIONS_DEFAULT?=	SHMEM SEM LA NIS IPV6 TLS SASL SASLAUTHD PICKY_HELO_CHECK MILTER MILTER_SHARED MILTER_POOL
 NO_OPTIONS_SORT=yes
 SHMEM_DESC=		System V shared memory support
@@ -52,14 +51,12 @@ PICKY_HELO_CHECK_DESC=	Enable picky HELO check
 MILTER_DESC=		Build libmilter
 MILTER_SHARED_DESC=	Build shared libmilter
 MILTER_POOL_DESC=	Enable milter thread pools
-SMTPUTF8_DESC=		Enable unicode address support
 
 BDB_USE=	BDB=yes
 TLS_USES=	ssl
 LDAP_USE=	OPENLDAP=yes
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASLAUTHD_RUN_DEPENDS=	${LOCALBASE}/sbin/saslauthd:security/cyrus-sasl2-saslauthd
-SMTPUTF8_LIB_DEPENDS= libidn2.so:dns/libidn2 libicui18n.so:devel/icu
 
 .include <bsd.mport.options.mk>
 .if ${PORT_OPTIONS:MSHMEM} && !defined(BUILDING_INDEX)
@@ -87,9 +84,6 @@ IGNORE=		option CYRUSLOOKUP requires option SOCKETMAP
 .else
 EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .endif
-.endif
-.if ${PORT_OPTIONS:MSMTPUTF8}
-EXTRA_PATCHES+=	${FILESDIR}/smtputf8.patch
 .endif
 .if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
