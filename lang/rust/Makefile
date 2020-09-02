@@ -257,11 +257,11 @@ do-install:
 post-install:
 	for f in ${RUST_MANIFESTS}; do \
 	    ${REINPLACE_CMD} -E \
-	        -e 's|:${STAGEDIR}|:|' \
+	        -e 's|:${FAKE_DESTDIR}|:|' \
 	        -e 's|(man/man[1-9]/.*\.[0-9])|\1.gz|' \
 	        ${STAGEDIR}${PREFIX}/$$f; \
 	    ${RM} ${STAGEDIR}${PREFIX}/$$f.bak; \
-	    ${ECHO} "${PREFIX}/$$f" >> ${TMPPLIST}; \
+	    ${ECHO} "${TRUE_PREFIX}/$$f" >> ${TMPPLIST}; \
 	    ${AWK} '\
 	        /^file:/ { \
 	            file=$$0; \
