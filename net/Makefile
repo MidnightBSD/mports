@@ -12,6 +12,7 @@ SUBDIR += avahi-gtk3
 SUBDIR += avahi-header
 SUBDIR += avahi-libdns
 SUBDIR += boinc-client
+SUBDIR += bsdec2-image-upload
 SUBDIR += daq
 SUBDIR += dhcp6
 SUBDIR += dhcpdump
