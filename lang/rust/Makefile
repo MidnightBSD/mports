@@ -311,4 +311,12 @@ do-test:
 		--config ./config.toml \
 		--jobs ${MAKE_JOBS_NUMBER}
 
+makesum-all-archs:
+	${MAKE} makesum ARCH=${ONLY_FOR_ARCHS:[1]}
+.for arch in ${ONLY_FOR_ARCHS:[2..-1]}
+	${MAKE} makesum ARCH=${arch} DISTINFO_FILE=${DISTINFO_FILE}.${arch}
+	${GREP} ${RUST_ARCH_${arch}} ${DISTINFO_FILE}.${arch} >> ${DISTINFO_FILE}
+	${RM} ${DISTINFO_FILE}.${arch}
+.endfor
+
 .include <bsd.port.post.mk>
