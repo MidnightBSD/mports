@@ -4,8 +4,7 @@
 # adwaita-icon-theme, gnome-themes-standard and mate-themes
 
 PORTNAME=	gtk
-PORTVERSION=	3.24.10
-PORTREVISION=	1
+PORTVERSION=	3.24.20
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	3
@@ -44,7 +43,7 @@ CPPFLAGS+=	-fno-omit-frame-pointer
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.2404.6
+LIBVERSION=	0.2404.16
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
@@ -54,7 +53,7 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
 
 OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND
-OPTIONS_DEFAULT=CUPS COLORD BROADWAY
+OPTIONS_DEFAULT=CUPS COLORD BROADWAY WAYLAND
 # seems to break on i386 in some cases
 #OPTIONS_DEFAULT_amd64=	WAYLAND
 OPTIONS_SUB=	yes
@@ -81,7 +80,7 @@ DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 WAYLAND_DESC=		GDK Wayland backend
 WAYLAND_CONFIGURE_ENABLE=	wayland-backend
-NLS_CONFIGURE_OFF=	--disable-wayland-backend
+#NLS_CONFIGURE_OFF=	--disable-wayland-backend
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols \
 			v4l_compat>=0:multimedia/v4l_compat
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \

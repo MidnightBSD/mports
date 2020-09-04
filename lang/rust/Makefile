@@ -1,7 +1,7 @@
 # Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
 
 PORTNAME=	rust
-PORTVERSION?=	1.26.0
+PORTVERSION?=	1.26.2
 CATEGORIES=	lang
 MASTER_SITES=	http://static.rust-lang.org/dist/:src \
 		https://static.rust-lang.org/dist/:rust_bootstrap \
@@ -40,16 +40,13 @@ ONLY_FOR_ARCHS_REASON=	requires prebuilt bootstrap compiler
 #CONFLICTS_BUILD+=	${PKGBASE}
 CONFLICTS_INSTALL?=	rust-nightly
 
-BOOTSTRAPS_DATE?=		2017-07-20
-BOOTSTRAPS_DATE_aarch64?=	2017-07-20
+BOOTSTRAPS_DATE?=		2018-03-29
 
-RUST_BOOTSTRAP_VERSION?=	1.19.0
-RUST_BOOTSTRAP_VERSION_aarch64?=1.19.0
+RUST_BOOTSTRAP_VERSION?=	1.25.0
 RUSTC_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rustc-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 RUST_STD_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rust-std-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 
-CARGO_BOOTSTRAP_VERSION?=	0.20.0
-CARGO_BOOTSTRAP_VERSION_aarch64?=0.20.0
+CARGO_BOOTSTRAP_VERSION?=	0.26.0
 CARGO_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/cargo-${CARGO_BOOTSTRAP_VERSION_${ARCH}:U${CARGO_BOOTSTRAP_VERSION}}-${RUST_TARGET}${EXTRACT_SUFX}
 
 RUST_CHANNEL=	${PKGNAMESUFFIX:Ustable:S/^-//}
@@ -313,5 +310,13 @@ do-test:
 		--verbose \
 		--config ./config.toml \
 		--jobs ${MAKE_JOBS_NUMBER}
+
+makesum-all-archs:
+	${MAKE} makesum ARCH=${ONLY_FOR_ARCHS:[1]}
+.for arch in ${ONLY_FOR_ARCHS:[2..-1]}
+	${MAKE} makesum ARCH=${arch} DISTINFO_FILE=${DISTINFO_FILE}.${arch}
+	${GREP} ${RUST_ARCH_${arch}} ${DISTINFO_FILE}.${arch} >> ${DISTINFO_FILE}
+	${RM} ${DISTINFO_FILE}.${arch}
+.endfor
 
 .include <bsd.port.post.mk>
