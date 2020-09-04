@@ -154,6 +154,7 @@ SUBDIR += libIDL
 SUBDIR += libatomic_ops
 SUBDIR += libbonobo
 SUBDIR += libburn
+SUBDIR += libccid
 SUBDIR += libclc
 SUBDIR += libconfig
 SUBDIR += libconfuse
