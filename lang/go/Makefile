@@ -1,7 +1,7 @@
 # Created by: Devon H. O'Dell <devon.odell@gmail.com>
 
 PORTNAME=	go
-PORTVERSION=	1.13.4
+PORTVERSION=	1.13.5
 PORTEPOCH=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://golang.org/dl/
@@ -93,5 +93,17 @@ pkg-plist: stage
 		${SED} -e "s/\/freebsd_${GOARCH}\//\/%%opsys_ARCH%%\//g" | \
 		${SORT} >> ${WRKDIR}/pkg-plist
 	${CP} ${WRKDIR}/pkg-plist ${.CURDIR}/pkg-plist
+
+.if !defined(_GO_MAKESUM_GUARD)
+makesum:
+	${MAKE} -D_GO_MAKESUM_GUARD makesum ARCH=${ONLY_FOR_ARCHS:O:[1]} DISTINFO_FILE=${DISTINFO_FILE}.tmp
+.for arch in ${ONLY_FOR_ARCHS:O:[2..-1]}
+	${MAKE} -D_GO_MAKESUM_GUARD makesum ARCH=${arch} DISTINFO_FILE=${DISTINFO_FILE}.${arch}
+	${SED} 1d ${DISTINFO_FILE}.${arch} >> ${DISTINFO_FILE}.tmp
+	${RM} ${DISTINFO_FILE}.${arch}
+.endfor
+	${AWK} '!seen[$$0]++' ${DISTINFO_FILE}.tmp > ${DISTINFO_FILE}
+	${RM} ${DISTINFO_FILE}.tmp    
+.endif
 
 .include <bsd.port.post.mk>
