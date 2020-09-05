@@ -1,9 +1,8 @@
-# $MidnightBSD$
-
 COMMENT = Ports for managing, installing and developing MidnightBSD ports and packages
 
 SUBDIR += dialog4ports
 SUBDIR += magus-utils
+SUBDIR += modules2tuple
 SUBDIR += mport-manager
 SUBDIR += portlint
 SUBDIR += portsearch

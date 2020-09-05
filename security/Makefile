@@ -183,6 +183,7 @@ SUBDIR += xspy
 SUBDIR += yafic
 SUBDIR += ykclient
 SUBDIR += ykpers
+SUBDIR += yubikey-agent
 SUBDIR += zebedee
 
 .include <bsd.port.subdir.mk>
