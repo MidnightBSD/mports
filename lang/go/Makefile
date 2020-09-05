@@ -1,98 +1,102 @@
 # Created by: Devon H. O'Dell <devon.odell@gmail.com>
 
 PORTNAME=	go
-PORTVERSION=	1.13.15
-PORTEPOCH=	1
+PORTVERSION?=	1.14.3
+PORTEPOCH?=	1
 CATEGORIES=	lang
-MASTER_SITES=	https://golang.org/dl/
-DISTNAME=	go${PORTVERSION}.src
+MASTER_SITES?=	https://golang.org/dl/ \
+		https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
+		FREEBSD_LOCAL/dmgk:bootstrap
+DISTFILES?=	go${PORTVERSION}.src.tar.gz \
+		go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-${BOOTSTRAP_TAG}.tar.xz:bootstrap
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Go programming language
+COMMENT?=	Go programming language
 
 LICENSE=	bsd3
-
-BUILD_DEPENDS=	go14>=1.4:lang/go14
-
-USES=		shebangfix
-SHEBANG_LANG=	sh perl
-SHEBANG_FILES=	misc/benchcmp \
-		misc/nacl/go_nacl_*_exec \
-		misc/wasm/go_js_wasm_exec \
-		src/net/http/cgi/testdata/test.cgi
-SHEBANG_GLOB=	*.bash *.pl *.sh
-
-sh_OLD_CMD=	/bin/bash "/usr/bin/env bash"
-sh_CMD=		${SH}
-
-WRKSRC=		${WRKDIR}/go
-ONLY_FOR_ARCHS=	i386 amd64 armv6 armv7
-
-CONFLICTS_INSTALL=	go-devel
-
-OPTIONS_DEFINE_i386=	GO387
-GO387_DESC=	Do not generate code with SSE2 (for old x86 CPU)
-
-.include <bsd.port.pre.mk>
-
-.if defined(MAGUS)
-NO_TEST=yes
-.endif
-
-.if ${ARCH} == i386
-GOARCH=386
-.elif ${ARCH} == "amd64"
-GOARCH=amd64
-.elif ${ARCH} == armv6 || ${ARCH} == armv7
-GOARCH=arm
-GOARM=${ARCH:C/armv//}
-.else
-IGNORE=		unknown arch ${ARCH}
-.endif
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 .ifdef QEMU_EMULATING
 IGNORE=		fails to build with qemu-user-static
 .endif
 
-.if ${PORT_OPTIONS:MGO387}
-GO386=387
+ONLY_FOR_ARCHS=	amd64 armv6 armv7 i386
+
+RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
+
+TEST_DEPENDS=	${TEST_DEPENDS_${ARCH}}
+
+USES=		shebangfix
+
+SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
+		src/net/http/cgi/testdata/test.cgi
+SHEBANG_GLOB=	*.bash *.pl *.sh
+
+CONFLICTS_INSTALL?=	go-devel
+
+# Upstream archive contains files with UTF-8 names
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
+
+.ifndef MASTERDIR
+WRKSRC=		${WRKDIR}/go
 .endif
 
-PLIST_SUB+=	opsys_ARCH=freebsd_${GOARCH}
+OPTIONS_DEFINE_i386=	GO387
+
+GO387_DESC=	Do not generate code with SSE2 (for old x86 CPU)
+
+GO387_VARS=	GO386=387
+
+BINARIES=	go gofmt
+BOOTSTRAP_TAG=	go1.14
+
+GOARCH_amd64=	amd64
+GOARCH_armv6=	arm
+GOARCH_armv7=	arm
+GOARCH_i386=	386
+
+GOARM_armv6=	6
+GOARM_armv7=	7
+
+.include <bsd.port.pre.mk>
 
 post-patch:
-	@cd ${WRKSRC} && ${FIND} . -name '*.orig' -delete
 	@${REINPLACE_CMD} -e 's|^if ulimit -T|false \&\& &|' ${WRKSRC}/src/run.bash
 
 do-build:
-	cd ${WRKSRC}/src && \
-		GOROOT=${WRKSRC} GOROOT_FINAL=${PREFIX}/go \
-		GOROOT_BOOTSTRAP=${LOCALBASE}/go14 \
-		GOBIN= GOARCH=${GOARCH} GOOS=freebsd \
-		GO386=${GO386} GOARM=${GOARM} CGO_ENABLED=1 \
+	cd ${WRKSRC}/src ; ${SETENV} \
+		XDG_CACHE_HOME=${WRKDIR} \
+		GOROOT_BOOTSTRAP=${WRKDIR}/go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-bootstrap \
+		GOROOT=${WRKSRC} \
+		GOROOT_FINAL=${PREFIX}/go \
+		GOBIN= \
+		GOOS=freebsd \
+		GOARCH=${GOARCH_${ARCH}} \
+		GO386=${GO386} \
+		GOARM=${GOARM_${ARCH}} \
 		${SH} make.bash -v
-	-${RM} -r ${WRKSRC}/pkg/obj \
-	    ${WRKSRC}/pkg/bootstrap \
-	    ${WRKSRC}/pkg/freebsd_${GOARCH}/cmd
 
 do-install:
-	@${CP} -a ${WRKSRC} ${STAGEDIR}${PREFIX}
-.for f in go gofmt
-	@${LN} -sf ../go/bin/${f} ${STAGEDIR}${PREFIX}/bin/${f}
+	-cd ${WRKSRC} ; \
+		${RM} -r .gitattributes .gitignore .github favicon.ico robots.txt \
+		pkg/obj pkg/bootstrap pkg/freebsd_${GOARCH_${ARCH}}/cmd
+	@${MKDIR} ${STAGEDIR}${PREFIX}/go
+	@${CP} -a ${WRKSRC}/* ${STAGEDIR}${PREFIX}/go
+.for file in ${BINARIES}
+	@${LN} -sf ../go/bin/${file} ${STAGEDIR}${PREFIX}/bin/${file}
+#	@${ECHO_CMD} bin/${file} >> ${TMPPLIST}
 .endfor
+#	@cd ${STAGEDIR}${PREFIX} && ${FIND} go -type f >> ${TMPPLIST}
 
 do-test:
-	cd ${WRKSRC}/src && GOROOT=${WRKSRC} PATH=${WRKSRC}/bin:${PATH} ${SH} run.bash -no-rebuild -banner ""
-
-pkg-plist: stage
-	${RM} ${WRKDIR}/pkg-plist
-.for command in go gofmt
-	${ECHO_CMD} bin/${command} >> ${WRKDIR}/pkg-plist
-.endfor
-	cd ${WRKDIR} && ${FIND} go -type f | \
-		${SED} -e "s/\/freebsd_${GOARCH}\//\/%%opsys_ARCH%%\//g" | \
-		${SORT} >> ${WRKDIR}/pkg-plist
-	${CP} ${WRKDIR}/pkg-plist ${.CURDIR}/pkg-plist
+	cd ${WRKSRC}/src && ${SETENV} \
+		GOROOT=${WRKSRC} \
+		PATH=${WRKSRC}/bin:${PATH} \
+		GOOS=freebsd \
+		GOARCH=${GOARCH_${ARCH}} \
+		GO386=${GO386} \
+		GOARM=${GOARM_${ARCH}} \
+		${SH} run.bash -no-rebuild
 
 .if !defined(_GO_MAKESUM_GUARD)
 makesum:
@@ -103,7 +107,7 @@ makesum:
 	${RM} ${DISTINFO_FILE}.${arch}
 .endfor
 	${AWK} '!seen[$$0]++' ${DISTINFO_FILE}.tmp > ${DISTINFO_FILE}
-	${RM} ${DISTINFO_FILE}.tmp    
+	${RM} ${DISTINFO_FILE}.tmp
 .endif
 
 .include <bsd.port.post.mk>
