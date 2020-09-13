@@ -104,6 +104,7 @@ SUBDIR += schroedinger
 SUBDIR += smpeg
 SUBDIR += totem
 SUBDIR += totem-pl-parser
+SUBDIR += v4l-utils
 SUBDIR += v4l_compat
 SUBDIR += vcdimager
 SUBDIR += webcamd
