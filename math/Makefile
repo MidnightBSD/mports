@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Mathematics
 
 SUBDIR += R
@@ -42,14 +40,18 @@ SUBDIR += p5-Math-Round
 SUBDIR += p5-Number-Compare
 SUBDIR += p5-Set-IntSpan
 SUBDIR += p5-bignum
-SUBDIR += php71-bcmath
-SUBDIR += php71-gmp
 SUBDIR += php72-bcmath
 SUBDIR += php72-gmp
+SUBDIR += php73-bcmath
+SUBDIR += php73-gmp
+SUBDIR += php74-bcmath
+SUBDIR += php74-gmp
+SUBDIR += py-MutatorMath
 SUBDIR += py-gmpy
 SUBDIR += py-mpmath
 SUBDIR += py-numeric
 SUBDIR += py-numpy
+SUBDIR += py-pyclipper
 SUBDIR += py-sympy
 SUBDIR += qhull
 SUBDIR += qhull5

@@ -1,10 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: head/graphics/libpotrace/Makefile 393429 2015-08-02 15:03:19Z tijl $
-
 PORTNAME=	libpotrace
-PORTVERSION=	1.11
+PORTVERSION=	1.12
 CATEGORIES=	graphics
-MASTER_SITES=	SF
+MASTER_SITES=	SF/potrace/${PORTVERSION}
 DISTNAME=	potrace-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,7 +18,7 @@ PLIST_FILES=	include/potracelib.h \
 		lib/libpotrace.a \
 		lib/libpotrace.so \
 		lib/libpotrace.so.0 \
-		lib/libpotrace.so.0.0.1
+		lib/libpotrace.so.0.0.2
 
 OPTIONS_DEFINE=	METRIC A4
 OPTIONS_DEFAULT=METRIC A4

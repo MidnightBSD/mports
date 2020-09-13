@@ -1,32 +1,29 @@
-# $MidnightBSD$
+# Created by: Alexander Nedotsukov <bland@FreeBSD.org>
 
 PORTNAME=	libsigc++
-PORTVERSION=	2.4.0
+PORTVERSION=	2.10.2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+PORTSCOUT=	limit:^2\.10\.
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool pathfix perl5 tar:xz
+USES=		compiler:c++11-lang gmake libtool pathfix perl5 tar:xz
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 
-PLIST_SUB=	VERSION="2.0" API_VERSION="2.0"
+PLIST_SUB=	API_VERSION="2.0"
 
 OPTIONS_DEFINE=	DOCS
 
-.include <bsd.mport.options.mk>
-
-.if ! ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=--enable-documentation=no
-.endif
+DOCS_CONFIGURE_OFF=	--enable-documentation=no
 
 post-patch:
 	@${REINPLACE_CMD} -e "/^SUBDIRS =/s|tests||; \

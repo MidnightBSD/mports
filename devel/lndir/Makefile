@@ -16,9 +16,8 @@ COMMENT=	Create a shadow directory of symbolic links to another directory tree
 LICENSE=	unknown
 # The license is not cleary stated.
 
-XORG_CAT=	util
 USE_XORG=	xorgproto
-USES=		pkgconfig
+USES=		xorg xorg-cat:util
 
 PLIST_FILES=	bin/lndir \
 		man/man1/lndir.1.gz

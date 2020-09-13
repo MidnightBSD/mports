@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	findutils
-PORTVERSION=	4.6.0
-PORTREVISION=	0
+PORTVERSION=	4.7.0
 CATEGORIES=	misc
 MASTER_SITES=	GNU
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
@@ -12,27 +9,24 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU find utilities
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES+=		charsetfix cpe gmake
+USES=		charsetfix cpe gmake tar:xz
+
 SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR}
+MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
+INFO=		find find-maint
+
 CPE_VENDOR=	gnu
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
-CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR} \
-			--mandir=${PREFIX}/man --infodir=${PREFIX}/info
-MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
 
 LOCALSTATEDIR?=	/var/db
 

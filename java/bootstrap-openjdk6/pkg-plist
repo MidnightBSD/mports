@@ -11,6 +11,7 @@
 %%JDK_ROOT%%/bin/rmic
 %%JDK_ROOT%%/include/jni.h
 %%JDK_ROOT%%/include/freebsd/jni_md.h
+%%JDK_ROOT%%/include/midnightbsd/jni_md.h
 %%JDK_ROOT%%/jre/ASSEMBLY_EXCEPTION
 %%JDK_ROOT%%/jre/LICENSE
 %%JDK_ROOT%%/jre/THIRD_PARTY_README

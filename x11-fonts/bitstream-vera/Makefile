@@ -1,6 +1,3 @@
-# $FreeBSD: ports/x11-fonts/bitstream-vera/Makefile,v 1.16 2007/05/19 20:29:08 flz Exp $
-# $MidnightBSD$
-
 PORTNAME=	bitstream-vera
 PORTVERSION=	1.10
 PORTREVISION=	5
@@ -12,12 +9,13 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera TrueType font collection
+
 LICENSE=	unknown
 
-BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
+BUILD_DEPENDS=	fc-cache:x11-fonts/fontconfig
+RUN_DEPENDS=	fc-cache:x11-fonts/fontconfig
 
-USES=	tar:bzip2
+USES=		fonts tar:bzip2
 NO_BUILD=	yes
 
 PLIST_SUB=	FONTSDIR="${FONTSDIR:S|${PREFIX}/||}"

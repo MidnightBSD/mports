@@ -21,7 +21,6 @@ RUN_DEPENDS=	p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
 		p5-LWP-Protocol-https>=0:${PORTSDIR}/www/p5-LWP-Protocol-https
 
 USES=		perl5 shebangfix
-USE_PERL5=	yes
 SHEBANG_FILES=	plexWatch.pl
 
 USE_GITHUB=	yes

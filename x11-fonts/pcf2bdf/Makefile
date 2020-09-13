@@ -1,0 +1,25 @@
+# Created by: nork@FreeBSD.org
+
+PORTNAME=	pcf2bdf
+PORTVERSION=	1.06
+CATEGORIES=	x11-fonts
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Convert X font from PCF to BDF
+
+LICENSE=	mit
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	ganaware
+
+FAKE_OPTS=	trueprefix
+
+MAKEFILE=	Makefile.gcc
+MAKE_ENV=	MANPATH="${MANPREFIX}/man/man1" \
+		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+		INSTALL_DATA="${INSTALL_MAN}" \
+		INSTALL_DIR="${MKDIR}"
+
+PLIST_FILES=	bin/pcf2bdf man/man1/pcf2bdf.1.gz
+
+.include <bsd.port.mk>

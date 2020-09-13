@@ -1,5 +1,6 @@
 PORTNAME=	mod_security
 PORTVERSION=	2.9.3
+PORTREVISION=	1
 CATEGORIES=	www security
 MASTER_SITES=	http://www.modsecurity.org/tarball/${PORTVERSION}/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
@@ -17,11 +18,9 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-USES=		apache:2.4+ bdb gnome perl5 pkgconfig shebangfix
+USES=		apache:2.4+ bdb gnome perl5 pkgconfig
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
-SHEBANG_FILES=	tools/rules-updater.pl.in mlogc/mlogc-batch-load.pl.in
-perl_OLD_CMD=	@PERL@
 
 AP_INC=		${LOCALBASE}/include/libxml2
 AP_LIB=		${LOCALBASE}/lib

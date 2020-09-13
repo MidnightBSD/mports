@@ -62,6 +62,9 @@ CHEESE_MESON_TRUE=	cheese
 
 WAYLAND_MESON_TRUE=	wayland
 WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
+WAYLAND_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-nowayland
+
+NO_TEST=	yes
 
 
 .include <bsd.port.pre.mk>

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xcb-util
 PORTVERSION=	0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -11,9 +9,10 @@ COMMENT=	Module with libxcb/libX11 extension/replacement libraries
 
 LICENSE=	mit
 
-USES=		gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gmake libtool pathfix pkgconfig tar:bzip2 xorg xorg-cat:lib
 USE_LDCONFIG=	yes
-USE_XORG=	xau xcb xdmcp xorg-macros
+USE_XORG=	xau xcb xdmcp
+INSTALL_TARGET=	install-strip
 
 GNU_CONFIGURE=	yes
 

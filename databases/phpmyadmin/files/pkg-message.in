@@ -1,4 +1,6 @@
-
+[
+{ type: install
+  message: <<EOM
 %%PKGNAME%% has been installed into:
 
     %%WWWDIR%%
@@ -15,7 +17,7 @@ For Apache versions earlier than 2.4:
     <Directory "%%WWWDIR%%/">
 	Options none
 	AllowOverride Limit
-	
+
 	Order Deny,Allow
 	Deny from all
 	Allow from 127.0.0.1 .example.com
@@ -37,7 +39,10 @@ SECURITY NOTE: phpMyAdmin is an administrative tool that has had several
 remote vulnerabilities discovered in the past, some allowing remote
 attackers to execute arbitrary code with the web server's user credential.
 All known problems have been fixed, but we strongly
-advise that any instance be protected with an additional protection layer,
+advises that any instance be protected with an additional protection layer,
 e.g. a different access control mechanism implemented by the web server
 as shown in the example.  Do consider enabling phpMyAdmin only when it
 is in use.
+EOM
+}
+]

@@ -1,6 +1,6 @@
 PORTNAME=	gtksourceview2
 PORTVERSION=	2.10.5
-PORTREVISION?=	5
+PORTREVISION?=	6
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
@@ -16,7 +16,7 @@ USE_GCC=	7
 
 .if !defined(REFERENCE_PORT)
 
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomeprefix gtk20 gconf2 libxml2 intlhack referencehack
 GNU_CONFIGURE=	yes

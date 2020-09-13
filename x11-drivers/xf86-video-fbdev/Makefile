@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-fbdev
 PORTVERSION=	0.4.4
 PORTREVISION=	1
@@ -10,7 +8,6 @@ COMMENT=	X.Org fbdev display driver
 
 LICENSE=	mit
 
-XORG_CAT=	driver
-USE_XORG=	videoproto
+USES=		xorg-cat:driver
 
 .include <bsd.port.mk>

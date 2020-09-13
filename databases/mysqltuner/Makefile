@@ -1,5 +1,5 @@
 PORTNAME=	mysqltuner
-PORTVERSION=	1.7.15
+PORTVERSION=	1.7.17
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org

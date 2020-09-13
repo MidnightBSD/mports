@@ -9,7 +9,7 @@ COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
 
 LICENSE=	gpl2
 
-USES+=		cpe gettext gmake libtool localbase pathfix pkgconfig tar:bzip2
+USES+=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig tar:bzip2
 USE_GNOME?=	gnomeprefix intltool glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
@@ -175,8 +175,8 @@ LIB_DEPENDS+=		libnss3.so:security/nss
 CONFIGURE_ARGS+=	--enable-nss=yes \
 			--with-nspr-includes=${LOCALBASE}/include/nspr \
 			--with-nspr-libs=${LOCALBASE}/lib \
-			--with-nss-includes=${LOCALBASE}/include/nss/nss \
-			--with-nss-libs=${LOCALBASE}/lib/nss
+			--with-nss-includes=${LOCALBASE}/include/nss \
+			--with-nss-libs=${LOCALBASE}/lib
 PLIST_SUB+=		NSS=""
 .else
 CONFIGURE_ARGS+=	--enable-nss=no
@@ -204,11 +204,12 @@ CONFIGURE_ARGS+=	--disable-gtkspell
 .endif
 
 .if ${PORT_OPTIONS:MDBUS}
+USES+=			python
 LIB_DEPENDS+=		libdbus-glib-1.so:devel/dbus-glib
 .if !defined(PIDGIN_SLAVE)
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR}
 .endif
-CONFIGURE_ARGS+=	--enable-dbus
+CONFIGURE_ARGS+=	--enable-dbus --with-python=${PYTHON_CMD}
 PLIST_SUB+=		DBUS=""
 .else
 CONFIGURE_ARGS+=	--disable-dbus

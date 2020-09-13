@@ -12,6 +12,7 @@ include/apr-1/apr_date.h
 include/apr-1/apr_dbd.h
 include/apr-1/apr_dbm.h
 include/apr-1/apr_dso.h
+include/apr-1/apr_encode.h
 include/apr-1/apr_env.h
 include/apr-1/apr_errno.h
 include/apr-1/apr_escape.h
@@ -85,6 +86,9 @@ lib/apr-util-1/.keep.me
 %%MYSQL%%lib/apr-util-1/apr_dbd_mysql-1.so
 %%MYSQL%%lib/apr-util-1/apr_dbd_mysql.a
 %%MYSQL%%lib/apr-util-1/apr_dbd_mysql.so
+%%ODBC%%lib/apr-util-1/apr_dbd_odbc-1.so
+%%ODBC%%lib/apr-util-1/apr_dbd_odbc.a
+%%ODBC%%lib/apr-util-1/apr_dbd_odbc.so
 %%PGSQL%%lib/apr-util-1/apr_dbd_pgsql-1.so
 %%PGSQL%%lib/apr-util-1/apr_dbd_pgsql.a
 %%PGSQL%%lib/apr-util-1/apr_dbd_pgsql.so
@@ -115,9 +119,7 @@ lib/libaprutil-1.so.0
 lib/libaprutil-1.so.%%SHLIB_APU_MAJOR%%
 libdata/pkgconfig/apr-1.pc
 libdata/pkgconfig/apr-util-1.pc
-%%DATADIR%%/build-1/apr_common.m4
 %%DATADIR%%/build-1/apr_rules.mk
-%%DATADIR%%/build-1/find_apr.m4
 %%DATADIR%%/build-1/libtool
 %%DATADIR%%/build-1/make_exports.awk
 %%DATADIR%%/build-1/make_var_export.awk

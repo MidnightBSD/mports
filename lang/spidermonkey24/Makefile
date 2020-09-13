@@ -19,9 +19,8 @@ LIB_DEPENDS=		libnspr4.so:devel/nspr
 CONFLICTS=		njs-[0-9]*
 
 GNU_CONFIGURE=		yes
-USES=			gmake pathfix perl5 python:2,build \
+USES=			gmake pathfix perl5 python:2.7,build \
 			readline tar:bzip2
-USE_PYTHON=		2
 USE_PERL5=		build
 USE_LDCONFIG=		yes
 
@@ -62,7 +61,7 @@ USES+=	compiler:c++11-lib
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
-CONFIGURE_TARGET=	x86_64-portbld-freebsd9.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .endif
 
 regression-test: build

@@ -1,6 +1,5 @@
 PORTNAME=	redis
-PORTVERSION=	5.0.7
-PORTREVISION=	1
+PORTVERSION=	5.0.9
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
@@ -18,7 +17,7 @@ LUA_DESC=	Use lang/lua instead of builtin lua
 LUAJIT_DESC=	Use lang/luajit instead of builtin lua
 TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
-USES+=		compiler gmake
+USES+=		compiler:c11 gmake
 MAKE_ENV=	"V=yo"
 
 .include <bsd.mport.options.mk>

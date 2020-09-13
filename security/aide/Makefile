@@ -1,11 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	aide
-PORTVERSION=	0.16
-PORTREVISION=	1
+PORTVERSION=	0.16.1
 CATEGORIES=	security
-MASTER_SITES=	SF \
-		http://www.cs.tut.fi/~rammer/
+MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement and extension for Tripwire
@@ -14,15 +12,16 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	libmhash.so:security/mhash \
 		libpcre.so:devel/pcre
-USES=		autoreconf bison gmake
+
+USES=		autoreconf bison gmake localbase
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
 		--with-config_file=${PREFIX}/etc/aide.conf
+CONFIGURE_ENV=	YACC="bison -y"
 
-LDFLAGS+=	-L${LOCALBASE}/lib -pthread
-CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lpthread
 
 SUB_FILES=	pkg-message
 

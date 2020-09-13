@@ -1,34 +1,30 @@
 # Created by: Johannes Lundberg <johalun0@gmail.com>
-# $FreeBSD: head/devel/libepoll-shim/Makefile 432404 2017-01-24 23:27:25Z bapt $
-# $MidnightBSD$
 
 PORTNAME=	libepoll-shim
-PORTVERSION=	0.0.20161220
-PORTREVISION=	1
+PORTVERSION=	0.0.20200602
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	epoll shim implemented using kevent
+COMMENT=	Small epoll implementation using kqueue
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	FreeBSDDesktop
-GH_PROJECT=	epoll-shim
-GH_TAGNAME=	c04b26b
-
-WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}
-
+USES=		cmake compiler:c++17-lang
 USE_LDCONFIG=	yes
+USE_GITHUB=	yes
+GH_ACCOUNT=	jiixyj
+GH_PROJECT=	epoll-shim
+GH_TAGNAME=	3840e9c
 
-USES=		uidfix
-MAKE_ARGS=	LIBDIR=${PREFIX}/lib INCLUDEDIR=${PREFIX}/include
+CC=	clang70
+MAKE_ENV+=	CC=clang70
+LLVM_DEFAULT=   70                                                                                                                                                        
+BUILD_DEPENDS+= llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+RUN_DEPENDS+=   llvm${LLVM_DEFAULT}>=3.9.0_4:devel/llvm${LLVM_DEFAULT}                                                                                                    
+CONFIGURE_ENV+= LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT}                                                                                                   
+LDFLAGS+=       -Wl,-rpath=${LOCALBASE}/llvm${LLVM_DEFAULT}/lib   
 
-post-patch:
-	# -Weverything is not recognized by GCC
-	@${REINPLACE_CMD} -e 's|Weverything|Wall|' ${WRKSRC}/Makefile
-
-pre-install:
-	@${MKDIR} ${PREFIX}/include/libepoll-shim/sys
+NO_TEST=	yes
 
 .include <bsd.port.mk>

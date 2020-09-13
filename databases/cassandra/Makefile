@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	cassandra
 PORTVERSION=	1.0.10
 CATEGORIES=	databases java
@@ -10,10 +8,13 @@ EXTRACT_SUFX=	-bin.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source distributed database management system
+
 LICENSE=	apache2
 
+RUN_DEPENDS+=	javavm:java/javavmwrapper
+
 NO_BUILD=	yes
-JAVA_VERSION=	1.6
+JAVA_VERSION=	6
 JAVA_VENDOR=	openjdk
 REINPLACE_ARGS=	-i ''
 USE_JAVA=	yes

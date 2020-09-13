@@ -10,13 +10,12 @@ COMMENT=	Object-oriented SGML/XML parser toolkit and DSSSL engine
 
 LICENSE=	mit
 
-LIB_DEPENDS=	libosp.so:${PORTSDIR}/textproc/opensp
-RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+LIB_DEPENDS=	libosp.so:textproc/opensp
+RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr
 
-USES=		gettext gmake libtool
+USES=		gettext gmake libtool perl5
 USE_GCC=	7
 USE_LDCONFIG=	yes
-USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${DATADIR}

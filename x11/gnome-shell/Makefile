@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Pawel Worach <pawel.worach@gmail.com>
 
 PORTNAME=	gnome-shell
-PORTVERSION=	3.28.2
+PORTVERSION=	3.28.3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -37,9 +37,9 @@ RUN_DEPENDS=	gnome-control-center:sysutils/gnome-control-center
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 cpe gettext gnome libtool localbase meson \
-		pathfix perl5 pkgconfig python:3.4+ shebangfix tar:xz webplugin:native
-USE_GL=		yes
+USES=		compiler:c11 cpe gettext gl gnome libtool localbase meson \
+		pathfix perl5 pkgconfig python:3.4+ shebangfix tar:xz \
+		webplugin:native xorg
 USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf2 introspection \
 		libxslt:build libxml2
 USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr xtst

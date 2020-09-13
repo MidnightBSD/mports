@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	psiconv
 PORTVERSION=	0.9.9
 CATEGORIES=	converters devel

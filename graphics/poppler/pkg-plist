@@ -1,7 +1,6 @@
 include/poppler/Annot.h
 include/poppler/Array.h
-include/poppler/BuiltinFont.h
-include/poppler/BuiltinFontTables.h
+include/poppler/BBoxOutputDev.h
 include/poppler/CMap.h
 include/poppler/CachedFile.h
 include/poppler/CairoFontEngine.h
@@ -11,7 +10,6 @@ include/poppler/Catalog.h
 include/poppler/CertificateInfo.h
 include/poppler/CharCodeToUnicode.h
 include/poppler/CharTypes.h
-include/poppler/CompactFontTables.h
 %%CURL%%include/poppler/CurlCachedFile.h
 %%CURL%%include/poppler/CurlPDFDocBuilder.h
 include/poppler/DateInfo.h
@@ -34,6 +32,7 @@ include/poppler/JArithmeticDecoder.h
 include/poppler/JBIG2Stream.h
 %%OPENJPEG%%include/poppler/JPEG2000Stream.h
 %%NO_OPENJPEG%%include/poppler/JPXStream.h
+include/poppler/JSInfo.h
 include/poppler/Lexer.h
 include/poppler/Linearization.h
 include/poppler/Link.h
@@ -82,6 +81,7 @@ include/poppler/XRef.h
 include/poppler/cpp/poppler-destination.h
 include/poppler/cpp/poppler-document.h
 include/poppler/cpp/poppler-embedded-file.h
+include/poppler/cpp/poppler-font-private.h
 include/poppler/cpp/poppler-font.h
 include/poppler/cpp/poppler-global.h
 include/poppler/cpp/poppler-image.h
@@ -133,10 +133,10 @@ include/poppler/splash/SplashXPath.h
 include/poppler/splash/SplashXPathScanner.h
 lib/libpoppler-cpp.so
 lib/libpoppler-cpp.so.0
-lib/libpoppler-cpp.so.0.7.0
+lib/libpoppler-cpp.so.0.9.0
 lib/libpoppler.so
-lib/libpoppler.so.92
-lib/libpoppler.so.92.0.0
+lib/libpoppler.so.%%SHLIB_VER%%
+lib/libpoppler.so.%%SHLIB_VER%%.0.0
 libdata/pkgconfig/poppler-cairo.pc
 libdata/pkgconfig/poppler-cpp.pc
 libdata/pkgconfig/poppler-splash.pc

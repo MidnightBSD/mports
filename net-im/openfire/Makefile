@@ -1,100 +1,92 @@
-# $MidnightBSD$
+# Created by: Nikolay Pavlov <qpadla@gmail.com>
 
 PORTNAME=	openfire
-PORTVERSION=	3.10.2
+PORTVERSION=	4.2.3
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	net-im java
-MASTER_SITES=	http://download.igniterealtime.org/openfire/
+MASTER_SITES=	https://github.com/igniterealtime/${PORTNAME}/releases/download/v${PORTVERSION}/
 DISTNAME=	${PORTNAME}_src_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Enterprise instant messaging server
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE.html
 
-RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper \
-   		${JAVAJARDIR}/slf4j-api.jar:${PORTSDIR}/devel/slf4j
+RUN_DEPENDS=	slf4j>=1.7.7:devel/slf4j
 
 OPTIONS_DEFINE=	DOCS PLUGINS
 OPTIONS_DEFAULT=PLUGINS
+OPTIONS_SUB=	yes
 PLUGINS_DESC=	Install bundled plugins
 
-USES=		cpe dos2unix zip
+USES=		cpe dos2unix
 DOS2UNIX_FILES=	src/java/org/jivesoftware/openfire/server/ServerDialback.java
 USE_LDCONFIG=	yes
 USE_ANT=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.7 # some plugins not available with later java, needs special handling
+JAVA_VERSION=	1.8
+NO_ARCH=	yes
 
 CPE_VENDOR=	igniterealtime
 
-ALL_TARGET=	openfire
-USE_RC_SUBR=	openfire
+ALL_TARGET=	${PORTNAME}
+USE_RC_SUBR=	${PORTNAME}
 SUB_FILES+=	pkg-message
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_src
 BUILD_WRKSRC=	${WRKSRC}/build
-INSTALL_WRKSRC=	${WRKSRC}/target/openfire
+INSTALL_WRKSRC=	${WRKSRC}/target/${PORTNAME}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 PORTDOCS=	*
-VARLOG=		/var/log/openfire
-VARDB=		/var/db/openfire
-USERS=		openfire
+VARLOG=		/var/log/${PORTNAME}
+VARDB=		/var/db/${PORTNAME}
+USERS=		${PORTNAME}
 GROUPS=		${USERS}
 PLIST_SUB+=	VARLOG=${VARLOG} \
 		VARDB=${VARDB}
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MPLUGINS}
-ALL_TARGET+=	plugins
-PLIST_SUB+=	PLUGINS=""
-.else
-PLIST_SUB+=	PLUGINS="@comment "
-.endif
-
-pre-patch: dos2unix
+PLUGINS_ALL_TARGET=	plugins
 
 do-install:
-	@${MKDIR} ${DATADIR}/lib
-	@${MKDIR} ${ETCDIR}
-	@${MKDIR} ${VARDB}
-	@${MKDIR} ${VARLOG}
+	@${MKDIR} ${STAGEDIR}${DATADIR}/lib
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${MKDIR} ${STAGEDIR}${VARDB}
+	@${MKDIR} ${STAGEDIR}${VARLOG}
 
-	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 *.jar ${DATADIR}/lib)
-	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j.xml ${DATADIR}/lib)
+	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 *.jar ${STAGEDIR}${DATADIR}/lib)
+	(cd ${INSTALL_WRKSRC}/lib && ${INSTALL} -m 744 log4j.xml ${STAGEDIR}${DATADIR}/lib)
 
-	(cd ${INSTALL_WRKSRC}/resources && ${FIND} . \! -path ./security\* \
-	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/resources)
+	(cd ${INSTALL_WRKSRC}/resources && \
+	    ${FIND} . \! -path ./security\* \! -path ./nativeAuth\* | \
+	    ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} \
+	        ${STAGEDIR}${DATADIR}/resources)
 
 #	always install admin interface
 	(cd ${INSTALL_WRKSRC}/plugins/admin && ${FIND} . \
-	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/plugins/admin)
+	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/plugins/admin)
 
-.if ${PORT_OPTIONS:MPLUGINS}
-	(cd ${INSTALL_WRKSRC}/plugins && ${FIND} . \
-	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}/plugins)
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} LICENSE.html README.html changelog.html \
-	    ${STAGEDIR}${DOCSDIR})
-
-	(cd ${WRKSRC}/documentation/docs && ${FIND} . \! -path ./javadoc\* \
-	| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1 )
-.endif
 	${LN} -sf ${ETCDIR} ${STAGEDIR}${DATADIR}/conf
 	${LN} -sf ${ETCDIR} ${STAGEDIR}${DATADIR}/resources/security
 	${LN} -sf ${VARDB} ${STAGEDIR}${DATADIR}/embedded-db
 	${LN} -sf ${VARLOG} ${STAGEDIR}${DATADIR}/logs
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/openfire.xml \
-		${STAGEDIR}${ETCDIR}/openfire.xml.sample
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/${PORTNAME}.xml \
+		${STAGEDIR}${ETCDIR}/${PORTNAME}.xml.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/truststore \
 		${STAGEDIR}${ETCDIR}/truststore.sample
 	${INSTALL} -m 600 ${INSTALL_WRKSRC}/resources/security/keystore \
 		${STAGEDIR}${ETCDIR}/keystore.sample
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/conf/security.xml \
 		${STAGEDIR}${ETCDIR}/security.xml.sample
+
+do-install-PLUGINS-on:
+	(cd ${INSTALL_WRKSRC}/plugins && ${FIND} . \
+	| ${CPIO} -pvdmu -R ${SHAREOWN}:${SHAREGRP} ${FAKE_DESTDIR}${DATADIR}/plugins)
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/documentation/docs && ${FIND} . \! -path ./javadoc\* \
+	| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${FAKE_DESTDIR}${DOCSDIR} > /dev/null 2>&1 )
 
 .include <bsd.port.mk>

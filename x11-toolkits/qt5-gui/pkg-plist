@@ -783,10 +783,10 @@
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QBsdKeyboardPlugin.cmake
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QBsdMousePlugin.cmake
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake
-%%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake
-%%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake
-%%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake
-%%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake
+@comment %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake
+@comment %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake
+@comment %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake
+@comment %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QGifPlugin.cmake
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QICOPlugin.cmake
 %%QT_CMAKEDIR%%/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake
@@ -892,14 +892,14 @@
 %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqbsdmouseplugin.so.debug
 %%QT_PLUGINDIR%%/generic/libqtuiotouchplugin.so
 %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqtuiotouchplugin.so.debug
-%%QT_PLUGINDIR%%/generic/libqevdevkeyboardplugin.so
-%%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevkeyboardplugin.so.debug
-%%QT_PLUGINDIR%%/generic/libqevdevmouseplugin.so
-%%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevmouseplugin.so.debug
-%%QT_PLUGINDIR%%/generic/libqevdevtabletplugin.so
-%%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevtabletplugin.so.debug
-%%QT_PLUGINDIR%%/generic/libqevdevtouchplugin.so
-%%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevtouchplugin.so.debug
+@comment %%QT_PLUGINDIR%%/generic/libqevdevkeyboardplugin.so
+@comment %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevkeyboardplugin.so.debug
+@comment %%QT_PLUGINDIR%%/generic/libqevdevmouseplugin.so
+@comment %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevmouseplugin.so.debug
+@comment %%QT_PLUGINDIR%%/generic/libqevdevtabletplugin.so
+@comment %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevtabletplugin.so.debug
+@comment %%QT_PLUGINDIR%%/generic/libqevdevtouchplugin.so
+@comment %%DEBUG%%%%QT_PLUGINDIR%%/generic/libqevdevtouchplugin.so.debug
 %%QT_PLUGINDIR%%/imageformats/libqgif.so
 %%DEBUG%%%%QT_PLUGINDIR%%/imageformats/libqgif.so.debug
 %%QT_PLUGINDIR%%/imageformats/libqico.so

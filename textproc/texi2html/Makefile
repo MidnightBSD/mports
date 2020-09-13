@@ -16,8 +16,7 @@ LICENSE=        gpl2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL=${PERL}
 CONFIGURE_ARGS=	--disable-multiplatform
-USES=		gmake tar:bzip2
-USE_PERL5=	yes
+USES=		gmake perl5 tar:bzip2
 
 OPTIONS_DEFINE=	NLS DOCS
 OPTIONS_SUB=	yes

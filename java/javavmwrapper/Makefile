@@ -1,19 +1,23 @@
-# $MidnightBSD$
-#
 # This port is self contained in the src directory.
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.6
+PORTVERSION=	2.7.5
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for various Java Virtual Machines
-LICENSE=	other
+
+LICENSE=      BEERWARE bsd2
+LICENSE_COMB= multi
+LICENSE_NAME_BEERWARE=        "THE BEER-WARE LICENSE" (Revision 42, (c) Poul-Henning Kamp)
+LICENSE_TEXT_BEERWARE=        See ${SRC}/javavmwrapper.sh for license text
+LICENSE_PERMS_BEERWARE=       dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS=	kaffe-1.*
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
@@ -32,7 +36,7 @@ do-configure:
 .for _script in ${SCRIPTS}
 	${SED} -e 's|%%PREFIX%%|${PREFIX}|;' \
 	       -e 's|%%JAVALIBDIR%%|${JAVALIBDIR}|;' \
-		${SRC}/${_script}.sh >${WRKDIR}/${_script}.sh
+		${SRC}/${_script}.sh >${WRKSRC}/${_script}.sh
 .endfor
 	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|;' \
 		${FILESDIR}/pkg-install.in > ${PKGINSTALL}
@@ -40,24 +44,20 @@ do-configure:
 	${SED} -e 's|%%PREFIX%%|${PREFIX}|;' \
 	       -e 's|%%LOCALBASE%%|${LOCALBASE}|;' \
 	       -e 's|%%PORTSDIR%%|${PORTSDIR}|;' \
-	       ${SRC}/${_man} > ${WRKDIR}/${_man}
+	       ${SRC}/${_man} > ${WRKSRC}/${_man}
 .endfor
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/classpath.sh ${PREFIX}/bin/classpath
-	${INSTALL_SCRIPT} ${WRKDIR}/javavmwrapper.sh ${PREFIX}/bin/javavm
+	${INSTALL_SCRIPT} ${WRKSRC}/classpath.sh ${PREFIX}/bin/classpath
+	${INSTALL_SCRIPT} ${WRKSRC}/javavmwrapper.sh ${PREFIX}/bin/javavm
 	(cd ${PREFIX}/bin && ${LN} -sf javavm registervm && \
 	${LN} -sf javavm unregistervm && \
 	${LN} -sf javavm checkvms && \
 	${LN} -sf javavm manvm )
-.for _man in checkvms.1 javavm.1 manvm.1 registervm.1
-	${INSTALL_MAN} ${WRKDIR}/${_man} ${MAN1PREFIX}/man/man1
-.endfor
-	${INSTALL_MAN} ${WRKDIR}/registervm.1 \
+	${INSTALL_MAN} ${WRKSRC}/*.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/registervm.1 \
 		${MAN1PREFIX}/man/man1/unregistervm.1
-.for _man in ${MAN5}
-	${INSTALL_MAN} ${WRKDIR}/${_man} ${MAN5PREFIX}/man/man5
-.endfor
+	${INSTALL_MAN} ${WRKSRC}/*.5 ${MAN5PREFIX}/man/man5
 	${INSTALL_DATA} ${FILESDIR}/javavm_opts.conf.dist \
 		${PREFIX}/etc/javavm_opts.conf.dist
 

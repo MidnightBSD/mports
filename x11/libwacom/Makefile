@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# Created by: johalun0@gmail.com
 
 PORTNAME=	libwacom
-PORTVERSION=	0.23
+DISTVERSIONPREFIX=libwacom-
+DISTVERSION=	1.3
 CATEGORIES=	x11
-MASTER_SITES=	https://sourceforge.net/projects/linuxwacom/files/libwacom/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adds tablet support to libinput
@@ -12,15 +12,14 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
+TEST_DEPENDS=	bash:shells/bash
 
-USES=		gettext-runtime gmake libtool localbase pkgconfig \
-		pathfix tar:bzip2
+USES=		gnome meson pkgconfig
+USE_GITHUB=	yes
+GH_ACCOUNT=	linuxwacom
 USE_GNOME=	glib20
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
 
-post-patch:
-	@${REINPLACE_CMD} -e 's/-printf "%P\\n"/-print0 | xargs -0 basename/' ${WRKSRC}/data/Makefile.in
+NO_TEST=	yes
 
 .include <bsd.port.mk>

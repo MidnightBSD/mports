@@ -2,7 +2,7 @@
 
 PORTNAME=	efl
 DISTVERSION=	1.20.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
@@ -13,6 +13,7 @@ COMMENT=	Enlightenment Foundation Libraries
 LICENSE=	bsd2 lgpl2.1
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS=	clang60:devel/llvm60
 LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff \
@@ -20,16 +21,21 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libdbus-1.so:devel/dbus \
 		libsndfile.so:audio/libsndfile
+RUN_DEPENDS=	clang60:devel/llvm60
+
+CPP=    ${LOCALBASE}/bin/clang-cpp60
+CC=     ${LOCALBASE}/bin/clang60
+CXX=    ${LOCALBASE}/bin/clang++60
 
 # lib/libeio.so.1
 CONFLICTS_INSTALL=	libeio
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf compiler:c++14-lang gettext-tools gmake iconv jpeg \
-		libtool pathfix pkgconfig python:2.7,run shared-mime-info \
+USES=		autoreconf compiler:c++14-lang gettext-tools gmake gnome iconv \
+		jpeg libtool pathfix pkgconfig python:2.7,run shared-mime-info \
 		shebangfix tar:xz xorg
 SHEBANG_FILES=	src/scripts/eina/eina-bench-cmp
-USE_XORG=	x11 xcb xcursor xcomposite xdamage xext xfixes xi xinerama xp \
+USE_XORG=	x11 xcb xcursor xcomposite xdamage xext xfixes xi xinerama \
 		xrandr xrender xtst xscrnsaver
 USE_LDCONFIG=	yes
 
@@ -95,7 +101,7 @@ WAYLAND_CONFIGURE_ENABLE=	wayland
 
 WAYLAND_EGL_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland
 WAYLAND_EGL_CONFIGURE_ENABLE=	egl
-WAYLANG_EGL_USE=		GL=egl
+WAYLAND_EGL_USE=		GL=egl
 WAYLAND_EGL_IMPLIES=		WAYLAND OPENGLES
 
 GSTREAMER_USE=			GSTREAMER1=core
@@ -135,11 +141,14 @@ WEBP_CONFIGURE_ENABLE=		image-loader-webp
 
 XCF_CONFIGURE_ENABLE=		xcf
 
+OPENGL_USES=			gl
 OPENGL_USE=			GL=gl
 
+OPENGLES_USES=			gl
 OPENGLES_USE=			GL=glesv2
 OPENGLES_CONFIGURE_ON=		--with-opengl=es --enable-egl
 
+SDL_USES=			sdl
 SDL_USE=			SDL=sdl2
 SDL_CONFIGURE_ENABLE=		sdl
 

@@ -4,7 +4,7 @@
  #if defined(__linux__)
  #include <byteswap.h>
  #define CPU_TO_LE32( x )	bswap_32( x )
-+#elif defined(__FreeBSD__)
++#elif defined(__FreeBSD__) || defined(__MidnightBSD__)
 +#include <sys/endian.h>
 +#define CPU_TO_LE32( x )	bswap32( x )
  #elif defined(__APPLE__)

@@ -1,16 +1,15 @@
-# $MidnightBSD$
-
 PORTNAME=	autossh
-PORTVERSION=	1.4e
+PORTVERSION=	1.4g
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.harding.motd.ca/autossh/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically restart SSH sessions and tunnels
 
 LICENSE=	other
 
+USES=		tar:tgz
 GNU_CONFIGURE=	yes
 
 PORTDOCS=	CHANGES README

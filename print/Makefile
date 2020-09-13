@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Desktop publishing
 
 SUBDIR += a2ps
@@ -36,10 +34,6 @@ SUBDIR += harfbuzz
 SUBDIR += harfbuzz-icu
 SUBDIR += hs-hscolour
 SUBDIR += indexinfo
-SUBDIR += libgnomecups
-SUBDIR += libgnomeprint
-SUBDIR += libgnomeprint-reference
-SUBDIR += libgnomeprintmm
 SUBDIR += libijs
 SUBDIR += libotf
 SUBDIR += libpaper
@@ -51,7 +45,29 @@ SUBDIR += mp-letter
 SUBDIR += pdflib
 SUBDIR += pecl-pdflib
 SUBDIR += psutils
+SUBDIR += py-font-v
+SUBDIR += py-fontaine
+SUBDIR += py-fontbakery
+SUBDIR += py-fonttools
+SUBDIR += py-fonttools3
+SUBDIR += py-fpdf
+SUBDIR += py-pdf
+SUBDIR += py-pdf2
+SUBDIR += py-pollyreports
+SUBDIR += py-preppy
+SUBDIR += py-psautohint
 SUBDIR += py-pycups
+SUBDIR += py-pyscript
+SUBDIR += py-python-ly
+SUBDIR += py-qt5-printsupport
+SUBDIR += py-relatorio
+SUBDIR += py-reportlab
+SUBDIR += py-rtf
+SUBDIR += py-stapler
+SUBDIR += py-trml2pdf
+SUBDIR += py-ttfautohint-py
+SUBDIR += py-ufolib2
+SUBDIR += py-weasyprint
 SUBDIR += qpdf
 SUBDIR += qt5-printsupport
 SUBDIR += t1utils
@@ -68,6 +84,7 @@ SUBDIR += texlive-texmf
 SUBDIR += texlive-tlmgr
 SUBDIR += transfig
 SUBDIR += ttf2pt1
+SUBDIR += ttfautohint
 SUBDIR += xfce4-print
 SUBDIR += xpdfopen
 

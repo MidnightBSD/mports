@@ -11,7 +11,8 @@ COMMENT=	Reference Implementation of JSR 919
 LICENSE=	gpl2 cddl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	java:java/javavmwrapper
+BUILD_DEPENDS+=	javavm:java/javavmwrapper
+RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
@@ -21,7 +22,7 @@ GH_ACCOUNT=	javaee
 
 CPE_VENDOR=	sun
 USE_JAVA=	YES
-JAVA_VERSION=	1.8+
+JAVA_VERSION=	8+
 USE_ANT=	YES
 NO_ARCH=	yes
 

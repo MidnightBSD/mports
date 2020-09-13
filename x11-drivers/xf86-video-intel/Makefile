@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-intel
-PORTVERSION=	2.99.917.20180512
+PORTVERSION=	2.99.917.20181203
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
-MASTER_SITES=	http://cgit.freedesktop.org/xorg/${XORG_CAT}/${PORTNAME}/snapshot/
-DISTNAME=	${PORTNAME}-${COMMIT_ID}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for Intel integrated graphics chipsets
@@ -12,21 +9,19 @@ COMMENT=	Driver for Intel integrated graphics chipsets
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libxcb-util.so:x11/xcb-util \
-		libdrm.so:graphics/libdrm
-
-COMMIT_ID=	359477215092ac1b602ad1e2f17a28963d9224c2
-
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	Intel integrated GPU only exists in Intel x86 processors/chipsets
 
+LIB_DEPENDS=	libxcb-util.so:x11/xcb-util \
+		libdrm.so:graphics/libdrm
+
+USES=		cpe gl xorg xorg-cat:driver libtool
+USE_GITLAB=	yes
+GL_COMMIT=	e5ff8e1828f97891c819c919d7115c6e18b2eb1f
 USE_GL=		gl
-
-USE_LDCONFIG=	yes
-XORG_CAT=	driver
 USE_XORG=	pciaccess pixman x11 xcb xext xrender xv xvmc
+USE_LDCONFIG=	yes
 
-USES+=		cpe autoreconf
 CPE_VENDOR=	x
 
 OPTIONS_SINGLE=	ACCEL
@@ -38,6 +33,7 @@ SNA_DESC=	SandyBridge's New Acceleration
 UXA_DESC=	Unified Acceleration Architecture
 
 CONFIGURE_ARGS+=	--disable-udev
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 SNA_CONFIGURE_ON=	--with-default-accel=sna
 UXA_CONFIGURE_ON=	--with-default-accel=uxa

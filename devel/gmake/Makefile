@@ -1,6 +1,5 @@
 PORTNAME=	gmake
-PORTVERSION=	4.2.1
-PORTREVISION=	2
+PORTVERSION=	4.3
 CATEGORIES=	devel
 MASTER_SITES=	GNU/make
 DISTNAME=	make-${PORTVERSION}
@@ -15,15 +14,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--without-guile
 
-USES=		cpe tar:bzip2
+USES=		cpe tar:lz
 CPE_VENDOR=	gnu
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
 NLS_USES=	gettext-runtime
-#NLS_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG} \
-#		--with-libintl-prefix=${LOCALBASE}
 NLS_CONFIGURE_ENABLE=	nls
 
 INFO=		make

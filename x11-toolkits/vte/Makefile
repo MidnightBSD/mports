@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	vte
 PORTVERSION=	0.28.2
 PORTREVISION?=	2
@@ -18,7 +16,7 @@ USES+=		tar:xz
 
 RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:${PORTSDIR}/x11-toolkits/gnome-pty-helper
 
-USES+=		cpe gettext gmake libtool pathfix pkgconfig
+USES+=		cpe gettext gmake gnome libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME?=	gnomeprefix gtk20 intltool introspection:build referencehack

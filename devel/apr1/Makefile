@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
 PORTREVISION=	0
@@ -20,7 +18,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--build=${ARCH}-midnightbsd-freebsd10.4
 
-APR_VERSION=	1.6.5
+APR_VERSION=	1.7.0
 APU_VERSION=	1.6.1
 
 CPE_VENDOR=	apache
@@ -29,15 +27,14 @@ CPE_VERSION=	${APU_VERSION}
 
 OPTIONS_SUB=		yes
 OPTIONS_GROUP=		APU
-OPTIONS_DEFINE=		IPV6 DEVRANDOM
+OPTIONS_DEFINE=		IPV6
 OPTIONS_GROUP_APU=	BDB GDBM LDAP MYSQL NDBM ODBC PGSQL SQLITE
 OPTIONS_RADIO=		CRYPTO
 OPTIONS_RADIO_CRYPTO=	SSL NSS
-OPTIONS_DEFAULT=	DEVRANDOM BDB GDBM SSL
+OPTIONS_DEFAULT=	BDB GDBM SSL
 
 APU_DESC=		Database support
 CRYPTO_DESC=		Cryptography provider
-DEVRANDOM_DESC=		Use /dev/random or compatible
 NDBM_DESC=		NDBM support
 NSS_DESC=		NSS crypto driver
 SSL_DESC=		OpenSSL crypto driver
@@ -67,7 +64,8 @@ PLIST_SUB+=	SHLIB_APR_MAJOR="${SHLIB_APR_MAJOR}" \
 
 APR_CONF_ARGS=	--with-installbuilddir=${DATADIR}/build-1 \
 		--enable-threads \
-		--enable-posix-shm
+		--enable-posix-shm \
+		--with-devrandom
 
 APU_CONF_ARGS=	--with-apr=${APR_WRKDIR} \
 		--with-expat=${LOCALBASE} \
@@ -76,8 +74,6 @@ APU_CONF_ARGS=	--with-apr=${APR_WRKDIR} \
 ########## APR Options
 IPV6_VARS=		APR_CONF_ARGS+=--enable-ipv6
 IPV6_VARS_OFF=		APR_CONF_ARGS+=--disable-ipv6
-DEVRANDOM_VARS=		APR_CONF_ARGS+=--with-devrandom
-DEVRANDOM_VARS_OFF=	APR_CONF_ARGS+=--without-devrandom
 
 ######### APR-Util Options
 # make sure 1st include is "${APR_WRKDIR}/include"

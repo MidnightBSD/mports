@@ -1,19 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	libFS
-PORTVERSION=	1.0.7
-PORTREVISION=	1
+PORTVERSION=	1.0.8
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The FS library
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	lib
+USES=		cpe xorg xorg-cat:lib
 USE_XORG=	xorgproto xtrans
-USES+=	cpe
-CPE_PRODUCT=	libfs
 CPE_VENDOR=	x
+CPE_PRODUCT=	libfs
+
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

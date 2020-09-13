@@ -70,6 +70,10 @@ TLS_CONFIGURE_ON=	--with-security-modules=tsm --with-transports=TLSTCP,DTLSUDP
 
 .include <bsd.mport.options.mk>
 
+.if ${SSL_DEFAULT:Mopenssl}
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openssl11
+.endif
+
 .if ${PORT_OPTIONS:MPYTHON}
 PYDISTUTILS_PKGNAME?=		netsnmp-python
 PYDISTUTILS_PKGVERSION?=	1.0a1

@@ -35,7 +35,7 @@ post-install:
 	cd ${WRKSRC}/utils/ && ${INSTALL_MAN} linkicc/linkicc.1 psicc/psicc.1 transicc/transicc.1 ${STAGEDIR}${PREFIX}/man/man1/
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${STAGEDIR}${DOCSDIR}/
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${FAKE_DESTDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>

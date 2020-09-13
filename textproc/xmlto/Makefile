@@ -1,29 +1,30 @@
-# $MidnightBSD$
+# Created by: Sergei Kolobov <sergei@kolobov.com>
 
 PORTNAME=	xmlto
-PORTVERSION=	0.0.26
-PORTREVISION=	2
+PORTVERSION=	0.0.28
 CATEGORIES=	textproc
-MASTER_SITES=	https://fedorahosted.org/releases/x/m/xmlto/:xmlto \
-		LOCAL/mandree/:xmlto \
+MASTER_SITES=	https://releases.pagure.org/xmlto/:xmlto \
+		FREEBSD_LOCAL/mandree/:xmlto \
 		http://www.antennahouse.com/XSLsample/sample-xsl-xhtml2fo/:xsl \
-		LOCAL/mandree/:xsl
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}:xmlto \
+		FREEBSD_LOCAL/mandree/:xsl
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:xmlto \
 		xhtml2fo.xsl:xsl
 DIST_SUBDIR=	${PORTNAME}
-EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Front-end to an XSL toolchain
-LICENSE=        gpl2
 
-BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
-		/usr/local/bin/getopt:${PORTSDIR}/misc/getopt \
-		xmllint:${PORTSDIR}/textproc/libxml2 \
-		xsltproc:${PORTSDIR}/textproc/libxslt \
-		docbook-xsl>0:${PORTSDIR}/textproc/docbook-xsl \
-		paperconf:${PORTSDIR}/print/libpaper \
-		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml
+LICENSE=	gpl2
+
+BUILD_DEPENDS=	${BASH_CMD}:shells/bash \
+		${GETOPT_CMD}:misc/getopt \
+		xmllint:textproc/libxml2 \
+		xsltproc:textproc/libxslt \
+		docbook-xsl>0:textproc/docbook-xsl \
+		paperconf:print/libpaper \
+		w3m:www/w3m \
+		docbook-xml>0:textproc/docbook-xml
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 SUB_FILES=	pkg-message
@@ -55,16 +56,15 @@ PORTDOCS=	AUTHORS ChangeLog NEWS THANKS
 
 .if ${PORT_OPTIONS:MPASSIVETEX}
 USE_TEX+=	xmltex
-EXTENSIONS+=	tex
 .endif
 
 .if ${PORT_OPTIONS:MFOP}
-RUN_DEPENDS+=	fop>=0.90:${PORTSDIR}/textproc/fop
+RUN_DEPENDS+=	fop>=0.90:textproc/fop
 CONFIGURE_ARGS+=	--with-backend=fop
 .endif
 
 .if ${PORT_OPTIONS:MDBLATEX}
-RUN_DEPENDS+=	${LOCALBASE}/bin/dblatex:${PORTSDIR}/textproc/dblatex
+RUN_DEPENDS+=	${LOCALBASE}/bin/dblatex:textproc/dblatex
 .if ! ${PORT_OPTIONS:MFOP}
 CONFIGURE_ARGS+=	--with-backend=dblatex
 .endif
@@ -72,17 +72,21 @@ CONFIGURE_ARGS+=	--with-backend=dblatex
 
 post-patch:
 	@# get rid of nonstandard "type" option -t:
-	cd ${WRKSRC} && ${FIND} . -type f -exec ${REINPLACE_CMD} -i '' -e 's/type -t/which/;' '{}' '+'
+	${SED} -i '' -e 's/type -t/which/;' \
+		${WRKSRC}/format/docbook/epub \
+		${WRKSRC}/format/docbook/txt \
+		${WRKSRC}/format/fo/dvi \
+		${WRKSRC}/format/fo/pdf \
+		${WRKSRC}/format/xhtml1/txt
 	@# get rid of GNU-make-ism (BSD make defines $< only in suffix rules)
 	${REINPLACE_CMD} -e '/^GEN_MANPAGE/{s/\$$</$$>/;}' ${WRKSRC}/Makefile.in
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/xhtml2fo.xsl ${DATADIR}/
-
+	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/xhtml2fo.xsl ${STAGEDIR}${DATADIR}/
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>

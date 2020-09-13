@@ -13,4 +13,6 @@ OPTIONS_DEFINE=	NLS PYTHON IPV6
 
 BROKEN_aarch64=		Fails to link: missing sbrk
 
+CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd1.2
+
 .include "${MASTERDIR}/Makefile"

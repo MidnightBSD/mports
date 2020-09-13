@@ -1,5 +1,5 @@
 PORTNAME=	php74
-DISTVERSION=	7.4.1
+DISTVERSION=	7.4.7
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=   PHP/distributions
@@ -26,26 +26,18 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-password-argon2=${LOCALBASE} \
 		--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
+CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd10.4
 USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
 # PR230207 Allow relocations against read-only segments (override lld default)
 LDFLAGS_i386=	-Wl,-z,notext
 
-OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG DTRACE IPV6 MYSQLND LINKTHR ZTS
-OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR DTRACE
-OPTIONS_EXCLUDE_DragonFly=	DTRACE
-# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
-OPTIONS_EXCLUDE_aarch64=	DTRACE
-OPTIONS_EXCLUDE_powerpc=	DTRACE
-OPTIONS_EXCLUDE_powerpc64=	DTRACE
-# dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
-OPTIONS_EXCLUDE_armv6=		DTRACE
-OPTIONS_EXCLUDE_armv7=		DTRACE
+OPTIONS_DEFINE+=CLI CGI FPM EMBED PHPDBG DEBUG IPV6 MYSQLND LINKTHR ZTS
+OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR
 # Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=		DTRACE FPM
-OPTIONS_EXCLUDE_mips64=		DTRACE FPM
-OPTIONS_EXCLUDE_sparc64=	DTRACE
+OPTIONS_EXCLUDE_mips=		FPM
+OPTIONS_EXCLUDE_mips64=		FPM
 OPTIONS_SUB=	yes
 
 CLI_DESC=	Build CLI version
@@ -60,6 +52,8 @@ ZTS_DESC=	Force Zend Thread Safety (ZTS) build
 CONFLICTS=	php71-* php72-* php73-*
 
 DESTDIRNAME=	INSTALL_ROOT
+
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -137,12 +131,8 @@ CONFIGURE_ARGS+=--enable-maintainer-zts
 CONFIGURE_ENV+=	pthreads_working="yes"
 .endif
 
-.if ${PORT_OPTIONS:MDTRACE}
-CONFIGURE_ARGS+=--enable-dtrace
-PLIST_SUB+=	DTRACE=""
-.else
+CONFIGURE_ARGS+=--disable-dtrace
 PLIST_SUB+=	DTRACE="@comment "
-.endif
 
 .if empty(PORT_OPTIONS:MIPV6)
 CONFIGURE_ARGS+=--disable-ipv6
@@ -167,9 +157,6 @@ post-build:
 	@${ECHO_CMD} "PHP_EXT_INC=hash pcre spl" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} -n "PHP_EXT_DIR=" >> ${WRKDIR}/php.conf
 	@${SH} ${WRKSRC}/scripts/php-config --extension-dir | ${SED} -ne 's,^${PREFIX}/lib/php/,,p' >> ${WRKDIR}/php.conf
-
-test: build
-	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \

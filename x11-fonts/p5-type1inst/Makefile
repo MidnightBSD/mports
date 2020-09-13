@@ -1,35 +1,36 @@
-# $MidnightBSD$
+# Created by: giffunip@asme.org
 
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	x11-fonts perl5
-MASTER_SITES=	${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=X11/xutils
+MASTER_SITES=	SUNSITE/X11/xutils
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Script that helps install Postscript fonts in X Window System
+
 LICENSE=	gpl2
 
-.if !defined(WITHOUT_X11)
-RUN_DEPENDS=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
-		${LOCALBASE}/bin/mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
-.endif
-
-USE_PERL5=	yes
+USES=		perl5 shebangfix
 NO_BUILD=	yes
+PORTDOCS=	README
 
-post-patch:
-	@${REINPLACE_CMD} -e 's:#!/usr/bin/perl:#!${PERL}:' ${WRKSRC}/type1inst ${WRKSRC}/t1embed
+PLIST_FILES=	bin/t1embed bin/type1inst man/man1/type1inst.1.gz
+SHEBANG_FILES=	type1inst t1embed
+
+OPTIONS_DEFINE=	DOCS X11
+OPTIONS_DEFAULT=X11
+
+X11_RUN_DEPENDS=	${LOCALBASE}/bin/mkfontscale:x11-fonts/mkfontscale
 
 do-install:
-	@${INSTALL_SCRIPT} ${WRKSRC}/type1inst ${PREFIX}/bin
-	@${INSTALL_SCRIPT} ${WRKSRC}/t1embed ${PREFIX}/bin
-	@${INSTALL_MAN} ${WRKSRC}/type1inst.man ${PREFIX}/man/man1/type1inst.1
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}/README.type1inst
-.endif
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} type1inst t1embed \
+		${STAGEDIR}${PREFIX}/bin)
+	${INSTALL_MAN} ${WRKSRC}/type1inst.man \
+		${STAGEDIR}${PREFIX}/man/man1/type1inst.1
+
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

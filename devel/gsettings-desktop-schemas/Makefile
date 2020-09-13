@@ -12,8 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-# keep python here for gnome-desktop
-USES=		gettext gmake gnome localbase pathfix perl5 pkgconfig tar:xz python:2
+USES=		gettext gmake gnome localbase pathfix perl5 pkgconfig tar:xz
 USE_PERL5=	build
 USE_GNOME=	intltool glib20 introspection:build
 GNU_CONFIGURE=	yes

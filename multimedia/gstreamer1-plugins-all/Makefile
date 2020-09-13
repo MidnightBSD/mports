@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gstreamer1-plugins-all
-PORTVERSION=	${GST1_VERSION}
+PORTVERSION=	1.16
 PORTREVISION=	0
 CATEGORIES=	multimedia
 DISTFILES=      # none

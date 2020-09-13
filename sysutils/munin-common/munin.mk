@@ -1,4 +1,4 @@
-MUNIN_VERSION=	2.0.26
+MUNIN_VERSION=	2.0.61
 MUNIN_SITES=	http://downloads.munin-monitoring.org/munin/stable/${MUNIN_VERSION}/
 DISTINFO_FILE=	${PORTSDIR}/sysutils/munin-common/distinfo
 PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
@@ -31,7 +31,6 @@ GROUPS=		munin
 PLIST_SUB=	${MUNIN_DIRS} USER=${USERS} GROUP=${GROUPS}
 SUB_LIST=	${MUNIN_DIRS} USER=${USERS} GROUP=${GROUPS}
 
-USE_PERL5=	yes
 CPE_VENDOR=	munin-monitoring
 
 MAKE_JOBS_UNSAFE=	Try to use things before making thems.

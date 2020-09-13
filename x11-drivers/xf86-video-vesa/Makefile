@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-vesa
 PORTVERSION=	2.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +8,6 @@ COMMENT=	X.Org vesa display driver
 
 LICENSE=	mit
 
-XORG_CAT=	driver
+USES=		xorg-cat:driver
 
 .include <bsd.port.mk>

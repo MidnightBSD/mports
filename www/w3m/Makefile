@@ -1,48 +1,69 @@
-# $MidnightBSD$
+# Created by: MANTANI Nobutaka <nobutaka@nobutaka.com>
 
 PORTNAME=	w3m
-PORTVERSION=	0.5.3
-PORTREVISION=	3
-CATEGORIES=	www ipv6
-MASTER_SITES=	SF/w3m/w3m/w3m-${PORTVERSION}
+PORTVERSION=	0.5.3.${SNAPDATE}
+CATEGORIES+=	www
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Pager/text-based WWW browser
 
-LICENSE=	unknown
+LICENSE=	w3m
+LICENSE_NAME=	w3m
+LICENSE_FILE=	${WRKSRC}/doc/README
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-LIB_DEPENDS=	libgc.so:${PORTSDIR}/devel/boehm-gc
+BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+
+PATCH_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
+BUILD_DEPENDS+=	${LOCALBASE}/bin/iconv:converters/libiconv
+LIB_DEPENDS=	libgc.so:devel/boehm-gc
+RUN_DEPENDS+=   ${LOCALBASE}/bin/iconv:converters/libiconv
+
+USES=		iconv:wchar_t pkgconfig perl5 ssl
+USE_GITHUB=	yes
+
+GH_ACCOUNT=	tats
+GH_PROJECT=	w3m
+GH_TAGNAME=	4efb3ca
 
 MAKE_JOBS_UNSAFE=	yes
+SNAPDATE=	20200316
 
-USES=		ssl
+CONFLICTS?=	ja-w3m-0.5.* ja-w3m-img-0.5.* w3m-img-0.5.*
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gc=${LOCALBASE} \
 		ac_cv_path_PERL=${PERL}
 CONFIGURE_ENV=	DEFS="-I${LOCALBASE}/include"
+MAKE_ARGS+=	-D__FreeBSD__=10
 
-
-DOCS=		FAQ.html HISTORY MANUAL.html README \
-		README.dict README.func README.img README.m17n STORY.html \
+DOCS_COMMON=	FAQ.html HISTORY MANUAL.html README README.cookie \
+		README.cygwin README.dict README.func README.img \
+		README.m17n README.mouse README.passwd README.pre_form \
+		README.siteconf README.tab STORY.html \
 		keymap.default keymap.lynx menu.default menu.submenu
-DOCS_JP=	${DOCS} README.SSL README.cookie README.keymap README.img \
+DOCS_DE=	FAQ.html MANUAL.html README.func
+DOCS_EN=	README.sixel
+DOCS_JP=	${DOCS_COMMON} README.SSL README.keymap \
 		README.mailcap README.menu README.migemo
 
-OPTIONS_DEFINE=	JAPANESE INLINE_IMAGE KEY_LYNX DOCS
-JAPANESE_DESC=		Japanese messages and migemo support
+OPTIONS_DEFINE=	INLINE_IMAGE JAPANESE KEY_LYNX DOCS NLS
 INLINE_IMAGE_DESC=	Inline image support
+JAPANESE_DESC=		Japanese messages and migemo support
 KEY_LYNX_DESC=		Keymap like lynx browser
 OPTIONS_SUB=	yes
 
-JAPANESE_USES=	gettext
-JAPANESE_CONFIGURE_ON=	--enable-japanese=E --with-migemo=yes gt_cv_func_gnugettext1_libintl=yes
-JAPANESE_CONFIGURE_ENABLE=	nls
-
-INLINE_IMAGE_USE=	gnome=gtk20
+INLINE_IMAGE_USES=	gnome xorg
+INLINE_IMAGE_USE=	xorg=x11 gnome=gtk20,gdkpixbuf2
 INLINE_IMAGE_CONFIGURE_ON=	--with-imagelib=gtk2 --enable-image=fb,x11
 INLINE_IMAGE_CONFIGURE_OFF=	--enable-image=no
 
+JAPANESE_CONFIGURE_ON=	--enable-japanese=U --with-migemo=yes
+
 KEY_LYNX_CONFIGURE_ON=	--with-keymap=lynx
+
+NLS_USES=	gettext
+NLS_CONFIGURE_ON=	--enable-nls
+NLS_CONFIGURE_OFF=	--disable-nls
 
 .include <bsd.mport.options.mk>
 
@@ -56,11 +77,21 @@ PKGMESSAGE=	${NONEXISTENT}
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|\`\(expr\) \(.*\) : \(.*\)`|`\1 \\( \2 : \3 \\)`|' \
+		's|`\(expr\) \(.*\) : \(.*\)`|`\1 \\( \2 : \3 \\)`|' \
 		-e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 	@${FIND} ${WRKSRC}/doc* -type f \! -name HISTORY \
 		-exec ${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' {} +
+	@${CP} ${WRKSRC}/doc-jp/README.func ${WRKSRC}/README.func.bak
+	@${ICONV_CMD} -f EUC-JP -t UTF-8 ${WRKSRC}/README.func.bak \
+		> ${WRKSRC}/doc-jp/README.func
+	@${CP} ${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in \
+		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in.bak
+	@${ICONV_CMD} -f EUC-JP -t UTF-8 \
+		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in.bak \
+		> ${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in
+	@${REINPLACE_CMD} -e 's|EUC-JP|UTF-8|g' \
+		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/w3m
@@ -68,11 +99,16 @@ post-install:
 	for i in ${DOCS_JP} ; do \
 		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/ja/w3m/ ; \
 	done
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/de/w3m
+	@cd ${WRKSRC}/doc-de; \
+	for i in ${DOCS_DE} ; do \
+		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/de/w3m/ ; \
+	done
 	@cd ${WRKSRC}/doc; \
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/w3m/; \
-	for i in ${DOCS} ; do \
+	for i in ${DOCS_COMMON} ${DOCS_EN} ; do \
 		${INSTALL_DATA} $$i ${STAGEDIR}${PREFIX}/share/doc/w3m/ ; \
 	done
-	@${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${STAGEDIR}${PREFIX}/man/ja/man1
+	${INSTALL_MAN} ${WRKSRC}/scripts/w3mman/w3mman.1 ${STAGEDIR}${PREFIX}/man/ja/man1
 
 .include <bsd.port.mk>

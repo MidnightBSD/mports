@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libiconv
 PORTVERSION=	1.14
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	converters devel
 MASTER_SITES=	GNU
 
@@ -16,8 +14,8 @@ CONFIGURE_ARGS=	--enable-static \
 		--enable-shared \
 		--disable-nls \
 		--docdir=${DOCSDIR} \
-		--host=${ARCH}-portbld-midnightbsd1.0 \
-		--target=${ARCH}-portbld-midnightbsd1.0 \
+		--host=${ARCH}-portbld-midnightbsd${OSREL} \
+		--target=${ARCH}-portbld-midnightbsd${OSREL} \
 		am_cv_func_iconv=no
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes

@@ -11,9 +11,10 @@ _INCLUDE_USES_NINJA_MK=	yes
 IGNORE=	Incorrect 'USES+= ninja:${ninja_ARGS}' ninja takes no arguments
 .endif
 
-#MAKE_ARGS+=	-v
+MAKE_ARGS+=	-v
 
-BUILD_DEPENDS+=	ninja:devel/ninja
+BUILD_DEPENDS+=	python3.7:lang/python37 \
+		ninja:devel/ninja
 
 CMAKE_ARGS+=	-GNinja
 MAKEFILE=

@@ -1,9 +1,8 @@
 # Created by: David Naylor <dbn@dragon.local>
-# $FreeBSD: head/lang/referenceassemblies-pcl/Makefile 424052 2016-10-16 09:19:46Z romain $
-# $MidnightBSD$
 
 PORTNAME=	referenceassemblies-pcl
 PORTVERSION=	4.6
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://download.microsoft.com/download/B/7/9/B79993DE-10E7-457A-B22B-4A918086A989/:ms \
 		http://download.mono-project.com/repo/debian/pool/main/r/referenceassemblies-pcl/:mono

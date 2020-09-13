@@ -1,6 +1,2 @@
-@comment $MidnightBSD: trunk/Mk/components/maintainer.mk 17427 2014-09-20 15:34:51Z laffer1 $
-share/fonts/cyrillic/screen8x16.pcf.gz
-share/fonts/cyrillic/screen8x16b.pcf.gz
-share/fonts/cyrillic/fonts.dir
-@dirrm share/fonts/cyrillic
-@dirrm share/fonts
+%%FONTSDIR%%/screen8x16.pcf.gz
+%%FONTSDIR%%/screen8x16b.pcf.gz

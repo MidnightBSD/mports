@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/subversion/Makefile 445440 2017-07-10 15:59:30Z lev $
-
 #PORTREVISION=	0
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +13,6 @@ PORTDOCS=	BUGS CHANGES COMMITTERS INSTALL README
 OPTIONS_DEFINE=	\
 		BDB		\
 		DOCS		\
-		MAINTAINER_DEBUG\
 		NLS		\
 		SASL		\
 		SERF		\
@@ -27,7 +23,6 @@ OPTIONS_DEFINE=	\
 
 OPTIONS_DEFAULT= SERF TOOLS
 
-MAINTAINER_DEBUG_DESC=	Build debug version
 SERF_DESC=		WebDAV/Delta-V (HTTP/HTTPS) repo access module
 STATIC_DESC=		Build static version (no shared libs)
 SVNSERVE_WRAPPER_DESC=	Enable svnserve wrapper (umask setter)

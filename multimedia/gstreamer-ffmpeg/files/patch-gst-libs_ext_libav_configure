@@ -1,0 +1,21 @@
+--- gst-libs/ext/libav/configure.orig	2013-02-02 04:03:32.000000000 -0500
++++ gst-libs/ext/libav/configure	2020-06-27 12:28:24.430961000 -0400
+@@ -2133,6 +2133,9 @@
+ 
+ # Deal with common $arch aliases
+ case "$arch" in
++    aarch64|arm64)
++        arch="aarch64"
++    ;;
+     arm*)
+         arch="arm"
+     ;;
+@@ -2396,7 +2399,7 @@
+         enable malloc_aligned
+         disable symver
+         ;;
+-    freebsd)
++    freebsd | midnightbsd)
+         enable malloc_aligned
+         ;;
+     bsd/os)

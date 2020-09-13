@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	courier-authlib
 PORTVERSION=	0.63.0
 PORTREVISION=	1
@@ -15,13 +13,14 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Meta-port for the courier authentication library
+
 LICENSE=	gpl3
 
 CONFLICTS=	courier-0.45*
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4
 
 .if !defined(PKGNAMESUFFIX)
-RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
+RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 NO_BUILD=	yes
 PATCHDIR=	/dev/null
@@ -32,13 +31,12 @@ OPTIONS+=	GDBM	"Use gdbm instead of system bdb"	off
 
 .else	# !defined(PKGNAMESUFFIX)
 
-LIB_DEPENDS+=	libltdl.so:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS+=	libltdl.so:devel/libltdl
 
 USES=	iconv gmake libtool perl5 tar:bzip2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_PERL5=	yes
 USE_SUBMAKE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
 #slave ports should have different UNIQUENAME, it is utilized by USE_LDCONFIG
@@ -79,7 +77,7 @@ PLIST=		${PKGDIR}/pkg-plist${PKGNAMESUFFIX:S/gdbm/db/}
 AUTHMOD=	auth${PKGNAMESUFFIX:S/-//:S/gdbm/db/}
 
 .if ${AUTHMOD} == authbase
-RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:${PORTSDIR}/devel/sysconftool
+RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
 CONFIGURE_ARGS+=--with-base --with-authpam
 
 DOCS=		AUTHORS COPYING ChangeLog INSTALL NEWS README \
@@ -96,7 +94,7 @@ CONFIGURE_ARGS+=--with-pipeprog=${WITH_AUTHPIPE_PROG}
 .endif
 
 .else
-RUN_DEPENDS+=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
+RUN_DEPENDS+=	courierauthconfig:security/courier-authlib-base
 CONFIGURE_ARGS+=--without-base --without-authpam
 REMOVE_SUBDIRS+=liblock liblog
 .endif
@@ -104,7 +102,7 @@ REMOVE_SUBDIRS+=liblock liblog
 .if ${AUTHMOD} == authuserdb
 .if ${PKGNAMESUFFIX} == -usergdbm
 CONFLICTS+=	${PORTNAME}-userdb-0.*
-LIB_DEPENDS+=	gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=	gdbm.3:databases/gdbm
 CONFIGURE_ARGS+=--with-db=gdbm
 .elif ${PKGNAMESUFFIX} == -userdb
 CONFLICTS+=	${PORTNAME}-usergdbm-0.*
@@ -143,7 +141,7 @@ CONFIGURE_ARGS+=--without-authpgsql
 .endif
 
 .if ${AUTHMOD} == authvchkpw
-BUILD_DEPENDS+=	${VPOPMAILDIR}/lib/libvpopmail.a:${PORTSDIR}/mail/vpopmail
+BUILD_DEPENDS+=	${VPOPMAILDIR}/lib/libvpopmail.a:mail/vpopmail
 CONFIGURE_ARGS+=--with-authvchkpw
 .else
 CONFIGURE_ARGS+=--without-authvchkpw

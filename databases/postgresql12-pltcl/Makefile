@@ -13,6 +13,7 @@ MASTERDIR=	${.CURDIR}/../../databases/postgresql12-server
 
 USES+=		tcl pgsql:12
 WANT_PGSQL=	server
+_WANT_PGSQL_VER=	12
 
 CONFIGURE_ARGS=	--with-tcl --without-tk \
 		--with-tclconfig="${TCL_LIBDIR}" \

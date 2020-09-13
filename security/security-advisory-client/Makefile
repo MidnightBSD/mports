@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	security-advisory-client
 PORTVERSION=	1.0.4
 CATEGORIES=	security

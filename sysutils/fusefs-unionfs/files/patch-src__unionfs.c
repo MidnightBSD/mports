@@ -1,8 +1,8 @@
---- src/unionfs.c.orig	2015-01-14 10:08:20 UTC
-+++ src/unionfs.c
-@@ -65,6 +65,13 @@
- #include "conf.h"
- #include "uioctl.h"
+--- src/unionfs.c.orig	2016-11-21 19:57:34.000000000 -0500
++++ src/unionfs.c	2020-05-05 23:52:15.382435000 -0400
+@@ -67,6 +67,13 @@
+ #endif
+ #endif
  
 +// Patch pushed upstream: 
 +// https://github.com/rpodgorny/unionfs-fuse/pull/40
@@ -14,7 +14,7 @@
  static struct fuse_opt unionfs_opts[] = {
  	FUSE_OPT_KEY("chroot=%s,", KEY_CHROOT),
  	FUSE_OPT_KEY("cow", KEY_COW),
-@@ -92,7 +99,12 @@ static int unionfs_chmod(const char *pat
+@@ -94,7 +101,12 @@
  	char p[PATHLEN_MAX];
  	if (BUILD_PATH(p, uopt.branches[i].path, path)) RETURN(-ENAMETOOLONG);
  
@@ -27,7 +27,7 @@
  	if (res == -1) RETURN(-errno);
  
  	RETURN(0);
-@@ -671,6 +683,9 @@ static int unionfs_truncate(const char *
+@@ -677,6 +689,9 @@
  	RETURN(0);
  }
  
@@ -36,16 +36,4 @@
 +// Remove this as soon as pushed into a release.
  static int unionfs_utimens(const char *path, const struct timespec ts[2]) {
  	DBG("%s\n", path);
- 
-@@ -685,9 +700,9 @@ static int unionfs_utimens(const char *p
- #else
- 	struct timeval tv[2];
- 	tv[0].tv_sec = ts[0].tv_sec;
--	tv[0].tv_usec = ts[0].tv_nsec * 1000;
-+	tv[0].tv_usec = ts[0].tv_nsec / 1000;
- 	tv[1].tv_sec = ts[1].tv_sec;
--	tv[1].tv_usec = ts[1].tv_nsec * 1000;
-+	tv[1].tv_usec = ts[1].tv_nsec / 1000;
- 	int res = utimes(p, tv);
- #endif
  

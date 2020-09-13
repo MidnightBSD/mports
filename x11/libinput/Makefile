@@ -1,31 +1,49 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11/libinput/Makefile 433898 2017-02-11 17:51:19Z rezny $
-
 PORTNAME=	libinput
-PORTVERSION=	1.6.0
+PORTVERSION=	1.15.5
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic input library
 
-BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}evdev>0:devel/py-evdev@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyudev>0:devel/py-pyudev@${PY_FLAVOR}
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libepoll-shim.so:devel/libepoll-shim \
-		libwacom.so:x11/libwacom \
 		libudev.so:devel/libudev-devd \
 		libmtdev.so:devel/libmtdev
 
-USES=		autoreconf gmake libtool pathfix pkgconfig tar:xz
+USES=		gnome localbase meson pkgconfig python:3.4+,run shebangfix tar:xz
+USE_GNOME=	gtk30 glib20 cairo
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
-INSTALL_TARGET=	install-strip
+MESON_ARGS+=	-Ddocumentation=false -Dtests=false
 
-post-patch:
-	${REINPLACE_CMD} -e 's|program_invocation_short_name|getprogname()|' \
-	    ${WRKSRC}/tools/libinput-list-devices.c \
-	    ${WRKSRC}/tools/ptraccel-debug.c ${WRKSRC}/tools/shared.c
+NO_TEST=	yes
+
+python_OLD_CMD=	"/usr/bin/env python3"
+SHEBANG_FILES=	tools/libinput-measure-fuzz.py \
+		tools/libinput-measure-touch-size.py \
+		tools/libinput-measure-touchpad-pressure.py \
+		tools/libinput-measure-touchpad-tap.py \
+		tools/libinput-replay
+
+OPTIONS_DEFINE=	DEBUG_GUI LIBWACOM
+OPTIONS_DEFAULT=LIBWACOM
+OPTIONS_SUB=	yes
+
+DEBUG_GUI_DESC=	Build the GUI event viewer
+LIBWACOM_DESC=	Libwacom support
+
+DEBUG_GUI_USES=		gnome
+# always required?
+#DEBUG_GUI_USE=		GNOME=gtk30,glib20,cairo
+DEBUG_GUI_MESON_TRUE=	debug-gui
+LIBWACOM_LIB_DEPENDS=	libwacom.so:x11/libwacom
+LIBWACOM_MESON_TRUE=	libwacom
 
 .include <bsd.port.mk>

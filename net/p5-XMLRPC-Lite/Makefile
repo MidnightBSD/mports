@@ -18,7 +18,9 @@ CONFIGURE_ARGS=	--noprompt
 INSTALL_TARGET=	pure_install
 USE_PERL5=	configure
 USES=		perl5
+
 NO_ARCH=	yes
+NO_TEST=	yes
 
 perl_OLD_CMD=	.*perl
 

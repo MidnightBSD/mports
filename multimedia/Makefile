@@ -13,7 +13,6 @@ SUBDIR += emby-server
 SUBDIR += ffmpeg
 SUBDIR += ffmpeg0
 SUBDIR += gmp-api
-SUBDIR += gnustep-mplayer
 SUBDIR += gpac-libgpac
 SUBDIR += gstreamer
 SUBDIR += gstreamer-ffmpeg
@@ -96,6 +95,8 @@ SUBDIR += plexmediaserver-plexpass
 SUBDIR += plexwatch
 SUBDIR += poe
 SUBDIR += py-gstreamer
+SUBDIR += py-qt5-multimedia
+SUBDIR += py-qt5-multimediawidgets 
 SUBDIR += qt5-multimedia
 SUBDIR += quvi
 SUBDIR += rtmpdump
@@ -111,8 +112,6 @@ SUBDIR += x264
 SUBDIR += x265
 SUBDIR += xanim
 SUBDIR += xine
-SUBDIR += xmms
-SUBDIR += xmms-skins
 SUBDIR += xvid
 
 .include <bsd.port.subdir.mk>

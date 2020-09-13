@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.15.3
+DISTVERSION=	3.16.3
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-gui
@@ -9,7 +9,7 @@ COMMENT=	GUI for cmake
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libexpat.so:textproc/expat2 \
 		libjsoncpp.so:devel/jsoncpp \
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		librhash.so:security/rhash
 
 USES=		cmake:run,insource compiler:c++11-lang desktop-file-utils libarchive \
-		python:2.7,build shared-mime-info qt:5
+		python:build shared-mime-info qt:5
 USE_QT=		core gui widgets buildtools_build qmake_build
 CMAKE_OFF=	BUILD_CursesDialog \
 		CMake_SPHINX_DEPEND_ON_EXECUTABLES

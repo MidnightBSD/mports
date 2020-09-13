@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.45
+PORTVERSION=	3.52
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -77,18 +77,18 @@ post-patch:
 		${XARGS} ${REINPLACE_CMD} -e 's|#! */bin/bash|#!${SH}|'
 
 do-install:
-	${MKDIR} ${PREFIX}/include/nss/nss ${PREFIX}/lib/nss
+	${MKDIR} ${PREFIX}/include/nss ${PREFIX}/lib
 	${FIND} ${DIST}/public/nss -type l \
-		-exec ${INSTALL_DATA} {} ${STAGEDIR}${PREFIX}/include/nss/nss \;
+		-exec ${INSTALL_DATA} {} ${PREFIX}/include/nss \;
 	${INSTALL_LIB} ${BINS}/lib/*.so \
-		${STAGEDIR}${PREFIX}/lib/nss
+		${PREFIX}/lib/
 	${INSTALL_DATA} ${BINS}/lib/libcrmf.a \
-		${STAGEDIR}${PREFIX}/lib/nss
+		${PREFIX}/lib/
 .for bin in ${INSTALL_BINS}
 	${INSTALL_PROGRAM} ${BINS}/bin/${bin} \
-		${STAGEDIR}${PREFIX}/bin
+		${PREFIX}/bin
 .endfor
-	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKDIR}/nss.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
+	${INSTALL_SCRIPT} ${WRKDIR}/nss-config ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKDIR}/nss.pc ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

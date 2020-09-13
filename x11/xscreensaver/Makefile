@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xscreensaver
-PORTVERSION=	5.40
-PORTREVISION=	1
+PORTVERSION=	5.44
 CATEGORIES=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
@@ -23,8 +20,7 @@ USES=		autoreconf gettext gmake jpeg localbase:ldflags perl5 pkgconfig
 USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf2 gtk20 intltool libglade2 libxml2
 USE_PERL5=	run
-USE_XORG=	ice sm x11 xext xi xinerama xmu xrandr xrender xpm xt \
-		xxf86misc xxf86vm
+USE_XORG=	ice sm x11 xext xi xinerama xmu xrandr xrender xpm xt xxf86vm
 USE_CSTD=	gnu99
 
 GNU_CONFIGURE=	yes

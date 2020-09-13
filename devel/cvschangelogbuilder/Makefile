@@ -1,10 +1,6 @@
 # New ports collection makefile for:	cvschangelogbuilder
 # Date created:				Sun Mar  5 16:43:25 EST 2006
 # Whom:					Matthew Will <mwill@spingen.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/cvschangelogbuilder/Makefile,v 1.6 2008/05/17 12:41:03 miwi Exp $
-#
 
 PORTNAME=	cvschangelogbuilder
 PORTVERSION=	2.5
@@ -13,12 +9,13 @@ MASTER_SITES=	SF/cvschangelogb/CVSChangelogBuilder/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to generate changelogs and reports from a CVS repository
+
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/GD/Graph.pm:${PORTSDIR}/graphics/p5-GD-Graph
+RUN_DEPENDS=	${SITE_PERL}/GD/Graph.pm:graphics/p5-GD-Graph
 
 NO_BUILD=	yes
-USE_PERL5=	yes
+USES=		perl5
 
 PLIST_FILES=	bin/cvschangelogbuilder
 PORTDOCS=	*

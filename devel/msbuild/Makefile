@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	msbuild
 DISTVERSIONPREFIX=	v
 DISTVERSION=	15.8-preview
@@ -27,7 +25,7 @@ SHEBANG_FILES=	*.sh artifacts/mono-msbuild/msbuild build.sh build/*.sh
 MAKE_ENV=	GIT_COMMIT=3c930fa8721935cf0e381fd349f6f50cf2bc223d
 MAKE_JOBS_UNSAFE=MSBuild has not implemented concurrent builds on non Windows platforms
 ALL_TARGET=	all-mono
-TEST_TARGET=	test-mono
+NO_TEST=	yes
 
 post-extract:
 	${MKDIR} ${WRKSRC}/artifacts/
@@ -40,9 +38,5 @@ do-build:
 do-install:
 	(cd ${WRKSRC}; \
 		${SETENV} ${MAKE_ENV} DESTDIR=${FAKE_DESTDIR} PATH=${WRKSRC}/artifacts/mono-msbuild:$$PATH ./install-mono-prefix.sh ${TRUE_PREFIX})
-
-do-test:
-	(cd ${WRKSRC}; \
-		${SETENV} ${MAKE_ENV} ./build/build.sh -host mono -configuration Release build)
 
 .include <bsd.port.mk>

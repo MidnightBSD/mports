@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 EXTRACT_DEPENDS=  ${LOCALBASE}/bin/bsdtar:archivers/libarchive
 BUILD_DEPENDS=	mono>=3.0:lang/mono \
-		referenceassemblies-pcl>=4.6-1:lang/referenceassemblies-pcl
+		referenceassemblies-pcl>=4.6:lang/referenceassemblies-pcl
 RUN_DEPENDS=	mono>=3.0:lang/mono
 
 NUGET_DEPENDS=	FSharp.Compiler.Tools=4.0.1.3 \
@@ -33,15 +33,6 @@ GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	Build not parallelizable
 NO_ARCH=	yes
 
-do-test:
-	${MKDIR} ${WRKDIR}/bin
-	echo "#!/bin/sh" > ${WRKDIR}/bin/fsharpc
-	echo 'exec ${LOCALBASE}/bin/mono ${WRKSRC}/lib/release/fsc.exe "$$@"' >> ${WRKDIR}/bin/fsharpc
-	${CHMOD} 0755 ${WRKDIR}/bin/fsharpc
-	(cd ${WRKSRC}/tests/fsharp/core; \
-		${ENV} \
-			PATH=${WRKDIR}/bin:${PATH} \
-			MONO_PATH=${WRKSRC}/lib/release \
-			./run-all.sh)
+NO_TEST=	yes
 
 .include <bsd.port.mk>

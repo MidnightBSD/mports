@@ -1,6 +1,6 @@
-# $FreeBSD: head/devel/php74-intl/Makefile 516111 2019-10-30 22:42:21Z tz $
-
 CATEGORIES=	devel
+
+PORTREVISION=1
 
 MASTERDIR=	${.CURDIR}/../../lang/php74
 
@@ -11,6 +11,6 @@ USE_CXXSTD=	gnu++11
 
 CPPFLAGS+=	-DU_USING_ICU_NAMESPACE=1
 
-TEST_TARGET=    test
+NO_TEST=	yes
 
 .include "${MASTERDIR}/Makefile"

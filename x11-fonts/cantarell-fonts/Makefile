@@ -6,7 +6,7 @@ MASTER_SITES=	GNOME
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cantarell, a Humanist sans-serif font family
 
-LICENSE=	other
+LICENSE=	OFL11
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	appstream-util:devel/appstream-glib

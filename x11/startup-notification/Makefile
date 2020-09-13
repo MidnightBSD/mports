@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	startup-notification
 PORTVERSION=	0.12
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11 gnome
 MASTER_SITES=	http://www.freedesktop.org/software/startup-notification/releases/
 DIST_SUBDIR=	gnome2
@@ -16,7 +14,7 @@ LICENSE_COMB=	multi
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
 USE_XORG=	x11
-USES=		gmake libtool pathfix pkgconfig
+USES=		gmake libtool pathfix pkgconfig xorg
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

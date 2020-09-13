@@ -27,8 +27,6 @@ PLIST_SUB+=	LIB_VERSION=${PORTVERSION}
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
-
 CPPFLAGS+=	-I/usr/include/readline -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
@@ -183,26 +181,26 @@ post-patch:
 .if !target(post-install)
 post-install:
 .if ! ${PORT_OPTIONS:MPYTHON}
-	${RM} ${STAGEDIR}${DATADIR}/dvd-handler
+	-${RM} ${STAGEDIR}${DATADIR}/dvd-handler
 .endif
 .if defined(WITH_CLIENT_ONLY)
-	${MV} ${STAGEDIR}${ETCDIR}/bconsole.conf ${STAGEDIR}${ETCDIR}/bconsole.conf.sample
-	${INSTALL_DATA} ${WRKSRC}/examples/sample-query.sql ${STAGEDIR}${LOCALBASE}/share/bacula/query.sql.sample
+	${MV} ${ETCDIR}/bconsole.conf ${ETCDIR}/bconsole.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/examples/sample-query.sql ${FAKE_DESTDIR}${LOCALBASE}/share/bacula/query.sql.sample
 .else
 	${INSTALL_SCRIPT} ${FILESDIR}/chio-bacula ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${FILESDIR}/bacula-barcodes ${STAGEDIR}${ETCDIR}/bacula-barcodes.sample
 	# bacula-dir attempts to install query.sql as bpart of bacula-server, but that should only installed by bacula-client.
-	${RM} ${STAGEDIR}${LOCALBASE}/share/bacula/query.sql
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/share/bacula/query.sql
 
 	#the following are installed by the -CLIENT port, and I (ler@lerctr.org)
 	#don't know how to remove them from being built for the -SERVER port.
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/bpipe-fd.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbac-${PORTVERSION}.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbac.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbaccfg-${PORTVERSION}.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbaccfg.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbacfind-${PORTVERSION}.so
-	${RM} ${STAGEDIR}${LOCALBASE}/lib/libbacfind.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/bpipe-fd.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbac-${PORTVERSION}.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbac.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbaccfg-${PORTVERSION}.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbaccfg.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbacfind-${PORTVERSION}.so
+	${RM} ${FAKE_DESTDIR}${LOCALBASE}/lib/libbacfind.so
 .endif
 	for na in ${CONFFILES}; do \
 		${MV} ${STAGEDIR}${ETCDIR}/bacula-$$na.conf ${STAGEDIR}${ETCDIR}/bacula-$$na.conf.sample; \

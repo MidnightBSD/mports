@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libXv
 PORTVERSION=	1.0.11
 PORTREVISION=	1
@@ -11,10 +9,11 @@ COMMENT=	X Video Extension library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
 USE_XORG=	x11 xext xorgproto
-USES+=	cpe
+USES+=	cpe xorg xorg-cat:lib
 CPE_PRODUCT=	libxv
 CPE_VENDOR=	x
+
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	dovecot-pigeonhole
-PORTVERSION=	0.5.7.2
+PORTVERSION=	0.5.10
 CATEGORIES=	mail
 MASTER_SITES=	http://pigeonhole.dovecot.org/releases/${DOVECOTVERSION}/
 DISTNAME=	${PORTNAME:C/-/-${DOVECOTVERSION}-/}-${PORTVERSION}
@@ -9,8 +9,8 @@ COMMENT=	Sieve plugin for the Dovecot 'deliver' LDA and LMTP
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS=	dovecot2>=2.3.7:mail/dovecot
-RUN_DEPENDS=	dovecot2>=2.3.7:mail/dovecot
+BUILD_DEPENDS=	dovecot>=2.3.9:mail/dovecot
+RUN_DEPENDS=	dovecot>=2.3.9:mail/dovecot
 
 DOVECOTVERSION=	2.3
 
@@ -24,7 +24,7 @@ INSTALL_TARGET=	install-strip
 USES=		compiler:c11 libtool ssl
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
 
-CONFLICTS_INSTALL=	dovecot-pigeonhole04
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS LDAP MANAGESIEVE
 OPTIONS_DEFAULT=MANAGESIEVE GSSAPI_NONE

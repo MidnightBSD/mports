@@ -8,16 +8,16 @@
 #
 # +++ variables +++
 #
-# STRIP		The flag passed to the install program to cause the binary
-#		to be stripped.  This is to be used when building your
-#		own install script so that the entire system can be made
-#		stripped/not-stripped using a single knob. [-s]
+# STRIP		- The flag passed to the install program to cause the binary
+#		  to be stripped.  This is to be used when building your
+#		  own install script so that the entire system can be made
+#		  stripped/not-stripped using a single knob. [-s]
 #
-# OPSYS		Get the operating system type [`uname -s`]
+# OPSYS		- Get the operating system type [`uname -s`]
 #
-# SUBDIR	A list of subdirectories that should be built as well.
-#		Each of the targets will execute the same target in the
-#		subdirectories.
+# SUBDIR	- A list of subdirectories that should be built as well.
+#		  Each of the targets will execute the same target in the
+#		  subdirectories.
 #
 #
 # +++ targets +++
@@ -50,6 +50,11 @@ MOVEDFILE?=		MOVED
 INDEXDIR?=		${PORTSDIR}
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
+# Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
+# builds can occur when PORTSDIR is a symbolic link, or with something like
+# make -C /usr/ports/category/port/.
+.CURDIR:=		${.CURDIR:tA}
+
 .include "${PORTSDIR}/Mk/components/commands.mk"
 
 .MAIN: all
@@ -64,7 +69,7 @@ STRIP?=	-s
 
 .if !defined(NOPRECIOUSMAKEVARS)
 .if !defined(ARCH)
-ARCH!=	${DESTDIR}${UNAME} -p
+ARCH!=	${UNAME} -p
 .endif
 _EXPORTED_VARS+=	ARCH
 
@@ -77,6 +82,7 @@ OSVERSION!=${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${
 OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
 .endif
+_EXPORTED_VARS+=	OSVERSION
 .endif
 
 .if !defined(_OSRELEASE)
@@ -503,7 +509,7 @@ _PORTSEARCH=	\
 	        -v icase="$${icase:-${PORTSEARCH_IGNORECASE}}" \
 	    'BEGIN { \
 	        if (icase) { \
-	    	if (length(name))  name = tolower(name);  if (length(xname))  xname = tolower(xname); \
+		if (length(name))  name = tolower(name);  if (length(xname))  xname = tolower(xname); \
 	        } \
 	        fields["name"]  = 1;  names[1]  = "Port"; \
 	        fields["destination"]  = 2;  names[2]  = "Moved"; \
@@ -516,9 +522,9 @@ _PORTSEARCH=	\
 		sub(".*\/", "", oldname);  newname = sub(".*\/", "", newname); \
 	        if (((icase ? tolower(oldname) : oldname) ~ name) || \
 		  ((icase ? tolower(newname) : newname) ~ name)) { \
-	    	    for (i = 1; i <= 4; i++) { \
-	    		printf("%s:\t%s\n", names[i], $$i); \
-	    	    } \
+		    for (i = 1; i <= 4; i++) { \
+			printf("%s:\t%s\n", names[i], $$i); \
+		    } \
 	        print(""); \
 	        } \
 	    }' ${MOVEDDIR}/${MOVEDFILE}; \

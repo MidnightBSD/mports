@@ -1,7 +1,7 @@
 # Created by: Palle Girgensohn <girgen@FreeBSD.org>
 
 PORTNAME=	beats
-PORTVERSION=	6.7.1
+PORTVERSION=	6.8.6
 DISTVERSIONPREFIX=v
 CATEGORIES=	sysutils
 
@@ -19,15 +19,16 @@ GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 FIND_ARGS=	"! ( -regex .*/*\.(go|in|log) ) ! -path *test* ! -path *vendor*"
 MAKE_ENV+=	GOBUILD_FLAGS=""
 
-BUILD_DEPENDS+=	bash:shells/bash
-RUN_DEPENDS+=	bash:shells/bash
-
 OPTIONS_DEFAULT=FILEBEAT HEARTBEAT METRICBEAT
-OPTIONS_DEFINE=	FILEBEAT HEARTBEAT METRICBEAT
+OPTIONS_DEFINE=	FILEBEAT HEARTBEAT METRICBEAT PACKETBEAT
 OPTIONS_SUB=	yes
 
 FILEBEAT_DESC=	Filebeat
 FILEBEAT_VARS=	GO_TARGETS+=filebeat
+
+PACKETBEAT_DESC=Packetbeat
+PACKETBEAT_VARS=GO_TARGETS+=packetbeat
+PACKETBEAT_BROKEN=	An underlying library is currently broken under BSD
 
 METRICBEAT_DESC=Metricbeat
 METRICBEAT_VARS=GO_TARGETS+=metricbeat
@@ -35,11 +36,13 @@ METRICBEAT_VARS=GO_TARGETS+=metricbeat
 HEARTBEAT_DESC=	Heartbeat
 HEARTBEAT_VARS=	GO_TARGETS+=heartbeat
 
+NO_TEST=	yes
+
 .include <bsd.mport.options.mk>
 
 do-build:
 .for GO_TARGET in ${GO_TARGETS}
-	@(cd ${GO_WRKSRC}; ${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${GO_ENV} ${GMAKE} -C ${GO_TARGET})
+	@(cd ${GO_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GO_ENV} ${GMAKE} -C ${GO_TARGET})
 .endfor
 
 do-install:
@@ -48,7 +51,15 @@ do-install:
 		${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/${GO_TARGET}/${GO_TARGET}.yml \
 		${STAGEDIR}${PREFIX}/etc/${GO_TARGET}.yml.sample
-	${MKDIR} ${STAGEDIR}/var/db/beats/${GO_TARGET}
+	(DEST_COMPONENT_PATH_UNSTAGED=/var/db/beats/${GO_TARGET}/kibana; \
+		DEST_COMPONENT_PATH=${FAKE_DESTDIR}$${DEST_COMPONENT_PATH_UNSTAGED}; \
+		${MKDIR} $${DEST_COMPONENT_PATH}; \
+		DASHBOARD_FIND_ARGS="-path */_meta/kibana -type d"; \
+		DASHBOARD_PATHS=$$(${SETENV} ${FIND} ${WRKSRC}/${GO_TARGET} $${DASHBOARD_FIND_ARGS}); \
+		for DASHBOARD_PATH in $${DASHBOARD_PATHS}; \
+		do \
+			(cd $${DASHBOARD_PATH} && ${COPYTREE_SHARE} . $${DEST_COMPONENT_PATH}); \
+		done)
 .endfor
 .for BEATMOD in filebeat metricbeat
 	${MKDIR} ${STAGEDIR}${ETCDIR}/${BEATMOD}.modules.d ${STAGEDIR}${DATADIR}/${BEATMOD}/module

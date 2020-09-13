@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xkbcomp
-PORTVERSION=	1.4.2
-PORTREVISION=	1
+PORTVERSION=	1.4.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,9 +7,8 @@ COMMENT=	Compile XKB keyboard description
 
 LICENSE=	mit
 
-XORG_CAT=	app
 USE_XORG=	x11 xkbfile
-USES=		pathfix tar:bzip2
+USES=		pathfix xorg xorg-cat:app
 
 PLIST_FILES=	bin/xkbcomp \
 		libdata/pkgconfig/xkbcomp.pc \

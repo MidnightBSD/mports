@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xchat
 PORTVERSION=	2.8.8
 PORTREVISION=	3
@@ -15,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	xchat-1* xchat-systray-plugin-[0-9]*
 
-USES=		cpe gettext gmake libtool pathfix pkgconfig tar:bzip2
+USES=		cpe gettext gmake libtool pathfix perl5 pkgconfig tar:bzip2
 USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -33,7 +31,7 @@ LIBSEXY_DESC=	Spell check support via libsexy
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MDBUS}
-LIB_DEPENDS+=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS+=	libdbus-glib-1.so:devel/dbus-glib
 CONFIGURE_ARGS+=--enable-dbus
 USE_GNOME+=	gconf2
 GCONF_SCHEMAS+=	apps_xchat_url_handler.schemas
@@ -44,22 +42,21 @@ PLIST_SUB+=	DBUS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGTKSPELL}
-LIB_DEPENDS+=	libgtkspell.so:${PORTSDIR}/textproc/gtkspell
+LIB_DEPENDS+=	libgtkspell.so:textproc/gtkspell
 CONFIGURE_ARGS+=--enable-spell=gtkspell
 .elif ${PORT_OPTIONS:MLIBSEXY}
-LIB_DEPENDS+=	libsexy.so:${PORTSDIR}/x11-toolkits/libsexy
+LIB_DEPENDS+=	libsexy.so:x11-toolkits/libsexy
 CONFIGURE_ARGS+=--enable-spell=libsexy
 .else
 CONFIGURE_ARGS+=--enable-spell=none
 .endif
 
 .if ${PORT_OPTIONS:MNOTIFY}
-RUN_DEPENDS+=	notify-send:${PORTSDIR}/devel/libnotify \
-		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
+RUN_DEPENDS+=	notify-send:devel/libnotify \
+		${LOCALBASE}/libexec/notification-daemon:deskutils/notification-daemon
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-USE_PERL5=	yes
 CONFIGURE_ARGS+=--enable-perl
 PLIST_SUB+=	PERL=""
 .else
@@ -77,7 +74,7 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSOCKS}
-LIB_DEPENDS+=	libsocks.so:${PORTSDIR}/net/dante
+LIB_DEPENDS+=	libsocks.so:net/dante
 CONFIGURE_ARGS+=--enable-socks
 .endif
 

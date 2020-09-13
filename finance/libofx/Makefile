@@ -1,20 +1,24 @@
 # $MidnightBSD$
 
 PORTNAME=	libofx
-PORTVERSION=	0.9.10
+PORTVERSION=	0.9.15
 CATEGORIES=	finance
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenSource implementation of the OFX (Open Financial eXchange)
 
-LICENSE=        gpl2
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
-		libxml++-2.6.so:${PORTSDIR}/textproc/libxml++26 \
-		libosp.so:${PORTSDIR}/textproc/opensp
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libxml++-2.6.so:textproc/libxml++26 \
+		libosp.so:textproc/opensp
 
-USES=		gmake iconv pkgconfig pathfix libtool
+USES=		gettext-runtime gmake gnome iconv libtool localbase pathfix pkgconfig \
+		compiler:c++11-lang
+USE_CXXSTD=	c++11
+USE_GNOME=	glib20 glibmm libsigc++20 libxml2
 CONFIGURE_ARGS=	--disable-doxygen --disable-dot --disable-gengetopt \
 		--with-opensp-includes=${LOCALBASE}/include/OpenSP \
 		--with-opensp-libs=${LOCALBASE}/lib
@@ -23,12 +27,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 PORTDOCS=	*
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
 OPTIONS_DEFINE=	DOCS
-
-.include <bsd.mport.options.mk>
 
 post-install:
 	${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING

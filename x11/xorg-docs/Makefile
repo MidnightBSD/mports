@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xorg-docs
 PORTVERSION=	1.7.1
 PORTREVISION=	1
@@ -12,6 +10,6 @@ LICENSE=	mit
 
 CONFIGURE_ARGS+=	--without-xmlto --without-fop --disable-specs
 
-XORG_CAT=	doc
+USES=		xorg-cat:doc
 
 .include <bsd.port.mk>

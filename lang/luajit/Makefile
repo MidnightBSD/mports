@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	luajit
-DISTVERSION=	2.0.3
+DISTVERSION=	2.0.5
 CATEGORIES=	lang
-MASTER_SITES=	http://luajit.org/download/
+MASTER_SITES=	https://luajit.org/download/
 DISTNAME=	LuaJIT-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +11,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 FAKE_OPTS=	trueprefix
+
+CONFLICTS_INSTALL=    luajit-openresty
 
 WRKSRC=		${WRKDIR}/LuaJIT-${DISTVERSION}
 USES=		gmake

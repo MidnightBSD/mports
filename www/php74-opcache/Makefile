@@ -6,7 +6,7 @@ MASTERDIR=	${.CURDIR}/../../lang/php74
 
 PKGNAMESUFFIX=	-opcache
 
-TEST_TARGET=    test
+NO_TEST=	yes
 
 USES=	php:zend,noflavors
 

@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xmore
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +7,7 @@ COMMENT=	Plain text display program for X
 
 LICENSE=	mit
 
-XORG_CAT=	app
-USE_XORG=	xt xaw xp xprintutil
+USES=		xorg xorg-cat:app
+USE_XORG=	x11 xt xaw
 
 .include <bsd.port.mk>

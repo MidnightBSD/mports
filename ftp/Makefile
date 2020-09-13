@@ -1,16 +1,15 @@
 COMMENT = File Transfer Protocol 
 
 SUBDIR += curl
+SUBDIR += filezilla
 SUBDIR += ftpcopy
 SUBDIR += ftpsync
 SUBDIR += gnustep-ftp
 SUBDIR += lftp
+SUBDIR += libfilezilla
 SUBDIR += linux-c6-curl
 SUBDIR += linux-c7-curl
 SUBDIR += ncftp3
-SUBDIR += ncftpd
-SUBDIR += php71-curl
-SUBDIR += php71-ftp
 SUBDIR += php72-curl
 SUBDIR += php72-ftp
 SUBDIR += php73-curl
@@ -21,6 +20,9 @@ SUBDIR += proftpd
 SUBDIR += tnftp
 SUBDIR += tnftpd
 SUBDIR += waiho
+SUBDIR += weex
 SUBDIR += wget
+SUBDIR += wput
+SUBDIR += yafc
 
 .include <bsd.port.subdir.mk>

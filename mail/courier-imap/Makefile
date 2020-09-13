@@ -27,6 +27,7 @@ CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 MAKE_ENV:=	${CONFIGURE_ENV}
 ALL_TARGET=	all makeimapaccess makedat

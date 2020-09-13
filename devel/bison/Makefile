@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Jerry Hicks
 
 PORTNAME=	bison
-PORTVERSION=	3.1
+PORTVERSION=	3.5.4
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
@@ -12,29 +12,30 @@ COMMENT=	Parser generator from FSF, (mostly) compatible with Yacc
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	m4>=1.4.16:devel/m4
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	m4>=1.4.16,1:devel/m4
 
 OPTIONS_DEFINE=	DOCS EXAMPLES NLS
 OPTIONS_SUB=	yes
 
-CONFIGURE_ARGS=	--disable-yacc
-.ifdef QEMU_EMULATING
-# XXX bug 224740: configure hangs
-CONFIGURE_ENV=	gl_cv_func_printf_enomem=no
-.endif
-GNU_CONFIGURE=	yes
-TEST_TARGET=	check
+USES=		charsetfix compiler:c11 localbase makeinfo perl5 tar:xz
 USE_PERL5=	build
-USES=		charsetfix localbase makeinfo perl5 tar:xz
+
+CONFIGURE_ARGS=	--disable-yacc --enable-relocatable
+GNU_CONFIGURE=	yes
+LIBS+=		-lm
+
+NO_TEST=	yes
 
 INFO=		bison
 
 NLS_CONFIGURE_ENABLE=	nls
+NLS_CONFIGURE_OFF=	ac_cv_libtextstyle=no
+NLS_LIB_DEPENDS=	libtextstyle.so:devel/libtextstyle
 NLS_USES=		gettext
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$(docdir)\(/examples\)|$$(datarootdir)\1/bison|' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|\(.*\) _Noreturn void|_Noreturn \1 void|' ${WRKSRC}/data/*.c ${WRKSRC}/lib/*.[ch]
+	@${GREP} -l '_Noreturn void' ${WRKSRC}/lib/*.[ch] | ${XARGS} -J % ${REINPLACE_CMD} -e 's|\(.*\) _Noreturn void|_Noreturn \1 void|' %
 
 .include <bsd.port.mk>

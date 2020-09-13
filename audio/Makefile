@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = Audio tools
 
 SUBDIR += alsa-lib
@@ -23,7 +21,6 @@ SUBDIR += gsm
 SUBDIR += gsound
 SUBDIR += gstreamer-plugins-a52dec
 SUBDIR += gstreamer-plugins-cdparanoia
-SUBDIR += gstreamer-plugins-esound
 SUBDIR += gstreamer-plugins-faac
 SUBDIR += gstreamer-plugins-faad
 SUBDIR += gstreamer-plugins-flac
@@ -87,6 +84,7 @@ SUBDIR += libmpd
 SUBDIR += libmpdclient
 SUBDIR += libmusicbrainz3
 SUBDIR += libmusicbrainz5
+SUBDIR += libmysofa
 SUBDIR += libnjb
 SUBDIR += libofa
 SUBDIR += libogg
@@ -140,6 +138,7 @@ SUBDIR += openal-soft
 SUBDIR += opencore-amr
 SUBDIR += opus
 SUBDIR += opusfile
+SUBDIR += pavucontrol
 SUBDIR += portaudio
 SUBDIR += pulseaudio
 SUBDIR += py-mpd
@@ -148,6 +147,7 @@ SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
 SUBDIR += sdl2_mixer
+SUBDIR += sndio
 SUBDIR += sonata
 SUBDIR += sound-juicer
 SUBDIR += soundtouch

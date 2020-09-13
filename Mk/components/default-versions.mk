@@ -1,5 +1,3 @@
-# $MidnightBSD$ 
-#
 # Provide default versions for ports with multiple versions selectable
 # by the user.
 #
@@ -65,7 +63,7 @@ RUBY_DEFAULT?=		2.6
 RUST_DEFAULT?=		rust-bin
 # Possible values: 4.3, 4.4, 4.5
 SAMBA_DEFAULT?=		4.10
-# Possible values: base, openssl, openssl-devel, libressl, libressl-devel
+# Possible values: base, openssl, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.

@@ -1,9 +1,7 @@
 # Created by: Neil Booth
-# $FreeBSD: head/security/py-ecdsa/Makefile 371453 2014-10-24 16:50:42Z mva $
-# $MidnightBSD$
 
 PORTNAME=	ecdsa
-PORTVERSION=	0.11
+PORTVERSION=	0.13.2
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +11,10 @@ COMMENT=	ECDSA cryptographic signature library (pure python)
 
 LICENSE=	mit
 
-USES=		python:2
+USES=		python
 USE_PYTHON=	distutils autoplist
 
-regression-test: build
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test
+NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.mk>

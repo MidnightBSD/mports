@@ -1,9 +1,7 @@
 # Created by: GreenDog <fiziologus@gmail.com>
-# $MidnightBSD$
-# $FreeBSD: head/lang/lua52/Makefile 359938 2014-06-30 22:49:27Z bapt $
 
 PORTNAME=	lua
-PORTVERSION=	5.2.3
+PORTVERSION=	5.2.4
 CATEGORIES=	lang
 MASTER_SITES=	http://www.lua.org/ftp/
 PKGNAMESUFFIX=	52

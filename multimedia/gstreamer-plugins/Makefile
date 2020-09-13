@@ -20,6 +20,8 @@ BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:multimedia/v4l_compat \
 LIB_DEPENDS+=	libgstreamer-0.10.so:multimedia/gstreamer \
 		liborc-0.4.so:devel/orc
 
+PORTSCOUT=	limit:0\.10\..*
+
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
 BASE_PORTVERSION=	0.10.36
@@ -39,8 +41,11 @@ DIST?=		good
 SHLIB_VERSION=	1
 VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
-USE_GNOME+=	introspection:build
 USES=		gettext gmake gnome libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
+.if defined(USE_XORG)
+USES+=		xorg
+.endif
+USE_GNOME+=	introspection:build
 GNU_CONFIGURE=	yes
 GST_PLUGIN?=	base
 INSTALL_TARGET=	install-strip
@@ -65,6 +70,7 @@ PLIST_SUB+=	I386="@comment "
 gst_base_DIST=	base
 NO_GSTREAMER_COMMON=	yes
 USE_LDCONFIG=	yes
+USES+=		xorg
 USE_XORG=	x11 xv xext xorgproto
 PLIST_SUB+=	VERSION="${VERSION}" \
 		SHLIB_VERSION="${SHLIB_VERSION}"
@@ -149,9 +155,12 @@ post-patch:
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstbasevideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstbasevideo-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstvideo-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/cdda/libgstcdda-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstcdda-@GST_MAJORMINOR@.la|'
+	@${FIND} ${WRKSRC}/ext ${WRKSRC}/gst ${WRKSRC}/gst-libs \
+		-name Makefile.in -exec ${REINPLACE_CMD} \
+		'/foreach/s/\\#include/#include/' {} +
 	@${REINPLACE_CMD} -e 's|DEFAULT_AUDIOSINK="alsasink"|DEFAULT_AUDIOSINK="${DEFAULT_AUDIOSINK}"|; \
 		s|DEFAULT_AUDIOSRC="alsasrc"|DEFAULT_AUDIOSRC="${DEFAULT_AUDIOSRC}"|' \
-        	-e 's|-Wmissing-include-dirs||g' \
+		-e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
 
 .include <bsd.port.mk>

@@ -1,29 +1,27 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/antlr/Makefile,v 1.19 2011/07/21 05:02:28 linimon Exp $
-
 PORTNAME=	antlr
 PORTVERSION=	2.7.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.antlr2.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ANother Tool for Language Recognition
-LICENSE=	other
 
-BUILD_DEPENDS+=	java:java/javavmwrapper
-RUN_DEPENDS+=	java:java/javavmwrapper
+LICENSE=	publicdom
+
+BUILD_DEPENDS+=	javavm:java/javavmwrapper
+RUN_DEPENDS+=	javavm:java/javavmwrapper
 
 CONFLICTS=	pccts-[0-9]*
 
-USES=		gmake
+USES=		compiler:c++11-lang gmake
 USE_JAVA=	yes
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" CLASSPATH="${PORT_CLASSPATH}"
 CONFIGURE_ARGS=	--disable-csharp --prefix=${PREFIX} \
-		--build=${ARCH}-portbld-freebsd9.1 \
-		--host=${ARCH}-portbld-freebsd9.1
+		--build=${ARCH}-portbld-freebsd10.4 \
+		--host=${ARCH}-portbld-freebsd10.4
 
 PORT_CLASSPATH=	${WRKSRC}/antlrall.jar:.
 
@@ -41,7 +39,7 @@ PORTDOCS=	ANTLRException.gif closure.gif cpp-runtime.html \
 OPTIONS_DEFINE=	PYTHON DOCS
 OPTIONS_SUB=	yes
 
-PYTHON_USES=		python
+PYTHON_USES=		python:2.7
 PYTHON_PORTDOCS=	python-runtime.html
 
 post-extract:

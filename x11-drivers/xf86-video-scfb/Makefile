@@ -1,30 +1,23 @@
-# Created by: Florent Thoumie <flz@freebsd.org>
-# $FreeBSD: head/x11-drivers/xf86-video-scfb/Makefile 385665 2015-05-07 20:24:15Z mat $
-# $MidnightBSD$
-
 PORTNAME=	xf86-video-scfb
-PORTVERSION=	0.0.4
+PORTVERSION=	0.0.5
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
-MASTER_SITES=	https://codeload.github.com/${GH_ACCOUNT}/xf86-video-scfb/tar.gz/${GH_TAGNAME}?dummy=/
-DISTFILES=	xf86-video-scfb-0.0.4_GH0.tar.gz
+
+# Runtime fix from https://github.com/rayddteam/xf86-video-scfb/pull/4
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	080491f.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org syscons display driver
 
-LICENSE=	mit bsd2
-LICENSE_COMB=	multi
+LICENSE=       mit bsd2
+LICENSE_COMB=  multi
 
-USE_GITHUB=     yes
-GH_ACCOUNT=     rayddteam
-GH_TAGNAME=     bdeb3bf
+USES=		xorg-cat:driver
+PLIST_FILES=	lib/xorg/modules/drivers/scfb_drv.so \
+		man/man4/scfb.4x.gz
 
-WRKSRC=		${WRKDIR}/xf86-video-scfb-${GH_TAGNAME}
-
-USES=		libtool pkgconfig
-GNU_CONFIGURE= 	yes
-DIST_SUBDIR=	xorg/driver
-XORG_CAT=	driver
-CONFIGURE_ENV=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
-INSTALL_TARGET=	install-strip
+USE_GITHUB=	yes
+GH_ACCOUNT=	rayddteam
 
 .include <bsd.port.mk>

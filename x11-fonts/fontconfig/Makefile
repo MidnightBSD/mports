@@ -1,11 +1,11 @@
-# $MidnightBSD$
+# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.12.6
-PORTREVISION?=	0
+PORTVERSION=	2.13.92
+PORTREVISION?=	2
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
-MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
+MASTER_SITES=	https://www.freedesktop.org/software/fontconfig/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML-based font configuration API for X Windows
@@ -13,7 +13,7 @@ COMMENT=	XML-based font configuration API for X Windows
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gperf tar:bzip2
+USES=		gperf tar:xz
 
 .if !defined(REFERENCE_PORT)
 
@@ -39,8 +39,6 @@ CONFIGURE_ARGS=	--with-configdir=${PREFIX}/etc/fonts/conf.d \
 # D6155: static linked library linking added to support statically linked
 # 	 applications, e.g. x11/xforward static option
 CONFIGURE_ARGS+=	--enable-static
-# Python is not required, because fc-blanks.h is available in distfile
-CONFIGURE_ENV=	PYTHON=":"
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 INSTALL_TARGET=install-strip
@@ -48,7 +46,7 @@ INSTALL_TARGET=install-strip
 PLIST_SUB=	PREFERRED_HINTING=${PREFERRED_HINTING}
 PORTDOCS=	fontconfig-user.html fontconfig-user.pdf fontconfig-user.txt
 
-OPTIONS_DEFINE=	DOCS NO_BITMAPS
+OPTIONS_DEFINE=	DOCS NLS NO_BITMAPS
 OPTIONS_DEFAULT=HINTING_SLIGHT
 OPTIONS_SUB=	yes
 
@@ -61,6 +59,9 @@ OPTIONS_SINGLE_HINTING+=	HINTING_${opt}
 HINTING_${opt}_DESC=	${opt:tl}
 HINTING_${opt}_VARS=	PREFERRED_HINTING=${opt:tl}
 .endfor
+
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch-NO_BITMAPS-on:
 	@${REINPLACE_CMD} -i '.bitmaps.bak' -e \
@@ -77,8 +78,10 @@ post-install:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${STAGEDIR}${DOCSDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
 

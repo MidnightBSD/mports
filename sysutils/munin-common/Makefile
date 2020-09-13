@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
-PORTREVISION=	2
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	${MUNIN_SITES}
 PKGNAMESUFFIX=	-common
@@ -12,9 +9,9 @@ COMMENT=	Common components between a munin node and server
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
-		p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay
-RUN_DEPENDS=	p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay
+BUILD_DEPENDS=	p5-Module-Build>=0:devel/p5-Module-Build \
+		p5-Net-SSLeay>=0:security/p5-Net-SSLeay
+RUN_DEPENDS=	p5-Net-SSLeay>=0:security/p5-Net-SSLeay
 
 #FAKE_OPTS=	prefixhack
 USES=		perl5 gmake cpe
@@ -22,7 +19,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
 .include "${.CURDIR}/../munin-common/munin.mk"
 
-ALL_TARGET=	build-common-prime
+ALL_TARGET=	build-common
 INSTALL_TARGET=	DATADIR=${FAKE_DESTDIR}/${DATADIR} install-common
 
 post-install:

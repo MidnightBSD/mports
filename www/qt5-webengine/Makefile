@@ -30,6 +30,7 @@ BUILD_DEPENDS=	bison:devel/bison \
 		yasm:devel/yasm \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		re2c:devel/re2c \
 		clang60:devel/llvm60
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libdbus-1.so:devel/dbus \
@@ -83,7 +84,7 @@ USE_GL=		gl
 USE_GNOME=	glib20 libxml2 libxslt
 USE_QT=		core declarative designer gui location network webchannel \
 		widgets buildtools_build qmake_build printsupport
-USE_XORG=	x11 xcb xcomposite xcursor xext xi xorgproto \
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xorgproto \
 		xrandr xrender xscrnsaver xtst
 
 USE_LDCONFIG=	${QT_LIBDIR}
@@ -114,10 +115,12 @@ MAKE_ENV+=	CC="${CC}" CXX="${CXX}"			\
 		C_INCLUDE_PATH=${LOCALBASE}/include	\
 		CPLUS_INCLUDE_PATH=${LOCALBASE}/include	\
 		${CONFIGURE_ENV}
+QT_BINARIES=	yes
 
 post-extract:
 # Install FreeBSD's freebsd.pri file.
 	${CP} ${FILESDIR}/freebsd.pri ${WRKSRC}/src/core/config/freebsd.pri
+	${CP} ${FILESDIR}/freebsd.pri ${WRKSRC}/src/core/config/midnightbsd.pri
 
 post-extract-SNDIO-on:
 	@cd ${WRKSRC}/src/3rdparty/chromium/media/audio && ${MKDIR} sndio openbsd

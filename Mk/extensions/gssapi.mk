@@ -23,6 +23,7 @@
 #  GSSAPILIBDIR
 #  GSSAPILIBS
 #  GSSAPI_CONFIGURE_ARGS
+#  KRB5CONFIG
 #
 # Affected variables:
 #  PREFIX (bootstrap)
@@ -73,8 +74,8 @@
 .if !defined(_INCLUDE_USES_GSSAPI_MK)
 _INCLUDE_USES_GSSAPI_MK=	yes
 
-_HEIMDAL_DEPENDS=${GSSAPILIBDIR}/libgssapi.so:${PORTSDIR}/security/heimdal
-_MITKRB5_DEPENDS=${GSSAPILIBDIR}/libkrb5support.so:${PORTSDIR}/security/krb5
+_HEIMDAL_DEPENDS=${GSSAPILIBDIR}/libgssapi.so:security/heimdal
+_MITKRB5_DEPENDS=${GSSAPILIBDIR}/libkrb5support.so:security/krb5
 _HEADERS=	sys/types.h sys/stat.h stdint.h
 
 .if empty(gssapi_ARGS)
@@ -83,6 +84,9 @@ gssapi_ARGS=	base
 .for _A in ${gssapi_ARGS}
 _local:=	${_A}
 .if ${_local} == "base"
+.  if ${SSL_DEFAULT} != base
+IGNORE=	You are using OpenSSL from ports and have selected GSSAPI from base, please select another GSSAPI value
+.  endif
 HEIMDAL_HOME=	/usr
 GSSAPIBASEDIR=	${HEIMDAL_HOME}
 GSSAPILIBDIR=	${GSSAPIBASEDIR}/lib
@@ -132,6 +136,8 @@ IGNORE=	USES=gssapi - invalid args: [${_local}] specified
 .endif
 .endfor
 
+KRB5CONFIG=${GSSAPIBASEDIR}/bin/krb5-config
+
 # Fix up -Wl,-rpath in LDFLAGS
 .if defined(_RPATH) && !empty(_RPATH)
 .if !empty(LDFLAGS:M-Wl,-rpath,*)
@@ -152,7 +158,8 @@ LDADD+=		${GSSAPILIBS}
 GSSAPI_CONFIGURE_ARGS=	\
 	CFLAGS="${GSSAPICPPFLAGS} ${CFLAGS}" \
 	LDFLAGS="${GSSAPILDFLAGS} ${LDFLAGS}" \
-	LIBS="${GSSAPILIBS} ${LIBS}"
+	LIBS="${GSSAPILIBS} ${LIBS}" \
+	KRB5CONFIG="${KRB5CONFIG}"
 
 debug-krb:
 	@(for I in ${_HEADERS}; do echo "#include <$$I>"; done; \
@@ -164,7 +171,7 @@ debug-krb:
 	    ${GSSAPILIBS} ${GSSAPILDFLAGS} ${_DEBUG_KRB_RPATH} \
 	    /tmp/${.TARGET}.c && \
 	    ldd /tmp/${.TARGET}.x; \
-	    rm -f /tmp/${.TARGET}.x
+	    ${RM} /tmp/${.TARGET}.x
 	@echo "PREFIX: ${PREFIX}"
 	@echo "GSSAPIBASEDIR: ${GSSAPIBASEDIR}"
 	@echo "GSSAPIINCDIR: ${GSSAPIINCDIR}"
@@ -173,6 +180,7 @@ debug-krb:
 	@echo "GSSAPICPPFLAGS: ${GSSAPICPPFLAGS}"
 	@echo "GSSAPILDFLAGS: ${GSSAPILDFLAGS}"
 	@echo "GSSAPI_CONFIGURE_ARGS: ${GSSAPI_CONFIGURE_ARGS}"
+	@echo "KRB5CONFIG: ${KRB5CONFIG}"
 	@echo "CFLAGS: ${CFLAGS}"
 	@echo "LDFLAGS: ${LDFLAGS}"
 	@echo "LDADD: ${LDADD}"

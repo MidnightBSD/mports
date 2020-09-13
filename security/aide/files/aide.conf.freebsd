@@ -1,4 +1,4 @@
-# $Id: aide.conf.freebsd,v 1.1 2006-10-27 14:49:52 wintellect Exp $
+# $Id: aide.conf.freebsd,v 1.3 1998/07/28 17:54:21 obrien Exp $
 #
 # tripwire.config
 # Generic version for FreeBSD based on Tripwire's tw.config

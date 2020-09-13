@@ -1,9 +1,7 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/net-im/telepathy-logger/Makefile 373636 2014-11-29 18:22:32Z tijl $
 
 PORTNAME=	telepathy-logger
-PORTVERSION=	0.8.1
+PORTVERSION=	0.8.2
 CATEGORIES=	net-im
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/${PORTNAME}/
 
@@ -11,17 +9,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Logger utility library for the Telepathy framework
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
+		libtelepathy-glib.so:net-im/telepathy-glib
 
-USES=		gettext-tools gmake libtool pathfix pkgconfig python:build \
-		tar:bzip2
+USES=		gettext-tools gmake gnome libtool pathfix pkgconfig \
+		python:2.7,build sqlite tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	glib20 gnomedocutils intltool libxml2 \
+USE_GNOME=	glib20 intltool libxml2 \
 		libxslt:build introspection:build
-USE_SQLITE=	yes
 GLIB_SCHEMAS=	org.freedesktop.Telepathy.Logger.gschema.xml
 INSTALL_TARGET=	install-strip
 

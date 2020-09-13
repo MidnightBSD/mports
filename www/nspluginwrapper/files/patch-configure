@@ -1,5 +1,5 @@
---- configure.orig	2011-06-30 23:18:57 -0400
-+++ configure	2011-08-30 22:54:45 -0400
+--- configure.orig	2011-06-30 23:18:57.000000000 -0400
++++ configure	2020-06-15 14:24:38.107774000 -0400
 @@ -6,13 +6,8 @@
  PACKAGE=nspluginwrapper
  
@@ -16,6 +16,17 @@
  
  TMPC="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.c"
  TMPO="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.o"
+@@ -499,8 +494,8 @@
+ 
+ # check for Glib 2.0 compile CFLAGS
+ if $pkgconfig --exists glib-2.0; then
+-    GLIB_CFLAGS=`$pkgconfig --cflags glib-2.0`
+-    GLIB_LIBS=`$pkgconfig --libs glib-2.0`
++    GLIB_CFLAGS=`$pkgconfig --cflags glib-2.0 gthread-2.0`
++    GLIB_LIBS=`$pkgconfig --libs glib-2.0 gthread-2.0`
+     GLIB_VERSION=`$pkgconfig --modversion glib-2.0`
+ else
+     echo "GLIB 2.0 environment not found"
 @@ -783,10 +778,10 @@
      echo "OS=dragonfly" >> $config_mak
      echo "#define HOST_DRAGONFLY 1" >> $config_h

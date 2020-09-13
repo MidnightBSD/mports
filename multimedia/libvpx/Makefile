@@ -1,10 +1,12 @@
+# Created by: Ashish SHUKLA <ashish@FreeBSD.org>
+
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.8.0
+DISTVERSION=	1.8.2
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	VP8/VP9 Codec SDK
+COMMENT=	VP8/VP9 reference encoder/decoder
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -23,39 +25,16 @@ SHEBANG_FILES=	build/make/ads2gas.pl
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--disable-install-docs \
 		--disable-install-srcs \
+		--disable-unit-tests \
+		--enable-multi-res-encoding \
 		--enable-pic \
-		--enable-vp8 \
-		--enable-vp9
+		--enable-shared \
+		--enable-vp9-highbitdepth \
+		--enable-vp9-postproc \
+		--enable-vp9-temporal-denoising \
+		--size-limit=16384x16384
 MAKE_ARGS+=	verbose=yes
 ALL_TARGET=	# empty
-
-OPTIONS_DEFINE=	DEBUG MULTIRES POSTPROC RTCPU SHARED SIZE_LIMIT TEST THREADS
-OPTIONS_DEFAULT=MULTIRES POSTPROC RTCPU SHARED SIZE_LIMIT THREADS
-OPTIONS_EXCLUDE_powerpcspe=RTCPU
-OPTIONS_SUB=		yes
-
-DEBUG_CONFIGURE_ON=	--enable-debug
-
-MULTIRES_DESC=		Enable multi-resolution encoding
-MULTIRES_CONFIGURE_ON=	--enable-multi-res-encoding
-
-POSTPROC_DESC=		Enable postprocessing
-POSTPROC_CONFIGURE_ON=	--enable-postproc --enable-vp9-postproc	\
-			--enable-vp9-temporal-denoising
-
-RTCPU_DESC=		Detect CPU capabilities at runtime
-RTCPU_CONFIGURE_ON=	--enable-runtime-cpu-detect
-
-SHARED_DESC=		Enable shared-library support
-SHARED_CONFIGURE_ON=	--enable-shared
-
-SIZE_LIMIT_DESC=	Maximum size allowed by decoder: ${SIZE_LIMIT}
-SIZE_LIMIT_CONFIGURE_ON=--size-limit=${SIZE_LIMIT}
-SIZE_LIMIT?=		16384x16384 # Chromium; Firefox has 4000x3000
-
-TEST_CONFIGURE_OFF=	--disable-unit-tests
-
-THREADS_CONFIGURE_OFF=	--disable-multithread
 
 post-patch:
 	@${REINPLACE_CMD} -E '/gcctarget|link_with_cc/s/gcc[[:>:]]/$${CC}/' \
@@ -66,8 +45,6 @@ post-patch:
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/vpx*
-
-post-install-SHARED-on:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/lib/libvpx.so.*.*.*
+	@${STRIP_CMD} ${PREFIX}/lib/libvpx.so.*.*.*
 
 .include <bsd.port.mk>

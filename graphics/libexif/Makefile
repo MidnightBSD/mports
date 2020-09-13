@@ -1,9 +1,6 @@
-# $FreeBSD: ports/graphics/libexif/Makefile,v 1.25 2006/03/29 06:54:33 pav Exp $
-# $MidnightBSD$
-
 PORTNAME=	libexif
 PORTVERSION=	0.6.21
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
@@ -11,10 +8,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to read digital camera file meta-data
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	DOCS NLS
 
-USES=		gmake libtool pathfix pkgconfig tar:bzip2
+USES=		cpe gmake libtool pathfix pkgconfig tar:bzip2
+CPE_VENDOR=	curtis_galloway
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes

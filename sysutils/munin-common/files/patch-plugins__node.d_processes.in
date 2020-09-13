@@ -1,47 +1,47 @@
---- plugins/node.d/processes.in.orig	2016-09-11 09:34:46.000000000 -0400
-+++ plugins/node.d/processes.in	2016-09-11 09:35:51.000000000 -0400
-@@ -70,7 +70,7 @@
+--- plugins/node.d/processes.in.orig	2020-04-30 11:24:49.000000000 -0400
++++ plugins/node.d/processes.in	2020-07-07 18:36:54.900493000 -0400
+@@ -73,7 +73,7 @@
  
  if [ "$1" = "autoconf" ]; then
-         case "$OPERSYS" in
+     case "$OPERSYS" in
 -        Linux|SunOS|FreeBSD|OpenBSD|NetBSD|Darwin|CYGWIN)
 +        Linux|SunOS|MidnightBSD|FreeBSD|OpenBSD|NetBSD|Darwin|CYGWIN)
-         $ps >/dev/null 2>/dev/null
-         if [ $? -ne 0 ]
-         then
-@@ -163,7 +163,7 @@
- 	print_warning total
- 	print_critical total
+             if ! "$ps" >/dev/null 2>/dev/null; then
+                 echo "no (ps=$ps failed)"
+             elif ! echo | "$awk" '{ print "Hei" }' >/dev/null 2>/dev/null; then
+@@ -161,7 +161,7 @@
+         print_warning total
+         print_critical total
  
 -    elif [ "$OPERSYS" = "FreeBSD" ]; then
 +    elif [ "$OPERSYS" = "MidnightBSD" ]; then
- 	echo "graph_order sleeping idle stopped zombie lock uninterruptible interrupt runnable processes"
- 	echo "lock.label lock"
- 	echo "lock.draw STACK"
-@@ -201,7 +201,7 @@
+         echo "graph_order sleeping idle stopped zombie lock uninterruptible interrupt runnable processes"
+         echo "lock.label lock"
+         echo "lock.draw STACK"
+@@ -231,7 +231,7 @@
      fi
  
      # Common flags for some OS
--    if [ "$OPERSYS" = "FreeBSD" ] || [ "$OPERSYS" = "OpenBSD" ] || 
-+    if [ "$OPERSYS" = "MidnightBSD" ] || [ "$OPERSYS" = "OpenBSD" ] || 
- 	[ "$OPERSYS" = "NetBSD" ] || [ "$OPERSYS" = "Darwin" ]; then
- 	echo "idle.label idle"
- 	echo "idle.draw STACK"
-@@ -224,7 +224,7 @@
- 	print_critical sleeping
+-    if [ "$OPERSYS" = "FreeBSD" ] || [ "$OPERSYS" = "OpenBSD" ] ||
++    if [ "$OPERSYS" = "FreeBSD" ] || [ "$OPERSYS" = "OpenBSD" ] || [ "$OPERSYS" = "MidnightBSD" ] ||
+     [ "$OPERSYS" = "NetBSD" ] || [ "$OPERSYS" = "Darwin" ]; then
+         echo "idle.label idle"
+         echo "idle.draw STACK"
+@@ -267,7 +267,7 @@
+         print_critical sleeping
      fi
-    
--    if [ "$OPERSYS" = "Linux" ] || [ "$OPERSYS" = "FreeBSD" ] || 
-+    if [ "$OPERSYS" = "Linux" ] || [ "$OPERSYS" = "MidnightBSD" ] || 
- 	[ "$OPERSYS" = "OpenBSD" ] || [ "$OPERSYS" = "NetBSD" ]; then
- 	echo "uninterruptible.label uninterruptible"
- 	echo "uninterruptible.draw STACK"
-@@ -297,7 +297,7 @@
+ 
+-    if [ "$OPERSYS" = "Linux" ] || [ "$OPERSYS" = "FreeBSD" ] ||
++    if [ "$OPERSYS" = "Linux" ] || [ "$OPERSYS" = "MidnightBSD" ] ||
+     [ "$OPERSYS" = "OpenBSD" ] || [ "$OPERSYS" = "NetBSD" ]; then
+         echo "uninterruptible.label uninterruptible"
+         echo "uninterruptible.draw STACK"
+@@ -345,7 +345,7 @@
  print "stopped.value "  0+stat["T"];
  print "zombie.value "   0+stat["Z"];
  }'
 -elif [ "$OPERSYS" = "FreeBSD" ]; then
 +elif [ "$OPERSYS" = "MidnightBSD" ]; then
-     $ps -axo state= | sed -e 's/^\(.\).*/\1/' | $awk '
+     # shellcheck disable=SC2016
+     "$ps" -axo state= | sed -e 's/^\(.\).*/\1/' | "$awk" '
  { processes++; stat[$1]++ }
- END {

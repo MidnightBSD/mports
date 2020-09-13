@@ -1,0 +1,29 @@
+--- libtool.orig	2020-06-21 14:26:30.340182000 -0400
++++ libtool	2020-06-21 14:27:11.564915000 -0400
+@@ -6028,7 +6028,7 @@
+ 	    # These systems don't actually have a C library (as such)
+ 	    test "X$arg" = "X-lc" && continue
+ 	    ;;
+-	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly*)
++	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-midnightbsd*)
+ 	    # Do not include libc due to us having libc/libc_r.
+ 	    test "X$arg" = "X-lc" && continue
+ 	    ;;
+@@ -6048,7 +6048,7 @@
+ 	  esac
+ 	elif test "X$arg" = "X-lc_r"; then
+ 	 case $host in
+-	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly*)
++	 *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-midnightbsd*)
+ 	   # Do not include libc_r directly, use -pthread flag.
+ 	   continue
+ 	   ;;
+@@ -8049,7 +8049,7 @@
+ 	  *-*-netbsd*)
+ 	    # Don't link with libc until the a.out ld.so is fixed.
+ 	    ;;
+-	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly*)
++	  *-*-openbsd* | *-*-freebsd* | *-*-dragonfly* | *-*-midnightbsd*)
+ 	    # Do not include libc due to us having libc/libc_r.
+ 	    ;;
+ 	  *-*-sco3.2v5* | *-*-sco5v6*)

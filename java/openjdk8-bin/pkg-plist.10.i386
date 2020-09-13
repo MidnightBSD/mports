@@ -842,3 +842,5 @@ openjdk8/src.zip
 @dir openjdk8/sample/try-with-resources
 @dir openjdk8/sample
 @dir openjdk8
+@postexec /usr/local/bin/registervm '/usr/local/openjdk8/bin/java'                                                                                                        
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk8/bin/java'                                                                                                     

@@ -1,0 +1,95 @@
+--- cmake/config-ix.cmake.orig	2020-06-06 15:06:49.762644000 -0400
++++ cmake/config-ix.cmake	2020-06-06 15:07:59.663804000 -0400
+@@ -500,7 +500,7 @@
+ list_replace(COMPILER_RT_SANITIZERS_TO_BUILD all "${ALL_SANITIZERS}")
+ 
+ if (SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
+-    (OS_NAME MATCHES "Android|Darwin|Linux|FreeBSD|NetBSD|OpenBSD|Fuchsia|SunOS" OR
++    (OS_NAME MATCHES "Android|Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Fuchsia|SunOS" OR
+     (OS_NAME MATCHES "Windows" AND (NOT MINGW AND NOT CYGWIN))))
+   set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)
+ else()
+@@ -520,7 +520,7 @@
+   set(COMPILER_RT_HAS_ASAN FALSE)
+ endif()
+ 
+-if (OS_NAME MATCHES "Linux|FreeBSD|Windows|NetBSD|SunOS")
++if (OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|Windows|NetBSD|SunOS")
+   set(COMPILER_RT_ASAN_HAS_STATIC_RUNTIME TRUE)
+ else()
+   set(COMPILER_RT_ASAN_HAS_STATIC_RUNTIME FALSE)
+@@ -536,14 +536,14 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND LSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_LSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_LSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND MSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_MSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_MSAN FALSE)
+@@ -557,35 +557,35 @@
+ endif()
+ 
+ if (PROFILE_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|Windows|Android|Fuchsia|SunOS")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|Windows|Android|Fuchsia|SunOS")
+   set(COMPILER_RT_HAS_PROFILE TRUE)
+ else()
+   set(COMPILER_RT_HAS_PROFILE FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND TSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|Android|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|Android|NetBSD")
+   set(COMPILER_RT_HAS_TSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_TSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND UBSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD|OpenBSD|Windows|Android|Fuchsia|SunOS")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Windows|Android|Fuchsia|SunOS")
+   set(COMPILER_RT_HAS_UBSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_UBSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND UBSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD|NetBSD|OpenBSD|Android|Darwin")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Android|Darwin")
+   set(COMPILER_RT_HAS_UBSAN_MINIMAL TRUE)
+ else()
+   set(COMPILER_RT_HAS_UBSAN_MINIMAL FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND SAFESTACK_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_SAFESTACK TRUE)
+ else()
+   set(COMPILER_RT_HAS_SAFESTACK FALSE)
+@@ -612,14 +612,14 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND XRAY_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD|OpenBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD")
+   set(COMPILER_RT_HAS_XRAY TRUE)
+ else()
+   set(COMPILER_RT_HAS_XRAY FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND FUZZER_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Android|Darwin|Linux|NetBSD|FreeBSD|OpenBSD|Fuchsia")
++    OS_NAME MATCHES "Android|Darwin|Linux|NetBSD|MidnightBSD|FreeBSD|OpenBSD|Fuchsia")
+   set(COMPILER_RT_HAS_FUZZER TRUE)
+ else()
+   set(COMPILER_RT_HAS_FUZZER FALSE)

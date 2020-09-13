@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libXfont2
-PORTVERSION=	2.0.3
+PORTVERSION=	2.0.4
 PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
@@ -12,7 +10,7 @@ LICENSE=	mit
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	xorgproto xtrans fontenc
 INSTALL_TARGET=	install-strip
 #USES+=	cpe

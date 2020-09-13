@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	pixman
-PORTVERSION=	0.34.0
+PORTVERSION=	0.40.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,9 +10,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
 
-USES=		cpe perl5
+USES=		cpe perl5 tar:xz xorg-cat:lib
 USE_PERL5=	build
-XORG_CAT=	lib
 CONFIGURE_ARGS=	--disable-gtk
 INSTALL_TARGET=	install-strip
 
@@ -27,7 +24,8 @@ MAKE_ARGS=      SUBDIRS=pixman
 
 .if ${ARCH} == "armv6" || ${ARCH} == "armv7"
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
-CONFIGURE_ENV+=	CCASFLAGS="${CFLAGS} -no-integrated-as"
+CONFIGURE_ENV+=	CCASFLAGS="${CFLAGS} -B${LOCALBASE}/bin -no-integrated-as"
+LLD_UNSAFE=	yes
 .endif
 
 .if ${ARCH} == "powerpc64" || ${ARCH} == "powerpc"

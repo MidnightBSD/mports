@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xcb
 PORTVERSION=	2.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	http://oldhome.schmorp.de/marc/data/ \
 		http://ftp.lyx.org/pub/pcg/marc/ \
@@ -13,7 +11,7 @@ COMMENT=	Tool for managing x11 cut-buffers
 
 LICENSE=	mit
 
-USES=		imake
+USES=		imake xorg
 
 USE_XORG=	ice sm x11 xaw xext xmu xt
 

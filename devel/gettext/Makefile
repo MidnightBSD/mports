@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gettext
 PORTREVISION=	0
 DISTFILES=

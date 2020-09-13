@@ -2,8 +2,7 @@
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons
-PORTVERSION=	3.0.1
-PORTREVISION=	2
+PORTVERSION=	3.1.1
 CATEGORIES=	devel python
 MASTER_SITES=	SF
 
@@ -16,16 +15,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	gm4:devel/m4
 
 USES=		python:2.7 shebangfix
-SHEBANG_FILES=	script/scons*
-USE_PYTHON=	distutils autoplist noflavors
+USE_PYTHON=	autoplist distutils
+
+NO_ARCH=	yes
 
 PLIST_SUB+=	SCONS_VER=${PORTVERSION}
 
+SHEBANG_FILES=	script/scons*
+
 post-patch:
-	@${REINPLACE_CMD} \
-		-e 's,distutils\.command\.install$$,setuptools\.command\.install,' \
-		-e 's,distutils\.command\.install\.,setuptools\.command\.install\.,' \
-		${WRKSRC}/setup.py
-	@${FIND} ${WRKSRC} -name \*.orig -delete
+	@${REINPLACE_CMD} -e 's|distutils\(\.command\.install\)$$|setuptools\1|; s|distutils\(\.command\.install\.\)|setuptools\1|' ${WRKSRC}/setup.py
+	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
 .include <bsd.port.mk>

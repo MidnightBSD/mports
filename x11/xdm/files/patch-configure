@@ -1,24 +1,24 @@
---- configure.orig	2018-09-04 08:29:24.479402000 -0400
-+++ configure	2018-09-04 08:30:39.751233000 -0400
-@@ -5322,7 +5322,7 @@
+--- configure.orig	2019-03-02 17:06:22.000000000 -0500
++++ configure	2020-05-11 13:35:28.304563000 -0400
+@@ -5517,7 +5517,7 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
  
--  netbsd* | freebsd* | openbsd* | darwin* | dragonfly*)
-+  netbsd* | freebsd* | openbsd* | darwin* | dragonfly* | midnightbsd*)
+-  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
++  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd* | midnightbsd*)
      # This has been around since 386BSD, at least.  Likely further.
      if test -x /sbin/sysctl; then
        lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
-@@ -5752,7 +5752,7 @@
+@@ -5928,7 +5928,7 @@
    lt_cv_deplibs_check_method=pass_all
    ;;
  
 -freebsd* | dragonfly*)
-+freebsd* | dragonfly* | midnightBSD*)
++freebsd* | dragonfly* | midnightbsd*)
    if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
      case $host_cpu in
      i*86 )
-@@ -9535,7 +9535,7 @@
+@@ -10143,7 +10143,7 @@
        ;;
  
      # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
@@ -27,8 +27,8 @@
        archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
        hardcode_libdir_flag_spec='-R$libdir'
        hardcode_direct=yes
-@@ -10509,7 +10509,7 @@
-   dynamic_linker=no
+@@ -11188,7 +11188,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
    ;;
  
 -freebsd* | dragonfly*)
@@ -36,16 +36,16 @@
    # DragonFly does not have aout.  When/if they implement a new
    # versioning mechanism, adjust this.
    if test -x /usr/bin/objformat; then
-@@ -12374,7 +12374,7 @@
+@@ -18890,7 +18890,7 @@
  	lint_name=splint
  	lint_options="-badflag"
  	;;
 -  *freebsd* | *netbsd*)
-+  *freebsd* | *netbsd* | midnightBSD*)
++  *freebsd* | *netbsd* | midnightbsd*)
  	lint_name=lint
  	lint_options="-u -b"
  	;;
-@@ -15353,7 +15353,7 @@
+@@ -21974,7 +21974,7 @@
  	    dragonfly*)
  		DEF_USER_PATH="/bin:/usr/bin:/sbin:/usr/sbin:${bindir}:/usr/local/bin"
  		;;
@@ -54,7 +54,7 @@
  		DEF_USER_PATH="/bin:/usr/bin:/sbin:/usr/sbin:${bindir}:/usr/gnu/bin:/usr/local/bin"
  		;;
  	    netbsd*)
-@@ -15393,7 +15393,7 @@
+@@ -22014,7 +22014,7 @@
  # old Imake *.cf files for each platform
  if test -z "$DEF_SYSTEM_PATH" ; then
  	case $host_os in

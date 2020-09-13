@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/devel/subversion/Makefile.common 447762 2017-08-11 14:02:22Z lev $
-
 PORTNAME?=	subversion
-PORTVERSION=	1.11.1
+PORTVERSION=	1.13.0
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	APACHE/subversion
@@ -29,19 +26,12 @@ CONFIGURE_ARGS+=	--without-swig \
 			--with-expat=${LOCALBASE}/include:${LOCALBASE}/lib:expat
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
-.if defined(SVN_BUILD_BINDINGS)
-BUILD_DEPENDS+=		swig3.0:devel/swig30
-CONFIGURE_ARGS+=	--with-swig=${LOCALBASE}/bin/swig3.0
-.endif
-
 # ===============================================================
 OPTIONS_SUB=			yes
 
 BDB_CONFIGURE_ON=		--enable-bdb6
 BDB_CONFIGURE_OFF=		--without-berkeley-db
 BDB_USES=			bdb
-
-MAINTAINER_DEBUG_CONFIGURE_ON=	--enable-maintainer-mode --enable-debug
 
 NLS_CONFIGURE_OFF=		--disable-nls
 NLS_USES=			gettext
@@ -64,8 +54,8 @@ STATIC_CONFIGURE_ON=		--enable-all-static PKG_CONFIG="${LOCALBASE}/bin/pkg-confi
 # ===============================================================
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MMAINTAINER_DEBUG}
-WITH_DEBUG=	yes
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-maintainer-mode --enable-debug
 .endif
 
 APR_CONFIG=	${LOCALBASE}/bin/apr-1-config

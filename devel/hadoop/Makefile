@@ -16,8 +16,10 @@ COMMENT=	Apache Map/Reduce framework
 LICENSE=	apache2
 
 BUILD_DEPENDS=	gmake:devel/gmake \
-		gsed:textproc/gsed
-RUN_DEPENDS=	bash:shells/bash
+		gsed:textproc/gsed \
+		javavm:java/javavmwrapper
+RUN_DEPENDS=	bash:shells/bash \
+		javavm:java/javavmwrapper
 
 CONFLICTS_INSTALL=	hadoop2-2*
 

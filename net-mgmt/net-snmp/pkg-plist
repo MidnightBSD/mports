@@ -198,6 +198,8 @@ include/net-snmp/system/irix.h
 include/net-snmp/system/linux.h
 include/net-snmp/system/mingw32.h
 include/net-snmp/system/mips.h
+include/net-snmp/system/midnightbsd.h
+include/net-snmp/system/midnightbsd1.h
 include/net-snmp/system/netbsd.h
 include/net-snmp/system/openbsd.h
 include/net-snmp/system/openbsd4.h

@@ -1,19 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	xset
 PORTVERSION=	1.2.4
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User preference utility for X
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	app
-USE_XORG=	xmuu xorgproto x11 xext xfontcache
-CONFIGURE_ARGS=	--without-xf86misc
+USES=		xorg xorg-cat:app
+USE_XORG=	xmuu x11 xext
+CONFIGURE_ARGS=	--without-xf86misc \
+		--without-fontcache
 
 PLIST_FILES=	bin/xset man/man1/xset.1.gz
-
 .include <bsd.port.mk>

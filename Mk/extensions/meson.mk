@@ -38,7 +38,8 @@ BUILD_DEPENDS+=		python3.7:lang/python37 \
 USE_LOCALE?=	en_US.UTF-8
 
 CONFIGURE_ARGS+=	--prefix ${PREFIX} \
-			--mandir man
+			--mandir man \
+			--infodir ${INFO_PATH}
 
 # meson has it own strip mechanic
 INSTALL_TARGET=		install

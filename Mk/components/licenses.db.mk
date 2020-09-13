@@ -2,8 +2,9 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
-		mit modula3 mpl ncsa npl nvidia openldap2.8 opera owl OFL10 OFL11 \
-		perl pgsql php python ruby sgi subversion x11 zlib zpl2.1 \
+		mit modula3 mpl ncsa npl nvidia NONE openldap2.8 opera owl OFL10 OFL11 \
+		perl pgsql php python ruby sgi subversion unlicense \
+		WTFPL1 WTFPL x11 zlib zpl2.1 \
 		publicdom unknown other agg restricted \
 		ccasa3
 
@@ -179,6 +180,9 @@ _LICENSE_GROUPS_CC-BY-SA-3.0=   # empty
 _LICENSE_NAME_CC-BY-SA-4.0=     Creative Commons Attribution Share Alike 4.0
 _LICENSE_GROUPS_CC-BY-SA-4.0=   # empty
 
+_LICENSE_NAME_CC-BY-4.0=        Creative Commons Attribution 4.0
+_LICENSE_GROUPS_CC-BY-4.0=      # empty
+
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
 
@@ -261,6 +265,10 @@ _LICENSE_GROUPS_ncsa=   COPYFREE FSF GPL OSI
 _LICENSE_NAME_nvidia= NVIDIA License
 _LICENSE_GROUPS_nvidia=
 
+_LICENSE_NAME_NONE=	No license specified
+_LICENSE_GROUPS_NONE=	# empty
+_LICENSE_PERMS_NONE=	none
+
 _LICENSE_NAME_OFL10=	SIL Open Font License version 1.0 (http://scripts.sil.org/OFL)
 _LICENSE_GROUPS_OFL10=	FONTS
 
@@ -291,6 +299,9 @@ _LICENSE_GROUPS_publicdom=
 _LICENSE_NAME_python=	Python Software Foundation License
 _LICENSE_GROUPS_python=	FSF GPL OSI
 
+_LICENSE_NAME_unlicense=      The Unlicense                                                                                                                             
+_LICENSE_GROUPS_unlicense=    COPYFREE FSF GPL
+
 _LICENSE_NAME_ruby=	Ruby License
 _LICENSE_GROUPS_ruby=	FSF
 
@@ -299,6 +310,12 @@ _LICENSE_GROUPS_sgi=
 
 _LICENSE_NAME_unknown=	Unknown license
 _LICENSE_GROUPS_unknown=
+
+_LICENSE_NAME_WTFPL1=	Do What the Fuck You Want To Public License version 1
+_LICENSE_GROUPS_WTFPL1=	GPL FSF COPYFREE
+
+_LICENSE_NAME_WTFPL=	Do What the Fuck You Want To Public License version 2
+_LICENSE_GROUPS_WTFPL=	GPL FSF COPYFREE
 
 _LICENSE_NAME_zlib=		zlib License
 _LICENSE_GROUPS_zlib=	GPL FSF OSI

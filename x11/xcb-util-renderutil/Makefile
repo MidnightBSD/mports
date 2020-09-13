@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11/xcb-util-renderutil/Makefile,v 1.1 2012/01/15 12:46:10 garga Exp $
-
 PORTNAME=	xcb-util-renderutil
 PORTVERSION=	0.3.9
 PORTREVISION=	1
@@ -15,8 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
-XORG_CAT=	lib
-USES=		gmake
+USES=		gmake xorg xorg-cat:lib
 USE_XORG=	xcb
 INSTALL_TARGET=	install-strip
 

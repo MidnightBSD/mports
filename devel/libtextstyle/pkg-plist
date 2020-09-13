@@ -1,0 +1,17 @@
+include/textstyle.h
+include/textstyle/stdbool.h
+include/textstyle/version.h
+include/textstyle/woe32dll.h
+lib/libtextstyle.a
+lib/libtextstyle.so
+lib/libtextstyle.so.0
+lib/libtextstyle.so.0.0.1
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_1.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_2.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_3.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_4.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_5.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_6.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_7.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_abt.html
+%%PORTDOCS%%share/doc/libtextstyle/libtextstyle_toc.html

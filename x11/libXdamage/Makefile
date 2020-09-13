@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: Eric Anholt <anholt@FreeBSD.org>
 
 PORTNAME=	libXdamage
-PORTVERSION=	1.1.4
-PORTREVISION=	3
+PORTVERSION=	1.1.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +10,9 @@ COMMENT=	X Damage extension library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	x11 xfixes xorgproto
+
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

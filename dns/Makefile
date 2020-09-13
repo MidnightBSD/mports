@@ -1,14 +1,15 @@
 COMMENT = Domain Name Service tools
 
+SUBDIR += adns
 SUBDIR += ares
 SUBDIR += autotrust
 SUBDIR += bind-tools
 SUBDIR += bind911
-SUBDIR += bind914
 SUBDIR += bind916
 SUBDIR += bindgraph
 SUBDIR += c-ares
 SUBDIR += ddclient
+SUBDIR += doh-proxy
 SUBDIR += idnkit
 SUBDIR += inadyn
 SUBDIR += knot2
@@ -28,12 +29,18 @@ SUBDIR += p5-Net-DNS-Resolver-Mock
 SUBDIR += p5-Net-DNS-Resolver-Programmable
 SUBDIR += p5-Net-LibIDN
 SUBDIR += pdnsd
+SUBDIR += py-aiodns
 SUBDIR += py-dns
 SUBDIR += py-dnspython
 SUBDIR += py-idna
+SUBDIR += py-idna_ssl
+SUBDIR += py-py3dns
+SUBDIR += py-pycares
 SUBDIR += py3-dnspython
 SUBDIR += samba-nsupdate
 SUBDIR += udns
 SUBDIR += unbound
+SUBDIR += whoseip
+SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>

@@ -6,6 +6,7 @@ COMMENT=	Mesa XA state tracker
 
 LICENSE=	mit
 
+USES=		xorg
 USE_XORG=	xorgproto
 
 .include <bsd.mport.options.mk>

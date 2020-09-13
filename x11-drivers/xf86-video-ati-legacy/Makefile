@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/x11-drivers/xf86-video-ati-legacy/Makefile 482356 2018-10-18 19:11:41Z zeising $
-
 PORTNAME=	xf86-video-ati-legacy
 PORTVERSION=	7.9.0
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	x11-drivers
 DISTNAME=	xf86-video-ati-${DISTVERSION}
@@ -13,6 +11,12 @@ COMMENT=	X.Org ati display driver
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		does not build with xorg-server 1.20.7
+
+# No Radeon kernel driver on non-x86 and PC98.
+ONLY_FOR_ARCHS=		amd64 i386 powerpc64
+ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86
+
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess \
 		libdrm_radeon.so:graphics/libdrm
 
@@ -20,13 +24,9 @@ CONFLICTS_INSTALL=	xf86-video-ati
 
 PORTSCOUT=	limit:^7\.9\.0
 
+USES=		gl xorg xorg-cat:driver
 USE_GL=		gl
-XORG_CAT=	driver
 USE_XORG=	pciaccess
-
-# No Radeon kernel driver on non-x86 and PC98.
-ONLY_FOR_ARCHS=	i386 amd64
-ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86
 
 CONFIGURE_ARGS+=--disable-udev
 

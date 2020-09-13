@@ -15,10 +15,10 @@ BROKEN_armv7=		fails to compile: build.xml: compilation failed
 USES=		autoreconf:build gmake libtool xorg
 USE_ANT=	yes
 USE_JAVA=       yes
-JAVA_VERSION=   1.8+
+JAVA_VERSION=   8+
 USE_XORG=	x11 xt
 MAKE_ARGS=	-DCC="${CC}" -DLD="${LD}"
-MAKE_ENV=	ANT_OPTS=-Drelease -DARCH=${ANT_ARCH}
+MAKE_ENV=	ANT_OPTS=-Drelease -DARCH=${ANT_ARCH} JAVACMD=${JAVA}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	java-native-access

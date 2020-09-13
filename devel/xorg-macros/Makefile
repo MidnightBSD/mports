@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xorg-macros
 PORTVERSION=	1.19.2
 CATEGORIES=	devel x11
@@ -11,7 +9,7 @@ COMMENT=	X.Org development aclocal macros
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	util
+USES=		xorg-cat:util
 
 MAKE_ARGS=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
 

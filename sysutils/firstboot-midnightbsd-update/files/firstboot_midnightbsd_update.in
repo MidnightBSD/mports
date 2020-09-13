@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# KEYWORD: firstboot
+# PROVIDE: firstboot_midnightbsd_update
+# REQUIRE: syslogd NETWORKING
+# BEFORE: LOGIN
+
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf (in the disk
+# image, since this only runs on the first boot) to enable this:
+#
+# firstboot_midnightbsd_update_enable="YES"
+
+. /etc/rc.subr
+
+: ${firstboot_midnightbsd_update_enable:="NO"}
+
+name="firstboot_midnightbsd_update"
+rcvar=firstboot_midnightbsd_update_enable
+start_cmd="firstboot_midnightbsd_update_run | logger -s -t 'midnightbsd-update'"
+stop_cmd=":"
+
+firstboot_midnightbsd_update_run()
+{
+
+	midnightbsd-update fetch
+	if [ -e /var/db/midnightbsd-update/`echo / | sha256`-install ]; then
+		midnightbsd-update install
+		echo "Requesting reboot after installing updates."
+		touch ${firstboot_sentinel}-reboot
+	fi
+}
+
+load_rc_config $name
+run_rc_command "$1"
+

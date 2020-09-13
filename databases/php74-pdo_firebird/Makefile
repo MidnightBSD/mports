@@ -1,11 +1,9 @@
-# $FreeBSD: head/databases/php74-pdo_firebird/Makefile 512406 2019-09-20 12:21:11Z tz $
-
 CATEGORIES=	databases
 
 MASTERDIR=	${.CURDIR}/../../lang/php74
 
 PKGNAMESUFFIX=	-pdo_firebird
 
-TEST_TARGET=    test
+NO_TEST=	yes
 
 .include "${MASTERDIR}/Makefile"

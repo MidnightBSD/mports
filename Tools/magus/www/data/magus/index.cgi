@@ -1,16 +1,14 @@
 #!/usr/bin/perl
 
+use v5.28;
 use strict;
 use warnings;
+use feature qw(signatures);
 
 use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
 use CGI::Fast;
-use HTML::Template;
-use JSON::XS;
-use DateTime::Format::Pg;
-use Gzip::Faster;
 
 #
 # This is a trick we do so that the abstract search stuff isn't required
@@ -44,6 +42,25 @@ sub main {
   my ($p) = @_;
  
   my $path = $p->path_info;
+
+  if ($path =~ m:^/api/runs:) {
+    api_runs($p);
+    return;
+  } elsif ($path =~ m:^/api/run-ports-list:) {
+    api_run_port_stats($p);
+    return;
+  } elsif ($path =~ m:^/async/run-ports-list:) {
+    async_run_port_stats($p);
+    return;
+  } elsif ($path =~ m:^/async/machine-events:) {
+    async_machine_events($p);
+    return;
+  }
+
+  BEGIN{
+  require HTML::Template;
+  HTML::Template->import();
+  }
 
   if ($path eq '' || $path eq '/') {
     summary_page($p);
@@ -89,6 +106,10 @@ sub main {
 sub api_runs {
   my ($p) = @_;
 
+  require JSON::XS;
+  JSON::XS->import();
+  require DateTime::Format::Pg;
+
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
   my @runOut;
 
@@ -104,6 +125,11 @@ sub api_runs {
 
 sub api_run_port_stats { 
   my ($p) = @_;
+
+    BEGIN{
+  require JSON::XS;
+  JSON::XS->import();      
+  }
   
   my $run    = $p->param('run');
   my $status = $p->param('status');
@@ -136,7 +162,7 @@ sub api_run_port_stats {
 
 
 sub run_index {
-  my ($p, $gzip_ok) = @_;
+  my ($p) = @_;
   my $tmpl = template($p, 'runlist.tmpl');
 
   my @runs = Magus::Run->retrieve_all({ order_by => 'id DESC' });
@@ -145,12 +171,7 @@ sub run_index {
     runs       => \@runs,
   );
   
-  if ($gzip_ok) {  
-    print $p->header(-encoding => 'gzip');        
-    print $p->header, gzip($tmpl->output); 
-  } else { 
-    print $p->header, $tmpl->output; 
-  }
+  print $p->header, $tmpl->output; 
 }
 
 sub compare_runs {
@@ -322,7 +343,7 @@ sub run_page {
 
   my $tmpl = template($p, "run.tmpl");
   $tmpl->param(title => "Run $run");
-  $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
+  $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id blessed));
   
   my $dbh = Magus::Run->db_Main();  
   
@@ -528,6 +549,11 @@ sub search {
 
 sub async_machine_events {
   my ($p) = @_;
+
+  BEGIN{
+  require JSON::XS;
+  JSON::XS->import();      
+  }
   
   my $run     = $p->param('run');
   my $machine = $p->param('machine');
@@ -553,6 +579,11 @@ sub async_machine_events {
 
 sub async_run_port_stats {
   my ($p) = @_;
+
+  BEGIN{
+  require JSON::XS;
+  JSON::XS->import();      
+  }
   
   my $run    = $p->param('run');
   my $status = $p->param('status');

@@ -7,11 +7,8 @@ PKGNAMESUFFIX=	-devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LLVM and Clang
 
+LICENSE_DIR=	${WRKSRC}/llvm
 .include "Makefile.LICENSE"
-LICENSE+=	LLVM2
-LICENSE_FILE_LLVM2=	${WRKSRC}/LICENSE.TXT
-LICENSE_NAME_LLVM2= 	Apache License 2.0 with LLVM Exceptions
-LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE:=	${LICENSE:NARM}
 
 LLVM_SUFFIX=	-devel
@@ -342,6 +339,9 @@ PLIST_SUB+=	GOLD="@comment "
 PLIST_SUB+=	OPENMP="@comment "
 .else
 .endif
+
+post-extract:
+	${TOUCH} ${WRKSRC}/llvm/LICENSE.TXT
 
 post-patch:
 	${REINPLACE_CMD} -e 's|import lit|import lit${LLVM_SUFFIX}|' \

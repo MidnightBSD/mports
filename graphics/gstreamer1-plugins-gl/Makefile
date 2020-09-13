@@ -1,5 +1,3 @@
-# $FreeBSD: head/graphics/gstreamer1-plugins-gl/Makefile 484788 2018-11-11 23:54:06Z jbeich $
-
 PORTREVISION=	2
 CATEGORIES=	graphics
 
@@ -20,6 +18,7 @@ OPTIONS_DEFAULT=WAYLAND
 OPTIONS_SUB=	yes
 
 WAYLAND_CONFIGURE_ENABLE=	wayland
+WAYLAND_BUILD_DEPENDS=                wayland-protocols>=0:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=		libwayland-egl.so:graphics/wayland
 
 pre-build:

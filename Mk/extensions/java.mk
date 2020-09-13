@@ -20,7 +20,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVA_VERSION		List of space-separated suitable java versions for the
 #					port. An optional "+" allows you to specify a range of
-#					versions. (allowed values: 1.6[+] 1.7[+] 1.8[+])
+#					versions. (allowed values: 6[+] 7[+] 8[+] 11[+] 12[+] 13[+])
 #
 # JAVA_OS			List of space-separated suitable JDK port operating systems
 #					for the port. (allowed values: native linux)
@@ -30,6 +30,9 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVA_BUILD		When set, it means that the selected JDK port should be
 #					added to build dependencies for the port.
+#
+# JAVA_EXTRACT		This variable works exactly the same as JAVA_BUILD but
+#					regarding extract dependencies.
 #
 # JAVA_RUN			This variable works exactly the same as JAVA_BUILD but
 #					regarding run dependencies.
@@ -44,34 +47,34 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #-------------------------------------------------------------------------------
 # Variables defined for the port:
 #
-# JAVA_PORT			The name of the JDK port. (e.g. 'java/openjdk6')
+# JAVA_PORT			The name of the JDK port. (e.g. 'java/openjdk8')
 #
-# JAVA_PORT_VERSION	The version of the JDK port. (e.g. '1.6')
+# JAVA_PORT_VERSION	The version of the JDK port. (e.g. '8')
 #
 # JAVA_PORT_OS		The operating system used by the JDK port. (e.g. 'linux')
 #
-# JAVA_PORT_VENDOR	The vendor of the JDK port. (e.g. 'sun')
+# JAVA_PORT_VENDOR	The vendor of the JDK port. (e.g. 'openjdk')
 #
 # JAVA_PORT_OS_DESCRIPTION		Description of the operating system used by the
 #								JDK port. (e.g. 'Linux')
 #
 # JAVA_PORT_VENDOR_DESCRIPTION	Description of the vendor of the JDK port.
-#								(e.g. 'FreeBSD Foundation')
+#								(e.g. 'OpenJDK BSD Porting Team')
 #
 # JAVA_HOME			Path to the installation directory of the JDK. (e.g.
-#					'/usr/local/openjdk6')
+#					'/usr/local/openjdk8')
 #
 # JAVAC				Path to the Java compiler to use. (e.g.
-#					'/usr/local/openjdk6/bin/javac' or '/usr/local/bin/javac')
+#					'/usr/local/openjdk8/bin/javac' or '/usr/local/bin/javac')
 #
 # JAR				Path to the JAR tool to use. (e.g.
-#					'/usr/local/openjdk6/bin/jar' or '/usr/local/bin/fastjar')
+#					'/usr/local/openjdk8/bin/jar' or '/usr/local/bin/fastjar')
 #
 # APPLETVIEWER		Path to the appletviewer utility. (e.g.
-#					'/usr/local/linux-jdk1.7.0/bin/appletviewer')
+#					'/usr/local/linux-jdk1.8.0/bin/appletviewer')
 #
 # JAVA				Path to the java executable. Use this for executing Java
-#					programs. (e.g. '/usr/local/openjdk6/bin/java')
+#					programs. (e.g. '/usr/local/openjdk8/bin/java')
 #
 # JAVADOC			Path to the javadoc utility program.
 #
@@ -106,7 +109,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #-------------------------------------------------------------------------------
 # Porter's hints
 #
-# To retrieve the Major version number from JAVA_PORT_VERSION (e.g. "1.6"):
+# To retrieve the Major version number from JAVA_PORT_VERSION (e.g. "1.8"):
 #		-> ${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/}
 #
 #-------------------------------------------------------------------------------
@@ -119,11 +122,17 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 # Stage 4: Add any dependencies if necessary
 # Stage 5: Define all settings for the port to use
 #
+
 .	if defined(USE_JAVA)
+
+.		if !defined(JAVA_VERSION) && empty(USE_JAVA:C/[0-9]*[\.]*[0-9]*[+]*//)
+JAVA_VERSION=${USE_JAVA}
+.		endif
 
 #-------------------------------------------------------------------------------
 # Stage 1: Define constants
 #
+
 # System-global directories
 # NB: If the value of JAVALIBDIR is altered here it must also be altered
 #	  in java/javavmwrapper/Makefile.
@@ -148,29 +157,29 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .		endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	1.6 1.7 1.8
+__JAVA_VERSION_LIST=	6 7 8 11 12 13
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native freebsd linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
-_JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
-											VERSION=1.8.0	OS=freebsd	VENDOR=openjdk
-_JAVA_PORT_NATIVE_OPENJDK_JDK_1_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=1.7.0	OS=native	VENDOR=openjdk
-_JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
-											VERSION=1.7.0	OS=freebsd	VENDOR=openjdk
-_JAVA_PORT_NATIVE_OPENJDK_JDK_1_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
-											VERSION=1.6.0	OS=native	VENDOR=openjdk
-_JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
-											VERSION=1.6.0	OS=native	VENDOR=bsdjava
-_JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
-											VERSION=1.6.0	OS=linux	VENDOR=sun
-_JAVA_PORT_LINUX_SUN_JDK_1_7_INFO=			PORT=java/linux-sun-jdk17		HOME=${LOCALBASE}/linux-sun-jdk1.7.0 \
-											VERSION=1.7.0	OS=linux	VENDOR=sun
-_JAVA_PORT_LINUX_ORACLE_JDK_1_8_INFO=			PORT=java/linux-oracle-jdk18		HOME=${LOCALBASE}/linux-oracle-jdk1.8.0 \
-											VERSION=1.8.0	OS=linux	VENDOR=oracle
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
+											VERSION=8	OS=freebsd	VENDOR=openjdk
+_JAVA_PORT_NATIVE_OPENJDK_JDK_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
+											VERSION=7	OS=native	VENDOR=openjdk
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_7_INFO=	PORT=java/openjdk7-bin			HOME=${LOCALBASE}/openjdk7 \
+											VERSION=7	OS=freebsd	VENDOR=openjdk
+_JAVA_PORT_NATIVE_OPENJDK_JDK_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
+											VERSION=6	OS=native	VENDOR=openjdk
+_JAVA_PORT_NATIVE_BSDJAVA_JDK_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
+											VERSION=6	OS=native	VENDOR=bsdjava
+_JAVA_PORT_LINUX_SUN_JDK_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
+											VERSION=6	OS=linux	VENDOR=sun
+_JAVA_PORT_LINUX_SUN_JDK_7_INFO=			PORT=java/linux-sun-jdk17		HOME=${LOCALBASE}/linux-sun-jdk1.7.0 \
+											VERSION=7	OS=linux	VENDOR=sun
+_JAVA_PORT_LINUX_ORACLE_JDK_8_INFO=			PORT=java/linux-oracle-jdk18		HOME=${LOCALBASE}/linux-oracle-jdk1.8.0 \
+											VERSION=8	OS=linux	VENDOR=oracle
 # Verbose description for each VENDOR
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
@@ -184,17 +193,21 @@ _JAVA_OS_linux=		Linux
 _JAVA_OS_freebsd=	FreeBSD
 
 # Enforce preferred Java ports according to OS
-_JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8
+_JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_8
 
 # List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_1_8 \
-			JAVA_PORT_FREEBSD_OPENJDK_JDK_1_7 \
-					JAVA_PORT_NATIVE_OPENJDK_JDK_1_7 \
-					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
-					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
-					JAVA_PORT_LINUX_ORACLE_JDK_1_8 \
-					JAVA_PORT_LINUX_SUN_JDK_1_7 \
-					JAVA_PORT_LINUX_SUN_JDK_1_6
+__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_7 \
+					JAVA_PORT_NATIVE_OPENJDK_JDK_7 \
+					JAVA_PORT_NATIVE_OPENJDK_JDK_6 \
+					JAVA_PORT_NATIVE_BSDJAVA_JDK_6 \
+					JAVA_PORT_NATIVE_OPENJDK_JDK_8  \
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_11 \
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_12 \
+ 					JAVA_PORT_NATIVE_OPENJDK_JDK_13 \
+					JAVA_PORT_LINUX_ORACLE_JDK_8 \
+					JAVA_PORT_LINUX_SUN_JDK_7 \
+					JAVA_PORT_LINUX_SUN_JDK_6
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
 					${__JAVA_PORTS_ALL}
@@ -221,47 +234,39 @@ check-makevars::
 .		endfor
 
 # Error checking: JAVA_VERSION
+.if defined(JAVA_VERSION)
 .if !defined(_JAVA_VERSION_LIST_REGEXP)
-.	for v in ${_JAVA_VERSION_LIST}
-.		if defined(_JAVA_VERSION_LIST_REGEXP)
-_JAVA_VERSION_LIST_REGEXP:=		${_JAVA_VERSION_LIST_REGEXP}\|
-.		endif
-_JAVA_VERSION_LIST_REGEXP:=		${_JAVA_VERSION_LIST_REGEXP}$v
-.	endfor
+_JAVA_VERSION_LIST_REGEXP=	${_JAVA_VERSION_LIST:C/\+/\\+/:ts|}
 .endif
 
-
 check-makevars::
-	@test ! -z "${JAVA_VERSION}" && ( ${ECHO_CMD} "${JAVA_VERSION}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_VERSION_LIST_REGEXP}" || \
-	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VERSION}\" is not a valid value for JAVA_VERSION. It should be one or more of: ${__JAVA_VERSION_LIST} (with an optional \"+\" suffix.)"; ${FALSE})) || true
+	@( test ! -z "${JAVA_VERSION}" && ( ${ECHO_CMD} "${JAVA_VERSION}" | ${TR} " " "\n" | ${GREP} -Eq "${_JAVA_VERSION_LIST_REGEXP}")) || \
+	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VERSION}\" is not a valid value for JAVA_VERSION. It should be one or more of: ${__JAVA_VERSION_LIST} (with an optional \"+\" suffix.)"; ${FALSE})
+.endif
 
 # Error checking: JAVA_VENDOR
+.if defined(JAVA_VENDOR)
 .if !defined(_JAVA_VENDOR_LIST_REGEXP)
-.	for v in ${_JAVA_VENDOR_LIST}
-.		if defined(_JAVA_VENDOR_LIST_REGEXP)
-_JAVA_VENDOR_LIST_REGEXP:=		${_JAVA_VENDOR_LIST_REGEXP}\|
-.		endif
-_JAVA_VENDOR_LIST_REGEXP:=		${_JAVA_VENDOR_LIST_REGEXP}$v
-.	endfor
+_JAVA_VENDOR_LIST_REGEXP=	${_JAVA_VENDOR_LIST:ts|}
 .endif
+
 check-makevars::
-	@test ! -z "${JAVA_VENDOR}" && ( ${ECHO_CMD} "${JAVA_VENDOR}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_VENDOR_LIST_REGEXP}" || \
+	@( test ! -z "${JAVA_VENDOR}" && ( ${ECHO_CMD} "${JAVA_VENDOR}" | ${TR} " " "\n" | ${GREP} -Eq "${_JAVA_VENDOR_LIST_REGEXP}" )) || \
 	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_VENDOR}\" is not a valid value for JAVA_VENDOR. It should be one or more of: ${_JAVA_VENDOR_LIST}"; \
-	${FALSE})) || true
+	${FALSE})
+.endif
 
 # Error checking: JAVA_OS
+.if defined(JAVA_OS)
 .if !defined(_JAVA_OS_LIST_REGEXP)
-.	for v in ${_JAVA_OS_LIST}
-.		if defined(_JAVA_OS_LIST_REGEXP)
-_JAVA_OS_LIST_REGEXP:=		${_JAVA_OS_LIST_REGEXP}\|
-.		endif
-_JAVA_OS_LIST_REGEXP:=		${_JAVA_OS_LIST_REGEXP}$v
-.	endfor
+_JAVA_OS_LIST_REGEXP=	${_JAVA_OS_LIST:ts|}
 .endif
+
 check-makevars::
-	@test ! -z "${JAVA_OS}" && ( ${ECHO_CMD} "${JAVA_OS}" | ${TR} " " "\n" | ${GREP} -q "${_JAVA_OS_LIST_REGEXP}" || \
+	@( test ! -z "${JAVA_OS}" && ( ${ECHO_CMD} "${JAVA_OS}" | ${TR} " " "\n" | ${GREP} -Eq "${_JAVA_OS_LIST_REGEXP}")) || \
 	(${ECHO_CMD} "${PKGNAME}: Makefile error: \"${JAVA_OS}\" is not a valid value for JAVA_OS. It should be one or more of: ${_JAVA_OS_LIST}"; \
-	${FALSE})) || true
+	${FALSE})
+.endif
 
 # Set default values for JAVA_BUILD and JAVA_RUN
 # When nothing is set, assume JAVA_BUILD=jdk and JAVA_RUN=jre
@@ -277,7 +282,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.5/1.6+/:S/1.5+/1.6+/:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8+/:S/1.8+/1.8/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.6+/1.6 1.7+/:S/1.7+/1.7 1.8+/:S/1.8+/1.8 11+/:S/1.6/6/:S/1.7/7/:S/1.8/8/:S/7+/7 8+/:S/8+/8 11+/:S/11+/11 12+/:S/12+/12 13+/:S/13+/13/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif
@@ -295,7 +300,7 @@ _JAVA_VENDOR=	${_JAVA_VENDOR_LIST}
 .		for A_JAVA_PORT in ${_JAVA_PORTS_ALL}
 A_JAVA_PORT_INFO:=			${A_JAVA_PORT:S/^/\${_/:S/$/_INFO}/}
 A_JAVA_PORT_HOME=			${A_JAVA_PORT_INFO:MHOME=*:S,HOME=,,}
-A_JAVA_PORT_VERSION=		${A_JAVA_PORT_INFO:MVERSION=*:C/VERSION=([0-9])\.([0-9])(.*)/\1.\2/}
+A_JAVA_PORT_VERSION=		${A_JAVA_PORT_INFO:MVERSION=*:S,VERSION=,,}
 A_JAVA_PORT_OS=				${A_JAVA_PORT_INFO:MOS=*:S,OS=,,}
 A_JAVA_PORT_VENDOR=			${A_JAVA_PORT_INFO:MVENDOR=*:S,VENDOR=,,}
 .if !defined(_JAVA_PORTS_INSTALLED) && exists(${A_JAVA_PORT_HOME}/${_JDK_FILE})
@@ -393,7 +398,8 @@ RUN_DEPENDS+=		${DEPEND_JAVA}
 .		if defined(USE_ANT)
 ANT?=				${LOCALBASE}/bin/ant
 MAKE_ENV+=			JAVA_HOME=${JAVA_HOME}
-BUILD_DEPENDS+=		${ANT}:devel/apache-ant
+BUILD_DEPENDS+=		${ANT}:devel/apache-ant \
+			javavm:java/javavmwrapper
 ALL_TARGET?=
 .			if !target(do-build)
 do-build:

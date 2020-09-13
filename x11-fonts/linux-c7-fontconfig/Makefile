@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.10.95
+PORTVERSION=	2.13.0
+DISTVERSIONSUFFIX=	-4.3.el7
 CATEGORIES=	x11-fonts linux
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,20 +10,20 @@ COMMENT=	XML-based font configuration API for X Windows (Linux CentOS ${LINUX_DI
 
 LICENSE=	mit
 
-CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
-
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
-RPMVERSION=	11.el7
 USES=		linux:c7
 USE_LDCONFIG=	yes
-USE_LINUX=	expat
+USE_LINUX=	expat freetype
 USE_LINUX_RPM=	yes
 
-OPTIONS_DEFINE=	DOCS
+CONFLICTS=	linux-c6-${PORTNAME}-[0-9]*
+DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
+
+OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
 
 post-patch:
-	-${RM} -r ${WRKSRC}/etc ${WRKSRC}/usr/share/fonts \
-		${WRKSRC}/usr/share/fontconfig ${WRKSRC}/var
+	@${RM} -r ${WRKSRC}/etc ${WRKSRC}/usr/lib/fontconfig \
+		${WRKSRC}/usr/share/fontconfig
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc

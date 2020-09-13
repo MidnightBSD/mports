@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	msghack
 PORTVERSION=	0.2
 CATEGORIES=	devel
-MASTER_SITES=	CENKES
+MASTER_SITES=	FREEBSD_LOCAL/rene
 PKGNAMEPREFIX=	gettext-
 # Bundled in fedora gettext srpm
 

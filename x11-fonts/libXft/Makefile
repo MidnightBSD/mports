@@ -1,20 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	libXft
-PORTVERSION=	2.3.2
-PORTREVISION=	3
+DISTVERSION=	2.3.3
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client-sided font API for X applications
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-XORG_CAT=	lib
-USE_XORG=	xorgproto xrender
+USES=		xorg xorg-cat:lib
+USE_XORG=	x11 xorgproto xrender
 INSTALL_TARGET=	install-strip
 
 post-extract:
@@ -23,10 +21,10 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} -e '/ac_config_files/s|xft\.pc|xft\.pc xft-config|' \
-	    	${WRKSRC}/configure
+		${WRKSRC}/configure
 
 post-install:
-	@${INSTALL_SCRIPT} ${WRKSRC}/xft-config \
+	${INSTALL_SCRIPT} ${WRKSRC}/xft-config \
 		${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>

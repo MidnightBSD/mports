@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libXrender
 PORTVERSION=	0.9.10
 PORTREVISION=	2
@@ -10,7 +8,7 @@ COMMENT=	X Render extension library
 
 LICENSE=	mit
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	x11 xorgproto
 
 .include <bsd.port.mk>

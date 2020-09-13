@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	beforelight
 PORTVERSION=	1.0.5
 PORTREVISION=	2
@@ -10,7 +8,7 @@ COMMENT=	Sample screen saver for X
 
 LICENSE=	mit
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xscrnsaver xt xaw7 xt
 
 .include <bsd.port.mk>

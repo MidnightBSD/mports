@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	siege
-PORTVERSION=	4.0.2
-PORTREVISION=	1
+PORTVERSION=	4.0.5
 CATEGORIES=	benchmarks www
 MASTER_SITES=	http://download.joedog.org/siege/ \
 		http://fossies.org/linux/www/

@@ -1,5 +1,5 @@
 PORTNAME=	xorgproto
-PORTVERSION=	2019.2
+PORTVERSION=	2020.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -7,7 +7,6 @@ COMMENT=	xorg protocol headers
 
 LICENSE=	mit
 
-XORG_CAT=	proto
 USES=		xorg-cat:proto
 
 CONFIGURE_ARGS= --without-fop \

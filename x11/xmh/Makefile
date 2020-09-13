@@ -1,6 +1,3 @@
-# $FreeBSD: ports/x11/xmh/Makefile,v 1.1 2007/05/19 20:28:01 flz Exp $
-# $MidnightBSD$
-
 PORTNAME=	xmh
 PORTVERSION=	1.0.3
 CATEGORIES=	x11 mail
@@ -12,7 +9,7 @@ LICENSE=	mit
 
 RUN_DEPENDS+=	repl:mail/nmh
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	xaw xmu xt xbitmaps
 
 .include <bsd.port.mk>

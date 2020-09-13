@@ -210,7 +210,7 @@ RUBY25=			""	# PLIST_SUB helpers
 #
 # Ruby 2.6
 #
-RUBY_RELVERSION=      2.6.5
+RUBY_RELVERSION=      2.6.6
 RUBY_PORTREVISION=    0
 RUBY_PORTEPOCH=               1
 RUBY_PATCHLEVEL=      0

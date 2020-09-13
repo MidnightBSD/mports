@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	libXScrnSaver
 PORTVERSION=	1.2.3
 PORTREVISION=	3
@@ -11,7 +9,7 @@ COMMENT=	The XScrnSaver library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	x11 xext xorgproto
 
 .include <bsd.port.mk>

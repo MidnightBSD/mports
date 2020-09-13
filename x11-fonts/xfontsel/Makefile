@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	xfontsel
 PORTVERSION=	1.0.6
 CATEGORIES=	x11-fonts
@@ -9,7 +7,7 @@ COMMENT=	Point and click selection of X11 font names
 
 LICENSE=	mit
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xaw xmu xt
 
 .include <bsd.port.mk>

@@ -1,10 +1,11 @@
 PORTNAME=	xf86-input-wacom
-PORTVERSION=	0.38.0
+PORTVERSION=	0.39.0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	https://github.com/linuxwacom/${PORTNAME}/releases/download/${DISTNAME}/
 
-MAINTAINER=	ports@MidnightBSD>org
-COMMENT=	X.Org Wacom tablet driver
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	X.Org legacy Wacom tablet driver
 
 LICENSE=	gpl2
 

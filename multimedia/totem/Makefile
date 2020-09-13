@@ -33,8 +33,8 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gl gnome localbase meson \
-		pkgconfig python:3.4+ tar:xz
+USES=		compiler desktop-file-utils gettext gl gnome localbase meson \
+		pkgconfig python:3.4+ tar:xz xorg
 USE_GNOME=	cairo gtk30 intlhack introspection libxml2 nautilus3 \
 		pygobject3
 USE_XORG=	x11 xorgproto xtst ice sm
@@ -51,16 +51,13 @@ GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
 		org.gnome.totem.plugins.pythonconsole.gschema.xml
 
 MAKE_JOBS_UNSAFE=yes
+NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == i386
+# upstream broke vala
 MESON_ARGS=	-Denable-vala=no
 PLIST_SUB+=	VALA="@comment "
-.else
-BUILD_DEPENDS+=	valac:lang/vala
-PLIST_SUB+=	VALA=""
-.endif
 
 .if defined(WITH_DVD_DEVICE)
 DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}

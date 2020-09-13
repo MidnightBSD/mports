@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libfontenc
-PORTVERSION=	1.1.3
+PORTVERSION=	1.1.4
 PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
@@ -11,7 +9,7 @@ COMMENT=	The fontenc Library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	lib
+USES=		xorg xorg-cat:lib
 USE_XORG=	xorgproto
 
 CONFIGURE_ARGS=	--with-encodingsdir=${LOCALBASE}/share/fonts/encodings

@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/misc/cldr-emoji-annotation/Makefile 474138 2018-07-07 21:06:14Z yuri $
-
 PORTNAME=	cldr-emoji-annotation
-DISTVERSION=	33.1.0_0
+DISTVERSION=	36.12.120191002_0
 CATEGORIES=	misc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,6 +14,7 @@ USES=		autoreconf gmake libtool
 GNU_CONFIGURE=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	fujiwarat
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

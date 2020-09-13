@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	scripts
 PORTVERSION=	1.0.1
 PORTREVISION=	2
@@ -10,8 +8,7 @@ COMMENT=	Various X related scripts
 
 LICENSE=	unknown
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app shebangfix
 USE_XORG=	x11
-USES=		shebangfix
 
 .include <bsd.port.mk>

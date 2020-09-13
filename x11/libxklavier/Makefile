@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
-
 PORTNAME=	libxklavier
 PORTVERSION=	5.3
 PORTREVISION=	1
@@ -18,7 +15,7 @@ RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
     		iso-codes>=0:misc/iso-codes
 
 USE_XORG=	x11 xkbfile
-USES=		gmake libtool pathfix pkgconfig tar:xz
+USES=		gmake gnome libtool pathfix pkgconfig tar:xz
 USE_GNOME=	libxml2 glib20 introspection:build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
