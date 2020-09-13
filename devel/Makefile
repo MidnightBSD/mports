@@ -11,6 +11,7 @@ SUBDIR += apache-ant
 SUBDIR += apache-commons-daemon
 SUBDIR += appstream-glib
 SUBDIR += apr1
+SUBDIR += argp-standalone
 SUBDIR += atf
 SUBDIR += autoconf
 SUBDIR += autoconf-archive
