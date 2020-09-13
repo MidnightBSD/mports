@@ -21,6 +21,7 @@ SUBDIR += purple-discord
 SUBDIR += purple-facebook
 SUBDIR += sendxmpp
 SUBDIR += slack-term
+SUBDIR += ssh-chat
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
 
