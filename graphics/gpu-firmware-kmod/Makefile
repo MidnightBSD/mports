@@ -18,6 +18,8 @@ LICENSE_PERMS_INTEL=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
 USES=		kmod uidfix
 
+FAKE_OPTS=	trueprefix
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	kms-firmware

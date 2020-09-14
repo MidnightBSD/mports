@@ -19,6 +19,8 @@ OPTIONS_DEFINE=	DEBUG
 
 USES=		kmod uidfix
 
+FAKE_OPTS=	trueprefix
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	kms-drm
@@ -29,5 +31,8 @@ GH_TAGNAME=	4050743
 .if ${OSVERSION} < 200000
 IGNORE=		only supported on MidnightBSD 2.0+
 .endif
+
+post-build:
+	${MKDIR} ${FAKE_DESTDIR}${KMODDIR}
 
 .include <bsd.port.mk>

@@ -39,8 +39,8 @@ STRIP_CMD+=	--strip-debug # do not strip kernel symbols
 _INCLUDE_USES_KMOD_POST_MK=	yes
 
 .PHONY: kmod-post-install
-pre-install: ${KMODDIR}
-${STAGEDIR}${KMODDIR}:
+pre-fake: ${KMODDIR}
+${FAKE_DESTDIR}${KMODDIR}:
 	${MKDIR} ${.TARGET}
 
 post-install: kmod-post-install
