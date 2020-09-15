@@ -1,6 +1,5 @@
 PORTNAME=	xf86-video-vesa
-PORTVERSION=	2.4.0
-PORTREVISION=	2
+PORTVERSION=	2.5.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
