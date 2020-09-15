@@ -1,3 +1,5 @@
-TIMESTAMP = 1591982422
+TIMESTAMP = 1600145859
 SHA256 (hw-probe-1.6-beta_GH0.tar.gz) = 1e23464e57717b469e06c9a51f3a86fc76bd09388cdc82c4cb8b0d4cd1d5cae7
 SIZE (hw-probe-1.6-beta_GH0.tar.gz) = 143569
+SHA256 (linuxhw-hw-probe-1.6beta-1.6-beta_GH0.tar.gz) = 1e23464e57717b469e06c9a51f3a86fc76bd09388cdc82c4cb8b0d4cd1d5cae7
+SIZE (linuxhw-hw-probe-1.6beta-1.6-beta_GH0.tar.gz) = 143569
