@@ -37,6 +37,14 @@ MAKE_ARGS+=	PTHREAD_LIBS="-lpthread"
 MAKE_ARGS+=	HAVE_DEBUG="YES"
 .endif
 
+.if ${OSVERSION} > 190000
+IGNORE=         Use cuse on MidnightBSD 2.x instead
+.endif
+
+
+post-build:
+	${MKDIR} ${FAKE_DESTDIR}${KMODDIR}
+
 do-install:
 	${SETENV} ${MAKE_ENV} DESTDIR="${FAKE_DESTDIR}" ${MAKE} -C ${WRKSRC} -f ${WRKSRC}/Makefile.lib ${PLIST_SUB} install
 	${INSTALL_KLD} ${WRKSRC}/${KMODNAME}.ko ${KMODDIR}
