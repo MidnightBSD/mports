@@ -1,6 +1,6 @@
 bin/mlogind
 lib/libmlogind.so
-lib/libmlogind.so.1.3.6
+lib/libmlogind.so.1.3.7
 share/mlogind/themes/default/background.jpg
 share/mlogind/themes/default/panel.png
 share/mlogind/themes/default/mlogind.theme
