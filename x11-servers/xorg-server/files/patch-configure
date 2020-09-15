@@ -21,7 +21,7 @@
  xauto)
  	case "$host_os" in
 -	linux*|solaris*)
-+	linux*|solaris*|freebsd*|dragonfly*|openbsd*)
++	linux*|solaris*|freebsd*|dragonfly*|openbsd*|midnightbsd*)
  		XTRANS_SEND_FDS=yes
  		;;
  	*)

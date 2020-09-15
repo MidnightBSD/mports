@@ -5,7 +5,7 @@
  #endif
  
 -#if defined(__linux__)
-+#if defined(__linux__) || defined(__FreeBSD__) || defined(__DragonFly__)
++#if defined(__linux__) || defined(__FreeBSD__) || defined(__DragonFly__) || defined(__MidnightBSD__)
      matches[i++] = xnfstrdup("modesetting");
  #endif
  
@@ -16,7 +16,7 @@
 -#else
 +#elif defined(__linux__)
          matches[i++] = xnfstrdup("fbdev");
-+#elif defined(__FreeBSD__)
++#elif defined(__FreeBSD__) || defined(__MidnightBSD__)
 +        matches[i++] = xnfstrdup("scfb");
  #endif
      }

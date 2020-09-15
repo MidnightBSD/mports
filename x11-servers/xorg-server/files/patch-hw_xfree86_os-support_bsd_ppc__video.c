@@ -4,7 +4,7 @@
  {
  
      if (ioBase != MAP_FAILED) {
-+#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
 +        munmap(__DEVOLATILE(unsigned char *, ioBase), 0x10000);
 +#else
          munmap(__UNVOLATILE(ioBase), 0x10000);

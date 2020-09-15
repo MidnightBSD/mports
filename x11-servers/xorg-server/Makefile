@@ -76,6 +76,12 @@ PLIST=		${.CURDIR}/pkg-plist
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 200000                                                                                                                                                 
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+.endif
+
 .if ${SSL_DEFAULT} == base
 # The reason why I use this is cause openssl from base doesn't install a .pc file
 # and configure will fail trying to find it. Setting both of those variables to
