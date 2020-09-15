@@ -1,2 +1,3 @@
-SHA256 (xorg/xserver/xorg-server-1.10.4.tar.bz2) = fafc16b97b9a61b62dfaa74e8d336baa0cea752ce9ed8103c4d212baa8031ca5
-SIZE (xorg/xserver/xorg-server-1.10.4.tar.bz2) = 5386174
+TIMESTAMP = 1600150610
+SHA256 (xorg/xserver/xorg-server-1.20.8.tar.bz2) = d17b646bee4ba0fb7850c1cc55b18e3e8513ed5c02bdf38da7e107f84e2d0146
+SIZE (xorg/xserver/xorg-server-1.20.8.tar.bz2) = 6309640

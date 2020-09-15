@@ -1,6 +1,6 @@
 PORTNAME?=	xorg-server
-PORTVERSION?=	1.18.4
-PORTREVISION?=	5
+PORTVERSION?=	1.20.8
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -17,15 +17,10 @@ RUN_DEPENDS+=	xkeyboard-config>=2.5:x11/xkeyboard-config \
 SLAVE_PORT?=	no
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	SUID
-OPTIONS_RADIO=	CONF
-OPTIONS_RADIO_CONF=	DEVD HAL
-DEVD_DESC=	Use devd for autoconfiguration of input devices
-HAL_DESC=	Use hald for autoconfiguration of input devices
+OPTIONS_DEFINE+=	SUID
 SUID_DESC=	Install the Xorg server with setuid bit set
-OPTIONS_DEFAULT=DEVD SUID
+OPTIONS_DEFAULT=SUID
 
-OPTIONS_EXCLUDE_sparc64=	HAL
 
 .include <bsd.mport.options.mk>
 
@@ -42,15 +37,15 @@ DEFAULT_FONTPATH_LIST= \
 DEFAULT_FONTPATH_CMD=${ECHO_CMD} ${DEFAULT_FONTPATH_LIST} | ${TR} ' ' ,
 PLIST_SUB+=	FONTPATHD="${FONTPATHD:S,^${PREFIX}/,,}"
 
-USES=		gmake libtool perl5 ssl xorg xorg-cat:xserver tar:bzip2
+USES=		compiler:c11 cpe gmake gl libtool perl5 ssl xorg xorg-cat:xserver tar:bzip2
 USE_PERL5=	build
 USE_GL+=	gl
-USE_XORG+=	pixman xau xdmcp xfont xkbfile xorgproto xshmfence xtrans
+USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
 CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
 		--localstatedir=/var --with-shared-memory-dir=/tmp \
 		--disable-config-udev --disable-config-udev-kms \
+		--disable-config-hal --enable-config-devd \
 		--without-dtrace --enable-glamor
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	x.org
 
@@ -89,13 +84,6 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 .endif
 
-.if ${PORT_OPTIONS:MHAL}
-LIB_DEPENDS+=	libhal.so:sysutils/hal
-CONFIGURE_ARGS+=	--enable-config-hal
-.else
-CONFIGURE_ARGS+=	--disable-config-hal
-.endif
-
 # We handle Xorg setuid in the plist. This allows to build xorg-server as a user.
 CONFIGURE_ARGS+=--disable-install-setuid
 
@@ -128,13 +116,11 @@ post-patch:
 		${WRKSRC}/hw/xfree86/dixmods/Makefile.in
 
 post-configure:
-.if ${PORT_OPTIONS:MDEVD}
 	@${REINPLACE_CMD} -e 's|config\.c|config.c devd.c|g' \
 		-e 's|config\.lo|config.lo devd.lo|g' \
 		${WRKSRC}/config/Makefile
 	@${REINPLACE_CMD} -e 's|^/\* #undef CONFIG_UDEV \*/|#define CONFIG_DEVD 1|' \
 		${WRKSRC}/include/dix-config.h
-.endif
 
 .if ${SLAVE_PORT} == "no"
 post-install:
@@ -146,6 +132,8 @@ post-install:
 	@${MKDIR} ${PREFIX}/etc/X11/xorg.conf.d
 	@${MKDIR} ${FAKE_DESTDIR}${FONTPATHD}
 	@${MKDIR} ${PREFIX}/share/X11/xorg.conf.d
+	@${INSTALL_DATA} ${FILESDIR}/20-evdev-kbd.conf \
+		${PREFIX}/share/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
