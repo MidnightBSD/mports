@@ -1,8 +1,7 @@
 # Created by: Andrew Thompson <thompsa@FreeBSD.org>
 
 PORTNAME=	webcamd
-PORTVERSION=	4.20.0.1
-PORTREVISION=	1
+PORTVERSION=	5.7.1.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 		http://home.selasky.org/distfiles/
