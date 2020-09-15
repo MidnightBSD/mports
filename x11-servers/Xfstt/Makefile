@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	xfstt
-PORTVERSION=	1.9.2
+PORTVERSION=	1.9.3
 PORTREVISION=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://archive.hadrons.org/software/xfstt/
@@ -12,7 +10,7 @@ COMMENT=	TrueType font server for X11
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-USES=		pkgconfig tar:xz
+USES=		pkgconfig tar:xz xorg
 USE_XORG=	xorgproto
 USE_RC_SUBR=	xfstt
 GNU_CONFIGURE=	yes
