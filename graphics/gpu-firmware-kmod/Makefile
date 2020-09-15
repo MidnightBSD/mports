@@ -1,7 +1,7 @@
 # Created by: Johannes Dieterich <jmd@FreeBSD.org>
 
 PORTNAME=	gpu-firmware-kmod
-PORTVERSION=	g20191015
+PORTVERSION=	g20200503
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,12 +23,15 @@ FAKE_OPTS=	trueprefix
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	kms-firmware
-GH_TAGNAME=	81315fa
+GH_TAGNAME=	ea79130
 
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 200000
-IGNORE=		not supported before 2.0
-.endif
+IGNORE=            not supported before 2.0
+.endif 
+
+post-build:
+	${MKDIR} ${FAKE_DESTDIR}${KMODDIR}
 
 .include <bsd.port.post.mk>

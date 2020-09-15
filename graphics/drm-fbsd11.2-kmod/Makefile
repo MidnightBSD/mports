@@ -1,7 +1,7 @@
 # Created by: Johannes Dieterich <jmd@FreeBSD.org>
 
 PORTNAME=	drm-fbsd11.2-kmod
-PORTVERSION=	4.11g20191204
+PORTVERSION=	4.11g20200420
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +24,7 @@ FAKE_OPTS=	trueprefix
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	kms-drm
-GH_TAGNAME=	4050743
+GH_TAGNAME=	d7d433d
 
 .include <bsd.mport.options.mk>
 
