@@ -1,6 +1,6 @@
---- configure.orig	2014-04-26 03:58:46.000000000 -0700
-+++ configure	2014-04-29 19:47:03.900706999 -0700
-@@ -4857,46 +4857,6 @@
+--- configure.orig	2019-10-01 15:27:14.000000000 -0700
++++ configure	2019-10-27 23:29:24.744163000 -0700
+@@ -4756,63 +4756,6 @@
  
  else
    olibs="$LIBS"
@@ -44,10 +44,27 @@
 -if ac_fn_c_try_link "$LINENO"; then :
 -
 -else
-   LIBS="-ltermlib $olibs"
- { $as_echo "$as_me:${as_lineno-$LINENO}: checking libtermlib..." >&5
- $as_echo "$as_me: checking libtermlib..." >&6;}
-@@ -5001,12 +4961,6 @@
+-  LIBS="-ltermlib $olibs"
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking libtermlib..." >&5
+-$as_echo "$as_me: checking libtermlib..." >&6;}
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-int
+-main ()
+-{
+-tgetent((char *)0, (char *)0);
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-
+-else
+   LIBS="-lncursesw $olibs"
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking libncursesw..." >&5
+ $as_echo "$as_me: checking libncursesw..." >&6;}
+@@ -4897,15 +4840,6 @@
  fi
  rm -f core conftest.err conftest.$ac_objext \
      conftest$ac_exeext conftest.$ac_ext
@@ -57,10 +74,13 @@
 -fi
 -rm -f core conftest.err conftest.$ac_objext \
 -    conftest$ac_exeext conftest.$ac_ext
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
  
  if test "$cross_compiling" = yes; then :
-   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-@@ -5019,7 +4973,8 @@
+   echo "- skipping check because we are cross compiling; assuming terminfo database is used" 1>&6
+@@ -4917,7 +4851,8 @@
  
  main()
  {
@@ -70,7 +90,7 @@
  }
  _ACEOF
  if ac_fn_c_try_run "$LINENO"; then :
-@@ -5066,7 +5021,7 @@
+@@ -4967,7 +4902,7 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for SVR4 ptys..." >&5
  $as_echo "$as_me: checking for SVR4 ptys..." >&6;}
  sysvr4ptys=
@@ -79,7 +99,7 @@
  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */
  
-@@ -5177,19 +5132,16 @@
+@@ -5080,19 +5015,17 @@
  fi
  rm -f conftest*
  
@@ -98,13 +118,17 @@
 +#define PTYRANGE1 "0123456789abcdefghijklmnopqrstuv"
  _ACEOF
  
+ fi
 -fi
--
+ 
  
  # Check whether --with-pty-mode was given.
- if test "${with_pty_mode+set}" = set; then :
-@@ -5416,6 +5368,8 @@
- #if defined(SVR4) && !defined(DGUX)
+@@ -5315,9 +5248,11 @@
+ 
+ #include <time.h> /* to get time_t on SCO */
+ #include <sys/types.h>
+-#if defined(SVR4) && !defined(DGUX)
++#if (defined(SVR4) && !defined(DGUX)) || defined(__MidnightBSD_cc_version)
  #include <utmpx.h>
  #define utmp utmpx
 +#define pututline pututxline
@@ -112,8 +136,21 @@
  #else
  #include <utmp.h>
  #endif
-@@ -5484,6 +5438,10 @@
- #if defined(SVR4) && !defined(DGUX)
+@@ -5346,7 +5281,7 @@
+ 
+ #include <time.h>
+ #include <sys/types.h>
+-#if defined(SVR4) && !defined(DGUX)
++#if (defined(SVR4) && !defined(DGUX)) || defined(__MidnightBSD_cc_version)
+ #include <utmpx.h>
+ #define utmp utmpx
+ #else
+@@ -5383,9 +5318,13 @@
+ 
+ #include <time.h>
+ #include <sys/types.h>
+-#if defined(SVR4) && !defined(DGUX)
++#if (defined(SVR4) && !defined(DGUX)) || defined(__MidnightBSD_cc_version)
  #include <utmpx.h>
  #define utmp utmpx
 +#define pututline pututxline
