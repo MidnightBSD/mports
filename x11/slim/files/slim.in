@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $FreeBSD: head/x11/slim/files/slim.in 319487 2013-05-31 11:54:01Z crees $
+# $FreeBSD: head/x11/slim/files/slim.in 540725 2020-06-28 14:58:43Z jsm $
 #
 # PROVIDE: slim
 # REQUIRE: LOGIN dbus hald
@@ -58,7 +58,7 @@ slim_prestop()
 
 	find_pidfile
 
-	xpid=`ps -axww | grep '/bin/[X] .* -auth /var/run/slim.auth' | grep -v grep | awk '{print $1};'`
+	xpid=`pgrep -f 'Xorg .* -auth /var/run/slim.auth'`
 	[ -n "$xpid" ] && kill $xpid
 }
 
