@@ -8,10 +8,10 @@ COMMENT=	eGalax touch screen input driver for X.Org
 
 LICENSE=	bsd2
 
+USES=		autoreconf xorg-cat:driver tar:gz
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	glebius
 GH_TAGNAME=	7f1e4ac
-
-USES=		autoreconf xorg-cat:driver
 
 .include <bsd.port.mk>
