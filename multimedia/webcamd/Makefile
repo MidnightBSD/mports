@@ -15,6 +15,8 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS=	libv4l1.so:${PORTSDIR}/multimedia/libv4l
 
+FAKE_OPTS=	trueprefix
+
 USES=		pkgconfig tar:bzip2 uidfix
 USE_RC_SUBR=	webcamd
 USE_LDCONFIG=	yes
