@@ -3,6 +3,7 @@ COMMENT = Programming languages
 SUBDIR += alisp
 SUBDIR += bcc
 SUBDIR += bsh
+SUBDIR += cjs
 SUBDIR += cython
 SUBDIR += elixir
 SUBDIR += erlang
