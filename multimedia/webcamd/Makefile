@@ -1,8 +1,7 @@
 # Created by: Andrew Thompson <thompsa@FreeBSD.org>
 
 PORTNAME=	webcamd
-PORTVERSION=	4.20.0.1
-PORTREVISION=	1
+PORTVERSION=	5.7.1.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 		http://home.selasky.org/distfiles/
@@ -14,6 +13,8 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS=	libv4l1.so:${PORTSDIR}/multimedia/libv4l
+
+FAKE_OPTS=	trueprefix
 
 USES=		pkgconfig tar:bzip2 uidfix
 USE_RC_SUBR=	webcamd

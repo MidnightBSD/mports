@@ -23,6 +23,7 @@ SUBDIR += gom
 SUBDIR += hiredis
 SUBDIR += ldb14
 SUBDIR += ldb15
+SUBDIR += ldb20
 SUBDIR += leveldb
 SUBDIR += libgda5
 SUBDIR += libgda5-bdb
@@ -200,5 +201,6 @@ SUBDIR += tdb1
 SUBDIR += tinycdb
 SUBDIR += tuning-primer
 SUBDIR += unixODBC
+SUBDIR += vsqlite
 
 .include <bsd.port.subdir.mk>

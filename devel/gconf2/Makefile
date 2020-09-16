@@ -2,10 +2,9 @@
 
 PORTNAME=	gconf2
 PORTVERSION=	3.2.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	GConf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -19,10 +18,11 @@ USES=		tar:xz
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libpolkit-gobject-1.so:${PORTSDIR}/sysutils/polkit
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
+		libpolkit-gobject-1.so:sysutils/polkit
 
-USES+=		gettext gmake libtool pathfix pkgconfig
+USES+=		gettext gmake gnome libtool pathfix pkgconfig python:run \
+		shebangfix
 USE_GNOME=	orbit2 gtk20 libxml2 \
 		referencehack intlhack dconf introspection:build
 USE_LDCONFIG=	yes
@@ -33,8 +33,12 @@ CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
+SHEBANG_FILES=	gsettings/gsettings-schema-convert
 
-OPTIONS_DEFINE=	LDAP
+DOCSDIR=	${PREFIX}/share/doc/gconf
+
+OPTIONS_DEFINE=	LDAP DOCS
+OPTIONS_SUB=	yes
 
 .include <bsd.mport.options.mk>
 

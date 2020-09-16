@@ -4,6 +4,7 @@ COMMENT = X11 file managers
 
 SUBDIR += gentoo
 SUBDIR += nautilus
+SUBDIR += nemo
 SUBDIR += sushi
 SUBDIR += thunar
 SUBDIR += thunar-vfs
