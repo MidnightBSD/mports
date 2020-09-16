@@ -6,6 +6,7 @@ SUBDIR += beforelight
 SUBDIR += bitmap
 SUBDIR += cinnamon-desktop
 SUBDIR += cinnamon-menus
+SUBDIR += cinnamon-screensaver
 SUBDIR += cinnamon-session
 SUBDIR += dmenu
 SUBDIR += editres
