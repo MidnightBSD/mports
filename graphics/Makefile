@@ -170,6 +170,7 @@ SUBDIR += php73-exif
 SUBDIR += php73-gd
 SUBDIR += php74-exif
 SUBDIR += php74-gd
+SUBDIR += pixd
 SUBDIR += pixen
 SUBDIR += plotutils
 SUBDIR += png
