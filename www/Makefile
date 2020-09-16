@@ -36,6 +36,7 @@ SUBDIR += linux-libgtkembedmoz
 SUBDIR += linux-opera
 SUBDIR += lynx
 SUBDIR += man2web
+SUBDIR ++ mathjax
 SUBDIR += mediawiki133
 SUBDIR += midori
 SUBDIR += minio
