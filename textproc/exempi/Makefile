@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	exempi
 PORTVERSION=	2.2.2
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
@@ -10,7 +9,7 @@ COMMENT=	Port of Adobe XMP SDK to work on UNIX
 
 LICENSE=	bsd3
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-unittest=no
