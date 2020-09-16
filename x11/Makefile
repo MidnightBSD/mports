@@ -6,6 +6,7 @@ SUBDIR += beforelight
 SUBDIR += bitmap
 SUBDIR += cinnamon-desktop
 SUBDIR += cinnamon-menus
+SUBDIR += cinnamon-session
 SUBDIR += dmenu
 SUBDIR += editres
 SUBDIR += fstobdf
