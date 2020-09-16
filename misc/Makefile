@@ -3,6 +3,7 @@ COMMENT = Miscellaneous utilities
 SUBDIR += brs
 SUBDIR += chef
 SUBDIR += chmlib
+SUBDIR += cinnamon-translations
 SUBDIR += cldr-emoji-annotation
 SUBDIR += compat4x
 SUBDIR += compat5x
