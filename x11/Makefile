@@ -4,6 +4,7 @@ SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
 SUBDIR += bitmap
+SUBDIR += cinnamon-desktop
 SUBDIR += dmenu
 SUBDIR += editres
 SUBDIR += fstobdf

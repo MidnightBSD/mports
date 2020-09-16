@@ -15,6 +15,7 @@ SUBDIR += libcompizconfig
 SUBDIR += libdockapp
 SUBDIR += libwraster
 SUBDIR += metacity
+SUBDIR += muffin
 SUBDIR += mutter
 SUBDIR += obconf
 SUBDIR += obmenu
