@@ -4,6 +4,7 @@ SUBDIR += appres
 SUBDIR += babl
 SUBDIR += beforelight
 SUBDIR += bitmap
+SUBDIR += cinnamon
 SUBDIR += cinnamon-desktop
 SUBDIR += cinnamon-menus
 SUBDIR += cinnamon-screensaver
