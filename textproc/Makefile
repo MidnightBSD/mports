@@ -261,6 +261,7 @@ SUBDIR += xml2rfc
 SUBDIR += xmlcatmgr
 SUBDIR += xmlcharent
 SUBDIR += xmlto
+SUBDIR += yelp-tools
 SUBDIR += yelp-xsl
 
 .include <bsd.port.subdir.mk>

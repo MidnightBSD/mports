@@ -16,6 +16,7 @@ SUBDIR += nano
 SUBDIR += nvi-devel
 SUBDIR += pico-alpine
 SUBDIR += vim
+SUBDIR += xed
 SUBDIR += zile
 
 .include <bsd.port.subdir.mk>

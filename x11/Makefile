@@ -96,6 +96,7 @@ SUBDIR += viewres
 SUBDIR += wdm
 SUBDIR += windowmaker-desktop
 SUBDIR += x11perf
+SUBDIR += xapps
 SUBDIR += xauth
 SUBDIR += xbacklight
 SUBDIR += xbrightness

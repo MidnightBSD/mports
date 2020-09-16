@@ -217,6 +217,7 @@ SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += xli
 SUBDIR += xv
+SUBDIR += xviewer
 SUBDIR += zbar
 SUBDIR += zphoto
 
