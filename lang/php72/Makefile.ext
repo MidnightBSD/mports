@@ -526,7 +526,8 @@ LIB_DEPENDS+=   libwebp.so:graphics/webp
 CONFIGURE_ARGS+=--with-webp-dir=${LOCALBASE}
 .   endif
 .	if ${PORT_OPTIONS:MX11}
-USE_XORG=	xpm
+USES+=		xorg
+USE_XORG=	x11 xpm
 
 CONFIGURE_ARGS+=--with-xpm-dir=${LOCALBASE}
 .	endif
