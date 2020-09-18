@@ -129,6 +129,7 @@ SUBDIR += py-pkginfo
 SUBDIR += py-psutil
 SUBDIR += py-ptyprocess
 SUBDIR += py-scandir
+SUBDIR += py-uptime
 SUBDIR += qt5-qtdiag
 SUBDIR += qt5-qtpaths
 SUBDIR += qt5-qtplugininfo
