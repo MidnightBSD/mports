@@ -73,6 +73,9 @@ post-patch:
 		@${REINPLACE_CMD} -e 's|%%RUNDIR%%|${RUNDIR}|g' \
 			${WRKSRC}/agent.py \
 			${WRKSRC}/dogstatsd.py
+		${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' \
+			${WRKSRC}/checks/system/unix.py \
+			${WRKSRC}/checks.d/network.py
 
 post-install:
 		${MKDIR} ${ETCDIR}/conf.d
