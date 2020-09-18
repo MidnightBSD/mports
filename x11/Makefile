@@ -69,6 +69,7 @@ SUBDIR += libxshmfence
 SUBDIR += linux-c6-pixman
 SUBDIR += linux-c6-xorg-libs
 SUBDIR += linux-c7-pixman
+SUBDIR += linux-c7-xcb-util
 SUBDIR += linux-c7-xorg-libs
 SUBDIR += listres
 SUBDIR += luit
