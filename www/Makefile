@@ -26,6 +26,7 @@ SUBDIR += joomla3
 SUBDIR += libgtkhtml
 SUBDIR += libnghttp2
 SUBDIR += libsocialweb
+SUBDIR += libwpe
 SUBDIR += libwww
 SUBDIR += lighttpd
 SUBDIR += links

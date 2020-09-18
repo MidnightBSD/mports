@@ -23,6 +23,7 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 		libnotify.so:devel/libnotify \
 		libhyphen.so:textproc/hyphen \
 		libicutu.so:devel/icu \
+		libopenjp2.so:graphics/openjpeg \
 		libharfbuzz.so:print/harfbuzz \
 		libharfbuzz-icu.so:print/harfbuzz-icu \
 		libsoup-2.4.so:devel/libsoup \
@@ -32,9 +33,9 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bison cmake compiler:c++14-lang gettext gnome gperf \
+USES=		bison cmake compiler:c++14-lang gettext gl gnome gperf \
 		jpeg localbase:ldflags perl5 pkgconfig python:2.7,build \
-		sqlite tar:xz
+		sqlite tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build libxml2 libxslt
 USE_GL=		gl egl glesv2
 USE_GSTREAMER1=	bad gl
