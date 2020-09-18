@@ -195,6 +195,7 @@ SUBDIR += w3m
 SUBDIR += webkit2-gtk3
 SUBDIR += weblint++
 SUBDIR += wordpress
+SUBDIR += wpebackend-fdo
 SUBDIR += xsp
 SUBDIR += youtube_dl
 SUBDIR += yuicompressor
