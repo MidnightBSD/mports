@@ -1,9 +1,11 @@
 PORTNAME=	webkit
-PORTVERSION=	2.22.7
+PORTVERSION=	2.28.1
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://webkitgtk.org/releases/
+MASTER_SITES=	https://webkitgtk.org/releases/
 PKGNAMESUFFIX=	2-gtk3
 DISTNAME=	${PORTNAME}gtk-${PORTVERSION}
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Opensource browser engine using the GTK+ 3 toolkit
@@ -11,8 +13,6 @@ COMMENT=	Opensource browser engine using the GTK+ 3 toolkit
 LICENSE=	gpl2 bsd2
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS+=	python3:lang/python3 \
-		python:lang/python
 LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -34,7 +34,7 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 PORTSCOUT=	limitw:1,even
 
 USES=		bison cmake compiler:c++14-lang gettext gl gnome gperf \
-		jpeg localbase:ldflags perl5 pkgconfig python:2.7,build \
+		jpeg localbase:ldflags perl5 pkgconfig python:build \
 		sqlite tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build libxml2 libxslt
 USE_GL=		gl egl glesv2
@@ -48,11 +48,12 @@ USE_XORG=	x11 xcomposite xdamage xext xrender xt ice
 BINARY_ALIAS=		python=${PYTHON_CMD}
 CXXFLAGS+=		-DFIXED_EXECUTABLE_MEMORY_POOL_SIZE_IN_MB=32
 CXXFLAGS_powerpc=	-DENABLE_YARR_JIT=0
-CXXFLAGS_powerpc64=	-DENABLE_YARR_JIT=0 \
-			-mminimal-toc
+CXXFLAGS_powerpc64=	-DENABLE_YARR_JIT=0
 CMAKE_ARGS=		-DPORT=GTK
-CMAKE_OFF=		USE_LD_GOLD ${CMAKE_OFF_${ARCH}:U}
-CMAKE_ON=		ENABLE_GLES2 ENABLE_MINIBROWSER
+CMAKE_OFF=		USE_LD_GOLD ${CMAKE_OFF_${ARCH}:U} \
+			ENABLE_GLES2 \
+			USE_SYSTEM_MALLOC
+CMAKE_ON=		ENABLE_MINIBROWSER
 CMAKE_OFF_armv6=	ENABLE_JIT
 CMAKE_OFF_armv7=	ENABLE_JIT
 CMAKE_OFF_powerpc=	ENABLE_JIT
@@ -62,13 +63,9 @@ INSTALL_TARGET=		install
 
 BROWSER_PLUGINS_DIR?=	${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk3
 
-OPTIONS_DEFINE=		DEBUG GEOIP NPAPI WAYLAND
-OPTIONS_DEFAULT=	GEOIP
-OPTIONS_DEFAULT_i386=	NPAPI
-OPTIONS_DEFAULT_amd64=	NPAPI
+OPTIONS_DEFINE=		DEBUG GEOIP WAYLAND
+OPTIONS_DEFAULT=	GEOIP WAYLAND
 OPTIONS_SUB=		yes
-
-NPAPI_DESC=		Support gtk2 (NPAPI) based plugins (like flash)
 
 # Building WebKit with debugging symbols requires ar and ld with
 # support for thin archives.  Also see
@@ -89,11 +86,10 @@ GEOIP_CMAKE_BOOL=	ENABLE_GEOLOCATION
 GEOIP_BUILD_DEPENDS=	geoclue>=2.4.3:net/geoclue
 GEOIP_RUN_DEPENDS=	geoclue>=2.4.3:net/geoclue
 
-NPAPI_CMAKE_BOOL=	ENABLE_PLUGIN_PROCESS_GTK2
-NPAPI_USE=		GNOME=gtk20
-
 WAYLAND_CMAKE_BOOL=	ENABLE_WAYLAND_TARGET
-WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland
+WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
+			libwpe-1.0.so:www/libwpe \
+			libWPEBackend-fdo-1.0.so:www/wpebackend-fdo
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/lib/browser/plugins|${BROWSER_PLUGINS_DIR}|' \
