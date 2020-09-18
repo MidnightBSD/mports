@@ -24,6 +24,7 @@ SUBDIR += cmocka
 SUBDIR += consolekit2
 SUBDIR += consolehm
 SUBDIR += coreutils
+SUBDIR += datadog
 SUBDIR += debootstrap
 SUBDIR += devcpu-data
 SUBDIR += di
