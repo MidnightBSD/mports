@@ -152,6 +152,7 @@ SUBDIR += py-fail2ban
 SUBDIR += py-josepy
 SUBDIR += py-keyring
 SUBDIR += py-keyrings.alt
+SUBDIR += py-oauthlib
 SUBDIR += py-openssl
 SUBDIR += py-paramiko
 SUBDIR += py-pycrypto

@@ -754,6 +754,7 @@ SUBDIR += py-backports.functools_lru_cache
 SUBDIR += py-backports.os
 SUBDIR += py-backports_abc
 SUBDIR += py-bcdoc
+SUBDIR += py-blinker
 SUBDIR += py-boto
 SUBDIR += py-botocore
 SUBDIR += py-buildbot
