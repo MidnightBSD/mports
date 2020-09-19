@@ -89,6 +89,8 @@ _LICENSE_GROUPS_bzip2=
 _LICENSE_NAME_ccasa3=	Creative Commons Attribution-Share Alike 3.0
 _LICENSE_GROUPS_ccasa3=
 
+_LICENSE_NAME_CC0-1.0=		Creative Commons Zero v1.0 Universal
+_LICENSE_GROUPS_CC0-1.0=	FSF GPL COPYFREE
 
 _LICENSE_NAME_CC-BY-ND-1.0=     Creative Commons Attribution No Derivatives 1.0
 _LICENSE_GROUPS_CC-BY-ND-1.0=   # empty
