@@ -3,7 +3,7 @@
 # $MidnightBSD$
 
 PORTNAME=	phpmailer
-PORTVERSION=	5.2.20
+PORTVERSION=	5.2.28
 DISTVERSIONPREFIX=	v
 CATEGORIES=	mail
 
@@ -20,8 +20,8 @@ GH_PROJECT=	PHPMailer
 NO_BUILD=	yes
 NO_ARCH=	yes
 USE_PHP=	yes
-USES=		dos2unix
-
+USES=		cpe dos2unix php
+CPE_VENDOR=	phpmailer_project
 SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
