@@ -1,5 +1,5 @@
---- native/Makefile.orig	2018-07-12 14:29:11.000000000 -0400
-+++ native/Makefile	2019-11-12 16:03:14.580853000 -0500
+--- native/Makefile.orig	2018-10-07 17:48:55.000000000 -0400
++++ native/Makefile	2020-09-19 14:37:49.382748000 -0400
 @@ -39,12 +39,15 @@
  # protection simply by defining HAVE_PROTECTION.  This option has been only
  # been enabled for those platforms on which it has been tested successfully.
@@ -29,16 +29,17 @@
  CDEFINES+=-DHAVE_PROTECTION -DFFI_MMAP_EXEC_WRIT -DUSE_DEAFULT_LIBNAME_ENCODING
  endif
  
-@@ -336,10 +342,10 @@
- ifeq ($(CC),gcc)
+@@ -337,11 +343,11 @@
      GCC_MAJOR_VERSION = $(shell gcc -dumpversion | cut -f 1 -d '.')
      ifneq ($(GCC_MAJOR_VERSION),4)
--	LOC_CC_OPTS=-Wno-unknown-warning-option -Werror -Wno-clobbered -Wno-unused-variable
-+	LOC_CC_OPTS=-Werror -Wno-unused-variable
+ 	ifneq ($(GCC_MAJOR_VERSION),3)
+-	    LOC_CC_OPTS=-Wno-unknown-warning-option -Werror -Wno-clobbered -Wno-unused-variable
++	    LOC_CC_OPTS=-Wno-unused-variable
+ 	endif
      endif
  else
 -    LOC_CC_OPTS=-Wno-unknown-warning-option -Werror -Wno-clobbered -Wno-unused-variable
-+    LOC_CC_OPTS=-Werror -Wno-unused-variable
++    LOC_CC_OPTS=-Wno-unused-variable
  endif
  
  # Enable 64-bit builds if the arch demands it

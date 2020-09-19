@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	apache-ant
-PORTVERSION=	1.9.3
+PORTVERSION=	1.10.7
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
 		FREEBSD_LOCAL/hq:man

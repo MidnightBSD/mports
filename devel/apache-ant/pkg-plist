@@ -1,9 +1,7 @@
-bin/ant
-man/man1/ant.1.gz
-man/man5/build.xml.5.gz
 %%DATADIR%%/bin/antRun
 %%DATADIR%%/etc/ant-bootstrap.jar
 %%DATADIR%%/etc/changelog.xsl
+%%DATADIR%%/etc/checkstyle/checkstyle-frames-sortby-check.xsl
 %%DATADIR%%/etc/checkstyle/checkstyle-frames.xsl
 %%DATADIR%%/etc/checkstyle/checkstyle-text.xsl
 %%DATADIR%%/etc/checkstyle/checkstyle-xdoc.xsl
@@ -38,6 +36,8 @@ man/man5/build.xml.5.gz
 %%DATADIR%%/lib/ant-commons-logging.pom
 %%DATADIR%%/lib/ant-commons-net.jar
 %%DATADIR%%/lib/ant-commons-net.pom
+%%DATADIR%%/lib/ant-imageio.jar
+%%DATADIR%%/lib/ant-imageio.pom
 %%DATADIR%%/lib/ant-jai.jar
 %%DATADIR%%/lib/ant-jai.pom
 %%DATADIR%%/lib/ant-javamail.jar
@@ -52,6 +52,8 @@ man/man5/build.xml.5.gz
 %%DATADIR%%/lib/ant-junit.pom
 %%DATADIR%%/lib/ant-junit4.jar
 %%DATADIR%%/lib/ant-junit4.pom
+%%DATADIR%%/lib/ant-junitlauncher.jar
+%%DATADIR%%/lib/ant-junitlauncher.pom
 %%DATADIR%%/lib/ant-launcher.jar
 %%DATADIR%%/lib/ant-launcher.pom
 %%DATADIR%%/lib/ant-netrexx.jar
@@ -61,11 +63,11 @@ man/man5/build.xml.5.gz
 %%DATADIR%%/lib/ant-swing.pom
 %%DATADIR%%/lib/ant-testutil.jar
 %%DATADIR%%/lib/ant-testutil.pom
+%%DATADIR%%/lib/ant-xz.jar
+%%DATADIR%%/lib/ant-xz.pom
 %%DATADIR%%/lib/ant.jar
 %%DATADIR%%/lib/ant.pom
 %%DATADIR%%/lib/libraries.properties
-@dirrm %%DATADIR%%/lib
-@dirrm %%DATADIR%%/etc/checkstyle
-@dirrm %%DATADIR%%/etc
-@dirrm %%DATADIR%%/bin
-@dirrm %%DATADIR%%
+bin/ant
+man/man1/ant.1.gz
+man/man5/build.xml.5.gz

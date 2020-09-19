@@ -1,5 +1,5 @@
 PORTNAME=	jna
-PORTVERSION=	4.5.2
+PORTVERSION=	5.5.0
 CATEGORIES=	devel java
 
 MAINTAINER=	ports@MidnightBSD.org

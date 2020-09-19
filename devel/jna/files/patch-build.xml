@@ -1,33 +1,33 @@
---- build.xml.orig	2018-07-12 14:29:11.000000000 -0400
-+++ build.xml	2019-11-12 16:24:57.623139000 -0500
-@@ -99,7 +99,7 @@
-   <condition property="test.compatibility" value="1.5" else="${compatibility}">
-     <equals arg1="${compatibility}" arg2="1.4"/>
+--- build.xml.orig	2019-10-30 12:41:18.000000000 -0400
++++ build.xml	2020-09-19 14:39:45.491402000 -0400
+@@ -118,7 +118,7 @@
+         <equals arg1="${compatibility}" arg2="1.7"/>
+     </or>
    </condition>
 -  <condition property="tests.exclude-patterns" value="**/VarArgsTest.java,**/AnnotatedLibraryTest.java,**/WebStartTest.java,**/PointerBufferTest.java,**/HeadlessLoadLibraryTest.java,**/StructureBufferFieldTest.java,**/PerformanceTest.java,**/*BufferArgumentsMarshalTest.java" else="**/wince/*.java,**/WebStartTest.java">
 +  <condition property="tests.exclude-patterns" value="**/VarArgsTest.java,**/AnnotatedLibraryTest.java,**/WebStartTest.java,**/PointerBufferTest.java,**/HeadlessLoadLibraryTest.java,**/StructureBufferFieldTest.java,**/PerformanceTest.java,**/*BufferArgumentsMarshalTest.java" else="**/wince/*.java,**/WebStartTest.java,**/LibraryLoadTest.java">
      <equals arg1="${os.prefix}" arg2="w32ce-arm"/>
    </condition>
    <property name="dist-jar" value="${dist}/${jar}"/>
-@@ -287,6 +287,9 @@
+@@ -293,6 +293,9 @@
      <condition property="os.prefix" value="freebsd-${jre.arch}">
-       <os name="FreeBSD"/>
+       <equals arg1="${build.os.name}" arg2="FreeBSD"/>
      </condition>
 +    <condition property="os.prefix" value="midnightbsd-${jre.arch}">
-+      <os name="MidnightBSD"/>
++      <equals arg1="${build.os.name}" arg2="MidnightBSD"/>
 +    </condition>
      <condition property="os.prefix" value="openbsd-${jre.arch}">
- 	<os name="OpenBSD"/>
+ 	<equals arg1="${build.os.name}" arg2="OpenBSD"/>
      </condition>
-@@ -913,6 +916,7 @@
+@@ -921,6 +924,7 @@
      <condition property="make" value="gmake">
        <or>
-         <os name="FreeBSD"/>
-+        <os name="MidnightBSD"/>
-         <os name="OpenBSD"/>
-         <os name="NetBSD"/>
-         <os name="SunOS"/>
-@@ -1220,7 +1224,6 @@
+         <equals arg1="${build.os.name}" arg2="FreeBSD"/>
++        <equals arg1="${build.os.name}" arg2="MidnightBSD"/>
+         <equals arg1="${build.os.name}" arg2="OpenBSD"/>
+         <equals arg1="${build.os.name}" arg2="NetBSD"/>
+         <equals arg1="${build.os.name}" arg2="SunOS"/>
+@@ -1313,7 +1317,6 @@
        <doctitle>JNA API Documentation</doctitle>
        <header>${header}</header>
        <bottom>${footer}</bottom>
