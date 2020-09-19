@@ -13,7 +13,7 @@ COMMENT=	Berkeley DB Java Edition
 
 LICENSE=	agpl
 
-OPTIONS_DEFINE=	DOCS EXAMPLES TEST
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:${PORTSDIR}/java/junit
 
@@ -28,38 +28,7 @@ PLIST_FILES=	%%JAVAJARDIR%%/je.jar
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-regression-test check test: build
-	#
-	# Running the vendor-provided self-tests. This may take a while
-	#
-	if ! (cd ${BUILD_WRKSRC} ; ${MAKE_ENV} ${ANT} ${MAKE_ARGS} test) ; \
-	then	\
-		${ECHO_MSG} Please, review test failures and consider \
-			reporting them via \
-			http://forums.oracle.com/forums/forum.jspa?forumID=273 ; \
-		${FALSE} ; \
-	fi
-
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MTEST}
-post-build:	test
-	#
-	# Please, review the reported failures (if any) and consider
-	# reporting them to the developers via:
-	# 	http://forums.oracle.com/forums/forum.jspa?forumID=273
-	# You can re-run the tests without rebuilding the port by
-	# simply doing `make test'
-	#
-.else
-post-build:
-	#
-	# Doing `make test' now might be useful (if time-consuming).
-	# Please, review the reported failures (if any) and consider
-	# reporting them via
-	# 	http://forums.oracle.com/forums/forum.jspa?forumID=273
-	#
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} "s,/usr/local,${PREFIX}," ${WRKSRC}/build.xml
