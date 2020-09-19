@@ -711,7 +711,7 @@ go/src/runtime/race/testdata/cgo_test.go
 go/src/runtime/race/timer_test.go
 go/src/runtime/race/race_unix_test.go
 go/src/runtime/race/race_netbsd_amd64.syso
-go/src/runtime/race/race_freebsd_amd64.syso
+go/src/runtime/race/race_freebsd_%%ARCH%%.syso
 go/src/runtime/race/doc.go
 go/src/runtime/race/race_linux_arm64.syso
 go/src/runtime/race/race.go
@@ -836,7 +836,7 @@ go/src/runtime/nbpipe_pipe.go
 go/src/runtime/rt0_android_386.s
 go/src/runtime/signal_darwin_arm64.go
 go/src/runtime/syscall_windows_test.go
-go/src/runtime/rt0_freebsd_amd64.s
+go/src/runtime/rt0_freebsd_%%ARCH%%.s
 go/src/runtime/tls_mipsx.s
 go/src/runtime/defs_netbsd.go
 go/src/runtime/nbpipe_test.go
@@ -866,7 +866,7 @@ go/src/runtime/string.go
 go/src/runtime/sys_arm64.go
 go/src/runtime/os_android.go
 go/src/runtime/stubs.go
-go/src/runtime/os_freebsd_amd64.go
+go/src/runtime/os_freebsd_%%ARCH%%.go
 go/src/runtime/tls_mips64x.s
 go/src/runtime/signal_netbsd_386.go
 go/src/runtime/defs_windows_arm.go
@@ -1055,7 +1055,7 @@ go/src/runtime/chanbarrier_test.go
 go/src/runtime/stubs_arm64.go
 go/src/runtime/os_linux_ppc64x.go
 go/src/runtime/memmove_arm64.s
-go/src/runtime/defs_freebsd_amd64.go
+go/src/runtime/defs_freebsd_%%ARCH%%.go
 go/src/runtime/closure_test.go
 go/src/runtime/os_linux.go
 go/src/runtime/preempt.go
@@ -1195,7 +1195,7 @@ go/src/runtime/preempt_arm.s
 go/src/runtime/signal_openbsd_arm.go
 go/src/runtime/sigaction.go
 go/src/runtime/sys_windows_386.s
-go/src/runtime/signal_freebsd_amd64.go
+go/src/runtime/signal_freebsd_%%ARCH%%.go
 go/src/runtime/mpallocbits_test.go
 go/src/runtime/rt0_linux_ppc64.s
 go/src/runtime/asm_arm64.s
@@ -1222,7 +1222,7 @@ go/src/runtime/cgo/asm_amd64.s
 go/src/runtime/cgo/gcc_linux_mips64x.c
 go/src/runtime/cgo/signal_darwin_arm64.s
 go/src/runtime/cgo/signal_darwin_arm.s
-go/src/runtime/cgo/gcc_freebsd_amd64.c
+go/src/runtime/cgo/gcc_freebsd_%%ARCH%%.c
 go/src/runtime/cgo/gcc_s390x.S
 go/src/runtime/cgo/gcc_signal2_darwin_armx.c
 go/src/runtime/cgo/gcc_util.c
@@ -1549,7 +1549,7 @@ go/src/runtime/rt0_linux_arm64.s
 go/src/runtime/export_solaris_test.go
 go/src/runtime/os_linux_generic.go
 go/src/runtime/sys_nonppc64x.go
-go/src/runtime/sys_freebsd_amd64.s
+go/src/runtime/sys_freebsd_%%ARCH%%.s
 go/src/runtime/write_err_android.go
 go/src/runtime/duff_mips64x.s
 go/src/runtime/sys_darwin_32.go
@@ -1630,7 +1630,7 @@ go/src/syscall/zsyscall_freebsd_arm.go
 go/src/syscall/zerrors_darwin_arm.go
 go/src/syscall/msan.go
 go/src/syscall/syscall_linux_ppc64x.go
-go/src/syscall/ztypes_freebsd_amd64.go
+go/src/syscall/ztypes_freebsd_%%ARCH%%.go
 go/src/syscall/syscall_openbsd_arm.go
 go/src/syscall/ztypes_linux_mipsle.go
 go/src/syscall/sockcmsg_dragonfly.go
@@ -1651,7 +1651,7 @@ go/src/syscall/zerrors_linux_386.go
 go/src/syscall/str.go
 go/src/syscall/zerrors_dragonfly_amd64.go
 go/src/syscall/syscall_darwin_386.go
-go/src/syscall/syscall_freebsd_amd64.go
+go/src/syscall/syscall_freebsd_%%ARCH%%.go
 go/src/syscall/syscall_netbsd_arm64.go
 go/src/syscall/asm_darwin_amd64.s
 go/src/syscall/ztypes_linux_s390x.go
@@ -1666,7 +1666,7 @@ go/src/syscall/zsyscall_darwin_386.s
 go/src/syscall/sock_cloexec_linux.go
 go/src/syscall/syscall.go
 go/src/syscall/zsyscall_linux_riscv64.go
-go/src/syscall/zerrors_freebsd_amd64.go
+go/src/syscall/zerrors_freebsd_%%ARCH%%.go
 go/src/syscall/mmap_unix_test.go
 go/src/syscall/zsysnum_windows_amd64.go
 go/src/syscall/syscall_linux_mipsx.go
@@ -1737,7 +1737,7 @@ go/src/syscall/types_solaris.go
 go/src/syscall/errors_plan9.go
 go/src/syscall/ztypes_linux_ppc64.go
 go/src/syscall/zerrors_linux_riscv64.go
-go/src/syscall/zsyscall_freebsd_amd64.go
+go/src/syscall/zsyscall_freebsd_%%ARCH%%.go
 go/src/syscall/route_dragonfly.go
 go/src/syscall/zsyscall_linux_arm64.go
 go/src/syscall/zsysnum_linux_mipsle.go
@@ -1849,7 +1849,7 @@ go/src/syscall/zsysnum_openbsd_amd64.go
 go/src/syscall/syscall_solaris.go
 go/src/syscall/zsysnum_linux_mips64.go
 go/src/syscall/ztypes_netbsd_arm64.go
-go/src/syscall/zsysnum_freebsd_amd64.go
+go/src/syscall/zsysnum_freebsd_%%ARCH%%.go
 go/src/syscall/zsyscall_darwin_arm.s
 go/src/syscall/route_freebsd.go
 go/src/syscall/zerrors_windows_amd64.go
@@ -3281,7 +3281,7 @@ go/src/cmd/vendor/golang.org/x/sys/unix/syscall_freebsd.go
 go/src/cmd/vendor/golang.org/x/sys/unix/asm_netbsd_386.s
 go/src/cmd/vendor/golang.org/x/sys/unix/syscall_darwin.go
 go/src/cmd/vendor/golang.org/x/sys/unix/asm_linux_arm64.s
-go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm.s
 go/src/cmd/vendor/golang.org/x/sys/unix/race.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zptracemips_linux.go
@@ -3361,7 +3361,7 @@ go/src/cmd/vendor/golang.org/x/sys/unix/timestruct.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_386.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_netbsd_arm64.go
-go/src/cmd/vendor/golang.org/x/sys/unix/errors_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/errors_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_darwin_386.go
 go/src/cmd/vendor/golang.org/x/sys/unix/gccgo_c.c
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_solaris_amd64.go
@@ -3389,7 +3389,7 @@ go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_openbsd_amd64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_openbsd_386.go
 go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_amd64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_linux_arm64.go
-go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_darwin_amd64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm.go
@@ -3411,13 +3411,13 @@ go/src/cmd/vendor/golang.org/x/sys/unix/asm_openbsd_arm.s
 go/src/cmd/vendor/golang.org/x/sys/unix/mkall.sh
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64le.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_openbsd_amd64.go
-go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_mipsle.go
 go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_ppc64x.go
 go/src/cmd/vendor/golang.org/x/sys/unix/pledge_openbsd.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_aix_ppc64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/dirent.go
-go/src/cmd/vendor/golang.org/x/sys/unix/asm_freebsd_amd64.s
+go/src/cmd/vendor/golang.org/x/sys/unix/asm_freebsd_%%ARCH%%.s
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_linux_mips64le.go
 go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_gc_386.go
@@ -3502,7 +3502,7 @@ go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_netbsd_amd64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_sparc64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s
 go/src/cmd/vendor/golang.org/x/sys/unix/zerrors_linux_amd64.go
-go/src/cmd/vendor/golang.org/x/sys/unix/syscall_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/syscall_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_linux_mips64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/asm_openbsd_arm64.s
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_linux_arm.go
@@ -3519,7 +3519,7 @@ go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_linux_mipsle.go
 go/src/cmd/vendor/golang.org/x/sys/unix/asm_netbsd_arm.s
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_arm64.go
 go/src/cmd/vendor/golang.org/x/sys/unix/syscall_netbsd_arm.go
-go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_amd64.go
+go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_%%ARCH%%.go
 go/src/cmd/vendor/golang.org/x/sys/unix/ztypes_linux_s390x.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm.go
 go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_386.s
@@ -4479,7 +4479,7 @@ go/src/vendor/golang.org/x/net/route/empty.s
 go/src/vendor/golang.org/x/net/route/interface_openbsd.go
 go/src/vendor/golang.org/x/net/route/syscall_go1_11_darwin.go
 go/src/vendor/golang.org/x/net/route/interface_announce.go
-go/src/vendor/golang.org/x/net/route/zsys_freebsd_amd64.go
+go/src/vendor/golang.org/x/net/route/zsys_freebsd_%%ARCH%%.go
 go/src/vendor/golang.org/x/net/route/syscall_go1_12_darwin.go
 go/src/vendor/golang.org/x/net/route/sys_dragonfly.go
 go/src/vendor/golang.org/x/net/route/interface_freebsd.go
@@ -8694,224 +8694,224 @@ go/PATENTS
 go/pkg/include/textflag.h
 go/pkg/include/asm_ppc64x.h
 go/pkg/include/funcdata.h
-go/pkg/freebsd_amd64/errors.a
-go/pkg/freebsd_amd64/context.a
-go/pkg/freebsd_amd64/compress/flate.a
-go/pkg/freebsd_amd64/compress/lzw.a
-go/pkg/freebsd_amd64/compress/bzip2.a
-go/pkg/freebsd_amd64/compress/zlib.a
-go/pkg/freebsd_amd64/compress/gzip.a
-go/pkg/freebsd_amd64/crypto.a
-go/pkg/freebsd_amd64/runtime.a
-go/pkg/freebsd_amd64/unicode/utf8.a
-go/pkg/freebsd_amd64/unicode/utf16.a
-go/pkg/freebsd_amd64/testing/quick.a
-go/pkg/freebsd_amd64/testing/iotest.a
-go/pkg/freebsd_amd64/testing/internal/testdeps.a
-go/pkg/freebsd_amd64/time.a
-go/pkg/freebsd_amd64/io/ioutil.a
-go/pkg/freebsd_amd64/regexp.a
-go/pkg/freebsd_amd64/strconv.a
-go/pkg/freebsd_amd64/container/ring.a
-go/pkg/freebsd_amd64/container/list.a
-go/pkg/freebsd_amd64/container/heap.a
-go/pkg/freebsd_amd64/net.a
-go/pkg/freebsd_amd64/mime.a
-go/pkg/freebsd_amd64/debug/dwarf.a
-go/pkg/freebsd_amd64/debug/plan9obj.a
-go/pkg/freebsd_amd64/debug/elf.a
-go/pkg/freebsd_amd64/debug/macho.a
-go/pkg/freebsd_amd64/debug/pe.a
-go/pkg/freebsd_amd64/debug/gosym.a
-go/pkg/freebsd_amd64/database/sql/driver.a
-go/pkg/freebsd_amd64/database/sql.a
-go/pkg/freebsd_amd64/archive/tar.a
-go/pkg/freebsd_amd64/archive/zip.a
-go/pkg/freebsd_amd64/hash.a
-go/pkg/freebsd_amd64/image.a
-go/pkg/freebsd_amd64/html.a
-go/pkg/freebsd_amd64/go/doc.a
-go/pkg/freebsd_amd64/go/ast.a
-go/pkg/freebsd_amd64/go/format.a
-go/pkg/freebsd_amd64/go/types.a
-go/pkg/freebsd_amd64/go/importer.a
-go/pkg/freebsd_amd64/go/constant.a
-go/pkg/freebsd_amd64/go/build.a
-go/pkg/freebsd_amd64/go/internal/srcimporter.a
-go/pkg/freebsd_amd64/go/internal/gcimporter.a
-go/pkg/freebsd_amd64/go/internal/gccgoimporter.a
-go/pkg/freebsd_amd64/go/parser.a
-go/pkg/freebsd_amd64/go/printer.a
-go/pkg/freebsd_amd64/go/scanner.a
-go/pkg/freebsd_amd64/go/token.a
-go/pkg/freebsd_amd64/path/filepath.a
-go/pkg/freebsd_amd64/os.a
-go/pkg/freebsd_amd64/io.a
-go/pkg/freebsd_amd64/net/mail.a
-go/pkg/freebsd_amd64/net/url.a
-go/pkg/freebsd_amd64/net/rpc/jsonrpc.a
-go/pkg/freebsd_amd64/net/internal/socktest.a
-go/pkg/freebsd_amd64/net/http/httputil.a
-go/pkg/freebsd_amd64/net/http/pprof.a
-go/pkg/freebsd_amd64/net/http/cgi.a
-go/pkg/freebsd_amd64/net/http/fcgi.a
-go/pkg/freebsd_amd64/net/http/httptest.a
-go/pkg/freebsd_amd64/net/http/internal.a
-go/pkg/freebsd_amd64/net/http/cookiejar.a
-go/pkg/freebsd_amd64/net/http/httptrace.a
-go/pkg/freebsd_amd64/net/smtp.a
-go/pkg/freebsd_amd64/net/http.a
-go/pkg/freebsd_amd64/net/rpc.a
-go/pkg/freebsd_amd64/net/textproto.a
-go/pkg/freebsd_amd64/encoding/base64.a
-go/pkg/freebsd_amd64/encoding/xml.a
-go/pkg/freebsd_amd64/encoding/gob.a
-go/pkg/freebsd_amd64/encoding/csv.a
-go/pkg/freebsd_amd64/encoding/asn1.a
-go/pkg/freebsd_amd64/encoding/hex.a
-go/pkg/freebsd_amd64/encoding/ascii85.a
-go/pkg/freebsd_amd64/encoding/binary.a
-go/pkg/freebsd_amd64/encoding/json.a
-go/pkg/freebsd_amd64/encoding/pem.a
-go/pkg/freebsd_amd64/encoding/base32.a
-go/pkg/freebsd_amd64/path.a
-go/pkg/freebsd_amd64/bufio.a
-go/pkg/freebsd_amd64/index/suffixarray.a
-go/pkg/freebsd_amd64/image/color/palette.a
-go/pkg/freebsd_amd64/image/draw.a
-go/pkg/freebsd_amd64/image/gif.a
-go/pkg/freebsd_amd64/image/color.a
-go/pkg/freebsd_amd64/image/png.a
-go/pkg/freebsd_amd64/image/jpeg.a
-go/pkg/freebsd_amd64/image/internal/imageutil.a
-go/pkg/freebsd_amd64/math.a
-go/pkg/freebsd_amd64/bytes.a
-go/pkg/freebsd_amd64/fmt.a
-go/pkg/freebsd_amd64/crypto/ecdsa.a
-go/pkg/freebsd_amd64/crypto/x509/pkix.a
-go/pkg/freebsd_amd64/crypto/ed25519/internal/edwards25519.a
-go/pkg/freebsd_amd64/crypto/md5.a
-go/pkg/freebsd_amd64/crypto/sha256.a
-go/pkg/freebsd_amd64/crypto/aes.a
-go/pkg/freebsd_amd64/crypto/dsa.a
-go/pkg/freebsd_amd64/crypto/rand.a
-go/pkg/freebsd_amd64/crypto/hmac.a
-go/pkg/freebsd_amd64/crypto/rc4.a
-go/pkg/freebsd_amd64/crypto/x509.a
-go/pkg/freebsd_amd64/crypto/subtle.a
-go/pkg/freebsd_amd64/crypto/sha512.a
-go/pkg/freebsd_amd64/crypto/tls.a
-go/pkg/freebsd_amd64/crypto/rsa.a
-go/pkg/freebsd_amd64/crypto/cipher.a
-go/pkg/freebsd_amd64/crypto/sha1.a
-go/pkg/freebsd_amd64/crypto/internal/subtle.a
-go/pkg/freebsd_amd64/crypto/internal/randutil.a
-go/pkg/freebsd_amd64/crypto/elliptic.a
-go/pkg/freebsd_amd64/crypto/des.a
-go/pkg/freebsd_amd64/crypto/ed25519.a
-go/pkg/freebsd_amd64/regexp/syntax.a
-go/pkg/freebsd_amd64/log/syslog.a
-go/pkg/freebsd_amd64/internal/poll.a
-go/pkg/freebsd_amd64/internal/nettrace.a
-go/pkg/freebsd_amd64/internal/testenv.a
-go/pkg/freebsd_amd64/internal/cpu.a
-go/pkg/freebsd_amd64/internal/race.a
-go/pkg/freebsd_amd64/internal/syscall/execenv.a
-go/pkg/freebsd_amd64/internal/syscall/unix.a
-go/pkg/freebsd_amd64/internal/bytealg.a
-go/pkg/freebsd_amd64/internal/fmtsort.a
-go/pkg/freebsd_amd64/internal/cfg.a
-go/pkg/freebsd_amd64/internal/goroot.a
-go/pkg/freebsd_amd64/internal/oserror.a
-go/pkg/freebsd_amd64/internal/xcoff.a
-go/pkg/freebsd_amd64/internal/goversion.a
-go/pkg/freebsd_amd64/internal/lazyregexp.a
-go/pkg/freebsd_amd64/internal/trace.a
-go/pkg/freebsd_amd64/internal/lazytemplate.a
-go/pkg/freebsd_amd64/internal/singleflight.a
-go/pkg/freebsd_amd64/internal/testlog.a
-go/pkg/freebsd_amd64/internal/reflectlite.a
-go/pkg/freebsd_amd64/internal/obscuretestdata.a
-go/pkg/freebsd_amd64/sync.a
-go/pkg/freebsd_amd64/mime/multipart.a
-go/pkg/freebsd_amd64/mime/quotedprintable.a
-go/pkg/freebsd_amd64/testing.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/sys/cpu.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/text/unicode/bidi.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/text/unicode/norm.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/text/secure/bidirule.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/text/transform.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/dns/dnsmessage.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/route.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/nettest.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/idna.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/http2/hpack.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/http/httpproxy.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/net/http/httpguts.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/poly1305.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/cryptobyte.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/internal/subtle.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/chacha20.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/curve25519.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/cryptobyte/asn1.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/chacha20poly1305.a
-go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/hkdf.a
-go/pkg/freebsd_amd64/math/big.a
-go/pkg/freebsd_amd64/math/rand.a
-go/pkg/freebsd_amd64/math/cmplx.a
-go/pkg/freebsd_amd64/math/bits.a
-go/pkg/freebsd_amd64/encoding.a
-go/pkg/freebsd_amd64/strings.a
-go/pkg/freebsd_amd64/reflect.a
-go/pkg/freebsd_amd64/os/signal.a
-go/pkg/freebsd_amd64/os/signal/internal/pty.a
-go/pkg/freebsd_amd64/os/user.a
-go/pkg/freebsd_amd64/os/exec.a
-go/pkg/freebsd_amd64/log.a
-go/pkg/freebsd_amd64/text/template.a
-go/pkg/freebsd_amd64/text/tabwriter.a
-go/pkg/freebsd_amd64/text/scanner.a
-go/pkg/freebsd_amd64/text/template/parse.a
-go/pkg/freebsd_amd64/html/template.a
-go/pkg/freebsd_amd64/sort.a
-go/pkg/freebsd_amd64/sync/atomic.a
-go/pkg/freebsd_amd64/unicode.a
-go/pkg/freebsd_amd64/syscall.a
-go/pkg/freebsd_amd64/flag.a
-go/pkg/freebsd_amd64/runtime/race.a
-go/pkg/freebsd_amd64/runtime/pprof/internal/profile.a
-go/pkg/freebsd_amd64/runtime/trace.a
-go/pkg/freebsd_amd64/runtime/debug.a
-go/pkg/freebsd_amd64/runtime/internal/atomic.a
-go/pkg/freebsd_amd64/runtime/internal/sys.a
-go/pkg/freebsd_amd64/runtime/internal/math.a
-go/pkg/freebsd_amd64/runtime/pprof.a
-go/pkg/freebsd_amd64/runtime/cgo.a
-go/pkg/freebsd_amd64/expvar.a
-go/pkg/freebsd_amd64/plugin.a
-go/pkg/freebsd_amd64/hash/crc32.a
-go/pkg/freebsd_amd64/hash/fnv.a
-go/pkg/freebsd_amd64/hash/adler32.a
-go/pkg/freebsd_amd64/hash/maphash.a
-go/pkg/freebsd_amd64/hash/crc64.a
-go/pkg/tool/freebsd_amd64/addr2line
-go/pkg/tool/freebsd_amd64/objdump
-go/pkg/tool/freebsd_amd64/fix
-go/pkg/tool/freebsd_amd64/api
-go/pkg/tool/freebsd_amd64/pack
-go/pkg/tool/freebsd_amd64/pprof
-go/pkg/tool/freebsd_amd64/test2json
-go/pkg/tool/freebsd_amd64/link
-go/pkg/tool/freebsd_amd64/dist
-go/pkg/tool/freebsd_amd64/trace
-go/pkg/tool/freebsd_amd64/cover
-go/pkg/tool/freebsd_amd64/vet
-go/pkg/tool/freebsd_amd64/asm
-go/pkg/tool/freebsd_amd64/cgo
-go/pkg/tool/freebsd_amd64/compile
-go/pkg/tool/freebsd_amd64/nm
-go/pkg/tool/freebsd_amd64/doc
-go/pkg/tool/freebsd_amd64/buildid
+go/pkg/freebsd_%%ARCH%%/errors.a
+go/pkg/freebsd_%%ARCH%%/context.a
+go/pkg/freebsd_%%ARCH%%/compress/flate.a
+go/pkg/freebsd_%%ARCH%%/compress/lzw.a
+go/pkg/freebsd_%%ARCH%%/compress/bzip2.a
+go/pkg/freebsd_%%ARCH%%/compress/zlib.a
+go/pkg/freebsd_%%ARCH%%/compress/gzip.a
+go/pkg/freebsd_%%ARCH%%/crypto.a
+go/pkg/freebsd_%%ARCH%%/runtime.a
+go/pkg/freebsd_%%ARCH%%/unicode/utf8.a
+go/pkg/freebsd_%%ARCH%%/unicode/utf16.a
+go/pkg/freebsd_%%ARCH%%/testing/quick.a
+go/pkg/freebsd_%%ARCH%%/testing/iotest.a
+go/pkg/freebsd_%%ARCH%%/testing/internal/testdeps.a
+go/pkg/freebsd_%%ARCH%%/time.a
+go/pkg/freebsd_%%ARCH%%/io/ioutil.a
+go/pkg/freebsd_%%ARCH%%/regexp.a
+go/pkg/freebsd_%%ARCH%%/strconv.a
+go/pkg/freebsd_%%ARCH%%/container/ring.a
+go/pkg/freebsd_%%ARCH%%/container/list.a
+go/pkg/freebsd_%%ARCH%%/container/heap.a
+go/pkg/freebsd_%%ARCH%%/net.a
+go/pkg/freebsd_%%ARCH%%/mime.a
+go/pkg/freebsd_%%ARCH%%/debug/dwarf.a
+go/pkg/freebsd_%%ARCH%%/debug/plan9obj.a
+go/pkg/freebsd_%%ARCH%%/debug/elf.a
+go/pkg/freebsd_%%ARCH%%/debug/macho.a
+go/pkg/freebsd_%%ARCH%%/debug/pe.a
+go/pkg/freebsd_%%ARCH%%/debug/gosym.a
+go/pkg/freebsd_%%ARCH%%/database/sql/driver.a
+go/pkg/freebsd_%%ARCH%%/database/sql.a
+go/pkg/freebsd_%%ARCH%%/archive/tar.a
+go/pkg/freebsd_%%ARCH%%/archive/zip.a
+go/pkg/freebsd_%%ARCH%%/hash.a
+go/pkg/freebsd_%%ARCH%%/image.a
+go/pkg/freebsd_%%ARCH%%/html.a
+go/pkg/freebsd_%%ARCH%%/go/doc.a
+go/pkg/freebsd_%%ARCH%%/go/ast.a
+go/pkg/freebsd_%%ARCH%%/go/format.a
+go/pkg/freebsd_%%ARCH%%/go/types.a
+go/pkg/freebsd_%%ARCH%%/go/importer.a
+go/pkg/freebsd_%%ARCH%%/go/constant.a
+go/pkg/freebsd_%%ARCH%%/go/build.a
+go/pkg/freebsd_%%ARCH%%/go/internal/srcimporter.a
+go/pkg/freebsd_%%ARCH%%/go/internal/gcimporter.a
+go/pkg/freebsd_%%ARCH%%/go/internal/gccgoimporter.a
+go/pkg/freebsd_%%ARCH%%/go/parser.a
+go/pkg/freebsd_%%ARCH%%/go/printer.a
+go/pkg/freebsd_%%ARCH%%/go/scanner.a
+go/pkg/freebsd_%%ARCH%%/go/token.a
+go/pkg/freebsd_%%ARCH%%/path/filepath.a
+go/pkg/freebsd_%%ARCH%%/os.a
+go/pkg/freebsd_%%ARCH%%/io.a
+go/pkg/freebsd_%%ARCH%%/net/mail.a
+go/pkg/freebsd_%%ARCH%%/net/url.a
+go/pkg/freebsd_%%ARCH%%/net/rpc/jsonrpc.a
+go/pkg/freebsd_%%ARCH%%/net/internal/socktest.a
+go/pkg/freebsd_%%ARCH%%/net/http/httputil.a
+go/pkg/freebsd_%%ARCH%%/net/http/pprof.a
+go/pkg/freebsd_%%ARCH%%/net/http/cgi.a
+go/pkg/freebsd_%%ARCH%%/net/http/fcgi.a
+go/pkg/freebsd_%%ARCH%%/net/http/httptest.a
+go/pkg/freebsd_%%ARCH%%/net/http/internal.a
+go/pkg/freebsd_%%ARCH%%/net/http/cookiejar.a
+go/pkg/freebsd_%%ARCH%%/net/http/httptrace.a
+go/pkg/freebsd_%%ARCH%%/net/smtp.a
+go/pkg/freebsd_%%ARCH%%/net/http.a
+go/pkg/freebsd_%%ARCH%%/net/rpc.a
+go/pkg/freebsd_%%ARCH%%/net/textproto.a
+go/pkg/freebsd_%%ARCH%%/encoding/base64.a
+go/pkg/freebsd_%%ARCH%%/encoding/xml.a
+go/pkg/freebsd_%%ARCH%%/encoding/gob.a
+go/pkg/freebsd_%%ARCH%%/encoding/csv.a
+go/pkg/freebsd_%%ARCH%%/encoding/asn1.a
+go/pkg/freebsd_%%ARCH%%/encoding/hex.a
+go/pkg/freebsd_%%ARCH%%/encoding/ascii85.a
+go/pkg/freebsd_%%ARCH%%/encoding/binary.a
+go/pkg/freebsd_%%ARCH%%/encoding/json.a
+go/pkg/freebsd_%%ARCH%%/encoding/pem.a
+go/pkg/freebsd_%%ARCH%%/encoding/base32.a
+go/pkg/freebsd_%%ARCH%%/path.a
+go/pkg/freebsd_%%ARCH%%/bufio.a
+go/pkg/freebsd_%%ARCH%%/index/suffixarray.a
+go/pkg/freebsd_%%ARCH%%/image/color/palette.a
+go/pkg/freebsd_%%ARCH%%/image/draw.a
+go/pkg/freebsd_%%ARCH%%/image/gif.a
+go/pkg/freebsd_%%ARCH%%/image/color.a
+go/pkg/freebsd_%%ARCH%%/image/png.a
+go/pkg/freebsd_%%ARCH%%/image/jpeg.a
+go/pkg/freebsd_%%ARCH%%/image/internal/imageutil.a
+go/pkg/freebsd_%%ARCH%%/math.a
+go/pkg/freebsd_%%ARCH%%/bytes.a
+go/pkg/freebsd_%%ARCH%%/fmt.a
+go/pkg/freebsd_%%ARCH%%/crypto/ecdsa.a
+go/pkg/freebsd_%%ARCH%%/crypto/x509/pkix.a
+go/pkg/freebsd_%%ARCH%%/crypto/ed25519/internal/edwards25519.a
+go/pkg/freebsd_%%ARCH%%/crypto/md5.a
+go/pkg/freebsd_%%ARCH%%/crypto/sha256.a
+go/pkg/freebsd_%%ARCH%%/crypto/aes.a
+go/pkg/freebsd_%%ARCH%%/crypto/dsa.a
+go/pkg/freebsd_%%ARCH%%/crypto/rand.a
+go/pkg/freebsd_%%ARCH%%/crypto/hmac.a
+go/pkg/freebsd_%%ARCH%%/crypto/rc4.a
+go/pkg/freebsd_%%ARCH%%/crypto/x509.a
+go/pkg/freebsd_%%ARCH%%/crypto/subtle.a
+go/pkg/freebsd_%%ARCH%%/crypto/sha512.a
+go/pkg/freebsd_%%ARCH%%/crypto/tls.a
+go/pkg/freebsd_%%ARCH%%/crypto/rsa.a
+go/pkg/freebsd_%%ARCH%%/crypto/cipher.a
+go/pkg/freebsd_%%ARCH%%/crypto/sha1.a
+go/pkg/freebsd_%%ARCH%%/crypto/internal/subtle.a
+go/pkg/freebsd_%%ARCH%%/crypto/internal/randutil.a
+go/pkg/freebsd_%%ARCH%%/crypto/elliptic.a
+go/pkg/freebsd_%%ARCH%%/crypto/des.a
+go/pkg/freebsd_%%ARCH%%/crypto/ed25519.a
+go/pkg/freebsd_%%ARCH%%/regexp/syntax.a
+go/pkg/freebsd_%%ARCH%%/log/syslog.a
+go/pkg/freebsd_%%ARCH%%/internal/poll.a
+go/pkg/freebsd_%%ARCH%%/internal/nettrace.a
+go/pkg/freebsd_%%ARCH%%/internal/testenv.a
+go/pkg/freebsd_%%ARCH%%/internal/cpu.a
+go/pkg/freebsd_%%ARCH%%/internal/race.a
+go/pkg/freebsd_%%ARCH%%/internal/syscall/execenv.a
+go/pkg/freebsd_%%ARCH%%/internal/syscall/unix.a
+go/pkg/freebsd_%%ARCH%%/internal/bytealg.a
+go/pkg/freebsd_%%ARCH%%/internal/fmtsort.a
+go/pkg/freebsd_%%ARCH%%/internal/cfg.a
+go/pkg/freebsd_%%ARCH%%/internal/goroot.a
+go/pkg/freebsd_%%ARCH%%/internal/oserror.a
+go/pkg/freebsd_%%ARCH%%/internal/xcoff.a
+go/pkg/freebsd_%%ARCH%%/internal/goversion.a
+go/pkg/freebsd_%%ARCH%%/internal/lazyregexp.a
+go/pkg/freebsd_%%ARCH%%/internal/trace.a
+go/pkg/freebsd_%%ARCH%%/internal/lazytemplate.a
+go/pkg/freebsd_%%ARCH%%/internal/singleflight.a
+go/pkg/freebsd_%%ARCH%%/internal/testlog.a
+go/pkg/freebsd_%%ARCH%%/internal/reflectlite.a
+go/pkg/freebsd_%%ARCH%%/internal/obscuretestdata.a
+go/pkg/freebsd_%%ARCH%%/sync.a
+go/pkg/freebsd_%%ARCH%%/mime/multipart.a
+go/pkg/freebsd_%%ARCH%%/mime/quotedprintable.a
+go/pkg/freebsd_%%ARCH%%/testing.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/sys/cpu.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/unicode/bidi.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/unicode/norm.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/secure/bidirule.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/transform.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/dns/dnsmessage.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/route.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/nettest.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/idna.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/http2/hpack.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/http/httpproxy.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/http/httpguts.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/poly1305.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/cryptobyte.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/internal/subtle.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/chacha20.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/curve25519.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/cryptobyte/asn1.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/chacha20poly1305.a
+go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/hkdf.a
+go/pkg/freebsd_%%ARCH%%/math/big.a
+go/pkg/freebsd_%%ARCH%%/math/rand.a
+go/pkg/freebsd_%%ARCH%%/math/cmplx.a
+go/pkg/freebsd_%%ARCH%%/math/bits.a
+go/pkg/freebsd_%%ARCH%%/encoding.a
+go/pkg/freebsd_%%ARCH%%/strings.a
+go/pkg/freebsd_%%ARCH%%/reflect.a
+go/pkg/freebsd_%%ARCH%%/os/signal.a
+go/pkg/freebsd_%%ARCH%%/os/signal/internal/pty.a
+go/pkg/freebsd_%%ARCH%%/os/user.a
+go/pkg/freebsd_%%ARCH%%/os/exec.a
+go/pkg/freebsd_%%ARCH%%/log.a
+go/pkg/freebsd_%%ARCH%%/text/template.a
+go/pkg/freebsd_%%ARCH%%/text/tabwriter.a
+go/pkg/freebsd_%%ARCH%%/text/scanner.a
+go/pkg/freebsd_%%ARCH%%/text/template/parse.a
+go/pkg/freebsd_%%ARCH%%/html/template.a
+go/pkg/freebsd_%%ARCH%%/sort.a
+go/pkg/freebsd_%%ARCH%%/sync/atomic.a
+go/pkg/freebsd_%%ARCH%%/unicode.a
+go/pkg/freebsd_%%ARCH%%/syscall.a
+go/pkg/freebsd_%%ARCH%%/flag.a
+go/pkg/freebsd_%%ARCH%%/runtime/race.a
+go/pkg/freebsd_%%ARCH%%/runtime/pprof/internal/profile.a
+go/pkg/freebsd_%%ARCH%%/runtime/trace.a
+go/pkg/freebsd_%%ARCH%%/runtime/debug.a
+go/pkg/freebsd_%%ARCH%%/runtime/internal/atomic.a
+go/pkg/freebsd_%%ARCH%%/runtime/internal/sys.a
+go/pkg/freebsd_%%ARCH%%/runtime/internal/math.a
+go/pkg/freebsd_%%ARCH%%/runtime/pprof.a
+go/pkg/freebsd_%%ARCH%%/runtime/cgo.a
+go/pkg/freebsd_%%ARCH%%/expvar.a
+go/pkg/freebsd_%%ARCH%%/plugin.a
+go/pkg/freebsd_%%ARCH%%/hash/crc32.a
+go/pkg/freebsd_%%ARCH%%/hash/fnv.a
+go/pkg/freebsd_%%ARCH%%/hash/adler32.a
+go/pkg/freebsd_%%ARCH%%/hash/maphash.a
+go/pkg/freebsd_%%ARCH%%/hash/crc64.a
+go/pkg/tool/freebsd_%%ARCH%%/addr2line
+go/pkg/tool/freebsd_%%ARCH%%/objdump
+go/pkg/tool/freebsd_%%ARCH%%/fix
+go/pkg/tool/freebsd_%%ARCH%%/api
+go/pkg/tool/freebsd_%%ARCH%%/pack
+go/pkg/tool/freebsd_%%ARCH%%/pprof
+go/pkg/tool/freebsd_%%ARCH%%/test2json
+go/pkg/tool/freebsd_%%ARCH%%/link
+go/pkg/tool/freebsd_%%ARCH%%/dist
+go/pkg/tool/freebsd_%%ARCH%%/trace
+go/pkg/tool/freebsd_%%ARCH%%/cover
+go/pkg/tool/freebsd_%%ARCH%%/vet
+go/pkg/tool/freebsd_%%ARCH%%/asm
+go/pkg/tool/freebsd_%%ARCH%%/cgo
+go/pkg/tool/freebsd_%%ARCH%%/compile
+go/pkg/tool/freebsd_%%ARCH%%/nm
+go/pkg/tool/freebsd_%%ARCH%%/doc
+go/pkg/tool/freebsd_%%ARCH%%/buildid
 go/CONTRIBUTING.md
 go/LICENSE
 go/VERSION
@@ -10106,67 +10106,67 @@ go/doc/go1.3.html
 @dir go/test/linkname.dir
 @dir go/test
 @dir go/pkg/include
-@dir go/pkg/freebsd_amd64/compress
-@dir go/pkg/freebsd_amd64/unicode
-@dir go/pkg/freebsd_amd64/testing/internal
-@dir go/pkg/freebsd_amd64/testing
-@dir go/pkg/freebsd_amd64/io
-@dir go/pkg/freebsd_amd64/container
-@dir go/pkg/freebsd_amd64/debug
-@dir go/pkg/freebsd_amd64/database/sql
-@dir go/pkg/freebsd_amd64/database
-@dir go/pkg/freebsd_amd64/archive
-@dir go/pkg/freebsd_amd64/go/internal
-@dir go/pkg/freebsd_amd64/go
-@dir go/pkg/freebsd_amd64/path
-@dir go/pkg/freebsd_amd64/net/rpc
-@dir go/pkg/freebsd_amd64/net/internal
-@dir go/pkg/freebsd_amd64/net/http
-@dir go/pkg/freebsd_amd64/net
-@dir go/pkg/freebsd_amd64/encoding
-@dir go/pkg/freebsd_amd64/index
-@dir go/pkg/freebsd_amd64/image/color
-@dir go/pkg/freebsd_amd64/image/internal
-@dir go/pkg/freebsd_amd64/image
-@dir go/pkg/freebsd_amd64/crypto/x509
-@dir go/pkg/freebsd_amd64/crypto/ed25519/internal
-@dir go/pkg/freebsd_amd64/crypto/ed25519
-@dir go/pkg/freebsd_amd64/crypto/internal
-@dir go/pkg/freebsd_amd64/crypto
-@dir go/pkg/freebsd_amd64/regexp
-@dir go/pkg/freebsd_amd64/log
-@dir go/pkg/freebsd_amd64/internal/syscall
-@dir go/pkg/freebsd_amd64/internal
-@dir go/pkg/freebsd_amd64/mime
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/sys
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/text/unicode
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/text/secure
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/text
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/net/dns
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/net/http2
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/net/http
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/net
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/internal
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/crypto/cryptobyte
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x/crypto
-@dir go/pkg/freebsd_amd64/vendor/golang.org/x
-@dir go/pkg/freebsd_amd64/vendor/golang.org
-@dir go/pkg/freebsd_amd64/vendor
-@dir go/pkg/freebsd_amd64/math
-@dir go/pkg/freebsd_amd64/os/signal/internal
-@dir go/pkg/freebsd_amd64/os/signal
-@dir go/pkg/freebsd_amd64/os
-@dir go/pkg/freebsd_amd64/text/template
-@dir go/pkg/freebsd_amd64/text
-@dir go/pkg/freebsd_amd64/html
-@dir go/pkg/freebsd_amd64/sync
-@dir go/pkg/freebsd_amd64/runtime/pprof/internal
-@dir go/pkg/freebsd_amd64/runtime/pprof
-@dir go/pkg/freebsd_amd64/runtime/internal
-@dir go/pkg/freebsd_amd64/runtime
-@dir go/pkg/freebsd_amd64/hash
-@dir go/pkg/freebsd_amd64
-@dir go/pkg/tool/freebsd_amd64
+@dir go/pkg/freebsd_%%ARCH%%/compress
+@dir go/pkg/freebsd_%%ARCH%%/unicode
+@dir go/pkg/freebsd_%%ARCH%%/testing/internal
+@dir go/pkg/freebsd_%%ARCH%%/testing
+@dir go/pkg/freebsd_%%ARCH%%/io
+@dir go/pkg/freebsd_%%ARCH%%/container
+@dir go/pkg/freebsd_%%ARCH%%/debug
+@dir go/pkg/freebsd_%%ARCH%%/database/sql
+@dir go/pkg/freebsd_%%ARCH%%/database
+@dir go/pkg/freebsd_%%ARCH%%/archive
+@dir go/pkg/freebsd_%%ARCH%%/go/internal
+@dir go/pkg/freebsd_%%ARCH%%/go
+@dir go/pkg/freebsd_%%ARCH%%/path
+@dir go/pkg/freebsd_%%ARCH%%/net/rpc
+@dir go/pkg/freebsd_%%ARCH%%/net/internal
+@dir go/pkg/freebsd_%%ARCH%%/net/http
+@dir go/pkg/freebsd_%%ARCH%%/net
+@dir go/pkg/freebsd_%%ARCH%%/encoding
+@dir go/pkg/freebsd_%%ARCH%%/index
+@dir go/pkg/freebsd_%%ARCH%%/image/color
+@dir go/pkg/freebsd_%%ARCH%%/image/internal
+@dir go/pkg/freebsd_%%ARCH%%/image
+@dir go/pkg/freebsd_%%ARCH%%/crypto/x509
+@dir go/pkg/freebsd_%%ARCH%%/crypto/ed25519/internal
+@dir go/pkg/freebsd_%%ARCH%%/crypto/ed25519
+@dir go/pkg/freebsd_%%ARCH%%/crypto/internal
+@dir go/pkg/freebsd_%%ARCH%%/crypto
+@dir go/pkg/freebsd_%%ARCH%%/regexp
+@dir go/pkg/freebsd_%%ARCH%%/log
+@dir go/pkg/freebsd_%%ARCH%%/internal/syscall
+@dir go/pkg/freebsd_%%ARCH%%/internal
+@dir go/pkg/freebsd_%%ARCH%%/mime
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/sys
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/unicode
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text/secure
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/text
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/dns
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/http2
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net/http
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/net
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/internal
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto/cryptobyte
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x/crypto
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org/x
+@dir go/pkg/freebsd_%%ARCH%%/vendor/golang.org
+@dir go/pkg/freebsd_%%ARCH%%/vendor
+@dir go/pkg/freebsd_%%ARCH%%/math
+@dir go/pkg/freebsd_%%ARCH%%/os/signal/internal
+@dir go/pkg/freebsd_%%ARCH%%/os/signal
+@dir go/pkg/freebsd_%%ARCH%%/os
+@dir go/pkg/freebsd_%%ARCH%%/text/template
+@dir go/pkg/freebsd_%%ARCH%%/text
+@dir go/pkg/freebsd_%%ARCH%%/html
+@dir go/pkg/freebsd_%%ARCH%%/sync
+@dir go/pkg/freebsd_%%ARCH%%/runtime/pprof/internal
+@dir go/pkg/freebsd_%%ARCH%%/runtime/pprof
+@dir go/pkg/freebsd_%%ARCH%%/runtime/internal
+@dir go/pkg/freebsd_%%ARCH%%/runtime
+@dir go/pkg/freebsd_%%ARCH%%/hash
+@dir go/pkg/freebsd_%%ARCH%%
+@dir go/pkg/tool/freebsd_%%ARCH%%
 @dir go/pkg/tool
 @dir go/pkg
 @dir go/doc/articles/wiki
