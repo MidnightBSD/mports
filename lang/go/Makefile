@@ -32,7 +32,7 @@ SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
 		src/net/http/cgi/testdata/test.cgi
 SHEBANG_GLOB=	*.bash *.pl *.sh
 
-SUB_LIST+=	ARCH=${ARCH}
+PLIST_SUB+=	ARCH=${ARCH}
 
 CONFLICTS_INSTALL?=	go-devel
 
