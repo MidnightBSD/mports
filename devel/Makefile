@@ -904,6 +904,7 @@ SUBDIR += py-sure
 SUBDIR += py-tabulate
 SUBDIR += py-termcolor
 SUBDIR += py-testrepository
+SUBDIR += py-testscenarios
 SUBDIR += py-testtools
 SUBDIR += py-tox
 SUBDIR += py-traceback2
