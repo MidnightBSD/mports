@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libsass
-DISTVERSION=	3.5.4
-PORTREVISION=	1
+DISTVERSION=	3.6.0
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
