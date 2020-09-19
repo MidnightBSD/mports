@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	utf8proc
-PORTVERSION=	2.1.0
+PORTVERSION=	2.4.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc devel
 
@@ -13,22 +11,25 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 USES=		gmake
 USE_GITHUB=	yes
-GH_ACCOUNT=	JuliaLang
+GH_ACCOUNT=	JuliaStrings
 USE_LDCONFIG=	yes
 MAKE_ARGS=	prefix=${PREFIX}
 PLIST_FILES=	include/utf8proc.h \
 		lib/libutf8proc.a \
 		lib/libutf8proc.so \
 		lib/libutf8proc.so.2 \
-		lib/libutf8proc.so.${PORTVERSION}
+		lib/libutf8proc.so.2.3.1 \
+		libdata/pkgconfig/libutf8proc.pc
 PORTDOCS=	NEWS.md README.md
 
 OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libutf8proc.so
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC} && \
-	    ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+	    ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
