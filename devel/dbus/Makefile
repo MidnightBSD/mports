@@ -8,12 +8,11 @@ COMMENT=	Message bus system for inter-application communication
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/expat.pc:textproc/expat2
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 PORTSCOUT=	limitw:1,even
 
-USES=		cpe gmake libtool localbase pathfix python:build shebangfix
+USES=		cpe gmake libtool localbase pathfix pkgconfig python:build shebangfix
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
