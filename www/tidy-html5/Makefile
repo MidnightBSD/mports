@@ -1,7 +1,7 @@
 # Created by: Thierry Thomas <thierry@pompo.net>
 
 PORTNAME=	tidy-html5
-PORTVERSION=	5.6.0
+PORTVERSION=	5.7.28
 CATEGORIES=	www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/README/LICENSE.md
 USE_GITHUB=	yes
 GH_ACCOUNT=	htacg
 
-USES=		cmake
+USES=		cmake gnome
 USE_GNOME=	libxslt
 USE_LDCONFIG=	yes
 
