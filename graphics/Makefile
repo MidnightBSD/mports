@@ -153,6 +153,7 @@ SUBDIR += opencv-core
 SUBDIR += openexr
 SUBDIR += openjpeg
 SUBDIR += openjpeg15
+SUBDIR += optipng
 SUBDIR += p5-GD
 SUBDIR += p5-GD-Graph
 SUBDIR += p5-GD-TextUtil
