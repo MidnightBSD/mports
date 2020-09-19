@@ -1,11 +1,20 @@
---- Makefile.orig	2019-04-20 13:09:02.575235000 -0400
-+++ Makefile	2019-04-20 13:09:15.950754000 -0400
-@@ -64,7 +64,7 @@
- 	SO_LDFLAGS := -Wl,-soname,lib$(LIB_NAME).$(LIB_EXT)
+--- Makefile.orig	2019-05-20 05:18:00.000000000 -0400
++++ Makefile	2020-09-19 04:38:58.298499000 -0400
+@@ -76,7 +76,7 @@
  	LINKED_LIB_EXT := so
+ 	PC_EXTRA_LIBS ?= -lrt -ldl
  endif
--ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),FreeBSD NetBSD OpenBSD))
-+ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),FreeBSD MidnightBSD NetBSD OpenBSD))
+-ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),DragonFly FreeBSD NetBSD OpenBSD))
++ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),DragonFly MidnightBSD FreeBSD NetBSD OpenBSD))
  	LIB_EXT := so
  	LIB_CFLAGS := -shared -fPIC
- endif
+ 	PC_EXTRA_LIBS ?=
+@@ -130,7 +130,7 @@
+ INSTALL = install
+ 
+ # relative paths for different OS
+-ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),DragonFly FreeBSD))
++ifeq ($(KERNEL_NAME), $(filter $(KERNEL_NAME),DragonFly MidnightBSD FreeBSD))
+ 
+ # default for FreeBSD
+ BINARY_REL ?= bin
