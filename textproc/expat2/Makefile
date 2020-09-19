@@ -17,7 +17,7 @@ INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	DOCS
 
-post-install-DOCS-on:
-	${INSTALL_MAN} ${WRKSRC}/doc/xmlwf.1 ${FAKE_DESTDIR}${MANPREFIX}/man/man1/
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/doc/xmlwf.1 ${MANPREFIX}/man/man1/
 
 .include <bsd.port.mk>
