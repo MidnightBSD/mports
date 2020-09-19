@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	openjpeg
 PORTVERSION=	1.5.2
 PORTREVISION=	1
@@ -11,9 +9,9 @@ COMMENT=	Open-source JPEG 2000 codec
 
 LICENSE=	bsd2
 
-LIB_DEPENDS=	liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
 
 OPTIONS_DEFINE=	DOCS
 
