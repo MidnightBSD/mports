@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	bsdconv
-PORTVERSION=	11.3.1
+PORTVERSION=	11.5
 CATEGORIES=	converters
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +9,8 @@ LICENSE=	iscl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	buganini
+
+USES=		gmake
 
 OPTIONS_DEFINE=	CHINESE EBCDIC
 OPTIONS_SUB=	yes
