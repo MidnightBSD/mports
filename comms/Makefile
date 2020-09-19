@@ -8,6 +8,7 @@ SUBDIR += bforce-kst
 SUBDIR += chu
 SUBDIR += comserv
 SUBDIR += efax
+SUBDIR += iwmbt-firmware
 SUBDIR += kermit
 SUBDIR += libimobiledevice
 SUBDIR += libirman

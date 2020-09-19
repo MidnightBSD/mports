@@ -4,7 +4,7 @@
                      gpointer             user_data)
  {
    GUnixMount *unix_mount = G_UNIX_MOUNT (mount);
-+#ifndef __FreeBSD__
++#if !defined(__FreeBSD__) && !defined(__MidnightBSD__)
    char *argv[] = {"eject", NULL, NULL};
  
    if (unix_mount->mount_path != NULL)

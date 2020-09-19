@@ -40,6 +40,7 @@ SUBDIR += libpaper
 SUBDIR += libspectre
 SUBDIR += linux-c6-cups-libs
 SUBDIR += linux-c7-cups-libs
+SUBDIR += linux-c7-freetype
 SUBDIR += linux-c7-harfbuzz
 SUBDIR += mp-letter
 SUBDIR += pdflib

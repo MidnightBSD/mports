@@ -24,5 +24,6 @@ SUBDIR += slack-term
 SUBDIR += ssh-chat
 SUBDIR += telepathy-glib
 SUBDIR += telepathy-logger
+SUBDIR += zoom
 
 .include <bsd.port.subdir.mk>
