@@ -1,0 +1,708 @@
+openjdk13/demo/jfc/SampleTree/SampleTree.jar
+openjdk13/demo/jfc/SampleTree/src.zip
+openjdk13/demo/jfc/SampleTree/README.txt
+openjdk13/demo/jfc/TableExample/TableExample.jar
+openjdk13/demo/jfc/TableExample/src.zip
+openjdk13/demo/jfc/TableExample/README.txt
+openjdk13/demo/jfc/Font2DTest/Font2DTest.jar
+openjdk13/demo/jfc/Font2DTest/src.zip
+openjdk13/demo/jfc/Font2DTest/Font2DTest.html
+openjdk13/demo/jfc/Font2DTest/README.txt
+openjdk13/demo/jfc/Notepad/Notepad.jar
+openjdk13/demo/jfc/Notepad/src.zip
+openjdk13/demo/jfc/Notepad/README.txt
+openjdk13/demo/jfc/Metalworks/src.zip
+openjdk13/demo/jfc/Metalworks/README.txt
+openjdk13/demo/jfc/Metalworks/Metalworks.jar
+openjdk13/demo/jfc/CodePointIM/src.zip
+openjdk13/demo/jfc/CodePointIM/README.html
+openjdk13/demo/jfc/CodePointIM/README_zh_CN.html
+openjdk13/demo/jfc/CodePointIM/CodePointIM.jar
+openjdk13/demo/jfc/CodePointIM/README_ja.html
+openjdk13/demo/jfc/SwingSet2/SwingSet2.html
+openjdk13/demo/jfc/SwingSet2/SwingSet2.jar
+openjdk13/demo/jfc/SwingSet2/src.zip
+openjdk13/demo/jfc/SwingSet2/README.txt
+openjdk13/demo/jfc/J2Ddemo/src.zip
+openjdk13/demo/jfc/J2Ddemo/README.txt
+openjdk13/demo/jfc/J2Ddemo/J2Ddemo.jar
+openjdk13/demo/jfc/FileChooserDemo/README.txt
+openjdk13/demo/jfc/FileChooserDemo/src.zip
+openjdk13/demo/jfc/FileChooserDemo/FileChooserDemo.jar
+openjdk13/demo/jfc/TransparentRuler/TransparentRuler.jar
+openjdk13/demo/jfc/TransparentRuler/README.txt
+openjdk13/demo/jfc/TransparentRuler/src.zip
+openjdk13/demo/jfc/Stylepad/src.zip
+openjdk13/demo/jfc/Stylepad/Stylepad.jar
+openjdk13/demo/jfc/Stylepad/README.txt
+openjdk13/demo/README
+openjdk13/demo/nbproject/management/FullThreadDump/build.properties
+openjdk13/demo/nbproject/management/FullThreadDump/build.xml
+openjdk13/demo/nbproject/management/FullThreadDump/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/management/FullThreadDump/nbproject/file-targets.xml
+openjdk13/demo/nbproject/management/FullThreadDump/nbproject/project.xml
+openjdk13/demo/nbproject/management/FullThreadDump/nbproject/jdk.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/nbproject/file-targets.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/nbproject/jdk.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/nbproject/project.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/build.xml
+openjdk13/demo/nbproject/management/MemoryMonitor/build.properties
+openjdk13/demo/nbproject/management/JTop/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/management/JTop/nbproject/jdk.xml
+openjdk13/demo/nbproject/management/JTop/nbproject/project.xml
+openjdk13/demo/nbproject/management/JTop/nbproject/file-targets.xml
+openjdk13/demo/nbproject/management/JTop/build.properties
+openjdk13/demo/nbproject/management/JTop/build.xml
+openjdk13/demo/nbproject/management/VerboseGC/nbproject/jdk.xml
+openjdk13/demo/nbproject/management/VerboseGC/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/management/VerboseGC/nbproject/project.xml
+openjdk13/demo/nbproject/management/VerboseGC/nbproject/file-targets.xml
+openjdk13/demo/nbproject/management/VerboseGC/build.properties
+openjdk13/demo/nbproject/management/VerboseGC/build.xml
+openjdk13/demo/nbproject/scripting/jconsole-plugin/build.properties
+openjdk13/demo/nbproject/scripting/jconsole-plugin/nbproject/project.xml
+openjdk13/demo/nbproject/scripting/jconsole-plugin/nbproject/file-targets.xml
+openjdk13/demo/nbproject/scripting/jconsole-plugin/nbproject/jdk.xml
+openjdk13/demo/nbproject/scripting/jconsole-plugin/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/scripting/jconsole-plugin/build.xml
+openjdk13/demo/nbproject/project.xml
+openjdk13/demo/nbproject/README.txt
+openjdk13/demo/nbproject/jfc/FileChooserDemo/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/FileChooserDemo/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/FileChooserDemo/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/FileChooserDemo/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/FileChooserDemo/build.properties
+openjdk13/demo/nbproject/jfc/FileChooserDemo/build.xml
+openjdk13/demo/nbproject/jfc/TableExample/build.properties
+openjdk13/demo/nbproject/jfc/TableExample/build.xml
+openjdk13/demo/nbproject/jfc/TableExample/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/TableExample/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/TableExample/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/TableExample/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/Metalworks/build.xml
+openjdk13/demo/nbproject/jfc/Metalworks/build.properties
+openjdk13/demo/nbproject/jfc/Metalworks/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/Metalworks/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/Metalworks/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/Metalworks/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/TransparentRuler/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/TransparentRuler/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/TransparentRuler/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/TransparentRuler/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/TransparentRuler/build.properties
+openjdk13/demo/nbproject/jfc/TransparentRuler/build.xml
+openjdk13/demo/nbproject/jfc/SwingApplet/build.properties
+openjdk13/demo/nbproject/jfc/SwingApplet/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/SwingApplet/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/SwingApplet/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/SwingApplet/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/SwingApplet/build.xml
+openjdk13/demo/nbproject/jfc/SampleTree/build.properties
+openjdk13/demo/nbproject/jfc/SampleTree/build.xml
+openjdk13/demo/nbproject/jfc/SampleTree/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/SampleTree/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/SampleTree/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/SampleTree/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/build.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/Font2DTest/build.properties
+openjdk13/demo/nbproject/jfc/Notepad/build.properties
+openjdk13/demo/nbproject/jfc/Notepad/nbproject/jdk.xml
+openjdk13/demo/nbproject/jfc/Notepad/nbproject/file-targets.xml
+openjdk13/demo/nbproject/jfc/Notepad/nbproject/project.xml
+openjdk13/demo/nbproject/jfc/Notepad/nbproject/netbeans-targets.xml
+openjdk13/demo/nbproject/jfc/Notepad/build.xml
+openjdk13/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jstatd/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jstatd/LICENSE
+openjdk13/legal/jdk.scripting.nashorn/LICENSE
+openjdk13/legal/jdk.scripting.nashorn/double-conversion.md
+openjdk13/legal/jdk.scripting.nashorn/joni.md
+openjdk13/legal/jdk.scripting.nashorn/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.scripting.nashorn/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jdeps/LICENSE
+openjdk13/legal/jdk.jdeps/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.le/jline.md
+openjdk13/legal/jdk.internal.le/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.le/LICENSE
+openjdk13/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.xml.crypto/LICENSE
+openjdk13/legal/java.xml.crypto/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.xml.crypto/santuario.md
+openjdk13/legal/jdk.httpserver/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.httpserver/LICENSE
+openjdk13/legal/jdk.sctp/LICENSE
+openjdk13/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.sctp/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.management/LICENSE
+openjdk13/legal/jdk.management/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.management/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.attach/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.attach/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.attach/LICENSE
+openjdk13/legal/jdk.javadoc/LICENSE
+openjdk13/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.javadoc/jszip.md
+openjdk13/legal/jdk.javadoc/jqueryUI.md
+openjdk13/legal/jdk.javadoc/jquery.md
+openjdk13/legal/jdk.javadoc/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.unsupported.desktop/LICENSE
+openjdk13/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.vm.compiler.management/LICENSE
+openjdk13/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.localedata/cldr.md
+openjdk13/legal/jdk.localedata/LICENSE
+openjdk13/legal/jdk.localedata/thaidict.md
+openjdk13/legal/jdk.localedata/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.prefs/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.prefs/LICENSE
+openjdk13/legal/java.prefs/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.compiler/LICENSE
+openjdk13/legal/java.compiler/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.compiler/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.security.auth/LICENSE
+openjdk13/legal/jdk.security.auth/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.naming.rmi/LICENSE
+openjdk13/legal/java.sql/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.sql/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.sql/LICENSE
+openjdk13/legal/jdk.jartool/LICENSE
+openjdk13/legal/jdk.jartool/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.compiler/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.compiler/LICENSE
+openjdk13/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.base/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.base/cldr.md
+openjdk13/legal/java.base/c-libutl.md
+openjdk13/legal/java.base/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.base/unicode.md
+openjdk13/legal/java.base/asm.md
+openjdk13/legal/java.base/aes.md
+openjdk13/legal/java.base/LICENSE
+openjdk13/legal/java.base/public_suffix.md
+openjdk13/legal/java.base/icu.md
+openjdk13/legal/java.rmi/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.rmi/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.rmi/LICENSE
+openjdk13/legal/jdk.net/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.net/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.net/LICENSE
+openjdk13/legal/java.logging/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.logging/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.logging/LICENSE
+openjdk13/legal/jdk.aot/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.aot/LICENSE
+openjdk13/legal/jdk.aot/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.management.rmi/LICENSE
+openjdk13/legal/java.management.rmi/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.charsets/LICENSE
+openjdk13/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.charsets/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.accessibility/LICENSE
+openjdk13/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.accessibility/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.security.jgss/LICENSE
+openjdk13/legal/java.security.jgss/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.net.http/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.net.http/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.net.http/LICENSE
+openjdk13/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.jvmstat/LICENSE
+openjdk13/legal/jdk.zipfs/LICENSE
+openjdk13/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.zipfs/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.scripting.nashorn.shell/LICENSE
+openjdk13/legal/jdk.scripting.nashorn.shell/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.scripting.nashorn.shell/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.crypto.ec/ecc.md
+openjdk13/legal/jdk.crypto.ec/LICENSE
+openjdk13/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.rmic/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.rmic/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.rmic/LICENSE
+openjdk13/legal/jdk.management.agent/LICENSE
+openjdk13/legal/jdk.management.agent/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.compiler/LICENSE
+openjdk13/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.transaction.xa/LICENSE
+openjdk13/legal/java.transaction.xa/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.management/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.management/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.management/LICENSE
+openjdk13/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.opt/jopt-simple.md
+openjdk13/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.opt/LICENSE
+openjdk13/legal/java.desktop/xwd.md
+openjdk13/legal/java.desktop/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.desktop/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.desktop/LICENSE
+openjdk13/legal/java.desktop/mesa3d.md
+openjdk13/legal/java.desktop/harfbuzz.md
+openjdk13/legal/java.desktop/colorimaging.md
+openjdk13/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.smartcardio/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.smartcardio/LICENSE
+openjdk13/legal/java.smartcardio/pcsclite.md
+openjdk13/legal/jdk.pack/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.pack/LICENSE
+openjdk13/legal/jdk.pack/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jdwp.agent/LICENSE
+openjdk13/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.security.jgss/LICENSE
+openjdk13/legal/java.naming/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.naming/LICENSE
+openjdk13/legal/java.naming/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.hotspot.agent/LICENSE
+openjdk13/legal/jdk.jsobject/LICENSE
+openjdk13/legal/jdk.jsobject/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md
+openjdk13/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.crypto.cryptoki/pkcs11wrapper.md
+openjdk13/legal/jdk.crypto.cryptoki/LICENSE
+openjdk13/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jlink/LICENSE
+openjdk13/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jlink/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jfr/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jfr/LICENSE
+openjdk13/legal/jdk.unsupported/LICENSE
+openjdk13/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.unsupported/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.editpad/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.editpad/LICENSE
+openjdk13/legal/java.datatransfer/LICENSE
+openjdk13/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.datatransfer/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jconsole/LICENSE
+openjdk13/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jconsole/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jcmd/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.jcmd/LICENSE
+openjdk13/legal/jdk.jdi/LICENSE
+openjdk13/legal/jdk.jdi/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.xml.dom/LICENSE
+openjdk13/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.management.jfr/LICENSE
+openjdk13/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.naming.dns/LICENSE
+openjdk13/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.xml/dom.md
+openjdk13/legal/java.xml/jcup.md
+openjdk13/legal/java.xml/xerces.md
+openjdk13/legal/java.xml/xalan.md
+openjdk13/legal/java.xml/LICENSE
+openjdk13/legal/java.xml/bcel.md
+openjdk13/legal/java.xml/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.xml/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.instrument/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.instrument/LICENSE
+openjdk13/legal/java.instrument/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.se/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.se/LICENSE
+openjdk13/legal/java.se/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.security.sasl/LICENSE
+openjdk13/legal/java.security.sasl/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.internal.vm.ci/LICENSE
+openjdk13/legal/jdk.jshell/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.jshell/LICENSE
+openjdk13/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.scripting/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.scripting/LICENSE
+openjdk13/legal/java.scripting/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.dynalink/LICENSE
+openjdk13/legal/jdk.dynalink/dynalink.md
+openjdk13/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/jdk.dynalink/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO
+openjdk13/legal/java.sql.rowset/ASSEMBLY_EXCEPTION
+openjdk13/legal/java.sql.rowset/LICENSE
+openjdk13/legal/jdk.internal.ed/LICENSE
+openjdk13/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION
+openjdk13/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO
+openjdk13/man/man1/jmod.1
+openjdk13/man/man1/jar.1
+openjdk13/man/man1/rmiregistry.1
+openjdk13/man/man1/javac.1
+openjdk13/man/man1/jcmd.1
+openjdk13/man/man1/rmid.1
+openjdk13/man/man1/jinfo.1
+openjdk13/man/man1/jarsigner.1
+openjdk13/man/man1/jstack.1
+openjdk13/man/man1/jlink.1
+openjdk13/man/man1/jfr.1
+openjdk13/man/man1/jps.1
+openjdk13/man/man1/jdeprscan.1
+openjdk13/man/man1/jstat.1
+openjdk13/man/man1/jrunscript.1
+openjdk13/man/man1/rmic.1
+openjdk13/man/man1/jmap.1
+openjdk13/man/man1/jhsdb.1
+openjdk13/man/man1/unpack200.1
+openjdk13/man/man1/jdeps.1
+openjdk13/man/man1/jstatd.1
+openjdk13/man/man1/pack200.1
+openjdk13/man/man1/jaotc.1
+openjdk13/man/man1/serialver.1
+openjdk13/man/man1/jdb.1
+openjdk13/man/man1/javap.1
+openjdk13/man/man1/jconsole.1
+openjdk13/man/man1/java.1
+openjdk13/man/man1/jshell.1
+openjdk13/man/man1/keytool.1
+openjdk13/man/man1/javadoc.1
+openjdk13/man/man1/jjs.1
+openjdk13/release
+openjdk13/jmods/jdk.editpad.jmod
+openjdk13/jmods/java.instrument.jmod
+openjdk13/jmods/jdk.scripting.nashorn.shell.jmod
+openjdk13/jmods/jdk.scripting.nashorn.jmod
+openjdk13/jmods/jdk.jdi.jmod
+openjdk13/jmods/java.transaction.xa.jmod
+openjdk13/jmods/java.net.http.jmod
+openjdk13/jmods/jdk.jsobject.jmod
+openjdk13/jmods/jdk.charsets.jmod
+openjdk13/jmods/jdk.jshell.jmod
+openjdk13/jmods/java.scripting.jmod
+openjdk13/jmods/java.datatransfer.jmod
+openjdk13/jmods/java.xml.jmod
+openjdk13/jmods/java.management.jmod
+openjdk13/jmods/jdk.dynalink.jmod
+openjdk13/jmods/java.desktop.jmod
+openjdk13/jmods/java.xml.crypto.jmod
+openjdk13/jmods/java.prefs.jmod
+openjdk13/jmods/jdk.localedata.jmod
+openjdk13/jmods/jdk.internal.ed.jmod
+openjdk13/jmods/java.logging.jmod
+openjdk13/jmods/jdk.security.auth.jmod
+openjdk13/jmods/java.naming.jmod
+openjdk13/jmods/jdk.internal.vm.compiler.jmod
+openjdk13/jmods/jdk.internal.vm.compiler.management.jmod
+openjdk13/jmods/jdk.security.jgss.jmod
+openjdk13/jmods/jdk.crypto.ec.jmod
+openjdk13/jmods/java.security.jgss.jmod
+openjdk13/jmods/jdk.crypto.cryptoki.jmod
+openjdk13/jmods/java.sql.rowset.jmod
+openjdk13/jmods/java.se.jmod
+openjdk13/jmods/jdk.attach.jmod
+openjdk13/jmods/java.smartcardio.jmod
+openjdk13/jmods/jdk.rmic.jmod
+openjdk13/jmods/jdk.management.jfr.jmod
+openjdk13/jmods/jdk.naming.rmi.jmod
+openjdk13/jmods/jdk.jstatd.jmod
+openjdk13/jmods/jdk.management.agent.jmod
+openjdk13/jmods/jdk.naming.dns.jmod
+openjdk13/jmods/jdk.net.jmod
+openjdk13/jmods/jdk.httpserver.jmod
+openjdk13/jmods/jdk.javadoc.jmod
+openjdk13/jmods/jdk.jconsole.jmod
+openjdk13/jmods/java.base.jmod
+openjdk13/jmods/jdk.hotspot.agent.jmod
+openjdk13/jmods/jdk.jfr.jmod
+openjdk13/jmods/jdk.jlink.jmod
+openjdk13/jmods/jdk.pack.jmod
+openjdk13/jmods/jdk.accessibility.jmod
+openjdk13/jmods/jdk.aot.jmod
+openjdk13/jmods/java.security.sasl.jmod
+openjdk13/jmods/jdk.jcmd.jmod
+openjdk13/jmods/jdk.internal.opt.jmod
+openjdk13/jmods/jdk.management.jmod
+openjdk13/jmods/jdk.unsupported.desktop.jmod
+openjdk13/jmods/jdk.zipfs.jmod
+openjdk13/jmods/jdk.sctp.jmod
+openjdk13/jmods/jdk.unsupported.jmod
+openjdk13/jmods/jdk.compiler.jmod
+openjdk13/jmods/jdk.internal.jvmstat.jmod
+openjdk13/jmods/jdk.jartool.jmod
+openjdk13/jmods/jdk.internal.vm.ci.jmod
+openjdk13/jmods/jdk.jdwp.agent.jmod
+openjdk13/jmods/java.sql.jmod
+openjdk13/jmods/java.compiler.jmod
+openjdk13/jmods/java.rmi.jmod
+openjdk13/jmods/jdk.jdeps.jmod
+openjdk13/jmods/jdk.internal.le.jmod
+openjdk13/jmods/java.management.rmi.jmod
+openjdk13/jmods/jdk.xml.dom.jmod
+openjdk13/bin/jhsdb
+openjdk13/bin/javac
+openjdk13/bin/keytool
+openjdk13/bin/jaotc
+openjdk13/bin/jstatd
+openjdk13/bin/jarsigner
+openjdk13/bin/javap
+openjdk13/bin/jps
+openjdk13/bin/jlink
+openjdk13/bin/rmic
+openjdk13/bin/jstat
+openjdk13/bin/jdb
+openjdk13/bin/rmid
+openjdk13/bin/javadoc
+openjdk13/bin/java
+openjdk13/bin/jar
+openjdk13/bin/serialver
+openjdk13/bin/unpack200
+openjdk13/bin/jconsole
+openjdk13/bin/jrunscript
+openjdk13/bin/jimage
+openjdk13/bin/jmod
+openjdk13/bin/jfr
+openjdk13/bin/jmap
+openjdk13/bin/jshell
+openjdk13/bin/rmiregistry
+openjdk13/bin/jdeprscan
+openjdk13/bin/jjs
+openjdk13/bin/jdeps
+openjdk13/bin/pack200
+openjdk13/bin/jstack
+openjdk13/bin/jinfo
+openjdk13/bin/jcmd
+openjdk13/lib/jvm.cfg
+openjdk13/lib/libverify.so
+openjdk13/lib/libsctp.so
+openjdk13/lib/librmi.so
+openjdk13/lib/libjavajpeg.so
+openjdk13/lib/libjava.so
+openjdk13/lib/libextnet.so
+openjdk13/lib/fontconfig.bfc
+openjdk13/lib/psfont.properties.ja
+openjdk13/lib/libsaproc.so
+openjdk13/lib/libjli.so
+openjdk13/lib/libjsig.so
+openjdk13/lib/libj2pcsc.so
+openjdk13/lib/libmanagement_agent.so
+openjdk13/lib/libjawt.so
+openjdk13/lib/libjdwp.so
+openjdk13/lib/libmlib_image.so
+openjdk13/lib/libzip.so
+openjdk13/lib/libunpack.so
+openjdk13/lib/libawt.so
+openjdk13/lib/libmanagement_ext.so
+openjdk13/lib/jrt-fs.jar
+openjdk13/lib/liblcms.so
+openjdk13/lib/libawt_headless.so
+openjdk13/lib/libjsound.so
+openjdk13/lib/libjimage.so
+openjdk13/lib/jfr/default.jfc
+openjdk13/lib/jfr/profile.jfc
+openjdk13/lib/libawt_xawt.so
+openjdk13/lib/ct.sym
+openjdk13/lib/security/public_suffix_list.dat
+openjdk13/lib/security/blacklisted.certs
+openjdk13/lib/security/default.policy
+openjdk13/lib/security/cacerts
+openjdk13/lib/jspawnhelper
+openjdk13/lib/tzdb.dat
+openjdk13/lib/fontconfig.properties.src
+openjdk13/lib/libsplashscreen.so
+openjdk13/lib/libjaas.so
+openjdk13/lib/src.zip
+openjdk13/lib/libnio.so
+openjdk13/lib/libsunec.so
+openjdk13/lib/libattach.so
+openjdk13/lib/libinstrument.so
+openjdk13/lib/libnet.so
+openjdk13/lib/classlist
+openjdk13/lib/libprefs.so
+openjdk13/lib/libmanagement.so
+openjdk13/lib/libfontmanager.so
+openjdk13/lib/libj2pkcs11.so
+openjdk13/lib/libj2gss.so
+openjdk13/lib/modules
+openjdk13/lib/psfontj2d.properties
+openjdk13/lib/server/libjsig.so
+openjdk13/lib/server/classes.jsa
+openjdk13/lib/server/libjvm.so
+openjdk13/lib/libdt_socket.so
+openjdk13/conf/logging.properties
+openjdk13/conf/management/jmxremote.password.template
+openjdk13/conf/management/jmxremote.access
+openjdk13/conf/management/management.properties
+openjdk13/conf/net.properties
+openjdk13/conf/sound.properties
+openjdk13/conf/security/java.security
+openjdk13/conf/security/policy/README.txt
+openjdk13/conf/security/policy/unlimited/default_US_export.policy
+openjdk13/conf/security/policy/unlimited/default_local.policy
+openjdk13/conf/security/policy/limited/default_local.policy
+openjdk13/conf/security/policy/limited/exempt_local.policy
+openjdk13/conf/security/policy/limited/default_US_export.policy
+openjdk13/conf/security/java.policy
+openjdk13/include/classfile_constants.h
+openjdk13/include/freebsd/jawt_md.h
+openjdk13/include/freebsd/jni_md.h
+openjdk13/include/jni.h
+openjdk13/include/jdwpTransport.h
+openjdk13/include/jawt.h
+openjdk13/include/jvmti.h
+openjdk13/include/jvmticmlr.h
+@dir openjdk13/demo/jfc/SampleTree
+@dir openjdk13/demo/jfc/TableExample
+@dir openjdk13/demo/jfc/Font2DTest
+@dir openjdk13/demo/jfc/Notepad
+@dir openjdk13/demo/jfc/Metalworks
+@dir openjdk13/demo/jfc/CodePointIM
+@dir openjdk13/demo/jfc/SwingSet2
+@dir openjdk13/demo/jfc/J2Ddemo
+@dir openjdk13/demo/jfc/FileChooserDemo
+@dir openjdk13/demo/jfc/TransparentRuler
+@dir openjdk13/demo/jfc/Stylepad
+@dir openjdk13/demo/jfc
+@dir openjdk13/demo/nbproject/management/FullThreadDump/nbproject
+@dir openjdk13/demo/nbproject/management/FullThreadDump
+@dir openjdk13/demo/nbproject/management/MemoryMonitor/nbproject
+@dir openjdk13/demo/nbproject/management/MemoryMonitor
+@dir openjdk13/demo/nbproject/management/JTop/nbproject
+@dir openjdk13/demo/nbproject/management/JTop
+@dir openjdk13/demo/nbproject/management/VerboseGC/nbproject
+@dir openjdk13/demo/nbproject/management/VerboseGC
+@dir openjdk13/demo/nbproject/management
+@dir openjdk13/demo/nbproject/scripting/jconsole-plugin/nbproject
+@dir openjdk13/demo/nbproject/scripting/jconsole-plugin
+@dir openjdk13/demo/nbproject/scripting
+@dir openjdk13/demo/nbproject/jfc/FileChooserDemo/nbproject
+@dir openjdk13/demo/nbproject/jfc/FileChooserDemo
+@dir openjdk13/demo/nbproject/jfc/TableExample/nbproject
+@dir openjdk13/demo/nbproject/jfc/TableExample
+@dir openjdk13/demo/nbproject/jfc/Metalworks/nbproject
+@dir openjdk13/demo/nbproject/jfc/Metalworks
+@dir openjdk13/demo/nbproject/jfc/TransparentRuler/nbproject
+@dir openjdk13/demo/nbproject/jfc/TransparentRuler
+@dir openjdk13/demo/nbproject/jfc/SwingApplet/nbproject
+@dir openjdk13/demo/nbproject/jfc/SwingApplet
+@dir openjdk13/demo/nbproject/jfc/SampleTree/nbproject
+@dir openjdk13/demo/nbproject/jfc/SampleTree
+@dir openjdk13/demo/nbproject/jfc/Font2DTest/nbproject
+@dir openjdk13/demo/nbproject/jfc/Font2DTest
+@dir openjdk13/demo/nbproject/jfc/Notepad/nbproject
+@dir openjdk13/demo/nbproject/jfc/Notepad
+@dir openjdk13/demo/nbproject/jfc
+@dir openjdk13/demo/nbproject
+@dir openjdk13/demo
+@dir openjdk13/legal/jdk.jstatd
+@dir openjdk13/legal/jdk.scripting.nashorn
+@dir openjdk13/legal/jdk.jdeps
+@dir openjdk13/legal/jdk.internal.le
+@dir openjdk13/legal/java.xml.crypto
+@dir openjdk13/legal/jdk.httpserver
+@dir openjdk13/legal/jdk.sctp
+@dir openjdk13/legal/jdk.management
+@dir openjdk13/legal/jdk.attach
+@dir openjdk13/legal/jdk.javadoc
+@dir openjdk13/legal/jdk.unsupported.desktop
+@dir openjdk13/legal/jdk.internal.vm.compiler.management
+@dir openjdk13/legal/jdk.localedata
+@dir openjdk13/legal/java.prefs
+@dir openjdk13/legal/java.compiler
+@dir openjdk13/legal/jdk.security.auth
+@dir openjdk13/legal/jdk.naming.rmi
+@dir openjdk13/legal/java.sql
+@dir openjdk13/legal/jdk.jartool
+@dir openjdk13/legal/jdk.compiler
+@dir openjdk13/legal/java.base
+@dir openjdk13/legal/java.rmi
+@dir openjdk13/legal/jdk.net
+@dir openjdk13/legal/java.logging
+@dir openjdk13/legal/jdk.aot
+@dir openjdk13/legal/java.management.rmi
+@dir openjdk13/legal/jdk.charsets
+@dir openjdk13/legal/jdk.accessibility
+@dir openjdk13/legal/java.security.jgss
+@dir openjdk13/legal/java.net.http
+@dir openjdk13/legal/jdk.internal.jvmstat
+@dir openjdk13/legal/jdk.zipfs
+@dir openjdk13/legal/jdk.scripting.nashorn.shell
+@dir openjdk13/legal/jdk.crypto.ec
+@dir openjdk13/legal/jdk.rmic
+@dir openjdk13/legal/jdk.management.agent
+@dir openjdk13/legal/jdk.internal.vm.compiler
+@dir openjdk13/legal/java.transaction.xa
+@dir openjdk13/legal/java.management
+@dir openjdk13/legal/jdk.internal.opt
+@dir openjdk13/legal/java.desktop
+@dir openjdk13/legal/java.smartcardio
+@dir openjdk13/legal/jdk.pack
+@dir openjdk13/legal/jdk.jdwp.agent
+@dir openjdk13/legal/jdk.security.jgss
+@dir openjdk13/legal/java.naming
+@dir openjdk13/legal/jdk.hotspot.agent
+@dir openjdk13/legal/jdk.jsobject
+@dir openjdk13/legal/jdk.crypto.cryptoki
+@dir openjdk13/legal/jdk.jlink
+@dir openjdk13/legal/jdk.jfr
+@dir openjdk13/legal/jdk.unsupported
+@dir openjdk13/legal/jdk.editpad
+@dir openjdk13/legal/java.datatransfer
+@dir openjdk13/legal/jdk.jconsole
+@dir openjdk13/legal/jdk.jcmd
+@dir openjdk13/legal/jdk.jdi
+@dir openjdk13/legal/jdk.xml.dom
+@dir openjdk13/legal/jdk.management.jfr
+@dir openjdk13/legal/jdk.naming.dns
+@dir openjdk13/legal/java.xml
+@dir openjdk13/legal/java.instrument
+@dir openjdk13/legal/java.se
+@dir openjdk13/legal/java.security.sasl
+@dir openjdk13/legal/jdk.internal.vm.ci
+@dir openjdk13/legal/jdk.jshell
+@dir openjdk13/legal/java.scripting
+@dir openjdk13/legal/jdk.dynalink
+@dir openjdk13/legal/java.sql.rowset
+@dir openjdk13/legal/jdk.internal.ed
+@dir openjdk13/legal
+@dir openjdk13/man/man1
+@dir openjdk13/man
+@dir openjdk13/jmods
+@dir openjdk13/bin
+@dir openjdk13/lib/jfr
+@dir openjdk13/lib/security
+@dir openjdk13/lib/server
+@dir openjdk13/lib
+@dir openjdk13/conf/management
+@dir openjdk13/conf/security/policy/unlimited
+@dir openjdk13/conf/security/policy/limited
+@dir openjdk13/conf/security/policy
+@dir openjdk13/conf/security
+@dir openjdk13/conf
+@dir openjdk13/include/freebsd
+@dir openjdk13/include/midnightbsd
+@dir openjdk13/include
+@dir openjdk13
+@postexec /usr/local/bin/registervm '/usr/local/openjdk13/bin/java'
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk13/bin/java'

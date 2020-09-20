@@ -702,3 +702,5 @@ openjdk11/lib/libjimage.so
 @dir openjdk11/lib/server
 @dir openjdk11/lib
 @dir openjdk11
+@postexec /usr/local/bin/registervm '/usr/local/openjdk11/bin/java'
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk11/bin/java'

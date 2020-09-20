@@ -164,6 +164,10 @@ _JAVA_VENDOR_LIST=		freebsd bsdjava sun oracle openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_13_INFO=	PORT=java/openjdk13-bin			HOME=${LOCALBASE}/openjdk13 \
+											VERSION=13	OS=freebsd	VENDOR=openjdk
+_JAVA_PORT_FREEBSD_OPENJDK_JDK_11_INFO=	PORT=java/openjdk11-bin			HOME=${LOCALBASE}/openjdk11 \
+											VERSION=11	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_FREEBSD_OPENJDK_JDK_8_INFO=	PORT=java/openjdk8-bin			HOME=${LOCALBASE}/openjdk8 \
 											VERSION=8	OS=freebsd	VENDOR=openjdk
 _JAVA_PORT_NATIVE_OPENJDK_JDK_7_INFO=		PORT=java/openjdk7			HOME=${LOCALBASE}/openjdk7 \
@@ -196,7 +200,9 @@ _JAVA_OS_freebsd=	FreeBSD
 _JAVA_PREFERRED_PORTS+= JAVA_PORT_FREEBSD_OPENJDK_JDK_8
 
 # List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
+__JAVA_PORTS_ALL=	JAVA_PORT_FREEBSD_OPENJDK_JDK_13 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_11 \
+			JAVA_PORT_FREEBSD_OPENJDK_JDK_8 \
 			JAVA_PORT_FREEBSD_OPENJDK_JDK_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_6 \
