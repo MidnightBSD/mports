@@ -1,9 +1,7 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
 # XXX Switch to release after https://bugs.chromium.org/p/aomedia/issues/detail?id=2545
-DISTVERSION=	1.0.0-3149
-DISTVERSIONSUFFIX=	-gb43603d76
-PORTREVISION=	1
+DISTVERSION=	2.0.0-rc1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +22,7 @@ GH_ACCOUNT=	jbeich # mirror
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	ENABLE_DOCS ENABLE_TESTS
 
-USE_GCC=	7
+#USE_GCC=	7
 
 OPTIONS_DEFINE=	VMAF
 

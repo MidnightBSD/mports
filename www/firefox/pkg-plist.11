@@ -1,0 +1,47 @@
+lib/firefox/libmozwayland.so
+lib/firefox/gtk2/libmozgtk.so
+lib/firefox/gmp-clearkey/0.1/manifest.json
+lib/firefox/gmp-clearkey/0.1/libclearkey.so
+lib/firefox/removed-files
+lib/firefox/firefox
+lib/firefox/libmozgtk.so
+lib/firefox/liblgpllibs.so
+lib/firefox/libmozavutil.so
+lib/firefox/libmozavcodec.so
+lib/firefox/libmozsqlite3.so
+lib/firefox/plugin-container
+lib/firefox/pingsender
+lib/firefox/application.ini
+lib/firefox/browser/chrome/icons/default/default48.png
+lib/firefox/browser/chrome/icons/default/default16.png
+lib/firefox/browser/chrome/icons/default/default64.png
+lib/firefox/browser/chrome/icons/default/default128.png
+lib/firefox/browser/chrome/icons/default/default32.png
+lib/firefox/browser/features/doh-rollout@mozilla.org.xpi
+lib/firefox/browser/features/formautofill@mozilla.org.xpi
+lib/firefox/browser/features/screenshots@mozilla.org.xpi
+lib/firefox/browser/features/webcompat@mozilla.org.xpi
+lib/firefox/browser/features/webcompat-reporter@mozilla.org.xpi
+lib/firefox/browser/omni.ja
+lib/firefox/libxul.so
+lib/firefox/firefox-bin
+lib/firefox/dependentlibs.list
+lib/firefox/omni.ja
+lib/firefox/defaults/pref/channel-prefs.js
+lib/firefox/fonts/TwemojiMozilla.ttf
+lib/firefox/platform.ini
+share/pixmaps/firefox.png
+share/applications/firefox.desktop
+bin/firefox
+@dir lib/firefox/gtk2
+@dir lib/firefox/gmp-clearkey/0.1
+@dir lib/firefox/gmp-clearkey
+@dir lib/firefox/browser/chrome/icons/default
+@dir lib/firefox/browser/chrome/icons
+@dir lib/firefox/browser/chrome
+@dir lib/firefox/browser/features
+@dir lib/firefox/browser
+@dir lib/firefox/defaults/pref
+@dir lib/firefox/defaults
+@dir lib/firefox/fonts
+@dir lib/firefox
