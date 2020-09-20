@@ -31,6 +31,7 @@ SUBDIR += gspdf
 SUBDIR += gutenprint-base
 SUBDIR += gv
 SUBDIR += harfbuzz
+SUBDIR += harfbuzz-hb-view
 SUBDIR += harfbuzz-icu
 SUBDIR += hs-hscolour
 SUBDIR += indexinfo
