@@ -1,5 +1,5 @@
 PORTNAME=	graphite2
-PORTVERSION=	1.3.13
+PORTVERSION=	1.3.14
 CATEGORIES=	graphics print
 
 MAINTAINER=	ports@MidnightBSD.org
