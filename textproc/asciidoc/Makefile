@@ -1,5 +1,7 @@
+# Created by: anholt@FreeBSD.org
+
 PORTNAME=	asciidoc
-PORTVERSION=	8.6.10
+PORTVERSION=	9.0.0rc2
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,20 +13,19 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
 
-USES=		autoreconf gmake gnome python:2.7 shebangfix
+USES=		autoreconf gmake gnome python:3.5+ shebangfix
 USE_GNOME=	libxml2 libxslt
 
 GNU_CONFIGURE=	yes
 NO_ARCH=	yes
 
 USE_GITHUB=	yes
+GH_PROJECT=	asciidoc-py3
 
 SHEBANG_GLOB=	*.py
-SHEBANG_LANG=	python2
-python2_CMD=	${PYTHON_CMD}
 
 post-patch:
-	@${REINPLACE_CMD} -e '/^INSTALL_PROG/ s|INSTALL_PROGRAM|INSTALL_SCRIPT|; s|\.conf|&.sample|; s|python\( a2x.py\)|${PYTHON_CMD}\1|' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/^INSTALL_PROG/ s|INSTALL_PROGRAM|INSTALL_SCRIPT|; s|\.conf|&.sample|; s|python3 |${PYTHON_CMD} |' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/a2x.py
 	@${FIND} ${WRKSRC} -name '*.conf' | ${XARGS} -I % ${LN} % %.sample
 

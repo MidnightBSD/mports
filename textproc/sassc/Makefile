@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	sassc
-PORTVERSION=	3.4.8
-PORTREVISION=	2
+PORTVERSION=	3.6.0
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
