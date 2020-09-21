@@ -1,5 +1,6 @@
 PORTNAME=	libmusicbrainz
 PORTVERSION=	5.1.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	release-
 CATEGORIES=	audio
 PKGNAMESUFFIX=	5
@@ -11,7 +12,7 @@ LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	libneon.so:www/neon
 
-USES=		cmake:insource compiler:c++11-lang iconv:build pathfix
+USES=		cmake:insource compiler:c++11-lang gnome iconv:build pathfix
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 
