@@ -1,29 +1,27 @@
-# $MidnightBSD$ 
+# Created by: Julien Laffaye <kimelto@gmail.com>
 
 PORTNAME=	re2
-PORTVERSION=	20150601
+PORTVERSION=	20200401
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast C++ regex library
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" prefix=${PREFIX}
+USES=		compiler:c++11-lang gmake pathfix
+
+MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" SED_INPLACE="${SED} -i ''" prefix=${PREFIX}
 USE_LDCONFIG=	yes
-USES=		gmake pathfix tar:tgz
+
+PATHFIX_MAKEFILEIN=	Makefile
 
 GH_ACCOUNT=	google
 GH_TAGNAME=	${PORTVERSION:C|(....)(..)(..)|\1-\2-\3|}
 USE_GITHUB=	yes
 
-WRKSRC=		${WRKDIR}/re2-2015-06-01
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libre2.so
 
-.include <bsd.port.pre.mk>
-
-USES+=		compiler:c++11-lang
-
-post-build:
-	@${STRIP_CMD} ${WRKSRC}/obj/so/libre2.so
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

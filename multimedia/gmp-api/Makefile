@@ -2,8 +2,7 @@
 # $FreeBSD: head/multimedia/gmp-api/Makefile 392273 2015-07-16 06:05:59Z jbeich $
 
 PORTNAME=	gmp-api
-DISTVERSIONPREFIX=	Firefox
-DISTVERSION=	39 # tracking www/firefox
+DISTVERSION=	58 # from config/milestone.txt of mozilla-central commit
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,8 +12,7 @@ LICENSE=	apache2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mozilla
-
-WRKSRC=		${WRKDIR}/gmp-api-Firefox39
+GH_TAGNAME=	e393575
 
 NO_BUILD=	yes
 NO_ARCH=	yes

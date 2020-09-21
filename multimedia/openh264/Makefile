@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/multimedia/openh264/Makefile 418413 2016-07-12 04:30:32Z jbeich $
-
 PORTNAME=	openh264
-PORTVERSION=	1.8.0
+PORTVERSION=	2.1.0
 DISTVERSIONPREFIX=v
 PORTEPOCH=	2
 CATEGORIES=	multimedia

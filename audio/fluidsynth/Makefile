@@ -1,6 +1,6 @@
 PORTNAME=	fluidsynth
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.0
+DISTVERSION=	2.1.2
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -34,6 +34,7 @@ DBUS_CMAKE_BOOL=	enable-dbus
 
 LADSPA_BUILD_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa
 LADSPA_RUN_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa
+LADSPA_USES=		localbase
 LADSPA_CMAKE_BOOL=	enable-ladspa
 
 LASH_LIB_DEPENDS=	liblash.so:audio/lash
