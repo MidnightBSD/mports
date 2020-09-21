@@ -835,6 +835,7 @@ SUBDIR += py-more-itertools5
 SUBDIR += py-msgpack
 SUBDIR += py-nose
 SUBDIR += py-notify
+SUBDIR += py-olefile
 SUBDIR += py-orbit
 SUBDIR += py-packaging
 SUBDIR += py-parsedatetime

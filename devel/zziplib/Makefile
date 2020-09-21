@@ -1,9 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	zziplib
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.69
-PORTREVISION=	1
+PORTVERSION=	0.13.71
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,23 +11,25 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	zip:archivers/zip
 
-USES=		libtool pathfix pkgconfig python:2.7,build shebangfix
+USES=		libtool pathfix pkgconfig
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	gdraheim
-GH_PROJECT=	zziplib
-USE_LDCONFIG=	yes
-SHEBANG_FILES=	docs/*.py
 
-GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--srcdir=${WRKSRC}
 CONFIGURE_ENV=	ac_cv_path_XMLTO=":"
+GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
+USE_LDCONFIG=	yes
+
 PORTSCOUT=	limit:^0\.
 
 OPTIONS_DEFINE=	SDL
 OPTIONS_SUB=	yes
-SDL_USE=		SDL=sdl
+
 SDL_CONFIGURE_ENABLE=	sdl
+SDL_USE=		SDL=sdl
+SDL_USES=		sdl
 
 .include <bsd.port.mk>

@@ -1,15 +1,18 @@
+# Created by: Li-Wen Hsu <lwhsu@FreeBSD.org>
+# $FreeBSD: head/lang/elixir/Makefile 533077 2020-04-26 16:44:41Z olgeni $
+
 PORTNAME=	elixir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.2
+DISTVERSION=	1.10.3
 CATEGORIES=	lang
-#MASTER_SITES+=	https://github.com/elixir-lang/elixir/releases/download/${DISTVERSIONPREFIX}${PORTVERSION}/:doc
-#DISTFILES=	Docs.zip:doc
+MASTER_SITES+=	https://github.com/elixir-lang/elixir/releases/download/${DISTVERSIONPREFIX}${PORTVERSION}/:doc
+DISTFILES=	Docs.zip:doc
 DIST_SUBDIR=	elixir/${PORTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Functional, meta-programming aware language built on top of Erlang VM
 
-LICENSE=	apache2
+LICENSE=	APACHE20
 
 FAKE_OPTS+=	trueprefix
 
@@ -28,14 +31,19 @@ NO_ARCH=	yes
 OPTIONS_SUB=	yes
 MAKE_ENV=	MAN_PREFIX=${PREFIX}/man
 
-OPTIONS_DEFINE=	SRC
+OPTIONS_DEFINE=	SRC DOCS
 OPTIONS_DEFAULT=SRC
 
 SRC_DESC=	Install source code
 
-NO_TEST=	yes
-
 .include <bsd.mport.options.mk>
+
+post-extract:
+	@${FIND} ${WRKDIR}/doc -name .build -delete
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKDIR}/doc/ && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-SRC-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib
@@ -44,5 +52,8 @@ post-install-SRC-on:
 		cd ${WRKSRC}/lib/$${lib}/lib && \
 			${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
+
+do-test:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} test
 
 .include <bsd.port.mk>

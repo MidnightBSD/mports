@@ -1,3 +1,3 @@
-TIMESTAMP = 1539384548
-SHA256 (fusefs-2.9.7_GH0.tar.gz) = 5573fd045691729f1df1dc8bd8ba4cc5f708c4f7d66b51ab208b3b91986573ea
-SIZE (fusefs-2.9.7_GH0.tar.gz) = 208839
+TIMESTAMP = 1600715994
+SHA256 (libfuse-libfuse-fuse-2.9.9_GH0.tar.gz) = e57a24721177c3b3dd71cb9239ca46b4dee283db9388d48f7ccd256184982194
+SIZE (libfuse-libfuse-fuse-2.9.9_GH0.tar.gz) = 212017

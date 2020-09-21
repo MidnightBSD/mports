@@ -1,6 +1,6 @@
-TIMESTAMP = 1577828925
-SHA256 (opencv-3.4.1_GH0.tar.gz) = f1b87684d75496a1054405ae3ee0b6573acaf3dad39eaf4f1d66fdd7e03dc852
-SIZE (opencv-3.4.1_GH0.tar.gz) = 87051748
+TIMESTAMP = 1524780757
+SHA256 (opencv-opencv-3.4.1_GH0.tar.gz) = f1b87684d75496a1054405ae3ee0b6573acaf3dad39eaf4f1d66fdd7e03dc852
+SIZE (opencv-opencv-3.4.1_GH0.tar.gz) = 87051748
 SHA256 (tiny-dnn-tiny-dnn-2a2b50caa437a5964a61e45ffc83e70558e2bc68_GH0.tar.gz) = 03ff06b154a1a6a0f53d6f24a128727e533355d68164c509303e2da14062e97f
 SIZE (tiny-dnn-tiny-dnn-2a2b50caa437a5964a61e45ffc83e70558e2bc68_GH0.tar.gz) = 12885594
 SHA256 (opencv-opencv_contrib-3.4.1_GH0.tar.gz) = 298c69ee006d7675e1ff9d371ba8b0d9e7e88374bb7ba0f9d0789851d352ec6e

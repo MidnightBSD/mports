@@ -1,5 +1,7 @@
+# Created by: Kubilay Kocak <koobs@FreeBSD.org>
+
 PORTNAME=	pillow
-PORTVERSION=	5.2.0
+PORTVERSION=	7.0.0
 CATEGORIES=	graphics python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -11,12 +13,22 @@ LICENSE_NAME=	Standard PIL License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-NO_TEST=	yes
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-runner>0:devel/py-pytest-runner@${PY_FLAVOR}
 
-OPTIONS_DEFINE=		FREETYPE JPEG JPEG2000 LCMS PNG TIFF TKINTER WEBP
-OPTIONS_DEFAULT=	FREETYPE JPEG JPEG2000 PNG TKINTER WEBP
+# Python 3.5+
+USES=		cpe python:3.5+
+USE_GITHUB=	yes
+USE_PYTHON=	autoplist concurrent distutils
+
+GH_ACCOUNT=	python-${PORTNAME}
+GH_PROJECT=	${PORTNAME:C/p/P/}
+
+OPTIONS_DEFINE=		FREETYPE JPEG JPEG2000 LCMS OLE PNG TIFF TKINTER WEBP
+OPTIONS_DEFAULT=	FREETYPE JPEG JPEG2000 LCMS OLE PNG TIFF TKINTER WEBP
 
 LCMS_DESC=		Little Color Management System
+OLE_DESC=		Microsoft OLE2 file format support
 TKINTER_DESC=		Tkinter (Tcl/Tk) BitmapImage & PhotoImage support
 
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
@@ -35,6 +47,8 @@ LCMS_LIB_DEPENDS=	liblcms2.so:graphics/lcms2
 LCMS_VARS=		PYDISTUTILS_BUILDARGS+=--enable-lcms
 LCMS_VARS_OFF=		PYDISTUTILS_BUILDARGS+=--disable-lcms
 
+OLE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}olefile>0:devel/py-olefile@${PY_FLAVOR}
+
 PNG_VARS=		PYDISTUTILS_BUILDARGS+=--enable-zlib
 PNG_VARS_OFF=		PYDISTUTILS_BUILDARGS+=--disable-zlib
 
@@ -51,16 +65,6 @@ WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_VARS=		PYDISTUTILS_BUILDARGS+="--enable-webp --enable-webpmux"
 WEBP_VARS_OFF=		PYDISTUTILS_BUILDARGS+="--disable-webp --disable-webpmux"
 
-# Python 2.7,3.4+
-USES=		cpe python
-USE_GITHUB=	yes
-USE_PYTHON=	autoplist concurrent distutils
-
-GH_ACCOUNT=	python-${PORTNAME}
-GH_PROJECT=	${PORTNAME:C/p/P/}
-
-CONFLICTS_INSTALL=	py*-imaging-*
-
 .include <bsd.port.pre.mk>
 
 PYDISTUTILS_BUILD_TARGET=	build build_ext
@@ -68,5 +72,8 @@ PYDISTUTILS_BUILDARGS+=		saveopts
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PIL/*.so
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>
