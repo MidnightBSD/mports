@@ -7,6 +7,7 @@ SUBDIR += awstats
 SUBDIR += bluefish
 SUBDIR += bozohttpd
 SUBDIR += chromium
+SUBDIR += chromium-bin
 SUBDIR += codeigniter
 SUBDIR += drupal7
 SUBDIR += drupal8
