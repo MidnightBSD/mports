@@ -187,17 +187,17 @@ sub api_latest {
     my @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
 	
     foreach my $port (@ports) {
-      if (defined($results{$port->name})) {
+      if (defined($results{$port->pkgname})) {
 	my $found = 0;
 
-        foreach my $r (@{$results{$port->name}->{subpackages}}) {
+        foreach my $r (@{$results{$port->pkgname}->{subpackages}}) {
           if ($port->flavor eq $r->{name}) {
              $found = 1;
              last;
           }
         }
         if ($found == 0 && $port->flavor ne "") {
-	  push( @{$results{$port->name}->{subpackages}}, { name => $port->flavor });
+	  push( @{$results{$port->pkgname}->{subpackages}}, { name => $port->flavor });
         }
        } else {
          my @cats = map {{ category => $_->category }} $port->categories;
@@ -207,7 +207,7 @@ sub api_latest {
            push(@subpackages, { name => $port->flavor });
          }
 
-         $results{$port->name} = { 
+         $results{$port->pkgname} = { 
           version => $port->{version}, port => $port->name,
           osversion => $port->run->osversion,
           summary => $port->description,
