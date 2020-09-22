@@ -20,9 +20,6 @@ APP_DESC=	Build h2load, nghttp, nghttpd and nghttpx
 
 USES=		autoreconf compiler:c++14-lang gmake libtool localbase pathfix pkgconfig ssl
 
-# stupid thing won't link with system compiler
-USE_GCC=7
-
 CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
 CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto -lssl"
@@ -57,6 +54,13 @@ HPACK_BUILD_DEPENDS=	jansson>=2.5:devel/jansson
 HPACK_CONFIGURE_ENABLE=	hpack-tools
 HPACK_LIB_DEPENDS=	libjansson.so:devel/jansson
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 200000
+# stupid thing won't link with system compiler
+USE_GCC=7
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| lib||' ${WRKSRC}/Makefile.am
 	@${REINPLACE_CMD} -e 's|$$[({]top_builddir[})]/lib/libnghttp2.la|-lnghttp2|' ${WRKSRC}/*/Makefile.am
@@ -73,8 +77,8 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/nghttpx.conf.sample ${STAGEDIR}${PREFIX}/etc/nghttpx/nghttpx.conf.sample
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
-	${INSTALL_DATA} ${WRKSRC}/examples/*.c* ${STAGEDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/examples/ && ${INSTALL_PROGRAM} client deflate libevent-client libevent-server ${STAGEDIR}${EXAMPLESDIR}/
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	${INSTALL_DATA} ${WRKSRC}/examples/*.c* ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/examples/ && ${INSTALL_PROGRAM} client deflate libevent-client libevent-server ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
