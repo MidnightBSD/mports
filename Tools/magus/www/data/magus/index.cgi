@@ -170,7 +170,7 @@ sub api_latest {
     require JSON::XS;
     JSON::XS->import();
     require DateTime;
-    require Data::Dumper;
+    require DateTime::Format::Pg;
   }
 
   my %results;
@@ -179,9 +179,13 @@ sub api_latest {
   
   my @runs = Magus::Run->search(status => 'complete', blessed => 1, { order_by=> 'created DESC, osversion DESC, arch'});
 
+  my $dt;
   foreach my $run (@runs) {
     if (defined($arch{$run->arch})) {
 	next;
+    }
+    if (!defined($dt)) {
+	$dt = DateTime::Format::Pg->parse_datetime( $run->{created} );
     }
     $arch{$run->arch} = 1;
     my @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
@@ -221,7 +225,6 @@ sub api_latest {
   }
 
   my %meta;
-  my $dt = DateTime->now();
   $meta{repository_name} = 'MidnightBSD mports';
   $meta{last_update} =  $dt->strftime('%FT%TZ');
   $meta{num_packages} = scalar(%results);
