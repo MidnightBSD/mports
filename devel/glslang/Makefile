@@ -1,5 +1,5 @@
 PORTNAME=	glslang
-DISTVERSION=	7.11.3214
+DISTVERSION=	8.13.3743
 CATEGORIES=	devel graphics
 
 MAINTAINER=	ports@MidnightBSD.org
