@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: David Naylor <dbn@FreeBSD.org>
 
 PORTNAME=	userspace-rcu
 PORTVERSION=	0.7.16
+DISTVERSIONSUFFIX=	-1.el7
 CATEGORIES=	sysutils linux
 MASTER_SITES=	EPEL7/u
 
@@ -10,12 +11,13 @@ COMMENT=	Userspace read-copy-update (RCU) data synchronization library (CentOS $
 
 LICENSE=	lgpl2.1
 
-DESCR=		${.CURDIR}/../liburcu/pkg-descr
 ONLY_FOR_ARCHS=	amd64
-RPMVERSION=	1.el7
+
 USES=		linux:c7
 USE_LDCONFIG=	yes
 USE_LINUX_RPM=	yes
+
+DESCR=		${.CURDIR}/../liburcu/pkg-descr
 
 OPTIONS_DEFINE=	DOCS
 
