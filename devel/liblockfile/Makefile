@@ -1,7 +1,7 @@
 # Created by: Yasuhiro KIMURA <yasu@utahime.org>
 
 PORTNAME=	liblockfile
-PORTVERSION=	1.14
+PORTVERSION=	1.16
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
