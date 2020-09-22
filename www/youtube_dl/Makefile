@@ -28,7 +28,6 @@ RTMPDUMP_DESC=	Use RTMPDUMP to download rtmp video streams
 PLIST_FILES=	bin/youtube-dl \
 		man/man1/youtube-dl.1.gz \
 		%%BASH%%etc/bash_completion.d/youtube-dl.sh \
-		%%FISH%%share/fish/completions/youtube-dl.fish \
 		%%ZSH%%share/zsh/site-functions/_youtube-dl
 
 FFMPEG_RUN_DEPENDS=	${LOCALBASE}/bin/ffprobe:multimedia/ffmpeg
