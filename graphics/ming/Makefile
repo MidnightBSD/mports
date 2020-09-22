@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	ming
 DISTVERSIONPREFIX=	${PORTNAME}-
-DISTVERSION=	0_4_7
+DISTVERSION=	0_4_8
 PORTREVISION=	2
 CATEGORIES=	graphics
 
@@ -12,11 +10,9 @@ COMMENT=	Flash 4/5 movie output library with many languages support
 LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng.so:${PORTSDIR}/graphics/png
-
-WRKSRC=		${WRKDIR}/libming-ming-0_4_7
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libgif.so:graphics/giflib \
+		libpng.so:graphics/png
 
 CONFLICTS_INSTALL=	ja-ming-[0-9]*
 
