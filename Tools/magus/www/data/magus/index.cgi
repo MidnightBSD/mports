@@ -49,6 +49,9 @@ sub main {
   } elsif ($path =~ m:^/api/run-ports-list:) {
     api_run_port_stats($p);
     return;
+  } elsif ($path =~ m:^/api/latest:) {
+    api_latest($p);
+    return;
   } elsif ($path =~ m:^/async/run-ports-list:) {
     async_run_port_stats($p);
     return;
@@ -159,6 +162,76 @@ sub api_run_port_stats {
       
   print $p->header(-type => 'application/json'), encode_json(\@results);
 }
+
+sub api_latest {
+  my ($p) = @_;
+
+  BEGIN{
+    require JSON::XS;
+    JSON::XS->import();
+    require DateTime;
+    require Data::Dumper;
+  }
+
+  my %results;
+  my $status = 'pass';
+  my %arch;
+  
+  my @runs = Magus::Run->search(status => 'complete', blessed => 1, { order_by=> 'created DESC, osversion DESC, arch'});
+
+  foreach my $run (@runs) {
+    if (defined($arch{$run->arch})) {
+	next;
+    }
+    $arch{$run->arch} = 1;
+    my @ports = Magus::Port->search(run => $run, status => $status, { order_by=> 'name'});
+	
+    foreach my $port (@ports) {
+      if (defined($results{$port->name})) {
+	my $found = 0;
+
+        foreach my $r (@{$results{$port->name}->{subpackages}}) {
+          if ($port->flavor eq $r->{name}) {
+             $found = 1;
+             last;
+          }
+        }
+        if ($found == 0 && $port->flavor ne "") {
+	  push( @{$results{$port->name}->{subpackages}}, { name => $port->flavor });
+        }
+       } else {
+         my @cats = map {{ category => $_->category }} $port->categories;
+
+         my @subpackages; 
+         if (defined($port->flavor) && $port->flavor ne "") {
+           push(@subpackages, { name => $port->flavor });
+         }
+
+         $results{$port->name} = { 
+          version => $port->{version}, port => $port->name,
+          osversion => $port->run->osversion,
+          summary => $port->description,
+          licenses => [ split(' ', $port->license) ],
+          homepages => [$port->www],
+          categories => \@cats,
+          subpackages => \@subpackages
+         };
+       }
+    }
+  }
+
+  my %meta;
+  my $dt = DateTime->now();
+  $meta{repository_name} = 'MidnightBSD mports';
+  $meta{last_update} =  $dt->strftime('%FT%TZ');
+  $meta{num_packages} = scalar(%results);
+  $meta{packages} = \%results;
+    
+  print $p->header(-type => 'application/json'), encode_json(\%meta);
+}
+
+
+
 
 
 sub run_index {
