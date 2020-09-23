@@ -260,6 +260,7 @@ SUBDIR += llvm-devel
 SUBDIR += lndir
 SUBDIR += log4j
 SUBDIR += looks
+SUBDIR += lua-bitop
 SUBDIR += lua-lgi
 SUBDIR += lutok
 SUBDIR += m17n-db

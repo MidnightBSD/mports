@@ -69,6 +69,7 @@ SUBDIR += linux-c7-avahi-libs
 SUBDIR += linux-c7-openldap
 SUBDIR += linux-c7-tcp_wrappers-libs
 SUBDIR += liveMedia
+SUBDIR += luasocket
 SUBDIR += mDNSResponder
 SUBDIR += miniupnpc
 SUBDIR += nanomsg
