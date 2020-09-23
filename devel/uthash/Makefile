@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	uthash
-PORTVERSION=	2.0.2
+PORTVERSION=	2.1.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -13,14 +11,11 @@ LICENSE_NAME=	BSD 1-Clause License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-WRKSRC=		${WRKDIR}/uthash-${GH_TAGNAME}
-
 OPTIONS_DEFINE=	DOCS
 
 NO_BUILD=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	troydhanson
-GH_TAGNAME=	d10c46a
 
 PORTDOCS=	ChangeLog.txt userguide.txt utarray.txt \
 		utlist.txt utstring.txt
