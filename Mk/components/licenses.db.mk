@@ -1,4 +1,4 @@
-_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
+_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 bsd1 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
 		bdb boost bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation lppl1 lppl1.1 lppl1.2 \
@@ -74,6 +74,9 @@ _LICENSE_GROUPS_bdb=
 _LICENSE_NAME_boost=	Boost Software License
 _LICENSE_GROUPS_boost=	FSF OSI COPYFREE
  
+_LICENSE_NAME_bsd1=	BSD 1-clause License
+_LICENSE_GROUPS_bsd1=	COPYFREE
+
 _LICENSE_NAME_bsd2=	BSD 2-clause "Simplified" License
 _LICENSE_GROUPS_bsd2=	FSF OSI COPYFREE
 
