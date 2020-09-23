@@ -1,12 +1,21 @@
---- configure.ac.orig	2015-07-21 19:50:11 UTC
-+++ configure.ac
-@@ -383,6 +383,9 @@ AC_SUBST([SplitObjsBroken])
+--- configure.ac.orig	2020-08-03 17:51:52.000000000 -0400
++++ configure.ac	2020-09-23 13:45:51.076945000 -0400
+@@ -482,6 +482,9 @@
  dnl ** Building a cross compiler?
  dnl --------------------------------------------------------------
  CrossCompiling=NO
 +
-+build=`echo $build | sed -e 's/amd64-/x86_64-/g; s/-freebsd.*$/-freebsd/g'`
++build=`echo $build | sed -e 's/amd64-/x86_64-/g; s/armv[[67]]-/arm-/g; s/-freebsd.*$/-freebsd/g'`
 +
  # If 'host' and 'target' differ, then this means we are building a cross-compiler.
- if test "$target" != "$host" ; then
+ if test "$TargetPlatform" != "$HostPlatform" ; then
      CrossCompiling=YES
+@@ -1232,7 +1235,7 @@
+ dnl --------------------------------------------------------------
+ 
+ case ${TargetOS} in
+-    linux|linux-android|freebsd|dragonfly|netbsd|openbsd|kfreebsdgnu|gnu|solaris2)
++    linux|linux-android|midnightbsd|freebsd|dragonfly|netbsd|openbsd|kfreebsdgnu|gnu|solaris2)
+         RtsLinkerUseMmap=1
+         ;;
+     darwin|ios|watchos|tvos)

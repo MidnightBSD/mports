@@ -1,0 +1,82 @@
+--- configure.orig	2020-08-08 06:53:43.000000000 -0400
++++ configure	2020-09-23 13:54:59.274918000 -0400
+@@ -3669,7 +3669,7 @@
+         BuildOS="openbsd"
+         ;;
+       # As far as I'm aware, none of these have relevant variants
+-      freebsd|netbsd|dragonfly|hpux|linuxaout|kfreebsdgnu|freebsd2|mingw32|darwin|nextstep2|nextstep3|sunos4|ultrix|haiku)
++      midnightbsd|freebsd|netbsd|dragonfly|hpux|linuxaout|kfreebsdgnu|freebsd2|mingw32|darwin|nextstep2|nextstep3|sunos4|ultrix|haiku)
+         BuildOS="$build_os"
+         ;;
+       msys)
+@@ -3684,7 +3684,7 @@
+       solaris2*)
+         BuildOS="solaris2"
+         ;;
+-      freebsd*) # like i686-gentoo-freebsd7
++      midnightbsd*|freebsd*) # like i686-gentoo-freebsd7
+                 #      i686-gentoo-freebsd8
+                 #      i686-gentoo-freebsd8.2
+         BuildOS="freebsd"
+@@ -3849,7 +3849,7 @@
+       solaris2*)
+         HostOS="solaris2"
+         ;;
+-      freebsd*) # like i686-gentoo-freebsd7
++      midnightbsd*|freebsd*) # like i686-gentoo-freebsd7
+                 #      i686-gentoo-freebsd8
+                 #      i686-gentoo-freebsd8.2
+         HostOS="freebsd"
+@@ -4003,7 +4003,7 @@
+       solaris2*)
+         TargetOS="solaris2"
+         ;;
+-      freebsd*) # like i686-gentoo-freebsd7
++      midnightbsd*|freebsd*) # like i686-gentoo-freebsd7
+                 #      i686-gentoo-freebsd8
+                 #      i686-gentoo-freebsd8.2
+         TargetOS="freebsd"
+@@ -4166,7 +4166,7 @@
+       solaris2*)
+         TargetOS="solaris2"
+         ;;
+-      freebsd*) # like i686-gentoo-freebsd7
++      midnightbsd*|freebsd*) # like i686-gentoo-freebsd7
+                 #      i686-gentoo-freebsd8
+                 #      i686-gentoo-freebsd8.2
+         TargetOS="freebsd"
+@@ -4272,7 +4272,7 @@
+       solaris2*)
+         llvm_target_os="solaris2"
+         ;;
+-      freebsd*) # like i686-gentoo-freebsd7
++      midnightbsd*|freebsd*) # like i686-gentoo-freebsd7
+                 #      i686-gentoo-freebsd8
+                 #      i686-gentoo-freebsd8.2
+         llvm_target_os="freebsd"
+@@ -10289,7 +10289,7 @@
+         mingw32)
+             test -z "$2" || eval "$2=OSMinGW32"
+             ;;
+-        freebsd)
++        freebsd|midnightbsd)
+             test -z "$2" || eval "$2=OSFreeBSD"
+             ;;
+         dragonfly)
+@@ -11449,6 +11449,7 @@
+   if test -n "$DtraceCmd"; then
+     if test "x$TargetOS_CPP-$TargetVendor_CPP" = "xdarwin-apple" \
+       -o "x$TargetOS_CPP-$TargetVendor_CPP" = "xfreebsd-portbld" \
++      -o "x$TargetOS_CPP-$TargetVendor_CPP" = "xmidnightbsd-portbld" \
+       -o "x$TargetOS_CPP-$TargetVendor_CPP" = "xsolaris2-unknown"; then
+       HaveDtrace=YES
+     fi
+@@ -15677,7 +15678,7 @@
+ 
+ 
+ case ${TargetOS} in
+-    linux|linux-android|freebsd|dragonfly|netbsd|openbsd|kfreebsdgnu|gnu|solaris2)
++    linux|linux-android|midnightbsd|freebsd|dragonfly|netbsd|openbsd|kfreebsdgnu|gnu|solaris2)
+         RtsLinkerUseMmap=1
+         ;;
+     darwin|ios|watchos|tvos)

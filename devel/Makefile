@@ -133,6 +133,7 @@ SUBDIR += gtkparasite
 SUBDIR += gvfs
 SUBDIR += hadoop
 SUBDIR += highlighterkit
+SUBDIR += hs-cabal-install
 SUBDIR += hs-haddock
 SUBDIR += hwloc
 SUBDIR += hyperscan
