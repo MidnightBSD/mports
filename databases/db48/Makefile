@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	db48
 PORTVERSION=	4.8.30.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases
 MASTER_SITES=	http://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
