@@ -769,6 +769,7 @@ SUBDIR += py-buildbot-www
 SUBDIR += py-cffi
 SUBDIR += py-characteristic
 SUBDIR += py-cliapp
+SUBDIR += py-click
 SUBDIR += py-cmdtest
 SUBDIR += py-colorama
 SUBDIR += py-commandlines

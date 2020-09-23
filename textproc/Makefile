@@ -227,6 +227,7 @@ SUBDIR += py-sphinx_rtd_theme
 SUBDIR += py-sphinxcontrib-websupport
 SUBDIR += py-tinycss2
 SUBDIR += py-toml
+SUBDIR += py-towncrier
 SUBDIR += qt5-xml
 SUBDIR += qt5-xmlpatterns
 SUBDIR += raptor
