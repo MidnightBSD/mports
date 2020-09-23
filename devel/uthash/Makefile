@@ -6,10 +6,8 @@ CATEGORIES=	devel
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	hash table for C structures
 
-LICENSE=	BSD1CLAUSE
-LICENSE_NAME=	BSD 1-Clause License
+LICENSE=	bsd1
 LICENSE_FILE=	${WRKSRC}/LICENSE
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 OPTIONS_DEFINE=	DOCS
 
