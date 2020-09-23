@@ -39,7 +39,21 @@ use YAML qw(Load);
 sub sync {
   my ($class, $root, $run) = @_;
   my $arch = $run->arch;
+  my $osrel = $run->osversion;
+  my $osversion;
   my %visited;
+
+  if ($osrel eq "1.3") {
+    $osversion = 103000;
+  } elsif ($osrel eq "1.2") {
+    $osversion = 102000;
+  } elsif ($osrel eq "1.1") {
+    $osversion = 101000;
+  } elsif ($osrel eq "1.0") {
+    $osversion = 100000;
+  } else {
+    $osversion = 200000;
+  }
   
   $root ||= "$Magus::Config{MasterDataDir}/$Magus::Config{MportsVcsDir}";
   
@@ -50,7 +64,7 @@ sub sync {
   recurse_ports {
     print @_, "... ";
     
-    my $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
+    my $yaml = `__MAKE_CONF=/dev/null INDEXING=1 ARCH=$arch OSREL=$osrel OSVERSION=$osversion PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
     my %dump;
       
     eval {
