@@ -4,6 +4,7 @@ SUBDIR += bsdconv
 SUBDIR += enca
 SUBDIR += fribidi
 SUBDIR += libiconv
+SUBDIR += lua-json
 SUBDIR += mpack
 SUBDIR += o3read
 SUBDIR += p5-Convert-ASN1

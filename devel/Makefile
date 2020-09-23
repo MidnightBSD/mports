@@ -262,6 +262,7 @@ SUBDIR += log4j
 SUBDIR += looks
 SUBDIR += lua-bitop
 SUBDIR += lua-lgi
+SUBDIR += lua-lpeg
 SUBDIR += lutok
 SUBDIR += m17n-db
 SUBDIR += m17n-docs

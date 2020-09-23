@@ -1,0 +1,20 @@
+--- makefile.orig	2019-03-11 14:08:29 UTC
++++ makefile
+@@ -1,5 +1,5 @@
+ LIBNAME = lpeg
+-LUADIR = ../lua/
++LUADIR ?= ../lua/
+ 
+ COPT = -O2 -DNDEBUG
+ # COPT = -g
+@@ -22,8 +22,8 @@ CWARNS = -Wall -Wextra -pedantic \
+ # -Wunreachable-code \
+ 
+ 
+-CFLAGS = $(CWARNS) $(COPT) -std=c99 -I$(LUADIR) -fPIC
+-CC = gcc
++CFLAGS += $(CWARNS) $(COPT) -std=c99 -I$(LUADIR) -fPIC
++CC ?= gcc
+ 
+ FILES = lpvm.o lpcap.o lptree.o lpcode.o lpprint.o
+ 
