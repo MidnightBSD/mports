@@ -26,8 +26,16 @@ INSTALL_TARGET=	install_include install_lib install_utilities
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 USE_LDCONFIG=	yes
 
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
+# db48 uses a deprecated instruction for mutexes on ARM
+CONFIGURE_ARGS+=	--enable-posixmutexes
+.endif
+
 post-patch:
 	${REINPLACE_CMD} -Ee 's|--mode=install cp -p|--mode=install ${INSTALL} -s|;' ${WRKSRC}/${CONFIGURE_SCRIPT}
+	${REINPLACE_CMD} -Ee 's/[[:<:]]atomic_init[[:>:]]/db_atomic_init/g' ${WRKSRC}/../dbinc/atomic.h ${WRKSRC}/../mp/mp_*.c ${WRKSRC}/../mutex/mut_*.c
 
 post-install:
 .for i in libdb libdb_cxx
