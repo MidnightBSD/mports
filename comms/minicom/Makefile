@@ -1,21 +1,17 @@
-# $MidnightBSD$
-
 PORTNAME=	minicom
-PORTVERSION=	2.6.2
-PORTREVISION=	1
+PORTVERSION=	2.7.1
 CATEGORIES=	comms
-MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/3869/ \
-		http://alioth.debian.org/frs/download.php/file/3869/ \
-		http://fossies.org/linux/misc/
+MASTER_SITES=	http://fossies.org/linux/misc/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
 
 LICENSE=	gpl2
 
+RUN_DEPENDS=	lrz:comms/lrzsz
+
 OPTIONS_DEFINE=	DOCS NLS LRZSZ
 OPTIONS_DEFAULT=LRZSZ
-LRZSZ_DESC=	Install X/Y/ZMODEM protocol handlers
 
 USES=		iconv
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -28,10 +24,6 @@ CONFIGURE_ARGS+=	--enable-dfl-baud=57600 \
 MAKE_ARGS+=	LIBS+="-liconv -lcurses"
 
 .include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MLRZSZ}
-RUN_DEPENDS+=	lrz:${PORTSDIR}/comms/lrzsz
-.endif
 
 .if ${PORT_OPTIONS:MNLS}
 USES+=		gettext
