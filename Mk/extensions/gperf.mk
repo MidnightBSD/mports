@@ -10,7 +10,7 @@
 .if !defined(_INCLUDE_USES_GPERF_MK)
 _INCLUDE_USES_GPERF_MK=	yes
 
-.if !exists(/usr/bin/gperf) || defined(INDEXING) || ${OSVERSION} >= 200000
+.if !exists(/usr/bin/gperf) || ${OSVERSION} >= 200000
 BUILD_DEPENDS+=	${LOCALBASE}/bin/gperf:devel/gperf
 GPERF=	${LOCALBASE}/bin/gperf
 .else
