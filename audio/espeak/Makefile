@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/audio/espeak/Makefile,v 1.15 2007/08/06 13:33:16 nivit Exp $
-
 PORTNAME=	espeak
 PORTVERSION=	1.48.04
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
@@ -20,8 +18,8 @@ OPTIONS_RADIO=	AUDIO_SYSTEM
 OPTIONS_RADIO_AUDIO_SYSTEM=	PORTAUDIO PULSEAUDIO RUNTIME
 RUNTIME_DESC=	Sound interface selected at runtime
 
-PORTAUDIOLIB=	libportaudio.so:${PORTSDIR}/audio/portaudio
-PULSEAUDIOLIB=	libpulse.so:${PORTSDIR}/audio/pulseaudio
+PORTAUDIOLIB=	libportaudio.so:audio/portaudio
+PULSEAUDIOLIB=	libpulse.so:audio/pulseaudio
 
 PORTAUDIO_LIB_DEPENDS=	${PORTAUDIOLIB}
 PULSEAUDIO_LIB_DEPENDS=	${PULSEAUDIOLIB}
@@ -40,6 +38,7 @@ CONFLICTS=	speak-1.[0-9]
 CXXFLAGS+=	-I${LOCALBASE}/include
 USES=		gmake zip
 USE_LDCONFIG=	yes
+USE_CXXSTD=	gnu++98
 
 WRKSRC=	${WRKDIR}/${DISTNAME}
 BUILD_WRKSRC=	${WRKSRC}/src
