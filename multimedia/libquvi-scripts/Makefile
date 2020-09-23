@@ -1,10 +1,10 @@
 # Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
-# $MidnightBSD$
 
 PORTNAME=	libquvi-scripts
 PORTVERSION=	0.4.21
 CATEGORIES=	multimedia devel
-MASTER_SITES=	SF/quvi/${PORTVERSION:R}/${PORTNAME}/
+MASTER_SITES=	SF/quvi/${PORTVERSION:R}/${PORTNAME}/ \
+		FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embedded lua scripts for libquvi and utility scripts
