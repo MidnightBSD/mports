@@ -1,29 +1,27 @@
 PORTNAME=	cups
-PORTVERSION=	2.2.8
-PORTREVISION=	1
+PORTVERSION=	2.3.3
 DISTVERSIONPREFIX=v
 CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System
 
-LICENSE=	gpl2 lgpl
-LICENSE_COMB=	multi
-LICENSE_FILE_GPLv2=	${WRKSRC}/LICENSE.txt
-LICENSE_FILE_LGPL20=	${WRKSRC}/LICENSE.txt
+LICENSE=	apache2
 
 CONFLICTS=	LPRng-[0-9]*
+
+MAKE_JOBS_UNSAFE=yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	apple
 
 DESTDIRNAME=	DSTROOT
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-dnssd						\
+#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_ARGS=	\
 		--disable-gssapi					\
 		--disable-launchd					\
 		--disable-systemd					\
-		--enable-dnssd 						\
 		--with-cups-user=${USERS}				\
 		--with-cups-group=${GROUPS}				\
 		--with-system-groups=wheel				\
@@ -38,7 +36,7 @@ CONFIGURE_ARGS=	--disable-dnssd						\
 		--with-dnssd-includes=/usr/include			\
 		ac_cv_path_JAVA= ac_cv_path_PERL= ac_cv_path_PHPCGI=	\
 		ac_cv_path_PHP= ac_cv_path_PYTHON=
-USES=		cpe gmake iconv localbase pkgconfig
+USES=		compiler:c++11-lang cpe gmake iconv localbase pkgconfig
 CPE_VENDOR=	apple
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	cupsd
@@ -54,6 +52,8 @@ AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
 AVAHI_RUN_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
 AVAHI_BUILD_DEPENDS=	gnome_subr>=0:sysutils/gnome_subr
 AVAHI_CONFIGURE_ENABLE=	avahi
+AVAHI_CONFIGURE_ON=	--disable-dnssd
+AVAHI_CONFIGURE_OFF=	--enable-dnssd
 AVAHI_SUB_LIST=		AVAHI_DAEMON=avahi_daemon
 AVAHI_SUB_LIST_OFF=	AVAHI_DAEMON=
 
@@ -85,7 +85,11 @@ PLIST_SUB+=	OVERWRITE="@comment "
 .if exists(/usr/lib/libusb.so)
 PLIST_SUB+=	USB=""
 .else
-LIST_SUB+=	USB="@comment "
+PLIST_SUB+=	USB="@comment "
+.endif
+
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=--enable-debug --enable-debug-printfs
 .endif
 
 .include <bsd.port.pre.mk>
@@ -105,7 +109,7 @@ post-patch:
 		's|http://www.cups.org|https://www.cups.org|g' {} +
 	@${REINPLACE_CMD} '/stripopt=/s/-x//' ${WRKSRC}/install-sh
 	@${REINPLACE_CMD} 's|/etc/cups|${LOCALBASE}/etc/cups|g' \
-		${WRKSRC}/man/*.man*
+		${WRKSRC}/man/*.[1-9]
 	@${REINPLACE_CMD} -e 's|\.default|.sample|'\
 		${WRKSRC}/cgi-bin/admin.c\
 		${WRKSRC}/conf/Makefile
