@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/ghostscript9-base/Makefile 410825 2016-03-11 11:53:42Z tijl $
-
 PORTNAME=	ghostscript
 PORTVERSION=	9.06
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	print
 MASTER_SITES=	http://downloads.ghostscript.com/public/:gs_srcs \
 		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
@@ -18,15 +15,15 @@ COMMENT=	Ghostscript 9.x PostScript interpreter, base part
 
 LICENSE=	gpl3
 
-LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libidn.so:${PORTSDIR}/dns/libidn \
-		libjbig2dec.so:${PORTSDIR}/graphics/jbig2dec \
-		liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpaper.so:${PORTSDIR}/print/libpaper \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libtiff.so:${PORTSDIR}/graphics/tiff
-RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
+		libfreetype.so:print/freetype2 \
+		libidn.so:dns/libidn \
+		libjbig2dec.so:graphics/jbig2dec \
+		liblcms2.so:graphics/lcms2 \
+		libpaper.so:print/libpaper \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
+RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME}/fonts/a010013l.pfb:print/gsfonts
 
 CONFLICTS_INSTALL= \
 		gambc-[0-9]* \
@@ -77,13 +74,13 @@ OPTIONS_DEFINE=	DOCS CUPS FONTCONFIG ICONV
 OPTIONS_DEFAULT=CUPS FONTCONFIG ICONV
 OPTIONS_SUB=	yes
 FONTCONFIG_DESC=Enable fontconfig support
-FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+FONTCONFIG_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
 FONTCONFIG_CONFIGURE_ENABLE=	fontconfig
 NO_OPTIONS_SORT=yes
 
 EXCLUDE_DIRS=	freetype jbig2dec jpeg expat jasper lcms lcms2 libpng tiff zlib
 
-CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
+CUPS_LIB_DEPENDS=	libcups.so:print/cups
 
 .include "Makefile.drivers"
 .include <bsd.mport.options.mk>
@@ -137,14 +134,16 @@ pre-install:
 	    gs_statd.ps.orig gs_ttf.ps.orig pdf_font.ps.orig
 	${MKDIR} ${STAGEDIR}${DATADIR}
 
-post-install: post-install-docs
+post-install-DOCS-on: post-install-docs
 	${MKDIR} ${WRKSRC}/contrib/japanese
 	${INSTALL_DATA} ${WRKSRC}/contrib/japanese/doc/* \
 	    ${WRKSRC}/contrib/japanese
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC}/contrib && \
 	    ${TAR} -cf - ${PORTDOC_FILES} | \
-	    (cd ${STAGEDIR}${DOCSDIR} && ${TAR} -xof -)
+	    (cd ${FAKE_DESTDIR}${DOCSDIR} && ${TAR} -xof -)
+
+post-install:
 	${LN} -sf gsc ${STAGEDIR}${PREFIX}/bin/gs
 	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont \
 	    ${STAGEDIR}${DATADIR}/Resource/CIDFont/fonts

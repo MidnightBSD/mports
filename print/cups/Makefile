@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	cups
 PORTVERSION=	2.2.8
 PORTREVISION=	1
@@ -25,6 +23,7 @@ CONFIGURE_ARGS=	--disable-dnssd						\
 		--disable-gssapi					\
 		--disable-launchd					\
 		--disable-systemd					\
+		--enable-dnssd 						\
 		--with-cups-user=${USERS}				\
 		--with-cups-group=${GROUPS}				\
 		--with-system-groups=wheel				\
@@ -35,6 +34,8 @@ CONFIGURE_ARGS=	--disable-dnssd						\
 		--with-rcdir=no						\
 		--with-optim=" "					\
 		--with-pam-module="unix"				\
+		--with-dnssd-libs=/usr/lib				\
+		--with-dnssd-includes=/usr/include			\
 		ac_cv_path_JAVA= ac_cv_path_PERL= ac_cv_path_PHPCGI=	\
 		ac_cv_path_PHP= ac_cv_path_PYTHON=
 USES=		cpe gmake iconv localbase pkgconfig
@@ -81,18 +82,18 @@ PLIST_SUB+=	OVERWRITE="@comment "
 .endif
 
 # TODO: when midnightbsd 1.0 imports new usb lib
-#.if exists(/usr/lib/libusb.so)
-#PLIST_SUB+=	USB=""
-#.else
-PLIST_SUB+=	USB="@comment "
-#.endif
+.if exists(/usr/lib/libusb.so)
+PLIST_SUB+=	USB=""
+.else
+LIST_SUB+=	USB="@comment "
+.endif
 
 .include <bsd.port.pre.mk>
 
 .if empty(ICONV_LIB)
 CONFIGURE_ARGS+=ac_cv_search_libiconv_open=no
-.else
-LDFLAGS+=	-L/usr/local/lib/ -liconv
+#.else
+#LDFLAGS+=	-L/usr/local/lib/ -liconv
 .endif
 
 post-patch:

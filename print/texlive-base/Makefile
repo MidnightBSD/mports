@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/texlive-base/Makefile 384614 2015-04-23 21:26:09Z bapt $
-
 PORTNAME=	texlive
 PORTVERSION=	20150521
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	TEX_CTAN/systems/texlive/Source/
 PKGNAMESUFFIX=	-base
