@@ -1,9 +1,8 @@
 # Created by: Yukihiro Nakai<Nakai@Mlab.t.u-tokyo.ac.jp>
-# $FreeBSD: head/emulators/snes9x/Makefile 412346 2016-04-01 14:00:51Z mat $
-# $MidnightBSD$
 
 PORTNAME=	snes9x
 PORTVERSION=	1.51
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://files.ipherswipsite.com/snes9x/ \
 		http://www.lysator.liu.se/snes9x/${PORTVERSION}/
@@ -14,10 +13,11 @@ COMMENT=	Super Nintendo Entertainment System(SNES) Emulator
 
 LICENSE=	unknown
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
 USE_XORG=	x11 sm ice xext
 USES=		gmake tar:bzip2
+CXXSTD=		gnu89
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--without-extensions
 CPPFLAGS+=	-I${LOCALBASE}/include
