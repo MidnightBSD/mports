@@ -32,8 +32,6 @@ DTRACE_CONFIGURE_ON=	--with-dtrace
 USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 		localbase shebangfix
 # needs gcc 6 or clang 8
-USE_GCC=	7+
-
 HAS_CONFIGURE=	yes
 
 CONFLICTS_INSTALL=	node[68]-[0-9]* node10-[0-9]* node12-[0-9]*
@@ -76,6 +74,11 @@ BROKEN_SSL+=	base
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64
 CONFIGURE_ARGS+=--openssl-no-asm
+.endif
+
+.if ${OSVERSION} < 200000
+IGNORE=         is for MidnightBSD 2.0 and newer
+USE_GCC=	7+
 .endif
 
 post-patch:
