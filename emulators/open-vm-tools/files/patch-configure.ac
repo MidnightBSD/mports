@@ -1,6 +1,6 @@
---- configure.ac.orig	2018-07-13 14:54:23.000000000 -0400
-+++ configure.ac	2019-04-20 11:07:18.011925000 -0400
-@@ -117,6 +117,9 @@
+--- configure.ac.orig	2020-05-08 16:11:52.000000000 -0400
++++ configure.ac	2020-09-23 14:26:30.034789000 -0400
+@@ -120,6 +120,9 @@
     [linux*])
        os="linux"
        ;;
@@ -10,7 +10,7 @@
     [freebsd*])
        os="freebsd"
        ;;
-@@ -190,6 +193,17 @@
+@@ -193,6 +196,17 @@
              AC_MSG_ERROR([FreeBSD kernel tree not found. Please install the kernel sources (or provide the location using SYSDIR) or configure using --without-kernel-modules.])
           fi
           ;;
@@ -28,7 +28,7 @@
     esac
  fi
  
-@@ -900,6 +914,15 @@
+@@ -915,6 +929,15 @@
  
  AC_CHECK_FUNC([mkdtemp], [have_mkdtemp=yes])
  
@@ -44,7 +44,7 @@
  if test "$os" = "freebsd" -a "$osVersion" -ge 600000; then
     AC_CHECK_LIB(
        [thr],
-@@ -921,7 +944,8 @@
+@@ -936,7 +959,8 @@
  	    [AS_HELP_STRING([--with-pam-prefix],
  		[specifies where pam files go. Default is $(sysconfdir)])],
  	    [PAM_PREFIX="$withval"],
@@ -52,9 +52,9 @@
 +	    [if test "$os" = "freebsd" ; then PAM_PREFIX='$(sysconfdir)'; else PAM_PREFIX='/etc'; fi],
 +	    [if test "$os" = "midnightbsd" ; then PAM_PREFIX='$(sysconfdir)'; else PAM_PREFIX='/etc'; fi])
  
- AC_ARG_WITH([dnet],
- 	    [AS_HELP_STRING([--without-dnet],
-@@ -1171,6 +1195,9 @@
+ if test "$os" = "linux"; then
+    with_dnet_dflt="no"
+@@ -1147,6 +1171,9 @@
  if test "$os" = "freebsd"; then
     ac_cv_header_unwind_h="no"
  fi
@@ -64,28 +64,26 @@
  AC_CHECK_HEADERS([unwind.h])
  
  AC_CHECK_HEADER(
-@@ -1363,6 +1390,12 @@
+@@ -1333,6 +1360,12 @@
     fi
  fi
  
 +if test "$os" == "midnightbsd"; then
 +   LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
 +   MODULES_DIR="/boot/modules"
-+   MODULES="$MODULES vmblock vmmemctl vmxnet"
++   MODULES="$MODULES vmblock vmmemctl"
 +fi
 +
  if test "$os" = "freebsd" || test "$os" = "kfreebsd-gnu"; then
     LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
     MODULES_DIR="/boot/modules"
-@@ -1461,8 +1494,11 @@
- AM_CONDITIONAL(LINUX, test "$os" = "linux")
- AM_CONDITIONAL(SOLARIS, test "$os" = "solaris")
+@@ -1430,6 +1463,9 @@
  AM_CONDITIONAL(FREEBSD, test "$os" = "freebsd" -o "$os" = "kfreebsd-gnu")
-+AM_CONDITIONAL(MIDNIGHTBSD, test "$os" = "midnightbsd")
  AM_CONDITIONAL(FREEBSD_CUSTOM_SYSDIR,
                 test \( "$os" = "freebsd" -o "$os" = "kfreebsd-gnu" \) -a -n "$SYSDIR")
++AM_CONDITIONAL(MIDNIGHTBSD, test "$os" = "midnightbsd")
 +AM_CONDITIONAL(MIDNIGHTBSD_CUSTOM_SYSDIR,
 +               test \( "$os" = "midnightbsd" \) -a -n "$SYSDIR")
- AM_CONDITIONAL(THIRTY_TWO_BIT_USERSPACE, test "$userSpaceBitness" = "32")
- AM_CONDITIONAL(HAVE_X11, test "$have_x" = "yes")
- AM_CONDITIONAL(HAVE_ICU, test "$with_icu" = "yes")
+ AM_CONDITIONAL(ARCH_X32, test "$arch" = "x32")
+ AM_CONDITIONAL(ARCH_X64, test "$arch" = "x64")
+ AM_CONDITIONAL(ARCH_ARM64, test "$arch" = "arm64")

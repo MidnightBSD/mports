@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: head/emulators/open-vm-tools/files/vmware-kmod.in 438529 2017-04-14 17:36:31Z garga $
+# $FreeBSD: head/emulators/open-vm-tools/files/vmware-kmod.in 516083 2019-10-30 16:10:41Z jpaetzel $
 #
 
 # PROVIDE: vmware-kmod
@@ -55,21 +55,6 @@ stop_cmd=":"
 load_rc_config $name
 : ${vmware_guest_kmod_enable:="YES"}
 : ${vmware_guest_vmmemctl_enable:=$vmware_guest_kmod_enable}
-run_rc_command "$1"
-
-# VMware kernel module: vmxnet
-kernel_mod="vmxnet"
-name="vmware_guest_${kernel_mod}"
-rcvar=vmware_guest_${kernel_mod}_enable
-extra_commands="status"
-status_cmd="vmware_mod_status ${kernel_mod}"
-start_precmd="${checkvm_cmd}"
-start_cmd="vmware_mod_load ${kernel_mod}"
-stop_precmd="${checkvm_cmd}"
-stop_cmd=":"
-
-load_rc_config $name
-: ${vmware_guest_vmxnet_enable:=$vmware_guest_kmod_enable}
 run_rc_command "$1"
 
 # VMware kernel module: vmblock
