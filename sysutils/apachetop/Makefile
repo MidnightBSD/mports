@@ -1,46 +1,35 @@
-# $MidnightBSD$
+# Created by: Sebastian Yepes F. <esn@x123.info>
 
 PORTNAME=	apachetop
-PORTVERSION=	0.12.6
-PORTREVISION=	3
+PORTVERSION=	0.18.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.webta.org/apachetop/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Apache RealTime log stats
+COMMENT=	Apache realtime log stats
+
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-MAKE_JOBS_SAFE=  yes
+USES=		autoreconf ncurses readline
+USE_GITHUB=	yes
+GH_ACCOUNT=	tessus
 
-GNU_CONFIGURE=	yes
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	--mandir=${PREFIX}/man
 
-PLIST_FILES=	bin/apachetop man/man1/apachetop.1.gz
+PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
 
 OPTIONS_DEFINE=	ADNS FAM PCRE
+
 ADNS_DESC=	Asynchronous-capable DNS support
+ADNS_LIB_DEPENDS=	libadns.so:dns/adns
+ADNS_CONFIGURE_WITH=	adns=${LOCALBASE}
 
-.include <bsd.mport.options.mk>
+FAM_LIB_DEPENDS=	libfam.so:devel/fam
+FAM_CONFIGURE_WITH=	fam=${LOCALBASE}
 
-.if ${PORT_OPTIONS:MADNS}
-LIB_DEPENDS+=	adns.1:${PORTSDIR}/dns/adns
-CONFIGURE_ARGS+=--with-adns=${LOCALBASE}
-.endif
-
-.if ${PORT_OPTIONS:MFAM}
-LIB_DEPENDS+=	fam.0:${PORTSDIR}/devel/fam
-CONFIGURE_ARGS+=--with-fam=${LOCALBASE}
-.endif
-
-.if ${PORT_OPTIONS:MPCRE}
-LIB_DEPENDS+=	pcre.3:${PORTSDIR}/devel/pcre
-CONFIGURE_ARGS+=--with-pcre=${LOCALBASE}
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -E -e 's,struct (circle_struct),\1,g' \
-		${WRKSRC}/src/hits_circle.*
-	@${REINPLACE_CMD} -E -e 's,enum (adns_queryflags),\1,g' \
-		${WRKSRC}/src/log.*
-	@cd ${WRKSRC} && ${TOUCH} -r configure.ac aclocal.m4 stamp-h.in
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_CONFIGURE_WITH=	pcre=${LOCALBASE}
 
 .include <bsd.port.mk>
