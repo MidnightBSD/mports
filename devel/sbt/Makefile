@@ -27,8 +27,6 @@ PRELOADED_RUN_DEPENDS+=	rsync:net/rsync
 
 ADVANCED_SUB_FILES_OFF=	sbt.sh
 
-PLIST_FILES=	bin/sbt
-
 PORTDATA=	*
 
 .include <bsd.mport.options.mk>

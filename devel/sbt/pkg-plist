@@ -1,0 +1,7 @@
+bin/sbt
+%%DATADIR%%/sbt-launch.jar
+%%DATADIR%%/sbt
+%%DATADIR%%/conf/sbtopts
+%%DATADIR%%/java9-rt-export.jar
+@dir %%DATADIR%%/conf
+@dir %%DATADIR%%
