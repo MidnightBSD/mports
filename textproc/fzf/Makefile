@@ -40,6 +40,8 @@ TMUX_DESC=	Install fzf-tmux (depends on BASH)
 TMUX_RUN_DEPENDS=	bash:shells/bash
 TMUX_PLIST_FILES=	bin/fzf-tmux man/man1/fzf-tmux.1.gz
 
+NO_TEST=	yes
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${MANPREFIX}/man/man1
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
