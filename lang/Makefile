@@ -79,6 +79,7 @@ SUBDIR += python27
 SUBDIR += referenceassemblies-pcl
 SUBDIR += ruby24
 SUBDIR += ruby26
+SUBDIR += rust
 SUBDIR += rust-bin
 SUBDIR += scala
 SUBDIR += spidermonkey185
