@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	bittorrent-libutp
 PORTVERSION=	0.20130514
+PORTREVISION=	1
 CATEGORIES=	net devel
 
 MAINTAINER=	ports@MidnightBSD.org
