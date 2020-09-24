@@ -1,11 +1,10 @@
-# $MidnightBSD$
-
 COMMENT = Monetary, financial and related applications
 
 SUBDIR += expense
 SUBDIR += libofx
-SUBDIR += openhbci
-SUBDIR += opentaxsolver
+SUBDIR += py-bitcoin
+SUBDIR += py-pycoin
+SUBDIR += py-ystockquote
 SUBDIR += wmstock
 
 .include <bsd.port.subdir.mk>
