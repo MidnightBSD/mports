@@ -429,7 +429,7 @@ _LOAD_${EXT:tu}_EXT=	yes
 _ALL_EXT=	charsetfix desthack pathfix pkgconfig compiler kmod uidfix \
 		linux xorg fortran \
 		gcc fmake gmake bison local perl5 \
-		apache autotools bdb cmake cpe cran display dos2unix \
+		ada apache autotools bdb cmake cpe cran display dos2unix \
 		efl eigen emacs erlang execinfo fakeroot fam fonts fuse \
 		gecko gem gettext gettext-tools gettext-runtime ghostscript \
 		gl gnome gnustep go groff gssapi gstreamer iconv imake jpeg kde4 \
@@ -2374,6 +2374,7 @@ do-patch:
 			dp_PATCH_ARGS=${PATCH_ARGS:Q} \
 			dp_PATCH_DEBUG_TMP="${PATCH_DEBUG_TMP}" \
 			dp_PATCH_DIST_ARGS="${PATCH_DIST_ARGS}" \
+			dp_PATCH_CONTINUE_ON_FAIL=${PATCH_CONTINUE_ON_FAIL:Dyes} \
 			dp_PATCH_SILENT="${PATCH_SILENT}" \
 			dp_PATCH_WRKSRC=${PATCH_WRKSRC} \
 			dp_PKGNAME="${PKGNAME}" \
