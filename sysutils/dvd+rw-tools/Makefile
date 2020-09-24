@@ -1,17 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	dvd+rw-tools
 PORTVERSION=	7.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.pkix.net/mirror/fy.chalmers.se/ \
 		http://fy.chalmers.se/~appro/linux/DVD+RW/tools/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DVD burning software
+
 LICENSE=        gpl2
 
 USE_CDRTOOLS=	yes
 
+USES=		gmake
 BIN_FILES=	growisofs dvd+rw-format dvd+rw-booktype dvd+rw-mediainfo dvd-ram-control
 PLIST_FILES=	${BIN_FILES:S|^|bin/|}
 PORTDOCS=	index.html
