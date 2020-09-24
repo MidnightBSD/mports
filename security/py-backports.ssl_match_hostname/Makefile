@@ -20,8 +20,8 @@ NO_TEST=	yes
 POST_PLIST=	trim-backports-namespace
 
 post-install:
-	@${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports/__init__.py*
-	@${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports/__pycache__
+	-${RM} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports/__init__.py*
+	-${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports/__pycache__
 
 trim-backports-namespace:
 	@${REINPLACE_CMD} '/backports\/__init__.py*/d' ${TMPPLIST}
