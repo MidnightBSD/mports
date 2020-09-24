@@ -1,0 +1,20 @@
+--- build-tests.xml.orig	2019-10-30 03:02:29.000000000 -0400
++++ build-tests.xml	2020-09-24 12:01:16.678742000 -0400
+@@ -114,11 +114,15 @@
+         <property name="is.Unix" value="true"/>
+         <property name="is.shell.sh" value="true"/>
+     </target>
+-    
++    <target name="init-midnightbsd" if="is.MidnightBSD">
++        <property name="is.Unix" value="true"/>
++        <property name="is.shell.sh" value="true"/>
++    </target>
++
+     <!-- =================================================================== -->
+     <!-- Initialize build.                                                   -->
+     <!-- =================================================================== -->
+-    <target name="init" depends="init-windows, init-linux, init-solaris, init-aix, init-hpux, init-macosx, init-freebsd">
++    <target name="init" depends="init-windows, init-linux, init-solaris, init-aix, init-hpux, init-macosx, init-freebsd, init-midnightbsd">
+     </target>
+ 
+     <!-- =================================================================== -->

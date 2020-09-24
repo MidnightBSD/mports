@@ -1,0 +1,11 @@
+--- src/bin/sh.script.in.orig	2020-09-24 11:55:27.678581000 -0400
++++ src/bin/sh.script.in	2020-09-24 11:55:44.950836000 -0400
+@@ -1169,7 +1169,7 @@
+                     # The ps statement below looks for the specific wrapper command running as
+                     #  the pid.  If it is not found then the pid file is considered to be stale.
+                     case "$DIST_OS" in
+-                        'freebsd')
++                        'freebsd'|'midnightbsd')
+                             pidtest=`$PS_BIN -p $pid -o args | tail -1`
+                             if [ "X$pidtest" = "XCOMMAND" ]
+                             then 

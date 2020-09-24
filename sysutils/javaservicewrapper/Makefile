@@ -38,6 +38,8 @@ post-patch:
 			s|-liconv|${ICONV_LIB}|' \
 		${WRKSRC}/src/c/Makefile-freebsd-x86-32.gmake \
 		${WRKSRC}/src/c/Makefile-freebsd-x86-64.gmake
+	${CP} ${WRKSRC}/src/c/Makefile-freebsd-x86-32.gmake ${WRKSRC}/src/c/Makefile-midnightbsd-x86-32.gmake
+	${CP} ${WRKSRC}/src/c/Makefile-freebsd-x86-64.gmake ${WRKSRC}/src/c/Makefile-midnightbsd-x86-64.gmake
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}

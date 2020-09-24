@@ -1,0 +1,37 @@
+--- build.xml.orig	2020-09-24 11:57:09.447983000 -0400
++++ build.xml	2020-09-24 11:58:33.077815000 -0400
+@@ -77,6 +77,9 @@
+         <condition property="dist.os" value="freebsd">
+             <equals arg1="${os.name}" arg2="FreeBSD"/>
+         </condition>
++        <condition property="dist.os" value="midnightbsd">
++            <equals arg1="${os.name}" arg2="MidnightBSD"/>
++        </condition>
+         <condition property="dist.os" value="unixware">
+             <equals arg1="${os.name}" arg2="UNIX_SV"/>
+         </condition>
+@@ -386,6 +389,7 @@
+         <condition property="make.name" value="gmake">
+             <or>
+                 <isset property="is.freebsd"/>
++                <isset property="is.midnightbsd"/>
+                 <isset property="is.solaris"/>
+             </or>
+         </condition>
+@@ -403,6 +407,7 @@
+             <or>
+                 <isset property="is.linux"/>
+                 <isset property="is.freebsd"/>
++                <isset property="is.midnightbsd"/>
+                 <isset property="is.solaris"/>
+             </or>
+         </condition>
+@@ -1790,6 +1795,8 @@
+     <target name="release-delta:extract-platforms">
+         <release-delta-extract-platform osname="aix"     osarch="ppc"       bits="32" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
+         <release-delta-extract-platform osname="aix"     osarch="ppc"       bits="64" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
++        <release-delta-extract-platform osname="midnightbsd" osarch="x86"       bits="32" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
++        <release-delta-extract-platform osname="midnightbsd" osarch="x86"       bits="64" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
+         <release-delta-extract-platform osname="freebsd" osarch="x86"       bits="32" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
+         <release-delta-extract-platform osname="freebsd" osarch="x86"       bits="64" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
+         <release-delta-extract-platform osname="hpux"    osarch="ia"        bits="32" wrapperbinhead="wrapper" wrapperbintail=""     wrapperlibhead="libwrapper" wrapperlibtail=".so"     archivetype="tar.gz"/>
