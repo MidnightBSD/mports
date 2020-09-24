@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	fail2ban
-PORTVERSION=	0.10.4
+PORTVERSION=	0.11.1
 CATEGORIES=	security python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -26,7 +24,7 @@ SHEBANG_LANG=	fail2ban-python
 
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
-PYDISTUTILS_INSTALLARGS+=	--install-data=${ETCDIR}
+PYDISTUTILS_INSTALLARGS+=	--install-data=${ETCDIR}  --without-test
 
 FILES=		${WRKSRC}/bin/fail2ban-client \
 		${WRKSRC}/fail2ban/client/configreader.py \

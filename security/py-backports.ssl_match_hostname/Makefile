@@ -15,6 +15,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}backports>0:devel/py-backports@${PY_FLAVOR}
 USES=		python:2.7
 USE_PYTHON=	autoplist distutils
 
+NO_TEST=	yes
+
 POST_PLIST=	trim-backports-namespace
 
 post-install:

@@ -1,9 +1,6 @@
-# $MidnightBSD$
-#
-
 PORTNAME=	OpenSSH-askpass
 PORTVERSION=	1.2.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.jmknoble.net/software/x11-ssh-askpass/
 DISTNAME=	x11-ssh-askpass-${PORTVERSION}
@@ -14,6 +11,9 @@ COMMENT=	Graphical password applet for entering SSH passphrase
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/README
 
+FAKE_OPTS=	trueprefix
+
+USES=		uidfix xorg
 USE_XORG=	x11 xt sm ice
 DOCSDIR=	${PREFIX}/share/doc/ssh-askpass
 PLIST_FILES=	bin/x11-ssh-askpass \
