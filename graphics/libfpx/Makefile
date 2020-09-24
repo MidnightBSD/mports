@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	libfpx
-DISTVERSION=	1.3.1-4
+DISTVERSION=	1.3.1-10
 PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	http://imagemagick.mirrorcatalogs.com/delegates/	\
+MASTER_SITES=	\
 		http://www.imagemagick.org/download/delegates/	\
 		ftp://mirror.aarnet.edu.au/pub/imagemagick/delegates/	\
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/delegates/ \
@@ -18,7 +16,9 @@ COMMENT=	Library routines for working with Flashpix images
 
 LICENSE=	other
 
-USES=		tar:xz
+FAKE_OPTS=	trueprefix
+
+USES=		tar:xz uidfix
 USE_LDCONFIG=	yes
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 
