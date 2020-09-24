@@ -1,2 +1,3 @@
-SHA256 (sshfs-sshfs_2.8_GH0.tar.gz) = f4f771ba0230fd9bb673e1329035f3d4c3455648055c926eaa2274f5bc8d65c7
-SIZE (sshfs-sshfs_2.8_GH0.tar.gz) = 50834
+TIMESTAMP = 1600917773
+SHA256 (libfuse-sshfs-sshfs_2.8_GH0.tar.gz) = f4f771ba0230fd9bb673e1329035f3d4c3455648055c926eaa2274f5bc8d65c7
+SIZE (libfuse-sshfs-sshfs_2.8_GH0.tar.gz) = 50834
