@@ -1,5 +1,6 @@
 PORTNAME=	doxygen
 PORTVERSION=	1.8.15
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://doxygen.nl/files/
