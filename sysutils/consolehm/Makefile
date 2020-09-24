@@ -1,10 +1,8 @@
 # Created by: Mike Muir <mmuir@es.co.nz>
-# $FreeBSD: head/sysutils/consolehm/Makefile 393892 2015-08-10 19:28:57Z amdmi3 $
-# $MidnightBSD$
 
 PORTNAME=	consolehm
 PORTVERSION=	1.31
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	FREEBSD_LOCAL/fenner
 
@@ -16,6 +14,7 @@ LICENSE=	bsd2
 USES=		uidfix
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}/consolehm/consolehm
+MAKE_ARGS+=	-e
 
 PLIST_FILES=	bin/chm man/man8/chm.8.gz
 
