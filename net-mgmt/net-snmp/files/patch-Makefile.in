@@ -5,7 +5,7 @@
  	freebsd2.h freebsd3.h freebsd4.h freebsd5.h freebsd6.h \
  	freebsd7.h freebsd8.h freebsd9.h freebsd10.h freebsd11.h \
 -	freebsd12.h freebsd.h \
-+	freebsd12.h freebsd13.h freebsd.h midnightbsd1.h midnightbsd.h \
++	freebsd12.h freebsd13.h freebsd.h midnightbsd1.h midnightbsd.h midnightbsd2.h \
          generic.h \
  	hpux.h irix.h linux.h mingw32.h mips.h netbsd.h osf5.h \
  	openbsd.h openbsd5.h openbsd4.h \
