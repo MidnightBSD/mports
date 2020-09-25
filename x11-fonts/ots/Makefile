@@ -11,6 +11,7 @@ COMMENT=	OpenType Sanitizer
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS+=	git:devel/git
 LIB_DEPENDS=	libbrotlidec.so:archivers/brotli \
 		libfreetype.so:print/freetype2 \
 		libgtest.so:devel/googletest \
