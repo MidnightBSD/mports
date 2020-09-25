@@ -1,6 +1,6 @@
 PORTNAME=	ptlib
 PORTVERSION=	2.10.11
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -13,7 +13,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 CONFLICTS=	pwlib-1.*
 
-USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
+USES=		autoreconf:build bison:wrapper compiler:c11 gmake localbase:ldflags \
 		pathfix pkgconfig ssl tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -69,8 +69,10 @@ PLIST_SUB+=	DEBUG="@comment "
 .if ${PORT_OPTIONS:MPULSEAUDIO}
 LIB_DEPENDS+=	libpulse.so:audio/pulseaudio
 CONFIGURE_ARGS+=--enable-pulse
+PLIST_SUB+=	PULSEAUDIO=""
 .else
 CONFIGURE_ARGS+=--disable-pulse
+PLIST_SUB+=	PULSEAUDIO="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MJABBER}
