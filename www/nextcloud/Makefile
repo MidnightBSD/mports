@@ -8,7 +8,7 @@ PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Personal cloud which runs on your own server
 
-LICENSE=	apgl
+LICENSE=	agpl
 
 USES=		cpe gettext-runtime php:flavors,web tar:bzip2
 USE_PHP=	bz2 ctype curl dom fileinfo filter gd hash iconv json \

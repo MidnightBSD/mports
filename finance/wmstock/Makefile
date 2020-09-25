@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	wmstock
 PORTVERSION=	0.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	finance windowmaker
 MASTER_SITES=	http://www.mattfischer.com/wmstock/src/
 
@@ -13,8 +11,13 @@ LICENSE=	gpl2
 
 USE_XORG=	xpm
 
-USES=		gmake
+CFLAGS+=	-fcommon
+
+USES=		gmake xorg
 WRKSRC=		${WRKDIR}/wmstock/src
+
+DEPRECATED=  Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wmstock ${PREFIX}/bin
