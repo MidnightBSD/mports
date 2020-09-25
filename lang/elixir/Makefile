@@ -28,6 +28,7 @@ USE_LOCALE=	en_US.UTF-8
 ALL_TARGET=	# empty
 REINPLACE_ARGS=	-i ""
 NO_ARCH=	yes
+NO_TEST=	yes
 OPTIONS_SUB=	yes
 MAKE_ENV=	MAN_PREFIX=${PREFIX}/man
 
@@ -52,8 +53,5 @@ post-install-SRC-on:
 		cd ${WRKSRC}/lib/$${lib}/lib && \
 			${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${PREFIX}/lib/elixir/lib/$${lib}/lib; \
 	done
-
-do-test:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} test
 
 .include <bsd.port.mk>
