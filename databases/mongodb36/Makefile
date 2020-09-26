@@ -51,6 +51,10 @@ OPTIONS_DEFAULT=	SASL SSL
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_MAKE_ARGS=		--use-sasl-client
 
+BROKEN_SSL=     base
+BROKEN_SSL_REASON_base=        no member named 'SSLv2_method' in the global namespace
+BROKEN_MidnightBSD_1=	Compiler and OpenSSL too old
+
 SSL_USES=	ssl
 SSL_MAKE_ARGS=	--ssl
 
