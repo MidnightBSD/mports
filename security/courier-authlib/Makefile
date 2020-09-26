@@ -35,7 +35,6 @@ LIB_DEPENDS+=	libltdl.so:devel/libltdl
 
 USES=	iconv gmake libtool perl5 tar:bzip2
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_SUBMAKE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
@@ -102,7 +101,7 @@ REMOVE_SUBDIRS+=liblock liblog
 .if ${AUTHMOD} == authuserdb
 .if ${PKGNAMESUFFIX} == -usergdbm
 CONFLICTS+=	${PORTNAME}-userdb-0.*
-LIB_DEPENDS+=	gdbm.3:databases/gdbm
+LIB_DEPENDS+=	libgdbm.so:databases/gdbm
 CONFIGURE_ARGS+=--with-db=gdbm
 .elif ${PKGNAMESUFFIX} == -userdb
 CONFLICTS+=	${PORTNAME}-usergdbm-0.*
@@ -125,6 +124,7 @@ CONFIGURE_ARGS+=--without-authldap
 .if ${AUTHMOD} == authmysql
 DOCS=		README.authmysql.html README.authmysql.myownquery
 USE_MYSQL=	yes
+USES+=		compiler:c11 mysql
 CONFIGURE_ARGS+=--with-authmysql \
 		--with-mysql-libs=${LOCALBASE}/lib/mysql \
 		--with-mysql-includes=${LOCALBASE}/include/mysql
@@ -134,6 +134,7 @@ CONFIGURE_ARGS+=--without-authmysql
 
 .if ${AUTHMOD} == authpgsql
 DOCS=		README.authpostgres.html
+USES+=		pgsql
 USE_PGSQL=	yes
 CONFIGURE_ARGS+=--with-authpgsql
 .else
