@@ -1,14 +1,15 @@
-# $MidnightBSD$
-
 PORTNAME=	upsd
 PORTVERSION=	2.0.1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.mavetju.org/download/adopted/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	APC Smart UPS Monitoring Daemon
+
 LICENSE=	unknown
+
+FAKE_OPTS=	trueprefix
 
 WRKSRC=		${WRKDIR}/upsd-2.0
 
