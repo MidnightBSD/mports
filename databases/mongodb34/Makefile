@@ -69,6 +69,10 @@ PORTSCOUT=	limitw:1,even
 
 CPE_PRODUCT=	mongodb
 
+.if ${OSVERSION} > 200000
+BROKEN=         does not build on MidnightBSD 2.0
+.endif
+
 pre-patch:
 	${LN} -sf ${WRKSRC}/src/third_party/wiredtiger/build_freebsd ${WRKSRC}/src/third_party/wiredtiger/build_midnightbsd
 

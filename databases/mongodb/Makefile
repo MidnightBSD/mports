@@ -61,6 +61,10 @@ FAKE_MAKEARGS+=	--use-sasl-client
 LIB_DEPENDS+=	libsasl2.so:security/cyrus-sasl2
 .endif
 
+.if ${OSVERSION} > 200000
+BROKEN=		does not build on MidnightBSD 2.0
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} 's/\["-O3"\]/"${CXXFLAGS}"/' \
 		${WRKSRC}/SConstruct
