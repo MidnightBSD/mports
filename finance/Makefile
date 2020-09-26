@@ -6,6 +6,7 @@ SUBDIR += py-bitcoin
 SUBDIR += py-pycoin
 SUBDIR += py-vatnumber
 SUBDIR += py-ystockquote
+SUBDIR += qtbitcointrader
 SUBDIR += quickfix
 SUBDIR += rubygem-money
 SUBDIR += sql-ledger
