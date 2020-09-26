@@ -1,71 +1,72 @@
-# $MidnightBSD$
-
 PORTNAME=	privoxy
-PORTVERSION=	3.0.19
+PORTVERSION=	3.0.28
 CATEGORIES=	www
-MASTER_SITES=	SF/ijbswa/Sources/${PORTVERSION}%20%28stable%29
+MASTER_SITES=	https://www.privoxy.org/sf-download-mirror/Sources/${PORTVERSION}%20(stable)/ \
+		SF/ijbswa/Sources/${PORTVERSION}%20%28stable%29
 DISTNAME=	privoxy-${PORTVERSION}-stable-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Privoxy is a web proxy with advanced filtering capabilities
+
 LICENSE=	gpl2
 
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
+USES=		autoreconf cpe gmake shebangfix
+
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
-USES=		gmake
-USE_AUTOTOOLS=	autoconf
+GNU_CONFIGURE=	yes
+SHEBANG_FILES=	tools/privoxy-log-parser.pl tools/privoxy-regression-test.pl tools/uagen.pl
 
 USE_RC_SUBR=	privoxy
 SUB_FILES=	pkg-message
 
 MAKEFILE=	GNUmakefile
 
+# privoxy-devel is the development release available at the Privoxy website.
+# It's not (yet) part of the FreeBSD ports collection.
+CONFLICTS=	privoxy-devel-[0-9]*
+
+USERS=		privoxy
+GROUPS=		privoxy
+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS=	ACCEPT_FILTER "Enable support for accf_http(9)" Off \
-		COMPRESSION "Support compression of buffered content" Off \
-		DEBUG "Build with debugging symbols" Off \
-		EDITOR "Support use of the web-based action editor" On \
-		FORCE "Support bypassing of blocks" On \
-		PRIVOXY_TOOLS "Install Privoxy-Log-Parser, uagen, etc." Off \
-		TOGGLE "Support for remote toggling" On
+OPTIONS_DEFINE=	ACCEPT_FILTER BROKEN_STRPTIME COMPRESSION \
+		DEBUG DOCS EDITOR FORCE PRIVOXY_TOOLS TOGGLE
 
-.include <bsd.port.pre.mk>
+ACCEPT_FILTER_DESC=	Support for accf_http(9)
+BROKEN_STRPTIME_DESC=	Enable workaround for standards/173421
+COMPRESSION_DESC=	Support compression of buffered content
+DOCS_DESC=		Let Privoxy serve the user manual
+EDITOR_DESC=		Support use of the web-based action editor
+FORCE_DESC=		Support bypassing of blocks
+PRIVOXY_TOOLS_DESC=	Install Privoxy-Log-Parser, uagen, etc.
+TOGGLE_DESC=		Support for remote toggling
 
-.if defined(WITH_ACCEPT_FILTER)
-CONFIGURE_ARGS+=	 --enable-accept-filter
-.endif
+OPTIONS_DEFAULT=	EDITOR FORCE TOGGLE PRIVOXY_TOOLS
 
-.if defined(WITH_COMPRESSION)
-CONFIGURE_ARGS+=	 --enable-compression
-.endif
+OPTIONS_SUB=	yes
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--with-debug
-.endif
+ACCEPT_FILTER_CONFIGURE_ON=	--enable-accept-filter
 
-.if defined(WITHOUT_EDITOR)
-CONFIGURE_ARGS+=	--disable-editor
-.endif
+BROKEN_STRPTIME_CONFIGURE_ON=	--enable-strptime-sanity-checks
 
-.if defined(WITHOUT_FORCE)
-CONFIGURE_ARGS+=	--disable-force
-.endif
+COMPRESSION_CONFIGURE_ON=	--enable-compression
 
-.if defined(WITHOUT_TOGGLE)
-CONFIGURE_ARGS+=	--disable-toggle
-.endif
+DEBUG_CONFIGURE_ON=	--with-debug
 
-.if defined(WITH_PRIVOXY_TOOLS)
-USE_PERL5_RUN=	yes
-RUN_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
-PLIST_SUB+=	PRIVOXY_TOOLS=""
-.else
-PLIST_SUB+=	PRIVOXY_TOOLS="@comment "
-.endif
+EDITOR_CONFIGURE_OFF=	--disable-editor
+
+FORCE_CONFIGURE_OFF=	--disable-force
+
+TOGGLE_CONFIGURE_OFF=	--disable-toggle
+
+PRIVOXY_TOOLS_USES=	perl5
+PRIVOXY_TOOLS_USE=	PERL5=run
+PRIVOXY_TOOLS_RUN_DEPENDS=	curl:ftp/curl
 
 post-patch:
 	${REINPLACE_CMD} \
@@ -73,55 +74,32 @@ post-patch:
 		-e 's,^\(logdir\) \.,\1 /var/log/privoxy,' \
 		-e 's,^\(actionsfile user\),#\1,' \
 		-e 's,^\(filterfile user\),#\1,' \
-	${WRKSRC}/config
-.if !defined(NOPORTDOCS)
-	${REINPLACE_CMD} \
-		-e 's,^#\(user-manual\) http://www.privoxy.org/user-manual/,\1 ${DOCSDIR}/user-manual,' \
-	${WRKSRC}/config
-.endif
+		${WRKSRC}/config
 	${REINPLACE_CMD} \
 		-e 's,\(/etc/privoxy\),${PREFIX}\1,' ${WRKSRC}/tools/uagen.pl
 
-pre-configure:
-	@cd ${WRKSRC}; ${AUTOHEADER}
-
-pre-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} \
-		${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+post-patch-DOCS-on:
+	${REINPLACE_CMD} \
+		-e 's,^#\(user-manual\) http://www.privoxy.org/user-manual/,\1 ${DOCSDIR}/user-manual,' \
+		${WRKSRC}/config
 
 do-install:
-	@${MKDIR} ${PREFIX}/etc/privoxy/templates
-	@${INSTALL_PROGRAM} ${WRKSRC}/privoxy ${PREFIX}/sbin
-	@${INSTALL_DATA} ${WRKSRC}/templates/[a-z]* ${PREFIX}/etc/privoxy/templates
-.if defined(WITH_PRIVOXY_TOOLS)
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/privoxy/templates
+	${INSTALL_PROGRAM} ${WRKSRC}/privoxy ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_DATA} ${WRKSRC}/templates/[a-z]* ${STAGEDIR}${PREFIX}/etc/privoxy/templates
 .for privoxy_tool in privoxy-log-parser.pl privoxy-regression-test.pl uagen.pl
-	@${INSTALL_SCRIPT} ${WRKSRC}/tools/${privoxy_tool} ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/${privoxy_tool} ${STAGEDIR}${PREFIX}/bin
 .endfor
-.endif
 .for defaultfile in default.action default.filter regression-tests.action
-	@${INSTALL_DATA} ${WRKSRC}/${defaultfile} ${PREFIX}/etc/privoxy
-	@${CHOWN} privoxy:privoxy ${PREFIX}/etc/privoxy/${defaultfile}
-	@${CHMOD} 0640 ${PREFIX}/etc/privoxy/${defaultfile}
+	${INSTALL_DATA} ${WRKSRC}/${defaultfile} ${STAGEDIR}${PREFIX}/etc/privoxy
 .endfor
-	@${MKDIR} ${EXAMPLESDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 .for examplefile in config match-all.action trust user.action
-	@${INSTALL_DATA} ${WRKSRC}/${examplefile} ${EXAMPLESDIR}/
-	@${CHOWN} privoxy:privoxy ${EXAMPLESDIR}/${examplefile}
-	@${CHMOD} 0640 ${EXAMPLESDIR}/${examplefile}
+	${INSTALL_DATA} ${WRKSRC}/${examplefile} ${STAGEDIR}${EXAMPLESDIR}/
 .endfor
-	@${INSTALL_MAN}  ${WRKSRC}/privoxy.1 ${MANPREFIX}/man/man1
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/user-manual
-	@${INSTALL_DATA} ${WRKSRC}/doc/webserver/user-manual/[a-z]* ${DOCSDIR}/user-manual
-	@${INSTALL_DATA} ${WRKSRC}/doc/webserver/p_doc.css ${DOCSDIR}/user-manual
-.endif
+	${INSTALL_MAN}  ${WRKSRC}/privoxy.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/user-manual
+	${INSTALL_DATA} ${WRKSRC}/doc/webserver/user-manual/[a-z]* ${STAGEDIR}${DOCSDIR}/user-manual
+	${INSTALL_DATA} ${WRKSRC}/doc/webserver/p_doc.css ${STAGEDIR}${DOCSDIR}/user-manual
 
-post-install:
-	@${MKDIR} /var/log/privoxy
-	@${CHOWN} privoxy:privoxy /var/log/privoxy
-	@${CHMOD} 0750 /var/log/privoxy
-	@${MKDIR} /var/run/privoxy
-	@${CHOWN} privoxy:privoxy /var/run/privoxy
-	@${CHMOD} 0750 /var/run/privoxy
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

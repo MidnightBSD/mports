@@ -15,6 +15,7 @@ etc/privoxy/templates/cgi-error-file-read-only
 etc/privoxy/templates/cgi-error-modified
 etc/privoxy/templates/cgi-error-parse
 etc/privoxy/templates/cgi-style.css
+etc/privoxy/templates/client-tags
 etc/privoxy/templates/connect-failed
 etc/privoxy/templates/connection-timeout
 etc/privoxy/templates/default
@@ -38,7 +39,6 @@ etc/privoxy/templates/show-request
 etc/privoxy/templates/show-status
 etc/privoxy/templates/show-status-file
 etc/privoxy/templates/show-url-info
-etc/privoxy/templates/show-version
 etc/privoxy/templates/toggle
 etc/privoxy/templates/toggle-mini
 etc/privoxy/templates/untrusted
@@ -66,8 +66,3 @@ etc/privoxy/templates/url-info-osd.xml
 %%EXAMPLESDIR%%/match-all.action
 %%EXAMPLESDIR%%/trust
 %%EXAMPLESDIR%%/user.action
-@dirrm %%EXAMPLESDIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/user-manual
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/
-@dirrm etc/privoxy/templates
-@dirrm etc/privoxy
