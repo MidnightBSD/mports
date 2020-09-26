@@ -1,6 +1,6 @@
---- config/devd.c.orig	2017-03-16 05:24:43 UTC
-+++ config/devd.c
-@@ -0,0 +1,855 @@
+--- config/devd.c.orig	2020-09-26 13:53:50.160149000 -0400
++++ config/devd.c	2020-09-26 13:54:55.804409000 -0400
+@@ -0,0 +1,857 @@
 +/*
 + * Copyright (c) 2012 Baptiste Daroussin
 + * Copyright (c) 2013, 2014 Alex Kozlov
@@ -46,7 +46,9 @@
 +#include <sys/mouse.h>
 +#include <sys/consio.h>
 +#include <sys/ioctl.h>
++#if defined(__MidnightBSD_version) && __MidnightBSD_version > 190000
 +#include <dev/evdev/input.h>
++#endif
 +#include <dev/usb/usb_ioctl.h>
 +#include <dev/usb/usbhid.h>
 +
