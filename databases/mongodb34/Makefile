@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/databases/mongodb34/Makefile 476993 2018-08-12 15:11:38Z joneum $
-
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
 DISTVERSION=	3.4.16
@@ -18,6 +15,7 @@ COMMENT=	Distributed document-oriented "NoSQL" database
 LICENSE=	agpl apache2
 LICENSE_COMB=	multi
 
+BROKEN_MidnightBSD_2=   Does not work with newer compilers
 BROKEN_SSL=	openssl-devel
 BROKEN_SSL_REASON_openssl-devel=	no member named 'SSLv2_method' in the global namespace
 ONLY_FOR_ARCHS=	amd64 aarch64
@@ -68,10 +66,6 @@ ALL_TARGET=	core
 PORTSCOUT=	limitw:1,even
 
 CPE_PRODUCT=	mongodb
-
-.if ${OSVERSION} > 200000
-BROKEN=         does not build on MidnightBSD 2.0
-.endif
 
 pre-patch:
 	${LN} -sf ${WRKSRC}/src/third_party/wiredtiger/build_freebsd ${WRKSRC}/src/third_party/wiredtiger/build_midnightbsd

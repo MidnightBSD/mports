@@ -17,6 +17,7 @@ COMMENT=	NOSQL distributed document-oriented database
 LICENSE=	agpl apache2
 LICENSE_COMB=	multi
 
+BROKEN_MidnightBSD_2=	Does not work with modern compilers
 BROKEN_SSL=	openssl-devel
 BROKEN_SSL_REASON_openssl-devel=	use of undeclared identifier 'BIO_s_file_internal'
 
@@ -59,10 +60,6 @@ FAKE_MAKEARGS+=	--ssl
 .if ${PORT_OPTIONS:MSASL}
 FAKE_MAKEARGS+=	--use-sasl-client
 LIB_DEPENDS+=	libsasl2.so:security/cyrus-sasl2
-.endif
-
-.if ${OSVERSION} > 200000
-BROKEN=		does not build on MidnightBSD 2.0
 .endif
 
 post-patch:
