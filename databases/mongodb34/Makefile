@@ -70,7 +70,7 @@ PORTSCOUT=	limitw:1,even
 CPE_PRODUCT=	mongodb
 
 .if ${OSVERSION} > 200000
-BROKEN=         does not build on MidnightBSD 2.0
+IGNORE=         does not build on MidnightBSD 2.0
 .endif
 
 pre-patch:

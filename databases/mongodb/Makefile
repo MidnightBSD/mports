@@ -62,7 +62,7 @@ LIB_DEPENDS+=	libsasl2.so:security/cyrus-sasl2
 .endif
 
 .if ${OSVERSION} > 200000
-BROKEN=		does not build on MidnightBSD 2.0
+IGNORE=		does not build on MidnightBSD 2.0
 .endif
 
 post-patch:
