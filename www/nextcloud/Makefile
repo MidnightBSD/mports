@@ -1,6 +1,5 @@
 PORTNAME=	nextcloud
-DISTVERSION=	18.0.4
-PORTREVISION=	1
+DISTVERSION=	19.0.3
 CATEGORIES=	www
 MASTER_SITES=	https://download.nextcloud.com/server/releases/
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -11,7 +10,7 @@ COMMENT=	Personal cloud which runs on your own server
 LICENSE=	agpl
 
 USES=		cpe gettext-runtime php:flavors,web tar:bzip2
-USE_PHP=	bz2 ctype curl dom fileinfo filter gd hash iconv json \
+USE_PHP=	bcmath bz2 ctype curl dom fileinfo filter gd gmp hash iconv json \
 		mbstring pdo posix session simplexml xml xmlreader xmlwriter \
 		xsl zip zlib
 
@@ -27,7 +26,7 @@ PLIST_SUB=	NEXTCLOUD_USERNAME=${NEXTCLOUD_USERNAME} \
 
 OPTIONS_DEFINE=		EXIF IMAGICK INTL LDAP PCNTL SMB SSL
 OPTIONS_GROUP=		CACHING
-OPTIONS_GROUP_CACHING=	APCU MEMCACHED OPCACHE REDIS
+OPTIONS_GROUP_CACHING=	APCU OPCACHE REDIS
 OPTIONS_MULTI=		DB
 OPTIONS_MULTI_DB=	MYSQL PGSQL SQLITE
 OPTIONS_DEFAULT=	APCU EXIF INTL LDAP MYSQL OPCACHE SSL
@@ -39,7 +38,6 @@ DB_DESC=	Database backend(s)
 EXIF_DESC=	Image rotation support
 IMAGICK_DESC=	Thumbnail support (recommended)
 INTL_DESC=	International character support (recommended)
-MEMCACHED_DESC=	Distributed data caching using Memcached
 OPCACHE_DESC=	Enable OPcode caching (recommended)
 PCNTL_DESC=	Long-running process control (recommended)
 REDIS_DESC=	Distributed data caching using Redis
