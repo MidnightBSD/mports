@@ -1013,6 +1013,7 @@ SUBDIR += tex-web2c
 SUBDIR += tmake
 SUBDIR += tradcpp
 SUBDIR += upnp
+SUBDIR += utf8cpp
 SUBDIR += uthash
 SUBDIR += valgrind
 SUBDIR += viewvc

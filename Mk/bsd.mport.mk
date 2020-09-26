@@ -1945,6 +1945,16 @@ IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 _TARGETS=	check-sanity pkg fetch checksum extract patch configure all build \
 		fake install reinstall test package 
 
+.for target in ${_TARGETS}
+.if !target(${target})
+${target}:
+	@${IGNORECMD}
+.if defined(INSTALLS_DEPENDS)
+	@${FALSE}
+.endif
+.endif
+.endfor
+
 .endif
 
 .endif
