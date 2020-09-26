@@ -903,6 +903,7 @@ SUBDIR += py-sip
 SUBDIR += py-six
 SUBDIR += py-smmap2
 SUBDIR += py-sortedcontainers
+SUBDIR += py-stdnum
 SUBDIR += py-subversion
 SUBDIR += py-sure
 SUBDIR += py-tabulate
