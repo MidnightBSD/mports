@@ -20,6 +20,8 @@ LICENSE_COMB=	multi
 BROKEN_SSL=	openssl-devel
 BROKEN_SSL_REASON_openssl-devel=	use of undeclared identifier 'BIO_s_file_internal'
 
+CONFLICTS_INSTALL=      mongodb34 mongodb36
+
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libsnappy.so:archivers/snappy \
 		libv8.so:lang/v8 \
