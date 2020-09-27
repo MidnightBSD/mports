@@ -166,6 +166,7 @@ SUBDIR += p5-Image-Info
 SUBDIR += p5-Image-Magick-Iterator
 SUBDIR += p5-Image-PBMlib
 SUBDIR += p5-Image-Size
+SUBDIR += pecl-imagick
 SUBDIR += php72-exif
 SUBDIR += php72-gd
 SUBDIR += php73-exif
