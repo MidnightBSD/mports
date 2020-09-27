@@ -1,5 +1,5 @@
 PORTNAME=	utf8proc
-PORTVERSION=	2.4.0
+PORTVERSION=	2.5.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc devel
 
@@ -18,7 +18,7 @@ PLIST_FILES=	include/utf8proc.h \
 		lib/libutf8proc.a \
 		lib/libutf8proc.so \
 		lib/libutf8proc.so.2 \
-		lib/libutf8proc.so.2.3.1 \
+		lib/libutf8proc.so.2.3.2 \
 		libdata/pkgconfig/libutf8proc.pc
 PORTDOCS=	NEWS.md README.md
 
