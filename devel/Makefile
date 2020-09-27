@@ -432,6 +432,7 @@ SUBDIR += p5-Function-Parameters
 SUBDIR += p5-Getopt-ArgvFile
 SUBDIR += p5-Getopt-Long
 SUBDIR += p5-Getopt-Long-Descriptive
+SUBDIR += p5-Glib
 SUBDIR += p5-Hash-FieldHash
 SUBDIR += p5-Hash-Flatten
 SUBDIR += p5-Hash-MoreUtils
