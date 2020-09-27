@@ -4,6 +4,7 @@ SUBDIR += expense
 SUBDIR += libofx
 SUBDIR += py-bitcoin
 SUBDIR += py-pycoin
+SUBDIR += py-stripe
 SUBDIR += py-vatnumber
 SUBDIR += py-ystockquote
 SUBDIR += qtbitcointrader
