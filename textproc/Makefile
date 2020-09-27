@@ -233,6 +233,7 @@ SUBDIR += py-sphinxcontrib-fulltoc
 SUBDIR += py-sphinxcontrib-htmlhelp
 SUBDIR += py-sphinxcontrib-httpdomain
 SUBDIR += py-sphinxcontrib-jsmath
+SUBDIR += py-sphinxcontrib-qthelp
 SUBDIR += py-sphinxcontrib-serializinghtml
 SUBDIR += py-sphinxcontrib-websupport
 SUBDIR += py-sphinxcontrib-websupport11
