@@ -1,6 +1,6 @@
 PORTNAME=	ZendFramework
 PORTVERSION=	2.3.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	https://packages.zendframework.com/releases/${DISTNAME}/
 
@@ -10,6 +10,7 @@ COMMENT=	Framework for developing PHP web applications
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+IGNORE_WITH_PHP=	74
 CONFLICTS=	ZendFramework-1.*
 
 NO_ARCH=	yes
