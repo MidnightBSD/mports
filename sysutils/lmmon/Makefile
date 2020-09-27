@@ -2,6 +2,7 @@
 
 PORTNAME=	lmmon
 PORTVERSION=	0.65
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	FREEBSD_LOCAL/bf
 
@@ -10,8 +11,13 @@ COMMENT=	Display information gathered from MB power management controller
 LICENSE=	bsd2
 
 
+USES=		ncurses uidfix
 GNU_CONFIGURE=	yes
-PLIST_FILES=	bin/lmmon
+MAKE_ARGS+=	LDFLAGS="${LDFLAGS} -lncurses"
+
+ONLY_FOR_ARCHS=	i386 amd64
+
+PLIST_FILES=	bin/lmmon man/man8/lmmon.8.gz
 
 FIXFILES=	configure configure.in lmmon.c
 

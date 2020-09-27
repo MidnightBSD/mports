@@ -3,8 +3,8 @@
 @dir libexec/couchdb2/lib/couch-%%VERSION%%-RC3/priv/icu_driver
 @dir(couchdb,couchdb,700) /var/db/couchdb2
 @dir(couchdb,couchdb,700) /var/log/couchdb2
-@sample(couchdb,couchdb,640) %%ETCDIR%%/local.ini.sample
-@sample(couchdb,couchdb,640) %%ETCDIR%%/vm.args.sample
+@sample(couchdb,couchdb,640) etc/couchdb2/local.ini.sample
+@sample(couchdb,couchdb,640) etc/couchdb2/vm.args.sample
 libexec/couchdb2/LICENSE
 @mode 0755
 libexec/couchdb2/bin/couchdb

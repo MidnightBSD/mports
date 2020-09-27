@@ -1,6 +1,6 @@
 PORTNAME?=	xorg-server
 PORTVERSION?=	1.20.8
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -10,6 +10,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	X.Org X server and related programs
 
 LICENSE=	mit
+
+PATCH_SITES=	https://gitlab.freedesktop.org/xorg/xserver/-/commit/
+PATCHFILES+=	271934db9f3b1297754b29855646e0a4ee01db59.diff:-p1
+PATCHFILES+=	aac28e162e5108510065ad4c323affd6deffd816.diff:-p1
+PATCHFILES+=	1d3a1092c30af660b1366fcd344af745590aa29f.diff:-p1
+PATCHFILES+=	eff3f6cdd398bfac040351e99e64baf3bf64fa2e.diff:-p1
+PATCHFILES+=	5b384e7678c5a155dd8752f018c8292153c1295e.diff:-p1
+PATCHFILES+=	705d7213935820d9f56563ee9e17aa9beb365c1e.diff:-p1
 
 RUN_DEPENDS+=	xkeyboard-config>=2.5:x11/xkeyboard-config \
 		xkbcomp:x11/xkbcomp
@@ -21,6 +29,7 @@ OPTIONS_DEFINE+=	SUID
 SUID_DESC=	Install the Xorg server with setuid bit set
 OPTIONS_DEFAULT=SUID
 
+#USE_GCC=7
 
 .include <bsd.mport.options.mk>
 
@@ -44,7 +53,6 @@ USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
 CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
 		--localstatedir=/var --with-shared-memory-dir=/tmp \
 		--disable-config-udev --disable-config-udev-kms \
-		--disable-config-hal --enable-config-devd \
 		--without-dtrace --enable-glamor
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	x.org
@@ -71,10 +79,16 @@ PLIST=		${.CURDIR}/pkg-plist
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 200000                                                                                                                                                 
+.if ${OSVERSION} < 200000
+LIB_DEPENDS+=   libhal.so:sysutils/hal
+CONFIGURE_ARGS+=        --enable-config-hal --disable-config-devd
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+EXTRA_PATCHES+=         ${FILESDIR}/extra-patch-config_devd_1.c
 .else
+CONFIGURE_ARGS+=        --disable-config-hal --enable-config-devd
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-config_devd_2.c \
+			${FILESDIR}/extra-patch-config_Makefile.in
 .endif
 
 .if ${SSL_DEFAULT} == base
@@ -116,11 +130,13 @@ post-patch:
 		${WRKSRC}/hw/xfree86/dixmods/Makefile.in
 
 post-configure:
+.if ${OSVERSION} >= 200000
 	@${REINPLACE_CMD} -e 's|config\.c|config.c devd.c|g' \
 		-e 's|config\.lo|config.lo devd.lo|g' \
 		${WRKSRC}/config/Makefile
 	@${REINPLACE_CMD} -e 's|^/\* #undef CONFIG_UDEV \*/|#define CONFIG_DEVD 1|' \
 		${WRKSRC}/include/dix-config.h
+.endif
 
 .if ${SLAVE_PORT} == "no"
 post-install:

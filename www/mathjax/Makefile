@@ -18,11 +18,11 @@ USE_GITHUB=	yes
 # Changing permissions of 30k files with find -exec (COPYTREE) is way
 # too slow.
 do-install:
-	${MKDIR} ${FAKE_DESTDIR}${WWWDIR}
+	${MKDIR} ${WWWDIR}
 	(cd ${WRKSRC} && \
-		${FIND} -d . | ${CPIO} -dumpl ${FAKE_DESTDIR}${WWWDIR} >/dev/null 2>&1)
-	${FIND} -d ${FAKE_DESTDIR}${WWWDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
-	${FIND} -d ${FAKE_DESTDIR}${WWWDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} ${SHAREMODE}
+		${FIND} -d . | ${CPIO} -dumpl ${WWWDIR} >/dev/null 2>&1)
+	${FIND} -d ${WWWDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	${FIND} -d ${WWWDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} ${SHAREMODE}
 	@(cd ${PREFIX}; ${FIND} -s ${WWWDIR_REL} -not -type d) >> ${TMPPLIST}
 
 .include <bsd.port.mk>
