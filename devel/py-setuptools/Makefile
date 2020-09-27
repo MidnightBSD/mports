@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USES=		python zip
-USE_PYTHON=	autoplist concurrent distutils allflavors
+USE_PYTHON=	allflavors autoplist concurrent distutils
 
 PYDISTUTILS_SETUP=	${PYSETUP}
 
