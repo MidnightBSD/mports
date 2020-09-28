@@ -2,8 +2,10 @@ COMMENT = Monetary, financial and related applications
 
 SUBDIR += expense
 SUBDIR += libofx
+SUBDIR += prestashop
 SUBDIR += py-bitcoin
 SUBDIR += py-pycoin
+SUBDIR += py-stripe
 SUBDIR += py-vatnumber
 SUBDIR += py-ystockquote
 SUBDIR += qtbitcointrader

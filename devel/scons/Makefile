@@ -1,10 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
-
 PORTNAME=	scons
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.2
 CATEGORIES=	devel python
 MASTER_SITES=	SF
+PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build tool alternative to make
@@ -14,12 +12,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	gm4:devel/m4
 
-USES=		python:2.7 shebangfix
-USE_PYTHON=	autoplist distutils
+USES=		python shebangfix
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 
-PLIST_SUB+=	SCONS_VER=${PORTVERSION}
+PLIST_SUB=	SCONS_VER=${PORTVERSION}
 
 SHEBANG_FILES=	script/scons*
 
@@ -27,4 +25,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|distutils\(\.command\.install\)$$|setuptools\1|; s|distutils\(\.command\.install\.\)|setuptools\1|' ${WRKSRC}/setup.py
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+PYDISTUTILS_INSTALLARGS+=	--standard-lib
+
+.include <bsd.port.post.mk>

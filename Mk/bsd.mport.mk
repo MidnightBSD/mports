@@ -41,7 +41,18 @@ LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
 NOTPHONY?=
 FLAVORS?=
 FLAVOR?=
+# Disallow forced FLAVOR as make argument since we cannot change it to the
+# proper default.
+.if empty(FLAVOR) && !empty(.MAKEOVERRIDES:MFLAVOR)
+.error FLAVOR may not be passed empty as a make argument.
+.endif
+# Store env FLAVOR for later
+.if !defined(_FLAVOR)
+_FLAVOR:=       ${FLAVOR}
+.endif
+.if !defined(PORTS_FEATURES) && empty(${PORTS_FEATURES:MFLAVORS})
 PORTS_FEATURES+=        FLAVORS
+.endif
 
 CONFIGURE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 				XDG_CONFIG_HOME=${WRKDIR} \
@@ -53,7 +64,13 @@ MAKE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
-                                   ${FAKE_DESTDIR}${TRUE_PREFIX} ${BINARY_LINKDIR}
+                                   ${FAKE_DESTDIR}${TRUE_PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR}
+
+# Ensure .CURDIR contains an absolute path without a trailing slash.  Failed
+# builds can occur when PORTSDIR is a symbolic link, or with something like
+# make -C /usr/mports/category/port/.
+.CURDIR:=		${.CURDIR:tA}
+
 
 # make sure bmake treats -V as expected
 .MAKE.EXPAND_VARIABLES= yes
@@ -63,20 +80,8 @@ MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
-.if !empty(FLAVOR)
-.  if empty(FLAVORS)
-IGNORE= FLAVOR is defined while this port does not have FLAVORS.
-.  elif ! ${FLAVORS:M${FLAVOR}}
-IGNORE= Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
-.  endif
-.endif
-
-.if !empty(FLAVORS) && empty(FLAVOR)
-FLAVOR= ${FLAVORS:[1]}
-.endif
-
 # Do not leak flavors to childs make
-.MAKEOVERRIDES:=        ${MAKEOVERRIDES:NFLAVOR=*}
+.MAKEOVERRIDES:=	${MAKEOVERRIDES:NFLAVOR=*}
 
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.

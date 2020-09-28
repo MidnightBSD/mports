@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/textproc/py-sphinx_rtd_theme/Makefile 392010 2015-07-14 14:50:44Z robak $
-
 PORTNAME=	sphinx_rtd_theme
-PORTVERSION=	0.4.0
+PORTVERSION=	0.4.3
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

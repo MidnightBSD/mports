@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	svgalib
 PORTVERSION=	1.4.3
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.svgalib.org/
 
