@@ -22,6 +22,10 @@
 
 MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 
+LANG=		C
+LC_ALL=		C
+.export		LANG LC_ALL
+
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
@@ -41,6 +45,8 @@ LIB_DIRS?=		/lib /usr/lib ${LOCALBASE}/lib
 NOTPHONY?=
 FLAVORS?=
 FLAVOR?=
+OVERLAYS?=
+REWARNFILE=	${WRKDIR}/reinplace_warnings.txt
 # Disallow forced FLAVOR as make argument since we cannot change it to the
 # proper default.
 .if empty(FLAVOR) && !empty(.MAKEOVERRIDES:MFLAVOR)
@@ -48,10 +54,10 @@ FLAVOR?=
 .endif
 # Store env FLAVOR for later
 .if !defined(_FLAVOR)
-_FLAVOR:=       ${FLAVOR}
+_FLAVOR:=	${FLAVOR}
 .endif
 .if !defined(PORTS_FEATURES) && empty(${PORTS_FEATURES:MFLAVORS})
-PORTS_FEATURES+=        FLAVORS
+PORTS_FEATURES+=	FLAVORS
 .endif
 
 CONFIGURE_ENV+=		XDG_DATA_HOME=${WRKDIR} \
@@ -77,11 +83,41 @@ _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${WRKDIR} ${EXTRACT_WRKDIR} \
 
 MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
+WRAPPERSDIR?=		${PORTSDIR}/Mk/wrappers/
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
 # Do not leak flavors to childs make
-.MAKEOVERRIDES:=	${MAKEOVERRIDES:NFLAVOR=*}
+.MAKEOVERRIDES:=	${.MAKEOVERRIDES:NFLAVOR}
+
+.if defined(CROSS_TOOLCHAIN)
+.if !defined(CROSS_SYSROOT)
+IGNORE=		CROSS_SYSROOT should be defined
+.endif
+.include "${LOCALBASE}/share/toolchains/${CROSS_TOOLCHAIN}.mk"
+# Do not define CPP on purpose
+.if !defined(HOSTCC)
+HOSTCC:=	${CC}
+HOSTCXX:=	${CXX}
+.endif
+.if !defined(CC_FOR_BUILD)
+CC_FOR_BUILD:= ${HOSTCC}
+CXX_FOR_BUILD:=	${HOSTCXX}
+.endif
+CONFIGURE_ENV+= HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" CC_FOR_BUILD="${CC_FOR_BUILD}" CXX_FOR_BUILD="${CXX_FOR_BUILD}"
+
+CC=		${XCC} --sysroot=${CROSS_SYSROOT}
+CXX=		${XCXX} --sysroot=${CROSS_SYSROOT}
+CPP=		${XCPP} --sysroot=${CROSS_SYSROOT}
+.for _tool in AS AR LD NM OBJCOPY RANLIB SIZE STRINGS
+${_tool}=	${CROSS_BINUTILS_PREFIX}${_tool:tl}
+.endfor
+LD+=		--sysroot=${CROSS_SYSROOT}
+STRIP_CMD=	${CROSS_BINUTILS_PREFIX}strip
+# only bmake supports the below
+STRIPBIN=	${STRIP_CMD}
+.export.env STRIPBIN
+.endif
 
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
@@ -147,9 +183,32 @@ MAINTAINER?=	ports@MidnightBSD.org
 
 # Get the architecture
 .if !defined(ARCH)
-ARCH!=	${UNAME} -p
+ARCH!=	${UNAME} -p   
+.endif
+HOSTARCH:=	${ARCH}
+.if defined(CROSS_TOOLCHAIN)
+ARCH=	${CROSS_TOOLCHAIN:C,-.*$,,}
 .endif
 _EXPORTED_VARS+=	ARCH
+
+.if ${ARCH} == powerpc64
+.  if !defined(PPC_ABI)
+PPC_ABI!=	${CC} -dM -E - < /dev/null | ${AWK} '/_CALL_ELF/{print "ELFv"$$3}'
+.    if ${PPC_ABI} != ELFv2
+PPC_ABI=	ELFv1
+.    endif
+.  endif
+_EXPORTED_VARS+=	PPC_ABI
+.endif
+
+# Get operating system versions for a cross build
+.if defined(CROSS_SYSROOT)
+.if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
+.error CROSS_SYSROOT does not include /usr/include/sys/param.h.
+.endif
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
+_OSRELEASE!=	${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
+.endif
 
 # Get the operating system type
 .if !defined(OPSYS)
@@ -168,15 +227,44 @@ _EXPORTED_VARS+=	OSREL
 
 # Get __MidnightBSD_version
 .if !defined(OSVERSION)
-.if exists(${DESTDIR}/usr/include/sys/param.h)
-OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
+.if exists(/usr/include/sys/param.h)
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < /usr/include/sys/param.h
 .elif exists(${SRC_BASE}/sys/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
 .else
-OSVERSION!=	${SYSCTL} -n kern.osreldate
+.error Unable to determine OS version.  Either define OSVERSION, install /usr/include/sys/param.h or define SRC_BASE.
 .endif
 .endif
 _EXPORTED_VARS+=	OSVERSION
+
+.if (${OSVERSION} < 12000)
+_UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
+				are guaranteed to build on this system. Please upgrade to a supported release.
+. if defined(ALLOW_UNSUPPORTED_SYSTEM)
+WARNING+=		"${_UNSUPPORTED_SYSTEM_MESSAGE}"
+. else
+show-unsupported-system-error:
+	@${ECHO_MSG} "/!\\ ERROR: /!\\"
+	@${ECHO_MSG}
+	@${ECHO_MSG} "${_UNSUPPORTED_SYSTEM_MESSAGE}" | ${FMT_80}
+	@${ECHO_MSG}
+	@${ECHO_MSG} "No support will be provided if you silence this message by defining ALLOW_UNSUPPORTED_SYSTEM." | ${FMT_80}
+	@${ECHO_MSG}
+	@${FALSE}
+. endif
+.endif
+
+# Convert OSVERSION to major release number
+_OSVERSION_MAJOR=      ${OSVERSION:C/([0-9])([0-9][0-9])[0-9]{3}/\1/}
+# Sanity checks for chroot/jail building.
+# Skip if OSVERSION specified on cmdline for testing. Only works for bmake.
+.if !defined(.MAKEOVERRIDES) || !${.MAKEOVERRIDES:MOSVERSION}
+.if ${_OSVERSION_MAJOR} != ${_OSRELEASE:R:R}
+.error UNAME_r (${_OSRELEASE}) and OSVERSION (${OSVERSION}) do not agree on major version number.
+.elif ${_OSVERSION_MAJOR} != ${OSREL:R:R}
+.error OSREL (${OSREL}) and OSVERSION (${OSVERSION}) do not agree on major version number.
+.endif
+.endif
 
 MASTERDIR?=	${.CURDIR}
 
@@ -247,7 +335,7 @@ USE_SUBMAKE=	yes
 .endif
 
 # where 'make config' records user configuration options
-PORT_DBDIR?=	${DESTDIR}/var/db/ports
+PORT_DBDIR?=	/var/db/ports
 
 UID_FILES?=	${PORTSDIR}/UIDs
 GID_FILES?=	${PORTSDIR}/GIDs
@@ -529,7 +617,7 @@ ${v}=	flavor "${FLAVOR}" ${${FLAVOR}_${v}}
 .endif # defined(${FLAVOR})
 
 .if defined(USE_GCPIO)
-EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
+EXTRACT_DEPENDS+=       gcpio:archivers/gcpio
 .endif
 
 .if defined(USE_BZIP2)
@@ -825,15 +913,15 @@ MANCOMPRESSED?=	no
 
 .if defined(PATCHFILES)
 .if ${PATCHFILES:M*.zip}x != x
-PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
+PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .endif
 .endif
 
 .if defined(USE_LHA)
-EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
+EXTRACT_DEPENDS+=	lha:archivers/lha
 .endif
 .if defined(USE_MAKESELF)
-EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
+EXTRACT_DEPENDS+=	unmakeself:archivers/unmakeself
 .endif
 
 _TEST_LD=/usr/bin/ld
@@ -851,7 +939,7 @@ USE_BINUTILS=   yes
 .endif
 
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
-BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
 	READELF SIZE STRINGS
 BINUTILS_NO_MAKE_ENV?=
@@ -927,6 +1015,9 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 .if defined(USE_LOCAL_MK)
 EXTENSIONS+=	local
 .endif
+.for odir in ${OVERLAYS}
+.sinclude "${odir}/Mk/bsd.overlay.mk"
+.endfor
 
 .if defined(XORG_CAT)
 EXTENSIONS+=xorg
@@ -1219,7 +1310,7 @@ MPORT_CREATE_ARGS+=	-e ${PKG_NOTE_cpe}
 .endif
 
 .if defined(PKG_NOTE_deprecated) && (${OSVERSION} > 10000) 
-MPORT_CREATE_ARGS+=	-x ${PKG_NOTE_deprecated}
+MPORT_CREATE_ARGS+=	-x ${PKG_NOTE_deprecated:Q}
 .endif
 
 .if defined(PKG_NOTE_expiration_date) && (${OSVERSION} > 10000) 
@@ -3351,6 +3442,7 @@ ${deptype:tl}-depends:
                 dp_SH="${SH}" \
                 dp_SCRIPTSDIR="${SCRIPTSDIR}" \
                 PORTSDIR="${PORTSDIR}" \
+		dp_OVERLAYS="${OVERLAYS}" \
                 dp_MAKE="${MAKE}" \
                 dp_MAKEFLAGS='${.MAKEFLAGS}' \
                 ${SH} ${SCRIPTSDIR}/do-depends.sh
@@ -4274,6 +4366,15 @@ install-desktop-entries:
 create-binary-alias: ${BINARY_LINKDIR}
 .for target src in ${BINARY_ALIAS:C/=/ /}
 	@${RLN} `which ${src}` ${BINARY_LINKDIR}/${target}
+.endfor
+.endif
+.endif
+
+.if !empty(BINARY_WRAPPERS)
+.if !target(create-binary-wrappers)
+create-binary-wrappers: ${BINARY_LINKDIR} 
+.for bin in ${BINARY_WRAPPERS}
+	@${INSTALL_SCRIPT} ${WRAPPERSDIR}/${bin} ${BINARY_LINKDIR}
 .endfor
 .endif
 .endif
