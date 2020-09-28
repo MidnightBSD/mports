@@ -1,30 +1,32 @@
-# $MidnightBSD$
+# Created by: Carey Jones <mcj@acquiesce.org>
 
 PORTNAME=	mpg123
-PORTVERSION=	1.21.0
-PORTREVISION=	1
-CATEGORIES=	audio ipv6
+PORTVERSION=	1.25.13
+CATEGORIES=	audio
 MASTER_SITES=	SF \
 		http://www.mpg123.de/download/
 
-MAINTAINER=	ports@midnightbsd.org
-COMMENT=	Command-line player for MPEG layer 1, 2 and 3 audio
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Command-line player for MPEG Layer 1, 2, and 3 audio files
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
-
-USES=		tar:bzip2 gmake libtool pathfix
+USES=		tar:bzip2 libtool localbase pathfix
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-optimization=0 \
-		--with-audio=oss \
-		--with-default-audio=oss \
-		--with-module-suffix=.so
-CONFIGURE_ENV=	CONFIG_SHELL=${SH}
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--with-optimization=0
+
+INSTALL_TARGET=	install-strip
+
+OPTIONS_DEFINE=	SNDIO
+OPTIONS_SUB=	yes
+
+SNDIO_CONFIGURE_ON=	--with-audio=sndio,oss \
+			--with-default-audio=sndio
+SNDIO_CONFIGURE_OFF=	--with-audio=oss \
+			--with-default-audio=oss
+SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 
 .include <bsd.port.pre.mk>
 
@@ -40,6 +42,8 @@ WITH_CPU=	i486
 .endif
 .elif ${ARCH} == "amd64"
 WITH_CPU=	x86-64
+.elif ${ARCH} == "arm"
+WITH_CPU=	arm_nofpu
 .endif
 
 .if defined(WITH_CPU)
