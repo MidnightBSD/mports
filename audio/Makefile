@@ -78,6 +78,7 @@ SUBDIR += libgme
 SUBDIR += libid3tag
 SUBDIR += liblo
 SUBDIR += libmad
+SUBDIR += libmatemixer
 SUBDIR += libmikmod
 SUBDIR += libmodplug
 SUBDIR += libmpd
