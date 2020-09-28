@@ -8211,8 +8211,6 @@ go/test/fixedbugs/issue27695c.go
 go/test/fixedbugs/issue27718.go
 go/test/fixedbugs/issue27732a.go
 go/test/fixedbugs/issue27829.go
-go/test/fixedbugs/issue27836.dir/Äfoo.go
-go/test/fixedbugs/issue27836.dir/Ämain.go
 go/test/fixedbugs/issue27836.go
 go/test/fixedbugs/issue27938.go
 go/test/fixedbugs/issue27961.go
