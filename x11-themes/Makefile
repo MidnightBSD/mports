@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = X11 themes
 
 SUBDIR += adwaita-icon-theme
@@ -17,6 +15,7 @@ SUBDIR += icon-naming-utils
 SUBDIR += icons-tango
 SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
+SUBDIR += mate-icon-theme
 SUBDIR += midnightbsd-backgrounds
 SUBDIR += qt5-style-plugins
 SUBDIR += slim-themes
