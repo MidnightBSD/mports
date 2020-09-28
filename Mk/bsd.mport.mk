@@ -1310,7 +1310,7 @@ MPORT_CREATE_ARGS+=	-e ${PKG_NOTE_cpe}
 .endif
 
 .if defined(PKG_NOTE_deprecated) && (${OSVERSION} > 10000) 
-MPORT_CREATE_ARGS+=	-x ${PKG_NOTE_deprecated}
+MPORT_CREATE_ARGS+=	-x ${PKG_NOTE_deprecated:Q}
 .endif
 
 .if defined(PKG_NOTE_expiration_date) && (${OSVERSION} > 10000) 
@@ -3442,6 +3442,7 @@ ${deptype:tl}-depends:
                 dp_SH="${SH}" \
                 dp_SCRIPTSDIR="${SCRIPTSDIR}" \
                 PORTSDIR="${PORTSDIR}" \
+		dp_OVERLAYS="${OVERLAYS}" \
                 dp_MAKE="${MAKE}" \
                 dp_MAKEFLAGS='${.MAKEFLAGS}' \
                 ${SH} ${SCRIPTSDIR}/do-depends.sh
