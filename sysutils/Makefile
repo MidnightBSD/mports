@@ -92,6 +92,7 @@ SUBDIR += logstash6
 SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += lttng-ust
+SUBDIR += mate-control-center
 SUBDIR += mate-polkit
 SUBDIR += mate-settings-daemon
 SUBDIR += mcelog
