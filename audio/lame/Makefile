@@ -1,10 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	lame
-PORTVERSION=	3.99.5
-PORTREVISION=	1
+PORTVERSION=	3.100
 CATEGORIES=	audio
-MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.99
+MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.100
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MP3 encoder kit
@@ -28,7 +25,7 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
-BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
+BUILD_DEPENDS+=	nasm:devel/nasm
 .endif
 
 post-patch:
