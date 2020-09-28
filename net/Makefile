@@ -48,6 +48,7 @@ SUBDIR += ldapdiff
 SUBDIR += libdnet
 SUBDIR += libgrss
 SUBDIR += libgweather
+Subdir += libmateweather
 SUBDIR += libmaxminddb
 SUBDIR += libnatpmp
 SUBDIR += libnet

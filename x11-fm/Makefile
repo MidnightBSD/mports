@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 COMMENT = X11 file managers
 
+SUBDIR += caja
 SUBDIR += gentoo
 SUBDIR += nautilus
 SUBDIR += nemo

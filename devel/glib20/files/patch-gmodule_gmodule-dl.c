@@ -4,7 +4,7 @@
  static gpointer
  _g_module_self (void)
  {
-+#if !defined(__FreeBSD__) && !defined(__MidnightBSD__)
++#ifndef __FreeBSD__
    gpointer handle;
    
    /* to query symbols from the program itself, special link options

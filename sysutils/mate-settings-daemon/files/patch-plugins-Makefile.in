@@ -1,0 +1,11 @@
+--- plugins/Makefile.in.bak	2020-08-13 08:36:00.000000000 -0400
++++ plugins/Makefile.in	2020-09-27 22:57:37.357669000 -0400
+@@ -381,7 +381,7 @@
+ top_srcdir = @top_srcdir@
+ NULL = 
+ enabled_plugins = a11y-keyboard a11y-settings background clipboard \
+-	datetime dummy housekeeping keybindings keyboard media-keys \
++	dummy housekeeping keybindings keyboard media-keys \
+ 	mpris mouse sound typing-break xrandr xrdb xsettings $(NULL) \
+ 	$(am__append_1) $(am__append_3)
+ disabled_plugins = $(NULL) $(am__append_2) $(am__append_4)

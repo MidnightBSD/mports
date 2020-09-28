@@ -43,6 +43,7 @@ SUBDIR += lumina-notify
 SUBDIR += lumina-screenshot
 SUBDIR += lumina-textedit
 SUBDIR += lumina-xdg-entry
+SUBDIR += mate-notification-daemon
 SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += orage
