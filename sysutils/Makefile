@@ -93,6 +93,7 @@ SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += lttng-ust
 SUBDIR += mate-polkit
+SUBDIR += mate-settings-daemon
 SUBDIR += mcelog
 SUBDIR += mdf2iso
 SUBDIR += memtest86
