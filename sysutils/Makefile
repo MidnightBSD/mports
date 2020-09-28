@@ -92,6 +92,7 @@ SUBDIR += logstash6
 SUBDIR += lscpu
 SUBDIR += lsof
 SUBDIR += lttng-ust
+SUBDIR += mate-polkit
 SUBDIR += mcelog
 SUBDIR += mdf2iso
 SUBDIR += memtest86

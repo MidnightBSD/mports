@@ -31,6 +31,7 @@ SUBDIR += libbonoboui
 SUBDIR += libgdiplus
 SUBDIR += libgnomeui
 SUBDIR += libsexy
+SUBDIR += libunique3
 SUBDIR += libwnck
 SUBDIR += libwnck3
 SUBDIR += libxfce4gui
