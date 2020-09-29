@@ -1,5 +1,6 @@
 PORTNAME=	qjson
 DISTVERSION=	0.9.0
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-qt5
 
@@ -31,7 +32,7 @@ post-build-DOXYGEN-on:
 	cd ${WRKSRC}/doc && doxygen
 
 post-install-DOXYGEN-on:
-	${MKDIR} ${STAGEDIR}${_DOCSDIR}
-	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${STAGEDIR}${_DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${_DOCSDIR}
+	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${_DOCSDIR}
 
 .include <bsd.port.mk>
