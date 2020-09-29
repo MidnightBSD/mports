@@ -1,3 +1,3 @@
-TIMESTAMP = 1568425983
-SHA256 (bash-completion-2.8_GH0.tar.gz) = c3f1bacac64bc69e3dfb9b1ef79ddbf755aac441b452845531950f1643bed25f
-SIZE (bash-completion-2.8_GH0.tar.gz) = 326534
+TIMESTAMP = 1601407773
+SHA256 (scop-bash-completion-2.10_GH0.tar.gz) = 185f5c912440cc99c066315047dcced7e314ded24cf08732125bd24ad928d29f
+SIZE (scop-bash-completion-2.10_GH0.tar.gz) = 354746

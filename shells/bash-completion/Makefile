@@ -1,8 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	bash-completion
-PORTVERSION=	2.8
-PORTREVISION=	2
+PORTVERSION=	2.10
 PORTEPOCH=	1
 CATEGORIES=	shells
 
