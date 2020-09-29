@@ -1,11 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	libsigc++
 PORTVERSION=	1.2.7
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.2
+MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	12
 DIST_SUBDIR=	gnome2
 
@@ -20,5 +17,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
+
+BINARY_WRAPPERS=	gm4
 
 .include <bsd.port.mk>
