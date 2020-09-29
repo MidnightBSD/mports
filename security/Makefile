@@ -24,6 +24,7 @@ SUBDIR += dirmngr
 SUBDIR += doas
 SUBDIR += duo
 SUBDIR += easy-rsa
+SUBDIR += f-prot
 SUBDIR += fakeroot
 SUBDIR += firewalk
 SUBDIR += gcr
