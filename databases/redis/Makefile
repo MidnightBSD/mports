@@ -96,7 +96,7 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 
 post-patch:
 .if ${PORT_OPTIONS:MJEMALLOC}
-	@${REINPLACE_CMD} '35s!Linux!FreeBSD!g' ${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} '35s!Linux!MidnightBSD!g' ${WRKSRC}/src/Makefile
 .endif
 .if ${PORT_OPTIONS:MLUA} || ${PORT_OPTIONS:MLUAJIT} || ${PORT_OPTIONS:MLUAJITOR}
 	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/
