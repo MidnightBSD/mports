@@ -11,7 +11,7 @@ COMMENT=	Platform for continuous inspection of code quality
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libbiconv.so:converters/libiconv
+LIB_DEPENDS=	libiconv.so:converters/libiconv
 RUN_DEPENDS=	javaservicewrapper:sysutils/javaservicewrapper
 
 NO_ARCH=	yes
