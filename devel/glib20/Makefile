@@ -28,27 +28,15 @@ MESON_ARGS=	-Db_lundef=false \
 		-Dselinux=disabled \
 		-Dinstalled_tests=false \
 		-Ddefault_library=both \
-		-Dxattr=false \
-		-Dmandir=${FAKE_DESTDIR}${MANPREFIX}
+		-Dxattr=false
 #BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 LIBVERSION=	0.6600.0
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
-glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
-gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
-		glib-compile-schemas.1 gapplication.1 \
-		glib-compile-resources.1 gresource.1 gdbus-codegen.1
-gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
-
-OPTIONS_DEFINE=	DEBUG MANPAGES NLS
-OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_DEFINE=	DEBUG NLS
+OPTIONS_DEFAULT=
 OPTIONS_SUB=	yes
-
-MANPAGES_BUILD_DEPENDS=		docbook-xml>4.1.2:textproc/docbook-xml \
-				docbook-xsl>0:textproc/docbook-xsl
-MANPAGES_USE=			GNOME=libxslt:build
-MANPAGES_MESON_TRUE=	man
 
 .include <bsd.port.pre.mk>
 
