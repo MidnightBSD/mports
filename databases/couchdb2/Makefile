@@ -62,11 +62,11 @@ post-patch:
 
 pre-install:
 	# relocate user-modifiable runtime configs to match hier(7)
-	${MKDIR} ${FAKE_DESTDIR}${ETCDIR}
+	${MKDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/rel/overlay/etc/local.ini \
-		${FAKE_DESTDIR}${ETCDIR}/local.ini.sample
+		${ETCDIR}/local.ini.sample
 	${INSTALL_DATA} ${WRKSRC}/rel/overlay/etc/vm.args \
-		${FAKE_DESTDIR}${ETCDIR}/vm.args.sample
+		${ETCDIR}/vm.args.sample
 	# prune build artefacts and surplus headers
 	@${FIND} -E ${WRKSRC} -type f \
 		-regex '.*\.(a|buildinfo|c|cc|cmd|d|h|o|orig|1)' -delete
