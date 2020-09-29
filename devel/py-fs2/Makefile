@@ -21,6 +21,7 @@ USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 PORTSCOUT=	limit:^2\.
 
 .include <bsd.port.pre.mk>
