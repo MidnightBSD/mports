@@ -160,6 +160,7 @@ SUBDIR += py-ntlm-auth
 SUBDIR += py-oauthlib
 SUBDIR += py-openssl
 SUBDIR += py-paramiko
+SUBDIR += py-pyclamd
 SUBDIR += py-pycrypto
 SUBDIR += py-pynacl
 SUBDIR += py-rsa
