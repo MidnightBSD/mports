@@ -38,6 +38,8 @@ OPTIONS_DEFINE=	DEBUG NLS
 OPTIONS_DEFAULT=
 OPTIONS_SUB=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 # doesn't build yet
