@@ -56,6 +56,7 @@ SUBDIR += gstreamer1-vaapi
 SUBDIR += libass
 SUBDIR += libdca
 SUBDIR += libdv
+SUBDIR += libdvbpsi
 SUBDIR += libdvdcss
 SUBDIR += libdvdnav
 SUBDIR += libdvdread
