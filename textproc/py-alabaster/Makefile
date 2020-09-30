@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/textproc/py-alabaster/Makefile 392000 2015-07-14 14:20:13Z kmoore $
-
 PORTNAME=	alabaster
 PORTVERSION=	0.7.6
 CATEGORIES=	textproc python
@@ -14,5 +11,7 @@ LICENSE=	mit
 
 USES=		python
 USE_PYTHON=	distutils autoplist
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
