@@ -1,0 +1,24 @@
+# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
+
+PORTNAME=	libmatroska
+DISTVERSION=	1.5.2
+PORTREVISION=	1
+CATEGORIES=	multimedia audio
+MASTER_SITES=	http://dl.matroska.org/downloads/libmatroska/ \
+		http://www.bunkus.org/videotools/mkvtoolnix/sources/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Extensible Multimedia Container Format
+
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/LICENSE.LGPL
+
+LIB_DEPENDS=	libebml.so:textproc/libebml
+
+USES=		cmake compiler:c++11-lang pathfix pkgconfig tar:xz
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+
+CMAKE_ARGS=	-DBUILD_SHARED_LIBS=YES
+
+.include <bsd.port.mk>
