@@ -110,6 +110,7 @@ SUBDIR += totem-pl-parser
 SUBDIR += v4l-utils
 SUBDIR += v4l_compat
 SUBDIR += vcdimager
+SUBDIR += vlc
 SUBDIR += webcamd
 SUBDIR += win32-codecs
 SUBDIR += x264

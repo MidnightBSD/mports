@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libsigsegv/Makefile,v 1.16 2010/12/25 20:46:32 sunpoet Exp $
-
 PORTNAME=	libsigsegv
-PORTVERSION=	2.10
+PORTVERSION=	2.12
 CATEGORIES=	devel
 MASTER_SITES=	GNU/libsigsegv
 
@@ -21,7 +18,7 @@ PLIST_FILES=	include/sigsegv.h \
 		lib/libsigsegv.a \
 		lib/libsigsegv.so \
 		lib/libsigsegv.so.2 \
-		lib/libsigsegv.so.2.0.3
+		lib/libsigsegv.so.2.0.5
 
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check
