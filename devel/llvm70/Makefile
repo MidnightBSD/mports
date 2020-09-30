@@ -336,6 +336,10 @@ post-patch-COMPILER_RT-on:
 	cd ${WRKSRC_compiler_rt) && patch < ${PATCHDIR}/compiler_rt/patch-rt_lib_sanitizer_common_sanitizer_platform.h
 	${REINPLACE_CMD} -e 's/FreeBSD/MidnightBSD/g' ${WRKSRC_compiler_rt}/lib/tsan/CMakeLists.txt
 
+post-patch-LLD-on:
+	${REINPLACE_CMD} -e "s|'indexsidebar.html'|['indexsidebar.html']|" \
+		${PATCH_WRKSRC}/tools/lld/docs/conf.py
+
 post-build-COMPILER_RT-on:
 	${MKDIR} ${WRKDIR}/compiler-rt-build
 	cd ${WRKDIR}/compiler-rt-build && \
