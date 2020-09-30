@@ -1,0 +1,16 @@
+--- config.h.in.orig	2020-09-29 19:36:52.562088000 -0400
++++ config.h.in	2020-09-29 19:37:49.633563000 -0400
+@@ -2100,13 +2100,7 @@
+ #endif
+ 
+ /* FALLTHROUGH is special, because it always expands to something.  */
+-#if 201710L < __STDC_VERSION__
+-# define _GL_ATTRIBUTE_FALLTHROUGH [[__fallthrough__]]
+-#elif _GL_HAS_ATTRIBUTE (fallthrough)
+-# define _GL_ATTRIBUTE_FALLTHROUGH __attribute__ ((__fallthrough__))
+-#else
+ # define _GL_ATTRIBUTE_FALLTHROUGH ((void) 0)
+-#endif
+ 
+ #if _GL_HAS_ATTRIBUTE (format)
+ # define _GL_ATTRIBUTE_FORMAT(spec) __attribute__ ((__format__ spec))

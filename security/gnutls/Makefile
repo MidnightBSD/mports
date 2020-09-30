@@ -1,6 +1,5 @@
 PORTNAME=	gnutls
-PORTVERSION=	3.6.13
-PORTREVISION=	1
+PORTVERSION=	3.6.15
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
@@ -62,6 +61,12 @@ TPM_CONFIGURE_WITH=	tpm
 TPM_LIB_DEPENDS=	libtspi.so:security/trousers
 
 INFO=		gnutls gnutls-guile
+
+.include <bsd.mport.options.mk>
+
+.if ${OSVERSION} < 200000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-config.h.in
+.endif
 
 post-patch:
 	@${RM} ${WRKSRC}/doc/*.info*

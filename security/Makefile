@@ -45,6 +45,7 @@ SUBDIR += libgcrypt
 SUBDIR += libgnomesu
 SUBDIR += libgnome-keyring
 SUBDIR += libgpg-error
+SUBDIR += libgsasl
 SUBDIR += libksba
 SUBDIR += libmcrypt
 SUBDIR += libntlm

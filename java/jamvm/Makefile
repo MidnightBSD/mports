@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	jamvm
 PORTVERSION=	1.5.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/JamVM%20${PORTVERSION}
 
@@ -19,17 +17,14 @@ GNU_CONFIGURE=	yes
 OPTIONS_SUB=	yes
 USES=		compiler gmake libtool pkgconfig
 
-# temporary clang 3.3 in base 0.8/0.9 crashes
-USE_GCC=	4.8
-
 OPTIONS_DEFINE=	FFI ZIP
 OPTIONS_DEFAULT=FFI ZIP
 FFI_DESC=	use libffi to call native methods
 ZIP_DESC=	turn-on zip support in the bootstrap loader
 
 FFI_CONFIGURE_ENABLE=	ffi
-FFI_LIB_DEPENDS=	libffi.so:${PORTSDIR}/devel/libffi
-ZIP_BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
+FFI_LIB_DEPENDS=	libffi.so:devel/libffi
+ZIP_BUILD_DEPENDS=	zip:archivers/zip
 ZIP_CONFIGURE_ENABLE=	zip
 
 .include <bsd.mport.options.mk>

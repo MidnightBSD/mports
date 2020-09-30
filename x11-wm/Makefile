@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 COMMENT = X11 window managers
 
 SUBDIR += afterstep
@@ -14,6 +12,7 @@ SUBDIR += icewm
 SUBDIR += libcompizconfig
 SUBDIR += libdockapp
 SUBDIR += libwraster
+SUBDIR += marco
 SUBDIR += metacity
 SUBDIR += muffin
 SUBDIR += mutter

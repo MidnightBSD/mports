@@ -1,49 +1,36 @@
-# $MidnightBSD$
+# Created by: ijliao
 
 PORTNAME=	gsasl
-PORTVERSION=	1.8.0
-PORTREVISION=	2
+PORTVERSION=	1.8.1
 CATEGORIES=	security
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU SASL Library
+COMMENT=	GNU SASL command-line utility
 
-LICENSE=	gpl3
+LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
-		libgnutls.so:${PORTSDIR}/security/gnutls \
-		libntlm.so:${PORTSDIR}/security/libntlm
+LIB_DEPENDS=	libgsasl.so:security/libgsasl
 
-USES=		charsetfix pathfix perl5 pkgconfig libtool
-USE_PERL5=	build
+USES=		charsetfix libtool localbase pathfix pkgconfig readline
+
+CONFIGURE_ARGS=	--disable-rpath \
+		--without-gssapi-impl
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
-
-OPTIONS_DEFINE=	DOCS NLS
-OPTIONS_SUB=	yes
-NLS_USES=	gettext
-NLS_CONFIGURE_ENABLE=	nls
 
 INFO=		gsasl
 
-CPPFLAGS+=	-nostdinc -I/usr/include -I${LOCALBASE}/include
-LDFLAGS+=	-L/usr/lib -L${LOCALBASE}/lib
+OPTIONS_DEFINE=	DOCS NLS
+OPTIONS_SUB=	yes
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 post-patch:
-	@${REINPLACE_CMD} -e '/^en@/d' \
-		${WRKSRC}/lib/po/LINGUAS ${WRKSRC}/po/LINGUAS
+	@${REINPLACE_CMD} -e '/^en@/d' ${WRKSRC}/po/LINGUAS
 
-.include <bsd.mport.options.mk>
-
-post-install:
-	@${STRIP_CMD} ${PREFIX}/lib/libgsasl.so
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR} ${DOCSDIR}/reference
-	@${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/reference/html/* \
-		${DOCSDIR}/reference
-.endif
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

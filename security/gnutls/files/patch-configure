@@ -1,6 +1,393 @@
---- configure.orig	2016-03-03 07:52:15 UTC
-+++ configure
-@@ -47228,6 +47228,7 @@ fi
+--- configure.orig	2020-09-04 03:01:28.000000000 -0400
++++ configure	2020-09-29 19:24:22.696201000 -0400
+@@ -8267,7 +8267,7 @@
+     # need special flags to disable these optimizations. For example, the
+     # definition of 'errno' in <errno.h>.
+     case "$host_os" in
+-      aix* | freebsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
++      aix* | midnightbsd* | freebsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
+       solaris*) CPPFLAGS="$CPPFLAGS -D_REENTRANT" ;;
+     esac
+     gl_anythreadlib_early_done=done
+@@ -8460,7 +8460,7 @@
+     # need special flags to disable these optimizations. For example, the
+     # definition of 'errno' in <errno.h>.
+     case "$host_os" in
+-      aix* | freebsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
++      aix* | midnightbsd* | freebsd*) CPPFLAGS="$CPPFLAGS -D_THREAD_SAFE" ;;
+       solaris*) CPPFLAGS="$CPPFLAGS -D_REENTRANT" ;;
+     esac
+     gl_anythreadlib_early_done=done
+@@ -23379,7 +23379,7 @@
+   if test "$cross_compiling" = yes; then :
+   case "$host_os" in
+           # Guess yes on platforms where we know the result.
+-          *-gnu* | gnu* | *-musl* | freebsd* | netbsd* | openbsd* \
++          *-gnu* | gnu* | *-musl* | midnightbsd* | freebsd* | netbsd* | openbsd* \
+           | hpux* | solaris* | cygwin* | mingw*)
+             ac_cv_func_malloc_0_nonnull="guessing yes" ;;
+           # If we don't know, obey --enable-cross-guesses.
+@@ -23820,7 +23820,7 @@
+            *-musl*)              gl_cv_func_snprintf_retval_c99="guessing yes";;
+                                  # Guess yes on FreeBSD >= 5.
+            freebsd[1-4].*)       gl_cv_func_snprintf_retval_c99="guessing no";;
+-           freebsd* | kfreebsd*) gl_cv_func_snprintf_retval_c99="guessing yes";;
++midnightbsd* |            freebsd* | kfreebsd*) gl_cv_func_snprintf_retval_c99="guessing yes";;
+                                  # Guess yes on Mac OS X >= 10.3.
+            darwin[1-6].*)        gl_cv_func_snprintf_retval_c99="guessing no";;
+            darwin*)              gl_cv_func_snprintf_retval_c99="guessing yes";;
+@@ -24367,7 +24367,7 @@
+                     case "$gl_cv_have_weak" in
+        *yes)
+          case "$host_os" in
+-           freebsd* | dragonfly*)
++midnightbsd* |            freebsd* | dragonfly*)
+              : > conftest1.c
+              $CC $CPPFLAGS $CFLAGS $LDFLAGS -fPIC -shared -o libempty.so conftest1.c -lpthread >&5 2>&1
+              cat <<EOF > conftest2.c
+@@ -28054,7 +28054,7 @@
+ else
+   case "$host_os" in
+        # Guess no on musl libc, macOS, FreeBSD, NetBSD, OpenBSD, AIX, Haiku, Cygwin.
+-       *-musl* | darwin* | freebsd* | netbsd* | openbsd* | aix* | haiku* | cygwin*)
++       *-musl* | darwin* | midnightbsd* | freebsd* | netbsd* | openbsd* | aix* | haiku* | cygwin*)
+          gl_cv_func_setlocale_null_all_mtsafe=no ;;
+        # Guess yes on glibc, HP-UX, IRIX, Solaris, native Windows.
+        *-gnu* | gnu* | hpux* | irix* | solaris* | mingw*)
+@@ -28095,7 +28095,7 @@
+        openbsd* | aix*)
+          gl_cv_func_setlocale_null_one_mtsafe=no ;;
+        # Guess yes on glibc, musl libc, macOS, FreeBSD, NetBSD, HP-UX, IRIX, Solaris, Haiku, Cygwin, native Windows.
+-       *-gnu* | gnu* | *-musl* | darwin* | freebsd* | netbsd* | hpux* | irix* | solaris* | haiku* | cygwin* | mingw*)
++       *-gnu* | gnu* | *-musl* | darwin* | midnightbsd* | freebsd* | netbsd* | hpux* | irix* | solaris* | haiku* | cygwin* | mingw*)
+          gl_cv_func_setlocale_null_one_mtsafe=yes ;;
+        # If we don't know, obey --enable-cross-guesses.
+        *)
+@@ -28197,7 +28197,7 @@
+                     case "$gl_cv_have_weak" in
+        *yes)
+          case "$host_os" in
+-           freebsd* | dragonfly*)
++midnightbsd* |            freebsd* | dragonfly*)
+              : > conftest1.c
+              $CC $CPPFLAGS $CFLAGS $LDFLAGS -fPIC -shared -o libempty.so conftest1.c -lpthread >&5 2>&1
+              cat <<EOF > conftest2.c
+@@ -28668,7 +28668,7 @@
+              gl_cv_func_dup2_works="guessing no" ;;
+            cygwin*) # on cygwin 1.5.x, dup2(1,1) returns 0
+              gl_cv_func_dup2_works="guessing no" ;;
+-           aix* | freebsd*)
++           aix* | midnightbsd* | freebsd*)
+                    # on AIX 7.1 and FreeBSD 6.1, dup2 (1,toobig) gives EMFILE,
+                    # not EBADF.
+              gl_cv_func_dup2_works="guessing no" ;;
+@@ -29146,7 +29146,7 @@
+     aix* | beos* | openbsd* | mirbsd* | irix*)
+       FLOAT_H=float.h
+       ;;
+-    freebsd* | dragonfly*)
++midnightbsd* |     freebsd* | dragonfly*)
+       case "$host_cpu" in
+         i[34567]86 )
+           FLOAT_H=float.h
+@@ -29181,7 +29181,7 @@
+       ;;
+   esac
+   case "$host_os" in
+-    aix* | freebsd* | dragonfly* | linux*)
++    aix* | midnightbsd* | freebsd* | dragonfly* | linux*)
+       if test -n "$FLOAT_H"; then
+         REPLACE_FLOAT_LDBL=1
+       fi
+@@ -31797,7 +31797,7 @@
+      if test "$cross_compiling" = yes; then :
+ 
+         case "$host_os" in
+-          freebsd* | aix* | hpux* | solaris2.[0-9] | solaris2.[0-9].*)
++midnightbsd* |           freebsd* | aix* | hpux* | solaris2.[0-9] | solaris2.[0-9].*)
+             gl_cv_func_open_slash="guessing no" ;;
+           *)
+             gl_cv_func_open_slash="guessing yes" ;;
+@@ -38146,7 +38146,7 @@
+               if test "$cross_compiling" = yes; then :
+ 
+                                   case "$host_os" in
+-                   freebsd* | hpux* | solaris | solaris2.[2-9]*)
++midnightbsd* |                    freebsd* | hpux* | solaris | solaris2.[2-9]*)
+                      gl_cv_func_pthread_sigmask_in_libc_works="guessing no";;
+                    *)
+                      gl_cv_func_pthread_sigmask_in_libc_works="guessing yes";;
+@@ -39123,7 +39123,7 @@
+ else
+   case "$host_os" in
+        # Guess no on musl libc, macOS, FreeBSD, NetBSD, OpenBSD, AIX, Haiku, Cygwin.
+-       *-musl* | darwin* | freebsd* | netbsd* | openbsd* | aix* | haiku* | cygwin*)
++       *-musl* | darwin* | midnightbsd* | freebsd* | netbsd* | openbsd* | aix* | haiku* | cygwin*)
+          gl_cv_func_setlocale_null_all_mtsafe=no ;;
+        # Guess yes on glibc, HP-UX, IRIX, Solaris, native Windows.
+        *-gnu* | gnu* | hpux* | irix* | solaris* | mingw*)
+@@ -39164,7 +39164,7 @@
+        openbsd* | aix*)
+          gl_cv_func_setlocale_null_one_mtsafe=no ;;
+        # Guess yes on glibc, musl libc, macOS, FreeBSD, NetBSD, HP-UX, IRIX, Solaris, Haiku, Cygwin, native Windows.
+-       *-gnu* | gnu* | *-musl* | darwin* | freebsd* | netbsd* | hpux* | irix* | solaris* | haiku* | cygwin* | mingw*)
++       *-gnu* | gnu* | *-musl* | darwin* | midnightbsd* | freebsd* | netbsd* | hpux* | irix* | solaris* | haiku* | cygwin* | mingw*)
+          gl_cv_func_setlocale_null_one_mtsafe=yes ;;
+        # If we don't know, obey --enable-cross-guesses.
+        *)
+@@ -39266,7 +39266,7 @@
+                     case "$gl_cv_have_weak" in
+        *yes)
+          case "$host_os" in
+-           freebsd* | dragonfly*)
++midnightbsd* |            freebsd* | dragonfly*)
+              : > conftest1.c
+              $CC $CPPFLAGS $CFLAGS $LDFLAGS -fPIC -shared -o libempty.so conftest1.c -lpthread >&5 2>&1
+              cat <<EOF > conftest2.c
+@@ -42581,7 +42581,7 @@
+              gl_cv_func_dup2_works="guessing no" ;;
+            cygwin*) # on cygwin 1.5.x, dup2(1,1) returns 0
+              gl_cv_func_dup2_works="guessing no" ;;
+-           aix* | freebsd*)
++           aix* | midnightbsd* | freebsd*)
+                    # on AIX 7.1 and FreeBSD 6.1, dup2 (1,toobig) gives EMFILE,
+                    # not EBADF.
+              gl_cv_func_dup2_works="guessing no" ;;
+@@ -43122,7 +43122,7 @@
+     aix* | beos* | openbsd* | mirbsd* | irix*)
+       FLOAT_H=float.h
+       ;;
+-    freebsd* | dragonfly*)
++midnightbsd* |     freebsd* | dragonfly*)
+       case "$host_cpu" in
+         i[34567]86 )
+           FLOAT_H=float.h
+@@ -43157,7 +43157,7 @@
+       ;;
+   esac
+   case "$host_os" in
+-    aix* | freebsd* | dragonfly* | linux*)
++    aix* | midnightbsd* | freebsd* | dragonfly* | linux*)
+       if test -n "$FLOAT_H"; then
+         REPLACE_FLOAT_LDBL=1
+       fi
+@@ -46608,7 +46608,7 @@
+      if test "$cross_compiling" = yes; then :
+ 
+         case "$host_os" in
+-          freebsd* | aix* | hpux* | solaris2.[0-9] | solaris2.[0-9].*)
++midnightbsd* |           freebsd* | aix* | hpux* | solaris2.[0-9] | solaris2.[0-9].*)
+             gl_cv_func_open_slash="guessing no" ;;
+           *)
+             gl_cv_func_open_slash="guessing yes" ;;
+@@ -55287,7 +55287,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -58740,7 +58740,7 @@
+   hardcode_minus_L=no
+   hardcode_shlibpath_var=unsupported
+   inherit_rpath=no
+-  link_all_deplibs=unknown
++  link_all_deplibs=no
+   module_cmds=
+   module_expsym_cmds=
+   old_archive_from_new_cmds=
+@@ -59039,7 +59039,7 @@
+ 	wlarc=
+       else
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       fi
+       ;;
+ 
+@@ -59058,7 +59058,7 @@
+ _LT_EOF
+       elif $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -59087,7 +59087,7 @@
+ 	  if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	    hardcode_libdir_flag_spec='$wl-rpath $wl$libdir'
+ 	    archive_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	    archive_expsym_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	    archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 	  else
+ 	    ld_shlibs=no
+ 	  fi
+@@ -59105,7 +59105,7 @@
+     *)
+       if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -59543,7 +59543,7 @@
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++midnightbsd* |     freebsd* | dragonfly*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -59753,7 +59753,7 @@
+ 	hardcode_direct_absolute=yes
+ 	if test -z "`echo __ELF__ | $CC -E - | $GREP __ELF__`"; then
+ 	  archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+-	  archive_expsym_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-retain-symbols-file,$export_symbols'
++	  archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-version-script,$lib-ver'
+ 	  hardcode_libdir_flag_spec='$wl-rpath,$libdir'
+ 	  export_dynamic_flag_spec='$wl-E'
+ 	else
+@@ -60588,7 +60588,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -60602,7 +60602,7 @@
+   version_type=freebsd-$objformat
+   case $version_type in
+     freebsd-elf*)
+-      library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
++      library_names_spec='$libname$release$shared_ext$versuffix  $libname$release$shared_ext$major	 $libname$shared_ext'			 soname_spec='$libname$release$shared_ext$major'
+       soname_spec='$libname$release$shared_ext$major'
+       need_version=no
+       need_lib_prefix=no
+@@ -61737,7 +61737,7 @@
+ old_striplib=
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether stripping libraries is possible" >&5
+ $as_echo_n "checking whether stripping libraries is possible... " >&6; }
+-if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
++if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "strip" >/dev/null; then
+   test -z "$old_striplib" && old_striplib="$STRIP --strip-debug"
+   test -z "$striplib" && striplib="$STRIP --strip-unneeded"
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+@@ -61989,7 +61989,7 @@
+ inherit_rpath_CXX=no
+ module_cmds_CXX=
+ module_expsym_cmds_CXX=
+-link_all_deplibs_CXX=unknown
++link_all_deplibs_CXX=no
+ old_archive_cmds_CXX=$old_archive_cmds
+ reload_flag_CXX=$reload_flag
+ reload_cmds_CXX=$reload_cmds
+@@ -62200,7 +62200,7 @@
+       # archiving commands below assume that GNU ld is being used.
+       if test yes = "$with_gnu_ld"; then
+         archive_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-        archive_expsym_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++        archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 
+         hardcode_libdir_flag_spec_CXX='$wl-rpath $wl$libdir'
+         export_dynamic_flag_spec_CXX='$wl--export-dynamic'
+@@ -62689,7 +62689,7 @@
+         archive_cmds_need_lc_CXX=no
+         ;;
+ 
+-      freebsd* | dragonfly*)
++midnightbsd* |       freebsd* | dragonfly*)
+         # FreeBSD 3 and later use GNU C++ and GNU ld with standard ELF
+         # conventions
+         ld_shlibs_CXX=yes
+@@ -62892,7 +62892,7 @@
+ 	    case `$CC -V 2>&1` in
+ 	      *"Version 7."*)
+ 	        archive_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-		archive_expsym_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++		archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 		;;
+ 	      *)  # Version 8.0 or newer
+ 	        tmp_idyn=
+@@ -62900,7 +62900,7 @@
+ 		  ia64*) tmp_idyn=' -i_dynamic';;
+ 		esac
+ 	        archive_cmds_CXX='$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-		archive_expsym_cmds_CXX='$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++		archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared'"$tmp_idyn"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 		;;
+ 	    esac
+ 	    archive_cmds_need_lc_CXX=no
+@@ -62932,7 +62932,7 @@
+ 	      ;;
+ 	    *) # Version 6 and above use weak symbols
+ 	      archive_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-	      archive_expsym_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	      archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 	      ;;
+ 	    esac
+ 
+@@ -62943,7 +62943,7 @@
+ 	  cxx*)
+ 	    # Compaq C++
+ 	    archive_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
+-	    archive_expsym_cmds_CXX='$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname  -o $lib $wl-retain-symbols-file $wl$export_symbols'
++	    archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname  -o $lib $wl-version-script $wl$lib-ver'
+ 
+ 	    runpath_var=LD_RUN_PATH
+ 	    hardcode_libdir_flag_spec_CXX='-rpath $libdir'
+@@ -62977,7 +62977,7 @@
+ 	      # Sun C++ 5.9
+ 	      no_undefined_flag_CXX=' -zdefs'
+ 	      archive_cmds_CXX='$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+-	      archive_expsym_cmds_CXX='$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-retain-symbols-file $wl$export_symbols'
++	      archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -G$allow_undefined_flag -h$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-version-script $wl$lib-ver'
+ 	      hardcode_libdir_flag_spec_CXX='-R$libdir'
+ 	      whole_archive_flag_spec_CXX='$wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
+ 	      compiler_needs_object_CXX=yes
+@@ -63045,7 +63045,7 @@
+ 	  archive_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags -o $lib'
+ 	  hardcode_libdir_flag_spec_CXX='$wl-rpath,$libdir'
+ 	  if test -z "`echo __ELF__ | $CC -E - | grep __ELF__`"; then
+-	    archive_expsym_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-retain-symbols-file,$export_symbols -o $lib'
++	    archive_expsym_cmds_CXX='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-version-script,$lib-ver -o $lib'
+ 	    export_dynamic_flag_spec_CXX='$wl-E'
+ 	    whole_archive_flag_spec_CXX=$wlarc'--whole-archive$convenience '$wlarc'--no-whole-archive'
+ 	  fi
+@@ -63629,7 +63629,7 @@
+ 	    ;;
+ 	esac
+ 	;;
+-      freebsd* | dragonfly*)
++midnightbsd* |       freebsd* | dragonfly*)
+ 	# FreeBSD uses GNU C++
+ 	;;
+       hpux9* | hpux10* | hpux11*)
+@@ -64553,7 +64553,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -64567,7 +64567,7 @@
+   version_type=freebsd-$objformat
+   case $version_type in
+     freebsd-elf*)
+-      library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
++      library_names_spec='$libname$release$shared_ext$versuffix  $libname$release$shared_ext$major	 $libname$shared_ext'			 soname_spec='$libname$release$shared_ext$major'
+       soname_spec='$libname$release$shared_ext$major'
+       need_version=no
+       need_lib_prefix=no
+@@ -66439,6 +66439,7 @@
  $as_echo "$enable_dane" >&6; }
  
  if test "$enable_dane" != "no"; then
@@ -8,7 +395,7 @@
      LIBS="$oldlibs -lunbound"
      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for unbound library" >&5
  $as_echo_n "checking for unbound library... " >&6; }
-@@ -47444,6 +47445,7 @@ else
+@@ -66692,6 +66693,7 @@
  fi
  
  if test "$with_tpm" != "no"; then

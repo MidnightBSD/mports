@@ -1,5 +1,5 @@
 PORTNAME=	memcached
-PORTVERSION=	1.6.5
+PORTVERSION=	1.6.7
 CATEGORIES=	databases
 MASTER_SITES=	http://www.memcached.org/files/ \
 		GENTOO
@@ -74,9 +74,5 @@ post-install-DOCS-on:
 		readme.txt threads.txt
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-
-regression-test: test
-test: build
-	${MAKE} -C ${WRKSRC} test
 
 .include <bsd.port.post.mk>

@@ -66,7 +66,7 @@ post-patch:
 		${WRKSRC}/deps/rabbit/docs/rabbitmq-env.conf.5
 
 post-install:
-	@${MKDIR} {PREFIX}/etc/rabbitmq
+	@${MKDIR} ${PREFIX}/etc/rabbitmq
 	@${MKDIR} ${FAKE_DESTDIR}/var/db/rabbitmq/mnesia
 	@${MKDIR} ${FAKE_DESTDIR}/var/log/rabbitmq
 	${INSTALL_DATA} ${WRKSRC}/deps/rabbit/docs/advanced.config.example \
