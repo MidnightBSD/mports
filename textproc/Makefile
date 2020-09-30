@@ -61,6 +61,7 @@ SUBDIR += kibana6
 SUBDIR += latex-service
 SUBDIR += libcroco
 SUBDIR += libcue
+SUBDIR += libebml
 SUBDIR += libepubgen
 SUBDIR += libgepub
 SUBDIR += librevenge
