@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/net/nanomsg/Makefile 420006 2016-08-10 10:21:09Z manu $
-
 PORTNAME=	nanomsg
-PORTVERSION=	1.0.0
+PORTVERSION=	1.1.5
 CATEGORIES=	net
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,6 +13,16 @@ GH_ACCOUNT=	nanomsg
 
 USES=		cmake pathfix
 USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=                       DOCS
+OPTIONS_SUB=                  yes
+
+DOCS_DESC=                    Build and/or install HTML and manpages
+
+DOCS_BUILD_DEPENDS=           asciidoctor:textproc/rubygem-asciidoctor
+DOCS_CMAKE_BOOL=              NN_ENABLE_DOC
+
+PORTDOCS=                     *
 
 post-install:
 	${MKDIR} ${PREFIX}/libdata/pkgconfig/
