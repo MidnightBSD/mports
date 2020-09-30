@@ -21,4 +21,6 @@ INFO=		libtextstyle
 
 OPTIONS_DEFINE=	DOCS
 
+DOCSDIR=	${LOCALBASE}/share/doc/libtextstyle
+
 .include <bsd.port.mk>

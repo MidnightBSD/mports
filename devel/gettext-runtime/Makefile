@@ -8,6 +8,8 @@ LICENSE_COMB=	multi
 
 .include "${.CURDIR}/../gettext/Makefile.common"
 
+MAKE_JOBS_UNSAFE=	yes
+
 USES=		charsetfix cpe iconv libtool tar:xz
 USE_LDCONFIG=	yes
 
@@ -17,7 +19,8 @@ CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-csharp --disable-java --with-included-gettext \
 		ac_cv_lib_rt_sched_yield=no
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+#CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 WRKSRC_SUBDIR=	gettext-runtime

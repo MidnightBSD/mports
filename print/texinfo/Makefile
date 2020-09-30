@@ -1,46 +1,67 @@
-# $MidnightBSD$
+# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
+# $FreeBSD: head/print/texinfo/Makefile 547801 2020-09-06 15:35:35Z sunpoet $
 
 PORTNAME=	texinfo
-PORTVERSION=	5.2.20150205
+PORTVERSION=	6.7
+PORTREVISION=	4
+PORTEPOCH=	1
 CATEGORIES=	print
-MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/texinfo/${PORTVERSION:E}/ \
-		GNU
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} htmlxref.cnf texinfo.tex texi2dvi
-DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	GNU \
+		LOCAL/sunpoet/texinfo:DEFAULT,local
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		htmlxref.cnf-${HTMLXREF_CNF_RELDATE}:local \
+		texi2dvi-${TEXI2DVI_RELDATE}:local \
+		texinfo.tex-${TEXINFO_TEX_RELDATE}:local
+DIST_SUBDIR=	texinfo
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Typeset documentation system with multiple format output
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS+=	help2man:${PORTSDIR}/misc/help2man
+BUILD_DEPENDS=	help2man:misc/help2man \
+		${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Locale-libintl>=0:devel/p5-Locale-libintl \
+		p5-Text-Unidecode>=0:converters/p5-Text-Unidecode \
+		p5-Unicode-EastAsianWidth>=0:textproc/p5-Unicode-EastAsianWidth
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
-NLS_USES=	gettext
-NLS_CONFIGURE_ENABLE=	nls
 
+USES=		charsetfix cpe gmake iconv libtool ncurses perl5 tar:xz
+
+CONFIGURE_ARGS=	--with-external-libintl-perl \
+		--with-external-Text-Unidecode \
+		--with-external-Unicode-EastAsianWidth
 GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install install-tex
+INSTALL_TARGET=	install-strip install-tex
+MAKE_ARGS=	PERL=${PERL} TEXMF=${LOCALBASE}/${TEXMFDIR}
 PKGDEINSTALL=	${PKGINSTALL}
-USES+=		charsetfix cpe gmake perl5 tar:xz
+USE_TEX=	yes
 
-MAKE_ARGS=	TEXMF=${PREFIX}/${TEXMF} PERL=/usr/bin/perl
-INFO=		texinfo info-stnd info
+INFO=		info-stnd texinfo
+
+HTMLXREF_CNF_RELDATE=	20200719
+TEXI2DVI_RELDATE=	20191018
+TEXINFO_TEX_RELDATE=	20200711
+
 CPE_VENDOR=	gnu
 CPE_VERSION=	${PORTVERSION:R}
 
-TEXMF=		share/texmf
-PLIST_SUB=	TEXMF=${TEXMF}
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
 post-patch:
-	${CHMOD} 755 ${WRKSRC}/build-aux/install-sh
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/texinfo.tex ${WRKSRC}/doc/
-	${INSTALL_SCRIPT} ${DISTDIR}/${DIST_SUBDIR}/texi2dvi ${WRKSRC}/util/
+	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/texinfo.tex-${TEXINFO_TEX_RELDATE} ${WRKSRC}/doc/texinfo.tex
+	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/htmlxref.cnf-${HTMLXREF_CNF_RELDATE} ${WRKSRC}/util/htmlxref.cnf
+	@${INSTALL_SCRIPT} ${DISTDIR}/${DIST_SUBDIR}/texi2dvi-${TEXI2DVI_RELDATE} ${WRKSRC}/util/texi2dvi
+	@${REINPLACE_CMD} -e '/rm -f $$(DESTDIR)/ s|$$| $$(DESTDIR)$$(xsdir)/XSParagraph.*|' ${WRKSRC}/tp/Texinfo/XS/Makefile.in
+	@${REINPLACE_CMD} -e 's|free (.*)|Safe&|' ${WRKSRC}/tp/Texinfo/XS/misc.c
+	@${REINPLACE_CMD} -e 's/tinfo/tinfow/g' ${WRKSRC}/configure
 
 post-install:
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/htmlxref.cnf ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/util/htmlxref.cnf ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>

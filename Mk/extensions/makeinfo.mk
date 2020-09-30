@@ -1,11 +1,12 @@
-# $MidnightBSD$
+# $FreeBSD: head/Mk/Uses/makeinfo.mk 520033 2019-12-13 13:48:55Z adamw $
+#
 # handle dependency on the makeinfo port
 #
 # Feature:	makeinfo
 # Usage:	USES=makeinfo
-# Valid ARGS:	build (default, implicit), run, both
+# Valid ARGS:	none
 #
-# MAINTAINER: ports@MidnightBSD.org
+# MAINTAINER: portmgr@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_MAKEINFO_MK)
 _INCLUDE_USES_MAKEINFO_MK=	yes
@@ -14,8 +15,8 @@ _INCLUDE_USES_MAKEINFO_MK=	yes
 IGNORE=	USES=makeinfo - expects no arguments
 .endif
 
-.if !exists(/usr/bin/makeinfo)
-BUILD_DEPENDS+=	makeinfo:print/texinfo
-.endif
+# Depend specifically on makeinfo from ports
+BUILD_DEPENDS+=	${LOCALBASE}/bin/makeinfo:print/texinfo
+MAKEINFO?=	${LOCALBASE}/bin/makeinfo
 
 .endif
