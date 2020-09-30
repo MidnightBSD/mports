@@ -1,7 +1,8 @@
 # $MidnightBSD$
 
 PORTNAME=	m2r
-DISTVERSION=	0.1.14
+DISTVERSION=	0.2.1
+PORTREVISION=	1
 CATEGORIES=	textproc devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,9 +16,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mistune>0:textproc/py-mistune@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>0:devel/py-coverage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
+		${PY_SPHINX}
 
-# Actually 2.7,3.4+
+# Officially 2.7, 3.4, 3.5, and 3.6
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
