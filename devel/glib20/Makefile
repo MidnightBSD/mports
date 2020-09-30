@@ -19,7 +19,7 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 # iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
 # (wchar_t is used by glibmm, rawtherapee triggered this)
 USES+=		compiler:c11 gettext gnome iconv:wchar_t \
-		localbase:ldflags meson perl5 pkgconfig python:3.5+
+		localbase:ldflags meson perl5 pkgconfig python:3.7+
 USE_PYTHON=	py3kplist
 USE_PERL5=	build
 USE_LDCONFIG=	yes
@@ -29,7 +29,7 @@ MESON_ARGS=	-Db_lundef=false \
 		-Dinstalled_tests=false \
 		-Ddefault_library=both \
 		-Dxattr=false
-#BINARY_ALIAS=	python3=${PYTHON_CMD}
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 LIBVERSION=	0.6600.0
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
