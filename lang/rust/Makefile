@@ -59,11 +59,10 @@ RUST_ARCH_x86_64=	x86_64 # dragonfly
 RUST_TARGET=		${RUST_ARCH_${ARCH}}-unknown-freebsd
 PLIST_SUB+=		RUST_TARGET=${RUST_TARGET}
 
-USES=		compiler gmake libedit pkgconfig python:2.7,build ssl:base
+USES=		compiler gmake libedit pkgconfig python:2.7,build ssl
 
 BROKEN_SSL=     openssl111 openssl
-IGNORE_SSL=     openssl
-
+SSL_DEFAULT=	base
 OPTIONS_DEFINE=		DOCS GDB LLNEXTGEN PORT_LLVM SOURCES
 GDB_DESC=		Install ports gdb (necessary for debugging rust programs)
 LLNEXTGEN_DESC=		Build with grammar verification
