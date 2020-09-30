@@ -10,9 +10,11 @@ COMMENT=	Install packages when the system first boots
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
-NO_INSTALL=	yes
 NO_ARCH=	yes
 
 USE_RC_SUBR=	firstboot_pkgs
+
+do-install:
+	${NADA}
 
 .include <bsd.port.mk>
