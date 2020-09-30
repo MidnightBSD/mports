@@ -219,6 +219,7 @@ SUBDIR += py-pytidylib
 SUBDIR += py-qt5-xml
 SUBDIR += py-qt5-xmlpatterns
 SUBDIR += py-reno
+SUBDIR += py-scour
 SUBDIR += py-rdflib
 SUBDIR += py-recommonmark
 SUBDIR += py-snowballstemmer
