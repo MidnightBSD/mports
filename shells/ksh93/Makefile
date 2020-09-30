@@ -36,6 +36,8 @@ STATIC_MAKE_ENV=     LDFLAGS+=-static
 KSH_PLIST_SUB=		93=""
 KSH93_PLIST_SUB=	93="93"
 
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} >= 90
@@ -59,8 +61,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/${PNAME}.1
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
 	cd ${WRKSRC}/fun/ && ${INSTALL_SCRIPT} dirs popd pushd ${STAGEDIR}${EXAMPLESDIR}/
-
-do-test:
-	cd ${WRKSRC}/src/cmd/ksh93/tests/ && ${SETENV} SHELL=${WRKSRC}/bin/ksh ${WRKSRC}/bin/ksh shtests
 
 .include <bsd.port.post.mk>
