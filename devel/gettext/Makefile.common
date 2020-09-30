@@ -1,4 +1,4 @@
-PORTVERSION=	0.20.2
+PORTVERSION=	0.21
 PORTREVISION?=	0 # Leave this zero. Set in Makefile instead.
 CATEGORIES=	devel
 MASTER_SITES=	GNU/gettext
