@@ -853,6 +853,7 @@ SUBDIR += py-pyicu
 SUBDIR += py-pip
 SUBDIR += py-pluggy
 SUBDIR += py-ply
+SUBDIR += py-pockets
 SUBDIR += py-polib
 SUBDIR += py-pkgconfig
 SUBDIR += py-pretend
