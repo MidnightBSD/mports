@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	4.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/${PRE_}releases/${LLVM_RELEASE}/${RCDIR}
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
@@ -26,8 +26,7 @@ LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
-USES=		cmake compiler:c++11-lib libedit perl5 tar:xz \
-		shebangfix
+USES=		cmake compiler libedit perl5 tar:xz shebangfix
 _USES_PYTHON?=	python:2.7,build
 USES+=		${_USES_PYTHON}
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
@@ -37,7 +36,10 @@ SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
 CMAKE_INSTALL_PREFIX=	${LLVM_PREFIX}
-CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON
+CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_LINK_LLVM_DYLIB=ON
+CMAKE_ARGS+=	-DLLVM_ENABLE_RTTI=ON
+CMAKE_ARGS+=	-DLLVM_DEFAULT_TARGET_TRIPLE=${CONFIGURE_TARGET}
+CMAKE_ARGS+=	-DLLVM_HOST_TRIPLE=${CONFIGURE_TARGET}
 # Following commit https://github.com/kitware/cmake/commit/956054
 # we need to either change the whole man-shuffle below, or simply
 # redefine CMAKE_INSTALL_MANDIR
@@ -194,6 +196,14 @@ EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
 
 .include <bsd.mport.options.mk>
 
+.if ${ARCH:Marmv[67]*} && (!defined(CPUTYPE) || ${CPUTYPE:M*soft*} == "")
+TARGET_ABI=	-gnueabihf
+.elif ${ARCH:Marm*}
+TARGET_ABI=	-gnueabi
+.else
+TARGET_ABI=
+.endif
+
 # keep in sync with /usr/src/lib/clang/clang.build.mk
 CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-freebsd10.4
 
@@ -214,6 +224,7 @@ CLANG_PATTERN=	(c-index-test|clang|scan-|Reporter.py|ScanView.py|scanview.css|so
 SHEBANG_FILES+=	tools/clang/tools/scan-view/bin/scan-view \
 		tools/clang/tools/clang-format/git-clang-format \
 		tools/clang/tools/clang-format/clang-format-diff.py
+USES+=		gnome
 .endif
 
 .if ${PORT_OPTIONS:MCOMPILER_RT}
