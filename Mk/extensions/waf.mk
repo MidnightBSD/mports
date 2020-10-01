@@ -23,7 +23,7 @@ IGNORE=	Incorrect 'USES+= waf:${waf_ARGS}' waf takes no arguments
 .endif
 
 .if !${USES:Mpython*}
-python_ARGS=	2.7,build
+python_ARGS=	build
 .include "${MPORTEXTENSIONS}/python.mk"
 .endif
 
@@ -31,11 +31,13 @@ MAKEFILE=	#
 MAKE_FLAGS=	#
 ALL_TARGET=	#
 HAS_CONFIGURE=	yes
+MAKE_ARGS+=	--verbose
 WAF_CMD?=	./waf
 
 CONFIGURE_TARGET?=	configure
 ALL_TARGET?=		build
 INSTALL_TARGET?=	install
+TEST_TARGET?=		test
 
 CONFIGURE_CMD=	${PYTHON_CMD} ${WAF_CMD} ${CONFIGURE_TARGET}
 MAKE_CMD=	${PYTHON_CMD} ${WAF_CMD}
