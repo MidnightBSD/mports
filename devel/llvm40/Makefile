@@ -368,6 +368,10 @@ post-build-COMPILER_RT-on:
 	    ${WRKSRC_compiler_rt} && \
 	${MAKE_ENV} ${MAKE_CMD}
 
+post-patch-LLD-on:
+	${REINPLACE_CMD} -e "s|'indexsidebar.html'|['indexsidebar.html']|" \
+		${PATCH_WRKSRC}/tools/lld/docs/conf.py
+
 post-install:
 	-${RM} -r ${FAKE_DESTDIR}${LLVM_PREFIX}/include/llvm/MC/MCAnalysis
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \

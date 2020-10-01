@@ -10,9 +10,11 @@ COMMENT=	Update the system using midnightbsd-update when it first boots
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
-NO_INSTALL=	yes
 NO_ARCH=	yes
 
 USE_RC_SUBR=	firstboot_midnightbsd_update
+
+do-install:
+	${NADA}
 
 .include <bsd.port.mk>

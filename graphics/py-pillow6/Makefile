@@ -14,9 +14,6 @@ LICENSE_NAME=	Standard PIL License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-runner>0:devel/py-pytest-runner@${PY_FLAVOR}
-
 USES=		cpe python:2.7
 USE_GITHUB=	yes
 USE_PYTHON=	autoplist concurrent distutils
@@ -65,6 +62,8 @@ WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_VARS=		PYDISTUTILS_BUILDARGS+="--enable-webp --enable-webpmux"
 WEBP_VARS_OFF=		PYDISTUTILS_BUILDARGS+="--disable-webp --disable-webpmux"
 
+NO_TEST=		yes
+
 .include <bsd.port.pre.mk>
 
 PYDISTUTILS_BUILD_TARGET=	build build_ext
@@ -72,8 +71,5 @@ PYDISTUTILS_BUILDARGS+=		saveopts
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/PIL/*.so
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.post.mk>

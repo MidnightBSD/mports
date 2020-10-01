@@ -30,7 +30,7 @@ CONFLICTS_INSTALL=      mongodb36 mongodb40 mongodb
 
 CHOSEN_COMPILER_TYPE=	clang
 
-USES=		compiler:c++14-lang cpe dos2unix python:build scons
+USES=		compiler:c++14-lang cpe dos2unix python:2.7,build scons:python2
 DOS2UNIX_FILES=	src/third_party/IntelRDFPMathLib20U1/LIBRARY/src/bid_functions.h
 
 USE_RC_SUBR=	mongod
