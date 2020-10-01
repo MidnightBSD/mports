@@ -1,34 +1,51 @@
-#-*- mode: Makefile; tab-width: 4; -*-
-# ex:ts=4
+# Provide support to use the scons
 #
-# $MidnightBSD$
-# $FreeBSD: ports/Mk/bsd.scons.mk,v 1.6 2006/08/04 12:34:41 erwin Exp $
+# Feature:	scons
+# Usage:	USES=scons[:ARGS]
+# Valid ARGS:	python2 python3
 #
-# bsd.scons.mk - Python-based SCons build system interface.
-# Author: Alexander Botero-Lowry <alex@foxybanana.com>
-#
-# Please view me with 4 column tabs!
+# python2:	Use default python 2.x to run scons
+# python3:	Use default python 3.x to run scons (default)
 
 .if !defined(_INCLUDE_USES_SCONS_MK)
 _INCLUDE_USES_SCONS_MK=	yes
 
-.if !empty(scons_ARGS)
-IGNORE=	Incorrect 'USES+= scons:${scons_ARGS}' scons takes no arguments
+.if empty(scons_ARGS)
+scons_ARGS=	python3
 .endif
 
-MAKEFILE=		#
-MAKE_FLAGS=		#
-ALL_TARGET?=		#
-CCFLAGS?=		${CFLAGS}
-LINKFLAGS?=		${LDFLAGS}
-LIBPATH?=		${LOCALBASE}/lib
-CPPPATH?=		${LOCALBASE}/include
-SCONS=			${LOCALBASE}/bin/scons
-BUILD_DEPENDS+=		${SCONS}:devel/scons
-MAKE_CMD=		${SCONS}
-MAKE_ARGS+=	CCFLAGS="${CCFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-		LINKFLAGS="${LINKFLAGS}" PKGCONFIGDIR="${PKGCONFIGDIR}"  \
-		CPPPATH="${CPPPATH}" LIBPATH="${LIBPATH}" PREFIX="${PREFIX}" \
-		CC="${CC}" CXX="${CXX}" ${DESTDIRNAME:tl}=${FAKE_DESTDIR}
+.if ${scons_ARGS} == python3
+_SCONS_PYTHON_VER=	${PYTHON3_DEFAULT}
+.elif ${scons_ARGS} == python2
+_SCONS_PYTHON_VER=	${PYTHON2_DEFAULT}
+DEPRECATED?=	Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+EXPIRATION_DATE?=	2020-12-31
+.else
+IGNORE=		Incorrect 'USES+= scons:${scons_ARGS}' usage
+.endif
 
+_SCONS_PYTHON_FLAVOR=	py${_SCONS_PYTHON_VER:S|.||}
+
+SCONS=		${LOCALBASE}/bin/scons-${_SCONS_PYTHON_VER}
+
+BUILD_DEPENDS+=	${SCONS}:devel/scons@${_SCONS_PYTHON_FLAVOR}
+
+ALL_TARGET?=	#
+CCFLAGS?=	${CFLAGS}
+CPPPATH?=	${LOCALBASE}/include
+LIBPATH?=	${LOCALBASE}/lib
+LINKFLAGS?=	${LDFLAGS}
+MAKE_ARGS+=	CC="${CC}" \
+		CCFLAGS="${CCFLAGS}" \
+		CPPPATH="${CPPPATH}" \
+		CXX="${CXX}" \
+		CXXFLAGS="${CXXFLAGS}" \
+		LIBPATH="${LIBPATH}" \
+		LINKFLAGS="${LINKFLAGS}" \
+		PKGCONFIGDIR="${PKGCONFIGDIR}" \
+		PREFIX="${PREFIX}" \
+		destdir=${FAKE_DESTDIR}
+MAKE_CMD=	${SCONS}
+MAKE_FLAGS=	#
+MAKEFILE=	#
 .endif
