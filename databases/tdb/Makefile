@@ -1,6 +1,5 @@
 PORTNAME=		tdb
-PORTVERSION=		1.4.2
-PORTREVISION=		2
+PORTVERSION=		1.4.3
 PORTEPOCH=		1
 CATEGORIES=		databases
 MASTER_SITES=		SAMBA
@@ -55,13 +54,13 @@ PLIST_FILES+=		include/tdb.h \
 
 
 .if defined(NO_PYTHON)
-USES+=			python:2.7+,build,test
+USES+=			python:build,test
 CONFIGURE_ARGS+=	--disable-python
 .else
 USES+=			python:3.4+
 
-PLIST_FILES+=		lib/python3.7/site-packages/tdb.so \
-			lib/python3.7/site-packages/_tdb_text.py
+PLIST_FILES+=		${PYTHON_SITELIBDIR}/tdb.so \
+			${PYTHON_SITELIBDIR}/_tdb_text.py
 .endif
 
 .include <bsd.port.pre.mk>

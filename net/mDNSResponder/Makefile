@@ -1,31 +1,35 @@
+# Created by: Alfred Perlstein <alfred@FreeBSD.org>
+
 PORTNAME=	mDNSResponder
-PORTVERSION=	878.200.35
+PORTVERSION=	1096.40.7
 CATEGORIES=	net dns
-MASTER_SITES=	http://opensource.apple.com/tarballs/${PORTNAME}/
+MASTER_SITES=	https://opensource.apple.com/tarballs/mDNSResponder/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bonjour (zero-configuration networking) by Apple
 
-LICENSE=	bsd3 apache2
+LICENSE=	apache2 bsd3
 LICENSE_COMB=	dual
 
+# lib/libdns_sd.so.1 sbin/mdnsd
 CONFLICTS_INSTALL=	avahi-libdns openmdns
 
 OPTIONS_DEFINE=	IPV6
 
+USES=		compiler:c11 cpe gmake
+
 ALL_TARGET=	all dnsextd
 BUILD_WRKSRC=	${WRKSRC}/mDNSPosix
 INSTALL_WRKSRC=	${WRKSRC}/mDNSPosix
-MAKE_ARGS=	LDCONFIG=${TRUE} LOCALBASE=${PREFIX} MAN_PATH=${MANPREFIX}/man STRIP=${STRIP_CMD} os=freebsd
+MAKE_ARGS=	LDCONFIG=${TRUE} LOCALBASE=${PREFIX} MAN_PATH=${PREFIX}/man STRIP=${STRIP_CMD} os=freebsd
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	mdnsd mdnsresponderposix
-USES=		cpe gmake
 
 CPE_VENDOR=	apple
 CPE_PRODUCT=	${PORTNAME:tl}
 
-EXTRA_BIN=	mDNSClientPosix mDNSIdentify mDNSNetMonitor mDNSProxyResponderPosix mDNSResponderPosix
+EXTRA_BIN=	mDNSClientPosix mDNSNetMonitor mDNSProxyResponderPosix mDNSResponderPosix
 EXTRA_MAN1=	dns-sd.1
 EXTRA_MAN8=	dnsextd.8 mDNSResponderPosix.8
 EXTRA_SBIN=	dnsextd
