@@ -96,7 +96,6 @@
     SUBDIR += font-winitzki-cyrillic
     SUBDIR += font-xfree86-type1
     SUBDIR += fontconfig
-    SUBDIR += fontconfig-reference
     SUBDIR += fontmatrix
     SUBDIR += fontpreview
     SUBDIR += fonts-indic
