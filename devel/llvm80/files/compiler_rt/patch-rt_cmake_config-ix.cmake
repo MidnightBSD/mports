@@ -1,0 +1,104 @@
+--- cmake/config-ix.cmake.orig	2019-01-25 17:55:41.000000000 -0500
++++ cmake/config-ix.cmake	2020-06-10 18:52:53.720195000 -0400
+@@ -529,7 +529,7 @@
+ list_replace(COMPILER_RT_SANITIZERS_TO_BUILD all "${ALL_SANITIZERS}")
+ 
+ if (SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
+-    (OS_NAME MATCHES "Android|Darwin|Linux|FreeBSD|NetBSD|OpenBSD|Fuchsia|SunOS" OR
++    (OS_NAME MATCHES "Android|Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Fuchsia|SunOS" OR
+     (OS_NAME MATCHES "Windows" AND NOT CYGWIN AND
+         (NOT MINGW OR CMAKE_CXX_COMPILER_ID MATCHES "Clang"))))
+   set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)
+@@ -550,7 +550,7 @@
+   set(COMPILER_RT_HAS_ASAN FALSE)
+ endif()
+ 
+-if (OS_NAME MATCHES "Linux|FreeBSD|Windows|NetBSD|SunOS")
++if (OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|Windows|NetBSD|SunOS")
+   set(COMPILER_RT_ASAN_HAS_STATIC_RUNTIME TRUE)
+ else()
+   set(COMPILER_RT_ASAN_HAS_STATIC_RUNTIME FALSE)
+@@ -566,14 +566,14 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND LSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_LSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_LSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND MSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_MSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_MSAN FALSE)
+@@ -587,35 +587,35 @@
+ endif()
+ 
+ if (PROFILE_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|Windows|Android|Fuchsia|SunOS|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|Windows|Android|Fuchsia|SunOS|NetBSD")
+   set(COMPILER_RT_HAS_PROFILE TRUE)
+ else()
+   set(COMPILER_RT_HAS_PROFILE FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND TSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|Android|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|Android|NetBSD")
+   set(COMPILER_RT_HAS_TSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_TSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND UBSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD|OpenBSD|Windows|Android|Fuchsia|SunOS")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Windows|Android|Fuchsia|SunOS")
+   set(COMPILER_RT_HAS_UBSAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_UBSAN FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND UBSAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD|NetBSD|OpenBSD|Android|Darwin")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Android|Darwin")
+   set(COMPILER_RT_HAS_UBSAN_MINIMAL TRUE)
+ else()
+   set(COMPILER_RT_HAS_UBSAN_MINIMAL FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND SAFESTACK_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD")
+   set(COMPILER_RT_HAS_SAFESTACK TRUE)
+ else()
+   set(COMPILER_RT_HAS_SAFESTACK FALSE)
+@@ -628,7 +628,7 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND ESAN_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD")
+   set(COMPILER_RT_HAS_ESAN TRUE)
+ else()
+   set(COMPILER_RT_HAS_ESAN FALSE)
+@@ -642,14 +642,14 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND XRAY_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD|OpenBSD|Fuchsia")
++    OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|OpenBSD|Fuchsia")
+   set(COMPILER_RT_HAS_XRAY TRUE)
+ else()
+   set(COMPILER_RT_HAS_XRAY FALSE)
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND FUZZER_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Android|Darwin|Linux|NetBSD|FreeBSD|OpenBSD|Fuchsia|Windows" AND
++    OS_NAME MATCHES "Android|Darwin|Linux|NetBSD|MidnightBSD|FreeBSD|OpenBSD|Fuchsia|Windows" AND
+     # TODO: Support builds with MSVC.
+     NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC" AND
+     NOT "${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
