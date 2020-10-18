@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Test-Pod
 PORTVERSION=	1.52
 CATEGORIES=	devel perl5

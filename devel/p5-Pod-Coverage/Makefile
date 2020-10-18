@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-Pod-Coverage/Makefile,v 1.13 2007/10/26 21:46:04 mat Exp $
-
 PORTNAME=	Pod-Coverage
 PORTVERSION=	0.23
+PORTREVISION=	1
 CATEGORIES=	devel textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -16,7 +14,8 @@ LICENSE_COMB=	dual
 BUILD_DEPENDS=	p5-Devel-Symdump>=2.01:devel/p5-Devel-Symdump
 RUN_DEPENDS=	p5-Devel-Symdump>=2.01:devel/p5-Devel-Symdump
 
-TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod
+TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod \
+		p5-Pod-Parser>=0:textproc/p5-Pod-Parser
 
 USES=		perl5
 USE_PERL5=	configure
