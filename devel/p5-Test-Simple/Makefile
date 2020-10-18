@@ -1,7 +1,7 @@
 # Created by: Shell Hung <shell@shellhung.org>
 
 PORTNAME=	Test-Simple
-PORTVERSION=	1.302141
+PORTVERSION=	1.302181
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
