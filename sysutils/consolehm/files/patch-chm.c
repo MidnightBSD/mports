@@ -5,7 +5,7 @@
   */
  
 +#include <osreldate.h>
-+#if (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__) && defined(__FreeBSD__)
++#if (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__) && defined(__MidnightBSD__)
 +#include <sys/types.h>
 +#include <machine/pio.h>
 +#endif
@@ -24,7 +24,7 @@
  		u_char smb_return;
  		struct smbcmd cmd;
  		cmd.slave=0x5a;
-+#if (__FreeBSD_version >= 1100071)
++#if (__MidnightBSD_version >= 200000)
 +		cmd.rbuf = &smb_return; 
 +		cmd.rcount = 1;
 +#else
@@ -37,7 +37,7 @@
  				u_char smb_return;
  				struct smbcmd cmd;
  				cmd.slave=0x5a;
-+#if (__FreeBSD_version >= 1100071)
++#if (__MidnightBSD_version >= 200000)
 +				cmd.rbuf = &smb_return; 
 +				cmd.rcount = 1;
 +#else
@@ -50,7 +50,7 @@
  		u_char smb_return;
  		struct smbcmd cmd;
  		cmd.slave=0x5a;
-+#if (__FreeBSD_version >= 1100071)
++#if (__MidnightBSD_version >= 200000)
 +		cmd.wdata.byte = value;
 +#else
  		cmd.data.byte_ptr=&smb_return;

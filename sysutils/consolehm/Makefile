@@ -2,14 +2,16 @@
 
 PORTNAME=	consolehm
 PORTVERSION=	1.31
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	FREEBSD_LOCAL/fenner
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Console based hardware monitor for FreeBSD
+COMMENT=	Console based hardware monitor for BSD
 
 LICENSE=	bsd2
+
+FAKE_OPTS=	trueprefix
 
 USES=		uidfix
 GNU_CONFIGURE=	yes
