@@ -1,2 +1,2 @@
 %%SITE_PERL%%/Readonly.pm
-lib/perl5/site_perl/5.28.0/man/man3/Readonly.3
+%%SITE_PERL%%/man/man3/Readonly.3
