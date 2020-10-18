@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	quake3
 DISTVERSION=	1.11-6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	GENTOO
 PKGNAMEPREFIX=	linux-
@@ -29,6 +27,8 @@ DATADIR=	${PREFIX}/share/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 SUB_FILES=	q3demo
 
+OPTIONS_DEFINE=	DOCS
+
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} && ${TAIL} +165 ${_DISTDIR}/${DISTNAME}${EXTRACT_SUFX} | \
@@ -40,10 +40,8 @@ do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/bin/x86/glibc-2.0/q3demo ${DATADIR}
 	@${CP} -R ${WRKSRC}/demoq3 ${DATADIR}
 	@${LN} -s ${LINUXBASE}/usr/X11R6/lib/libGL.so.1 ${DATADIR}/libGL.so
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 	@${CP} -R ${WRKSRC}/Help/* ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
