@@ -1,7 +1,7 @@
 # Created by: Mathieu Arnold <m@absolight.net>
 
 PORTNAME=	B-Keywords
-PORTVERSION=	1.20
+PORTVERSION=	1.21
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
