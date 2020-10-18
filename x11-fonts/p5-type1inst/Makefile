@@ -2,7 +2,7 @@
 
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-fonts perl5
 MASTER_SITES=	SUNSITE/X11/xutils
 PKGNAMEPREFIX=	p5-
@@ -12,12 +12,11 @@ COMMENT=	Script that helps install Postscript fonts in X Window System
 
 LICENSE=	gpl2
 
-USES=		perl5 shebangfix
+USES=		perl5
 NO_BUILD=	yes
 PORTDOCS=	README
 
 PLIST_FILES=	bin/t1embed bin/type1inst man/man1/type1inst.1.gz
-SHEBANG_FILES=	type1inst t1embed
 
 OPTIONS_DEFINE=	DOCS X11
 OPTIONS_DEFAULT=X11
