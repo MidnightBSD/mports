@@ -16,7 +16,8 @@ RUN_DEPENDS=	p5-Class-Tiny>=0:devel/p5-Class-Tiny \
 		p5-Lingua-EN-Inflect>=0:textproc/p5-Lingua-EN-Inflect \
 		p5-Path-Tiny>=0:devel/p5-Path-Tiny \
 		p5-Pod-Escapes>=1.01:textproc/p5-Pod-Escapes
-TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep
+TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
+		p5-Pod-Parser>=0:textproc/p5-Pod-Parser
 
 NO_ARCH=	yes
 USES=		perl5
