@@ -21,7 +21,8 @@ CONFIGURE_ARGS=	--with-lua=${LOCALBASE}/bin/${LUA_CMD} \
 		--with-luaincl=${LUA_INCDIR} \
 		--with-lualib=${LUA_LIBDIR}
 GNU_CONFIGURE=	yes
-TEST_TARGET=	check
+
+NO_TEST=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
