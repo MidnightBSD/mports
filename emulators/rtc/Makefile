@@ -44,7 +44,7 @@ do-extract:
 	@cd ${FILESDIR} && ${CP} Makefile *.[ch] ${WRKSRC}/
 
 pre-install:
-	${MKDIR} ${KMODDIR}
+	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/modules
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/rtc.h ${PREFIX}/include/

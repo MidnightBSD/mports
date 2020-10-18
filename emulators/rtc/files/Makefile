@@ -22,7 +22,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN	IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 #
-# $MidnightBSD$
+# $FreeBSD: head/emulators/rtc/files/Makefile 516983 2019-11-07 16:30:12Z rene $
 #
 
 SYS?=		/sys
@@ -33,21 +33,16 @@ CDEV_MAJOR?=	202
 DEVNAME= 	${KMOD}
 SRCS=		rtc.c rtc_linux.c vnode_if.h
 
-
 INCLUDE=	-I${.CURDIR} -I${SYS}
 
 CFLAGS+=	${INCLUDE} -DCDEV_MAJOR_=${CDEV_MAJOR}
 
 all:	vnode_if.h
 
-@:
-	@${ECHO} ${.TARGET} "->" ${SYS}
-	@ln -s ${SYS} ${.TARGET}
-
 #afterinstall: device
 
 device:
-	rm -f /dev/${DEVNAME} 
+	rm -f /dev/${DEVNAME}
 	mknod /dev/${DEVNAME} c ${CDEV_MAJOR} 0
 
 .include <bsd.kmod.mk>
