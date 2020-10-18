@@ -12,7 +12,7 @@
  
  		/* Initialize the struct */
  		bzero(&cmd, sizeof(cmd));
-+#if (__FreeBSD_version >= 1100071)
++#if (__MidnightBSD_version >= 200000)
 +		cmd.rbuf = &byte;
 +		cmd.rcount = 1;
 +#else
