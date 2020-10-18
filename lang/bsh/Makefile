@@ -14,7 +14,7 @@ GH_ACCOUNT=	beanshell
 GH_PROJECT=	beanshell
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_BUILD=	8
 
 USE_ANT=	yes
 ALL_TARGET=	jarall
