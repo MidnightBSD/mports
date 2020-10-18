@@ -32,6 +32,8 @@ MATTERMOSTD_GROUP=	mattermost
 USERS=		${MATTERMOSTD_USER}
 GROUPS=		${MATTERMOSTD_GROUP}
 
+NO_TEST=	yes
+
 post-extract:
 	@${RM} ${WRKSRC}/vendor/modules.txt
 
