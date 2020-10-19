@@ -14,9 +14,11 @@ LICENSE_COMB=	dual
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Pod-Coverage>=0:devel/p5-Pod-Coverage \
 		p5-Pod-Eventual>=0:textproc/p5-Pod-Eventual
-TEST_DEPENDS=	p5-Test-Pod>=1.41:devel/p5-Test-Pod
+# magus issues
+#TEST_DEPENDS=	p5-Test-Pod>=1.41:devel/p5-Test-Pod
 
 NO_ARCH=	yes
+NO_TEST=	yes
 USES=		perl5
 USE_PERL5=	configure
 
