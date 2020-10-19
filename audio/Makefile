@@ -166,5 +166,6 @@ SUBDIR += wmmixer
 SUBDIR += wmsmixer
 SUBDIR += xfce4-mixer
 SUBDIR += xfce4-mpc-plugin
+SUBDIR += xfce4-pulseaudio-plugin
 
 .include <bsd.port.subdir.mk>
