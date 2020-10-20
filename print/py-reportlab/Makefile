@@ -30,7 +30,6 @@ MAKE_ENV=	PACKAGE_PATH="${REPORTLABDIR}"
 
 REPORTLABDIR=	${PYTHONPREFIX_SITELIBDIR}/reportlab
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
-PORTDOCS=	reportlab-userguide.pdf
 
 OPTIONS_DEFINE=	CJK FREETYPE DOCS
 OPTIONS_DEFAULT=	CJK FREETYPE
@@ -57,12 +56,5 @@ post-patch-DOCS-on:
 
 post-install:
 	-${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/reportlab/*/*.so
-
-post-install-DOCS-on:
-	@cd ${WRKSRC}/docs && ${PYTHON_CMD} genAll.py
-	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-.for i in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/docs/${i} ${FAKE_DESTDIR}${DOCSDIR}
-.endfor
 
 .include <bsd.port.mk>
