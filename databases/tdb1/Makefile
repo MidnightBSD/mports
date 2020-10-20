@@ -34,6 +34,8 @@ CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
 			--disable-rpath \
 			--without-gettext
 
+NO_TEST=		yes
+
 OPTIONS_DEFINE=		MANPAGES
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
