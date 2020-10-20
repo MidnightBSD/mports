@@ -14,4 +14,6 @@ USE_GNOME=	gdkpixbuf2 glib20 introspection pygobject3
 
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
