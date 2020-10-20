@@ -21,7 +21,8 @@ CONFIGURE_ARGS=	--with-graphite2 --with-gobject=yes
 USE_LDCONFIG=	yes
 
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 PLIST_SUB+=	LIBVER=0.20600.5
 
