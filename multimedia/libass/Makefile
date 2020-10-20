@@ -2,24 +2,21 @@
 # $FreeBSD: head/multimedia/libass/Makefile 382594 2015-03-29 11:51:01Z bapt $
 
 PORTNAME=	libass
-PORTVERSION=	0.14.0
+DISTVERSION=	0.14.0
 CATEGORIES=	multimedia devel
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Portable ASS/SSA subtitle renderer
 
 LICENSE=	iscl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	${PORTNAME}
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-USES=		autoreconf iconv libtool pathfix pkgconfig
+USES=		autoreconf iconv libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
