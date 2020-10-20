@@ -24,7 +24,7 @@ post-patch:
 	@${RM} -r ${WRKSRC}/src/c/
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/ots/ots-sanitize.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/ots/ots-sanitize.so
 
 do-test:
 	cd ${WRKSRC}/ && ${PYTHON_CMD} -m pytest -v
