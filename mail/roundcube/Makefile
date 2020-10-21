@@ -1,20 +1,18 @@
-# $MidnightBSD$
-# $FreeBSD: head/mail/roundcube/Makefile 369697 2014-10-01 07:13:26Z ale $
-
 PORTNAME=	roundcube
-DISTVERSION=	1.3.6
+DISTVERSION=	1.4.9
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DISTVERSION}/
 DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-WRKSRC=		${WRKDIR}/roundcubemail-${DISTVERSION}
-
+NO_ARCH=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}mail-${DISTVERSION}
 
@@ -22,17 +20,15 @@ RCUBECOMP=	SQL config .htaccess index.php installer logs \
 		plugins program skins temp vendor
 PORTDOCS=	CHANGELOG INSTALL README.md UPGRADING
 
-USES=		cpe
+USES=		cpe php:web,flavors
 CPE_PRODUCT=	webmail
 CPE_VENDOR=	roundcube
 
-WANT_PHP_WEB=	yes
-USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter \
-		openssl fileinfo exif
+USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter openssl fileinfo exif ctype
 
-OPTIONS_DEFINE=	LDAP GD PSPELL NSC DOCS
-OPTIONS_SINGLE=	DB
-OPTIONS_SINGLE_DB=	MYSQL PGSQL SQLITE
+OPTIONS_DEFINE=	LDAP GD PSPELL NSC DOCS EXAMPLES
+OPTIONS_MULTI=	DB
+OPTIONS_MULTI_DB=	MYSQL PGSQL SQLITE
 OPTIONS_DEFAULT=MYSQL
 
 DB_DESC=	Database backend
@@ -44,47 +40,20 @@ GD_DESC=	Enable GD support (image conversion)
 PSPELL_DESC=	Enable PSpell support (internal spellcheck)
 NSC_DESC=	Install network spellchecker
 
-.include <bsd.mport.options.mk>
+GD_VARS=	use_php+=gd
+LDAP_VARS=	use_php+=ldap
+MYSQL_VARS=	use_php+=pdo_mysql
+NSC_IMPLIES=	PSPELL
+NSC_VARS=	use_php+=simplexml
+PGSQL_VARS=	use_php+=pdo_pgsql
+PSPELL_VARS=	use_php+=pspell
+SQLITE_VARS=	use_php+=pdo_sqlite
 
-.if ${PORT_OPTIONS:MMYSQL}
-USE_PHP+=	pdo_mysql
-.endif
-
-.if ${PORT_OPTIONS:MPGSQL}
-USE_PHP+=	pdo_pgsql
-.endif
-
-.if ${PORT_OPTIONS:MSQLITE}
-USE_PHP+=	pdo_sqlite
-.endif
-
-.if ${PORT_OPTIONS:MLDAP}
-USE_PHP+=	ldap
-.endif
-
-.if ${PORT_OPTIONS:MGD}
-USE_PHP+=	gd
-.endif
-
-.if ${PORT_OPTIONS:MPSPELL} || ${PORT_OPTIONS:MNSC}
-USE_PHP+=	pspell
-.endif
-
-.if ${PORT_OPTIONS:MNSC}
-RCUBECOMP+=	spellchecker.php
-USE_PHP+=	simplexml
-PLIST_SUB+=	SPELLCHECK=""
-.else
-PLIST_SUB+=	SPELLCHECK="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MNSC}
-post-extract:
-	@${CP} ${FILESDIR}/spellchecker.php ${WRKSRC}
-.endif
+SUB_FILES=	newsyslog.conf
 
 post-patch:
 	@${FIND} ${WRKSRC} -name \*.orig -type f -delete
+	@${RMDIR} ${WRKSRC}/plugins/archive/skins/larry
 
 do-install:
 	-${MKDIR} ${WWWDIR}
@@ -92,17 +61,29 @@ do-install:
 .for i in ${RCUBECOMP}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${i} ${WWWDIR}
 .endfor
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-.for i in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}/
-.endfor
-.endif
 	@(cd ${WRKSRC}; ${FIND} bin ${RCUBECOMP} -not -type d) | ${SORT} | \
 		${SED} -ne 's,^,${WWWDIR_REL}/,p' >> ${TMPPLIST}
-	@${ECHO_CMD} '@exec chown ${WWWOWN}:${WWWGRP} %D/${WWWDIR_REL}/logs' \
+	@${ECHO_CMD} '@postexec chown ${WWWOWN}:${WWWGRP} %D/${WWWDIR_REL}/logs' \
 		>> ${TMPPLIST}
-	@${ECHO_CMD} '@exec chown ${WWWOWN}:${WWWGRP} %D/${WWWDIR_REL}/temp' \
+	@${ECHO_CMD} '@postexec chown ${WWWOWN}:${WWWGRP} %D/${WWWDIR_REL}/temp' \
+		>> ${TMPPLIST}
+
+do-install-NSC-on:
+	@${INSTALL_DATA} ${FILESDIR}/spellchecker.php ${FAKE_DESTDIR}${WWWDIR}
+	@${ECHO_CMD} '${WWWDIR_REL}/spellchecker.php' >> ${TMPPLIST}
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for i in ${PORTDOCS}
+	@${INSTALL_DATA} ${WRKSRC}/${i} ${FAKE_DESTDIR}${DOCSDIR}/
+.endfor
+
+do-install-EXAMPLES-on:
+	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	@${INSTALL_DATA} ${WRKDIR}/newsyslog.conf ${FAKE_DESTDIR}${EXAMPLESDIR}
+	@${ECHO_CMD} '@dir etc/newsyslog.conf.d' \
+		>> ${TMPPLIST}
+	@${ECHO_CMD} '@sample ${EXAMPLESDIR}/newsyslog.conf etc/newsyslog.conf.d/roundcube.conf' \
 		>> ${TMPPLIST}
 
 .include <bsd.port.mk>
