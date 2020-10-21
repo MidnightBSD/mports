@@ -1,107 +1,66 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
+# Created by: Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 
 PORTNAME=	icewm
-PORTVERSION=	1.3.8
+PORTVERSION=	1.8.3
 CATEGORIES=	x11-wm
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}/${PORTVERSION}
+MASTER_SITES=	https://github.com/ice-wm/icewm/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window Manager designed for speed, usability and consistency
 
-LICENSE=	gpl2
+LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake iconv:translit pkgconfig
-USE_XORG=	ice sm x11 xext
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libfribidi.so:converters/fribidi \
+		libsndfile.so:audio/libsndfile
+
+USES=		compiler:c++11-lang gmake gnome iconv:translit localbase \
+		perl5 pkgconfig shebangfix tar:lz xorg
 USE_GNOME=	gdkpixbuf2
+USE_PERL5=	build
+USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xpm xrender
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-guievents \
+CONFIGURE_ARGS=	--with-icesound=oss \
 		--with-cfgdir=${DATADIR} \
 		--with-libdir=${DATADIR} \
-		--with-kdedatadir=${LOCALBASE}/share \
-		--with-docdir=${PREFIX}/share/doc \
-		--with-mkfontdir=${NONEXISTENT}
+		--with-docdir=${PREFIX}/share/doc
+SHEBANG_FILES=	contrib/icewm-menu-xrandr
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-OPTIONS_DEFINE=		BEASTIE ESOUND GNOME LITE MENUFIX NLS XFT XINERAMA \
-			XRANDR DOCS
-OPTIONS_DEFINE_i386=	ASM
-OPTIONS_DEFAULT=	BEASTIE MENUFIX NLS XFT XINERAMA XRANDR
-OPTIONS_DEFAULT_i386=	ASM
+OPTIONS_DEFINE=		BEASTIE DOCS NLS XFT XINERAMA XRANDR
+OPTIONS_DEFAULT=	BEASTIE XFT XINERAMA XRANDR
 OPTIONS_SUB=		yes
 
 BEASTIE_DESC=		Use Beastie'fied startup button
-ESOUND_USE=		GNOME=esound
-ESOUND_CONFIGURE_ON=	--with-icesound=esound
-ESOUND_CONFIGURE_OFF=	--with-icesound=oss
-GNOME_DESC=		Display GNOME 2 menus
-GNOME_USE=		GNOME=gnomedesktop,libgnomeui
-GNOME_CONFIGURE_ENABLE=	menus-gnome2
-LITE_CONFIGURE_ENABLE=	lite
-MENUFIX_DESC=		MenuIconSize fix
-MENUFIX_EXTRA_PATCHES=	${FILESDIR}/extra-menu-icon-fix.patch
+BEASTIE_VARS=		STARTUP_PIXMAP=bsd-daemon.xpm
+BEASTIE_VARS_OFF=	STARTUP_PIXMAP=icewm-logo.xpm
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
-XFT_LIB_DEPENDS=	libXft.so:${PORTSDIR}/x11-fonts/libXft
+XFT_LIB_DEPENDS=	libXft.so:x11-fonts/libXft
 XFT_CONFIGURE_OFF=	--enable-corefonts --disable-xfreetype
 XINERAMA_USE=		XORG=xinerama
 XINERAMA_CONFIGURE_ENABLE=	xinerama
 XRANDR_USE=		XORG=xrandr
 XRANDR_CONFIGURE_ENABLE=	xrandr
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MASM}
-CONFIGURE_ARGS+=--enable-x86-asm
-.else
-CONFIGURE_ARGS+=--disable-x86-asm
-.endif
-
-.if ${PORT_OPTIONS:MBEASTIE}
-STARTUP_PIXMAP=	${DATADIR}/taskbar/bsd-daemon.xpm
-.else
-STARTUP_PIXMAP=	icewm-logo.xpm
-.endif
-
-.if ${PORT_OPTIONS:MLITE}
-PLIST_SUB+=	NOLITE="@comment "
-.else
-PLIST_SUB+=	NOLITE=""
-.endif
-
 post-extract:
 .for dir in taskbar themes/Infadel2/taskbar
 	@cd ${WRKSRC}/lib/${dir} && ${MV} start.xpm icewm-logo.xpm
+	@${LN} -sf ${FILESDIR}/bsd-daemon.xpm ${WRKSRC}/lib/${dir}
+	@${LN} -sf ${STARTUP_PIXMAP} ${WRKSRC}/lib/${dir}/start.xpm
 .endfor
-	@${CP} -f ${FILESDIR}/bsd-daemon.xpm ${WRKSRC}/lib/taskbar
 
 post-patch:
-	@${REINPLACE_CMD} -e '/test/s|==|=|g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e \
-		's|/usr/share/control|${LOCALBASE}/share/control|g ; \
-		 s|/usr/share/app|${LOCALBASE}/share/app|g ; \
-		 s|/usr/share/gnome|${LOCALBASE}/share/gnome|g' \
-		 ${WRKSRC}/src/gnome2.cc
-	@${REINPLACE_CMD} -e \
-		's|SHELL=.*|SHELL=@SHELL@| ; \
-		 s|icewm-set-gnomewm||g' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e \
-		's|icewm-$$(VERSION)|icewm| ; \
-		 s|`pkg-config fontconfig --cflags`|| ; \
-		 s|`pkg-config fontconfig --libs`|| ; \
+	@${REINPLACE_CMD} -E -e \
+		'/^(icewm|icehelp|icewmbg)_LDADD =/s|$$| @LIBICONV@| ; \
 		 /@echo/s|^|#| ; \
-		 s|@$$(|$$(|' ${WRKSRC}/src/Makefile.in
+		 s|@$$\(|$$(|' ${WRKSRC}/src/Makefile.in
 
-post-install:
-.for dir in taskbar themes/Infadel2/taskbar
-	@${LN} -s ${STARTUP_PIXMAP} ${DATADIR}/${dir}/start.xpm
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for f in ChangeLog NEWS README TODO doc/*.html
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-	${MKDIR} ${DOCSDIR}
-. for f in CHANGES INSTALL README TODO
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
-. endfor
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}
 
 .include <bsd.port.mk>
