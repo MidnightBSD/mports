@@ -1,5 +1,4 @@
 # Created by: dbaker
-# $FreeBSD: head/misc/dnetc/Makefile 469109 2018-05-05 13:54:37Z danfe $
 
 PORTNAME=	dnetc
 PORTVERSION=	${VERSION}
@@ -11,7 +10,7 @@ MASTER_SITES=	http://http.distributed.net/pub/dcti/v${PORTVERSION:R}/ \
 # This is architecture dependent
 DISTNAME=	dnetc${PORTVERSION:E}-freebsd-${ARCH:S/i386/x86/}-elf
 
-MAINTAINER=	tdb@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed.net distributed computing project client
 
 # These are architecture dependent
