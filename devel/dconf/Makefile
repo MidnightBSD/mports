@@ -24,6 +24,8 @@ USE_GNOME=	glib20 libxslt:build
 USE_LDCONFIG=	yes
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
+NO_TEST=	yes
+
 MESON_ARGS=	-Denable-man=true
 
 post-patch:
