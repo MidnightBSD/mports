@@ -29,6 +29,5 @@ SUBDIR += wine-gecko
 SUBDIR += wine-mono
 SUBDIR += xhomer
 SUBDIR += yabause
-SUBDIR += yape
 
 .include <bsd.port.subdir.mk>
