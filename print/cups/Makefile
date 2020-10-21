@@ -96,8 +96,9 @@ CONFIGURE_ARGS+=--enable-debug --enable-debug-printfs
 
 .if empty(ICONV_LIB)
 CONFIGURE_ARGS+=ac_cv_search_libiconv_open=no
-#.else
-#LDFLAGS+=	-L/usr/local/lib/ -liconv
+.else
+# needed on magus, at least for current
+LDFLAGS+=	-L/usr/local/lib/ -liconv
 .endif
 
 post-patch:
