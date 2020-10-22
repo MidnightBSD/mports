@@ -47,7 +47,6 @@ SUBDIR += mate-notification-daemon
 SUBDIR += menumaker
 SUBDIR += notification-daemon
 SUBDIR += orage
-SUBDIR += planner
 SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
