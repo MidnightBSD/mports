@@ -27,4 +27,6 @@ USE_GNOME=	gtk20 pango
 
 CONFIGURE_ENV=	FORCE_MAKE_CMD=yes
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
