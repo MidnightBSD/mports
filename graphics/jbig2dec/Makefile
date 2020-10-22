@@ -1,61 +1,33 @@
-# $MidnightBSD$
-
 PORTNAME=	jbig2dec
-PORTVERSION=	0.11
-PORTREVISION=	3
+PORTVERSION=	0.19
 CATEGORIES=	graphics devel
-MASTER_SITES=	SF
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9531/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Decoder implementation of the JBIG2 image compression format
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz libtool
+USES=		autoreconf libtool
+
+CONFIGURE_ENV=	ac_cv_func_getopt_long=yes
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	PNG TESTS
-OPTIONS_DEFAULT=	PNG
+OPTIONS_DEFINE=	PNG
+OPTIONS_DEFAULT=PNG
 
-TESTS_DESC=	Download and use test-images for post-build testing
-
-EXTRACT_AFTER_ARGS+=	--exclude sha1.h --exclude 'getopt*'
-
-PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+PNG_CONFIGURE_OFF=	--without-libpng
 PNG_CONFIGURE_ON=	--with-libpng=${LOCALBASE}
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MTESTS}
-MASTER_SITES+=	http://jbig2dec.sourceforge.net/ubc/:tests
-DISTFILES+=	jb2streams.zip:tests
-USE_PYTHON_BUILD=yes
-KNOWN_BAD_JB2S=	042_11 042_13 042_14 042_24 042_25 amb_1 amb_2
-
-post-extract:
-	@${MKDIR} ${WRKDIR}/ubc
-	@${TAR} -C ${WRKDIR}/ubc/ -xpf ${DISTDIR}/jb2streams.zip \
-		${KNOWN_BAD_JB2S:S/$/.jb2/:S/^/--exclude /}
-.else
-EXTRA_PATCHES=	${FILESDIR}/simpler-test-patch
-.endif
+PNG_LIB_DEPENDS=	libpng.so:graphics/png
 
 post-patch:
-.if ${PORT_OPTIONS:MPNG}
-	@${REINPLACE_CMD} 's/png_check_sig/png_sig_cmp/g' ${WRKSRC}/configure
-.endif
-	@${REINPLACE_CMD} -E 's|SHA1_Final\( *([^,]+), *([^\)]+)\)|SHA1_Final(\2, \1)|' \
-		${WRKSRC}/jbig2dec.c ${WRKSRC}/sha1.c
-	@${REINPLACE_CMD} -e '1 s|${SETENV} python|${PYTHON_CMD}|' \
-		${WRKSRC}/test_jbig2dec.py
+	@${RM} ${WRKSRC}/getopt* ${WRKSRC}/sha1.h
+	@${REINPLACE_CMD} -E 's|SHA1_Final\( *([^,]+), *([^\)]+)\)|SHA1_Final(\2, \1)|' ${WRKSRC}/jbig2dec.c ${WRKSRC}/sha1.c
 
-test check regression-test:
-	${MAKE} -C ${WRKSRC} check-TESTS
-
-post-build:	test
+pre-configure:
+	@cd ${WRKSRC}/ && ${SH} autogen.sh
 
 .include <bsd.port.mk>
