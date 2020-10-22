@@ -93,6 +93,8 @@ SOURCES_VARS=		rust_manifests+=${RUST_SRC_MANIFEST}
 PLIST_FILES=		lib/rustlib/components \
 			lib/rustlib/rust-installer-version
 
+#magus
+NO_TEST=	yes
 .include <bsd.port.pre.mk>
 
 X_PY_ENV=	HOME="${WRKDIR}" \
