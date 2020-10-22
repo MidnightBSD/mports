@@ -99,6 +99,9 @@ EMOJI_BUILD_DEPENDS=	json-glib>=0:devel/json-glib \
 			unicode-emoji>0:misc/unicode-emoji \
 			cldr-emoji-annotation>0:misc/cldr-emoji-annotation
 
+#magus
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${COMPILER_TYPE} == gcc && ${COMPILER_VERSION} < 46
@@ -117,8 +120,5 @@ pre-configure:
 post-install:
 	${MKDIR} ${PREFIX}/etc/xdg/autostart
 	${INSTALL_DATA} ${PATCHDIR}/ibus.desktop ${PREFIX}/etc/xdg/autostart
-
-do-test:
-	${MAKE} -C ${WRKSRC}/src/tests check
 
 .include <bsd.port.post.mk>
