@@ -16,9 +16,10 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgif.so:graphics/giflib \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
-RUN_DEPENDS=	xli:${PORTSDIR}/graphics/xli
+RUN_DEPENDS=	xli:graphics/xli
 
-USES=		execinfo gmake pkgconfig jpeg shebangfix tar:bzip2
+USES=		execinfo gmake gnome pkgconfig jpeg shebangfix tar:bzip2
+USE_CSTD=	gnu89
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 librsvg2 pango
 USE_XORG+=	ice sm x11 xcomposite xcursor xdamage xext xfixes xi xinerama \
 		xrandr xrender
