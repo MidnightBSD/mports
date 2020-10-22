@@ -12,7 +12,8 @@ COMMENT=	GNOME 3 system monitor program
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		appstream-builder:devel/appstream-glib
 LIB_DEPENDS=	libgtop-2.0.so:devel/libgtop
 
 PORTSCOUT=	limitw:1,even
