@@ -22,63 +22,99 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.\" $FreeBSD: head/gnu/usr.bin/groff/tmac/mdoc.local.in 318645 2017-05-22 14:21:07Z gjb $
+.\" $FreeBSD: src/gnu/usr.bin/groff/tmac/mdoc.local,v 1.48.2.4 2006/01/12 15:44:42 ru Exp $
+.\" $MidnightBSD$
 .\"
-.\"     %beginstrip%
-.
+.nr Mx 1
 .eo
-.
-.
-.ds doc-volume-operating-system FreeBSD
-.
-.\" FreeBSD .Lb values
-.ds doc-str-Lb-libarchive  Streaming Archive Library (libarchive, \-larchive)
-.ds doc-str-Lb-libbluetooth Bluetooth User Library (libbluetooth, \-lbluetooth)
-.ds doc-str-Lb-libcseper   Casper Library (libcapsicum, \-lcasper)
-.ds doc-str-Lb-libcuse     Userland Character Device Library (libcuse, \-lcuse)
-.ds doc-str-Lb-libedit     Line Editor and History Library (libedit, \-ledit)
-.ds doc-str-Lb-libefi      EFI Runtime Services Library (libefi, \-lefi)
-.ds doc-str-Lb-libelf      ELF Parsing Library (libelf, \-lelf)
-.ds doc-str-Lb-libexecinfo Backtrace Access Library (libexecinfo, \-lexecinfo)
-.ds doc-str-Lb-libfetch    File Transfer Library (libfetch, \-lfetch)
-.ds doc-str-Lb-libnv       Name/value pairs library (libnv, \-lnv)
-.ds doc-str-Lb-libpmc      Performance Monitoring Counters Interface Library (libpmc, \-lpmc)
-.ds doc-str-Lb-libproc     Processor Monitoring and Analysis Library (libproc, \-lproc)
-.ds doc-str-Lb-libprocstat Process and Files Information Retrieval (libprocstat, \-lprocstat)
-.ds doc-str-Lb-librtld_db  Run-time Linker Debugging Library (librtld_db, \-lrtld_db)
-.ds doc-str-Lb-libsbuf     Safe String Composition Library (libsbuf, \-lsbuf)
-.ds doc-str-Lb-libstdthreads C11 Threads Library (libstdthreads, \-lstdthreads)
-.
-.\" Default .Os value
-.ds doc-default-operating-system FreeBSD\~12.0
-.
-.\" FreeBSD releases not found in doc-common
-.ds doc-operating-system-FreeBSD-2.2.9  2.2.9
-.ds doc-operating-system-FreeBSD-7.4    7.4
-.ds doc-operating-system-FreeBSD-8.3    8.3
-.ds doc-operating-system-FreeBSD-8.4    8.4
-.ds doc-operating-system-FreeBSD-9.1    9.1
-.ds doc-operating-system-FreeBSD-9.2    9.2
-.ds doc-operating-system-FreeBSD-9.3    9.3
-.ds doc-operating-system-FreeBSD-10.0   10.0
-.ds doc-operating-system-FreeBSD-10.1   10.1
-.ds doc-operating-system-FreeBSD-10.2   10.2
-.ds doc-operating-system-FreeBSD-10.3   10.3
-.ds doc-operating-system-FreeBSD-11.0   11.0
-.ds doc-operating-system-FreeBSD-11.1   11.1
-.ds doc-operating-system-FreeBSD-12.0   12.0
-.
-.\" Definitions for other *BSDs not (yet) in doc-common
-.ds doc-operating-system-NetBSD-7.0     7.0
-.
-.\" Definitions not (yet) in doc-syms
-.
+.ds volume-operating-system MidnightBSD
+.ds str-Lb-libarchive  Streaming Archive Library (libarchive, \-larchive)
+.ds str-Lb-libbluetooth Bluetooth User Library (libbluetooth, \-lbluetooth)
+.ds str-Lb-libedit     Line Editor and History Library (libedit, \-ledit)
+.ds str-Lb-libefi      EFI Runtime Services Library (libefi, \-lefi)
+.ds str-Lb-libelf      ELF Parsing Library (libelf, \-lelf)
+.ds str-Lb-libfetch    File Transfer Library (libfetch, \-lfetch)
+.ds str-Lb-libpmc      Performance Monitoring Counters Interface Library (libpmc, \-lpmc)
+.ds str-Lb-libproc     Processor Monitoring and Analysis Library (libproc, \-lproc)
+.ds str-Lb-libprocstat Process and Files Information Retrieval (libprocstat, \-lprocstat)
+.ds str-Lb-librtld_db  Run-time Linker Debugging Library (librtld_db, \-lrtld_db)
+.ds default-operating-system MidnightBSD\~1.0
+.ds operating-system-MidnightBSD-0.1   0.1
+.ds operating-system-MidnightBSD-0.1.1 0.1.1
+.ds operating-system-MidnightBSD-0.2   0.2
+.ds operating-system-MidnightBSD-0.2.1 0.2.1
+.ds operating-system-MidnightBSD-0.3   0.3
+.ds operating-system-MidnightBSD-0.4   0.4
+.ds operating-system-MidnightBSD-0.5   0.5
+.ds operating-system-MidnightBSD-0.6   0.6
+.ds operating-system-MidnightBSD-0.7   0.7
+.ds operating-system-MidnightBSD-0.8   0.8
+.ds operating-system-MidnightBSD-0.9   0.9
+.ds operating-system-MidnightBSD-1.0   1.0
+.ds operating-system-FreeBSD-5.5    5.5
+.ds operating-system-FreeBSD-6.1	6.1
+.ds operating-system-FreeBSD-6.2	6.2
+.ds operating-system-FreeBSD-6.3	6.3
+.ds operating-system-FreeBSD-6.4	6.4
+.ds operating-system-FreeBSD-7.0    7.0
+.ds operating-system-FreeBSD-7.1	7.1
+.ds operating-system-FreeBSD-7.2	7.2
+.ds operating-system-FreeBSD-7.3	7.3
+.ds operating-system-FreeBSD-7.4	7.4
+.ds operating-system-FreeBSD-8.0	8.0
+.ds operating-system-FreeBSD-8.1	8.1
+.ds operating-system-FreeBSD-8.2	8.2
+.ds operating-system-FreeBSD-8.3	8.3
+.ds operating-system-FreeBSD-8.4    8.4
+.ds operating-system-FreeBSD-9.0	9.0
+.ds operating-system-FreeBSD-9.1    9.1
+.ds operating-system-FreeBSD-9.2    9.2
+.ds operating-system-FreeBSD-9.3    9.3
+.ds operating-system-FreeBSD-10.0   10.0
+.ds operating-system-FreeBSD-10.1   10.1
+.ds operating-system-FreeBSD-10.2   10.2
+.ds operating-system-FreeBSD-10.3   10.3
+.ds operating-system-FreeBSD-10.4   10.4
+.ds operating-system-FreeBSD-11.0   11.0
+.ds operating-system-FreeBSD-11.1   11.1
+.ds operating-system-DragonFly-1.0   1.0
+.ds operating-system-DragonFly-1.1   1.1
+.ds operating-system-DragonFly-1.2   1.2
+.ds operating-system-DragonFly-1.3   1.3
+.ds operating-system-DragonFly-1.4   1.4
+.ds operating-system-DragonFly-1.5   1.5
+.ds operating-system-DragonFly-1.6   1.6
+.ds operating-system-DragonFly-1.7   1.7
+.ds operating-system-DragonFly-1.8   1.8
+.ds operating-system-DragonFly-1.9	 1.9
+.ds operating-system-DragonFly-1.10  1.10
+.ds operating-system-DragonFly-1.11	 1.11
+.ds operating-system-DragonFly-1.12	 1.12
+.ds operating-system-DragonFly-2.0   2.0
+.ds operating-system-DragonFly-2.1	 2.1
+.ds operating-system-DragonFly-2.2	 2.2
+.ds operating-system-DragonFly-2.3	 2.3
+.ds operating-system-DragonFly-2.4	 2.4
+.ds operating-system-DragonFly-2.5	 2.5
+.ds operating-system-DragonFly-2.6	 2.6
+.ds operating-system-DragonFly-3.0	 3.0
+.ds operating-system-DragonFly-3.1   3.1
+.ds operating-system-DragonFly-3.2   3.2
+.ds operating-system-NetBSD-1.6.1 1.6.1
+.ds operating-system-NetBSD-1.6.2 1.6.2
+.ds operating-system-NetBSD-1.6.3 1.6.3
+.ds operating-system-NetBSD-2.0   2.0
+.ds operating-system-NetBSD-2.0.1 2.0.1
+.ds operating-system-NetBSD-2.0.2 2.0.2
+.ds operating-system-NetBSD-3.0   3.0
+.ds operating-system-NetBSD-4.0   4.0
+.ds operating-system-NetBSD-5.0   5.0
+.ds operating-system-NetBSD-6.0   6.0
+.ds operating-system-NetBSD-6.0.1   6.0.1
 .ec
-.
-.\" Locale support
-.if d doc-locale \{\
-.  ie "\*[doc-locale]"ru.KOI8-R" \
-.    mso mdoc/ru.KOI8-R
-.  el \{ .if "\*[doc-locale]"fr.ISO8859-1" \
-.    mso mdoc/fr.ISO8859-1
+.if d locale \{\
+.ie "\*[locale]"ru.KOI8-R" \
+.mso mdoc/ru.KOI8-R
+.el \{ .if "\*[locale]"fr.ISO8859-1" \
+.mso mdoc/fr.ISO8859-1
 .\}\}
