@@ -1,34 +1,30 @@
 # $MidnightBSD$
 
 PORTNAME=	gtkmm
-PKGNAMESUFFIX=	20
 PORTVERSION=	2.2.12
-PORTREVISION?=	11
+PORTREVISION?=	12
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/${PORTNAME}/2.2
+PKGNAMESUFFIX=	20
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	C++ wrapper for Gtk+, Pango, Atk, and Glib
 
-LICENSE=	lgpl
-
-USES+=		tar:bzip2
+USES+=		compiler:c++11-lang tar:bzip2
 
 PORTSCOUT=	ignore:1
 
-.if !defined(REFERENCE_PORT)
+LIB_DEPENDS=	libsigc-1.2.so:devel/libsigc++12
 
-LIB_DEPENDS=	libsigc-1.2.so:${PORTSDIR}/devel/libsigc++12
-BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
-
-USES+=		gmake libtool:keepla pathfix pkgconfig
+USES+=		autoreconf gmake gnome libtool:keepla pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gtk20
 CONFIGURE_ARGS=	--enable-static=yes \
 		--with-sigc-prefix=${LOCALBASE}
 INSTALL_TARGET=	install-strip
+BINARY_WRAPPERS=	gm4
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|glib/gmessages.h|glib/gtestutils.h|g' \
@@ -39,9 +35,8 @@ post-patch:
 		${WRKSRC}/glib/glibmm/*.cc ${WRKSRC}/glib/glibmm/*.h \
 		${WRKSRC}/gtk/gtkmm/textbuffer.cc
 .for d in docs examples tests
-	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/${d}//' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/^SUBDIRS[[:space:]]*=/s/${d}//' \
+		${WRKSRC}/Makefile.am
 .endfor
 
 .include <bsd.port.mk>
-
-.endif
