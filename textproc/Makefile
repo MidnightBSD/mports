@@ -268,6 +268,7 @@ SUBDIR += teckit
 SUBDIR += texi2html
 SUBDIR += tidyp
 SUBDIR += txt2man
+SUBDIR += uchardet
 SUBDIR += unoconv
 SUBDIR += urlview
 SUBDIR += utf8proc
