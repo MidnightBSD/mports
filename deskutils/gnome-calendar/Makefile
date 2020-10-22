@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-calendar
 PORTVERSION=	3.28.2
 CATEGORIES=	deskutils gnome
@@ -33,5 +31,7 @@ BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.calendar.enums.xml \
 		org.gnome.calendar.gschema.xml
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
