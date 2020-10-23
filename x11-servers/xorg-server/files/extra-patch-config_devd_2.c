@@ -46,9 +46,9 @@
 +#include <sys/mouse.h>
 +#include <sys/consio.h>
 +#include <sys/ioctl.h>
-+#if defined(__MidnightBSD_version) && __MidnightBSD_version > 190000
++
 +#include <dev/evdev/input.h>
-+#endif
++
 +#include <dev/usb/usb_ioctl.h>
 +#include <dev/usb/usbhid.h>
 +
