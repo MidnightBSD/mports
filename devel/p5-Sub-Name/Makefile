@@ -14,11 +14,10 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
-TEST_DEPENDS=	p5-B-C>=1.48:devel/p5-B-C \
-		p5-Devel-CheckBin>=0:devel/p5-Devel-CheckBin
-
 USES=		perl5
 USE_PERL5=	configure
+
+NO_TEST=	yes
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sub/Name/Name.so
