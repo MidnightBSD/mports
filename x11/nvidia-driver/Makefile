@@ -505,6 +505,7 @@ post-patch-LINUX-on:
 .endif
 
 pre-install:
+	${MKDIR} ${FAKE_DESTDIR}/boot/modules
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${MODULESDIR}/drivers \
 		${STAGEDIR}${PREFIX}/${MODULESDIR}/extensions
 
