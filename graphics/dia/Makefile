@@ -15,24 +15,24 @@ LICENSE=	gpl2
 
 OPTIONS_DEFINE=	DOCS
 
-LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		desktop-file-utils gettext gmake libtool pathfix \
+USES=		desktop-file-utils gettext gmake gnome libtool pathfix \
 		pkgconfig tar:xz
 USE_GNOME=	gtk20 gnomeprefix libxslt libartlgpl2 intlhack
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	LOCALBASE="${LOCALBASE}"
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib `pkg-config --libs gmodule-2.0`
 CONFIGURE_ARGS=	--disable-gnome
 INSTALL_TARGET=	install-strip
 
-DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl
 .include <bsd.mport.options.mk>
 
 #.if ${ARCH} == "i386"
-#LIB_DEPENDS+=		libEMF.so:${PORTSDIR}/graphics/libemf
+#LIB_DEPENDS+=		libEMF.so:graphics/libemf
 #CONFIGURE_ARGS+=	--enable-libemf
 #PLIST_SUB+=		WMF=""
 #.else
