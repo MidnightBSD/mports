@@ -63,6 +63,7 @@ SUBDIR += libcroco
 SUBDIR += libcue
 SUBDIR += libebml
 SUBDIR += libepubgen
+SUBDIR += libexttextcat
 SUBDIR += libgepub
 SUBDIR += librevenge
 SUBDIR += libsass
