@@ -14,7 +14,7 @@ LIB_DEPENDS=	libpurple.so:net-im/libpurple \
 
 WRKSRC=		${WRKDIR}/purple-discord-9b7c3ad
 
-USES=		dos2unix gettext gmake pkgconfig
+USES=		dos2unix gettext gmake gnome pkgconfig
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
