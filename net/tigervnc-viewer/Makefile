@@ -1,11 +1,10 @@
-PORTREVISION=	1
 PKGNAMESUFFIX=	-viewer
 CATEGORIES=	net
 
 COMMENT=	TigerVNC Viewer
 
-USES+=		gnome iconv jpeg
-USE_XORG+=	ice sm x11 xcursor xext xfixes xft xinerama xrender
+USES+=		gnome iconv jpeg xorg
+USE_XORG+=	ice pixman sm x11 xcursor xext xfixes xft xi xinerama xrender
 
 BUILD_DEPENDS+=	convert:graphics/ImageMagick7 # to generate icons during build
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
@@ -26,6 +25,7 @@ GNUTLS_LIB_DEPENDS=	libtasn1.so:security/libtasn1 \
 INSTALLS_ICONS=	yes
 DESKTOP_ENTRIES=	"TigerVNC viewer" "Connect to VNC server and display remote desktop" \
 				"${PORTNAME}" "vncviewer" "Network;" false
+DESCR=		${.CURDIR}/pkg-descr
 
 post-patch:
 	# do not build server components and tests
