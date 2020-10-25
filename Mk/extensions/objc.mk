@@ -9,7 +9,7 @@
 .if !defined(_INCLUDE_USES_OBJC_MK)
 _INCLUDE_USES_OBJC_MK=	yes
 
-OBJC_CLANG_VERSION=60
+OBJC_CLANG_VERSION=70
 
 objc_ARGS?=
 .if !empty(objc_ARGS) && ! ${objc_ARGS:Mcompiler}
@@ -25,7 +25,7 @@ _CCVERSION!=	${CC} --version
 _OBJC_CCVERSION_${_CC_hash}=	${_CCVERSION}
 PORTS_ENV_VARS+=	_OBJC_CCVERSION_${_CC_hash}
 .endif
-COMPILER_VERSION=	${_CCVERSION:M[0-9].[0-9]*:tW:C/([0-9]).([0-9]).*/\1\2/g}
+COMPILER_VERSION=	${_CCVERSION:M[0-9]*.[0-9]*:[1]:C/([0-9]+)\.([0-9]+)\..*/\1\2/}
 .if ${_CCVERSION:Mclang}
 COMPILER_TYPE=	clang
 .else
@@ -47,7 +47,7 @@ _OBJC_ALTCCVERSION_${_CC_hash}=	${_ALTCCVERSION}
 PORTS_ENV_VARS+=		_OBJC_ALTCCVERSION_${_CC_hash}
 .endif
 
-ALT_COMPILER_VERSION=	${_ALTCCVERSION:M[0-9].[0-9]*:tW:C/([0-9]).([0-9]).*/\1\2/g}
+ALT_COMPILER_VERSION=	${_ALTCCVERSION:M[0-9]*.[0-9]*:[1]:C/([0-9]+)\.([0-9]+)\..*/\1\2/}
 .if ${_ALTCCVERSION:Mclang}
 ALT_COMPILER_TYPE=	clang
 .elif !empty(_ALTCCVERSION)
@@ -60,11 +60,13 @@ ALT_COMPILER_TYPE=	gcc
 CC=	/usr/bin/clang
 CPP=	/usr/bin/clang-cpp
 CXX=	/usr/bin/clang++
+OBJC_LLD=	lld
 .else
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${OBJC_CLANG_VERSION}:devel/llvm${OBJC_CLANG_VERSION}
-CPP=	${LOCALBASE}/bin/clang-cpp${OBJC_CLANG_VERSION}
-CC=	${LOCALBASE}/bin/clang${OBJC_CLANG_VERSION}
-CXX=	${LOCALBASE}/bin/clang++${OBJC_CLANG_VERSION}
+BUILD_DEPENDS+=        ${LOCALBASE}/bin/clang${OBJC_CLANG_VERSION}:devel/llvm${OBJC_CLANG_VERSION}
+CPP=   ${LOCALBASE}/bin/clang-cpp${OBJC_CLANG_VERSION}
+CC=    ${LOCALBASE}/bin/clang${OBJC_CLANG_VERSION}
+CXX=   ${LOCALBASE}/bin/clang++${OBJC_CLANG_VERSION}
+OBJC_LLD=	lld${OBJC_CLANG_VERSION}
 .endif
 .endif
 
