@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	awstats
-PORTVERSION=	7.5
+PORTVERSION=	7.8
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
@@ -9,96 +9,84 @@ MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free real-time logfile analyzer to get advanced web statistics
 
-LICENSE=	gpl2
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/docs/LICENSE.TXT
 
-RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
+USES=		cpe dos2unix perl5 shebangfix
+CPE_VENDOR=	laurent_destailleur
 
-USES=		dos2unix perl5 shebangfix
+SHEBANG_GLOB=	*.pl *.pm
+DOS2UNIX_GLOB=	*.xml *.pm
+
 NO_BUILD=	yes
-USE_PERL5_RUN=	yes
+NO_ARCH=	yes
+USE_PERL5=	run
 
 SUB_FILES=	pkg-message
 
-OPTIONS=	IPV6 "Enable IPV6 for use with IPv6 Plugin" Off
+OPTIONS_DEFINE=			DOCS GEOIPFREE IPV6
+OPTIONS_GROUP=			MODULES
+OPTIONS_DEFAULT=		HOSTINFO
 
-.include <bsd.port.pre.mk>
+OPTIONS_GROUP_MODULES=		DECODEUTFKEYS HOSTINFO
+MODULES_DESC=			Plugin support not present in Perl CORE
+DECODEUTFKEYS_DESC=		DecodeUTFKeys (requires p5-URI)
+GEOIPFREE_DESC=			Country lookups via Geo::IPfree
+HOSTINFO_DESC=			HostInfo (requires p5-Net-XWhois)
+GEOIPFREE_RUN_DEPENDS=		p5-Geo-IPfree>=0:net/p5-Geo-IPfree
+IPV6_RUN_DEPENDS=		p5-Net-IP>=0:net-mgmt/p5-Net-IP \
+				p5-Net-DNS>=0:dns/p5-Net-DNS
+DECODEUTFKEYS_RUN_DEPENDS=	p5-URI>0:net/p5-URI
+HOSTINFO_RUN_DEPENDS=		p5-Net-XWhois>=0:net/p5-Net-XWhois
 
-.if defined(WITH_IPV6)
-RUN_DEPENDS+=	${SITE_PERL}/Net/IP.pm:${PORTSDIR}/net-mgmt/p5-Net-IP
-RUN_DEPENDS+=	${SITE_PERL}/mach/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS
-.endif
-
-.if ${PERL_LEVEL} < 500800
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
-.endif
+pre-patch:
+# This file is so messed up, not even dos2unix can fix it
+	@fixme="${WRKSRC}/wwwroot/cgi-bin/plugins/export_to_csv.pm" && \
+		${TR} '\r' '\n' < $$fixme > $$fixme.new && \
+		${MV} $$fixme.new $$fixme
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/tools/awstats_buildstaticpages.pl
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/tools/awstats_configure.pl
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/tools/awstats_updateall.pl
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/wwwroot/cgi-bin/awstats.pl
+	${REINPLACE_CMD} -E -e 's|/usr/local/etc/awstats|${ETCDIR}|' \
+			-e 's|/etc/awstats/(awstats.model.conf)|${ETCDIR}/\1|' \
+			-e 's,/usr/(local|share)/awstats/wwwroot,${WWWDIR},' \
+		${WRKSRC}/tools/*.pl \
+		${WRKSRC}/tools/httpd_conf \
+		${WRKSRC}/tools/nginx/* \
+		${WRKSRC}/wwwroot/cgi-bin/*.pl \
+		${WRKSRC}/wwwroot/cgi-bin/*.conf
+	${REINPLACE_CMD} -e 's|/etc/awstats|${ETCDIR}|' \
+		${WRKSRC}/tools/awstats_updateall.pl
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+			-e 's|%%WWWDIR%%|${WWWDIR}|' \
+			-e 's|AWSTATS_PATH/wwwroot|AWSTATS_PATH|' \
+		${WRKSRC}/tools/awstats_configure.pl
+
+pre-install:
+.for f in dolibarr httpd_conf nginx webmin
+	${MV} ${WRKSRC}/tools/$f ${WRKSRC}/docs
+.endfor
+	-${RM} ${WRKSRC}/docs/*.bak
 
 do-install:
-	@${MKDIR} ${PREFIX}/www/awstats
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/lang
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_f
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_m
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_w
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/lib
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/plugins
-	@${MKDIR} ${PREFIX}/www/awstats/cgi-bin/plugins/example
-	@${MKDIR} ${PREFIX}/www/awstats/classes
-	@${MKDIR} ${PREFIX}/www/awstats/css
-	@${MKDIR} ${PREFIX}/www/awstats/icons/browser
-	@${MKDIR} ${PREFIX}/www/awstats/icons/clock
-	@${MKDIR} ${PREFIX}/www/awstats/icons/cpu
-	@${MKDIR} ${PREFIX}/www/awstats/icons/flags
-	@${MKDIR} ${PREFIX}/www/awstats/icons/mime
-	@${MKDIR} ${PREFIX}/www/awstats/icons/os
-	@${MKDIR} ${PREFIX}/www/awstats/icons/other
-	@${MKDIR} ${PREFIX}/www/awstats/js
-	@${MKDIR} ${PREFIX}/www/awstats/tools
-	@${MKDIR} ${PREFIX}/www/awstats/tools/webmin
-	@${MKDIR} ${PREFIX}/www/awstats/tools/xslt
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_buildstaticpages.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_configure.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_exportlib.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_updateall.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/logresolvemerge.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/maillogconvert.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/urlaliasbuilder.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_DATA} ${WRKSRC}/tools/xslt/* ${PREFIX}/www/awstats/tools/xslt
-	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awredir.pl ${PREFIX}/www/awstats/cgi-bin
-	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awstats.model.conf ${PREFIX}/www/awstats/cgi-bin
-	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awstats.pl ${PREFIX}/www/awstats/cgi-bin
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/tooltips_f/*.txt ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_f
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/tooltips_m/*.txt ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_m
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/tooltips_w/*.txt ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_w
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/*.txt ${PREFIX}/www/awstats/cgi-bin/lang
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lib/* ${PREFIX}/www/awstats/cgi-bin/lib
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/plugins/*.pm ${PREFIX}/www/awstats/cgi-bin/plugins
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/plugins/example/* ${PREFIX}/www/awstats/cgi-bin/plugins/example
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/classes/awgraphapplet.jar ${PREFIX}/www/awstats/classes/awgraphapplet.jar
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/css/* ${PREFIX}/www/awstats/css
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/browser/* ${PREFIX}/www/awstats/icons/browser
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/clock/* ${PREFIX}/www/awstats/icons/clock
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/cpu/* ${PREFIX}/www/awstats/icons/cpu
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/flags/* ${PREFIX}/www/awstats/icons/flags
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/mime/* ${PREFIX}/www/awstats/icons/mime
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/os/* ${PREFIX}/www/awstats/icons/os
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/other/* ${PREFIX}/www/awstats/icons/other
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/js/* ${PREFIX}/www/awstats/js
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/images
-	${INSTALL_DATA} ${WRKSRC}/docs/images/* ${DOCSDIR}/images
-	${INSTALL_DATA} ${WRKSRC}/docs/*.* ${DOCSDIR}
-.endif
-	@${ECHO_CMD} ""
-	@${ECHO_CMD} "* Use ${PREFIX}/www/awstats/tools/awstats_configure.pl to setup your hosts."
-.if !defined(NOPORTDOCS)
-	@${ECHO_CMD} "* Documentation has been installed in ${PREFIX}/share/doc/awstats"
-.endif
-	@${ECHO_CMD} ""
+	${MKDIR} ${STAGEDIR}${WWWDIR}
+	${MKDIR} ${STAGEDIR}${WWWDIR}/tools
+	${MKDIR} ${STAGEDIR}${WWWDIR}/cgi-bin
+.for f in awstats_buildstaticpages.pl awstats_configure.pl \
+	awstats_exportlib.pl awstats_updateall.pl geoip_generator.pl \
+	logresolvemerge.pl maillogconvert.pl urlaliasbuilder.pl
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/$f ${STAGEDIR}${WWWDIR}/tools
+.endfor
+.for f in awdownloadcsv.pl awredir.pl awstats.model.conf awstats.pl
+	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/$f ${STAGEDIR}${WWWDIR}/cgi-bin
+.endfor
+	(cd ${WRKSRC}/wwwroot/cgi-bin && ${COPYTREE_SHARE} "lang lib plugins" ${STAGEDIR}${WWWDIR}/cgi-bin)
+	(cd ${WRKSRC}/wwwroot && ${COPYTREE_SHARE} "css icon js" ${STAGEDIR}${WWWDIR})
+	(cd ${WRKSRC}/tools && ${COPYTREE_SHARE} xslt ${STAGEDIR}${WWWDIR}/tools)
+	${MKDIR} ${STAGEDIR}${WWWDIR}/classes
+	${INSTALL_DATA} ${WRKSRC}/wwwroot/classes/awgraphapplet.jar ${STAGEDIR}${WWWDIR}/classes
 
-.include <bsd.port.post.mk>
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR})
+
+.include <bsd.port.mk>
