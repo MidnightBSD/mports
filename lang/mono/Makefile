@@ -18,7 +18,7 @@ BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		cmake>0:devel/cmake
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		libgettextlib.so:devel/gettext-tools
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow@${PY_FLAVOR} \
+RUN_DEPENDS=	${PY_PILLOW} \
 		ca_root_nss>=0:security/ca_root_nss
 
 CONFLICTS_INSTALL=	czmq-3*
@@ -38,14 +38,14 @@ MONOLITE_VERSION=	1051000004
 X11_USES=	display:test
 
 USES=	autoreconf bison compiler:c11 cpe gettext-runtime gmake iconv libtool \
-	pathfix perl5 python:2.7 shebangfix tar:bzip2
+	pathfix perl5 python shebangfix tar:bzip2
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	scripts/mono-heapviz mono/mini/genmdesc.py mono/tests/test_lldb.py
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-CONFIGURE_ARGS=	--disable-dtrace --enable-btls --enable-nls
+CONFIGURE_ARGS=	--disable-dtrace --enable-btls --enable-nls --disable-getrandom
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no ac_cv_lib_charset_locale_charset=yes
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
