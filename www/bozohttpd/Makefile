@@ -19,7 +19,8 @@ OPTIONS=	HTPASSWD_SUPPORT	"Enable htpassord support" 	off \
 		SSL			"Enable SSL support"		on \
 		CGI			"Enable CGI support"		on
 
-USES=		uidfix tar:bzip2
+USES=		cpe uidfix tar:bzip2
+CPE_VENDOR=	eterna
 
 HTPASSWD_DESC=		Enable htpassword support
 SSL_DESC=		Enable SSL support
