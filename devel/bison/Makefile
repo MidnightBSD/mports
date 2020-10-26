@@ -1,7 +1,7 @@
 # Created by: Jerry Hicks
 
 PORTNAME=	bison
-PORTVERSION=	3.5.4
+PORTVERSION=	3.6.4
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNU
