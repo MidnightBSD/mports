@@ -1,5 +1,5 @@
 PORTNAME=	bzip2
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.8
 PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	https://sourceware.org/pub/bzip2/
