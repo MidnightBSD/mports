@@ -23,6 +23,8 @@ LDB_DEPENDS=		talloc>=2.1.14:devel/talloc \
 
 CONFLICTS_INSTALL=	ldb-1.1.* ldb1[23]-1.*
 
+NO_TEST=		yes
+
 #FLAVORS=		default nopython
 #nopython_PKGNAMESUFFIX=	-nopython
 #nopython_CONFLICTS=	ldb

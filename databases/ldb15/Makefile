@@ -54,6 +54,8 @@ DEBUG_CONFIGURE_ON=	--verbose --enable-debug
 DEBUG_MAKE_ARGS=	--verbose
 DEBUG_FLAGS=		-g -ggdb3 -O0
 
+NO_TEST=		yes
+
 .include <bsd.mport.options.mk>
 
 LDB_BINS=		bin/ldbedit \
