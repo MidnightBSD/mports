@@ -67,6 +67,8 @@ MAKE_JOBS_UNSAFE=	yes
 USES=		perl5
 USE_PERL5=	configure extract
 
+NO_TEST-	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e '/^check_conflicts()/d' ${WRKSRC}/Makefile.PL
 
