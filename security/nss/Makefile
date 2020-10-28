@@ -59,7 +59,8 @@ BINS=		${DIST}/${OPSYS}${OSREL}_OPT.OBJ
 BINS=		${DIST}/${OPSYS}${OSREL}_DBG.OBJ
 .endif
 
-.if ${ARCH} == i386 && ! ${MACHINE_CPU:Msse2}
+.if ${ARCH} == i386 
+# make error && ! ${MACHINE_CPU:Msse2}
 USES+=		compiler:c++14-lang # gcm.h
 .endif
 
