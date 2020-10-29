@@ -20,7 +20,6 @@ SUBDIR += open-vm-tools-nox11
 SUBDIR += pcem
 SUBDIR += qemu
 SUBDIR += rtc
-SUBDIR += snes9x
 SUBDIR += tpm-emulator
 SUBDIR += vba
 SUBDIR += vxtools
@@ -29,5 +28,6 @@ SUBDIR += wine-gecko
 SUBDIR += wine-mono
 SUBDIR += xhomer
 SUBDIR += yabause
+SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>

@@ -171,14 +171,14 @@ GYP_DEFINES+=	use_pulseaudio=1
 GYP_DEFINES+=	use_pulseaudio=0
 .endif
 
-.if ! ${MACHINE_CPU:Msse2}
-GYP_DEFINES+=	disable_sse2=1
-.endif
+#.if ! ${MACHINE_CPU:Msse2}
+#GYP_DEFINES+=	disable_sse2=1
+#.endif
 
 .if !exists(/usr/libdata/pkgconfig/libusb-1.0.pc)
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libusb-pc
 .endif
-.if ${OSVERSION} >= 1000052 && !exists(${LOCALBASE}/include/execinfo.h)
+.if ${OSVERSION} >= 100000 && !exists(${LOCALBASE}/include/execinfo.h)
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-fixup-execinfo
 .endif
 
