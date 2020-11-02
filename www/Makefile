@@ -200,7 +200,6 @@ SUBDIR += weblint++
 SUBDIR += wordpress
 SUBDIR += wpebackend-fdo
 SUBDIR += xsp
-SUBDIR += youtube_dl
 SUBDIR += yuicompressor
 SUBDIR += zend-framework
 
