@@ -1,6 +1,7 @@
 PORTNAME=	zziplib
 DISTVERSIONPREFIX=	v
 PORTVERSION=	0.13.71
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +10,8 @@ COMMENT=	Library to provide transparent read access to zipped files
 LICENSE=	lgpl2.1 mpl
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	zip:archivers/zip
+BUILD_DEPENDS=	gsed:textproc/gsed \
+		zip:archivers/zip
 
 USES=		libtool pathfix pkgconfig
 
