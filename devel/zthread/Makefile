@@ -2,7 +2,7 @@
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/ZThread/${PORTVERSION}
 DISTNAME=	ZThread-${PORTVERSION}
@@ -13,25 +13,29 @@ COMMENT=	Platform-independent object-oriented C++ threading library
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake libtool
+USES=		libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-ftime --disable-static
 MAKE_ARGS+=	INSTALL_PROGRAM="${INSTALL_SCRIPT}"
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	DOCS
-
 PORTDOCS=	AUTHORS ChangeLog NEWS README TODO
+
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	@${FIND} ${WRKSRC} -name CVS -type d -delete
 
 post-patch:
 	@${FIND} ${WRKSRC} \( -name '*.orig' -or -name '*.swp' \) -delete
+	@${REINPLACE_CMD} -E 's,(bin|data|inlude)dir\),DESTDIR)$$(&,' \
+		${WRKSRC}/Makefile.in
 
 post-install:
-	@${MKDIR} ${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
-	${STRIP_CMD} ${PREFIX}/lib/libZThread.so
+	@${STRIP_CMD} ${PREFIX}/lib/libZThread.so
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.mk>
