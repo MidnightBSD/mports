@@ -164,6 +164,7 @@ SUBDIR += py-openssl
 SUBDIR += py-paramiko
 SUBDIR += py-pyclamd
 SUBDIR += py-pycrypto
+SUBDIR += py-pycryptodome
 SUBDIR += py-pynacl
 SUBDIR += py-rsa
 SUBDIR += py-service_identity

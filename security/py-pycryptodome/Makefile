@@ -1,0 +1,34 @@
+# Created by: Yuri Victorovich <yuri@rawbw.com>
+
+PORTNAME=	pycryptodome
+DISTVERSION=	3.9.8
+CATEGORIES=	security python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Cryptographic library for Python
+
+LICENSE=	publicdom bsd2 apache2
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+
+USES=		python
+USE_PYTHON=	autoplist distutils
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pycrypto
+
+NAMESPACE?=	Crypto
+
+post-install:
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Cipher/*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Hash/*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Math/*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Protocol/*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/PublicKey/*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Util/*.so
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+
+.include <bsd.port.mk>
