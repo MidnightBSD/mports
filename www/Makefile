@@ -180,6 +180,7 @@ SUBDIR += qt5-webview
 SUBDIR += rubygem-hpricot
 SUBDIR += serf
 SUBDIR += selfhtml-de
+SUBDIR += sitecopy
 SUBDIR += spawn-fcgi
 SUBDIR += squid
 SUBDIR += thttpd
