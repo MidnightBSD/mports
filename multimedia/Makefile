@@ -105,6 +105,7 @@ SUBDIR += quvi
 SUBDIR += rtmpdump
 SUBDIR += schroedinger
 SUBDIR += smpeg
+SUBDIR += streamlink
 SUBDIR += totem
 SUBDIR += totem-pl-parser
 SUBDIR += v4l-utils
