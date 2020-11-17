@@ -1,6 +1,6 @@
 PORTNAME=	a2ps
 PORTVERSION=	4.13b
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	GNU FREEBSD_LOCAL/hrs/a2ps/:i18n
 
@@ -39,7 +39,7 @@ I18N_DESC=Enable I18N support
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
-EMACS_USE=		EMACS=yes
+EMACS_USES=		emacs:build
 EMACS_CONFIGURE_ON=	--with-lispdir=${LOCALBASE}/${EMACS_SITE_LISPDIR}
 
 .include <bsd.mport.options.mk>
