@@ -6,14 +6,15 @@
 #
 
 PORTNAME?=	alpine
-DISTVERSION=	2.22
+DISTVERSION=	2.24
 CATEGORIES?=	mail news
-MASTER_SITES=	http://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX}?dummy=/
+MASTER_SITES=	https://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail and news client descended from Pine
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES+=			ssl libtool ncurses gettext-runtime
 
@@ -35,7 +36,7 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 MAKE_ARGS+=		CC="${CC}" CXX="${CXX}" GCCCFLAGS="${CFLAGS}"
 # When you update please double check that the commit corresponds to
 # the actual version you've set in PORTVERSION.
-GIT_COMMIT=		99948a254e2c2352547b962cbd1c23738e7af6b3
+GIT_COMMIT=		3165f59b344fb4d56d161541f294754d56bcb372
 GIT_COMMIT_SHORT=	${GIT_COMMIT:C/^(.......).*/\1/}
 WRKSRC=			${WRKDIR}/alpine-${GIT_COMMIT_SHORT}
 
@@ -70,7 +71,7 @@ LDAP_CFLAGS=			-I${LOCALBASE}/include
 LDAP_LDFLAGS=			-L${LOCALBASE}/lib
 
 # Option MAILDIR
-MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/alpha/patches/alpine-2.21.99999/
+MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/patches/alpine-2.24/
 MAILDIR_PATCHFILES+=		maildir.patch.gz:-p1
 
 # Option MOUSE
@@ -91,7 +92,7 @@ PASSFILE_CONFIGURE_ON=		--with-passfile=.alpine.pwd
 THREADS_CONFIGURE_WITH=		pthread
 
 .if !defined(PICO_ALPINE_SLAVE)
-PORTDOCSbase=		NOTICE README
+PORTDOCSbase=		LICENSE NOTICE README
 PORTDOCSdoc=		brochure.txt
 PORTDOCShtml=		tech-notes/background.html tech-notes/cmd-line.html \
 			tech-notes/config-notes.html tech-notes/config.html \
@@ -131,16 +132,18 @@ post-patch:
 	done
 
 post-install:
-	${STAGEDIR}${PREFIX}/bin/alpine -conf > ${STAGEDIR}${PREFIX}/etc/alpine.conf.sample
-	${INSTALL} -d ${STAGEDIR}${DOCSDIR} ${STAGEDIR}${DOCSDIR}/tech-notes
+	${PREFIX}/bin/alpine -conf > ${PREFIX}/etc/alpine.conf.sample
+
+post-install-DOCS-on:
+	${INSTALL} -d ${FAKE_DESTDIR}${DOCSDIR} ${FAKE_DESTDIR}${DOCSDIR}/tech-notes
 .for f in ${PORTDOCSbase}
-	${INSTALL_DATA} ${WRKSRC}/$f ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/$f ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 .for f in ${PORTDOCSdoc}
-	${INSTALL_DATA} ${WRKSRC}/doc/$f ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/$f ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 .for f in ${PORTDOCShtml}
-	${INSTALL_DATA} ${WRKSRC}/doc/$f ${STAGEDIR}${DOCSDIR}/tech-notes
+	${INSTALL_DATA} ${WRKSRC}/doc/$f ${FAKE_DESTDIR}${DOCSDIR}/tech-notes
 .endfor
 .endif # !defined(PICO_ALPINE_SLAVE)
 
