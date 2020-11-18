@@ -1,4 +1,4 @@
-# $FreeBSD: head/databases/mysql80-server/files/my.cnf.sample.in 414707 2016-05-06 14:39:59Z riggs $
+# $FreeBSD: head/databases/mysql80-server/files/my.cnf.sample.in 469734 2018-05-12 15:35:25Z mmokhi $
 
 [client]
 port                            = 3306
@@ -42,8 +42,6 @@ table_definition_cache          = 8192
 net_retry_count                 = 16384
 key_buffer_size                 = 256M
 max_allowed_packet              = 64M
-query_cache_type                = 0
-query_cache_size                = 0
 long_query_time                 = 0.5
 innodb_buffer_pool_size         = 1G
 innodb_data_home_dir            = %%MY_DBDIR%%

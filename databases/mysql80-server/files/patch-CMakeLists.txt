@@ -1,35 +1,76 @@
---- CMakeLists.txt.orig	2017-06-27 11:44:29 UTC
+--- CMakeLists.txt.orig	2020-09-23 12:37:48 UTC
 +++ CMakeLists.txt
-@@ -750,7 +750,6 @@ IF(UNIX)
+@@ -1417,10 +1417,10 @@ IF(WITH_AUTHENTICATION_LDAP)
+   ENDIF()
  ENDIF()
  
+-# Add system/bundled editline.
+-MYSQL_CHECK_EDITLINE()
+ # Add libevent
+-MYSQL_CHECK_LIBEVENT()
++IF(NOT WITHOUT_SERVER)
++  MYSQL_CHECK_LIBEVENT()
++ENDIF()
+ # Add lz4 library
+ MYSQL_CHECK_LZ4()
+ # Add icu library
+@@ -1520,7 +1520,9 @@ IF(WITH_UNIT_TESTS)
+   INCLUDE(googletest)
+ ENDIF()
+ 
+-ADD_SUBDIRECTORY(include)
++IF(NOT WITHOUT_CLIENTLIBS)
++  ADD_SUBDIRECTORY(include)
++ENDIF(NOT WITHOUT_CLIENTLIBS)
+ ADD_SUBDIRECTORY(strings)
+ ADD_SUBDIRECTORY(vio)
+ ADD_SUBDIRECTORY(mysys)
+@@ -1562,12 +1564,17 @@ IF(WITH_UNIT_TESTS)
+   ADD_SUBDIRECTORY(unittest/mytap/t)
+ ENDIF()
+ 
+-ADD_SUBDIRECTORY(client)
++IF(NOT WITHOUT_TOOLS)
++  # Add system/bundled editline
++  MYSQL_CHECK_EDITLINE()
++  ADD_SUBDIRECTORY(client)
++ENDIF(NOT WITHOUT_TOOLS)
++
+ ADD_SUBDIRECTORY(utilities)
+-ADD_SUBDIRECTORY(share)
+ ADD_SUBDIRECTORY(libservices)
+ 
  IF(NOT WITHOUT_SERVER)
--  ADD_SUBDIRECTORY(testclients)
++  ADD_SUBDIRECTORY(share)
+   ADD_SUBDIRECTORY(testclients)
    ADD_SUBDIRECTORY(sql)
  ENDIF()
- 
-@@ -759,8 +758,6 @@ ENDIF()
+@@ -1590,11 +1597,11 @@ ENDIF()
+ # scripts/mysql_config depends on client and server targets loaded above.
+ # It is referenced by some of the directories below, so we insert it here.
  ADD_SUBDIRECTORY(scripts)
++ADD_SUBDIRECTORY(support-files)
  
  IF(NOT WITHOUT_SERVER)
--  ADD_SUBDIRECTORY(mysql-test)
--  ADD_SUBDIRECTORY(mysql-test/lib/My/SafeProcess)
-   ADD_SUBDIRECTORY(support-files)
-   IF(EXISTS ${CMAKE_SOURCE_DIR}/internal/CMakeLists.txt)
+   ADD_SUBDIRECTORY(mysql-test)
+   ADD_SUBDIRECTORY(mysql-test/lib/My/SafeProcess)
+-  ADD_SUBDIRECTORY(support-files)
+   IF(WITH_INTERNAL)
      ADD_SUBDIRECTORY(internal)
-@@ -819,6 +816,7 @@ ENDIF()
- #
- # RPM installs documentation directly from the source tree
- #
-+IF(FALSE)
- IF(NOT INSTALL_LAYOUT MATCHES "RPM")
-   INSTALL(FILES COPYING LICENSE.mysql 
-   DESTINATION ${INSTALL_DOCREADMEDIR} 
-@@ -841,6 +839,7 @@ IF(NOT INSTALL_LAYOUT MATCHES "RPM")
-     PATTERN "sp-imp-spec.txt" EXCLUDE
-   )
+   ENDIF()
+@@ -1703,6 +1710,7 @@ IF(PACK_SEPARATE_COMPONENTS)
+   SET(CPACK_COMPONENTS_GROUPING IGNORE)
  ENDIF()
+ 
++IF(FALSE)
+ IF(UNIX)
+   INSTALL(FILES
+     Docs/mysql.info
+@@ -1737,6 +1745,7 @@ IF(NOT INSTALL_LAYOUT MATCHES "RPM")
+     PATTERN "sp-imp-spec.txt" EXCLUDE
+     PATTERN "README.build" EXCLUDE
+   )
 +ENDIF()
+ ENDIF()
  
- INCLUDE(CPack)
- 
+ # Now that we're done with all ADD_SUBDIRECTORY and thus all feature tests,
