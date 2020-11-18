@@ -1,38 +1,26 @@
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/dmidecode/Makefile,v 1.9 2007/03/25 12:42:25 rafan Exp $
-
 PORTNAME=	dmidecode
-PORTVERSION=	2.12
-PORTREVISION=	1
+PORTVERSION=	3.3
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
-		ftp://ftp.nuug.no/pub/anders/distfiles/
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for dumping DMI (SMBIOS) contents in human-readable format
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 FAKE_OPTS=	trueprefix
 
-USES=		tar:bzip2
-USE_GETOPT_LONG=	yes
-MAKE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" DOCSDIR="${DOCSDIR}"
+ONLY_FOR_ARCHS=	amd64 i386
 
-PORTDOCS=	AUTHORS CHANGELOG README
+USES=		tar:xz
 
-post-patch:
-.if defined(NOPORTDOCS)
-	@${REINPLACE_CMD} -e '/^install.*:/s,install-doc,,' ${WRKSRC}/Makefile
-.endif
+SUB_FILES=	dmidecode
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
-.if !defined(NOPORTDOCS)
-	${INSTALL} -d -o root -g wheel -m 0755 ${DOCSDIR}
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
-.endfor
-.endif
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily/
+	${INSTALL_SCRIPT} ${WRKDIR}/dmidecode ${STAGEDIR}${PREFIX}/etc/periodic/daily/
 
 .include <bsd.port.mk>
