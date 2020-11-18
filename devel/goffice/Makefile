@@ -1,8 +1,8 @@
 PORTNAME=	goffice
-PORTVERSION=	0.10.43
+PORTVERSION=	0.10.48
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
-PKGNAMESUFFIX=	010
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
@@ -10,8 +10,12 @@ COMMENT=	GLib/GTK+ set of document centric objects and utilities
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+LIB_DEPENDS=	libspectre.so:print/libspectre \
+		libfribidi.so:converters/fribidi
+
+USES=		gettext gmake gnome libtool pathfix perl5 pkgconfig \
+		shebangfix tar:xz xorg
 USE_GNOME=	cairo gtk30 intlhack introspection:build libgsf librsvg2 libxslt
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 USE_XORG=	xrender xext
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -21,6 +25,7 @@ INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--with-lasem=no --with-config-backend=gsettings \
 		--enable-compile-warnings=no \
 		--enable-introspection
+USE_PERL5=	build
 
 PLIST_SUB=	VERSION=${PORTVERSION} SHORT_VER=${PORTVERSION:R}
 
