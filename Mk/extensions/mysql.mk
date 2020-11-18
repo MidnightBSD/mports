@@ -5,7 +5,8 @@
 #
 # version	If no version is given (by the maintainer via the port), try to
 #		find the currently installed version.  Fall back to default if
-#		necessary (MySQL-5.6 = 56).
+#		necessary (MySQL-5.7 = 57, look at bsd.default-versions.mk for
+#		possible values).
 # client	Depends on the libmysqlclient library (default)
 # server/embedded
 #		Depend on the server at run/build time. If none of these is
@@ -71,6 +72,7 @@ MYSQL80_LIBVER=		21
 MYSQL102m_LIBVER=	3
 MYSQL103m_LIBVER=	3
 MYSQL104m_LIBVER=	3
+MYSQL105m_LIBVER=	3
 
 # Setting/finding MySQL version we want.
 .if exists(${LOCALBASE}/bin/mysql) && !defined(MAGUS)
@@ -164,9 +166,7 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/mysql/libmysqld.a:${_MYSQL_SERVER}
 .endif
 .if defined(_WANT_MYSQL_CLIENT) || \
 	!(defined(_WANT_MYSQL_SERVER) || defined(_WANT_MYSQL_EMBEDDED))
-# lib depends won't check sub directory
-BUILD_DEPENDS+= ${LOCALBASE}/lib/mysql/${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
-RUN_DEPENDS+= ${LOCALBASE}/lib/mysql/${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
+LIB_DEPENDS+=	${_MYSQL_SHLIB}.so.${MYSQL${MYSQL_VER}_LIBVER}:${_MYSQL_CLIENT}
 .endif
 .else
 IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
