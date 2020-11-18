@@ -1,29 +1,32 @@
+# Created by: Yukihiro Nakai <Nakai@technologist.com>
+
 PORTNAME=	gnumeric
-PORTVERSION=	1.12.43
-PORTREVISION=	1
+PORTVERSION=	1.12.48
 CATEGORIES=	math gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNOME spreadsheet
+COMMENT=	GNOME spreadsheet program
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		ginstall:sysutils/coreutils
 LIB_DEPENDS=	libgoffice-0.10.so:devel/goffice \
 		libfribidi.so:converters/fribidi \
 		libpsiconv.so:converters/psiconv
 
 USES=		cpe desktop-file-utils gettext gmake gnome libtool \
-		localbase pathfix pkgconfig python:2.7 shebangfix tar:xz
+		localbase pathfix pkgconfig python shebangfix tar:xz
 USE_GNOME=	cairo intlhack gtk30 libgsf pygobject3
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	\
 		--without-paradox \
+		--without-python \
 		--enable-introspection
 INSTALL_TARGET=	install-strip
 
@@ -35,7 +38,8 @@ GLIB_SCHEMAS=	org.gnome.gnumeric.dialogs.gschema.xml \
 
 SHEBANG_FILES=	plugins/perl-func/perl_func.pl
 
-BINARY_ALIAS=	python=${PYTHON_CMD}
+BINARY_ALIAS=	python=${PYTHON_CMD} \
+		install=ginstall
 
 PLIST_SUB=	VERSION=${PORTVERSION} \
 		GOFFICE=0.10 \
