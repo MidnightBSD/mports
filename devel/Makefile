@@ -117,7 +117,6 @@ SUBDIR += gnustep
 SUBDIR += gnustep-make
 SUBDIR += gobject-introspection
 SUBDIR += goffice
-SUBDIR += goffice010
 SUBDIR += google-perftools
 SUBDIR += googlemock
 SUBDIR += googletest

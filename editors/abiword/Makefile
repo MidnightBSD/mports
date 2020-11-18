@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	abiword
 PORTVERSION=	3.0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/
 DIST_SUBDIR=	AbiWord
@@ -18,10 +16,11 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libpng.so:graphics/png \
 		libwv.so:textproc/wv \
 		libfribidi.so:converters/fribidi \
-		libgoffice-0.10.so:devel/goffice010
+		libgoffice-0.10.so:devel/goffice
 RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSerif.ttf:x11-fonts/dejavu
 
-USES=		desktop-file-utils gmake iconv jpeg libtool pathfix pkgconfig
+USES=		compiler:c++11-lang desktop-file-utils gmake gnome iconv jpeg \
+		libtool pathfix pkgconfig
 USE_GNOME=	libxml2 gtk30 librsvg2 libxslt
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -34,7 +33,7 @@ INSTALL_TARGET=	install-strip
 
 PLIST_SUB+=	ABIVERSION=3.0
 
-OPTIONS_DEFINE=	CLIPART DEBUG MATHVIEW NLS OTS PSION \
+OPTIONS_DEFINE=	CLIPART DEBUG MATHVIEW NLS PSION \
 		TEMPLATES WP
 OPTIONS_DEFAULT=CLIPART COLSERVICE COLSUGAR COLTCP SPELLCHECK TEMPLATES
 OPTIONS_SUB=	yes
@@ -55,7 +54,6 @@ COLXMPP_DESC=		Collaborate with the Jabber/XMPP backend
 DICT_DESC=		Spelling and grammar checking
 GRAMMAR_DESC=		Grammar checking plugin
 MATHVIEW_DESC=		MathML render plugin
-OTS_DESC=		Text Summarizer plugin
 PSION_DESC=		Psion 5(MX) files convertion plugin
 SPELLCHECK_DESC=	Spell checking support
 TEMPLATES_DESC=		Include additional templates
@@ -109,8 +107,6 @@ MATHVIEW_LIB_DEPENDS=		libmathview.so:x11-toolkits/gtkmathview
 NLS_USES=			gettext
 NLS_CONFIGURE_ENABLE=		nls
 
-OTS_LIB_DEPENDS=		libots-1.so:textproc/ots
-
 PSION_LIB_DEPENDS=		libpsiconv.so:converters/psiconv
 
 SPELLCHECK_LIB_DEPENDS=		libenchant.so:textproc/enchant
@@ -138,10 +134,6 @@ ABIWORD_PLUGINS+=	grammar
 
 .if ${PORT_OPTIONS:MMATHVIEW}
 ABIWORD_PLUGINS+=	mathview
-.endif
-
-.if ${PORT_OPTIONS:MOTS}
-ABIWORD_PLUGINS+=	ots
 .endif
 
 .if ${PORT_OPTIONS:MPSION}
