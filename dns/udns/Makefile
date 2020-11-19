@@ -2,6 +2,7 @@
 
 PORTNAME=	udns
 PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://www.corpit.ru/mjt/udns/
 
@@ -9,6 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS resolver library with sync and async queries
 
 LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING.LGPL
+
+USES=		pkgconfig
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -21,16 +25,16 @@ PORTDOCS=	*
 
 SHLIB_MAJOR=	0
 
-.include <bsd.mport.options.mk>
+IPV6_CONFIGURE_ENABLE=	ipv6
 
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
+PKGCONFIGDIR?=	${PREFIX}/libdata/pkgconfig
 
 post-build:
 	@cd ${WRKSRC} && ${STRIP_CMD} dnsget_s ex-rdns_s rblcheck_s
+
+post-patch:
+	@${SED} -e 's|%PREFIX%|${PREFIX}|g ; s|%VERSION%|${PORTVERSION}|g' \
+	  ${FILESDIR}/libudns.pc.in > ${WRKDIR}/libudns.pc
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/libudns.so.${SHLIB_MAJOR} \
@@ -49,11 +53,12 @@ do-install:
 .endfor
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKDIR}/libudns.pc ${STAGEDIR}${PKGCONFIGDIR}/
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for FILE in NEWS NOTES TODO
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}/${FILE}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} ${FAKE_DESTDIR}${DOCSDIR}/${FILE}
 .endfor
-.endif
 
 .include <bsd.port.mk>
