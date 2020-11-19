@@ -2,7 +2,7 @@
 
 PORTNAME=	ldns
 PORTVERSION=	1.7.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	https://www.nlnetlabs.nl/downloads/ldns/ \
 		FREEBSD_LOCAL/ehaupt
@@ -69,9 +69,8 @@ INSTALL_TARGET=	install-pyldns
 
 CONFIGURE_ARGS+=	--with-pyldns
 LIB_DEPENDS+=		libldns.so:dns/ldns
-BUILD_DEPENDS+=		swig3.0:devel/swig30
+BUILD_DEPENDS+=		swig:devel/swig
 CFLAGS+=		-I${OPENSSLINC}
-BINARY_ALIAS=		swig=swig3.0
 
 post-patch:
 	@${REINPLACE_CMD} \
