@@ -1,7 +1,7 @@
 # $MidnightBSD$
 
 PORTNAME=	mDNSResponder
-PORTVERSION=	625.41.2
+PORTVERSION=	1096.0.2
 CATEGORIES=	dns net
 MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
 PKGNAMESUFFIX=	_nss
@@ -12,8 +12,7 @@ COMMENT=	Apple mDNS responder - BSD nsswitch module
 LICENSE=    	apache2 bsd3
 LICENSE_COMB=	dual
 
-# we will use base system instead
-#LIB_DEPENDS=	libdns_sd.so:${PORTSDIR}/net/mDNSResponder
+LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
 
 CONFLICTS_INSTALL=	nss_mdns-[0-9]*
 
@@ -21,9 +20,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME:S/_nss//}-${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH:C/^(...).*/\1/} == "arm"
 LD=${CC}
-.endif
 
 post-extract:
 	@${CP} ${FILESDIR}/nss_mdns_freebsd.c ${WRKSRC}/mDNSPosix
@@ -32,7 +29,7 @@ do-build:
 	(cd ${WRKSRC}/mDNSPosix && ${CC} ${CFLAGS} -c -std=c99 -Wall -fPIC \
 		-I. -I${PREFIX}/include -DPREFIX=\"${PREFIX}\" \
 		nss_mdns.c nss_mdns_freebsd.c)
-	(cd ${WRKSRC}/mDNSPosix && ${LD} -shared nss_mdns.o nss_mdns_freebsd.o \
+	(cd ${WRKSRC}/mDNSPosix && ${LD} -shared -Wl,-soname=nss_mdns.so.1 nss_mdns.o nss_mdns_freebsd.o \
 		-o nss_mdns.so.1 -L${PREFIX}/lib -R${PREFIX}/lib -ldns_sd)
 
 post-build:
