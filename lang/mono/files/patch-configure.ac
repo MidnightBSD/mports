@@ -1,5 +1,5 @@
 --- configure.ac.orig	2018-08-24 11:19:14.000000000 -0400
-+++ configure.ac	2019-09-04 19:20:52.070042000 -0400
++++ configure.ac	2020-11-19 13:51:40.851362000 -0500
 @@ -180,7 +180,7 @@
  		use_sigposix=yes
  		with_sgen_default_concurrent=yes
@@ -27,6 +27,15 @@
  			AC_CHECK_LIB(pthread, main, LIBS="$LIBS -pthread")
  		;;
  		*-*-*openbsd*)
+@@ -2702,7 +2702,7 @@
+ 	dnl *********************************
+ 	if test x$host_darwin = xno; then
+ 		AC_CHECK_HEADERS(sys/random.h)
+-		AC_CHECK_FUNCS(getrandom getentropy)
++		AC_CHECK_FUNCS(getentropy)
+ 	fi
+ else
+ 	dnl *********************************
 @@ -3297,7 +3297,9 @@
  			BTLS_SUPPORTED=yes
  			BTLS_PLATFORM=i386
