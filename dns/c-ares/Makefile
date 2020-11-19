@@ -1,9 +1,8 @@
 PORTNAME=	c-ares
-PORTVERSION=	1.15.0
+PORTVERSION=	1.16.1
 PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	https://c-ares.haxx.se/download/ \
-		http://obsd.isc.org/pub/OpenBSD/distfiles/ \
 		ZI
 
 MAINTAINER=	ports@MidnightBSD.org
