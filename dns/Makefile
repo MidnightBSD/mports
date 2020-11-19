@@ -13,7 +13,6 @@ SUBDIR += doh-proxy
 SUBDIR += idnkit
 SUBDIR += inadyn
 SUBDIR += knot2
-SUBDIR += knot2-lib
 SUBDIR += ldns
 SUBDIR += libbind
 SUBDIR += libidn
