@@ -1,11 +1,9 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libconfuse/Makefile,v 1.7 2008/04/25 12:50:35 garga Exp $
+# Created by: Juraj Lutter <otis@sk.freebsd.org>
 
 PORTNAME=	libconfuse
-PORTVERSION=	2.7
-PORTREVISION=	1
+PORTVERSION=	3.3
 CATEGORIES=	devel
-MASTER_SITES=	SAVANNAH/confuse
+MASTER_SITES=	https://github.com/libconfuse/libconfuse/releases/download/v${PORTVERSION}/
 DISTNAME=	confuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,10 +11,18 @@ COMMENT=	Configuration file parsing library
 
 LICENSE=	iscl
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-nls --enable-shared
-INSTALL_TARGET=	install-strip
-USES=		iconv pathfix pkgconfig libtool
+USES=		iconv libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-shared --disable-examples
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
+
+OPTIONS_DEFINE=		NLS
+OPTIONS_SUB=		yes
+
+NLS_USES=			gettext
+NLS_CONFIGURE_ENABLE=		nls
 
 .include <bsd.port.mk>

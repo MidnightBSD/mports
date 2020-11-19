@@ -1,50 +1,47 @@
-# $MidnightBSD$
+# Created by: Alex Samorukov <samm@freebsd.org>
 
 PORTNAME=	inadyn
-PORTVERSION=	1.96.2
-PORTREVISION=	3
+PORTVERSION=	2.7
 CATEGORIES=	dns
-MASTER_SITES=	http://www.inatech.eu/inadyn/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	dhn
-DISTNAME=	${PORTNAME}.v${PORTVERSION}
+MASTER_SITES=	https://github.com/troglobit/${PORTNAME}/releases/download/v${PORTVERSION}/
 
-MAINTAINER=	ports@midnightbsd.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic DNS update client
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+LIB_DEPENDS=	libconfuse.so:devel/libconfuse
+RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+
+USES=		pkgconfig tar:xz
+
+GNU_CONFIGURE=	yes
+
+USERS=		inadyn
+GROUPS=		inadyn
+
 USE_RC_SUBR=	inadyn
-USES=		gmake zip dos2unix
-USE_DOS2UNIX=	yes
-MAKEFILE=	makefile
 
-PORTDOCS=	readme.html
-PLIST_FILES=	bin/inadyn man/man5/inadyn.conf.5.gz man/man8/inadyn.8.gz
+OPTIONS_DEFINE=		DOCS EXAMPLES
+OPTIONS_DEFAULT=	OPENSSL
+OPTIONS_SINGLE=		TLS
+OPTIONS_SINGLE_TLS=	GNUTLS OPENSSL
 
-OPTIONS_DEFINE=	DOCS
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+OPENSSL_USES=		ssl
+OPENSSL_CONFIGURE_ENABLE=	openssl
+OPENSSL_CONFIGURE_ON=	OpenSSL_CFLAGS=-I${OPENSSLINC} OpenSSL_LIBS="-L${OPENSSLLIB} -lssl"
 
-.include <bsd.mport.options.mk>
-
-post-extract:
-	${MV} ${WRKDIR}/${PORTNAME} ${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-pre-patch: dos2unix
-
-post-patch: 
-	@${REINPLACE_CMD} -e 's|gcc|$$\(CC\)|g' ${WRKSRC}/makefile
+post-patch:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX},g" \
-		${WRKSRC}/man/inadyn.8 ${WRKSRC}/readme.html \
-		${WRKSRC}/src/dyndns.h
+		${WRKSRC}/man/inadyn.8 ${WRKSRC}/man/inadyn.conf.5 \
+		${WRKSRC}/examples/README.md ${WRKSRC}/examples/inadyn.conf
 
-do-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} -p ${WRKSRC}/${PORTDOCS} ${DOCSDIR}
-.endif
-	${INSTALL_PROGRAM} ${WRKSRC}/bin/linux/inadyn ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/inadyn.8 ${MANPREFIX}/man/man8
-	${INSTALL_MAN} ${WRKSRC}/man/inadyn.conf.5 ${MANPREFIX}/man/man5
+post-install:
+	${MV} ${STAGEDIR}${DOCSDIR}/examples ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${STAGEDIR}${EXAMPLESDIR}/inadyn.conf ${STAGEDIR}${PREFIX}/etc/inadyn.conf.sample
+	${MKDIR} ${FAKE_DESTDIR}/var/cache/inadyn
+	${MKDIR} ${FAKE_DESTDIR}/var/run/inadyn
 
 .include <bsd.port.mk>
