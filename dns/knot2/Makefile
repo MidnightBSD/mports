@@ -1,5 +1,5 @@
 PORTNAME=	knot
-DISTVERSION=	2.9.1
+DISTVERSION=	2.9.6
 CATEGORIES=	dns
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/ \
 		https://dns.company/downloads/knot-dns/
@@ -9,39 +9,43 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	High performance authoritative-only DNS server
 
 LICENSE=	gpl3
-
-NOT_FOR_ARCHS=	i386
-NOT_FOR_ARCHS_REASON_i386=Uses 64 bit atomics that clang cannot generate on i386
-
-LIB_DEPENDS=	libgnutls.so:security/gnutls \
-		liblmdb.so:databases/lmdb \
-		liburcu.so:sysutils/liburcu
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	knot-1.* knot1-[0-6].*
 
-USES=		compiler:c11 libedit libtool localbase ncurses pkgconfig python tar:xz
-GNU_CONFIGURE=	yes
+BUILD_DEPENDS=	autoconf>=2.65:devel/autoconf \
+		gsed:textproc/gsed
+
+LIB_DEPENDS=	libgnutls.so:security/gnutls \
+		liblmdb.so:databases/lmdb
+
+USES=		libtool localbase pkgconfig tar:xz
+
+HAS_CONFIGURE=	yes
+BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 CONFIGURE_ARGS=	--enable-recvmmsg=no \
-		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
+		--mandir=${MANPREFIX}/man
 
 .if !defined(UTILS_ONLY) && !defined(LIB_ONLY)
 CONFIGURE_ARGS+=	--with-rundir=/var/run/knot \
 			--with-storage=/var/db/knot
-USE_RC_SUBR=   ${PORTNAME}
-SUB_FILES=     pkg-message
+USE_RC_SUBR=	${PORTNAME}
+SUB_FILES=	pkg-message
+USES+=		libedit
+LIB_DEPENDS+=	liburcu.so:sysutils/liburcu
 .endif
 
 .if defined(UTILS_ONLY) || defined(LIB_ONLY)
-CONFIGURE_ARGS+=       --disable-daemon \
-                       --disable-modules
+CONFIGURE_ARGS+=	--disable-daemon \
+			--disable-modules
 .endif
 
 .if defined(LIB_ONLY)
-CONFIGURE_ARGS+=       --disable-utilities
+CONFIGURE_ARGS+=	--disable-utilities
 .endif
 
 USE_LDCONFIG=	yes
-LLD_UNSAFE=	yes
 INSTALL_TARGET=	install-strip
 
 USERS=		knot
@@ -72,15 +76,25 @@ DNSTAP_LIB_DEPENDS=		libprotobuf-c.so:devel/protobuf-c \
 # in higher line count.  Ideally this bug should be fixed upstream.
 DNSTAP_CPPFLAGS=		-I${LOCALBASE}/include
 
+DOCS_CONFIGURE_OFF=		--disable-documentation
+
 FASTPARSER_DESC=		Fast zone parser (demanding compilation)
 FASTPARSER_CONFIGURE_ENABLE=	fastparser
 
 IDN_CONFIGURE_WITH=		libidn
+IDN_CONFIGURE_OFF=		--without-libidn
 IDN_LIB_DEPENDS=		libidn2.so:dns/libidn2
 
 MAXMINDDB_DESC=			Enable MaxMind for geodb module
 MAXMINDDB_LIB_DEPENDS=		libmaxminddb.so:net/libmaxminddb
 MAXMINDDB_CONFIGURE_ENABLE=	maxminddb
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == i386
+USES+=				autoreconf
+EXTRA_PATCHES+=			${PATCHDIR}/extrapatch-configure.ac
+.endif
 
 post-patch:
 .if !defined(UTILS_ONLY) && !defined(LIB_ONLY)
