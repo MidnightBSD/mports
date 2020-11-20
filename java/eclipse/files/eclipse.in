@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# FreeBSD-specific startup script for Eclipse Platform
+#
+# See: http://www.eclipse.org
+#
+# $FreeBSD: head/java/eclipse/files/eclipse.in 528798 2020-03-20 20:23:19Z tcberner $
+#
+JAVA_VERSION="%%JAVA_VERSION%%" exec %%DATADIR%%/eclipse "$@"

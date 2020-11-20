@@ -18,6 +18,7 @@ SUBDIR += bootstrap-openjdk8
 SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
+SUBDIR += eclipse
 SUBDIR += hamcrest
 SUBDIR += intellij
 SUBDIR += intellij-fsnotifier
