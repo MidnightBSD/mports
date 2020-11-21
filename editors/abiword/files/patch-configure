@@ -1,15 +1,15 @@
---- configure.orig	2014-12-23 06:13:20.000000000 +0100
-+++ configure	2016-01-26 21:22:33.585049000 +0100
-@@ -23915,7 +23915,7 @@
+--- configure.orig	2020-01-27 15:58:12 UTC
++++ configure
+@@ -22697,7 +22697,7 @@ fi
  
  
  
 -wpg_pkgs="$gsf_req libwpg-0.2 >= 0.2.0 libwpd-0.9 >= 0.9.0 libwpd-stream-0.9 >= 0.9.0"
-+wpg_pkgs="libwpg-0.3 $gsf_req"
++wpg_pkgs="$gsf_req libwpg-0.3"
  wpg_deps="no"
  
  if test "$enable_wpg" != ""; then
-@@ -24341,8 +24341,8 @@
+@@ -25939,8 +25939,8 @@ fi
  
  
  
@@ -20,7 +20,7 @@
  wordperfect_deps="no"
  
  WORDPERFECT_CFLAGS=
-@@ -24385,7 +24385,7 @@
+@@ -25983,7 +25983,7 @@ if test -n "$PKG_CONFIG" && \
    $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
    test $ac_status = 0; }; then
  

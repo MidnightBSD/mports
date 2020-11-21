@@ -1,6 +1,6 @@
 PORTNAME=	abiword
-PORTVERSION=	3.0.1
-PORTREVISION=	3
+PORTVERSION=	3.0.4
+PORTREVISION=	0
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/abiword/${PORTVERSION}/source/
 DIST_SUBDIR=	AbiWord
@@ -16,12 +16,23 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libpng.so:graphics/png \
 		libwv.so:textproc/wv \
 		libfribidi.so:converters/fribidi \
-		libgoffice-0.10.so:devel/goffice
+		libgoffice-0.10.so:devel/goffice \
+		libdbus-1.so:devel/dbus \
+		libgpg-error.so:security/libgpg-error \
+		libgcrypt.so:security/libgcrypt \
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig \
+		librasqal.so:textproc/rasqal \
+		librdf.so:textproc/redland \
+		libraptor2.so:textproc/raptor2 \
+		libical.so:devel/libical \
+		libwmf.so:graphics/libwmf
 RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSerif.ttf:x11-fonts/dejavu
 
-USES=		compiler:c++11-lang desktop-file-utils gmake gnome iconv jpeg \
-		libtool pathfix pkgconfig
-USE_GNOME=	libxml2 gtk30 librsvg2 libxslt
+USES=		compiler:c++17-lang desktop-file-utils gmake gnome iconv jpeg \
+		libtool pathfix pkgconfig readline
+USE_GNOME=	libxml2 cairo gtk30 librsvg2 libxslt
+USE_XORG+=	x11
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -145,9 +156,6 @@ ABIWORD_PLUGINS+=	wpg wordperfect
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' \
-		${WRKSRC}/goffice-bits/goffice/app/goffice-app.h \
-		${WRKSRC}/src/af/util/xp/ut_go_file.h
 # The following substitutions ensure that plugins are linked with libabiword
 # from the work or stage directory instead of a previously installed library.
 # In pseudo code:

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	mport-manager
 PORTVERSION=	0.1.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -12,7 +10,7 @@ LICENSE=	bsd2
 
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		pkgconfig
+USES=		desktop-file-utils pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
@@ -26,5 +24,7 @@ WANT_GNOME=	yes
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/icons/hicolor/48x48/apps/
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/
+	${CP} ${FILESDIR}/mport-manager.desktop ${PREFIX}/share/applications/
 
 .include <bsd.port.mk>

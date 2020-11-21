@@ -391,4 +391,5 @@ share/icons/hicolor/32x32/apps/abiword.png
 share/icons/hicolor/48x48/apps/abiword.png
 share/icons/hicolor/512x512/apps/abiword.png
 share/icons/hicolor/scalable/apps/abiword.svg
+share/appdata/abiword.appdata.xml
 %%COLTELEPATHY%%share/telepathy/clients/AbiCollab.client
