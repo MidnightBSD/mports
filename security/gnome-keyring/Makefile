@@ -1,22 +1,23 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome-keyring
-PORTVERSION=	3.28.2
+PORTVERSION=	3.36.0
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program that keeps passwords and other secrets
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		docbook-xsl>=0:textproc/docbook-xsl \
 		gcr>=3.5.3:security/gcr
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgpg-error.so:security/libgpg-error \
-		libgcr-3.so:security/gcr \
+		libgcr-base-3.so:security/gcr \
 		libtasn1.so:security/libtasn1 \
 		libp11-kit.so:security/p11-kit \
 		libgcrypt.so:security/libgcrypt

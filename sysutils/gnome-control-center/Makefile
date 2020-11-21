@@ -1,11 +1,10 @@
-# $MidnightBSD$
+# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	3.28.2
-PORTREVISION=	1
+PORTVERSION=	3.38.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Control center for GNOME 3 project
@@ -32,17 +31,21 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libpwquality.so:security/libpwquality \
 		libgtop-2.0.so:devel/libgtop \
 		libgrilo-0.3.so:net/grilo \
-		libpolkit-gobject-1.so:sysutils/polkit
+		libpolkit-gobject-1.so:sysutils/polkit \
+		libhandy-1.so:x11-toolkits/libhandy \
+		libudisks2.so:sysutils/libudisks \
+		libsecret-1.so:security/libsecret \
+		libepoxy.so:graphics/libepoxy
 RUN_DEPENDS=	gnome-settings-daemon>=3.4.0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>=3.2.2:devel/gsettings-desktop-schemas \
 		cantarell-fonts>=0:x11-fonts/cantarell-fonts \
-		gcm-calibrate:graphics/gnome-color-manager
+		gcm-import:graphics/gnome-color-manager
 
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c++11-lib gettext gnome localbase:ldflags meson \
 		pkgconfig python:3.6+,build samba:lib tar:xz xorg
-USE_GNOME=	cairo gnomedesktop3 libxml2
+USE_GNOME=	cairo gnomedesktop3 libxml2 gsound
 USE_XORG=	x11 xi
 #USE_GSTREAMER1=	yes
 INSTALLS_ICONS=	yes
@@ -54,7 +57,7 @@ GLIB_SCHEMAS=	org.gnome.ControlCenter.gschema.xml
 OPTIONS_SUB=	yes
 
 OPTIONS_DEFINE=	WAYLAND CHEESE
-OPTIONS_DEFAULT=CHEESE
+OPTIONS_DEFAULT=WAYLAND CHEESE
 
 CHEESE_DESC=	Cheese webcam support
 CHEESE_LIB_DEPENDS=	libcheese.so:multimedia/cheese
@@ -62,16 +65,16 @@ CHEESE_MESON_TRUE=	cheese
 
 WAYLAND_MESON_TRUE=	wayland
 WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
-WAYLAND_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-nowayland
 
-NO_TEST=	yes
-
+# This can be removed after 11.x is no longer supported
+.if exists(/usr/bin/ld.lld) && (${/usr/bin/ld:L:tA} != /usr/bin/ld.lld)
+LDFLAGS+=      -fuse-ld=lld
+.endif
 
 .include <bsd.port.pre.mk>
 RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release
 post-patch:
 	@${REINPLACE_CMD}  -e 's|/etc/os-release|${LOCALBASE}/etc/os-release|g' \
-		${WRKSRC}/panels/privacy/cc-privacy-panel.c \
-		${WRKSRC}/panels/info/cc-info-overview-panel.c
+		${WRKSRC}/panels/common/cc-os-release.c
 
 .include <bsd.port.post.mk>

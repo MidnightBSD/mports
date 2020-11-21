@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: Yukihiro Nakai <Nakai@technologist.com>
 
 PORTNAME=	libgnome
 PORTVERSION=	2.32.1
-PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,9 +11,7 @@ COMMENT=	Libraries for GNOME, a GNU desktop environment
 
 LICENSE=	lgpl
 
-USES=		tar:bzip2
-
-.if !defined(REFERENCE_PORT)
+USES=	tar:bzip2
 
 BUILD_DEPENDS=	rarian-sk-config:textproc/rarian
 LIB_DEPENDS=	libcanberra-gtk.so:audio/libcanberra \
@@ -22,10 +19,9 @@ LIB_DEPENDS=	libcanberra-gtk.so:audio/libcanberra \
 RUN_DEPENDS=	rarian-sk-config:textproc/rarian
 
 INSTALL_TARGET=	install-strip
-USE_GNOME=	gnomeprefix intlhack libbonobo \
-		gnomevfs2 referencehack
-USES+=		bison gettext gmake gnome libtool:keepla localbase pathfix \
+USES+=		bison gettext gmake gnome localbase libtool:keepla pathfix \
 		pkgconfig xorg
+USE_GNOME=	gnomeprefix intlhack libbonobo gnomevfs2 referencehack
 USE_XORG=	xpm
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -59,5 +55,3 @@ post-patch:
 		${WRKSRC}/libgnome/Makefile.in
 
 .include <bsd.port.mk>
-
-.endif

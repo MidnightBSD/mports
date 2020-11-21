@@ -38,7 +38,8 @@ lib/libcairo.so.%%LIBVER%%
 libdata/pkgconfig/cairo-fc.pc
 libdata/pkgconfig/cairo-ft.pc
 %%OPENGL%%libdata/pkgconfig/cairo-gl.pc
-%%OPENGL%%libdata/pkgconfig/cairo-glx.pc
+%%GLESV2%%libdata/pkgconfig/cairo-glesv2.pc
+%%OPENGL%%%%X11%%libdata/pkgconfig/cairo-glx.pc
 %%GLIB%%libdata/pkgconfig/cairo-gobject.pc
 libdata/pkgconfig/cairo-pdf.pc
 libdata/pkgconfig/cairo-png.pc
@@ -102,6 +103,7 @@ libdata/pkgconfig/cairo.pc
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.10.html
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.12.html
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.14.html
+%%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.16.html
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.2.html
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.4.html
 %%PORTDOCS%%%%DOCSDIR%%/cairo/index-1.6.html

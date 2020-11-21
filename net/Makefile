@@ -52,6 +52,7 @@ SUBDIR += libmateweather
 SUBDIR += libmaxminddb
 SUBDIR += libnatpmp
 SUBDIR += libnet
+SUBDIR += libnfs
 SUBDIR += liboauth
 SUBDIR += libpcap
 SUBDIR += libpcapnav
