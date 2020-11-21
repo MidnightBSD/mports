@@ -29,6 +29,7 @@ SUBDIR += libXt
 SUBDIR += libbonoboui
 SUBDIR += libgdiplus
 SUBDIR += libgnomeui
+SUBDIR += libhandy0
 SUBDIR += libsexy
 SUBDIR += libunique3
 SUBDIR += libwnck
