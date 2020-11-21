@@ -5,7 +5,7 @@ CATEGORIES=	devel
 MASTER_SITES=	GNU
 DISTNAME=	${PORTNAME}-${PORTVERSION:R}
 
-#PATCH_SITES=	GNU/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}-patches
+PATCH_SITES=	GNU/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}-patches
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for editing command lines as they are typed
@@ -27,12 +27,12 @@ CPE_UPDATE=	${PATCHLEVEL}
 
 OPTIONS_DEFINE=	DOCS
 
-#PATCHES=	1 2 3 4 5
-#PATCHLEVEL=	${PATCHES:O:[-1]}
-PATCHLEVEL=	0
-#.for patch in ${PATCHES}
-#PATCHFILES+=	${PORTNAME}${PORTVERSION:R:S|.||}-${patch:S|^|00|:S|.*(...)$|\1|}
-#.endfor
+PATCHES=	1 2 3 4
+PATCHLEVEL=	${PATCHES:O:[-1]}
+#PATCHLEVEL=	0
+.for patch in ${PATCHES}
+PATCHFILES+=	${PORTNAME}${PORTVERSION:R:S|.||}-${patch:S|^|00|:S|.*(...)$|\1|}
+.endfor
 
 post-patch:
 .if exists(/usr/lib/libtermcapw.so)
