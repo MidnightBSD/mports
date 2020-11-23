@@ -40,7 +40,6 @@ OPTIONS_DEFAULT_i386=OPENMP
 OPTIONS_SUB=	yes
 
 OPENMP_CONFIGURE_ENABLE=openmp
-OPENMP_LIB_DEPENDS=libomp.so:devel/openmp
 
 TOOLS_DESC=	Include training tools
 TOOLS_LIB_DEPENDS=libicui18n.so:devel/icu \
