@@ -1,0 +1,7 @@
+[
+{ type: install
+  message: <<EOM
+Congratulations!  GNOME 3 has been successfully installed on your system.
+EOM
+}
+]

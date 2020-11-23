@@ -6,7 +6,7 @@
  }
  #endif
  
-+#if defined(__FreeBSD__) && __FreeBSD__ < 12
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
 +#include <sys/param.h>
 +#include <sys/sysctl.h>
 +#include <elf.h>

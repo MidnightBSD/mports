@@ -13,9 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libxine.so:multimedia/libxine
 
-USES=		desktop-file-utils gmake gnome iconv jpeg localbase pkgconfig \
+USES=		desktop-file-utils gmake gnome iconv:wchar_t jpeg localbase pkgconfig \
 		readline shared-mime-info tar:xz xorg
-USE_GCC=	any
 USE_XORG=	x11 xext xinerama xscrnsaver xt xtst xv xxf86vm
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-vdr-keys \
@@ -53,6 +52,9 @@ XFT_USE=		XORG=xft
 XFT_CONFIGURE_ENABLE=	xft
 
 XINE_PLUGINSDIR=	lib/xine/plugins/2.7
+
+CFLAGS+=	-liconv
+LDFLAGS+=	-liconv
 
 post-patch:
 	@${REINPLACE_CMD} -e \

@@ -1,10 +1,9 @@
 # Created by: Vanilla I. Shu <vanilla@MinJe.com.TW>
-# $FreeBSD: head/x11-toolkits/gtk30/Makefile 517000 2019-11-07 18:36:55Z zeising $
 # Please keep gtk30 in sync with the following x11-themes ports:
 # adwaita-icon-theme, gnome-themes-standard and mate-themes
 
 PORTNAME=	gtk
-PORTVERSION=	3.24.20
+PORTVERSION=	3.24.23
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMESUFFIX=	3
@@ -14,36 +13,31 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
 
-LICENSE=	lgpl
+LICENSE=	lgpl3
 
 PORTSCOUT=	limit:1,even
 
-BUILD_DEPENDS+=	at-spi2-atk>=0:accessibility/at-spi2-atk
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libfribidi.so:converters/fribidi \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz
 RUN_DEPENDS+=	hicolor-icon-theme>=0:misc/hicolor-icon-theme \
-		adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
-		at-spi2-atk>=0:accessibility/at-spi2-atk \
-		librsvg2>=0:graphics/librsvg2
+		adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme
 
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango
+USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango \
+		librsvg2:run
 USES=		compiler:c11 gettext gmake gnome libtool localbase \
-		pathfix perl5 pkgconfig tar:xz xorg
-USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
-		xcomposite
-CONFIGURE_ARGS=	--enable-x11-backend \
-		--enable-introspection
+		pathfix perl5 pkgconfig tar:xz
+CONFIGURE_ARGS=	--enable-introspection
 CPPFLAGS+=	-fno-omit-frame-pointer
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
-LIBVERSION=	0.2404.16
+LIBVERSION=	0.2404.19
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
@@ -52,11 +46,14 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.EmojiChooser.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
 
-OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND
-OPTIONS_DEFAULT=CUPS COLORD BROADWAY WAYLAND
-# seems to break on i386 in some cases
-#OPTIONS_DEFAULT_amd64=	WAYLAND
+OPTIONS_DEFINE=	ATK_BRIDGE CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND X11
+OPTIONS_DEFAULT=ATK_BRIDGE CUPS COLORD BROADWAY WAYLAND X11
 OPTIONS_SUB=	yes
+
+ATK_BRIDGE_DESC=AT-SPI ATK bridge support (requires X11)
+ATK_BRIDGE_CONFIGURE_WITH=	atk-bridge
+ATK_BRIDGE_LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk
+ATK_BRIDGE_IMPLIES=	X11
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
 BROADWAY_CONFIGURE_ENABLE=	broadway-backend
@@ -80,7 +77,6 @@ DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 WAYLAND_DESC=		GDK Wayland backend
 WAYLAND_CONFIGURE_ENABLE=	wayland-backend
-#NLS_CONFIGURE_OFF=	--disable-wayland-backend
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols \
 			v4l_compat>=0:multimedia/v4l_compat
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
@@ -89,11 +85,16 @@ WAYLAND_RUN_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols
 WAYLAND_USES=		gl
 WAYLAND_USE=		GL=egl
 
+X11_DESC=		GDK X11 backend
+X11_CONFIGURE_ENABLE=	x11-backend
+X11_USES=		xorg
+X11_USE=		XORG=x11,xcomposite,xcursor,xdamage,xext,xfixes,xi,xinerama,xrandr,xrender
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
 
-pre-configure:
+pre-configure-X11-on:
 # .if !exists() evaluates too early before cairo has a chance to be installed
 	@if ! pkg-config --exists cairo-xlib; then \
 		${ECHO_MSG} "${PKGNAME}: Needs cairo with X11 support enabled."; \
@@ -101,7 +102,7 @@ pre-configure:
 	fi
 
 pre-build:
-	@-${RM} -rf ${WRKSRC}/docs/gtk.info*
+	-${RM} -r ${WRKSRC}/docs/gtk.info*
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/gtk-3.0/modules

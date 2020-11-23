@@ -1,20 +1,18 @@
-# $MidnightBSD$
-
 PORTNAME=	libgnomecanvas
 PORTVERSION=	2.30.3
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A graphics library for GNOME
+COMMENT=	Graphics library for GNOME
+
 LICENSE=	lgpl
 
 USES+=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GNOME=	intltool libglade2 libartlgpl2 referencehack
 GNU_CONFIGURE=	yes
@@ -26,5 +24,3 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
-
-.endif

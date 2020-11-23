@@ -1,0 +1,11 @@
+--- configure.orig	2019-12-10 04:01:36.000000000 -0500
++++ configure	2020-11-21 14:00:52.301451000 -0500
+@@ -8942,7 +8942,7 @@
+ 
+ 
+ case "$host" in
+-  *-*-freebsd*)
++  *-*-freebsd*| *-*-midnightbsd*)
+     THREAD_LIBS="-pthread"
+     THREAD_CFLAGS="-D_THREAD_SAFE"
+     CFLAGS="$THREAD_CFLAGS $CFLAGS"

@@ -20,7 +20,6 @@ SUBDIR += gnome-shell
 SUBDIR += gnome-shell-extensions
 SUBDIR += gnome-terminal
 SUBDIR += gnome3
-SUBDIR += gnome3-lite
 SUBDIR += gnustep-app
 SUBDIR += gskrab
 SUBDIR += gsynaptics

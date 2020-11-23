@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libimobiledevice
-PORTVERSION=	1.1.6
-PORTREVISION?=	1
+PORTVERSION=	1.2.0
+PORTREVISION?=	0
 CATEGORIES?=	comms
 MASTER_SITES=	http://www.${PORTNAME}.org/downloads/
 
@@ -13,7 +11,7 @@ LICENSE?=	lgpl2.1
 
 SLAVE_PORT?=	no
 
-USES+=		libtool pathfix pkgconfig ssl tar:bzip2
+USES+=		cpe libtool pathfix pkgconfig ssl tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=openssl_CFLAGS="-I${OPENSSLINC}" \
 		openssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
@@ -23,9 +21,9 @@ INSTALL_TARGET=	install-strip
 
 .if ${SLAVE_PORT} == no
 
-LIB_DEPENDS=	libplist.so:${PORTSDIR}/devel/libplist \
-		libusbmuxd.so:${PORTSDIR}/comms/libusbmuxd
-
+LIB_DEPENDS=	libplist.so:devel/libplist \
+		libusbmuxd.so:comms/libusbmuxd
+USES+=		gnome
 USE_GNOME=	glib20
 CONFIGURE_ARGS+=--without-cython
 USE_CSTD=	gnu89
@@ -37,7 +35,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's, *@ssl_requires@,,' \
-		${WRKSRC}/${PORTNAME}*.pc.in
+		${WRKSRC}/src/${PORTNAME}*.pc.in
 	@${REINPLACE_CMD} -e 's,$$(libdir)/pkgconfig,${PREFIX}/libdata/pkgconfig,g' \
 		${WRKSRC}/Makefile.in
 
