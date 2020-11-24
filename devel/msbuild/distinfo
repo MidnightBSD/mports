@@ -1,8 +1,6 @@
-TIMESTAMP = 1542991368
+TIMESTAMP = 1529692733
 SHA256 (mono_msbuild_xplat-master-3c930fa8.zip) = 281b8ae3f31c44290a3521becb7d824cb2f8957d2190417942b841a0db0ef284
 SIZE (mono_msbuild_xplat-master-3c930fa8.zip) = 20073670
-SHA256 (mono-msbuild-v15-8-preview-0.06_GH0.tar.gz) = d68ff22be59708db20caf084cd09ea0f50cbd83a76105884daf663fa4b76ac46
-SIZE (mono-msbuild-v15-8-preview-0.06_GH0.tar.gz) = 14856663
 SHA256 (microbuild.core.0.2.0.nupkg) = fbbd636f7dc9b29763bfb3c7384f56083176766d7c22952384204287282040f9
 SIZE (microbuild.core.0.2.0.nupkg) = 4891
 SHA256 (microsoft.csharp.4.0.1.nupkg) = 1bbf70cff3e4f424766f7e34981a2f7f9153ecd68f37983756628b0de77d32af
@@ -529,3 +527,5 @@ SHA256 (roslyntools.signtool.1.0.0-beta-62414-01.nupkg) = 2c2c9aeede52e10d60af9c
 SIZE (roslyntools.signtool.1.0.0-beta-62414-01.nupkg) = 1976884
 SHA256 (microsoft.diasymreader.pdb2pdb.1.1.0-beta1-62506-02.nupkg) = f083b5cdba9af36bf783327f70fa186e1b83c019ac93b59bb564705570bd70b6
 SIZE (microsoft.diasymreader.pdb2pdb.1.1.0-beta1-62506-02.nupkg) = 2055429
+SHA256 (mono-msbuild-v15.8-preview-0.06_GH0.tar.gz) = d68ff22be59708db20caf084cd09ea0f50cbd83a76105884daf663fa4b76ac46
+SIZE (mono-msbuild-v15.8-preview-0.06_GH0.tar.gz) = 14856663
