@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/cartotheque/Makefile 389999 2015-06-17 22:44:31Z amdmi3 $
-
 PORTNAME=	cartotheque
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	FREEBSD_LOCAL/dinoex
 DISTNAME=	Cartotheque-${PORTVERSION}

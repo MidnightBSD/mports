@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/affiche/Makefile 389913 2015-06-17 12:55:29Z amdmi3 $
-
 PORTNAME=	affiche
 PORTVERSION=	0.6.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://www.collaboration-world.com/affiche.data/releases/Stable/
 DISTNAME=	Affiche-${PORTVERSION}

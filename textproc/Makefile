@@ -19,6 +19,7 @@ SUBDIR += docbook-utils
 SUBDIR += docbook-xml
 SUBDIR += docbook-xsd
 SUBDIR += docbook-xsl
+SUBDIR += docbook-xsl-ns
 SUBDIR += docbookide.el
 SUBDIR += dsssl-docbook-modular
 SUBDIR += duncan

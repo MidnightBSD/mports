@@ -1,5 +1,7 @@
+# Created by: Koop Mast <kwm@FreeBSD.org>
+
 PORTNAME=	gnome-calendar
-PORTVERSION=	3.28.2
+PORTVERSION=	3.38.1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -10,8 +12,6 @@ COMMENT=	Simple and beatiful calendar application for GNOME
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limitw:1,even
-
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 LIB_DEPENDS=	libical.so:devel/libical \
 		libdazzle-1.0.so:x11-toolkits/libdazzle \
@@ -19,11 +19,14 @@ LIB_DEPENDS=	libical.so:devel/libical \
 		libgweather-3.so:net/libgweather \
 		libgeoclue-2.so:net/geoclue \
 		libgeocode-glib.so:net/geocode-glib \
-		libgoa-1.0.so:net/gnome-online-accounts
+		libgoa-1.0.so:net/gnome-online-accounts \
+		libhandy-0.0.so:x11-toolkits/libhandy0
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		desktop-file-utils gettext gnome localbase:ldflags meson \
-		pkgconfig python:3.4+,build tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		compiler:c11 desktop-file-utils gettext gnome \
+		localbase:ldflags meson pkgconfig python:3.4+,build tar:xz
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	cairo evolutiondataserver3 gtksourceview3
@@ -31,7 +34,5 @@ BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.calendar.enums.xml \
 		org.gnome.calendar.gschema.xml
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>

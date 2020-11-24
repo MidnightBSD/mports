@@ -1,8 +1,7 @@
-# $FreeBSD: ports/net/vino/Makefile,v 1.28 2008/05/29 22:04:10 marcus Exp $
-# $MidnightBSD$
+# Created by: Tom McLaughlin <tmclaugh@sdf.lonestar.org>
 
 PORTNAME=	vino
-PORTVERSION=	3.16.0
+PORTVERSION=	3.22.0
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -13,22 +12,30 @@ COMMENT=	VNC server that allows for remote access to your GNOME desktop
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls \
-		libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
-		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
-		libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
-		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
-		libnotify.so:${PORTSDIR}/devel/libnotify \
-		libavahi-glib.so:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libgnutls.so:security/gnutls \
+		libtelepathy-glib.so:net-im/telepathy-glib \
+		libdbus-glib-1.so:devel/dbus-glib \
+		libsecret-1.so:security/libsecret \
+		libgpg-error.so:security/libgpg-error \
+		libgcrypt.so:security/libgcrypt \
+		libdbus-1.so:devel/dbus \
+		libsoup-2.4.so:devel/libsoup \
+		libnotify.so:devel/libnotify \
+		libavahi-glib.so:net/avahi-app
 
-USES=		cpe gettext gmake pathfix pkgconfig tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		cpe gettext gmake gnome jpeg localbase pathfix \
+		pkgconfig tar:xz xorg
 CPE_VENDOR=	david_king
-USE_GNOME=	gtk30 intlhack
-USE_XORG=	xdamage xfixes xtst
+USE_GNOME=	cairo gtk30 intlhack
+USE_XORG=	ice x11 xdamage xext xfixes sm xtst
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-Wno-format-nonliteral
 GLIB_SCHEMAS=	org.gnome.Vino.enums.xml org.gnome.Vino.gschema.xml
+
+post-install:
+	@${RM} -rf ${STAGEDIR}${PREFIX}/lib/systemd/
 
 .include <bsd.port.mk>

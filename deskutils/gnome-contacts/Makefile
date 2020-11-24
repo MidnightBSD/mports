@@ -1,9 +1,7 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gnome-contacts/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gnome-contacts
-PORTVERSION=	3.16.2
+PORTVERSION=	3.38
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 
@@ -11,43 +9,56 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Contacts manager for gnome
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala>=0.14.0:${PORTSDIR}/lang/vala
-LIB_DEPENDS=	libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
-		libchamplain-0.12.so:${PORTSDIR}/graphics/libchamplain \
-		libclutter-gtk-1.0.so:${PORTSDIR}/graphics/clutter-gtk3 \
-		libgee-0.8.so:${PORTSDIR}/devel/libgee \
-		libfolks.so:${PORTSDIR}/net-im/folks \
-		libnotify.so:${PORTSDIR}/devel/libnotify
+BUILD_DEPENDS=	vala>=0.14.0:lang/vala
+LIB_DEPENDS=	libchamplain-0.12.so:graphics/libchamplain \
+		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
+		libclutter-1.0.so:graphics/clutter \
+		libcogl.so:graphics/cogl \
+		libdrm.so:graphics/libdrm \
+		libexpat.so:textproc/expat2 \
+		libfolks.so:net-im/folks \
+		libgee-0.8.so:devel/libgee \
+		libgeocode-glib.so:net/geocode-glib \
+		libgoa-1.0.so:net/gnome-online-accounts \
+		libgstreamer-1.0.so:multimedia/gstreamer1 \
+		libjson-glib-1.0.so:devel/json-glib \
+		libnotify.so:devel/libnotify \
+		libnspr4.so:devel/nspr \
+		libsecret-1.so:security/libsecret \
+		libsoup-2.4.so:devel/libsoup \
+		libtelepathy-glib.so:net-im/telepathy-glib \
+		libhandy-1.so:x11-toolkits/libhandy
 
-USE_GNOME=	evolutiondataserver3 gnomedesktop3 gtk30 intlhack \
-		introspection:build
-USES=		gettext gmake pathfix perl5 pkgconfig tar:xz
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV=	XDG_CACHE_HOME=${WRKDIR}
+PORTSCOUT=	limitw:1,even
 
-GLIB_SCHEMAS=	org.gnome.Contacts.enums.xml \
-		org.gnome.Contacts.gschema.xml
+USE_GL=		egl
+USE_GNOME=	cairo evolutiondataserver3 gdkpixbuf2 gnomedesktop3 gtk30 \
+		intlhack introspection:build
+USE_XORG=	x11 xcomposite xdamage xext xfixes xi xrandr
+USES=		compiler:c11 gettext gl gnome localbase meson perl5 pkgconfig \
+		python:3.4+,build sqlite tar:xz xorg
 
-CHEESE_DESC=	Cheese webcam support
+GLIB_SCHEMAS=	org.gnome.Contacts.gschema.xml
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 
 OPTIONS_DEFINE_i386=	CHEESE
-OPTIONS_DEFAULT_i386=	CHEESE
 OPTIONS_DEFINE_amd64=	CHEESE
+OPTIONS_DEFAULT_i386=	CHEESE
 OPTIONS_DEFAULT_amd64=	CHEESE
 
-CHEESE_CONFIGURE_WITH=	cheese
-CHEESE_LIB_DEPENDS=	libcheese-gtk.so:${PORTSDIR}/multimedia/cheese
-
-MANPAGES_CONFIGURE_ENABLE=	man-pages
+MANPAGES_MESON_TRUE=	with-manpage
 MANPAGES_USE=		GNOME=libxslt:build
-MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:${PORTSDIR}/textproc/docbook-xml \
-			docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl
+MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
+			docbook-xsl>=0:textproc/docbook-xsl \
+			docbook-xsl-ns>=0:textproc/docbook-xsl-ns
+
+CHEESE_DESC=		Cheese webcam support
+CHEESE_MESON_YES=	with-cheese
+CHEESE_LIB_DEPENDS=	libcheese-gtk.so:multimedia/cheese
 
 .include <bsd.port.mk>

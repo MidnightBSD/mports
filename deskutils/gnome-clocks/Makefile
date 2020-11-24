@@ -1,38 +1,33 @@
 # Created by: Gustau Perez <gustau.perez@gmail.com>
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gnome-clocks/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gnome-clocks
-PORTVERSION=	3.16.1
+PORTVERSION=	3.38.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clocks for GNOME 3
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue \
-		itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3 \
-		libgeocode-glib.so:${PORTSDIR}/net/geocode-glib \
-		libgweather-3.so:${PORTSDIR}/net/libgweather
-RUN_DEPENDS=	geoclue>=0:${PORTSDIR}/net/geoclue
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		vala:lang/vala
+LIB_DEPENDS=	libgeoclue-2.so:net/geoclue \
+		libgeocode-glib.so:net/geocode-glib \
+		libgweather-3.so:net/libgweather \
+		libhandy-1.so:x11-toolkits/libhandy
 
-USES=		gettext gmake libtool pathfix pkgconfig tar:xz
+PORTSCOUT=	limitw:1,even
+
+USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
+		python:3.4+,build shebangfix tar:xz
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomedesktop3 gsound gtk30 intlhack
-GNU_CONFIGURE=	yes
+USE_GNOME=	cairo gnomedesktop3 gsound
 INSTALLS_ICONS=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+SHEBANG_FILES=	build-aux/post-install.py
 
 GLIB_SCHEMAS=	org.gnome.clocks.gschema.xml
-
-post-patch:
-# for base gcc
-	@${REINPLACE_CMD} -e 's|-Wno-unused-but-set-variable||g' \
-		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>

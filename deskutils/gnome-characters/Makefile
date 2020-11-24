@@ -1,13 +1,13 @@
-# $MidnightBSD$
+# Created by: Koop Mast <kwm@FreeBSD.org>
 
 PORTNAME=	gnome-characters
-PORTVERSION=	3.28.2
+PORTVERSION=	3.34.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	find and insert unusual characters for GNOME 3
+COMMENT=	Find and insert unusual characters for GNOME
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
