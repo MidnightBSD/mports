@@ -1,9 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/plopfolio/Makefile 390053 2015-06-18 19:49:18Z amdmi3 $
-
 PORTNAME=	plopfolio
 PORTVERSION=	0.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	GNUSTEP/usr-apps
 

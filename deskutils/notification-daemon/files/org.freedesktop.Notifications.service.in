@@ -1,0 +1,5 @@
+# $FreeBSD: head/deskutils/notification-daemon/files/org.freedesktop.Notifications.service.in 551495 2020-10-05 14:02:07Z 0mp $
+
+[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=%%PREFIX%%/libexec/notification-daemon

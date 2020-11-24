@@ -1,8 +1,6 @@
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gnustep-wrapper/Makefile 390044 2015-06-18 19:45:16Z amdmi3 $
-
 PORTNAME=	wrapper
 PORTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 #MASTER_SITES=	ftp://ftp.raffael.ch/software/GNUstepWrapper/
 MASTER_SITES=	FREEBSD_LOCAL/dinoex

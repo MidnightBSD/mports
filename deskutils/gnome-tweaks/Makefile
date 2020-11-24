@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Jeremy Messenger <mezz@FreeBSD.org>
 
 PORTNAME=	gnome-tweaks
-PORTVERSION=	3.28.1
+PORTVERSION=	3.34.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 

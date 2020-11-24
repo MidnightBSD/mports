@@ -1,6 +1,7 @@
+# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
+
 PORTNAME=	gnome-documents
-PORTVERSION=	3.28.2
-PORTREVISION=	1
+PORTVERSION=	3.34.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -27,8 +28,6 @@ RUN_DEPENDS=	gnome-online-miners>=0:net/gnome-online-miners \
 
 PORTSCOUT=	limitw:1,even
 
-NO_TEST=	yes
-
 USES=		compiler:c++11-lib desktop-file-utils gettext gnome localbase \
 		meson pkgconfig python:3.6+,build tar:xz
 USE_GNOME=	cairo gnomedesktop3 introspection libxslt:build
@@ -37,7 +36,6 @@ USE_LDCONFIG=	yes
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.Documents.enums.xml \
-		org.gnome.books.gschema.xml \
 		org.gnome.documents.gschema.xml
 
 .include <bsd.port.mk>

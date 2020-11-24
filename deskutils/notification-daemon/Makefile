@@ -1,28 +1,32 @@
-# $MidnightBSD$
+# Created by: Andreas Kohn <andreas@syndrom23.de>
 
 PORTNAME=	notification-daemon
-PORTVERSION=	3.16.1
+PORTVERSION=	3.20.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 
-MAINTAINER=	ports@MindightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Send small notifications to your desktop
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
-		libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3
+LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
+		libdbus-1.so:devel/dbus
+
+USES=		gettext gmake gnome localbase pathfix pkgconfig tar:xz xorg
+USE_GNOME=	cairo gnomeprefix gtk30
+INSTALLS_ICONS=	yes
+USE_XORG=	x11
+GNU_CONFIGURE=	yes
 
 PORTSCOUT=	limitw:1,even
 
-USE_GNOME=	gnomeprefix intlhack gtk30
-USES=		gettext gmake pathfix pkgconfig tar:xz
-USE_XORG=	x11
-INSTALLS_ICONS=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-dbus-services=${PREFIX}/share/dbus-1/services
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+SUB_FILES=	org.freedesktop.Notifications.service
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/dbus-1/services
+	${INSTALL_DATA} ${WRKDIR}/org.freedesktop.Notifications.service \
+		${STAGEDIR}${PREFIX}/share/dbus-1/services
 
 .include <bsd.port.mk>

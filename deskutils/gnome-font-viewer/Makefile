@@ -1,30 +1,28 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gnome-font-viewer/Makefile 393607 2015-08-05 19:13:24Z kwm $
 
 PORTNAME=	gnome-font-viewer
-PORTVERSION=	3.16.2
+PORTVERSION=	3.34.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 3 font viewer utility
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig \
+		libharfbuzz.so:print/harfbuzz
 
 CONFLICTS=	gnome-utils-2.[0-9]*
+PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gmake pathfix \
+USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
 		pkgconfig tar:xz
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-USE_GNOME=	intlhack gtk30 gnomedesktop3
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+USE_GNOME=	cairo gtk30 gnomedesktop3
 
 .include <bsd.port.mk>

@@ -1,9 +1,8 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/deskutils/gnome-search-tool/Makefile 372768 2014-11-19 11:49:04Z kwm $
 
 PORTNAME=	gnome-search-tool
 PORTVERSION=	3.6.0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -14,11 +13,11 @@ COMMENT=	GNOME 3 file search utilities
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
+BUILD_DEPENDS=	itstool:textproc/itstool
 
 CONFLICTS=	gnome-utils-2.[0-9]*
 
-USES=		gettext gmake pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	gnomeprefix gtk30 intlhack

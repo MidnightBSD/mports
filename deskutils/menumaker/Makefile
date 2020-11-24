@@ -1,5 +1,5 @@
 PORTNAME=	menumaker
-PORTVERSION=	0.99.11
+PORTVERSION=	0.99.12
 CATEGORIES=	deskutils
 MASTER_SITES=	SF/${PORTNAME}
 
@@ -17,5 +17,9 @@ NO_ARCH=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 INFO=		mmaker
+
+post-install:
+		@${REINPLACE_CMD} -i '' -e '1s|#!.*|#!${PYTHON_CMD}|' \
+			${STAGEDIR}${LOCALBASE}/bin/mmaker
 
 .include <bsd.port.mk>
