@@ -1,10 +1,8 @@
-# $MidnightBSD$
-
 PORTNAME=	gcc
 PORTVERSION=	4.8.5
-PORTREVISION=	1
-CATEGORIES=	lang java
-MASTER_SITES=	GCC/releases/gcc-${PORTVERSION}
+PORTREVISION=	13
+CATEGORIES=	lang
+MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,31 +15,21 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpc.so:math/mpc
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
-
 .if defined(MAINTAINER_MODE)
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
-CONFLICTS=	gcc-4.8.*
-CPE_VENDOR=	gnu
-UNIQUENAME=	${PORTNAME}${PKGNAMESUFFIX}
-
-# DISTVERSION relates to downloads, GCC_VERSION and SUFFIX to names
-# of executables and directories once installed.
-GCC_VERSION=	${PORTVERSION}
-SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
-
 USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:bzip2
 USE_BINUTILS=	yes
 USE_PERL5=	build
+
+CPE_VENDOR=	gnu
+
+GCC_VERSION=	${PORTVERSION}
+SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 SSP_UNSAFE=	yes
-
-PATCH_WRKSRC=	${SRCDIR}
-CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
-
-OPTIONS_DEFINE=		BOOTSTRAP
-OPTIONS_DEFAULT=	BOOTSTRAP
-BOOTSTRAP_DESC=		Build using a full bootstrap
+CFLAGS:=	${CFLAGS:N-march=haswell:N-march=ivybridge:N-march=westmere:N-mretpoline}
+CXXFLAGS:=	${CXXFLAGS:N-march=haswell:N-march=ivybridge:N-march=westmere:N-mretpoline}
 
 .include <bsd.port.pre.mk>
 
@@ -51,19 +39,19 @@ CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
 
-LANGUAGES:=	c,c++,objc,fortran
-SRCDIR=		${WRKDIR}/gcc-${DISTVERSION}
-WRKSRC=		${WRKDIR}/build
+LANGUAGES:=	c,c++
 TARGLIB=	${PREFIX}/lib/gcc${SUFFIX}
 LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
-.if empty(PORT_OPTIONS:MBOOTSTRAP)
-CONFIGURE_ARGS+=--disable-bootstrap
-.else
+CONFIGURE_OUTSOURCE=	yes
 CONFIGURE_ARGS+=--with-build-config=bootstrap-debug
 ALL_TARGET=	bootstrap-lean
+INSTALL_TARGET=	install-strip
+.if ${UID} != 0
+BINMODE=	755
 .endif
 CONFIGURE_ARGS+=--disable-nls \
+		--disable-multilib \
 		--enable-gnu-indirect-function \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
@@ -74,10 +62,12 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-ld=${LOCALBASE}/bin/ld \
 		${ICONV_CONFIGURE_ARG} \
 		--with-pkgversion="MidnightBSD Ports Collection" \
-		--with-system-zlib
+		--with-system-zlib \
+		--disable-libgcj \
+		--enable-languages=${LANGUAGES}
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
-PLIST_SUB=	GCC_VERSION=${GCC_VERSION} \
+PLIST_SUB+=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
 		SUFFIX=${SUFFIX}
 INFO=		gcc${SUFFIX}/cpp \
@@ -85,14 +75,11 @@ INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/gcc \
 		gcc${SUFFIX}/gccinstall \
 		gcc${SUFFIX}/gccint \
-		gcc${SUFFIX}/gfortran \
 		gcc${SUFFIX}/libgomp \
-		gcc${SUFFIX}/libquadmath \
-		gcc${SUFFIX}/libitm
+		gcc${SUFFIX}/libitm \
+		gcc${SUFFIX}/libquadmath
 SUB_FILES=	pkg-message
 SUB_LIST+=	TARGLIB=${TARGLIB}
-CONFIGURE_ARGS+=--disable-libgcj
-CONFIGURE_ARGS+=--enable-languages=${LANGUAGES}
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${CONFIGURE_TARGET} [${LANGUAGES}]"
@@ -103,19 +90,19 @@ post-patch:
 	    ${XARGS} ${REINPLACE_CMD} -E -e 's/"(HOST_WIDE|PLUGIN_COND)/" \1/g'
 
 pre-configure:
-	cd ${SRCDIR} ; contrib/gcc_update --touch
-	@${RM} -f ${SRCDIR}/gcc/*/*.info*
-	@${MKDIR} ${CONFIGURE_WRKSRC}
+	cd ${WRKSRC} ; contrib/gcc_update --touch
+	@${RM} ${WRKSRC}/gcc/*/*.info*
 
 .if defined(MAINTAINER_MODE)
 full-regression-test: build
-	cd ${WRKSRC}; ${MAKE_CMD} -sk check \
-	; ${SRCDIR}/contrib/test_summary
+	cd ${TEST_WRKSRC}; ${MAKE_CMD} -sk check \
+	; ${WRKSRC}/contrib/test_summary
 .endif
 
 post-install:
-	${RM} -f ${PREFIX}/man/man7/*
-	-${RM} -r ${FAKE_DESTDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/
+	${RM} ${STAGEDIR}${PREFIX}/man/man7/*
+	${RM} -r ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/include-fixed/ \
+	         ${STAGEDIR}${TARGLIB}/gcc/*/${GCC_VERSION}/finclude
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} ${LIBEXEC:S/^${PREFIX}\///}
