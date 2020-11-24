@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	spice-protocol
-PORTVERSION=	0.12.14
+PORTVERSION=	0.12.15
 CATEGORIES=	devel
 MASTER_SITES=	http://www.spice-space.org/download/releases/
 
