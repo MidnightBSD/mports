@@ -23,7 +23,7 @@ USE_LDCONFIG=	yes
 LIBDIR=		${TRUE_PREFIX}/lib
 
 OPTIONS_DEFINE=	CUSE DEBUG HAL VT_CLIENT VT_SERVER DVB INPUT RADIO WEBCAM
-OPTIONS_DEFAULT=DVB HAL INPUT RADIO WEBCAM
+OPTIONS_DEFAULT=CUSE DVB HAL INPUT RADIO WEBCAM
 CUSE_DESC=	Use CUSE and not CUSE4BSD (MidnightBSD2+ only)
 HAL_DESC=	Build with HAL and DBUS support
 DEBUG_DESC=	Build with debugging support
@@ -47,8 +47,8 @@ MAKE_ARGS+=	PTHREAD_LIBS="-lpthread"
 MAKE_ARGS+=	HAVE_CUSE="YES"
 LIBCUSE=	/usr/lib/libcuse.so
 .else
-BUILD_DEPENDS+=	cuse4bsd-kmod>=0.1.31:${PORTSDIR}/multimedia/cuse4bsd-kmod
-LIB_DEPENDS+=	libcuse4bsd.so:${PORTSDIR}/multimedia/cuse4bsd-kmod
+BUILD_DEPENDS+=	cuse4bsd-kmod>=0.1.31:multimedia/cuse4bsd-kmod
+LIB_DEPENDS+=	libcuse4bsd.so:multimedia/cuse4bsd-kmod
 LIBCUSE=	${LIBDIR}/libcuse4bsd.so
 .endif
 
