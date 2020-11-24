@@ -52,6 +52,7 @@ SUBDIR += plopfolio
 SUBDIR += preferencepanes
 SUBDIR += preferences
 SUBDIR += simpleagenda
+SUBDIR += spice-gtk
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
 SUBDIR += vnc2flv
