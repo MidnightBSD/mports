@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	sqlite3
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,8 +17,7 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 RUN_DEPENDS+=	${LOCALBASE}/lib/libsqlite3.so:databases/sqlite3
 
-USE_GCC=	yes
-USES=		python tar:xz
+USES=		compiler:c11 python tar:xz
 USE_PYTHON=	autoplist distutils allflavors
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
@@ -29,6 +26,10 @@ WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHON_LIBDIR}/lib-dynload
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 200000
+USE_GCC=	yes
+.endif
 
 post-extract:
 .if ${PYTHON_REL} < 3000
