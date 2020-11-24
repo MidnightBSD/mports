@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	vinagre
-PORTVERSION=	3.16.1
+PORTVERSION=	3.22.0
+PORTREVISION=	4
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -10,47 +11,63 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC client for the GNOME Desktop
 
 LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
-LIB_DEPENDS=	libgtk-vnc-2.0.so:${PORTSDIR}/net/gtk-vnc \
-    		libavahi-core.so:${PORTSDIR}/net/avahi-app \
-		libavahi-ui-gtk3.so:${PORTSDIR}/net/avahi-gtk3 \
-		libgdbm.so:${PORTSDIR}/databases/gdbm \
-		libsecret-1.so:${PORTSDIR}/security/libsecret \
-		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring
-RUN_DEPENDS=	gnome-icon-theme>=0:${PORTSDIR}/misc/gnome-icon-theme
+BUILD_DEPENDS=	appstream-glib>=0:devel/appstream-glib \
+		itstool:textproc/itstool \
+		gnome-autogen.sh:devel/gnome-common \
+		yelp-tools>=0:textproc/yelp-tools \
+		valac:lang/vala
+LIB_DEPENDS=	libgtk-vnc-2.0.so:net/gtk-vnc \
+		libfribidi.so:converters/fribidi \
+		libgdbm.so:databases/gdbm \
+		libsecret-1.so:security/libsecret \
+		libdbus-1.so:devel/dbus \
+		libpcre2-8.so:devel/pcre2 \
+		libgnutls.so:security/gnutls
+RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme
 
-USES=		desktop-file-utils gettext gmake pathfix pkgconfig \
-		shared-mime-info tar:xz
-USE_GNOME=	gtk30 intlhack libxml2 vte3
+PORTSCOUT=	limitw:1,even
+
+USES=		autoreconf desktop-file-utils gettext gmake gnome localbase \
+		pathfix pkgconfig shared-mime-info tar:xz xorg
+USE_GNOME=	cairo gtk30 intlhack libxml2 vte3
+USE_XORG=	x11
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ARGS=	--disable-spice --enable-ssh
-CPPFLAGS+=	-I${LOCALBASE}/include -Wno-format-nonliteral
-LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS=	--enable-ssh
+CPPFLAGS+=	-Wno-format-nonliteral
 
 GLIB_SCHEMAS=	org.gnome.Vinagre.gschema.xml
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	TELEPATHY RDP
-OPTIONS_DEFAULT=TELEPATHY RDP
+OPTIONS_DEFINE=	AVAHI SPICE TELEPATHY RDP DOCS
+OPTIONS_DEFAULT=		AVAHI TELEPATHY RDP
+OPTIONS_DEFAULT_aarch64=	SPICE
+OPTIONS_DEFAULT_amd64=		SPICE
+OPTIONS_DEFAULT_armv6=		SPICE
+OPTIONS_DEFAULT_armv7=		SPICE
+OPTIONS_DEFAULT_i386=		SPICE
+AVAHI_CONFIGURE_WITH=	avahi
+AVAHI_LIB_DEPENDS=	libavahi-ui-gtk3.so:net/avahi-gtk3 \
+			libavahi-common.so:net/avahi-app
+SPICE_DESC=	SPICE protocol support
+SPICE_CONFIGURE_ENABLE=	spice
+SPICE_BUILD_DEPENDS=	spice-gtk>=0.30_1:deskutils/spice-gtk
+SPICE_LIB_DEPENDS=	libspice-client-gtk-3.0.so:deskutils/spice-gtk
 TELEPATHY_DESC=	Telepathy integration
-RDP_DESC=	MS Windows remote desktop support
 TELEPATHY_CONFIGURE_WITH=	telepathy
-TELEPATHY_LIB_DEPENDS=	libtelepathy-glib.so:${PORTSDIR}/net-im/telepathy-glib \
-			libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
+TELEPATHY_LIB_DEPENDS=	libtelepathy-glib.so:net-im/telepathy-glib \
+			libdbus-glib-1.so:devel/dbus-glib
+RDP_DESC=	MS Windows remote desktop support
 RDP_CONFIGURE_ENABLE=	rdp
-RDP_BUILD_DEPENDS=	xfreerdp:${PORTSDIR}/net/freerdp
-RDP_RUN_DEPENDS=	xfreerdp:${PORTSDIR}/net/freerdp
+RDP_BUILD_DEPENDS=	xfreerdp:net/freerdp
+RDP_RUN_DEPENDS=	xfreerdp:net/freerdp
 
-.include <bsd.mport.options.mk>
-
-post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for f in AUTHORS COPYING ChangeLog NEWS README
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
