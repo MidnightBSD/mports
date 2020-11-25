@@ -52,7 +52,7 @@ LDAP_DESC=	LDAP keyserver support (for gpg)
 
 AVAHI_LIB_DEPENDS=	libavahi-client.so:net/avahi-app
 AVAHI_MESON_TRUE=	key-sharing
-LDAP_USE=		OPENLDAP=yes
+LDAP_USE=		OPENLDAP=yes LDAP=yes
 LDAP_MESON_TRUE=	ldap-support
 
 .include <bsd.mport.options.mk>
