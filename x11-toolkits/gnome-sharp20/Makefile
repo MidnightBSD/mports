@@ -26,6 +26,8 @@ INSTALL_TARGET=	install-strip
 
 GH_ACCOUNT=	mono
 
+NO_TEST=	yes
+
 pre-configure:
 	(cd ${WRKSRC}; ./bootstrap-2.24)
 
