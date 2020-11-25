@@ -31,6 +31,9 @@ PLIST_SUB=	MAJOR_VER=${PORTVERSION:R}
 CPE_PRODUCT=	xerces-c++
 CPE_VENDOR=	apache
 
+#magus
+NO_TEST=yes
+
 post-patch:
 	${REINPLACE_CMD} -e "s,@DEFS@,& -D__STDC_LIMIT_MACROS," ${WRKSRC}/src/Makefile.in
 
