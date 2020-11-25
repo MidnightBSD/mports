@@ -13,7 +13,7 @@ RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 
 GNU_CONFIGURE=	yes
 USES=		gmake localbase
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd11.4
 
 PORTDOCS=	AUTHORS ChangeLog INSTALL NEWS README
 

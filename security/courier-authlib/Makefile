@@ -1,10 +1,10 @@
+# Created by: Oliver Lehmann
+
 PORTNAME=	courier-authlib
-PORTVERSION=	0.63.0
-PORTREVISION=	1
+PORTVERSION=	0.71.0
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
 MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
-MASTER_SITE_SUBDIR=	courier
 .else
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -15,9 +15,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Meta-port for the courier authentication library
 
 LICENSE=	gpl3
-
 CONFLICTS=	courier-0.45*
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd10.4
+
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 .if !defined(PKGNAMESUFFIX)
 RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
@@ -25,40 +25,29 @@ RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base
 NO_BUILD=	yes
 PATCHDIR=	/dev/null
 
-OPTIONS+=	GDBM	"Use gdbm instead of system bdb"	off
+OPTIONS_DEFINE+=	GDBM
 
 .include "${.CURDIR}/Makefile.opt"
 
 .else	# !defined(PKGNAMESUFFIX)
 
-LIB_DEPENDS+=	libltdl.so:devel/libltdl
+LIB_DEPENDS+=	libltdl.so:devel/libltdl \
+		libcourier-unicode.so:devel/courier-unicode
 
-USES=	iconv gmake libtool perl5 tar:bzip2
-
+USES=		iconv gmake libtool localbase perl5 tar:bzip2
 GNU_CONFIGURE=	yes
 USE_SUBMAKE=	yes
-USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
-#slave ports should have different UNIQUENAME, it is utilized by USE_LDCONFIG
-UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 MAILOWN=	courier
 MAILGRP=	courier
-MAILUID=	465
-MAILGID=	465
 LOCALSTATEDIR=	/var
 AUTHDAEMONVAR=	${LOCALSTATEDIR}/run/authdaemond
 
 VPOPMAILDIR?=	${LOCALBASE}/vpopmail
 USERDB?=	${PREFIX}/etc/userdb
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' \
-		LDFLAGS='${LDFLAGS}'
-MAKE_ENV:=	${CONFIGURE_ENV}
-
 CONFIGURE_ARGS=	--enable-unicode \
-		--enable-ltdl-install=no \
+		--disable-static \
 		--without-authcustom \
 		--without-authshadow \
 		--without-authpwd \
@@ -68,25 +57,30 @@ CONFIGURE_ARGS=	--enable-unicode \
 		--with-authdaemonvar=${AUTHDAEMONVAR} \
 		--cache-file=${WRKDIR}/courier-authlib.cache
 
-INSTALL_TARGET=	install-strip install-configure
+INSTALL_TARGET=	install-strip
 
 DESCR=		${PKGDIR}/pkg-descr${PKGNAMESUFFIX}
 PLIST=		${PKGDIR}/pkg-plist${PKGNAMESUFFIX:S/gdbm/db/}
+
+PLIST_SUB+=	MAILOWN=${MAILOWN} MAILGRP=${MAILGRP}
 
 AUTHMOD=	auth${PKGNAMESUFFIX:S/-//:S/gdbm/db/}
 
 .if ${AUTHMOD} == authbase
 RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
-CONFIGURE_ARGS+=--with-base --with-authpam
+
+CONFIGURE_ARGS+=--with-base --with-authpam --with-authpipe
+
+USERS=		${MAILOWN}
+GROUPS=		${MAILGRP}
+
+OPTIONS_DEFINE+=	DOCS
 
 DOCS=		AUTHORS COPYING ChangeLog INSTALL NEWS README \
 		README.authdebug.html README_authlib.html
 
-PLIST_SUB+=	MAILOWN=${MAILOWN} MAILGRP=${MAILGRP} \
-		MAILUID=${MAILUID} MAILGID=${MAILGID} \
-		AUTHDAEMONVAR=${AUTHDAEMONVAR}
-SUB_LIST:=	${PLIST_SUB}
-SUB_FILES+=	pkg-install pkg-deinstall
+PLIST_SUB+=	AUTHDAEMONVAR=${AUTHDAEMONVAR}
+SUB_LIST+=	AUTHDAEMONVAR=${AUTHDAEMONVAR}
 
 .if defined(WITH_AUTHPIPE_PROG)
 CONFIGURE_ARGS+=--with-pipeprog=${WITH_AUTHPIPE_PROG}
@@ -94,7 +88,7 @@ CONFIGURE_ARGS+=--with-pipeprog=${WITH_AUTHPIPE_PROG}
 
 .else
 RUN_DEPENDS+=	courierauthconfig:security/courier-authlib-base
-CONFIGURE_ARGS+=--without-base --without-authpam
+CONFIGURE_ARGS+=--without-base --without-authpam --without-authpipe
 REMOVE_SUBDIRS+=liblock liblog
 .endif
 
@@ -114,6 +108,9 @@ REMOVE_SUBDIRS+=makedat userdb
 .endif
 
 .if ${AUTHMOD} == authldap
+RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+OPTIONS_DEFINE+=	DOCS
+
 DOCS=		README.ldap
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--with-authldap
@@ -122,9 +119,12 @@ CONFIGURE_ARGS+=--without-authldap
 .endif
 
 .if ${AUTHMOD} == authmysql
+RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+OPTIONS_DEFINE+=	DOCS
+
 DOCS=		README.authmysql.html README.authmysql.myownquery
-USE_MYSQL=	yes
 USES+=		compiler:c11 mysql
+USE_MYSQL=	yes
 CONFIGURE_ARGS+=--with-authmysql \
 		--with-mysql-libs=${LOCALBASE}/lib/mysql \
 		--with-mysql-includes=${LOCALBASE}/include/mysql
@@ -133,12 +133,26 @@ CONFIGURE_ARGS+=--without-authmysql
 .endif
 
 .if ${AUTHMOD} == authpgsql
+RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+OPTIONS_DEFINE+=	DOCS
+
 DOCS=		README.authpostgres.html
 USES+=		pgsql
 USE_PGSQL=	yes
 CONFIGURE_ARGS+=--with-authpgsql
 .else
 CONFIGURE_ARGS+=--without-authpgsql
+.endif
+
+.if ${AUTHMOD} == authsqlite
+RUN_DEPENDS+=	${LOCALBASE}/share/sysconftool/sysconftool:devel/sysconftool
+OPTIONS_DEFINE+=	DOCS
+
+DOCS=		README.authsqlite.html
+USES+=		pkgconfig sqlite
+CONFIGURE_ARGS+=--with-authsqlite
+.else
+CONFIGURE_ARGS+=--without-authsqlite
 .endif
 
 .if ${AUTHMOD} == authvchkpw
@@ -156,59 +170,47 @@ CONFIGURE_ARGS+=--without-authvchkpw
 
 .include "${.CURDIR}/Makefile.dep"
 
-do-install:	#empty
-do-build:	#empty
 .else	# !defined(PKGNAMESUFFIX)
 
 .if ${AUTHMOD} == authbase
-.if defined(WITH_RCORDER)
-USE_RCORDER=	courier-authdaemond.sh
-.else
-USE_RC_SUBR=	courier-authdaemond.sh
-.endif
+USE_RC_SUBR=	courier-authdaemond
 
 pre-everything::
+	@${ECHO_CMD}
 	@${ECHO_CMD}	"	Set WITH_AUTHPIPE_PROG to a program you want to use instead of"
 	@${ECHO_CMD}	"	authProg for libauthpipe"
+	@${ECHO_CMD}
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$VPOPMAILLIBS|& -lcrypt|g;  \
-		s|^\(INSTALL_STRIP_PROGRAM=\).*$$|\1"$${INSTALL_PROGRAM} -s"| ; \
-		s|mysql_connect|mysql_real_connect|g' \
+		s|mysql_connect|mysql_real_connect|g; \
+		s|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/*/configure \
 		${WRKSRC}/configure
 .for subdir in ${REMOVE_SUBDIRS}
 	@${REINPLACE_CMD} -E 's,(^(ac_subdirs_all|subdirs).*)${subdir},\1,g' \
 		${WRKSRC}/configure
 .endfor
-	@${REINPLACE_CMD} -e 's|$$(INSTALL_DATA) \(.$$$$file.\)|${INSTALL_MAN} \1|' \
-		${WRKSRC}/*/Makefile.in \
-		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|^\(DEFAULTOPTIONS=\)""$$|\1"wbnodsn=1"|' \
 		-e 's|@ALLMODULES@|authuserdb authvchkpw authpam authldap authmysql authpgsql|' \
 		${WRKSRC}/authdaemonrc.in
-	@${REINPLACE_CMD} -e 's:@EXPECT@:${SETENV} expect:' \
+	@${REINPLACE_CMD} -e 's:^#! @EXPECT@:#!${LOCALBASE}/bin/expect:' \
 		${WRKSRC}/authsystem.passwd.in
 
 pre-configure:
 	@if [ -f "${WRKDIR}/courier-authlib.cache" -a -s "${WRKDIR}/courier-authlib.cache" ] ; then \
-		${RM} -f "${WRKDIR}/courier-authlib.cache" ; \
+		${RM} "${WRKDIR}/courier-authlib.cache" ; \
 	fi
 
-.if ${PKGNAMESUFFIX} == "-base"
-pre-install:
-	@${MKDIR} ${PREFIX}/libexec/courier-authlib
-#	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-.endif	# ${PKGNAMESUFFIX} == "-base"
-
 post-install:
-.if !defined(NOPORTDOCS)
-	@${INSTALL} ${_SHROWNGRP} -d ${DOCSDIR}
+.if !empty(DOCS)
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
 .endfor
 .endif
+
 .endif	# !defined(PKGNAMESUFFIX)
 
 .include <bsd.port.post.mk>
