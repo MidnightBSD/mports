@@ -1,7 +1,7 @@
 # Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
 
 PORTNAME=	xreader
-PORTVERSION=	2.6.0
+PORTVERSION=	2.6.4
 CATEGORIES=	print
 
 MAINTAINER=	ports@MidnightBSD.org
