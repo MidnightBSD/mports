@@ -1,6 +1,8 @@
+# Created by: Alexander Logvinov <avl@FreeBSD.org>
+
 PORTNAME=	gobject-introspection
-PORTVERSION=	1.56.1
-PORTREVISION=	1
+PORTVERSION=	1.66.1
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,22 +14,25 @@ LICENSE=	gpl2 lgpl
 LICENSE_COMB=	multi
 
 # we need cairo otherwise the generated Cairo gir is broken
-BUILD_DEPENDS=	cairo-trace:graphics/cairo \
-		python2.7:lang/python27
+BUILD_DEPENDS=	cairo-trace:graphics/cairo
 LIB_DEPENDS=	libffi.so:devel/libffi
-RUN_DEPENDS=	python2.7:lang/python27
 
-USES=		bison gettext gmake gnome libtool pathfix pkgconfig \
-		python:3.4+ tar:xz
-GNU_CONFIGURE=	yes
+PORTSCOUT=	limitw:1,even
+
+USES=		bison gettext gnome localbase meson pkgconfig python:3.4+ tar:xz
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-doctool
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
+MESON_ARGS=	-Ddoctool=disabled \
+		-Dpython=${PYTHON_CMD}
 
-# Force it to put the .cache in ${WRKSRC} instead of ~/.cache.
-MAKE_ENV=	HOME=${WRKDIR}
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|' ${WRKSRC}/tools/meson.build
+
+post-fake:
+	@${PYTHON_CMD} -m compileall -d ${PREFIX}/lib/${PORTNAME} \
+		"${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}"
+	@${PYTHON_CMD} -O -m compileall -d ${PREFIX}/lib/${PORTNAME} \
+		"${FAKE_DESTDIR}${PREFIX}/lib/${PORTNAME}"
 
 .include <bsd.port.mk>
