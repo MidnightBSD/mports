@@ -6,4 +6,6 @@ PKGNAMESUFFIX=	-ldap
 
 NO_TEST=	yes
 
+USE_LDAP=	yes
+
 .include "${MASTERDIR}/Makefile"
