@@ -283,6 +283,7 @@ SUBDIR += ninja
 SUBDIR += npth
 SUBDIR += nspr
 SUBDIR += oniguruma
+SUBDIR += opencl
 SUBDIR += opengrok
 SUBDIR += openmp
 SUBDIR += orc
