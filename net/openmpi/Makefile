@@ -47,7 +47,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}/${MPIDIR} \
 			--without-verbs \
 			--with-wrapper-ldflags=-Wl,-rpath=-Wl,-rpath=${LOCALBASE}/lib/gcc${_GCC_VER} \
 			ompi_cv_fortran_ignore_tkr_data=0
-
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib \
 		${PREFIX}/${MPIDIR}/lib/openmpi
 
