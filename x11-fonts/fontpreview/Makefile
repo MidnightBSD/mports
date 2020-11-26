@@ -8,6 +8,8 @@ COMMENT=	Very customizable and minimal font previewer written in Bash
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+FAKE_OPTS=	trueprefix
+
 RUN_DEPENDS=	bash:shells/bash \
 		convert:graphics/ImageMagick7 \
 		fzf:textproc/fzf \
@@ -33,8 +35,8 @@ post-patch:
 		${WRKSRC}/${PORTNAME}
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}/extra
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/extra/* ${STAGEDIR}${DOCSDIR}/extra
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/extra
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/extra/* ${FAKE_DESTIR}${DOCSDIR}/extra
 
 .include <bsd.port.mk>
