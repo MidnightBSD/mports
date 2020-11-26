@@ -87,7 +87,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-static \
 		--enable-vaapi \
 		--enable-version3
-
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 OPTIONS_DEFINE=		LAME SMB X11
 OPTIONS_DEFAULT=	SMB X11
 
