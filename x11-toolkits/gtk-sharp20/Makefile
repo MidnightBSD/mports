@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gtk-sharp
-PORTVERSION=	2.12.40
+PORTVERSION=	2.12.45
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://download.mono-project.com/sources/gtk-sharp212/
 PKGNAMESUFFIX=	20

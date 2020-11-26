@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gconf2
 PORTVERSION=	3.2.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME/sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	GConf-${PORTVERSION}
@@ -15,8 +13,6 @@ LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz
-
-.if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 		libpolkit-gobject-1.so:sysutils/polkit
@@ -55,5 +51,3 @@ post-install:
 	@${MKDIR} ${PREFIX}/etc/gconf/gconf.xml.system
 
 .include <bsd.port.mk>
-
-.endif

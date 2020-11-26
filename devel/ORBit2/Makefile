@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,10 +12,8 @@ LICENSE=	gpl2
 
 USES=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
 GNU_CONFIGURE=	yes
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig
 USE_GNOME=	libidl referencehack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
@@ -41,5 +37,3 @@ post-install:
 	@${MKDIR} ${PREFIX}/lib/orbit-2.0/idl-backends
 
 .include <bsd.port.mk>
-
-.endif
