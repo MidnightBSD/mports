@@ -345,7 +345,28 @@ CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=true/}
 .    if defined(${opt}_CMAKE_BOOL_OFF)
 CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=false/}
 .    endif
-.    for configure in CONFIGURE CMAKE QMAKE
+.    if defined(${opt}_MESON_TRUE)
+MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=true/}
+.    endif
+.    if defined(${opt}_MESON_FALSE)
+MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=false/}
+.    endif
+.    if defined(${opt}_MESON_YES)
+MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=yes/}
+.    endif
+.    if defined(${opt}_MESON_NO)
+MESON_ARGS+=          ${${opt}_MESON_NO:C/.*/-D&=no/}
+.    endif
+.    if defined(${opt}_MESON_ENABLED)
+MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=enabled/}
+.    endif
+.    if defined(${opt}_MESON_DISABLED)
+MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=disabled/}
+.    endif
+.    if defined(${opt}_CABAL_FLAGS)
+CABAL_FLAGS+=	${${opt}_CABAL_FLAGS}
+.    endif
+.    for configure in CONFIGURE CMAKE MESON QMAKE
 .      if defined(${opt}_${configure}_ON)
 ${configure}_ARGS+=	${${opt}_${configure}_ON}
 .      endif
@@ -395,7 +416,28 @@ CMAKE_ARGS+=		${${opt}_CMAKE_BOOL:C/.*/-D&:BOOL=false/}
 .    if defined(${opt}_CMAKE_BOOL_OFF)
 CMAKE_ARGS+=		${${opt}_CMAKE_BOOL_OFF:C/.*/-D&:BOOL=true/}
 .    endif
-.    for configure in CONFIGURE CMAKE QMAKE
+.    if defined(${opt}_MESON_TRUE)
+MESON_ARGS+=		${${opt}_MESON_TRUE:C/.*/-D&=false/}
+.    endif
+.    if defined(${opt}_MESON_FALSE)
+MESON_ARGS+=		${${opt}_MESON_FALSE:C/.*/-D&=true/}
+.    endif
+.    if defined(${opt}_MESON_YES)
+MESON_ARGS+=		${${opt}_MESON_YES:C/.*/-D&=no/}
+.    endif
+.    if defined(${opt}_MESON_NO)
+MESON_ARGS+=		${${opt}_MESON_NO:C/.*/-D&=yes/}
+.    endif
+.    if defined(${opt}_MESON_ENABLED)
+MESON_ARGS+=		${${opt}_MESON_ENABLED:C/.*/-D&=disabled/}
+.    endif
+.    if defined(${opt}_MESON_DISABLED)
+MESON_ARGS+=		${${opt}_MESON_DISABLED:C/.*/-D&=enabled/}
+.    endif
+.    if defined(${opt}_CABAL_FLAGS)
+CABAL_FLAGS+=	-${${opt}_CABAL_FLAGS}
+.    endif
+.    for configure in CONFIGURE CMAKE MESON QMAKE
 .      if defined(${opt}_${configure}_OFF)
 ${configure}_ARGS+=	${${opt}_${configure}_OFF}
 .      endif
