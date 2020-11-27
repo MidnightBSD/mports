@@ -135,11 +135,11 @@ nvidia-modeset.ko
 %%LINUX%%usr/lib/libnvcuvid.so
 %%LINUX%%usr/lib/libnvcuvid.so.1
 %%LINUX%%usr/lib/libnvcuvid.so.%%SHLIB_VERSION%%
-%%LINUX%%usr/lib/libnvidia-cfg.so
-%%LINUX%%usr/lib/libnvidia-cfg.so.1
-%%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-cfg.so.%%SHLIB_VERSION%%
+@comment %%LINUX%%usr/lib/libnvidia-cfg.so
+@comment %%LINUX%%usr/lib/libnvidia-cfg.so.1
+@comment %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-cfg.so.%%SHLIB_VERSION%%
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-compiler.so.%%SHLIB_VERSION%%
-%%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-egl-wayland.so.1
+@comment %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-egl-wayland.so.1
 @comment %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-egl-wayland.so.X
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-eglcore.so.%%SHLIB_VERSION%%
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-encode.so
@@ -151,8 +151,8 @@ nvidia-modeset.ko
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-fbc.so.%%SHLIB_VERSION%%
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-glcore.so.%%SHLIB_VERSION%%
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-glsi.so.%%SHLIB_VERSION%%
-%%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-gtk2.so.%%SHLIB_VERSION%%
-%%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-gtk3.so.%%SHLIB_VERSION%%
+@comment %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-gtk2.so.%%SHLIB_VERSION%%
+@comment %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-gtk3.so.%%SHLIB_VERSION%%
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-ifr.so
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-ifr.so.1
 %%LINUX%%%%LINUXBASE%%/usr/lib/libnvidia-ifr.so.%%SHLIB_VERSION%%
