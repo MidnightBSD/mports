@@ -2,6 +2,7 @@
 
 PORTNAME=	rest
 PORTVERSION=	0.7.93
+PORTREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	GNOME
 
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		gmake libtool pathfix pkgconfig tar:xz
+USES=		gmake gnome libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
 USE_LDCONFIG=	yes
@@ -24,12 +25,9 @@ NO_TEST=	yes
 
 PORTEXAMPLES=	*.c
 
-OPTIONS_DEFINE=	GNOME EXAMPLES
-OPTIONS_DEFAULT=	GNOME
+OPTIONS_DEFINE=	EXAMPLES
 
-GNOME_LIB_DEPENDS=	libsoup-gnome-2.4.so:devel/libsoup-gnome
-GNOME_CONFIGURE_OFF=	--without-gnome
-GNOME_LIB_DEPENDS_OFF=	libsoup-2.4.so:devel/libsoup
+LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
