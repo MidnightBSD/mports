@@ -8,6 +8,7 @@ lib/libicudata.a
 lib/libicudata.so
 lib/libicudata.so.%%ICUMAJOR%%
 lib/libicudata.so.%%ICUVER%%
+lib/libicudata.so.67
 lib/libicui18n.a
 lib/libicui18n.so
 lib/libicui18n.so.%%ICUMAJOR%%
@@ -29,6 +30,7 @@ lib/libicuuc.a
 lib/libicuuc.so
 lib/libicuuc.so.%%ICUMAJOR%%
 lib/libicuuc.so.%%ICUVER%%
+lib/libicuuc.so.67
 lib/icu/pkgdata.inc
 lib/icu/current
 lib/icu/Makefile.inc

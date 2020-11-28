@@ -43,6 +43,8 @@ post-install:
 	@(cd ${STAGEDIR}${PREFIX} && ${ECHO_CMD} \
 		${DATADIR_REL}/${PORTVERSION:C/r.?/1/}/icudt*.dat >>${TMPPLIST})
 	${LN} -sf ${PREFIX}/lib/libicui18n.so ${PREFIX}/lib/libicui18n.so.67
+	${LN} -sf ${PREFIX}/lib/libicuuc.so ${PREFIX}/lib/libicuuc.so.67
+	${LN} -sf ${PREFIX}/lib/libicudata.so ${PREFIX}/lib/libicudata.so.67
 .endif # PKGNAMESUFFIX
 
 .include <bsd.port.mk>
