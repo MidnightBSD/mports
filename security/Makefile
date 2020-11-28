@@ -4,6 +4,7 @@ SUBDIR += aide
 SUBDIR += apg
 SUBDIR += autossh
 SUBDIR += barnyard2
+SUBDIR += blocklist-de-all
 SUBDIR += ca_root_nss
 SUBDIR += chroot_safe
 SUBDIR += clamav
