@@ -1,3 +1,6 @@
+%%DRUPAL_BASE%%/.htaccess
+%%DRUPAL_BASE%%/authorize.php
+%%DRUPAL_BASE%%/cron.php
 %%PORTDOCS%%%%DOCSDIR%%/CHANGELOG.txt
 %%PORTDOCS%%%%DOCSDIR%%/COPYRIGHT.txt
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL.mysql.txt
@@ -10,9 +13,6 @@
 %%PORTDOCS%%%%DOCSDIR%%/UPGRADE.txt
 @owner www
 @group www
-%%DRUPAL_BASE%%/.htaccess
-%%DRUPAL_BASE%%/authorize.php
-%%DRUPAL_BASE%%/cron.php
 %%DRUPAL_BASE%%/includes/actions.inc
 %%DRUPAL_BASE%%/includes/ajax.inc
 %%DRUPAL_BASE%%/includes/archiver.inc
@@ -92,6 +92,7 @@
 %%DRUPAL_BASE%%/misc/authorize.js
 %%DRUPAL_BASE%%/misc/autocomplete.js
 %%DRUPAL_BASE%%/misc/batch.js
+%%DRUPAL_BASE%%/misc/brumann/polyfill-unserialize/.gitignore
 %%DRUPAL_BASE%%/misc/brumann/polyfill-unserialize/.travis.yml
 %%DRUPAL_BASE%%/misc/brumann/polyfill-unserialize/LICENSE
 %%DRUPAL_BASE%%/misc/brumann/polyfill-unserialize/README.md
@@ -115,6 +116,7 @@
 %%DRUPAL_BASE%%/misc/grippie.png
 %%DRUPAL_BASE%%/misc/help.png
 %%DRUPAL_BASE%%/misc/jquery-extend-3.4.0.js
+%%DRUPAL_BASE%%/misc/jquery-html-prefilter-3.5.0-backport.js
 %%DRUPAL_BASE%%/misc/jquery.ba-bbq.js
 %%DRUPAL_BASE%%/misc/jquery.cookie.js
 %%DRUPAL_BASE%%/misc/jquery.form.js
@@ -759,6 +761,7 @@
 %%DRUPAL_BASE%%/modules/simpletest/tests/psr_4_test/src/Tests/ExampleTest.php
 %%DRUPAL_BASE%%/modules/simpletest/tests/psr_4_test/src/Tests/Nested/NestedExampleTest.php
 %%DRUPAL_BASE%%/modules/simpletest/tests/registry.test
+%%DRUPAL_BASE%%/modules/simpletest/tests/request_sanitizer.test
 %%DRUPAL_BASE%%/modules/simpletest/tests/requirements1_test.info
 %%DRUPAL_BASE%%/modules/simpletest/tests/requirements1_test.install
 %%DRUPAL_BASE%%/modules/simpletest/tests/requirements1_test.module
@@ -920,6 +923,7 @@
 %%DRUPAL_BASE%%/modules/taxonomy/taxonomy.pages.inc
 %%DRUPAL_BASE%%/modules/taxonomy/taxonomy.test
 %%DRUPAL_BASE%%/modules/taxonomy/taxonomy.tokens.inc
+%%DRUPAL_BASE%%/modules/toolbar/toolbar-print.css
 %%DRUPAL_BASE%%/modules/toolbar/toolbar-rtl.css
 %%DRUPAL_BASE%%/modules/toolbar/toolbar.css
 %%DRUPAL_BASE%%/modules/toolbar/toolbar.info
@@ -984,6 +988,8 @@
 %%DRUPAL_BASE%%/modules/update/update.test
 %%DRUPAL_BASE%%/modules/user/tests/user_form_test.info
 %%DRUPAL_BASE%%/modules/user/tests/user_form_test.module
+%%DRUPAL_BASE%%/modules/user/tests/user_session_test.info
+%%DRUPAL_BASE%%/modules/user/tests/user_session_test.module
 %%DRUPAL_BASE%%/modules/user/user-picture.tpl.php
 %%DRUPAL_BASE%%/modules/user/user-profile-category.tpl.php
 %%DRUPAL_BASE%%/modules/user/user-profile-item.tpl.php
