@@ -1,3 +1,4 @@
+%%UI%%bin/grilo-test-ui-0.3
 bin/grl-inspect-0.3
 bin/grl-launch-0.3
 include/grilo-0.3/grilo.h
@@ -27,16 +28,17 @@ lib/girepository-1.0/GrlNet-0.3.typelib
 lib/girepository-1.0/GrlPls-0.3.typelib
 lib/libgrilo-0.3.so
 lib/libgrilo-0.3.so.0
-lib/libgrilo-0.3.so.0.307.1
+lib/libgrilo-0.3.so.0.313.1
 lib/libgrlnet-0.3.so
 lib/libgrlnet-0.3.so.0
-lib/libgrlnet-0.3.so.0.307.0
+lib/libgrlnet-0.3.so.0.313.0
 lib/libgrlpls-0.3.so
 lib/libgrlpls-0.3.so.0
-lib/libgrlpls-0.3.so.0.307.0
+lib/libgrlpls-0.3.so.0.313.0
 libdata/pkgconfig/grilo-0.3.pc
 libdata/pkgconfig/grilo-net-0.3.pc
 libdata/pkgconfig/grilo-pls-0.3.pc
+%%UI%%man/man1/grilo-test-ui-0.3.1.gz
 man/man1/grl-inspect-0.3.1.gz
 man/man1/grl-launch-0.3.1.gz
 share/gir-1.0/Grl-0.3.gir
@@ -69,6 +71,7 @@ share/locale/ko/LC_MESSAGES/grilo.mo
 share/locale/lt/LC_MESSAGES/grilo.mo
 share/locale/lv/LC_MESSAGES/grilo.mo
 share/locale/ml/LC_MESSAGES/grilo.mo
+share/locale/ms/LC_MESSAGES/grilo.mo
 share/locale/nb/LC_MESSAGES/grilo.mo
 share/locale/ne/LC_MESSAGES/grilo.mo
 share/locale/nl/LC_MESSAGES/grilo.mo

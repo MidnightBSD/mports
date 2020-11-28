@@ -1,8 +1,10 @@
+# Created by: Hendrik Scholz <hendrik@scholz.net>
+
 PORTNAME=	totem
-PORTVERSION=	3.26.2
+PORTVERSION=	3.38.0
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gstreamer-based video player for the GNOME 3 Desktop
@@ -11,7 +13,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
-		pylint:devel/pylint@${PY_FLAVOR} \
+		pylint:devel/pylint \
 		appstream-glib>=0:devel/appstream-glib \
 		itstool:textproc/itstool \
 		grilo-plugins>=0:net/grilo-plugins
@@ -35,8 +37,7 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler desktop-file-utils gettext gl gnome localbase meson \
 		pkgconfig python:3.4+ tar:xz xorg
-USE_GNOME=	cairo gtk30 intlhack introspection libxml2 nautilus3 \
-		pygobject3
+USE_GNOME=	cairo gtk30 intlhack introspection libxml2 pygobject3 gnomedesktop3
 USE_XORG=	x11 xorgproto xtst ice sm
 USE_GSTREAMER1=	core good bad soup ugly
 INSTALLS_ICONS=	yes
@@ -50,14 +51,16 @@ GLIB_SCHEMAS=	org.gnome.totem.enums.xml \
 		org.gnome.totem.plugins.opensubtitles.gschema.xml \
 		org.gnome.totem.plugins.pythonconsole.gschema.xml
 
-MAKE_JOBS_UNSAFE=yes
-NO_TEST=	yes
-
-.include <bsd.mport.options.mk>
-
-# upstream broke vala
+# There is an upstream issue in meson which makes the build of totem
+# fail when using vala, due to badly created targets.
+# https://gitlab.gnome.org/GNOME/totem/issues/272
+# https://bugzilla.gnome.org/show_bug.cgi?id=786248
+# https://github.com/mesonbuild/meson/issues/1994
+# Until upstream fixes this, remove vala support from totem.
 MESON_ARGS=	-Denable-vala=no
 PLIST_SUB+=	VALA="@comment "
+
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DVD_DEVICE)
 DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}
@@ -70,10 +73,12 @@ pre-everything::
 	@${ECHO_MSG} "===> Define WITH_DVD_DEVICE if you want to change the default"
 	@${ECHO_MSG} "===> For example, 'make WITH_DVD_DEVICE=\"/dev/somedevice\"'"
 
-.if exists(/usr/lib/libstdc++.so)
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc
 post-patch:
 	${REINPLACE_CMD} -e '/-Wno-unused-but-set-variable/d' \
 		${WRKSRC}/src/plugins/meson.build
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

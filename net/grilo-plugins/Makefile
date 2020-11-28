@@ -1,5 +1,7 @@
+# Created by: Gustau Perez i Querol <gustau.perez@gmail.com>
+
 PORTNAME=	grilo-plugins
-PORTVERSION=	0.3.8
+PORTVERSION=	0.3.12
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 
@@ -22,13 +24,11 @@ LIB_DEPENDS=	libgrilo-0.3.so:net/grilo \
 		libgmime-2.6.so:mail/gmime26 \
 		libjson-glib-1.0.so:devel/json-glib
 
-USES=		gettext gperf gnome meson pathfix pkgconfig sqlite tar:xz
+USES=		gettext gperf gnome libarchive meson pathfix pkgconfig sqlite tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 intlhack libxml2
 USE_GSTREAMER1=	chromaprint
 MESON_ARGS=	-Denable-lua-factory=no
-
-NO_TEST=	yes
 
 OPTIONS_SUB=			yes
 OPTIONS_DEFINE=			TRACKER DMAP
