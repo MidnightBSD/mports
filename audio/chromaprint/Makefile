@@ -1,5 +1,5 @@
 PORTNAME=	chromaprint
-PORTVERSION=	1.4.3
+PORTVERSION=	1.5.0
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/acoustid/${PORTNAME}/releases/download/v${PORTVERSION}/
 
@@ -16,6 +16,7 @@ USES=		cmake compiler:c++11-lib pathfix
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DBUILD_TOOLS:BOOL=true \
+		-DAUDIO_PROCESSOR_LIB=swresample \
 		-DFFT_LIB:STRING=avfft
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-v${PORTVERSION}
