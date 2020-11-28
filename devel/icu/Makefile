@@ -1,6 +1,6 @@
 PORTNAME=	icu
 DISTVERSION=	68_1
-PORTREVISION?=	0 # keep for icu-lx
+PORTREVISION?=	1 # keep for icu-lx
 PORTEPOCH?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	https://github.com/unicode-org/${PORTNAME}/releases/download/release-${DISTVERSION:S/rc/-&/:S/_/-/g}/ \
@@ -42,6 +42,7 @@ post-install:
 # Filename varies by endianness: icudt<major>b.dat vs. icudt<major>l.dat
 	@(cd ${STAGEDIR}${PREFIX} && ${ECHO_CMD} \
 		${DATADIR_REL}/${PORTVERSION:C/r.?/1/}/icudt*.dat >>${TMPPLIST})
+	${LN} -sf ${PREFIX}/lib/libicui18n.so ${PREFIX}/lib/libicui18n.so.67
 .endif # PKGNAMESUFFIX
 
 .include <bsd.port.mk>

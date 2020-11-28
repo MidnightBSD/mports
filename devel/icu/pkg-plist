@@ -12,6 +12,7 @@ lib/libicui18n.a
 lib/libicui18n.so
 lib/libicui18n.so.%%ICUMAJOR%%
 lib/libicui18n.so.%%ICUVER%%
+lib/libicui18n.so.67
 lib/libicuio.a
 lib/libicuio.so
 lib/libicuio.so.%%ICUMAJOR%%
