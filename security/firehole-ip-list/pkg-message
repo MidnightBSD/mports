@@ -1,0 +1,7 @@
+Script automatically downloads ip list to /tmp, and installs in ipfw table 1.
+
+create a rule like 
+ipfw -q add 940 deny ip from 'table(1)' to an
+
+add to cron a rule like this: adjust times as needed. list updates every few hours typically.
+0       1,5,9,13,17,21  *       *       root    /usr/local/bin/firehol.sh
