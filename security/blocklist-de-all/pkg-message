@@ -1,0 +1,7 @@
+Script automatically downloads ip list to /tmp, and installs in ipfw table 2.
+
+create a rule like 
+ipfw -q add 941 deny ip from 'table(2)' to any in
+
+add to cron a rule like this: adjust times as needed. list updates every 30 min typically.
+*/30       *  *       *       root    /usr/local/bin/blocklist.sh
