@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	libcaca
 DISTVERSION=	0.99.beta19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://caca.zoy.org/raw-attachment/wiki/libcaca/
 
@@ -34,15 +32,16 @@ OPTIONS_DEFAULT=	X11 IMLIB2
 X11_DESC=	X11 and OpenGL support
 FTGL_DESC=	Freetype font rendering in OpenGL
 
+X11_USES=	gl xorg
 X11_USE=	XORG=x11 GL=glut
 X11_CONFIGURE_OFF=	--disable-x11 --disable-gl
-IMLIB2_LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
+IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
 IMLIB2_CONFIGURE_ENABLE=	imlib2
 
 .include <bsd.mport.options.mk>
 
 .if ${PORT_OPTIONS:MFTGL} && ${PORT_OPTIONS:MX11}
-LIB_DEPENDS+=	libftgl.so:${PORTSDIR}/graphics/ftgl
+LIB_DEPENDS+=	libftgl.so:graphics/ftgl
 .endif
 
 post-patch:
