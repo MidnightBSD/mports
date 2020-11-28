@@ -20,6 +20,6 @@ INFO=		mmaker
 
 post-install:
 		@${REINPLACE_CMD} -i '' -e '1s|#!.*|#!${PYTHON_CMD}|' \
-			${STAGEDIR}${LOCALBASE}/bin/mmaker
+			${FAKE_DESTDIR}${LOCALBASE}/bin/mmaker
 
 .include <bsd.port.mk>

@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	rhythmbox
 PORTVERSION=	3.4.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -26,7 +24,6 @@ LIB_DEPENDS=	libmusicbrainz5.so:audio/libmusicbrainz5 \
 		libcheck.so:devel/check \
 		libpeas-1.0.so:devel/libpeas \
 		libjson-glib-1.0.so:devel/json-glib \
-		libsoup-gnome-2.4.so:devel/libsoup-gnome \
 		libsecret-1.so:security/libsecret \
 		libtdb.so:databases/tdb
 # needed so gstreamer codecs actually work to play mp3s

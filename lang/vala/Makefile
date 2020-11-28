@@ -1,5 +1,7 @@
+# Created by: Michael Johnson <ahze@FreeBSD.org>
+
 PORTNAME=	vala
-PORTVERSION=	0.40.15
+PORTVERSION=	0.48.10
 PORTEPOCH=	1
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
@@ -9,9 +11,6 @@ COMMENT=	Programming language and compiler that converts Vala code into C code
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS=	graphviz>=0:graphics/graphviz
-RUN_DEPENDS=	graphviz>=0:graphics/graphviz
-
 PORTSCOUT=	limitw:1,even
 
 USES=		bison gettext-runtime gmake gnome libtool \
@@ -19,10 +18,9 @@ USES=		bison gettext-runtime gmake gnome libtool \
 USE_GNOME=	glib20 gnomeprefix libxslt:build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--disable-valadoc
 INSTALL_TARGET=	install-strip
 
-VALA_VER=	${PORTVERSION:R}
-
-PLIST_SUB=	VERSION=0.40
+PLIST_SUB=	VERSION=${PORTVERSION:R}
 
 .include <bsd.port.mk>

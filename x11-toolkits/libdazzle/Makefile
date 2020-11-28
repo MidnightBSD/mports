@@ -1,11 +1,11 @@
 PORTNAME=	libdazzle
-PORTVERSION=	3.33.4
+DISTVERSION=	3.38.0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Staging and stabilizing for facy Glib and Gtk+ features
+COMMENT=	Companion library to GObject and GTK
 
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
