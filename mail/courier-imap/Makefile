@@ -1,7 +1,7 @@
 # Created by: Neil Blakey-Milner
 
 PORTNAME=	courier-imap
-PORTVERSION=	5.0.8
+PORTVERSION=	5.0.11
 PORTEPOCH=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}

@@ -8,7 +8,6 @@ SUBDIR += bogofilter
 SUBDIR += cclient
 SUBDIR += courier
 SUBDIR += courier-imap
-SUBDIR += courier-pythonfilter
 SUBDIR += couriergraph
 SUBDIR += chk4mail
 SUBDIR += dcc-dccd
