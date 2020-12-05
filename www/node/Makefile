@@ -1,8 +1,8 @@
 PORTNAME=	node
-PORTVERSION=	13.13.0
 DISTVERSIONPREFIX=	v
+DISTVERSION=	15.2.0
 CATEGORIES=	www
-MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
+MASTER_SITES=	http://nodejs.org/dist/v${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V8 JavaScript for client and server
@@ -11,8 +11,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=		libressl libressl-devel
-BROKEN_SSL_REASON=	Node.js 12.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
-ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
+BROKEN_SSL_REASON=	Node.js 15.x requires OpenSSL 1.1.x or the BUNDLED_SSL option enabled
+ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
 OPTIONS_DEFINE=		BUNDLED_SSL DOCS NLS
 OPTIONS_DEFAULT=	BUNDLED_SSL
@@ -24,27 +24,30 @@ BUNDLED_SSL_CONFIGURE_OFF=	--shared-openssl --openssl-use-def-ca-store
 BUNDLED_SSL_RUN_DEPENDS_OFF=	ca_root_nss>=0:security/ca_root_nss
 
 NLS_CONFIGURE_ON=	--with-intl=system-icu
-NLS_BUILD_DEPENDS=	icu>=64.2:devel/icu
+NLS_BUILD_DEPENDS=	icu>=67.1:devel/icu
 NLS_LIB_DEPENDS=	libicui18n.so:devel/icu
 
 DTRACE_CONFIGURE_ON=	--with-dtrace
 
-USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
+USES=		compiler:c++11-lib gmake python:build pkgconfig \
 		localbase shebangfix
-# needs gcc 6 or clang 8
+
 HAS_CONFIGURE=	yes
 
-CONFLICTS_INSTALL=	node[68]-[0-9]* node10-[0-9]* node12-[0-9]*
+CONFLICTS_INSTALL=	node10-[0-9]* node12-[0-9]* node14-[0-9]*
 
 CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--without-npm \
-		--shared-cares \
+		--shared-brotli \
 		--shared-libuv \
 		--shared-nghttp2 \
 		--shared-zlib \
 		--dest-os=freebsd
 
-SHEBANG_FILES=	tools/specialize_node_d.py tools/genv8constants.py
+SHEBANG_FILES=	deps/v8/tools/*.py \
+		deps/v8/third_party/inspector_protocol/*.py \
+		tools/*.py \
+		tools/inspector_protocol/*.py
 
 PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
 REINPLACE_ARGS=	-i ''
@@ -52,17 +55,17 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 		CXX.host=${CXX} CXXFLAGS.host="${CXXFLAGS}" \
 		LINK.host=${CXX} LDFLAGS.host="${LDFLAGS}"
 
-BUILD_DEPENDS+=	c-ares>=1.15.0:dns/c-ares\
-		libuv>=1.35.0:devel/libuv \
-		libnghttp2>=1.40.0:www/libnghttp2 \
+BUILD_DEPENDS+=	brotli>=1.0.9,1:archivers/brotli \
+		libuv>=1.40.0:devel/libuv \
+		libnghttp2>=1.41.0:www/libnghttp2 \
 		objdump:devel/binutils
-LIB_DEPENDS+=	libcares.so:dns/c-ares\
+LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
 		libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2
 
 .include <bsd.mport.options.mk>
 
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+.if (defined(PPC_ABI) && ${PPC_ABI} == ELFv2) || ${ARCH} == powerpc64le
 EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
 .endif
 
@@ -97,5 +100,6 @@ post-configure:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/node
+	${CP} ${PREFIX}/share/man/man1/node.1 ${PREFIX}/man/man1/
 
 .include <bsd.port.mk>

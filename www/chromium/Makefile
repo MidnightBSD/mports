@@ -21,7 +21,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 BUILD_DEPENDS+=	gperf:devel/gperf \
 		ffmpeg>=3.2.2,1:multimedia/ffmpeg \
 		flock:sysutils/flock \
-		node:www/node10 \
+		node:www/node \
 		xcb-proto>0:x11/xcb-proto \
 		${LOCALBASE}/bin/ar:devel/binutils \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
