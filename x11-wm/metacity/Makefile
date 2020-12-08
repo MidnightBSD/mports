@@ -1,36 +1,37 @@
-# $MidnightBSD$
-# $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
+# Created by: Garrett Rooney <rooneg@electricjellyfish.net>
 
 PORTNAME=	metacity
-PORTVERSION=	3.18.1
+PORTVERSION=	3.36.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window manager for the adult in you
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
-		itstool:${PORTSDIR}/textproc/itstool \
-		gsettings-desktop-schemas>=3.3.0:${PORTSDIR}/devel/gsettings-desktop-schemas
-LIB_DEPENDS=	libstartup-notification-1.so:${PORTSDIR}/x11/startup-notification \
-		libgtop-2.0.so:${PORTSDIR}/devel/libgtop \
-		libcanberra-gtk3.so:${PORTSDIR}/audio/libcanberra-gtk3
-RUN_DEPENDS=	zenity>=3.0.0:${PORTSDIR}/x11/zenity \
-		gsettings-desktop-schemas>=3.3.0:${PORTSDIR}/devel/gsettings-desktop-schemas
+BUILD_DEPENDS=	zenity>=3.0.0:x11/zenity \
+		itstool:textproc/itstool \
+		gsettings-desktop-schemas>=3.3.0:devel/gsettings-desktop-schemas
+LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
+		libgtop-2.0.so:devel/libgtop \
+		libcanberra-gtk3.so:audio/libcanberra-gtk3
+RUN_DEPENDS=	zenity>=3.0.0:x11/zenity \
+		gsettings-desktop-schemas>=3.3.0:devel/gsettings-desktop-schemas
 
-USE_XORG=	x11 xcomposite xdamage xrender xcursor xinerama xext xrandr
+PORTSCOUT=	limitw:1,even
+
 USES=		compiler:c11 gettext gmake gnome libtool \
-		pathfix pkgconfig tar:xz
+		localbase pathfix pkgconfig tar:xz xorg
 GNU_CONFIGURE=	yes
+USE_XORG=	x11 xcomposite xdamage xrender xcursor xinerama xext xrandr
 USE_GNOME=	gnomeprefix gtk30 intlhack libxml2:build
 USE_LDCONFIG=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-GLIB_SCHEMAS=	org.gnome.metacity.gschema.xml
+GLIB_SCHEMAS=	org.gnome.metacity.gschema.xml \
+		org.gnome.metacity.keybindings.gschema.xml \
+		org.gnome.metacity.theme.gschema.xml
 
 .include <bsd.port.mk>

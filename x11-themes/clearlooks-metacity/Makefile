@@ -1,20 +1,19 @@
-# $MidnightBSD$
-
 PORTNAME=	clearlooks-metacity
 PORTVERSION=	2.0
 PORTREVISION=	2
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://www.stellingwerff.com/
-#MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-#MASTER_SITE_SUBDIR=	clearlooks
+#MASTER_SITES=	SOURCEFORGE/clearlooks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clearlooks Metacity theme
+
 LICENSE=	unknown
 
 CONFLICTS=	gnome-themes-2.11.9[1-9]* gnome-themes-2.*
 
 WRKSRC=		${WRKDIR}/Clearlooks/metacity-1/
+USES=		gnome
 USE_GNOME=	metacity gnomeprefix
 DATADIR=	share/themes/Clearlooks/metacity-1
 NO_BUILD=	yes
