@@ -36,4 +36,6 @@ OPTIONS_SUB=	yes
 INTEL_FIX_DESC=		Don't try to use the gnome-shell interface
 INTEL_FIX_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-intel
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
