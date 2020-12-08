@@ -1,6 +1,6 @@
 PORTNAME=	vte
 PORTVERSION=	0.28.2
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,9 +12,7 @@ LICENSE?=	lgpl
 
 USES+=		tar:xz
 
-.if !defined(REFERENCE_PORT)
-
-RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:${PORTSDIR}/x11-toolkits/gnome-pty-helper
+RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:x11-toolkits/gnome-pty-helper
 
 USES+=		cpe gettext gmake gnome libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
@@ -33,12 +31,4 @@ CONFIGURE_ARGS?=--disable-python \
 
 CPE_VENDOR=	nalin_dahyabhai
 
-.include <bsd.mport.options.mk>
-
-.if ${OSVERSION} < 4016
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-gnome-pty-helper_gnome-utmp.c
-.endif
-
 .include <bsd.port.mk>
-
-.endif
