@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-mines
 PORTVERSION=	3.28.0
+PORTREVISION=	1
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
