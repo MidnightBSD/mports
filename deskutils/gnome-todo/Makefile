@@ -1,6 +1,6 @@
 PORTNAME=	gnome-todo
 PORTVERSION=	3.28.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -31,5 +31,7 @@ GLIB_SCHEMAS=	org.gnome.todo.background.gschema.xml \
 		org.gnome.todo.enums.xml \
 		org.gnome.todo.gschema.xml \
 		org.gnome.todo.txt.gschema.xml
+
+NO_TEST=	yes
 
 .include <bsd.port.mk>
