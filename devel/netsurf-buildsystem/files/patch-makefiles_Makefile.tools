@@ -1,9 +1,18 @@
---- makefiles/Makefile.tools.orig	2016-02-14 22:21:24 UTC
-+++ makefiles/Makefile.tools
-@@ -109,6 +109,17 @@ ifeq ($(BUILD),$(HOST))
+--- makefiles/Makefile.tools.orig	2019-06-23 18:20:17.000000000 -0400
++++ makefiles/Makefile.tools	2020-12-09 02:23:33.655705000 -0500
+@@ -109,6 +109,26 @@
      CFLAGS := $(CFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
      CXXFLAGS := $(CXXFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
      LDFLAGS := $(LDFLAGS) -L$(GCCSDK_INSTALL_ENV)/lib -L/usr/local/lib
++
++    PKGCONFIG ?= PKG_CONFIG_PATH="$(PREFIX)/libdata/pkgconfig:$(PKG_CONFIG_PATH)" pkgconf
++  endif
++
++  ifeq ($(findstring midnightbsd,$(HOST)),midnightbsd)
++    # Building on+for MidnightBSD
++    CFLAGS := $(CFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    CXXFLAGS := $(CXXFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    LDFLAGS := $(LDFLAGS) -L$(GCCSDK_INSTALL_ENV)/lib -L/usr/local/lib
 +
 +    PKGCONFIG ?= PKG_CONFIG_PATH="$(PREFIX)/libdata/pkgconfig:$(PKG_CONFIG_PATH)" pkgconf
 +  endif
@@ -18,7 +27,7 @@
    endif
  
    ifeq ($(findstring arwin,$(HOST)),arwin)
-@@ -130,7 +141,7 @@ else
+@@ -130,7 +150,7 @@
    endif
  
    # Search the path for the compiler
@@ -27,7 +36,7 @@
    ifeq ($(toolpath_),)
      toolpath_ := /opt/netsurf/$(HOST)/cross/bin/
      CC__  := $(toolpath_)$(HOST)-gcc
-@@ -141,7 +152,7 @@ else
+@@ -141,7 +161,7 @@
      toolpath_ := $(dir $(CC__))
      toolprefix_ := $(subst :,/,$(dir $(subst -,/,$(subst /,:,$(CC__)))))
      ifeq ($(origin AR),default)
