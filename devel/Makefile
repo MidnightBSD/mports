@@ -190,6 +190,7 @@ SUBDIR += libltdl
 SUBDIR += libmaa
 SUBDIR += libmtdev
 SUBDIR += libnotify
+SUBDIR += libnsutils
 SUBDIR += liboil
 SUBDIR += liboobs
 SUBDIR += libopensync022
