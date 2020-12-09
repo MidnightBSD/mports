@@ -60,6 +60,7 @@ SUBDIR += mod_wsgi4
 SUBDIR += moinmoin
 SUBDIR += nanoblogger
 SUBDIR += neon
+SUBDIR += netsurf
 SUBDIR += nextcloud
 SUBDIR += nghttp2
 SUBDIR += nginx
