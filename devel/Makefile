@@ -1030,6 +1030,7 @@ SUBDIR += wizardkit
 SUBDIR += woff2
 SUBDIR += xdg-utils
 SUBDIR += xorg-macros
+SUBDIR += xxhash
 SUBDIR += yajl
 SUBDIR += yasm
 SUBDIR += zookeeper
