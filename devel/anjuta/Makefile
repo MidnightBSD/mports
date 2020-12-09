@@ -1,5 +1,7 @@
+# Created by: Dmitry Sivachenko <demon@FreeBSD.org>
+
 PORTNAME=	anjuta
-PORTVERSION=	3.28.0
+PORTVERSION=	3.34.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -8,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Development Environment for C and C++
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	autogen:devel/autogen \
 		itstool:textproc/itstool
@@ -46,6 +49,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-symbol-db-shm=/tmp \
 		--disable-packagekit \
 		--disable-neon \
+		--disable-vala \
 		--enable-compile-warnings=minimum \
 		--enable-introspection=yes
 DOCSDIR=	share/doc/libanjuta
@@ -75,11 +79,10 @@ GLIB_SCHEMAS=	org.gnome.anjuta.cvs.gschema.xml \
 		org.gnome.anjuta.tools.gschema.xml
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	SVN DEVHELP VALA GLADE TERMINAL
-OPTIONS_DEFAULT=SVN DEVHELP VALA GLADE TERMINAL
+OPTIONS_DEFINE=	SVN DEVHELP GLADE TERMINAL
+OPTIONS_DEFAULT=SVN DEVHELP GLADE TERMINAL
 SVN_DESC=	Subversion plugin
 DEVHELP_DESC=	Devhelp plugin
-VALA_DESC=	Vala support
 GLADE_DESC=	Build glade plugin
 TERMINAL_DESC=	Build build-in terminal
 
@@ -102,26 +105,11 @@ DEVHELP_LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 			libdevhelp-3.so:devel/devhelp
 DEVHELP_CONFIGURE_ENABLE=	plugin-devhelp
 
-VALA_VER=		0.40
-VALA_BUILD_DEPENDS=	vala:lang/vala
-VALA_RUN_DEPENDS=	vala:lang/vala
-VALA_CONFIGURE_ENABLE=	vala
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|"make|"gmake|g' \
 		${WRKSRC}/plugins/build-basic-autotools/plugin.c
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${PREFIX}|g' \
 		${WRKSRC}/libanjuta/anjuta-utils.c
-	@${REINPLACE_CMD} -e 's|ac_ct_CXX" = "x"|CXX" = "x"|g' \
-		-e 's|libvala-0.28|libvala-${VALA_VER}|g' \
-		-e 's|valaver="-0.28"|valaver="-${VALA_VER}"|g' \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|values.h|limits.h|g' \
-		${WRKSRC}/plugins/project-wizard/property.h \
-		${WRKSRC}/plugins/project-wizard/install.h
-	@${REINPLACE_CMD} -e 's|-fprofile-arcs||g' \
-		${WRKSRC}/libanjuta/tests/Makefile.in \
-		${WRKSRC}/libanjuta/tests/Makefile.am
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${PREFIX}|g' \
 		${WRKSRC}/plugins/gdb/debugger.c
 
