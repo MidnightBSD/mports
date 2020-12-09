@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gtk
-PORTVERSION=	2.24.31
+PORTVERSION=	2.24.32
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -22,7 +20,7 @@ USES=		tar:xz
 RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-USES+=		gettext gmake libtool localbase:ldflags pathfix perl5 python:run pkgconfig
+USES+=		gettext gmake gnome libtool localbase:ldflags pathfix perl5 python:run pkgconfig xorg
 GNU_CONFIGURE=	yes
 USE_GNOME=	atk pango gdkpixbuf2 introspection:build \
 		gtk-update-icon-cache
@@ -39,14 +37,14 @@ OPTIONS_DEFINE=	CUPS DEBUG
 OPTIONS_DEFAULT=CUPS
 OPTIONS_SUB=	yes
 
-CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups
+CUPS_LIB_DEPENDS=	libcups.so:print/cups
 CUPS_CONFIGURE_ON=	--enable-cups=auto
 CUPS_CONFIGURE_OFF=	--disable-cups
 DEBUG_CONFIGURE_ON=	--enable-debug=yes
 
 .include <bsd.mport.options.mk>
 
-PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.31
+PLIST_SUB+=	LIBGAILVER=18.0.1 LIBGVER=0.2400.32
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${GREP} -l lgmodule | \
