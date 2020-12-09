@@ -5,6 +5,7 @@ SUBDIR += bcc
 SUBDIR += bsh
 SUBDIR += cjs
 SUBDIR += cython
+SUBDIR += duktape
 SUBDIR += elixir
 SUBDIR += erlang
 SUBDIR += erlang-man
