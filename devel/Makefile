@@ -279,6 +279,7 @@ SUBDIR += msbuild
 SUBDIR += nasm
 SUBDIR += ncurses
 SUBDIR += newt
+SUBDIR += netsurf-buildsystem
 SUBDIR += ninja
 SUBDIR += npth
 SUBDIR += nspr
