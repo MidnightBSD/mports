@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	librsvg
-PORTVERSION=	2.40.20
+PORTVERSION=	2.40.21
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -12,6 +10,7 @@ COMMENT=	Library for parsing and rendering SVG vector-graphic files
 
 LICENSE=	gpl2
 
+CONFLICTS_INSTALL=	librsvg2-rust
 PORTSCOUT=	limit:^2\.40\.
 
 BUILD_DEPENDS=	valac:lang/vala
