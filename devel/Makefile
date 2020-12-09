@@ -194,6 +194,7 @@ SUBDIR += libnsutils
 SUBDIR += liboil
 SUBDIR += liboobs
 SUBDIR += libopensync022
+SUBDIR += libparserutils
 SUBDIR += libpci
 SUBDIR += libpciaccess
 SUBDIR += libpeas
