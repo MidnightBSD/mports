@@ -51,7 +51,7 @@ USE_GNOME+=	cairo gtk20 intltool librsvg2
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	check
+NO_TEST=	yes
 .if !defined(XAUTHORITY)
 TEST_ENV=	XAUTHORITY=${HOME}/.Xauthority
 .endif
