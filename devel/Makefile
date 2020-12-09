@@ -282,6 +282,7 @@ SUBDIR += newt
 SUBDIR += netsurf-buildsystem
 SUBDIR += ninja
 SUBDIR += npth
+SUBDIR += nsgenbind
 SUBDIR += nspr
 SUBDIR += oniguruma
 SUBDIR += opencl
