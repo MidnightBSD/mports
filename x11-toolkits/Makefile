@@ -60,7 +60,6 @@ SUBDIR += py-qt5-quick
 SUBDIR += py-qt5-quickwidgets
 SUBDIR += py-qt5-widgets
 SUBDIR += py-tkinter
-SUBDIR += py-vte
 SUBDIR += qt5-charts
 SUBDIR += qt5-datavis3d
 SUBDIR += qt5-declarative

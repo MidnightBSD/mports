@@ -143,6 +143,7 @@ SUBDIR += portaudio
 SUBDIR += pulseaudio
 SUBDIR += py-mpd
 SUBDIR += py-mutagen
+SUBDIR += py-python-mpd2
 SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
