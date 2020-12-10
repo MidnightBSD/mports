@@ -189,4 +189,6 @@ SUB_LIST=	DBDIR=${MINIO_DBDIR} \
 		GROUP="${GROUPS}" \
 		USER="${USERS}"
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
