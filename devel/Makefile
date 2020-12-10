@@ -128,7 +128,6 @@ SUBDIR += gstreamer-plugins-gconf
 SUBDIR += gstreamer-plugins-gio
 SUBDIR += gstreamer-plugins-gnomevfs
 SUBDIR += gstreamer1-plugins-soup
-SUBDIR += gtkparasite
 SUBDIR += gvfs
 SUBDIR += hadoop
 SUBDIR += highlighterkit
