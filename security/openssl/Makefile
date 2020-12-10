@@ -1,9 +1,9 @@
 # Created by: Dirk Froemberg <dirk@FreeBSD.org>
 
 PORTNAME=	openssl
-PORTVERSION=	1.1.1h
+PORTVERSION=	1.1.1i
 PORTEPOCH=	1
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
