@@ -21,6 +21,7 @@ SUBDIR += gtkmm24
 SUBDIR += gtkmm30
 SUBDIR += gtksourceview2
 SUBDIR += gtksourceview3
+SUBDIR += gtksourceview4
 SUBDIR += irrlicht
 SUBDIR += libdazzle
 SUBDIR += libXaw
