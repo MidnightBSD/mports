@@ -116,6 +116,7 @@ SUBDIR += gnome-vfs
 SUBDIR += gnulib
 SUBDIR += gnustep
 SUBDIR += gnustep-make
+SUBDIR += go-bindata
 SUBDIR += gobject-introspection
 SUBDIR += goffice
 SUBDIR += google-perftools
