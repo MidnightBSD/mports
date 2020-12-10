@@ -1,5 +1,5 @@
 PORTNAME=	doas
-PORTVERSION=	6.2p4
+PORTVERSION=	6.3p2
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
