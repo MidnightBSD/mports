@@ -21,26 +21,52 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}acme>=${ACME_VERSION},1:security/py-acme@${P
 		${PYTHON_PKGNAMEPREFIX}openssl>0:security/py-openssl@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyrfc3339>0:devel/py-pyrfc3339@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.component>0:devel/py-zope.component@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}zope.interface>0:devel/py-zope.interface@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}zope.interface>0:devel/py-zope.interface@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
-NO_ARCH=	yes
 NO_TEST=	yes
-SUB_FILES=	500.certbot
-PLIST_FILES=	etc/periodic/weekly/500.certbot
+NO_ARCH=	yes
+SUB_FILES=	500.certbot pkg-message
+PLIST_FILES=	etc/periodic/weekly/500.certbot-${PYTHON_VER}
+SUB_LIST=	PYTHON_VER=${PYTHON_VER}
+
+OPTIONS_DEFINE=	MANPAGES
+OPTIONS_DEFAULT=	MANPAGES
+
+MANPAGES_BUILD_DEPENDS=	${RUN_DEPENDS} \
+			${PY_SPHINX} \
+			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}repoze.sphinx.autointerface>0:devel/py-repoze.sphinx.autointerface@${PY_FLAVOR} \
+
+MANPAGES_PLIST_FILES=	share/man/man1/certbot.1 \
+			share/man/man7/certbot.7
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/certbot/compat/misc.py
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+		${WRKSRC}/certbot/compat/misc.py \
+		${WRKSRC}/tests/cli_test.py
+
+post-build-MANPAGES-on:
+	# Avoid gmake / ${DO_MAKE_BUILD} -C ${WRKSRC}/docs man
+	(cd ${WRKSRC}/docs && \
+		sphinx-build-${PYTHON_VER} -N -b man . _build/man)
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
 	${INSTALL_SCRIPT} ${WRKDIR}/500.certbot \
-		${STAGEDIR}${PREFIX}/etc/periodic/weekly
+		${STAGEDIR}${PREFIX}/etc/periodic/weekly/500.certbot-${PYTHON_VER}
+
+post-install-MANPAGES-on:
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/man1 ${FAKE_DESTDIR}${PREFIX}/share/man/man7
+	${INSTALL_MAN} ${WRKSRC}/docs/_build/man/certbot.1 \
+		${FAKE_DESTDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/_build/man/certbot.7 \
+		${FAKE_DESTDIR}${PREFIX}/share/man/man7
 
 .include "${.CURDIR}/../py-acme/version.mk"
 .include <bsd.port.mk>
