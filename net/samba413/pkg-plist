@@ -180,9 +180,9 @@ lib/samba4/libtevent-util.so
 lib/samba4/libtevent-util.so.0
 lib/samba4/libwbclient.so
 lib/samba4/libwbclient.so.0
-lib/nss_winbind.so.1
-lib/nss_wins.so.1
-lib/pam_winbind.so
+@comment lib/nss_winbind.so.1
+@comment lib/nss_wins.so.1
+@comment lib/pam_winbind.so
 %%CUPS%%libexec/samba/smbspool_krb5_wrapper
 %%AD_DC%%lib/samba4/private/libdlz-bind9-for-torture-samba4.so
 %%AD_DC%%lib/samba4/private/libposix-eadb-samba4.so
