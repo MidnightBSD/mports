@@ -544,7 +544,7 @@ SUB_FILES=			pkg-message README.FreeBSD
 PORTDOCS=			README.FreeBSD
 
 post-extract:
-				@${RM} -r ${WRKSRC}/pidl/lib/Parse/Yapp
+				-${RM} -r ${WRKSRC}/pidl/lib/Parse/Yapp
 
 post-patch:
 				@${REINPLACE_CMD} -e 's|$${PKGCONFIGDIR}|${PKGCONFIGDIR}|g' \
