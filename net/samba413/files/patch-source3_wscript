@@ -1,6 +1,6 @@
---- source3/wscript.orig	2019-07-09 10:08:41 UTC
-+++ source3/wscript
-@@ -50,6 +50,7 @@ def options(opt):
+--- source3/wscript.orig	2020-09-07 06:52:25.000000000 -0400
++++ source3/wscript	2020-12-11 19:16:08.629997000 -0500
+@@ -71,6 +71,7 @@
      opt.samba_add_onoff_option('sendfile-support', default=None)
      opt.samba_add_onoff_option('utmp')
      opt.samba_add_onoff_option('avahi', with_name="enable", without_name="disable")
@@ -8,7 +8,16 @@
      opt.samba_add_onoff_option('iconv')
      opt.samba_add_onoff_option('acl-support')
      opt.samba_add_onoff_option('dnsupdate')
-@@ -784,34 +785,39 @@ msg.msg_accrightslen = sizeof(fd);
+@@ -499,7 +500,7 @@
+         conf.DEFINE('DARWINOS', 1)
+         conf.ADD_CFLAGS('-fno-common')
+         conf.DEFINE('STAT_ST_BLOCKSIZE', '512')
+-    elif (host_os.rfind('freebsd') > -1):
++    elif (host_os.rfind('midnightbsd') > -1):
+         conf.DEFINE('FREEBSD', 1)
+         if conf.CHECK_HEADERS('sunacl.h'):
+             conf.DEFINE('HAVE_FREEBSD_SUNACL_H', '1')
+@@ -851,34 +852,39 @@
  
      if Options.options.with_utmp:
          conf.env.with_utmp = True
@@ -64,7 +73,7 @@
                            define='SIZEOF_UTMP_UT_LINE', critical=False)
          if not conf.CONFIG_SET('SIZEOF_UTMP_UT_LINE'):
              conf.env.with_utmp = False
-@@ -833,6 +839,17 @@ msg.msg_accrightslen = sizeof(fd);
+@@ -900,6 +906,17 @@
          conf.SET_TARGET_TYPE('avahi-common', 'EMPTY')
          conf.SET_TARGET_TYPE('avahi-client', 'EMPTY')
  
@@ -82,3 +91,21 @@
      if Options.options.with_iconv:
          conf.env.with_iconv = True
          if not conf.CHECK_FUNCS_IN('iconv_open', 'iconv', headers='iconv.h'):
+@@ -1445,7 +1462,7 @@
+             if conf.CONFIG_SET('_HAVE_SENDFILE'):
+                 conf.DEFINE('HAVE_SENDFILE', '1')
+                 conf.DEFINE('LINUX_SENDFILE_API', '1')
+-        elif (host_os.rfind('freebsd') > -1) or (host_os.rfind('dragonfly') > -1):
++        elif (host_os.rfind('midnightbsd') > -1) or (host_os.rfind('dragonfly') > -1):
+             conf.CHECK_CODE('''
+                             #include <sys/types.h>
+                             #include <unistd.h>
+@@ -1464,7 +1481,7 @@
+                             ret = sendfile(fromfd, tofd, offset, total, &hdr, &nwritten, 0)
+                             ''',
+                             '_HAVE_SENDFILE',
+-                            msg='Checking for freebsd sendfile support')
++                            msg='Checking for bsd sendfile support')
+             if conf.CONFIG_SET('_HAVE_SENDFILE'):
+                 conf.DEFINE('HAVE_SENDFILE', '1')
+                 conf.DEFINE('FREEBSD_SENDFILE_API', '1')
