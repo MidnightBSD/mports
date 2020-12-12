@@ -1,10 +1,8 @@
 # Created by: Koop Mast <kwm@FreeBSD.org>
-# $MidnightBSD$
-# $FreeBSD: head/accessibility/caribou/Makefile 382383 2015-03-27 09:24:39Z kwm $
-#    $MCom: ports/trunk/accessibility/caribou/Makefile 20031 2014-11-02 21:47:55Z kwm $
 
 PORTNAME=	caribou
 PORTVERSION=	0.4.21
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -24,8 +22,8 @@ LIB_DEPENDS=	libclutter-glx-1.0.so:graphics/clutter \
 		libdbus-1.so:devel/dbus
 RUN_DEPENDS=	py3?-atspi>=2.1.91:accessibility/py-atspi@${PY_FLAVOR}
 
-USES=		gettext gmake gnome libtool localbase pathfix \
-		pkgconfig python:3.3+ shebangfix tar:xz
+USES=		gettext gl gmake gnome libtool localbase pathfix \
+		pkgconfig python:3.3+ shebangfix tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intlhack introspection:build libxml2 \
 		libxslt:build pygobject3
 USE_PYTHON=	py3kplist
