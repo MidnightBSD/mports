@@ -60,7 +60,8 @@ CONFIGURE_ARGS+=		--mandir="${MANPREFIX}/man" \
 				--with-cachedir="${SAMBA4_LOCKDIR}" \
 				--with-bind-dns-dir=${SAMBA4_BINDDNSDIR} \
 				--with-privatedir="${SAMBA4_PRIVATEDIR}" \
-				--with-logfilebase="${SAMBA4_LOGDIR}"
+				--with-logfilebase="${SAMBA4_LOGDIR}" \
+				--jobs 1
 # XXX: Flags
 CONFIGURE_ENV+=			PTHREAD_LDFLAGS="-lpthread"
 
@@ -98,7 +99,7 @@ OPTIONS_RADIO_DNS=		NSUPDATE BIND911 BIND916
 # Make those default options
 OPTIONS_DEFAULT=		AD_DC ADS DOCS FAM LDAP \
 				QUOTAS SYSLOG UTMP PROFILE \
-				FRUIT GSSAPI_BUILTIN AVAHI
+				FRUIT GSSAPI_BUILTIN MDNSRESPONDER
 ##############################################################################
 AD_DC_DESC=			Active Directory Domain Controller
 ADS_DESC=			Active Directory client(implies LDAP)
@@ -294,8 +295,8 @@ AVAHI_LIB_DEPENDS=		libavahi-client.so:net/avahi-app
 AVAHI_VARS=			SAMBA4_SERVICES+=avahi_daemon
 
 MDNSRESPONDER_CONFIGURE_ENABLE=	dnssd
-MDNSRESPONDER_LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
 MDNSRESPONDER_VARS=		SAMBA4_SERVICES+=mdnsd
+MDNSRESPONDER_LDFLAGS+=         -Ddns_sd
 ##############################################################################
 BIND911_RUN_DEPENDS=		bind911>=9.11.0.0:dns/bind911
 BIND916_RUN_DEPENDS=		bind916>=9.16.0.0:dns/bind916
@@ -382,7 +383,7 @@ MANDOC_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textp
 MANDOC_CONFIGURE_ENV_OFF=	XSLTPROC="true"
 
 ##############################################################################
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 ##############################################################################
 
 .if !defined(WANT_EXP_MODULES) || empty(WANT_EXP_MODULES)
@@ -631,7 +632,7 @@ post-install-fix-manpages:
 .endif
 
 post-install: post-install-rm-junk post-install-fix-manpages
-				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${PREFIX}/man/man5/smb4.conf.5.gz
+				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man5/smb4.conf.5.gz
 # Run post-install script
 .for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR} ${SAMBA4_MODULEDIR}
 					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${dir}"
@@ -639,7 +640,7 @@ post-install: post-install-rm-junk post-install-fix-manpages
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_BINDDNSDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_PRIVATEDIR}"
 .for dir in			auth bind9 gensec gpext idmap ldb nss_info pdb perfcount process_model service vfs
-					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/${dir}"
+					${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}/${dir}"
 .endfor
 .if !defined(WITH_DEBUG)
 				-${FIND} ${FAKE_DESTDIR}${PREFIX}/bin ${FAKE_DESTDIR}${PREFIX}/sbin ${FAKE_DESTDIR}${PREFIX}/libexec \
