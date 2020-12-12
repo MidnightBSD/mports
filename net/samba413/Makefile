@@ -612,13 +612,13 @@ pre-build-MANDOC-off:
 .endif
 
 post-install-rm-junk:
-				${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/samba/third_party
+				-${RM} -r ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/samba/third_party
 				${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name __pycache__ \
 					-type d -print0 | ${XARGS} -0 -n 1 -t ${RM} -r
 
 post-install-fix-manpages:
 .for f in vfs_aio_linux.8 vfs_btrfs.8 vfs_ceph.8 vfs_gpfs.8
-				${RM} ${FAKE_DESTDIR}${PREFIX}/man/man8/${f}
+				-${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/${f}
 .endfor
 .if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
 .	for f in ldbadd.1 ldbdel.1 ldbedit.1 ldbmodify.1 ldbrename.1 ldbsearch.1
@@ -650,8 +650,8 @@ post-install: post-install-rm-junk post-install-fix-manpages
 .endif
 
 post-install-FRUIT-off:
-				${RM} ${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/vfs/fruit.so
-				${RM} ${FAKE_DESTDIR}${PREFIX}/man/man8/vfs_fruit.8
+				-${RM} ${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/vfs/fruit.so
+				-${RM} ${FAKE_DESTDIR}${PREFIX}/man/man8/vfs_fruit.8
 
 post-install-DOCS-on:
 				${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
