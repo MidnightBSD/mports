@@ -8,7 +8,8 @@ MASTER_SITES=	GNOME
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows to tweak some hidden settings in GNOME3
 
-LICENSE=	gpl3
+LICENSE=	gpl3 CC0-1.0
+LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
