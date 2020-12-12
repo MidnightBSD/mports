@@ -622,12 +622,12 @@ post-install-fix-manpages:
 .endfor
 .if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
 .	for f in ldbadd.1 ldbdel.1 ldbedit.1 ldbmodify.1 ldbrename.1 ldbsearch.1
-				${MV} ${FAKE_DESTDIR}${PREFIX}/man/man1/${f} ${FAKE_DESTDIR}${PREFIX}/man/man1/samba-${f}
+				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1/samba-${f}
 .	endfor
 .endif
 .if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
 .	for f in tdbbackup.8 tdbdump.8 tdbrestore.8 tdbtool.8
-				${MV} ${FAKE_DESTDIR}${PREFIX}/man/man8/${f} ${FAKE_DESTDIR}${PREFIX}/man/man8/samba-${f}
+				${MV} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/${f} ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man8/samba-${f}
 .	endfor
 .endif
 
