@@ -34,6 +34,7 @@ SUBDIR += di
 SUBDIR += dirdiff
 SUBDIR += dmidecode
 SUBDIR += docker-freebsd
+SUBDIR += dtc
 SUBDIR += duplicity
 SUBDIR += duply
 SUBDIR += dvd+rw-tools
