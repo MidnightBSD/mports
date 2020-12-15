@@ -9,7 +9,6 @@ SUBDIR += aspell-ispell
 SUBDIR += augeas
 SUBDIR += bsdgrep
 SUBDIR += catdoc
-SUBDIR += cdiff
 SUBDIR += clucene
 SUBDIR += diffutils
 SUBDIR += docbook
@@ -288,6 +287,7 @@ SUBDIR += xml2rfc
 SUBDIR += xmlcatmgr
 SUBDIR += xmlcharent
 SUBDIR += xmlto
+SUBDIR += ydiff
 SUBDIR += yelp-tools
 SUBDIR += yelp-xsl
 
