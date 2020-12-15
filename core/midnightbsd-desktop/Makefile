@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.5
+PORTVERSION=	2.5.1
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -22,10 +22,9 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
 		common-services>=1.0:core/common-services \
 		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server \
 		${LOCALBASE}/libdata/xorg/apps:x11/xorg-apps \
-                ${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
-                ${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts
- \
-                ${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
+		${LOCALBASE}/libdata/xorg/libraries:x11/xorg-libraries \
+		${LOCALBASE}/libdata/xorg/fonts:x11-fonts/xorg-fonts \
+		${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
 		mport-manager:ports-mgmt/mport-manager \
 		mlogind:x11/mlogind \
 		git:devel/git \
