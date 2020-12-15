@@ -1,11 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/cdiff/Makefile,v 1.9 2006/09/04 08:17:26 linimon Exp $
-
-PORTNAME=	cdiff
-PORTVERSION=	0.9.7
+PORTNAME=	ydiff
+DISTVERSION=	1.2
 PORTEPOCH=	1
-MASTER_SITES=	FREEBSD_LOCAL/mat/cdiff GH
 CATEGORIES=	textproc
+MASTER_SITES=	FREEBSD_LOCAL/mat/ydiff
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Diff readability enhancher for color terminals
@@ -13,18 +10,21 @@ COMMENT=	Diff readability enhancher for color terminals
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USES=		python
 USE_GITHUB=
 GH_ACCOUNT=	ymattw
+USE_PYTHON=	autoplist concurrent distutils noflavors
 
-USES=		python
-USE_PYTHON=	distutils autoplist
+NO_ARCH=	yes
+
+PORTDOCS=	CHANGES.rst README.rst
 
 OPTIONS_DEFINE=	DOCS
 
-PORTDOCS=	README.rst
-
-post-install:
-	${INSTALL} -d ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+post-install-DOCS-on:
+	${INSTALL} -d ${FAKE_DESTDIR}${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
 
 .include <bsd.port.mk>
