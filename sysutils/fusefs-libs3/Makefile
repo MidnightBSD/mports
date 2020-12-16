@@ -20,6 +20,9 @@ LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${CHOSEN_COMPILER_TYPE} == gcc
