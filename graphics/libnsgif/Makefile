@@ -12,6 +12,8 @@ COMMENT=	NetSurf GIF Decoder
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+FAKE_OPTS=	trueprefix
+
 BUILD_DEPENDS=	netsurf-buildsystem>=1.5:devel/netsurf-buildsystem
 
 USES=		gmake
