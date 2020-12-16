@@ -72,6 +72,9 @@ PORTSCOUT=	limitw:1,even
 
 CPE_PRODUCT=	mongodb
 
+pre-patch:
+	${LN} -sf ${WRKSRC}/src/third_party/wiredtiger/build_freebsd ${WRKSRC}/src/third_party/wiredtiger/build_midnightbsd
+
 post-install:
 .for f in mongo mongod mongoperf mongos
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${f}
