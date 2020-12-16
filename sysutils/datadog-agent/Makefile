@@ -12,6 +12,8 @@ BUILD_DEPENDS=	cmake>=3.18:devel/cmake \
 		go>=1.15:lang/go \
 		go-bindata>0:devel/go-bindata 
 
+NO_TEST=	yes
+
 USES=		go:modules python:3.7+
 
 USE_LDCONFIG=	yes
