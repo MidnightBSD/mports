@@ -38,7 +38,7 @@ _INCLUDE_USES_PGSQL_MK=	yes
 
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-VALID_PGSQL_VER=	9.6 10 11 12 13
+VALID_PGSQL_VER=	10 11 12 13
 
 # Override non-default LIBVERS like this:
 #PGSQL99_LIBVER=6
@@ -62,7 +62,7 @@ PGSQL_DEFAULT?=	${$w_PGSQL_VER:C,^.,&.,}
 .  endfor
 
 .  ifdef DEFAULT_PGSQL_VER && WITH_PGSQL_VER
-IGNORE=		will not allow setting both DEFAULT_PGSQL_VER and WITH_PGSQL_VER.  Use DEFAULT_VERSIONS=pgsql=9.6 instead
+IGNORE=		will not allow setting both DEFAULT_PGSQL_VER and WITH_PGSQL_VER.  Use DEFAULT_VERSIONS=pgsql=11 instead
 .  endif
 
 # Setting/finding PostgreSQL version we want.
