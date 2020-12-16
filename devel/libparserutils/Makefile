@@ -20,7 +20,7 @@ USES=		gmake iconv localbase pkgconfig
 USE_LDCONFIG=	yes
 
 MAKE_ENV=	COMPONENT_TYPE="lib-shared"
-LDFLAGS+=	${ICONV_LIB}
+LDFLAGS+=	${ICONV_LIB} -L/usr/local/lib
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
