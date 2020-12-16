@@ -18,6 +18,8 @@ LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
 		libnsgif.so:graphics/libnsgif \
 		libpng.so:graphics/png
 
+NO_TEST=	yes
+
 USES=		compiler:c++14-lang cpe gettext gnome jpeg localbase \
 		meson pkgconfig shebangfix uniquefiles tar:xz
 USE_GNOME=	glib20 introspection:build
