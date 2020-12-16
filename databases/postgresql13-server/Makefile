@@ -1,20 +1,24 @@
+# Created by: Marc G. Fournier <scrappy@FreeBSD.org>
+# $FreeBSD$
+
 PORTNAME?=	postgresql
-DISTVERSION?=	10.15
+DISTVERSION?=	13.1
+# PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
+# not their own.  Probably best to keep it at ?=0 when reset here too.
 PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
-PKGNAMESUFFIX?= ${DISTV:S/.//}${COMPONENT}
-DISTV=  ${DISTVERSION:R}
+PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	PostgreSQL is the most advanced open-source database available anywhere
 
-LICENSE=	other
+LICENSE=	pgsql
 
-.if ${DISTVERSION:C/([0-9]*).*/\1/} == 10
-CONFLICTS+=	${PORTNAME}*-9.*
+.if ${DISTVERSION:C/([0-9]*).*/\1/} >= 10
+CONFLICTS+=	${PORTNAME}9* ${PORTNAME}1[^${PORTVERSION:R:C/.*([0-9]$)/\\1/}]*
 .else
-CONFLICTS+=	${PORTNAME}*-9.[^${PORTVERSION:R:E}].* ${PORTNAME}10*
+CONFLICTS+=	${PORTNAME}9[^${PORTVERSION:R:E}]* ${PORTNAME}1[0-9]*
 .endif
 
 WRKSRC=		${WRKDIR}/postgresql-${DISTVERSION}
@@ -25,9 +29,8 @@ OPTIONS_SUB=	yes
 PKGINSTALL?=	${PKGDIR}/pkg-install${COMPONENT}
 USES+=		tar:bzip2 cpe
 .if !defined(NO_BUILD)
-USES+=	gmake
+USES+=		gmake
 GNU_CONFIGURE=	yes
-LLD_UNSAFE=	yes
 .endif
 
 PG_USER?=	postgres
@@ -40,14 +43,11 @@ CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
 		--enable-thread-safety \
 		--with-template=freebsd
-
-#		--build=${ARCH}-portbld-freebsd10.4 \
-#		--host=${ARCH}-portbld-freebsd10.4 \
-#--target=${ARCH}-portbld-freebsd10.4
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
 		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
 LDFLAGS+=	-lpthread
+MAKE_ENV=	MAKELEVEL=0
 
 PLIST=		${PKGDIR}/pkg-plist${COMPONENT}
 
@@ -56,16 +56,15 @@ INSTALL_DIRS?=	src/common src/timezone src/backend \
 		src/backend/snowball src/backend/replication/libpqwalreceiver \
 		src/backend/replication/pgoutput \
 		src/bin/initdb src/bin/pg_ctl \
+		src/bin/pg_archivecleanup src/bin/pg_basebackup \
+		src/bin/pg_checksums \
 		src/bin/pg_controldata src/bin/pg_resetwal src/pl \
-		src/bin/pg_basebackup src/bin/pg_archivecleanup \
 		src/bin/pg_rewind \
 		src/bin/pg_test_fsync src/bin/pg_test_timing \
 		src/bin/pg_waldump src/bin/pg_upgrade
 
 BUILD_DIRS?=	src/port ${INSTALL_DIRS}
 INSTALL_TARGET?=install-strip
-
-OPTIONS_SUB=	yes
 
 .if !defined(CLIENT_ONLY) && !defined(SLAVE_ONLY)
 SERVER_ONLY=	yes
@@ -77,23 +76,36 @@ GROUPS=	${PG_GROUP}
 SUB_FILES+=	502.pgsql
 .endif
 
+OPTIONS_SUB=	yes
+
 .if defined(CLIENT_ONLY)
-OPTIONS_DEFINE+=LIBEDIT
+OPTIONS_DEFINE+=LIBEDIT DOCS
 LIBEDIT_DESC=	Use non-GPL libedit instead of readline
-USES+=		perl5
 .else
-MAKE_ENV=	PATH=${PREFIX}/bin:${PATH}
+MAKE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 .endif
 
 .if defined(SERVER_ONLY)
-OPTIONS_DEFINE=	DTRACE LDAP INTDATE TZDATA XML
+OPTIONS_DEFINE=	DTRACE LDAP INTDATE TZDATA XML DOCS
 LDAP_DESC=	Build with LDAP authentication support
 DTRACE_DESC=	Build with DTrace probes
 TZDATA_DESC=	Use internal timezone database
 XML_DESC=	Build with XML data type
 
-.if ${DISTVERSION:C/([0-9]*).*/\1/} != 10
+DTRACE_CONFIGURE_ENABLE=dtrace
+DTRACE_LDFLAGS=		-lelf
+DTRACE_INSTALL_TARGET=	install
+
+.if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
+OPTIONS_DEFINE+=	LLVM
+OPTIONS_DEFAULT+=	LLVM
+LLVM_DESC=		Build with support for JIT-compiling expressions
+OPTIONS_EXCLUDE+=	${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
+OPTIONS_EXCLUDE_powerpc64_12=	LLVM
+.endif
+
+.if ${DISTVERSION:C/([0-9]*).*/\1/} < 10
 # See http://people.freebsd.org/~girgen/postgresql-icu/README.html for more info
 OPTIONS_DEFINE+=	ICU
 ICU_DESC=	Use ICU for unicode collation
@@ -106,73 +118,78 @@ USES+=		pkgconfig
 # See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/76999 for more info
 # (requires dump/restore if modified.)
 OPTIONS_DEFINE+=	INTDATE
-INTDATE_DESC=	Builds with 64-bit date/time type
-OPTIONS_DEFAULT+=	XML TZDATA INTDATE
+INTDATE_DESC=		Builds with 64-bit date/time type
+OPTIONS_DEFAULT+=	INTDATE
 .endif
 
 .if !defined(SLAVE_ONLY)
-OPTIONS_DEFINE+=	NLS PAM GSSAPI OPTIMIZED_CFLAGS DEBUG
+OPTIONS_DEFINE+=	NLS PAM GSSAPI OPTIMIZED_CFLAGS DEBUG DOCS
 . if ${DISTVERSION:R} == 9.2 || ${DISTVERSION:R} == 9.3
-  OPTIONS_RADIO= KRB5
-  OPTIONS_RADIO_KRB5= MIT_KRB5 HEIMDAL_KRB5
+  OPTIONS_RADIO=	KRB5
+  OPTIONS_RADIO_KRB5=	MIT_KRB5 HEIMDAL_KRB5
 . endif
 
-KRB5_DESC=	Build with kerberos provider support
-NLS_DESC=	Use internationalized messages
-PAM_DESC=	Build with PAM Support
-MIT_KRB5_DESC=	Build with MIT kerberos support
+KRB5_DESC=		Build with kerberos provider support
+NLS_DESC=		Use internationalized messages
+PAM_DESC=		Build with PAM Support
+MIT_KRB5_DESC=		Build with MIT kerberos support
 HEIMDAL_KRB5_DESC=	Builds with Heimdal kerberos
-GSSAPI_DESC=	Build with GSSAPI support
+GSSAPI_DESC=		Build with GSSAPI support
 OPTIMIZED_CFLAGS_DESC=	Builds with compiler optimizations (-O3)
 
 OPTIONS_DEFINE+=	SSL
-SSL_DESC=	Build with OpenSSL support
+SSL_DESC=		Build with OpenSSL support
 
 OPTIONS_DEFAULT+=	SSL
+
+GSSAPI_CONFIGURE_WITH=	gssapi
 .endif # !SLAVE_ONLY
 
 .if defined(CLIENT_ONLY)
 LIBEDIT_CONFIGURE_ON+=--with-libedit-preferred
 LIBEDIT_USES=		libedit
-LIBEDIT_USES_OFF=		readline
+LIBEDIT_USES_OFF=	readline
 .endif # CLIENT_ONLY
 
-SSL_USES=	ssl
-SSL_CONFIGURE_WITH=openssl
+SSL_USES=		ssl
+SSL_CONFIGURE_WITH=	openssl
 
 PAM_CONFIGURE_WITH=	pam
 
 XML_CONFIGURE_WITH=	libxml
 XML_LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
-TZDATA_CONFIGURE_OFF=--with-system-tzdata=/usr/share/zoneinfo
+TZDATA_CONFIGURE_OFF=	--with-system-tzdata=/usr/share/zoneinfo
 
-INTDATE_CONFIGURE_OFF=--disable-integer-datetimes
+INTDATE_CONFIGURE_OFF=	--disable-integer-datetimes
 
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=	gettext
+NLS_USES=		gettext
 
 LDAP_CONFIGURE_WITH=	ldap
 LDAP_USE=		OPENLDAP=yes
 
-OPTIMIZED_CFLAGS_CFLAGS=	-O3 -funroll-loops
+OPTIMIZED_CFLAGS_CFLAGS=-O3 -funroll-loops
 
 DEBUG_CONFIGURE_ENABLE=	debug
 
-PLIST_SUB+=	PG_USER=${PG_USER} \
-		PG_GROUP=${PG_GROUP}
-SUB_LIST+=	PG_GROUP=${PG_GROUP} \
-		PG_USER=${PG_USER} \
-		PG_UID=${PG_UID}
+PLIST_SUB+=		PG_USER=${PG_USER} \
+			PG_USER_regex=\b${PG_USER}\b \
+			PG_GROUP=${PG_GROUP} \
+			PG_GROUP_regex=\b${PG_GROUP}\b
+SUB_LIST+=		PG_GROUP=${PG_GROUP} \
+			PG_USER=${PG_USER} \
+			PG_UID=${PG_UID}
 
 .include <bsd.mport.options.mk>
 
-.if ${ARCH} == i386
-USE_GCC=	6
+.if ${ARCH} == "i386"
+USES+=		compiler:gcc-c++11-lib
+.else
+USES+=		compiler
 .endif
 
-.if !defined(SLAVE_ONLY)
-.if ${DISTVERSION:C/([0-9]*).*/\1/} != 10
+.if ${DISTVERSION:C/([0-9]*).*/\1/} < 10
 .  if ( defined(SERVER_ONLY) && ${PORT_OPTIONS:MICU} ) || make(makesum)
 USES+=		autoreconf
 CONFIGURE_ARGS+=--with-icu
@@ -180,21 +197,13 @@ PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
 PATCHFILES+=	${ICU_PATCHFILE}:icu
 LIB_DEPENDS+=	libicudata.so:devel/icu
 .  endif
-.endif # not version 10
-.endif # !SLAVE_ONLY
+.endif # server && version < 10
 
 .if !defined(SLAVE_ONLY)
 
 PATCH_DIST_STRIP=-p1
 
-.  if ${PORT_OPTIONS:MDTRACE}
-CONFIGURE_ARGS+=--enable-dtrace
-LDFLAGS+=-lelf
-INSTALL_TARGET=install
-.  endif
-
 .if ${PORT_OPTIONS:MGSSAPI}
-CONFIGURE_ARGS+=--with-gssapi
 .if empty(PORT_OPTIONS:MMIT_KRB5) && empty(PORT_OPTIONS:MHEIMDAL_KRB5)
 # Kerberos libraries will pull the proper GSSAPI library
 # via linker dependencies, but otherwise we must specify
@@ -203,8 +212,6 @@ CONFIGURE_ARGS+=--with-gssapi
 LDFLAGS+=	-lgssapi
 LDFLAGS_SL+=	-lgssapi
 .endif
-.else
-CONFIGURE_ARGS+=--without-gssapi
 .endif
 
 .  if ${PORT_OPTIONS:MMIT_KRB5}
@@ -228,6 +235,39 @@ CONFIGURE_ARGS+=--with-krb5
 # For testing files in FILESDIR
 .include <bsd.port.pre.mk>
 
+.if ${PORT_OPTIONS:MLLVM}
+CONFIGURE_ARGS+=	--with-llvm
+BUILD_DEPENDS+=		llvm${PG_LLVM_VERSION}>0:devel/llvm${PG_LLVM_VERSION}
+BUILD_DEPENDS+=		llvm-config${PG_LLVM_VERSION}:devel/llvm${PG_LLVM_VERSION}
+RUN_DEPENDS+=		llvm-config${PG_LLVM_VERSION}:devel/llvm${PG_LLVM_VERSION}
+CONFIGURE_ENV+=		LLVM_CONFIG=${LOCALBASE}/bin/llvm-config${PG_LLVM_VERSION}
+.endif
+
+# sync LLVM to the preferred compiler if possible
+# or else use a lower version compiler that is compatible
+.if ${COMPILER_VERSION} > ${LLVM_DEFAULT}
+# Highest LLVM version in ports:
+.  if ${COMPILER_VERSION} <= 11
+PG_LLVM_VERSION=${COMPILER_VERSION}
+PG_COMPILER_VERSION=${COMPILER_VERSION}
+.  else
+PG_LLVM_VERSION=11
+PG_COMPILER_VERSION=11
+.  endif
+.else
+PG_COMPILER_VERSION=${COMPILER_VERSION}
+PG_LLVM_VERSION=${LLVM_DEFAULT}
+.endif
+
+.if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
+.  if defined(SERVER_ONLY) && ${PORT_OPTIONS:MLLVM}
+INSTALL_DIRS+=		src/backend/jit/llvm
+.    if ${COMPILER_VERSION} != ${PG_COMPILER_VERSION}
+LLVM_CONFIGURE_ARGS?=	CC=${LOCALBASE}/bin/clang${PG_COMPILER_VERSION}
+.    endif
+.  endif
+.endif
+
 .if defined(SERVER_ONLY)
 pre-build:
 	@${SH} ${PKGINSTALL} ${PORTNAME} PRE-INSTALL
@@ -247,7 +287,6 @@ PKGMESSAGE=	${WRKSRC}/pkg-message${COMPONENT}
 .  endif
 .  if exists(${FILESDIR}/pkg-install${COMPONENT}.in)
 SUB_FILES+=	pkg-install${COMPONENT}
-PLIST_SUB+=	PG_USER=${PG_USER}
 .  endif
 
 post-patch:
