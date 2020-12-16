@@ -1,30 +1,25 @@
-# $MidnightBSD$
+# Created by: ijliao
 
 PORTNAME=	fribidi
-PORTVERSION=	0.19.7
+PORTVERSION=	1.0.10
 CATEGORIES=	converters
-MASTER_SITES=	http://fribidi.org/download/
+MASTER_SITES=	https://github.com/fribidi/fribidi/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free Implementation of the Unicode Bidirectional Algorithm
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake libtool pathfix tar:bzip2
+USES=		meson tar:xz
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-static --without-glib
-INSTALL_TARGET=	install-strip
-
-.if !defined(WITH_DEBUG)
-CONFIGURE_ARGS+=--disable-debug
-.endif
+MESON_ARGS=	-Dtests=false
 
 post-patch:
 	@${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' < \
-	    	${FILESDIR}/fribidi-config > ${WRKDIR}/fribidi-config
+		${FILESDIR}/fribidi-config > ${WRKDIR}/fribidi-config
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/fribidi-config ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKDIR}/fribidi-config ${STAGEDIR}${PREFIX}/bin
 
 .include <bsd.port.mk>
