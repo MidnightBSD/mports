@@ -1,6 +1,6 @@
---- SConstruct.orig	2018-01-04 23:28:55 UTC
-+++ SConstruct
-@@ -922,9 +922,9 @@ if has_option('variables-help'):
+--- SConstruct.orig	2020-09-03 14:52:59.000000000 -0400
++++ SConstruct	2020-12-17 14:17:15.941680000 -0500
+@@ -931,9 +931,9 @@
      print(env_vars.GenerateHelpText(env))
      Exit(0)
  
@@ -13,7 +13,35 @@
  
  def set_config_header_define(env, varname, varval = 1):
      env['CONFIG_HEADER_DEFINES'][varname] = varval
-@@ -1612,7 +1612,7 @@ if env.TargetOSIs('posix'):
+@@ -1032,6 +1032,7 @@
+     "windows": "defined(_WIN32)",
+     "solaris": "defined(__sun)",
+     "freebsd": "defined(__FreeBSD__)",
++    "midnightbsd": "defined(__MidnightBSD__)",
+     "openbsd": "defined(__OpenBSD__)",
+     "iOS": "defined(__APPLE__) && TARGET_OS_IOS && !TARGET_OS_SIMULATOR",
+     "iOS-sim": "defined(__APPLE__) && TARGET_OS_IOS && TARGET_OS_SIMULATOR",
+@@ -1386,7 +1387,7 @@
+     if not env.TargetOSIs('solaris', 'darwin', 'windows', 'openbsd'):
+         env.Tool('thin_archive')
+ 
+-if env.TargetOSIs('linux', 'freebsd', 'openbsd'):
++if env.TargetOSIs('linux', 'freebsd', 'openbsd', 'midnightbsd'):
+     env['LINK_LIBGROUP_START'] = '-Wl,--start-group'
+     env['LINK_LIBGROUP_END'] = '-Wl,--end-group'
+     # NOTE: The leading and trailing spaces here are important. Do not remove them.
+@@ -1424,6 +1425,10 @@
+     env.Append( LIBS=[ "kvm" ] )
+     env.Append( CCFLAGS=[ "-fno-omit-frame-pointer" ] )
+ 
++elif env.TargetOSIs('midnightbsd'):
++    env.Append( LIBS=[ "kvm" ] )
++    env.Append( CCFLAGS=[ "-fno-omit-frame-pointer" ] )
++
+ elif env.TargetOSIs('darwin'):
+      env.Append( LIBS=["resolv"] )
+ 
+@@ -1609,7 +1614,7 @@
              # If runtime hardening is requested, then build anything
              # destined for an executable with the necessary flags for PIE.
              env.AppendUnique(
@@ -22,16 +50,16 @@
                  PROGLINKFLAGS=['-pie'],
              )
  
-@@ -1626,7 +1626,7 @@ if env.TargetOSIs('posix'):
+@@ -1623,7 +1628,7 @@
                           "-Wno-unknown-pragmas",
                           "-Winvalid-pch"] )
      # env.Append( " -Wconversion" ) TODO: this doesn't really work yet
 -    if env.TargetOSIs('linux', 'darwin', 'solaris'):
-+    if env.TargetOSIs('linux', 'darwin', 'solaris', 'freebsd'):
++    if env.TargetOSIs('linux', 'darwin', 'solaris', 'freebsd', 'midnightbsd'):
          if not has_option("disable-warnings-as-errors"):
              env.Append( CCFLAGS=["-Werror"] )
  
-@@ -1661,10 +1661,10 @@ if env.TargetOSIs('posix'):
+@@ -1667,10 +1672,10 @@
          env.Append( CCFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
          env.Append( LINKFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
  
@@ -46,3 +74,21 @@
  
      # Promote linker warnings into errors. We can't yet do this on OS X because its linker considers
      # noall_load obsolete and warns about it.
+@@ -2701,6 +2706,8 @@
+         sslLinkDependencies = ["crypto", "dl"]
+         if conf.env.TargetOSIs('freebsd'):
+             sslLinkDependencies = ["crypto"]
++        if conf.env.TargetOSIs('midnightbsd'):
++            sslLinkDependencies = ["crypto"]
+         if conf.env.TargetOSIs('windows'):
+             sslLibName = "ssleay32"
+             cryptoLibName = "libeay32"
+@@ -2937,7 +2944,7 @@
+         myenv.ConfError("Couldn't find SASL header/libraries")
+ 
+     # requires ports devel/libexecinfo to be installed
+-    if env.TargetOSIs('freebsd', 'openbsd'):
++    if env.TargetOSIs('midnightbsd', 'freebsd', 'openbsd'):
+         if not conf.CheckLib("execinfo"):
+             myenv.ConfError("Cannot find libexecinfo, please install devel/libexecinfo.")
+ 
