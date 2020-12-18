@@ -1,4 +1,4 @@
-lib/grilo-0.3/libgrlbookmarks.so
+@comment lib/grilo-0.3/libgrlbookmarks.so
 lib/grilo-0.3/libgrlchromaprint.so
 lib/grilo-0.3/libgrldleyna.so
 lib/grilo-0.3/libgrlfilesystem.so
@@ -14,7 +14,7 @@ lib/grilo-0.3/libgrlopticalmedia.so
 lib/grilo-0.3/libgrlpodcasts.so
 lib/grilo-0.3/libgrlraitv.so
 lib/grilo-0.3/libgrlshoutcast.so
-lib/grilo-0.3/libgrlthetvdb.so
+@comment lib/grilo-0.3/libgrlthetvdb.so
 lib/grilo-0.3/libgrltmdb.so
 lib/grilo-0.3/libgrltracker.so
 lib/grilo-0.3/libgrlvimeo.so
