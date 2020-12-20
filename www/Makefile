@@ -48,6 +48,7 @@ SUBDIR += mediawiki135
 SUBDIR += midori
 SUBDIR += minio
 SUBDIR += minio-client
+SUBDIR += mod_auth_openid
 SUBDIR += mod_dav_svn
 SUBDIR += mod_dnssd
 SUBDIR += mod_fastcgi
