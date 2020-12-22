@@ -1,6 +1,5 @@
 PORTNAME=	jasper
-PORTVERSION=	2.0.16
-PORTREVISION=	1
+PORTVERSION=	2.0.23
 DISTVERSIONPREFIX=	version-
 CATEGORIES=	graphics
 
@@ -12,28 +11,29 @@ LICENSE_NAME=	JasPer License Version 2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-OPTIONS_DEFINE=	OPENGL DOCS
-OPTIONS_DEFAULT=	OPENGL
-OPTIONS_SUB=	yes
+USES=		cmake cpe jpeg localbase
 
+CMAKE_OFF=	JAS_ENABLE_AUTOMATIC_DEPENDENCIES JAS_ENABLE_DOC
+CMAKE_ON=	JAS_ENABLE_LIBJPEG
 USE_LDCONFIG=	yes
-USES=		cmake jpeg localbase
-
-USE_GITHUB=	yes
-
-GH_ACCOUNT=	mdadams
-
-OPENGL_CMAKE_BOOL=	JAS_ENABLE_OPENGL
-OPENGL_USES=		gl xorg
-OPENGL_USE=		GL=gl,glu,glut XORG=x11,xext,xi,xmu
-
-CMAKE_ARGS=	-DJAS_ENABLE_JPEG=true \
-		-DJAS_ENABLE_AUTOMATIC_DEPENDENCIES=false \
-		-DCMAKE_SKIP_RPATH=true
 
 DOCSDIR=	${PREFIX}/share/doc/JasPer
 
-post-install-DOCS-off:
-	rm -rf ${FAKE_DESTDIR}${DOCSDIR}
+USE_GITHUB=	yes
+GH_ACCOUNT=	jasper-software
+
+CPE_VENDOR=	jasper_project
+
+OPTIONS_DEFINE=	OPENGL DOCS
+OPTIONS_DEFAULT=OPENGL
+OPTIONS_SUB=	yes
+
+OPENGL_CMAKE_BOOL=	JAS_ENABLE_OPENGL
+OPENGL_USE=		GL=gl,glu,glut XORG=x11,xext,xi,xmu
+OPENGL_USES=		gl xorg
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/jasper.pdf ${WRKSRC}/doc/jpeg2000.pdf ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
