@@ -19,6 +19,7 @@ SUBDIR += bsdstats
 SUBDIR += cdircmp
 SUBDIR += cdrdao
 SUBDIR += cdrtools
+SUBDIR += checkrestart
 SUBDIR += cinnamon-control-center
 SUBDIR += cinnamon-settings-daemon
 SUBDIR += ciso-maker
