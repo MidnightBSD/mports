@@ -1,5 +1,5 @@
 PORTNAME=	dovecot
-PORTVERSION=	2.3.10.1
+PORTVERSION=	2.3.11.3
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -8,6 +8,8 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
@@ -91,7 +93,7 @@ SQLITE_CONFIGURE_WITH=	sqlite
 ICU_CONFIGURE_WITH=	icu
 ICU_LIB_DEPENDS=	libicui18n.so:devel/icu
 
-LUCENE_CONFIGURE_WITH=	lucene
+LUCENE_CONFIGURE_WITH=	lucene stemmer
 LUCENE_LIB_DEPENDS=	libclucene-core.so:textproc/clucene
 
 SOLR_CONFIGURE_WITH=	solr
@@ -99,7 +101,7 @@ SOLR_LIB_DEPENDS=	libcurl.so:ftp/curl \
 			libexpat.so:textproc/expat2
 
 TEXTCAT_CONFIGURE_WITH=	textcat
-TEXTCAT_LIB_DEPENDS=	libtextcat.so:textproc/libtextcat
+TEXTCAT_LIB_DEPENDS=	libexttextcat-2.0.so:textproc/libexttextcat
 
 # GSSAPI
 GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
@@ -128,7 +130,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dovecot,${PREFIX}/etc/dovecot,g; \
 		s,sysconfdir=/etc,sysconfdir=${PREFIX}/etc,g' \
-		${WRKSRC}/doc/example-config/*.conf ${WRKSRC}/doc/example-config/conf.d/*
+		${WRKSRC}/doc/example-config/*.conf ${WRKSRC}/doc/example-config/conf.d/* \
+		${WRKSRC}/doc/example-config/*.conf.ext
 	@${REINPLACE_CMD} -e '/^LIBS =/s/$$/ @LTLIBICONV@/' \
 		${WRKSRC}/src/lib-mail/Makefile.in
 # Install the sample config files into ETCDIR/example-config/
