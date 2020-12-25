@@ -1,0 +1,24 @@
+# Created by: Wei-chun Chao
+
+PORTNAME=	Net-Netmask
+PORTVERSION=	1.9104
+CATEGORIES=	net-mgmt perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Perl module to parse, manipulate, and lookup IP network blocks
+
+LICENSE=	artistic gpl
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+TEST_DEPENDS=	p5-Test-UseAllModules>=0:devel/p5-Test-UseAllModules \
+		p5-Test2-Suite>=0:devel/p5-Test2-Suite
+
+USES=		perl5
+USE_PERL5=	configure
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>
