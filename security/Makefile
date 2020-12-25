@@ -37,6 +37,7 @@ SUBDIR += gnupg1
 SUBDIR += gnutls
 SUBDIR += gpgme
 SUBDIR += gsasl
+SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
 SUBDIR += ipsec-tools
 SUBDIR += krb5
