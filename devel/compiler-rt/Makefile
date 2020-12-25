@@ -1,26 +1,30 @@
-# $MidnightBSD$
-
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}
 PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	brooks
+MASTER_SITES=	FREEBSD_LOCAL/brooks
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiler runtime library with Blocks support
 
-LICENSE=	agg
+LICENSE=	bsd3 mit
+LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
+
+BROKEN_powerpc=		does not compile
+BROKEN_powerpc64=	does not build: undefined reference to fmax
 
 BUILD_DEPENDS=	cmake:devel/cmake
 
 CONFIGURE_WRKSRC=	${WRKDIR}/build
 BUILD_WRKSRC=		${WRKDIR}/build
 INSTALL_WRKSRC=		${WRKDIR}/build
+TEST_WRKSRC=		${WRKDIR}/build
+TEST_TARGET=		test
 
 CMAKE_SOURCE_PATH=	${WRKSRC}
 
-USES=		cmake tar:bzip2
+USES=		cmake:insource tar:bzip2
 USE_LDCONFIG=	yes
 
 LLVM_SVN=	http://llvm.org/svn/llvm-project
@@ -68,8 +72,5 @@ post-patch:
 	${REINPLACE_CMD} -e 's/\(MACRO_ADD_CHECK_TEST( ${test}\)/# \1/' \
 	    ${WRKSRC}/test/CMakeLists.txt
 .endfor
-
-regression-test:
-	cd ${BUILD_WRKSRC} && make test
 
 .include <bsd.port.post.mk>
