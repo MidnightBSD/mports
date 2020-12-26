@@ -295,6 +295,7 @@ SUBDIR += opencl
 SUBDIR += opengrok
 SUBDIR += openmp
 SUBDIR += orc
+SUBDIR += p4
 SUBDIR += p5-Algorithm-C3
 SUBDIR += p5-Algorithm-Diff
 SUBDIR += p5-Alien-SDL
