@@ -1,7 +1,7 @@
 # Created by: GreenDog <fiziologus@gmail.com>
 
 PORTNAME=	lua
-DISTVERSION=	5.3.5
+DISTVERSION=	5.3.6
 CATEGORIES=	lang
 MASTER_SITES=	https://www.lua.org/ftp/
 PKGNAMESUFFIX=	53
