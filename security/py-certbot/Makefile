@@ -43,8 +43,8 @@ MANPAGES_BUILD_DEPENDS=	${RUN_DEPENDS} \
 			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}repoze.sphinx.autointerface>0:devel/py-repoze.sphinx.autointerface@${PY_FLAVOR} \
 
-MANPAGES_PLIST_FILES=	share/man/man1/certbot.1 \
-			share/man/man7/certbot.7
+MANPAGES_PLIST_FILES=	share/man/man1/certbot.1.gz \
+			share/man/man7/certbot.7.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
