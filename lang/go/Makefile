@@ -24,8 +24,6 @@ ONLY_FOR_ARCHS=	amd64 armv6 armv7 i386
 
 RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
 
-TEST_DEPENDS=	${TEST_DEPENDS_${ARCH}}
-
 USES=		shebangfix
 
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
@@ -37,6 +35,8 @@ PLIST=          ${PKGDIR}/pkg-plist.${ARCH}
 PLIST_SUB+=	ARCH=${ARCH}
 
 CONFLICTS_INSTALL?=	go-devel
+
+NO_TEST=	yes
 
 # Upstream archive contains files with UTF-8 names
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
