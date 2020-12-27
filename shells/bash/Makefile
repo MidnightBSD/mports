@@ -72,8 +72,8 @@ CONFIGURE_ARGS+=	--disable-static-link
 LDFLAGS+=		-Wl,-export-dynamic
 .endif
 STANDARD_PATH=		/sbin:/bin:/usr/sbin:/usr/bin
-#CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
-#			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
+CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
+			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
 
 post-patch:
 # Ensure y.tab.c is regenerated
