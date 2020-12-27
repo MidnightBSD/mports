@@ -1,6 +1,6 @@
 PORTNAME=	openjdk8-bin
 PORTVERSION=	${VER}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	java
 MASTER_SITES=	http://pkg.freebsd.org/${FBSD_PATH}/latest/All/ \
 		https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/openjdk/${ARCH}/
