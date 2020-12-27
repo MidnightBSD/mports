@@ -42,6 +42,7 @@ SUBDIR += linux-j
 SUBDIR += lua51
 SUBDIR += lua52
 SUBDIR += lua53
+SUBDIR += lua54
 SUBDIR += luajit
 SUBDIR += luajit-openresty
 SUBDIR += mawk
