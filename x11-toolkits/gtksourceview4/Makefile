@@ -23,4 +23,7 @@ USE_CSTD=	c11
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build libxml2
 USE_LDCONFIG=	yes
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
