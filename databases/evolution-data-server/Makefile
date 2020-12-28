@@ -1,8 +1,10 @@
+# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
+
 PORTNAME=	evolution-data-server
-PORTVERSION=	3.28.5
+PORTVERSION=	3.38.2
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome3
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data backends for the Evolution integrated mail/PIM suite
@@ -23,7 +25,9 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libjson-glib-1.0.so:devel/json-glib \
 		libp11-kit.so:security/p11-kit \
 		libnspr4.so:devel/nspr \
-		libsecret-1.so:security/libsecret
+		libsecret-1.so:security/libsecret \
+		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
+		libcanberra.so:audio/libcanberra
 
 PORTSCOUT=	limitw:1,even
 
@@ -52,7 +56,7 @@ PLIST_SUB=	EVO_VERSION="1.2"
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	WEATHER KERBEROS LDAP
-OPTIONS_DEFAULT=WEATHER KERBEROS
+OPTIONS_DEFAULT=WEATHER KERBEROS LDAP
 
 KERBEROS_CMAKE_ON=	-DWITH_KRB5=/usr
 KERBEROS_CMAKE_OFF=	-DWITH_KRB5=OFF
