@@ -1,7 +1,7 @@
 PORTNAME=	slack-term
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.5.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,6 +24,8 @@ PORTDOCS=	README.md
 PLIST_FILES=	bin/slack-term
 
 OPTIONS_DEFINE=	DOCS
+
+NO_TEST=	yes
 
 post-patch:
 	@cd ${WRKSRC}/vendor/github.com/OpenPeeDeeP/xdg && \
