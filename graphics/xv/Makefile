@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	16
+PORTREVISION=	17
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -27,7 +25,7 @@ LIB_DEPENDS=	libtiff.so:graphics/tiff \
 		libpng.so:graphics/png \
 		libjasper.so:graphics/jasper
 
-USES=		imake jpeg
+USES=		imake jpeg xorg
 USE_XORG=	xext x11 xt
 
 OPTIONS_DEFINE=	M17N DOCS
