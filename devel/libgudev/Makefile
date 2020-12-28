@@ -1,10 +1,9 @@
 # $MidnightBSD$
 
 PORTNAME=	libgudev
-PORTVERSION=	230
-PORTREVISION=	1
+PORTVERSION=	234
 CATEGORIES=	devel
-MASTER_SITES=	https://download.gnome.org/sources/libgudev/${PORTVERSION}/
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject bindings for libudev.
@@ -19,5 +18,6 @@ USE_GNOME=	glib20 introspection:build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+CONFIGURE_ARGS=	--disable-umockdev
 
 .include <bsd.port.mk>
