@@ -1019,6 +1019,7 @@ SUBDIR += sysconftool
 SUBDIR += t1lib
 SUBDIR += talloc
 SUBDIR += talloc1
+SUBDIR += tbb
 SUBDIR += tcllib
 SUBDIR += tevent
 SUBDIR += tevent1
