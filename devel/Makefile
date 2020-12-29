@@ -854,6 +854,7 @@ SUBDIR += py-nose2
 SUBDIR += py-olefile
 SUBDIR += py-orbit
 SUBDIR += py-packaging
+SUBDIR += py-parameterized
 SUBDIR += py-parsedatetime
 SUBDIR += py-parsing
 SUBDIR += py-pathlib2
