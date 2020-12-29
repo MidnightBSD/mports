@@ -1,20 +1,21 @@
-# $MidnightBSD$
+# Created by: Michael Gmelin <grembo@FreeBSD.org>
 
 PORTNAME=	buildbot-waterfall-view
-PORTVERSION=	0.9.15
+PORTVERSION=	2.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Continuous Integration Framework (Waterfall View)
+COMMENT=	Buildbot Waterfall View plugin
 
 LICENSE=	gpl2
+#LICENSE_FILE=	Not packaged in sdist
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-pkg>=${PORTVERSION}:devel/py-buildbot-pkg@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-pkg>=${PORTVERSION}:devel/py-buildbot-pkg@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.5+
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes
