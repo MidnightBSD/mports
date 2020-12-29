@@ -1,5 +1,5 @@
 PORTNAME=	glib
-PORTVERSION=	2.66.2
+PORTVERSION=	2.66.4
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -12,6 +12,8 @@ LICENSE=	lgpl
 
 USES=		tar:xz
 PORTSCOUT=	limitw:1,even
+
+NO_TEST=	yes
 
 LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libffi.so:devel/libffi
@@ -31,14 +33,23 @@ MESON_ARGS=	-Db_lundef=false \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	0.6600.2
+LIBVERSION=	0.6600.4
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
-OPTIONS_DEFINE=	DEBUG NLS
-OPTIONS_DEFAULT=
+glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
+gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
+		glib-compile-schemas.1 gapplication.1 \
+		glib-compile-resources.1 gresource.1 gdbus-codegen.1
+gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
+
+OPTIONS_DEFINE=	DEBUG MANPAGES NLS
+OPTIONS_DEFAULT=	MANPAGES
 OPTIONS_SUB=	yes
 
-NO_TEST=	yes
+MANPAGES_BUILD_DEPENDS=		docbook-xml>4.1.2:textproc/docbook-xml \
+				docbook-xsl>0:textproc/docbook-xsl
+MANPAGES_USE=			GNOME=libxslt:build
+MANPAGES_MESON_TRUE=	man
 
 .include <bsd.port.pre.mk>
 
