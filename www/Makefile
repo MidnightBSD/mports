@@ -172,6 +172,7 @@ SUBDIR += py-requests_ntlm
 SUBDIR += py-soupsieve
 SUBDIR += py-tornado
 SUBDIR += py-treq
+SUBDIR += py-txrequests
 SUBDIR += py-websocket-client
 SUBDIR += py-wsaccel
 SUBDIR += py-yarl
