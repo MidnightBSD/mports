@@ -37,6 +37,6 @@ post-patch:
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/extra
 	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/extra/* ${FAKE_DESTIR}${DOCSDIR}/extra
+	${INSTALL_DATA} ${WRKSRC}/extra/* ${FAKE_DESTDIR}${DOCSDIR}/extra
 
 .include <bsd.port.mk>
