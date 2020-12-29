@@ -18,9 +18,11 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-USES=		apache:2.4+ bdb gnome perl5 pkgconfig
+USES=		apache:2.4 bdb gnome perl5 pkgconfig
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
+
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
 AP_INC=		${LOCALBASE}/include/libxml2
 AP_LIB=		${LOCALBASE}/lib
