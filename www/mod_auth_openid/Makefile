@@ -13,6 +13,7 @@ COMMENT=	Authentication module for the Apache 2 webserver with OpenID
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+RUN_DEPENDS=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 LIB_DEPENDS=	libopkele.so:devel/libopkele \
 		libsqlite3.so:databases/sqlite3
 
