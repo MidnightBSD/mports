@@ -1,6 +1,6 @@
 PORTNAME=	advancemame
 PORTVERSION=	1.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	emulators
 MASTER_SITES=	https://github.com/amadvance/advancemame/releases/download/${DISTNAME}/
 
@@ -18,7 +18,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-svgalib --disable-fb --disable-alsa --enable-oss \
 		--disable-kevent
 
-CFLAGS+=	-idirafter ${LOCALBASE}/include
+CFLAGS+=	-idirafter ${LOCALBASE}/include \
+		-fcommon
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
 
