@@ -1,7 +1,7 @@
 PORTNAME=		bash
-PATCHLEVEL=		18
-PORTVERSION=		5.0.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=		2
+PATCHLEVEL=		4
+PORTVERSION=		5.1.${PATCHLEVEL:S/^0//g}
+PORTREVISION?=		0
 CATEGORIES=		shells
 MASTER_SITES=		GNU
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
@@ -19,15 +19,16 @@ COMMENT=		GNU Project's Bourne Again SHell
 LICENSE=		gpl3
 LICENSE_FILE=		${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=		FDESCFS HELP NLS STATIC SYSBASHRC SYSLOG DOCS
+OPTIONS_DEFINE=		FDESCFS PORTS_READLINE HELP NLS STATIC SYSBASHRC \
+			SYSLOG DOCS
 FDESCFS_DESC=		Enable use of /dev/fd
 HELP_DESC=		Enable builtin help
+PORTS_READLINE_DESC=	libreadline from ports instead of bundled one
 SYSBASHRC_DESC=		Enable system-wide rc files
 
-OPTIONS_DEFAULT=	HELP
+OPTIONS_DEFAULT=	HELP PORTS_READLINE
 
-USES=			bison compiler cpe iconv makeinfo pathfix localbase
-USE_GCC=	7
+USES=			bison cpe iconv makeinfo pathfix localbase
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	${ARCH}-portbld-midnightbsd${OSREL}
 OPTIONS_SUB=		yes
@@ -40,6 +41,9 @@ HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 
+PORTS_READLINE_CONFIGURE_WITH=	installed-readline
+PORTS_READLINE_USES=	readline
+
 INFO=			bash
 
 PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH README \
@@ -49,6 +53,7 @@ CONFIGURE_ARGS+=	--without-bash-malloc \
 			--disable-rpath \
 			--enable-disabled-builtins \
 			--with-libiconv-prefix=${ICONV_PREFIX}
+
 .if empty(PKGNAMESUFFIX)
 CONFLICTS+=		bash-static-[0-9]*
 .else
@@ -67,20 +72,23 @@ CONFIGURE_ARGS+=	--disable-static-link
 LDFLAGS+=		-Wl,-export-dynamic
 .endif
 STANDARD_PATH=		/sbin:/bin:/usr/sbin:/usr/bin
-#CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
-#			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
+CPPFLAGS+=		-DDEFAULT_PATH_VALUE='\"${STANDARD_PATH}:${LOCALBASE}/sbin:${LOCALBASE}/bin\"' \
+			-DSTANDARD_UTILS_PATH='\"${STANDARD_PATH}\"'
 
 post-patch:
 # Ensure y.tab.c is regenerated
 	${TOUCH} ${WRKSRC}/parse.y
 	${RM} ${WRKSRC}/y.tab.c
-	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/doc/bash.1
+	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" -e "s|%%LOCALBASE%%|${LOCALBASE}|g" \
+		${WRKSRC}/doc/bash.1
 .if ${PORT_OPTIONS:MSYSLOG}
 	@${REINPLACE_CMD} \
 	    -e "s|/\*.*#define SYSLOG_HISTORY .*\*/|#define SYSLOG_HISTORY|g" \
 	    -e "s|/\*.*#define SYSLOG_SHOPT .*\*/|#define SYSLOG_SHOPT 1|g" \
 	    ${WRKSRC}/config-top.h
 .endif
+	@${REINPLACE_CMD} -e "s|\(/etc/profile\)|${LOCALBASE}\1|" \
+		${WRKSRC}/pathnames.h.in
 
 post-patch-SYSBASHRC-on:
 	@${REINPLACE_CMD} \

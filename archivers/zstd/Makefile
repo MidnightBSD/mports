@@ -1,36 +1,36 @@
+# Created by: John Marino <marino@FreeBSD.org>
+
 PORTNAME=	zstd
-PORTVERSION=	1.4.4
-DISTVERSIONPREFIX=	v
+PORTVERSION=	1.4.5
+PORTREVISION=	1
 CATEGORIES=	archivers
+MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Zstandard - Fast real-time compression algorithm
+COMMENT=	Fast real-time compression algorithm
 
 LICENSE=	bsd3 gpl2
 LICENSE_COMB=	dual
 
-FAKE_OPTS=	trueprefix
+TEST_DEPENDS=	gmd5sum:sysutils/coreutils
 
-OPTIONS_DEFINE=	LZ4
-OPTIONS_DEFAULT=LZ4
+USES=		meson pkgconfig python:3.4+,build shebangfix
 
-USES=		gmake
-
-ALL_TARGET=	default
-TEST_TARGET=	test
+MESON_ARGS=	-Ddefault_library=both
 USE_LDCONFIG=	yes
+WRKSRC_SUBDIR=	build/meson
+
+SHEBANG_FILES=	*.py
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
-GH_ACCOUNT=	facebook
-USE_GITHUB=	yes
+OPTIONS_DEFINE=	LZ4 OPTIMIZED_CFLAGS TEST
+OPTIONS_DEFAULT=LZ4
 
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
+LZ4_MESON_ENABLED=	lz4
 LZ4_USES=		localbase:ldflags
-
-post-extract:
-	@${REINPLACE_CMD} -e 's|INSTALL_|BSD_&|' -e 's|DragonFly|MidnightBSD|g' \
-		 ${WRKSRC}/lib/Makefile ${WRKSRC}/programs/Makefile
-	
+OPTIMIZED_CFLAGS_VARS=	CFLAGS+=-O3
+TEST_MESON_TRUE=	bin_tests
 
 .include <bsd.port.mk>

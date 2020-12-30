@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# Created by: Maxim Sobolev <sobomax@FreeBSD.org>
 
 PORTNAME=	at-spi2-core
-PORTVERSION=	2.28.0
+PORTVERSION=	2.36.0
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,19 +11,17 @@ COMMENT=	Assistive Technology Service Provider Interface
 
 LICENSE=	lgpl2.1
 
-BUILD_DEPENDS+=	python2.7:lang/python27 \
-		ninja:devel/ninja \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=1.0:devel/py-setuptools@${PY_FLAVOR}
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxkbcommon.so:x11/libxkbcommon
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python:3.5+,build tar:xz
+USES=		gettext gnome localbase meson pkgconfig tar:xz xorg
 USE_GNOME=	glib20 introspection:build
 USE_XORG=	ice sm x11 xi xtst xext
 USE_LDCONFIG=	yes
 
+# magus
 NO_TEST=	yes
 
 post-install:

@@ -7,6 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Computer Vision library
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NOT_FOR_ARCHS=	sparc64
 NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
@@ -14,7 +15,6 @@ NOT_FOR_ARCHS_REASON_sparc64=	does not compile on sparc64
 .if defined(OCV_CORE)
 BUILD_DEPENDS=	protoc:devel/protobuf
 .else
-DISTFILES+=	opencv-3.4.1_GH0.tar.gz
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf \
 		libtesseract.so:graphics/tesseract
 .endif
@@ -87,7 +87,6 @@ CMAKE_ARGS+=	-DWITH_1394:BOOL=OFF \
 		-DWITH_MATLAB:BOOL=OFF \
 		-DWITH_VA:BOOL=OFF \
 		-DWITH_VA_INTEL:BOOL=OFF \
-		-DWITH_MFX:BOOL=OFF \
 		-DWITH_GDAL:BOOL=OFF \
 		-DWITH_GPHOTO2:BOOL=OFF \
 		-DWITH_LAPACK:BOOL=OFF \
@@ -155,7 +154,7 @@ OPTIONS_DEFINE=		EXAMPLES EXTRA_MODULES OPENGL GTK2
 OPTIONS_GROUP=		PERFORMANCE IMAGE VIDEO
 OPTIONS_GROUP_PERFORMANCE=	EIGEN3 OPENCL TBB
 OPTIONS_GROUP_IMAGE=	GDAL GDCM JASPER JPEG OPENEXR PNG TIFF WEBP
-OPTIONS_GROUP_VIDEO=	ARAVIS DC1394 FFMPEG GPHOTO2 GSTREAMER V4L XINE
+OPTIONS_GROUP_VIDEO=	ARAVIS DC1394 FFMPEG GPHOTO2 GSTREAMER MFX V4L XINE
 # EXTRA_MODULES required for libopencv_dnn which is required by py-opencv
 OPTIONS_DEFAULT=	EIGEN3 EXTRA_MODULES FFMPEG JASPER JPEG PNG TIFF WEBP V4L \
 			${MACHINE_CPU:tu}
@@ -177,7 +176,7 @@ EXAMPLES_CMAKE_BOOL=	INSTALL_C_EXAMPLES
 PERFORMANCE_DESC=	Performance enhancing libraries
 
 EIGEN3_DESC=		Eigen 3 support
-EIGEN3_BUILD_DEPENDS=	${LOCALBASE}/include/eigen3/Eigen/Eigen:math/eigen3
+EIGEN3_USES=		eigen:3
 EIGEN3_CMAKE_BOOL=	WITH_EIGEN
 
 OPENCL_DESC=		OpenCL support
@@ -204,6 +203,12 @@ GDAL_CMAKE_BOOL=	WITH_GDAL
 GDCM_DESC=		Open source DICOM library
 GDCM_LIB_DEPENDS=	libgdcmMSFF.so:devel/gdcm
 GDCM_CMAKE_BOOL=	WITH_GDCM
+
+MFX_DESC=		Intel MediaSDK (aka Quick Sync Video)
+MFX_LIB_DEPENDS=	libmfx.so:multimedia/intel-media-sdk \
+			libva-drm.so:multimedia/libva
+MFX_CONFIGURE_ENV=	MFX_HOME="${LOCALBASE}"
+MFX_CMAKE_BOOL=		WITH_MFX
 
 OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr
 OPENEXR_CMAKE_BOOL=	WITH_OPENEXR
@@ -285,7 +290,7 @@ LIB_DEPENDS+=	libopencv_core.so:graphics/opencv-core \
 		libopencv_ml.so:graphics/opencv
 BUILD_DEPENDS+=	${PYNUMPY}
 RUN_DEPENDS+=	${PYNUMPY}
-USES+=		python:2.7
+USES+=		python
 USE_PYTHON=	flavors
 CMAKE_ARGS+=	-DBUILD_opencv_python${PYTHON_MAJOR_VER}:BOOL=ON
 . for module in apps java stitching superres videostab

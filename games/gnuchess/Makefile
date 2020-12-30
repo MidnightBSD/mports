@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gnuchess
-PORTVERSION=	6.2.5
+PORTVERSION=	6.2.7
 CATEGORIES=	games
 MASTER_SITES=	GNU/chess
 # The DISTFILES here is explicitly needed because it can be extended later.

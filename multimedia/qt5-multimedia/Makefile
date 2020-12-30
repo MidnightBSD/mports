@@ -57,4 +57,8 @@ PULSEAUDIO_VARS=	QT_CONFIG+=pulseaudio
 PULSEAUDIO_VARS_OFF=	QT_CONFIG+=-pulseaudio \
 			QMAKE_CONFIGURE_ARGS+=-no-pulseaudio
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>

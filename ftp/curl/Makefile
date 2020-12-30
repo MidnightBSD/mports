@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	7.72.0
+PORTVERSION=	7.74.0
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.haxx.se/download/ \
 		FREEBSD_LOCAL/sunpoet
@@ -10,7 +10,26 @@ COMMENT?=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	ALTSVC BROTLI CA_BUNDLE COOKIES CURL_DEBUG DEBUG DOCS EXAMPLES IDN IPV6 METALINK NTLM PROXY PSL TLS_SRP
+USES=		cpe libtool localbase pathfix perl5 shebangfix tar:xz
+USE_PERL5=	build
+
+CONFIGURE_ARGS=	--disable-werror \
+		--with-fish-functions-dir=${LOCALBASE}/share/fish/completions \
+		--with-zsh-functions-dir=${LOCALBASE}/share/zsh/site-functions
+CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
+		ac_cv_func_SSLv2_client_method=no
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	test
+USE_LDCONFIG=	yes
+
+CPE_VENDOR=	haxx
+
+DOCS=		FAQ FEATURES.md INSTALL KNOWN_BUGS MAIL-ETIQUETTE THANKS TODO options-in-versions
+
+SHEBANG_FILES=	*/*.pl
+
+OPTIONS_DEFINE=	ALTSVC BROTLI CA_BUNDLE COOKIES CURL_DEBUG DEBUG DOCS EXAMPLES IDN IPV6 METALINK NTLM PROXY PSL TLS_SRP ZSTD
 OPTIONS_GROUP=	PROTOCOL
 OPTIONS_RADIO=	SSL
 OPTIONS_SINGLE=	GSSAPI RESOLV
@@ -39,30 +58,6 @@ SMB_DESC=		SMB/CIFS support
 SMTP_DESC=		SMTP/SMTPS support
 THREADED_RESOLVER_DESC=	Threaded DNS resolver
 TLS_SRP_DESC=		TLS-SRP (Secure Remote Password) support
-
-USES=		cpe libtool localbase pathfix perl5 shebangfix tar:xz
-USE_PERL5=	build
-
-CONFIGURE_ARGS=	--disable-werror \
-		--with-fish-functions-dir=${LOCALBASE}/share/fish/completions \
-		--with-zsh-functions-dir=${LOCALBASE}/share/zsh/site-functions
-CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
-		ac_cv_func_SSLv2_client_method=no
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-USE_LDCONFIG=	yes
-
-NO_TEST=	yes
-
-PORTDOCS=	*
-PORTEXAMPLES=	*
-
-CPE_VENDOR=	haxx
-
-DOCS=		BUGS FAQ FEATURES INSTALL KNOWN_BUGS MAIL-ETIQUETTE RESOURCES \
-		THANKS TODO TheArtOfHttpScripting options-in-versions
-
-SHEBANG_FILES=	*/*.pl
 
 ALTSVC_CONFIGURE_ENABLE=alt-svc
 BROTLI_CONFIGURE_WITH=	brotli
@@ -138,8 +133,14 @@ THREADED_RESOLVER_CONFIGURE_ENABLE=	pthreads threaded-resolver
 TLS_SRP_CONFIGURE_ENABLE=	tls-srp
 WOLFSSL_CONFIGURE_WITH=	wolfssl
 WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
+ZSTD_CONFIGURE_WITH=	zstd
+ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.port.pre.mk>
+
+.if !${PORT_OPTIONS:MCA_BUNDLE} && (${PORT_OPTIONS:MGNUTLS} || ${PORT_OPTIONS:MOPENSSL})
+CONFIGURE_ARGS+=--with-ca-fallback
+.endif
 
 .if ((!${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL}) || (${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT:Mlibressl*})) && ${PORT_OPTIONS:MTLS_SRP}
 IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
@@ -147,6 +148,12 @@ IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 
 .if ${PORT_OPTIONS:MLDAPS} && !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MNSS} && !${PORT_OPTIONS:MOPENSSL} && !${PORT_OPTIONS:MWOLFSSL}
 IGNORE=		only supports LDAPS with SSL
+.endif
+
+.if ${PORT_OPTIONS:MGSSAPI_BASE} && exists(${LOCALBASE}/lib/libkrb5support.so)
+BROKEN=		The GSSAPI_BASE option is selected, but you have krb5 installed. \
+		This is incompatible. In order to build, either select GSSAPI_MIT, \
+		or temporarily deinstall krb5 to build curl, or build in poudriere
 .endif
 
 post-patch:
@@ -164,6 +171,6 @@ post-install-DOCS-on:
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}/
-	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README Makefile.example makefile* *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
+	cd ${WRKSRC}/docs/examples/ && ${INSTALL_DATA} README.md Makefile.example makefile* *.c *.cpp ${FAKE_DESTDIR}${EXAMPLESDIR}/
 
 .include <bsd.port.post.mk>

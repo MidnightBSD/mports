@@ -17,7 +17,6 @@ SUBDIR += metacity
 SUBDIR += muffin
 SUBDIR += mutter
 SUBDIR += obconf
-SUBDIR += obmenu
 SUBDIR += openbox
 SUBDIR += ratpoison
 SUBDIR += twm

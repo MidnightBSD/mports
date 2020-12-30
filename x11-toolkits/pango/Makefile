@@ -2,6 +2,7 @@
 
 PORTNAME=	pango
 PORTVERSION=	1.42.4
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,9 +13,7 @@ COMMENT=	Open-source framework for the layout and rendering of i18n text
 LICENSE=	lgpl
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	help2man:misc/help2man \
-		python3.7:lang/python37 \
-		py37-setuptools>=0:devel/py-setuptools@py37
+BUILD_DEPENDS=	help2man:misc/help2man
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -24,7 +23,7 @@ RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 gettext gnome localbase meson pkgconfig python:2.7 tar:xz
+USES=		compiler:c11 gettext gnome localbase meson pkgconfig tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo glib20 introspection:build
 
@@ -36,12 +35,11 @@ FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
 FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	X11 GTKDOC
+OPTIONS_DEFINE=	X11 DOCS
 OPTIONS_DEFAULT=X11
 
-GTKDOC_DESC=		Build and install gtk-doc generated documentation
-GTKDOC_MESON_TRUE=	enable_docs
-GTKDOC_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
+DOCS_MESON_TRUE=	enable_docs
+DOCS_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
 
 X11_MESON_TRUE=	xft
 X11_USES=	xorg

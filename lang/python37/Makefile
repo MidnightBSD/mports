@@ -12,6 +12,8 @@ COMMENT=	Interpreted object-oriented programming language
 
 LICENSE=	python
 
+LIB_DEPENDS=	libffi.so:devel/libffi
+
 USES=		cpe ncurses pathfix pkgconfig readline:port shebangfix ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 USE_LDCONFIG=	yes
@@ -24,7 +26,8 @@ PYTHON_VERSION=		python${PYTHON_VER}
 PYTHON_SUFFIX=		${PYTHON_VER:S/.//g}
 
 DISABLED_EXTENSIONS=	_sqlite3 _tkinter _gdbm
-CONFIGURE_ARGS+=	--enable-shared --without-ensurepip
+CONFIGURE_ARGS+=	--enable-shared --without-ensurepip \
+			--with-system-ffi
 CONFIGURE_ENV+=		OPT="" DISABLED_EXTENSIONS="${DISABLED_EXTENSIONS}"	# Null out OPT to respect user CFLAGS and remove optimizations
 
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
@@ -44,13 +47,12 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 			XYZDOT=${PORTVERSION} \
 			OSMAJOR=${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 
-OPTIONS_DEFINE=		DEBUG IPV6 LIBFFI NLS PYMALLOC
-OPTIONS_DEFAULT=	LIBFFI PYMALLOC
+OPTIONS_DEFINE=		DEBUG IPV6 NLS PYMALLOC
+OPTIONS_DEFAULT=	PYMALLOC
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
 
-LIBFFI_DESC=		Use libffi from ports instead of bundled version
 NLS_DESC=		Enable gettext support for the locale module
 PYMALLOC_DESC=		Enable specialized mallocs
 
@@ -63,9 +65,6 @@ SIPHASH_CONFIGURE_ON=	--with-hash-algorithm=siphash24
 
 DEBUG_CONFIGURE_WITH=	pydebug
 IPV6_CONFIGURE_ENABLE=	ipv6
-
-LIBFFI_CONFIGURE_ON=	--with-system-ffi
-LIBFFI_LIB_DEPENDS=	libffi.so:devel/libffi
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3

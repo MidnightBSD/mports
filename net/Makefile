@@ -151,6 +151,7 @@ SUBDIR += rdesktop
 SUBDIR += remotedesk
 SUBDIR += rsync
 SUBDIR += samba410
+SUBDIR += samba413
 SUBDIR += sdl_net
 SUBDIR += smbldap-tools
 SUBDIR += spideroak

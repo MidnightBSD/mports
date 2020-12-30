@@ -14,11 +14,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 CPE_VENDOR=	gnupg
 
 USES=		charsetfix compiler cpe gmake readline tar:bzip2
-USE_GCC=	6
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-camellia \
 		--enable-noexecstack
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CFLAGS+=	-fcommon
 
 INFO=		gnupg1
 DOCSDIR=	${PREFIX}/share/doc/gnupg1
@@ -54,16 +54,20 @@ NLS_CONFIGURE_ENABLE=	nls
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 200001
+USE_GCC=	6
+.endif
+
 .if ${ARCH} == "i386" && ${COMPILER_TYPE} == "clang"
 CFLAGS+=	-fheinous-gnu-extensions
 .endif
 
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for i in doc/DETAILS doc/FAQ doc/HACKING doc/OpenPGP \
 	ABOUT-NLS AUTHORS BUGS COPYING INSTALL NEWS PROJECTS \
 	README THANKS TODO VERSION
-	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

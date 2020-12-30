@@ -1,0 +1,11 @@
+--- src/third_party/wiredtiger/SConscript.orig	2020-12-26 15:29:51.305273000 -0500
++++ src/third_party/wiredtiger/SConscript	2020-12-26 15:30:13.711602000 -0500
+@@ -60,6 +60,8 @@
+     env.Append(CPPDEFINES=["__EXTENSIONS__"])
+ elif env.TargetOSIs('freebsd'):
+     env.Append(CPPPATH=["build_freebsd"])
++elif env.TargetOSIs('midnightbsd'):
++    env.Append(CPPPATH=["build_midnightbsd"])
+ elif env.TargetOSIs('openbsd'):
+     env.Append(CPPPATH=["build_openbsd"])
+ elif env.TargetOSIs('linux'):

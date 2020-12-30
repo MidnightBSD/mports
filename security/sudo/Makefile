@@ -1,5 +1,7 @@
+# Created by: erich@rrnet.com
+
 PORTNAME=	sudo
-DISTVERSION=	1.8.31
+PORTVERSION=	1.9.4
 CATEGORIES=	security
 MASTER_SITES=	SUDO
 
@@ -16,9 +18,8 @@ CPE_VENDOR=	todd_miller
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-lgcc
-LDFLAGS+=	-lssp_nonshared
 
-CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
+CONFIGURE_ARGS=	--sysconfdir=${TRUE_PREFIX}/etc \
 		--with-ignore-dot \
 		--with-tty-tickets \
 		--with-env-editor \
@@ -27,8 +28,9 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-rundir=/var/run/sudo
 
 OPTIONS_DEFINE=	LDAP INSULTS DISABLE_ROOT_SUDO DISABLE_AUTH NOARGS_SHELL \
-		AUDIT OPIE NLS SSSD DOCS
-OPTIONS_DEFAULT=	AUDIT
+		AUDIT OPIE PAM PYTHON NLS SSSD DOCS EXAMPLES
+OPTIONS_RADIO=	KERBEROS
+OPTIONS_DEFAULT=	AUDIT PAM
 OPTIONS_SUB=	yes
 
 INSULTS_DESC=	Enable insults on failures
@@ -36,8 +38,13 @@ DISABLE_ROOT_SUDO_DESC=	Do not allow root to run sudo
 DISABLE_AUTH_DESC=	Do not require authentication by default
 NOARGS_SHELL_DESC=	Run a shell if no arguments are given
 AUDIT_DESC=	Enable BSM audit support
+KERBEROS_DESC=	Enable Kerberos 5 authentication (no PAM support)
 OPIE_DESC=	Enable one-time passwords (no PAM support)
+PYTHON_DESC=	Enable python plugin support
 SSSD_DESC=	Enable SSSD backend support.
+
+PAM_PREVENTS=	OPIE GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
+PAM_PREVENTS_MSG=	PAM cannot be combined with any other authentication plugin
 
 LOGFAC?=	authpriv
 CONFIGURE_ARGS+=	--with-logfac=${LOGFAC}
@@ -66,10 +73,26 @@ DISABLE_ROOT_SUDO_CONFIGURE_ON=	--disable-root-sudo
 DISABLE_AUTH_CONFIGURE_ON=	--disable-authentication
 NOARGS_SHELL_CONFIGURE_ENABLE=	noargs-shell
 AUDIT_CONFIGURE_WITH=	bsm-audit
+PAM_CONFIGURE_ON=	--with-pam
 OPIE_CONFIGURE_ON=	--with-opie
-OPIE_CONFIGURE_OFF=	--with-pam
+PYTHON_USES=	python
+PYTHON_CONFIGURE_ENABLE=	python
 SSSD_CONFIGURE_ON=	--with-sssd
-SSSD_RUN_DEPENDS=	sssd:${PORTSDIR}/security/sssd
+SSSD_RUN_DEPENDS=	sssd:security/sssd
+
+OPTIONS_RADIO_KERBEROS=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_BASE_CONFIGURE_ON=	--with-kerb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal
+GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-kerb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_MIT_USES=	gssapi:mit
+GSSAPI_MIT_CONFIGURE_ON=	--with-kerb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+# This is intentionally not an option.
+# SUDO_KERB5_INSTANCE is an optional instance string that will be appended to kerberos
+# principals when to perform authentication. Common choices are "admin" and "sudo".
+.if defined(SUDO_KERB5_INSTANCE)
+CONFIGURE_ARGS+=	--enable-kerb5-instance="${SUDO_KERB5_INSTANCE}"
+.endif
 
 .include <bsd.mport.options.mk>
 
@@ -83,24 +106,22 @@ post-patch:
 		${WRKSRC}/src/Makefile.in
 	@${REINPLACE_CMD} -e 's,$$(srcdir)/sudoers2ldif $$(DESTDIR)$$(docdir),$$(srcdir)/sudoers2ldif $$(DESTDIR)$$(bindir),' \
 		${WRKSRC}/plugins/sudoers/Makefile.in
-	@${REINPLACE_CMD} -e '/^exampledir *=/ s,=.*,= $$(datarootdir)/examples/$$(PACKAGE_TARNAME),' \
-		${WRKSRC}/examples/Makefile.in
-.if empty(PORT_OPTIONS:MDOCS)
-	@${REINPLACE_CMD} -e 's/mkinstalldirs $$(DESTDIR)$$(docdir)/mkinstalldirs/' \
-			  -e '/for f in $$(OTHER_DOCS); do/d;/@LDAP@for f in $$(OTHER_DOCS_LDAP); do/d' \
-		${WRKSRC}/doc/Makefile.in
-	@${REINPLACE_CMD} -e 's/$$(DESTDIR)$$(sudoersdir) $$(DESTDIR)$$(docdir)/$$(DESTDIR)$$(sudoersdir)/' \
-		${WRKSRC}/plugins/sudoers/Makefile.in
-.endif
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${STAGEDIR}${PREFIX}/etc/pam.d/sudo.default
-	${TOUCH} ${STAGEDIR}${PREFIX}/etc/sudoers.d/.keep-me
-	${MV} ${STAGEDIR}${PREFIX}/etc/sudoers ${STAGEDIR}${PREFIX}/etc/sudoers.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/sudo.conf ${STAGEDIR}${PREFIX}/etc/sudo.conf.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/sudo_logsrvd.conf ${STAGEDIR}${PREFIX}/etc/sudo_logsrvd.conf.sample
+	${RM} ${STAGEDIR}${PREFIX}/etc/sudoers
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/cvtsudoers
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sudoreplay
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_logsrvd
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/sudo_sendlog
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/visudo
-.for f in group_file.so libsudo_util.so sudoers.so system_group.so
+.for f in audit_json.so group_file.so libsudo_util.so sample_approval.so sudoers.so system_group.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/sudo/${f}
 .endfor
+
+post-install-PYTHON-on:
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/libexec/sudo/python_plugin.so
 
 .include <bsd.port.mk>

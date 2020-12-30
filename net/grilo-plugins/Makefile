@@ -42,4 +42,6 @@ DMAP_DESC=			DMAP (DAAP, DPAP & DACP) support with libdmapsharing
 DMAP_MESON_YES=			enable-dmap
 DMAP_LIB_DEPENDS=		libdmapsharing-3.0.so:net/libdmapsharing
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>

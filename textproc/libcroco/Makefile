@@ -1,27 +1,22 @@
-# $MidnightBSD$
+# Created by: Adam Weinberger <adamw@FreeBSD.org>
 
 PORTNAME=	libcroco
-PORTVERSION=	0.6.8
-PORTREVISION=	1
+PORTVERSION=	0.6.13
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CSS2 parsing library
-LICENSE=	lgpl
+
+LICENSE=	lgpl2.1
 
 GNU_CONFIGURE=	yes
-USES=		gmake gettext libtool:keepla pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20 libxml2
 CONFIGURE_ARGS=	--disable-gtk-doc-html
+INSTALL_TARGET=	install-strip
 
 PLIST_SUB=	VERSION="0.6"
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 4016
-CONFIGURE_ARGS+=--disable-Bsymbolic
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

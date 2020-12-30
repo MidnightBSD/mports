@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# Created by: Koop Mast <kwm@FreeBSD.org>
 
 PORTNAME=	itstool
-PORTVERSION=	2.0.2
-PORTREVISION=	3
+PORTVERSION=	2.0.6
 CATEGORIES=	textproc
 MASTER_SITES=	http://files.itstool.org/itstool/
 
@@ -14,8 +13,12 @@ LICENSE=	gpl3
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/libxml2.py:textproc/py-libxml2@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/libxml2.py:textproc/py-libxml2@${PY_FLAVOR}
 
-USES=		python:2.7,run tar:bzip2
+USES=		python tar:bzip2
 GNU_CONFIGURE=	yes
+
+CONFLICTS_INSTALL=	itstool22
+
+NO_ARCH=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@PYTHON@|${PYTHON_CMD}|g' \

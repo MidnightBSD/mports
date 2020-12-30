@@ -1,48 +1,224 @@
---- SConstruct.orig	2018-01-04 23:28:55 UTC
+From cbfdc41e1d05aa1bfc298b8bd1a2fae9b3477e87 Mon Sep 17 00:00:00 2001
+From: MikaelUrankar <mikael.urankar@gmail.com>
+Date: Sat, 3 Oct 2020 17:26:21 +0200
+Subject: [PATCH 01/24] Backport SConstruct patch
+
+--- SConstruct.orig	2020-12-26 20:32:10 UTC
 +++ SConstruct
-@@ -922,9 +922,9 @@ if has_option('variables-help'):
-     print(env_vars.GenerateHelpText(env))
+@@ -28,8 +28,8 @@ import mongo.platform as mongo_platform
+ import mongo.toolchain as mongo_toolchain
+ import mongo.generators as mongo_generators
+ 
+-EnsurePythonVersion(2, 7)
+-EnsureSConsVersion(2, 5)
++EnsurePythonVersion(3, 5)
++EnsureSConsVersion(3, 0, 4)
+ 
+ from buildscripts import utils
+ from buildscripts import moduleconfig
+@@ -389,7 +389,7 @@ win_version_min_choices = {
+ }
+ 
+ add_option('win-version-min',
+-    choices=win_version_min_choices.keys(),
++    choices=list(win_version_min_choices.keys()),
+     default=None,
+     help='minimum Windows version to support',
+     type='choice',
+@@ -482,7 +482,7 @@ try:
+ except IOError as e:
+     # If the file error wasn't because the file is missing, error out
+     if e.errno != errno.ENOENT:
+-        print("Error opening version.json: {0}".format(e.strerror))
++        print(("Error opening version.json: {0}".format(e.strerror)))
+         Exit(1)
+ 
+     version_data = {
+@@ -491,14 +491,14 @@ except IOError as e:
+     }
+ 
+ except ValueError as e:
+-    print("Error decoding version.json: {0}".format(e))
++    print(("Error decoding version.json: {0}".format(e)))
+     Exit(1)
+ 
+ # Setup the command-line variables
+ def variable_shlex_converter(val):
+     # If the argument is something other than a string, propogate
+     # it literally.
+-    if not isinstance(val, basestring):
++    if not isinstance(val, str):
+         return val
+     parse_mode = get_option('variable-parse-mode')
+     if parse_mode == 'auto':
+@@ -563,7 +563,7 @@ def variable_distsrc_converter(val):
+ 
+ variables_files = variable_shlex_converter(get_option('variables-files'))
+ for file in variables_files:
+-    print("Using variable customization file %s" % file)
++    print(("Using variable customization file %s" % file))
+ 
+ env_vars = Variables(
+     files=variables_files,
+@@ -572,7 +572,7 @@ env_vars = Variables(
+ 
+ sconsflags = os.environ.get('SCONSFLAGS', None)
+ if sconsflags:
+-    print("Using SCONSFLAGS environment variable arguments: %s" % sconsflags)
++    print(("Using SCONSFLAGS environment variable arguments: %s" % sconsflags))
+ 
+ env_vars.Add('ABIDW',
+     help="Configures the path to the 'abidw' (a libabigail) utility")
+@@ -691,7 +691,7 @@ env_vars.Add('MONGO_DISTNAME',
+ def validate_mongo_version(key, val, env):
+     regex = r'^(\d+)\.(\d+)\.(\d+)-?((?:(rc)(\d+))?.*)?'
+     if not re.match(regex, val):
+-        print("Invalid MONGO_VERSION '{}', or could not derive from version.json or git metadata. Please add a conforming MONGO_VERSION=x.y.z[-extra] as an argument to SCons".format(val))
++        print(("Invalid MONGO_VERSION '{}', or could not derive from version.json or git metadata. Please add a conforming MONGO_VERSION=x.y.z[-extra] as an argument to SCons".format(val)))
+         Exit(1)
+ 
+ env_vars.Add('MONGO_VERSION',
+@@ -822,12 +822,12 @@ if installDir[0] not in ['$', '#']:
+         Exit(1)
+ 
+ sconsDataDir = Dir(buildDir).Dir('scons')
+-SConsignFile(str(sconsDataDir.File('sconsign')))
++SConsignFile(str(sconsDataDir.File('sconsign.py3')))
+ 
+ def printLocalInfo():
+     import sys, SCons
+-    print( "scons version: " + SCons.__version__ )
+-    print( "python version: " + " ".join( [ `i` for i in sys.version_info ] ) )
++    print(( "scons version: " + SCons.__version__ ))
++    print(( "python version: " + " ".join( [ repr(i) for i in sys.version_info ] ) ))
+ 
+ printLocalInfo()
+ 
+@@ -904,12 +904,12 @@ env.AddMethod(mongo_platform.env_os_is_w
+ env.AddMethod(mongo_platform.env_get_os_name_wrapper, 'GetTargetOSName')
+ 
+ def fatal_error(env, msg, *args):
+-    print(msg.format(*args))
++    print((msg.format(*args)))
+     Exit(1)
+ 
+ def conf_error(env, msg, *args):
+-    print(msg.format(*args))
+-    print("See {0} for details".format(env.File('$CONFIGURELOG').abspath))
++    print((msg.format(*args)))
++    print(("See {0} for details".format(env.File('$CONFIGURELOG').abspath)))
+     Exit(1)
+ 
+ env.AddMethod(fatal_error, 'FatalError')
+@@ -928,12 +928,12 @@ else:
+ env.AddMethod(lambda env: env['VERBOSE'], 'Verbose')
+ 
+ if has_option('variables-help'):
+-    print(env_vars.GenerateHelpText(env))
++    print((env_vars.GenerateHelpText(env)))
      Exit(0)
  
--unknown_vars = env_vars.UnknownVariables()
--if unknown_vars:
--    env.FatalError("Unknown variables specified: {0}", ", ".join(unknown_vars.keys()))
-+#unknown_vars = env_vars.UnknownVariables()
-+#if unknown_vars:
-+#    env.FatalError("Unknown variables specified: {0}", ", ".join(unknown_vars.keys()))
+ #unknown_vars = env_vars.UnknownVariables()
+ #if unknown_vars:
+-#    env.FatalError("Unknown variables specified: {0}", ", ".join(unknown_vars.keys()))
++#    env.FatalError("Unknown variables specified: {0}", ", ".join(list(unknown_vars.keys())))
  
  def set_config_header_define(env, varname, varval = 1):
      env['CONFIG_HEADER_DEFINES'][varname] = varval
-@@ -1612,7 +1612,7 @@ if env.TargetOSIs('posix'):
-             # If runtime hardening is requested, then build anything
-             # destined for an executable with the necessary flags for PIE.
-             env.AppendUnique(
--                PROGCCFLAGS=['-fPIE'],
-+                PROGCCFLAGS=['-fpic'],
-                 PROGLINKFLAGS=['-pie'],
-             )
+@@ -1018,7 +1018,7 @@ def CheckForProcessor(context, which_arc
+         context.Result(ret)
+         return ret;
  
-@@ -1626,7 +1626,7 @@ if env.TargetOSIs('posix'):
-                          "-Wno-unknown-pragmas",
-                          "-Winvalid-pch"] )
-     # env.Append( " -Wconversion" ) TODO: this doesn't really work yet
--    if env.TargetOSIs('linux', 'darwin', 'solaris'):
-+    if env.TargetOSIs('linux', 'darwin', 'solaris', 'freebsd'):
-         if not has_option("disable-warnings-as-errors"):
-             env.Append( CCFLAGS=["-Werror"] )
+-    for k in processor_macros.keys():
++    for k in list(processor_macros.keys()):
+         ret = run_compile_check(k)
+         if ret:
+             context.Result('Detected a %s processor' % k)
+@@ -1137,7 +1137,7 @@ else:
+     env['TARGET_ARCH'] = detected_processor
  
-@@ -1661,10 +1661,10 @@ if env.TargetOSIs('posix'):
-         env.Append( CCFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
-         env.Append( LINKFLAGS=["-fprofile-arcs", "-ftest-coverage"] )
+ if env['TARGET_OS'] not in os_macros:
+-    print("No special config for [{0}] which probably means it won't work".format(env['TARGET_OS']))
++    print(("No special config for [{0}] which probably means it won't work".format(env['TARGET_OS'])))
+ elif not detectConf.CheckForOS(env['TARGET_OS']):
+     env.ConfError("TARGET_OS ({0}) is not supported by compiler", env['TARGET_OS'])
  
--    if optBuild:
--        env.Append( CCFLAGS=["-O2"] )
--    else:
--        env.Append( CCFLAGS=["-O0"] )
-+    #if optBuild:
-+    #    env.Append( CCFLAGS=["-O2"] )
-+    #else:
-+    #    env.Append( CCFLAGS=["-O0"] )
+@@ -1927,7 +1927,7 @@ def doConfigure(myenv):
+             # form -Wno-xxx (but not -Wno-error=xxx), we also add -Wxxx to the flags. GCC does
+             # warn on unknown -Wxxx style flags, so this lets us probe for availablity of
+             # -Wno-xxx.
+-            for kw in test_mutation.keys():
++            for kw in list(test_mutation.keys()):
+                 test_flags = test_mutation[kw]
+                 for test_flag in test_flags:
+                     if test_flag.startswith("-Wno-") and not test_flag.startswith("-Wno-error="):
+@@ -1941,7 +1941,7 @@ def doConfigure(myenv):
+         # to make them real errors.
+         cloned.Append(CCFLAGS=['-Werror'])
+         conf = Configure(cloned, help=False, custom_tests = {
+-                'CheckFlag' : lambda(ctx) : CheckFlagTest(ctx, tool, extension, flag)
++                'CheckFlag' : lambda ctx : CheckFlagTest(ctx, tool, extension, flag)
+         })
+         available = conf.CheckFlag()
+         conf.Finish()
+@@ -2413,7 +2413,7 @@ def doConfigure(myenv):
+             "undefined" : myenv.File("#etc/ubsan.blacklist"),
+         }
  
-     # Promote linker warnings into errors. We can't yet do this on OS X because its linker considers
-     # noall_load obsolete and warns about it.
+-        blackfiles = set([v for (k, v) in blackfiles_map.iteritems() if k in sanitizer_list])
++        blackfiles = {v for (k, v) in blackfiles_map.items() if k in sanitizer_list}
+         blacklist_options=["-fsanitize-blacklist=%s" % blackfile
+                            for blackfile in blackfiles
+                            if os.stat(blackfile.path).st_size != 0]
+@@ -2425,7 +2425,7 @@ def doConfigure(myenv):
+         llvm_symbolizer = get_option('llvm-symbolizer')
+         if os.path.isabs(llvm_symbolizer):
+             if not myenv.File(llvm_symbolizer).exists():
+-                print("WARNING: Specified symbolizer '%s' not found" % llvm_symbolizer)
++                print(("WARNING: Specified symbolizer '%s' not found" % llvm_symbolizer))
+                 llvm_symbolizer = None
+         else:
+             llvm_symbolizer = myenv.WhereIs(llvm_symbolizer)
+@@ -2717,7 +2717,7 @@ def doConfigure(myenv):
+             files = ['ssleay32.dll', 'libeay32.dll']
+             for extra_file in files:
+                 if not addOpenSslLibraryToDistArchive(extra_file):
+-                    print("WARNING: Cannot find SSL library '%s'" % extra_file)
++                    print(("WARNING: Cannot find SSL library '%s'" % extra_file))
+ 
+         # Used to import system certificate keychains
+         if conf.env.TargetOSIs('darwin'):
+@@ -2745,7 +2745,7 @@ def doConfigure(myenv):
+                         # TODO: If we could programmatically extract the paths from the info output
+                         # we could give a better message here, but brew info's machine readable output
+                         # doesn't seem to include the whole 'caveats' section.
+-                        message = subprocess.check_output([brew, "info", "openssl"])
++                        message = subprocess.check_output([brew, "info", "openssl"]).decode('utf-8')
+                         advice = textwrap.dedent(
+                             """\
+                             NOTE: HomeBrew installed to {0} appears to have OpenSSL installed.
+@@ -3121,7 +3121,7 @@ def doConfigure(myenv):
+ 
+         outputIndex = next((idx for idx in [0,1] if conf.CheckAltivecVbpermqOutput(idx)), None)
+         if outputIndex is not None:
+-	    conf.env.SetConfigHeaderDefine("MONGO_CONFIG_ALTIVEC_VEC_VBPERMQ_OUTPUT_INDEX", outputIndex)
++            conf.env.SetConfigHeaderDefine("MONGO_CONFIG_ALTIVEC_VEC_VBPERMQ_OUTPUT_INDEX", outputIndex)
+         else:
+             myenv.ConfError("Running on ppc64le, but can't find a correct vec_vbpermq output index.  Compiler or platform not supported")
+ 
+@@ -3183,9 +3183,12 @@ def doLint( env , target , source ):
+     import buildscripts.pylinters
+     buildscripts.pylinters.lint_all(None, {}, [])
+ 
+-    import buildscripts.lint
+-    if not buildscripts.lint.run_lint( [ "src/mongo/" ] ):
+-        raise Exception( "lint errors" )
++    env.Command(
++        target="#run_lint",
++        source=["buildscripts/lint.py", "src/mongo"],
++        action="$PYTHON $SOURCES[0] $SOURCES[1]",
++    )
++
+ 
+ env.Alias( "lint" , [] , [ doLint ] )
+ env.AlwaysBuild( "lint" )

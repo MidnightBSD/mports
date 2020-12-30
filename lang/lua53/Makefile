@@ -1,7 +1,7 @@
 # Created by: GreenDog <fiziologus@gmail.com>
 
 PORTNAME=	lua
-DISTVERSION=	5.3.5
+DISTVERSION=	5.3.6
 CATEGORIES=	lang
 MASTER_SITES=	https://www.lua.org/ftp/
 PKGNAMESUFFIX=	53
@@ -11,7 +11,7 @@ COMMENT=	Powerful, efficient, lightweight, embeddable scripting language
 
 LICENSE=	mit
 
-LUA_VER=	5.3
+USES=		lua:core,53
 USE_LDCONFIG=	yes
 
 FAKE_OPTS=	prefixhack

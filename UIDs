@@ -126,7 +126,7 @@ mlvpn:*:176:176::0:0:mlVPN pseudo-user:/var/run/mlvpn:/usr/sbin/nologin
 _mdnsd:*:177:177::0:0:Multicast DNS Daemon:/var/empty:/usr/sbin/nologin
 otpw:*:178:178::0:0:OTPW pseudo-user:/var/lib/otpw:/usr/sbin/nologin
 gdnsd:*:179:179::0:0:gDNSd pseudo-user:/nonexistent:/usr/sbin/nologin
-# free: 180, GID used
+pdns:*:180:120::0:0:pdns pseudo-user:/nonexistent:/usr/sbin/nologin
 nagios:*:181:181::0:0:Nagios pseudo-user:/var/spool/nagios:/usr/sbin/nologin
 noc:*:182:182::0:0:NOC pseudo-user:/usr/local/noc:/bin/sh
 icinga:*:183:183::0:0:Icinga pseudo-user:/var/spool/icinga:/usr/sbin/nologin
@@ -164,7 +164,7 @@ opendnssec:*:215:215::0:0:Opendnssec Pseudo User:/nonexistent:/usr/sbin/nologin
 nsd:*:216:216::0:0:NSD DNS Server:/nonexistent:/usr/sbin/nologin
 anvil:*:217:217::0:0:anvil certificate dropper:/var/db/anvil:/bin/sh
 zap:*:218:218::0:0:zap user:/usr/local/zap:/bin/sh
-sddm:*:219:219::0:0:SDDM Display Manager user:/usr/local/etc/sddm/home:/usr/sbin/nologin
+sddm:*:219:219::0:0:SDDM Display Manager user:/var/lib/sddm:/usr/sbin/nologin
 bs:*:220:220::0:0:Big Sister:/usr/local/bigsister:/bin/sh
 opensips:*:221:221::0:0:OpenSIPS user:/nonexistent:/usr/sbin/nologin
 rtpproxy:*:222:222::0:0:& user:/nonexistent:/sbin/nologin
@@ -213,9 +213,9 @@ meta1:*:264:264::0:0:MeTA1 other:/nonexistent:/usr/sbin/nologin
 sshout:*:265:265::0:0:Secure Shout Host Oriented Unified Talk:/var/db/sshout:/usr/local/libexec/sshoutd
 step:*:266:266::0:0:Step CA:/nonexistent:/usr/sbin/nologin
 odoo:*:267:267::0:0:Odoo ERP:/nonexistent:/usr/sbin/nologin
-# free: 268
+tenshi:*:268:268::0:0:Tenshi user:/var/lib/tenshi:/usr/sbin/nologin
 # free: 269
-# free: 270
+_rpki-client:*:270:270::0:0:rpki-client user:/nonexistent:/usr/sbin/nologin
 # free: 271
 # free: 272
 # free: 273
@@ -315,7 +315,7 @@ httptunnel:*:361:361::0:0:httptunnel Daemon:/nonexistent:/usr/sbin/nologin
 # free: 367
 # free: 368
 # free: 369
-# free: 370
+_wsdd:*:370:370::0:0:Web Service Discovery Daemon:/nonexistent:/usr/sbin/nologin
 # free: 371
 # free: 372
 # free: 373
@@ -425,7 +425,7 @@ gitlab-pages:*:476:476::0:0:GitLab Pages Daemon:/var/tmp/gitlab_pages:/usr/sbin/
 fiche:*:477:477::0:0:fiche Daemon:/usr/local/www/fiche:/usr/sbin/nologin
 prometheus:*:478:478::0:0:Prometheus Daemon:/var/tmp/prometheus:/usr/sbin/nologin
 alertmanager:*:479:479::0:0:Alertmanager Daemon:/var/tmp/alertmanager:/usr/sbin/nologin
-# free: 480
+datadog:*:480:480::0:0:DataDog Agent:/var/db/datadog:/usr/sbin/nologin
 # free: 481
 # free: 482
 # free: 483
@@ -717,7 +717,7 @@ c-lightning:*:735:735::0:0:c-lightning Daemon:/var/db/c-lightning:/usr/sbin/nolo
 # free: 769
 postgres:*:770:770::0:0:PostgreSQL Daemon:/var/db/postgres:/bin/sh
 cockroach:*:771:771::0:0:CockroachDB Daemon:/var/db/cockroach:/usr/sbin/nologin
-# free: 772
+postgrest:*:772:772::0:0:PostgREST Daemon:/nonexistent:/usr/sbin/nologin
 # free: 773
 # free: 774
 # free: 775
@@ -752,7 +752,7 @@ clickhouse:*:800:800::0:0:ClickHouse Daemon:/var/db/clickhouse:/usr/sbin/nologin
 # free: 804
 # free: 805
 # free: 806
-# free: 807
+bosun:*:807:807::0:0:Bosun Daemon:/nonexistent:/usr/sbin/nologin
 clixon:*:808:808::0:0:Clixon Daemon:/nonexistent:/usr/sbin/nologin
 # free: 809
 # free: 810
@@ -777,7 +777,7 @@ statsd:*:826:826::0:0:Statsd Daemon:/nonexistent:/sbin/nologin
 # free: 829
 # free: 830
 # free: 831
-# free: 832
+beehive:*:832:832::0:0:beehive user:/nonexistent:/usr/sbin/nologin
 # free: 833
 # free: 834
 # free: 835
@@ -819,13 +819,13 @@ ebusd:*:854:854::0:0:eBUS Daemon user:/nonexistent:/usr/sbin/nologin
 archiva:*:871:871::0:0:Apache Archiva Daemon:/nonexistent:/usr/sbin/nologin
 bitmark:*:872:872::0:0:Bitmark Property System:/var/lib/bitmarkd:/usr/sbin/nologin
 bitmark-recorder:*:873:873::0:0:Bitmark Property Recorder:/var/lib/recorderd:/usr/sbin/nologin
-# free: 874
+librespeed:*:874:874::0:0:LibreSpeed user:/nonexistent:/usr/sbin/nologin
 # free: 875
 # free: 876
 # free: 877
-# free: 878
-# free: 879
-# free: 880
+gerbera:*:878:878::0:0:Gerbera DLNA Media Server:/nonexistent:/usr/sbin/nologin
+_encrypted-dns:*:879:879::0:0:encrypted-dns user:/var/empty:/usr/sbin/nologin
+pyspf-milter:*:880:880::0:0:pyspf-milter:/nonexistent:/usr/sbin/nologin
 ultimaker:*:881:881::0:0:Ultimaker user:/nonexistent:/usr/sbin/nologin
 midpoint:*:882:882::0:0:midPoint user:/var/db/midpoint:/usr/sbin/nologin
 ipfs-go:*:883:883::0:0:ipfs-go user:/var/db/ipfs-go:/bin/sh

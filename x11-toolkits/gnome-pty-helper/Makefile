@@ -1,23 +1,34 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-# $FreeBSD: head/x11-toolkits/gnome-pty-helper/Makefile 393607 2015-08-05 19:13:24Z kwm $
-# $MidnightBSD$
 
 PORTNAME=	gnome-pty-helper
-PORTREVISION=	0
-PKGNAMESUFFIX=	#empty
+PORTVERSION=	0.40.2
+CATEGORIES=	x11-toolkits gnome
+MASTER_SITES=	GNOME/sources/vte/${PORTVERSION:R}
+DISTNAME=	vte-${PORTVERSION}
+DIST_SUBDIR=	gnome3
 
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	utmp/wtmp/lastlog helper program for the vte Terminal widget
 
-VTE3_SLAVE=	yes
+LICENSE=	lgpl2.1
 
-MASTERDIR=	${.CURDIR}/../../x11-toolkits/vte3
+BUILD_DEPENDS+=	gnutls>=0:security/gnutls
+
+PORTSCOUT=	ignore:1
+
+USES=		gmake tar:xz
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INSTALL_TARGET=	install-strip
+
 CONFIGURE_WRKSRC=	${WRKSRC}/gnome-pty-helper
 BUILD_WRKSRC=	${WRKSRC}/gnome-pty-helper
 INSTALL_WRKSRC=	${WRKSRC}/gnome-pty-helper
-PLIST=		${.CURDIR}/pkg-plist
-USE_GNOME=	gnomeprefix
-CONFIGURE_ARGS=	# empty
-#PATCH_STRIP=	-p1
-#EXTRA_PATCHES+=	${MASTERDIR}/files/patch-gnome-pty-helper_gnome-pty-helper.c
 
-.include "${MASTERDIR}/Makefile"
+post-patch:
+	@${REINPLACE_CMD} -e 's|(AM_MAKEFLAGS) install-exec-hook|(AM_MAKEFLAGS)|g' \
+		${WRKSRC}/gnome-pty-helper/Makefile.in
+
+.include <bsd.port.mk>

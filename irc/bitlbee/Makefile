@@ -1,143 +1,114 @@
-# $MidnightBSD$
-
 PORTNAME=	bitlbee
-PORTVERSION=	3.2.2
-PORTREVISION=	0
+PORTVERSION=	3.6
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	brix
+		FREEBSD_LOCAL/brix
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An IRC to other chat networks gateway
+COMMENT=	IRC to other chat networks gateway
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	xmlto:textproc/xmlto \
+		xsltproc:textproc/libxslt
+
+USES=		gettext-runtime gmake gnome pkgconfig
 
 SUB_FILES=	pkg-message
 PORTDOCS=	AUTHORS CHANGES CREDITS FAQ README
 PORTEXAMPLES=	bitlbee.conf motd.txt
 
-GNU_CONFIGURE=	yes
-USES=		gmake pkgconfig
-USE_GNOME=	glib20
+HAS_CONFIGURE=	yes
 USE_RC_SUBR=	bitlbee
-PKGMESSAGE=	${WRKDIR}/pkg-message
+USE_GNOME=	glib20
+OPTIONS_SUB=	yes
 
-OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES IPV6 OTR
+OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES LDAP OTR PAM
 
-OPTIONS_SINGLE=		SSL
-OPTIONS_SINGLE_SSL=	OPENSSL GNUTLS
+OPTIONS_SINGLE=		EVENTS SSL
+OPTIONS_SINGLE_EVENTS=	GLIB LIBEVENT
+OPTIONS_SINGLE_SSL=	OPENSSL GNUTLS NSS
 
 OPTIONS_MULTI=		PROTO
-OPTIONS_MULTI_PROTO=	JABBER LIBPURPLE MSN OSCAR TWITTER YAHOO
+OPTIONS_MULTI_PROTO=	LIBPURPLE JABBER MSN OSCAR TWITTER
 
-OTR_DESC=		Off-the-Record Messaging support (Requires GnuTLS)
+LIBPURPLE_PREVENTS=	JABBER MSN OSCAR TWITTER
+LIBPURPLE_PREVENTS_MSG=	If libpurple is enabled, all native protocols must be disabled
+
+GLIB_DESC=		Use glib as event handler
+LIBEVENT_BROKEN=	bitlbee w/ libevent fails to start as daemon or fork
+LIBEVENT_DESC=		Use libevent as event handler
 LIBPURPLE_DESC=		Use libpurple for protocol support
 MSN_DESC=		Microsoft Messenger support
-OSCAR_DESC=		OSCAR (ICQ, AIM) support
+OSCAR_DESC=		OSCAR (ICQ) support
+OTR_DESC=		Off-the-Record Messaging support
 TWITTER_DESC=		Twitter support
-YAHOO_DESC=		Yahoo! Messenger support
 
-OPTIONS_DEFAULT=	GNUTLS JABBER MSN OSCAR TWITTER YAHOO
+OPTIONS_DEFAULT=	GLIB GNUTLS JABBER OSCAR OTR TWITTER
 
-CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0
+CONFIGURE_ARGS=		--config=/var/db/bitlbee \
+			--pcdir=${PREFIX}/libdata/pkgconfig \
+			--prefix=${PREFIX} \
+			--mandir=${MANPREFIX}/man \
+			--strip=1 \
+			--yahoo=0
+
+DEBUG_CONFIGURE_ON=	--debug=1
+DOCS_USES=		python:build
+DOCS_CONFIGURE_ENV=	PYTHON=${PYTHON_CMD}
+GLIB_CONFIGURE_ON=	--events=glib
+GNUTLS_CONFIGURE_ON=	--ssl=gnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
+			libgcrypt.so:security/libgcrypt \
+			libgpg-error.so:security/libgpg-error
+JABBER_CONFIGURE_OFF=	--jabber=0
+LDAP_CONFIGURE_ON=	--ldap=1
+LDAP_USE=		OPENLDAP=yes
+LIBEVENT_CONFIGURE_ON=	--events=libevent --libevent=${LOCALBASE}
+LIBEVENT_LIB_DEPENDS=	libevent.so:devel/libevent
+LIBPURPLE_CONFIGURE_ON=	--purple=1
+LIBPURPLE_LIB_DEPENDS=	libpurple.so:net-im/libpurple
+MSN_CONFIGURE_OFF=	--msn=0
+NSS_CONFIGURE_ON=	--ssl=nss
+NSS_LIB_DEPENDS=	libnss3.so:security/nss \
+			libnspr4.so:devel/nspr \
+			libplc4.so:devel/nspr \
+			libplds4.so:devel/nspr
+OPENSSL_CONFIGURE_ON=	--ssl=openssl
+OPENSSL_USES=		ssl
+OSCAR_CONFIGURE_OFF=	--oscar=0
+OTR_CONFIGURE_ON=	--otr=1
+OTR_LIB_DEPENDS=	libotr.so.5:security/libotr \
+			libgcrypt.so:security/libgcrypt \
+			libgpg-error.so:security/libgpg-error
+PAM_CONFIGURE_ON=	--pam=1
+TWITTER_CONFIGURE_OFF=	--twitter=0
 
 USERS=		bitlbee
 GROUPS=		bitlbee
 
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MOPENSSL} && ${PORT_OPTIONS:MOTR}
-IGNORE=Off-the-Record Messaging support requires GnuTLS support
-.endif
-
-.if ${PORT_OPTIONS:MDEBUG}
-CONFIGURE_ARGS+=--debug=1
-.else
-CONFIGURE_ARGS+=--debug=0
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=--ipv6=1
-.else
-CONFIGURE_ARGS+=--ipv6=0
-.endif
-
-.if ${PORT_OPTIONS:MOPENSSL}
-CONFIGURE_ARGS+=--ssl=openssl
-.elif ${PORT_OPTIONS:MGNUTLS}
-CONFIGURE_ARGS+=--ssl=gnutls
-LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt
-.endif
-
-.if ${PORT_OPTIONS:MOTR}
-CONFIGURE_ARGS+=--otr=1
-LIB_DEPENDS+=	libotr.so:${PORTSDIR}/security/libotr
-.else
-CONFIGURE_ARGS+=--otr=0
-.endif
-
-.if ${PORT_OPTIONS:MMSN}
-CONFIGURE_ARGS+=--msn=1
-.else
-CONFIGURE_ARGS+=--msn=0
-.endif
-
-.if ${PORT_OPTIONS:MJABBER}
-CONFIGURE_ARGS+=--jabber=1
-.else
-CONFIGURE_ARGS+=--jabber=0
-.endif
-
-.if ${PORT_OPTIONS:MOSCAR}
-CONFIGURE_ARGS+=--oscar=1
-.else
-CONFIGURE_ARGS+=--oscar=0
-.endif
-
-.if ${PORT_OPTIONS:MYAHOO}
-CONFIGURE_ARGS+=--yahoo=1
-.else
-CONFIGURE_ARGS+=--yahoo=0
-.endif
-
-.if ${PORT_OPTIONS:MTWITTER}
-CONFIGURE_ARGS+=--twitter=1
-.else
-CONFIGURE_ARGS+=--twitter=0
-.endif
-
-.if ${PORT_OPTIONS:MLIBPURPLE}
-CONFIGURE_ARGS+=--purple=1
-LIB_DEPENDS+=	libpurple.so:${PORTSDIR}/net-im/libpurple
-.else
-CONFIGURE_ARGS+=--purple=0
-.endif
-
 post-patch:
-	@${REINPLACE_CMD} \
-		-e "s|^\(EFLAGS=.*\)|\1 ${LDFLAGS}|" \
+	@${REINPLACE_CMD} -e '/^install:/ s/$$/ install-dev/' \
+		${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e "s|^\(EFLAGS=.*\)|\1 ${LDFLAGS}|" \
+			  -e "/include.*ldap.h/ s,-E,-I${LOCALBASE}/include -E," \
 		${WRKSRC}/configure
-
-	@${REINPLACE_CMD} \
-		-e "s:/etc/bitlbee/motd.txt:${PREFIX}/etc/bitlbee/motd.txt:" \
+	@${REINPLACE_CMD} -e "s:/etc/bitlbee/motd.txt:${ETCDIR}/motd.txt:" \
 		-e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
 		${WRKSRC}/bitlbee.conf
-	@${REINPLACE_CMD} \
-		-e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
+	@${REINPLACE_CMD} -e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
 		${WRKSRC}/doc/bitlbee.8
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/sbin/bitlbee
-	${MKDIR} ${PREFIX}/etc/bitlbee
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S@^@${WRKSRC}/doc/@} ${DOCSDIR}
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${PORTEXAMPLES:S@^@${WRKSRC}/@} ${EXAMPLESDIR}
-.endif
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S@^@${WRKSRC}/doc/@} ${FAKE_DESTDIR}${DOCSDIR}
+
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${PORTEXAMPLES:S@^@${WRKSRC}/@} ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

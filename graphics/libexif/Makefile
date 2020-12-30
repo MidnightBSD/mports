@@ -1,8 +1,7 @@
 PORTNAME=	libexif
-PORTVERSION=	0.6.21
-PORTREVISION=	5
+PORTVERSION=	0.6.22
 CATEGORIES=	graphics
-MASTER_SITES=	SF
+MASTER_SITES=	https://github.com/libexif/libexif/releases/download/libexif-${PORTVERSION:S|.|_|g}-release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to read digital camera file meta-data
@@ -12,10 +11,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	DOCS NLS
 
-USES=		cpe gmake libtool pathfix pkgconfig tar:bzip2
+USES=		cpe gmake libtool localbase pathfix pkgconfig tar:xz
 CPE_VENDOR=	curtis_galloway
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-docs
 USE_LDCONFIG=	yes

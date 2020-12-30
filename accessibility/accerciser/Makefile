@@ -1,5 +1,7 @@
+# Created by: Michael Johnson <ahze@FreeBSD.org>
+
 PORTNAME=	accerciser
-PORTVERSION=	3.22.0
+PORTVERSION=	3.38.0
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -18,7 +20,7 @@ RUN_DEPENDS=	gsettings-desktop-schemas>=3.2.0:devel/gsettings-desktop-schemas \
 
 NO_ARCH=	yes
 USES=		gettext gmake gnome localbase:ldflags pkgconfig python:3.4+ shebangfix tar:xz
-USE_GNOME=	gtk30 intlhack pygobject3
+USE_GNOME=	gtk30 pygobject3
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 SHEBANG_FILES=	plugins/ipython_view.py

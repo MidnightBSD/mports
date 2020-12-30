@@ -1,0 +1,38 @@
+--- Jamrules.orig	2018-02-05 15:46:46.000000000 -0500
++++ Jamrules	2020-12-26 14:07:35.461353000 -0500
+@@ -449,12 +449,11 @@
+ 	# P4BIN is set to ../p4-bin (relative to P4)
+ 
+ 	SubDir AllP4 p4 ;	# where we are
+-	SubDir AllP4 p4-bin ;	# where we want to be
++	SubDir AllP4 p4 p4-bin ;	# where we want to be
+ 	SubDir P4BIN ;		# name is that
+ 	SubDir AllP4 p4 ;	# back to where we started
+ 
+ 	EXEC_SUB_TOKENS =
+-		$(OS:L)$(OSVER:EL)$(OSPLAT:EL)
+ 		$(BUILD)
+ 		$(TYPE:L) ;
+ 
+@@ -931,11 +930,16 @@
+ 		OPTIM += -Wno-parentheses -Wno-switch -fwrapv ;
+ 
+ 		_mflags = ;
+-		switch $(OSPLAT:U)
+-		{
+-		case X86     : _mflags = -m32 ;
+-		case X86_64  : _mflags = -m64 ;
+-		}
++
++		$(GENFLAGS) += $(_mflags) -pipe ;
++		LINKFLAGS   += $(_mflags) ;
++
++	case MIDNIGHTBSD[12]* : 
++		SetCommonCompiler $(OSCOMP:E=clang) ;
++
++		OPTIM += -Wno-parentheses -Wno-switch -fwrapv ;
++
++		_mflags = ;
+ 
+ 		$(GENFLAGS) += $(_mflags) -pipe ;
+ 		LINKFLAGS   += $(_mflags) ;

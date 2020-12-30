@@ -1,7 +1,6 @@
 PORTNAME=	aom
 DISTVERSIONPREFIX=	v
-# XXX Switch to release after https://bugs.chromium.org/p/aomedia/issues/detail?id=2545
-DISTVERSION=	2.0.0-rc1
+DISTVERSION=	2.0.1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -1,5 +1,5 @@
 PORTNAME=	wx
-PORTVERSION=	3.0.4
+PORTVERSION=	3.0.5.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	30-gtk3
@@ -14,13 +14,15 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \
+		libsoup-2.4.so:devel/libsoup \
 		libtiff.so:graphics/tiff
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	wxWidgets
 GH_PROJECT=	wxWidgets
 
-USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase pkgconfig
+USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
+		pkgconfig xorg
 USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf2 gtk30
@@ -40,11 +42,12 @@ CONFIGURE_ARGS=	--with-libpng=sys \
 		--enable-backtrace \
 		--enable-ipv6 \
 		--enable-optimise \
-		--enable-utf8 \
+		--enable-unicode \
+		--enable-std_string \
 		--enable-graphics_ctx \
 		--enable-compat26 \
 		--enable-compat28
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
 

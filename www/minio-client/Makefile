@@ -94,6 +94,8 @@ GO_BUILDFLAGS=	-ldflags=" \
 		-X github.com/minio/mc/cmd.GOPATH=${WRKSRC} -s -w"
 GO_TARGET=	:${MC}
 
+NO_TEST=	yes
+
 post-extract:
 	-${RM} ${WRKSRC}/cmd/client-fs_freebsd_netbsd.go
 	-${RM} ${WRKSRC}/pkg/disk/stat_freebsd_netbsd.go

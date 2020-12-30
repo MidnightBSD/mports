@@ -65,6 +65,8 @@ GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
 		org.gnome.settings-daemon.plugins.sharing.gschema.xml \
 		org.gnome.settings-daemon.plugins.xsettings.gschema.xml
 
+NO_TEST=	yes
+
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/org.gnome.settings-daemon.plugins.power.gschema.xml.override \
 		${STAGEDIR}${PREFIX}/share/glib-2.0/schemas/

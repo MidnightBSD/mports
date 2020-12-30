@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_alsa_asoundlib_h=no \
 		ac_cv_header_ltdl_h=no
 CONFIGURE_ARGS=	--disable-docbook --disable-instrumentation
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 SUB_FILES=	pkg-message
 

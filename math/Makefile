@@ -14,6 +14,7 @@ SUBDIR += facile
 SUBDIR += fftw3
 SUBDIR += fftw3-float
 SUBDIR += fftw3-long
+SUBDIR += glm
 SUBDIR += gmm++
 SUBDIR += gmp
 SUBDIR += gnome-calculator

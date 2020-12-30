@@ -1,5 +1,7 @@
+# Created by: Andreas Kohn
+
 PORTNAME=	mercurial
-PORTVERSION=	5.1.1
+PORTVERSION=	5.5
 CATEGORIES=	devel python
 MASTER_SITES=	https://www.mercurial-scm.org/release/
 
@@ -9,12 +11,13 @@ COMMENT=	Fast, lightweight source control management system
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe python:2.7
-USE_PYTHON=	distutils
+USES=		cpe python shebangfix
+SHEBANG_FILES=	contrib/hgweb.fcgi hgweb.cgi
+USE_PYTHON=	autoplist distutils
 
-OPTIONS_DEFINE=	CA_BUNDLE DATA DOCS NLS FREEBSD
-OPTIONS_DEFAULT=CA_BUNDLE DATA
-OPTIONS_SUB=	yes
+OPTIONS_DEFINE=		CA_BUNDLE DATA DOCS NLS FREEBSD
+OPTIONS_DEFAULT=	CA_BUNDLE DATA
+OPTIONS_SUB=		yes
 
 CA_BUNDLE_DESC=		Install CA Certificates
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
@@ -51,6 +54,12 @@ CONTRIB_FILES=	bash_completion \
 		vim/patchreview.vim
 PORTDOCS=	CONTRIBUTORS README.rst
 
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_VER} != ${PYTHON_DEFAULT}
+PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
+.endif
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${STAGEDIR}${PREFIX}/man/man5/
@@ -71,4 +80,4 @@ post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

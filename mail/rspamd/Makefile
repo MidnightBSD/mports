@@ -1,5 +1,5 @@
 PORTNAME=	rspamd
-PORTVERSION=	2.4
+PORTVERSION=	2.6
 CATEGORIES=	mail
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,19 +11,14 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libicui18n.so:devel/icu \
 		libsodium.so:security/libsodium
-BUILD_DEPENDS=	ragel:devel/ragel \
-		clang60:devel/llvm60
-RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss \
-		clang60:devel/llvm60
+BUILD_DEPENDS=	ragel:devel/ragel
+RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
 
 USES=		cmake compiler:c11 gnome perl5 pkgconfig \
 		sqlite ssl
 USE_LDCONFIG=	yes
 USE_PERL5=	build run
 USE_GNOME=	glib20
-
-CC=		clang60
-CXX=		clang++60
 
 CONFLICTS_INSTALL=	rspamd-devel
 
@@ -61,6 +56,7 @@ USE_GITHUB=	yes
 USE_RC_SUBR=	rspamd
 
 BLAS_CMAKE_ON=	-DENABLE_BLAS=ON
+BLAS_LIB_DEPENDS=	libblis.so:math/blis liblapack.so:math/lapack
 BLAS_USES=	blaslapack:openblas
 
 GPERF_CMAKE_ON=	-DENABLE_GPERF_TOOLS=ON
@@ -69,8 +65,9 @@ GPERF_LIB_DEPENDS=	libprofiler.so:devel/google-perftools
 HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 
+LUAJIT_CMAKE_OFF=	-DENABLE_LUAJIT=OFF
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
-LUAJIT_USES_OFF=	lua:51
+LUAJIT_USES_OFF=	lua:51+
 
 CGP_RUN_DEPENDS+=	\
 	p5-AnyEvent-HTTP>=0:www/p5-AnyEvent-HTTP \

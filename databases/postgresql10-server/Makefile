@@ -1,6 +1,6 @@
 PORTNAME?=	postgresql
-DISTVERSION?=	10.9
-PORTREVISION?=	1
+DISTVERSION?=	10.15
+PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
 PKGNAMESUFFIX?= ${DISTV:S/.//}${COMPONENT}
@@ -64,6 +64,8 @@ INSTALL_DIRS?=	src/common src/timezone src/backend \
 
 BUILD_DIRS?=	src/port ${INSTALL_DIRS}
 INSTALL_TARGET?=install-strip
+
+OPTIONS_SUB=	yes
 
 .if !defined(CLIENT_ONLY) && !defined(SLAVE_ONLY)
 SERVER_ONLY=	yes

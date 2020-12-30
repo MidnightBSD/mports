@@ -1,5 +1,7 @@
+# Created by: Pietro Cerutti <gahr@FreeBSD.org>
+
 PORTNAME=	gegl
-PORTVERSION=	0.4.18
+PORTVERSION=	0.4.26
 CATEGORIES=	graphics
 MASTER_SITES=	GIMP
 
@@ -13,11 +15,14 @@ BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
 		libjson-glib-1.0.so:devel/json-glib \
 		libfribidi.so:converters/fribidi \
+		libnsgif.so:graphics/libnsgif \
 		libpng.so:graphics/png
 
-USES=		compiler:c++14-lang cpe gettext gnome jpeg libtool localbase \
-		meson pathfix pkgconfig shebangfix uniquefiles tar:xz
-USE_GNOME=	glib20 intltool introspection:build
+NO_TEST=	yes
+
+USES=		compiler:c++14-lang cpe gettext gnome jpeg localbase \
+		meson pkgconfig shebangfix uniquefiles tar:xz
+USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Ddocs=false \
 		-Dworkshop=false \
@@ -31,25 +36,18 @@ MESON_ARGS=	-Ddocs=false \
 		-Dvapigen=disabled \
 		-Dlua=disabled
 
-NO_TEST=	yes
-
-GEGL_MINOR=	417
+GEGL_SHLIB=	0.425.1
 GEGL_VER=	0.4
-PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}" GEGL_VER=${GEGL_VER}
+PLIST_SUB+=	GEGL_SHLIB=${GEGL_SHLIB} GEGL_VER=${GEGL_VER}
 
 SHEBANG_FILES=	tools/xml_insert.sh
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	CAIRO ENSCRIPT FFMPEG PIXBUF GRAPHVIZ JASPER \
-		OPENEXR RAW PANGO LIBRSVG2 SDL SPIRO V4L \
+		OPENEXR RAW PANGO POPPLER LIBRSVG2 SDL SPIRO V4L \
 		LCMS2 WEBP TIFF GEXIV2
 OPTIONS_DEFAULT=CAIRO ENSCRIPT GEXIV2 PIXBUF GRAPHVIZ JASPER LCMS2 \
-		OPENEXR RAW PANGO LIBRSVG2 SDL SPIRO V4L WEBP TIFF
-
-ENSCRIPT_DESC=	Enscript support
-SPIRO_DESC=	Spiro support
-#UMFPACK_DESC=	UMFpack support
-GEXIV2_DESC=	EXIF and IPTC metadata support via gexiv2
+		OPENEXR RAW PANGO POPPLER LIBRSVG2 SDL SPIRO V4L WEBP TIFF
 
 PIXBUF_USE=	GNOME=gdkpixbuf2
 PIXBUF_MESON_ENABLED=	gdk-pixbuf
@@ -60,6 +58,10 @@ CAIRO_MESON_ENABLED=	cairo
 PANGO_USE=	GNOME=pango
 PANGO_MESON_ENABLED=	pango
 
+POPPLER_LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib
+POPPLER_MESON_ENABLED=	poppler
+
+ENSCRIPT_DESC=		Enscript support
 ENSCRIPT_BUILD_DEPENDS=	enscript:print/enscript-a4
 
 FFMPEG_LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg
@@ -88,22 +90,26 @@ SDL_USE=		SDL=sdl2
 SDL_USES=		sdl
 SDL_MESON_ENABLED=	sdl2
 
+SPIRO_DESC=		Spiro support
 SPIRO_LIB_DEPENDS=	libspiro.so:graphics/libspiro
 SPIRO_MESON_ENABLED=	libspiro
 
 V4L_BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
 V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 V4L_MESON_ENABLED=	libv4l2
+V4L_VARS=		LICENSE+=lgpl
 
 WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_MESON_ENABLED=	webp
 
 # UMFPACK has two "problems"
 # 1) it build with port gcc 2) needed libs aren't recorded in the libraries.
+#UMFPACK_DESC=		UMFpack support
 #UMFPACK_LIB_DEPENDS=	libumfpack.so:math/suitesparse
 #UMFPACK_MESON_ENABLED=	umfpack
 MESON_ARGS+=		-Dumfpack=disabled
 
+GEXIV2_DESC=		EXIF and IPTC metadata support via gexiv2
 GEXIV2_LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2
 GEXIV2_MESON_ENABLED=	gexiv2
 

@@ -29,4 +29,7 @@ QUVI_DESC=	Flash media stream URL support
 QUVI_MESON_YES=	enable-quvi
 QUVI_LIB_DEPENDS=	libquvi-0.9.so:multimedia/libquvi09
 
+#magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>

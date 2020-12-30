@@ -1,7 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-chess
-PORTVERSION=	3.28.1
+PORTVERSION=	3.38.0
+PORTREVISION=	1
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -18,14 +17,14 @@ BUILD_DEPENDS=	vala:lang/vala \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gnome localbase meson \
+USES=		desktop-file-utils gettext gl gnome localbase meson \
 		pkgconfig python:3.6+,build tar:xz
 USE_GNOME=	cairo gtk30 librsvg2 libxml2:build
 INSTALLS_ICONS=	yes
 USE_GL=		gl egl
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
-GLIB_SCHEMAS=	org.gnome.chess.gschema.xml
+GLIB_SCHEMAS=	org.gnome.Chess.gschema.xml
 
 OPTIONS_DEFINE=	GNUCHESS
 OPTIONS_DEFAULT=GNUCHESS
