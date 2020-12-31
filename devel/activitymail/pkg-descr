@@ -9,5 +9,3 @@ efficient.
 An additional option allows for diffs to be calculated for the recent changes,
 and either appended to the message (like syncmail) or added as an attachment
 (neater). See the -d and -a options in the documentation.
-
-WWW: http://search.cpan.org/dist/activitymail/
