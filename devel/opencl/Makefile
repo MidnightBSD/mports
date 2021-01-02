@@ -1,7 +1,7 @@
 # Created by: Oliver Hartmann <ohartman@zedat.fu-berlin.de>
 
 PORTNAME=	opencl
-PORTVERSION=	2.2
+PORTVERSION=	3.0
 CATEGORIES=	devel
 
 MAINTAINER=	poprts@MidnightBSD.org
@@ -20,23 +20,18 @@ GH_PROJECT=	OpenCL-Headers OpenCL-CLHPP:clhpp
 GH_TAGNAME=	${HEADER_TAG} ${CLHPP_TAG}:clhpp
 
 # the header releases don't have tags yet, so use git commit for now
-HEADER_TAG=	f039db6
-CLHPP_TAG=	8b6a312
+HEADER_TAG=	b04034a
+CLHPP_TAG=	64c206f	#  include missing CL/opencl.hpp
 
-USES=		python:build
+NO_BUILD=	yes
 NO_ARCH=	yes
 
-WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}/opencl${PORTVERSION:S/.//}/CL
-
-do-build:
-	@cd ${WRKSRC_clhpp} && ${PYTHON_CMD} gen_cl_hpp.py
+WRKSRC=	${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}/CL
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/include/CL
 	${INSTALL_DATA} ${WRKSRC}/*.h ${STAGEDIR}${PREFIX}/include/CL
-	${INSTALL_DATA} ${WRKSRC_clhpp}/cl.hpp \
-		${STAGEDIR}${PREFIX}/include/CL/cl.hpp
-	${INSTALL_DATA} ${WRKSRC_clhpp}/input_cl2.hpp \
-		${STAGEDIR}${PREFIX}/include/CL/cl2.hpp
+	${INSTALL_DATA} ${WRKSRC_clhpp}/include/CL/*.hpp \
+		${STAGEDIR}${PREFIX}/include/CL
 
 .include <bsd.port.mk>

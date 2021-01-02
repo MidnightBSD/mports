@@ -6,6 +6,7 @@ SUBDIR += cheese
 SUBDIR += clive
 SUBDIR += clutter-gst
 SUBDIR += clutter-gst3
+SUBDIR += cmrtlib
 SUBDIR += cuse4bsd-kmod
 SUBDIR += dav1d
 SUBDIR += dirac

@@ -290,6 +290,7 @@ SUBDIR += ninja
 SUBDIR += npth
 SUBDIR += nsgenbind
 SUBDIR += nspr
+SUBDIR += ocl-icd
 SUBDIR += oniguruma
 SUBDIR += opencl
 SUBDIR += opengrok
