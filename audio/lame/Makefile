@@ -1,22 +1,19 @@
 PORTNAME=	lame
 PORTVERSION=	3.100
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/3.100
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast MP3 encoder kit
 
-LICENSE=	lgpl_patent
-LICENSE_NAME=	LGPL + Patent restrictions.
-LICENSE_TEXT=	Lame is covered under the LGPL, but commercial use requires royalty payments
-LICENSE_PERMS=	dist-mirror pkg-mirror
+LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake iconv libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
-
-RESTRICTED=	patent issues, see http://www.mp3licensing.com/
 
 DOC_FILES=	API LICENSE README TODO USAGE
 
@@ -35,9 +32,11 @@ post-patch:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmp3lame.so.0
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for file in ${DOC_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>
