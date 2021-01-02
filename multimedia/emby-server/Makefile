@@ -1,5 +1,6 @@
 PORTNAME=	emby-server
 PORTVERSION=	4.2.1.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/MediaBrowser/Emby.Releases/releases/download/${PORTVERSION}/ \
 		https://mediabrowser.github.io/embytools/
@@ -31,6 +32,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libfribidi.so:converters/fribidi \
 		libgmp.so:math/gmp \
 		libgnutls.so:security/gnutls \
+		libmfx.so:multimedia/intel-media-sdk \
 		libogg.so:audio/libogg \
 		libopus.so:audio/opus \
 		libpng16.so:graphics/png \
@@ -76,6 +78,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-libdrm \
 		--enable-libfreetype \
 		--enable-libfribidi \
+		--enable-libmfx \
 		--enable-libopus \
 		--enable-libtheora \
 		--enable-libvorbis \
@@ -89,7 +92,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--enable-version3
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 OPTIONS_DEFINE=		LAME SMB X11
-OPTIONS_DEFAULT=	SMB X11
+OPTIONS_DEFAULT=	LAME SMB X11
 
 LAME_CONFIGURE_ENABLE=	libmp3lame
 LAME_LIB_DEPENDS=	libmp3lame.so:audio/lame
