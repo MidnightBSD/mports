@@ -128,7 +128,7 @@ do-install:	.SILENT
 	(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 
 do-install-CONTRIB-on:
-	@${MKDIR} ${STAGEDIR}${WWWDIR}/contrib
-	(cd ${WRKSRC}/contrib && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/contrib)
+	@${MKDIR} ${FAKE_DESTDIR}${WWWDIR}/contrib
+	(cd ${WRKSRC}/contrib && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${WWWDIR}/contrib)
 
 .include <bsd.port.mk>
