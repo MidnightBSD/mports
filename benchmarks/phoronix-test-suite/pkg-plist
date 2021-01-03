@@ -2611,11 +2611,11 @@
 %%DATADIR%%/ob-cache/test-profiles/pts/opencv-1.0.0/downloads.xml
 %%DATADIR%%/ob-cache/test-profiles/pts/opencv-1.0.0/results-definition.xml
 %%DATADIR%%/ob-cache/test-profiles/pts/opencv-1.0.0/install.sh
-%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-%%OSREL%%/install_windows.sh
-%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-%%OSREL%%/results-definition.xml
-%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-%%OSREL%%/downloads.xml
-%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-%%OSREL%%/install.sh
-%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-%%OSREL%%/test-definition.xml
+%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-2.0.2/install_windows.sh
+%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-2.0.2/results-definition.xml
+%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-2.0.2/downloads.xml
+%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-2.0.2/install.sh
+%%DATADIR%%/ob-cache/test-profiles/pts/aom-av1-2.0.2/test-definition.xml
 %%DATADIR%%/ob-cache/test-profiles/pts/build-llvm-1.2.1/pre.sh
 %%DATADIR%%/ob-cache/test-profiles/pts/build-llvm-1.2.1/interim.sh
 %%DATADIR%%/ob-cache/test-profiles/pts/build-llvm-1.2.1/results-definition.xml
