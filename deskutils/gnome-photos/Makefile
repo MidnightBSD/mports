@@ -47,4 +47,6 @@ INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	org.gnome.photos.gschema.xml
 MESON_ARGS=	--buildtype plain
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
