@@ -27,7 +27,6 @@ SUBDIR += eog
 SUBDIR += eog-plugins
 SUBDIR += evas_generic_loaders-svg
 SUBDIR += evince
-SUBDIR += evince-lite
 SUBDIR += exif
 SUBDIR += exiv2
 SUBDIR += feh
