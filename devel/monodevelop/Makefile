@@ -1,82 +1,83 @@
-# $MidnightBSD$
+# Created by: Tom McLaughlin <tmclaugh@sdf.lonestar.org>
 
 PORTNAME=	monodevelop
-PORTVERSION=	6.1.1.15
-PORTREVISION=	1
+PORTVERSION=	7.6.11.7
+DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IDE for the .NET platform
 
-LICENSE=	unknown
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-EXTRACT_DEPENDS= ${LOCALBASE}/bin/bsdtar:archivers/libarchive
-BUILD_DEPENDS=	mautil:devel/mono-addins \
+BUILD_DEPENDS=	msbuild:devel/msbuild \
 		fsharpc:lang/fsharp \
-		cmake:devel/cmake \
-		referenceassemblies-pcl>=0:lang/referenceassemblies-pcl
+		cmake:devel/cmake
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libssh2.so:security/libssh2
 RUN_DEPENDS=	${LOCALBASE}/lib/libgdiplus.a:x11-toolkits/libgdiplus \
 		exctags:devel/ctags \
-		mautil:devel/mono-addins \
 		git:devel/git \
 		svn:devel/subversion \
-		fsharpc:lang/fsharp
+		fsharpc:lang/fsharp # msbuild
 
-NUGET_DEPENDS=  ExtCore=0.8.45 \
-		FSharp.Compiler.CodeDom=1.0.0.1 \
-		FSharp.Compiler.Service=3.0.0 \
-		FSharp.Core=4.0.0.1 \
-		Fantomas=2.3.0 \
-		Microsoft.AspNet.Mvc=5.2.3 \
-		Microsoft.AspNet.Razor=3.2.3 \
-		Microsoft.AspNet.WebPages=3.2.3 \
-		Microsoft.Web.Infrastructure=1.0.0.0 \
-		NUnit=2.6.4 \
-		NUnit.Engine=3.0.1 \
-		NUnit.Runners=2.6.4 \
-		Newtonsoft.Json=6.0.8
+# main/external/fsharpbinding/paket.lock
+NUGET_FEEDS=	NUGET ROSLYN ROSLYN_FOR_VS_FOR_MAC  TEMPLATING VS_IMPL VS_EDITOR VSSDK VSTEST
+NUGET_LAYOUT=	legacy
+VS_IMPL_URL=	https://vside.myget.org/F/vs-impl/api/v2/
+VS_EDITOR_URL=	https://www.myget.org/F/vs-editor/api/v2/
+VSSDK_URL=	https://vside.myget.org/F/vssdk/api/v2/
+PAKET_DEPENDS=	ExtCore=0.8.46 \
+		FAKE=4.61.1 \
+		FSharp.Compiler.CodeDom=0.9.2 \
+		FSharp.Compiler.Service=23.0.1 \
+		FSharp.Core=4.3.3 \
+		Fantomas=2.6.1 \
+		Mono.Cecil=0.10.0-beta6 \
+		Newtonsoft.Json=10.0.3 \
+		StrongNamer=0.0.6 \
+		System.Collections.Immutable=1.3.1 \
+		System.Reactive.Core=3.1.1 \
+		System.Reactive.Interfaces=3.1.1 \
+		System.Reactive.Linq=3.1.1 \
+		System.Reflection.Metadata=1.4.2 \
+		System.ValueTuple=4.4.0 \
+		YamlDotNet.Signed=4.0.1-pre291
+
+PAKET_PACKAGEDIR=${WRKSRC}/external/fsharpbinding/packages
+
+USES=		autoreconf desktop-file-utils gettext gmake gnome mono:nuget pathfix pkgconfig shared-mime-info ssl
+USE_GNOME=	gtksharp20 gnomesharp20
+INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-release --disable-update-mimedb --disable-update-desktopdb \
 		--enable-maintainer-mode --enable-gnomeplatform --enable-git
+INSTALL=	/usr/bin/install
 USE_GITHUB=	yes
-GH_TUPLE=	mono:${PORTNAME}:${PORTNAME}-${PORTVERSION} \
-		icsharpcode:RefactoringEssentials:cbd2d9e:RefactoringEssentials \
-		mono:cecil:cd2ff63:cecil \
-		mono:debugger-libs:4a74b2c:debugger_libs \
-		mono:guiunit:2670780:guiunit \
-		mono:ikvm-fork:94d4a29:ikvm \
-		mono:libgit-binary:d8b2aca:libgit_binary \
-		mono:libgit2:e8b8948:libgit2 \
-		mono:libgit2sharp:06bbc96:libgit2sharp \
-		mono:mono-addins:76cab2d:mono_addins \
-		icsharpcode:NRefactory:a2b55de:nrefactory \
-		mono:nuget-binary:0811ba8:nuget_binary \
-		mono:roslyn:16e117c:roslyn \
-		mono:xwt:9ee2853:xwt
-
-USES=		autoreconf desktop-file-utils gettext gmake mono:nuget pathfix shared-mime-info libarchive ssl
-USE_GNOME=	gtksharp20 gnomesharp20
-INSTALLS_ICONS=	yes
+GH_ACCOUNT=	mono
+GH_TUPLE=	mono:RefactoringEssentials:0148f6a:1/external/RefactoringEssentials \
+		mono:debugger-libs:cd477ba:3/external/debugger-libs \
+		mono:guiunit:dd094e7:4/external/guiunit \
+		mono:libgit-binary:d8b2aca:6/external/libgit-binary \
+		mono:libgit2:71efcb3:7/external/libgit2 \
+		mono:libgit2sharp:319fa36:8/external/libgit2sharp \
+		mono:mono-addins:293cbf2:9/external/mono-addins \
+		icsharpcode:NRefactory:0607a4a:10/external/nrefactory \
+		mono:nuget-binary:ebedbf8:11/external/nuget-binary \
+		mono:xwt:cacc327:12/external/xwt
 
 INSTALL_TARGET=	install-strip
-MAKE_JOBS_UNSAFE=	Build parallelization not implemented
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTNAME}-${PORTVERSION}/main
-
-post-extract:
-.for tuple in ${GH_TUPLE}
-.  if ${PORTNAME} != ${tuple:C/([^:]*):([^:]*):([^:]*)/\2/}
-	@${RMDIR} ${WRKSRC}/external/${tuple:C/[^:]+:([^:]+):([^:]+):([^:]+)/\3/:S/_/-/g}
-	@${MV} ${WRKDIR}/${tuple:C/[^:]+:([^:]+):([^:]+):([^:]+)/\1-\2/} \
-		${WRKSRC}/external/${tuple:C/[^:]+:([^:]+):([^:]+):([^:]+)/\3/:S/_/-/g}
-.  endif
-.endfor
-	@${LN} -s ${NUGET_PACKAGEDIR} ${WRKSRC}/external/fsharpbinding/packages
+MAKE_ENV=	DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR= \
+		XDG_CACHE_HOME=${WRKDIR} \
+		OPENSSL_ROOT_DIR=${OPENSSLBASE} \
+		MONO_REGISTRY_PATH=${WRKDIR}
+MAKE_JOBS_UNSAFE=Build parallelization not implemented
+WRKSRC_SUBDIR=	main
+PORTSCOUT=	limit:^\d+\.\d+\.[1-9].*
 
 post-patch:
-	${REINPLACE_CMD} 's|mono .nuget/NuGet.exe restore|${TRUE}|' ${WRKSRC}/Makefile.am
 	${ECHO} "Release ID: ${PORTVERSION}" > ${WRKSRC}/buildinfo
 
 .include <bsd.port.mk>
