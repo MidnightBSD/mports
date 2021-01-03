@@ -93,8 +93,8 @@ MIME_SNIFF_RUN_DEPENDS=	p5-File-MimeInfo>=0.16:devel/p5-File-MimeInfo \
 .include <bsd.mport.options.mk>
 
 post-extract:
-	${RM} -r ${WRKSRC}/.git
-	${RM} ${WRKSRC}/.bzrignore ${WRKSRC}/.gitignore ${WRKSRC}/.gitrev \
+	-${RM} -r ${WRKSRC}/.git
+	-${RM} ${WRKSRC}/.bzrignore ${WRKSRC}/.gitignore ${WRKSRC}/.gitrev \
 		${WRKSRC}/docs/en/README.docs ${WRKSRC}/docs/en/html/Bugzilla-Guide.proc \
 		${WRKSRC}/.travis.yml ${WRKSRC}/Build.PL ${WRKSRC}/MANIFEST.SKIP \
 		${WRKSRC}/taskgraph.json
