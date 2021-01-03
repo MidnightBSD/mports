@@ -17,16 +17,12 @@ USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 3600
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}mock>=2.0.0:devel/py-mock@${PY_FLAVOR}
 .endif
-
-TEST_ENV=	PYTHONPATH=${WRKSRC}
-
-do-test:
-	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m nose2.__main__ -v --pretty-assert
 
 .include <bsd.port.post.mk>
