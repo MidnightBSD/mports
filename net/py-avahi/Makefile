@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR} \
 LIB_DEPENDS=	libavahi-client.so:net/avahi-app
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR} \
 		${PYTHON_SITELIBDIR}/dbus/_dbus.py:devel/py-dbus@${PY_FLAVOR} \
-		avahi-gtk>=0.7:net/avahi-gtk
+		avahi-gtk3>=0.7:net/avahi-gtk3
 
 MASTERDIR=	${.CURDIR}/../avahi-app
 BUILD_WRKSRC=	${WRKSRC}/avahi-python
@@ -27,12 +27,16 @@ PLIST=		${.CURDIR}/pkg-plist
 AVAHI_SLAVE=	python
 
 USE_GNOME=	pygobject3 gtk30
-USES=		python:2.7
-USE_PYTHON=	flavors
-MANPAGES=	avahi-bookmarks.1 avahi-discover.1
+USES=		python:3.5+
+USE_PYTHON=	flavors py3kplist
+MANPAGES=	avahi-bookmarks.1
+
+# See https://github.com/lathiat/avahi/issues/277
+post-extract:
+	${CP} ${FILESDIR}/build-db ${WRKSRC}/service-type-database
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|@pkglibdir@|${DATADIR}|' \
+	@${REINPLACE_CMD} -e 's|@pkglibdatadir@|${DATADIR}|' \
 		${WRKSRC}/avahi-python/avahi/ServiceTypeDatabase.py.in
 
 pre-build:
