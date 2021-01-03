@@ -12,4 +12,8 @@ USES=		compiler:c++11-lang qmake qt-dist:5,x11extras perl5
 USE_QT=		core gui
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
+post-install:
+	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
+
 .include <bsd.port.mk>
