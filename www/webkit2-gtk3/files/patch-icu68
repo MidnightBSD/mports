@@ -64,7 +64,7 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
 
 --- Source/WTF/wtf/text/icu/UTextProvider.h.orig	2020-08-12 09:17:54 UTC
 +++ Source/WTF/wtf/text/icu/UTextProvider.h
-@@ -79,12 +79,12 @@ inline bool uTextAccessInChunkOrOutOfRan
+@@ -79,12 +79,12 @@ inline bool uTextAccessInChunkOrOutOfRange(UText* text
              // Ensure chunk offset is well formed if computed offset exceeds int32_t range.
              ASSERT(offset < std::numeric_limits<int32_t>::max());
              text->chunkOffset = offset < std::numeric_limits<int32_t>::max() ? static_cast<int32_t>(offset) : 0;
@@ -79,7 +79,7 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
              return true;
          }
      } else {
-@@ -93,12 +93,12 @@ inline bool uTextAccessInChunkOrOutOfRan
+@@ -93,12 +93,12 @@ inline bool uTextAccessInChunkOrOutOfRange(UText* text
              // Ensure chunk offset is well formed if computed offset exceeds int32_t range.
              ASSERT(offset < std::numeric_limits<int32_t>::max());
              text->chunkOffset = offset < std::numeric_limits<int32_t>::max() ? static_cast<int32_t>(offset) : 0;
@@ -94,9 +94,29 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
              return true;
          }
      }
+--- Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp.orig	2020-08-12 09:17:54 UTC
++++ Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp
+@@ -126,7 +126,7 @@ static inline int64_t uTextUTF16ContextAwareNativeLeng
+ static UBool uTextUTF16ContextAwareAccess(UText* text, int64_t nativeIndex, UBool forward)
+ {
+     if (!text->context)
+-        return FALSE;
++        return false;
+     int64_t nativeLength = uTextUTF16ContextAwareNativeLength(text);
+     UBool isAccessible;
+     if (uTextAccessInChunkOrOutOfRange(text, nativeIndex, nativeLength, forward, isAccessible))
+@@ -146,7 +146,7 @@ static UBool uTextUTF16ContextAwareAccess(UText* text,
+         ASSERT(newContext == UTextProviderContext::PriorContext);
+         textUTF16ContextAwareSwitchToPriorContext(text, nativeIndex, nativeLength, forward);
+     }
+-    return TRUE;
++    return true;
+ }
+ 
+ static int32_t uTextUTF16ContextAwareExtract(UText*, int64_t, int64_t, UChar*, int32_t, UErrorCode* errorCode)
 --- Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp.orig	2020-08-12 09:17:54 UTC
 +++ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp
-@@ -100,23 +100,23 @@ static UBool uTextLatin1Access(UText* uT
+@@ -100,23 +100,23 @@ static UBool uTextLatin1Access(UText* uText, int64_t i
          if (index < uText->chunkNativeLimit && index >= uText->chunkNativeStart) {
              // Already inside the buffer. Set the new offset.
              uText->chunkOffset = static_cast<int32_t>(index - uText->chunkNativeStart);
@@ -124,7 +144,7 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
          }
      }
      
-@@ -144,7 +144,7 @@ static UBool uTextLatin1Access(UText* uT
+@@ -144,7 +144,7 @@ static UBool uTextLatin1Access(UText* uText, int64_t i
  
      uText->nativeIndexingLimit = uText->chunkLength;
  
@@ -133,7 +153,7 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
  }
  
  static int32_t uTextLatin1Extract(UText* uText, int64_t start, int64_t limit, UChar* dest, int32_t destCapacity, UErrorCode* status)
-@@ -337,7 +337,7 @@ static int64_t uTextLatin1ContextAwareNa
+@@ -337,7 +337,7 @@ static int64_t uTextLatin1ContextAwareNativeLength(UTe
  static UBool uTextLatin1ContextAwareAccess(UText* text, int64_t nativeIndex, UBool forward)
  {
      if (!text->context)
@@ -142,7 +162,7 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
      int64_t nativeLength = uTextLatin1ContextAwareNativeLength(text);
      UBool isAccessible;
      if (uTextAccessInChunkOrOutOfRange(text, nativeIndex, nativeLength, forward, isAccessible))
-@@ -357,7 +357,7 @@ static UBool uTextLatin1ContextAwareAcce
+@@ -357,7 +357,7 @@ static UBool uTextLatin1ContextAwareAccess(UText* text
          ASSERT(newContext == UTextProviderContext::PriorContext);
          textLatin1ContextAwareSwitchToPriorContext(text, nativeIndex, nativeLength, forward);
      }
@@ -151,23 +171,3 @@ Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp:360:12: error: use of undeclared
  }
  
  static int32_t uTextLatin1ContextAwareExtract(UText*, int64_t, int64_t, UChar*, int32_t, UErrorCode* errorCode)
---- Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp.orig	2020-08-12 09:17:54 UTC
-+++ Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp
-@@ -126,7 +126,7 @@ static inline int64_t uTextUTF16ContextA
- static UBool uTextUTF16ContextAwareAccess(UText* text, int64_t nativeIndex, UBool forward)
- {
-     if (!text->context)
--        return FALSE;
-+        return false;
-     int64_t nativeLength = uTextUTF16ContextAwareNativeLength(text);
-     UBool isAccessible;
-     if (uTextAccessInChunkOrOutOfRange(text, nativeIndex, nativeLength, forward, isAccessible))
-@@ -146,7 +146,7 @@ static UBool uTextUTF16ContextAwareAcces
-         ASSERT(newContext == UTextProviderContext::PriorContext);
-         textUTF16ContextAwareSwitchToPriorContext(text, nativeIndex, nativeLength, forward);
-     }
--    return TRUE;
-+    return true;
- }
- 
- static int32_t uTextUTF16ContextAwareExtract(UText*, int64_t, int64_t, UChar*, int32_t, UErrorCode* errorCode)

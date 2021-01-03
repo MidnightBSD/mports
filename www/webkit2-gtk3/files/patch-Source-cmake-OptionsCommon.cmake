@@ -1,6 +1,6 @@
---- Source/cmake/OptionsCommon.cmake.orig	2020-08-12 09:17:57 UTC
-+++ Source/cmake/OptionsCommon.cmake
-@@ -137,7 +137,7 @@ WEBKIT_CHECK_HAVE_FUNCTION(HAVE_VASPRINT
+--- Source/cmake/OptionsCommon.cmake.orig	2020-03-01 08:15:43.203077000 +1300
++++ Source/cmake/OptionsCommon.cmake	2020-03-01 08:14:23.672978000 +1300
+@@ -155,7 +155,7 @@
  # Check for symbols
  WEBKIT_CHECK_HAVE_SYMBOL(HAVE_REGEX_H regexec regex.h)
  if (NOT (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin"))
