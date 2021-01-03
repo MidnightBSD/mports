@@ -41,4 +41,6 @@ INSTALL_TARGET=	install-strip
 
 GLIB_SCHEMAS=	org.gnome.Maps.gschema.xml
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
