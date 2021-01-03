@@ -1,60 +1,70 @@
-# $MidnightBSD$
-# $FreeBSD: head/print/ghostscript9-agpl-x11/Makefile 395158 2015-08-24 06:09:14Z hrs $
-
 PORTNAME=	ghostscript
-PORTVERSION=	9.16
-PORTREVISION=	2
+PORTVERSION=	9.52
 CATEGORIES=	print
-MASTER_SITES=	http://downloads.ghostscript.com/public/ \
-		SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}/
+MASTER_SITES=	https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${PORTVERSION:S/.//}/
 PKGNAMESUFFIX=	9-agpl-x11
-DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Ghostscript 9.x PostScript interpreter, X11 support
+COMMENT=	PostScript and PDF interpreter, X11 support
 
 LICENSE=	agpl
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=  jbig2dec>=0.17:graphics/jbig2dec
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2 \
+		libidn.so:dns/libidn \
+		libjbig2dec.so:graphics/jbig2dec \
+		libpaper.so:print/libpaper \
+		libpng.so:graphics/png \
+		libtiff.so:graphics/tiff
+RUN_DEPENDS=	ghostscript9-agpl-base>=${PORTVERSION}:print/ghostscript9-agpl-base
+
+USES=		cpe gmake iconv localbase pkgconfig tar:xz xorg
+USE_CSTD=	gnu99
+USE_LDCONFIG=	yes
+USE_XORG=	ice sm x11 xext xt
 
 CONFLICTS_INSTALL= \
-		gambc-[0-9]* \
 		ghostscript[789]-[0-9]* \
 		ghostscript[789]-nox11-[0-9]* \
 		ghostscript9-agpl-[0-9]* \
 		ghostscript9-agpl-nox11-[0-9]*
-
-USES=		autoreconf ghostscript:9,agpl gmake tar:bzip2
-USE_LDCONFIG=	yes
-USE_XORG=	ice sm x11 xext xt
-EXTRACT_AFTER_ARGS=	${EXCLUDE_DIRS:S/^/--exclude /}
+DISTINFO_FILE=	${.CURDIR:H}/ghostscript9-agpl-base/distinfo
+PATCHDIR=	${.CURDIR:H}/ghostscript9-agpl-base/files
+CPE_VENDOR=	artifex
+EXTRACT_AFTER_ARGS= \
+	--exclude freetype \
+	--exclude ijs \
+	--exclude jbig2dec \
+	--exclude jpeg \
+	--exclude libpng \
+	--exclude openjpeg \
+	--exclude zlib
 GNU_CONFIGURE=	yes
-MAKE_ENV=	CFLAGS_STANDARD="${CFLAGS}" \
-		XLDFLAGS="${XLDFLAGS}"
-CONFIGURE_ENV=	${MAKE_ENV}
 CONFIGURE_ARGS=	--disable-compile-inits \
-		--disable-contrib \
+		--disable-cups \
+		--disable-dbus \
+		--disable-gtk \
+		--disable-openjpeg \
+		--enable-contrib \
 		--enable-dynamic \
-		--disable-freetype \
-		--disable-fontconfig \
-		--without-libiconv \
-		--without-system-libtiff \
-		--without-ijs \
-		--without-libidn \
-		--without-libpaper \
+		--enable-fontconfig \
+		--enable-freetype \
+		--with-drivers=ALL \
+		--with-fontpath=${LOCALBASE}/share/fonts \
+		--with-jbig2dec \
+		--with-libiconv=maybe \
+		--with-libidn \
+		--with-libpaper \
+		--with-system-libtiff \
 		--with-x \
-		--x-includes=${LOCALBASE}/include \
-		--x-libraries=${LOCALBASE}/lib \
-		--with-drivers=""
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-XLDFLAGS=	-lpthread
+		--without-ijs
 ALL_TARGET=	./obj/X11.so
 INSTALL_TARGET=	install-shared
-PLIST_FILES=	${GS_LIBDIR}/X11.so
-
-GS_LIBDIR=	lib/${PORTNAME}/${PORTVERSION}
-EXCLUDE_DIRS=	freetype jbig2dec jpeg expat lcms2 libpng tiff zlib
-
-pre-build:
-	${MKDIR} ${WRKSRC}/obj
+PLIST_FILES=	lib/${PORTNAME}/${PORTVERSION}/X11.so
+	
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/${PORTVERSION}/X11.so
 
 .include <bsd.port.mk>
