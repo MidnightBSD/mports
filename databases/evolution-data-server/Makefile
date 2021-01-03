@@ -65,6 +65,7 @@ KERBEROS_USES=		ssl
 LDAP_CMAKE_ON=		-DWITH_OPENLDAP=${LOCALBASE}
 LDAP_CMAKE_OFF=		-DWITH_OPENLDAP=OFF
 LDAP_USE=		openldap=yes
+LDAP_USES=		ldap
 
 WEATHER_DESC=	Weather calendar backend
 WEATHER_LIB_DEPENDS=	libgweather-3.so:net/libgweather
