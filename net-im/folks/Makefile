@@ -28,6 +28,8 @@ USES=		gettext gnome localbase meson python:3.5+,build pkgconfig \
 USE_GNOME=	evolutiondataserver3 intlhack introspection:build
 USE_LDCONFIG=	yes
 
+NO_TEST=	yes
+
 MESON_ARGS=	-Dbluez_backend=false
 
 GLIB_SCHEMAS=	org.freedesktop.folks.gschema.xml
