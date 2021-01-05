@@ -23,7 +23,7 @@ FAKE_OPTS=	prefixhack
 
 BUILD_DEPENDS=	gm4:devel/m4
 RUN_DEPENDS=	gm4:devel/m4 \
-		autoconf-wrapper:${PORTSDIR}/devel/autoconf-wrapper
+		autoconf-wrapper:devel/autoconf-wrapper
 
 BUILD_VERSION=	2.13
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
