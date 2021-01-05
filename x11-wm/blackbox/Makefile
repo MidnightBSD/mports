@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1
 PORTREVISION=	6

@@ -9,4 +9,4 @@ modern desktop managers including KDE and Gnome.
 The port also provides root window changing tools, bsetroot and bsetbg, that
 can be installed alone, without the window manager and accompanying files.
 
-WWW: http://blackboxwm.sourceforge.net/
+WWW: https://github.com/bbidulock/blackboxwm
