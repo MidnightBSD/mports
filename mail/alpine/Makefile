@@ -65,6 +65,7 @@ IPV6_CONFIGURE_WITH=		ipv6
 
 # Option LDAP
 LDAP_USE=			openldap=yes
+LDAP_USES=			ldap
 LDAP_CONFIGURE_WITH=		ldap
 LDAP_CONFIGURE_ON=		--with-ldap-dir=${LOCALBASE}
 LDAP_CFLAGS=			-I${LOCALBASE}/include
