@@ -29,6 +29,7 @@ BUILD_DEPENDS+=	${ICONV_CMD}:converters/libiconv
 PATCH_DEPENDS+=	${ICONV_CMD}:converters/libiconv
 .else
 BUILD_DEPENDS+=	${ICONV_CMD}:converters/libiconv
+LIB_DEPENDS+=	libiconv.so:converters/libiconv
 RUN_DEPENDS+=	${ICONV_CMD}:converters/libiconv
 .endif
 
