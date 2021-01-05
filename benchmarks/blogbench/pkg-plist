@@ -1,3 +1,2 @@
-@comment $MidnightBSD$
 bin/blogbench
 man/man8/blogbench.8.gz

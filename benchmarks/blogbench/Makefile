@@ -2,6 +2,7 @@
 
 PORTNAME=	blogbench
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://download.pureftpd.org/pub/blogbench/ \
 		ftp://ftp.pureftpd.org/pub/pure-ftpd/misc/blogbench/
@@ -16,10 +17,14 @@ USES=		tar:bzip2
 
 PORTDOCS=	README
 
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} -Ee 's|[[:<:]]rand\(|arc4random(|g' \
+		"${WRKSRC}"/src/*.[ch]
+
 post-install:
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>
