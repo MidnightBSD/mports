@@ -1,6 +1,6 @@
 PORTNAME=	binutils
 PORTVERSION=	2.33.1
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	devel
 MASTER_SITES=	SOURCEWARE/binutils/releases
 
@@ -20,7 +20,7 @@ OPTIONS_DEFINE=	NLS
 LICENSE_FILE_GPLv3=	${WRKSRC}/COPYING3
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING3.LIB
 
-USES=		bison cpe gmake libtool tar:bzip2 compiler:env
+USES=		bison:alias cpe gmake libtool tar:xz compiler:env
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 
@@ -75,6 +75,9 @@ CONFIGURE_TARGET=	x86_64-portbld-freebsd10.4
 .else
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 .endif
+
+post-patch:
+	${REINPLACE_CMD} -e "s/-ldl//g" ${WRKSRC}/gold/testsuite/Makefile.in
 
 post-install:
 .if !defined(PKGNAMEPREFIX)
