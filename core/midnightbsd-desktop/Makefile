@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.5.1
+PORTVERSION=	2.5.2
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -14,7 +14,8 @@ LICENSE=	bsd2
 # needs firefox ?
 # gimp:${PORTSDIR}/graphics/gimp-app \
 
-RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
+RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
+		wmaker:x11-wm/windowmaker \
 		bash:shells/bash \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
