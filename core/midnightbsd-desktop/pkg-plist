@@ -1,4 +1,5 @@
-@comment $MidnightBSD$
+etc/X11/xinit/xinitrc
 share/xsessions/etoile.desktop
 share/xsessions/windowmaker.desktop
 @dir share/xsessions
+@dir etc/X11/xinit
