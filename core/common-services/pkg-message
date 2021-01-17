@@ -1,0 +1,3 @@
+This port provides common services used on desktops. 
+
+It will enable dbus and hal for graphical use.
