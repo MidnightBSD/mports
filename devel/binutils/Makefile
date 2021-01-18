@@ -22,7 +22,8 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.so:math/gmp \
 CONFLICTS=	libbfd-[0-9]*
 
 #TEST_DEPENDS+=	runtest:misc/dejagnu
-TEST_TARGET=	check
+#TEST_TARGET=	check
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	NLS RELRO STATIC
 STATIC_PREVENTS=	NLS
