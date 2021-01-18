@@ -1,14 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/lha-ac/Makefile,v 1.4 2006/09/05 05:01:47 dinoex Exp $
-
 PORTNAME=	lha
 PORTVERSION=	1.14i
 PORTREVISION=	11
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP} \
-		http://qgpop.dl.sourceforge.jp/%SUBDIR%/ \
-		http://osdn.dl.sourceforge.jp/%SUBDIR%/
-MASTER_SITE_SUBDIR=	lha/22231
+MASTER_SITES=	OSDN/lha
 PKGNAMESUFFIX=	-ac${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-ac20050924p1
 
@@ -20,18 +14,16 @@ LICENSE_NAME=   lha license
 LICENSE_PERMS=  dist-mirror pkg-mirror
 LICENSE_TEXT=   Custom license with advanced notification required for CD distribution.
 
-MANLANG=	ja
-PLIST_FILES=	bin/lha
+PLIST_FILES=	bin/lha \
+		man/ja/man1/lha-ac.1.gz
 #PLIST_DIRS=	man/ja/man1
 GNU_CONFIGURE=	yes
 
 RESTRICTED=	no permission to redistribute
 
-.if !defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-multibyte-filename
-.else
-CONFIGURE_ARGS+=	--enable-multibyte-filename=auto
-.endif
+OPTIONS_DEFINE=	NLS
+NLS_CONFIGURE_ON=	--enable-multibyte-filename=auto
+NLS_CONFIGURE_OFF=	--disable-multibyte-filename
 
 do-install:
 	-${MKDIR} ${MANPREFIX}/man/ja/man1
