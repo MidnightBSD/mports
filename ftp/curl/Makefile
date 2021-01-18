@@ -20,7 +20,8 @@ CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} \
 		ac_cv_func_SSLv2_client_method=no
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-TEST_TARGET=	test
+#TEST_TARGET=	test
+NO_TEST=	yes
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	haxx
