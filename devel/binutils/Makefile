@@ -130,13 +130,13 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/include/plugin-api.h ${PREFIX}/include/
 	@${FIND} -ds ${STAGEDIR}${PREFIX}/${CONFIGURE_TARGET} ! -type d | \
 		${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}
-	${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h
+	-${RM} ${STAGEDIR}${PREFIX}/include/ansidecl.h
 	${REINPLACE_CMD} '/#include "ansidecl.h"/d' ${PREFIX}/include/bfd.h
 .else
 .if ${PKGNAMEPREFIX:S/-$//} != ${BUTARGET}
 	${RM} -r ${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 .endif
-	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
+	-${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
 	@if [ -d ${STAGEDIR}${PREFIX}/${INFO_PATH:H} ] ; then rm -rf ${STAGEDIR}${PREFIX}/${INFO_PATH:H}; fi
 	${LN} -fs ../../bin/${BUTARGET}-size ${PREFIX}/${BUTARGET}/bin/size
 .endif
@@ -148,7 +148,7 @@ post-install:
 	    ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
 .if defined(BUREMOVE) && ${BUREMOVE:Mld}
-	@${RM} -r ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts
+	-${RM} -r ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts
 .endif
 
 .include <bsd.port.post.mk>
