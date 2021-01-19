@@ -10,7 +10,7 @@ COMMENT=	ZFS Administration GUI
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		gnome python:3.4+
+USES=		gnome python:3.4+ shebangfix
 USE_PYTHON=	noflavors
 USE_GNOME=	gtk30 pygobject3
 
@@ -20,6 +20,8 @@ GH_TAGNAME=	8d2982fdd86bba03f700fd4531004aeaad5bce66
 
 NO_ARCH=	yes
 NO_BUILD=	yes
+
+SHEBANG_FILES=	zyggy
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
