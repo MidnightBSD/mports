@@ -28,6 +28,6 @@ NLS_CONFIGURE_OFF=	--disable-multibyte-filename
 do-install:
 	-${MKDIR} ${MANPREFIX}/man/ja/man1
 	${INSTALL_PROGRAM} ${WRKSRC}/src/lha ${PREFIX}/bin/lha
-	${INSTALL_MAN} ${WRKSRC}/man/lha.n ${MANPREFIX}/man/ja/man1/lha.1
+	${INSTALL_MAN} ${WRKSRC}/man/lha.n ${MANPREFIX}/man/ja/man1/lha-ac.1
 
 .include <bsd.port.mk>
