@@ -1,5 +1,6 @@
 PORTNAME=	zyggy
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	GH
 
@@ -10,8 +11,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gnome python:3.4+
-USE_PYTHON=	distutils noflavors
-USE_GNOME=	gtk30 intltool pygobject3
+USE_PYTHON=	noflavors
+USE_GNOME=	gtk30 pygobject3
 
 USE_GITHUB=     yes
 GH_ACCOUNT=     manoeldesouza
