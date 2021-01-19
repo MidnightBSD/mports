@@ -181,5 +181,6 @@ SUBDIR += zfstools
 SUBDIR += znapzend
 SUBDIR += zrep
 SUBDIR += zxfer
+SUBDIR += zyggy
 
 .include <bsd.port.subdir.mk>
