@@ -38,7 +38,6 @@ NO_BUILD=	YES
 
 do-install:
 	${MKDIR} ${PREFIX}/share/xsessions ${PREFIX}/etc/X11/xinit
-	${CP} ${FILESDIR}/etoile.desktop ${PREFIX}/share/xsessions/
 	${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
 
 .include <bsd.port.mk>
