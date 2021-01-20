@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.5.3
+PORTVERSION=	2.5.4
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -40,6 +40,5 @@ do-install:
 	${MKDIR} ${PREFIX}/share/xsessions ${PREFIX}/etc/X11/xinit
 	${CP} ${FILESDIR}/etoile.desktop ${PREFIX}/share/xsessions/
 	${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
-	${INSTALL_SCRIPT} ${FILESDIR}/xinitrc ${PREFIX}/etc/X11/xinit/xinitrc
 
 .include <bsd.port.mk>
