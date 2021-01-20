@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.5.4
+PORTVERSION=	2.5.5
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -28,7 +28,13 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/libdata/xorg/drivers:x11-drivers/xorg-drivers \
 		mport-manager:ports-mgmt/mport-manager \
 		git:devel/git \
-		wifimgr:net-mgmt/wifimgr
+		wifimgr:net-mgmt/wifimgr \
+		xscreensaver:x11/xscreensaver \
+                wmCalClock:x11-clocks/wmcalclock \
+                wmsmixer:audio/wmsmixer \
+                ${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons \
+                XScreenSaver.App:x11/xscreensaver.app \
+		GNUstep/System/Applications/GWorkspace.app/GWorkspace:deskutils/gworkspace
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
