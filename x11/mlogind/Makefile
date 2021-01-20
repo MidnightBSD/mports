@@ -1,5 +1,5 @@
 PORTNAME=	mlogind
-PORTVERSION=	1.3.8
+PORTVERSION=	1.3.9
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -7,7 +7,7 @@ COMMENT=	MidnightBSD Graphical login manager for X11
 
 LICENSE=	gpl2
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
@@ -18,9 +18,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 USES=		cmake jpeg pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     mlogind
-GH_ACCOUNT=     laffer1
-GH_TAGNAME=     v${PORTVERSION}
-GH_COMMIT=      1a73336
+GH_ACCOUNT=     midnightbsd
+GH_TAGNAME=     0b71ed7
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
 		xrender xt
 USE_RC_SUBR=	mlogind

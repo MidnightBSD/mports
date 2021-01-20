@@ -1,3 +1,3 @@
-TIMESTAMP = 1600142502
-SHA256 (laffer1-mlogind-1.3.8-v1.3.8_GH0.tar.gz) = ea5225ea427d3dcec1c760be25e88d667af7b76a3a817cd2e680a0e4a7894dd3
-SIZE (laffer1-mlogind-1.3.8-v1.3.8_GH0.tar.gz) = 2115839
+TIMESTAMP = 1611115797
+SHA256 (midnightbsd-mlogind-1.3.9-0b71ed7_GH0.tar.gz) = 4cffc58fcacbe13af8217721b25479d45f0cae5ae73ee21fc433010a62e0a1fb
+SIZE (midnightbsd-mlogind-1.3.9-0b71ed7_GH0.tar.gz) = 2116373
