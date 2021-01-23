@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 
 args=`getopt amnr $*`
 if [ $? != 0 ]
@@ -24,15 +24,19 @@ fi
 #           echo single-char flags: "'"$sflags"'"
 #           echo oarg is "'"$oarg"'"
 
+if [ -z $sflags ]; then
+        echo "FreeBSD"
+else
 if [ $sflags == 'm' ]; then
-	uname -m;
+        /usr/bin/uname -m
 fi
 if [ $sflags == 'n' ]; then
-	uname -n;
+        /usr/bin/uname -n
 fi
 if [ $sflags == 'r' ]; then
-	echo '11.4-RELEASE'
+        echo '11.4-RELEASE'
 fi
 if [ $sflags == 'a' ]; then
-	echo "FreeBSD `uname -n` 11.4-RELEASE FreeBSD 11.4-RELEASE GENERIC `uname -m`"
+        echo "FreeBSD `/usr/bin/uname -n` 11.4-RELEASE FreeBSD 11.4-RELEASE GENERIC `/usr/bin/uname -m`"
+fi
 fi
