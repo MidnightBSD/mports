@@ -1,12 +1,14 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.1.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Graphical Package Manager for MidnightBSD
 
 LICENSE=	bsd2
+
+RUN_DEPENDS+=	gksudo:sysutils/gksu
 
 WRKSRC=         ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
