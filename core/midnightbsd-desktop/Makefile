@@ -1,7 +1,7 @@
 # Created By:	Lucas Holt <luke@midnightbsd.org>
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	2.5.5
+PORTVERSION=	2.6.0
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,7 +15,7 @@ LICENSE=	bsd2
 # gimp:${PORTSDIR}/graphics/gimp-app \
 
 RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
-		wmaker:x11-wm/windowmaker \
+		${LOCALBASE}/etc/dm/Sessions/XFce4.desktop:x11-wm/xfce4
 		bash:shells/bash \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
@@ -29,12 +29,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		mport-manager:ports-mgmt/mport-manager \
 		git:devel/git \
 		wifimgr:net-mgmt/wifimgr \
-		xscreensaver:x11/xscreensaver \
-                wmCalClock:x11-clocks/wmcalclock \
-                wmsmixer:audio/wmsmixer \
-                ${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons \
-                XScreenSaver.App:x11/xscreensaver.app \
-		GNUstep/System/Applications/GWorkspace.app/GWorkspace:deskutils/gworkspace
+		xscreensaver:x11/xscreensaver
 
 USE_PERL5_RUN=	yes
 USE_PYTHON_RUN=	yes
@@ -42,8 +37,6 @@ USE_PYTHON_RUN=	yes
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
-do-install:
-	${MKDIR} ${PREFIX}/share/xsessions ${PREFIX}/etc/X11/xinit
-	${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
+do-install:  # empty
 
 .include <bsd.port.mk>
