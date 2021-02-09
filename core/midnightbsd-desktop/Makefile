@@ -15,7 +15,7 @@ LICENSE=	bsd2
 # gimp:${PORTSDIR}/graphics/gimp-app \
 
 RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
-		${LOCALBASE}/etc/dm/Sessions/XFce4.desktop:x11-wm/xfce4
+		${LOCALBASE}/etc/dm/Sessions/XFce4.desktop:x11-wm/xfce4 \
 		bash:shells/bash \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
 		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
