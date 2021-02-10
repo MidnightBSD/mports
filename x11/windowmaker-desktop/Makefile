@@ -29,7 +29,7 @@ NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
 do-install:
-        ${MKDIR} ${PREFIX}/share/xsessions ${PREFIX}/etc/X11/xinit
-        ${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
+	${MKDIR} ${PREFIX}/share/xsessions ${PREFIX}/etc/X11/xinit
+	${CP} ${FILESDIR}/windowmaker.desktop ${PREFIX}/share/xsessions/
 
 .include <bsd.port.mk>
