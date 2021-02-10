@@ -8,6 +8,7 @@ COMMENT=	Save your screen while you entertain your cat
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	p5-XML-Parser>0:textproc/p5-XML-Parser
 RUN_DEPENDS=	p5-libwww>0:www/p5-libwww \
 		giftopnm:graphics/netpbm
 LIB_DEPENDS=	libgle.so:graphics/gle \
@@ -16,7 +17,8 @@ LIB_DEPENDS=	libgle.so:graphics/gle \
 
 CONFLICTS=	xscreensaver-gnome-[0-9]* xscreensaver-gnome-hacks-[0-9]*
 
-USES=		autoreconf gettext gmake jpeg localbase:ldflags perl5 pkgconfig
+USES=		autoreconf gettext gl gmake gnome jpeg localbase:ldflags perl5 \
+		pkgconfig xorg
 USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf2 gtk20 intltool libglade2 libxml2
 USE_PERL5=	run
@@ -34,10 +36,11 @@ CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
 		--with-xf86gamma-ext --with-randr-ext --without-kerberos \
 		--without-setuid-hacks --enable-locking
 MAKE_ARGS+=	install_prefix=${FAKE_DESTDIR}
+MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_DEFINE=	PAM SETUID_HACKS FIREF NLS NSFW XAOS1 XDALI XEARTH \
 		XFT XMOUN XPLANET XSNOW
-OPTIONS_DEFAULT=XFT
+OPTIONS_DEFAULT=PAM XFT
 OPTIONS_SUB=	yes
 
 PAM_CONFIGURE_WITH=		pam
