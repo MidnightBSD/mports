@@ -41,6 +41,7 @@ SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
 SUBDIR += ipsec-tools
 SUBDIR += keepass
+SUBDIR += keepass-plugin-keepassrpc
 SUBDIR += krb5
 SUBDIR += l0phtcrack
 SUBDIR += libargon2
