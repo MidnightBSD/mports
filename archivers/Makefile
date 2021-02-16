@@ -56,6 +56,7 @@ SUBDIR += py-bz2file
 SUBDIR += py-lz4
 SUBDIR += py-lzma
 SUBDIR += py-rarfile
+SUBDIR += quazip
 SUBDIR += rar
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
