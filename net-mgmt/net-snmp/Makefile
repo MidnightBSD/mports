@@ -1,6 +1,7 @@
 PORTNAME=	snmp
-PORTVERSION=	5.7.3
-PORTREVISION=	2
+PORTVERSION=	5.9
+PORTREVISION=   1
+PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION} \
 		ZI
@@ -70,14 +71,10 @@ TLS_CONFIGURE_ON=	--with-security-modules=tsm --with-transports=TLSTCP,DTLSUDP
 
 .include <bsd.mport.options.mk>
 
-.if ${SSL_DEFAULT:Mopenssl}
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openssl11
-.endif
-
 .if ${PORT_OPTIONS:MPYTHON}
 PYDISTUTILS_PKGNAME?=		netsnmp-python
 PYDISTUTILS_PKGVERSION?=	1.0a1
-USES+=		python:2.7
+USES+=		python:3.5+
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
 CONFIGURE_ARGS+=--with-python-modules
@@ -96,7 +93,6 @@ CONFIGURE_ARGS+=--with-dummy-values
 .endif
 
 .if ! ${PORT_OPTIONS:MTKMIB}
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-local_Makefile.in
 PLIST_SUB+=	WITH_TKMIB="@comment "
 .else
 RUN_DEPENDS+=	p5-Tk>=0:x11-toolkits/p5-Tk
@@ -146,8 +142,8 @@ PLIST_SUB+=	WITH_IPV6="@comment "
 CONFIGURE_ARGS+=--without-root-access
 .endif
 
-SHLIB_VERSION=	30
-SHLIB_VERSION2=	.0.3
+SHLIB_VERSION=	40
+SHLIB_VERSION2=	.0.0
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION} SHLIB_VERSION2=${SHLIB_VERSION2}
 SCRIPTS_SUB=	PREFIX=${PREFIX} PERL=${PERL}
 
@@ -156,7 +152,7 @@ NET_SNMP_SYS_CONTACT?=	nobody@nowhere.invalid
 NET_SNMP_SYS_LOCATION?=	somewhere
 NET_SNMP_LOGFILE?=	/var/log/snmpd.log
 NET_SNMP_PERSISTENTDIR?=/var/net-snmp
-NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail ucd-snmp/diskio
+NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio sctp-mib
 
 .if ${OPSYS} == FreeBSD
 NET_SNMP_WITHOUT_MIB_MODULE_LIST+=	mibII/ipv6
@@ -192,7 +188,8 @@ CONFIGURE_ARGS+=--with-out-mib-modules="${NET_SNMP_WITHOUT_MIB_MODULE_LIST}"
 BIN_FILES=	snmpbulkwalk snmpget snmpgetnext snmpset \
 		snmpstatus snmptest snmptranslate snmptrap snmpwalk \
 		snmptable snmpbulkget snmpdelta snmpdf agentxtrap \
-		snmpvacm snmpusm encode_keychange snmpnetstat
+		snmpps snmpping snmppcap snmpvacm snmpusm \
+		encode_keychange snmpnetstat
 LIB_FILES=	libnetsnmp.so.${SHLIB_VERSION}${SHLIB_VERSION2} \
 		libnetsnmpagent.so.${SHLIB_VERSION}${SHLIB_VERSION2} \
 		libnetsnmpmibs.so.${SHLIB_VERSION}${SHLIB_VERSION2} \
@@ -238,17 +235,25 @@ pre-everything::
 	@${ECHO_MSG}
 
 post-patch:
-.for filename in ${SCRIPT_FILES}
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/local/${filename}
-.endfor
-	@${REINPLACE_CMD} -e 's!utmp_p->ut_name!utmp_p->ut_user!' \
-	    ${WRKSRC}/agent/mibgroup/host/hr_system.c
 	@${REINPLACE_CMD} -E -e 's|return pci_lookup_name|disabled broken|g' \
 		${WRKSRC}/configure
-.if (${OSVERSION} >= 1200085 || ${SSL_DEFAULT:Mopenssl111*})
+.if ${SSL_DEFAULT:Mopenssl}
 	@${REINPLACE_CMD} -E -e 's|SSL_library_init|OPENSSL_init_ssl|g' \
 		${WRKSRC}/configure
 .endif
+	@${CP} ${WRKSRC}/include/net-snmp/system/freebsd12.h \
+		${WRKSRC}/include/net-snmp/system/freebsd13.h
+.for header in darwin7.h darwin8.h darwin9.h darwin10.h darwin11.h darwin12.h \
+	darwin13.h darwin14.h darwin15.h darwin16.h darwin17.h
+	@${CP} ${WRKSRC}/include/net-snmp/system/darwin.h \
+		${WRKSRC}/include/net-snmp/system/${header}
+.endfor
+
+pre-configure:
+	${REINPLACE_CMD} \
+		-e 's|pkg[.]h|ignore-pkg.h|g' \
+		-e 's|in pkg ;|in ignore-pkg ;|' \
+		${WRKSRC}/configure
 
 post-configure:
 	@${FIND} ${WRKSRC} -name Makefile | \
@@ -265,10 +270,6 @@ post-configure:
 	${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} setopt -c bdist \
 		-o plat-name -s "" --basedir=${WRKSRC})
 .endif
-	${REINPLACE_CMD} -e 's|mibgroup_list_lo= |mibgroup_list_lo= mibgroup/mibII/kernel_sysctl.lo |g' \
-		${WRKSRC}/agent/Makefile
-	${REINPLACE_CMD} -e 's|mibII/updates.o|mibII/updates.o mibII/kern_sysctl.o|g' \
-		${WRKSRC}/agent/mibgroup/Makefile
 
 post-build:
 .if ${PORT_OPTIONS:MPERL}
@@ -292,7 +293,7 @@ post-install: strip-files install-config-files install-doc-files
 	@(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf libnetsnmptrapd.so.${SHLIB_VERSION} libnetsnmptrapd.so)
 .if ${PORT_OPTIONS:MNEWSYSLOG}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
-	${INSTALL_DATA} ${FILESDIR}/net-snmp.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/
+	${INSTALL_DATA} ${FILESDIR}/net-snmp.conf ${STAGEDIR}${DATADIR}/newsyslog.conf.sample
 .endif
 
 strip-files:
