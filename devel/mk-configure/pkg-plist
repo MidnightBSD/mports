@@ -1,34 +1,786 @@
-bin/mkc_check_compiler
-bin/mkc_check_custom
+man/man1/mkc_install.1.gz
+man/man1/mkc_check_sizeof.1.gz
+man/man1/mkcmake.1.gz
+man/man1/mkc_check_prog.1.gz
+man/man1/mkc_check_funclib.1.gz
+man/man1/mkc_compiler_settings.1.gz
+man/man1/mkc_check_header.1.gz
+man/man1/mkc_check_compiler.1.gz
+man/man1/mkc_check_version.1.gz
+man/man1/mkc_check_decl.1.gz
+man/man1/mkc_which.1.gz
+man/man1/mkc_check_custom.1.gz
+man/man7/mk-configure.7.gz
+libexec/mk-configure/mkc_check_common.sh
+libexec/mk-configure/mkc_get_deps
+%%EXAMPLESDIR%%/posix_getopt/Makefile
+%%EXAMPLESDIR%%/posix_getopt/test.mk
+%%EXAMPLESDIR%%/posix_getopt/prog.c
+%%EXAMPLESDIR%%/posix_getopt/expect.out
+%%EXAMPLESDIR%%/tools/tools/prog1/Makefile
+%%EXAMPLESDIR%%/tools/tools/prog1/prog1.c
+%%EXAMPLESDIR%%/tools/tools/prog2/prog2.c
+%%EXAMPLESDIR%%/tools/tools/prog2/Makefile
+%%EXAMPLESDIR%%/tools/tools/prog4/Makefile
+%%EXAMPLESDIR%%/tools/tools/prog4/prog4.c
+%%EXAMPLESDIR%%/tools/tools/prog3/Makefile
+%%EXAMPLESDIR%%/tools/tools/prog3/prog3.c
+%%EXAMPLESDIR%%/tools/libs/qux/qux.c
+%%EXAMPLESDIR%%/tools/libs/qux/Makefile
+%%EXAMPLESDIR%%/tools/libs/qux/qux.h.in
+%%EXAMPLESDIR%%/tools/libs/bar/bar.h
+%%EXAMPLESDIR%%/tools/libs/bar/Makefile
+%%EXAMPLESDIR%%/tools/libs/bar/bar.c
+%%EXAMPLESDIR%%/tools/libs/foo/foo.c
+%%EXAMPLESDIR%%/tools/libs/foo/foo.h
+%%EXAMPLESDIR%%/tools/libs/foo/Makefile
+%%EXAMPLESDIR%%/tools/test.mk
+%%EXAMPLESDIR%%/tools/Makefile
+%%EXAMPLESDIR%%/tools/expect.out
+%%EXAMPLESDIR%%/dictd/test.mk
+%%EXAMPLESDIR%%/dictd/Makefile
+%%EXAMPLESDIR%%/dictd/doc/Makefile
+%%EXAMPLESDIR%%/dictd/doc/doc.txt
+%%EXAMPLESDIR%%/dictd/dictzip/Makefile
+%%EXAMPLESDIR%%/dictd/dictzip/dictzip.c
+%%EXAMPLESDIR%%/dictd/dictzip/dictzip.1
+%%EXAMPLESDIR%%/dictd/libcommon/str.c
+%%EXAMPLESDIR%%/dictd/libcommon/iswalnum.c
+%%EXAMPLESDIR%%/dictd/libcommon/Makefile
+%%EXAMPLESDIR%%/dictd/dictd/dictd.8
+%%EXAMPLESDIR%%/dictd/dictd/Makefile
+%%EXAMPLESDIR%%/dictd/dictd/dictd.c
+%%EXAMPLESDIR%%/dictd/expect.out
+%%EXAMPLESDIR%%/dictd/Makefile.inc
+%%EXAMPLESDIR%%/dictd/dictfmt/dictfmt.c
+%%EXAMPLESDIR%%/dictd/dictfmt/Makefile
+%%EXAMPLESDIR%%/dictd/dictfmt/dictfmt.1
+%%EXAMPLESDIR%%/dictd/libmaa/export.sym
+%%EXAMPLESDIR%%/dictd/libmaa/Makefile
+%%EXAMPLESDIR%%/dictd/libmaa/log.c
+%%EXAMPLESDIR%%/dictd/libmaa/prime.c
+%%EXAMPLESDIR%%/dictd/libmaa/set.c
+%%EXAMPLESDIR%%/dictd/libdz/dz.c
+%%EXAMPLESDIR%%/dictd/libdz/export.sym
+%%EXAMPLESDIR%%/dictd/libdz/Makefile
+%%EXAMPLESDIR%%/dictd/dict/dict.1
+%%EXAMPLESDIR%%/dictd/dict/Makefile
+%%EXAMPLESDIR%%/dictd/dict/dict.c
+%%EXAMPLESDIR%%/errwarn/Makefile
+%%EXAMPLESDIR%%/errwarn/expect.out
+%%EXAMPLESDIR%%/errwarn/test.mk
+%%EXAMPLESDIR%%/errwarn/hello.c
+%%EXAMPLESDIR%%/errwarn/Makefile.inc
+%%EXAMPLESDIR%%/subdirs/Makefile
+%%EXAMPLESDIR%%/subdirs/prog2/expect.out
+%%EXAMPLESDIR%%/subdirs/prog2/Makefile
+%%EXAMPLESDIR%%/subdirs/prog2/test.mk
+%%EXAMPLESDIR%%/subdirs/prog2/prog2.c
+%%EXAMPLESDIR%%/subdirs/prog1/expect.out
+%%EXAMPLESDIR%%/subdirs/prog1/prog1.c
+%%EXAMPLESDIR%%/subdirs/prog1/Makefile
+%%EXAMPLESDIR%%/subdirs/prog1/prog1.awk.in
+%%EXAMPLESDIR%%/subdirs/prog1/prog1.sh
+%%EXAMPLESDIR%%/subdirs/prog1/test.mk
+%%EXAMPLESDIR%%/plugins/test.mk
+%%EXAMPLESDIR%%/plugins/app/Makefile
+%%EXAMPLESDIR%%/plugins/app/app.c
+%%EXAMPLESDIR%%/plugins/plugin1/plugin1.c
+%%EXAMPLESDIR%%/plugins/plugin1/Makefile
+%%EXAMPLESDIR%%/plugins/Makefile
+%%EXAMPLESDIR%%/plugins/expect.out
+%%EXAMPLESDIR%%/plugins/plugin2/plugin2.c
+%%EXAMPLESDIR%%/plugins/plugin2/Makefile
+%%EXAMPLESDIR%%/README
+%%EXAMPLESDIR%%/autoconf/Makefile
+%%EXAMPLESDIR%%/autoconf/test.mk
+%%EXAMPLESDIR%%/autoconf/proj/NEWS
+%%EXAMPLESDIR%%/autoconf/proj/Makefile.in
+%%EXAMPLESDIR%%/autoconf/proj/COPYING
+%%EXAMPLESDIR%%/autoconf/proj/AUTHORS
+%%EXAMPLESDIR%%/autoconf/proj/ChangeLog
+%%EXAMPLESDIR%%/autoconf/proj/hello_autoconf.c
+%%EXAMPLESDIR%%/autoconf/proj/README
+%%EXAMPLESDIR%%/autoconf/proj/configure.ac
+%%EXAMPLESDIR%%/autoconf/expect.out
+%%EXAMPLESDIR%%/customtests/custom_tests/alloca_in_stdlib_h.c
+%%EXAMPLESDIR%%/customtests/custom_tests/alloca_in_alloca_h.c
+%%EXAMPLESDIR%%/customtests/custom_tests/cxx_with_templates.cc
+%%EXAMPLESDIR%%/customtests/custom_tests/true_is_available
+%%EXAMPLESDIR%%/customtests/custom_tests/shtest
+%%EXAMPLESDIR%%/customtests/Makefile
+%%EXAMPLESDIR%%/customtests/test.mk
+%%EXAMPLESDIR%%/customtests/expect.out
+%%EXAMPLESDIR%%/customtests/hello_customtests.c
+%%EXAMPLESDIR%%/require_tools/Makefile
+%%EXAMPLESDIR%%/require_tools/fake
+%%EXAMPLESDIR%%/superfs/Makefile.inc
+%%EXAMPLESDIR%%/superfs/test.mk
+%%EXAMPLESDIR%%/superfs/Makefile
+%%EXAMPLESDIR%%/superfs/expect.out
+%%EXAMPLESDIR%%/superfs/fsck_superfs/fsck_superfs.c
+%%EXAMPLESDIR%%/superfs/fsck_superfs/fsck_superfs.8
+%%EXAMPLESDIR%%/superfs/fsck_superfs/Makefile
+%%EXAMPLESDIR%%/superfs/docs/NEWS
+%%EXAMPLESDIR%%/superfs/docs/LICENSE
+%%EXAMPLESDIR%%/superfs/docs/README
+%%EXAMPLESDIR%%/superfs/docs/Makefile
+%%EXAMPLESDIR%%/superfs/mkfs_superfs/mkfs_superfs.c
+%%EXAMPLESDIR%%/superfs/mkfs_superfs/mkfs_superfs.8
+%%EXAMPLESDIR%%/superfs/mkfs_superfs/Makefile
+%%EXAMPLESDIR%%/cxxlib/cxxlib2/Makefile
+%%EXAMPLESDIR%%/cxxlib/cxxlib2/hello_msg3.cxx
+%%EXAMPLESDIR%%/cxxlib/cxxlib2/include/hello_msg2.h
+%%EXAMPLESDIR%%/cxxlib/cxxlib2/linkme.mk
+%%EXAMPLESDIR%%/cxxlib/Makefile
+%%EXAMPLESDIR%%/cxxlib/cxxapp/Makefile
+%%EXAMPLESDIR%%/cxxlib/cxxapp/cxxapp.cc
+%%EXAMPLESDIR%%/cxxlib/expect.out
+%%EXAMPLESDIR%%/cxxlib/test.mk
+%%EXAMPLESDIR%%/cxxlib/cxxlib/include/hello_msg.h
+%%EXAMPLESDIR%%/cxxlib/cxxlib/include/impl/hello_msg2.h
+%%EXAMPLESDIR%%/cxxlib/cxxlib/include/impl/hello_msg1.h
+%%EXAMPLESDIR%%/cxxlib/cxxlib/linkme.mk
+%%EXAMPLESDIR%%/cxxlib/cxxlib/hello_msg2.cpp
+%%EXAMPLESDIR%%/cxxlib/cxxlib/Makefile
+%%EXAMPLESDIR%%/cxxlib/cxxlib/hello_msg1.cpp
+%%EXAMPLESDIR%%/cxxlib/cxxlib/dummy.c
+%%EXAMPLESDIR%%/cxxlib/Makefile.inc
+%%EXAMPLESDIR%%/raise_default_signal/test.mk
+%%EXAMPLESDIR%%/raise_default_signal/Makefile
+%%EXAMPLESDIR%%/raise_default_signal/prog.c
+%%EXAMPLESDIR%%/raise_default_signal/expect.out
+%%EXAMPLESDIR%%/calc/input.txt
+%%EXAMPLESDIR%%/calc/expect.out
+%%EXAMPLESDIR%%/calc/Makefile
+%%EXAMPLESDIR%%/calc/test.mk
+%%EXAMPLESDIR%%/calc/calc.y
+%%EXAMPLESDIR%%/autotools/expect.out
+%%EXAMPLESDIR%%/autotools/test.mk
+%%EXAMPLESDIR%%/autotools/proj/ChangeLog
+%%EXAMPLESDIR%%/autotools/proj/NEWS
+%%EXAMPLESDIR%%/autotools/proj/main.c
+%%EXAMPLESDIR%%/autotools/proj/COPYING
+%%EXAMPLESDIR%%/autotools/proj/configure.ac
+%%EXAMPLESDIR%%/autotools/proj/README
+%%EXAMPLESDIR%%/autotools/proj/AUTHORS
+%%EXAMPLESDIR%%/autotools/proj/Makefile.am
+%%EXAMPLESDIR%%/autotools/Makefile
+%%EXAMPLESDIR%%/dprintf/test.mk
+%%EXAMPLESDIR%%/dprintf/Makefile
+%%EXAMPLESDIR%%/dprintf/expect.out
+%%EXAMPLESDIR%%/dprintf/prog.c
+%%EXAMPLESDIR%%/compilers/Makefile
+%%EXAMPLESDIR%%/compilers/test.mk
+%%EXAMPLESDIR%%/compilers/expect.out
+%%EXAMPLESDIR%%/compilers/compiler_test.c
+%%EXAMPLESDIR%%/SLIST/Makefile
+%%EXAMPLESDIR%%/SLIST/input.in
+%%EXAMPLESDIR%%/SLIST/test.mk
+%%EXAMPLESDIR%%/SLIST/hello_SLIST.c
+%%EXAMPLESDIR%%/SLIST/expect.out
+%%EXAMPLESDIR%%/requirements/expect.out
+%%EXAMPLESDIR%%/requirements/custom_check1.c
+%%EXAMPLESDIR%%/requirements/Makefile
+%%EXAMPLESDIR%%/requirements/hello_world.c
+%%EXAMPLESDIR%%/requirements/custom_check2.c
+%%EXAMPLESDIR%%/requirements/test.mk
+%%EXAMPLESDIR%%/check_compiler_opts/test.mk
+%%EXAMPLESDIR%%/check_compiler_opts/Makefile
+%%EXAMPLESDIR%%/check_compiler_opts/hello_world.c
+%%EXAMPLESDIR%%/check_compiler_opts/expect.out
+%%EXAMPLESDIR%%/strsep/Makefile
+%%EXAMPLESDIR%%/strsep/prog.c
+%%EXAMPLESDIR%%/strsep/expect.out
+%%EXAMPLESDIR%%/strsep/test.mk
+%%EXAMPLESDIR%%/files2/hello_world2
+%%EXAMPLESDIR%%/files2/hello_world3.in
+%%EXAMPLESDIR%%/files2/Makefile
+%%EXAMPLESDIR%%/files2/hello_world.1
+%%EXAMPLESDIR%%/files2/test.mk
+%%EXAMPLESDIR%%/files2/expect.out
+%%EXAMPLESDIR%%/files2/main.c
+%%EXAMPLESDIR%%/files2/msg.c
+%%EXAMPLESDIR%%/files2/more_scripts/script1
+%%EXAMPLESDIR%%/files2/more_scripts/script2
+%%EXAMPLESDIR%%/files2/more_scripts/script3
+%%EXAMPLESDIR%%/hello_glib2/test.mk
+%%EXAMPLESDIR%%/hello_glib2/Makefile
+%%EXAMPLESDIR%%/hello_glib2/expect.out
+%%EXAMPLESDIR%%/hello_glib2/hello_glib2.c
+%%EXAMPLESDIR%%/hello_lua/foo.lua
+%%EXAMPLESDIR%%/hello_lua/foobar.in
+%%EXAMPLESDIR%%/hello_lua/test.mk
+%%EXAMPLESDIR%%/hello_lua/bar.lua
+%%EXAMPLESDIR%%/hello_lua/Makefile
+%%EXAMPLESDIR%%/hello_lua/expect.out
+%%EXAMPLESDIR%%/hello_lua/baz.c
+%%EXAMPLESDIR%%/plugins2/plugin2/Makefile
+%%EXAMPLESDIR%%/plugins2/plugin2/plugin2.c
+%%EXAMPLESDIR%%/plugins2/expect.out
+%%EXAMPLESDIR%%/plugins2/Makefile
+%%EXAMPLESDIR%%/plugins2/plugin1/plugin1.c
+%%EXAMPLESDIR%%/plugins2/plugin1/Makefile
+%%EXAMPLESDIR%%/plugins2/test.mk
+%%EXAMPLESDIR%%/plugins2/app/app.c
+%%EXAMPLESDIR%%/plugins2/app/Makefile
+%%EXAMPLESDIR%%/files/expect.out
+%%EXAMPLESDIR%%/files/shell_func3
+%%EXAMPLESDIR%%/files/Makefile
+%%EXAMPLESDIR%%/files/DEBIAN/control
+%%EXAMPLESDIR%%/files/shell_func1
+%%EXAMPLESDIR%%/files/expect.NetBSD.out
+%%EXAMPLESDIR%%/files/test.mk
+%%EXAMPLESDIR%%/files/shell_func2
+%%EXAMPLESDIR%%/files/shell_func.7
+%%EXAMPLESDIR%%/files/shell_func.texinfo
+%%EXAMPLESDIR%%/strlcpy3/expect.out
+%%EXAMPLESDIR%%/strlcpy3/test.mk
+%%EXAMPLESDIR%%/strlcpy3/hello.c
+%%EXAMPLESDIR%%/strlcpy3/Makefile
+%%EXAMPLESDIR%%/strlcpy3/input.in
+%%EXAMPLESDIR%%/arc4random/Makefile
+%%EXAMPLESDIR%%/arc4random/test.mk
+%%EXAMPLESDIR%%/arc4random/prog.c
+%%EXAMPLESDIR%%/arc4random/expect.out
+%%EXAMPLESDIR%%/bswap/test.mk
+%%EXAMPLESDIR%%/bswap/Makefile
+%%EXAMPLESDIR%%/bswap/expect.out
+%%EXAMPLESDIR%%/bswap/prog.c
+%%EXAMPLESDIR%%/hello_TARGETS/test.mk
+%%EXAMPLESDIR%%/hello_TARGETS/hello1/hello1.c
+%%EXAMPLESDIR%%/hello_TARGETS/hello1/hello1.pod
+%%EXAMPLESDIR%%/hello_TARGETS/hello1/Makefile
+%%EXAMPLESDIR%%/hello_TARGETS/expect.out
+%%EXAMPLESDIR%%/hello_TARGETS/hello2/hello2.c
+%%EXAMPLESDIR%%/hello_TARGETS/hello2/Makefile
+%%EXAMPLESDIR%%/hello_TARGETS/hello2/hello2.pod
+%%EXAMPLESDIR%%/hello_TARGETS/Makefile.inc
+%%EXAMPLESDIR%%/hello_TARGETS/Makefile
+%%EXAMPLESDIR%%/xxzip/Makefile
+%%EXAMPLESDIR%%/xxzip/xxzip.pod
+%%EXAMPLESDIR%%/xxzip/xxzip.c
+%%EXAMPLESDIR%%/xxzip/test.mk
+%%EXAMPLESDIR%%/xxzip/expect.out
+%%EXAMPLESDIR%%/xxzip/tutorial.pod
+%%EXAMPLESDIR%%/RBTREE/input.in
+%%EXAMPLESDIR%%/RBTREE/Makefile
+%%EXAMPLESDIR%%/RBTREE/expect.out
+%%EXAMPLESDIR%%/RBTREE/test.mk
+%%EXAMPLESDIR%%/RBTREE/hello_RBTREE.c
+%%EXAMPLESDIR%%/cxx/expect.out
+%%EXAMPLESDIR%%/cxx/Makefile
+%%EXAMPLESDIR%%/cxx/seven.c
+%%EXAMPLESDIR%%/cxx/five.h
+%%EXAMPLESDIR%%/cxx/hello_msg.cc
+%%EXAMPLESDIR%%/cxx/hello_msg.h
+%%EXAMPLESDIR%%/cxx/seven.h
+%%EXAMPLESDIR%%/cxx/main.cc
+%%EXAMPLESDIR%%/cxx/test.mk
+%%EXAMPLESDIR%%/cxx/five.c
+%%EXAMPLESDIR%%/fparseln/test.mk
+%%EXAMPLESDIR%%/fparseln/Makefile
+%%EXAMPLESDIR%%/fparseln/expect.out
+%%EXAMPLESDIR%%/fparseln/input.txt
+%%EXAMPLESDIR%%/fparseln/prog.c
+%%EXAMPLESDIR%%/hello_lua2/foobar.in
+%%EXAMPLESDIR%%/hello_lua2/Makefile
+%%EXAMPLESDIR%%/hello_lua2/expect.out
+%%EXAMPLESDIR%%/hello_lua2/bar.lua
+%%EXAMPLESDIR%%/hello_lua2/test.mk
+%%EXAMPLESDIR%%/hello_lua2/foo.lua
+%%EXAMPLESDIR%%/efun/prog.c
+%%EXAMPLESDIR%%/efun/test.mk
+%%EXAMPLESDIR%%/efun/Makefile
+%%EXAMPLESDIR%%/efun/expect.out
+%%EXAMPLESDIR%%/helpers/mkc_test_helper_paths
+%%EXAMPLESDIR%%/helpers/mkc_test_helper3
+%%EXAMPLESDIR%%/helpers/Makefile
+%%EXAMPLESDIR%%/helpers/mkc_fake_strip
+%%EXAMPLESDIR%%/helpers/mkc_long_lines
+%%EXAMPLESDIR%%/helpers/mkc_long_lines.in
+%%EXAMPLESDIR%%/helpers/mkc_test_helper2
+%%EXAMPLESDIR%%/helpers/mkc_test_helper
+%%EXAMPLESDIR%%/helpers/mkc_test_nm
+%%EXAMPLESDIR%%/progs2/expect.out
+%%EXAMPLESDIR%%/progs2/client.c
+%%EXAMPLESDIR%%/progs2/Makefile
+%%EXAMPLESDIR%%/progs2/common.c
+%%EXAMPLESDIR%%/progs2/test.mk
+%%EXAMPLESDIR%%/progs2/server.c
+%%EXAMPLESDIR%%/strlcpy/expect.out
+%%EXAMPLESDIR%%/strlcpy/getline.c
+%%EXAMPLESDIR%%/strlcpy/strlcpy.c
+%%EXAMPLESDIR%%/strlcpy/hello.c
+%%EXAMPLESDIR%%/strlcpy/test.mk
+%%EXAMPLESDIR%%/strlcpy/input.in
+%%EXAMPLESDIR%%/strlcpy/Makefile
+%%EXAMPLESDIR%%/libdeps/progs/foobaz/Makefile
+%%EXAMPLESDIR%%/libdeps/progs/foobaz/foobaz.c
+%%EXAMPLESDIR%%/libdeps/progs/fooquxfoobar/fooquxfoobar.c
+%%EXAMPLESDIR%%/libdeps/progs/fooquxfoobar/Makefile
+%%EXAMPLESDIR%%/libdeps/expect.out
+%%EXAMPLESDIR%%/libdeps/Makefile
+%%EXAMPLESDIR%%/libdeps/test.mk
+%%EXAMPLESDIR%%/libdeps/libs/libfooqux/fooqux.c
+%%EXAMPLESDIR%%/libdeps/libs/libfooqux/fooqux.h
+%%EXAMPLESDIR%%/libdeps/libs/libfooqux/Makefile
+%%EXAMPLESDIR%%/libdeps/libs/libbaz/baz.c
+%%EXAMPLESDIR%%/libdeps/libs/libbaz/linkme.mk
+%%EXAMPLESDIR%%/libdeps/libs/libbaz/Makefile
+%%EXAMPLESDIR%%/libdeps/libs/libbaz/include/baz.h
+%%EXAMPLESDIR%%/libdeps/libs/libfoo/foo.c
+%%EXAMPLESDIR%%/libdeps/libs/libfoo/Makefile
+%%EXAMPLESDIR%%/libdeps/libs/libfoo/linkme.mk
+%%EXAMPLESDIR%%/libdeps/libs/libfoo/foo.h
+%%EXAMPLESDIR%%/libdeps/libs/libbar/Makefile
+%%EXAMPLESDIR%%/libdeps/libs/libbar/bar.h
+%%EXAMPLESDIR%%/libdeps/libs/libbar/bar.c
+%%EXAMPLESDIR%%/errc/expect.out
+%%EXAMPLESDIR%%/errc/test.mk
+%%EXAMPLESDIR%%/errc/Makefile
+%%EXAMPLESDIR%%/errc/prog.c
+%%EXAMPLESDIR%%/help_target/expect.out
+%%EXAMPLESDIR%%/help_target/test.mk
+%%EXAMPLESDIR%%/help_target/Makefile
+%%EXAMPLESDIR%%/help_target/print_value.c
+%%EXAMPLESDIR%%/lexer/input.txt
+%%EXAMPLESDIR%%/lexer/test.mk
+%%EXAMPLESDIR%%/lexer/Makefile
+%%EXAMPLESDIR%%/lexer/expect.out
+%%EXAMPLESDIR%%/lexer/lexer.l
+%%EXAMPLESDIR%%/subprojects/libhello1/linkme.mk
+%%EXAMPLESDIR%%/subprojects/libhello1/hello1.c
+%%EXAMPLESDIR%%/subprojects/libhello1/Makefile
+%%EXAMPLESDIR%%/subprojects/libhello1/hello1.h
+%%EXAMPLESDIR%%/subprojects/test.mk
+%%EXAMPLESDIR%%/subprojects/hello/test.mk
+%%EXAMPLESDIR%%/subprojects/hello/Makefile
+%%EXAMPLESDIR%%/subprojects/hello/hello_subprojects.1.in
+%%EXAMPLESDIR%%/subprojects/hello/hello_subprojects.c
+%%EXAMPLESDIR%%/subprojects/hello/hello_subprojects2.in
+%%EXAMPLESDIR%%/subprojects/version.mk
+%%EXAMPLESDIR%%/subprojects/libhello2/include/hello2.h
+%%EXAMPLESDIR%%/subprojects/libhello2/hello2.3
+%%EXAMPLESDIR%%/subprojects/libhello2/hello2.c
+%%EXAMPLESDIR%%/subprojects/libhello2/linkme.mk
+%%EXAMPLESDIR%%/subprojects/libhello2/Makefile
+%%EXAMPLESDIR%%/subprojects/expect.out
+%%EXAMPLESDIR%%/subprojects/Makefile
+%%EXAMPLESDIR%%/pkgconfig3/pkgconfig3.c
+%%EXAMPLESDIR%%/pkgconfig3/Makefile
+%%EXAMPLESDIR%%/pkgconfig3/test.mk
+%%EXAMPLESDIR%%/pkgconfig3/expect.out
+%%EXAMPLESDIR%%/calc2/Makefile
+%%EXAMPLESDIR%%/calc2/expect.out
+%%EXAMPLESDIR%%/calc2/expressions.txt
+%%EXAMPLESDIR%%/calc2/parser.y
+%%EXAMPLESDIR%%/calc2/lex.l
+%%EXAMPLESDIR%%/calc2/test.mk
+%%EXAMPLESDIR%%/iconv/Makefile
+%%EXAMPLESDIR%%/iconv/expect.out
+%%EXAMPLESDIR%%/iconv/test.mk
+%%EXAMPLESDIR%%/iconv/hello_iconv.c
+%%EXAMPLESDIR%%/vis/Makefile
+%%EXAMPLESDIR%%/vis/expect.out
+%%EXAMPLESDIR%%/vis/test.mk
+%%EXAMPLESDIR%%/vis/prog.c
+%%EXAMPLESDIR%%/customtests2/test.mk
+%%EXAMPLESDIR%%/customtests2/Makefile
+%%EXAMPLESDIR%%/customtests2/expect.out
+%%EXAMPLESDIR%%/customtests2/hello_customtests2.c
+%%EXAMPLESDIR%%/progs/Makefile
+%%EXAMPLESDIR%%/progs/server.c
+%%EXAMPLESDIR%%/progs/test.mk
+%%EXAMPLESDIR%%/progs/expect.out
+%%EXAMPLESDIR%%/progs/client_puts.c
+%%EXAMPLESDIR%%/progs/server_puts.c
+%%EXAMPLESDIR%%/progs/client.c
+%%EXAMPLESDIR%%/fgetln/hello.c
+%%EXAMPLESDIR%%/fgetln/test.mk
+%%EXAMPLESDIR%%/fgetln/expect.out
+%%EXAMPLESDIR%%/fgetln/Makefile
+%%EXAMPLESDIR%%/hello_lua3/Makefile
+%%EXAMPLESDIR%%/hello_lua3/test.mk
+%%EXAMPLESDIR%%/hello_lua3/socket_foo.lua
+%%EXAMPLESDIR%%/hello_lua3/socket_bar.lua
+%%EXAMPLESDIR%%/hello_lua3/socket_baz.c
+%%EXAMPLESDIR%%/hello_lua3/expect.out
+%%EXAMPLESDIR%%/fts/Makefile
+%%EXAMPLESDIR%%/fts/prog.c
+%%EXAMPLESDIR%%/fts/test.mk
+%%EXAMPLESDIR%%/fts/expect.out
+%%EXAMPLESDIR%%/reallocarray/prog.c
+%%EXAMPLESDIR%%/reallocarray/test.mk
+%%EXAMPLESDIR%%/reallocarray/expect.out
+%%EXAMPLESDIR%%/reallocarray/Makefile
+%%EXAMPLESDIR%%/hello_world/expect.out
+%%EXAMPLESDIR%%/hello_world/Makefile
+%%EXAMPLESDIR%%/hello_world/hello_world.c
+%%EXAMPLESDIR%%/hello_world/test.mk
+%%EXAMPLESDIR%%/hello_world/COPYRIGHT
+%%EXAMPLESDIR%%/hello_world/README
+%%EXAMPLESDIR%%/compatlib/prog1/Makefile
+%%EXAMPLESDIR%%/compatlib/prog1/prog1.c
+%%EXAMPLESDIR%%/compatlib/test.mk
+%%EXAMPLESDIR%%/compatlib/prog2/Makefile
+%%EXAMPLESDIR%%/compatlib/prog2/prog2.c
+%%EXAMPLESDIR%%/compatlib/expect.out
+%%EXAMPLESDIR%%/compatlib/Makefile.inc
+%%EXAMPLESDIR%%/compatlib/Makefile
+%%EXAMPLESDIR%%/compatlib/libcmpt/Makefile
+%%EXAMPLESDIR%%/makefile
+%%EXAMPLESDIR%%/strlcpy2/missing/getline.c
+%%EXAMPLESDIR%%/strlcpy2/missing/strlcpy.c
+%%EXAMPLESDIR%%/strlcpy2/expect.out
+%%EXAMPLESDIR%%/strlcpy2/Makefile
+%%EXAMPLESDIR%%/strlcpy2/input.in
+%%EXAMPLESDIR%%/strlcpy2/hello.c
+%%EXAMPLESDIR%%/strlcpy2/test.mk
+%%EXAMPLESDIR%%/tools2/libs/qux/Makefile
+%%EXAMPLESDIR%%/tools2/libs/qux/qux.c
+%%EXAMPLESDIR%%/tools2/libs/qux/qux.h.in
+%%EXAMPLESDIR%%/tools2/libs/bar/bar.h
+%%EXAMPLESDIR%%/tools2/libs/bar/Makefile
+%%EXAMPLESDIR%%/tools2/libs/bar/bar.c
+%%EXAMPLESDIR%%/tools2/libs/foo/Makefile
+%%EXAMPLESDIR%%/tools2/libs/foo/foo.h
+%%EXAMPLESDIR%%/tools2/libs/foo/foo.c
+%%EXAMPLESDIR%%/tools2/tests/prog4/Makefile
+%%EXAMPLESDIR%%/tools2/tests/prog3/Makefile
+%%EXAMPLESDIR%%/tools2/tests/prog1/Makefile
+%%EXAMPLESDIR%%/tools2/tests/prog2/Makefile
+%%EXAMPLESDIR%%/tools2/test.mk
+%%EXAMPLESDIR%%/tools2/Makefile
+%%EXAMPLESDIR%%/tools2/tools/prog4/Makefile
+%%EXAMPLESDIR%%/tools2/tools/prog4/prog4.c
+%%EXAMPLESDIR%%/tools2/tools/prog3/Makefile
+%%EXAMPLESDIR%%/tools2/tools/prog3/prog3.c
+%%EXAMPLESDIR%%/tools2/tools/prog2/prog2.c
+%%EXAMPLESDIR%%/tools2/tools/prog2/Makefile
+%%EXAMPLESDIR%%/tools2/tools/prog1/Makefile
+%%EXAMPLESDIR%%/tools2/tools/prog1/prog1.c
+%%EXAMPLESDIR%%/tools2/expect.out
+%%EXAMPLESDIR%%/Makefile.inc
+%%EXAMPLESDIR%%/sizeof/sizeof_test.c
+%%EXAMPLESDIR%%/sizeof/test.mk
+%%EXAMPLESDIR%%/sizeof/Makefile
+%%EXAMPLESDIR%%/sizeof/expect.out
+%%DOCSDIR%%/FAQ
+%%DOCSDIR%%/NOTES
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/INSTALL.md
+%%DOCSDIR%%/LICENSE
+%%DOCSDIR%%/README.md
+%%DOCSDIR%%/TODO
+%%DATADIR%%/builtins/prog_mkdep
+%%DATADIR%%/builtins/endianness
+%%DATADIR%%/builtins/prog_gawk
+%%DATADIR%%/builtins/easy.c
+%%DATADIR%%/builtins/prog_flex
+%%DATADIR%%/builtins/prog_bison
+%%DATADIR%%/builtins/prog_nbmkdep
+%%DATADIR%%/builtins/prog_gmake
+%%DATADIR%%/builtins/prog_gm4
+%%DATADIR%%/builtins/easy.cc
+%%DATADIR%%/mk/mkc_imp.conf-cleanup.mk
+%%DATADIR%%/mk/mkc_imp.lua.mk
+%%DATADIR%%/mk/mkc_imp.cc_clang-8.0.1.mk
+%%DATADIR%%/mk/mkc_imp.f_dprintf.mk
+%%DATADIR%%/mk/mkc_imp.mk
+%%DATADIR%%/mk/mkc_imp.preinit.mk
+%%DATADIR%%/mk/mkc_imp.f_arc4random.mk
+%%DATADIR%%/mk/mkc_imp.f_RB.mk
+%%DATADIR%%/mk/mkc_imp.f_fparseln.mk
+%%DATADIR%%/mk/mkc_imp.objdir.mk
+%%DATADIR%%/mk/mkc_imp.f_warn.mk
+%%DATADIR%%/mk/mkc_imp.rules.mk
+%%DATADIR%%/mk/mkc.configure.mk
+%%DATADIR%%/mk/mkc_imp.links.mk
+%%DATADIR%%/mk/mkc_imp.scripts.mk
+%%DATADIR%%/mk/mkc_imp.f_strndup.mk
+%%DATADIR%%/mk/mkc_imp.f_SPLAY.mk
+%%DATADIR%%/mk/mkc.lib.mk
+%%DATADIR%%/mk/mkc_imp.lib.mk
+%%DATADIR%%/mk/mkc_imp.f_raise_default_signal.mk
+%%DATADIR%%/mk/mkc.conf.mk
+%%DATADIR%%/mk/mkc_imp.pod.mk
+%%DATADIR%%/mk/mkc_imp.f_SLIST.mk
+%%DATADIR%%/mk/mkc.subdir.mk
+%%DATADIR%%/mk/mkc_imp.f_efun.mk
+%%DATADIR%%/mk/mkc_imp.f_TAILQ.mk
+%%DATADIR%%/mk/mkc_imp.subprj.mk
+%%DATADIR%%/mk/mkc_imp.cxx_clang-8.0.1.mk
+%%DATADIR%%/mk/mkc.intexts.mk
+%%DATADIR%%/mk/sys.mk
+%%DATADIR%%/mk/mkc_imp.f_err.mk
+%%DATADIR%%/mk/mkc_imp.inc.mk
+%%DATADIR%%/mk/mkc_imp.files.mk
+%%DATADIR%%/mk/mkc_imp.f_strsep.mk
+%%DATADIR%%/mk/mkc_imp.f_fgetln.mk
+%%DATADIR%%/mk/mkc_imp.f_libdl.mk
+%%DATADIR%%/mk/mkc_imp.info.mk
+%%DATADIR%%/mk/mkc_imp.arch.mk
+%%DATADIR%%/mk/mkc_imp.f_getline.mk
+%%DATADIR%%/mk/mkc_imp.f_CIRCLEQ.mk
+%%DATADIR%%/mk/mkc_imp.compiler_settings.mk
+%%DATADIR%%/mk/mkc_imp.final.mk
+%%DATADIR%%/mk/mkc.files.mk
+%%DATADIR%%/mk/mkc_imp.platform.sys.mk
+%%DATADIR%%/mk/mkc_imp.f_errc.mk
+%%DATADIR%%/mk/mkc_imp.f_strlcpy.mk
+%%DATADIR%%/mk/mkc.init.mk
+%%DATADIR%%/mk/mkc_imp.f_reallocarray.mk
+%%DATADIR%%/mk/mkc.subprjs.mk
+%%DATADIR%%/mk/mkc_imp.man.mk
+%%DATADIR%%/mk/mkc_imp.compiler_type.mk
+%%DATADIR%%/mk/mkc_imp.f_bswap.mk
+%%DATADIR%%/mk/mkc_imp.f_vis.mk
+%%DATADIR%%/mk/mkc.minitest.mk
+%%DATADIR%%/mk/mkc.mk
+%%DATADIR%%/mk/mkc_imp.f_SIMPLEQ.mk
+%%DATADIR%%/mk/mkc_imp.conf-final.mk
+%%DATADIR%%/mk/mkc_imp.f_posix_getopt.mk
+%%DATADIR%%/mk/mkc.subprj.mk
+%%DATADIR%%/mk/mkc_imp.f_fts.mk
+%%DATADIR%%/mk/mkc_imp.f_STAILQ.mk
+%%DATADIR%%/mk/mkc_imp.pkg-config.mk
+%%DATADIR%%/mk/mkc.pkg-config.mk
+%%DATADIR%%/mk/mkc_imp.obj.mk
+%%DATADIR%%/mk/mkc_imp.checkprogs.mk
+%%DATADIR%%/mk/mkc_imp.prog.mk
+%%DATADIR%%/mk/mkc_imp.help.mk
+%%DATADIR%%/mk/mkc_imp.dep.mk
+%%DATADIR%%/mk/mkc_imp.f_getdelim.mk
+%%DATADIR%%/mk/mkc_imp.intexts.mk
+%%DATADIR%%/mk/mkc_imp.foreign_autotools.mk
+%%DATADIR%%/mk/mkc_imp.f_libl.mk
+%%DATADIR%%/mk/mkc_imp.f_LIST.mk
+%%DATADIR%%/mk/mkc_imp.f_strlcat.mk
+%%DATADIR%%/mk/mkc_imp.dpvars.mk
+%%DATADIR%%/mk/mkc_imp.f_progname.mk
+%%DATADIR%%/mk/mkc.compiler_settings.mk
+%%DATADIR%%/mk/mkc.prog.mk
+%%DATADIR%%/mk/mkc_imp.f_libm.mk
+%%DATADIR%%/features/mkc_fts.h
+%%DATADIR%%/features/mkc_LIST.h
+%%DATADIR%%/features/mkc_externc.h
+%%DATADIR%%/features/getline/getline.c
+%%DATADIR%%/features/mkc_SPLAY.h
+%%DATADIR%%/features/mkc_reallocarray.h
+%%DATADIR%%/features/mkc_libm.h
+%%DATADIR%%/features/vis/vis.c
+%%DATADIR%%/features/vis/unvis.c
+%%DATADIR%%/features/mkc_SLIST.h
+%%DATADIR%%/features/dprintf/dprintf.c
+%%DATADIR%%/features/raise_default_signal/raise_default_signal.c
+%%DATADIR%%/features/mkc_bswap.h
+%%DATADIR%%/features/mkc_posix_getopt.h
+%%DATADIR%%/features/fparseln/fparseln.c
+%%DATADIR%%/features/mkc_strlcpy.h
+%%DATADIR%%/features/mkc_dprintf.h
+%%DATADIR%%/features/mkc_fgetln.h
+%%DATADIR%%/features/mkc_getdelim.h
+%%DATADIR%%/features/efun/efun.c
+%%DATADIR%%/features/mkc_efun.h
+%%DATADIR%%/features/mkc_progname.h
+%%DATADIR%%/features/fgetln/fgetln.c
+%%DATADIR%%/features/mkc_RB.h
+%%DATADIR%%/features/mkc_STAILQ.h
+%%DATADIR%%/features/mkc_vis.h
+%%DATADIR%%/features/reallocarray/reallocarray.c
+%%DATADIR%%/features/errc/errc.c
+%%DATADIR%%/features/errc/verrc.c
+%%DATADIR%%/features/netbsd_sys_tree.h
+%%DATADIR%%/features/netbsd_sys_queue.h
+%%DATADIR%%/features/strlcat/strlcat.c
+%%DATADIR%%/features/getdelim/getdelim.c
+%%DATADIR%%/features/progname/progname.c
+%%DATADIR%%/features/mkc_warn.h
+%%DATADIR%%/features/mkc_err.h
+%%DATADIR%%/features/mkc_TAILQ.h
+%%DATADIR%%/features/strndup/strndup.c
+%%DATADIR%%/features/mkc_fparseln.h
+%%DATADIR%%/features/warn/warn.c
+%%DATADIR%%/features/_mkcfake.c
+%%DATADIR%%/features/mkc_getline.h
+%%DATADIR%%/features/mkc_strsep.h
+%%DATADIR%%/features/mkc_strlcat.h
+%%DATADIR%%/features/posix_getopt/posix_getopt.c
+%%DATADIR%%/features/mkc_strndup.h
+%%DATADIR%%/features/strlcpy/strlcpy.c
+%%DATADIR%%/features/mkc_raise_default_signal.h
+%%DATADIR%%/features/mkc_CIRCLEQ.h
+%%DATADIR%%/features/mkc_SIMPLEQ.h
+%%DATADIR%%/features/mkc_libdl.h
+%%DATADIR%%/features/mkc_errc.h
+%%DATADIR%%/features/strsep/strsep.c
+%%DATADIR%%/features/err/err.c
+%%DATADIR%%/features/mkc_arc4random.h
+bin/mkc_check_prog
 bin/mkc_check_decl
 bin/mkc_check_funclib
 bin/mkc_check_header
-bin/mkc_check_prog
-bin/mkc_check_sizeof
-bin/mkc_check_version
-bin/mkc_compiler_settings
 bin/mkc_install
 bin/mkc_which
+bin/mkc_compiler_settings
+bin/mkc_check_sizeof
+bin/mkc_check_version
+bin/mkc_check_custom
 bin/mkcmake
-libexec/mk-configure/mkc_check_common.sh
-libexec/mk-configure/mkc_get_deps
-man/man1/mkc_check_compiler.1.gz
-man/man1/mkc_check_custom.1.gz
-man/man1/mkc_check_decl.1.gz
-man/man1/mkc_check_funclib.1.gz
-man/man1/mkc_check_header.1.gz
-man/man1/mkc_check_prog.1.gz
-man/man1/mkc_check_sizeof.1.gz
-man/man1/mkc_check_version.1.gz
-man/man1/mkc_compiler_settings.1.gz
-man/man1/mkc_install.1.gz
-man/man1/mkc_which.1.gz
-man/man1/mkcmake.1.gz
-man/man7/mk-configure.7.gz
-%%PORTDOCS%%%%DOCSDIR%%/FAQ
-%%PORTDOCS%%%%DOCSDIR%%/INSTALL.md
-%%PORTDOCS%%%%DOCSDIR%%/LICENSE
-%%PORTDOCS%%%%DOCSDIR%%/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/NOTES
-%%PORTDOCS%%%%DOCSDIR%%/README.md
-%%PORTDOCS%%%%DOCSDIR%%/TODO
+bin/mkc_check_compiler
+@dir libexec/mk-configure
+@dir %%EXAMPLESDIR%%/posix_getopt
+@dir %%EXAMPLESDIR%%/tools/tools/prog1
+@dir %%EXAMPLESDIR%%/tools/tools/prog2
+@dir %%EXAMPLESDIR%%/tools/tools/prog4
+@dir %%EXAMPLESDIR%%/tools/tools/prog3
+@dir %%EXAMPLESDIR%%/tools/tools
+@dir %%EXAMPLESDIR%%/tools/libs/qux
+@dir %%EXAMPLESDIR%%/tools/libs/bar
+@dir %%EXAMPLESDIR%%/tools/libs/foo
+@dir %%EXAMPLESDIR%%/tools/libs
+@dir %%EXAMPLESDIR%%/tools
+@dir %%EXAMPLESDIR%%/dictd/doc
+@dir %%EXAMPLESDIR%%/dictd/dictzip
+@dir %%EXAMPLESDIR%%/dictd/libcommon
+@dir %%EXAMPLESDIR%%/dictd/dictd
+@dir %%EXAMPLESDIR%%/dictd/dictfmt
+@dir %%EXAMPLESDIR%%/dictd/libmaa
+@dir %%EXAMPLESDIR%%/dictd/libdz
+@dir %%EXAMPLESDIR%%/dictd/dict
+@dir %%EXAMPLESDIR%%/dictd
+@dir %%EXAMPLESDIR%%/errwarn
+@dir %%EXAMPLESDIR%%/subdirs/prog2
+@dir %%EXAMPLESDIR%%/subdirs/prog1
+@dir %%EXAMPLESDIR%%/subdirs
+@dir %%EXAMPLESDIR%%/plugins/app
+@dir %%EXAMPLESDIR%%/plugins/plugin1
+@dir %%EXAMPLESDIR%%/plugins/plugin2
+@dir %%EXAMPLESDIR%%/plugins
+@dir %%EXAMPLESDIR%%/autoconf/proj
+@dir %%EXAMPLESDIR%%/autoconf
+@dir %%EXAMPLESDIR%%/customtests/custom_tests
+@dir %%EXAMPLESDIR%%/customtests
+@dir %%EXAMPLESDIR%%/require_tools
+@dir %%EXAMPLESDIR%%/superfs/fsck_superfs
+@dir %%EXAMPLESDIR%%/superfs/docs
+@dir %%EXAMPLESDIR%%/superfs/mkfs_superfs
+@dir %%EXAMPLESDIR%%/superfs
+@dir %%EXAMPLESDIR%%/cxxlib/cxxlib2/include
+@dir %%EXAMPLESDIR%%/cxxlib/cxxlib2
+@dir %%EXAMPLESDIR%%/cxxlib/cxxapp
+@dir %%EXAMPLESDIR%%/cxxlib/cxxlib/include/impl
+@dir %%EXAMPLESDIR%%/cxxlib/cxxlib/include
+@dir %%EXAMPLESDIR%%/cxxlib/cxxlib
+@dir %%EXAMPLESDIR%%/cxxlib
+@dir %%EXAMPLESDIR%%/raise_default_signal
+@dir %%EXAMPLESDIR%%/calc
+@dir %%EXAMPLESDIR%%/autotools/proj
+@dir %%EXAMPLESDIR%%/autotools
+@dir %%EXAMPLESDIR%%/dprintf
+@dir %%EXAMPLESDIR%%/compilers
+@dir %%EXAMPLESDIR%%/SLIST
+@dir %%EXAMPLESDIR%%/requirements
+@dir %%EXAMPLESDIR%%/check_compiler_opts
+@dir %%EXAMPLESDIR%%/strsep
+@dir %%EXAMPLESDIR%%/files2/more_scripts
+@dir %%EXAMPLESDIR%%/files2
+@dir %%EXAMPLESDIR%%/hello_glib2
+@dir %%EXAMPLESDIR%%/hello_lua
+@dir %%EXAMPLESDIR%%/plugins2/plugin2
+@dir %%EXAMPLESDIR%%/plugins2/plugin1
+@dir %%EXAMPLESDIR%%/plugins2/app
+@dir %%EXAMPLESDIR%%/plugins2
+@dir %%EXAMPLESDIR%%/files/DEBIAN
+@dir %%EXAMPLESDIR%%/files
+@dir %%EXAMPLESDIR%%/strlcpy3
+@dir %%EXAMPLESDIR%%/arc4random
+@dir %%EXAMPLESDIR%%/bswap
+@dir %%EXAMPLESDIR%%/hello_TARGETS/hello1
+@dir %%EXAMPLESDIR%%/hello_TARGETS/hello2
+@dir %%EXAMPLESDIR%%/hello_TARGETS
+@dir %%EXAMPLESDIR%%/xxzip
+@dir %%EXAMPLESDIR%%/RBTREE
+@dir %%EXAMPLESDIR%%/cxx
+@dir %%EXAMPLESDIR%%/fparseln
+@dir %%EXAMPLESDIR%%/hello_lua2
+@dir %%EXAMPLESDIR%%/efun
+@dir %%EXAMPLESDIR%%/helpers
+@dir %%EXAMPLESDIR%%/progs2
+@dir %%EXAMPLESDIR%%/strlcpy
+@dir %%EXAMPLESDIR%%/libdeps/progs/foobaz
+@dir %%EXAMPLESDIR%%/libdeps/progs/fooquxfoobar
+@dir %%EXAMPLESDIR%%/libdeps/progs
+@dir %%EXAMPLESDIR%%/libdeps/libs/libfooqux
+@dir %%EXAMPLESDIR%%/libdeps/libs/libbaz/include
+@dir %%EXAMPLESDIR%%/libdeps/libs/libbaz
+@dir %%EXAMPLESDIR%%/libdeps/libs/libfoo
+@dir %%EXAMPLESDIR%%/libdeps/libs/libbar
+@dir %%EXAMPLESDIR%%/libdeps/libs
+@dir %%EXAMPLESDIR%%/libdeps
+@dir %%EXAMPLESDIR%%/errc
+@dir %%EXAMPLESDIR%%/help_target
+@dir %%EXAMPLESDIR%%/lexer
+@dir %%EXAMPLESDIR%%/subprojects/libhello1
+@dir %%EXAMPLESDIR%%/subprojects/hello
+@dir %%EXAMPLESDIR%%/subprojects/libhello2/include
+@dir %%EXAMPLESDIR%%/subprojects/libhello2
+@dir %%EXAMPLESDIR%%/subprojects
+@dir %%EXAMPLESDIR%%/pkgconfig3
+@dir %%EXAMPLESDIR%%/calc2
+@dir %%EXAMPLESDIR%%/iconv
+@dir %%EXAMPLESDIR%%/vis
+@dir %%EXAMPLESDIR%%/customtests2
+@dir %%EXAMPLESDIR%%/progs
+@dir %%EXAMPLESDIR%%/fgetln
+@dir %%EXAMPLESDIR%%/hello_lua3
+@dir %%EXAMPLESDIR%%/fts
+@dir %%EXAMPLESDIR%%/reallocarray
+@dir %%EXAMPLESDIR%%/hello_world
+@dir %%EXAMPLESDIR%%/compatlib/prog1
+@dir %%EXAMPLESDIR%%/compatlib/prog2
+@dir %%EXAMPLESDIR%%/compatlib/libcmpt
+@dir %%EXAMPLESDIR%%/compatlib
+@dir %%EXAMPLESDIR%%/strlcpy2/missing
+@dir %%EXAMPLESDIR%%/strlcpy2
+@dir %%EXAMPLESDIR%%/tools2/libs/qux
+@dir %%EXAMPLESDIR%%/tools2/libs/bar
+@dir %%EXAMPLESDIR%%/tools2/libs/foo
+@dir %%EXAMPLESDIR%%/tools2/libs
+@dir %%EXAMPLESDIR%%/tools2/tests/prog4
+@dir %%EXAMPLESDIR%%/tools2/tests/prog3
+@dir %%EXAMPLESDIR%%/tools2/tests/prog1
+@dir %%EXAMPLESDIR%%/tools2/tests/prog2
+@dir %%EXAMPLESDIR%%/tools2/tests
+@dir %%EXAMPLESDIR%%/tools2/tools/prog4
+@dir %%EXAMPLESDIR%%/tools2/tools/prog3
+@dir %%EXAMPLESDIR%%/tools2/tools/prog2
+@dir %%EXAMPLESDIR%%/tools2/tools/prog1
+@dir %%EXAMPLESDIR%%/tools2/tools
+@dir %%EXAMPLESDIR%%/tools2
+@dir %%EXAMPLESDIR%%/sizeof
+@dir %%EXAMPLESDIR%%
+@dir %%DOCSDIR%%
+@dir %%DATADIR%%/builtins
+@dir %%DATADIR%%/mk
+@dir %%DATADIR%%/features/getline
+@dir %%DATADIR%%/features/vis
+@dir %%DATADIR%%/features/dprintf
+@dir %%DATADIR%%/features/raise_default_signal
+@dir %%DATADIR%%/features/fparseln
+@dir %%DATADIR%%/features/efun
+@dir %%DATADIR%%/features/fgetln
+@dir %%DATADIR%%/features/reallocarray
+@dir %%DATADIR%%/features/errc
+@dir %%DATADIR%%/features/strlcat
+@dir %%DATADIR%%/features/getdelim
+@dir %%DATADIR%%/features/progname
+@dir %%DATADIR%%/features/strndup
+@dir %%DATADIR%%/features/warn
+@dir %%DATADIR%%/features/posix_getopt
+@dir %%DATADIR%%/features/strlcpy
+@dir %%DATADIR%%/features/strsep
+@dir %%DATADIR%%/features/err
+@dir %%DATADIR%%/features
+@dir %%DATADIR%%

@@ -13,7 +13,7 @@ BUILD_DEPENDS=	mk-configure>=0.29.1:devel/mk-configure
 
 OPTIONS_DEFINE=	DOCS
 
-MAKE_ARGS=	DOCDIR=${DOCSDIR}
+MAKE_ARGS=	DOCDIR=${DOCSDIR} -I/usr/local/share/mk-configure/mk/
 MAKE_CMD=	mkcmake
 NO_CONFIGURE=	yes
 USE_LDCONFIG=	yes
