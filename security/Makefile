@@ -40,6 +40,7 @@ SUBDIR += gsasl
 SUBDIR += ipfilter2dshield
 SUBDIR += ipfw2dshield
 SUBDIR += ipsec-tools
+SUBDIR += keepass
 SUBDIR += krb5
 SUBDIR += l0phtcrack
 SUBDIR += libargon2
