@@ -96,6 +96,6 @@ post-patch-NSFW-off:
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/x*.xml ${STAGEDIR}${DATADIR}/config/
 	${INSTALL_DATA} ${WRKDIR}/*.desktop ${STAGEDIR}${PREFIX}/share/applications/
-	${RM} ${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver.pam
+	-${RM} ${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver.pam
 
 .include <bsd.port.mk>
