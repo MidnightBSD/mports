@@ -62,9 +62,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/Ext/KeePass.exe.config ${STAGEDIR}${DATADIR}
 	@(cd ${WRKSRC}/Ext && ${COPYTREE_SHARE} XSL ${STAGEDIR}${DATADIR})
 .for size in 16 32 48 256
-	@${MKDIR} ${STAGEDIR}${LOCALBASE}/share/icons/hicolor/${size}x${size}/apps
+	@${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/share/icons/hicolor/${size}x${size}/apps
 	${INSTALL_DATA} ${WRKSRC}/KeePass_*_${size}x${size}x32.png \
-		${STAGEDIR}${LOCALBASE}/share/icons/hicolor/${size}x${size}/apps/keepass.png
+		${FAKE_DESTDIR}${LOCALBASE}/share/icons/hicolor/${size}x${size}/apps/keepass.png
 .endfor
 
 .include <bsd.port.mk>
