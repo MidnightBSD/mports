@@ -22,4 +22,7 @@ USES=		gettext gnome localbase meson pkgconfig tar:xz
 USE_GNOME=	glib20 introspection:build libxml2
 USE_LDCONFIG=	yes
 
+# magus
+NO_TEST=	yes
+
 .include <bsd.port.mk>
