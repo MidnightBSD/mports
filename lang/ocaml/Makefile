@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	ocaml
-PORTVERSION=	4.02.3
+PORTVERSION=	4.05.0
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/pub/distrib/${DISTNAME:R}/ GENTOO \
 		http://caml.inria.fr/pub/distrib/${DISTNAME:R}/:docs
@@ -17,13 +15,15 @@ LICENSE_FILE_QPL10=	${WRKSRC}/LICENSE
 LICENSE_PERMS_QPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_aarch64=		Does not build: sh: as: not found
-BROKEN_armv7=		Does not build: hasgot.c: undefined reference to `tgetent'
-BROKEN_powerpc64=	Does not build: error: too few arguments to function gethostbyname_r
+BROKEN_riscv64=		fails to build: hasgot.c:3:12: use of undeclared identifier 'secure_getenv'
 BROKEN_sparc64=	No rule to make target 'none.o', needed by 'libasmrun.a'
 BROKEN_mips64=	No ASM support
 BROKEN_mips=	No ASM support
 
-USES=		cpe gmake tar:xz
+BUILD_DEPENDS=	as:devel/binutils
+RUN_DEPENDS=	as:devel/binutils
+
+USES=		cpe compiler:c11 gmake tar:xz
 USE_LDCONFIG=	yes
 CPE_VENDOR=	inria
 HAS_CONFIGURE=	yes
@@ -31,18 +31,18 @@ ALL_TARGET=	world.opt
 STRIP=
 SSP_UNSAFE=	yes
 MAKE_JOBS_UNSAFE=	yes
+LDFLAGS_armv7=	-Wl,-znotext
+LDFLAGS_i386=	-Wl,-znotext
 
 CONFIGURE_ARGS=	-verbose -prefix "${PREFIX}" \
 		-cc "${CC}" \
 		-aspp "${CC} -c" \
 		-partialld "${LD} -r" \
-		-host ${MACHINE_ARCH}-portbld-freebsd6.0
+		-host ${MACHINE_ARCH}-portbld-freebsd11.4
 
 OPTIONS_DEFINE=	X11 THREADS DOCS EXAMPLES
 OPTIONS_DEFAULT=X11 THREADS
 CMP_LIB_DESC=	Install compiler libraries
-PORTDOCS=	htmlman ${DOCSDISTNAME}-refman.ps.gz \
-		${DOCSDISTNAME}-refman.pdf
 
 MODOPT=		camlp4o camlp4r ocamlc ocamldep ocamldoc ocamllex ocamlopt
 PATTERN=	[[:space:]]*(do|then)?[[:space:]]*)(\$$\(CP\)|cp)([[:space:]]
@@ -86,6 +86,7 @@ CONFIGURE_ARGS+=-no-pthread
 
 .if ${PORT_OPTIONS:MX11}
 PLIST_SUB+=	X11=""
+USES+=		xorg
 USE_XORG=	x11
 CONFLICTS+=	ocaml-nox11-[0-9]*
 CONFIGURE_ARGS+=-x11include ${LOCALBASE}/include -x11lib ${LOCALBASE}/lib
@@ -102,6 +103,15 @@ CONFIGURE_ARGS+=-no-graph
 PLIST_SUB+=	PROF="@comment "
 .else
 PLIST_SUB+=	PROF=""
+.endif
+
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-asmcomp_power_arch.ml
+USE_GCC=	yes
+.endif
+
+.if ${ARCH} == powerpc64le
+USE_GCC=	yes
 .endif
 
 post-extract:
@@ -122,7 +132,8 @@ post-patch:
 		-e "\|nativecclinkopts=|s|''|\"${LDFLAGS:C/-Wl,//}\"|" \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's,$$(ARCH),$$(SYSTEM_ARCH),' \
-		${WRKSRC}/Makefile ${WRKSRC}/asmrun/Makefile \
+		${WRKSRC}/Makefile ${WRKSRC}/Makefile.tools \
+		${WRKSRC}/asmrun/Makefile \
 		${WRKSRC}/otherlibs/systhreads/Makefile \
 		${WRKSRC}/testsuite/makefiles/Makefile.common \
 		${WRKSRC}/testsuite/tests/asmcomp/Makefile
@@ -131,7 +142,6 @@ post-configure:
 	@${REINPLACE_CMD} -E \
 		-e '/^PTHREAD_LINK/s,-pthread,${THR_LD},g' \
 		${WRKSRC}/config/Makefile
-
 # INSTALL* safeness (which preserves the correct permissions despite
 # user's umask(1)
 	@${FIND} ${WRKDIR} -type f -name Makefile -print0 | \
@@ -153,6 +163,10 @@ post-install:
 	(cd ${WRKDIR} && ${COPYTREE_SHARE} htmlman ${STAGEDIR}${DOCSDIR})
 	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.ps.gz ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${_DISTDIR}${DOCSDISTNAME}-refman.pdf ${STAGEDIR}${DOCSDIR}
+.endif
+# Spacetime profiling is only available for native code on 64-bit targets
+.if ${ARCH} == armv7 || ${ARCH} == i386 || ${ARCH} == powerpc
+	@${REINPLACE_CMD} -e '/raw_spacetime_lib/d' ${TMPPLIST}
 .endif
 
 .include <bsd.port.post.mk>
