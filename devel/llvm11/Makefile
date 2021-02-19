@@ -242,7 +242,7 @@ TARGET_ABI=	-gnueabi
 TARGET_ABI=
 .endif
 
-CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${OPSYS:tl}${OSREL}${TARGET_ABI}
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-freebsd11.4${TARGET_ABI}
 # ----------- end of sync block --------------------
 
 .if ${PORT_OPTIONS:MCLANG}
