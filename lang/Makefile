@@ -51,6 +51,7 @@ SUBDIR += mono-basic
 SUBDIR += nawk
 SUBDIR += nwcc
 SUBDIR += ocaml
+SUBDIR += ocaml-nox11
 SUBDIR += open-cobol
 SUBDIR += p5-Data-JavaScript
 SUBDIR += p5-Error
