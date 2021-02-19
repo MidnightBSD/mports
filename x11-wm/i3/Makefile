@@ -39,4 +39,6 @@ MAKE_JOBS_UNSAFE=	yes
 
 CONFLICTS_INSTALL=	i3-gaps
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
