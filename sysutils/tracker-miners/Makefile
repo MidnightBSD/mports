@@ -44,6 +44,9 @@ MESON_ARGS=	-Dsystemd_user_services=no \
 		-Dstemmer=no
 #		-Dbattery_detection=hal
 
+# magus
+NO_TEST=	yes
+
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=		GSTREAMER RSS
 OPTIONS_DEFAULT=	GSTREAMER RSS
