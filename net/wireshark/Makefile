@@ -1,7 +1,7 @@
 # Created by: Bill Fumerola <billf@chc-chimes.com>
 
 PORTNAME?=	wireshark
-PORTVERSION=	3.4.2
+PORTVERSION=	3.4.3
 PORTREVISION?=	0
 CATEGORIES=	net
 MASTER_SITES=	http://www.wireshark.org/download/src/ \
@@ -27,7 +27,7 @@ NO_TEST=	yes
 DATADIR_NAME=	wireshark
 DATADIR=	${PREFIX}/share/${DATADIR_NAME}
 
-USES=		alias cmake compiler:c++11-lang cpe gettext-runtime gnome \
+USES=		cmake compiler:c++11-lang cpe gettext-runtime gnome \
 		libtool localbase pathfix perl5 pkgconfig python:3.4+ ssl \
 		tar:xz
 USE_PERL5=	build
