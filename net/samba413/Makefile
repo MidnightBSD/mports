@@ -247,19 +247,8 @@ SAMBA4_BUNDLED_LIBS+=		replace
 .endif
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=		com_err
-# Set the test environment variables
-TEST_USES=			python
-TEST_ENV+=			PYTHON="${PYTHON_CMD}" \
-				SHA1SUM=/sbin/sha1 \
-				SHA256SUM=/sbin/sha256 \
-				MD5SUM=/sbin/md5 \
-				PYTHONDONTWRITEBYTECODE=1
 
-TEST_DEPENDS+=			bash:shells/bash \
-				tshark:net/tshark
-# External Python modules
-TEST_BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
-TEST_RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
+NO_TEST=        yes
 ##############################################################################
 CONFIGURE_ARGS+=		\
 				--with-pam \
