@@ -52,6 +52,7 @@ SUBDIR += nawk
 SUBDIR += nwcc
 SUBDIR += ocaml
 SUBDIR += ocaml-autoconf
+SUBDIR += ocaml-camlidl
 SUBDIR += ocaml-nox11
 SUBDIR += open-cobol
 SUBDIR += p5-Data-JavaScript
