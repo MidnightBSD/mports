@@ -105,6 +105,9 @@ X11_USE=		xorg=x11
 X11_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6
 X11_LIB_DEPENDS_OFF=	libMagickWand-6.so:graphics/ImageMagick6-nox11
 
+pre-patch:
+	cd ${WRKSRC} && ${PATCH} < ${FILESDIR}/extra-patch-ffmpeg-configure 
+
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/system
 	(${INSTALL_DATA} ${WRKDIR}/ImageMagickSharp.dll.config ${STAGEDIR}${PREFIX}/lib/emby-server/system)
