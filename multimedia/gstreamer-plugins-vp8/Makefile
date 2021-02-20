@@ -1,6 +1,4 @@
-# $MidnightBSD$
-
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 COMMENT=	Gstreamer vp8 codec plugin
