@@ -18,7 +18,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/share/xsessions/xfce.desktop:x11-wm/xfce4 \
 		bash:shells/bash \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
-		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
+		${LOCALBASE}/share/backgrounds/midnightbsd/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
 		midori:www/midori \
 		common-services>=1.0:core/common-services \
 		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server \
