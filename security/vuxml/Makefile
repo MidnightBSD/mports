@@ -1,6 +1,6 @@
 PORTNAME=	vuxml
 PORTVERSION=	1.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security textproc
 MASTER_SITES=	http://www.vuxml.org/dtd/vuxml-1/
 DISTFILES=	vuxml-10.dtd  vuxml-model-10.mod \
@@ -13,7 +13,8 @@ COMMENT=	Vulnerability and eXposure Markup Language DTD
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${XMLCATMGR}:textproc/xmlcatmgr \
+RUN_DEPENDS=	xmlcatmgr:textproc/xmlcatmgr \
+		xsltproc:textproc/libxslt \
 		${LOCALBASE}/share/xml/dtd/xhtml-modularization/VERSION:textproc/xhtml-modularization \
 		${LOCALBASE}/share/xml/dtd/xhtml-basic/xhtml-basic10.dtd:textproc/xhtml-basic
 
@@ -44,6 +45,11 @@ CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 
 VUXML_FILE?=	${PKGDIR}/vuln.xml
+VUXML_FLAT_FILE?=	${PKGDIR}/vuln-flat.xml
+
+post-clean:
+	@${RM} "${VUXML_FILE}.tidy"
+	@${RM} "${VUXML_FLAT_FILE}"
 
 do-extract:
 	@${RM} -rf ${WRKDIR}
@@ -58,10 +64,18 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/${dir_DTD}/${f}
 .endfor
 
+do-test:
+	@${MKDIR} ${WRKDIR}/test
+	@${CP} ${.CURDIR}/vuln.xml ${WRKDIR}/test
+	@cd ${.CURDIR} && make validate PKGDIR=${WRKDIR}/test
+
+vuln-flat.xml: vuln.xml
+	xmllint -noent ${.ALLSRC} > ${.TARGET}
+
 validate: tidy
-	@${SH} ${FILESDIR}/validate.sh "${VUXML_FILE}"
+	@${SH} ${FILESDIR}/validate.sh "${VUXML_FLAT_FILE}"
 	@${ECHO_MSG} Checking if tidy differs...
-	@if ${DIFF} -u "${VUXML_FILE}" "${VUXML_FILE}.tidy"; \
+	@if ${DIFF} -u "${VUXML_FLAT_FILE}" "${VUXML_FILE}.tidy"; \
 	then \
 		${ECHO_MSG} ... seems okay; \
 		${RM} "${VUXML_FILE}.tidy"; \
@@ -69,8 +83,8 @@ validate: tidy
 		return 1; \
 	fi
 	@${ECHO_MSG} Checking for space/tab...
-	@unexpand "${VUXML_FILE}" | ${SED} -E 's,[[:space:]]*$$,,g' > "${VUXML_FILE}.unexpanded"
-	@if ${DIFF} -u "${VUXML_FILE}" "${VUXML_FILE}.unexpanded"; \
+	@unexpand "${VUXML_FLAT_FILE}" | ${SED} -E 's,[[:space:]]*$$,,g' > "${VUXML_FILE}.unexpanded"
+	@if ${DIFF} -u "${VUXML_FLAT_FILE}" "${VUXML_FILE}.unexpanded"; \
 	then \
 		${ECHO_MSG} ... seems okay; \
 		${RM} "${VUXML_FILE}.unexpanded"; \
@@ -79,15 +93,15 @@ validate: tidy
 		${ECHO_CMD} Consider using ${VUXML_FILE}.unexpanded for final commit; \
 		return 1; \
 	fi
-	${PYTHON_CMD} ${FILESDIR}/extra-validation.py ${VUXML_FILE}
+	${PYTHON_CMD} ${FILESDIR}/extra-validation.py ${VUXML_FLAT_FILE}
 
-tidy: vuln.xml
+tidy: vuln-flat.xml
 	@if [ ! -e ${LOCALBASE}/share/xml/dtd/vuxml/catalog.xml ]; \
 	then \
 		echo "Please install the VuXML port prior to running make validate/tidy."; \
 		exit 1; \
 	fi
-	${SH} ${FILESDIR}/tidy.sh "${FILESDIR}/tidy.xsl" "${VUXML_FILE}" > "${VUXML_FILE}.tidy"
+	${SH} ${FILESDIR}/tidy.sh "${FILESDIR}/tidy.xsl" "${VUXML_FLAT_FILE}" > "${VUXML_FILE}.tidy"
 
 newentry:
 	@${SH} ${FILESDIR}/newentry.sh "${VUXML_FILE}"
