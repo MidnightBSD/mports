@@ -12,7 +12,7 @@ LICENSE_COMB=	multi
 
 FLAVORS=	native aarch64 aarch64_none_elf amd64 arm_gnueabi arm_none_eabi \
 		avr i386 mingw32 mips mips64 powerpc powerpc64 powerpc64le riscv64 \
-		riscv64_none_elf s390x sparc64 riscv32_unknown_elf
+		riscv64_none_elf s390x riscv32_unknown_elf
 FLAVOR?=	native
 
 RELRO_CONFIGURE_ON=	--enable-relro
