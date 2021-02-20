@@ -24,5 +24,6 @@ X11_LIB_DEPENDS?=	libMagickWand-6.so:graphics/ImageMagick6
 X11_LIB_DEPENDS_OFF?=	libMagickWand-6.so:graphics/ImageMagick6-nox11
 
 CONFIGURE_ARGS=	--with-imagick=${LOCALBASE}
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 .include <bsd.port.mk>
