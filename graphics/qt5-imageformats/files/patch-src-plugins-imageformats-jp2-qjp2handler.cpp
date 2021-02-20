@@ -4,7 +4,7 @@
  #include "qvariant.h"
  #include "qcolor.h"
  
-+#include <cmath.h>
++#include <cmath>
 +
  #include <jasper/jasper.h>
  
