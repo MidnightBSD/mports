@@ -100,6 +100,7 @@ SUBDIR += openssh-askpass
 SUBDIR += openssh-portable
 SUBDIR += openssl
 SUBDIR += openvpn
+SUBDIR += owasp-dependency-check
 SUBDIR += p11-kit
 SUBDIR += p5-Authen-NTLM
 SUBDIR += p5-Authen-SASL
