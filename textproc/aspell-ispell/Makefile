@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	aspell
-PORTVERSION=	0.60.6.1
+PORTVERSION=	0.60.8
 CATEGORIES=	textproc
 MASTER_SITES=	GNU/aspell
 PKGNAMESUFFIX=	-ispell
@@ -9,18 +7,18 @@ PKGNAMESUFFIX=	-ispell
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ispell compatibility script for aspell
 
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
-CONFLICTS+=	ispell* ??-ispell*
+RUN_DEPENDS=	aspell:textproc/aspell
 
-RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
-
+NO_ARCH=	yes
 NO_BUILD=	yes
+
 PLIST_FILES=	bin/ispell \
 		bin/spell
 
 post-patch:
-	@${REINPLACE_CMD} -e "s/^#CHECK/CHECK/g" ${WRKSRC}/scripts/ispell
+	@${REINPLACE_CMD} -e '/^#CHECK_FLAGS/ s|#||' ${WRKSRC}/scripts/ispell
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/ispell ${STAGEDIR}${PREFIX}/bin
