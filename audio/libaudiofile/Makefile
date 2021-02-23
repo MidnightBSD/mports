@@ -1,18 +1,16 @@
-# $MidnightBSD$
-# $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
-
 PORTNAME=	libaudiofile
 PORTVERSION=	0.3.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
-MASTER_SITES=	GNOME
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/lib//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME/sources/${PORTNAME:S/lib//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	audiofile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sound library for SGI audio file
 
 LICENSE=	lgpl2.1
+
+LIB_DEPENDS=	libFLAC.so:audio/flac
 
 CONFLICTS=	osalp-0.7.*
 
