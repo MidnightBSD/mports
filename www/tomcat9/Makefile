@@ -1,5 +1,5 @@
 PORTNAME=	tomcat
-PORTVERSION=	9.0.31
+PORTVERSION=	9.0.43
 PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
@@ -28,7 +28,7 @@ SUB_LIST=	TOMCAT_HOME=${TOMCAT_HOME} \
 		TOMCAT_USER=${WWWOWN} \
 		JAVA_HOME=${JAVA_HOME}
 
-OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT
+OPTIONS_DEFINE=		HOST_MANAGER MANAGER DOCS EXAMPLES ROOT NLS
 OPTIONS_DEFAULT=	HOST_MANAGER MANAGER ROOT
 OPTIONS_SUB=		yes
 
@@ -58,7 +58,7 @@ post-install:
 
 post-install-HOST_MANAGER-on:
 	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
-		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/web.xml; do \
+		for f in host-manager/META-INF/context.xml host-manager/WEB-INF/manager.xml host-manager/WEB-INF/web.xml; do \
 			${MV} $$f $$f.sample; done)
 
 post-install-HOST_MANAGER-off:
