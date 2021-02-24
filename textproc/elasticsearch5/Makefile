@@ -10,6 +10,8 @@ COMMENT=	Full-text search engine for Java
 
 LICENSE=	apache2
 
+DEPRECATED=	End of life since release of 7.3.0
+
 BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \
 		jna>0:devel/jna

@@ -13,6 +13,8 @@ COMMENT=	Full-text search engine for Java
 
 LICENSE=	apache2
 
+DEPRECATED=	End of life
+
 CONFLICTS=	elasticsearch-[0-9]*
 
 USES=		cpe
