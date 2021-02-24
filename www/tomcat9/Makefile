@@ -55,6 +55,7 @@ post-install:
 	@${RM} ${TOMCAT_HOME}/bin/*.bat
 	@(cd ${TOMCAT_HOME}/conf &&\
 		for f in $$(find . -type f -not -name '*.xsd'); do ${MV} $$f $$f.sample; done)
+	@(cd ${TOMCAT_HOME} && ${CHOWN} www:www conf logs temp webapps work; )
 
 post-install-HOST_MANAGER-on:
 	(cd ${FAKE_DESTDIR}${TOMCAT_HOME}/webapps &&\
