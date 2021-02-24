@@ -1,9 +1,8 @@
 PORTNAME=	elasticsearch
-PORTVERSION=	6.8.3
+PORTVERSION=	6.8.13
 PORTREVISION=	0
 CATEGORIES=	textproc java devel
-MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/ \
-		http://mirrors.rit.edu/zi/
+MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/
 PKGNAMESUFFIX=	6
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,13 +14,13 @@ BUILD_DEPENDS=	jna>0:devel/jna
 RUN_DEPENDS=	bash>0:shells/bash \
 		jna>0:devel/jna
 
-CONFLICTS=	elasticsearch-[0-9]* elasticsearch2-[0-9]* elasticsearch5-[0-9]*
+CONFLICTS=	elasticsearch-[0-9]* elasticsearch2-[0-9]* elasticsearch5-[0-9]* elasticsearch7*
 
 USES=		cpe shebangfix
 NO_ARCH=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
-JAVA_VERSION=	1.8+
+JAVA_VERSION=	8+
 USE_RC_SUBR=	${PORTNAME}
 SHEBANG_FILES=	bin/elasticsearch \
 		bin/elasticsearch-certgen \
@@ -122,6 +121,8 @@ post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/elasticsearch.yml.sample" >> ${TMPPLIST}
 	${ECHO} "@sample ${ETCDIR_REL}/log4j2.properties.sample" >> ${TMPPLIST}
 	${ECHO} "@sample ${ETCDIR_REL}/jvm.options.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/roles.yml.sample" >> ${TMPPLIST}
+	${ECHO} "@sample ${ETCDIR_REL}/role_mapping.yml.sample" >> ${TMPPLIST}
 	${FIND} -s ${STAGEDIR}${PREFIX}/lib/elasticsearch -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir lib/elasticsearch/plugins" >> ${TMPPLIST}
