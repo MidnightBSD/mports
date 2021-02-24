@@ -1,22 +1,23 @@
-# $MidnightBSD$
-
 PORTNAME=	isc-cron
 PORTVERSION=	4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	ISC/cron
 DISTNAME=	cron_${PORTVERSION}.shar
-EXTRACT_SUFX=
+EXTRACT_SUFX=	#none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISC Cron, former Vixie Cron
 
-LICENSE=	mit
+LICENSE=	iscl
 
 WRKSRC=		${WRKDIR}
 SUB_FILES=	pkg-message
-PLIST_FILES=	sbin/cron bin/crontab man/man1/crontab.1.gz \
-		man/man5/crontab.5.gz man/man8/cron.8.gz
+PLIST_FILES=	sbin/cron \
+		"@(root,wheel,4755) bin/crontab" \
+		man/man1/crontab.1.gz \
+		man/man5/crontab.5.gz \
+		man/man8/cron.8.gz
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 do-extract:
