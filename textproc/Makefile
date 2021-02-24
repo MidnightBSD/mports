@@ -27,6 +27,7 @@ SUBDIR += ebook-tools
 SUBDIR += elasticsearch2
 SUBDIR += elasticsearch5
 SUBDIR += elasticsearch6
+SUBDIR += elasticsearch7
 SUBDIR += enchant
 SUBDIR += enchant2
 SUBDIR += exempi
