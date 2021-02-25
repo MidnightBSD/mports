@@ -1,69 +1,86 @@
+# Created by: torstenb
+
 PORTNAME=	zsh
-PORTVERSION=	5.0.6
-PORTREVISION=	1
+DISTVERSION=	5.8
 CATEGORIES=	shells
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION} \
+MASTER_SITES=	https://www.zsh.org/pub/ \
+		SF \
+		https://www.zsh.org/pub/:doc \
 		SF/${PORTNAME}/${PORTNAME}-doc/${PORTVERSION}:doc
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Z shell
 
-LICENSE=	zsh
+LICENSE=	ZSH
 LICENSE_NAME=	ZSH license
 LICENSE_FILE=	${WRKSRC}/LICENCE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 MAKE_JOBS_UNSAFE=	yes
 
-ZSH_VER=	${PORTVERSION}
+USES=		autoreconf iconv localbase:ldflags ncurses shebangfix tar:xz
 
-USES=		iconv ncurses tar:bzip2 groff:build
-GNU_CONFIGURE=	yes
+SHEBANG_LANG=	zsh
+zsh_OLD_CMD=	zsh	# shebang appears as /bin/zsh and just zsh
+SHEBANG_FILES=	Functions/Calendar/* \
+		Functions/Misc/*
 
-CPPFLAGS+=	-I${LOCALBASE}/include -DBOOL_DEFINED
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV+=	zsh_cv_sys_path_dev_fd=no
-CONFIGURE_ARGS=	--with-term-lib="ncursesw ncurses" --with-tcsetpgrp \
-		--enable-function-subdirs --enable-multibyte \
+CONFIGURE_ARGS=	--with-tcsetpgrp \
+		--enable-function-subdirs \
+		--enable-maildir-support \
+		--enable-multibyte \
+		--enable-zsh-secure-free \
 		--sysconfdir=${PREFIX}/etc
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
 
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-bsdtar
-#EXTRA_COMPLETION_FILES=	_sockstat
-#EXTRA_COMPLETION_DIR=	Completion/BSD/Command
+# fix PREFIX != LOCALBASE
+CONFIGURE_ARGS+=--disable-site-fndir \
+		--enable-additional-fpath=${DATADIR}/site-functions
 
-OPTIONS_DEFINE=	GDBM MEM SECURE_FREE MAILDIR PCRE STATIC DOCS DEBUG \
-		EXAMPLES
-OPTIONS_DEFAULT=	SECURE_FREE MAILDIR
+CONFIGURE_ENV+=	zsh_cv_sys_path_dev_fd=no \
+		ac_cv_header_sys_capability_h=no
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-DBOOL_DEFINED
+LDFLAGS+=	-Wl,--as-needed
+TEST_TARGET=	test
+
+OPTIONS_DEFINE=	DEBUG ETCDIR GDBM MEM PCRE STATIC \
+		DOCS EXAMPLES
+OPTIONS_SUB=	yes
+
+ETCDIR_DESC=	System-wide defaults in /etc (instead of $${PREFIX}/etc)
 GDBM_DESC=	Enable GDBM support (GPL)
 MEM_DESC=	Enable zsh-mem options
-SECURE_FREE_DESC=	Enable zsh-secure-free
-MAILDIR_DESC=	Enable support for Maildirs in MAIL(PATH)
 
-PLIST_SUB+=	ZSH_VER="${ZSH_VER}"
+GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
+PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 
-DOCS=		LICENCE META-FAQ README Etc/BUGS Etc/CONTRIBUTORS Etc/FAQ \
-		Etc/completion-style-guide Doc/zsh*.html Doc/zsh.dvi
+DEBUG_CONFIGURE_ENABLE=	zsh-debug
+ETCDIR_CONFIGURE_OFF=	--enable-etcdir=${PREFIX}/etc
+GDBM_CONFIGURE_ENABLE=	gdbm
+MEM_CONFIGURE_ENABLE=	zsh-mem
+PCRE_CONFIGURE_ENABLE=	pcre
+
+## Some modules can only be built as a shared library.
+## If you enable STATIC, you may get strange errors if you, a script,
+## or a plugin tries to use the regex module.
+STATIC_LDFLAGS=		-static
+STATIC_CONFIGURE_ON=	--disable-dynamic --with-term-lib="tinfow tinfo"
+STATIC_CONFIGURE_OFF=	--enable-dynamic  --with-term-lib="ncursesw ncurses"
+
+DOCS=		LICENCE META-FAQ README \
+		Etc/BUGS Etc/CONTRIBUTORS Etc/FAQ Etc/completion-style-guide \
+		Doc/zsh*.html Doc/zsh.dvi
+DOCS_DISTFILES=	${DISTNAME}-doc${EXTRACT_SUFX}:doc
+
 PORTDOCS=	*
 PORTEXAMPLES=	zlogin zshenv zshrc
 
-OPTIONS_SUB=	yes
-
-DOCS_DISTFILES=		${DISTNAME}-doc${EXTRACT_SUFX}:doc
-GDBM_LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm
-GDBM_CONFIGURE_ENABLE=	gdbm
-PCRE_LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
-PCRE_CONFIGURE_ENABLE=	pcre
-MEM_CONFIGURE_ENABLE=	zsh-mem
-SECURE_FREE_CONFIGURE_ENABLE=	zsh-secure-free
-MAILDIR_CONFIGURE_ENABLE=	maildir-support
-STATIC_LDFLAGS=		-static
-STATIC_CONFIGURE_ON=	--disable-dynamic
-STATIC_CONFIGURE_OFF=	--enable-dynamic
-DEBUG_CONFIGURE_ENABLE=	zsh-debug
-DOCS_USES=		makeinfo
+ZSH_VER=	${PORTVERSION}
+PLIST_SUB+=	ZSH_VER="${ZSH_VER}"
+SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
@@ -71,63 +88,47 @@ DOCS_USES=		makeinfo
 CONFIGURE_ENV+=	ac_cv_lib_iconv_libiconv=no
 .endif
 
-.if ${PORT_OPTIONS:MDOCS}
-INFO=	zsh
+.if ${ncurses_ARGS} == port
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-Src_Modules_curses__keys.awk
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e '/LIBS/s/-lrt//' ${WRKSRC}/configure
-	@${SED} -i "" -e "s,link=dynamic,link=either," \
-		${WRKSRC}/Src/Modules/*.mdd
-	@${SED} -i "" -e "s,/etc/,${LOCALBASE}/etc/," \
+	@${REINPLACE_CMD} -e '/LIBS/s|-lrt||' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e "s|/etc/|${LOCALBASE}/etc/|" \
 		${WRKSRC}/Functions/MIME/zsh-mime-setup
-.ifdef EXTRA_COMPLETION_FILES
-	@${ECHO} "===>  Installing extra completion files"
-.for COMPFILE in ${EXTRA_COMPLETION_FILES}
-	@(if [ -f ${WRKSRC}/${EXTRA_COMPLETION_DIR}/${COMPFILE} ] ; then \
-		${ECHO} "${EXTRA_COMPLETION_DIR}/${COMPFILE} already exists" ; \
-		exit 1 ; \
-	else \
-		${ECHO} ${EXTRA_COMPLETION_DIR}/${COMPFILE} ; \
-		${CP} ${FILESDIR}/${COMPFILE} \
-			${WRKSRC}/${EXTRA_COMPLETION_DIR}/${COMPFILE} ; \
-	fi)
-.endfor
-.endif
-	@${FIND} ${WRKSRC}/Completion -type f -iname '*.orig' -delete
+	${RM} ${WRKSRC}/Doc/help.txt
+
+post-patch-STATIC-on:
+	@${REINPLACE_CMD} -e "s|link=dynamic|link=either|" \
+		${WRKSRC}/Src/Modules/*.mdd
 
 post-build:
-	# Fix ".so" macro problem by using "soelim" command.
+# Fix ".so" macro problem by using "soelim" command.
+# soelim needs the manpages in man1/
 	${LN} -sf ${WRKSRC}/Doc ${WRKSRC}/man1
 	${MV} ${WRKSRC}/Doc/zshall.1 ${WRKSRC}/Doc/zshall.1.source
-	cd ${WRKSRC} && soelim ${WRKSRC}/Doc/zshall.1.source > \
-		${WRKSRC}/Doc/zshall.1
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/info
-	makeinfo --no-split --output=${WRKSRC}/Doc/zsh.info \
-		${WRKSRC}/Doc/zsh.texi
-.endif
+	(cd ${WRKSRC} && ${SOELIM} -r ${WRKSRC}/Doc/zshall.1.source > \
+		${WRKSRC}/Doc/zshall.1)
 
 post-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}/site-functions
 	${LN} -f ${STAGEDIR}${PREFIX}/bin/zsh ${STAGEDIR}${PREFIX}/bin/rzsh
-.if ${PORT_OPTIONS:MEXAMPLES}
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/StartupFiles && ${INSTALL_DATA} ${PORTEXAMPLES} ${STAGEDIR}${EXAMPLESDIR}
-.endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/Doc/zsh.info ${STAGEDIR}${PREFIX}/info/zsh.info
-.endif
-	${STAGEDIR}${PREFIX}/bin/zsh -fc ' \
+# Precompile completions and functions
+	(${STAGEDIR}${PREFIX}/bin/zsh -fc ' \
 		setopt extendedglob nomark_dirs; \
 		cd ${STAGEDIR}/${DATADIR}/${ZSH_VER} ; \
+		rm -f functions/**/*.orig ; \
 		for i in functions/**/*(/) ; do \
 			zcompile -U -M $$i.zwc $$i/*~*.zwc(^/) ; \
 			${CHMOD} 644 $$i.zwc ; \
-		done'
+		done')
 
-regression-test:
-	@cd ${WRKSRC}; ${SETENV} -i ${MAKE} check
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/StartupFiles && ${INSTALL_DATA} ${PORTEXAMPLES} ${FAKE_DESTDIR}${EXAMPLESDIR})
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 .include <bsd.port.post.mk>
