@@ -1,85 +1,79 @@
-# $MidnightBSD$
+# Created by: elvstone@gmail.com
 
 PORTNAME=	znc
-PORTVERSION=	1.6.0
-CATEGORIES=	irc ipv6
-MASTER_SITES=	http://znc.in/releases/ \
-		http://znc.in/releases/archive/
+PORTVERSION=	1.8.2
+CATEGORIES=	irc
+MASTER_SITES=	https://znc.in/releases/ \
+		https://znc.in/releases/archive/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An advanced IRC bouncer
+COMMENT=	Advanced IRC bouncer
 
 LICENSE=	apache2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--disable-perl --disable-python
+USES=		compiler:c++11-lib cpe cmake:run iconv:wchar_t pathfix pkgconfig python:3.5+
+
 USE_RC_SUBR=	znc
-USES=		compiler:c++11-lib cpe gmake iconv pkgconfig
 
-NO_OPTIONS_SORT=	yes
+SUB_FILES=	pkg-message
 
-OPTIONS_DEFINE=	DEBUG IPV6 OPENSSL CYRUS TCL CHARSET DOCS
-OPTIONS_DEFAULT=	OPENSSL
+PORTDOCS=	README.md
+
+USERS=		znc
+GROUPS=		znc
+
+OPTIONS_DEFINE=	CHARSET CYRUS DEBUG DOCS IPV6 NLS OPENSSL PERL PYTHON TCL
+OPTIONS_DEFAULT=	CHARSET OPENSSL PERL PYTHON
 OPTIONS_SUB=	yes
 
+CHARSET_DESC=	Character encoding support via ICU
 CYRUS_DESC=	Cyrus SASL module
 DEBUG_DESC=	Debugging support
-CHARSET_DESC=	Character encoding support via ICU
+PERL_DESC=	Perl scripting module
+PYTHON_DESC=	Python scripting module
 TCL_DESC=	Tcl scripting module
 
-CYRUS_CONFIGURE_ON=	--enable-cyrus
-CYRUS_LDFLAGS=	-L${LOCALBASE}/lib
-CYRUS_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
-DEBUG_CONFIGURE_ON=	--enable-debug
-IPV6_CONFIGURE_OFF=	--disable-ipv6
-OPENSSL_CONFIGURE_OFF=	--disable-openssl
-CHARSET_CONFIGURE_OFF=	--disable-charset
-CHARSET_LIB_DEPENDS=	libicuuc.so.53:${PORTSDIR}/devel/icu \
-			libicudata.so.53:${PORTSDIR}/devel/icu
-TCL_CONFIGURE_ENABLE=	tcl
-
-.include <bsd.mport.options.mk>
-
-.if ${PORT_OPTIONS:MOPENSSL}
-EXTENSIONS+=		openssl
-CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
-.endif
-
-.if ${PORT_OPTIONS:MTCL}
-USES+=			tcl
-CONFIGURE_ARGS+=	--with-tcl=${TCL_LIBDIR}
-.endif
-
-PORTDOCS=		README.md
-
-pre-configure:
-# No need to cast to char** in AM_ICONV, fixes charset/iconv detection
-# and by extension, successfully builds charset module
-	@${REINPLACE_CMD} -e \
-		's#(char \*\*)##g' \
-		${WRKSRC}/configure
-# Instead of using bundled swig generated files, delete them to force
-# regeneration using swig 2.0.11+ (fixes port compilation using clang)
-.if ${PORT_OPTIONS:MPERL}
-	@${RM} ${WRKSRC}/modules/modperl/ZNC.cpp
-.endif
-.if ${PORT_OPTIONS:MPYTHON}
-	@${RM} ${WRKSRC}/modules/modpython/_znc_core.cpp
-.endif
+CHARSET_CMAKE_BOOL=	WANT_ICU
+CHARSET_LIB_DEPENDS=	libicuuc.so:devel/icu
+CYRUS_CMAKE_BOOL=	WANT_CYRUS
+CYRUS_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
+DEBUG_VARS=		CMAKE_BUILD_TYPE=Debug
+IPV6_CMAKE_BOOL=	WANT_IPV6
+NLS_CMAKE_BOOL=		WANT_I18N
+NLS_LIB_DEPENDS=	libboost_locale.so:devel/boost-libs
+NLS_USES=		gettext
+NLS_LDFLAGS=		-liconv -L${LOCALBASE}/lib
+OPENSSL_CMAKE_BOOL=	WANT_OPENSSL
+OPENSSL_CMAKE_ON=	-DOPENSSL_ROOT_DIR=${OPENSSLBASE}
+OPENSSL_USES=	ssl
+PERL_BUILD_DEPENDS=	swig>=3.0.0:devel/swig
+PERL_CMAKE_BOOL=	WANT_PERL WANT_SWIG
+PERL_USE=	perl5=build,run
+PERL_USES=	perl5
+PYTHON_CMAKE_BOOL=	WANT_PYTHON WANT_SWIG
+PYTHON_CMAKE_ON=	-DWANT_PYTHON_VERSION:STRING=python-${PYTHON_VER}
+PYTHON_BUILD_DEPENDS=	swig>=3.0.0:devel/swig
+PYTHON_IMPLIES=	CHARSET
+PYTHON_USE=	perl5=build
+PYTHON_USES=	perl5
+TCL_CMAKE_BOOL=	WANT_TCL
+TCL_USES=	tcl
 
 post-patch:
-	@${REINPLACE_CMD} -e \
-		's#$$(libdir)/pkgconfig#${PREFIX}/libdata/pkgconfig#' \
-		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e \
-		's#/usr/local#${LOCALBASE}#' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|python3|python${PYTHON_VER}|g' \
+		${WRKSRC}/znc-buildmod.cmake.in
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
+
+post-install-NLS-off:
+	@${RM} -r ${FAKE_DESTDIR}${DATADIR}/translations
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
-.endfor
-.endif
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
 
 .include <bsd.port.mk>
