@@ -1,8 +1,8 @@
 PORTNAME=	irssi-scripts
-PORTVERSION=	20100512
+PORTVERSION=	20181120
 CATEGORIES=	irc
-MASTER_SITES=	http://ftp.debian.org/debian/pool/main/i/${PORTNAME}/
-DISTFILES=	${PORTNAME}_${PORTVERSION}${EXTRACT_SUFX}
+MASTER_SITES=	DEBIAN
+DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collection of useful scripts for the irssi IRC-client
@@ -11,10 +11,13 @@ LICENSE=	unknown
 
 RUN_DEPENDS=	irssi:irc/irssi
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		perl5
+USES=		shebangfix tar:xz
+#SHEBANG_FILES=	scripts/*.pl
+#perl_OLD_CMD=	/usr/pkg/bin/perl /usr/bin/irssi
 NO_BUILD=	yes
+NO_ARCH=	yes
 
 do-install:
 	${MKDIR} ${PREFIX}/share/irssi/scripts

@@ -53,8 +53,8 @@ share/irssi/scripts/bitlbee_typing_notice.pl
 share/irssi/scripts/blowjob.pl
 share/irssi/scripts/bmi.pl
 share/irssi/scripts/calc.pl
-share/irssi/scripts/cap_sasl.pl
 share/irssi/scripts/callerid.pl
+share/irssi/scripts/cap_sasl.pl
 share/irssi/scripts/centericq.pl
 share/irssi/scripts/cgrep.pl
 share/irssi/scripts/challenge.pl
@@ -172,6 +172,7 @@ share/irssi/scripts/loadavg.pl
 share/irssi/scripts/localize.pl
 share/irssi/scripts/log2ansi.pl
 share/irssi/scripts/logcompress.pl
+share/irssi/scripts/logresume.pl
 share/irssi/scripts/ls.pl
 share/irssi/scripts/mailcheck_imap.pl
 share/irssi/scripts/mailcheck_mbox_flux.pl
@@ -215,7 +216,6 @@ share/irssi/scripts/norepeat.pl
 share/irssi/scripts/noteserve.pl
 share/irssi/scripts/noticemove.pl
 share/irssi/scripts/notonline.pl
-share/irssi/scripts/null.pl
 share/irssi/scripts/ogg123.pl
 share/irssi/scripts/oidenty.pl
 share/irssi/scripts/on.pl
@@ -242,6 +242,7 @@ share/irssi/scripts/poison.pl
 share/irssi/scripts/postpone.pl
 share/irssi/scripts/ppl.pl
 share/irssi/scripts/q_username.pl
+share/irssi/scripts/query-connection-notifier.pl
 share/irssi/scripts/query.pl
 share/irssi/scripts/queryresume.pl
 share/irssi/scripts/quiet.pl
@@ -280,6 +281,7 @@ share/irssi/scripts/sms.pl
 share/irssi/scripts/snmpup.pl
 share/irssi/scripts/spambot.pl
 share/irssi/scripts/special_complete.pl
+share/irssi/scripts/spellcheck.pl
 share/irssi/scripts/sping.pl
 share/irssi/scripts/stocks.pl
 share/irssi/scripts/synccheck.pl
@@ -318,9 +320,9 @@ share/irssi/scripts/users.pl
 share/irssi/scripts/version-stat.pl
 share/irssi/scripts/verstats.pl
 share/irssi/scripts/vowels.pl
+share/irssi/scripts/warnkick.pl
 share/irssi/scripts/washnicks.pl
 share/irssi/scripts/watch.pl
-share/irssi/scripts/warnkick.pl
 share/irssi/scripts/whitelist.pl
 share/irssi/scripts/whois.pl
 share/irssi/scripts/whos.pl
@@ -338,5 +340,3 @@ share/irssi/scripts/xmms.pl
 share/irssi/scripts/xmms2.pl
 share/irssi/scripts/xmmsinfo.pl
 share/irssi/scripts/xqf.pl
-@dirrmtry share/irssi/scripts
-@dirrmtry share/irssi
