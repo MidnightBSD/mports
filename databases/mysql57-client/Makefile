@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	mysql
 PORTREVISION=	1
 PKGNAMESUFFIX=	57-client

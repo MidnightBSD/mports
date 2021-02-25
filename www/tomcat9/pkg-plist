@@ -55,11 +55,11 @@
 @postunexec [ ! -d %D/%%T%% ] || echo If permanently deleting this package, %D/%%T%% must be removed manually
 @owner %%WWWOWN%%
 @group %%WWWGRP%%
-@dir %%T%%/conf
-@dir %%T%%/logs
-@dir %%T%%/temp
-@dir %%T%%/webapps
-@dir %%T%%/work
+@dir(www,www,0755) %%T%%/conf
+@dir(www,www,0755) %%T%%/logs
+@dir(www,www,0755) %%T%%/temp
+@dir(www,www,0755) %%T%%/webapps
+@dir(www,www,0755) %%T%%/work
 @sample %%T%%/conf/catalina.policy.sample
 @sample %%T%%/conf/catalina.properties.sample
 @sample %%T%%/conf/context.xml.sample

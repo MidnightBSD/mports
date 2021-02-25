@@ -24,10 +24,10 @@ USE_GITHUB=	yes
 
 GH_ACCOUNT=	tats
 GH_PROJECT=	w3m
-GH_TAGNAME=	4efb3ca
+GH_TAGNAME=	97c7d9b
 
 MAKE_JOBS_UNSAFE=	yes
-SNAPDATE=	20200316
+SNAPDATE=	20210206
 
 CONFLICTS?=	ja-w3m-0.5.* ja-w3m-img-0.5.* w3m-img-0.5.*
 GNU_CONFIGURE=	yes
@@ -82,16 +82,6 @@ post-patch:
 		${WRKSRC}/configure
 	@${FIND} ${WRKSRC}/doc* -type f \! -name HISTORY \
 		-exec ${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' {} +
-	@${CP} ${WRKSRC}/doc-jp/README.func ${WRKSRC}/README.func.bak
-	@${ICONV_CMD} -f EUC-JP -t UTF-8 ${WRKSRC}/README.func.bak \
-		> ${WRKSRC}/doc-jp/README.func
-	@${CP} ${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in \
-		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in.bak
-	@${ICONV_CMD} -f EUC-JP -t UTF-8 \
-		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in.bak \
-		> ${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in
-	@${REINPLACE_CMD} -e 's|EUC-JP|UTF-8|g' \
-		${WRKSRC}/scripts/w3mhelp-funcdesc.ja.pl.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/ja/w3m

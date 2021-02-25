@@ -1,7 +1,7 @@
 # Created by: Devon H. O'Dell <devon.odell@gmail.com>
 
 PORTNAME=	go
-PORTVERSION?=	1.15.6
+PORTVERSION?=	1.15.8
 PORTEPOCH?=	1
 CATEGORIES=	lang
 MASTER_SITES?=	https://golang.org/dl/ \
@@ -29,8 +29,6 @@ USES=		shebangfix
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
 		src/net/http/cgi/testdata/test.cgi
 SHEBANG_GLOB=	*.bash *.pl *.sh
-
-PLIST=          ${PKGDIR}/pkg-plist.${ARCH}
 
 PLIST_SUB+=	ARCH=${ARCH}
 
@@ -88,9 +86,10 @@ do-install:
 	@${CP} -a ${WRKSRC}/* ${STAGEDIR}${PREFIX}/go
 .for file in ${BINARIES}
 	@${LN} -sf ../go/bin/${file} ${STAGEDIR}${PREFIX}/bin/${file}
-#	@${ECHO_CMD} bin/${file} >> ${TMPPLIST}
+	@${ECHO_CMD} bin/${file} >> ${TMPPLIST}
 .endfor
-#	@cd ${STAGEDIR}${PREFIX} && ${FIND} go -type f >> ${TMPPLIST}
+	${RM} -rf ${PREFIX}/go/test/fixedbugs
+	@cd ${STAGEDIR}${PREFIX} && ${FIND} go -type f >> ${TMPPLIST}
 
 do-test:
 	cd ${WRKSRC}/src && ${SETENV} \

@@ -105,6 +105,7 @@ YACC?=		/usr/bin/yacc
 MD5?=		/sbin/md5
 RMD160?=	/sbin/rmd160
 SHA256?=	/sbin/sha256
+SOELIM?=	/usr/bin/soelim
 
 # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
 # or "true" if the make flag -s is given.  Use ECHO_CMD where you mean

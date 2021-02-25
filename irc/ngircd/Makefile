@@ -1,12 +1,11 @@
 # $MidnightBSD$
 
 PORTNAME=	ngircd
-PORTVERSION=	22
+PORTVERSION=	26.1
 PORTEPOCH=	1
-CATEGORIES=	irc ipv6
-MASTER_SITES=	http://arthur.barton.de/pub/%SUBDIR%/ \
-		http://ngircd.mirror.3rz.org/pub/%SUBDIR%/
-MASTER_SITE_SUBDIR=	${PORTNAME}
+CATEGORIES=	irc
+MASTER_SITES=	https://ngircd.barton.de/pub/ngircd/ \
+		https://ngircd.mirror.3rz.de/pub/ngircd/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
@@ -14,13 +13,12 @@ COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		tar:xz
+USES=		cpe localbase:ldflags tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-silent-rules # --docdir=${WRKDIR}/tmproot
 USE_RC_SUBR=	ngircd
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+CPE_VENDOR=	barton
+CPE_VERSION=	${PORTVERSION:C/^([0-9]+)$/\1.0/}
 
 PORTDOCS=	*
 PLIST_FILES=	etc/ngircd.conf.sample \
@@ -28,26 +26,27 @@ PLIST_FILES=	etc/ngircd.conf.sample \
 		man/man8/ngircd.8.gz \
 		sbin/ngircd
 
-OPTIONS_DEFINE=		DEBUG DOCS ICONV IDENT IPV6 IRCPLUS LIBWRAP \
+OPTIONS_DEFINE=		DEBUG DOCS ICONV IDENT IPV6 IRCPLUS LIBWRAP PAM \
 			SNIFFER SYSLOG ZLIB
 OPTIONS_RADIO=		TLS
 OPTIONS_RADIO_TLS=	GNUTLS OPENSSL
-OPTIONS_DEFAULT=	ICONV IRCPLUS LIBWRAP OPENSSL SYSLOG ZLIB
+OPTIONS_DEFAULT=	ICONV IRCPLUS LIBWRAP OPENSSL PAM SYSLOG ZLIB
 
-DEBUG_CONFIGURE_EBABLE=		debug
-GNUTLS_LIB_DEPENDS=		libgnutls.so:${PORTSDIR}/security/gnutls
+DEBUG_CONFIGURE_ENABLE=		debug
+GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_WITH=		gnutls
 ICONV_USES=			iconv
 ICONV_CONFIGURE_WITH=		iconv
 IDENT_DESC=			IDENT (AUTH) protocol support
-IDENT_LIB_DEPENDS=		libident.so:${PORTSDIR}/security/libident
-INDENT_CONFIGURE_WITH=		dent
+IDENT_LIB_DEPENDS=		libident.so:security/libident
+IDENT_CONFIGURE_WITH=		ident
 IPV6_CONFIGURE_ENABLE=		ipv6
 IRCPLUS_DESC=			IRC+ protocol
 IRCPLUS_CONFIGURE_ENABLE=	ircplus
 LIBWRAP_CONFIGURE_WITH=		tcp-wrappers
-OPENSSL_USE=			openssl=yes
+OPENSSL_USES=			ssl
 OPENSSL_CONFIGURE_WITH=		openssl
+PAM_CONFIGURE_WITH=		pam
 SNIFFER_DESC=			IRC traffic sniffer
 SNIFFER_CONFIGURE_ENABLE=	sniffer
 SYSLOG_CONFIGURE_WITH=		syslog

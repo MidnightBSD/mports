@@ -1,9 +1,7 @@
 # Created by: gahr
-# $FreeBSD: head/textproc/xerces-c3/Makefile 410250 2016-03-06 06:19:05Z sunpoet $
-# $MidnightBSD$
 
 PORTNAME=	xerces-c
-PORTVERSION=	3.2.0
+PORTVERSION=	3.2.3
 CATEGORIES=	textproc
 MASTER_SITES=	APACHE/xerces/c/3/sources
 PKGNAMESUFFIX=	3
@@ -14,7 +12,7 @@ COMMENT=	Validating XML parser from the Apache XML Project
 LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS_INSTALL=	xerces-c2-[0-9]* xerces-c2-devel-[0-9]*
+USES=		compiler cpe iconv libtool pathfix
 
 CONFIGURE_ARGS=	--enable-netaccessor-socket \
 		--enable-transcoder-iconv \
@@ -22,22 +20,26 @@ CONFIGURE_ARGS=	--enable-netaccessor-socket \
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 MAKE_ENV=	XERCESCROOT=${WRKSRC}
-TEST_TARGET=	check
 USE_LDCONFIG=	yes
-USES=		cpe gmake iconv libtool pathfix
+NO_TEST=	yes
 
 PLIST_SUB=	MAJOR_VER=${PORTVERSION:R}
 
 CPE_PRODUCT=	xerces-c++
 CPE_VENDOR=	apache
 
-#magus
-NO_TEST=yes
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+PLIST_SUB+=	MUTEXMGR="PosixMutexMgr"
+.else
+PLIST_SUB+=	MUTEXMGR="StdMutexMgr"
+.endif
 
 post-patch:
-	${REINPLACE_CMD} -e "s,@DEFS@,& -D__STDC_LIMIT_MACROS," ${WRKSRC}/src/Makefile.in
+	@${REINPLACE_CMD} -e "s,@DEFS@,& -D__STDC_LIMIT_MACROS," ${WRKSRC}/src/Makefile.in
 
 post-install:
 	${LN} -s libxerces-c-${PORTVERSION:R}.so ${STAGEDIR}${PREFIX}/lib/libxerces-c.so.${PORTVERSION:R:R}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

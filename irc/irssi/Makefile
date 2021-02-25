@@ -1,64 +1,60 @@
 PORTNAME=	irssi
-PORTVERSION=	1.2.2
+DISTVERSION=	1.3-dev-344
+DISTVERSIONSUFFIX=	-gf57dcfe9
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES?=	irc
-MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modular IRC client with many features
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	irssi-devel-[0-9]* zh-irssi-[0-9]*
+# Until upstream makes a new release disable cpe
+USES=		compiler:c11 gettext-runtime gnome meson localbase:ldflags \
+		ncurses:base perl5 pkgconfig ssl
+USE_GNOME=	glib20
+USE_LDCONFIG=	yes
 
-USES=		cpe gettext-runtime gmake libtool ncurses pkgconfig tar:xz
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+USE_GITHUB=	yes
+GH_TAGNAME=	f57dcfe
 
 PLIST_SUB+=	SITE_ARCH=${SITE_ARCH_REL}
+MESON_ARGS=	-Dinstall-glib=no -Ddisable-gregex=no -Dstatic-dependency=no \
+		-Dwith-fuzzer=no -Dwithout-textui=no
 
-CONFIGURE_ARGS=	--with-ncurses=${NCURSESBASE} --with-perl-lib=site --without-capsicum
-INSTALL_TARGET=	install-strip
-USE_GNOME=	glib20
+# Force OpenSSL from base
+CPPFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl -fuse-ld=lld
 
-OPTIONS_DEFINE=	PERL PROXY SOCKS IPV6 BOT DOCS TRUECOLOR
-OPTIONS_DEFAULT=	PERL
-OPTIONS_SUB=	yes
-SOCKS_DESC=	Socks proxy support
-SOCKS_CONFIGURE_WITH=	socks
-BOT_DESC=	Bot support
-BOT_CONFIGURE_WITH=	bot
-PERL_USES=	perl5
-PERL_CONFIGURE_ON=	--with-perl-lib=site
-PERL_CONFIGURE_OFF=	--with-perl=no
-PROXY_CONFIGURE_WITH=	proxy
-IPV6_CONFIGURE_ENABLE=	ipv6 
-IPV6_CATEGORIES=	ipv6
-TRUECOLOR_DESC=	Truecolor (24bit) support
-TRUECOLOR_CONFIGURE_ENABLE=	true-color
+OPTIONS_DEFINE=		BOT CAPSICUM DOCS OTR PERL PROXY TRUECOLOR UTF8PROC
+OPTIONS_DEFAULT=	BOT CAPSICUM PERL PROXY TRUECOLOR
+OPTIONS_SUB=		yes
 
-.if defined(WITHOUT_SSL)
-CONFIGURE_ARGS+=	--disable-ssl
-.else
-EXTENSIONS+=	ssl
-.endif
+BOT_DESC=		Bot support
+CAPSICUM_DESC=		Capsicum support
+OTR_DESC=		OTR (off-the-record) support
+TRUECOLOR_DESC=		True color support
+UTF8PROC_DESC=		utf8proc support
 
-.include <bsd.mport.options.mk>
+BOT_MESON_YES=		with-bot
+CAPSICUM_MESON_YES=	with-capsicum
+OTR_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
+			libotr.so:security/libotr
+OTR_MESON_YES=		with-otr
+PERL_MESON_YES=		with-perl
+PROXY_MESON_YES=	with-proxy
+TRUECOLOR_MESON_YES=	enable-true-color
+UTF8PROC_LIB_DEPENDS=	libutf8proc.so:textproc/utf8proc
+UTF8PROC_MESON_NO=	disable-utf8proc
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' -e 's|/etc|${PREFIX}&|' \
-		${WRKSRC}/docs/irssi.1
+PERL5_USE_OFF=	perl5=build
 
-post-configure:
-	@${MV} ${WRKSRC}/irssi.conf ${WRKSRC}/irssi.conf.sample
+post-install-PERL-off:
+	@${RM} -r ${STAGEDIR}${DATADIR}/scripts
 
 post-install:
-	@${MKDIR} ${PREFIX}/lib/irssi/modules
-
-post-install-PERL-on:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Irssi/Irssi.so
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Irssi/Irc/Irc.so
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Irssi/TextUI/TextUI.so
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Irssi/UI/UI.so
+	${INSTALL_DATA} ${WRKSRC}/irssi.conf ${STAGEDIR}${PREFIX}/etc/irssi.conf.sample
 
 .include <bsd.port.mk>

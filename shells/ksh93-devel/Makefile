@@ -19,10 +19,11 @@ COMMENT=	Development branch of AT&T KornShell 93
 
 LICENSE=	epl
 
-HASH=		cc1f2bf8
-AST_COMMIT_DATE=	2020.02.24
+BROKEN_aarch64=		Fails to link: missing sbrk
+BROKEN_riscv64=		Fails to link: missing sbrk
 
-BROKEN_aarch64=		Fails to compile: needs sbrk
+HASH=		cc1bca27
+AST_COMMIT_DATE=	2020.06.30
 
 USES=		compiler:c11
 
