@@ -47,9 +47,13 @@ CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 VUXML_FILE?=	${PKGDIR}/vuln.xml
 VUXML_FLAT_FILE?=	${PKGDIR}/vuln-flat.xml
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 post-clean:
-	@${RM} "${VUXML_FILE}.tidy"
-	@${RM} "${VUXML_FLAT_FILE}"
+	-${RM} "${VUXML_FILE}.tidy"
+	-${RM} "${VUXML_FLAT_FILE}"
 
 do-extract:
 	@${RM} -rf ${WRKDIR}
