@@ -1,5 +1,5 @@
 PORTNAME=	mksh
-DISTVERSION=	R57
+DISTVERSION=	R59c
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
@@ -22,7 +22,7 @@ PKGDEINSTALL=	pkg-deinstall
 .include <bsd.port.pre.mk>
 
 do-build:
-	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r -c lto
+	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mksh ${PREFIX}/bin
