@@ -5,6 +5,7 @@ SUBDIR += bash
 SUBDIR += bash-completion
 SUBDIR += cvs-server
 SUBDIR += dash
+SUBDIR += elvish
 SUBDIR += es
 SUBDIR += fd
 SUBDIR += fish

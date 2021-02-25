@@ -1,0 +1,15 @@
+TIMESTAMP = 1612047801
+SHA256 (elves-elvish-v0.15.0_GH0.tar.gz) = 761739307c68fcbc51fd46c052c0a20ae848a30dba1ce3fbb6d27f99672f58e0
+SIZE (elves-elvish-v0.15.0_GH0.tar.gz) = 603715
+SHA256 (BurntSushi-toml-v0.3.1_GH0.tar.gz) = 6593da894578ba510a470735ffbdc88ce88033094dc5a8f4d3957ab87e18803f
+SIZE (BurntSushi-toml-v0.3.1_GH0.tar.gz) = 42077
+SHA256 (creack-pty-v1.1.11_GH0.tar.gz) = ee903119251fdf7d90dae890fec40015c5b6049daa68ec8d8750c3ebceaaf5ed
+SIZE (creack-pty-v1.1.11_GH0.tar.gz) = 8396
+SHA256 (etcd-io-bbolt-v1.3.5_GH0.tar.gz) = 63fed2e9bbdcc2aa279c2a7ea4a59c39bc21616ec2c96abff0020872beb3dbad
+SIZE (etcd-io-bbolt-v1.3.5_GH0.tar.gz) = 96494
+SHA256 (golang-sys-c12d262b63d8_GH0.tar.gz) = 57663347583aec8dca1fa3f24af9fdf6612e5db0fd65bcef26a79509548c8d40
+SIZE (golang-sys-c12d262b63d8_GH0.tar.gz) = 1060884
+SHA256 (mattn-go-isatty-v0.0.12_GH0.tar.gz) = addbdc341d7685ed4cc8d2d8a8fd2bd9b784bde00d0ea99fb251039fc10c611c
+SIZE (mattn-go-isatty-v0.0.12_GH0.tar.gz) = 4548
+SHA256 (xiaq-persistent-3175cfb92e14_GH0.tar.gz) = c481b2ba3bb0ad0dc7dc6d0d3179a55f7770c59b83ea54962cc37da5f5864611
+SIZE (xiaq-persistent-3175cfb92e14_GH0.tar.gz) = 19394
