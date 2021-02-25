@@ -7,6 +7,7 @@ SUBDIR += cvs-server
 SUBDIR += dash
 SUBDIR += es
 SUBDIR += fd
+SUBDIR += fish
 SUBDIR += ibsh
 SUBDIR += ksh93
 SUBDIR += ksh93-devel
