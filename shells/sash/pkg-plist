@@ -1,2 +1,2 @@
-bin/sash
+@shell bin/sash
 man/man1/sash.1.gz
