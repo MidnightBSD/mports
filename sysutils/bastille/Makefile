@@ -3,6 +3,7 @@
 
 PORTNAME=	bastille
 PORTVERSION=	0.7.20200714
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	christer.edwards@gmail.com
