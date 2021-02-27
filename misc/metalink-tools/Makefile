@@ -2,7 +2,7 @@
 
 PORTNAME=	metalink
 PORTVERSION=	0.3.6
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	misc
 MASTER_SITES=	SF/metalinks/Metalink%20commandline/${PORTVERSION}
 PKGNAMESUFFIX?=	-tools
@@ -20,11 +20,9 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
-USES=		compiler:c++11-lang pkgconfig
-USE_CXXSTD=c++11
+USES=		compiler:c++11-lang gnome localbase pkgconfig
+USE_CXXSTD=	c++11
 CONFIGURE_ENV+=	AWK="${AWK}"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTDOCS=	README
 PLIST_FILES=	bin/${PORTNAME}
@@ -32,8 +30,10 @@ PLIST_FILES=	bin/${PORTNAME}
 OPTIONS_DEFINE=	DOCS
 
 do-install:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${DOCSDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
