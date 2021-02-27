@@ -5,7 +5,7 @@
  for _jail in ${JAILS}; do
      echo -e "${COLOR_GREEN}[${_jail}]:${COLOR_RESET}"
 -    jexec -l "${_jail}" /usr/sbin/pkg "$@"
-+    if [ -f ${_jail}/usr/sbin/pkg ]; then
++    if [ -f /usr/sbin/pkg ]; then
 +        jexec -l "${_jail}" /usr/sbin/pkg "$@"
 +    else
 +        jexec -l "${_jail}" /usr/sbin/mport "$@"
