@@ -151,6 +151,7 @@ SUBDIR += sg3_utils
 SUBDIR += slurm-wlm
 SUBDIR += smartmontools
 SUBDIR += synergy
+SUBDIR += sysrc
 SUBDIR += system-tools-backends
 SUBDIR += tarsnap
 SUBDIR += timemon
