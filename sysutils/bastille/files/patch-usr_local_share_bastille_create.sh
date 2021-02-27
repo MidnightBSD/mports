@@ -1,6 +1,6 @@
---- usr/local/share/bastille/create.sh.orig	2020-07-14 03:49:31 UTC
-+++ usr/local/share/bastille/create.sh
-@@ -458,6 +458,11 @@ fi
+--- usr/local/share/bastille/create.sh.orig	2021-01-15 22:31:11.000000000 -0500
++++ usr/local/share/bastille/create.sh	2021-02-27 14:42:59.388079000 -0500
+@@ -481,6 +481,11 @@
  if [ -z "${EMPTY_JAIL}" ]; then
      ## verify release
      case "${RELEASE}" in
@@ -9,6 +9,6 @@
 +        NAME_VERIFY=$(echo "${RELEASE}")
 +        validate_release
 +        ;;
-     *-RELEASE|*-release|*-RC1|*-rc1|*-RC2|*-rc2)
+     *-CURRENT|*-CURRENT-I386|*-CURRENT-i386|*-current)
          ## check for FreeBSD releases name
-         NAME_VERIFY=$(echo "${RELEASE}" | grep -iwE '^([1-9]{2,2})\.[0-9](-RELEASE|-RC[1-2])$' | tr '[:lower:]' '[:upper:]')
+         NAME_VERIFY=$(echo "${RELEASE}" | grep -iwE '^([1-9]{2,2})\.[0-9](-CURRENT|-CURRENT-i386)$' | tr '[:lower:]' '[:upper:]' | sed 's/I/i/g')
