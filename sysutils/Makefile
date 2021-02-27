@@ -74,6 +74,7 @@ SUBDIR += grub2-bhyve
 SUBDIR += gstreamer-plugins-hal
 SUBDIR += hal
 SUBDIR += hal-info
+SUBDIR += htop
 SUBDIR += hw-probe
 SUBDIR += isc-cron
 SUBDIR += jailme
