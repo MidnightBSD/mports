@@ -1,41 +1,58 @@
-# $MidnightBSD$
+# Created by: Jeremy Norris <ishmael127@home.com>
 
 PORTNAME=	feh
-PORTVERSION=	2.3
+PORTVERSION=	3.5
 CATEGORIES=	graphics
 MASTER_SITES=	http://feh.finalrewind.org/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	uqs
+		LOCAL/uqs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image viewer that utilizes Imlib2
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 FAKE_OPTS=	trueprefix
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
-		libgiblib.so:${PORTSDIR}/graphics/giblib
+LIB_DEPENDS=	libImlib2.so:graphics/imlib2 \
+		libpng.so:graphics/png
 
-USES=		gmake tar:bzip2
+USES=		compiler:c++11-lang cpe desktop-file-utils gmake localbase:ldflags \
+		tar:bzip2 xorg
 USE_XORG=	x11 xt xinerama
-USE_PERL5_RUN=	yes
+USE_PERL5=	run
+CPE_VENDOR=	daniel_friesel
 
-CPPFLAGS+=	-I${LOCALBASE}/include -std=c99
-LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
+MAKE_ENV+=	LDFLAGS="${LDFLAGS}" verscmp=0
 
-post-patch:
-	@${REINPLACE_CMD} 's#share/man#man#' ${WRKSRC}/config.mk
-	@${REINPLACE_CMD} 's#install-man install-doc install-bin#install-doc#' ${WRKSRC}/Makefile
-	@${REINPLACE_CMD} 's#/bin/bash#/bin/sh#' ${WRKSRC}/cam/gen-cam-menu
+OPTIONS_DEFINE=	CURL DCRAW DOCS EXAMPLES EXIF XINERAMA
+EXIF_DESC=	Support EXIF tags
+DCRAW_DESC=	Use dcraw to display raw file previews
+OPTIONS_DEFAULT=CURL EXIF XINERAMA
+OPTIONS_SUB=	yes
+
+EXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
+EXIF_MAKE_ENV=		exif=1
+EXIF_MAKE_ENV_OFF=	exif=0
+
+XINERAMA_MAKE_ENV=	xinerama=1
+XINERAMA_MAKE_ENV_OFF=	xinerama=0
+
+CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+CURL_MAKE_ENV=		curl=1
+CURL_MAKE_ENV_OFF=	curl=0
+
+DCRAW_RUN_DEPENDS=	dcraw:graphics/dcraw
+
+post-patch-DOCS-off:
+	@${REINPLACE_CMD} -e 's|install-doc||' \
+		${WRKSRC}/Makefile
+
+post-patch-EXAMPLES-off:
+	@${REINPLACE_CMD} -e 's|install-examples||' \
+		${WRKSRC}/Makefile
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/feh ${FAKE_DESTDIR}${TRUE_PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/cam/feh-cam ${FAKE_DESTDIR}${TRUE_PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/cam/gen-cam-menu ${FAKE_DESTDIR}${TRUE_PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/man/feh.1 ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/man/feh-cam.1 ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/man/gen-cam-menu.1 ${FAKE_DESTDIR}${TRUE_PREFIX}/man/man1
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/feh
 
 .include <bsd.port.mk>
