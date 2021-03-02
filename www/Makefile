@@ -43,7 +43,6 @@ SUBDIR += man2web
 SUBDIR += mathjax
 SUBDIR += mattermost-server
 SUBDIR += mattermost-webapp
-SUBDIR += mediawiki133
 SUBDIR += mediawiki135
 SUBDIR += midori
 SUBDIR += minio
