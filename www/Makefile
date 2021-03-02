@@ -11,6 +11,7 @@ SUBDIR += chromium-bin
 SUBDIR += codeigniter
 SUBDIR += drupal7
 SUBDIR += drupal8
+SUBDIR += drupal9
 SUBDIR += epiphany
 SUBDIR += fcgi
 SUBDIR += firefox
