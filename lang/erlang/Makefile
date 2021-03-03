@@ -1,6 +1,6 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
-DISTVERSION=	21.3.8.13
+DISTVERSION=	21.3.8.20
 PORTEPOCH=	4
 CATEGORIES=	lang parallel java
 DIST_SUBDIR=	erlang
@@ -10,9 +10,7 @@ COMMENT=	Functional programming language from Ericsson
 
 LICENSE=	apache2
 
-BROKEN_sparc64=	Fails to build: error: fp_except undeclared
-
-USES=		autoreconf:build gmake ncurses perl5
+USES=		autoreconf:build compiler:c11 gmake ncurses perl5
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	erlang:otp,corba
 GH_PROJECT=	otp:otp corba:corba
@@ -32,7 +30,7 @@ SUB_FILES=	pkg-message
 SUB_LIST=	TOOLS_VSN=${TOOLS_VSN}
 
 ERLANG_LIB=	${PORTNAME}
-EI_VSN=		3.11.3
+EI_VSN=		3.11.3.1
 SNMP_VSN=	5.2.12
 TOOLS_VSN=	3.1.0.1
 
