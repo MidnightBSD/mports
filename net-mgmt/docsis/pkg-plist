@@ -41,6 +41,8 @@ bin/docsis
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/docsis20_no_snmp.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/docsis20_stresstest.cfg
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/docsis20_stresstest.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/docsis_ipv6.cfg
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/docsis_ipv6.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/keyfile
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/packetcable_mta.cfg
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/packetcable_mta.txt
@@ -63,5 +65,3 @@ bin/docsis
 %%MIBS%%/PKTC-SIG-MIB
 %%MIBS%%/RMON2-MIB
 %%MIBS%%/TOKEN-RING-RMON-MIB
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%

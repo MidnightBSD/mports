@@ -1,34 +1,34 @@
-# $MidnightBSD$
-
 PORTNAME=	docsis
-PORTVERSION=	0.9.6
-PORTREVISION=	1
+PORTVERSION=	0.9.8
+DISTVERSIONPREFIX=	upstream/
 CATEGORIES=	net-mgmt
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DOCSIS(tm) binary configuration file encoder/decoder
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	gm4:devel/m4
+BUILD_DEPENDS=	gm4:devel/m4 \
+		flex:textproc/flex
 LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 
 GNU_CONFIGURE=	yes
-USES=		bison ssl
+MAKE_JOBS_UNSAFE=	yes
+USES=		autoreconf bison libtool ssl
+USE_GITHUB=	yes
 
 PLIST_SUB=	MIBS=share/snmp/mibs
 
-BROKEN_amd64=	Produces corrupt files on amd64
-
 OPTIONS_DEFINE=	DOCS EXAMPLES
+
+GH_ACCOUNT=	rlaager
 
 post-patch:
 	@${REINPLACE_CMD} -e \
 		'/^htmldocdir/s|share/docsis|share/doc/docsis|' \
-		${WRKSRC}/doc/Makefile.in
+		${WRKSRC}/doc/Makefile.am
 	@${REINPLACE_CMD} -e \
 		'/^examplesdir/s|docsis/examples|examples/docsis|' \
-		${WRKSRC}/examples/Makefile.in
+		${WRKSRC}/examples/Makefile.am
 
 .include <bsd.port.mk>
