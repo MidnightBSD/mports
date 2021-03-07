@@ -61,7 +61,7 @@ BUILD_DEPENDS+=	cabal:devel/hs-cabal-install \
 		ghc:lang/ghc
 .  endif
 
-.  if ${cabal_ARGS:Mhpack}
+.  if defined(cabal_ARGS) && ${cabal_ARGS:Mhpack}
 EXTRACT_DEPENDS+=	hpack:devel/hs-hpack
 .  endif
 
@@ -73,7 +73,7 @@ LIB_DEPENDS+=	libgmp.so:math/gmp \
 
 DIST_SUBDIR?=	cabal
 
-.  if !defined(USE_GITHUB) && !defined(USE_GITLAB) && !${cabal_ARGS:Mnodefault}
+.  if !defined(USE_GITHUB) && !defined(USE_GITLAB) && (!defined(cabal_ARGS) || !${cabal_ARGS:Mnodefault})
 MASTER_SITES=	https://hackage.haskell.org/package/${PORTNAME}-${PORTVERSION}/ \
 		http://hackage.haskell.org/package/${PORTNAME}-${PORTVERSION}/
 DISTFILES+=	${PORTNAME}-${PORTVERSION}${CABAL_EXTRACT_SUFX}
@@ -129,7 +129,7 @@ cabal-extract: ${WRKDIR}
 # Fetches and unpacks dependencies sources for a cabal-extract'ed package.
 # Builds them as side-effect.
 cabal-extract-deps:
-.  if ${cabal_ARGS:Mhpack}
+.  if defined(cabal_ARGS) && ${cabal_ARGS:Mhpack}
 	cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} hpack
 .  endif
 	cd ${WRKSRC} && \
@@ -167,7 +167,7 @@ cabal-post-extract:
 	touch ${CABAL_HOME}/.cabal/config
 
 cabal-post-patch:
-.    if ${cabal_ARGS:Mhpack}
+.    if defined(cabal_ARGS) && ${cabal_ARGS:Mhpack}
 	cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} hpack
 .    endif
 
