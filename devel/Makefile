@@ -132,6 +132,7 @@ SUBDIR += gstreamer1-plugins-soup
 SUBDIR += gvfs
 SUBDIR += hadoop
 SUBDIR += highlighterkit
+SUBDIR += hs-cabal-install
 SUBDIR += hs-haddock
 SUBDIR += hwloc
 SUBDIR += hyperscan
