@@ -2,9 +2,8 @@ PORTNAME=	msbuild
 DISTVERSIONPREFIX=	v
 DISTVERSION=	15.8-preview
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/mono/msbuild/releases/download/0.06/:boostrap
-DISTFILES=	mono_msbuild_xplat-master-3c930fa8.zip:bootstrap \
-		mono-msbuild-v15-8-preview-0.06_GH0.tar.gz
+MASTER_SITES=	https://github.com/mono/msbuild/releases/download/0.06/:bootstrap
+DISTFILES=	mono_msbuild_xplat-master-3c930fa8.zip:bootstrap
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build platform for .NET and Visual Studio
