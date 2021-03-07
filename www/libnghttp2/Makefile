@@ -1,7 +1,7 @@
 PORTNAME=	nghttp2
-PORTVERSION=	1.41.0
-DISTVERSIONPREFIX=	v
+PORTVERSION=	1.43.0
 CATEGORIES=	www net
+MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	lib
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,5 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 #USE_CXXSTD=	c++14
 USE_LDCONFIG=	yes
-
-USE_GITHUB=	yes
 
 .include <bsd.port.mk>
