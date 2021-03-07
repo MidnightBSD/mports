@@ -41,7 +41,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/bin/activemq.jar ${WRKSRC}/bin/wrapper.jar \
 		${STAGEDIR}${DATADIR}/bin
 	@${MKDIR} ${FAKE_DESTDIR}/var/db/activemq
-	${RLN} ${STAGEDIR}/var/db/activemq ${STAGEDIR}${DATADIR}/data
+	${RLN} ${FAKE_DESTDIR}/var/db/activemq ${STAGEDIR}${DATADIR}/data
 	${RLN} ${STAGEDIR}${ETCDIR} ${STAGEDIR}${DATADIR}/conf
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "lib webapps webapps-demo" \
 		${STAGEDIR}${DATADIR}
