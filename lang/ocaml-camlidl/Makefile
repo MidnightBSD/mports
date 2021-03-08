@@ -25,8 +25,8 @@ DOCSDIR=	${PREFIX}/share/doc/ocaml/${PORTNAME}
 OPTIONS_DEFINE=	DOCS
 
 post-extract:
-	@${REINPLACE_CMD} -e "s,^\(OCAMLLIB=\).*,\1${STAGEDIR}${PREFIX}/lib/ocaml,g" \
-		-e "s,^\(BINDIR=\).*,\1${STAGEDIR}${PREFIX}/bin,g" \
+	@${REINPLACE_CMD} -e "s,^\(OCAMLLIB=\).*,\1${FAKE_DESTDIR}${PREFIX}/lib/ocaml,g" \
+		-e "s,^\(BINDIR=\).*,\1${FAKE_DESTDIR}${PREFIX}/bin,g" \
 		-e "s,^CFLAGS=.*,#\&,g" \
 		-e "s,^\(CPP=\).*,\1/usr/bin/cpp,g" \
 		${WRKSRC}/config/Makefile.unix
