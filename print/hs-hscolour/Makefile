@@ -1,8 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	hscolour
-PORTVERSION=	1.20.3
-PORTREVISION=	8
+PORTVERSION=	1.24.4
 PORTEPOCH=	1
 CATEGORIES=	print haskell
 
@@ -11,7 +8,8 @@ COMMENT=	Colourise Haskell code
 
 LICENSE=	gpl2
 
-EXECUTABLE=	HsColour
+USES=		cabal
 
-.include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
+EXECUTABLES=	HsColour
+
 .include <bsd.port.mk>
