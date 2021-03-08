@@ -1,7 +1,7 @@
 # Created by: Oliver Lehmann
 
 PORTNAME=	courier-authlib
-PORTVERSION=	0.71.0
+PORTVERSION=	0.71.1
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
 MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
@@ -28,6 +28,10 @@ PATCHDIR=	/dev/null
 OPTIONS_DEFINE+=	GDBM
 
 .include "${.CURDIR}/Makefile.opt"
+
+do-install:
+	${MKDIR} ${PREFIX}/share/courier-authlib/
+	${TOUCH} ${PREFIX}/share/courier-authlib/installed.txt
 
 .else	# !defined(PKGNAMESUFFIX)
 
