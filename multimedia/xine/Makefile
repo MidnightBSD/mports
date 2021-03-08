@@ -51,7 +51,7 @@ WIN32_CODECS_RUN_DEPENDS=\
 XFT_USE=		XORG=xft
 XFT_CONFIGURE_ENABLE=	xft
 
-XINE_PLUGINSDIR=	lib/xine/plugins/2.7
+XINE_PLUGINSDIR=	lib/xine/plugins/2.9
 
 CFLAGS+=	-liconv
 LDFLAGS+=	-liconv
