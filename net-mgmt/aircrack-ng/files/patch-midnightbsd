@@ -68,10 +68,3 @@ index 04a1f624..7e0a44d9 100644
  	// Not sure about defined(__DragonFly__) || defined(__NetBSD__) ||
  	// defined(__OpenBSD__) || defined(__APPLE__)
  	int mib[] = {CTL_HW, HW_NCPU};
-@@ -702,4 +702,4 @@ int station_compare(const void * a, const void * b)
- 	REQUIRE(b != NULL);
- 
- 	return (memcmp(a, b, ETHER_ADDR_LEN));
--}
-\ No newline at end of file
-+}
