@@ -1,5 +1,6 @@
 PORTNAME=	datadog-agent
 DISTVERSION=	7.24.1
+PORTREVISION=	1
 CATEGORIES=	sysutils net www
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -309,7 +310,14 @@ DOGSTATSD_VARS=	use_rc_subr+=datadog-dogstatsd
 
 OPTIONS_SUB=	yes
 
-PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}toml>0:textproc/py-toml@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}docker>0:sysutils/py-docker@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}reno>0:textproc/py-reno@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}invoke>0:devel/py-invoke@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}dulwich>0:devel/dulwich
 
 ALL_TARGET=		./cmd/agent
 APM_ALL_TARGET=		./cmd/trace-agent
