@@ -2,7 +2,6 @@ COMMENT = Databases
 
 SUBDIR += adodb
 SUBDIR += c3p0
-SUBDIR += cassandra
 SUBDIR += cassandra2
 SUBDIR += cassandra-cpp-driver
 SUBDIR += couchdb
