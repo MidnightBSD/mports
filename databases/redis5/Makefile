@@ -1,8 +1,8 @@
-PORTNAME=	redis
-PORTVERSION=	5.0.9
-PORTREVISION=	1
+PORTNAME=	redis5
+PORTVERSION=	5.0.12
 CATEGORIES=	databases
-MASTER_SITES=	http://download.redis.io/releases/
+MASTER_SITES=	https://download.redis.io/releases/
+DISTNAME=	redis-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
@@ -10,7 +10,7 @@ COMMENT=	Persistent key-value database with built-in net interface
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	JEMALLOC TRIB
+OPTIONS_DEFINE=	JEMALLOC TESTS TRIB
 OPTIONS_RADIO=	EXTLUA
 OPTIONS_RADIO_EXTLUA=	LUA LUAJIT LUAJITOR
 OPTIONS_SUB=	yes
@@ -66,7 +66,7 @@ LDFLAGS+=	-Wl,-E
 NO_TEST=	yes
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis4-4.* redis-devel-5.*
+CONFLICTS?=	redis4-4.* redis-6.* redis-devel-6.*
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \

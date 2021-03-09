@@ -95,7 +95,7 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 	REDIS_RUNDIR=${REDIS_RUNDIR}
 
 post-patch-JEMALLOC-on:
-	@${REINPLACE_CMD} '35s!Linux!FreeBSD!g' ${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} '35s!Linux!MidnightBSD!g' ${WRKSRC}/src/Makefile
 
 post-patch-LUA-on:
 	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/

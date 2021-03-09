@@ -21,8 +21,8 @@
  	OPENSSL_CFLAGS=-I/usr/local/opt/openssl/include
  	OPENSSL_LDFLAGS=-L/usr/local/opt/openssl/lib
  else
-+ifeq ($(uname_S),FreeBSD)
-+        # FreeBSD
++ifeq ($(uname_S),MidnightBSD)
++        # BSD
 +        FINAL_CFLAGS?= $(CFLAGS) $(REDIS_CFLAGS) -I${PREFIX}/include
 +        FINAL_LDFLAGS= $(LDFLAGS) -pthread
 +else
