@@ -10,8 +10,6 @@ COMMENT=	Minimalistic C client library for the Redis database
 
 LICENSE=	bsd3
 
-FAKE_OPTS=	trueprefix
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	redis
 

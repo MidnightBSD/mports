@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	libhiredis.so:databases/hiredis
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 post-patch:
