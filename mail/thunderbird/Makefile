@@ -1,9 +1,9 @@
 PORTNAME=	thunderbird
-PORTVERSION=	60.2.1
+PORTVERSION=	78.8.0
 CATEGORIES=	mail
-MASTER_SITES=	https://pkg.freebsd.org/FreeBSD:10:amd64/latest/All/
-DISTFILES=	thunderbird-60.2.1_3.txz \
-		hunspell-1.6.2_1.txz
+MASTER_SITES=	http://www.midnightbsd.org/ftp/MidnightBSD/mports/distfiles/ \
+		https://pkg.freebsd.org/FreeBSD:11:amd64/quarterly/All/
+DISTFILES=	thunderbird-78.8.0.txz hunspell-1.7.0_2.txz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird for FreeBSD
@@ -12,7 +12,9 @@ LICENSE=	mpl gpl2
 LICENSE_COMB=	dual
 
 LIB_DEPENDS+=	libicui18n.so:devel/icu \
-		libvpx.so:multimedia/libvpx
+		libvpx.so:multimedia/libvpx \
+		libjson-c.so:devel/json-c \
+		libbotan-2.so:security/botan2
 
 USES=	gnome tar:xz
 USE_GNOME=	gtk20

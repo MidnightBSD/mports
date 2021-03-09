@@ -1,5 +1,5 @@
 PORTNAME=	appstream-glib
-PORTVERSION=	0.7.8
+PORTVERSION=	0.7.18
 CATEGORIES=	devel
 MASTER_SITES=	http://people.freedesktop.org/~hughsient/appstream-glib/releases/
 DIST_SUBDIR=	gnome
@@ -10,8 +10,7 @@ COMMENT=	Library to help with AppStream metadata
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc \
-		gcab:archivers/gcab
+BUILD_DEPENDS=	gcab:archivers/gcab
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libjson-glib-1.0.so:devel/json-glib \
 		libyaml.so:textproc/libyaml \
@@ -31,15 +30,17 @@ MESON_ARGS=	-Drpm=false \
 		-Dalpm=false \
 		-Dstemmer=false
 
-NO_TEST=	yes
-
-OPTIONS_DEFINE=	MANPAGES
+OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
 
+DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
+DOCS_MESON_TRUE=	gtk-doc
+DOCSDIR=		${PREFIX}/share/gtk-doc/html/appstream-glib
+
 MANPAGES_MESON_TRUE=	man
-MANPAGE_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
-		docbook-xsl>=0:textproc/docbook-xsl
+MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
+			docbook-xsl>=0:textproc/docbook-xsl
 MANPAGES_USE=	GNOME=libxslt:build
 
 .include <bsd.port.mk>

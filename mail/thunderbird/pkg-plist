@@ -1,60 +1,91 @@
+include/hunspell/hunvisapi.h
+include/hunspell/w_char.hxx
+include/hunspell/hunspell.hxx
+include/hunspell/atypes.hxx
+include/hunspell/hunspell.h
 share/applications/thunderbird.desktop
 share/pixmaps/thunderbird.png
+share/licenses/hunspell-1.7.0_2/LGPL21+
+share/licenses/hunspell-1.7.0_2/catalog.mk
+share/licenses/hunspell-1.7.0_2/MPL11
+share/licenses/hunspell-1.7.0_2/GPLv2+
+share/licenses/hunspell-1.7.0_2/LICENSE
+man/man1/hunzip.1.gz
+man/man1/hzip.1.gz
+man/man1/hunspell.1.gz
+man/man5/hunspell.5.gz
+man/hu/man1/hunspell.1.gz
+man/man3/hunspell.3.gz
+bin/hunzip
+bin/affixcompress
+bin/hunspell
+bin/ispellaff2myspell
+bin/chmorph
+bin/wordforms
+bin/hzip
+bin/makealias
+bin/munch
+bin/analyze
 bin/thunderbird
-lib/libhunspell-1.6.so.0
-lib/thunderbird/isp/DSPAM.sfd
-lib/thunderbird/isp/POPFile.sfd
-lib/thunderbird/isp/SpamPal.sfd
-lib/thunderbird/isp/SpamAssassin.sfd
-lib/thunderbird/isp/Bogofilter.sfd
+bin/wordlist2hunspell
+bin/unmunch
+lib/libhunspell-1.7.so.0
+lib/libhunspell-1.7.so.0.0.1
+lib/libhunspell-1.7.so
 lib/thunderbird/removed-files
-lib/thunderbird/thunderbird-bin
-lib/thunderbird/dictionaries/en-US.aff
-lib/thunderbird/dictionaries/en-US.dic
-lib/thunderbird/liblgpllibs.so
-lib/thunderbird/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
-lib/thunderbird/libldap60.so
-lib/thunderbird/libmozgtk.so
-lib/thunderbird/libldif60.so
-lib/thunderbird/application.ini
-lib/thunderbird/blocklist.xml
-lib/thunderbird/omni.ja
-lib/thunderbird/dependentlibs.list
-lib/thunderbird/pingsender
-lib/thunderbird/libprldap60.so
-lib/thunderbird/thunderbird
-lib/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-lib/thunderbird/init.d/moz_pis_S50cleanhome
 lib/thunderbird/platform.ini
-lib/thunderbird/chrome/icons/default/default128.png
-lib/thunderbird/chrome/icons/default/default48.png
-lib/thunderbird/chrome/icons/default/default22.png
-lib/thunderbird/chrome/icons/default/default32.png
 lib/thunderbird/chrome/icons/default/default256.png
-lib/thunderbird/chrome/icons/default/default64.png
-lib/thunderbird/chrome/icons/default/default16.png
+lib/thunderbird/chrome/icons/default/calendar-event-summary-dialog.png
+lib/thunderbird/chrome/icons/default/calendar-event-dialog.png
+lib/thunderbird/chrome/icons/default/default32.png
 lib/thunderbird/chrome/icons/default/default24.png
-lib/thunderbird/libxul.so
-lib/thunderbird/chrome.manifest
+lib/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
+lib/thunderbird/chrome/icons/default/default64.png
+lib/thunderbird/chrome/icons/default/calendar-task-dialog.png
+lib/thunderbird/chrome/icons/default/default16.png
+lib/thunderbird/chrome/icons/default/default48.png
+lib/thunderbird/chrome/icons/default/default128.png
+lib/thunderbird/chrome/icons/default/calendar-task-summary-dialog.png
+lib/thunderbird/chrome/icons/default/default22.png
+lib/thunderbird/application.ini
+lib/thunderbird/libmozsqlite3.so
+lib/thunderbird/features/wetransfer@extensions.thunderbird.net.xpi
 lib/thunderbird/gtk2/libmozgtk.so
-lib/thunderbird/defaults/pref/channel-prefs.js
-lib/thunderbird/defaults/messenger/mailViews.dat
+lib/thunderbird/libxul.so
+lib/thunderbird/libmozwayland.so
+lib/thunderbird/pingsender
+lib/thunderbird/thunderbird-bin
+lib/thunderbird/librnp.so
+lib/thunderbird/thunderbird
+lib/thunderbird/isp/POPFile.sfd
+lib/thunderbird/isp/Bogofilter.sfd
+lib/thunderbird/isp/SpamAssassin.sfd
+lib/thunderbird/isp/SpamPal.sfd
+lib/thunderbird/isp/DSPAM.sfd
+lib/thunderbird/libldap60.so
+lib/thunderbird/libldif60.so
+lib/thunderbird/libmozgtk.so
+lib/thunderbird/liblgpllibs.so
 lib/thunderbird/plugin-container
-lib/libhunspell-1.6.a
-lib/libhunspell-1.6.so.0.0.1
-lib/libhunspell-1.6.la
-lib/libhunspell-1.6.so
-@dir lib/thunderbird/isp
-@dir lib/thunderbird/dictionaries
-@dir lib/thunderbird/extensions
-@dir lib/thunderbird/distribution/extensions
-@dir lib/thunderbird/distribution
-@dir lib/thunderbird/init.d
+lib/thunderbird/omni.ja
+lib/thunderbird/defaults/messenger/mailViews.dat
+lib/thunderbird/defaults/pref/channel-prefs.js
+lib/thunderbird/dependentlibs.list
+lib/thunderbird/libprldap60.so
+lib/libhunspell-1.7.la
+lib/libhunspell-1.7.a
+libdata/pkgconfig/hunspell.pc
+@dir include/hunspell
+@dir share/licenses/hunspell-1.7.0_2
+@dir man/hu/man1
+@dir man/hu
 @dir lib/thunderbird/chrome/icons/default
 @dir lib/thunderbird/chrome/icons
 @dir lib/thunderbird/chrome
+@dir lib/thunderbird/features
 @dir lib/thunderbird/gtk2
-@dir lib/thunderbird/defaults/pref
+@dir lib/thunderbird/isp
 @dir lib/thunderbird/defaults/messenger
+@dir lib/thunderbird/defaults/pref
 @dir lib/thunderbird/defaults
 @dir lib/thunderbird
