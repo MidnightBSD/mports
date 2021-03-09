@@ -1005,6 +1005,7 @@ SUBDIR += sbt
 SUBDIR += scons
 SUBDIR += sdl12
 SUBDIR += sdl20
+SUBDIR += sigar
 SUBDIR += silc-toolkit
 SUBDIR += slf4j
 SUBDIR += sonar-ant-task
