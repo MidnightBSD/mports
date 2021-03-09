@@ -5,6 +5,7 @@ SUBDIR += apg
 SUBDIR += autossh
 SUBDIR += barnyard2
 SUBDIR += blocklist-de-all
+SUBDIR += botan2
 SUBDIR += ca_root_nss
 SUBDIR += chroot_safe
 SUBDIR += clamav
