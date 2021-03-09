@@ -9,7 +9,7 @@
  
  all: snappy
  
-@@ -25,7 +25,6 @@ BITSHUFFLE_UNPACKED:=$(TARGET)/bitshuffle-extracted.lo
+@@ -25,7 +25,6 @@ BITSHUFFLE_UNPACKED:=$(TARGET)/bitshuffl
  
  $(BITSHUFFLE_ARCHIVE):
  	@mkdir -p $(@D)
@@ -53,7 +53,7 @@
  
  snappy-header: $(SNAPPY_CMAKE_CACHE)
  
-@@ -100,7 +98,7 @@ $(TARGET)/jni-classes/org/xerial/snappy/BitShuffleNati
+@@ -100,7 +98,7 @@ $(TARGET)/jni-classes/org/xerial/snappy/
  
  $(SRC)/org/xerial/snappy/BitShuffleNative.h: $(TARGET)/jni-classes/org/xerial/snappy/BitShuffleNative.class
  
@@ -62,3 +62,13 @@
  
  # aarch64 can use big-endian optimzied code
  ifeq ($(OS_ARCH),aarch64)
+@@ -184,6 +182,9 @@ linux64: jni-header
+ freebsd64:
+ 	$(MAKE) native OS_NAME=FreeBSD OS_ARCH=x86_64
+ 
++midnightbsd64:
++	$(MAKE) native OS_NAME=MidnightBSD OS_ARCH=x86_64
++
+ # For ARM
+ native-arm: linux-arm linux-armv6 linux-armv7 linux-android-arm
+ 

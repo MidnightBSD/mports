@@ -1,5 +1,4 @@
 # Created by: Radim Kolar <hsn@filez.com>
-# $FreeBSD: head/archivers/snappy-java/Makefile 535224 2020-05-14 11:15:14Z pi $
 
 PORTNAME=	snappy
 PORTVERSION=	1.1.7.5
@@ -59,16 +58,16 @@ do-test:
 .include <bsd.port.pre.mk>
 
 .	if ${ARCH} == amd64
-PLATFORM_DIR_SUFFIX=	FreeBSD-x86_64
+PLATFORM_DIR_SUFFIX=	MidnightBSD-x86_64
 .	elif ${ARCH} == i386
-PLATFORM_DIR_SUFFIX=	FreeBSD-x86
+PLATFORM_DIR_SUFFIX=	MidnightBSD-x86
 .	else
 PLATFORM_DIR_SUFFIX=	Default
 .	endif
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/target/snappy-java-${PORTVERSION}.jar \
-		${FAKE_DESTDIR}${JAVAJARDIR}/snappy-java.jar
+		${JAVAJARDIR}/snappy-java.jar
 	${INSTALL_LIB} ${WRKSRC}/target/snappy-${PORTVERSION:R}-${PLATFORM_DIR_SUFFIX}/libsnappyjava.so \
 		${FAKE_DESTDIR}${LOCALBASE}/lib
 
