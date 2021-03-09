@@ -1,6 +1,6 @@
---- mesonbuild/mesonlib.py.orig	2020-06-14 15:40:08.000000000 -0400
-+++ mesonbuild/mesonlib.py	2020-07-08 12:43:12.409013000 -0400
-@@ -507,6 +507,9 @@
+--- mesonbuild/mesonlib.py.orig	2021-01-06 10:39:48 UTC
++++ mesonbuild/mesonlib.py
+@@ -518,6 +518,9 @@ def is_netbsd() -> bool:
  def is_freebsd() -> bool:
      return platform.system().lower() == 'freebsd'
  
@@ -10,7 +10,7 @@
  def is_irix() -> bool:
      return platform.system().startswith('irix')
  
-@@ -729,7 +732,7 @@
+@@ -749,7 +752,7 @@ def default_libdir() -> str:
                  return 'lib/' + archpath
          except Exception:
              pass
@@ -19,7 +19,7 @@
          return 'lib'
      if os.path.isdir('/usr/lib64') and not os.path.islink('/usr/lib64'):
          return 'lib64'
-@@ -757,7 +760,7 @@
+@@ -777,7 +780,7 @@ def get_library_dirs() -> T.List[str]:
      # problematic, please raise the issue on the mailing list.
      unixdirs = ['/usr/local/lib', '/usr/lib', '/lib']
  

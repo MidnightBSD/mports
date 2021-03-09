@@ -13,7 +13,8 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gnome-settings-daemon>=3.4.0:sysutils/gnome-settings-daemon \
-		gsettings-desktop-schemas>=3.2.2:devel/gsettings-desktop-schemas #\
+		gsettings-desktop-schemas>=3.2.2:devel/gsettings-desktop-schemas \
+		appstream-glib>=0.7.8:devel/appstream-glib
 #		docbook-xsl>=0:textproc/docbook-xsl
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
@@ -39,7 +40,8 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 RUN_DEPENDS=	gnome-settings-daemon>=3.4.0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>=3.2.2:devel/gsettings-desktop-schemas \
 		cantarell-fonts>=0:x11-fonts/cantarell-fonts \
-		gcm-import:graphics/gnome-color-manager
+		gcm-import:graphics/gnome-color-manager \
+		appstream-glib>=0.7.8:devel/appstream-glib
 
 PORTSCOUT=	limitw:1,even
 

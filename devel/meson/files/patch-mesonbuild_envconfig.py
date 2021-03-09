@@ -1,6 +1,6 @@
---- mesonbuild/envconfig.py.orig	2020-07-08 12:43:34.482860000 -0400
-+++ mesonbuild/envconfig.py	2020-07-08 12:44:56.974982000 -0400
-@@ -289,6 +289,10 @@
+--- mesonbuild/envconfig.py.orig	2021-01-06 10:39:48 UTC
++++ mesonbuild/envconfig.py
+@@ -318,6 +318,10 @@ class MachineInfo:
          """Machine is FreeBSD?"""
          return self.system == 'freebsd'
  
