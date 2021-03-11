@@ -42,7 +42,7 @@ GROUPS=		${USERS}
 PLIST_SUB+=	USER=${USERS} \
 		GROUP=${GROUPS}
 
-OPTIONS_DEFINE=	APACHE CONSUL COREDNS DIRECTORY DISK DNS MYSQL NETWORK NGINX PHP POSTFIX PROCESS REDIS SSH SYS_CORE SYS_SWAP TCP TLS
+OPTIONS_DEFINE=	APACHE CONSUL COREDNS DIRECTORY DISK DNS ELASTIC MYSQL NETWORK NGINX PHP POSTFIX PROCESS RABBITMQ REDIS SSH SYS_CORE SYS_SWAP TCP TLS
 
 OPTIONS_SUB=	yes
 
@@ -58,6 +58,7 @@ NGINX_DESC=	Nginx check integration
 PHP_DESC=	PHP-fpm check integration
 POSTFIX_DESC=	Postfix check integration
 PROCESS_DESC=	Process check integration
+RABBITMQ_DESC=	RabbitMQ check integration
 REDIS_DESC=	Redis check integration
 SSH_DESC=	SSH check integration
 SYS_CORE_DESC=	System Core check integration
@@ -71,12 +72,14 @@ COREDNS_VARS=	integrations+=coredns conffiles+=coredns
 DIRECTORY_VARS=	integrations+=directory conffiles+=directory
 DISK_VARS=	integrations+=disk conffiles+=disk
 DNS_VARS=	integrations+=dns_check conffiles+=dns_check
+ELASTIC_VARS=	integrations+=elastic conffiles+=elastic
 MYSQL_VARS=	integrations+=mysql conffiles+=mysql
 NETWORK_VARS=	integrations+=network conffiles+=network
 NGINX_VARS=	integrations+=nginx conffiles+=nginx
 PHP_VARS=	integrations+=php_fpm conffiles+=php_fpm
 POSTFIX_VARS=	integrations+=postfix conffiles+=postfix
 PROCESS_VARS=	integrations+=process conffiles+=process
+RABBITMQ_VARS=	integrations+=rabbitmq conffiles+=rabbitmq
 REDIS_VARS=	integrations+=redisdb conffiles+=redisdb
 SSH_VARS=	integrations+=ssh_check conffiles+=ssh_check
 SYS_CORE_VARS=	integrations+=system_core conffiles+=system_core
