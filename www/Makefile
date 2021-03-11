@@ -169,6 +169,7 @@ SUBDIR += py-requests-futures
 SUBDIR += py-requests-mock
 SUBDIR += py-requests-oauthlib
 SUBDIR += py-requests-toolbelt
+SUBDIR += py-requests-unixsocket
 SUBDIR += py-requests_ntlm
 SUBDIR += py-soupsieve
 SUBDIR += py-tornado
