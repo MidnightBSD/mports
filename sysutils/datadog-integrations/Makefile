@@ -1,5 +1,5 @@
 PORTNAME=	datadog-integrations
-DISTVERSION=	7.24.0
+DISTVERSION=	7.24.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
