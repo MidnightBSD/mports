@@ -176,6 +176,7 @@ SUBDIR += py-mysql2pgsql
 SUBDIR += py-postgresql
 SUBDIR += py-pg8000
 SUBDIR += py-psycopg2
+SUBDIR += py-pymysql
 SUBDIR += py-qt5-sql
 SUBDIR += py-redis
 SUBDIR += py-redis2
