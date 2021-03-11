@@ -149,6 +149,7 @@ SUBDIR += py-bleach
 SUBDIR += py-boto3
 SUBDIR += py-cssselect
 SUBDIR += py-cssutils
+SUBDIR += py-flup6
 SUBDIR += py-gunicorn
 SUBDIR += py-html5lib
 SUBDIR += py-httplib2
