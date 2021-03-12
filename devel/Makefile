@@ -273,6 +273,7 @@ SUBDIR += m17n-db
 SUBDIR += m17n-docs
 SUBDIR += m17n-lib
 SUBDIR += m4
+SUBDIR += mage
 SUBDIR += makedepend
 SUBDIR += mercurial
 SUBDIR += meson
