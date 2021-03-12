@@ -1,7 +1,7 @@
 # Created by: Palle Girgensohn <girgen@FreeBSD.org>
 
 PORTNAME=	beats
-PORTVERSION=	6.8.7
+PORTVERSION=	6.8.13
 DISTVERSIONPREFIX=v
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	6
