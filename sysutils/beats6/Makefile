@@ -4,6 +4,7 @@ PORTNAME=	beats
 PORTVERSION=	6.8.7
 DISTVERSIONPREFIX=v
 CATEGORIES=	sysutils
+PKGNAMESUFFIX=	6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Collect logs locally and send to remote logstash
@@ -14,6 +15,8 @@ USES=		gmake go
 USE_GITHUB=	yes
 GH_ACCOUNT=	elastic
 USE_RC_SUBR=	${GO_TARGETS}
+
+CONFLICTS=	beats7*
 
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 FIND_ARGS=	"! ( -regex .*/*\.(go|in|log) ) ! -path *test* ! -path *vendor*"
