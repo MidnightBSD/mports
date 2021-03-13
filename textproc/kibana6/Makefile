@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	kibana
-PORTVERSION=	6.8.7
+PORTVERSION=	6.8.13
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
@@ -15,13 +13,14 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	node10>=10.15.2:www/node10
 
-CONFLICTS=	kibana[3-5]*
+CONFLICTS=	kibana[3-5]* kibana7*
 
 NO_BUILD=	yes
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PKGNAMESUFFIX}
 USE_RC_SUBR=	${PORTNAME}
 
 SUB_FILES=	pkg-deinstall
+SUB_LIST+=	PORTNAME=${PORTNAME} PKGNAMESUFFIX=${PKGNAMESUFFIX}
 
 do-install:
 	${MKDIR} ${STAGEDIR}${WWWDIR} ${STAGEDIR}${ETCDIR}
