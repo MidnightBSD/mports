@@ -2,6 +2,7 @@
 
 PORTNAME=	mercurial
 PORTVERSION=	5.5
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	https://www.mercurial-scm.org/release/
 
@@ -11,7 +12,7 @@ COMMENT=	Fast, lightweight source control management system
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe python shebangfix
+USES=		cpe python:3.7+ shebangfix
 SHEBANG_FILES=	contrib/hgweb.fcgi hgweb.cgi
 USE_PYTHON=	autoplist distutils
 

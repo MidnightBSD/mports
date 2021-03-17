@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	minixmlto
-PORTVERSION=	0.0.2
+PORTVERSION=	0.0.3
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org

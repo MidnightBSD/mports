@@ -1,7 +1,7 @@
 # Created by: Olivier Duchateau
 
 PORTNAME=	libwapcaplet
-PORTVERSION=	0.4.2
+PORTVERSION=	0.4.3
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
