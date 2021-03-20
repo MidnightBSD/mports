@@ -115,6 +115,7 @@ SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openipmi
 SUBDIR += openupsd
+SUBDIR += osinfo-db-tools
 SUBDIR += p5-File-Listing
 SUBDIR += p5-File-Which
 SUBDIR += p5-Probe-Perl
