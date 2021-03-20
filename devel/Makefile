@@ -223,6 +223,7 @@ SUBDIR += libunistring
 SUBDIR += libunwind
 SUBDIR += libuv
 SUBDIR += libvirt
+SUBDIR += libvirt-glib
 SUBDIR += libvolume_id
 SUBDIR += libzookeeper
 SUBDIR += libzvbi
