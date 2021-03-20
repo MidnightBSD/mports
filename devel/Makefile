@@ -840,6 +840,7 @@ SUBDIR += py-lockfile
 SUBDIR += py-logfury
 SUBDIR += py-importlib-metadata
 SUBDIR += py-incremental
+SUBDIR += py-ipaddr
 SUBDIR += py-iso8601
 SUBDIR += py-isodate
 SUBDIR += py-isort
