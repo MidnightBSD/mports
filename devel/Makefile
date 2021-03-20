@@ -222,6 +222,7 @@ SUBDIR += libuninum
 SUBDIR += libunistring
 SUBDIR += libunwind
 SUBDIR += libuv
+SUBDIR += libvirt
 SUBDIR += libvolume_id
 SUBDIR += libzookeeper
 SUBDIR += libzvbi
