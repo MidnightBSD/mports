@@ -61,6 +61,7 @@ SUBDIR += minetest
 SUBDIR += minetest_game
 SUBDIR += moon-buggy
 SUBDIR += nethack36
+SUBDIR += nethack36-nox11
 SUBDIR += nextgo
 SUBDIR += oolite
 SUBDIR += pvpgn
