@@ -60,6 +60,7 @@ SUBDIR += linux-quake3-demo
 SUBDIR += minetest
 SUBDIR += minetest_game
 SUBDIR += moon-buggy
+SUBDIR += nethack36
 SUBDIR += nextgo
 SUBDIR += oolite
 SUBDIR += pvpgn
