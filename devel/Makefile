@@ -834,6 +834,7 @@ SUBDIR += py-jsonref
 SUBDIR += py-kitchen
 SUBDIR += py-lazy-object-proxy
 SUBDIR += py-libpeas
+SUBDIR += py-libvirt
 SUBDIR += py-linecache2
 SUBDIR += py-llfuse
 SUBDIR += py-lockfile
