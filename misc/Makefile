@@ -42,6 +42,7 @@ SUBDIR += mime-support
 SUBDIR += mirmon
 SUBDIR += newer
 SUBDIR += nut
+SUBDIR += osinfo-db
 SUBDIR += ossp-uuid
 SUBDIR += p5-Array-Diff
 SUBDIR += p5-Geography-Countries

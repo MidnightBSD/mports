@@ -8,6 +8,7 @@ SUBDIR += bind916
 SUBDIR += bindgraph
 SUBDIR += c-ares
 SUBDIR += ddclient
+SUBDIR += dnsmasq
 SUBDIR += doh-proxy
 SUBDIR += idnkit
 SUBDIR += inadyn
