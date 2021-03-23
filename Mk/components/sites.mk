@@ -872,7 +872,6 @@ MASTER_SITE_MPLAYERHQ+= \
 
 .if !defined(IGNORE_MASTER_SITE_MYSQL)
 MASTER_SITE_MYSQL+= \
-	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
 	ftp://ftp.gwdg.de/pub/misc/mysql/Downloads/%SUBDIR%/ \
 	http://mirrors.ntua.gr/MySQL/Downloads/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/databases/mysql/Downloads/%SUBDIR%/ \
