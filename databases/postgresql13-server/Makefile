@@ -99,10 +99,9 @@ DTRACE_INSTALL_TARGET=	install
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
 OPTIONS_DEFINE+=	LLVM
-OPTIONS_DEFAULT+=	LLVM
+#OPTIONS_DEFAULT+=	LLVM
+BROKEN=		llvm support is currently broken
 LLVM_DESC=		Build with support for JIT-compiling expressions
-OPTIONS_EXCLUDE+=	${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
-OPTIONS_EXCLUDE_powerpc64_12=	LLVM
 .endif
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} < 10
