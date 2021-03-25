@@ -80,7 +80,7 @@ SUB_LIST+=			PKGCONFIGDIR=${PKGCONFIGDIR_REL}
 OPTIONS_SUB=			yes
 
 OPTIONS_DEFINE=			AD_DC ADS CLUSTER CUPS DOCS FAM GPGME \
-				LDAP NTVFS PROFILE QUOTAS SPOTLIGHT SYSLOG UTMP
+				LDAP NTVFS PROFILE PYTHON3 QUOTAS SPOTLIGHT SYSLOG UTMP
 # This shouldn't be default in the release
 OPTIONS_DEFINE+=		DEVELOPER MANDOC
 #OPTIONS_DEFINE+=		MEMORY_DEBUG
@@ -312,6 +312,7 @@ DEVELOPER_VARS_OFF=		GDB_CMD=true
 # if you don't know what you are doing
 NTVFS_IMPLIES=			AD_DC
 NTVFS_CONFIGURE_WITH=		ntvfs-fileserver
+NTVFS_VARS=			SAMBA4_MODULES+=service_smb
 NTVFS_PLIST_FILES=		${SAMBA4_MODULEDIR}/service/smb.so \
 				lib/samba4/private/libntvfs-samba4.so
 ##############################################################################
