@@ -166,6 +166,7 @@ SUBDIR += vde2
 SUBDIR += vinagre
 SUBDIR += vino
 SUBDIR += vncreflector
+SUBDIR += wireguard-go
 SUBDIR += wireshark
 SUBDIR += x11vnc
 SUBDIR += xmlrpc-c
