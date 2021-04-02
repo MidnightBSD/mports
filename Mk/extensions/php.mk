@@ -109,7 +109,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	72 73 74
+_ALL_PHP_VERSIONS=	72 73 74 80
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf) && !defined(INDEXING)
@@ -173,7 +173,10 @@ PHP_VER=	${FLAVOR:S/^php//}
 	(${FLAVOR:Mphp[0-9][0-9]} && ${FLAVOR} != ${FLAVORS:[1]})
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-.    if ${PHP_VER} == 74
+.    if ${PHP_VER} == 80
+PHP_EXT_DIR=   20200930
+PHP_EXT_INC=    hash json pcre spl
+.    elif ${PHP_VER} == 74
 PHP_EXT_DIR=   20190902
 PHP_EXT_INC=    hash pcre spl
 .    elif ${PHP_VER} == 73
