@@ -59,7 +59,6 @@ SUBDIR += p5-Mail-Sendmail
 SUBDIR += p5-Mail-Tools
 SUBDIR += p5-Net-SMTP-SSL
 SUBDIR += pantomime
-SUBDIR += php72-imap
 SUBDIR += php73-imap
 SUBDIR += php74-imap
 SUBDIR += php80-imap
