@@ -13,7 +13,6 @@ libexec/mport.updepends
 libexec/mport.init
 libexec/mport.create
 include/mport.h
-include/mport_dispatch.h
 share/man/man1/mport.1.gz
 share/man/man3/mport.3.gz
 lib/libmport.so.2
