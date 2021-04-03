@@ -1,9 +1,9 @@
 CATEGORIES=	net-mgmt
 
-MASTERDIR=	${.CURDIR}/../../lang/php72
+MASTERDIR=	${.CURDIR}/../../lang/php80
 
 PKGNAMESUFFIX=	-snmp
 
-NO_TEST=	yes
+TEST_TARGET=    test
 
 .include "${MASTERDIR}/Makefile"
