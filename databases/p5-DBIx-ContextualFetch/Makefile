@@ -1,12 +1,8 @@
-# $FreeBSD: ports/databases/p5-DBIx-ContextualFetch/Makefile,v 1.5 2007/06/30 09:54:41 erwin Exp $
-# $MidnightBSD$
-
 PORTNAME=	DBIx-ContextualFetch
 PORTVERSION=	1.03
 PORTREVISION=	1
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	DBIx/TMTM
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
