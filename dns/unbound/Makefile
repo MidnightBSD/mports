@@ -1,10 +1,10 @@
-# $MidnightBSD$
+# Created by: Sergey Matveychuk <sem@FreeBSD.org>
 
 PORTNAME=	unbound
-PORTVERSION=	1.5.8
-PORTREVISION=	1
+PORTVERSION=	1.13.1
 CATEGORIES=	dns
-MASTER_SITES=	http://unbound.net/downloads/
+MASTER_SITES=	https://www.nlnetlabs.nl/downloads/unbound/ \
+		https://distfiles.crux.guru/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Validating, recursive, and caching DNS resolver
@@ -12,124 +12,106 @@ COMMENT=	Validating, recursive, and caching DNS resolver
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES+=		cpe gmake libtool ssl
+LIB_DEPENDS=	libexpat.so:textproc/expat2
+
+USES=		autoreconf cpe libtool pkgconfig ssl
+
 CPE_VENDOR=	nlnetlabs
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE} --with-libexpat=${LOCALBASE}
+CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE} --with-libexpat=${LOCALBASE}
 USE_LDCONFIG=	yes
+TEST_TARGET=	test
 
 USERS=		${PORTNAME}
 GROUPS=		${PORTNAME}
 
 USE_RC_SUBR=	unbound
 
-PORTDOCS=	CREDITS Changelog FEATURES LICENSE README README.svn \
-		README.tests TODO control_proto_spec.txt ietf67-design-02.odp \
-		ietf67-design-02.pdf requirements.txt
-PLIST_SUB+=	PYTHON=${PYTHON} MUNIN=${MUNIN}
+PORTDOCS=	CREDITS Changelog FEATURES LICENSE README \
+		README.DNS64  README.ipset.md README.svn README.tests \
+		TODO control_proto_spec.txt ietf67-design-02.odp \
+		ietf67-design-02.pdf requirements.txt example.conf \
+		CNAME-basedRedirectionDesignNotes.pdf IP-BasedActions.pdf
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN_PLUGIN DOCS LIBEVENT FILTER_AAAA
-OPTIONS_DEFAULT=THREADS ECDSA
+OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN_PLUGIN DOCS LIBEVENT \
+		FILTER_AAAA DNSTAP DNSCRYPT SUBNET EVAPI TFOCL TFOSE \
+		HIREDIS DOH
+OPTIONS_DEFAULT=THREADS ECDSA LIBEVENT GOST DOH
 
 LIBEVENT_DESC=	Build against libevent
 GOST_DESC=	Enable GOST support (requires OpenSSL >= 1.0)
 ECDSA_DESC=	Enable ECDSA (elliptic curve) support (OpenSSL >= 1.0)
 MUNIN_PLUGIN_DESC=	Install Munin plugin
 FILTER_AAAA_DESC=	Build with AAAA filter functionality (contrib)
-
-.include <bsd.mport.options.mk>
-
-LIB_DEPENDS+=	libexpat.so:${PORTSDIR}/textproc/expat2 \
-		libldns.so:${PORTSDIR}/dns/ldns
+DNSTAP_DESC=	Enable dnstap logging support
+DNSCRYPT_DESC=	Enable dnscrypt support
+SUBNET_DESC=	Enable client subnet support
+EVAPI_DESC=	(Experimental) pluggable event based libunbound API support
+TFOCL_DESC=	Enable TCP Fast Open for client mode
+TFOSE_DESC=	Enable TCP Fast Open for server mode
+HIREDIS_DESC=	Enable hiredis support for the cachedb module
+DOH_DESC=	Enable DNS-over-HTTPS support
 
 STRIP_FILES=	.libs/libunbound.so unbound-checkconf unbound \
 		unbound-control .libs/unbound-host .libs/unbound-anchor
 
-.if ${PORT_OPTIONS:MPYTHON}
-USES+=		python:2
-CONFIGURE_ARGS+=--with-pyunbound=yes --with-pythonmodule=yes LDFLAGS="-L${LOCALBASE}/lib"
-BUILD_DEPENDS+=	swig3.0:${PORTSDIR}/devel/swig30
-STRIP_FILES+=	.libs/_unbound.so
-PYTHON=
-.else
-PYTHON=		"@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGOST}
-
-WITH_OPENSSL_PORT=	yes
-
-DEPENDS_ARGS+=	WITH_GOST=yes
-.else
-CONFIGURE_ARGS+=--disable-gost
-.endif
-
-.if ${PORT_OPTIONS:MECDSA}
-DEPENDS_ARGS+=	WITH_ECDSA=yes
-.else
-CONFIGURE_ARGS+=--disable-ecdsa
-.endif
-
-.if ${PORT_OPTIONS:MMUNIN_PLUGIN}
-SUB_FILES+=	pkg-message
-MUNIN_PLUGIN_ALL=	hits queue memory by_type by_class by_opcode by_rcode \
-		by_flags histogram
-MUNIN=
-.else
-MUNIN=		"@comment "
-.endif
-
-.if ${PORT_OPTIONS:MLIBEVENT}
-LIB_DEPENDS+=	libevent.so:${PORTSDIR}/devel/libevent2
-USES+=		pkgconfig
-CONFIGURE_ARGS+=--with-libevent
-CPPFLAGS+=	$$(pkg-config libevent --cflags-only-I)
-LDFLAGS+=	$$(pkg-config libevent --libs-only-L)
-.else
-CONFIGURE_ARGS+=--with-libevent=no
-.endif
-
-.if empty(PORT_OPTIONS:MTHREADS)
-CONFIGURE_ARGS+=--without-pthreads
-.endif
+DNSTAP_CONFIGURE_ENABLE=dnstap
+DNSTAP_LIB_DEPENDS=	libfstrm.so:devel/fstrm \
+			libprotobuf-c.so:devel/protobuf-c
+DNSCRYPT_CONFIGURE_ENABLE=	dnscrypt
+DNSCRYPT_LIB_DEPENDS=	libsodium.so:security/libsodium
+SUBNET_CONFIGURE_ENABLE=	subnet
+EVAPI_CONFIGURE_ENABLE=	event-api
+TFOCL_CONFIGURE_ENABLE=	tfo-client
+TFOSE_CONFIGURE_ENABLE=	tfo-server
+ECDSA_CONFIGURE_ENABLE=	ecdsa
+ECDSA_VARS=		DEPENDS_ARGS+=WITH_ECDSA=yes
+GOST_CONFIGURE_ENABLE=	gost
+GOST_VARS=		DEPENDS_ARGS+=WITH_GOST=yes
+LIBEVENT_CONFIGURE_WITH=libevent
+LIBEVENT_CPPFLAGS+=	$$(pkg-config libevent --cflags-only-I)
+LIBEVENT_LIB_DEPENDS=	libevent.so:devel/libevent
+LIBEVENT_LDFLAGS+=	$$(pkg-config libevent --libs-only-L)
+MUNIN_PLUGIN_SUB_FILES=	pkg-message
+PYTHON_BUILD_DEPENDS=	swig:devel/swig
+PYTHON_CONFIGURE_ON=	--with-pyunbound=yes --with-pythonmodule=yes \
+			LDFLAGS="-L${LOCALBASE}/lib" \
+			ac_cv_path_SWIG=${LOCALBASE}/bin/swig
+PYTHON_USES=		python
+PYTHON_VARS=		STRIP_FILES+=.libs/_unbound.so
+THREADS_CONFIGURE_WITH=	pthreads
+HIREDIS_CONFIGURE_ON=	--enable-cachedb --with-libhiredis
+HIREDIS_LIB_DEPENDS=	libhiredis.so:databases/hiredis
+DOH_CONFIGURE_ON=	--with-libnghttp2
+DOH_LIB_DEPENDS=	libnghttp2.so:www/libnghttp2
 
 post-patch:
-	@${MKDIR} ${WRKSRC}/balancer
 	@${RM} ${WRKSRC}/util/configlexer.c
 	@${REINPLACE_CMD} -e 's|if test ! -e $$(DESTDIR)$$(configfile); then || ; \
 		s|$$(configfile); fi|$$(configfile).sample|' \
 		${WRKSRC}/Makefile.in
-.if ${PORT_OPTIONS:MFILTER_AAAA}
-	cat ${WRKSRC}/contrib/aaaa-filter-iterator.patch | ${PATCH} -d ${WRKSRC} -p1 -s
-.endif
+
+post-patch-FILTER_AAAA-on:
+	 ${CAT} ${WRKSRC}/contrib/aaaa-filter-iterator.patch | ${PATCH} -d ${WRKSRC} -p1 -s
 
 post-build:
 	@for s in ${STRIP_FILES}; do ${STRIP_CMD} ${WRKSRC}/$$s; done
 
-post-install:
-.if ${PORT_OPTIONS:MPYTHON}
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/_unbound.so
-.endif
-.if ${PORT_OPTIONS:MMUNIN_PLUGIN}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/munin/plugins
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/munin/plugins
-	@${INSTALL_SCRIPT} ${WRKDIR}/unbound-${PORTVERSION}/contrib/unbound_munin_\
-		${STAGEDIR}${PREFIX}/share/munin/plugins/
-	@for i in ${MUNIN_PLUGIN_ALL}; do\
-		${LN} -fs ${PREFIX}/share/munin/plugins/unbound_munin_\
-			${STAGEDIR}${PREFIX}/etc/munin/plugins/unbound_munin_$$i ;\
-	done
+post-install-PYTHON-on:
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/_unbound.so
+
+post-install-MUNIN_PLUGIN-on:
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/munin/plugins
+	${INSTALL_SCRIPT} ${WRKDIR}/unbound-${PORTVERSION}/contrib/unbound_munin_ \
+		${FAKE_DESTDIR}${PREFIX}/share/munin/plugins/
 	@${ECHO_MSG}
 	@${ECHO_MSG} "============================================================="
 	@${CAT} ${WRKDIR}/pkg-message
 	@${ECHO_MSG} "============================================================="
-.endif
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}; \
-	for f in ${PORTDOCS}; do \
-		cd ${WRKSRC}/doc && ${INSTALL_DATA} $${f} ${STAGEDIR}${DOCSDIR}/; \
-	done
-.endif
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
