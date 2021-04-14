@@ -17,6 +17,8 @@ GH_ACCOUNT=	magefile
 
 PLIST_FILES=	bin/mage
 
+NO_TEST=-	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%GH_TAGNAME%%|${GH_TAGNAME}|g; s|%%GH_TAG_COMMIT%%|${GH_TAG_COMMIT}|g" \
 		${WRKSRC}/magefile.go
