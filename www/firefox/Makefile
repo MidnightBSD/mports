@@ -1,6 +1,6 @@
 PORTNAME=	firefox
 PORTVERSION=	${VER}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	https://www.midnightbsd.org/ftp/MidnightBSD/distfiles/
 
@@ -13,15 +13,27 @@ LICENSE_COMB=	dual
 LIB_DEPENDS+=	libicui18n.so:devel/icu \
 		libvpx.so:multimedia/libvpx \
 		libevent.so:devel/libevent \
-		libstartup-notification-1.so:x11/startup-notification
-RUN_DEPENDS+=	nspr>=4.25:devel/nspr \
+		libstartup-notification-1.so:x11/startup-notification \
+		nspr>=4.25:devel/nspr \
                 nss>=3.51.1:security/nss \
                 icu>=61.1,1:devel/icu \
                 harfbuzz>=2.6.4:print/harfbuzz \
                 graphite2>=1.3.14:graphics/graphite2 \
-                png>=1.6.35:graphics/png
+                png>=1.6.35:graphics/png \
+		ffmpeg:multimedia/ffmpeg \
+		libffi.so:devel/libffi \
+		libpixman-1.so:x11/pixman \
+		libwebp.so:graphics/webp \
+		libfontconfig.so:x11-fonts/fontconfig \
+                libfreetype.so:print/freetype2
 
-USES=	tar:xz
+
+USES=		compiler:c++17-lang cpe gl gmake gnome iconv jpeg localbase perl5 pkgconfig \
+		desktop-file-utils tar:xz
+CPE_VENDOR=	mozilla
+USE_GL=         gl
+USE_GNOME=      cairo gdkpixbuf2 gtk20 gtk30
+USE_XORG=       x11 xcb xcomposite xdamage xext xfixes xrender xt
 
 ONLY_FOR_ARCHS=	amd64
 PLIST=          ${PKGDIR}/pkg-plist${COMPONENT}
@@ -35,7 +47,8 @@ NO_BUILD=	yes
 VER=    80
 DISTFILES=      firefox-80.0.1,2.txz
 COMPONENT=.11
-LIB_DEPENDS+=	libaom.so:multimedia/aom
+LIB_DEPENDS+=	libaom.so:multimedia/aom \
+		libdav1d.so:multimedia/dav1d
 .else
 VER=    63
 DISTFILES=      firefox-63.0_3,1.txz
