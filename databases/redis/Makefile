@@ -66,6 +66,10 @@ CFLAGS=		-fPIC
 LDFLAGS=	-Wl,-E
 .endif
 
+.if defined(MAGUS)
+NO_TEST=	yes
+.endif
+
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
 CONFLICTS?=	redis4-4.* redis5-5.* redis-devel-6.*
