@@ -12,8 +12,6 @@ COMMENT=	Python client for Redis key-value store
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	redis-server:databases/redis
-
 OPTIONS_DEFINE=	HIREDIS
 
 HIREDIS_DESC=	High performance response parser (via hiredis)
@@ -28,11 +26,8 @@ GH_ACCOUNT=	andymccurdy
 GH_PROJECT=	${PORTNAME}-py
 
 NO_ARCH=	yes
+NO_TEST=	yes
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}redis
 PORTSCOUT=	limit:^2\.
-
-# Needs redis-server to be running
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
