@@ -12,9 +12,6 @@ LICENSE=	apache2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-		bash>0:shells/bash \
-		git>0:devel/git
 
 USES=		python:3.6+
 USE_ANT=	yes
@@ -29,7 +26,7 @@ GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
 GH_TAGNAME=	62fe1f7
 
-TEST_TARGET=	test
+NO_TEST=	yes
 
 CONFLICTS=	cassandra4
 
@@ -122,20 +119,12 @@ do-install:
 	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${STAGEDIR}${DATADIR}/lib/snappy-java.jar
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for d in doc javadoc
-	cd ${DIST_DIR} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DOCSDIR}/
+	cd ${DIST_DIR} && ${COPYTREE_SHARE} ${d} ${FAKE_DESTDIR}${DOCSDIR}/
 .endfor
 
 post-install-SIGAR-on:
-	${LN} -s ${JAVAJARDIR}/sigar.jar ${STAGEDIR}${DATADIR}/lib/sigar.jar
-
-do-test:
-	# A bare 'python' must be on PATH for test to succeed.
-	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.patched
-	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.orig bin/cassandra.in.sh
-	@cd ${WRKSRC} && pylib/cassandra-cqlsh-tests.sh ${WRKSRC} python3 ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
-	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.orig
-	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.patched bin/cassandra.in.sh
+	${LN} -s ${JAVAJARDIR}/sigar.jar ${FAKE_DESTDIR}${DATADIR}/lib/sigar.jar
 
 .include <bsd.port.mk>
