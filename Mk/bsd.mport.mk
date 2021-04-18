@@ -4263,70 +4263,41 @@ VALID_DESKTOP_CATEGORIES+=	${DESKTOP_CATEGORIES_MAIN} \
 	${DESKTOP_CATEGORIES_ADDITIONAL} \
 	${DESKTOP_CATEGORIES_RESERVED}
 
-check-desktop-entries:
 .if defined(DESKTOP_ENTRIES)
-	@set -- ${DESKTOP_ENTRIES} XXX; \
-	if [ `${EXPR} \( $$# - 1 \) % 6` -ne 0 ]; then \
-		${ECHO_MSG} "${PKGNAME}: Makefile error: the DESKTOP_ENTRIES list must contain one or more groups of 6 elements"; \
-		exit 1; \
-	fi; \
-	num=1; \
-	while [ $$# -gt 6 ]; do \
-		entry="#$$num"; \
-		if [ -n "$$4" ]; then \
-			entry="$$entry ($$4)"; \
-		elif [ -n "$$1" ]; then \
-			entry="$$entry ($$1)"; \
-		fi; \
-		if [ -z "$$1" ]; then \
-			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 1 (Name) is empty"; \
-			exit 1; \
-		fi; \
-		if ${ECHO_CMD} "$$3" | ${GREP} -iq '.\(png\|svg\|xpm\)$$'; then \
-			if ! ${ECHO_CMD} "$$3" | ${GREP} -iq '^/'; then \
-				${ECHO_MSG} "${PKGNAME}: Makefile warning: in desktop entry $$entry: field 3 (Icon) should be either absolute path or icon name without extension if installed icons follow Icon Theme Specification"; \
-			fi; \
-                fi; \
-		if [ -z "$$4" ]; then \
-			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 4 (Exec) is empty"; \
-			exit 1; \
-		fi; \
-		if [ -n "$$5" ]; then \
-			for c in `${ECHO_CMD} "$$5" | ${TR} ';' ' '`; do \
-				if ! ${ECHO_CMD} ${VALID_DESKTOP_CATEGORIES} | ${GREP} -wq $$c; then \
-					${ECHO_CMD} "${PKGNAME}: Makefile warning: in desktop entry $$entry: category $$c is not a valid desktop category"; \
-				fi; \
-			done; \
-			if ! ${ECHO_CMD} "$$5" | ${GREP} -q "`${ECHO_CMD} ${DESKTOP_CATEGORIES_MAIN} | ${SED} -E 's,[[:blank:]]+,\\\|,g'`"; then \
-				${ECHO_CMD} "${PKGNAME}: Makefile warning: in desktop entry $$entry: field 5 (Categories) must contain at least one main desktop category (make -VDESKTOP_CATEGORIES_MAIN)"; \
-			fi; \
-			if ! ${ECHO_CMD} "$$5" | ${GREP} -q ';$$'; then \
-				${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) does not end with a semicolon"; \
-				exit 1; \
-			fi; \
-		else \
-			if [ -z "`cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} desktop-categories`" ]; then \
-				${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) is empty and could not be deduced from the CATEGORIES variable"; \
-				exit 1; \
-			fi; \
-		fi; \
-		if [ -z "$$6" ]; then \
-			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is empty"; \
-			exit 1; \
-		fi; \
-		if [ "x$$6" != "xtrue" ] && [ "x$$6" != "xfalse" ]; then \
-			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is not \"true\" or \"false\""; \
-			exit 1; \
-		fi; \
-		shift 6; \
-		num=`${EXPR} $$num + 1`; \
-	done
-.else
-	@${DO_NADA}
+check-desktop-entries:
+	@${SETENV} \
+		dp_CURDIR="${.CURDIR}" \
+		dp_ECHO_CMD=${ECHO_CMD} \
+		dp_ECHO_MSG=${ECHO_MSG} \
+		dp_EXPR="${EXPR}" \
+		dp_GREP="${GREP}" \
+		dp_MAKE="${MAKE}" \
+		dp_PKGNAME="${PKGNAME}" \
+		dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+		dp_SED="${SED}" \
+		dp_VALID_DESKTOP_CATEGORIES="${VALID_DESKTOP_CATEGORIES}" \
+		dp_TR="${TR}" \
+		${SH} ${SCRIPTSDIR}/check-desktop-entries.sh ${DESKTOP_ENTRIES}
 .endif
 
 .if !target(install-desktop-entries)
+.if defined(DESKTOP_ENTRIES)
 install-desktop-entries:
+	@${SETENV} \
+                        dp_CURDIR="${.CURDIR}" \
+                        dp_ECHO_CMD=${ECHO_CMD} \
+                        dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+                        dp_STAGEDIR="${FAKE_DESTDIR}" \
+                        dp_DESKTOPDIR="${DESKTOPDIR}" \
+                        dp_TMPPLIST="${TMPPLIST}" \
+                        dp_MAKE="${MAKE}" \
+                        dp_SED="${SED}" \
+                        ${SH} ${SCRIPTSDIR}/install-desktop-entries.sh ${DESKTOP_ENTRIES}
+.endif
+.endif
+
+.if !target(install-desktop-entries)
+install-desktop-entries-lah:
 .if defined(DESKTOP_ENTRIES)
 	@(${MKDIR} "${FAKE_DESTDIR}${DESKTOPDIR}" 2> /dev/null) || \
 		(${ECHO_MSG} "===> Cannot create ${FAKE_DESTDIR}${DESKTOPDIR}, check permissions"; exit 1)
