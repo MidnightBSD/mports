@@ -99,6 +99,8 @@ post-patch:
 		's|//[[:blank:]]*\(Swap_Init[[:blank:]]*();\)|\1|' \
 		${WRKSRC}/code/botlib/be_interface.c \
 		${WRKSRC}/code/renderer/tr_init.c
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' \
+		${WRKSRC}/code/unix/Makefile
 
 do-install:
 .for bin in ${Q3BIN}
