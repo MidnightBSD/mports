@@ -1,14 +1,11 @@
-# $MidnightBSD$
-# $FreeBSD: ports/games/quake3/Makefile,v 1.18 2007/11/07 00:37:19 pav Exp $
-
 PORTNAME=	quake3
 PORTVERSION=	1.32c
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	ftp://mancubus.net/pub/idgames/idstuff/source/ \
 		http://ftp.mancubus.net/pub/idgames/idstuff/source/ \
 		http://www.gamers.org/pub/idgames/idstuff/source/ \
-		${MASTER_SITE_IDSOFTWARE:S|$|source/|}
+		IDSOFTWARE/source/
 DISTNAME=	${PORTNAME}-${REALVERSION}-source
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -42,7 +39,7 @@ VM_ARCHS=	i386
 
 .include <bsd.mport.options.mk>
 
-BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
+BUILD_DEPENDS+=	nasm:devel/nasm
 
 .for i in ${ARCH}
 .   if ${VM_ARCHS:M${i}} != ""
@@ -55,8 +52,9 @@ MAKE_ENV+=	DLL_ONLY=true
 .endif
 
 .if ${PORT_OPTIONS:MCLIENT} || ${PORT_OPTIONS:MTHREADS}
-USE_GL=		yes
-USE_XORG=	xxf86dga
+USES+=		gl xorg
+USE_GL=		glu
+USE_XORG=	xxf86dga xxf86vm
 .endif
 
 .if ${PORT_OPTIONS:MCLIENT}
@@ -93,8 +91,6 @@ Q3BIN+=		quake3-smp
 .else
 PLIST_SUB+=	SMP="@comment "
 .endif
-
-post-extract: dos2unix
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|botlib\.log|/dev/null|' \
