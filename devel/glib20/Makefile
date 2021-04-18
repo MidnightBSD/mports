@@ -1,5 +1,6 @@
 PORTNAME=	glib
-PORTVERSION=	2.66.4
+DISTVERSION=	2.66.7
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -33,22 +34,18 @@ MESON_ARGS=	-Db_lundef=false \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	0.6600.4
-PLIST_SUB+=	LIBVERSION=${LIBVERSION}
+_LIBVERSION=	0.6600.7
+PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
-glib_MAN=	gtester.1 gtester-report.1 glib-gettextize.1
-gio_MAN=	gdbus.1 gsettings.1 gio-querymodules.1 gio.1 \
-		glib-compile-schemas.1 gapplication.1 \
-		glib-compile-resources.1 gresource.1 gdbus-codegen.1
-gobject_MAN=	glib-genmarshal.1 glib-mkenums.1 gobject-query.1
-
-OPTIONS_DEFINE=	DEBUG MANPAGES NLS
+OPTIONS_DEFINE=	DEBUG FAM_ALTBACKEND MANPAGES NLS
 OPTIONS_DEFAULT=	MANPAGES
-OPTIONS_SUB=	yes
+OPTIONS_SUB=		yes
 
-MANPAGES_BUILD_DEPENDS=		docbook-xml>4.1.2:textproc/docbook-xml \
-				docbook-xsl>0:textproc/docbook-xsl
-MANPAGES_USE=			GNOME=libxslt:build
+FAM_ALTBACKEND_DESC=	Alternate file monitor backend
+
+MANPAGES_BUILD_DEPENDS=	docbook-xml>4.1.2:textproc/docbook-xml \
+			docbook-xsl>0:textproc/docbook-xsl
+MANPAGES_USE=		GNOME=libxslt:build
 MANPAGES_MESON_TRUE=	man
 
 .include <bsd.port.pre.mk>
@@ -57,14 +54,24 @@ MANPAGES_MESON_TRUE=	man
 MESON_ARGS+=	-Ddtrace=false
 
 .if empty(ICONV_LIB)
-MESON_ARGS+=	-Diconv=libc # native?
+# native?
+MESON_ARGS+=	-Diconv=libc
 .else
 MESON_ARGS+=	-Diconv=external
 .endif
 
 .if ${ARCH} == powerpc64
-EXTRA_PATCHES+=	${FILESDIR}/extra-arch-powerpc64
+EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
 .endif
+
+pre-configure-FAM_ALTBACKEND-on:
+	@${REINPLACE_CMD} -e 's|kqueue-helper.c|kqueue_fnm.c|g ; \
+		s|.*kqueue-missing.c.*||g ; \
+		s|.*dep-list.c.*||g' \
+		${WRKSRC}/gio/kqueue/meson.build
+	@${CP} -f ${FILESDIR}/gkqueuefilemonitor.c ${WRKSRC}/gio/kqueue/gkqueuefilemonitor.c
+	@${CP} ${FILESDIR}/kqueue_fnm.c ${WRKSRC}/gio/kqueue/kqueue_fnm.c
+	@${CP} ${FILESDIR}/kqueue_fnm.h ${WRKSRC}/gio/kqueue/kqueue_fnm.h
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
@@ -78,6 +85,10 @@ post-patch:
 	@${REINPLACE_CMD} -e '/inotify_init1/d' \
 		-e '/inotify.h/d' \
 		${WRKSRC}/meson.build
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+		${WRKSRC}/gio/xdgmime/xdgmime.c \
+		${WRKSRC}/glib/gutils.c \
+		${WRKSRC}/glib/tests/utils.c
 
 CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
 
