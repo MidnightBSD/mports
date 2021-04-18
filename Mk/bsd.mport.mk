@@ -4163,105 +4163,13 @@ ${_t}:
 PORTS_ENV_VARS+=	${_EXPORTED_VARS}
 
 desktop-categories:
-	@categories=""; \
-	for native_category in ${CATEGORIES}; do \
-		c=""; \
-		case $$native_category in \
-			accessibility)	c="Utility Accessibility"		;; \
-			archivers)		c="Utility Archiving"					;; \
-			astro)			c="Education Science Astronomy"	;; \
-			audio)			c="AudioVideo Audio"			;; \
-			benchmarks)		c="System"						;; \
-			biology)		c="Education Science Biology"	;; \
-			cad)			c="Graphics Engineering"					;; \
-			core)			c="System"				;; \
-			comms)			c="Utility"				;; \
-			converters)		c="Utility"				;; \
-			databases)		c="Office Database"					;; \
-			deskutils)		c="Utility"						;; \
-			devel)			c="Development"					;; \
-			dns)			c="Network"						;; \
-			elisp)			c="Development"					;; \
-			editors)		c="Utility"						;; \
-			emulators)		c="System Emulator"					;; \
-			finance)		c="Office Finance"				;; \
-			ftp)			c="Network FileTransfer"		;; \
-			games)			c="Game"						;; \
-			geography)		c="Education Science Geography"	;; \
-			gnome)			c="GNOME GTK"					;; \
-			graphics)		c="Graphics"					;; \
-			hamradio)		c="HamRadio"					;; \
-			haskell)		c="Development"					;; \
-			ipv6)			c="Network"						;; \
-			irc)			c="Network IRCClient"			;; \
-			java)			c="Development Java"			;; \
-			kde)			c="KDE Qt"						;; \
-			lang)			c="Development"					;; \
-			lisp)			c="Development"					;; \
-			lua)			c="Development"				;; \
-			mail)			c="Office Email"		;; \
-			math)			c="Education Science Math"		;; \
-			multimedia)		c="AudioVideo"					;; \
-			net)			c="Network"						;; \
-			net-im)			c="Network InstantMessaging"	;; \
-			net-mgmt)		c="Network"						;; \
-			net-p2p)		c="Network P2P"					;; \
-			news)			c="News"						;; \
-			pear)			c="Development WebDevelopment"	;; \
-			perl5)			c="Development"					;; \
-			python)			c="Development"					;; \
-			ruby)			c="Development"					;; \
-			rubygems)		c="Development"					;; \
-			scheme)			c="Development"					;; \
-			science)		c="Science Education"			;; \
-			security)		c="System Security"				;; \
-			shells)			c="Shell"						;; \
-			sysutils)		c="System Utility"				;; \
-			tcl*|tk*)		c="Development"					;; \
-			www)			c="Network"						;; \
-			x11-clocks)		c="Utility Clock"				;; \
-			x11-fm)			c="FileManager"					;; \
-			xfce)			c="GTK XFCE"							;; \
-			zope)			c="Development WebDevelopment"	;; \
-		esac; \
-		if [ -n "$$c" ]; then \
-			categories="$$categories $$c"; \
-		fi; \
-	done; \
-	if [ -n "$$categories" ]; then \
-		for c in Application $$categories; do ${ECHO_MSG} "$$c"; done \
-			| ${SORT} -u | ${TR} '\n' ';'; \
-		${ECHO_MSG}; \
-	fi
-
-# http://standards.freedesktop.org/menu-spec/menu-spec-latest.html
-DESKTOP_CATEGORIES_MAIN=	AudioVideo Audio Video Development Education \
-	Game Graphics Network Office Science Settings System Utility
-DESKTOP_CATEGORIES_ADDITIONAL=	Building Debugger IDE GUIDesigner Profiling \
-	RevisionControl Translation Calendar ContactManagement Database \
-	Dictionary Chart Email Finance FlowChart PDA ProjectManagement \
-	Presentation Spreadsheet WordProcessor 2DGraphics VectorGraphics \
-	RasterGraphics 3DGraphics Scanning OCR Photography Publishing Viewer \
-	TextTools DesktopSettings HardwareSettings Printing PackageManager \
-	Dialup InstantMessaging Chat IRCClient Feed FileTransfer HamRadio News \
-	P2P RemoteAccess Telephony TelephonyTools VideoConference WebBrowser \
-	WebDevelopment Midi Mixer Sequencer Tuner TV AudioVideoEditing Player \
-	Recorder DiscBurning ActionGame AdventureGame ArcadeGame BoardGame \
-	BlocksGame CardGame KidsGame LogicGame RolePlaying Shooter Simulation \
-	SportsGame StrategyGame Art Construction Music Languages \
-	ArtificialIntelligence Astronomy Biology Chemistry ComputerScience \
-	DataVisualization Economy Electricity Geography Geology Geoscience \
-	History Humanities ImageProcessing Literature Maps Math \
-	NumericalAnalysis MedicalSoftware Physics Robotics Spirituality Sports \
-	ParallelComputing Amusement Archiving Compression Electronics Emulator \
-	Engineering FileTools FileManager TerminalEmulator Filesystem Monitor \
-	Security Accessibility Calculator Clock TextEditor Documentation Adult \
-	Core KDE GNOME MATE XFCE GTK Qt Motif Java ConsoleOnly
-DESKTOP_CATEGORIES_RESERVED=	Screensaver TrayIcon Applet Shell
-
-VALID_DESKTOP_CATEGORIES+=	${DESKTOP_CATEGORIES_MAIN} \
-	${DESKTOP_CATEGORIES_ADDITIONAL} \
-	${DESKTOP_CATEGORIES_RESERVED}
+	@${SETENV} \
+                        dp_CATEGORIES="${CATEGORIES}" \
+                        dp_ECHO_CMD=${ECHO_CMD} \
+                        dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+                        dp_SORT="${SORT}" \
+                        dp_TR="${TR}" \
+                        ${SH} ${SCRIPTSDIR}/desktop-categories.sh
 
 .if defined(DESKTOP_ENTRIES)
 check-desktop-entries:
