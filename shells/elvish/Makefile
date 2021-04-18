@@ -23,12 +23,9 @@ GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="-s -w -X github.com/elves/elvish/pkg/buildinfo.Version=${DISTVERSIONPREFIX}${DISTVERSION} -X github.com/elves/elvish/pkg/buildinfo.Reproducible=true" \
 		-gcflags="all=-trimpath=${GO_WRKSRC}" \
 		-asmflags="all=-trimpath=${GO_WRKSRC}"
-GO_TESTFLAGS=	-race
+
+NO_TEST=	yes
 
 PLIST_FILES=	bin/elvish
-
-do-test:
-	@(cd ${GO_WRKSRC} ; \
-		${GO_ENV} ${GO_CMD} test -race ${GO_TESTTARGET})
 
 .include <bsd.port.mk>
