@@ -25,7 +25,7 @@ USES=		python:3.7+
 USE_JAVA=	yes
 USE_ANT=	yes
 USE_RC_SUBR=	cassandra
-TEST_TARGET=	test
+NO_TEST=	yes
 
 CONFLICTS=	cassandra3
 
@@ -125,9 +125,6 @@ do-install:
 	${RLN} ${STAGEDIR}${DATADIR}/bin/cqlsh ${STAGEDIR}${PREFIX}/bin/cqlsh
 	${LN} -s ${JAVAJARDIR}/snappy-java.jar ${STAGEDIR}${DATADIR}/lib/snappy-java.jar
 
-do-test:
-	@cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} ${USEJDK11} -Dstagedlib=${STAGEDIR}${DATADIR}/lib test
-
 .include <bsd.port.pre.mk>
 
 .if ${JAVA_PORT_VERSION} == 11
@@ -158,12 +155,12 @@ post-install:
 .endif
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 .for d in doc javadoc
-	cd ${BUILD_DIST_DIR} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${DOCSDIR}/
+	cd ${BUILD_DIST_DIR} && ${COPYTREE_SHARE} ${d} ${FAKE_DESTDIR}${DOCSDIR}/
 .endfor
 
 post-install-SIGAR-on:
-	${LN} -s ${JAVAJARDIR}/sigar.jar ${STAGEDIR}${DATADIR}/lib/sigar.jar
+	${LN} -s ${JAVAJARDIR}/sigar.jar ${FAKE_DESTDIR}${DATADIR}/lib/sigar.jar
 
 .include <bsd.port.post.mk>
