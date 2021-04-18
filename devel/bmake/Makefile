@@ -14,9 +14,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 MAKE_ENV+=	CONFIG_SITE=${CONFIG_SITE}
 
-.if defined(MAGUS)
 NO_TEST=	yes
-.endif
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} 's/^\.Nx/NetBSD/' ${WRKDIR}/bmake/bmake.1
