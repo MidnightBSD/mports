@@ -1,12 +1,11 @@
 PORTNAME=	pip
-PORTVERSION=	19.1.1
+PORTVERSION=	20.2.3
 CATEGORIES=	devel python
-MASTER_SITES=	https://files.pythonhosted.org/packages/bb/10/44230dd6bf3563b8f227dbf344c908d412ad2ff48066476672f3a72e174e/:test_wheel \
-		https://files.pythonhosted.org/packages/ec/51/f45cea425fd5cb0b0380f5b0f048ebc1da5b417e48d304838c02d6288a1e/:test_setuptools
+MASTER_SITES=	https://files.pythonhosted.org/packages/f9/d3/955738b20d3832dfa3cd3d9b07e29a8162edb480bf988332f5e6e48ca444/:test_setuptools \
+		https://files.pythonhosted.org/packages/a7/00/3df031b3ecd5444d572141321537080b40c1c25e1caa3d86cdd12e5e919c/:test_wheel
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	setuptools-41.0.1-py2.py3-none-any.whl:test_setuptools \
-		wheel-0.33.4-py2.py3-none-any.whl:test_wheel \
-		pip-19.1.1_GH0.tar.gz
+DISTFILES=	setuptools-44.0.0-py2.py3-none-any.whl:test_setuptools \
+		wheel-0.35.1-py2.py3-none-any.whl:test_wheel
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -16,7 +15,7 @@ COMMENT=	Tool for installing and managing Python packages
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python shebangfix
+USES=		python:3.7+ shebangfix
 
 #OPTIONS_DEFINE=	DOCS
 

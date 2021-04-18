@@ -334,6 +334,10 @@ DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.5+ or an a
 
 _PYTHON_VERSION:=	${PYTHON_DEFAULT}
 
+.if empty(_PYTHON_ARGS)
+_PYTHON_ARGS= 3.7+
+.endif
+
 # Validate Python version whether it meets the version restriction.
 _PYTHON_VERSION_CHECK:=		${_PYTHON_ARGS:C/^([1-9]\.[0-9])$/\1-\1/}
 _PYTHON_VERSION_MINIMUM_TMP:=	${_PYTHON_VERSION_CHECK:C/([1-9]\.[0-9])[-+].*/\1/}
@@ -442,6 +446,13 @@ PYTHON_MAJOR_VER=	${PYTHON_VER:R}
 PYTHON_REL=		# empty
 PYTHON_ABIVER=		# empty
 PYTHON_PORTSDIR=	${_PYTHON_RELPORTDIR}${PYTHON_SUFFIX}
+
+.if ${PYTHON_VER} >= 3.8
+PYTHON_EXT_SUFFIX=	.cpython-${PYTHON_SUFFIX}
+.else
+PYTHON_EXT_SUFFIX=	# empty
+.endif
+
 # Protect partial checkouts from Mk/Scripts/functions.sh:export_ports_env().
 .if !defined(_PORTS_ENV_CHECK) || exists(${PORTSDIR}/${PYTHON_PORTSDIR})
 .include "${PORTSDIR}/${PYTHON_PORTSDIR}/Makefile.version"
@@ -596,7 +607,8 @@ _RELLIBDIR=		${PYTHONPREFIX_LIBDIR:S;${TRUE_PREFIX}/;;}
 
 _USES_fake+=	934:add-plist-pymod
 add-plist-pymod:
-	@${SED} -e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
+	@${SED} -e 's|^"\(.*\)"$$|\1|' \
+		-e 's|^${FAKE_DESTDIR}${TRUE_PREFIX}/||' \
 		-e 's|^${TRUE_PREFIX}/||' \
 		-e 's|^\(man/.*man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2.gz|' \
 		-e 's|^\(share/man/.*man[0-9]\)/\(.*\.[0-9]\)$$|\1/\2.gz|' \
@@ -699,6 +711,7 @@ PLIST_SUB+=	PYTHON_INCLUDEDIR=${PYTHONPREFIX_INCLUDEDIR:S;${TRUE_PREFIX}/;;} \
 		PYTHON_PLATFORM=${PYTHON_PLATFORM} \
 		PYTHON_SITELIBDIR=${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;} \
 		PYTHON_SUFFIX=${PYTHON_SUFFIX} \
+		PYTHON_EXT_SUFFIX=${PYTHON_EXT_SUFFIX} \
 		PYTHON_VER=${PYTHON_VER} \
 		PYTHON_VERSION=${PYTHON_VERSION}
 .if ${PYTHON_REL} < 3000
