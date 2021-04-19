@@ -161,6 +161,7 @@ SUBDIR += twolame
 SUBDIR += vorbis-tools
 SUBDIR += wavpack
 SUBDIR += webrtc-audio-processing
+SUBDIR += webrtc-audio-processing0
 SUBDIR += wmmp3
 SUBDIR += wmmixer
 SUBDIR += wmsmixer
