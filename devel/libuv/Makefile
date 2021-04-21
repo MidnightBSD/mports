@@ -1,5 +1,5 @@
 PORTNAME=	libuv
-PORTVERSION=	1.40.0
+PORTVERSION=	1.41.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -15,7 +15,7 @@ USE_GITHUB=	yes
 
 USES=		autoreconf libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.3
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
