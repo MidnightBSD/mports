@@ -1,7 +1,9 @@
 PORTNAME=	gitea
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.10.3
+DISTVERSION=	1.13.6
 CATEGORIES=	www
+MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+DISTNAME=	gitea-src-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact self-hosted Git service
@@ -11,13 +13,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	git:devel/git
 
-USES=		go:modules
-USE_GITHUB=	yes
-GH_ACCOUNT=	go-gitea
+USES=		gmake go:no_targets
 USE_RC_SUBR=	gitea
-
-GO_BUILDFLAGS=	-tags "${GO_TAGS}" -ldflags '-X "main.Version=${PORTVERSION}"'
-GO_TARGET=	:${PREFIX}/sbin/${PORTNAME}
+NO_WRKSUBDIR=	yes
+PORTDATA=	*
 
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}
@@ -25,13 +24,16 @@ SUB_LIST+=	GITUSER=${USERS}
 USERS=		git
 GROUPS=		git
 
-OPTIONS_DEFINE=	CERT PAM SQLITE
-OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
+OPTIONS_DEFINE=	BINDATA GIT_LFS PAM SQLITE
+OPTIONS_DEFAULT=	GIT_LFS PAM SQLITE
+OPTIONS_SUB=	yes
 
-CERT_DESC=	Automatic creation of self-signed certificates
-PAM_DESC=	Authentication using PAM
+BINDATA_DESC=	Build a single monolithic binary, with all assets included
+GIT_LFS_DESC=	Support for Git Large File Storage (LFS)
+PAM_DESC=	Enable support for PAM
 
-CERT_VARS=	GO_TAGS+=cert
+BINDATA_VARS=	GO_TAGS+=bindata
+GIT_LFS_RUN_DEPENDS=	git-lfs:devel/git-lfs
 PAM_VARS=	GO_TAGS+=pam
 SQLITE_VARS=	GO_TAGS+="sqlite sqlite_unlock_notify"
 
@@ -43,14 +45,30 @@ DAEMONARGS=	-S -l \$${gitea_facility} -s \$${gitea_priority} -T \$${name}
 
 SUB_LIST+=	DAEMONARGS="${DAEMONARGS}"
 
-post-install:
+SSP_UNSAFE=	true
+# Default LDFLAGS are incompatible with build
+MAKE_ENV=	LDFLAGS="${LDFLAGS} ${EXTRA_LDFLAGS}"
+MAKE_ARGS=	GOPATH=${WRKDIR} TAGS="${GO_TAGS}"
+ALL_TARGET=	backend
+MAKE_JOBS_UNSAFE=	yes
+
+post-patch:
+	${ECHO_CMD} ${DISTVERSION} >${WRKSRC}/VERSION
+
+# Too lazy to figure out why go install won't work.
+do-install:
+	# Go binary is statically linked and cannot be stripped, so use
+	# INSTALL_SCRIPT.
+	${INSTALL_SCRIPT} ${WRKSRC}/gitea ${STAGEDIR}${PREFIX}/sbin
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/conf
 	${INSTALL_DATA} ${WRKDIR}/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.sample
-	${INSTALL_DATA} ${GO_WRKSRC}/custom/conf/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
-	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/custom/conf/app.example.ini ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
 
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/db/${PORTNAME}
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/log/${PORTNAME}
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/run/${PORTNAME}
+
+do-install-BINDATA-off:
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${FAKE_DESTDIR}${DATADIR}
 
 .include <bsd.port.mk>
