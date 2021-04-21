@@ -1,5 +1,5 @@
 PORTNAME=	c-ares
-PORTVERSION=	1.16.1
+PORTVERSION=	1.17.1
 PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	https://c-ares.haxx.se/download/ \
@@ -37,6 +37,6 @@ HIDE_SYMBOLS_CONFIGURE_ENABLE=	symbol-hiding
 OPTIMIZED_CFLAGS_CONFIGURE_ENABLE=	optimize
 
 post-install:
-	${INSTALL_PROGRAM} ${PROGRAMS:S@^@${WRKSRC}/.libs/@} ${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${PROGRAMS:S@^@${WRKSRC}/src/tools/.libs/@} ${PREFIX}/bin/
 
 .include <bsd.port.mk>
