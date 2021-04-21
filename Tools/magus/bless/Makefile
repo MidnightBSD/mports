@@ -1,6 +1,6 @@
 # $MidnightBSD: mports/Tools/magus/bless/Makefile,v 1.1 2011/02/26 00:35:59 laffer1 Exp $
 CC=c++
-CFLAGS= -Wall -O2 -I/usr/local/include -std=c++11
+CFLAGS= -Wall -O2 -I/usr/local/include -std=c++17
 LDFLAGS=-L/usr/local/lib/  -lpqxx -lpq -lsqlite3 -lmd -pthread
 DESTDIR=
 PREFIX=	/usr/local
