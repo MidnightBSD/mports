@@ -1,5 +1,5 @@
 PORTNAME=	npm
-PORTVERSION=	6.12.1
+PORTVERSION=	6.14.8
 CATEGORIES=	www
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
@@ -22,7 +22,7 @@ NODE10_DESC=	Use Node.js 10.x (www/node10) as backend
 NO_ARCH=	yes
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
-USES=		cpe python:run shebangfix tar:xz
+USES=		cpe python:3.7+ shebangfix tar:xz
 
 CPE_VENDOR=	npmjs
 CPE_PRODUCT=	node_packaged_modules
@@ -35,6 +35,11 @@ NODE10_RUN_DEPENDS=	node10>=0.8.0:www/node10
 
 .include <bsd.port.pre.mk>
 
+.if ${PORT_OPTIONS:MNODE10}
+DEPRECATED=	Uses EOL Python 2.7 via www/node10
+EXPIRATION_DATE=2021-06-23
+.endif
+
 .if ${ARCH} == "i386"
 # Workaround for kernel bug 178881
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-bug-178881
@@ -43,9 +48,12 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-bug-178881
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/etc/man.d/npm.conf
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp
+	@${REINPLACE_CMD} -e 's|exec python |exec ${PYTHON_CMD} |' ${WRKSRC}/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp
 	@${FIND} ${WRKSRC}/ -name '*.sh' -exec ${REINPLACE_CMD} -e '1 s|/usr/local|${LOCALBASE}|' {} +
 
 do-install:
 	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/
+	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${STAGEDIR}${PREFIX}/etc/npmrc
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp -f ${STAGEDIR}${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp
 
 .include <bsd.port.post.mk>
