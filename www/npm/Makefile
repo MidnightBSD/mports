@@ -14,11 +14,10 @@ RUN_DEPENDS=	gmake:devel/gmake
 CONFLICTS_INSTALL?=	npm-node6 npm-node8 npm-node10
 
 OPTIONS_SINGLE=	BACKEND
-OPTIONS_SINGLE_BACKEND=	NODE NODE6 NODE8
+OPTIONS_SINGLE_BACKEND=	NODE NODE10
 OPTIONS_DEFAULT=NODE
-NODE_DESC=	Use Node.js 13.x (www/node) as backend
-NODE10_DESC=	Use Node.js 10.x (www/node6) as backend
-NODE8_DESC=	Use Node.js 8.x (www/node8) as backend
+NODE_DESC=	Use Node.js 15.x (www/node) as backend
+NODE10_DESC=	Use Node.js 10.x (www/node10) as backend
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -32,7 +31,6 @@ SHEBANG_GLOB=	*.py
 SHEBANG_FILES=	lib/node_modules/npm/node_modules/node-gyp/gyp/samples/samples
 
 NODE_RUN_DEPENDS=	node>=0.8.0:www/node
-NODE8_RUN_DEPENDS=	node8>=0.8.0:www/node8
 NODE10_RUN_DEPENDS=	node10>=0.8.0:www/node10
 
 .include <bsd.port.pre.mk>
