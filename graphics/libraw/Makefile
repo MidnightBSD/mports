@@ -1,11 +1,10 @@
-# $MidnightBSD$
+# Created by: Sergey A. Osokin <osa@FreeBSD.org>
 
 PORTNAME=	libraw
-PORTVERSION=	0.18.13
+PORTVERSION=	0.20.2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.libraw.org/data/
 DISTNAME=	LibRaw-${PORTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating raw images
@@ -13,8 +12,9 @@ COMMENT=	Library for manipulating raw images
 LICENSE=	lgpl2.1 cddl
 LICENSE_COMB=	dual
 
-USE_LDCONFIG=	yes
 USES=		cpe libtool localbase pathfix pkgconfig
+USE_LDCONFIG=	yes
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-examples
 INSTALL_TARGET=	install-strip
@@ -22,25 +22,9 @@ INSTALL_TARGET=	install-strip
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-DEMOSAIC_PACK_VERSION=	0.18.8
-
-OPTIONS_DEFINE=		DEMOSAIC_PACK_GPL2 DEMOSAIC_PACK_GPL3 \
-			DOCS EXAMPLES JASPER JPEG LCMS2 OPENMP OPTIMIZED_CFLAGS
+OPTIONS_DEFINE=		DOCS EXAMPLES JASPER JPEG LCMS2 OPENMP OPTIMIZED_CFLAGS \
+			RPIRAW X3F
 OPTIONS_DEFAULT=	JPEG LCMS2
-
-DEMOSAIC_PACK_GPL2_DESC=		GPLv2 demosaic pack
-DEMOSAIC_PACK_GPL2_CONFIGURE_OFF=	--disable-demosaic-pack-gpl2
-DEMOSAIC_PACK_GPL2_CONFIGURE_ON=	--enable-demosaic-pack-gpl2=../LibRaw-demosaic-pack-GPL2-${DEMOSAIC_PACK_VERSION}
-DEMOSAIC_PACK_GPL2_DISTFILES=		LibRaw-demosaic-pack-GPL2-${DEMOSAIC_PACK_VERSION}.tar.gz
-DEMOSAIC_PACK_GPL2_VARS=		LICENSE=GPLv2+ \
-					LICENSE_COMB=single
-
-DEMOSAIC_PACK_GPL3_DESC=		GPLv3 demosaic pack
-DEMOSAIC_PACK_GPL3_CONFIGURE_OFF=	--disable-demosaic-pack-gpl3
-DEMOSAIC_PACK_GPL3_CONFIGURE_ON=	--enable-demosaic-pack-gpl3=../LibRaw-demosaic-pack-GPL3-${DEMOSAIC_PACK_VERSION}
-DEMOSAIC_PACK_GPL3_DISTFILES=		LibRaw-demosaic-pack-GPL3-${DEMOSAIC_PACK_VERSION}.tar.gz
-DEMOSAIC_PACK_GPL3_VARS=		LICENSE=GPLv3+ \
-					LICENSE_COMB=single
 
 JASPER_CONFIGURE_ENABLE=		jasper
 JASPER_LIB_DEPENDS=			libjasper.so:graphics/jasper
@@ -55,21 +39,28 @@ OPENMP_DESC=				OpenMP support (implies GCC)
 OPENMP_CONFIGURE_ENABLE=		openmp
 OPENMP_USES=				compiler:openmp
 
+RPIRAW_DESC=				Raspberry Pi RAW+JPEG support
+RPIRAW_CPPFLAGS=			-DUSE_6BY9RPI
+
+X3F_DESC=				X3F (Foveon) support
+X3F_CPPFLAGS=				-DUSE_X3FTOOLS
+
 OPTIMIZED_CFLAGS_CFLAGS=		-O3
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lstdc++||g' ${WRKSRC}/*.pc.in
+	@${TOUCH} -r ${WRKSRC}/configure.ac ${WRKSRC}/aclocal.m4
 
 # Use "\*" instead of "." in COPYTREE_SHARE commands as "." has
 # the undesired effect of copying ".deps" directory
 post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR}
+		${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/samples && \
-		${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}
+		${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
