@@ -1,6 +1,8 @@
+# Created by: Yen-Ming Lee <leeym@leeym.com>
+
 PORTNAME=	upnp
 DISTVERSIONPREFIX=	release-
-DISTVERSION=	1.12.1
+DISTVERSION=	1.14.2
 PORTEPOCH=	1
 CATEGORIES=	devel
 
@@ -11,8 +13,10 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf cpe libtool pathfix pkgconfig
+CPE_VENDOR=	libupnp_project
+CPE_PRODUCT=	libupnp
 USE_GITHUB=	yes
-GH_ACCOUNT=	mrjimenez
+GH_ACCOUNT=	pupnp
 GH_PROJECT=	pupnp
 USE_LDCONFIG=	yes
 
@@ -22,11 +26,9 @@ CONFIGURE_ARGS=	--enable-device \
 		--enable-soap \
 		--enable-ssdp \
 		--enable-webserver
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
-CPE_VENDOR=	libupnp_project
-CPE_PRODUCT=	libupnp
 
 OPTIONS_DEFINE=		CLIENT DEBUG DOCS EXAMPLES IPV6 LARGEFILE OPENSSL \
 			OPTSSDP POSTWRITE REUSEADDR SCRIPTSUPPORT TCP_BLOCK \
@@ -51,10 +53,10 @@ DEBUG_CONFIGURE_ENABLE=			debug
 EXAMPLES_CONFIGURE_ENABLE=		samples
 IPV6_CONFIGURE_ENABLE=			ipv6
 LARGEFILE_CONFIGURE_ENABLE=		largefile
+OPENSSL_USES=				ssl
 OPENSSL_CONFIGURE_ENABLE=		open_ssl
 OPENSSL_CONFIGURE_ENV=			OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 					OPENSSL_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
-OPENSSL_USES=				ssl
 OPTSSDP_CONFIGURE_ENABLE=		optssdp
 POSTWRITE_CONFIGURE_ENABLE=		postwrite
 REUSEADDR_CONFIGURE_ENABLE=		reuseaddr
@@ -66,7 +68,7 @@ UNSPECIFIED_SERVER_CONFIGURE_ENABLE=	unspecified_server
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/upnp/doc/UPnP_Programming_Guide.pdf \
+	${INSTALL_MAN} ${WRKSRC}/docs/UPnP_Programming_Guide.pdf \
 		${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
