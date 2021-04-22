@@ -1,7 +1,7 @@
 # Created by: Alexander Logvinov <ports@logvinov.com>
 
 PORTNAME=	libssh
-DISTVERSION=	0.9.3
+DISTVERSION=	0.9.5
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.libssh.org/files/0.9/
 
