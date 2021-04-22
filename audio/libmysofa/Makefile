@@ -1,5 +1,5 @@
 PORTNAME=	libmysofa
-PORTVERSION=	0.9
+PORTVERSION=	1.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	audio
 
@@ -9,7 +9,7 @@ COMMENT=	SOFA (Spatially Oriented Format for Acoustics) file reader
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	node:www/node10
+TEST_DEPENDS=	node:www/node
 
 USES=		cmake
 USE_LDCONFIG=	yes
