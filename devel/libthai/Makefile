@@ -1,8 +1,5 @@
-# $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD$
-
 PORTNAME=	libthai
-PORTVERSION=	0.1.22
+PORTVERSION=	0.1.28
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/
 
