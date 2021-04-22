@@ -1,5 +1,5 @@
 PORTNAME=	jpeg-turbo
-PORTVERSION=	2.0.5
+PORTVERSION=	2.0.6
 PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/${PORTVERSION}
@@ -20,7 +20,6 @@ LICENSE_PERMS_IJG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 USES=		cmake cpe
 USE_LDCONFIG=	yes
 CMAKE_ON=	WITH_JPEG8
-CPE_VENDOR=	d.r.commander
 CPE_PRODUCT=	libjpeg-turbo
 TEST_TARGET=	test
 
