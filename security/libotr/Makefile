@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	libotr
-PORTVERSION=	4.1.0
+PORTVERSION=	4.1.1
 CATEGORIES=	security net-im net
 MASTER_SITES=	https://otr.cypherpunks.ca/ \
 		http://www.c-s.li/ports/
@@ -13,8 +11,8 @@ COMMENT=	Portable OTR Messaging Library and toolkit
 
 LICENSE=	lgpl2.1
 
-LIB_DEPENDS=	libgpg-error.so:${PORTSDIR}/security/libgpg-error \
-		libgcrypt.so:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	libgpg-error.so:security/libgpg-error \
+		libgcrypt.so:security/libgcrypt
 
 CONFLICTS=	libotr3-*
 
@@ -23,12 +21,6 @@ USES=		libtool pathfix cpe
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	cypherpunks
-
-.include <bsd.mport.options.mk>
-
-.if ${ARCH} == i386
-LDFLAGS+=	-lssp_nonshared
-.endif
 
 verify: checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
