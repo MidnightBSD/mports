@@ -36,7 +36,6 @@ SUBDIR += flex
 SUBDIR += fop
 SUBDIR += fzf
 SUBDIR += gdome2
-SUBDIR += gnome-doc-utils
 SUBDIR += gnome-spell
 SUBDIR += gnugrep
 SUBDIR += groff
