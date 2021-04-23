@@ -12,7 +12,7 @@ COMMENT=	Toolkit for generation of output for the web
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 OPTIONS_DEFINE=	BABEL
@@ -21,14 +21,6 @@ BABEL_DESC=	I18n support through the Babel plugin
 BABEL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=0.8:devel/py-babel@${PY_FLAVOR}
 
 NO_TEST=	yes
-
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_VER} < 3.3
-post-install:
-	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/genshi/*.so
-.else
 NO_ARCH=	yes
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

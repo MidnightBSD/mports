@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,7 +11,7 @@ DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
 USE_GNOME=	libxml2
-USES=		python gettext-runtime
+USES=		gettext-runtime gnome python:3.6+
 USE_PYTHON=	autoplist distutils
 
 CPPFLAGS+=	`${PYTHON_CMD}-config --cflags`

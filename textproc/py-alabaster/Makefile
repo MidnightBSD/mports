@@ -9,7 +9,7 @@ COMMENT=	Modified Kr Sphinx theme
 
 LICENSE=	mit
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

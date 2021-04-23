@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		python
+USES=		python:2.7+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes

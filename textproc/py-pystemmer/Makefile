@@ -1,10 +1,7 @@
 # Created by: Wen Heping <wenheping@gmail.com>
-# $MidnightBSD$
-# $FreeBSD: head/textproc/py-pystemmer/Makefile 393632 2015-08-06 06:25:34Z lwhsu $
 
 PORTNAME=	pystemmer
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	2.0.0.1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP \
 		http://snowball.tartarus.org/wrappers/
@@ -17,7 +14,7 @@ COMMENT=	Snowball Stemming Algorithms for Information Retrieval
 LICENSE=	mit bsd3
 LICENSE_COMB=	dual
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	cython distutils autoplist
 
 post-install:

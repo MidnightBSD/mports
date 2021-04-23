@@ -1,8 +1,5 @@
-# $MidnightBSD$
-# $FreeBSD: head/textproc/py-snowballstemmer/Makefile 393635 2015-08-06 07:07:33Z lwhsu $
-
 PORTNAME=	snowballstemmer
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
@@ -13,7 +10,7 @@ COMMENT=	Snowball stemming library collection for Python
 
 LICENSE=	bsd2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

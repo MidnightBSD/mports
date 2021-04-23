@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	docutils
-PORTVERSION=	0.14
+PORTVERSION=	0.16
 PORTREVISION=	3
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
@@ -17,7 +15,7 @@ PORTSCOUT=	limit:^[0-9\.]*$$
 
 NO_ARCH=	yes
 USE_PYTHON=	autoplist concurrent distutils
-USES=		python
+USES=		python:3.6+
 
 OPTIONS_DEFINE=	PYGMENTS
 PYGMENTS_DESC=	Syntax highlighting

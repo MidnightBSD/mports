@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	Tempita
 PORTVERSION=	0.5.2
 CATEGORIES=	textproc python
@@ -11,7 +9,9 @@ COMMENT=	Small text templating language
 
 LICENSE=	mit
 
-USES=			python
+USES=			python:3.6+
 USE_PYTHON=		distutils autoplist
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

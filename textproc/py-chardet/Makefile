@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	chardet
 PORTVERSION=	3.0.4
 CATEGORIES=	textproc python
@@ -16,7 +14,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-runner>0:devel/py-pytest-runner@${P
 
 NO_ARCH=	yes
 NO_TEST=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>

@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	markdown2
 PORTVERSION=	2.3.6
 CATEGORIES=	textproc python
@@ -11,7 +9,7 @@ COMMENT=	Fast and complete Python implementation of Markdown
 
 LICENSE=	mit
 
-USES=		python zip
+USES=		python:3.6+ zip
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

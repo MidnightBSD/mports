@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	mistune
-PORTVERSION=	0.8.3
+PORTVERSION=	0.8.4
 PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
@@ -15,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 do-test:
