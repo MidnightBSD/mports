@@ -1,7 +1,7 @@
 # Created by: Alexey V. Degtyarev <alexey@renatasystems.org>
 
 PORTNAME=	colorama
-PORTVERSION=	0.3.9
+PORTVERSION=	0.4.4
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>

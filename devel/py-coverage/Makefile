@@ -1,6 +1,5 @@
 PORTNAME=	coverage
-PORTVERSION=	4.5.1
-PORTREVISION=	1
+PORTVERSION=	4.5.4
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +9,7 @@ COMMENT=	Code coverage measurement for Python
 
 LICENSE=	bsd2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 post-install:

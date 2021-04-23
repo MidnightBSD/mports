@@ -13,7 +13,7 @@ COMMENT=	Python API for ISO country, subdivision, language and currency
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>

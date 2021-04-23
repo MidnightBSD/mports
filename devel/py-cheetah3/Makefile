@@ -1,7 +1,7 @@
 # Created by: Dan Langille <dvl@FreeBSD.org>
 
 PORTNAME=	cheetah
-DISTVERSION=	3.2.4
+DISTVERSION=	3.2.6
 CATEGORIES=	devel textproc www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markdown>=2.0.3:textproc/py-markdown@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_TEST=	yes

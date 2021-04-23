@@ -28,7 +28,6 @@ SUBDIR += cmocka
 SUBDIR += consolekit2
 SUBDIR += consolehm
 SUBDIR += coreutils
-SUBDIR += datadog
 SUBDIR += datadog-agent
 SUBDIR += datadog-integrations
 SUBDIR += debootstrap

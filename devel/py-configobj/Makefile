@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	configobj
 PORTVERSION=	5.0.6
 PORTREVISION=	2
@@ -14,7 +12,7 @@ LICENSE=	bsd3
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

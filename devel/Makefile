@@ -788,7 +788,6 @@ SUBDIR += py-buildbot-worker
 SUBDIR += py-buildbot-www
 SUBDIR += py-cffi
 SUBDIR += py-characteristic
-SUBDIR += py-cheetah
 SUBDIR += py-cheetah3
 SUBDIR += py-cliapp
 SUBDIR += py-click

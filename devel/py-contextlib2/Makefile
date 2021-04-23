@@ -1,7 +1,7 @@
 # Created by: Yuri Victorovich <yuri@rawbw.com>
 
 PORTNAME=	contextlib2
-PORTVERSION=	0.5.5
+DISTVERSION=	0.6.0.post1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,9 +11,9 @@ COMMENT=	Backports and enhancements for the contextlib module
 
 LICENSE=	bsd2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
+
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>
