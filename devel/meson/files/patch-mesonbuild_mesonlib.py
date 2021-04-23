@@ -1,5 +1,5 @@
---- mesonbuild/mesonlib.py.orig	2021-01-06 10:39:48 UTC
-+++ mesonbuild/mesonlib.py
+--- mesonbuild/mesonlib/universal.py.orig	2021-01-06 10:39:48 UTC
++++ mesonbuild/mesonlib/universal.py
 @@ -518,6 +518,9 @@ def is_netbsd() -> bool:
  def is_freebsd() -> bool:
      return platform.system().lower() == 'freebsd'
