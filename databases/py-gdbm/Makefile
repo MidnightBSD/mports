@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	gdbm
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +15,7 @@ LIB_DEPENDS=	libgdbm.so:databases/gdbm
 
 PORTSCOUT=	ignore:1
 
-USES=		python tar:xz
+USES=		compiler:c11 python:3.6+ tar:xz
 USE_PYTHON=	distutils autoplist allflavors
 
 PYDISTUTILS_INSTALLARGS+=	--install-lib ${PYTHONPREFIX_LIBDIR}/lib-dynload
@@ -29,10 +27,6 @@ WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
 .include <bsd.port.pre.mk>
 
 post-extract:
-.if ${PYTHON_REL} < 3000
-	@${CP} ${FILESDIR}/setup.py ${WRKSRC}
-.else
 	@${CP} ${FILESDIR}/setup3.py ${WRKSRC}/setup.py
-.endif
 
 .include <bsd.port.post.mk>

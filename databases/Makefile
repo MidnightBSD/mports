@@ -46,7 +46,6 @@ SUBDIR += memcached
 SUBDIR += mongodb34
 SUBDIR += mongodb36
 SUBDIR += mysql-connector-java
-SUBDIR += mysql2pgsql
 SUBDIR += mysql55-client
 SUBDIR += mysql55-server
 SUBDIR += mysql56-client
