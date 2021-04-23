@@ -80,7 +80,6 @@ SUBDIR += py-premailer
 SUBDIR += py-pymailq
 SUBDIR += py-pyspf
 SUBDIR += py-pyzmail
-SUBDIR += py-spambayes
 SUBDIR += py-validate_email
 SUBDIR += pyzor
 SUBDIR += razor-agents
