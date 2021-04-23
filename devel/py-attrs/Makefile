@@ -1,5 +1,5 @@
 PORTNAME=	attrs
-PORTVERSION=	19.3.0
+PORTVERSION=	20.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,8 +11,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent distutils
 
 # circurlar loop.  Tests depend on pytest, which depends on this.
 NO_TEST=	yes
