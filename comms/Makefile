@@ -21,6 +21,7 @@ SUBDIR += p5-Device-Modem
 SUBDIR += p5-Device-SerialPort
 SUBDIR += p5-SMS-Send
 SUBDIR += pr
+SUBDIR += py-pyserial
 SUBDIR += py-qt5-serialport
 SUBDIR += qt5-connectivity
 SUBDIR += qt5-sensors
