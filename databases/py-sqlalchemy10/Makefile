@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	sqlalchemy
 PORTVERSION=	1.0.14
 CATEGORIES=	databases python
@@ -13,7 +11,7 @@ COMMENT=	Python SQL toolkit and Object Relational Mapper 1.0.x
 
 LICENSE=	mit
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 PY2TO3_CMD=	${LOCALBASE}/bin/2to3-${PYTHON_VER}
