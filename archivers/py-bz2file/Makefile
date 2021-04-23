@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	bz2file
 PORTVERSION=	0.98
 CATEGORIES=	archivers python
@@ -11,7 +9,7 @@ COMMENT=	Read and write bzip2-compressed files
 
 LICENSE=	apache2
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 

@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	lzma
-PORTVERSION=	0.4.9
+PORTVERSION=	0.5.0
 CATEGORIES=	archivers python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +12,7 @@ LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
-USES=		dos2unix python
+USES=		dos2unix python:3.6+
 USE_PYTHON=	concurrent distutils autoplist
 
 DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
