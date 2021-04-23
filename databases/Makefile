@@ -160,7 +160,6 @@ SUBDIR += postgresql13-plpython
 SUBDIR += postgresql13-pltcl
 SUBDIR += postgresql13-server
 SUBDIR += postgresqltuner
-SUBDIR += py-MySQLdb
 SUBDIR += py-aiopg
 SUBDIR += py-aioredis
 SUBDIR += py-aiosqlite
