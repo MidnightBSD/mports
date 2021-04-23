@@ -825,7 +825,6 @@ SUBDIR += py-fs
 SUBDIR += py-fs2
 SUBDIR += py-funcsigs
 SUBDIR += py-future
-SUBDIR += py-futures
 SUBDIR += py-game
 SUBDIR += py-gdata
 SUBDIR += py-gitdb2
