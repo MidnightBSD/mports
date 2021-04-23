@@ -1,6 +1,6 @@
 PORTNAME=	cffi
-PORTVERSION=	1.13.2
-PORTREVISION=	2
+PORTVERSION=	1.14.5
+PORTREVISION=	0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libffi.so:devel/libffi
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=0:devel/py-pycparser@${PY_FLAVOR}
 
-USES=		compiler localbase python
+USES=		compiler:c11 localbase python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 # magus issues.
