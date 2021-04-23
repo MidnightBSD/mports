@@ -66,7 +66,6 @@ SUBDIR += py-qt5-printsupport
 SUBDIR += py-relatorio
 SUBDIR += py-reportlab
 SUBDIR += py-rtf
-SUBDIR += py-stapler
 SUBDIR += py-trml2pdf
 SUBDIR += py-ttfautohint-py
 SUBDIR += py-ufolib2
