@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		python:3.3+
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 NO_TEST=	yes

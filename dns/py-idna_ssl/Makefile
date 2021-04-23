@@ -20,7 +20,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=2.3:www/py-aiohttp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR}
 
 NO_ARCH=	yes
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 USES=		python:3.3+
 
 .include <bsd.port.mk>
