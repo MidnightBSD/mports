@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	bsddb3
-PORTVERSION=	6.2.6
+PORTVERSION=	6.2.9
 CATEGORIES=	databases python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +9,7 @@ COMMENT=	Python extension module for BerkeleyDB 4+
 
 LICENSE=	bsd3
 
-USES=		bdb python
+USES=		bdb python:3.6+
 USE_PYTHON=	distutils autoplist
 USE_GCC=	yes
 
