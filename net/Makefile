@@ -128,7 +128,6 @@ SUBDIR += php80-sockets
 SUBDIR += phpldapadmin
 SUBDIR += py-avahi
 SUBDIR += py-ec2-cli-tools
-SUBDIR += py-ipaddress
 SUBDIR += py-ntplib
 SUBDIR += py-oauth2
 SUBDIR += py-pysocks
