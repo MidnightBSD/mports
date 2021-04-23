@@ -805,7 +805,6 @@ SUBDIR += py-constantly
 SUBDIR += py-contextlib2
 SUBDIR += py-country
 SUBDIR += py-coverage
-SUBDIR += py-darcsver
 SUBDIR += py-datadog
 SUBDIR += py-dateutil
 SUBDIR += py-dbus
