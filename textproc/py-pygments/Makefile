@@ -1,5 +1,5 @@
 PORTNAME=	pygments
-PORTVERSION=	2.5.2
+DISTVERSION=	2.7.2
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,9 +9,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Syntax highlighter written in Python
 
 LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils concurrent autoplist
+
+CONFLICTS_INSTALL=	py??-pygments-25
+
 NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
