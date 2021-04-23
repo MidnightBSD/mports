@@ -164,7 +164,6 @@ SUBDIR += py-MySQLdb
 SUBDIR += py-aiopg
 SUBDIR += py-aioredis
 SUBDIR += py-aiosqlite
-SUBDIR += py-bsddb
 SUBDIR += py-bsddb3
 SUBDIR += py-cassandra-driver
 SUBDIR += py-gdbm
