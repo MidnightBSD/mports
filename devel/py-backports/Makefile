@@ -12,20 +12,15 @@ LICENSE=	mit
 NO_FETCH=	yes
 NO_BUILD=	yes
 NO_ARCH=	yes
-USES=		python
-USE_PYTHON=	flavors
+USES=		python:3.6+
+USE_PYTHON=	flavors py3kplist
 
-.include <bsd.port.pre.mk>
+NO_ARCH=	yes
+NO_BUILD=	yes
 
-.if ${PYTHON_MAJOR_VER} == 2
 PLIST_FILES=	${PYTHON_SITELIBDIR}/backports/__init__.py \
 		${PYTHON_SITELIBDIR}/backports/__init__.pyc \
-		${PYTHON_SITELIBDIR}/backports/__init__.${PYTHON_PYOEXTENSION}
-.else
-PLIST_FILES=	${PYTHON_SITELIBDIR}/backports/__init__.py \
-		${PYTHON_SITELIBDIR}/backports/__pycache__/__init__.cpython-${PYTHON_SUFFIX}.pyc \
-		${PYTHON_SITELIBDIR}/backports/__pycache__/__init__.cpython-${PYTHON_SUFFIX}.${PYTHON_PYOEXTENSION}
-.endif
+		${PYTHON_SITELIBDIR}/backports/__init__.pyo
 
 do-install:
 	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/backports
@@ -33,4 +28,4 @@ do-install:
 	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
