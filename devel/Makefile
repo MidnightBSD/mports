@@ -859,7 +859,6 @@ SUBDIR += py-mimeparse
 SUBDIR += py-mock
 SUBDIR += py-monotonic
 SUBDIR += py-more-itertools
-SUBDIR += py-more-itertools5
 SUBDIR += py-msgpack
 SUBDIR += py-nose
 SUBDIR += py-nose2
