@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	mutagen
-PORTVERSION=	1.41.1
+PORTVERSION=	1.42.0
 CATEGORIES=	audio python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +11,7 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 NO_ARCH=	yes
-USES=		python shebangfix
+USES=		python:3.6+ shebangfix
 USE_PYTHON=	autoplist concurrent distutils
 SHEBANG_FILES=	tools/*
 

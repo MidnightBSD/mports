@@ -1,6 +1,4 @@
 # Created by: Nicola Vitale <nivit@FreeBSD.org>
-# $FreeBSD: head/audio/py-mpd/Makefile 371170 2014-10-19 07:33:09Z mva $
-# $MidnightBSD$
 
 PORTNAME=	mpd
 PORTVERSION=	0.3.0
@@ -16,7 +14,7 @@ COMMENT=	Python MPD client library
 
 LICENSE=	lgpl3
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>
