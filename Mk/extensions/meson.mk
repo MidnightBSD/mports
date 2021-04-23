@@ -1,6 +1,3 @@
-# $MidnightBSD$
-# $FreeBSD: head/Mk/Uses/meson.mk 443540 2017-06-13 21:04:27Z kwm $
-#
 # Provide support for Meson based projects
 #
 # Feature:		meson
@@ -27,8 +24,6 @@ IGNORE=	Incorrect 'USES+= meson:${meson_ARGS}'. meson takes no arguments
 .endif
 
 BUILD_DEPENDS+=		python3.7:lang/python37 \
-			python2.7:lang/python27 \
-			py27-setuptools>=0:devel/py-setuptools@py27 \
 			meson:devel/meson
 
 # meson uses ninja
