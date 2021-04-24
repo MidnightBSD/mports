@@ -1,7 +1,5 @@
-# $MidnightBSD$
-
 PORTNAME=	gnome-online-accounts
-PORTVERSION=	3.28.0
+PORTVERSION=	3.38.0
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 
@@ -34,7 +32,9 @@ CONFIGURE_ARGS=	--enable-lastfm
 
 GLIB_SCHEMAS=	org.gnome.online-accounts.gschema.xml
 
-CONFIGURE_ARGS+=--enable-kerberos=no
+CONFIGURE_ARGS+=--disable-kerberos \
+		--disable-fedora \
+		--disable-gudev
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	TELEPATHY
