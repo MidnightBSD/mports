@@ -1,6 +1,5 @@
 PORTNAME=	game
-DISTVERSION=	1.9.6
-PORTREVISION=	1
+DISTVERSION=	2.0.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Module designed to write games in Python
 
 LICENSE=	lgpl2.1
-LICENSE_FILE=	${WRKSRC}/docs/LGPL
+LICENSE_FILE=	${WRKSRC}/docs/LGPL.txt
 
 BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
@@ -19,8 +18,8 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 RUN_DEPENDS=	${PYNUMPY} \
 		v4l_compat>0:multimedia/v4l_compat
 
-USES=		jpeg python sdl xorg pkgconfig
-USE_SDL=	ttf image mixer
+USES=		compiler:c11 jpeg pkgconfig python:3.6+ sdl xorg
+USE_SDL=	sdl2 ttf2 image2 mixer2
 USE_PYTHON=	autoplist distutils
 USE_XORG=	x11
 
@@ -35,6 +34,9 @@ PORTDOCS=	*
 PORTEXAMPLES=	*
 
 NO_TEST=	yes
+
+post-extract:
+	@${RM} -r ${WRKSRC}/examples/.editorconfig
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}

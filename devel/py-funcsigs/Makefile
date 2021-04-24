@@ -1,5 +1,3 @@
-# $MidnightBSD$
-
 PORTNAME=	funcsigs
 PORTVERSION=	1.0.2
 CATEGORIES=	devel python
@@ -14,8 +12,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USE_PYTHON=	autoplist concurrent distutils
-USES=		python
+USES=		python:3.6+
 
+NO_ARCH=	yes
 # test does external site call and SSL cert won't validate
 NO_TEST=	yes
 
