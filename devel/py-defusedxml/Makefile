@@ -1,7 +1,7 @@
 # Created by: William Grzybowski <wg@FreeBSD.org>
 
 PORTNAME=	defusedxml
-PORTVERSION=	0.5.0
+PORTVERSION=	0.6.0
 CATEGORIES=	devel python textproc
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	python
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 PORTDOCS=	*
