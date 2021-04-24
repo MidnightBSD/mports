@@ -1,9 +1,7 @@
 # Created by: Alexey V. Degtyarev <alexey@renatasystems.org>
-# $FreeBSD: head/devel/py-jmespath/Makefile 400222 2015-10-27 08:33:54Z wen $
-# $MidnightBSD$
 
 PORTNAME=	jmespath
-PORTVERSION=	0.9.0
+PORTVERSION=	0.10.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,8 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	JSON Matching Expressions
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.6+
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
