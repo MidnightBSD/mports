@@ -32,7 +32,6 @@ SUBDIR += gnome-online-miners
 SUBDIR += grilo
 SUBDIR += grilo-plugins
 SUBDIR += gtk-vnc
-SUBDIR += hinfo
 SUBDIR += hostapd
 SUBDIR += hping
 SUBDIR += htpdate

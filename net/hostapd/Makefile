@@ -1,20 +1,12 @@
-# $FreeBSD: head/net/hostapd/Makefile 452257 2017-10-17 01:30:47Z cy $
-# $MidnightBSD$
-
 PORTNAME=	hostapd
-PORTVERSION=	2.6
-PORTREVISION=	2
+PORTVERSION=	2.9
 CATEGORIES=	net
 MASTER_SITES=	https://w1.fi/releases/
-PATCH_SITES=	https://w1.fi/security/2017-1/
-PATCHFILES=	rebased-v2.6-0001-hostapd-Avoid-key-reinstallation-in-FT-handshake.patch \
-	rebased-v2.6-0002-Prevent-reinstallation-of-an-already-in-use-group-ke.patch \
-	rebased-v2.6-0003-Extend-protection-of-GTK-IGTK-reinstallation-of-WNM-.patch \
-	rebased-v2.6-0004-Prevent-installation-of-an-all-zero-TK.patch \
-	rebased-v2.6-0005-Fix-PTK-rekeying-to-generate-a-new-ANonce.patch \
-	rebased-v2.6-0006-TDLS-Reject-TPK-TK-reconfiguration.patch \
-	rebased-v2.6-0008-FT-Do-not-allow-multiple-Reassociation-Response-fram.patch
-PATCH_DIST_STRIP=	-p1
+
+PATCH_SITES=	https://w1.fi/security/2020-1/
+PATCHFILES=	0001-WPS-UPnP-Do-not-allow-event-subscriptions-with-URLs-.patch:-p1 \
+		0002-WPS-UPnP-Fix-event-message-generation-using-a-long-U.patch:-p1 \
+		0003-WPS-UPnP-Handle-HTTP-initiation-failures-for-events-.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
@@ -29,6 +21,9 @@ LDFLAGS+=	-L${OPENSSLLIB}
 
 PLIST_FILES=	sbin/hostapd sbin/hostapd_cli man/man1/hostapd_cli.1.gz \
 		man/man8/hostapd.8.gz
+.if !exists(/etc/rc.d/hostapd)
+USE_RC_SUBR=	hostapd
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@$$(E) "  CC " $$<|@$$(E) "  $$(CC) " $$<|' \
