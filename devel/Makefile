@@ -822,7 +822,6 @@ SUBDIR += py-future
 SUBDIR += py-game
 SUBDIR += py-gitdb2
 SUBDIR += py-gitpython
-SUBDIR += py-gobject
 SUBDIR += py-gobject3
 SUBDIR += py-google-i18n-address
 SUBDIR += py-gyp
