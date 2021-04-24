@@ -1,8 +1,6 @@
-# $MidnightBSD$
-
 PORTNAME=	liboauth
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}
 
@@ -12,7 +10,7 @@ COMMENT=	C library implementing the OAuth Core standard
 LICENSE=	mit gpl2
 LICENSE_COMB=dual
 
-LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	libcurl.so:ftp/curl
 
 GNU_CONFIGURE=	yes
 MAKE_ARGS=	pkgconfigdir="${PREFIX}/libdata/pkgconfig"
