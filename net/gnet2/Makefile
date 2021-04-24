@@ -1,9 +1,7 @@
-# $MidnightBSD$
-
 PORTNAME=	gnet
 PORTVERSION=	2.0.8
 PORTREVISION=	3
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
 
@@ -12,7 +10,7 @@ COMMENT=	Simple network library built upon Glib-2
 
 LICENSE=	lgpl
 
-USES=		pathfix pkgconfig libtool
+USES=		gnome pathfix pkgconfig libtool
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
