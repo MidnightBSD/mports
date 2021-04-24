@@ -102,7 +102,6 @@ SUBDIR += plexmediaserver-plexpass
 SUBDIR += plexwatch
 SUBDIR += poe
 SUBDIR += pwcview
-SUBDIR += py-gstreamer
 SUBDIR += py-qt5-multimedia
 SUBDIR += py-qt5-multimediawidgets 
 SUBDIR += qt5-multimedia
