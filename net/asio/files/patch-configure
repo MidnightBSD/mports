@@ -1,9 +1,11 @@
 Since we aren't compiling anything for the port, don't look for boost:
---- configure	2014-10-01 20:10:53.000000000 -0400
-+++ configure	2014-11-30 12:32:04.000000000 -0500
-@@ -5026,5 +5026,4 @@
+--- configure.orig	2020-04-06 07:06:03 UTC
++++ configure
+@@ -4900,7 +4900,6 @@ else
      echo "Can't find boost headers. Please check the location of the boost"
      echo "distribution and rerun configure using the --with-boost=DIR option."
+     echo "Alternatively, run with --without-boost to enable standalone build."
 -    exit 1
  
  fi
+ 

@@ -1,5 +1,5 @@
 PORTNAME=	bsdec2-image-upload
-PORTVERSION=	1.3.1
+PORTVERSION=	1.4.1
 CATEGORIES=	net
 MASTER_SITES=	http://freebsd-ec2-dist.s3.amazonaws.com/
 
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		ssl tar:tgz uidfix
+USES=		compiler ssl tar:tgz uidfix
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
